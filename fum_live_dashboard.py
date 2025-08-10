@@ -130,6 +130,12 @@ class StreamingZEMA:
 class ProcessManager:
     def __init__(self, runs_root: str):
         self.runs_root = runs_root
+        # Ensure runs_root exists and store repo root for module resolution
+        try:
+            os.makedirs(self.runs_root, exist_ok=True)
+        except Exception:
+            pass
+        self.repo_root = os.path.dirname(os.path.abspath(__file__))
         self.proc: subprocess.Popen | None = None
         self.proc_lock = threading.Lock()
         self.current_run_dir: str | None = None
@@ -195,21 +201,44 @@ class ProcessManager:
         with self.proc_lock:
             if self.proc and self.proc.poll() is None:
                 return False, "Already running"
+            # Ensure runs_root exists before diffing
+            try:
+                os.makedirs(self.runs_root, exist_ok=True)
+            except Exception:
+                pass
             before = set(os.listdir(self.runs_root)) if os.path.exists(self.runs_root) else set()
             cmd = self._build_cmd(profile)
+            # Prepare environment so 'python -m fum_rt.run_nexus' resolves even if GUI was launched elsewhere
+            env = os.environ.copy()
             try:
-                self.proc = subprocess.Popen(cmd, stdin=subprocess.PIPE, cwd=os.getcwd())
+                repo_root = self.repo_root
+            except Exception:
+                repo_root = os.path.dirname(os.path.abspath(__file__))
+            env["PYTHONPATH"] = f"{repo_root}:{env.get('PYTHONPATH','')}"
+            env.setdefault("PYTHONUNBUFFERED", "1")
+            try:
+                self.proc = subprocess.Popen(
+                    cmd,
+                    stdin=subprocess.PIPE,
+                    stdout=subprocess.DEVNULL,
+                    stderr=subprocess.DEVNULL,
+                    cwd=repo_root,   # run from repo root so fum_rt is importable
+                    env=env
+                )
             except Exception as e:
                 self.proc = None
                 return False, f"Failed to start: {e}"
             # detect new run dir
-            time.sleep(1.2)
+            time.sleep(1.5)
             after = set(os.listdir(self.runs_root)) if os.path.exists(self.runs_root) else set()
             new_dirs = list(after - before)
             run_dir = None
             if new_dirs:
                 # pick the newest by mtime
-                run_dir = max((os.path.join(self.runs_root, d) for d in new_dirs), key=lambda p: os.path.getmtime(p))
+                run_dir = max(
+                    (os.path.join(self.runs_root, d) for d in new_dirs),
+                    key=lambda p: os.path.getmtime(p)
+                )
             else:
                 # fallback: latest by mtime under runs_root
                 runs = list_runs(self.runs_root)
