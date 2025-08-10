@@ -132,6 +132,12 @@ def perform_structural_homeostasis(connectome,
             # keep symmetry shape
             connectome.A = np.where(mask_keep, connectome.A, 0).astype(np.int8)
             connectome.E = np.where(mask_keep, E, 0.0).astype(np.float32)
+            # Expose pruning stats for diagnostics (undirected edges)
+            try:
+                pruned_count = int(np.count_nonzero((~mask_keep) & (E != 0)) // 2)
+                setattr(connectome, "_last_pruned_count", int(pruned_count))
+            except Exception:
+                pass
 
     # 2) Bridging if multiple components
     unique = np.unique(labels) if labels is not None else np.array([0], dtype=int)
@@ -153,3 +159,8 @@ def perform_structural_homeostasis(connectome,
 
         # Edge weights follow nodes (reuse existing vectorized function)
         connectome.E = (np.outer(connectome.W, connectome.W) * connectome.A).astype(np.float32)
+        # Expose bridging stats for diagnostics
+        try:
+            setattr(connectome, "_last_bridged_count", int(len(bridge_pairs)))
+        except Exception:
+            pass

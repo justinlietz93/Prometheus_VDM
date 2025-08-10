@@ -3,7 +3,9 @@ import numpy as np
 
 # Try to import user's libraries first
 try:
-    from FUM_Void_Equations import universal_void_dynamics, delta_re_vgsp, delta_gdsp, get_universal_constants
+    # Import only the elemental deltas from the user's equations.
+    # We compose universal_void_dynamics locally to guarantee growth+decay are combined.
+    from FUM_Void_Equations import delta_re_vgsp, delta_gdsp, get_universal_constants
     HAVE_EXTERNAL = True
 except Exception:
     HAVE_EXTERNAL = False
@@ -32,8 +34,13 @@ except Exception:
             phase = np.sin(2 * np.pi * f_ref * t)
             return base * (1 + phase_sens * phase)
         return base
-    def universal_void_dynamics(W, t, domain_modulation=1.0, use_time_dynamics=True):
-        return delta_re_vgsp(W, t, use_time_dynamics=use_time_dynamics, domain_modulation=domain_modulation)
+
+# Domain modulation
+# Compose universal dynamics locally so growth+decay are always present (avoids saturation).
+def universal_void_dynamics(W, t, domain_modulation=1.0, use_time_dynamics=True):
+    re = delta_re_vgsp(W, t, use_time_dynamics=use_time_dynamics, domain_modulation=domain_modulation)
+    gd = delta_gdsp(W, t, use_time_dynamics=use_time_dynamics, domain_modulation=domain_modulation)
+    return re + gd
 
 # Domain modulation
 def get_domain_modulation(domain: str):

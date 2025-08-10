@@ -140,6 +140,9 @@ class Nexus:
         self.history = []
         # Rolling buffer of recent inbound text for composing human-friendly “say” content
         self.recent_text = deque(maxlen=256)
+        # Track vt_entropy over time for SIE TD proxy (void-native signal)
+        self._prev_vt_entropy = None
+        self._last_vt_entropy = None
 
     def _symbols_to_indices(self, text):
         """
@@ -250,6 +253,14 @@ class Nexus:
                     C.bundle_size = int(max(1, int(cn["bundle_size"])))
                 if "prune_factor" in cn and hasattr(C, "prune_factor"):
                     C.prune_factor = float(max(0.0, float(cn["prune_factor"])))
+                # Allow live tuning of active-edge threshold (affects density and SIE TD proxy)
+                if "threshold" in cn and hasattr(C, "threshold"):
+                    C.threshold = float(max(0.0, float(cn["threshold"])))
+                # Allow live tuning of void-penalty and candidate budget
+                if "lambda_omega" in cn and hasattr(C, "lambda_omega"):
+                    C.lambda_omega = float(max(0.0, float(cn["lambda_omega"])))
+                if "candidates" in cn and hasattr(C, "candidates"):
+                    C.candidates = int(max(1, int(cn["candidates"])))
             except Exception:
                 pass
 
@@ -351,8 +362,15 @@ class Nexus:
                 try:
                     prev_E = getattr(self, "_prev_active_edges", E)
                     delta_e = float(E - prev_E) / float(max(1, E))
-                    # Emphasize meaningful structural changes; clip to [-2, 2]
-                    td_signal = max(-2.0, min(2.0, 4.0 * delta_e))
+                    # Combine structural change and traversal entropy change as a void-native TD proxy
+                    try:
+                        vte_prev = getattr(self, "_prev_vt_entropy", None)
+                        vte_last = getattr(self, "_last_vt_entropy", None)
+                        vt_delta = 0.0 if (vte_prev is None or vte_last is None) else float(vte_last - vte_prev)
+                    except Exception:
+                        vt_delta = 0.0
+                    td_raw = 4.0 * delta_e + 1.5 * vt_delta
+                    td_signal = max(-2.0, min(2.0, td_raw))
                     self._prev_active_edges = E
                 except Exception:
                     td_signal = 0.0
@@ -373,12 +391,18 @@ class Nexus:
                     density_override=density
                 )
                 sie_drive = float(drive.get("valence_01", 1.0))
-
-                # Update connectome, gating universal void dynamics by sie_drive
+                # Prefer SIE v2 valence (from W,dW) when available; fall back to legacy
+                try:
+                    sie2 = float(getattr(self.connectome, "_last_sie2_valence", 0.0))
+                except Exception:
+                    sie2 = 0.0
+                sie_gate = max(0.0, min(1.0, max(sie_drive, sie2)))
+ 
+                # Update connectome, gating universal void dynamics by sie_gate
                 self.connectome.step(
                     t,
                     domain_modulation=self.dom_mod,
-                    sie_drive=sie_drive,
+                    sie_drive=sie_gate,
                     use_time_dynamics=self.use_time_dynamics
                 )
 
@@ -387,6 +411,17 @@ class Nexus:
                 # attach traversal findings
                 if getattr(self.connectome, "findings", None):
                     m.update(self.connectome.findings)
+                # expose sie_gate used this tick for diagnostics
+                try:
+                    m["sie_gate"] = float(sie_gate)
+                except Exception:
+                    pass
+                # update vt_entropy history for next tick's TD proxy
+                try:
+                    self._prev_vt_entropy = getattr(self, "_last_vt_entropy", None)
+                    self._last_vt_entropy = float(m.get("vt_entropy", 0.0))
+                except Exception:
+                    pass
                 # Drain announcement bus and update ADC
                 try:
                     obs_batch = self.bus.drain(max_items=self.bus_drain)
@@ -429,10 +464,10 @@ class Nexus:
 
                 # Autonomous speaking based on topology spikes and valence
                 try:
-                    val = float(m.get("sie_valence_01", 0.0))
+                    val_v2 = float(m.get("sie_v2_valence_01", m.get("sie_valence_01", 0.0)))
                     spike = bool(m.get("b1_spike", False))
                     if self.speak_auto and spike:
-                        if val >= self.speak_valence_thresh:
+                        if val_v2 >= self.speak_valence_thresh:
                             # Compose a brief English snippet from recent input to demonstrate symbol/word grounding
                             summary = ""
                             try:
@@ -454,10 +489,11 @@ class Nexus:
                                         "vt_coverage": float(m.get("vt_coverage", 0.0)),
                                         "vt_entropy": float(m.get("vt_entropy", 0.0)),
                                         "connectome_entropy": float(m.get("connectome_entropy", 0.0)),
+                                        "sie_valence_01": float(m.get("sie_valence_01", 0.0)),
                                         "sie_v2_valence_01": float(m.get("sie_v2_valence_01", m.get("sie_valence_01", 0.0))),
                                     },
                                 },
-                                score=val,
+                                score=val_v2,
                             )
                         else:
                             try:
@@ -466,7 +502,7 @@ class Nexus:
                                     extra={
                                         "extra": {
                                             "reason": "low_valence",
-                                            "val": val,
+                                            "val": val_v2,
                                             "thresh": float(self.speak_valence_thresh),
                                             "b1_z": float(m.get("b1_z", 0.0)),
                                             "t": int(step),
@@ -503,13 +539,13 @@ class Nexus:
                             "ute_in_count": int(m.get("ute_in_count", 0)),
                             "ute_text_count": int(m.get("ute_text_count", 0)),
                         }
-                        score = float(m.get("sie_valence_01", 0.0))
+                        score = float(m.get("sie_v2_valence_01", m.get("sie_valence_01", 0.0)))
                         self.utd.emit_text(payload, score=score)
                     except Exception:
                         pass
                     # Macro board: emit a status macro when valence is high
                     try:
-                        val = float(m.get("sie_valence_01", 0.0))
+                        val = float(m.get("sie_v2_valence_01", m.get("sie_valence_01", 0.0)))
                         if val >= 0.6:
                             self.utd.emit_macro(
                                 "status",
