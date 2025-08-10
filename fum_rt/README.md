@@ -19,7 +19,7 @@ Artifacts land in `runs/<timestamp>/`:
 - `events.jsonl`   — structured logs
 - `dashboard.png`  — metrics (updated)
 - `connectome.png` — graph snapshot (updated)
-- `state_{step}.npz` — checkpointed engram state (optional, see `--checkpoint-every`)
+- `state_<step>.h5` (or `.npz` fallback) — checkpointed engram state (see `--checkpoint-every`, `--checkpoint-keep`)
 
 ### Where to put your functions
 If your repo already contains `FUM_Void_Equations.py` and `FUM_Void_Debt_Modulation.py` on `PYTHONPATH`,
@@ -35,9 +35,10 @@ The Nexus loop ticks at `--hz` (default 10 Hz). Each tick:
 3. Metrics -> logs; UTD can emit text events opportunistically.
 4. On schedule it saves a dashboard and a connectome image.
 
-### Why there’s no `.h5` engram
-State is serialized as **sparse graph + float vectors** via `npz` snapshots (fast, portable).
-Use `--checkpoint-every N` to tune cadence; the files live in `runs/<ts>/`.
+### Checkpoints
+Engram checkpoints are saved as HDF5 (`.h5`) by default when `h5py` is available; otherwise snapshots fall back to `.npz`.
+Use `--checkpoint-every S` to enable periodic saves; files live in `runs/<timestamp>/` as `state_<step>.h5` (or `.npz`).
+Use `--checkpoint-keep K` to keep only the last K checkpoints (per format); set `0` to disable retention.
 
 ---
 
@@ -70,3 +71,44 @@ Domains supported (for auto‑modulation): `quantum`, `standard_model`, `dark_ma
 - `requirements.txt` — only `numpy`, `networkx`, `matplotlib`.
 
 All modules are tiny and documented so you can extend fast.
+
+---
+
+## Event scanning (UTD/Nexus)
+
+During runs, UTD writes macro/text emissions to `runs/<timestamp>/utd_events.jsonl`.
+Nexus writes structured logs (including speak gating) to `runs/<timestamp>/events.jsonl`.
+
+A helper scanner is provided:
+
+- Script: `tools/utd_event_scan.py`
+- Purpose: Extract UTD “macro” (e.g., say) and “text” records, optionally include Nexus `speak_suppressed` events
+- Output: NDJSON (default) or CSV
+
+Examples:
+
+```bash
+# 1) Scan a specific run for “say” macros and print NDJSON
+python tools/utd_event_scan.py runs/2025-08-10_21-00-00 --macro say
+
+# 2) Scan all runs, include Nexus speak_suppressed, write CSV
+python tools/utd_event_scan.py runs --macro say --include-nexus --format csv --out say_events.csv
+
+# 3) Include UTD status text payloads as well
+python tools/utd_event_scan.py runs/2025-08-10_21-00-00 --macro say --include-text
+
+# 4) Persist a macro board synthesized from observed macros for a run
+python tools/utd_event_scan.py runs/2025-08-10_21-00-00 --emit-macro-board runs/2025-08-10_21-00-00/macro_board.json
+
+# 5) Build a simple vocabulary from “say” texts
+python tools/utd_event_scan.py runs/2025-08-10_21-00-00 --emit-lexicon runs/2025-08-10_21-00-00/lexicon.json
+```
+
+### Macro board persistence
+
+- At runtime, newly used macro names are automatically registered and persisted to `runs/<timestamp>/macro_board.json`.
+- On startup, the Nexus also registers macro keys from:
+  1) the run’s `macro_board.json` (preferred), or
+  2) `from_physicist_agent/macro_board_min.json` (fallback).
+- This allows new macro keys (e.g., `say`, `status`) to accumulate across runs without additional configuration.
+
