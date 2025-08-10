@@ -23,6 +23,7 @@ import subprocess
 from typing import Any, Dict, List, Tuple
 
 import plotly.graph_objs as go
+import dash
 from dash import Dash, dcc, html, Input, Output, State, no_update
 
 # ---------------- CLI ----------------
@@ -389,8 +390,54 @@ def append_event(ss: SeriesState, rec: Dict[str, Any]):
         v = 0.0 if cc is None else float(cc)
         bz = ss.b1_ema.update(v)
     ss.b1z.append(float(bz))
-    ss.val.append(ex.get("sie_valence_01"))
-    ss.val2.append(ex.get("sie_v2_valence_01"))
+    # Robust SIE valence extraction with fallbacks (handles various field names and ranges)
+    val = ex.get("sie_valence_01")
+    if val is None:
+        for k in ("sie_valence", "valence"):
+            v = ex.get(k)
+            if v is not None:
+                try:
+                    fv = float(v)
+                    # Normalize [-1,1] -> [0,1] if appropriate
+                    val = (fv + 1.0) / 2.0 if -1.001 <= fv <= 1.001 else fv
+                except Exception:
+                    val = v
+                break
+        if val is None:
+            sie = ex.get("sie") or {}
+            if isinstance(sie, dict):
+                if "valence_01" in sie:
+                    val = sie.get("valence_01")
+                elif "valence" in sie:
+                    try:
+                        fv = float(sie.get("valence"))
+                        val = (fv + 1.0) / 2.0 if -1.001 <= fv <= 1.001 else fv
+                    except Exception:
+                        val = sie.get("valence")
+    ss.val.append(val)
+    val2 = ex.get("sie_v2_valence_01")
+    if val2 is None:
+        for k in ("sie_v2_valence", "sie_v2"):
+            v = ex.get(k)
+            if v is not None:
+                try:
+                    fv = float(v)
+                    val2 = (fv + 1.0) / 2.0 if -1.001 <= fv <= 1.001 else fv
+                except Exception:
+                    val2 = v
+                break
+        if val2 is None:
+            sie2 = ex.get("sie_v2") or {}
+            if isinstance(sie2, dict):
+                if "valence_01" in sie2:
+                    val2 = sie2.get("valence_01")
+                elif "valence" in sie2:
+                    try:
+                        fv = float(sie2.get("valence"))
+                        val2 = (fv + 1.0) / 2.0 if -1.001 <= fv <= 1.001 else fv
+                    except Exception:
+                        val2 = sie2.get("valence")
+    ss.val2.append(val2)
     ss.entro.append(ex.get("connectome_entropy"))
 
 def append_say(ss: SeriesState, rec: Dict[str, Any]):
@@ -463,7 +510,7 @@ def build_app(runs_root: str) -> Dash:
                 html.Pre(id="phase-status", style={"fontSize":"12px"}),
                 html.Hr(),
                 html.Label("Feed file to stdin (optional)"),
-                dcc.Input(id="feed-path", type="text", placeholder="path/to/text.txt", style={"width":"100%"}),
+                dcc.Input(id="feed-path", type="text", placeholder="relative to fum_rt/data or absolute path", style={"width":"100%"}),
                 dcc.Input(id="feed-rate", type="number", value=20, step=1, style={"width":"120px", "marginTop":"6px"}),
                 html.Div([
                     html.Button("Start Feed", id="feed-start", n_clicks=0),
@@ -533,49 +580,51 @@ def build_app(runs_root: str) -> Dash:
 
     @app.callback(
         Output("proc-status","children"),
-        Output("run-dir","value"),
+        Output("run-dir","value", allow_duplicate=True),
         Input("start-run","n_clicks"),
+        Input("stop-run","n_clicks"),
+        Input("send-btn","n_clicks"),
         State("profile-json","value"),
         State("runs-root","value"),
-        prevent_initial_call=True
-    )
-    def on_start(_n, profile_json, root):
-        try:
-            profile = json.loads(profile_json or "{}")
-        except Exception as e:
-            return f"Invalid profile JSON: {e}", no_update
-        ok, msg = manager.start(profile)
-        if not ok:
-            # msg contains error and possibly launch log; surface it
-            return f"Start failed:\n{msg}", no_update
-        # msg is run_dir on success
-        run_dir = msg
-        cmd_echo = " ".join(manager.last_cmd or [])
-        return (f"Started.\nrun_dir={run_dir}\n"
-                f"checkpoint_every={profile.get('checkpoint_every')} keep={profile.get('checkpoint_keep')}\n"
-                f"cmd: {cmd_echo}\n"
-                f"launch_log: {manager.launch_log}"), run_dir or no_update
-
-    @app.callback(
-        Output("proc-status","children", allow_duplicate=True),
-        Input("stop-run","n_clicks"),
-        prevent_initial_call=True
-    )
-    def on_stop(_n):
-        ok, msg = manager.stop()
-        return "Stopped." if ok else msg
-
-    @app.callback(
-        Output("proc-status","children", allow_duplicate=True),
-        Input("send-btn","n_clicks"),
         State("send-line","value"),
         prevent_initial_call=True
     )
-    def on_send(_n, line):
-        if not line:
-            return no_update
-        ok = manager.send_line(line)
-        return "Sent." if ok else "Not running."
+    def on_proc_actions(n_start, n_stop, n_send, profile_json, root, line):
+        # Determine which control triggered this callback
+        try:
+            trig = dash.callback_context.triggered[0]["prop_id"].split(".")[0] if dash.callback_context.triggered else None
+        except Exception:
+            trig = None
+
+        if trig == "start-run":
+            try:
+                profile = json.loads(profile_json or "{}")
+            except Exception as e:
+                return f"Invalid profile JSON: {e}", no_update
+            ok, msg = manager.start(profile)
+            if not ok:
+                # msg contains error and possibly launch log; surface it
+                return f"Start failed:\n{msg}", no_update
+            run_dir = msg
+            cmd_echo = " ".join(manager.last_cmd or [])
+            return (f"Started.\nrun_dir={run_dir}\n"
+                    f"checkpoint_every={profile.get('checkpoint_every')} keep={profile.get('checkpoint_keep')}\n"
+                    f"cmd: {cmd_echo}\n"
+                    f"launch_log: {manager.launch_log}"), run_dir or no_update
+
+        if trig == "stop-run":
+            ok, msg = manager.stop()
+            return ("Stopped." if ok else msg), no_update
+
+        if trig == "send-btn":
+            if not line:
+                return no_update, no_update
+            ok = manager.send_line(line)
+            return ("Sent." if ok else "Not running."), no_update
+
+        return no_update, no_update
+
+
 
     @app.callback(
         Output("send-status","children"),
@@ -585,10 +634,21 @@ def build_app(runs_root: str) -> Dash:
         prevent_initial_call=True
     )
     def on_feed_start(_n, path, rate):
-        if not path:
-            return "Provide a feed path."
-        ok = manager.feed_file(path, float(rate or 20.0))
-        return "Feeding." if ok else "Feed failed (check process running and path)."
+        # Resolve relative paths against fum_rt/data by default
+        p = (path or "").strip()
+        if not p:
+            return "Provide a feed path (relative to fum_rt/data or absolute)."
+        chosen = p
+        try:
+            if (not os.path.isabs(chosen)) or (not os.path.exists(chosen)):
+                data_dir = os.path.join(repo_root, "fum_rt", "data")
+                cand = os.path.join(data_dir, p)
+                if os.path.exists(cand):
+                    chosen = cand
+        except Exception:
+            pass
+        ok = manager.feed_file(chosen, float(rate or 20.0))
+        return (f"Feeding from {chosen}." if ok else "Feed failed (check process running and path).")
 
     @app.callback(
         Output("send-status","children", allow_duplicate=True),
@@ -635,13 +695,12 @@ def build_app(runs_root: str) -> Dash:
         return json.dumps(data, indent=2)
 
     @app.callback(
-        Output("use-current-run","n_clicks"),
         Output("run-dir","value", allow_duplicate=True),
         Input("use-current-run","n_clicks"),
         prevent_initial_call=True
     )
     def on_use_current(_n):
-        return 0, (manager.current_run_dir or no_update)
+        return (manager.current_run_dir or no_update)
 
     @app.callback(
         Output("fig-dashboard","figure"),
@@ -716,8 +775,26 @@ def build_app(runs_root: str) -> Dash:
         )
         return fig1, fig2
 
+    # Auto-refresh launcher log every poll tick
     @app.callback(
         Output("launch-log","children"),
+        Input("poll","n_intervals"),
+        prevent_initial_call=False,
+    )
+    def auto_refresh_log(_n):
+        try:
+            path = manager.launch_log
+            if not path or not os.path.exists(path):
+                return "No launcher log yet."
+            with open(path, "r", encoding="utf-8", errors="ignore") as fh:
+                data = fh.read()
+            return data[-4000:]
+        except Exception as e:
+            return f"Error reading launcher log: {e}"
+
+    # Manual refresh still available; marked as duplicate output
+    @app.callback(
+        Output("launch-log","children", allow_duplicate=True),
         Input("show-log","n_clicks"),
         prevent_initial_call=True,
     )
