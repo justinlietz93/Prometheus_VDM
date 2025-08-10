@@ -408,6 +408,16 @@ class Nexus:
 
                 # 3) metrics & logs (merge SIE components + traversal findings)
                 m = compute_metrics(self.connectome)
+                # attach structural homeostasis and TD diagnostics (void-native)
+                try:
+                    m["homeostasis_pruned"] = int(getattr(self.connectome, "_last_pruned_count", 0))
+                    m["homeostasis_bridged"] = int(getattr(self.connectome, "_last_bridged_count", 0))
+                    m["active_edges"] = int(E)
+                    m["td_signal"] = float(td_signal)
+                    if firing_var is not None:
+                        m["firing_var"] = float(firing_var)
+                except Exception:
+                    pass
                 # attach traversal findings
                 if getattr(self.connectome, "findings", None):
                     m.update(self.connectome.findings)
@@ -529,6 +539,9 @@ class Nexus:
                             "vt_coverage": float(m.get("vt_coverage", 0.0)),
                             "vt_entropy": float(m.get("vt_entropy", 0.0)),
                             "connectome_entropy": float(m.get("connectome_entropy", 0.0)),
+                            "active_edges": int(m.get("active_edges", 0)),
+                            "homeostasis_pruned": int(m.get("homeostasis_pruned", 0)),
+                            "homeostasis_bridged": int(m.get("homeostasis_bridged", 0)),
                             "b1_z": float(m.get("b1_z", 0.0)),
                             "adc_territories": int(m.get("adc_territories", 0)),
                             "adc_boundaries": int(m.get("adc_boundaries", 0)),
@@ -556,6 +569,9 @@ class Nexus:
                                     "vt_coverage": float(m.get("vt_coverage", 0.0)),
                                     "vt_entropy": float(m.get("vt_entropy", 0.0)),
                                     "connectome_entropy": float(m.get("connectome_entropy", 0.0)),
+                                    "active_edges": int(m.get("active_edges", 0)),
+                                    "homeostasis_pruned": int(m.get("homeostasis_pruned", 0)),
+                                    "homeostasis_bridged": int(m.get("homeostasis_bridged", 0)),
                                     "ute_in_count": int(m.get("ute_in_count", 0)),
                                     "ute_text_count": int(m.get("ute_text_count", 0)),
                                 },
