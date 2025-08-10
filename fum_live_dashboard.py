@@ -492,7 +492,7 @@ def build_app(runs_root: str) -> Dash:
                     ], style={"marginTop":"8px"}),
                     html.Pre(id="proc-status", style={"fontSize":"12px","whiteSpace":"pre-wrap"}),
                 ]),
-                dcc.Graph(id="fig-dashboard"),
+                dcc.Graph(id="fig-dashboard", style={"height":"420px"}),
                 dcc.Graph(id="fig-discovery"),
             ], style={"flex":"2","paddingLeft":"10px"}),
         ], style={"display":"flex"}),
