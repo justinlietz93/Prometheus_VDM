@@ -427,7 +427,8 @@ def build_app(runs_root: str) -> Dash:
 
     runs = list_runs(runs_root)
     default_run = runs[0] if runs else ""
-    PROFILES_DIR = "run_profiles"
+    repo_root = os.path.dirname(os.path.abspath(__file__))
+    PROFILES_DIR = os.path.join(repo_root, "run_profiles")
     os.makedirs(PROFILES_DIR, exist_ok=True)
     manager = ProcessManager(runs_root)
 
@@ -491,9 +492,11 @@ def build_app(runs_root: str) -> Dash:
                         html.Button("Stop Run", id="stop-run", n_clicks=0, style={"marginLeft":"8px","backgroundColor":"#dc3545","color":"white"}),
                     ], style={"marginTop":"8px"}),
                     html.Pre(id="proc-status", style={"fontSize":"12px","whiteSpace":"pre-wrap"}),
+                    html.Button("Show Launcher Log", id="show-log", n_clicks=0, style={"marginTop":"6px"}),
+                    html.Pre(id="launch-log", style={"fontSize":"12px","whiteSpace":"pre-wrap","maxHeight":"240px","overflowY":"auto"}),
                 ]),
                 dcc.Graph(id="fig-dashboard", style={"height":"420px"}),
-                dcc.Graph(id="fig-discovery"),
+                dcc.Graph(id="fig-discovery", style={"height":"320px"}),
             ], style={"flex":"2","paddingLeft":"10px"}),
         ], style={"display":"flex"}),
         dcc.Interval(id="poll", interval=1000, n_intervals=0),
@@ -712,6 +715,23 @@ def build_app(runs_root: str) -> Dash:
             margin=dict(l=40,r=20,t=40,b=40),
         )
         return fig1, fig2
+
+    @app.callback(
+        Output("launch-log","children"),
+        Input("show-log","n_clicks"),
+        prevent_initial_call=True,
+    )
+    def on_show_log(_n):
+        try:
+            path = manager.launch_log
+            if not path or not os.path.exists(path):
+                return "No launcher log yet."
+            with open(path, "r", encoding="utf-8", errors="ignore") as fh:
+                data = fh.read()
+            return data[-4000:]
+        except Exception as e:
+            return f"Error reading launcher log: {e}"
+
 
     return app
 
