@@ -65,6 +65,64 @@ class Nexus:
                     break
         except Exception:
             pass
+
+        # Phrase templates for 'say' macro and persistent lexicon (for richer sentences)
+        self._phrase_templates = []
+        try:
+            # 1) Load templates from say meta in macro board if present
+            mb_path = os.path.join(self.run_dir, 'macro_board.json')
+            if os.path.exists(mb_path):
+                with open(mb_path, 'r', encoding='utf-8') as fh:
+                    _mb = json.load(fh)
+                if isinstance(_mb, dict):
+                    _say_meta = _mb.get('say') or {}
+                    if isinstance(_say_meta, dict):
+                        _tpls = _say_meta.get('templates') or _say_meta.get('phrases') or []
+                        if isinstance(_tpls, list):
+                            self._phrase_templates.extend([str(x) for x in _tpls if isinstance(x, (str,))])
+        except Exception:
+            pass
+        try:
+            # 2) Load templates from explicit phrase bank files
+            phrase_candidates = [
+                os.path.join(self.run_dir, 'phrase_bank.json'),
+                os.path.join('from_physicist_agent', 'phrase_bank_min.json'),
+            ]
+            for pth in phrase_candidates:
+                if os.path.exists(pth):
+                    with open(pth, 'r', encoding='utf-8') as fh:
+                        obj = json.load(fh)
+                    if isinstance(obj, dict):
+                        _say = obj.get('say') or obj.get('templates') or []
+                        if isinstance(_say, list):
+                            self._phrase_templates.extend([str(x) for x in _say if isinstance(x, (str,))])
+                    break
+        except Exception:
+            pass
+        # 3) Persistent lexicon (word -> count), learned from inbound text and emissions
+        try:
+            self._lexicon_path = os.path.join(self.run_dir, 'lexicon.json')
+            self._lexicon = {}
+            if os.path.exists(self._lexicon_path):
+                with open(self._lexicon_path, 'r', encoding='utf-8') as fh:
+                    obj = json.load(fh)
+                # support either {"tokens":[{"token":..,"count":..},...]} or {"word":count,...}
+                if isinstance(obj, dict):
+                    if 'tokens' in obj and isinstance(obj['tokens'], list):
+                        for ent in obj['tokens']:
+                            try:
+                                self._lexicon[str(ent['token']).lower()] = int(ent['count'])
+                            except Exception:
+                                pass
+                    else:
+                        for k, v in obj.items():
+                            try:
+                                self._lexicon[str(k).lower()] = int(v)
+                            except Exception:
+                                pass
+        except Exception:
+            pass
+
         # Select connectome backend (dense vs sparse) with void-faithful parameters
         if sparse_mode:
             self.connectome = SparseConnectome(
@@ -199,6 +257,84 @@ class Nexus:
         except Exception:
             return ""
 
+    def _tokenize(self, text: str):
+        try:
+            words = [w.lower() for w in re.findall(r"[A-Za-z][A-Za-z0-9_+\-]*", str(text))]
+            STOP = {
+                "the","a","an","and","or","for","with","into","of","to","from","in","on","at","by","is",
+                "are","was","were","be","been","being","it","this","that","as","if","then","than","so",
+                "thus","such","not","no","nor","but","over","under","up","down","out","you","your",
+                "yours","me","my","mine","we","our","ours","they","their","theirs","he","him","his",
+                "she","her","hers","i","am","do","does","did","done","have","has","had","will","would",
+                "can","could","should","shall","may","might"
+            }
+            return [w for w in words if (w not in STOP and len(w) > 2)]
+        except Exception:
+            return []
+
+    def _update_lexicon(self, text: str):
+        try:
+            if not hasattr(self, "_lexicon"):
+                self._lexicon = {}
+            for w in self._tokenize(text):
+                self._lexicon[w] = int(self._lexicon.get(w, 0)) + 1
+        except Exception:
+            pass
+
+    def _save_lexicon(self):
+        try:
+            if not hasattr(self, "_lexicon_path"):
+                return
+            toks = [{"token": k, "count": int(v)} for k, v in sorted(self._lexicon.items(), key=lambda kv: (-int(kv[1]), kv[0]))]
+            obj = {"tokens": toks}
+            with open(self._lexicon_path, 'w', encoding='utf-8') as fh:
+                json.dump(obj, fh, ensure_ascii=False, indent=2)
+        except Exception:
+            pass
+
+    def _compose_say_text(self, metrics: dict, step: int) -> str:
+        """
+        Compose a short sentence using either configured phrase templates or a deterministic summary fallback.
+        Placeholders supported in templates: {keywords}, {top1}, {top2}, {vt_entropy}, {vt_coverage}, {b1_z}, {connectome_entropy}, {valence}
+        """
+        try:
+            summary = ""
+            try:
+                summary = self._keyword_summary(6)
+            except Exception:
+                summary = ""
+            words = [w.strip() for w in summary.split(",") if w.strip()]
+            top1 = words[0] if len(words) > 0 else "frontier"
+            top2 = words[1] if len(words) > 1 else "structure"
+            val = float(metrics.get("sie_v2_valence_01", metrics.get("sie_valence_01", 0.0)))
+            ctx = {
+                "keywords": (summary or "salient loop detected"),
+                "top1": top1,
+                "top2": top2,
+                "vt_entropy": float(metrics.get("vt_entropy", 0.0)),
+                "vt_coverage": float(metrics.get("vt_coverage", 0.0)),
+                "b1_z": float(metrics.get("b1_z", 0.0)),
+                "connectome_entropy": float(metrics.get("connectome_entropy", 0.0)),
+                "valence": val,
+            }
+            tpls = list(getattr(self, "_phrase_templates", []) or [])
+            if not tpls:
+                tpls = [
+                    "Topology discovery: {keywords}",
+                    "Observation: {top1}, {top2} (vt={vt_entropy:.2f}, v={valence:.2f})",
+                    "Coherent loop near {top1} ↔ {top2} (coverage={vt_coverage:.2f})",
+                    "Emergent structure: {keywords} (b1_z={b1_z:.2f})",
+                ]
+            idx = int(step) % max(1, len(tpls))
+            tpl = str(tpls[idx])
+            try:
+                return tpl.format(**ctx)
+            except Exception:
+                # Fallback if template has unknown placeholders
+                return f"Topology discovery: {ctx['keywords']}"
+        except Exception:
+            return "Topology discovery: salient loop detected."
+ 
     # --- Phase control plane (file-driven) ---------------------------------
     def _default_phase_profiles(self):
         # Safe default gates for incremental curriculum, void-faithful (no token logic)
@@ -324,6 +460,10 @@ class Nexus:
                             text = str(m.get('msg', ''))
                             try:
                                 self.recent_text.append(text)
+                            except Exception:
+                                pass
+                            try:
+                                self._update_lexicon(text)
                             except Exception:
                                 pass
                             idxs = self._symbols_to_indices(text)
@@ -472,6 +612,13 @@ class Nexus:
                 m['ute_text_count'] = int(ute_text_count)
                 self.history.append(m)
 
+                # Periodically persist learned lexicon
+                try:
+                    if (step % max(100, int(self.status_every) * 10)) == 0:
+                        self._save_lexicon()
+                except Exception:
+                    pass
+
                 # Autonomous speaking based on topology spikes and valence
                 try:
                     val_v2 = float(m.get("sie_v2_valence_01", m.get("sie_valence_01", 0.0)))
@@ -479,14 +626,11 @@ class Nexus:
                     if self.speak_auto and spike:
                         if val_v2 >= self.speak_valence_thresh:
                             # Compose a brief English snippet from recent input to demonstrate symbol/word grounding
-                            summary = ""
+                            speech = self._compose_say_text(m, int(step))
                             try:
-                                summary = self._keyword_summary(4)
+                                self._update_lexicon(speech)
                             except Exception:
-                                summary = ""
-                            speech = "Topology discovery: salient loop detected."
-                            if summary:
-                                speech = f"Topology discovery: {summary}"
+                                pass
                             self.utd.emit_macro(
                                 "say",
                                 {
