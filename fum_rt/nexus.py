@@ -1,5 +1,5 @@
 
-import time, os, argparse, json, re
+import time, os, argparse, json, re, random
 from collections import deque
 from .utils.logging_setup import get_logger
 from .io.ute import UTE
@@ -27,7 +27,8 @@ class Nexus:
                  bus_capacity:int=65536, bus_drain:int=2048,
                  r_attach:float=0.25, ttl_init:int=120, split_patience:int=6,
                  stim_group_size:int=4, stim_amp:float=0.05, stim_decay:float=0.90, stim_max_symbols:int=64,
-                 checkpoint_format:str="h5", checkpoint_keep:int=5, load_engram_path:str=None):
+                 checkpoint_format:str="h5", checkpoint_keep:int=5, load_engram_path:str=None,
+                 emergent_macros:bool=False):
         self.run_dir = run_dir
         self.N = N
         self.k = k
@@ -42,7 +43,8 @@ class Nexus:
 
         os.makedirs(self.run_dir, exist_ok=True)
         self.logger = get_logger("nexus", os.path.join(self.run_dir, "events.jsonl"))
-        self.ute = UTE(use_stdin=True)
+        inbox_path = os.path.join(self.run_dir, "chat_inbox.jsonl")
+        self.ute = UTE(use_stdin=True, inbox_path=inbox_path)
         self.utd = UTD(self.run_dir)
         # Macro board: minimal defaults + optional JSON registry
         try:
@@ -50,18 +52,18 @@ class Nexus:
             self.utd.register_macro('say', {'desc': 'Emit plain text line'})
             macro_candidates = [
                 os.path.join(self.run_dir, 'macro_board.json'),
-                os.path.join(os.path.dirname(__file__), 'io', 'lexicon', 'macro_board_min.json'),
             ]
             for pth in macro_candidates:
                 if os.path.exists(pth):
                     with open(pth, 'r', encoding='utf-8') as fh:
                         reg = json.load(fh)
-                        if isinstance(reg, dict):
-                            for name, meta in reg.items():
-                                try:
-                                    self.utd.register_macro(str(name), meta if isinstance(meta, dict) else {})
-                                except Exception:
-                                    pass
+                    if isinstance(reg, dict):
+                        for name, meta in reg.items():
+                            try:
+                                # Only per-run board can provide metadata/templates to preserve emergent language
+                                self.utd.register_macro(str(name), meta if isinstance(meta, dict) else {})
+                            except Exception:
+                                pass
                     break
         except Exception:
             pass
@@ -122,6 +124,10 @@ class Nexus:
                                 pass
         except Exception:
             pass
+
+        # N-gram stores for emergent sentence composition (learned from inputs/outputs)
+        self._ng2 = {}  # bigram: w1 -> {w2: count}
+        self._ng3 = {}  # trigram: (w1,w2) -> {w3: count}
 
         # Select connectome backend (dense vs sparse) with void-faithful parameters
         if sparse_mode:
@@ -276,8 +282,14 @@ class Nexus:
         try:
             if not hasattr(self, "_lexicon"):
                 self._lexicon = {}
-            for w in self._tokenize(text):
+            toks = self._tokenize(text)
+            for w in toks:
                 self._lexicon[w] = int(self._lexicon.get(w, 0)) + 1
+            # Update streaming n-grams for emergent composition
+            try:
+                self._update_ngrams(toks)
+            except Exception:
+                pass
         except Exception:
             pass
 
@@ -291,6 +303,79 @@ class Nexus:
                 json.dump(obj, fh, ensure_ascii=False, indent=2)
         except Exception:
             pass
+
+    def _update_ngrams(self, tokens):
+        try:
+            toks = [t for t in tokens if t]
+            n = len(toks)
+            for i in range(n - 1):
+                a = toks[i]; b = toks[i + 1]
+                d = self._ng2.setdefault(a, {})
+                d[b] = d.get(b, 0) + 1
+            for i in range(n - 2):
+                key = (toks[i], toks[i + 1]); c = toks[i + 2]
+                d = self._ng3.setdefault(key, {})
+                d[c] = d.get(c, 0) + 1
+        except Exception:
+            pass
+
+    def _emergent_sentence(self, max_len=12, seed=None):
+        try:
+            if not getattr(self, "_lexicon", None):
+                return ""
+            items = list(self._lexicon.items())
+            if not items:
+                return ""
+            rnd = random.Random(seed if seed is not None else int(time.time() * 1000) & 0xFFFFFFFF)
+            # Weighted start token draw by frequency
+            weights = [max(1, int(cnt)) for (_, cnt) in items]
+            total = sum(weights)
+            r = rnd.uniform(0, total)
+            acc = 0.0
+            start = items[0][0]
+            for (tok, cnt) in items:
+                acc += max(1, int(cnt))
+                if acc >= r:
+                    start = tok
+                    break
+            words = [start]
+            # Markov walk using trigram then bigram
+            for _ in range(max(1, int(max_len) - 1)):
+                nxt = None
+                if len(words) >= 2:
+                    key = (words[-2], words[-1])
+                    d = self._ng3.get(key)
+                    if d:
+                        total_c = sum(d.values())
+                        r = rnd.uniform(0, total_c)
+                        s = 0.0
+                        for (tok, c) in d.items():
+                            s += c
+                            if s >= r:
+                                nxt = tok
+                                break
+                if nxt is None:
+                    d2 = self._ng2.get(words[-1], {})
+                    if d2:
+                        total_c = sum(d2.values())
+                        r = rnd.uniform(0, total_c)
+                        s = 0.0
+                        for (tok, c) in d2.items():
+                            s += c
+                            if s >= r:
+                                nxt = tok
+                                break
+                if nxt is None:
+                    break
+                words.append(nxt)
+            sent = " ".join(words).strip()
+            if sent:
+                sent = sent[0].upper() + sent[1:]
+                if not sent.endswith((".", "!", "?")):
+                    sent += "."
+            return sent
+        except Exception:
+            return ""
 
     def _compose_say_text(self, metrics: dict, step: int) -> str:
         """
@@ -318,22 +403,21 @@ class Nexus:
                 "valence": val,
             }
             tpls = list(getattr(self, "_phrase_templates", []) or [])
-            if not tpls:
-                tpls = [
-                    "Topology discovery: {keywords}",
-                    "Observation: {top1}, {top2} (vt={vt_entropy:.2f}, v={valence:.2f})",
-                    "Coherent loop near {top1} ↔ {top2} (coverage={vt_coverage:.2f})",
-                    "Emergent structure: {keywords} (b1_z={b1_z:.2f})",
-                ]
-            idx = int(step) % max(1, len(tpls))
-            tpl = str(tpls[idx])
-            try:
-                return tpl.format(**ctx)
-            except Exception:
-                # Fallback if template has unknown placeholders
-                return f"Topology discovery: {ctx['keywords']}"
+            if tpls:
+                idx = int(step) % max(1, len(tpls))
+                tpl = str(tpls[idx])
+                try:
+                    return tpl.format(**ctx)
+                except Exception:
+                    pass
+            # Emergent language (no templates): assemble from learned n-grams
+            sent = self._emergent_sentence(max_len=12, seed=int(step))
+            if sent:
+                return sent
+            # Fallback: use keyword summary directly (emergent tokens)
+            return (summary or "").strip() or "."
         except Exception:
-            return "Topology discovery: salient loop detected."
+            return ""
  
     # --- Phase control plane (file-driven) ---------------------------------
     def _default_phase_profiles(self):

@@ -544,9 +544,28 @@ def build_app(runs_root: str) -> Dash:
                 ]),
                 dcc.Graph(id="fig-dashboard", style={"height":"420px"}),
                 dcc.Graph(id="fig-discovery", style={"height":"320px"}),
+                html.H4("Chat"),
+                html.Pre(
+                    id="chat-view",
+                    style={
+                        "height":"220px","overflowY":"auto","backgroundColor":"#111",
+                        "color":"#eee","padding":"8px","whiteSpace":"pre-wrap","border":"1px solid #333"
+                    }
+                ),
+                html.Div([
+                    dcc.Input(
+                        id="chat-input",
+                        type="text",
+                        placeholder="Type a message and click Send",
+                        style={"width":"80%"}
+                    ),
+                    html.Button("Send", id="chat-send", n_clicks=0, style={"marginLeft":"8px"}),
+                ], style={"marginTop":"6px"}),
+                html.Pre(id="chat-status", style={"fontSize":"12px"}),
             ], style={"flex":"2","paddingLeft":"10px"}),
         ], style={"display":"flex"}),
         dcc.Interval(id="poll", interval=1000, n_intervals=0),
+        dcc.Store(id="chat-state"),
         dcc.Store(id="ui-state")
     ], style={"padding":"10px"})
 
@@ -809,6 +828,78 @@ def build_app(runs_root: str) -> Dash:
         except Exception as e:
             return f"Error reading launcher log: {e}"
 
+
+    # --- Chat: send input to run-local inbox (consumed by UTE) ---
+    @app.callback(
+        Output("chat-status","children"),
+        Output("chat-input","value"),
+        Input("chat-send","n_clicks"),
+        State("run-dir","value"),
+        State("chat-input","value"),
+        prevent_initial_call=True
+    )
+    def on_chat_send(_n, run_dir, text):
+        rd = (run_dir or "").strip()
+        msg = (text or "").strip()
+        if not rd:
+            return "Select a run directory.", no_update
+        if not msg:
+            return "Type a message.", no_update
+        try:
+            inbox = os.path.join(rd, "chat_inbox.jsonl")
+            os.makedirs(os.path.dirname(inbox), exist_ok=True)
+            with open(inbox, "a", encoding="utf-8") as fh:
+                fh.write(json.dumps({"type":"text","msg": msg}, ensure_ascii=False) + "\n")
+            return "Sent.", ""
+        except Exception as e:
+            return f"Error writing chat_inbox.jsonl: {e}", no_update
+
+    # --- Chat: tail UTD 'say' macros and render as replies ---
+    @app.callback(
+        Output("chat-view","children"),
+        Output("chat-state","data"),
+        Input("poll","n_intervals"),
+        State("run-dir","value"),
+        State("chat-state","data"),
+        prevent_initial_call=False
+    )
+    def on_chat_update(_n, run_dir, data):
+        rd = (run_dir or "").strip()
+        if not rd:
+            return "", {"run_dir":"", "utd_size":0, "lines":[]}
+        state = data or {}
+        lines = list(state.get("lines", []))
+        last_run = state.get("run_dir")
+        utd_size = int(state.get("utd_size", 0)) if isinstance(state.get("utd_size"), int) else 0
+        # reset if run changed
+        if last_run != rd:
+            lines = []
+            utd_size = 0
+        utd_path = os.path.join(rd, "utd_events.jsonl")
+        new_recs, new_size = tail_jsonl_bytes(utd_path, utd_size)
+        for rec in new_recs:
+            try:
+                if isinstance(rec, dict) and (rec.get("type") == "macro") and (str(rec.get("macro","")).lower() == "say"):
+                    args = rec.get("args") or {}
+                    text = args.get("text") or ""
+                    t = None
+                    why = args.get("why") or {}
+                    try:
+                        t = int(why.get("t"))
+                    except Exception:
+                        t = None
+                    if text:
+                        if t is not None:
+                            lines.append(f"[t={t}] Assistant: {text}")
+                        else:
+                            lines.append(f"Assistant: {text}")
+            except Exception:
+                pass
+        # keep last 200 lines
+        if len(lines) > 200:
+            lines = lines[-200:]
+        view = "\n".join(lines)
+        return view, {"run_dir": rd, "utd_size": int(new_size), "lines": lines}
 
     return app
 
