@@ -109,7 +109,7 @@ python tools/utd_event_scan.py runs/2025-08-10_21-00-00 --emit-lexicon runs/2025
 - At runtime, newly used macro names are automatically registered and persisted to `runs/<timestamp>/macro_board.json`.
 - On startup, the Nexus also registers macro keys from:
   1) the run’s `macro_board.json` (preferred), or
-  2) `from_physicist_agent/macro_board_min.json` (fallback).
+  2) `fum_rt/io/lexicon/macro_board_min.json` (fallback).
 - This allows new macro keys (e.g., `say`, `status`) to accumulate across runs without additional configuration.
 
 
@@ -129,7 +129,7 @@ Files and where they live
   - Nexus reads macros at boot: [fum_rt/nexus.py](fum_rt/nexus.py)
 - Phrase bank (optional source of sentence templates, loaded at boot):
   - Per‑run: runs/&lt;timestamp&gt;/phrase_bank.json
-  - Fallback: [from_physicist_agent/phrase_bank_min.json](from_physicist_agent/phrase_bank_min.json)
+  - Fallback: [fum_rt/io/lexicon/phrase_bank_min.json](fum_rt/io/lexicon/phrase_bank_min.json)
 - Lexicon (auto‑learned vocabulary from inputs/outputs): runs/&lt;timestamp&gt;/lexicon.json
   - Grows during the run; periodically saved by the runtime
 
@@ -155,7 +155,7 @@ Example macro_board.json
 Phrase bank (richer sentences)
 - The runtime loads optional sentence templates for the “say” macro from either:
   - runs/&lt;timestamp&gt;/phrase_bank.json, or
-  - [from_physicist_agent/phrase_bank_min.json](from_physicist_agent/phrase_bank_min.json)
+  - [fum_rt/io/lexicon/phrase_bank_min.json](fum_rt/io/lexicon/phrase_bank_min.json)
 - Expected shape:
 ```json
 {
@@ -222,3 +222,91 @@ Operational notes
 - Macro names are persisted automatically when first used; no manual step required.
 - Phrase bank and macro board are complementary; phrase bank supplies sentence templates, macro board is the registry of macro keys and optional metadata like “templates”.
 - The runtime keeps everything compute‑light: deterministic template filling with keywords/tokens from the live lexicon and metrics.
+
+
+---
+
+## Domain, Phase Control, and Cycles (Topology Complexity)
+
+This section explains three runtime concepts that appear in profiles and logs: domain, phase control, and the “cycles” metric.
+
+### Domain
+
+- Purpose: Selects a modulation factor for the void equations, scaling both the growth and decay elemental deltas before each tick. The value is computed by [get_domain_modulation()](fum_rt/core/void_dynamics_adapter.py:46), and is passed into both Δα and Δω inside the adapter.
+- How it works:
+  - If you provide your own FUM_Void_Debt_Modulation on PYTHONPATH (class with get_universal_domain_modulation), the adapter uses it to obtain domain_modulation.
+  - Otherwise, a safe fallback mapping is used internally and the modulation is computed from built‑in targets and the ALPHA/BETA ratio of the void equations.
+- Supported presets (fallback path) include: quantum, standard_model, dark_matter, biology_consciousness, cosmogenesis, higgs. Any unknown string (e.g., "math_physics") resolves to a baseline default in the fallback path unless your module overrides it.
+- Where it is applied: The scalar is fed into the void equations through the adapter and then consumed by the Connectome during step() each tick.
+
+Examples
+- CLI:
+  python -m fum_rt.run_nexus --domain biology_consciousness
+- Profile JSON (run_profiles/*.json):
+  "domain": "math_physics"
+
+To customize the mapping:
+- Add a Python module on PYTHONPATH that exposes a class VoidDebtModulation with get_universal_domain_modulation(domain) → {"domain_modulation": float}. See the adapter’s import logic in [get_domain_modulation()](fum_rt/core/void_dynamics_adapter.py:46) for how it is discovered. A reference template for domain modulation also exists in [computational_proofs/FUM_Void_Debt_Modulation.py](computational_proofs/FUM_Void_Debt_Modulation.py).
+
+---
+
+### Phase control
+
+- Purpose: A simple, file‑driven control plane that lets you switch between pre‑tuned “profiles” at runtime without restarting. It adjusts:
+  - Speak gates (z threshold, hysteresis, cooldown, valence threshold)
+  - Connectome traversal/homeostasis parameters (walkers, hops, bundle_size, prune_factor)
+  - Optional structural knobs (threshold, lambda_omega, candidates)
+- Where: See default profile definitions in [Nexus._default_phase_profiles()](fum_rt/nexus.py:339).
+- How it’s applied:
+  - The runtime polls runs/<timestamp>/phase.json each tick via [Nexus._poll_control()](fum_rt/nexus.py:403).
+  - When the file exists and its mtime changes, the profile is merged and applied immediately. The path is set at startup in [Nexus.__init__ → phase_file](fum_rt/nexus.py:183).
+- On vs Off:
+  - OFF: If runs/<timestamp>/phase.json does not exist, no phase control is applied (runtime uses current CLI values and defaults).
+  - ON: Create runs/<timestamp>/phase.json and write a profile (see example below). Edits to the file are picked up live.
+
+Example phase.json
+{
+  "phase": 1,
+  "speak": {
+    "speak_z": 2.5,
+    "speak_hysteresis": 0.8,
+    "speak_cooldown_ticks": 10,
+    "speak_valence_thresh": 0.35
+  },
+  "connectome": {
+    "walkers": 384,
+    "hops": 4,
+    "bundle_size": 3,
+    "prune_factor": 0.10,
+    "threshold": 0.15,
+    "lambda_omega": 0.10,
+    "candidates": 64
+  }
+}
+
+Notes
+- Simple toggle: Create the file to enable; remove/rename to disable.
+- Merging: If you only specify {"phase": n}, the defaults for that phase are loaded; any extra fields you include override those defaults.
+- Safety: All updates are range‑checked and applied only if a matching attribute exists on the current connectome.
+
+---
+
+### “Cycles” metric (complexity_cycles)
+
+- Definition: A topology‑only proxy for the number of simple cycles in the active subgraph. It is computed from the active graph induced by W[i]*W[j] > threshold. The proxy is the cyclomatic complexity formula:
+  cycles = E_active − N + C_active
+  where E_active is the number of active edges, N is the number of nodes, and C_active is the number of connected components over the active nodes.
+- Implementations:
+  - Dense backend: [Connectome.cyclomatic_complexity()](fum_rt/core/connectome.py:375)
+  - Sparse backend: [SparseConnectome.cyclomatic_complexity()](fum_rt/core/sparse_connectome.py:393)
+- How it’s used:
+  - The Nexus uses complexity_cycles each tick as a “B1 proxy” input to a streaming z‑score detector. See the B1 update inside [Nexus.run()](fum_rt/nexus.py:442) where b1_value is taken from m["complexity_cycles"] and fed to the z‑spike detector to gate speaking.
+  - It can be augmented with additional cycle signals from the traversal/ADC subsystem; the Nexus folds such findings into the metric before gating.
+
+Why it matters
+- Phase control does not “only affect cycles.” It adjusts traversal/homeostasis/speak gates that indirectly influence many structure‑and‑dynamics metrics (coverage, entropy, cohesion components, active edges, density, and thus cycles). Cycles is highlighted because it’s an effective, void‑native trigger for salient topology events and is used to gate autonomous speaking.
+
+Toggle summary
+- Domain: CLI/profile string selecting void‑equation modulation; fallback mapping is internal unless you provide your own implemention. See [get_domain_modulation()](fum_rt/core/void_dynamics_adapter.py:46).
+- Phase control: Enabled when runs/<timestamp>/phase.json exists; disabled when it doesn’t. Profiles are defined in [Nexus._default_phase_profiles()](fum_rt/nexus.py:339), polled by [Nexus._poll_control()](fum_rt/nexus.py:403), and applied live.
+- Cycles: Topology‑only cycle count proxy computed each tick (dense/sparse backends above). Used by the streaming detector to gate “say” macro emissions.

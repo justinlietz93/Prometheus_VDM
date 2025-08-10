@@ -50,7 +50,7 @@ class Nexus:
             self.utd.register_macro('say', {'desc': 'Emit plain text line'})
             macro_candidates = [
                 os.path.join(self.run_dir, 'macro_board.json'),
-                os.path.join('from_physicist_agent', 'macro_board_min.json'),
+                os.path.join(os.path.dirname(__file__), 'io', 'lexicon', 'macro_board_min.json'),
             ]
             for pth in macro_candidates:
                 if os.path.exists(pth):
@@ -86,7 +86,7 @@ class Nexus:
             # 2) Load templates from explicit phrase bank files
             phrase_candidates = [
                 os.path.join(self.run_dir, 'phrase_bank.json'),
-                os.path.join('from_physicist_agent', 'phrase_bank_min.json'),
+                os.path.join(os.path.dirname(__file__), 'io', 'lexicon', 'phrase_bank_min.json'),
             ]
             for pth in phrase_candidates:
                 if os.path.exists(pth):
