@@ -12,6 +12,7 @@ librosa # For audio processing
 persim # For persistent homology computations
 h5py # For saving FUM's brain
 plotly # For interactive visualizations
+dash # For web-based visualizations
 
 # Custom Advanced Math Library
 statsmodels # For statistical models
