@@ -136,6 +136,11 @@ class ProcessManager:
         except Exception:
             pass
         self.repo_root = os.path.dirname(os.path.abspath(__file__))
+        # Launch logging (so you can inspect startup failures)
+        self.launch_log = os.path.join(self.runs_root, "launcher_last.log")
+        self._logf = None
+        self.last_cmd: list[str] | None = None
+
         self.proc: subprocess.Popen | None = None
         self.proc_lock = threading.Lock()
         self.current_run_dir: str | None = None
@@ -208,6 +213,7 @@ class ProcessManager:
                 pass
             before = set(os.listdir(self.runs_root)) if os.path.exists(self.runs_root) else set()
             cmd = self._build_cmd(profile)
+            self.last_cmd = cmd[:]
             # Prepare environment so 'python -m fum_rt.run_nexus' resolves even if GUI was launched elsewhere
             env = os.environ.copy()
             try:
@@ -216,12 +222,22 @@ class ProcessManager:
                 repo_root = os.path.dirname(os.path.abspath(__file__))
             env["PYTHONPATH"] = f"{repo_root}:{env.get('PYTHONPATH','')}"
             env.setdefault("PYTHONUNBUFFERED", "1")
+            # open launch log so we can surface failures
+            try:
+                if self._logf:
+                    try:
+                        self._logf.close()
+                    except Exception:
+                        pass
+                self._logf = open(self.launch_log, "wb")
+            except Exception:
+                self._logf = None
             try:
                 self.proc = subprocess.Popen(
                     cmd,
                     stdin=subprocess.PIPE,
-                    stdout=subprocess.DEVNULL,
-                    stderr=subprocess.DEVNULL,
+                    stdout=self._logf or subprocess.DEVNULL,
+                    stderr=self._logf or subprocess.DEVNULL,
                     cwd=repo_root,   # run from repo root so fum_rt is importable
                     env=env
                 )
@@ -243,6 +259,19 @@ class ProcessManager:
                 # fallback: latest by mtime under runs_root
                 runs = list_runs(self.runs_root)
                 run_dir = runs[0] if runs else None
+            # if the process died immediately, surface the log
+            if self.proc and self.proc.poll() is not None:
+                # process exited early; read log and return error
+                try:
+                    if self._logf:
+                        self._logf.flush()
+                        self._logf.close()
+                        self._logf = None
+                    with open(self.launch_log, "rb") as fh:
+                        tail = fh.read()[-4096:]
+                    return False, f"Process exited during start.\nCommand: {' '.join(cmd)}\nLog({self.launch_log}):\n{tail.decode('utf-8','ignore')}"
+                except Exception:
+                    return False, f"Process exited during start.\nCommand: {' '.join(cmd)}\nNo launch log available."
             self.current_run_dir = run_dir
             return True, run_dir or ""
 
@@ -261,6 +290,12 @@ class ProcessManager:
             finally:
                 self.proc = None
                 self.current_run_dir = None
+                try:
+                    if self._logf:
+                        self._logf.close()
+                        self._logf = None
+                except Exception:
+                    pass
             return True, "Stopped"
 
     def send_line(self, text: str) -> bool:
@@ -450,6 +485,7 @@ def build_app(runs_root: str) -> Dash:
                         dcc.Dropdown(id="profile-path", options=[{"label": p, "value": p} for p in list_profiles()], placeholder="load profile", style={"width":"60%","marginLeft":"8px"}),
                         html.Button("Load", id="load-profile", n_clicks=0, style={"marginLeft":"6px"}),
                     ], style={"display":"flex","alignItems":"center","marginTop":"6px"}),
+                    html.Pre(id="profile-save-status", style={"fontSize":"12px","whiteSpace":"pre-wrap","marginTop":"6px"}),
                     html.Div([
                         html.Button("Start Run", id="start-run", n_clicks=0, style={"backgroundColor":"#28a745","color":"white"}),
                         html.Button("Stop Run", id="stop-run", n_clicks=0, style={"marginLeft":"8px","backgroundColor":"#dc3545","color":"white"}),
@@ -505,10 +541,17 @@ def build_app(runs_root: str) -> Dash:
             profile = json.loads(profile_json or "{}")
         except Exception as e:
             return f"Invalid profile JSON: {e}", no_update
-        ok, run_dir = manager.start(profile)
+        ok, msg = manager.start(profile)
         if not ok:
-            return f"Start failed: {run_dir}", no_update
-        return f"Started. run_dir={run_dir}\nCmd uses engram cadence: checkpoint_every={profile.get('checkpoint_every')}, keep={profile.get('checkpoint_keep')}", run_dir or no_update
+            # msg contains error and possibly launch log; surface it
+            return f"Start failed:\n{msg}", no_update
+        # msg is run_dir on success
+        run_dir = msg
+        cmd_echo = " ".join(manager.last_cmd or [])
+        return (f"Started.\nrun_dir={run_dir}\n"
+                f"checkpoint_every={profile.get('checkpoint_every')} keep={profile.get('checkpoint_keep')}\n"
+                f"cmd: {cmd_echo}\n"
+                f"launch_log: {manager.launch_log}"), run_dir or no_update
 
     @app.callback(
         Output("proc-status","children", allow_duplicate=True),
@@ -555,6 +598,7 @@ def build_app(runs_root: str) -> Dash:
 
     @app.callback(
         Output("profile-path","options"),
+        Output("profile-save-status","children"),
         Input("save-profile","n_clicks"),
         State("profile-name","value"),
         State("profile-json","value"),
@@ -563,14 +607,15 @@ def build_app(runs_root: str) -> Dash:
     def on_save_profile(_n, name, text):
         name = (name or "").strip()
         if not name:
-            return [{"label": p, "value": p} for p in list_profiles()]
+            return [{"label": p, "value": p} for p in list_profiles()], "Provide a profile name."
         try:
             data = json.loads(text or "{}")
-        except Exception:
-            return [{"label": p, "value": p} for p in list_profiles()]
+        except Exception as e:
+            return [{"label": p, "value": p} for p in list_profiles()], f"Invalid profile JSON: {e}"
         path = os.path.join(PROFILES_DIR, f"{name}.json")
-        write_json_file(path, data)
-        return [{"label": p, "value": p} for p in list_profiles()]
+        ok = write_json_file(path, data)
+        status = f"Saved profile to {path}" if ok else f"Error writing {path}"
+        return [{"label": p, "value": p} for p in list_profiles()], status
 
     @app.callback(
         Output("profile-json","value"),
