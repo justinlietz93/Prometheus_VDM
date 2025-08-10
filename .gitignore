@@ -1,0 +1,33 @@
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.pdb
+*.so
+*.egg-info
+*.egg
+*.whl
+*.DS_Store
+*.vscode
+*.idea
+*.sublime-project
+*.sublime-workspace
+
+#Ignore vscode AI rules
+.github/copilot-instructions.md
+
+venv
+
+# Custom tools
+toos/
+code_crawler_results/
+.github/
+ignore/
+
+# Outputs
+*.zip
+
+# Plans
+suggestions/
+from_physicist_agent/
+FUM_Demo/
