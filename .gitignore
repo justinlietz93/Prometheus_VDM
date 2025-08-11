@@ -32,3 +32,5 @@ runs/
 suggestions/
 from_physicist_agent/
 FUM_Demo/
+fum_rt/data/
+fum_rt/data/wikipedia/enwiki-latest-pages-articles.xml.bz2
