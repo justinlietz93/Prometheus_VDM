@@ -482,7 +482,8 @@ def build_app(runs_root: str) -> Dash:
     default_profile = {
         "neurons": 1000, "k": 12, "hz": 10, "domain": "math_physics",
         "use_time_dynamics": True,
-        "sparse_mode": False, "walkers": 256, "hops": 3, "bundle_size": 3, "prune_factor": 0.10,
+        "sparse_mode": False, "threshold": 0.15, "lambda_omega": 0.10, "candidates": 64,
+        "walkers": 256, "hops": 3, "bundle_size": 3, "prune_factor": 0.10, "status_interval": 1,
         "viz_every": 0, "log_every": 1,
         "speak_auto": True, "speak_z": 3.0, "speak_hysteresis": 0.5, "speak_cooldown_ticks": 10, "speak_valence_thresh": 0.55,
         "b1_half_life_ticks": 50,
@@ -492,6 +493,31 @@ def build_app(runs_root: str) -> Dash:
 
     def list_profiles() -> List[str]:
         return sorted([os.path.join(PROFILES_DIR, f) for f in os.listdir(PROFILES_DIR) if f.endswith(".json")])
+
+    def _bool_from_checklist(val) -> bool:
+        if isinstance(val, list):
+            return 'on' in val
+        return bool(val)
+
+    def _checklist_from_bool(b: bool):
+        return ['on'] if bool(b) else []
+
+    def _safe_int(x, default=None):
+        try:
+            return int(x)
+        except Exception:
+            return default
+
+    def _safe_float(x, default=None):
+        try:
+            return float(x)
+        except Exception:
+            return default
+
+    domain_options = [
+        {"label": n, "value": n}
+        for n in ["math_physics", "quantum", "standard_model", "dark_matter", "biology_consciousness", "cosmogenesis", "higgs"]
+    ]
 
     app.layout = html.Div([
         html.H3("FUM Live Dashboard (external control)"),
@@ -504,9 +530,59 @@ def build_app(runs_root: str) -> Dash:
                 dcc.Dropdown(id="run-dir", options=[{"label": p, "value": p} for p in runs], value=default_run),
                 html.Button("Use Current Run", id="use-current-run", n_clicks=0, style={"marginTop":"6px"}),
                 html.Hr(),
-                html.Label("Phase control"),
+                html.Label("Runtime Controls (phase + gates)"),
                 dcc.Slider(id="phase", min=0, max=4, step=1, value=0, marks={i:str(i) for i in range(5)}),
-                html.Button("Apply Phase", id="apply-phase", n_clicks=0, style={"marginTop":"6px"}),
+                html.Div([
+                    html.Div([
+                        html.Label("Speak z"),
+                        dcc.Input(id="rc-speak-z", type="number", value=default_profile["speak_z"], step=0.1, min=0)
+                    ], style={"flex":"1","paddingRight":"6px"}),
+                    html.Div([
+                        html.Label("Hysteresis"),
+                        dcc.Input(id="rc-speak-hysteresis", type="number", value=default_profile["speak_hysteresis"], step=0.1, min=0)
+                    ], style={"flex":"1","paddingRight":"6px"}),
+                    html.Div([
+                        html.Label("Cooldown (ticks)"),
+                        dcc.Input(id="rc-speak-cooldown", type="number", value=default_profile["speak_cooldown_ticks"], step=1, min=1)
+                    ], style={"flex":"1","paddingRight":"6px"}),
+                    html.Div([
+                        html.Label("Valence thresh"),
+                        dcc.Input(id="rc-speak-valence", type="number", value=default_profile["speak_valence_thresh"], step=0.01, min=0, max=1)
+                    ], style={"flex":"1"})
+                ], style={"display":"flex","gap":"6px","marginTop":"6px"}),
+                html.Div([
+                    html.Div([
+                        html.Label("Walkers"),
+                        dcc.Input(id="rc-walkers", type="number", value=default_profile["walkers"], step=1, min=1)
+                    ], style={"flex":"1","paddingRight":"6px"}),
+                    html.Div([
+                        html.Label("Hops"),
+                        dcc.Input(id="rc-hops", type="number", value=default_profile["hops"], step=1, min=1)
+                    ], style={"flex":"1","paddingRight":"6px"}),
+                    html.Div([
+                        html.Label("Bundle size"),
+                        dcc.Input(id="rc-bundle-size", type="number", value=default_profile["bundle_size"], step=1, min=1)
+                    ], style={"flex":"1","paddingRight":"6px"}),
+                    html.Div([
+                        html.Label("Prune factor"),
+                        dcc.Input(id="rc-prune-factor", type="number", value=default_profile["prune_factor"], step=0.01, min=0, max=1)
+                    ], style={"flex":"1"})
+                ], style={"display":"flex","gap":"6px","marginTop":"6px"}),
+                html.Div([
+                    html.Div([
+                        html.Label("Threshold"),
+                        dcc.Input(id="rc-threshold", type="number", value=default_profile.get("threshold", 0.15), step=0.01, min=0)
+                    ], style={"flex":"1","paddingRight":"6px"}),
+                    html.Div([
+                        html.Label("Lambda omega"),
+                        dcc.Input(id="rc-lambda-omega", type="number", value=default_profile.get("lambda_omega", 0.10), step=0.01, min=0)
+                    ], style={"flex":"1","paddingRight":"6px"}),
+                    html.Div([
+                        html.Label("Candidates"),
+                        dcc.Input(id="rc-candidates", type="number", value=default_profile.get("candidates", 64), step=1, min=1)
+                    ], style={"flex":"1"})
+                ], style={"display":"flex","gap":"6px","marginTop":"6px"}),
+                html.Button("Apply Runtime Settings", id="apply-phase", n_clicks=0, style={"marginTop":"6px"}),
                 html.Pre(id="phase-status", style={"fontSize":"12px"}),
                 html.Hr(),
                 html.Label("Feed file to stdin (optional)"),
@@ -523,10 +599,159 @@ def build_app(runs_root: str) -> Dash:
                 html.Pre(id="send-status", style={"fontSize":"12px"}),
             ], style={"flex":"1", "paddingRight":"10px", "borderRight":"1px solid #ccc"}),
             html.Div([
-                html.H4("Run profiles (JSON) and process control"),
+                html.H4("Run configuration and process control"),
                 html.Div([
-                    html.Label("Profile JSON"),
-                    dcc.Textarea(id="profile-json", value=json.dumps(default_profile, indent=2), style={"width":"100%","height":"260px","fontFamily":"monospace","fontSize":"12px"}),
+                    # Core
+                    html.Div([
+                        html.Div([
+                            html.Label("Neurons"),
+                            dcc.Input(id="cfg-neurons", type="number", value=default_profile["neurons"], step=1, min=1),
+                        ], style={"flex":"1","paddingRight":"6px"}),
+                        html.Div([
+                            html.Label("k"),
+                            dcc.Input(id="cfg-k", type="number", value=default_profile["k"], step=1, min=1),
+                        ], style={"flex":"1","paddingRight":"6px"}),
+                        html.Div([
+                            html.Label("Hz"),
+                            dcc.Input(id="cfg-hz", type="number", value=default_profile["hz"], step=1, min=1),
+                        ], style={"flex":"1","paddingRight":"6px"}),
+                        html.Div([
+                            html.Label("Domain"),
+                            dcc.Dropdown(id="cfg-domain", options=domain_options, value=default_profile["domain"]),
+                        ], style={"flex":"2"})
+                    ], style={"display":"flex","gap":"6px"}),
+
+                    html.Div([
+                        html.Div([
+                            html.Label("Use time dynamics"),
+                            dcc.Checklist(id="cfg-use-time-dynamics", options=[{"label":" On","value":"on"}],
+                                          value=['on'] if default_profile["use_time_dynamics"] else [])
+                        ], style={"flex":"1","paddingRight":"6px"}),
+                        html.Div([
+                            html.Label("Sparse mode"),
+                            dcc.Checklist(id="cfg-sparse-mode", options=[{"label":" On","value":"on"}],
+                                          value=['on'] if default_profile["sparse_mode"] else [])
+                        ], style={"flex":"1"}),
+                    ], style={"display":"flex","gap":"6px","marginTop":"4px"}),
+
+                    html.Hr(),
+                    html.Label("Structure and traversal"),
+                    html.Div([
+                        html.Div([
+                            html.Label("Threshold"),
+                            dcc.Input(id="cfg-threshold", type="number", value=default_profile["threshold"], step=0.01, min=0)
+                        ], style={"flex":"1","paddingRight":"6px"}),
+                        html.Div([
+                            html.Label("Lambda omega"),
+                            dcc.Input(id="cfg-lambda-omega", type="number", value=default_profile["lambda_omega"], step=0.01, min=0)
+                        ], style={"flex":"1","paddingRight":"6px"}),
+                        html.Div([
+                            html.Label("Candidates"),
+                            dcc.Input(id="cfg-candidates", type="number", value=default_profile["candidates"], step=1, min=1)
+                        ], style={"flex":"1","paddingRight":"6px"}),
+                        html.Div([
+                            html.Label("Walkers"),
+                            dcc.Input(id="cfg-walkers", type="number", value=default_profile["walkers"], step=1, min=1)
+                        ], style={"flex":"1","paddingRight":"6px"}),
+                        html.Div([
+                            html.Label("Hops"),
+                            dcc.Input(id="cfg-hops", type="number", value=default_profile["hops"], step=1, min=1)
+                        ], style={"flex":"1","paddingRight":"6px"}),
+                        html.Div([
+                            html.Label("Bundle size"),
+                            dcc.Input(id="cfg-bundle-size", type="number", value=default_profile["bundle_size"], step=1, min=1)
+                        ], style={"flex":"1","paddingRight":"6px"}),
+                        html.Div([
+                            html.Label("Prune factor"),
+                            dcc.Input(id="cfg-prune-factor", type="number", value=default_profile["prune_factor"], step=0.01, min=0, max=1)
+                        ], style={"flex":"1","paddingRight":"6px"}),
+                        html.Div([
+                            html.Label("Status interval"),
+                            dcc.Input(id="cfg-status-interval", type="number", value=default_profile["status_interval"], step=1, min=1)
+                        ], style={"flex":"1"}),
+                    ], style={"display":"grid","gridTemplateColumns":"repeat(4,1fr)","gap":"6px"}),
+
+                    html.Hr(),
+                    html.Label("Stimulus"),
+                    html.Div([
+                        html.Div([
+                            html.Label("Group size"),
+                            dcc.Input(id="cfg-stim-group-size", type="number", value=default_profile["stim_group_size"], step=1, min=1)
+                        ], style={"flex":"1","paddingRight":"6px"}),
+                        html.Div([
+                            html.Label("Amp"),
+                            dcc.Input(id="cfg-stim-amp", type="number", value=default_profile["stim_amp"], step=0.01, min=0)
+                        ], style={"flex":"1","paddingRight":"6px"}),
+                        html.Div([
+                            html.Label("Decay"),
+                            dcc.Input(id="cfg-stim-decay", type="number", value=default_profile["stim_decay"], step=0.01, min=0, max=1)
+                        ], style={"flex":"1","paddingRight":"6px"}),
+                        html.Div([
+                            html.Label("Max symbols"),
+                            dcc.Input(id="cfg-stim-max-symbols", type="number", value=default_profile["stim_max_symbols"], step=1, min=1)
+                        ], style={"flex":"1"}),
+                    ], style={"display":"flex","gap":"6px"}),
+
+                    html.Hr(),
+                    html.Label("Speak / B1 spike detector"),
+                    html.Div([
+                        html.Div([
+                            html.Label("Speak auto"),
+                            dcc.Checklist(id="cfg-speak-auto", options=[{"label":" On","value":"on"}],
+                                          value=['on'] if default_profile["speak_auto"] else [])
+                        ], style={"flex":"1","paddingRight":"6px"}),
+                        html.Div([
+                            html.Label("Speak z"),
+                            dcc.Input(id="cfg-speak-z", type="number", value=default_profile["speak_z"], step=0.1, min=0)
+                        ], style={"flex":"1","paddingRight":"6px"}),
+                        html.Div([
+                            html.Label("Hysteresis"),
+                            dcc.Input(id="cfg-speak-hysteresis", type="number", value=default_profile["speak_hysteresis"], step=0.1, min=0)
+                        ], style={"flex":"1","paddingRight":"6px"}),
+                        html.Div([
+                            html.Label("Cooldown (ticks)"),
+                            dcc.Input(id="cfg-speak-cooldown-ticks", type="number", value=default_profile["speak_cooldown_ticks"], step=1, min=1)
+                        ], style={"flex":"1","paddingRight":"6px"}),
+                        html.Div([
+                            html.Label("Valence thresh"),
+                            dcc.Input(id="cfg-speak-valence-thresh", type="number", value=default_profile["speak_valence_thresh"], step=0.01, min=0, max=1)
+                        ], style={"flex":"1","paddingRight":"6px"}),
+                        html.Div([
+                            html.Label("B1 half-life (ticks)"),
+                            dcc.Input(id="cfg-b1-half-life-ticks", type="number", value=default_profile["b1_half_life_ticks"], step=1, min=1)
+                        ], style={"flex":"1"}),
+                    ], style={"display":"grid","gridTemplateColumns":"repeat(6,1fr)","gap":"6px"}),
+
+                    html.Hr(),
+                    html.Label("Viz / Logs / Checkpoints"),
+                    html.Div([
+                        html.Div([
+                            html.Label("viz_every"),
+                            dcc.Input(id="cfg-viz-every", type="number", value=default_profile["viz_every"], step=1, min=0)
+                        ], style={"flex":"1","paddingRight":"6px"}),
+                        html.Div([
+                            html.Label("log_every"),
+                            dcc.Input(id="cfg-log-every", type="number", value=default_profile["log_every"], step=1, min=1)
+                        ], style={"flex":"1","paddingRight":"6px"}),
+                        html.Div([
+                            html.Label("checkpoint_every"),
+                            dcc.Input(id="cfg-checkpoint-every", type="number", value=default_profile["checkpoint_every"], step=1, min=0)
+                        ], style={"flex":"1","paddingRight":"6px"}),
+                        html.Div([
+                            html.Label("checkpoint_keep"),
+                            dcc.Input(id="cfg-checkpoint-keep", type="number", value=default_profile["checkpoint_keep"], step=1, min=0)
+                        ], style={"flex":"1","paddingRight":"6px"}),
+                        html.Div([
+                            html.Label("duration (s)"),
+                            dcc.Input(id="cfg-duration", type="number", value=default_profile["duration"], step=1, min=0)
+                        ], style={"flex":"1"}),
+                    ], style={"display":"flex","gap":"6px"}),
+
+                    html.Div([
+                        html.Label("Load engram path (optional)"),
+                        dcc.Input(id="cfg-load-engram", type="text", value="", style={"width":"100%"}),
+                    ], style={"marginTop":"6px"}),
+
                     html.Div([
                         dcc.Input(id="profile-name", type="text", placeholder="profile name", style={"width":"200px"}),
                         html.Button("Save Profile", id="save-profile", n_clicks=0, style={"marginLeft":"6px"}),
@@ -534,6 +759,7 @@ def build_app(runs_root: str) -> Dash:
                         html.Button("Load", id="load-profile", n_clicks=0, style={"marginLeft":"6px"}),
                     ], style={"display":"flex","alignItems":"center","marginTop":"6px"}),
                     html.Pre(id="profile-save-status", style={"fontSize":"12px","whiteSpace":"pre-wrap","marginTop":"6px"}),
+
                     html.Div([
                         html.Button("Start Run", id="start-run", n_clicks=0, style={"backgroundColor":"#28a745","color":"white"}),
                         html.Button("Stop Run", id="stop-run", n_clicks=0, style={"marginLeft":"8px","backgroundColor":"#dc3545","color":"white"}),
@@ -601,12 +827,49 @@ def build_app(runs_root: str) -> Dash:
         Input("apply-phase","n_clicks"),
         State("run-dir","value"),
         State("phase","value"),
+        State("rc-speak-z","value"),
+        State("rc-speak-hysteresis","value"),
+        State("rc-speak-cooldown","value"),
+        State("rc-speak-valence","value"),
+        State("rc-walkers","value"),
+        State("rc-hops","value"),
+        State("rc-bundle-size","value"),
+        State("rc-prune-factor","value"),
+        State("rc-threshold","value"),
+        State("rc-lambda-omega","value"),
+        State("rc-candidates","value"),
         prevent_initial_call=True
     )
-    def on_apply_phase(_n, run_dir, phase):
+    def on_apply_phase(_n, run_dir, phase,
+                       s_z, s_h, s_cd, s_vt,
+                       c_w, c_h, c_b, c_pf, c_thr, c_lw, c_cand):
         if not run_dir:
             return "Select a run directory."
-        prof = {"phase": int(phase or 0)}
+        # Helpers for safe casting with defaults
+        def _sint(x, dv):
+            try: return int(x)
+            except Exception: return dv
+        def _sfloat(x, dv):
+            try: return float(x)
+            except Exception: return dv
+        prof = {
+            "phase": int(_sint(phase, 0)),
+            "speak": {
+                "speak_z": float(_sfloat(s_z, default_profile["speak_z"])),
+                "speak_hysteresis": float(_sfloat(s_h, default_profile["speak_hysteresis"])),
+                "speak_cooldown_ticks": int(_sint(s_cd, default_profile["speak_cooldown_ticks"])),
+                "speak_valence_thresh": float(_sfloat(s_vt, default_profile["speak_valence_thresh"])),
+            },
+            "connectome": {
+                "walkers": int(_sint(c_w, default_profile["walkers"])),
+                "hops": int(_sint(c_h, default_profile["hops"])),
+                "bundle_size": int(_sint(c_b, default_profile["bundle_size"])),
+                "prune_factor": float(_sfloat(c_pf, default_profile["prune_factor"])),
+                "threshold": float(_sfloat(c_thr, default_profile.get("threshold", 0.15))),
+                "lambda_omega": float(_sfloat(c_lw, default_profile.get("lambda_omega", 0.10))),
+                "candidates": int(_sint(c_cand, default_profile.get("candidates", 64))),
+            }
+        }
         ok = write_json_file(os.path.join(run_dir,"phase.json"), prof)
         return "Applied" if ok else "Error writing phase.json"
 
@@ -616,12 +879,47 @@ def build_app(runs_root: str) -> Dash:
         Input("start-run","n_clicks"),
         Input("stop-run","n_clicks"),
         Input("send-btn","n_clicks"),
-        State("profile-json","value"),
         State("runs-root","value"),
         State("send-line","value"),
+        # Profile States (validated UI)
+        State("cfg-neurons","value"),
+        State("cfg-k","value"),
+        State("cfg-hz","value"),
+        State("cfg-domain","value"),
+        State("cfg-use-time-dynamics","value"),
+        State("cfg-sparse-mode","value"),
+        State("cfg-threshold","value"),
+        State("cfg-lambda-omega","value"),
+        State("cfg-candidates","value"),
+        State("cfg-walkers","value"),
+        State("cfg-hops","value"),
+        State("cfg-status-interval","value"),
+        State("cfg-bundle-size","value"),
+        State("cfg-prune-factor","value"),
+        State("cfg-stim-group-size","value"),
+        State("cfg-stim-amp","value"),
+        State("cfg-stim-decay","value"),
+        State("cfg-stim-max-symbols","value"),
+        State("cfg-speak-auto","value"),
+        State("cfg-speak-z","value"),
+        State("cfg-speak-hysteresis","value"),
+        State("cfg-speak-cooldown-ticks","value"),
+        State("cfg-speak-valence-thresh","value"),
+        State("cfg-b1-half-life-ticks","value"),
+        State("cfg-viz-every","value"),
+        State("cfg-log-every","value"),
+        State("cfg-checkpoint-every","value"),
+        State("cfg-checkpoint-keep","value"),
+        State("cfg-duration","value"),
+        State("cfg-load-engram","value"),
         prevent_initial_call=True
     )
-    def on_proc_actions(n_start, n_stop, n_send, profile_json, root, line):
+    def on_proc_actions(n_start, n_stop, n_send, root, line,
+                        neurons, k, hz, domain, use_td, sparse_mode, threshold, lambda_omega, candidates,
+                        walkers, hops, status_interval, bundle_size, prune_factor,
+                        stim_group_size, stim_amp, stim_decay, stim_max_symbols,
+                        speak_auto, speak_z, speak_hyst, speak_cd, speak_val, b1_hl,
+                        viz_every, log_every, checkpoint_every, checkpoint_keep, duration, load_engram):
         # Determine which control triggered this callback
         try:
             trig = dash.callback_context.triggered[0]["prop_id"].split(".")[0] if dash.callback_context.triggered else None
@@ -629,10 +927,41 @@ def build_app(runs_root: str) -> Dash:
             trig = None
 
         if trig == "start-run":
-            try:
-                profile = json.loads(profile_json or "{}")
-            except Exception as e:
-                return f"Invalid profile JSON: {e}", no_update
+            profile = {
+                "neurons": int(_safe_int(neurons, default_profile["neurons"])),
+                "k": int(_safe_int(k, default_profile["k"])),
+                "hz": int(_safe_int(hz, default_profile["hz"])),
+                "domain": str(domain or default_profile["domain"]),
+                "use_time_dynamics": _bool_from_checklist(use_td) if use_td is not None else default_profile["use_time_dynamics"],
+                "sparse_mode": _bool_from_checklist(sparse_mode) if sparse_mode is not None else default_profile["sparse_mode"],
+                "threshold": float(_safe_float(threshold, default_profile["threshold"])),
+                "lambda_omega": float(_safe_float(lambda_omega, default_profile["lambda_omega"])),
+                "candidates": int(_safe_int(candidates, default_profile["candidates"])),
+                "walkers": int(_safe_int(walkers, default_profile["walkers"])),
+                "hops": int(_safe_int(hops, default_profile["hops"])),
+                "status_interval": int(_safe_int(status_interval, default_profile["status_interval"])),
+                "bundle_size": int(_safe_int(bundle_size, default_profile["bundle_size"])),
+                "prune_factor": float(_safe_float(prune_factor, default_profile["prune_factor"])),
+                "stim_group_size": int(_safe_int(stim_group_size, default_profile["stim_group_size"])),
+                "stim_amp": float(_safe_float(stim_amp, default_profile["stim_amp"])),
+                "stim_decay": float(_safe_float(stim_decay, default_profile["stim_decay"])),
+                "stim_max_symbols": int(_safe_int(stim_max_symbols, default_profile["stim_max_symbols"])),
+                "speak_auto": _bool_from_checklist(speak_auto) if speak_auto is not None else default_profile["speak_auto"],
+                "speak_z": float(_safe_float(speak_z, default_profile["speak_z"])),
+                "speak_hysteresis": float(_safe_float(speak_hyst, default_profile["speak_hysteresis"])),
+                "speak_cooldown_ticks": int(_safe_int(speak_cd, default_profile["speak_cooldown_ticks"])),
+                "speak_valence_thresh": float(_safe_float(speak_val, default_profile["speak_valence_thresh"])),
+                "b1_half_life_ticks": int(_safe_int(b1_hl, default_profile["b1_half_life_ticks"])),
+                "viz_every": int(_safe_int(viz_every, default_profile["viz_every"])),
+                "log_every": int(_safe_int(log_every, default_profile["log_every"])),
+                "checkpoint_every": int(_safe_int(checkpoint_every, default_profile["checkpoint_every"])),
+                "checkpoint_keep": int(_safe_int(checkpoint_keep, default_profile["checkpoint_keep"])),
+                "duration": None if duration in (None, "", "None") else int(_safe_int(duration, 0)),
+            }
+            le = (load_engram or "").strip()
+            if le:
+                profile["load_engram"] = le
+
             ok, msg = manager.start(profile)
             if not ok:
                 # msg contains error and possibly launch log; surface it
@@ -696,35 +1025,164 @@ def build_app(runs_root: str) -> Dash:
         Output("profile-save-status","children"),
         Input("save-profile","n_clicks"),
         State("profile-name","value"),
-        State("profile-json","value"),
+        # All config fields as state for assembling the JSON
+        State("cfg-neurons","value"),
+        State("cfg-k","value"),
+        State("cfg-hz","value"),
+        State("cfg-domain","value"),
+        State("cfg-use-time-dynamics","value"),
+        State("cfg-sparse-mode","value"),
+        State("cfg-threshold","value"),
+        State("cfg-lambda-omega","value"),
+        State("cfg-candidates","value"),
+        State("cfg-walkers","value"),
+        State("cfg-hops","value"),
+        State("cfg-status-interval","value"),
+        State("cfg-bundle-size","value"),
+        State("cfg-prune-factor","value"),
+        State("cfg-stim-group-size","value"),
+        State("cfg-stim-amp","value"),
+        State("cfg-stim-decay","value"),
+        State("cfg-stim-max-symbols","value"),
+        State("cfg-speak-auto","value"),
+        State("cfg-speak-z","value"),
+        State("cfg-speak-hysteresis","value"),
+        State("cfg-speak-cooldown-ticks","value"),
+        State("cfg-speak-valence-thresh","value"),
+        State("cfg-b1-half-life-ticks","value"),
+        State("cfg-viz-every","value"),
+        State("cfg-log-every","value"),
+        State("cfg-checkpoint-every","value"),
+        State("cfg-checkpoint-keep","value"),
+        State("cfg-duration","value"),
+        State("cfg-load-engram","value"),
         prevent_initial_call=True
     )
-    def on_save_profile(_n, name, text):
+    def on_save_profile(_n, name,
+                        neurons, k, hz, domain, use_td, sparse_mode, threshold, lambda_omega, candidates,
+                        walkers, hops, status_interval, bundle_size, prune_factor,
+                        stim_group_size, stim_amp, stim_decay, stim_max_symbols,
+                        speak_auto, speak_z, speak_hyst, speak_cd, speak_val, b1_hl,
+                        viz_every, log_every, checkpoint_every, checkpoint_keep, duration, load_engram):
         name = (name or "").strip()
         if not name:
             return [{"label": p, "value": p} for p in list_profiles()], "Provide a profile name."
-        try:
-            data = json.loads(text or "{}")
-        except Exception as e:
-            return [{"label": p, "value": p} for p in list_profiles()], f"Invalid profile JSON: {e}"
+        # Assemble current form into JSON
+        data = {
+            "neurons": int(_safe_int(neurons, default_profile["neurons"])),
+            "k": int(_safe_int(k, default_profile["k"])),
+            "hz": int(_safe_int(hz, default_profile["hz"])),
+            "domain": str(domain or default_profile["domain"]),
+            "use_time_dynamics": _bool_from_checklist(use_td) if use_td is not None else default_profile["use_time_dynamics"],
+            "sparse_mode": _bool_from_checklist(sparse_mode) if sparse_mode is not None else default_profile["sparse_mode"],
+            "threshold": float(_safe_float(threshold, default_profile["threshold"])),
+            "lambda_omega": float(_safe_float(lambda_omega, default_profile["lambda_omega"])),
+            "candidates": int(_safe_int(candidates, default_profile["candidates"])),
+            "walkers": int(_safe_int(walkers, default_profile["walkers"])),
+            "hops": int(_safe_int(hops, default_profile["hops"])),
+            "status_interval": int(_safe_int(status_interval, default_profile["status_interval"])),
+            "bundle_size": int(_safe_int(bundle_size, default_profile["bundle_size"])),
+            "prune_factor": float(_safe_float(prune_factor, default_profile["prune_factor"])),
+            "stim_group_size": int(_safe_int(stim_group_size, default_profile["stim_group_size"])),
+            "stim_amp": float(_safe_float(stim_amp, default_profile["stim_amp"])),
+            "stim_decay": float(_safe_float(stim_decay, default_profile["stim_decay"])),
+            "stim_max_symbols": int(_safe_int(stim_max_symbols, default_profile["stim_max_symbols"])),
+            "speak_auto": _bool_from_checklist(speak_auto) if speak_auto is not None else default_profile["speak_auto"],
+            "speak_z": float(_safe_float(speak_z, default_profile["speak_z"])),
+            "speak_hysteresis": float(_safe_float(speak_hyst, default_profile["speak_hysteresis"])),
+            "speak_cooldown_ticks": int(_safe_int(speak_cd, default_profile["speak_cooldown_ticks"])),
+            "speak_valence_thresh": float(_safe_float(speak_val, default_profile["speak_valence_thresh"])),
+            "b1_half_life_ticks": int(_safe_int(b1_hl, default_profile["b1_half_life_ticks"])),
+            "viz_every": int(_safe_int(viz_every, default_profile["viz_every"])),
+            "log_every": int(_safe_int(log_every, default_profile["log_every"])),
+            "checkpoint_every": int(_safe_int(checkpoint_every, default_profile["checkpoint_every"])),
+            "checkpoint_keep": int(_safe_int(checkpoint_keep, default_profile["checkpoint_keep"])),
+            "duration": None if duration in (None, "", "None") else int(_safe_int(duration, 0)),
+        }
+        le = (load_engram or "").strip()
+        if le:
+            data["load_engram"] = le
         path = os.path.join(PROFILES_DIR, f"{name}.json")
         ok = write_json_file(path, data)
         status = f"Saved profile to {path}" if ok else f"Error writing {path}"
         return [{"label": p, "value": p} for p in list_profiles()], status
 
+    # Multi-output load: populate all UI fields from a selected profile JSON
     @app.callback(
-        Output("profile-json","value"),
+        Output("cfg-neurons","value"),
+        Output("cfg-k","value"),
+        Output("cfg-hz","value"),
+        Output("cfg-domain","value"),
+        Output("cfg-use-time-dynamics","value"),
+        Output("cfg-sparse-mode","value"),
+        Output("cfg-threshold","value"),
+        Output("cfg-lambda-omega","value"),
+        Output("cfg-candidates","value"),
+        Output("cfg-walkers","value"),
+        Output("cfg-hops","value"),
+        Output("cfg-status-interval","value"),
+        Output("cfg-bundle-size","value"),
+        Output("cfg-prune-factor","value"),
+        Output("cfg-stim-group-size","value"),
+        Output("cfg-stim-amp","value"),
+        Output("cfg-stim-decay","value"),
+        Output("cfg-stim-max-symbols","value"),
+        Output("cfg-speak-auto","value"),
+        Output("cfg-speak-z","value"),
+        Output("cfg-speak-hysteresis","value"),
+        Output("cfg-speak-cooldown-ticks","value"),
+        Output("cfg-speak-valence-thresh","value"),
+        Output("cfg-b1-half-life-ticks","value"),
+        Output("cfg-viz-every","value"),
+        Output("cfg-log-every","value"),
+        Output("cfg-checkpoint-every","value"),
+        Output("cfg-checkpoint-keep","value"),
+        Output("cfg-duration","value"),
+        Output("cfg-load-engram","value"),
         Input("load-profile","n_clicks"),
         State("profile-path","value"),
         prevent_initial_call=True
     )
     def on_load_profile(_n, path):
         if not path:
-            return no_update
-        data = read_json_file(path)
-        if data is None:
-            return no_update
-        return json.dumps(data, indent=2)
+            raise dash.exceptions.PreventUpdate
+        data = read_json_file(path) or {}
+        # Provide defaults for any missing fields
+        def g(k, dv):
+            v = data.get(k, dv)
+            return v if v is not None else dv
+        return (
+            g("neurons", default_profile["neurons"]),
+            g("k", default_profile["k"]),
+            g("hz", default_profile["hz"]),
+            g("domain", default_profile["domain"]),
+            _checklist_from_bool(bool(g("use_time_dynamics", default_profile["use_time_dynamics"]))),
+            _checklist_from_bool(bool(g("sparse_mode", default_profile["sparse_mode"]))),
+            g("threshold", default_profile["threshold"]),
+            g("lambda_omega", default_profile["lambda_omega"]),
+            g("candidates", default_profile["candidates"]),
+            g("walkers", default_profile["walkers"]),
+            g("hops", default_profile["hops"]),
+            g("status_interval", default_profile["status_interval"]),
+            g("bundle_size", default_profile["bundle_size"]),
+            g("prune_factor", default_profile["prune_factor"]),
+            g("stim_group_size", default_profile["stim_group_size"]),
+            g("stim_amp", default_profile["stim_amp"]),
+            g("stim_decay", default_profile["stim_decay"]),
+            g("stim_max_symbols", default_profile["stim_max_symbols"]),
+            _checklist_from_bool(bool(g("speak_auto", default_profile["speak_auto"]))),
+            g("speak_z", default_profile["speak_z"]),
+            g("speak_hysteresis", default_profile["speak_hysteresis"]),
+            g("speak_cooldown_ticks", default_profile["speak_cooldown_ticks"]),
+            g("speak_valence_thresh", default_profile["speak_valence_thresh"]),
+            g("b1_half_life_ticks", default_profile["b1_half_life_ticks"]),
+            g("viz_every", default_profile["viz_every"]),
+            g("log_every", default_profile["log_every"]),
+            g("checkpoint_every", default_profile["checkpoint_every"]),
+            g("checkpoint_keep", default_profile["checkpoint_keep"]),
+            g("duration", default_profile["duration"]),
+            g("load_engram", ""),
+        )
 
     @app.callback(
         Output("run-dir","value", allow_duplicate=True),
@@ -915,7 +1373,7 @@ def build_app(runs_root: str) -> Dash:
                                 speak_ok = why.get("speak_ok")
                                 top_spike = why.get("topology_spike")
                                 b1z = why.get("b1_z")
-                                spike = bool(speak_ok) or bool(top_spike) or bool((why or {}).get('spike')) or bool((why or {}).get('valence_ok'))
+                                spike = bool(speak_ok) or bool((why or {}).get('spike'))
                             except Exception:
                                 spike = False
                         items.append({"kind":"model", "text": str(text), "t": t, "spike": bool(spike)})
