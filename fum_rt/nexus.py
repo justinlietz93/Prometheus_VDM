@@ -13,7 +13,15 @@ from .core.void_dynamics_adapter import get_domain_modulation
 from .core.fum_sie import SelfImprovementEngine
 from .core.bus import AnnounceBus
 from .core.adc import ADC
-
+from .core.void_b1 import update_void_b1 as _update_void_b1
+try:
+    from .core.control_server import ControlServer  # optional UI
+except Exception:
+    ControlServer = None
+try:
+    from .core.control_server import ControlServer  # optional UI
+except Exception:
+    ControlServer = None
 class Nexus:
     def __init__(self, run_dir: str, N:int=1000, k:int=12, hz:int=10,
                  domain:str='biology_consciousness', use_time_dynamics:bool=True,
@@ -46,6 +54,20 @@ class Nexus:
         inbox_path = os.path.join(self.run_dir, "chat_inbox.jsonl")
         self.ute = UTE(use_stdin=True, inbox_path=inbox_path)
         self.utd = UTD(self.run_dir)
+        # Start local control server for UI controls (Load Engram button)
+        self._control_server = None
+        try:
+            try:
+    from .core.control_server import ControlServer  # optional UI
+except Exception:
+    ControlServer = None as _CS
+            self._control_server = _CS(self.run_dir)
+            try:
+                self.logger.info("control_server_started", extra={"extra": {"url": getattr(self._control_server, "url", "")}})
+            except Exception:
+                pass
+        except Exception:
+            self._control_server = None
         # Macro board: minimal defaults + optional JSON registry
         try:
             self.utd.register_macro('status', {'desc': 'Emit structured status payload'})
@@ -105,11 +127,19 @@ class Nexus:
         try:
             self._lexicon_path = os.path.join(self.run_dir, 'lexicon.json')
             self._lexicon = {}
+            self._doc_count = 0
             if os.path.exists(self._lexicon_path):
                 with open(self._lexicon_path, 'r', encoding='utf-8') as fh:
                     obj = json.load(fh)
-                # support either {"tokens":[{"token":..,"count":..},...]} or {"word":count,...}
+                # support either {"tokens":[{"token":..,"count":..}], "doc_count": int} or {"word":count,...}
                 if isinstance(obj, dict):
+                    # load document count if present
+                    try:
+                        dc = obj.get('doc_count', obj.get('documents', obj.get('docs', 0)))
+                        if dc is not None:
+                            self._doc_count = int(dc)
+                    except Exception:
+                        pass
                     if 'tokens' in obj and isinstance(obj['tokens'], list):
                         for ent in obj['tokens']:
                             try:
@@ -118,6 +148,9 @@ class Nexus:
                                 pass
                     else:
                         for k, v in obj.items():
+                            # skip known metadata keys
+                            if str(k) in ('doc_count', 'documents', 'docs'):
+                                continue
                             try:
                                 self._lexicon[str(k).lower()] = int(v)
                             except Exception:
@@ -179,8 +212,10 @@ class Nexus:
         # Self-speak configuration and topology spike detector (tick-based)
         self.speak_auto = bool(speak_auto)
         self.speak_valence_thresh = float(speak_valence_thresh)
+        # Persist half-life for void_b1 meter to keep UX consistent with detector
+        self.b1_half_life_ticks = int(max(1, b1_half_life_ticks))
         self.b1_detector = StreamingZEMA(
-            half_life_ticks=int(max(1, b1_half_life_ticks)),
+            half_life_ticks=self.b1_half_life_ticks,
             z_spike=float(speak_z),
             hysteresis=float(speak_hysteresis),
             min_interval_ticks=int(max(1, speak_cooldown_ticks)),
@@ -189,6 +224,8 @@ class Nexus:
         self.phase_file = os.path.join(self.run_dir, "phase.json")
         self._phase = {"phase": 0}
         self._phase_mtime = None
+        # Novelty rarity gain (tunable via phase.json under "sie": {"novelty_idf_gain": ...})
+        self.novelty_idf_gain = 1.0
 
         # Announcement bus + ADC (void-walker observations -> incremental map)
         self.bus = AnnounceBus(capacity=int(max(1, bus_capacity)))
@@ -325,9 +362,10 @@ class Nexus:
             if not hasattr(self, "_lexicon"):
                 self._lexicon = {}
             toks = self._tokenize(text)
-            for w in toks:
+            # Document-frequency semantics: increment once per message per token
+            for w in set(toks):
                 self._lexicon[w] = int(self._lexicon.get(w, 0)) + 1
-            # Update streaming n-grams for emergent composition
+            # Update streaming n-grams for emergent composition (use full sequence)
             try:
                 self._update_ngrams(toks)
             except Exception:
@@ -340,7 +378,10 @@ class Nexus:
             if not hasattr(self, "_lexicon_path"):
                 return
             toks = [{"token": k, "count": int(v)} for k, v in sorted(self._lexicon.items(), key=lambda kv: (-int(kv[1]), kv[0]))]
-            obj = {"tokens": toks}
+            obj = {
+                "doc_count": int(getattr(self, "_doc_count", 0)),
+                "tokens": toks
+            }
             with open(self._lexicon_path, 'w', encoding='utf-8') as fh:
                 json.dump(obj, fh, ensure_ascii=False, indent=2)
         except Exception:
@@ -571,6 +612,13 @@ class Nexus:
                             except Exception:
                                 pass
 
+        # Allow phase knob for IDF novelty gain at Nexus scope
+        try:
+            if "novelty_idf_gain" in sie:
+                self.novelty_idf_gain = float(sie["novelty_idf_gain"])
+        except Exception:
+            pass
+
         # ---- Structure / Morphogenesis knobs ----
         st = prof.get("structure", {})
         if st and C is not None:
@@ -634,9 +682,37 @@ class Nexus:
             # Merge defaults for simple {"phase": n} shape
             phase_idx = int(data.get("phase", self._phase.get("phase", 0)))
             prof = self._default_phase_profiles().get(phase_idx, {})
-            # Overlay any explicit fields from file
+
+            # One-shot engram load if requested by control plane
+            try:
+                load_p = data.get("load_engram", None)
+                if isinstance(load_p, str) and load_p.strip():
+                    _load_engram_state(str(load_p), self.connectome)
+                    try:
+                        self.logger.info("engram_loaded", extra={"extra": {"path": str(load_p)}})
+                    except Exception:
+                        pass
+                    # Clear directive from phase file to avoid repeated loads
+                    try:
+                        data2 = dict(data)
+                        data2.pop("load_engram", None)
+                        with open(pth, "w", encoding="utf-8") as fh:
+                            json.dump(data2, fh, ensure_ascii=False, indent=2)
+                        # Refresh mtime snapshot
+                        try:
+                            st2 = os.stat(pth)
+                            mt = float(getattr(st2, "st_mtime", mt))
+                        except Exception:
+                            pass
+                        data = data2
+                    except Exception:
+                        pass
+            except Exception:
+                pass
+
+            # Overlay any explicit fields from file (skip reserved keys)
             for k, v in data.items():
-                if k == "phase":
+                if k in ("phase", "load_engram"):
                     continue
                 if isinstance(v, dict):
                     prof[k] = {**prof.get(k, {}), **v}
@@ -666,6 +742,7 @@ class Nexus:
                 ute_in_count = len(msgs)
                 ute_text_count = 0
                 stim_idxs = set()
+                tick_tokens = set()
                 for m in msgs:
                     if m.get('type') == 'text':
                         ute_text_count += 1
@@ -677,7 +754,14 @@ class Nexus:
                             except Exception:
                                 pass
                             try:
+                                # Update rolling lexicon (doc-frequency semantics) and n-grams
                                 self._update_lexicon(text)
+                                # Accumulate unique tokens for this tick
+                                toks = self._tokenize(text)
+                                for w in set(toks):
+                                    tick_tokens.add(w)
+                                # Increment document counter once per inbound text message
+                                self._doc_count = int(getattr(self, "_doc_count", 0)) + 1
                             except Exception:
                                 pass
                             idxs = self._symbols_to_indices(text)
@@ -712,6 +796,16 @@ class Nexus:
                 except Exception:
                     density = 0.0
 
+                # IDF rarity scaling for novelty (void-faithful, content-bearing)
+                try:
+                    idf_scale = float(self._idf_scale_for_tokens(list(tick_tokens))) * float(getattr(self, "novelty_idf_gain", 1.0))
+                    if idf_scale < 0.5:
+                        idf_scale = 0.5
+                    elif idf_scale > 2.0:
+                        idf_scale = 2.0
+                except Exception:
+                    idf_scale = 1.0
+
                 # TD-like signal from topology change (normalized delta in active edges)
                 try:
                     prev_E = getattr(self, "_prev_active_edges", E)
@@ -742,7 +836,8 @@ class Nexus:
                     time_step=int(step),
                     firing_var=firing_var,
                     target_var=0.15,
-                    density_override=density
+                    density_override=density,
+                    novelty_idf_scale=float(idf_scale)
                 )
                 sie_drive = float(drive.get("valence_01", 1.0))
                 # Prefer SIE v2 valence (from W,dW) when available; fall back to legacy
@@ -768,6 +863,8 @@ class Nexus:
                     m["homeostasis_bridged"] = int(getattr(self.connectome, "_last_bridged_count", 0))
                     m["active_edges"] = int(E)
                     m["td_signal"] = float(td_signal)
+                    # expose the IDF novelty scale used this tick
+                    m["novelty_idf_scale"] = float(idf_scale)
                     if firing_var is not None:
                         m["firing_var"] = float(firing_var)
                 except Exception:
@@ -999,6 +1096,18 @@ class Nexus:
                     break
         finally:
             self.utd.close()
+            # Stop local control server on exit
+            try:
+                if getattr(self, "_control_server", None):
+                    self._control_server.stop()
+            except Exception:
+                pass
+            # Stop local control server
+            try:
+                if getattr(self, "_control_server", None):
+                    self._control_server.stop()
+            except Exception:
+                pass
 
 def make_parser():
     p = argparse.ArgumentParser()

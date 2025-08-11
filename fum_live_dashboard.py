@@ -528,7 +528,10 @@ def build_app(runs_root: str) -> Dash:
                 html.Button("Refresh Runs", id="refresh-runs", n_clicks=0, style={"marginTop":"6px"}),
                 html.Label("Run directory"),
                 dcc.Dropdown(id="run-dir", options=[{"label": p, "value": p} for p in runs], value=default_run),
-                html.Button("Use Current Run", id="use-current-run", n_clicks=0, style={"marginTop":"6px"}),
+                html.Div([
+                    html.Button("Use Current Run", id="use-current-run", n_clicks=0),
+                    html.Button("Use Latest Run", id="use-latest-run", n_clicks=0, style={"marginLeft":"8px"})
+                ], style={"marginTop":"6px"}),
                 html.Hr(),
                 html.Label("Runtime Controls (phase + gates)"),
                 dcc.Slider(id="phase", min=0, max=4, step=1, value=0, marks={i:str(i) for i in range(5)}),
@@ -584,6 +587,9 @@ def build_app(runs_root: str) -> Dash:
                 ], style={"display":"flex","gap":"6px","marginTop":"6px"}),
                 html.Button("Apply Runtime Settings", id="apply-phase", n_clicks=0, style={"marginTop":"6px"}),
                 html.Pre(id="phase-status", style={"fontSize":"12px"}),
+                html.Label("Load Engram (runtime)"),
+                dcc.Input(id="rc-load-engram-path", type="text", placeholder="runs/<ts>/state_XXXXX.h5 or .npz", style={"width":"100%"}),
+                html.Button("Load Engram Now", id="rc-load-engram-btn", n_clicks=0, style={"marginTop":"6px"}),
                 html.Hr(),
                 html.Label("Feed file to stdin (optional)"),
                 dcc.Input(id="feed-path", type="text", placeholder="relative to fum_rt/data or absolute path", style={"width":"100%"}),
@@ -593,11 +599,8 @@ def build_app(runs_root: str) -> Dash:
                     html.Button("Stop Feed", id="feed-stop", n_clicks=0, style={"marginLeft":"8px"}),
                 ], style={"marginTop":"6px"}),
                 html.Hr(),
-                html.Label("Send one line"),
-                dcc.Input(id="send-line", type="text", placeholder="type and Enter", style={"width":"100%"}),
-                html.Button("Send", id="send-btn", n_clicks=0, style={"marginTop":"6px"}),
                 html.Pre(id="send-status", style={"fontSize":"12px"}),
-            ], style={"flex":"1", "paddingRight":"10px", "borderRight":"1px solid #ccc"}),
+            ], style={"flex":"0 0 360px", "minWidth":"320px", "maxWidth":"420px", "paddingRight":"10px", "borderRight":"1px solid #ccc"}),
             html.Div([
                 html.H4("Run configuration and process control"),
                 html.Div([
@@ -801,7 +804,7 @@ def build_app(runs_root: str) -> Dash:
                     html.Button("Send", id="chat-send", n_clicks=0, style={"marginLeft":"8px"}),
                 ], style={"marginTop":"6px"}),
                 html.Pre(id="chat-status", style={"fontSize":"12px"}),
-            ], style={"flex":"2","paddingLeft":"10px"}),
+            ], style={"flex":"1","paddingLeft":"10px"}),
         ], style={"display":"flex"}),
         dcc.Interval(id="poll", interval=1000, n_intervals=0),
         dcc.Store(id="chat-state"),
@@ -873,14 +876,37 @@ def build_app(runs_root: str) -> Dash:
         ok = write_json_file(os.path.join(run_dir,"phase.json"), prof)
         return "Applied" if ok else "Error writing phase.json"
 
+
+    @app.callback(
+        Output("phase-status","children", allow_duplicate=True),
+        Input("rc-load-engram-btn","n_clicks"),
+        State("run-dir","value"),
+        State("rc-load-engram-path","value"),
+        prevent_initial_call=True
+    )
+    def on_load_engram_now(_n, run_dir, path):
+        rd = (run_dir or "").strip()
+        if not rd:
+            return "Select a run directory."
+        p = (path or "").strip()
+        if not p:
+            return "Enter engram path."
+        try:
+            obj = read_json_file(os.path.join(rd, "phase.json")) or {}
+            if not isinstance(obj, dict):
+                obj = {}
+            obj["load_engram"] = p
+            ok = write_json_file(os.path.join(rd, "phase.json"), obj)
+            return f"Queued load_engram: {p}" if ok else "Error writing phase.json"
+        except Exception as e:
+            return f"Error: {e}"
+
     @app.callback(
         Output("proc-status","children"),
         Output("run-dir","value", allow_duplicate=True),
         Input("start-run","n_clicks"),
         Input("stop-run","n_clicks"),
-        Input("send-btn","n_clicks"),
         State("runs-root","value"),
-        State("send-line","value"),
         # Profile States (validated UI)
         State("cfg-neurons","value"),
         State("cfg-k","value"),
@@ -977,11 +1003,7 @@ def build_app(runs_root: str) -> Dash:
             ok, msg = manager.stop()
             return ("Stopped." if ok else msg), no_update
 
-        if trig == "send-btn":
-            if not line:
-                return no_update, no_update
-            ok = manager.send_line(line)
-            return ("Sent." if ok else "Not running."), no_update
+        # (send one line removed; use Chat input instead)
 
         return no_update, no_update
 
@@ -1191,6 +1213,17 @@ def build_app(runs_root: str) -> Dash:
     )
     def on_use_current(_n):
         return (manager.current_run_dir or no_update)
+
+    @app.callback(
+        Output("run-dir","value", allow_duplicate=True),
+        Input("use-latest-run","n_clicks"),
+        State("runs-root","value"),
+        prevent_initial_call=True
+    )
+    def on_use_latest(_n, root):
+        r = (root or runs_root)
+        rs = list_runs(r)
+        return (rs[0] if rs else no_update)
 
     @app.callback(
         Output("fig-dashboard","figure"),

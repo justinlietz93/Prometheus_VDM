@@ -35,6 +35,27 @@ class Visualizer:
 
         fig.suptitle('FUM Performance Dashboard', fontsize=14)
         fig.tight_layout()
+        # Overlay Control URL (Load Engram) if available
+        try:
+            import json as _json
+            ctrl_url = None
+            try:
+                with open(os.path.join(self.run_dir, 'control.json'), 'r', encoding='utf-8') as _fh:
+                    _ctrl = _json.load(_fh)
+                    if isinstance(_ctrl, dict):
+                        ctrl_url = _ctrl.get('url')
+            except Exception:
+                ctrl_url = None
+            if ctrl_url:
+                try:
+                    import matplotlib.pyplot as _plt
+                    _plt.subplots_adjust(bottom=0.16)
+                except Exception:
+                    pass
+                fig.text(0.01, 0.01, f'Controls: {ctrl_url} — Load Engram', fontsize=9, color='#8b949e')
+        except Exception:
+            pass
+
         path = os.path.join(self.run_dir, 'dashboard.png')
         fig.savefig(path, dpi=150)
         plt.close(fig)
