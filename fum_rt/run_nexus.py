@@ -11,7 +11,7 @@ def main():
                use_time_dynamics=args.use_time_dynamics,
                viz_every=args.viz_every, log_every=args.log_every,
                checkpoint_every=args.checkpoint_every, seed=args.seed,
-               sparse_mode=getattr(args, 'sparse_mode', False),
+               sparse_mode=(args.sparse_mode if args.sparse_mode is not None else (args.neurons >= 20000)),
                threshold=getattr(args, 'threshold', 0.15),
                lambda_omega=getattr(args, 'lambda_omega', 0.1),
                candidates=getattr(args, 'candidates', 64),
@@ -34,7 +34,9 @@ def main():
                speak_hysteresis=getattr(args, 'speak_hysteresis', 1.0),
                speak_cooldown_ticks=getattr(args, 'speak_cooldown_ticks', 10),
                speak_valence_thresh=getattr(args, 'speak_valence_thresh', 0.01),
-               b1_half_life_ticks=getattr(args, 'b1_half_life_ticks', 50))
+               b1_half_life_ticks=getattr(args, 'b1_half_life_ticks', 50),
+               # Engram loader (forward CLI flag into Nexus)
+               load_engram_path=getattr(args, 'load_engram', None))
     nx.run(duration_s=args.duration)
 
 if __name__ == '__main__':

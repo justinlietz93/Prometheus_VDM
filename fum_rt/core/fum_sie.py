@@ -172,7 +172,8 @@ class SelfImprovementEngine:
     def get_drive(self, W: csc_matrix, external_signal: float, time_step: int,
                   firing_var: float = None, target_var: float = 0.15,
                   weights: dict | None = None,
-                  density_override: float | None = None) -> dict:
+                  density_override: float | None = None,
+                  novelty_idf_scale: float = 1.0) -> dict:
         """
         Compute the canonical Rule 3 drive packet, preserving your novelty and sparsity logic.
         Returns:
@@ -238,9 +239,11 @@ class SelfImprovementEngine:
 
         # Novelty dynamics: trigger on modulation or topology change spikes
         trigger = (modulation_factor > 0.5) or (abs(ddens) > 1e-3) or (abs(self.td_error) > 0.05)
+        # IDF rarity scale ∈ [0.5, 2.0] modulates novelty toward rare, content-bearing tokens
+        scale = float(max(0.5, min(2.0, 1.0 if novelty_idf_scale is None else novelty_idf_scale)))
         if trigger and (time_step - self.last_reward_time) > 50:
-            # proportional to spike, capped and with partial retention
-            self.novelty = float(min(0.95, max(self.novelty * 0.5, 0.3 + 3.0 * abs(intrinsic_td))))
+            # proportional to spike, capped and with partial retention; scaled by rarity
+            self.novelty = float(min(0.95, max(self.novelty * 0.5, scale * (0.3 + 3.0 * abs(intrinsic_td)))))
             self.last_reward_time = int(time_step)
         else:
             self.novelty *= 0.995
@@ -259,6 +262,7 @@ class SelfImprovementEngine:
                 "self_benefit": float(self.self_benefit),
                 "hsi_norm": float(hsi_norm),
                 "density": float(density),
+                "novelty_scale": float(scale),
             }
         }
         self.last_drive = packet

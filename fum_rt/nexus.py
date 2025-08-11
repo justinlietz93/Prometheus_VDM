@@ -278,6 +278,48 @@ class Nexus:
         except Exception:
             return []
 
+    def _idf_scale_for_tokens(self, tokens):
+        """
+        Compute a void-faithful rarity scale in [0.5, 2.0] from a token list using a rolling IDF proxy.
+        - Uses self._doc_count as total "documents" (ingested text messages)
+        - Uses self._lexicon[word] as a proxy for document frequency (approximate)
+        Mapping:
+            idf_mean = mean(log((D+1)/(1+df_w)) + 1)
+            idf_max  = log(D+1) + 1
+            scale    = 0.5 + 1.5 * (idf_mean / idf_max)  clamped to [0.5, 2.0]
+        """
+        try:
+            if not tokens:
+                return 1.0
+            import math
+            doc_count = int(getattr(self, "_doc_count", 0))
+            if doc_count <= 0:
+                return 1.0
+            lex = getattr(self, "_lexicon", {}) or {}
+            df_vals = []
+            for w in tokens:
+                try:
+                    df_vals.append(int(lex.get(str(w).lower(), 0)))
+                except Exception:
+                    pass
+            if not df_vals:
+                return 1.0
+            # Compute mean IDF with +1 smoothing
+            idf_sum = 0.0
+            for df in df_vals:
+                idf_sum += (math.log((doc_count + 1.0) / (1.0 + float(df))) + 1.0)
+            idf_mean = idf_sum / float(len(df_vals))
+            idf_max = (math.log(max(2.0, float(doc_count + 1.0))) + 1.0)
+            if idf_max <= 0.0:
+                return 1.0
+            scale = 0.5 + 1.5 * (idf_mean / idf_max)
+            if scale < 0.5:
+                return 0.5
+            if scale > 2.0:
+                return 2.0
+            return float(scale)
+        except Exception:
+            return 1.0
     def _update_lexicon(self, text: str):
         try:
             if not hasattr(self, "_lexicon"):
@@ -481,6 +523,94 @@ class Nexus:
                     C.lambda_omega = float(max(0.0, float(cn["lambda_omega"])))
                 if "candidates" in cn and hasattr(C, "candidates"):
                     C.candidates = int(max(1, int(cn["candidates"])))
+            except Exception:
+                pass
+
+        # Additional live knobs (safe: only set when attributes exist)
+
+        # ---- SIE knobs (weights/time constants/targets) ----
+        sie = prof.get("sie", {})
+        if sie:
+            # try Nexus.sie first
+            targets = []
+            try:
+                targets.append(getattr(self, "sie", None))
+            except Exception:
+                pass
+            # also allow Connectome-scope SIE if present
+            try:
+                _C = getattr(self, "connectome", None)
+                if _C is not None:
+                    targets.append(getattr(_C, "sie", None))
+            except Exception:
+                pass
+
+            for obj in targets:
+                if not obj:
+                    continue
+                cfg = getattr(obj, "cfg", None)
+                if cfg is not None:
+                    for k in ("w_td", "w_nov", "w_hab", "w_hsi", "hab_tau", "target_var"):
+                        if k in sie and hasattr(cfg, k):
+                            try:
+                                if k == "hab_tau":
+                                    setattr(cfg, k, int(sie[k]))
+                                else:
+                                    setattr(cfg, k, float(sie[k]))
+                            except Exception:
+                                pass
+                else:
+                    # set directly on object if exposed
+                    for k in ("w_td", "w_nov", "w_hab", "w_hsi", "hab_tau", "target_var"):
+                        if k in sie and hasattr(obj, k):
+                            try:
+                                if k == "hab_tau":
+                                    setattr(obj, k, int(sie[k]))
+                                else:
+                                    setattr(obj, k, float(sie[k]))
+                            except Exception:
+                                pass
+
+        # ---- Structure / Morphogenesis knobs ----
+        st = prof.get("structure", {})
+        if st and C is not None:
+            try:
+                if "growth_fraction" in st and hasattr(C, "growth_fraction"):
+                    C.growth_fraction = float(st["growth_fraction"])
+            except Exception:
+                pass
+            try:
+                if "alias_sampling_rate" in st and hasattr(C, "alias_sampling_rate"):
+                    C.alias_sampling_rate = float(st["alias_sampling_rate"])
+            except Exception:
+                pass
+            try:
+                if "b1_persistence_thresh" in st and hasattr(C, "b1_persistence_thresh"):
+                    C.b1_persistence_thresh = float(st["b1_persistence_thresh"])
+            except Exception:
+                pass
+            try:
+                if "pruning_low_w_thresh" in st and hasattr(C, "pruning_low_w_thresh"):
+                    C.pruning_low_w_thresh = float(st["pruning_low_w_thresh"])
+            except Exception:
+                pass
+            try:
+                if "pruning_T_prune" in st and hasattr(C, "pruning_T_prune"):
+                    C.pruning_T_prune = int(st["pruning_T_prune"])
+            except Exception:
+                pass
+
+        # ---- Schedules / housekeeping ----
+        sched = prof.get("schedule", {})
+        if sched:
+            try:
+                if "adc_entropy_alpha" in sched:
+                    self.adc_entropy_alpha = float(sched["adc_entropy_alpha"])
+            except Exception:
+                pass
+            try:
+                if "ph_snapshot_interval_sec" in sched:
+                    self.ph_snapshot_interval_sec = float(sched["ph_snapshot_interval_sec"])
             except Exception:
                 pass
 
@@ -811,8 +941,10 @@ class Nexus:
                 if self.viz_every and (step % self.viz_every) == 0 and step > 0:
                     try:
                         self.vis.dashboard(self.history[-max(50, self.viz_every*2):])  # last window
-                        G = self.connectome.snapshot_graph()
-                        self.vis.graph(G, fname='connectome.png')
+                        # Guard expensive graph snapshot at scale
+                        if int(self.N) <= 10000:
+                            G = self.connectome.snapshot_graph()
+                            self.vis.graph(G, fname='connectome.png')
                     except Exception as e:
                         self.logger.info("viz_error", extra={"extra": {"err": str(e)}})
 
@@ -887,7 +1019,10 @@ def make_parser():
     # Ultra-scale/sparse flags
     p.add_argument('--sparse-mode', dest='sparse_mode', action='store_true')
     p.add_argument('--dense-mode', dest='sparse_mode', action='store_false')
-    p.set_defaults(sparse_mode=False)
+    # Aliases
+    p.add_argument('--sparse', dest='sparse_mode', action='store_true')
+    p.add_argument('--dense', dest='sparse_mode', action='store_false')
+    p.set_defaults(sparse_mode=None)
     p.add_argument('--threshold', type=float, default=0.15)
     p.add_argument('--lambda-omega', dest='lambda_omega', type=float, default=0.1)
     p.add_argument('--candidates', type=int, default=64)
@@ -919,4 +1054,8 @@ def make_parser():
     p.add_argument('--r-attach', dest='r_attach', type=float, default=0.25)
     p.add_argument('--ttl-init', dest='ttl_init', type=int, default=120)
     p.add_argument('--split-patience', dest='split_patience', type=int, default=6)
+
+    # Engram loader (optional)
+    p.add_argument('--load-engram', dest='load_engram', type=str, default=None)
+
     return p
