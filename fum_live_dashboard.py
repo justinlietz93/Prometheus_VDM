@@ -553,6 +553,19 @@ def build_app(runs_root: str) -> Dash:
                     }
                 ),
                 html.Div([
+                    html.Label("Chat filter"),
+                    dcc.RadioItems(
+                        id="chat-filter",
+                        options=[
+                            {"label": "All (user + model)", "value": "all"},
+                            {"label": "Model only", "value": "model"},
+                            {"label": "Model (spike‑gated only)", "value": "spike"}
+                        ],
+                        value="all",
+                        labelStyle={"display":"inline-block","marginRight":"10px"}
+                    ),
+                ], style={"marginTop":"6px"}),
+                html.Div([
                     dcc.Input(
                         id="chat-input",
                         type="text",
@@ -572,7 +585,7 @@ def build_app(runs_root: str) -> Dash:
     # ---------- Callbacks ----------
     @app.callback(
         Output("run-dir","options"),
-        Output("run-dir","value"),
+        Output("run-dir","value", allow_duplicate=True),
         Input("refresh-runs","n_clicks"),
         State("runs-root","value"),
         prevent_initial_call=True
@@ -646,7 +659,7 @@ def build_app(runs_root: str) -> Dash:
 
 
     @app.callback(
-        Output("send-status","children"),
+        Output("send-status","children", allow_duplicate=True),
         Input("feed-start","n_clicks"),
         State("feed-path","value"),
         State("feed-rate","value"),
@@ -725,7 +738,7 @@ def build_app(runs_root: str) -> Dash:
         Output("fig-dashboard","figure"),
         Output("fig-discovery","figure"),
         Input("poll","n_intervals"),
-        State("run-dir","value"),
+        Input("run-dir","value"),
         prevent_initial_call=False
     )
     def update_figs(_n, run_dir):
@@ -796,9 +809,9 @@ def build_app(runs_root: str) -> Dash:
 
     # Auto-refresh launcher log every poll tick
     @app.callback(
-        Output("launch-log","children"),
+        Output("launch-log","children", allow_duplicate=True),
         Input("poll","n_intervals"),
-        prevent_initial_call=False,
+        prevent_initial_call='initial_duplicate',
     )
     def auto_refresh_log(_n):
         try:
@@ -859,47 +872,102 @@ def build_app(runs_root: str) -> Dash:
         Output("chat-view","children"),
         Output("chat-state","data"),
         Input("poll","n_intervals"),
+        Input("chat-filter","value"),
         State("run-dir","value"),
         State("chat-state","data"),
         prevent_initial_call=False
     )
-    def on_chat_update(_n, run_dir, data):
+    def on_chat_update(_n, filt, run_dir, data):
         rd = (run_dir or "").strip()
         if not rd:
-            return "", {"run_dir":"", "utd_size":0, "lines":[]}
+            return "", {"run_dir":"", "utd_size":0, "inbox_size":0, "items":[]}
+
         state = data or {}
-        lines = list(state.get("lines", []))
+        items = list(state.get("items", []))
         last_run = state.get("run_dir")
         utd_size = int(state.get("utd_size", 0)) if isinstance(state.get("utd_size"), int) else 0
-        # reset if run changed
+        inbox_size = int(state.get("inbox_size", 0)) if isinstance(state.get("inbox_size"), int) else 0
+
+        # Reset if run changed
         if last_run != rd:
-            lines = []
+            items = []
             utd_size = 0
+            inbox_size = 0
+
+        # Tail model "say" outputs (from UTD)
         utd_path = os.path.join(rd, "utd_events.jsonl")
-        new_recs, new_size = tail_jsonl_bytes(utd_path, utd_size)
-        for rec in new_recs:
+        new_utd_recs, new_utd_size = tail_jsonl_bytes(utd_path, utd_size)
+        for rec in new_utd_recs:
             try:
                 if isinstance(rec, dict) and (rec.get("type") == "macro") and (str(rec.get("macro","")).lower() == "say"):
                     args = rec.get("args") or {}
                     text = args.get("text") or ""
+                    why = args.get("why") or rec.get("why") or {}
                     t = None
-                    why = args.get("why") or {}
                     try:
-                        t = int(why.get("t"))
+                        t = int((why or {}).get("t"))
                     except Exception:
                         t = None
                     if text:
-                        if t is not None:
-                            lines.append(f"[t={t}] Assistant: {text}")
-                        else:
-                            lines.append(f"Assistant: {text}")
+                        spike = False
+                        if isinstance(why, dict):
+                            try:
+                                speak_ok = why.get("speak_ok")
+                                top_spike = why.get("topology_spike")
+                                b1z = why.get("b1_z")
+                                spike = bool(speak_ok) or bool(top_spike) or bool((why or {}).get('spike')) or bool((why or {}).get('valence_ok'))
+                            except Exception:
+                                spike = False
+                        items.append({"kind":"model", "text": str(text), "t": t, "spike": bool(spike)})
             except Exception:
                 pass
-        # keep last 200 lines
-        if len(lines) > 200:
-            lines = lines[-200:]
-        view = "\n".join(lines)
-        return view, {"run_dir": rd, "utd_size": int(new_size), "lines": lines}
+
+        # Tail user messages (from chat_inbox.jsonl)
+        inbox_path = os.path.join(rd, "chat_inbox.jsonl")
+        new_inbox_recs, new_inbox_size = tail_jsonl_bytes(inbox_path, inbox_size)
+        for rec in new_inbox_recs:
+            try:
+                if isinstance(rec, dict):
+                    mtype = (rec.get("type") or "").lower()
+                    if mtype == "text":
+                        msg = rec.get("msg") or rec.get("text") or ""
+                        if msg:
+                            items.append({"kind":"user", "text": str(msg), "t": None, "spike": False})
+            except Exception:
+                pass
+
+        # keep last 200 items
+        if len(items) > 200:
+            items = items[-200:]
+
+        # Render with filter
+        filt = (filt or "all").lower()
+        view_lines = []
+        for it in items:
+            if filt == "model":
+                if it.get("kind") != "model":
+                    continue
+            elif filt == "spike":
+                if it.get("kind") != "model" or not it.get("spike", False):
+                    continue
+            # Compose single-line display: user lines labeled; model lines are unlabeled text (optionally prefixed with t)
+            t = it.get("t")
+            text = it.get("text") or ""
+            if it.get("kind") == "user":
+                view_lines.append(f"You: {text}")
+            else:
+                if t is not None:
+                    view_lines.append(f"[t={t}] {text}")
+                else:
+                    view_lines.append(f"{text}")
+
+        view = "\n".join(view_lines)
+        return view, {
+            "run_dir": rd,
+            "utd_size": int(new_utd_size),
+            "inbox_size": int(new_inbox_size),
+            "items": items
+        }
 
     return app
 
