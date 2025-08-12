@@ -295,16 +295,8 @@ class Nexus:
 
     def _tokenize(self, text: str):
         try:
-            words = [w.lower() for w in re.findall(r"[A-Za-z][A-Za-z0-9_+\-]*", str(text))]
-            STOP = {
-                "the","a","an","and","or","for","with","into","of","to","from","in","on","at","by","is",
-                "are","was","were","be","been","being","it","this","that","as","if","then","than","so",
-                "thus","such","not","no","nor","but","over","under","up","down","out","you","your",
-                "yours","me","my","mine","we","our","ours","they","their","theirs","he","him","his",
-                "she","her","hers","i","am","do","does","did","done","have","has","had","will","would",
-                "can","could","should","shall","may","might"
-            }
-            return [w for w in words if (w not in STOP and len(w) > 2)]
+            # Capture any sequence of non-whitespace characters
+            return [w.lower() for w in re.findall(r"\S+", str(text))]
         except Exception:
             return []
 
@@ -395,7 +387,7 @@ class Nexus:
         except Exception:
             pass
 
-    def _emergent_sentence(self, max_len=12, seed=None):
+    def _emergent_sentence(self, seed=None):
         try:
             if not getattr(self, "_lexicon", None):
                 return ""
@@ -416,7 +408,7 @@ class Nexus:
                     break
             words = [start]
             # Markov walk using trigram then bigram
-            for _ in range(max(1, int(max_len) - 1)):
+            while True:
                 nxt = None
                 if len(words) >= 2:
                     key = (words[-2], words[-1])
@@ -478,6 +470,11 @@ class Nexus:
                 "connectome_entropy": float(metrics.get("connectome_entropy", 0.0)),
                 "valence": val,
             }
+            # Emergent language (no templates): assemble from learned n-grams
+            sent = self._emergent_sentence(seed=int(step))
+            if sent:
+                return sent
+
             tpls = list(getattr(self, "_phrase_templates", []) or [])
             if tpls:
                 idx = int(step) % max(1, len(tpls))
@@ -486,10 +483,6 @@ class Nexus:
                     return tpl.format(**ctx)
                 except Exception:
                     pass
-            # Emergent language (no templates): assemble from learned n-grams
-            sent = self._emergent_sentence(max_len=12, seed=int(step))
-            if sent:
-                return sent
             # Fallback: use keyword summary directly (emergent tokens)
             return (summary or "").strip() or "."
         except Exception:

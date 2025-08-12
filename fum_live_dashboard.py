@@ -969,6 +969,7 @@ def build_app(runs_root: str) -> Dash:
         State("cfg-checkpoint-every","value"),
         State("cfg-checkpoint-keep","value"),
         State("cfg-duration","value"),
+        State("rc-load-engram-path", "value"),
         prevent_initial_call=True
     )
     def on_proc_actions(n_start, n_stop, root,
@@ -976,7 +977,7 @@ def build_app(runs_root: str) -> Dash:
                         walkers, hops, status_interval, bundle_size, prune_factor,
                         stim_group_size, stim_amp, stim_decay, stim_max_symbols,
                         speak_auto, speak_z, speak_hyst, speak_cd, speak_val, b1_hl,
-                        viz_every, log_every, checkpoint_every, checkpoint_keep, duration):
+                        viz_every, log_every, checkpoint_every, checkpoint_keep, duration, load_engram_path):
         # Determine which control triggered this callback
         try:
             trig = dash.callback_context.triggered[0]["prop_id"].split(".")[0] if dash.callback_context.triggered else None
@@ -1015,6 +1016,8 @@ def build_app(runs_root: str) -> Dash:
                 "checkpoint_keep": int(_safe_int(checkpoint_keep, default_profile["checkpoint_keep"])),
                 "duration": None if duration in (None, "", "None") else int(_safe_int(duration, 0)),
             }
+            if load_engram_path:
+                profile['load_engram'] = load_engram_path
             ok, msg = manager.start(profile)
             if not ok:
                 # msg contains error and possibly launch log; surface it
