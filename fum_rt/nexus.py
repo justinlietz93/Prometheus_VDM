@@ -4,6 +4,7 @@ from collections import deque
 from .utils.logging_setup import get_logger
 from .io.ute import UTE
 from .io.utd import UTD
+from .core import text_utils
 from .core.connectome import Connectome
 from .core.sparse_connectome import SparseConnectome
 from .core.metrics import compute_metrics, StreamingZEMA
@@ -44,6 +45,7 @@ class Nexus:
         self.log_every = log_every
         self.checkpoint_every = checkpoint_every
         self.seed = seed
+        self.emergent_macros = bool(emergent_macros)
 
         os.makedirs(self.run_dir, exist_ok=True)
         self.logger = get_logger("nexus", os.path.join(self.run_dir, "events.jsonl"))
@@ -238,10 +240,12 @@ class Nexus:
         self._prev_vt_entropy = None
         self._last_vt_entropy = None
 
-    def _symbols_to_indices(self, text):
+    def _symbols_to_indices(self, text, reverse_map=None):
         """
         Deterministic, stateless symbol→group mapping.
         Each unique symbol maps to 'stim_group_size' neuron indices via a stable arithmetic hash.
+        If reverse_map (dict) is provided, populate index->symbol for the first symbol to claim each index
+        to enable void-driven topic extraction from walker observations.
         """
         try:
             g = int(max(1, getattr(self, "stim_group_size", 4)))
@@ -258,110 +262,28 @@ class Nexus:
                 for j in range(g):
                     idx = int((base + j * 2654435761) % N)
                     out.append(idx)
+                    if isinstance(reverse_map, dict) and idx not in reverse_map:
+                        reverse_map[idx] = ch
                 if len(seen) >= max_syms:
                     break
             return out
         except Exception:
             return []
 
-    def _keyword_summary(self, k: int = 4) -> str:
-        """
-        Deterministic, lightweight keyword extractor from recent_text buffer.
-        Boundary-only helper (does not affect core learning).
-        """
+    def _update_lexicon_and_ngrams(self, text: str):
         try:
-            if not self.recent_text:
-                return ""
-            txt = " ".join(list(self.recent_text)[-32:])
-            words = [w.lower() for w in re.findall(r"[A-Za-z][A-Za-z0-9_+\-]*", txt)]
-            STOP = {
-                "the","a","an","and","or","for","with","into","of","to","from","in","on","at","by","is",
-                "are","was","were","be","been","being","it","this","that","as","if","then","than","so",
-                "thus","such","not","no","nor","but","over","under","up","down","out","you","your",
-                "yours","me","my","mine","we","our","ours","they","their","theirs","he","him","his",
-                "she","her","hers","i","am","do","does","did","done","have","has","had","will","would",
-                "can","could","should","shall","may","might"
-            }
-            words = [w for w in words if (w not in STOP and len(w) > 2)]
-            if not words:
-                return ""
-            freq = {}
-            for w in words:
-                freq[w] = freq.get(w, 0) + 1
-            top = [w for w,_ in sorted(freq.items(), key=lambda kv: kv[1], reverse=True)[:max(1,int(k))]]
-            return ", ".join(top)
-        except Exception:
-            return ""
-
-    def _tokenize(self, text: str):
-        try:
-            # Capture any sequence of non-whitespace characters
-            return [w.lower() for w in re.findall(r"\S+", str(text))]
-        except Exception:
-            return []
-
-    def _idf_scale_for_tokens(self, tokens):
-        """
-        Compute a void-faithful rarity scale in [0.5, 2.0] from a token list using a rolling IDF proxy.
-        - Uses self._doc_count as total "documents" (ingested text messages)
-        - Uses self._lexicon[word] as a proxy for document frequency (approximate)
-        Mapping:
-            idf_mean = mean(log((D+1)/(1+df_w)) + 1)
-            idf_max  = log(D+1) + 1
-            scale    = 0.5 + 1.5 * (idf_mean / idf_max)  clamped to [0.5, 2.0]
-        """
-        try:
-            if not tokens:
-                return 1.0
-            import math
-            doc_count = int(getattr(self, "_doc_count", 0))
-            if doc_count <= 0:
-                return 1.0
-            lex = getattr(self, "_lexicon", {}) or {}
-            df_vals = []
-            for w in tokens:
-                try:
-                    df_vals.append(int(lex.get(str(w).lower(), 0)))
-                except Exception:
-                    pass
-            if not df_vals:
-                return 1.0
-            # Compute mean IDF with +1 smoothing
-            idf_sum = 0.0
-            for df in df_vals:
-                idf_sum += (math.log((doc_count + 1.0) / (1.0 + float(df))) + 1.0)
-            idf_mean = idf_sum / float(len(df_vals))
-            idf_max = (math.log(max(2.0, float(doc_count + 1.0))) + 1.0)
-            if idf_max <= 0.0:
-                return 1.0
-            scale = 0.5 + 1.5 * (idf_mean / idf_max)
-            if scale < 0.5:
-                return 0.5
-            if scale > 2.0:
-                return 2.0
-            return float(scale)
-        except Exception:
-            return 1.0
-    def _update_lexicon(self, text: str):
-        try:
-            if not hasattr(self, "_lexicon"):
-                self._lexicon = {}
-            toks = self._tokenize(text)
+            if not hasattr(self, "_lexicon"): self._lexicon = {}
+            toks = text_utils.tokenize_text(text)
             # Document-frequency semantics: increment once per message per token
             for w in set(toks):
                 self._lexicon[w] = int(self._lexicon.get(w, 0)) + 1
-            # Update streaming n-grams for emergent composition (use full sequence)
-            try:
-                self._update_ngrams(toks)
-            except Exception:
-                pass
-        except Exception:
-            pass
+            # Update streaming n-grams for emergent composition
+            text_utils.update_ngrams(toks, self._ng2, self._ng3)
+        except Exception: pass
 
     def _save_lexicon(self):
         try:
-            if not hasattr(self, "_lexicon_path"):
-                return
+            if not hasattr(self, "_lexicon_path"): return
             toks = [{"token": k, "count": int(v)} for k, v in sorted(self._lexicon.items(), key=lambda kv: (-int(kv[1]), kv[0]))]
             obj = {
                 "doc_count": int(getattr(self, "_doc_count", 0)),
@@ -369,126 +291,53 @@ class Nexus:
             }
             with open(self._lexicon_path, 'w', encoding='utf-8') as fh:
                 json.dump(obj, fh, ensure_ascii=False, indent=2)
-        except Exception:
-            pass
+        except Exception: pass
 
-    def _update_ngrams(self, tokens):
+    def _compose_say_text(self, metrics: dict, step: int, seed_tokens: set = None) -> str:
+        """
+        Compose a short sentence using emergent language or templates.
+        """
         try:
-            toks = [t for t in tokens if t]
-            n = len(toks)
-            for i in range(n - 1):
-                a = toks[i]; b = toks[i + 1]
-                d = self._ng2.setdefault(a, {})
-                d[b] = d.get(b, 0) + 1
-            for i in range(n - 2):
-                key = (toks[i], toks[i + 1]); c = toks[i + 2]
-                d = self._ng3.setdefault(key, {})
-                d[c] = d.get(c, 0) + 1
-        except Exception:
-            pass
-
-    def _emergent_sentence(self, seed=None):
-        try:
-            if not getattr(self, "_lexicon", None):
-                return ""
-            items = list(self._lexicon.items())
-            if not items:
-                return ""
-            rnd = random.Random(seed if seed is not None else int(time.time() * 1000) & 0xFFFFFFFF)
-            # Weighted start token draw by frequency
-            weights = [max(1, int(cnt)) for (_, cnt) in items]
-            total = sum(weights)
-            r = rnd.uniform(0, total)
-            acc = 0.0
-            start = items[0][0]
-            for (tok, cnt) in items:
-                acc += max(1, int(cnt))
-                if acc >= r:
-                    start = tok
-                    break
-            words = [start]
-            # Markov walk using trigram then bigram
-            while True:
-                nxt = None
-                if len(words) >= 2:
-                    key = (words[-2], words[-1])
-                    d = self._ng3.get(key)
-                    if d:
-                        total_c = sum(d.values())
-                        r = rnd.uniform(0, total_c)
-                        s = 0.0
-                        for (tok, c) in d.items():
-                            s += c
-                            if s >= r:
-                                nxt = tok
-                                break
-                if nxt is None:
-                    d2 = self._ng2.get(words[-1], {})
-                    if d2:
-                        total_c = sum(d2.values())
-                        r = rnd.uniform(0, total_c)
-                        s = 0.0
-                        for (tok, c) in d2.items():
-                            s += c
-                            if s >= r:
-                                nxt = tok
-                                break
-                if nxt is None:
-                    break
-                words.append(nxt)
-            sent = " ".join(words).strip()
+            # 1. Prioritize fully emergent sentence generation
+            sent = text_utils.generate_emergent_sentence(
+                lexicon=self._lexicon,
+                ng2=self._ng2,
+                ng3=self._ng3,
+                seed=int(step),
+                seed_tokens=seed_tokens
+            )
             if sent:
-                sent = sent[0].upper() + sent[1:]
-                if not sent.endswith((".", "!", "?")):
-                    sent += "."
-            return sent
-        except Exception:
-            return ""
+                return sent
 
-    def _compose_say_text(self, metrics: dict, step: int) -> str:
-        """
-        Compose a short sentence using either configured phrase templates or a deterministic summary fallback.
-        Placeholders supported in templates: {keywords}, {top1}, {top2}, {vt_entropy}, {vt_coverage}, {b1_z}, {connectome_entropy}, {valence}
-        """
-        try:
-            summary = ""
-            try:
-                summary = self._keyword_summary(6)
-            except Exception:
-                summary = ""
+            # 2. Fallback to template-based composition if n-grams are not mature
+            summary = text_utils.summarize_keywords(" ".join(self.recent_text), k=6)
             words = [w.strip() for w in summary.split(",") if w.strip()]
             top1 = words[0] if len(words) > 0 else "frontier"
             top2 = words[1] if len(words) > 1 else "structure"
-            val = float(metrics.get("sie_v2_valence_01", metrics.get("sie_valence_01", 0.0)))
+
             ctx = {
-                "keywords": (summary or "salient loop detected"),
-                "top1": top1,
-                "top2": top2,
+                "keywords": (summary or "salient loop detected"), "top1": top1, "top2": top2,
                 "vt_entropy": float(metrics.get("vt_entropy", 0.0)),
                 "vt_coverage": float(metrics.get("vt_coverage", 0.0)),
                 "b1_z": float(metrics.get("b1_z", 0.0)),
                 "connectome_entropy": float(metrics.get("connectome_entropy", 0.0)),
-                "valence": val,
+                "valence": float(metrics.get("sie_v2_valence_01", 0.0)),
             }
-            # Emergent language (no templates): assemble from learned n-grams
-            sent = self._emergent_sentence(seed=int(step))
-            if sent:
-                return sent
 
             tpls = list(getattr(self, "_phrase_templates", []) or [])
             if tpls:
-                idx = int(step) % max(1, len(tpls))
-                tpl = str(tpls[idx])
+                tpl = tpls[int(step) % len(tpls)]
                 try:
                     return tpl.format(**ctx)
-                except Exception:
-                    pass
-            # Fallback: use keyword summary directly (emergent tokens)
+                except Exception: pass
+            
+            # 3. Final fallback to keyword summary
             return (summary or "").strip() or "."
         except Exception:
             return ""
- 
-    # --- Phase control plane (file-driven) ---------------------------------
+
+
+        # --- Phase control plane (file-driven) ---------------------------------
     def _default_phase_profiles(self):
         # Safe default gates for incremental curriculum, void-faithful (no token logic)
         # You can override any field via runs/<ts>/phase.json
@@ -729,6 +578,7 @@ class Nexus:
                 ute_text_count = 0
                 stim_idxs = set()
                 tick_tokens = set()
+                tick_rev_map = {}
                 for m in msgs:
                     if m.get('type') == 'text':
                         ute_text_count += 1
@@ -740,17 +590,16 @@ class Nexus:
                             except Exception:
                                 pass
                             try:
-                                # Update rolling lexicon (doc-frequency semantics) and n-grams
-                                self._update_lexicon(text)
-                                # Accumulate unique tokens for this tick
-                                toks = self._tokenize(text)
+                                # Update rolling lexicon, n-grams, and get tokens for IDF
+                                self._update_lexicon_and_ngrams(text)
+                                toks = text_utils.tokenize_text(text)
                                 for w in set(toks):
                                     tick_tokens.add(w)
                                 # Increment document counter once per inbound text message
                                 self._doc_count = int(getattr(self, "_doc_count", 0)) + 1
                             except Exception:
                                 pass
-                            idxs = self._symbols_to_indices(text)
+                            idxs = self._symbols_to_indices(text, reverse_map=tick_rev_map)
                             for i in idxs:
                                 stim_idxs.add(int(i))
                         except Exception:
@@ -869,10 +718,20 @@ class Nexus:
                     self._last_vt_entropy = float(m.get("vt_entropy", 0.0))
                 except Exception:
                     pass
-                # Drain announcement bus and update ADC
+                # Drain announcement bus, extract void-driven topic, then update ADC
+                void_topic_symbols = set()
                 try:
                     obs_batch = self.bus.drain(max_items=self.bus_drain)
                     if obs_batch:
+                        # Map observed node indices back to symbols seen this tick
+                        for obs in obs_batch:
+                            nodes = getattr(obs, "nodes", None)
+                            if nodes:
+                                for idx in nodes:
+                                    sym = tick_rev_map.get(int(idx)) if isinstance(tick_rev_map, dict) else None
+                                    if sym is not None:
+                                        void_topic_symbols.add(sym)
+                        # Update ADC after extracting topic so we don't interfere with its internal logic
                         self.adc.update_from(obs_batch)
                         adc_metrics = self.adc.get_metrics()
                         # fold ADC metrics in; also add cycle hits to the cycle proxy so b1_z sees them
@@ -922,12 +781,10 @@ class Nexus:
                     spike = bool(m.get("b1_spike", False))
                     if self.speak_auto and spike:
                         if val_v2 >= self.speak_valence_thresh:
-                            # Compose a brief English snippet from recent input to demonstrate symbol/word grounding
-                            speech = self._compose_say_text(m, int(step))
-                            try:
-                                self._update_lexicon(speech)
-                            except Exception:
-                                pass
+                            # Compose; do not suppress due to lack of topic/tokens. Model controls content fully.
+                            seed_material = tick_tokens if tick_tokens else void_topic_symbols
+                            speech = self._compose_say_text(m, int(step), seed_tokens=seed_material)
+                            self._update_lexicon_and_ngrams(speech)
                             self.utd.emit_macro(
                                 "say",
                                 {
