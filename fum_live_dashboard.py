@@ -67,11 +67,22 @@ def write_json_file(path: str, data: Any) -> bool:
     except Exception:
         return False
 
-def _list_files(path: str, exts: List[str]) -> List[str]:
+def _list_files(path: str, exts: List[str], recursive: bool = False) -> List[str]:
     if not os.path.isdir(path):
         return []
+    
+    found = []
     try:
-        return [f for f in os.listdir(path) if any(f.lower().endswith(e) for e in exts)]
+        if not recursive:
+            return [f for f in os.listdir(path) if any(f.lower().endswith(e) for e in exts)]
+        
+        for root, _, files in os.walk(path):
+            for f in files:
+                if any(f.lower().endswith(e) for e in exts):
+                    # store relative path from the initial scan path
+                    rel_path = os.path.relpath(os.path.join(root, f), path)
+                    found.append(rel_path)
+        return found
     except Exception:
         return []
 
@@ -608,7 +619,7 @@ def build_app(runs_root: str) -> Dash:
                 dcc.Dropdown(id="feed-path",
                              options=[
                                  {"label": p, "value": p} for p in
-                                 _list_files(os.path.join(repo_root, "fum_rt", "data"), exts=[".txt", ".jsonl"])
+                                 _list_files(os.path.join(repo_root, "fum_rt", "data"), exts=[".txt", ".jsonl"], recursive=True)
                              ],
                              placeholder="select feed file...", style={"width":"100%"}),
                 dcc.Input(id="feed-rate", type="number", value=20, step=1, style={"width":"120px", "marginTop":"6px"}),
@@ -771,7 +782,10 @@ def build_app(runs_root: str) -> Dash:
                     html.Div([
                         dcc.Input(id="profile-name", type="text", placeholder="profile name", style={"width":"200px"}),
                         html.Button("Save Profile", id="save-profile", n_clicks=0, style={"marginLeft":"6px"}),
-                        dcc.Dropdown(id="profile-path", options=[{"label": p, "value": p} for p in list_profiles()], placeholder="load profile", style={"width":"60%","marginLeft":"8px"}),
+                        dcc.Dropdown(id="profile-path",
+                                     options=[{"label": os.path.basename(p), "value": p} for p in list_profiles()],
+                                     placeholder="load profile",
+                                     style={"width":"60%","marginLeft":"8px"}),
                         html.Button("Load", id="load-profile", n_clicks=0, style={"marginLeft":"6px"}),
                     ], style={"display":"flex","alignItems":"center","marginTop":"6px"}),
                     html.Pre(id="profile-save-status", style={"fontSize":"12px","whiteSpace":"pre-wrap","marginTop":"6px"}),
@@ -1099,7 +1113,7 @@ def build_app(runs_root: str) -> Dash:
                         viz_every, log_every, checkpoint_every, checkpoint_keep, duration):
         name = (name or "").strip()
         if not name:
-            return [{"label": p, "value": p} for p in list_profiles()], "Provide a profile name."
+            return [{"label": os.path.basename(p), "value": p} for p in list_profiles()], "Provide a profile name."
         # Assemble current form into JSON
         data = {
             "neurons": int(_safe_int(neurons, default_profile["neurons"])),
@@ -1135,7 +1149,7 @@ def build_app(runs_root: str) -> Dash:
         path = os.path.join(PROFILES_DIR, f"{name}.json")
         ok = write_json_file(path, data)
         status = f"Saved profile to {path}" if ok else f"Error writing {path}"
-        return [{"label": p, "value": p} for p in list_profiles()], status
+        return [{"label": os.path.basename(p), "value": p} for p in list_profiles()], status
 
     # Multi-output load: populate all UI fields from a selected profile JSON
     @app.callback(
@@ -1233,14 +1247,24 @@ def build_app(runs_root: str) -> Dash:
 
     @app.callback(
         Output("rc-load-engram-path", "options"),
-        Input("run-dir", "value"),
-        prevent_initial_call=True
+        Input("runs-root", "value"),
+        prevent_initial_call=False # Populate on startup
     )
-    def on_run_dir_change(run_dir):
-        if not run_dir or not os.path.isdir(run_dir):
+    def on_runs_root_change(runs_root_dir):
+        if not runs_root_dir or not os.path.isdir(runs_root_dir):
             return []
-        files = _list_files(run_dir, exts=[".h5", ".npz"])
-        return [{"label": f, "value": os.path.join(run_dir, f)} for f in files]
+        
+        # Scan all subdirectories of the runs_root
+        engram_files = _list_files(runs_root_dir, exts=[".h5", ".npz"], recursive=True)
+        
+        # Format for dropdown: "run_id/engram_file.h5"
+        options = []
+        for rel_path in engram_files:
+            # The value should be the full path for the backend to use
+            full_path = os.path.join(runs_root_dir, rel_path)
+            options.append({"label": rel_path.replace(os.path.sep, '/'), "value": full_path})
+            
+        return options
 
     @app.callback(
         Output("fig-dashboard","figure"),
