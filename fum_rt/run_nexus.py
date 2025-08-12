@@ -36,7 +36,9 @@ def main():
                speak_valence_thresh=getattr(args, 'speak_valence_thresh', 0.01),
                b1_half_life_ticks=getattr(args, 'b1_half_life_ticks', 50),
                # Engram loader (forward CLI flag into Nexus)
-               load_engram_path=getattr(args, 'load_engram', None))
+               load_engram_path=getattr(args, 'load_engram', None),
+               # Optional embedded control server (default off)
+               start_control_server=getattr(args, 'control_server', False))
     nx.run(duration_s=args.duration)
 
 if __name__ == '__main__':
