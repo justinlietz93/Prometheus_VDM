@@ -67,18 +67,19 @@ def write_json_file(path: str, data: Any) -> bool:
     except Exception:
         return False
 
-def _list_files(path: str, exts: List[str], recursive: bool = False) -> List[str]:
+def _list_files(path: str, exts: List[str] | None, recursive: bool = False) -> List[str]:
     if not os.path.isdir(path):
         return []
     
     found = []
+    compressed_exts = {".zip", ".gz", ".bz2", ".xz", ".rar", ".7z"}
     try:
         if not recursive:
-            return [f for f in os.listdir(path) if any(f.lower().endswith(e) for e in exts)]
-        
+            return [f for f in os.listdir(path) if (exts is None or any(f.lower().endswith(e) for e in exts)) and not any(f.lower().endswith(c) for c in compressed_exts)]
+
         for root, _, files in os.walk(path):
             for f in files:
-                if any(f.lower().endswith(e) for e in exts):
+                if (exts is None or any(f.lower().endswith(e) for e in exts)) and not any(f.lower().endswith(c) for c in compressed_exts):
                     # store relative path from the initial scan path
                     rel_path = os.path.relpath(os.path.join(root, f), path)
                     found.append(rel_path)
@@ -619,7 +620,7 @@ def build_app(runs_root: str) -> Dash:
                 dcc.Dropdown(id="feed-path",
                              options=[
                                  {"label": p, "value": p} for p in
-                                 _list_files(os.path.join(repo_root, "fum_rt", "data"), exts=[".txt", ".jsonl"], recursive=True)
+                                 _list_files(os.path.join(repo_root, "fum_rt", "data"), exts=None, recursive=True)
                              ],
                              placeholder="select feed file...", style={"width":"100%"}),
                 dcc.Input(id="feed-rate", type="number", value=20, step=1, style={"width":"120px", "marginTop":"6px"}),
