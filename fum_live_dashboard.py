@@ -151,15 +151,17 @@ class StreamingZEMA:
 # --------- Process manager (start/stop) -----
 class ProcessManager:
     def __init__(self, runs_root: str):
+        # Persist UI-configured runs root and normalize to absolute path
         self.runs_root = runs_root
+        self.runs_root_abs = os.path.abspath(runs_root)
         # Ensure runs_root exists and store repo root for module resolution
         try:
-            os.makedirs(self.runs_root, exist_ok=True)
+            os.makedirs(self.runs_root_abs, exist_ok=True)
         except Exception:
             pass
         self.repo_root = os.path.dirname(os.path.abspath(__file__))
         # Launch logging (so you can inspect startup failures)
-        self.launch_log = os.path.join(self.runs_root, "launcher_last.log")
+        self.launch_log = os.path.join(self.runs_root_abs, "launcher_last.log")
         self._logf = None
         self.last_cmd: list[str] | None = None
 
@@ -169,6 +171,19 @@ class ProcessManager:
         self._stdin_lock = threading.Lock()
         self._feed_thread: threading.Thread | None = None
         self._feed_stop = threading.Event()
+
+    def set_runs_root(self, root: str):
+        """Update runs root to match UI selection and rotate launch log path."""
+        try:
+            self.runs_root = root
+            self.runs_root_abs = os.path.abspath(root)
+            os.makedirs(self.runs_root_abs, exist_ok=True)
+        except Exception:
+            pass
+        try:
+            self.launch_log = os.path.join(self.runs_root_abs, "launcher_last.log")
+        except Exception:
+            pass
 
     def _build_cmd(self, profile: Dict[str, Any]) -> List[str]:
         py = sys.executable or "python"
@@ -228,14 +243,18 @@ class ProcessManager:
         with self.proc_lock:
             if self.proc and self.proc.poll() is None:
                 return False, "Already running"
-            # Ensure runs_root exists before diffing
+
+            # Normalize runs root and ensure it exists
+            rr = getattr(self, "runs_root_abs", None) or os.path.abspath(self.runs_root)
             try:
-                os.makedirs(self.runs_root, exist_ok=True)
+                os.makedirs(rr, exist_ok=True)
             except Exception:
                 pass
-            before = set(os.listdir(self.runs_root)) if os.path.exists(self.runs_root) else set()
+            before = set(os.listdir(rr)) if os.path.exists(rr) else set()
+
             cmd = self._build_cmd(profile)
             self.last_cmd = cmd[:]
+
             # Prepare environment so 'python -m fum_rt.run_nexus' resolves even if GUI was launched elsewhere
             env = os.environ.copy()
             try:
@@ -244,6 +263,7 @@ class ProcessManager:
                 repo_root = os.path.dirname(os.path.abspath(__file__))
             env["PYTHONPATH"] = f"{repo_root}:{env.get('PYTHONPATH','')}"
             env.setdefault("PYTHONUNBUFFERED", "1")
+
             # open launch log so we can surface failures
             try:
                 if self._logf:
@@ -254,36 +274,25 @@ class ProcessManager:
                 self._logf = open(self.launch_log, "wb")
             except Exception:
                 self._logf = None
+
+            # Run from parent dir of runs_root so runtime writes to rr = <parent>/runs
+            cwd_dir = os.path.dirname(rr)
             try:
                 self.proc = subprocess.Popen(
                     cmd,
                     stdin=subprocess.PIPE,
                     stdout=self._logf or subprocess.DEVNULL,
                     stderr=self._logf or subprocess.DEVNULL,
-                    cwd=repo_root,   # run from repo root so fum_rt is importable
+                    cwd=cwd_dir,
                     env=env
                 )
             except Exception as e:
                 self.proc = None
                 return False, f"Failed to start: {e}"
-            # detect new run dir
-            time.sleep(1.5)
-            after = set(os.listdir(self.runs_root)) if os.path.exists(self.runs_root) else set()
-            new_dirs = list(after - before)
-            run_dir = None
-            if new_dirs:
-                # pick the newest by mtime
-                run_dir = max(
-                    (os.path.join(self.runs_root, d) for d in new_dirs),
-                    key=lambda p: os.path.getmtime(p)
-                )
-            else:
-                # fallback: latest by mtime under runs_root
-                runs = list_runs(self.runs_root)
-                run_dir = runs[0] if runs else None
-            # if the process died immediately, surface the log
+
+            # If the process died immediately, surface the log
+            time.sleep(0.5)
             if self.proc and self.proc.poll() is not None:
-                # process exited early; read log and return error
                 try:
                     if self._logf:
                         self._logf.flush()
@@ -294,6 +303,28 @@ class ProcessManager:
                     return False, f"Process exited during start.\nCommand: {' '.join(cmd)}\nLog({self.launch_log}):\n{tail.decode('utf-8','ignore')}"
                 except Exception:
                     return False, f"Process exited during start.\nCommand: {' '.join(cmd)}\nNo launch log available."
+
+            # Detect new run dir (robust loop)
+            run_dir = None
+            for _ in range(20):  # ~5s total
+                try:
+                    after = set(os.listdir(rr)) if os.path.exists(rr) else set()
+                    new_dirs = list(after - before)
+                    if new_dirs:
+                        run_dir = max(
+                            (os.path.join(rr, d) for d in new_dirs),
+                            key=lambda p: os.path.getmtime(p)
+                        )
+                        break
+                except Exception:
+                    pass
+                time.sleep(0.25)
+
+            if not run_dir:
+                # fallback: latest by mtime under runs_root
+                runs = list_runs(rr)
+                run_dir = runs[0] if runs else None
+
             self.current_run_dir = run_dir
             return True, run_dir or ""
 
@@ -612,8 +643,9 @@ def build_app(runs_root: str) -> Dash:
                 ], style={"marginTop":"6px"}),
                 html.Button("Apply Runtime Settings", id="apply-phase", n_clicks=0, style={"marginTop":"6px"}),
                 html.Pre(id="phase-status", style={"fontSize":"12px"}),
-                html.Label("Load Engram (runtime)"),
-                dcc.Dropdown(id="rc-load-engram-path", placeholder="select engram...", style={"width":"100%"}),
+                html.Label("Load Engram (runtime, into selected Run)"),
+                dcc.Input(id="rc-load-engram-input", type="text", placeholder="path to .h5/.npz (abs or under runs)", style={"width":"100%"}),
+                dcc.Dropdown(id="rc-load-engram-path", placeholder="select from runs...", style={"width":"100%","marginTop":"4px"}),
                 html.Button("Load Engram Now", id="rc-load-engram-btn", n_clicks=0, style={"marginTop":"6px"}),
                 html.Hr(),
                 html.Label("Feed file to stdin (optional)"),
@@ -792,8 +824,8 @@ def build_app(runs_root: str) -> Dash:
                     html.Pre(id="profile-save-status", style={"fontSize":"12px","whiteSpace":"pre-wrap","marginTop":"6px"}),
 
                     html.Div([
-                        html.Button("Start Run", id="start-run", n_clicks=0, style={"backgroundColor":"#28a745","color":"white"}),
-                        html.Button("Stop Run", id="stop-run", n_clicks=0, style={"marginLeft":"8px","backgroundColor":"#dc3545","color":"white"}),
+                        html.Button("Start New Run", id="start-run", n_clicks=0, style={"backgroundColor":"#28a745","color":"white"}),
+                        html.Button("Stop Managed Run", id="stop-run", n_clicks=0, style={"marginLeft":"8px","backgroundColor":"#dc3545","color":"white"}),
                     ], style={"marginTop":"8px"}),
                     html.Pre(id="proc-status", style={"fontSize":"12px","whiteSpace":"pre-wrap"}),
                     html.Button("Show Launcher Log", id="show-log", n_clicks=0, style={"marginTop":"6px"}),
@@ -805,8 +837,17 @@ def build_app(runs_root: str) -> Dash:
                 html.Pre(
                     id="chat-view",
                     style={
-                        "height":"220px","overflowY":"auto","backgroundColor":"#111",
-                        "color":"#eee","padding":"8px","whiteSpace":"pre-wrap","border":"1px solid #333"
+                        "height":"220px",
+                        "overflowY":"auto",
+                        "overflowX":"hidden",
+                        "backgroundColor":"#111",
+                        "color":"#eee",
+                        "padding":"8px",
+                        "whiteSpace":"pre-wrap",       # wrap long lines; preserve newlines
+                        "wordBreak":"break-word",
+                        "overflowWrap":"anywhere",
+                        "hyphens":"none",
+                        "border":"1px solid #333"
                     }
                 ),
                 html.Div([
@@ -814,9 +855,9 @@ def build_app(runs_root: str) -> Dash:
                     dcc.RadioItems(
                         id="chat-filter",
                         options=[
-                            {"label": "All (user + model)", "value": "all"},
-                            {"label": "Model only", "value": "model"},
-                            {"label": "Model (spike‑gated only)", "value": "spike"}
+                            {"label": "All Outputs", "value": "all"},
+                            {"label": "'say' Macro Only", "value": "say"},
+                            {"label": "Self-Speak (Spike-Gated)", "value": "spike"}
                         ],
                         value="all",
                         labelStyle={"display":"inline-block","marginRight":"10px"}
@@ -914,13 +955,14 @@ def build_app(runs_root: str) -> Dash:
         Input("rc-load-engram-btn","n_clicks"),
         State("run-dir","value"),
         State("rc-load-engram-path","value"),
+        State("rc-load-engram-input","value"),
         prevent_initial_call=True
     )
-    def on_load_engram_now(_n, run_dir, path):
+    def on_load_engram_now(_n, run_dir, path, path_text):
         rd = (run_dir or "").strip()
         if not rd:
             return "Select a run directory."
-        p = (path or "").strip()
+        p = ((path or path_text) or "").strip()
         if not p:
             return "Enter engram path."
         try:
@@ -933,11 +975,51 @@ def build_app(runs_root: str) -> Dash:
         except Exception as e:
             return f"Error: {e}"
 
+    # Notify when the runtime actually loads (or fails to load) an engram.
+    # This tails events.jsonl asynchronously and surfaces a concise status message.
     @app.callback(
-        Output("proc-status","children"),
+        Output("phase-status","children", allow_duplicate=True),
+        Input("poll","n_intervals"),
+        State("run-dir","value"),
+        prevent_initial_call=True
+    )
+    def notify_engram_events(_n, run_dir):
+        rd = (run_dir or "").strip()
+        if not rd:
+            return no_update
+        # Maintain per-run tail offset
+        state = getattr(notify_engram_events, "_state", None)
+        if state is None or state.get("run_dir") != rd:
+            state = {"run_dir": rd, "events_size": 0}
+            setattr(notify_engram_events, "_state", state)
+        ev_path = os.path.join(rd, "events.jsonl")
+        recs, new_size = tail_jsonl_bytes(ev_path, state["events_size"])
+        state["events_size"] = new_size
+        msg = None
+        for rec in recs:
+            if not isinstance(rec, dict):
+                continue
+            name = str(rec.get("event_type") or rec.get("event") or rec.get("message") or rec.get("msg") or rec.get("name") or "").lower()
+            extra = rec.get("extra") or rec.get("meta") or {}
+            if name == "engram_loaded":
+                engram_path = extra.get("path") or extra.get("engram") or rec.get("path")
+                msg = f"Engram loaded: {engram_path}" if engram_path else "Engram loaded."
+            elif name == "engram_load_error":
+                err = extra.get("err") or extra.get("error") or rec.get("error")
+                engram_path = extra.get("path") or extra.get("engram") or rec.get("path")
+                if err and engram_path:
+                    msg = f"Engram load error: {err} ({engram_path})"
+                elif err:
+                    msg = f"Engram load error: {err}"
+                else:
+                    msg = "Engram load error."
+        return (msg if msg else no_update)
+
+    # Split Start/Stop into separate callbacks to avoid trigger ambiguity
+    @app.callback(
+        Output("proc-status","children", allow_duplicate=True),
         Output("run-dir","value", allow_duplicate=True),
         Input("start-run","n_clicks"),
-        Input("stop-run","n_clicks"),
         State("runs-root","value"),
         # Profile States (validated UI)
         State("cfg-neurons","value"),
@@ -970,72 +1052,80 @@ def build_app(runs_root: str) -> Dash:
         State("cfg-checkpoint-keep","value"),
         State("cfg-duration","value"),
         State("rc-load-engram-path", "value"),
+        State("rc-load-engram-input", "value"),
         prevent_initial_call=True
     )
-    def on_proc_actions(n_start, n_stop, root,
-                        neurons, k, hz, domain, use_td, sparse_mode, threshold, lambda_omega, candidates,
-                        walkers, hops, status_interval, bundle_size, prune_factor,
-                        stim_group_size, stim_amp, stim_decay, stim_max_symbols,
-                        speak_auto, speak_z, speak_hyst, speak_cd, speak_val, b1_hl,
-                        viz_every, log_every, checkpoint_every, checkpoint_keep, duration, load_engram_path):
-        # Determine which control triggered this callback
-        try:
-            trig = dash.callback_context.triggered[0]["prop_id"].split(".")[0] if dash.callback_context.triggered else None
-        except Exception:
-            trig = None
+    def on_start_run(n_start, root,
+                     neurons, k, hz, domain, use_td, sparse_mode, threshold, lambda_omega, candidates,
+                     walkers, hops, status_interval, bundle_size, prune_factor,
+                     stim_group_size, stim_amp, stim_decay, stim_max_symbols,
+                     speak_auto, speak_z, speak_hyst, speak_cd, speak_val, b1_hl,
+                     viz_every, log_every, checkpoint_every, checkpoint_keep, duration, load_engram_path, load_engram_input):
+        # Only proceed when button clicked
+        if not n_start:
+            raise dash.exceptions.PreventUpdate
+        # Sync runs root
+        if root:
+            try:
+                manager.set_runs_root(root)
+            except Exception:
+                pass
+        # Assemble profile
+        profile = {
+            "neurons": int(_safe_int(neurons, default_profile["neurons"])),
+            "k": int(_safe_int(k, default_profile["k"])),
+            "hz": int(_safe_int(hz, default_profile["hz"])),
+            "domain": str(domain or default_profile["domain"]),
+            "use_time_dynamics": _bool_from_checklist(use_td) if use_td is not None else default_profile["use_time_dynamics"],
+            "sparse_mode": _bool_from_checklist(sparse_mode) if sparse_mode is not None else default_profile["sparse_mode"],
+            "threshold": float(_safe_float(threshold, default_profile["threshold"])),
+            "lambda_omega": float(_safe_float(lambda_omega, default_profile["lambda_omega"])),
+            "candidates": int(_safe_int(candidates, default_profile["candidates"])),
+            "walkers": int(_safe_int(walkers, default_profile["walkers"])),
+            "hops": int(_safe_int(hops, default_profile["hops"])),
+            "status_interval": int(_safe_int(status_interval, default_profile["status_interval"])),
+            "bundle_size": int(_safe_int(bundle_size, default_profile["bundle_size"])),
+            "prune_factor": float(_safe_float(prune_factor, default_profile["prune_factor"])),
+            "stim_group_size": int(_safe_int(stim_group_size, default_profile["stim_group_size"])),
+            "stim_amp": float(_safe_float(stim_amp, default_profile["stim_amp"])),
+            "stim_decay": float(_safe_float(stim_decay, default_profile["stim_decay"])),
+            "stim_max_symbols": int(_safe_int(stim_max_symbols, default_profile["stim_max_symbols"])),
+            "speak_auto": _bool_from_checklist(speak_auto) if speak_auto is not None else default_profile["speak_auto"],
+            "speak_z": float(_safe_float(speak_z, default_profile["speak_z"])),
+            "speak_hysteresis": float(_safe_float(speak_hyst, default_profile["speak_hysteresis"])),
+            "speak_cooldown_ticks": int(_safe_int(speak_cd, default_profile["speak_cooldown_ticks"])),
+            "speak_valence_thresh": float(_safe_float(speak_val, default_profile["speak_valence_thresh"])),
+            "b1_half_life_ticks": int(_safe_int(b1_hl, default_profile["b1_half_life_ticks"])),
+            "viz_every": int(_safe_int(viz_every, default_profile["viz_every"])),
+            "log_every": int(_safe_int(log_every, default_profile["log_every"])),
+            "checkpoint_every": int(_safe_int(checkpoint_every, default_profile["checkpoint_every"])),
+            "checkpoint_keep": int(_safe_int(checkpoint_keep, default_profile["checkpoint_keep"])),
+            "duration": None if duration in (None, "", "None") else int(_safe_int(duration, 0)),
+        }
+        lep = (load_engram_input or load_engram_path)
+        if lep:
+            profile['load_engram'] = lep
 
-        if trig == "start-run":
-            profile = {
-                "neurons": int(_safe_int(neurons, default_profile["neurons"])),
-                "k": int(_safe_int(k, default_profile["k"])),
-                "hz": int(_safe_int(hz, default_profile["hz"])),
-                "domain": str(domain or default_profile["domain"]),
-                "use_time_dynamics": _bool_from_checklist(use_td) if use_td is not None else default_profile["use_time_dynamics"],
-                "sparse_mode": _bool_from_checklist(sparse_mode) if sparse_mode is not None else default_profile["sparse_mode"],
-                "threshold": float(_safe_float(threshold, default_profile["threshold"])),
-                "lambda_omega": float(_safe_float(lambda_omega, default_profile["lambda_omega"])),
-                "candidates": int(_safe_int(candidates, default_profile["candidates"])),
-                "walkers": int(_safe_int(walkers, default_profile["walkers"])),
-                "hops": int(_safe_int(hops, default_profile["hops"])),
-                "status_interval": int(_safe_int(status_interval, default_profile["status_interval"])),
-                "bundle_size": int(_safe_int(bundle_size, default_profile["bundle_size"])),
-                "prune_factor": float(_safe_float(prune_factor, default_profile["prune_factor"])),
-                "stim_group_size": int(_safe_int(stim_group_size, default_profile["stim_group_size"])),
-                "stim_amp": float(_safe_float(stim_amp, default_profile["stim_amp"])),
-                "stim_decay": float(_safe_float(stim_decay, default_profile["stim_decay"])),
-                "stim_max_symbols": int(_safe_int(stim_max_symbols, default_profile["stim_max_symbols"])),
-                "speak_auto": _bool_from_checklist(speak_auto) if speak_auto is not None else default_profile["speak_auto"],
-                "speak_z": float(_safe_float(speak_z, default_profile["speak_z"])),
-                "speak_hysteresis": float(_safe_float(speak_hyst, default_profile["speak_hysteresis"])),
-                "speak_cooldown_ticks": int(_safe_int(speak_cd, default_profile["speak_cooldown_ticks"])),
-                "speak_valence_thresh": float(_safe_float(speak_val, default_profile["speak_valence_thresh"])),
-                "b1_half_life_ticks": int(_safe_int(b1_hl, default_profile["b1_half_life_ticks"])),
-                "viz_every": int(_safe_int(viz_every, default_profile["viz_every"])),
-                "log_every": int(_safe_int(log_every, default_profile["log_every"])),
-                "checkpoint_every": int(_safe_int(checkpoint_every, default_profile["checkpoint_every"])),
-                "checkpoint_keep": int(_safe_int(checkpoint_keep, default_profile["checkpoint_keep"])),
-                "duration": None if duration in (None, "", "None") else int(_safe_int(duration, 0)),
-            }
-            if load_engram_path:
-                profile['load_engram'] = load_engram_path
-            ok, msg = manager.start(profile)
-            if not ok:
-                # msg contains error and possibly launch log; surface it
-                return f"Start failed:\n{msg}", no_update
-            run_dir = msg
-            cmd_echo = " ".join(manager.last_cmd or [])
-            return (f"Started.\nrun_dir={run_dir}\n"
-                    f"checkpoint_every={profile.get('checkpoint_every')} keep={profile.get('checkpoint_keep')}\n"
-                    f"cmd: {cmd_echo}\n"
-                    f"launch_log: {manager.launch_log}"), run_dir or no_update
+        ok, msg = manager.start(profile)
+        if not ok:
+            return f"Start failed:\n{msg}", no_update
+        run_dir = msg
+        cmd_echo = " ".join(manager.last_cmd or [])
+        return (f"Started.\nrun_dir={run_dir}\n"
+                f"checkpoint_every={profile.get('checkpoint_every')} keep={profile.get('checkpoint_keep')}\n"
+                f"cmd: {cmd_echo}\n"
+                f"launch_log: {manager.launch_log}"), run_dir or no_update
 
-        if trig == "stop-run":
-            ok, msg = manager.stop()
-            return ("Stopped." if ok else msg), no_update
-
-        # (send one line removed; use Chat input instead)
-
-        return no_update, no_update
+    @app.callback(
+        Output("proc-status","children", allow_duplicate=True),
+        Input("stop-run","n_clicks"),
+        prevent_initial_call=True
+    )
+    def on_stop_run(n_stop):
+        if not n_stop:
+            raise dash.exceptions.PreventUpdate
+        ok, msg = manager.stop()
+        return ("Stopped." if ok else msg)
 
 
 
@@ -1270,6 +1360,15 @@ def build_app(runs_root: str) -> Dash:
             
         return options
 
+    # Keep the free-text engram path in sync when a dropdown option is picked
+    @app.callback(
+        Output("rc-load-engram-input","value", allow_duplicate=True),
+        Input("rc-load-engram-path","value"),
+        prevent_initial_call=True
+    )
+    def sync_engram_input_from_dropdown(val):
+        return val
+
     @app.callback(
         Output("fig-dashboard","figure"),
         Output("fig-discovery","figure"),
@@ -1434,26 +1533,40 @@ def build_app(runs_root: str) -> Dash:
         new_utd_recs, new_utd_size = tail_jsonl_bytes(utd_path, utd_size)
         for rec in new_utd_recs:
             try:
-                if isinstance(rec, dict) and (rec.get("type") == "macro") and (str(rec.get("macro","")).lower() == "say"):
-                    args = rec.get("args") or {}
-                    text = args.get("text") or ""
-                    why = args.get("why") or rec.get("why") or {}
+                if isinstance(rec, dict) and (rec.get("type") == "macro"):
+                    macro_name = rec.get("macro", "unknown")
+                    args = rec.get("args", {})
+                    
+                    if macro_name == "say":
+                        text = args.get("text", "")
+                    else:
+                        text = f"macro: {macro_name}"
+                        if args:
+                            try:
+                                # a more compact display for args
+                                arg_str = ", ".join(f"{k}={v}" for k,v in args.items())
+                                text += f" ({arg_str})"
+                            except: # fallback for non-dict args
+                                text += f" (args: {args})"
+
+                    why = rec.get("why") or {}
                     t = None
                     try:
                         t = int((why or {}).get("t"))
                     except Exception:
                         t = None
-                    if text:
-                        spike = False
-                        if isinstance(why, dict):
-                            try:
-                                speak_ok = why.get("speak_ok")
-                                top_spike = why.get("topology_spike")
-                                b1z = why.get("b1_z")
-                                spike = bool(speak_ok) or bool((why or {}).get('spike'))
-                            except Exception:
-                                spike = False
-                        items.append({"kind":"model", "text": str(text), "t": t, "spike": bool(spike)})
+
+                    spike = False
+                    if isinstance(why, dict):
+                        try:
+                            speak_ok = why.get("speak_ok")
+                            top_spike = why.get("topology_spike")
+                            b1z = why.get("b1_z")
+                            spike = bool(speak_ok) or bool((why or {}).get('spike'))
+                        except Exception:
+                            spike = False
+                            
+                    items.append({"kind":"model", "text": str(text), "t": t, "spike": bool(spike), "macro": macro_name})
             except Exception:
                 pass
 
@@ -1479,12 +1592,13 @@ def build_app(runs_root: str) -> Dash:
         filt = (filt or "all").lower()
         view_lines = []
         for it in items:
-            if filt == "model":
-                if it.get("kind") != "model":
+            if filt == "say":
+                if it.get("kind") != "model" or it.get("macro") != "say":
                     continue
             elif filt == "spike":
-                if it.get("kind") != "model" or not it.get("spike", False):
+                if it.get("kind") != "model" or not it.get("spike", False) or it.get("macro") != "say":
                     continue
+                
             # Compose single-line display: user lines labeled; model lines are unlabeled text (optionally prefixed with t)
             t = it.get("t")
             text = it.get("text") or ""
