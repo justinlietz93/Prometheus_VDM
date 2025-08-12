@@ -267,15 +267,17 @@ class SelfImprovementEngine:
         }
         self.last_drive = packet
         return packet
+
+    def resize_buffers(self, new_num_neurons: int) -> None:
         """
         Resizes the internal buffers to accommodate a new number of neurons after growth.
         """
-        old_num_neurons = self.num_neurons
-        if new_num_neurons <= old_num_neurons:
+        old_num_neurons = int(self.num_neurons)
+        if int(new_num_neurons) <= old_num_neurons:
             return
 
         # Calculate the number of neurons added
-        num_added = new_num_neurons - old_num_neurons
+        num_added = int(new_num_neurons) - old_num_neurons
 
         # Create zero arrays for the new neurons
         zeros_to_add = np.zeros(num_added, dtype=np.float32)
@@ -283,8 +285,14 @@ class SelfImprovementEngine:
         # Add the new zero elements to the end of the existing buffers
         self.cret_buffer = np.concatenate([self.cret_buffer, zeros_to_add])
         self.td_value_function = np.concatenate([self.td_value_function, zeros_to_add])
-        self.habituation = np.concatenate([self.habituation, np.zeros(num_added)])
+        # Keep dtype stable for habituation buffer
+        self.habituation = np.concatenate(
+            [self.habituation, np.zeros(num_added, dtype=self.habituation.dtype if hasattr(self.habituation, "dtype") else np.float32)]
+        )
 
         # Update the neuron count
-        self.num_neurons = new_num_neurons
-        print(f"--- SIE buffers resized to accommodate {self.num_neurons} neurons. ---")
+        self.num_neurons = int(new_num_neurons)
+        try:
+            print(f"--- SIE buffers resized to accommodate {self.num_neurons} neurons. ---")
+        except Exception:
+            pass
