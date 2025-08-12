@@ -67,6 +67,15 @@ def write_json_file(path: str, data: Any) -> bool:
     except Exception:
         return False
 
+def _list_files(path: str, exts: List[str]) -> List[str]:
+    if not os.path.isdir(path):
+        return []
+    try:
+        return [f for f in os.listdir(path) if any(f.lower().endswith(e) for e in exts)]
+    except Exception:
+        return []
+
+
 # ------- Tailing JSONL with offsets -------
 def _parse_jsonl_line(line: str) -> Any:
     try:
@@ -585,14 +594,23 @@ def build_app(runs_root: str) -> Dash:
                         dcc.Input(id="rc-candidates", type="number", value=default_profile.get("candidates", 64), step=1, min=1)
                     ], style={"flex":"1"})
                 ], style={"display":"flex","gap":"6px","marginTop":"6px"}),
+                html.Div([
+                    html.Label("SIE novelty IDF gain"),
+                    dcc.Input(id="rc-novelty-idf-gain", type="number", value=1.0, step=0.05, min=0)
+                ], style={"marginTop":"6px"}),
                 html.Button("Apply Runtime Settings", id="apply-phase", n_clicks=0, style={"marginTop":"6px"}),
                 html.Pre(id="phase-status", style={"fontSize":"12px"}),
-                html.Label("Load Engram (runtime)", style={"display":"none"}),
-                dcc.Input(id="rc-load-engram-path", type="text", placeholder="runs/<ts>/state_XXXXX.h5 or .npz", style={"width":"100%", "display":"none"}),
-                html.Button("Load Engram Now", id="rc-load-engram-btn", n_clicks=0, style={"marginTop":"6px","display":"none"}),
+                html.Label("Load Engram (runtime)"),
+                dcc.Dropdown(id="rc-load-engram-path", placeholder="select engram...", style={"width":"100%"}),
+                html.Button("Load Engram Now", id="rc-load-engram-btn", n_clicks=0, style={"marginTop":"6px"}),
                 html.Hr(),
                 html.Label("Feed file to stdin (optional)"),
-                dcc.Input(id="feed-path", type="text", placeholder="relative to fum_rt/data or absolute path", style={"width":"100%"}),
+                dcc.Dropdown(id="feed-path",
+                             options=[
+                                 {"label": p, "value": p} for p in
+                                 _list_files(os.path.join(repo_root, "fum_rt", "data"), exts=[".txt", ".jsonl"])
+                             ],
+                             placeholder="select feed file...", style={"width":"100%"}),
                 dcc.Input(id="feed-rate", type="number", value=20, step=1, style={"width":"120px", "marginTop":"6px"}),
                 html.Div([
                     html.Button("Start Feed", id="feed-start", n_clicks=0),
@@ -600,7 +618,7 @@ def build_app(runs_root: str) -> Dash:
                 ], style={"marginTop":"6px"}),
                 html.Hr(),
                 html.Pre(id="send-status", style={"fontSize":"12px"}),
-            ], style={"flex":"0 0 360px", "minWidth":"320px", "maxWidth":"420px", "paddingRight":"10px", "borderRight":"1px solid #ccc"}),
+            ], style={"flex": "1 1 380px", "minWidth": "320px", "paddingRight":"12px", "borderRight":"1px solid #ccc"}),
             html.Div([
                 html.H4("Run configuration and process control"),
                 html.Div([
@@ -671,8 +689,8 @@ def build_app(runs_root: str) -> Dash:
                         html.Div([
                             html.Label("Status interval"),
                             dcc.Input(id="cfg-status-interval", type="number", value=default_profile["status_interval"], step=1, min=1)
-                        ], style={"flex":"1"}),
-                    ], style={"display":"grid","gridTemplateColumns":"repeat(4,1fr)","gap":"6px"}),
+                        ], style={"flex":"1 1 120px"}),
+                    ], style={"display":"flex", "flexWrap":"wrap", "gap":"6px"}),
 
                     html.Hr(),
                     html.Label("Stimulus"),
@@ -722,8 +740,8 @@ def build_app(runs_root: str) -> Dash:
                         html.Div([
                             html.Label("B1 half-life (ticks)"),
                             dcc.Input(id="cfg-b1-half-life-ticks", type="number", value=default_profile["b1_half_life_ticks"], step=1, min=1)
-                        ], style={"flex":"1"}),
-                    ], style={"display":"grid","gridTemplateColumns":"repeat(6,1fr)","gap":"6px"}),
+                        ], style={"flex":"1 1 120px"}),
+                    ], style={"display":"flex", "flexWrap":"wrap", "gap":"6px"}),
 
                     html.Hr(),
                     html.Label("Viz / Logs / Checkpoints"),
@@ -751,11 +769,6 @@ def build_app(runs_root: str) -> Dash:
                     ], style={"display":"flex","gap":"6px"}),
 
                     html.Div([
-                        html.Label("Load engram path (optional)"),
-                        dcc.Input(id="cfg-load-engram", type="text", value="", style={"width":"100%"}),
-                    ], style={"marginTop":"6px","display":"none"}),
-
-                    html.Div([
                         dcc.Input(id="profile-name", type="text", placeholder="profile name", style={"width":"200px"}),
                         html.Button("Save Profile", id="save-profile", n_clicks=0, style={"marginLeft":"6px"}),
                         dcc.Dropdown(id="profile-path", options=[{"label": p, "value": p} for p in list_profiles()], placeholder="load profile", style={"width":"60%","marginLeft":"8px"}),
@@ -771,8 +784,8 @@ def build_app(runs_root: str) -> Dash:
                     html.Button("Show Launcher Log", id="show-log", n_clicks=0, style={"marginTop":"6px"}),
                     html.Pre(id="launch-log", style={"fontSize":"12px","whiteSpace":"pre-wrap","maxHeight":"240px","overflowY":"auto"}),
                 ]),
-                dcc.Graph(id="fig-dashboard", style={"height":"420px"}),
-                dcc.Graph(id="fig-discovery", style={"height":"320px"}),
+                dcc.Graph(id="fig-dashboard", style={"height":"420px","width":"100%"}),
+                dcc.Graph(id="fig-discovery", style={"height":"320px","width":"100%"}),
                 html.H4("Chat"),
                 html.Pre(
                     id="chat-view",
@@ -804,8 +817,8 @@ def build_app(runs_root: str) -> Dash:
                     html.Button("Send", id="chat-send", n_clicks=0, style={"marginLeft":"8px"}),
                 ], style={"marginTop":"6px"}),
                 html.Pre(id="chat-status", style={"fontSize":"12px"}),
-            ], style={"flex":"1","paddingLeft":"10px"}),
-        ], style={"display":"flex","flexWrap":"wrap"}),
+            ], style={"flex": "1 1 600px", "minWidth": "400px", "paddingLeft":"12px"}),
+        ], style={"display": "flex", "flexWrap": "wrap", "gap": "16px"}),
         dcc.Interval(id="poll", interval=1500, n_intervals=0),
         dcc.Store(id="chat-state"),
         dcc.Store(id="ui-state")
@@ -841,11 +854,12 @@ def build_app(runs_root: str) -> Dash:
         State("rc-threshold","value"),
         State("rc-lambda-omega","value"),
         State("rc-candidates","value"),
+        State("rc-novelty-idf-gain","value"),
         prevent_initial_call=True
     )
     def on_apply_phase(_n, run_dir, phase,
                        s_z, s_h, s_cd, s_vt,
-                       c_w, c_h, c_b, c_pf, c_thr, c_lw, c_cand):
+                       c_w, c_h, c_b, c_pf, c_thr, c_lw, c_cand, s_idf):
         if not run_dir:
             return "Select a run directory."
         # Helpers for safe casting with defaults
@@ -871,6 +885,9 @@ def build_app(runs_root: str) -> Dash:
                 "threshold": float(_sfloat(c_thr, default_profile.get("threshold", 0.15))),
                 "lambda_omega": float(_sfloat(c_lw, default_profile.get("lambda_omega", 0.10))),
                 "candidates": int(_sint(c_cand, default_profile.get("candidates", 64))),
+            },
+            "sie": {
+                "novelty_idf_gain": float(_sfloat(s_idf, 1.0)),
             }
         }
         ok = write_json_file(os.path.join(run_dir,"phase.json"), prof)
@@ -1151,7 +1168,6 @@ def build_app(runs_root: str) -> Dash:
         Output("cfg-checkpoint-every","value"),
         Output("cfg-checkpoint-keep","value"),
         Output("cfg-duration","value"),
-        Output("cfg-load-engram","value"),
         Input("load-profile","n_clicks"),
         State("profile-path","value"),
         prevent_initial_call=True
@@ -1193,8 +1209,7 @@ def build_app(runs_root: str) -> Dash:
             g("log_every", default_profile["log_every"]),
             g("checkpoint_every", default_profile["checkpoint_every"]),
             g("checkpoint_keep", default_profile["checkpoint_keep"]),
-            g("duration", default_profile["duration"]),
-            g("load_engram", ""),
+            g("duration", default_profile["duration"])
         )
 
     @app.callback(
@@ -1215,6 +1230,17 @@ def build_app(runs_root: str) -> Dash:
         r = (root or runs_root)
         rs = list_runs(r)
         return (rs[0] if rs else no_update)
+
+    @app.callback(
+        Output("rc-load-engram-path", "options"),
+        Input("run-dir", "value"),
+        prevent_initial_call=True
+    )
+    def on_run_dir_change(run_dir):
+        if not run_dir or not os.path.isdir(run_dir):
+            return []
+        files = _list_files(run_dir, exts=[".h5", ".npz"])
+        return [{"label": f, "value": os.path.join(run_dir, f)} for f in files]
 
     @app.callback(
         Output("fig-dashboard","figure"),
