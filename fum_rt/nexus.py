@@ -18,10 +18,6 @@ try:
     from .core.control_server import ControlServer  # optional UI
 except Exception:
     ControlServer = None
-try:
-    from .core.control_server import ControlServer  # optional UI
-except Exception:
-    ControlServer = None
 class Nexus:
     def __init__(self, run_dir: str, N:int=1000, k:int=12, hz:int=10,
                  domain:str='biology_consciousness', use_time_dynamics:bool=True,
@@ -36,7 +32,7 @@ class Nexus:
                  r_attach:float=0.25, ttl_init:int=120, split_patience:int=6,
                  stim_group_size:int=4, stim_amp:float=0.05, stim_decay:float=0.90, stim_max_symbols:int=64,
                  checkpoint_format:str="h5", checkpoint_keep:int=5, load_engram_path:str=None,
-                 emergent_macros:bool=False):
+                 start_control_server:bool=False, emergent_macros:bool=False):
         self.run_dir = run_dir
         self.N = N
         self.k = k
@@ -54,20 +50,17 @@ class Nexus:
         inbox_path = os.path.join(self.run_dir, "chat_inbox.jsonl")
         self.ute = UTE(use_stdin=True, inbox_path=inbox_path)
         self.utd = UTD(self.run_dir)
-        # Start local control server for UI controls (Load Engram button)
+        # Start local control server only when requested (default: off)
         self._control_server = None
-        try:
+        if bool(start_control_server) and ControlServer is not None:
             try:
-    from .core.control_server import ControlServer  # optional UI
-except Exception:
-    ControlServer = None as _CS
-            self._control_server = _CS(self.run_dir)
-            try:
-                self.logger.info("control_server_started", extra={"extra": {"url": getattr(self._control_server, "url", "")}})
+                self._control_server = ControlServer(self.run_dir)
+                try:
+                    self.logger.info("control_server_started", extra={"extra": {"url": getattr(self._control_server, "url", "")}})
+                except Exception:
+                    pass
             except Exception:
-                pass
-        except Exception:
-            self._control_server = None
+                self._control_server = None
         # Macro board: minimal defaults + optional JSON registry
         try:
             self.utd.register_macro('status', {'desc': 'Emit structured status payload'})
@@ -1102,12 +1095,6 @@ except Exception:
                     self._control_server.stop()
             except Exception:
                 pass
-            # Stop local control server
-            try:
-                if getattr(self, "_control_server", None):
-                    self._control_server.stop()
-            except Exception:
-                pass
 
 def make_parser():
     p = argparse.ArgumentParser()
@@ -1166,5 +1153,9 @@ def make_parser():
 
     # Engram loader (optional)
     p.add_argument('--load-engram', dest='load_engram', type=str, default=None)
+    # Optional embedded control server (disabled by default to avoid duplicate UI)
+    p.add_argument('--control-server', dest='control_server', action='store_true')
+    p.add_argument('--no-control-server', dest='control_server', action='store_false')
+    p.set_defaults(control_server=False)
 
     return p

@@ -587,9 +587,9 @@ def build_app(runs_root: str) -> Dash:
                 ], style={"display":"flex","gap":"6px","marginTop":"6px"}),
                 html.Button("Apply Runtime Settings", id="apply-phase", n_clicks=0, style={"marginTop":"6px"}),
                 html.Pre(id="phase-status", style={"fontSize":"12px"}),
-                html.Label("Load Engram (runtime)"),
-                dcc.Input(id="rc-load-engram-path", type="text", placeholder="runs/<ts>/state_XXXXX.h5 or .npz", style={"width":"100%"}),
-                html.Button("Load Engram Now", id="rc-load-engram-btn", n_clicks=0, style={"marginTop":"6px"}),
+                html.Label("Load Engram (runtime)", style={"display":"none"}),
+                dcc.Input(id="rc-load-engram-path", type="text", placeholder="runs/<ts>/state_XXXXX.h5 or .npz", style={"width":"100%", "display":"none"}),
+                html.Button("Load Engram Now", id="rc-load-engram-btn", n_clicks=0, style={"marginTop":"6px","display":"none"}),
                 html.Hr(),
                 html.Label("Feed file to stdin (optional)"),
                 dcc.Input(id="feed-path", type="text", placeholder="relative to fum_rt/data or absolute path", style={"width":"100%"}),
@@ -753,7 +753,7 @@ def build_app(runs_root: str) -> Dash:
                     html.Div([
                         html.Label("Load engram path (optional)"),
                         dcc.Input(id="cfg-load-engram", type="text", value="", style={"width":"100%"}),
-                    ], style={"marginTop":"6px"}),
+                    ], style={"marginTop":"6px","display":"none"}),
 
                     html.Div([
                         dcc.Input(id="profile-name", type="text", placeholder="profile name", style={"width":"200px"}),
@@ -805,8 +805,8 @@ def build_app(runs_root: str) -> Dash:
                 ], style={"marginTop":"6px"}),
                 html.Pre(id="chat-status", style={"fontSize":"12px"}),
             ], style={"flex":"1","paddingLeft":"10px"}),
-        ], style={"display":"flex"}),
-        dcc.Interval(id="poll", interval=1000, n_intervals=0),
+        ], style={"display":"flex","flexWrap":"wrap"}),
+        dcc.Interval(id="poll", interval=1500, n_intervals=0),
         dcc.Store(id="chat-state"),
         dcc.Store(id="ui-state")
     ], style={"padding":"10px"})
@@ -937,15 +937,14 @@ def build_app(runs_root: str) -> Dash:
         State("cfg-checkpoint-every","value"),
         State("cfg-checkpoint-keep","value"),
         State("cfg-duration","value"),
-        State("cfg-load-engram","value"),
         prevent_initial_call=True
     )
-    def on_proc_actions(n_start, n_stop, n_send, root, line,
+    def on_proc_actions(n_start, n_stop, root,
                         neurons, k, hz, domain, use_td, sparse_mode, threshold, lambda_omega, candidates,
                         walkers, hops, status_interval, bundle_size, prune_factor,
                         stim_group_size, stim_amp, stim_decay, stim_max_symbols,
                         speak_auto, speak_z, speak_hyst, speak_cd, speak_val, b1_hl,
-                        viz_every, log_every, checkpoint_every, checkpoint_keep, duration, load_engram):
+                        viz_every, log_every, checkpoint_every, checkpoint_keep, duration):
         # Determine which control triggered this callback
         try:
             trig = dash.callback_context.triggered[0]["prop_id"].split(".")[0] if dash.callback_context.triggered else None
@@ -984,10 +983,6 @@ def build_app(runs_root: str) -> Dash:
                 "checkpoint_keep": int(_safe_int(checkpoint_keep, default_profile["checkpoint_keep"])),
                 "duration": None if duration in (None, "", "None") else int(_safe_int(duration, 0)),
             }
-            le = (load_engram or "").strip()
-            if le:
-                profile["load_engram"] = le
-
             ok, msg = manager.start(profile)
             if not ok:
                 # msg contains error and possibly launch log; surface it
@@ -1077,7 +1072,6 @@ def build_app(runs_root: str) -> Dash:
         State("cfg-checkpoint-every","value"),
         State("cfg-checkpoint-keep","value"),
         State("cfg-duration","value"),
-        State("cfg-load-engram","value"),
         prevent_initial_call=True
     )
     def on_save_profile(_n, name,
@@ -1085,7 +1079,7 @@ def build_app(runs_root: str) -> Dash:
                         walkers, hops, status_interval, bundle_size, prune_factor,
                         stim_group_size, stim_amp, stim_decay, stim_max_symbols,
                         speak_auto, speak_z, speak_hyst, speak_cd, speak_val, b1_hl,
-                        viz_every, log_every, checkpoint_every, checkpoint_keep, duration, load_engram):
+                        viz_every, log_every, checkpoint_every, checkpoint_keep, duration):
         name = (name or "").strip()
         if not name:
             return [{"label": p, "value": p} for p in list_profiles()], "Provide a profile name."
@@ -1121,9 +1115,6 @@ def build_app(runs_root: str) -> Dash:
             "checkpoint_keep": int(_safe_int(checkpoint_keep, default_profile["checkpoint_keep"])),
             "duration": None if duration in (None, "", "None") else int(_safe_int(duration, 0)),
         }
-        le = (load_engram or "").strip()
-        if le:
-            data["load_engram"] = le
         path = os.path.join(PROFILES_DIR, f"{name}.json")
         ok = write_json_file(path, data)
         status = f"Saved profile to {path}" if ok else f"Error writing {path}"
@@ -1248,6 +1239,20 @@ def build_app(runs_root: str) -> Dash:
         state.utd_size = usize
         for rec in new_utd:
             append_say(state, rec)
+        # Trim series to a sliding window for responsiveness
+        MAXP = 2000
+        if len(state.t) > MAXP:
+            state.t = state.t[-MAXP:]
+            state.active = state.active[-MAXP:]
+            state.avgw = state.avgw[-MAXP:]
+            state.coh = state.coh[-MAXP:]
+            state.comp = state.comp[-MAXP:]
+            state.b1z = state.b1z[-MAXP:]
+            state.val = state.val[-MAXP:]
+            state.val2 = state.val2[-MAXP:]
+            state.entro = state.entro[-MAXP:]
+        if len(state.speak_ticks) > 800:
+            state.speak_ticks = state.speak_ticks[-800:]
         t = state.t
         active = ffill(state.active)
         avgw = ffill(state.avgw)
@@ -1299,21 +1304,6 @@ def build_app(runs_root: str) -> Dash:
         return fig1, fig2
 
     # Auto-refresh launcher log every poll tick
-    @app.callback(
-        Output("launch-log","children", allow_duplicate=True),
-        Input("poll","n_intervals"),
-        prevent_initial_call='initial_duplicate',
-    )
-    def auto_refresh_log(_n):
-        try:
-            path = manager.launch_log
-            if not path or not os.path.exists(path):
-                return "No launcher log yet."
-            with open(path, "r", encoding="utf-8", errors="ignore") as fh:
-                data = fh.read()
-            return data[-4000:]
-        except Exception as e:
-            return f"Error reading launcher log: {e}"
 
     # Manual refresh still available; marked as duplicate output
     @app.callback(

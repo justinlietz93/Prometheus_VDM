@@ -1,7 +1,4 @@
 
-import matplotlib.pyplot as plt
-import networkx as nx
-import numpy as np
 import os
 
 class Visualizer:
@@ -10,6 +7,11 @@ class Visualizer:
 
     def dashboard(self, history):
         os.makedirs(self.run_dir, exist_ok=True)
+        try:
+            import matplotlib.pyplot as plt
+        except Exception:
+            # Matplotlib not available; skip rendering without crashing the runtime
+            return None
         fig, axs = plt.subplots(2, 2, figsize=(12, 9))
         t = [h['t'] for h in history]
 
@@ -63,6 +65,12 @@ class Visualizer:
 
     def graph(self, G, fname='connectome.png'):
         os.makedirs(self.run_dir, exist_ok=True)
+        try:
+            import matplotlib.pyplot as plt
+            import networkx as nx
+        except Exception:
+            # Missing viz deps; skip without crashing
+            return None
         fig = plt.figure(figsize=(8,8))
         pos = nx.spring_layout(G, seed=42, dim=2)
         nx.draw_networkx_nodes(G, pos, node_size=10)
