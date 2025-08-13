@@ -72,3 +72,27 @@ def _list_files(path: str, exts: List[str] | None, recursive: bool = False) -> L
         return found
     except Exception:
         return []
+
+
+def latest_checkpoint(run_dir: str) -> str | None:
+    """
+    Return the absolute path to the latest checkpoint (.h5 or .npz) in a run directory,
+    determined by numeric step parsed from filenames like state_000123.h5/npz.
+    """
+    try:
+        files = []
+        for fn in os.listdir(run_dir):
+            if fn.startswith("state_") and (fn.endswith(".h5") or fn.endswith(".npz")):
+                ext = ".h5" if fn.endswith(".h5") else ".npz"
+                step_str = fn[6:-len(ext)]
+                try:
+                    s = int(step_str)
+                    files.append((s, os.path.join(run_dir, fn)))
+                except Exception:
+                    pass
+        if files:
+            files.sort(key=lambda x: x[0], reverse=True)
+            return files[0][1]
+    except Exception:
+        return None
+    return None

@@ -30,7 +30,7 @@ ignore/
 
 # Outputs
 *.zip
-runs/
+runs/*
 
 # Plans
 suggestions/
