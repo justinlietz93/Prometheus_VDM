@@ -903,6 +903,11 @@ class Nexus:
                     # Save engram as HDF5 (falls back to .npz only if h5py is unavailable)
                     try:
                         path = save_checkpoint(self.run_dir, step, self.connectome, fmt=self.checkpoint_format or "h5", adc=self.adc)
+                        # Emit explicit event so UI/logs can confirm checkpointing activity
+                        try:
+                            self.logger.info("checkpoint_saved", extra={"extra": {"path": str(path), "step": int(step)}})
+                        except Exception:
+                            pass
                         # Rolling retention: keep last K checkpoints of the actual format we just saved (0 disables)
                         if getattr(self, "checkpoint_keep", 0) and int(self.checkpoint_keep) > 0:
                             try:

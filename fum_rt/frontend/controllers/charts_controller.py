@@ -20,16 +20,27 @@ def compute_dashboard_figures(run_dir: str, state: Optional[SeriesState]) -> Tup
     if state is None or getattr(state, "run_dir", None) != run_dir:
         state = SeriesState(run_dir)
 
-    # Stream append events
-    new_events, esize = tail_jsonl_bytes(state.events_path, state.events_size)
-    state.events_size = esize
+    # Stream append events; detect truncation/rotation to avoid overlay on resume
+    prev_es = getattr(state, "events_size", 0)
+    new_events, esize = tail_jsonl_bytes(state.events_path, prev_es)
+    prev_us = getattr(state, "utd_size", 0)
+    new_utd, usize = tail_jsonl_bytes(state.utd_path, prev_us)
+
+    truncated = (prev_es > 0 and esize < prev_es) or (prev_us > 0 and usize < prev_us)
+    if truncated:
+        # Clear buffers while keeping run_dir; prevents graph overlay on resume/restart
+        try:
+            state.__post_init__()  # re-init SeriesState buffers and counters
+        except Exception:
+            pass
+
+    # Apply tails after optional reset
     for rec in new_events:
         append_event(state, rec)
-
-    new_utd, usize = tail_jsonl_bytes(state.utd_path, state.utd_size)
-    state.utd_size = usize
     for rec in new_utd:
         append_say(state, rec)
+    state.events_size = esize
+    state.utd_size = usize
 
     # Bound buffers
     MAXP = 2000

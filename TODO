@@ -9,6 +9,10 @@ TODO Refactor codebase for maintainability
 
     /mnt/ironwolf/git/Void_FUM_Private/Void_FUM_Private/Void_Unity_Proofs/tools/utd_event_scan.py
 
+### Learning
+TODO Improve user engagement, reward to not be released programmatically like traditional RL, the model to learn inherently that rewards are boosted when everyone is happy or when it does a good job
+TODO Allow the user to give the model a small reward for doing a good job
+
 ### Physics
 TODO Continue work on physics derivations
     TODO Implement physics simulations

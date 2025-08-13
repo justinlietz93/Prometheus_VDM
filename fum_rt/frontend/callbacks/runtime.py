@@ -91,8 +91,8 @@ def register_runtime_callbacks(app, default_profile):
         p = ((path or path_text) or "").strip()
         if not p:
             return "Enter engram path."
-        ok = queue_load_engram(rd, p)
-        return f"Queued load_engram: {p}" if ok else "Error writing phase.json"
+        ok, norm = queue_load_engram(rd, p)
+        return f"Queued load engram: {norm}" if ok else "Error writing phase.json"
 
     @app.callback(
         Output("phase-status", "children", allow_duplicate=True),
