@@ -4,3 +4,8 @@ TODO Implement physics simulations
 TODO Continue work on physics derivations
 TODO Complete previous planned work
 TODO Update FUM Blueprints
+TODO Migrate these to fum_rt subfolders: 
+
+/mnt/ironwolf/git/Void_FUM_Private/Void_FUM_Private/Void_Unity_Proofs/tools/say_clean_view.py
+
+/mnt/ironwolf/git/Void_FUM_Private/Void_FUM_Private/Void_Unity_Proofs/tools/utd_event_scan.py
