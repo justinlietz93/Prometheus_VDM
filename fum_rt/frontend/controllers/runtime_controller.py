@@ -4,7 +4,7 @@ import os
 from typing import Any, Dict, Iterable, Optional
 
 from fum_rt.frontend.utilities.profiles import safe_int as _safe_int, safe_float as _safe_float
-from fum_rt.frontend.utilities.fs_utils import read_json_file, write_json_file
+from fum_rt.frontend.utilities.fs_utils import read_json_file, write_json_file, latest_checkpoint
 
 
 def build_phase_update(
@@ -81,9 +81,11 @@ def update_phase_json(run_dir: str, update: Dict[str, Any]) -> bool:
         return False
 
 
-def queue_load_engram(run_dir: str, path: str) -> bool:
+def queue_load_engram(run_dir: str, path: str) -> tuple[bool, str]:
     """
     Add/overwrite 'load_engram' in phase.json, preserving other keys.
+    Normalizes directories to the latest checkpoint file to prevent loader errors.
+    Returns (ok, normalized_path) so the UI can echo the actual target.
     """
     try:
         os.makedirs(run_dir, exist_ok=True)
@@ -91,10 +93,34 @@ def queue_load_engram(run_dir: str, path: str) -> bool:
         obj = read_json_file(p) or {}
         if not isinstance(obj, dict):
             obj = {}
-        obj["load_engram"] = path
-        return write_json_file(p, obj)
+        # Normalize provided path:
+        target = (path or "").strip()
+        if not target:
+            return False, ""
+        # If a directory was provided, resolve to latest checkpoint inside it
+        if os.path.isdir(target):
+            lp = latest_checkpoint(target)
+            if not lp:
+                return False, ""
+            target = lp
+        else:
+            # If file doesn't exist, try resolving relative to run_dir
+            if not os.path.exists(target):
+                cand = os.path.join(run_dir, target)
+                if os.path.isdir(cand):
+                    lp = latest_checkpoint(cand)
+                    if not lp:
+                        return False, ""
+                    target = lp
+                elif os.path.exists(cand):
+                    target = cand
+                else:
+                    return False, ""
+        obj["load_engram"] = target
+        ok = write_json_file(p, obj)
+        return (True, target) if ok else (False, "")
     except Exception:
-        return False
+        return False, ""
 
 
 def parse_engram_events_for_message(records: Iterable[Dict[str, Any]]) -> Optional[str]:
