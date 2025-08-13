@@ -5,7 +5,7 @@ from typing import Tuple, Optional
 import plotly.graph_objs as go
 
 from fum_rt.frontend.utilities.tail import tail_jsonl_bytes
-from fum_rt.frontend.models.series import SeriesState, append_event, append_say, ffill
+from fum_rt.frontend.models.series import SeriesState, append_event, append_say, ffill, extract_tick
 
 
 def compute_dashboard_figures(run_dir: str, state: Optional[SeriesState]) -> Tuple[go.Figure, go.Figure, SeriesState]:
@@ -20,17 +20,60 @@ def compute_dashboard_figures(run_dir: str, state: Optional[SeriesState]) -> Tup
     if state is None or getattr(state, "run_dir", None) != run_dir:
         state = SeriesState(run_dir)
 
-    # Stream append events; detect truncation/rotation to avoid overlay on resume
+    # Stream append events; detect truncation/rotation or run restart to avoid overlay
     prev_es = getattr(state, "events_size", 0)
     new_events, esize = tail_jsonl_bytes(state.events_path, prev_es)
     prev_us = getattr(state, "utd_size", 0)
     new_utd, usize = tail_jsonl_bytes(state.utd_path, prev_us)
 
+    # Reset conditions:
     truncated = (prev_es > 0 and esize < prev_es) or (prev_us > 0 and usize < prev_us)
-    if truncated:
-        # Clear buffers while keeping run_dir; prevents graph overlay on resume/restart
+
+    # 1) Explicit run restart marker from backend (logged at nexus start)
+    restart_marker = False
+    try:
+        for rec in new_events:
+            name = str(
+                rec.get("event_type")
+                or rec.get("event")
+                or rec.get("message")
+                or rec.get("msg")
+                or rec.get("name")
+                or ""
+            ).lower()
+            if name in ("nexus_started", "engram_loaded"):
+                restart_marker = True
+                break
+    except Exception:
+        pass
+
+    # 2) Tick regression (incoming ticks lower than last known)
+    tick_regression = False
+    try:
+        last_t = state.t[-1] if state.t else None
+        if last_t is not None:
+            min_new_t = None
+            for rec in new_events:
+                tv = extract_tick(rec)
+                if tv is None:
+                    continue
+                tv = int(tv)
+                if min_new_t is None or tv < min_new_t:
+                    min_new_t = tv
+            if min_new_t is not None and min_new_t < last_t:
+                tick_regression = True
+    except Exception:
+        pass
+
+    if truncated or restart_marker or tick_regression:
+        # Clear buffers while keeping run_dir; prevents graph overlay on resume/restart.
+        # Also advance offsets to current EOF so we don't re-ingest old tail data.
         try:
             state.__post_init__()  # re-init SeriesState buffers and counters
+            state.events_size = esize
+            state.utd_size = usize
+            new_events = []
+            new_utd = []
         except Exception:
             pass
 

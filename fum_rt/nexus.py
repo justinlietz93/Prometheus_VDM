@@ -578,6 +578,10 @@ class Nexus:
     def run(self, duration_s:int=None):
         self.ute.start()
         self.logger.info("nexus_started", extra={"extra": {"N": self.N, "k": self.k, "hz": self.hz, "domain": self.domain, "dom_mod": self.dom_mod}})
+        try:
+            self.logger.info("checkpoint_config", extra={"extra": {"every": int(getattr(self, "checkpoint_every", 0)), "keep": int(getattr(self, "checkpoint_keep", 0)), "format": str(getattr(self, "checkpoint_format", ""))}})
+        except Exception:
+            pass
         t0 = time.time()
         step = 0
         try:
