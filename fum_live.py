@@ -32,30 +32,15 @@ def parse_args():
     return p.parse_args()
 
 # -------------- FS utils -------------
-from fum_rt.frontend.utilities.fs_utils import list_runs, read_json_file, write_json_file, _list_files, latest_checkpoint
+from fum_rt.frontend.utilities.fs_utils import list_runs, _list_files
 
 # ------- Tailing JSONL with offsets (modular) -------
-from fum_rt.frontend.utilities.tail import tail_jsonl_bytes
 
 # --------- Streaming ZEMA and series (modular) -------
-from fum_rt.frontend.models.series import (
-    StreamingZEMA,
-    SeriesState,
-    extract_tick,
-    append_event,
-    append_say,
-    ffill,
-)
 
 # --------- Process manager (imported) -----
 from fum_rt.frontend.services.process_manager import ProcessManager
-from fum_rt.frontend.utilities.profiles import (
-    get_default_profile,
-    checklist_from_bool,
-    bool_from_checklist,
-    safe_int,
-    safe_float,
-)
+from fum_rt.frontend.utilities.profiles import get_default_profile
 from fum_rt.frontend.styles.theme import get_global_css
 from fum_rt.frontend.components.workspace import workspace_card
 from fum_rt.frontend.components.runtime_controls import runtime_controls_card
@@ -68,33 +53,24 @@ from fum_rt.frontend.callbacks.charts import register_chart_callbacks
 from fum_rt.frontend.callbacks.runtime import register_runtime_callbacks
 from fum_rt.frontend.callbacks.process import register_process_callbacks
 from fum_rt.frontend.callbacks.feed import register_feed_callbacks
+from fum_rt.frontend.callbacks.profile import register_profile_callbacks
+from fum_rt.frontend.callbacks.logs import register_logs_callbacks
+from fum_rt.frontend.callbacks.chat import register_chat_callbacks
+from fum_rt.frontend.callbacks.engram import register_engram_callbacks
 
 
 # ------------- Live series state -------------
 # Using modular imports for timeseries and chat helpers.
 # (SeriesState, extract_tick, append_event, append_say, ffill) are imported above from fum_rt.frontend.models.series.
 
-# -------- Helpers (delegated to utilities.profiles) --------
-# Centralize conversions and checklist handling to avoid duplication.
-_safe_int = safe_int
-_safe_float = safe_float
-_bool_from_checklist = bool_from_checklist
-_checklist_from_bool = checklist_from_bool
 
 # moved: latest_checkpoint imported from fum_rt.frontend.utilities.fs_utils
 
-def assemble_profile(*args, **kwargs):
-    """
-    Delegation shim: use centralized assembler from utilities.profiles.
-    Keeps local call sites unchanged while ensuring single source of truth.
-    """
-    from fum_rt.frontend.utilities.profiles import assemble_profile as _assemble
-    return _assemble(*args, **kwargs)
 
 # ------------- Build Dash app ---------------
 def build_app(runs_root: str) -> Dash:
     app = Dash(__name__)
-    app.title = "FUM Live Dashboard"
+    app.title = "Fully Unified Void Dynamics Model: Live Dashboard"
 
     # --- Soft‑dark theme (no bright whites) ---
     GLOBAL_CSS = get_global_css()
@@ -148,6 +124,10 @@ def build_app(runs_root: str) -> Dash:
     register_runtime_callbacks(app, default_profile)
     register_feed_callbacks(app, manager, repo_root)
     register_process_callbacks(app, runs_root, manager, default_profile)
+    register_profile_callbacks(app, PROFILES_DIR, default_profile)
+    register_logs_callbacks(app, manager)
+    register_chat_callbacks(app)
+    register_engram_callbacks(app)
 
     # moved to fum_rt.frontend.callbacks.runtime.register_runtime_callbacks
 
