@@ -1,4 +1,5 @@
 TODO Migrate dashboard and modularize frontend
+TODO Migrate core/ files into subfolders
 TODO Refactor codebase for maintainability
 TODO Implement physics simulations
 TODO Continue work on physics derivations
@@ -9,3 +10,5 @@ TODO Migrate these to fum_rt subfolders:
 /mnt/ironwolf/git/Void_FUM_Private/Void_FUM_Private/Void_Unity_Proofs/tools/say_clean_view.py
 
 /mnt/ironwolf/git/Void_FUM_Private/Void_FUM_Private/Void_Unity_Proofs/tools/utd_event_scan.py
+
+TODO Fix the "echo chamber" bug in the UTD / UTE
