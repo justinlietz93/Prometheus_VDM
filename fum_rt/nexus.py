@@ -175,7 +175,7 @@ class Nexus:
         # Load engram if provided (after backend selection)
         if load_engram_path:
             try:
-                _load_engram_state(str(load_engram_path), self.connectome)
+                _load_engram_state(str(load_engram_path), self.connectome, adc=self.adc)
                 try:
                     self.logger.info("engram_loaded", extra={"extra": {"path": str(load_engram_path)}})
                 except Exception:
@@ -232,6 +232,12 @@ class Nexus:
         except Exception:
             pass
 
+        # If an engram path was provided earlier and ADC is now available, reload including ADC
+        try:
+            if load_engram_path:
+                _load_engram_state(str(load_engram_path), self.connectome, adc=self.adc)
+        except Exception:
+            pass
         self.dom_mod = float(get_domain_modulation(self.domain))
         self.history = []
         # Rolling buffer of recent inbound text for composing human-friendly “say” content
@@ -522,7 +528,7 @@ class Nexus:
             try:
                 load_p = data.get("load_engram", None)
                 if isinstance(load_p, str) and load_p.strip():
-                    _load_engram_state(str(load_p), self.connectome)
+                    _load_engram_state(str(load_p), self.connectome, adc=self.adc)
                     try:
                         self.logger.info("engram_loaded", extra={"extra": {"path": str(load_p)}})
                     except Exception:
@@ -891,7 +897,7 @@ class Nexus:
                 if self.checkpoint_every and (step % self.checkpoint_every) == 0 and step > 0:
                     # Save engram as HDF5 (falls back to .npz only if h5py is unavailable)
                     try:
-                        path = save_checkpoint(self.run_dir, step, self.connectome, fmt=self.checkpoint_format or "h5")
+                        path = save_checkpoint(self.run_dir, step, self.connectome, fmt=self.checkpoint_format or "h5", adc=self.adc)
                         # Rolling retention: keep last K checkpoints of the actual format we just saved (0 disables)
                         if getattr(self, "checkpoint_keep", 0) and int(self.checkpoint_keep) > 0:
                             try:
@@ -1007,5 +1013,7 @@ def make_parser():
     p.add_argument('--control-server', dest='control_server', action='store_true')
     p.add_argument('--no-control-server', dest='control_server', action='store_false')
     p.set_defaults(control_server=False)
+    # Allow explicit reuse of an existing run directory (resume), otherwise a new timestamp dir is used
+    p.add_argument('--run-dir', dest='run_dir', type=str, default=None)
 
     return p
