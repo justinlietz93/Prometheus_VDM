@@ -1,3 +1,11 @@
+"""
+Copyright © 2025 Justin K. Lietz, Neuroca, Inc. All Rights Reserved.
+
+This research is protected under a dual-license to foster open academic
+research while ensuring commercial applications are aligned with the project's ethical principles. Commercial use requires written permission from Justin K. Lietz.
+See LICENSE file for full terms.
+"""
+
 # control_server.py
 # Lightweight local control server to expose a "Load Engram" button/page.
 # - Serves a minimal HTML UI at http://127.0.0.1:<port>/
