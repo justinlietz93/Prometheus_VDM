@@ -38,7 +38,7 @@ from fum_rt.frontend.callbacks.engram import register_engram_callbacks
 
 def build_app(runs_root: str) -> Dash:
     """
-    Factory for the FUM Live Dashboard Dash app.
+    Factory for the FUVDM Live Dashboard Dash app.
     - Assembles layout (cards/components)
     - Installs modular callbacks
     - Keeps ProcessManager scoped to the app instance
@@ -55,7 +55,7 @@ def build_app(runs_root: str) -> Dash:
     default_run = runs[0] if runs else ""
 
     # Paths (compute repository root from this file so structure works regardless of CWD)
-    repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
+    repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
     PROFILES_DIR = os.path.join(repo_root, "run_profiles")
     os.makedirs(PROFILES_DIR, exist_ok=True)
 
@@ -92,7 +92,7 @@ def build_app(runs_root: str) -> Dash:
     # Layout
     app.layout = html.Div(
         [
-            html.H3("FUM Live Dashboard (external control)"),
+            html.H3("FUVDM Live Dashboard (experimental control)"),
             html.Div(
                 [
                     # Left panel
