@@ -243,6 +243,35 @@ class Nexus:
                     self.logger.info("engram_load_error", extra={"extra": {"err": str(e), "path": str(load_engram_path)}})
                 except Exception:
                     pass
+        # Derive starting step to continue numbering after resume and avoid retention deleting new snapshots
+        try:
+            s = None
+            lp = str(load_engram_path) if load_engram_path else None
+            if lp and os.path.isfile(lp):
+                base = os.path.basename(lp)
+                m = re.search(r"state_(\d+)\.(h5|npz)$", base)
+                if m:
+                    s = int(m.group(1))
+            if s is None:
+                # Fallback: scan run_dir for highest step across known formats
+                max_s = -1
+                for fn in os.listdir(self.run_dir):
+                    if not fn.startswith("state_"):
+                        continue
+                    m2 = re.search(r"state_(\d+)\.(h5|npz)$", fn)
+                    if m2:
+                        ss = int(m2.group(1))
+                        if ss > max_s:
+                            max_s = ss
+                if max_s >= 0:
+                    s = max_s
+            self.start_step = int(s) + 1 if s is not None else 0
+            try:
+                self.logger.info("resume_step", extra={"extra": {"start_step": int(self.start_step)}})
+            except Exception:
+                pass
+        except Exception:
+            self.start_step = 0
         self.dom_mod = float(get_domain_modulation(self.domain))
         self.history = []
         # Rolling buffer of recent inbound text for composing human-friendly “say” content
@@ -583,7 +612,7 @@ class Nexus:
         except Exception:
             pass
         t0 = time.time()
-        step = 0
+        step = int(getattr(self, "start_step", 0))
         try:
             while True:
                 tick_start = time.time()
