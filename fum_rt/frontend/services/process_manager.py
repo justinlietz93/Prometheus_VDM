@@ -36,6 +36,10 @@ class ProcessManager:
         self._stdin_lock = threading.Lock()
         self._feed_thread: threading.Thread | None = None
         self._feed_stop = threading.Event()
+        # Instrumentation for run-dir detection
+        self.last_detect_ms: float = 0.0
+        self.last_detect_method: str = "init"
+        self.last_cwd: str | None = None
 
     def set_runs_root(self, root: str):
         """Update runs root to match UI selection and rotate launch log path."""
@@ -120,6 +124,7 @@ class ProcessManager:
             except Exception:
                 pass
             before = set(os.listdir(rr)) if os.path.exists(rr) else set()
+            detection_t0 = time.time()
 
             cmd = self._build_cmd(profile)
             self.last_cmd = cmd[:]
@@ -173,11 +178,13 @@ class ProcessManager:
                 except Exception:
                     return False, f"Process exited during start.\nCommand: {' '.join(cmd)}\nNo launch log available."
 
-            # Resolve run dir
+            # Resolve run dir with instrumentation
             run_dir = None
+            detect_method = None
             specified = profile.get("run_dir")
             if specified:
                 run_dir = str(specified)
+                detect_method = "explicit"
             else:
                 # Detect new run dir (robust loop)
                 for _ in range(20):  # ~5s total
@@ -189,6 +196,7 @@ class ProcessManager:
                                 (os.path.join(rr, d) for d in new_dirs),
                                 key=lambda p: os.path.getmtime(p)
                             )
+                            detect_method = "create_watch"
                             break
                     except Exception:
                         pass
@@ -202,6 +210,25 @@ class ProcessManager:
                         reverse=True
                     ) if os.path.exists(rr) else []
                     run_dir = runs[0] if runs else None
+                    detect_method = "fallback_latest" if run_dir else "none"
+
+            # Record detection diagnostics and surface to launcher log
+            try:
+                self.last_detect_ms = float((time.time() - detection_t0) * 1000.0)
+            except Exception:
+                self.last_detect_ms = 0.0
+            self.last_detect_method = detect_method or "unknown"
+            try:
+                self.last_cwd = cwd_dir
+            except Exception:
+                self.last_cwd = None
+            try:
+                if self._logf:
+                    line = f"[UI] run_dir_detected method={self.last_detect_method} ms={int(self.last_detect_ms)} rd={run_dir or ''} rr={rr} cwd={cwd_dir}\n"
+                    self._logf.write(line.encode("utf-8", "ignore"))
+                    self._logf.flush()
+            except Exception:
+                pass
 
             self.current_run_dir = run_dir
             return True, run_dir or ""

@@ -13,6 +13,16 @@
 - /mnt/ironwolf/git/Void_FUM_Private/Void_FUM_Private/Void_Unity_Proofs/ignore/todo
 - /mnt/ironwolf/git/Void_FUM_Private/Void_FUM_Private/Void_Unity_Proofs/from_physicist_agent
 
+| Rule Number | Action Required | Primary Source File(s) for Instructions |
+| :--- | :--- | :--- |
+| **Rule 4** | Delete the `2025-07-28` version. Keep the `2025-08-09` version describing **Void Pulses**. | `21_Condense_Low_Energy_State.md`, `TODO.md` |
+| **Rule 8** | Delete the `2025-07-28` versions. Keep the `2025-08-09` version (**Rule 8.4**) describing the **Dual-Path UTE**. | `TODO.md`, `15_Learning_Primitives.md` |
+| **Rule 7** | Rewrite to be **event-driven**, listening to an announcement bus instead of performing global scans. | `05_ADC_bus.md`, `06_ADC_Bus_Guide.md` |
+| **Rule 3** | Update formula and parameters to match the stabilized `sie_v2.py` implementation. | `13_SIE_v2.md`, `14_Phased_Curriculum.md` |
+| **Rule 11** | Replace the placeholder with the detailed **P0-P4 curriculum ladder** and its void-native promotion gates. | `15_Learning_Primitives.md`, `16_Beginning_Learning.md` |
+| **Rule 12** | Specify the use of **chunking and compression** for HDF5 engrams. | `10_FUM_Post_First_Run.md`, `22_Reduced_Compute.md` |
+| **Rule 2** | Integrate the **phase-sensitive PI formula** directly into the rule's text to make it self-contained. | `FUM_Blueprint.md` (from the old Rule 8.1) |
+
 **Objective:** This document provides the complete, non-redundant, and actionable specifications for implementing the Fully Unified Model. It is the definitive guide for any AI assistant. For deeper, optional context on the conceptual underpinnings, references are provided to the original `How_The_FUM_Works` documentation.
 
 **Nomenclature and Lexicon** Due to its novelty, FUM requires highly specific vocabulary that is mandatory. The following document is maintained to keep track of the terminology and definitions as there is no other source available in the world for these.
@@ -614,10 +624,5 @@ Frame this as the FUM's "Cellular Engram Archive." It is the process by which th
 
 #### **Dependencies & Interactions**
 *   This protocol interacts with all components of the FUM, as it is responsible for saving their a-z state.
-
-
-Of course. Here are the updated rules for the FUM Blueprint, incorporating the details from our recent discussions.
-
-You should **replace the existing Rule 4 and Rule 8** in your `FUM_Blueprint_DO_NOT_DELETE.md` file with the following updated versions.
 
 ---
