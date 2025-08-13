@@ -49,32 +49,25 @@ from fum_rt.frontend.models.series import (
 
 # --------- Process manager (imported) -----
 from fum_rt.frontend.services.process_manager import ProcessManager
+from fum_rt.frontend.utilities.profiles import (
+    get_default_profile,
+    checklist_from_bool,
+    bool_from_checklist,
+    safe_int,
+    safe_float,
+)
 
 
 # ------------- Live series state -------------
 # Using modular imports for timeseries and chat helpers.
 # (SeriesState, extract_tick, append_event, append_say, ffill) are imported above from fum_rt.frontend.models.series.
 
-# -------- Helpers --------
-def _safe_int(x, default=None):
-    try:
-        return int(x)
-    except Exception:
-        return default
-
-def _safe_float(x, default=None):
-    try:
-        return float(x)
-    except Exception:
-        return default
-
-def _bool_from_checklist(val) -> bool:
-    if isinstance(val, list):
-        return 'on' in val
-    return bool(val)
-
-def _checklist_from_bool(b: bool):
-    return ['on'] if bool(b) else []
+# -------- Helpers (delegated to utilities.profiles) --------
+# Centralize conversions and checklist handling to avoid duplication.
+_safe_int = safe_int
+_safe_float = safe_float
+_bool_from_checklist = bool_from_checklist
+_checklist_from_bool = checklist_from_bool
 
 def latest_checkpoint(run_dir: str) -> str | None:
     try:
@@ -95,45 +88,13 @@ def latest_checkpoint(run_dir: str) -> str | None:
         return None
     return None
 
-def assemble_profile(
-    neurons, k, hz, domain, use_td, sparse_mode, threshold, lambda_omega, candidates,
-    walkers, hops, status_interval, bundle_size, prune_factor,
-    stim_group_size, stim_amp, stim_decay, stim_max_symbols,
-    speak_auto, speak_z, speak_hyst, speak_cd, speak_val, b1_hl,
-    viz_every, log_every, checkpoint_every, checkpoint_keep, duration,
-    default_profile: Dict[str, Any]
-) -> Dict[str, Any]:
-    return {
-        "neurons": int(_safe_int(neurons, default_profile["neurons"])),
-        "k": int(_safe_int(k, default_profile["k"])),
-        "hz": int(_safe_int(hz, default_profile["hz"])),
-        "domain": str(domain or default_profile["domain"]),
-        "use_time_dynamics": _bool_from_checklist(use_td) if use_td is not None else default_profile["use_time_dynamics"],
-        "sparse_mode": _bool_from_checklist(sparse_mode) if sparse_mode is not None else default_profile["sparse_mode"],
-        "threshold": float(_safe_float(threshold, default_profile["threshold"])),
-        "lambda_omega": float(_safe_float(lambda_omega, default_profile["lambda_omega"])),
-        "candidates": int(_safe_int(candidates, default_profile["candidates"])),
-        "walkers": int(_safe_int(walkers, default_profile["walkers"])),
-        "hops": int(_safe_int(hops, default_profile["hops"])),
-        "status_interval": int(_safe_int(status_interval, default_profile["status_interval"])),
-        "bundle_size": int(_safe_int(bundle_size, default_profile["bundle_size"])),
-        "prune_factor": float(_safe_float(prune_factor, default_profile["prune_factor"])),
-        "stim_group_size": int(_safe_int(stim_group_size, default_profile["stim_group_size"])),
-        "stim_amp": float(_safe_float(stim_amp, default_profile["stim_amp"])),
-        "stim_decay": float(_safe_float(stim_decay, default_profile["stim_decay"])),
-        "stim_max_symbols": int(_safe_int(stim_max_symbols, default_profile["stim_max_symbols"])),
-        "speak_auto": _bool_from_checklist(speak_auto) if speak_auto is not None else default_profile["speak_auto"],
-        "speak_z": float(_safe_float(speak_z, default_profile["speak_z"])),
-        "speak_hysteresis": float(_safe_float(speak_hyst, default_profile["speak_hysteresis"])),
-        "speak_cooldown_ticks": int(_safe_int(speak_cd, default_profile["speak_cooldown_ticks"])),
-        "speak_valence_thresh": float(_safe_float(speak_val, default_profile["speak_valence_thresh"])),
-        "b1_half_life_ticks": int(_safe_int(b1_hl, default_profile["b1_half_life_ticks"])),
-        "viz_every": int(_safe_int(viz_every, default_profile["viz_every"])),
-        "log_every": int(_safe_int(log_every, default_profile["log_every"])),
-        "checkpoint_every": int(_safe_int(checkpoint_every, default_profile["checkpoint_every"])),
-        "checkpoint_keep": int(_safe_int(checkpoint_keep, default_profile["checkpoint_keep"])),
-        "duration": None if duration in (None, "", "None") else int(_safe_int(duration, 0)),
-    }
+def assemble_profile(*args, **kwargs):
+    """
+    Delegation shim: use centralized assembler from utilities.profiles.
+    Keeps local call sites unchanged while ensuring single source of truth.
+    """
+    from fum_rt.frontend.utilities.profiles import assemble_profile as _assemble
+    return _assemble(*args, **kwargs)
 
 # ------------- Build Dash app ---------------
 def build_app(runs_root: str) -> Dash:
@@ -192,17 +153,7 @@ def build_app(runs_root: str) -> Dash:
     os.makedirs(PROFILES_DIR, exist_ok=True)
     manager = ProcessManager(runs_root)
 
-    default_profile = {
-        "neurons": 1000, "k": 12, "hz": 10, "domain": "math_physics",
-        "use_time_dynamics": True,
-        "sparse_mode": False, "threshold": 0.15, "lambda_omega": 0.10, "candidates": 64,
-        "walkers": 256, "hops": 3, "bundle_size": 3, "prune_factor": 0.10, "status_interval": 1,
-        "viz_every": 0, "log_every": 1,
-        "speak_auto": True, "speak_z": 3.0, "speak_hysteresis": 0.5, "speak_cooldown_ticks": 10, "speak_valence_thresh": 0.55,
-        "b1_half_life_ticks": 50,
-        "stim_group_size": 8, "stim_amp": 0.08, "stim_decay": 0.92, "stim_max_symbols": 128,
-        "checkpoint_every": 60, "checkpoint_keep": 5, "duration": None
-    }
+    default_profile = get_default_profile()
 
     def list_profiles() -> List[str]:
         return sorted([os.path.join(PROFILES_DIR, f) for f in os.listdir(PROFILES_DIR) if f.endswith(".json")])
