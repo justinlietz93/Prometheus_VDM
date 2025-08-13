@@ -36,6 +36,7 @@ runs/*
 suggestions/
 from_physicist_agent/
 FUM_Demo/
+resume.md
 
 # Data
 fum_rt/data/corpus/*
