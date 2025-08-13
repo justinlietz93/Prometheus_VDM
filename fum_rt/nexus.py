@@ -180,18 +180,8 @@ class Nexus:
                 bundle_size=bundle_size, prune_factor=prune_factor
             )
         # Load engram if provided (after backend selection)
-        if load_engram_path:
-            try:
-                _load_engram_state(str(load_engram_path), self.connectome, adc=self.adc)
-                try:
-                    self.logger.info("engram_loaded", extra={"extra": {"path": str(load_engram_path)}})
-                except Exception:
-                    pass
-            except Exception as e:
-                try:
-                    self.logger.info("engram_load_error", extra={"extra": {"err": str(e), "path": str(load_engram_path)}})
-                except Exception:
-                    pass
+        # Defer engram loading until after ADC is initialized to avoid spurious errors/logs.
+        # The actual load (with logging) happens below after ADC is constructed.
         self.vis = Visualizer(run_dir=self.run_dir)
         # Status emission cadence for UTD
         self.status_every = max(1, int(status_interval))
@@ -240,11 +230,19 @@ class Nexus:
             pass
 
         # If an engram path was provided earlier and ADC is now available, reload including ADC
-        try:
-            if load_engram_path:
+        # Load engram once ADC is available, with clear success/error logs for the UI
+        if load_engram_path:
+            try:
                 _load_engram_state(str(load_engram_path), self.connectome, adc=self.adc)
-        except Exception:
-            pass
+                try:
+                    self.logger.info("engram_loaded", extra={"extra": {"path": str(load_engram_path)}})
+                except Exception:
+                    pass
+            except Exception as e:
+                try:
+                    self.logger.info("engram_load_error", extra={"extra": {"err": str(e), "path": str(load_engram_path)}})
+                except Exception:
+                    pass
         self.dom_mod = float(get_domain_modulation(self.domain))
         self.history = []
         # Rolling buffer of recent inbound text for composing human-friendly “say” content
