@@ -1,3 +1,4 @@
+# Ignore Python bytecode and cache files
 __pycache__
 *.pyc
 *.pyo
@@ -16,11 +17,14 @@ __pycache__
 #Ignore vscode AI rules
 .github/copilot-instructions.md
 
+# Virtual environments
+.venv/
+env/
 venv
 
 # Custom tools
 toos/
-code_crawler_results/
+code_crawler_results/*
 .github/
 ignore/
 
@@ -32,5 +36,8 @@ runs/
 suggestions/
 from_physicist_agent/
 FUM_Demo/
-fum_rt/data/
+
+# Data
+fum_rt/data/corpus/*
+fum_rt/data/databases/*
 fum_rt/data/wikipedia/enwiki-latest-pages-articles.xml.bz2
