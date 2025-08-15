@@ -198,7 +198,15 @@ def tick_fold(
                         try:
                             evsnap = evtm.snapshot()
                             if isinstance(evsnap, dict):
-                                m.update(evsnap)
+                                # Do not override legacy scan-based metrics; prefix event-driven keys.
+                                for _k, _v in evsnap.items():
+                                    try:
+                                        # Preserve existing B1 detector outputs from apply_b1
+                                        if str(_k).startswith("b1_") and _k in m:
+                                            continue
+                                        m[f"evt_{_k}"] = _v
+                                    except Exception:
+                                        continue
                         except Exception:
                             pass
                 except Exception:
