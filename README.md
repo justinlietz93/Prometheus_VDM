@@ -91,7 +91,8 @@ All modules are tiny and documented so you can extend fast.
 - Orchestrator/core seams: [Orchestrator()](fum_rt/runtime/orchestrator.py:22) delegates to [CoreEngine()](fum_rt/core/engine.py:29) for snapshot and engram ops.
 - Runtime helpers provide behavior-preserving ingest/speak/viz/checkpoint: [maybe_auto_speak()](fum_rt/runtime/runtime_helpers.py:234), [maybe_visualize()](fum_rt/runtime/runtime_helpers.py:392), [save_tick_checkpoint()](fum_rt/runtime/runtime_helpers.py:414).
 - Lexicon/phrase bank I/O lives in [store.py](fum_rt/io/lexicon/store.py:1); IDF is composer/telemetry-only and never affects dynamics.
-- Optional event-driven metrics (off by default) fold bus observations via [observations_to_events()](fum_rt/runtime/events_adapter.py:22) and ADC via [adc_metrics_to_event()](fum_rt/runtime/events_adapter.py:96). Enable with ENABLE_EVENT_METRICS=1.
+- Event-driven metrics (ON by default; telemetry-only) fold bus observations via [observations_to_events()](fum_rt/runtime/events_adapter.py:22) and ADC via [adc_metrics_to_event()](fum_rt/runtime/events_adapter.py:96). Disable with ENABLE_EVENT_METRICS=0.
+- Void cold scouts (ON by default; telemetry-only) explore cold regions with budgeted walkers and feed evt_* probes; disable with ENABLE_COLD_SCOUTS=0.
 - Thought ledger emission is behind ENABLE_THOUGHTS=1 and uses runtime emitters; see [initialize_emitters()](fum_rt/runtime/emitters.py:23).
 - Composer novelty gain can be tuned with COMPOSER_IDF_K (default 0.0), applied only in the composer, not in SIE/ADC/connectome.
 
@@ -242,6 +243,7 @@ python tools/utd_event_scan.py runs --macro say --include-nexus --format csv --o
 ```
 
 Operational notes
+- Emission path selection: MacroEmitter path priority $UTD_OUT > utd.path > runs/<timestamp>/utd_events.jsonl; ThoughtEmitter path priority $THOUGHT_OUT > runs/<timestamp>/thoughts.ndjson. See [initialize_emitters()](fum_rt/runtime/emitters.py:23).
 - Macro names are persisted automatically when first used; no manual step required.
 - Phrase bank and macro board are complementary; phrase bank supplies sentence templates, macro board is the registry of macro keys and optional metadata like “templates”.
 - The runtime keeps everything compute‑light: deterministic template filling with keywords/tokens from the live lexicon and metrics.
