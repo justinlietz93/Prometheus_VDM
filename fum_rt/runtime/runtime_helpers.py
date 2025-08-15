@@ -56,6 +56,32 @@ def register_macro_board(utd: Any, run_dir: str) -> None:
     except Exception:
         pass
 
+    # Fallback: from_physicist_agent/macro_board_min.json (do not override per-run entries)
+    try:
+        # Discover repository root by walking up from this file: .../fum_rt/runtime -> repo root
+        _here = os.path.abspath(__file__)
+        _fum_rt_dir = os.path.dirname(os.path.dirname(_here))
+        _repo_root = os.path.dirname(_fum_rt_dir)
+        fb = os.path.join(_repo_root, 'from_physicist_agent', 'macro_board_min.json')
+        if os.path.exists(fb):
+            import json
+            with open(fb, 'r', encoding='utf-8') as fh:
+                reg2 = json.load(fh)
+            current = set()
+            try:
+                current = set(utd.list_macros() or [])
+            except Exception:
+                current = set()
+            if isinstance(reg2, dict):
+                for name, meta in reg2.items():
+                    try:
+                        if str(name) not in current:
+                            utd.register_macro(str(name), meta if isinstance(meta, dict) else {})
+                    except Exception:
+                        pass
+    except Exception:
+        pass
+
 
 # --- Engram load and start-step derivation -------------------------------------
 
