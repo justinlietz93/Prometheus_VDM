@@ -20,6 +20,7 @@ Returns:
 
 from typing import Any, Dict, Set, Tuple, Optional
 import time
+import os
 
 from fum_rt.runtime.stepper import compute_step_and_metrics as _compute_step_and_metrics
 from fum_rt.runtime.telemetry import tick_fold as _tick_fold
@@ -27,6 +28,8 @@ from fum_rt.runtime.events_adapter import (
     observations_to_events as _obs_to_events,
     adc_metrics_to_event as _adc_event,
 )
+from fum_rt.core.proprioception.events import EventDrivenMetrics as _EvtMetrics
+from fum_rt.core.cortex.scouts import VoidColdScoutWalker as _VoidScout
 from fum_rt.core.signals import apply_b1_detector as _apply_b1d
 from fum_rt.runtime.runtime_helpers import (
     process_messages as _process_messages,
@@ -42,6 +45,46 @@ def run_loop(nx: Any, t0: float, step: int, duration_s: Optional[int] = None) ->
     Execute the main tick loop on the provided Nexus-like object.
     """
     try:
+        # Lazy-init VOID cold scout (enabled by default; disable via ENABLE_COLD_SCOUTS=0)
+        if getattr(nx, "_void_scout", None) is None:
+            _sc_flag = str(os.getenv("ENABLE_COLD_SCOUTS", os.getenv("ENABLE_SCOUTS", "1"))).lower()
+            if _sc_flag in ("1", "true", "yes", "on"):
+                try:
+                    _sv = int(os.getenv("SCOUT_VISITS", str(getattr(nx, "scout_visits", 16))))
+                except Exception:
+                    _sv = 16
+                try:
+                    _se = int(os.getenv("SCOUT_EDGES", str(getattr(nx, "scout_edges", 8))))
+                except Exception:
+                    _se = 8
+                try:
+                    _seed = int(getattr(nx, "seed", 0))
+                except Exception:
+                    _seed = 0
+                try:
+                    nx._void_scout = _VoidScout(budget_visits=max(0, _sv), budget_edges=max(0, _se), seed=_seed)
+                except Exception:
+                    nx._void_scout = None
+
+        # Lazy-init event-driven metrics aggregator (enabled by default; disable via ENABLE_EVENT_METRICS=0)
+        if getattr(nx, "_evt_metrics", None) is None:
+            _evtm_flag = str(os.getenv("ENABLE_EVENT_METRICS", "1")).lower()
+            if _evtm_flag in ("1", "true", "yes", "on"):
+                try:
+                    det = getattr(nx, "b1_detector", None)
+                    z_spike = float(getattr(det, "z_spike", 1.0)) if det is not None else 1.0
+                    hysteresis = float(getattr(det, "hysteresis", 1.0)) if det is not None else 1.0
+                    half_life = int(getattr(nx, "b1_half_life_ticks", 50))
+                    seed = int(getattr(nx, "seed", 0))
+                    nx._evt_metrics = _EvtMetrics(
+                        z_half_life_ticks=max(1, half_life),
+                        z_spike=z_spike,
+                        hysteresis=hysteresis,
+                        seed=seed,
+                    )
+                except Exception:
+                    nx._evt_metrics = None
+
         while True:
             tick_start = time.time()
 
@@ -92,6 +135,38 @@ def run_loop(nx: Any, t0: float, step: int, duration_s: Optional[int] = None) ->
                         void_topic_symbols |= vts
                 except Exception:
                     pass
+            except Exception:
+                pass
+
+            # 3b) Fold VOID cold-scout events into event-driven metrics (if aggregator present)
+            try:
+                evtm = getattr(nx, "_evt_metrics", None)
+                scout = getattr(nx, "_void_scout", None)
+                if evtm is not None and scout is not None:
+                    _evs = []
+                    try:
+                        _evs = scout.step(nx.connectome, int(step)) or []
+                    except Exception:
+                        _evs = []
+                    for _ev in _evs:
+                        try:
+                            evtm.update(_ev)
+                        except Exception:
+                            pass
+                    try:
+                        _evsnap2 = evtm.snapshot()
+                        if isinstance(_evsnap2, dict):
+                            # Merge event-driven metrics without overriding canonical scan-based fields.
+                            for _k, _v in _evsnap2.items():
+                                try:
+                                    # Preserve existing B1 detector outputs from apply_b1 in the canonical keys.
+                                    if str(_k).startswith("b1_") and _k in m:
+                                        continue
+                                    m[f"evt_{_k}"] = _v
+                                except Exception:
+                                    continue
+                    except Exception:
+                        pass
             except Exception:
                 pass
 
