@@ -11,6 +11,8 @@ from collections import deque
 from .utils.logging_setup import get_logger
 from .io.ute import UTE
 from .io.utd import UTD
+from .io.actuators.macros import MacroEmitter
+from .io.actuators.thoughts import ThoughtEmitter
 from .core import text_utils
 from .core.connectome import Connectome
 from .core.sparse_connectome import SparseConnectome
@@ -59,6 +61,20 @@ class Nexus:
         inbox_path = os.path.join(self.run_dir, "chat_inbox.jsonl")
         self.ute = UTE(use_stdin=True, inbox_path=inbox_path)
         self.utd = UTD(self.run_dir)
+        # Macro emitter (write-only; respects UTD_OUT if set)
+        try:
+            out_path = os.getenv("UTD_OUT") or getattr(self.utd, "path", os.path.join(self.run_dir, "utd_events.jsonl"))
+            self.emitter = MacroEmitter(path=out_path, why_provider=lambda: self._emit_why())
+        except Exception:
+            self.emitter = None
+        # Introspection Ledger (emit-only), behind feature flag ENABLE_THOUGHTS
+        self.thoughts = None
+        try:
+            if str(os.getenv("ENABLE_THOUGHTS", "0")).lower() in ("1", "true", "yes", "on"):
+                th_path = os.getenv("THOUGHT_OUT") or os.path.join(self.run_dir, "thoughts.ndjson")
+                self.thoughts = ThoughtEmitter(path=th_path, why=lambda: self._emit_why())
+        except Exception:
+            self.thoughts = None
         # Start local control server only when requested (default: off)
         self._control_server = None
         if bool(start_control_server) and ControlServer is not None:
@@ -274,6 +290,11 @@ class Nexus:
             self.start_step = 0
         self.dom_mod = float(get_domain_modulation(self.domain))
         self.history = []
+        # Emitter context (read-only snapshot for why providers)
+        self._emit_step = 0
+        self._emit_last_metrics = {}
+        self._macros_smoke_done = False
+        self._thoughts_smoke_done = False
         # Rolling buffer of recent inbound text for composing human-friendly “say” content
         self.recent_text = deque(maxlen=256)
         # Track vt_entropy over time for SIE TD proxy (void-native signal)
@@ -376,6 +397,30 @@ class Nexus:
         except Exception:
             return ""
 
+    def _emit_why(self):
+        """
+        Provide context for MacroEmitter / ThoughtEmitter from the last computed metrics.
+        Read-only; never mutates model state.
+        """
+        try:
+            m = getattr(self, "_emit_last_metrics", {}) or {}
+            phase = int(m.get("phase", int(getattr(self, "_phase", {}).get("phase", 0))))
+            return {
+                "t": int(getattr(self, "_emit_step", 0)),
+                "phase": phase,
+                "b1_z": float(m.get("b1_z", 0.0)),
+                "cohesion_components": int(m.get("cohesion_components", 0)),
+                "vt_coverage": float(m.get("vt_coverage", 0.0)),
+                "vt_entropy": float(m.get("vt_entropy", 0.0)),
+                "connectome_entropy": float(m.get("connectome_entropy", 0.0)),
+                "sie_valence_01": float(m.get("sie_valence_01", 0.0)),
+                "sie_v2_valence_01": float(m.get("sie_v2_valence_01", 0.0)),
+            }
+        except Exception:
+            try:
+                return {"t": int(getattr(self, "_emit_step", 0)), "phase": int(getattr(self, "_phase", {}).get("phase", 0))}
+            except Exception:
+                return {"t": 0, "phase": 0}
 
         # --- Phase control plane (file-driven) ---------------------------------
     def _default_phase_profiles(self):
@@ -820,6 +865,42 @@ class Nexus:
                 m['t'] = step
                 m['ute_in_count'] = int(ute_in_count)
                 m['ute_text_count'] = int(ute_text_count)
+                # Update emitter contexts (used by why providers)
+                try:
+                    self._emit_step = int(step)
+                    # include canonical valence fields for convenience
+                    m["sie_valence_01"] = float(m.get("sie_valence_01", m.get("sie_total_reward", 0.0)))
+                    self._emit_last_metrics = dict(m)
+                except Exception:
+                    pass
+                # Optional one-shot smoke tests (no behavior change)
+                try:
+                    # Macro smoke (VARS/EDGES/etc.) if enabled
+                    if (not getattr(self, "_macros_smoke_done", False)) and str(os.getenv("ENABLE_MACROS_TEST", "0")).lower() in ("1", "true", "yes", "on"):
+                        if getattr(self, "emitter", None):
+                            self.emitter.vars({"N": "neural", "G": "global_access", "E": "experience", "B": "behavior"})
+                            self.emitter.edges(["N->G", "G->B", "E->B?"])
+                            self.emitter.assumptions(["no unmeasured confounding", "positivity"])
+                            self.emitter.target("P(B|do(G))")
+                            self.emitter.derivation("If N fixes G and G mediates B, therefore adjust on {confounders} yields effect.")
+                            self.emitter.prediction_delta("Behavioral margin differs if extra-law holds.")
+                            self.emitter.transfer("Circuit: signal->bus; flag->output; hidden noise.")
+                            self.emitter.equation("Y = β X + U_Y")
+                            self.emitter.status("macro smoke: ok")
+                        self._macros_smoke_done = True
+                    # Thought ledger smoke (emit once per kind) if enabled
+                    if (not getattr(self, "_thoughts_smoke_done", False)) and str(os.getenv("ENABLE_THOUGHTS_TEST", "0")).lower() in ("1", "true", "yes", "on"):
+                        if getattr(self, "thoughts", None):
+                            self.thoughts.observation("vt_entropy", float(m.get("vt_entropy", 0.0)))
+                            self.thoughts.motif("cycle_probe", nodes=[1, 2, 3])
+                            self.thoughts.hypothesis("H0", "A ⟂ B | Z", status="tentative", conf=0.55)
+                            self.thoughts.test("CI", True, vars={"A": "A", "B": "B", "Z": ["Z"]})
+                            self.thoughts.derivation(["H0", "obs:vt_coverage↑"], "Identify P(Y|do(X)) via backdoor on {Z}", conf=0.6)
+                            self.thoughts.revision("H0", "accepted", because=["test:CI:true"])
+                            self.thoughts.plan("intervene", vars={"target": "X"}, rationale="disambiguate twins")
+                        self._thoughts_smoke_done = True
+                except Exception:
+                    pass
                 self.history.append(m)
                 # Prevent unbounded memory growth of in‑process history buffer (can cause random stops/OOM)
                 try:
