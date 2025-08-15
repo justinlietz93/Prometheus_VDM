@@ -215,10 +215,103 @@ def snapshot_numbers(state: Any) -> Dict[str, float]:
     return out
 
 
+def apply_b1_detector(state: Any, metrics: Dict[str, Any], step: int) -> Dict[str, Any]:
+    """
+    Behavior-preserving B1 detector update using state.b1_detector.
+    Mutates metrics in place; returns metrics for convenience.
+
+    This seam delegates to the existing StreamingZEMA instance configured in runtime (Nexus.b1_detector),
+    avoiding any duplication of detector parameters and preserving gating behavior.
+    """
+    m = metrics if isinstance(metrics, dict) else {}
+    try:
+        b1_value = float(m.get("complexity_cycles", 0.0))
+    except Exception:
+        b1_value = 0.0
+    try:
+        det = getattr(state, "b1_detector", None)
+        if det is not None:
+            z = det.update(b1_value, tick=int(step))
+            m["b1_value"] = float(z.get("value", 0.0))
+            m["b1_delta"] = float(z.get("delta", 0.0))
+            m["b1_z"] = float(z.get("z", 0.0))
+            m["b1_spike"] = bool(z.get("spike", False))
+    except Exception:
+        # Leave metrics unchanged on failure
+        pass
+    return m
+
+
+def compute_active_edge_density(connectome: Any, N: int) -> Tuple[int, float]:
+    """
+    Compute undirected active-edge density and return (E, density).
+
+    Mirrors Nexus logic (behavior-preserving):
+      E = max(0, active_edge_count)
+      N = max(1, N)
+      density = 2*E / (N*(N-1)) if denom > 0 else 0
+    """
+    try:
+        E = max(0, int(connectome.active_edge_count()))
+        Nn = max(1, int(N))
+        denom = float(Nn * (Nn - 1))
+        density = (2.0 * E / denom) if denom > 0.0 else 0.0
+        return int(E), float(density)
+    except Exception:
+        return 0, 0.0
+
+
+def compute_td_signal(prev_E: int | None, E: int, vt_prev: float | None = None, vt_last: float | None = None) -> float:
+    """
+    Compute TD-like signal combining structural change (delta_e) and traversal entropy change (vt_delta).
+
+    Behavior-preserving mapping from Nexus:
+      delta_e  = (E - prev_E) / max(1, E)                  # prev_E defaults to E on first use → 0
+      vt_delta = 0.0 if missing else (vt_last - vt_prev)
+      td_raw   = 4.0*delta_e + 1.5*vt_delta
+      td       = clip(td_raw, -2.0,  2.0)
+    """
+    try:
+        E_int = int(E)
+        pE = E_int if prev_E is None else int(prev_E)
+        delta_e = float(E_int - pE) / float(max(1, E_int))
+    except Exception:
+        delta_e = 0.0
+
+    try:
+        if vt_prev is None or vt_last is None:
+            vt_delta = 0.0
+        else:
+            vt_delta = float(vt_last) - float(vt_prev)
+    except Exception:
+        vt_delta = 0.0
+
+    td_raw = 4.0 * float(delta_e) + 1.5 * float(vt_delta)
+    if td_raw > 2.0:
+        return 2.0
+    if td_raw < -2.0:
+        return -2.0
+    return float(td_raw)
+
+
+def compute_firing_var(connectome: Any) -> float | None:
+    """
+    Compute variance of the field W; None on failure.
+    """
+    try:
+        return float(connectome.W.var())
+    except Exception:
+        return None
+
+
 __all__ = [
     "compute_b1_z",
     "sie_valence",
     "compute_cohesion",
     "compute_vt_metrics",
     "snapshot_numbers",
+    "apply_b1_detector",
+    "compute_active_edge_density",
+    "compute_td_signal",
+    "compute_firing_var",
 ]
