@@ -63,6 +63,29 @@ def observations_to_events(observations: Iterable[Any]) -> List[BaseEvent]:
             except Exception:
                 pass
 
+        elif kind == "delta":
+            # Generic learning delta event; fields are expected in obs.meta
+            try:
+                meta = getattr(obs, "meta", {}) or {}
+                b1 = float(meta.get("b1", 0.0))
+                nov = float(meta.get("nov", 0.0))
+                hab = float(meta.get("hab", 0.0))
+                tdv = float(meta.get("td", 0.0))
+                hsi = float(meta.get("hsi", 0.0))
+                out.append(
+                    DeltaEvent(
+                        kind="delta",
+                        t=tick,
+                        b1=b1,
+                        novelty=nov,
+                        hab=hab,
+                        td=tdv,
+                        hsi=hsi,
+                    )
+                )
+            except Exception:
+                pass
+
         else:
             # ignore unknown kinds
             pass
