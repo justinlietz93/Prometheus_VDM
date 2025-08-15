@@ -1,9 +1,19 @@
+"""
+Copyright © 2025 Justin K. Lietz, Neuroca, Inc. All Rights Reserved.
 
-import time, os, argparse, json, re, random
+This research is protected under a dual-license to foster open academic
+research while ensuring commercial applications are aligned with the project's ethical principles. Commercial use requires written permission from Justin K. Lietz.
+See LICENSE file for full terms.
+"""
+
+import time, os, argparse, json, re, random, sys
 from collections import deque
 from .utils.logging_setup import get_logger
 from .io.ute import UTE
 from .io.utd import UTD
+from .io.actuators.macros import MacroEmitter
+from .io.actuators.thoughts import ThoughtEmitter
+from .core import text_utils
 from .core.connectome import Connectome
 from .core.sparse_connectome import SparseConnectome
 from .core.metrics import compute_metrics, StreamingZEMA
@@ -44,12 +54,27 @@ class Nexus:
         self.log_every = log_every
         self.checkpoint_every = checkpoint_every
         self.seed = seed
+        self.emergent_macros = bool(emergent_macros)
 
         os.makedirs(self.run_dir, exist_ok=True)
         self.logger = get_logger("nexus", os.path.join(self.run_dir, "events.jsonl"))
         inbox_path = os.path.join(self.run_dir, "chat_inbox.jsonl")
         self.ute = UTE(use_stdin=True, inbox_path=inbox_path)
         self.utd = UTD(self.run_dir)
+        # Macro emitter (write-only; respects UTD_OUT if set)
+        try:
+            out_path = os.getenv("UTD_OUT") or getattr(self.utd, "path", os.path.join(self.run_dir, "utd_events.jsonl"))
+            self.emitter = MacroEmitter(path=out_path, why_provider=lambda: self._emit_why())
+        except Exception:
+            self.emitter = None
+        # Introspection Ledger (emit-only), behind feature flag ENABLE_THOUGHTS
+        self.thoughts = None
+        try:
+            if str(os.getenv("ENABLE_THOUGHTS", "0")).lower() in ("1", "true", "yes", "on"):
+                th_path = os.getenv("THOUGHT_OUT") or os.path.join(self.run_dir, "thoughts.ndjson")
+                self.thoughts = ThoughtEmitter(path=th_path, why=lambda: self._emit_why())
+        except Exception:
+            self.thoughts = None
         # Start local control server only when requested (default: off)
         self._control_server = None
         if bool(start_control_server) and ControlServer is not None:
@@ -171,18 +196,8 @@ class Nexus:
                 bundle_size=bundle_size, prune_factor=prune_factor
             )
         # Load engram if provided (after backend selection)
-        if load_engram_path:
-            try:
-                _load_engram_state(str(load_engram_path), self.connectome)
-                try:
-                    self.logger.info("engram_loaded", extra={"extra": {"path": str(load_engram_path)}})
-                except Exception:
-                    pass
-            except Exception as e:
-                try:
-                    self.logger.info("engram_load_error", extra={"extra": {"err": str(e), "path": str(load_engram_path)}})
-                except Exception:
-                    pass
+        # Defer engram loading until after ADC is initialized to avoid spurious errors/logs.
+        # The actual load (with logging) happens below after ADC is constructed.
         self.vis = Visualizer(run_dir=self.run_dir)
         # Status emission cadence for UTD
         self.status_every = max(1, int(status_interval))
@@ -230,18 +245,68 @@ class Nexus:
         except Exception:
             pass
 
+        # If an engram path was provided earlier and ADC is now available, reload including ADC
+        # Load engram once ADC is available, with clear success/error logs for the UI
+        if load_engram_path:
+            try:
+                _load_engram_state(str(load_engram_path), self.connectome, adc=self.adc)
+                try:
+                    self.logger.info("engram_loaded", extra={"extra": {"path": str(load_engram_path)}})
+                except Exception:
+                    pass
+            except Exception as e:
+                try:
+                    self.logger.info("engram_load_error", extra={"extra": {"err": str(e), "path": str(load_engram_path)}})
+                except Exception:
+                    pass
+        # Derive starting step to continue numbering after resume and avoid retention deleting new snapshots
+        try:
+            s = None
+            lp = str(load_engram_path) if load_engram_path else None
+            if lp and os.path.isfile(lp):
+                base = os.path.basename(lp)
+                m = re.search(r"state_(\d+)\.(h5|npz)$", base)
+                if m:
+                    s = int(m.group(1))
+            if s is None:
+                # Fallback: scan run_dir for highest step across known formats
+                max_s = -1
+                for fn in os.listdir(self.run_dir):
+                    if not fn.startswith("state_"):
+                        continue
+                    m2 = re.search(r"state_(\d+)\.(h5|npz)$", fn)
+                    if m2:
+                        ss = int(m2.group(1))
+                        if ss > max_s:
+                            max_s = ss
+                if max_s >= 0:
+                    s = max_s
+            self.start_step = int(s) + 1 if s is not None else 0
+            try:
+                self.logger.info("resume_step", extra={"extra": {"start_step": int(self.start_step)}})
+            except Exception:
+                pass
+        except Exception:
+            self.start_step = 0
         self.dom_mod = float(get_domain_modulation(self.domain))
         self.history = []
+        # Emitter context (read-only snapshot for why providers)
+        self._emit_step = 0
+        self._emit_last_metrics = {}
+        self._macros_smoke_done = False
+        self._thoughts_smoke_done = False
         # Rolling buffer of recent inbound text for composing human-friendly “say” content
         self.recent_text = deque(maxlen=256)
         # Track vt_entropy over time for SIE TD proxy (void-native signal)
         self._prev_vt_entropy = None
         self._last_vt_entropy = None
 
-    def _symbols_to_indices(self, text):
+    def _symbols_to_indices(self, text, reverse_map=None):
         """
         Deterministic, stateless symbol→group mapping.
         Each unique symbol maps to 'stim_group_size' neuron indices via a stable arithmetic hash.
+        If reverse_map (dict) is provided, populate index->symbol for the first symbol to claim each index
+        to enable void-driven topic extraction from walker observations.
         """
         try:
             g = int(max(1, getattr(self, "stim_group_size", 4)))
@@ -258,110 +323,28 @@ class Nexus:
                 for j in range(g):
                     idx = int((base + j * 2654435761) % N)
                     out.append(idx)
+                    if isinstance(reverse_map, dict) and idx not in reverse_map:
+                        reverse_map[idx] = ch
                 if len(seen) >= max_syms:
                     break
             return out
         except Exception:
             return []
 
-    def _keyword_summary(self, k: int = 4) -> str:
-        """
-        Deterministic, lightweight keyword extractor from recent_text buffer.
-        Boundary-only helper (does not affect core learning).
-        """
+    def _update_lexicon_and_ngrams(self, text: str):
         try:
-            if not self.recent_text:
-                return ""
-            txt = " ".join(list(self.recent_text)[-32:])
-            words = [w.lower() for w in re.findall(r"[A-Za-z][A-Za-z0-9_+\-]*", txt)]
-            STOP = {
-                "the","a","an","and","or","for","with","into","of","to","from","in","on","at","by","is",
-                "are","was","were","be","been","being","it","this","that","as","if","then","than","so",
-                "thus","such","not","no","nor","but","over","under","up","down","out","you","your",
-                "yours","me","my","mine","we","our","ours","they","their","theirs","he","him","his",
-                "she","her","hers","i","am","do","does","did","done","have","has","had","will","would",
-                "can","could","should","shall","may","might"
-            }
-            words = [w for w in words if (w not in STOP and len(w) > 2)]
-            if not words:
-                return ""
-            freq = {}
-            for w in words:
-                freq[w] = freq.get(w, 0) + 1
-            top = [w for w,_ in sorted(freq.items(), key=lambda kv: kv[1], reverse=True)[:max(1,int(k))]]
-            return ", ".join(top)
-        except Exception:
-            return ""
-
-    def _tokenize(self, text: str):
-        try:
-            # Capture any sequence of non-whitespace characters
-            return [w.lower() for w in re.findall(r"\S+", str(text))]
-        except Exception:
-            return []
-
-    def _idf_scale_for_tokens(self, tokens):
-        """
-        Compute a void-faithful rarity scale in [0.5, 2.0] from a token list using a rolling IDF proxy.
-        - Uses self._doc_count as total "documents" (ingested text messages)
-        - Uses self._lexicon[word] as a proxy for document frequency (approximate)
-        Mapping:
-            idf_mean = mean(log((D+1)/(1+df_w)) + 1)
-            idf_max  = log(D+1) + 1
-            scale    = 0.5 + 1.5 * (idf_mean / idf_max)  clamped to [0.5, 2.0]
-        """
-        try:
-            if not tokens:
-                return 1.0
-            import math
-            doc_count = int(getattr(self, "_doc_count", 0))
-            if doc_count <= 0:
-                return 1.0
-            lex = getattr(self, "_lexicon", {}) or {}
-            df_vals = []
-            for w in tokens:
-                try:
-                    df_vals.append(int(lex.get(str(w).lower(), 0)))
-                except Exception:
-                    pass
-            if not df_vals:
-                return 1.0
-            # Compute mean IDF with +1 smoothing
-            idf_sum = 0.0
-            for df in df_vals:
-                idf_sum += (math.log((doc_count + 1.0) / (1.0 + float(df))) + 1.0)
-            idf_mean = idf_sum / float(len(df_vals))
-            idf_max = (math.log(max(2.0, float(doc_count + 1.0))) + 1.0)
-            if idf_max <= 0.0:
-                return 1.0
-            scale = 0.5 + 1.5 * (idf_mean / idf_max)
-            if scale < 0.5:
-                return 0.5
-            if scale > 2.0:
-                return 2.0
-            return float(scale)
-        except Exception:
-            return 1.0
-    def _update_lexicon(self, text: str):
-        try:
-            if not hasattr(self, "_lexicon"):
-                self._lexicon = {}
-            toks = self._tokenize(text)
+            if not hasattr(self, "_lexicon"): self._lexicon = {}
+            toks = text_utils.tokenize_text(text)
             # Document-frequency semantics: increment once per message per token
             for w in set(toks):
                 self._lexicon[w] = int(self._lexicon.get(w, 0)) + 1
-            # Update streaming n-grams for emergent composition (use full sequence)
-            try:
-                self._update_ngrams(toks)
-            except Exception:
-                pass
-        except Exception:
-            pass
+            # Update streaming n-grams for emergent composition
+            text_utils.update_ngrams(toks, self._ng2, self._ng3)
+        except Exception: pass
 
     def _save_lexicon(self):
         try:
-            if not hasattr(self, "_lexicon_path"):
-                return
+            if not hasattr(self, "_lexicon_path"): return
             toks = [{"token": k, "count": int(v)} for k, v in sorted(self._lexicon.items(), key=lambda kv: (-int(kv[1]), kv[0]))]
             obj = {
                 "doc_count": int(getattr(self, "_doc_count", 0)),
@@ -369,126 +352,77 @@ class Nexus:
             }
             with open(self._lexicon_path, 'w', encoding='utf-8') as fh:
                 json.dump(obj, fh, ensure_ascii=False, indent=2)
-        except Exception:
-            pass
+        except Exception: pass
 
-    def _update_ngrams(self, tokens):
+    def _compose_say_text(self, metrics: dict, step: int, seed_tokens: set = None) -> str:
+        """
+        Compose a short sentence using emergent language or templates.
+        """
         try:
-            toks = [t for t in tokens if t]
-            n = len(toks)
-            for i in range(n - 1):
-                a = toks[i]; b = toks[i + 1]
-                d = self._ng2.setdefault(a, {})
-                d[b] = d.get(b, 0) + 1
-            for i in range(n - 2):
-                key = (toks[i], toks[i + 1]); c = toks[i + 2]
-                d = self._ng3.setdefault(key, {})
-                d[c] = d.get(c, 0) + 1
-        except Exception:
-            pass
-
-    def _emergent_sentence(self, seed=None):
-        try:
-            if not getattr(self, "_lexicon", None):
-                return ""
-            items = list(self._lexicon.items())
-            if not items:
-                return ""
-            rnd = random.Random(seed if seed is not None else int(time.time() * 1000) & 0xFFFFFFFF)
-            # Weighted start token draw by frequency
-            weights = [max(1, int(cnt)) for (_, cnt) in items]
-            total = sum(weights)
-            r = rnd.uniform(0, total)
-            acc = 0.0
-            start = items[0][0]
-            for (tok, cnt) in items:
-                acc += max(1, int(cnt))
-                if acc >= r:
-                    start = tok
-                    break
-            words = [start]
-            # Markov walk using trigram then bigram
-            while True:
-                nxt = None
-                if len(words) >= 2:
-                    key = (words[-2], words[-1])
-                    d = self._ng3.get(key)
-                    if d:
-                        total_c = sum(d.values())
-                        r = rnd.uniform(0, total_c)
-                        s = 0.0
-                        for (tok, c) in d.items():
-                            s += c
-                            if s >= r:
-                                nxt = tok
-                                break
-                if nxt is None:
-                    d2 = self._ng2.get(words[-1], {})
-                    if d2:
-                        total_c = sum(d2.values())
-                        r = rnd.uniform(0, total_c)
-                        s = 0.0
-                        for (tok, c) in d2.items():
-                            s += c
-                            if s >= r:
-                                nxt = tok
-                                break
-                if nxt is None:
-                    break
-                words.append(nxt)
-            sent = " ".join(words).strip()
+            # 1. Prioritize fully emergent sentence generation
+            sent = text_utils.generate_emergent_sentence(
+                lexicon=self._lexicon,
+                ng2=self._ng2,
+                ng3=self._ng3,
+                seed=int(step),
+                seed_tokens=seed_tokens
+            )
             if sent:
-                sent = sent[0].upper() + sent[1:]
-                if not sent.endswith((".", "!", "?")):
-                    sent += "."
-            return sent
-        except Exception:
-            return ""
+                return sent
 
-    def _compose_say_text(self, metrics: dict, step: int) -> str:
-        """
-        Compose a short sentence using either configured phrase templates or a deterministic summary fallback.
-        Placeholders supported in templates: {keywords}, {top1}, {top2}, {vt_entropy}, {vt_coverage}, {b1_z}, {connectome_entropy}, {valence}
-        """
-        try:
-            summary = ""
-            try:
-                summary = self._keyword_summary(6)
-            except Exception:
-                summary = ""
+            # 2. Fallback to template-based composition if n-grams are not mature
+            summary = text_utils.summarize_keywords(" ".join(self.recent_text), k=6)
             words = [w.strip() for w in summary.split(",") if w.strip()]
             top1 = words[0] if len(words) > 0 else "frontier"
             top2 = words[1] if len(words) > 1 else "structure"
-            val = float(metrics.get("sie_v2_valence_01", metrics.get("sie_valence_01", 0.0)))
+
             ctx = {
-                "keywords": (summary or "salient loop detected"),
-                "top1": top1,
-                "top2": top2,
+                "keywords": (summary or "salient loop detected"), "top1": top1, "top2": top2,
                 "vt_entropy": float(metrics.get("vt_entropy", 0.0)),
                 "vt_coverage": float(metrics.get("vt_coverage", 0.0)),
                 "b1_z": float(metrics.get("b1_z", 0.0)),
                 "connectome_entropy": float(metrics.get("connectome_entropy", 0.0)),
-                "valence": val,
+                "valence": float(metrics.get("sie_v2_valence_01", 0.0)),
             }
-            # Emergent language (no templates): assemble from learned n-grams
-            sent = self._emergent_sentence(seed=int(step))
-            if sent:
-                return sent
 
             tpls = list(getattr(self, "_phrase_templates", []) or [])
             if tpls:
-                idx = int(step) % max(1, len(tpls))
-                tpl = str(tpls[idx])
+                tpl = tpls[int(step) % len(tpls)]
                 try:
                     return tpl.format(**ctx)
-                except Exception:
-                    pass
-            # Fallback: use keyword summary directly (emergent tokens)
+                except Exception: pass
+            
+            # 3. Final fallback to keyword summary
             return (summary or "").strip() or "."
         except Exception:
             return ""
- 
-    # --- Phase control plane (file-driven) ---------------------------------
+
+    def _emit_why(self):
+        """
+        Provide context for MacroEmitter / ThoughtEmitter from the last computed metrics.
+        Read-only; never mutates model state.
+        """
+        try:
+            m = getattr(self, "_emit_last_metrics", {}) or {}
+            phase = int(m.get("phase", int(getattr(self, "_phase", {}).get("phase", 0))))
+            return {
+                "t": int(getattr(self, "_emit_step", 0)),
+                "phase": phase,
+                "b1_z": float(m.get("b1_z", 0.0)),
+                "cohesion_components": int(m.get("cohesion_components", 0)),
+                "vt_coverage": float(m.get("vt_coverage", 0.0)),
+                "vt_entropy": float(m.get("vt_entropy", 0.0)),
+                "connectome_entropy": float(m.get("connectome_entropy", 0.0)),
+                "sie_valence_01": float(m.get("sie_valence_01", 0.0)),
+                "sie_v2_valence_01": float(m.get("sie_v2_valence_01", 0.0)),
+            }
+        except Exception:
+            try:
+                return {"t": int(getattr(self, "_emit_step", 0)), "phase": int(getattr(self, "_phase", {}).get("phase", 0))}
+            except Exception:
+                return {"t": 0, "phase": 0}
+
+        # --- Phase control plane (file-driven) ---------------------------------
     def _default_phase_profiles(self):
         # Safe default gates for incremental curriculum, void-faithful (no token logic)
         # You can override any field via runs/<ts>/phase.json
@@ -673,7 +607,7 @@ class Nexus:
             try:
                 load_p = data.get("load_engram", None)
                 if isinstance(load_p, str) and load_p.strip():
-                    _load_engram_state(str(load_p), self.connectome)
+                    _load_engram_state(str(load_p), self.connectome, adc=self.adc)
                     try:
                         self.logger.info("engram_loaded", extra={"extra": {"path": str(load_p)}})
                     except Exception:
@@ -718,8 +652,12 @@ class Nexus:
     def run(self, duration_s:int=None):
         self.ute.start()
         self.logger.info("nexus_started", extra={"extra": {"N": self.N, "k": self.k, "hz": self.hz, "domain": self.domain, "dom_mod": self.dom_mod}})
+        try:
+            self.logger.info("checkpoint_config", extra={"extra": {"every": int(getattr(self, "checkpoint_every", 0)), "keep": int(getattr(self, "checkpoint_keep", 0)), "format": str(getattr(self, "checkpoint_format", ""))}})
+        except Exception:
+            pass
         t0 = time.time()
-        step = 0
+        step = int(getattr(self, "start_step", 0))
         try:
             while True:
                 tick_start = time.time()
@@ -729,6 +667,7 @@ class Nexus:
                 ute_text_count = 0
                 stim_idxs = set()
                 tick_tokens = set()
+                tick_rev_map = {}
                 for m in msgs:
                     if m.get('type') == 'text':
                         ute_text_count += 1
@@ -740,17 +679,16 @@ class Nexus:
                             except Exception:
                                 pass
                             try:
-                                # Update rolling lexicon (doc-frequency semantics) and n-grams
-                                self._update_lexicon(text)
-                                # Accumulate unique tokens for this tick
-                                toks = self._tokenize(text)
+                                # Update rolling lexicon, n-grams, and get tokens for IDF
+                                self._update_lexicon_and_ngrams(text)
+                                toks = text_utils.tokenize_text(text)
                                 for w in set(toks):
                                     tick_tokens.add(w)
                                 # Increment document counter once per inbound text message
                                 self._doc_count = int(getattr(self, "_doc_count", 0)) + 1
                             except Exception:
                                 pass
-                            idxs = self._symbols_to_indices(text)
+                            idxs = self._symbols_to_indices(text, reverse_map=tick_rev_map)
                             for i in idxs:
                                 stim_idxs.add(int(i))
                         except Exception:
@@ -869,10 +807,20 @@ class Nexus:
                     self._last_vt_entropy = float(m.get("vt_entropy", 0.0))
                 except Exception:
                     pass
-                # Drain announcement bus and update ADC
+                # Drain announcement bus, extract void-driven topic, then update ADC
+                void_topic_symbols = set()
                 try:
                     obs_batch = self.bus.drain(max_items=self.bus_drain)
                     if obs_batch:
+                        # Map observed node indices back to symbols seen this tick
+                        for obs in obs_batch:
+                            nodes = getattr(obs, "nodes", None)
+                            if nodes:
+                                for idx in nodes:
+                                    sym = tick_rev_map.get(int(idx)) if isinstance(tick_rev_map, dict) else None
+                                    if sym is not None:
+                                        void_topic_symbols.add(sym)
+                        # Update ADC after extracting topic so we don't interfere with its internal logic
                         self.adc.update_from(obs_batch)
                         adc_metrics = self.adc.get_metrics()
                         # fold ADC metrics in; also add cycle hits to the cycle proxy so b1_z sees them
@@ -884,8 +832,18 @@ class Nexus:
                 m["sie_total_reward"] = float(drive.get("total_reward", 0.0))
                 m["sie_valence_01"]  = float(drive.get("valence_01", 0.0))
                 comps = drive.get("components", {})
-                for k, v in comps.items():
-                    m[f"sie_{k}"] = v
+                try:
+                    items = comps.items() if isinstance(comps, dict) else []
+                    for k, v in items:
+                        try:
+                            m[f"sie_{k}"] = float(v)
+                        except Exception:
+                            try:
+                                m[f"sie_{k}"] = int(v)
+                            except Exception:
+                                m[f"sie_{k}"] = str(v)
+                except Exception:
+                    pass
                 # intrinsic SIE v2 (computed from W and dW within the connectome)
                 try:
                     m["sie_v2_reward_mean"] = float(getattr(self.connectome, "_last_sie2_reward", 0.0))
@@ -907,8 +865,52 @@ class Nexus:
                 m['t'] = step
                 m['ute_in_count'] = int(ute_in_count)
                 m['ute_text_count'] = int(ute_text_count)
+                # Update emitter contexts (used by why providers)
+                try:
+                    self._emit_step = int(step)
+                    # include canonical valence fields for convenience
+                    m["sie_valence_01"] = float(m.get("sie_valence_01", m.get("sie_total_reward", 0.0)))
+                    self._emit_last_metrics = dict(m)
+                except Exception:
+                    pass
+                # Optional one-shot smoke tests (no behavior change)
+                try:
+                    # Macro smoke (VARS/EDGES/etc.) if enabled
+                    if (not getattr(self, "_macros_smoke_done", False)) and str(os.getenv("ENABLE_MACROS_TEST", "0")).lower() in ("1", "true", "yes", "on"):
+                        if getattr(self, "emitter", None):
+                            self.emitter.vars({"N": "neural", "G": "global_access", "E": "experience", "B": "behavior"})
+                            self.emitter.edges(["N->G", "G->B", "E->B?"])
+                            self.emitter.assumptions(["no unmeasured confounding", "positivity"])
+                            self.emitter.target("P(B|do(G))")
+                            self.emitter.derivation("If N fixes G and G mediates B, therefore adjust on {confounders} yields effect.")
+                            self.emitter.prediction_delta("Behavioral margin differs if extra-law holds.")
+                            self.emitter.transfer("Circuit: signal->bus; flag->output; hidden noise.")
+                            self.emitter.equation("Y = β X + U_Y")
+                            self.emitter.status("macro smoke: ok")
+                        self._macros_smoke_done = True
+                    # Thought ledger smoke (emit once per kind) if enabled
+                    if (not getattr(self, "_thoughts_smoke_done", False)) and str(os.getenv("ENABLE_THOUGHTS_TEST", "0")).lower() in ("1", "true", "yes", "on"):
+                        if getattr(self, "thoughts", None):
+                            self.thoughts.observation("vt_entropy", float(m.get("vt_entropy", 0.0)))
+                            self.thoughts.motif("cycle_probe", nodes=[1, 2, 3])
+                            self.thoughts.hypothesis("H0", "A ⟂ B | Z", status="tentative", conf=0.55)
+                            self.thoughts.test("CI", True, vars={"A": "A", "B": "B", "Z": ["Z"]})
+                            self.thoughts.derivation(["H0", "obs:vt_coverage↑"], "Identify P(Y|do(X)) via backdoor on {Z}", conf=0.6)
+                            self.thoughts.revision("H0", "accepted", because=["test:CI:true"])
+                            self.thoughts.plan("intervene", vars={"target": "X"}, rationale="disambiguate twins")
+                        self._thoughts_smoke_done = True
+                except Exception:
+                    pass
                 self.history.append(m)
-
+                # Prevent unbounded memory growth of in‑process history buffer (can cause random stops/OOM)
+                try:
+                    max_keep = 20000   # keep at most 20k ticks of history
+                    trim_to = 10000    # when trimming, retain the last 10k for continuity
+                    if len(self.history) > max_keep:
+                        self.history = self.history[-trim_to:]
+                except Exception:
+                    pass
+ 
                 # Periodically persist learned lexicon
                 try:
                     if (step % max(100, int(self.status_every) * 10)) == 0:
@@ -922,12 +924,10 @@ class Nexus:
                     spike = bool(m.get("b1_spike", False))
                     if self.speak_auto and spike:
                         if val_v2 >= self.speak_valence_thresh:
-                            # Compose a brief English snippet from recent input to demonstrate symbol/word grounding
-                            speech = self._compose_say_text(m, int(step))
-                            try:
-                                self._update_lexicon(speech)
-                            except Exception:
-                                pass
+                            # Compose; do not suppress due to lack of topic/tokens. Model controls content fully.
+                            seed_material = tick_tokens if tick_tokens else void_topic_symbols
+                            speech = self._compose_say_text(m, int(step), seed_tokens=seed_material)
+                            self._update_lexicon_and_ngrams(speech)
                             self.utd.emit_macro(
                                 "say",
                                 {
@@ -966,8 +966,25 @@ class Nexus:
                     pass
 
                 if (step % self.log_every) == 0:
-                    self.logger.info("tick", extra={"extra": m})
-
+                    try:
+                        self.logger.info("tick", extra={"extra": m})
+                    except Exception as e:
+                        # Attempt a safe fallback serialization and retry once
+                        try:
+                            safe = {}
+                            for kk, vv in m.items():
+                                try:
+                                    if isinstance(vv, (float, int, str, bool)) or vv is None:
+                                        safe[kk] = vv
+                                    else:
+                                        safe[kk] = float(vv)
+                                except Exception:
+                                    safe[kk] = str(vv)
+                            self.logger.info("tick", extra={"extra": safe})
+                        except Exception:
+                            # As last resort, write to stderr so supervisor can see the error
+                            print("[nexus] tick_log_error", str(e), file=sys.stderr, flush=True)
+ 
                 if (step % self.status_every) == 0:
                     # Open UTD: emit a status text payload at configured interval (void-faithful score via valence)
                     try:
@@ -1034,7 +1051,12 @@ class Nexus:
                 if self.checkpoint_every and (step % self.checkpoint_every) == 0 and step > 0:
                     # Save engram as HDF5 (falls back to .npz only if h5py is unavailable)
                     try:
-                        path = save_checkpoint(self.run_dir, step, self.connectome, fmt=self.checkpoint_format or "h5")
+                        path = save_checkpoint(self.run_dir, step, self.connectome, fmt=self.checkpoint_format or "h5", adc=self.adc)
+                        # Emit explicit event so UI/logs can confirm checkpointing activity
+                        try:
+                            self.logger.info("checkpoint_saved", extra={"extra": {"path": str(path), "step": int(step)}})
+                        except Exception:
+                            pass
                         # Rolling retention: keep last K checkpoints of the actual format we just saved (0 disables)
                         if getattr(self, "checkpoint_keep", 0) and int(self.checkpoint_keep) > 0:
                             try:
@@ -1079,7 +1101,19 @@ class Nexus:
                 time.sleep(sleep)
 
                 if duration_s is not None and (time.time() - t0) > duration_s:
+                    try:
+                        self.logger.info("nexus_duration_reached", extra={"extra": {"duration_s": int(duration_s)}})
+                    except Exception:
+                        pass
                     break
+        except Exception as e:
+            try:
+                self.logger.info("nexus_fatal", extra={"extra": {"err": str(e)}})
+            except Exception:
+                try:
+                    print("[nexus] fatal", str(e), file=sys.stderr, flush=True)
+                except Exception:
+                    pass
         finally:
             self.utd.close()
             # Stop local control server on exit
@@ -1150,5 +1184,7 @@ def make_parser():
     p.add_argument('--control-server', dest='control_server', action='store_true')
     p.add_argument('--no-control-server', dest='control_server', action='store_false')
     p.set_defaults(control_server=False)
+    # Allow explicit reuse of an existing run directory (resume), otherwise a new timestamp dir is used
+    p.add_argument('--run-dir', dest='run_dir', type=str, default=None)
 
     return p
