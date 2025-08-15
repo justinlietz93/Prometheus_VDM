@@ -6,7 +6,15 @@ research while ensuring commercial applications are aligned with the project's e
 See LICENSE file for full terms.
 """
 
+# NOTE: This module acts as a thin façade over the runtime and core layers.
+# Behavior is preserved; external imports remain stable. Core loop has moved to [loop.run_loop()](fum_rt/runtime/loop.py:40).
 import time, os, sys
+
+# Deprecation notice (documentation-only):
+# - Inline orchestrator logic inside Nexus is deprecated; equivalent functionality lives in runtime/*.
+# - External integrations continue to import Nexus and make_parser from this module (no change required).
+# - No functional changes: IDF remains composer/telemetry-only; SIE/ADC/connectome unaffected.
+# - Event-driven metrics are optional via ENABLE_EVENT_METRICS and disabled by default.
 from collections import deque
 from .utils.logging_setup import get_logger
 from .io.ute import UTE
@@ -331,3 +339,5 @@ class Nexus:
 def make_parser():
     from .cli.args import make_parser as _mp
     return _mp()
+
+__all__ = ["Nexus", "make_parser"]
