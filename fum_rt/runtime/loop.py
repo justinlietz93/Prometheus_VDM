@@ -30,6 +30,7 @@ from fum_rt.runtime.events_adapter import (
 )
 from fum_rt.core.engine import CoreEngine as _CoreEngine
 from fum_rt.core.proprioception.events import EventDrivenMetrics as _EvtMetrics
+from fum_rt.core.proprioception.events import EventDrivenMetrics as _EvtMetrics
 from fum_rt.core.cortex.scouts import VoidColdScoutWalker as _VoidScout
 from fum_rt.core.signals import apply_b1_detector as _apply_b1d
 from fum_rt.runtime.runtime_helpers import (
@@ -171,6 +172,53 @@ def run_loop(nx: Any, t0: float, step: int, duration_s: Optional[int] = None) ->
                                         # Preserve existing B1 detector outputs from apply_b1 in the canonical keys.
                                         if str(_k).startswith("b1_") and _k in m:
                                             continue
+            # 3c) CoreEngine folding and snapshot merge (evt_* only; preserve canonical fields)
+            try:
+                eng = getattr(nx, "_engine", None)
+                if eng is not None:
+                    # Collect core events from drained observations and ADC metrics
+                    evs = []
+                    try:
+                        batch = getattr(nx, "_last_obs_batch", None)
+                        if batch is not None:
+                            for _ev in _obs_to_events(batch) or []:
+                                evs.append(_ev)
+                    except Exception:
+                        pass
+                    try:
+                        adc_metrics = getattr(nx, "_last_adc_metrics", None)
+                        if isinstance(adc_metrics, dict):
+                            evs.append(_adc_event(adc_metrics, int(step)))
+                    except Exception:
+                        pass
+                    # Step the core engine with events (telemetry-only; no behavior change)
+                    try:
+                        dt_ms = int(max(1, float(getattr(nx, "dt", 0.1)) * 1000.0))
+                    except Exception:
+                        dt_ms = 100
+                    try:
+                        eng.step(dt_ms, evs)
+                    except Exception:
+                        pass
+                    # Merge engine snapshot under evt_* without overriding canonical fields
+                    try:
+                        esnap = eng.snapshot()
+                        if isinstance(esnap, dict):
+                            for _k, _v in esnap.items():
+                                try:
+                                    # Preserve existing B1 detector outputs from apply_b1 in the canonical keys.
+                                    if str(_k).startswith("b1_") and _k in m:
+                                        continue
+                                    if str(_k).startswith("evt_"):
+                                        m[_k] = _v
+                                    else:
+                                        m[f"evt_{_k}"] = _v
+                                except Exception:
+                                    continue
+                    except Exception:
+                        pass
+            except Exception:
+                pass
                                         m[f"evt_{_k}"] = _v
                                     except Exception:
                                         continue
