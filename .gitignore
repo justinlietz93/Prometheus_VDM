@@ -37,8 +37,33 @@ suggestions/
 from_physicist_agent/
 FUM_Demo/
 resume.md
+/mnt/ironwolf/git/Void_FUM_Private/Void_FUM_Private/Void_Unity_Proofs/derivation/GPT5
 
 # Data
 fum_rt/data/corpus/*
 fum_rt/data/databases/*
 fum_rt/data/wikipedia/enwiki-latest-pages-articles.xml.bz2
+derivation/GPT5/00_GPT5_20250815_041412.md
+derivation/GPT5/01_GPT5_20250815_042444.md
+derivation/GPT5/02_Grok4_20250815_042516.md
+derivation/GPT5/03_GPT5_202508043232.md
+derivation/GPT5/04_GPT5_20250815043721.md
+derivation/GPT5/05_Grok_20250815_044530.md
+derivation/GPT5/06_GPT5_20250815044621.md
+derivation/GPT5/07_GPT5_20250815_044646.md
+derivation/GPT5/08_GPT5_20250815_045757.md
+derivation/GPT5/09_GPT5_20250815_045823.md
+derivation/GPT5/10_GPT5_20250815_050300.md
+derivation/GPT5/11_GPT5_20250815_051000.md
+derivation/GPT5/FUM_One_Derivation_Lietz.md
+derivation/GPT5/FUM_Voxtrium_Derivation_Justin_Lietz.md
+derivation/GPT5/FUM_One_Derivation_Package/curvature_calibration.png
+derivation/GPT5/FUM_One_Derivation_Package/curvature_scaling_signed.png
+derivation/GPT5/FUM_One_Derivation_Package/curvature_scaling.png
+derivation/GPT5/FUM_One_Derivation_Package/FUM_One_Derivation_Lietz.md
+derivation/GPT5/FUM_One_Derivation_Package/junction_logistic.png
+derivation/GPT5/FUM_One_Derivation_Package/stability_auc_by_gamma.png
+derivation/GPT5/FUM_One_Derivation_Package/stability_band.png
+derivation/GPT5/FUM_One_Derivation_Package/stability_fidelity_by_gamma.png
+derivation/GPT5/FUM_One_Derivation_Package/stability_retention_by_gamma.png
+derivation/GPT5/FUM_One_Derivation_Package/stability_snr_by_gamma.png
