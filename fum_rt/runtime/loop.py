@@ -30,7 +30,6 @@ from fum_rt.runtime.events_adapter import (
 )
 from fum_rt.core.engine import CoreEngine as _CoreEngine
 from fum_rt.core.proprioception.events import EventDrivenMetrics as _EvtMetrics
-from fum_rt.core.proprioception.events import EventDrivenMetrics as _EvtMetrics
 from fum_rt.core.cortex.scouts import VoidColdScoutWalker as _VoidScout
 from fum_rt.core.signals import apply_b1_detector as _apply_b1d
 from fum_rt.runtime.runtime_helpers import (
@@ -172,6 +171,13 @@ def run_loop(nx: Any, t0: float, step: int, duration_s: Optional[int] = None) ->
                                         # Preserve existing B1 detector outputs from apply_b1 in the canonical keys.
                                         if str(_k).startswith("b1_") and _k in m:
                                             continue
+                                        m[f"evt_{_k}"] = _v
+                                    except Exception:
+                                        continue
+                        except Exception:
+                            pass
+            except Exception:
+                pass
             # 3c) CoreEngine folding and snapshot merge (evt_* only; preserve canonical fields)
             try:
                 eng = getattr(nx, "_engine", None)
@@ -217,13 +223,6 @@ def run_loop(nx: Any, t0: float, step: int, duration_s: Optional[int] = None) ->
                                     continue
                     except Exception:
                         pass
-            except Exception:
-                pass
-                                        m[f"evt_{_k}"] = _v
-                                    except Exception:
-                                        continue
-                        except Exception:
-                            pass
             except Exception:
                 pass
 
