@@ -28,6 +28,7 @@ from fum_rt.runtime.events_adapter import (
     observations_to_events as _obs_to_events,
     adc_metrics_to_event as _adc_event,
 )
+from fum_rt.core.engine import CoreEngine as _CoreEngine
 from fum_rt.core.proprioception.events import EventDrivenMetrics as _EvtMetrics
 from fum_rt.core.cortex.scouts import VoidColdScoutWalker as _VoidScout
 from fum_rt.core.signals import apply_b1_detector as _apply_b1d
@@ -45,6 +46,13 @@ def run_loop(nx: Any, t0: float, step: int, duration_s: Optional[int] = None) ->
     Execute the main tick loop on the provided Nexus-like object.
     """
     try:
+        # Lazy-init CoreEngine seam (telemetry-only additions; parity preserved)
+        if getattr(nx, "_engine", None) is None:
+            try:
+                nx._engine = _CoreEngine(nx)
+            except Exception:
+                nx._engine = None
+
         # Lazy-init VOID cold scout (enabled by default; disable via ENABLE_COLD_SCOUTS=0)
         if getattr(nx, "_void_scout", None) is None:
             _sc_flag = str(os.getenv("ENABLE_COLD_SCOUTS", os.getenv("ENABLE_SCOUTS", "1"))).lower()
@@ -138,35 +146,36 @@ def run_loop(nx: Any, t0: float, step: int, duration_s: Optional[int] = None) ->
             except Exception:
                 pass
 
-            # 3b) Fold VOID cold-scout events into event-driven metrics (if aggregator present)
+            # 3b) Fold VOID cold-scout events into event-driven metrics (if aggregator present and no CoreEngine)
             try:
-                evtm = getattr(nx, "_evt_metrics", None)
-                scout = getattr(nx, "_void_scout", None)
-                if evtm is not None and scout is not None:
-                    _evs = []
-                    try:
-                        _evs = scout.step(nx.connectome, int(step)) or []
-                    except Exception:
+                if getattr(nx, "_engine", None) is None:
+                    evtm = getattr(nx, "_evt_metrics", None)
+                    scout = getattr(nx, "_void_scout", None)
+                    if evtm is not None and scout is not None:
                         _evs = []
-                    for _ev in _evs:
                         try:
-                            evtm.update(_ev)
+                            _evs = scout.step(nx.connectome, int(step)) or []
+                        except Exception:
+                            _evs = []
+                        for _ev in _evs:
+                            try:
+                                evtm.update(_ev)
+                            except Exception:
+                                pass
+                        try:
+                            _evsnap2 = evtm.snapshot()
+                            if isinstance(_evsnap2, dict):
+                                # Merge event-driven metrics without overriding canonical scan-based fields.
+                                for _k, _v in _evsnap2.items():
+                                    try:
+                                        # Preserve existing B1 detector outputs from apply_b1 in the canonical keys.
+                                        if str(_k).startswith("b1_") and _k in m:
+                                            continue
+                                        m[f"evt_{_k}"] = _v
+                                    except Exception:
+                                        continue
                         except Exception:
                             pass
-                    try:
-                        _evsnap2 = evtm.snapshot()
-                        if isinstance(_evsnap2, dict):
-                            # Merge event-driven metrics without overriding canonical scan-based fields.
-                            for _k, _v in _evsnap2.items():
-                                try:
-                                    # Preserve existing B1 detector outputs from apply_b1 in the canonical keys.
-                                    if str(_k).startswith("b1_") and _k in m:
-                                        continue
-                                    m[f"evt_{_k}"] = _v
-                                except Exception:
-                                    continue
-                    except Exception:
-                        pass
             except Exception:
                 pass
 

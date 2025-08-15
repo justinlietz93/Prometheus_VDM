@@ -24,6 +24,8 @@ Seam policy:
 from typing import Any, Dict, Optional
 from fum_rt.core.metrics import compute_metrics
 from fum_rt.core.memory import load_engram as _load_engram_state, save_checkpoint as _save_checkpoint
+from fum_rt.core.proprioception.events import EventDrivenMetrics as _EvtMetrics
+from fum_rt.core.cortex.scouts import VoidColdScoutWalker as _VoidScout
 
 
 class CoreEngine:
@@ -42,18 +44,100 @@ class CoreEngine:
           - connectome, adc, run_dir, checkpoint_format (optional), logger (optional), _phase (optional)
         """
         self._nx = nexus_like
+        # Event-driven stack (lazy-initialized)
+        self._evt_metrics = None
+        self._void_scout = None
+        self._last_evt_snapshot: Dict[str, Any] = {}
 
     def step(self, dt_ms: int, ext_events: list) -> None:
         """
-        Seam-only placeholder. The orchestrator still drives per-tick behavior inside Nexus.
-        Introduced now to freeze the API; implementation will be wired after migration with parity checks.
+        Fold provided core events and cold-scout events into event-driven reducers.
+        Pure core; no IO/logging. Read-only against connectome.
         """
-        raise NotImplementedError("CoreEngine.step seam is defined but not active; orchestrator retains control.")
+        # lazy init local reducers and VOID scout
+        try:
+            self._ensure_evt_init()
+        except Exception:
+            pass
+
+        if getattr(self, "_evt_metrics", None) is None:
+            return
+
+        # 1) fold external events (already core BaseEvent subclasses from runtime adapter)
+        try:
+            for ev in (ext_events or []):
+                try:
+                    # accept any object exposing 'kind' attribute (duck-typed BaseEvent)
+                    if hasattr(ev, "kind"):
+                        self._evt_metrics.update(ev)
+                except Exception:
+                    continue
+        except Exception:
+            pass
+
+        # 2) fold VOID cold-scout reads (read-only traversal)
+        try:
+            if getattr(self, "_void_scout", None) is not None:
+                tick = int(getattr(self._nx, "_emit_step", 0))
+                for _ev in self._void_scout.step(getattr(self, "_nx", None).connectome, tick) or []:
+                    try:
+                        self._evt_metrics.update(_ev)
+                    except Exception:
+                        continue
+        except Exception:
+            pass
+
+        # 3) refresh cached evt snapshot
+        try:
+            self._last_evt_snapshot = dict(self._evt_metrics.snapshot() or {})
+        except Exception:
+            self._last_evt_snapshot = {}
+
+    def _ensure_evt_init(self) -> None:
+        """
+        Initialize event-driven reducers (EventDrivenMetrics) and VOID scout lazily
+        using configuration exposed by the nexus-like object when available.
+        """
+        # reducers
+        if getattr(self, "_evt_metrics", None) is None:
+            try:
+                det = getattr(self._nx, "b1_detector", None)
+                z_spike = float(getattr(det, "z_spike", 1.0)) if det is not None else 1.0
+                hysteresis = float(getattr(det, "hysteresis", 1.0)) if det is not None else 1.0
+                half_life = int(getattr(self._nx, "b1_half_life_ticks", 50))
+                seed = int(getattr(self._nx, "seed", 0))
+                self._evt_metrics = _EvtMetrics(
+                    z_half_life_ticks=max(1, half_life),
+                    z_spike=z_spike,
+                    hysteresis=hysteresis,
+                    seed=seed,
+                )
+            except Exception:
+                self._evt_metrics = None
+        # VOID scout
+        if getattr(self, "_void_scout", None) is None:
+            try:
+                sv = int(getattr(self._nx, "scout_visits", 16))
+            except Exception:
+                sv = 16
+            try:
+                se = int(getattr(self._nx, "scout_edges", 8))
+            except Exception:
+                se = 8
+            try:
+                seed = int(getattr(self._nx, "seed", 0))
+            except Exception:
+                seed = 0
+            try:
+                self._void_scout = _VoidScout(budget_visits=max(0, sv), budget_edges=max(0, se), seed=seed)
+            except Exception:
+                self._void_scout = None
 
     def snapshot(self) -> Dict[str, Any]:
         """
         Build a minimal state snapshot via current compute_metrics without mutating the model.
         Adds common context fields used by Why providers when available.
+        Also merges cached event-driven metrics under an 'evt_' prefix to preserve canonical fields.
         """
         nx = self._nx
         m = compute_metrics(nx.connectome)
@@ -64,6 +148,20 @@ class CoreEngine:
             pass
         try:
             m["phase"] = int(getattr(nx, "_phase", {}).get("phase", 0))
+        except Exception:
+            pass
+        # Merge event-driven snapshot without overriding canonical keys
+        try:
+            evs = getattr(self, "_last_evt_snapshot", None)
+            if isinstance(evs, dict):
+                for k, v in evs.items():
+                    try:
+                        # preserve existing canonical b1_* if present
+                        if str(k).startswith("b1_") and k in m:
+                            continue
+                        m[f"evt_{k}"] = v
+                    except Exception:
+                        continue
         except Exception:
             pass
         return m
