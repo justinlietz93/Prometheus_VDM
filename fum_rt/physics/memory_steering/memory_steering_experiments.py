@@ -1,4 +1,10 @@
 """
+Copyright © 2025 Justin K. Lietz, Neuroca, Inc. All Rights Reserved.
+
+This research is protected under a dual-license to foster open academic
+research while ensuring commercial applications are aligned with the project's ethical principles. Commercial use requires written permission from Justin K. Lietz.
+See LICENSE file for full terms.
+
 Memory-Driven Steering (experiments): rigorous mapping to your derivations + three falsifiable tests
 
 What this file does (experiments layer)
@@ -305,7 +311,7 @@ def polyline_curvature_signed(pts: np.ndarray) -> np.ndarray:
           ⟨κ_signed⟩ ∝ Θ (∇m · n_⊥)
     """
     n = pts.shape[0]
-    if n &lt; 3:
+    if n < 3:
         return np.zeros(n, dtype=np.float64)
     kappa = np.zeros(n, dtype=np.float64)
     for i in range(1, n - 1):
@@ -332,9 +338,9 @@ def polyline_curvature_signed(pts: np.ndarray) -> np.ndarray:
         # orientation sign from 2D cross product z-component
         cross_z = float(v1n[0] * v2n[1] - v1n[1] * v2n[0])
         sgn = 0.0
-        if cross_z &gt; 0:
+        if cross_z > 0:
             sgn = +1.0
-        elif cross_z &lt; 0:
+        elif cross_z < 0:
             sgn = -1.0
         kappa[i] = sgn * kmag
     return kappa

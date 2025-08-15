@@ -14,6 +14,7 @@ def compute_metrics(connectome):
    - Adds connectome_entropy to support Active Domain Cartography (Rule 7) scheduling.
    - Prefers connectome.connectome_entropy() when available (sparse-mode), falling back to local function.
    """
+   # TODO GET THESE FOR FREE FROM THE VOID WALKERS
    # Prefer a connectome-native entropy calculator for sparse-mode
    try:
        h = float(connectome.connectome_entropy())

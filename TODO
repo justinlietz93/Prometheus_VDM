@@ -1,8 +1,8 @@
 ### Organization
 TODO Refactor codebase for maintainability
-    TODO Migrate dashboard and modularize frontend
+    FIXED: [JLietz][2025-08-14]Migrate dashboard and modularize frontend
     TODO Migrate core/ files into subfolders
-    TODO Modularize nexus.py
+    TODO [JLietz][Pending]Modularize nexus.py
     TODO Migrate these to fum_rt subfolders: 
 
     /mnt/ironwolf/git/Void_FUM_Private/Void_FUM_Private/Void_Unity_Proofs/tools/say_clean_view.py
@@ -11,8 +11,8 @@ TODO Refactor codebase for maintainability
 
 ### Learning
 TODO Improve user engagement, reward to not be released programmatically like traditional RL, the model to learn inherently that rewards are boosted when everyone is happy or when it does a good job
-TODO Allow the user to give the model a small reward for doing a good job
-TODO Add a stimulus queue system
+TODO Allow the user to give the model a small reward ad hoc for doing a good job
+TODO Add a stimulus queue system for phased learning
 
 ### Physics
 TODO Continue work on physics derivations
@@ -27,4 +27,4 @@ TODO Add GPU support
 TODO Update FUM Blueprints
 
 ### Bugs
-TODO Fix the "echo chamber" bug in the UTD / UTE
+FIXED [JLietz][2025-08-14]: Fix the "echo chamber" bug in the UTD / UTE
