@@ -14,7 +14,8 @@ import time, os, sys
 # - Inline orchestrator logic inside Nexus is deprecated; equivalent functionality lives in runtime/*.
 # - External integrations continue to import Nexus and make_parser from this module (no change required).
 # - No functional changes: IDF remains composer/telemetry-only; SIE/ADC/connectome unaffected.
-# - Event-driven metrics are optional via ENABLE_EVENT_METRICS and disabled by default.
+# - Event-driven metrics are enabled by default (telemetry-only); disable via ENABLE_EVENT_METRICS=0.
+# - Void cold scouts are enabled by default (telemetry-only); disable via ENABLE_COLD_SCOUTS=0.
 from collections import deque
 from .utils.logging_setup import get_logger
 from .io.ute import UTE
