@@ -6,7 +6,7 @@ research while ensuring commercial applications are aligned with the project's e
 See LICENSE file for full terms.
 """
 
-import time, os, argparse, json, re, random
+import time, os, argparse, json, re, random, sys
 from collections import deque
 from .utils.logging_setup import get_logger
 from .io.ute import UTE
@@ -787,8 +787,18 @@ class Nexus:
                 m["sie_total_reward"] = float(drive.get("total_reward", 0.0))
                 m["sie_valence_01"]  = float(drive.get("valence_01", 0.0))
                 comps = drive.get("components", {})
-                for k, v in comps.items():
-                    m[f"sie_{k}"] = v
+                try:
+                    items = comps.items() if isinstance(comps, dict) else []
+                    for k, v in items:
+                        try:
+                            m[f"sie_{k}"] = float(v)
+                        except Exception:
+                            try:
+                                m[f"sie_{k}"] = int(v)
+                            except Exception:
+                                m[f"sie_{k}"] = str(v)
+                except Exception:
+                    pass
                 # intrinsic SIE v2 (computed from W and dW within the connectome)
                 try:
                     m["sie_v2_reward_mean"] = float(getattr(self.connectome, "_last_sie2_reward", 0.0))
@@ -811,7 +821,15 @@ class Nexus:
                 m['ute_in_count'] = int(ute_in_count)
                 m['ute_text_count'] = int(ute_text_count)
                 self.history.append(m)
-
+                # Prevent unbounded memory growth of in‑process history buffer (can cause random stops/OOM)
+                try:
+                    max_keep = 20000   # keep at most 20k ticks of history
+                    trim_to = 10000    # when trimming, retain the last 10k for continuity
+                    if len(self.history) > max_keep:
+                        self.history = self.history[-trim_to:]
+                except Exception:
+                    pass
+ 
                 # Periodically persist learned lexicon
                 try:
                     if (step % max(100, int(self.status_every) * 10)) == 0:
@@ -867,8 +885,25 @@ class Nexus:
                     pass
 
                 if (step % self.log_every) == 0:
-                    self.logger.info("tick", extra={"extra": m})
-
+                    try:
+                        self.logger.info("tick", extra={"extra": m})
+                    except Exception as e:
+                        # Attempt a safe fallback serialization and retry once
+                        try:
+                            safe = {}
+                            for kk, vv in m.items():
+                                try:
+                                    if isinstance(vv, (float, int, str, bool)) or vv is None:
+                                        safe[kk] = vv
+                                    else:
+                                        safe[kk] = float(vv)
+                                except Exception:
+                                    safe[kk] = str(vv)
+                            self.logger.info("tick", extra={"extra": safe})
+                        except Exception:
+                            # As last resort, write to stderr so supervisor can see the error
+                            print("[nexus] tick_log_error", str(e), file=sys.stderr, flush=True)
+ 
                 if (step % self.status_every) == 0:
                     # Open UTD: emit a status text payload at configured interval (void-faithful score via valence)
                     try:
@@ -985,7 +1020,19 @@ class Nexus:
                 time.sleep(sleep)
 
                 if duration_s is not None and (time.time() - t0) > duration_s:
+                    try:
+                        self.logger.info("nexus_duration_reached", extra={"extra": {"duration_s": int(duration_s)}})
+                    except Exception:
+                        pass
                     break
+        except Exception as e:
+            try:
+                self.logger.info("nexus_fatal", extra={"extra": {"err": str(e)}})
+            except Exception:
+                try:
+                    print("[nexus] fatal", str(e), file=sys.stderr, flush=True)
+                except Exception:
+                    pass
         finally:
             self.utd.close()
             # Stop local control server on exit
