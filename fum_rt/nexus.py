@@ -6,7 +6,7 @@ research while ensuring commercial applications are aligned with the project's e
 See LICENSE file for full terms.
 """
 
-import time, os, argparse, json, re, random, sys
+import time, os, sys
 from collections import deque
 from .utils.logging_setup import get_logger
 from .io.ute import UTE
@@ -15,34 +15,28 @@ from .io.utd import UTD
 from .core import text_utils
 from .core.connectome import Connectome
 from .core.sparse_connectome import SparseConnectome
-from .core.metrics import compute_metrics, StreamingZEMA
+from .core.metrics import StreamingZEMA
 from .core.visualizer import Visualizer
-from .core.memory import save_checkpoint, load_engram as _load_engram_state
 from .core.void_dynamics_adapter import get_domain_modulation
 from .core.fum_sie import SelfImprovementEngine
 from .core.bus import AnnounceBus
 from .core.adc import ADC
-from .core.void_b1 import update_void_b1 as _update_void_b1
 # Modularized lexicon/phrase store (behavior-preserving)
 from .io.lexicon.store import (
     load_phrase_templates as _lxn_load_phrases,
     load_lexicon as _lxn_load,
     save_lexicon as _lxn_save,
 )
-from .runtime.telemetry import macro_why_base as _telemetry_why_base, status_payload as _telemetry_status, tick_fold as _tick_fold
+from .runtime.telemetry import macro_why_base as _telemetry_why_base
 # Event-driven metrics seam (feature-flagged; pure core + adapter)
 from .core.proprioception.events import EventDrivenMetrics as _EvtMetrics
-from .runtime.events_adapter import observations_to_events as _obs_to_events, adc_metrics_to_event as _adc_event
-from .runtime.retention import prune_checkpoints as _prune_ckpt
 from .runtime.emitters import initialize_emitters as _init_emitters
-from .runtime.runtime_helpers import register_macro_board as _reg_macro_board, maybe_load_engram as _maybe_load_engram, derive_start_step as _derive_start_step, process_messages as _process_messages, maybe_smoke_tests as _maybe_smoke_tests, maybe_auto_speak as _maybe_auto_speak, emit_status_and_macro as _emit_status_and_macro, maybe_visualize as _maybe_visualize, save_tick_checkpoint as _save_tick_checkpoint
+from .runtime.runtime_helpers import register_macro_board as _reg_macro_board, maybe_load_engram as _maybe_load_engram, derive_start_step as _derive_start_step
 from .runtime.loop import run_loop as _run_loop
 # Cognition seams (Phase 3 move-only; behavior-preserving)
 from .io.cognition.stimulus import symbols_to_indices as _stim_symbols_to_indices
 from .io.cognition.composer import compose_say_text as _compose_say_text_impl
-from .io.cognition.speaker import should_speak as _speak_gate, novelty_and_score as _novelty_and_score
 # Core signals seam (B1 detector apply)
-from .core.signals import apply_b1_detector as _apply_b1d, compute_active_edge_density as _comp_density, compute_td_signal as _comp_td, compute_firing_var as _comp_fvar
 try:
     from .core.control_server import ControlServer  # optional UI
 except Exception:
