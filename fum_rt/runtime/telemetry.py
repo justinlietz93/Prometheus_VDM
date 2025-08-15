@@ -150,6 +150,11 @@ def tick_fold(
         if bus is not None:
             obs_batch = bus.drain(max_items=int(getattr(nx, "bus_drain", 2048)))
             if obs_batch:
+                # Expose drained observations for CoreEngine folding without re-drain
+                try:
+                    setattr(nx, "_last_obs_batch", obs_batch)
+                except Exception:
+                    pass
                 # Map observed node indices back to symbols seen this tick
                 try:
                     if isinstance(tick_rev_map, dict):
@@ -176,11 +181,16 @@ def tick_fold(
                         adc_metrics = {}
                 except Exception:
                     adc_metrics = {}
+                # Expose ADC metrics for CoreEngine folding (no IO; runtime-local state only)
+                try:
+                    setattr(nx, "_last_adc_metrics", adc_metrics)
+                except Exception:
+                    pass
 
                 # Optionally fold event-driven metrics telemetry
                 try:
                     evtm = getattr(nx, "_evt_metrics", None)
-                    if evtm is not None:
+                    if getattr(nx, "_engine", None) is None and evtm is not None:
                         if obs_to_events is not None:
                             try:
                                 for _ev in obs_to_events(obs_batch) or []:
