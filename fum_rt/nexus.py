@@ -24,6 +24,21 @@ from .core.fum_sie import SelfImprovementEngine
 from .core.bus import AnnounceBus
 from .core.adc import ADC
 from .core.void_b1 import update_void_b1 as _update_void_b1
+# Modularized lexicon/phrase store (behavior-preserving)
+from .io.lexicon.store import (
+    load_phrase_templates as _lxn_load_phrases,
+    load_lexicon as _lxn_load,
+    save_lexicon as _lxn_save,
+)
+from .runtime.telemetry import macro_why_base as _telemetry_why_base, status_payload as _telemetry_status
+# Event-driven metrics seam (feature-flagged; pure core + adapter)
+from .core.proprioception.events import EventDrivenMetrics as _EvtMetrics
+from .runtime.events_adapter import observations_to_events as _obs_to_events, adc_metrics_to_event as _adc_event
+from .runtime.retention import prune_checkpoints as _prune_ckpt
+# Cognition seams (Phase 3 move-only; behavior-preserving)
+from .io.cognition.stimulus import symbols_to_indices as _stim_symbols_to_indices
+from .io.cognition.composer import compose_say_text as _compose_say_text_impl
+from .io.cognition.speaker import should_speak as _speak_gate, novelty_and_score as _novelty_and_score
 try:
     from .core.control_server import ControlServer  # optional UI
 except Exception:
@@ -111,69 +126,20 @@ class Nexus:
         # Phrase templates for 'say' macro and persistent lexicon (for richer sentences)
         self._phrase_templates = []
         try:
-            # 1) Load templates from say meta in macro board if present
-            mb_path = os.path.join(self.run_dir, 'macro_board.json')
-            if os.path.exists(mb_path):
-                with open(mb_path, 'r', encoding='utf-8') as fh:
-                    _mb = json.load(fh)
-                if isinstance(_mb, dict):
-                    _say_meta = _mb.get('say') or {}
-                    if isinstance(_say_meta, dict):
-                        _tpls = _say_meta.get('templates') or _say_meta.get('phrases') or []
-                        if isinstance(_tpls, list):
-                            self._phrase_templates.extend([str(x) for x in _tpls if isinstance(x, (str,))])
+            self._phrase_templates = list(_lxn_load_phrases(self.run_dir) or [])
         except Exception:
-            pass
-        try:
-            # 2) Load templates from explicit phrase bank files
-            phrase_candidates = [
-                os.path.join(self.run_dir, 'phrase_bank.json'),
-                os.path.join(os.path.dirname(__file__), 'io', 'lexicon', 'phrase_bank_min.json'),
-            ]
-            for pth in phrase_candidates:
-                if os.path.exists(pth):
-                    with open(pth, 'r', encoding='utf-8') as fh:
-                        obj = json.load(fh)
-                    if isinstance(obj, dict):
-                        _say = obj.get('say') or obj.get('templates') or []
-                        if isinstance(_say, list):
-                            self._phrase_templates.extend([str(x) for x in _say if isinstance(x, (str,))])
-                    break
-        except Exception:
+            # Fail-soft: keep empty; store mirrors legacy behavior
             pass
         # 3) Persistent lexicon (word -> count), learned from inbound text and emissions
         try:
             self._lexicon_path = os.path.join(self.run_dir, 'lexicon.json')
+            lx, dc = _lxn_load(self.run_dir)
+            self._lexicon = dict(lx or {})
+            self._doc_count = int(dc or 0)
+        except Exception:
+            # Fail-soft: empty lexicon
             self._lexicon = {}
             self._doc_count = 0
-            if os.path.exists(self._lexicon_path):
-                with open(self._lexicon_path, 'r', encoding='utf-8') as fh:
-                    obj = json.load(fh)
-                # support either {"tokens":[{"token":..,"count":..}], "doc_count": int} or {"word":count,...}
-                if isinstance(obj, dict):
-                    # load document count if present
-                    try:
-                        dc = obj.get('doc_count', obj.get('documents', obj.get('docs', 0)))
-                        if dc is not None:
-                            self._doc_count = int(dc)
-                    except Exception:
-                        pass
-                    if 'tokens' in obj and isinstance(obj['tokens'], list):
-                        for ent in obj['tokens']:
-                            try:
-                                self._lexicon[str(ent['token']).lower()] = int(ent['count'])
-                            except Exception:
-                                pass
-                    else:
-                        for k, v in obj.items():
-                            # skip known metadata keys
-                            if str(k) in ('doc_count', 'documents', 'docs'):
-                                continue
-                            try:
-                                self._lexicon[str(k).lower()] = int(v)
-                            except Exception:
-                                pass
-        except Exception:
             pass
 
         # N-gram stores for emergent sentence composition (learned from inputs/outputs)
@@ -228,6 +194,18 @@ class Nexus:
             hysteresis=float(speak_hysteresis),
             min_interval_ticks=int(max(1, speak_cooldown_ticks)),
         )
+        # Optional event-driven metrics aggregator (disabled by default; parity preserved)
+        self._evt_metrics = None
+        try:
+            if str(os.getenv("ENABLE_EVENT_METRICS", "0")).lower() in ("1", "true", "yes", "on"):
+                self._evt_metrics = _EvtMetrics(
+                    z_half_life_ticks=self.b1_half_life_ticks,
+                    z_spike=float(speak_z),
+                    hysteresis=float(speak_hysteresis),
+                    seed=int(self.seed),
+                )
+        except Exception:
+            self._evt_metrics = None
         # External control plane: phase file and cache (void-faithful: gates only)
         self.phase_file = os.path.join(self.run_dir, "phase.json")
         self._phase = {"phase": 0}
@@ -304,30 +282,17 @@ class Nexus:
     def _symbols_to_indices(self, text, reverse_map=None):
         """
         Deterministic, stateless symbol→group mapping.
-        Each unique symbol maps to 'stim_group_size' neuron indices via a stable arithmetic hash.
-        If reverse_map (dict) is provided, populate index->symbol for the first symbol to claim each index
-        to enable void-driven topic extraction from walker observations.
+
+        Delegates to io.cognition.stimulus.symbols_to_indices (behavior-preserving).
         """
         try:
-            g = int(max(1, getattr(self, "stim_group_size", 4)))
-            max_syms = int(max(1, getattr(self, "stim_max_symbols", 64)))
-            N = int(self.N)
-            out = []
-            seen = set()
-            for ch in str(text):
-                if ch in seen:
-                    continue
-                seen.add(ch)
-                code = ord(ch)
-                base = (code * 1315423911) % N
-                for j in range(g):
-                    idx = int((base + j * 2654435761) % N)
-                    out.append(idx)
-                    if isinstance(reverse_map, dict) and idx not in reverse_map:
-                        reverse_map[idx] = ch
-                if len(seen) >= max_syms:
-                    break
-            return out
+            return _stim_symbols_to_indices(
+                str(text),
+                int(getattr(self, "stim_group_size", 4)),
+                int(getattr(self, "stim_max_symbols", 64)),
+                int(self.N),
+                reverse_map=reverse_map,
+            )
         except Exception:
             return []
 
@@ -344,56 +309,27 @@ class Nexus:
 
     def _save_lexicon(self):
         try:
-            if not hasattr(self, "_lexicon_path"): return
-            toks = [{"token": k, "count": int(v)} for k, v in sorted(self._lexicon.items(), key=lambda kv: (-int(kv[1]), kv[0]))]
-            obj = {
-                "doc_count": int(getattr(self, "_doc_count", 0)),
-                "tokens": toks
-            }
-            with open(self._lexicon_path, 'w', encoding='utf-8') as fh:
-                json.dump(obj, fh, ensure_ascii=False, indent=2)
-        except Exception: pass
+            _lxn_save(self.run_dir, getattr(self, "_lexicon", {}) or {}, int(getattr(self, "_doc_count", 0)))
+        except Exception:
+            pass
 
     def _compose_say_text(self, metrics: dict, step: int, seed_tokens: set = None) -> str:
         """
         Compose a short sentence using emergent language or templates.
+
+        Delegates to io.cognition.composer.compose_say_text (behavior-preserving).
         """
         try:
-            # 1. Prioritize fully emergent sentence generation
-            sent = text_utils.generate_emergent_sentence(
-                lexicon=self._lexicon,
-                ng2=self._ng2,
-                ng3=self._ng3,
-                seed=int(step),
-                seed_tokens=seed_tokens
-            )
-            if sent:
-                return sent
-
-            # 2. Fallback to template-based composition if n-grams are not mature
-            summary = text_utils.summarize_keywords(" ".join(self.recent_text), k=6)
-            words = [w.strip() for w in summary.split(",") if w.strip()]
-            top1 = words[0] if len(words) > 0 else "frontier"
-            top2 = words[1] if len(words) > 1 else "structure"
-
-            ctx = {
-                "keywords": (summary or "salient loop detected"), "top1": top1, "top2": top2,
-                "vt_entropy": float(metrics.get("vt_entropy", 0.0)),
-                "vt_coverage": float(metrics.get("vt_coverage", 0.0)),
-                "b1_z": float(metrics.get("b1_z", 0.0)),
-                "connectome_entropy": float(metrics.get("connectome_entropy", 0.0)),
-                "valence": float(metrics.get("sie_v2_valence_01", 0.0)),
-            }
-
-            tpls = list(getattr(self, "_phrase_templates", []) or [])
-            if tpls:
-                tpl = tpls[int(step) % len(tpls)]
-                try:
-                    return tpl.format(**ctx)
-                except Exception: pass
-            
-            # 3. Final fallback to keyword summary
-            return (summary or "").strip() or "."
+            return _compose_say_text_impl(
+                metrics or {},
+                int(step),
+                getattr(self, "_lexicon", {}) or {},
+                getattr(self, "_ng2", {}) or {},
+                getattr(self, "_ng3", {}) or {},
+                self.recent_text,
+                templates=list(getattr(self, "_phrase_templates", []) or []),
+                seed_tokens=seed_tokens,
+            ) or ""
         except Exception:
             return ""
 
@@ -404,18 +340,8 @@ class Nexus:
         """
         try:
             m = getattr(self, "_emit_last_metrics", {}) or {}
-            phase = int(m.get("phase", int(getattr(self, "_phase", {}).get("phase", 0))))
-            return {
-                "t": int(getattr(self, "_emit_step", 0)),
-                "phase": phase,
-                "b1_z": float(m.get("b1_z", 0.0)),
-                "cohesion_components": int(m.get("cohesion_components", 0)),
-                "vt_coverage": float(m.get("vt_coverage", 0.0)),
-                "vt_entropy": float(m.get("vt_entropy", 0.0)),
-                "connectome_entropy": float(m.get("connectome_entropy", 0.0)),
-                "sie_valence_01": float(m.get("sie_valence_01", 0.0)),
-                "sie_v2_valence_01": float(m.get("sie_v2_valence_01", 0.0)),
-            }
+            step = int(getattr(self, "_emit_step", 0))
+            return _telemetry_why_base(self, m, step)
         except Exception:
             try:
                 return {"t": int(getattr(self, "_emit_step", 0)), "phase": int(getattr(self, "_phase", {}).get("phase", 0))}
@@ -424,231 +350,243 @@ class Nexus:
 
         # --- Phase control plane (file-driven) ---------------------------------
     def _default_phase_profiles(self):
-        # Safe default gates for incremental curriculum, void-faithful (no token logic)
-        # You can override any field via runs/<ts>/phase.json
-        return {
-            0: {  # primitives
-                "speak": {"speak_z": 2.0, "speak_hysteresis": 0.5, "speak_cooldown_ticks": 8, "speak_valence_thresh": 0.10},
-                "connectome": {"walkers": 128, "hops": 3, "bundle_size": 3, "prune_factor": 0.10},
-            },
-            1: {  # blocks
-                "speak": {"speak_z": 2.5, "speak_hysteresis": 0.8, "speak_cooldown_ticks": 10, "speak_valence_thresh": 0.20},
-                "connectome": {"walkers": 256, "hops": 3, "bundle_size": 3, "prune_factor": 0.10},
-            },
-            2: {  # structures
-                "speak": {"speak_z": 3.0, "speak_hysteresis": 1.0, "speak_cooldown_ticks": 10, "speak_valence_thresh": 0.35},
-                "connectome": {"walkers": 384, "hops": 4, "bundle_size": 3, "prune_factor": 0.10},
-            },
-            3: {  # questions
-                "speak": {"speak_z": 3.0, "speak_hysteresis": 1.0, "speak_cooldown_ticks": 10, "speak_valence_thresh": 0.55},
-                "connectome": {"walkers": 512, "hops": 4, "bundle_size": 3, "prune_factor": 0.10},
-            },
-            4: {  # problem-solving
-                "speak": {"speak_z": 3.5, "speak_hysteresis": 1.2, "speak_cooldown_ticks": 12, "speak_valence_thresh": 0.60},
-                "connectome": {"walkers": 768, "hops": 5, "bundle_size": 3, "prune_factor": 0.10},
-            },
-        }
+        # Delegated to modular control-plane helper (no behavior change)
+        try:
+            from .runtime.phase import default_phase_profiles as _default_phase_profiles
+            return _default_phase_profiles()
+        except Exception:
+            # Fallback to original inline defaults to preserve behavior if import fails unexpectedly
+            return {
+                0: {  # primitives
+                    "speak": {"speak_z": 2.0, "speak_hysteresis": 0.5, "speak_cooldown_ticks": 8, "speak_valence_thresh": 0.10},
+                    "connectome": {"walkers": 128, "hops": 3, "bundle_size": 3, "prune_factor": 0.10},
+                },
+                1: {  # blocks
+                    "speak": {"speak_z": 2.5, "speak_hysteresis": 0.8, "speak_cooldown_ticks": 10, "speak_valence_thresh": 0.20},
+                    "connectome": {"walkers": 256, "hops": 3, "bundle_size": 3, "prune_factor": 0.10},
+                },
+                2: {  # structures
+                    "speak": {"speak_z": 3.0, "speak_hysteresis": 1.0, "speak_cooldown_ticks": 10, "speak_valence_thresh": 0.35},
+                    "connectome": {"walkers": 384, "hops": 4, "bundle_size": 3, "prune_factor": 0.10},
+                },
+                3: {  # questions
+                    "speak": {"speak_z": 3.0, "speak_hysteresis": 1.0, "speak_cooldown_ticks": 10, "speak_valence_thresh": 0.55},
+                    "connectome": {"walkers": 512, "hops": 4, "bundle_size": 3, "prune_factor": 0.10},
+                },
+                4: {  # problem-solving
+                    "speak": {"speak_z": 3.5, "speak_hysteresis": 1.2, "speak_cooldown_ticks": 12, "speak_valence_thresh": 0.60},
+                    "connectome": {"walkers": 768, "hops": 5, "bundle_size": 3, "prune_factor": 0.10},
+                },
+            }
 
     def _apply_phase_profile(self, prof: dict):
-        # Apply speak gates
-        sp = prof.get("speak", {})
+        # Delegated to modular control-plane helper (no behavior change)
         try:
-            if "speak_z" in sp:
-                self.b1_detector.z_spike = float(sp["speak_z"])
-            if "speak_hysteresis" in sp:
-                self.b1_detector.hysteresis = float(max(0.0, sp["speak_hysteresis"]))
-            if "speak_cooldown_ticks" in sp:
-                self.b1_detector.min_interval = int(max(1, int(sp["speak_cooldown_ticks"])))
-            if "speak_valence_thresh" in sp:
-                self.speak_valence_thresh = float(sp["speak_valence_thresh"])
+            from .runtime.phase import apply_phase_profile as _apply_phase_profile_impl
+            return _apply_phase_profile_impl(self, prof)
         except Exception:
-            pass
-        # Apply connectome traversal/homeostasis gates
-        cn = prof.get("connectome", {})
-        C = getattr(self, "connectome", None)
-        if C is not None:
+            # Inline fallback mirrors previous behavior to avoid any functional change
+            # Apply speak gates
+            sp = prof.get("speak", {})
             try:
-                if "walkers" in cn:
-                    C.traversal_walkers = int(max(1, int(cn["walkers"])))
-                if "hops" in cn:
-                    C.traversal_hops = int(max(1, int(cn["hops"])))
-                if "bundle_size" in cn and hasattr(C, "bundle_size"):
-                    C.bundle_size = int(max(1, int(cn["bundle_size"])))
-                if "prune_factor" in cn and hasattr(C, "prune_factor"):
-                    C.prune_factor = float(max(0.0, float(cn["prune_factor"])))
-                # Allow live tuning of active-edge threshold (affects density and SIE TD proxy)
-                if "threshold" in cn and hasattr(C, "threshold"):
-                    C.threshold = float(max(0.0, float(cn["threshold"])))
-                # Allow live tuning of void-penalty and candidate budget
-                if "lambda_omega" in cn and hasattr(C, "lambda_omega"):
-                    C.lambda_omega = float(max(0.0, float(cn["lambda_omega"])))
-                if "candidates" in cn and hasattr(C, "candidates"):
-                    C.candidates = int(max(1, int(cn["candidates"])))
+                if "speak_z" in sp:
+                    self.b1_detector.z_spike = float(sp["speak_z"])
+                if "speak_hysteresis" in sp:
+                    self.b1_detector.hysteresis = float(max(0.0, sp["speak_hysteresis"]))
+                if "speak_cooldown_ticks" in sp:
+                    self.b1_detector.min_interval = int(max(1, int(sp["speak_cooldown_ticks"])))
+                if "speak_valence_thresh" in sp:
+                    self.speak_valence_thresh = float(sp["speak_valence_thresh"])
+            except Exception:
+                pass
+            # Apply connectome traversal/homeostasis gates
+            cn = prof.get("connectome", {})
+            C = getattr(self, "connectome", None)
+            if C is not None:
+                try:
+                    if "walkers" in cn:
+                        C.traversal_walkers = int(max(1, int(cn["walkers"])))
+                    if "hops" in cn:
+                        C.traversal_hops = int(max(1, int(cn["hops"])))
+                    if "bundle_size" in cn and hasattr(C, "bundle_size"):
+                        C.bundle_size = int(max(1, int(cn["bundle_size"])))
+                    if "prune_factor" in cn and hasattr(C, "prune_factor"):
+                        C.prune_factor = float(max(0.0, float(cn["prune_factor"])))
+                    # Allow live tuning of active-edge threshold (affects density and SIE TD proxy)
+                    if "threshold" in cn and hasattr(C, "threshold"):
+                        C.threshold = float(max(0.0, float(cn["threshold"])))
+                    # Allow live tuning of void-penalty and candidate budget
+                    if "lambda_omega" in cn and hasattr(C, "lambda_omega"):
+                        C.lambda_omega = float(max(0.0, float(cn["lambda_omega"])))
+                    if "candidates" in cn and hasattr(C, "candidates"):
+                        C.candidates = int(max(1, int(cn["candidates"])))
+                except Exception:
+                    pass
+
+            # Additional live knobs (safe: only set when attributes exist)
+
+            # ---- SIE knobs (weights/time constants/targets) ----
+            sie = prof.get("sie", {})
+            if sie:
+                # try Nexus.sie first
+                targets = []
+                try:
+                    targets.append(getattr(self, "sie", None))
+                except Exception:
+                    pass
+                # also allow Connectome-scope SIE if present
+                try:
+                    _C = getattr(self, "connectome", None)
+                    if _C is not None:
+                        targets.append(getattr(_C, "sie", None))
+                except Exception:
+                    pass
+
+                for obj in targets:
+                    if not obj:
+                        continue
+                    cfg = getattr(obj, "cfg", None)
+                    if cfg is not None:
+                        for k in ("w_td", "w_nov", "w_hab", "w_hsi", "hab_tau", "target_var"):
+                            if k in sie and hasattr(cfg, k):
+                                try:
+                                    if k == "hab_tau":
+                                        setattr(cfg, k, int(sie[k]))
+                                    else:
+                                        setattr(cfg, k, float(sie[k]))
+                                except Exception:
+                                    pass
+                    else:
+                        # set directly on object if exposed
+                        for k in ("w_td", "w_nov", "w_hab", "w_hsi", "hab_tau", "target_var"):
+                            if k in sie and hasattr(obj, k):
+                                try:
+                                    if k == "hab_tau":
+                                        setattr(obj, k, int(sie[k]))
+                                    else:
+                                        setattr(obj, k, float(sie[k]))
+                                except Exception:
+                                    pass
+
+            # Allow phase knob for IDF novelty gain at Nexus scope
+            try:
+                if "novelty_idf_gain" in sie:
+                    self.novelty_idf_gain = float(sie["novelty_idf_gain"])
             except Exception:
                 pass
 
-        # Additional live knobs (safe: only set when attributes exist)
+            # ---- Structure / Morphogenesis knobs ----
+            st = prof.get("structure", {})
+            if st and C is not None:
+                try:
+                    if "growth_fraction" in st and hasattr(C, "growth_fraction"):
+                        C.growth_fraction = float(st["growth_fraction"])
+                except Exception:
+                    pass
+                try:
+                    if "alias_sampling_rate" in st and hasattr(C, "alias_sampling_rate"):
+                        C.alias_sampling_rate = float(st["alias_sampling_rate"])
+                except Exception:
+                    pass
+                try:
+                    if "b1_persistence_thresh" in st and hasattr(C, "b1_persistence_thresh"):
+                        C.b1_persistence_thresh = float(st["b1_persistence_thresh"])
+                except Exception:
+                    pass
+                try:
+                    if "pruning_low_w_thresh" in st and hasattr(C, "pruning_low_w_thresh"):
+                        C.pruning_low_w_thresh = float(st["pruning_low_w_thresh"])
+                except Exception:
+                    pass
+                try:
+                    if "pruning_T_prune" in st and hasattr(C, "pruning_T_prune"):
+                        C.pruning_T_prune = int(st["pruning_T_prune"])
+                except Exception:
+                    pass
 
-        # ---- SIE knobs (weights/time constants/targets) ----
-        sie = prof.get("sie", {})
-        if sie:
-            # try Nexus.sie first
-            targets = []
-            try:
-                targets.append(getattr(self, "sie", None))
-            except Exception:
-                pass
-            # also allow Connectome-scope SIE if present
-            try:
-                _C = getattr(self, "connectome", None)
-                if _C is not None:
-                    targets.append(getattr(_C, "sie", None))
-            except Exception:
-                pass
-
-            for obj in targets:
-                if not obj:
-                    continue
-                cfg = getattr(obj, "cfg", None)
-                if cfg is not None:
-                    for k in ("w_td", "w_nov", "w_hab", "w_hsi", "hab_tau", "target_var"):
-                        if k in sie and hasattr(cfg, k):
-                            try:
-                                if k == "hab_tau":
-                                    setattr(cfg, k, int(sie[k]))
-                                else:
-                                    setattr(cfg, k, float(sie[k]))
-                            except Exception:
-                                pass
-                else:
-                    # set directly on object if exposed
-                    for k in ("w_td", "w_nov", "w_hab", "w_hsi", "hab_tau", "target_var"):
-                        if k in sie and hasattr(obj, k):
-                            try:
-                                if k == "hab_tau":
-                                    setattr(obj, k, int(sie[k]))
-                                else:
-                                    setattr(obj, k, float(sie[k]))
-                            except Exception:
-                                pass
-
-        # Allow phase knob for IDF novelty gain at Nexus scope
-        try:
-            if "novelty_idf_gain" in sie:
-                self.novelty_idf_gain = float(sie["novelty_idf_gain"])
-        except Exception:
-            pass
-
-        # ---- Structure / Morphogenesis knobs ----
-        st = prof.get("structure", {})
-        if st and C is not None:
-            try:
-                if "growth_fraction" in st and hasattr(C, "growth_fraction"):
-                    C.growth_fraction = float(st["growth_fraction"])
-            except Exception:
-                pass
-            try:
-                if "alias_sampling_rate" in st and hasattr(C, "alias_sampling_rate"):
-                    C.alias_sampling_rate = float(st["alias_sampling_rate"])
-            except Exception:
-                pass
-            try:
-                if "b1_persistence_thresh" in st and hasattr(C, "b1_persistence_thresh"):
-                    C.b1_persistence_thresh = float(st["b1_persistence_thresh"])
-            except Exception:
-                pass
-            try:
-                if "pruning_low_w_thresh" in st and hasattr(C, "pruning_low_w_thresh"):
-                    C.pruning_low_w_thresh = float(st["pruning_low_w_thresh"])
-            except Exception:
-                pass
-            try:
-                if "pruning_T_prune" in st and hasattr(C, "pruning_T_prune"):
-                    C.pruning_T_prune = int(st["pruning_T_prune"])
-            except Exception:
-                pass
-
-        # ---- Schedules / housekeeping ----
-        sched = prof.get("schedule", {})
-        if sched:
-            try:
-                if "adc_entropy_alpha" in sched:
-                    self.adc_entropy_alpha = float(sched["adc_entropy_alpha"])
-            except Exception:
-                pass
-            try:
-                if "ph_snapshot_interval_sec" in sched:
-                    self.ph_snapshot_interval_sec = float(sched["ph_snapshot_interval_sec"])
-            except Exception:
-                pass
-
+            # ---- Schedules / housekeeping ----
+            sched = prof.get("schedule", {})
+            if sched:
+                try:
+                    if "adc_entropy_alpha" in sched:
+                        self.adc_entropy_alpha = float(sched["adc_entropy_alpha"])
+                except Exception:
+                    pass
+                try:
+                    if "ph_snapshot_interval_sec" in sched:
+                        self.ph_snapshot_interval_sec = float(sched["ph_snapshot_interval_sec"])
+                except Exception:
+                    pass
     def _poll_control(self):
-        # If phase.json exists and mtime changed, load and apply
-        pth = getattr(self, "phase_file", None)
-        if not pth or not os.path.exists(pth):
-            return
+        # Delegated to modular control-plane helper (no behavior change)
         try:
-            st = os.stat(pth)
-            mt = float(getattr(st, "st_mtime", 0.0))
+            from .runtime.phase import poll_control as _poll_control_impl
+            return _poll_control_impl(self)
         except Exception:
-            return
-        if self._phase_mtime is not None and mt <= float(self._phase_mtime):
-            return
-        try:
-            with open(pth, "r", encoding="utf-8") as fh:
-                data = json.load(fh)
-            if not isinstance(data, dict):
-                return
-            # Merge defaults for simple {"phase": n} shape
-            phase_idx = int(data.get("phase", self._phase.get("phase", 0)))
-            prof = self._default_phase_profiles().get(phase_idx, {})
-
-            # One-shot engram load if requested by control plane
+            # Inline fallback mirrors previous behavior to avoid any functional change
             try:
-                load_p = data.get("load_engram", None)
-                if isinstance(load_p, str) and load_p.strip():
-                    _load_engram_state(str(load_p), self.connectome, adc=self.adc)
-                    try:
-                        self.logger.info("engram_loaded", extra={"extra": {"path": str(load_p)}})
-                    except Exception:
-                        pass
-                    # Clear directive from phase file to avoid repeated loads
-                    try:
-                        data2 = dict(data)
-                        data2.pop("load_engram", None)
-                        with open(pth, "w", encoding="utf-8") as fh:
-                            json.dump(data2, fh, ensure_ascii=False, indent=2)
-                        # Refresh mtime snapshot
+                pth = getattr(self, "phase_file", None)
+                if not pth or not os.path.exists(pth):
+                    return
+                try:
+                    st = os.stat(pth)
+                    mt = float(getattr(st, "st_mtime", 0.0))
+                except Exception:
+                    return
+                if self._phase_mtime is not None and mt <= float(self._phase_mtime):
+                    return
+                with open(pth, "r", encoding="utf-8") as fh:
+                    data = json.load(fh)
+                if not isinstance(data, dict):
+                    return
+                # Merge defaults for simple {"phase": n} shape
+                phase_idx = int(data.get("phase", self._phase.get("phase", 0)))
+                prof = self._default_phase_profiles().get(phase_idx, {})
+                # One-shot engram load if requested by control plane
+                try:
+                    load_p = data.get("load_engram", None)
+                    if isinstance(load_p, str) and load_p.strip():
+                        _load_engram_state(str(load_p), self.connectome, adc=self.adc)
                         try:
-                            st2 = os.stat(pth)
-                            mt = float(getattr(st2, "st_mtime", mt))
+                            self.logger.info("engram_loaded", extra={"extra": {"path": str(load_p)}})
                         except Exception:
                             pass
-                        data = data2
-                    except Exception:
-                        pass
+                        # Clear directive from phase file to avoid repeated loads
+                        try:
+                            data2 = dict(data)
+                            data2.pop("load_engram", None)
+                            with open(pth, "w", encoding="utf-8") as fh:
+                                json.dump(data2, fh, ensure_ascii=False, indent=2)
+                            # Refresh mtime snapshot
+                            try:
+                                st2 = os.stat(pth)
+                                mt = float(getattr(st2, "st_mtime", mt))
+                            except Exception:
+                                pass
+                            data = data2
+                        except Exception:
+                            pass
+                except Exception:
+                    pass
+                # Overlay any explicit fields from file (skip reserved keys)
+                for k, v in data.items():
+                    if k in ("phase", "load_engram"):
+                        continue
+                    if isinstance(v, dict):
+                        prof[k] = {**prof.get(k, {}), **v}
+                    else:
+                        prof[k] = v
+                # Apply
+                self._phase = {"phase": phase_idx, **prof}
+                self._apply_phase_profile(prof)
+                self._phase_mtime = mt
+                try:
+                    self.logger.info("phase_applied", extra={"extra": {"phase": phase_idx, "profile": prof}})
+                except Exception:
+                    pass
             except Exception:
                 pass
-
-            # Overlay any explicit fields from file (skip reserved keys)
-            for k, v in data.items():
-                if k in ("phase", "load_engram"):
-                    continue
-                if isinstance(v, dict):
-                    prof[k] = {**prof.get(k, {}), **v}
-                else:
-                    prof[k] = v
-            # Apply
-            self._phase = {"phase": phase_idx, **prof}
-            self._apply_phase_profile(prof)
-            self._phase_mtime = mt
-            try:
-                self.logger.info("phase_applied", extra={"extra": {"phase": phase_idx, "profile": prof}})
-            except Exception:
-                pass
-        except Exception:
-            pass
-
+    
     def run(self, duration_s:int=None):
         self.ute.start()
         self.logger.info("nexus_started", extra={"extra": {"N": self.N, "k": self.k, "hz": self.hz, "domain": self.domain, "dom_mod": self.dom_mod}})
@@ -720,15 +658,8 @@ class Nexus:
                 except Exception:
                     density = 0.0
 
-                # IDF rarity scaling for novelty (void-faithful, content-bearing)
-                try:
-                    idf_scale = float(self._idf_scale_for_tokens(list(tick_tokens))) * float(getattr(self, "novelty_idf_gain", 1.0))
-                    if idf_scale < 0.5:
-                        idf_scale = 0.5
-                    elif idf_scale > 2.0:
-                        idf_scale = 2.0
-                except Exception:
-                    idf_scale = 1.0
+                # IDF novelty is composer/telemetry-only; keep dynamics neutral per safe pattern
+                idf_scale = 1.0
 
                 # TD-like signal from topology change (normalized delta in active edges)
                 try:
@@ -823,6 +754,26 @@ class Nexus:
                         # Update ADC after extracting topic so we don't interfere with its internal logic
                         self.adc.update_from(obs_batch)
                         adc_metrics = self.adc.get_metrics()
+                        # Optionally fold event-driven metrics (feature-flagged; telemetry-only)
+                        try:
+                            if getattr(self, "_evt_metrics", None) is not None:
+                                evs = _obs_to_events(obs_batch)
+                                for _ev in evs:
+                                    try:
+                                        self._evt_metrics.update(_ev)
+                                    except Exception:
+                                        pass
+                                try:
+                                    self._evt_metrics.update(_adc_event(adc_metrics, t=int(step)))
+                                except Exception:
+                                    pass
+                                try:
+                                    evsnap = self._evt_metrics.snapshot()
+                                    m.update(evsnap)
+                                except Exception:
+                                    pass
+                        except Exception:
+                            pass
                         # fold ADC metrics in; also add cycle hits to the cycle proxy so b1_z sees them
                         m.update(adc_metrics)
                         m["complexity_cycles"] = float(m.get("complexity_cycles", 0.0)) + float(adc_metrics.get("adc_cycle_hits", 0.0))
@@ -922,46 +873,60 @@ class Nexus:
                 try:
                     val_v2 = float(m.get("sie_v2_valence_01", m.get("sie_valence_01", 0.0)))
                     spike = bool(m.get("b1_spike", False))
-                    if self.speak_auto and spike:
-                        if val_v2 >= self.speak_valence_thresh:
+                    if self.speak_auto:
+                        can_speak, reason = _speak_gate(val_v2, spike, float(self.speak_valence_thresh))
+                        if can_speak:
                             # Compose; do not suppress due to lack of topic/tokens. Model controls content fully.
                             seed_material = tick_tokens if tick_tokens else void_topic_symbols
                             speech = self._compose_say_text(m, int(step), seed_tokens=seed_material)
+                            # k from control-plane or env; discovery default 0.0
+                            try:
+                                composer_k = float(getattr(self, "_phase", {}).get("composer_idf_k", float(os.getenv("COMPOSER_IDF_K", "0.0"))))
+                            except Exception:
+                                composer_k = 0.0
+                            # Composer-local novelty IDF + score (telemetry/emitter only; does not affect dynamics)
+                            novelty_idf, score_out = _novelty_and_score(
+                                speech,
+                                getattr(self, "_lexicon", {}) or {},
+                                int(getattr(self, "_doc_count", 0)),
+                                text_utils.tokenize_text,
+                                float(composer_k),
+                                float(val_v2),
+                            )
+                            # Update learned lexicon after computing novelty (avoid self-bias in estimate)
                             self._update_lexicon_and_ngrams(speech)
+                            why = _telemetry_why_base(self, m, int(step))
+                            try:
+                                why["novelty_idf"] = float(novelty_idf)
+                                why["composer_idf_k"] = float(composer_k)
+                            except Exception:
+                                pass
                             self.utd.emit_macro(
                                 "say",
                                 {
                                     "text": speech,
-                                    "why": {
-                                        "t": int(step),
-                                        "phase": int(getattr(self, "_phase", {}).get("phase", 0)),
-                                        "b1_z": float(m.get("b1_z", 0.0)),
-                                        "cohesion_components": int(m.get("cohesion_components", 0)),
-                                        "vt_coverage": float(m.get("vt_coverage", 0.0)),
-                                        "vt_entropy": float(m.get("vt_entropy", 0.0)),
-                                        "connectome_entropy": float(m.get("connectome_entropy", 0.0)),
-                                        "sie_valence_01": float(m.get("sie_valence_01", 0.0)),
-                                        "sie_v2_valence_01": float(m.get("sie_v2_valence_01", m.get("sie_valence_01", 0.0))),
-                                    },
+                                    "why": why,
                                 },
-                                score=val_v2,
+                                score=score_out,
                             )
                         else:
-                            try:
-                                self.logger.info(
-                                    "speak_suppressed",
-                                    extra={
-                                        "extra": {
-                                            "reason": "low_valence",
-                                            "val": val_v2,
-                                            "thresh": float(self.speak_valence_thresh),
-                                            "b1_z": float(m.get("b1_z", 0.0)),
-                                            "t": int(step),
-                                        }
-                                    },
-                                )
-                            except Exception:
-                                pass
+                            # Log suppression only for low valence (silent when no spike)
+                            if reason == "low_valence":
+                                try:
+                                    self.logger.info(
+                                        "speak_suppressed",
+                                        extra={
+                                            "extra": {
+                                                "reason": "low_valence",
+                                                "val": val_v2,
+                                                "thresh": float(self.speak_valence_thresh),
+                                                "b1_z": float(m.get("b1_z", 0.0)),
+                                                "t": int(step),
+                                            }
+                                        },
+                                    )
+                                except Exception:
+                                    pass
                 except Exception:
                     pass
 
@@ -988,28 +953,7 @@ class Nexus:
                 if (step % self.status_every) == 0:
                     # Open UTD: emit a status text payload at configured interval (void-faithful score via valence)
                     try:
-                        payload = {
-                            "type": "status",
-                            "t": int(step),
-                            "neurons": int(self.N),
-                            "phase": int(m.get("phase", int(getattr(self, "_phase", {}).get("phase", 0)))),
-                            "cohesion_components": int(m.get("cohesion_components", 0)),
-                            "vt_coverage": float(m.get("vt_coverage", 0.0)),
-                            "vt_entropy": float(m.get("vt_entropy", 0.0)),
-                            "connectome_entropy": float(m.get("connectome_entropy", 0.0)),
-                            "active_edges": int(m.get("active_edges", 0)),
-                            "homeostasis_pruned": int(m.get("homeostasis_pruned", 0)),
-                            "homeostasis_bridged": int(m.get("homeostasis_bridged", 0)),
-                            "b1_z": float(m.get("b1_z", 0.0)),
-                            "adc_territories": int(m.get("adc_territories", 0)),
-                            "adc_boundaries": int(m.get("adc_boundaries", 0)),
-                            "sie_total_reward": float(m.get("sie_total_reward", 0.0)),
-                            "sie_valence_01": float(m.get("sie_valence_01", 0.0)),
-                            "sie_v2_reward_mean": float(m.get("sie_v2_reward_mean", 0.0)),
-                            "sie_v2_valence_01": float(m.get("sie_v2_valence_01", 0.0)),
-                            "ute_in_count": int(m.get("ute_in_count", 0)),
-                            "ute_text_count": int(m.get("ute_text_count", 0)),
-                        }
+                        payload = _telemetry_status(self, m, int(step))
                         score = float(m.get("sie_v2_valence_01", m.get("sie_valence_01", 0.0)))
                         self.utd.emit_text(payload, score=score)
                     except Exception:
@@ -1057,35 +1001,14 @@ class Nexus:
                             self.logger.info("checkpoint_saved", extra={"extra": {"path": str(path), "step": int(step)}})
                         except Exception:
                             pass
-                        # Rolling retention: keep last K checkpoints of the actual format we just saved (0 disables)
+                        # Rolling retention: keep last K checkpoints via helper (0 disables)
                         if getattr(self, "checkpoint_keep", 0) and int(self.checkpoint_keep) > 0:
                             try:
-                                ext = os.path.splitext(path)[1].lower()
-                                files = []
-                                for fn in os.listdir(self.run_dir):
-                                    if not fn.startswith("state_") or not fn.endswith(ext):
-                                        continue
-                                    # "state_<step><ext>"
-                                    step_str = fn[6:-len(ext)] if len(ext) > 0 else fn[6:]
-                                    try:
-                                        s = int(step_str)
-                                        files.append((s, fn))
-                                    except Exception:
-                                        pass
-                                if len(files) > int(self.checkpoint_keep):
-                                    files.sort(key=lambda x: x[0], reverse=True)
-                                    to_delete = files[int(self.checkpoint_keep):]
-                                    removed = 0
-                                    for _, fn in to_delete:
-                                        try:
-                                            os.remove(os.path.join(self.run_dir, fn))
-                                            removed += 1
-                                        except Exception:
-                                            pass
-                                    try:
-                                        self.logger.info("checkpoint_retention", extra={"extra": {"kept": int(self.checkpoint_keep), "removed": int(removed), "ext": ext}})
-                                    except Exception:
-                                        pass
+                                summary = _prune_ckpt(self.run_dir, keep=int(self.checkpoint_keep), last_path=path)
+                                try:
+                                    self.logger.info("checkpoint_retention", extra={"extra": summary})
+                                except Exception:
+                                    pass
                             except Exception:
                                 pass
                     except Exception as e:
