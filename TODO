@@ -1,0 +1,30 @@
+### Organization
+TODO Refactor codebase for maintainability
+    TODO Migrate dashboard and modularize frontend
+    TODO Migrate core/ files into subfolders
+    TODO Modularize nexus.py
+    TODO Migrate these to fum_rt subfolders: 
+
+    /mnt/ironwolf/git/Void_FUM_Private/Void_FUM_Private/Void_Unity_Proofs/tools/say_clean_view.py
+
+    /mnt/ironwolf/git/Void_FUM_Private/Void_FUM_Private/Void_Unity_Proofs/tools/utd_event_scan.py
+
+### Learning
+TODO Improve user engagement, reward to not be released programmatically like traditional RL, the model to learn inherently that rewards are boosted when everyone is happy or when it does a good job
+TODO Allow the user to give the model a small reward for doing a good job
+TODO Add a stimulus queue system
+
+### Physics
+TODO Continue work on physics derivations
+    TODO Implement physics simulations
+
+### Misc
+TODO Complete previous planned work
+ - /mnt/ironwolf/git/Void_FUM_Private/Void_FUM_Private/Void_Unity_Proofs/from_physicist_agent
+TODO Add GPU support
+
+### Docs
+TODO Update FUM Blueprints
+
+### Bugs
+TODO Fix the "echo chamber" bug in the UTD / UTE

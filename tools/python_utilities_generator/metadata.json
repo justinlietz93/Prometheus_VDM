@@ -1,0 +1,5 @@
+{
+  "name": "Python Utility Generator",
+  "description": "An AI-powered application that takes a natural language query and generates a complete, modular, and self-contained Python utility script or package.",
+  "requestFramePermissions": []
+}

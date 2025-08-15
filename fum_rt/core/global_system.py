@@ -1,4 +1,11 @@
 """
+Copyright © 2025 Justin K. Lietz, Neuroca, Inc. All Rights Reserved.
+
+This research is protected under a dual-license to foster open academic
+research while ensuring commercial applications are aligned with the project's ethical principles. Commercial use requires written permission from Justin K. Lietz.
+See LICENSE file for full terms.
+
+
 Global System Components: Active Domain Cartography (ADC) and Self‑Improvement Engine (SIE)
 Blueprint References:
 - Rule 1: Core Architectural Principle (Parallel Local & Global Systems)
