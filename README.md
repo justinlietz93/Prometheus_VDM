@@ -151,7 +151,7 @@ Files and where they live
   - Nexus reads macros at boot: [fum_rt/nexus.py](fum_rt/nexus.py)
 - Phrase bank (optional source of sentence templates, loaded at boot):
   - Per‑run: runs/&lt;timestamp&gt;/phrase_bank.json
-  - Fallback: [from_physicist_agent/phrase_bank_min.json](from_physicist_agent/phrase_bank_min.json)
+  - Fallback (packaged): [fum_rt/io/lexicon/phrase_bank_min.json](fum_rt/io/lexicon/phrase_bank_min.json)
 - Lexicon (auto‑learned vocabulary from inputs/outputs): runs/&lt;timestamp&gt;/lexicon.json
   - Grows during the run; periodically saved by the runtime
 
@@ -177,7 +177,7 @@ Example macro_board.json
 Phrase bank (richer sentences)
 - The runtime loads optional sentence templates for the “say” macro from either:
   - runs/&lt;timestamp&gt;/phrase_bank.json, or
-  - [from_physicist_agent/phrase_bank_min.json](from_physicist_agent/phrase_bank_min.json)
+  - [fum_rt/io/lexicon/phrase_bank_min.json](fum_rt/io/lexicon/phrase_bank_min.json)
 - Expected shape:
 ```json
 {
