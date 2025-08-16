@@ -13,6 +13,7 @@ TODO Refactor codebase for maintainability
 TODO Improve user engagement, reward to not be released programmatically like traditional RL, the model to learn inherently that rewards are boosted when everyone is happy or when it does a good job
 TODO Allow the user to give the model a small reward ad hoc for doing a good job
 TODO Add a stimulus queue system for phased learning
+TODO Complete the Void Substrate equations (RE-VGSP / GDSP) to replace the raw universal void implementations
 
 ### Physics
 TODO Continue work on physics derivations
