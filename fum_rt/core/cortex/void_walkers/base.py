@@ -18,6 +18,7 @@ Contract:
       - "edges": int (edge probes to attempt)
       - "ttl":   int (max walk depth per seed)
       - "tick":  int (current tick for event timestamps)
+      - "seeds": Sequence[int] (preferred start nodes; bounded; falls back to map heads or uniform)
 
 Returned events use only core event types:
 - VTTouchEvent(kind="vt_touch", t, token=node, w=1.0)
@@ -157,13 +158,28 @@ class BaseScout:
         b_edg = max(0, b_edg)
         ttl = max(1, ttl)
 
-        # Seed pool: prefer priority nodes when available
+        # Seed pool: prefer explicit seeds, else priority, else uniform
+        seeds = None
+        if isinstance(budget, dict):
+            try:
+                seeds = list(budget.get("seeds", []))
+            except Exception:
+                seeds = None
         priority: Set[int] = set()
         try:
             priority = self._priority_set(maps)
         except Exception:
             priority = set()
-        pool: Sequence[int] = tuple(priority) if priority else tuple(range(N))
+        pool: Sequence[int]
+        if seeds:
+            try:
+                pool = tuple(int(s) for s in seeds if 0 <= int(s) < N)
+                if not pool:
+                    pool = tuple(priority) if priority else tuple(range(N))
+            except Exception:
+                pool = tuple(priority) if priority else tuple(range(N))
+        else:
+            pool = tuple(priority) if priority else tuple(range(N))
 
         edges_emitted = 0
         visits_done = 0
