@@ -10,7 +10,7 @@ HeatScout (read-only, void-faithful):
 """
 
 from typing import Any, Dict, Optional, Set
-from fum_rt.core.cortex.scouts.base import BaseScout
+from fum_rt.core.cortex.void_walkers.base import BaseScout
 from fum_rt.core.proprioception.events import BaseEvent  # re-export type for hints
 
 
