@@ -337,6 +337,118 @@ class SparseConnectome:
             for j in neigh_sets[i]:
                 neigh_sets[j].add(i)
 
+        # Sparse structural maintenance (adaptive pruning, lightweight)
+        # Rationale:
+        # - In sparse mode, adjacency is rebuilt each tick; to expose real pruning dynamics and
+        #   avoid permanent over-connection, we drop edges whose implicit weight |W_i*W_j| is
+        #   below prune_factor * mean(|W_i*W_j|) over current edges.
+        # - This keeps complexity bounded and allows components to split when pathologies exist.
+        try:
+            # Collect undirected effective weights for current edges
+            weights = []
+            for i in range(N):
+                wi = float(self.W[i])
+                for j in neigh_sets[i]:
+                    jj = int(j)
+                    if jj <= i:
+                        continue
+                    weights.append(abs(wi * float(self.W[jj])))
+
+            pruned_pairs = 0
+            if weights:
+                mean_w = float(np.mean(np.asarray(weights, dtype=np.float64)))
+                prune_factor = float(getattr(self, "prune_factor", 0.10))
+                prune_threshold = (prune_factor * mean_w) if mean_w > 0.0 else 0.0
+                if prune_threshold > 0.0:
+                    # Remove edges below adaptive threshold; maintain undirected symmetry
+                    for i in range(N):
+                        wi = float(self.W[i])
+                        # collect first to avoid mutating set during iteration
+                        to_remove = []
+                        for j in neigh_sets[i]:
+                            jj = int(j)
+                            if jj <= i:
+                                continue
+                            wij = abs(wi * float(self.W[jj]))
+                            if wij < prune_threshold:
+                                to_remove.append(jj)
+                        for jj in to_remove:
+                            if jj in neigh_sets[i]:
+                                neigh_sets[i].remove(jj)
+                            if i in neigh_sets[jj]:
+                                neigh_sets[jj].remove(i)
+                                pruned_pairs += 1
+            # Expose pruning stats for diagnostics (undirected pairs)
+            try:
+                setattr(self, "_last_pruned_count", int(pruned_pairs))
+            except Exception:
+                pass
+            # No bridging in sparse maintenance (keep light); report zero bridged edges
+            try:
+                setattr(self, "_last_bridged_count", 0)
+            except Exception:
+                pass
+        except Exception:
+            # Fail-soft to preserve runtime continuity
+            pass
+
+        # --- Sparse cohesion bridging (event-driven, budgeted, no scans) ---
+        # Goal: when multiple components exist, propose up to B symmetric bridges using the
+        # same void-affinity sampler used for growth. This keeps dynamics lively (cycles/components)
+        # without any NxN work. Budget defaults to 8 per tick; can be tuned via instance attribute.
+        try:
+            # Disjoint-Set over current sparse topology (O(N+E))
+            dsu = _DSU(N)
+            for i in range(N):
+                for j in neigh_sets[i]:
+                    dsu.union(i, int(j))
+            roots = set(int(dsu.find(i)) for i in range(N))
+            comp_count = len(roots)
+
+            bridged_pairs = 0
+            if comp_count > 1:
+                B = int(getattr(self, "bridge_budget", 8))
+                B = max(0, B)
+                if B > 0:
+                    # Use alias sampler (a) to pick candidate endpoints cheaply
+                    attempts = 0
+                    max_attempts = int(max(32, B * 64))
+                    while bridged_pairs < B and attempts < max_attempts:
+                        attempts += 1
+                        ui = self._alias_draw(prob, alias, 1)
+                        vi = self._alias_draw(prob, alias, 1)
+                        if ui.size == 0 or vi.size == 0:
+                            continue
+                        u = int(ui[0]); v = int(vi[0])
+                        if u == v:
+                            continue
+                        # Skip if already adjacent
+                        if (v in neigh_sets[u]) or (u in neigh_sets[v]):
+                            continue
+                        # Bridge only across distinct components
+                        if dsu.find(u) == dsu.find(v):
+                            continue
+                        # Score by void affinity; require positive support
+                        s_uv = float(a[u] * a[v] - self.lambda_omega * abs(om[u] - om[v]))
+                        if s_uv <= 0.0:
+                            continue
+                        # Add symmetric bridge and union components
+                        neigh_sets[u].add(v)
+                        neigh_sets[v].add(u)
+                        dsu.union(u, v)
+                        bridged_pairs += 1
+            # Expose bridged count for diagnostics
+            try:
+                setattr(self, "_last_bridged_count", int(bridged_pairs))
+            except Exception:
+                pass
+        except Exception:
+            # Fail-soft for bridging; keep prior counters if present
+            try:
+                _ = int(getattr(self, "_last_bridged_count", 0))
+            except Exception:
+                pass
+
         # Freeze adjacency
         self.adj = [np.fromiter(sorted(s), dtype=np.int32) if s else np.zeros(0, dtype=np.int32) for s in neigh_sets]
 
