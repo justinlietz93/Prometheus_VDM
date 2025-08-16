@@ -32,44 +32,12 @@ from __future__ import annotations
 import numpy as np
 import networkx as nx
 from typing import List, Set
+import os as _os
 from .void_dynamics_adapter import universal_void_dynamics, delta_re_vgsp, delta_gdsp
 from .announce import Observation
 
 
-class _DSU:
-    """Disjoint-set union (union-find) with path compression + union by rank."""
-    def __init__(self, n: int):
-        self.parent = np.arange(n, dtype=np.int32)
-        self.rank = np.zeros(n, dtype=np.int8)
-
-    def find(self, x: int) -> int:
-        p = self.parent
-        while p[x] != x:
-            p[x] = p[p[x]]
-            x = p[x]
-        return x
-
-    def union(self, a: int, b: int):
-        ra, rb = self.find(a), self.find(b)
-        if ra == rb:
-            return
-        if self.rank[ra] < self.rank[rb]:
-            self.parent[ra] = rb
-        elif self.rank[rb] < self.rank[ra]:
-            self.parent[rb] = ra
-        else:
-            self.parent[rb] = ra
-            self.rank[ra] = self.rank[ra] + 1
-
-    def count_sets(self, mask: np.ndarray | None = None) -> int:
-        if mask is None:
-            roots = set(int(self.find(i)) for i in range(self.parent.size))
-            return len(roots)
-        idx = np.nonzero(mask)[0]
-        if idx.size == 0:
-            return 0
-        roots = set(int(self.find(int(i))) for i in idx)
-        return len(roots)
+from .primitives.dsu import DSU as _DSU
 
 
 class SparseConnectome:
@@ -106,6 +74,14 @@ class SparseConnectome:
         # External stimulation buffer (deterministic symbol→group; decays each tick)
         self._stim = np.zeros(self.N, dtype=np.float32)
         self._stim_decay = 0.90
+        # Active-edge/fragment trackers (incremental; void-faithful)
+        self._edges_active = 0
+        self._vertices_active = 0
+        self._last_edges_active = 0
+        self._last_vertices_active = 0
+        self._frag_dsu = _DSU(self.N)
+        self._frag_components_lb = self.N
+        self._frag_dirty_since = None
 
     # --- Alias sampler (Vose) to sample candidates ~ ReLU(Δalpha) in O(N) build + O(1) draw ---
     def _build_alias(self, p: np.ndarray):
@@ -397,13 +373,23 @@ class SparseConnectome:
         # same void-affinity sampler used for growth. This keeps dynamics lively (cycles/components)
         # without any NxN work. Budget defaults to 8 per tick; can be tuned via instance attribute.
         try:
-            # Disjoint-Set over current sparse topology (O(N+E))
-            dsu = _DSU(N)
-            for i in range(N):
-                for j in neigh_sets[i]:
-                    dsu.union(i, int(j))
-            roots = set(int(dsu.find(i)) for i in range(N))
-            comp_count = len(roots)
+            # Use frag tracker lower-bound components (active graph), avoid structural scans
+            comp_count = int(getattr(self, "_frag_components_lb", 1))
+            _dirty = getattr(self, "_frag_dirty_since", None)
+            # Optionally early-audit with a small budget to refresh active components
+            try:
+                _budget = int(_os.getenv("FRAG_AUDIT_EDGES", "200000"))
+            except Exception:
+                _budget = 200000
+            try:
+                if _dirty is not None and _budget > 0:
+                    # Best-effort refresh of active components (bounded)
+                    # This calls an internal audit that streams over up to _budget active edges.
+                    self._maybe_audit_frag(int(_budget))
+                    comp_count = int(getattr(self, "_frag_components_lb", comp_count))
+            except Exception:
+                pass
+            dsu = getattr(self, "_frag_dsu", _DSU(N))
 
             bridged_pairs = 0
             if comp_count > 1:
@@ -436,6 +422,13 @@ class SparseConnectome:
                         neigh_sets[u].add(v)
                         neigh_sets[v].add(u)
                         dsu.union(u, v)
+                        try:
+                            self._frag_dsu = dsu
+                            if int(getattr(self, "_frag_components_lb", 1)) > 1:
+                                self._frag_components_lb = int(self._frag_components_lb) - 1
+                            self._frag_dirty_since = None
+                        except Exception:
+                            pass
                         bridged_pairs += 1
             # Expose bridged count for diagnostics
             try:
@@ -470,6 +463,56 @@ class SparseConnectome:
         except Exception:
             pass
 
+        # 4.2) Active-edge counters and frag tracker (void-faithful, streaming)
+        try:
+            E_new = 0
+            _seen = set()
+            for (ii, jj) in self._active_edge_iter():
+                E_new += 1
+                _seen.add(int(ii)); _seen.add(int(jj))
+            V_new = int(len(_seen))
+            # mark dirty on edge-off (E decreased)
+            try:
+                if int(getattr(self, "_edges_active", 0)) > int(E_new):
+                    if getattr(self, "_frag_dirty_since", None) is None:
+                        self._frag_dirty_since = int(getattr(self, "_tick", 0))
+            except Exception:
+                pass
+            self._last_edges_active = int(getattr(self, "_edges_active", 0))
+            self._last_vertices_active = int(getattr(self, "_vertices_active", 0))
+            self._edges_active = int(E_new)
+            self._vertices_active = int(V_new)
+            # optional budgeted audit
+            try:
+                _audit_every = int(_os.getenv("FRAG_AUDIT_EVERY", "50"))
+            except Exception:
+                _audit_every = 50
+            try:
+                _budget = int(_os.getenv("FRAG_AUDIT_EDGES", "200000"))
+            except Exception:
+                _budget = 200000
+            if (getattr(self, "_frag_dirty_since", None) is not None or (int(getattr(self, "_tick", 0)) % max(1, _audit_every) == 0)) and _budget > 0:
+                self._maybe_audit_frag(int(_budget))
+            # cycles estimate
+            try:
+                comp_lb = int(getattr(self, "_frag_components_lb", 1))
+            except Exception:
+                comp_lb = 1
+            cycles_est = int(max(0, int(E_new) - int(V_new) + int(comp_lb)))
+            # augment findings
+            try:
+                self.findings.update({
+                    "edges_active": int(E_new),
+                    "vertices_active": int(V_new),
+                    "components_lb": int(comp_lb),
+                    "frag_dirty_age": int((int(getattr(self, "_tick", 0)) - int(getattr(self, "_frag_dirty_since", 0)))) if getattr(self, "_frag_dirty_since", None) is not None else 0,
+                    "cycles_est": int(cycles_est),
+                })
+            except Exception:
+                pass
+        except Exception:
+            pass
+
         # 5) Continuous traversal to emit vt_* findings
         try:
             self._void_traverse(a, om)
@@ -498,16 +541,57 @@ class SparseConnectome:
                 if (wi * float(W[j])) > th:
                     yield (i, j)
 
+    def _maybe_audit_frag(self, budget_edges: int) -> None:
+        """
+        Budgeted active-fragment audit (void-faithful):
+        - Rebuild a DSU over ACTIVE edges only, streaming via _active_edge_iter().
+        - Only processes up to 'budget_edges' edges; computes a lower-bound component count
+          across the 'seen' active vertices.
+        - Clears the dirty flag only when processing completes before budget exhaust.
+        """
+        try:
+            N = int(self.N)
+            dsu = _DSU(N)
+            seen: set[int] = set()
+            processed = 0
+            b = int(max(0, int(budget_edges)))
+            for (i, j) in self._active_edge_iter():
+                ii = int(i); jj = int(j)
+                dsu.union(ii, jj)
+                seen.add(ii); seen.add(jj)
+                processed += 1
+                if b > 0 and processed >= b:
+                    break
+            if seen:
+                roots = set(int(dsu.find(idx)) for idx in seen)
+                comp_lb = int(len(roots))
+            else:
+                # No active vertices observed → treat as fully fragmented across N nodes
+                comp_lb = N
+            # Update trackers
+            self._frag_dsu = dsu
+            self._frag_components_lb = int(comp_lb)
+            # Clear dirty flag only if we did not exhaust budget
+            if not (b > 0 and processed >= b):
+                self._frag_dirty_since = None
+        except Exception:
+            # Fail-soft: keep previous DSU/lower-bound
+            pass
+
     def active_edge_count(self) -> int:
         return sum(1 for _ in self._active_edge_iter())
 
     def connected_components(self) -> int:
-        """Topology-only components (Stage‑1 cohesion) over adjacency lists."""
+        """Active-subgraph components (Stage‑1 cohesion) over active edges only."""
         dsu = _DSU(self.N)
-        for i in range(self.N):
-            for j in self.adj[i]:
-                dsu.union(i, int(j))
-        return dsu.count_sets()
+        e_active = 0
+        act_nodes = set()
+        for (i, j) in self._active_edge_iter():
+            dsu.union(i, j)
+            e_active += 1
+            act_nodes.add(int(i))
+            act_nodes.add(int(j))
+        return (len(set(int(dsu.find(idx)) for idx in act_nodes)) if e_active > 0 else self.N)
 
     def cyclomatic_complexity(self) -> int:
         """
@@ -516,13 +600,13 @@ class SparseConnectome:
         """
         dsu = _DSU(self.N)
         e_active = 0
-        active_nodes = np.zeros(self.N, dtype=bool)
+        act_nodes = set()
         for (i, j) in self._active_edge_iter():
             dsu.union(i, j)
             e_active += 1
-            active_nodes[i] = True
-            active_nodes[j] = True
-        c_active = dsu.count_sets(mask=active_nodes) if e_active > 0 else self.N
+            act_nodes.add(int(i))
+            act_nodes.add(int(j))
+        c_active = (len(set(int(dsu.find(idx)) for idx in act_nodes)) if e_active > 0 else self.N)
         cycles = e_active - self.N + c_active
         return int(max(0, cycles))
 

@@ -323,6 +323,12 @@ def run_loop(nx: Any, t0: float, step: int, duration_s: Optional[int] = None) ->
             pass
 
         while True:
+            # micro-profiler: high-resolution clock
+            try:
+                _pc = time.perf_counter
+            except Exception:
+                _pc = time.time
+            _t0 = _pc()
             tick_start = time.time()
 
             # 1) ingest
@@ -346,6 +352,7 @@ def run_loop(nx: Any, t0: float, step: int, duration_s: Optional[int] = None) ->
             # 2) SIE drive + update connectome
             # use wall-clock seconds since start as t
             t = time.time() - t0
+            _t1 = _pc()
 
             # IDF novelty is composer/telemetry-only; keep dynamics neutral per safe pattern
             idf_scale = 1.0
@@ -365,6 +372,7 @@ def run_loop(nx: Any, t0: float, step: int, duration_s: Optional[int] = None) ->
 
             # 3) telemetry fold (bus drain + ADC + optional event metrics + B1)
             void_topic_symbols: Set[Any] = set()
+            _t2 = _pc()
             try:
                 m, vts = _tick_fold(
                     nx,
@@ -497,6 +505,12 @@ def run_loop(nx: Any, t0: float, step: int, duration_s: Optional[int] = None) ->
                 m["sie_valence_01"] = float(drive.get("valence_01", 0.0))
             except Exception:
                 pass
+            # Homeostasis counters from sparse maintenance/bridging (telemetry-only)
+            try:
+                m["homeostasis_pruned"] = int(getattr(nx.connectome, "_last_pruned_count", 0))
+                m["homeostasis_bridged"] = int(getattr(nx.connectome, "_last_bridged_count", 0))
+            except Exception:
+                pass
             comps = drive.get("components", {})
             try:
                 items = comps.items() if isinstance(comps, dict) else []
@@ -569,7 +583,13 @@ def run_loop(nx: Any, t0: float, step: int, duration_s: Optional[int] = None) ->
             except Exception:
                 pass
 
-            # Structured tick log
+            # Structured tick log (batchable via LOG_EVERY to reduce I/O)
+            try:
+                _log_every_env = os.getenv("LOG_EVERY", None)
+                if _log_every_env is not None:
+                    nx.log_every = int(max(1, int(_log_every_env)))
+            except Exception:
+                pass
             if (step % int(getattr(nx, "log_every", 1))) == 0:
                 try:
                     nx.logger.info("tick", extra={"extra": m})
@@ -607,6 +627,18 @@ def run_loop(nx: Any, t0: float, step: int, duration_s: Optional[int] = None) ->
             # Checkpointing + retention (delegated)
             try:
                 _save_tick_checkpoint(nx, int(step))
+            except Exception:
+                pass
+
+            # micro-profiler finalize
+            try:
+                _t3 = _pc()
+                nx.prof = {
+                    "step": float(_t1 - _t0) if True else 0.0,
+                    "fold": float(_t2 - _t1) if True else 0.0,
+                    "metrics": float(_t3 - _t2) if True else 0.0,
+                    "tick": float(_t3 - _t0) if True else 0.0,
+                }
             except Exception:
                 pass
 
