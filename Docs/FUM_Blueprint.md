@@ -626,3 +626,121 @@ Frame this as the FUM's "Cellular Engram Archive." It is the process by which th
 *   This protocol interacts with all components of the FUM, as it is responsible for saving their a-z state.
 
 ---
+
+## 2025-08-16 Addendum — Void-Faithful Contracts and Equations (Authoritative)
+
+This addendum supersedes outdated scheduler-driven language and pins core claims to formal equations and runtime contracts. It is the authoritative reference for reviewers and CI guardrails.
+
+1) Event-driven ADC (Rule 7, update)
+- Principle: ADC is incremental and bus-driven. No periodic schedulers, no global scans.
+- Mechanism: ADC consumes compact Observation events published by walkers and traversal:
+  - kinds: "region_stat" | "cycle_hit" | "boundary_probe" | "novel_frontier"
+  - schema: see [Observation](fum_rt/core/announce.py:34)
+- Complexity: O(#observations) per tick (bounded), independent of N.
+- Runtime contract:
+  - Bus is a bounded FIFO with overwrite-on-full: [AnnounceBus](fum_rt/core/bus.py:31)
+  - ADC incremental update: [ADC.update_from()](fum_rt/core/adc.py:110)
+  - ADC metrics for telemetry/tests: [ADC.get_metrics()](fum_rt/core/adc.py:123)
+- Code anchors:
+  - Drain + fold: [tick_fold()](fum_rt/runtime/telemetry.py:116)
+  - Observation adapters to core events: [observations_to_events()](fum_rt/runtime/events_adapter.py:22)
+
+2) GDSP emergent triggers (no schedulers)
+- Principle: GDSP actions are triggered only by emergent signals; fixed cadences are forbidden.
+- Triggers (any):
+  - Topology alarm: cohesion_components > 1 (fragmentation)
+  - Acute TD excursion: |td_signal| ≥ GDSP_TD_THRESH (default 0.2)
+  - B1 topology spike (hysteresis-gated)
+- Implementation: [_maybe_run_gdsp()](fum_rt/runtime/loop.py:126)
+  - Cadence gate removed; emergent gating enforced.
+  - Territory-scoped actions with strict budgets in [GDSPActuator.run()](fum_rt/core/neuroplasticity/gdsp.py:429)
+- Legacy compatibility (function entrypoints added):
+  - [run_gdsp_synaptic_actuator()](fum_rt/core/neuroplasticity/gdsp.py:482)
+  - [get_gdsp_status_report()](fum_rt/core/neuroplasticity/gdsp.py:502)
+
+3) Maps/frame UI contract (frozen)
+- Header (JSON): {
+  topic:"maps/frame",
+  tick:int,
+  n:int,
+  shape:[H,W],
+  channels:["heat","exc","inh"],
+  dtype:"f32",
+  endianness:"LE",
+  stats:{heat:{min,max}, exc:{min,max}, inh:{min,max}}
+}
+- Payload: Float32 LE bytes concatenated: heat[n] | exc[n] | inh[n]
+- Publisher path:
+  - Stage in Core: [CoreEngine.step() maps builder](fum_rt/core/engine.py:201)
+  - Publish on bus: [tick_fold() maps publisher](fum_rt/runtime/telemetry.py:252)
+- Performance: O(n_pixels) copy of three vectors; statistics from bounded working sets only (no scans).
+
+4) Inhibitory/excitatory event sources without scans
+- Event synthesis (bounded, bus-driven):
+  - From "region_stat": VTTouchEvent + excitatory SpikeEvent for nodes: [observations_to_events()](fum_rt/runtime/events_adapter.py:58)
+  - From "cycle_hit": DeltaEvent (B1) + EdgeOnEvent + excitatory SpikeEvents for endpoints: [observations_to_events()](fum_rt/runtime/events_adapter.py:42)
+  - Optional signed ΔW routing from TD sign (bounded working set, env-gated by SYNTH_DELTA_W): [tick_fold() ΔW](fum_rt/runtime/telemetry.py:155)
+  - Adapter for Observation(kind="delta_w") → DeltaWEvent: [observations_to_events()](fum_rt/runtime/events_adapter.py:86)
+- Reducers (void-faithful; no scans of W/topology):
+  - Heat/Exc/Inh fold only events: [HeatMap.fold()](fum_rt/core/cortex/maps/heatmap.py:49), [ExcitationMap.fold()](fum_rt/core/cortex/maps/excitationmap.py:44), [InhibitionMap.fold()](fum_rt/core/cortex/maps/inhibitionmap.py:44)
+
+5) Formal equations and EFT anchoring
+
+5.1 Discrete on-site law (dimensionless, per-node)
+dW/dt = (α − β) W − α W²
+- Interpretation:
+  - α: growth drive coefficient
+  - β: decay (void debt) coefficient
+  - Fixed point at W*=0 and W*=(α−β)/α when α>β
+- This is the local potential flow used by universal void dynamics.
+
+5.2 Continuum EFT (dimensionless scalar field φ)
+□φ + α φ² − (α − β) φ = 0
+- □ = ∂²/∂t² − c² ∇²
+- Kinetic normalization: Z = 1/2; lattice mapping yields c² = 2 J a² (J: coupling, a: lattice spacing). Units can adopt c=1 by choice of τ,a (time and length units).
+
+5.3 Units map (sketch for reviewers)
+- Choose lattice a and time scale τ such that: c=1 ⇒ 2 J a² / τ² = 1 ⇒ τ = a √(2J).
+- φ scaling by φ₀ maintains dimensionless potential; (α,β) are dimensionless in this normalization.
+
+5.4 Void-debt modulation (dimensionless and bounded)
+- Use debt ratio ρ = β / α in [0, ∞).
+- Let stability s ∈ [0,1]. A bounded modulation example:
+  m = 1 + s² / (1 + ρ)
+- Clip m in [m_min, m_max] with m_min ≥ 0 to avoid runaway.
+- Any runtime using this modulation must log the chosen bounds and α,β provenance (EFT or discrete law calibration).
+
+6) Control impact metric (frozen definition, CI target)
+- Definition: control_impact = ||Δstate_non_emergent||₁ / ||Δstate_total||₁, computed per tick and averaged over a fixed window (e.g., 2k ticks).
+  - Δstate_non_emergent includes changes from explicit, non-emergent code paths (manual clamps, schedulers, forced rewires, direct W edits outside void dynamics, etc.).
+  - Δstate_total includes all changes (void dynamics, learning, structural updates).
+- Target: control_impact < 1e-5
+- CI guard suggestion:
+  - Golden run with fixed seed and 2–3k ticks; assert moving average < 1e-5.
+  - Denylist scan for schedulers (e.g., “STRUCT_EVERY”, “cron”, “every N”) in runtime/ and core/ paths, excluding test fixtures.
+
+7) CI guardrails (tests/linters)
+- No ML imports: denylist (“torch.nn”, “sklearn”, “tensorflow”, “pytorch_lightning”, etc.) outside substrate backends.
+- No global scans in event reducers/engine maps path:
+  - grep/AST deny “synaptic_weights”, “eligibility_traces”, “.adj”, “toarray”, “tocsr”, “csr”, “coo” within:
+    - core/cortex/maps/*.py
+    - core/engine.py maps section
+- Maps/frame header tokens present: "topic":"maps/frame", "channels":["heat","exc","inh"], "dtype":"f32", "endianness":"LE"
+- Emergent-only GDSP:
+  - Assert no cadence gates; triggers only via metrics in [runtime/loop.py](fum_rt/runtime/loop.py:139)
+
+8) Reviewer pointers (code anchors)
+- Bus: [AnnounceBus](fum_rt/core/bus.py:31)
+- Observation schema: [Observation](fum_rt/core/announce.py:34)
+- Telemetry fold (drain+ADC+evt path): [tick_fold()](fum_rt/runtime/telemetry.py:116)
+- Engine maps builder (no scans): [CoreEngine.step() maps section](fum_rt/core/engine.py:201)
+- Event adapters (vt_touch/spike/delta_w): [observations_to_events()](fum_rt/runtime/events_adapter.py:22)
+- GDSP emergent gating: [_maybe_run_gdsp()](fum_rt/runtime/loop.py:126)
+- GDSP class (budgeted, territory-scoped): [GDSPActuator](fum_rt/core/neuroplasticity/gdsp.py:25)
+- Legacy GDSP function wrappers: [run_gdsp_synaptic_actuator()](fum_rt/core/neuroplasticity/gdsp.py:482), [get_gdsp_status_report()](fum_rt/core/neuroplasticity/gdsp.py:502)
+
+9) Deprecations (explicit)
+- Rule 7 periodic scheduling and t_cartography = 100000·e^(−α·entropy) are deprecated in favor of bus-driven ADC.
+- Any fixed-cadence structural actuator triggers are forbidden.
+
+This addendum is binding; future documentation must align or be amended to match these contracts.

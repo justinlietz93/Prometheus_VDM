@@ -1,3 +1,11 @@
+"""
+Copyright © 2025 Justin K. Lietz, Neuroca, Inc. All Rights Reserved.
+
+This research is protected under a dual-license to foster open academic
+research while ensuring commercial applications are aligned with the project's ethical principles. Commercial use requires written permission from Justin K. Lietz.
+See LICENSE file for full terms.
+"""
+
 from __future__ import annotations
 
 """
@@ -14,6 +22,7 @@ Policy:
 """
 
 from typing import Any, Dict, Iterable, Set, Callable, Optional, Tuple, List
+import os
 
 
 def macro_why_base(nx: Any, metrics: Dict[str, Any], step: int) -> Dict[str, Any]:
@@ -155,7 +164,37 @@ def tick_fold(
             try:
                 bus = getattr(nx, "bus", None)
                 if bus is not None:
+                    # Publish neutral 'delta' for b1/why folding
                     bus.publish(_DynObs(tick=int(step), kind="delta", nodes=[], meta=meta))
+                    # Optionally synthesize bounded ΔW events to drive Exc/Inh maps without scans
+                    try:
+                        synth_flag = str(os.getenv("SYNTH_DELTA_W", "0")).strip().lower() in ("1", "true", "yes", "on", "y")
+                    except Exception:
+                        synth_flag = False
+                    if synth_flag:
+                        # Select a tiny working set of nodes from this tick's symbol→index map (bounded fan-out)
+                        try:
+                            if isinstance(tick_rev_map, dict):
+                                node_keys = list(tick_rev_map.keys())
+                            else:
+                                node_keys = []
+                        except Exception:
+                            node_keys = []
+                        # Keep at most 16 nodes; prefer stable order
+                        try:
+                            nodes_sel = [int(i) for i in sorted(node_keys)[:16]]
+                        except Exception:
+                            nodes_sel = []
+                        # Map TD sign to ΔW direction; clip magnitude to avoid runaway (void-faithful bounded emit)
+                        try:
+                            tdv = float(td_signal)
+                        except Exception:
+                            tdv = 0.0
+                        sign = 1.0 if tdv >= 0.0 else -1.0
+                        mag = min(0.05, abs(tdv))  # 0 ≤ |dw| ≤ 0.05
+                        dw_val = float(sign * mag)
+                        if nodes_sel:
+                            bus.publish(_DynObs(tick=int(step), kind="delta_w", nodes=nodes_sel, meta={"dw": dw_val}))
             except Exception:
                 pass
     except Exception:
