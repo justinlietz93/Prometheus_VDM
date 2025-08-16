@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 """
-fum_rt.core.cortex.void_walkers.memory_ray_scout
+fum_rt.core.cortex.void_walkers.void_memory_ray_scout
 
 MemoryRayScout (read-only, void-faithful):
 - Implements refractive-index steering using a slow memory field m.
