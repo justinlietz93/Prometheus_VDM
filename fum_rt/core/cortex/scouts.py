@@ -23,6 +23,11 @@ Contract compliance:
 # Prefer modular implementations
 from .void_walkers.void_cold_scout import ColdScout as VoidColdScoutWalker
 from .void_walkers.void_heat_scout import HeatScout
+from .void_walkers.void_ray_scout import VoidRayScout
+from .void_walkers.void_memory_ray_scout import MemoryRayScout
+from .void_walkers.void_frontier_scout import FrontierScout
+from .void_walkers.void_cycle_scout import CycleHunterScout
+from .void_walkers.void_sentinel_scout import SentinelScout
 try:
     from .void_walkers.void_excitation_scout import ExcitationScout
 except Exception:  # pragma: no cover - optional during staged migration
@@ -61,6 +66,11 @@ __all__ = [
     "HeatScout",
     "ExcitationScout",
     "InhibitionScout",
+    "VoidRayScout",
+    "MemoryRayScout",
+    "FrontierScout",
+    "CycleHunterScout",
+    "SentinelScout",
     "ColdMap",
     "BaseScout",
     "GDSPActuator",

@@ -47,6 +47,15 @@ from fum_rt.runtime.helpers.viz import maybe_visualize as _maybe_visualize
 from fum_rt.runtime.helpers.checkpointing import save_tick_checkpoint as _save_tick_checkpoint
 from fum_rt.runtime.helpers import maybe_start_maps_ws as _maybe_start_maps_ws
 
+# Void-faithful scout runner (stateless, per-tick; no schedulers)
+from fum_rt.core.cortex.void_walkers.runner import run_scouts_once as _run_scouts_once
+from fum_rt.core.cortex.void_walkers.void_heat_scout import HeatScout
+from fum_rt.core.cortex.void_walkers.void_ray_scout import VoidRayScout
+from fum_rt.core.cortex.void_walkers.void_memory_ray_scout import MemoryRayScout
+from fum_rt.core.cortex.void_walkers.void_frontier_scout import FrontierScout
+from fum_rt.core.cortex.void_walkers.void_cycle_scout import CycleHunterScout
+from fum_rt.core.cortex.void_walkers.void_sentinel_scout import SentinelScout
+
 # ---------- Optional Learning/Actuator Adapters (default-off, safe) ----------
 def _truthy(x) -> bool:
     try:
@@ -457,6 +466,101 @@ def run_loop(nx: Any, t0: float, step: int, duration_s: Optional[int] = None) ->
                 if eng is not None:
                     # Collect core events from drained observations and ADC metrics
                     evs = []
+                    # Scouts: event-only, run once per tick under micro-budget (no schedulers)
+                    try:
+                        # Prepare bounded map heads for local routing (no scans)
+                        maps_for_scouts = {}
+                        try:
+                            hm = getattr(eng, "_heat_map", None)
+                            if hm is not None:
+                                ms = hm.snapshot() or {}
+                                if isinstance(ms, dict):
+                                    maps_for_scouts.update(ms)
+                        except Exception:
+                            pass
+                        try:
+                            em = getattr(eng, "_exc_map", None)
+                            if em is not None:
+                                ms = em.snapshot() or {}
+                                if isinstance(ms, dict):
+                                    maps_for_scouts.update(ms)
+                        except Exception:
+                            pass
+                        try:
+                            im = getattr(eng, "_inh_map", None)
+                            if im is not None:
+                                ms = im.snapshot() or {}
+                                if isinstance(ms, dict):
+                                    maps_for_scouts.update(ms)
+                        except Exception:
+                            pass
+                        try:
+                            cm = getattr(eng, "_cold_map", None)
+                            if cm is not None:
+                                ms = cm.snapshot() or {}
+                                if isinstance(ms, dict):
+                                    maps_for_scouts.update(ms)
+                        except Exception:
+                            pass
+
+                        # Seeds from recent stimulation (bounded)
+                        try:
+                            _seed_cap = int(os.getenv("SCOUT_SEEDS_MAX", "64"))
+                        except Exception:
+                            _seed_cap = 64
+                        try:
+                            seeds = sorted({int(s) for s in (stim_idxs or []) if isinstance(s, int)})[: max(0, _seed_cap)]
+                        except Exception:
+                            seeds = []
+
+                        # Budgets (bounded)
+                        try:
+                            sv = int(os.getenv("SCOUT_VISITS", str(getattr(nx, "scout_visits", 16))))
+                        except Exception:
+                            sv = 16
+                        try:
+                            se = int(os.getenv("SCOUT_EDGES", str(getattr(nx, "scout_edges", 8))))
+                        except Exception:
+                            se = 8
+                        try:
+                            ttlv = int(os.getenv("SCOUT_TTL", "64"))
+                        except Exception:
+                            ttlv = 64
+                        budget = {
+                            "visits": max(0, sv),
+                            "edges": max(0, se),
+                            "ttl": max(1, ttlv),
+                            "tick": int(step),
+                            "seeds": list(seeds),
+                        }
+
+                        # Per-tick micro time budget across all scouts (µs)
+                        try:
+                            max_us = int(os.getenv("SCOUTS_MAX_US", "2000"))
+                        except Exception:
+                            max_us = 2000
+
+                        scouts_list = [
+                            HeatScout(),
+                            VoidRayScout(),
+                            MemoryRayScout(),
+                            FrontierScout(),
+                            CycleHunterScout(),
+                            SentinelScout(),
+                        ]
+
+                        scout_evs = _run_scouts_once(
+                            getattr(nx, "connectome", None),
+                            scouts_list,
+                            maps=maps_for_scouts,
+                            budget=budget,
+                            bus=None,        # do not publish directly; fold via engine below
+                            max_us=max_us,
+                        ) or []
+                        if scout_evs:
+                            evs.extend(scout_evs)
+                    except Exception:
+                        pass
                     try:
                         batch = getattr(nx, "_last_obs_batch", None)
                         if batch is not None:
