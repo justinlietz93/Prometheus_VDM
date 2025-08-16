@@ -127,6 +127,21 @@ class ADCEvent(BaseEvent):
     adc_cycle_hits: Optional[float] = None
 
 
+# Optional hint for biasing exploration/actuation (not folded by metrics)
+@dataclass(frozen=True)
+class BiasHintEvent(BaseEvent):
+    """
+    Hint to bias exploration or actuation to a region/tile for a short TTL.
+    - region: free-form label (e.g., "unknown", "tile:3,4")
+    - nodes: bounded set of indices to hint (tuple for immutability)
+    - ttl:   time-to-live in ticks (downstream consumer-managed)
+    Note: EventDrivenMetrics ignores this; it travels on the bus for optional consumers.
+    """
+    region: str = "unknown"
+    nodes: Tuple[int, ...] = tuple()
+    ttl: int = 2
+
+
 # -------------------------- Incremental Primitives ---------------------------
 
 class StreamingMeanVar:
@@ -446,6 +461,7 @@ __all__ = [
     "MotifEnterEvent",
     "MotifExitEvent",
     "ADCEvent",
+    "BiasHintEvent",
     # reducers
     "StreamingMeanVar",
     "EWMA",

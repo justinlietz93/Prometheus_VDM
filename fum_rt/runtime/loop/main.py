@@ -37,7 +37,7 @@ from fum_rt.runtime.events_adapter import (
     adc_metrics_to_event as _adc_event,
 )
 from fum_rt.core.engine import CoreEngine as _CoreEngine
-from fum_rt.core.proprioception.events import EventDrivenMetrics as _EvtMetrics
+from fum_rt.core.proprioception.events import EventDrivenMetrics as _EvtMetrics, BiasHintEvent as _BiasHintEvent
 from fum_rt.core.cortex.scouts import VoidColdScoutWalker as _VoidScout
 from fum_rt.core.signals import apply_b1_detector as _apply_b1d
 from fum_rt.runtime.helpers.ingest import process_messages as _process_messages
@@ -216,19 +216,16 @@ def _maybe_run_gdsp(nx: Any, metrics: Dict[str, Any], step: int) -> None:
                 territory_indices = sel
     except Exception:
         territory_indices = None
-    # If triggers fired but no indices, emit a lightweight bias_hint for scouts (telemetry-only)
+    # If triggers fired but no indices, emit a lightweight BiasHintEvent (telemetry-only; optional consumers)
     try:
         if territory_indices is None:
             bus = getattr(nx, "bus", None)
             if bus is not None:
-                class _BiasObs:
+                try:
+                    _o = _BiasHintEvent(kind="bias_hint", t=int(step), region="unknown", nodes=tuple(), ttl=2)
+                    bus.publish(_o)
+                except Exception:
                     pass
-                _o = _BiasObs()
-                _o.kind = "bias_hint"
-                _o.tick = int(step)
-                _o.nodes = []
-                _o.meta = {"region": "unknown", "ttl": 2}
-                bus.publish(_o)
     except Exception:
         pass
 
