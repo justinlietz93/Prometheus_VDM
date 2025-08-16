@@ -25,7 +25,7 @@ from typing import Any, Dict, Optional, Tuple
 from fum_rt.core.metrics import compute_metrics
 from fum_rt.core.memory import load_engram as _load_engram_state, save_checkpoint as _save_checkpoint
 from fum_rt.core.proprioception.events import EventDrivenMetrics as _EvtMetrics
-from fum_rt.core.cortex.scouts import VoidColdScoutWalker as _VoidScout
+from fum_rt.core.cortex.scouts import VoidColdScoutWalker as _VoidScout, ColdMap as _ColdMap
 from fum_rt.core.signals import compute_active_edge_density as _sig_density, compute_td_signal as _sig_td, compute_firing_var as _sig_fvar
 
 
@@ -48,6 +48,7 @@ class CoreEngine:
         # Event-driven stack (lazy-initialized)
         self._evt_metrics = None
         self._void_scout = None
+        self._cold_map = None
         self._last_evt_snapshot: Dict[str, Any] = {}
 
     def step(self, dt_ms: int, ext_events: list) -> None:
@@ -63,6 +64,8 @@ class CoreEngine:
 
         if getattr(self, "_evt_metrics", None) is None:
             return
+        # latest tick observed this step (from ext events or scout)
+        latest_tick = None
 
         # 1) fold external events (already core BaseEvent subclasses from runtime adapter)
         try:
@@ -71,6 +74,33 @@ class CoreEngine:
                     # accept any object exposing 'kind' attribute (duck-typed BaseEvent)
                     if hasattr(ev, "kind"):
                         self._evt_metrics.update(ev)
+                        # update cold-map on node touches/endpoints when possible
+                        if getattr(self, "_cold_map", None) is not None:
+                            try:
+                                kind = getattr(ev, "kind", "")
+                                t_ev = getattr(ev, "t", None)
+                                if t_ev is not None:
+                                    if kind == "vt_touch":
+                                        token = getattr(ev, "token", None)
+                                        if isinstance(token, int) and token >= 0:
+                                            self._cold_map.touch(int(token), int(t_ev))
+                                    elif kind == "edge_on":
+                                        u = getattr(ev, "u", None)
+                                        v = getattr(ev, "v", None)
+                                        if isinstance(u, int) and u >= 0:
+                                            self._cold_map.touch(int(u), int(t_ev))
+                                        if isinstance(v, int) and v >= 0:
+                                            self._cold_map.touch(int(v), int(t_ev))
+                            except Exception:
+                                pass
+                        # track latest tick seen
+                        try:
+                            tv = getattr(ev, "t", None)
+                            if tv is not None:
+                                if latest_tick is None or int(tv) > int(latest_tick):
+                                    latest_tick = int(tv)
+                        except Exception:
+                            pass
                 except Exception:
                     continue
         except Exception:
@@ -101,14 +131,51 @@ class CoreEngine:
                 for _ev in self._void_scout.step(C, int(tick_hint)) or []:
                     try:
                         self._evt_metrics.update(_ev)
+                        # update cold-map for scout-generated events
+                        if getattr(self, "_cold_map", None) is not None:
+                            try:
+                                kind = getattr(_ev, "kind", "")
+                                if kind == "vt_touch":
+                                    token = getattr(_ev, "token", None)
+                                    if isinstance(token, int) and token >= 0:
+                                        self._cold_map.touch(int(token), int(tick_hint))
+                                elif kind == "edge_on":
+                                    u = getattr(_ev, "u", None)
+                                    v = getattr(_ev, "v", None)
+                                    if isinstance(u, int) and u >= 0:
+                                        self._cold_map.touch(int(u), int(tick_hint))
+                                    if isinstance(v, int) and v >= 0:
+                                        self._cold_map.touch(int(v), int(tick_hint))
+                            except Exception:
+                                pass
                     except Exception:
                         continue
+                # update latest tick from scout pass
+                try:
+                    if latest_tick is None or int(tick_hint) > int(latest_tick):
+                        latest_tick = int(tick_hint)
+                except Exception:
+                    pass
         except Exception:
             pass
 
         # 3) refresh cached evt snapshot
         try:
-            self._last_evt_snapshot = dict(self._evt_metrics.snapshot() or {})
+            evsnap = dict(self._evt_metrics.snapshot() or {})
+            # Merge cold-map snapshot (telemetry-only)
+            try:
+                if getattr(self, "_cold_map", None) is not None:
+                    try:
+                        ts = int(latest_tick) if latest_tick is not None else int(getattr(self._nx, "_emit_step", -1)) + 1
+                    except Exception:
+                        ts = 0
+                    cs = self._cold_map.snapshot(int(ts))
+                    if isinstance(cs, dict):
+                        for ck, cv in cs.items():
+                            evsnap[ck] = cv
+            except Exception:
+                pass
+            self._last_evt_snapshot = evsnap
         except Exception:
             self._last_evt_snapshot = {}
 
@@ -151,6 +218,24 @@ class CoreEngine:
                 self._void_scout = _VoidScout(budget_visits=max(0, sv), budget_edges=max(0, se), seed=seed)
             except Exception:
                 self._void_scout = None
+        # Cold-map reducer
+        if getattr(self, "_cold_map", None) is None:
+            try:
+                ck = int(getattr(self._nx, "cold_head_k", 256))
+            except Exception:
+                ck = 256
+            try:
+                hl = int(getattr(self._nx, "cold_half_life_ticks", 200))
+            except Exception:
+                hl = 200
+            try:
+                seed = int(getattr(self._nx, "seed", 0))
+            except Exception:
+                seed = 0
+            try:
+                self._cold_map = _ColdMap(head_k=max(8, ck), half_life_ticks=max(1, hl), keep_max=None, seed=seed)
+            except Exception:
+                self._cold_map = None
 
     # --- Connectome interface (single entrypoint for runtime) ---
     def stimulate_indices(self, indices, amp: float = 0.05) -> None:
