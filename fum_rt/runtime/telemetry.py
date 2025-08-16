@@ -23,7 +23,117 @@ Policy:
 
 from typing import Any, Dict, Iterable, Set, Callable, Optional, Tuple, List
 import os
+import time
 
+# --- Maps/frame quantization helpers (stdlib-only; no io.* imports) ---
+
+import sys as _sys
+import struct as _struct
+from typing import Tuple as _Tuple
+
+
+def _quantize_frame_v2_u8(header: Dict[str, Any], payload: bytes) -> _Tuple[Dict[str, Any], bytes]:
+    """
+    Convert a Float32 LE planar payload (heat|exc|inh) into u8 (frame.v2) using
+    per-channel max from header["stats"]. No global scans; stats are computed
+    upstream from bounded reducer working sets.
+
+    Contract in:
+      - header: dict with fields {"n", "channels", "dtype":"f32", "endianness":"LE", "stats":{ch:{max,...}}}
+      - payload: bytes with 3*N float32 little-endian values back-to-back
+
+    Contract out:
+      - q_header: copy of header with:
+          dtype="u8", ver="v2", quant="u8", endianness="LE" (kept for uniformity),
+          scales: {ch: 255/max_ch if max_ch>0 else 0.0}
+      - q_payload: bytes with 3*N uint8 values back-to-back
+    """
+    try:
+        n = int(header.get("n", 0))
+    except Exception:
+        n = 0
+    if n <= 0:
+        return dict(header or {}), b""
+
+    # Expect 3 channels in planar layout
+    try:
+        channels = list(header.get("channels", ["heat", "exc", "inh"]))
+    except Exception:
+        channels = ["heat", "exc", "inh"]
+    if len(channels) != 3:
+        # Fallback: assume 3 planar blocks regardless of names
+        channels = ["heat", "exc", "inh"]
+
+    expected_len = 3 * n * 4  # 3 blocks, float32
+    if not isinstance(payload, (bytes, bytearray, memoryview)) or len(payload) < expected_len:
+        # Malformed payload; return as-is
+        return dict(header or {}), bytes(payload or b"")
+
+    # Per-channel max from header (bounded working-set stats upstream)
+    def _ch_max(name: str) -> float:
+        try:
+            return float(((header.get("stats") or {}).get(name) or {}).get("max", 0.0))
+        except Exception:
+            return 0.0
+
+    max_heat = _ch_max("heat")
+    max_exc = _ch_max("exc")
+    max_inh = _ch_max("inh")
+
+    s_heat = (255.0 / max_heat) if max_heat > 0.0 else 0.0
+    s_exc = (255.0 / max_exc) if max_exc > 0.0 else 0.0
+    s_inh = (255.0 / max_inh) if max_inh > 0.0 else 0.0
+
+    mv = memoryview(payload)
+    o0 = 0
+    o1 = n * 4
+    o2 = 2 * n * 4
+
+    def _to_u8_block_le_f32(block: memoryview, count: int, scale: float) -> bytes:
+        """
+        Interpret block as little-endian float32 values and quantize to uint8 with clamping.
+        Uses struct.iter_unpack to avoid NumPy dependency and respect endianness explicitly.
+        """
+        if scale <= 0.0 or count <= 0:
+            return b"\x00" * max(0, count)
+        # Fast path: if host is little-endian and struct supports buffer protocol efficiently
+        it = _struct.iter_unpack("<f", block.tobytes())
+        out = bytearray(count)
+        i = 0
+        for (v,) in it:
+            if v <= 0.0:
+                q = 0
+            else:
+                qf = v * scale
+                if qf >= 255.0:
+                    q = 255
+                else:
+                    # round-half-away-from-zero via +0.5 for positives
+                    q = int(qf + 0.5)
+            out[i] = q
+            i += 1
+            if i >= count:
+                break
+        # In case iter_unpack yielded fewer than count (should not happen), right-pad zeros
+        if i < count:
+            out.extend(b"\x00" * (count - i))
+        return bytes(out)
+
+    q_heat = _to_u8_block_le_f32(mv[o0:o1], n, s_heat)
+    q_exc = _to_u8_block_le_f32(mv[o1:o2], n, s_exc)
+    q_inh = _to_u8_block_le_f32(mv[o2:o2 + n * 4], n, s_inh)
+
+    q_header = dict(header or {})
+    q_header["dtype"] = "u8"
+    q_header["ver"] = "v2"
+    q_header["quant"] = "u8"
+    # Keep endianness for uniformity in client code, though u8 is endianness-agnostic
+    q_header["endianness"] = q_header.get("endianness", "LE")
+    q_header["scales"] = {"heat": float(s_heat), "exc": float(s_exc), "inh": float(s_inh)}
+    # Helpful size hint for clients
+    q_header["payload_len"] = 3 * n  # bytes
+
+    return q_header, (q_heat + q_exc + q_inh)
 
 def macro_why_base(nx: Any, metrics: Dict[str, Any], step: int) -> Dict[str, Any]:
     """
@@ -291,28 +401,82 @@ def tick_fold(
     # 2.9) Publish maps/frame (header+binary) if prepared by CoreEngine
     try:
         mf = getattr(nx, "_maps_frame_ready", None)
-        if mf is not None:
+        if mf is not None and isinstance(mf, tuple) and len(mf) == 2:
+            header, payload = mf
+
+            # Ensure header has topic and tick without scanning arrays client-side
+            try:
+                if isinstance(header, dict):
+                    if "topic" not in header:
+                        header = dict(header)
+                        header["topic"] = "maps/frame"
+                    header["tick"] = int(step)
+                else:
+                    header = {"topic": "maps/frame", "tick": int(step)}
+            except Exception:
+                header = {"topic": "maps/frame", "tick": int(step)}
+
+            # 2.9.a) Publish to bus for in-process consumers (unchanged)
             try:
                 bus = getattr(nx, "bus", None)
             except Exception:
                 bus = None
-            if bus is not None and isinstance(mf, tuple) and len(mf) == 2:
-                header, payload = mf
-                # Ensure header has topic and tick without scanning arrays client-side
-                try:
-                    if isinstance(header, dict):
-                        if "topic" not in header:
-                            header = dict(header)
-                            header["topic"] = "maps/frame"
-                        header["tick"] = int(step)
-                    else:
-                        header = {"topic": "maps/frame", "tick": int(step)}
-                except Exception:
-                    header = {"topic": "maps/frame", "tick": int(step)}
+            if bus is not None:
                 try:
                     bus.publish(_MapsObs(tick=int(step), header=header, payload=payload))
                 except Exception:
                     pass
+
+            # 2.9.b) Optional ring write with u8 quantization (frame.v2) and FPS limiter
+            try:
+                # FPS limiter (default: 10)
+                try:
+                    maps_fps = float(os.getenv("MAPS_FPS", "10"))
+                except Exception:
+                    maps_fps = 10.0
+                now_ts = time.time()
+                last_ts = float(getattr(nx, "_maps_last_emit_ts", 0.0))
+                allow_emit = (maps_fps <= 0) or ((now_ts - last_ts) >= (1.0 / max(0.001, maps_fps)))
+
+                if allow_emit:
+                    mode = str(os.getenv("MAPS_MODE", "frame_v2_u8")).strip().lower()
+                    tile_cfg = str(os.getenv("MAPS_TILE", "none")).strip().lower()
+
+                    # Lazy-init ring if absent
+                    ring = getattr(nx, "_maps_ring", None)
+                    if ring is None:
+                        try:
+                            from fum_rt.io.visualization.maps_ring import MapsRing  # local import to avoid module-policy drift
+                            cap = int(os.getenv("MAPS_RING", "3"))
+                            nx._maps_ring = MapsRing(capacity=max(1, cap))
+                            ring = nx._maps_ring
+                        except Exception:
+                            ring = None
+
+                    if ring is not None:
+                        # Only full-frame v2 for now; tiles reserved for very large N (stub)
+                        if mode in ("frame_v2", "frame_v2_u8", "v2", "u8"):
+                            # Quantize to u8 using per-channel max from header['stats']
+                            q_header, q_payload = _quantize_frame_v2_u8(header, payload)
+                            try:
+                                ring.push(int(step), q_header, q_payload)
+                                setattr(nx, "_maps_last_emit_ts", now_ts)
+                            except Exception:
+                                pass
+                        elif mode in ("off", "none"):
+                            # Skip ring write
+                            pass
+                        else:
+                            # Unknown mode: default to frame_v2_u8
+                            q_header, q_payload = _quantize_frame_v2_u8(header, payload)
+                            try:
+                                ring.push(int(step), q_header, q_payload)
+                                setattr(nx, "_maps_last_emit_ts", now_ts)
+                            except Exception:
+                                pass
+            except Exception:
+                pass
+
             # Clear pointer to avoid re-publishing stale frames
             try:
                 delattr(nx, "_maps_frame_ready")

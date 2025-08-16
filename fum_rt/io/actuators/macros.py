@@ -10,6 +10,7 @@ See LICENSE file for full terms.
 from __future__ import annotations
 import json, os, threading, time
 from typing import Any, Dict, Iterable, Optional
+from fum_rt.io.logging.rolling_jsonl import RollingJsonlWriter
 
 class MacroEmitter:
     """
@@ -34,6 +35,8 @@ class MacroEmitter:
         self.why_provider = why_provider or (lambda: {"t": int(time.time() * 1000), "phase": 0})
         # ensure directory exists
         os.makedirs(os.path.dirname(os.path.abspath(self.path)), exist_ok=True)
+        # Bounded rolling writer with archival segments
+        self._writer = RollingJsonlWriter(self.path)
 
     def _emit(self, macro: str, text: str, score: Optional[float] = None, **kwargs: Any):
         evt = {
@@ -53,8 +56,8 @@ class MacroEmitter:
             except Exception:
                 pass
         line = json.dumps(evt, ensure_ascii=False)
-        with self.lock, open(self.path, "a", encoding="utf-8") as f:
-            f.write(line + "\n")
+        with self.lock:
+            self._writer.write_line(line)
 
     # ---- basic channels ----
     def say(self, text: str, score: Optional[float] = None, **kw: Any):

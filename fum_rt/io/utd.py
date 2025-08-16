@@ -1,5 +1,5 @@
-
 import sys, json, os
+from fum_rt.io.logging.rolling_jsonl import RollingJsonlWriter
 
 class UTD:
     """Universal Transduction Decoder.
@@ -15,7 +15,8 @@ class UTD:
         self.run_dir = run_dir
         os.makedirs(self.run_dir, exist_ok=True)
         self.path = os.path.join(self.run_dir, 'utd_events.jsonl')
-        self._fh = open(self.path, 'a', encoding='utf-8')
+        # Rolling JSONL writer (bounded active file with archival segments)
+        self._writer = RollingJsonlWriter(self.path)
         # Macro registry and on-disk macro board for persistence
         self._macro_registry = {}
         self._macro_board_path = os.path.join(self.run_dir, 'macro_board.json')
@@ -61,8 +62,12 @@ class UTD:
     def emit_text(self, payload: dict, score: float=1.0):
         rec = {'type': 'text', 'payload': payload, 'score': float(score)}
         print("[UTD] text:", payload, f"(score={score:.3f})")
-        self._fh.write(json.dumps(rec, ensure_ascii=False) + "\n")
-        self._fh.flush()
+        try:
+            line = json.dumps(rec, ensure_ascii=False)
+            self._writer.write_line(line)
+        except Exception:
+            # keep stdout emission even if file writing fails
+            pass
 
     def emit_macro(self, name: str, args: dict | None=None, score: float=1.0):
         """
@@ -74,8 +79,12 @@ class UTD:
             self.register_macro(name, {})
         rec = {'type': 'macro', 'macro': name, 'args': (args or {}), 'score': float(score)}
         print(f"[UTD] macro:{name}", (args or {}), f"(score={score:.3f})")
-        self._fh.write(json.dumps(rec, ensure_ascii=False) + "\n")
-        self._fh.flush()
+        try:
+            line = json.dumps(rec, ensure_ascii=False)
+            self._writer.write_line(line)
+        except Exception:
+            # keep stdout emission even if file writing fails
+            pass
 
     def close(self):
         try:
@@ -83,6 +92,6 @@ class UTD:
                 self._persist_macro_board()
             except Exception:
                 pass
-            self._fh.close()
+            # RollingJsonlWriter does not keep a persistent file handle; nothing to close.
         except Exception:
             pass

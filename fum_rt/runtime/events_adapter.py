@@ -33,8 +33,12 @@ def observations_to_events(observations: Iterable[Any]) -> List[BaseEvent]:
     """
     Map connectome Observation objects to EventDrivenMetrics events.
     Supported kinds:
-      - "cycle_hit": -> DeltaEvent (b1 from loop_gain if available) + EdgeOnEvent(u,v) when nodes include two ids
-      - "region_stat": -> VTTouchEvent per node (weight 1.0)
+      - "cycle_hit":   -> DeltaEvent (b1 from loop_gain if available) + EdgeOnEvent(u,v) when nodes include two ids
+                         Also synthesizes bounded excitatory SpikeEvent for the touched endpoints.
+      - "region_stat": -> VTTouchEvent per node (weight 1.0) and bounded excitatory SpikeEvent per node (amp from s_mean or 1.0)
+      - "delta_w":     -> DeltaWEvent per node (bounded fan-out).
+                         Additionally, when dw < 0, synthesize bounded inhibitory SpikeEvent (sign=-1, amp=|dw| clipped)
+                         to provide an inhibition source without scans.
 
     Unknown kinds are ignored.
     """
@@ -116,13 +120,21 @@ def observations_to_events(observations: Iterable[Any]) -> List[BaseEvent]:
 
         elif kind == "delta_w":
             # Map Observation(kind='delta_w') -> one or more DeltaWEvent(s)
+            # Also synthesize inhibitory SpikeEvent when dw < 0 (bounded fan-out) to drive InhibitionMap without scans.
             try:
                 nodes = list(getattr(obs, "nodes", []) or [])
                 meta = dict(getattr(obs, "meta", {}) or {})
                 dwv = float(meta.get("dw", 0.0))
+                # Determine inhibitory synthesis parameters
+                is_inh = dwv < 0.0
+                inh_amp = float(min(1.0, abs(dwv))) if is_inh else 0.0
                 # Bound fan-out defensively
                 for node in nodes[:16]:
-                    out.append(DeltaWEvent(kind="delta_w", t=tick, node=int(node), dw=float(dwv)))
+                    ni = int(node)
+                    out.append(DeltaWEvent(kind="delta_w", t=tick, node=ni, dw=float(dwv)))
+                    # Provide an explicit inhibitory spike source when dw is negative
+                    if is_inh and inh_amp > 0.0:
+                        out.append(SpikeEvent(kind="spike", t=tick, node=ni, amp=inh_amp, sign=-1))
             except Exception:
                 pass
 
