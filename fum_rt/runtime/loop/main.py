@@ -1,3 +1,11 @@
+"""
+Copyright © 2025 Justin K. Lietz, Neuroca, Inc. All Rights Reserved.
+
+This research is protected under a dual-license to foster open academic
+research while ensuring commercial applications are aligned with the project's ethical principles. Commercial use requires written permission from Justin K. Lietz.
+See LICENSE file for full terms.
+"""
+
 from __future__ import annotations
 
 """
@@ -63,8 +71,10 @@ def _maybe_run_revgsp(nx: Any, metrics: Dict[str, Any], step: int) -> None:
     if not _truthy(os.getenv("ENABLE_REVGSP", "0")):
         return
 
+    # Use current in-repo implementation only (void-faithful, budgeted)
     try:
-        from fum_original_v2.mechanisms.revgsp import adapt_connectome as _adapt  # type: ignore
+        from fum_rt.core.neuroplasticity.revgsp import RevGSP as _RevGSP  # type: ignore
+        _adapt = _RevGSP().adapt_connectome  # method-compatible wrapper
     except Exception:
         return
 
@@ -89,17 +99,26 @@ def _maybe_run_revgsp(nx: Any, metrics: Dict[str, Any], step: int) -> None:
     if latency is None:
         latency = {"max": float(getattr(nx, "latency_max", 0.0)), "error": float(getattr(nx, "latency_err", 0.0))}
 
-    # Possible kwargs
+    # Possible kwargs (include aliases so legacy and new signatures both work)
+    eta_val = float(os.getenv("REV_GSP_ETA", getattr(nx, "rev_gsp_eta", 1e-3)))
+    lam_val = float(os.getenv("REV_GSP_LAMBDA", getattr(nx, "rev_gsp_lambda", 0.99)))
+    twin_ms = int(os.getenv("REV_GSP_TWIN_MS", "20"))
     candidates = {
         "substrate": s,
         "spike_train": getattr(nx, "recent_spikes", None),
         "spike_phases": getattr(nx, "spike_phases", None),
-        "learning_rate": float(os.getenv("REV_GSP_ETA", getattr(nx, "rev_gsp_eta", 1e-3))),
-        "lambda_decay": float(os.getenv("REV_GSP_LAMBDA", getattr(nx, "rev_gsp_lambda", 0.99))),
+        # legacy name
+        "learning_rate": eta_val,
+        # new wrapper name
+        "base_lr": eta_val,
+        "lambda_decay": lam_val,
         "total_reward": total_reward,
         "plv": plv,
+        # legacy name (if any)
         "network_latency_estimate": latency,
-        "time_window_ms": int(os.getenv("REV_GSP_TWIN_MS", "20")),
+        # new wrapper name
+        "network_latency": latency,
+        "time_window_ms": twin_ms,
     }
     # Filter None values and restrict to signature
     kwargs = {k: v for k, v in candidates.items() if v is not None and (not allowed or k in allowed)}
@@ -116,7 +135,7 @@ def _maybe_run_gdsp(nx: Any, metrics: Dict[str, Any], step: int) -> None:
     """
     Best-effort adapter to call GDSP synaptic actuator if available and enabled.
     - Enabled via ENABLE_GDSP=1 (default off).
-    - Cadence via STRUCT_EVERY (default 500 ticks).
+    - Emergent triggers only (no fixed cadence): activates on b1_spike, |td_signal| >= GDSP_TD_THRESH, or cohesion_components > 1.
     - Requires a substrate-like object with the expected sparse fields; else no-op.
     - Executes homeostatic repairs (if repair_triggered present), growth (when territory provided),
       and maintenance pruning with T_prune and pruning_threshold.
@@ -125,19 +144,28 @@ def _maybe_run_gdsp(nx: Any, metrics: Dict[str, Any], step: int) -> None:
     if not _truthy(os.getenv("ENABLE_GDSP", "0")):
         return
 
-    # Cadence
+    # Emergent gating only (no fixed cadence or schedulers)
     try:
-        K = int(os.getenv("STRUCT_EVERY", "500"))
+        td = float(metrics.get("td_signal", 0.0))
     except Exception:
-        K = 500
-    if K > 0 and (int(step) % K) != 0:
+        td = 0.0
+    b1_spike = bool(metrics.get("b1_spike", metrics.get("evt_b1_spike", False)))
+    try:
+        comp = int(metrics.get("cohesion_components", metrics.get("evt_cohesion_components", 1)))
+    except Exception:
+        comp = 1
+    try:
+        td_thr = float(os.getenv("GDSP_TD_THRESH", "0.2"))
+    except Exception:
+        td_thr = 0.2
+    if not (b1_spike or abs(td) >= td_thr or comp > 1):
         return
 
+    # Use current in-repo implementation only (void-faithful, budgeted/territory-scoped)
     try:
-        from fum_original_v2.mechanisms.gdsp import (  # type: ignore
-            run_gdsp_synaptic_actuator as _run_gdsp,
-            get_gdsp_status_report as _gdsp_report,
-        )
+        from fum_rt.core.neuroplasticity.gdsp import GDSPActuator as _GDSP  # type: ignore
+        _gdsp = _GDSP()
+        _run_gdsp = _gdsp.run
     except Exception:
         return
 

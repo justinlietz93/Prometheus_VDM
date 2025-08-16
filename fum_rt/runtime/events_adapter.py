@@ -1,3 +1,11 @@
+"""
+Copyright © 2025 Justin K. Lietz, Neuroca, Inc. All Rights Reserved.
+
+This research is protected under a dual-license to foster open academic
+research while ensuring commercial applications are aligned with the project's ethical principles. Commercial use requires written permission from Justin K. Lietz.
+See LICENSE file for full terms.
+"""
+
 from __future__ import annotations
 
 """
@@ -14,6 +22,8 @@ from fum_rt.core.proprioception.events import (
     BaseEvent,
     DeltaEvent,
     VTTouchEvent,
+    SpikeEvent,
+    DeltaWEvent,
     EdgeOnEvent,
     ADCEvent,
 )
@@ -52,6 +62,16 @@ def observations_to_events(observations: Iterable[Any]) -> List[BaseEvent]:
                 if len(nodes) >= 2:
                     u, v = int(nodes[0]), int(nodes[1])
                     out.append(EdgeOnEvent(kind="edge_on", t=tick, u=u, v=v))
+                # Also synthesize excitatory SpikeEvents for the endpoints (bounded, event-driven)
+                try:
+                    amp = loop_gain if loop_gain > 0.0 else 1.0
+                except Exception:
+                    amp = 1.0
+                for idx in nodes[:2]:
+                    try:
+                        out.append(SpikeEvent(kind="spike", t=tick, node=int(idx), amp=float(amp), sign=+1))
+                    except Exception:
+                        continue
             except Exception:
                 pass
 
@@ -60,6 +80,14 @@ def observations_to_events(observations: Iterable[Any]) -> List[BaseEvent]:
                 nodes = list(getattr(obs, "nodes", []) or [])
                 for node in nodes:
                     out.append(VTTouchEvent(kind="vt_touch", t=tick, token=int(node), w=1.0))
+                # Synthesize excitatory SpikeEvent per node using s_mean as amplitude when available
+                try:
+                    s_mean = float(getattr(obs, "s_mean", 0.0))
+                except Exception:
+                    s_mean = 0.0
+                amp = s_mean if s_mean > 0.0 else 1.0
+                for node in nodes:
+                    out.append(SpikeEvent(kind="spike", t=tick, node=int(node), amp=float(amp), sign=+1))
             except Exception:
                 pass
 
@@ -83,6 +111,18 @@ def observations_to_events(observations: Iterable[Any]) -> List[BaseEvent]:
                         hsi=hsi,
                     )
                 )
+            except Exception:
+                pass
+
+        elif kind == "delta_w":
+            # Map Observation(kind='delta_w') -> one or more DeltaWEvent(s)
+            try:
+                nodes = list(getattr(obs, "nodes", []) or [])
+                meta = dict(getattr(obs, "meta", {}) or {})
+                dwv = float(meta.get("dw", 0.0))
+                # Bound fan-out defensively
+                for node in nodes[:16]:
+                    out.append(DeltaWEvent(kind="delta_w", t=tick, node=int(node), dw=float(dwv)))
             except Exception:
                 pass
 

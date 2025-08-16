@@ -16,28 +16,39 @@ Phase B goal:
 - Do NOT move logic yet; keep Nexus as source of truth.
 - These methods either delegate to existing functions or act as explicit stubs.
 
-Seam policy:
+Separation policy:
 - This module must not import from fum_rt.io.* or fum_rt.runtime.* to keep core isolated.
 - Only depend on fum_rt.core.* and the Nexus-like object passed at construction.
 """
 
 from typing import Any, Dict, Optional, Tuple
+
 from fum_rt.core.metrics import compute_metrics
-from fum_rt.core.memory import load_engram as _load_engram_state, save_checkpoint as _save_checkpoint
+from fum_rt.core.memory import (
+    load_engram as _load_engram_state,
+    save_checkpoint as _save_checkpoint,
+)
 from fum_rt.core.proprioception.events import EventDrivenMetrics as _EvtMetrics
 from fum_rt.core.cortex.scouts import VoidColdScoutWalker as _VoidScout, ColdMap as _ColdMap
 from fum_rt.core.cortex.maps.heatmap import HeatMap as _HeatMap
 from fum_rt.core.cortex.maps.excitationmap import ExcitationMap as _ExcMap
 from fum_rt.core.cortex.maps.inhibitionmap import InhibitionMap as _InhMap
-from fum_rt.core.signals import compute_active_edge_density as _sig_density, compute_td_signal as _sig_td, compute_firing_var as _sig_fvar
-import numpy as _np
+from fum_rt.core.signals import (
+    compute_active_edge_density as _sig_density,
+    compute_td_signal as _sig_td,
+    compute_firing_var as _sig_fvar,
+)
+
+# Local helpers (telemetry-only; remain inside core boundary)
+from .maps_frame import stage_maps_frame
+from .evt_snapshot import build_evt_snapshot
 
 
 class CoreEngine:
     """
     Temporary adapter (seam) to the current runtime.
 
-    - step(): intentionally left unimplemented to avoid duplicating the run-loop logic.
+    - step(): folds event-driven reducers (no IO/logging) and stages maps/frame for telemetry.
     - snapshot(): exposes a minimal, safe snapshot using current metrics.
     - engram_load(): pass-through to the legacy loader.
     - engram_save(): pass-through to the legacy saver (saves into run_dir; path argument is advisory).
@@ -49,15 +60,21 @@ class CoreEngine:
           - connectome, adc, run_dir, checkpoint_format (optional), logger (optional), _phase (optional)
         """
         self._nx = nexus_like
+        # Public alias for tests and adapters that expect a public handle
+        try:
+            self.nx = self._nx  # test convenience: allows eng.nx access
+        except Exception:
+            pass
         # Event-driven stack (lazy-initialized)
-        self._evt_metrics = None
-        self._void_scout = None
-        self._cold_map = None
-        self._heat_map = None
-        self._exc_map = None
-        self._inh_map = None
+        self._evt_metrics: Optional[_EvtMetrics] = None
+        self._void_scout: Optional[_VoidScout] = None
+        self._cold_map: Optional[_ColdMap] = None
+        self._heat_map: Optional[_HeatMap] = None
+        self._exc_map: Optional[_ExcMap] = None
+        self._inh_map: Optional[_InhMap] = None
         self._last_evt_snapshot: Dict[str, Any] = {}
 
+    # ---- Event-driven fold and telemetry staging ----
     def step(self, dt_ms: int, ext_events: list) -> None:
         """
         Fold provided core events and cold-scout events into event-driven reducers.
@@ -71,6 +88,7 @@ class CoreEngine:
 
         if getattr(self, "_evt_metrics", None) is None:
             return
+
         # latest tick observed this step (from ext events or scout)
         latest_tick = None
         collected_events: list = []
@@ -193,122 +211,37 @@ class CoreEngine:
         except Exception:
             pass
 
-        # 2.75) build maps/frame payload for UI bus (header JSON + Float32 LE payload)
+        # 2.75) stage maps/frame payload for UI bus (header JSON + Float32 LE payload)
         try:
-            N = int(getattr(self._nx, "N", 0))
-            if N > 0 and (
-                getattr(self, "_heat_map", None) is not None
-                or getattr(self, "_exc_map", None) is not None
-                or getattr(self, "_inh_map", None) is not None
-            ):
-                heat_arr = _np.zeros(N, dtype=_np.float32)
-                exc_arr = _np.zeros(N, dtype=_np.float32)
-                inh_arr = _np.zeros(N, dtype=_np.float32)
-                # fill from bounded maps (no scans)
-                try:
-                    for k, v in getattr(self._heat_map, "_val", {}).items():
-                        ik = int(k)
-                        if 0 <= ik < N:
-                            heat_arr[ik] = float(v)
-                except Exception:
-                    pass
-                try:
-                    for k, v in getattr(self._exc_map, "_val", {}).items():
-                        ik = int(k)
-                        if 0 <= ik < N:
-                            exc_arr[ik] = float(v)
-                except Exception:
-                    pass
-                try:
-                    for k, v in getattr(self._inh_map, "_val", {}).items():
-                        ik = int(k)
-                        if 0 <= ik < N:
-                            inh_arr[ik] = float(v)
-                except Exception:
-                    pass
-                # sanitize non-finite
-                for arr in (heat_arr, exc_arr, inh_arr):
-                    try:
-                        _np.nan_to_num(arr, copy=False, nan=0.0, posinf=0.0, neginf=0.0)
-                    except Exception:
-                        pass
-                # square-ish shape heuristic
-                try:
-                    side = int(max(1, int(_np.ceil(_np.sqrt(N)))))
-                except Exception:
-                    side = int(max(1, int((N or 1) ** 0.5)))
-                shape = [side, side]
-                # stats without full-array scans (min=0.0 by construction)
-                def _max_from(d: dict) -> float:
-                    try:
-                        return float(max(d.values())) if d else 0.0
-                    except Exception:
-                        return 0.0
-                stats = {
-                    "heat": {"min": 0.0, "max": _max_from(getattr(self._heat_map, "_val", {}))},
-                    "exc":  {"min": 0.0, "max": _max_from(getattr(self._exc_map, "_val", {}))},
-                    "inh":  {"min": 0.0, "max": _max_from(getattr(self._inh_map, "_val", {}))},
-                }
-                header = {
-                    "topic": "maps/frame",
-                    "tick": int(fold_tick),
-                    "n": int(N),
-                    "shape": shape,
-                    "channels": ["heat", "exc", "inh"],
-                    "dtype": "f32",
-                    "endianness": "LE",
-                    "stats": stats,
-                }
-                payload = heat_arr.tobytes() + exc_arr.tobytes() + inh_arr.tobytes()
-                try:
-                    setattr(self._nx, "_maps_frame_ready", (header, payload))
-                except Exception:
-                    pass
+            stage_maps_frame(
+                nx=self._nx,
+                heat_map=self._heat_map,
+                exc_map=self._exc_map,
+                inh_map=self._inh_map,
+                fold_tick=int(
+                    latest_tick
+                    if latest_tick is not None
+                    else (int(getattr(self._nx, "_emit_step", -1)) + 1)
+                ),
+            )
         except Exception:
             pass
 
         # 3) refresh cached evt snapshot
         try:
-            evsnap = dict(self._evt_metrics.snapshot() or {})
-            # Merge cold-map snapshot (telemetry-only)
-            try:
-                if getattr(self, "_cold_map", None) is not None:
-                    try:
-                        ts = int(latest_tick) if latest_tick is not None else int(getattr(self._nx, "_emit_step", -1)) + 1
-                    except Exception:
-                        ts = 0
-                    cs = self._cold_map.snapshot(int(ts))
-                    if isinstance(cs, dict):
-                        for ck, cv in cs.items():
-                            evsnap[ck] = cv
-                    # Merge heat/excitation/inhibition maps (telemetry-only)
-                    try:
-                        if getattr(self, "_heat_map", None) is not None:
-                            hs = self._heat_map.snapshot()
-                            if isinstance(hs, dict):
-                                for hk, hv in hs.items():
-                                    evsnap[hk] = hv
-                    except Exception:
-                        pass
-                    try:
-                        if getattr(self, "_exc_map", None) is not None:
-                            es = self._exc_map.snapshot()
-                            if isinstance(es, dict):
-                                for ek, evv in es.items():
-                                    evsnap[ek] = evv
-                    except Exception:
-                        pass
-                    try:
-                        if getattr(self, "_inh_map", None) is not None:
-                            ins = self._inh_map.snapshot()
-                            if isinstance(ins, dict):
-                                for ik, iv in ins.items():
-                                    evsnap[ik] = iv
-                    except Exception:
-                        pass
-            except Exception:
-                pass
-            self._last_evt_snapshot = evsnap
+            self._last_evt_snapshot = build_evt_snapshot(
+                evt_metrics=self._evt_metrics,
+                cold_map=self._cold_map,
+                heat_map=self._heat_map,
+                exc_map=self._exc_map,
+                inh_map=self._inh_map,
+                latest_tick=(
+                    int(latest_tick)
+                    if latest_tick is not None
+                    else (int(getattr(self._nx, "_emit_step", -1)) + 1)
+                ),
+                nx=self._nx,
+            )
         except Exception:
             self._last_evt_snapshot = {}
 
@@ -348,7 +281,9 @@ class CoreEngine:
             except Exception:
                 seed = 0
             try:
-                self._void_scout = _VoidScout(budget_visits=max(0, sv), budget_edges=max(0, se), seed=seed)
+                self._void_scout = _VoidScout(
+                    budget_visits=max(0, sv), budget_edges=max(0, se), seed=seed
+                )
             except Exception:
                 self._void_scout = None
         # Cold-map reducer
@@ -366,7 +301,9 @@ class CoreEngine:
             except Exception:
                 seed = 0
             try:
-                self._cold_map = _ColdMap(head_k=max(8, ck), half_life_ticks=max(1, hl), keep_max=None, seed=seed)
+                self._cold_map = _ColdMap(
+                    head_k=max(8, ck), half_life_ticks=max(1, hl), keep_max=None, seed=seed
+                )
             except Exception:
                 self._cold_map = None
         # Heat/Excitation/Inhibition reducers (mirror cold-map settings; telemetry-only)
@@ -384,17 +321,23 @@ class CoreEngine:
             seed = 0
         if getattr(self, "_heat_map", None) is None:
             try:
-                self._heat_map = _HeatMap(head_k=max(8, hk), half_life_ticks=max(1, hl2), keep_max=None, seed=seed + 1)
+                self._heat_map = _HeatMap(
+                    head_k=max(8, hk), half_life_ticks=max(1, hl2), keep_max=None, seed=seed + 1
+                )
             except Exception:
                 self._heat_map = None
         if getattr(self, "_exc_map", None) is None:
             try:
-                self._exc_map = _ExcMap(head_k=max(8, hk), half_life_ticks=max(1, hl2), keep_max=None, seed=seed + 2)
+                self._exc_map = _ExcMap(
+                    head_k=max(8, hk), half_life_ticks=max(1, hl2), keep_max=None, seed=seed + 2
+                )
             except Exception:
                 self._exc_map = None
         if getattr(self, "_inh_map", None) is None:
             try:
-                self._inh_map = _InhMap(head_k=max(8, hk), half_life_ticks=max(1, hl2), keep_max=None, seed=seed + 3)
+                self._inh_map = _InhMap(
+                    head_k=max(8, hk), half_life_ticks=max(1, hl2), keep_max=None, seed=seed + 3
+                )
             except Exception:
                 self._inh_map = None
 
@@ -405,7 +348,13 @@ class CoreEngine:
         except Exception:
             pass
 
-    def step_connectome(self, t: float, domain_modulation: float = 1.0, sie_gate: float = 0.0, use_time_dynamics: bool = True) -> None:
+    def step_connectome(
+        self,
+        t: float,
+        domain_modulation: float = 1.0,
+        sie_gate: float = 0.0,
+        use_time_dynamics: bool = True,
+    ) -> None:
         try:
             self._nx.connectome.step(
                 t,
@@ -439,7 +388,9 @@ class CoreEngine:
         except Exception:
             return 0, 0.0
 
-    def compute_td_signal(self, prev_E: int | None, E: int, vt_prev: float | None = None, vt_last: float | None = None) -> float:
+    def compute_td_signal(
+        self, prev_E: int | None, E: int, vt_prev: float | None = None, vt_last: float | None = None
+    ) -> float:
         try:
             return float(_sig_td(prev_E, E, vt_prev, vt_last))
         except Exception:
@@ -514,7 +465,9 @@ class CoreEngine:
         _load_engram_state(str(path), nx.connectome, adc=getattr(nx, "adc", None))
         # Optional: let the caller log; we keep core side-effect free except the actual load.
 
-    def engram_save(self, path: Optional[str] = None, step: Optional[int] = None, fmt: Optional[str] = None) -> str:
+    def engram_save(
+        self, path: Optional[str] = None, step: Optional[int] = None, fmt: Optional[str] = None
+    ) -> str:
         """
         Pass-through to the existing checkpoint saver. Saves into nx.run_dir using the legacy naming scheme.
         Arguments:
@@ -527,8 +480,12 @@ class CoreEngine:
         """
         nx = self._nx
         use_step = int(step if step is not None else getattr(nx, "_emit_step", 0))
-        use_fmt = str(fmt if fmt is not None else getattr(nx, "checkpoint_format", "h5") or "h5")
-        return _save_checkpoint(nx.run_dir, use_step, nx.connectome, fmt=use_fmt, adc=getattr(nx, "adc", None))
+        use_fmt = str(
+            fmt if fmt is not None else getattr(nx, "checkpoint_format", "h5") or "h5"
+        )
+        return _save_checkpoint(
+            nx.run_dir, use_step, nx.connectome, fmt=use_fmt, adc=getattr(nx, "adc", None)
+        )
 
 
 __all__ = ["CoreEngine"]
