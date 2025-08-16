@@ -30,6 +30,7 @@ from fum_rt.core.cortex.maps.heatmap import HeatMap as _HeatMap
 from fum_rt.core.cortex.maps.excitationmap import ExcitationMap as _ExcMap
 from fum_rt.core.cortex.maps.inhibitionmap import InhibitionMap as _InhMap
 from fum_rt.core.signals import compute_active_edge_density as _sig_density, compute_td_signal as _sig_td, compute_firing_var as _sig_fvar
+import numpy as _np
 
 
 class CoreEngine:
@@ -187,6 +188,80 @@ class CoreEngine:
             if getattr(self, "_inh_map", None) is not None:
                 try:
                     self._inh_map.fold(collected_events, int(fold_tick))
+                except Exception:
+                    pass
+        except Exception:
+            pass
+
+        # 2.75) build maps/frame payload for UI bus (header JSON + Float32 LE payload)
+        try:
+            N = int(getattr(self._nx, "N", 0))
+            if N > 0 and (
+                getattr(self, "_heat_map", None) is not None
+                or getattr(self, "_exc_map", None) is not None
+                or getattr(self, "_inh_map", None) is not None
+            ):
+                heat_arr = _np.zeros(N, dtype=_np.float32)
+                exc_arr = _np.zeros(N, dtype=_np.float32)
+                inh_arr = _np.zeros(N, dtype=_np.float32)
+                # fill from bounded maps (no scans)
+                try:
+                    for k, v in getattr(self._heat_map, "_val", {}).items():
+                        ik = int(k)
+                        if 0 <= ik < N:
+                            heat_arr[ik] = float(v)
+                except Exception:
+                    pass
+                try:
+                    for k, v in getattr(self._exc_map, "_val", {}).items():
+                        ik = int(k)
+                        if 0 <= ik < N:
+                            exc_arr[ik] = float(v)
+                except Exception:
+                    pass
+                try:
+                    for k, v in getattr(self._inh_map, "_val", {}).items():
+                        ik = int(k)
+                        if 0 <= ik < N:
+                            inh_arr[ik] = float(v)
+                except Exception:
+                    pass
+                # sanitize non-finite
+                for arr in (heat_arr, exc_arr, inh_arr):
+                    try:
+                        _np.nan_to_num(arr, copy=False, nan=0.0, posinf=0.0, neginf=0.0)
+                    except Exception:
+                        pass
+                # square-ish shape heuristic
+                try:
+                    side = int(max(1, int(_np.ceil(_np.sqrt(N)))))
+                except Exception:
+                    side = int(max(1, int((N or 1) ** 0.5)))
+                shape = [side, side]
+                # stats without full-array scans (min=0.0 by construction)
+                def _max_from(d: dict) -> float:
+                    try:
+                        return float(max(d.values())) if d else 0.0
+                    except Exception:
+                        return 0.0
+                stats = {
+                    "heat": {"min": 0.0, "max": _max_from(getattr(self._heat_map, "_val", {}))},
+                    "exc":  {"min": 0.0, "max": _max_from(getattr(self._exc_map, "_val", {}))},
+                    "inh":  {"min": 0.0, "max": _max_from(getattr(self._inh_map, "_val", {}))},
+                }
+                header = {
+                    "topic": "maps/frame",
+                    "tick": int(fold_tick),
+                    "n": int(N),
+                    "shape": shape,
+                    "channels": ["heat", "exc", "inh"],
+                    "dtype": "f32",
+                    "endianness": "LE",
+                    "stats": stats,
+                }
+                payload = heat_arr.tobytes() + exc_arr.tobytes() + inh_arr.tobytes()
+                try:
+                    setattr(self._nx, "_maps_frame_ready", (header, payload))
                 except Exception:
                     pass
         except Exception:
