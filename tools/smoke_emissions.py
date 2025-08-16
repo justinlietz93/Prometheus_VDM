@@ -88,7 +88,15 @@ def verify_ticks(run_dir: str) -> tuple[bool, str]:
     ticks = 0
 
     def _get_msg(rec: Dict[str, Any]) -> str:
-        return str(rec.get("message") or rec.get("event") or rec.get("name") or rec.get("type") or "").lower()
+        # Accept common JSON logger keys. Our runtime uses 'msg' in [get_logger](fum_rt/utils/logging_setup.py:22).
+        return str(
+            rec.get("message")
+            or rec.get("event")
+            or rec.get("name")
+            or rec.get("type")
+            or rec.get("msg")
+            or ""
+        ).lower()
 
     for rec in _read_ndjson(p):
         try:
