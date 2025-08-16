@@ -26,6 +26,9 @@ from fum_rt.core.metrics import compute_metrics
 from fum_rt.core.memory import load_engram as _load_engram_state, save_checkpoint as _save_checkpoint
 from fum_rt.core.proprioception.events import EventDrivenMetrics as _EvtMetrics
 from fum_rt.core.cortex.scouts import VoidColdScoutWalker as _VoidScout, ColdMap as _ColdMap
+from fum_rt.core.cortex.maps.heatmap import HeatMap as _HeatMap
+from fum_rt.core.cortex.maps.excitationmap import ExcitationMap as _ExcMap
+from fum_rt.core.cortex.maps.inhibitionmap import InhibitionMap as _InhMap
 from fum_rt.core.signals import compute_active_edge_density as _sig_density, compute_td_signal as _sig_td, compute_firing_var as _sig_fvar
 
 
@@ -49,6 +52,9 @@ class CoreEngine:
         self._evt_metrics = None
         self._void_scout = None
         self._cold_map = None
+        self._heat_map = None
+        self._exc_map = None
+        self._inh_map = None
         self._last_evt_snapshot: Dict[str, Any] = {}
 
     def step(self, dt_ms: int, ext_events: list) -> None:
@@ -66,6 +72,7 @@ class CoreEngine:
             return
         # latest tick observed this step (from ext events or scout)
         latest_tick = None
+        collected_events: list = []
 
         # 1) fold external events (already core BaseEvent subclasses from runtime adapter)
         try:
@@ -74,6 +81,7 @@ class CoreEngine:
                     # accept any object exposing 'kind' attribute (duck-typed BaseEvent)
                     if hasattr(ev, "kind"):
                         self._evt_metrics.update(ev)
+                        collected_events.append(ev)
                         # update cold-map on node touches/endpoints when possible
                         if getattr(self, "_cold_map", None) is not None:
                             try:
@@ -131,6 +139,7 @@ class CoreEngine:
                 for _ev in self._void_scout.step(C, int(tick_hint)) or []:
                     try:
                         self._evt_metrics.update(_ev)
+                        collected_events.append(_ev)
                         # update cold-map for scout-generated events
                         if getattr(self, "_cold_map", None) is not None:
                             try:
@@ -159,6 +168,30 @@ class CoreEngine:
         except Exception:
             pass
 
+        # 2.5) fold heat/excitation/inhibition maps with collected events (telemetry-only)
+        try:
+            try:
+                fold_tick = int(latest_tick) if latest_tick is not None else int(getattr(self._nx, "_emit_step", -1)) + 1
+            except Exception:
+                fold_tick = 0
+            if getattr(self, "_heat_map", None) is not None:
+                try:
+                    self._heat_map.fold(collected_events, int(fold_tick))
+                except Exception:
+                    pass
+            if getattr(self, "_exc_map", None) is not None:
+                try:
+                    self._exc_map.fold(collected_events, int(fold_tick))
+                except Exception:
+                    pass
+            if getattr(self, "_inh_map", None) is not None:
+                try:
+                    self._inh_map.fold(collected_events, int(fold_tick))
+                except Exception:
+                    pass
+        except Exception:
+            pass
+
         # 3) refresh cached evt snapshot
         try:
             evsnap = dict(self._evt_metrics.snapshot() or {})
@@ -173,6 +206,31 @@ class CoreEngine:
                     if isinstance(cs, dict):
                         for ck, cv in cs.items():
                             evsnap[ck] = cv
+                    # Merge heat/excitation/inhibition maps (telemetry-only)
+                    try:
+                        if getattr(self, "_heat_map", None) is not None:
+                            hs = self._heat_map.snapshot()
+                            if isinstance(hs, dict):
+                                for hk, hv in hs.items():
+                                    evsnap[hk] = hv
+                    except Exception:
+                        pass
+                    try:
+                        if getattr(self, "_exc_map", None) is not None:
+                            es = self._exc_map.snapshot()
+                            if isinstance(es, dict):
+                                for ek, evv in es.items():
+                                    evsnap[ek] = evv
+                    except Exception:
+                        pass
+                    try:
+                        if getattr(self, "_inh_map", None) is not None:
+                            ins = self._inh_map.snapshot()
+                            if isinstance(ins, dict):
+                                for ik, iv in ins.items():
+                                    evsnap[ik] = iv
+                    except Exception:
+                        pass
             except Exception:
                 pass
             self._last_evt_snapshot = evsnap
@@ -236,6 +294,34 @@ class CoreEngine:
                 self._cold_map = _ColdMap(head_k=max(8, ck), half_life_ticks=max(1, hl), keep_max=None, seed=seed)
             except Exception:
                 self._cold_map = None
+        # Heat/Excitation/Inhibition reducers (mirror cold-map settings; telemetry-only)
+        try:
+            hk = int(getattr(self._nx, "cold_head_k", 256))
+        except Exception:
+            hk = 256
+        try:
+            hl2 = int(getattr(self._nx, "cold_half_life_ticks", 200))
+        except Exception:
+            hl2 = 200
+        try:
+            seed = int(getattr(self._nx, "seed", 0))
+        except Exception:
+            seed = 0
+        if getattr(self, "_heat_map", None) is None:
+            try:
+                self._heat_map = _HeatMap(head_k=max(8, hk), half_life_ticks=max(1, hl2), keep_max=None, seed=seed + 1)
+            except Exception:
+                self._heat_map = None
+        if getattr(self, "_exc_map", None) is None:
+            try:
+                self._exc_map = _ExcMap(head_k=max(8, hk), half_life_ticks=max(1, hl2), keep_max=None, seed=seed + 2)
+            except Exception:
+                self._exc_map = None
+        if getattr(self, "_inh_map", None) is None:
+            try:
+                self._inh_map = _InhMap(head_k=max(8, hk), half_life_ticks=max(1, hl2), keep_max=None, seed=seed + 3)
+            except Exception:
+                self._inh_map = None
 
     # --- Connectome interface (single entrypoint for runtime) ---
     def stimulate_indices(self, indices, amp: float = 0.05) -> None:
