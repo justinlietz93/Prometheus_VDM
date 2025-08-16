@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 """
-fum_rt.core.cortex.scouts.base
+fum_rt.core.cortex.void_walkers.base
 
 Void-faithful, read-only scout base class.
 - No scans of global structures (no .toarray(), .tocsr(), synaptic_weights, networkx, etc.).
