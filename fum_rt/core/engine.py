@@ -21,11 +21,12 @@ Seam policy:
 - Only depend on fum_rt.core.* and the Nexus-like object passed at construction.
 """
 
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, Tuple
 from fum_rt.core.metrics import compute_metrics
 from fum_rt.core.memory import load_engram as _load_engram_state, save_checkpoint as _save_checkpoint
 from fum_rt.core.proprioception.events import EventDrivenMetrics as _EvtMetrics
 from fum_rt.core.cortex.scouts import VoidColdScoutWalker as _VoidScout
+from fum_rt.core.signals import compute_active_edge_density as _sig_density, compute_td_signal as _sig_td, compute_firing_var as _sig_fvar
 
 
 class CoreEngine:
@@ -78,8 +79,26 @@ class CoreEngine:
         # 2) fold VOID cold-scout reads (read-only traversal)
         try:
             if getattr(self, "_void_scout", None) is not None:
-                tick = int(getattr(self._nx, "_emit_step", 0))
-                for _ev in self._void_scout.step(getattr(self, "_nx", None).connectome, tick) or []:
+                # Prefer explicit tick from external events; fallback to predicted next tick.
+                tick_hint = None
+                try:
+                    if ext_events:
+                        # Pick the last event with a valid 't' (most recent)
+                        for _e in reversed(ext_events):
+                            tv = getattr(_e, "t", None)
+                            if tv is not None:
+                                tick_hint = int(tv)
+                                break
+                except Exception:
+                    tick_hint = None
+                if tick_hint is None:
+                    try:
+                        # Use next tick relative to last emitted step (updated later in runtime loop)
+                        tick_hint = int(getattr(self._nx, "_emit_step", -1)) + 1
+                    except Exception:
+                        tick_hint = 0
+                C = getattr(getattr(self, "_nx", None), "connectome", None)
+                for _ev in self._void_scout.step(C, int(tick_hint)) or []:
                     try:
                         self._evt_metrics.update(_ev)
                     except Exception:
@@ -132,6 +151,80 @@ class CoreEngine:
                 self._void_scout = _VoidScout(budget_visits=max(0, sv), budget_edges=max(0, se), seed=seed)
             except Exception:
                 self._void_scout = None
+
+    # --- Connectome interface (single entrypoint for runtime) ---
+    def stimulate_indices(self, indices, amp: float = 0.05) -> None:
+        try:
+            self._nx.connectome.stimulate_indices(list(indices), amp=float(amp))
+        except Exception:
+            pass
+
+    def step_connectome(self, t: float, domain_modulation: float = 1.0, sie_gate: float = 0.0, use_time_dynamics: bool = True) -> None:
+        try:
+            self._nx.connectome.step(
+                t,
+                domain_modulation=float(domain_modulation),
+                sie_drive=float(sie_gate),
+                use_time_dynamics=bool(use_time_dynamics),
+            )
+        except Exception:
+            pass
+
+    def compute_metrics(self) -> Dict[str, Any]:
+        try:
+            return compute_metrics(self._nx.connectome)
+        except Exception:
+            return {}
+
+    def snapshot_graph(self):
+        try:
+            return self._nx.connectome.snapshot_graph()
+        except Exception:
+            return None
+
+    # --- Numeric helpers (wrap core.signals) ---
+    def compute_active_edge_density(self) -> Tuple[int, float]:
+        try:
+            N = int(getattr(self._nx, "N", 0))
+        except Exception:
+            N = 0
+        try:
+            return _sig_density(getattr(self._nx, "connectome", None), N)
+        except Exception:
+            return 0, 0.0
+
+    def compute_td_signal(self, prev_E: int | None, E: int, vt_prev: float | None = None, vt_last: float | None = None) -> float:
+        try:
+            return float(_sig_td(prev_E, E, vt_prev, vt_last))
+        except Exception:
+            return 0.0
+
+    def compute_firing_var(self):
+        try:
+            return _sig_fvar(getattr(self._nx, "connectome", None))
+        except Exception:
+            return None
+
+    def get_homeostasis_counters(self) -> Tuple[int, int]:
+        try:
+            pruned = int(getattr(self._nx.connectome, "_last_pruned_count", 0))
+            bridged = int(getattr(self._nx.connectome, "_last_bridged_count", 0))
+            return pruned, bridged
+        except Exception:
+            return 0, 0
+
+    def get_findings(self) -> Dict[str, Any]:
+        try:
+            f = getattr(self._nx.connectome, "findings", None)
+            return dict(f) if isinstance(f, dict) else {}
+        except Exception:
+            return {}
+
+    def get_last_sie2_valence(self) -> float:
+        try:
+            return float(getattr(self._nx.connectome, "_last_sie2_valence", 0.0))
+        except Exception:
+            return 0.0
 
     def snapshot(self) -> Dict[str, Any]:
         """
