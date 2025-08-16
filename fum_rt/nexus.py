@@ -192,6 +192,21 @@ class Nexus:
         self.speak_auto = bool(speak_auto)
         self.speak_valence_thresh = float(speak_valence_thresh)
         # Persist half-life for void_b1 meter to keep UX consistent with detector
+        # Allow environment overrides to reduce inertia without changing CLI args
+        try:
+            import os as _os_b1
+            _b1_hl_env = _os_b1.getenv("B1_HALF_LIFE_TICKS", None)
+            if _b1_hl_env is not None:
+                b1_half_life_ticks = int(_b1_hl_env)
+        except Exception:
+            pass
+        try:
+            import os as _os_hys
+            _b1_hys_env = _os_hys.getenv("B1_HYSTERESIS", None)
+            if _b1_hys_env is not None:
+                speak_hysteresis = float(_b1_hys_env)
+        except Exception:
+            pass
         self.b1_half_life_ticks = int(max(1, b1_half_life_ticks))
         self.b1_detector = StreamingZEMA(
             half_life_ticks=self.b1_half_life_ticks,
