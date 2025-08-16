@@ -76,6 +76,7 @@ ignore_patterns = [
     'runs/run_1752954844/',
     'runs/run_1752958459/',
     'runs/run_1752959364/',
+    'fum_rt/data/',
     'fum_rt/fum_advanced_math/causal_inference/',
     'fum_rt/fum_advanced_math/clustering/',
     'fum_rt/fum_advanced_math/dynamical_systems/',
