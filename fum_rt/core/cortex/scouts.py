@@ -12,33 +12,13 @@ Key points:
     * VoidColdScoutWalker (ColdScout)
     * HeatScout, ExcitationScout, InhibitionScout
     * ColdMap (from maps.coldmap)
-    * BaseScout (interface) via submodule "scouts.base"
+    * BaseScout (interface) via void_walkers.base
     * GDSPActuator / RevGSP re-exported from core.neuroplasticity (for legacy imports)
-- Additionally, this file makes itself behave like a package so that
-  "from fum_rt.core.cortex.scouts.base import BaseScout" continues to work
-  even though this file is a module. We achieve this by exposing __path__
-  that points at "./scouts/".
 
 Contract compliance:
 - Scouts emit only foldable events: vt_touch, edge_on, and (optionally) spike(+/-)
 - They do not mutate the connectome (read-only), no scans, no schedulers.
 """
-
-import os as _os
-
-# Make this module act like a package for submodules in ./scouts/
-_pkg_dir = _os.path.join(_os.path.dirname(__file__), "scouts")
-if _os.path.isdir(_pkg_dir):
-    try:
-        __path__  # type: ignore[name-defined]
-    except NameError:
-        __path__ = [_pkg_dir]  # type: ignore[assignment]
-    else:
-        try:
-            if _pkg_dir not in __path__:  # type: ignore[operator]
-                __path__.append(_pkg_dir)  # type: ignore[union-attr]
-        except Exception:
-            __path__ = [_pkg_dir]  # type: ignore[assignment]
 
 # Prefer modular implementations
 from .void_walkers.void_cold_scout import ColdScout as VoidColdScoutWalker
@@ -62,7 +42,7 @@ except Exception:  # pragma: no cover
 
 # Base interface (allow both "scouts.base" and "scouts: BaseScout" import styles)
 try:
-    from .scouts.base import BaseScout  # type: ignore
+    from .void_walkers.base import BaseScout  # type: ignore
 except Exception:  # pragma: no cover
     BaseScout = None  # type: ignore
 
