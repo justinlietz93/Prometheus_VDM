@@ -4,7 +4,7 @@ from __future__ import annotations
 fum_rt.core.cortex.void_walkers.base
 
 Void-faithful, read-only scout base class.
-- No scans of global structures (no .toarray(), .tocsr(), synaptic_weights, networkx, etc.).
+- No global scans or dense conversions; no direct access to raw weight arrays or external graph libraries.
 - Operates only on local neighbor reads provided by the active graph.
 - Emits only small, foldable events for reducers and telemetry.
 
