@@ -40,13 +40,12 @@ from fum_rt.core.engine import CoreEngine as _CoreEngine
 from fum_rt.core.proprioception.events import EventDrivenMetrics as _EvtMetrics
 from fum_rt.core.cortex.scouts import VoidColdScoutWalker as _VoidScout
 from fum_rt.core.signals import apply_b1_detector as _apply_b1d
-from fum_rt.runtime.runtime_helpers import (
-    process_messages as _process_messages,
-    maybe_smoke_tests as _maybe_smoke_tests,
-    emit_status_and_macro as _emit_status_and_macro,
-    maybe_visualize as _maybe_visualize,
-    save_tick_checkpoint as _save_tick_checkpoint,
-)
+from fum_rt.runtime.helpers.ingest import process_messages as _process_messages
+from fum_rt.runtime.helpers.smoke import maybe_smoke_tests as _maybe_smoke_tests
+from fum_rt.runtime.helpers.emission import emit_status_and_macro as _emit_status_and_macro
+from fum_rt.runtime.helpers.viz import maybe_visualize as _maybe_visualize
+from fum_rt.runtime.helpers.checkpointing import save_tick_checkpoint as _save_tick_checkpoint
+from fum_rt.runtime.helpers import maybe_start_maps_ws as _maybe_start_maps_ws
 
 # ---------- Optional Learning/Actuator Adapters (default-off, safe) ----------
 def _truthy(x) -> bool:
@@ -206,8 +205,32 @@ def _maybe_run_gdsp(nx: Any, metrics: Dict[str, Any], step: int) -> None:
         "novelty": float(metrics.get("vt_entropy", metrics.get("evt_vt_entropy", 0.0))),
     }
 
-    # No territory by default; actuator will still perform maintenance pruning
+    # Territory indices from event-folded UF if available (bounded; no scans)
     territory_indices = None
+    try:
+        terr = getattr(nx, "_territories", None)
+        if terr is not None:
+            k_sel = int(os.getenv("GDSP_K", "64"))
+            sel = terr.sample_any(int(max(0, k_sel)))
+            if isinstance(sel, list) and sel:
+                territory_indices = sel
+    except Exception:
+        territory_indices = None
+    # If triggers fired but no indices, emit a lightweight bias_hint for scouts (telemetry-only)
+    try:
+        if territory_indices is None:
+            bus = getattr(nx, "bus", None)
+            if bus is not None:
+                class _BiasObs:
+                    pass
+                _o = _BiasObs()
+                _o.kind = "bias_hint"
+                _o.tick = int(step)
+                _o.nodes = []
+                _o.meta = {"region": "unknown", "ttl": 2}
+                bus.publish(_o)
+    except Exception:
+        pass
 
     # Pruning parameters
     try:
@@ -285,6 +308,12 @@ def run_loop(nx: Any, t0: float, step: int, duration_s: Optional[int] = None) ->
                 except Exception:
                     nx._evt_metrics = None
 
+        # Start maps WebSocket forwarder if enabled (idempotent; safe no-op on error)
+        try:
+            _maybe_start_maps_ws(nx)
+        except Exception:
+            pass
+
         while True:
             tick_start = time.time()
 
@@ -345,6 +374,32 @@ def run_loop(nx: Any, t0: float, step: int, duration_s: Optional[int] = None) ->
                         void_topic_symbols |= vts
                 except Exception:
                     pass
+            except Exception:
+                pass
+
+            # 3a) Fold cohesion territories (event-folded union-find; no scans)
+            try:
+                terr = getattr(nx, "_territories", None)
+                if terr is None:
+                    try:
+                        from fum_rt.core.proprioception.territory import TerritoryUF as _TerrUF  # lazy import
+                        head_k = 512
+                        try:
+                            import os as _os
+                            head_k = int(_os.getenv("TERRITORY_HEAD_K", str(head_k)))
+                        except Exception:
+                            head_k = 512
+                        nx._territories = _TerrUF(head_k=int(max(8, head_k)))
+                        terr = nx._territories
+                    except Exception:
+                        terr = None
+                if terr is not None:
+                    batch = getattr(nx, "_last_obs_batch", None)
+                    if batch:
+                        try:
+                            terr.fold(batch)
+                        except Exception:
+                            pass
             except Exception:
                 pass
 

@@ -131,10 +131,8 @@ python tools/utd_event_scan.py runs/2025-08-10_21-00-00 --emit-lexicon runs/2025
 ### Macro board persistence
 
 - At runtime, newly used macro names are automatically registered and persisted to `runs/<timestamp>/macro_board.json`.
-- On startup, the Nexus also registers macro keys from:
-  1) the run’s `macro_board.json` (preferred), or
-  2) `from_physicist_agent/macro_board_min.json` (fallback).
-- This allows new macro keys (e.g., `say`, `status`) to accumulate across runs without additional configuration.
+- On startup, the Nexus registers macro keys from the run’s `macro_board.json`.
+- Defaults `status` and `say` are always available.
 
 
 

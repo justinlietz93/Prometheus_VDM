@@ -20,6 +20,26 @@
 import os
 import fnmatch
 import json # Using JSON for the temporary file for simplicity and readability
+from PyPDF2 import PdfReader
+
+def extract_pdf_text(pdf_path):
+    """Extracts text from a PDF and saves it to a .txt file with the same name/path."""
+    txt_path = os.path.splitext(pdf_path)[0] + '.txt'
+    if os.path.exists(txt_path):
+        print(f"Text already extracted for {pdf_path}, skipping.")
+        return  # Optional: Skip if .txt exists to avoid re-processing
+    
+    try:
+        reader = PdfReader(pdf_path)
+        text = ''
+        for page in reader.pages:
+            text += page.extract_text() + '\n'
+        
+        with open(txt_path, 'w', encoding='utf-8') as txt_file:
+            txt_file.write(text)
+        print(f"Extracted text from {pdf_path} to {txt_path}")
+    except Exception as e:
+        print(f"Error extracting text from {pdf_path}: {e}")
 
 def find_project_root(start_path):
     """Walks up from start_path to find the project root (contains .git)."""
@@ -87,7 +107,22 @@ def is_ignored(path, project_root, ignore_patterns):
 
     return False
 
-def analyze_directory(root_dir, ignore_patterns, see_ignored=False):
+def extraction_only_walk(root_dir, ignore_patterns):
+    """Performs a directory walk to extract text from PDFs only, without analysis."""
+    abs_root_dir = os.path.abspath(root_dir)
+    project_root = find_project_root(abs_root_dir)
+
+    for dirpath, dirnames, filenames in os.walk(abs_root_dir, topdown=True):
+        dirnames[:] = [d for d in dirnames if not is_ignored(os.path.join(dirpath, d), project_root, ignore_patterns)]
+
+        for filename in sorted(filenames):
+            full_path = os.path.join(dirpath, filename)
+            if not is_ignored(full_path, project_root, ignore_patterns) and filename.lower().endswith('.pdf'):
+                extract_pdf_text(full_path)
+
+    print("PDF extraction complete (no report generated).")
+
+def analyze_directory(root_dir, ignore_patterns, see_ignored=False, extract_pdfs=False):
     """
     Analyzes a directory, gathers file metadata, and generates a correct
     ASCII tree representation.
@@ -129,6 +164,11 @@ def analyze_directory(root_dir, ignore_patterns, see_ignored=False):
         for filename in sorted(filenames):
             full_path = os.path.join(dirpath, filename)
             if not is_ignored(full_path, project_root, ignore_patterns):
+                # New: Extract text if it's a PDF
+                if extract_pdfs and filename.lower().endswith('.pdf'):
+                    extract_pdf_text(full_path)
+                
+                # Existing code continues...
                 try:
                     size = os.path.getsize(full_path)
                     loc = get_loc(full_path)
