@@ -478,4 +478,45 @@ class GDSPActuator:
         }
 
 
+def run_gdsp_synaptic_actuator(
+    substrate: Any,
+    introspection_report: dict | None = None,
+    sie_report: dict | None = None,
+    territory_indices: Any | None = None,
+    T_prune: int = 100,
+    pruning_threshold: float = 0.01,
+) -> Any:
+    """
+    Legacy-compatible wrapper (emergent-only trigger, no schedulers).
+    Mirrors older runtime adapters by exposing a function entrypoint.
+
+    Complexity: O(#bounded-ops) per tick (budgeted repairs/growth + pruning).
+    """
+    try:
+        inst = getattr(run_gdsp_synaptic_actuator, "_inst", None)
+        if inst is None:
+            inst = GDSPActuator()
+            setattr(run_gdsp_synaptic_actuator, "_inst", inst)
+        return inst.run(
+            substrate=substrate,
+            introspection_report=introspection_report or {},
+            sie_report=sie_report or {},
+            territory_indices=territory_indices,
+            T_prune=int(T_prune),
+            pruning_threshold=float(pruning_threshold),
+        )
+    except Exception:
+        return substrate
+
+
+def get_gdsp_status_report(substrate: Any) -> dict:
+    """
+    Legacy-compatible status function.
+
+    Returns a compact operational snapshot (component count, degree, weight stats).
+    """
+    try:
+        return GDSPActuator.status_report(substrate)
+    except Exception:
+        return {"gdsp_operational": False}
 __all__ = ["GDSPActuator"]
