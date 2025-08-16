@@ -64,31 +64,7 @@ def register_macro_board(utd: Any, run_dir: str) -> None:
     except Exception:
         pass
 
-    # Fallback: from_physicist_agent/macro_board_min.json (do not override per-run entries)
-    try:
-        # Discover repository root by walking up from this file: .../fum_rt/runtime -> repo root
-        _here = os.path.abspath(__file__)
-        _fum_rt_dir = os.path.dirname(os.path.dirname(_here))
-        _repo_root = os.path.dirname(_fum_rt_dir)
-        fb = os.path.join(_repo_root, 'from_physicist_agent', 'macro_board_min.json')
-        if os.path.exists(fb):
-            import json
-            with open(fb, 'r', encoding='utf-8') as fh:
-                reg2 = json.load(fh)
-            current = set()
-            try:
-                current = set(utd.list_macros() or [])
-            except Exception:
-                current = set()
-            if isinstance(reg2, dict):
-                for name, meta in reg2.items():
-                    try:
-                        if str(name) not in current:
-                            utd.register_macro(str(name), meta if isinstance(meta, dict) else {})
-                    except Exception:
-                        pass
-    except Exception:
-        pass
+    # External fallbacks removed by repository policy: macros must originate from per-run files.
 
 
 # --- Engram load and start-step derivation -------------------------------------
@@ -443,6 +419,67 @@ def maybe_visualize(nx: Any, step: int) -> None:
         pass
 
 
+# --- Maps/frame WebSocket (bounded, drop-oldest) ---------------------------------
+
+def maybe_start_maps_ws(nx: Any) -> None:
+    """
+    Lazily start the maps/frame WebSocket forwarder if ENABLE_MAPS_WS is truthy.
+    - Ensures a bounded MapsRing exists on nx._maps_ring (capacity=MAPS_RING, default 3)
+    - Starts a background MapsWebSocketServer (host=MAPS_WS_HOST, port=MAPS_WS_PORT)
+    - Safe no-op if websockets is not installed or any error occurs
+    """
+    try:
+        flag = str(os.getenv("ENABLE_MAPS_WS", "0")).strip().lower() in ("1", "true", "yes", "on", "y", "t")
+        if not flag:
+            return
+
+        # Ensure a ring exists (reuses ring created by telemetry tick_fold if present)
+        ring = getattr(nx, "_maps_ring", None)
+        if ring is None:
+            try:
+                from fum_rt.io.visualization.maps_ring import MapsRing  # local import; allowed in runtime layer
+                cap = 3
+                try:
+                    cap = int(os.getenv("MAPS_RING", "3"))
+                except Exception:
+                    cap = 3
+                nx._maps_ring = MapsRing(capacity=max(1, cap))
+                ring = nx._maps_ring
+            except Exception:
+                ring = None
+
+        if ring is None:
+            return
+
+        # Start server once
+        if getattr(nx, "_maps_ws_server", None) is None:
+            try:
+                from fum_rt.io.visualization.websocket_server import MapsWebSocketServer  # runtime-layer IO allowed
+                host = os.getenv("MAPS_WS_HOST", "127.0.0.1")
+                try:
+                    port = int(os.getenv("MAPS_WS_PORT", "8765"))
+                except Exception:
+                    port = 8765
+
+                def _err(msg: str) -> None:
+                    try:
+                        nx.logger.info("maps_ws_error", extra={"extra": {"err": str(msg)}})
+                    except Exception:
+                        try:
+                            print("[maps_ws] " + str(msg), flush=True)
+                        except Exception:
+                            pass
+
+                srv = MapsWebSocketServer(ring, host=host, port=port, on_error=_err)
+                srv.start()
+                nx._maps_ws_server = srv
+            except Exception:
+                # Missing websockets or other failure — safe no-op
+                return
+    except Exception:
+        # Never disrupt runtime parity
+        pass
+
 # --- Checkpointing --------------------------------------------------------------
 
 def save_tick_checkpoint(nx: Any, step: int) -> None:
@@ -484,5 +521,6 @@ __all__ = [
     "maybe_auto_speak",
     "emit_status_and_macro",
     "maybe_visualize",
+    "maybe_start_maps_ws",
     "save_tick_checkpoint",
 ]

@@ -14,5 +14,8 @@ h5py # For saving FUM's brain
 plotly # For interactive visualizations
 dash # For web-based visualizations
 
+# Tools
+pypdf2 # For PDF text extraction
+
 # Custom Advanced Math Library
 statsmodels # For statistical models
