@@ -95,6 +95,23 @@ class _DynObs:
         self.nodes = list(nodes or [])
         self.meta = dict(meta or {})
 
+class _MapsObs:
+    """
+    Lightweight maps/frame observation for UI consumption.
+
+    Contract:
+      - kind: 'maps_frame'
+      - header: dict with fields {topic, tick, n, shape, channels, dtype, endianness, stats}
+      - payload: bytes containing Float32Array blocks back-to-back (LE): heat[n] | exc[n] | inh[n]
+    """
+    __slots__ = ("tick", "kind", "header", "payload")
+
+    def __init__(self, tick: int, header: Dict[str, Any], payload: bytes) -> None:
+        self.tick = int(tick)
+        self.kind = "maps_frame"
+        self.header = dict(header or {})
+        self.payload = payload
+
 
 def tick_fold(
     nx: Any,
@@ -229,6 +246,39 @@ def tick_fold(
                         m["complexity_cycles"] = float(m.get("complexity_cycles", 0.0)) + float(adc_metrics.get("adc_cycle_hits", 0.0))
                 except Exception:
                     pass
+    except Exception:
+        pass
+
+    # 2.9) Publish maps/frame (header+binary) if prepared by CoreEngine
+    try:
+        mf = getattr(nx, "_maps_frame_ready", None)
+        if mf is not None:
+            try:
+                bus = getattr(nx, "bus", None)
+            except Exception:
+                bus = None
+            if bus is not None and isinstance(mf, tuple) and len(mf) == 2:
+                header, payload = mf
+                # Ensure header has topic and tick without scanning arrays client-side
+                try:
+                    if isinstance(header, dict):
+                        if "topic" not in header:
+                            header = dict(header)
+                            header["topic"] = "maps/frame"
+                        header["tick"] = int(step)
+                    else:
+                        header = {"topic": "maps/frame", "tick": int(step)}
+                except Exception:
+                    header = {"topic": "maps/frame", "tick": int(step)}
+                try:
+                    bus.publish(_MapsObs(tick=int(step), header=header, payload=payload))
+                except Exception:
+                    pass
+            # Clear pointer to avoid re-publishing stale frames
+            try:
+                delattr(nx, "_maps_frame_ready")
+            except Exception:
+                pass
     except Exception:
         pass
 
