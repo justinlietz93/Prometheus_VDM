@@ -22,8 +22,6 @@ from .io.ute import UTE
 from .io.utd import UTD
 # emitters moved to runtime.emitters.initialize_emitters
 from .core import text_utils
-from .core.connectome import Connectome
-from .core.sparse_connectome import SparseConnectome
 from .core.metrics import StreamingZEMA
 from .core.visualizer import Visualizer
 from .core.void_dynamics_adapter import get_domain_modulation
@@ -40,7 +38,7 @@ from .runtime.telemetry import macro_why_base as _telemetry_why_base
 # Event-driven metrics seam (feature-flagged; pure core + adapter)
 from .core.proprioception.events import EventDrivenMetrics as _EvtMetrics
 from .runtime.emitters import initialize_emitters as _init_emitters
-from .runtime.runtime_helpers import register_macro_board as _reg_macro_board, maybe_load_engram as _maybe_load_engram, derive_start_step as _derive_start_step
+from .runtime.helpers import register_macro_board as _reg_macro_board, maybe_load_engram as _maybe_load_engram, derive_start_step as _derive_start_step
 from .runtime.loop import run_loop as _run_loop
 # Cognition seams (Phase 3 move-only; behavior-preserving)
 from .io.cognition.stimulus import symbols_to_indices as _stim_symbols_to_indices
@@ -125,16 +123,44 @@ class Nexus:
         self._ng2 = {}  # bigram: w1 -> {w2: count}
         self._ng3 = {}  # trigram: (w1,w2) -> {w3: count}
 
-        # Select connectome backend (dense vs sparse) with void-faithful parameters
+        # Sparse-first backend policy (void-faithful, no scans):
+        # Runtime uses SparseConnectome by default. Dense is validation-only via FORCE_DENSE=1.
+        use_dense = str(os.getenv("FORCE_DENSE", "0")).strip().lower() in ("1", "true", "yes", "on", "y", "t")
+
+        # Keep 'sparse_mode' arg for compatibility but ignore it; log once.
         if sparse_mode:
-            self.connectome = SparseConnectome(
+            try:
+                self.logger.info("deprecated_arg_sparse_mode_ignored", extra={"extra": {"arg": bool(sparse_mode)}})
+            except Exception:
+                pass
+
+        # Select implementation with dynamic import to avoid accidental dense usage
+        try:
+            if use_dense:
+                from fum_rt.core.connectome import Connectome as _Conn  # validation-only
+            else:
+                from fum_rt.core.sparse_connectome import SparseConnectome as _Conn
+        except Exception:
+            # Fallback to sparse on any import failure
+            from fum_rt.core.sparse_connectome import SparseConnectome as _Conn
+
+        # Instantiate connectome (both backends accept the same constructor args here)
+        try:
+            self.connectome = _Conn(
                 N=self.N, k=self.k, seed=self.seed,
                 threshold=threshold, lambda_omega=lambda_omega,
                 candidates=candidates, traversal_walkers=walkers, traversal_hops=hops,
-                bundle_size=bundle_size
+                bundle_size=bundle_size, prune_factor=prune_factor
             )
-        else:
-            self.connectome = Connectome(
+            if use_dense:
+                try:
+                    self.logger.info("backend_dense_forced", extra={"extra": {"reason": "FORCE_DENSE"}})
+                except Exception:
+                    pass
+        except Exception:
+            # Ensure we have a working sparse connectome if constructor failed
+            from fum_rt.core.sparse_connectome import SparseConnectome as _SConn
+            self.connectome = _SConn(
                 N=self.N, k=self.k, seed=self.seed,
                 threshold=threshold, lambda_omega=lambda_omega,
                 candidates=candidates, traversal_walkers=walkers, traversal_hops=hops,
