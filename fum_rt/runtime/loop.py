@@ -40,6 +40,170 @@ from fum_rt.runtime.runtime_helpers import (
     save_tick_checkpoint as _save_tick_checkpoint,
 )
 
+# ---------- Optional Learning/Actuator Adapters (default-off, safe) ----------
+def _truthy(x) -> bool:
+    try:
+        if isinstance(x, (int, float)):
+            return bool(x)
+        s = str(x).strip().lower()
+        return s in ("1", "true", "yes", "on", "y", "t")
+    except Exception:
+        return False
+
+
+def _maybe_run_revgsp(nx: Any, metrics: Dict[str, Any], step: int) -> None:
+    """
+    Best-effort adapter to call REV-GSP adapt_connectome if available and enabled.
+    - Enabled via ENABLE_REVGSP=1 (default off).
+    - Auto-detects compatible substrate (nx.substrate or nx.connectome with expected fields).
+    - Filters kwargs to the function signature to avoid mismatches.
+    - Silent no-op on any error or incompatibility.
+    """
+    import os, inspect  # local to avoid module-level dependency
+    if not _truthy(os.getenv("ENABLE_REVGSP", "0")):
+        return
+
+    try:
+        from fum_original_v2.mechanisms.revgsp import adapt_connectome as _adapt  # type: ignore
+    except Exception:
+        return
+
+    # Pick a substrate-like object
+    s = getattr(nx, "substrate", None)
+    if s is None:
+        s = getattr(nx, "connectome", None)
+    if s is None:
+        return
+
+    # Build candidate kwargs and filter by signature
+    try:
+        sig = inspect.signature(_adapt)
+        allowed = set(sig.parameters.keys())
+    except Exception:
+        allowed = set()
+
+    # Sources for signals
+    total_reward = float(metrics.get("sie_total_reward", 0.0))
+    plv = metrics.get("evt_plv", None)  # optional; may be absent
+    latency = getattr(nx, "network_latency_estimate", None)
+    if latency is None:
+        latency = {"max": float(getattr(nx, "latency_max", 0.0)), "error": float(getattr(nx, "latency_err", 0.0))}
+
+    # Possible kwargs
+    candidates = {
+        "substrate": s,
+        "spike_train": getattr(nx, "recent_spikes", None),
+        "spike_phases": getattr(nx, "spike_phases", None),
+        "learning_rate": float(os.getenv("REV_GSP_ETA", getattr(nx, "rev_gsp_eta", 1e-3))),
+        "lambda_decay": float(os.getenv("REV_GSP_LAMBDA", getattr(nx, "rev_gsp_lambda", 0.99))),
+        "total_reward": total_reward,
+        "plv": plv,
+        "network_latency_estimate": latency,
+        "time_window_ms": int(os.getenv("REV_GSP_TWIN_MS", "20")),
+    }
+    # Filter None values and restrict to signature
+    kwargs = {k: v for k, v in candidates.items() if v is not None and (not allowed or k in allowed)}
+
+    # If the function requires args we didn't provide, it will raise — catch and noop.
+    try:
+        _adapt(**kwargs)
+    except Exception:
+        # Silent by design; adapter is optional and must not disrupt runtime parity.
+        return
+
+
+def _maybe_run_gdsp(nx: Any, metrics: Dict[str, Any], step: int) -> None:
+    """
+    Best-effort adapter to call GDSP synaptic actuator if available and enabled.
+    - Enabled via ENABLE_GDSP=1 (default off).
+    - Cadence via STRUCT_EVERY (default 500 ticks).
+    - Requires a substrate-like object with the expected sparse fields; else no-op.
+    - Executes homeostatic repairs (if repair_triggered present), growth (when territory provided),
+      and maintenance pruning with T_prune and pruning_threshold.
+    """
+    import os  # local import
+    if not _truthy(os.getenv("ENABLE_GDSP", "0")):
+        return
+
+    # Cadence
+    try:
+        K = int(os.getenv("STRUCT_EVERY", "500"))
+    except Exception:
+        K = 500
+    if K > 0 and (int(step) % K) != 0:
+        return
+
+    try:
+        from fum_original_v2.mechanisms.gdsp import (  # type: ignore
+            run_gdsp_synaptic_actuator as _run_gdsp,
+            get_gdsp_status_report as _gdsp_report,
+        )
+    except Exception:
+        return
+
+    # Substrate or connectome compatibility check (sparse CSR fields)
+    s = getattr(nx, "substrate", None)
+    if s is None:
+        s = getattr(nx, "connectome", None)
+    if s is None:
+        return
+
+    def _has(obj, name: str) -> bool:
+        return hasattr(obj, name)
+
+    # Required fields for GDSP to operate safely
+    required = ("synaptic_weights", "persistent_synapses", "synapse_pruning_timers", "eligibility_traces", "firing_rates")
+    if not all(_has(s, r) for r in required):
+        return
+
+    # Build reports (best-effort from current metrics)
+    comp = int(metrics.get("cohesion_components", metrics.get("evt_cohesion_components", 1)))
+    b1_spike = bool(metrics.get("b1_spike", metrics.get("evt_b1_spike", False)))
+    try:
+        b1_z = float(metrics.get("b1_z", metrics.get("evt_b1_z", 0.0)))
+    except Exception:
+        b1_z = 0.0
+    # Heuristic placeholder for persistence (bounded): adapter only
+    b1_persistence = max(0.0, min(1.0, abs(b1_z) / 10.0))
+
+    introspection_report = {
+        "component_count": comp,
+        "b1_persistence": b1_persistence,
+        "repair_triggered": b1_spike,
+        # locus_indices optional; omitted by default
+    }
+    sie_report = {
+        "total_reward": float(metrics.get("sie_total_reward", 0.0)),
+        "td_error": float(metrics.get("td_signal", 0.0)),
+        "novelty": float(metrics.get("vt_entropy", metrics.get("evt_vt_entropy", 0.0))),
+    }
+
+    # No territory by default; actuator will still perform maintenance pruning
+    territory_indices = None
+
+    # Pruning parameters
+    try:
+        T_prune = int(os.getenv("GDSP_T_PRUNE", "100"))
+    except Exception:
+        T_prune = 100
+    try:
+        pruning_threshold = float(os.getenv("GDSP_PRUNE_THRESHOLD", "0.01"))
+    except Exception:
+        pruning_threshold = 0.01
+
+    try:
+        _run_gdsp(
+            substrate=s,
+            introspection_report=introspection_report,
+            sie_report=sie_report,
+            territory_indices=territory_indices,
+            T_prune=T_prune,
+            pruning_threshold=pruning_threshold,
+        )
+    except Exception:
+        # Silent failure to preserve parity
+        return
+
 
 def run_loop(nx: Any, t0: float, step: int, duration_s: Optional[int] = None) -> int:
     """
@@ -123,6 +287,16 @@ def run_loop(nx: Any, t0: float, step: int, duration_s: Optional[int] = None) ->
 
             # Compute step and scan-based metrics (parity-preserving)
             m, drive = _compute_step_and_metrics(nx, t, step, idf_scale=idf_scale)
+
+            # Optional: Online learner (REV-GSP) and structural actuator (GDSP) — default OFF
+            try:
+                _maybe_run_revgsp(nx, m, int(step))
+            except Exception:
+                pass
+            try:
+                _maybe_run_gdsp(nx, m, int(step))
+            except Exception:
+                pass
 
             # 3) telemetry fold (bus drain + ADC + optional event metrics + B1)
             void_topic_symbols: Set[Any] = set()

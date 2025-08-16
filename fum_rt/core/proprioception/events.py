@@ -88,6 +88,21 @@ class EdgeOffEvent(BaseEvent):
     v: int = 0
 
 
+# Polarity-aware activity/spike event (void-faithful, event-driven only)
+@dataclass(frozen=True)
+class SpikeEvent(BaseEvent):
+    node: int = 0       # neuron id
+    amp: float = 1.0    # activity magnitude (or |ΔW| proxy)
+    sign: int = +1      # +1 excitatory, -1 inhibitory, 0 unknown
+
+
+# Optional signed weight delta event for local learning updates
+@dataclass(frozen=True)
+class DeltaWEvent(BaseEvent):
+    node: int = 0
+    dw: float = 0.0
+
+
 @dataclass(frozen=True)
 class MotifEnterEvent(BaseEvent):
     motif_id: int = 0
@@ -426,6 +441,8 @@ __all__ = [
     "VTTouchEvent",
     "EdgeOnEvent",
     "EdgeOffEvent",
+    "SpikeEvent",
+    "DeltaWEvent",
     "MotifEnterEvent",
     "MotifExitEvent",
     "ADCEvent",
