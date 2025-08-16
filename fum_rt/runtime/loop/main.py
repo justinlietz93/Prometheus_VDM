@@ -311,6 +311,17 @@ def run_loop(nx: Any, t0: float, step: int, duration_s: Optional[int] = None) ->
         except Exception:
             pass
 
+        # Ensure connectome publishes Observations to the runtime bus for ADC/cycles/B1
+        # Without this attachment, cycle_hit/region_stat announcements never reach tick_fold(),
+        # leaving adc_cycle_hits at 0 -> complexity_cycles stays 0 -> b1_z remains flatlined.
+        try:
+            C = getattr(nx, "connectome", None)
+            b = getattr(nx, "bus", None)
+            if C is not None and b is not None:
+                setattr(C, "bus", b)
+        except Exception:
+            pass
+
         while True:
             tick_start = time.time()
 
@@ -551,8 +562,8 @@ def run_loop(nx: Any, t0: float, step: int, duration_s: Optional[int] = None) ->
             # Autonomous speaking (delegated)
             try:
                 _maybe_auto_speak = None
-                # lazy import to avoid cycle
-                from fum_rt.runtime.runtime_helpers import maybe_auto_speak as _maybe_auto_speak  # type: ignore
+                # lazy import to avoid cycle (modularized helpers)
+                from fum_rt.runtime.helpers import maybe_auto_speak as _maybe_auto_speak
                 if _maybe_auto_speak is not None:
                     _maybe_auto_speak(nx, m, int(step), tick_tokens, void_topic_symbols)
             except Exception:

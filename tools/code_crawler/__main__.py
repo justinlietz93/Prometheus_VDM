@@ -26,7 +26,7 @@ from collections import defaultdict
 from datetime import datetime
 
 # Use explicit relative imports to ensure this works as a module
-from .analyzer import analyze_directory, extraction_only_walk  # NEW: Import the new extraction function
+from .analyzer import analyze_directory, format_size, extraction_only_walk  # NEW: Import the new extraction function
 from .config import ignore_patterns
 from .diagram_generator import generate_mermaid_diagram
 
