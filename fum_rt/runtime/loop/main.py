@@ -55,6 +55,10 @@ from fum_rt.core.cortex.void_walkers.void_memory_ray_scout import MemoryRayScout
 from fum_rt.core.cortex.void_walkers.void_frontier_scout import FrontierScout
 from fum_rt.core.cortex.void_walkers.void_cycle_scout import CycleHunterScout
 from fum_rt.core.cortex.void_walkers.void_sentinel_scout import SentinelScout
+# Memory/trail steering fields (owner + adapter view)
+from fum_rt.core.cortex.maps.memorymap import MemoryMap
+from fum_rt.core.cortex.maps.trailmap import TrailMap
+from fum_rt.core.memory.field import MemoryField
 
 # ---------- Optional Learning/Actuator Adapters (default-off, safe) ----------
 def _truthy(x) -> bool:
@@ -502,6 +506,23 @@ def run_loop(nx: Any, t0: float, step: int, duration_s: Optional[int] = None) ->
                                     maps_for_scouts.update(ms)
                         except Exception:
                             pass
+                        # Memory and Trail steering fields (bounded; no scans)
+                        try:
+                            mm = getattr(eng, "_memory_map", None)
+                            if mm is not None:
+                                ms = mm.snapshot() or {}
+                                if isinstance(ms, dict):
+                                    maps_for_scouts.update(ms)
+                        except Exception:
+                            pass
+                        try:
+                            tm = getattr(eng, "_trail_map", None)
+                            if tm is not None:
+                                ms = tm.snapshot() or {}
+                                if isinstance(ms, dict):
+                                    maps_for_scouts.update(ms)
+                        except Exception:
+                            pass
 
                         # Seeds from recent stimulation (bounded)
                         try:
@@ -540,14 +561,20 @@ def run_loop(nx: Any, t0: float, step: int, duration_s: Optional[int] = None) ->
                         except Exception:
                             max_us = 2000
 
-                        scouts_list = [
-                            HeatScout(),
-                            VoidRayScout(),
-                            MemoryRayScout(),
-                            FrontierScout(),
-                            CycleHunterScout(),
-                            SentinelScout(),
-                        ]
+                        scouts_list = []
+                        # Per-scout env toggles (void-faithful; default on)
+                        if _truthy(os.getenv("ENABLE_SCOUT_HEAT", "1")):
+                            scouts_list.append(HeatScout())
+                        if _truthy(os.getenv("ENABLE_SCOUT_VOIDRAY", "1")):
+                            scouts_list.append(VoidRayScout())
+                        if _truthy(os.getenv("ENABLE_SCOUT_MEMRAY", "1")):
+                            scouts_list.append(MemoryRayScout())
+                        if _truthy(os.getenv("ENABLE_SCOUT_FRONTIER", "1")):
+                            scouts_list.append(FrontierScout())
+                        if _truthy(os.getenv("ENABLE_SCOUT_CYCLE", "1")):
+                            scouts_list.append(CycleHunterScout())
+                        if _truthy(os.getenv("ENABLE_SCOUT_SENTINEL", "1")):
+                            scouts_list.append(SentinelScout())
 
                         scout_evs = _run_scouts_once(
                             getattr(nx, "connectome", None),
@@ -575,6 +602,66 @@ def run_loop(nx: Any, t0: float, step: int, duration_s: Optional[int] = None) ->
                     except Exception:
                         pass
                     # Step the core engine with events (telemetry-only; no behavior change)
+                    # Ensure memory field/map/trail exist (single owner; views only) and fold events
+                    try:
+                        # Owner field (physics): single source of truth for m[i]
+                        if getattr(eng, "_memory_field", None) is None:
+                            try:
+                                seed_m = int(getattr(nx, "seed", 0))
+                            except Exception:
+                                seed_m = 0
+                            try:
+                                hk = int(getattr(nx, "cold_head_k", 256))
+                            except Exception:
+                                hk = 256
+                            eng._memory_field = MemoryField(head_k=max(8, hk), seed=seed_m)
+                            # Attach to connectome for local, O(1) reads via getters
+                            try:
+                                C = getattr(nx, "connectome", None)
+                                if C is not None:
+                                    setattr(C, "_memory_field", eng._memory_field)
+                            except Exception:
+                                pass
+                        # View adapter (bounded head/dict for scouts/UI)
+                        if getattr(eng, "_memory_map", None) is None:
+                            try:
+                                hk = int(getattr(nx, "cold_head_k", 256))
+                            except Exception:
+                                hk = 256
+                            eng._memory_map = MemoryMap(field=getattr(eng, "_memory_field", None), head_k=max(8, hk))
+                            try:
+                                C = getattr(nx, "connectome", None)
+                                if C is not None:
+                                    setattr(C, "_memory_map", eng._memory_map)
+                            except Exception:
+                                pass
+                        # Trail map (short half-life, repulsion)
+                        if getattr(eng, "_trail_map", None) is None:
+                            try:
+                                hk = int(getattr(nx, "cold_head_k", 256))
+                            except Exception:
+                                hk = 256
+                            try:
+                                hl2 = int(getattr(nx, "cold_half_life_ticks", 200))
+                            except Exception:
+                                hl2 = 200
+                            eng._trail_map = TrailMap(head_k=max(8, hk), half_life_ticks=max(1, int(max(1, hl2 // 4))), seed=int(getattr(nx, "seed", 0)) + 5)
+                        # Fold current events into maps (bounded; no scans)
+                        try:
+                            mm = getattr(eng, "_memory_map", None)
+                            if mm is not None:
+                                mm.fold(evs, int(step))
+                        except Exception:
+                            pass
+                        try:
+                            tm = getattr(eng, "_trail_map", None)
+                            if tm is not None:
+                                tm.fold(evs, int(step))
+                        except Exception:
+                            pass
+                    except Exception:
+                        pass
+
                     try:
                         dt_ms = int(max(1, float(getattr(nx, "dt", 0.1)) * 1000.0))
                     except Exception:

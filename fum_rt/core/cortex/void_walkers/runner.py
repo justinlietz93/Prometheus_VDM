@@ -20,6 +20,7 @@ Notes:
 
 from typing import Any, Dict, Iterable, List, Optional, Sequence
 from time import perf_counter_ns
+import os as _os
 
 from fum_rt.core.proprioception.events import BaseEvent
 
@@ -67,20 +68,55 @@ def run_scouts_once(
         max_us = 0  # 0 → gather but still permit at least the first scout call if desired
 
     t0 = perf_counter_ns()
-    for sc in scouts:
-        # Time guard (drop rest on over-budget)
+
+    # Fairness: rotate starting scout by tick (round-robin) to avoid starvation
+    start_idx = 0
+    try:
+        if isinstance(budget, dict):
+            start_idx = int(budget.get("tick", 0))
+    except Exception:
+        start_idx = 0
+
+    ordered: List[Any] = list(scouts or [])
+    n_sc = len(ordered)
+    if n_sc > 0 and start_idx:
+        try:
+            k = start_idx % n_sc
+            ordered = ordered[k:] + ordered[:k]
+        except Exception:
+            # fallback: keep original order
+            ordered = list(scouts or [])
+
+    # Optional per-scout micro-slice (still one-shot runner; no schedulers)
+    per_us = 0
+    try:
+        per_us = int(_os.getenv("SCOUTS_PER_SCOUT_US", "0"))
+    except Exception:
+        per_us = 0
+    if per_us <= 0 and max_us > 0 and n_sc > 0:
+        per_us = int(max_us // max(1, n_sc))
+
+    for sc in ordered:
+        # Global time guard (drop rest on over-budget)
         if max_us > 0:
             elapsed_us = (perf_counter_ns() - t0) // 1000
             if elapsed_us >= max_us:
                 break
 
-        # Execute one scout with the common budget
+        sc_t0 = perf_counter_ns()
         try:
             out = sc.step(connectome=connectome, bus=None, maps=maps, budget=budget) or []
         except Exception:
             out = []
         if out:
             evs.extend(out)
+
+        # Per-scout guard (best-effort; cannot preempt inside step)
+        if per_us > 0:
+            sc_elapsed_us = (perf_counter_ns() - sc_t0) // 1000
+            if sc_elapsed_us > per_us:
+                # soft-guard only: we don't penalize the scout, but this informs future tuning
+                pass
 
     # Publish once (drop-oldest semantics live in bus implementation)
     if evs and bus is not None:
