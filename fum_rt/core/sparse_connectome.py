@@ -623,6 +623,39 @@ class SparseConnectome:
             G.add_edge(int(i), int(j))
         return G
 
+    def get_phi(self, i: int) -> float:
+        """O(1) local read of fast field φ at node i; returns 0.0 when absent."""
+        try:
+            phi = getattr(self, "phi", None)
+            if phi is None:
+                return 0.0
+            return float(phi[int(i)])
+        except Exception:
+            return 0.0
+
+    def get_memory(self, i: int) -> float:
+        """O(1) local read of slow memory m at node i via attached field/map when present."""
+        # Prefer an attached MemoryField
+        try:
+            mf = getattr(self, "_memory_field", None)
+            if mf is not None and hasattr(mf, "get_m"):
+                return float(mf.get_m(int(i)))
+        except Exception:
+            pass
+        # Fallback to attached MemoryMap adapter
+        try:
+            mm = getattr(self, "_memory_map", None)
+            if mm is not None:
+                fld = getattr(mm, "field", None)
+                if fld is not None and hasattr(fld, "get_m"):
+                    return float(fld.get_m(int(i)))
+                dct = getattr(mm, "_m", None)
+                if isinstance(dct, dict):
+                    return float(dct.get(int(i), 0.0))
+        except Exception:
+            pass
+        return 0.0
+
     def connectome_entropy(self) -> float:
         """
         Global pathological structure metric on the active subgraph.

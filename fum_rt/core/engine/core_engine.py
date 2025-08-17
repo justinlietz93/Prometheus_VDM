@@ -33,6 +33,8 @@ from fum_rt.core.cortex.scouts import VoidColdScoutWalker as _VoidScout, ColdMap
 from fum_rt.core.cortex.maps.heatmap import HeatMap as _HeatMap
 from fum_rt.core.cortex.maps.excitationmap import ExcitationMap as _ExcMap
 from fum_rt.core.cortex.maps.inhibitionmap import InhibitionMap as _InhMap
+from fum_rt.core.cortex.maps.trailmap import TrailMap as _TrailMap
+from fum_rt.core.cortex.maps.memorymap import MemoryMap as _MemMap
 from fum_rt.core.signals import (
     compute_active_edge_density as _sig_density,
     compute_td_signal as _sig_td,
@@ -72,6 +74,8 @@ class CoreEngine:
         self._heat_map: Optional[_HeatMap] = None
         self._exc_map: Optional[_ExcMap] = None
         self._inh_map: Optional[_InhMap] = None
+        self._memory_map: Optional[_MemMap] = None
+        self._trail_map: Optional[_TrailMap] = None
         self._last_evt_snapshot: Dict[str, Any] = {}
 
     # ---- Event-driven fold and telemetry staging ----
@@ -187,7 +191,7 @@ class CoreEngine:
         except Exception:
             pass
 
-        # 2.5) fold heat/excitation/inhibition maps with collected events (telemetry-only)
+        # 2.5) fold heat/excitation/inhibition (+memory/trail) maps with collected events (telemetry-only)
         try:
             try:
                 fold_tick = int(latest_tick) if latest_tick is not None else int(getattr(self._nx, "_emit_step", -1)) + 1
@@ -206,6 +210,16 @@ class CoreEngine:
             if getattr(self, "_inh_map", None) is not None:
                 try:
                     self._inh_map.fold(collected_events, int(fold_tick))
+                except Exception:
+                    pass
+            if getattr(self, "_memory_map", None) is not None:
+                try:
+                    self._memory_map.fold(collected_events, int(fold_tick))
+                except Exception:
+                    pass
+            if getattr(self, "_trail_map", None) is not None:
+                try:
+                    self._trail_map.fold(collected_events, int(fold_tick))
                 except Exception:
                     pass
         except Exception:
@@ -235,6 +249,8 @@ class CoreEngine:
                 heat_map=self._heat_map,
                 exc_map=self._exc_map,
                 inh_map=self._inh_map,
+                memory_map=getattr(self, "_memory_map", None),
+                trail_map=getattr(self, "_trail_map", None),
                 latest_tick=(
                     int(latest_tick)
                     if latest_tick is not None
@@ -340,6 +356,31 @@ class CoreEngine:
                 )
             except Exception:
                 self._inh_map = None
+        # Memory/Trail reducers (event-driven steering fields; telemetry-only exposure)
+        if getattr(self, "_memory_map", None) is None:
+            try:
+                self._memory_map = _MemMap(
+                    head_k=max(8, hk), keep_max=None, seed=seed + 4
+                )
+                # expose a read-only pointer for local getters without scans
+                try:
+                    C = getattr(self._nx, "connectome", None)
+                    if C is not None:
+                        setattr(C, "_memory_map", self._memory_map)
+                except Exception:
+                    pass
+            except Exception:
+                self._memory_map = None
+        if getattr(self, "_trail_map", None) is None:
+            try:
+                self._trail_map = _TrailMap(
+                    head_k=max(8, hk),
+                    half_life_ticks=max(1, int(max(1, hl2 // 4))),
+                    keep_max=None,
+                    seed=seed + 5,
+                )
+            except Exception:
+                self._trail_map = None
 
     # --- Connectome interface (single entrypoint for runtime) ---
     def stimulate_indices(self, indices, amp: float = 0.05) -> None:
