@@ -6,6 +6,7 @@ import plotly.graph_objs as go
 
 from fum_rt.frontend.utilities.tail import tail_jsonl_bytes
 from fum_rt.frontend.models.series import SeriesState, append_event, append_say, ffill, extract_tick
+from fum_rt.frontend.services.status_client import get_status_snapshot as _get_status
 
 
 def compute_dashboard_figures(run_dir: str, state: Optional[SeriesState]) -> Tuple[go.Figure, go.Figure, SeriesState]:
@@ -22,9 +23,22 @@ def compute_dashboard_figures(run_dir: str, state: Optional[SeriesState]) -> Tup
 
     # Stream append events; detect truncation/rotation or run restart to avoid overlay
     prev_es = getattr(state, "events_size", 0)
-    new_events, esize = tail_jsonl_bytes(state.events_path, prev_es)
     prev_us = getattr(state, "utd_size", 0)
-    new_utd, usize = tail_jsonl_bytes(state.utd_path, prev_us)
+    _disable_io = str(os.getenv("DASH_DISABLE_FILE_IO", "1")).strip().lower() in ("1", "true", "yes", "on")
+    if _disable_io:
+        # Zero file IO mode: fetch live status snapshot over HTTP (if runtime enabled it).
+        new_events, esize = [], prev_es
+        new_utd, usize = [], prev_us
+        try:
+            snap = _get_status()
+        except Exception:
+            snap = None
+        if isinstance(snap, dict) and snap:
+            # Use snapshot directly as an "event-like" record; append_event() reads from the dict.
+            new_events = [snap]
+    else:
+        new_events, esize = tail_jsonl_bytes(state.events_path, prev_es)
+        new_utd, usize = tail_jsonl_bytes(state.utd_path, prev_us)
 
     # Reset conditions:
     truncated = (prev_es > 0 and esize < prev_es) or (prev_us > 0 and usize < prev_us)
@@ -85,8 +99,11 @@ def compute_dashboard_figures(run_dir: str, state: Optional[SeriesState]) -> Tup
     state.events_size = esize
     state.utd_size = usize
 
-    # Bound buffers
-    MAXP = 2000
+    # Bound buffers (env-tunable)
+    try:
+        MAXP = int(os.getenv("DASH_MAX_POINTS", "2000"))
+    except Exception:
+        MAXP = 2000
     if len(state.t) > MAXP:
         state.t = state.t[-MAXP:]
         state.active = state.active[-MAXP:]
@@ -97,8 +114,12 @@ def compute_dashboard_figures(run_dir: str, state: Optional[SeriesState]) -> Tup
         state.val = state.val[-MAXP:]
         state.val2 = state.val2[-MAXP:]
         state.entro = state.entro[-MAXP:]
-    if len(state.speak_ticks) > 800:
-        state.speak_ticks = state.speak_ticks[-800:]
+    try:
+        MAX_SAY = int(os.getenv("DASH_MAX_SAY_TICKS", "800"))
+    except Exception:
+        MAX_SAY = 800
+    if len(state.speak_ticks) > MAX_SAY:
+        state.speak_ticks = state.speak_ticks[-MAX_SAY:]
 
     # Forward-fill holes
     t = state.t
@@ -111,17 +132,24 @@ def compute_dashboard_figures(run_dir: str, state: Optional[SeriesState]) -> Tup
     val2 = ffill(state.val2)
     entro = ffill(state.entro)
 
-    # Palette
+    # Palette (env-overridable)
+    def _env_color(k: str, default: str) -> str:
+        try:
+            v = os.getenv(f"DASH_COLOR_{k.upper()}", "").strip()
+            return v if v else default
+        except Exception:
+            return default
+
     C = {
-        "synapses": "#7aa2c7",
-        "avgw": "#9ab8d1",
-        "valence": "#c39b70",
-        "valence2": "#8bb995",
-        "components": "#b68484",
-        "cycles": "#a08878",
-        "b1z": "#76b0a7",
-        "entropy": "#a495c7",
-        "speak_line": "rgba(120,180,120,0.45)",
+        "synapses": _env_color("synapses", "#7aa2c7"),
+        "avgw": _env_color("avgw", "#9ab8d1"),
+        "valence": _env_color("valence", "#c39b70"),
+        "valence2": _env_color("valence2", "#8bb995"),
+        "components": _env_color("components", "#b68484"),
+        "cycles": _env_color("cycles", "#a08878"),
+        "b1z": _env_color("b1z", "#76b0a7"),
+        "entropy": _env_color("entropy", "#a495c7"),
+        "speak_line": _env_color("speak_line", "rgba(120,180,120,0.45)"),
     }
 
     # fig1
@@ -160,7 +188,7 @@ def compute_dashboard_figures(run_dir: str, state: Optional[SeriesState]) -> Tup
         fig2.add_vline(x=tk, line_width=1, line_dash="dash", line_color=C["speak_line"])
     fig2.add_trace(go.Scatter(x=t, y=b1z, name="B1 z", yaxis="y2", line=dict(width=1, color=C["b1z"])))
     fig2.update_layout(
-        title="Discovery & Self‑Speak",
+        title="Cycle Hits & B1 z",
         paper_bgcolor="#10151c",
         plot_bgcolor="#0f141a",
         font=dict(color="#cfd7e3"),
