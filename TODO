@@ -8,6 +8,8 @@ TODO Refactor codebase for maintainability
     /mnt/ironwolf/git/Void_FUM_Private/Void_FUM_Private/Void_Unity_Proofs/tools/say_clean_view.py
 
     /mnt/ironwolf/git/Void_FUM_Private/Void_FUM_Private/Void_Unity_Proofs/tools/utd_event_scan.py
+TODO Modularize /mnt/ironwolf/git/Void_FUM_Private/Void_FUM_Private/Void_Unity_Proofs/fum_rt/runtime/loop/main.py
+
 
 ### Learning
 TODO Improve user engagement, reward to not be released programmatically like traditional RL, the model to learn inherently that rewards are boosted when everyone is happy or when it does a good job
@@ -31,5 +33,8 @@ TODO Generate visuals for free because we already have all the data inherently
 ### Docs
 TODO Update FUM Blueprints
 
+### Code Standards
+
 ### Bugs
 FIXED [JLietz][2025-08-14]: Fix the "echo chamber" bug in the UTD / UTE
+TODO Check on why ADC territories stagnates
