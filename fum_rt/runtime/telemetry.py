@@ -485,6 +485,38 @@ def tick_fold(
     except Exception:
         pass
 
+    # 2.10) Expose dimensionless memory steering groups (telemetry-only; void-faithful)
+    try:
+        mf = getattr(nx, "_memory_field", None)
+        if mf is not None:
+            try:
+                theta = float(getattr(mf, "Theta", 0.0))
+            except Exception:
+                theta = 0.0
+            try:
+                da = float(getattr(mf, "D_a", getattr(mf, "Da", 0.0)))
+            except Exception:
+                da = 0.0
+            try:
+                lam = float(getattr(mf, "Lambda", 0.0))
+            except Exception:
+                lam = 0.0
+            try:
+                gam = float(getattr(mf, "Gamma", 0.0))
+            except Exception:
+                gam = 0.0
+            # Do not overwrite if caller already provided these
+            if "mem_Theta" not in m:
+                m["mem_Theta"] = theta
+            if "mem_Da" not in m:
+                m["mem_Da"] = da
+            if "mem_Lambda" not in m:
+                m["mem_Lambda"] = lam
+            if "mem_Gamma" not in m:
+                m["mem_Gamma"] = gam
+    except Exception:
+        pass
+
     # 3) Apply B1 detector via provided seam (preserves detector parameters and gating)
     try:
         if apply_b1 is not None:

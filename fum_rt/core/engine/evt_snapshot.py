@@ -30,8 +30,10 @@ def build_evt_snapshot(
     heat_map: Optional[Any],
     exc_map: Optional[Any],
     inh_map: Optional[Any],
-    latest_tick: int,
-    nx: Any,
+    memory_map: Optional[Any] = None,
+    trail_map: Optional[Any] = None,
+    latest_tick: int = 0,
+    nx: Any = None,
 ) -> Dict[str, Any]:
     """
     Construct a consolidated event-driven snapshot without mutating model state.
@@ -89,6 +91,23 @@ def build_evt_snapshot(
             ins = inh_map.snapshot()
             if isinstance(ins, dict):
                 _safe_merge(out, ins)
+    except Exception:
+        pass
+
+    # 4) Optional steering fields (views): memory/trail (bounded heads/dicts; no scans)
+    try:
+        if memory_map is not None:
+            ms = memory_map.snapshot()
+            if isinstance(ms, dict):
+                _safe_merge(out, ms)
+    except Exception:
+        pass
+
+    try:
+        if trail_map is not None:
+            ts = trail_map.snapshot()
+            if isinstance(ts, dict):
+                _safe_merge(out, ts)
     except Exception:
         pass
 
