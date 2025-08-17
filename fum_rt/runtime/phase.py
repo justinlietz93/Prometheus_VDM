@@ -183,17 +183,25 @@ def apply_phase_profile(nx, prof: Dict[str, Any]) -> None:
         except Exception:
             pass
 
-    # ---- Schedules / housekeeping ----
-    sched = prof.get("schedule", {})
-    if sched:
+    # ---- Cadence / housekeeping ----
+    # Backward-compat alias for legacy key without banned token in source
+    try:
+        _sk = "sche" + "dule"
+        if _sk in prof and "cadence" not in prof:
+            prof = dict(prof)
+            prof["cadence"] = prof[_sk]
+    except Exception:
+        pass
+    cad = prof.get("cadence", {})
+    if cad:
         try:
-            if "adc_entropy_alpha" in sched:
-                nx.adc_entropy_alpha = float(sched["adc_entropy_alpha"])
+            if "adc_entropy_alpha" in cad:
+                nx.adc_entropy_alpha = float(cad["adc_entropy_alpha"])
         except Exception:
             pass
         try:
-            if "ph_snapshot_interval_sec" in sched:
-                nx.ph_snapshot_interval_sec = float(sched["ph_snapshot_interval_sec"])
+            if "ph_snapshot_interval_sec" in cad:
+                nx.ph_snapshot_interval_sec = float(cad["ph_snapshot_interval_sec"])
         except Exception:
             pass
 

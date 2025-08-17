@@ -19,6 +19,9 @@ def test_reducers_event_only_no_scans():
         os.path.join(REPO_ROOT, "core", "cortex", "maps", "heatmap.py"),
         os.path.join(REPO_ROOT, "core", "cortex", "maps", "excitationmap.py"),
         os.path.join(REPO_ROOT, "core", "cortex", "maps", "inhibitionmap.py"),
+        os.path.join(REPO_ROOT, "core", "cortex", "maps", "memorymap.py"),
+        os.path.join(REPO_ROOT, "core", "cortex", "maps", "trailmap.py"),
+        os.path.join(REPO_ROOT, "core", "cortex", "maps", "coldmap.py"),
     ]
     banned = re.compile(r"(synaptic|weights|adj\b|csr|coo|tocoo|tocsr|toarray)", re.IGNORECASE)
     for p in reducers:
@@ -28,7 +31,8 @@ def test_reducers_event_only_no_scans():
 
 
 def test_engine_maps_wiring_no_scans():
-    eng = os.path.join(REPO_ROOT, "core", "engine.py")
+    # Check CoreEngine wiring for no scans and proper reducer folds
+    eng = os.path.join(REPO_ROOT, "core", "engine", "core_engine.py")
     src = _read(eng)
     banned = re.compile(r"(synaptic_weights|eligibility_traces|\.adj\b|toarray|tocsr|csr|coo)", re.IGNORECASE)
     assert not banned.search(src), "CoreEngine must not scan W/CSR/adjacency when building maps/frame"
@@ -38,6 +42,8 @@ def test_engine_maps_wiring_no_scans():
     assert "self._exc_map.fold" in src
     assert "self._inh_map.fold" in src
 
-    # Ensure we stage a maps-frame payload with required header fields
+    # Header tokens are defined in maps_frame builder, validate there
+    mf = os.path.join(REPO_ROOT, "core", "engine", "maps_frame.py")
+    src_mf = _read(mf)
     for token in ('"topic": "maps/frame"', '"channels": ["heat", "exc", "inh"]', '"dtype": "f32"', '"endianness": "LE"'):
-        assert token in src, f"Missing header token in maps/frame builder: {token}"
+        assert token in src_mf, f"Missing header token in maps/frame builder: {token}"

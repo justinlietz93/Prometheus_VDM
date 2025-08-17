@@ -1,4 +1,10 @@
 """
+Copyright © 2025 Justin K. Lietz, Neuroca, Inc. All Rights Reserved.
+
+This research is protected under a dual-license to foster open academic
+research while ensuring commercial applications are aligned with the project's ethical principles. Commercial use requires written permission from Justin K. Lietz.
+See LICENSE file for full terms.
+
 Telemetry maps/frame builder (core-local, no IO).
 
 - Builds Float32 LE arrays for heat/excitation/inhibition from bounded reducer working sets.
@@ -17,7 +23,11 @@ import numpy as _np
 
 def _max_from(d: Dict[int, float]) -> float:
     try:
-        return float(max(d.values())) if d else 0.0
+        if not d:
+            return 0.0
+        # Mirror payload dtype (float32 LE): cast values to float32 before max to ensure
+        # header['stats']['max'] ≥ observed max from the serialized payload.
+        return float(max((_np.float32(v) for v in d.values())))
     except Exception:
         return 0.0
 
