@@ -47,3 +47,20 @@ def test_engine_maps_wiring_no_scans():
     src_mf = _read(mf)
     for token in ('"topic": "maps/frame"', '"channels": ["heat", "exc", "inh"]', '"dtype": "f32"', '"endianness": "LE"'):
         assert token in src_mf, f"Missing header token in maps/frame builder: {token}"
+
+def test_memory_kernel_no_laplacian_or_matmul():
+    """
+    Guard: memory kernel implementations must not introduce dense/matmul/Laplacian ops.
+    Applies to core/memory/field.py (owner) and maps/memorymap.py (proxy/view).
+    """
+    import os, re
+    REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+    mem_files = [
+        os.path.join(REPO_ROOT, "core", "memory", "field.py"),
+        os.path.join(REPO_ROOT, "core", "cortex", "maps", "memorymap.py"),
+    ]
+    banned = re.compile(r"(laplacian|matmul|toarray|tocsr|csr|coo)", re.IGNORECASE)
+    for p in mem_files:
+        with open(p, "r", encoding="utf-8") as f:
+            src = f.read()
+        assert not banned.search(src), f"Memory kernel must not include dense/matmul/laplacian ops: {p}"
