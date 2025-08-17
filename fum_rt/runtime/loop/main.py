@@ -338,9 +338,9 @@ def run_loop(nx: Any, t0: float, step: int, duration_s: Optional[int] = None) ->
         except Exception:
             pass
 
-        # Start status HTTP endpoint if enabled (idempotent; safe no-op on error)
+        # Start status HTTP endpoint (always; idempotent; safe no-op on error)
         try:
-            _maybe_start_status_http(nx)
+            _maybe_start_status_http(nx, force=True)
         except Exception:
             pass
 

@@ -44,3 +44,19 @@ def register_workspace_callbacks(app, runs_root: str, manager):
         r = root or runs_root
         rs = list_runs(r)
         return rs[0] if rs else no_update
+
+    # Sync runs-root dropdown -> text input and refresh run list
+    @app.callback(
+        Output("runs-root", "value"),
+        Output("run-dir", "options"),
+        Output("run-dir", "value", allow_duplicate=True),
+        Input("runs-root-select", "value"),
+        prevent_initial_call=True,
+    )
+    def on_runs_root_select(val):
+        r = (val or "").strip()
+        if not r:
+            return no_update, no_update, no_update
+        opts = [{"label": p, "value": p} for p in list_runs(r)]
+        v = opts[0]["value"] if opts else ""
+        return r, opts, v
