@@ -744,3 +744,123 @@ dW/dt = (α − β) W − α W²
 - Any fixed-cadence structural actuator triggers are forbidden.
 
 This addendum is binding; future documentation must align or be amended to match these contracts.
+
+---
+## 2025-08-17 Addendum — Runtime Environment Flags (Void‑Faithful Controls)
+
+Policy
+- Purpose: Declare all runtime environment knobs that affect telemetry, scouts, and helpers, with strict void‑faithful contracts.
+- Non‑negotiables: Sparse‑first; no schedulers (emergent‑only); no scans in core/ or maps/; maps/frame v1 and v2 contracts respected; guards continue to pass with control‑impact &lt; 1e‑5 on golden runs.
+
+Reference anchors (implementation sites)
+- Scout runner and budgets: fum_rt/core/cortex/void_walkers/runner.py
+- Runtime loop wiring (env reads for scouts): fum_rt/runtime/loop/main.py
+- Maps/frame builder (Float32 LE) in core: fum_rt/core/engine/maps_frame.py
+- Telemetry fold + frame.v2 u8 + tiles + ring/FPS: fum_rt/runtime/telemetry.py
+- Maps ring (bounded, drop‑oldest): fum_rt/io/visualization/maps_ring.py
+- WebSocket forwarder (bounded broadcast): fum_rt/io/visualization/websocket_server.py
+
+A) Scout Runner Knobs (void‑faithful; once per tick, no schedulers)
+- SCOUTS_MAX_US (int, default 2000)
+  - Total microsecond budget across all scouts for the current tick.
+  - Enforced in run_scouts_once; runner is a single, one‑shot call per tick (no timers/threads).
+  - Fairness: round‑robin start index by current tick to avoid starvation.
+- SCOUTS_PER_SCOUT_US (int, default 0 → derived)
+  - Optional soft per‑scout micro‑slice. If 0, derived as floor(SCOUTS_MAX_US / #scouts).
+  - Soft guard only; no preemption inside a scout step.
+- SCOUT_VISITS (int; default: nx.scout_visits or 16)
+  - Max node visits per scout step. Void‑faithful upper bound for traversal TTL consumption.
+- SCOUT_EDGES (int; default: nx.scout_edges or 8)
+  - Max edges (neighbor choices) considered per scout step.
+- SCOUT_TTL (int; default 64)
+  - Per‑probe TTL bound for a scout step’s local traversal.
+- SCOUT_SEEDS_MAX (int; default 64)
+  - Cap on external seeds (e.g., recent stimulation indices); bounded seeds only.
+- ENABLE_SCOUTS / ENABLE_COLD_SCOUTS (default on)
+  - Global gate for enabling scouts (legacy alias for cold scout preserved).
+- Per‑scout toggles (default on; all telemetry‑only, read‑only):
+  - ENABLE_SCOUT_HEAT, ENABLE_SCOUT_COLD, ENABLE_SCOUT_EXC, ENABLE_SCOUT_INH,
+    ENABLE_SCOUT_VOIDRAY, ENABLE_SCOUT_MEMRAY, ENABLE_SCOUT_FRONTIER,
+    ENABLE_SCOUT_CYCLE, ENABLE_SCOUT_SENTINEL
+Contract
+- Exactly one runner invocation per tick; no background cadence, threads, or timers.
+- All budgets/TTL applied locally; traversal reads only local neighbors/heads; no global scans of W/CSR.
+
+B) Maps/Frame Transport (UI)
+- MAPS_MODE (str; default "frame_v2_u8")
+  - "frame_v2", "frame_v2_u8", "v2", "u8" → quantize Float32 LE (3×N planar) to u8 (3×N bytes) using channel max scalars from header.stats.
+  - "off"/"none" → skip ring write; bus publish of Float32 frame (v1) still occurs if staged.
+- MAPS_TILE (str; default "none")
+  - Adds non‑invasive tiling metadata to header for clients (payload remains planar u8).
+  - Forms: "auto", "WxH" (e.g. "64x64"), "K" (square K×K), or "none"/"0".
+  - Header.tiles fields: { size:[tw,th], grid:[gw,gh], order:"row‑major", layout:"planar", shape:[H,W], padded:H*W−n }.
+- MAPS_RING (int; default 3)
+  - Capacity of bounded drop‑oldest ring that buffers frames for UI consumers.
+- MAPS_FPS (float; default 10)
+  - Emission limiter for ring pushes and WebSocket broadcast. Not a scheduler of compute; applies only to IO emission pacing.
+- ENABLE_MAPS_WS (bool; default off)
+  - Start optional WebSocket forwarder (bounded broadcast of latest frame only).
+- MAPS_WS_HOST / MAPS_WS_PORT (defaults 127.0.0.1 / 8765)
+  - Binding for the WebSocket server; safe local defaults.
+- WS_MAX_CONN (int; default 2) / WS_ALLOW_ORIGIN (CSV; default any)
+  - Connection cap and origin policy for the WebSocket server.
+Contract
+- v1 (Float32 LE) remains as staged (bus publish) for in‑process consumers; v2 (u8) is a transport optimization with header.quant="u8", header.ver="v2", header.scales and payload_len.
+- Tiling metadata modifies header only; payload bytes remain planar and contiguous.
+
+C) Delta‑W Instrumentation (bounded, telemetry‑only)
+- SYNTH_DELTA_W (bool; default off)
+  - Emits a small, bounded set of Observation(kind="delta_w") derived from tick_rev_map keys and TD sign; magnitude clipped ≤ 0.05. Used to drive excitation/inhibition reducers without scans.
+Contract
+- Strictly event‑local, bounded fan‑out; never scans W/CSR or adjacency.
+
+D) Event‑Driven Metrics Aggregation
+- ENABLE_EVENT_METRICS (bool; default on)
+  - Enables EventDrivenMetrics (telemetry‑only) to fold bus observations and ADC into evt_* metrics, without overriding canonical B1 keys.
+
+E) GDSP (Emergent‑Only Structural Actuator)
+- ENABLE_GDSP (bool; default off)
+  - When enabled, GDSP runs only on emergent triggers: cohesion_components&gt;1, |td_signal|≥GDSP_TD_THRESH (default 0.2), or b1_spike.
+- GDSP_T_PRUNE (int; default 100), GDSP_PRUNE_THRESHOLD (float; default 0.01)
+  - Maintenance pruning parameters for the actuator when invoked.
+- GDSP_K (int; default 64)
+  - Territory subset bound when indices are available.
+Contract
+- No fixed cadence; explicit schedulers forbidden. Territory‑scoped, budgeted operations only.
+
+F) Optional REV‑GSP (Online Learner; default off)
+- ENABLE_REVGSP (bool; default off)
+- REV_GSP_ETA (float; default nx.rev_gsp_eta or 1e‑3), REV_GSP_LAMBDA (float; default nx.rev_gsp_lambda or 0.99), REV_GSP_TWIN_MS (int; default 20)
+Contract
+- Adapter is best‑effort; silent no‑op on incompatibility; must never disrupt runtime parity.
+
+G) Territories (Event‑folded Union‑Find)
+- TERRITORY_HEAD_K (int; default 512)
+  - Bound for union‑find head set; fold() consumes bus observations only; no scans.
+
+H) Logging and Pacing
+- LOG_EVERY (int; default nx.log_every)
+  - Structured tick logging cadence (frames unaffected).
+- dt (float seconds; model attribute, not env)
+  - Loop pacing target; actual sleep = max(0, dt − tick_elapsed). Not a scheduler of scouts/actuators.
+
+I) Contracts and CI Guards
+- No global scans in reducers or engine maps path; denylisted tokens remain enforced in tests.
+- Maps/frame header tokens (v1) stay present; v2 augments header with dtype="u8", ver="v2", quant, scales, payload_len, optional tiles.*
+- Control‑impact budget preserved; emission FPS limiter and ring are IO backpressure only.
+
+J) Minimal Working Config Examples
+- Enable u8 transport and tiles at 4×4 on an 8×8 frame; small ring; no FPS limit:
+  - MAPS_MODE=u8
+  - MAPS_TILE=4x4
+  - MAPS_RING=2
+  - MAPS_FPS=0
+- Tight scout budget; enable frontier + cycle hunters only:
+  - SCOUTS_MAX_US=1000
+  - ENABLE_SCOUT_FRONTIER=1
+  - ENABLE_SCOUT_CYCLE=1
+  - ENABLE_SCOUT_HEAT=0 ENABLE_SCOUT_COLD=0 ENABLE_SCOUT_EXC=0 ENABLE_SCOUT_INH=0 ENABLE_SCOUT_VOIDRAY=0 ENABLE_SCOUT_MEMRAY=0 ENABLE_SCOUT_SENTINEL=0
+
+Notes
+- These flags do not grant permission to reintroduce schedulers or scans. They bound local, per‑tick behaviors and IO emission only.
+- Frame v2 is a transport optimization; all numeric invariants and physics remain unchanged from core staging.
