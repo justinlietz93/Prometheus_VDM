@@ -25,28 +25,49 @@ import urllib.request
 import urllib.error
 
 
-def get_status_snapshot() -> Optional[dict[str, Any]]:
+def get_status_snapshot(url: Optional[str] = None, timeout_s: Optional[float] = None) -> Optional[dict[str, Any]]:
     """
-    Fetch the latest status snapshot from STATUS_HTTP_URL.
+    Fetch the latest status snapshot.
+
+    Args:
+        url: Optional override for status URL (e.g., "http://127.0.0.1:8787/status/snapshot").
+             If None, use env STATUS_HTTP_URL or default "http://127.0.0.1:8787/status".
+        timeout_s: Optional override for request timeout in seconds. If None, use env
+                   STATUS_HTTP_TIMEOUT_MS (default 0.2s).
 
     Returns:
         dict[str, Any] on success (HTTP 200 JSON)
         None on 204 or any error/parse failure
     """
+    # URL
+    if url is None:
+        try:
+            url = os.getenv("STATUS_HTTP_URL", "http://127.0.0.1:8787/status").strip() or "http://127.0.0.1:8787/status"
+        except Exception:
+            url = "http://127.0.0.1:8787/status"
+    # Prefer /status/snapshot if caller passed base /status
     try:
-        url = os.getenv("STATUS_HTTP_URL", "http://127.0.0.1:8787/status").strip() or "http://127.0.0.1:8787/status"
+        if url.endswith("/status"):
+            url = url + "/snapshot"
     except Exception:
-        url = "http://127.0.0.1:8787/status"
+        pass
 
-    try:
-        tms = int(os.getenv("STATUS_HTTP_TIMEOUT_MS", "200"))
-    except Exception:
-        tms = 200
-    timeout = max(0.05, float(tms) / 1000.0)
+    # Timeout
+    if timeout_s is None:
+        try:
+            tms = int(os.getenv("STATUS_HTTP_TIMEOUT_MS", "200"))
+        except Exception:
+            tms = 200
+        timeout_s = max(0.05, float(tms) / 1000.0)
+    else:
+        try:
+            timeout_s = max(0.05, float(timeout_s))
+        except Exception:
+            timeout_s = 0.2
 
     try:
         req = urllib.request.Request(url, headers={"Accept": "application/json"})
-        with urllib.request.urlopen(req, timeout=timeout) as resp:  # nosec B310 (local loopback by default)
+        with urllib.request.urlopen(req, timeout=timeout_s) as resp:  # nosec B310 (local loopback by default)
             code = getattr(resp, "status", 200)
             if code == 204:
                 return None
