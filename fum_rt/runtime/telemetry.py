@@ -135,6 +135,108 @@ def _quantize_frame_v2_u8(header: Dict[str, Any], payload: bytes) -> _Tuple[Dict
 
     return q_header, (q_heat + q_exc + q_inh)
 
+def _add_tiles_meta(header: Dict[str, Any], tile_cfg: str) -> Dict[str, Any]:
+    """
+    Inject non-invasive tiling metadata into a frame.v2 header without modifying payload bytes.
+    This enables clients to interpret planar u8 payloads in tiles for large-N visualization.
+
+    tile_cfg (case-insensitive):
+      - "none"|"off"|"false"|"0": no tiles (no-op)
+      - "auto": choose a square tile size targeting ~64x64 where possible
+      - "<W>x<H>": explicit tile width/height (e.g., "64x64")
+      - "<K>": square tile KxK (e.g., "128")
+
+    Header additions:
+      header["tiles"] = {
+        "size": [tw, th],
+        "grid": [gw, gh],       # number of tiles in x (width), y (height) directions
+        "order": "row-major",   # tile order
+        "layout": "planar",     # channel layout (heat|exc|inh planar blocks)
+        "shape": [H, W],        # 2D shape of the frame
+        "padded": max(0, H*W - n),
+      }
+    """
+    try:
+        cfg = str(tile_cfg or "").strip().lower()
+    except Exception:
+        cfg = "none"
+    if cfg in ("none", "off", "false", "0", ""):
+        return header
+
+    try:
+        shape = list(header.get("shape", []))
+        if not (isinstance(shape, (list, tuple)) and len(shape) == 2):
+            # Fallback to square from 'n' if shape missing
+            n = int(header.get("n", 0))
+            side = int(max(1, int((n or 1) ** 0.5)))
+            H = side
+            W = side
+        else:
+            H = int(shape[0])
+            W = int(shape[1])
+    except Exception:
+        n = int(header.get("n", 0))
+        side = int(max(1, int((n or 1) ** 0.5)))
+        H = side
+        W = side
+
+    def _parse_tile(cfg_str: str) -> tuple[int, int]:
+        # explicit WxH
+        if "x" in cfg_str:
+            parts = cfg_str.lower().split("x")
+            try:
+                tw = int(parts[0].strip())
+                th = int(parts[1].strip())
+                return max(1, tw), max(1, th)
+            except Exception:
+                pass
+        # single integer
+        try:
+            k = int(cfg_str)
+            return max(1, k), max(1, k)
+        except Exception:
+            pass
+        # auto default
+        # Aim for ~64x64 tiles, but constrain by frame dims
+        tw = min(W, 64 if W >= 64 else max(8, W))
+        th = min(H, 64 if H >= 64 else max(8, H))
+        return max(1, tw), max(1, th)
+
+    tw, th = (0, 0)
+    if cfg == "auto":
+        tw, th = _parse_tile(cfg)
+    else:
+        tw, th = _parse_tile(cfg)
+
+    # Clamp to frame dimensions
+    tw = max(1, min(tw, W))
+    th = max(1, min(th, H))
+
+    # Compute grid (tiles across width, height)
+    def _ceil_div(a: int, b: int) -> int:
+        return (a + b - 1) // b
+
+    gw = _ceil_div(W, tw)
+    gh = _ceil_div(H, th)
+
+    n = int(header.get("n", 0))
+    padded = max(0, (H * W) - n)
+
+    out = dict(header or {})
+    out["tiles"] = {
+        "size": [int(tw), int(th)],
+        "grid": [int(gw), int(gh)],
+        "order": "row-major",
+        "layout": "planar",
+        "shape": [int(H), int(W)],
+        "padded": int(padded),
+    }
+    # Ensure ver/dtype/quant are consistent for frame.v2 u8
+    out["ver"] = out.get("ver", "v2")
+    out["dtype"] = out.get("dtype", "u8")
+    out["quant"] = out.get("quant", "u8")
+    return out
+
 def macro_why_base(nx: Any, metrics: Dict[str, Any], step: int) -> Dict[str, Any]:
     """
     Build the base 'why' dict used for macro emissions (before any caller-specific fields).
@@ -458,6 +560,12 @@ def tick_fold(
                         if mode in ("frame_v2", "frame_v2_u8", "v2", "u8"):
                             # Quantize to u8 using per-channel max from header['stats']
                             q_header, q_payload = _quantize_frame_v2_u8(header, payload)
+                            # Optional tile metadata (payload remains planar u8; clients may tile client-side)
+                            try:
+                                if tile_cfg not in ("none", "off", "false", "0", ""):
+                                    q_header = _add_tiles_meta(q_header, tile_cfg)
+                            except Exception:
+                                pass
                             try:
                                 ring.push(int(step), q_header, q_payload)
                                 setattr(nx, "_maps_last_emit_ts", now_ts)
@@ -469,6 +577,12 @@ def tick_fold(
                         else:
                             # Unknown mode: default to frame_v2_u8
                             q_header, q_payload = _quantize_frame_v2_u8(header, payload)
+                            # Apply tile metadata if requested
+                            try:
+                                if tile_cfg not in ("none", "off", "false", "0", ""):
+                                    q_header = _add_tiles_meta(q_header, tile_cfg)
+                            except Exception:
+                                pass
                             try:
                                 ring.push(int(step), q_header, q_payload)
                                 setattr(nx, "_maps_last_emit_ts", now_ts)
