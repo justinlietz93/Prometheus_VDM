@@ -797,7 +797,7 @@ B) Maps/Frame Transport (UI)
 - MAPS_RING (int; default 3)
   - Capacity of bounded drop‑oldest ring that buffers frames for UI consumers.
 - MAPS_FPS (float; default 10)
-  - Emission limiter for ring pushes and WebSocket broadcast. Not a scheduler of compute; applies only to IO emission pacing.
+  - FPS semantics: >0 = limit to that rate; 0 = disable emission; <0 = unlimited (tests/bench). Not a scheduler of compute; applies only to IO emission pacing.
 - ENABLE_MAPS_WS (bool; default off)
   - Start optional WebSocket forwarder (bounded broadcast of latest frame only).
 - MAPS_WS_HOST / MAPS_WS_PORT (defaults 127.0.0.1 / 8765)
@@ -854,7 +854,7 @@ J) Minimal Working Config Examples
   - MAPS_MODE=u8
   - MAPS_TILE=4x4
   - MAPS_RING=2
-  - MAPS_FPS=0
+  - MAPS_FPS=-1
 - Tight scout budget; enable frontier + cycle hunters only:
   - SCOUTS_MAX_US=1000
   - ENABLE_SCOUT_FRONTIER=1

@@ -12,7 +12,7 @@ Dependencies
 - Optional: 'websockets' Python package (asyncio-based). If unavailable, this module is inert.
 
 Env (defaults shown)
-- MAPS_FPS=10                # broadcaster tick; sends at most this many frames per second
+- MAPS_FPS=10                # >0 = limit; 0 = off; <0 = unlimited (tests/bench); sends at most this many frames per second when >0
 - WS_MAX_CONN=2              # maximum concurrent WebSocket clients
 - WS_ALLOW_ORIGIN=           # comma-separated origins; if empty, all origins allowed
 
@@ -240,9 +240,23 @@ class MapsWebSocketServer:
 
     async def _broadcast_loop(self) -> None:
         # Send at most one frame per fps interval; drop-oldest by only ever sending the latest frame
-        interval = (1.0 / max(0.001, float(self.fps))) if self.fps > 0 else 0.0
+        try:
+            fps = float(self.fps)
+        except Exception:
+            fps = 10.0
+        if fps < 0:
+            interval = 0.0  # unlimited
+        elif fps == 0:
+            interval = None  # disabled
+        else:
+            interval = 1.0 / max(0.001, fps)
+
         while self._running:
             try:
+                if interval is None:
+                    # Emission disabled: avoid spin
+                    await asyncio.sleep(0.1)
+                    continue
                 if not self._clients:
                     # Avoid unnecessary ring access when there are no clients
                     await asyncio.sleep(interval if interval > 0 else 0.1)
@@ -252,7 +266,11 @@ class MapsWebSocketServer:
                     # Broadcast header (text) then payload (binary)
                     await self._broadcast_frame(fr)
                     self._last_seq_sent = fr.seq
-                await asyncio.sleep(interval if interval > 0 else 0.0)
+                # For unlimited (interval==0), yield to event loop without sleeping
+                if interval > 0:
+                    await asyncio.sleep(interval)
+                else:
+                    await asyncio.sleep(0.0)
             except Exception:
                 # Keep server resilient
                 await asyncio.sleep(0.05)
