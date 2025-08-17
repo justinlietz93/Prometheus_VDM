@@ -11,7 +11,7 @@ Module: fum_rt.core.cortex.maps.base_decay_map
 Purpose: Shared bounded, exponential-decay event-driven map base for Heat/Exc/Inh reducers.
 
 Void-faithful constraints:
-- Event-driven folding only (no global scans of W/CSR/adjacency).
+- Event-driven folding only (no global scans over W or neighbors).
 - Bounded working set via keep_max with sample-based pruning.
 - O(#events) time per tick; snapshot is cheap and bounded by head_k/keep_max.
 """

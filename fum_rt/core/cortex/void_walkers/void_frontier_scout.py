@@ -15,7 +15,7 @@ Local neighbor score for hop u→j (bounded, read-only):
 
 Inputs (optional):
 - maps["cold_head"] / maps["heat_head"] to derive small dicts (bounded).
-- Only local neighbor lists are read; no global CSR/dense access.
+- Only local neighbor lists are read; no global adjacency or dense-array access.
 
 Guardrails:
 - No schedulers; TTL/budgets enforce bounds.

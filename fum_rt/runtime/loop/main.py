@@ -55,10 +55,14 @@ from fum_rt.core.cortex.void_walkers.void_memory_ray_scout import MemoryRayScout
 from fum_rt.core.cortex.void_walkers.void_frontier_scout import FrontierScout
 from fum_rt.core.cortex.void_walkers.void_cycle_scout import CycleHunterScout
 from fum_rt.core.cortex.void_walkers.void_sentinel_scout import SentinelScout
+# Also expose the remaining scouts for full coverage (9 walkers)
+from fum_rt.core.cortex.void_walkers.void_cold_scout import ColdScout
+from fum_rt.core.cortex.void_walkers.void_excitation_scout import ExcitationScout
+from fum_rt.core.cortex.void_walkers.void_inhibition_scout import InhibitionScout
 # Memory/trail steering fields (owner + adapter view)
 from fum_rt.core.cortex.maps.memorymap import MemoryMap
 from fum_rt.core.cortex.maps.trailmap import TrailMap
-from fum_rt.core.memory.field import MemoryField
+from fum_rt.core.memory import MemoryField
 
 # ---------- Optional Learning/Actuator Adapters (default-off, safe) ----------
 def _truthy(x) -> bool:
@@ -69,6 +73,9 @@ def _truthy(x) -> bool:
         return s in ("1", "true", "yes", "on", "y", "t")
     except Exception:
         return False
+
+# Development strictness gate: raise swallowed exceptions when enabled
+STRICT = _truthy(os.getenv("VOID_STRICT", "0"))
 
 
 def _maybe_run_revgsp(nx: Any, metrics: Dict[str, Any], step: int) -> None:
@@ -565,6 +572,12 @@ def run_loop(nx: Any, t0: float, step: int, duration_s: Optional[int] = None) ->
                         # Per-scout env toggles (void-faithful; default on)
                         if _truthy(os.getenv("ENABLE_SCOUT_HEAT", "1")):
                             scouts_list.append(HeatScout())
+                        if _truthy(os.getenv("ENABLE_SCOUT_COLD", "1")):
+                            scouts_list.append(ColdScout())
+                        if _truthy(os.getenv("ENABLE_SCOUT_EXC", "1")):
+                            scouts_list.append(ExcitationScout())
+                        if _truthy(os.getenv("ENABLE_SCOUT_INH", "1")):
+                            scouts_list.append(InhibitionScout())
                         if _truthy(os.getenv("ENABLE_SCOUT_VOIDRAY", "1")):
                             scouts_list.append(VoidRayScout())
                         if _truthy(os.getenv("ENABLE_SCOUT_MEMRAY", "1")):
@@ -614,14 +627,19 @@ def run_loop(nx: Any, t0: float, step: int, duration_s: Optional[int] = None) ->
                                 hk = int(getattr(nx, "cold_head_k", 256))
                             except Exception:
                                 hk = 256
-                            eng._memory_field = MemoryField(head_k=max(8, hk), seed=seed_m)
-                            # Attach to connectome for local, O(1) reads via getters
                             try:
-                                C = getattr(nx, "connectome", None)
-                                if C is not None:
-                                    setattr(C, "_memory_field", eng._memory_field)
-                            except Exception:
-                                pass
+                                eng._memory_field = MemoryField(head_k=max(8, hk), seed=seed_m)
+                                # Attach to connectome for local, O(1) reads via getters
+                                try:
+                                    C = getattr(nx, "connectome", None)
+                                    if C is not None:
+                                        setattr(C, "_memory_field", eng._memory_field)
+                                except Exception as e:
+                                    if STRICT:
+                                        raise
+                            except Exception as e:
+                                if STRICT:
+                                    raise
                         # View adapter (bounded head/dict for scouts/UI)
                         if getattr(eng, "_memory_map", None) is None:
                             try:
@@ -633,8 +651,9 @@ def run_loop(nx: Any, t0: float, step: int, duration_s: Optional[int] = None) ->
                                 C = getattr(nx, "connectome", None)
                                 if C is not None:
                                     setattr(C, "_memory_map", eng._memory_map)
-                            except Exception:
-                                pass
+                            except Exception as e:
+                                if STRICT:
+                                    raise
                         # Trail map (short half-life, repulsion)
                         if getattr(eng, "_trail_map", None) is None:
                             try:
@@ -646,21 +665,36 @@ def run_loop(nx: Any, t0: float, step: int, duration_s: Optional[int] = None) ->
                             except Exception:
                                 hl2 = 200
                             eng._trail_map = TrailMap(head_k=max(8, hk), half_life_ticks=max(1, int(max(1, hl2 // 4))), seed=int(getattr(nx, "seed", 0)) + 5)
-                        # Fold current events into maps (bounded; no scans)
+                        # Fold current events into memory/trail (bounded; no scans)
                         try:
+                            # Prefer owner field for folding; MemoryMap remains a delegating view
+                            mf = getattr(eng, "_memory_field", None)
                             mm = getattr(eng, "_memory_map", None)
-                            if mm is not None:
+                            if mm is not None and mf is not None:
+                                try:
+                                    # Ensure view delegates to owner
+                                    if getattr(mm, "field", None) is None:
+                                        setattr(mm, "field", mf)
+                                except Exception:
+                                    pass
+                            if mf is not None:
+                                mf.fold(evs, int(step))
+                            elif mm is not None:
+                                # Proxy mode: fold via map if owner missing
                                 mm.fold(evs, int(step))
-                        except Exception:
-                            pass
+                        except Exception as e:
+                            if STRICT:
+                                raise
                         try:
                             tm = getattr(eng, "_trail_map", None)
                             if tm is not None:
                                 tm.fold(evs, int(step))
-                        except Exception:
-                            pass
-                    except Exception:
-                        pass
+                        except Exception as e:
+                            if STRICT:
+                                raise
+                    except Exception as e:
+                        if STRICT:
+                            raise
 
                     try:
                         dt_ms = int(max(1, float(getattr(nx, "dt", 0.1)) * 1000.0))

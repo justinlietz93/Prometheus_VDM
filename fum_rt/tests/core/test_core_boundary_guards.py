@@ -146,18 +146,20 @@ def test_runtime_loop_refs_core_and_seams_only():
     """
     root = _project_root()
     loop_py = (root / "fum_rt" / "runtime" / "loop.py")
+    loop_pkg_init = (root / "fum_rt" / "runtime" / "loop" / "__init__.py")
     stepper_py = (root / "fum_rt" / "runtime" / "stepper.py")
 
-    # Check files exist
-    assert loop_py.exists(), "runtime/loop.py not found"
+    # Check loop module exists either as a single file or as a package
+    assert loop_py.exists() or loop_pkg_init.exists(), "runtime/loop module not found (file or package)"
     assert stepper_py.exists(), "runtime/stepper.py not found"
 
-    loop_txt = _read_text(loop_py)
+    loop_src = loop_py if loop_py.exists() else loop_pkg_init
+    loop_txt = _read_text(loop_src)
     step_txt = _read_text(stepper_py)
 
     # loop should import telemetry.tick_fold and core.signals.apply_b1_detector via runtime seams
-    assert "runtime.telemetry" in loop_txt and "tick_fold" in loop_txt, "loop.py missing telemetry.tick_fold seam"
-    assert "core.signals" in loop_txt, "loop.py missing core.signals seam usage"
+    assert "runtime.telemetry" in loop_txt and "tick_fold" in loop_txt, "loop missing telemetry.tick_fold seam"
+    assert "core.signals" in loop_txt, "loop missing core.signals seam usage"
 
     # stepper should import core.signals helpers and compute_metrics from core
     assert "core.signals" in step_txt and "compute_metrics" in step_txt, "stepper.py should use core signals/metrics"
