@@ -536,12 +536,21 @@ def tick_fold(
                     maps_fps = float(os.getenv("MAPS_FPS", "10"))
                 except Exception:
                     maps_fps = 10.0
+                mode = str(os.getenv("MAPS_MODE", "frame_v2_u8")).strip().lower()
                 now_ts = time.time()
                 last_ts = float(getattr(nx, "_maps_last_emit_ts", 0.0))
-                allow_emit = (maps_fps <= 0) or ((now_ts - last_ts) >= (1.0 / max(0.001, maps_fps)))
+                # FPS semantics:
+                #   maps_fps < 0  -> always allow (tests/benchmarks "no limiter")
+                #   maps_fps == 0 -> disable emission
+                #   maps_fps > 0  -> limit to that FPS
+                if maps_fps < 0:
+                    allow_emit = True
+                else:
+                    allow_emit = (maps_fps > 0) and ((now_ts - last_ts) >= (1.0 / max(0.001, maps_fps)))
+                if mode in ("off", "none", "0", "false"):
+                    allow_emit = False
 
                 if allow_emit:
-                    mode = str(os.getenv("MAPS_MODE", "frame_v2_u8")).strip().lower()
                     tile_cfg = str(os.getenv("MAPS_TILE", "none")).strip().lower()
 
                     # Lazy-init ring if absent

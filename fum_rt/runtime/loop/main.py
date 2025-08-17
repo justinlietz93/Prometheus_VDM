@@ -46,6 +46,10 @@ from fum_rt.runtime.helpers.emission import emit_status_and_macro as _emit_statu
 from fum_rt.runtime.helpers.viz import maybe_visualize as _maybe_visualize
 from fum_rt.runtime.helpers.checkpointing import save_tick_checkpoint as _save_tick_checkpoint
 from fum_rt.runtime.helpers import maybe_start_maps_ws as _maybe_start_maps_ws
+from fum_rt.runtime.helpers.redis_out import (
+    maybe_publish_status_redis as _maybe_publish_status_redis,
+    maybe_publish_maps_redis as _maybe_publish_maps_redis,
+)
 
 # Void-faithful scout runner (stateless, per-tick; no schedulers)
 from fum_rt.core.cortex.void_walkers.runner import run_scouts_once as _run_scouts_once
@@ -846,6 +850,16 @@ def run_loop(nx: Any, t0: float, step: int, duration_s: Optional[int] = None) ->
             # Visualization (delegated)
             try:
                 _maybe_visualize(nx, int(step))
+            except Exception:
+                pass
+
+            # Redis Streams publish (optional, bounded; no schedulers)
+            try:
+                _maybe_publish_status_redis(nx, m, int(step))
+            except Exception:
+                pass
+            try:
+                _maybe_publish_maps_redis(nx, int(step))
             except Exception:
                 pass
 

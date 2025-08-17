@@ -13,6 +13,7 @@ persim # For persistent homology computations
 h5py # For saving FUM's brain
 plotly # For interactive visualizations
 dash # For web-based visualizations
+redis # For Redis integration
 
 # Tools
 pypdf2 # For PDF text extraction

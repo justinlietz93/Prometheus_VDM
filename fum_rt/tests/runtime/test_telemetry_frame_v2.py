@@ -33,11 +33,11 @@ def _restore_env(k: str, prev):
 
 
 def test_frame_v2_u8_tiles_and_ring_capacity():
-    # Configure telemetry for u8 + tiles + bounded ring and disable FPS limiter
+    # Configure telemetry for u8 + tiles + bounded ring and no FPS limiter (tests-only: MAPS_FPS<0)
     prev_mode = _set_env("MAPS_MODE", "u8")
     prev_tile = _set_env("MAPS_TILE", "4x4")
     prev_ring = _set_env("MAPS_RING", "2")
-    prev_fps = _set_env("MAPS_FPS", "0")
+    prev_fps = _set_env("MAPS_FPS", "-1")
 
     try:
         n = 64  # 8x8 square
