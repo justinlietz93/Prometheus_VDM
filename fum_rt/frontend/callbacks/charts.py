@@ -19,9 +19,10 @@ def register_chart_callbacks(app):
         Input("poll", "n_intervals"),
         Input("run-dir", "value"),
         Input("proc-status", "children"),
+        Input("ui-state", "data"),
         prevent_initial_call=False,
     )
-    def update_figs(_n, run_dir, proc_status):
+    def update_figs(_n, run_dir, proc_status, ui_state):
         if not run_dir:
             return go.Figure(), go.Figure()
 
@@ -36,6 +37,7 @@ def register_chart_callbacks(app):
             pass
 
         state = getattr(update_figs, "_state", None)
-        fig1, fig2, new_state = compute_dashboard_figures(run_dir, state)
+        ui = ui_state or {}
+        fig1, fig2, new_state = compute_dashboard_figures(run_dir, state, ui)
         setattr(update_figs, "_state", new_state)
         return fig1, fig2

@@ -33,18 +33,30 @@ def _truthy(x: Any) -> bool:
         return False
 
 
-def maybe_start_status_http(nx: Any) -> None:
+def maybe_start_status_http(nx: Any, force: bool = False) -> None:
     """
-    Idempotently start the status HTTP server if ENABLE_STATUS_HTTP is truthy.
+    Idempotently start the status HTTP server.
     Stores references on nx as:
       nx._status_http_server (HTTPServer)
       nx._status_http_thread (threading.Thread)
+      nx._status_http_started (bool)
+    Gate:
+      - If force is True, start regardless of env.
+      - If force is False, start only when ENABLE_STATUS_HTTP is truthy.
     """
+    # Idempotence: already running or previously started
     try:
-        if not _truthy(os.getenv("ENABLE_STATUS_HTTP", "0")):
+        if getattr(nx, "_status_http_started", False) or getattr(nx, "_status_http_server", None) is not None:
             return
     except Exception:
-        return
+        pass
+    # Env gate unless forced
+    if not force:
+        try:
+            if not _truthy(os.getenv("ENABLE_STATUS_HTTP", "0")):
+                return
+        except Exception:
+            return
 
     # Already running
     try:
@@ -112,7 +124,7 @@ def maybe_start_status_http(nx: Any) -> None:
                 path = self.path or "/"
                 if path == "/health":
                     return self._send_json(200, {"ok": True})
-                if path == "/status":
+                if path in ("/status", "/status/snapshot"):
                     # Serve latest status payload captured by the runtime loop
                     try:
                         m = getattr(nexus_ref, "_emit_last_metrics", None)
@@ -167,6 +179,10 @@ def maybe_start_status_http(nx: Any) -> None:
         th.start()
         setattr(nx, "_status_http_server", server)
         setattr(nx, "_status_http_thread", th)
+        try:
+            setattr(nx, "_status_http_started", True)
+        except Exception:
+            pass
     except Exception:
         try:
             server.server_close()

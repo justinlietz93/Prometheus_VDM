@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import os
+import math
 from typing import Tuple, Optional
 import plotly.graph_objs as go
 
@@ -9,36 +10,44 @@ from fum_rt.frontend.models.series import SeriesState, append_event, append_say,
 from fum_rt.frontend.services.status_client import get_status_snapshot as _get_status
 
 
-def compute_dashboard_figures(run_dir: str, state: Optional[SeriesState]) -> Tuple[go.Figure, go.Figure, SeriesState]:
+def compute_dashboard_figures(run_dir: str, state: Optional[SeriesState], ui: Optional[dict] = None) -> Tuple[go.Figure, go.Figure, SeriesState]:
     """
     Pure controller for figure construction.
     - Stateless inputs: run_dir, prior state (SeriesState or None)
+    - UI dict: optional caps and toggles from in-app controls (no env needed)
     - Returns: (fig_dashboard, fig_discovery, new_state)
-
-    This isolates all business logic away from Dash callbacks so other callers
-    (e.g., CLI previewers, batch exporters) can reuse the same computation.
     """
     if state is None or getattr(state, "run_dir", None) != run_dir:
         state = SeriesState(run_dir)
+    ui = ui or {}
 
-    # Stream append events; detect truncation/rotation or run restart to avoid overlay
+    # HTTP-only: fetch latest status snapshot; never tail files for charts.
+    # Detect truncation/rotation or run restart remains supported via tick/time regression.
     prev_es = getattr(state, "events_size", 0)
     prev_us = getattr(state, "utd_size", 0)
-    _disable_io = str(os.getenv("DASH_DISABLE_FILE_IO", "1")).strip().lower() in ("1", "true", "yes", "on")
-    if _disable_io:
-        # Zero file IO mode: fetch live status snapshot over HTTP (if runtime enabled it).
-        new_events, esize = [], prev_es
-        new_utd, usize = [], prev_us
+    new_events, esize = [], prev_es
+    new_utd, usize = [], prev_us
+    try:
+        url = None
+        timeout_s = None
         try:
-            snap = _get_status()
+            _u = ui.get("status_url") if isinstance(ui, dict) else None
+            if isinstance(_u, str) and _u:
+                url = _u
         except Exception:
-            snap = None
-        if isinstance(snap, dict) and snap:
-            # Use snapshot directly as an "event-like" record; append_event() reads from the dict.
-            new_events = [snap]
-    else:
-        new_events, esize = tail_jsonl_bytes(state.events_path, prev_es)
-        new_utd, usize = tail_jsonl_bytes(state.utd_path, prev_us)
+            pass
+        try:
+            _ts = ui.get("status_timeout") if isinstance(ui, dict) else None
+            if _ts is not None:
+                timeout_s = float(_ts)
+        except Exception:
+            pass
+        snap = _get_status(url, timeout_s)
+    except Exception:
+        snap = None
+    if isinstance(snap, dict) and snap:
+        # Use snapshot directly as an "event-like" record; append_event() reads from the dict.
+        new_events = [snap]
 
     # Reset conditions:
     truncated = (prev_es > 0 and esize < prev_es) or (prev_us > 0 and usize < prev_us)
@@ -99,11 +108,11 @@ def compute_dashboard_figures(run_dir: str, state: Optional[SeriesState]) -> Tup
     state.events_size = esize
     state.utd_size = usize
 
-    # Bound buffers (env-tunable)
+    # Bound buffers (UI-tunable; no env)
     try:
-        MAXP = int(os.getenv("DASH_MAX_POINTS", "2000"))
+        MAXP = int(ui.get("maxp", 1200))
     except Exception:
-        MAXP = 2000
+        MAXP = 1200
     if len(state.t) > MAXP:
         state.t = state.t[-MAXP:]
         state.active = state.active[-MAXP:]
@@ -114,10 +123,8 @@ def compute_dashboard_figures(run_dir: str, state: Optional[SeriesState]) -> Tup
         state.val = state.val[-MAXP:]
         state.val2 = state.val2[-MAXP:]
         state.entro = state.entro[-MAXP:]
-    try:
-        MAX_SAY = int(os.getenv("DASH_MAX_SAY_TICKS", "800"))
-    except Exception:
-        MAX_SAY = 800
+    # Speak tick overlay window (fixed UI-default)
+    MAX_SAY = 800
     if len(state.speak_ticks) > MAX_SAY:
         state.speak_ticks = state.speak_ticks[-MAX_SAY:]
 
@@ -131,6 +138,27 @@ def compute_dashboard_figures(run_dir: str, state: Optional[SeriesState]) -> Tup
     val = ffill(state.val)
     val2 = ffill(state.val2)
     entro = ffill(state.entro)
+
+    # Optional decimation to bound plotting work (UI-only). Applied after MAXP slicing.
+    # Env:
+    #   DASH_DECIMATE_TO = 0 (off) or N (target max plotted points per series)
+    try:
+        DEC_TO = int(ui.get("decimate", 600))
+    except Exception:
+        DEC_TO = 600
+    if DEC_TO > 0 and len(t) > DEC_TO:
+        stride = max(1, int(math.ceil(len(t) / float(DEC_TO))))
+        def _dec(seq):
+            return seq[::stride] if stride > 1 else seq
+        t = t[::stride]
+        active = _dec(active)
+        avgw = _dec(avgw)
+        coh = _dec(coh)
+        comp = _dec(comp)
+        b1z = _dec(b1z)
+        val = _dec(val)
+        val2 = _dec(val2)
+        entro = _dec(entro)
 
     # Palette (env-overridable)
     def _env_color(k: str, default: str) -> str:
@@ -154,17 +182,17 @@ def compute_dashboard_figures(run_dir: str, state: Optional[SeriesState]) -> Tup
 
     # fig1
     fig1 = go.Figure()
-    fig1.add_trace(go.Scatter(x=t, y=active, name="Active synapses", line=dict(width=1, color=C["synapses"])))
-    fig1.add_trace(go.Scatter(x=t, y=avgw, name="Avg W", yaxis="y2", line=dict(width=1, color=C["avgw"])))
+    fig1.add_trace(go.Scattergl(x=t, y=active, name="Active synapses", line=dict(width=1, color=C["synapses"])))
+    fig1.add_trace(go.Scattergl(x=t, y=avgw, name="Avg W", yaxis="y2", line=dict(width=1, color=C["avgw"])))
     if any(v is not None for v in val):
-        fig1.add_trace(go.Scatter(x=t, y=val, name="SIE valence", yaxis="y2", line=dict(width=1, dash="dot", color=C["valence"])))
+        fig1.add_trace(go.Scattergl(x=t, y=val, name="SIE valence", yaxis="y2", line=dict(width=1, dash="dot", color=C["valence"])))
     if any(v is not None for v in val2):
-        fig1.add_trace(go.Scatter(x=t, y=val2, name="SIE v2 valence", yaxis="y2", line=dict(width=1, dash="dash", color=C["valence2"])))
-    fig1.add_trace(go.Scatter(x=t, y=coh, name="Components", yaxis="y3", line=dict(width=1, color=C["components"])))
-    fig1.add_trace(go.Scatter(x=t, y=comp, name="Cycles", yaxis="y4", line=dict(width=1, color=C["cycles"])))
-    fig1.add_trace(go.Scatter(x=t, y=b1z, name="B1 z", yaxis="y5", line=dict(width=1, color=C["b1z"])))
+        fig1.add_trace(go.Scattergl(x=t, y=val2, name="SIE v2 valence", yaxis="y2", line=dict(width=1, dash="dash", color=C["valence2"])))
+    fig1.add_trace(go.Scattergl(x=t, y=coh, name="Components", yaxis="y3", line=dict(width=1, color=C["components"])))
+    fig1.add_trace(go.Scattergl(x=t, y=comp, name="Cycles", yaxis="y4", line=dict(width=1, color=C["cycles"])))
+    fig1.add_trace(go.Scattergl(x=t, y=b1z, name="B1 z", yaxis="y5", line=dict(width=1, color=C["b1z"])))
     if any(v is not None for v in entro):
-        fig1.add_trace(go.Scatter(x=t, y=entro, name="Connectome entropy", yaxis="y6", line=dict(width=1, color=C["entropy"])))
+        fig1.add_trace(go.Scattergl(x=t, y=entro, name="Connectome entropy", yaxis="y6", line=dict(width=1, color=C["entropy"])))
     fig1.update_layout(
         title=f"Dashboard — {os.path.basename(run_dir)}",
         paper_bgcolor="#10151c",
@@ -183,10 +211,10 @@ def compute_dashboard_figures(run_dir: str, state: Optional[SeriesState]) -> Tup
 
     # fig2
     fig2 = go.Figure()
-    fig2.add_trace(go.Scatter(x=t, y=comp, name="Cycle hits", line=dict(width=1, color=C["cycles"])))
+    fig2.add_trace(go.Scattergl(x=t, y=comp, name="Cycle hits", line=dict(width=1, color=C["cycles"])))
     for tk in state.speak_ticks[-200:]:
         fig2.add_vline(x=tk, line_width=1, line_dash="dash", line_color=C["speak_line"])
-    fig2.add_trace(go.Scatter(x=t, y=b1z, name="B1 z", yaxis="y2", line=dict(width=1, color=C["b1z"])))
+    fig2.add_trace(go.Scattergl(x=t, y=b1z, name="B1 z", yaxis="y2", line=dict(width=1, color=C["b1z"])))
     fig2.update_layout(
         title="Cycle Hits & B1 z",
         paper_bgcolor="#10151c",

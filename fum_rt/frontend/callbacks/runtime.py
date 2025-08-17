@@ -104,10 +104,26 @@ def register_runtime_callbacks(app, default_profile):
         rd = (run_dir or "").strip()
         if not rd:
             return no_update
+
+        # UI responsiveness guard:
+        # - By default we avoid any file IO here (large events.jsonl can be 100s of MB).
+        # - Opt-in tailing only when DASH_ENGRAM_EVENT_TAIL is explicitly enabled.
+        try:
+            _disable_io = str(os.getenv("DASH_DISABLE_FILE_IO", "1")).strip().lower() in ("1", "true", "yes", "on")
+        except Exception:
+            _disable_io = True
+        try:
+            _engram_tail_on = str(os.getenv("DASH_ENGRAM_EVENT_TAIL", "0")).strip().lower() in ("1", "true", "yes", "on")
+        except Exception:
+            _engram_tail_on = False
+        if _disable_io and not _engram_tail_on:
+            return no_update
+
         state = getattr(notify_engram_events, "_state", None)
         if state is None or state.get("run_dir") != rd:
             state = {"run_dir": rd, "events_size": 0}
             setattr(notify_engram_events, "_state", state)
+
         ev_path = os.path.join(rd, "events.jsonl")
         recs, new_size = tail_jsonl_bytes(ev_path, state["events_size"])
         state["events_size"] = new_size
