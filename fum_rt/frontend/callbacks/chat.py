@@ -78,6 +78,18 @@ def register_chat_callbacks(app):
             utd_size = 0
             inbox_size = 0
 
+        # Strict zero-file-IO mode (for responsiveness): render from in-memory only
+        _disable_io = str(os.getenv("DASH_DISABLE_FILE_IO", "1")).strip().lower() in ("1", "true", "yes", "on")
+        if _disable_io:
+            items = trim_items(items, limit=200)
+            view = render_chat_view(items, filt=(filt or "all"))
+            return view, {
+                "run_dir": rd,
+                "utd_size": int(utd_size),
+                "inbox_size": int(inbox_size),
+                "items": items,
+            }
+
         # Stream UTD macro events
         utd_path = os.path.join(rd, "utd_events.jsonl")
         new_utd_recs, new_utd_size = tail_jsonl_bytes(utd_path, utd_size)

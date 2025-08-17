@@ -43,7 +43,14 @@ def build_app(runs_root: str) -> Dash:
     - Installs modular callbacks
     - Keeps ProcessManager scoped to the app instance
     """
-    app = Dash(__name__)
+    # UI throttling and safe startup:
+    # - prevent_initial_callbacks avoids callback storms at load
+    # - suppress_callback_exceptions allows lazy mounting of tabs/sections
+    app = Dash(
+        __name__,
+        prevent_initial_callbacks=True,
+        suppress_callback_exceptions=True,
+    )
     app.title = "FUM Live Dashboard"
 
     # Global theme
@@ -116,7 +123,14 @@ def build_app(runs_root: str) -> Dash:
                 ],
                 className="grid",
             ),
-            dcc.Interval(id="poll", interval=1500, n_intervals=0),
+            # Global UI poll — environment-tunable and disable-able
+            # DASH_POLL_MS: >0 interval in ms (default 1200); <=0 disables polling
+            dcc.Interval(
+                id="poll",
+                interval=max(250, int(os.getenv("DASH_POLL_MS", "1200")) if os.getenv("DASH_POLL_MS", "").strip() != "" else 1200),
+                n_intervals=0,
+                disabled=(int(os.getenv("DASH_POLL_MS", "1200")) if os.getenv("DASH_POLL_MS", "").strip() != "" else 1200) <= 0,
+            ),
             dcc.Store(id="chat-state"),
             dcc.Store(id="ui-state"),
         ],
