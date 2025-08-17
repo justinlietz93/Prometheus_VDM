@@ -46,6 +46,9 @@ from fum_rt.runtime.helpers.emission import emit_status_and_macro as _emit_statu
 from fum_rt.runtime.helpers.viz import maybe_visualize as _maybe_visualize
 from fum_rt.runtime.helpers.checkpointing import save_tick_checkpoint as _save_tick_checkpoint
 from fum_rt.runtime.helpers import maybe_start_maps_ws as _maybe_start_maps_ws
+from fum_rt.runtime.helpers.status_http import (
+    maybe_start_status_http as _maybe_start_status_http,
+)
 from fum_rt.runtime.helpers.redis_out import (
     maybe_publish_status_redis as _maybe_publish_status_redis,
     maybe_publish_maps_redis as _maybe_publish_maps_redis,
@@ -332,6 +335,12 @@ def run_loop(nx: Any, t0: float, step: int, duration_s: Optional[int] = None) ->
         # Start maps WebSocket forwarder if enabled (idempotent; safe no-op on error)
         try:
             _maybe_start_maps_ws(nx)
+        except Exception:
+            pass
+
+        # Start status HTTP endpoint if enabled (idempotent; safe no-op on error)
+        try:
+            _maybe_start_status_http(nx)
         except Exception:
             pass
 
