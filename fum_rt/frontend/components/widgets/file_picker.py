@@ -143,6 +143,8 @@ def file_picker(prefix: str, title: str, initial: str = "", width: str = "100%")
             dcc.Store(id=f"{prefix}-selected-path", data=initial),
             dcc.Store(id=f"{prefix}-file-sel"),
             dcc.Store(id=f"{prefix}-dir-sel"),
+            dcc.Store(id=f"{prefix}-selected-dir"),
+            dcc.Store(id=f"{prefix}-tree-store"),
             # Modal overlay
             html.Div(
                 [
@@ -170,19 +172,19 @@ def file_picker(prefix: str, title: str, initial: str = "", width: str = "100%")
                                 id=f"{prefix}-crumbs",
                                 style={"display": "flex", "gap": "6px", "flexWrap": "wrap", "fontSize": "12px", "opacity": 0.9},
                             ),
-                            # Body grid: left (dirs) / right (files)
+                            # Body: single explorer (folders + files)
                             html.Div(
                                 [
                                     html.Div(
                                         [
-                                            html.Label("Folders"),
+                                            html.Label("Explorer"),
                                             html.Div(
                                                 id=f"{prefix}-dirs-list",
                                                 style={
                                                     "border": "1px solid var(--border)",
                                                     "borderRadius": "8px",
                                                     "background": "var(--panel2)",
-                                                    "maxHeight": "40vh",
+                                                    "maxHeight": "60vh",
                                                     "overflowY": "auto",
                                                     "padding": "4px",
                                                 },
@@ -194,39 +196,12 @@ def file_picker(prefix: str, title: str, initial: str = "", width: str = "100%")
                                                 clearable=False,
                                                 style={"display": "none"},
                                             ),
-                                            html.Button("Open folder", id=f"{prefix}-open-dir-btn", n_clicks=0),
-                                        ],
-                                        style={"display": "grid", "gap": "6px"},
-                                    ),
-                                    html.Div(
-                                        [
-                                            html.Label("Files"),
-                                            html.Div(
-                                                id=f"{prefix}-files-list",
-                                                style={
-                                                    "border": "1px solid var(--border)",
-                                                    "borderRadius": "8px",
-                                                    "background": "var(--panel2)",
-                                                    "maxHeight": "40vh",
-                                                    "overflowY": "auto",
-                                                    "padding": "4px",
-                                                },
-                                            ),
-                                            dcc.Dropdown(
-                                                id=f"{prefix}-files",
-                                                options=[],
-                                                placeholder="(no files)",
-                                                clearable=False,
-                                                style={"display": "none"},
-                                            ),
+                                            html.Button("Open folder", id=f"{prefix}-open-dir-btn", n_clicks=0, style={"display": "none"}),
                                         ],
                                         style={"display": "grid", "gap": "6px"},
                                     ),
                                 ],
                                 style={
-                                    "display": "grid",
-                                    "gridTemplateColumns": "1fr 1.5fr",
-                                    "gap": "12px",
                                     "overflow": "auto",
                                     "maxHeight": "60vh",
                                 },
