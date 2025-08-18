@@ -15,6 +15,9 @@ plotly # For interactive visualizations
 dash # For web-based visualizations
 redis # For Redis integration
 
+# Testing
+pytest
+
 # Tools
 pypdf2 # For PDF text extraction
 

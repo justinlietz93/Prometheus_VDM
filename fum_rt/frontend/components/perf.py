@@ -5,8 +5,8 @@ from dash import html, dcc
 
 def perf_card():
     """
-    UI Performance card (no env vars required).
-    Writes settings into dcc.Store(id="ui-state") via callbacks/perf.register_perf_callbacks.
+    UI Performance card (no environment variables required).
+    Publishes settings into dcc.Store(id="ui-state") via callbacks/perf.register_perf_callbacks.
     """
     return html.Div(
         [
@@ -15,24 +15,24 @@ def perf_card():
                 [
                     html.Div(
                         [
-                            html.Label("Allow file I/O (tail JSONL)"),
+                            html.Label("Charts: HTTP snapshot only"),
                             dcc.Checklist(
-                                id="ui-file-io",
+                                id="ui-charts-http",
                                 options=[{"label": " On", "value": "on"}],
-                                value=["on"],  # default ON, but bounded by caps below
+                                value=["on"],  # default ON
                             ),
                         ]
                     ),
                     html.Div(
                         [
-                            html.Label("Tail cap bytes (initial/rotation window)"),
-                            dcc.Input(id="ui-tail-cap", type="number", value=1048576, min=1024, step=1024),
+                            html.Label("Update interval (ms)"),
+                            dcc.Input(id="ui-update-ms", type="number", value=800, min=250, step=50),
                         ]
                     ),
                     html.Div(
                         [
-                            html.Label("Max delta bytes per tick"),
-                            dcc.Input(id="ui-tail-delta", type="number", value=65536, min=4096, step=4096),
+                            html.Label("Points per series cap"),
+                            dcc.Input(id="ui-points-cap", type="number", value=1200, min=100, step=50),
                         ]
                     ),
                 ],
@@ -42,27 +42,49 @@ def perf_card():
                 [
                     html.Div(
                         [
-                            html.Label("Max lines parsed per tick"),
-                            dcc.Input(id="ui-tail-lines", type="number", value=200, min=10, step=10),
+                            html.Label("Series count cap"),
+                            dcc.Input(id="ui-series-cap", type="number", value=6, min=1, step=1),
                         ]
                     ),
                     html.Div(
                         [
-                            html.Label("Max points plotted"),
-                            dcc.Input(id="ui-maxp", type="number", value=1200, min=100, step=50),
+                            html.Label("Status URL"),
+                            dcc.Input(
+                                id="ui-status-url",
+                                type="text",
+                                value="http://127.0.0.1:8787/status/snapshot",
+                                style={"width": "100%"},
+                            ),
                         ]
                     ),
                     html.Div(
                         [
-                            html.Label("Decimate to N points (0=off)"),
-                            dcc.Input(id="ui-decimate", type="number", value=600, min=0, step=50),
+                            html.Label("Status timeout (s)"),
+                            dcc.Input(id="ui-status-timeout", type="number", value=0.2, min=0.05, step=0.05),
+                        ]
+                    ),
+                ],
+                className="row",
+            ),
+            html.Div(
+                [
+                    html.Div(
+                        [
+                            html.Label("Tail Chat file"),
+                            dcc.Checklist(id="ui-tail-chat", options=[{"label": " On", "value": "on"}], value=[]),
+                        ]
+                    ),
+                    html.Div(
+                        [
+                            html.Label("Tail Launcher log"),
+                            dcc.Checklist(id="ui-tail-launch", options=[{"label": " On", "value": "on"}], value=[]),
                         ]
                     ),
                 ],
                 className="row",
             ),
             html.Small(
-                "These settings apply immediately; no restart or env variables are needed.",
+                "Settings apply immediately; no env vars or restart required.",
                 style={"color": "#8699ac"},
             ),
         ],

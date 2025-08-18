@@ -24,6 +24,7 @@ from fum_rt.frontend.components.feed import feed_card
 from fum_rt.frontend.components.run_config import run_config_card
 from fum_rt.frontend.components.charts import charts_card
 from fum_rt.frontend.components.chat import chat_card
+from fum_rt.frontend.components.perf import perf_card
 
 from fum_rt.frontend.callbacks.workspace import register_workspace_callbacks
 from fum_rt.frontend.callbacks.charts import register_chart_callbacks
@@ -34,6 +35,8 @@ from fum_rt.frontend.callbacks.profile import register_profile_callbacks
 from fum_rt.frontend.callbacks.logs import register_logs_callbacks
 from fum_rt.frontend.callbacks.chat import register_chat_callbacks
 from fum_rt.frontend.callbacks.engram import register_engram_callbacks
+from fum_rt.frontend.callbacks.perf import register_perf_callbacks
+from fum_rt.frontend.callbacks.interval import register_interval_callbacks
 
 
 def build_app(runs_root: str) -> Dash:
@@ -107,6 +110,7 @@ def build_app(runs_root: str) -> Dash:
                         [
                             workspace_card(runs_root, runs, default_run),
                             runtime_controls_card(default_profile),
+                            perf_card(),
                             feed_card(data_files_options),
                         ],
                         style={"minWidth": "320px", "display": "grid", "gap": "16px"},
@@ -147,5 +151,7 @@ def build_app(runs_root: str) -> Dash:
     register_logs_callbacks(app, manager)
     register_chat_callbacks(app)
     register_engram_callbacks(app)
+    register_perf_callbacks(app)
+    register_interval_callbacks(app)
 
     return app
