@@ -14,7 +14,7 @@ def register_workspace_callbacks(app, runs_root: str, manager):
     """
 
     @app.callback(
-        Output("run-dir", "options"),
+        Output("run-dir", "options", allow_duplicate=True),
         Output("run-dir", "value", allow_duplicate=True),
         Input("refresh-runs", "n_clicks"),
         State("runs-root", "value"),
@@ -48,7 +48,7 @@ def register_workspace_callbacks(app, runs_root: str, manager):
     # Sync runs-root dropdown -> text input and refresh run list
     @app.callback(
         Output("runs-root", "value"),
-        Output("run-dir", "options"),
+        Output("run-dir", "options", allow_duplicate=True),
         Output("run-dir", "value", allow_duplicate=True),
         Input("runs-root-select", "value"),
         prevent_initial_call=True,
