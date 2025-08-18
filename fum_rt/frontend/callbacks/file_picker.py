@@ -18,7 +18,8 @@ No scans in core/ or maps/ directories. Only shallow os.listdir() on the chosen 
 import os
 from typing import List, Tuple
 
-from dash import Input, Output, State, no_update
+import dash
+from dash import html, Input, Output, State, ALL, no_update
 from fum_rt.frontend.components.widgets.file_picker import _modal_styles as _fp_modal_styles
 
 
@@ -81,6 +82,8 @@ def _register_common(app, prefix: str, target_id: str) -> None:
     confirm_btn = f"{prefix}-confirm-btn"
     sel_store = f"{prefix}-selected-path"
     sel_label = f"{prefix}-selected-label"
+    dir_sel_store = f"{prefix}-dir-sel"
+    file_sel_store = f"{prefix}-file-sel"
 
     # Cancel -> hide modal
     @app.callback(
@@ -124,7 +127,7 @@ def _register_common(app, prefix: str, target_id: str) -> None:
     @app.callback(
         Output(cwd_store, "data", allow_duplicate=True),
         Input(open_dir_btn, "n_clicks"),
-        State(dirs_dd, "value"),
+        State(dir_sel_store, "data"),
         State(cwd_store, "data"),
         State(root_store, "data"),
         prevent_initial_call=True,
@@ -140,23 +143,141 @@ def _register_common(app, prefix: str, target_id: str) -> None:
             return _clamp_to_root(cand, r or cand)
         return no_update
 
-    # Populate lists whenever cwd or exts change
+    # Populate lists whenever cwd or exts or selection changes (render actual explorer lists + crumbs)
     @app.callback(
-        Output(dirs_dd, "options"),
-        Output(files_dd, "options"),
+        Output(f"{prefix}-dirs-list", "children"),
+        Output(f"{prefix}-files-list", "children"),
         Output(cwd_label, "children"),
+        Output(f"{prefix}-crumbs", "children"),
         Input(cwd_store, "data"),
         Input(exts_store, "data"),
+        Input(dir_sel_store, "data"),
+        Input(file_sel_store, "data"),
+        State(root_store, "data"),
         prevent_initial_call=True,
     )
-    def on_cwd_changed(cwd, exts):
+    def on_cwd_changed(cwd, exts, dir_sel, file_sel, root):
         c = (cwd or "").strip()
         if not c or not os.path.isdir(c):
-            return [], [], "cwd: (missing)"
+            return [], [], "cwd: (missing)", []
+
         subdirs, files = _safe_list(c, (exts or []))
-        d_opts = [{"label": d, "value": d} for d in subdirs]
-        f_opts = [{"label": f, "value": f} for f in files]
-        return d_opts, f_opts, f"cwd: {c}"
+
+        def _item(name: str, is_dir: bool, selected: bool):
+            base_style = {
+                "display": "flex",
+                "alignItems": "center",
+                "gap": "8px",
+                "padding": "6px 8px",
+                "borderRadius": "6px",
+                "cursor": "pointer",
+                "width": "100%",
+                "textAlign": "left",
+                "background": "rgba(106,160,194,0.18)" if selected else "transparent",
+                "border": "1px solid rgba(35,49,64,0.0)" if not selected else "1px solid var(--border)",
+            }
+            role = f"{prefix}-dir" if is_dir else f"{prefix}-file"
+            icon = "📁" if is_dir else "📄"
+            return html.Button(
+                [html.Span(icon, style={"width": "1.2em"}), html.Span(name, style={"overflow":"hidden","textOverflow":"ellipsis"})],
+                id={"role": role, "name": name},
+                n_clicks=0,
+                style=base_style,
+            )
+
+        dir_children = [_item(d, True, d == (dir_sel or "")) for d in subdirs]
+        file_children = [_item(f, False, f == (file_sel or "")) for f in files]
+
+        # Build breadcrumbs relative to root (clamped)
+        try:
+            rabs = os.path.abspath((root or "").strip()) if root else os.path.abspath(c)
+            cabs = os.path.abspath(c)
+            cabs = _clamp_to_root(cabs, rabs)
+            rel = os.path.relpath(cabs, rabs)
+        except Exception:
+            rabs, cabs, rel = os.path.abspath(c or "."), os.path.abspath(c or "."), "."
+
+        crumbs = []
+
+        def _crumb_btn(label: str, path: str):
+            return html.Button(
+                label,
+                id={"role": f"{prefix}-crumb", "path": path},
+                n_clicks=0,
+                style={
+                    "background": "transparent",
+                    "border": "none",
+                    "color": "#9ab8d1",
+                    "cursor": "pointer",
+                    "padding": "2px 4px",
+                },
+            )
+
+        root_label = os.path.basename(rabs) or rabs
+        crumbs.append(_crumb_btn(root_label, rabs))
+        if rel and rel != ".":
+            cur = rabs
+            for part in rel.split(os.sep):
+                cur = os.path.join(cur, part)
+                crumbs.append(html.Span("›", style={"opacity": 0.6, "padding": "0 2px"}))
+                crumbs.append(_crumb_btn(part, cur))
+
+        return dir_children, file_children, f"cwd: {cabs}", crumbs
+
+    # Breadcrumb click -> navigate to that directory (clamped to root)
+    @app.callback(
+        Output(cwd_store, "data", allow_duplicate=True),
+        Input({"role": f"{prefix}-crumb", "path": ALL}, "n_clicks"),
+        State(root_store, "data"),
+        prevent_initial_call=True,
+    )
+    def on_crumb_click(_clicks, root):
+        ctx = dash.callback_context
+        if not getattr(ctx, "triggered", None):
+            return no_update
+        try:
+            import json
+            tid = ctx.triggered[0]["prop_id"].split(".")[0]
+            obj = json.loads(tid)
+            target = (obj.get("path", "") or "").strip()
+        except Exception:
+            return no_update
+        if not target:
+            return no_update
+        r = (root or "").strip()
+        if r:
+            return _clamp_to_root(target, r)
+        return target
+
+    # Click handlers for directory/file items in explorer lists
+    @app.callback(
+        Output(dir_sel_store, "data"),
+        Output(file_sel_store, "data"),
+        Input({"role": f"{prefix}-dir", "name": ALL}, "n_clicks"),
+        Input({"role": f"{prefix}-file", "name": ALL}, "n_clicks"),
+        prevent_initial_call=True,
+    )
+    def on_explorer_click(_dir_clicks, _file_clicks):
+        ctx = dash.callback_context
+        if not getattr(ctx, "triggered", None):
+            return no_update, no_update
+        try:
+            import json
+            tid = ctx.triggered[0]["prop_id"].split(".")[0]
+            obj = json.loads(tid)
+            role = obj.get("role", "")
+            name = (obj.get("name", "") or "").strip()
+        except Exception:
+            return no_update, no_update
+        if not name:
+            return no_update, no_update
+        if role == f"{prefix}-dir":
+            # Select directory; keep file selection unchanged
+            return name, ""
+        if role == f"{prefix}-file":
+            # Select file; keep directory selection unchanged
+            return no_update, name
+        return no_update, no_update
 
     # Confirm selection -> set stores, hide modal, and update target value
     @app.callback(
@@ -166,7 +287,7 @@ def _register_common(app, prefix: str, target_id: str) -> None:
         Output(mid, "style", allow_duplicate=True),
         Output(target_id, "value"),
         Input(confirm_btn, "n_clicks"),
-        State(files_dd, "value"),
+        State(file_sel_store, "data"),
         State(cwd_store, "data"),
         prevent_initial_call=True,
     )

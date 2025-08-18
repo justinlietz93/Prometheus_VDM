@@ -142,6 +142,7 @@ def file_picker(prefix: str, title: str, initial: str = "", width: str = "100%")
             dcc.Store(id=f"{prefix}-exts"),
             dcc.Store(id=f"{prefix}-selected-path", data=initial),
             dcc.Store(id=f"{prefix}-file-sel"),
+            dcc.Store(id=f"{prefix}-dir-sel"),
             # Modal overlay
             html.Div(
                 [
@@ -163,6 +164,11 @@ def file_picker(prefix: str, title: str, initial: str = "", width: str = "100%")
                                     html.Div(id=f"{prefix}-cwd-label", style={"marginLeft": "10px", "opacity": 0.8}),
                                 ],
                                 style=_row_styles(),
+                            ),
+                            # Breadcrumbs
+                            html.Div(
+                                id=f"{prefix}-crumbs",
+                                style={"display": "flex", "gap": "6px", "flexWrap": "wrap", "fontSize": "12px", "opacity": 0.9},
                             ),
                             # Body grid: left (dirs) / right (files)
                             html.Div(
