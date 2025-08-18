@@ -19,7 +19,7 @@ def perf_card():
                             dcc.Checklist(
                                 id="ui-charts-http",
                                 options=[{"label": " On", "value": "on"}],
-                                value=["on"],  # default ON
+                                value=[],  # default OFF — falls back to bounded file tails if HTTP not ready
                             ),
                         ]
                     ),
