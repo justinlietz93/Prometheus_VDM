@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from typing import List, Dict
 from dash import html, dcc
+from fum_rt.frontend.components.widgets.file_picker import file_picker
 
 
 def feed_card(data_files_options: List[Dict[str, str]]):
@@ -12,11 +13,12 @@ def feed_card(data_files_options: List[Dict[str, str]]):
     return html.Div(
         [
             html.H4("Feed stdin (optional)"),
+            file_picker(prefix="feed-file", title="Select feed file", initial="", width="100%"),
             dcc.Dropdown(
                 id="feed-path",
                 options=data_files_options,
                 placeholder="select feed file...",
-                style={"width": "100%"},
+                style={"width": "100%", "display": "none"},
             ),
             dcc.Input(
                 id="feed-rate",

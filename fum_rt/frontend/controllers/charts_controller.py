@@ -48,10 +48,18 @@ def compute_dashboard_figures(run_dir: str, state: Optional[SeriesState], ui: Op
     except Exception:
         snap = None
 
+    # Honor UI preference: use HTTP snapshot only when requested; otherwise allow bounded file tails.
+    # Default: False (allow file tails) so graphs populate even before ui-state is ready.
+    charts_http_only = False
+    try:
+        charts_http_only = bool(ui.get("charts_http_only", False))
+    except Exception:
+        charts_http_only = False
+
     if isinstance(snap, dict) and snap:
         # Use snapshot directly as an "event-like" record; append_event() reads from the dict.
         new_events = [snap]
-    else:
+    elif not charts_http_only:
         # Fallback: tail events.jsonl and utd_events.jsonl incrementally (bounded by last offsets).
         try:
             epath = os.path.join(run_dir, "events.jsonl")
@@ -65,6 +73,10 @@ def compute_dashboard_figures(run_dir: str, state: Optional[SeriesState], ui: Op
                 new_utd, usize = tail_jsonl_bytes(upath, prev_us)
         except Exception:
             new_utd, usize = [], prev_us
+    else:
+        # Keep empty tails; rely on HTTP to populate when available.
+        new_events, new_utd = [], []
+        esize, usize = prev_es, prev_us
 
     # Reset conditions:
     truncated = (prev_es > 0 and esize < prev_es) or (prev_us > 0 and usize < prev_us)
