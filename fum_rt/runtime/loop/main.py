@@ -780,6 +780,31 @@ def run_loop(nx: Any, t0: float, step: int, duration_s: Optional[int] = None) ->
             m["t"] = step
             m["ute_in_count"] = int(ute_in_count)
             m["ute_text_count"] = int(ute_text_count)
+
+            # Spool stats (Zip spooler) — expose in status snapshot (UI can show back-pressure)
+            try:
+                utd = getattr(nx, "utd", None)
+                writer = getattr(utd, "_writer", None)
+                stats = None
+                # Prefer direct stats(); also handle nested writer._writer
+                if writer is not None and hasattr(writer, "stats"):
+                    stats = writer.stats()  # type: ignore[attr-defined]
+                elif writer is not None and hasattr(writer, "_writer") and hasattr(writer._writer, "stats"):
+                    try:
+                        stats = writer._writer.stats()  # type: ignore[attr-defined]
+                    except Exception:
+                        stats = None
+                if isinstance(stats, dict):
+                    # Namespaced to avoid collisions
+                    m["utd_spool"] = {
+                        "buffer_bytes": int(stats.get("buffer_bytes", 0)),
+                        "zip_bytes": int(stats.get("zip_bytes", 0)),
+                        "zip_entries": int(stats.get("zip_entries", 0)),
+                        "ring_bytes": int(stats.get("ring_bytes", 0)),
+                    }
+            except Exception:
+                pass
+
             try:
                 nx._emit_step = int(step)
                 # include canonical valence fields for convenience

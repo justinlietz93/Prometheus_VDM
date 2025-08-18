@@ -354,11 +354,9 @@ class RollingJsonlHandler(logging.Handler):
     """
     logging.Handler that writes formatted JSON lines to a bounded rolling JSONL file.
     """
-
     def __init__(self, path: str) -> None:
         super().__init__(level=logging.INFO)
         self._writer = RollingJsonlWriter(path)
-
     def emit(self, record: logging.LogRecord) -> None:
         try:
             msg = self.format(record)
@@ -367,5 +365,172 @@ class RollingJsonlHandler(logging.Handler):
             # Avoid crashing logging subsystem
             pass
 
+class RollingZipJsonlHandler(logging.Handler):
+    """
+    logging.Handler that writes formatted JSON lines to a zip-spooled JSONL buffer.
+    The buffer is truncated when it exceeds the configured threshold and compressed
+    into a .zip archive adjacent to the buffer file (e.g., events.jsonl -> events.zip).
+    """
+    def __init__(self, path: str) -> None:
+        super().__init__(level=logging.INFO)
+        # Prefer zip spooler for bounded disk pressure
+        self._writer = RollingZipJsonlWriter(path)  # type: ignore[name-defined]
+    def emit(self, record: logging.LogRecord) -> None:
+        try:
+            msg = self.format(record)
+            self._writer.write_line(msg)
+        except Exception:
+            # Avoid crashing logging subsystem
+            pass
 
-__all__ = ["RollingJsonlWriter", "RollingJsonlHandler"]
+__all__ = ["RollingJsonlWriter", "RollingJsonlHandler", "RollingZipJsonlWriter", "RollingZipJsonlHandler"]
+# ---------- Zip spool writer (optional) ----------
+# Lightweight, void-faithful spooler that compresses the active JSONL buffer into a growing .zip
+# once it exceeds a bounded threshold, then truncates the buffer. Keeps a tiny in-process ring
+# for quick peeks. Uses RollingJsonlWriter's advisory lock to coordinate with other writers.
+import zipfile as _zipfile  # stdlib
+
+class RollingZipJsonlWriter:
+    """
+    Zip spooler for JSONL:
+    - Appends lines to a small active buffer file (base_path)
+    - When buffer exceeds max_buffer_bytes, compresses it into <base_name>.zip (append mode)
+      under the same directory and truncates the buffer to zero
+    - Tracks coarse stats for UI/status reporting (entries, sizes)
+    - Thread-safe; coordinates with other processes via RollingJsonlWriter's lock
+    """
+
+    def __init__(
+        self,
+        base_path: str,
+        *,
+        max_buffer_bytes: int | None = None,
+        ring_bytes: int | None = None,
+        zip_path: str | None = None,
+    ) -> None:
+        self.base_path = os.path.abspath(base_path)
+        _ensure_dir(os.path.dirname(self.base_path))
+        # Defaults (env-overridable)
+        try:
+            if max_buffer_bytes is None:
+                max_buffer_bytes = int(os.getenv("FUM_ZIP_BUFFER_BYTES", "1048576"))  # 1 MiB
+        except Exception:
+            max_buffer_bytes = 1_048_576
+        try:
+            if ring_bytes is None:
+                ring_bytes = int(os.getenv("FUM_ZIP_RING_BYTES", "65536"))  # 64 KiB
+        except Exception:
+            ring_bytes = 65_536
+        self.max_buffer_bytes = int(max(32 * 1024, max_buffer_bytes or 1_048_576))
+        self._ring_cap = int(max(1024, ring_bytes or 65_536))
+        self._ring = bytearray()
+        # Zip path next to base_path (events.jsonl -> events.zip)
+        if not zip_path:
+            stem = os.path.splitext(os.path.basename(self.base_path))[0]
+            zip_path = os.path.join(os.path.dirname(self.base_path), f"{stem}.zip")
+        self.zip_path = os.path.abspath(zip_path)
+
+        # Use RollingJsonlWriter with huge caps to avoid its archival path interfering
+        # (we rely on the zip spool rotation below)
+        self._writer = RollingJsonlWriter(
+            self.base_path,
+            max_main_bytes=10**12,              # effectively disable
+            max_main_lines=None,
+            archive_dir=os.path.join(os.path.dirname(self.base_path), "archived"),
+            archive_segment_max_bytes=None,
+            archive_segment_max_lines=None,
+            check_every=2_147_483_647,          # effectively disable
+        )
+        self._zip_entries_cache: int | None = None
+        self._local_lock = threading.Lock()
+
+    def write_line(self, line: str) -> None:
+        # Append line (delegates to rolling writer for atomic append)
+        self._writer.write_line(line)
+        # Update in-process ring
+        try:
+            data = (line.rstrip("\n") + "\n").encode("utf-8", errors="ignore")
+            self._ring.extend(data)
+            if len(self._ring) > self._ring_cap:
+                # keep last _ring_cap bytes
+                self._ring[:] = self._ring[-self._ring_cap:]
+        except Exception:
+            pass
+
+        # Rotate to zip if buffer exceeds threshold (guarded by advisory lock)
+        try:
+            with self._writer._acquire_lock():  # type: ignore[attr-defined]
+                try:
+                    size = os.path.getsize(self.base_path)
+                except Exception:
+                    size = 0
+                if size >= self.max_buffer_bytes:
+                    # Read buffer
+                    try:
+                        with open(self.base_path, "rb") as fh:
+                            buf = fh.read()
+                    except Exception:
+                        buf = b""
+                    if buf:
+                        arcname = f"{os.path.basename(self.base_path)}.{_now_ts()}.jsonl"
+                        try:
+                            with _zipfile.ZipFile(self.zip_path, mode="a", compression=_zipfile.ZIP_DEFLATED) as zf:
+                                zf.writestr(arcname, buf)
+                                # Seed entries cache if unknown
+                                try:
+                                    if self._zip_entries_cache is None:
+                                        self._zip_entries_cache = 0
+                                    self._zip_entries_cache += 1
+                                except Exception:
+                                    pass
+                        except Exception:
+                            # best-effort: do not abort rotation
+                            pass
+                        # Truncate buffer
+                        try:
+                            with open(self.base_path, "wb") as fh2:
+                                fh2.write(b"")
+                        except Exception:
+                            pass
+        except Exception:
+            # best-effort; avoid throwing on contentions
+            pass
+
+    def stats(self) -> dict:
+        """
+        Return coarse spool statistics for status reporting:
+          - buffer_bytes: size of active JSONL buffer
+          - zip_bytes: size of the zip archive file
+          - zip_entries: count of archived segments (approximate)
+          - ring_bytes: size of in-process ring buffer
+        """
+        try:
+            buffer_bytes = os.path.getsize(self.base_path)
+        except Exception:
+            buffer_bytes = 0
+        try:
+            zip_bytes = os.path.getsize(self.zip_path)
+        except Exception:
+            zip_bytes = 0
+        # If entries unknown, estimate by inspecting the zip once
+        if self._zip_entries_cache is None:
+            try:
+                if os.path.exists(self.zip_path):
+                    with _zipfile.ZipFile(self.zip_path, mode="r") as zf:
+                        self._zip_entries_cache = len(zf.namelist())
+                else:
+                    self._zip_entries_cache = 0
+            except Exception:
+                self._zip_entries_cache = 0
+        return {
+            "buffer_bytes": int(buffer_bytes),
+            "zip_bytes": int(zip_bytes),
+            "zip_entries": int(self._zip_entries_cache or 0),
+            "ring_bytes": int(len(self._ring)),
+        }
+
+# expose in module exports
+try:
+    __all__.append("RollingZipJsonlWriter")  # type: ignore[name-defined]
+except Exception:
+    __all__ = ["RollingJsonlWriter", "RollingJsonlHandler", "RollingZipJsonlWriter"]

@@ -15,13 +15,28 @@ def register_logs_callbacks(app, manager):
         Output("launch-log", "children"),
         Input("poll", "n_intervals"),
         Input("show-log", "n_clicks"),
+        Input("ui-state", "data"),
         prevent_initial_call=False,
     )
-    def update_launch_log(_n, _clicks):
+    def update_launch_log(_n, _clicks, ui_state):
         """
         Tail the launcher log efficiently without rereading entire file each tick.
-        Reads only the last DASH_LOG_TAIL_BYTES (default 16 KiB) and returns the last 4000 chars.
+        - UI-governed: only tails when ui_state['tail_launch_log'] is True (default OFF).
+        - Bounds bytes via DASH_LOG_TAIL_BYTES (env) while staying purely UI-controlled for enable/disable.
         """
+        # UI gating (default OFF). Also allow explicit one-shot via "Show Launcher Log" button.
+        ui = ui_state or {}
+        clicks = int(_clicks or 0)
+        try:
+            tail_enabled = bool(ui.get("tail_launch_log", False))
+        except Exception:
+            tail_enabled = False
+        # If the user clicked "Show Launcher Log" at least once, show the log regardless of UI toggle.
+        if clicks > 0:
+            tail_enabled = True
+        if not tail_enabled:
+            return "Launcher log tail disabled (toggle in UI Performance or click Show Launcher Log)."
+
         try:
             path = getattr(manager, "launch_log", None)
             if not path or not os.path.exists(path):

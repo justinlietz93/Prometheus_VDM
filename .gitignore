@@ -40,10 +40,12 @@ resume.md
 /mnt/ironwolf/git/Void_FUM_Private/Void_FUM_Private/Void_Unity_Proofs/derivation/GPT5
 
 # Data
-fum_rt/data/corpus/*
-fum_rt/data/databases/*
+*.pdf
+
 fum_rt/data/wikipedia/enwiki-latest-pages-articles.xml.bz2
 derivation/GPT5/*
 UP_NEXT.md
 fum_original_v2
 Void_Unity_Proofs.code-workspace
+fum_rt/data/corpus (copy 1)
+fum_rt/data/corpus/unsorted/*

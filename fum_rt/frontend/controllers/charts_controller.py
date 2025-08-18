@@ -21,12 +21,14 @@ def compute_dashboard_figures(run_dir: str, state: Optional[SeriesState], ui: Op
         state = SeriesState(run_dir)
     ui = ui or {}
 
-    # HTTP-only: fetch latest status snapshot; never tail files for charts.
+    # Prefer HTTP status snapshot; fallback to cheap file tails if unavailable.
     # Detect truncation/rotation or run restart remains supported via tick/time regression.
     prev_es = getattr(state, "events_size", 0)
     prev_us = getattr(state, "utd_size", 0)
     new_events, esize = [], prev_es
     new_utd, usize = [], prev_us
+
+    snap = None
     try:
         url = None
         timeout_s = None
@@ -45,9 +47,24 @@ def compute_dashboard_figures(run_dir: str, state: Optional[SeriesState], ui: Op
         snap = _get_status(url, timeout_s)
     except Exception:
         snap = None
+
     if isinstance(snap, dict) and snap:
         # Use snapshot directly as an "event-like" record; append_event() reads from the dict.
         new_events = [snap]
+    else:
+        # Fallback: tail events.jsonl and utd_events.jsonl incrementally (bounded by last offsets).
+        try:
+            epath = os.path.join(run_dir, "events.jsonl")
+            if os.path.exists(epath):
+                new_events, esize = tail_jsonl_bytes(epath, prev_es)
+        except Exception:
+            new_events, esize = [], prev_es
+        try:
+            upath = os.path.join(run_dir, "utd_events.jsonl")
+            if os.path.exists(upath):
+                new_utd, usize = tail_jsonl_bytes(upath, prev_us)
+        except Exception:
+            new_utd, usize = [], prev_us
 
     # Reset conditions:
     truncated = (prev_es > 0 and esize < prev_es) or (prev_us > 0 and usize < prev_us)
@@ -182,17 +199,47 @@ def compute_dashboard_figures(run_dir: str, state: Optional[SeriesState], ui: Op
 
     # fig1
     fig1 = go.Figure()
-    fig1.add_trace(go.Scattergl(x=t, y=active, name="Active synapses", line=dict(width=1, color=C["synapses"])))
-    fig1.add_trace(go.Scattergl(x=t, y=avgw, name="Avg W", yaxis="y2", line=dict(width=1, color=C["avgw"])))
-    if any(v is not None for v in val):
-        fig1.add_trace(go.Scattergl(x=t, y=val, name="SIE valence", yaxis="y2", line=dict(width=1, dash="dot", color=C["valence"])))
-    if any(v is not None for v in val2):
-        fig1.add_trace(go.Scattergl(x=t, y=val2, name="SIE v2 valence", yaxis="y2", line=dict(width=1, dash="dash", color=C["valence2"])))
-    fig1.add_trace(go.Scattergl(x=t, y=coh, name="Components", yaxis="y3", line=dict(width=1, color=C["components"])))
-    fig1.add_trace(go.Scattergl(x=t, y=comp, name="Cycles", yaxis="y4", line=dict(width=1, color=C["cycles"])))
-    fig1.add_trace(go.Scattergl(x=t, y=b1z, name="B1 z", yaxis="y5", line=dict(width=1, color=C["b1z"])))
-    if any(v is not None for v in entro):
-        fig1.add_trace(go.Scattergl(x=t, y=entro, name="Connectome entropy", yaxis="y6", line=dict(width=1, color=C["entropy"])))
+    # Enforce series_cap (UI control; default 6). Prioritize essential series first.
+    try:
+        SERIES_CAP = int(ui.get("series_cap", 6))
+    except Exception:
+        SERIES_CAP = 6
+    SERIES_CAP = max(1, min(8, SERIES_CAP))
+
+    add_count = 0
+    def _add_if(cond: bool, fn) -> None:
+        nonlocal add_count
+        if add_count >= SERIES_CAP:
+            return
+        if cond:
+            fn()
+            add_count += 1
+
+    # Priority order: Active, Cycles, AvgW, B1z, Components, Valence, Valence2, Entropy
+    _add_if(True, lambda: fig1.add_trace(
+        go.Scattergl(x=t, y=active, name="Active synapses", line=dict(width=1, color=C["synapses"]))
+    ))
+    _add_if(True, lambda: fig1.add_trace(
+        go.Scattergl(x=t, y=comp, name="Cycles", yaxis="y4", line=dict(width=1, color=C["cycles"]))
+    ))
+    _add_if(True, lambda: fig1.add_trace(
+        go.Scattergl(x=t, y=avgw, name="Avg W", yaxis="y2", line=dict(width=1, color=C["avgw"]))
+    ))
+    _add_if(True, lambda: fig1.add_trace(
+        go.Scattergl(x=t, y=b1z, name="B1 z", yaxis="y5", line=dict(width=1, color=C["b1z"]))
+    ))
+    _add_if(True, lambda: fig1.add_trace(
+        go.Scattergl(x=t, y=coh, name="Components", yaxis="y3", line=dict(width=1, color=C["components"]))
+    ))
+    _add_if(any(v is not None for v in val), lambda: fig1.add_trace(
+        go.Scattergl(x=t, y=val, name="SIE valence", yaxis="y2", line=dict(width=1, dash="dot", color=C["valence"]))
+    ))
+    _add_if(any(v is not None for v in val2), lambda: fig1.add_trace(
+        go.Scattergl(x=t, y=val2, name="SIE v2 valence", yaxis="y2", line=dict(width=1, dash="dash", color=C["valence2"]))
+    ))
+    _add_if(any(v is not None for v in entro), lambda: fig1.add_trace(
+        go.Scattergl(x=t, y=entro, name="Connectome entropy", yaxis="y6", line=dict(width=1, color=C["entropy"]))
+    ))
     fig1.update_layout(
         title=f"Dashboard — {os.path.basename(run_dir)}",
         paper_bgcolor="#10151c",

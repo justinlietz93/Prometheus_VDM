@@ -1,5 +1,10 @@
 import sys, json, os
 from fum_rt.io.logging.rolling_jsonl import RollingJsonlWriter
+try:
+    # Prefer zip spooler when available
+    from fum_rt.io.logging.rolling_jsonl import RollingZipJsonlWriter  # type: ignore
+except Exception:
+    RollingZipJsonlWriter = None  # type: ignore
 
 class UTD:
     """Universal Transduction Decoder.
@@ -15,8 +20,21 @@ class UTD:
         self.run_dir = run_dir
         os.makedirs(self.run_dir, exist_ok=True)
         self.path = os.path.join(self.run_dir, 'utd_events.jsonl')
-        # Rolling JSONL writer (bounded active file with archival segments)
-        self._writer = RollingJsonlWriter(self.path)
+        # Prefer zip-spooled writer to bound disk pressure; fallback to rolling JSONL
+        use_zip = True
+        try:
+            # Allow explicit opt-out via env
+            use_zip = str(os.getenv("FUM_ZIP_SPOOL", "1")).strip().lower() in ("1", "true", "yes", "on", "y")
+        except Exception:
+            use_zip = True
+        try:
+            if use_zip and RollingZipJsonlWriter is not None:  # type: ignore
+                self._writer = RollingZipJsonlWriter(self.path)  # type: ignore
+            else:
+                self._writer = RollingJsonlWriter(self.path)
+        except Exception:
+            # Safe fallback
+            self._writer = RollingJsonlWriter(self.path)
         # Macro registry and on-disk macro board for persistence
         self._macro_registry = {}
         self._macro_board_path = os.path.join(self.run_dir, 'macro_board.json')
