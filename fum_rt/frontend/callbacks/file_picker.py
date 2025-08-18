@@ -21,51 +21,22 @@ from typing import List, Tuple
 import dash
 from dash import html, Input, Output, State, ALL, no_update
 from fum_rt.frontend.components.widgets.file_picker import _modal_styles as _fp_modal_styles
+from fum_rt.frontend.controllers.file_picker_controller import (
+    clamp_to_root as _ctl_clamp,
+    list_dir as _ctl_list_dir,
+    init_tree as _ctl_init_tree,
+    next_children as _ctl_next_children,
+)
 
 # Project root clamp: prevent navigation above repo root
 PROJECT_ROOT = os.path.abspath(os.getenv("FUM_PROJECT_ROOT", "/mnt/ironwolf/git/Void_FUM_Private/Void_FUM_Private/Void_Unity_Proofs"))
 
 def _clamp_to_project(path: str) -> str:
-    return _clamp_to_root(path, PROJECT_ROOT)
+    return _ctl_clamp(path, PROJECT_ROOT)
 
 
-def _safe_list(path: str, exts: List[str] | None) -> Tuple[List[str], List[str]]:
-    """
-    Return (subdirs, files) for a directory, filtered by exts when provided.
-    - subdirs: immediate child folders (names only)
-    - files: immediate child files (names only), filtering by allowed extensions when provided
-    """
-    try:
-        names = os.listdir(path)
-    except Exception:
-        return [], []
-    subdirs = []
-    files = []
-    allow_all = not exts
-    lowered_exts = [e.lower() for e in (exts or [])]
-    for n in names:
-        full = os.path.join(path, n)
-        if os.path.isdir(full):
-            subdirs.append(n)
-        else:
-            if allow_all or any(n.lower().endswith(e) for e in lowered_exts):
-                files.append(n)
-    subdirs.sort()
-    files.sort()
-    return subdirs, files
 
 
-def _clamp_to_root(path: str, root: str) -> str:
-    """
-    Ensure 'path' does not escape 'root'. If it does, clamp to root.
-    """
-    try:
-        root_abs = os.path.abspath(root)
-        path_abs = os.path.abspath(path)
-        common = os.path.commonpath([root_abs, path_abs])
-        return path_abs if common == root_abs else root_abs
-    except Exception:
-        return os.path.abspath(root)
 
 
 def _register_common(app, prefix: str, target_id: str) -> None:
@@ -129,7 +100,7 @@ def _register_common(app, prefix: str, target_id: str) -> None:
         if not c or not r:
             return no_update
         parent = os.path.dirname(os.path.abspath(c))
-        return _clamp_to_root(parent, r)
+        return _ctl_clamp(parent, r)
 
     # Open selected subfolder
     @app.callback(
@@ -148,7 +119,7 @@ def _register_common(app, prefix: str, target_id: str) -> None:
             return no_update
         cand = os.path.join(c, s)
         if os.path.isdir(cand):
-            return _clamp_to_root(cand, r or cand)
+            return _ctl_clamp(cand, r or cand)
         return no_update
 
     # Render a single tree (folders + files) with breadcrumbs; bounded IO (no scans here)
@@ -156,6 +127,7 @@ def _register_common(app, prefix: str, target_id: str) -> None:
         Output(f"{prefix}-dirs-list", "children"),
         Output(cwd_label, "children"),
         Output(f"{prefix}-crumbs", "children"),
+        Output(status_div, "children", allow_duplicate=True),
         Input(tree_store, "data"),
         Input(sel_dir_store, "data"),
         Input(exts_store, "data"),
@@ -172,7 +144,7 @@ def _register_common(app, prefix: str, target_id: str) -> None:
         rabs = _clamp_to_project(rabs_in or PROJECT_ROOT)
         s_in = (selected_dir or "").strip()
         s = os.path.abspath(s_in) if s_in else rabs
-        s = _clamp_to_root(s, rabs)
+        s = _ctl_clamp(s, rabs)
 
         # Build tree UI from cached nodes only (no os.listdir here)
         nodes = {}
@@ -250,11 +222,12 @@ def _register_common(app, prefix: str, target_id: str) -> None:
                     except Exception:
                         continue
                     _build(ch, depth + 1)
-                # Then render files belonging to this directory (cached; fallback-list if missing)
+                # Then render files belonging to this directory.
+                # Use cached node files; if absent, do a bounded one-step listing with ext filter & dotfile hiding.
                 files_all = node.get("files") or []
-                if not files_all and os.path.isdir(path):
+                if (not files_all) and os.path.isdir(path):
                     try:
-                        _subdirs_tmp, files_tmp = _safe_list(path, None)
+                        _subdirs_tmp, files_tmp = _ctl_list_dir(path, exts=(exts or []), hide_dotfiles=True)
                         files_all = files_tmp or []
                     except Exception:
                         files_all = []
@@ -263,6 +236,7 @@ def _register_common(app, prefix: str, target_id: str) -> None:
                         fpath = os.path.join(path, f)
                     except Exception:
                         continue
+                    # node files are already ext-filtered; keep downstream filter for robustness
                     if allow_all or any(f.lower().endswith(e) for e in lowered_exts):
                         tree_children.append(_tree_file_row(fpath, depth, (file_sel or "").strip() == fpath))
 
@@ -302,7 +276,17 @@ def _register_common(app, prefix: str, target_id: str) -> None:
         except Exception:
             pass
 
-        return tree_children, cwd_label_text, crumbs
+        # Diagnostics: show root/dir and file count for selected directory
+        sel_file_count = 0
+        try:
+            if s and os.path.isdir(s):
+                _sd, _files_for_sel = _ctl_list_dir(s, exts=(exts or []), hide_dotfiles=True)
+                sel_file_count = len(_files_for_sel or [])
+        except Exception:
+            sel_file_count = 0
+        status_text = f"root: {rabs}  dir: {s}  files: {sel_file_count}"
+
+        return tree_children, cwd_label_text, crumbs, status_text
 
     # Tree toggle: expand/collapse one node; cache listing on expand (one directory at a time)
     @app.callback(
@@ -311,9 +295,10 @@ def _register_common(app, prefix: str, target_id: str) -> None:
         Input({"role": f"{prefix}-tree-dir", "path": ALL}, "n_clicks"),
         State(tree_store, "data"),
         State(root_store, "data"),
+        State(exts_store, "data"),
         prevent_initial_call=True,
     )
-    def on_tree_toggle(_clicks, tree_data, root):
+    def on_tree_toggle(_clicks, tree_data, root, exts):
         ctx = dash.callback_context
         if not getattr(ctx, "triggered", None):
             return no_update, no_update
@@ -339,13 +324,13 @@ def _register_common(app, prefix: str, target_id: str) -> None:
         tree["root"] = tree.get("root") or rabs
 
         # Clamp and toggle
-        p = _clamp_to_root(target, rabs)
+        p = _ctl_clamp(target, rabs)
         node = dict(nodes.get(p) or {})
         toggled = not bool(node.get("expanded"))
         node["expanded"] = toggled
         if toggled and (not node.get("subdirs") or not node.get("files")):
-            # Bounded IO: only list this node's direct children once on expansion
-            subdirs, files_all = _safe_list(p, None)
+            # Bounded IO: list this node's direct children once on expansion (ext-filtered, dotfiles hidden)
+            subdirs, files_all = _ctl_next_children(p, exts=(exts or []), hide_dotfiles=True)
             node["subdirs"] = subdirs or []
             node["files"] = files_all or []
         nodes[p] = node
@@ -374,7 +359,7 @@ def _register_common(app, prefix: str, target_id: str) -> None:
             return no_update
         r = (root or "").strip()
         if r:
-            return _clamp_to_root(target, r)
+            return _ctl_clamp(target, r)
         return target
 
     # Sync selected-dir when legacy cwd changes (Root/Up)
@@ -392,7 +377,7 @@ def _register_common(app, prefix: str, target_id: str) -> None:
         c = _clamp_to_project(c)
         if r:
             r = _clamp_to_project(r)
-            return _clamp_to_root(c, r)
+            return _ctl_clamp(c, r)
         return c
 
     # Click handlers for files inside the tree
@@ -474,6 +459,7 @@ def register_file_picker_static(app, prefix: str, root: str, exts: List[str] | N
     root_store = f"{prefix}-root"
     cwd_store = f"{prefix}-cwd"
     exts_store = f"{prefix}-exts"
+    status_div = f"{prefix}-status"
     open_btn = f"{prefix}-open-btn"
 
     # Open -> show modal and initialize stores
@@ -496,15 +482,20 @@ def register_file_picker_static(app, prefix: str, root: str, exts: List[str] | N
     @app.callback(
         Output(f"{prefix}-selected-dir", "data", allow_duplicate=True),
         Output(f"{prefix}-tree-store", "data", allow_duplicate=True),
+        Output(status_div, "children", allow_duplicate=True),
         Input(open_btn, "n_clicks"),
         prevent_initial_call=True,
     )
     def on_open_init(_n):
         r0 = _clamp_to_project(os.path.abspath(root or ""))
         r = r0 if os.path.isdir(r0) else PROJECT_ROOT
-        subdirs, files_all = _safe_list(r, None)
-        tree = {"root": r, "nodes": {r: {"expanded": True, "subdirs": subdirs or [], "files": files_all or []}}}
-        return r, tree
+        tree = _ctl_init_tree(r, exts=(exts or []), hide_dotfiles=True)
+        try:
+            files0 = (tree.get("nodes", {}).get(r, {}) or {}).get("files") or []
+            status_text = f"root: {r}  files: {len(files0)}"
+        except Exception:
+            status_text = f"root: {r}  files: 0"
+        return r, tree, status_text
 
     _register_common(app, prefix, target_id)
 
@@ -523,6 +514,7 @@ def register_file_picker_engram(
     root_store = f"{prefix}-root"
     cwd_store = f"{prefix}-cwd"
     exts_store = f"{prefix}-exts"
+    status_div = f"{prefix}-status"
     open_btn = f"{prefix}-open-btn"
 
     # Open -> compute root dynamically from run-dir / runs-root
@@ -565,6 +557,7 @@ def register_file_picker_engram(
     @app.callback(
         Output(f"{prefix}-selected-dir", "data", allow_duplicate=True),
         Output(f"{prefix}-tree-store", "data", allow_duplicate=True),
+        Output(status_div, "children", allow_duplicate=True),
         Input(open_btn, "n_clicks"),
         State("run-dir", "value"),
         State("runs-root", "value"),
@@ -585,12 +578,20 @@ def register_file_picker_engram(
                 continue
             r = _clamp_to_project(os.path.abspath(cand))
             if os.path.isdir(r):
-                subdirs, files_all = _safe_list(r, None)
-                tree = {"root": r, "nodes": {r: {"expanded": True, "subdirs": subdirs or [], "files": files_all or []}}}
-                return r, tree
+                tree = _ctl_init_tree(r, exts=(exts or []), hide_dotfiles=True)
+                try:
+                    files0 = (tree.get("nodes", {}).get(r, {}) or {}).get("files") or []
+                    status_text = f"root: {r}  files: {len(files0)}"
+                except Exception:
+                    status_text = f"root: {r}  files: 0"
+                return r, tree, status_text
         r = PROJECT_ROOT
-        subdirs, files_all = _safe_list(r, None)
-        tree = {"root": r, "nodes": {r: {"expanded": True, "subdirs": subdirs or [], "files": files_all or []}}}
-        return r, tree
+        tree = _ctl_init_tree(r, exts=(exts or []), hide_dotfiles=True)
+        try:
+            files0 = (tree.get("nodes", {}).get(r, {}) or {}).get("files") or []
+            status_text = f"root: {r}  files: {len(files0)}"
+        except Exception:
+            status_text = f"root: {r}  files: 0"
+        return r, tree, status_text
 
     _register_common(app, prefix, target_id)
