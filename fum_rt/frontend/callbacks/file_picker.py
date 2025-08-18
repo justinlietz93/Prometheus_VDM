@@ -250,8 +250,14 @@ def _register_common(app, prefix: str, target_id: str) -> None:
                     except Exception:
                         continue
                     _build(ch, depth + 1)
-                # Then render files belonging to this directory (cached)
+                # Then render files belonging to this directory (cached; fallback-list if missing)
                 files_all = node.get("files") or []
+                if not files_all and os.path.isdir(path):
+                    try:
+                        _subdirs_tmp, files_tmp = _safe_list(path, None)
+                        files_all = files_tmp or []
+                    except Exception:
+                        files_all = []
                 for f in files_all:
                     try:
                         fpath = os.path.join(path, f)
@@ -392,48 +398,72 @@ def _register_common(app, prefix: str, target_id: str) -> None:
     # Click handlers for files inside the tree
     @app.callback(
         Output(dir_sel_store, "data"),
-        Output(file_sel_store, "data"),
+        Output(file_sel_store, "data", allow_duplicate=True),
+        Output(status_div, "children", allow_duplicate=True),
         Input({"role": f"{prefix}-file", "path": ALL}, "n_clicks"),
         prevent_initial_call=True,
     )
     def on_explorer_click(_file_clicks):
         ctx = dash.callback_context
         if not getattr(ctx, "triggered", None):
-            return no_update, no_update
+            return no_update, no_update, no_update
         try:
             import json
             tid = ctx.triggered[0]["prop_id"].split(".")[0]
             obj = json.loads(tid)
             fpath = (obj.get("path", "") or "").strip()
         except Exception:
-            return no_update, no_update
+            return no_update, no_update, no_update
         if not fpath:
-            return no_update, no_update
+            return no_update, no_update, no_update
         # Do not change selected directory here; only set the selected file path
-        return no_update, fpath
+        base = os.path.basename(fpath) if fpath else ""
+        return no_update, fpath, f"Selected file: {base}"
 
     # Confirm selection -> set stores, hide modal, and update target value
     @app.callback(
         Output(sel_store, "data"),
         Output(sel_label, "children"),
-        Output(status_div, "children"),
+        Output(status_div, "children", allow_duplicate=True),
         Output(mid, "style", allow_duplicate=True),
-        Output(target_id, "value"),
+        Output(target_id, "options", allow_duplicate=True),
+        Output(target_id, "value", allow_duplicate=True),
         Input(confirm_btn, "n_clicks"),
         State(file_sel_store, "data"),
         State(sel_dir_store, "data"),
+        State(target_id, "options"),
         prevent_initial_call=True,
     )
-    def on_confirm(_n, file_sel, sel_dir):
+    def on_confirm(_n, file_sel, sel_dir, options):
         fsel = (file_sel or "").strip()
         c = (sel_dir or "").strip()
         if not fsel:
-            return no_update, no_update, "Select a file.", no_update, no_update
-        path = fsel if os.path.isabs(fsel) else os.path.abspath(os.path.join(c, fsel)) if c else os.path.abspath(fsel)
+            return no_update, no_update, "Select a file.", no_update, no_update, no_update
+        path = fsel if os.path.isabs(fsel) else (os.path.abspath(os.path.join(c, fsel)) if c else os.path.abspath(fsel))
         label = os.path.basename(path)
+
+        # Ensure Dropdown 'options' contains the selected path to avoid client-side validation blocking the update
+        try:
+            existing = options if isinstance(options, list) else []
+        except Exception:
+            existing = []
+        try:
+            vals = set()
+            new_options = []
+            for o in existing:
+                if isinstance(o, dict):
+                    v = o.get("value")
+                    if isinstance(v, str) and v not in vals:
+                        vals.add(v)
+                        new_options.append(o)
+            if path not in vals:
+                new_options.append({"label": path, "value": path})
+        except Exception:
+            new_options = [{"label": path, "value": path}]
+
         status = f"Selected: {path}"
         style = _fp_modal_styles()  # hidden (default)
-        return path, label, status, style, path
+        return path, label, status, style, new_options, path
 
 
 def register_file_picker_static(app, prefix: str, root: str, exts: List[str] | None, target_id: str) -> None:
@@ -456,7 +486,8 @@ def register_file_picker_static(app, prefix: str, root: str, exts: List[str] | N
         prevent_initial_call=True,
     )
     def on_open(_n):
-        r = _clamp_to_project(os.path.abspath(root or ""))
+        r0 = _clamp_to_project(os.path.abspath(root or ""))
+        r = r0 if os.path.isdir(r0) else PROJECT_ROOT
         style = _fp_modal_styles()
         style["display"] = "flex"
         return style, r, r, list(exts or [])
@@ -469,7 +500,8 @@ def register_file_picker_static(app, prefix: str, root: str, exts: List[str] | N
         prevent_initial_call=True,
     )
     def on_open_init(_n):
-        r = _clamp_to_project(os.path.abspath(root or ""))
+        r0 = _clamp_to_project(os.path.abspath(root or ""))
+        r = r0 if os.path.isdir(r0) else PROJECT_ROOT
         subdirs, files_all = _safe_list(r, None)
         tree = {"root": r, "nodes": {r: {"expanded": True, "subdirs": subdirs or [], "files": files_all or []}}}
         return r, tree
