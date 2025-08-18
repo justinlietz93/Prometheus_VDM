@@ -106,6 +106,7 @@ def build_app(runs_root: str) -> Dash:
         DATA_SCAN_MAX = 300
     DATA_EXTS = [".txt", ".jsonl", ".json", ".csv"]
     data_dir = os.path.join(repo_root, "fum_rt", "data")
+    os.makedirs(data_dir, exist_ok=True)
     paths = _list_files(data_dir, exts=DATA_EXTS, recursive=False)[: max(0, DATA_SCAN_MAX)]
     data_files_options = [{"label": p, "value": p} for p in paths]
 
