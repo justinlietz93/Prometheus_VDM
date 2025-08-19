@@ -16,10 +16,14 @@ TODO Improve user engagement, reward to not be released programmatically like tr
 TODO Allow the user to give the model a small reward ad hoc for doing a good job
 TODO Add a stimulus queue system for phased learning
 TODO Complete the Void Substrate equations (RE-VGSP / GDSP) to replace the raw universal void implementations
+TODO Investigate why the synapses arent pruning enough 
 
 ### Physics
 TODO Continue work on physics derivations
     TODO Implement physics simulations
+
+### Visualizations
+TODO Keep displaying the dashboard when connectome visuals are being generated
 
 ### Performance
 TODO Add custom AMD Composable Kernel optimizations
