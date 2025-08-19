@@ -327,9 +327,25 @@ def _register_common(app, prefix: str, target_id: str) -> None:
         except Exception:
             pass
 
+        # Determine if this render was triggered by a tree toggle; if so, suppress file status
+        ctx = dash.callback_context
+        tree_opened = False
+        try:
+            trig = ctx.triggered[0]["prop_id"]
+            tree_opened = isinstance(trig, str) and trig.startswith(f"{prefix}-tree-store.")
+        except Exception:
+            tree_opened = False
         # Metadata statusbar
+        # Show folder metadata when navigation occurs (tree toggle or dir change).
+        # Only show file details when the explicit file selection store triggered this render.
+        try:
+            prop_id = dash.callback_context.triggered[0]["prop_id"] if getattr(dash.callback_context, "triggered", None) else ""
+        except Exception:
+            prop_id = ""
+        is_file_sel_trigger = isinstance(prop_id, str) and prop_id.startswith(f"{prefix}-file-sel.")
         fsel = (file_sel or "").strip()
-        if fsel:
+
+        if fsel and is_file_sel_trigger:
             # File selected: show name and total size
             try:
                 fname = os.path.basename(fsel)
@@ -338,7 +354,7 @@ def _register_common(app, prefix: str, target_id: str) -> None:
             except Exception:
                 status_text = f"File: {os.path.basename(fsel)} — Size: unknown"
         else:
-            # Folder selected: show counts and non-recursive total size of visible files
+            # Folder selected (or navigation event): counts and non-recursive total size of visible files
             try:
                 subdirs_for_sel, files_for_sel = _ctl_list_dir(s, exts=(exts or []), hide_dotfiles=True) if (s and os.path.isdir(s)) else ([], [])
                 folders_n = len(subdirs_for_sel or [])
@@ -354,6 +370,7 @@ def _register_common(app, prefix: str, target_id: str) -> None:
     @app.callback(
         Output(tree_store, "data", allow_duplicate=True),
         Output(sel_dir_store, "data", allow_duplicate=True),
+        Output(file_sel_store, "data", allow_duplicate=True),
         Input({"role": f"{prefix}-tree-dir", "path": ALL}, "n_clicks"),
         State(tree_store, "data"),
         State(root_store, "data"),
@@ -364,10 +381,10 @@ def _register_common(app, prefix: str, target_id: str) -> None:
         ctx = dash.callback_context
         obj = _get_ctx_obj(ctx)
         if not isinstance(obj, dict) or obj.get("role") != f"{prefix}-tree-dir":
-            return no_update, no_update
+            return no_update, no_update, no_update
         target = (obj.get("path", "") or "").strip()
         if not target:
-            return no_update, no_update
+            return no_update, no_update, no_update
 
         r = (root or "").strip()
         rabs0 = os.path.abspath(r) if r else os.path.abspath(target)
@@ -396,7 +413,8 @@ def _register_common(app, prefix: str, target_id: str) -> None:
             node["files"] = files_all or []
         nodes[p] = node
         tree["nodes"] = nodes
-        return tree, p
+        # Also clear any existing file selection on folder toggle so status shows folder metadata
+        return tree, p, ""
 
     # Breadcrumb click -> select directory (clamped)
     @app.callback(
@@ -421,6 +439,7 @@ def _register_common(app, prefix: str, target_id: str) -> None:
     # Sync selected-dir when legacy cwd changes (Root/Up)
     @app.callback(
         Output(sel_dir_store, "data", allow_duplicate=True),
+        Output(file_sel_store, "data", allow_duplicate=True),
         Input(cwd_store, "data"),
         State(root_store, "data"),
         prevent_initial_call=True,
@@ -429,12 +448,12 @@ def _register_common(app, prefix: str, target_id: str) -> None:
         c = (cwd or "").strip()
         r = (root or "").strip()
         if not c:
-            return no_update
+            return no_update, no_update
         c = _clamp_to_project(c)
         if r:
             r = _clamp_to_project(r)
-            return _ctl_clamp(c, r)
-        return c
+            return _ctl_clamp(c, r), ""
+        return c, ""
 
     # Clear stale file selection when directory changes
     @app.callback(
@@ -444,7 +463,7 @@ def _register_common(app, prefix: str, target_id: str) -> None:
     )
     def _clear_file_sel_on_dir_change(_sel):
         return ""
-    
+
     # Click handlers for files inside the tree
     @app.callback(
         Output(dir_sel_store, "data"),
