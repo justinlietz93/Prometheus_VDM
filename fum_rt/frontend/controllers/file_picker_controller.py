@@ -65,20 +65,33 @@ def list_dir(path: str, exts: List[str] | None = None, hide_dotfiles: bool = Tru
 
     Returns:
         (subdirs, files) — both sorted, names only (no absolute paths)
+
+    Policy:
+        - No scans in 'core/' or 'maps/' at any depth. If the resolved path contains either
+          restricted segment, short-circuit and return empty results. This enforces the global
+          guard while keeping IO strictly bounded.
     """
     subdirs: List[str] = []
     files: List[str] = []
     try:
+        pabs = os.path.abspath(path)
+        # Enforce "no scans in core/ or maps/" at any depth
+        parts = os.path.normpath(pabs).split(os.sep)
+        if "core" in parts or "maps" in parts:
+            return [], []
+
         lower_exts = [e.lower() for e in (exts or [])]
         allow_all = not lower_exts
-        with os.scandir(path) as it:
+        with os.scandir(pabs) as it:
             for entry in it:
                 name = entry.name
                 if hide_dotfiles and name.startswith("."):
                     continue
                 try:
                     if entry.is_dir(follow_symlinks=False):
-                        subdirs.append(name)
+                        # Don't even offer restricted dirs for expansion
+                        if name not in ("core", "maps"):
+                            subdirs.append(name)
                     else:
                         if allow_all or any(name.lower().endswith(e) for e in lower_exts):
                             files.append(name)

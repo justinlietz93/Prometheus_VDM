@@ -34,6 +34,57 @@ PROJECT_ROOT = os.path.abspath(os.getenv("FUM_PROJECT_ROOT", "/mnt/ironwolf/git/
 def _clamp_to_project(path: str) -> str:
     return _ctl_clamp(path, PROJECT_ROOT)
 
+# Robust Dash ctx parsing helpers (avoid mis-parsing when component set changes)
+def _get_ctx_obj(ctx):
+    """
+    Return the pattern-matched dict id for the triggering component if available.
+    Works on newer Dash (ctx.triggered_id) and older (JSON prop_id).
+    """
+    try:
+        tid = getattr(ctx, "triggered_id", None)
+        if isinstance(tid, dict):
+            return tid
+    except Exception:
+        pass
+    try:
+        import json
+        tid_s = ctx.triggered[0]["prop_id"].rsplit(".", 1)[0]
+        return json.loads(tid_s)
+    except Exception:
+        return None
+
+def _human_size(n: int) -> str:
+    """
+    Convert byte count to a human-readable string in MB/GB/TB with 2 decimals.
+    """
+    try:
+        n = int(n)
+    except Exception:
+        return "0 B"
+    units = [("TB", 1024**4), ("GB", 1024**3), ("MB", 1024**2), ("KB", 1024), ("B", 1)]
+    for label, factor in units:
+        if n >= factor:
+            if factor == 1:
+                return f"{n} B"
+            return f"{n / factor:.2f} {label}"
+    return "0 B"
+
+def _sum_filesizes(dir_path: str, filenames: list[str]) -> int:
+    """
+    Bounded size aggregation for immediate files (non-recursive).
+    Respects controller-level guards because 'filenames' should come from list_dir().
+    """
+    total = 0
+    for name in (filenames or []):
+        try:
+            fp = os.path.join(dir_path, name)
+            if os.path.isfile(fp):
+                total += os.path.getsize(fp)
+        except Exception:
+            # Ignore entries causing IO/stat errors
+            continue
+    return total
+
 
 
 
@@ -276,15 +327,26 @@ def _register_common(app, prefix: str, target_id: str) -> None:
         except Exception:
             pass
 
-        # Diagnostics: show root/dir and file count for selected directory
-        sel_file_count = 0
-        try:
-            if s and os.path.isdir(s):
-                _sd, _files_for_sel = _ctl_list_dir(s, exts=(exts or []), hide_dotfiles=True)
-                sel_file_count = len(_files_for_sel or [])
-        except Exception:
-            sel_file_count = 0
-        status_text = f"root: {rabs}  dir: {s}  files: {sel_file_count}"
+        # Metadata statusbar
+        fsel = (file_sel or "").strip()
+        if fsel:
+            # File selected: show name and total size
+            try:
+                fname = os.path.basename(fsel)
+                size_b = os.path.getsize(fsel) if os.path.isfile(fsel) else 0
+                status_text = f"File: {fname} — Size: {_human_size(size_b)}"
+            except Exception:
+                status_text = f"File: {os.path.basename(fsel)} — Size: unknown"
+        else:
+            # Folder selected: show counts and non-recursive total size of visible files
+            try:
+                subdirs_for_sel, files_for_sel = _ctl_list_dir(s, exts=(exts or []), hide_dotfiles=True) if (s and os.path.isdir(s)) else ([], [])
+                folders_n = len(subdirs_for_sel or [])
+                files_n = len(files_for_sel or [])
+                total_b = _sum_filesizes(s, files_for_sel or [])
+                status_text = f"Contains: {folders_n} folders; {files_n} files; Total Size: {_human_size(total_b)}"
+            except Exception:
+                status_text = "Contains: 0 folders; 0 files; Total Size: 0 B"
 
         return tree_children, cwd_label_text, crumbs, status_text
 
@@ -300,15 +362,10 @@ def _register_common(app, prefix: str, target_id: str) -> None:
     )
     def on_tree_toggle(_clicks, tree_data, root, exts):
         ctx = dash.callback_context
-        if not getattr(ctx, "triggered", None):
+        obj = _get_ctx_obj(ctx)
+        if not isinstance(obj, dict) or obj.get("role") != f"{prefix}-tree-dir":
             return no_update, no_update
-        try:
-            import json
-            tid = ctx.triggered[0]["prop_id"].rsplit(".", 1)[0]
-            obj = json.loads(tid)
-            target = (obj.get("path", "") or "").strip()
-        except Exception:
-            return no_update, no_update
+        target = (obj.get("path", "") or "").strip()
         if not target:
             return no_update, no_update
 
@@ -326,9 +383,13 @@ def _register_common(app, prefix: str, target_id: str) -> None:
         # Clamp and toggle
         p = _ctl_clamp(target, rabs)
         node = dict(nodes.get(p) or {})
-        toggled = not bool(node.get("expanded"))
-        node["expanded"] = toggled
-        if toggled and (not node.get("subdirs") or not node.get("files")):
+        # Never collapse the root node to avoid "everything disappears" UX
+        if os.path.abspath(p) == os.path.abspath(rabs):
+            node["expanded"] = True
+        else:
+            toggled = not bool(node.get("expanded"))
+            node["expanded"] = toggled
+        if node.get("expanded") and (not node.get("subdirs") or not node.get("files")):
             # Bounded IO: list this node's direct children once on expansion (ext-filtered, dotfiles hidden)
             subdirs, files_all = _ctl_next_children(p, exts=(exts or []), hide_dotfiles=True)
             node["subdirs"] = subdirs or []
@@ -346,15 +407,10 @@ def _register_common(app, prefix: str, target_id: str) -> None:
     )
     def on_crumb_click(_clicks, root):
         ctx = dash.callback_context
-        if not getattr(ctx, "triggered", None):
+        obj = _get_ctx_obj(ctx)
+        if not isinstance(obj, dict) or obj.get("role") != f"{prefix}-crumb":
             return no_update
-        try:
-            import json
-            tid = ctx.triggered[0]["prop_id"].rsplit(".", 1)[0]
-            obj = json.loads(tid)
-            target = (obj.get("path", "") or "").strip()
-        except Exception:
-            return no_update
+        target = (obj.get("path", "") or "").strip()
         if not target:
             return no_update
         r = (root or "").strip()
@@ -380,6 +436,15 @@ def _register_common(app, prefix: str, target_id: str) -> None:
             return _ctl_clamp(c, r)
         return c
 
+    # Clear stale file selection when directory changes
+    @app.callback(
+        Output(file_sel_store, "data", allow_duplicate=True),
+        Input(sel_dir_store, "data"),
+        prevent_initial_call=True,
+    )
+    def _clear_file_sel_on_dir_change(_sel):
+        return ""
+    
     # Click handlers for files inside the tree
     @app.callback(
         Output(dir_sel_store, "data"),
@@ -390,20 +455,20 @@ def _register_common(app, prefix: str, target_id: str) -> None:
     )
     def on_explorer_click(_file_clicks):
         ctx = dash.callback_context
-        if not getattr(ctx, "triggered", None):
+        obj = _get_ctx_obj(ctx)
+        if not isinstance(obj, dict) or obj.get("role") != f"{prefix}-file":
             return no_update, no_update, no_update
-        try:
-            import json
-            tid = ctx.triggered[0]["prop_id"].rsplit(".", 1)[0]
-            obj = json.loads(tid)
-            fpath = (obj.get("path", "") or "").strip()
-        except Exception:
-            return no_update, no_update, no_update
+        fpath = (obj.get("path", "") or "").strip()
         if not fpath:
             return no_update, no_update, no_update
         # Do not change selected directory here; only set the selected file path
         base = os.path.basename(fpath) if fpath else ""
-        return no_update, fpath, f"Selected file: {base}"
+        try:
+            size_b = os.path.getsize(fpath) if os.path.isfile(fpath) else 0
+            status = f"File: {base} — Size: {_human_size(size_b)}"
+        except Exception:
+            status = f"File: {base} — Size: unknown"
+        return no_update, fpath, status
 
     # Confirm selection -> set stores, hide modal, and update target value
     @app.callback(
