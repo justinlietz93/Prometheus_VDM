@@ -145,6 +145,7 @@ def file_picker(prefix: str, title: str, initial: str = "", width: str = "100%")
             dcc.Store(id=f"{prefix}-dir-sel"),
             dcc.Store(id=f"{prefix}-selected-dir"),
             dcc.Store(id=f"{prefix}-tree-store"),
+            dcc.Store(id=f"{prefix}-last-action"),
             # Modal overlay
             html.Div(
                 [
