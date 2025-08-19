@@ -190,7 +190,7 @@ def _register_common(app, prefix: str, target_id: str) -> None:
             return html.Div(
                 html.Button(
                     [html.Span("•", style={"width": "1em", "opacity": 0.7}), html.Span("📄", style={"width": "1.2em"}), html.Span(fname, style={"overflow":"hidden","textOverflow":"ellipsis"})],
-                    id={"role": f"{prefix}-file", "path": file_path, "name": fname},
+                    id={"role": f"{prefix}-file", "path": file_path},
                     n_clicks=0,
                     style={
                         "display": "flex",
@@ -304,7 +304,7 @@ def _register_common(app, prefix: str, target_id: str) -> None:
             return no_update, no_update
         try:
             import json
-            tid = ctx.triggered[0]["prop_id"].split(".")[0]
+            tid = ctx.triggered[0]["prop_id"].rsplit(".", 1)[0]
             obj = json.loads(tid)
             target = (obj.get("path", "") or "").strip()
         except Exception:
@@ -350,7 +350,7 @@ def _register_common(app, prefix: str, target_id: str) -> None:
             return no_update
         try:
             import json
-            tid = ctx.triggered[0]["prop_id"].split(".")[0]
+            tid = ctx.triggered[0]["prop_id"].rsplit(".", 1)[0]
             obj = json.loads(tid)
             target = (obj.get("path", "") or "").strip()
         except Exception:
@@ -394,7 +394,7 @@ def _register_common(app, prefix: str, target_id: str) -> None:
             return no_update, no_update, no_update
         try:
             import json
-            tid = ctx.triggered[0]["prop_id"].split(".")[0]
+            tid = ctx.triggered[0]["prop_id"].rsplit(".", 1)[0]
             obj = json.loads(tid)
             fpath = (obj.get("path", "") or "").strip()
         except Exception:

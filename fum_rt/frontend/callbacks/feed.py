@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import os
 from dash import Input, Output, State, no_update  # noqa: F401
+from fum_rt.frontend.utilities.pdf_utils import convert_pdf_to_text_file
 
 
 def register_feed_callbacks(app, manager, repo_root: str):
@@ -32,8 +33,24 @@ def register_feed_callbacks(app, manager, repo_root: str):
                     chosen = cand
         except Exception:
             pass
+
+        # If a PDF is selected, convert to text (best-effort with graceful fallback) before feeding
+        status_prefix = ""
+        try:
+            if chosen.lower().endswith(".pdf"):
+                out_dir = os.path.join(repo_root, "outputs", "pdf_text")
+                os.makedirs(out_dir, exist_ok=True)
+                txt_path, method = convert_pdf_to_text_file(chosen, out_dir)
+                if txt_path:
+                    status_prefix = f"Converted PDF via {method}; "
+                    chosen = txt_path
+                else:
+                    return "PDF conversion failed (install PyMuPDF/pdfminer.six/PyPDF2 or pytesseract+pdf2image)."
+        except Exception:
+            return "PDF conversion failed."
+
         ok = manager.feed_file(chosen, float(rate or 20.0))
-        return f"Feeding from {chosen}." if ok else "Feed failed (check process running and path)."
+        return f"{status_prefix}Feeding from {chosen}." if ok else "Feed failed (check process running and path)."
 
     @app.callback(
         Output("send-status", "children", allow_duplicate=True),
