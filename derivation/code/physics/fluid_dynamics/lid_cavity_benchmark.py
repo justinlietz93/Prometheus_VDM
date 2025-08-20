@@ -37,12 +37,15 @@ def main():
     ap.add_argument("--U_lid", type=float, default=0.1)
     ap.add_argument("--steps", type=int, default=15000)
     ap.add_argument("--sample_every", type=int, default=200)
+    ap.add_argument("--warmup", type=int, default=2000, help="steps to run before sampling (allow flow to settle)")
+    ap.add_argument("--progress_every", type=int, default=None, help="print progress every N samples (default: sample_every)")
     ap.add_argument("--outdir", type=str, default=None, help="base output dir; defaults to derivation/code/outputs")
     args = ap.parse_args()
 
     cfg = LBMConfig(nx=args.nx, ny=args.ny, tau=args.tau, periodic_x=False, periodic_y=False)
     sim = LBM2D(cfg)
-    sim.set_solid_box(top=True, bottom=True, left=True, right=True)
+    # Use Zou/He velocity BC at the top (fluid), bounce-back on the other three walls
+    sim.set_solid_box(top=False, bottom=True, left=True, right=True)
 
     # Output routing (match RD harness)
     script_name = os.path.splitext(os.path.basename(__file__))[0]
@@ -59,11 +62,18 @@ def main():
     t0 = time.time()
     div_hist = []
     for n in range(args.steps + 1):
-        sim.set_lid_velocity(float(args.U_lid))
+        # Collide+stream step first, then impose lid velocity on the streamed distributions (Zou/He-style)
         sim.step(1)
-        if n % args.sample_every == 0:
+        sim.set_lid_velocity(float(args.U_lid))
+        # Sample after warmup
+        if (n >= args.warmup) and ((n - args.warmup) % args.sample_every == 0):
             sim.moments()
-            div_hist.append(sim.divergence())
+            d = sim.divergence()
+            div_hist.append(d)
+            # Console progress (prints each sample; set --progress_every to control frequency)
+            progN = args.progress_every if args.progress_every is not None else args.sample_every
+            if ((n - args.warmup) % max(1, int(progN))) == 0:
+                print(f"step={n}, div={d:.3e}", flush=True)
 
     elapsed = time.time() - t0
     div_hist = np.asarray(div_hist, dtype=float)
@@ -77,10 +87,10 @@ def main():
     im = plt.imshow(Vmag, origin="lower", cmap="viridis")
     plt.colorbar(im, label="|u|")
     try:
-        plt.streamplot(X.T, Y.T, sim.ux.T, sim.uy.T, density=1.2, color="w", linewidth=0.6)
+        plt.streamplot(X, Y, sim.ux, sim.uy, density=1.0, color="w", linewidth=0.6)
     except Exception:
         pass
-    plt.title(f"Lid-driven cavity (U_lid={args.U_lid}, tau={args.tau}, div_max={div_max:.2e})")
+    plt.title(f"Lid-driven cavity (U_lid={args.U_lid}, tau={args.tau}, warmup={args.warmup}, div_max={div_max:.2e})")
     plt.tight_layout()
     plt.savefig(figure_path, dpi=140)
     plt.close()
