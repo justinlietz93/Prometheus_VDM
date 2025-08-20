@@ -10,10 +10,10 @@ Scope
   2) Linear dispersion validation (periodic, linearized evolution)
 
 Canonical scripts
-- [rd_front_speed_experiment.py](Prometheus_FUVDM/derivation/code/physics/rd_front_speed_experiment.py:1)
-- [rd_front_speed_sweep.py](Prometheus_FUVDM/derivation/code/physics/rd_front_speed_sweep.py:1)
-- [rd_dispersion_experiment.py](Prometheus_FUVDM/derivation/code/physics/rd_dispersion_experiment.py:1)
-- Status log: [CORRECTIONS.md](Prometheus_FUVDM/derivation/computational_proofs/CORRECTIONS.md:1)
+- [rd_front_speed_experiment.py](code/physics/rd_front_speed_experiment.py:1)
+- [rd_front_speed_sweep.py](code/physics/rd_front_speed_sweep.py:1)
+- [rd_dispersion_experiment.py](code/physics/rd_dispersion_experiment.py:1)
+- Status log: [CORRECTIONS.md](computational_proofs/CORRECTIONS.md:1)
 
 Output locations
 - Figures → derivation/code/outputs/figures/
@@ -35,9 +35,9 @@ Front-speed test
   - Cross-check: |c_meas_grad − c_th| / |c_th| ≲ 0.05 when available.
 - CLI (PowerShell):
   - & .\venv\Scripts\Activate.ps1
-  - python Prometheus_FUVDM/derivation/code/physics/rd_front_speed_experiment.py --N 1024 --L 200 --D 1.0 --r 0.25 --T 80 --cfl 0.2 --seed 42 --x0 -60 --level 0.1 --fit_start 0.6 --fit_end 0.9
+  - python code/physics/rd_front_speed_experiment.py --N 1024 --L 200 --D 1.0 --r 0.25 --T 80 --cfl 0.2 --seed 42 --x0 -60 --level 0.1 --fit_start 0.6 --fit_end 0.9
 - Sweep:
-  - python Prometheus_FUVDM/derivation/code/physics/rd_front_speed_sweep.py
+  - python code/physics/rd_front_speed_sweep.py
 
 Dispersion test
 - Linearized PDE: u_t = D u_xx + r u (periodic BCs)
@@ -54,7 +54,7 @@ Dispersion test
   - R²_array(measured vs σ_d) ≥ 0.98
 - CLI (PowerShell):
   - & .\venv\Scripts\Activate.ps1
-  - python Prometheus_FUVDM/derivation/code/physics/rd_dispersion_experiment.py --N 1024 --L 200 --D 1.0 --r 0.25 --T 10 --cfl 0.2 --seed 42 --amp0 1e-6 --record 80 --m_max 64 --fit_start 0.1 --fit_end 0.4
+  - python code/physics/rd_dispersion_experiment.py --N 1024 --L 200 --D 1.0 --r 0.25 --T 10 --cfl 0.2 --seed 42 --amp0 1e-6 --record 80 --m_max 64 --fit_start 0.1 --fit_end 0.4
 
 Reproducibility checklist
 - Set seed and record it in logs (scripts do this by default).
@@ -71,7 +71,7 @@ Notes on stability and limits
 - For dispersion, keep amplitude small (linear regime); use early-time fit window.
 
 Provenance and tagging
-- Front-speed: [PROVEN] in [CORRECTIONS.md](Prometheus_FUVDM/derivation/computational_proofs/CORRECTIONS.md:1) with representative pass.
+- Front-speed: [PROVEN] in [CORRECTIONS.md](computational_proofs/CORRECTIONS.md:1) with representative pass.
 - Dispersion: [PROVEN]; default (N=1024): med_rel_err≈0.00145, R²_array≈0.99995; refinement (N=2048, m_max=128): med_rel_err≈0.00130, R²_array≈0.9928.
 
 Expected artifacts
@@ -92,8 +92,8 @@ Open questions / next refinements
 
 Appendix: CLI quick refs
 - Front speed (PASS example):
-  - python Prometheus_FUVDM/derivation/code/physics/rd_front_speed_experiment.py --N 1024 --L 200 --D 1.0 --r 0.25 --T 80 --cfl 0.2 --seed 42 --x0 -60 --level 0.1 --fit_start 0.6 --fit_end 0.9
+  - python code/physics/rd_front_speed_experiment.py --N 1024 --L 200 --D 1.0 --r 0.25 --T 80 --cfl 0.2 --seed 42 --x0 -60 --level 0.1 --fit_start 0.6 --fit_end 0.9
 - Sweep:
-  - python Prometheus_FUVDM/derivation/code/physics/rd_front_speed_sweep.py
+  - python code/physics/rd_front_speed_sweep.py
 - Dispersion:
-  - python Prometheus_FUVDM/derivation/code/physics/rd_dispersion_experiment.py --N 1024 --L 200 --D 1.0 --r 0.25 --T 10 --cfl 0.2 --seed 42 --amp0 1e-6 --record 80 --m_max 64 --fit_start 0.1 --fit_end 0.4
+  - python code/physics/rd_dispersion_experiment.py --N 1024 --L 200 --D 1.0 --r 0.25 --T 10 --cfl 0.2 --seed 42 --amp0 1e-6 --record 80 --m_max 64 --fit_start 0.1 --fit_end 0.4

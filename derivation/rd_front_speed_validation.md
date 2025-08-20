@@ -9,12 +9,12 @@ Status
 - Documentation and reproducible CLI provided below.
 
 References (implementation)
-- Script: [rd_front_speed_experiment.py](Prometheus_FUVDM/derivation/code/physics/rd_front_speed_experiment.py)
+- Script: [rd_front_speed_experiment.py](code/physics/rd_front_speed_experiment.py)
 - Key functions:
-  - [run_sim()](Prometheus_FUVDM/derivation/code/physics/rd_front_speed_experiment.py:134)
-  - [robust_linear_fit()](Prometheus_FUVDM/derivation/code/physics/rd_front_speed_experiment.py:77)
-  - [front_position_near()](Prometheus_FUVDM/derivation/code/physics/rd_front_speed_experiment.py:54)
-  - [main()](Prometheus_FUVDM/derivation/code/physics/rd_front_speed_experiment.py:341)
+  - [run_sim()](code/physics/rd_front_speed_experiment.py:134)
+  - [robust_linear_fit()](code/physics/rd_front_speed_experiment.py:77)
+  - [front_position_near()](code/physics/rd_front_speed_experiment.py:54)
+  - [main()](code/physics/rd_front_speed_experiment.py:341)
 
 What was wrong initially (root cause)
 - Uniform small noise added everywhere at t=0 caused logistic “pre-heating” in the far field; points far ahead of the front crossed the tracking level (e.g., 0.5) solely due to local growth at time t ≈ r^−1 ln((1−u0)/u0), biasing the measured slope down.
@@ -23,11 +23,11 @@ What was wrong initially (root cause)
 Fixes implemented
 1) Gated initial condition (no pre-heating)
    - Far-ahead region is set exactly to 0.0 so the front is truly pulled by diffusion; optional noise is gated to the left side only.
-   - See the IC block in [run_sim()](Prometheus_FUVDM/derivation/code/physics/rd_front_speed_experiment.py:161).
+   - See the IC block in [run_sim()](code/physics/rd_front_speed_experiment.py:161).
 
 2) Real-crossing guard
    - Only record front position while a true level crossing exists; stop tracking once the domain is fully above the chosen level.
-   - See tracker loop in [run_sim()](Prometheus_FUVDM/derivation/code/physics/rd_front_speed_experiment.py:187).
+   - See tracker loop in [run_sim()](code/physics/rd_front_speed_experiment.py:187).
 
 3) Robust fitting and derivative cross-check
    - Robust linear fit with MAD rejection; median-slope fallback if needed.
@@ -39,7 +39,7 @@ Output routing and naming
   - Logs → derivation/code/outputs/logs/
 - Filenames: script_name_YYYYMMDDThhmmssZ.ext (UTC timestamp).
 - Overridable via CLI: --outdir, --figure, --log.
-- See [main()](Prometheus_FUVDM/derivation/code/physics/rd_front_speed_experiment.py:359).
+- See [main()](code/physics/rd_front_speed_experiment.py:359).
 
 How to run (PowerShell)
 - Always activate venv before running commands:
@@ -47,7 +47,7 @@ How to run (PowerShell)
 - Ensure matplotlib is available (first run):
   python -m pip install matplotlib
 - Example that passes with D=1, r=0.25 (c_th=1):
-  python Prometheus_FUVDM/derivation/code/physics/rd_front_speed_experiment.py --N 1024 --L 200 --D 1.0 --r 0.25 --T 80 --cfl 0.2 --seed 42 --x0 -60 --level 0.1 --fit_start 0.6 --fit_end 0.9
+  python code/physics/rd_front_speed_experiment.py --N 1024 --L 200 --D 1.0 --r 0.25 --T 80 --cfl 0.2 --seed 42 --x0 -60 --level 0.1 --fit_start 0.6 --fit_end 0.9
 
 Recommended defaults
 - Threshold level: 0.1 (stable early/late across grids). Level=0.5 works if far field remains near zero.
