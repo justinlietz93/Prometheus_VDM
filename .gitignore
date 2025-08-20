@@ -20,6 +20,7 @@ __pycache__
 # Dev artifacts
 TODO
 .roo/
+Docs\LEGACY-FUM_Blueprint.md
 
 # Virtual environments
 .venv/
