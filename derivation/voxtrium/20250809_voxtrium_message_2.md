@@ -1,3 +1,9 @@
+<!-- ARCHIVE/INFORMAL -->
+# Archive / Informal Notes (non-normative)
+- Scope: chat transcript preserved for provenance; not part of formal derivations.
+- Claims are [UNVERIFIED] unless mirrored in derivation/ docs and logs.
+- Canonical references: [CORRECTIONS.md](Prometheus_FUVDM/derivation/computational_proofs/CORRECTIONS.md:1)
+
 Voxtrium —
 
 10:10 AM
