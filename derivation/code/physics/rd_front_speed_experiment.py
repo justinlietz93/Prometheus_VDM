@@ -7,12 +7,12 @@ Theory:
     Minimal pulled-front speed c_th = 2 * sqrt(D * r)
 
 Outputs (defaults):
-    - Prometheus_FUVDM/assets/figures/20250820_rd_front_speed.png
-    - Prometheus_FUVDM/logs/physics/rd_front_speed.json
+    - derivation/code/outputs/figures/<script>_<timestamp>.png
+    - derivation/code/outputs/logs/<script>_<timestamp>.json
 
 CLI example:
   python Prometheus_FUVDM/derivation/code/physics/rd_front_speed_experiment.py \
-    --N 256 --L 200 --D 1.0 --r 0.25 --T 80 --cfl 0.3 --seed 42
+    --N 1024 --L 200 --D 1.0 --r 0.25 --T 80 --cfl 0.2 --seed 42 --x0 -60 --level 0.1 --fit_start 0.6 --fit_end 0.9
 """
 import argparse
 import json
@@ -142,6 +142,7 @@ def run_sim(
     level: float = 0.5,
     x0: Optional[float] = None,
     fit_frac: Tuple[float, float] = (0.2, 0.9),
+    noise_amp: float = 0.0,
 ):
     rng = np.random.default_rng(seed)
     x = np.linspace(-L/2, L/2, N, endpoint=False)
@@ -158,12 +159,19 @@ def run_sim(
     if x0 is None:
         x0 = -L / 4.0
     u = 0.5 * (1.0 - np.tanh((x - x0) / w))
-    # small noise
-    u += 1e-4 * rng.standard_normal(size=N)
+    # keep far-ahead region identically zero to avoid uniform logistic growth
+    region_edge = x0 + 6.0 * w
+    u[x > region_edge] = 0.0
+    # optional: gated noise only on the left side of the interface
+    if noise_amp > 0.0:
+        noise = noise_amp * rng.standard_normal(size=N)
+        noise[x > region_edge] = 0.0
+        u += noise
     u = np.clip(u, 0.0, 1.0)
 
     rec_t = []
     rec_xf = []
+    rec_xg = []
     snapshot_times = []
     snapshots = []
 
@@ -189,6 +197,13 @@ def run_sim(
                 last_xf = xf
                 rec_t.append(t)
                 rec_xf.append(xf)
+                # gradient-peak tracker (cross-check)
+                grad = np.empty_like(u)
+                grad[1:-1] = (u[2:] - u[:-2]) / (2.0 * dx)
+                grad[0] = (u[1] - u[0]) / dx
+                grad[-1] = (u[-1] - u[-2]) / dx
+                xg = float(x[np.argmax(np.abs(grad))])
+                rec_xg.append(xg)
             else:
                 # front has passed; if domain is fully invaded (> level), stop tracking
                 if float(np.min(u)) > level:
@@ -243,17 +258,35 @@ def run_sim(
             c_abs = abs(c_meas) if math.isfinite(c_meas) else float("nan")
             rel_err = abs(c_abs - c_th) / (abs(c_th) + 1e-12)
 
+    # Gradient-based front speed (optional cross-check)
+    if len(rec_xg) == len(rec_t) and len(rec_t) >= 5:
+        tg = rec_t[i0:i1]
+        xg = np.array(rec_xg[i0:i1], dtype=float)
+        if tg.size >= 5:
+            c_meas_grad, r2_grad = robust_linear_fit(tg, xg, smooth_win=7, mad_k=3.0, max_iter=3)
+            c_abs_grad = abs(c_meas_grad) if math.isfinite(c_meas_grad) else float("nan")
+            rel_err_grad = abs(c_abs_grad - c_th) / (abs(c_th) + 1e-12)
+        else:
+            c_meas_grad = float("nan"); r2_grad = float("nan"); c_abs_grad = float("nan"); rel_err_grad = float("nan")
+    else:
+        c_meas_grad = float("nan"); r2_grad = float("nan"); c_abs_grad = float("nan"); rel_err_grad = float("nan")
+
     return {
         "x": x,
         "snapshots": snapshots,
         "snapshot_times": snapshot_times,
         "rec_t": rec_t,
         "rec_xf": rec_xf,
+        "rec_xg": rec_xg,
         "c_meas": c_meas,
         "c_abs": c_abs,
         "c_th": c_th,
         "rel_err": rel_err,
         "r2": r2,
+        "c_meas_grad": c_meas_grad,
+        "c_abs_grad": c_abs_grad,
+        "rel_err_grad": rel_err_grad,
+        "r2_grad": r2_grad,
         "dx": dx,
         "dt": dt,
         "steps": steps,
@@ -287,6 +320,9 @@ def plot_and_save(data: dict, figure_path: str):
     # Bottom: front position vs time
     ax2 = plt.subplot(2, 1, 2)
     ax2.plot(rec_t, rec_xf, ".", ms=3, label="x_front(t)")
+    # optional gradient-peak tracker overlay
+    if len(data.get("rec_xg", [])) == len(rec_t) and len(rec_t) > 0:
+        ax2.plot(rec_t, data["rec_xg"], "g.", ms=3, alpha=0.6, label="x_grad(t)")
     if np.isfinite(c_meas):
         t_line = np.array([rec_t.min(), rec_t.max()])
         ax2.plot(t_line, c_meas * t_line + (rec_xf[0] - c_meas * rec_t[0]), "r--",
@@ -304,20 +340,21 @@ def plot_and_save(data: dict, figure_path: str):
 
 def main():
     parser = argparse.ArgumentParser(description="Validate Fisher-KPP front speed c=2√(Dr).")
-    parser.add_argument("--N", type=int, default=256)
+    parser.add_argument("--N", type=int, default=1024)
     parser.add_argument("--L", type=float, default=200.0)
     parser.add_argument("--D", type=float, default=1.0)
     parser.add_argument("--r", type=float, default=0.25)
     parser.add_argument("--T", type=float, default=80.0)
-    parser.add_argument("--cfl", type=float, default=0.3)
+    parser.add_argument("--cfl", type=float, default=0.2)
     parser.add_argument("--seed", type=int, default=42)
-    parser.add_argument("--level", type=float, default=0.5)
-    parser.add_argument("--x0", type=float, default=None)
-    parser.add_argument("--fit_start", type=float, default=0.15, help="fractional start of fit window")
-    parser.add_argument("--fit_end", type=float, default=0.6, help="fractional end of fit window")
+    parser.add_argument("--level", type=float, default=0.1)
+    parser.add_argument("--x0", type=float, default=-60.0)
+    parser.add_argument("--fit_start", type=float, default=0.6, help="fractional start of fit window")
+    parser.add_argument("--fit_end", type=float, default=0.9, help="fractional end of fit window")
     parser.add_argument("--outdir", type=str, default=None, help="base output dir; defaults to derivation/code/outputs next to this script")
     parser.add_argument("--figure", type=str, default=None, help="override figure path; otherwise script_name_timestamp.png in outdir/figures")
     parser.add_argument("--log", type=str, default=None, help="override log path; otherwise script_name_timestamp.json in outdir/logs")
+    parser.add_argument("--noise_amp", type=float, default=0.0, help="optional gated noise amplitude (applied only left of the front)")
     args = parser.parse_args()
 
     # Compute output paths based on script name and UTC timestamp
@@ -338,6 +375,7 @@ def main():
         level=args.level,
         x0=args.x0,
         fit_frac=(args.fit_start, args.fit_end),
+        noise_amp=args.noise_amp,
     )
     elapsed = time.time() - t0
 
@@ -348,7 +386,8 @@ def main():
         "params": {
             "N": args.N, "L": args.L, "D": args.D, "r": args.r, "T": args.T,
             "cfl": args.cfl, "seed": args.seed, "level": args.level,
-            "x0": args.x0, "fit_start": args.fit_start, "fit_end": args.fit_end
+            "x0": args.x0, "fit_start": args.fit_start, "fit_end": args.fit_end,
+            "noise_amp": args.noise_amp
         },
         "metrics": {
             "c_meas": data["c_meas"],
@@ -363,6 +402,10 @@ def main():
             "elapsed_sec": elapsed,
             "acceptance_rel_err": 0.05,
             "passed": (data["rel_err"] <= 0.05) and (np.isfinite(data["r2"]) and data["r2"] >= 0.98),
+            "c_meas_grad": data.get("c_meas_grad", float("nan")),
+            "c_abs_grad": data.get("c_abs_grad", float("nan")),
+            "rel_err_grad": data.get("rel_err_grad", float("nan")),
+            "r2_grad": data.get("r2_grad", float("nan"))
         },
         "outputs": {
             "figure": figure_path
@@ -379,7 +422,11 @@ def main():
         "c_abs": data["c_abs"],
         "c_th": data["c_th"],
         "rel_err": data["rel_err"],
-        "r2": data["r2"]
+        "r2": data["r2"],
+        "c_meas_grad": data.get("c_meas_grad"),
+        "c_abs_grad": data.get("c_abs_grad"),
+        "rel_err_grad": data.get("rel_err_grad"),
+        "r2_grad": data.get("r2_grad")
     }, indent=2))
 
 
