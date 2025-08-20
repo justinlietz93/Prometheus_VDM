@@ -1,0 +1,25 @@
+{
+  "theory": "LBM\u2192NS; Taylor\u2013Green viscous decay E=E0 exp(-2 nu k^2 t)",
+  "params": {
+    "nx": 256,
+    "ny": 256,
+    "tau": 0.8,
+    "nu_th": 0.1,
+    "U0": 0.05,
+    "k": 6.283185307179586,
+    "steps": 5000,
+    "sample_every": 50
+  },
+  "metrics": {
+    "nu_fit": 0.09992896722985166,
+    "nu_th": 0.1,
+    "rel_err": 0.0007103277014763619,
+    "acceptance_rel_err": 0.05,
+    "elapsed_sec": 58.06455159187317,
+    "passed": true
+  },
+  "outputs": {
+    "figure": "C:\\git\\Prometheus_VDM\\Prometheus_FUVDM\\derivation\\code\\outputs\\figures\\fluid_dynamics\\taylor_green_benchmark_20250820T172714Z.png"
+  },
+  "timestamp": "2025-08-20T17:27:15Z"
+}
