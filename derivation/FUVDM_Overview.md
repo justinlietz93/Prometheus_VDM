@@ -1,3 +1,4 @@
+***This file has errors and is being fixed***
 # Fully Unified Void Dynamics Model (FUVDM): Complete Overview of Derived Equations and Discoveries
 
 **Author:** Justin K. Lietz  
