@@ -22,7 +22,8 @@ References
 
 Known (FUM side)
 - Discrete on‑site law:  dW/dt = (α − β) W − α W^2  ([derivation/symmetry_analysis.md](derivation/symmetry_analysis.md:20-21)).
-- Continuum EOM (dimensionless form used in our notes):  □φ + α φ^2 − (α − β) φ = 0, with VEV v = 1 − β/α and m_eff^2 = α − β ([derivation/discrete_to_continuum.md](derivation/discrete_to_continuum.md:120-127), [derivation/discrete_to_continuum.md](derivation/discrete_to_continuum.md:171-188), [derivation/discrete_to_continuum.md](derivation/discrete_to_continuum.md:219-228)).
+- Canonical RD mapping:  ∂tφ = D ∇²φ + r φ − u φ²  [optional −λ φ³].
+  EFT context only (future work):  □φ + α φ² − (α − β) φ = 0, with VEV v = 1 − β/α and m_eff² = α − β (see [derivation/discrete_to_continuum.md](derivation/discrete_to_continuum.md:120-127), [derivation/discrete_to_continuum.md](derivation/discrete_to_continuum.md:171-188), [derivation/discrete_to_continuum.md](derivation/discrete_to_continuum.md:219-228)).
 - Spatial kinetic normalization reads off a propagation speed `c^2 = 2 J a^2` (per‑site convention) or `c^2 = \kappa a^2` with `\kappa = 2J`; there is no need to fix `J a^2`. See continuum normalization in [derivation/kinetic_term_derivation.md](derivation/kinetic_term_derivation.md:82-89).
 
 Known (Voxtrium side)
