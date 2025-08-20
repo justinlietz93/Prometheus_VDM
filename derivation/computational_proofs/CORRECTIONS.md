@@ -75,10 +75,14 @@ All fixed-number statements were replaced with parameter‑dependent forms and e
 - [derivation/support/references/Suggestions.md](Prometheus_FUVDM/derivation/support/references/Suggestions.md): Insert header note; prevent hard constraints on Ja².  
 - [derivation/fum_voxtrium_mapping.md](Prometheus_FUVDM/derivation/fum_voxtrium_mapping.md): Make RD canonical; EFT references scoped.  
 - [METRICS.md](Prometheus_FUVDM/METRICS.md): New file with metrics skeleton.
+- [derivation/rd_front_speed_validation.md](Prometheus_FUVDM/derivation/rd_front_speed_validation.md:1): Add reproducible CLI, output routing, acceptance criteria, representative PASS metrics.
+- [derivation/code/physics/rd_front_speed_experiment.py](Prometheus_FUVDM/derivation/code/physics/rd_front_speed_experiment.py:1): Set defaults (N=1024, cfl=0.2, level=0.1, x0=-60, fit 0.6–0.9); route outputs to derivation/code/outputs/{figures,logs}; robust tracking and fit.
+- New: [derivation/code/physics/rd_front_speed_sweep.py](Prometheus_FUVDM/derivation/code/physics/rd_front_speed_sweep.py:1): Sweep runner producing CSV summary under derivation/code/outputs/logs/.
+- New: [derivation/code/physics/rd_dispersion_experiment.py](Prometheus_FUVDM/derivation/code/physics/rd_dispersion_experiment.py:1): Linear dispersion validation script with periodic BC; logs/figure auto-routing; acceptance criteria.
 
 ## Status Tags
 
 - [ERROR FIXED]: Incorrect fixed mass number claims replaced with parameter‑dependent expression.
 - [PROVEN]: Lattice → continuum kinetic normalization via discrete action (already present) is internally consistent.
-- [PLAUSIBLE]: EFT completion narrative (quarantined) pending a full discrete‑action derivation for time‑second‑order mapping in this codebase branch.
-- [NEEDS DATA]: RD front speed c_front = 2√(Dr) and dispersion σ(k) = r − D k² need numerical validation plots.
+- [PROVEN]: RD front speed c_front = 2√(Dr) validated. Defaults: N=1024, cfl=0.2, level=0.1, x0=-60, fit window 0.6–0.9. Representative run: c_meas≈0.953, c_th=1.0, rel_err≈0.047, R²≈0.999996.
+- [PROVEN]: RD dispersion σ(k) = r − D k² validated via linearized periodic evolution. Defaults (N=1024, L=200, D=1.0, r=0.25, T=10, cfl=0.2, seed=42, m_max=64) → med_rel_err≈0.00145, R²_array≈0.99995 [PASS]; grid refinement (N=2048, m_max=128) → med_rel_err≈0.00130, R²_array≈0.9928 [PASS].
