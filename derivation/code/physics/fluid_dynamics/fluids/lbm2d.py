@@ -16,6 +16,14 @@ from __future__ import annotations
 import numpy as np
 from dataclasses import dataclass
 
+# Integrate FUVDM void dynamics (bounded, stabilizing)
+try:
+    from FUM_Demo_original.FUM_Void_Equations import universal_void_dynamics
+    from FUM_Demo_original.FUM_Void_Debt_Modulation import VoidDebtModulation
+except Exception:  # fallback if path not on sys.path
+    universal_void_dynamics = None
+    VoidDebtModulation = None
+
 # Lattice constants for D2Q9
 D2Q9_C = np.array([
     [ 0,  0],
@@ -36,6 +44,12 @@ class LBMConfig:
     forcing: tuple[float, float] = (0.0, 0.0)  # body force (fx, fy)
     periodic_x: bool = True
     periodic_y: bool = True
+    # FUVDM void dynamics coupling (bounded stabilizer)
+    void_enabled: bool = True
+    void_domain: str = "standard_model"
+    void_gain: float = 0.5
+    rho_floor: float = 1e-9
+    u_clamp: float | None = None   # e.g., 0.1 to keep Ma≲0.1; None disables
 
 
 class LBM2D:
@@ -54,6 +68,24 @@ class LBM2D:
         self.uy  = np.zeros_like(self.rho)
         # solid mask for bounce-back (False = fluid, True = solid)
         self.solid = np.zeros((self.ny, self.nx), dtype=bool)
+
+        # FUVDM void dynamics state and metrics
+        self.t = 0
+        self.W = 0.5 * np.ones((self.ny, self.nx), dtype=np.float64)
+        self.omega_eff = np.full((self.ny, self.nx), self.omega, dtype=np.float64)
+        self.aggr_dW_max = 0.0
+        self.aggr_omega_min = float("inf")
+        self.aggr_omega_max = 0.0
+        self.last_W_mean = float(np.mean(self.W))
+
+        # Optional domain modulator
+        self._void_modulator = None
+        if VoidDebtModulation is not None:
+            try:
+                self._void_modulator = VoidDebtModulation()
+            except Exception:
+                self._void_modulator = None
+
         self._set_equilibrium()
 
     def _set_equilibrium(self):
@@ -75,21 +107,32 @@ class LBM2D:
         """Top (north) boundary velocity BC (Zou/He) with u=(U,0); top row is y=0 and FLUID (not solid)."""
         y = 0
         x = np.arange(self.nx)
-        # Known after streaming at the top: f0,f1,f3,f4,f7,f8. Unknown: f2,f5,f6 (cy=+1)
+        # Known after streaming (from interior): f2(N), f5(NE), f6(NW); unknown incoming: f4(S), f7(SW), f8(SE)
         f0 = self.f[0, y, x]; f1 = self.f[1, y, x]; f3 = self.f[3, y, x]
-        f4 = self.f[4, y, x]; f7 = self.f[7, y, x]; f8 = self.f[8, y, x]
-        rho = (f0 + f1 + f3 + 2.0*(f4 + f7 + f8))
-        # Reconstruct unknowns
-        self.f[2, y, x] = f4
-        self.f[5, y, x] = f7 + 0.5*(f3 - f1) + (1.0/6.0) * rho * U
-        self.f[6, y, x] = f8 + 0.5*(f1 - f3) - (1.0/6.0) * rho * U
+        f2 = self.f[2, y, x]; f5 = self.f[5, y, x]; f6 = self.f[6, y, x]
+        rho = (f0 + f1 + f3 + 2.0*(f2 + f5 + f6))
+        # Reconstruct unknowns pointing into fluid from the top wall
+        self.f[4, y, x] = f2
+        self.f[7, y, x] = f5 - 0.5*(f1 - f3) + (1.0/6.0) * rho * U
+        self.f[8, y, x] = f6 + 0.5*(f1 - f3) + (1.0/6.0) * rho * U
 
     def moments(self):
         """Compute macroscopic moments rho, ux, uy from populations."""
         self.rho[:] = np.sum(self.f, axis=0)
+        # density floor to avoid division by ~0
+        rf = float(self.cfg.rho_floor) if hasattr(self.cfg, "rho_floor") else 0.0
+        if rf > 0.0:
+            np.maximum(self.rho, rf, out=self.rho)
         # momentum components (no reduction over spatial axes)
         self.ux[:]  = (self.f[1] - self.f[3] + self.f[5] - self.f[6] - self.f[7] + self.f[8]) / (self.rho + 1e-15)
         self.uy[:]  = (self.f[2] - self.f[4] + self.f[5] + self.f[6] - self.f[7] - self.f[8]) / (self.rho + 1e-15)
+        # optional |u| clamp (keep Ma≲0.1)
+        u_clamp = getattr(self.cfg, "u_clamp", None)
+        if u_clamp is not None and u_clamp > 0.0:
+            speed = np.sqrt(self.ux**2 + self.uy**2) + 1e-30
+            fac = np.minimum(1.0, u_clamp / speed)
+            self.ux *= fac
+            self.uy *= fac
 
     def collide(self):
         """BGK collision with simple constant body force (optional)."""

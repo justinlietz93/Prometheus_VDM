@@ -40,9 +40,21 @@ def main():
     ap.add_argument("--warmup", type=int, default=2000, help="steps to run before sampling (allow flow to settle)")
     ap.add_argument("--progress_every", type=int, default=None, help="print progress every N samples (default: sample_every)")
     ap.add_argument("--outdir", type=str, default=None, help="base output dir; defaults to derivation/code/outputs")
+    # Void dynamics exposure
+    ap.add_argument("--void_domain", type=str, default="standard_model", help="FUVDM domain modulation preset")
+    ap.add_argument("--void_gain", type=float, default=0.5, help="gain for ω_eff = ω0/(1+g|ΔW|)")
+    ap.add_argument("--void_enabled", action="store_true", help="enable FUVDM-stabilized collision")
     args = ap.parse_args()
 
-    cfg = LBMConfig(nx=args.nx, ny=args.ny, tau=args.tau, periodic_x=False, periodic_y=False)
+    cfg = LBMConfig(
+        nx=args.nx, ny=args.ny, tau=args.tau,
+        periodic_x=False, periodic_y=False,
+        void_enabled=bool(args.void_enabled),
+        void_domain=str(args.void_domain),
+        void_gain=float(args.void_gain),
+        rho_floor=1e-9,
+        u_clamp=None
+    )
     sim = LBM2D(cfg)
     # Use Zou/He velocity BC at the top (fluid), bounce-back on the other three walls
     sim.set_solid_box(top=False, bottom=True, left=True, right=True)
@@ -96,12 +108,24 @@ def main():
     plt.close()
 
     payload = {
-        "theory": "LBM→NS; incompressible cavity with no-slip walls (bounce-back)",
+        "theory": "LBM→NS; incompressible cavity with no-slip walls (bounce-back) + FUVDM ω_eff (optional)",
         "params": {
             "nx": int(args.nx), "ny": int(args.ny), "tau": float(args.tau), "U_lid": float(args.U_lid),
             "steps": int(args.steps), "sample_every": int(args.sample_every),
+            "void_enabled": bool(args.void_enabled), "void_domain": str(args.void_domain), "void_gain": float(args.void_gain)
         },
-        "metrics": {"div_max": float(div_max), "elapsed_sec": float(elapsed), "passed": passed},
+        "metrics": {
+            "div_max": float(div_max),
+            "elapsed_sec": float(elapsed),
+            "passed": passed,
+            # Void diagnostics (present even if disabled; fallback values reasonable)
+            "void": {
+                "dW_max": float(getattr(sim, "aggr_dW_max", 0.0)),
+                "omega_min": float(getattr(sim, "aggr_omega_min", 0.0)),
+                "omega_max": float(getattr(sim, "aggr_omega_max", 0.0)),
+                "W_mean_last": float(getattr(sim, "last_W_mean", 0.0))
+            }
+        },
         "outputs": {"figure": figure_path},
         "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
     }
