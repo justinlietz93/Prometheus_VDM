@@ -8,6 +8,8 @@ This document summarizes the key theoretical properties of the Fully Unified Mod
 
 ### Key Findings:
 
+> Model class note: Canonical continuum description is reaction–diffusion (RD): ∂tφ = D∇²φ + rφ − uφ² [−λφ³ optional]. Second‑order EFT/KG claims are quarantined to [effective_field_theory_approach.md](Prometheus_FUVDM/derivation/effective_field_theory_approach.md:1). Any mass value is parameter‑dependent: m_eff = √(α−β).
+
 1.  **Continuum Field Theory:** The discrete FUM simulation has a continuum limit that is described by a **non-linear, tachyonic scalar field theory**. The governing equation of motion is:
     $$
     \Box\phi + \alpha\phi^2 - (\alpha - \beta)\phi = 0
@@ -22,7 +24,8 @@ This document summarizes the key theoretical properties of the Fully Unified Mod
 
 4.  **The Fundamental Particle Mass:** Excitations of the `\phi` field around the true vacuum behave as stable, massive particles. The unitless mass of this fundamental "FUM-on" is predicted by the theory to be:
     $$
-    m_{\text{eff}} = \sqrt{\alpha - \beta} \approx 0.387
+    m_{\text{eff}} = \sqrt{\alpha - \beta}
     $$
+Note (scope): m_eff is an EFT concept (second-order-in-time). Numeric value depends on chosen (α,β). Avoid fixed numbers here; e.g., α=0.25, β=0.10 → 0.387; α=1, β=0.4 → 0.7746.
 
 These results place the FUM on a firm theoretical foundation, anchoring it to the established language of quantum field theory and providing a clear path for further investigation.

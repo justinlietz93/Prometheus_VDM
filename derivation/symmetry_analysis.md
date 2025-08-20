@@ -55,7 +55,10 @@ $$
 Since `F(W+c) \neq F(W)`, the FUM dynamical law is **not** symmetric under a constant translation `W \to W+c`.
 
 **Interpretation:**
-This is an expected result. A conserved quantity corresponding to translational symmetry is typically related to momentum conservation, but for a field's *value* (not its position), this symmetry is rare. The physics of the FUM clearly depends on the absolute value of `W`, as `W=0` (the false vacuum) and `W=0.6` (the true vacuum) are physically distinct states.
+This is expected: the dynamics depend on the absolute value of `W`. Context separation:
+- RD (canonical): for r>0, `W=0` is dynamically unstable and the stable homogeneous fixed point is `W* = r/u`.
+- EFT (future-work context): the vacuum is `v = 1 − β/α` (e.g., 0.6 for α=0.25, β=0.10).
+Avoid mixing RD fixed points with EFT vacua.
 
 ---
 
