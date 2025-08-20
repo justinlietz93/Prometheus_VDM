@@ -109,7 +109,7 @@ Plot curvature vs. \( \Theta|\nabla m| \); curves overlay across preparations if
   \[
   \partial_t \phi \;=\; D\,\nabla^2 \phi \;+\; r\,\phi \;-\; u\,\phi^2 \;\;[\;-\;\lambda\,\phi^3\;\text{optional}\;],\qquad \phi_\star = r/u\ \text{(or stabilized solution if }\lambda>0\text{)}.
   \]
-  Note: EFT/KG formulations and \(m_{\rm eff}\) belong to [derivation/effective_field_theory_approach.md](Prometheus_FUVDM/derivation/effective_field_theory_approach.md:1) and should be used only in EFT contexts.
+  Note: EFT/KG formulations and \(m_{\rm eff}\) belong to [derivation/effective_field_theory_approach.md](effective_field_theory_approach.md:1) and should be used only in EFT contexts.
 
 - M‑sector (slow routing bias): steering law and memory PDE as above.
 
@@ -184,7 +184,7 @@ To test the theory properly:
 ## 11. Integration With Existing Derivations
 
 - φ‑sector (canonical RD): \(\partial_t \phi = D\nabla^2\phi + r\phi - u\phi^2\) [optional \(-\lambda\phi^3\) stabilization]. Homogeneous fixed point: \(\phi_\star = r/u\) (or stabilized root if \(\lambda>0\)).
-- EFT context (future work only): if using second‑order dynamics, \(\Box\phi + \alpha\phi^2 - (\alpha-\beta)\phi=0\) with \(v=1-\beta/\alpha\), \(m_{\rm eff}^2=\alpha-\beta\). Use these only within [derivation/effective_field_theory_approach.md](Prometheus_FUVDM/derivation/effective_field_theory_approach.md:1).
+- EFT context (future work only): if using second‑order dynamics, \(\Box\phi + \alpha\phi^2 - (\alpha-\beta)\phi=0\) with \(v=1-\beta/\alpha\), \(m_{\rm eff}^2=\alpha-\beta\). Use these only within [derivation/effective_field_theory_approach.md](effective_field_theory_approach.md:1).
 - Do not back‑solve \((\alpha,\beta)\) from \((v,m_{\rm eff})\) in the RD narrative. For EFT use, the relation \(\alpha={m_{\rm eff}^2}/{v}\), \(\beta={(1-v)}{m_{\rm eff}^2}/{v}\) may be referenced in that file.
 - Memory \( M \) augments routing only; it does not modify the on‑site ODE used to derive \( Q_{\rm FUM} \), the on‑site invariant in [derivation/symmetry_analysis.md](derivation/symmetry_analysis.md:141-148).
 

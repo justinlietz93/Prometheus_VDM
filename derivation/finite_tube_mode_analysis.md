@@ -1,7 +1,14 @@
 # Finite‑Tube Mode Analysis for the FUM Scalar (Bordag‑inspired)
 
-Author: Justin K. Lietz  
-Date: August 9, 2025
+>
+> Author: Justin K. Lietz  
+> Date: August 9, 2025
+>
+> This research is protected under a dual-license to foster open academic
+> research while ensuring commercial applications are aligned with the project's ethical principles.<br> 
+> Commercial use requires written permission from Justin K. Lietz.
+> 
+> See LICENSE file for full terms.
 
 ---
 
