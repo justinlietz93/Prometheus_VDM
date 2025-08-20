@@ -72,13 +72,17 @@ class LBM2D:
         if right:  self.solid[:, -1] = True
 
     def set_lid_velocity(self, U: float):
-        """Impose a moving lid at top boundary via a simple Zou/He-like BC (approx)."""
+        """Top (north) boundary velocity BC (Zou/He) with u=(U,0); top row is y=0 and FLUID (not solid)."""
         y = 0
         x = np.arange(self.nx)
-        rho = (self.f[0,y,x] + self.f[2,y,x] + self.f[4,y,x] + 2*(self.f[3,y,x] + self.f[6,y,x] + self.f[7,y,x])) / (1 - U + 1e-15)
-        self.f[1,y,x] = self.f[3,y,x] + (2/3.)*rho*U
-        self.f[5,y,x] = self.f[7,y,x] + (1/6.)*rho*U + (1/2.)*(self.f[4,y,x] - self.f[2,y,x])
-        self.f[8,y,x] = self.f[6,y,x] + (1/6.)*rho*U + (1/2.)*(self.f[2,y,x] - self.f[4,y,x])
+        # Known after streaming at the top: f0,f1,f3,f4,f7,f8. Unknown: f2,f5,f6 (cy=+1)
+        f0 = self.f[0, y, x]; f1 = self.f[1, y, x]; f3 = self.f[3, y, x]
+        f4 = self.f[4, y, x]; f7 = self.f[7, y, x]; f8 = self.f[8, y, x]
+        rho = (f0 + f1 + f3 + 2.0*(f4 + f7 + f8))
+        # Reconstruct unknowns
+        self.f[2, y, x] = f4
+        self.f[5, y, x] = f7 + 0.5*(f3 - f1) + (1.0/6.0) * rho * U
+        self.f[6, y, x] = f8 + 0.5*(f1 - f3) - (1.0/6.0) * rho * U
 
     def moments(self):
         """Compute macroscopic moments rho, ux, uy from populations."""
@@ -101,11 +105,25 @@ class LBM2D:
                 self.f[i] += D2Q9_W[i] * (3*(cx*fx + cy*fy))
 
     def stream(self):
-        """Periodic streaming in x/y, then bounce-back at solid nodes."""
-        # stream (with periodic wraps)
+        """Nonperiodic push-streaming via slicing (no wrap); then bounce-back at solids."""
+        ny, nx = self.ny, self.nx
+        self.tmp.fill(0.0)
         for i in range(9):
             cx, cy = D2Q9_C[i]
-            self.tmp[i] = np.roll(np.roll(self.f[i], shift=cx, axis=1), shift=cy, axis=0)
+            # destination slices
+            if cy == 1:
+                dst_y = slice(1, ny); src_y = slice(0, ny-1)
+            elif cy == -1:
+                dst_y = slice(0, ny-1); src_y = slice(1, ny)
+            else:
+                dst_y = slice(0, ny);   src_y = slice(0, ny)
+            if cx == 1:
+                dst_x = slice(1, nx); src_x = slice(0, nx-1)
+            elif cx == -1:
+                dst_x = slice(0, nx-1); src_x = slice(1, nx)
+            else:
+                dst_x = slice(0, nx);   src_x = slice(0, nx)
+            self.tmp[i, dst_y, dst_x] = self.f[i, src_y, src_x]
         self.f[:] = self.tmp
         # bounce-back (swap with opposite direction at solid cells)
         solid = self.solid
@@ -129,9 +147,22 @@ class LBM2D:
         return CS2 * (self.tau - 0.5)
 
     def divergence(self) -> float:
-        """Discrete L2 norm of divergence of velocity (periodic interior; walls ignored)."""
-        dudx = (np.roll(self.ux, -1, axis=1) - np.roll(self.ux, 1, axis=1)) * 0.5
-        dvdy = (np.roll(self.uy, -1, axis=0) - np.roll(self.uy, 1, axis=0)) * 0.5
-        div  = dudx + dvdy
-        div[self.solid] = 0.0
+        """Discrete L2 norm of ∇·u using nonperiodic central differences; exclude walls and 2-cell band."""
+        ny, nx = self.ny, self.nx
+        div = np.zeros((ny, nx), dtype=np.float64)
+        # central differences on interior (avoid periodic wrap)
+        div[1:-1, 1:-1] = 0.5 * (self.ux[1:-1, 2:] - self.ux[1:-1, 0:-2]) + \
+                          0.5 * (self.uy[2:, 1:-1] - self.uy[0:-2, 1:-1])
+        # mask out solids and a 2-cell dilation band (boundary layer not assessed)
+        solid = self.solid
+        if solid.any():
+            band = solid.copy()
+            for _ in range(2):
+                nb = np.zeros_like(band, dtype=bool)
+                nb[1:, :]  |= band[:-1, :]
+                nb[:-1, :] |= band[1:,  :]
+                nb[:, 1:]  |= band[:, :-1]
+                nb[:, :-1] |= band[:,  1:]
+                band |= nb
+            div[band] = 0.0
         return float(np.sqrt(np.mean(div**2)))
