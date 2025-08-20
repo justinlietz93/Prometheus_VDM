@@ -1,0 +1,34 @@
+{
+  "theory": "Fisher-KPP front speed c=2*sqrt(D*r)",
+  "params": {
+    "N": 4096,
+    "L": 200.0,
+    "D": 1.0,
+    "r": 0.25,
+    "T": 100.0,
+    "cfl": 0.2,
+    "seed": 42,
+    "level": 0.1,
+    "x0": -60.0,
+    "fit_start": 0.6,
+    "fit_end": 0.9
+  },
+  "metrics": {
+    "c_meas": 1.0441912205091914,
+    "c_abs": 1.0441912205091914,
+    "c_sign": 1.0,
+    "c_th": 1.0,
+    "rel_err": 0.04419122050914725,
+    "r2": 0.9978976931467788,
+    "dx": 0.048828125,
+    "dt": 0.00023841823804153723,
+    "steps": 419431,
+    "elapsed_sec": 2.895388126373291,
+    "acceptance_rel_err": 0.05,
+    "passed": true
+  },
+  "outputs": {
+    "figure": "Prometheus_FUVDM/assets/figures/20250820_rd_front_speed.png"
+  },
+  "timestamp": "2025-08-20T10:35:41Z"
+}

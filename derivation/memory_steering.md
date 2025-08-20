@@ -105,11 +105,11 @@ Plot curvature vs. \( \Theta|\nabla m| \); curves overlay across preparations if
 
 ## 6. Separation of Time Scales and Consistency with φ‑EFT
 
-- φ‑sector (fast propagation, mass gap):
+- φ‑sector (fast dynamics; canonical RD model):
   \[
-  \Box\phi + \alpha \phi^2 - (\alpha-\beta)\phi = 0,\quad v=1-\beta/\alpha,\quad m_{\rm eff}^2=\alpha-\beta,
+  \partial_t \phi \;=\; D\,\nabla^2 \phi \;+\; r\,\phi \;-\; u\,\phi^2 \;\;[\;-\;\lambda\,\phi^3\;\text{optional}\;],\qquad \phi_\star = r/u\ \text{(or stabilized solution if }\lambda>0\text{)}.
   \]
-  derived via action variation with \( c^2=2Ja^2 \) (units choice can set \( c=1 \)) in [derivation/kinetic_term_derivation.md](derivation/kinetic_term_derivation.md:121-128) and [derivation/discrete_to_continuum.md](derivation/discrete_to_continuum.md:121-128).
+  Note: EFT/KG formulations and \(m_{\rm eff}\) belong to [derivation/effective_field_theory_approach.md](Prometheus_FUVDM/derivation/effective_field_theory_approach.md:1) and should be used only in EFT contexts.
 
 - M‑sector (slow routing bias): steering law and memory PDE as above.
 
@@ -183,12 +183,9 @@ To test the theory properly:
 
 ## 11. Integration With Existing Derivations
 
-- φ‑sector remains as in [derivation/discrete_to_continuum.md](derivation/discrete_to_continuum.md:121-128) (tachyonic origin → condensation at \( v=1-\beta/\alpha \) → mass gap \( m_{\rm eff}^2=\alpha-\beta \)).
-- The invariants \( (v,m_{\rm eff}) \) fix \( (\alpha,\beta) \) via
-\[
-\alpha=\frac{m_{\rm eff}^2}{v},\qquad \beta=\frac{(1-v)}{v}\,m_{\rm eff}^2,
-\]
-already used in practice (see runtime diagnostics in [fum_rt/core/diagnostics.py](fum_rt/core/diagnostics.py:1)).
+- φ‑sector (canonical RD): \(\partial_t \phi = D\nabla^2\phi + r\phi - u\phi^2\) [optional \(-\lambda\phi^3\) stabilization]. Homogeneous fixed point: \(\phi_\star = r/u\) (or stabilized root if \(\lambda>0\)).
+- EFT context (future work only): if using second‑order dynamics, \(\Box\phi + \alpha\phi^2 - (\alpha-\beta)\phi=0\) with \(v=1-\beta/\alpha\), \(m_{\rm eff}^2=\alpha-\beta\). Use these only within [derivation/effective_field_theory_approach.md](Prometheus_FUVDM/derivation/effective_field_theory_approach.md:1).
+- Do not back‑solve \((\alpha,\beta)\) from \((v,m_{\rm eff})\) in the RD narrative. For EFT use, the relation \(\alpha={m_{\rm eff}^2}/{v}\), \(\beta={(1-v)}{m_{\rm eff}^2}/{v}\) may be referenced in that file.
 - Memory \( M \) augments routing only; it does not modify the on‑site ODE used to derive \( Q_{\rm FUM} \), the on‑site invariant in [derivation/symmetry_analysis.md](derivation/symmetry_analysis.md:141-148).
 
 ---
