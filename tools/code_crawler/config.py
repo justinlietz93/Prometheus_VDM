@@ -65,10 +65,12 @@ ignore_patterns = [
     'FUM_Demo_original/',
 
     # Path-specific directory patterns (must end with /)
-    'ignore/',
+    #'ignore/',
     '.vscode/',
     'venv/',
     'code_crawler/',
+    'C:/git/Prometheus_VDM/Prometheus_FUVDM/derivation/code/',
+
     #'FullyUnifiedModel/',
     'MIGRATE_PENDING_fum_rt/',
     'from_physicist_agent/',
