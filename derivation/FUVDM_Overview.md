@@ -10,6 +10,24 @@
 > 
 > See LICENSE file for full terms.
 
+### FUVDM Dimensionless Constants
+
+| Subsystem | Symbol     | Definition                                             | Meaning                  | Typical from Void Dynamics runs          |
+| --------- | ---------- | ------------------------------------------------------ | ------------------------ | ------------------------------- |
+| LBM       | $\nu$      | $\frac{1}{3}(\tau-\tfrac12)$                           | kinematic viscosity      | 0.1333 (τ=0.9)                  |
+| LBM       | Re         | $U L / \nu$                                            | inertia vs. viscosity    | 9.6 (64²), 19.2 (128²)          |
+| LBM       | Ma         | $U / \sqrt{1/3}$                                       | compressibility          | 0.035–0.017 (low)               |
+| RD        | $\Pi_{Dr}$ | $D/(rL^2)$                                             | diffusion at scale L     | choose L → report               |
+| RD        | $c^*$      | $c / (2\sqrt{Dr})$                                     | normalized KPP speed     | \~0.95–1.0                      |
+| FUVDM     | $\Theta$   | fit scale in $\Theta \Delta m$ or $\Theta\|\nabla m\|$ | junction gating strength | k≈1, b≈0                        |
+| FUVDM     | $\Lambda$  | exploration/retention ratio                            | turnover vs. memory      | as swept in heatmaps            |
+| FUVDM     | $\Gamma$   | retention fraction                                     | memory persistence       | \~0.3–0.75 avg (your plots)     |
+| FUVDM     | $D_a$      | anisotropic diffusion index                            | transport anisotropy     | {1,3,5,7}                       |
+| FUVDM     | $\kappa L$ | curvature×scale                                        | path bending             | linear vs. $\Theta\|\nabla m\|$ |
+| FUVDM     | $g$        | void gain                                              | stabilization strength   | e.g., 0.5                       |
+
+
+
 Purpose
 - Condensed, single-page overview of the Fully Unified Void Dynamics Model (FUVDM): canonical model choice, validated results, mappings, and scope boundaries. All claims below are either [PROVEN] or explicitly marked.
 

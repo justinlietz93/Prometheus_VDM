@@ -353,6 +353,17 @@ def main():
     ap.add_argument("--walker_seed", type=int, default=0, help="PRNG seed for walkers")
     ap.add_argument("--walker_overlay", action="store_true", help="overlay a subset of walker tracks on the |u| panel")
     ap.add_argument("--walker_tracks", type=int, default=16, help="max tracks to overlay when --walker_overlay is set")
+    # Walker announcers (measurement-only) + policy (observe/advise/act)
+    ap.add_argument("--walker_announce", action="store_true",
+                    help="enable read-only walker announcers (Bus/Reducer); no pathlines")
+    ap.add_argument("--announce_max", type=int, default=256,
+                    help="max events to report/plot from announcers")
+    ap.add_argument("--walker_mode", type=str, choices=["off", "observe", "advise", "act"], default="observe",
+                    help="announcer policy mode (observe=metrics only; advise=print suggestions; act=apply bounded nudges)")
+    ap.add_argument("--policy_div_target", type=float, default=1e-6,
+                    help="target div (e.g., div_p99) used by advisory policy")
+    ap.add_argument("--policy_swirl_target", type=float, default=5e-3,
+                    help="target swirl (e.g., swirl_p50) used by advisory policy")
     args = ap.parse_args()
 
     cfg = LBMConfig(
@@ -367,6 +378,34 @@ def main():
     sim = LBM2D(cfg)
     # Use Zou/He velocity BC at the top (fluid), bounce-back on the other three walls
     sim.set_solid_box(top=False, bottom=True, left=True, right=True)
+
+    # Telemetry: Walker announcers (read-only)
+    try:
+        from Prometheus_FUVDM.derivation.code.physics.fluid_dynamics.telemetry.walkers import (
+            Bus, Reducer, seed_walkers_lid, Walker, Petition, top_events, PolicyBounds, AdvisoryPolicy
+        )
+    except Exception:
+        Bus = Reducer = seed_walkers_lid = Walker = Petition = top_events = PolicyBounds = AdvisoryPolicy = None
+    bus = Bus() if 'Bus' in locals() and Bus is not None else None
+    reducer = Reducer() if 'Reducer' in locals() and Reducer is not None else None
+    walker_list = []
+    if int(getattr(args, "walkers", 0)) > 0 and bool(getattr(args, "walker_announce", False)) and (bus is not None) and (reducer is not None) and (seed_walkers_lid is not None):
+        try:
+            walker_list = seed_walkers_lid(sim.nx, sim.ny, int(args.walkers), kinds=["div", "swirl", "shear"], seed=int(getattr(args, "walker_seed", 0)))
+        except Exception:
+            walker_list = []
+    # Walker-announcer policy mode and state
+    wm = str(getattr(args, "walker_mode", "observe"))
+    policy = None
+    if (wm in ("advise", "act")) and ('AdvisoryPolicy' in locals()) and (AdvisoryPolicy is not None):
+        try:
+            policy = AdvisoryPolicy(div_target=float(getattr(args, "policy_div_target", 1e-6)),
+                                    vort_target=float(getattr(args, "policy_swirl_target", 5e-3)))
+        except Exception:
+            policy = None
+    announce_stats = None
+    last_announce_stats = None
+    last_announce_counts = None
 
     # Adaptive controller
     tuner = None
@@ -432,6 +471,52 @@ def main():
                 sim.moments()
                 d = sim.divergence()
                 div_hist.append(d)
+
+            # Walker announcers (read-only): advect, sense, post; reduce to stats
+            if 'walker_list' in locals() and walker_list and ('bus' in locals()) and (bus is not None):
+                try:
+                    sim.moments()
+                    for w in walker_list:
+                        w.step(sim, dt=1.0)
+                        val = w.sense(sim)
+                        bus.post(Petition(kind=w.kind, value=float(val), x=float(w.x), y=float(w.y), t=int(n)))
+                except Exception:
+                    pass
+            if 'reducer' in locals() and reducer and ('bus' in locals()) and (bus is not None):
+                try:
+                    announce_stats = reducer.reduce(bus)
+                    if announce_stats:
+                        dp90 = float(announce_stats.get('div_p90', 0.0))
+                        sp90 = float(announce_stats.get('swirl_p90', 0.0))
+                        shp90 = float(announce_stats.get('shear_p90', 0.0))
+                        counts_now = getattr(reducer, 'counts', {})
+                        print(f"[announce] n={n} counts={counts_now} div_p90={dp90:.2e} swirl_p90={sp90:.2e} shear_p90={shp90:.2e}")
+                        last_announce_stats = dict(announce_stats)
+                        last_announce_counts = dict(counts_now)
+                        # Policy advisory / act (bounded; never injects forces)
+                        if (wm in ("advise", "act")) and (policy is not None):
+                            _wm_eff = "act" if (wm == "act" and not args.auto) else "advise"
+                            if wm == "act" and args.auto:
+                                print("[policy] auto=True with walker_mode=act; degrading to advise-only")
+                            params = {
+                                "tau": float(sim.tau),
+                                "U_lid": float(args.U_lid),
+                                "u_clamp": float(getattr(sim.cfg, "u_clamp", 0.0)),
+                                "void_gain": float(getattr(sim.cfg, "void_gain", 0.0)),
+                            }
+                            sug = policy.suggest(announce_stats, params)
+                            if sug:
+                                print(f"[policy] n={n} suggest={sug}")
+                                if _wm_eff == "act":
+                                    if "tau" in sug:
+                                        sim.tau = float(sug["tau"]); sim.omega = 1.0/float(sim.tau)
+                                    if "u_clamp" in sug:
+                                        sim.cfg.u_clamp = float(sug["u_clamp"])
+                                    if "U_lid" in sug:
+                                        args.U_lid = float(sug["U_lid"])
+                except Exception:
+                    announce_stats = None
+
             # Console progress (prints each sample; set --progress_every to control frequency)
             progN = args.progress_every if args.progress_every is not None else args.sample_every
             if ((n - args.warmup) % max(1, int(progN))) == 0:
@@ -553,7 +638,7 @@ def main():
     except Exception:
         pass
 
-    # Optional walker tracks overlay
+    # Optional walker tracks overlay (void-walker inspired paths)
     if getattr(args, "walker_overlay", False) and ('vw_tracks' in locals()) and (vw_tracks is not None):
         try:
             for tr in vw_tracks:
@@ -563,6 +648,24 @@ def main():
                 ys_tr = tr[:, 1]
                 ys_plot = ys_tr if origin == "lower" else (ny - 1 - ys_tr)
                 ax0.plot(xs_tr, ys_plot, color="k", alpha=0.25, linewidth=0.5)
+        except Exception:
+            pass
+    # Optional announcer event markers (read-only petitions; not pathlines)
+    if getattr(args, "walker_overlay", False) and bool(getattr(args, "walker_announce", False)) and ('bus' in locals()) and (bus is not None) and ('top_events' in locals()) and (top_events is not None):
+        try:
+            top_ev = top_events(bus, int(getattr(args, "announce_max", 256)))
+            es = top_ev.get("events", []) if top_ev else []
+            if es:
+                xs = np.array([e["x"] for e in es], dtype=float)
+                ys = np.array([e["y"] for e in es], dtype=float)
+                vs = np.array([e["value"] for e in es], dtype=float)
+                kinds = [str(e["kind"]) for e in es]
+                ys_plot = ys if origin == "lower" else (ny - 1 - ys)
+                color_map = {"div": "yellow", "swirl": "cyan", "shear": "magenta"}
+                colors = [color_map.get(k, "white") for k in kinds]
+                vmax_ev = float(np.nanmax(vs)) if vs.size else 1.0
+                size = 10.0 + 30.0*np.sqrt(np.clip(vs, 0.0, vmax_ev)/(vmax_ev + 1e-12))
+                ax0.scatter(xs, ys_plot, s=size, c=colors, alpha=0.7, edgecolors="none")
         except Exception:
             pass
 
@@ -611,6 +714,16 @@ def main():
     Re_meas = float((u_rms * L_eff) / (sim.nu + 1e-12))
     Ma_meas = float(u_max / math.sqrt(CS2))
     nu_final = float(sim.nu)
+    # Final announcer stats snapshot (reduce once more at end)
+    announce_stats_final = None
+    announce_counts_final = None
+    if bool(getattr(args, "walker_announce", False)) and ('reducer' in locals()) and reducer and ('bus' in locals()) and (bus is not None):
+        try:
+            announce_stats_final = reducer.reduce(bus)
+            announce_counts_final = dict(getattr(reducer, "counts", {}))
+        except Exception:
+            announce_stats_final = None
+            announce_counts_final = None
 
     payload = {
         "theory": "LBM→NS; incompressible cavity with no-slip walls (bounce-back) + FUVDM ω_eff (optional)",
@@ -631,6 +744,10 @@ def main():
             "flow_gate": bool(flow_gate),
             "psi_contours": bool(getattr(args, "psi_contours", False)),
             "void_walkers": vw_metrics if 'vw_metrics' in locals() and vw_metrics is not None else None,
+            "void_announcers": {
+              "announce_counts": announce_counts_final if 'announce_counts_final' in locals() and (announce_counts_final is not None) else (last_announce_counts if 'last_announce_counts' in locals() else None),
+              "announce_stats": announce_stats_final if 'announce_stats_final' in locals() and (announce_stats_final is not None) else (last_announce_stats if 'last_announce_stats' in locals() else None)
+            },
             # original dimensionless numbers from arguments (for compatibility)
             "Re": float(Re),
             "Ma": float(Ma),
