@@ -1,0 +1,29 @@
+{
+  "theory": "LBM\u2192NS; incompressible cavity with no-slip walls (bounce-back) + FUVDM \u03c9_eff (optional)",
+  "params": {
+    "nx": 64,
+    "ny": 64,
+    "tau": 0.9,
+    "U_lid": 0.02,
+    "steps": 2000,
+    "sample_every": 200,
+    "void_enabled": true,
+    "void_domain": "standard_model",
+    "void_gain": 1.0
+  },
+  "metrics": {
+    "div_max": NaN,
+    "elapsed_sec": 1.6519145965576172,
+    "passed": false,
+    "void": {
+      "dW_max": 0.04363653726031911,
+      "omega_min": 1.0646533265574636,
+      "omega_max": 1.1111086482626404,
+      "W_mean_last": 0.6052799877072161
+    }
+  },
+  "outputs": {
+    "figure": "C:\\git\\Prometheus_VDM\\Prometheus_FUVDM\\derivation\\code\\outputs\\figures\\fluid_dynamics\\lid_cavity_benchmark_20250820T225145Z.png"
+  },
+  "timestamp": "2025-08-20T22:51:47Z"
+}
