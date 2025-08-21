@@ -12,12 +12,12 @@ Outputs (defaults):
 - Logs    → derivation/code/outputs/logs/<script>_<timestamp>.json
 """
 
-import os, json, time, argparse
+import os, json, time, argparse, shutil
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Ensure repo root on sys.path for absolute import 'Prometheus_FUVDM.*'
-import sys, pathlib
+# Ensure repo root on sys.path for absolute import 'Prometheus_FUVDM.*'; else fall back to file import
+import sys, pathlib, importlib.util, os
 _P = pathlib.Path(__file__).resolve()
 for _anc in [_P] + list(_P.parents):
     if _anc.name == "Prometheus_FUVDM":
@@ -26,7 +26,17 @@ for _anc in [_P] + list(_P.parents):
             sys.path.insert(0, _ROOT)
         break
 
-from Prometheus_FUVDM.derivation.code.physics.fluid_dynamics.fluids.lbm2d import LBM2D, LBMConfig  # noqa: E402
+try:
+    from Prometheus_FUVDM.derivation.code.physics.fluid_dynamics.fluids.lbm2d import LBM2D, LBMConfig  # noqa: E402
+except Exception:
+    # Fallback: load lbm2d.py directly by file path (no package/module requirement)
+    _lbm_path = os.path.join(os.path.dirname(__file__), "fluids", "lbm2d.py")
+    spec = importlib.util.spec_from_file_location("lbm2d_local", _lbm_path)
+    _m = importlib.util.module_from_spec(spec)
+    assert spec is not None and spec.loader is not None
+    spec.loader.exec_module(_m)
+    LBM2D = _m.LBM2D
+    LBMConfig = _m.LBMConfig
 
 
 def main():
@@ -44,6 +54,7 @@ def main():
     ap.add_argument("--void_domain", type=str, default="standard_model", help="FUVDM domain modulation preset")
     ap.add_argument("--void_gain", type=float, default=0.5, help="gain for ω_eff = ω0/(1+g|ΔW|)")
     ap.add_argument("--void_enabled", action="store_true", help="enable FUVDM-stabilized collision")
+    ap.add_argument("--u_clamp", type=float, default=0.05, help="max |u| clamp (Ma control); set small (e.g., 0.02) to suppress spikes")
     args = ap.parse_args()
 
     cfg = LBMConfig(
@@ -53,7 +64,7 @@ def main():
         void_domain=str(args.void_domain),
         void_gain=float(args.void_gain),
         rho_floor=1e-9,
-        u_clamp=None
+        u_clamp=float(args.u_clamp)
     )
     sim = LBM2D(cfg)
     # Use Zou/He velocity BC at the top (fluid), bounce-back on the other three walls
@@ -90,16 +101,44 @@ def main():
     elapsed = time.time() - t0
     div_hist = np.asarray(div_hist, dtype=float)
     div_max = float(np.max(div_hist)) if div_hist.size else 0.0
-    passed = bool(div_max <= 1e-6)
+    # Precompute flow strength for gating
+    sim.moments()
+    _ux = np.nan_to_num(sim.ux, nan=0.0, posinf=0.0, neginf=0.0)
+    _uy = np.nan_to_num(sim.uy, nan=0.0, posinf=0.0, neginf=0.0)
+    _Vmag = np.hypot(_ux, _uy)
+    u_max = float(np.nanmax(_Vmag)) if _Vmag.size else 0.0
+    u_mean = float(np.nanmean(_Vmag)) if _Vmag.size else 0.0
+    flow_gate = (np.isfinite(u_max) and (u_max >= max(1e-9, 0.05*abs(args.U_lid))))
+    passed = bool(np.isfinite(div_max) and div_max <= 1e-6 and flow_gate)
+    # Route outputs: failed runs go to .../failed_runs/, passes to base dirs
+    out_fig_dir = fig_dir if passed else os.path.join(fig_dir, "failed_runs")
+    out_log_dir = log_dir if passed else os.path.join(log_dir, "failed_runs")
+    os.makedirs(out_fig_dir, exist_ok=True)
+    os.makedirs(out_log_dir, exist_ok=True)
+    figure_path = os.path.join(out_fig_dir, f"{script_name}_{tstamp}.png")
+    log_path = os.path.join(out_log_dir, f"{script_name}_{tstamp}.json")
 
     # Figure: velocity magnitude and (optional) streamlines
+    # Refresh macroscopic fields for plotting
+    sim.moments()
+    # Figure: velocity magnitude and (optional) streamlines
     X, Y = np.meshgrid(np.arange(args.nx), np.arange(args.ny))
-    Vmag = np.sqrt(sim.ux**2 + sim.uy**2)
+    ux = np.nan_to_num(sim.ux, nan=0.0, posinf=0.0, neginf=0.0)
+    uy = np.nan_to_num(sim.uy, nan=0.0, posinf=0.0, neginf=0.0)
+    Vmag = np.hypot(ux, uy)
+    vmax = np.nanpercentile(Vmag, 99.0)
+    if (not np.isfinite(vmax)) or vmax <= 0.0:
+        vmax = float(np.nanmax(Vmag)) if np.isfinite(np.nanmax(Vmag)) else 1e-12
+    u_max = float(np.nanmax(Vmag)) if np.isfinite(np.nanmax(Vmag)) else 0.0
+    u_mean = float(np.nanmean(Vmag)) if np.isfinite(np.nanmean(Vmag)) else 0.0
+    if (not np.isfinite(u_max)) or u_max <= 1e-9:
+        print("[warn] |u| too small or NaN; figure may look blank")
     plt.figure(figsize=(6, 5))
-    im = plt.imshow(Vmag, origin="lower", cmap="viridis")
+    im = plt.imshow(Vmag, origin="lower", cmap="viridis", vmin=0.0, vmax=vmax)
     plt.colorbar(im, label="|u|")
     try:
-        plt.streamplot(X, Y, sim.ux, sim.uy, density=1.0, color="w", linewidth=0.6)
+        # Streamplot on transposed fields to match coordinate orientation
+        plt.streamplot(X.T, Y.T, ux.T, uy.T, density=1.0, color="w", linewidth=0.6)
     except Exception:
         pass
     plt.title(f"Lid-driven cavity (U_lid={args.U_lid}, tau={args.tau}, warmup={args.warmup}, div_max={div_max:.2e})")
@@ -117,6 +156,9 @@ def main():
         "metrics": {
             "div_max": float(div_max),
             "elapsed_sec": float(elapsed),
+            "u_max": float(u_max),
+            "u_mean": float(u_mean),
+            "flow_gate": bool(flow_gate),
             "passed": passed,
             # Void diagnostics (present even if disabled; fallback values reasonable)
             "void": {

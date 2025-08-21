@@ -1,0 +1,20 @@
+{
+  "timestamp": "2025-08-20T22:13:28Z",
+  "tests": [
+    {
+      "name": "north_move",
+      "mass0": 1.0,
+      "mass1": 1.0,
+      "dest": 1.0,
+      "pass": true
+    },
+    {
+      "name": "top_bounce",
+      "mass0": 1.0,
+      "mass1": 1.0,
+      "f4_at_top": 1.0,
+      "pass": true
+    }
+  ],
+  "overall_pass": true
+}
