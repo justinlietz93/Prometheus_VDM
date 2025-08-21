@@ -103,6 +103,7 @@ def main():
     figure_path = os.path.join(fig_dir, f"{script_name}_{tstamp}.png")
     log_path = os.path.join(log_dir, f"{script_name}_{tstamp}.json")
 
+    # Run simulation loop and record interior divergence after warmup
     t0 = time.time()
     div_hist = []
     for n in range(args.steps + 1):
@@ -119,18 +120,21 @@ def main():
             if ((n - args.warmup) % max(1, int(progN))) == 0:
                 print(f"step={n}, div={d:.3e}", flush=True)
 
+    # Compute metrics and routing
     elapsed = time.time() - t0
     div_hist = np.asarray(div_hist, dtype=float)
     div_max = float(np.max(div_hist)) if div_hist.size else 0.0
-    # Precompute flow strength for gating
+
+    # Flow gate uses end-of-run speed
     sim.moments()
     _ux = np.nan_to_num(sim.ux, nan=0.0, posinf=0.0, neginf=0.0)
     _uy = np.nan_to_num(sim.uy, nan=0.0, posinf=0.0, neginf=0.0)
     _Vmag = np.hypot(_ux, _uy)
     u_max = float(np.nanmax(_Vmag)) if _Vmag.size else 0.0
     u_mean = float(np.nanmean(_Vmag)) if _Vmag.size else 0.0
-    flow_gate = (np.isfinite(u_max) and (u_max >= max(1e-9, 0.05*abs(args.U_lid))))
+    flow_gate = bool(np.isfinite(u_max) and (u_max >= max(1e-9, 0.05*abs(args.U_lid))))
     passed = bool(np.isfinite(div_max) and div_max <= 1e-6 and flow_gate)
+
     # Route outputs: failed runs go to .../failed_runs/, passes to base dirs
     out_fig_dir = fig_dir if passed else os.path.join(fig_dir, "failed_runs")
     out_log_dir = log_dir if passed else os.path.join(log_dir, "failed_runs")
@@ -139,33 +143,60 @@ def main():
     figure_path = os.path.join(out_fig_dir, f"{script_name}_{tstamp}.png")
     log_path = os.path.join(out_log_dir, f"{script_name}_{tstamp}.json")
 
-    # Figure: velocity magnitude and (optional) streamlines
     # Refresh macroscopic fields for plotting
     sim.moments()
-    # Figure: velocity magnitude and (optional) streamlines
-    X, Y = np.meshgrid(np.arange(args.nx), np.arange(args.ny))
+    ny, nx = sim.ny, sim.nx
+    X, Y   = np.meshgrid(np.arange(nx), np.arange(ny))
+    # Robust arrays
     ux = np.nan_to_num(sim.ux, nan=0.0, posinf=0.0, neginf=0.0)
     uy = np.nan_to_num(sim.uy, nan=0.0, posinf=0.0, neginf=0.0)
     Vmag = np.hypot(ux, uy)
-    vmax = np.nanpercentile(Vmag, 99.0)
+    # Mask walls so they don't pin the colormap
+    try:
+        Vmask = Vmag.copy()
+        Vmask[sim.solid] = np.nan
+    except Exception:
+        Vmask = Vmag
+    # Adaptive color scaling (avoid flat images)
+    vmax = np.nanpercentile(Vmask, 99.5)
     if (not np.isfinite(vmax)) or vmax <= 0.0:
         vmax = float(np.nanmax(Vmag)) if np.isfinite(np.nanmax(Vmag)) else 1e-12
-    u_max = float(np.nanmax(Vmag)) if np.isfinite(np.nanmax(Vmag)) else 0.0
-    u_mean = float(np.nanmean(Vmag)) if np.isfinite(np.nanmean(Vmag)) else 0.0
-    if (not np.isfinite(u_max)) or u_max <= 1e-9:
-        print("[warn] |u| too small or NaN; figure may look blank")
-    plt.figure(figsize=(6, 5))
-    im = plt.imshow(Vmag, origin="lower", cmap="viridis", vmin=0.0, vmax=vmax)
+    # Put the lid visually at the top
+    origin = "upper"
+    plt.figure(figsize=(7,5))
+    im = plt.imshow(Vmag, origin=origin, cmap="viridis",
+                    vmin=0.0, vmax=vmax, interpolation="nearest")
     plt.colorbar(im, label="|u|")
+    # Streamlines consistent with origin
     try:
-        # Streamplot on transposed fields to match coordinate orientation
-        plt.streamplot(X.T, Y.T, ux.T, uy.T, density=1.0, color="w", linewidth=0.6)
+        if origin == "upper":
+            plt.streamplot(X, Y, ux, uy, density=1.2, color="w", linewidth=0.6)
+        else:
+            plt.streamplot(X.T, Y.T, ux.T, uy.T, density=1.2, color="w", linewidth=0.6)
     except Exception:
         pass
     plt.title(f"Lid-driven cavity (U_lid={args.U_lid}, tau={args.tau}, warmup={args.warmup}, div_max={div_max:.2e})")
     plt.tight_layout()
-    plt.savefig(figure_path, dpi=140)
-    plt.close()
+    plt.savefig(figure_path, dpi=160)
+    # Vorticity companion image
+    dvdx = 0.5 * (np.roll(uy, -1, axis=1) - np.roll(uy, 1, axis=1))
+    dudy = 0.5 * (np.roll(ux, -1, axis=0) - np.roll(ux, 1, axis=0))
+    omega = dvdx - dudy
+    om = np.nan_to_num(omega, nan=0.0, posinf=0.0, neginf=0.0)
+    try:
+        om[sim.solid] = np.nan
+    except Exception:
+        pass
+    wlim = np.nanpercentile(np.abs(om), 99.0)
+    if (not np.isfinite(wlim)) or wlim <= 0.0:
+        wlim = float(np.nanmax(np.abs(om))) if np.isfinite(np.nanmax(np.abs(om))) else 1e-12
+    vorticity_path = figure_path.replace(".png", "_vorticity.png")
+    plt.figure(figsize=(7,5))
+    plt.imshow(om, origin=origin, cmap="RdBu_r", vmin=-wlim, vmax=wlim, interpolation="nearest")
+    plt.colorbar(label="vorticity")
+    plt.tight_layout()
+    plt.savefig(vorticity_path, dpi=160)
+    plt.close('all')
 
     payload = {
         "theory": "LBM→NS; incompressible cavity with no-slip walls (bounce-back) + FUVDM ω_eff (optional)",
