@@ -38,6 +38,18 @@ except Exception:
     LBM2D = _m.LBM2D
     LBMConfig = _m.LBMConfig
 
+# Dimensionless helpers (LBM units)
+try:
+    from Prometheus_FUVDM.derivation.code.common.dimensionless_fuvdm import (
+        lbm_viscosity_from_tau, reynolds_lbm, mach_lbm
+    )
+except Exception:
+    lbm_viscosity_from_tau = lambda tau: (float(tau) - 0.5) / 3.0
+    def reynolds_lbm(U, L, tau):
+        return float(U) * float(L) / (lbm_viscosity_from_tau(tau) + 1e-15)
+    def mach_lbm(U):
+        return float(U) / (1.0 / np.sqrt(3.0))
+
 
 def main():
     ap = argparse.ArgumentParser(description="Lid-driven cavity incompressibility (LBM→NS).")
@@ -69,6 +81,15 @@ def main():
     sim = LBM2D(cfg)
     # Use Zou/He velocity BC at the top (fluid), bounce-back on the other three walls
     sim.set_solid_box(top=False, bottom=True, left=True, right=True)
+
+    # Report nondimensional numbers (LBM units)
+    L_eff = max(1, int(args.ny) - 1)
+    nu = float(lbm_viscosity_from_tau(args.tau))
+    Re = float(reynolds_lbm(args.U_lid, L_eff, args.tau))
+    Ma = float(mach_lbm(args.U_lid))
+    print(f"[bench] L={L_eff}, nu={nu:.6f}, Re={Re:.2f}, Ma={Ma:.4f}")
+    if Ma >= 0.1:
+        print("[bench][warn] Ma >= 0.1; BGK low-Mach polynomial may be inaccurate/unstable.")
 
     # Output routing (match RD harness)
     script_name = os.path.splitext(os.path.basename(__file__))[0]
@@ -159,6 +180,9 @@ def main():
             "u_max": float(u_max),
             "u_mean": float(u_mean),
             "flow_gate": bool(flow_gate),
+            "Re": float(Re),
+            "Ma": float(Ma),
+            "nu": float(nu),
             "passed": passed,
             # Void diagnostics (present even if disabled; fallback values reasonable)
             "void": {
