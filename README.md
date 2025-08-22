@@ -1,7 +1,7 @@
 
 # FUM Real‑Time Runtime (Scaffold v3)
 
-> Entry point: `python -m fum_rt.run_nexus`
+> Entry point: `fum_rt.run_nexus`
 
 ## Quick start
 
