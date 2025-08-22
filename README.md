@@ -5,6 +5,13 @@
 
 ## Quick start
 
+### Web Dashboard
+```bash
+pip install -r requirements.txt
+python python fum_live.py
+```
+
+### CLI
 ```bash
 pip install -r requirements.txt
 export PYTHONPATH=.
