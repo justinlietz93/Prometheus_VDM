@@ -8,7 +8,7 @@
 ### Web Dashboard
 ```bash
 pip install -r requirements.txt
-python python fum_live.py
+python fum_live.py
 ```
 
 ### CLI
