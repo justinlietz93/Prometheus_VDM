@@ -1,7 +1,7 @@
 
 # FUM Real‑Time Runtime (Scaffold v3)
 
-> Entry point: `fum_rt.run_nexus`
+> Logical entry point: `fum_rt.run_nexus`
 
 ## Quick start
 
