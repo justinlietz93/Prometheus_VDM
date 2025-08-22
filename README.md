@@ -1,10 +1,6 @@
 
 # FUM Real‑Time Runtime (Scaffold v3)
 
-This is a **minimal, production‑oriented** runtime that matches your Nexus ⇄ UTE/UTD vision.
-It runs continuously, ingests input, updates the connectome with your *void equations* if
-present (`FUM_Void_Equations.py`), logs metrics, and renders dashboards and connectome images.
-
 > Entry point: `python -m fum_rt.run_nexus`
 
 ## Quick start
