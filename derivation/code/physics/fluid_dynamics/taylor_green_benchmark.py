@@ -118,6 +118,29 @@ def main():
     plt.savefig(figure_path, dpi=140)
     plt.close()
 
+# Acceptance and failed_runs routing
+acceptance_rel_err = 0.05
+passed = bool(rel_err <= acceptance_rel_err)
+if not passed:
+    # Route failing artifacts under failed_runs/
+    fig_dir_failed = os.path.join(fig_dir, "failed_runs")
+    log_dir_failed = os.path.join(log_dir, "failed_runs")
+    os.makedirs(fig_dir_failed, exist_ok=True)
+    os.makedirs(log_dir_failed, exist_ok=True)
+    # Re-point output paths
+    figure_path = os.path.join(fig_dir_failed, f"{script_name}_{tstamp}.png")
+    log_path = os.path.join(log_dir_failed, f"{script_name}_{tstamp}.json")
+    # Re-save figure into failed_runs path (generate fresh figure to ensure presence)
+    plt.figure(figsize=(7, 5))
+    plt.semilogy(ts, Es, "o", ms=3, label="E(t) samples")
+    plt.semilogy(ts, np.exp(intercept + slope * ts), "r--",
+                 label=f"fit: nu_fit={nu_fit:.5f}, nu_th={nu_th:.5f}, rel_err={rel_err:.3%}")
+    plt.xlabel("t (lattice)")
+    plt.ylabel("E(t)")
+    plt.legend()
+    plt.tight_layout()
+    plt.savefig(figure_path, dpi=140)
+    plt.close()
     payload = {
         "theory": "LBM→NS; Taylor–Green viscous decay E=E0 exp(-2 nu k^2 t)",
         "params": {
