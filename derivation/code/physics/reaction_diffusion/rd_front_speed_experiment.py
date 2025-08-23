@@ -382,7 +382,7 @@ def main():
 
     acceptance_rel_err = 0.05
     acceptance_r2 = 0.98
-    passed = (data["rel_err"] &lt;= acceptance_rel_err) and (np.isfinite(data["r2"]) and data["r2"] &gt;= acceptance_r2)
+    passed = (data["rel_err"] <= acceptance_rel_err) and (np.isfinite(data["r2"]) and data["r2"] >= acceptance_r2)
     if not passed:
         if args.figure is None:
             figure_path = os.path.join(fig_dir, "failed_runs", f"{script_name}_{tstamp}.png")
