@@ -11,7 +11,7 @@ Status
 References (implementation)
 - Script: [rd_dispersion_experiment.py](code/physics/rd_dispersion_experiment.py:1)
 - Validation plan: [rd_validation_plan.md](rd_validation_plan.md:1)
-- Status log: [CORRECTIONS.md](computational_proofs/CORRECTIONS.md:1)
+- Status log: [CORRECTIONS.md](CORRECTIONS.md:1)
 - fum_rt parity runner: [rd_dispersion_runner.py](Prometheus_FUVDM/fum_rt/physics/rd_dispersion_runner.py:1)
 
 Method
@@ -72,4 +72,4 @@ Reproduction checklist
 4) Archive produced JSON/PNG under version control as needed.
 
 Provenance and tagging
-- Dispersion is [PROVEN] in [CORRECTIONS.md](computational_proofs/CORRECTIONS.md:1) with default and refined grid results.
+- Dispersion is [PROVEN] in [CORRECTIONS.md](CORRECTIONS.md:1) with default and refined grid results.

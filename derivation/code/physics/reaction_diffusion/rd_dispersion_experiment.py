@@ -252,10 +252,11 @@ def main():
 
     script_name = os.path.splitext(os.path.basename(__file__))[0]
     tstamp = time.strftime("%Y%m%dT%H%M%SZ", time.gmtime())
-    default_base = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "outputs"))
+    # Follow repo convention: write to derivation/code/outputs/{figures,logs}/reaction_diffusion
+    default_base = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "outputs"))
     base_outdir = os.path.abspath(args.outdir) if args.outdir else default_base
-    fig_dir = os.path.join(base_outdir, "figures")
-    log_dir = os.path.join(base_outdir, "logs")
+    fig_dir = os.path.join(base_outdir, "figures", "reaction_diffusion")
+    log_dir = os.path.join(base_outdir, "logs", "reaction_diffusion")
     figure_path = args.figure if args.figure else os.path.join(fig_dir, f"{script_name}_{tstamp}.png")
     log_path = args.log if args.log else os.path.join(log_dir, f"{script_name}_{tstamp}.json")
     os.makedirs(os.path.dirname(figure_path), exist_ok=True)

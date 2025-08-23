@@ -38,7 +38,7 @@ Canonical Model [PROVEN]
 - Discrete schematic (void law near homogeneous state):
   dW/dt = (α − β) W − α W²
 - Mapping (discrete → continuum):
-  - D = J a² (site Laplacian) or D = (J/z) a² (neighbor‑average form), r = α, u = β.
+  - D = J a² (site Laplacian) or D = (J/z) a² (neighbor‑average form), r = α − β, u = α.
   - See normalization notes under “Discrete → Continuum & Kinetics.”
 
 What is Proven (numeric validation)
@@ -57,16 +57,16 @@ What is Proven (numeric validation)
 - Consolidated plan and acceptance gates:
   - [rd_validation_plan.md](rd_validation_plan.md:1)
 - Status log with tags and references:
-  - [CORRECTIONS.md](computational_proofs/CORRECTIONS.md:1)
+  - [CORRECTIONS.md](CORRECTIONS.md:1)
 
 Stability and Fixed Points (RD)
-- For r > 0, φ = 0 is dynamically unstable; the homogeneous fixed point φ* = r/u is stable.
+- For r > 0, φ = 0 is dynamically unstable; the homogeneous fixed point φ* = r/u is stable (using the canonical mapping r = α − β, u = α ⇒ φ* = 1 − β/α; e.g., α=0.25, β=0.10 ⇒ φ* = 0.6).
 - Optional cubic −λ φ³ is stabilization for large amplitude regimes and is off by default in the canonical validations.
 
 Discrete → Continuum & Kinetics
 - Diffusion mapping (primary): D = J a² (or (J/z) a² depending on neighbor averaging).
 - Kinetic/edge normalization note (EFT context only): c² = 2 J a² (per‑site) or c² = κ a² with κ = 2J (per‑edge). This belongs to the second‑order EFT branch and is kept separate from the RD canonical narrative.
-- Reference: see kinetic derivation and quarantine notes in status log [CORRECTIONS.md](computational_proofs/CORRECTIONS.md:1).
+- Reference: see kinetic derivation and quarantine notes in status log [CORRECTIONS.md](CORRECTIONS.md:1).
 
 Scope Boundaries and Quarantine
 - Canonical baseline is RD (first‑order in time). All effective field theory (EFT/Klein–Gordon, second‑order time) statements are quarantined to:
@@ -111,5 +111,5 @@ Appendix: Quick Links
 - Front speed: [rd_front_speed_validation.md](rd_front_speed_validation.md:1), [rd_front_speed_experiment.py](code/physics/rd_front_speed_experiment.py:1)
 - Dispersion: [rd_dispersion_validation.md](rd_dispersion_validation.md:1), [rd_dispersion_experiment.py](code/physics/rd_dispersion_experiment.py:1)
 - Plan: [rd_validation_plan.md](rd_validation_plan.md:1)
-- Status: [CORRECTIONS.md](computational_proofs/CORRECTIONS.md:1)
+- Status: [CORRECTIONS.md](CORRECTIONS.md:1)
 - Runtime mirrors: [rd_front_speed_runner.py](Prometheus_FUVDM/fum_rt/physics/rd_front_speed_runner.py:1), [rd_dispersion_runner.py](Prometheus_FUVDM/fum_rt/physics/rd_dispersion_runner.py:1)
