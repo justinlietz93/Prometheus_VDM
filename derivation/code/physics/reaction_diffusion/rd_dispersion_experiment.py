@@ -267,6 +267,22 @@ def main():
     analysis = analyze_dispersion(sim, args.D, args.r, args.L, args.m_max, (args.fit_start, args.fit_end))
     elapsed = time.time() - t0
 
+    # Acceptance criteria (conservative for multi-mode fit)
+    acceptance = {
+        "med_rel_err_max": 0.10,
+        "r2_array_min": 0.98,
+    }
+    passed = (
+        (math.isfinite(analysis["med_rel_err"]) and analysis["med_rel_err"] <= acceptance["med_rel_err_max"]) and
+        (math.isfinite(analysis["r2_array"]) and analysis["r2_array"] >= acceptance["r2_array_min"])
+    )
+    if not passed:
+        if args.figure is None:
+            figure_path = os.path.join(fig_dir, "failed_runs", f"{script_name}_{tstamp}.png")
+        if args.log is None:
+            log_path = os.path.join(log_dir, "failed_runs", f"{script_name}_{tstamp}.json")
+    os.makedirs(os.path.dirname(figure_path), exist_ok=True)
+    os.makedirs(os.path.dirname(log_path), exist_ok=True)
     plot_and_save_dispersion(analysis, figure_path, title=f"RD dispersion (linear): D={args.D}, r={args.r}")
 
     # Acceptance criteria (conservative for multi-mode fit)
