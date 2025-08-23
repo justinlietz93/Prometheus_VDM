@@ -60,6 +60,8 @@ ignore_patterns = [
     # General directory patterns (no slash)
     '.git',
     '__pycache__',
+    'ignore/',
+    'tools/',
 
     # Demo repo
     'FUM_Demo_original/',

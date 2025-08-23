@@ -4,6 +4,8 @@ Purpose
 - Empirically validate the Fisher–KPP pulled-front speed in 1D reaction–diffusion:
   u_t = D u_xx + r u (1 − u), with theoretical c_th = 2√(D r).
 
+  Note: With the canonical mapping r = α − β and u = α, the homogeneous fixed point is φ* = r/u = 1 − β/α (e.g., α=0.25, β=0.10 ⇒ φ* = 0.6).
+
 Status
 - Solved: measured c_meas agrees with c_th within 5% after removing uniform pre-heating and tracking only real level crossings.
 - Documentation and reproducible CLI provided below.

@@ -13,7 +13,7 @@ Canonical scripts
 - [rd_front_speed_experiment.py](code/physics/rd_front_speed_experiment.py:1)
 - [rd_front_speed_sweep.py](code/physics/rd_front_speed_sweep.py:1)
 - [rd_dispersion_experiment.py](code/physics/rd_dispersion_experiment.py:1)
-- Status log: [CORRECTIONS.md](computational_proofs/CORRECTIONS.md:1)
+- Status log: [CORRECTIONS.md](CORRECTIONS.md:1)
 
 Output locations
 - Figures → derivation/code/outputs/figures/
@@ -71,7 +71,7 @@ Notes on stability and limits
 - For dispersion, keep amplitude small (linear regime); use early-time fit window.
 
 Provenance and tagging
-- Front-speed: [PROVEN] in [CORRECTIONS.md](computational_proofs/CORRECTIONS.md:1) with representative pass.
+- Front-speed: [PROVEN] in [CORRECTIONS.md](CORRECTIONS.md:1) with representative pass.
 - Dispersion: [PROVEN]; default (N=1024): med_rel_err≈0.00145, R²_array≈0.99995; refinement (N=2048, m_max=128): med_rel_err≈0.00130, R²_array≈0.9928.
 
 Expected artifacts
