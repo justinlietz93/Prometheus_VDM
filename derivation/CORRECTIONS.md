@@ -8,7 +8,7 @@ Scope: Tier-0 correctness fixes (numerics, stability narrative) and unification 
 
 - [derivation/FUVDM_Overview.md](FUVDM_Overview.md)
   - Before: Mixed RD/EFT claims; no explicit canonical model.
-  - After: Canonical RD banner + mapping (D = J a² or (J/z) a²; r = α; u = β), stability note, EFT scoped to future work.
+  - After: Canonical RD banner + mapping (D = J a² or (J/z) a²; r = α − β; u = α), stability note, EFT scoped to future work.
 
 - [derivation/computational_proofs/FUM_theory_and_results.md](computational_proofs/FUM_theory_and_results.md)
   - Before: Fixed numerical claim “m_eff ≈ 0.387”.
@@ -65,7 +65,7 @@ All fixed-number statements were replaced with parameter‑dependent forms and e
 
 ## Edit Log (file, change)
 
-- [derivation/FUVDM_Overview.md](FUVDM_Overview.md): Replace overview with RD canonical banner; EFT scoped.  
+- [derivation/FUVDM_Overview.md](FUVDM_Overview.md): Replace overview with RD canonical banner; corrected mapping (r = α − β, u = α); EFT scoped.
 - [derivation/computational_proofs/FUM_theory_and_results.md](computational_proofs/FUM_theory_and_results.md): Insert RD note; replace fixed m_eff numeric with param‑dependent form.  
 - [derivation/discrete_to_continuum.md](discrete_to_continuum.md): Update objective to RD; add D mapping text; keep EFT derivation as future work.  
 - [derivation/memory_steering.md](memory_steering.md): Align with RD canonical; restrict EFT formulas to EFT doc; remove back‑solve in RD section.  

@@ -360,10 +360,11 @@ def main():
     # Compute output paths based on script name and UTC timestamp
     script_name = os.path.splitext(os.path.basename(__file__))[0]
     tstamp = time.strftime("%Y%m%dT%H%M%SZ", time.gmtime())
-    default_base = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "outputs"))
+    # Follow repo convention: write to derivation/code/outputs/{figures,logs}/reaction_diffusion
+    default_base = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "outputs"))
     base_outdir = os.path.abspath(args.outdir) if args.outdir else default_base
-    fig_dir = os.path.join(base_outdir, "figures")
-    log_dir = os.path.join(base_outdir, "logs")
+    fig_dir = os.path.join(base_outdir, "figures", "reaction_diffusion")
+    log_dir = os.path.join(base_outdir, "logs", "reaction_diffusion")
     figure_path = args.figure if args.figure else os.path.join(fig_dir, f"{script_name}_{tstamp}.png")
     log_path = args.log if args.log else os.path.join(log_dir, f"{script_name}_{tstamp}.json")
     os.makedirs(os.path.dirname(figure_path), exist_ok=True)
@@ -378,6 +379,17 @@ def main():
         noise_amp=args.noise_amp,
     )
     elapsed = time.time() - t0
+
+    acceptance_rel_err = 0.05
+    acceptance_r2 = 0.98
+    passed = (data["rel_err"] &lt;= acceptance_rel_err) and (np.isfinite(data["r2"]) and data["r2"] &gt;= acceptance_r2)
+    if not passed:
+        if args.figure is None:
+            figure_path = os.path.join(fig_dir, "failed_runs", f"{script_name}_{tstamp}.png")
+        if args.log is None:
+            log_path = os.path.join(log_dir, "failed_runs", f"{script_name}_{tstamp}.json")
+    os.makedirs(os.path.dirname(figure_path), exist_ok=True)
+    os.makedirs(os.path.dirname(log_path), exist_ok=True)
 
     plot_and_save(data, figure_path)
 
