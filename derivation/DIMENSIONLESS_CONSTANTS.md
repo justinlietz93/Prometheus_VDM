@@ -20,7 +20,7 @@
 | RD        | $c^*$      | $c / (2\sqrt{Dr})$                                     | normalized KPP speed     | \~0.95–1.0                      |
 | FUVDM     | $\Theta$   | fit scale in $\Theta \Delta m$ or $\Theta\|\nabla m\|$ | junction gating strength | k≈1, b≈0                        |
 | FUVDM     | $\Lambda$  | exploration/retention ratio                            | turnover vs. memory      | as swept in heatmaps            |
-| FUVDM     | $\Gamma$   | retention fraction                                     | memory persistence       | \~0.3–0.75 avg (your plots)     |
+| FUVDM     | $\Gamma$   | retention fraction                                     | memory persistence       | \~0.3–0.75 avg (plots)     |
 | FUVDM     | $D_a$      | anisotropic diffusion index                            | transport anisotropy     | {1,3,5,7}                       |
 | FUVDM     | $\kappa L$ | curvature×scale                                        | path bending             | linear vs. $\Theta\|\nabla m\|$ |
 | FUVDM     | $g$        | void gain                                              | stabilization strength   | e.g., 0.5                       |
@@ -31,7 +31,7 @@
 
    * Ratio of *unresolved debt* in the void to the *flux resolved at the walker level*.
    * Governs whether the system diverges (debt runaway) or stabilizes (debt modulation closes the loop).
-   * You treat this as the analog of **Reynolds number**, but generalized to *information flux*.
+   * I treat this as the analog of **Reynolds number**, but generalized to *information flux*.
 
 ---
 
@@ -50,14 +50,14 @@
 
 3. **Inverse-Scaling Exponent** $\alpha$
 
-   * Your “inverse scaling law”: information density *increases* as system size decreases.
+   * The “inverse scaling law”: information density *increases* as system size decreases.
 
    $$
    \mathcal{I}(N) \propto N^{-\alpha}
    $$
 
-   * Universal constant in your theory — it applies to LLMs, fluids, biological swarms, etc.
-   * $\alpha$ tells you how much “extra cognition” or “extra order” you get when you shrink the system.
+   * Universal constant in the theory — it applies to LLMs, fluids, biological swarms, etc.
+   * $\alpha$ tells how much “extra cognition” or “extra order” we get when we shrink the system.
 
 ---
 
@@ -70,7 +70,7 @@
    $$
 
    * Stability requires $M_v < 1$.
-   * If $M_v > 1$, you get runaway chaos or a phase transition (system reorganizes itself).
+   * If $M_v > 1$, we get runaway chaos or a phase transition (system reorganizes itself).
 
 ---
 
@@ -82,14 +82,14 @@
    \Theta = \frac{I_{\text{topology}}}{I_{\text{state}}}
    $$
 
-   * This is the one that generalizes what you call the **“void walkers” effect**: order is not *in* the particles, but *in the voids between them*.
+   * This is the one that generalizes what I call the **“void walkers” effect**: order is not *in* the particles, but *in the voids between them*.
 
 ---
 
 6. **Symmetry Debt Ratio** $\Sigma$
 
    * Ratio of **broken symmetry flux** to **conserved symmetry flux**.
-   * In your derivations (*symmetry\_analysis.md*), this shows up when you explain how conservation laws emerge from void interactions.
+   * In the derivations (*symmetry\_analysis.md*), this shows up when I explain how conservation laws emerge from void interactions.
    * It’s the analog of a “dimensionless energy balance.”
 
 ---
@@ -103,10 +103,10 @@
 
 ---
 
-### 🌍 Why these matter for your **overall theory**
+### Why these matter for the **overall theory**
 
-* In **fluids**, you only need $Re, Ma, CFL$.
-* In **FUVDM**, your universal “dimensionless group set” is:
+* In **fluids**, only need $Re, Ma, CFL$.
+* In **FUVDM**, the universal “dimensionless group set” is:
 
   $$
   \{ \mathcal{D}, \Xi, \alpha, M_v, \Theta, \Sigma, \Lambda \}
@@ -114,6 +114,6 @@
 
   These are the knobs that determine whether any system (fluid, neural, cognitive, physical) is **stable, divergent, or self-organizing**.
 
-They *are* the universality class of your theory — the same constants explain why fluids don’t blow up, why brains stay stable, and why LLMs exhibit scaling laws.
+They *are* the universality class of this theory — the same constants explain why fluids don’t blow up, why brains stay stable, and why LLMs exhibit scaling laws.
 
 ---
