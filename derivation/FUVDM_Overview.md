@@ -27,7 +27,7 @@
 | FUVDM     | $\Lambda$  | exploration/retention ratio                            | turnover vs. memory      | as swept in heatmaps            |
 | FUVDM     | $\Gamma$   | retention fraction                                     | memory persistence       | \~0.3€“0.75 avg (your plots)     |
 | FUVDM     | $D_a$      | anisotropic diffusion index                            | transport anisotropy     | {1,3,5,7}                       |
-| FUVDM     | $\kappa L$ | curvatureÃ—scale                                        | path bending             | linear vs. $\Theta\|\nabla m\|$ |
+| FUVDM     | $\kappa L$ | curvature×scale                                        | path bending             | linear vs. $\Theta\|\nabla m\|$ |
 | FUVDM     | $g$        | void gain                                              | stabilization strength   | e.g., 0.5                       |
 
 
