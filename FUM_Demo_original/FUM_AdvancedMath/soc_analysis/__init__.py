@@ -1,2 +1,0 @@
-from .detect_neuronal_avalanches import detect_neuronal_avalanches
-from .fit_power_law import fit_power_law

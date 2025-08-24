@@ -1,0 +1,10 @@
+# Corpus files
+*.txt
+*.pdf
+*.mp3
+*.epub
+*.md
+*.mobi
+*.xml
+*.bz2
+!README.md

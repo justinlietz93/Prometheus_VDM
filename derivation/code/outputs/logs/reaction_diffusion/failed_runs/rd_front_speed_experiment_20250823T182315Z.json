@@ -1,0 +1,39 @@
+{
+  "theory": "Fisher-KPP front speed c=2*sqrt(D*r)",
+  "params": {
+    "N": 256,
+    "L": 200.0,
+    "D": 1.0,
+    "r": 0.25,
+    "T": 5.0,
+    "cfl": 0.2,
+    "seed": 42,
+    "level": 0.5,
+    "x0": -60.0,
+    "fit_start": 0.0,
+    "fit_end": 0.1,
+    "noise_amp": 0.0
+  },
+  "metrics": {
+    "c_meas": 0.27531176171475336,
+    "c_abs": 0.27531176171475336,
+    "c_sign": 1.0,
+    "c_th": 1.0,
+    "rel_err": 0.7246882382845219,
+    "r2": 0.9991408574968964,
+    "dx": 0.78125,
+    "dt": 0.06097560975609756,
+    "steps": 82,
+    "elapsed_sec": 0.012656450271606445,
+    "acceptance_rel_err": 0.05,
+    "passed": false,
+    "c_meas_grad": -3.369942427312412e-15,
+    "c_abs_grad": 3.369942427312412e-15,
+    "rel_err_grad": 0.9999999999989966,
+    "r2_grad": 1.3322676295501878e-15
+  },
+  "outputs": {
+    "figure": "C:\\git\\Prometheus_VDM\\Prometheus_FUVDM\\derivation\\code\\outputs\\figures\\reaction_diffusion\\failed_runs\\rd_front_speed_experiment_20250823T182315Z.png"
+  },
+  "timestamp": "2025-08-23T18:23:15Z"
+}

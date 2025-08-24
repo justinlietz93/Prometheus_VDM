@@ -1,6 +1,21 @@
+"""
+Copyright © 2025 Justin K. Lietz, Neuroca, Inc. All Rights Reserved.
+
+This research is protected under a dual-license to foster open academic
+research while ensuring commercial applications are aligned with the project's ethical principles. Commercial use requires written permission from Justin K. Lietz.
+See LICENSE file for full terms.
+"""
+
+
 from __future__ import annotations
 import json, os, threading, time
 from typing import Any, Dict, Iterable, Optional
+from fum_rt.io.logging.rolling_jsonl import RollingJsonlWriter
+try:
+    # Prefer zip spooler when available
+    from fum_rt.io.logging.rolling_jsonl import RollingZipJsonlWriter  # type: ignore
+except Exception:
+    RollingZipJsonlWriter = None  # type: ignore
 
 class MacroEmitter:
     """
@@ -25,6 +40,19 @@ class MacroEmitter:
         self.why_provider = why_provider or (lambda: {"t": int(time.time() * 1000), "phase": 0})
         # ensure directory exists
         os.makedirs(os.path.dirname(os.path.abspath(self.path)), exist_ok=True)
+        # Prefer zip-spooled writer (bounded disk pressure); fallback to rolling JSONL
+        use_zip = True
+        try:
+            use_zip = str(os.getenv("FUM_ZIP_SPOOL", "1")).strip().lower() in ("1", "true", "yes", "on", "y")
+        except Exception:
+            use_zip = True
+        try:
+            if use_zip and (RollingZipJsonlWriter is not None):  # type: ignore
+                self._writer = RollingZipJsonlWriter(self.path)  # type: ignore
+            else:
+                self._writer = RollingJsonlWriter(self.path)
+        except Exception:
+            self._writer = RollingJsonlWriter(self.path)
 
     def _emit(self, macro: str, text: str, score: Optional[float] = None, **kwargs: Any):
         evt = {
@@ -44,8 +72,8 @@ class MacroEmitter:
             except Exception:
                 pass
         line = json.dumps(evt, ensure_ascii=False)
-        with self.lock, open(self.path, "a", encoding="utf-8") as f:
-            f.write(line + "\n")
+        with self.lock:
+            self._writer.write_line(line)
 
     # ---- basic channels ----
     def say(self, text: str, score: Optional[float] = None, **kw: Any):

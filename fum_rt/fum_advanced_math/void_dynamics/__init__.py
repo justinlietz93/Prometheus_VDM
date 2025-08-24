@@ -1,3 +1,5 @@
-# FUM Mathematical Library
-# This package contains the pure, canonical implementations of all mathematical formulas
-# as defined in the FUM Blueprint.
+# Expose void_dynamics API for simple imports
+from .FUM_Void_Equations import universal_void_dynamics
+from .FUM_Void_Debt_Modulation import VoidDebtModulation
+
+__all__ = ["universal_void_dynamics", "VoidDebtModulation"]

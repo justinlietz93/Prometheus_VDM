@@ -174,11 +174,13 @@ def register_profile_callbacks(app, profiles_dir: str, default_profile: Dict[str
         Output("cfg-checkpoint-every", "value"),
         Output("cfg-checkpoint-keep", "value"),
         Output("cfg-duration", "value"),
+        Output("profile-save-status", "children", allow_duplicate=True),
         Input("load-profile", "n_clicks"),
-        State("profile-path", "value"),
+        Input("profile-path", "value"),
+        Input("profile-file-selected-label", "children"),
         prevent_initial_call=True,
     )
-    def on_load_profile(_n, path):
+    def on_load_profile(_n, path, _sel_label):
         if not path:
             raise dash.exceptions.PreventUpdate
         data = read_json_file(path) or {}
@@ -217,4 +219,5 @@ def register_profile_callbacks(app, profiles_dir: str, default_profile: Dict[str
             g("checkpoint_every", default_profile["checkpoint_every"]),
             g("checkpoint_keep", default_profile["checkpoint_keep"]),
             g("duration", default_profile["duration"]),
+            f"Loaded profile: {path}",
         )
