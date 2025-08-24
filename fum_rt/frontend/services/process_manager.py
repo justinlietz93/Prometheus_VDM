@@ -126,6 +126,16 @@ class ProcessManager:
             before = set(os.listdir(rr)) if os.path.exists(rr) else set()
             detection_t0 = time.time()
 
+            # Ensure explicit run_dir honors UI-selected runs_root on fresh starts.
+            # If the profile does not specify run_dir (i.e., Start New Run without adoption),
+            # synthesize runs_root/<timestamp> to avoid defaulting to 'runs/<ts>' regardless of UI choice.
+            if not profile.get("run_dir"):
+                try:
+                    ts = time.strftime('%Y%m%d_%H%M%S')
+                    profile["run_dir"] = os.path.join(rr, ts)
+                except Exception:
+                    pass
+
             cmd = self._build_cmd(profile)
             self.last_cmd = cmd[:]
 

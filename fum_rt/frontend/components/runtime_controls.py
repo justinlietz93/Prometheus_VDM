@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from typing import Dict, Any
 from dash import html, dcc
+from fum_rt.frontend.components.widgets.file_picker import file_picker
 
 
 def runtime_controls_card(default_profile: Dict[str, Any]):
@@ -196,16 +197,17 @@ def runtime_controls_card(default_profile: Dict[str, Any]):
             ),
             html.Pre(id="phase-status", style={"fontSize": "12px"}),
             html.Label("Load Engram (runtime, into selected Run)"),
+            file_picker(prefix="engram-file", title="Select engram (.h5/.npz)", initial="", width="100%"),
             dcc.Input(
                 id="rc-load-engram-input",
                 type="text",
                 placeholder="path to .h5/.npz (abs or under runs)",
-                style={"width": "100%"},
+                style={"width": "100%", "marginTop": "4px"},
             ),
             dcc.Dropdown(
                 id="rc-load-engram-path",
                 placeholder="select from runs...",
-                style={"width": "100%", "marginTop": "4px"},
+                style={"width": "100%", "marginTop": "4px", "display": "none"},
             ),
             html.Button(
                 "Load Engram Now",

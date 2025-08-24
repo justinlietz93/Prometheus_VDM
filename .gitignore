@@ -14,31 +14,48 @@ __pycache__
 *.sublime-project
 *.sublime-workspace
 
-#Ignore vscode AI rules
+# Ignore vscode AI rules
 .github/copilot-instructions.md
+
+# Dev artifacts
+TODO
+.roo/
+Docs\LEGACY-FUM_Blueprint.md
 
 # Virtual environments
 .venv/
 env/
-venv
+venv/
 
-# Custom tools
-toos/
-code_crawler_results/*
-.github/
-ignore/
+
+# Secrets
+ignore/*
+secrets/*
+
 
 # Outputs
 *.zip
 runs/*
+code_crawler_results/*
 
-# Plans
+
+# Plans and LLM Context
+## On the Prometheus workstation
 suggestions/
 from_physicist_agent/
 FUM_Demo/
 resume.md
+/mnt/ironwolf/git/Void_FUM_Private/Void_FUM_Private/Void_Unity_Proofs/derivation/GPT5
+*.bz2
+derivation/GPT5/*
+UP_NEXT.md
+fum_original_v2
+Void_Unity_Proofs.code-workspace
+fum_rt/data/corpus (copy 1)
+fum_rt/data/corpus/unsorted/*
 
-# Data
-fum_rt/data/corpus/*
-fum_rt/data/databases/*
-fum_rt/data/wikipedia/enwiki-latest-pages-articles.xml.bz2
+## OMEN Laptop
+
+## Acer Aspire Laptop
+
+## 7900 Box

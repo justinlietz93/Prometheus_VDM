@@ -38,7 +38,7 @@ class ADC:
     Parameters:
         k_min: minimum number of territories to consider (>=2)
         max_k: maximum number of territories to consider
-        alpha: decay constant for adaptive schedule
+        alpha: decay constant for adaptive cadence
         schedule_base: base interval for cartography
         iters: k-means iterations (small constant)
         performance_threshold: cohesion score threshold for reactive adaptation

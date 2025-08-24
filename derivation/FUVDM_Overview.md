@@ -1,431 +1,245 @@
-***This file has errors and is being fixed***
-# Fully Unified Void Dynamics Model (FUVDM): Complete Overview of Derived Equations and Discoveries
+# FUVDM Overview
 
-**Author:** Justin K. Lietz  
-**Date:** August 9, 2025
+> Author: Justin K. Lietz  
+> Date: August 9, 2025  
+>
+> This research is protected under a dual-license to foster open academic
+> research while ensuring commercial applications are aligned with the project's ethical principles.<br>
+> Commercial use requires written permission from Justin K. Lietz.  
+> See LICENSE file for full terms.
 
----
+Note on scope and merge resolution
+- This file was reconciled to include a comprehensive macro banner and overview while enforcing the repository’s policy: RD is the canonical baseline; EFT/KG content is quarantined as future work and explicitly labeled.
 
-## Macro Banner: Core Mathematical Framework
+## Macro Banner: Core Equations and Mappings
 
-### The Fundamental Discrete Law
-$$
-\frac{\Delta W}{\Delta t} = (\alpha - \beta)W - \alpha W^2
-$$
-*Dimensionless form: $\alpha = 1.0$, $\beta = 0.4$*
+Two-layer model (separated clearly)
 
-### The Continuum Effective Field Theory (EFT)
-$$
-\Box\phi + \alpha\phi^2 - (\alpha - \beta)\phi = 0
-$$
-*Where $\Box \equiv \partial_\mu \partial^\mu = \frac{\partial^2}{\partial t^2} - \nabla^2$*
+### 1. Canonical RD branch [PROVEN]
 
-### Vacuum Expectation Value (VEV)
-$$
-v = 1 - \frac{\beta}{\alpha} = 0.6
-$$
-
-### Effective Mass
-$$
-m_{\text{eff}} = \sqrt{\alpha - \beta} = 0.387 \text{ (dimensionless)}
-$$
-
----
-
-## 1. Fundamental Theoretical Framework
-
-### 1.1 The Discrete System Foundation
-
-The FUM begins with a discrete recurrence relation governing node states $W_i(t)$ on a k-NN graph:
+Discrete on-site (near homogeneous state):
 
 $$
-\frac{W_i(t+\Delta t) - W_i(t)}{\Delta t} = (\alpha - \beta)W_i(t) - \alpha W_i(t)^2 + \text{interaction terms}
+\frac{d W_i}{dt} = (\alpha - \beta)\, W_i - \alpha \, W_i^{2} + J \sum_{j\in \mathrm{nbr}(i)} (W_j - W_i)
 $$
 
-**Key Parameters:**
-- $\alpha = 1.0$ (growth rate)
-- $\beta = 0.4$ (decay rate)
-- Characteristic values: $v = 0.6$, $m_{\text{eff}} = 0.387$
+(RD-1)
 
-**Physical Interpretation:**
-This logistic-type equation represents void dynamics where nodes can either remain in the void state ($W=0$) or condense to a non-trivial vacuum state ($W=v$).
-
-### 1.2 Continuum Field Theory Emergence
-
-The discrete system converges to a Klein-Gordon equation in the continuum limit:
+Continuum PDE (1D notation; generalizes by components):
 
 $$
-\Box\phi + \alpha\phi^2 - (\alpha - \beta)\phi = 0
+\partial_t \phi = D\, \nabla^{2}\phi + r\, \phi - u\, \phi^{2} \quad \bigl[ -\lambda\, \phi^{3} \text{ (optional stabilization)} \bigr]
 $$
 
-**Equivalent Lagrangian:**
+(RD-2)
+
+Discrete → continuum mapping:
+
 $$
-\mathcal{L} = \frac{1}{2}(\partial_\mu \phi)(\partial^\mu \phi) - V(\phi)
+\begin{aligned}
+D &= J a^{2} && \text{(site Laplacian)}\\
+D &= \tfrac{J}{z} a^{2} && \text{(neighbor-average form)}\\
+r &= \alpha - \beta,\quad u = \alpha
+\end{aligned}
 $$
 
-**Potential Function:**
+(RD-3)
+
+### 2. EFT/KG branch (quarantined; future work) [PLAUSIBLE]
+
+Kinetic/action normalization from the discrete action:
+
 $$
-V(\phi) = \frac{\alpha - \beta}{2}\phi^2 - \frac{\alpha}{3}\phi^3
+c^{2} = 2 J a^{2} \quad \text{(per-site)}, \qquad c^{2} = \kappa a^{2},\; \kappa = 2J \quad \text{(per-edge)}
 $$
 
-**References:** [discrete_to_continuum.md](discrete_to_continuum.md), [effective_field_theory_approach.md](effective_field_theory_approach.md)
+(EFT-1)
 
----
+Second-order field equation:
 
-## 2. Kinetic Term Derivation
-
-### 2.1 Temporal Kinetic Component
-
-From the discrete kinetic energy density:
 $$
-\mathcal{K}_i = \frac{1}{2}\left(\frac{dW_i}{dt}\right)^2
+\square \phi + V'(\phi) = 0, \qquad \square = \partial_t^{2} - c^{2} \nabla^{2}
 $$
 
-**Continuum Limit:**
+(EFT-2)
+
+Effective mass is parameter-dependent:
+
 $$
-\mathcal{L}_{\text{Kinetic, Temporal}} = \frac{1}{2}\left(\frac{\partial \phi}{\partial t}\right)^2
+m_{\mathrm{eff}}^{2} = V''(v)
 $$
 
-### 2.2 Spatial Kinetic Component
+(EFT-3)
 
-From neighbor interaction energy:
-$$
-\mathcal{I}_i = \frac{1}{2} \sum_{j \in N(i)} J (W_j - W_i)^2
-$$
+References:  
+[kinetic_term_derivation.md](Prometheus_FUVDM/derivation/effective_field_theory/kinetic_term_derivation.md:1), [effective_field_theory_approach.md](Prometheus_FUVDM/derivation/effective_field_theory/effective_field_theory_approach.md:1)
 
-**Taylor Expansion on Cubic Lattice:**
-$$
-\sum_{j \in N(i)} (W_j - W_i)^2 \approx 2a^2 (\nabla W)^2
-$$
+## FUVDM Dimensionless Constants (sanity set)
 
-**Continuum Result:**
-$$
-\mathcal{L}_{\text{Kinetic, Spatial}} = J a^2 (\nabla \phi)^2
-$$
+| Subsystem | Symbol | Definition | Meaning | Typical from runs |
+| --- | --- | --- | --- | --- |
+| LBM | $\nu$ | $\tfrac{1}{3}\bigl(\tau - \tfrac{1}{2}\bigr)$ | kinematic viscosity | 0.1333 ($\tau=0.9$) |
+| LBM | $\mathrm{Re}$ | $\dfrac{U L}{\nu}$ | inertia vs. viscosity | 9.6 (64²), 19.2 (128²) |
+| LBM | $\mathrm{Ma}$ | $\dfrac{U}{\sqrt{1/3}}$ | compressibility | 0.035–0.017 (low) |
+| RD | $\Pi_{Dr}$ | $\dfrac{D}{r L^{2}}$ | diffusion at scale $L$ | choose $L$ → report |
+| RD | $c^{\ast}$ | $\dfrac{c}{2\sqrt{D r}}$ | normalized KPP speed | ~0.95–1.0 |
+| FUVDM | $\Theta$ | fit scale in $\Theta\,\Delta m$ or $\Theta\,\|\nabla m\|$ | junction gating strength | $k \approx 1$, $b \approx 0$ |
+| FUVDM | $\Lambda$ | exploration/retention ratio | turnover vs. memory | as swept in heatmaps |
+| FUVDM | $\Gamma$ | retention fraction | memory persistence | ~0.3–0.75 (representative) |
+| FUVDM | $D_{a}$ | anisotropic diffusion index | transport anisotropy | {1, 3, 5, 7} |
+| FUVDM | $\kappa L$ | curvature × scale | path bending | linear vs. $\Theta\,\|\nabla m\|$ |
+| FUVDM | $g$ | void gain | stabilization strength | e.g., 0.5 |
 
-**Lorentz Invariance Constraint:**
-$$
-c^2 = 2 J a^2 \quad \text{(setting } c = 1 \text{ in natural units)}
-$$
+## Core dimensionless groups (why they matter)
 
-**References:** [kinetic_term_derivation.md](kinetic_term_derivation.md)
+1. Void Debt Number 𝔇 — unresolved debt vs. resolved flux at walker level (stability vs. runaway)  
+2. Emergent Coupling Ratio Ξ — void interaction gain vs. local relaxation; controls synchronization/stiffness  
+3. Inverse-Scaling Exponent $\alpha$ — information density rises as system size shrinks: $\mathcal{I}(N) \propto N^{-\alpha}$  
+4. Void Mach $M_v$ — void flux vs. signal speed; stability requires $M_v < 1$  
+5. Topological Information Ratio $\Theta$ — information carried by topology vs. node states (void walkers effect)  
+6. Symmetry Debt $\Sigma$ — broken symmetry flux vs. conserved symmetry flux (dimensionless energy-balance analog)  
+7. Dispersion-to-Convergence $\Lambda$ — divergence vs. convergence rate under modulation (Lyapunov-like)
 
 ---
 
-## 3. Symmetry Analysis and Conservation Laws
+## What is Proven (numeric validation; RD branch)
 
-### 3.1 Symmetry Investigations
+Front-speed (Fisher–KPP pulled front) [PROVEN]
 
-**Time-Translation Symmetry:**
-- The discrete law $\frac{\Delta W}{\Delta t} = F(W)$ is autonomous
-- Leads to energy conservation via Noether's theorem
-
-**Scaling Symmetry:**
-- Not preserved: $F(\lambda W) \neq \lambda F(W)$ due to quadratic term
-- Broken by the non-linear $\alpha W^2$ interaction
-
-**Translational Symmetry:**
-- Also broken due to quadratic non-linearity
-- $F(W + c) \neq F(W)$ for constant $c$
-
-### 3.2 Conserved Quantities
-
-**Discrete Energy Density:**
 $$
-\mathcal{H}_i = \frac{1}{2}\left(\frac{dW_i}{dt}\right)^2 + \frac{1}{2} \sum_{j \in N(i)} J (W_j - W_i)^2 + V(W_i)
+c_{\text{front}} = 2\sqrt{D r}
 $$
 
-**Conservation Law:**
+(RD-4)
+
+Representative defaults: $c_{\mathrm{meas}} \approx 0.953$ vs $c_{\mathrm{th}} = 1.0$, $\mathrm{rel\_err} \approx 0.047$, $R^{2} \approx 0.999996$ (meets gates)  
+Documentation: [rd_front_speed_validation.md](Prometheus_FUVDM/derivation/reaction_diffusion/rd_front_speed_validation.md:1)  
+Script: [rd_front_speed_experiment.py](Prometheus_FUVDM/derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py:1)  
+Sweep: [rd_front_speed_sweep.py](Prometheus_FUVDM/derivation/code/physics/reaction_diffusion/rd_front_speed_sweep.py:1)
+
+Linear dispersion about $\phi \approx 0$ (periodic, linearized RD) [PROVEN]
+
 $$
-\frac{\Delta \mathcal{H}_i}{\Delta t} + \nabla \cdot \vec{J}_i = 0
-$$
-
-**On-Site Invariant for Single Node:**
-$$
-Q = \frac{1}{2} \dot{W}^2 + V(W) = \text{constant}
-$$
-
-**References:** [symmetry_analysis.md](symmetry_analysis.md), [discrete_conservation.md](discrete_conservation.md)
-
----
-
-## 4. Tachyonic Condensation and Vacuum Structure
-
-### 4.1 Vacuum Instability
-
-The potential $V(\phi) = \frac{\alpha - \beta}{2}\phi^2 - \frac{\alpha}{3}\phi^3$ has:
-
-**Critical Points:**
-- $\phi = 0$ (false vacuum, unstable)
-- $\phi = v = 1 - \frac{\beta}{\alpha} = 0.6$ (true vacuum, stable)
-
-**Stability Analysis:**
-$$
-V''(0) = \alpha - \beta = 0.6 > 0 \quad \text{(unstable)}
-$$
-$$
-V''(v) = -(\alpha - \beta) = -0.6 < 0 \quad \text{(stable)}
+\sigma_d(m) = r - \frac{4D}{\Delta x^{2}} \sin^{2}\!\left(\frac{\pi m}{N}\right)
 $$
 
-### 4.2 Condensation Mechanism
+(RD-5)
 
-The void state ($\phi = 0$) is tachyonic, causing spontaneous evolution to the condensed state ($\phi = v$):
-
-**Effective Mass at Origin:**
 $$
-m_{\text{tach}}^2 = V''(0) = \alpha - \beta = 0.6
+\sigma(k) = r - D k^{2}, \qquad k = \frac{2\pi m}{L}
 $$
 
-**Effective Mass at True Vacuum:**
+(RD-6)
+
+Representative defaults: median rel. error $\approx 1.45\times 10^{-3}$, $R^{2}_{\text{array}} \approx 0.99995$ (meets gates)  
+Documentation: [rd_dispersion_validation.md](Prometheus_FUVDM/derivation/reaction_diffusion/rd_dispersion_validation.md:1)  
+Script: [rd_dispersion_experiment.py](Prometheus_FUVDM/derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py:1)
+
+Consolidated plan and acceptance gates:  
+[rd_validation_plan.md](Prometheus_FUVDM/derivation/reaction_diffusion/rd_validation_plan.md:1)
+
+Status log and edits:  
+[CORRECTIONS.md](Prometheus_FUVDM/derivation/CORRECTIONS.md:1)
+
+## Stability and fixed points (RD)
+
+For $r>0$, $\phi=0$ is dynamically unstable.
+
+Homogeneous fixed point:
+
 $$
-m_{\text{eff}}^2 = V''(v) = \alpha - \beta = 0.6
-$$
-$$
-m_{\text{eff}} = \sqrt{0.6} = 0.387
-$$
-
-### 4.3 Physical Interpretation
-
-This represents the fundamental mechanism by which "something emerges from nothing" - the void state is inherently unstable and must condense to create structure and substance.
-
-**References:** [computational_proofs/FUM_theory_and_results.md](computational_proofs/FUM_theory_and_results.md)
-
----
-
-## 5. Finite Domain Analysis and Mode Structure
-
-### 5.1 Bordag-Inspired Tube Analysis
-
-For finite cylindrical domains of radius $R$:
-
-**Baseline Potential:**
-$$
-V(\phi) = -\frac{1}{2}\mu^2\phi^2 + \frac{\lambda}{4}\phi^4
+\phi^{\star} = \frac{r}{u} = 1 - \frac{\beta}{\alpha} \qquad (r = \alpha - \beta,\; u = \alpha)
 $$
 
-**With Cubic Tilt:**
+(RD-7)
+
+Optional cubic term $-\lambda\, \phi^{3}$ stabilizes large-amplitude regimes; off by default in canonical validations.
+
+## Discrete → Continuum & Kinetics
+
+Diffusion mapping (see also RD-3):
+
 $$
-V(\phi) \to V(\phi) + \frac{\gamma}{3}\phi^3
-$$
-
-**Effective Mass Near Vacuum:**
-$$
-m_{\text{eff}}^2 = 2\mu^2
-$$
-
-### 5.2 Mode Decomposition
-
-**Transverse Modes in Cylinder:**
-- Tachyonic modes for $r < R$ (uncondensed region)
-- Stable modes for $r > R$ (condensed region)
-
-**Boundary Conditions:**
-- Continuity of field and derivatives at $r = R$
-- Asymptotic approach to vacuum at $r \to \infty$
-
-**Energy Minimization:**
-The system finds equilibrium by minimizing total energy through optimal tube radius and field configuration.
-
-**References:** [finite_tube_mode_analysis.md](finite_tube_mode_analysis.md)
-
----
-
-## 6. Computational Proofs and Numerical Validations
-
-### 6.1 Light Speed Derivation
-
-**Universal Void Dynamics Approach:**
-- Use identical evolution pattern as other physical constants
-- Apply electromagnetic domain modulation
-- Calculate final convergence value
-
-**Results:**
-```
-Final void value: 0.xxxxxx
-Light speed scale factor: 299,792,458
-Predicted light speed: 299,792,458 m/s
-EM sparsity: XX.X%
-```
-
-### 6.2 Validation Metrics
-
-**Convergence Criteria:**
-- Void residue minimization
-- Sparsity percentage analysis
-- Scale factor consistency
-
-**Scaling Law:**
-$$
-\text{Physical Constant} = \text{Void Result} \times \text{Scale Factor}
+D = J a^{2} \quad \text{or} \quad D = \tfrac{J}{z} a^{2}
 $$
 
-**References:** [computational_proofs/FUM_Light_Speed_Proof.py](computational_proofs/FUM_Light_Speed_Proof.py)
+(RD-3′)
 
----
+EFT kinetic normalization (quarantined branch; see also EFT-1):
 
-## 7. FUM-Voxtrium Cosmological Mapping
-
-### 7.1 Bridge to Macro Framework
-
-**Energy Exchange Mediation:**
 $$
-\sum_i [\dot{\rho}_i + 3H(1+w_i)\rho_i] = 0
+c^{2} = 2 J a^{2} \quad \text{or} \quad c^{2} = \kappa a^{2},\; \kappa = 2J
 $$
 
-**Partition Mapping:**
-- Map void field excitations to cosmological density sectors
-- Ensure conservation through $J^\nu$ current
+(EFT-1′)
 
-### 7.2 Units and Calibration
+References:  
+[discrete_to_continuum.md](Prometheus_FUVDM/derivation/foundations/discrete_to_continuum.md:1),  
+[kinetic_term_derivation.md](Prometheus_FUVDM/derivation/effective_field_theory/kinetic_term_derivation.md:1)
 
-**Physical Parameter Promotion:**
-- $(\phi_0, \tau, a)$ dimensional scale factors
-- $g_3$ and $m$ via explicit mapping
-- $v_{\text{phys}}$ and $m_{\text{eff}}$ in GeV units
+## Scope boundaries and quarantine (policy)
 
-**Cosmological Scale Conversion:**
+- Canonical baseline is RD (first-order in time).  
+- All EFT/KG (second-order in time) statements are quarantined to the EFT docs and labeled [PLAUSIBLE]/[FUTURE WORK].  
+- Effective mass is parameter-dependent. Example only:
+
 $$
-\rho_{\text{phys}} = \rho_{\text{dim}} \times \text{Scale Factor}
-$$
-
-### 7.3 Observational Constraints
-
-**Dark Energy Constraints:**
-$$
-w_{\text{eff}} \approx -1 \text{ via } \epsilon_{\text{DE}} \leq \delta_w
+(\alpha,\beta) = (0.25, 0.10): \quad m_{\mathrm{eff}} = \sqrt{\alpha - \beta} = \sqrt{0.15} \approx 0.387
 $$
 
-**Injection Rate Limits:**
-$$
-f_{\text{inj}} \ll 1
-$$
+(EFT-EX)
 
-**References:** [fum_voxtrium_mapping.md](fum_voxtrium_mapping.md)
+EFT references:  
+- [effective_field_theory_approach.md](Prometheus_FUVDM/derivation/effective_field_theory/effective_field_theory_approach.md:1)  
+- [fum_voxtrium_mapping.md](Prometheus_FUVDM/derivation/effective_field_theory/fum_voxtrium_mapping.md:1)
 
----
+## Reproducibility and outputs
 
-## 8. Action Formulation and Variational Principles
+- Figures → derivation/code/outputs/figures/  
+- Logs → derivation/code/outputs/logs/  
+- Filenames: <script>_<UTC timestamp>.png/json
 
-### 8.1 Discrete Action
+fum_rt parity (independent runners; same metrics schema)  
+- Front-speed mirror: [rd_front_speed_runner.py](Prometheus_FUVDM/fum_rt/physics/rd_front_speed_runner.py:1)  
+- Dispersion mirror: [rd_dispersion_runner.py](Prometheus_FUVDM/fum_rt/physics/rd_dispersion_runner.py:1)
 
-**Discrete Lagrangian (per time step):**
-$$
-L^n = a^d \sum_i\Bigg[
-\frac{1}{2}\Big(\frac{W_i^{n+1}-W_i^{n}}{\Delta t}\Big)^2
-- \frac{\kappa}{2}\sum_{\mu=1}^d\big(W_{i+\mu}^{n}-W_i^{n}\big)^2
-- V\!(W_i^{n})
-\Bigg]
-$$
+## Design principles (condensed)
 
-**Discrete Euler-Lagrange:**
-$$
-\frac{W_i^{n+1}-2W_i^{n}+W_i^{n-1}}{(\Delta t)^2}
--\kappa\,\sum_{\mu=1}^d \big(W_{i+\mu}^{n}+W_{i-\mu}^{n}-2W_i^{n}\big)
-+V'(W_i^{n})=0
-$$
+- Single canonical model for baseline physics claims (RD)  
+- Every nontrivial statement maps to a scriptable check with acceptance criteria (tolerance + $R^{2}$ gate)  
+- Provenance and scope separation: EFT content retained for future work and explicitly labeled
 
-### 8.2 Continuum Action
+## At-a-glance defaults (validated runs)
 
-**Field Action:**
-$$
-S = \int d^4x \left[ \frac{1}{2}(\partial_\mu \phi)(\partial^\mu \phi) - V(\phi) \right]
-$$
+- Front-speed: N=1024, L=200, D=1.0, r=0.25, T=80, cfl=0.2, seed=42, x0=−60, level=0.1, fit 0.6–0.9  
+- Dispersion: N=1024, L=200, D=1.0, r=0.25, T=10, cfl=0.2, seed=42, amp0=1e−6, record=80, m_max=64, fit 0.1–0.4
 
-**Euler-Lagrange Result:**
-$$
-\Box\phi + V'(\phi) = 0
-$$
+## Memory steering and system notes
 
----
+- Memory-steering derivations and runtime integrations are tracked separately and must reference RD canonical terms when mapping to dynamics.  
+  See: [memory_steering.md](Prometheus_FUVDM/derivation/memory_steering/memory_steering.md:1)  
+- Runtime parity and plots reside under fum_rt/core/* and fum_rt/physics/* with explicit comments when driven by proven physics
 
-## 9. Summary of Key Discoveries
+## Finite-domain EFT modes (quarantined)
 
-### 9.1 Fundamental Mechanisms
+- Finite-tube mode problem and energy scans adapt the EFT branch with bounded potentials and mass-matrix positivity  
+- Doc: [finite_tube_mode_analysis.md](Prometheus_FUVDM/derivation/tachyon_condensation/finite_tube_mode_analysis.md:1)
 
-1. **Void Instability:** The empty state is inherently unstable due to tachyonic mass term
-2. **Spontaneous Condensation:** Matter and structure emerge automatically from void instability
-3. **Universal Scaling:** All physical constants derivable from void dynamics with appropriate domain modulation
-4. **Conservation Laws:** Energy and momentum conserved through geometric flux terms
+## Archive / informal content
 
-### 9.2 Quantitative Predictions
+- Non-normative transcripts or exploratory notes are labeled
 
-**Vacuum Expectation Value:**
-$$
-v = 0.6 \text{ (dimensionless)}
-$$
+## Licensing and citation
 
-**Fundamental Mass Scale:**
-$$
-m_{\text{eff}} = 0.387 \text{ (dimensionless)}
-$$
+- The dual-license banner applies (see header).  
+- Cite this overview and the specific validation documents when reusing claims or reproducing results.
 
-**Stability Conditions:**
-- False vacuum at $\phi = 0$ (unstable)
-- True vacuum at $\phi = v$ (stable)
-- Mass gap: $\Delta m^2 = 0.6$
+## Appendix: Quick Links
 
-### 9.3 Cosmological Implications
+- Front speed: [rd_front_speed_validation.md](Prometheus_FUVDM/derivation/reaction_diffusion/rd_front_speed_validation.md:1),  
+  [rd_front_speed_experiment.py](Prometheus_FUVDM/derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py:1)  
+- Dispersion: [rd_dispersion_validation.md](Prometheus_FUVDM/derivation/reaction_diffusion/rd_dispersion_validation.md:1),  
+  [rd_dispersion_experiment.py](Prometheus_FUVDM/derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py:1)  
+- Plan: [rd_validation_plan.md](Prometheus_FUVDM/derivation/reaction_diffusion/rd_validation_plan.md:1)  
+- Status: [CORRECTIONS.md](Prometheus_FUVDM/derivation/CORRECTIONS.md:1)
 
-- **Dark Energy:** Emerges from void condensation dynamics
-- **Dark Matter:** Corresponds to fluctuations around vacuum state
-- **Structure Formation:** Driven by tachyonic instabilities in finite domains
-- **Conservation:** Total energy-momentum conserved in all processes
-
----
-
-## 10. Units and Physical Calibration
-
-### 10.1 Dimensionless to Physical Mapping
-
-**Time Scale:**
-$$
-\tau = \sqrt{D} \cdot a \text{ (fundamental time unit)}
-$$
-
-**Energy Scale:**
-$$
-E_0 = \frac{\hbar}{\tau} \text{ (fundamental energy unit)}
-$$
-
-**Length Scale:**
-$$
-a \text{ (lattice spacing)}
-$$
-
-### 10.2 Physical Constants
-
-**In Natural Units ($c = \hbar = 1$):**
-- $m_{\text{eff}} \to m_{\text{eff}} \cdot E_0$
-- $v \to v \cdot \phi_0$ (field scale factor)
-
-**Conversion to SI:**
-- Time: $t_{\text{SI}} = t_{\text{dim}} \cdot \tau$
-- Energy: $E_{\text{SI}} = E_{\text{dim}} \cdot E_0$
-- Mass: $m_{\text{SI}} = m_{\text{dim}} \cdot E_0/c^2$
-
----
-
-## References and Further Details
-
-**Core Derivations:**
-- [discrete_to_continuum.md](discrete_to_continuum.md) - Fundamental continuum limit
-- [kinetic_term_derivation.md](kinetic_term_derivation.md) - Kinetic coefficient derivation
-- [effective_field_theory_approach.md](effective_field_theory_approach.md) - EFT framework
-- [symmetry_analysis.md](symmetry_analysis.md) - Symmetries and conservation laws
-- [discrete_conservation.md](discrete_conservation.md) - Energy conservation proof
-
-**Advanced Analysis:**
-- [finite_tube_mode_analysis.md](finite_tube_mode_analysis.md) - Finite domain physics
-- [fum_voxtrium_mapping.md](fum_voxtrium_mapping.md) - Cosmological bridge
-
-**Computational Validation:**
-- [computational_proofs/void_dynamics_theory.md](computational_proofs/void_dynamics_theory.md) - Theory comparison
-- [computational_proofs/FUM_theory_and_results.md](computational_proofs/FUM_theory_and_results.md) - Summary results
-- [computational_proofs/FUM_Light_Speed_Proof.py](computational_proofs/FUM_Light_Speed_Proof.py) - Light speed derivation
-
-**System Architecture:**
-- [../Docs/FUM_Blueprint.md](../Docs/FUM_Blueprint.md) - Implementation requirements
-
----
-
-*This document provides a unified view of all major equations, discoveries, and theoretical developments in the Fully Unified Void Dynamics Model (FUVDM). For detailed mathematical proofs and derivations, consult the referenced files in the derivation directory.*

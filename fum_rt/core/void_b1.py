@@ -30,6 +30,7 @@ import math
 from typing import Iterable, List, Tuple, Dict, Any, Optional
 
 import numpy as np
+from .primitives.dsu import DSU as _DSU
 
 
 def _count_intersection_sorted(a: np.ndarray, b: np.ndarray) -> int:
@@ -119,49 +120,39 @@ class VoidB1Meter:
         W = np.asarray(W, dtype=np.float32)
         th = float(threshold)
 
-        # Reservoir over active edges, and visit-tracking for V_active and C_active
+        # Reservoir over active edges; avoid global scans by building DSU over active vertices only
         res = _Reservoir(self.sample_edges, rng)
-        visited = np.zeros(N, dtype=np.bool_)
         E_active = 0
 
-        # We also compute active-subgraph components via DSU over active edges
-        parent = np.arange(N, dtype=np.int32)
-        rank = np.zeros(N, dtype=np.int8)
-
-        def find(x: int) -> int:
-            while parent[x] != x:
-                parent[x] = parent[parent[x]]
-                x = parent[x]
-            return x
-
-        def union(a: int, b: int):
-            ra, rb = find(a), find(b)
-            if ra == rb:
-                return
-            if rank[ra] < rank[rb]:
-                parent[ra] = rb
-            elif rank[rb] < rank[ra]:
-                parent[rb] = ra
-            else:
-                parent[rb] = ra
-                rank[ra] = rank[ra] + 1
+        # Active-vertex DSU keyed by local contiguous ids (no O(N) scans)
+        dsu = _DSU(0)
+        idmap: Dict[int, int] = {}
+        local_n = 0
 
         for (i, j) in active_edge_iter:
             i = int(i); j = int(j)
             # Active edge guaranteed by iterator contract
             E_active += 1
-            visited[i] = True
-            visited[j] = True
-            union(i, j)
+            ii = idmap.get(i)
+            if ii is None:
+                ii = local_n
+                idmap[i] = ii
+                dsu.grow_to(local_n + 1)
+                local_n += 1
+            jj = idmap.get(j)
+            if jj is None:
+                jj = local_n
+                idmap[j] = jj
+                dsu.grow_to(local_n + 1)
+                local_n += 1
+            dsu.union(ii, jj)
             res.push((i, j))
 
-        V_active = int(visited.sum())
+        V_active = int(local_n)
         if E_active == 0:
-            C_active = N  # no active edges: every node is isolated (V_active may be 0)
+            C_active = N  # no active edges: consider each node isolated
         else:
-            # Count unique roots only over nodes that are active (visited==True)
-            roots = set(int(find(int(idx))) for idx in np.nonzero(visited)[0])
-            C_active = len(roots)
+            C_active = int(getattr(dsu, "components", dsu.count_sets()))
 
         # Triangles-per-edge over the reservoir
         tri = 0

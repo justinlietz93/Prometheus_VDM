@@ -30,6 +30,20 @@ def get_global_css() -> str:
     }
     input::placeholder,textarea::placeholder{color:var(--muted)}
     input:focus,textarea:focus,select:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(106,160,194,0.15)}
+
+    /* Scrollbars (WebKit) */
+    *::-webkit-scrollbar{width:10px;height:10px}
+    *::-webkit-scrollbar-track{background:var(--panel)}
+    *::-webkit-scrollbar-thumb{
+        background:#1d2733;
+        border-radius:8px;
+        border:1px solid var(--grid);
+    }
+    *::-webkit-scrollbar-thumb:hover{background:#273445}
+
+    /* Scrollbars (Firefox) */
+    *{scrollbar-color:#1d2733 var(--panel2);scrollbar-width:thin}
+
     /* dcc.Dropdown (react-select) */
     .Select-control{background:var(--panel2)!important;border:1px solid var(--border)!important;color:var(--text)!important;border-radius:8px}
     .Select--single>.Select-control .Select-value{color:var(--text)!important}
@@ -38,11 +52,13 @@ def get_global_css() -> str:
     .Select-option.is-focused{background:#121a22!important}
     .Select-option.is-selected{background:#17222c!important}
     .VirtualizedSelectFocusedOption{background:#121a22!important}
+
     /* rc-slider */
     .rc-slider{padding:8px 0}
-    .rc-slider-rail{background: #0d1218}
-    .rc-slider-track{background: var(--accent)}
+    .rc-slider-rail{background:#0d1218}
+    .rc-slider-track{background:var(--accent)}
     .rc-slider-dot{border-color:#233140;background:#10151c}
     .rc-slider-handle{border:1px solid var(--border);background:var(--panel2)}
+
     .tight{margin-top:6px}
     """

@@ -62,18 +62,42 @@ Domains supported (for auto‑modulation): `quantum`, `standard_model`, `dark_ma
 ## Layout
 
 - `fum_rt/run_nexus.py` — CLI entrypoint.
-- `fum_rt/nexus.py` — the real‑time orchestrator.
+- `fum_rt/nexus.py` — the real‑time orchestrator (thin façade; delegates loop/telemetry/control‑plane to runtime/*).
+- `fum_rt/runtime/loop.py` — main loop extracted from Nexus.run (parity‑preserving).
+- `fum_rt/runtime/telemetry.py` — telemetry packagers (`macro_why_base`, `status_payload`) and `tick_fold`.
+- `fum_rt/runtime/phase.py` — external control‑plane (phase.json) profiles, apply/poll.
+- `fum_rt/runtime/retention.py` — checkpoint retention policy.
+- `fum_rt/runtime/events_adapter.py` — Observation → core events adapter for event‑driven metrics.
+- `fum_rt/runtime/runtime_helpers.py` — behavior‑preserving helpers (ingest, speak gating, viz, checkpoints).
+- `fum_rt/runtime/emitters.py` — MacroEmitter/ThoughtEmitter initialization.
+- `fum_rt/runtime/orchestrator.py` — orchestrator seam (delegates to Nexus for parity).
+- `fum_rt/runtime/state.py` — optional small runtime context (tick/time, small rings); not required for parity.
+- `fum_rt/core/engine.py` — CoreEngine seam (snapshot, engram_load/save pass‑throughs).
+- `fum_rt/core/signals.py` — core signals seam (B1 detector apply, VT/cohesion/TD helpers).
 - `fum_rt/core/void_dynamics_adapter.py` — loads your void functions or a minimal stub.
 - `fum_rt/core/connectome.py` — kNN‑ish graph + vectorized update step.
 - `fum_rt/core/metrics.py` — sparsity/cohesion/complexity metrics.
 - `fum_rt/core/visualizer.py` — dashboard & graph rendering (matplotlib).
-- `fum_rt/core/memory.py` — engram snapshots (.npz).
+- `fum_rt/core/memory.py` — engram snapshots (.npz/.h5).
+- `fum_rt/io/lexicon/store.py` — phrase templates and lexicon I/O (learned vocabulary).
 - `fum_rt/io/ute.py` — Universal Temporal Encoder (stdin & synthetic tick sources).
 - `fum_rt/io/utd.py` — Universal Transduction Decoder (stdout & file sink).
 - `fum_rt/utils/logging_setup.py` — structured logger helper.
 - `requirements.txt` — only `numpy`, `networkx`, `matplotlib`.
 
 All modules are tiny and documented so you can extend fast.
+
+### Modularization and façade notes
+
+- [Nexus](fum_rt/nexus.py:1) is a thin façade; the main loop is [run_loop()](fum_rt/runtime/loop.py:40). External imports remain unchanged.
+- Telemetry packaging and tick fold live in [tick_fold()](fum_rt/runtime/telemetry.py:99), with B1 gating via [apply_b1_detector()](fum_rt/core/signals.py:218).
+- Orchestrator/core seams: [Orchestrator()](fum_rt/runtime/orchestrator.py:22) delegates to [CoreEngine()](fum_rt/core/engine.py:29) for snapshot and engram ops.
+- Runtime helpers provide behavior-preserving ingest/speak/viz/checkpoint: [maybe_auto_speak()](fum_rt/runtime/runtime_helpers.py:234), [maybe_visualize()](fum_rt/runtime/runtime_helpers.py:392), [save_tick_checkpoint()](fum_rt/runtime/runtime_helpers.py:414).
+- Lexicon/phrase bank I/O lives in [store.py](fum_rt/io/lexicon/store.py:1); IDF is composer/telemetry-only and never affects dynamics.
+- Event-driven metrics (ON by default; telemetry-only) fold bus observations via [observations_to_events()](fum_rt/runtime/events_adapter.py:22) and ADC via [adc_metrics_to_event()](fum_rt/runtime/events_adapter.py:96). Disable with ENABLE_EVENT_METRICS=0.
+- Void cold scouts (ON by default; telemetry-only) explore cold regions with budgeted walkers and feed evt_* probes; disable with ENABLE_COLD_SCOUTS=0.
+- Thought ledger emission is behind ENABLE_THOUGHTS=1 and uses runtime emitters; see [initialize_emitters()](fum_rt/runtime/emitters.py:23).
+- Composer novelty gain can be tuned with COMPOSER_IDF_K (default 0.0), applied only in the composer, not in SIE/ADC/connectome.
 
 ---
 
@@ -110,10 +134,8 @@ python tools/utd_event_scan.py runs/2025-08-10_21-00-00 --emit-lexicon runs/2025
 ### Macro board persistence
 
 - At runtime, newly used macro names are automatically registered and persisted to `runs/<timestamp>/macro_board.json`.
-- On startup, the Nexus also registers macro keys from:
-  1) the run’s `macro_board.json` (preferred), or
-  2) `from_physicist_agent/macro_board_min.json` (fallback).
-- This allows new macro keys (e.g., `say`, `status`) to accumulate across runs without additional configuration.
+- On startup, the Nexus registers macro keys from the run’s `macro_board.json`.
+- Defaults `status` and `say` are always available.
 
 
 
@@ -132,7 +154,7 @@ Files and where they live
   - Nexus reads macros at boot: [fum_rt/nexus.py](fum_rt/nexus.py)
 - Phrase bank (optional source of sentence templates, loaded at boot):
   - Per‑run: runs/&lt;timestamp&gt;/phrase_bank.json
-  - Fallback: [from_physicist_agent/phrase_bank_min.json](from_physicist_agent/phrase_bank_min.json)
+  - Fallback (packaged): [fum_rt/io/lexicon/phrase_bank_min.json](fum_rt/io/lexicon/phrase_bank_min.json)
 - Lexicon (auto‑learned vocabulary from inputs/outputs): runs/&lt;timestamp&gt;/lexicon.json
   - Grows during the run; periodically saved by the runtime
 
@@ -158,7 +180,7 @@ Example macro_board.json
 Phrase bank (richer sentences)
 - The runtime loads optional sentence templates for the “say” macro from either:
   - runs/&lt;timestamp&gt;/phrase_bank.json, or
-  - [from_physicist_agent/phrase_bank_min.json](from_physicist_agent/phrase_bank_min.json)
+  - [fum_rt/io/lexicon/phrase_bank_min.json](fum_rt/io/lexicon/phrase_bank_min.json)
 - Expected shape:
 ```json
 {
@@ -222,6 +244,26 @@ python tools/utd_event_scan.py runs --macro say --include-nexus --format csv --o
 ```
 
 Operational notes
+- Emission path selection: MacroEmitter path priority $UTD_OUT > utd.path > runs/<timestamp>/utd_events.jsonl; ThoughtEmitter path priority $THOUGHT_OUT > runs/<timestamp>/thoughts.ndjson. See [initialize_emitters()](fum_rt/runtime/emitters.py:23).
 - Macro names are persisted automatically when first used; no manual step required.
 - Phrase bank and macro board are complementary; phrase bank supplies sentence templates, macro board is the registry of macro keys and optional metadata like “templates”.
 - The runtime keeps everything compute‑light: deterministic template filling with keywords/tokens from the live lexicon and metrics.
+
+--- 
+## Developer utilities (ad hoc; not part of system runtime)
+
+These scripts are standalone developer tools intended to be run manually. They are NOT imported by runtime or core modules, and have no effect on the running system.
+
+- Parity harness: [golden_run_parity.py](tools/golden_run_parity.py:1)
+  - Compare two completed runs for behavioral parity (macros and tick metrics)
+  - Example:
+    - python tools/golden_run_parity.py --run-a runs/2025-08-10_21-00-00 --run-b runs/2025-08-10_22-15-00
+
+- Smoke verifier: [smoke_emissions.py](tools/smoke_emissions.py:1)
+  - Sanity-check a run directory for basic emissions (UTD macros, ticks, optional thoughts)
+  - Example:
+    - python tools/smoke_emissions.py --run runs/2025-08-10_21-00-00
+
+Policy:
+- No production code imports anything from tools/.
+- Tools are safe to modify/remove without impacting runtime execution.

@@ -57,11 +57,12 @@ def register_chat_callbacks(app):
         Output("chat-state", "data"),
         Input("poll", "n_intervals"),
         Input("chat-filter", "value"),
+        Input("ui-state", "data"),
         State("run-dir", "value"),
         State("chat-state", "data"),
         prevent_initial_call=False,
     )
-    def on_chat_update(_n, filt, run_dir, data):
+    def on_chat_update(_n, filt, ui_state, run_dir, data):
         rd = (run_dir or "").strip()
         if not rd:
             return "", {"run_dir": "", "utd_size": 0, "inbox_size": 0, "items": []}
@@ -78,12 +79,29 @@ def register_chat_callbacks(app):
             utd_size = 0
             inbox_size = 0
 
-        # Stream UTD macro events
+        # UI-governed tailing (default OFF). If tail_chat is False, render from in-memory only.
+        ui = ui_state or {}
+        try:
+            tail_enabled = bool(ui.get("tail_chat", False))
+        except Exception:
+            tail_enabled = False
+
+        if not tail_enabled:
+            items = trim_items(items, limit=200)
+            view = render_chat_view(items, filt=(filt or "all"))
+            return view, {
+                "run_dir": rd,
+                "utd_size": int(utd_size),
+                "inbox_size": int(inbox_size),
+                "items": items,
+            }
+
+        # Stream UTD macro events (UI explicitly enabled)
         utd_path = os.path.join(rd, "utd_events.jsonl")
         new_utd_recs, new_utd_size = tail_jsonl_bytes(utd_path, utd_size)
         items.extend(items_from_utd_records(new_utd_recs))
 
-        # Stream user inbox
+        # Stream user inbox (UI explicitly enabled)
         inbox_path = os.path.join(rd, "chat_inbox.jsonl")
         new_inbox_recs, new_inbox_size = tail_jsonl_bytes(inbox_path, inbox_size)
         items.extend(items_from_inbox_records(new_inbox_recs))

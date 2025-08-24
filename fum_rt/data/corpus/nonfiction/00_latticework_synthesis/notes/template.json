@@ -1,0 +1,14 @@
+{
+    "_template": "Nonfiction book listing",
+    "_version": "1.0.0",
+    "_notes": "Duplicate objects in books array for each book. Keep description to one sentence.",
+    "books": [
+        {
+            "domain": "e.g. psychology",
+            "title": "e.g. Thinking, Fast and Slow",
+            "author": "e.g. Daniel Kahneman",
+            "date": "YYYY-MM-DD",
+            "description": "Single concise sentence summarizing the core idea."
+        }
+    ]
+}

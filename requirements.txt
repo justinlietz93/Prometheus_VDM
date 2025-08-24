@@ -13,6 +13,13 @@ persim # For persistent homology computations
 h5py # For saving FUM's brain
 plotly # For interactive visualizations
 dash # For web-based visualizations
+redis # For Redis integration
+
+# Testing
+pytest
+
+# Tools
+pypdf2 # For PDF text extraction
 
 # Custom Advanced Math Library
 statsmodels # For statistical models
