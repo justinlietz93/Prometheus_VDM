@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from typing import Dict, Any, List
 from dash import html, dcc
+from fum_rt.frontend.components.widgets.file_picker import file_picker
 
 
 def run_config_card(
@@ -403,11 +404,12 @@ def run_config_card(
                         style={"width": "200px"},
                     ),
                     html.Button("Save Profile", id="save-profile", n_clicks=0),
+                    file_picker(prefix="profile-file", title="Select profile (.json)", initial="", width="50%"),
                     dcc.Dropdown(
                         id="profile-path",
                         options=profile_options,
                         placeholder="load profile",
-                        style={"width": "50%"},
+                        style={"width": "50%", "display": "none"},
                     ),
                     html.Button("Load", id="load-profile", n_clicks=0),
                 ],

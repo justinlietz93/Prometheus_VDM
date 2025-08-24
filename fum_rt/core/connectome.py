@@ -6,6 +6,13 @@ research while ensuring commercial applications are aligned with the project's e
 See LICENSE file for full terms.
 """
 
+import os as _os
+
+# Dense backend is validation-only; forbid import unless FORCE_DENSE is explicitly set.
+# This prevents accidental dense usage in runtime paths and enforces sparse-first policy.
+if str(_os.getenv("FORCE_DENSE", "0")).strip().lower() not in ("1", "true", "yes", "on", "y", "t"):
+    raise RuntimeError("Dense connectome is validation-only. Set FORCE_DENSE=1 to enable for tests.")
+
 import numpy as np
 import networkx as nx
 from .void_dynamics_adapter import universal_void_dynamics, delta_re_vgsp, delta_gdsp
