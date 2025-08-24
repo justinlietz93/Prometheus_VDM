@@ -38,7 +38,7 @@ from fum_rt.frontend.callbacks.chat import register_chat_callbacks
 from fum_rt.frontend.callbacks.engram import register_engram_callbacks
 from fum_rt.frontend.callbacks.perf import register_perf_callbacks
 from fum_rt.frontend.callbacks.interval import register_interval_callbacks
-from fum_rt.frontend.callbacks.file_picker import (
+from fum_rt.frontend.callbacks.file_picker.registrars import (
     register_file_picker_static,
     register_file_picker_engram,
 )
