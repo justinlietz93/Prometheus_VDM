@@ -242,6 +242,7 @@ def register_file_picker_common(app, prefix: str, target_id: str, project_root: 
         Output(sel_dir_store, "data", allow_duplicate=True),
         Output(file_sel_store, "data", allow_duplicate=True),
         Output(f"{prefix}-last-action", "data", allow_duplicate=True),
+        Output(status_div, "children", allow_duplicate=True),
         Input({"role": f"{prefix}-tree-dir", "path": ALL}, "n_clicks"),
         State(tree_store, "data"),
         State(root_store, "data"),
@@ -285,7 +286,7 @@ def register_file_picker_common(app, prefix: str, target_id: str, project_root: 
         nodes[p] = node
         tree["nodes"] = nodes
         # Also clear any existing file selection on folder toggle so status shows folder metadata
-        return tree, p, "", "nav"
+        return tree, p, "", "nav", _dir_status_text(p, exts=(exts or []), hide_dotfiles=True)
 
     # Breadcrumb click -> select directory (clamped)
     @app.callback(
@@ -348,13 +349,25 @@ def register_file_picker_common(app, prefix: str, target_id: str, project_root: 
     )
     def on_explorer_click(_file_clicks):
         ctx = dash.callback_context
+
+        # Robust gating: only proceed when the triggering file button's n_clicks > 0
+        try:
+            trig = getattr(ctx, "triggered", None)
+            if not trig:
+                return no_update, no_update, no_update, no_update
+            clicked_val = trig[0].get("value", None)
+            if not isinstance(clicked_val, (int, float)) or int(clicked_val) <= 0:
+                return no_update, no_update, no_update, no_update
+        except Exception:
+            return no_update, no_update, no_update, no_update
+
         obj = _get_ctx_obj(ctx)
         if not isinstance(obj, dict) or obj.get("role") != f"{prefix}-file":
             return no_update, no_update, no_update, no_update
         fpath = (obj.get("path", "") or "").strip()
         if not fpath:
             return no_update, no_update, no_update, no_update
-        # Only set selected file and signal 'file'; status is computed centrally in on_render
+        # Set file selection only; status will be computed centrally in on_render based on last_action.
         return no_update, fpath, no_update, "file"
 
     # Confirm selection -> set stores, hide modal, and update target value
