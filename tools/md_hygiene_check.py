@@ -47,6 +47,9 @@ CANONICAL_LINK_RULES: List[Tuple[re.Pattern, str]] = [
     (re.compile(r"\((?:\.\./)*computational_proofs/"), "(Prometheus_FUVDM/derivation/code/computational_proofs/"),
     # Voxtrium source file moved to supporting_work/voxtrium (example representative)
     (re.compile(r"\((?:Prometheus_FUVDM/)?derivation/voxtrium/voxtrium_message\.txt"), "(Prometheus_FUVDM/derivation/supporting_work/voxtrium/"),
+    # Additional topical mappings
+    (re.compile(r"\((?:Prometheus_FUVDM/)?derivation/finite_tube_mode_analysis\.md(?:[:)#])"), "(Prometheus_FUVDM/derivation/tachyon_condensation/finite_tube_mode_analysis.md"),
+    (re.compile(r"\((?:Prometheus_FUVDM/)?derivation/continuum_stack\.md(?:[:)#])"), "(Prometheus_FUVDM/derivation/foundations/continuum_stack.md"),
 ]
 
 def list_md_files(root: str) -> List[str]:
