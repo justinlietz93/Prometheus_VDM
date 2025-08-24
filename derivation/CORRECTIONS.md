@@ -10,7 +10,7 @@ Scope: Tier-0 correctness fixes (numerics, stability narrative) and unification 
   - Before: Mixed RD/EFT claims; no explicit canonical model.
   - After: Canonical RD banner + mapping (D = J a² or (J/z) a²; r = α − β; u = α), stability note, EFT scoped to future work.
 
-- [derivation/computational_proofs/FUM_theory_and_results.md](computational_proofs/FUM_theory_and_results.md)
+- [derivation/code/computational_proofs/FUM_theory_and_results.md](code/computational_proofs/FUM_theory_and_results.md)
   - Before: Fixed numerical claim “m_eff ≈ 0.387”.
   - After: m_eff = √(α−β) (parameter‑dependent), added RD model‑class note; removed fixed numeric.
 
@@ -30,7 +30,7 @@ Scope: Tier-0 correctness fixes (numerics, stability narrative) and unification 
   - Before: No scope banner.
   - After: Quarantine banner; note m_eff = √(α−β) is parameter‑dependent and unitized via τ.
 
-- [derivation/computational_proofs/void_dynamics_theory.md](computational_proofs/void_dynamics_theory.md)
+- [derivation/code/computational_proofs/void_dynamics_theory.md](code/computational_proofs/void_dynamics_theory.md)
   - Before: No scope note; mixed RD/EFT implications.
   - After: Scope note at top; references discrete‑action derivation for c² = 2 J a².
 
@@ -66,12 +66,12 @@ All fixed-number statements were replaced with parameter‑dependent forms and e
 ## Edit Log (file, change)
 
 - [derivation/FUVDM_Overview.md](FUVDM_Overview.md): Replace overview with RD canonical banner; corrected mapping (r = α − β, u = α); EFT scoped.
-- [derivation/computational_proofs/FUM_theory_and_results.md](computational_proofs/FUM_theory_and_results.md): Insert RD note; replace fixed m_eff numeric with param‑dependent form.  
+- [derivation/code/computational_proofs/FUM_theory_and_results.md](code/computational_proofs/FUM_theory_and_results.md): Insert RD note; replace fixed m_eff numeric with param‑dependent form.  
 - [derivation/discrete_to_continuum.md](discrete_to_continuum.md): Update objective to RD; add D mapping text; keep EFT derivation as future work.  
 - [derivation/memory_steering.md](memory_steering.md): Align with RD canonical; restrict EFT formulas to EFT doc; remove back‑solve in RD section.  
 - [derivation/symmetry_analysis.md](symmetry_analysis.md): Clarify RD vs EFT contexts in interpretations.  
 - [derivation/effective_field_theory_approach.md](effective_field_theory_approach.md): Add quarantine banner.  
-- [derivation/computational_proofs/void_dynamics_theory.md](computational_proofs/void_dynamics_theory.md): Add scope note at top.  
+- [derivation/code/computational_proofs/void_dynamics_theory.md](code/computational_proofs/void_dynamics_theory.md): Add scope note at top.  
 - [derivation/support/references/Suggestions.md](support/references/Suggestions.md): Insert header note; prevent hard constraints on Ja².  
 - [derivation/fum_voxtrium_mapping.md](fum_voxtrium_mapping.md): Make RD canonical; EFT references scoped.  
 - [METRICS.md](Prometheus_FUVDM/METRICS.md): New file with metrics skeleton.
