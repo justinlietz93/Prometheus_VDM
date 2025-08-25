@@ -344,31 +344,24 @@ def register_file_picker_common(app, prefix: str, target_id: str, project_root: 
         Output(file_sel_store, "data", allow_duplicate=True),
         Output(status_div, "children", allow_duplicate=True),
         Output(f"{prefix}-last-action", "data", allow_duplicate=True),
+        Output(sel_store, "data", allow_duplicate=True),
+        Output(sel_label, "children", allow_duplicate=True),
         Input({"role": f"{prefix}-file", "path": ALL}, "n_clicks"),
         prevent_initial_call=True,
     )
     def on_explorer_click(_file_clicks):
         ctx = dash.callback_context
 
-        # Robust gating: only proceed when the triggering file button's n_clicks > 0
-        try:
-            trig = getattr(ctx, "triggered", None)
-            if not trig:
-                return no_update, no_update, no_update, no_update
-            clicked_val = trig[0].get("value", None)
-            if not isinstance(clicked_val, (int, float)) or int(clicked_val) <= 0:
-                return no_update, no_update, no_update, no_update
-        except Exception:
-            return no_update, no_update, no_update, no_update
-
+        # Parse triggering id; avoid strict n_clicks gating which can be None or string in some Dash versions
         obj = _get_ctx_obj(ctx)
         if not isinstance(obj, dict) or obj.get("role") != f"{prefix}-file":
-            return no_update, no_update, no_update, no_update
+            return no_update, no_update, no_update, no_update, no_update, no_update
         fpath = (obj.get("path", "") or "").strip()
         if not fpath:
-            return no_update, no_update, no_update, no_update
-        # Set file selection only; status will be computed centrally in on_render based on last_action.
-        return no_update, fpath, no_update, "file"
+            return no_update, no_update, no_update, no_update, no_update, no_update
+        # Persist selection into stores so Confirm has a reliable fallback
+        from os.path import basename
+        return no_update, fpath, no_update, "file", fpath, basename(fpath)
 
     # Confirm selection -> set stores, hide modal, and update target value
     @app.callback(
@@ -382,10 +375,15 @@ def register_file_picker_common(app, prefix: str, target_id: str, project_root: 
         State(file_sel_store, "data"),
         State(sel_dir_store, "data"),
         State(target_id, "options"),
+        State(sel_store, "data"),
         prevent_initial_call=True,
     )
-    def on_confirm(_n, file_sel, sel_dir, options):
+    def on_confirm(_n, file_sel, sel_dir, options, sel_data):
+        # Primary source: file selected by clicking in explorer
         fsel = (file_sel or "").strip()
+        # Fallback to last persisted selection (set on click) if primary missing
+        if not fsel:
+            fsel = (sel_data or "").strip()
         c = (sel_dir or "").strip()
         if not fsel:
             return no_update, no_update, "Select a file.", no_update, no_update, no_update
