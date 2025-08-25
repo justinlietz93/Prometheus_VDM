@@ -71,7 +71,7 @@ ignore_patterns = [
     '.vscode/',
     'venv/',
     'code_crawler/',
-    'C:/git/Prometheus_VDM/Prometheus_FUVDM/derivation/code/',
+    # 'C:/git/Prometheus_VDM/Prometheus_FUVDM/derivation/code/',
 
     #'FullyUnifiedModel/',
     'MIGRATE_PENDING_fum_rt/',
@@ -119,4 +119,6 @@ ignore_patterns = [
     'AdvancedMath/numerical_integrate.py',
     'AdvancedMath/numerical_ode_solver.py',
     'AdvancedMath/symbolic_differentiation.py',
+    'derivation/fluid_dynamics/DELETE_AFTER_SOLVING/',
+    'derivation/supporting_work/external_references/'
 ]
