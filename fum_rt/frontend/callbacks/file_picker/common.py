@@ -79,13 +79,14 @@ def register_file_picker_common(app, prefix: str, target_id: str, project_root: 
     # Cancel -> hide modal
     @app.callback(
         Output(mid, "style", allow_duplicate=True),
+        Output(mid, "className", allow_duplicate=True),
         Input(cancel_btn, "n_clicks"),
         prevent_initial_call=True,
     )
     def on_cancel(_n):
+        # Hide modal and drop the 'modal-open' class (pure CSS governs grid pinning)
         style = _fp_modal_styles()
-        # Keep 'display' as defined by component default (hidden)
-        return style
+        return style, ""
 
     # Navigate to root
     @app.callback(
@@ -369,6 +370,7 @@ def register_file_picker_common(app, prefix: str, target_id: str, project_root: 
         Output(sel_label, "children"),
         Output(status_div, "children", allow_duplicate=True),
         Output(mid, "style", allow_duplicate=True),
+        Output(mid, "className", allow_duplicate=True),
         Output(target_id, "options", allow_duplicate=True),
         Output(target_id, "value", allow_duplicate=True),
         Input(confirm_btn, "n_clicks"),
@@ -386,7 +388,7 @@ def register_file_picker_common(app, prefix: str, target_id: str, project_root: 
             fsel = (sel_data or "").strip()
         c = (sel_dir or "").strip()
         if not fsel:
-            return no_update, no_update, "Select a file.", no_update, no_update, no_update
+            return no_update, no_update, "Select a file.", no_update, no_update, no_update, no_update
         path = fsel if os.path.isabs(fsel) else (os.path.abspath(os.path.join(c, fsel)) if c else os.path.abspath(fsel))
         label = os.path.basename(path)
 
@@ -411,4 +413,5 @@ def register_file_picker_common(app, prefix: str, target_id: str, project_root: 
 
         status = f"Selected: {path}"
         style = _fp_modal_styles()  # hidden (default)
-        return path, label, status, style, new_options, path
+        # Remove the open-class so CSS rule no longer pins/locks the layout
+        return path, label, status, style, "", new_options, path

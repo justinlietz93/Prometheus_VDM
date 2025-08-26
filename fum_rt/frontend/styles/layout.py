@@ -31,6 +31,17 @@ def get_layout_css() -> str:
       align-items: start;
     }
 
+    /* Hard pin the main grid even if media queries or reflow would otherwise stack columns.
+       Higher specificity than .grid and immune to media query stacking. */
+    #app-grid{
+      display: grid !important;
+      grid-template-columns: minmax(300px, 360px) 1fr !important;
+      gap: 16px !important;
+      align-items: start !important;
+      min-height: 100vh;
+      position: relative;
+    }
+
     /* On mid-sized screens, ease the left column width to reduce crowding */
     @media (max-width: 1200px){
       .grid{

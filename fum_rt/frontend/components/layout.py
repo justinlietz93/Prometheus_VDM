@@ -63,12 +63,19 @@ def build_layout(
                         style={"minWidth": "400px", "display": "grid", "gap": "16px"},
                     ),
                 ],
+                id="app-grid",
                 className="grid",
-                style={"display": "grid", "gridTemplateColumns": "minmax(300px, 360px) 1fr", "gap": "16px", "alignItems": "start"},
             ),
             dcc.Interval(id="poll", interval=poll_interval, n_intervals=0, disabled=poll_disabled),
             dcc.Store(id="chat-state"),
             dcc.Store(id="ui-state"),
         ],
-        style={"padding": "10px", "maxWidth": "1600px", "margin": "0 auto", "width": "100%"},
+        style={
+            "padding": "10px",
+            "maxWidth": "1600px",
+            "margin": "0 auto",
+            "width": "100%",
+            "minHeight": "100vh",
+            "position": "relative"
+        },
     )
