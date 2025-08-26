@@ -163,6 +163,10 @@ The invariant $Q$ is local (on-site). In spatially extended or coupled systems, 
 - Empirical gates (context). The RD sector is validated independently by two canonical checks: (i) linear dispersion $\sigma(k)=r-Dk^2$ and its discrete counterpart, and (ii) Fisher--KPP pulled-front speed $c=2\sqrt{Dr}$. These establish the RD baseline into which the on-site invariant is situated.
 - Scope separation. Finite-speed second-order EFT branches are quarantined; the present note is fully contained within the RD baseline.
 
+\section{Code availability and provenance}
+The source code for the logistic-invariant validator and RD experiments is archived privately at a signed commit/tag. This arXiv note intentionally omits source code to protect proprietary implementations; only the figures and machine logs necessary to verify the results are included under \texttt{figs/}.\\
+Provenance (cryptographic): commit/tag = \texttt{v1.0.0}; private archive digest SHA-256 = \texttt{TO\_BE\_PROVIDED}.\\
+Reproducibility posture: the equations and pseudocode provided here are sufficient to reimplement the invariant check; CLI recipes appear in the companion RD methods note. VDM/void internals (validators and runtime scaffolding) are not included in this distribution.
 \paragraph{Acknowledgments.}
 I thank Voxtrium for providing his theory to me and giving me confidence when I saw that it mapped to his work and strengthened my own.
 
