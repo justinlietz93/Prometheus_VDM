@@ -60,7 +60,7 @@ import matplotlib.pyplot as plt
 BASE_OUTDIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "outputs"))
 FIG_DIR = os.path.join(BASE_OUTDIR, "figures", "conservation_law")
 LOG_DIR = os.path.join(BASE_OUTDIR, "logs", "conservation_law")
-ARXIV_FIG_DIR = "derivation/arxiv/figs"
+ARXIV_FIG_DIR = "derivation/arxiv/RD_Methods_QA/figs"
 
 
 def utc_stamp() -> str:
@@ -109,20 +109,20 @@ def integrate_numeric(r: float, u: float, W0: float, T: float, dt: float, solver
 
 
 def logistic_analytic(r: float, u: float, W0: float, t: np.ndarray) -> np.ndarray:
-    # W(t) = (r/u) * 1 / (1 + C e^{-r t}), C = (r - u W0) / W0
-    C = (r - u * W0) / W0
+    # W(t) = (r/u) / (1 + C e^{-r t}), where C = (r/u - W0) / W0
+    C = ((r / u) - W0) / W0
     denom = 1.0 + C * np.exp(-r * t)
     return (r / u) / denom
 
 
 def Q_invariant(r: float, u: float, W: np.ndarray, t: np.ndarray) -> np.ndarray:
-    # Q = ln(W/(r - u W)) - r t
-    eps = np.finfo(np.float64).eps
+    # Q = ln|W| - ln|r - u W| - r t  (difference-of-logs form; numerically stabler than ln of ratio)
+    eps = 1e-16
     denom = (r - u * W)
-    # avoid division by zero; mask tiny denominators
-    denom = np.where(np.abs(denom) < 1e-16, np.sign(denom) * 1e-16, denom)
-    W_safe = np.where(np.abs(W) < 1e-16, np.sign(W) * 1e-16, W)
-    return np.log(np.abs(W_safe / denom)) - r * t
+    # avoid division by zero; mask tiny magnitudes with signed epsilon
+    denom = np.where(np.abs(denom) < eps, np.copysign(eps, denom), denom)
+    W_safe = np.where(np.abs(W) < eps, np.copysign(eps, W), W)
+    return np.log(np.abs(W_safe)) - np.log(np.abs(denom)) - r * t
 
 
 @dataclass
