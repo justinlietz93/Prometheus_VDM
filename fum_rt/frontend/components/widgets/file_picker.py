@@ -55,10 +55,15 @@ def _modal_styles() -> dict:
         "display": "none",  # toggled by callbacks
         "alignItems": "center",
         "justifyContent": "center",
-        "zIndex": 20000,  # above react-select menus (9999)
+        "zIndex": 2147483000,  # above react-select menus (9999)
         "pointerEvents": "auto",
-        "contain": "layout paint",  # isolate overlay layout/paint so background is unaffected
+        # Isolate overlay layout and paint so background is unaffected even during reflow
+        "contain": "layout paint",
         "isolation": "isolate",     # create a new stacking context for safety
+        # Prevent body scroll chaining while modal is open
+        "overflow": "auto",
+        "overscrollBehavior": "contain",
+        "touchAction": "none",
     }
 
 
@@ -70,18 +75,20 @@ def _panel_styles() -> dict:
         "border": "1px solid #233140",
         "borderRadius": "8px",
         "minWidth": "560px",
-        "maxWidth": "86vw",
-        "maxHeight": "86vh",
+        "maxWidth": "90vw",
+        "maxHeight": "90vh",
         "display": "grid",
         "gridTemplateRows": "auto auto 1fr auto",
         "gap": "8px",
         "padding": "12px",
         "boxShadow": "0 4px 16px rgba(0,0,0,0.4)",
-        "overflow": "hidden",
-        "zIndex": 20001,              # ensure panel stacks above overlay
-        "pointerEvents": "auto",      # interactive; background remains inert
-        "contain": "layout paint",    # isolate panel's layout/paint
-        "overscrollBehavior": "contain",  # prevent body scroll chaining
+        # Allow internal scrolling so content never spills outside the panel
+        "overflow": "auto",
+        "zIndex": 2147483001,              # ensure panel stacks above overlay
+        "pointerEvents": "auto",           # interactive; background remains inert
+        # Keep panel fully isolated from background layout as well
+        "contain": "layout paint",
+        "overscrollBehavior": "contain",   # prevent body scroll chaining
     }
 
 
