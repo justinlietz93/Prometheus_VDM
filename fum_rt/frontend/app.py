@@ -137,6 +137,7 @@ def build_app(runs_root: str) -> Dash:
                     ),
                 ],
                 className="grid",
+                style={"display": "grid", "gridTemplateColumns": "minmax(300px, 360px) 1fr", "gap": "16px", "alignItems": "start"},
             ),
             # Global UI poll — environment-tunable and disable-able
             # DASH_POLL_MS: >0 interval in ms (default 1200); <=0 disables polling
@@ -149,7 +150,7 @@ def build_app(runs_root: str) -> Dash:
             dcc.Store(id="chat-state"),
             dcc.Store(id="ui-state"),
         ],
-        style={"padding": "10px"},
+        style={"padding": "10px", "maxWidth": "1600px", "margin": "0 auto", "width": "100%"},
     )
 
     # Callbacks (modular)
