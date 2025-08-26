@@ -6,7 +6,7 @@ research while ensuring commercial applications are aligned with the project's e
 principles. Commercial use requires written permission from Justin K. Lietz.
 See LICENSE file for full terms.
 
-Cosmogenesis Proof: Inherited Cosmic Debt through universal void dynamics.
+Cosmogenesis Speculative Experimental Script: Inherited Cosmic Debt through universal void dynamics.
 This script simulates the FUM's cosmological origin story,
 grounded in the principle of "Inherited Cosmic Debt" through universal void dynamics.
 Emerges intelligently from elegant Void Intelligence rules.

@@ -6,7 +6,7 @@ research while ensuring commercial applications are aligned with the project's e
 principles. Commercial use requires written permission from Justin K. Lietz. 
 See LICENSE file for full terms.
 
-Einstein Field Equations Proof: Demonstrates that Einstein's field equations
+Einstein Field Equations Speculative Experimental Script: Demonstrates that Einstein's field equations
 naturally emerge from FUM void dynamics. The scalar field φ represents the
 void state W(t) evolving according to delta_re_vgsp and delta_gdsp functions.
 Universal constants from AI learning stability generate realistic spacetime curvature.

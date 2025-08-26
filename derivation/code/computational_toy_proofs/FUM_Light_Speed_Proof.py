@@ -6,7 +6,7 @@ research while ensuring commercial applications are aligned with the project's e
 principles. Commercial use requires written permission from Justin K. Lietz.
 See LICENSE file for full terms.
 
-Light Speed Proof: Universal speed of light c = 299,792,458 m/s emerges from
+Light Speed Speculative Experimental Script: Universal speed of light c = 299,792,458 m/s emerges from
 the same void dynamics governing all other physics domains.
 Emerges intelligently from elegant Void Intelligence rules.
 """

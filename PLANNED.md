@@ -34,3 +34,46 @@
 
 ### Bugs
 - Fix ADC stagnation
+
+
+
+# Up next:
+```
+Classification: Runtime-only
+```
+
+**Objective Recap**
+
+* Wire the existing **walker→bus→metrics→arbiter→GDSP** path so structural edits actually fire, with **emergent budgets** (no static knobs), and keep everything sparse.
+
+**Action Plan (patch-only, no new files)**
+
+* **core/proprioception/events.py** – add a tiny `TagEvent(kind="tag.*", …)` alongside the existing event types + fold into the already-present incremental reducers (EWMA/CMS/UF). This is your “scoreboard.”&#x20;
+* **core/neuroplasticity/gdsp.py** – expose `tick(scoreboard, budgets, territory)` that calls the existing sparse edit routines (prune/grow/bridge/cull) under budgets; no scans.&#x20;
+* **core/substrate/growth\_arbiter.py** – compute **emergent budgets** per territory from signals you already publish (void‑debt/SIE, fragmentation from UF components, backlog EWMA). Call `GDSPActuator.tick(…)`.&#x20;
+* **runtime/orchestrator (vdm\_runtime Orchestrator)** – on each tick, `read_bus()` → feed `EventDrivenMetrics.update()` → pass its thresholded IDs to `growth_arbiter` → `GDSP`. (The façade already exposes `read_bus()` and `step()` seams.)&#x20;
+* **core/global\_system.py / core/adc.py** – keep using your adaptive cadence (entropy‑modulated) for territory bookkeeping; no new schedulers.&#x20;
+* **Guard rails**: in the arbiter, refuse dense homeostasis unless a debug flag is set; abort a tick if class min‑degree floors or E/I ratios would be violated. (Exact rails are in your structural‑plasticity spec.)&#x20;
+
+**Handoff (Physicist Mode implements)**
+
+* Touch only:
+
+  * `fum_rt/core/proprioception/events.py` (add `TagEvent`, fold/decay quorum logic)&#x20;
+  * `fum_rt/core/neuroplasticity/gdsp.py` (add `tick(...)` wrapper; reuse current sparse ops)&#x20;
+  * `fum_rt/core/substrate/growth_arbiter.py` (derive budgets; call GDSP)&#x20;
+  * `fum_rt/runtime/orchestrator.py` (bus→metrics→arbiter call; no behavior change unless `ENABLE_GDSP=1`)&#x20;
+* **No new folders. No dense scans.** The scoreboard/thresholds and budgeted actuator behavior follow your written spec verbatim.&#x20;
+
+**Verification (acceptance gates)**
+
+* **Firing path:** tag→actuation latency ≤ 2 ticks (events log).&#x20;
+* **Budget gate:** `edges_touched ≤ budget_prune + 2·budget_bridge + budget_grow`; `culled ≤ budget_cull`; all enforced in `gdsp.tick`.&#x20;
+* **Safety rails:** abort edits if class min‑degree floors/E–I checks would breach; assert on any dense call.&#x20;
+* **Emergent, not static:** budgets come from SIE/void‑debt + cohesion/backlog signals already present; env knobs remain debug‑only. turn3file16
+
+**Assumptions/Risks**
+
+* Structural ops already exist in your core (GDSP/structural\_homeostasis); we’re just **calling them** through the arbiter.&#x20;
+* Event schema addition stays within `events.py` (no new module), consistent with your scoreboard design.&#x20;
+* Orchestrator seam is used exactly as designed (no lifecycle changes).&#x20;
