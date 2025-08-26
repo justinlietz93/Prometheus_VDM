@@ -1,0 +1,102 @@
+{
+  "version": "1.0",
+  "timestamp_utc": "20250826T142459Z",
+  "params": {
+    "r": 0.15,
+    "u": 0.25,
+    "T": 10.0,
+    "solver": "rk4",
+    "W0_list": [
+      0.12
+    ],
+    "dt_list": [
+      0.002,
+      0.001,
+      0.0005
+    ]
+  },
+  "runs": [
+    {
+      "r": 0.15,
+      "u": 0.25,
+      "solver": "rk4",
+      "dt": 0.0005,
+      "T": 10.0,
+      "W0": 0.12,
+      "delta_Q_max": 2.0872192862952943e-14,
+      "W_min": 0.12,
+      "W_max": 0.31703749334631576
+    },
+    {
+      "r": 0.15,
+      "u": 0.25,
+      "solver": "rk4",
+      "dt": 0.002,
+      "T": 10.0,
+      "W0": 0.12,
+      "delta_Q_max": 1.1324274851176597e-14,
+      "W_min": 0.12,
+      "W_max": 0.31703749334631925
+    },
+    {
+      "r": 0.15,
+      "u": 0.25,
+      "solver": "rk4",
+      "dt": 0.001,
+      "T": 10.0,
+      "W0": 0.12,
+      "delta_Q_max": 1.3322676295501878e-14,
+      "W_min": 0.12,
+      "W_max": 0.3170374933463192
+    },
+    {
+      "r": 0.15,
+      "u": 0.25,
+      "solver": "rk4",
+      "dt": 0.0005,
+      "T": 10.0,
+      "W0": 0.12,
+      "delta_Q_max": 2.0872192862952943e-14,
+      "W_min": 0.12,
+      "W_max": 0.31703749334631576
+    }
+  ],
+  "convergence": {
+    "r": 0.15,
+    "u": 0.25,
+    "solver": "rk4",
+    "dts": [
+      0.002,
+      0.001,
+      0.0005
+    ],
+    "delta_Q_max_list": [
+      1.1324274851176597e-14,
+      1.3322676295501878e-14,
+      2.0872192862952943e-14
+    ],
+    "slope": -0.4410817548530699,
+    "intercept": -15.157188612392472,
+    "r2": 0.9318425839790312
+  },
+  "figures": {
+    "solution_overlay": "/mnt/ironwolf/git/Void_FUM_Private/Void_FUM_Private/Void_Unity_Proofs/derivation/code/outputs/figures/conservation_law/failed_runs/20250826_092459_qfum_solution_overlay.png",
+    "solution_overlay_stable": "",
+    "solution_overlay_arxiv": "",
+    "Q_drift": "/mnt/ironwolf/git/Void_FUM_Private/Void_FUM_Private/Void_Unity_Proofs/derivation/code/outputs/figures/conservation_law/failed_runs/20250826_092459_qfum_Q_drift.png",
+    "Q_drift_stable": "",
+    "Q_drift_arxiv": "",
+    "convergence": "/mnt/ironwolf/git/Void_FUM_Private/Void_FUM_Private/Void_Unity_Proofs/derivation/code/outputs/figures/conservation_law/failed_runs/20250826_092500_qfum_convergence.png",
+    "convergence_stable": "",
+    "convergence_arxiv": ""
+  },
+  "acceptance": {
+    "drift_gate": 1e-08,
+    "convergence_expected_order": 4,
+    "convergence_r2_min": 0.98,
+    "order_tol": 0.4,
+    "drift_ok": true,
+    "convergence_ok": false,
+    "passed": false
+  }
+}
