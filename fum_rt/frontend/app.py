@@ -17,7 +17,7 @@ from dash import Dash, dcc, html
 from fum_rt.frontend.utilities.fs_utils import list_runs, _list_files
 from fum_rt.frontend.services.process_manager import ProcessManager
 from fum_rt.frontend.utilities.profiles import get_default_profile
-from fum_rt.frontend.styles.theme import get_global_css
+from fum_rt.frontend.styles import get_global_css
 
 from fum_rt.frontend.components.workspace import workspace_card
 from fum_rt.frontend.components.runtime_controls import runtime_controls_card
