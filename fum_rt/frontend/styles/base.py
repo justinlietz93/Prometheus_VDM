@@ -22,6 +22,7 @@ def get_base_css() -> str:
     }
     *{box-sizing:border-box}
     html,body{height:100%}
+    html{scrollbar-gutter: stable both-edges}
     body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Ubuntu,Cantarell,Helvetica Neue,Arial,Noto Sans,sans-serif;line-height:1.35;margin:0}
     h1,h2,h3,h4{color:var(--text);font-weight:600;margin:0 0 8px 0}
     p{margin:0 0 8px 0}
