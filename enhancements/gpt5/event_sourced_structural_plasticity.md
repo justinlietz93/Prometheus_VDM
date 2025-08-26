@@ -1297,3 +1297,155 @@ python -m fum_rt.tests.kstar_and_repair --seed 0 --ticks 5000
 * **Clear terms.** `metabolic_debt` (runtime) ≠ `sie.void_debt` (global objective). Keep topics/names distinct.&#x20;
 
 If you want, I can now translate this into exact code stubs/diffs for each file above, but this packet is sufficient for the Physicist Agent to begin implementation while keeping everything sparse, emergent, and test‑gated.
+
+
+
+
+
+```
+Classification: Runtime-only
+```
+
+**Objective Recap:**
+
+* Validate your diagram vs. the event‑sourced structural plasticity architecture and note the few missing pieces.
+
+**Verdict (concise):**
+
+* **Yes—directionally correct.** “Walkers → Bus → GDSP modifies connectome” matches the intended pipeline. Add one layer and two conventions to make it complete: a **Scoreboard** between Bus and GDSP, plus a **canonical Tag schema** and **dynamic budgets**.&#x20;
+
+**What to add / tweak (minimal):**
+
+* Insert **Scoreboard (evidence aggregator)**: Bus events are deduped/EMA‑decayed into thresholded decisions; only threshold crossings reach GDSP. Prevents thrash and keeps writes sparse.&#x20;
+* Use **canonical Tags** from walkers: `tag.prune_synapse`, `tag.grow_synapse`, `tag.cull_neuron`, `tag.C3`, `tag.retract_axonal_branch` with `{entity_ids, reason, ttl, territory_id, emitter}`.&#x20;
+* Keep **walkers read‑only; GDSP sole writer** (no scans). This preserves the **O(1) surgical‑write** pattern you wanted.&#x20;
+* Make the **bus hierarchical** (topics per territory/class) and use **backpressure‑aware budgets**: GDSP picks `GROW/PRUNE` counts each tick from functions of queue depth & health indices—no static limits.&#x20;
+* Show **GDSP dispatch path** explicitly: Bus → Scoreboard → `struct.*` result events (ack + budgets used).&#x20;
+* (Nice to have) Annotate **neuron class context** (k targets/rarity) so GDSP can respect heterogeneous degree goals during grow/prune.&#x20;
+
+**Action Plan:**
+
+* Add a **Scoreboard** box between Bus and GDSP in the diagram.
+* Label bus topics: `frontier.T*/tags.* → scoreboard.decisions.* → gdsp.cmd.* → struct.*`.
+* Append a small legend listing Tag types + required fields.
+* Note **per‑tick dynamic budgets** and **TTL decay** on the Scoreboard node.
+* Mark **walkers = read‑only**; **GDSP = only writer**.
+
+**Handoff (Physicist Mode implements):**
+
+* Files/paths to create:
+
+  * derivation/architecture/event\_sourced\_plasticity\_diagram.md
+  * derivation/code/runtime/bus/scoreboard.py
+  * derivation/code/runtime/walkers/{use\_tracker,complement\_tagger,boundary\_retraction,...}.py
+  * derivation/code/runtime/gdsp\_actuator.py
+* CLIs to run + seeds:
+
+  * `python -m fum_rt.run --demo sp_event_pipeline --seeds 0,1,2 --log bus,scoreboard,gdsp`
+
+**Verification (acceptance gates):**
+
+* Median **tag→actuation latency ≤ 2 ticks** at nominal load; **no dense scans** observed.&#x20;
+* **Backlog < 60% capacity** per territory; **drop rate \~0** (TTL expiries allowed).&#x20;
+* **Degree floors by class** maintained after prune cycles; **false‑positive prune <1%** on replay.
+* GDSP emits `struct.*` acks matching budgets; no direct writes from walkers.
+
+**Assumptions/Risks:**
+
+* Without Scoreboard, GDSP may oscillate; this addition fixes it.&#x20;
+* Tag schema drift across walkers → enforce one canonical dataclass.
+* Dynamic budgets must be bus‑driven (queue depth/HSI), not constants.&#x20;
+
+**Next Steps:**
+
+* Update the diagram with **Scoreboard + Tag legend + dynamic budgets**.
+* Wire up minimal Scoreboard + one walker (`use_tracker`) end‑to‑end.
+* Record `struct.*` acks to confirm **O(1) surgical writes**.
+* Then add C3/microglia and boundary‑retraction walkers.
+
+*(Also aligns with your legacy demo’s structural homeostasis separation—logic vs. actuation remained decoupled there too.)*&#x20;
+
+
+
+
+You're right—those placeholder paths were wrong. Here’s the **correct wiring based on your docs/code** and a tight work order that stays inside your runtime/physics split.
+
+```
+Classification: Runtime-only
+```
+
+**Objective Recap**
+
+* Fix “structural plasticity never called” by wiring walker→bus→scoreboard→GDSP through your **actual** modules/paths.
+
+**Correct path mapping (yours)**
+
+* **Bus / topics / events-bridge**
+
+  * `core/bus.py`, `core/announce.py` (topics), runtime bridge: `runtime/events_adapter.py`. &#x20;
+* **Scoreboard / aggregation**
+
+  * `runtime/helpers/macro_board.py` (use as sparse, per‑territory scoreboard).&#x20;
+* **Actuator (GDSP)**
+
+  * `core/neuroplasticity/gdsp.py` (budgeted prune/grow/bridge/cull).&#x20;
+* **Walkers (read‑only scouts)**
+
+  * `core/cortex/void_walkers/*.py` (e.g., `void_excitation_scout.py`, `base.py`).&#x20;
+* **Loop integration**
+
+  * `runtime/loop/main.py` (+ `orchestrator.py`, `phase.py`).&#x20;
+* **Existing tests/guards**
+
+  * CI guard for walkers (no scans/dense): `tests/ci` in repo (see walker guard test), and UF unit: `tests/core/test_territory_uf.py`. &#x20;
+* **Derivation (validation papers only)**
+
+  * RD gates live in docs: `reaction_diffusion/rd_front_speed_validation.md`, `rd_dispersion_validation.md`.&#x20;
+
+---
+
+**Action Plan**
+
+* Add **tag emission** in `core/cortex/void_walkers/base.py` and concrete scouts to publish `tag.*` events via `core/announce.py`; forward through `runtime/events_adapter.py` to scoreboard. &#x20;
+* Implement **Scoreboard** (decaying votes, per‑territory) in `runtime/helpers/macro_board.py` (no scans; Welford stats per tag type).&#x20;
+* Wire **GDSPActuator** calls in `runtime/loop/main.py`: per‑tick read scoreboard → call `core/neuroplasticity/gdsp.py` with budgets. **Assert** no dense path. &#x20;
+* Use `phase.py` for **emergent budgets** (derive from bus backpressure/UF cohesion; no static caps).&#x20;
+* Ensure **walkers stay read‑only** (existing CI guard passes). &#x20;
+* Keep derivation **RD gates** as external acceptance checks (papers only).&#x20;
+
+---
+
+**Handoff (Physicist Mode implements)**
+
+* Files/edits:
+
+  * `core/cortex/void_walkers/base.py` + concrete scouts: emit `tag.prune_synapse`, `tag.grow_synapse`, `tag.bridge`, `tag.cull_neuron` via `announce.*`.&#x20;
+  * `runtime/helpers/macro_board.py`: scoreboard (per‑territory TTL, EWMA mean/σ, μ+κ·σ gates).&#x20;
+  * `runtime/events_adapter.py`: route bus→scoreboard batches.&#x20;
+  * `runtime/loop/main.py`: per‑tick `scoreboard.flush()` → `GDSPActuator.apply_*()`; hard‑assert if any dense routine is invoked. &#x20;
+  * `core/neuroplasticity/gdsp.py`: ensure budgeted `apply_{prune,grow,bridge,cull}` are territory‑scoped.&#x20;
+* CLIs (example):
+
+  * `python -m fum_rt.runtime.loop.main --ticks 10000 --seed 0` (A/B with `ENABLE_GDSP=0/1`).&#x20;
+
+---
+
+**Verification**
+
+* **No‑Dense gate:** assert in `loop/main.py` when dense paths touched.&#x20;
+* **Walker guard tests pass** (no scans/dense calls). &#x20;
+* **UF repair:** fragmentation → `bridge` brings components→1 (see `test_territory_uf`).&#x20;
+* **Physics invariants** remain green per derivation RD docs (front‑speed/dispersion papers).&#x20;
+
+**Assumptions/Risks**
+
+* Scoreboard fits in `macro_board.py`; if not, split to `runtime/helpers/scoreboard.py`.&#x20;
+* Budgets must be **emergent** (from bus/UF/telemetry), not constants; ensure no hard caps in code paths.&#x20;
+
+**Next Steps**
+
+* Implement tag→scoreboard→GDSP path; add the assert.
+* Run A/B `ENABLE_GDSP` and check UF/cohesion + sparsity metrics.
+* If green, expand taggers (microglia/complement etc.) in walkers while CI guards stay green. &#x20;
+
+If you want, I’ll adapt this into PR checklists against **these exact files** so your agent can push safely.
