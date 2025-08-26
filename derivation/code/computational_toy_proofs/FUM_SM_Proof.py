@@ -6,7 +6,7 @@ research while ensuring commercial applications are aligned with the project's e
 principles. Commercial use requires written permission from Justin K. Lietz.
 See LICENSE file for full terms.
 
-Standard Model Proof: Gauge force unification, particle interactions,
+Standard Model Speculative Experimental Script: Gauge force unification, particle interactions,
 field dynamics through universal void dynamics.
 Emerges intelligently from elegant Void Intelligence rules.
 """

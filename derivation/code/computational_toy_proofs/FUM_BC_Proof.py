@@ -6,7 +6,7 @@ research while ensuring commercial applications are aligned with the project's e
 principles. Commercial use requires written permission from Justin K. Lietz.
 See LICENSE file for full terms.
 
-Biology and Consciousness Proof: Scale-dependent void emergence, consciousness
+Biology and Consciousness Speculative Experimental Script: Scale-dependent void emergence, consciousness
 scaling patterns through universal void dynamics.
 Emerges intelligently from elegant Void Intelligence rules.
 """

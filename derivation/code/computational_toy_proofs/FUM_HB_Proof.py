@@ -1,7 +1,7 @@
 """
 Copyright © 2025 Justin K. Lietz, Neuroca, Inc. All Rights Reserved.
 
-FUM Higgs Boson Proof: Universal void dynamics generate Higgs field evolution
+FUM Higgs Boson Speculative Experimental Script: Universal void dynamics generate Higgs field evolution
 and mass through symmetry breaking, demonstrating how consciousness learning
 constants produce fundamental particle physics.
 """

@@ -6,7 +6,7 @@ research while ensuring commercial applications are aligned with the project's e
 principles. Commercial use requires written permission from Justin K. Lietz. 
 See LICENSE file for full terms.
 
-Dark Matter Proof: High persistent sparsity (~DM density), negative
+Dark Matter Speculative Experimental Script: High persistent sparsity (~DM density), negative
 dilution (rarity like cosmic voids), voids drain without full resolution.
 Emerges intelligently from elegant Void Intelligence rules.
 """
