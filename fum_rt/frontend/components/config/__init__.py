@@ -1,11 +1,16 @@
 from __future__ import annotations
 
 """
-Run Config components package.
+Run Config components (relocated).
+
+This module lives under components/config/run_config to keep configuration-related UI
+co-located. All element IDs are preserved to avoid breaking existing callbacks.
 
 Exports:
-- run_config_card(): assembled card (IDs preserved)
+- run_config_card(): assembled card
 - section_* helpers from .sections for fine-grained composition
+
+Author: Justin K. Lietz
 """
 
 from typing import Dict, Any, List

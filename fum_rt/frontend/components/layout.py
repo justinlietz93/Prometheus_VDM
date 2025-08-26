@@ -8,9 +8,10 @@ from dash import html, dcc
 from fum_rt.frontend.components.workspace import workspace_card
 from fum_rt.frontend.components.runtime_controls import runtime_controls_card
 from fum_rt.frontend.components.feed import feed_card
-from fum_rt.frontend.components.run_config import run_config_card
+from fum_rt.frontend.components.config.run_config import run_config_card
 from fum_rt.frontend.components.charts import charts_card
 from fum_rt.frontend.components.chat import chat_card
+from fum_rt.frontend.components.perf import perf_card
 
 __all__ = ["build_layout"]
 
@@ -48,6 +49,7 @@ def build_layout(
                         [
                             workspace_card(runs_root, runs, default_run),
                             runtime_controls_card(default_profile),
+                            perf_card(),
                             feed_card(data_files_options),
                         ],
                         style={"minWidth": "320px", "display": "grid", "gap": "16px"},
@@ -62,10 +64,11 @@ def build_layout(
                     ),
                 ],
                 className="grid",
+                style={"display": "grid", "gridTemplateColumns": "minmax(300px, 360px) 1fr", "gap": "16px", "alignItems": "start"},
             ),
             dcc.Interval(id="poll", interval=poll_interval, n_intervals=0, disabled=poll_disabled),
             dcc.Store(id="chat-state"),
             dcc.Store(id="ui-state"),
         ],
-        style={"padding": "10px"},
+        style={"padding": "10px", "maxWidth": "1600px", "margin": "0 auto", "width": "100%"},
     )
