@@ -42,23 +42,29 @@ from dash import html, dcc
 
 
 def _modal_styles() -> dict:
-    # Simple dark overlay matching dashboard style (slightly softer)
+    # Fixed viewport overlay that does not affect background layout.
+    # Avoid 100vw/100vh which can introduce horizontal scrollbars and trigger reflow.
+    # Use explicit edges for broad browser support (instead of inset).
     return {
         "position": "fixed",
         "top": 0,
+        "right": 0,
+        "bottom": 0,
         "left": 0,
-        "width": "100vw",
-        "height": "100vh",
         "backgroundColor": "rgba(10,14,19,0.66)",
         "display": "none",  # toggled by callbacks
         "alignItems": "center",
         "justifyContent": "center",
-        "zIndex": 1000,
+        "zIndex": 20000,  # above react-select menus (9999)
+        "pointerEvents": "auto",
+        "contain": "layout paint",  # isolate overlay layout/paint so background is unaffected
+        "isolation": "isolate",     # create a new stacking context for safety
     }
 
 
 def _panel_styles() -> dict:
     return {
+        "position": "relative",
         "backgroundColor": "#0f141a",
         "color": "#cfd7e3",
         "border": "1px solid #233140",
@@ -72,6 +78,10 @@ def _panel_styles() -> dict:
         "padding": "12px",
         "boxShadow": "0 4px 16px rgba(0,0,0,0.4)",
         "overflow": "hidden",
+        "zIndex": 20001,              # ensure panel stacks above overlay
+        "pointerEvents": "auto",      # interactive; background remains inert
+        "contain": "layout paint",    # isolate panel's layout/paint
+        "overscrollBehavior": "contain",  # prevent body scroll chaining
     }
 
 

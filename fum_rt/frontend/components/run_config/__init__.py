@@ -1,10 +1,17 @@
 from __future__ import annotations
 
+"""
+Run Config components package.
+
+Exports:
+- run_config_card(): assembled card (IDs preserved)
+- section_* helpers from .sections for fine-grained composition
+"""
+
 from typing import Dict, Any, List
 from dash import html
 
-# Modular sections (IDs preserved exactly as before)
-from fum_rt.frontend.components.run_config import (
+from .sections import (
     section_core_params,
     section_modes,
     section_structure_traversal,
@@ -28,7 +35,6 @@ def run_config_card(
     return html.Div(
         [
             html.H4("Run configuration & process"),
-            # Sections assembled in a clear, readable order
             section_core_params(default_profile, domain_options),
             section_modes(default_profile),
             section_structure_traversal(default_profile),
@@ -40,3 +46,16 @@ def run_config_card(
         ],
         className="card",
     )
+
+
+__all__ = [
+    "run_config_card",
+    "section_core_params",
+    "section_modes",
+    "section_structure_traversal",
+    "section_stimulus",
+    "section_speak_b1",
+    "section_viz_logs_checkpoints",
+    "section_profile_io",
+    "section_process_actions",
+]
