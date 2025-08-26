@@ -1,0 +1,117 @@
+{
+  "acceptance": {
+    "convergence_expected_order": 4,
+    "convergence_ok": true,
+    "convergence_r2_min": 0.98,
+    "drift_gate": 1e-08,
+    "drift_ok": true,
+    "order_tol": 0.4,
+    "passed": true
+  },
+  "convergence": {
+    "delta_Q_max_list": [
+      1.5013910115158069e-09,
+      9.405987100308266e-11,
+      5.8835158966985546e-12,
+      3.6770586575585185e-13
+    ],
+    "dts": [
+      0.2,
+      0.1,
+      0.05,
+      0.025
+    ],
+    "intercept": -6.028382847461539,
+    "r": 0.15,
+    "r2": 0.999999961514133,
+    "slope": 3.998520872255691,
+    "solver": "rk4",
+    "u": 0.25
+  },
+  "figures": {
+    "Q_drift": "/mnt/ironwolf/git/Void_FUM_Private/Void_FUM_Private/Void_Unity_Proofs/derivation/code/outputs/figures/conservation_law/20250826_110546_qfum_Q_drift.png",
+    "Q_drift_arxiv": "derivation/arxiv/RD_Methods_QA/figs/qfum_Q_drift.png",
+    "Q_drift_stable": "",
+    "convergence": "/mnt/ironwolf/git/Void_FUM_Private/Void_FUM_Private/Void_Unity_Proofs/derivation/code/outputs/figures/conservation_law/20250826_110546_qfum_convergence.png",
+    "convergence_arxiv": "derivation/arxiv/RD_Methods_QA/figs/qfum_convergence.png",
+    "convergence_stable": "",
+    "solution_overlay": "/mnt/ironwolf/git/Void_FUM_Private/Void_FUM_Private/Void_Unity_Proofs/derivation/code/outputs/figures/conservation_law/20250826_110546_qfum_solution_overlay.png",
+    "solution_overlay_arxiv": "derivation/arxiv/RD_Methods_QA/figs/qfum_solution_overlay.png",
+    "solution_overlay_stable": ""
+  },
+  "params": {
+    "T": 10.0,
+    "W0_list": [
+      0.12,
+      0.62
+    ],
+    "dt_list": [
+      0.2,
+      0.1,
+      0.05,
+      0.025
+    ],
+    "r": 0.15,
+    "solver": "rk4",
+    "u": 0.25
+  },
+  "runs": [
+    {
+      "T": 10.0,
+      "W0": 0.12,
+      "W_max": 0.31703749334626263,
+      "W_min": 0.12,
+      "delta_Q_max": 3.6770586575585185e-13,
+      "dt": 0.025,
+      "r": 0.15,
+      "solver": "rk4",
+      "u": 0.25
+    },
+    {
+      "T": 10.0,
+      "W0": 0.12,
+      "W_max": 0.3170374931218353,
+      "W_min": 0.12,
+      "delta_Q_max": 1.5013910115158069e-09,
+      "dt": 0.2,
+      "r": 0.15,
+      "solver": "rk4",
+      "u": 0.25
+    },
+    {
+      "T": 10.0,
+      "W0": 0.12,
+      "W_max": 0.3170374933322541,
+      "W_min": 0.12,
+      "delta_Q_max": 9.405987100308266e-11,
+      "dt": 0.1,
+      "r": 0.15,
+      "solver": "rk4",
+      "u": 0.25
+    },
+    {
+      "T": 10.0,
+      "W0": 0.12,
+      "W_max": 0.3170374933454379,
+      "W_min": 0.12,
+      "delta_Q_max": 5.8835158966985546e-12,
+      "dt": 0.05,
+      "r": 0.15,
+      "solver": "rk4",
+      "u": 0.25
+    },
+    {
+      "T": 10.0,
+      "W0": 0.12,
+      "W_max": 0.31703749334626263,
+      "W_min": 0.12,
+      "delta_Q_max": 3.6770586575585185e-13,
+      "dt": 0.025,
+      "r": 0.15,
+      "solver": "rk4",
+      "u": 0.25
+    }
+  ],
+  "timestamp_utc": "20250826T160546Z",
+  "version": "1.0"
+}
