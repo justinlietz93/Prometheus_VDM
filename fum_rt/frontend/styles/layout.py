@@ -102,11 +102,18 @@ def get_layout_css() -> str:
     }
 
     .tight{ margin-top: 6px }
-
+    
     /* Tweak focus ring thickness on small screens to reduce visual 'chunkiness' */
     @media (max-width: 900px){
       input:focus, textarea:focus, select:focus{
         box-shadow: 0 0 0 2px rgba(106,160,194,0.15);
       }
+    }
+    
+    /* Modal state guards: when a file-picker modal (.fum-modal.modal-open) is present, lock background scroll.
+       NOTE: Do not disable pointer-events on #app-grid here, because the modal is mounted inside the grid and needs to remain interactive.
+       The fixed, full-viewport overlay already intercepts clicks to block background interaction. */
+    body:has(.fum-modal.modal-open){
+      overflow: hidden; /* prevent layout shift and background scroll while modal shown */
     }
     """
