@@ -33,31 +33,47 @@ def charts_card():
         id="charts-series-tabs",
         value="all",
         className="fum-tabs small",
-        children=[dcc.Tab(label="All", value="all")]
-        + [dcc.Tab(label=lbl, value=lbl) for lbl in series_labels],
+        children=[dcc.Tab(label="All", value="all", className="fum-tab", selected_className="fum-tab--selected")]
+        + [
+            dcc.Tab(label=lbl, value=lbl, className="fum-tab", selected_className="fum-tab--selected")
+            for lbl in series_labels
+        ]
+        + [dcc.Tab(label="+", value="__add__", className="fum-tab add", selected_className="fum-tab--selected add")],
         style={"minWidth": 0},
         parent_style={"minWidth": 0},
         content_style={"minWidth": 0},
     )
 
-    # Runtime customization: user-provided CSV list of series labels
-    custom_row = html.Div(
-        [
-            dcc.Input(
-                id="charts-series-input",
-                type="text",
-                placeholder="Series CSV (ex: Active synapses, Cycles, Avg W, B1 z, ...)",
-                style={"width": "100%"},
-            ),
-            html.Button("Apply Tabs", id="charts-series-apply", n_clicks=0, className="btn-ok"),
-        ],
-        style={"display": "grid", "gridTemplateColumns": "1fr auto", "gap": "6px", "minWidth": 0},
-    )
+    # '+' flow handled by callbacks; inline name/create controls appear only when + is selected
 
     return html.Div(
         [
+            # Defaults and custom mappings for series tabs
+            dcc.Store(id="charts-series-defaults", data=series_labels),
+            dcc.Store(id="charts-series-custom-map", data={}),
             series_tabs,
-            custom_row,
+            # Inline '+' controls (only visible when __add__ is selected)
+            # '+' controls removed per UI directive; keep hidden placeholder container for compatibility
+            html.Div(
+                [],
+                id="charts-add-controls",
+                style={"display": "none"},
+            ),
+            # Series picker for custom tabs (visible for non-default tabs)
+            html.Div(
+                [
+                    dcc.Dropdown(
+                        id="charts-series-picker",
+                        options=[{"label": l, "value": l} for l in series_labels],
+                        multi=True,
+                        placeholder="Select series for this tab",
+                        className="dash-dropdown",
+                        style={"minWidth": 0}
+                    )
+                ],
+                id="charts-series-custom-controls",
+                style={"display": "none", "minWidth": 0, "gap": "6px"},
+            ),
             dcc.Graph(id="fig-dashboard", figure=go.Figure(), style={"minHeight": "360px", "minWidth": 0}),
         ],
         className="card",
