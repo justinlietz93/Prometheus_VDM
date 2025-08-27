@@ -22,7 +22,7 @@ from fum_rt.frontend.styles import get_global_css
 from fum_rt.frontend.components.layout import build_layout
 
 from fum_rt.frontend.callbacks.workspace import register_workspace_callbacks
-from fum_rt.frontend.callbacks.charts import register_chart_callbacks, register_series_tabs_customization
+from fum_rt.frontend.callbacks.charts import register_chart_callbacks
 from fum_rt.frontend.callbacks.runtime import register_runtime_callbacks
 from fum_rt.frontend.callbacks.process import register_process_callbacks
 from fum_rt.frontend.callbacks.feed import register_feed_callbacks
@@ -128,8 +128,6 @@ def build_app(runs_root: str) -> Dash:
     print(f"[callbacks] workspace registered; total={len(getattr(app, 'callback_map', {}))}")
     register_chart_callbacks(app)
     print(f"[callbacks] charts registered; total={len(getattr(app, 'callback_map', {}))}")
-    register_series_tabs_customization(app)
-    print(f"[callbacks] charts series-tabs customization registered; total={len(getattr(app, 'callback_map', {}))}")
     register_runtime_callbacks(app, default_profile)
     print(f"[callbacks] runtime registered; total={len(getattr(app, 'callback_map', {}))}")
     register_feed_callbacks(app, manager, repo_root)
