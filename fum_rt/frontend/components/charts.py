@@ -37,8 +37,7 @@ def charts_card():
         + [
             dcc.Tab(label=lbl, value=lbl, className="fum-tab", selected_className="fum-tab--selected")
             for lbl in series_labels
-        ]
-        + [dcc.Tab(label="+", value="__add__", className="fum-tab add", selected_className="fum-tab--selected add")],
+        ],
         style={"minWidth": 0},
         parent_style={"minWidth": 0},
         content_style={"minWidth": 0},
