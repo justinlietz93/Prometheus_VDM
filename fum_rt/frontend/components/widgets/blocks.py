@@ -166,6 +166,7 @@ def block_panel_tabs(
     content_style: Optional[dict] = None,
     className: Optional[str] = None,
     tabs_id: Optional[str] = None,
+    tabs_className: Optional[str] = "fum-tabs",
 ) -> html.Div:
     """
     Panel variant with a tab-strip inside the body (no callbacks required).
@@ -184,6 +185,9 @@ def block_panel_tabs(
 
     Returns:
       html.Div panel with header and dcc.Tabs.
+    
+    Args (additional):
+      tabs_className: optional CSS class for the dcc.Tabs container (default: "fum-tabs")
     """
     # Panel chrome (similar to block_panel)
     panel_style = {
@@ -249,6 +253,8 @@ def block_panel_tabs(
     )
     if isinstance(tabs_id, str) and tabs_id.strip():
         _tabs_kwargs["id"] = tabs_id
+    if isinstance(tabs_className, str) and tabs_className.strip():
+        _tabs_kwargs["className"] = tabs_className
 
     tabs_comp = dcc.Tabs(**_tabs_kwargs)
 

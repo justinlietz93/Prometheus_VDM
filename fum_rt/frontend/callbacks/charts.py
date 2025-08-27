@@ -20,9 +20,10 @@ def register_chart_callbacks(app):
         Input("run-dir", "value"),
         Input("proc-status", "children"),
         Input("ui-state", "data"),
+        Input("charts-series-tabs", "value"),
         prevent_initial_call=False,
     )
-    def update_figs(_n, run_dir, proc_status, ui_state):
+    def update_figs(_n, run_dir, proc_status, ui_state, series_tab):
         if not run_dir:
             return go.Figure(), go.Figure()
 
@@ -39,5 +40,25 @@ def register_chart_callbacks(app):
         state = getattr(update_figs, "_state", None)
         ui = ui_state or {}
         fig1, fig2, new_state = compute_dashboard_figures(run_dir, state, ui)
+
+        # Optional series filter via tabs on the Dashboard graph; match trace by name.
+        try:
+            if series_tab and str(series_tab).strip().lower() != "all":
+                selected = str(series_tab).strip()
+                filt = go.Figure()
+                for tr in fig1.data:
+                    try:
+                        if getattr(tr, "name", "") == selected:
+                            filt.add_trace(tr)
+                    except Exception:
+                        continue
+                # Preserve original layout even if only one trace remains
+                filt.update_layout(fig1.layout)
+                # Fall back to original if no traces matched
+                fig1 = filt if len(filt.data) > 0 else fig1
+        except Exception:
+            # Non-fatal; keep original fig if filter fails
+            pass
+
         setattr(update_figs, "_state", new_state)
         return fig1, fig2
