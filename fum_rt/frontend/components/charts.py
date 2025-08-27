@@ -3,7 +3,6 @@ from __future__ import annotations
 from dash import html, dcc
 import plotly.graph_objects as go
 import os
-from fum_rt.frontend.components.widgets.blocks import block_panel_tabs
 
 
 def charts_card():
@@ -33,7 +32,7 @@ def charts_card():
     series_tabs = dcc.Tabs(
         id="charts-series-tabs",
         value="all",
-        className="fum-tabs",
+        className="fum-tabs small",
         children=[dcc.Tab(label="All", value="all")]
         + [dcc.Tab(label=lbl, value=lbl) for lbl in series_labels],
         style={"minWidth": 0},
@@ -41,39 +40,25 @@ def charts_card():
         content_style={"minWidth": 0},
     )
 
-    tabs = [
-        {
-            "label": "Dashboard",
-            "value": "dashboard",
-            "content": html.Div(
-                [
-                    series_tabs,
-                    dcc.Graph(
-                        id="fig-dashboard",
-                        figure=go.Figure(),
-                        style={"minHeight": "360px", "minWidth": 0},
-                    ),
-                ],
-                style={"display": "grid", "gap": "8px", "minWidth": 0},
+    # Runtime customization: user-provided CSV list of series labels
+    custom_row = html.Div(
+        [
+            dcc.Input(
+                id="charts-series-input",
+                type="text",
+                placeholder="Series CSV (ex: Active synapses, Cycles, Avg W, B1 z, ...)",
+                style={"width": "100%"},
             ),
-        },
-        {
-            "label": "Discovery",
-            "value": "discovery",
-            "content": dcc.Graph(
-                id="fig-discovery",
-                figure=go.Figure(),
-                style={"minHeight": "300px", "minWidth": 0},
-            ),
-        },
-    ]
-
-    panel = block_panel_tabs(
-        title="Charts",
-        tabs=tabs,
-        value="dashboard",
-        tabs_style={"minWidth": 0},
-        content_style={"minWidth": 0},
-        tabs_id="charts-tabs",
+            html.Button("Apply Tabs", id="charts-series-apply", n_clicks=0, className="btn-ok"),
+        ],
+        style={"display": "grid", "gridTemplateColumns": "1fr auto", "gap": "6px", "minWidth": 0},
     )
-    return html.Div([panel], className="card")
+
+    return html.Div(
+        [
+            series_tabs,
+            custom_row,
+            dcc.Graph(id="fig-dashboard", figure=go.Figure(), style={"minHeight": "360px", "minWidth": 0}),
+        ],
+        className="card",
+    )

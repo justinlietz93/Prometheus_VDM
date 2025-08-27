@@ -86,6 +86,18 @@ def get_components_css() -> str:
       box-shadow: inset 0 -2px 0 var(--accent);
       opacity: 1;
     }
+
+    /* Compact variant */
+    .fum-tabs.small{ padding: 0 4px 0 0; }
+    .fum-tabs.small .tab{
+      padding: 3px 8px;
+      font-size: 12px;
+      margin: 0 4px 0 0;
+    }
+    .fum-tabs.small .tab--selected{
+      box-shadow: inset 0 -1px 0 var(--accent);
+    }
+
     /* Tabs content wrapper inside our panels */
     .fum-tabs .tab-content{
       background: var(--panel);
