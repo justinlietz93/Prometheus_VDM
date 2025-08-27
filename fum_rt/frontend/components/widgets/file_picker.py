@@ -289,3 +289,125 @@ def file_picker(prefix: str, title: str, initial: str = "", width: str = "100%")
             "overflow": "hidden",
         },
     )
+    
+    
+    # ---------------------------------------------------------------------------
+    # Infrastructure: snap-block components (non-invasive)
+    # These helpers do NOT alter existing widget behavior/layout. They provide a
+    # modular container/panel system you can opt into at page layout time to get
+    # IDE-like "snapping" blocks with collision borders and consistent spacing.
+    # ---------------------------------------------------------------------------
+    
+    def block_container(
+        children,
+        min_col_px: int = 360,
+        gap_px: int = 12,
+        cols: int | None = None,
+        style: dict | None = None,
+        className: str | None = None,
+    ) -> html.Div:
+        """
+        Snap-block container using CSS Grid.
+    
+        - Panels flow into columns with consistent gap (no overlap).
+        - Use 'cols' to fix the number of columns; otherwise auto-fit by width.
+        - Non-invasive: use at page-level to wrap independent panels.
+        """
+        tpl = (
+            f"repeat({cols}, minmax({min_col_px}px, 1fr))"
+            if isinstance(cols, int) and cols > 0
+            else f"repeat(auto-fit, minmax({min_col_px}px, 1fr))"
+        )
+        base = {
+            "display": "grid",
+            "gridTemplateColumns": tpl,
+            "gap": f"{gap_px}px",
+            "alignItems": "start",
+            "justifyItems": "stretch",
+            "width": "100%",
+            "boxSizing": "border-box",
+            # Isolation to keep panels from leaking stacking contexts/z-index
+            "isolation": "isolate",
+            # Prevent outside layout effects from interfering with measurement
+            "contain": "layout paint",
+        }
+        if style:
+            base.update(style)
+        return html.Div(children=children, style=base, className=className or "fum-block-container")
+    
+    
+    def block_panel(
+        title: str,
+        children,
+        icon: str | None = None,
+        header_right=None,
+        style: dict | None = None,
+        body_style: dict | None = None,
+        className: str | None = None,
+    ) -> html.Div:
+        """
+        Base snap-block panel with header + collision borders.
+    
+        - Visual 'collision' via border + subtle outline to show edges.
+        - Body is overflow-hidden with minWidth:0 to avoid content spill.
+        - Non-invasive wrapper: place any widget in 'children'.
+        """
+        panel_style = {
+            "position": "relative",
+            "background": "var(--panel2)",
+            "border": "1px solid var(--border)",
+            "borderRadius": "8px",
+            # Subtle outer edge to make boundaries obvious
+            "outline": "1px solid rgba(255,255,255,0.06)",
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "minWidth": 0,
+            "overflow": "hidden",
+            "contain": "layout paint",
+            "isolation": "isolate",
+        }
+        if style:
+            panel_style.update(style)
+    
+        header_children = []
+        if icon:
+            header_children.append(html.Span(icon, style={"opacity": 0.8, "marginRight": "6px"}))
+        header_children.append(html.Span(title, style={"fontWeight": 600}))
+    
+        header = html.Div(
+            [
+                html.Div(header_children, style={"display": "flex", "alignItems": "center", "gap": "6px", "minWidth": 0}),
+                html.Div(header_right or [], style={"marginLeft": "auto", "display": "flex", "gap": "8px"}),
+            ],
+            style={
+                "display": "flex",
+                "alignItems": "center",
+                "gap": "8px",
+                "padding": "6px 10px",
+                "fontSize": "13px",
+                "borderBottom": "1px solid var(--border)",
+                "background": "var(--panel2)",
+                "minWidth": 0,
+            },
+        )
+    
+        body_base = {
+            "padding": "8px 10px",
+            "minWidth": 0,
+            "overflow": "hidden",
+        }
+        if body_style:
+            body_base.update(body_style)
+    
+        body = html.Div(children=children, style=body_base)
+    
+        return html.Div([header, body], style=panel_style, className=className or "fum-block-panel")
+    
+    
+    def file_picker_block(prefix: str, title: str, initial: str = "", width: str = "100%") -> html.Div:
+        """
+        Optional convenience: wrap the existing file_picker in a BlockPanel.
+        This does NOT change the file picker itself, only provides panel chrome.
+        """
+        return block_panel(title=title, children=file_picker(prefix, title, initial, width))
