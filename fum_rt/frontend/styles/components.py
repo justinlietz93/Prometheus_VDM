@@ -57,50 +57,88 @@ def get_components_css() -> str:
 
     /* dcc.Tabs (fum-tabs) — dark theme styling */
     .fum-tabs{
-      border-bottom:1px solid var(--border);
-      margin: 0;
-      padding: 0 6px 0 0;
+      background: transparent;
+      border: none;
+      margin: 0 0 6px 0;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
     }
-    .fum-tabs .tab{
-      background: var(--panel2);
-      color: var(--text);
-      border: 1px solid var(--border);
-      border-bottom: none;
-      padding: 6px 10px;
-      margin: 0 6px 0 0;
-      border-top-left-radius: 8px;
-      border-top-right-radius: 8px;
+
+    /* Base tab — minimal underline style to match dark theme */
+    .fum-tabs .tab,
+    .fum-tabs button.tab,
+    .fum-tabs .fum-tab{
+      background: transparent !important;
+      color: var(--muted) !important;
+      border: none !important;
+      border-bottom: 2px solid transparent !important;
+      padding: 4px 8px;
+      margin: 0 8px 0 0;
+      border-radius: 0;
       font-size: 13px;
       line-height: 1.2;
-      opacity: 0.9;
-      transition: filter 120ms ease, box-shadow 120ms ease, opacity 120ms ease;
+      opacity: 0.95;
+      transition: color 120ms ease, border-color 120ms ease, filter 120ms ease;
     }
-    .fum-tabs .tab:hover{
-      filter: brightness(1.05);
+
+    .fum-tabs .tab:hover,
+    .fum-tabs button.tab:hover,
+    .fum-tabs .fum-tab:hover{
+      filter: brightness(1.04);
       opacity: 1;
+      color: var(--text) !important;
+      border-bottom-color: var(--border) !important;
     }
-    .fum-tabs .tab--selected{
-      background: var(--panel);
-      color: var(--text);
-      border-color: var(--accent);
-      box-shadow: inset 0 -2px 0 var(--accent);
+
+    /* Selected tab (robust: match class and aria-selected) — accent underline */
+    .fum-tabs .tab--selected,
+    .fum-tabs .tab[aria-selected="true"],
+    .fum-tabs button.tab[aria-selected="true"],
+    .fum-tabs .fum-tab--selected{
+      background: transparent !important;
+      color: var(--text) !important;
+      border: none !important;
+      border-bottom: 2px solid var(--accent) !important;
+      box-shadow: none !important;
       opacity: 1;
     }
 
     /* Compact variant */
-    .fum-tabs.small{ padding: 0 4px 0 0; }
-    .fum-tabs.small .tab{
-      padding: 3px 8px;
+    .fum-tabs.small{ padding: 0 2px 0 0; gap: 4px; }
+    .fum-tabs.small .tab,
+    .fum-tabs.small button.tab,
+    .fum-tabs.small .fum-tab{
+      padding: 2px 6px;
       font-size: 12px;
-      margin: 0 4px 0 0;
+      margin: 0 6px 0 0;
     }
-    .fum-tabs.small .tab--selected{
-      box-shadow: inset 0 -1px 0 var(--accent);
+    .fum-tabs.small .tab--selected,
+    .fum-tabs.small .tab[aria-selected="true"],
+    .fum-tabs.small button.tab[aria-selected="true"],
+    .fum-tabs.small .fum-tab--selected{
+      border-bottom-width: 1px !important;
     }
 
-    /* Tabs content wrapper inside our panels */
+    /* '+' add tab subtle style */
+    .fum-tabs .fum-tab.add{
+      color: var(--muted) !important;
+      border-bottom-color: transparent !important;
+      opacity: 0.8;
+    }
+    .fum-tabs .fum-tab.add:hover{
+      color: var(--text) !important;
+      opacity: 1;
+    }
+
+    /* Tabs content wrapper (when used) */
     .fum-tabs .tab-content{
       background: var(--panel);
       color: var(--text);
+      border: 1px solid var(--border);
+      border-top: none;
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
     }
     """
