@@ -39,5 +39,6 @@ def charts_card():
         value="dashboard",
         tabs_style={"minWidth": 0},
         content_style={"minWidth": 0},
+        tabs_id="charts-tabs",
     )
     return html.Div([panel], className="card")

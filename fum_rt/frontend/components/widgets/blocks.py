@@ -239,14 +239,18 @@ def block_panel_tabs(
         for i, t in enumerate(tabs or [])
     ]
 
-    tabs_comp = dcc.Tabs(
-        id=tabs_id,
+    # Build Tabs kwargs without injecting an id=None (Dash disallows id=None)
+    _tabs_kwargs = dict(
         value=value_default,
         children=tab_children,
         style={"minWidth": 0, "overflow": "hidden", **(tabs_style or {})},
         parent_style={"minWidth": 0},  # ensure shrinking works inside flex/grid
         content_style={"minWidth": 0, "minHeight": 0, "overflow": "hidden"},
     )
+    if isinstance(tabs_id, str) and tabs_id.strip():
+        _tabs_kwargs["id"] = tabs_id
+
+    tabs_comp = dcc.Tabs(**_tabs_kwargs)
 
     body = html.Div(
         children=[tabs_comp],
