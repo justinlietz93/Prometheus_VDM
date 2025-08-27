@@ -38,6 +38,7 @@ IDs produced (all prefixed):
   - {prefix}-selected-path (dcc.Store holding absolute path)
 """
 
+import os
 from dash import html, dcc
 
 
@@ -192,27 +193,58 @@ def file_picker(prefix: str, title: str, initial: str = "", width: str = "100%")
     Returns:
       html.Div node
     """
+    # Respect the caller-provided width (percent or pixels)
+    try:
+        w = str(width).strip() if width else "100%"
+    except Exception:
+        w = "100%"
     return html.Div(
         [
-            # Compact strip: selected filename + button
+            # Compact strip: responsive filename area + right-aligned button
             html.Div(
                 [
-                    html.Span(
-                        "Selected: ",
-                        style={"opacity": 0.8, "marginRight": "6px", "fontSize": "13px"},
-                    ),
-                    html.Span(
-                        initial or "(none)",
-                        id=f"{prefix}-selected-label",
+                    html.Div(
+                        [
+                            html.Span(
+                                "Selected: ",
+                                style={"opacity": 0.8, "fontSize": "13px", "flex": "0 0 auto"},
+                            ),
+                            html.Span(
+                                children=[
+                                    html.Span(
+                                        (os.path.splitext(os.path.basename(initial))[0] if initial else "(none)"),
+                                        style={
+                                            "minWidth": 0,
+                                            "overflow": "hidden",
+                                            "textOverflow": "ellipsis",
+                                            "whiteSpace": "nowrap",
+                                            "display": "block",
+                                            "flex": 1,
+                                        },
+                                    ),
+                                    html.Span(
+                                        (os.path.splitext(os.path.basename(initial))[1] if initial else ""),
+                                        style={"flex": "0 0 auto"},
+                                    ),
+                                ],
+                                id=f"{prefix}-selected-label",
+                                style={
+                                    "fontWeight": 500,
+                                    "fontSize": "13px",
+                                    "display": "flex",
+                                    "alignItems": "baseline",
+                                    "flex": 1,
+                                    "minWidth": 0,
+                                    "overflow": "hidden"
+                                },
+                            ),
+                        ],
                         style={
-                            "fontWeight": 500,
-                            "fontSize": "13px",
-                            "maxWidth": "60%",
-                            "overflow": "hidden",
-                            "textOverflow": "ellipsis",
-                            "whiteSpace": "nowrap",
-                            "display": "inline-block",
-                            "verticalAlign": "middle",
+                            "display": "flex",
+                            "alignItems": "center",
+                            "gap": "6px",
+                            "flex": 1,
+                            "minWidth": 0,
                         },
                     ),
                     html.Button(
@@ -220,20 +252,22 @@ def file_picker(prefix: str, title: str, initial: str = "", width: str = "100%")
                         id=f"{prefix}-open-btn",
                         n_clicks=0,
                         className="btn-ok",
+                        style={"marginLeft": "auto", "flex": "0 0 auto"},
                     ),
                 ],
                 style={
                     "display": "flex",
                     "alignItems": "center",
-                    "width": width,
+                    "width": "100%",
                     "gap": "8px",
-                    "flexWrap": "wrap",
+                    "flexWrap": "nowrap",
                     "justifyContent": "flex-start",
                     "background": "var(--panel2)",
                     "border": "1px solid var(--border)",
                     "borderRadius": "8px",
                     "padding": "6px 8px",
-                    "minHeight": "36px"
+                    "minHeight": "36px",
+                    "overflow": "hidden"
                 },
             ),
             # Persistent stores for this instance
@@ -248,4 +282,10 @@ def file_picker(prefix: str, title: str, initial: str = "", width: str = "100%")
             dcc.Store(id=f"{prefix}-last-action"),
             # Modal overlay moved to top-level portal; see components/layout.py (modals-root)
         ],
+        style={
+            "width": w,
+            "display": "block",
+            "boxSizing": "border-box",
+            "overflow": "hidden",
+        },
     )
