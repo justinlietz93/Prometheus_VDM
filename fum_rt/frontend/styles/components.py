@@ -12,7 +12,7 @@ from __future__ import annotations
 
 def get_components_css() -> str:
     """
-    Return component-specific rules for dropdowns, sliders, etc.
+    Return component-specific rules for dropdowns, sliders, tabs, etc.
     """
     return """
     /* dcc.Dropdown (react-select) */
@@ -54,4 +54,41 @@ def get_components_css() -> str:
     .rc-slider-track{background:var(--accent)}
     .rc-slider-dot{border-color:#233140;background:#10151c}
     .rc-slider-handle{border:1px solid var(--border);background:var(--panel2)}
+
+    /* dcc.Tabs (fum-tabs) — dark theme styling */
+    .fum-tabs{
+      border-bottom:1px solid var(--border);
+      margin: 0;
+      padding: 0 6px 0 0;
+    }
+    .fum-tabs .tab{
+      background: var(--panel2);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-bottom: none;
+      padding: 6px 10px;
+      margin: 0 6px 0 0;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+      font-size: 13px;
+      line-height: 1.2;
+      opacity: 0.9;
+      transition: filter 120ms ease, box-shadow 120ms ease, opacity 120ms ease;
+    }
+    .fum-tabs .tab:hover{
+      filter: brightness(1.05);
+      opacity: 1;
+    }
+    .fum-tabs .tab--selected{
+      background: var(--panel);
+      color: var(--text);
+      border-color: var(--accent);
+      box-shadow: inset 0 -2px 0 var(--accent);
+      opacity: 1;
+    }
+    /* Tabs content wrapper inside our panels */
+    .fum-tabs .tab-content{
+      background: var(--panel);
+      color: var(--text);
+    }
     """
