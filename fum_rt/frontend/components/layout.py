@@ -4,6 +4,7 @@ import os
 from typing import Any, Dict, List
 
 from dash import html, dcc
+from fum_rt.frontend.components.widgets.file_picker import file_picker_overlay
 
 from fum_rt.frontend.components.workspace import workspace_card
 from fum_rt.frontend.components.runtime_controls import runtime_controls_card
@@ -65,6 +66,15 @@ def build_layout(
                 ],
                 id="app-grid",
                 className="grid",
+            ),
+            # Top-level portal root so modals are independent from #app-grid
+            html.Div(
+                [
+                    file_picker_overlay("feed-file", "Select feed file"),
+                    file_picker_overlay("profile-file", "Select profile JSON"),
+                    file_picker_overlay("engram-file", "Select engram file"),
+                ],
+                id="modals-root",
             ),
             dcc.Interval(id="poll", interval=poll_interval, n_intervals=0, disabled=poll_disabled),
             dcc.Store(id="chat-state"),
