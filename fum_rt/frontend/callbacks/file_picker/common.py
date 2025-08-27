@@ -432,9 +432,25 @@ def register_file_picker_common(app, prefix: str, target_id: str, project_root: 
             return no_update, no_update, "Select a file.", no_update, no_update, no_update, no_update
         path = fsel if os.path.isabs(fsel) else (os.path.abspath(os.path.join(c, fsel)) if c else os.path.abspath(fsel))
         bname = os.path.basename(path)
-        # Separate display widths: compact strip can be tighter than dropdown options
-        label_compact = _truncate_middle(bname, max_len=32)
+        base_only, ext = os.path.splitext(bname)
+        # Separate display widths:
+        # - Compact strip renders base and extension separately so extension stays visible
+        # - Dropdown options keep middle-ellipsis string
         label_option = _truncate_middle(bname, max_len=40)
+        label_children = [
+            html.Span(
+                base_only,
+                style={
+                    "minWidth": 0,
+                    "overflow": "hidden",
+                    "textOverflow": "ellipsis",
+                    "whiteSpace": "nowrap",
+                    "display": "block",
+                    "flex": 1,
+                },
+            ),
+            html.Span(ext, style={"flex": "0 0 auto"}),
+        ]
 
         # Ensure Dropdown 'options' contains the selected path to avoid client-side validation blocking the update
         try:
@@ -460,4 +476,4 @@ def register_file_picker_common(app, prefix: str, target_id: str, project_root: 
         status = f"Selected: {path}"
         style = _fp_modal_styles()  # hidden (default)
         # Remove the open-class so CSS rule no longer pins/locks the layout
-        return path, label_compact, status, style, "fum-modal", new_options, path
+        return path, label_children, status, style, "fum-modal", new_options, path
