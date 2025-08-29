@@ -144,8 +144,8 @@ class TestAxiomaticTheory:
     
     def potential(self, phi):
         """Stabilized potential V(phi) with correct signs."""
-        # Corrected potential that's bounded below
-        return -(self.alpha/3)*phi**3 + (self.r/2)*phi**2 + (self.lam/4)*phi**4
+        # Corrected potential that's bounded below and consistent with vacuum_solution()
+        return (self.alpha/3)*phi**3 - (self.r/2)*phi**2 + (self.lam/4)*phi**4
     
     def potential_derivative(self, phi):
         """First derivative V'(phi)."""
