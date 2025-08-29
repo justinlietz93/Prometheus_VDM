@@ -1,11 +1,78 @@
 # Axiomatic Theory Development for FUVDM
 
+**Scope banner:** *Axiomatic RD baseline. No EFT. No training. All corollaries derive from these axioms.*
+
 **Scope:** Systematic development of a fully axiomatic foundation for the Field-Unified Void Dynamics Model (FUVDM), addressing theoretical gaps identified in the current derivation and establishing rigorous mathematical foundations.
 
 **References:**
 - [void_dynamics_theory.md](foundations/void_dynamics_theory.md) - Current theory framework and identified gaps
 - [CORRECTIONS.md](CORRECTIONS.md) - Required corrections and validation issues  
 - [discrete_to_continuum.md](foundations/discrete_to_continuum.md) - Mapping between discrete and continuum descriptions
+
+---
+
+## Universality Map: What RD Axioms Generate
+
+This section demonstrates that the Theory of Everything (UTOE) scope is maintained through RD-only axioms by deriving theorems that show how all corollaries emerge from the fundamental reaction-diffusion framework without requiring external effective field theory (EFT) or phenomenological additions.
+
+### Theorem U1 — Oscillatory dynamics from RD doublet (exact, no new axioms)
+
+Let $\phi,\psi$ satisfy
+
+$$
+\partial_t\phi=(D\nabla^2+r)\phi+\kappa\,\psi,\qquad
+\partial_t\psi=(D\nabla^2+r)\psi-\kappa\,\phi ,
+$$
+
+with $D>0$, $r=\alpha-\beta$, $\kappa$ a constant coupling (parameter‑dependent). Eliminating $\psi$ yields the exact factorization
+
+$$
+\big(\partial_t-(D\nabla^2+r)\big)^2\phi+\kappa^2\phi=0,
+$$
+
+i.e.
+
+$$
+\partial_{tt}\phi-2(D\nabla^2+r)\partial_t\phi+\big((D\nabla^2+r)^2+\kappa^2\big)\phi=0 .
+$$
+
+**Fourier mode** $e^{i k\cdot x}$: $s_\pm=(r-Dk^2)\pm i\kappa$. Hence bona fide oscillations at frequency $|\kappa|$ with RD envelope $e^{(r-Dk^2)t}$.
+
+**Obligation U1:** Show factorization $(\partial_t-L\mp i\kappa)(\partial_t-L\pm i\kappa)\phi=0$ with $L=D\nabla^2+r$. List spectrum $s_\pm$ and note no new axioms.
+
+### Corollary U1.1 — KG‑form operator as RD identity
+
+For $\chi=\phi+i\psi$, $\partial_t\chi=(D\nabla^2+r)\chi+i\kappa\chi$ implies
+
+$$
+\big(\partial_t-(D\nabla^2+r)-i\kappa\big)\big(\partial_t-(D\nabla^2+r)+i\kappa\big)\chi=0.
+$$
+
+This is an **exact** RD identity, not an EFT. The "mass‑like" parameter is $m_{\rm eff}=\kappa$ (parameter‑dependent).
+
+**Obligation U1.1:** State explicitly this uses only RD axioms and coupling.
+
+### Theorem U2 — Finite‑speed signaling cone from RD gates
+
+Linear RD gives growth rate $\sigma(k)=r-Dk^2$ and Fisher–KPP front $c_{\text{front}}=2\sqrt{Dr}$. The cone $x/t\le 2\sqrt{Dr}$ defines the causal speed of supports created by compact data.
+
+**Obligation U2:** Cite the two RD gates as axiomatic predictions and assert that all derived regimes must respect this cone in their envelopes.
+
+### Theorem U3 — Pattern quanta as stable attractors
+
+With stabilized potential $V(\phi)$ (document's corrected $V',V'',V'''$), RD admits topological or limit‑cycle attractors on bounded domains. These serve as discrete, re‑identifiable carriers ("quanta") without new axioms.
+
+**Obligation U3:** List existence conditions (signs of $r,\alpha,\lambda$), Lyapunov functional $\mathcal{L}=\int \tfrac{D}{2}|\nabla\phi|^2+\hat V(\phi)\,dx$, and stability test $V''(\phi^\*)>0$.
+
+### Theorem U4 — Metric modulation inside RD (geometric corollary)
+
+On a Riemannian domain $(\Omega,g_{ij})$ the diffusion term is $\nabla_i(D\,g^{ij}\nabla_j\phi)$. If $g$ is **not** an added postulate but a field‑dependent construct defined in the axioms' allowable mappings, curvature enters as a **derived coefficient field**.
+
+**Obligation U4:** Declare the mapping rule that permits $g^{ij}(\phi)$ or $D(x)$ as **constructs** from axioms, not new axioms; all RD gates must still hold locally.
+
+### "What UTOE means here" box
+
+*UTOE claim = every observed regime we care about appears as an exact identity, corollary, or regime theorem of RD axioms with explicitly stated conditions. No external EFT, no training, no extra postulates.*
 
 ---
 
