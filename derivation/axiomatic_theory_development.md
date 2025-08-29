@@ -259,6 +259,43 @@ Status mapping to axioms & tags
 - The failure of the standard Hamiltonian conservation is recorded as a negative result in `derivation/conservation_law/discrete_conservation.md` and remains [NUM-EVIDENCE]+[CONJECTURE] for any corrected global Hamiltonian until a constructive proof is provided.
 - The on-site logarithmic invariant remains [THEOREM-PROVEN] for the ODE reduction and [NUM-EVIDENCE] for its numeric validation; it is NOT elevated to a global conserved flux without the `H_edge` construction and symbolic proof.
 
+## Ground truths & experiment log (compact)
+
+This short log records the concrete numeric and symbolic artifacts produced while searching for a discrete flux form and the operational conclusions derived from those artifacts. Keep this block small and authoritative — it is the traceable ground truth for the flux search work.
+
+- Key numeric/smoke artifacts (deterministic sweep, fits, and diagnostics):
+	- Deterministic sweep JSONs (per-seed ΔQ samples):
+		- `derivation/outputs/logs/conservation_law/flux_sweep_1756476135.json`
+		- `derivation/outputs/logs/conservation_law/flux_sweep_1756475408.json`
+	- Fit / ansatz artifacts:
+		- `derivation/outputs/logs/conservation_law/fit_H_edge_1756476188.json` (least-squares fit over simple basis)
+		- `derivation/outputs/logs/conservation_law/opt_H_params_1756477394.json` (optimizer result for symbolic free param(s))
+		- `derivation/outputs/logs/conservation_law/H_candidate_test_1756476845.json` (numeric test of symbolic H candidate; reported NaN in initial eval)
+		- `derivation/outputs/logs/conservation_law/grid_tau0_report.json` (tau0 sensitivity grid)
+
+- Analysis / helper scripts (in-repo):
+	- `derivation/code/analysis/flux_sweep.py` — deterministic/random sweep harness; produces `flux_sweep_*.json` and saves sample W0/W1 pairs.
+	- `derivation/code/analysis/flux_symbolic_full.py` — small‑N CAS solver (SymPy) to search polynomial ansatz; produced a parametric family with free symbols.
+	- `derivation/code/analysis/fit_H_edge.py` — least-squares fitter for simple polynomial basis.
+	- `derivation/code/analysis/build_and_test_H_candidate.py` — build symbolic H (fix free params) and test numerically against sweep samples.
+	- `derivation/code/analysis/optimize_H_params.py` — numeric optimizer for free symbolic parameters with numeric protections.
+	- `derivation/code/analysis/grid_tau0.py` — quick grid sensitivity scan for `tau0`.
+
+- Runtime test harness (non-invasive):
+	- `fum_rt/core/tests/test_conservation_flux.py` — pytest that snapshots `Q` before/after a single `Connectome.step()` (dense mode in previous runs was avoided in later runs; scripts sample W directly where possible).
+
+- Short, machine-verified ground truths (what we can assert now):
+	1. The per-site logarithmic invariant Q(W,t)=ln(W)−ln(r−uW)−rt is an on-site first integral for the autonomous logistic ODE; its derivation and numeric validation are implemented in `derivation/code/physics/conservation_law/qfum_validate.py` and are recorded in the repository prior to this analysis. [THEOREM-PROVEN (ODE); NUM-EVIDENCE]
+ 2. For the full FUM discrete update (deterministic skeleton and full runtime including interactions), the global sum Σ_i Q_i is not conserved: single-step Δ(Σ_i Q_i) ≠ 0 in general (see `flux_sweep_*.json`). [NUM-EVIDENCE]
+ 3. A direct search for a constant-coefficient polynomial edge correction (simple basis) yields only a tiny antisymmetric coefficient and modest residual reduction; no closed-form constant-coefficient H_edge was found. [RESULT: NUM-EVIDENCE]
+ 4. Small‑N symbolic CAS produced a parametric family of local H expressions (free symbols remain). These solutions generally contain rational factors that require numeric protection (denominator regularization) when evaluated on runtime samples. [RESULT: SYMBOLIC → parametric family]
+
+- Practical conclusion and document mapping:
+	- No constructive, globally valid `H_edge` (closed-form) has been proven; the search remains OPEN and recorded as [OPEN] in this section.
+	- For reproducibility, all scripts and output JSONs above are the ground-truth artifacts that any future claim must reference and re-run.
+
+End of ground truths block. Additions to this block must reference produced artifact paths and numeric gates (SHA256) when claiming new evidence.
+
 End of truth‑first axiomatic document. All non‑axiom / regime claims above are tagged; no content follows this termination marker.
 [File terminates here intentionally – minimal source enforced.]
 
