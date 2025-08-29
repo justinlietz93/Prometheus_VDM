@@ -31,7 +31,7 @@ class TestAxiomaticTheory:
         self.dt = 0.1  # time step
         self.alpha = 0.25
         self.beta = 0.10
-        self.lam = 0.05  # stabilization parameter (increased for stability)
+        self.lam = 0.1  # stabilization parameter (increased for stability)
         
         # Derived parameters (exact from axiomatic theory)
         self.c_squared = 2 * self.J * self.a**2  # exact spatial kinetic prefactor
@@ -40,16 +40,16 @@ class TestAxiomaticTheory:
         
     def vacuum_solution(self):
         """Calculate exact vacuum solution from quartic potential."""
-        # For V'(phi) = -alpha*phi^2 + r*phi + lambda*phi^3 = 0
-        # Factor: phi*(-alpha*phi + r + lambda*phi^2) = 0
-        # So phi = 0 or -alpha*phi + r + lambda*phi^2 = 0, i.e., lambda*phi^2 - alpha*phi + r = 0
-        # Using quadratic formula: phi = (alpha ± sqrt(alpha^2 - 4*lambda*r)) / (2*lambda)
-        discriminant = self.alpha**2 - 4 * self.lam * self.r
+        # From theoretical derivation: V'(phi) = alpha*phi^2 - (alpha-beta)*phi + lambda*phi^3 = 0
+        # Factor: phi*(lambda*phi^2 + alpha*phi - (alpha-beta)) = 0
+        # So phi = 0 or lambda*phi^2 + alpha*phi - (alpha-beta) = 0
+        # Using quadratic formula: phi = (-alpha ± sqrt(alpha^2 + 4*lambda*(alpha-beta))) / (2*lambda)
+        discriminant = self.alpha**2 + 4 * self.lam * (self.alpha - self.beta)
         if discriminant < 0:
             # No real vacuum, use phi = 0
             return 0.0
-        # Take positive root for physical vacuum
-        return (self.alpha + np.sqrt(discriminant)) / (2 * self.lam)
+        # Take positive root for physical vacuum (when alpha > beta)
+        return (-self.alpha + np.sqrt(discriminant)) / (2 * self.lam)
     
     def test_spatial_kinetic_prefactor_exactness(self):
         """Test Phase I.3: Exact derivation of c^2 = 2Ja^2."""
@@ -143,21 +143,20 @@ class TestAxiomaticTheory:
         print("✓ EFT expansion convergence verified")
     
     def potential(self, phi):
-        """Stabilized potential V(phi) with correct signs."""
-        # Corrected potential that's bounded below and consistent with vacuum_solution()
-        return (self.alpha/3)*phi**3 - (self.r/2)*phi**2 + (self.lam/4)*phi**4
+        """Stabilized potential V(phi) = (alpha/3)*phi^3 - (alpha-beta)*phi^2/2 + (lambda/4)*phi^4."""
+        return (self.alpha/3)*phi**3 - ((self.alpha - self.beta)/2)*phi**2 + (self.lam/4)*phi**4
     
     def potential_derivative(self, phi):
         """First derivative V'(phi)."""
-        return -self.alpha*phi**2 + self.r*phi + self.lam*phi**3
+        return self.alpha*phi**2 - self.r*phi + self.lam*phi**3
     
     def potential_second_derivative(self, phi):
         """Second derivative V''(phi)."""
-        return -2*self.alpha*phi + self.r + 3*self.lam*phi**2
+        return 2*self.alpha*phi - self.r + 3*self.lam*phi**2
     
     def potential_third_derivative(self, phi):
         """Third derivative V'''(phi)."""
-        return -2*self.alpha + 6*self.lam*phi
+        return 2*self.alpha + 6*self.lam*phi
     
     def potential_fourth_derivative(self, phi):
         """Fourth derivative V''''(phi)."""
@@ -179,9 +178,10 @@ def test_axiomatic_consistency():
     
     print("=" * 60)
     print("✓ ALL AXIOMATIC THEORY TESTS PASSED")
-    print("✓ Mathematical rigor verified across all phases")
-    print("✓ FUVDM theory achieves UNDENIABLE PROOF status")
-    print("✓ Theory complete: Four axioms → Complete field theory")
+    print("✓ Mathematical rigor verified across all analyzed phases")
+    print("✓ FUVDM theory achieves STRONG CANDIDATE status")
+    print("✓ Theory substantially complete: Four axioms → Systematic field theory")
+    print("⚠ Experimental validation required for physical confirmation")
 
 
 if __name__ == "__main__":
