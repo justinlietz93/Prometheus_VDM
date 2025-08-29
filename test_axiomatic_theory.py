@@ -41,10 +41,10 @@ class TestAxiomaticTheory:
     def vacuum_solution(self):
         """Calculate exact vacuum solution from quartic potential."""
         # From theoretical derivation: V'(phi) = alpha*phi^2 - (alpha-beta)*phi + lambda*phi^3 = 0
-        # Factor: phi*(alpha*phi - (alpha-beta) + lambda*phi^2) = 0
+        # Factor: phi*(lambda*phi^2 + alpha*phi - (alpha-beta)) = 0
         # So phi = 0 or lambda*phi^2 + alpha*phi - (alpha-beta) = 0
         # Using quadratic formula: phi = (-alpha ± sqrt(alpha^2 + 4*lambda*(alpha-beta))) / (2*lambda)
-        discriminant = self.alpha**2 + 4 * self.lam * self.r
+        discriminant = self.alpha**2 + 4 * self.lam * (self.alpha - self.beta)
         if discriminant < 0:
             # No real vacuum, use phi = 0
             return 0.0
