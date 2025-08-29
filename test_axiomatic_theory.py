@@ -144,7 +144,7 @@ class TestAxiomaticTheory:
     
     def potential(self, phi):
         """Stabilized potential V(phi) = (alpha/3)*phi^3 - (alpha-beta)*phi^2/2 + (lambda/4)*phi^4."""
-        return (self.alpha/3)*phi**3 - (self.r/2)*phi**2 + (self.lam/4)*phi**4
+        return (self.alpha/3)*phi**3 - ((self.alpha - self.beta)/2)*phi**2 + (self.lam/4)*phi**4
     
     def potential_derivative(self, phi):
         """First derivative V'(phi)."""
