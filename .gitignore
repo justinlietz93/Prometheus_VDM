@@ -59,3 +59,6 @@ fum_rt/data/corpus/unsorted/*
 ## Acer Aspire Laptop
 
 ## 7900 Box
+
+#Ignore vscode AI rules
+.github/instructions/codacy.instructions.md
