@@ -1,0 +1,103 @@
+{
+  "acceptance": {
+    "convergence_expected_order": 4,
+    "convergence_ok": false,
+    "convergence_r2_min": 0.98,
+    "drift_gate": 1e-08,
+    "drift_ok": true,
+    "order_tol": 0.4,
+    "passed": false
+  },
+  "convergence": {
+    "delta_Q_max_list": [
+      2.2737367544323206e-13,
+      6.616929226765933e-13,
+      7.185363415374013e-13
+    ],
+    "dts": [
+      0.002,
+      0.001,
+      0.0005
+    ],
+    "intercept": -14.812045368619891,
+    "r": 0.15,
+    "r2": 0.803424455033764,
+    "slope": -0.829997946214989,
+    "solver": "rk4",
+    "u": 0.25
+  },
+  "figures": {
+    "Q_drift": "/mnt/ironwolf/git/Void_FUM_Private/Void_FUM_Private/Void_Unity_Proofs/derivation/code/outputs/figures/conservation_law/failed_runs/20250826_110241_qfum_Q_drift.png",
+    "Q_drift_arxiv": "",
+    "Q_drift_stable": "",
+    "convergence": "/mnt/ironwolf/git/Void_FUM_Private/Void_FUM_Private/Void_Unity_Proofs/derivation/code/outputs/figures/conservation_law/failed_runs/20250826_110242_qfum_convergence.png",
+    "convergence_arxiv": "",
+    "convergence_stable": "",
+    "solution_overlay": "/mnt/ironwolf/git/Void_FUM_Private/Void_FUM_Private/Void_Unity_Proofs/derivation/code/outputs/figures/conservation_law/failed_runs/20250826_110241_qfum_solution_overlay.png",
+    "solution_overlay_arxiv": "",
+    "solution_overlay_stable": ""
+  },
+  "params": {
+    "T": 40.0,
+    "W0_list": [
+      0.12,
+      0.62
+    ],
+    "dt_list": [
+      0.002,
+      0.001,
+      0.0005
+    ],
+    "r": 0.15,
+    "solver": "rk4",
+    "u": 0.25
+  },
+  "runs": [
+    {
+      "T": 40.0,
+      "W0": 0.12,
+      "W_max": 0.5941094001250449,
+      "W_min": 0.12,
+      "delta_Q_max": 7.185363415374013e-13,
+      "dt": 0.0005,
+      "r": 0.15,
+      "solver": "rk4",
+      "u": 0.25
+    },
+    {
+      "T": 40.0,
+      "W0": 0.12,
+      "W_max": 0.5941094001250479,
+      "W_min": 0.12,
+      "delta_Q_max": 2.2737367544323206e-13,
+      "dt": 0.002,
+      "r": 0.15,
+      "solver": "rk4",
+      "u": 0.25
+    },
+    {
+      "T": 40.0,
+      "W0": 0.12,
+      "W_max": 0.5941094001250451,
+      "W_min": 0.12,
+      "delta_Q_max": 6.616929226765933e-13,
+      "dt": 0.001,
+      "r": 0.15,
+      "solver": "rk4",
+      "u": 0.25
+    },
+    {
+      "T": 40.0,
+      "W0": 0.12,
+      "W_max": 0.5941094001250449,
+      "W_min": 0.12,
+      "delta_Q_max": 7.185363415374013e-13,
+      "dt": 0.0005,
+      "r": 0.15,
+      "solver": "rk4",
+      "u": 0.25
+    }
+  ],
+  "timestamp_utc": "20250826T160241Z",
+  "version": "1.0"
+}

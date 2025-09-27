@@ -17,6 +17,7 @@ Design:
 
 import os
 from typing import List
+import os
 
 import dash
 from dash import html, Input, Output, State, ALL, no_update
@@ -39,6 +40,30 @@ from fum_rt.frontend.controllers.file_picker_status import (
     file_status_text as _file_status_text,
     directory_status_text as _dir_status_text,
 )
+# ---------- helpers ----------
+def _truncate_middle(name: str, max_len: int = 48) -> str:
+    """
+    Truncate a filename with a middle ellipsis, preserving the extension.
+    Format target: 'Start … End.ext' (spaces around ellipsis; extension always visible)
+    """
+    try:
+        s = str(name)
+    except Exception:
+        return name
+    if len(s) <= max_len:
+        return s
+    base, ext = os.path.splitext(s)
+    # Reserve for ' … ' and extension
+    ell = " … "
+    reserve = len(ell) + len(ext)
+    if max_len <= reserve + 2:
+        # Extreme constraint: keep 1 char of base then ellipsis then ext
+        head_len = max(1, max_len - reserve)
+        return base[:head_len] + ell + ext
+    remain = max_len - reserve
+    left = remain // 2
+    right = remain - left
+    return base[:left] + ell + base[-right:] + ext
 
 
 def register_file_picker_common(app, prefix: str, target_id: str, project_root: str) -> None:
@@ -79,14 +104,28 @@ def register_file_picker_common(app, prefix: str, target_id: str, project_root: 
     # Cancel -> hide modal
     @app.callback(
         Output(mid, "style", allow_duplicate=True),
+        Output(mid, "className", allow_duplicate=True),
         Input(cancel_btn, "n_clicks"),
         prevent_initial_call=True,
     )
     def on_cancel(_n):
+        # Hide modal and drop the 'modal-open' class (pure CSS governs grid pinning)
         style = _fp_modal_styles()
-        # Keep 'display' as defined by component default (hidden)
-        return style
+        return style, "fum-modal"
 
+    # Preserve modal-open class during in-modal interactions (feed/nav/file)
+    # Rationale: some layouts may re-render subtrees during navigation, which can drop className on the modal root.
+    # This guard reasserts "fum-modal modal-open" whenever the user interacts with the tree/breadcrumbs (nav/file),
+    # ensuring CSS :has(.fum-modal.modal-open) locks background scroll and disables background interactions.
+    @app.callback(
+        Output(mid, "className", allow_duplicate=True),
+        Input(last_action_store, "data"),
+        prevent_initial_call=True,
+    )
+    def _keep_modal_open_class(last_action):
+        if last_action in ("nav", "file"):
+            return "fum-modal modal-open"
+        return no_update
     # Navigate to root
     @app.callback(
         Output(cwd_store, "data", allow_duplicate=True),
@@ -242,6 +281,7 @@ def register_file_picker_common(app, prefix: str, target_id: str, project_root: 
         Output(sel_dir_store, "data", allow_duplicate=True),
         Output(file_sel_store, "data", allow_duplicate=True),
         Output(f"{prefix}-last-action", "data", allow_duplicate=True),
+        Output(status_div, "children", allow_duplicate=True),
         Input({"role": f"{prefix}-tree-dir", "path": ALL}, "n_clicks"),
         State(tree_store, "data"),
         State(root_store, "data"),
@@ -285,7 +325,7 @@ def register_file_picker_common(app, prefix: str, target_id: str, project_root: 
         nodes[p] = node
         tree["nodes"] = nodes
         # Also clear any existing file selection on folder toggle so status shows folder metadata
-        return tree, p, "", "nav"
+        return tree, p, "", "nav", _dir_status_text(p, exts=(exts or []), hide_dotfiles=True)
 
     # Breadcrumb click -> select directory (clamped)
     @app.callback(
@@ -343,19 +383,27 @@ def register_file_picker_common(app, prefix: str, target_id: str, project_root: 
         Output(file_sel_store, "data", allow_duplicate=True),
         Output(status_div, "children", allow_duplicate=True),
         Output(f"{prefix}-last-action", "data", allow_duplicate=True),
+        Output(sel_store, "data", allow_duplicate=True),
+        Output(sel_label, "children", allow_duplicate=True),
         Input({"role": f"{prefix}-file", "path": ALL}, "n_clicks"),
         prevent_initial_call=True,
     )
     def on_explorer_click(_file_clicks):
         ctx = dash.callback_context
+
+        # Parse triggering id; avoid strict n_clicks gating which can be None or string in some Dash versions
         obj = _get_ctx_obj(ctx)
         if not isinstance(obj, dict) or obj.get("role") != f"{prefix}-file":
-            return no_update, no_update, no_update, no_update
+            return no_update, no_update, no_update, no_update, no_update, no_update
         fpath = (obj.get("path", "") or "").strip()
         if not fpath:
-            return no_update, no_update, no_update, no_update
-        # Only set selected file and signal 'file'; status is computed centrally in on_render
-        return no_update, fpath, no_update, "file"
+            return no_update, no_update, no_update, no_update, no_update, no_update
+        # Persist selection into stores so Confirm has a reliable fallback
+        from os.path import basename
+        bname = basename(fpath)
+        # Preview selection (file_sel_store) and persist selected-path silently for Confirm fallback.
+        # Do NOT update the compact strip label yet; that only updates on Confirm.
+        return no_update, fpath, no_update, "file", fpath, no_update
 
     # Confirm selection -> set stores, hide modal, and update target value
     @app.callback(
@@ -363,21 +411,46 @@ def register_file_picker_common(app, prefix: str, target_id: str, project_root: 
         Output(sel_label, "children"),
         Output(status_div, "children", allow_duplicate=True),
         Output(mid, "style", allow_duplicate=True),
+        Output(mid, "className", allow_duplicate=True),
         Output(target_id, "options", allow_duplicate=True),
         Output(target_id, "value", allow_duplicate=True),
         Input(confirm_btn, "n_clicks"),
         State(file_sel_store, "data"),
         State(sel_dir_store, "data"),
         State(target_id, "options"),
+        State(sel_store, "data"),
         prevent_initial_call=True,
     )
-    def on_confirm(_n, file_sel, sel_dir, options):
+    def on_confirm(_n, file_sel, sel_dir, options, sel_data):
+        # Primary source: file selected by clicking in explorer
         fsel = (file_sel or "").strip()
+        # Fallback to last persisted selection (set on click) if primary missing
+        if not fsel:
+            fsel = (sel_data or "").strip()
         c = (sel_dir or "").strip()
         if not fsel:
-            return no_update, no_update, "Select a file.", no_update, no_update, no_update
+            return no_update, no_update, "Select a file.", no_update, no_update, no_update, no_update
         path = fsel if os.path.isabs(fsel) else (os.path.abspath(os.path.join(c, fsel)) if c else os.path.abspath(fsel))
-        label = os.path.basename(path)
+        bname = os.path.basename(path)
+        base_only, ext = os.path.splitext(bname)
+        # Separate display widths:
+        # - Compact strip renders base and extension separately so extension stays visible
+        # - Dropdown options keep middle-ellipsis string
+        label_option = _truncate_middle(bname, max_len=40)
+        label_children = [
+            html.Span(
+                base_only,
+                style={
+                    "minWidth": 0,
+                    "overflow": "hidden",
+                    "textOverflow": "ellipsis",
+                    "whiteSpace": "nowrap",
+                    "display": "block",
+                    "flex": 1,
+                },
+            ),
+            html.Span(ext, style={"flex": "0 0 auto"}),
+        ]
 
         # Ensure Dropdown 'options' contains the selected path to avoid client-side validation blocking the update
         try:
@@ -392,12 +465,15 @@ def register_file_picker_common(app, prefix: str, target_id: str, project_root: 
                     v = o.get("value")
                     if isinstance(v, str) and v not in vals:
                         vals.add(v)
-                        new_options.append(o)
+                        # Preserve any existing label; otherwise keep as-is
+                        lbl = o.get("label", v)
+                        new_options.append({"label": lbl, "value": v})
             if path not in vals:
-                new_options.append({"label": path, "value": path})
+                new_options.append({"label": label_option, "value": path})
         except Exception:
-            new_options = [{"label": path, "value": path}]
+            new_options = [{"label": label_option, "value": path}]
 
         status = f"Selected: {path}"
         style = _fp_modal_styles()  # hidden (default)
-        return path, label, status, style, new_options, path
+        # Remove the open-class so CSS rule no longer pins/locks the layout
+        return path, label_children, status, style, "fum-modal", new_options, path
