@@ -12,7 +12,7 @@ Both delegate common behavior to .common.register_file_picker_common
 import os
 from typing import List
 
-from dash import Output, Input, State  # type: ignore
+from dash import Output, Input, State, no_update  # type: ignore
 
 from fum_rt.frontend.components.widgets.file_picker import _modal_styles as _fp_modal_styles
 from fum_rt.frontend.controllers.file_picker_controller import init_tree as _ctl_init_tree
@@ -50,11 +50,13 @@ def register_file_picker_static(app, prefix: str, root: str, exts: List[str] | N
     # Open -> show modal and initialize stores
     @app.callback(
         Output(mid, "style", allow_duplicate=True),
+        Output(mid, "className", allow_duplicate=True),
         Output(root_store, "data"),
         Output(cwd_store, "data", allow_duplicate=True),
         Output(exts_store, "data"),
         Output(f"{prefix}-file-sel", "data", allow_duplicate=True),
         Output(f"{prefix}-last-action", "data", allow_duplicate=True),
+        Output("app-grid", "style", allow_duplicate=True),
         Input(open_btn, "n_clicks"),
         prevent_initial_call=True,
     )
@@ -63,7 +65,8 @@ def register_file_picker_static(app, prefix: str, root: str, exts: List[str] | N
         r = r0 if os.path.isdir(r0) else project_root
         style = _fp_modal_styles()
         style["display"] = "flex"
-        return style, r, r, list(exts or []), "", "nav"
+        # Do not mutate grid inline; CSS handles pinning via :has() and #app-grid rules.
+        return style, "fum-modal modal-open", r, r, list(exts or []), "", "nav", no_update
 
     # Initialize tree and selection on open (static)
     @app.callback(
@@ -109,11 +112,13 @@ def register_file_picker_engram(
     # Open -> compute root dynamically from run-dir / runs-root
     @app.callback(
         Output(mid, "style", allow_duplicate=True),
+        Output(mid, "className", allow_duplicate=True),
         Output(root_store, "data"),
         Output(cwd_store, "data", allow_duplicate=True),
         Output(exts_store, "data"),
         Output(f"{prefix}-file-sel", "data", allow_duplicate=True),
         Output(f"{prefix}-last-action", "data", allow_duplicate=True),
+        Output("app-grid", "style", allow_duplicate=True),
         Input(open_btn, "n_clicks"),
         State("run-dir", "value"),
         State("runs-root", "value"),
@@ -138,11 +143,11 @@ def register_file_picker_engram(
                 r = r_candidate
                 style = _fp_modal_styles()
                 style["display"] = "flex"
-                return style, r, r, list(exts or []), "", "nav"
+                return style, "fum-modal modal-open", r, r, list(exts or []), "", "nav", no_update
         # fallback: open at project root
         style = _fp_modal_styles()
         style["display"] = "flex"
-        return style, project_root, project_root, list(exts or []), "", "nav"
+        return style, "fum-modal modal-open", project_root, project_root, list(exts or []), "", "nav", no_update
 
     # Initialize tree and selection on open (dynamic)
     @app.callback(
