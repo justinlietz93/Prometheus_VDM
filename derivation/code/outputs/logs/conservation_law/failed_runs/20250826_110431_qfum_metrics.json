@@ -1,0 +1,117 @@
+{
+  "acceptance": {
+    "convergence_expected_order": 4,
+    "convergence_ok": false,
+    "convergence_r2_min": 0.98,
+    "drift_gate": 1e-08,
+    "drift_ok": true,
+    "order_tol": 0.4,
+    "passed": false
+  },
+  "convergence": {
+    "delta_Q_max_list": [
+      1.5232259897857148e-13,
+      8.43769498715119e-15,
+      3.1086244689504383e-15,
+      4.884981308350689e-15
+    ],
+    "dts": [
+      0.02,
+      0.01,
+      0.005,
+      0.0025
+    ],
+    "intercept": -10.415932767242905,
+    "r": 0.15,
+    "r2": 0.6952410027932797,
+    "slope": 1.6328472033992532,
+    "solver": "rk4",
+    "u": 0.25
+  },
+  "figures": {
+    "Q_drift": "/mnt/ironwolf/git/Void_FUM_Private/Void_FUM_Private/Void_Unity_Proofs/derivation/code/outputs/figures/conservation_law/failed_runs/20250826_110431_qfum_Q_drift.png",
+    "Q_drift_arxiv": "",
+    "Q_drift_stable": "",
+    "convergence": "/mnt/ironwolf/git/Void_FUM_Private/Void_FUM_Private/Void_Unity_Proofs/derivation/code/outputs/figures/conservation_law/failed_runs/20250826_110431_qfum_convergence.png",
+    "convergence_arxiv": "",
+    "convergence_stable": "",
+    "solution_overlay": "/mnt/ironwolf/git/Void_FUM_Private/Void_FUM_Private/Void_Unity_Proofs/derivation/code/outputs/figures/conservation_law/failed_runs/20250826_110431_qfum_solution_overlay.png",
+    "solution_overlay_arxiv": "",
+    "solution_overlay_stable": ""
+  },
+  "params": {
+    "T": 10.0,
+    "W0_list": [
+      0.12,
+      0.62
+    ],
+    "dt_list": [
+      0.02,
+      0.01,
+      0.005,
+      0.0025
+    ],
+    "r": 0.15,
+    "solver": "rk4",
+    "u": 0.25
+  },
+  "runs": [
+    {
+      "T": 10.0,
+      "W0": 0.12,
+      "W_max": 0.31703749334631803,
+      "W_min": 0.12,
+      "delta_Q_max": 4.884981308350689e-15,
+      "dt": 0.0025,
+      "r": 0.15,
+      "solver": "rk4",
+      "u": 0.25
+    },
+    {
+      "T": 10.0,
+      "W0": 0.12,
+      "W_max": 0.31703749334629483,
+      "W_min": 0.12,
+      "delta_Q_max": 1.5232259897857148e-13,
+      "dt": 0.02,
+      "r": 0.15,
+      "solver": "rk4",
+      "u": 0.25
+    },
+    {
+      "T": 10.0,
+      "W0": 0.12,
+      "W_max": 0.31703749334631637,
+      "W_min": 0.12,
+      "delta_Q_max": 8.43769498715119e-15,
+      "dt": 0.01,
+      "r": 0.15,
+      "solver": "rk4",
+      "u": 0.25
+    },
+    {
+      "T": 10.0,
+      "W0": 0.12,
+      "W_max": 0.317037493346318,
+      "W_min": 0.12,
+      "delta_Q_max": 3.1086244689504383e-15,
+      "dt": 0.005,
+      "r": 0.15,
+      "solver": "rk4",
+      "u": 0.25
+    },
+    {
+      "T": 10.0,
+      "W0": 0.12,
+      "W_max": 0.31703749334631803,
+      "W_min": 0.12,
+      "delta_Q_max": 4.884981308350689e-15,
+      "dt": 0.0025,
+      "r": 0.15,
+      "solver": "rk4",
+      "u": 0.25
+    }
+  ],
+  "timestamp_utc": "20250826T160431Z",
+  "version": "1.0"
+}

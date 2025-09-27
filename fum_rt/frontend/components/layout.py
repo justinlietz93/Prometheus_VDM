@@ -4,13 +4,15 @@ import os
 from typing import Any, Dict, List
 
 from dash import html, dcc
+from fum_rt.frontend.components.widgets.file_picker import file_picker_overlay
 
 from fum_rt.frontend.components.workspace import workspace_card
 from fum_rt.frontend.components.runtime_controls import runtime_controls_card
 from fum_rt.frontend.components.feed import feed_card
-from fum_rt.frontend.components.run_config import run_config_card
+from fum_rt.frontend.components.config.run_config import run_config_card
 from fum_rt.frontend.components.charts import charts_card
 from fum_rt.frontend.components.chat import chat_card
+from fum_rt.frontend.components.perf import perf_card
 
 __all__ = ["build_layout"]
 
@@ -48,6 +50,7 @@ def build_layout(
                         [
                             workspace_card(runs_root, runs, default_run),
                             runtime_controls_card(default_profile),
+                            perf_card(),
                             feed_card(data_files_options),
                         ],
                         style={"minWidth": "320px", "display": "grid", "gap": "16px"},
@@ -61,11 +64,28 @@ def build_layout(
                         style={"minWidth": "400px", "display": "grid", "gap": "16px"},
                     ),
                 ],
+                id="app-grid",
                 className="grid",
+            ),
+            # Top-level portal root so modals are independent from #app-grid
+            html.Div(
+                [
+                    file_picker_overlay("feed-file", "Select feed file"),
+                    file_picker_overlay("profile-file", "Select profile JSON"),
+                    file_picker_overlay("engram-file", "Select engram file"),
+                ],
+                id="modals-root",
             ),
             dcc.Interval(id="poll", interval=poll_interval, n_intervals=0, disabled=poll_disabled),
             dcc.Store(id="chat-state"),
             dcc.Store(id="ui-state"),
         ],
-        style={"padding": "10px"},
+        style={
+            "padding": "10px",
+            "maxWidth": "1600px",
+            "margin": "0 auto",
+            "width": "100%",
+            "minHeight": "100vh",
+            "position": "relative"
+        },
     )

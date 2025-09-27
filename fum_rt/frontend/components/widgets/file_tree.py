@@ -8,6 +8,28 @@ Pure UI builders (no IO, no state). IDs are pattern-matching friendly.
 
 from dash import html
 
+# Truncate helper: preserves extension, uses middle ellipsis
+def _truncate_middle(name: str, max_len: int = 48) -> str:
+    try:
+        s = str(name)
+    except Exception:
+        return name
+    if len(s) <= max_len:
+        return s
+    # Separate extension (keep dot + ext)
+    import os as _os
+    base, ext = _os.path.splitext(s)
+    # Reserve 1 for ellipsis
+    reserve = 1 + len(ext)
+    if max_len <= reserve + 2:
+        # Extreme constraint fallback
+        head_len = max(1, max_len - len(ext) - 1)
+        return s[:head_len] + "…" + ext
+    remain = max_len - reserve
+    left = remain // 2
+    right = remain - left
+    return base[:left] + "…" + base[-right:] + ext
+
 
 def dir_row(prefix: str, path: str, name: str, depth: int, expanded: bool, is_selected: bool):
     """
@@ -28,7 +50,11 @@ def dir_row(prefix: str, path: str, name: str, depth: int, expanded: bool, is_se
             [
                 html.Span(chevron, style={"width": "1em"}),
                 html.Span(icon, style={"width": "1.2em"}),
-                html.Span(name, style={"overflow": "hidden", "textOverflow": "ellipsis"}),
+                html.Span(
+                    _truncate_middle(name, max_len=48),
+                    title=name,
+                    style={"overflow": "hidden", "textOverflow": "ellipsis"},
+                ),
             ],
             id={"role": f"{prefix}-tree-dir", "path": path},
             n_clicks=0,
@@ -60,12 +86,13 @@ def file_row(prefix: str, file_path: str, depth: int, selected: bool):
       selected: whether this file is currently selected
     """
     fname = file_path.split("/")[-1]
+    display = _truncate_middle(fname, max_len=48)
     return html.Div(
         html.Button(
             [
                 html.Span("•", style={"width": "1em", "opacity": 0.7}),
                 html.Span("📄", style={"width": "1.2em"}),
-                html.Span(fname, style={"overflow": "hidden", "textOverflow": "ellipsis"}),
+                html.Span(display, title=fname, style={"overflow": "hidden", "textOverflow": "ellipsis"}),
             ],
             id={"role": f"{prefix}-file", "path": file_path},
             n_clicks=0,

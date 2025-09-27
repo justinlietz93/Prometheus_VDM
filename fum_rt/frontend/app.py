@@ -17,15 +17,9 @@ from dash import Dash, dcc, html
 from fum_rt.frontend.utilities.fs_utils import list_runs, _list_files
 from fum_rt.frontend.services.process_manager import ProcessManager
 from fum_rt.frontend.utilities.profiles import get_default_profile
-from fum_rt.frontend.styles.theme import get_global_css
+from fum_rt.frontend.styles import get_global_css
 
-from fum_rt.frontend.components.workspace import workspace_card
-from fum_rt.frontend.components.runtime_controls import runtime_controls_card
-from fum_rt.frontend.components.feed import feed_card
-from fum_rt.frontend.components.run_config import run_config_card
-from fum_rt.frontend.components.charts import charts_card
-from fum_rt.frontend.components.chat import chat_card
-from fum_rt.frontend.components.perf import perf_card
+from fum_rt.frontend.components.layout import build_layout
 
 from fum_rt.frontend.callbacks.workspace import register_workspace_callbacks
 from fum_rt.frontend.callbacks.charts import register_chart_callbacks
@@ -38,7 +32,7 @@ from fum_rt.frontend.callbacks.chat import register_chat_callbacks
 from fum_rt.frontend.callbacks.engram import register_engram_callbacks
 from fum_rt.frontend.callbacks.perf import register_perf_callbacks
 from fum_rt.frontend.callbacks.interval import register_interval_callbacks
-from fum_rt.frontend.callbacks.file_picker import (
+from fum_rt.frontend.callbacks.file_picker.registrars import (
     register_file_picker_static,
     register_file_picker_engram,
 )
@@ -110,46 +104,17 @@ def build_app(runs_root: str) -> Dash:
     paths = _list_files(data_dir, exts=DATA_EXTS, recursive=False)[: max(0, DATA_SCAN_MAX)]
     data_files_options = [{"label": p, "value": p} for p in paths]
 
-    # Layout
-    app.layout = html.Div(
-        [
-            html.H3("FUVDM Live Dashboard (experimental control)"),
-            html.Div(
-                [
-                    # Left panel
-                    html.Div(
-                        [
-                            workspace_card(runs_root, runs, default_run),
-                            runtime_controls_card(default_profile),
-                            perf_card(),
-                            feed_card(data_files_options),
-                        ],
-                        style={"minWidth": "320px", "display": "grid", "gap": "16px"},
-                    ),
-                    # Right panel
-                    html.Div(
-                        [
-                            run_config_card(default_profile, domain_options, profile_options),
-                            charts_card(),
-                            chat_card(),
-                        ],
-                        style={"minWidth": "400px", "display": "grid", "gap": "16px"},
-                    ),
-                ],
-                className="grid",
-            ),
-            # Global UI poll — environment-tunable and disable-able
-            # DASH_POLL_MS: >0 interval in ms (default 1200); <=0 disables polling
-            dcc.Interval(
-                id="poll",
-                interval=max(250, int(os.getenv("DASH_POLL_MS", "1200")) if os.getenv("DASH_POLL_MS", "").strip() != "" else 1200),
-                n_intervals=0,
-                disabled=(int(os.getenv("DASH_POLL_MS", "1200")) if os.getenv("DASH_POLL_MS", "").strip() != "" else 1200) <= 0,
-            ),
-            dcc.Store(id="chat-state"),
-            dcc.Store(id="ui-state"),
-        ],
-        style={"padding": "10px"},
+    # Layout (single source of truth via components.layout.build_layout)
+    app.layout = build_layout(
+        runs_root=runs_root,
+        runs=runs,
+        default_run=default_run,
+        repo_root=repo_root,
+        profiles_dir=PROFILES_DIR,
+        default_profile=default_profile,
+        domain_options=domain_options,
+        data_files_options=data_files_options,
+        profile_options=profile_options,
     )
 
     # Callbacks (modular)
