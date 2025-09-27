@@ -1,0 +1,26 @@
+file,line,symbol,kind,expected,routes_via_GDSP
+fum_rt/core/neuroplasticity/gdsp.py,191,W_lil = W.tolil(),weight,Y,Y
+fum_rt/core/neuroplasticity/gdsp.py,192,P_lil = substrate.persistent_synapses.tolil(),state,Y,Y
+fum_rt/core/neuroplasticity/gdsp.py,193,W_lil[uu vv] = 0.01,weight,Y,Y
+fum_rt/core/neuroplasticity/gdsp.py,195,substrate.synaptic_weights = W_lil.tocsr(),weight,Y,Y
+fum_rt/core/neuroplasticity/gdsp.py,196,substrate.persistent_synapses = P_lil.tocsr(),state,Y,Y
+fum_rt/core/neuroplasticity/gdsp.py,215,W = substrate.synaptic_weights.tolil(),weight,Y,Y
+fum_rt/core/neuroplasticity/gdsp.py,217,substrate.synaptic_weights = W.tocsr(),weight,Y,Y
+fum_rt/core/neuroplasticity/gdsp.py,277,W_lil = substrate.synaptic_weights.tolil(),weight,Y,Y
+fum_rt/core/neuroplasticity/gdsp.py,288,W_lil[r c] = float(W_lil[r c]) * 1.1,weight,Y,Y
+fum_rt/core/neuroplasticity/gdsp.py,291,substrate.synaptic_weights = W_lil.tocsr(),weight,Y,Y
+fum_rt/core/neuroplasticity/gdsp.py,316,W_lil = substrate.synaptic_weights.tolil(),weight,Y,Y
+fum_rt/core/neuroplasticity/gdsp.py,317,P_lil = substrate.persistent_synapses.tolil(),state,Y,Y
+fum_rt/fum_advanced_math/structural_plasticity/apply_structural_plasticity.py,40,graph.remove_edge(u v),topology,N,N
+fum_rt/fum_advanced_math/structural_plasticity/apply_structural_plasticity.py,47,graph.add_edge(u new_neighbor weight=pruning_threshold),topology,N,N
+fum_rt/fum_advanced_math/structural_plasticity/apply_structural_plasticity.py,52,graph.add_edge(u v weight=growth_threshold),topology,N,N
+fum_rt/fum_advanced_math/evolutionary/apply_recombination.py,39,new_weights[~recombination_mask] = weights2[~recombination_mask],weight,N,N
+fum_rt/fum_advanced_math/evolutionary/apply_mutation.py,38,mutated_weights[mutation_mask] += mutations[mutation_mask],weight,N,N
+fum_rt/physics/memory_steering/memory_steering.py,385,A[t - 1 t] = 1,topology,N,N
+fum_rt/physics/memory_steering/memory_steering.py,386,A[t t - 1] = 1,topology,N,N
+fum_rt/physics/memory_steering/memory_steering.py,389,A[len_in - 1 J] = 1,topology,N,N
+fum_rt/physics/memory_steering/memory_steering.py,390,A[J len_in - 1] = 1,topology,N,N
+fum_rt/physics/memory_steering/memory_steering.py,396,A[last n] = 1,topology,N,N
+fum_rt/physics/memory_steering/memory_steering.py,397,A[n last] = 1,topology,N,N
+fum_rt/physics/memory_steering/memory_steering.py,404,A[last n] = 1,topology,N,N
+fum_rt/physics/memory_steering/memory_steering.py,405,A[n last] = 1,topology,N,N

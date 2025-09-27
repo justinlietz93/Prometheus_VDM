@@ -1,0 +1,82 @@
+[
+  {
+    "file": "fum_rt/core/metrics.py", 
+    "line": 24,
+    "context": "connectome.W.mean()",
+    "pattern": "torch.mean/sum without masking",
+    "severity": "High",
+    "reason": "Global mean over all weights - hot path"
+  },
+  {
+    "file": "fum_rt/core/metrics.py",
+    "line": 41,
+    "context": "deg.sum()",
+    "pattern": "sum without masking", 
+    "severity": "Medium",
+    "reason": "Sum over degree vector - could be large"
+  },
+  {
+    "file": "fum_rt/core/metrics.py",
+    "line": 47,
+    "context": "-(p * np.log(p)).sum()",
+    "pattern": "sum without masking",
+    "severity": "Medium", 
+    "reason": "Entropy calculation over probability vector"
+  },
+  {
+    "file": "fum_rt/core/void_b1.py",
+    "line": 262,
+    "context": "nbrs = [np.where(A[i] > 0)[0].astype(np.int32) for i in range(N)]",
+    "pattern": "for range(N) iteration",
+    "severity": "High",
+    "reason": "Dense adjacency scan over all N nodes - creates neighbor lists"
+  },
+  {
+    "file": "fum_rt/core/void_b1.py", 
+    "line": 215,
+    "context": "V_active = int((deg > 0).sum())",
+    "pattern": "sum without masking",
+    "severity": "Medium",
+    "reason": "Count active vertices via degree sum"
+  },
+  {
+    "file": "fum_rt/core/sparse_connectome.py",
+    "line": 61,
+    "context": "self.adj: List[np.ndarray] = [np.zeros(0, dtype=np.int32) for _ in range(self.N)]",
+    "pattern": "for range(N) iteration", 
+    "severity": "Low",
+    "reason": "Initialization only - happens once"
+  },
+  {
+    "file": "fum_rt/core/sparse_connectome.py",
+    "line": 292,
+    "context": "neigh_sets: List[Set[int]] = [set() for _ in range(N)]",
+    "pattern": "for range(N) iteration",
+    "severity": "Medium", 
+    "reason": "Creates N neighbor sets - could be expensive"
+  },
+  {
+    "file": "fum_rt/core/sparse_connectome.py",
+    "line": 294,
+    "context": "for i in range(N):",
+    "pattern": "for range(N) iteration",
+    "severity": "Medium",
+    "reason": "Iterates all nodes for component analysis"
+  },
+  {
+    "file": "fum_rt/core/substrate/neurogenesis.py",
+    "line": 53, 
+    "context": "W_cpu = substrate.W.cpu().numpy()",
+    "pattern": "cpu().numpy() on hot tensor",
+    "severity": "High",
+    "reason": "Full weight matrix transfer from GPU to CPU"
+  },
+  {
+    "file": "fum_rt/core/cortex/void_walkers/void_cycle_scout.py",
+    "line": 99,
+    "context": "tuple(range(N))",
+    "pattern": "for range(N) iteration",
+    "severity": "Low",
+    "reason": "Fallback when no seeds provided - walker context"
+  }
+]
