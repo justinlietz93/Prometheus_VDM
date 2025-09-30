@@ -264,6 +264,11 @@ These scripts are standalone developer tools intended to be run manually. They a
   - Example:
     - python tools/smoke_emissions.py --run runs/2025-08-10_21-00-00
 
+- Geometry bundle automation: [geom_bundle_builder.py](tools/geom_bundle_builder.py:1)
+  - Implements the end-to-end VDM geometry capture workflow (prep, provenance, activations, QC, packaging)
+  - Example:
+    - python tools/geom_bundle_builder.py --config config/geom_config.json --adapter tools.geom_adapter_stub:DeterministicRandomAdapter
+
 Policy:
 - No production code imports anything from tools/.
 - Tools are safe to modify/remove without impacting runtime execution.
