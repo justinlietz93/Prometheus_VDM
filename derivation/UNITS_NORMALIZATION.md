@@ -154,22 +154,23 @@ $$
 
 ## 4) Per-Quantity Units (as used)
 
-| Quantity (link to symbol) | Units/System | Where Stated | Notes |
-|---|---|---|---|
-| [$\alpha$](../derivation/SYMBOLS.md#sym-alpha) | nondimensional | derivation/CONSTANTS.md:10 • ec0833a | Universal learning rate ALPHA = 0.25 |
-| [$\beta$](../derivation/SYMBOLS.md#sym-beta) | nondimensional | derivation/CONSTANTS.md:11 • ec0833a | Universal plasticity rate BETA = 0.1 |
-| [$c_s^2$](../derivation/SYMBOLS.md#sym-cs) | LBM units | derivation/CONSTANTS.md:12 • ec0833a | CS2 = 1/3 in D2Q9 lattice |
-| [$D$](../derivation/SYMBOLS.md#sym-D) | length²/time | derivation/CONSTANTS.md:15-17 • ec0833a | Diffusion coefficients: D = 1.0, 0.5, 0.25 in RD experiments |
-| [$r$](../derivation/SYMBOLS.md#sym-r) | 1/time | derivation/CONSTANTS.md:16-18 • ec0833a | Growth rates: r = 0.25, 0.5, 1.0 in RD experiments |
-| [$N$](../derivation/SYMBOLS.md#sym-N) | sites | derivation/CONSTANTS.md:19 • ec0833a | Grid resolution: 256, 512, 1024 |
-| [$\tau$](../derivation/SYMBOLS.md#sym-tau) | time steps | derivation/CONSTANTS.md:29-31 • ec0833a | BGK relaxation: 0.8, 0.9, 1.0 (LBM) |
-| [$U$](../derivation/SYMBOLS.md#sym-U) | LBM velocity | derivation/CONSTANTS.md:36,38 • ec0833a | Lid velocity 0.1; Taylor-Green amplitude 0.05 |
-| [$\nu$](../derivation/SYMBOLS.md#sym-nu) | lattice units | derivation/code/common/dimensionless_fuvdm.py:17 • ec0833a | Computed from $\tau$: $\nu = (\tau - 0.5)/3$ |
-| [$g$](../derivation/SYMBOLS.md#sym-g) | nondimensional | derivation/CONSTANTS.md:42,53 • ec0833a | Void gain: 0.5 (lid cavity), 0.12 (memory steering) |
-| [$\Theta$](../derivation/SYMBOLS.md#sym-Theta) | nondimensional | derivation/DIMENSIONLESS_CONSTANTS.md:21 • ec0833a | Junction gate strength; fit scale parameter |
-| [$\Lambda$](../derivation/SYMBOLS.md#sym-Lambda) | nondimensional | derivation/DIMENSIONLESS_CONSTANTS.md:22 • ec0833a | Exploration/retention ratio; dispersion-to-convergence |
-| [$\Gamma$](../derivation/SYMBOLS.md#sym-Gamma) | nondimensional | derivation/DIMENSIONLESS_CONSTANTS.md:23 • ec0833a | Retention fraction; memory persistence ~0.3-0.75 |
-| [$D_a$](../derivation/SYMBOLS.md#sym-Da) | nondimensional | derivation/DIMENSIONLESS_CONSTANTS.md:24 • ec0833a | Anisotropic diffusion index: {1, 3, 5, 7} discrete |
+| Quantity (link to symbol)                                     | Units/System   | Where Stated                                               | Notes                                                        |
+| ------------------------------------------------------------- | -------------- | ---------------------------------------------------------- | ------------------------------------------------------------ |
+| $\alpha$<sup>[↗](../derivations/SYMBOLS.md#sym-alpha)</sup>   | nondimensional | derivation/CONSTANTS.md:10 • ec0833a                       | Universal learning rate ALPHA = 0.25                         |
+| $\beta$<sup>[↗](../derivations/SYMBOLS.md#sym-beta)</sup>     | nondimensional | derivation/CONSTANTS.md:11 • ec0833a                       | Universal plasticity rate BETA = 0.1                         |
+| $c_s^2$<sup>[↗](../derivations/SYMBOLS.md#sym-cs)</sup>       | LBM units      | derivation/CONSTANTS.md:12 • ec0833a                       | CS2 = 1/3 in D2Q9 lattice                                    |
+| $D$<sup>[↗](../derivations/SYMBOLS.md#sym-D)</sup>            | length²/time   | derivation/CONSTANTS.md:15-17 • ec0833a                    | Diffusion coefficients: D = 1.0, 0.5, 0.25 in RD experiments |
+| $r$<sup>[↗](../derivations/SYMBOLS.md#sym-r)</sup>            | 1/time         | derivation/CONSTANTS.md:16-18 • ec0833a                    | Growth rates: r = 0.25, 0.5, 1.0 in RD experiments           |
+| $N$<sup>[↗](../derivations/SYMBOLS.md#sym-N)</sup>            | sites          | derivation/CONSTANTS.md:19 • ec0833a                       | Grid resolution: 256, 512, 1024                              |
+| $\tau$<sup>[↗](../derivations/SYMBOLS.md#sym-tau)</sup>       | time steps     | derivation/CONSTANTS.md:29-31 • ec0833a                    | BGK relaxation: 0.8, 0.9, 1.0 (LBM)                          |
+| $U$<sup>[↗](../derivations/SYMBOLS.md#sym-U)</sup>            | LBM velocity   | derivation/CONSTANTS.md:36,38 • ec0833a                    | Lid velocity 0.1; Taylor-Green amplitude 0.05                |
+| $\nu$<sup>[↗](../derivations/SYMBOLS.md#sym-nu)</sup>         | lattice units  | derivation/code/common/dimensionless_fuvdm.py:17 • ec0833a | Computed from $\tau$: $\nu = (\tau - 0.5)/3$                 |
+| $g$<sup>[↗](../derivations/SYMBOLS.md#sym-g)</sup>            | nondimensional | derivation/CONSTANTS.md:42,53 • ec0833a                    | Void gain: 0.5 (lid cavity), 0.12 (memory steering)          |
+| $\Theta$<sup>[↗](../derivations/SYMBOLS.md#sym-Theta)</sup>   | nondimensional | derivation/DIMENSIONLESS_CONSTANTS.md:21 • ec0833a         | Junction gate strength; fit scale parameter                  |
+| $\Lambda$<sup>[↗](../derivations/SYMBOLS.md#sym-Lambda)</sup> | nondimensional | derivation/DIMENSIONLESS_CONSTANTS.md:22 • ec0833a         | Exploration/retention ratio; dispersion-to-convergence       |
+| $\Gamma$<sup>[↗](../derivations/SYMBOLS.md#sym-Gamma)</sup>   | nondimensional | derivation/DIMENSIONLESS_CONSTANTS.md:23 • ec0833a         | Retention fraction; memory persistence ~0.3-0.75             |
+| $D_a$<sup>[↗](../derivations/SYMBOLS.md#sym-Da)</sup>         | nondimensional | derivation/DIMENSIONLESS_CONSTANTS.md:24 • ec0833a         | Anisotropic diffusion index: {1, 3, 5, 7} discrete           |
+
 
 ---
 
