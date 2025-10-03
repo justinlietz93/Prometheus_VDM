@@ -325,4 +325,4 @@ $$
 <!-- END AUTOSECTION: BCIC-INDEX -->
 
 ## Change Log
-- 2025-01-03 • Initial creation of BC_IC_GEOMETRY.md • c31d0c9
+- 2025-10-03 • Initial creation of BC_IC_GEOMETRY.md with all BC/IC/geometries • 24ddc4d
