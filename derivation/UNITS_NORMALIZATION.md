@@ -170,6 +170,15 @@ $$
 | $\Lambda$<sup>[↗](../derivations/SYMBOLS.md#sym-Lambda)</sup> | nondimensional | derivation/DIMENSIONLESS_CONSTANTS.md:22 • ec0833a         | Exploration/retention ratio; dispersion-to-convergence       |
 | $\Gamma$<sup>[↗](../derivations/SYMBOLS.md#sym-Gamma)</sup>   | nondimensional | derivation/DIMENSIONLESS_CONSTANTS.md:23 • ec0833a         | Retention fraction; memory persistence ~0.3-0.75             |
 | $D_a$<sup>[↗](../derivations/SYMBOLS.md#sym-Da)</sup>         | nondimensional | derivation/DIMENSIONLESS_CONSTANTS.md:24 • ec0833a         | Anisotropic diffusion index: {1, 3, 5, 7} discrete           |
+| $V_{\text{useful\_bits}}$<sup>[↗](../derivations/SYMBOLS.md#sym-V-useful)</sup> | bits          | derivation/EQUATIONS.md:VDM-E-083,VDM-E-084 • HEAD | Useful reachable entropy; operational agency capacity |
+| $E$<sup>[↗](../derivations/SYMBOLS.md#sym-E)</sup>                                | steps         | derivation/EQUATIONS.md:VDM-E-081 • HEAD           | Discrete action/energy budget used by the probe       |
+| $p_{\text{slip}}$<sup>[↗](../derivations/SYMBOLS.md#sym-p-slip)</sup>            | 1 (prob.)     | derivation/EQUATIONS.md:VDM-E-081 • HEAD           | Per-step actuator slip probability in $[0,1]$         |
+| $G_E$<sup>[↗](../derivations/SYMBOLS.md#sym-GE-Gp)</sup>                          | bits/step     | derivation/EQUATIONS.md:VDM-E-081 • HEAD           | Sensitivity $\partial_E V$ (finite-difference)        |
+| $G_p$<sup>[↗](../derivations/SYMBOLS.md#sym-GE-Gp)</sup>                          | bits/(unit slip) | derivation/EQUATIONS.md:VDM-E-081 • HEAD        | Sensitivity $\partial_{p_{\text{slip}}} V$ (FD)       |
+| $\epsilon_E$<sup>[↗](../derivations/SYMBOLS.md#sym-elasticities)</sup>            | nondimensional | derivation/EQUATIONS.md:VDM-E-082 • HEAD          | Elasticity $\dfrac{E}{V}\partial_E V$ (when $V>0$)    |
+| $\epsilon_p$<sup>[↗](../derivations/SYMBOLS.md#sym-elasticities)</sup>            | nondimensional | derivation/EQUATIONS.md:VDM-E-082 • HEAD          | Elasticity $\dfrac{p_{\text{slip}}}{V}\partial_{p}V$ (when $V>0$) |
+| $E_{\min}^{(v_0)}$<sup>[↗](../derivations/SYMBOLS.md#sym-Emin-v0)</sup>          | steps         | derivation/EQUATIONS.md:VDM-E-083 • HEAD           | Minimal budget to reach $V\!\ge\!v_0$ at slip $p$     |
+| $n_{\text{act}}$<sup>[↗](../derivations/SYMBOLS.md#sym-n-act)</sup>               | actuators     | derivation/CONSTANTS.md:§Agency • HEAD             | Actuator count used in the probe context              |
 
 
 ---
