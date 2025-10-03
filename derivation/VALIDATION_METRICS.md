@@ -307,6 +307,30 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Primary figure/artifact (if referenced):** Logged in emission records  
 **Notes:** Used in smoke tests: `obs:vt_coverage↑` (fum_rt/runtime/helpers/smoke.py)
 
+#### SIE Valence  <a id="kpi-sie-valence"></a>
+**Symbol (if any):** `$ \text{sie\_valence\_01} $` or `$ \text{sie\_v2\_valence\_01} $`  
+**Purpose:** Scalar valence metric from Semantic Integration Engine for speak gating  
+**Defined by:** Integration score from SIE system (v2 is preferred version with fallback to v1)  
+**Inputs:** SIE processing outputs, connectome state  
+**Computation implemented at:** SIE subsystem (exact implementation in engine)  
+**Pass band / thresholds:** [`speak_valence_thresh`](CONSTANTS.md#const-speak_valence_thresh_4) per phase (e.g., phase 4 threshold)  
+**Units / normalization:** Scalar [0,1] typically  
+**Typical datasets / experiments:** Runtime telemetry, golden run parity, emission records  
+**Primary figure/artifact (if referenced):** Logged in telemetry, redis outputs, composer  
+**Notes:** v2 preferred; fallback chain: sie_v2_valence_01 → sie_valence_01 → 0.0 (fum_rt/runtime/helpers/redis_out.py:13-14)
+
+#### ADC Cycle Hits  <a id="kpi-adc-cycle-hits"></a>
+**Symbol (if any):** `$ \text{adc\_cycle\_hits} $`  
+**Purpose:** Active Domain Cartography cycle detection augmentation to complexity_cycles  
+**Defined by:** Cycle hits detected by ADC subsystem when active  
+**Inputs:** ADC metrics from get_metrics() call  
+**Computation implemented at:** ADC subsystem, aggregated in telemetry: `fum_rt/runtime/telemetry.py:complexity_cycles += adc_cycle_hits • 17a0b72`  
+**Pass band / thresholds:** No explicit threshold; augments [Complexity Cycles](#kpi-complexity-cycles)  
+**Units / normalization:** Integer count  
+**Typical datasets / experiments:** Runtime telemetry when ADC active  
+**Primary figure/artifact (if referenced):** N/A (internal augmentation to complexity_cycles)  
+**Notes:** When ADC inactive, adc_cycle_hits=0 → complexity_cycles unaugmented → b1_z flatlined (fum_rt/runtime/loop/main.py comment)
+
 ---
 
 ## Domain-Specific Metrics
@@ -433,6 +457,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Quick Index:**
 - [Active Synapses](#kpi-active-synapses)
 - [Activation Matrix Statistics](#kpi-activation-matrix-stats)
+- [ADC Cycle Hits](#kpi-adc-cycle-hits)
 - [Average Clustering Coefficient](#kpi-avg-clustering)
 - [Average Weight](#kpi-avg-weight)
 - [B1 Spike Detection (z-score)](#kpi-b1-spike-z)
@@ -457,6 +482,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 - [R² Dispersion Array Fit](#kpi-r2-dispersion-array)
 - [R² Front Position Fit](#kpi-r2-front-fit)
 - [Ring Lattice Suspicion Flag](#kpi-ring-lattice-suspicion)
+- [SIE Valence](#kpi-sie-valence)
 - [Swirl Announcer Statistics](#kpi-swirl-announce-stats)
 - [Taylor-Green Viscosity Recovery Error](#kpi-taylor-green-nu-rel-err)
 - [Void Traveler Coverage](#kpi-vt-coverage)
