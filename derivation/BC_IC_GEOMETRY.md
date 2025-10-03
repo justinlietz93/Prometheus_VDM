@@ -26,7 +26,7 @@
 ##### Periodic BC for 1D RD dispersion  <a id="bc-periodic-1d-rd-dispersion"></a>
 **Context:** derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py:34-37, 106, 125 • c31d0c9 • RD dispersion validation
 
-**Field(s):** [$\phi$](SYMBOLS.md#sym-phi) (linearized Fisher-KPP field $u$)  
+**Field(s):** $\phi$ (linearized Fisher-KPP field $u$) • TODO: add anchor `sym-phi` in SYMBOLS.md:10 for $\boldsymbol{\phi}(\mathbf{x},t)$  
 **Type:** Periodic  
 **Definition (quote from source if formula exists):**
 $$
@@ -43,7 +43,7 @@ $$
 ##### Neumann (zero-gradient) BC for 1D RD front speed  <a id="bc-neumann-1d-rd-front"></a>
 **Context:** derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py:28-36, 183 • c31d0c9 • RD front-speed validation
 
-**Field(s):** [$\phi$](SYMBOLS.md#sym-phi) (Fisher-KPP field $u$)  
+**Field(s):** $\phi$ (Fisher-KPP field $u$) • TODO: add anchor `sym-phi` in SYMBOLS.md:10 for $\boldsymbol{\phi}(\mathbf{x},t)$  
 **Type:** Neumann (homogeneous / no-flux)  
 **Definition (quote from source if formula exists):**
 $$
@@ -151,7 +151,7 @@ Boundary incoming from outside is zero (no flux across domain boundary).
 ##### Periodic or Neumann BC for flux-form diffusion  <a id="bc-flux-diffusion"></a>
 **Context:** derivation/code/physics/reaction_diffusion/flux_core.py:11-16, 58-118 • c31d0c9 • Conservative flux-form RD
 
-**Field(s):** [$\phi$](SYMBOLS.md#sym-phi) (general RD field)  
+**Field(s):** $\phi$ (general RD field) • TODO: add anchor `sym-phi` in SYMBOLS.md:10 for $\boldsymbol{\phi}(\mathbf{x},t)$  
 **Type:** Periodic or Neumann (user-specified)  
 **Definition (quote from source if formula exists):**
 Conservative flux-form update with antisymmetric edge fluxes $F_{ij} = -F_{ji}$:
@@ -189,7 +189,7 @@ When performing continuum integrations by parts, require one of:
 ##### Random noise IC for RD dispersion  <a id="ic-random-noise-rd-dispersion"></a>
 **Context:** derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py:106, 119 • c31d0c9
 
-**Quantity:** Linearized Fisher-KPP field $u(\mathbf{x}, 0)$ (link: [$\phi$](SYMBOLS.md#sym-phi))  
+**Quantity:** Linearized Fisher-KPP field $u(\mathbf{x}, 0)$ • TODO: add anchor `sym-phi` in SYMBOLS.md:10 for $\boldsymbol{\phi}(\mathbf{x},t)$  
 **Definition (quote from source if formula exists):**
 $$
 u(x, 0) = A_0 \cdot \eta(x)
@@ -206,7 +206,7 @@ where $\eta(x) \sim \mathcal{N}(0, 1)$ is standard Gaussian noise, and $A_0$ is 
 ##### Smooth tanh step IC for RD front speed  <a id="ic-tanh-step-rd-front"></a>
 **Context:** derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py:157-170 • c31d0c9
 
-**Quantity:** Fisher-KPP field $u(\mathbf{x}, 0)$ (link: [$\phi$](SYMBOLS.md#sym-phi))  
+**Quantity:** Fisher-KPP field $u(\mathbf{x}, 0)$ • TODO: add anchor `sym-phi` in SYMBOLS.md:10 for $\boldsymbol{\phi}(\mathbf{x},t)$  
 **Definition (quote from source if formula exists):**
 $$
 u(x, 0) = \frac{1}{2} \left(1 - \tanh\left(\frac{x - x_0}{w}\right)\right), \quad u(x > x_0 + 6w, 0) = 0
@@ -261,7 +261,7 @@ where $w_i$ are D2Q9 weights, $\mathbf{c}_i$ are lattice velocities, and $c_s^2 
 ##### Near-void initial state for discrete lattice (axiom verification)  <a id="ic-near-void-axiom"></a>
 **Context:** derivation/code/computational_toy_proofs/toy_QM.py:28 • c31d0c9
 
-**Quantity:** Discrete node state $W(0)$ (link: [$W_i$](SYMBOLS.md#sym-Wi))  
+**Quantity:** Discrete node state $W(0)$ • TODO: add anchor `sym-Wi` in SYMBOLS.md:21 for $W_i(t)$  
 **Definition (quote from source if formula exists):**
 $$
 W(0) = 0.1
