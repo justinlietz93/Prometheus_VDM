@@ -15,7 +15,7 @@
 **Role:** Execute the main simulation tick loop on the Nexus-like object, orchestrating all subsystems per tick.
 
 **Inputs:**
-- Symbols: `SYMBOLS.md#sym-t` (time), `SYMBOLS.md#sym-W` (node weights)
+- Symbols: $t$ (time), $W$ (node weights) - see `SYMBOLS.md`
 - Constants: `CONSTANTS.md#const-alpha`, `CONSTANTS.md#const-beta`
 - Runtime params: step (tick index), duration_s (wall-clock limit), t0 (start timestamp)
 
@@ -93,7 +93,7 @@ TERMINATION:
 **Role:** Apply one update tick driven by Void Equations: structural growth/rewiring via alias sampling and node field updates.
 
 **Inputs:**
-- Symbols: `SYMBOLS.md#sym-alpha` (ReLU($\Delta\alpha$)), `SYMBOLS.md#sym-omega` ($\Delta\omega$)
+- Symbols: $\alpha$ (ReLU($\Delta\alpha$)), $\omega$ ($\Delta\omega$), $W$ - see `SYMBOLS.md`
 - Constants: `CONSTANTS.md#const-alpha`, `CONSTANTS.md#const-beta`, threshold, lambda_omega
 - Params: t (time), domain_modulation, sie_drive (SIE valence gate), use_time_dynamics
 
