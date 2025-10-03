@@ -1,8 +1,8 @@
-**Create/Update `derivations/BC_IC_GEOMETRY.md` (MathJax-only, canonical BC/IC & domains)**
+**Create/Update `derivation/BC_IC_GEOMETRY.md` (MathJax-only, canonical BC/IC & domains)**
 
 Search the entire repository (code, tests, notebooks, configs, experiment scripts, docs, comments) and compile **all boundary conditions (BC), initial conditions (IC), and domain geometries** that are actually used. **Do not invent or infer new content.** Use only what exists in the repo.
 
-**Output file:** `derivations/BC_IC_GEOMETRY.md`
+**Output file:** `derivation/BC_IC_GEOMETRY.md`
 **Canon rule:** This file is the single owner of BC/IC definitions and domain geometries. Other docs must link here. **Do not restate core field equations or constants**—link to them by anchor.
 
 **MathJax on GitHub:**
@@ -113,10 +113,10 @@ Only include if the repo explicitly names them (e.g., `$a$` spacing, `$\mathrm{n
 
 ### Linking rules (anchors only; no duplication)
 
-* **Equations:** `../derivations/EQUATIONS.md#vdm-e-...`
-* **Symbols:** `../derivations/SYMBOLS.md#sym-...`
-* **Constants:** `../derivations/CONSTANTS.md#const-...`
-* **Units maps:** `../derivations/UNITS_NORMALIZATION.md#...`
+* **Equations:** `../derivation/EQUATIONS.md#vdm-e-...`
+* **Symbols:** `../derivation/SYMBOLS.md#sym-...`
+* **Constants:** `../derivation/CONSTANTS.md#const-...`
+* **Units maps:** `../derivation/UNITS_NORMALIZATION.md#...`
 
 If any required anchor is missing, write `TODO: add anchor` with the exact `path:lines`; do not create new content here.
 

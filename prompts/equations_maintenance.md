@@ -1,8 +1,8 @@
-**Create/Update `derivations/EQUATIONS.md` (MathJax-only)**
+**Create/Update `derivation/EQUATIONS.md` (MathJax-only)**
 
 Search the entire repository (code, tests, notebooks, docs, comments) and extract **all formulas, equations, and procedural math that are currently used as defining parts of the VDM theory**. **Only use content that already exists in the repo.** Do not infer, extrapolate, or add new material.
 
-**Output file:** `derivations/EQUATIONS.md`
+**Output file:** `derivation/EQUATIONS.md`
 
 **MathJax rules (GitHub-compatible):**
 
@@ -35,7 +35,7 @@ $$
 
 * One entry per **distinct** equation. If the same equation appears in multiple places, keep one entry and list additional locations under **Notes**.
 * Order entries by repository path (lexicographic). Do not add your own categories.
-* Do not add symbol definitions here. If an equation references a symbol not present in `derivations/SYMBOLS.md`, add a line in **Notes**: `TODO: add <symbol> to SYMBOLS.md (see <path>:<line>)`.
+* Do not add symbol definitions here. If an equation references a symbol not present in `derivation/SYMBOLS.md`, add a line in **Notes**: `TODO: add <symbol> to SYMBOLS.md (see <path>:<line>)`.
 * Maintain exact project naming where it appears (e.g., “Self Improvement Engine (SIE)”, “Adaptive Domain Cartographer (ADC)”).
 
 **File top matter (insert verbatim at top):**

@@ -1,8 +1,8 @@
-**Create/Update `derivations/CONSTANTS.md` (canonical constants & defaults, MathJax-only)**
+**Create/Update `derivation/CONSTANTS.md` (canonical constants & defaults, MathJax-only)**
 
 Search the entire repository (code, tests, notebooks, configs, `.env`, CLI defaults, YAML/JSON, comments) and extract **all constants, default hyperparameters, kernel parameters, and fixed numerical values that are currently used by VDM**. **Do not invent or infer values.** Use only what exists in the repo.
 
-**File:** `derivations/CONSTANTS.md`
+**File:** `derivation/CONSTANTS.md`
 **Canon rules:** This file is the single source of truth for constants. Other docs must link here; do not duplicate numbers elsewhere.
 
 **MathJax on GitHub:** use `$...$` for inline math and `$$...$$` only if you must show a formula. No `\[` `\]`, `\(` `\)`, `\begin{equation}`, `\tag`, or numbering.
@@ -45,7 +45,7 @@ Search the entire repository (code, tests, notebooks, configs, `.env`, CLI defau
 * **Meaning:** 1 short phrase from nearby comments/docs.
 * **Default/Value:** the literal numeric value as it appears (respect scientific notation). If computed from other constants at load time and there is no literal, leave blank and put the formula in **Notes**.
 * **Range/Limits:** infer only from explicit code constraints (e.g., asserts, clamps, validator ranges) or documented bands; otherwise leave blank.
-* **Units:** reference `derivations/UNITS_NORMALIZATION.md` terms (e.g., “LBM units”, “nondimensional”). Use MathJax for symbols if needed.
+* **Units:** reference `derivation/UNITS_NORMALIZATION.md` terms (e.g., “LBM units”, “nondimensional”). Use MathJax for symbols if needed.
 * **Source:** `path:line-start–line-end • <short-commit>`; include all occurrences if multiple apply.
 * **Notes:** brief context like “applies per-channel $c$”, “budget per objective $k$”, or the literal formula if value is computed (MathJax allowed).
 

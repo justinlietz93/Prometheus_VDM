@@ -1,8 +1,8 @@
-**Create/Update `derivations/ALGORITHMS.md` (pseudocode of loops/flows; references-only for math)**
+**Create/Update `derivation/ALGORITHMS.md` (pseudocode of loops/flows; references-only for math)**
 
 Search the entire repository (code, tests, notebooks, scripts, docs, comments) and extract **all algorithms currently implemented or specified** (update loops, control flows, schedulers, policies, kernels, pipelines). **Do not invent or re-derive anything.** Use only what exists in the repo.
 
-**Output file:** `derivations/ALGORITHMS.md`
+**Output file:** `derivation/ALGORITHMS.md`
 **Canon rule:** This file is the single owner of algorithm *descriptions and pseudocode*. **Do not paste equations or numbers here.** Link to equations/constants/symbols by anchor.
 
 **MathJax on GitHub:**
@@ -85,10 +85,10 @@ TERMINATION:
 ---
 
 ### Linking rules (anchors only; no duplication of math or values)
-- Equations → `../derivations/EQUATIONS.md#vdm-e-...`  
-- Symbols → `../derivations/SYMBOLS.md#sym-...`  
-- Constants → `../derivations/CONSTANTS.md#const-...`  
-- Units maps → `../derivations/UNITS_NORMALIZATION.md#...`  
+- Equations → `../derivation/EQUATIONS.md#vdm-e-...`  
+- Symbols → `../derivation/SYMBOLS.md#sym-...`  
+- Constants → `../derivation/CONSTANTS.md#const-...`  
+- Units maps → `../derivation/UNITS_NORMALIZATION.md#...`  
 - Schemas (if any) → `../docs/SCHEMAS.md#...`
 
 If a needed anchor is missing, add `TODO: add anchor` with exact `<path>:<lines>`; do not inline math here.

@@ -1,8 +1,10 @@
-**Create/Update `derivations/ROADMAP.md` (planning-only; references to canon, no new content)**
+
+**Create/Update `derivation/ROADMAP.md` (planning-only; references to canon, no new content)**
 
 Search the entire repository (docs, code comments, TODO blocks, notebooks, experiment logs, exported Issues/PRs if present, CONFIG/README notes) and compile **the roadmap items already captured**: milestones, tasks, dependencies, risks, and acceptance criteria. **Do not invent new work.** Use only what exists in the repo.
 
-**Output file:** `derivations/ROADMAP.md`
+**Output file:** `derivation/ROADMAP.md`
+
 **Canon rule:** This file is **planning-only**. Do **not** restate symbols, equations, constants, units, or algorithms. Link to them by anchor.
 
 **MathJax on GitHub:**
@@ -76,15 +78,15 @@ Search the entire repository (docs, code comments, TODO blocks, notebooks, exper
 
 ### Linking rules (anchors only; no duplication)
 
-* Symbols → `../derivations/SYMBOLS.md#sym-...`
-* Equations → `../derivations/EQUATIONS.md#vdm-e-...`
-* Constants → `../derivations/CONSTANTS.md#const-...`
-* Units → `../derivations/UNITS_NORMALIZATION.md#...`
-* Algorithms → `../derivations/ALGORITHMS.md#vdm-a-...`
-* BC/IC/Geometry → `../derivations/BC_IC_GEOMETRY.md#...`
-* Validation metrics → `../derivations/VALIDATION_METRICS.md#kpi-...`
-* Data products → `../derivations/DATA_PRODUCTS.md#data-...`
-* Schemas → `../derivations/SCHEMAS.md#schema-...`
+* Symbols → `../derivation/SYMBOLS.md#sym-...`
+* Equations → `../derivation/EQUATIONS.md#vdm-e-...`
+* Constants → `../derivation/CONSTANTS.md#const-...`
+* Units → `../derivation/UNITS_NORMALIZATION.md#...`
+* Algorithms → `../derivation/ALGORITHMS.md#vdm-a-...`
+* BC/IC/Geometry → `../derivation/BC_IC_GEOMETRY.md#...`
+* Validation metrics → `../derivation/VALIDATION_METRICS.md#kpi-...`
+* Data products → `../derivation/DATA_PRODUCTS.md#data-...`
+* Schemas → `../derivation/SCHEMAS.md#schema-...`
 
 If a needed anchor is missing, write: `TODO: add anchor (see <path>:<line>)`. Do not paste canon here.
 
