@@ -24,7 +24,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 ### Reaction-Diffusion (Fisher-KPP)
 
 #### Front Speed Relative Error  <a id="kpi-front-speed-rel-err"></a>
-**Symbol (if any):** `$ \text{rel\_err}_c $`  
+**Symbol (if any):** $ \text{rel\_err}_c $  
 **Purpose:** Validate pulled-front speed measurement against theoretical prediction for Fisher-KPP equation  
 **Defined by:** `c_{\text{th}} = 2\sqrt{Dr}` (from METRICS.md line 5; theoretical minimal pulled-front speed)  
 **Inputs:** [`D`](CONSTANTS.md#const-D) • [`r`](CONSTANTS.md#const-r)  
@@ -37,7 +37,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Notes:** Acceptance gate requires `R² ≥ 0.98` on front position linear fit (see [R² Front Position Fit](#kpi-r2-front-fit))
 
 #### R² Front Position Fit  <a id="kpi-r2-front-fit"></a>
-**Symbol (if any):** `$ R^2_{\text{front}} $`  
+**Symbol (if any):** $ R^2_{\text{front}} $  
 **Purpose:** Goodness-of-fit for linear regression of front position vs time  
 **Defined by:** Standard coefficient of determination `R² = 1 - SS_res/SS_tot`  
 **Inputs:** Time series of front positions from `front_position` function  
@@ -49,7 +49,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Notes:** Uses robust linear fit with MAD-based outlier rejection
 
 #### Dispersion Median Relative Error  <a id="kpi-dispersion-med-rel-err"></a>
-**Symbol (if any):** `$ \text{med\_rel\_err}_{\sigma} $`  
+**Symbol (if any):** $ \text{med\_rel\_err}_{\sigma} $  
 **Purpose:** Validate linear stability analysis by comparing measured vs theoretical growth rates  
 **Defined by:** Median of `|σ_meas(k_m) - σ_th(k_m)| / |σ_th(k_m)|` over modes m  
 **Inputs:** [`D`](CONSTANTS.md#const-D) • [`r`](CONSTANTS.md#const-r) • mode numbers m → wavenumbers k_m  
@@ -62,7 +62,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Notes:** Growth rates fit from linearized mode amplitudes `σ(k) = r - Dk²` (METRICS.md line 4)
 
 #### R² Dispersion Array Fit  <a id="kpi-r2-dispersion-array"></a>
-**Symbol (if any):** `$ R^2_{\sigma} $`  
+**Symbol (if any):** $ R^2_{\sigma} $  
 **Purpose:** Goodness-of-fit for growth rate regression across multiple Fourier modes  
 **Defined by:** Standard coefficient of determination for mode-by-mode σ fits  
 **Inputs:** Time series of Fourier mode amplitudes  
@@ -76,7 +76,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 ### Fluid Dynamics (LBM → Navier-Stokes)
 
 #### Taylor-Green Viscosity Recovery Error  <a id="kpi-taylor-green-nu-rel-err"></a>
-**Symbol (if any):** `$ \text{rel\_err}_{\nu} $`  
+**Symbol (if any):** $ \text{rel\_err}_{\nu} $  
 **Purpose:** Certify LBM→NS reduction by recovering kinematic viscosity from energy decay  
 **Defined by:** `|ν_fit - ν_th| / ν_th` where `ν_th = (τ - 0.5)/3` and ν_fit from `E(t) = E_0 exp(-2νK²t)`  
 **Inputs:** [`τ`](CONSTANTS.md#const-tau-taylor) • grid dimensions → wavenumber correction `K² = k²(1/nx² + 1/ny²)`  
@@ -89,7 +89,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Notes:** Refinement test: error decreases with doubled resolution consistent with scheme order (BENCHMARKS_FLUIDS.md:20)
 
 #### Lid Cavity Divergence Maximum  <a id="kpi-lid-cavity-div-max"></a>
-**Symbol (if any):** `$ \max_t \|\nabla \cdot \mathbf{v}\|_2 $`  
+**Symbol (if any):** $ \max_t \|\nabla \cdot \mathbf{v}\|_2 $  
 **Purpose:** Incompressibility constraint verification for LBM flow solver  
 **Defined by:** L2 norm of velocity divergence field over time  
 **Inputs:** Velocity field `(u_x, u_y)` from LBM moments  
@@ -103,7 +103,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 ### Conservation Law (QFUM Logistic Invariant)
 
 #### Q-Invariant Maximum Drift  <a id="kpi-q-invariant-drift"></a>
-**Symbol (if any):** `$ \Delta Q_{\max} = \max_t |Q(t) - Q(0)| $`  
+**Symbol (if any):** $ \Delta Q_{\max} = \max_t |Q(t) - Q(0)| $  
 **Purpose:** Verify logarithmic first integral conservation for autonomous logistic ODE  
 **Defined by:** `Q(W,t) = ln(W/(r - uW)) - rt` should be constant for `dW/dt = rW - uW²`  
 **Inputs:** [`r`](CONSTANTS.md#const-r) • `u` • solution trajectory W(t)  
@@ -115,7 +115,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Notes:** Acceptance routed to pass/stable/arxiv outputs based on drift_gate (lines 277-294)
 
 #### Convergence Slope (dt)  <a id="kpi-convergence-slope-dt"></a>
-**Symbol (if any):** `$ p_{\text{conv}} $` (power law exponent)  
+**Symbol (if any):** $ p_{\text{conv}} $ (power law exponent)  
 **Purpose:** Verify solver order-of-accuracy via convergence study  
 **Defined by:** Slope of log-log fit `ΔQ_max ~ dt^p` across multiple timesteps  
 **Inputs:** Series of dt values and corresponding `ΔQ_max` measurements  
@@ -129,7 +129,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 ### Memory Steering
 
 #### Memory Steering Pole Fit Error  <a id="kpi-memory-pole-fit-err"></a>
-**Symbol (if any):** `$ |p_{\text{fit}} - p_{\text{pred}}| $`  
+**Symbol (if any):** $ |p_{\text{fit}} - p_{\text{pred}}| $  
 **Purpose:** Verify linear response and stability of discrete leaky integrator  
 **Defined by:** Absolute error between fitted exponential decay pole and predicted value `p_pred = 1 - λ - g`  
 **Inputs:** [`g`](CONSTANTS.md#const-alpha) (gain) • `λ` (leak) • step response time series  
@@ -142,7 +142,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Notes:** Fixed point error `|M_final - M*| ≤ 0.01` also checked (line 48)
 
 #### Memory Steering Canonical Void Target  <a id="kpi-memory-void-target"></a>
-**Symbol (if any):** `$ M_* = 0.6 $`  
+**Symbol (if any):** $ M_* = 0.6 $  
 **Purpose:** Validate void equilibrium target W ≈ 0.6 with canonical parameter mapping  
 **Defined by:** Fixed point `M* = gs/(g+λ)` with `s≡1, g=1.5λ → M*=0.6`  
 **Inputs:** `g=1.5λ` • constant signal `s=1`  
@@ -154,7 +154,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Notes:** Must hold across multiple seeds for reproducibility
 
 #### Memory Steering SNR Improvement  <a id="kpi-memory-snr-improvement"></a>
-**Symbol (if any):** `$ \Delta \text{SNR} = \text{SNR}_{\text{out}} - \text{SNR}_{\text{in}} $`  
+**Symbol (if any):** $ \Delta \text{SNR} = \text{SNR}_{\text{out}} - \text{SNR}_{\text{in}} $  
 **Purpose:** Verify noise suppression capability of leaky integrator filter  
 **Defined by:** SNR difference in dB between filtered output and noisy input signal  
 **Inputs:** Noisy input signal `s(t) = s_sig(t) + n(t)` with `σ_n = 0.05` (default)  
@@ -170,7 +170,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 ## Stability & Safety Guards
 
 #### ΛCDM Residual (w+1)  <a id="kpi-lcdm-residual"></a>
-**Symbol (if any):** `$ |w(z) + 1| $`  
+**Symbol (if any):** $ |w(z) + 1| $  
 **Purpose:** Validate vacuum equation-of-state against ΛCDM baseline for cosmology channel  
 **Defined by:** Residual of equation-of-state parameter w relative to cosmological constant w=-1  
 **Inputs:** Redshift z, horizon activity events, retarded kernel parameters  
@@ -182,7 +182,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Notes:** Harness exits with status `NEEDS_RECAL` when tolerance exceeded (line 233)
 
 #### CFL Condition  <a id="kpi-cfl-condition"></a>
-**Symbol (if any):** `$ \Delta t \lesssim \frac{\Delta x^2}{2dD} $`  
+**Symbol (if any):** $ \Delta t \lesssim \frac{\Delta x^2}{2dD} $  
 **Purpose:** Stability constraint for explicit finite-difference diffusion schemes  
 **Defined by:** Courant-Friedrichs-Lewy condition limiting timestep relative to spatial resolution  
 **Inputs:** [`D`](CONSTANTS.md#const-D) • [`dx`] • spatial dimension d  
@@ -195,7 +195,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Notes:** Also documented in EQUATIONS.md#VDM-E-006 for agency field; AGENCY_FIELD.md:76
 
 #### Drift Gate (Conservation Law)  <a id="kpi-drift-gate"></a>
-**Symbol (if any):** `$ \text{drift\_gate} $`  
+**Symbol (if any):** $ \text{drift\_gate} $  
 **Purpose:** Acceptance threshold for routing QFUM validation outputs  
 **Defined by:** Maximum allowed Q-invariant drift to classify run as pass/stable/arxiv  
 **Inputs:** Solver type (RK4 vs Euler) determines threshold  
@@ -207,7 +207,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Notes:** Pass: `drift_ok` → outputs/stable/; fail → outputs/failed_runs/ (lines 278-294)
 
 #### B1 Spike Detection (z-score)  <a id="kpi-b1-spike-z"></a>
-**Symbol (if any):** `$ z_{\text{spike}} $`  
+**Symbol (if any):** $ z_{\text{spike}} $  
 **Purpose:** Threshold for detecting anomalies in cyclomatic complexity time series  
 **Defined by:** Z-score of first-difference relative to EMA baseline  
 **Inputs:** Cyclomatic complexity series, [`speak_z`](CONSTANTS.md#const-speak_z_4) threshold  
@@ -224,7 +224,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 ## Performance / Efficiency Metrics
 
 #### Average Weight  <a id="kpi-avg-weight"></a>
-**Symbol (if any):** `$ \bar{W} $`  
+**Symbol (if any):** $ \bar{W} $  
 **Purpose:** Monitor global connectome activity level  
 **Defined by:** Mean of weight matrix W  
 **Inputs:** Connectome weight matrix W  
@@ -236,7 +236,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Notes:** Returned as `avg_weight` in metrics dict (line 24)
 
 #### Active Synapses  <a id="kpi-active-synapses"></a>
-**Symbol (if any):** `$ N_{\text{active}} $`  
+**Symbol (if any):** $ N_{\text{active}} $  
 **Purpose:** Count active edges in connectome graph  
 **Defined by:** Number of synapses above activation threshold  
 **Inputs:** Connectome E (efficacy) and A (adjacency) matrices, threshold  
@@ -248,7 +248,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Notes:** Alias: `active_edges` in some contexts
 
 #### Cohesion Components  <a id="kpi-cohesion-components"></a>
-**Symbol (if any):** `$ C_{\text{comp}} $`  
+**Symbol (if any):** $ C_{\text{comp}} $  
 **Purpose:** Detect graph fragmentation and emergent multi-agent behavior  
 **Defined by:** Number of connected components in active subgraph  
 **Inputs:** Connectome active subgraph (E > threshold & A == 1)  
@@ -260,7 +260,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Notes:** Key trigger for domain cartography scheduling; part of pathology detection (Blueprint Rule 4.1)
 
 #### Complexity Cycles  <a id="kpi-complexity-cycles"></a>
-**Symbol (if any):** `$ \text{cyclomatic\_complexity} $`  
+**Symbol (if any):** $ \text{cyclomatic\_complexity} $  
 **Purpose:** Proxy for topological complexity; feeds B1 spike detector  
 **Defined by:** Cyclomatic complexity or cycle basis count of active subgraph  
 **Inputs:** Connectome active subgraph  
@@ -272,7 +272,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Notes:** StreamingZEMA monitors `Δ(complexity_cycles)` for anomalies (fum_rt/core/metrics.py:50-52)
 
 #### Connectome Entropy  <a id="kpi-connectome-entropy"></a>
-**Symbol (if any):** `$ H = -\sum p_i \log p_i $`  
+**Symbol (if any):** $ H = -\sum p_i \log p_i $  
 **Purpose:** Global pathological structure detection via degree distribution entropy  
 **Defined by:** Shannon entropy of degree distribution of active subgraph  
 **Inputs:** Connectome active edges → degree vector → probability distribution  
@@ -284,7 +284,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Notes:** Formula: `H = -Σ p_i log(p_i)` where p is degree distribution (line 34 comment)
 
 #### Void Traveler Entropy  <a id="kpi-vt-entropy"></a>
-**Symbol (if any):** `$ H_{\text{VT}} $`  
+**Symbol (if any):** $ H_{\text{VT}} $  
 **Purpose:** Void-native signal for tracking novelty/diversity in walker behavior  
 **Defined by:** Entropy measure derived from void traveler trajectories  
 **Inputs:** Void traveler state/trajectory data  
@@ -296,7 +296,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Notes:** Previous value tracked in `_prev_vt_entropy` for TD calculation (fum_rt/nexus.py)
 
 #### Void Traveler Coverage  <a id="kpi-vt-coverage"></a>
-**Symbol (if any):** `$ \text{vt\_coverage} $`  
+**Symbol (if any):** $ \text{vt\_coverage} $  
 **Purpose:** Measure spatial exploration extent of void travelers  
 **Defined by:** Fraction of graph/space covered by walker trajectories  
 **Inputs:** Void traveler trajectory data  
@@ -308,7 +308,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Notes:** Used in smoke tests: `obs:vt_coverage↑` (fum_rt/runtime/helpers/smoke.py)
 
 #### SIE Valence  <a id="kpi-sie-valence"></a>
-**Symbol (if any):** `$ \text{sie\_valence\_01} $` or `$ \text{sie\_v2\_valence\_01} $`  
+**Symbol (if any):** $ \text{sie\_valence\_01} $ or $ \text{sie\_v2\_valence\_01} $  
 **Purpose:** Scalar valence metric from Semantic Integration Engine for speak gating  
 **Defined by:** Integration score from SIE system (v2 is preferred version with fallback to v1)  
 **Inputs:** SIE processing outputs, connectome state  
@@ -320,7 +320,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Notes:** v2 preferred; fallback chain: sie_v2_valence_01 → sie_valence_01 → 0.0 (fum_rt/runtime/helpers/redis_out.py:13-14)
 
 #### ADC Cycle Hits  <a id="kpi-adc-cycle-hits"></a>
-**Symbol (if any):** `$ \text{adc\_cycle\_hits} $`  
+**Symbol (if any):** $ \text{adc\_cycle\_hits} $  
 **Purpose:** Active Domain Cartography cycle detection augmentation to complexity_cycles  
 **Defined by:** Cycle hits detected by ADC subsystem when active  
 **Inputs:** ADC metrics from get_metrics() call  
@@ -338,7 +338,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 ### Graph Structure (Gravity Regression)
 
 #### Degree Variance  <a id="kpi-degree-variance"></a>
-**Symbol (if any):** `$ \sigma^2_{\text{deg}} $`  
+**Symbol (if any):** $ \sigma^2_{\text{deg}} $  
 **Purpose:** Detect ring-lattice topology via uniform degree distribution  
 **Defined by:** Variance of node degree distribution  
 **Inputs:** Graph edgelist → degree sequence  
@@ -350,7 +350,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Notes:** Part of ring-lattice detection heuristic with clustering and cycle count
 
 #### Average Clustering Coefficient  <a id="kpi-avg-clustering"></a>
-**Symbol (if any):** `$ \bar{C} $`  
+**Symbol (if any):** $ \bar{C} $  
 **Purpose:** Measure local connectivity density in graph structure  
 **Defined by:** NetworkX `average_clustering` over all nodes  
 **Inputs:** Graph adjacency structure  
@@ -362,7 +362,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Notes:** Low clustering indicates lattice-like structure; higher clustering indicates small-world/random
 
 #### Degree Assortativity  <a id="kpi-degree-assortativity"></a>
-**Symbol (if any):** `$ r_{\text{deg}} $`  
+**Symbol (if any):** $ r_{\text{deg}} $  
 **Purpose:** Measure tendency of nodes to connect to similar-degree neighbors  
 **Defined by:** Pearson correlation of degrees across edges  
 **Inputs:** Graph edge structure and node degrees  
@@ -374,7 +374,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Notes:** Returns NaN gracefully if computation fails (line 35 exception handling)
 
 #### Cycle Basis Count  <a id="kpi-cycle-basis-count"></a>
-**Symbol (if any):** `$ N_{\text{cycles}} $`  
+**Symbol (if any):** $ N_{\text{cycles}} $  
 **Purpose:** Count fundamental cycles for ring-lattice detection  
 **Defined by:** Size of cycle basis from NetworkX for undirected graph  
 **Inputs:** Graph structure  
@@ -386,7 +386,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Notes:** High cycle count relative to node count indicates lattice structure
 
 #### Ring Lattice Suspicion Flag  <a id="kpi-ring-lattice-suspicion"></a>
-**Symbol (if any):** `$ \text{ring\_lattice\_suspicion} $`  
+**Symbol (if any):** $ \text{ring\_lattice\_suspicion} $  
 **Purpose:** Boolean flag for detecting degenerate ring-lattice topology  
 **Defined by:** `(deg_var < 1.0) AND (avg_clustering < 0.2) AND (cycle_count ≥ N*0.8)`  
 **Inputs:** [Degree Variance](#kpi-degree-variance), [Average Clustering](#kpi-avg-clustering), [Cycle Basis Count](#kpi-cycle-basis-count)  
@@ -400,7 +400,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 ### Fluid Dynamics Announcers (Void Walkers)
 
 #### Divergence Announcer Statistics  <a id="kpi-div-announce-stats"></a>
-**Symbol (if any):** `$ \text{div\_p50, div\_p90, div\_max} $`  
+**Symbol (if any):** $ \text{div\_p50, div\_p90, div\_max} $  
 **Purpose:** Passive diagnostics of incompressibility violations via walker-based sensors  
 **Defined by:** Quantiles (p50, p90, max) of divergence values sampled by advected walkers  
 **Inputs:** Velocity field (u_x, u_y) → local divergence at walker positions  
@@ -412,7 +412,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Notes:** Part of void-faithful observability layer; non-interference verified by test_walkers_noninterference.py
 
 #### Swirl Announcer Statistics  <a id="kpi-swirl-announce-stats"></a>
-**Symbol (if any):** `$ \text{swirl\_p50, swirl\_p90, swirl\_max} $`  
+**Symbol (if any):** $ \text{swirl\_p50, swirl\_p90, swirl\_max} $  
 **Purpose:** Monitor vorticity magnitude distribution via walker sensors  
 **Defined by:** Quantiles of `|ω|` sampled by walkers (where ω = ∂u_y/∂x - ∂u_x/∂y)  
 **Inputs:** Velocity field → vorticity at walker positions  
@@ -426,7 +426,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 ### Geometry Probe (Tool Metrics)
 
 #### Activation Matrix Statistics  <a id="kpi-activation-matrix-stats"></a>
-**Symbol (if any):** `$ \text{mean, std, min, max} $`  
+**Symbol (if any):** $ \text{mean, std, min, max} $  
 **Purpose:** Validate captured activation matrices from model layer probes  
 **Defined by:** Basic descriptive statistics of activation matrix per layer/step  
 **Inputs:** Activation matrix (concepts × features) from adapter.encode_concepts  
@@ -438,7 +438,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Notes:** Part of bundle provenance and quality control artifacts
 
 #### PCA Explained Variance Ratio  <a id="kpi-pca-explained-variance"></a>
-**Symbol (if any):** `$ \text{explained\_variance\_ratio} $`  
+**Symbol (if any):** $ \text{explained\_variance\_ratio} $  
 **Purpose:** Dimensionality assessment of activation geometry  
 **Defined by:** Fraction of variance explained by top PCA components (n_components=3 default)  
 **Inputs:** Activation matrix → PCA decomposition  
