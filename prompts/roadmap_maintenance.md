@@ -1,8 +1,10 @@
+
 **Create/Update `derivation/ROADMAP.md` (planning-only; references to canon, no new content)**
 
 Search the entire repository (docs, code comments, TODO blocks, notebooks, experiment logs, exported Issues/PRs if present, CONFIG/README notes) and compile **the roadmap items already captured**: milestones, tasks, dependencies, risks, and acceptance criteria. **Do not invent new work.** Use only what exists in the repo.
 
 **Output file:** `derivation/ROADMAP.md`
+
 **Canon rule:** This file is **planning-only**. Do **not** restate symbols, equations, constants, units, or algorithms. Link to them by anchor.
 
 **MathJax on GitHub:**
