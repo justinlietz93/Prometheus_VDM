@@ -1,8 +1,8 @@
-**Create/Update `derivations/SCHEMAS.md` (canonical structured schemas; references-only for math/values)**
+**Create/Update `derivation/SCHEMAS.md` (canonical structured schemas; references-only for math/values)**
 
 Search the entire repository (code, tests, notebooks, scripts, configs, docs, comments) and compile **all structured schemas that actually exist** (messages, packets, records, state snapshots, configs, API/event payloads, file formats). **Do not invent or infer fields.** Use only what appears in the repo.
 
-**Output file:** `derivations/SCHEMAS.md`
+**Output file:** `derivation/SCHEMAS.md`
 **Canon rule:** This file is the single owner of schema specifications. Other docs must link here. **Do not restate equations or numeric defaults**—link to anchors in the canonical files.
 
 **MathJax on GitHub:**
@@ -46,9 +46,9 @@ Search the entire repository (code, tests, notebooks, scripts, configs, docs, co
 | -------- | -------- | :------: | ------------------- | ------------------------------------------ | --------------------------- | -------------- |
 | `<name>` | `<type>` |  `<Y/N>` | `<literal or link>` | link `UNITS_NORMALIZATION.md#...` or `n/a` | one line from comments/docs | `<path:lines>` |
 
-**Producers/Consumers:** link algorithms that write/read this schema → `../derivations/ALGORITHMS.md#vdm-a-###`
-**Related equations (anchors only):** `../derivations/EQUATIONS.md#vdm-e-###` (if schema fields are mathematically constrained; do not paste math)
-**Related symbols/constants:** `../derivations/SYMBOLS.md#sym-...`, `../derivations/CONSTANTS.md#const-...`
+**Producers/Consumers:** link algorithms that write/read this schema → `../derivation/ALGORITHMS.md#vdm-a-###`
+**Related equations (anchors only):** `../derivation/EQUATIONS.md#vdm-e-###` (if schema fields are mathematically constrained; do not paste math)
+**Related symbols/constants:** `../derivation/SYMBOLS.md#sym-...`, `../derivation/CONSTANTS.md#const-...`
 **Examples (if present):** `<path/to/example artifact or test fixture>`
 **Invariants/Validation rules:** copy literal constraints from asserts/validators/JSON-Schema/Pydantic (regex, ranges, enums). Link to constants for thresholds.
 **Notes:** aliases, deprecations, migration guidance (lifted from repo)
@@ -69,12 +69,12 @@ Search the entire repository (code, tests, notebooks, scripts, configs, docs, co
 ---
 
 ### Linking rules (anchors only; no duplication)
-- Equations → `../derivations/EQUATIONS.md#vdm-e-...`  
-- Symbols → `../derivations/SYMBOLS.md#sym-...`  
-- Constants → `../derivations/CONSTANTS.md#const-...`  
-- Units → `../derivations/UNITS_NORMALIZATION.md#...`  
-- Algorithms → `../derivations/ALGORITHMS.md#vdm-a-...`  
-- Data products (if schema describes a stored artifact) → `../derivations/DATA_PRODUCTS.md#data-...`
+- Equations → `../derivation/EQUATIONS.md#vdm-e-...`  
+- Symbols → `../derivation/SYMBOLS.md#sym-...`  
+- Constants → `../derivation/CONSTANTS.md#const-...`  
+- Units → `../derivation/UNITS_NORMALIZATION.md#...`  
+- Algorithms → `../derivation/ALGORITHMS.md#vdm-a-...`  
+- Data products (if schema describes a stored artifact) → `../derivation/DATA_PRODUCTS.md#data-...`
 
 If an expected anchor is missing, add: `TODO: missing anchor (see <path>:<line>)`; do not create content here.
 
