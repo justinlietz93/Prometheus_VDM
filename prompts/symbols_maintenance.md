@@ -1,8 +1,8 @@
-**Create/Update `derivations/SYMBOLS.md` (MathJax-only)**
+**Create/Update `derivation/SYMBOLS.md` (MathJax-only)**
 
 Search the entire repository (code, tests, notebooks, docs, comments, configs) and extract **every symbol actually used in the repo’s math**. **Do not invent new symbols or meanings.** Use only what exists.
 
-**Output file:** `derivations/SYMBOLS.md`
+**Output file:** `derivation/SYMBOLS.md`
 
 **MathJax rules (GitHub-compatible):**
 
@@ -48,7 +48,7 @@ Search the entire repository (code, tests, notebooks, docs, comments, configs) a
 * **Type:** `scalar | vector | matrix | tensor | field | function | operator | set | index | dimensionless | mask/gate | policy | bus | budget | other`.
 * **Domain/Codomain:** MathJax like `$ \mathbb{R}^d \to \mathbb{R}^C $` or `$ \{0,1\} $` if discrete; leave blank if not stated.
 * **Units:** “nondimensional”, “LBM units”, or link to `UNITS_NORMALIZATION.md` anchor; leave blank if unspecified.
-* **Appears In:** comma-separated links to equation IDs from `EQUATIONS.md` (e.g., `[VDM-E-012](../derivations/EQUATIONS.md#vdm-e-012)`).
+* **Appears In:** comma-separated links to equation IDs from `EQUATIONS.md` (e.g., `[VDM-E-012](../derivation/EQUATIONS.md#vdm-e-012)`).
 * **Source:** `path:line-start–line-end • <short-commit>` where the symbol & meaning are evidenced.
 * **Notes:** aliases (e.g., “also written `$ \varphi $` in `<path>`”), or pointers like “default in `CONSTANTS.md#const-alpha_plast`”.
 
