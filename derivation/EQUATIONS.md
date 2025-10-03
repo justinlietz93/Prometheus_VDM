@@ -838,5 +838,113 @@ $$
 
 ---
 
+#### VDM-E-072 — Discrete Hamiltonian Density
+**Context:** derivation/conservation_law/discrete_conservation.md:32-33 • Commit: 6885588
+
+$$
+\mathcal{H}_i = \frac{1}{2}\left(\frac{dW_i}{dt}\right)^2 + \frac{1}{2} \sum_{j \in N(i)} J (W_j - W_i)^2 + V(W_i)
+$$
+
+**Notes:** Postulated discrete energy density at site $i$; kinetic + interaction + potential terms. Used for conservation law analysis.
+
+---
+
+#### VDM-E-073 — Discrete Conservation Law Form
+**Context:** derivation/conservation_law/discrete_conservation.md:46-48 • Commit: 6885588
+
+$$
+\frac{\Delta \mathcal{H}_i}{\Delta t} + \nabla \cdot \vec{J}_i = 0
+$$
+
+**Notes:** Local conservation law on graph; change in energy balanced by flux $\vec{J}_i$ across edges. Discrete analogue of $\nabla_\mu T^{\mu\nu} = 0$.
+
+---
+
+#### VDM-E-074 — Change in Potential Energy
+**Context:** derivation/conservation_law/discrete_conservation.md:76-77 • Commit: 6885588
+
+$$
+\frac{\Delta V(W_i)}{\Delta t} \approx -[F(W_i)]^2
+$$
+
+with $F(W_i) = (\alpha - \beta)W_i - \alpha W_i^2$
+
+**Notes:** Rate of change of potential energy always non-positive; describes intrinsically dissipative system.
+
+---
+
+#### VDM-E-075 — Discrete Lattice Lagrangian (Per Time Step)
+**Context:** derivation/foundations/void_dynamics_theory.md:98-103 • Commit: 6885588
+
+$$
+L^n = a^d \sum_i\left[
+\frac{1}{2}\left(\frac{W_i^{n+1}-W_i^{n}}{\Delta t}\right)^2
+- \frac{\kappa}{2}\sum_{\mu=1}^d\big(W_{i+\mu}^{n}-W_i^{n}\big)^2
+- V\!\big(W_i^{n}\big)
+\right]
+$$
+
+**Notes:** Discrete Lagrangian for lattice action; $\kappa$ is per-edge coupling ($\kappa = 2J$ in per-site convention).
+
+---
+
+#### VDM-E-076 — Discrete Euler-Lagrange (Second-Order)
+**Context:** derivation/foundations/void_dynamics_theory.md:111-114 • Commit: 6885588
+
+$$
+\frac{W_i^{n+1}-2W_i^{n}+W_i^{n-1}}{(\Delta t)^2}
+-\kappa\,\sum_{\mu=1}^d \big(W_{i+\mu}^{n}+W_{i-\mu}^{n}-2W_i^{n}\big)
++V'\!\big(W_i^{n}\big)=0
+$$
+
+**Notes:** Second-order discrete field equation from variational principle; no "promotion" needed—arises naturally from action.
+
+---
+
+#### VDM-E-077 — Continuum Field Equation from Lattice
+**Context:** derivation/foundations/void_dynamics_theory.md:134 • Commit: 6885588
+
+$$
+\partial_t^2\phi - \kappa\,a^2\,\nabla^2\phi + V'(\phi)=0
+$$
+
+**Notes:** Continuum limit of discrete Euler-Lagrange; wave speed $c^2 = \kappa\,a^2$ (or $c^2=2J\,a^2$ in per-site convention).
+
+---
+
+#### VDM-E-078 — Continuum Lagrangian Density
+**Context:** derivation/foundations/void_dynamics_theory.md:146 • Commit: 6885588
+
+$$
+\mathcal{L} = \frac{1}{2}(\partial_t\phi)^2 - \frac{\kappa a^2}{2}(\nabla\phi)^2 - V(\phi)
+$$
+
+**Notes:** Drop-in continuum Lagrangian from lattice limit; equivalent to $\tfrac12(\partial_t\phi)^2 - J a^2(\nabla\phi)^2 - V(\phi)$ with $c^2=2Ja^2$ in per-site convention.
+
+---
+
+#### VDM-E-079 — Spatial Taylor Expansion (Exact Coefficient)
+**Context:** derivation/foundations/void_dynamics_theory.md:37 • Commit: 6885588
+
+$$
+\sum_{j}(W_j-W_i)^2 \to c_\text{lat}\,a^2(\nabla\phi)^2+\mathcal{O}(a^4)
+$$
+
+**Notes:** Exact derivation of spatial kinetic prefactor from discrete interaction; Lorentz invariance fixes $c_\text{lat}J a^2=1$ in chosen units for 3D cubic lattice.
+
+---
+
+#### VDM-E-080 — Discrete Interaction Energy per Site
+**Context:** derivation/foundations/void_dynamics_theory.md:44 • Commit: 6885588
+
+$$
+\mathcal{L}_i=\tfrac12(\Delta_t W_i)^2-\tfrac12\sum_j J(W_j-W_i)^2 - V(W_i)
+$$
+
+**Notes:** Lattice Lagrangian density per node; apply discrete Euler-Lagrange to derive second-order time dynamics without hand-waving.
+
+---
+
 ## Change Log
 - VDM-E-001 to VDM-E-071 • 6885588 • Initial compilation from repository files
+- VDM-E-072 to VDM-E-080 • 6885588 • Added discrete conservation law and lattice action equations from derivation/conservation_law/ and derivation/foundations/
