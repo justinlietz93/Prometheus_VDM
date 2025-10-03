@@ -457,6 +457,7 @@ $$
 **Context:** derivation/axiomatic_theory_development.md:260-264 • Commit: 6885588
 
 From $\mathcal{L}_i^n$:
+
 $$\frac{\partial \mathcal{L}_i^n}{\partial W_i^n} = -\frac{1}{\Delta t^2}(W_i^{n+1} - W_i^n) + J \sum_{j \in N(i)}(W_j^n - W_i^n) - V'(W_i^n)$$
 
 From $\mathcal{L}_i^{n-1}$:
