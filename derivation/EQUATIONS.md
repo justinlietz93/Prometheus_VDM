@@ -696,7 +696,7 @@ $$
 v_{\lambda} = \frac{-\alpha + \sqrt{\alpha^2 + 4\lambda(\alpha-\beta)}}{2\lambda}
 $$
 
-**Notes:** Physical vacuum for $\phi > 0$ when $\alpha > \beta$; small-$\lambda$ expansion: $v_{\lambda} \approx \frac{\alpha-\beta}{\alpha} - \frac{\lambda(\alpha-\beta)^2}{2\alpha^3} + O(\lambda^2)$.
+**Notes:** Physical vacuum for $\phi > 0$ when $\alpha > \beta$; $small\text{–}\lambda$ expansion: $v_{\lambda} \approx \frac{\alpha-\beta}{\alpha} - \frac{\lambda(\alpha-\beta)^2}{2\alpha^3} + O(\lambda^2)$.
 
 ---
 
@@ -876,13 +876,7 @@ with $F(W_i) = (\alpha - \beta)W_i - \alpha W_i^2$
 #### VDM-E-075 — Discrete Lattice Lagrangian (Per Time Step)
 **Context:** derivation/foundations/void_dynamics_theory.md:98-103 • Commit: 6885588
 
-$$
-L^n = a^d \sum_i\left[
-\frac{1}{2}\left(\frac{W_i^{n+1}-W_i^{n}}{\Delta t}\right)^2
-- \frac{\kappa}{2}\sum_{\mu=1}^d\big(W_{i+\mu}^{n}-W_i^{n}\big)^2
-- V\!\big(W_i^{n}\big)
-\right]
-$$
+$$ L^n = a^d \sum_i \left[ \tfrac{1}{2}\left(\tfrac{W_i^{n+1}-W_i^{n}}{\Delta t}\right)^2 + \tfrac{\kappa}{2}\sum_{\mu=1}^{d}\big(W_{i+\mu}^{n}-W_i^{n}\big)^2 + V!\big(W_i^{n}\big) \right] $$
 
 **Notes:** Discrete Lagrangian for lattice action; $\kappa$ is per-edge coupling ($\kappa = 2J$ in per-site convention).
 
