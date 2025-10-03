@@ -54,7 +54,7 @@
 | ------------------------- | ------------------------------- | ----------------------------------- | --------------------------------------------------------------------------------- |
 | $\mathcal{H}_i$           | discrete Hamiltonian at node    | total energy density                | $\mathcal{H}_i = \mathcal{K}_i + V(W_i) + \mathcal{I}_i$                          |
 | $\mathcal{K}_i$           | kinetic energy at node          | rate-of-change squared              | $\mathcal{K}_i = \tfrac{1}{2}(\dot{W}_i)^2 = \tfrac{1}{2}[F(W_i)]^2$             |
-| $\mathcal{I}_i$           | interaction energy at node      | coupling to neighbors               | $\mathcal{I}_i = \tfrac{1}{2}\sum_{j \in N(i)} J(W_j - W_i)^2$                   |
+| $\mathcal{I}_i$           | interaction energy at node      | coupling to neighbors               | $\mathcal{I}i = \tfrac{1}{2}\sum{j \in N(i)} J, (W_j - W_i)^2$                   |
 | $\vec{J}_i$               | energy flux vector from node    | discrete divergence in conservation | $\frac{\Delta \mathcal{H}_i}{\Delta t} + \nabla \cdot \vec{J}_i = 0$             |
 | $\nabla \cdot$            | discrete divergence operator    | flux balance on graph               | sums net flow across edges                                                        |
 
@@ -132,7 +132,7 @@
 | Symbol      | Meaning                | When / Why                | Tiny Example                        |
 | ----------- | ---------------------- | ------------------------- | ----------------------------------- |
 | $\Pi_{Dr}$  | diffusion at scale $L$ | $D/(rL^2)$                | pick $L$ per experiment             |
-| $c^*$       | normalized KPP speed   | $c/(2\sqrt{Dr})$          | $\approx 0.95$–$1.0$ when validated |
+| $c^*$       | normalized KPP speed   | $c/(2\sqrt{Dr})$          | $\approx 0.95\text{–}1.0$ when validated |
 | \mathrm{Da} | Damköhler number       | reaction / transport rate | regime classifier                   |
 
 ## Dimensionless Groups — LBM / Fluids
