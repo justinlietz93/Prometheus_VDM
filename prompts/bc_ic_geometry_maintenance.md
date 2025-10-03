@@ -9,6 +9,7 @@ Search the entire repository (code, tests, notebooks, configs, experiment script
 
 * Inline: `$ ... $` • Display: `$$ ... $$` • Optional alignment: `$$\begin{aligned} ... \end{aligned}$$`
 * **Do not use:** `\[` `\]`, `\(` `\)`, `\begin{equation}`, `\begin{align}`, `\tag`, `\label`, numbering, or package-specific macros.
+* **Always** reference both files to double check syntax: derivation/MathJax-Offiial-Docs.md, derivation/MathJax-Offiial-Docs.pdf
 
 ---
 
