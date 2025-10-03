@@ -155,6 +155,21 @@
 | $\mathrm{KDE}*\sigma$ | kernel density estimate | smooth sparse events | choose $\sigma$ per scale |
 | $\Lambda(t)$ | first-integral drift monitor | sanity check (logistic) | $\Lambda=\lVert I_{\log}(\phi,t)-I_{\log}(\phi,0)\rVert$ |
 
+## Agency Options Probe
+
+| Symbol | Meaning | When / Why | Tiny Example |
+|---|---|---|---|
+| $V_{\text{useful\_bits}}$ | useful reachable entropy (bits) | operational agency capacity | heatmap value per $(E,p_{\text{slip}})$ |
+| $E$ | energy budget (steps) | discrete action budget available | $E\in\{2,\dots,10\}$ in current sweeps |
+| $p_{\text{slip}}$ | actuator slip probability | per-step uncontrolled actuation | $p_{\text{slip}}\in[0,1]$ |
+| $\nabla V$ | agency gradient | local sensitivity of capacity | $\nabla V=[\partial_E V,\ \partial_{p}V]$ |
+| $G_E,\ G_p$ | shorthand sensitivities | quick levers for gating | $G_E=\partial_E V,\ G_p=\partial_p V$ |
+| $\epsilon_E,\ \epsilon_p$ | elasticities (unitless) | normalized impact of levers | $\epsilon_E=\tfrac{E}{V}\partial_E V,\ \epsilon_p=\tfrac{p}{V}\partial_p V$ (when $V>0$) |
+| $E_{\min}^{(v_0)}(p)$ | threshold curve | minimal energy to reach target bits $v_0$ | $E_{\min}^{(5)}(0.1)=10$ (from current grid) |
+| $\mathcal{C}_{v_0}$ | iso-contour of $V$ | capability boundaries | $\mathcal{C}_{5}=\{(E,p):V(E,p)=5\}$ |
+| $n_{\text{act}}$ | actuator count | context for options probe | $n_{\text{act}}=4$ in the displayed figure |
+
+
 ## Scales & Stability Conditions
 
 | Symbol | Meaning           | When / Why                 | Tiny Example                                                 |

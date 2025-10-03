@@ -940,6 +940,98 @@ $$
 
 ---
 
+#### VDM-E-081 — Finite-difference estimators for $\nabla V$
+<a id="vdm-e-081"></a>
+
+**Context:** Agency Options Probe. Data come from `options.csv` with axes $E$ (steps) and $p_{\text{slip}}$ (probability). These estimates feed SIE/scoreboard gating and any policy that reacts to local capacity slope.
+
+**Equation:**
+
+On grid $(E_i,p_j)$,
+$$
+\widehat{\partial_E V}(E_i,p_j)=
+\begin{cases}
+\dfrac{V(E_{i+1},p_j)-V(E_i,p_j)}{E_{i+1}-E_i}, & \text{forward}\\[6pt]
+\dfrac{V(E_i,p_j)-V(E_{i-1},p_j)}{E_i-E_{i-1}}, & \text{backward}
+\end{cases}
+$$
+
+$$
+\widehat{\partial_{p} V}(E_i,p_j)=
+\begin{cases}
+\dfrac{V(E_i,p_{j+1})-V(E_i,p_j)}{p_{j+1}-p_j}, & \text{forward}\\[6pt]
+\dfrac{V(E_i,p_j)-V(E_i,p_{j-1})}{p_j-p_{j-1}}, & \text{backward}
+\end{cases}
+$$
+
+Define $\widehat{\nabla V}=[\widehat{\partial_E V},\widehat{\partial_p V}]$ and $\|\widehat{\nabla V}\|_2=\sqrt{(\widehat{\partial_E V})^2+(\widehat{\partial_p V})^2}$.
+
+**Notes:**
+- Prefer **central differences** when both neighbors exist; fall back to the formulas above on boundaries.  
+- Units: $\partial_E V$ in bits/step; $\partial_p V$ in bits per unit slip.  
+- If any operand is missing/NaN, propagate NaN; optionally apply axis-wise **isotonic smoothing** to $V$ before differencing.  
+- Use a small tolerance $\varepsilon_{\text{fd}}$ (e.g., $10^{-9}$) when checking signs/zeros to avoid flapping.
+
+---
+
+#### VDM-E-082 — Elasticities of $V$ (unitless)
+<a id="vdm-e-082"></a>
+
+**Context:** Dimensionless sensitivity for cross-regime comparison; used to decide whether budget vs. slip mitigation moves the needle more where we are.
+
+**Equation:**
+For $V>0$,
+$$
+\epsilon_E=\frac{E}{V}\,\partial_E V,\qquad
+\epsilon_p=\frac{p_{\text{slip}}}{V}\,\partial_{p_{\text{slip}}} V.
+$$
+
+**Notes:**
+- Compute with the finite-difference estimates from VDM-E-081.  
+- Undefined when $V\le 0$; return NaN (or mask) in those cells.  
+- Interpretation: $\epsilon_E=0.2$ means a 1% increase in $E$ raises $V$ by ~0.2%.
+
+
+---
+
+#### VDM-E-083 — Threshold energy for target capacity
+<a id="vdm-e-083"></a>
+
+**Context:** Capability boundary used by gating/planning (“just-viable” line). Plotted as $E_{\min}^{(v_0)}(p)$ for levels $v_0\in\{3,5,7\}$ bits.
+
+**Equation:**
+For target $v_0$ (bits),
+$$
+E_{\min}^{(v_0)}(p):=\arg\min_{E\in\mathbb{N}}\{\,V(E,p)\ge v_0\,\}.
+$$
+
+**Notes:**
+- If **no** $E$ on the grid achieves $v_0$, record **NA**; optionally report an upper bound if extrapolation is disallowed.  
+- Optional interpolation: piecewise-linear in $E$ to refine the boundary between integer budgets; document if enabled.  
+- Monotonicity in $E$ is assumed (see VDM-E-084); if violated, apply isotonic regression along $E$ before evaluating.
+
+
+---
+
+#### VDM-E-084 — Monotonicity acceptance conditions (probe sanity)
+<a id="vdm-e-084"></a>
+
+**Context:** Sanity checks for the options probe; these are required before gradients/thresholds are trusted.
+
+**Equation:**
+For all $p$, 
+$$V(E+\Delta E,p)\ge V(E,p),$$
+and for all $E$, 
+$$V(E,p+\Delta p)\le V(E,p).$$
+
+**Notes:**
+- Evaluate with tolerance $\varepsilon_{\text{mono}}$ (default $10^{-9}$). Ties within tolerance are acceptable.  
+- If conditions fail, fix by (a) regenerating data, or (b) axis-wise isotonic smoothing before downstream calculations.  
+- These checks justify using $E_{\min}^{(v_0)}(p)$ as a well-posed boundary and keep $\partial_E V$/$\partial_p V$ signs meaningful.
+
+
+---
+
 ## Change Log
 - VDM-E-001 to VDM-E-071 • 6885588 • Initial compilation from repository files
 - VDM-E-072 to VDM-E-080 • 6885588 • Added discrete conservation law and lattice action equations from derivation/conservation_law/ and derivation/foundations/
