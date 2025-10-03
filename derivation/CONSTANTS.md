@@ -26,7 +26,7 @@
 | <a id="const-x0"></a>`x0` [RD front speed] | Front initial position | -60 |  | spatial | derivation/FUVDM_Overview.md:214 • 0922758 | Starting offset for front |
 | <a id="const-level"></a>`level` [RD front speed] | Front level-set value | 0.1 |  | field units | derivation/FUVDM_Overview.md:214 • 0922758 | Front tracking threshold |
 | <a id="const-acceptance_rel_err"></a>`acceptance_rel_err` [RD front speed] | Relative error acceptance | 0.05 |  | nondimensional | derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py:210 • 0922758 | Pass/fail gate for $c$ validation |
-| <a id="const-tau-lbm"></a>$ \tau $ [LBM typical] | Relaxation time | 0.9 |  | LBM time | derivation/DIMENSIONLESS_CONSTANTS.md:16; FUVDM_Overview.md:81 • 0922758 | Typical for $\nu = 0.1333$ |
+| <a id="const-tau-lbm"></a> $\tau$ [LBM typical] | Relaxation time | 0.9 |  | LBM time | derivation/DIMENSIONLESS_CONSTANTS.md:16; FUVDM_Overview.md:81 • 0922758 | Typical for $\nu = 0.1333$ |
 | <a id="const-tau-lid"></a>`tau` [lid cavity] | Relaxation time (default) | 0.7 |  | LBM time | derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py:150 • 0922758 | Default CLI arg |
 | <a id="const-tau-taylor"></a>`tau` [Taylor-Green] | Relaxation time (default) | 0.8 |  | LBM time | derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py:164; lid_cavity_benchmark.py:150 • 0922758 | Default CLI arg |
 | <a id="const-nx"></a>`nx` [LBM benchmarks] | Grid width | 128, 256 |  | lattice sites | derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py:148 (128); taylor_green_benchmark.py:163 (256) • 0922758 | Lid cavity: 128; Taylor-Green: 256 |
@@ -122,14 +122,14 @@
 | <a id="const-walkers_4"></a>`walkers` [phase 4] | Walkers (problem-solving) | 768 |  | integer | fum_rt/runtime/phase.py:56 • 0922758 | Phase 4 walkers |
 | <a id="const-hops_4"></a>`hops` [phase 4] | Hops (problem-solving) | 5 |  | integer | fum_rt/runtime/phase.py:56 • 0922758 | Phase 4 depth |
 | <a id="const-composer_idf_k"></a>`composer_idf_k` [all phases] | Composer IDF novelty gain | 0.0 |  | nondimensional | fum_rt/runtime/phase.py:37,42,47,52,57 • 0922758 | Discovery weight (safe default 0) |
-| <a id="const-nu-typical"></a>$ \nu $ [LBM typical] | Kinematic viscosity | 0.1333 |  | LBM units | derivation/DIMENSIONLESS_CONSTANTS.md:16; FUVDM_Overview.md:81 • 0922758 | $\nu = \frac{1}{3}(\tau - \frac{1}{2})$ for $\tau=0.9$ |
+| <a id="const-nu-typical"></a> $\nu$ [LBM typical] | Kinematic viscosity | 0.1333 |  | LBM units | derivation/DIMENSIONLESS_CONSTANTS.md:16; FUVDM_Overview.md:81 • 0922758 | $\nu = \frac{1}{3}(\tau - \frac{1}{2})$ for $\tau=0.9$ |
 | <a id="const-Re-64"></a>$\mathrm{Re}$ [LBM 64²] | Reynolds number (64²) | 9.6 |  | nondimensional | derivation/DIMENSIONLESS_CONSTANTS.md:17; FUVDM_Overview.md:82 • 0922758 | $\mathrm{Re} = UL/\nu$ |
 | <a id="const-Re-128"></a>$\mathrm{Re}$ [LBM 128²] | Reynolds number (128²) | 19.2 |  | nondimensional | derivation/DIMENSIONLESS_CONSTANTS.md:17; FUVDM_Overview.md:82 • 0922758 | $\mathrm{Re} = UL/\nu$ |
 | <a id="const-Ma-low"></a>$\mathrm{Ma}$ [LBM typical] | Mach number range | 0.017–0.035 |  | nondimensional | derivation/DIMENSIONLESS_CONSTANTS.md:18; FUVDM_Overview.md:83 • 0922758 | $\mathrm{Ma} = U/\sqrt{1/3}$ (low compressibility) |
-| <a id="const-c_star"></a>$ c^* $ [RD normalized] | Normalized KPP speed | 0.95–1.0 |  | nondimensional | derivation/DIMENSIONLESS_CONSTANTS.md:20; FUVDM_Overview.md:85 • 0922758 | $c^* = c/(2\sqrt{Dr})$ |
-| <a id="const-Theta"></a>$ \Theta $ [FUVDM junction] | Junction gating strength | $k \approx 1, b \approx 0$ |  | nondimensional | derivation/DIMENSIONLESS_CONSTANTS.md:21; FUVDM_Overview.md:86 • 0922758 | Fit scale in $\Theta \Delta m$ or $\Theta \|\nabla m\|$ |
-| <a id="const-Gamma"></a>$ \Gamma $ [FUVDM retention] | Retention fraction | 0.3–0.75 |  | nondimensional | derivation/DIMENSIONLESS_CONSTANTS.md:23; FUVDM_Overview.md:88 • 0922758 | Memory persistence (representative avg from plots) |
-| <a id="const-D_a"></a>$ D_a $ [FUVDM anisotropic] | Anisotropic diffusion index | {1, 3, 5, 7} |  | nondimensional | derivation/DIMENSIONLESS_CONSTANTS.md:24; FUVDM_Overview.md:89 • 0922758 | Transport anisotropy discrete values |
+| <a id="const-c_star"></a> $c^*$ [RD normalized] | Normalized KPP speed | 0.95–1.0 |  | nondimensional | derivation/DIMENSIONLESS_CONSTANTS.md:20; FUVDM_Overview.md:85 • 0922758 | $c^* = c/(2\sqrt{Dr})$ |
+| <a id="const-Theta"></a> $\Theta$ [FUVDM junction] | Junction gating strength | $k \approx 1, b \approx 0$ |  | nondimensional | derivation/DIMENSIONLESS_CONSTANTS.md:21; FUVDM_Overview.md:86 • 0922758 | Fit scale in $\Theta \Delta m$ or $\Theta \|\nabla m\|$ |
+| <a id="const-Gamma"></a> $\Gamma$ [FUVDM retention] | Retention fraction | 0.3–0.75 |  | nondimensional | derivation/DIMENSIONLESS_CONSTANTS.md:23; FUVDM_Overview.md:88 • 0922758 | Memory persistence (representative avg from plots) |
+| <a id="const-D_a"></a> $D_a$ [FUVDM anisotropic] | Anisotropic diffusion index | {1, 3, 5, 7} |  | nondimensional | derivation/DIMENSIONLESS_CONSTANTS.md:24; FUVDM_Overview.md:89 • 0922758 | Transport anisotropy discrete values |
 
 <!-- BEGIN AUTOSECTION: CONSTANTS-INDEX -->
 <!-- Tool-maintained list of [Name](#const-...) anchors -->
