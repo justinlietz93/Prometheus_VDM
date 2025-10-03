@@ -26,6 +26,13 @@
 | $\alpha,\beta$    | on-site creation/loss rates     | $r=\alpha-\beta,\ u=\alpha$        | sets logistic parameters                                                              |   |                          |
 | $r,u$             | RD growth/saturation            | linear and quadratic terms         | $\partial_t\phi=D\nabla^2\phi+r\phi-u\phi^2$                                          |   |                          |
 | $Q(W,t)$          | logarithmic first integral      | invariant of on-site logistic      | $Q=\ln!\frac{W}{r-uW}-rt=\text{const}$ (drift guard)                                  |   |                          |
+| $\Delta Q$        | change in conserved quantity    | discrete time evolution            | $\Delta Q_i = Q_i(t+\Delta t) - Q_i(t)$                                                |   |                          |
+| $\Delta W$        | change in node state            | discrete update                    | $\Delta W_i = W_i(t+\Delta t) - W_i(t)$                                                |   |                          |
+| $\Delta t$        | discrete time step              | temporal discretization            | enter CFL stability conditions                                                         |   |                          |
+| $N(i)$            | neighbor set of node $i$        | graph connectivity                 | $N(i) = \mathrm{nbr}(i)$ for lattice                                                   |   |                          |
+| $F(W)$            | discrete dynamics function      | RHS of discrete ODE                | $F(W)=(\alpha-\beta)W-\alpha W^2$                                                      |   |                          |
+| $H_{ij}$          | discrete flux $i \to j$         | conserved-quantity transport       | $\Delta Q_i = \sum_j (H_{ji} - H_{ij})$                                                |   |                          |
+| $c_k$             | flux ansatz coefficients        | parameterize $H_{ij}$              | $H_{ij}=\sum_k c_k W_i^{a_k} W_j^{b_k}$                                                |   |                          |
 
 ## Scalar EFT (Tachyon, Quartic $\phi^4$, Masses)
 
@@ -40,6 +47,16 @@
 | $c$                                 | wave propagation speed  | from lattice micro-params     | $c^2=2Ja^2$                                                                         |        |                         |
 | $\Box$                              | d’Alembertian operator  | wave/field operator           | $\Box=\partial_t^2-c^2\nabla^2$; EFT EOM: $\Box\phi+V'(\phi)=0$                     |        |                         |
 | $R$                                 | tube/cylinder radius    | boundary quantization scale   | finite-domain mode analysis                                                         |        |                         |
+
+## Discrete Conservation Law & Energy Decomposition
+
+| Symbol                    | Meaning                         | When / Why                          | Tiny Example                                                                      |
+| ------------------------- | ------------------------------- | ----------------------------------- | --------------------------------------------------------------------------------- |
+| $\mathcal{H}_i$           | discrete Hamiltonian at node    | total energy density                | $\mathcal{H}_i = \mathcal{K}_i + V(W_i) + \mathcal{I}_i$                          |
+| $\mathcal{K}_i$           | kinetic energy at node          | rate-of-change squared              | $\mathcal{K}_i = \tfrac{1}{2}(\dot{W}_i)^2 = \tfrac{1}{2}[F(W_i)]^2$             |
+| $\mathcal{I}_i$           | interaction energy at node      | coupling to neighbors               | $\mathcal{I}i = \tfrac{1}{2}\sum{j \in N(i)} J, (W_j - W_i)^2$                   |
+| $\vec{J}_i$               | energy flux vector from node    | discrete divergence in conservation | $\frac{\Delta \mathcal{H}_i}{\Delta t} + \nabla \cdot \vec{J}_i = 0$             |
+| $\nabla \cdot$            | discrete divergence operator    | flux balance on graph               | sums net flow across edges                                                        |
 
 ## Walkers & Local Dynamics
 
@@ -115,7 +132,7 @@
 | Symbol      | Meaning                | When / Why                | Tiny Example                        |
 | ----------- | ---------------------- | ------------------------- | ----------------------------------- |
 | $\Pi_{Dr}$  | diffusion at scale $L$ | $D/(rL^2)$                | pick $L$ per experiment             |
-| $c^*$       | normalized KPP speed   | $c/(2\sqrt{Dr})$          | $\approx 0.95$–$1.0$ when validated |
+| $c^*$       | normalized KPP speed   | $c/(2\sqrt{Dr})$          | $\approx 0.95\text{–}1.0$ when validated |
 | \mathrm{Da} | Damköhler number       | reaction / transport rate | regime classifier                   |
 
 ## Dimensionless Groups — LBM / Fluids
