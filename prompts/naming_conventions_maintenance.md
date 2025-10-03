@@ -1,9 +1,9 @@
-**Create/Update `derivations/NAMING_CONVENTIONS.md` (canonical notation rules; references-only)**
+**Create/Update `derivation/NAMING_CONVENTIONS.md` (canonical notation rules; references-only)**
 
 Search the entire repository (code, tests, notebooks, configs, docs, comments) and compile **the notation and naming conventions actually used** in the project. **Do not invent new rules.** Use only conventions evidenced in the repo.
 *(If your repo’s canon map uses `docs/NAMING_CONVENTIONS.md`, write to that path instead.)*
 
-**Output file:** `derivations/NAMING_CONVENTIONS.md`
+**Output file:** `derivation/NAMING_CONVENTIONS.md`
 **Canon rule:** This file is the **single owner** of notation, symbol styling, index orders, coordinate systems, and reserved names. Other docs must link here; do not restate or override conventions elsewhere.
 
 **MathJax on GitHub:**
@@ -137,11 +137,11 @@ Artifacts include: equation IDs (`vdm-e-###`), algorithms (`vdm-a-###`), symbols
 
 ### Linking rules (anchors only; no duplication)
 
-* Symbols → `../derivations/SYMBOLS.md#sym-...`
-* Equations → `../derivations/EQUATIONS.md#vdm-e-...`
-* Units → `../derivations/UNITS_NORMALIZATION.md#...`
-* Constants → `../derivations/CONSTANTS.md#const-...`
-* Algorithms → `../derivations/ALGORITHMS.md#vdm-a-...`
+* Symbols → `../derivation/SYMBOLS.md#sym-...`
+* Equations → `../derivation/EQUATIONS.md#vdm-e-...`
+* Units → `../derivation/UNITS_NORMALIZATION.md#...`
+* Constants → `../derivation/CONSTANTS.md#const-...`
+* Algorithms → `../derivation/ALGORITHMS.md#vdm-a-...`
 
 If a required anchor is missing, add `TODO: missing anchor (see <path>:<line>)`; do not create content here.
 
