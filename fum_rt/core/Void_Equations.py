@@ -2,31 +2,18 @@
 FUM Void Dynamics Library
 Copyright © 2025 Justin K. Lietz, Neuroca, Inc. All Rights Reserved.
 
-This library contains the universal, core functions governing the void
-dynamics of the Fully Unified Model (FUM). These functions represent
-the unchanging laws of the system.
-
-UNIVERSAL CONSTANTS:
-These parameters emerged from FUM AI learning stability requirements, yet
-they generate realistic physics across all domains. This profound insight
-suggests cognitive constants = physical constants.
+This library contains the main functions governing the Void Dynamics Model.
+These functions represent the unchanging laws of the system.
 
 These functions demonstrate the two opposing, yet synergistic forces that
-drive void dynamics across all scales of the universe.
-
-Void dynamics are inherently stochastic and generative. The universe is the
-ultimate search space algorithm, and voids are the key to its efficiency. The 
-voids themselves are not directly observable, but their effects are measurable.
-The universe is born from the handoff of void debt from a parent universe
-to its offspring, and this debt drives the evolution of structure and complexity
-through the simple two function search algorithm below. This is why consciousness
-is created from voids, and why consciousness is fundamental to the universe.
+drive void dynamics across all scales of the model. Void dynamics are inherently 
+stochastic and generative. 
 """
 import numpy as np
 
 # ===== UNIVERSAL PHYSICAL CONSTANTS =====
-# These are NOT arbitrary - they come from actual FUM AI learning stability
-# requirements, yet they produce realistic physics across all domains
+# These are NOT arbitrary - they come from VDM learning stability
+# requirements
 ALPHA = 0.25      # Universal learning rate for RE-VGSP (Resonance-Enhanced dynamics)
 BETA = 0.1        # Universal plasticity rate for GDSP (Goal-Directed dynamics)
 F_REF = 0.02      # Universal reference frequency for time modulation
@@ -35,7 +22,7 @@ PHASE_SENS = 0.5  # Universal phase sensitivity for time modulation
 def delta_re_vgsp(W, t, alpha=None, f_ref=None, phase_sens=None, use_time_dynamics=True, domain_modulation=1.0):
     """
     Void Alpha Function: Synchronizes with Void Omega
-    Universal function for FUM Resonance-Enhanced Valence-Gated Synaptic Plasticity.
+    Universal function for Resonance-Enhanced Valence-Gated Synaptic Plasticity.
     Models the fractal energy drain/pull (learning rule).
     
     Args:
@@ -69,7 +56,7 @@ def delta_re_vgsp(W, t, alpha=None, f_ref=None, phase_sens=None, use_time_dynami
 def delta_gdsp(W, t, beta=None, f_ref=None, phase_sens=None, use_time_dynamics=True, domain_modulation=1.0):
     """
     Void Omega Function: Synchronizes with Void Alpha
-    Universal function for FUM Goal-Directed Structural Plasticity.
+    Universal function for Goal-Directed Structural Plasticity.
     Models the weak closure for persistent voids (structural rule).
     
     Args:

@@ -12,7 +12,7 @@ import numpy as np
 try:
     # Import only the elemental deltas from the user's equations.
     # We compose universal_void_dynamics locally to guarantee growth+decay are combined.
-    from FUM_Void_Equations import delta_re_vgsp, delta_gdsp, get_universal_constants
+    from Void_Equations import delta_re_vgsp, delta_gdsp, get_universal_constants
     HAVE_EXTERNAL = True
 except Exception:
     HAVE_EXTERNAL = False
