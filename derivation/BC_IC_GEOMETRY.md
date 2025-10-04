@@ -184,6 +184,37 @@ When performing continuum integrations by parts, require one of:
 
 ---
 
+##### Absorbing (Dirichlet) boundary for agency walkers  <a id="bc-absorbing-agency-walkers"></a>
+**Context:** AGENCY_FIELD_V2.md:§Runtime Walkers • observability/gating runs (agency)   
+
+**Field(s):** Walker positions (X); optional agency map (M) (read-only)     
+**Type:** Absorbing / Dirichlet (out-of-domain removal)     
+**Definition (quote from source if formula exists):**
+Walkers that step outside (\Omega) are removed from the simulation at that step (no re-injection or wrap). If a scalar field (M) is logged, enforce $(M|_{\partial\Omega}=0)$ for visualization.  
+
+**Applies on:** All boundaries of [walker-box-2d](#geom-walker-box-2d)  
+**Parameters:** None    
+**Implemented at:** — (spec; planned alongside agency walker runtime)   
+**Notes:** Models “cliff” domains where leaving the workspace terminates control; reduces reachable option-space near walls, which measurably lowers $V_{\text{useful\_bits}}$ under identical noise.
+
+---
+
+##### Reflecting (specular) boundary for agency walkers  <a id="bc-reflecting-agency-walkers"></a>
+
+**Context:** AGENCY_FIELD_V2.md:§Runtime Walkers • explorative runs (agency)    
+**Field(s):** Walker positions (X); optional agency map (M) (read-only)     
+**Type:** Reflecting / Neumann-like (specular reflection)   
+**Definition (quote from source if formula exists):**   
+On attempted step $(\Delta x)$ that exits $(\Omega)$, reflect the normal component at the boundary:     
+$(\Delta x\_{\perp} \leftarrow -\Delta x\_{\perp})$\, $(\Delta x\_{\parallel})$ unchanged; then apply the reflected step.   
+
+**Applies on:** All boundaries of [walker-box-2d](#geom-walker-box-2d)  
+**Parameters:** None    
+**Implemented at:** — (spec; planned alongside agency walker runtime)   
+**Notes:** Preserves mass of walkers; appropriate when physical walls exist but agents can “bounce.” Typically raises reachable option-space vs. absorbing, shifting agency thresholds.     
+
+---
+
 ## 3) Initial Conditions
 
 ##### Random noise IC for RD dispersion  <a id="ic-random-noise-rd-dispersion"></a>
@@ -275,6 +306,34 @@ $$
 
 ---
 
+##### Uniform quiescent agency field  <a id="ic-agency-field-quiescent"></a>
+
+**Context:** AGENCY_FIELD_V2.md:§Field Definition • cold-start runs     
+**Quantity:** Agency map $(M(\mathbf{x},0))$ (capability/affordance density; read-only for probes)  
+**Definition (quote from source if formula exists):**   
+$(M(\mathbf{x},0) = 0)$ on $(\Omega)$\.
+
+**Parameters:** None    
+**Randomization/Seeds:** None (deterministic)   
+**Applies to Geometry:** [walker-box-2d](#geom-walker-box-2d)   
+**Notes:** Clean baseline for observing how walkers and constraints imprint structure; pairs with absorbing or reflecting BCs above.    
+
+---
+
+##### Seeded walker distribution (Poisson)  <a id="ic-agency-walkers-poisson"></a>
+
+**Context:** AGENCY_FIELD_V2.md:§Runtime Walkers • default seeding      
+**Quantity:** Walker set $({X\_k(0)}\_{k=1}^{N\_w})$     
+**Definition (quote from source if formula exists):**   
+Sample (N_w) initial positions i.i.d. uniform on $(\Omega)$ (Poisson disc optional).    
+
+**Parameters:** (N_w) (see `walkers` in CONSTANTS.md)   
+**Randomization/Seeds:** Use `seed`<sup>[↗](CONSTANTS.md#const-seed)</sup> to control RNG for reproducibility   
+**Applies to Geometry:** [walker-box-2d](#geom-walker-box-2d)   
+**Notes:** Matches your other ICs: deterministic when seeded; supports side-by-side BC comparisons for agency thresholds.   
+
+---
+
 ## 4) Lattice/Stencil & Neighbor Topology
 
 | ID | Stencil/Topology | Description (as named) | Parameters (link) | Source | Notes |
@@ -283,6 +342,7 @@ $$
 | <a id="lattice-nn-2d"></a>**nn-2d** | 2D von Neumann (torus) | Neighbors $N(i) = \{\text{north, south, east, west}\}$ (periodic) | $N_y \times N_x$ nodes, spacing $a$ | derivation/code/physics/axioms/verify_discrete_EL.py:38-47 • c31d0c9 | Coordination $z = 4$ |
 | <a id="lattice-d2q9"></a>**D2Q9** | D2Q9 LBM lattice (2D) | 9 velocity directions: rest (1), cardinals (4), diagonals (4) | Velocities $\mathbf{c}_i$, weights $w_i$, $c_s^2 = 1/3$ | derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:98-106 • c31d0c9 | Standard LBM D2Q9 stencil; opposite directions via OPP array |
 | <a id="lattice-generic-cartesian"></a>**cartesian-1d-2d** | Regular Cartesian grid (1D/2D) | Uniform spacing $a$, cell-centered values | Grid spacing $a$ (or $dx$) | derivation/code/physics/reaction_diffusion/flux_core.py:14-16 • c31d0c9 | Supports periodic or Neumann BCs; used in flux-conservative RD |
+| <a id="lattice-moore-8"></a>**moore-8** | 2D Moore (8-neighbor) | Neighbors $(N(i)={\text{N,S,E,W,NE,NW,SE,SW}})$ | $(N\_y \times N\_x)$, spacing (a) | — (spec) | If agency walkers step diagonally as well as axially |
 
 ---
 
@@ -326,3 +386,7 @@ $$
 
 ## Change Log
 - 2025-10-03 • Initial creation of BC_IC_GEOMETRY.md with all BC/IC/geometries • 24ddc4d
+
+Short version: the **options-probe** itself is parametric (grid over $(E)$ and $(p\_{\text{slip}}$)), so it doesn’t belong in a BC/IC/geometry doc.
+
+Where agency *does* touch this file is when walkers or any “agency field” actually live on a spatial lattice (same grid already used for `walker_glow`). In that case, adding a couple of BCs and ICs makes the canon complete and prevents future ambiguity about “edge-of-domain behavior.”
