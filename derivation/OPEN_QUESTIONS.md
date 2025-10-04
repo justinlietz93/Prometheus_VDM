@@ -31,6 +31,11 @@
 - [OQ-020](#oq-020) — Derive analytic formula for consensus+innovation ridge
 - [OQ-021](#oq-021) — VDM-fluids corner testbed implementation
 - [OQ-022](#oq-022) — Canonical equations for VDM-fluids (RD + hyperbolic + VDM)
+- [OQ-023](#oq-023) — Experimental validation of discrete lattice structure
+- [OQ-024](#oq-024) — Quantum renormalization program completion
+- [OQ-025](#oq-025) — Observational tests of cosmological predictions
+- [OQ-026](#oq-026) — First-principles parameter determination method
+- [OQ-027](#oq-027) — Lattice scale parameter determination (20 orders uncertainty)
 
 ---
 
@@ -564,6 +569,123 @@
 
 ---
 
+## 8. Axiomatic Foundation & Experimental Validation
+
+#### OQ-023 — Experimental validation of discrete lattice structure  <a id="oq-023"></a>
+**Status:** Open  •  **Priority:** P1  •  **Owner:** —  
+**Context:** derivation/axiomatic_theory_development.md:1397, 1452 • 8321c50
+
+> Physical reality of discrete lattice structure unverified
+
+**Why it matters (lifted):** Core assumption of theory requires experimental verification for physical reality.  
+**Related canon (anchors only):**  
+- Axioms: `AXIOMS.md` (discrete lattice axiom)
+- Constants: `CONSTANTS.md#const-a` (lattice spacing)
+
+**Evidence so far:**
+- Theory achieves status of strong candidate theoretical framework per derivation/axiomatic_theory_development.md:1402
+- Internal theoretical consistency within analyzed approximations per derivation/axiomatic_theory_development.md:1045
+- Connection to validated computational results per derivation/axiomatic_theory_development.md:1408
+
+**Proposed experiment/proof (if present in repo):**
+- Computational implementation: numerical verification per derivation/axiomatic_theory_development.md:1416
+- Experimental tests: design laboratory experiments per derivation/axiomatic_theory_development.md:1418
+
+**Blockers/Dependencies:** Experimental design, observational data  
+**Next action (if stated):** Requires experimental verification per derivation/axiomatic_theory_development.md:1404
+
+---
+
+#### OQ-024 — Quantum renormalization program completion  <a id="oq-024"></a>
+**Status:** Open  •  **Priority:** P1  •  **Owner:** —  
+**Context:** derivation/axiomatic_theory_development.md:1399, 1453 • 8321c50
+
+> Quantum renormalization program requires completion
+
+**Why it matters (lifted):** Full quantum field theory requires systematic renormalization analysis.  
+**Related canon (anchors only):**  
+- Equations: TODO: add anchor for quantum corrections
+- Constants: TODO: add anchor for renormalization scale
+
+**Evidence so far:**
+- EFT mindset establishes checklist for V(φ), Z(φ), higher-derivative operators per derivation/foundations/void_dynamics_theory.md:11
+- Weak coupling regime identified: $\epsilon_3 \sim \lambda(\alpha-\beta)/\alpha^2$ per derivation/axiomatic_theory_development.md:1030
+
+**Proposed experiment/proof (if present in repo):**
+- Mathematical extensions: explore generalizations per derivation/axiomatic_theory_development.md:1419
+
+**Blockers/Dependencies:** Quantum field theory framework, renormalization tools  
+**Next action (if stated):** Systematic completion of renormalization program
+
+---
+
+#### OQ-025 — Observational tests of cosmological predictions  <a id="oq-025"></a>
+**Status:** Open  •  **Priority:** P1  •  **Owner:** —  
+**Context:** derivation/axiomatic_theory_development.md:1400, 1454 • 8321c50
+
+> Observational tests of cosmological implications needed
+
+**Why it matters (lifted):** Theory makes testable cosmological predictions requiring observational verification.  
+**Related canon (anchors only):**  
+- Equations: TODO: add anchor for cosmological field equations
+- Constants: TODO: add anchor for cosmological parameters
+
+**Evidence so far:**
+- Dark energy equation of state predictions depend on field amplitude per derivation/axiomatic_theory_development.md:1038
+- Structure formation modified by void field coupling per derivation/axiomatic_theory_development.md:1039
+- CMB signatures depend on primordial field fluctuations per derivation/axiomatic_theory_development.md:1040
+
+**Proposed experiment/proof (if present in repo):**
+- Observational applications: connect theory to astrophysical and cosmological data per derivation/axiomatic_theory_development.md:1417
+
+**Blockers/Dependencies:** Astrophysical data, cosmological observations  
+**Next action (if stated):** Connect theory to observational data
+
+---
+
+#### OQ-026 — First-principles parameter determination method  <a id="oq-026"></a>
+**Status:** Open  •  **Priority:** P2  •  **Owner:** —  
+**Context:** derivation/axiomatic_theory_development.md:1455 • 8321c50
+
+> No first-principles method to determine fundamental parameters from observations
+
+**Why it matters (lifted):** Theory requires method to extract fundamental parameters from observations.  
+**Related canon (anchors only):**  
+- Constants: `CONSTANTS.md` (fundamental parameters)
+- Symbols: `SYMBOLS.md` (parameter definitions)
+
+**Evidence so far:**
+- Natural parameters emerge from fundamental discrete structure without fine-tuning per derivation/axiomatic_theory_development.md:1439
+- Parameter uncertainties documented per derivation/axiomatic_theory_development.md:1032-1040
+
+**Proposed experiment/proof (if present in repo):** —  
+**Blockers/Dependencies:** Inverse problem framework, observational constraints  
+**Next action (if stated):** Develop first-principles determination method
+
+---
+
+#### OQ-027 — Lattice scale parameter determination (20 orders uncertainty)  <a id="oq-027"></a>
+**Status:** Open  •  **Priority:** P1  •  **Owner:** —  
+**Context:** derivation/axiomatic_theory_development.md:1033 • 8321c50
+
+> **Lattice Scale:** $a$ could range from Planck scale to atomic scale - 20 orders of magnitude uncertainty
+
+**Why it matters (lifted):** Fundamental lattice spacing uncertainty spans 20 orders of magnitude; needs constraint.  
+**Related canon (anchors only):**  
+- Constants: `CONSTANTS.md#const-a` (lattice spacing)
+
+**Evidence so far:**
+- Coupling ratios $\alpha/\beta$ constrained by observations but $\lambda$ largely unconstrained per derivation/axiomatic_theory_development.md:1034
+- Damping rate $\gamma$ depends on unknown microscopic physics per derivation/axiomatic_theory_development.md:1035
+
+**Proposed experiment/proof (if present in repo):**
+- Observational constraints from multiple scales per derivation/axiomatic_theory_development.md:1417
+
+**Blockers/Dependencies:** Multi-scale observations, microscopic theory  
+**Next action (if stated):** Constrain lattice scale via observations
+
+---
+
 <!-- BEGIN AUTOSECTION: OPEN-QUESTIONS-INDEX -->
 <!-- Tool-maintained list of [OQ-###](#oq-###) anchors for quick lookup -->
 1. [OQ-001](#oq-001) — Formal Lyapunov functional for RD logistic-diffusion flow
@@ -588,6 +710,11 @@
 20. [OQ-020](#oq-020) — Derive analytic formula for consensus+innovation ridge
 21. [OQ-021](#oq-021) — VDM-fluids corner testbed implementation
 22. [OQ-022](#oq-022) — Canonical equations for VDM-fluids (RD + hyperbolic + VDM)
+23. [OQ-023](#oq-023) — Experimental validation of discrete lattice structure
+24. [OQ-024](#oq-024) — Quantum renormalization program completion
+25. [OQ-025](#oq-025) — Observational tests of cosmological predictions
+26. [OQ-026](#oq-026) — First-principles parameter determination method
+27. [OQ-027](#oq-027) — Lattice scale parameter determination (20 orders uncertainty)
 <!-- END AUTOSECTION: OPEN-QUESTIONS-INDEX -->
 
 ## Change Log
