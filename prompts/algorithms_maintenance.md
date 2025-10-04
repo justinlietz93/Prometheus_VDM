@@ -22,6 +22,13 @@ Search the entire repository (code, tests, notebooks, scripts, docs, comments) a
 **Scope:** Single source of truth for implemented algorithms and control flows in this repository.  
 **Rules:** Pseudocode + references only. Link to math/values elsewhere (EQUATIONS/CONSTANTS/SYMBOLS/UNITS).  
 **MathJax:** Only inline `$...$` inside comments when needed.
+
+**Legend:** This file is **PSEUDOCODE** (illustrative).   
+• Normative math: `derivation/EQUATIONS.md`.  
+• Numbers: `derivation/CONSTANTS.md`.   
+• Symbols/units: `derivation/SYMBOLS.md`, `derivation/UNITS_NORMALIZATION.md`.  
+• Canon map: `CANON_MAP.md`. 
+
 ```
 
 ---
@@ -32,6 +39,13 @@ Search the entire repository (code, tests, notebooks, scripts, docs, comments) a
 
 ````markdown
 #### VDM-A-### — <Algorithm/Loop Name as used in repo>  <a id="vdm-a-###"></a>
+**Per Item Identifier Template:**   
+• Type: RUNTIME|INSTRUMENT|POLICY|EXPERIMENT  
+• Binding: PSEUDOCODE   
+• State: none|read-only|writes state  
+• Dependencies: (short)   
+• Notes: (short)
+
 **Context:** <path/to/file>:<line-range> • Commit: <short-hash> • Module: <subsystem>
 
 **Role:** <one sentence lifted from comments/docs describing purpose>
@@ -80,6 +94,7 @@ TERMINATION:
 5. **I/O Pipelines & Data Products Generation**  
 6. **Initialization / Reset / Checkpoint / Restore**  
 7. **Validation/Experiment Runners**  
+8. **Technical Debt/Misalignments**
 *(If the repo doesn’t group them, keep a single flat list ordered by path.)*
 
 ---
