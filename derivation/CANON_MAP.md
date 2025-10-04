@@ -13,7 +13,7 @@ Got it—keep files separate. Here’s a **no-merge, no-duplication** scheme tha
 | `derivation/ALGORITHMS.md`          | Pseudocode of loops/flows (refs to math) | Call out which equation IDs are used | Introduce new math          |
 | `docs/DATA_PRODUCTS.md`              | Definitions of heatmaps/KDE/logs (I/O)   | Link to equations for formulas       | Re-derive formulas          |
 | `docs/SCHEMAS.md`                    | Message/packet/scoreboard field schemas  | Reference symbol names               | Define symbols here         |
-| `docs/NAMING_CONVENTIONS.md`         | Reserved names, sign/index conventions   | Link to symbols/equations            | Override conventions        |
+| `derivation/NAMING_CONVENTIONS.md`   | Reserved names, sign/index conventions   | Link to symbols/equations            | Override conventions        |
 | `notes/OPEN_QUESTIONS.md`            | Speculation & hypotheses                 | Link to canon as needed              | Masquerade as canon         |
 | `ROADMAP.md`                         | Tasks/milestones (no math)               | Link to issues/PRs                   | Store canonical content     |
 
