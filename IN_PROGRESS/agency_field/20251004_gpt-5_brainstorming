@@ -1,0 +1,26 @@
+Correct—this isn’t the whole agency field. What you plotted is just **one channel** inside it: the model’s *option-proprioception* (how much room to maneuver right now). The **Agency/Consciousness field** is the *blend* of several senses, not just that one.
+
+Here’s the “inside-the-model” picture, without jargon:
+
+* **Sense of room (V):** how many distinct wins are truly reachable given fuel/traction. That’s your heatmap. It’s a *headroom* signal.
+* **Sense of prediction (P):** how well the current internal state can forecast the very-near future. It’s your *foresight* signal.
+* **Sense of control efficacy (U):** how much an action actually reduces error per unit energy. It’s your *leverage* signal.
+* **Sense of non-interference / balance (B):** whether parallel efforts help or trip each other. It’s your *don’t-bump* signal.
+
+The **Agency/Consciousness field (C)** is what you get when those are *combined* (and then smoothed a bit in space, and allowed to decay in time). In human terms: agency isn’t only “can I jump the creek?” (V). It’s also “do my predictions line up with what happens?” (P), “do my moves actually fix things per unit effort?” (U), and “is my body/team coordinated, or in each other’s way?” (B). Put together, that’s the *felt intensity of organized capability here-and-now*.
+
+So your options heatmap = **one necessary sense (V)**. The **full field** = **P + U gated by V and tempered by B**, then carried forward by the field’s dynamics (it diffuses locally, fades without fuel, rises with source). Option-proprioception tells you “there’s room”; prediction says “I can see the next steps”; control says “my actions bite”; balance says “we’re not colliding.” Only when these agree does (C) spike.
+
+Why this matters for wrap-up:
+
+* If **V is high** but **U is low** ⇒ lots of apparent room, but your actions don’t bite → **SIE** should improve actuators/policy before exploring.
+* If **P is high** but **V is low** ⇒ you *see* what’s coming but you’re boxed in → **ADC** should route to higher-V regions or reduce slip.
+* If **B is low** ⇒ smart parts are stepping on each other → coordinate before spending more energy.
+* If **all are high** ⇒ greenlight: explore, write memory, widen horizons.
+
+If you want a compact definition to paste into your doc:
+
+* **Option-proprioception (V):** *the model’s gut-level sense of how many distinct successes are truly reachable from here under current constraints; a headroom gauge that gates exploration and budget.*
+* **Agency/Consciousness field (C):** *the local intensity of organized capability, rising with prediction (P), integration/coordination (B), and control efficacy (U), but only expressed when there is headroom (V); it spreads locally, and it fades without ongoing source.*
+
+TL;DR: your heatmap is the **headroom dial**; the agency field is the **engine cluster** that uses that dial—prediction + control + coordination— to decide whether to **explore, buy horizon, or fix traction**.
