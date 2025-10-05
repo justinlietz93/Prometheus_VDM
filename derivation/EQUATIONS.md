@@ -130,7 +130,7 @@ $$
 S(W)= \sum_{n} \Delta t \sum_{i} a^{d} \left( \frac{1}{2} (\Delta_t W_i)^2 - \frac{J}{2}\sum_{j\in N(i)}(W_j-W_i)^2 - V(W_i) \right), \quad J>0
 $$
 
-**Notes:** Fundamental discrete action for FUVDM; kinetic + interaction + potential terms on cubic lattice with spacing $a$.
+**Notes:** Fundamental discrete action for VDM; kinetic + interaction + potential terms on cubic lattice with spacing $a$.
 
 ---
 
@@ -316,7 +316,7 @@ with $\frac{\phi^{n+1}-\phi^{n}}{\Delta t} = D\nabla^{2}_h \bar\phi + \bar f$, $
 ---
 
 #### VDM-E-027 — RD On-Site (Discrete)
-**Context:** derivation/FUVDM_Overview.md:23-24 • Commit: 6885588
+**Context:** derivation/VDM_Overview.md:23-24 • Commit: 6885588
 
 $$
 \frac{d W_i}{dt} = (\alpha - \beta)\, W_i - \alpha \, W_i^{2} + J \sum_{j\in \mathrm{nbr}(i)} (W_j - W_i)
@@ -327,7 +327,7 @@ $$
 ---
 
 #### VDM-E-028 — RD Continuum PDE
-**Context:** derivation/FUVDM_Overview.md:31 • Commit: 6885588
+**Context:** derivation/VDM_Overview.md:31 • Commit: 6885588
 
 $$
 \partial_t \phi = D\, \nabla^{2}\phi + r\, \phi - u\, \phi^{2} \quad \bigl[ -\lambda\, \phi^{3} \text{ (optional stabilization)} \bigr]
@@ -338,7 +338,7 @@ $$
 ---
 
 #### VDM-E-029 — RD Discrete-to-Continuum Mapping
-**Context:** derivation/FUVDM_Overview.md:39-43 • Commit: 6885588
+**Context:** derivation/VDM_Overview.md:39-43 • Commit: 6885588
 
 $$
 \begin{aligned}
@@ -353,7 +353,7 @@ $$
 ---
 
 #### VDM-E-030 — EFT Kinetic Normalization (Quarantined)
-**Context:** derivation/FUVDM_Overview.md:52-54 • Commit: 6885588
+**Context:** derivation/VDM_Overview.md:52-54 • Commit: 6885588
 
 $$
 c^{2} = 2 J a^{2} \quad \text{(per-site)}, \qquad c^{2} = \kappa a^{2},\; \kappa = 2J \quad \text{(per-edge)}
@@ -364,7 +364,7 @@ $$
 ---
 
 #### VDM-E-031 — EFT Second-Order Field Equation (Quarantined)
-**Context:** derivation/FUVDM_Overview.md:60-62 • Commit: 6885588
+**Context:** derivation/VDM_Overview.md:60-62 • Commit: 6885588
 
 $$
 \square \phi + V'(\phi) = 0, \qquad \square = \partial_t^{2} - c^{2} \nabla^{2}
@@ -375,7 +375,7 @@ $$
 ---
 
 #### VDM-E-032 — EFT Effective Mass (Quarantined)
-**Context:** derivation/FUVDM_Overview.md:68-70 • Commit: 6885588
+**Context:** derivation/VDM_Overview.md:68-70 • Commit: 6885588
 
 $$
 m_{\mathrm{eff}}^{2} = V''(v)
@@ -386,7 +386,7 @@ $$
 ---
 
 #### VDM-E-033 — RD Front Speed (Validated)
-**Context:** derivation/FUVDM_Overview.md:110 • Commit: 6885588
+**Context:** derivation/VDM_Overview.md:110 • Commit: 6885588
 
 $$
 c_{\text{front}} = 2\sqrt{D r}
@@ -397,7 +397,7 @@ $$
 ---
 
 #### VDM-E-034 — RD Discrete Dispersion
-**Context:** derivation/FUVDM_Overview.md:122-124 • Commit: 6885588
+**Context:** derivation/VDM_Overview.md:122-124 • Commit: 6885588
 
 $$
 \sigma_d(m) = r - \frac{4D}{\Delta x^{2}} \sin^{2}\!\left(\frac{\pi m}{N}\right)
@@ -408,7 +408,7 @@ $$
 ---
 
 #### VDM-E-035 — RD Continuum Dispersion (Validated)
-**Context:** derivation/FUVDM_Overview.md:128-130 • Commit: 6885588
+**Context:** derivation/VDM_Overview.md:128-130 • Commit: 6885588
 
 $$
 \sigma(k) = r - D k^{2}, \qquad k = \frac{2\pi m}{L}
@@ -419,7 +419,7 @@ $$
 ---
 
 #### VDM-E-036 — RD Homogeneous Fixed Point
-**Context:** derivation/FUVDM_Overview.md:150-152 • Commit: 6885588
+**Context:** derivation/VDM_Overview.md:150-152 • Commit: 6885588
 
 $$
 \phi^{\star} = \frac{r}{u} = 1 - \frac{\beta}{\alpha} \qquad (r = \alpha - \beta,\; u = \alpha)

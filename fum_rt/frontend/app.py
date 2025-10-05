@@ -40,7 +40,7 @@ from fum_rt.frontend.callbacks.file_picker.registrars import (
 
 def build_app(runs_root: str) -> Dash:
     """
-    Factory for the FUVDM Live Dashboard Dash app.
+    Factory for the VDM Live Dashboard Dash app.
     - Assembles layout (cards/components)
     - Installs modular callbacks
     - Keeps ProcessManager scoped to the app instance

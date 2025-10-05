@@ -1,4 +1,4 @@
-### FUVDM Dimensionless Constants
+### VDM Dimensionless Constants
 
 >
 > Author: Justin K. Lietz  
@@ -18,12 +18,12 @@
 | LBM       | Ma         | $U / \sqrt{1/3}$                                       | compressibility          | 0.035–0.017 (low)               |
 | RD        | $\Pi_{Dr}$ | $D/(rL^2)$                                             | diffusion at scale L     | choose L → report               |
 | RD        | $c^*$      | $c / (2\sqrt{Dr})$                                     | normalized KPP speed     | \~0.95–1.0                      |
-| FUVDM     | $\Theta$   | fit scale in $\Theta \Delta m$ or $\Theta\|\nabla m\|$ | junction gating strength | k≈1, b≈0                        |
-| FUVDM     | $\Lambda$  | exploration/retention ratio                            | turnover vs. memory      | as swept in heatmaps            |
-| FUVDM     | $\Gamma$   | retention fraction                                     | memory persistence       | \~0.3–0.75 avg (plots)     |
-| FUVDM     | $D_a$      | anisotropic diffusion index                            | transport anisotropy     | {1,3,5,7}                       |
-| FUVDM     | $\kappa L$ | curvature×scale                                        | path bending             | linear vs. $\Theta\|\nabla m\|$ |
-| FUVDM     | $g$        | void gain                                              | stabilization strength   | e.g., 0.5                       |
+| VDM     | $\Theta$   | fit scale in $\Theta \Delta m$ or $\Theta\|\nabla m\|$ | junction gating strength | k≈1, b≈0                        |
+| VDM     | $\Lambda$  | exploration/retention ratio                            | turnover vs. memory      | as swept in heatmaps            |
+| VDM     | $\Gamma$   | retention fraction                                     | memory persistence       | \~0.3–0.75 avg (plots)     |
+| VDM     | $D_a$      | anisotropic diffusion index                            | transport anisotropy     | {1,3,5,7}                       |
+| VDM     | $\kappa L$ | curvature×scale                                        | path bending             | linear vs. $\Theta\|\nabla m\|$ |
+| VDM     | $g$        | void gain                                              | stabilization strength   | e.g., 0.5                       |
 
 
 
@@ -97,7 +97,7 @@
 7. **Dispersion-to-Convergence Ratio** $\Lambda$
 
    * Ratio of how fast walkers diverge vs. how fast they converge under void modulation.
-   * Basically the “phase space Lyapunov constant” of FUVDM.
+   * Basically the “phase space Lyapunov constant” of VDM.
    * When $\Lambda < 1$, convergence wins → stable cognition.
    * When $\Lambda > 1$, dispersion wins → chaotic reorganization.
 
@@ -106,7 +106,7 @@
 ### Why these matter for the **overall theory**
 
 * In **fluids**, only need $Re, Ma, CFL$.
-* In **FUVDM**, the universal “dimensionless group set” is:
+* In **VDM**, the universal “dimensionless group set” is:
 
   $$
   \{ \mathcal{D}, \Xi, \alpha, M_v, \Theta, \Sigma, \Lambda \}

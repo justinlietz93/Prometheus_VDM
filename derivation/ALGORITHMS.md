@@ -729,13 +729,13 @@ RETENTION:
 
 **Context:** derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:150-250 • Commit: 7498744 • Module: physics/fluid_dynamics/fluids
 
-**Role:** D2Q9 Lattice Boltzmann Method collision step (BGK operator) with optional FUVDM void dynamics coupling.
+**Role:** D2Q9 Lattice Boltzmann Method collision step (BGK operator) with optional VDM void dynamics coupling.
 
 **Inputs:**
 - f: populations [9, ny, nx] (distribution functions)
 - rho, ux, uy: macroscopic fields (density, velocity)
 - tau: relaxation time (viscosity control)
-- void_enabled: bool (FUVDM coupling flag)
+- void_enabled: bool (VDM coupling flag)
 - void_gain: float (void modulation strength)
 
 **Depends on equations:**
@@ -797,7 +797,7 @@ FORCING (optional):
 **Emits/Side effects:**
 - Updates f in-place (populations)
 - Updates rho, ux, uy (macroscopic fields)
-- Updates W (FUVDM void field) if void_enabled
+- Updates W (VDM void field) if void_enabled
 
 ---
 

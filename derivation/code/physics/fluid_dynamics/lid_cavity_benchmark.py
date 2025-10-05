@@ -3,7 +3,7 @@
 Lid-driven cavity (2-D) incompressibility benchmark for the fluids sector.
 
 CHANGE REASON:
-- Relocated into derivation/code/physics/fluid_dynamics per repo rules (no Prometheus_FUVDM/bench/).
+- Relocated into derivation/code/physics/fluid_dynamics per repo rules (no Prometheus_VDM/bench/).
 - Outputs follow RD harness: derivation/code/outputs/{figures,logs}.
 - Ensures JSON uses native Python types to avoid numpy serialization issues.
 
@@ -17,18 +17,18 @@ import numpy as np
 import matplotlib.pyplot as plt
 import math
 
-# Ensure repo root on sys.path for absolute import 'Prometheus_FUVDM.*'; else fall back to file import
+# Ensure repo root on sys.path for absolute import 'Prometheus_VDM.*'; else fall back to file import
 import sys, pathlib, importlib.util, os
 _P = pathlib.Path(__file__).resolve()
 for _anc in [_P] + list(_P.parents):
-    if _anc.name == "Prometheus_FUVDM":
+    if _anc.name == "Prometheus_VDM":
         _ROOT = str(_anc.parent)
         if _ROOT not in sys.path:
             sys.path.insert(0, _ROOT)
         break
 
 try:
-    from Prometheus_FUVDM.derivation.code.physics.fluid_dynamics.fluids.lbm2d import LBM2D, LBMConfig, CS2  # noqa: E402
+    from Prometheus_VDM.derivation.code.physics.fluid_dynamics.fluids.lbm2d import LBM2D, LBMConfig, CS2  # noqa: E402
 except Exception:
     # Fallback: load lbm2d.py directly by file path (no package/module requirement)
     _lbm_path = os.path.join(os.path.dirname(__file__), "fluids", "lbm2d.py")
@@ -42,7 +42,7 @@ except Exception:
 
 # Dimensionless helpers (LBM units)
 try:
-    from Prometheus_FUVDM.derivation.code.common.dimensionless_fuvdm import (
+    from Prometheus_VDM.derivation.code.common.dimensionless_vdm import (
         lbm_viscosity_from_tau, reynolds_lbm, mach_lbm
     )
 except Exception:
@@ -325,9 +325,9 @@ def main():
     ap.add_argument("--progress_every", type=int, default=None, help="print progress every N samples (default: sample_every)")
     ap.add_argument("--outdir", type=str, default=None, help="base output dir; defaults to derivation/code/outputs")
     # Void dynamics exposure
-    ap.add_argument("--void_domain", type=str, default="standard_model", help="FUVDM domain modulation preset")
+    ap.add_argument("--void_domain", type=str, default="standard_model", help="VDM domain modulation preset")
     ap.add_argument("--void_gain", type=float, default=0.5, help="gain for ω_eff = ω0/(1+g|ΔW|)")
-    ap.add_argument("--void_enabled", action="store_true", help="enable FUVDM-stabilized collision")
+    ap.add_argument("--void_enabled", action="store_true", help="enable VDM-stabilized collision")
     ap.add_argument("--u_clamp", type=float, default=0.05, help="max |u| clamp (Ma control); set small (e.g., 0.02) to suppress spikes")
     # Adaptive control flags
     ap.add_argument("--auto", action="store_true", help="enable adaptive control")
@@ -381,7 +381,7 @@ def main():
 
     # Telemetry: Walker announcers (read-only)
     try:
-        from Prometheus_FUVDM.derivation.code.physics.fluid_dynamics.telemetry.walkers import (
+        from Prometheus_VDM.derivation.code.physics.fluid_dynamics.telemetry.walkers import (
             Bus, Reducer, seed_walkers_lid, Walker, Petition, top_events, PolicyBounds, AdvisoryPolicy
         )
     except Exception:
@@ -726,7 +726,7 @@ def main():
             announce_counts_final = None
 
     payload = {
-        "theory": "LBM→NS; incompressible cavity with no-slip walls (bounce-back) + FUVDM ω_eff (optional)",
+        "theory": "LBM→NS; incompressible cavity with no-slip walls (bounce-back) + VDM ω_eff (optional)",
         "params": {
             "nx": int(args.nx), "ny": int(args.ny), "tau": float(args.tau), "U_lid": float(args.U_lid),
             "steps": int(args.steps), "sample_every": int(args.sample_every),

@@ -18,7 +18,7 @@ Outputs (defaults):
   - derivation/code/outputs/logs/<script>_<timestamp>.json
 
 CLI example:
-  python Prometheus_FUVDM/derivation/code/physics/rd_dispersion_experiment.py --N 1024 --L 200 --D 1.0 --r 0.25 --T 10 --cfl 0.2 --seed 42
+  python Prometheus_VDM/derivation/code/physics/rd_dispersion_experiment.py --N 1024 --L 200 --D 1.0 --r 0.25 --T 10 --cfl 0.2 --seed 42
 """
 import argparse
 import json

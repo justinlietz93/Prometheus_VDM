@@ -20,9 +20,9 @@ Adapt the finite‑radius flux‑tube machinery in Bordag (Universe 2024) to the
 - Find a true energy minimum vs a control parameter (tube size/“flux” proxy), reproducing the qualitative structure of Fig. 1/3/5 in Bordag’s paper.
 
 We work from the bounded baseline EFT and kinetic normalization already established in:
-- Baseline quartic EFT and cubic tilt: see [derivation/foundations/discrete_to_continuum.md](Prometheus_FUVDM/derivation/foundations/discrete_to_continuum.md:125-228)
-- Kinetic normalization and action‑based derivation: see [derivation/effective_field_theory/kinetic_term_derivation.md](Prometheus_FUVDM/derivation/effective_field_theory/kinetic_term_derivation.md:78-134)
-- Units map and FRW bookkeeping (used later for background energy): see [derivation/effective_field_theory/fum_voxtrium_mapping.md](Prometheus_FUVDM/derivation/effective_field_theory/fum_voxtrium_mapping.md:44-121)
+- Baseline quartic EFT and cubic tilt: see [derivation/foundations/discrete_to_continuum.md](Prometheus_VDM/derivation/foundations/discrete_to_continuum.md:125-228)
+- Kinetic normalization and action‑based derivation: see [derivation/effective_field_theory/kinetic_term_derivation.md](Prometheus_VDM/derivation/effective_field_theory/kinetic_term_derivation.md:78-134)
+- Units map and FRW bookkeeping (used later for background energy): see [derivation/effective_field_theory/fum_voxtrium_mapping.md](Prometheus_VDM/derivation/effective_field_theory/fum_voxtrium_mapping.md:44-121)
 
 We will mirror the analytical spine of Bordag’s finite‑radius analysis but for a real (optionally complex) scalar coupled only through its potential.
 
@@ -48,7 +48,7 @@ Kinetic normalization in the dimensionless continuum:
 \mathcal L_K\;=\;\frac{1}{2}(\partial_t\phi)^2\;-\;J a^2\,(\nabla\phi)^2,\qquad c^2\equiv 2 J a^2,
 \]
 or equivalently \(\mathcal L_K=\frac{1}{2}(\partial_t\phi)^2-\frac{c^2}{2}(\nabla\phi)^2\).
-No microscopic relation ties \(J\) to \(a\); one may set \(c=1\) by a units choice. See [derivation/effective_field_theory/kinetic_term_derivation.md](Prometheus_FUVDM/derivation/effective_field_theory/kinetic_term_derivation.md:117-134).
+No microscopic relation ties \(J\) to \(a\); one may set \(c=1\) by a units choice. See [derivation/effective_field_theory/kinetic_term_derivation.md](Prometheus_VDM/derivation/effective_field_theory/kinetic_term_derivation.md:117-134).
 
 Geometry: a straight cylinder (“tube”) of radius \(R\) aligned with the \(z\)-axis; we analyze the transverse \((x,y)\) plane in polar coordinates \((r,\theta)\). Inside the tube we can sustain an approximately “false‑vacuum”/uncondensed configuration that drives tachyonic behavior in the fluctuation spectrum; outside, we take the condensed vacuum.
 
@@ -176,7 +176,7 @@ E(R) \;=\; E_{\rm bg}(R) \;+\; V_{\rm eff}^{\rm tube}\big(\{v_{\ell n}(R)\},R\bi
 - In Bordag’s SU(2) case, \(E_{\rm bg}\propto B^2 R^2\) from the chromomagnetic background.
 - In our scalar‑only EFT, one can adopt a phenomenological background proxy if coupling to external sectors is present (e.g., Voxtrium sourcing); in a pure scalar test, set \(E_{\rm bg}=0\) and examine whether \(V_{\rm eff}^{\rm tube}\) develops a nontrivial \(R\)‑dependence with a minimum due to mode structure and normalization.
 
-For FRW‑consistent background bookkeeping use the transfer‑current formalism in [derivation/effective_field_theory/fum_voxtrium_mapping.md](Prometheus_FUVDM/derivation/effective_field_theory/fum_voxtrium_mapping.md:106-121) when embedding in cosmology; here we remain in a static Minkowski test.
+For FRW‑consistent background bookkeeping use the transfer‑current formalism in [derivation/effective_field_theory/fum_voxtrium_mapping.md](Prometheus_VDM/derivation/effective_field_theory/fum_voxtrium_mapping.md:106-121) when embedding in cosmology; here we remain in a static Minkowski test.
 
 Acceptance criterion: an \(R_\ast\) at which \(E(R)\) has a true minimum (Bordag’s Fig. 5 analogue).
 
@@ -220,7 +220,7 @@ We propose two modules to implement and test this analysis:
     - \(E(R)\) vs \(R\) with true minimum (if present)
 
 Units and normalizations:
-- Use the dimensionless \(c\) from \(\mathcal L_K=\frac{1}{2}(\partial_t\phi)^2-\frac{c^2}{2}(\nabla\phi)^2\). Convert to physical units via \((\phi_0,\tau,a)\) as in [derivation/effective_field_theory/fum_voxtrium_mapping.md](Prometheus_FUVDM/derivation/effective_field_theory/fum_voxtrium_mapping.md:44-80) when needed.
+- Use the dimensionless \(c\) from \(\mathcal L_K=\frac{1}{2}(\partial_t\phi)^2-\frac{c^2}{2}(\nabla\phi)^2\). Convert to physical units via \((\phi_0,\tau,a)\) as in [derivation/effective_field_theory/fum_voxtrium_mapping.md](Prometheus_VDM/derivation/effective_field_theory/fum_voxtrium_mapping.md:44-80) when needed.
 
 ---
 
@@ -240,10 +240,10 @@ Promote \(\phi\) to a complex field \(\Phi\) to demonstrate explicit Goldstone m
 
 ## 12. References and Pointers
 
-- Bordag, M. (2024). Universe 10, 38. Finite‑radius chromomagnetic flux tube, tachyonic gluon modes, quartic stabilization, and energy minima. Local copy: [universe-10-00038-v2.pdf](Prometheus_FUVDM/derivation/supporting_work/external_references/papers/universe-10-00038-v2.pdf)
-- FUM kinetic/action derivation and normalization: [derivation/effective_field_theory/kinetic_term_derivation.md](Prometheus_FUVDM/derivation/effective_field_theory/kinetic_term_derivation.md:78-134)
-- Discrete‑to‑continuum and bounded baseline potential (adopted here): [derivation/foundations/discrete_to_continuum.md](Prometheus_FUVDM/derivation/foundations/discrete_to_continuum.md:125-228)
-- Units/FRW/current bookkeeping (for background energy coupling in cosmology): [derivation/effective_field_theory/fum_voxtrium_mapping.md](Prometheus_FUVDM/derivation/effective_field_theory/fum_voxtrium_mapping.md:106-121)
+- Bordag, M. (2024). Universe 10, 38. Finite‑radius chromomagnetic flux tube, tachyonic gluon modes, quartic stabilization, and energy minima. Local copy: [universe-10-00038-v2.pdf](Prometheus_VDM/derivation/supporting_work/external_references/papers/universe-10-00038-v2.pdf)
+- FUM kinetic/action derivation and normalization: [derivation/effective_field_theory/kinetic_term_derivation.md](Prometheus_VDM/derivation/effective_field_theory/kinetic_term_derivation.md:78-134)
+- Discrete‑to‑continuum and bounded baseline potential (adopted here): [derivation/foundations/discrete_to_continuum.md](Prometheus_VDM/derivation/foundations/discrete_to_continuum.md:125-228)
+- Units/FRW/current bookkeeping (for background energy coupling in cosmology): [derivation/effective_field_theory/fum_voxtrium_mapping.md](Prometheus_VDM/derivation/effective_field_theory/fum_voxtrium_mapping.md:106-121)
 
 ---
 

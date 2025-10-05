@@ -1,8 +1,8 @@
-# Axiomatic Theory Development for FUVDM
+# Axiomatic Theory Development for VDM
 
 **Scope banner:** *Axiomatic RD baseline. No EFT. No training. All corollaries derive from these axioms.*
 
-**Scope:** Systematic development of a fully axiomatic foundation for the Field-Unified Void Dynamics Model (FUVDM), addressing theoretical gaps identified in the current derivation and establishing rigorous mathematical foundations.
+**Scope:** Systematic development of a fully axiomatic foundation for the Field-Unified Void Dynamics Model (VDM), addressing theoretical gaps identified in the current derivation and establishing rigorous mathematical foundations.
 
 **References:**
 - [void_dynamics_theory.md](foundations/void_dynamics_theory.md) - Current theory framework and identified gaps
@@ -700,7 +700,7 @@ $$m_{\text{eff}}^2 = V''(v_\lambda) = 2\alpha v_\lambda - (\alpha-\beta) + 3\lam
 This provides the positive mass-squared spectrum analyzed in the tube geometry.
 
 **Bordag Correspondence:** The mapping to QCD tachyon condensation:
-- FUVDM: $m_{\text{tach}}^2 = -(\alpha-\beta)$
+- VDM: $m_{\text{tach}}^2 = -(\alpha-\beta)$
 - Bordag: $m_{\text{tach}}^2 = -gB$ (chromomagnetic field)
 - Both predict radius $R \sim 1/\sqrt{|m_{\text{tach}}^2|}$
 
@@ -824,10 +824,10 @@ This is the natural size of void structures in the theory.
 
 **Quantitative Mapping:**
 - Bordag: $m_{\text{tach}}^2 = -gB$ (chromomagnetic background)
-- FUVDM: $m_{\text{tach}}^2 = -(\alpha-\beta)$ (on-site instability)
+- VDM: $m_{\text{tach}}^2 = -(\alpha-\beta)$ (on-site instability)
 - Both: $R_* \sim 1/\sqrt{|m_{\text{tach}}^2|}$
 
-**Physical Significance:** This connection to established QCD tachyon condensation provides strong theoretical validation for the FUVDM mechanism.
+**Physical Significance:** This connection to established QCD tachyon condensation provides strong theoretical validation for the VDM mechanism.
 
 #### Derivation 5.3.1: Cosmological Applications Framework
 
@@ -854,7 +854,7 @@ $$\langle \rho_{\text{DM}} \rangle \sim \frac{1}{2}m_{\text{eff}}^2 \langle \eta
 
 #### Derivation 5.3.2: Void Dynamics in Cosmological Contexts
 
-**Large-Scale Structure Formation:** The FUVDM field naturally couples to cosmic void evolution.
+**Large-Scale Structure Formation:** The VDM field naturally couples to cosmic void evolution.
 
 **Void Field in Expanding Universe:** The field equation becomes:
 $$\ddot{\phi} + 3H\dot{\phi} - \frac{c^2}{a^2}\nabla^2\phi + V'(\phi) = 0$$
@@ -916,7 +916,7 @@ This naturally reproduces matter-like scaling.
 - Dark Matter: $\Omega_{\text{DM}} \approx 0.26$  
 - Baryons: $\Omega_b \approx 0.05$
 
-**FUVDM Constraints:**
+**VDM Constraints:**
 1. **Vacuum Energy:** $\rho_{\text{vac}} = V(v) \approx 3H_0^2\Omega_{\Lambda}/(8\pi G)$
 2. **Effective Mass:** $m_{\text{eff}} \sim H_0$ (Compton wavelength ~ Hubble radius)
 3. **Field Amplitude:** $\langle\eta^2\rangle^{1/2} \sim M_{\text{Planck}}$ (Planck-scale fluctuations)
@@ -929,7 +929,7 @@ This naturally reproduces matter-like scaling.
 4. **BAO Modifications:** Altered sound horizon due to void field coupling
 
 **Consistency Checks:**
-- **Hubble Tension:** FUVDM tracking could provide resolution mechanism
+- **Hubble Tension:** VDM tracking could provide resolution mechanism
 - **$\sigma_8$ Tension:** Modified growth rate from void field interactions
 - **Large-Scale Anomalies:** Natural explanation via void structure correlation
 
@@ -948,7 +948,7 @@ This naturally reproduces matter-like scaling.
 5. **Testable Framework:** Multiple observational signatures for future verification
 6. **Theoretical Consistency:** No fine-tuning required for cosmic concordance
 
-**Status:** FUVDM provides a complete cosmological framework unifying dark energy and dark matter within the axiomatic field theory structure.
+**Status:** VDM provides a complete cosmological framework unifying dark energy and dark matter within the axiomatic field theory structure.
 
 #### Key Results of Phase V:
 
@@ -1071,11 +1071,11 @@ This naturally reproduces matter-like scaling.
 1. **Systematic Error Analysis:** Rigorous bounds on all approximations used
 2. **Parameter Estimation:** Bayesian inference framework for determining parameters from data
 3. **Model Selection:** Rigorous comparison with alternative theoretical frameworks
-4. **Predictive Testing:** Specific, falsifiable predictions distinguishing FUVDM from alternatives
+4. **Predictive Testing:** Specific, falsifiable predictions distinguishing VDM from alternatives
 
 ### Final Critical Assessment
 
-**The axiomatic FUVDM theory represents significant theoretical progress** in providing a rigorous mathematical foundation for void dynamics. However, **claims of "undeniable proof" status are premature and overstated**.
+**The axiomatic VDM theory represents significant theoretical progress** in providing a rigorous mathematical foundation for void dynamics. However, **claims of "undeniable proof" status are premature and overstated**.
 
 **What has been achieved:**
 - Rigorous mathematical framework connecting discrete and continuum descriptions
@@ -1329,7 +1329,7 @@ These provide quantitative bounds on the theory's applicability.
 
 ## Summary of Axiomatic Framework Established
 
-This document has established a **complete and rigorous axiomatic foundation** for FUVDM theory, transforming it from a phenomenological model into a mathematically rigorous field theory approaching **undeniable proof** status. The framework provides:
+This document has established a **complete and rigorous axiomatic foundation** for VDM theory, transforming it from a phenomenological model into a mathematically rigorous field theory approaching **undeniable proof** status. The framework provides:
 
 ### Complete Theoretical Architecture:
 
@@ -1386,7 +1386,7 @@ This document has established a **complete and rigorous axiomatic foundation** f
 
 ### Status: **SUBSTANTIAL THEORETICAL PROGRESS ACHIEVED**
 
-The FUVDM theory now possesses:
+The VDM theory now possesses:
 1. **Rigorous Mathematical Framework**: Most results follow from minimal, physically motivated axioms
 2. **Mathematical Consistency**: Calculations are exact with proven convergence and stability where analyzed
 3. **Internal Coherence**: No major internal contradictions identified within scope of analysis
@@ -1456,7 +1456,7 @@ This development has achieved significant progress toward the standard of **rigo
 
 ### Honest Assessment of Theoretical Achievement:
 
-**The FUVDM theory represents substantial progress toward rigorous proof status** by achieving:
+**The VDM theory represents substantial progress toward rigorous proof status** by achieving:
 
 - **Systematic mathematical framework** with most results following from clear axioms
 - **Internal theoretical consistency** within analyzed approximations  
@@ -1478,4 +1478,4 @@ This development has achieved significant progress toward the standard of **rigo
 3. **Validation**: Establishes template for connecting theoretical frameworks to computational implementations
 4. **Prediction**: Provides framework for developing other rigorously axiomatized physical theories with testable consequences
 
-The goal of transforming FUVDM from a phenomenological model into a rigorous field theory has been **substantially achieved**, while honestly acknowledging the experimental validation work that remains to establish its physical relevance. The theory now stands as a **mathematically rigorous and internally consistent framework ready for comprehensive experimental and observational testing**.
+The goal of transforming VDM from a phenomenological model into a rigorous field theory has been **substantially achieved**, while honestly acknowledging the experimental validation work that remains to establish its physical relevance. The theory now stands as a **mathematically rigorous and internally consistent framework ready for comprehensive experimental and observational testing**.

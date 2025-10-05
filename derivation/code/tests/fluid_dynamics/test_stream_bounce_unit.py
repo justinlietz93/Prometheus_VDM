@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import json, time, os
 import numpy as np
-from Prometheus_FUVDM.derivation.code.physics.fluid_dynamics.fluids.lbm2d import LBM2D, LBMConfig
+from Prometheus_VDM.derivation.code.physics.fluid_dynamics.fluids.lbm2d import LBM2D, LBMConfig
 
 def run_test1():
     cfg = LBMConfig(nx=8, ny=8, tau=0.9, periodic_x=False, periodic_y=False, void_enabled=False)
@@ -36,7 +36,7 @@ def main():
       "overall_pass": overall
     }
     print(json.dumps(payload))
-    out_dir = os.path.join("Prometheus_FUVDM","derivation","code","outputs","logs","fluid_dynamics")
+    out_dir = os.path.join("Prometheus_VDM","derivation","code","outputs","logs","fluid_dynamics")
     os.makedirs(out_dir, exist_ok=True)
     fname = f"stream_bounce_unit_{time.strftime('%Y%m%dT%H%M%SZ', time.gmtime())}.json"
     with open(os.path.join(out_dir, fname), "w") as f:

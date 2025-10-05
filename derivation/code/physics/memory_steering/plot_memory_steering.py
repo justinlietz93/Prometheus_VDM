@@ -638,7 +638,7 @@ def plot_all(src: str = os.path.join("outputs", "memory_steering_results.csv"),
 
     # Emit JSON verdict
     now_utc = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
-    logdir = os.path.join("Prometheus_FUVDM", "derivation", "code", "outputs", "logs", "memory_steering")
+    logdir = os.path.join("Prometheus_VDM", "derivation", "code", "outputs", "logs", "memory_steering")
     os.makedirs(logdir, exist_ok=True)
     verdict_path = os.path.join(logdir, f"memory_steering_verdict_{now_utc}.json")
     verdict = {
@@ -721,14 +721,14 @@ if __name__ == "__main__":
     src = os.environ.get(
         "FUM_RESULTS_CSV",
         os.path.join(
-            "Prometheus_FUVDM", "derivation", "code", "outputs", "logs",
+            "Prometheus_VDM", "derivation", "code", "outputs", "logs",
             "memory_steering", "memory_steering_results.csv"
         )
     )
     outdir = os.environ.get(
         "FUM_RESULTS_OUT",
         os.path.join(
-            "Prometheus_FUVDM", "derivation", "code", "outputs", "figures",
+            "Prometheus_VDM", "derivation", "code", "outputs", "figures",
             "memory_steering"
         )
     )

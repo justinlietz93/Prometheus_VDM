@@ -11,7 +11,7 @@ Outputs (defaults):
     - derivation/code/outputs/logs/<script>_<timestamp>.json
 
 CLI example:
-  python Prometheus_FUVDM/derivation/code/physics/rd_front_speed_experiment.py \
+  python Prometheus_VDM/derivation/code/physics/rd_front_speed_experiment.py \
     --N 1024 --L 200 --D 1.0 --r 0.25 --T 80 --cfl 0.2 --seed 42 --x0 -60 --level 0.1 --fit_start 0.6 --fit_end 0.9
 """
 import argparse

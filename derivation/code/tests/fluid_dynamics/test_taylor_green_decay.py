@@ -16,13 +16,13 @@ from pathlib import Path
 # Ensure repo root on sys.path for absolute imports
 _THIS = Path(__file__).resolve()
 for p in [_THIS] + list(_THIS.parents):
-    if p.name == "Prometheus_FUVDM":
+    if p.name == "Prometheus_VDM":
         root = str(p.parent)
         if root not in sys.path:
             sys.path.insert(0, root)
         break
 
-from Prometheus_FUVDM.derivation.code.physics.fluid_dynamics.fluids.lbm2d import LBM2D, LBMConfig
+from Prometheus_VDM.derivation.code.physics.fluid_dynamics.fluids.lbm2d import LBM2D, LBMConfig
 
 
 def _init_tg(sim: LBM2D, U0: float, k: float):

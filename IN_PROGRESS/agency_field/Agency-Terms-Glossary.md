@@ -1,12 +1,8 @@
-# Technical Summary Report
+# Agency-Terms Terms Overview
 
 **Generated on:** October 3, 2025 at 12:05 PM CDT
 
 ---
-
-## Generated Summary
-
-Here is the glossary extracted from the provided document segment:
 
 *   **Term:** Void Dynamics Model (VDM)
     *   **Definition:** A theoretical framework or model that includes the "Agency/Consciousness Field (C)" and other dynamic components to describe and quantify emergent properties in complex systems.
@@ -69,7 +65,7 @@ Here is the glossary extracted from the provided document segment:
     *   **Category:** Technical Parameter
     *   **Related Terms:** S(x,t), P(x,t), I_net(x,t), U(x,t)
 *   **Term:** g(V), h(B) (Saturating Gate Functions)
-    *   **Definition:** Non-linear functions (e.g., $g(V)=V/(1+V)$) that modulate the source term S(x,t) by accounting for headroom (from Option Capacity V) and coordination (from Balance B).
+    *   **Definition:** Non-linear functions (e.g., $g(V)=V/(1+V)$\) that modulate the source term S(x,t) by accounting for headroom (from Option Capacity V) and coordination (from Balance B).
     *   **Category:** Technical Function
     *   **Related Terms:** V(x,t), B(x,t), S(x,t)
 *   **Term:** Q_C(Omega,t) (Regional Charge of C)
@@ -169,27 +165,27 @@ Here is the glossary extracted from the provided document segment:
     *   **Category:** Model Component
     *   **Related Terms:** Reaction-Diffusion (RD) Branch, Klein-Gordon Equation, Tachyon Condensation
 *   **Term:** Void Debt Number (𝔇)
-    *   **Definition:** A dimensionless group in FUVDM, representing the ratio of unresolved debt to resolved flux at the walker level, used to classify stability vs. runaway regimes.
+    *   **Definition:** A dimensionless group in VDM, representing the ratio of unresolved debt to resolved flux at the walker level, used to classify stability vs. runaway regimes.
     *   **Category:** Dimensionless Group
     *   **Related Terms:** VDM
 *   **Term:** Emergent Coupling Ratio (Ξ)
-    *   **Definition:** A dimensionless group in FUVDM, representing the ratio of void interaction gain to local relaxation, controlling synchronization and stiffness within the model.
+    *   **Definition:** A dimensionless group in VDM, representing the ratio of void interaction gain to local relaxation, controlling synchronization and stiffness within the model.
     *   **Category:** Dimensionless Group
     *   **Related Terms:** Coupling
 *   **Term:** Void Mach Number (M_v)
-    *   **Definition:** A dimensionless group in FUVDM, representing the ratio of void flux to signal speed; stability in the VDM framework requires M_v < 1.
+    *   **Definition:** A dimensionless group in VDM, representing the ratio of void flux to signal speed; stability in the VDM framework requires M_v < 1.
     *   **Category:** Dimensionless Group
     *   **Related Terms:** VDM, Signal Speed
 *   **Term:** Topological Information Ratio (Θ)
-    *   **Definition:** A dimensionless group in FUVDM, quantifying the information carried by the system's topology versus that carried by the node states (related to the effect of void walkers).
+    *   **Definition:** A dimensionless group in VDM, quantifying the information carried by the system's topology versus that carried by the node states (related to the effect of void walkers).
     *   **Category:** Dimensionless Group
     *   **Related Terms:** Information Theory, Topology
 *   **Term:** Symmetry Debt (Σ)
-    *   **Definition:** A dimensionless group in FUVDM, representing the ratio of broken-symmetry flux to conserved symmetry flux, serving as an energy-balance analog.
+    *   **Definition:** A dimensionless group in VDM, representing the ratio of broken-symmetry flux to conserved symmetry flux, serving as an energy-balance analog.
     *   **Category:** Dimensionless Group
     *   **Related Terms:** Symmetry Breaking, Energy Balance
 *   **Term:** Dispersion-to-Convergence (Λ)
-    *   **Definition:** A dimensionless group in FUVDM, representing the ratio of divergence rate to convergence rate under modulation, conceptually similar to a Lyapunov exponent.
+    *   **Definition:** A dimensionless group in VDM, representing the ratio of divergence rate to convergence rate under modulation, conceptually similar to a Lyapunov exponent.
     *   **Category:** Dimensionless Group
     *   **Related Terms:** Lyapunov Exponent
 *   **Term:** $W_i(t)$ (Node State)
@@ -274,7 +270,3 @@ Here is the glossary extracted from the provided document segment:
 * Conduct a comprehensive sensitivity analysis for the composite C-score metric, investigating how variations in its constituent components (P, U, V, B) and their respective weights (κ_i) impact the calculated 'awareness' or 'agency' and overall model behavior.
 * Design and execute advanced 'null/ablation studies' to rigorously test the robustness and causal dependencies of VDM results, explicitly addressing potential 'biasing' in metrics by systematically removing or randomizing key components or mechanisms.
 * Develop specific simulations or analytical models to thoroughly explore the implications and predictive power of the introduced dimensionless groups (Void Debt Number, Emergent Coupling Ratio, Void Mach Number, etc.) across different parameter regimes to classify system stability and behavior.
-
----
-
-*Powered by AI Content Suite & Gemini*

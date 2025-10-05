@@ -10,12 +10,12 @@ Implements a leaky first-order memory filter with saturation and runs:
 - Reproducibility: identical sequences for the same seed.
 
 CLI:
-  python -m Prometheus_FUVDM.derivation.code.physics.memory_steering.memory_steering_acceptance \
+  python -m Prometheus_VDM.derivation.code.physics.memory_steering.memory_steering_acceptance \
       --seed 0 --steps 512 --g 0.12 --lam 0.08 --noise_std 0.0
 
 Outputs:
-- JSON metrics: Prometheus_FUVDM/derivation/code/outputs/logs/memory_steering/memory_steering_acceptance_<timestamp>.json
-- Figures (PNG): Prometheus_FUVDM/derivation/code/outputs/figures/memory_steering/
+- JSON metrics: Prometheus_VDM/derivation/code/outputs/logs/memory_steering/memory_steering_acceptance_<timestamp>.json
+- Figures (PNG): Prometheus_VDM/derivation/code/outputs/figures/memory_steering/
 """
 
 import argparse
@@ -31,7 +31,7 @@ matplotlib.use("Agg")  # headless/CI safe
 import matplotlib.pyplot as plt
 
 # Paths
-ROOT = os.path.join("Prometheus_FUVDM", "derivation")
+ROOT = os.path.join("Prometheus_VDM", "derivation")
 LOG_DIR = os.path.join(ROOT, "code", "outputs", "logs", "memory_steering")
 FIG_DIR = os.path.join(ROOT, "code", "outputs", "figures", "memory_steering")
 

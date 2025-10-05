@@ -1,5 +1,5 @@
 <!-- =============================================================== -->
-# FUVDM Truth‑First Axiomatic Development (Single Source)
+# VDM Truth‑First Axiomatic Development (Single Source)
 **Policy (Section 0):** Truth‑first. No training. One discrete action; all inertial / RD / KG / oscillatory / diffusion forms are *derived corollaries or limits* of that action with explicit conditions. No regime is assumed a priori.
 
 Classification: RD | EFT‑quarantined (truth‑first audit)
