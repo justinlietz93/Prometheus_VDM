@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-# FUVDM dimensionless helpers (LBM + RD + memory steering)
+# VDM dimensionless helpers (LBM + RD + memory steering)
 """
-Canonical dimensionless numbers used across FUVDM runners.
+Canonical dimensionless numbers used across VDM runners.
 Lattice units for LBM: dx=dt=1, c_s = 1/sqrt(3).
 """
 from __future__ import annotations

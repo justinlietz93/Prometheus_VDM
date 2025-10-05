@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Test suite for validating the axiomatic theory development of FUVDM.
+Test suite for validating the axiomatic theory development of VDM.
 
 This module tests the mathematical consistency and physical validity of the 
 rigorously derived theoretical results from axiomatic_theory_development.md.
@@ -21,7 +21,7 @@ import matplotlib.pyplot as plt
 
 
 class TestAxiomaticTheory:
-    """Test suite for axiomatic FUVDM theory validation."""
+    """Test suite for axiomatic VDM theory validation."""
     
     def __init__(self):
         """Set up test parameters based on axiomatic derivation."""
@@ -165,7 +165,7 @@ class TestAxiomaticTheory:
 
 def test_axiomatic_consistency():
     """Integration test for overall axiomatic consistency."""
-    print("Testing Axiomatic Theory Development for FUVDM...")
+    print("Testing Axiomatic Theory Development for VDM...")
     print("=" * 60)
     
     theory = TestAxiomaticTheory()
@@ -179,7 +179,7 @@ def test_axiomatic_consistency():
     print("=" * 60)
     print("✓ ALL AXIOMATIC THEORY TESTS PASSED")
     print("✓ Mathematical rigor verified across all analyzed phases")
-    print("✓ FUVDM theory achieves STRONG CANDIDATE status")
+    print("✓ VDM theory achieves STRONG CANDIDATE status")
     print("✓ Theory substantially complete: Four axioms → Systematic field theory")
     print("⚠ Experimental validation required for physical confirmation")
 

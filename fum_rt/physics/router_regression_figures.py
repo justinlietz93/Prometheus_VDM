@@ -17,14 +17,14 @@ _REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..",
 if _REPO_ROOT not in sys.path:
     sys.path.insert(0, _REPO_ROOT)
 
-from Prometheus_FUVDM.derivation.code.physics.reaction_diffusion.rd_front_speed_experiment import (  # noqa: E402
+from Prometheus_VDM.derivation.code.physics.reaction_diffusion.rd_front_speed_experiment import (  # noqa: E402
     run_sim as run_front_speed,
 )
-from Prometheus_FUVDM.derivation.code.physics.reaction_diffusion.rd_dispersion_experiment import (  # noqa: E402
+from Prometheus_VDM.derivation.code.physics.reaction_diffusion.rd_dispersion_experiment import (  # noqa: E402
     analyze_dispersion,
     run_linear_sim,
 )
-from Prometheus_FUVDM.derivation.code.physics.conservation_law import qfum_validate as qfum  # noqa: E402
+from Prometheus_VDM.derivation.code.physics.conservation_law import qfum_validate as qfum  # noqa: E402
 
 from fum_rt.physics.harness_logging import enrich_payload, hash_jsonable  # noqa: E402
 

@@ -2,17 +2,17 @@
 import os, sys, time, json
 import numpy as np
 
-# Ensure repo root on sys.path for absolute import 'Prometheus_FUVDM.*'
+# Ensure repo root on sys.path for absolute import 'Prometheus_VDM.*'
 import pathlib
 _P = pathlib.Path(__file__).resolve()
 for _anc in [_P] + list(_P.parents):
-    if _anc.name == "Prometheus_FUVDM":
+    if _anc.name == "Prometheus_VDM":
         _ROOT = str(_anc.parent)
         if _ROOT not in sys.path:
             sys.path.insert(0, _ROOT)
         break
 
-from Prometheus_FUVDM.derivation.code.physics.fluid_dynamics.fluids.lbm2d import LBM2D, LBMConfig, VOID_SOURCE, universal_void_dynamics
+from Prometheus_VDM.derivation.code.physics.fluid_dynamics.fluids.lbm2d import LBM2D, LBMConfig, VOID_SOURCE, universal_void_dynamics
 
 def run(nx=64, ny=64, tau=0.9, U=0.02, steps=1200, warmup=500, sample_every=200, void_enabled=True, void_gain=1.0, void_domain="standard_model"):
     cfg = LBMConfig(
@@ -69,7 +69,7 @@ def run(nx=64, ny=64, tau=0.9, U=0.02, steps=1200, warmup=500, sample_every=200,
     }
     print(json.dumps(payload, indent=2))
     # Persist under the fluids logs folder (failed → failed_runs/)
-    base_outdir = os.path.join("Prometheus_FUVDM","derivation","code","outputs")
+    base_outdir = os.path.join("Prometheus_VDM","derivation","code","outputs")
     base_log_dir = os.path.join(base_outdir, "logs", "fluid_dynamics")
     out_log_dir = base_log_dir if passed else os.path.join(base_log_dir, "failed_runs")
     os.makedirs(out_log_dir, exist_ok=True)

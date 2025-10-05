@@ -5,9 +5,9 @@ RD front-speed validation runner (Fisher–KPP) for fum_rt.
 CHANGE REASON:
 - This file mirrors the validated physics from derivation scripts to the runtime stack.
 - We have PROVEN the Fisher–KPP front speed c = 2√(D r) via reproducible scripts and derivations:
-  [rd_front_speed_experiment.py](Prometheus_FUVDM/derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py:1),
-  [rd_front_speed_validation.md](Prometheus_FUVDM/derivation/rd_front_speed_validation.md:1),
-  [CORRECTIONS.md](Prometheus_FUVDM/derivation/computational_proofs/CORRECTIONS.md:1).
+  [rd_front_speed_experiment.py](Prometheus_VDM/derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py:1),
+  [rd_front_speed_validation.md](Prometheus_VDM/derivation/rd_front_speed_validation.md:1),
+  [CORRECTIONS.md](Prometheus_VDM/derivation/computational_proofs/CORRECTIONS.md:1).
 - This runner provides an independent, apples-to-apples check inside fum_rt with identical metrics/output schema.
 - It DOES NOT alter runtime dynamics; it is a validation wrapper only.
 """
@@ -22,13 +22,13 @@ from typing import Tuple
 
 import numpy as np
 
-# Ensure repository root on sys.path so we can import Prometheus_FUVDM.*
+# Ensure repository root on sys.path so we can import Prometheus_VDM.*
 _REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 if _REPO_ROOT not in sys.path:
     sys.path.insert(0, _REPO_ROOT)
 
 # Import validated experiment utilities from derivation stack
-from Prometheus_FUVDM.derivation.code.physics.reaction_diffusion.rd_front_speed_experiment import (  # noqa: E402
+from Prometheus_VDM.derivation.code.physics.reaction_diffusion.rd_front_speed_experiment import (  # noqa: E402
     run_sim,
     plot_and_save,
 )

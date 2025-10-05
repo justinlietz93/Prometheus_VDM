@@ -1,7 +1,7 @@
 # Derivation — Index and Hygiene
 
 <!-- Update OWNER/REPO with your GitHub slug to render the badge correctly -->
-[![Markdown Hygiene CI](https://github.com/justinlietz93/Prometheus_FUVDM/actions/workflows/md_hygiene.yml/badge.svg)](https://github.com/justinlietz93/Prometheus_FUVDM/actions/workflows/md_hygiene.yml)
+[![Markdown Hygiene CI](https://github.com/justinlietz93/Prometheus_VDM/actions/workflows/md_hygiene.yml/badge.svg)](https://github.com/justinlietz93/Prometheus_VDM/actions/workflows/md_hygiene.yml)
 
 This directory contains the rigorously maintained derivation documents, organized by topic. A CI guard enforces UTF‑8 (no BOM), flags mojibake, and checks canonical cross‑links after the doc reorg.
 
@@ -22,7 +22,7 @@ This directory contains the rigorously maintained derivation documents, organize
 
 - Local checker (run before push):
   ```
-  python Prometheus_FUVDM/tools/md_hygiene_check.py --root Prometheus_FUVDM/derivation
+  python Prometheus_VDM/tools/md_hygiene_check.py --root Prometheus_VDM/derivation
   ```
 
 - Optional pre‑commit hook (recommended):
@@ -38,5 +38,5 @@ This directory contains the rigorously maintained derivation documents, organize
 
 ## Notes
 - Canonical mapping rules live in the checker:
-  - Script: `Prometheus_FUVDM/tools/md_hygiene_check.py`
+  - Script: `Prometheus_VDM/tools/md_hygiene_check.py`
   - Add new topical paths there when new documents/folders are introduced.

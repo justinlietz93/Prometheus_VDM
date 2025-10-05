@@ -164,7 +164,7 @@ $$
 | $N$<sup>[↗](../derivations/SYMBOLS.md#sym-N)</sup>            | sites          | derivation/CONSTANTS.md:19 • ec0833a                       | Grid resolution: 256, 512, 1024                              |
 | $\tau$<sup>[↗](../derivations/SYMBOLS.md#sym-tau)</sup>       | time steps     | derivation/CONSTANTS.md:29-31 • ec0833a                    | BGK relaxation: 0.8, 0.9, 1.0 (LBM)                          |
 | $U$<sup>[↗](../derivations/SYMBOLS.md#sym-U)</sup>            | LBM velocity   | derivation/CONSTANTS.md:36,38 • ec0833a                    | Lid velocity 0.1; Taylor-Green amplitude 0.05                |
-| $\nu$<sup>[↗](../derivations/SYMBOLS.md#sym-nu)</sup>         | lattice units  | derivation/code/common/dimensionless_fuvdm.py:17 • ec0833a | Computed from $\tau$: $\nu = (\tau - 0.5)/3$                 |
+| $\nu$<sup>[↗](../derivations/SYMBOLS.md#sym-nu)</sup>         | lattice units  | derivation/code/common/dimensionless_vdm.py:17 • ec0833a | Computed from $\tau$: $\nu = (\tau - 0.5)/3$                 |
 | $g$<sup>[↗](../derivations/SYMBOLS.md#sym-g)</sup>            | nondimensional | derivation/CONSTANTS.md:42,53 • ec0833a                    | Void gain: 0.5 (lid cavity), 0.12 (memory steering)          |
 | $\Theta$<sup>[↗](../derivations/SYMBOLS.md#sym-Theta)</sup>   | nondimensional | derivation/DIMENSIONLESS_CONSTANTS.md:21 • ec0833a         | Junction gate strength; fit scale parameter                  |
 | $\Lambda$<sup>[↗](../derivations/SYMBOLS.md#sym-Lambda)</sup> | nondimensional | derivation/DIMENSIONLESS_CONSTANTS.md:22 • ec0833a         | Exploration/retention ratio; dispersion-to-convergence       |
@@ -189,20 +189,20 @@ $$
 |---|---|---|---|
 | <a id="re-lbm"></a>$\mathrm{Re}$ (Reynolds) | Nondimensional; $\mathrm{Re} = UL/\nu$ in LBM units | LBM benchmarks | derivation/SYMBOLS.md:145; derivation/DIMENSIONLESS_CONSTANTS.md:17 • ec0833a |
 | <a id="ma-lbm"></a>$\mathrm{Ma}$ (Mach) | Nondimensional; $\mathrm{Ma} = U/c_s$ in LBM units | LBM benchmarks | derivation/SYMBOLS.md:146; derivation/DIMENSIONLESS_CONSTANTS.md:18 • ec0833a |
-| <a id="pe-lbm"></a>$\mathrm{Pe}$ (Péclet) | Nondimensional; $\mathrm{Pe} = UL/D$ | RD-fluid coupling | derivation/SYMBOLS.md:147; derivation/code/common/dimensionless_fuvdm.py:29 • ec0833a |
+| <a id="pe-lbm"></a>$\mathrm{Pe}$ (Péclet) | Nondimensional; $\mathrm{Pe} = UL/D$ | RD-fluid coupling | derivation/SYMBOLS.md:147; derivation/code/common/dimensionless_vdm.py:29 • ec0833a |
 | <a id="pi-dr"></a>$\Pi_{Dr}$ | Nondimensional; $\Pi_{Dr} = D/(rL^2)$ at chosen scale $L$ | RD experiments | derivation/SYMBOLS.md:134; derivation/DIMENSIONLESS_CONSTANTS.md:19 • ec0833a |
 | <a id="c-star"></a>$c^*$ | Nondimensional; $c^* = c/(2\sqrt{Dr})$ normalized KPP speed | RD front speed | derivation/SYMBOLS.md:135; derivation/CONSTANTS.md:129 • ec0833a |
-| <a id="da-damkohler"></a>$\mathrm{Da}$ (Damköhler) | Nondimensional; reaction/transport rate ratio | RD regime classification | derivation/SYMBOLS.md:136; derivation/code/common/dimensionless_fuvdm.py:33 • ec0833a |
-| <a id="void-debt"></a>$\mathcal{D}$ (Void Debt) | Nondimensional; unresolved debt / resolved flux | FUVDM control | derivation/SYMBOLS.md:118; derivation/DIMENSIONLESS_CONSTANTS.md:30 • ec0833a |
-| <a id="xi"></a>$\Xi$ (Coupling Ratio) | Nondimensional; $\Xi = g_{\mathrm{void}}/\gamma_{\mathrm{relax}}$ | FUVDM control | derivation/SYMBOLS.md:119; derivation/DIMENSIONLESS_CONSTANTS.md:38 • ec0833a |
-| <a id="m-void"></a>$M_v$ (Void Mach) | Nondimensional; $M_v = J_{\mathrm{void}}/c_{\mathrm{signal}}$; require $M_v < 1$ | FUVDM stability | derivation/SYMBOLS.md:120; derivation/DIMENSIONLESS_CONSTANTS.md:64 • ec0833a |
-| <a id="sigma"></a>$\Sigma$ (Symmetry Debt) | Nondimensional; broken-symmetry / conserved flux | FUVDM regime | derivation/SYMBOLS.md:121; derivation/DIMENSIONLESS_CONSTANTS.md:89 • ec0833a |
-| <a id="lambda-disp"></a>$\Lambda$ (Dispersion) | Nondimensional; dispersion / convergence (Lyapunov-like) | FUVDM control | derivation/SYMBOLS.md:122; derivation/DIMENSIONLESS_CONSTANTS.md:97 • ec0833a |
+| <a id="da-damkohler"></a>$\mathrm{Da}$ (Damköhler) | Nondimensional; reaction/transport rate ratio | RD regime classification | derivation/SYMBOLS.md:136; derivation/code/common/dimensionless_vdm.py:33 • ec0833a |
+| <a id="void-debt"></a>$\mathcal{D}$ (Void Debt) | Nondimensional; unresolved debt / resolved flux | VDM control | derivation/SYMBOLS.md:118; derivation/DIMENSIONLESS_CONSTANTS.md:30 • ec0833a |
+| <a id="xi"></a>$\Xi$ (Coupling Ratio) | Nondimensional; $\Xi = g_{\mathrm{void}}/\gamma_{\mathrm{relax}}$ | VDM control | derivation/SYMBOLS.md:119; derivation/DIMENSIONLESS_CONSTANTS.md:38 • ec0833a |
+| <a id="m-void"></a>$M_v$ (Void Mach) | Nondimensional; $M_v = J_{\mathrm{void}}/c_{\mathrm{signal}}$; require $M_v < 1$ | VDM stability | derivation/SYMBOLS.md:120; derivation/DIMENSIONLESS_CONSTANTS.md:64 • ec0833a |
+| <a id="sigma"></a>$\Sigma$ (Symmetry Debt) | Nondimensional; broken-symmetry / conserved flux | VDM regime | derivation/SYMBOLS.md:121; derivation/DIMENSIONLESS_CONSTANTS.md:89 • ec0833a |
+| <a id="lambda-disp"></a>$\Lambda$ (Dispersion) | Nondimensional; dispersion / convergence (Lyapunov-like) | VDM control | derivation/SYMBOLS.md:122; derivation/DIMENSIONLESS_CONSTANTS.md:97 • ec0833a |
 | <a id="theta"></a>$\Theta$ (Junction Gate) | Nondimensional; junction gate strength | Memory steering | derivation/SYMBOLS.md:123; derivation/DIMENSIONLESS_CONSTANTS.md:77 • ec0833a |
 | <a id="gamma-ret"></a>$\Gamma$ (Retention) | Nondimensional; memory persistence fraction | Memory steering | derivation/SYMBOLS.md:124; derivation/DIMENSIONLESS_CONSTANTS.md:23 • ec0833a |
 | <a id="kappa-l"></a>$\kappa L$ | Nondimensional; curvature × scale (path bending) | Memory steering | derivation/SYMBOLS.md:126; derivation/DIMENSIONLESS_CONSTANTS.md:25 • ec0833a |
-| <a id="si"></a>$\mathrm{Si}$ (Steering) | Nondimensional; $\mathrm{Si} = \Theta \|\nabla m\| / \lambda$ | Memory steering | derivation/code/common/dimensionless_fuvdm.py:48 • ec0833a |
-| <a id="pi-void"></a>$\Pi_{\mathrm{void}}$ | Nondimensional; $\Pi_{\mathrm{void}} = (\Lambda \cdot \Theta)/\Gamma$ | Void reorganization | derivation/code/common/dimensionless_fuvdm.py:52 • ec0833a |
+| <a id="si"></a>$\mathrm{Si}$ (Steering) | Nondimensional; $\mathrm{Si} = \Theta \|\nabla m\| / \lambda$ | Memory steering | derivation/code/common/dimensionless_vdm.py:48 • ec0833a |
+| <a id="pi-void"></a>$\Pi_{\mathrm{void}}$ | Nondimensional; $\Pi_{\mathrm{void}} = (\Lambda \cdot \Theta)/\Gamma$ | Void reorganization | derivation/code/common/dimensionless_vdm.py:52 • ec0833a |
 
 ---
 

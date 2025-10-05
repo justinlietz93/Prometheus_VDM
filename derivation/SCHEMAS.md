@@ -86,7 +86,7 @@
 **Producers/Consumers:** Used by main runtime orchestrator  
 **Related equations (anchors only):** TODO: missing anchor (see derivation/EQUATIONS.md)  
 **Related symbols/constants:** TODO: missing anchor (see derivation/SYMBOLS.md, derivation/CONSTANTS.md)  
-**Examples (if present):** `run_profiles/02_fuvdm_viz100_20250811.json`, `run_profiles/10kN_viz.json`, `run_profiles/00_fuvdm_20250810.json`  
+**Examples (if present):** `run_profiles/02_vdm_viz100_20250811.json`, `run_profiles/10kN_viz.json`, `run_profiles/00_vdm_20250810.json`  
 **Invariants/Validation rules:** All numeric fields must be >= 0; `neurons`, `k`, `hz` > 0; `duration` may be null  
 **Notes:** Multiple run profile variants exist with different scale parameters (100, 1k, 10k neurons)
 
@@ -107,7 +107,7 @@ class LBMConfig:
     forcing: tuple[float, float] = (0.0, 0.0)  # body force (fx, fy)
     periodic_x: bool = True
     periodic_y: bool = True
-    # FUVDM void dynamics coupling (bounded stabilizer)
+    # VDM void dynamics coupling (bounded stabilizer)
     void_enabled: bool = True
     void_domain: str = "standard_model"
     void_gain: float = 0.5
@@ -126,7 +126,7 @@ class LBMConfig:
 | `forcing`            | `tuple[float, float]` |    N | `(0.0, 0.0)`       | lattice force units | Body force $(f_x, f_y)$                                    | `derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:123`      |
 | `periodic_x`         | `bool`            |    N     | `True`             | n/a                 | Enable periodic boundaries in x                            | `derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:124`      |
 | `periodic_y`         | `bool`            |    N     | `True`             | n/a                 | Enable periodic boundaries in y                            | `derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:125`      |
-| `void_enabled`       | `bool`            |    N     | `True`             | n/a                 | FUVDM void dynamics coupling (bounded stabilizer)          | `derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:127`      |
+| `void_enabled`       | `bool`            |    N     | `True`             | n/a                 | VDM void dynamics coupling (bounded stabilizer)          | `derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:127`      |
 | `void_domain`        | `str`             |    N     | `"standard_model"` | n/a                 | Void domain identifier                                     | `derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:128`      |
 | `void_gain`          | `float`           |    N     | `0.5`              | normalized          | Void coupling gain                                         | `derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:129`      |
 | `void_use_modulation`| `bool`            |    N     | `False`            | n/a                 | Enable void debt modulation                                | `derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:130`      |
@@ -138,7 +138,7 @@ class LBMConfig:
 **Related symbols/constants:** TODO: missing anchor for $c_s$ (see `derivation/SYMBOLS.md`)  
 **Examples (if present):** `derivation/code/physics/fluid_dynamics/benchmarks/taylor_green_benchmark.py`, `derivation/code/physics/fluid_dynamics/benchmarks/lid_cavity_benchmark.py`  
 **Invariants/Validation rules:** `nx, ny > 0`; `tau > 0.5` (for stability); `rho_floor > 0`; if `u_clamp` is not None, must be > 0  
-**Notes:** Integrates FUVDM void dynamics as a bounded stabilizer when `void_enabled=True`
+**Notes:** Integrates VDM void dynamics as a bounded stabilizer when `void_enabled=True`
 
 ---
 

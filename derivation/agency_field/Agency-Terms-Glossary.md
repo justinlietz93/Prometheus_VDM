@@ -169,27 +169,27 @@ Here is the glossary extracted from the provided document segment:
     *   **Category:** Model Component
     *   **Related Terms:** Reaction-Diffusion (RD) Branch, Klein-Gordon Equation, Tachyon Condensation
 *   **Term:** Void Debt Number (𝔇)
-    *   **Definition:** A dimensionless group in FUVDM, representing the ratio of unresolved debt to resolved flux at the walker level, used to classify stability vs. runaway regimes.
+    *   **Definition:** A dimensionless group in VDM, representing the ratio of unresolved debt to resolved flux at the walker level, used to classify stability vs. runaway regimes.
     *   **Category:** Dimensionless Group
     *   **Related Terms:** VDM
 *   **Term:** Emergent Coupling Ratio (Ξ)
-    *   **Definition:** A dimensionless group in FUVDM, representing the ratio of void interaction gain to local relaxation, controlling synchronization and stiffness within the model.
+    *   **Definition:** A dimensionless group in VDM, representing the ratio of void interaction gain to local relaxation, controlling synchronization and stiffness within the model.
     *   **Category:** Dimensionless Group
     *   **Related Terms:** Coupling
 *   **Term:** Void Mach Number (M_v)
-    *   **Definition:** A dimensionless group in FUVDM, representing the ratio of void flux to signal speed; stability in the VDM framework requires M_v < 1.
+    *   **Definition:** A dimensionless group in VDM, representing the ratio of void flux to signal speed; stability in the VDM framework requires M_v < 1.
     *   **Category:** Dimensionless Group
     *   **Related Terms:** VDM, Signal Speed
 *   **Term:** Topological Information Ratio (Θ)
-    *   **Definition:** A dimensionless group in FUVDM, quantifying the information carried by the system's topology versus that carried by the node states (related to the effect of void walkers).
+    *   **Definition:** A dimensionless group in VDM, quantifying the information carried by the system's topology versus that carried by the node states (related to the effect of void walkers).
     *   **Category:** Dimensionless Group
     *   **Related Terms:** Information Theory, Topology
 *   **Term:** Symmetry Debt (Σ)
-    *   **Definition:** A dimensionless group in FUVDM, representing the ratio of broken-symmetry flux to conserved symmetry flux, serving as an energy-balance analog.
+    *   **Definition:** A dimensionless group in VDM, representing the ratio of broken-symmetry flux to conserved symmetry flux, serving as an energy-balance analog.
     *   **Category:** Dimensionless Group
     *   **Related Terms:** Symmetry Breaking, Energy Balance
 *   **Term:** Dispersion-to-Convergence (Λ)
-    *   **Definition:** A dimensionless group in FUVDM, representing the ratio of divergence rate to convergence rate under modulation, conceptually similar to a Lyapunov exponent.
+    *   **Definition:** A dimensionless group in VDM, representing the ratio of divergence rate to convergence rate under modulation, conceptually similar to a Lyapunov exponent.
     *   **Category:** Dimensionless Group
     *   **Related Terms:** Lyapunov Exponent
 *   **Term:** $W_i(t)$ (Node State)

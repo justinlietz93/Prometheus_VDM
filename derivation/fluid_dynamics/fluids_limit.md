@@ -34,7 +34,7 @@ f_i^eq = w_i ρ [ 1 + (c_i·v)/c_s^2 + (c_i·v)^2/(2 c_s^4) ˆ’ v^2/(2 c_s^2
 with lattice sound speed c_s fixed by {c_i, w_i} (D2Q9: c_s^2 = 1/3).
 
 Implementation plan
-- Module: [lbm2d.py](Prometheus_FUVDM/derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:1)
+- Module: [lbm2d.py](Prometheus_VDM/derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:1)
 - Supports: periodic boundaries, bounce€‘back no€‘slip walls, simple forcing hook, viscosity Δ½ = c_s^2(ρ„ ˆ’ 1/2).
 
 ### I.2 Chapman€“Enskog expansion (sketch)
@@ -49,11 +49,11 @@ Conclusion
 - The kinetic/LBM sector reduces to incompressible NS with explicit Δ½.
 
 ### I.3 Embedding in this repository
-- New module: [lbm2d.py](Prometheus_FUVDM/derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:1) (D2Q9 BGK).
+- New module: [lbm2d.py](Prometheus_VDM/derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:1) (D2Q9 BGK).
 - Benchmarks using shared logging/figure style:
-  - Taylor€“Green vortex: [taylor_green_benchmark.py](Prometheus_FUVDM/derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py:1)
-  - Lid€‘driven cavity: [lid_cavity_benchmark.py](Prometheus_FUVDM/derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py:1)
-- Acceptance thresholds: see [BENCHMARKS_FLUIDS.md](Prometheus_FUVDM/BENCHMARKS_FLUIDS.md:1).
+  - Taylor€“Green vortex: [taylor_green_benchmark.py](Prometheus_VDM/derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py:1)
+  - Lid€‘driven cavity: [lid_cavity_benchmark.py](Prometheus_VDM/derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py:1)
+- Acceptance thresholds: see [BENCHMARKS_FLUIDS.md](Prometheus_VDM/BENCHMARKS_FLUIDS.md:1).
 
 ---
 
@@ -94,7 +94,7 @@ Acceptance thresholds (double precision)
 - Lid€‘driven cavity: max_t €–ˆ‡·v€–_2 ‰¤ 1eˆ’6.
 - Convergence under grid refinement consistent with scheme order.
 - JSON includes passed boolean, key metrics, figure path, timestamp.
-Details in [BENCHMARKS_FLUIDS.md](Prometheus_FUVDM/BENCHMARKS_FLUIDS.md:1).
+Details in [BENCHMARKS_FLUIDS.md](Prometheus_VDM/BENCHMARKS_FLUIDS.md:1).
 
 ---
 
@@ -110,11 +110,11 @@ Details in [BENCHMARKS_FLUIDS.md](Prometheus_FUVDM/BENCHMARKS_FLUIDS.md:1).
 ## Deliverables and Paths (for implementation)
 
 - Derivation: this file.
-- Module: [lbm2d.py](Prometheus_FUVDM/derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:1) (D2Q9 BGK).
+- Module: [lbm2d.py](Prometheus_VDM/derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:1) (D2Q9 BGK).
 - Benchmarks:
-  - [taylor_green_benchmark.py](Prometheus_FUVDM/derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py:1)
-  - [lid_cavity_benchmark.py](Prometheus_FUVDM/derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py:1)
-- Acceptance: [BENCHMARKS_FLUIDS.md](Prometheus_FUVDM/BENCHMARKS_FLUIDS.md:1)
+  - [taylor_green_benchmark.py](Prometheus_VDM/derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py:1)
+  - [lid_cavity_benchmark.py](Prometheus_VDM/derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py:1)
+- Acceptance: [BENCHMARKS_FLUIDS.md](Prometheus_VDM/BENCHMARKS_FLUIDS.md:1)
 - Outputs:
   - Figures †’ derivation/code/outputs/figures/fluid_dynamics/
   - Logs †’ derivation/code/outputs/logs/fluid_dynamics/

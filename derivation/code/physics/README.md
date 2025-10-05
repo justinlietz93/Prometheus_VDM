@@ -9,10 +9,10 @@ Directory layout
   - fluid_dynamics/ — LBM→NS (Taylor–Green, lid-driven cavity), plus solver under fluid_dynamics/fluids/
   - tachyonic_condensation/ — EFT tube modes, etc.
 - Example (fluid_dynamics):
-  - Core solver: [fluids/lbm2d.py](Prometheus_FUVDM/derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:1)
+  - Core solver: [fluids/lbm2d.py](Prometheus_VDM/derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:1)
   - Benchmarks:
-    - [taylor_green_benchmark.py](Prometheus_FUVDM/derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py:1)
-    - [lid_cavity_benchmark.py](Prometheus_FUVDM/derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py:1)
+    - [taylor_green_benchmark.py](Prometheus_VDM/derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py:1)
+    - [lid_cavity_benchmark.py](Prometheus_VDM/derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py:1)
 
 Output routing
 - Figures → derivation/code/outputs/figures/<domain>/
@@ -32,12 +32,12 @@ Conventions
 Examples
 
 Reaction–Diffusion
-- Dispersion experiment: [rd_dispersion_experiment.py](Prometheus_FUVDM/derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py:1)
+- Dispersion experiment: [rd_dispersion_experiment.py](Prometheus_VDM/derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py:1)
 - Front speed: analogous front-speed scripts; outputs under reaction_diffusion/.
 
 Fluid Dynamics (LBM→NS)
 - Solver:
-  - [fluids/lbm2d.py](Prometheus_FUVDM/derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:1)
+  - [fluids/lbm2d.py](Prometheus_VDM/derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:1)
 - Taylor–Green benchmark:
   - Runs TG vortex and fits log E(t) to recover ν.
   - Uses lattice scaling K² = k²(1/nx² + 1/ny²).
@@ -50,9 +50,9 @@ How to run (PowerShell)
 - Activate venv:
   - & .\venv\Scripts\Activate.ps1
 - Example (Taylor–Green):
-  - python Prometheus_FUVDM/derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py --nx 256 --ny 256 --tau 0.8 --U0 0.05 --k 6.283185307179586 --steps 5000 --sample_every 50
+  - python Prometheus_VDM/derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py --nx 256 --ny 256 --tau 0.8 --U0 0.05 --k 6.283185307179586 --steps 5000 --sample_every 50
 - Example (Lid cavity):
-  - python Prometheus_FUVDM/derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py --nx 128 --ny 128 --tau 0.7 --U_lid 0.1 --steps 15000 --sample_every 200
+  - python Prometheus_VDM/derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py --nx 128 --ny 128 --tau 0.7 --U_lid 0.1 --steps 15000 --sample_every 200
 
 Design notes
 - Keep solver code (fluids/, etc.) importable and benchmark-agnostic.
@@ -60,6 +60,6 @@ Design notes
 - Prefer minimal external deps (numpy, matplotlib) for portability.
 
 Cross-reference
-- Benchmarks criteria: [BENCHMARKS_FLUIDS.md](Prometheus_FUVDM/derivation/BENCHMARKS_FLUIDS.md:1)
-- Fluids derivation: [fluids_limit.md](Prometheus_FUVDM/derivation/fluids_limit.md:1)
-- Tests overview: [tests/README.md](Prometheus_FUVDM/derivation/code/tests/README.md:1)
+- Benchmarks criteria: [BENCHMARKS_FLUIDS.md](Prometheus_VDM/derivation/BENCHMARKS_FLUIDS.md:1)
+- Fluids derivation: [fluids_limit.md](Prometheus_VDM/derivation/fluids_limit.md:1)
+- Tests overview: [tests/README.md](Prometheus_VDM/derivation/code/tests/README.md:1)

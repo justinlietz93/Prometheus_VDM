@@ -3,7 +3,7 @@
 Status: [PLAUSIBLE] with concrete validation plan. Physics conserved (read-only sensing); optional bounded parameter advice does not inject forces.
 
 Purpose
-- Map FUVDM “void walker” observability to neural networks (MLP/RNN/attention) as measurement-only sensors.
+- Map VDM “void walker” observability to neural networks (MLP/RNN/attention) as measurement-only sensors.
 - Derive a graph Fokker–Planck limit for walker density on a feed-forward graph.
 - Define petition taxonomy (sat, grad, shear) and a scalar “void debt” functional.
 - Outline a bounded advisory policy to nudge numeric knobs without altering forward dynamics.
@@ -84,5 +84,5 @@ Reproducibility Checklist
 - Keep observe vs advise runs archived with JSON and PNG artifacts.
 
 References
-- Fluid mapping powered this construction; see cavity announcers and CLI in [lid_cavity_benchmark.py](Prometheus_FUVDM/derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py:356).
-- Bus, Reducer, Walker API: [walkers.py](Prometheus_FUVDM/derivation/code/physics/fluid_dynamics/telemetry/walkers.py:1).
+- Fluid mapping powered this construction; see cavity announcers and CLI in [lid_cavity_benchmark.py](Prometheus_VDM/derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py:356).
+- Bus, Reducer, Walker API: [walkers.py](Prometheus_VDM/derivation/code/physics/fluid_dynamics/telemetry/walkers.py:1).

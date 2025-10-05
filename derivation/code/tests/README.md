@@ -9,7 +9,7 @@ Directory layout
   - fluid_dynamics/
   - tachyonic_condensation/
 - Example
-  - [test_taylor_green_decay.py](Prometheus_FUVDM/derivation/code/tests/fluid_dynamics/test_taylor_green_decay.py:1) — verifies ν recovery from Taylor–Green energy decay with |ν_fit−ν_th|/ν_th ≤ 5%.
+  - [test_taylor_green_decay.py](Prometheus_VDM/derivation/code/tests/fluid_dynamics/test_taylor_green_decay.py:1) — verifies ν recovery from Taylor–Green energy decay with |ν_fit−ν_th|/ν_th ≤ 5%.
 
 Conventions
 - Location: derivation/code/tests/<domain>/test_*.py
@@ -21,11 +21,11 @@ Running tests (PowerShell)
 - Always activate venv first:
   - & .\venv\Scripts\Activate.ps1
 - Run a single test file:
-  - python -m pytest Prometheus_FUVDM/derivation/code/tests/fluid_dynamics/test_taylor_green_decay.py -q
+  - python -m pytest Prometheus_VDM/derivation/code/tests/fluid_dynamics/test_taylor_green_decay.py -q
 - Run an entire domain:
-  - python -m pytest Prometheus_FUVDM/derivation/code/tests/fluid_dynamics -q
+  - python -m pytest Prometheus_VDM/derivation/code/tests/fluid_dynamics -q
 - Run all tests:
-  - python -m pytest Prometheus_FUVDM/derivation/code/tests -q
+  - python -m pytest Prometheus_VDM/derivation/code/tests -q
 
 Pathing rules (applies repo‑wide)
 - Simulations/benchmarks: derivation/code/physics/<domain>/*.py
@@ -35,13 +35,13 @@ Pathing rules (applies repo‑wide)
 - This naming ensures domain‑scoped artifacts and simple globbing.
 
 Example: Taylor–Green (fluid_dynamics)
-- Unit test: [test_taylor_green_decay.py](Prometheus_FUVDM/derivation/code/tests/fluid_dynamics/test_taylor_green_decay.py:1)
+- Unit test: [test_taylor_green_decay.py](Prometheus_VDM/derivation/code/tests/fluid_dynamics/test_taylor_green_decay.py:1)
   - Builds a small D2Q9 LBM system (τ=0.8 ⇒ ν_th=(τ−0.5)/3).
   - Samples energy E(t) and fits log E.
   - Uses correct lattice scaling K² = k²(1/nx² + 1/ny²).
   - Asserts |ν_fit−ν_th|/ν_th ≤ 0.05.
 - Benchmark (separate, writes artifacts): see physics/README
-  - [taylor_green_benchmark.py](Prometheus_FUVDM/derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py:1)
+  - [taylor_green_benchmark.py](Prometheus_VDM/derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py:1)
 
 Adding a new test
 1) Create file under the correct domain, e.g. derivation/code/tests/reaction_diffusion/test_new_check.py
@@ -51,7 +51,7 @@ Adding a new test
 
 CI notes
 - Recommended command in CI:
-  - python -m pytest Prometheus_FUVDM/derivation/code/tests -q
+  - python -m pytest Prometheus_VDM/derivation/code/tests -q
 - Keep per‑test runtime bounded to prevent CI timeouts.
 
 Contact/ownership

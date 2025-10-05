@@ -80,7 +80,7 @@
 **Evidence so far:**
 - RD branch [PROVEN, canonical] per derivation/foundations/continuum_stack.md:35
 - EFT/KG branch [PLAUSIBLE, quarantined] per derivation/foundations/continuum_stack.md:38
-- EFT branch retained for future work per derivation/FUVDM_Overview.md:48
+- EFT branch retained for future work per derivation/VDM_Overview.md:48
 
 **Proposed experiment/proof (if present in repo):**
 - Maintained as future work in derivation/effective_field_theory/effective_field_theory_approach.md per derivation/foundations/discrete_to_continuum.md:12

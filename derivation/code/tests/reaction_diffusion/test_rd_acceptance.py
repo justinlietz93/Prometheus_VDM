@@ -15,8 +15,8 @@ _REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")
 if _REPO_ROOT not in sys.path:
     sys.path.insert(0, _REPO_ROOT)
 
-from Prometheus_FUVDM.derivation.code.physics.reaction_diffusion.rd_front_speed_experiment import run_sim as rd_run_front
-from Prometheus_FUVDM.derivation.code.physics.reaction_diffusion.rd_dispersion_experiment import run_linear_sim as rd_run_lin, analyze_dispersion as rd_analyze
+from Prometheus_VDM.derivation.code.physics.reaction_diffusion.rd_front_speed_experiment import run_sim as rd_run_front
+from Prometheus_VDM.derivation.code.physics.reaction_diffusion.rd_dispersion_experiment import run_linear_sim as rd_run_lin, analyze_dispersion as rd_analyze
 
 def test_front_speed_acceptance_default():
     N = 1024; L = 200.0; D = 1.0; r = 0.25; T = 80.0; cfl = 0.2; seed = 42

@@ -20,7 +20,7 @@ Here is the synthesized session handoff document:
 -   **Projects/Components:**
     -   Void Dynamics Model (VDM)
     -   Agency/Consciousness Field (C)
-    -   `FUVDM_Overview.md` (file being structured/referenced for format)
+    -   `VDM_Overview.md` (file being structured/referenced for format)
     -   `energy_clamp_1d` function: Simulates a 1D PDE for an order-parameter `C`.
     -   `simulate_energy_clamp.py`: Standalone Python script for the energy clamp experiment.
     -   `energy_clamp.csv`: Output time series data from the energy clamp experiment.
@@ -72,7 +72,7 @@ Here is the synthesized session handoff document:
     -   `Null/ablations`: Experiments designed to test the robustness of a result by removing or randomizing key components, answering questions about causality and "biasing."
 
 ### Sequence of Events & Decisions ###
-1.  The session began with the user expressing a preference for a specific document format for their Agency/Consciousness Field (VDM) specification: a symbol table, formulas with explanations, and detailed prose, referencing `FUVDM_Overview.md`.
+1.  The session began with the user expressing a preference for a specific document format for their Agency/Consciousness Field (VDM) specification: a symbol table, formulas with explanations, and detailed prose, referencing `VDM_Overview.md`.
 2.  The AI responded by providing the requested document structure, populated with defined symbols, 9 core formulas, and an extensive "Plain-English Narrative" covering the nature of `C`, its drivers, generalization, falsifiable predictions, and instrumentation.
 3.  Following this, a previous analytical session was retried in a fresh context to generate and simulate "smoke tests" for the VDM framework.
 4.  The AI executed the `energy_clamp_1d` simulation, producing `energy_clamp.csv` and `energy_clamp.png`, demonstrating the order-parameter `C`'s relaxation.

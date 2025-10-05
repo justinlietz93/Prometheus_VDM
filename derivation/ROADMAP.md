@@ -81,7 +81,7 @@
 
 ## <a id="ms-rd-validation"></a>RD Canonical Validation
 **Status:** Done • **Priority:** P1  
-**Source:** derivation/reaction_diffusion/rd_validation_plan.md:1-99 • 77f055f; derivation/FUVDM_Overview.md:35 • 77f055f
+**Source:** derivation/reaction_diffusion/rd_validation_plan.md:1-99 • 77f055f; derivation/VDM_Overview.md:35 • 77f055f
 
 **Goal (verbatim/condensed from source):** Establish reproducible numeric checks for the RD canonical model with front speed and linear dispersion validation
 
@@ -219,7 +219,7 @@
 
 ## <a id="ms-eft-validation"></a>EFT/KG Branch Validation (Quarantined)
 **Status:** Planned • **Priority:** P3  
-**Source:** derivation/FUVDM_Overview.md:48 • 77f055f; derivation/foundations/continuum_stack.md:38 • 77f055f; OPEN_QUESTIONS.md#oq-002 • 77f055f
+**Source:** derivation/VDM_Overview.md:48 • 77f055f; derivation/foundations/continuum_stack.md:38 • 77f055f; OPEN_QUESTIONS.md#oq-002 • 77f055f
 
 **Goal (verbatim/condensed from source):** Establish quantitative criteria for when second-order EFT branch becomes necessary; validate tachyonic condensation mechanism and finite-tube mode analysis. Currently quarantined as [PLAUSIBLE]/[FUTURE WORK] pending complete discrete action derivation.
 
