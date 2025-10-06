@@ -90,45 +90,61 @@ This does **not** mean that energy is not conserved. It clarifies what our proof
 
 ---
 
-### 7. Derivation Step 2: Change in Kinetic Energy
+## 7. Derivation Step 2: Change in Kinetic Energy
 
-Next, we analyze the kinetic energy term, `\mathcal{K}_i = \frac{1}{2}\left(\frac{dW_i}{dt}\right)^2`. In our discrete framework, this is `\mathcal{K}_i = \frac{1}{2}[F(W_i)]^2`. We want to find its change over one time step, `\Delta \mathcal{K}_i`.
+Next, we analyze the kinetic energy term, $\mathcal{K}_i = \frac{1}{2}\left(\frac{dW_i}{dt}\right)^2$\. In our discrete framework, this is $\mathcal{K}_i = \frac{1}{2}[F(W_i)]^2$\. We want to find its change over one time step, $\Delta \mathcal{K}_i$\.
+
 $$
 \Delta \mathcal{K}_i = \mathcal{K}_i(t+\Delta t) - \mathcal{K}_i(t) = \frac{1}{2}[F(W_i(t+\Delta t))]^2 - \frac{1}{2}[F(W_i(t))]^2
 $$
-Using the Taylor expansion `F(W+\Delta W) \approx F(W) + \frac{dF}{dW}\Delta W`, we get:
+
+Using the Taylor expansion $F(W+\Delta W) \approx F(W) + \frac{dF}{dW}\Delta W$\, we get:
+
 $$
 [F(W_i(t+\Delta t))]^2 \approx \left[ F(W_i) + \frac{dF}{dW_i}\Delta W_i \right]^2 \approx [F(W_i)]^2 + 2F(W_i)\frac{dF}{dW_i}\Delta W_i
 $$
-*(We neglect the `(\Delta W_i)^2` term as it is second-order in `\Delta t`)*.
+
+*(We neglect the $(\Delta W_i)^2$ term as it is second-order in $\Delta t$\)*.
 
 The change in kinetic energy is therefore:
+
 $$
 \Delta \mathcal{K}_i \approx \frac{1}{2} \left( [F(W_i)]^2 + 2F(W_i)\frac{dF}{dW_i}\Delta W_i \right) - \frac{1}{2}[F(W_i)]^2 = F(W_i)\frac{dF}{dW_i}\Delta W_i
 $$
-Substituting `\Delta W_i = F(W_i)\Delta t`, we find the rate of change:
+
+Substituting $\Delta W_i = F(W_i)\Delta t$\, we find the rate of change:
+
 $$
 \frac{\Delta \mathcal{K}_i}{\Delta t} \approx [F(W_i)]^2 \frac{dF}{dW_i}
 $$
-To evaluate this, we need `dF/dW_i`:
+
+To evaluate this, we need $dF/dW_i$\:
+
 $$
 F(W_i) = (\alpha - \beta)W_i - \alpha W_i^2 \quad \implies \quad \frac{dF}{dW_i} = (\alpha - \beta) - 2\alpha W_i
 $$
 
-### 8. Intermediate Analysis: Total On-Site Energy Change
+## 8. Intermediate Analysis: Total On-Site Energy Change
 
 Let us now combine the change in potential and kinetic energy, which together represent the total change in the "on-site" energy of the node, independent of its neighbors.
+
 $$
 \frac{\Delta (\mathcal{V}_i + \mathcal{K}_i)}{\Delta t} = \frac{\Delta V(W_i)}{\Delta t} + \frac{\Delta \mathcal{K}_i}{\Delta t}
 $$
+
 $$
 \approx -[F(W_i)]^2 + [F(W_i)]^2 \frac{dF}{dW_i} = [F(W_i)]^2 \left(\frac{dF}{dW_i} - 1\right)
 $$
-Substituting the expression for `dF/dW_i`:
+
+Substituting the expression for $dF/dW_i$\:
+
 $$
 \frac{\Delta (\mathcal{V}_i + \mathcal{K}_i)}{\Delta t} \approx [F(W_i)]^2 ((\alpha - \beta) - 2\alpha W_i - 1)
 $$
-This is a crucial result. The total rate of change of the on-site energy is **not zero**. This confirms that for the total energy `\mathcal{H}_i` to be conserved, this on-site change *must* be perfectly balanced by the change in the interaction energy term, `\frac{1}{2} \sum_{j \in N(i)} J (W_j - W_i)^2`. This interaction term represents the energy flux to and from neighboring nodes.
+
+This is a crucial result. The total rate of change of the on-site energy is **not zero**. This confirms that for the total energy $\mathcal{H}_i$ to be conserved, this on-site change *must* be perfectly balanced by the change in the interaction energy term, $\frac{1}{2} \sum_{j \in N(i)} J (W_j - W_i)^2$\. This interaction term represents the energy flux to and from neighboring nodes. The proof now hinges on analyzing this final term.
+
+---
 
 ### 9. Derivation Step 3: Change in Interaction Energy
 
@@ -215,59 +231,3 @@ Potential candidates for an information-theoretic conserved quantity $I$ could b
 
 **Conclusion:**
 The search for the true conserved quantity of the FUM is the next major frontier for its theoretical development. We have exhausted the simplest hypothesis and have now clearly defined the advanced research paths required to solve this problem. This concludes our current deep dive into the FUM's mathematical foundations.
-
----
-
-## 7. Derivation Step 2: Change in Kinetic Energy
-
-Next, we analyze the kinetic energy term, $\mathcal{K}_i = \frac{1}{2}\left(\frac{dW_i}{dt}\right)^2$\. In our discrete framework, this is $\mathcal{K}_i = \frac{1}{2}[F(W_i)]^2$\. We want to find its change over one time step, $\Delta \mathcal{K}_i$\.
-
-$$
-\Delta \mathcal{K}_i = \mathcal{K}_i(t+\Delta t) - \mathcal{K}_i(t) = \frac{1}{2}[F(W_i(t+\Delta t))]^2 - \frac{1}{2}[F(W_i(t))]^2
-$$
-
-Using the Taylor expansion $F(W+\Delta W) \approx F(W) + \frac{dF}{dW}\Delta W$\, we get:
-
-$$
-[F(W_i(t+\Delta t))]^2 \approx \left[ F(W_i) + \frac{dF}{dW_i}\Delta W_i \right]^2 \approx [F(W_i)]^2 + 2F(W_i)\frac{dF}{dW_i}\Delta W_i
-$$
-
-*(We neglect the $(\Delta W_i)^2$ term as it is second-order in $\Delta t$\)*.
-
-The change in kinetic energy is therefore:
-
-$$
-\Delta \mathcal{K}_i \approx \frac{1}{2} \left( [F(W_i)]^2 + 2F(W_i)\frac{dF}{dW_i}\Delta W_i \right) - \frac{1}{2}[F(W_i)]^2 = F(W_i)\frac{dF}{dW_i}\Delta W_i
-$$
-
-Substituting $\Delta W_i = F(W_i)\Delta t$\, we find the rate of change:
-
-$$
-\frac{\Delta \mathcal{K}_i}{\Delta t} \approx [F(W_i)]^2 \frac{dF}{dW_i}
-$$
-
-To evaluate this, we need $dF/dW_i$\:
-
-$$
-F(W_i) = (\alpha - \beta)W_i - \alpha W_i^2 \quad \implies \quad \frac{dF}{dW_i} = (\alpha - \beta) - 2\alpha W_i
-$$
-
-## 8. Intermediate Analysis: Total On-Site Energy Change
-
-Let us now combine the change in potential and kinetic energy, which together represent the total change in the "on-site" energy of the node, independent of its neighbors.
-
-$$
-\frac{\Delta (\mathcal{V}_i + \mathcal{K}_i)}{\Delta t} = \frac{\Delta V(W_i)}{\Delta t} + \frac{\Delta \mathcal{K}_i}{\Delta t}
-$$
-
-$$
-\approx -[F(W_i)]^2 + [F(W_i)]^2 \frac{dF}{dW_i} = [F(W_i)]^2 \left(\frac{dF}{dW_i} - 1\right)
-$$
-
-Substituting the expression for $dF/dW_i$\:
-
-$$
-\frac{\Delta (\mathcal{V}_i + \mathcal{K}_i)}{\Delta t} \approx [F(W_i)]^2 ((\alpha - \beta) - 2\alpha W_i - 1)
-$$
-
-This is a crucial result. The total rate of change of the on-site energy is **not zero**. This confirms that for the total energy $\mathcal{H}_i$ to be conserved, this on-site change *must* be perfectly balanced by the change in the interaction energy term, $\frac{1}{2} \sum_{j \in N(i)} J (W_j - W_i)^2$\. This interaction term represents the energy flux to and from neighboring nodes. The proof now hinges on analyzing this final term.
