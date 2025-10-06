@@ -1,6 +1,7 @@
 # Void Dynamics Model: Implementation Gaps Analysis
 
 ## Overview
+
 This document systematically analyzes the gaps between the theoretical physics foundations in the `derivation` directory and the current code implementation in `fum_rt/core`. The analysis reveals critical missing components that prevent the realization of the full Void Dynamics Model.
 
 ## Major Implementation Gaps
@@ -8,11 +9,13 @@ This document systematically analyzes the gaps between the theoretical physics f
 ### 1. Reaction-Diffusion Physics Missing
 
 **Theoretical Foundation** (`derivation/reaction_diffusion/`):
+
 - Core PDE: $\frac{\partial \phi}{\partial t} = D \nabla^2 \phi + r\phi - u\phi^2$
 - Dimensionless groups: $\Pi_1 = \frac{rL^2}{D}$, $\Pi_2 = \frac{u\phi_0 L^2}{D}$
 - Turing pattern formation capabilities
 
 **Code Gap**: No implementation in [`substrate.py`](fum_rt/core/substrate/substrate.py:1)
+
 - Pure neural dynamics (ELIF neurons) without physical field coupling
 - No pattern formation or emergent structures
 - Missing dimensionless constraint enforcement
@@ -20,11 +23,13 @@ This document systematically analyzes the gaps between the theoretical physics f
 ### 2. Memory Steering Not Integrated
 
 **Theoretical Foundation** (`derivation/memory_steering/`):
+
 - Memory field: $\frac{\partial M}{\partial t} = \gamma R - \delta M + \kappa \nabla^2 M$
 - Refractive index: $n(m) = n_0 + \alpha m$
 - Information steering via graded index
 
 **Code Gap**: Isolated implementation in [`memory_steering.py`](fum_rt/physics/memory_steering/memory_steering.py:97)
+
 - Memory field exists but doesn't couple to neural dynamics
 - No refractive index modulation of signal propagation
 - Memory doesn't influence RE-VGSP or GDSP plasticity
@@ -32,11 +37,13 @@ This document systematically analyzes the gaps between the theoretical physics f
 ### 3. Fluid Dynamics Limit Absent
 
 **Theoretical Foundation** (`derivation/fluid_dynamics/`):
+
 - LBM to Navier-Stokes limit: $\nu = c_s^2 (\tau - \Delta t/2)$
 - Reynolds number scaling: $Re = \frac{UL}{\nu}$
 - Continuum emergence from discrete dynamics
 
 **Code Gap**: No fluid dynamics implementation
+
 - Purely discrete neural network without continuum properties
 - Missing viscosity and Reynolds number controls
 - No fluid-neural coupling mechanisms
@@ -44,11 +51,13 @@ This document systematically analyzes the gaps between the theoretical physics f
 ### 4. Effective Field Theory Not Implemented
 
 **Theoretical Foundation** (`derivation/effective_field_theory/`):
+
 - Wilsonian renormalization group flows
 - Scale-dependent coupling constants
 - Multi-scale effective actions
 
 **Code Gap**: No EFT framework
+
 - Fixed microscopic scale operation
 - No renormalization procedures
 - Missing scale-bridging implementations
@@ -56,11 +65,13 @@ This document systematically analyzes the gaps between the theoretical physics f
 ### 5. Conservation Laws Violated
 
 **Theoretical Foundation** (`derivation/conservation_law/`):
+
 - Discrete conservation laws
 - Symplectic structure preservation
 - Energy-momentum conservation
 
 **Code Gap**: Non-conservative integration in [`substrate.py`](fum_rt/core/substrate/substrate.py:108)
+
 - Explicit Euler integration without conservation
 - No energy or momentum preservation
 - Discrete conservation laws not enforced
@@ -68,11 +79,13 @@ This document systematically analyzes the gaps between the theoretical physics f
 ### 6. Dimensionless Constants Ignored
 
 **Theoretical Foundation** (`derivation/DIMENSIONLESS_CONSTANTS.md`):
+
 - Critical dimensionless numbers govern system behavior
 - Scale invariance principles
 - Universal scaling laws
 
 **Code Gap**: Hard-coded parameters in [`void_dynamics_adapter.py`](fum_rt/core/void_dynamics_adapter.py:20)
+
 - ALPHA=0.25, BETA=0.1 instead of $\Pi$ groups
 - No scale invariance maintenance
 - Universal scaling laws not applied
@@ -80,11 +93,13 @@ This document systematically analyzes the gaps between the theoretical physics f
 ### 7. Continuum-Discrete Bridge Missing
 
 **Theoretical Foundation** (`derivation/foundations/continuum_stack.md`):
+
 - Smooth continuum limits from discrete dynamics
 - Coarse-graining procedures
 - Emergent field detection
 
 **Code Gap**: Purely discrete implementation
+
 - No coarse-graining or emergent field detection
 - Discrete-to-continuum transition not supported
 - Missing multi-scale integration
@@ -99,6 +114,7 @@ This document systematically analyzes the gaps between the theoretical physics f
 ## Performance and Efficiency Implications
 
 ### Current Limitations
+
 - **Computational Inefficiency**: Non-conservative integration requires smaller time steps
 - **Limited Expressivity**: Missing pattern formation and emergent structures
 - **Scale Dependency**: Hard-coded parameters limit generalization
