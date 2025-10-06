@@ -220,6 +220,95 @@
 
 ---
 
+#### frw_continuity_residual log  <a id="data-frw-balance-log"></a>
+**Type:** log  
+**Purpose:** Gate record for FRW continuity residual check with pass/fail, RMS, and artifact pointers  
+**Produced by:** `derivation/code/physics/cosmology/run_frw_balance.py:run_frw_balance`  
+**Defined by (if math):** `EQUATIONS.md#vdm-e-0xx` (FRW continuity; dust baseline $w=0$)  
+**Inputs (symbols/constants):** $\rho(t)$, $a(t)$, $t$  
+**Units/Normalization:** `UNITS_NORMALIZATION.md#cosmology` (dimensionless baseline OK; relative gate)
+
+**Shape & axes (exact as used):**
+- Shape: JSON object
+- Fields: `tol_rms:float`, `rms:float`, `passed:bool`, `figure:str`, `csv:str`
+
+**Storage format & path pattern:**
+- Format: `json`
+- Path pattern: `derivation/code/outputs/logs/cosmology/frw_balance__<tag>.json` (failed runs routed to `.../failed_runs/`)
+- Compression/encoding: none
+
+**Schema / columns (for tables/logs):**
+- Columns: `tol_rms:float`, `rms:float`, `passed:bool`, `figure:str`, `csv:str`
+- Index/primary keys: none (singleton per run)
+
+**Update cadence / lifecycle:** `per experiment run`  
+**Provenance (code locations):** `derivation/code/physics/cosmology/run_frw_balance.py:57-91`  
+**Validation hooks / KPIs:** `VALIDATION_METRICS.md#kpi-frw-continuity-rms`  
+**Retention / access constraints:** none  
+**Example artifact (if referenced):** `derivation/code/outputs/logs/metriplectic/frw_balance__FRW-balance-v1.json`  
+**Notes:** CONTRADICTION_REPORT is emitted on gate failure and routed to `failed_runs/`.
+
+---
+
+#### frw_continuity_residual series  <a id="data-frw-balance-series"></a>
+**Type:** table  
+**Purpose:** Per-timestep residual series for FRW continuity equation used to compute RMS gate  
+**Produced by:** `derivation/code/physics/cosmology/run_frw_balance.py:run_frw_balance`  
+**Defined by (if math):** `EQUATIONS.md#vdm-e-0xx` (FRW continuity)  
+**Inputs (symbols/constants):** $\rho(t)$, $a(t)$, $t$  
+**Units/Normalization:** `UNITS_NORMALIZATION.md#cosmology`
+
+**Shape & axes (exact as used):**
+- Shape: CSV table with timeseries
+- Columns: `t`, `rho`, `a`, `residual`
+
+**Storage format & path pattern:**
+- Format: `csv`
+- Path pattern: `derivation/code/outputs/logs/cosmology/frw_continuity_residual__<tag>.csv` (failed → `.../failed_runs/`)
+- Compression/encoding: none
+
+**Schema / columns (for tables/logs):**
+- Columns: `t:float`, `rho:float`, `a:float`, `residual:float`
+- Index/primary keys: `t`
+
+**Update cadence / lifecycle:** `per experiment run`  
+**Provenance (code locations):** `derivation/code/physics/cosmology/run_frw_balance.py:73-81`  
+**Validation hooks / KPIs:** `VALIDATION_METRICS.md#kpi-frw-continuity-rms`  
+**Retention / access constraints:** none  
+**Example artifact (if referenced):** `derivation/code/outputs/logs/metriplectic/frw_continuity_residual__FRW-balance-v1.csv`  
+**Notes:** Central-difference gradient for interior points; one-sided at boundaries.
+
+---
+
+#### frw_continuity_residual figure  <a id="data-frw-balance-figure"></a>
+**Type:** image  
+**Purpose:** Visualization of FRW continuity residual vs time with RMS shown in title  
+**Produced by:** `derivation/code/physics/cosmology/run_frw_balance.py:run_frw_balance`  
+**Defined by (if math):** N/A (visualization)  
+**Inputs (symbols/constants):** FRW residual series  
+**Units/Normalization:** axis labels included
+
+**Shape & axes (exact as used):**
+- Shape: raster image
+- Dimensions: ~150 DPI
+
+**Storage format & path pattern:**
+- Format: `png`
+- Path pattern: `derivation/code/outputs/figures/cosmology/frw_continuity_residual__<tag>.png` (failed → `.../failed_runs/`)
+- Compression/encoding: PNG lossless
+
+**Schema / columns (for tables/logs):**
+- N/A (image data)
+
+**Update cadence / lifecycle:** `per experiment run`  
+**Provenance (code locations):** `derivation/code/physics/cosmology/run_frw_balance.py:62-71`  
+**Validation hooks / KPIs:** `VALIDATION_METRICS.md#kpi-frw-continuity-rms`  
+**Retention / access constraints:** none  
+**Example artifact (if referenced):** `derivation/code/outputs/figures/metriplectic/frw_continuity_residual__FRW-balance-v1.png`  
+**Notes:** Title includes RMS value; horizontal zero-line drawn for reference.
+
+---
+
 ## Diagnostics & Logs
 
 #### rd_dispersion_experiment results  <a id="data-rd-dispersion"></a>
@@ -463,6 +552,35 @@
 
 ---
 
+#### dark_photon noise budget plots  <a id="data-dp-noise-figures"></a>
+**Type:** image  
+**Purpose:** SNR vs integration time/ bandwidth plots with annotated regime split (quantum- vs thermal-limited)  
+**Produced by:** TODO: add anchor (see `derivation/code/physics/dark_photons/noise_budget.py`)  
+**Defined by (if math):** `EQUATIONS.md#vdm-e-dp-noise` (noise PSD models; quantum vs thermal)  
+**Inputs (symbols/constants):** detector noise PSDs, bandwidth, integration time grid, mixing $\varepsilon$ (if applicable)  
+**Units/Normalization:** `UNITS_NORMALIZATION.md#detector`
+
+**Shape & axes (exact as used):**
+- Shape: raster images, 150–180 DPI
+- Plots: `SNR(t_int)` and/or `SNR(B)` with regime annotations
+
+**Storage format & path pattern:**
+- Format: `png`
+- Path pattern: `derivation/code/outputs/figures/dark_photons/noise_budget__<tag>.png`
+- Compression/encoding: PNG lossless
+
+**Schema / columns (for tables/logs):**
+- N/A (image data)
+
+**Update cadence / lifecycle:** `per analysis run`  
+**Provenance (code locations):** TODO (planned)  
+**Validation hooks / KPIs:** `VALIDATION_METRICS.md#kpi-dp-regime-split`  
+**Retention / access constraints:** none  
+**Example artifact (if referenced):** none (pattern established)  
+**Notes:** Plot should label regime boundary $t_*$/bandwidth crossover and slopes.
+
+---
+
 #### reaction_diffusion diagnostic figures  <a id="data-rd-figures"></a>
 **Type:** image  
 **Purpose:** Reaction-diffusion dispersion and front speed validation plots  
@@ -489,6 +607,94 @@
 **Retention / access constraints:** none  
 **Example artifact (if referenced):** `derivation/code/outputs/figures/reaction_diffusion/rd_dispersion_experiment_20250824T053842Z.png`  
 **Notes:** Includes failed_runs subdirectory; dual locations (derivation/code and fum_rt/physics)
+
+---
+
+#### a6_collapse log  <a id="data-a6-collapse-log"></a>
+**Type:** log  
+**Purpose:** Gate record for A6 scaling collapse (max envelope) with pass/fail and artifact pointers  
+**Produced by:** `derivation/code/physics/collapse/run_a6_collapse.py:run_a6`  
+**Defined by (if math):** `EQUATIONS.md#vdm-e-a6-collapse` (junction logistic collapse; reference-only)  
+**Inputs (symbols/constants):** $\Theta$, $\Delta m$ grid, trials per point  
+**Units/Normalization:** dimensionless
+
+**Shape & axes (exact as used):**
+- Shape: JSON object
+- Fields: `spec`, `passed`, `env_max`, `figure`, `csv`, `raw_curves`
+
+**Storage format & path pattern:**
+- Format: `json`
+- Path pattern: `derivation/code/outputs/logs/collapse/a6_collapse__<tag>.json` (failed → `.../failed_runs/`)
+- Compression/encoding: none
+
+**Schema / columns (for tables/logs):**
+- Columns: `spec:dict`, `passed:bool`, `env_max:float`, `figure:str`, `csv:str`, `raw_curves:list`
+
+**Update cadence / lifecycle:** `per experiment run`  
+**Provenance (code locations):** `derivation/code/physics/collapse/run_a6_collapse.py:61-108`  
+**Validation hooks / KPIs:** `VALIDATION_METRICS.md#kpi-a6-envelope-max`  
+**Retention / access constraints:** none  
+**Example artifact (if referenced):** `derivation/code/outputs/logs/collapse/a6_collapse__A6-collapse-v1.json`  
+**Notes:** CONTRADICTION_REPORT emitted on failure with gate and artifact pointers.
+
+---
+
+#### a6_collapse envelope series  <a id="data-a6-collapse-series"></a>
+**Type:** table  
+**Purpose:** Per-bin envelope series for A6 collapse; used to compute max envelope gate  
+**Produced by:** `derivation/code/physics/collapse/run_a6_collapse.py:run_a6`  
+**Defined by (if math):** `EQUATIONS.md#vdm-e-a6-collapse`  
+**Inputs (symbols/constants):** $X$, $Y_{\min}$, $Y_{\max}$  
+**Units/Normalization:** dimensionless
+
+**Shape & axes (exact as used):**
+- Shape: CSV table
+- Columns: `X, Ymin, Ymax, envelope`
+
+**Storage format & path pattern:**
+- Format: `csv`
+- Path pattern: `derivation/code/outputs/logs/collapse/a6_collapse_envelope__<tag>.csv` (failed → `.../failed_runs/`)
+- Compression/encoding: none
+
+**Schema / columns (for tables/logs):**
+- Columns: `X:float`, `Ymin:float`, `Ymax:float`, `envelope:float`
+- Index/primary keys: `X`
+
+**Update cadence / lifecycle:** `per experiment run`  
+**Provenance (code locations):** `derivation/code/physics/collapse/run_a6_collapse.py:94-101`  
+**Validation hooks / KPIs:** `VALIDATION_METRICS.md#kpi-a6-envelope-max`  
+**Retention / access constraints:** none  
+**Example artifact (if referenced):** `derivation/code/outputs/logs/collapse/a6_collapse_envelope__A6-collapse-v1.csv`  
+**Notes:** Envelope computed after interpolating all curves onto shared X grid.
+
+---
+
+#### a6_collapse overlay figure  <a id="data-a6-collapse-figure"></a>
+**Type:** image  
+**Purpose:** Overlay of collapsed curves with envelope fill and max‑envelope in title  
+**Produced by:** `derivation/code/physics/collapse/run_a6_collapse.py:run_a6`  
+**Defined by (if math):** N/A (visualization)  
+**Inputs (symbols/constants):** A6 collapse curves and envelope  
+**Units/Normalization:** axis labels included
+
+**Shape & axes (exact as used):**
+- Shape: raster image
+- Dimensions: ~150 DPI
+
+**Storage format & path pattern:**
+- Format: `png`
+- Path pattern: `derivation/code/outputs/figures/collapse/a6_collapse_overlay__<tag>.png` (failed → `.../failed_runs/`)
+- Compression/encoding: PNG lossless
+
+**Schema / columns (for tables/logs):**
+- N/A (image data)
+
+**Update cadence / lifecycle:** `per experiment run`  
+**Provenance (code locations):** `derivation/code/physics/collapse/run_a6_collapse.py:79-92`  
+**Validation hooks / KPIs:** `VALIDATION_METRICS.md#kpi-a6-envelope-max`  
+**Retention / access constraints:** none  
+**Example artifact (if referenced):** `derivation/code/outputs/figures/collapse/a6_collapse_overlay__A6-collapse-v1.png`  
+**Notes:** Curves plotted with markers; fill_between shows envelope band.
 
 ---
 
@@ -1035,6 +1241,95 @@
 
 ---
 
+#### dark_photon noise budget tables  <a id="data-dp-noise"></a>
+**Type:** log  
+**Purpose:** Quantitative noise budget outputs (SNR curves, PSDs, regime boundary) for dark‑photon portal analyses  
+**Produced by:** TODO: add anchor (see `derivation/code/physics/dark_photons/noise_budget.py`)  
+**Defined by (if math):** `EQUATIONS.md#vdm-e-dp-noise`  
+**Inputs (symbols/constants):** detector model params, temperature, bandwidth, $t_{\text{int}}$ grid  
+**Units/Normalization:** detector-native (PSD units) with normalized SNR
+
+**Shape & axes (exact as used):**
+- Shape: JSON and CSV sidecars
+- JSON Fields: `params`, `series{t_int[], snr[], regime[]}`, `regime_boundary{t_star, method}`, `notes`
+- CSV Columns: `t_int, snr, regime_label`
+
+**Storage format & path pattern:**
+- Format: `json` + `csv`
+- Path pattern: `derivation/code/outputs/logs/dark_photons/noise_budget__<tag>.{json,csv}`
+- Compression/encoding: none
+
+**Schema / columns (for tables/logs):**
+- JSON: `params:dict`, `series:dict`, `regime_boundary:dict`, `notes:str`
+- CSV: `t_int:float`, `snr:float`, `regime_label:str`
+
+**Update cadence / lifecycle:** `per analysis run`  
+**Provenance (code locations):** TODO (planned)  
+**Validation hooks / KPIs:** `VALIDATION_METRICS.md#kpi-dp-regime-split`  
+**Retention / access constraints:** none  
+**Example artifact (if referenced):** none  
+**Notes:** Include detector noise PSD decomposition and any calibration factors in `params`.
+
+---
+
+#### dark_photon Fisher quick estimate  <a id="data-dp-fisher"></a>
+**Type:** log  
+**Purpose:** Quick Fisher information estimate for kinetic‑mixing parameter $\varepsilon$ with finite‑difference cross‑check  
+**Produced by:** TODO: add anchor (see `derivation/code/physics/dark_photons/fisher_quick.py`)  
+**Defined by (if math):** `EQUATIONS.md#vdm-e-dp-fisher`  
+**Inputs (symbols/constants):** model likelihood, background PSDs, $\varepsilon$  
+**Units/Normalization:** `\sigma(\varepsilon)` dimensionless
+
+**Shape & axes (exact as used):**
+- Shape: JSON object
+- Fields: `params`, `sigma_epsilon`, `fisher_info`, `method`, `finite_difference_check{sigma_fd, rel_err}`
+
+**Storage format & path pattern:**
+- Format: `json`
+- Path pattern: `derivation/code/outputs/logs/dark_photons/fisher_eps__<tag>.json`
+- Compression/encoding: none
+
+**Schema / columns (for tables/logs):**
+- Columns: `params:dict`, `sigma_epsilon:float`, `fisher_info:float`, `method:str`, `finite_difference_check:dict{sigma_fd:float, rel_err:float}`
+
+**Update cadence / lifecycle:** `per analysis run`  
+**Provenance (code locations):** TODO (planned)  
+**Validation hooks / KPIs:** `VALIDATION_METRICS.md#kpi-dp-fisher-consistency`  
+**Retention / access constraints:** none  
+**Example artifact (if referenced):** none  
+**Notes:** Prefer analytic derivatives where available; include finite‑difference step size in `params`.
+
+---
+
+#### dark_photon EFT ladder figure  <a id="data-dp-eft-figure"></a>
+**Type:** image  
+**Purpose:** Visual ladder of EFT regimes relevant to portal analyses (masses, couplings, production channels)  
+**Produced by:** TODO: add anchor (see `derivation/dark_photons/plot_eft_ladder.py`)  
+**Defined by (if math):** `EQUATIONS.md#vdm-e-dp-eft`  
+**Inputs (symbols/constants):** EFT parameters, cosmology bounds  
+**Units/Normalization:** axis‑appropriate (e.g., eV, GeV)
+
+**Shape & axes (exact as used):**
+- Shape: raster image
+- Dimensions: ~160 DPI
+
+**Storage format & path pattern:**
+- Format: `png`
+- Path pattern: `derivation/code/outputs/figures/dark_photons/eft_ladder__<tag>.png`
+- Compression/encoding: PNG lossless
+
+**Schema / columns (for tables/logs):**
+- N/A (image data)
+
+**Update cadence / lifecycle:** `on update`  
+**Provenance (code locations):** TODO (planned)  
+**Validation hooks / KPIs:** `VALIDATION_METRICS.md#kpi-dp-eft-coverage`  
+**Retention / access constraints:** none  
+**Example artifact (if referenced):** none  
+**Notes:** Link each labeled regime to references/constraints in caption or sidecar JSON.
+
+---
+
 <!-- BEGIN AUTOSECTION: DATA-INDEX -->
 <!-- Tool-maintained list of [Data Product](#data-...) anchors for quick lookup -->
 
@@ -1046,6 +1341,11 @@
 - [grid_tau0_report](#data-grid-tau0)
 - [qfum_metrics](#data-qfum-metrics)
 - [frw_conservation_check](#data-frw-conservation)
+
+**Cosmology / Gravity:**
+- [frw_continuity_residual log](#data-frw-balance-log)
+- [frw_continuity_residual series](#data-frw-balance-series)
+- [frw_continuity_residual figure](#data-frw-balance-figure)
 
 **Reaction-Diffusion:**
 - [rd_dispersion_experiment results](#data-rd-dispersion)
@@ -1071,6 +1371,12 @@
 - [memory_steering diagnostic figures](#data-memory-figures)
 - [agency options heatmap](#data-options-heatmap)
 - [vacuum_demographics residual plot](#data-vacuum-figure)
+
+**Dark Photons:**
+- [dark_photon noise budget tables](#data-dp-noise)
+- [dark_photon Fisher quick estimate](#data-dp-fisher)
+- [dark_photon noise budget plots](#data-dp-noise-figures)
+- [dark_photon EFT ladder figure](#data-dp-eft-figure)
 
 **Geometry Bundle:**
 - [activation matrices](#data-activation-matrices)

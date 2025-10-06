@@ -72,7 +72,7 @@ def run_a6(spec: A6Spec) -> Dict[str, Any]:
 
     # Artifacts
     import matplotlib.pyplot as plt
-    figp = figure_path("metriplectic", f"a6_collapse_overlay__{spec.tag}", failed=not passed)
+    figp = figure_path("collapse", f"a6_collapse_overlay__{spec.tag}", failed=not passed)
     plt.figure(figsize=(6.4, 4.2))
     # Plot curves
     for X, P in zip(curves_x, curves_y):
@@ -86,16 +86,16 @@ def run_a6(spec: A6Spec) -> Dict[str, Any]:
     plt.tight_layout(); plt.savefig(figp, dpi=150); plt.close()
 
     # CSV envelope
-    csvp = log_path("metriplectic", f"a6_collapse_envelope__{spec.tag}", failed=not passed, type="csv")
+    csvp = log_path("collapse", f"a6_collapse_envelope__{spec.tag}", failed=not passed, type="csv")
     with csvp.open("w", encoding="utf-8") as f:
         f.write("X,Ymin,Ymax,envelope\n")
         for xi, lo, hi, en in zip(Xc, Ymin, Ymax, envelope):
             f.write(f"{xi},{lo},{hi},{en}\n")
 
     logj = {"spec": {"tuples": spec.tuples}, "passed": passed, "env_max": env_max, "figure": str(figp), "csv": str(csvp), "raw_curves": raw}
-    write_log(log_path("metriplectic", f"a6_collapse__{spec.tag}", failed=not passed), logj)
+    write_log(log_path("collapse", f"a6_collapse__{spec.tag}", failed=not passed), logj)
     if not passed:
-        write_log(log_path("metriplectic", f"CONTRADICTION_REPORT_a6_collapse__{spec.tag}", failed=True), {
+        write_log(log_path("collapse", f"CONTRADICTION_REPORT_a6_collapse__{spec.tag}", failed=True), {
             "reason": "A6 collapse envelope exceeded tolerance",
             "gate": {"max_envelope": "<= 0.02"},
             "metrics": {"env_max": env_max},
