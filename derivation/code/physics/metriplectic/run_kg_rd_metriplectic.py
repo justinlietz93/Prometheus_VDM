@@ -67,8 +67,9 @@ def j_reversibility_kg(spec: StepSpec) -> Dict[str, Any]:
     energy_drift_01 = float(abs(E1 - E0))
     energy_drift_20 = float(abs(E2 - E0))
     tol_E = float(spec.params.get("j_only_energy_cap", 1e-12))
-    passes_strict = (rev_err <= tol_rev_strict) and (energy_drift_01 <= tol_E) and (energy_drift_20 <= tol_E)
-    cap_ok = (rev_err <= tol_rev_cap) and (energy_drift_01 <= max(tol_E, 1e-10)) and (energy_drift_20 <= max(tol_E, 1e-10))
+    # Gate only on reversibility; energy handled by separate oscillation-slope diagnostic
+    passes_strict = (rev_err <= tol_rev_strict)
+    cap_ok = (rev_err <= tol_rev_cap)
     # FFT roundoff bound for reference
     eps = float(np.finfo(float).eps) ; sqrtN = float(np.sqrt(N)) ; denom = eps * sqrtN if eps*sqrtN>0 else 1.0
     observed_c = float(rev_err / denom)
@@ -89,7 +90,10 @@ def j_reversibility_kg(spec: StepSpec) -> Dict[str, Any]:
 
 
 def j_energy_oscillation_slope(spec: StepSpec) -> Dict[str, Any]:
-    """Measure |E1 - E0| vs dt for KG J-only and fit slope on log-log.
+    """Measure multi-period peak-to-peak energy oscillation amplitude vs dt for KG J-only.
+
+    For each dt, advance with Verlet for T steps, record H_n = H(phi_n, pi_n),
+    compute amplitude = 0.5*(max(H_n) - min(H_n)) after a small burn-in. Fit log amplitude vs log dt.
 
     Gate: slope >= 1.9 and R2 >= 0.999 (expected ~2 for Verlet energy oscillation amplitude).
     """
@@ -97,19 +101,31 @@ def j_energy_oscillation_slope(spec: StepSpec) -> Dict[str, Any]:
     seeds = list(range(int(spec.seeds))) if isinstance(spec.seeds, int) else [int(s) for s in spec.seeds]
     scale = float(spec.params.get("seed_scale", 0.1))
     c = float(spec.params.get("c", 1.0)) ; m = float(spec.params.get("m", 0.0))
-    dt_to_drifts: Dict[float, List[float]] = {d: [] for d in dt_vals}
+    # Use a fixed physical time horizon T, so steps depend on dt: steps = ceil(T/dt)
+    T_total = float(spec.params.get("j_energy_T", 5.0))
+    T_burn = float(spec.params.get("j_energy_burnT", 0.5))
+    dt_to_amp: Dict[float, List[float]] = {d: [] for d in dt_vals}
     for seed in seeds:
         rng = np.random.default_rng(seed)
-        phi0 = rng.random(N).astype(float) * scale
-        pi0 = rng.random(N).astype(float) * scale
-        E0 = kg_energy(phi0, pi0, dx, c, m)
+        phi = rng.random(N).astype(float) * scale
+        pi = rng.random(N).astype(float) * scale
         for dt in dt_vals:
-            phi1, pi1 = kg_verlet_step(phi0, pi0, dt, dx, c, m)
-            E1 = kg_energy(phi1, pi1, dx, c, m)
-            drift = float(abs(E1 - E0))
-            dt_to_drifts[dt].append(drift)
+            steps_total = int(np.ceil(T_total / max(dt, 1e-12)))
+            burn = int(np.ceil(T_burn / max(dt, 1e-12)))
+            Hs: List[float] = []
+            ph, pr = phi.copy(), pi.copy()
+            for n in range(steps_total):
+                ph, pr = kg_verlet_step(ph, pr, dt, dx, c, m)
+                if n >= burn:
+                    Hs.append(kg_energy(ph, pr, dx, c, m))
+            if len(Hs) == 0:
+                amp = 0.0
+            else:
+                H_arr = np.array(Hs, dtype=float)
+                amp = 0.5 * float(np.max(H_arr) - np.min(H_arr))
+            dt_to_amp[dt].append(amp)
     dt_sorted = [float(d) for d in dt_vals]
-    med = [float(np.median(dt_to_drifts[d])) for d in dt_sorted]
+    med = [float(np.median(dt_to_amp[d])) for d in dt_sorted]
     x = np.log(np.array(dt_sorted, dtype=float)) ; y = np.log(np.array(med, dtype=float) + 1e-30)
     A = np.vstack([x, np.ones_like(x)]).T ; slope, b = np.linalg.lstsq(A, y, rcond=None)[0]
     y_pred = A @ np.array([slope, b]) ; ss_res = float(np.sum((y - y_pred)**2)) ; ss_tot = float(np.sum((y - np.mean(y))**2))
@@ -119,14 +135,15 @@ def j_energy_oscillation_slope(spec: StepSpec) -> Dict[str, Any]:
     import matplotlib.pyplot as plt
     figp = figure_path("metriplectic", _slug(spec, f"j_energy_oscillation_vs_dt"), failed=not passed)
     plt.figure(figsize=(6,4)); plt.plot(dt_sorted, med, "o-"); plt.xscale("log"); plt.yscale("log")
-    plt.xlabel("dt"); plt.ylabel("median |E1 - E0| (J-only)")
-    plt.title(f"KG J-only energy oscillation: slope≈{float(slope):.3f}, R2≈{float(R2):.4f}")
+    plt.xlabel("dt"); plt.ylabel("median peak-to-peak amplitude(H)/2 (J-only)")
+    plt.title(f"KG J-only energy amplitude (multi-period): slope≈{float(slope):.3f}, R2≈{float(R2):.4f}")
     plt.tight_layout(); plt.savefig(figp, dpi=150); plt.close()
-    logj = {"scheme": "j_only_energy", "dt": dt_sorted, "median_abs_E1_minus_E0": med, "fit": {"slope": float(slope), "R2": float(R2)}, "passed": passed, "figure": str(figp)}
+    logj = {"scheme": "j_only_energy", "dt": dt_sorted, "median_energy_amplitude": med, "fit": {"slope": float(slope), "R2": float(R2)}, "passed": passed, "figure": str(figp),
+        "settings": {"T_total": T_total, "T_burn": T_burn}}
     write_log(log_path("metriplectic", _slug(spec, "j_energy_oscillation_vs_dt"), failed=not passed), logj)
     csvp = log_path("metriplectic", _slug(spec, "j_energy_oscillation_vs_dt"), failed=not passed, type="csv")
     with csvp.open("w", encoding="utf-8") as f:
-        f.write("dt,median_abs_E1_minus_E0\n")
+        f.write("dt,median_energy_amplitude\n")
         for d, e in zip(dt_sorted, med):
             f.write(f"{d},{e}\n")
     return logj
@@ -158,8 +175,8 @@ def m_only_sweep(spec: StepSpec) -> Dict[str, Any]:
     figp = figure_path("metriplectic", _slug(spec, f"residual_vs_dt_m_only"), failed=failed)
     import matplotlib.pyplot as plt
     plt.figure(figsize=(6,4)); plt.plot(dt_vals, med, "o-"); plt.xscale("log"); plt.yscale("log")
-    plt.xlabel("dt"); plt.ylabel("two-grid error ||Φ_dt - Φ_{dt/2}∘Φ_{dt/2}||_∞")
-    plt.title(f"M-only two-grid: slope≈{float(slope):.3f}, R2≈{float(R2):.4f}")
+    plt.xlabel("dt"); plt.ylabel("two-grid error ||Φ_dt - Φ_{dt/2}∘Φ_{dt/2}||_∞ (ϕ-only)")
+    plt.title(f"M-only two-grid (ϕ-only): slope≈{float(slope):.3f}, R2≈{float(R2):.4f}")
     plt.tight_layout(); plt.savefig(figp, dpi=150); plt.close()
     logj = {"scheme": "m_only", "dt": dt_vals, "two_grid_error_inf_med": med, "fit": {"slope": float(slope), "R2": float(R2)}, "failed": failed, "figure": str(figp)}
     write_log(log_path("metriplectic", _slug(spec, "sweep_dt_m_only"), failed=failed), logj)

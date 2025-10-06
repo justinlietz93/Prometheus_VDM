@@ -2,7 +2,7 @@
 
 ## Current Goals
 
-- Working on KG⊕RD metriplectic RESULTS: created RESULTS_KG_RD_Metriplectic.md with tagged artifacts; fixing Markdown lint (no hard tabs, proper list indent). Next: finalize gates table and investigate KG J-only energy drift.
+- Completed kgRD-v1b sweep (H_energy norm) with J reversibility PASS-only gate; added Noether (energy/momentum) module with discrete invariants and dispersion; added metriplectic structure checks; updated RESULTS addendum with near-cubic note and Obj-B EXPLAINED-BY-DEFECT policy.
 
 ## Current Blockers
 
