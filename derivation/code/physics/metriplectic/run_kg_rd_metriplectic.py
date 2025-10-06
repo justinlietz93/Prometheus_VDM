@@ -14,7 +14,7 @@ if str(CODE_ROOT) not in sys.path:
     sys.path.insert(0, str(CODE_ROOT))
 
 from common.io_paths import figure_path, log_path, write_log
-from physics.metriplectic.kg_ops import kg_verlet_step, kg_energy
+from physics.metriplectic.kg_ops import kg_verlet_step, kg_energy, spectral_grad
 from physics.metriplectic.compose import (
     m_only_step_with_stats, jmj_strang_step_with_stats, mjm_strang_step,
     two_grid_error_inf
@@ -88,6 +88,50 @@ def j_reversibility_kg(spec: StepSpec) -> Dict[str, Any]:
     return logj
 
 
+def j_energy_oscillation_slope(spec: StepSpec) -> Dict[str, Any]:
+    """Measure |E1 - E0| vs dt for KG J-only and fit slope on log-log.
+
+    Gate: slope >= 1.9 and R2 >= 0.999 (expected ~2 for Verlet energy oscillation amplitude).
+    """
+    N = int(spec.grid["N"]) ; dx = float(spec.grid["dx"]) ; dt_vals = [float(d) for d in spec.dt_sweep]
+    seeds = list(range(int(spec.seeds))) if isinstance(spec.seeds, int) else [int(s) for s in spec.seeds]
+    scale = float(spec.params.get("seed_scale", 0.1))
+    c = float(spec.params.get("c", 1.0)) ; m = float(spec.params.get("m", 0.0))
+    dt_to_drifts: Dict[float, List[float]] = {d: [] for d in dt_vals}
+    for seed in seeds:
+        rng = np.random.default_rng(seed)
+        phi0 = rng.random(N).astype(float) * scale
+        pi0 = rng.random(N).astype(float) * scale
+        E0 = kg_energy(phi0, pi0, dx, c, m)
+        for dt in dt_vals:
+            phi1, pi1 = kg_verlet_step(phi0, pi0, dt, dx, c, m)
+            E1 = kg_energy(phi1, pi1, dx, c, m)
+            drift = float(abs(E1 - E0))
+            dt_to_drifts[dt].append(drift)
+    dt_sorted = [float(d) for d in dt_vals]
+    med = [float(np.median(dt_to_drifts[d])) for d in dt_sorted]
+    x = np.log(np.array(dt_sorted, dtype=float)) ; y = np.log(np.array(med, dtype=float) + 1e-30)
+    A = np.vstack([x, np.ones_like(x)]).T ; slope, b = np.linalg.lstsq(A, y, rcond=None)[0]
+    y_pred = A @ np.array([slope, b]) ; ss_res = float(np.sum((y - y_pred)**2)) ; ss_tot = float(np.sum((y - np.mean(y))**2))
+    R2 = 1.0 - (ss_res / ss_tot if ss_tot>0 else 0.0)
+    passed = bool((slope >= 1.9) and (R2 >= 0.999))
+    # Artifacts
+    import matplotlib.pyplot as plt
+    figp = figure_path("metriplectic", _slug(spec, f"j_energy_oscillation_vs_dt"), failed=not passed)
+    plt.figure(figsize=(6,4)); plt.plot(dt_sorted, med, "o-"); plt.xscale("log"); plt.yscale("log")
+    plt.xlabel("dt"); plt.ylabel("median |E1 - E0| (J-only)")
+    plt.title(f"KG J-only energy oscillation: slope≈{float(slope):.3f}, R2≈{float(R2):.4f}")
+    plt.tight_layout(); plt.savefig(figp, dpi=150); plt.close()
+    logj = {"scheme": "j_only_energy", "dt": dt_sorted, "median_abs_E1_minus_E0": med, "fit": {"slope": float(slope), "R2": float(R2)}, "passed": passed, "figure": str(figp)}
+    write_log(log_path("metriplectic", _slug(spec, "j_energy_oscillation_vs_dt"), failed=not passed), logj)
+    csvp = log_path("metriplectic", _slug(spec, "j_energy_oscillation_vs_dt"), failed=not passed, type="csv")
+    with csvp.open("w", encoding="utf-8") as f:
+        f.write("dt,median_abs_E1_minus_E0\n")
+        for d, e in zip(dt_sorted, med):
+            f.write(f"{d},{e}\n")
+    return logj
+
+
 def m_only_sweep(spec: StepSpec) -> Dict[str, Any]:
     N = int(spec.grid["N"]) ; dx = float(spec.grid["dx"]) ; seeds = list(range(int(spec.seeds))) if isinstance(spec.seeds, int) else [int(s) for s in spec.seeds]
     dt_vals = [float(d) for d in spec.dt_sweep]
@@ -127,6 +171,16 @@ def m_only_sweep(spec: StepSpec) -> Dict[str, Any]:
     return logj
 
 
+def _energy_norm_delta(phi_a: np.ndarray, pi_a: np.ndarray, phi_b: np.ndarray, pi_b: np.ndarray, dx: float, c: float, m: float) -> float:
+    dphi = (phi_a - phi_b)
+    dpi = (pi_a - pi_b)
+    # Spectral gradient consistent with J-step
+    g = spectral_grad(dphi, dx)
+    e2 = float(np.sum(dpi * dpi + (c * c) * (g * g) + (m * m) * (dphi * dphi)) * dx)
+    # Return the norm (sqrt of quadratic form)
+    return float(np.sqrt(max(e2, 0.0)))
+
+
 def jmj_kg_rd_sweep(spec: StepSpec) -> Dict[str, Any]:
     # Compose J(kg) and M(DG) as Strang with spectral M
     N = int(spec.grid["N"]) ; dx = float(spec.grid["dx"]) ; dt_vals = [float(d) for d in spec.dt_sweep]
@@ -135,42 +189,70 @@ def jmj_kg_rd_sweep(spec: StepSpec) -> Dict[str, Any]:
     params = dict(spec.params)
     params["m_lap_operator"] = str(params.get("m_lap_operator", "spectral"))
 
-    def jmj_step_scalar(W: np.ndarray, dt: float) -> np.ndarray:
-        # Lift scalar W to (phi,pi), apply JMJ then return phi component for error measure
-        phi0 = W.copy()
-        pi0 = np.zeros_like(W)
+    def jmj_step_vec(phi: np.ndarray, pi: np.ndarray, dt: float) -> Tuple[np.ndarray, np.ndarray]:
+        """Apply Strang JMJ to (phi,pi) and return both components."""
+        c = float(params.get("c", 1.0))
+        m = float(params.get("m", 0.0))
         # J half
-        phi1, pi1 = kg_verlet_step(phi0, pi0, 0.5*dt, dx, float(params.get("c",1.0)), float(params.get("m",0.0)))
+        phi1, pi1 = kg_verlet_step(phi, pi, 0.5 * dt, dx, c, m)
         # M full (DG on phi only)
-        phi2, stats = m_only_step_with_stats(phi1, dt, dx, params)
+        phi2, _stats = m_only_step_with_stats(phi1, dt, dx, params)
         # J half
-        phi3, pi3 = kg_verlet_step(phi2, pi1, 0.5*dt, dx, float(params.get("c",1.0)), float(params.get("m",0.0)))
-        return phi3
+        phi3, pi3 = kg_verlet_step(phi2, pi1, 0.5 * dt, dx, c, m)
+        return phi3, pi3
 
+    norm_mode = str(spec.params.get("norm", "phi_only")).lower()
     dt_to_errs: Dict[float, List[float]] = {d: [] for d in dt_vals}
     for seed in seeds:
-        phi0 = np.random.default_rng(seed).random(N).astype(float) * seed_scale
+        rng = np.random.default_rng(seed)
+        phi0 = rng.random(N).astype(float) * seed_scale
+        pi0 = rng.random(N).astype(float) * seed_scale
         for dt in dt_vals:
-            e = two_grid_error_inf(jmj_step_scalar, phi0, dt)
-            dt_to_errs[dt].append(e)
+            if norm_mode == "h_energy":
+                # One big step
+                phi_b, pi_b = jmj_step_vec(phi0, pi0, dt)
+                # Two half steps
+                phi_h1, pi_h1 = jmj_step_vec(phi0, pi0, 0.5 * dt)
+                phi_h2, pi_h2 = jmj_step_vec(phi_h1, pi_h1, 0.5 * dt)
+                e = _energy_norm_delta(phi_b, pi_b, phi_h2, pi_h2, dx, float(params.get("c", 1.0)), float(params.get("m", 0.0)))
+            else:
+                # phi-only ablation (legacy)
+                def jmj_step_scalar(W: np.ndarray, dt_in: float) -> np.ndarray:
+                    ph = W.copy()
+                    pi = np.zeros_like(W)
+                    ph1, pi1 = kg_verlet_step(ph, pi, 0.5 * dt_in, dx, float(params.get("c", 1.0)), float(params.get("m", 0.0)))
+                    ph2, _ = m_only_step_with_stats(ph1, dt_in, dx, params)
+                    ph3, _ = kg_verlet_step(ph2, pi1, 0.5 * dt_in, dx, float(params.get("c", 1.0)), float(params.get("m", 0.0)))
+                    return ph3
+                e = two_grid_error_inf(jmj_step_scalar, phi0, dt)
+            dt_to_errs[dt].append(float(e))
     med = [float(np.median(dt_to_errs[d])) for d in dt_vals]
     x = np.log(np.array(dt_vals, dtype=float)) ; y = np.log(np.array(med, dtype=float) + 1e-30)
     A = np.vstack([x, np.ones_like(x)]).T ; slope, b = np.linalg.lstsq(A, y, rcond=None)[0]
     y_pred = A @ np.array([slope, b]) ; ss_res = float(np.sum((y - y_pred)**2)) ; ss_tot = float(np.sum((y - np.mean(y))**2))
     R2 = 1.0 - (ss_res / ss_tot if ss_tot>0 else 0.0)
-    failed = bool((slope < 2.9) or (R2 < 0.999))
+    # Trivial pass if differences ~ machine precision across all dt
+    eps = float(np.finfo(float).eps)
+    trivial = all(v < 1e-14 for v in med)
+    failed = False if trivial else bool((slope < 2.9) or (R2 < 0.999))
     # artifacts
     import matplotlib.pyplot as plt
     figp = figure_path("metriplectic", _slug(spec, f"residual_vs_dt_jmj"), failed=failed)
     plt.figure(figsize=(6,4)); plt.plot(dt_vals, med, "o-"); plt.xscale("log"); plt.yscale("log")
-    plt.xlabel("dt"); plt.ylabel("two-grid error ||Φ_dt - Φ_{dt/2}∘Φ_{dt/2}||_∞")
-    plt.title(f"JMJ two-grid (KG⊕RD spectral-DG): slope≈{float(slope):.3f}, R2≈{float(R2):.4f}")
+    plt.xlabel("dt")
+    if norm_mode == "h_energy":
+        plt.ylabel("two-grid error |(Δϕ,Δπ)|_H")
+        title_extra = " (H-norm)"
+    else:
+        plt.ylabel("two-grid error ||Δϕ||_∞")
+        title_extra = " (ϕ-only)"
+    plt.title(f"JMJ two-grid (KG⊕RD spectral-DG){title_extra}: slope≈{float(slope):.3f}, R2≈{float(R2):.4f}")
     plt.tight_layout(); plt.savefig(figp, dpi=150); plt.close()
-    logj = {"scheme": "jmj", "dt": dt_vals, "two_grid_error_inf_med": med, "fit": {"slope": float(slope), "R2": float(R2)}, "failed": failed, "figure": str(figp)}
+    logj = {"scheme": "jmj", "norm": norm_mode, "dt": dt_vals, "two_grid_error_med": med, "fit": {"slope": float(slope), "R2": float(R2)}, "trivial": trivial, "failed": failed, "figure": str(figp)}
     write_log(log_path("metriplectic", _slug(spec, "sweep_dt_jmj"), failed=failed), logj)
     csvp = log_path("metriplectic", _slug(spec, "residual_vs_dt_jmj"), failed=failed, type="csv")
     with csvp.open("w", encoding="utf-8") as f:
-        f.write("dt,two_grid_error_inf_median\n")
+        f.write("dt,two_grid_error_median\n")
         for d, e in zip(dt_vals, med):
             f.write(f"{d},{e}\n")
     return logj
@@ -244,6 +326,7 @@ def main():
 
     # Diagnostics
     j_rev = j_reversibility_kg(spec)
+    j_energy = j_energy_oscillation_slope(spec)
     m_sw = m_only_sweep(spec)
     jmj_sw = jmj_kg_rd_sweep(spec)
     defect = defect_diagnostic(spec)
@@ -251,6 +334,7 @@ def main():
     print(json.dumps({
         "scheme": spec.scheme,
         "j_reversibility_kg": j_rev,
+        "j_energy_oscillation": j_energy,
         "two_grid_m_only": m_sw,
         "two_grid_jmj": jmj_sw,
         "strang_defect": defect

@@ -1,0 +1,22 @@
+{
+  "cap_ok": false,
+  "dt": 0.005,
+  "energy_drifts": {
+    "W1_minus_W0": 2.1607564790193656e-07,
+    "W2_minus_W0": 0.0
+  },
+  "fft_roundoff_bound": {
+    "epsilon": 2.220446049250313e-16,
+    "epsilon_sqrtN": 3.552713678800501e-15,
+    "observed_c": 0.001953125,
+    "sqrtN": 16.0
+  },
+  "passes": false,
+  "passes_strict": false,
+  "rev_inf_error": 6.938893903907228e-18,
+  "tolerances": {
+    "E_cap": 1e-12,
+    "rev_inf_cap": 1e-10,
+    "rev_inf_strict": 1e-12
+  }
+}
