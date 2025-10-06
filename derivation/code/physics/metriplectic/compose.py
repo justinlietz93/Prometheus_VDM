@@ -39,7 +39,8 @@ def m_only_step_with_stats(W: np.ndarray, dt: float, dx: float, params: Dict[str
     tol = float(params.get("dg_tol", 1e-12))
     max_iter = int(params.get("dg_max_iter", 20))
     max_backtracks = int(params.get("dg_max_backtracks", 10))
-    return dg_rd_step_with_stats(W, dt, dx, float(params["D"]), float(params["r"]), float(params["u"]), tol=tol, max_iter=max_iter, max_backtracks=max_backtracks)
+    lap_operator = str(params.get("m_lap_operator", "stencil"))
+    return dg_rd_step_with_stats(W, dt, dx, float(params["D"]), float(params["r"]), float(params["u"]), tol=tol, max_iter=max_iter, max_backtracks=max_backtracks, lap_operator=lap_operator)
 
 
 def jmj_strang_step(W: np.ndarray, dt: float, dx: float, params: Dict[str, Any]) -> np.ndarray:
