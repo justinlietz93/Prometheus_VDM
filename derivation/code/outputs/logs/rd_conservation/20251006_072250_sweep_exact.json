@@ -1,0 +1,814 @@
+{
+  "bc": "periodic",
+  "metric": "two_grid_error_inf",
+  "params": {
+    "D": 1.0,
+    "N": 128,
+    "dx": 1.0,
+    "r": 0.2,
+    "u": 0.25
+  },
+  "samples": [
+    {
+      "dt": 0.04,
+      "seed": 0,
+      "two_grid_error_inf": 7.482679814388438e-06
+    },
+    {
+      "dt": 0.02,
+      "seed": 0,
+      "two_grid_error_inf": 1.002663290033956e-06
+    },
+    {
+      "dt": 0.01,
+      "seed": 0,
+      "two_grid_error_inf": 1.298568855223614e-07
+    },
+    {
+      "dt": 0.005,
+      "seed": 0,
+      "two_grid_error_inf": 1.652530955131848e-08
+    },
+    {
+      "dt": 0.04,
+      "seed": 1,
+      "two_grid_error_inf": 6.727976253399076e-06
+    },
+    {
+      "dt": 0.02,
+      "seed": 1,
+      "two_grid_error_inf": 9.021858467222338e-07
+    },
+    {
+      "dt": 0.01,
+      "seed": 1,
+      "two_grid_error_inf": 1.1688763215493558e-07
+    },
+    {
+      "dt": 0.005,
+      "seed": 1,
+      "two_grid_error_inf": 1.4877697380490107e-08
+    },
+    {
+      "dt": 0.04,
+      "seed": 2,
+      "two_grid_error_inf": 5.222212586133632e-06
+    },
+    {
+      "dt": 0.02,
+      "seed": 2,
+      "two_grid_error_inf": 6.953854438957602e-07
+    },
+    {
+      "dt": 0.01,
+      "seed": 2,
+      "two_grid_error_inf": 8.97716956474795e-08
+    },
+    {
+      "dt": 0.005,
+      "seed": 2,
+      "two_grid_error_inf": 1.1405607867019663e-08
+    },
+    {
+      "dt": 0.04,
+      "seed": 3,
+      "two_grid_error_inf": 6.526889858221585e-06
+    },
+    {
+      "dt": 0.02,
+      "seed": 3,
+      "two_grid_error_inf": 8.758744640124938e-07
+    },
+    {
+      "dt": 0.01,
+      "seed": 3,
+      "two_grid_error_inf": 1.1352018101928874e-07
+    },
+    {
+      "dt": 0.005,
+      "seed": 3,
+      "two_grid_error_inf": 1.445169614533448e-08
+    },
+    {
+      "dt": 0.04,
+      "seed": 4,
+      "two_grid_error_inf": 6.0131919672901796e-06
+    },
+    {
+      "dt": 0.02,
+      "seed": 4,
+      "two_grid_error_inf": 8.055884212748027e-07
+    },
+    {
+      "dt": 0.01,
+      "seed": 4,
+      "two_grid_error_inf": 1.0432217613549899e-07
+    },
+    {
+      "dt": 0.005,
+      "seed": 4,
+      "two_grid_error_inf": 1.3275090205051854e-08
+    },
+    {
+      "dt": 0.04,
+      "seed": 5,
+      "two_grid_error_inf": 7.152023198682411e-06
+    },
+    {
+      "dt": 0.02,
+      "seed": 5,
+      "two_grid_error_inf": 9.588764954496926e-07
+    },
+    {
+      "dt": 0.01,
+      "seed": 5,
+      "two_grid_error_inf": 1.2422007985256334e-07
+    },
+    {
+      "dt": 0.005,
+      "seed": 5,
+      "two_grid_error_inf": 1.5810156472201298e-08
+    },
+    {
+      "dt": 0.04,
+      "seed": 6,
+      "two_grid_error_inf": 7.040846599901118e-06
+    },
+    {
+      "dt": 0.02,
+      "seed": 6,
+      "two_grid_error_inf": 9.441899114365215e-07
+    },
+    {
+      "dt": 0.01,
+      "seed": 6,
+      "two_grid_error_inf": 1.2233277124629183e-07
+    },
+    {
+      "dt": 0.005,
+      "seed": 6,
+      "two_grid_error_inf": 1.557096382387435e-08
+    },
+    {
+      "dt": 0.04,
+      "seed": 7,
+      "two_grid_error_inf": 7.501678811666634e-06
+    },
+    {
+      "dt": 0.02,
+      "seed": 7,
+      "two_grid_error_inf": 1.0033751172283667e-06
+    },
+    {
+      "dt": 0.01,
+      "seed": 7,
+      "two_grid_error_inf": 1.298249021203235e-07
+    },
+    {
+      "dt": 0.005,
+      "seed": 7,
+      "two_grid_error_inf": 1.6513176992472012e-08
+    },
+    {
+      "dt": 0.04,
+      "seed": 8,
+      "two_grid_error_inf": 5.675682626760797e-06
+    },
+    {
+      "dt": 0.02,
+      "seed": 8,
+      "two_grid_error_inf": 7.581059957087466e-07
+    },
+    {
+      "dt": 0.01,
+      "seed": 8,
+      "two_grid_error_inf": 9.802584086116006e-08
+    },
+    {
+      "dt": 0.005,
+      "seed": 8,
+      "two_grid_error_inf": 1.2464482303069235e-08
+    },
+    {
+      "dt": 0.04,
+      "seed": 9,
+      "two_grid_error_inf": 6.517494473591567e-06
+    },
+    {
+      "dt": 0.02,
+      "seed": 9,
+      "two_grid_error_inf": 8.71059331070817e-07
+    },
+    {
+      "dt": 0.01,
+      "seed": 9,
+      "two_grid_error_inf": 1.1265980404129294e-07
+    },
+    {
+      "dt": 0.005,
+      "seed": 9,
+      "two_grid_error_inf": 1.4326948055004562e-08
+    },
+    {
+      "dt": 0.04,
+      "seed": 10,
+      "two_grid_error_inf": 6.5953510673677496e-06
+    },
+    {
+      "dt": 0.02,
+      "seed": 10,
+      "two_grid_error_inf": 8.865601326124573e-07
+    },
+    {
+      "dt": 0.01,
+      "seed": 10,
+      "two_grid_error_inf": 1.1500841257117145e-07
+    },
+    {
+      "dt": 0.005,
+      "seed": 10,
+      "two_grid_error_inf": 1.4647918142318694e-08
+    },
+    {
+      "dt": 0.04,
+      "seed": 11,
+      "two_grid_error_inf": 6.074398832874722e-06
+    },
+    {
+      "dt": 0.02,
+      "seed": 11,
+      "two_grid_error_inf": 8.099828302278456e-07
+    },
+    {
+      "dt": 0.01,
+      "seed": 11,
+      "two_grid_error_inf": 1.0463966794525131e-07
+    },
+    {
+      "dt": 0.005,
+      "seed": 11,
+      "two_grid_error_inf": 1.3299339330762744e-08
+    },
+    {
+      "dt": 0.04,
+      "seed": 12,
+      "two_grid_error_inf": 7.335980678396803e-06
+    },
+    {
+      "dt": 0.02,
+      "seed": 12,
+      "two_grid_error_inf": 9.83196647402762e-07
+    },
+    {
+      "dt": 0.01,
+      "seed": 12,
+      "two_grid_error_inf": 1.2734756681120896e-07
+    },
+    {
+      "dt": 0.005,
+      "seed": 12,
+      "two_grid_error_inf": 1.620671674640306e-08
+    },
+    {
+      "dt": 0.04,
+      "seed": 13,
+      "two_grid_error_inf": 6.081877211915748e-06
+    },
+    {
+      "dt": 0.02,
+      "seed": 13,
+      "two_grid_error_inf": 8.117947918329094e-07
+    },
+    {
+      "dt": 0.01,
+      "seed": 13,
+      "two_grid_error_inf": 1.0493067543592555e-07
+    },
+    {
+      "dt": 0.005,
+      "seed": 13,
+      "two_grid_error_inf": 1.3340076318764382e-08
+    },
+    {
+      "dt": 0.04,
+      "seed": 14,
+      "two_grid_error_inf": 6.434536506103039e-06
+    },
+    {
+      "dt": 0.02,
+      "seed": 14,
+      "two_grid_error_inf": 8.605338600448098e-07
+    },
+    {
+      "dt": 0.01,
+      "seed": 14,
+      "two_grid_error_inf": 1.1133564911669502e-07
+    },
+    {
+      "dt": 0.005,
+      "seed": 14,
+      "two_grid_error_inf": 1.4160949232677744e-08
+    },
+    {
+      "dt": 0.04,
+      "seed": 15,
+      "two_grid_error_inf": 6.714670329137362e-06
+    },
+    {
+      "dt": 0.02,
+      "seed": 15,
+      "two_grid_error_inf": 8.971086110252588e-07
+    },
+    {
+      "dt": 0.01,
+      "seed": 15,
+      "two_grid_error_inf": 1.1601099812784746e-07
+    },
+    {
+      "dt": 0.005,
+      "seed": 15,
+      "two_grid_error_inf": 1.4752033297617956e-08
+    },
+    {
+      "dt": 0.04,
+      "seed": 16,
+      "two_grid_error_inf": 6.3176557912048015e-06
+    },
+    {
+      "dt": 0.02,
+      "seed": 16,
+      "two_grid_error_inf": 8.466161539877337e-07
+    },
+    {
+      "dt": 0.01,
+      "seed": 16,
+      "two_grid_error_inf": 1.0964865473916952e-07
+    },
+    {
+      "dt": 0.005,
+      "seed": 16,
+      "two_grid_error_inf": 1.3953687802437109e-08
+    },
+    {
+      "dt": 0.04,
+      "seed": 17,
+      "two_grid_error_inf": 6.156179095190284e-06
+    },
+    {
+      "dt": 0.02,
+      "seed": 17,
+      "two_grid_error_inf": 8.226695034779796e-07
+    },
+    {
+      "dt": 0.01,
+      "seed": 17,
+      "two_grid_error_inf": 1.0639681925772582e-07
+    },
+    {
+      "dt": 0.005,
+      "seed": 17,
+      "two_grid_error_inf": 1.3530274872719517e-08
+    },
+    {
+      "dt": 0.04,
+      "seed": 18,
+      "two_grid_error_inf": 6.9811288942490946e-06
+    },
+    {
+      "dt": 0.02,
+      "seed": 18,
+      "two_grid_error_inf": 9.34255268058605e-07
+    },
+    {
+      "dt": 0.01,
+      "seed": 18,
+      "two_grid_error_inf": 1.2091568173718675e-07
+    },
+    {
+      "dt": 0.005,
+      "seed": 18,
+      "two_grid_error_inf": 1.5382162575801328e-08
+    },
+    {
+      "dt": 0.04,
+      "seed": 19,
+      "two_grid_error_inf": 5.662714650772616e-06
+    },
+    {
+      "dt": 0.02,
+      "seed": 19,
+      "two_grid_error_inf": 7.592208880607965e-07
+    },
+    {
+      "dt": 0.01,
+      "seed": 19,
+      "two_grid_error_inf": 9.835435414717875e-08
+    },
+    {
+      "dt": 0.005,
+      "seed": 19,
+      "two_grid_error_inf": 1.2517975572778894e-08
+    },
+    {
+      "dt": 0.04,
+      "seed": 20,
+      "two_grid_error_inf": 6.216064678626898e-06
+    },
+    {
+      "dt": 0.02,
+      "seed": 20,
+      "two_grid_error_inf": 8.31917997060061e-07
+    },
+    {
+      "dt": 0.01,
+      "seed": 20,
+      "two_grid_error_inf": 1.0767528972610574e-07
+    },
+    {
+      "dt": 0.005,
+      "seed": 20,
+      "two_grid_error_inf": 1.3698143563889431e-08
+    },
+    {
+      "dt": 0.04,
+      "seed": 21,
+      "two_grid_error_inf": 5.800028281259528e-06
+    },
+    {
+      "dt": 0.02,
+      "seed": 21,
+      "two_grid_error_inf": 7.723856959036129e-07
+    },
+    {
+      "dt": 0.01,
+      "seed": 21,
+      "two_grid_error_inf": 9.971419479004595e-08
+    },
+    {
+      "dt": 0.005,
+      "seed": 21,
+      "two_grid_error_inf": 1.2668889328663197e-08
+    },
+    {
+      "dt": 0.04,
+      "seed": 22,
+      "two_grid_error_inf": 5.369289303600033e-06
+    },
+    {
+      "dt": 0.02,
+      "seed": 22,
+      "two_grid_error_inf": 7.172709735464577e-07
+    },
+    {
+      "dt": 0.01,
+      "seed": 22,
+      "two_grid_error_inf": 9.274874006315326e-08
+    },
+    {
+      "dt": 0.005,
+      "seed": 22,
+      "two_grid_error_inf": 1.1793580070862397e-08
+    },
+    {
+      "dt": 0.04,
+      "seed": 23,
+      "two_grid_error_inf": 6.914162981541683e-06
+    },
+    {
+      "dt": 0.02,
+      "seed": 23,
+      "two_grid_error_inf": 9.267015260300271e-07
+    },
+    {
+      "dt": 0.01,
+      "seed": 23,
+      "two_grid_error_inf": 1.2003317785558298e-07
+    },
+    {
+      "dt": 0.005,
+      "seed": 23,
+      "two_grid_error_inf": 1.5276076098524882e-08
+    },
+    {
+      "dt": 0.04,
+      "seed": 24,
+      "two_grid_error_inf": 6.045942954890915e-06
+    },
+    {
+      "dt": 0.02,
+      "seed": 24,
+      "two_grid_error_inf": 8.084670795327487e-07
+    },
+    {
+      "dt": 0.01,
+      "seed": 24,
+      "two_grid_error_inf": 1.045938640281685e-07
+    },
+    {
+      "dt": 0.005,
+      "seed": 24,
+      "two_grid_error_inf": 1.3303137688658317e-08
+    },
+    {
+      "dt": 0.04,
+      "seed": 25,
+      "two_grid_error_inf": 6.951638356539336e-06
+    },
+    {
+      "dt": 0.02,
+      "seed": 25,
+      "two_grid_error_inf": 9.296525382562759e-07
+    },
+    {
+      "dt": 0.01,
+      "seed": 25,
+      "two_grid_error_inf": 1.2027806153835918e-07
+    },
+    {
+      "dt": 0.005,
+      "seed": 25,
+      "two_grid_error_inf": 1.529841012204436e-08
+    },
+    {
+      "dt": 0.04,
+      "seed": 26,
+      "two_grid_error_inf": 5.695762307356134e-06
+    },
+    {
+      "dt": 0.02,
+      "seed": 26,
+      "two_grid_error_inf": 7.635557180696306e-07
+    },
+    {
+      "dt": 0.01,
+      "seed": 26,
+      "two_grid_error_inf": 9.891099098102707e-08
+    },
+    {
+      "dt": 0.005,
+      "seed": 26,
+      "two_grid_error_inf": 1.2588551256964564e-08
+    },
+    {
+      "dt": 0.04,
+      "seed": 27,
+      "two_grid_error_inf": 8.143173221383804e-06
+    },
+    {
+      "dt": 0.02,
+      "seed": 27,
+      "two_grid_error_inf": 1.090802589170936e-06
+    },
+    {
+      "dt": 0.01,
+      "seed": 27,
+      "two_grid_error_inf": 1.41246980986387e-07
+    },
+    {
+      "dt": 0.005,
+      "seed": 27,
+      "two_grid_error_inf": 1.7973158544792867e-08
+    },
+    {
+      "dt": 0.04,
+      "seed": 28,
+      "two_grid_error_inf": 6.16311085771884e-06
+    },
+    {
+      "dt": 0.02,
+      "seed": 28,
+      "two_grid_error_inf": 8.247720550830229e-07
+    },
+    {
+      "dt": 0.01,
+      "seed": 28,
+      "two_grid_error_inf": 1.0674613081310125e-07
+    },
+    {
+      "dt": 0.005,
+      "seed": 28,
+      "two_grid_error_inf": 1.3579648926176358e-08
+    },
+    {
+      "dt": 0.04,
+      "seed": 29,
+      "two_grid_error_inf": 6.085541819800255e-06
+    },
+    {
+      "dt": 0.02,
+      "seed": 29,
+      "two_grid_error_inf": 8.115411252174187e-07
+    },
+    {
+      "dt": 0.01,
+      "seed": 29,
+      "two_grid_error_inf": 1.048444440987506e-07
+    },
+    {
+      "dt": 0.005,
+      "seed": 29,
+      "two_grid_error_inf": 1.3325553369081256e-08
+    },
+    {
+      "dt": 0.04,
+      "seed": 30,
+      "two_grid_error_inf": 5.8294034083611335e-06
+    },
+    {
+      "dt": 0.02,
+      "seed": 30,
+      "two_grid_error_inf": 7.780864617334959e-07
+    },
+    {
+      "dt": 0.01,
+      "seed": 30,
+      "two_grid_error_inf": 1.0057028837495707e-07
+    },
+    {
+      "dt": 0.005,
+      "seed": 30,
+      "two_grid_error_inf": 1.2785437097928565e-08
+    },
+    {
+      "dt": 0.04,
+      "seed": 31,
+      "two_grid_error_inf": 7.754600004974965e-06
+    },
+    {
+      "dt": 0.02,
+      "seed": 31,
+      "two_grid_error_inf": 1.0386350150076717e-06
+    },
+    {
+      "dt": 0.01,
+      "seed": 31,
+      "two_grid_error_inf": 1.3448325555942553e-07
+    },
+    {
+      "dt": 0.005,
+      "seed": 31,
+      "two_grid_error_inf": 1.711192115783078e-08
+    },
+    {
+      "dt": 0.04,
+      "seed": 32,
+      "two_grid_error_inf": 6.417410502926671e-06
+    },
+    {
+      "dt": 0.02,
+      "seed": 32,
+      "two_grid_error_inf": 8.578263445834129e-07
+    },
+    {
+      "dt": 0.01,
+      "seed": 32,
+      "two_grid_error_inf": 1.1095911284014423e-07
+    },
+    {
+      "dt": 0.005,
+      "seed": 32,
+      "two_grid_error_inf": 1.4111406178123065e-08
+    },
+    {
+      "dt": 0.04,
+      "seed": 33,
+      "two_grid_error_inf": 6.198283859712439e-06
+    },
+    {
+      "dt": 0.02,
+      "seed": 33,
+      "two_grid_error_inf": 8.300485682538605e-07
+    },
+    {
+      "dt": 0.01,
+      "seed": 33,
+      "two_grid_error_inf": 1.0746776286929549e-07
+    },
+    {
+      "dt": 0.005,
+      "seed": 33,
+      "two_grid_error_inf": 1.3673976145822664e-08
+    },
+    {
+      "dt": 0.04,
+      "seed": 34,
+      "two_grid_error_inf": 7.125888138795333e-06
+    },
+    {
+      "dt": 0.02,
+      "seed": 34,
+      "two_grid_error_inf": 9.560877507336363e-07
+    },
+    {
+      "dt": 0.01,
+      "seed": 34,
+      "two_grid_error_inf": 1.2390745071644282e-07
+    },
+    {
+      "dt": 0.005,
+      "seed": 34,
+      "two_grid_error_inf": 1.5773537781482716e-08
+    },
+    {
+      "dt": 0.04,
+      "seed": 35,
+      "two_grid_error_inf": 6.841969961229877e-06
+    },
+    {
+      "dt": 0.02,
+      "seed": 35,
+      "two_grid_error_inf": 9.161518970627475e-07
+    },
+    {
+      "dt": 0.01,
+      "seed": 35,
+      "two_grid_error_inf": 1.1860827083074593e-07
+    },
+    {
+      "dt": 0.005,
+      "seed": 35,
+      "two_grid_error_inf": 1.509095371669128e-08
+    },
+    {
+      "dt": 0.04,
+      "seed": 36,
+      "two_grid_error_inf": 5.55418727585244e-06
+    },
+    {
+      "dt": 0.02,
+      "seed": 36,
+      "two_grid_error_inf": 7.422467842993496e-07
+    },
+    {
+      "dt": 0.01,
+      "seed": 36,
+      "two_grid_error_inf": 9.599849641606095e-08
+    },
+    {
+      "dt": 0.005,
+      "seed": 36,
+      "two_grid_error_inf": 1.2208164174021263e-08
+    },
+    {
+      "dt": 0.04,
+      "seed": 37,
+      "two_grid_error_inf": 5.77650135300152e-06
+    },
+    {
+      "dt": 0.02,
+      "seed": 37,
+      "two_grid_error_inf": 7.734834495858392e-07
+    },
+    {
+      "dt": 0.01,
+      "seed": 37,
+      "two_grid_error_inf": 1.0013889511356622e-07
+    },
+    {
+      "dt": 0.005,
+      "seed": 37,
+      "two_grid_error_inf": 1.2741123302240087e-08
+    },
+    {
+      "dt": 0.04,
+      "seed": 38,
+      "two_grid_error_inf": 5.9799307623280284e-06
+    },
+    {
+      "dt": 0.02,
+      "seed": 38,
+      "two_grid_error_inf": 7.988778910504243e-07
+    },
+    {
+      "dt": 0.01,
+      "seed": 38,
+      "two_grid_error_inf": 1.0330474718538152e-07
+    },
+    {
+      "dt": 0.005,
+      "seed": 38,
+      "two_grid_error_inf": 1.3136110818025293e-08
+    },
+    {
+      "dt": 0.04,
+      "seed": 39,
+      "two_grid_error_inf": 4.8690854496658e-06
+    },
+    {
+      "dt": 0.02,
+      "seed": 39,
+      "two_grid_error_inf": 6.497450328948884e-07
+    },
+    {
+      "dt": 0.01,
+      "seed": 39,
+      "two_grid_error_inf": 8.4177530612628e-08
+    },
+    {
+      "dt": 0.005,
+      "seed": 39,
+      "two_grid_error_inf": 1.0713977177667644e-08
+    }
+  ],
+  "scheme": "dg_rd"
+}

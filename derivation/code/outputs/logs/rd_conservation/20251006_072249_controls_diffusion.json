@@ -1,0 +1,25 @@
+{
+  "control": "diffusion_only_mass",
+  "metrics": {
+    "D": 1.0,
+    "N": 128,
+    "abs_delta_mass": 8.881784197001252e-16,
+    "dt": 0.005,
+    "dx": 1.0,
+    "mass0": 6.258969147481554,
+    "mass1": 6.2589691474815545,
+    "steps": 100
+  },
+  "passes": {
+    "machine_epsilon": true
+  },
+  "spec": {
+    "D": 1.0,
+    "N": 128,
+    "bc": "periodic",
+    "dt": 0.005,
+    "dx": 1.0,
+    "scheme": "dg_rd",
+    "steps": 100
+  }
+}

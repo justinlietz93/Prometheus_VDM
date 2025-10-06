@@ -1,0 +1,11 @@
+{
+  "expected_slope": 2.0,
+  "fit": {
+    "R2": 0.9999678471211297,
+    "slope": 2.9421954773488714
+  },
+  "gate": "objAB_residual_vs_dt",
+  "passes": {
+    "slope_close_and_R2": true
+  }
+}
