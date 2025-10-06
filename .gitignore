@@ -62,3 +62,4 @@ fum_rt/data/corpus/unsorted/*
 
 #Ignore vscode AI rules
 .github/instructions/codacy.instructions.md
+/mnt/ironwolf/git/Void_Unity_Proofs/HISTORICAL-ARCHIVE/logs
