@@ -3,7 +3,7 @@
 Taylor–Green vortex (2-D) viscosity recovery benchmark for the fluids sector.
 
 CHANGE REASON:
-- Relocated into derivation/code/physics/fluid_dynamics per repo rules (no Prometheus_FUVDM/bench/).
+- Relocated into derivation/code/physics/fluid_dynamics per repo rules (no Prometheus_VDM/bench/).
 - Outputs follow RD harness: derivation/code/outputs/{figures,logs}.
 - Ensures JSON uses native Python types (bool/float) to avoid numpy serialization issues.
 
@@ -16,17 +16,17 @@ import os, json, time, math, argparse
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Ensure repo root on sys.path for absolute import 'Prometheus_FUVDM.*'
+# Ensure repo root on sys.path for absolute import 'Prometheus_VDM.*'
 import sys, pathlib
 _P = pathlib.Path(__file__).resolve()
 for _anc in [_P] + list(_P.parents):
-    if _anc.name == "Prometheus_FUVDM":
+    if _anc.name == "Prometheus_VDM":
         _ROOT = str(_anc.parent)
         if _ROOT not in sys.path:
             sys.path.insert(0, _ROOT)
         break
 
-from Prometheus_FUVDM.derivation.code.physics.fluid_dynamics.fluids.lbm2d import LBM2D, LBMConfig, CS2  # noqa: E402
+from Prometheus_VDM.derivation.code.physics.fluid_dynamics.fluids.lbm2d import LBM2D, LBMConfig, CS2  # noqa: E402
 
 
 def init_taylor_green(sim: LBM2D, U0=0.05, k=2*math.pi):

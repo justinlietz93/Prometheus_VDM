@@ -3,7 +3,7 @@
 Markdown hygiene check: UTF-8 (no BOM), mojibake scan, and canonical link paths.
 
 Usage:
-  python Prometheus_FUVDM/tools/md_hygiene_check.py --root Prometheus_FUVDM/derivation
+  python Prometheus_VDM/tools/md_hygiene_check.py --root Prometheus_VDM/derivation
 
 Exit codes:
   0 = all checks pass
@@ -31,25 +31,25 @@ BAD_TYPO_PATTERN = re.compile(r"voxtrrium")
 # Keys are filename stems or bad prefixes; values are canonical substrings that should appear in links
 CANONICAL_LINK_RULES: List[Tuple[re.Pattern, str]] = [
     # Stale bare filenames (must include their topic subfolder)
-    (re.compile(r"\((?:Prometheus_FUVDM/)?derivation/discrete_to_continuum\.md(?:[:)#])"), "(Prometheus_FUVDM/derivation/foundations/discrete_to_continuum.md"),
-    (re.compile(r"\((?:Prometheus_FUVDM/)?derivation/kinetic_term_derivation\.md(?:[:)#])"), "(Prometheus_FUVDM/derivation/effective_field_theory/kinetic_term_derivation.md"),
-    (re.compile(r"\((?:Prometheus_FUVDM/)?derivation/fum_voxtrium_mapping\.md(?:[:)#])"), "(Prometheus_FUVDM/derivation/effective_field_theory/fum_voxtrium_mapping.md"),
-    (re.compile(r"\((?:Prometheus_FUVDM/)?derivation/effective_field_theory_approach\.md(?:[:)#])"), "(Prometheus_FUVDM/derivation/effective_field_theory/effective_field_theory_approach.md"),
-    (re.compile(r"\((?:Prometheus_FUVDM/)?derivation/symmetry_analysis\.md(?:[:)#])"), "(Prometheus_FUVDM/derivation/foundations/symmetry_analysis.md"),
-    (re.compile(r"\((?:Prometheus_FUVDM/)?derivation/discrete_conservation\.md(?:[:)#])"), "(Prometheus_FUVDM/derivation/conservation_law/discrete_conservation.md"),
-    (re.compile(r"\((?:Prometheus_FUVDM/)?derivation/rd_front_speed_validation\.md(?:[:)#])"), "(Prometheus_FUVDM/derivation/reaction_diffusion/rd_front_speed_validation.md"),
-    (re.compile(r"\((?:Prometheus_FUVDM/)?derivation/rd_dispersion_validation\.md(?:[:)#])"), "(Prometheus_FUVDM/derivation/reaction_diffusion/rd_dispersion_validation.md"),
-    (re.compile(r"\((?:Prometheus_FUVDM/)?derivation/rd_validation_plan\.md(?:[:)#])"), "(Prometheus_FUVDM/derivation/reaction_diffusion/rd_validation_plan.md"),
-    (re.compile(r"\((?:Prometheus_FUVDM/)?derivation/memory_steering\.md(?:[:)#])"), "(Prometheus_FUVDM/derivation/memory_steering/memory_steering.md"),
-    (re.compile(r"\((?:Prometheus_FUVDM/)?derivation/void_dynamics_theory\.md(?:[:)#])"), "(Prometheus_FUVDM/derivation/foundations/void_dynamics_theory.md"),
+    (re.compile(r"\((?:Prometheus_VDM/)?derivation/discrete_to_continuum\.md(?:[:)#])"), "(Prometheus_VDM/derivation/foundations/discrete_to_continuum.md"),
+    (re.compile(r"\((?:Prometheus_VDM/)?derivation/kinetic_term_derivation\.md(?:[:)#])"), "(Prometheus_VDM/derivation/effective_field_theory/kinetic_term_derivation.md"),
+    (re.compile(r"\((?:Prometheus_VDM/)?derivation/fum_voxtrium_mapping\.md(?:[:)#])"), "(Prometheus_VDM/derivation/effective_field_theory/fum_voxtrium_mapping.md"),
+    (re.compile(r"\((?:Prometheus_VDM/)?derivation/effective_field_theory_approach\.md(?:[:)#])"), "(Prometheus_VDM/derivation/effective_field_theory/effective_field_theory_approach.md"),
+    (re.compile(r"\((?:Prometheus_VDM/)?derivation/symmetry_analysis\.md(?:[:)#])"), "(Prometheus_VDM/derivation/foundations/symmetry_analysis.md"),
+    (re.compile(r"\((?:Prometheus_VDM/)?derivation/discrete_conservation\.md(?:[:)#])"), "(Prometheus_VDM/derivation/conservation_law/discrete_conservation.md"),
+    (re.compile(r"\((?:Prometheus_VDM/)?derivation/rd_front_speed_validation\.md(?:[:)#])"), "(Prometheus_VDM/derivation/reaction_diffusion/rd_front_speed_validation.md"),
+    (re.compile(r"\((?:Prometheus_VDM/)?derivation/rd_dispersion_validation\.md(?:[:)#])"), "(Prometheus_VDM/derivation/reaction_diffusion/rd_dispersion_validation.md"),
+    (re.compile(r"\((?:Prometheus_VDM/)?derivation/rd_validation_plan\.md(?:[:)#])"), "(Prometheus_VDM/derivation/reaction_diffusion/rd_validation_plan.md"),
+    (re.compile(r"\((?:Prometheus_VDM/)?derivation/memory_steering\.md(?:[:)#])"), "(Prometheus_VDM/derivation/memory_steering/memory_steering.md"),
+    (re.compile(r"\((?:Prometheus_VDM/)?derivation/void_dynamics_theory\.md(?:[:)#])"), "(Prometheus_VDM/derivation/foundations/void_dynamics_theory.md"),
     # Computational proofs canonicalization
-    (re.compile(r"\((?:Prometheus_FUVDM/)?derivation/computational_proofs/"), "(Prometheus_FUVDM/derivation/code/computational_proofs/"),
-    (re.compile(r"\((?:\.\./)*computational_proofs/"), "(Prometheus_FUVDM/derivation/code/computational_proofs/"),
+    (re.compile(r"\((?:Prometheus_VDM/)?derivation/computational_proofs/"), "(Prometheus_VDM/derivation/code/computational_proofs/"),
+    (re.compile(r"\((?:\.\./)*computational_proofs/"), "(Prometheus_VDM/derivation/code/computational_proofs/"),
     # Voxtrium source file moved to supporting_work/voxtrium (example representative)
-    (re.compile(r"\((?:Prometheus_FUVDM/)?derivation/voxtrium/voxtrium_message\.txt"), "(Prometheus_FUVDM/derivation/supporting_work/voxtrium/"),
+    (re.compile(r"\((?:Prometheus_VDM/)?derivation/voxtrium/voxtrium_message\.txt"), "(Prometheus_VDM/derivation/supporting_work/voxtrium/"),
     # Additional topical mappings
-    (re.compile(r"\((?:Prometheus_FUVDM/)?derivation/finite_tube_mode_analysis\.md(?:[:)#])"), "(Prometheus_FUVDM/derivation/tachyon_condensation/finite_tube_mode_analysis.md"),
-    (re.compile(r"\((?:Prometheus_FUVDM/)?derivation/continuum_stack\.md(?:[:)#])"), "(Prometheus_FUVDM/derivation/foundations/continuum_stack.md"),
+    (re.compile(r"\((?:Prometheus_VDM/)?derivation/finite_tube_mode_analysis\.md(?:[:)#])"), "(Prometheus_VDM/derivation/tachyon_condensation/finite_tube_mode_analysis.md"),
+    (re.compile(r"\((?:Prometheus_VDM/)?derivation/continuum_stack\.md(?:[:)#])"), "(Prometheus_VDM/derivation/foundations/continuum_stack.md"),
 ]
 
 def list_md_files(root: str) -> List[str]:
@@ -87,7 +87,7 @@ def check_links(text: str) -> List[Dict[str, str]]:
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--root", default="Prometheus_FUVDM/derivation", help="root directory to scan (default: Prometheus_FUVDM/derivation)")
+    ap.add_argument("--root", default="Prometheus_VDM/derivation", help="root directory to scan (default: Prometheus_VDM/derivation)")
     ap.add_argument("--json", action="store_true", help="emit JSON report")
     args = ap.parse_args()
 

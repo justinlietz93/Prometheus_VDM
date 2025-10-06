@@ -1,0 +1,15 @@
+{
+  "timestamp": 1756476188,
+  "sweep_file": "/workspaces/Prometheus_VDM/derivation/outputs/logs/conservation_law/flux_sweep_1756476135.json",
+  "basis": [
+    "Wi",
+    "Wj",
+    "Wi*Wj"
+  ],
+  "coefficients": [
+    -0.0003278760747398794,
+    0.0003278760747398795,
+    0.0
+  ],
+  "rms_residual": 0.15815987455797184
+}

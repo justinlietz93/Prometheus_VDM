@@ -4,18 +4,18 @@
 
 import numpy as np
 
-# Ensure repo root on sys.path for absolute import 'Prometheus_FUVDM.*'
+# Ensure repo root on sys.path for absolute import 'Prometheus_VDM.*'
 import sys, pathlib
 _P = pathlib.Path(__file__).resolve()
 for _anc in [_P] + list(_P.parents):
-    if _anc.name == "Prometheus_FUVDM":
+    if _anc.name == "Prometheus_VDM":
         _ROOT = str(_anc.parent)
         if _ROOT not in sys.path:
             sys.path.insert(0, _ROOT)
         break
 
-from Prometheus_FUVDM.derivation.code.physics.fluid_dynamics.fluids.lbm2d import LBM2D, LBMConfig
-from Prometheus_FUVDM.derivation.code.physics.fluid_dynamics.telemetry.walkers import seed_walkers_lid, Walker  # noqa: F401
+from Prometheus_VDM.derivation.code.physics.fluid_dynamics.fluids.lbm2d import LBM2D, LBMConfig
+from Prometheus_VDM.derivation.code.physics.fluid_dynamics.telemetry.walkers import seed_walkers_lid, Walker  # noqa: F401
 
 
 def run_cavity(nx=48, ny=48, steps=400, tau=0.7, U=0.05, with_walkers=False, walkers=96, seed=1):

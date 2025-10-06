@@ -87,7 +87,7 @@ STRICT = _truthy(os.getenv("VOID_STRICT", "0"))
 
 def _maybe_run_revgsp(nx: Any, metrics: Dict[str, Any], step: int) -> None:
     """
-    Best-effort adapter to call REV-GSP adapt_connectome if available and enabled.
+    Best-effort adapter to call RE-VGSP adapt_connectome if available and enabled.
     - Enabled via ENABLE_REVGSP=1 (default off).
     - Auto-detects compatible substrate (nx.substrate or nx.connectome with expected fields).
     - Filters kwargs to the function signature to avoid mismatches.
@@ -393,7 +393,7 @@ def run_loop(nx: Any, t0: float, step: int, duration_s: Optional[int] = None) ->
             # Compute step and scan-based metrics (parity-preserving)
             m, drive = _compute_step_and_metrics(nx, t, step, idf_scale=idf_scale)
 
-            # Optional: Online learner (REV-GSP) and structural actuator (GDSP) — default OFF
+            # Optional: Online learner (RE-VGSP) and structural actuator (GDSP) — default OFF
             try:
                 _maybe_run_revgsp(nx, m, int(step))
             except Exception:

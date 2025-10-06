@@ -184,9 +184,9 @@ To test the theory properly:
 ## 11. Integration With Existing Derivations
 
 - φ‑sector (canonical RD): \(\partial_t \phi = D\nabla^2\phi + r\phi - u\phi^2\) [optional \(-\lambda\phi^3\) stabilization]. Homogeneous fixed point: \(\phi_\star = r/u\) (or stabilized root if \(\lambda>0\)).
-- EFT context (future work only): if using second‑order dynamics, \(\Box\phi + \alpha\phi^2 - (\alpha-\beta)\phi=0\) with \(v=1-\beta/\alpha\), \(m_{\rm eff}^2=\alpha-\beta\). Use these only within [derivation/effective_field_theory/effective_field_theory_approach.md](Prometheus_FUVDM/derivation/effective_field_theory/effective_field_theory_approach.md:1).
+- EFT context (future work only): if using second‑order dynamics, \(\Box\phi + \alpha\phi^2 - (\alpha-\beta)\phi=0\) with \(v=1-\beta/\alpha\), \(m_{\rm eff}^2=\alpha-\beta\). Use these only within [derivation/effective_field_theory/effective_field_theory_approach.md](Prometheus_VDM/derivation/effective_field_theory/effective_field_theory_approach.md:1).
 - Do not back‑solve \((\alpha,\beta)\) from \((v,m_{\rm eff})\) in the RD narrative. For EFT use, the relation \(\alpha={m_{\rm eff}^2}/{v}\), \(\beta={(1-v)}{m_{\rm eff}^2}/{v}\) may be referenced in that file.
-- Memory \( M \) augments routing only; it does not modify the on‑site ODE used to derive \( Q_{\rm FUM} \), the on‑site invariant in [derivation/foundations/symmetry_analysis.md](Prometheus_FUVDM/derivation/foundations/symmetry_analysis.md:141-148).
+- Memory \( M \) augments routing only; it does not modify the on‑site ODE used to derive \( Q_{\rm FUM} \), the on‑site invariant in [derivation/foundations/symmetry_analysis.md](Prometheus_VDM/derivation/foundations/symmetry_analysis.md:141-148).
 
 ---
 
@@ -212,10 +212,10 @@ This appendix adds a **routing** layer governed by stored structure. It does not
 
 ## 14. Provenance and Citations
 
-- Steering & memory PDE (source): [supporting_work/voxtrium/20250809_voxtrium_message_2.md](Prometheus_FUVDM/derivation/supporting_work/voxtrium/20250809_voxtrium_message_2.md:1)
+- Steering & memory PDE (source): [supporting_work/voxtrium/20250809_voxtrium_message_2.md](Prometheus_VDM/derivation/supporting_work/voxtrium/20250809_voxtrium_message_2.md:1)
 - φ‑EFT continuum, vacuum, mass invariants:
-  [derivation/foundations/discrete_to_continuum.md](Prometheus_FUVDM/derivation/foundations/discrete_to_continuum.md:121-128)
+  [derivation/foundations/discrete_to_continuum.md](Prometheus_VDM/derivation/foundations/discrete_to_continuum.md:121-128)
 - Kinetic/action derivation ( \( c^2=2Ja^2 \) ):
-  [derivation/effective_field_theory/kinetic_term_derivation.md](Prometheus_FUVDM/derivation/effective_field_theory/kinetic_term_derivation.md:121-128)
+  [derivation/effective_field_theory/kinetic_term_derivation.md](Prometheus_VDM/derivation/effective_field_theory/kinetic_term_derivation.md:121-128)
 - Units/FRW/retarded kernels:
-  [derivation/effective_field_theory/fum_voxtrium_mapping.md](Prometheus_FUVDM/derivation/effective_field_theory/fum_voxtrium_mapping.md:106-121)
+  [derivation/effective_field_theory/fum_voxtrium_mapping.md](Prometheus_VDM/derivation/effective_field_theory/fum_voxtrium_mapping.md:106-121)
