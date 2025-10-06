@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vdm.prometheus/rd_conservation/step_spec.schema.json",
+  "title": "RD Conservation Harness Step Spec",
+  "type": "object",
+  "required": [
+    "bc", "scheme", "order_p", "expected_dt_slope",
+    "grid", "params", "dt_sweep", "seeds", "safety", "cfl_used"
+  ],
+  "properties": {
+    "bc": {
+      "type": "string",
+      "enum": ["periodic", "neumann"],
+      "description": "Boundary condition for Obj-A/B harness (default periodic)."
+    },
+    "scheme": {
+      "type": "string",
+      "enum": ["euler", "strang", "rk"],
+      "description": "Time integrator family: explicit Euler, Strang split, or generic RK(p)."
+    },
+    "order_p": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Declared order p of the chosen scheme (Euler=1, Strang=2, RKp=p)."
+    },
+    "expected_dt_slope": {
+      "type": "number",
+      "description": "Expected log-log residual slope for Obj-B: p+1 (Euler→2, Strang→3)."
+    },
+    "grid": {
+      "type": "object",
+      "required": ["N", "dx"],
+      "properties": {
+        "N": {"type": "integer", "minimum": 2, "description": "Grid size (1D)."},
+        "dx": {"type": "number", "exclusiveMinimum": 0, "description": "Grid spacing (nondimensional)."}
+      }
+    },
+    "params": {
+      "type": "object",
+      "required": ["D", "r", "u"],
+      "properties": {
+        "D": {"type": "number", "exclusiveMinimum": 0, "description": "Diffusion coefficient."},
+        "r": {"type": "number", "description": "Linear growth rate."},
+        "u": {"type": "number", "minimum": 0, "description": "Quadratic saturation coefficient."}
+      }
+    },
+    "dt_sweep": {
+      "type": "array",
+      "minItems": 2,
+      "items": {"type": "number", "exclusiveMinimum": 0},
+      "description": "List of Δt values for convergence sweep (Obj-B)."
+    },
+    "seeds": {
+      "description": "Number of random seeds (integer) or explicit seed list.",
+      "oneOf": [
+        {"type": "integer", "minimum": 1},
+        {"type": "array", "minItems": 1, "items": {"type": "integer"}}
+      ]
+    },
+    "safety": {
+      "type": "object",
+      "required": ["clamp", "nan_to_num"],
+      "properties": {
+        "clamp": {"type": "boolean", "description": "Disable clamping for proofs (must be false)."},
+        "nan_to_num": {"type": "boolean", "description": "Disable nan_to_num for proofs (must be false)."}
+      }
+    },
+    "cfl_used": {
+      "type": "boolean",
+      "description": "Whether dt was chosen to satisfy the explicit diffusion CFL (log this)."
+    },
+    "adjacency": {
+      "type": "object",
+      "description": "Adjacency fidelity settings for fitter and residual computation.",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": ["fd_1d_centered"],
+          "description": "Stencil kind for Laplacian/gradient pairing."
+        },
+        "explicit_file": {
+          "type": "string",
+          "description": "Optional path to an explicit neighbor list used during the run."
+        }
+      }
+    },
+    "notes": {"type": "string"}
+  },
+  "additionalProperties": false
+}
