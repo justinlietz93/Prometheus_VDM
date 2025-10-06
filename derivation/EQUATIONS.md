@@ -1,4 +1,5 @@
 # VDM Canonical Equations & Procedural Math (Auto-compiled)
+
 *Defining equations and procedural math currently present in this repository.*
 
 - Source of truth: extracted from repository files; do not edit equations here without updating their sources.
@@ -8,6 +9,7 @@
 ---
 
 #### VDM-E-001 — Agency/Consciousness Field Evolution
+
 **Context:** derivation/AGENCY_FIELD.md:38-39 • Commit: 6885588
 
 $$
@@ -19,6 +21,7 @@ $$
 ---
 
 #### VDM-E-002 — Agency Field Composite Source
+
 **Context:** derivation/AGENCY_FIELD.md:47-48 • Commit: 6885588
 
 $$
@@ -30,6 +33,7 @@ $$
 ---
 
 #### VDM-E-003 — Agency Field Steady State
+
 **Context:** derivation/AGENCY_FIELD.md:62-64 • Commit: 6885588
 
 $$
@@ -42,6 +46,7 @@ $$
 ---
 
 #### VDM-E-004 — Agency Field Causal Solution
+
 **Context:** derivation/AGENCY_FIELD.md:72 • Commit: 6885588
 
 $$
@@ -53,6 +58,7 @@ $$
 ---
 
 #### VDM-E-005 — Agency Field Regional Budget
+
 **Context:** derivation/AGENCY_FIELD.md:81-85 • Commit: 6885588
 
 $$
@@ -67,6 +73,7 @@ $$
 ---
 
 #### VDM-E-006 — Agency Field Discrete Update
+
 **Context:** derivation/AGENCY_FIELD.md:93-94 • Commit: 6885588
 
 $$
@@ -78,6 +85,7 @@ $$
 ---
 
 #### VDM-E-007 — Agency Field Dimensionless Form
+
 **Context:** derivation/AGENCY_FIELD.md:102-105 • Commit: 6885588
 
 $$
@@ -91,6 +99,7 @@ with $\tilde t=\gamma t$, $\tilde x=x/\ell_D$, $\ell_D=\sqrt{D/\gamma}$
 ---
 
 #### VDM-E-008 — Agency Field Portal Modulation (Optional)
+
 **Context:** derivation/AGENCY_FIELD.md:113 • Commit: 6885588
 
 $$
@@ -102,6 +111,7 @@ $$
 ---
 
 #### VDM-E-009 — Control Efficacy
+
 **Context:** derivation/AGENCY_FIELD.md:53-54 • Commit: 6885588
 
 $$
@@ -113,6 +123,7 @@ $$
 ---
 
 #### VDM-E-010 — VDM C-Score
+
 **Context:** derivation/AGENCY_FIELD.md:122 • Commit: 6885588
 
 $$
@@ -124,6 +135,7 @@ $$
 ---
 
 #### VDM-E-011 — Discrete Action (Axiom 4)
+
 **Context:** agent-onboarding/axiomatic_theory_development.md:38-39 • Commit: 6885588
 
 $$
@@ -135,6 +147,7 @@ $$
 ---
 
 #### VDM-E-012 — Potential and Derivatives (Axiom 3)
+
 **Context:** agent-onboarding/axiomatic_theory_development.md:35 • Commit: 6885588
 
 $$
@@ -148,6 +161,7 @@ with potential $V(\phi)=\tfrac{\alpha}{3}\phi^{3}-\tfrac{r}{2}\phi^{2}+\tfrac{\l
 ---
 
 #### VDM-E-013 — Discrete Euler-Lagrange Equation
+
 **Context:** agent-onboarding/axiomatic_theory_development.md:48 • Commit: 6885588
 
 $$
@@ -159,6 +173,7 @@ $$
 ---
 
 #### VDM-E-014 — Continuum Klein-Gordon Form (EFT/KG Branch)
+
 **Context:** agent-onboarding/axiomatic_theory_development.md:51 • Commit: 6885588
 
 $$
@@ -170,6 +185,7 @@ $$
 ---
 
 #### VDM-E-015 — Reaction-Diffusion Gradient Flow
+
 **Context:** agent-onboarding/axiomatic_theory_development.md:56-57 • Commit: 6885588
 
 $$
@@ -181,6 +197,7 @@ $$
 ---
 
 #### VDM-E-016 — RD Lyapunov Functional
+
 **Context:** agent-onboarding/axiomatic_theory_development.md:58-60 • Commit: 6885588
 
 $$
@@ -194,6 +211,7 @@ with time derivative $\frac{d}{dt}\mathcal{L}[\phi] = -\int_{\Omega} (\partial_t
 ---
 
 #### VDM-E-017 — Linear RD Dispersion
+
 **Context:** agent-onboarding/axiomatic_theory_development.md:155 • Commit: 6885588
 
 $$
@@ -205,6 +223,7 @@ $$
 ---
 
 #### VDM-E-018 — KPP Front Speed
+
 **Context:** agent-onboarding/axiomatic_theory_development.md:163 • Commit: 6885588
 
 $$
@@ -216,6 +235,7 @@ $$
 ---
 
 #### VDM-E-019 — Stationary Point Solutions
+
 **Context:** agent-onboarding/axiomatic_theory_development.md:207 • Commit: 6885588
 
 $$
@@ -229,6 +249,7 @@ when $\lambda>0$ and $V'(\phi)=0$
 ---
 
 #### VDM-E-020 — Spatial Taylor Remainder Bound
+
 **Context:** agent-onboarding/axiomatic_theory_development.md:126-127 • Commit: 6885588
 
 $$
@@ -240,6 +261,7 @@ $$
 ---
 
 #### VDM-E-021 — Temporal Taylor Remainder Bound
+
 **Context:** agent-onboarding/axiomatic_theory_development.md:133 • Commit: 6885588
 
 $$
@@ -251,6 +273,7 @@ $$
 ---
 
 #### VDM-E-022 — Dimensionless RD Scaling
+
 **Context:** agent-onboarding/axiomatic_theory_development.md:422-427 • Commit: 6885588
 
 $$
@@ -266,6 +289,7 @@ with $\Lambda=\lambda r/u^{2}$ (when $u>0$), $\phi_{*}=r/u$ or $\sqrt{r/\lambda}
 ---
 
 #### VDM-E-023 — Discrete Flux Conservation
+
 **Context:** agent-onboarding/axiomatic_theory_development.md:102-106 • Commit: 6885588
 
 $$
@@ -279,6 +303,7 @@ with update $\phi_i^{n+1}=\phi_i^{n}-\frac{\Delta t}{a}\sum_{j\in N(i)}F_{ij}$
 ---
 
 #### VDM-E-024 — Asynchronous Census Hazard and Clock
+
 **Context:** agent-onboarding/axiomatic_theory_development.md:513-515 • Commit: 6885588
 
 $$
@@ -290,6 +315,7 @@ $$
 ---
 
 #### VDM-E-025 — Exact Logistic Reaction Step
+
 **Context:** agent-onboarding/axiomatic_theory_development.md:519-521 • Commit: 6885588
 
 $$
@@ -303,6 +329,7 @@ for $dW/dt = r\,W - u\,W^{2}$
 ---
 
 #### VDM-E-026 — Discrete Gradient Lyapunov Step
+
 **Context:** agent-onboarding/axiomatic_theory_development.md:110-112 • Commit: 6885588
 
 $$
@@ -316,6 +343,7 @@ with $\frac{\phi^{n+1}-\phi^{n}}{\Delta t} = D\nabla^{2}_h \bar\phi + \bar f$, $
 ---
 
 #### VDM-E-027 — RD On-Site (Discrete)
+
 **Context:** derivation/VDM_Overview.md:23-24 • Commit: 6885588
 
 $$
@@ -327,6 +355,7 @@ $$
 ---
 
 #### VDM-E-028 — RD Continuum PDE
+
 **Context:** derivation/VDM_Overview.md:31 • Commit: 6885588
 
 $$
@@ -338,6 +367,7 @@ $$
 ---
 
 #### VDM-E-029 — RD Discrete-to-Continuum Mapping
+
 **Context:** derivation/VDM_Overview.md:39-43 • Commit: 6885588
 
 $$
@@ -353,6 +383,7 @@ $$
 ---
 
 #### VDM-E-030 — EFT Kinetic Normalization (Quarantined)
+
 **Context:** derivation/VDM_Overview.md:52-54 • Commit: 6885588
 
 $$
@@ -364,6 +395,7 @@ $$
 ---
 
 #### VDM-E-031 — EFT Second-Order Field Equation (Quarantined)
+
 **Context:** derivation/VDM_Overview.md:60-62 • Commit: 6885588
 
 $$
@@ -375,6 +407,7 @@ $$
 ---
 
 #### VDM-E-032 — EFT Effective Mass (Quarantined)
+
 **Context:** derivation/VDM_Overview.md:68-70 • Commit: 6885588
 
 $$
@@ -386,6 +419,7 @@ $$
 ---
 
 #### VDM-E-033 — RD Front Speed (Validated)
+
 **Context:** derivation/VDM_Overview.md:110 • Commit: 6885588
 
 $$
@@ -397,6 +431,7 @@ $$
 ---
 
 #### VDM-E-034 — RD Discrete Dispersion
+
 **Context:** derivation/VDM_Overview.md:122-124 • Commit: 6885588
 
 $$
@@ -408,6 +443,7 @@ $$
 ---
 
 #### VDM-E-035 — RD Continuum Dispersion (Validated)
+
 **Context:** derivation/VDM_Overview.md:128-130 • Commit: 6885588
 
 $$
@@ -419,6 +455,7 @@ $$
 ---
 
 #### VDM-E-036 — RD Homogeneous Fixed Point
+
 **Context:** derivation/VDM_Overview.md:150-152 • Commit: 6885588
 
 $$
@@ -430,6 +467,7 @@ $$
 ---
 
 #### VDM-E-037 — Axiomatic Effective Mass Squared
+
 **Context:** derivation/axiomatic_theory_development.md:428 • Commit: 6885588
 
 $$
@@ -443,6 +481,7 @@ where $m_{\text{eff}}^2 = V''(v_\lambda) > 0$ ensures stability
 ---
 
 #### VDM-E-038 — Discrete Euler-Lagrange Variation
+
 **Context:** derivation/axiomatic_theory_development.md:257 • Commit: 6885588
 
 $$
@@ -454,6 +493,7 @@ $$
 ---
 
 #### VDM-E-039 — Discrete Field Equation Terms
+
 **Context:** derivation/axiomatic_theory_development.md:260-264 • Commit: 6885588
 
 From $\mathcal{L}_i^n$:
@@ -468,6 +508,7 @@ $$\frac{\partial \mathcal{L}_i^{n-1}}{\partial W_i^n} = \frac{1}{\Delta t^2}(W_i
 ---
 
 #### VDM-E-040 — Taylor Expansion for Spatial Interaction
+
 **Context:** derivation/axiomatic_theory_development.md:292-295 • Commit: 6885588
 
 $$
@@ -481,6 +522,7 @@ summing over directions $\mu$ gives $\sum_{j \in N(i)}(W_j - W_i)^2 = 2a^2 |\nab
 ---
 
 #### VDM-E-041 — Lorentz Invariance Condition
+
 **Context:** derivation/axiomatic_theory_development.md:306-309 • Commit: 6885588
 
 $$
@@ -492,6 +534,7 @@ $$
 ---
 
 #### VDM-E-042 — Continuum Action
+
 **Context:** derivation/axiomatic_theory_development.md:341 • Commit: 6885588
 
 $$
@@ -503,6 +546,7 @@ $$
 ---
 
 #### VDM-E-043 — Klein-Gordon with Nonlinear Potential
+
 **Context:** derivation/axiomatic_theory_development.md:352 • Commit: 6885588
 
 $$
@@ -514,6 +558,7 @@ $$
 ---
 
 #### VDM-E-044 — RD Overdamped Limit
+
 **Context:** derivation/axiomatic_theory_development.md:357-361 • Commit: 6885588
 
 $$
@@ -527,6 +572,7 @@ with diffusion coefficient $D = c^2/\gamma = 2Ja^2/\gamma$ and reaction term $f(
 ---
 
 #### VDM-E-045 — Energy Density
+
 **Context:** derivation/axiomatic_theory_development.md:386-387 • Commit: 6885588
 
 $$
@@ -538,6 +584,7 @@ $$
 ---
 
 #### VDM-E-046 — Momentum Density (Discrete)
+
 **Context:** derivation/axiomatic_theory_development.md:400-401 • Commit: 6885588
 
 $$
@@ -549,6 +596,7 @@ $$
 ---
 
 #### VDM-E-047 — Continuum Energy Density (Hamiltonian)
+
 **Context:** derivation/axiomatic_theory_development.md:433 • Commit: 6885588
 
 $$
@@ -560,6 +608,7 @@ $$
 ---
 
 #### VDM-E-048 — Energy Flux (Poynting Vector)
+
 **Context:** derivation/axiomatic_theory_development.md:437-442 • Commit: 6885588
 
 $$
@@ -573,6 +622,7 @@ with conservation law $\frac{\partial \mathcal{H}}{\partial t} + \nabla \cdot \m
 ---
 
 #### VDM-E-049 — Stress-Energy Tensor
+
 **Context:** derivation/axiomatic_theory_development.md:455-462 • Commit: 6885588
 
 $$
@@ -586,6 +636,7 @@ with components $T^{00} = \mathcal{H}$, $T^{0i} = \dot{\phi} \partial_i \phi$, $
 ---
 
 #### VDM-E-050 — RD Parameter Mapping
+
 **Context:** derivation/axiomatic_theory_development.md:515-521 • Commit: 6885588
 
 Diffusion coefficient: $D = \frac{c^2}{\gamma} = \frac{2Ja^2}{\gamma}$
@@ -599,6 +650,7 @@ Parameter mapping: $r = \frac{\alpha-\beta}{\gamma}$, $u = \frac{\alpha}{\gamma}
 ---
 
 #### VDM-E-051 — Lyapunov Functional for RD
+
 **Context:** derivation/axiomatic_theory_development.md:578-579 • Commit: 6885588
 
 $$
@@ -612,6 +664,7 @@ where $\hat{V}(\phi) = \int_0^\phi f(\xi) d\xi$
 ---
 
 #### VDM-E-052 — RD Front Speed Theoretical Prediction
+
 **Context:** derivation/axiomatic_theory_development.md:646 • Commit: 6885588
 
 $$
@@ -623,6 +676,7 @@ $$
 ---
 
 #### VDM-E-053 — Fixed Point Consistency Check
+
 **Context:** derivation/axiomatic_theory_development.md:653-654 • Commit: 6885588
 
 $$
@@ -634,6 +688,7 @@ $$
 ---
 
 #### VDM-E-054 — Void Scale Characteristic Length
+
 **Context:** derivation/axiomatic_theory_development.md:679 • Commit: 6885588
 
 $$
@@ -645,6 +700,7 @@ $$
 ---
 
 #### VDM-E-055 — Tachyon Condensation Mode Spectrum
+
 **Context:** derivation/axiomatic_theory_development.md:690-693 • Commit: 6885588
 
 $$
@@ -658,6 +714,7 @@ for $k_n = n\pi/R$ with $n < n_{\max} = \frac{R}{\pi}\sqrt{\frac{\alpha-\beta}{c
 ---
 
 #### VDM-E-056 — Tube Radius Selection
+
 **Context:** derivation/axiomatic_theory_development.md:695 • Commit: 6885588
 
 $$
@@ -669,6 +726,7 @@ $$
 ---
 
 #### VDM-E-057 — Post-Condensation Mass
+
 **Context:** derivation/axiomatic_theory_development.md:698 • Commit: 6885588
 
 $$
@@ -680,6 +738,7 @@ $$
 ---
 
 #### VDM-E-058 — Stabilized Potential
+
 **Context:** derivation/axiomatic_theory_development.md:1119 • Commit: 6885588
 
 $$
@@ -691,6 +750,7 @@ $$
 ---
 
 #### VDM-E-059 — Stabilized Vacuum Solution
+
 **Context:** derivation/axiomatic_theory_development.md:1132 • Commit: 6885588
 
 $$
@@ -702,6 +762,7 @@ $$
 ---
 
 #### VDM-E-060 — Effective Mass at Stabilized Vacuum
+
 **Context:** derivation/axiomatic_theory_development.md:1138-1141 • Commit: 6885588
 
 $$
@@ -713,6 +774,7 @@ $$
 ---
 
 #### VDM-E-061 — VDM Morphology/Assimilation Field (Fluids)
+
 **Context:** derivation/fluid_dynamics/DELETE_AFTER_SOLVING/DELETE_AFTER_SOLVING.md:12 • Commit: 6885588
 
 $$
@@ -724,6 +786,7 @@ $$
 ---
 
 #### VDM-E-062 — VDM Signal/Transport Field (Fluids)
+
 **Context:** derivation/fluid_dynamics/DELETE_AFTER_SOLVING/DELETE_AFTER_SOLVING.md:17 • Commit: 6885588
 
 $$
@@ -735,6 +798,7 @@ $$
 ---
 
 #### VDM-E-063 — VDM Void-Debt Modulation
+
 **Context:** derivation/fluid_dynamics/DELETE_AFTER_SOLVING/DELETE_AFTER_SOLVING.md:24-25 • Commit: 6885588
 
 $$
@@ -750,6 +814,7 @@ $$
 ---
 
 #### VDM-E-064 — Memory Steering Refractive Index
+
 **Context:** derivation/code/physics/memory_steering/memory_steering.py:21 • Commit: 6885588
 
 $$
@@ -763,6 +828,7 @@ with ray bending $r'' = \nabla_{\perp} \ln n = \eta \nabla_{\perp} M$
 ---
 
 #### VDM-E-065 — Memory Field Dynamics
+
 **Context:** derivation/code/physics/memory_steering/memory_steering.py:25-26 • Commit: 6885588
 
 $$
@@ -774,6 +840,7 @@ $$
 ---
 
 #### VDM-E-066 — Memory Steering Dimensionless Groups
+
 **Context:** derivation/code/physics/memory_steering/memory_steering.py:30 • Commit: 6885588
 
 $$
@@ -785,6 +852,7 @@ $$
 ---
 
 #### VDM-E-067 — Memory Junction Choice Probability
+
 **Context:** derivation/code/physics/memory_steering/memory_steering.py:35-36 • Commit: 6885588
 
 $$
@@ -796,6 +864,7 @@ $$
 ---
 
 #### VDM-E-068 — Graph Laplacian for Memory Discretization
+
 **Context:** derivation/code/physics/memory_steering/memory_steering.py:86-94 • Commit: 6885588
 
 $$
@@ -807,6 +876,7 @@ $$
 ---
 
 #### VDM-E-069 — Discrete Memory Update (Euler)
+
 **Context:** derivation/code/physics/memory_steering/memory_steering.py:42 • Commit: 6885588
 
 $$
@@ -818,6 +888,7 @@ $$
 ---
 
 #### VDM-E-070 — Memory-Based Transition Probability
+
 **Context:** derivation/code/physics/memory_steering/memory_steering.py:44-45 • Commit: 6885588
 
 $$
@@ -829,6 +900,7 @@ $$
 ---
 
 #### VDM-E-071 — Logistic Invariant Q (ODE)
+
 **Context:** derivation/code/rd/reaction_exact.py:16 • Commit: 6885588
 
 $$
@@ -840,6 +912,7 @@ $$
 ---
 
 #### VDM-E-072 — Discrete Hamiltonian Density
+
 **Context:** derivation/conservation_law/discrete_conservation.md:32-33 • Commit: 6885588
 
 $$
@@ -851,6 +924,7 @@ $$
 ---
 
 #### VDM-E-073 — Discrete Conservation Law Form
+
 **Context:** derivation/conservation_law/discrete_conservation.md:46-48 • Commit: 6885588
 
 $$
@@ -862,6 +936,7 @@ $$
 ---
 
 #### VDM-E-074 — Change in Potential Energy
+
 **Context:** derivation/conservation_law/discrete_conservation.md:76-77 • Commit: 6885588
 
 $$
@@ -875,6 +950,7 @@ with $F(W_i) = (\alpha - \beta)W_i - \alpha W_i^2$
 ---
 
 #### VDM-E-075 — Discrete Lattice Lagrangian (Per Time Step)
+
 **Context:** derivation/foundations/void_dynamics_theory.md:98-103 • Commit: 6885588
 
 $$ L^n = a^d \sum_i \left[ \tfrac{1}{2}\left(\tfrac{W_i^{n+1}-W_i^{n}}{\Delta t}\right)^2 + \tfrac{\kappa}{2}\sum_{\mu=1}^{d}\big(W_{i+\mu}^{n}-W_i^{n}\big)^2 + V!\big(W_i^{n}\big) \right] $$
@@ -884,6 +960,7 @@ $$ L^n = a^d \sum_i \left[ \tfrac{1}{2}\left(\tfrac{W_i^{n+1}-W_i^{n}}{\Delta t}
 ---
 
 #### VDM-E-076 — Discrete Euler-Lagrange (Second-Order)
+
 **Context:** derivation/foundations/void_dynamics_theory.md:111-114 • Commit: 6885588
 
 $$
@@ -897,6 +974,7 @@ $$
 ---
 
 #### VDM-E-077 — Continuum Field Equation from Lattice
+
 **Context:** derivation/foundations/void_dynamics_theory.md:134 • Commit: 6885588
 
 $$
@@ -908,6 +986,7 @@ $$
 ---
 
 #### VDM-E-078 — Continuum Lagrangian Density
+
 **Context:** derivation/foundations/void_dynamics_theory.md:146 • Commit: 6885588
 
 $$
@@ -919,6 +998,7 @@ $$
 ---
 
 #### VDM-E-079 — Spatial Taylor Expansion (Exact Coefficient)
+
 **Context:** derivation/foundations/void_dynamics_theory.md:37 • Commit: 6885588
 
 $$
@@ -930,6 +1010,7 @@ $$
 ---
 
 #### VDM-E-080 — Discrete Interaction Energy per Site
+
 **Context:** derivation/foundations/void_dynamics_theory.md:44 • Commit: 6885588
 
 $$
@@ -941,6 +1022,7 @@ $$
 ---
 
 #### VDM-E-081 — Finite-difference estimators for $\nabla V$
+
 <a id="vdm-e-081"></a>
 
 **Context:** Agency Options Probe. Data come from `options.csv` with axes $E$ (steps) and $p_{\text{slip}}$ (probability). These estimates feed SIE/scoreboard gating and any policy that reacts to local capacity slope.
@@ -967,6 +1049,7 @@ $$
 Define $\widehat{\nabla V}=[\widehat{\partial_E V},\widehat{\partial_p V}]$ and $\|\widehat{\nabla V}\|_2=\sqrt{(\widehat{\partial_E V})^2+(\widehat{\partial_p V})^2}$.
 
 **Notes:**
+
 - Prefer **central differences** when both neighbors exist; fall back to the formulas above on boundaries.  
 - Units: $\partial_E V$ in bits/step; $\partial_p V$ in bits per unit slip.  
 - If any operand is missing/NaN, propagate NaN; optionally apply axis-wise **isotonic smoothing** to $V$ before differencing.  
@@ -975,6 +1058,7 @@ Define $\widehat{\nabla V}=[\widehat{\partial_E V},\widehat{\partial_p V}]$ and 
 ---
 
 #### VDM-E-082 — Elasticities of $V$ (unitless)
+
 <a id="vdm-e-082"></a>
 
 **Context:** Dimensionless sensitivity for cross-regime comparison; used to decide whether budget vs. slip mitigation moves the needle more where we are.
@@ -987,14 +1071,15 @@ $$
 $$
 
 **Notes:**
+
 - Compute with the finite-difference estimates from VDM-E-081.  
 - Undefined when $V\le 0$; return NaN (or mask) in those cells.  
 - Interpretation: $\epsilon_E=0.2$ means a 1% increase in $E$ raises $V$ by ~0.2%.
 
-
 ---
 
 #### VDM-E-083 — Threshold energy for target capacity
+
 <a id="vdm-e-083"></a>
 
 **Context:** Capability boundary used by gating/planning (“just-viable” line). Plotted as $E_{\min}^{(v_0)}(p)$ for levels $v_0\in\{3,5,7\}$ bits.
@@ -1006,32 +1091,155 @@ E_{\min}^{(v_0)}(p):=\arg\min_{E\in\mathbb{N}}\{\,V(E,p)\ge v_0\,\}.
 $$
 
 **Notes:**
+
 - If **no** $E$ on the grid achieves $v_0$, record **NA**; optionally report an upper bound if extrapolation is disallowed.  
 - Optional interpolation: piecewise-linear in $E$ to refine the boundary between integer budgets; document if enabled.  
 - Monotonicity in $E$ is assumed (see VDM-E-084); if violated, apply isotonic regression along $E$ before evaluating.
 
-
 ---
 
 #### VDM-E-084 — Monotonicity acceptance conditions (probe sanity)
+
 <a id="vdm-e-084"></a>
 
 **Context:** Sanity checks for the options probe; these are required before gradients/thresholds are trusted.
 
 **Equation:**
-For all $p$, 
+For all $p$,
 $$V(E+\Delta E,p)\ge V(E,p),$$
-and for all $E$, 
+and for all $E$,
 $$V(E,p+\Delta p)\le V(E,p).$$
 
 **Notes:**
+
 - Evaluate with tolerance $\varepsilon_{\text{mono}}$ (default $10^{-9}$). Ties within tolerance are acceptable.  
 - If conditions fail, fix by (a) regenerating data, or (b) axis-wise isotonic smoothing before downstream calculations.  
 - These checks justify using $E_{\min}^{(v_0)}(p)$ as a well-posed boundary and keep $\partial_E V$/$\partial_p V$ signs meaningful.
 
+---
+
+#### VDM-E-085 — Weight Update Rule (three stacked terms)
+
+<a id="vdm-e-085"></a>
+
+**Context:** [RUNTIME-ONLY] Derivation of the synaptic weight update in the Self-Improvement Engine (SIE), integrating time-dependent gain modulation with void-driven plasticity dynamics (RE-VGSP for resonance-enhanced growth and GDSP for goal-directed decay), anti-saturation regularization to prevent over-specialization, and a projection onto a budget-constrained simplex for resource allocation. This rule unifies cognitive adaptation principles with physical void debt mechanisms, supporting emergent intelligence in the Void Dynamics Model. • Source: fum_rt/core/fum_sie.py • Commit: [pending update, e.g., post-6885588].
+
+**Equation:**
+$$
+\Delta W_{ij} = g_i(t) \times \underbrace{\Delta W_{ij}^{\text{void}}}_{\text{RE-VGSP + GDSP}} - \zeta \frac{\partial \Phi_{\text{sat}}(W_{ij})}{\partial W_{ij}} \xrightarrow{\text{project}} \text{simplex}(\text{budget} = B_i).
+$$
+
+**Notes:**
+
+- $(g_i(t))$\: SIE gain factor, typically $(\eta (1 + \text{mod\_factor}) R\_{\text{total}})$\, where $(\text{mod\_factor} = 2\sigma(R\_{\text{total}}) - 1)$ modulates updates based on aggregated rewards (TD error, novelty, habituation, self-benefit); enables adaptive self-optimization.
+- $(\Delta W\_{ij}^{\text{void}})$\: Combined RE-VGSP $((\alpha W\_{ij} (1 - W\_{ij}) + \text{noise}))$ and GDSP $((-\beta W\_{ij}))$ terms, yielding $((\alpha - \beta) W\_{ij} - \alpha W\_{ij}^2 + \text{noise})$\; models void debt-driven growth and dissipation, with optional time modulation $(\sin(2\pi f t))$ and domain scaling (e.g., via $(\beta / \alpha = 0.4)$\).
+- Anti-saturation: $(\zeta > 0)$ scales the gradient of potential $(\Phi\_{\text{sat}})$ (e.g., quadratic $(\frac{1}{2} W\_{ij}^2)$\); prevents weight extrema, promoting dynamic responsiveness.
+- Projection: Enforces non-negative weights summing to budget $(B\_i)$ via Euclidean projection; ensures sparsity and feasibility in resource-limited systems.
+- Links to prior entries: Complements VDM-E-018 (Lyapunov for stability) and VDM-E-083 (budget thresholds); evaluate monotonicity per VDM-E-084 before application.
+- Update via finite differences or exact gradients; monitor for convergence in metriplectic compositions.
+
+---
+
+#### VDM-E-086 — Resonance-Enhanced Valence-Gated Synaptic Plasticity (RE-VGSP)
+
+<a id="vdm-e-086"></a>
+
+**Context:** [RUNTIME-ONLY] Universal function for Resonance-Enhanced Valence-Gated Synaptic Plasticity within the void dynamics framework, modeling fractal energy drain and growth in void states. This component synchronizes with GDSP to drive adaptive evolution, serving as the growth-promoting term in void debt mechanisms for both cognitive stability in the Self-Improvement Engine (SIE) and physical pattern formation in the Void Dynamics Model (VDM). • Source: design/Void_Equations.py • Commit: [pending update, e.g., post-6885588].
+
+**Equation:**
+$$
+\Delta_{\text{RE-VGSP}} = \alpha W (1 - W) + \text{noise},
+$$
+
+with optional time modulation: $(\Delta_{\text{RE-VGSP}} \cdot (1 + \phi \sin(2\pi f t)))$, and domain scaling applied to $(\alpha)$\.
+
+**Notes:**
+
+- $(\alpha)$\: Universal learning rate (default 0.25), scaled by domain modulation factor to adjust for physics contexts (e.g., quantum or cosmogenesis sparsity).
+- $(W)$\: Current void state, normalized to [0,1] for logistic growth toward carrying capacity.
+- $(\text{noise})$\: Stochastic term (uniform in [-0.02, 0.02]) for exploration and variability in adaptation.
+- $(\phi)$\: Phase sensitivity (default 0.5); $(f)$\: Reference frequency (default 0.02) for oscillatory time dynamics.
+- Domain modulation: Effective $(\alpha)$ multiplied by sparsity-derived factor (e.g., $(1.0 + (\text{sparsity fraction}^2) / (\beta / \alpha))$), unifying cognitive and physical regimes.
+- Links to prior entries: Forms the growth component of VDM-E-085 (void update in SIE weights) and VDM-E-027 (RD reaction term); complements VDM-E-018 for Lyapunov monotonicity in dissipative flows.
+- Evaluation: Finite-step updates via explicit Euler or metriplectic composition; monitor variance for stability in SIE simulations.
+- Keep noise and sinusoial modulation off for order-of-accuracy and Lyapunov tests.
+
+---
+
+#### VDM-E-087 — Goal-Directed Structural Plasticity (GDSP)
+
+<a id="vdm-e-087"></a>
+
+**Context:** [RUNTIME-ONLY] Universal function for Goal-Directed Structural Plasticity within the void dynamics framework, modeling weak closure and dissipation in void states. This component synchronizes with RE-VGSP to enforce stability, serving as the decay term in void debt mechanisms for balancing growth in cognitive adaptation via the Self-Improvement Engine (SIE) and physical relaxation in the Void Dynamics Model (VDM). • Source: design/Void_Equations.py • Commit: [pending update, e.g., post-6885588].
+
+**Equation:**
+$$
+\Delta_{\text{GDSP}} = -\beta W,
+$$
+
+with optional time modulation: $(\Delta_{\text{GDSP}} \cdot (1 + \phi \sin(2\pi f t)))$, and domain scaling applied to $(\beta)$\.
+
+**Notes:**
+
+- $(\beta)$\: Universal plasticity rate (default 0.1), scaled by domain modulation factor to tune dissipation across physics contexts.
+- $(W)$\: Current void state, where linear decay prevents unbounded growth and promotes equilibrium.
+- $(\phi)$\: Phase sensitivity (default 0.5); $(f)$\: Reference frequency (default 0.02) for time-dependent oscillations.
+- Domain modulation: Effective $(\beta)$ multiplied by sparsity-derived factor (e.g., $(1.0 + (\text{sparsity fraction}^2) / (\beta / \alpha))$\), ensuring consistency with cognitive stability requirements.
+- Links to prior entries: Forms the dissipative component of VDM-E-085 (void update in SIE weights) and VDM-E-001 (field decay term); ensures H-theorem compliance as in VDM-E-018.
+- Evaluation: Combines with RE-VGSP for net void update; test for monotonic convergence in metriplectic integrators.
+- Keep noise and sinusoial modulation off for order-of-accuracy and Lyapunov tests.
+
+---
+
+#### VDM-E-088 — Universal Void Dynamics (Combined RE-VGSP + GDSP)
+
+<a id="vdm-e-088"></a>
+
+**Context:** [RUNTIME-ONLY] Simplified interface for combined void dynamics, applying both RE-VGSP and GDSP with universal constants to compute a single-step evolution of void states. This function encapsulates the synergistic growth-dissipation balance central to void debt, enabling unified application in cognitive self-optimization via the Self-Improvement Engine (SIE) and physical emergence in the Void Dynamics Model (VDM). • Source: design/Void_Equations.py • Commit: [pending update, e.g., post-6885588].
+
+**Equation:**
+$$
+\Delta W = \Delta_{\text{RE-VGSP}} + \Delta_{\text{GDSP}} = (\alpha - \beta) W - \alpha W^2 + \text{noise},
+$$
+
+with optional time modulation on each term and domain scaling applied to $(\alpha)$ and $(\beta)$.
+
+**Notes:**
+
+- Combines VDM-E-086 (RE-VGSP) and VDM-E-087 (GDSP) for net void debt-driven update, promoting logistic equilibrium with stochastic variability.
+- Universal constants: $(\alpha = 0.25)$, $(\beta = 0.1)$, $(\phi = 0.5)$, $(f = 0.02)$\; noise uniform in [-0.02, 0.02].
+- Domain modulation: Scales effective rates via sparsity fraction, e.g., $(1.0 + (\text{sparsity fraction}^2) / (\beta / \alpha = 0.4))$, bridging cognitive and physical domains.
+- Links to prior entries: Direct basis for VDM-E-085 (SIE void term) and VDM-E-027 (discrete RD reaction); supports Lyapunov stability as in VDM-E-018.
+- Evaluation: Use for iterative simulations; verify against metriplectic H-theorem for monotonicity.
+
+---
+
+#### VDM-E-089 — Universal Domain Modulation Factor
+
+<a id="vdm-e-089"></a>
+
+**Context:** [PLAUSIBLE] [RUNTIME-ONLY] Derivation of domain-specific modulation factors from void debt principles, scaling universal constants like $(\alpha)$ and $(\beta)$ based on target sparsity for different physics regimes. This function ensures cognitive stability constants generate realistic physics, unifying adaptation in the Self-Improvement Engine (SIE) with emergent behaviors in the Void Dynamics Model (VDM) across domains like quantum or cosmogenesis. • Source: design/Void_Debt_Modulation.py • Commit: [pending update, e.g., post-6885588].
+
+**Equation:**
+$$
+\text{domain\_modulation} = 1.0 + \frac{(\text{sparsity\_fraction}^2)}{(\beta / \alpha)}
+$$
+
+where $(\text{sparsity\_fraction} = \text{target\_sparsity\_pct} / 100)$, and $(\beta / \alpha = 0.4)$\.
+
+**Notes:**
+
+- $(\text{target\_sparsity\_pct})$\: Domain-specific sparsity (e.g., 15.0 for quantum, 84.0 for cosmogenesis), defaulting to 25.0 if unspecified.
+- Void debt ratio: Fixed at $(\beta / \alpha = 0.4)$\, derived from universal constants for learning stability.
+- Application: Multiplies effective $(\alpha)$ or $(\beta)$ in void equations (e.g., VDM-E-086, -087), tuning for physical consistency without arbitrary adjustments.
+- Links to prior entries: Modulates terms in VDM-E-085 (SIE weights) and VDM-E-027 (RD rates); validates against physics ranges (1.0-2.0) as in change log notes.
+- Evaluation: Compute for parameter sweeps; ensure mean and std align with model stability (e.g., mean ~1.637 ± 0.741 in sample grids).
+- Keep turned off for physics tests until [PROVEN]
 
 ---
 
 ## Change Log
+
 - VDM-E-001 to VDM-E-071 • 6885588 • Initial compilation from repository files
 - VDM-E-072 to VDM-E-080 • 6885588 • Added discrete conservation law and lattice action equations from derivation/conservation_law/ and derivation/foundations/
+- VDM-E-085 to VDM-E-089 • post-6885588 • Added SIE Weight Update Rule from fum_rt/core/fum_sie.py

@@ -3,7 +3,13 @@
 > Author: Justin K. Lietz  
 > Date: 2025-10-06
 >
-> TL;DR — Additive metriplectic dynamics were validated with three quantitative gates: (i) monotone discrete Lyapunov under the metric (M) step, (ii) two-grid order on log–log fits for M-only and JMJ (Strang) compositions, and (iii) J-only reversibility and $L^2$ preservation. Pinned artifact: derivation/code/outputs/logs/metriplectic/20251006_090900_sweep_dt_jmj.json. All gates passed with $R^2 \ge 0.9999$ and strictly non-positive $\Delta L_h$.
+> TL;DR — Final locked run (N=256, seeds=10, seed_scale=0.05, dg_tol=1e−12; $\Delta t\in[0.02,0.01,0.005,0.0025,0.00125]$):
+
+> - M-only: PASS (slope 2.9803, $R^2=0.999986$), Lyapunov violations = 0.
+> - JMJ (Strang): FAIL on slope gate (slope 2.7287, $R^2=0.999379$), Lyapunov violations = 0. The Strang defect scales with slope 2.6325 ($R^2=0.999098$), explaining the near-$2.7$ asymptote (commutator-limited regime).
+> - J-only: FAIL at strict/cap (rev $\|W_2-W_0\|_\infty=1.04\times10^{-9}$, $L^2$ drift up to $2.24\times10^{-10}$). We log FFT round-off sensitivity; the $10^{-10}$ cap was not met in this run.
+>
+> Pinned artifacts: see “Artifact index” and specific JSON/CSV below.
 
 ## Introduction
 
@@ -15,7 +21,7 @@ The central question here is numerical: does the composed JMJ method realize the
 
 To what extent does the composed JMJ integrator achieve second-order convergence (Strang) while preserving J-only reversibility and ensuring M-induced Lyapunov decrease at fixed $\Delta t$?
 
-- Independent variable: time step $\Delta t \in \{0.04, 0.02, 0.01, 0.005\}$ (s).
+- Independent variable: time step $\Delta t \in \{0.02, 0.01, 0.005, 0.0025, 0.00125\}$ (s).
 - Dependent variables: two-grid error $\|\Phi_{\Delta t} - \Phi_{\Delta t/2}\circ\Phi_{\Delta t/2}\|_\infty$ (dimensionless) and discrete Lyapunov increment $\Delta L_h$ (model units).
 - Measurement apparatus: regression slope on $\log$–$\log$ fits from seed-median two-grid errors; per-step $\Delta L_h$ from the DG-defined Lyapunov functional.
 
@@ -47,7 +53,7 @@ with
 
 $$J^\top = -J$$
 
-and 
+and
 
 $$M\succeq 0$$
 
@@ -77,9 +83,9 @@ Gate mapping:
 
 ## Variables
 
-- Independent: $\Delta t$ in seconds; grid fixed with $N = 128$, $\Delta x = 1$.
+- Independent: $\Delta t$ in seconds; grid fixed with $N = 256$, $\Delta x = 1$.
 - Dependent: two-grid error (dimensionless), per-step $\Delta L_h$ (model units).  
-- Controls: seeds $0\ldots 9$ for ensemble medians; periodic BC; parameters $D=1.0$, $r=0.2$, $u=0.25$.
+- Controls: seeds $0\ldots 9$ for ensemble medians; periodic BC; parameters $D=1.0$, $r=0.2$, $u=0.25$; seed amplitude scale 0.05.
 - Range justification: the chosen $\Delta t$ values keep Newton iterations robust while sampling a decade of step sizes to observe clean asymptotics without stiffness-induced plateaus.
 
 ## Equipment / Hardware
@@ -106,8 +112,8 @@ JMJ per step: half-J, full-M, half-J; J is spectral phase shift; M is DG implici
 
 1. Load the step spec (grid, parameters, seeds, $\Delta t$ sweep).  
 2. Validate J-only reversibility by advancing $\Delta t$ then $-\Delta t$ and measuring $\|W_2-W_0\|_\infty$ and $L^2$ drifts.  
-3. For M-only and JMJ, compute two-grid errors for each $\Delta t$ and seed, aggregate the median across seeds, and fit a line in $\log$–$\log$ space to obtain slope and $R^2$.  
-4. Monitor $\Delta L_h$ over 20 steps to confirm non-positivity.  
+3. For M-only and JMJ, compute two-grid errors for each $\Delta t$ and seed, aggregate the median across seeds, and fit a line in $\log$–$\log$ space to obtain slope and $R^2$ (gates: slope $\ge 2.90$, $R^2\ge 0.999$).  
+4. Monitor $\Delta L_h$ over 20 steps to confirm non-positivity (violations = 0).  
 5. At fixed $\Delta t=0.005$, compute an entropy-like functional $S(W)=\sum_i Q(W_i)\,\Delta x$ from a CAS-derived $Q'(W)=a_0+a_1 W + a_2 W^2$ and plot $|\Delta S|$ histograms for j_only, m_only, jmj with log-scaled x-axes.
 
 ### Risk assessment
@@ -139,46 +145,63 @@ $$
 \Delta L_h^{(k)} \;=\; L_h(W^{k+1}) - L_h(W^k),\quad \text{expected } \Delta L_h^{(k)} \le 0 \text{ for the DG M-step}.
 $$
 
-### Summary table (paired artifacts)
+### Summary (locked run; paired artifacts)
 
-| Case | Slope $p$ | $R^2$ | Figure | CSV | JSON |
-|---|---:|---:|---|---|---|
-| M-only two-grid | 2.9411 | 0.9999666 | figures/metriplectic/20251006_082211_residual_vs_dt_m_only.png | logs/metriplectic/20251006_082212_residual_vs_dt_m_only.csv | logs/metriplectic/20251006_082212_sweep_dt_m_only.json |
-| JMJ two-grid | 2.7419 | 0.9999099 | figures/metriplectic/20251006_090900_residual_vs_dt_jmj.png | logs/metriplectic/20251006_090900_residual_vs_dt_jmj.csv | logs/metriplectic/20251006_090900_sweep_dt_jmj.json |
+- M-only two-grid: slope $p=2.9803$, $R^2=0.9999859$ (PASS).  
+  Figure: `derivation/code/outputs/figures/metriplectic/20251006_100833_residual_vs_dt_m_only.png`  
+  CSV: `derivation/code/outputs/logs/metriplectic/20251006_100833_residual_vs_dt_m_only.csv`  
+  JSON: `derivation/code/outputs/logs/metriplectic/20251006_100833_sweep_dt_m_only.json`
 
-J-only reversibility and $L^2$ (gate):  
-$\|W_2-W_0\|_\infty \approx 6.85\times 10^{-8}$; $\|W_1\|_2-\|W_0\|_2 \approx 7.93\times10^{-9}$; $\|W_2\|_2-\|W_0\|_2 \approx 1.586\times10^{-8}$ (pass). Artifact: logs/metriplectic/20251006_083115_j_reversibility.json.
+- JMJ two-grid: slope $p=2.7287$, $R^2=0.9993790$ (FAIL vs $\ge2.90$).  
+  Figure: `derivation/code/outputs/figures/metriplectic/failed_runs/20251006_100844_residual_vs_dt_jmj.png`  
+  CSV: `derivation/code/outputs/logs/metriplectic/failed_runs/20251006_100845_residual_vs_dt_jmj.csv`  
+  JSON: `derivation/code/outputs/logs/metriplectic/failed_runs/20251006_100845_sweep_dt_jmj.json`
 
-Lyapunov series (JMJ): 20 steps with $\Delta L_h < 0$ throughout.  
-Figure + JSON: figures/metriplectic/20251006_090900_lyapunov_delta_per_step_jmj.png, logs/metriplectic/20251006_090900_lyapunov_series_jmj.json.
-![lyapunov_delta_per_step_jmj](figure-1.png)
+- Strang defect (JMJ vs MJM): slope $p=2.6325$, $R^2=0.999098$ (diagnostic PASS; explanatory).  
+  Figure: `derivation/code/outputs/figures/metriplectic/20251006_100841_strang_defect_vs_dt.png`  
+  CSV/JSON: `derivation/code/outputs/logs/metriplectic/20251006_100841_strang_defect_vs_dt.{csv,json}`
 
-Fixed-$\Delta t$ $|\Delta S|$ panel (dt=0.005):  
-Medians — j_only $\tilde m\approx 1.75\times10^{-7}$, m_only $\tilde m\approx 4.60\times10^{-4}$, jmj $\tilde m\approx 4.60\times10^{-4}$.  
-Figure + JSON/CSV: figures/metriplectic/20251006_090900_fixed_dt_deltaS_compare.png; logs/metriplectic/20251006_090901_fixed_dt_deltaS_compare.{json,csv}.
-![fixed_dt_deltaS_compare](figure-2.png)
+- Lyapunov series (JMJ): violations = 0 (PASS).  
+  Figure: `derivation/code/outputs/figures/metriplectic/20251006_100726_lyapunov_delta_per_step_jmj.png`  
+  JSON: `derivation/code/outputs/logs/metriplectic/20251006_100726_lyapunov_series_jmj.json`
+
+- Lyapunov series (M-only): violations = 0 (PASS).  
+  Figure: `derivation/code/outputs/figures/metriplectic/20251006_100825_lyapunov_delta_per_step_m_only.png`  
+  JSON: `derivation/code/outputs/logs/metriplectic/20251006_100825_lyapunov_series_m_only.json`
+
+- J-only reversibility and $L^2$: FAIL at strict/cap thresholds.  
+  Values: $\|W_2-W_0\|_\infty=1.0399\times10^{-9}$; $\|W_1\|_2-\|W_0\|_2=1.12\times10^{-10}$; $\|W_2\|_2-\|W_0\|_2=2.24\times10^{-10}$.  
+  JSON: `derivation/code/outputs/logs/metriplectic/failed_runs/20251006_100823_j_reversibility.json`.
+
+- Fixed-$\Delta t$ $|\Delta S|$ panel (dt=min sweep = 0.00125):  
+  Figure: `derivation/code/outputs/figures/metriplectic/20251006_100845_fixed_dt_deltaS_compare.png`  
+  CSV/JSON: `derivation/code/outputs/logs/metriplectic/20251006_100845_fixed_dt_deltaS_compare.{csv,json}`
 
 ### Figure captions with numeric claims
 
-- Residual vs $\Delta t$ (JMJ): slope $2.7419$, $R^2=0.9999099$ on medians across 10 seeds; failure gate set at expected $\ge 2.0$ and $R^2\ge 0.999$ (pass).  
-- Residual vs $\Delta t$ (M-only): slope $2.9411$, $R^2=0.9999666$ (pass).  
-- Lyapunov per step (JMJ): 20/20 negative increments; tolerance for violations $10^{-12}$ (pass).  
-- $|\Delta S|$ panel: log-scaled x-axes with log-spaced bins; per-panel annotations show medians and maxima; j_only near roundoff, m_only and jmj overlapping (M dominates entropy production at this step size).
+- Residual vs $\Delta t$ (M-only): slope $2.9803$, $R^2=0.9999859$ (PASS).  
+- Residual vs $\Delta t$ (JMJ): slope $2.7287$, $R^2=0.9993790$ (FAIL vs $\ge2.90$).  
+- Strang defect: slope $2.6325$, $R^2=0.999098$ (diagnostic).  
+- Lyapunov per step (JMJ/M-only): 20/20 negative increments; tolerance for violations $10^{-12}$ (PASS).  
+- $|\Delta S|$ panel: log-scaled x-axes with log-spaced bins; per-panel annotations show medians and maxima.
 
 ## Discussion / Analysis
 
-1. Convergence behavior. The M-only fit near $p\approx3$ indicates favorable local truncation properties of the DG step under these parameters. The JMJ fit at $p\approx2.74$ is between second and third order, consistent with splitting error dominance at the tested $\Delta t$. Reducing $\Delta t$ or tightening the nonlinear tolerance should move the fit closer to 3.  
+1. Convergence behavior. The M-only fit near $p\approx3$ indicates favorable local truncation properties of the DG step under these parameters. The JMJ fit at $p\approx2.73$ falls short of the $\ge2.90$ gate. The Strang defect slope $\approx2.63$ with $R^2\approx0.9991$ quantitatively indicates the commutator-limited regime; pushing to $N=512$ preserved the same regime (no appreciable slope increase), suggesting the observed limit is not due to aliasing at $N=256$.
 2. Dissipation and invariants. Strictly negative $\Delta L_h$ corroborates the metric nature of M. The reversibility and tiny $L^2$ drifts for J validate the spectral exactness within FFT-roundoff tolerance; for the exact map, a slope fit is neither expected nor informative, hence the dedicated gate.  
 3. Entropy-like functional. The overlap of m_only and jmj distributions in $|\Delta S|$ at fixed $\Delta t$ supports the intuition that M governs entropy production while J is conservative.  
-4. Limitations. The study is 1D with moderate amplitudes and a single grid. Very small $\Delta t$ could surface different asymptotics or stiffness; multi-dimensional extensions will require careful aliasing control.
+4. Robustness (V5). Tuples `(0.2,0.25,1.0,256)`, `(0.1,0.2,0.5,256)`, `(0.3,0.25,1.0,256)`, `(0.2,0.3,1.0,256)` yielded slopes $\{2.728, 2.319, 2.714, 2.729\}$ with $R^2\ge 0.9989$, Lyapunov violations $=0$ for all; PASS rate 0.0 due to the slope gate.  
+5. Limitations. 1D periodic, moderate amplitudes, spectral J-step; the commutator-limited scaling dictates the observed order for the composed flow at these parameters. A true 4th-order composition (e.g., Suzuki) could serve as an explanatory comparison (optional; not needed for this chapter).
 
 ## Conclusions
 
-The metriplectic composition passed all quality gates:  
-(i) J-only reversibility and $L^2$ preservation,  
-(ii) M-only Lyapunov monotonicity, and  
-(iii) strong two-grid fits with $R^2\ge 0.9999$.  
-The JMJ slope of $2.74$ is acceptable and is expected to rise with smaller $\Delta t$ and tighter Newton tolerances. The fixed-$\Delta t$ $|\Delta S|$ analysis further confirms that entropy production is driven by M, while J remains conservative up to roundoff.
+Decision fork (locked):
+
+- Obj-B (JMJ order gate): FAIL — slope $2.7287<2.90$ with $R^2=0.9994$. Explanation: commutator-limited scaling quantified by the Strang defect slope $\approx2.63$ ($R^2\approx0.9991$). An $N=512$ small-$\Delta t$ check showed no improvement, indicating resolution/aliasing is not the limiter.
+- M-only: PASS — slope $2.9803\ge2.90$, $R^2=0.999986$; Lyapunov violations $=0$.
+- J-only: FAIL at strict and cap; FFT phase rounding produced $\|W_2-W_0\|_\infty\approx10^{-9}$ and $L^2$ drift up to $2.2\times10^{-10}$. Kept gate as specified and logged justification in the artifact.
+
+We close the metriplectic chapter with a decisive record: M-only and Lyapunov gates hold; JMJ order is commutator-limited near $2.7$ under the locked setup; J-only fails the tightened cap in this run. This is sufficient grounding to proceed to the larger-physics phase with a clear “if-not, explain-why” resolution.
 
 ### Next steps
 
@@ -188,13 +211,14 @@ The JMJ slope of $2.74$ is acceptable and is expected to rise with smaller $\Del
 
 ## Artifact index (paired data)
 
-- M-only order: figures/metriplectic/20251006_082211_residual_vs_dt_m_only.png + logs/metriplectic/20251006_082212_residual_vs_dt_m_only.csv  
-  JSON summary: logs/metriplectic/20251006_082212_sweep_dt_m_only.json
-- JMJ order: figures/metriplectic/20251006_090900_residual_vs_dt_jmj.png + logs/metriplectic/20251006_090900_residual_vs_dt_jmj.csv  
-  JSON summary: logs/metriplectic/20251006_090900_sweep_dt_jmj.json
-- J-only reversibility: logs/metriplectic/20251006_083115_j_reversibility.json
-- Lyapunov series (JMJ): figures/metriplectic/20251006_090900_lyapunov_delta_per_step_jmj.png + logs/metriplectic/20251006_090900_lyapunov_series_jmj.json
-- Fixed-$\Delta t$ $|\Delta S|$: figures/metriplectic/20251006_090900_fixed_dt_deltaS_compare.png + logs/metriplectic/20251006_090901_fixed_dt_deltaS_compare.{json,csv}
+- M-only order: figures `.../20251006_100833_residual_vs_dt_m_only.png` + CSV `.../20251006_100833_residual_vs_dt_m_only.csv` + JSON `.../20251006_100833_sweep_dt_m_only.json`
+- JMJ order: figure `.../failed_runs/20251006_100844_residual_vs_dt_jmj.png` + CSV `.../failed_runs/20251006_100845_residual_vs_dt_jmj.csv` + JSON `.../failed_runs/20251006_100845_sweep_dt_jmj.json`
+- J-only reversibility: JSON `.../failed_runs/20251006_100823_j_reversibility.json`
+- Lyapunov series (JMJ): figure `.../20251006_100726_lyapunov_delta_per_step_jmj.png` + JSON `.../20251006_100726_lyapunov_series_jmj.json`
+- Lyapunov series (M-only): figure `.../20251006_100825_lyapunov_delta_per_step_m_only.png` + JSON `.../20251006_100825_lyapunov_series_m_only.json`
+- Strang defect: figure `.../20251006_100841_strang_defect_vs_dt.png` + CSV/JSON `.../20251006_100841_strang_defect_vs_dt.{csv,json}`
+- Fixed-$\Delta t$ $|\Delta S|$: figure `.../20251006_100845_fixed_dt_deltaS_compare.png` + CSV/JSON `.../20251006_100845_fixed_dt_deltaS_compare.{csv,json}`
+- Robustness V5: CSV/JSON `.../failed_runs/20251006_100845_robustness_v5_grid.{csv,json}` (pass rate reported therein)
 
 ## References
 

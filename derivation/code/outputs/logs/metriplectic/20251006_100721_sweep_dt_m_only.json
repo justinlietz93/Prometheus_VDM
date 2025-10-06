@@ -1,0 +1,29 @@
+{
+  "dt": [
+    0.02,
+    0.01,
+    0.005,
+    0.0025,
+    0.00125
+  ],
+  "expected_slope": 2.0,
+  "failed": false,
+  "figure": "/mnt/ironwolf/git/Void_Unity_Proofs/derivation/code/outputs/figures/metriplectic/20251006_100721_residual_vs_dt_m_only.png",
+  "fit": {
+    "R2": 0.9999852529193085,
+    "slope": 2.9798652699489403
+  },
+  "gate": {
+    "R2_min": 0.999,
+    "slope_min": 2.9
+  },
+  "scheme": "m_only",
+  "trivial_exact": false,
+  "two_grid_error_inf_med": [
+    4.7083639089905843e-07,
+    6.099227219417622e-08,
+    7.76259671169191e-09,
+    9.792754259406455e-10,
+    1.2159363836986015e-10
+  ]
+}

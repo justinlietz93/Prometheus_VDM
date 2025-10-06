@@ -1,0 +1,60 @@
+{
+  "bc": "periodic",
+  "dt_sweep": [
+    0.02,
+    0.01,
+    0.005,
+    0.0025,
+    0.00125
+  ],
+  "grid": {
+    "N": 256,
+    "dx": 1.0
+  },
+  "notes": "Run plan (locked): N=256, small-\u0394t sweep, seed_scale=0.05, dg_tol=1e-12; gather JMJ+M-only sweeps, Lyapunov, J-only reversibility, Strang defect, and V5 robustness.",
+  "params": {
+    "D": 1.0,
+    "c": 0.5,
+    "dg_tol": 1e-12,
+    "dt_sweep_small": [
+      0.02,
+      0.01,
+      0.005,
+      0.0025,
+      0.00125
+    ],
+    "gate_R2": 0.999,
+    "gate_slope": 2.9,
+    "r": 0.2,
+    "seed_scale": 0.05,
+    "u": 0.25,
+    "v5_grid": [
+      {
+        "D": 1.0,
+        "N": 256,
+        "r": 0.2,
+        "u": 0.25
+      },
+      {
+        "D": 0.5,
+        "N": 256,
+        "r": 0.1,
+        "u": 0.2
+      },
+      {
+        "D": 1.0,
+        "N": 256,
+        "r": 0.3,
+        "u": 0.25
+      },
+      {
+        "D": 1.0,
+        "N": 256,
+        "r": 0.2,
+        "u": 0.3
+      }
+    ]
+  },
+  "scheme": "jmj",
+  "seeds": 10
+}

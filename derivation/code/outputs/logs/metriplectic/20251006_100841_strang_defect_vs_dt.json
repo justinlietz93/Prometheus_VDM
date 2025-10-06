@@ -1,0 +1,22 @@
+{
+  "defect_med": [
+    5.236019626517034e-07,
+    7.54812113546062e-08,
+    1.1422180686091604e-08,
+    1.899570451022875e-09,
+    3.599769228361527e-10
+  ],
+  "dt": [
+    0.02,
+    0.01,
+    0.005,
+    0.0025,
+    0.00125
+  ],
+  "failed": false,
+  "figure": "/mnt/ironwolf/git/Void_Unity_Proofs/derivation/code/outputs/figures/metriplectic/20251006_100841_strang_defect_vs_dt.png",
+  "fit": {
+    "R2": 0.9990979771814215,
+    "slope": 2.632507318657306
+  }
+}

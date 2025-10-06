@@ -1,7 +1,7 @@
 {
   "bc": "periodic",
   "scheme": "jmj",
-  "grid": { "N": 256, "dx": 1.0 },
+  "grid": { "N": 512, "dx": 1.0 },
   "params": {
     "c": 0.5,
     "D": 1.0,
@@ -21,5 +21,5 @@
   },
   "dt_sweep": [0.02, 0.01, 0.005, 0.0025, 0.00125],
   "seeds": 10,
-  "notes": "Run plan (locked): N=256, small-Δt sweep, seed_scale=0.05, dg_tol=1e-12; gather JMJ+M-only sweeps, Lyapunov, J-only reversibility, Strang defect, and V5 robustness."
+  "notes": "N=512 variant to probe asymptotics; all gates/params same as main run."
 }
