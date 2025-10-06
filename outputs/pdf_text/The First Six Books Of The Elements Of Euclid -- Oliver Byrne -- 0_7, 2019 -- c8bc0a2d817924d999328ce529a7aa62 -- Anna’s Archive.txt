@@ -1,0 +1,10259 @@
+THEFIRSTSIXBOOKSOF
+THEELEMENTSOFEUCLID
+INWHICHCOLOUREDDIAGRAMSANDSYMBOLSAREUSED
+INSTEADOFLETTERSFORTHEGREATEREASEOFLEARNERS
+BYOLIVERBYRNE
+github.com/jemmybutton
+2019ed.0.7
+cba
+ThisrenditionofOliverByrne’s“ThefirstsixbooksoftheElementsofEuclid”
+ismadebySlyusarevSergeyandisdistributedunderCC-BY-SA4.0license
+
+Introduction
+hearts and sciences have become so e xten-
+sive, that tofacilitatetheiracquirement is
+ofas muchimportance asto extendtheir
+boundaries. Illustration, if itdoes not
+shortenthetimeofstudy,willatleastmakeitmoreagree-
+able. ThisWorkhasagreateraimthanmereillustration;
+wedonotintroducecolorsforthepurposeofentertain-
+ment,or to amusebycertain combinations of tintand
+form,buttoassistthemindinitsresearchesaftertruth,to
+increasethefacilitiesofintroduction,andtodiffuseper-
+manentknowledge. Ifwe wanted authoritiesto prove
+theimportance and use fulness ofgeometry,we might
+quoteeveryphilosophersincethedayofPlato.Among
+theGreeks,inancient,asintheschoolofPestalozziand
+othersinrecenttimes,geometrywasadoptedasthebest
+gymnastic of the mind. Infact,Euclid’s Elements have
+become,bycommonconsen t,thebasisofmathematical
+sciencealloverthecivilizedglobe.Butthiswillnotappear
+extraordinary,ifweconsiderthatthissublimescienceis
+notonlybettercalculatedthananyothertocallforththe
+spiritofinquiry,toelevatethemind,andtostrengthenthe
+reasoningfaculties,butalsoitformsthebestintroduction
+tomostoftheusefulandimportantvocationsofhuman
+life.Arithmetic,land-surveying,hydrostatics,pneumatics,
+optics,physicalastronomy,&c.arealldependen tonthe
+propositionsofgeometry.
+4
+Muchhowe verdependson thefirstcommunication
+ofanysciencetoalearner,thoughthebestandmosteasy
+methods are seldom adop ted.Propositions are placed
+beforeastudent,whothoughhavingasufficientunder-
+standing, istoldjustas much abou t them on en tering
+attheverythresholdofthescience,asgivenhimapre-
+possessionmostunfavorabletohisfuturestudyofthis
+delightfulsubject;or “theformalities and parapherna-
+liaofrigouraresoostentatiouslyputforward,asalmost
+to hidethereality.Endless and pe rplexingrepetitions,
+whichdonotconfergreaterexactitudeonthereasoning,
+render the demons trationsinvolved and obscu re,and
+conceal fromtheview of the student the consecu tion
+ofevidence.”Thusanaversioniscreatedinthemindof
+thepupil,andasubjectsocalculatedtoimprovetherea-
+soning powers,and givethe habitofclosethinking, is
+degraded bya dryandrigid course of instructioninto
+anuninterestingexerciseofthememory. Torisethecu-
+riosity,andtoawaken thelistlessanddo rmantpowersof
+youngermindsshouldbetheaimofeveryteacher;but
+whereexamplesofexcellencearewanting,theattempts
+toattainitarebutfew,whileeminenceexcitesattention
+andproducesimitation. TheobjectofthisWorkistoin-
+troduceamethodofteachinggeometry,whichhasbeen
+muchapp rovedofbymanyscientificmeninthiscoun-
+try,as wellasin France and America. The plan here
+adoptedforciblyappealstothe eye, the mostsensitive
+andthemostcomprehensiveofourexternalorgans,and
+its pre-eminencetoimprint its subjectonthe mindis
+supportedbytheincontrovertiblemaximexpressedin
+thewellknownwordsofHorace:—
+Segniusirritantanimosdemissaperaurem
+Quamquaesun toculissubjectaﬁdelibus
+5
+Afeeblerimpressthroughtheearismade,
+Thanwhatisbythefaithfuleyeconveyed.
+Alllanguagecons istsofrepresentativesigns,andthose
+signsarethebestwhicheffecttheirpurposeswiththegreatest
+precisionanddispatch.Suchforallcommonpu rposesare
+theaudiblesignscalledwords,whicharestillconsideredasau-
+dible,whetheraddressedimmediatelytotheear,orthrough
+themediumofletterstotheeye.Geometricaldiagramsare
+notsigns,butthematerialsofgeometricalscience,theobject
+ofwhichistoshowtherelativequantitiesoftheirpartsby
+aprocessofreasoningcalledDemonstration. Thisreason-
+inghasbeengenerallycarriedonbywords,letters,andblack
+oruncoloureddiagrams;butastheuseofcolouredsymbols,
+signs,anddiagramsinthelinearartsandsciences, renders
+theprocessofreasoningmoreprecise,andtheattainment
+moreexpeditious,theyhavebeeninthisinstanceaccordingly
+adopted.
+Suchistheexpeditionofthisenticingmodeo fcommu-
+nicatingknowledge,thattheElementsofEuclidcanbeac -
+quiredinlessthatonethirdofthetimeusuallyemployed,
+andtheretentionbythememoryismuchmorepermanent;
+thesefactshavebeenasce rtainedbynumerousexperiments
+madebytheinventor,andseveralotherswhohaveadopted
+hisplans.Theparticularsofwhicharefewandob vious;the
+lettersannexedtopoints,lines,orotherpartsofadiagram
+areinfactbutarbitrarynames,andrepresenttheminthe
+demonstration;insteadofthese,thepartsbeingdifferently
+coloured,aremadetonamethemselves,fortheirformsin
+correspondingcoloursrepresenttheminthedemonstration.
+In order to give a better idea of this system,and of
+advantagesgainedbyitsadoption,letustakearightangled
+triangle,andexpresssomeo fitspropertiesbothbycolours
+andthemethodgenerallyemployed.
+6
+B
+C A
+Someofthepropertiesoftherightangledtriangle
+ABC,expressedbythemethodgenerallyemployed:
+1.The angle BAC, togetherwiththe angles BCAand
+ABCareequaltotworightangles,ortwicetheangle
+ABC.
+2.TheangleCABaddedtotheangleACBwillbeequal
+totheangleABC.
+3.TheangleABCisgreaterthaneitheroftheanglesBAC
+orBCA.
+4.TheangleBCAortheangleCABislessthantheangle
+ABC.
+5.IffromtheangleABC,therebetakentheangleBAC,
+theremainderwillbeequaltotheangleACB.
+6.ThesquareofACisequaltothesumofthesquaresof
+ABandBC.
+Thesamepropertiesexpressed
+bycolouringthedifferentparts:
+1.
++
++
+=2
+=
+.
+Thatis,theredangleaddedtotheyellowangleadded
+totheblueangle,equaltwicetheyellowangle,equal
+tworightangles.
+2.
++
+=
+.
+Or in words, thered angle addedtothe blue angle,
+equaltheyellowangle.
+3.
+>
+or>
+.
+Theyellowangleisgreaterthaneithertheredorblue
+angle.
+4.
+or
+<
+.
+Eithertheredorblueangleislessthattheyellowangle.
+5.
+−
+=
+.
+Inotherterms,theyellowanglemadelessbetheblue
+angleequalredangle.
+7
+6.
+2=
+2+
+2.
+Thatis,thesquareoftheyellowlineisequaltothesum
+ofthesquaresoftheblueandredlines.
+Inoraldemonstrationswegainwithcoloursthisim-
+portantadvantage, the eye andthe earcan be add ressed
+atthesamemomen t,sothatforteachinggeometry,and
+otherlinearartsandsciences,inclasses,thesystemisbest
+everproposed,thisisapparentfromtheexamplesgiven.
+Whenceitisevidentthatareferencefromthetextto
+thediagramismorerapidandsure,bygivingtheforms
+andcoloursoftheparts,orbynamingthepartsandtheir
+colours,thannamingthepartsandlettersonthediagram.
+Besidesthesuperiorsimplicity,thissystemislikewisecon-
+spicuousforconcentration,andwhollyexcludestheinju-
+riousthoughprevalentpracticeofallowingthestudentto
+committhedemonstrationtomemory;untilreason,and
+fact,andproofonlymakeimpressionsoftheunderstand-
+ing.
+Again,whenlecturingontheprinciplesorproperties
+of figures, ifwe mentionthe colourof the partorparts
+referredto,asin saying, thered angle, the blueline,or
+lines,&c,thepartorpartsthusnamedw illbeimmediately
+seen byall the class at the sameinstant;notsoifwe say
+the angleABC, thetriangle PFQ, thefigure EGKt,and
+so on; for theletters mustbetraced one b yone before
+studentsarrangeintheirmindstheparticularmagnitude
+referredto,whichoftenoccasionsconfusionanderror,as
+wellasloss of time.Alsoif the parts which are given as
+equal,havethe same co loursin anydiagram, the mind
+willnotwander fromthe objectbeforeit; that is,such
+anarrangementpresentsanoculardemonstrationofthe
+partstobeprovedequal,andthelearnerretainsthedata
+throughoutthewholeofreasoning.Butwhatevermaybe
+8
+theadvantagesofthepresentplan,ifitbenotsubstituted
+for,itcanalwaysbemadeapowe rfulauxiliarytotheother
+methods, for the purpose of introduction,orofa more
+speedyreminiscence,orofmorepermanentretentionby
+thememory.
+Theexperienceofallwhohaveformedsystemstoim-
+pressfacts onthe understanding,agreein provingthat
+colouredrepresentations,aspictures,cuts,diagrams,&c.
+aremoreeasilyfixedinthemindthanmeresentencesun-
+markedbyanypeculiarity.Curiousasitmayappear,poets
+seemtobeawareofthisfactmorethanmathematicians;
+manymodernpoetsalludetothisvisiblesystemofcom-
+municating knowledge,one of them hasthus expressed
+himself:
+Soundswh ichaddresstheeararelostanddie
+Inoneshorthour,butthesewhichstriketheeye,
+Livelongupon themind,thefaithfulsight
+Engravestheknowledgewithabeamo flight.
+Thisperhapsmaybereckonedtheonlyimprovement
+whichplaingeometryhasreceivedsincethedaysofEuclid,
+andiftherewereanygeometersofnotebeforethattime,
+Euclid’ssuccesshasqu iteeclipsedtheirmemory,andeven
+occasionedallgoodthingsofthatkindtobeassignedto
+him;likeÆsopamong thewritersofFables. Itmayalso
+beworthyofremark,astangiblediagramsaffordtheonly
+mediumthroughwhichgeometryandotherlinearartscan
+betaughttotheblind,thevisiblesystemisnolessadapted
+totheexigenciesofthedeafanddumb.
+Caremustbetakentoshowthatcolourhasnothing
+todowiththelines,angles,ormagnitudes,exceptmerely
+tonamethem. Amathematicalline,whichislengthwith-
+outbreadth,cannotpossess co lour, yet thejunction of
+twocoloursonthesamep lanegivesagoodideaofwhat
+9
+ismeantbyamathematicalline;recollectwearespeaking
+familiarly,suchajunctionistobeunderstoodandno tthe
+colour,whenwesa ytheblackline,theredlineorlines,&c.
+Coloursandcoloureddiagramsmayatfirstappeara
+clumsymethodtoconveypropernotionsoftheproperties
+andpartsofmathematicalfiguresandmagn itudes,how-
+evertheywillbefoundtoaffordameansmo rerefinedand
+extensivethananythathashithertoproposed.
+Weshallheredefineapointaline,andasurface,and
+demonstrateapropositioninordertoshowthetruthof
+thisassertion.
+Apointisthatwhichhaspos ition,butnotmagnitude;
+orapointispositiononly,abstractedfromtheconsidera-
+tionoflength,breadth,andthickness.Perhapsthefollow-
+ingdescriptionisbettercalculatedtoexplainthenatureof
+mathematicalpointtothosewhoha venotacquiredthe
+idea,thantheabovespeciousdefinition.
+Letthreecolours meetandcoveraportionofthepaper,
+wheretheymeetisnotblue,norisityellow,norisitred,as
+itoccupiesnoportionoftheplane,forifitdid,itwould
+belongtotheblue,thered,ortheyellowpart;yetitexists,
+andhaspos itionwithoutmagnitude,sothatwithalittle
+reflection,thisjunctionofthreecoloursonaplane,givesa
+goodideaofamathematicalpoint.
+Alineislengthwithoutbreadth.Withtheassistance
+ofcolours,nearlyinthesamemanne rasbefore,anideaof
+alinemaybethusgiven:—
+Let two colours meetand covera portion ofpaper;
+wheretheymeet is not red,nor isitblue; thereforethe
+junctionoccupiesnoportionoftheplane,andthereforeit
+cannothavebreadth,butonlylength: fromwhichwecan
+readilyformanideaofwhatismeantbyamathematical
+line.Forthepurposeofillustration,onecolourdiffering
+fromthe colourof the paper,orplane upon wh ichit is
+10
+drawn,wouldhavebeensufficient;henceinfuture,ifwe
+say theredline, the blueline or lines, &c. it isthejunc-
+tionswiththeplaneuponwhichtheyaredrawnaretobe
+understood.
+P
+RS
+Q
+Surfaceifthatwhichhaslengthandbreadthwithout
+thickness.
+When we cons idera solid body (PQ),we perceive
+atoncethat ithasthree dimensions,namely :— length,
+breadth,andthickness;supposeonepa rtofthissolid(PS)
+to bered,andthe otherpart (QR) yellow,andthat the
+colours be distinctwithoutcommingling, the blue sur-
+face(RS)whichseparatestheseparts,orwhichisthesame
+thing,thatwhichdividesthesolidwithoutlossofmater-
+ial,mustbewithoutthickness,andonlypossesseslength
+andbreadth;thisplainlyappearsfromreasoning,similar
+tothatjustemployedindefining,orratherdescribinga
+pointandaline.
+Thepropositionwhichwehaveselectedtoelucidate
+themannerinwhichtheprinciplesareapplied,isthefifth
+ofthefirstBook.
+A
+C B
+E D
+InanisoscelestriangleABC,theinternalanglesatthe
+baseABC,ACBareequal,andwhen thesidesAB,ACare
+produced, theexternalanglesatthebaseBCE ,CBDare
+alsoequal.
+Produce
+ and
+ ,
+make
+ =
+ ,draw
+ and
+ .
+In
+and
+wehave
+ =
+ ,
+commonand
+ =
+ :
+∴
+=
+,
+ =
+and
+=
+(pr. 1.4).
+11
+Againin
+ and
+ ,
+=
+ ,
+=
+and
+ =
+ ;
+∴
+=
+and
+=
+(pr.1.4)
+But
+=
+,∴
+=
+.
+Q.E.D.
+ByannexingLetterstotheDiagram.
+LettheequalsidesABandACbeproducedthrough
+theextremitiesBC,ofthethirdside,andintheproduced
+partBDofeither,letanypointDbeassumed ,andfrom
+theotherletAEbecutoffequaltoAD(pr.1.3). Letpoints
+EandD,sotakenintheproducedsides,beconnectedby
+straightlinesDCandBEw iththealternateextremitiesof
+thethirdsideofthetriangle.
+InthetrianglesDACandEABthesidesDAandACare
+respectivelyequaltoEAandAB,andtheincludedangleA
+iscommon tobothtriangles.Hence(pr.1.4)thelineDC
+isequaltoBE,theangleADCtotheangleAEB,andthe
+angleACDtotheangleABE;iffromtheequallinesAD
+andAEtheequalsidesABandACbetaken,theremainders
+BDandCEwillbeequal.HenceinthetrianglesBDCand
+CEB,thesidesBDandDCarerespectivelyequaltoCEand
+EB,andtheanglesDandEincludedbythosesidesarealso
+equal.Hence(pr.1.4)theanglesDBCandECB ,whichare
+thoseincludedbythethirdsideBCand theproductions
+oftheequalsidesABandACareequal.Alsotheangles
+DCBandEBCareequalifthoseequalsbetakenfromthe
+anglesDCAandEBAbeforeprovedequal,theremainders,
+whicharetheanglesABCandACBoppositetotheequal
+sides,willbeequal.
+Therefore in an isosceles triangle, &c.
+Q.E.D.
+12
+Ourobject inthis place beingtointroduce system
+ratherthantoteachanyparticularsetofpropositions,we
+havetherefore selectedtheforegoing outof theregular
+course.Forschoolsandotherpublicplacesofinstruction,
+dyedchalkswillanswertodescribethediagrams,&c.for
+privateusecolouredpencilswillbefoundveryconvenient.
+WearehappytofindthattheElementsofMathematics
+nowformsaconsiderablepartofeverysoundfemaleedu-
+cation,thereforewecalltheattentiontothoseinterested
+orengagedintheeducationofladiestothisveryattractive
+modeofcommunicatingknowledge,andtothesucceed ing
+workforitsfuturedevelopement.
+Weshallforthepresentconcludebyobserving,asthe
+sensesofsightandhearingcanbesoforciblyandinstanta-
+neouslyaddressedalikewithonethousandasw ithone,the
+millionmightbetaughtgeometryandotherbranchesof
+mathematicswithgreatease,thiswouldadvancethepur-
+poseofeducationmorethananythingmightbenamed ,
+foritwouldteachthepeoplehowtothink,andnotwhat
+tothink;itisinthisparticularthegreaterrorofeducation
+originates.
+13
+THEELEMENTSOFEUCLID
+BOOKI
+Definitions
+1
+Apointisthatwhichhasnoparts.
+2
+Alineislengthwithoutbreadth.
+3
+Theextremitiesofalinearepoints.
+4
+Thestraightorrightlineisthatwhichliesevenlybetween
+itsextremities.
+5
+Asurfaceisthatwhichhaslengthandbreadthonly.
+6
+Theextremitiesofasurfacearelines.
+7
+Aplanesurfaceisthatwhichliesevenlybetweenitsextrem-
+ities.
+8
+Aplaneangleistheinclinationoftwolinestooneanother,
+inaplane,whichmeettogether,butarenotinthesame
+direction.
+14
+9
+Aplanerectilinearangleistheinclinationoftwostraight
+linestooneanother,whichmeettogether,butarenotin
+thesamestraightline.
+10
+Whenones traightlinestandingonano therstraightline
+makesthe adjacentangles equal,each of these anglesis
+called arightangle,and each o f theselinesis saidto be
+perpendicular tooneanother.
+11
+Anobtuseangleisananglegreaterthanarightangle
+12
+Anacuteangleisananglelessthanarightangle.
+13
+Atermorboundaryistheextremityofanything.
+14
+Afigureisasurfaceenclosedonallsidesbyalineorlines.
+15
+Acircleisaplanefigure,boundedb yonecontinuedline,
+calleditscircumferenceorperiphery;andhavingacertain
+pointwithinit,fromwhichallstraightlinesdrawntoits
+circumferenceareequal.
+16
+Thispoint(fromwhichtheequallinesaredrawn)iscalled
+thecentreofthecircle.
+17
+Adiameterofacircleisastraightlinedrawnthroughthe
+centre,terminatedbothwaysinthecircumference.
+15
+18
+Asemicircleisthefigurecontainedbythediameter,and
+thepartofthecirclecutoffbythediameter.
+19
+Asegmentofacircleisafigurecontainedbystraightline
+andthepartofthecircumferencewhichitcutsoff.
+20
+Afigurecontainedbystraightlinesonly,iscalledarectilin-
+earfigure.
+21
+Atriangleisarectilinearfigureincludedbythreesides.
+22
+Aquadrilateralfigureisonewhichisboundedb yfoursides.
+Thestraightlines
+ and
+ connectingthever-
+tices of the opposite angles ofa quadrilateral figure,are
+calleditsdiagonals.
+23
+Apolygonis arectilinear figure bounded b ymorethan
+foursides.
+24
+Atrianglewhosesidesareequal,issaidtobeequilateral.
+25
+Atrianglewhichhasonlytwosidesequaliscalledanisosce-
+lestriangles.
+26
+Ascalenetriangleisonewhichhasnotwosidesequal.
+27
+Arightangledtriangleisthatwhichhasarightangle.
+16
+28
+Anobtuseangledtriangleisthatwhichhasanob tuseangle.
+29
+Anacuteangledtriangleisthatwhichhasthreeacutean-
+gles.
+30
+Offour-sidedfigures,asquareisthatwhichhasallitssides
+equal,andallitsanglesrightangles.
+31
+Arhombusisthatwhichhasallitssidesequal,butitsangles
+arenotrightangles.
+32
+Anoblongisthatwhichhasallitsanglesrightangles,but
+hasnotallitssidesequal.
+33
+Arhomboidisthatwhichhasitsoppositesidesequalto
+oneanother,butallitssidesarenotequalnoritsangles
+rightangles.
+34
+Allotherquadrilateralfiguresarecalledtrapeziums.
+35
+Parallelstraight lines are such as a reinthe same p lane,
+andwhichbeingproducedcontinuallyinbothdirections
+wouldnevermeet.
+17
+Postulates
+I
+Letitbegrantedthatastraightlinemaybedrawnfrom
+anyonepointtoanyotherpoint.
+II
+Letitbegrantedthatafinitestraightlinemaybeproduced
+toanylengthinastraightline.
+III
+Letitbegrantedthatacirclemaybedescribedwithany
+centreatanydistancefromthatcentre.
+Axioms
+I
+Magnitudeswhichareequaltothesameareequaltoeach
+other.
+II
+Ifequalsbeaddedtoequalsthesumswillbeequal.
+III
+Ifequalsbetakenawayfromequalstheremainderswillbe
+equal.
+IV
+Ifequalsbeaddedtounequalsthesumswillbeunequal.
+V
+Ifequalsbetakenawayfromunequa lstheremainderswill
+beunequal.
+VI
+Thedoublesofthesameorequalmagnitudesareequal.
+18
+VII
+Thehalvesofthesameorequalmagnitudesareequal.
+VIII
+Themagnitudeswhichcoincidewithoneano ther,orex-
+actlyfillthesamespace,areequal.
+IX
+Thewholeisgreaterthanitspart.
+X
+Twostraightlinescannotincludeaspace.
+XI
+Allrightanglesareequal.
+XII
+Iftwostraightlines(
+)meetathirdstraightline
+(
+)soastomakethetwointeriorangles(
+ and
+)onthesamesidelessthantwostraightangles,these
+twostraightlineswillmeetiftheybeproducedon thatside
+onwhichtheanglesarelessthantworightangles.
+19
+Elucidations
+Thetwelfthaxiommaybeexpressedinanyofthefol-
+lowingways:
+1.Twodivergingstraightlinescanno tbebothparallelto
+thesamestraightline.
+2.Ifastraightlineintersectoneofthetwoparallelstraight
+linesitmustalsointersecttheother.
+3.Onlyonestraightlinecanbed rawnthroughagiven
+point,paralleltoagivenstraightline.
+Geometryhasforitsprincipalobjectstheexposition
+andexplanationofthepropertiesofﬁgure,andfigureisde-
+finedtobetherelationwhichsubsistsbetweenthebound-
+ariesofspace.Spaceormagnitudeisofthreekinds,linear,
+superﬁcial ,andsolid.
+A
+Anglesmightproperlybeconsideredasafourthspecies
+ofmagnitude.Angularmagnitudeevidentlyconsistsof
+parts,andmustthereforebeadmittedtobeaspec iesof
+quantity. Thestudentmustnotsupposethatthemagni-
+tude ofan angleis affected by thelength of the straight
+lineswhichincludeitandofwhosemu tualdivergenceitis
+themeasure. Thevertexofanangleisthepointthesidesof
+thelegsoftheanglemeet,asA.
+CBD
+F
+H
+GE
+An angleis often designated bya singleletterwhen
+itslegsaretheonlylineswhichmeettogetheratitsvertex.
+Thustheredandbluelinesformtheyellowangle,which
+inothersystemswouldbecalledangleA.Butwhenmore
+thantwolinesmeetinthesamepoint,itwasnecessaryby
+formermethods,inordertoavoidconfusion,toemploy
+threelettersto designate an angle about thatpoint, the
+letterwhichmarkedthevertexoftheanglebeingalways
+placedinthemiddle. Thustheblackandredlinesmeeting
+togetheratC,formtheblueangle,andhasbeenusua lly
+denominatedthe angle FCDorDCF. Thelines FC and
+20
+CDarethelegsoftheangle;thepointCisitsvertex. In
+likemannertheblackanglewouldbedesignatedtheangle
+DCBorBCD.Theredandblueanglesaddedtogether,or
+theangleHCDadded toFCD,maketheangleHCD;and
+soofotherangles.
+Whenthelegsofanangleareproducedorprolonged
+beyonditsvertex,theanglesmadebythemonbothsides
+ofthevertexaresaidtobeverticallyoppositetoeachother:
+thustheredandyellowanglesaresaidtobeverticallyop-
+positeangles.
+Superpositionistheprocessbywhichonemagn itude
+maybeconceivedtobeplaceduponano ther,soasexactly
+tocoverit,orsothateverypartofeachshallexactlycoin-
+cide.
+Alineissaidtobe produced,whenitisextended,pro-
+longed,orithaslengthincreased,andtheincreaseoflength
+whichitreceivesiscalled produced part ,oritsproduction .
+Theentirelengthofthelineorlineswhichenclosea
+figure,iscalleditsperimeter. ThefirstsixbooksofEuclid
+treatofplainfiguresonly.Alinedrawnfromthecentreof
+acircletoitscircumference,iscalleda radius. Thatsideof
+arightangledtriangle,whichisoppositetotherightangle,
+iscalledthehypotenuse.Anoblongisdefinedinthesecond
+book,andcalleda rectangle. Alllineswhichconsideredin
+thefirstsixbooksoftheElementsaresupposed tobein
+thesameplane.
+Thestraight-edgeandcompassesarethe only instru-
+ments, the use ofwhichis permittedin Euclid,orplain
+Geometry. Todeclarethisrestrictionistheobjectofthe
+postulated.
+TheAxiomsofgeometryarecertaingeneralproposi-
+tions, thetruth ofwhichistakento be self-evidentand
+incapableofbeingestablishedbydemonstration.
+21
+Propositionsarethoseresults which are obtainedin
+geometrybyaprocessofreasoning. Therearetwospecies
+ofpropositionsingeometry, problemsandtheorems.
+AProblemisapropositioninwhichsomethingispro-
+posedtobedone;asalinetobedrawnundersomegiven
+conditions,acircletobedescribed,somefiguretobecon-
+structed,&c.
+Thesolutionoftheproblemconsistsinshowinghow
+thethingrequiredmaybedoneb ytheaidoftheruleor
+straight-edgeandcompasses.
+Thedemonstrationconsistsinprovingthattheprocess
+indicatedinthesolutionattainstherequiredend.
+ATheoremisapropositioninwhichthetruthofsome
+principleisasserted. Thisprinciplemustbededucedfrom
+theaxiomsandde finitions,orothertruthspreviouslyand
+independen tlyestablished. Toshowthisistheobjectof
+demonstration.
+AProblemisanalogoustoapostulate.
+ATheoremresemblesanaxiom.
+APostulateisaproblem,thesolutiontowhichisas-
+sumed.
+AnAxiomisatheorem,thetruthofwhichisgranted
+withoutdemonstration.
+ACorollaryisaninferencededuced immediatelyfrom
+aproposition.
+AScholiumisanoteorobservationonaproposition
+notcontaining aninference ofsufficient importanceto
+entitleittothenameof corollary.
+ALemmaisapropositionmerelyintroducedforthe
+purposeofestablishingsomemo reimportantproposition.
+22
+Symbolsandabbreviations
+∴expressestheword therefore.
+∵expressestheword because.
+=expressesthewordequal. Thissignofequalitymay
+bereadequal to,orisequal to,orare equal to;but the
+discrepancyinregardtotheintroductionoftheauxiliary
+verbsis,are,&c.cannotaffectthegeometricalrigour.
+≠meansthesameas ifthewords‘notequal’werewrit-
+ten.
+>signifiesgreater than .
+<signifiesless than.
+≯signifiesnot greater than .
+≮signifiesnot less than .
++isreadplus(more),thesignofaddition;wheninter-
+posed betweentwo ormore magnitudes,signifiestheir
+sum.
+−isreadminus(less),signifies subtraction;and when
+placed betweentwo quantities denotesthat thelatter is
+takenfromtheformer.
+×thissignexpressestheproductoftwoormorenum-
+berswhenplacedbetweentheminarithmeticandalgebra;
+butingeometryitisgenerallyusedtoexpressarectangle,
+when placed between“two straight lines which contain
+oneifitsrightangles.”Arectanglemayalsoberepresented
+byplacingapointbetweentwoofitsconterminoussides.
+::::expressesananalogyorproportion;thusifA,B,C
+andDrepresentfourmagnitudes,andAhastoBthesame
+ratiothatChastoD,theproportionisthusbrieflywritten
+A:B::C:D,A:B=C:D,orA
+B=C
+D.
+Thisequalityorsamenessofratioisread,
+asAistoB,soisCtoD;
+orAistoB,asCistoD.
+∥signifiesparallel to.
+23
+⊥signifiesperpendicular to .
+signifiesangle.
+signifiesright angle .
+signifiestwo right angles .
+or
+brieflydesignatesa point.
+Thesquaredescribedonalineisconciselywrittenthus,
+2.
+Inthesamemanne rtwicethesquareof,isexpressed
+by2⋅
+2.
+def. signifies deﬁnition.
+post. signifies postulate.
+ax. signifies axiom.
+hyp.signifieshypothesis. Itmaybenecessa ryheretore-
+mark,thathypothesisistheconditionassumedo rtakenfor
+granted. Thus,thehypothesisofthepropositiongivenin
+theIntroduction,isthatthetriangleisisosceles,orthatits
+legsareequal.
+const.signifiesconstruction. Theconstructionisthe
+changemadeintheoriginalfigure,bydrawinglines,mak-
+ingangles,describingcircles,&c.inordertoadaptittothe
+argumentofthedemons trationorthesolutionoftheprob-
+lem. Theconditionsunderwhichthesechangesaremade,
+are asindisputable asthose containedinthe hypothesis.
+Forinstance, ifwemakeanang leequaltoagivenangle,
+thesetwoanglesareequalbyconstruction.
+Q.E.D.signifiesQuoderatdemonstrandum.Whichwas
+tobedemonstrated.
+24
+BookI
+Prop. I.Prob.
+na givenﬁnite straight line(
+)to
+describe an equilateral triangle.
+Describe
+ and
+ (post.III);
+draw
+ and
+ (post.I).
+Thenwill
+ beequilateral.
+For
+ =
+ (def.15);
+and
+ =
+ (def.15);
+∴
+ =
+ (ax.I);
+andtherefore
+istheequilateraltrianglerequired.
+Q.E.D.
+26 BOOKIPROP.II.PROB.
+roma given point(
+), to draw a
+straight line equal to a given straight line
+(
+).
+Draw
+ (post.I),describe
+ (pr.1.1),
+produce
+ (post.II),
+describe
+ (post.III),and
+ (post.III);
+produce
+ (post.II),
+then
+ isthelinerequired.
+For
+ =
+ (def.15),
+and
+ =
+ (const.),
+∴
+ =
+ (ax.III),
+but(def.15)
+ =
+ =
+ ;
+∴
+ drawnfromthegivenpoint
+(
+),isequaltothegivenline
+ .
+Q.E.D.
+BOOKIPROP.III.PROB. 27
+romthe greater(
+)of two given
+straight lines, to cutoffa partequal tothe
+less(
+).
+Draw
+ =
+ (pr.1.2);
+describe
+ (post.III),
+then
+ =
+For
+ =
+ (def.15),
+and
+ =
+ (const.);
+∴
+ =
+ (ax.I).
+Q.E.D.
+28 BOOKIPROP.IV.THEOR.
+ftwotriangleshavetwo sidesof the onerespec-
+tivelyequaltotwosidesoftheother,(
+to
+ and
+ to
+ )andthe
+angles(
+and
+)containedbythoseequal
+sidesalsoequal;thentheirbasesortheirsides(
+and
+)are also equal:andtheremaining anglesoppo-
+sitetoequalsidesarerespectivelyequal(
+=
+and
+=
+):andthetrianglesareequalineveryrespect.
+Lettwotrianglesbeconce ived, tobesoplaced, that
+thevertexoftheoneoftheequalangles,
+ or
+;shall
+falluponthatoftheother,and
+ tocoincidewith
+, then will
+ coincide with
+ ifap-
+plied:consequen tly
+ willcoincidewith
+ ,
+ortwostraightlineswillencloseaspace ,whichisimpos-
+sible(ax.X),therefore
+ =
+ ,
+=
+and
+ =
+,and asthetriangles
+and
+coincide,whenapplied,theyareequalineveryrespect.
+Q.E.D.
+BOOKIPROP.V.THEOR. 29
+nanyisoscelestriangle
+iftheequalsides
+beproduced,theexternalanglesatthebaseare
+equal,andtheinternalanglesatthebaseare
+also equal.
+Produce
+ and
+ (post.II),
+take
+ =
+ (pr.1.3);
+draw
+ and
+ .
+Thenin
+ and
+wehave
+ =
+ (const.),
+commontoboth,
+and
+ =
+ (hyp.)
+∴
+=
+,
+ =
+and
+=
+(pr.1.4).
+Againin
+ and
+wehave
+ =
+ ,
+=
+and
+ =
+ ,
+∴
+=
+and
+=
+(pr.1.4)
+but
+=
+,∴
+=
+(ax.III).
+Q.E.D.
+30 BOOKIPROPVI.THEOR.
+nany triangle(
+)if two angles(
+and
+)are equal, the sides(
+and
+)opposite to them are also equal.
+Forifthesidesbenotequal,letoneofthem
+begreaterthantheother
+,andfromittocutoff
+=
+ (pr.1.3),draw
+ .
+Thenin
+ and
+ ,
+=
+ (const.),
+=
+(hyp.)
+and
+ common,
+∴thetrianglesareequal(pr.1.4)
+apartequaltothewhole,whichisabsurd;
+∴neitherofthesides
+ or
+isgreaterthantheother,
+hencetheyareequal.
+Q.E.D.
+BOOKIPROPVII.THEOR. 31
+nthe same base(
+),and onthe same
+side of it there cannotbetwotriangleshav-
+ingtheirconterminoussides(
+ and
+,
+ and
+ )atboth ex-
+tremities of the base, equal to each other.
+Whentwotrianglesstandonthesamebase ,andonthe
+samesideofit,thevertexoftheonesha lleitherfalloutside
+oftheothertriangle,orwithinit;or,lastly,ononeofits
+sides.
+Ifitbepossibleletthetwotrianglesbeconstructedso
+that⎧{
+⎨{⎩
+=
+=
+⎫}
+⎬}⎭,thendraw
+ and,
+=
+(pr. 1.5)
+∴
+<
+and
+∴
+<
+but(pr.1.5)
+ =
+⎫}
+⎬}⎭whichisabsurd,
+thereforethetwotrianglescannothavetheirconterminous
+sidesequalatbothextremitiesofthebase.
+Q.E.D.
+32 BOOKIPROPVIII.THEOR.
+ftwotriangleshavetwo sidesof the one
+respectivelyequal totwo sidesof the other
+(
+ =
+ and
+ =
+)and alsotheirbases(
+ =
+),equal;thentheangles(
+and
+)contained
+by their equal sides are also equal.
+Iftheequalbases
+ and
+ beconceived
+tobeplacedoneupon theother,sothatthetrianglesshall
+lieatthesamesideofthem,andthattheequalsides
+and
+ ,
+ and
+ beconterminous,the
+vertexoftheonemus tfallonthevertexoftheother;for
+tosupposethemnotcoincidentwouldcontradictthelast
+proposition.
+Therefore sides
+ and
+ ,being coinci-
+dentwith
+ and
+ ,∴
+=
+.
+Q.E.D.
+BOOKIPROPIX.PROB. 33
+obisect a given rectilinear angle (
+).
+Take
+ =
+ (pr.1.3)
+draw
+ ,uponwhichdescribe
+ (pr.1.1),
+draw
+ .
+∵
+ =
+ (const.)
+and
+ commontothetwotriangles
+and
+ =
+ (const.),
+∴
+=
+(pr. 1.8).
+Q.E.D.
+34 BOOKIPROPX.PROB.
+obisect a given ﬁnite straight line (
+).
+Construct
+ (pr.1.1),
+draw
+ ,making
+=
+(pr.1.9).
+Then
+ =
+ by(pr.1.4),
+for
+ =
+ (const.)
+=
+and
+ commontothetwotriangles.
+Thereforethegivenlineisbisected.
+Q.E.D.
+BOOKIPROPXI.PROB. 35
+roma given point(
+), in a given
+straight line (
+ ), to draw a perpen-
+dicular.
+Takeanypoint(
+ )inthegivenline,
+cutoff
+ =
+ (pr.1.3),
+construct
+ (pr.1.1),
+draw
+ anditshallbe
+perpendiculartothegivenline.
+For
+ =
+ (const.)
+=
+ (const.)
+and
+ commontothetwotriangles.
+Therefore
+=
+(pr.1.8)
+∴
+ ⊥
+ (def.10).
+Q.E.D.
+36 BOOKIPROPXII.PROB.
+odraw a straight line perpendicular to a
+givenindeﬁnitestraightline(
+ )from
+a given point (
+)without.
+Withthegivenpoint
+ascentre,atoneside
+oftheline,andanydistance
+ capableof
+extendingtotheotherside,describe
+ .
+Make
+ =
+ (pr.1.10),
+draw
+ ,
+ and
+ ,
+then
+ ⊥
+ .
+For(pr.1.8)since
+ =
+ (const.),
+commontoboth,
+and
+ =
+ (def.15),
+∴
+=
+,and
+∴
+ ⊥
+ (def.10).
+Q.E.D.
+BOOKIPROPXIII.THEOR. 37
+henastraightline(
+)standingupon
+anotherstraightline(
+)makesangles
+withit; theyare either tworightanglesor to-
+gether equal to two right angles.
+If
+ be⊥to
+ then,
+and
+ =
+ (def.10),
+butif
+ benot⊥to
+ ,
+draw
+ ⊥
+ (pr.1.11);
++
+=
+ (const.),
+=
+=
++
+∴
++
+=
++
++
+(ax.II)
+=
+ +
+=
+ .
+Q.E.D.
+38 BOOKIPROPXIV.THEOR.
+ftwo straight lines(
+ and
+ ),
+meetingathirdstraightline(
+),atthe
+same point,and atopposite sidesof it,make
+withitadjacentangles(
+and
+)equal
+totworightangles; these straight lines liein one continuous
+straight line.
+For,ifpossiblelet
+,andnot
+,
+bethecontinuationof
+,
+then
+ +
+=
+butbythehypothesis
++
+=
+∴
+=
+(ax.III);whichisabsurd(ax.IX).
+∴
+ isnotthecontinuationof
+,andthe
+likemaybedemons tratedofanyotherstraightlineexcept
+,∴
+ isthecontinuationof
+.
+Q.E.D.
+BOOKIPROPXV.THEOR. 39
+ftworightlines(
+and
+ )inter-
+sectoneanother,theverticalangles
+and
+,
+and
+ are equal.
++
+ =
++
+ =
+∴
+=
+.
+Inthesamemanne ritmaybeshown that
+=
+.
+Q.E.D.
+40 BOOKIPROPXVI.THEOR.
+fasideofatriangle(
+)isproduced,the
+externalangle(
+)isgreater than either
+of the internal remote angles (
+or
+).
+Make
+ =
+ (pr.1.10);
+Draw
+ andproduceituntil
+ =
+ ;
+draw
+ .
+In
+and
+ ;
+=
+ ,
+=
+and
+=
+ (const.,pr.1.15),
+∴
+=
+(pr. 1.4),
+∴
+ >
+.
+Inlikemanneritcanbeshown ,thatif
+beproduced,
+>
+andtherefore
+whichis=
+is>
+.
+Q.E.D.
+BOOKIPROPXVII.THEOR. 41
+nytwoanglesofatriangle
+aretogether
+less than two right angles.
+Produce
+ ,thenwill
++
+=
+ .
+But
+>
+(pr.1.16)
+∴
++
+<
+ ,
+andinthesamemanne ritmaybeshown thatanyother
+twoanglesofthetriangletakentogetherarelessthantwo
+rightangles.
+Q.E.D.
+42 BOOKIPROPXVIII.THEOR.
+nany triangle
+ ifone side
+be greater than another
+ , the angle
+opposite to the greater side is greater than the
+angle opposite to the less. I. e.
+ >
+.
+Make
+ =
+ (pr.1.3),draw
+ .
+Thenwill
+=
+(pr.1.5);
+but
+>
+(pr.1.16)
+∴
+>
+andmuchmo re
+is
+>
+.
+Q.E.D.
+BOOKIPROPXIX.THEOR. 43
+fin any triangle
+ one angle
+be
+greater than another
+the side
+whichisoppositetothegreaterangle,isgreater
+than the side
+ opposite the less.
+If
+ benotgreaterthan
+ thenmust
+=or<
+ .
+If
+ =
+ then
+=
+(pr. 1.5);
+whichiscontrarytothehypothesis.
+isnotlessthan
+ ;forifitwere,
+<
+(pr. 1.18)
+whichiscontrarytothehypothesis:
+∴
+ >
+ .
+Q.E.D.
+44 BOOKIPROPXX.THEOR.
+nytwo sides
+ and
+ ofatrian-
+gle
+ takentogetheraregreaterthan
+the third side (
+).
+Produce
+ ,and
+make
+ =
+ (pr.1.3);
+draw
+ .
+Then∵
+ =
+ (const.),
+=
+(pr. 1.5)
+∴
+>
+(ax. IX)
+∴
+ +
+ >
+ (pr.1.19)
+and∴
+ +
+ >
+ .
+Q.E.D.
+BOOKIPROPXXI.THEOR. 45
+ffrom anypoint(
+)within atriangle
+straightlinesbedrawntotheextremi-
+tiesofone side(
+), theselinesmustbetogether lessthan
+the other two sides, but must contain a greater angle.
+Produce
+ ,
++
+>
+ (pr.1.20),
+add
+toeach,
++
+ >
+ +
+(ax.IV)
+inthesamemanne ritmaybeshown that
++
+>
++
+,
+∴
++
+ >
++
+,
+whichwastobeproved.
+Again
+>
+(pr.1.16),
+andalso
+>
+(pr.1.16),
+∴
+>
+.
+Q.E.D.
+46 BOOKIPROPXXII.PROB.
+iventhreeright lines{
+ the sum of
+any two greater than the third, to construct a
+trianglewhosesidesshallberespectivelyequal
+to the given lines.
+Assume
+ =
+ (pr.1.3).
+Draw
+ =
+and
+ =
+⎫}
+⎬}⎭(pr.1.2).
+With
+and
+ asradii,describe
+and
+ (post.III);
+draw
+ and
+ ,
+thenwill
+ bethetrianglerequired.
+For
+ =
+ ,
+=
+ =
+,
+and
+ =
+ =
+ .⎫}}
+⎬}}⎭(const.)
+Q.E.D.
+BOOKIPROPXXIII.PROB. 47
+ta given point(
+)in a given straight line
+(
+), to make an angle equal to a given
+rectilinear angle (
+).
+Draw
+ betweenanytwopointsinthelegsof
+thegivenangle.
+Construct
+ (pr.1.22)
+sothat
+ =
+ ,
+ =
+and
+ =
+ .
+Then
+=
+(pr.1.8).
+Q.E.D.
+48 BOOKIPROPXXIV.THEOR.
+ftwotriangleshavetwo sidesof the onerespec-
+tively equal to two sides of the other (
+to
+ and
+ to
+ ),andif
+oneoftheangles(
+)containedbytheequal
+sidesbe greater thanthe other(
+), the side(
+)
+whichisoppositetothegreaterangleisgreaterthantheside
+(
+)which is opposite to the less angle.
+Make
+ =
+(pr.1.23),
+and
+ =
+ (pr.1.3),
+draw
+ and
+ .
+∵
+ =
+ (ax.I,hyp.,const.)
+∴
+=
+(pr. 1.5)
+but
+<
+,
+and∴
+<
+ ,
+∴
+ >
+ (pr.1.19)
+but
+ =
+ (pr.1.4)
+∴
+ >
+ .
+Q.E.D.
+BOOKIPROPXXV.THEOR. 49
+ftwotriangleshavetwo sides(
+and
+)of the onerespectivelyequal totwo
+sides(
+and
+ )oftheother,but
+theirbasesunequal, the angle subtended by
+the greaterbase(
+)of the one,mustbe greater than
+the angle subtended by the less base (
+)of the other.
+=,>or<
+isnotequalto
+forif
+=
+then
+ =
+ (pr.1.4)
+whichiscontrarytothehypothesis;
+isnotlessthan
+forif
+<
+then
+ <
+ (pr.1.24),
+whichisalsocontrarytothehypothesis:
+∴
+>
+.
+Q.E.D.
+50 BOOKIPROPXXVI.THEOR.
+ftwotriangleshavetwo anglesof the one
+respectivelyequal totwo anglesof the other
+(
+=
+and
+ =
+),andaside
+oftheoneequa ltoasideoftheothersimilarly
+placedwithrespecttotheequalangles,theremainingsides
+and angles are respectively equal to one another.
+CaseI.
+Let
+ and
+ whichlie
+betweentheequalanglesbeequa l,
+then
+ =
+ .
+Forifitbepossible,letoneofthem
+begreaterthantheother;
+make
+ =
+ ,draw
+ .
+In
+ and
+ wehave
+=
+ ,
+=
+,
+ =
+ ;
+∴
+=
+(pr. 4.)
+but
+=
+(hyp.)
+andtherefore
+=
+,whichisabsurd;
+henceneitherofthesides
+ and
+isgreaterthantheother;
+and∴theyareequal;
+∴
+ =
+ ,and
+=
+,(pr.1.4).
+BOOKIPROPXXVI.THEOR. 51
+CaseII.
+Again,let
+ =
+ ,whichlie
+oppositetheequalangles
+and
+.
+Ifitbepossible,let
+ >
+ ,then
+take
+ =
+ ,draw
+ .
+Thenin
+ and
+wehave
+ =
+ ,
+=
+ and
+ =
+,
+∴
+=
+(pr. 1.4)
+but
+=
+(hyp.)
+∴
+=
+whichisabsurd(pr.1.16).
+Consequen tly,neitherofthesides
+or
+ isgreaterthantheother,hence
+theymustbeequal. Itfollows(bypr.1.4)
+thatthetrianglesareequalinallrespects.
+Q.E.D.
+52 BOOKIPROPXXVII.THEOR.
+fastraightline(
+)meetingtwoother
+straight lines(
+ and
+ )makes
+withthemthealternateangles(
+and
+;
+and
+ )equal, thesetwo straight
+lines are parallel.
+If
+ benotparallelto
+ theyshallmeet
+whenproduced.
+Ifitbepossible,letthoselinesbenotparallel,butmeet
+whenproduced;thentheexternalangle
+isgreaterthan
+(pr.1.16),buttheyarealsoequal(hyp.),whichisab-
+surd:inthesamemanne ritmaybeshownthattheycannot
+meetontheotherside; ∴theyareparallel.
+Q.E.D.
+BOOKIPROPXXVIII.THEOR. 53
+fa straight line(
+),cuttingtwo other
+straightlines(
+and
+ ),makes
+the externalequal totheinternaland oppo-
+siteangle,atthesamesideofthecuttingline
+(namely
+=
+or
+=
+),or if itmakes
+thetwointernalanglesat the same side(
+and
+,
+or
+and
+ )togetherequaltotworightangles, those
+two straight lines are parallel.
+First,if
+=
+,then
+=
+(pr.1.15),
+∴
+=
+∴
+ ∥
+ (pr.1.27).
+Secondly,if
+ +
+=
+ ,
+then
+ +
+=
+ (pr.1.13),
+∴
++
+=
++
+(ax.III)
+∴
+=
+∴
+ ∥
+ (pr.1.27).
+Q.E.D.
+54 BOOKIPROPXXIX.THEOR.
+straight line(
+)fallingontwopar-
+allelstraight lines(
+ and
+ ),
+makes the alternate anglesequal to one an-
+other;and alsothe externalequal tothein-
+ternaland oppos ite angle onthe same side;andthetwo
+internal angles on the same side together equal to two right
+angles.
+Forifthealternateangles
+and
+benotequal,
+draw
+ ,making
+ =
+(pr.1.23).
+Therefore
+ ∥
+ (pr.1.27)andtherefore
+twostraightlineswhichintersectareparalleltothesame
+straightline,whichisimpossible(ax.XII).
+Hence
+ and
+arenotunequal,thatis,theyare
+equal:
+=
+(pr.1.15);∴
+=
+,theexternal
+angleequaltotheinternalandoppos iteonthesameside:
+if
+beaddedtoboth,then
++
+=
+=
+(pr.1.13). Thatistosay, thetwointernalangles
+atthesamesideofthecuttinglineareequaltotworight
+angles.
+Q.E.D.
+BOOKIPROPXXX.THEOR. 55
+traight lines(
+and
+ )which
+areparalleltothesamestraightline(
+),
+are parallel to one another.
+Let
+ intersect{
+};
+Then,
+=
+=
+(pr.1.29),
+∴
+=
+∴
+ ∥
+ (pr.1.27).
+Q.E.D.
+56 BOOKIPROPXXXI.PROB.
+romagivenpoint
+todrawastraightline
+parallel to a given straight line (
+).
+Draw
+ fromthepoint
+toanypoint
+in
+ ,
+make
+ =
+(pr.1.23),
+then
+ ∥
+ (pr.1.27).
+Q.E.D.
+BOOKIPROPXXXII.THEOR. 57
+fanyside(
+)ofatrianglebyproduced,
+the externalangle(
+)isequal tothe sum
+of thetwointernaland opposite angles(
+and
+),andthethreeinternalanglesofany triangle
+taken together are equal to two right angles.
+Throughthepoint
+draw
+∥
+ (pr.1.31).
+Then⎧{
+⎨{⎩
+=
+=
+⎫}
+⎬}⎭(pr.1.29),
+∴
++
+=
+(ax.II),
+andtherefore
++
++
+=
+ =
+ (pr.1.13).
+Q.E.D.
+58 BOOKIPROPXXXIII.THEOR.
+traight lines(
+and
+ )which
+jointheadjacentextremitiesof twoequaland
+parallelstraightlines(
+ and
+ ),
+are themselves equal and parallel.
+Draw
+ thediagonal.
+=
+ (hyp.)
+=
+(pr. 1.29)
+and
+ commontothetwotriangles;
+∴
+ =
+ ,and
+=
+(pr.1.4);
+and∴
+ ∥
+ (pr.1.27).
+Q.E.D.
+BOOKIPROPXXXIV.THEOR. 59
+heopposite sidesand anglesofanyparallelo-
+gram are equal,andthe diagonal(
+)
+divides it into two equal parts.
+Since⎧{
+⎨{⎩
+=
+=
+⎫}
+⎬}⎭(pr.1.29)
+and
+ commontothetwotriangles.
+∴⎧{{
+⎨{{⎩
+=
+=
+=
+⎫}}
+⎬}}⎭(pr.1.26)
+and
+ =
+(ax.II).
+Thereforetheoppositesidesandanglesoftheparallel-
+ogramareequal: andasthetriangles
+ and
+areequalineveryrespect(pr.1.4),thediagonaldividesthe
+parallelogramintotwoequalparts.
+Q.E.D.
+60 BOOKIPROPXXXV.THEOR.
+arallelograms onthe same base,and be-
+tween the same parallels, are (in area)equal.
+Onaccountoftheparallels,
+=
+;
+=
+;
+and
+ =
+⎫}}
+⎬}}⎭(pr.1.29)
+(pr.1.29)
+(pr.1.34).
+But
+ =
+ (pr.1.8)
+∴
+ −
+ =
+ ,
+and
+ −
+ =
+ ;
+∴
+ =
+ .
+Q.E.D.
+BOOKIPROPXXXVI.THEOR. 61
+arallelograms (
+and
+ )on
+equalbases,and betweenthe same pa rallels,
+are equal.
+Draw
+ and
+=
+ =
+ by(pr.1.34,andhyp.);
+∴
+ =and∥
+ ;
+∴
+ =and∥
+ (pr.1.33)
+Andtherefore
+ isaparallelogram:
+but
+=
+ =
+(pr.1.35)
+∴
+ =
+(ax.I).
+Q.E.D.
+62 BOOKIPROPXXXVII.THEOR.
+riangles
+ and
+ onthe same base
+(
+)andbetweenthesamepa rallelsare
+equal.
+Draw
+ ∥
+∥
+⎫}
+⎬}⎭(pr.1.31)
+Produce
+ .
+and
+ areparallelograms
+onthesamebaseandbe tweenthesame
+parallels,andthereforeequal. (pr.1.35)
+∴⎧{{{{
+⎨{{{{⎩
+=twice
+=twice
+⎫}}}}
+⎬}}}}⎭(pr.1.34)
+∴
+=
+.
+Q.E.D.
+BOOKIPROPXXXVIII.THEOR. 63
+riangles (
+and
+)onequalbasesand
+between the same parallels are equal.
+Draw
+ ∥
+and
+ ∥
+⎫}
+⎬}⎭(pr.1.31)
+=
+(pr.1.36);
+but
+=twice
+ (pr.1.34),
+and
+ =twice
+ (pr.1.34),
+∴
+=
+(ax.VII).
+Q.E.D.
+64 BOOKIPROPXXXIX.THEOR.
+qualtriangles
+ and
+ on
+thesamebase(
+)andonthesameside
+of it, are between the same parallels.
+If
+ ,whichjoinstheverticesof
+thetriangles,benot∥
+ ,draw
+∥
+ (pr.1.31),meeting
+ .
+Draw
+ .
+∵
+ ∥
+ (const.)
+=
+ (pr.1.37);
+but
+ =
+ (hyp.);
+∴
+ =
+ ,apartequal
+tothewhole,whichisabsurd.
+∴
+ ∦
+ ;andinthesamemanne r
+itcanbedemons trated,thatnootherlineexcept
+is∥
+ ;∴
+ ∥
+ .
+Q.E.D.
+BOOKIPROPXL.THEOR. 65
+qualtriangles(
+and
+ )on equal
+bases,and onthe same side,are betweenthe
+same parallels.
+If
+whichjoinstheverticesof
+trianglesbenot∥
+ ,
+draw
+ ∥
+ (pr.1.31),
+meeting
+ .
+Draw
+ .
+∵
+ ∥
+ (const.)
+=
+but
+=
+∴
+=
+,apartequal
+tothewhole,whichisabsurd.
+∴
+∦
+ :andinthesamemanne r
+itcanbedemons trated,thatnootherlineexcept
+is∥
+ :∴
+∥
+ .
+Q.E.D.
+66 BOOKIPROPXLI.THEOR.
+fa parallelogram
+ and atriangle
+are uponthe same b ase
+andbetweenthesamepa rallels
+ and
+, the parallelogram is double the triangle.
+Draw
+ thediagonal.
+Then
+ =
+ (pr.1.37)
+=twice
+ (pr.1.34)
+∴
+ =twice
+ .
+Q.E.D.
+BOOKIPROPXLII.PROB. 67
+oconstructa parallelogram equal to a given
+triangle
+ andhavinganangleequal
+to a given rectilinear angle
+ .
+Make
+ =
+ (pr.1.10)
+Draw
+ .
+Make
+ =
+(pr.1.23)
+Draw⎧{
+⎨{⎩
+∥
+∥
+⎫}
+⎬}⎭(pr.1.31)
+=twice
+ (pr.1.41)
+but
+=
+(pr.1.38)
+∴
+ =
+ .
+Q.E.D.
+68 BOOKIPROPXLIII.THEOR.
+hecomplements
+ and
+ of the
+parallelogramswhichareaboutthediagonal
+of a parallelogram are equal.
+=
+ (pr.1.34)
+and
+ =
+ (pr.1.34)
+∴
+ =
+ (ax.III).
+Q.E.D.
+BOOKIPROPXLIV.PROB. 69
+oagivenstraightline(
+)toapplyapar-
+allelogramequaltoagiventriangle (
+),
+andhavinganangleequaltoagivenrectilin-
+ear angle(
+).
+Make
+ =
+ with
+=
+(pr.1.42)
+andhavingoneofitssides
+ conterminous
+withandincontinuationof
+.
+Produce
+ tillitmeets
+ ∥
+draw
+ produceittillitmeets
+ continued;
+draw
+ ∥
+ meeting
+producedandp roduce
+ .
+=
+ (pr.1.43)
+but
+=
+ (const.)
+∴
+ =
+ ;
+and
+=
+=
+=
+(pr.1.29andcons t.).
+Q.E.D.
+70 BOOKIPROPXLV.PROB.
+oconstructa parallelogram equal to a given
+rectilinear ﬁgure(
+)and having an
+angle equal to a given rectilinear angle (
+).
+Draw
+ and
+ dividing
+therectilinearfigureintotriangles.
+Construct
+=
+having
+=
+(pr.1.42)
+to
+ apply
+=
+having
+=
+(pr.1.44)
+to
+ apply
+=
+having
+=
+(pr.1.44)
+∴
+ =
+and
+ isaparallelogram. (pr.1.29,1.14,1.30)
+having
+=
+.
+Q.E.D.
+BOOKIPROPXLVI.PROB. 71
+pona given straight line(
+)to con-
+struct a square.
+Draw
+ ⊥and=
+ (pr.1.11,1.3)
+Draw
+ ∥
+ ,
+andmeeting
+ drawn∥
+ .
+In
+ =
+ (const.)
+=arightangle (const.)
+∴
+=
+=arightangle (pr.1.29),
+andtheremainingsides
+andanglesmustbeequal(pr.1.34).
+And∴
+ isasquare(def.30).
+Q.E.D.
+72 BOOKIPROPXLVII.THEOR.
+narightangledtriangle
+ the
+squareonthehypotenuse
+ isequalto
+the sum of the squaresof the sides(
+and
+ ).
+On
+ ,
+,
+describesquares,(pr.1.46)
+Draw
+ ∥
+ (pr.1.31)
+alsodraw
+ and
+ .
+=
+.
+Toeachadd
+ ∴
+=
+,
+=
+ and
+ =
+ ;
+∴
+ =
+ .
+Again,∵
+ ∥
+=twice
+ ,
+and
+ =twice
+ ;
+∴
+ =
+ .
+BOOKIPROPXLVII.THEOR. 73
+Inthesamemanneritmaybeshownthat
+ =
+;
+hence
+ =
+ .
+Q.E.D.
+74 BOOKIPROPXLVIII.THEOR.
+fthesquareofoneside(
+)ofatriangle
+isequal tothe squaresof the other two sides
+(
+ and
+ ),theangle(
+)sub-
+tended by that side is a right angle.
+Draw
+ ⊥
+ and=
+ (pr.1.11,1.3)
+anddraw
+ also.
+Since
+ =
+ (const.)
+2=
+2;
+∴
+2+
+2=
+2+
+2
+but
+2+
+2=
+2(pr.1.47),
+and
+2+
+2=
+2(hyp.)
+∴
+2=
+2,
+∴
+ =
+ ;
+and∴
+=
+(pr.1.8),
+consequen tly
+isarightangle.
+Q.E.D.
+BookII
+DefinitionI
+rectangle orarightangledparallelogramis
+saidtobecontainedbyany twoof itsadjacent
+or conterminous sides.
+Thus: therightangledparallelogram
+ issaid
+to be contained by the sides
+ and
+ ;or it
+maybebrieflydesignatedby
+ ⋅
+.
+Iftheadjacentsidesareequal;i.e.
+ =
+ ,
+then
+ ⋅
+ whichisthe expressionfor the
+rectangleunder
+ and
+ isasquare,and
+isequalto⎧{
+⎨{⎩
+⋅
+ or
+2
+⋅
+ or
+2
+76 BOOKIIDEFINITIONII
+DefinitionII
+naparallelogram,theﬁgurecomposedo foneof
+theparallelogramsaboutthediagonal,together
+withthetwocomplements,iscalledaGnomon.
+Thus
+ and
+ arecalledGnomons.
+BOOKIIPROP.I.THEOR. 77
+herectangle contained by two straight lines,
+one ofwhichisdividedinto anynumberof
+parts,
+ ⋅
+=⎧{{
+⎨{{⎩
+⋅
++
+⋅
++
+⋅
+isequaltothesumoftherectanglescontainedbytheundi-
+vided line, and the several parts of the divided line.
+Draw
+ ⊥
+ and=
+ (pr.1.2,
+pr.1.3);completetheparallelograms,thatistosay,
+draw⎧{
+⎨{⎩
+∥
+∥
+⎫}
+⎬}⎭(pr.1.31)
+=
++
++
+=
+ ⋅
+=
+⋅
+,
+=
+⋅
+,
+=
+⋅
+∴
+⋅
+=
+⋅
++
+⋅
++
+⋅
+.
+Q.E.D.
+78 BOOKIIPROP.II.THEOR.
+fa straight line be divided into any two parts
+,thesquareofthewholelineisequal
+tothe sum of therectanglescontained by the
+whole line and each of its parts.
+2=⎧{
+⎨{⎩
+⋅
++
+ ⋅
+Describe
+ (pr.1.46)
+Draw
+ parallelto
+ (pr.1.31)
+=
+2
+=
+ ⋅
+=
+ ⋅
+=
+ ⋅
+=
+ ⋅
+=
+ +
+∴
+2=
+ ⋅
++
+ ⋅
+.
+Q.E.D.
+BOOKIIPROP.III.THEOR. 79
+fa straight line be divided into any two parts
+, therectangle contained by the
+wholeline and eitherof its parts, isequal to
+thesquareofthatpart,togetherwiththerec-
+tangle under the parts.
+⋅
+=
+2+
+ ⋅
+, or
+⋅
+=
+2+
+ ⋅
+.
+Describe
+ (pr.1.46)
+Describe
+(pr. 1.31)
+Then
+ =
+ +
+,but
+=
+ ⋅
+and
+=
+2,
+=
+ ⋅
+,
+∴
+ ⋅
+ =
+2+
+ ⋅
+.
+Inasimilarmanneritmaybereadilyshownthat
+⋅
+=
+2+
+ ⋅
+.
+Q.E.D.
+80 BOOKIIPROP.IV.THEOR.
+fa straight line be divided into any two parts
+,thesquareofthewholelineisequal
+tothesquaresoftheparts,togetherwithtwice
+the rectangle contained by the parts.
+2=
+2+
+2+twice
+ ⋅
+Describe
+ (pr.1.46)
+draw
+ (post.I)
+and⎧{
+⎨{⎩
+∥
+∥
+⎫}
+⎬}⎭(pr.1.31)
+=
+(pr. 1.5),
+=
+(pr. 1.29),
+∴
+=
+∴by(pr.1.6,pr.1.29,pr.1.34)
+isasquare =
+2.
+Forthesamereasons
+ isasquare=
+2,
+=
+=
+ ⋅
+(pr.1.43)
+But
+ =
+ +
++
++
+,
+∴
+2=
+2+
+2+twice
+ ⋅
+.
+Q.E.D.
+BOOKIIPROP.V.THEOR. 81
+fastraightlinebedivided
+ into
+two equalparts and also
+ into
+two unequal parts, the rectangle contained by
+the unequal parts, together with the square of
+the line between the points of section, is equal to the square
+of half that line
+⋅
+ +
+2=
+2=
+2.
+Describe
+(pr.1.46),
+draw
+and⎧{{
+⎨{{⎩
+∥
+∥
+∥
+⎫}}
+⎬}}⎭(pr.1.31)
+=
+(pr. 1.36)
+=
+(pr. 1.43)
+∴(ax.II)
+ =
+=
+⋅
+but
+=
+2(pr.2.4)
+and
+ =
+2(const.)
+∴(ax.II)
+ =
+∴
+⋅
+ +
+2=
+2=
+2.
+Q.E.D.
+82 BOOKIIPROP.VI.THEOR.
+fastraightlinebebisected
+ andpro-
+ducedtoanypoint
+ ,therectangle
+containedbythewholelinesoincreased,and
+the partproduced, togetherwiththe square of
+halftheline, isequaltothe square oftheline made up o f
+the half, and the produced part.
+⋅
++
+2=
+2
+Describe
+ (pr.1.46),draw
+and⎧{{
+⎨{{⎩
+∥
+∥
+∥
+⎫}}
+⎬}}⎭(pr.1.31)
+=
+=
+(pr.1.36,pr.1.43)
+∴
+ =
+=
+⋅
+ ;
+but
+=
+2(pr.2.4)
+∴
+ =
+2=
+ (const.,ax.II)
+∴
+ ⋅
++
+2=
+2.
+Q.E.D.
+BOOKIIPROP.VII.THEOR. 83
+fa straight line be divided into any two parts
+, the squaresof the wholeline and
+one of the parts are equal totwicetherectan-
+glecontainedbythewholelineandthatpart,
+together with the square of the other parts.
+2+
+2=2
+ ⋅
++
+2
+Describe
+ (pr.1.46),draw
+ (post.I),
+and⎧{
+⎨{⎩
+∥
+∥
+⎫}
+⎬}⎭
+=
+(pr. 1.43),
+add
+=
+2toboth(pr.2.4)
+=
+=
+ ⋅
+=
+2(pr.2.4)
++
++
+ =
+2
+ ⋅
++
+2=
+ +
+;
+2+
+2=2
+ ⋅
++
+2.
+Q.E.D.
+84 BOOKIIPROP.VIII.THEOR.
+fa straight line be divided into any two parts
+,the square ofthe sum ofthe whole
+line and an yone of its partsisequal tofour
+timestherectanglecontainedbythewholeline,
+and that part together with the square of the other part.
+2=4⋅
+ ⋅
++
+2
+Produce
+ andmake
+ =
+Construct
+ (pr.1.46);
+draw
+ ,
+} ∥
+} ∥
+⎫}
+⎬}⎭(pr.1.31)
+2=
+2+
+2+2⋅
+ ⋅
+(pr.2.4)
+but
+2+
+2=2⋅
+ ⋅
++
+2
+(pr.2.7)
+∴
+2=4⋅
+ ⋅
++
+2.
+Q.E.D.
+BOOKIIPROP.IX.THEOR. 85
+fa straight line be dividedintotwo equal
+parts
+ and alsointotwo un-
+equalparts
+ , the squaresof the
+unequalpartsaretogetherdoublethesquares
+ofhalftheline,andofthepartbetweenthepointsofsection.
+2+
+2=2⋅
+2+2⋅
+2
+Make
+ ⊥and=
+ or
+,
+Draw
+ and
+ ,
+∥
+,
+∥
+anddraw
+ .
+=
+(pr.1.5)=halfarightangle(pr.1.32)
+=
+(pr.1.5)=halfarightangle(pr.1.32)
+∴
+ =arightangle.
+=
+=
+=
+(pr.1.5,pr.1.29).
+hence
+ =
+,
+=
+=
+(pr.1.6,pr.1.34)
+2=
+⎧{{
+⎨{{⎩
+2+
+2,or+
+2
+=⎧{
+⎨{⎩=
+2+
+2
+=2⋅
+2+2⋅
+2(pr.1.47)
+∴
+2+
+2=2⋅
+2+2⋅
+2.
+Q.E.D.
+86 BOOKIIPROP.X.THEOR.
+fastraightline
+ bebisectedandpro-
+ducedtoanypoint
+ ,thesquaresof
+the whole produced line, and of the produced
+part,aretogetherdoubleofthesquaresofthe
+halfline,andofthelinemadeupo fthehalfandproduced
+part.
+2+
+2=2⋅
+2+2⋅
+2
+Make
+ ⊥and=to
+or
+,
+draw
+ and
+ ,
+and⎧{
+⎨{⎩
+∥
+∥
+⎫}
+⎬}⎭(pr.1.31)
+draw
+ also.
+=
+(pr.1.5)=halfarightangle(pr.1.32)
+=
+(pr.1.5)=halfarightangle(pr.1.32)
+∴
+ =arightangle.
+=
+=
+=
+=
+=
+halfarightangle(pr.1.5,pr.1.32,pr.1.29,pr.1.34),
+and
+=
+,
+ =
+ =
+ ,
+(pr. 1.6,pr. 1.34).
+Henceby(pr. 1.47)
+2=⎧{{
+⎨{{⎩
+2+
+2or
+2
+⎧{
+⎨{⎩+
+2=2⋅
+2
++
+2=2⋅
+2
+∴
+2+
+2=2⋅
+2+2⋅
+2.
+Q.E.D.
+BOOKIIPROP.XI.PROB. 87
+odivideagivenstraightline
+ insuch
+a manner, that therectangle contained by the
+wholeline and one o f its parts maybe equal
+to the square of the other.
+⋅
+=
+2
+Describe
+ (pr.1.46),
+make
+ =
+(pr.1.10),
+draw
+ ,
+take
+ =
+ (pr.1.3),
+on
+ describe
+(pr.1.46).
+Produce
+ (post.II).
+Then,(pr.2.6)
+ ⋅
++
+2=
+2=
+2=
+2+
+2∴
+⋅
+=
+2,or,
+=
+ ∴
+=
+∴
+ ⋅
+=
+2.
+Q.E.D.
+88 BOOKIIPROP.XII.THEOR.
+nanyobtuseangledtriangle,thesquareofthe
+side subtendingthe obtuse angle exceedsthe
+sumofthesquaresofthesidescontainingthe
+obtuse angle, by twice the rectangle contained
+byeitherofthesesidesandtheproducedpa rtsofthesame
+fromtheobtuseangletotheperpendicularletfallonitfrom
+the opposite acute angle.
+2>
+2+
+2by2⋅
+⋅
+Bypr.2.4
+2=
+2+
+2+2⋅
+⋅
+2:
+add
+2toboth
+2+
+2=
+2(pr.1.47)
+=2⋅
+⋅
++
+2+⎧{
+⎨{⎩
+2
+2⎫}
+⎬}⎭or
++
+2(pr. 1.47).
+∴
+2=2⋅
+⋅
++
+2+
+2:
+hence
+2>
+2+
+2
+by2⋅
+⋅
+2.
+Q.E.D.
+BOOKIIPROP.XIII.THEOR. 89
+First
+Second
+nanytriangle, the square of the side subtend-
+inganacuteangle,islessthanthesumofthe
+squaresof the sidescontainingthatangle,by
+twicetherectanglecontainedbyeitherofthese
+sides,andthepartofitinterceptedbetweenthefootofthe
+perpendicular let fallonit fromthe opposite angle,andthe
+angular point of the acute angle.
+First.
+2<
+2+
+2by2⋅
+⋅
+.
+Second.
+2<
+2+
+2by2⋅
+⋅
+.
+First,supposetheperpendicularto
+fallwithinthetriangle,then(pr.2.7)
+2+
+2=2⋅
+⋅
++
+2,
+addtoeach
+2then,
+2+
+2+
+2=2⋅
+⋅
++
+2+
+2
+∴(pr. 1.47)
+2+
+2=2⋅
+⋅
++
+2,
+and∴
+2<
+2+
+2by2⋅
+⋅
+Nextsupposetheperpendiculartofall
+withoutthetriangle,then(pr.2.7)
+2+
+2=2⋅
+⋅
++
+2,
+addtoeach
+2then
+2+
+2+
+2=2⋅
+⋅
++
+2+
+2
+∴(pr. 1.47)
++
+2=2⋅
+⋅
+2+
+2,
+∴
+2<
+2+
+2by2⋅
+⋅
+.
+Q.E.D.
+90 BOOKIIPROP.XIV.PROB.
+odrawarightlineofwhichthesquareshall
+be equal to a given rectilinear ﬁgure.
+To draw
+ such that,
+2=
+Make
+ =
+ (pr.1.45),
+produce
+ until
+=
+;
+take
+ =
+(pr.1.10).
+Describe
+ (post.III),
+andproduce
+ tomeetit:draw
+.
+2or
+2=
+⋅
+ +
+2(pr.2.5),
+but
+2=
+2+
+2(pr.1.47);
+∴
+2+
+2=
+⋅
+ +
+2
+∴
+2=
+⋅
+,and
+∴
+2=
+ =
+.
+Q.E.D.
+BookIII
+Definitions
+1
+Equalcirclesarethosewhosediametersareequal.
+2
+Arightlineissaidtotouchacirclewhenitmeetsthecircle,
+andbeingproduceddoesnotcutit.
+3
+Circlesaresaidtotouchoneano therwhichmeet,butdo
+notcutoneanother.
+4
+Rightlinesaresaidtobeequallydistantfromthecentreof
+acirclewhentheperpendicularsdrawntothemfromthe
+centreareequal.
+5
+Andthestraightlineonwhichthegreaterperpendicular
+fallsissaidtobefartherfromthecentre.
+92 BOOKIII
+6
+Asegmentofacircleisthefigurecontainedbyastraight
+lineandthepartofthecircumferenceitcutsoff.
+7
+Anangleofasegmentisthatcontainedbyastraightline
+andacircumferenceofacircle.
+8
+Anangleinasegmen tistheanglecontainedbytwostraight
+lines drawnfrom anypoint inthe circumference of the
+segmenttotheextremitiesofthestraightlinewhichisthe
+baseofthesegment.
+9
+Anangleissaidtostandonthepartofthecircumference,
+orthearch,interceptedbetweentherightlinesthatcontain
+theangle.
+10
+Asectorofacircleisthefigurecontainedbytworadiiand
+thearchbetweenthem.
+11
+Similarsegmentsofcirclesarethosewhichcontainequal
+angles.
+12
+Circles which havethe same cen tre are calledconcentric
+circles.
+BOOKIIIPROP.I.PROB. 93
+oﬁnd the centre of a given circle
+ .
+Drawwithinthecircleanystraightline
+ ,make
+=
+ ,draw
+ ⊥
+ ;bisect
+,andthepointofbisectionisthecentre.
+For,ifitbepossible,letanyotherpointasthepointof
+concourseof
+,
+ and
+ bethecentre.
+Becausein
+ and
+ =
+(hyp.and def. 15),
+ =
+ (const.)and
+common,
+=
+(pr.1.8),andarethere-
+forerightangles;but
+=
+(const.)
+=
+(ax.XI)whichisabsurd; thereforetheassumedpo intis
+notthecentreofthecircle;andinthesamemanneritcan
+beprovedthatnootherpointwhichisnoton
+ is
+thecentre,thereforethecentreisin
+ ,andtherefore
+thepointwhere
+ isbisectedisthecentre.
+Q.E.D.
+94 BOOKIIIPROP.II.THEOR.
+straight line(
+)joiningtwo points
+inthe circumference ofa circle
+ , lies
+wholly within the circle.
+Findthecentreof
+ (pr.3.1);
+fromthecentredraw
+toanypointin
+,
+meetingthecircumferencefromthecentre;
+draw
+ and
+ .
+Then
+=
+(pr.1.5)
+but
+>
+or>
+(pr.1.16)
+∴
+ >
+(pr.1.19)
+but
+=
+ ,
+∴
+ >
+;
+∴
+<
+ ;
+∴everypointin
+ lieswithinthecircle.
+Q.E.D.
+BOOKIIIPROP.III.THEOR. 95
+fa straight line(
+)drawnthrough
+the centre ofa circle
+ bisecta chord
+(
+)whichdoesnotpassthroughthecen-
+tre, it isperpendicular toit;or, ifperpendicular toit, it
+bisects it.
+Draw
+ and
+ tothecentreofthecircle.
+In
+ and
+=
+ ,
+ common,
+and
+ =
+ ∴
+=
+(pr.1.8)
+and∴
+ ⊥
+ (def.10)
+Againlet
+ ⊥
+Thenin
+ and
+=
+(pr. 1.5)
+=
+(hyp.)
+and
+ =
+∴
+ =
+ (pr.1.26)
+and∴
+ bisects
+.
+Q.E.D.
+96 BOOKIIIPROP.IV.THEOR.
+fin a circle two straight lines cut one another,
+whichdonotbothpassthroughthecentre,they
+do not bisect one another.
+Ifoneofthelinespassthroughthecentre,itisevident
+thatitcannotbebisectedbytheother,whichdoesno tpass
+throughthecentre.
+But ifneitherof thelines
+ or
+ pass
+throughthecentre,draw
+ fromthecentretotheir
+intersection.
+If
+ bebisected,
+ ⊥toit(pr.3.3)
+∴
+=
+andif
+ bebisected,
+ ⊥
+ (pr.3.3)
+∴
+=
+;
+and∴
+=
+;
+apartequaltothewhole,whichisabsurd:
+∴
+ and
+ donotbisectoneanother.
+Q.E.D.
+BOOKIIIPROP.V.THEOR. 97
+ftwocirclesintersect
+ ,theyhave
+not the same centre.
+Supposeitpossiblethattwointersectingcircleshavea
+commoncen tre;fromsuchsupposedcen tredraw
+totheintersectingpoint,and
+ meetingthecircum-
+ferencesofthecircles.
+Then
+ =
+ (def.15)
+and
+ =
+ (def.15)
+∴
+ =
+apartequaltothewhole,whichisabsurd:
+∴circlessupposed tointersectinany
+pointcannothavethesamecen tre.
+Q.E.D.
+98 BOOKIIIPROP.VI.THEOR.
+ftwo circles
+ touch one ano ther in-
+ternally, they have not the same centre.
+For, if itbe possible, letboth circles havethe same
+centre; fromsuchasupposedcen tredraw
+ ,and
+tothepointofcontact.
+Then
+ =
+ (def.15)
+and
+ =
+ (def.15)
+∴
+ =
+ ;
+apartequaltothewhole,whichisabsurd;thereforethe
+assumedpo intisnotthecentreofbothcircles,andinthe
+samemanne ritcanbedemons tratedthatnootherpoint
+is.
+Q.E.D.
+BOOKIIIPROP.VII.THEOR. 99
+Fig. 1
+Fig. 2
+ffrom anypointwithin a circle
+whichisnot the centre, lines{
+ are
+drawntothe circumference; the greatestof
+thoselines is that(
+)which passes throughthe cen-
+tre,andtheleast is theremaining part(
+)of the
+diameter.
+Of the others, that(
+)whichisnearer totheline
+passingthroughthecentre,isgreaterthanthat(
+)
+which is more remote.
+Fig. 2. Thetwolines (
+and
+ )whichmake
+equal angles with that passing through the centre, on oppo-
+site sides of it, are equal to each other; and there cannot be
+drawn athirdline equal tothem, fromthe same po int to
+the circumference.
+FigureI.
+Tothecentreofthecircledraw
+ and
+ ;then
+=
+ (def. 15)
+ =
+ +
+>
+ (pr.1.20)inlikemanner
+ may
+be shown to be greater than
+ ,oranyother line
+drawnfromthesamepo inttothecircumference.Again,
+by(pr.1.20)
+ +
+ >
+ =
+ +
+,take
+ fromboth;∴
+ >
+(ax.III),andinlikemanneritmaybeshown that
+islessthananyotherlinedrawnfromthesamepo inttothe
+circumference.Again,in
+ and
+ ,
+common,
+>
+,and
+ >
+ ∴
+>
+ (pr. 1.24)and
+ may inlike
+manner to be proved greater than anyother line drawn
+100 BOOKIIIPROP.VII.THEOR.
+fromthe same po int tothe circumference moreremote
+from
+ .
+FigureII.
+If
+=
+then
+ =
+ ,
+ifnottake
+ =
+ draw
+thenin
+and
+ ,
+ common,
+=
+and
+ =
+∴
+ =
+ (pr.1.4)
+∴
+ =
+ =
+apartequaltothewhole,whichisabsurd:
+∴
+ =
+ ;and no other lineis equal to
+drawnfromthesamepo inttothecircumference;
+forifitwerenearertotheonepass ingthroughthecentre
+itwouldbegreater,andifitweremoreremoteitwouldbe
+less.
+Q.E.D.
+BOOKIIIPROP.VIII.THEOR. 101
+heoriginal textof thispropositionishere di-
+vided into three parts.
+I.
+Iffromapointwithoutacircle,straightlines {
+ }
+aredrawntothecircumference;ofthosefallinguponthe
+concavecircumferencethegreatestisthat(
+ )which
+passesthroughthecentre,andtheline(
+)whichis
+nearerthegreatestisgreaterthanthat(
+ )whichis
+moreremote.
+Draw
+ and
+ tothecentre.
+Then,
+ whichpasses
+throughthecentre,isgreatest;
+forsince
+ =
+ ,if
+ be
+addedtoboth
+ =
+ +
+ ;
+but>
+ (pr. 1.20)
+∴
+ isgreaterthananyotherlinedrawnfrom
+thesamepo inttotheconcavecircumference.
+Againin
+and
+,
+=
+ ,and
+ common,
+but
+>
+,∴
+ >
+ (pr.1.24);
+andinlikemanner
+ maybeshown >
+thananyotherlinemoreremotefrom
+ .
+102 BOOKIIIPROP.VIII.THEOR.
+II.
+Of thoselinesfalling onthe convexcircumferencethe
+leastisthat(
+ )whichbeingproducedwou ldpass
+throughthecentre,andthelinewhichisnearertoleastis
+lessthanthatwhichismoreremote.
+For,since
+ +
+ >
+ (pr.1.20)
+and
+ =
+ ,
+∴
+ >
+ (ax.V)
+Andagain,since
++
+ >
+ +
+ (pr.1.21),
+and
+ =
+ ,
+∴
+ <
+ .Andsoofothers.
+III.
+Alsothelinesmakingequalangleswiththatwhichpasses
+throughthecentreareequal,whetherfallingonthecon-
+cave orconvexcircumference;and nothirdline can be
+drawnequaltothemfromthesamepo inttothecircum-
+ference.
+Forif
+ >
+ ,butmaking
+=
+;
+make
+ =
+ ,anddraw
+ .
+Thenin
+and
+wehave
+ =
+and
+ common,andalso
+=
+,
+∴
+ =
+ (pr.1.4);
+but
+ =
+ ;
+∴
+ =
+ ,whichisabsurd.
+BOOKIIIPROP.VIII.THEOR. 103
+∴
+ is≠
+ ,nortoanypart
+of
+,∴
+ is≯
+ .
+Neitheris
+ >
+ ,
+theyare∴=toeachother.
+Andanyotherlinedrawnfromthesamepointtothe
+circumferencemustlieatthesamesidewithoneofthese
+lines,andbemo reorlessremotethanitfromthelinepass-
+ingthroughthecentre,andcanno tthereforebeequalto
+it.
+Q.E.D.
+104 BOOKIIIPROP.IX.THEOR.
+fa pointbetaken within a circle
+,
+fromwhichmorethantwoequalstraightlines
+(
+,
+,
+)can be drawn
+tothe circumference, thatpointmustbethe
+centre of the circle.
+Forifitbesupposed thatthepoint
+inwhichmore
+thantwoequalstraightlinesmeetisnotthecentre,some
+otherpoint
+ mustbe; jointhesetwo points by
+andproduceitbothwaystothecircumference.
+Then since morethantwo equalstraight lines are
+drawnfromapointwhichisnotthecentre,tothecircum-
+ference,twoofthematleastmustlieatthesamesideofthe
+diameter
+;andsincefromapoint
+,which
+isnotthecentre,straightlinesaredrawntothecircumfer-
+ence;thegreatestis
+,whichpassesthroughthecen-
+tre:and
+ whichisnearerto
+ ,>
+whichismoreremote(pr.3.8);but
+ =
+(hyp.) whichisabsurd.
+The same ma ybe demons trated ofanyotherpoint,
+different from
+ ,which mustbethe centre of the
+circle.
+Q.E.D.
+BOOKIIIPROP.X.THEOR. 105
+necircle
+ cannot intersectanother
+in more points than two.
+For,ifitbepossible,letitintersectinthreepoints;from
+thecentreof
+draw
+ ,
+ and
+tothepointsofintersection;
+∴
+ =
+ =
+ (def.15),butasthe
+circlesintersect,theyhavenotthesamecentre(pr.3.5):
+∴theassumedpo intisnotthecentreof
+,and∴
+as
+ ,
+ and
+ aredrawnfromapoint
+notthecentre,theyarenotequal(pr.3.7,pr.3.8);butit
+wasshownbe forethattheywereequal,whichisabsurd;
+thecirclesthereforedonotintersectinthreepoints.
+Q.E.D.
+106 BOOKIIIPROP.XI.THEOR.
+ftwo circles
+ and
+ touch one
+another internally, theright linejoiningtheir
+centres,being produced,shallpassthrough a
+point of contact.
+For,ifitbepossible,let
+jointheircentres,and
+produceitbothways;fromapointofcontactdraw
+tothecentreof
+,andfromthesamepo intofcontact
+draw
+ tothecentreof
+ .
+Becausein
+;
++
+ >
+ (pr.1.20),
+and
+ =
+astheyareradiiof
+,
+but
++
+ >
+ ;
+takeaway
+whichiscommon ,
+and
+ >
+ ;
+but
+ =
+,
+becausetheyareradiiof
+,
+and∴
+ >
+ apart
+greaterthanthewhole,whichisabsurd.
+Thecentresarenotthereforesoplaced,thatalinejoin-
+ingthemcanpass throughanypointbutapointofcontact.
+Q.E.D.
+BOOKIIIPROP.XII.THEOR. 107
+ftwo circle
+and
+ touch one
+anotherexternally, the straight line
+joiningtheircentres,passesthroughthepoint
+of contact.
+Ifitbepossible,let
+ joiningthecentres,and
+notpassthroughapointofcontact;thenfromapointof
+contactdraw
+ and
+ tothecentres.
+∵
+ +
+ >
+ (pr.1.20)
+and
+ =
+ (def.15),
+and
+ =
+ (def.15),
+∴
+ +
+ >
+ ,
+apartgreaterthanthewhole,whichisabsurd.
+Thecentresarenotthereforesoplaced, thattheline
+joiningthemcanpassthroughanypointbutthepointof
+contact.
+Q.E.D.
+108 BOOKIIIPROP.XIII.THEOR.
+necircle cannot touch another,eitherexter-
+nally or internally, in more points than one
+FigureI.
+For, if itpossible, let
+ and
+ touch one
+another internally intwo points;draw
+ joining
+theircentres,andproduceituntilitpassthroughoneo f
+thepointsofcontact(pr.3.11);
+draw
+ and
+ .
+But
+ =
+ (def.15),
+∴if
+ beaddedtoboth,
+=
+ +
+ ;
+but
+ =
+ (def.15),
+and∴
+ +
+ =
+ ;
+but∴
+ +
+ >
+ (pr.1.20),
+whichisabsurd.
+FigureII.
+Butifthepointsofcontactbetheextremitiesoftheright
+linejoiningthecentres,thisstraightlinemustbebisected
+intwodifferentpointsforthetwocentres;becauseitisthe
+diameterofbothcircles,whichisabsurd.
+BOOKIIIPROP.XIII.THEOR. 109
+FigureIII.
+Next, if itbe possible, let
+ and
+ touch
+externallyintwopoints;draw
+ joiningthecentres
+of the circles,and passingthrough one o f the points of
+contact,anddraw
+ and
+ .
+=
+ (def.15);
+and
+ =
+ (def.15);
+∴
+ +
+ =
+ ;
+but
+ +
+ >
+(pr.1.20),whichisabsurd.
+Thereistherefore no case in whichtwo circles can
+touchoneanotherintwopoints.
+Q.E.D.
+110 BOOKIIIPROP.XIV.THEOR.
+qualstraightlines (
+ )inscribedin
+a circle are equallydistant fromthe centre;
+and also,straight linesequallydistant from
+the centre are equal.
+Fromthecentreof
+ draw
+⊥to
+and
+⊥
+ ,join
+and
+ .
+Then
+=half
+ (pr.3.3)
+and
+ =1
+2
+(pr.3.3),
+since
+ =
+ (hyp.)
+∴
+=
+,
+and
+ =
+ (def.15)
+∴
+2=
+2;
+butsince
+isarightangle
+2=
+2+
+2(pr.1.47)
+and
+2=
+2+
+2forthesamereason,
+∴
+2+
+2=
+2+
+2
+∴
+2=
+2
+∴
+=
+Also,ifthelines
+ and
+ beequally
+distantfromthecentre;thatistosay,iftheperpendiculars
+and
+begivenequal,then
+ =
+ .
+For,asintheprecedingcase,
+2+
+2=
+2+
+2
+but
+2=
+2
+∴
+=
+,andthedoublesofthese
+and
+ arealsoequal.
+Q.E.D.
+BOOKIIIPROP.XV.THEOR. 111
+hediameter is the greateststraight linein a
+circle:and,ofallothers, thatwhichisnearest
+to the centre is greater than the more remote.
+FigureI.
+Thediameter
+ is>anyline
+ .
+Fordraw
+ and
+ .
+Then
+ =
+and
+ =
+ ,
+∴
+ +
+ =
+but
+ +
+ >
+ (pr.1.20)
+∴
+ >
+ .
+Again,thelinewhichisnearerthecentreisgreaterthan
+theonemoreremote.
+First, let the givenlines be
+ and
+ ,
+whichareatthesamesideofthecentreanddono tinter-
+sect;
+draw{
+,
+,
+,
+.
+In
+ and
+ ,
+and
+ =
+ and
+ ;
+but
+ >
+,
+∴
+ >
+ (pr.1.24)
+112 BOOKIIIPROP.XV.THEOR.
+FigureII.
+Letthegivenlinesbe
+ and
+ whicheither
+areatdifferentsidesofthecentre,orintersect;fromthecen-
+tredraw
+ and
+ ⊥
+ and
+ ,
+make
+ =
+ ,
+anddraw
+ ⊥
+ .
+Since
+ and
+ areequallydistant
+fromthecentre,
+ =
+ (pr.3.14);
+but
+ >
+ (pr.3.15),
+∴
+ >
+ .
+Q.E.D.
+BOOKIIIPROP.XVI.THEOR. 113
+hestraight line
+ drawnfromthe ex-
+tremityof the diameter
+ ofa circle
+perpendicular to it falls without the circle
+Andifanystraight line
+ bydrawn
+fromapointwithinthatperpendiculartothepointofcon-
+tact, it cuts the circle.
+PartI.
+Ifitbepossible,let
+,whichmeetsthecircleagain,
+be⊥
+ ,anddraw
+ .
+Then,∵
+ =
+ ,
+=
+(pr. 1.5),
+and∴eachoftheseanglesisacute(pr.1.17)
+but
+=
+(hyp.),whichisabsurd,
+therefore
+ drawn⊥
+doesnotmeetthecircleagain.
+PartII.
+Let
+ be⊥
+ andlet
+ bedrawnfrom
+apoint
+between
+ andthecircle,which,ifit
+bepossible,doesnotcutthecircle.
+∵
+=
+,
+∴
+isanacuteangle;
+suppose
+ ⊥
+ ,drawnfromthecentreof
+thecircle,itmustfallatthesideof
+theacuteangle.
+∴
+whichissupposed tobearightangle,is>
+,
+∴
+ >
+ ;
+114 BOOKIIIPROP.XVI.THEOR.
+but
+ =
+ ,
+and∴
+ >
+ ,apartgreaterthanthewhole,
+whichisabsurd. Thereforethepointdoesnotfalloutside
+thecircle,andthereforethestraightline
+ cutsthe
+circle.
+Q.E.D.
+BOOKIIIPROP.XVII.PROB. 115
+odrawatangenttoagivencircle
+from
+agivenpoint,eitherinoroutsideofitscircum-
+ference.
+Ifagivenpointbeinthecircumference,asat
+,itis
+plainthatthestraightline
+ ⊥
+ theradius,
+willbetherequiredtangent(pr.3.16).
+Butifthegivenpoint
+beoutsideofthecircumfer-
+ence,
+draw
+ fromittothecentre,cutting
+;
+anddraw
+ ⊥
+ ,
+describe
+ concentricwith
+ radius=
+ ,
+draw
+ tothecentrefromthepoint
+where
+ fallson
+ circumference,
+draw
+ ⊥
+ from
+thepointwhereitcuts
+,
+Then
+ willbethetangentrequired.
+Forin
+ and
+=
+ ,
+common,
+and
+ =
+ ,
+∴(pr.1.4)
+ =
+ =
+,
+∴
+ isatangentto
+.
+Q.E.D.
+116 BOOKIIIPROP.XVIII.THEOR.
+fa straight line
+ be atangent to a cir-
+cle, the straight line
+ drawn from the
+centretothepointofcontact, isperpendicular
+to it.
+For,ifitbepossible,let
+ be⊥
+ ,
+then∵
+=
+,
+isacute(pr.1.17)
+∴
+ >
+ (pr.1.19);
+but
+ =
+ ,
+and∴
+ >
+ ,apart
+greaterthanthewhole,whichisabsurd.
+∴
+ isnot⊥
+ ;
+andinthesamemanne ritcanbedemons trated,thatno
+otherlineexcept
+ isperpendicularto
+ .
+Q.E.D.
+BOOKIIIPROP.XIX.THEOR. 117
+fa straight line
+ be atangent to a cir-
+cle, the straight line
+ ,drawn perpen-
+dicular toit from pointof the contact,passes
+through the centre of the circle.
+For,ifitbepossible,letthecentrebewithout
+,
+anddraw
+ fromthesupposedcen tretothepoint
+ofcontact.
+∵
+ ⊥
+ (pr.3.18)
+∴
+=
+,arightangle;
+but
+=
+(hyp.),
+and∴
+=
+,apartequal
+tothewhole,whichisabsurd.
+Thereforetheassumedpo intisnotthecentre;andin
+the same manne r itcan be demons trated, thatno other
+pointwithout
+ isthecentre.
+Q.E.D.
+118 BOOKIIIPROP.XX.THEOR.
+heangleatthecentreofacircleisdoublethe
+angleatthecircumference,whentheyhavethe
+same part of the circumference for their base.
+FigureI.
+Letthecentreofthecirclebeon
+asideof
+.
+∵
+ =
+ ,
+=
+(pr. 1.5).
+But
+=
++
+,
+or
+=twice
+(pr.1.32).
+FigureII.
+Letthecentrebewithin
+,
+theangleatthecircumference;
+draw
+ fromtheangularpoint
+throughthecentreofthecircle;
+then
+=
+,and
+=
+,because
+oftheequalityofthesides(pr.1.5).
+Hence
+ +
++
++
+=twice
+ .
+But
+=
++
+,
+and
+ =
++
+,
+∴
+ =twice
+ .
+BOOKIIIPROP.XX.THEOR. 119
+FigureIII.
+Letthecentrebewithout
+anddraw
+ ,thediameter.
+∵
+ =twice
+;
+and
+=twice
+ (caseI.);
+∴
+=twice
+.
+Q.E.D.
+120 BOOKIIIPROP.XXI.THEOR.
+heangles inthe same segmen tofa circle are
+equal.
+FigureI.
+Let the segmen tbe greater than a sem icircle,and draw
+and
+ tothecentre.
+=twice
+ ortwice=
+(pr.3.20);
+∴
+=
+FigureII.
+Letthesegmen tbeasemicircle,orlessthanasem icircle,
+draw
+ thediameter,alsodraw
+ .
+=
+and
+=
+(caseI.)
+∴
+ =
+.
+Q.E.D.
+BOOKIIIPROP.XXII.THEOR. 121
+heoppositeangles
+ and
+,
+and
+ofanyquadrilateral ﬁgureinscribedin a
+circle, are together equal to two right angles.
+Draw
+ and
+ thediagonals;
+andbecauseang lesinthesamesegmen tareequal
+=
+,
+and
+=
+;
+add
+toboth.
++
+=
++
++
+=tworightangles
+(pr. 1.32).
+Inlikemanneritmaybeshown that,
++
+=
+ .
+Q.E.D.
+122 BOOKIIIPROP.XXIII.THEOR.
+ponthesamestraightline,anduponthesame
+sideofit,twosimilarsegmentsofcirclescannot
+be constructed, which do not coincide.
+Forifitbepossible,lettwosimilarsegments
+and
+ beconstructed;
+drawanyrightline
+ cuttingboththesegmen ts,
+draw
+ and
+ .
+Becausethesegmen tsaresimilar,
+=
+(def.3.11),
+but
+>
+(pr.1.16)
+whichisabsurd;
+thereforenopointineitherofthesegmen tsfallswithout
+theother,andthereforethesegmen tscoincide.
+Q.E.D.
+BOOKIIIPROP.XXIV.THEOR. 123
+imilarsegments
+ and
+ ,
+ofcirclesupon equa lstraight lines(
+and
+ )are each equal to the other.
+For,if
+ besoappliedto
+ ,
+that
+ mayfallon
+ ,
+theextremitiesof
+ may
+beontheextremities
+and
+ atthesamesideas
+ ;
+∵
+ =
+ ,
+mustwhollycoincidewith
+ ;
+andthesimilarsegmentsbeingthenupon thesamestraight
+lineandatthesamesideofit,mustalsocoincide(pr.3.23),
+andarethereforeequal.
+Q.E.D.
+124 BOOKIIIPROP.XXV.PROB.
+segment ofa circle being given, to describe
+the circle of which it is the segment.
+Fromanypointinthesegmen t
+draw
+ and
+ ,
+bisectthem,andfromthepointsofbisection
+draw
+ ⊥
+and
+ ⊥
+wheretheymeetisthecentreofthecircle.
+Because
+ terminatedinthe circleis bisected
+perpendicularlyby
+ ,itpassesthroughthecentre
+(pr.3.1),likewise
+ passesthroughthecentre,there-
+forethecentreisintheintersectionoftheseperpendiculars.
+Q.E.D.
+BOOKIIIPROP.XXVI.THEOR. 125
+nequalcircles
+ and
+ , the arcs
+,
+onwhichstandequalangles,
+whetherat the centre ofcircumference,are
+equal.
+For,let
+=
+atthecentre,
+draw
+ and
+ .
+Thensince
+ =
+,
+and
+ have
+=
+ =
+ =
+ ,
+and
+ =
+,
+∴
+ =
+ (pr.1.4).
+But
+=
+(pr.3.20);
+∴
+and
+ aresimilar(def.3.11);
+theyarealsoequal(pr.3.24)
+Ifthereforetheequalsegmentsbetakenfromtheequal
+circles,theremainingsegmentswillbeequal;
+hence
+ =
+ (ax.III);
+and∴
+ =
+ .
+Butifthegivenequalanglesbeatthecircumference,
+itisevidentthattheanglesatthecentre,beingdoubleof
+thoseatthecircumference,arealsoequal,andtherefore
+thearcsonwhichtheystandareequal.
+Q.E.D.
+126 BOOKIIIPROP.XXVII.THEOR.
+nequalcircles
+ and
+ the
+angles
+and
+which stand upon equa l
+archesareequal,whethertheybeatthecentres
+or at the circumferences.
+Forifitbepossible,letoneofthem
+begreaterthantheother
+andmake
+ =
+∴
+ =
+ (pr.3.26)
+but
+ =
+ (hyp.)
+∴
+ =
+ apart
+equaltothewhole,whichisabsurd;
+∴neitherangleisgreaterthantheother,
+and∴theyareequal.
+Q.E.D.
+BOOKIIIPROP.XXVIII.THEOR. 127
+nequalcircles
+ and
+ ,
+equalchords
+ ,
+ cutoffequal
+arches.
+Fromthecentresoftheequalcircles,
+draw
+ ,
+ and
+ ,
+;
+and∵
+ =
+,
+ =
+ ,
+also
+ =
+ (hyp.)
+∴
+ =
+∴
+ =
+ (pr.3.26)
+and∴
+ =
+ (ax.III).
+Q.E.D.
+128 BOOKIIIPROP.XXIX.THEOR.
+nequalcircles
+ and
+ the
+chords
+ and
+ which subtend
+equal arcs are equal.
+Iftheequalarcsbesemicirclesthe
+propositionisevident.Butifnot,
+let
+,
+ and
+ ,
+bedrawntothecentres;
+∵
+ =
+ (hyp.)
+and
+ =
+(pr.3.27);
+but
+ and
+ =
+ and
+∴
+ =
+ (pr.1.4);
+butthesearethechordssubtendingtheequalarcs.
+Q.E.D.
+BOOKIIIPROP.XXX.PROB. 129
+obisect a given arc
+ .
+Draw
+ ;
+make
+ =
+ ,
+draw
+ ⊥
+ ,anditbisectsthearc.
+Draw
+ and
+ .
+=
+ (const.)
+iscommon ,
+and
+ =
+(const.)
+∴
+ =
+ (pr.1.4)
+=
+ (pr.3.28),
+andthereforethegivenarcisbisected.
+Q.E.D.
+130 BOOKIIIPROP.XXXI.THEOR.
+na circlethe anglein a semicircleisaright
+angle, the anglein a segmen tgreater than a
+semicircleisacute,andtheangleina segmen t
+less than a semicircle is obtuse.
+FigureI.
+Theangle
+inasemicircleisarightangle.
+Draw
+ and
+=
+and
+ =
+(pr.1.5)
++
+=
+=thehalfof
+ =
+(pr. 1.32)
+FigureII.
+Theangle
+inasegmen t
+greaterthanasemicircleisacute
+Draw
+ thediameter,and
+∴
+=arightangle ,∴
+isacute.
+FigureIII.
+Theangle
+inasegmen t
+lessthanasemicircleisobtuse.
+Takeintheoppositecircumferenceany
+point,towhichdraw
+ and
+ .
+∵
++
+ =
+ (pr.3.22)
+but
+<
+(figureII.),∴
+isobtuse.
+Q.E.D.
+BOOKIIIPROP.XXXII.THEOR. 131
+faright line
+ be atangent to a cir-
+cle,andfromthepointofcontactarightline
+be drawn cuttingthe circle, the an-
+gle
+madebythislinewiththetangentis
+equaltotheangle
+inthealternatesegmentofthecircle.
+Ifthechordshouldpassthroughthecentre,itisevi-
+denttheanglesareequal,foreachofthemisarightangle.
+(pr.3.16,pr.3.31)
+Butifnot,draw
+ ⊥
+ fromthepoint
+ofcontact, itmustpassthroughthe centre of the circle,
+(pr.3.19)
+∴
+=
+(pr.3.31)
++
+=
+=
+(pr.1.32)
+∴
+=
+(ax. III).
+Again
+ =
+ =
++
+(pr.3.22)
+∴
+ =
+,(ax.III),whichis
+theangleinthealternatesegment.
+Q.E.D.
+132 BOOKIIIPROP.XXXIII.PROB.
+na given straight line
+ to describe a
+segment of a circle that shall contain an angle
+equal to a given angle
+ ,
+,
+.
+Ifagivenanglebearightangle,bisectthegivenline,
+anddescribeasemicircleonit,thiswillevidentlycontaina
+rightangle. (pr.3.31)
+Ifthegivenanglebeacuteorobtuse,makewiththe
+givenline,atitsextremity,
+=
+,
+draw
+ ⊥
+andmake
+ =
+,
+describe
+ with
+ or
+asradius,fortheyareequal.
+istangentto
+(pr.3.16)
+∴
+ dividesthecircleintotwosegmen tscapableof
+containinganglesequalto
+and
+whichwere
+maderespectivelyequalto
+and
+(pr.3.32).
+Q.E.D.
+BOOKIIIPROP.XXXIV.PROB. 133
+ocutoff from a given circle
+ a seg-
+mentwhich shallcontain an angle equalto a
+given angle
+ .
+Draw
+ (pr.3.17),atangent
+tothecircleatanypoint;
+atthepointofcontactmake
+=
+thegivenangle;
+and
+ containsanangle=thegivenangle.
+Because
+ isatangent,
+and
+ cutsit,
+theanglein
+=
+(pr.3.32),
+but
+=
+(const.).
+Q.E.D.
+134 BOOKIIIPROP.XXXV.THEOR.
+ftwo chords{
+ }in a circleintersect
+each other, therectangle contained by the seg-
+mentsoftheoneisequaltotherectanglecon-
+tained by the segments of the other.
+FigureI.
+If the givenright lines passthroughthe centre, theyare
+bisectedinthepointofintersection,hencetherectangles
+undertheirsegmentsaresquaresoftheirhalves,andthere-
+foreequal.
+FigureII.
+Let
+ passthroughthecentre,
+and
+ not;draw
+and
+.
+Then
+×
+=
+2−
+2(pr.2.6),
+or
+×
+=
+2−
+2.
+∴
+×
+=
+ ×
+(pr.2.5).
+FigureIII.
+Letneitherofthegivenlinespassthroughthecentre,draw
+throughtheirintersectionadiameter
+ ,
+and
+ ×
+=
+×
+(part2.),
+also
+×
+=
+×
+(part2.);
+∴
+×
+=
+×
+.
+Q.E.D.
+BOOKIIIPROP.XXXVI.THEOR. 135
+ffromapointwithoutacircletwostraightlines
+bedrawntoit,oneofwhich
+isatangent
+tothecircle,andtheother
+ cuts
+it; therectangle under the whole cuttingline
+andthe externalsegment
+isequal to
+the square of the tangent
+ .
+FigureI.
+Let
+ passthroughthecentre;
+draw
+fromthecentretothepointofcontact;
+2=
+2−
+2(pr.1.47),
+or
+2=
+2−
+2,
+∴
+2=
+ ×
+(pr.2.6).
+FigureII.
+If
+ donotpassthroughthecentre,
+draw
+and
+.
+Then
+ ×
+=
+2−
+2(pr.2.6),
+thatis,
+ ×
+=
+2−
+2,
+∴
+ ×
+ =
+2(pr.3.18).
+Q.E.D.
+136 BOOKIIIPROP.XXXVII.THEOR.
+ffrom a pointoutside ofa circletwo straight
+linesbe drawn, the one
+ cutting
+the circle, the other
+meetingit,andif
+therectangle contained by the whole cutting
+line
+ anditsexternalsegment
+beequal
+tothesquareofthelinemeetingthecircle,thelatter
+is a tangent to the circle.
+Drawfromthegivenpoint
+,atangenttothecircle,
+anddrawfromthecentre
+,
+,and
+ ,
+2=
+ ×
+(pr.3.36)
+but
+2=
+ ×
+(hyp.),
+∴
+2=
+2,
+and∴
+ =
+ .
+Thenin
+ and
+and
+ =
+and
+ ,
+and
+ iscommon ,
+∴
+=
+(pr.1.8);
+but
+=
+arightangle(pr.3.18),
+∴
+=
+arightangle,
+and∴
+isatangenttothecircle(pr.3.16).
+Q.E.D.
+BookIV
+Definitions
+1
+Arectilinearfigureissaidtobeinscribedinanother,when
+alltheangularpointsoftheinscribedfigureareonthesides
+ofthefigureinwhichitissaidtobeinscribed.
+2
+Afigureissaidtobedescribedaboutanotherfigure,when
+allthesidesofthecircumscribedfigurepassthroughthe
+angularpointsoftheotherfigure.
+3
+Arectilinearfigureissaidtobeinscribedinacircle,when
+thevertexofeachangleofthefigureisinthecircumference
+ofthecircle.
+4
+Arectilinearfigureissaidtobecircumscribedaboutacircle,
+wheneachofitssidesisatangenttothecircle.
+138 BOOKIV
+5
+Acircleissaidtobeinscribedinarectilinearfigure,when
+eachsideofthefigureisatangenttothecircle.
+6
+Acircleissaidtobecircumscribedaboutarectilinearfigure,
+whenthecircumferencepassesthroughthevertexofeach
+angleofthefigure.
+iscircumscribed.
+7
+Astraightlineissaidtobeinscribedinacircle,whenits
+extremitiesareinthecircumference.
+The Fourth Book of the Elementsis devotedtothe
+solution ofproblems,chiefly relatingtotheinscription
+andcircumscriptionofregularpolygonsandcircles.
+Aregularpolygonis one whose ang les and sides are
+equal.
+BOOKIVPROP.I.PROB. 139
+nagivencircle
+ toplaceastraightline,
+equal to a given straight line(
+),not
+greater than the diameter of the circle.
+Draw
+ ,thediameterof
+;
+andif
+ =
+ ,thentheproblemissolved.
+Butif
+ benotequalto
+ ,
+>
+ (hyp.);
+make
+ =
+ (pr.1.3)
+with
+ asradius,
+describe
+ ,cutting
+ ,
+anddraw
+ ,whichisthelinerequired.
+For
+ =
+ =
+ (def.1.15,const.).
+Q.E.D.
+140 BOOKIVPROP.II.PROB.
+nagivencircle
+ toinscribeatriangle
+equiangular to a given triangle.
+Toanypointofthegivencircle
+draw
+ ,atangent(pr.3.17);
+andatthepointofcontactmake
+ =
+(pr.1.23)
+andinlikemanner
+=
+,
+anddraw
+ .
+∵
+=
+(const.)
+and
+ =
+(pr.3.32)
+∴
+=
+;
+also
+=
+forthesamereason.
+∴
+=
+(pr. 1.32),
+andthereforethetriangleinscribedinthecircleisequian-
+gulartothegivenone.
+Q.E.D.
+BOOKIVPROP.III.PROB. 141
+boutagivencircle
+tocircumscribea
+triangle equiangular to a given triangle.
+Produceanyside
+ ,of
+thegiventrianglebothways;
+fromthecentreofthegiven
+circledraw
+ ,anyradius.
+Make
+ =
+ (pr.1.23)
+and
+ =
+.
+Attheextremitiesoftheradii,draw
+ ,
+and
+ ,tangentstothegivencircle. (pr.3.17)
+Thefouranglesof
+ ,takentogether
+areequaltofourrightangles. (pr.1.32)
+but
+and
+ arerightangles(const.)
+∴
++
+=
+ ,tworightangles
+but
+ =
+ (pr.1.13)
+and
+=
+ (const.)and∴
+=
+.
+Inthesamemanne ritcanbedemons tratedthat
+=
+;
+142 BOOKIVPROP.III.PROB.
+∴
+=
+(pr. 1.32)
+andthereforethetrianglecircumscribedaboutthe
+givencircleisequiangulartothegiventriangle.
+Q.E.D.
+BOOKIVPROP.IV.PROB. 143
+nagiventriangle
+ toinscribeacir-
+cle.
+Bisect
+and
+ (pr. 1.9)by
+ and
+; fromthe pointwheretheselines meetdraw
+,
+ and
+ respectivelyperpendicular
+to
+ ,
+ and
+ .
+In
+ and
+=
+,
+=
+and
+ common,
+∴
+ =
+ (pr.1.4,pr.1.26).
+Inlikemanner,itmaybeshown
+alsothat
+ =
+ ,
+∴
+ =
+ =
+ ;
+hence with anyone oftheselines asradius,describe
+anditwillpassthroughthe extremities of the
+othertwo;andthesidesofthegiventriangle,beingper-
+pendiculartothethreeradiiattheirextremities,touchthe
+circle(pr.3.16),whichisthereforeinscribedinthegiven
+triangle.
+Q.E.D.
+144 BOOKIVPROP.V.PROB.
+odescribe a circle about a given triangle.
+Make
+ =
+ and
+ =
+(pr.1.10)
+Fromthe points ofbisection draw
+ and
+⊥
+ and
+ respectively(pr.1.11),and
+fromtheirpointofconcoursedraw
+ ,
+ and
+anddescribeacirclewithanyoneofthem,andit
+willbethecirclerequired.
+In
+ and
+=
+ (const.),
+common,
+=
+(const.),
+∴
+ =
+ (pr.1.4).
+Inlikemanneritmaybeshown
+that
+ =
+ .
+∴
+ =
+ =
+ ;andtherefore
+acircledescribedfromtheconcou rseofthesethreelines
+withanyoneofthemasaradiuswillcircumscribethegiven
+triangle.
+Q.E.D.
+BOOKIVPROP.VI.PROB. 145
+nagivencircle
+ toinscribeasquare.
+Drawthetwodiametersofthecircle⊥toeachother,
+anddraw
+ ,
+,
+ and
+ .
+isasquare.
+For,since
+ and
+are,eachofthem,
+inasemicircle,theyarerightangles(pr.3.31),
+∴
+ ∥
+ (pr.1.28):
+andinlikemanner
+ ∥
+ .
+And∵
+=
+(const.),
+and
+ =
+ =
+ (def.15).
+∴
+ =
+ (pr.1.4);
+andsincetheadjacentsidesandang lesoftheparallelo-
+gram
+ areequal,theyareallequal(pr.1.34);and
+∴
+ ,inscribedinthegivencircle,isasquare.
+Q.E.D.
+146 BOOKIVPROP.VII.PROB.
+bouta given circle
+to circumscribe a
+square.
+Drawtwodiametersofthegivencircleperpendicular
+toeachother,andthroughtheirextremitiesdraw
+ ,
+,
+ and
+ tangentstothecircle;
+and
+ isasquare.
+=
+arightangle,(pr.3.18)
+also
+=
+(const.),
+∴
+ ∥
+ ;inthesamemanne r
+itcanbedemons tratedthat
+ ∥
+ ,
+andalsothat
+ and
+ ∥
+ ;
+∴
+ isaparallelogram,
+and∵
+=
+=
+=
+=
+theyareallrightangles(pr.1.34);
+itisalsoevidentthat
+,
+,
+and
+ areequal.
+∴
+ isasquare.
+Q.E.D.
+BOOKIVPROP.VIII.PROB. 147
+oinscribe a circle in a given square.
+Make
+ =
+ ,
+and
+ =
+ ,
+draw
+ ∥
+ ,
+and
+ ∥
+(pr. 1.31)
+∴
+ isaparallelogram;
+andsince
+ =
+ (hyp.)
+=
+∴
+ isequilateral(pr.1.34)
+Inlikemanneritcanbeshown that
+=
+ areequilateralparallelograms;
+∴
+ =
+ =
+ =
+ .
+andthereforeifacirclebedescribedfromtheconcou rse
+of theselines with anyone of them asradius, itwillbe
+inscribedinthegivensquare(pr.3.16).
+Q.E.D.
+148 BOOKIVPROP.IX.PROB.
+odescribeacircleaboutagivensquare
+.
+Drawthediagonals
+ and
+ intersecting
+eachother;
+then,because
+ and
+ havetheirsidesequal,
+andthebase
+ commontoboth,
+=
+(pr. 1.8),
+or
+isbisected:
+inlikemanneritcanbeshown that
+isbisected;
+but
+=
+,
+hence
+ =
+theirhalves,
+∴
+ =
+ (pr.1.6);
+andinlikemanneritcanbeprovedthat
+=
+ =
+ =
+ .
+Iffromtheconfluenceoftheselineswithanyoneof
+themasradius,acirclebedescribed,itwillcircumscribe
+thegivensquare.
+Q.E.D.
+BOOKIVPROP.X.PROB. 149
+oconstructanisosceles triangle, in which each
+oftheanglesatthebaseshallbedoubleofthe
+vertical angle.
+Takeanystraightline
+anddivideitsothat
+×
+=
+2(pr.2.11)
+With
+ asradius,describe
+andplaceinitfromtheextremity
+oftheradius,
+=
+ (pr.4.1);
+draw
+ .
+Then
+ istherequiredtriangle.
+For,draw
+ anddescribe
+about
+ (pr.4.5)
+Since
+ ×
+=
+2=
+2,
+∴
+istangentto
+ (pr.3.37)
+∴
+=
+(pr.3.32),
+add
+toeach,
+∴
++
+=
++
+;
+but
++
+or
+=
+(pr.1.5):
+since
+ =
+ (pr.1.5)
+150 BOOKIVPROP.X.PROB.
+consequen tly
+=
++
+=
+(pr.1.32)
+∴
+ =
+ (pr.1.6)
+∴
+ =
+ =
+ (const.)
+∴
+=
+(pr. 1.5)
+∴
+=
+=
+=
++
+=twice
+ ;
+andconsequen tlyeachangleatthe
+baseisdoubleoftheverticalangle.
+Q.E.D.
+BOOKIVPROP.XI.PROB. 151
+na given circle
+ toinscribe an equi-
+lateral and equiangular pentagon.
+Constructanisoscelestriangle, inwhicheachofthe
+anglesatthebasesha llbedoubleoftheangleatthevertex,
+andinscribeinthegivencircleatriangle
+equiangular
+toit(pr.4.2);
+Bisect
+and
+(pr.1.9),
+draw
+ ,
+,
+ and
+ .
+Because each o f the angles
+,
+,
+,
+and
+are equal, the arcs upon wh ichtheystand are equal
+(pr.3.26);and∴
+ ,
+,
+,
+ and
+whichsubtendthesearcsareequal(pr.3.29)and
+∴thepentagonisequilateral,itisalsoequiangular,aseach
+ofitsanglesstanduponequalarcs(pr.3.27).
+Q.E.D.
+152 BOOKIVPROP.XII.PROB.
+odescribeanequilateralandequiangularpen-
+tagon about a given circle
+ .
+Drawfivetangentsthroughtheverticesoftheanglesof
+anyregularpentagoninscribedinthegivencircle
+(pr.3.17).
+Thesefivetangentswillformtherequiredpentagon.
+Draw{
+ .
+In
+ and
+=
+ (pr.1.47)
+=
+ ,and
+ common;
+∴
+=
+and∴
+=
+(pr.1.8)
+∴
+=twice
+ ,and
+=twice
+.
+Inthesamemanne ritcanbedemons tratedthat
+=twice
+ ,and
+=twice
+;
+but
+=
+(pr.3.27),
+∴theirhalves
+=
+,also
+=
+,
+and
+ common;
+∴
+=
+and
+ =
+,
+∴
+ =twice
+ .
+BOOKIVPROP.XII.PROB. 153
+Inthesamemanne ritcanbedemons trated
+that
+ =twice
+ ,
+but
+=
+∴
+ =
+ ;
+Inthesamemanne ritcanbedemons tratedthatthe
+othersidesareequal,andthereforethepentagonisequilat-
+eral,itisalsoequiangular,for
+=twice
+ and
+ =twice
+ ,
+andtherefore
+=
+,
+∴
+=
+;
+inthesamemanne ritcanbedemons tratedthatthe
+otheranglesofthedescribedpentagonareequal.
+Q.E.D.
+154 BOOKIVPROP.XIII.PROB.
+oinscribe a circle in a given equiangular and
+equilateral pentagon.
+Let
+ beagivenequiangularandequilat-
+eralpentagon;itisrequiredtoinscribeacircleinit.
+Make
+ =
+,and
+=
+(pr.1.9)
+Draw
+ ,
+,
+,
+,&c.
+∵
+ =
+ ,
+=
+,and
+commontothetwotriangles
+and
+ ;
+∴
+ =
+ and
+=
+(pr.1.4)
+And∵
+=
+=twice
+∴twice
+ ,hence
+ isbisectedby
+ .
+Inlikemanneritmaybedemons tratedthat
+is
+bisectedby
+ ,andthattheremainingangleof
+thepolygonisbisectedinasimilarmanner.
+BOOKIVPROP.XIII.PROB. 155
+Draw
+ ,
+,&c.perpendicular
+tothesidesofthepentagon.
+Theninthetwotriangles
+ and
+wehave
+=
+(const.),
+ common,
+and
+ =
+=arightangle ;
+∴
+ =
+ (pr.1.26)
+Inthesamewayitmaybeshownthatthefiveperpen-
+dicularsonthesidesofthepentagonareequaltoonean-
+other.
+Describe
+ withanyoneoftheperpendicularsas
+radius,anditwillbetheinscribedcirclerequired.Forif
+itdoesnottouchthesidesofthepentagon,butcutthem,
+thenalinedrawnfromtheextremityatrightanglestothe
+diameterofa circle will fallwithinthe circle,which has
+beenshowntobeabsurd(pr.3.16).
+Q.E.D.
+156 BOOKIVPROP.XIV.PROB.
+odescribe a circle abouta given equilateral
+and equiangular pentagon.
+Bisect
+and
+ by
+ and
+,andfromthepointofsection,
+draw
+ ,
+ and
+ .
+=
+,
+=
+,
+∴
+ =
+ (pr.1.6);
+andsincein
+ and
+ ,
+=
+ ,and
+ common,
+also
+=
+;
+∴
+ =
+ (pr.1.4).
+Inlikemanneritmaybeprovedthat
+=
+ =
+ .
+andtherefore
+=
+ =
+ =
+ =
+ .
+Thereforeifacirclebedescribedfromthepointwhere
+thesefivelinesmeet,withanyoneofthemasaradius,it
+willcircumscribethegivenpentagon.
+Q.E.D.
+BOOKIVPROP.XV.PROB. 157
+oinscribe an equ ilateraland equiangular
+hexagon in a given circle
+ .
+Fromanypointinthecircumferenceofthegivencircle
+describe
+ passingthroughitscentre,anddrawthe
+diameters
+,
+ and
+ ;draw
+ ,
+,
+ , &c.andtherequired hexagonisin-
+scribedinthegivencircle.
+Since
+ passesthroughthe centres of the cir-
+cles,
+ and
+ areequilateraltriangles,hence
+=
+ =one-thirdof
+ (pr. 1.32)but
+=
+ (pr.1.13);
+∴
+=
+=
+=one-thirdof
+(pr.1.32),andtheanglesverticallyoppositetotheseareall
+equaltooneanother(pr.1.15),andstandonequa larches
+(pr.3.26),whicharesubtendedbyequalchords(pr.3.29);
+andsinceeacho ftheanglesofthehexagonisdoubleofthe
+angleofanequilateraltriangle,itisalsoequiangular.
+Q.E.D.
+158 BOOKIVPROP.XVI.PROB.
+oinscribeacircleinanequilateralandequian-
+gular quindecagon in a given circle.
+Let
+ and
+ bethesidesofanequilateral
+pentagoninscribedinthegivencircle,and
+ theside
+ofaninscribedequilateraltriangle.
+Thearcsubtended
+by
+ and
+} =2
+5=6
+15{ofthewhole
+circumference
+Thearcsubtended
+by
+} =1
+3=5
+15{ofthewhole
+circumference
+Theirdifference=1
+15
+∴thearcsubtendedby
+ =1
+15differenceof
+thewholecircumference.
+Henceifstraightlinesequalto
+ beplacedin
+the circle(pr. 4.1),an equilateraland equiangularquin-
+decagonwillbethusinscribedinthecircle.
+Q.E.D.
+BookV
+Definitions
+1
+Alessmagnitudeissaidtobeanaliquotpartorsubmul-
+tipleofagreatermagnitude,whenthelessmeasuresthe
+greater;thatis,whenthelessiscontainedacertainnumber
+oftimesexactlyinthegreater.
+2
+Agreatermagnitudeissaidtobeamultipleofaless,when
+thegreaterismeasuredbetheless;thatis,whenthegreater
+containsthelessacertainnumberoftimesexactly.
+3
+Ratioistherelationwhichonequan titybearstoanother
+ofthesamekind,withrespecttomagnitude.
+4
+Magnitudesaresaidtohavearatiotooneanother,when
+theyare of the same k ind;andthe one wh ichis not the
+greatercanbemultipliedsoastoexceedtheother.
+Theotherdeﬁnitionswillbegiventhroughout
+thebookwhe retheiraidisﬁrstrequired.
+160 BOOKV
+Axioms
+I
+Equimultiplesorequisubmultiplesofthesame,orofequal
+magnitudes,areequal.
+IfA=B,then
+twiceA=twiceB,
+thatis,2A=2B;
+3A=3B;
+4A=4B;
+&c.&c.
+and1
+2ofA=1
+2ofB;
+1
+3ofA=1
+3ofB;
+1
+4ofA=1
+4ofB;
+&c. &c.
+II
+Amultipleofagreatermagnitudeisgreaterthanthesame
+multipleofaless.
+LetA>B,
+then2A>2B;
+3A>3B;
+4A>4B;
+&c. &c.
+BOOKV 161
+III
+Thatmagnitude,ofwhichamultipleisgreaterthanthe
+samemultipleofanother,isgreaterthantheother.
+Let2A>2B,
+thenA>B;
+or,let3A>3B,
+thenA>B;
+or,letmA>mB,
+thenA>B.
+162 BOOKVPROP.I.THEOR.
+fany number of magnitudes be equimultiples
+ofasmanyothers,eachofeach:whatmultiple
+soeveranyoneoftheﬁrstisofitspart,thesame
+multiple shallof theﬁrstmagnitudes taken
+together be of all the others taken together.
+Let
+ bethesamemu ltipleof
+,
+that
+ isof
+,
+that
+ isof
+.
+Thenisevidentthat
+⎫}
+⎬}⎭isthesamemu ltipleof⎧{
+⎨{⎩
+whichthat
+ isof
+;
+becausethereareasmanymagnitudes
+in⎧{
+⎨{⎩
+⎫}
+⎬}⎭=⎧{
+⎨{⎩
+astherearein
+ =
+.
+Thesamedemons trationholdsinanynumberofmag-
+nitudes,whichhasherebeenappliedtothree.
+∴Ifanynumberofmagnitudes,&c.
+BOOKVPROP.II.THEOR. 163
+ftheﬁrstmagnitudebethesamemu ltipleof
+the second that thethird of thefourth,and
+theﬁfththe same mu ltiple ofthe second that
+the sixthisof thefourth, then shall theﬁrst,
+togetherwiththeﬁfth,bethe same mu ltiple of the second
+that the third, together with the sixth, is of the fourth.
+Let
+ ,thefirst,bethesamemu ltipleof
+,the
+second,that
+ ,thethird,isof
+,thefourth;and
+let
+ ,thefifth,bethesamemultipleof
+ ,the
+second,that
+ ,thesixth,isof
+ ,thefourth.
+Thenitisevident, that{
+ }, thefirstand
+fifthtogether, isthe same mu ltiple of
+, the second ,
+that{
+ }, thethird and sixthtogether, is of
+the same mu ltiple of
+, thefourth;becausethere are
+asmanymagnitudesin{
+ } =
+asthereare
+in{
+ } =
+.
+∴Ifthefirstmagnitude,&c.
+164 BOOKVPROP.III.THEOR.
+ftheﬁrstoffourmagnitudesbethesamemu lti-
+pleofthesecondthatthethirdistothefourth,
+andifanyequimultipleswhateveroftheﬁrst
+andthird betaken, those shallbe equimulti-
+ples; one of the second, and the other of the fourth.
+Let⎧{
+⎨{⎩
+⎫}
+⎬}⎭bethesamemu ltipleof
+which{
+}isof
+;
+take⎧{{
+⎨{{⎩
+⎫}}
+⎬}}⎭thesamemu ltipleof⎧{
+⎨{⎩
+,
+which⎧{{{
+⎨{{{⎩
+⎫}}}
+⎬}}}⎭isof{
+.
+Thenitisevident,
+that⎧{{
+⎨{{⎩
+⎫}}
+⎬}}⎭isthesamemu ltipleof
+which⎧{{{
+⎨{{{⎩
+⎫}}}
+⎬}}}⎭ifof
+;
+∵⎧{{
+⎨{{⎩
+⎫}}
+⎬}}⎭contains⎧{
+⎨{⎩
+⎫}
+⎬}⎭contains
+
+BOOKVPROP.III.THEOR. 165
+asmanytimesas
+⎫}}}
+⎬}}}⎭contains{
+}contains
+.
+Thesamereasoningisapplicableinallcases.
+∴Ifthefirstoffour,&c.
+166 BOOKVDEFINITIONV.
+DefinitionV.
+Fourmagnitudes,
+,
+,
+,
+,aresaidtobepro-
+portionalswheneveryequimultipleofthefirstandthird
+betaken,andeveryequimultipleofthesecondand fourth,
+as,
+ofthefirst
+&c.ofthethird
+&c.
+ofthesecond
+&c.ofthefourth
+&c.
+Thentakingeverypairofequimultiplesofthefirstand
+third,andeverypairofequimultiplesofthesecondand
+fourth,
+If⎧{{{
+⎨{{{⎩
+>,=or<
+>,=or<
+>,=or<
+>,=or<
+>,=or<
+then
+will⎧{{{
+⎨{{{⎩
+>,=or<
+>,=or<
+>,=or<
+>,=or<
+>,=or<
+
+BOOKVDEFINITIONV. 167
+Thatis,iftwicethefirstbegreater,equal,orlessthan
+twicethesecond,twicethethirdwillbegreater,equal,or
+lessthantwicethefourth;or,iftwicethefirstbegreater,
+equal,orlessthanthreetimesthesecond,twicethethird
+willbegreater,equal,orlessthanthreetimesthefourth,
+andsoon,asaboveexpressed.
+If⎧{{{
+⎨{{{⎩
+>,=or<
+>,=or<
+>,=or<
+>,=or<
+>,=or<
+then
+will⎧{{{
+⎨{{{⎩
+>,=or<
+>,=or<
+>,=or<
+>,=or<
+>,=or<
+Inotherterms,ifthreetimesthefirstbegreater,equal,
+orlessthantwicethesecond,threetimesthethirdwillbe
+greater,equal,or lessthantwicethefourth;or, if three
+timesthefirstbegreater,equal,orlessthanthreetimesthe
+second,thenwillthreetimesthethirdbegreater,equal,or
+lessthanthreetimesthefourth;orifthreetimesthefirst
+begreater,equal,orlessthanfourtimesthesecond,then
+willthreetimesthethirdbegreater,equal,orlessthanfour
+timesthefourth,andsoon. Again,
+If⎧{{{
+⎨{{{⎩
+>,=or<
+>,=or<
+>,=or<
+>,=or<
+>,=or<
+
+168 BOOKVDEFINITIONV.
+then
+will⎧{{{
+⎨{{{⎩
+>,=or<
+>,=or<
+>,=or<
+>,=or<
+>,=or<
+Andsoon,withanyotherequimultiplesofthefour
+magnitudes,takeninthesamemanner.
+Euclidexpressesthisdefinitionasfollows:—
+Thefirstoffourmagnitudesissaidtohavethesame
+ratiotothe second ,whichthethird hastothefourth,
+whenequimultipleswhatsoeverofthefirstandthirdbeing
+taken,andanyequimultipleswhatsoeverofthesecondand
+fourth;ifthemultipleofthefirstbelessthanthatofthe
+second,andthemultipleofthethirdisalsolessthanthat
+ofthefourth;or,ifthemultipleofthefirstbeequaltothat
+ofthesecond,themultipleofthethirdisalsoequaltothat
+ofthefourth;or,ifthemultipleofthefirstbegreaterthan
+thatofthesecond,themultipleofthethirdisalsogreater
+thanthatofthefourth.
+Infuture we shallexpressthis definition generally,
+thus:
+IfM
+>,=or<m
+,
+whenM
+>,=or<m
+,
+Thenweinferthat
+,thefirst,hasthesameratioto
+,thesecond,which
+,thethird,hasto
+thefourth;
+expressedinthesucceedingdemonstrationsthus:
+:
+::
+:
+;
+orthus,
+ :
+=
+:
+;
+orthus,
+ =
+:
+BOOKVDEFINITIONV. 169
+andisread,
+“as
+isto
+,sois
+to
+.”
+Andif
+:
+::
+:
+weshallinferif
+M
+>,=or<m
+,thenwill
+M
+>,=or<m
+.
+Thatis,ifthefirstbetothesecond,asthethirdistothe
+fourth;thenif Mtimesthefirstbegreaterthan,equalto,
+orlessthanmtimesthesecond,thenshallMtimesthird
+begreaterthan,equalto,orlessthanmtimesthefourth,
+inwhichMandmarenottobeconsideredparticularmul-
+tiples,buteverypairofmultipleswhatever;noraresuch
+marksas
+,
+,
+,&c.tobeconsideredanymorethan
+representativesofgeometricalmagnitudes.
+Thestudentshouldthroughlyunderstandthisdefini-
+tionbeforeproceedingfurther.
+170 BOOKVPROP.IV.THEOR.
+ftheﬁrstof fourmagnitudeshavethe same
+ratiotothe second,whichthethird has tothe
+fourth,thenanyequimultipleswhateverofthe
+ﬁrstandthirdshallhavethesameratiotoany
+equimultiples of the second and fourth; viz., the equimulti-
+pleoftheﬁrstshallhavethesameratiotothatofthesecond,
+whichtheequimultipleofthethirdhastothatofthefourth.
+Let
+:
+::
+:
+,then3
+:2
+::3
+:
+2
+,everyequimultipleof3
+and3
+areequimulti-
+plesof
+and
+,andeveryequimultipleof2
+and
+2
+,areequimultiplesof
+ and
+(pr.5.3)
+That is,Mtimes3
+andMtimes3
+are equi-
+multiples of
+and
+,andmtimes2
+andm2
+are equimultiples of2
+and2
+;but
+:
+::
+:
+(hyp.);∴ifM3
+<,=,or>m2
+,
+thenM3
+<,=,or>m2
+(def.5.5)andtherefore
+3
+:2
+::3
+:2
+(def.5.5)
+Thesamereasoningholdsgoodifanyotherequimulti-
+pleofthefirstandthirdbetaken,anyotherequimultiple
+ofthesecondandfourth.
+∴Ifthefirstfourmagnitudes,&c.
+BOOKVPROP.V.THEOR. 171
+fone magnitude bethe same mu ltiple ofan-
+other,whichamagn itudetakenfromtheﬁrst
+isofa magnitudetakenfromthe other, the
+remaindershallbethe same mu ltiple of the
+remainder, that the whole is of the whole.
+Let
+=M′
+and
+=M′
+,
+∴
+−
+=M′
+−M′
+,
+∴
+ =M′(
+−
+),
+and∴
+ =M′
+.
+∴Ifonemagn itude,&c.
+172 BOOKVPROP.VI.THEOR.
+ftwomagnitudesbeequimultiplesoftwooth-
+ers,andifequimultiplesofthesebetakenfrom
+theﬁrsttwo,the remaindersareeitherequal
+to these others, or equimultiples of them.
+Let
+=M′
+;and
+ =M′
+then
+ −m′
+=M′
+−m′
+= (M′−m′)
+and
+ −m′
+=M′
+−m′
+= (M′−m′)
+.
+Hence,(M′ −m′)
+and(M′ −m′)
+areequimultiplesof
+and
+,andequal
+to
+and
+,whenM′ −m′=1.
+∴Iftwomagnitudesbeequ imultiples,&c.
+BOOKVPROP.A.THEOR. 173
+ftheﬁrstof thefourmagnitudeshas the same
+ratiotothesecondwh ichthethirdhastothe
+fourth, thenif theﬁrstbe greater thanthe
+second,thethirdisalsogreaterthanthefourth;
+and if equal, equal; if less, less.
+Let
+:
+::
+:
+;therefore,bythefifth
+definition,if
+ >
+,thenwill
+>
+;
+butif
+>
+,then
+>
+and
+ >
+,
+and∴
+>
+.
+Similarly,if
+ =,or<
+,
+thenwill
+=,or<
+.
+∴Ifthefirstoffour,&c.
+DefinitionXIV
+Geometricians make use o f thetechnical term“Inver-
+tendo,”byinversion,whentherearefourproportionals,
+anditisinferred,thatthesecond istothefirstasthefourth
+tothethird.
+LetA:B::C:D,then,by“invertendo”itisinferred
+B:A::D:C
+174 BOOKVPROP.B.THEOR.
+ffourmagnitudesareproportionals,theyare
+proportionals also when taken inversely.
+Let
+:
+::
+:
+,
+then,inversely,
+:
+::
+:
+.
+IfM
+<m
+,thenM
+<m
+bythefifthdefinition.
+LetM
+<m
+,thatis,m
+>M
+,
+∴M
+<m
+,or,m
+>M
+;
+∴ifm
+>M
+,thenwillm
+>M
+.
+Inthesamemanne ritmaybeshown,
+thatifm
+=or<M
+,
+thenwillm
+=,or<M
+;
+andtherefore,bythefifthdefinition,weinfer
+that
+:
+::
+:
+.
+∴Iffourmagnitudes,&c.
+BOOKVPROP.C.THEOR. 175
+ftheﬁrstbethe same mu ltiple of the second,
+orthesamepa rtofit,thatthethirdisofthe
+fourth; theﬁrst is tothesecond, as thethirdis
+to the fourth.
+Let
+,thefirst,bethesame
+multipleof
+,thesecond,
+that
+,thethird,isof
+,thefourth.
+Then
+ :
+::
+ :
+takeM
+,m
+,M
+,m
+;
+because
+ isthesamemu ltipleof
+that
+isof
+(accordingtothehypothesis);
+andM
+iftakenthesamemu ltipleof
+thatM
+isof
+,
+∴(accordingtothethirdproposition),
+M
+isthesamemu ltipleof
+thatM
+isof
+.
+176 BOOKVPROP.C.THEOR.
+Therefore,ifM
+beof
+a
+greatermultiplethanm
+is,
+thenM
+isagreatermultipleof
+thanm
+is;
+thatis,ifM
+begreaterthanm
+,
+thenM
+willbegreaterthanm
+;
+inthesamemanne ritcanbeshown ,ifM
+beequalm
+,thenM
+willbeequalm
+.
+And,generally,ifM
+>,=or<m
+thanM
+willbe>,=or<m
+;
+∴bythefifthdefinition,
+:
+::
+ :
+Next,let
+bethesamepa rtof
+that
+isof
+.
+Inthiscasealso
+:
+::
+:
+.
+For,because
+ isthesamepa rt
+of
+that
+isof
+,
+BOOKVPROP.C.THEOR. 177
+therefore
+isthesamemu ltipleof
+that
+isof
+.
+Therefore,bytheprecedingcase,
+:
+::
+ :
+;
+and∴
+:
+::
+:
+,
+bypropositionB.
+∴Ifthefirstbethesamemu ltiple,&c.
+178 BOOKVPROP.D.THEOR.
+ftheﬁrstbetothe second as thethirdtothe
+fourth,andiftheﬁrstbeamultiple,orapart
+of the second; thethirdis the same mu ltiple,
+or the same part of the fourth.
+Let
+:
+::
+ :
+;
+andfirst,let
+beamultiple
+;
+shallbethesamemu ltipleof
+.
+First Second Third Fourth
+Take
+ =
+.
+Whatevermiltiple
+isof
+take
+ thesamemu ltipleof
+,
+then,∵
+ :
+::
+ :
+andofthesecondand fourth,
+wehavetakenequimultiples,
+and
+ therefore(pr.5.4)
+:
+::
+:
+,but(const.),
+BOOKVPROP.D.THEOR. 179
+=
+ ∴(pr.5.A)
+=
+and
+ isthesamemu ltipleof
+that
+isof
+.
+Next,let
+:
+::
+:
+,
+andalso
+apartof
+;
+then
+shallbethesamepa rtof
+.
+Inversely(pr.5.B),
+:
+::
+:
+,
+but
+isapartof
+;
+thatis,
+isamultipleof
+;
+∴bytheprecedingcase,
+isthesamemu ltipleof
+thatis,
+isthesamepa rtof
+that
+isof
+.
+∴ifthefirstbetothesecond,&c.
+180 BOOKVPROP.VII.THEOR.
+qualmagnitudeshavethe sameratiotothe
+samemagn itude,andthesamehasthesame
+ratio to equal magnitudes.
+Let
+=
+and
+anyothermagnitude;
+then
+:
+=
+:
+and
+:
+=
+:
+.
+∵
+=
+,
+∴M
+=M
+;
+∴ifM
+>,=or<m
+,then
+M
+>,=or<m
+,
+and∴
+:
+=
+:
+(def.5.5).
+Fromtheforegoingreasoningitisevidentthat,
+ifm
+>,=or<M
+,then
+m
+>,=or<M
+∴
+:
+=
+:
+(def.5.5).
+∴Equalmagnitudes,&c.
+BOOKVDEFINITIONVII. 181
+DefinitionVII.
+Whenoftheequimultiplesoffourmagnitudes(taken
+asinthefifthdefinition),themultipleofthefirstisgreater
+thanthatofthesecond ,butmultipleofthethirdisnot
+greater thanthe multiple of thefourth; thenthefirst is
+saidto havetothe second a g reater ratiothanthethird
+magnitude hastothefourth:and,onthe contrary, the
+thirdissaidtohavetothefourthalessratiothanthefirst
+hastothesecond.
+If,amongtheequimultiplesoffourmagnitudes,com-
+paredinthefifthdefinition,weshouldfind
+ >
+,but
+ =or>
+ ,or
+ifweshouldfindanyparticularmultipleM′ofthefirst
+andthird,andaparticularmultiple m′ofthesecondand
+fourth,such, thatM′timesthefirst is>m′timesthe
+second,butM′timesthethirdis not>m′timesthe
+fourth,i.e. =or<m′timesthefourth;thenthefirstis
+saidtohavetothesecondag reaterratiothanthethirdhas
+tothefourth;orthethirdhastothefourth,undersuch
+circumstances,alessratiothanthefirsthastothesecond:
+although severalotherequimultiples may tendto show
+thatthefourmagnitudesareproportionals.
+Thisdefinitionwillinfuturebeexpressedthus:—
+IfM′
+>m′
+,butM′
+=or<m′
+,
+then
+:
+>
+:
+.
+Intheabovegeneralexpression,M′andm′aretobe
+consideredparticularmultiples,notlikethemultiplesM
+andmintroducedinthefifthdefinition,whichareinthat
+definition consideredto be everypairofmultiplesthat
+canbetaken. Itmustalsobehereobserved,that
+,
+,
+,andthelikesymbolsaretobeconsideredmerelythe
+representativesofgeometricalmagnitudes.
+182 BOOKVDEFINITIONVII.
+Inapartialarithmeticalway,thismaybesetforthas
+follows:
+Letustakethefournumbers 8,7,10,and9.
+First Second Third Fourth
+87109
+16142018
+24213027
+32284036
+40355045
+48426054
+56497063
+64568072
+72639081
+807010090
+887711099
+9684120108
+10491130117
+11298140126
+&c. &c. &c. &c.
+Amongthe above multiples wefind16>14and
+20>18; thatis, twicethefirstisgreaterthantwicethe
+second,andtwicethethirdisgreaterthantwicethefourth;
+and16<21and20<27; thatis, twicethefirstisless
+thanthreetimesthesecond,andtwicethethirdislessthan
+threetimesthefourth;andamongthesamemultipleswe
+canfind72>56and90>72; thatis,9timesthefirst
+isgreaterthan8timesthesecond,and9timesthethirdis
+greaterthan8timesthefourth.Manyotherequimultiples
+mightbeselected,whichwouldtendtoshowthatthenum-
+bers8,7,10,and9wereproportionals,buttheyarenot,for
+wecanfindmultipleofthefirst>amultipleofthesecond,
+butthesamemu ltipleofthethirdthathasbeentakenof
+thefirstnot>thesamemu ltipleofthefourthwhichhas
+beentakentothesecond;forinstance,9timesthefirstis>
+10timesthesecond,but9timesthethirdisnot>10times
+BOOKVDEFINITIONVII. 183
+thefourth,thatis72>70,but90≯90,or8timesthe
+firstwefind >9timesthesecond,but8timesthethirdis
+notgreaterthan9timesthefourth,thatis,64>63,but
+80not>81.Whenanysuchmultiplesasthesecanbe
+found,thefirst(8)issaidtohavethesecond (7)agreater
+ratiothanthethird(10)hastothefourth(9),andonthe
+contrarythethird(10)issaidtohavetothefourth(9)a
+lessratiothanthefirst (8)hastothesecond (7).
+184 BOOKVPROP.VIII.THEOR.
+funequalmagnitudesthegreaterhasagreater
+ratiotothe samethantheless has:andthe
+same magnitude has a greater ratio to the less
+than it has to the greater.
+Let
+and
+betwounequa lmagnitudes,
+and
+anyother.
+Weshallfirstprovethat
+ whichisthegreaterofthe
+twounequa lmagnitudes,hasagreaterratioto
+than
+,theless,hasto
+ ;thatis,
+ :
+>
+:
+;
+takeM′
+,m′
+,M′
+,m′
+;
+such,thatM′
+andM′
+shallbeeach>
+;
+alsotakem′
+theleastmultipleof
+,
+whichwillmakem′
+>M′
+=M′
+;
+∴M′
+is≯m′
+,
+butM′
+is>m′
+,for,
+asm′
+isthefirstmultiplewhichfirst
+becomes>M′
+,than(m′ −1)
+or
+m′
+−
+is≯M′
+,and
+≯M′
+∴m′
+−
++
+mustbe<M′
++M′
+;
+thatis,m′
+mustbe<M′
+;
+∴M′
+is>m′
+;butithasbeenshownabo ve
+thatM′
+is≯m′
+,therefore,bytheseventh
+definition,
+hasto
+agreaterratiothan
+:
+.
+BOOKVPROP.VIII.THEOR. 185
+Nextweshallprovethat
+hasagreaterratio
+to
+,theless,thanithasto
+,thegreater;
+or,
+:
+>
+:
+.
+Takem′
+,M′
+,m′
+andM′
+,
+thesameas inthefirstcase,suchthat
+M′
+andM′
+willbeeach>
+,and
+m′
+theleastmultipleof
+,whichfirst
+becomesg reaterthanM′
+=M′
+.
+∴m′
+−
+is≯M′
+,
+and
+is≯M′
+;consequen tly
+m′
+−
++
+is<M′
++M′
+;
+∴m′
+is<M′
+,and∴bytheseventhdefinition,
+hasto
+agreaterratiothan
+hasto
+.
+∴Ofunequalmagnitudes,&c.
+Thecontrivanceemployedinthispropositionforfind-
+ingamong themultiplestaken,asinthefifthdefinition,
+amultipleofthefirstgreaterthanthemultipleofthesec-
+ond,butthesamemu ltipleofthethirdwhichhasbeen
+taken of thefirst,notgreater thanthe same mu ltiple of
+thefourth which has been taken of the second ,maybe
+illustratednumericallyasfollows:—
+Thenumber9hasagreaterratioto7than8hasto7:
+thatis,9:7>8:7;or8+1:7>8:7.
+Themultipleof1,whichfirstbecomesg reaterthan7,
+is8times,therefore,wemaymultiplythefirstandthird
+by8,9,10,oranyothergreaternumber;inthiscase,letus
+multiplythefirstandthirdby 8,andwehave 64+8and
+186 BOOKVPROP.VIII.THEOR.
+64:again, thefirstmultiple of7which becomes g reater
+than64is10times;then,bymultiplyingthesecondand
+fourthby10,weshallhave70and70;then,arrangingthese
+multiples,wehave—
+8times 10times 8times 10times
+thefirst thesecond thethird thefourth
+64+870 64 70
+Consequen tly64+8,or72,isgreaterthan70,but64
+isnotgreaterthan 70,∴bytheseventhdefinition 9hasa
+greaterratioto 7than8hasto7.
+Theaboveismerelyillustrativeoftheforegoingdemon -
+stration,forthispropertycouldbeshowno ftheseorother
+numbersveryreadilyinthefollowingmanne r;because,if
+anantecedentcontainsitsconsequen tagreaternumberof
+timesthananotherantecedentcontainsitsconsequen t,or
+whenafractionisformedofanantecedentforthenumera-
+tor,anditsconsequen tforthedenominatorbegreaterthan
+anotherfractionwhichisformedofanotherantecedent
+forthenumeratoranditsconsequen tforthedenom inator,
+theratioofthefirstantecedenttoitsconsequen tisgreater
+thantheratioofthelastantecedenttoitsconsequent.
+Thus,thenumbe r9hasagreaterratioto7,than8has
+to7,for9
+7isgreaterthan8
+7.
+Again,17:19isagreaterratiothan13:15,because
+17
+19=17×15
+19×15=255
+185,and13
+15=13×19
+15×19=247
+185,henceit is
+evidentthat255
+185isgreaterthan247
+185,∴17
+19isgreaterthan13
+15,
+and,accordingtowhathasbeenabo veshown,17hasto19
+agreaterratiothan 13hasto15.
+Sothatthegeneraltermsuponwhichagreater,equal,
+orlessratioexistsareasfollows:—
+IfA
+BbegreaterthanC
+D,AissaidtohavetoBagreater
+ratiothanChastoD;ifA
+BbeequaltoC
+D,thenAhastoB
+BOOKVPROP.VIII.THEOR. 187
+thesameratiowhichChastoD;andifA
+BbelesstoC
+D,A
+issaidtohaveto Balessratiothan ChastoD.
+Thestudentshouldunderstandalluptothisproposi-
+tionperfectlybeforeproceedingfurther,inorderfullyto
+comprehendthefollowingpropositionsofthisbook. We
+thereforestronglyrecommend thelearnertocommence
+again,andreaduptothisslowly,andcarefullyreasonat
+eachstep,asheproceeds,particularlyguardingagainstthe
+mischievoussystemofdependingwhollyonthememory.
+Byfollowingtheseinstructions,hewillfindthattheparts
+whichusuallypresentconsiderabledifficultieswillpresent
+nodifficultieswhatever,inprosecutingthestudyofthis
+importantbook.
+188 BOOKVPROP.IX.THEOR.
+agnitudes whichhavethesameratiotothe
+samemagn itudeareequaltooneanother;and
+thoseto whichthe same magn itude has the
+same ratio are equal to one another.
+Let
+:
+::
+:
+,then
+=
+.
+For,ifnot,let
+>
+,thenwill
+:
+>
+:
+(pr.5.8),which
+isabsurdaccordingtothehypothesis.
+∴
+is≯
+.
+Inthesamemanne ritmaybeshown,that
+is≯
+,
+∴
+=
+.
+Again,let
+:
+::
+:
+,
+thenwill
+=
+.
+For(invert.)
+:
+::
+:
+,
+therefore,bythefirstcase,
+=
+.
+∴Magnitudeswhichhavethesameratio,&c.
+Thismaybeshownotherwise,asfollows:—
+LetA:B=A:C,thenB=C,for,asthefraction
+A
+B=thefractionA
+C,andthenumeratorofoneequalto
+the numeratorof the other, therefore,denominators of
+thesefractionsareequal,thatis B=C.
+Again,ifB:A=C:A,B=C.For,asB
+A=C
+A,
+Bmust=C.
+BOOKVPROP.X.THEOR. 189
+hatmagnitudewhichhasagreaterratiothan
+anotherhasuntothesame magn itude,isthe
+greaterof thetwo;andthatmagnitudeto
+whichthe same hasa greater ratiothanithas
+unto another magnitude, is the less of the two.
+Let
+:
+>
+:
+,then
+>
+.
+Forifnot,let
+=or<
+;
+then,
+:
+=
+:
+(pr.5.7)or
+:
+<
+:
+(pr.5.8)and(invert.),
+whichisabsurdaccordingtothehypothesis.
+∴
+is≠or<
+,and
+∴
+mustbe>
+.
+Again,let
+:
+>
+:
+,
+then,
+<
+.
+Forifnot,
+mustbe>or=
+,
+then
+:
+<
+:
+(pr.5.8)and(invert.);
+or
+:
+=
+:
+(pr.5.7),whichisabsurd(hyp.);
+∴
+is≯or=
+,
+and∴
+mustbe<
+.
+∴Thatmagnitudewhichhas,&c.
+190 BOOKVPROP.XI.THEOR.
+atiosthatarethesametothesameratio,are
+the same to each other.
+Let
+:
+=
+:
+and
+:
+=
+:
+,
+thenwill
+:
+=
+:
+.
+ForifM
+>,=or<m
+,
+thenM
+>,=or<m
+,
+andifM
+>,=or<m
+,
+thenM
+>,=or<m
+(def.5.5);
+∴ifM
+>,=or<m
+,M
+>,=or<m
+and∴(def.5.5)
+ :
+=
+:
+.
+∴Ratiosthatarethesame&c.
+BOOKVPROP.XII.THEOR. 191
+fany number of magnitudes be proportionals,
+asone of the antecedentsis toits consequen t,
+so shallall the antecedentstakentogetherbe
+to all the consequents.
+Let
+:
+=
+:
+=
+:
+=
+:
+=
+:
+;
+thenwill
+:
+=
++
++
++
++
+:
++
++
++
++
+.
+ForifM
+>m
+,thenM
+>m
+,
+andM
+>m
+,M
+>m
+,
+alsoM
+>m
+(def.5.5)
+Therefore,ifM
+>m
+,thenwill
+M
++M
++M
++M
++M
+,or
+M(
++
++
++
++
+)begreater
+thanm
++m
++m
++m
++m
+,
+orm(
++
++
++
++
+).
+Inthesamewa yitmaybeshown,ifMtimesoneofthe
+antecedentsbeequaltoorlessthanmtimesoneofthecon-
+sequents,Mtimesalltheantecedentstakentogether,will
+beequaltoorlessthan mtimesalltheconsequentstaken
+together. Therefore,bythefifthdefinition,asoneofthe
+antecedentsistoitsconsequent,soarealltheantecedents
+takentogethertoalltheconsequentstakentogether.
+∴Ifanynumberofmagnitudes,&c.
+192 BOOKVPROP.XIII.THEOR.
+ftheﬁrsthas tothe second the sameratio
+whichthethirdhastothefourth,butthethird
+tothefourth a greater ratiothantheﬁfth has
+tothesixth;theﬁrstshallalsohavetothesec-
+ond a greater ratio than the ﬁfth to the sixth.
+Let
+:
+=
+:
+,but
+:
+>
+:
+,
+then
+:
+>
+:
+For,∵
+:
+>
+:
+,therearesomemu ltiples
+(M′andm′)of
+and
+,andof
+and
+,
+suchthatM′
+>m′
+,
+butM′
+≯m′
+,bytheseventhdefinition.
+Letthesemultiplesbetaken,andtake
+thesamemu ltiplesof
+and
+.
+∴(def.5.5)ifM′
+>,=,or<m′
+;
+thenwillM′
+>,=,or<m′
+,
+butM′
+>m′
+(construction);
+∴M′
+>m′
+,
+butM′
+is≯m′
+(construction);
+andthereforebytheseventhdefinition,
+:
+>
+:
+∴Ifthefirsthastothesecond,&c.
+BOOKVPROP.XIV.THEOR. 193
+ftheﬁrsthas the sameratiotothe second
+which the third has to the fourth; then, if the
+ﬁrstbegreaterthanthethird,thesecondsha ll
+begreaterthanthefourth;andifequal,equal;
+and if less, less.
+Let
+:
+::
+:
+,andfirstsuppose
+>
+,thenwill
+>
+.
+For
+:
+>
+:
+(pr.5.8),andby
+thehypothesis
+:
+=
+:
+;
+∴
+:
+>
+:
+(pr.5.13),
+∴
+<
+(pr.5.10),or
+>
+.
+Secondly,let
+=
+,thenwill
+=
+.
+For
+:
+=
+:
+(pr.5.7),
+and
+:
+=
+:
+(hyp.);
+∴
+:
+=
+:
+(pr.5.11),
+and∴
+=
+(pr.5.9).
+Thirdly,if
+<
+,thenwill
+<
+;
+∵
+>
+and
+:
+=
+:
+;
+∴
+>
+,bythefirstcase,
+thatis,
+<
+.
+∴Ifthefirsthasthesameratio,&c.
+194 BOOKVPROP.XV.THEOR.
+agnitudes havethe sameratioto one an-
+other which their equimultiples have.
+Let
+and
+betwomagnitudes;
+then,
+:
+::M′
+:M′
+.
+For
+:
+=
+:
+=
+:
+=
+:
+∴
+:
+::4
+:4
+. (pr.5.12).
+Andasthesamereasoningisgenerallyapplicable,wehave
+:
+::M′
+:M′
+.
+∴Magnitudeshavethesameratio,&c.
+BOOKVDEFINITIONXIII 195
+DefinitionXIII
+Thetechnicaltermpermutando,oralternando,bypermu-
+tationoralternately,isusedwhen therearefourpropor-
+tionals,anditisinferredthatthefirsthasthesameratioto
+thethirdwhichthesecondhas tothefourth;orthatthe
+firstistothethirdasthesecondtothefourth: asisshown
+inthefollowingproposition:—
+Let
+:
+::
+:
+,
+by“permutando”or“alternando”itisinferred
+:
+::
+:
+.
+Itmaybenecessa ryheretoremarkthatthemagnitudes
+,
+,
+,
+,mustbe homogeneous , that is,of the
+samenatureorsimilitudeofkind;wemusttherefore,in
+suchcases,comparelineswithlines,surfaceswithsurfaces,
+solidswithsolids,&c.Hencethestudentwillreadilyper-
+ceivethatalineandasu rface,asurfaceandaso lid,orother
+heterogenousmagn itudes,canneverstandintherelation
+ofantecedentandconsequent.
+196 BOOKVPROP.XVI.THEOR.
+ffourmagnitudesof the same kind be propor-
+tionals,theyarealsoproportionalswhentaken
+alternately.
+Let
+:
+::
+:
+,then
+:
+::
+:
+.
+ForM
+:M
+::
+:
+(pr.5.15),
+andM
+:M
+::
+:
+(hyp.)and(pr.5.11);
+alsom
+:m
+::
+:
+(pr.5.15);
+∴M
+:M
+::m
+:m
+(pr.5.14),
+and∴ifM
+>,=or<m
+,
+thenwillM
+>,=,or<m
+(pr.5.14);
+therefore,bythefifthdefinition,
+:
+::
+:
+∴Iffourmagnitudesofthesamekind,&c.
+BOOKVDEFINITIONXVI 197
+DefinitionXVI
+Dividendo,bydivision,whentherearefourproportion-
+als,anditisinferred,thattheexcessofthefirstabovethe
+secondistothesecond,astheexcessofthethirdabovethe
+fourth,istothefourth.
+LetA:B::C:D;
+by“dividendo”itisinferred
+A−B:B::C−D:D.
+Accordingtotheabove,Aissupposed tobegreater
+thanB,andCgreaterthanD;ifthisbenotthecase,but
+to haveBgreater thanA,andDgreater thanC,Band
+Dcanbemade tostandasantecedents,andAandCas
+consequents,by“invertion”
+B:A::D:C;
+then,by“dividendo,”weinfer
+B−A:A::D−C:C
+198 BOOKVPROP.XVII.THEOR.
+fmagnitudes, takenjointly,be proportionals,
+theyshallalso be proportionals whentaken
+separately: that is, if twomagnitudes together
+havetooneofthemthesameratiowhichtwo
+othershavetooneofthese,theremainingoneoftheﬁrsttwo
+shallhavetothe other the sameratio whichtheremaining
+one of the last two has to the other of these.
+Let
++
+:
+::
++
+:
+,
+thenwill
+:
+::
+:
+.
+Take
+>m
+toeachadd M
+,
+thenweha veM
++M
+>m
++M
+,
+orM(
++
+) > (m+M)
+:
+but∵
++
+:
+::
++
+:
+(hyp.),
+andM(
++
+) > (m+M)
+;
+∴M(
++
+) > (m+M)
+(def.5.5);
+∴M
++M
+>m
++M
+;
+∴M
+>m
+,bytakingM
+frombothsides:
+thatis,whenM
+>m
+,thenM
+>m
+.
+Inthesamemanne ritmaybeproved,thatif
+M
+=or<m
+,thenwillM
+=or<m
+;
+and∴
+:
+::
+:
+(def.5.5)
+∴Ifmagnitudestakenjointly,&c.
+BOOKVDEFINITIONXV 199
+DefinitionXV
+Theterm componendo ,bycomposition, is used when
+therearefourproportionals;anditisinferredthatthefirst
+togetherwiththesecond istothesecondas thethirdto-
+getherwiththefourthistofourth.
+LetA:B::C:D;
+then,byterm“componendo ,”itisinferredthat
+A+B:B::C+D:D
+Bу“invertion” BandDmaybecomethefirstandthe
+third,and AandCthesecondandfourth,as
+B:A::D:C,
+then,by“componendo ,”weinferthat
+B+A:A::D+C:C.
+200 BOOKVPROP.XVIII.THEOR.
+fmagnitudes, taken separately, be proportion-
+als, theyshallalso be proportionalstaken
+jointly: that is, if theﬁrstbetothe second
+as thethirdis tothefourth, theﬁrstand sec-
+ondtogethershallbetothesecondasthethirdandfourth
+together is to the fourth.
+Let
+:
+::
+:
+,
+then
++
+:
+::
++
+:
+;
+forifnot,let
++
+:
+::
++
+:
+,
+supposing
+≠
+;
+∴
+:
+::
+:
+(pr.5.17)
+but
+:
+::
+:
+(hyp.);
+∴
+:
+::
+:
+(pr.5.11);
+∴
+=
+(pr. 5.9),
+whichiscontrarytothesuppos ition;
+∴
+isnotunequalto
+ ;
+thatis
+=
+;
+∴
++
+:
+::
++
+:
+.
+∴Ifmagnitudes,takenseparately,&c.
+BOOKVPROP.XIX.THEOR. 201
+fawholemagnitudebetoawhole,asamag-
+nitude taken from the ﬁrst, is to a magnitude
+takenfromtheother;theremaindershallbe
+to the reminder, as the whole to the whole.
+Let
++
+:
++
+::
+:
+,
+thenwill
+:
+::
++
+:
++
+.
+For
++
+:
+::
++
+:
+(alter.),
+∴
+:
+::
+:
+(divid.),
+again
+:
+::
+:
+(alter.),
+but
++
+:
++
+::
+:
+(hyp.);
+therefore
+:
+::
++
+:
++
+(pr.5.11).
+∴Ifawholemagnitudebetoawhole,&c.
+DefinitionXVII
+Theterm“convertendo,”byconversion,ismadeuseofby
+geometricians,whentherearefourproportionals,anditis
+inferred,thatthefirstistoitsexcessabovethesecond,as
+thethirdistoitsexcessabovethefourth.Seethefollowing
+proposition:—
+202 BOOKVPROP.E.THEOR.
+ffourmagnitudesbe proportionals, theyare
+also proportionals byconversion: that is, the
+ﬁrstistoitsexcessabovethesecond,asthethird
+is to its excess above the fourth.
+Let
+:
+::
+ :
+,
+thenshall
+:
+::
+ :
+.
+∵
+ :
+::
+ :
+;
+∴
+:
+::
+:
+(divid.),
+∴
+:
+::
+:
+(inver.),
+∴
+ :
+::
+ :
+(compo.).
+∴Iffourmagnitudes,&c.
+DefinitionXVIII
+“Exæquali”(sc.distantiâ),orexæquo,fromequalityofdis-
+tance:whenthereisanynumberofmagnitudesmorethan
+two,andasmanyothers,suchthattheyareproportionals
+whentakentwoandtwoofeachrank,anditisinferred
+thatthefirstistothelastofthefirstrankofmagnitudes,
+asthefirstistothelastoftheothers: “ofthistherearetwo
+followingkinds,whicharisefromthedifferentorderin
+whichthemagnitudesaretaken,twoandtwo.”
+BOOKVDEFINITIONXIX 203
+DefinitionXIX
+“Exæquali,”fromequality. Thistermisused simplyby
+itself,whenthefirstmagnitudeistothesecondo fthefirst
+rank,asthefirst tothe second o f the other rank;and as
+thesecond tothethirdofthefirstrank,soisthesecond to
+thethirdoftheother;andsoinorder:andtheinference
+isasmentionedintheprecedingdefinition;whencethisis
+calledordinateproposition. Itisdemonstratedinpr.5.22.
+Thus,iftherebetworanksofmagnitudes,
+A,B,C,D,E,F,thefirstrank,andL,M,N,O,P,Q,
+thesecond,suchthatA:B::L:M,B:C::M:B,
+C:D::N:O,D:E::O:P,E:F::P:Q;
+weinferbytheterm“exæquali”thatA:F::L:Q
+DefinitionXX
+“Exæquali in proportione perturbatâ seuinordinatâ,”
+fromequalityinperturbate,ordisorderlyproportion. This
+termisusedwhen thefirstmagnitudeistothesecondo f
+thefirstrankasthelastbutoneistothelastofthesecond
+rank;andasthesecond istothethirdofthefirstrank,so
+isthelastbuttwotothelastbutoneofthesecond rank;
+andasthethirdistothefourthofthefirstrank,soisthe
+thirdfromthelasttothelastbuttwoofthesecond rank;
+andsooninacrossorder: andtheinferenceisinthe18th
+definition. Itisdemonstratedinpr.5.23.
+Thus,iftherebetworanksofmagnitudes,
+A,B,C,D,E,F,thefirstrank,andL,M,N,O,P,Q,
+thesecond,suchthatA:B::P:Q,B:C::O:P,
+C:D::N:O,D:E::M:N,E:F::L:M;
+theterm“exæqualiinproportioneperturbatâ
+seuinordinatâ”infersthatA:F::L:Q
+204 BOOKVPROP.XX.THEOR.
+ftherebethreemagnitudes,andotherthree,
+whichtakentwoandtwo,havethesameratio;
+then, if theﬁrstbe greater thanthethird, the
+fourth shallbe greater thanthe sixth;andif
+equal, equal; and if less, less.
+Let
+,
+,
+,thefirstthreemagnitudes,
+and
+,
+,
+,betheotherthree,
+suchthat
+:
+::
+:
+,
+and
+:
+::
+:
+.
+Then,if
+>,=,or<
+,
+thenwill
+>,=,or<
+.
+Fromthehypothesis,byalternando,wehave
+:
+::
+:
+,
+and
+:
+::
+:
+∴
+:
+::
+:
+(pr.5.11);
+∴if
+>,=,or<
+,
+thenwill
+>,=,or<
+(pr.5.14).
+∴Iftherebethreemagnitudes,&c.
+BOOKVPROP.XXI.THEOR. 205
+fthere bethree magnitudes,and other three
+whichhavethesameratio,takentwoandtwo,
+butinacrossorder;theniftheﬁrstmagnitude
+begreaterthanthethird,thefourthshallbe
+greater than the sixth; and if equal, equal, and if less, less.
+Let
+,
+,
+,bethefirstthreemagnitudes,
+and
+,
+,
+,theotherthree,
+suchthat
+:
+::
+:
+,
+and
+:
+::
+:
+.
+Thenif
+>,=,or<
+,
+thenwill
+>,=,or<
+.
+First,let
+be>
+:
+then,because
+ isanyothermagnitude,
+:
+>
+:
+(pr.5.8);
+but
+:
+::
+:
+(hyp.);
+∴
+:
+>
+:
+(pr.5.13);
+and∵
+:
+::
+:
+(hyp.);
+∴
+:
+::
+:
+(inv.),
+anditwasshown that
+:
+>
+:
+,
+∴
+:
+>
+:
+(pr.5.13);
+∴
+<
+,
+thatis
+>
+.
+Secondly,let
+=
+;thenshall
+=
+.
+For∵
+=
+,
+:
+=
+:
+(pr.5.7);
+but
+:
+=
+:
+(hyp.),
+and
+:
+=
+:
+(hyp.andinv.),
+∴
+:
+=
+:
+(pr.5.11),
+∴
+=
+(pr. 5.9).
+Next,let
+be<
+,then
+shallbe<
+;
+for
+>
+,
+206 BOOKVPROP.XXI.THEOR.
+andithasbeenshown that
+:
+=
+:
+,
+and
+:
+=
+:
+;
+∴bythefirstcase
+is>
+,
+thatis,
+<
+.
+∴Iftherebethree,&c.
+BOOKVPROP.XXII.THEOR. 207
+ftherebeanynumberofmagnitudes,andas
+manyothers,which, takentwo andtwoin
+order,havethe sameratio; theﬁrstshallhave
+tothelastoftheﬁrstmagnitudesthesameratio
+which the ﬁrst of the others has to the last of the same.
+N.B.— This is us uallycited by the words“exæquali,”or
+“ex æquo.”
+First,lettherebemagn itudes
+,
+,
+,
+andasman yothers
+,
+,
+,
+suchthat
+:
+::
+:
+,
+and
+:
+::
+:
+,
+thenshall
+:
+::
+:
+.
+Let these magn itudes,as wellas anyequimultiples
+whateveroftheantecedentsandconsequen tsoftheratios,
+standasfollows:—
+,
+,
+,
+,
+,
+,
+and
+M
+,m
+,N
+,M
+,m
+,N
+,
+∵
+:
+::
+:
+,
+∴M
+:m
+::M
+:m
+(pr.5.4).
+Forthesamereason
+m
+:N
+::m
+:N
+;
+andbecause therearethreemagnitudes
+M
+,m
+,N
+,
+andotherthree,M
+,m
+,N
+,
+which,takentwoandtwo,havethesameratio;
+∴ifM
+>,=or<N
+thenwillM
+>,=or<N
+,by(pr.5.20),
+and∴
+:
+::
+:
+(def.5.5).
+208 BOOKVPROP.XXII.THEOR.
+Next,lettherebefourmagnitudes,
+,
+,
+,
+,
+andotherfour,
+,
+,
+,
+,
+which,takentwoandtwo,havethesameratio,
+thatistosay,
+:
+::
+:
+,
+:
+::
+:
+,
+and
+:
+::
+:
+,
+thenshall
+:
+::
+:
+;
+for,∵
+,
+,
+,arethreemagnitudes,
+and
+,
+,
+,otherthree,
+which,takentwoandtwo,havethesameratio;
+therefore,bytheforegoingcase
+ :
+::
+:
+,
+but
+:
+::
+:
+;
+thereforeagain,bythefirstcase,
+:
+::
+:
+;
+andsoon,whateverthenumbe rofmagnitudesbe.
+∴Iftherebeanynumber,&c.
+BOOKVPROP.XXIII.THEOR. 209
+ftherebeanynumberofmagnitudes,andas
+manyothers,which, takentwo andtwoin a
+cross order,havethe sameratio; theﬁrstshall
+havetothelastoftheﬁrstmagnitudesthesame
+ratiowhichtheﬁrstoftheothershastothelastofthesame.
+N.B.— This is us uallycited by the words“exæquali in
+proportione perturbatâ;” or “ex æquo perturbato.”
+First,lettherebethreemagnitudes
+,
+,
+,
+andotherthree,
+,
+,
+,
+which,takentwoandtwoina
+crossorder,havethesameratio;
+thatis,
+:
+::
+:
+,
+and
+:
+::
+:
+,
+thenshall
+:
+::
+:
+.
+Letthesemagn itudesandtheirrespectiveequimulti-
+plesbearrangedasfollows:—
+,
+,
+,
+,
+,
+,
+M
+,M
+,m
+,M
+,m
+,m
+,
+then
+:
+::M
+:M
+(pr.5.15);
+andforthesamereason
+:
+::m
+:m
+;
+but
+:
+::
+:
+(hyp.),
+∴M
+:M
+::
+:
+(pr.5.11);
+and∵
+:
+::
+:
+(hyp.),
+∴M
+:m
+::M
+:m
+(pr.5.4);
+then,becausetherearethreemagnitudes,
+M
+,M
+,m
+,
+andotherthreeM
+,m
+,m
+,
+which,takentwoandtwoina
+crossorder,havethesameratio;
+therefore,ifM
+>,=,or<m
+,
+210 BOOKVPROP.XXIII.THEOR.
+thenwillM
+>,=,or<m
+(pr.5.21),
+and∴
+:
+::
+:
+(def.5.5).
+Next,lettherebefourmagnitudes,
+,
+,
+,
+,
+andotherfour,
+,
+,
+,
+,
+which,whentakentwoandtwoin
+acrossorder,havethesameratio;
+namely,
+:
+::
+:
+,
+:
+::
+:
+,
+and
+:
+::
+:
+,
+thenshall
+:
+::
+:
+.
+For,∵
+,
+,
+arethreemagnitudes,
+and
+,
+,
+,otherthree,
+which,takentwoandtwoina
+crossorderhavethesameratio,
+therefore,bythefirstcase,
+:
+::
+:
+,
+but
+:
+::
+:
+,
+thereforeagain,bythefirstcase,
+:
+::
+:
+;
+andsoon,whateverbethenumbe rofsuchmagn itudes.
+∴Iftherebeanynumber,&c.
+BOOKVPROP.XXIV.THEOR. 211
+ftheﬁrsthas tothe second the sameratio
+whichthethird has tothefourth,andthe
+ﬁfthtothesecondthesamewh ichthesixthhas
+tothefourth,theﬁrstandﬁfthtogethershall
+havetothesecondthesameratiowhichthethirdandsixth
+together have to the fourth.
+First Second Third Fourth
+Fifth Sixth
+Let
+:
+::
+:
+,
+and
+:
+::
+:
+,
+then
++
+:
+::
++
+:
+.
+For
+:
+::
+:
+(hyp.),
+and
+:
+::
+:
+(hyp.)and(invert.),
+∴
+:
+::
+:
+(pr.5.22);
+and,becausethesemagn itudesareproportionals,
+theyareproportionalswhentakenjointly,
+∴
++
+:
+::
++
+:
+(pr.5.18),
+but
+:
+::
+:
+(hyp.),
+∴
++
+:
+::
++
+:
+(pr.5.22)
+∴Ifthefirst,&c.
+212 BOOKVPROP.XXV.THEOR.
+ffourmagnitudesofthesamekindarepropor-
+tionals, the greatestandleastof themtogether
+are greater than the other two together.
+Letfourmagnitudes,
+ +
+,
++
+,
+,and
+,
+ofthesamekind,beproportionals,thatistosay,
++
+:
++
+::
+:
+,
+andlet
++
+bethegreatestofthefour,and
+consequen tlybypr.5.Aandpr.5.14,
+ istheleast;
+thenwill
++
++
+be>
++
++
+;
+∵
++
+:
++
+::
+:
+,
+∴
+:
+::
++
+:
++
+(pr.5.19),
+but
++
+>
++
+(hyp.),
+∴
+>
+(pr. 5.A);
+toeachoftheseadd
+ +
+,
+∴
++
++
+>
++
++
+.
+∴Iffourmagnitudes,&c.
+BOOKVDEFINITIONX 213
+DefinitionX
+Whenthreemagnitudesareproportionals,thefirstissaid
+tohavetothethirdtheduplicateratioofthatwhichithas
+tothesecond.
+Forexample,ifA,B,C,becontinuedproportionals,
+thatis,A:B::B:C,AissaidtohavetoCtheduplicate
+ratioofA:B;
+orA
+C=thesquareofA
+B.
+Thispropertywillbemorereadilyseenofthe
+quantitiesar2,ar,a,forar2:ar::ar:a;
+andar2
+a=r2=thesquareofar2
+ar=r,
+orofa,ar,ar2;
+fora
+ar2=1
+r2=thesquareofa
+ar=1
+r.
+214 BOOKVDEFINITIONXI
+DefinitionXI
+Whenfourmagnitudesarecontinualproportionals,the
+firstissaidtohavetothefourththetriplicateratioofthat
+whichishastothesecond;andsoon,quadruplicate,&c.
+increasingthedenom inationstillbyunity,inanynumber
+ofproportionals.
+Forexample, letA,B,C,D,befourcontinuedpro-
+portionals,thatis,A:B::B:C::C:D;Aissaidto
+havetoD,thetriplicateratioof AtoB;
+orA
+D=thecubeofA
+B.
+Thisdefinitionwillbebetterunderstood,andapplied
+toagreaternumberofmagnitudesthanfourthatarecon-
+tinuedproportionals,asfollows:—
+Letar3,ar2,ar,a,befourmagnitudesincontinued
+proportion,thatis,ar3:ar2::ar2:ar::ar:a,
+thenar3
+a=r3=thecubeofar3
+ar2=r.
+Or, letar5,ar4,ar3,ar2,ar,a,besixmagnitudesin
+proportion,thatis
+ar5:ar4::ar4:ar3::ar3:ar2::ar2:ar::ar:a,
+thentheratioar5
+a=r5=thefifthpowerofar5
+ar4=r
+Or, leta,ar,ar2,ar3,ar4,befive magnitudes
+in continued proportion; thena
+ar4=1
+r4=
+thefourthpowerofa
+ar=1
+r.
+BOOKVDEFINITIONA 215
+DefinitionA
+Toknowacompoundratio:—
+Whenthereareanynumberofmagnitudesofthesame
+kind,thefirstissaidtohavetothelastofthemtheratio
+compoundedo ftheratiowhichthefirsthastothesecond,
+andoftheratiowhichthesecondhas tothethird,andof
+theratiowhichthethirdhastothefourth;andsoon,unto
+thelastmagnitude.
+ABCD
+EFGHKL
+MNForexample,ifA,B,C,D,befourmagnitudesofthe
+samekind,thefirstAissaidtohavetothelastDtheratio
+compoundedoftheratioof AtoB,andoftheratioof B
+toC,andoftheratioofCtoD;or,theratioofAtoD
+issaidtobecompoundedo ftheratiosofAtoB,BtoC,
+andCtoD.
+AndifAhastoBthesameratiowhichEhastoF,and
+BtoCthesameratiothatGhastoH,andCtoDthesame
+thatKhastoL;thenbythisdefinition,Aissaidtohaveto
+Dtheratiocompoundedo fratioswhicharethesamew ith
+theratiosofEtoF,GtoH,andKtoL.Andthesame
+thingistobesaying,AhastoDtheratiocompoundedo f
+theratiosof EtoF,GtoH,andKtoL.
+Inlikemanner,thesamethingsbeingsupposed;if M
+hastoNthesameratiowhich AhastoD,thenforshort-
+nesssake,MissaidtohavetoNtheratiocompoundedo f
+theratiosEtoF,GtoH,andKtoL.
+This definition maybe betterunderstoodfrom an
+arithmeticaloralgebraicalillustration;for,infact,aratio
+compoundedofseveralotherratios,isnothingmorethan
+aratiowhichhasforitsantecedentthecontinuedproduct
+ofallantecedentsoftheratioscompounded ,andforits
+consequentthecontinuedproductofalltheconsequents
+oftheratioscompounded.
+216 BOOKVDEFINITIONA
+Thus,theratiocompoundedo ftheratiosof
+2:3,4:7,6:11,2:5,
+istheratioof2×4×6×2:3×7×11×5,
+ortheratioof96:1155,or32:385.
+Andofthemagnitudes A,B,C,D,E,F,ofthesame
+kind,A:Fistheratiocompoundedoftheratiosof
+A:B,B:C,C:D,D:E,E:F;
+forA×B×C×D×E:B×C×D×E×F,
+orA×B×C×D×E
+B×C×D×E×F=A
+F,ortheratioofA:F.
+BOOKVPROP.F.THEOR. 217
+atioswhicharecompoundedofthesamera-
+tios are same to one another.
+LetA:B::F:G,
+B:C::G:H,
+C:D::H:K,
+andD:E::K:L,
+ABCDE
+FGHKLThentheratiowhichiscompoundedb ytheratiosof
+A:B,B:C,C:D,D:E,ortheratioofA:E,isthe
+sameastheratiocompoundedo ftheratiosF:G,G:H,
+H:K,K:L,ortheratioof F:L.
+ForA
+B=F
+G,
+B
+C=G
+H,
+C
+D=H
+K,
+andD
+E=K
+L;
+∴A×B×C×D
+B×C×D×E=F×G×H×K
+G×H×K×L,
+and∴A
+E=F
+L,
+ortheratioofA:Eisthesameas theratioF:L.
+Thesamema ybedemons tratedofanynumberofra-
+tiossocircumstanced.
+Next,letA:B::K:L,
+B:C::H:K,
+C:D::G:H,
+D:E::F:G,
+Thentheratiowhichiscompoundedo ftheratiosof
+A:B,B:C,C:D,D:E,ortheratioofA:E, is
+218 BOOKVPROP.F.THEOR.
+thesameas theratiocompoundedo ftheratiosofK:L,
+H:K,G:H,F:G,ortheratioof F:L
+ForA
+B=K
+L,
+B
+C=H
+K,
+C
+D=G
+H,
+andD
+E=F
+G;
+∴A×B×C×D
+B×C×D×E=K×H×G×F
+L×K×H×G,
+and∴A
+E=F
+L,
+ortheratioofA:Eisthesameas theratioF:L.
+∴Ratioswhicharecompounded ,&c.
+BOOKVPROP.G.THEOR. 219
+fseveral ratios bethe sameto several ratios,
+eachto each, theratio whichiscompounded
+ofratioswhicharethesametotheﬁrstratios,
+eachto each,shallbethe sametotheratio
+compoundedo fratioswhicharethesametotheotherratios,
+each to each.
+A B C D E F G H P Q R S T
+a b c d e f g h V W X Y Z
+IfA:B::a:b
+C:D::c:d
+E:F::e:f
+andG:H::g:handA:B::P:Q
+C:D::Q:R
+E:F::R:S
+G:H::S:Tanda:b::V:W
+c:d::W:X
+e:f::X:Y
+f:h::Y:Z
+thenP:T=V:Z.
+ForP
+Q=A
+B=a
+b=V
+W
+Q
+R=C
+D=c
+d=W
+X
+R
+S=E
+F=e
+f=X
+Y
+S
+T=G
+H=g
+h=Y
+Z
+and∴P×Q×R×S
+Q×R×S×T=V×W×X×Y
+W×X×Y×Z,
+and∴P
+T=V
+Z,
+orP:T=V:Z.
+∴Ifseveralratios,&c.
+220 BOOKVPROP.H.THEOR.
+faratiowhichiscompoundedo fseveralratios
+bethesametoaratiowhichiscompoundedo f
+severalotherratios;andifoneoftheﬁrstratios,
+or theratio whichiscompounded o fseveralof
+them,bethe sameto one of thelast ratios,or totheratio
+whichiscompoundedo fseveralofthem;thentheremaining
+ratio of theﬁrst,or, if there be morethan one, theratio
+compounded o f theremainingratios,shallbethe sameto
+theremainingratios,shallbethe sametotheremaining
+ratio ofthelast,or,ifthere be morethan one,totheratio,
+compounded of these remaining ratios.
+ABCDEFGH
+PQRSTXLetA:B,B:C,C:D,D:E,E:F,F:G,G:H,
+bethefirstratios,andP:Q,Q:R,R:S,S:T,T:X,
+theotherratios;also,letA:H,whichiscompoundedo f
+thefirstratios,bethesameas theratioofP:X,whichis
+theratiocompoundedo ftheotherratios;and,lettheratio
+ofA:E,whichiscompoundedo ftheratiosofA:B,
+B:C,C:D,D:E,bethesameas theratioofP:R,
+whichiscompoundedoftheratios P:Q,Q:R.
+Thentheratiowhichiscompoundedo ftheremaining
+firstratios,thatis,theratiocompoundedoftheratios E:
+F,F:G,G:H,thatis,theratioofE:H,shallbethe
+sameastheratioofR:X,whichiscompoundedo fthe
+ratiosofR:S,S:T,T:X,theremainingotherratios.
+Because
+A×B×C×D×E×F×G
+B×C×D×E×F×G×H=P×Q×R×S×T
+Q×R×S×T×X,
+or
+A×B×C×D
+B×C×D×E×E×F×G
+F×G×H=P×Q
+Q×R×R×S×T
+S×T×X,
+andA×B×C×D
+B×C×D×E=P×Q
+Q×R
+BOOKVPROP.H.THEOR. 221
+∴E×F×G
+F×G×H=R×S×T
+S×T×X,
+∴E
+H=R
+X,
+∴E:H=R:X.
+∴Ifaratiowhich,&c.
+222 BOOKVPROP.K.THEOR.
+ftherebeanynumberofratios,andanynum-
+berofotherratios,suchthattheratiowhichis
+compounded o fratios,which arethe sameto
+theﬁrst ratios,eachto each, is the sametothe
+ratio whichiscompounded o f ratios,which arethe same,
+eachtoeach, tothelast ratios—andifoneof theﬁrst ratios,
+or theratio whichiscompounded o f ratios,which arethe
+sametoseveraloftheﬁrstratios,eachtoeach,bethesame
+tooneofthelastratios,ortotheratiowhichiscompounded
+of ratios,which arethe same,eachto each, to severalof
+thelastratios—thentheremainingratiooftheﬁrst;or,if
+therebemorethanone,theratiowhichiscompoundedo f
+ratios,which arethe same,eachto each, totheremaining
+ratiosoftheﬁrst,shallbethesametotheremainingratio
+of thelast;or, if there be morethan one, totheratio which
+iscompoundedo fratios,whicharethesame,eachtoeach,
+to these remaining ratios.
+h k m n s
+A B,C D,E F,G H,K L,M Nabcdefg
+O P,Q R,S T,V W,X Y hklmnp
+a b k m e f g
+LetA:B,C:D,E:F,G:H,K:L,M:N,be
+thefirstratios,andO:P,Q:R,S:T,V:W,X:Y,the
+otherratios;
+andletA:B=a:b,
+C:D=b:c,
+E:F=c:f,
+G:H=d:e,
+K:L=e:f,
+M:N=f:g.
+Then,bythedefinitionofacompound ratio,theratio
+ofa:giscompoundedo ftheratiosofa:b,b:c,c:d,
+BOOKVPROP.K.THEOR. 223
+d:e,e:f,f:g,whicharethesameas theratioofA:B,
+C:D,E:F,G:H,K:L,M:N,eachtoeach.
+Also,O:P=h:k,
+Q:R=k:l,
+S:T=l:m,
+V:W=m:n,
+X:Y=n:p,
+Thenwilltheratioofh:pbetheratiocompounded
+oftheratiosofh:k,k:l,l:m,m:n,n:p,which
+arethesameas theratiosofO:P,Q:R,S:T,V:W,
+X:Y,eachtoeach.
+∴bythehypothesisa:g=h:p.
+Also,lettheratiowhichiscompoundedo ftheratios
+ofA:B,C:D,twoofthefirstratios(ortheratiosof
+a:cforA:B=a:b,andC:D=b:c),bethesame
+astheratioofa:d,whichiscompoundedo ftheratiosof
+a:b,b:c,c:d,whicharethesameas theratiosofO:P,
+Q:R,S:T,threeoftheotherratios.
+Andlettheratiosofh:s,whichiscompoundedo f
+theratios ofh:k,k:m,m:n,n:s,which arethe
+sameastheremainingfirstratios,namely,E:F,G:H,
+K:L,M:N;also,lettheratioofe:g,bethatwhichis
+compoundedo ftheratiose:f,f:g,whicharethesame,
+eachtoeach,totheremainingotherratios,namelyV:W,
+X:Y. Thentheratiosofh:sshallbethesameas theratio
+ofe:g;orh:s=e:g.
+ForA×C×E×G×K×M
+B×D×F×H×L×N=a×b×c×d×e×f
+b×c×d×e×f×g,
+andO×Q×S×V×X
+P×R×T×W×Y=h×k×l×m×n
+k×l×m×n×p,
+bythecompos itionoftheratios;
+224 BOOKVPROP.K.THEOR.
+∴a×b×c×d×e×f
+b×c×d×e×f×g=h×k×l×m×n
+k×l×m×n×p(hyp.),
+ora×b
+b×c×c×d×e×f
+d×e×f×g=h×k×l
+k×l×m×m×n
+n×p,
+buta×b
+b×c=A×C
+B×D=O×Q×S
+P×R×T=
+a×b×c
+b×c×d=h×k×l
+k×l×m;
+∴c×d×e×f
+d×e×f×g=m×n
+n×p.
+Andc×d×e×f
+d×e×f×g=h×k×l×m×n
+k×l×m×n×p(hyp.),
+andm×n
+n×p=e×f
+f×g(hyp.),
+∴h×k×l×m×n
+k×l×m×n×p=ef
+fg,
+∴h
+s=e
+g,
+∴h:s=e:g.
+∴Iftherebeanynumber,&c.
+BookVI
+Definitions
+1
+Rectilinearfiguresaresaidtobesimilar,whentheyhave
+theirseveralanglesequal,eachtoeach,andthesidesabout
+theequalanglesproportional.
+2
+Twosidesofonefigurearesaidtobereciprocallypropor-
+tionaltotwosidesofanotherfigurewhenoneo fthesides
+ofthefirstistothesecond ,astheremainingsideofthe
+secondistotheremainingsideofthefirst.
+3
+Astraightlineissaidtobecutinextremeandmean ratio,
+whenthe wholeistothe greatersegment,asthe greater
+segmentistotheless.
+4
+Thealtitudeofanyfigureisthestraightlinedrawnfrom
+itsvertexperpendiculartoitsbase,orthebaseproduced.
+
+226 BOOKVIPROP.I.THEOR.
+riangles and parallelograms havingthe
+samealtitudearetooneanotherastheirbases.
+Letthetriangles
+and
+haveacommon vertex,and
+theirbases
+ and
+ inthesamestraightline.
+Produce
+ both ways, take success ivelyon
+producedlinesequaltoit;andon
+ pro-
+ducedlinessuccess ivelyequaltoit;anddrawlinesfrom
+thecommonvertextotheirextremities.
+Thetriangles
+ thusformedareallequaltoone
+another,sincetheirbasesareequal. (pr.1.38)
+∴
+ anditsbasearerespectivelyequimultiples
+of
+andthebase
+ .
+Inlikemanner
+anditsbasearerespectivelyequi-
+multiplesof
+ andthebase
+ .
+∴ifmor6times
+>,=or<nor5times
+then
+mor6times
+ >,=or<nor5times
+ ,
+mandnstandforeverymultipletakenasinthefifthdefini-
+tionoftheFifthBook.Althoughweha veonlyshownthat
+BOOKVIPROP.I.THEOR. 227
+thispropertyexistswhenmequal6,andnequal5,yetit
+isevidentthatthepropertyholdsgoodforeverymultiple
+valuethatmaybegivento m,andton.
+∴
+:
+::
+ :
+ (def.5.5)
+Parallelogramshavingthesamealtitudearethedoubles
+of thetriangles,ontheirbases,and are proportional to
+them(PartI),andhence theirdoubles,theparallelograms,
+areastheirbases(pr.5.15).
+Q.E.D.
+228 BOOKVIPROP.II.THEOR.
+fastraight line
+ bedrawnparallel to
+anyside
+ ofatriangle, itshallcut the
+othersides,or those sidesproduced, into pro-
+portional segments
+Andifanystraightline
+ dividethesidesofatrian-
+gle,orthosesidesproduced,intoproportionalsegments,itis
+parallel to the remaining side
+ .
+PartI.
+Let
+ ∥
+ ,thenshall
+:
+ ::
+ :
+ .
+Draw
+ and
+ ,
+and
+ =
+ (pr.1.37);
+∴
+ :
+::
+ :
+(pr.5.7);
+but
+:
+::
+ :
+ (pr.6.1),
+∴
+ :
+ ::
+ :
+ (pr.5.11).
+BOOKVIPROP.II.THEOR. 229
+PartII.
+Let
+ :
+ ::
+ :
+ .
+then
+ ∥
+ .
+Letthesamecons tructionremain,
+∵
+ :
+ ::
+ :
+and
+ :
+ ::
+ :
+⎫}}}}
+⎬}}}}⎭(pr.6.1);
+but
+ :
+ ::
+ :
+ (hyp.)
+∴
+ :
+::
+ :
+(pr.5.11)
+∴
+ =
+ (pr.5.9);
+buttheyareonthesamebase
+ ,
+andatthesamesideofit,and
+∴
+ ∥
+ (pr.1.39).
+Q.E.D.
+230 BOOKVIPROP.III.THEOR.
+rightline(
+)bisectingthe angle of a
+triangle,dividestheoppositesideintosegments
+(
+,
+)proportionaltotheconter-
+minous sides (
+,
+).
+Andifastraightline(
+)drawnfromanyangleof
+atriangle divide theopposite side (
+)intosegments
+(
+,
+)proportionaltotheconterminoussides
+(
+,
+), it bisects the angle.
+PartI.
+Draw
+ ∥
+ ,tomeet
+;
+then,
+=
+(pr.1.29).
+∴
+=
+;but
+=
+,∴
+=
+,
+∴
+ =
+ (pr.1.6);
+and∵
+ ∥
+ ,
+:
+ ::
+ :
+ (pr.6.2);
+but
+ =
+ ;
+∴
+ :
+ ::
+ :
+ (pr.5.7).
+BOOKVIPROP.III.THEOR. 231
+PartII.
+Letthesamecons tructionremain,
+and
+ :
+ ::
+ :
+ (pr.6.2);
+but
+ :
+ ::
+ :
+ (hyp.)
+∴
+ :
+ ::
+ :
+ (pr.5.11).
+and∴
+ =
+ (pr.5.9),
+and∴
+=
+(pr.1.5);
+butsince
+ ∥
+ ;
+=
+,
+and
+=
+(pr.1.29);
+∴
+=
+,and
+=
+,
+and∴
+ bisects
+.
+Q.E.D.
+232 BOOKVIPROP.IV.THEOR.
+nequiangulartriangles(
+and
+ )
+the sidesabout the equalanglesare propor-
+tional, and the sides which are opposite to the
+equal angles are homologous.
+Let the equiangular triangles be so p lacedthat two
+sides
+ ,
+oppositetoequalangles
+and
+maybeconterminous,andinthesamestraightline;
+andthatthetriangleslyingatthesamesideofthatstraight
+line;andthatthetriangleslyingatthesamesideofthat
+straightline,mayhavetheequalanglesnotconterminous,
+i.e.
+oppositeto
+ ,and
+ to
+.
+Draw
+ and
+ .
+Then,∵
+=
+,
+ ∥
+ (pr.1.28);
+andforalikereason
+ ∥
+ ,
+∴
+isaparallelogram.
+But
+ :
+ ::
+ :
+ (pr.6.2);
+andsince
+ =
+ (pr.1.34),
+:
+ ::
+ :
+ ;
+andbyalternation
+:
+ ::
+ :
+ (pr.5.16).
+Inlikemanneritmaybeshown,that
+:
+ ::
+ :
+ ;
+andbyalternation,that
+:
+ ::
+ :
+ ;
+butithasbeena lreadyprovedthat
+:
+ ::
+ :
+andtherefore,exæquali,
+BOOKVIPROP.IV.THEOR. 233
+:
+ ::
+ :
+ (pr.5.22),
+thereforethesidesabouttheequalangles
+areproportional,andthosewhichare
+oppositetotheequalanglesarehomologous.
+Q.E.D.
+234 BOOKVIPROP.V.THEOR.
+ftwotriangleshavetheirsidesproportional
+(
+ :
+ ::
+ :
+ )
+and(
+ :
+ ::
+ :
+)theyareequiangular,andtheequal
+angles are subtended by the homologous sides.
+Fromtheextremitiesof
+,
+draw
+ and
+ ,making
+=
+,
+=
+(pr.1.23);
+andconsequen tly
+=
+(pr.1.32),
+andsincethetrianglesareequiangular,
+:
+ ::
+ :
+ (pr.6.4);
+but
+ :
+ ::
+ :
+ (hyp.);
+∴
+ :
+ ::
+ :
+ ,
+andconsequen tly
+ =
+(pr.5.9). Inlikemanneritmaybeshown that
+=
+ .
+Therefore,thetwotriangleshavingacommon
+base
+ ,andtheirsidesequal,have
+alsoequalanglesoppositetoequalsides,i.e.
+=
+and
+ =
+(pr.1.8).
+but
+=
+(const.)and∴
+=
+;
+forthesamereason
+ =
+,
+andconsequen tly
+=
+(pr.1.32);
+andthereforethetrianglesareequiangular,
+anditisevidentthatthehomologous
+sidessubtendedbytheequalangles.
+Q.E.D.
+BOOKVIPROP.VI.THEOR. 235
+ftwotriangles(
+and
+ )haveone
+angle(
+)of the one,equal to one angle
+(
+)of the other,andthe sidesabout the
+equalanglesproportional,thetrianglesshallbeequiangular,
+and havethose anglesequalwhichthe homologoussides
+subtend.
+Fromtheextremitiesof
+,one
+ofthesidesof
+,about
+,
+draw
+ and
+ ,
+making
+=
+,
+and
+ =
+;
+then
+ =
+(pr.1.32),
+andtwotrianglesbeingequiangular,
+:
+ ::
+ :
+ (pr.6.4);
+but
+ :
+ ::
+ :
+ (hyp.)
+∴
+ :
+ ::
+ :
+ (pr.5.11),
+andconsequen tly
+ =
+ (pr.5.9);
+∴
+ =
+ ineveryrespect(pr.1.4).
+But
+=
+(const.),
+and∴
+=
+;
+andsincealso
+=
+,
+=
+(pr. 1.32);
+and∴
+ and
+ areequiangular,with
+theirequalanglesoppositetohomologoussides.
+Q.E.D.
+236 BOOKVIPROP.VII.THEOR.
+ftwotriangles(
+and
+ )have
+one anglein each equa l(
+equal to
+),
+the sidesabout two otherangles(
+ :
+::
+ :
+ ),andeacho f
+theremaining angles (
+and
+)eitherless or notless
+than arightangle, thetrianglesare equiangular,andthose
+angles are equal about which the sides are proportional.
+Firstletitbeassumed thattheangles
+and
+are
+eachlessthanarightangle: thenifitbesupposed that
+and
+containedbytheproportionalsides,arenot
+equal,let
+begreater,andmake
+ =
+.
+∵
+=
+(hyp.)and
+=
+(const.)
+∴
+=
+(pr.1.32);
+∴
+ :
+ ::
+ :
+ (pr.6.4),
+but
+ :
+ ::
+ :
+ (hyp.)
+∴
+ :
+ ::
+ :
+ ;
+∴
+ =
+ (pr.5.9),
+and∴
+=
+ (pr.1.5).
+But
+islessthanarightangle(hyp.)
+∴
+islessthanarightangle;
+and∴
+mustbegreaterthanarightangle
+(pr.1.13),butithasbeenp roven=
+and
+thereforelessthanarightangle,whichis
+absurd.∴
+and
+arenotunequal;
+BOOKVIPROP.VII.THEOR. 237
+∴theyareequal,andsince
+=
+(hyp.)
+∴
+=
+(pr.1.32),and
+thereforethetrianglesareequiangular.
+But if
+and
+be assumed to be each no t less
+than arightangle, itmaybe proved as before, that the
+trianglesareequiangular,andhavethesidesaboutequal
+theanglesproportional(pr.6.4).
+Q.E.D.
+238 BOOKVIPROP.VIII.THEOR.
+narightangledtiangle(
+ ), ifa
+perpendicular(
+)be drawnfromthe
+rightangletothe opposite side, thetriangles
+(
+,
+)oneachsideofitaresimilar
+to the whole triangle and to each other.
+∵
+ =
+(ax.XI),
+and
+commonto
+ and
+ ;
+=
+(pr. 1.32);
+∴
+ and
+ areequiangular;and
+consequen tlyhavetheirsidesabouttheequalangles
+proportional(pr.6.4),andarethereforesimilar(def.6.1).
+Inlikemanneritmaybeprovedthat
+issimilarto
+ ;but
+has
+beenshown tobesimilarto
+ ;
+∴
+ and
+aresimilar
+tothewholeandtoeachother.
+Q.E.D.
+BOOKVIPROP.IX.PROB. 239
+romagivenstraightline(
+ )tocut
+off any required part.
+Fromeitherextremityofthegivenlinedraw
+makinganyanglewith
+ ;
+andproduce
+ tillthewholeproduced
+line
+ contains
+asoften
+as
+ containstherequiredpart.
+Draw
+ ,
+anddraw
+∥
+.
+istherequiredpartof
+ .
+Forsince
+∥
+:
+ ::
+:
+ (pr.6.2),
+andbycomposition(pr.5.18);
+:
+::
+ :
+;
+but
+ contains
+asoftenas
+containstherequiredpart(const.);
+∴
+istherequiredpart.
+Q.E.D.
+240 BOOKVIPROP.X.PROB.
+odivide a given straight line(
+ )
+similarlytoagivendividedline(
+ ).
+Fromeitherextremityofthegivenline
+draw
+ makinganyangle;
+take
+,
+and
+equalto
+,
+and
+respectively(pr.1.2);
+draw
+,anddraw
+and
+∥toit.
+Since{
+}are∥,
+:
+::
+:
+(pr.6.2),
+or
+:
+::
+:
+(const.),
+and
+:
+::
+:
+(pr.6.2),
+:
+::
+:
+(const.),
+and∴thegivenline
+ is
+dividedsimilarlyto
+ .
+Q.E.D.
+BOOKVIPROP.XI.PROB. 241
+oﬁnd athird proportional totwo given
+straight lines (
+and
+ ).
+Ateitherextremityofthegivenline
+draw
+ makinganangle;
+take
+ =
+,anddraw
+;
+make
+ =
+,
+anddraw
+ ∥
+;(pr.1.31)
+isthethirdproportionalto
+and
+ .
+Forsince
+∥
+,
+∴
+:
+::
+ :
+(pr.6.2);
+but
+=
+ =
+ (const.);
+∴
+:
+::
+ :
+(pr.5.7).
+Q.E.D.
+242 BOOKVIPROP.XII.PROB.
+oﬁndafourthproportionaltothreegivenlines
+{
+}.
+Draw
+ and
+makinganyangle;
+take
+ =
+ ,
+and
+ =
+ ,
+also
+ =
+ ,
+draw
+ ,
+and
+ ∥
+ (pr.1.31);
+isthefourthproportional.
+Onaccountoftheparallels,
+:
+ ::
+ :
+ (pr.6.2);
+but{
+} = {
+ }(const.);
+∴
+ :
+ ::
+ :
+ (pr.5.7).
+Q.E.D.
+BOOKVIPROP.XIII.PROB. 243
+oﬁndameanp roportionalbetweentwogiven
+straight lines {
+}.
+Drawanystraightline
+ ,
+make
+ =
+ and
+ =
+;
+bisect
+ ;andfromthepoint
+ofbisectionasacen tre,andhalflineasa
+radius,describeasemicircle
+ ,
+draw
+ ⊥
+ :
+isthemeanp roportionalrequired.
+Draw
+ and
+ .
+Since
+ isarightangle(pr.3.31),
+and
+ is⊥fromitupontheoppositeside,
+∴
+ isameanp roportional
+between
+ and
+ (pr.6.8),
+and∴between
+ and
+ (const.).
+Q.E.D.
+244 BOOKVIPROP.XIV.THEOR.
+qualparallelograms
+ and
+,which
+have one anglein each equa l,havethe sides
+about the equalangles reciprocallypropor-
+tional
+(
+ :
+ ::
+ :
+ )
+And parallelograms which have one anglein each equa l,
+andthe sidesabout themreciprocallyproportional,are
+equal.
+Let
+ and
+ ;and
+ and
+ ,
+besoplacedthat
+ and
+ may
+becontinuedrightlines. Itisevidentthatthey
+mayassumethisposition. (pr.1.13,pr.1.14,pr.1.15)
+Complete
+.
+Since
+=
+;
+∴
+:
+::
+:
+(pr.5.7)
+∴
+ :
+ ::
+ :
+ (pr.6.1)
+Thesamecons tructionremaining:
+:
+ ::⎧{{{
+⎨{{{⎩
+:
+(pr.6.1)
+:
+ (hyp.)
+:
+(pr.6.1)
+∴
+:
+::
+:
+(pr.5.11)
+and∴
+=
+(pr.5.9).
+Q.E.D.
+BOOKVIPROP.XV.THEOR. 245
+qualtriangles,whichhaveoneangleineach
+equal(
+=
+),havethesidesaboutthe
+equal angles reciprocally proportional
+(
+ :
+ ::
+ :
+ )
+And two triangles which have an angle of the one equal to
+an angle ofthe other,andthe sidesaboutthe equalangles
+reciprocally proportional, are equal.
+I.
+Let thetriangles be so p lacedthat the equalangles
+and
+maybeverticallyopposite,thatistosay,sothat
+and
+ maybeinthe same s traight line.
+Whence a lso
+ and
+ mustbeinthe same
+straightline(pr.1.14).
+Draw
+ ,then
+:
+ ::
+ :
+ (pr.6.1)
+::
+:
+ (pr.5.7)
+::
+ :
+ (pr.6.1)
+∴
+ :
+ ::
+ :
+ (pr.5.11).
+246 BOOKVIPROP.XV.THEOR.
+II.
+Letthesamecons tructionremain,and
+:
+ ::
+ :
+ (pr.6.1)
+and
+ :
+ ::
+:
+ (pr.6.1)
+but
+ :
+ ::
+ :
+ ,(hyp.)
+∴
+ :
+ ::
+:
+ (pr.5.11);
+∴
+ =
+(pr.5.9).
+Q.E.D.
+BOOKVIPROP.XVI.THEOR. 247
+ffourstraightlinesbeproportional(
+ :
+::
+ :
+ )therectan-
+gle(
+×
+ )contained by the ex-
+tremes, isequal totherectangle(
+ ×
+)contained by the means.
+And if the rectangle contained by the extremes be equal to
+therectanglecontainedbythemeans,thefourstraightlines
+are proportional.
+PartI.
+Fromtheextremitiesof
+ and
+draw
+ and
+ ⊥tothem
+and=
+ and
+ respectively:
+completetheparallelograms
+ and
+ .
+andsince,
+:
+ ::
+ :
+ (hyp.)
+∴
+ :
+ ::
+ :
+ (const.)
+∴
+ =
+(pr.6.14),
+thatis,therectanglecontainedbetheextremes,
+equaltotherectanglecontainedbethemeans.
+248 BOOKVIPROP.XVI.THEOR.
+PartII.
+Letthesamecons tructionremain;
+∵
+ =
+ ,
+ =
+and
+ =
+ .
+∴
+ :
+ ::
+ :
+ (pr.6.14)
+But
+ =
+ ,
+and
+ =
+ (const.)
+∴
+ :
+ ::
+ :
+ (pr.5.7).
+Q.E.D.
+BOOKVIPROP.XVII.THEOR. 249
+fthreestriaghtlinesbeproportional(
+ :
+::
+ :
+ )therectangle
+under the extremes isequal tothe square of
+the mean.
+Andif therectangle under the extremesbe equal tothe
+squareofthemean,thethreestraightlinesareproportional.
+PartI.
+Assume
+ =
+ ,
+andsince
+ :
+ ::
+ :
+ ,
+then
+ :
+ ::
+ :
+ ,
+∴
+ ×
+ =
+ ×
+(pr.6.16).
+But
+ =
+ ,
+∴
+ ×
+ =
+×
+ or=
+2;
+therefore,ifthethreestraightlinesare
+proportional,therectanglecontainedbethe
+extremesisequaltothesquareofthemean.
+PartII.
+Assume
+ =
+ ,
+then
+ ×
+ =
+ ×
+ ,
+∴
+ :
+ ::
+ :
+ (pr.6.16),
+and
+ :
+ ::
+ :
+ .
+Q.E.D.
+250 BOOKVIPROP.XVIII.PROB.
+na given straight line(
+)to construct
+arectilinear ﬁgure similar to a given one
+(
+ )and similarly placed.
+Resolvethegivenfigureintotrianglesby
+drawingthelines
+ and
+ .
+Attheextremitiesof
+ make
+=
+and
+ =
+;
+againattheextremitiesof
+ make
+=
+and
+=
+;
+inlikemannermake
+=
+and
+=
+.
+Then
+ =
+ .
+Itisevidentfromtheconstructionand(pr.1.32)
+thatthefiguresareequiangular;andsincethe
+triangles
+ and
+ areequiangular;
+thenby(pr.6.4),
+:
+ ::
+ :
+and
+ :
+ ::
+ :
+Again,because
+ and
+ areequiangular,
+:
+ ::
+ :
+∴exæquali,
+:
+ ::
+ :
+ (pr.6.22)
+BOOKVIPROP.XVIII.PROB. 251
+Inlikemanneritmaybeshown thattheremaining
+sidesofthetwofiguresareproportional.
+∴by(pr.6.1)
+issimilarto
+ andsimilarly
+situated;andonthegivenline
+ .
+Q.E.D.
+252 BOOKVIPROP.XIX.THEOR.
+imilartriangles(
+and
+ )areto
+oneanotherintheduplicateratiooftheirho-
+mologous sides.
+Let
+and
+beequalangles,and
+ and
+homologoussidesofthesimilartriangles
+and
+ andon
+ thegreaterof
+theselinestake
+ athirdproportional,so
+that
+ :
+ ::
+ :
+ ;
+draw
+ .
+:
+ ::
+ :
+ (pr.6.4);
+∴
+ :
+ ::
+ :
+ (pr.5.16),
+but
+ :
+ ::
+ :
+ (const.),
+∴
+ :
+ ::
+ :
+consequen tly
+ =
+ fortheyhave
+thesidesabouttheequalangles
+and
+reciprocallyproportional(pr.6.15);
+∴
+ :
+::
+ :
+(pr.5.7);
+but
+:
+::
+ :
+ (pr.6.1),
+∴
+ :
+::
+ :
+ ,
+thatistosay,thetrianglesaretooneanother
+intheduplicateratiooftheirhomologous
+sides
+ and
+ (def.5.11).
+Q.E.D.
+BOOKVIPROP.XX.THEOR. 253
+imilarpolygonsmaybedividedintothesame
+numberofsimilar triangles,each similarpair
+ofwhich are proportional tothe polygons;and
+the polygons areto each other inthe duplicate
+ratio of their homologous sides.
+Draw
+ and
+ ,and
+ and
+, resolvingthe polygonsintotriangles. Then be-
+causethe polygons are similar,
+ =
+ ,and
+:
+ ::
+ :
+∴
+and
+ aresimilar,
+and
+=
+(pr.6.6);
+but
+=
+becausetheyare
+anglesofsimilarpolygons;thereforethe
+remainders
+and
+areequal;
+hence
+ :
+ ::
+ :
+ ,
+onaccoun tofthesimilartriangles,
+and
+ :
+ ::
+ :
+ ,
+onaccoun tofthesimilarpolygons,
+∴
+ :
+ ::
+ :
+ ,
+exæquali(pr.5.22),andastheseproportional
+sidescontainequalangles,thetriangles
+and
+ aresimilar(pr.6.6).
+Inlikemanneritmaybeshown thatthe
+triangles
+ and
+ aresimilar.
+But
+isto
+intheduplicate
+ratioof
+ to
+ (pr.6.19),
+254 BOOKVIPROP.XX.THEOR.
+and
+ isto
+inlikemanner,in
+theduplicateratioof
+ to
+ ;
+∴
+ :
+::
+ :
+(pr.5.11).
+Again
+isto
+intheduplicateratioof
+to
+ ,and
+ isto
+intheduplicateratioof
+ to
+ .
+:
+::
+ :
+::
+ :
+;
+andasoneo ftheantecedentsistooneoftheconsequen ts,
+soisthesumofalltheantecedentstothesumofallthe
+consequen ts;thatistosay,thesimilartriangleshaveto
+oneanotherthesameratioasthepolygons(pr.5.12).
+But
+isto
+intheduplicate
+ratioof
+ to
+ ;
+∴
+ isto
+ inthe
+duplicateratioof
+ to
+ .
+Q.E.D.
+BOOKVIPROP.XXI.THEOR. 255
+ectilinear ﬁgures(
+ and
+ )
+which are similar tothe sameﬁgure(
+)
+are similar also to each other.
+Since
+ and
+ aresimilar,theyareequiangu-
+lar,andhavethesidesabouttheequalanglesproportional
+(def.6.1);andsincethefigures
+ and
+ arealso
+similar,theyareequiangular,andhavethesidesaboutthe
+equalanglesproportional;therefore
+ and
+arealsoequiangular,andhavethesidesabouttheequal
+anglesproportional(pr.5.11),andarethereforesimilar.
+Q.E.D.
+256 BOOKVIPROP.XXII.THEOR.
+ffourstraightlinesbeproportional
+(
+ :
+ ::
+ :
+), the similar rectilinear
+ﬁguressimilarlydescribedonthem
+are also proportional.
+Andif foursimilar rectilinear ﬁgures,similarly
+described on four straight lines, be proportional,
+the straight lines are also proportional.
+PartI.
+Take
+ athirdproportionalto
+and
+ ,and
+ athird
+proportionalto
+ and
+ (pr.6.11);
+since
+ :
+ ::
+ :
+ (hyp.)
+:
+ ::
+ :
+ (const.)
+∴exæquali,
+:
+ ::
+ :
+ ;
+but
+:
+ ::
+ :
+ (pr.6.20),
+and
+ :
+ ::
+ :
+ ;
+∴
+:
+ ::
+ :
+ (pr.5.11).
+BOOKVIPROP.XXII.THEOR. 257
+PartII.
+Letthesamecons tructionremain;
+:
+ ::
+ :
+ (hyp.),
+∴
+ :
+ ::
+ :
+ (const.),
+and∴
+ :
+ ::
+ :
+ (pr.5.11).
+Q.E.D.
+258 BOOKVIPROP.XXIII.THEOR.
+quiangular parallelograms(
+ and
+)areto one ano ther in aratio com-
+pounded of the ratios of their sides.
+Lettwoofthesides
+ and
+ aboutthe
+equalanglesbeplacedsothattheymayformonestraight
+line.
+Since
++
+=
+ ,
+and
+ =
+(hyp.),
++
+=
+ ,
+and∴
+ and
+formonestraightline(pr.1.14);
+complete
+.
+Since
+ :
+::
+ :
+ (pr.6.1),
+and
+ :
+::
+ :
+ (pr.6.1),
+hasto
+aratiocompoundedo ftheratios
+of
+ to
+ ,andof
+ to
+ .
+Q.E.D.
+BOOKVIPROP.XXIV.THEOR. 259
+nanyparallelogram(
+ )theparallel-
+ograms(
+and
+ )which are about
+thediagonalaresimilartothewhole,andto
+each other.
+As
+ and
+ havea
+commonang letheyareequiangular;
+but∵
+ ∥
+and
+ aresimilar(pr.6.4),
+∴
+ :
+ ::
+ :
+ ;
+andtheremainingoppositesidesareequaltothose,
+∴
+and
+ havethesidesaboutthe
+equalanglesproportional,andarethereforesimilar.
+Inthesamemanne ritcanbedemons tratedthatthe
+parallelograms
+ and
+ aresimilar.
+Since,therefore,eachoftheparallelograms
+and
+ issimilarto
+ ,
+theyaresimilartoeachother.
+Q.E.D.
+260 BOOKVIPROP.XXV.PROB.
+odescribearectilinearﬁgure,whichshallbe
+similartoagivenrectilinearﬁgure(
+ ),
+and equal to another (
+).
+Upon
+ describe
+ =
+ ,
+andupon
+ describe
+ =
+,
+andhaving
+=
+(pr.1.45),
+andthen
+ and
+ willliein
+thesamestraightline(pr.1.29,pr.1.14).
+Between
+ and
+ finda
+meanproportional
+ (pr.6.13),
+andupon
+ describe
+ ,similar
+to
+ ,andsimilarlysituated.
+Then
+ =
+.
+Forsince
+ and
+ aresimilar,and
+:
+ ::
+ :
+ (const.),
+:
+ ::
+ :
+ (pr.6.20);
+BOOKVIPROP.XXV.PROB. 261
+but
+ :
+::
+ :
+ (pr.6.1);
+∴
+ :
+ ::
+ :
+(pr.5.11);
+but
+ =
+ (const.),
+and∴
+ =
+(pr.5.14);
+and
+ =
+(const.);
+consequen tly,
+ whichis
+similarto
+ isalso=
+.
+Q.E.D.
+262 BOOKVIPROP.XXVI.THEOR.
+fsimilarandsimilarlypositedparallelograms
+(
+ and
+ )have a common
+angle, they are about the same diagonal.
+For,ifpossible,let
+ bethediagonalof
+anddraw
+ ∥
+ (pr.1.31).
+Since
+ and
+ areaboutthe
+samediagonal
+ ,andhave
+common,theyaresimilar(pr.6.24);
+∴
+:
+::
+ :
+ ;
+but
+:
+ ::
+ :
+ (hyp.),
+∴
+:
+::
+ :
+ ,
+and∴
+=
+ (pr.5.9),whichisabsurd.
+∴
+ isnotthediagonalof
+inthesamemanne ritcanbedemons trated
+thatnootherlineisexcept
+.
+Q.E.D.
+BOOKVIPROP.XXVII.THEOR. 263
+falltherectanglescontainedbythesegmentsof
+agivenstraightline,thegreatestisthesquare
+which is described on half the line.
+Let
+ bethegivenline,
+and
+ unequalsegments,
+and
+ and
+ equalsegments;
+then
+ >
+.
+Forithasbeendemons tratedalready(pr.2.5),thatthe
+squareofhalfthelineisequaltotherectanglecontained
+byanyunequalsegmentstogetherwiththesquareofthe
+partintermediatebetweenthemiddlepointandthepoint
+ofunequalsection. Thesquaredescribedonha lftheline
+exceedsthereforetherectanglecontainedbyanyunequal
+segmentsoftheline.
+Q.E.D.
+264 BOOKVIPROP.XXVIII.PROB.
+odivide a given straight line(
+ )
+so that the rectangle contained by its segments
+maybe equal to a given area,notexceeding
+the square of half the line.
+Letthegivenareabe=
+2.
+Bisect
+ ,ormake
+ =
+;
+andif
+2=
+2,
+problemissolved.
+Butif
+2≠
+2,
+thenmust
+ >
+(hyp.).
+Draw
+⊥
+ =
+;
+make
+ =
+ or
+;
+with
+ asradiusdescribeacircle
+cuttingthegivenline;draw
+.
+Then
+×
+ +
+2=
+2
+(pr.2.5)=
+2.
+But
+2=
+2+
+2(pr.1.47);
+∴
+×
+ +
+2=
+2+
+2,
+fromboth,take
+2,
+and
+×
+ =
+2.
+But
+=
+(const.),
+and∴
+ issodivided
+that
+×
+ =
+2.
+Q.E.D.
+BOOKVIPROP.XXIX.PROB. 265
+oproduce a given straight line(
+ ),
+sothattherectanglecontainedbythesegments
+betweenthe extremitiesof the givenline and
+thepointtowhichitisproduced,maybeequal
+to a given area, i. e. equal to the square on
+ .
+Make
+ =
+,
+anddraw
+ ⊥
+ =
+ ;
+draw
+ ;
+andwiththeradius
+ ,describea
+circlemeeting
+ produced.
+Then
+ ×
++
+2=
+2
+(pr.2.6)=
+2.
+But
+2=
+2+
+2(pr.1.47)
+∴
+ ×
++
+2=
+2+
+2,
+frombothtake
+2,
+and∴
+ ×
+=
+2
+but
+ =
+ ,
+∴
+2=thegivenarea.
+Q.E.D.
+266 BOOKVIPROP.XXX.PROB.
+ocutagivenﬁnitestraightline (
+)in
+extreme and mean ratio.
+On
+ describethesquare
+ (pr.1.46);
+andproduce
+ ,sothat
+×
+=
+2(pr.6.29);
+take
+ =
+,
+anddraw
+ ∥
+ ,
+meeting
+∥
+ (pr.1.31).
+Then
+=
+ ×
+,andis∴=
+ ;
+andiffromboththeseequalsbe
+takenthecommonpa rt
+,
+,whichisthesquareof
+,
+willbe=
+,whichis=
+ ×
+;
+thatis
+2=
+ ×
+;
+∴
+ :
+::
+:
+,
+and
+ isdividedinextreme
+andmean ratio(def.6.3).
+Q.E.D.
+BOOKVIPROP.XXXI.THEOR. 267
+fanysimilar rectilinear ﬁguresbe similarly
+describedonthesidesofarightangledtriangle
+(
+ ),theﬁguredescribedonthe
+side(
+ )subtendingtherightangleisequalto
+the sum of the ﬁgures on the other sides.
+Fromtherightangledraw
+perpendicularto
+ ;
+then
+:
+ ::
+ :
+(pr.6.8).
+∴
+ :
+ ::
+:
+ (pr.6.20).
+but
+ :
+ ::
+ :
+(pr.6.20).
+Hence
+ +
+:
+ ::
++
+ :
+ ;
+but
+ +
+=
+ ;
+and∴
+ +
+ =
+ .
+Q.E.D.
+268 BOOKVIPROP.XXXII.THEOR.
+ftwotriangles(
+ and
+ ),
+havetwo sidesproportional(
+ :
+::
+ :
+ ),and be so
+placed atan anglethat the homologoussides
+are parallel, theremaining sides(
+ and
+ )
+form one right line.
+Since
+ ∥
+ ,
+=
+(pr. 1.29);
+andalsosince
+ ∥
+ ,
+=
+(pr. 1.29);
+∴
+=
+;
+andsince
+:
+ ::
+ :
+ (hyp.),
+thetrianglesareequiangular(pr.6.6);
+∴
+=
+;
+but
+=
+;
+∴
++
++
+=
++
++
+=
+(pr. 1.32),
+and∴
+ and
+ liein
+thesamestraightline(pr.1.14).
+Q.E.D.
+BOOKVIPROP.XXXIII.THEOR. 269
+nequalcircles (
+ ,
+ ),angles,
+whetherat the centre orcircumference,arein
+the sameratioto one another as the arcs on
+whichtheystand(
+:
+::
+:
+);soalsoare
+sectors.
+Takeinthe circumference of
+ anynumber
+ofarcs
+,
+,&c.each=
+,andalsointhecir-
+cumferenceof
+ takeanynumberofarcs
+,
+,&c.each=
+,drawtheradiitotheextremities
+oftheequalarcs.
+Thesincethearcs
+,
+,
+,&c.areallequal,
+theangles
+,
+,
+,&c.arealsoequal(pr.3.27);∴
+isthe same mu ltiple of
+whichthe arc
+is of
+;andinthe same manne r
+isthe same
+multipleof
+,whichthearc
+ isofthearc
+.
+Thenitisevident(pr.3.27),
+if
+(orifmtimes
+)
+>,=,<
+ (orntimes
+)
+then
+ (ormtimes
+)
+>,=,<
+ (orntimes
+ );
+∴
+:
+::
+:
+(def.5.5),ortheangles
+atthecentreareasthearcsonwhichtheystand;butthe
+angles at the circumference being halves of the angles at
+270 BOOKVIPROP.XXXIII.THEOR.
+the centre(pr.3.20)areinthe sameratio(pr. 5.15),and
+thereforeareasthearcsonwhichtheystand.
+Itisevident,thatsectorsinequalcircles,andonequa l
+arcsareequal(pr.1.4,3.24,3.27,anddef.3.9).Hence,ifthe
+sectorsbesubstitutedfortheanglesintheabovedemon-
+stration,thesecondpa rtoftheproportionwillbeestab-
+lished, that is, in equalcirclesthe sectors havethe same
+ratiotooneanotherasthearcsonwhichtheystand.
+Q.E.D.
+BOOKVIPROP.A.THEOR. 271
+ftheright line(
+)bisecting an exter-
+nalangle
+of thetriangle
+meet the opposite side(
+)produced, thatwhole pro-
+ducedside(
+ ),anditsexternalsegment(
+)
+willbe proportional tothe sides(
+ and
+ ),
+which containthe angle adjacent tothe externalbisected
+angle.
+Forif
+bedrawn∥
+,
+then
+ =
+,(pr.1.29);
+=
+,(hyp.),
+=
+,(pr.1.29);
+and∴
+=
+,(pr.1.6),
+and
+ :
+::
+ :
+(pr.5.7);
+Butalso,
+ :
+::
+ :
+(pr.6.2);
+andtherefore
+:
+::
+ :
+(pr.5.11).
+Q.E.D.
+272 BOOKVIPROP.B.THEOR.
+fanangleofatrianglebebisectedbyastraight
+line,whichlikewisecutsthebase;therectangle
+containedbythesidesofthetriangleisequal
+totherectangle contained by the segmen ts of
+the base, togetherwiththe square of the straight line which
+bisects the angle.
+Let
+bedrawn,making
+=
+;
+thenshall
+×
+=
+×
++
+2.
+About
+ describe
+ (pr.4.5),
+produce
+ tomeetthecircle,anddraw
+.
+Since
+=
+(hyp.),
+and
+ =
+(pr.3.21),
+∴
+ and
+ areequiangular(pr.1.32);
+∴
+ :
+::
+ :
+(pr.6.4);
+∴
+ ×
+=
+×
+ (pr.6.16)
+=
+×
++
+2(pr.2.3);
+but
+×
+=
+×
+(pr.3.35);
+∴
+ ×
+=
+×
++
+2
+Q.E.D.
+BOOKVIPROP.C.THEOR. 273
+ffromanyangleofatriangleastraightlinebe
+drawnperpendiculartothebase;therectangle
+containedbythesidesofthetriangleisequalto
+therectangle contained by the perpendicular
+and the diameter of the circle described about the triangle.
+From
+ of
+draw
+ ⊥
+ ;
+thenshall
+ ×
+ =
+ ×
+thediameterofthedescribedcircle.
+Describe
+ (pr.4.5),drawits
+diameter
+,anddraw
+ ;
+then∵
+=
+(const.andpr.3.31);
+and
+ =
+(pr.3.21);
+∴
+ isequiangularto
+ (pr.6.4);
+∴
+ :
+ ::
+ :
+ ;
+and∴
+ ×
+ =
+ ×
+(pr.6.16).
+Q.E.D.
+274 BOOKVIPROP.D.THEOR.
+herectangle contained by the diagonals ofa
+quadrilateral ﬁgureinscribedin a circle, is
+equal to boththerectanglescontained by its
+opposite sides.
+Let
+ beanyquadrilateral
+figureinscribedin
+ ;
+anddraw
+ and
+ ;
+then
+ ×
+ =
+×
+ +
+ ×
+ .
+Make
+ =
+(pr.1.23),
+∴
+=
+;and
+=
+(pr.3.21);
+∴
+ :
+ ::
+ :
+ (pr.6.4);
+and∴
+ ×
+ =
+ ×
+(pr.6.16);
+again,∵
+=
+(const.),
+and
+ =
+(pr.3.21);
+∴
+ :
+ ::
+ :
+ (pr.6.4);
+and∴
+ ×
+ =
+ ×
+(pr.6.16);
+but,fromabove,
+×
+ =
+ ×
+ ;
+∴
+ ×
+ =
+×
+ +
+ ×
+ (pr.2.1).
+Q.E.D.

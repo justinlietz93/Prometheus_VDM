@@ -74,6 +74,16 @@ class SparseConnectome:
         # External stimulation buffer (deterministic symbol→group; decays each tick)
         self._stim = np.zeros(self.N, dtype=np.float32)
         self._stim_decay = 0.90
+
+        # Sparse cohesion bridging budget and degree heterogeneity controls
+        try:
+            self.bridge_budget = int(_os.getenv("SPARSE_BRIDGE_BUDGET", "24"))
+        except Exception:
+            self.bridge_budget = 24
+        try:
+            self.min_k_frac = float(_os.getenv("MIN_K_FRAC", "0.5"))
+        except Exception:
+            self.min_k_frac = 0.5
         # Active-edge/fragment trackers (incremental; void-faithful)
         self._edges_active = 0
         self._vertices_active = 0
@@ -287,9 +297,12 @@ class SparseConnectome:
 
         # 3) Per-node top-k selection from candidates by void affinity S_ij
         N = self.N
-        k = int(max(1, self.k))
-        s = int(max(self.candidates, 2 * k))
+        k_base = int(max(1, self.k))
+        s = int(max(self.candidates, 2 * k_base))
         neigh_sets: List[Set[int]] = [set() for _ in range(N)]
+        # Global activity scale for degree heterogeneity
+        amax = float(np.max(a)) if a.size else 0.0
+        _eps = 1e-12
 
         for i in range(N):
             js = self._alias_draw(prob, alias, s)
@@ -300,11 +313,26 @@ class SparseConnectome:
                 continue
             js = np.unique(js)
             Si = a[i] * a[js] - self.lambda_omega * np.abs(om[i] - om[js])
-            take = min(k, Si.size)
+
+            # Enforce positive void-affinity to avoid forced, non-supported edges (prevents ring-lattice collapse)
+            pos_mask = Si > 0.0
+            if not np.any(pos_mask):
+                continue
+            js_pos = js[pos_mask]
+            Si_pos = Si[pos_mask]
+
+            # Per-node target degree in [min_k_frac*k_base, k_base], proportional to activity a[i]
+            if amax > _eps:
+                frac = float(getattr(self, "min_k_frac", 0.5)) + (1.0 - float(getattr(self, "min_k_frac", 0.5))) * float(a[i]) / amax
+            else:
+                frac = 1.0
+            k_i = int(max(1, round(frac * k_base)))
+
+            take = min(k_i, Si_pos.size)
             if take <= 0:
                 continue
-            idx = np.argpartition(Si, -take)[-take:]
-            nbrs = js[idx]
+            idx = np.argpartition(Si_pos, -take)[-take:]
+            nbrs = js_pos[idx]
             for j in nbrs:
                 neigh_sets[i].add(int(j))
 

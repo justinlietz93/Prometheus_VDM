@@ -1,0 +1,284 @@
+\documentclass[11pt]{article}
+
+% ===== Practical preamble =====
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage[section]{placeins}  % \FloatBarrier to keep figs near text
+\usepackage{float}              % [H] exact placement (sparingly)
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage[nameinlink,capitalize]{cleveref}
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily\small,breaklines=true}
+\usepackage{array}
+\usepackage{mathtools}
+
+% Where images live (adjust as needed)
+\graphicspath{{figures/}{artifacts/rd/}{artifacts/memsteer/}{artifacts/meta/}{./}}
+
+\title{VDM: A Dense-Scan-Free Reaction--Diffusion Runtime\\
+with Classical QC Invariants, Event-Driven Sensing,\\
+and Reproducible Gates (with Figures)}
+\author{} % add author(s) here
+\date{}   % add date if desired
+
+% ===== Environments & macros =====
+\theoremstyle{plain}
+\newtheorem{lemma}{Lemma}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\logit}{\operatorname{logit}}
+\newcommand{\dd}{\mathrm{d}}
+
+% Centralized thresholds (edit in one place)
+\newcommand{\FrontRTwo}{0.9999}
+\newcommand{\FrontRelErr}{5\%}
+\newcommand{\DispRTwo}{0.98}
+\newcommand{\DispMedErr}{10\%}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent
+\textbf{Purpose.} This paper introduces a dense-scan-free reaction--diffusion (RD) runtime (\emph{VDM}) and shows how \emph{classical} RD tools are used as \emph{quality-control (QC) instruments} to make the simulator falsifiable and fast. A classical logit first integral of the logistic \emph{on-site} ODE,
+$F(u,t)=\log\!\frac{u}{1-u}-rt$, is reused as an \emph{invariant-drift gate}: constant for the uncoupled on-site flow, small and unbiased when diffusion is enabled. We pair this with Fisher--KPP front-speed and linear-dispersion gates. The runtime is event-driven: information is carried by local excitations (tracer probes); edits are authorized by a budgeted gate; a slow bias field modulates propensities without dense scans. All figures are produced by notebooks that also emit CSV/JSON metrics, seeds, commit, environment metadata, and a \emph{contradiction report} on failure. Lineage is cited (Verhulst; Fisher--KPP; Onsager/JKO/AGS; Turing/Murray). The contribution is \emph{measurement and simulation design}---not novelty of the logistic kernel.
+\end{abstract}
+
+\section{Introduction: Problem, Approach, Outcome}
+\label{sec:intro}
+\textbf{Problem.} RD simulators that rely on full-grid sensing are wasteful.
+
+\textbf{Approach.} VDM = local RD substrate + \emph{event-driven sensing} (``walkers'' = tracer probes) + \emph{budgeted gate} (``scoreboard'') + \emph{slow bias} (``memory steering''). QC stack: logit-invariant drift, Fisher--KPP front-speed, linear dispersion.
+
+\textbf{Outcome.} Pass/fail JSON and contradiction report; cost scales with active sites.
+
+\section{Background and Related Work (brief)}
+\label{sec:related}
+Logistic law \cite{Verhulst1838,Verhulst1845}; Fisher--KPP fronts \cite{Fisher1937,KPP1937}; gradient-flow framing \cite{Onsager1931I,Onsager1931II,JKO1998,AGS2008}; RD context \cite{Turing1952,Murray2002}.
+
+\section{VDM Runtime Overview (standard terms first)}
+\label{sec:vdm}
+\textbf{RD substrate.} On-site growth with diffusion (\cref{sec:math}); explicit FD time stepping.\\
+\textbf{Walkers (tracer probes).} Read-only local samplers ($|\nabla u|,\nabla^2 u,$ curvature, novelty) that publish on events.\\
+\textbf{Scoreboard (budgeted gate).} Accept/deny edits by budgets/invariants; all writes logged.\\
+\textbf{Memory steering (slow bias).} Modulates propensities without dense passes; acceptance tests quantify retention/latency.
+
+\section{Mathematical Setup and Nondimensionalization}
+\label{sec:math}
+\paragraph{On-site ODE (classical).} $\dot u=r\,u(1-u)$ \cite{Verhulst1838,Verhulst1845}.
+\paragraph{Logit first integral.}
+\begin{lemma}
+$F(u,t)=\log\frac{u}{1-u}-rt$ is constant along $\dot u=r\,u(1-u)$.
+\end{lemma}
+\begin{proof}
+$\frac{d}{dt}F=(\frac{1}{u}+\frac{1}{1-u})\dot u - r=\frac{r u(1-u)}{u(1-u)}-r=0.$
+\end{proof}
+\paragraph{RD coupling.} $\partial_t u=D\nabla^2 u + r\,u(1-u)$ admits Fisher--KPP fronts \cite{Fisher1937,KPP1937}. Use $\tilde t=rt,\ \tilde x=x\sqrt{r/D}$; drop tildes ($r=D=1$).
+
+% ====== FIGURE: Junction/logistic collapse (your image) ======
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=.86\linewidth]{junction_logistic.png}
+  \caption{\textbf{On-site logistic collapse.} Logit($u$) vs.\ $t$ with linear fit (slope $\approx r$). Caption and CSV/JSON include $R^2$ and slope; used to calibrate tolerances for the drift gate.}
+  \label{fig:junction_logistic}
+\end{figure}
+\FloatBarrier
+
+\section{QC Gates: Definitions, Behavior, and Figures}
+\label{sec:qcgates}
+All gates computed by notebooks; each figure has a paired CSV/JSON. Any failure writes \texttt{artifacts/meta/CONTRADICTION\_REPORT.json}.
+
+\subsection{Invariant-Drift Gate (logit under diffusion)}
+Define $\Delta F^n=F(u^{n+1},t^{n+1})-F(u^{n},t^{n})$, with $F(u,t)=\log\frac{u}{1-u}-t$. In stable runs, $|\Delta F^n|$ is small and unbiased.
+\paragraph{Gate.} Calibrate $\varepsilon$; \emph{pass} if median $|\Delta F|\le\varepsilon$ and $|\text{mean}(\Delta F)|\le\varepsilon$. Histogram figure reports threshold and summaries (paired CSV/JSON).
+
+% (If you have a drift histogram image, include it here; else keep textual gate.)
+
+\subsection{Front-Speed Gate (Fisher--KPP)}
+Minimal wave speed $c_\ast=2$ for $u_t=u_{xx}+u(1-u)$ \cite{Fisher1937,KPP1937}. Late-time fit of front position $x_f(t)$.
+\paragraph{Gate.} $R^2 \ge \FrontRTwo$, rel.\ error $\le \FrontRelErr$ (CSV/JSON). 
+% If you have a plot file, include it here, e.g.:
+% \begin{figure}[!htbp]
+%   \centering
+%   \includegraphics[width=.8\linewidth]{front_speed.png}
+%   \caption{\textbf{Front speed vs.\ Fisher--KPP prediction.} Late-time linear fit of $x_f(t)$; $R^2$ and relative error in caption and CSV.}
+%   \label{fig:front_speed}
+% \end{figure}
+% \FloatBarrier
+
+\subsection{Linear-Dispersion Gate}
+Linearize around $\bar u$ to get $v_t=v_{xx}+f'(\bar u)\,v$; prediction $\omega(k)=-k^2+f'(\bar u)$.
+\paragraph{Gate.} Array $R^2\ge\DispRTwo$, median rel.\ error $\le\DispMedErr$ (JSON arrays).
+% Add your figure file if present, e.g. dispersion_curve.png
+
+\subsection{Local Geometry Diagnostics: Curvature (your images)}
+These validate local estimators used by walkers without dense passes.
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=.86\linewidth]{curvature_calibration.png}
+  \caption{\textbf{Curvature calibration.} Estimated vs.\ reference curvature with fit line; caption and CSV include slope, intercept, $R^2$, and RMSE.}
+  \label{fig:curvature_calibration}
+\end{figure}
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=.86\linewidth]{curvature_scaling.png}
+  \caption{\textbf{Curvature scaling (unsigned).} Scaling behavior across grid/step settings; slope and CI reported in caption and CSV.}
+  \label{fig:curvature_scaling}
+\end{figure}
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=.86\linewidth]{curvature_scaling_signed.png}
+  \caption{\textbf{Curvature scaling (signed).} Signed estimator behavior; bias and variance summaries in caption and CSV.}
+  \label{fig:curvature_scaling_signed}
+\end{figure}
+\FloatBarrier
+
+\section{Memory Steering: Acceptance and Stability (your images)}
+\label{sec:memsteer}
+Slow bias alters on-site propensities without dense passes; acceptance tests target retention, latency, and interference monotonicity.
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=.86\linewidth]{memory_steering_summary.png}
+  \caption{\textbf{Memory steering summary.} Overview of retention, latency, and interference metrics (paired CSV/JSON).}
+  \label{fig:memsteer_summary}
+\end{figure}
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=.86\linewidth]{stability_band.png}
+  \caption{\textbf{Stability band.} Operating region for steering gain vs.\ stability; acceptance band shaded.}
+  \label{fig:stability_band}
+\end{figure}
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=.86\linewidth]{stability_auc_by_gamma.png}
+  \caption{\textbf{AUC by $\gamma$.} Area-under-curve metric vs.\ steering gain $\gamma$; monotone trend required by gate; CSV includes per-seed values.}
+  \label{fig:stability_auc}
+\end{figure}
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=.86\linewidth]{stability_retention_by_gamma.png}
+  \caption{\textbf{Retention half-life by $\gamma$.} Target $\pm10\%$ band shown; per-seed dots and CI bars.}
+  \label{fig:stability_retention}
+\end{figure}
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=.86\linewidth]{stability_snr_by_gamma.png}
+  \caption{\textbf{SNR by $\gamma$.} Signal-to-noise ratio under steering; required floor marked; CSV includes SNR and noise bands.}
+  \label{fig:stability_snr}
+\end{figure}
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=.86\linewidth]{stability_fidelity_by_gamma.png}
+  \caption{\textbf{Fidelity by $\gamma$.} Agreement of steered vs.\ baseline trajectories; minimum fidelity threshold marked.}
+  \label{fig:stability_fidelity}
+\end{figure}
+\FloatBarrier
+
+\section{Implementation, Protocols, and Artifacts}
+\label{sec:impl}
+\textbf{Grid/BCs.} Uniform grid; periodic BCs unless stated. \\
+\textbf{Discretization.} 3/5-point Laplacian; explicit RK2/RK4; CFL-like $\Delta t \lesssim \alpha \Delta x^2/(2d)$. \\
+\textbf{Seeds.} $N{=}32$ by default; printed in manifest for replay. \\
+\textbf{Artifacts.} \texttt{artifacts/meta/manifest.json} (figures, CSV/JSON, seeds, commit, ROCm/driver, libs); \texttt{CONTRADICTION\_REPORT.json} on any failed gate.
+
+\section{Results and Scaling (summaries)}
+\label{sec:results}
+Invariant drift within tolerance; Fisher--KPP speed within \FrontRelErr{} at $R^2\ge\FrontRTwo$; dispersion gate passes at $R^2\ge\DispRTwo$ and median rel.\ err $\le\DispMedErr$. Active-site fraction $\ll 1$ in sparse regimes; step-time vs.\ active sites slope $\beta\approx1$; long-run stability (P50/95/99) reported.
+
+\begin{table}[!htbp]
+\centering
+\caption{Claims $\rightarrow$ Evidence map (paths emitted by the master notebook).}
+\label{tab:claims}
+\begin{tabular}{@{}p{0.34\linewidth}p{0.33\linewidth}p{0.27\linewidth}@{}}
+\toprule
+\textbf{Claim} & \textbf{Metric/Threshold} & \textbf{Artifact (example)} \\
+\midrule
+Invariant drift small/unbiased  & median/mean $|\Delta F|\le \varepsilon$ & \texttt{artifacts/rd/drift.csv} \\
+Fisher--KPP front speed         & $R^2\ge \FrontRTwo$, rel.\ err $\le \FrontRelErr$ & \texttt{artifacts/rd/front\_speed.csv} \\
+Linear dispersion               & array $R^2\ge \DispRTwo$, med rel.\ err $\le \DispMedErr$ & \texttt{artifacts/rd/dispersion.json} \\
+No dense scans                  & active-site fraction $\ll 1$ & \texttt{artifacts/meta/telemetry.json} \\
+Budget respected                & zero oversubscription events & \texttt{artifacts/meta/telemetry.json} \\
+Scaling near-linear             & slope $\beta \in [0.9,1.1]$ & \texttt{artifacts/meta/scaling.csv} \\
+\bottomrule
+\end{tabular}
+\end{table}
+\FloatBarrier
+
+\section{Limitations and Boundaries}
+\label{sec:limits}
+No conserved quantity is asserted for the full RD PDE; the logit invariant is a calibration tool for the uncoupled on-site law and a drift diagnostic under coupling. “Walkers/scoreboard/memory steering” are project nicknames mapped to standard ideas (tracer probes, budgeted gate, slow bias field). External AI benchmarks are out of scope; focus here is simulator QC and runtime behavior.
+
+\section*{Reproducibility and Provenance}
+\texttt{00\_RUN\_ALL.ipynb} writes figures + CSV/JSON + seeds + commit + env; emits a contradiction report on failure. Equations are standard RD; architecture, QC gates, and thresholds are by the author.
+
+\begin{thebibliography}{10}
+
+\bibitem{Verhulst1838}
+P.~F. Verhulst.
+\newblock Notice sur la loi que la population suit dans son accroissement.
+\newblock {\em Correspondance Math\'{e}matique et Physique}, 10:113--121, 1838.
+
+\bibitem{Verhulst1845}
+P.~F. Verhulst.
+\newblock Recherches math\'{e}matiques sur la loi d'accroissement de la population.
+\newblock {\em M\'{e}m. Acad. R. Sci. Belgique}, 18:1--42, 1845.
+
+\bibitem{Fisher1937}
+R.~A. Fisher.
+\newblock The wave of advance of advantageous genes.
+\newblock {\em Annals of Eugenics}, 7:355--369, 1937.
+
+\bibitem{KPP1937}
+A.~Kolmogorov, I.~Petrovskii, and N.~Piskunov.
+\newblock Study of the diffusion equation with growth of the quantity of matter and its application to a biological problem.
+\newblock {\em Bull. Moscow Univ. Math. Mech.}, 1(6):1--25, 1937.
+\newblock (Engl.\ transl.\ in \emph{Selected Works of A.\ N.\ Kolmogorov}, Vol.~1).
+
+\bibitem{Onsager1931I}
+L.~Onsager.
+\newblock Reciprocal Relations in Irreversible Processes. I.
+\newblock {\em Phys.\ Rev.}, 37:405--426, 1931.
+
+\bibitem{Onsager1931II}
+L.~Onsager.
+\newblock Reciprocal Relations in Irreversible Processes. II.
+\newblock {\em Phys.\ Rev.}, 38:2265--2279, 1931.
+
+\bibitem{JKO1998}
+R.~Jordan, D.~Kinderlehrer, and F.~Otto.
+\newblock The variational formulation of the Fokker--Planck equation.
+\newblock {\em SIAM J.\ Math.\ Anal.}, 29(1):1--17, 1998.
+
+\bibitem{AGS2008}
+L.~Ambrosio, N.~Gigli, and G.~Savar\'{e}.
+\newblock {\em Gradient Flows in Metric Spaces and in the Space of Probability Measures}, 2nd ed.
+\newblock Birkh\"{e}user, 2008.
+
+\bibitem{Turing1952}
+A.~M. Turing.
+\newblock The chemical basis of morphogenesis.
+\newblock {\em Phil.\ Trans.\ R.\ Soc.\ B}, 237(641):37--72, 1952.
+
+\bibitem{Murray2002}
+J.~D. Murray.
+\newblock {\em Mathematical Biology I: An Introduction}, 3rd ed.
+\newblock Springer, 2002.
+
+\end{thebibliography}
+
+\end{document}
+

@@ -19,6 +19,7 @@ from .void_dynamics_adapter import universal_void_dynamics, delta_re_vgsp, delta
 from .fum_structural_homeostasis import perform_structural_homeostasis
 from .announce import Observation  # event schema for ADC bus
 
+# TODO THIS ENTIRE FILE IS DEPRECATED AND WILL NEED TO BE REMOVED. USE /mnt/ironwolf/git/Void_Unity_Proofs/fum_rt/core/sparse_connectome.py
 class Connectome:
     def __init__(self, N: int, k: int, seed: int = 0, threshold: float = 0.15, lambda_omega: float = 0.1, candidates: int = 64, structural_mode: str = "alias", traversal_walkers: int = 256, traversal_hops: int = 3, bundle_size: int = 3, prune_factor: float = 0.10):
         self.N = N

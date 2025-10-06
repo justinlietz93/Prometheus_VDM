@@ -79,19 +79,36 @@ class RevGSP:
         return float(-a_minus * math.exp(delta_t / tau_minus))
 
     def _eta_effective(self, base_lr: float, total_reward: float) -> float:
-        # Reward‑separated eta; falls back to base_lr when reward≈0 so early phases still learn
-        if abs(total_reward) < 1e-10:
-            return float(base_lr)
+        """
+        Canonical eta_effective(total_reward):
+          eta_mag = base_lr * (1 + (2*sigmoid(k*R) - 1))
+          eta_eff = eta_mag * sign(R)
+        This strictly gates learning by the sign of the global modulatory factor (SIE).
+        """
         k = self.reward_sigmoid_scale
         x = k * float(total_reward)
-        mod = 2.0 / (1.0 + math.exp(-x)) - 1.0  # 2*sigmoid-1
+        mod = 2.0 / (1.0 + math.exp(-x)) - 1.0  # 2*sigmoid - 1 in [-1,1]
         eta_mag = float(base_lr) * (1.0 + mod)
-        return float(math.copysign(eta_mag, total_reward))
+        # Explicit sign gate (sign(0)=0): no weight drift when reward ~ 0
+        if total_reward > 0.0:
+            return float(eta_mag)
+        if total_reward < 0.0:
+            return float(-eta_mag)
+        return 0.0
 
     @staticmethod
     def _gamma_from_plv(plv: float, base_decay: float = 0.95, sensitivity: float = 0.1) -> float:
-        # PLV‑gated trace decay
-        return float(base_decay + sensitivity * (float(plv) - 0.5))
+        """
+        PLV‑gated eligibility trace decay:
+            gamma = base_decay + sensitivity*(PLV - 0.5)
+        Clamp to [0, 1] for stability under noisy PLV estimates.
+        """
+        g = float(base_decay + sensitivity * (float(plv) - 0.5))
+        if g < 0.0:
+            g = 0.0
+        if g > 1.0:
+            g = 1.0
+        return g
 
     @staticmethod
     def _temporal_filter(spike_times: List[Tuple[int, int]], window_size: int = 5) -> List[Tuple[int, float]]:

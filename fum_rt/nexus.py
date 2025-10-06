@@ -136,7 +136,7 @@ class Nexus:
 
         # Select implementation with dynamic import to avoid accidental dense usage
         try:
-            if use_dense:
+            if use_dense: # TODO REMOVE DENSE SCANS
                 from fum_rt.core.connectome import Connectome as _Conn  # validation-only
             else:
                 from fum_rt.core.sparse_connectome import SparseConnectome as _Conn
@@ -145,7 +145,7 @@ class Nexus:
             from fum_rt.core.sparse_connectome import SparseConnectome as _Conn
 
         # Instantiate connectome (both backends accept the same constructor args here)
-        try:
+        try: # TODO REMOVE DENSE SCANS
             self.connectome = _Conn(
                 N=self.N, k=self.k, seed=self.seed,
                 threshold=threshold, lambda_omega=lambda_omega,
@@ -182,7 +182,7 @@ class Nexus:
         self.stim_group_size = int(max(1, stim_group_size))
         self.stim_amp = float(stim_amp)
         self.stim_max_symbols = int(max(1, stim_max_symbols))
-        try:
+        try:  # TODO REMOVE DENSE SCANS
             if hasattr(self.connectome, "_stim_decay"):
                 self.connectome._stim_decay = float(stim_decay)
         except Exception:
@@ -239,7 +239,7 @@ class Nexus:
         self.adc = ADC(r_attach=float(r_attach), ttl_init=int(ttl_init), split_patience=int(split_patience))
         # Attach bus to connectome so walkers can publish Observation events
         try:
-            self.connectome.bus = self.bus
+            self.connectome.bus = self.bus # TODO REMOVE DENSE SCANS
         except Exception:
             pass
 

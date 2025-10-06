@@ -1,0 +1,3 @@
+bin_label,expected_signal,background,exposure,eff_signal,eff_background
+bin1,10,100,1.0,0.9,1.0
+bin2,5,80,1.0,0.9,1.0
