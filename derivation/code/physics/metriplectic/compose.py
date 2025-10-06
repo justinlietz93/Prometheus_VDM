@@ -18,12 +18,13 @@ if str(CODE_ROOT) not in sys.path:
 
 # Local imports
 from physics.metriplectic.j_step import j_step_spectral_periodic
-from physics.rd_conservation.run_rd_conservation import dg_rd_step, laplacian_periodic_1d, discrete_lyapunov_Lh
+from physics.rd_conservation.run_rd_conservation import dg_rd_step_with_stats, laplacian_periodic_1d, discrete_lyapunov_Lh
 
 
 def m_step_dg(W: np.ndarray, dt: float, dx: float, D: float, r: float, u: float) -> np.ndarray:
-    """DG RD dissipative step (wrapper)."""
-    return dg_rd_step(W, dt, dx, D, r, u)
+    """DG RD dissipative step (wrapper using robust Newton+backtracking)."""
+    W1, _stats = dg_rd_step_with_stats(W, dt, dx, D, r, u)
+    return W1
 
 
 def j_only_step(W: np.ndarray, dt: float, dx: float, params: Dict[str, Any]) -> np.ndarray:

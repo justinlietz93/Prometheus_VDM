@@ -1,8 +1,5 @@
-# Physics Derivation Write Up Standards
+# **Title Name Here**
 
-## **I. Title**
-
-> {Write up title name here}
 > Author: Justin K. Lietz
 > Date: {todays date}
 >
@@ -11,7 +8,13 @@
 > Commercial use requires citation and written permission from Justin K. Lietz.
 > See LICENSE file for full terms.
 
-## **II. Introduction**
+## Authoring Policy (Comprehensiveness)
+
+- Favor comprehensive and thorough documentation over brevity. When in doubt, include necessary context that directly supports methods, gates, and results.
+- Provide enough larger-theory orientation so a technically literate reader can follow the motivation and definitions without external tutorials; keep it focused and evidence-driven.
+- Pair every conceptual claim with either a concrete equation, a gate/threshold, or a citation to reputable sources.
+
+## **Introduction**
 
 1. Include a brief overview of the topic and its importance - what is the concept being studied (eg: refractive index, resonant frequency, resistance). Where/how is it used?
 
@@ -23,7 +26,7 @@
 
 5. [**Example:**](https://www.clastify.com/ia/physics/64a6ed1b701b5600139b4265) This IA has a good introduction since it briefly introduces the main concept being studied (damping), as well as the global significance of the uses of damping such as swinging doors and amusement park rides, and the introduction is around 0.5 pages long.
 
-## **III. Research question**
+## **Research question**
 
 1. State the main research question of the experiment including the independent and dependent variables.
 
@@ -35,7 +38,7 @@
 
 5. [**Example:**](https://www.clastify.com/ia/physics/62e9f183879294001428e1b4) This IA has a good research question as it clearly states the research question and the units of the independent and dependent variables.
 
-## **IV. Background Information**
+## **Background Information**
 
 1. Describe the physics behind the main concept being analyzed. Talk about what physical properties are involved in the process (eg: why does salt affect specific heat capacity, why does the diameter of a parachute affect terminal velocity, etc).
 
@@ -55,7 +58,17 @@
 
 9. [**Example:**](https://www.clastify.com/ia/physics/64a6ed1b701b5600139b4265) This IA has good background information since it describes the main concept being studied (pendulum damping), and provides the relevant equations for the mechanism occurring. It includes relevant diagrams such as the forces on a pendulum and the angular displacement over time. The background information section is directly focused on the research question and contains in-text citations where applicable.
 
-## **V. Variables**
+10. Scope and larger theory (required, concise): Briefly situate the experiment within its parent framework (e.g., metriplectic dynamics; gradient flows), define the minimal terms used later, and explain why the framework is appropriate. Provide 2–4 citations to foundational sources.
+
+11. Core equations (required): Present 3–5 equations that are directly used in Methods/Results (e.g., invariants, discretizations, error models), with variable definitions and units. Keep derivations brief; link or cite for details.
+
+12. Map to gates (required): Explicitly connect each theoretical property to its experimental gate or metric (e.g., “DG ⇒ ΔL ≤ 0,” “Strang ⇒ slope ≥ 2 on log–log two-grid”).
+
+13. If additional context is needed beyond a few paragraphs, add a short “Theory Primer” subsection or an Appendix. Do not omit crucial background—relocate it rather than compressing away needed clarity.
+
+14. Maintain standard terminology first, with any project-specific labels in parentheses, and keep tone objective and evidence-based.
+
+## **Variables**
 
 1. Include the independent variable and units. Describe why the range of independent variables was chosen. For example, why was the height that a parachute is dropped chosen as 10-50cm instead of 50-100cm? You should justify why you have chosen specific values over others.
 
@@ -65,7 +78,7 @@
 
 4. [**Example:**](https://www.clastify.com/ia/physics/6205223f59dfc50013182e6b) This IA has a good variables section since the independent variable is clearly stated with its units, the dependent variable is stated with its units and how it will be measured, and a section of control variables is present that states why and how each variable will be controlled.
 
-## **VI. Equipment / Hardware**
+## **Equipment / Hardware**
 
 1. Create a list of all the apparatus and equipment used in the experiment.
 
@@ -77,7 +90,7 @@
 
 5. [**Example:**](https://www.clastify.com/ia/physics/62e9f183879294001428e1b4) All glassware and equipment are stated with their respective uncertainties.
 
-## **VII. Methods / Procedure**
+## **Methods / Procedure**
 
 1. Write down each step of the method exactly as it was performed in the lab.
 
@@ -101,7 +114,7 @@
 
     4. [**Example:**](https://www.clastify.com/ia/physics/62e9f183879294001428e1b4) All steps of the method are accurately noted down in the narrative tone and no first-person voice has been used. A risk assessment section has been included at the end which accounts for safety, ethical and environmental concerns.
 
-## **IIX. Results / Data**
+## **Results / Data**
 
 1. Include a table of the processed data from the experiment. Include a number and caption for the table and ensure the data is centred in the cells.
 
@@ -125,7 +138,7 @@
 
 Open with a statement of key findings, and clearly reference those findings with data from the lab. Provide logical explanations for all statements. Discuss other appropriate findings of interest. Make sure you have answered all analysis questions, and you have answered your research problem as posed in the introduction.
 
-## **X. Conclusions**
+## **Conclusions**
 
 Summarize what you learned in the lab, with specific references to the scientific concept under study which you detailed in the introduction. Describe potential sources of error (don't say human error). Critique the lab and describe opportunities for further / future work. Did you learn anything else from the lab, such as use of lab equipment, procedures, analysis methods, etc.?
 
@@ -147,11 +160,11 @@ Summarize what you learned in the lab, with specific references to the scientifi
 
 9. [**Example:**](https://www.clastify.com/ia/physics/62e9f183879294001428e1b4) The conclusion clearly re-states the aim of the essay, as well as a statement to which the research question has been answered (results support the hypothesis). Graphical trends and uncertainties are discussed in relation to the research question, such as the relationship between the variables. The reliability of the data was also discussed.
 
-### **Important Notes:**
+## **References / Works Cited**
 
-- Reports MUST be type-written.
-- Write in the 3rd person:
-- Avoid 1st and 2nd person references such as I, we, you, and you(understood).
+---
+
+### **IMPORTANT NOTES BELOW**
 
 ### Terminology & Framing
 
@@ -159,6 +172,7 @@ Summarize what you learned in the lab, with specific references to the scientifi
 - **Always define key words once, plainly.** E.g., “training = offline parameter optimization; here we do online adaptation.”
 - **Prefer mainstream language over in-house metaphors.** Map “walkers (tracer probes)”, “scoreboard (budgeted gate)”, “memory steering (slow bias field).”
 - **State scope in the first paragraph.** Say what the note _does_ and _does not_ claim.
+- **Write in the 3rd person.** Avoid 1st and 2nd person references such as I, we, you, and you(understood).
 
 ### Claims & Novelty
 

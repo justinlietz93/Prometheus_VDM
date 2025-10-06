@@ -1,9 +1,9 @@
 {
   "bc": "periodic",
   "scheme": "jmj",
-  "grid": { "N": 128, "dx": 0.01 },
-  "params": { "c": 0.5, "D": 0.1, "r": 1.0, "u": 1.0 },
-  "dt_sweep": [0.05, 0.025, 0.0125, 0.00625],
+  "grid": { "N": 128, "dx": 1.0 },
+  "params": { "c": 0.5, "D": 1.0, "r": 0.2, "u": 0.25 },
+  "dt_sweep": [0.04, 0.02, 0.01, 0.005],
   "seeds": 8,
   "notes": "Strang JMJ composition: spectral advection J-step + DG RD M-step"
 }
