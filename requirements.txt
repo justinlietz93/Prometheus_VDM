@@ -1,8 +1,8 @@
 # FUM Demo — Base dependencies (GPU-specific torch is managed separately)
 #
 # Note: Do NOT install the default CPU-only torch from PyPI on AMD/ROCm.
-# For AMD GPUs, install ROCm wheels using requirements-rocm.txt (provides torch/torchvision/torchaudio).
-#
+# For AMD GPUs, install ROCm wheels, or set up a Docker container (provides torch/torchvision/torchaudio).
+# pip3 install torch torchvision --index-url https://download.pytorch.org/whl/rocm6.4
 numpy  # For numerical computations
 networkx  # For graph operations
 matplotlib  # For plotting and visualizations
