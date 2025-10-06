@@ -18,7 +18,7 @@ Open question: does the **coupled** RD update (reaction + diffusion) possess an 
 
 ## 3. Objectives & Hypotheses
 
-**Obj‑A (Exact Conservation):** Exhibit 
+**Obj‑A (Exact Conservation):** Exhibit
 
 $$
 (S[W] = \sum_i Q_i(W_i) + \sum_{\langle i,j\rangle} H_{ij}(W_i,W_j))
