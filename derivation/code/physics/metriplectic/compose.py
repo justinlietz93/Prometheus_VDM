@@ -35,11 +35,34 @@ def m_only_step(W: np.ndarray, dt: float, dx: float, params: Dict[str, Any]) -> 
     return m_step_dg(W, dt, dx, float(params["D"]), float(params["r"]), float(params["u"]))
 
 
+def m_only_step_with_stats(W: np.ndarray, dt: float, dx: float, params: Dict[str, Any]) -> tuple[np.ndarray, Dict[str, Any]]:
+    tol = float(params.get("dg_tol", 1e-12))
+    max_iter = int(params.get("dg_max_iter", 20))
+    max_backtracks = int(params.get("dg_max_backtracks", 10))
+    return dg_rd_step_with_stats(W, dt, dx, float(params["D"]), float(params["r"]), float(params["u"]), tol=tol, max_iter=max_iter, max_backtracks=max_backtracks)
+
+
 def jmj_strang_step(W: np.ndarray, dt: float, dx: float, params: Dict[str, Any]) -> np.ndarray:
     """Strang composition: J(dt/2) → M(dt) → J(dt/2)."""
     W1 = j_only_step(W, 0.5 * dt, dx, params)
     W2 = m_only_step(W1, dt, dx, params)
     W3 = j_only_step(W2, 0.5 * dt, dx, params)
+    return W3
+
+
+def jmj_strang_step_with_stats(W: np.ndarray, dt: float, dx: float, params: Dict[str, Any]) -> tuple[np.ndarray, Dict[str, Any]]:
+    """Strang composition with Newton stats for the middle M-step."""
+    W1 = j_only_step(W, 0.5 * dt, dx, params)
+    W2, stats = m_only_step_with_stats(W1, dt, dx, params)
+    W3 = j_only_step(W2, 0.5 * dt, dx, params)
+    return W3, stats
+
+
+def mjm_strang_step(W: np.ndarray, dt: float, dx: float, params: Dict[str, Any]) -> np.ndarray:
+    """Reverse Strang composition: M(dt/2) → J(dt) → M(dt/2)."""
+    W1, _ = m_only_step_with_stats(W, 0.5 * dt, dx, params)
+    W2 = j_only_step(W1, dt, dx, params)
+    W3, _ = m_only_step_with_stats(W2, 0.5 * dt, dx, params)
     return W3
 
 
@@ -55,5 +78,7 @@ def lyapunov_values(W: np.ndarray, dx: float, D: float, r: float, u: float) -> f
 
 
 __all__ = [
-    "j_only_step", "m_only_step", "jmj_strang_step", "two_grid_error_inf", "lyapunov_values"
+    "j_only_step", "m_only_step", "m_only_step_with_stats",
+    "jmj_strang_step", "jmj_strang_step_with_stats", "mjm_strang_step",
+    "two_grid_error_inf", "lyapunov_values"
 ]

@@ -15,7 +15,11 @@ if str(CODE_ROOT) not in sys.path:
     sys.path.insert(0, str(CODE_ROOT))
 
 from common.io_paths import figure_path, log_path, write_log
-from physics.metriplectic.compose import j_only_step, m_only_step, jmj_strang_step, two_grid_error_inf, lyapunov_values
+from physics.metriplectic.compose import (
+    j_only_step, m_only_step, m_only_step_with_stats,
+    jmj_strang_step, jmj_strang_step_with_stats, mjm_strang_step,
+    two_grid_error_inf, lyapunov_values
+)
 from physics.rd_conservation.run_rd_conservation import cas_solve_linear_balance, Q_from_coeffs
 
 
@@ -176,6 +180,174 @@ def m_lyapunov_check(spec: StepSpec) -> Dict[str, Any]:
     return logj
 
 
+def small_dt_sweep_polish(spec: StepSpec) -> Dict[str, Any]:
+    """Repeat JMJ with smaller dt sweep and tighter DG tolerance; log Newton stats.
+
+    Uses dt_sweep_small from params if present, else defaults to [0.02,0.01,0.005,0.0025].
+    Passes dg_tol=1e-12 (overridable via params). Aggregates stats across seeds.
+    """
+    if spec.scheme.lower() != "jmj":
+        return {"skipped": True}
+    N = int(spec.grid["N"]) ; dx = float(spec.grid["dx"]) ; params = dict(spec.params)
+    params["dg_tol"] = float(params.get("dg_tol", 1e-12))
+    dt_vals = [0.02, 0.01, 0.005, 0.0025]
+    dt_vals = [float(d) for d in spec.params.get("dt_sweep_small", dt_vals)]
+    seeds = list(range(int(spec.seeds))) if isinstance(spec.seeds, int) else [int(s) for s in spec.seeds]
+    dt_to_errs: Dict[float, List[float]] = {d: [] for d in dt_vals}
+    newton_rows = []
+    for seed in seeds:
+        W0 = rng_field(N, 0.1, seed)
+        for dt in dt_vals:
+            # Run JMJ with stats to capture Newton behavior in the M step
+            step_stats = []
+            def step_with_stats(W_in, dt_in):
+                W1 = j_only_step(W_in, 0.5 * dt_in, dx, params)
+                W2, stats = m_only_step_with_stats(W1, dt_in, dx, params)
+                step_stats.append({"iters": int(stats.get("iters", 0)), "final_residual_inf": float(stats.get("final_residual_inf", 0.0)), "backtracks": int(stats.get("backtracks", 0)), "converged": bool(stats.get("converged", False))})
+                W3 = j_only_step(W2, 0.5 * dt_in, dx, params)
+                return W3
+            e = two_grid_error_inf(step_with_stats, W0, dt)
+            dt_to_errs[dt].append(e)
+            if step_stats:
+                s0 = step_stats[0]
+                newton_rows.append({"seed": int(seed), "dt": float(dt), **s0})
+    med = [float(np.median(dt_to_errs[d])) for d in dt_vals]
+    x = np.log(np.array(dt_vals, dtype=float))
+    y = np.log(np.array(med, dtype=float) + 1e-30)
+    A = np.vstack([x, np.ones_like(x)]).T
+    slope, intercept = np.linalg.lstsq(A, y, rcond=None)[0]
+    y_pred = A @ np.array([slope, intercept])
+    ss_res = float(np.sum((y - y_pred) ** 2))
+    ss_tot = float(np.sum((y - np.mean(y)) ** 2))
+    R2 = 1.0 - (ss_res / ss_tot if ss_tot > 0 else 0.0)
+    failed_gate = bool(slope < 2.9 or R2 < 0.999)
+    # Artifacts
+    fig_path = figure_path("metriplectic", f"residual_vs_dt_small_{spec.scheme}", failed=failed_gate)
+    plt.figure(figsize=(6, 4))
+    plt.plot(dt_vals, med, "o-")
+    plt.xscale("log"); plt.yscale("log")
+    plt.xlabel("dt"); plt.ylabel("two-grid error ||Φ_dt - Φ_{dt/2}∘Φ_{dt/2}||_∞")
+    plt.title(f"{spec.scheme} small-dt: slope≈{float(slope):.3f}, R2≈{float(R2):.4f}")
+    plt.tight_layout(); plt.savefig(fig_path, dpi=150); plt.close()
+    # Logs
+    write_log(log_path("metriplectic", f"sweep_small_exact_{spec.scheme}", failed=failed_gate), {"samples": [{"seed": r["seed"], "dt": r["dt"]} for r in newton_rows]})
+    summary = {
+        "scheme": spec.scheme,
+        "dt": dt_vals,
+        "two_grid_error_inf_med": med,
+        "fit": {"slope": float(slope), "R2": float(R2)},
+        "failed": failed_gate,
+        "figure": str(fig_path),
+        "newton_stats": newton_rows,
+        "dg_tol": float(params["dg_tol"]) 
+    }
+    write_log(log_path("metriplectic", f"sweep_small_dt_{spec.scheme}", failed=failed_gate), summary)
+    csv_path = log_path("metriplectic", f"sweep_small_dt_{spec.scheme}", failed=failed_gate, type="csv")
+    with csv_path.open("w", encoding="utf-8") as f:
+        f.write("dt,two_grid_error_inf_median\n")
+        for d, e in zip(dt_vals, med):
+            f.write(f"{d},{e}\n")
+    # Newton stats CSV
+    csv2 = log_path("metriplectic", f"newton_stats_small_{spec.scheme}", failed=failed_gate, type="csv")
+    with csv2.open("w", encoding="utf-8") as f:
+        f.write("seed,dt,iters,final_residual_inf,backtracks,converged\n")
+        for r in newton_rows:
+            f.write(f"{r['seed']},{r['dt']},{r['iters']},{r['final_residual_inf']},{r['backtracks']},{int(r['converged'])}\n")
+    return summary
+
+
+def commutator_defect_diagnostic(spec: StepSpec) -> Dict[str, Any]:
+    """Measure Strang defect ||Φ^JMJ_Δt - Φ^MJM_Δt||_∞ vs Δt and fit scaling.
+
+    Acts as a proxy for commutator strength; expected ≈ O(Δt^3) under smoothness.
+    """
+    if spec.scheme.lower() != "jmj":
+        return {"skipped": True}
+    N = int(spec.grid["N"]) ; dx = float(spec.grid["dx"]) ; params = dict(spec.params)
+    dt_vals = [0.04, 0.02, 0.01, 0.005]
+    seeds = list(range(int(spec.seeds))) if isinstance(spec.seeds, int) else [int(s) for s in spec.seeds]
+    dt_to_def: Dict[float, List[float]] = {float(d): [] for d in dt_vals}
+    for seed in seeds:
+        W0 = rng_field(N, 0.1, seed)
+        for dt in dt_vals:
+            W_jmj = jmj_strang_step(W0, dt, dx, params)
+            W_mjm = mjm_strang_step(W0, dt, dx, params)
+            def_err = float(np.linalg.norm(W_jmj - W_mjm, ord=np.inf))
+            dt_to_def[float(dt)].append(def_err)
+    dt_vals = [float(d) for d in dt_vals]
+    med = [float(np.median(dt_to_def[d])) for d in dt_vals]
+    x = np.log(np.array(dt_vals, dtype=float))
+    y = np.log(np.array(med, dtype=float) + 1e-30)
+    A = np.vstack([x, np.ones_like(x)]).T
+    slope, intercept = np.linalg.lstsq(A, y, rcond=None)[0]
+    y_pred = A @ np.array([slope, intercept])
+    ss_res = float(np.sum((y - y_pred) ** 2))
+    ss_tot = float(np.sum((y - np.mean(y)) ** 2))
+    R2 = 1.0 - (ss_res / ss_tot if ss_tot > 0 else 0.0)
+    failed_gate = bool(R2 < 0.999)
+    fig_path = figure_path("metriplectic", "strang_defect_vs_dt", failed=failed_gate)
+    plt.figure(figsize=(6,4)); plt.plot(dt_vals, med, "o-"); plt.xscale("log"); plt.yscale("log")
+    plt.xlabel("dt"); plt.ylabel("||Φ^JMJ_Δt - Φ^MJM_Δt||_∞"); plt.title(f"Strang defect: slope≈{float(slope):.3f}, R2≈{float(R2):.4f}")
+    plt.tight_layout(); plt.savefig(fig_path, dpi=150); plt.close()
+    logj = {"dt": dt_vals, "defect_med": med, "fit": {"slope": float(slope), "R2": float(R2)}, "figure": str(fig_path), "failed": failed_gate}
+    write_log(log_path("metriplectic", "strang_defect_vs_dt", failed=failed_gate), logj)
+    csv_path = log_path("metriplectic", "strang_defect_vs_dt", failed=failed_gate, type="csv")
+    with csv_path.open("w", encoding="utf-8") as f:
+        f.write("dt,strang_defect_median\n")
+        for d, e in zip(dt_vals, med):
+            f.write(f"{d},{e}\n")
+    return logj
+
+
+def robustness_v5_grid(spec: StepSpec) -> Dict[str, Any]:
+    """Run a small grid of (r,u,D,N) tuples; aggregate median slopes and Lyapunov violations.
+
+    Gate: PASS if ≥80% of tuples satisfy (slope ≥ 2.9, R2 ≥ 0.999, Lyapunov violations = 0).
+    """
+    tuples = spec.params.get("v5_grid")
+    if tuples is None:
+        tuples = [
+            {"r": 0.2, "u": 0.25, "D": 1.0, "N": 128},
+            {"r": 0.1, "u": 0.2,  "D": 0.5, "N": 128},
+            {"r": 0.3, "u": 0.25, "D": 1.0, "N": 256},
+        ]
+    results = []
+    passes = 0
+    for tup in tuples:
+        grid = {"N": int(tup.get("N", spec.grid["N"])), "dx": float(spec.grid["dx"])}
+        params = dict(spec.params)
+        params.update({"D": float(tup["D"]), "r": float(tup["r"]), "u": float(tup["u"])})
+        local = StepSpec(bc=spec.bc, scheme=spec.scheme, grid=grid, params=params, dt_sweep=spec.dt_sweep, seeds=spec.seeds, notes="v5_grid")
+        sw = sweep_two_grid(local)
+        ly = m_lyapunov_check(local)
+        slope = float(sw.get("fit", {}).get("slope", 0.0))
+        R2 = float(sw.get("fit", {}).get("R2", 0.0))
+        viol = int(ly.get("violations", 0)) if isinstance(ly, dict) else 0
+        ok = (slope >= 2.9) and (R2 >= 0.999) and (viol == 0)
+        passes += int(ok)
+        results.append({
+            "tuple": tup,
+            "slope": slope,
+            "R2": R2,
+            "lyapunov_violations": viol,
+            "pass": bool(ok),
+            "two_grid_log": sw,
+            "lyapunov_log": ly
+        })
+    pass_rate = float(passes) / float(len(tuples) if tuples else 1)
+    passed = bool(pass_rate >= 0.8)
+    logj = {"results": results, "pass_rate": pass_rate, "passed": passed}
+    write_log(log_path("metriplectic", "robustness_v5_grid", failed=not passed), logj)
+    # CSV for quick scan
+    csvp = log_path("metriplectic", "robustness_v5_grid", failed=not passed, type="csv")
+    with csvp.open("w", encoding="utf-8") as f:
+        f.write("D,r,u,N,slope,R2,lyapunov_violations,pass\n")
+        for rj in results:
+            t = rj["tuple"]
+            f.write(f"{t['D']},{t['r']},{t['u']},{t['N']},{rj['slope']},{rj['R2']},{rj['lyapunov_violations']},{int(rj['pass'])}\n")
+    return logj
+
+
 def main():
     import argparse
     p = argparse.ArgumentParser(description="Metriplectic Harness (additive to RD)")
@@ -197,6 +369,9 @@ def main():
     j_rev = j_reversibility_check(spec)
     m_lya = m_lyapunov_check(spec)
     sweep = sweep_two_grid(spec)
+    small = small_dt_sweep_polish(spec)
+    defect = commutator_defect_diagnostic(spec)
+    v5 = robustness_v5_grid(spec)
     # Fixed-dt |ΔS| comparison panel across j_only, m_only, jmj (for paper narrative)
     try:
         _fixed_dt_deltaS_compare(spec)
@@ -208,7 +383,10 @@ def main():
         "scheme": spec.scheme,
         "j_reversibility": j_rev,
         "m_lyapunov": m_lya,
-        "two_grid": sweep
+        "two_grid": sweep,
+        "small_dt_sweep": small,
+        "strang_defect": defect,
+        "robustness_v5": v5
     }, indent=2))
 
 
