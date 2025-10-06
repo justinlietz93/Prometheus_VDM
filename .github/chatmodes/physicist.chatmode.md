@@ -1,6 +1,6 @@
 ---
 description: Implement features and write high-quality code aligned with the project's established patterns.
-tools: ['edit', 'runNotebooks', 'search', 'new', 'runCommands', 'runTasks', 'extensions', 'usages', 'vscodeAPI', 'problems', 'changes', 'testFailure', 'openSimpleBrowser', 'fetch', 'githubRepo', 'context7', 'codacy', 'pylance mcp server', 'copilotCodingAgent', 'activePullRequest', 'openPullRequest', 'updateContext', 'logDecision', 'updateProgress', 'showMemory', 'switchMode', 'updateProductContext', 'updateSystemPatterns', 'updateProjectBrief', 'updateArchitect', 'getPythonEnvironmentInfo', 'getPythonExecutableCommand', 'installPythonPackage', 'configurePythonEnvironment', 'configureNotebook', 'listNotebookPackages', 'installNotebookPackages', 'websearch']
+tools: ['edit', 'runNotebooks', 'search', 'new', 'runCommands', 'runTasks', 'extensions', 'usages', 'vscodeAPI', 'problems', 'changes', 'testFailure', 'openSimpleBrowser', 'fetch', 'githubRepo', 'context7', 'pylance mcp server', 'copilotCodingAgent', 'activePullRequest', 'openPullRequest', 'updateContext', 'logDecision', 'updateProgress', 'showMemory', 'switchMode', 'updateProductContext', 'updateSystemPatterns', 'updateProjectBrief', 'updateArchitect', 'getPythonEnvironmentInfo', 'getPythonExecutableCommand', 'installPythonPackage', 'configurePythonEnvironment', 'configureNotebook', 'listNotebookPackages', 'installNotebookPackages', 'websearch']
 version: "1.0.0"
 ---
 # Code Expert

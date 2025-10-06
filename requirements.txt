@@ -1,25 +1,28 @@
-# FUM Demo
-numpy # For numerical computations
-networkx # For graph operations
-matplotlib # For plotting and visualizations
-tqdm # For progress bars
-scipy # For sparse matrix operations
-ripser # For TDA computations
-imageio # For saving visualizations as GIFs
-torch # For deep learning model
-opencv-python # For image processing
-librosa # For audio processing
-persim # For persistent homology computations
-h5py # For saving FUM's brain
-plotly # For interactive visualizations
-dash # For web-based visualizations
-redis # For Redis integration
+# FUM Demo — Base dependencies (GPU-specific torch is managed separately)
+#
+# Note: Do NOT install the default CPU-only torch from PyPI on AMD/ROCm.
+# For AMD GPUs, install ROCm wheels using requirements-rocm.txt (provides torch/torchvision/torchaudio).
+#
+numpy  # For numerical computations
+networkx  # For graph operations
+matplotlib  # For plotting and visualizations
+tqdm  # For progress bars
+scipy  # For sparse matrix operations
+ripser  # For TDA computations
+imageio  # For saving visualizations as GIFs
+opencv-python  # For image processing
+librosa  # For audio processing
+persim  # For persistent homology computations
+h5py  # For saving FUM's brain
+plotly  # For interactive visualizations
+dash  # For web-based visualizations
+redis  # For Redis integration
 
 # Testing
 pytest
 
 # Tools
-pypdf2 # For PDF text extraction
+pypdf2  # For PDF text extraction
 
 # Custom Advanced Math Library
-statsmodels # For statistical models
+statsmodels  # For statistical models
