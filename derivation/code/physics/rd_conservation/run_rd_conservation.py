@@ -12,6 +12,8 @@ import sys
 from dataclasses import dataclass
 import argparse
 from typing import List, Dict, Any
+from common.io_paths import figure_path, log_path, write_log
+from physics.reaction_diffusion.reaction_exact import logistic_invariant_Q
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -21,8 +23,6 @@ CODE_ROOT = Path(__file__).resolve().parents[2]
 if str(CODE_ROOT) not in sys.path:
     sys.path.insert(0, str(CODE_ROOT))
 
-from common.io_paths import figure_path, log_path, write_log
-from physics.reaction_diffusion.reaction_exact import logistic_invariant_Q
 
 
 @dataclass
@@ -87,7 +87,7 @@ def reaction_only_q_invariant_convergence(r: float, ucoef: float, W0: float, dt_
         steps = max(2, int(np.ceil(T / dt)))
         t = 0.0
         u = np.array([W0], dtype=float)
-        q0 = float(logistic_invariant_Q(u, r, ucoef, t))
+        q0 = float(np.asarray(logistic_invariant_Q(u, r, ucoef, t)).reshape(-1)[0])
         max_drift = 0.0
         viol = 0
         for _ in range(steps):
@@ -97,7 +97,7 @@ def reaction_only_q_invariant_convergence(r: float, ucoef: float, W0: float, dt_
             upper = (r / ucoef) if ucoef != 0 else np.inf
             if not (0.0 < float(u[0]) < upper):
                 viol += 1
-            q = float(logistic_invariant_Q(u, r, ucoef, t))
+            q = float(np.asarray(logistic_invariant_Q(u, r, ucoef, t)).reshape(-1)[0])
             max_drift = max(max_drift, abs(q - q0))
         max_drifts.append(max_drift)
         domain_violations.append(viol)
@@ -107,23 +107,31 @@ def reaction_only_q_invariant_convergence(r: float, ucoef: float, W0: float, dt_
     y = np.log(np.array(max_drifts, dtype=float) + eps)
     A = np.vstack([x, np.ones_like(x)]).T
     slope, intercept = np.linalg.lstsq(A, y, rcond=None)[0]
-    # Plot
-    fig_path = figure_path("rd_conservation", "q_invariant_convergence", failed=False)
+    # Determine control gate and route artifacts accordingly
+    expected_slope = 4.0
+    failed_gate = bool(slope < 3.9)
+    # Plot (figures only go to figures/)
+    fig_path = figure_path("rd_conservation", "q_invariant_convergence", failed=failed_gate)
     plt.figure(figsize=(6, 4))
     plt.plot(dt_list, max_drifts, "o-")
     plt.xscale("log"); plt.yscale("log")
     plt.xlabel("dt"); plt.ylabel("max |ΔQ|")
     plt.title(f"RK4 reaction-only: slope≈{slope:.3f}")
     plt.tight_layout(); plt.savefig(fig_path, dpi=150); plt.close()
-    # Numeric caption sidecar json
-    Path(str(fig_path).replace(".png", ".json")).write_text(json.dumps({
+    # Write JSON/CSV under logs/
+    qi_log = {
         "figure": str(fig_path),
         "slope": float(slope),
         "order_p": 4,
-        "expected_slope": 4.0
-    }, indent=2))
-    # CSV companion next to figure (dt,max_abs_Q_drift,domain_violations)
-    csv_path = Path(str(fig_path).replace(".png", ".csv"))
+        "expected_slope": float(expected_slope),
+        "dt": [float(d) for d in dt_list],
+        "max_abs_Q_drift": [float(m) for m in max_drifts],
+        "domain_violations": [int(v) for v in domain_violations],
+        "failed": failed_gate
+    }
+    qi_log_path = log_path("rd_conservation", "q_invariant_convergence", failed=failed_gate)
+    write_log(qi_log_path, qi_log)
+    csv_path = log_path("rd_conservation", "q_invariant_convergence", failed=failed_gate, type="csv")
     with csv_path.open("w", encoding="utf-8") as f:
         f.write("dt,max_abs_Q_drift,domain_violations\n")
         for d, m, v in zip(dt_list, max_drifts, domain_violations):
@@ -133,7 +141,8 @@ def reaction_only_q_invariant_convergence(r: float, ucoef: float, W0: float, dt_
         "max_abs_Q_drift": max_drifts,
         "domain_violations": domain_violations,
         "fit": {"slope": float(slope), "intercept": float(intercept)},
-        "figure": str(fig_path)
+        "figure": str(fig_path),
+        "failed": failed_gate
     }
 
 
@@ -160,20 +169,24 @@ def lyapunov_monitor(N: int, dx: float, D: float, r: float, ucoef: float, dt: fl
         L_now = discrete_lyapunov_Lh(W, dx, D, r, ucoef)
         series.append({"step": k + 1, "delta_L": float(L_now - L_prev), "L": float(L_now)})
         L_prev = L_now
-    fig_path = figure_path("rd_conservation", "lyapunov_delta_per_step", failed=False)
+    # Gate: Lyapunov should be non-increasing within a small tolerance
+    tol_pos = 1e-12
+    violations = int(sum(1 for s in series if s["delta_L"] > tol_pos))
+    failed_gate = bool(violations > 0)
+    fig_path = figure_path("rd_conservation", "lyapunov_delta_per_step", failed=failed_gate)
     plt.figure(figsize=(6, 4))
     plt.plot([s["step"] for s in series], [s["delta_L"] for s in series], "o-")
     plt.axhline(0.0, color='k', linewidth=0.8)
     plt.xlabel("step"); plt.ylabel("ΔL_h")
     plt.title("Discrete Lyapunov per step (should be ≤ 0)")
     plt.tight_layout(); plt.savefig(fig_path, dpi=150); plt.close()
-    # CSV companion for ΔL series
-    csv_path3 = Path(str(fig_path).replace(".png", ".csv"))
+    # CSV companion for ΔL series — write to logs directory
+    csv_path3 = log_path("rd_conservation", "lyapunov_delta_per_step", failed=failed_gate, type="csv")
     with csv_path3.open("w", encoding="utf-8") as f:
         f.write("step,delta_L,L\n")
         for s in series:
             f.write(f"{s['step']},{s['delta_L']},{s['L']}\n")
-    return {"series": series, "figure": str(fig_path)}
+    return {"series": series, "figure": str(fig_path), "failed": failed_gate, "violations": violations, "tol_pos": tol_pos}
 
 
 def rd_euler_step(W: np.ndarray, dt: float, dx: float, D: float, r: float, ucoef: float) -> np.ndarray:
@@ -222,30 +235,43 @@ def objA_objB_sweeps(N: int, dx: float, D: float, r: float, ucoef: float, dt_lis
         "params": {"N": N, "dx": dx, "D": D, "r": r, "u": ucoef},
         "samples": exact_samples
     }
-    write_log(log_path("rd_conservation", "sweep_exact", failed=False), sweep_exact)
+    # Gate for Obj-A/B: slope near expected and good linear fit
+    if expected_dt_slope > 0:
+        slope_ok = abs(float(slope) - float(expected_dt_slope)) <= 0.25 * float(expected_dt_slope)
+    else:
+        slope_ok = abs(float(slope)) <= 0.1
+    R2_ok = float(R2) >= 0.98
+    failed_gate = not (slope_ok and R2_ok)
+    write_log(log_path("rd_conservation", "sweep_exact", failed=failed_gate), sweep_exact)
     sweep_dt = {
         "scheme": scheme,
         "dt": dt_max,
         "max_abs_residual": res_max,
-        "fit": {"slope": float(slope), "R2": float(R2)}
+        "fit": {"slope": float(slope), "R2": float(R2)},
+        "expected_slope": float(expected_dt_slope),
+        "failed": failed_gate
     }
-    write_log(log_path("rd_conservation", "sweep_dt", failed=False), sweep_dt)
-    fig_path = figure_path("rd_conservation", "residual_vs_dt", failed=False)
+    write_log(log_path("rd_conservation", "sweep_dt", failed=failed_gate), sweep_dt)
+    fig_path = figure_path("rd_conservation", "residual_vs_dt", failed=failed_gate)
     plt.figure(figsize=(6, 4))
     plt.plot(dt_max, res_max, "o-")
     plt.xscale("log"); plt.yscale("log")
     plt.xlabel("dt"); plt.ylabel("max |residual|")
     plt.title(f"Obj-A/B baseline H=0: slope≈{float(slope):.3f}, R2≈{float(R2):.4f}")
     plt.tight_layout(); plt.savefig(fig_path, dpi=150); plt.close()
-    # Numeric caption sidecar and CSV
-    Path(str(fig_path).replace(".png", ".json")).write_text(json.dumps({
+    # Numeric caption/log and CSV go to logs directory (not beside figures)
+    caption = {
         "slope": float(slope),
         "R2": float(R2),
         "order_p": int(order_p),
         "expected_slope": float(expected_dt_slope),
-        "figure": str(fig_path)
-    }, indent=2))
-    csv_path2 = Path(str(fig_path).replace(".png", ".csv"))
+        "figure": str(fig_path),
+        "dt": dt_max,
+        "max_abs_residual": res_max
+    }
+    cap_path = log_path("rd_conservation", "residual_vs_dt", failed=failed_gate)
+    write_log(cap_path, caption)
+    csv_path2 = log_path("rd_conservation", "residual_vs_dt", failed=failed_gate, type="csv")
     with csv_path2.open("w", encoding="utf-8") as f:
         f.write("dt,max_abs_residual\n")
         for d, rmax in zip(dt_max, res_max):
@@ -319,10 +345,19 @@ def main():
         [float(d) for d in spec.dt_sweep], seed_list, spec.scheme,
         int(spec.order_p), float(spec.expected_dt_slope)
     )
+    # Log explicit Obj-A/B gate outcome for clarity
+    objAB_failed = bool(sweep_dt.get("failed", False))
+    objAB_gate_log = {
+        "gate": "objAB_residual_vs_dt",
+        "expected_slope": float(spec.expected_dt_slope),
+        "fit": sweep_dt.get("fit", {}),
+        "passes": {"slope_close_and_R2": (not objAB_failed)}
+    }
+    write_log(log_path("rd_conservation", "objAB_gate", failed=objAB_failed), objAB_gate_log)
 
     # Obj-C Lyapunov
     lyap = lyapunov_monitor(N, dx, D, float(spec.params["r"]), float(spec.params["u"]), min(spec.dt_sweep), steps=50, seed=123)
-    write_log(log_path("rd_conservation", "lyapunov_series", failed=False), lyap)
+    write_log(log_path("rd_conservation", "lyapunov_series", failed=bool(lyap.get("failed", False))), lyap)
 
     print(json.dumps({
         "controls_diffusion": ctrl_diff_log["passes"],
@@ -331,6 +366,7 @@ def main():
         "objA_samples": len(sweep_exact.get("samples", [])),
         "objB_fit_slope": sweep_dt.get("fit", {}).get("slope"),
         "objB_fit_R2": sweep_dt.get("fit", {}).get("R2"),
+        "objB_pass": (not objAB_failed),
         "objC_series_len": len(lyap.get("series", []))
     }, indent=2))
 
