@@ -1,0 +1,21 @@
+{
+  "dt": [
+    0.02
+  ],
+  "expected_slope": 2.0,
+  "failed": false,
+  "figure": "/mnt/ironwolf/git/Void_Unity_Proofs/derivation/code/outputs/figures/metriplectic/20251006_132403_residual_vs_dt_jmj__tag-smoke.png",
+  "fit": {
+    "R2": 1.0,
+    "slope": 3.4795724372004853
+  },
+  "gate": {
+    "R2_min": 0.9,
+    "slope_min": 2.0
+  },
+  "scheme": "jmj",
+  "trivial_exact": false,
+  "two_grid_error_inf_med": [
+    5.035295437827436e-07
+  ]
+}

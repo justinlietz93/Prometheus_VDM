@@ -1,0 +1,14 @@
+{
+  "defect_med": [
+    4.936526158891286e-07
+  ],
+  "dt": [
+    0.02
+  ],
+  "failed": false,
+  "figure": "/mnt/ironwolf/git/Void_Unity_Proofs/derivation/code/outputs/figures/metriplectic/20251006_132403_strang_defect_vs_dt__tag-smoke.png",
+  "fit": {
+    "R2": 1.0,
+    "slope": 3.48432579865039
+  }
+}

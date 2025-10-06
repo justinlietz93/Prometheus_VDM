@@ -173,7 +173,7 @@ $$
   Values: $\|W_2-W_0\|_\infty=1.0399\times10^{-9}$; $\|W_1\|_2-\|W_0\|_2=1.12\times10^{-10}$; $\|W_2\|_2-\|W_0\|_2=2.24\times10^{-10}$.  
   JSON: `derivation/code/outputs/logs/metriplectic/failed_runs/20251006_100823_j_reversibility.json`.
 
-- Fixed-$\Delta t$ $|\Delta S|$ panel (dt=min sweep = 0.00125):  
+- Fixed-$\Delta t$ $|\Delta S|$ panel (dt=min sweep = 0.00125): J near round-off; M drives entropy; JMJ overlaps M.  
   Figure: `derivation/code/outputs/figures/metriplectic/20251006_100845_fixed_dt_deltaS_compare.png`  
   CSV/JSON: `derivation/code/outputs/logs/metriplectic/20251006_100845_fixed_dt_deltaS_compare.{csv,json}`
 
@@ -203,11 +203,14 @@ Decision fork (locked):
 
 We close the metriplectic chapter with a decisive record: M-only and Lyapunov gates hold; JMJ order is commutator-limited near $2.7$ under the locked setup; J-only fails the tightened cap in this run. This is sufficient grounding to proceed to the larger-physics phase with a clear “if-not, explain-why” resolution.
 
-### Next steps
+### Next steps (upstream)
 
-- Extend the $\Delta t$ sweep to $\{0.02, 0.01, 0.005, 0.0025\}$ and re-fit slopes.  
-- Tighten DG residual tolerance to $10^{-12}$ and cap Newton backtracking.  
-- Apply the same styling polish to all residual and Lyapunov figures for a consistent paper-ready set.
+- Freeze this chapter with Obj‑B status as recorded (M-only PASS, JMJ FAIL with defect explanation, J-only FAIL due to round-off).  
+- Open the KG$\oplus$RD metriplectic experiment (two-field conservative J with Noether currents), reusing this harness:
+  - J-only: symplectic KG (e.g., Verlet); gates: reversibility and Noether current checks.  
+  - M-only: DG RD as-is; gates: H-theorem (Lyapunov monotonicity).  
+  - JMJ: Strang; gates: H-theorem, Noether currents, order fit (observational; expect commutator-limited scaling).  
+- For future J-only (spectral) gates, adopt a pragmatic cap scaled to FFT round-off: $\|W_2-W_0\|_\infty\le c\,\epsilon_{\text{mach}}\sqrt{N}$ with measured $c$ logged (do not silently relax thresholds).
 
 ## Artifact index (paired data)
 

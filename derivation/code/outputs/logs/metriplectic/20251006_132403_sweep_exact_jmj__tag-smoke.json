@@ -1,0 +1,11 @@
+{
+  "bc": "periodic",
+  "samples": [
+    {
+      "dt": 0.02,
+      "seed": 0,
+      "two_grid_error_inf": 5.035295437827436e-07
+    }
+  ],
+  "scheme": "jmj"
+}

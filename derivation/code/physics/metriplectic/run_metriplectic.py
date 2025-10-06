@@ -32,6 +32,8 @@ class StepSpec:
     dt_sweep: List[float]
     seeds: int | List[int]
     notes: str | None = None
+    # Optional tag for artifact slugs; may also be supplied via params["tag"].
+    tag: str | None = None
 
 
 def rng_field(N: int, scale: float, seed: int) -> np.ndarray:
@@ -51,6 +53,25 @@ def select_stepper(scheme: str, dx: float, params: Dict[str, Any]):
     else:
         return lambda W, dt: j_only_step(W, dt, dx, params)
 
+
+def _slug(spec: StepSpec, base: str) -> str:
+    """Append optional run tag to a base slug for artifact paths.
+
+    Tag resolution order: spec.params['tag'] if present, else spec.tag.
+    If no tag, returns base unchanged.
+    """
+    tag = None
+    try:
+        tag = spec.params.get("tag")
+    except Exception:
+        tag = None
+    if tag is None:
+        tag = getattr(spec, "tag", None)
+    if tag is None or str(tag).strip() == "":
+        return base
+    # sanitize minimal: replace spaces with '-'
+    safe = str(tag).strip().replace(" ", "-")
+    return f"{base}__{safe}"
 
 def sweep_two_grid(spec: StepSpec) -> Dict[str, Any]:
     N = int(spec.grid["N"])
@@ -91,7 +112,7 @@ def sweep_two_grid(spec: StepSpec) -> Dict[str, Any]:
         failed_gate = bool((slope < slope_min) or (R2 < gate_R2))
 
     # Artifacts
-    fig_path = figure_path("metriplectic", f"residual_vs_dt_{spec.scheme}", failed=failed_gate)
+    fig_path = figure_path("metriplectic", _slug(spec, f"residual_vs_dt_{spec.scheme}"), failed=failed_gate)
     plt.figure(figsize=(6, 4))
     plt.plot(dt_vals, med, "o-")
     plt.xscale("log"); plt.yscale("log")
@@ -103,7 +124,7 @@ def sweep_two_grid(spec: StepSpec) -> Dict[str, Any]:
     plt.tight_layout(); plt.savefig(fig_path, dpi=150); plt.close()
 
     sweep_exact = {"scheme": spec.scheme, "bc": spec.bc, "samples": samples}
-    write_log(log_path("metriplectic", f"sweep_exact_{spec.scheme}", failed=failed_gate), sweep_exact)
+    write_log(log_path("metriplectic", _slug(spec, f"sweep_exact_{spec.scheme}"), failed=failed_gate), sweep_exact)
     summary = {
         "scheme": spec.scheme,
         "dt": dt_vals,
@@ -115,8 +136,8 @@ def sweep_two_grid(spec: StepSpec) -> Dict[str, Any]:
         "figure": str(fig_path),
         "trivial_exact": trivial_exact
     }
-    write_log(log_path("metriplectic", f"sweep_dt_{spec.scheme}", failed=failed_gate), summary)
-    csv_path = log_path("metriplectic", f"residual_vs_dt_{spec.scheme}", failed=failed_gate, type="csv")
+    write_log(log_path("metriplectic", _slug(spec, f"sweep_dt_{spec.scheme}"), failed=failed_gate), summary)
+    csv_path = log_path("metriplectic", _slug(spec, f"residual_vs_dt_{spec.scheme}"), failed=failed_gate, type="csv")
     with csv_path.open("w", encoding="utf-8") as f:
         f.write("dt,two_grid_error_inf_median\n")
         for d, e in zip(dt_vals, med):
@@ -147,17 +168,23 @@ def j_reversibility_check(spec: StepSpec) -> Dict[str, Any]:
     passes_strict = (rev_err <= tol_rev_strict) and (l2_drift_01 <= tol_l2) and (l2_drift_20 <= tol_l2)
     cap_ok = (rev_err <= tol_rev_cap) and (l2_drift_01 <= tol_l2) and (l2_drift_20 <= tol_l2)
     passes = passes_strict
+    # Pragmatic FFT-based bound logging (do not change gates):
+    eps = float(np.finfo(float).eps)
+    sqrtN = float(np.sqrt(N))
+    denom = eps * sqrtN if eps * sqrtN > 0.0 else 1.0
+    observed_c = float(rev_err / denom)
     logj = {
         "rev_inf_error": rev_err, "dt": dt, "passes": passes,
         "passes_strict": passes_strict, "cap_ok": cap_ok,
         "l2_norms": {"W0": l2_0, "W1": l2_1, "W2": l2_2},
         "l2_drifts": {"W1_minus_W0": l2_drift_01, "W2_minus_W0": l2_drift_20},
-        "tolerances": {"rev_inf_strict": tol_rev_strict, "rev_inf_cap": tol_rev_cap, "l2_cap": tol_l2}
+        "tolerances": {"rev_inf_strict": tol_rev_strict, "rev_inf_cap": tol_rev_cap, "l2_cap": tol_l2},
+        "fft_roundoff_bound": {"epsilon": eps, "sqrtN": sqrtN, "epsilon_sqrtN": denom, "observed_c": observed_c}
     }
     # If strict fails but cap holds, log justification and mark as failed to keep gate conservative
     if (not passes) and cap_ok:
         logj["justification"] = "FFT round-off observed; strict 1e-12 not met, but <= 1e-10 cap holds."
-    write_log(log_path("metriplectic", "j_reversibility", failed=not passes), logj)
+    write_log(log_path("metriplectic", _slug(spec, "j_reversibility"), failed=not passes), logj)
     return logj
 
 
@@ -183,7 +210,7 @@ def m_lyapunov_check(spec: StepSpec) -> Dict[str, Any]:
     tol_pos = 1e-12
     violations = int(sum(1 for s in series if s["delta_L"] > tol_pos))
     failed = bool(violations > 0)
-    fig_path = figure_path("metriplectic", f"lyapunov_delta_per_step_{spec.scheme}", failed=failed)
+    fig_path = figure_path("metriplectic", _slug(spec, f"lyapunov_delta_per_step_{spec.scheme}"), failed=failed)
     import matplotlib.pyplot as plt
     from matplotlib.ticker import MaxNLocator
     plt.figure(figsize=(6,4)); plt.plot([s["step"] for s in series],[s["delta_L"] for s in series],"o-")
@@ -192,7 +219,7 @@ def m_lyapunov_check(spec: StepSpec) -> Dict[str, Any]:
     plt.title(f"Lyapunov per step ({spec.scheme})")
     plt.tight_layout(); plt.savefig(fig_path, dpi=150); plt.close()
     logj = {"series": series, "violations": violations, "tol_pos": tol_pos, "figure": str(fig_path), "failed": failed}
-    write_log(log_path("metriplectic", f"lyapunov_series_{spec.scheme}", failed=failed), logj)
+    write_log(log_path("metriplectic", _slug(spec, f"lyapunov_series_{spec.scheme}"), failed=failed), logj)
     return logj
 
 
@@ -239,7 +266,7 @@ def small_dt_sweep_polish(spec: StepSpec) -> Dict[str, Any]:
     R2 = 1.0 - (ss_res / ss_tot if ss_tot > 0 else 0.0)
     failed_gate = bool(slope < 2.9 or R2 < 0.999)
     # Artifacts
-    fig_path = figure_path("metriplectic", f"residual_vs_dt_small_{spec.scheme}", failed=failed_gate)
+    fig_path = figure_path("metriplectic", _slug(spec, f"residual_vs_dt_small_{spec.scheme}"), failed=failed_gate)
     plt.figure(figsize=(6, 4))
     plt.plot(dt_vals, med, "o-")
     plt.xscale("log"); plt.yscale("log")
@@ -247,7 +274,7 @@ def small_dt_sweep_polish(spec: StepSpec) -> Dict[str, Any]:
     plt.title(f"{spec.scheme} small-dt: slope≈{float(slope):.3f}, R2≈{float(R2):.4f}")
     plt.tight_layout(); plt.savefig(fig_path, dpi=150); plt.close()
     # Logs
-    write_log(log_path("metriplectic", f"sweep_small_exact_{spec.scheme}", failed=failed_gate), {"samples": [{"seed": r["seed"], "dt": r["dt"]} for r in newton_rows]})
+    write_log(log_path("metriplectic", _slug(spec, f"sweep_small_exact_{spec.scheme}"), failed=failed_gate), {"samples": [{"seed": r["seed"], "dt": r["dt"]} for r in newton_rows]})
     summary = {
         "scheme": spec.scheme,
         "dt": dt_vals,
@@ -258,14 +285,14 @@ def small_dt_sweep_polish(spec: StepSpec) -> Dict[str, Any]:
         "newton_stats": newton_rows,
         "dg_tol": float(params["dg_tol"]) 
     }
-    write_log(log_path("metriplectic", f"sweep_small_dt_{spec.scheme}", failed=failed_gate), summary)
-    csv_path = log_path("metriplectic", f"sweep_small_dt_{spec.scheme}", failed=failed_gate, type="csv")
+    write_log(log_path("metriplectic", _slug(spec, f"sweep_small_dt_{spec.scheme}"), failed=failed_gate), summary)
+    csv_path = log_path("metriplectic", _slug(spec, f"sweep_small_dt_{spec.scheme}"), failed=failed_gate, type="csv")
     with csv_path.open("w", encoding="utf-8") as f:
         f.write("dt,two_grid_error_inf_median\n")
         for d, e in zip(dt_vals, med):
             f.write(f"{d},{e}\n")
     # Newton stats CSV
-    csv2 = log_path("metriplectic", f"newton_stats_small_{spec.scheme}", failed=failed_gate, type="csv")
+    csv2 = log_path("metriplectic", _slug(spec, f"newton_stats_small_{spec.scheme}"), failed=failed_gate, type="csv")
     with csv2.open("w", encoding="utf-8") as f:
         f.write("seed,dt,iters,final_residual_inf,backtracks,converged\n")
         for r in newton_rows:
@@ -305,13 +332,13 @@ def commutator_defect_diagnostic(spec: StepSpec) -> Dict[str, Any]:
     ss_tot = float(np.sum((y - np.mean(y)) ** 2))
     R2 = 1.0 - (ss_res / ss_tot if ss_tot > 0 else 0.0)
     failed_gate = bool(R2 < 0.999)
-    fig_path = figure_path("metriplectic", "strang_defect_vs_dt", failed=failed_gate)
+    fig_path = figure_path("metriplectic", _slug(spec, "strang_defect_vs_dt"), failed=failed_gate)
     plt.figure(figsize=(6,4)); plt.plot(dt_vals, med, "o-"); plt.xscale("log"); plt.yscale("log")
     plt.xlabel("dt"); plt.ylabel("||Φ^JMJ_Δt - Φ^MJM_Δt||_∞"); plt.title(f"Strang defect: slope≈{float(slope):.3f}, R2≈{float(R2):.4f}")
     plt.tight_layout(); plt.savefig(fig_path, dpi=150); plt.close()
     logj = {"dt": dt_vals, "defect_med": med, "fit": {"slope": float(slope), "R2": float(R2)}, "figure": str(fig_path), "failed": failed_gate}
-    write_log(log_path("metriplectic", "strang_defect_vs_dt", failed=failed_gate), logj)
-    csv_path = log_path("metriplectic", "strang_defect_vs_dt", failed=failed_gate, type="csv")
+    write_log(log_path("metriplectic", _slug(spec, "strang_defect_vs_dt"), failed=failed_gate), logj)
+    csv_path = log_path("metriplectic", _slug(spec, "strang_defect_vs_dt"), failed=failed_gate, type="csv")
     with csv_path.open("w", encoding="utf-8") as f:
         f.write("dt,strang_defect_median\n")
         for d, e in zip(dt_vals, med):
@@ -357,9 +384,9 @@ def robustness_v5_grid(spec: StepSpec) -> Dict[str, Any]:
     pass_rate = float(passes) / float(len(tuples) if tuples else 1)
     passed = bool(pass_rate >= 0.8)
     logj = {"results": results, "pass_rate": pass_rate, "passed": passed}
-    write_log(log_path("metriplectic", "robustness_v5_grid", failed=not passed), logj)
+    write_log(log_path("metriplectic", _slug(spec, "robustness_v5_grid"), failed=not passed), logj)
     # CSV for quick scan
-    csvp = log_path("metriplectic", "robustness_v5_grid", failed=not passed, type="csv")
+    csvp = log_path("metriplectic", _slug(spec, "robustness_v5_grid"), failed=not passed, type="csv")
     with csvp.open("w", encoding="utf-8") as f:
         f.write("D,r,u,N,slope,R2,lyapunov_violations,pass\n")
         for rj in results:
@@ -380,7 +407,7 @@ def main():
         spec.scheme = args.scheme
 
     # Snapshot spec
-    write_log(log_path("metriplectic", "step_spec_snapshot", failed=False), {
+    write_log(log_path("metriplectic", _slug(spec, "step_spec_snapshot"), failed=False), {
         "bc": spec.bc, "scheme": spec.scheme, "grid": spec.grid, "params": spec.params,
         "dt_sweep": spec.dt_sweep, "seeds": spec.seeds, "notes": spec.notes
     })
@@ -403,7 +430,7 @@ def main():
         _fixed_dt_deltaS_compare(spec)
     except Exception as e:
         # Non-fatal; logged for transparency
-        write_log(log_path("metriplectic", "fixed_dt_deltaS_compare_error", failed=True), {"error": str(e)})
+        write_log(log_path("metriplectic", _slug(spec, "fixed_dt_deltaS_compare_error"), failed=True), {"error": str(e)})
 
     print(json.dumps({
         "scheme": spec.scheme,
@@ -447,7 +474,7 @@ def _fixed_dt_deltaS_compare(spec: StepSpec) -> Dict[str, Any]:
 
     combined_rows = []
     summaries: Dict[str, Any] = {}
-    fig_path = figure_path("metriplectic", "fixed_dt_deltaS_compare", failed=False)
+    fig_path = figure_path("metriplectic", _slug(spec, "fixed_dt_deltaS_compare"), failed=False)
     plt.figure(figsize=(15, 5))
     for idx, sch in enumerate(schemes, start=1):
         vals = [] 
@@ -503,8 +530,8 @@ def _fixed_dt_deltaS_compare(spec: StepSpec) -> Dict[str, Any]:
 
     # Logs: JSON + CSV
     jsonj = {"figure": str(fig_path), "dt": dt, "summaries": summaries}
-    write_log(log_path("metriplectic", "fixed_dt_deltaS_compare", failed=False), jsonj)
-    csv_path = log_path("metriplectic", "fixed_dt_deltaS_compare", failed=False, type="csv")
+    write_log(log_path("metriplectic", _slug(spec, "fixed_dt_deltaS_compare"), failed=False), jsonj)
+    csv_path = log_path("metriplectic", _slug(spec, "fixed_dt_deltaS_compare"), failed=False, type="csv")
     with csv_path.open("w", encoding="utf-8") as f:
         f.write("scheme,seed,abs_delta_S\n")
         for row in combined_rows:
