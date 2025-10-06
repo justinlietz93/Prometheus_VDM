@@ -180,7 +180,9 @@ Planned bounded follow‑ups:
 
 ### Addendum — kgRD‑v1b (H‑energy norm, spectral‑DG; tagged)
 
-Short note: Switching from ϕ‑only to the KG energy norm |(Δϕ,Δπ)|_H restores near‑cubic two‑grid scaling for JMJ, consistent with the Strang defect diagnostic.
+Short note: Switching from ϕ‑only to the KG energy norm |(Δϕ,Δπ)|_H restores near‑cubic two‑grid scaling for JMJ (H‑norm slope ≈ 2.885, R² ≈ 0.99988), consistent with the Strang defect diagnostic.
+
+Obj‑B status: if the JMJ H‑norm slope remains < 2.90 under the extended small‑Δt sweep, we freeze this chapter as EXPLAINED‑BY‑DEFECT and proceed without further tuning.
 
 Pinned artifacts (tag `kgRD‑v1b`):
 

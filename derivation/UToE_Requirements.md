@@ -1,5 +1,3 @@
-Here’s a compact Requirements Traceability Matrix (RTM) starter for sections 1–9. Each row is a decidable unit: you can prove it, build it, or kill it.
-
 # RTM v0.1 — Sections 1–9
 
 | ID          | Claim (short)                                 | Requirement (what must be shown)                                         | Method (how)                                       | Observable / Test                                         | Falsifier (kill)                                      | Dependencies                     | Status/Risk   |

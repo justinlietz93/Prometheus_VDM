@@ -1,0 +1,25 @@
+{
+  "dt": [
+    0.04,
+    0.02,
+    0.01,
+    0.005
+  ],
+  "figure": "/mnt/ironwolf/git/Void_Unity_Proofs/derivation/code/outputs/figures/metriplectic/failed_runs/20251006_164500_j_energy_oscillation_vs_dt__kgRD-v1b.png",
+  "fit": {
+    "R2": 0.8765616080256106,
+    "slope": 0.15794247084060847
+  },
+  "median_energy_amplitude": [
+    0.00015148126222733899,
+    0.00012277425351148868,
+    0.00011160100166106995,
+    0.00010856435273485371
+  ],
+  "passed": false,
+  "scheme": "j_only_energy",
+  "settings": {
+    "burnin": 16,
+    "steps": 512
+  }
+}

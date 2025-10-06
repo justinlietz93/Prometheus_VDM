@@ -1,0 +1,23 @@
+{
+  "dt": [
+    0.04,
+    0.02,
+    0.01,
+    0.005
+  ],
+  "failed": true,
+  "figure": "/mnt/ironwolf/git/Void_Unity_Proofs/derivation/code/outputs/figures/metriplectic/failed_runs/20251006_164441_residual_vs_dt_jmj__kgRD-v1b.png",
+  "fit": {
+    "R2": 0.9998766780891034,
+    "slope": 2.8849723725369554
+  },
+  "norm": "h_energy",
+  "scheme": "jmj",
+  "trivial": false,
+  "two_grid_error_med": [
+    0.0006149657496866581,
+    8.796720362363734e-05,
+    1.1803819776729696e-05,
+    1.530169700496075e-06
+  ]
+}
