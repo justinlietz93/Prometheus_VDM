@@ -175,3 +175,31 @@ Planned bounded follow‑ups:
 - Quispel, G. R. W., McLaren, D. I. (2008). A new class of energy‑preserving numerical integration methods. J. Phys. A.
 - Onsager, L. (1931). Reciprocal relations in irreversible processes. Phys. Rev.
 - Jordan, R., Kinderlehrer, D., Otto, F. (1998). The variational formulation of the Fokker–Planck equation. SIAM J. Math. Anal.
+
+---
+
+### Addendum — kgRD‑v1b (H‑energy norm, spectral‑DG; tagged)
+
+Short note: Switching from ϕ‑only to the KG energy norm |(Δϕ,Δπ)|_H restores near‑cubic two‑grid scaling for JMJ, consistent with the Strang defect diagnostic.
+
+Pinned artifacts (tag `kgRD‑v1b`):
+
+- Spec snapshot: derivation/code/outputs/logs/metriplectic/20251006_145830_step_spec_snapshot__kgRD-v1b.json
+- J‑only energy oscillation vs Δt (slope gate ≈ 2):
+  - Figure: derivation/code/outputs/figures/metriplectic/failed_runs/20251006_145830_j_energy_oscillation_vs_dt__kgRD-v1b.png
+  - Logs: derivation/code/outputs/logs/metriplectic/failed_runs/20251006_145831_j_energy_oscillation_vs_dt__kgRD-v1b.{json,csv}
+- M‑only two‑grid:
+  - Figure: derivation/code/outputs/figures/metriplectic/failed_runs/20251006_145831_residual_vs_dt_m_only__kgRD-v1b.png
+  - Logs: derivation/code/outputs/logs/metriplectic/failed_runs/20251006_145831_residual_vs_dt_m_only__kgRD-v1b.{json,csv}
+- JMJ two‑grid (H‑energy norm):
+  - Figure: derivation/code/outputs/figures/metriplectic/failed_runs/20251006_145832_residual_vs_dt_jmj__kgRD-v1b.png
+  - Logs: derivation/code/outputs/logs/metriplectic/failed_runs/20251006_145832_sweep_dt_jmj__kgRD-v1b.json and .../20251006_145832_residual_vs_dt_jmj__kgRD-v1b.csv
+- Strang defect (JMJ vs MJM):
+  - Figure: derivation/code/outputs/figures/metriplectic/20251006_145832_strang_defect_vs_dt__kgRD-v1b.png
+  - Logs: derivation/code/outputs/logs/metriplectic/20251006_145833_strang_defect_vs_dt__kgRD-v1b.{json,csv}
+
+Gate outcomes (median across seeds):
+
+- JMJ (H‑energy norm): slope ≈ 2.885; R² ≈ 0.999877 (near‑cubic but below ≥ 2.90 gate).
+- Strang defect: slope ≈ 2.957; R² ≈ 0.999969 (as expected, supporting the near‑cubic behavior).
+- J‑only energy oscillation slope: ≈ 0.951 (R² ≈ 0.99937), below the ≥ 1.9 gate; reversibility remains PASS.
