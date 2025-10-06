@@ -60,6 +60,12 @@ or a composed scheme (Strang/RKp) explicitly specified.
 - **Diffusion**: graph Laplacian $(L)$ from the chosen adjacency; coefficient $(D)$.
 - **Adjacency/BCs**: saved with each run (used by the fitter/checker).
 
+Default choices for conservation tests (Obj‑A/B):
+
+- **BC:** periodic (simplest flux bookkeeping and Fourier diagnostics).  
+- **Scheme order p:** start with Euler (p=1), then Strang (p=2) using exact logistic substep (see reaction_exact.py).  
+- **Neumann BCs** are reserved only for the front‑speed control runs.
+
 ### 4.2 Symbolic Conservation Attempt
 
 Construct $(Q_i,H_{ij})$ and reduce $(\Delta S)$ in a CAS to a **symbolic zero**. Export minimal forms and a substitution table mirroring the *implemented* update (no linearization unless declared).
@@ -78,6 +84,22 @@ If exact conservation fails, perform a $(\Delta t)$\-sweep (≥4 halvings) for t
 - Deterministic seeds; fixed commit hash and environment snapshot.
 - No clipping/saturation in proof paths (no `tanh`, `nan_to_num` that alters algebra).
 
+### 4.6 Discrete Lyapunov (Obj‑C) — precise grid form
+
+Use the same discrete gradient operator that pairs with the Laplacian stencil to avoid stencil mismatch. For 1D periodic FD with spacing $\Delta x$:
+
+$$
+\mathcal{L}_h[W] \,=\, \sum_{i} \left[ \tfrac{D}{2}\,\lvert \nabla_h W_i \rvert^2 + \hat V(W_i) \right] \, \Delta x, \qquad \hat V'(W) = -\,f(W)
+$$
+
+with centered gradient
+
+$$
+\nabla_h W_i \,=\, \frac{W_{i+1} - W_{i-1}}{2\,\Delta x}, \qquad \Delta_h W_i \,=\, \frac{W_{i+1} - 2W_i + W_{i-1}}{\Delta x^2}.
+$$
+
+Report $\Delta \mathcal{L}_h \le 0$ per step under periodic/no‑flux BCs.
+
 ## 5. Diagnostics, Metrics & Acceptance Gates
 
 ### 5.1 Mathematical Gates (must all pass for Obj‑A)
@@ -95,7 +117,7 @@ If exact conservation fails, perform a $(\Delta t)$\-sweep (≥4 halvings) for t
 - **V4 Negative controls:**
   - Diffusion-only mass conservation at machine epsilon.
   - Reaction-only $(Q_{\rm FUM})$ order‑4 convergence with $(R^2 \approx 1)$\.
-- **V5 Out-of-sample:** If $(H_{ij})$ has fitted params, freeze them; identical tolerances on fresh seeds.
+- **V5 Out‑of‑sample:** If $(H_{ij})$ has any fitted parameters, freeze them and rerun on fresh seeds; identical tolerances must hold.
 
 ## 6. Variables & Ranges (stub — fill before run)
 
@@ -112,17 +134,21 @@ If exact conservation fails, perform a $(\Delta t)$\-sweep (≥4 halvings) for t
 
 ## 7. Data Products & File Layout
 
+Adopt this layout so PAPER_STANDARDS checkers can auto‑lift artifacts:
+
 ```
 experiments/rd_conservation/
-  configs/                  # YAMLs with (r,u,D,J,N,dt,scheme,BCs)
+  step_spec.schema.json       # JSON schema for step_spec.json
+  step_spec.example.json      # example config (see Section 10)
   runs/<stamp>/
-    seeds.json              # list of seeds/tuples
-    step_spec.json          # map definition + adjacency, scheme
-    cas_certificate.txt     # ΔS ≡ 0 proof (if Obj‑A passes)
-    sweep_exact.json        # residuals per seed/tuple (V1/V2)
-    sweep_dt.json           # slope, R^2 (V3)
-    controls_diffusion.json # mass conservation checks
-    controls_reaction.json  # Q_FUM order-4 check
+    step_spec.json            # map definition + adjacency, scheme, CFL log
+    seeds.json                # list of seeds/tuples actually used
+    cas_certificate.txt       # ΔS ≡ 0 proof (if Obj‑A passes)
+    sweep_exact.json          # residuals per seed/tuple (V1/V2)
+    sweep_dt.json             # slope, R^2 (V3)
+    controls_diffusion.json   # mass conservation checks (control)
+    controls_reaction.json    # Q_FUM order‑4 RK check (control)
+    CONTRADICTION_REPORT.json # emitted if Obj‑A fails (see Section 9)
     figures/
       residual_vs_dt.png
       residual_hist.png
@@ -148,6 +174,9 @@ Each figure is paired with its CSV/JSON and a numeric caption (slope, $(R^2)$\, 
   **Mitigation:** Start with minimal rational/log forms; backstop with asymptotic gate.
 - **Risk:** Harness mismatch (adjacency/BCs).  
   **Kill:** Block publication until step-spec equals production step; rerun controls.
+  
+- **Risk:** No exact $(H_{ij})$ within the explored family.  
+  **Mitigation/Deliverable:** Emit `CONTRADICTION_REPORT.json` with residual histograms and the precise $(Q,H)$ families explored (symbol classes, exponents, rational forms), plus best‑fit params if any.
 
 ## 10. Timeline & Responsibilities
 
@@ -210,3 +239,25 @@ for seed in seeds:
  "max_abs_residual":[1.6e-6, 1.0e-7, 6.2e-9, 3.9e-10],
  "fit":{"slope":3.02,"R2":0.9996}}
 ```
+
+**`step_spec.json` (example)**
+
+```json
+{
+  "bc": "periodic",
+  "scheme": "euler",
+  "order_p": 1,
+  "expected_dt_slope": 2,
+  "grid": {"N": 128, "dx": 1.0},
+  "params": {"D": 1.0, "r": 0.2, "u": 0.25},
+  "dt_sweep": [0.04, 0.02, 0.01, 0.005],
+  "seeds": 40,
+  "safety": {"clamp": false, "nan_to_num": false},
+  "cfl_used": true,
+  "notes": "Obj-A/B periodic RD; Neumann only used in separate front-speed control runs."
+}
+```
+
+**CFL (stability) note:** For explicit diffusion in 1D Euler, ensure $\Delta t \le \Delta x^2/(2D)$. Log the boolean `cfl_used` and record the actual `dt` chosen.
+
+**Adjacency fidelity:** The fitter and all residual/flux calculations must use the actual neighbor list (same stencil and BC as used during stepping). No complete‑graph or dense approximations.

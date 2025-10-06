@@ -5,7 +5,7 @@
 
 ---
 
-### 1. Objective
+## 1. Objective
 
 The primary objective of this derivation is to demonstrate that the discrete update rules of the Fully Unified Model (FUM) respect a local conservation law. This is the discrete analogue of the conservation of the stress-energy tensor (`\nabla_\mu T^{\mu\nu} = 0`) in continuum field theory and is a critical requirement for any physically viable model.
 
@@ -32,6 +32,7 @@ $$
 \mathcal{H}_i = \frac{1}{2}\left(\frac{dW_i}{dt}\right)^2 + \frac{1}{2} \sum_{j \in N(i)} J (W_j - W_i)^2 + V(W_i)
 $$
 Where:
+
 - The first term is a kinetic energy analogue.
 - The second term is a standard interaction energy between node `i` and its neighbors `j \in N(i)`, with coupling constant `J`. This term gives rise to the spatial derivatives (`\nabla^2 \phi`) in the continuum limit.
 - `V(W_i) = \frac{1}{2}(\beta-\alpha)W_i^2 + \frac{\alpha}{3}W_i^3` is the on-site potential energy.
@@ -173,8 +174,9 @@ The on-site potential and kinetic energy terms produce a complex dissipative fun
 
 **Outlook and Next Research Steps:**
 This negative result is exceptionally valuable, as it closes a simple avenue and directs our research toward a more fundamental question. The next phase of work is no longer to test a guessed quantity, but to **discover the true conserved quantity** of the FUM. The primary research paths for this are:
-1.  **Symmetry Analysis (Noether's Theorem):** Investigate the FUM update rule for continuous symmetries. Any identified symmetry will guarantee a corresponding conserved quantity, which would be the "true" Hamiltonian or constant of motion.
-2.  **Lyapunov Function Analysis:** Frame the FUM as a dynamical system and search for a global Lyapunov function. The system will flow towards minima of this function, and understanding its structure can reveal what is being optimized or conserved.
+
+1. **Symmetry Analysis (Noether's Theorem):** Investigate the FUM update rule for continuous symmetries. Any identified symmetry will guarantee a corresponding conserved quantity, which would be the "true" Hamiltonian or constant of motion.
+2. **Lyapunov Function Analysis:** Frame the FUM as a dynamical system and search for a global Lyapunov function. The system will flow towards minima of this function, and understanding its structure can reveal what is being optimized or conserved.
 
 This concludes the formal proof regarding the standard Hamiltonian and sets a clear, targeted research program for the next stage of FUM's theoretical development.
 
@@ -189,16 +191,26 @@ $$
 This is a formidable challenge, as the form of `Q` is not known a priori. There are several advanced methods to approach this problem.
 
 #### Method 1: Direct Algebraic Construction
-We could postulate a new conserved quantity `Q = \mathcal{H} + \mathcal{H}_{\text{corr}}`, where `\mathcal{H}` is our original Hamiltonian and `\mathcal{H}_{\text{corr}}` is a correction term. We would then need to solve the equation `\Delta \mathcal{H} / \Delta t = - \Delta \mathcal{H}_{\text{corr}} / \Delta t`. Given the complexity of the expression we found for `\Delta\mathcal{H}/\Delta t`, finding a suitable correction term by direct algebraic manipulation is likely intractable.
+
+We could postulate a new conserved quantity `Q = \mathcal{H} + \mathcal{H}_{\text{corr}}`, where `\mathcal{H}` is our original Hamiltonian and `\mathcal{H}_{\text{corr}}` is a correction term. We would then need to solve the equation
+
+$$
+\Delta \mathcal{H} / \Delta t = - \Delta \mathcal{H}_{\text{corr}} / \Delta t
+$$
+
+Given the complexity of the expression we found for $\Delta\mathcal{H}/\Delta t$\, finding a suitable correction term by direct algebraic manipulation is likely intractable.
 
 #### Method 2: Symmetry via Noether's Theorem
+
 This remains the most elegant and fundamental path forward. As outlined in [`derivation/symmetry_analysis.md`](derivation/symmetry_analysis.md:1), Noether's Theorem guarantees that a conserved quantity exists for every continuous symmetry of the system's dynamics. Our initial investigation showed the FUM lacks simple translational or scaling symmetries. The next step would be to search for more complex, non-obvious "hidden" symmetries. This is a significant research task in its own right.
 
 #### Method 3: Information-Theoretic Quantities
+
 Given the FUM's origin in cognitive science and learning, it is plausible that the most fundamental conserved quantity is not a form of physical energy, but a form of **information**. The universe, in the FUM, may not be conserving energy in the simple sense, but it may be conserving a measure of its own complexity or information content.
 
-Potential candidates for an information-theoretic conserved quantity `I` could be:
-- The **Shannon Entropy** of the state distribution: `S = - \sum_i P(W_i) \log P(W_i)`.
+Potential candidates for an information-theoretic conserved quantity $I$ could be:
+
+- The **Shannon Entropy** of the state distribution: $S = - \sum_i P(W_i) \log P(W_i)$\.
 - A **Topological Invariant** of the graph, such as the Betti numbers we have previously discussed, which measure the system's structural complexity.
 
 **Conclusion:**
@@ -206,42 +218,56 @@ The search for the true conserved quantity of the FUM is the next major frontier
 
 ---
 
-### 7. Derivation Step 2: Change in Kinetic Energy
+## 7. Derivation Step 2: Change in Kinetic Energy
 
-Next, we analyze the kinetic energy term, `\mathcal{K}_i = \frac{1}{2}\left(\frac{dW_i}{dt}\right)^2`. In our discrete framework, this is `\mathcal{K}_i = \frac{1}{2}[F(W_i)]^2$. We want to find its change over one time step, `\Delta \mathcal{K}_i`.
+Next, we analyze the kinetic energy term, $\mathcal{K}_i = \frac{1}{2}\left(\frac{dW_i}{dt}\right)^2$\. In our discrete framework, this is $\mathcal{K}_i = \frac{1}{2}[F(W_i)]^2$\. We want to find its change over one time step, $\Delta \mathcal{K}_i$\.
+
 $$
 \Delta \mathcal{K}_i = \mathcal{K}_i(t+\Delta t) - \mathcal{K}_i(t) = \frac{1}{2}[F(W_i(t+\Delta t))]^2 - \frac{1}{2}[F(W_i(t))]^2
 $$
-Using the Taylor expansion `F(W+\Delta W) \approx F(W) + \frac{dF}{dW}\Delta W`, we get:
+
+Using the Taylor expansion $F(W+\Delta W) \approx F(W) + \frac{dF}{dW}\Delta W$\, we get:
+
 $$
 [F(W_i(t+\Delta t))]^2 \approx \left[ F(W_i) + \frac{dF}{dW_i}\Delta W_i \right]^2 \approx [F(W_i)]^2 + 2F(W_i)\frac{dF}{dW_i}\Delta W_i
 $$
-*(We neglect the `(\Delta W_i)^2` term as it is second-order in `\Delta t`)*.
+
+*(We neglect the $(\Delta W_i)^2$ term as it is second-order in $\Delta t$\)*.
 
 The change in kinetic energy is therefore:
+
 $$
 \Delta \mathcal{K}_i \approx \frac{1}{2} \left( [F(W_i)]^2 + 2F(W_i)\frac{dF}{dW_i}\Delta W_i \right) - \frac{1}{2}[F(W_i)]^2 = F(W_i)\frac{dF}{dW_i}\Delta W_i
 $$
-Substituting `\Delta W_i = F(W_i)\Delta t`, we find the rate of change:
+
+Substituting $\Delta W_i = F(W_i)\Delta t$\, we find the rate of change:
+
 $$
 \frac{\Delta \mathcal{K}_i}{\Delta t} \approx [F(W_i)]^2 \frac{dF}{dW_i}
 $$
-To evaluate this, we need `dF/dW_i`:
+
+To evaluate this, we need $dF/dW_i$\:
+
 $$
 F(W_i) = (\alpha - \beta)W_i - \alpha W_i^2 \quad \implies \quad \frac{dF}{dW_i} = (\alpha - \beta) - 2\alpha W_i
 $$
 
-### 8. Intermediate Analysis: Total On-Site Energy Change
+## 8. Intermediate Analysis: Total On-Site Energy Change
 
 Let us now combine the change in potential and kinetic energy, which together represent the total change in the "on-site" energy of the node, independent of its neighbors.
+
 $$
 \frac{\Delta (\mathcal{V}_i + \mathcal{K}_i)}{\Delta t} = \frac{\Delta V(W_i)}{\Delta t} + \frac{\Delta \mathcal{K}_i}{\Delta t}
 $$
+
 $$
 \approx -[F(W_i)]^2 + [F(W_i)]^2 \frac{dF}{dW_i} = [F(W_i)]^2 \left(\frac{dF}{dW_i} - 1\right)
 $$
-Substituting the expression for `dF/dW_i`:
+
+Substituting the expression for $dF/dW_i$\:
+
 $$
 \frac{\Delta (\mathcal{V}_i + \mathcal{K}_i)}{\Delta t} \approx [F(W_i)]^2 ((\alpha - \beta) - 2\alpha W_i - 1)
 $$
-This is a crucial result. The total rate of change of the on-site energy is **not zero**. This confirms that for the total energy `\mathcal{H}_i` to be conserved, this on-site change *must* be perfectly balanced by the change in the interaction energy term, `\frac{1}{2} \sum_{j \in N(i)} J (W_j - W_i)^2`. This interaction term represents the energy flux to and from neighboring nodes. The proof now hinges on analyzing this final term.
+
+This is a crucial result. The total rate of change of the on-site energy is **not zero**. This confirms that for the total energy $\mathcal{H}_i$ to be conserved, this on-site change *must* be perfectly balanced by the change in the interaction energy term, $\frac{1}{2} \sum_{j \in N(i)} J (W_j - W_i)^2$\. This interaction term represents the energy flux to and from neighboring nodes. The proof now hinges on analyzing this final term.

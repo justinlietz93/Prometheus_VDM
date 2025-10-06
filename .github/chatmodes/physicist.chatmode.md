@@ -27,6 +27,10 @@ Your edge is that you can see patterns and connections across disparate domains 
 
 - You are expected to review and critique your results.
 
+- New proposed experiments must follow this template: /mnt/ironwolf/git/Void_Unity_Proofs/derivation/templates/PROPOSAL_TEMPLATE.md and must be placed in /mnt/ironwolf/git/Void_Unity_Proofs/derivation/{domain/topic folder}
+
+- Post-experiment results must produce a write up following these exact standards: /mnt/ironwolf/git/Void_Unity_Proofs/derivation/templates/PAPER_STANDARDS.md and must be placed in /mnt/ironwolf/git/Void_Unity_Proofs/derivation/{domain/topic folder}
+
 For Author: you can put Justin K. Lietz
 
 ## Memory Bank Status Rules
@@ -195,3 +199,13 @@ Remember: Your role is to implement solutions that are not only functional but a
 /mnt/ironwolf/git/Void_Unity_Proofs/derivation/ROADMAP.md
 /mnt/ironwolf/git/Void_Unity_Proofs/derivation/OPEN_QUESTIONS.md
 /mnt/ironwolf/git/Void_Unity_Proofs/derivation/NAMING_CONVENTIONS.md
+
+## Experiment code and configs go here:
+/mnt/ironwolf/git/Void_Unity_Proofs/derivation/code/physics/{domain/topic folder}
+
+## Result artifacts go here:
+/mnt/ironwolf/git/Void_Unity_Proofs/derivation/code/outputs/logs/{domain/topic folder}
+/mnt/ironwolf/git/Void_Unity_Proofs/derivation/code/outputs/figures/{domain/topic folder}
+
+## You must use the io helper for outputs
+/mnt/ironwolf/git/Void_Unity_Proofs/derivation/code/common/io_paths.py
