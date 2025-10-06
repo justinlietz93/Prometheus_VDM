@@ -1,0 +1,84 @@
+{
+  "csv": "/mnt/ironwolf/git/Void_Unity_Proofs/derivation/code/outputs/logs/collapse/failed_runs/20251006_175257_a6_collapse_envelope__A6-collapse-v1.csv",
+  "env_max": 0.031,
+  "figure": "/mnt/ironwolf/git/Void_Unity_Proofs/derivation/code/outputs/figures/collapse/failed_runs/20251006_175257_a6_collapse_overlay__A6-collapse-v1.png",
+  "passed": false,
+  "raw_curves": [
+    {
+      "P": [
+        0.044,
+        0.185,
+        0.507,
+        0.821,
+        0.958
+      ],
+      "X": [
+        -3.0,
+        -1.5,
+        0.0,
+        1.5,
+        3.0
+      ],
+      "delta_m_values": [
+        -2.0,
+        -1.0,
+        0.0,
+        1.0,
+        2.0
+      ],
+      "theta": 1.5,
+      "trials": 1000
+    },
+    {
+      "P": [
+        0.017,
+        0.119,
+        0.507,
+        0.892,
+        0.983
+      ],
+      "X": [
+        -4.0,
+        -2.0,
+        0.0,
+        2.0,
+        4.0
+      ],
+      "delta_m_values": [
+        -2.0,
+        -1.0,
+        0.0,
+        1.0,
+        2.0
+      ],
+      "theta": 2.0,
+      "trials": 1000
+    }
+  ],
+  "spec": {
+    "tuples": [
+      {
+        "delta_m_values": [
+          -2,
+          -1,
+          0,
+          1,
+          2
+        ],
+        "theta": 1.5,
+        "trials": 1000
+      },
+      {
+        "delta_m_values": [
+          -2,
+          -1,
+          0,
+          1,
+          2
+        ],
+        "theta": 2.0,
+        "trials": 1000
+      }
+    ]
+  }
+}
