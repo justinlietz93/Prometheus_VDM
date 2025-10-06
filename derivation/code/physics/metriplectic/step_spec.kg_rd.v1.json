@@ -1,0 +1,22 @@
+{
+  "bc": "periodic",
+  "scheme": "jmj",
+  "grid": { "N": 256, "dx": 1.0 },
+  "params": {
+    "c": 1.0,
+    "m": 0.5,
+    "D": 1.0,
+    "r": 0.2,
+    "u": 0.25,
+    "seed_scale": 0.05,
+    "m_lap_operator": "spectral",
+    "dg_tol": 1e-12,
+    "gate_slope": 2.9,
+    "gate_R2": 0.999,
+    "dt_sweep_small": [0.02, 0.01, 0.005, 0.0025],
+    "tag": "kgRD-v1"
+  },
+  "dt_sweep": [0.04, 0.02, 0.01, 0.005],
+  "seeds": 10,
+  "notes": "KG⊕RD metriplectic v1, spectral-DG primary; additive and tagged."
+}
