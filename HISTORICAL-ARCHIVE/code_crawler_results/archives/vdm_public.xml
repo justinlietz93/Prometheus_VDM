@@ -1,0 +1,3778 @@
+<?xml version="1.0" ?>
+<vdm_public>
+  <metadata>
+    <global_stats>
+      <total_files>25</total_files>
+      <total_size_bytes>187293</total_size_bytes>
+      <total_loc>3609</total_loc>
+    </global_stats>
+    <chunk_stats>
+      <files_in_chunk>25</files_in_chunk>
+      <size_in_chunk_bytes>187293</size_in_chunk_bytes>
+      <loc_in_chunk>3609</loc_in_chunk>
+    </chunk_stats>
+  </metadata>
+  <ascii_map><![CDATA[
+Prometheus_Void-Dynamics_Model/
+├── .github/
+│   └── copilot-instructions.md
+│       (LOC: 209, Size: 8.4 KB)
+├── .gitignore
+│   (LOC: 83, Size: 1011 B)
+├── BENCHMARKS_FLUIDS.md
+│   (LOC: 59, Size: 2.7 KB)
+├── CORRECTIONS.md
+│   (LOC: 88, Size: 6.4 KB)
+├── DIMENSIONLESS_CONSTANTS.md
+│   (LOC: 126, Size: 5.0 KB)
+├── FUVDM_Overview.md
+│   (LOC: 244, Size: 9.2 KB)
+├── LICENSE.md
+│   (LOC: 139, Size: 5.7 KB)
+├── README.md
+│   (LOC: 57, Size: 4.2 KB)
+└── derivation/
+    ├── arxiv/
+    │   └── RD_Methods_QA/
+    │       ├── figs/
+    │       ├── logarithmic_constant_of_motion.md
+    │       │   (LOC: 113, Size: 7.0 KB)
+    │       └── rd_methods_QA.md
+    │           (LOC: 165, Size: 8.9 KB)
+    ├── effective_field_theory/
+    │   ├── effective_field_theory_approach.md
+    │   │   (LOC: 87, Size: 6.3 KB)
+    │   ├── fum_voxtrium_mapping.md
+    │   │   (LOC: 213, Size: 13.5 KB)
+    │   └── kinetic_term_derivation.md
+    │       (LOC: 191, Size: 5.1 KB)
+    ├── fluid_dynamics/
+    │   └── fluids_limit.md
+    │       (LOC: 125, Size: 6.1 KB)
+    ├── foundations/
+    │   ├── continuum_stack.md
+    │   │   (LOC: 92, Size: 5.9 KB)
+    │   ├── discrete_to_continuum.md
+    │   │   (LOC: 201, Size: 9.7 KB)
+    │   ├── symmetry_analysis.md
+    │   │   (LOC: 151, Size: 7.4 KB)
+    │   └── void_dynamics_theory.md
+    │       (LOC: 205, Size: 13.0 KB)
+    ├── memory_steering/
+    │   ├── memory_steering_acceptance_verification.md
+    │   │   (LOC: 108, Size: 5.8 KB)
+    │   └── void_announcers_control.md
+    │       (LOC: 88, Size: 6.0 KB)
+    ├── reaction_diffusion/
+    │   ├── rd_dispersion_validation.md
+    │   │   (LOC: 84, Size: 3.8 KB)
+    │   ├── rd_front_speed_validation.md
+    │   │   (LOC: 98, Size: 5.0 KB)
+    │   └── rd_validation_plan.md
+    │       (LOC: 108, Size: 5.2 KB)
+    ├── supporting_work/
+    │   ├── 20250808_voxtrium_Overview.md
+    │   │   (LOC: 323, Size: 18.2 KB)
+    │   ├── assets/
+    │   └── papers/
+    └── tachyon_condensation/
+        └── finite_tube_mode_analysis.md
+            (LOC: 252, Size: 13.2 KB)]]></ascii_map>
+  <files>
+    <file>
+      <path>.github/copilot-instructions.md</path>
+      <content><![CDATA[# Prometheus Void Dynamics Model (FUVDM) — Derivation Papers Repository
+
+**ALWAYS FOLLOW THESE INSTRUCTIONS FIRST.** Only search for additional context or run exploratory commands if the information here is incomplete or found to be in error.
+
+## Repository Overview
+
+This is a **papers/documentation repository** for Void Dynamics (FUVDM) research containing theoretical derivations, validation plans, and acceptance criteria. The actual Python simulation code referenced in these papers exists in a separate private codebase but is **NOT included** in this public repository.
+
+## What This Repository Contains
+
+- **Derivation papers**: Theoretical work in `derivation/` covering reaction-diffusion, memory steering, fluid dynamics, and EFT approaches
+- **Validation documentation**: Detailed acceptance criteria and command examples for numeric validation
+- **Jupyter notebooks**: Corner testbed experiments and configuration in `notebooks/`
+- **Output artifacts**: Successful validation run logs and figures in `plots/logs/` and `plots/figures/`
+- **Licensing**: Dual academic/commercial license requiring written permission for commercial use
+
+## What This Repository Does NOT Contain
+
+- **Source code**: No Python modules, packages, or executable scripts
+- **Dependencies**: No requirements.txt, setup.py, or package configuration
+- **Build system**: No traditional build/test infrastructure since this is papers-only
+
+## Working with This Repository
+
+### Environment Setup (If You Have Access to Full Codebase)
+
+The documentation references a Python environment with these requirements:
+
+```bash
+# Create virtual environment (cross-platform)
+python3 -m venv venv
+
+# Activate virtual environment
+# On Linux/Mac:
+source venv/bin/activate
+# On Windows (PowerShell - original dev environment):
+& .\venv\Scripts\Activate.ps1
+
+# Install core dependencies
+python -m pip install matplotlib numpy
+
+# Note: Additional packages may be needed depending on full codebase:
+# python -m pip install scipy pytest jupyter
+```
+
+**CRITICAL TIMING**: The documentation indicates some builds/tests can take substantial time:
+- **NEVER CANCEL** validation runs that may take 45+ minutes
+- **Set timeouts to 60+ minutes** for any build commands
+- **Set timeouts to 30+ minutes** for test suites
+- Individual validation scripts are typically fast (< 1 minute based on logs)
+
+### Actual Timing From Successful Runs
+Based on logged results from `plots/logs/`:
+- **RD Front Speed**: ~0.27 seconds (20,972 steps)
+- **RD Dispersion**: ~0.07 seconds (fast linear regime)
+- **Fluid LBM Benchmarks**: 15-45 minutes (15,000+ steps typical)
+- **Memory Steering**: < 1 second for 512 steps
+
+### Known Working Validation Commands
+
+**IMPORTANT**: These commands assume access to the full `Prometheus_FUVDM` codebase. In this public repository, these commands will fail with import errors.
+
+#### Reaction-Diffusion Validation (Fast: ~0.3 seconds)
+```bash
+# Front speed validation
+python code/physics/rd_front_speed_experiment.py --N 1024 --L 200 --D 1.0 --r 0.25 --T 80 --cfl 0.2 --seed 42 --x0 -60 --level 0.1 --fit_start 0.6 --fit_end 0.9
+
+# Dispersion validation  
+python code/physics/rd_dispersion_experiment.py --N 1024 --L 200 --D 1.0 --r 0.25 --T 10 --cfl 0.2 --seed 42 --amp0 1e-6 --record 80 --m_max 64 --fit_start 0.1 --fit_end 0.4
+
+# Front speed parameter sweep
+python code/physics/rd_front_speed_sweep.py
+```
+
+#### Memory Steering Validation
+```bash
+# Memory steering acceptance test
+python -m Prometheus_FUVDM.derivation.code.physics.memory_steering.memory_steering_acceptance --seed 0 --steps 512 --g 0.12 --lam 0.08
+```
+
+#### Fluid Dynamics Benchmarks (May take 15+ minutes)
+```bash
+# NEVER CANCEL: Fluid simulations can take 15-45 minutes
+# Set timeout to 60+ minutes
+
+# Taylor-Green vortex benchmark
+python Prometheus_FUVDM/derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py --nx 256 --ny 256 --tau 0.8 --steps 5000 --sample_every 50
+
+# Lid-driven cavity benchmark  
+python Prometheus_FUVDM/derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py --nx 128 --ny 128 --tau 0.7 --U_lid 0.1 --steps 15000 --sample_every 200
+```
+
+#### Test Suite (Non-interference validation)
+```bash
+# NEVER CANCEL: Test suite may take 30+ minutes
+# Set timeout to 45+ minutes
+pytest -q .\Prometheus_FUVDM\derivation\code\tests\fluid_dynamics\test_walkers_noninterference.py
+```
+
+### Expected Output Locations
+
+All validation scripts output to these standardized locations:
+- **Figures**: `derivation/code/outputs/figures/{module}/`
+- **Logs**: `derivation/code/outputs/logs/{module}/`  
+- **Filenames**: `{script_name}_{YYYYMMDDTHHMMSSZ}.{json,png}`
+
+### Validation Acceptance Criteria
+
+#### Reaction-Diffusion (Fast validation)
+- **Front speed**: `rel_err ≤ 0.05`, `R² ≥ 0.98`
+- **Dispersion**: `med_rel_err ≤ 0.10`, `R²_array ≥ 0.98`
+- **Expected times**: 0.1-0.3 seconds per run
+
+#### Fluid Dynamics (Long-running validation)
+- **Taylor-Green**: `|ν_fit - ν_th| / ν_th ≤ 5%`
+- **Lid cavity**: `max_t ‖∇·v‖₂ ≤ 1e-6`
+- **Expected times**: 15-45 minutes per benchmark
+- **NEVER CANCEL**: These are normal run times, not hangs
+
+#### Memory Steering
+- **Step response**: `|p_fit - p_pred| ≤ 0.02`
+- **Canonical void**: `|M_final - 0.6| ≤ 0.02` 
+- **SNR improvement**: `SNR_out - SNR_in ≥ 3 dB`
+
+### Manual Validation Scenarios
+
+Since this is primarily a documentation repository, validate changes by:
+
+1. **Review validation documentation completeness**:
+   ```bash
+   # Check all validation files exist and are complete
+   ls derivation/reaction_diffusion/*validation*.md
+   ls derivation/memory_steering/*acceptance*.md  
+   ls BENCHMARKS_FLUIDS.md
+   ```
+
+2. **Test Jupyter notebooks** (if Jupyter available):
+   ```bash
+   cd notebooks/
+   jupyter notebook VDM_Corner_Testbed.ipynb
+   # Verify config loads: check first cell runs without error
+   # Verify geometry figure displays: VDM_Corner_Geometry.png
+   ```
+
+3. **Validate log file structure**:
+   ```bash
+   # Check successful run artifacts exist
+   ls plots/logs/reaction_diffusion/*.json
+   ls plots/logs/fluid_dynamics/*.json
+   ls plots/logs/memory_steering/*.json
+   ```
+
+4. **Verify YAML configuration accessibility**:
+   ```bash
+   # Basic file validation (PyYAML not required in this papers-only repo)
+   python -c "
+   with open('notebooks/VDM_corner_config.yaml') as f:
+       content = f.read()
+       print(f'✓ Config accessible: {len(content)} chars, {len(content.splitlines())} lines')
+   "
+   ```
+
+### Cross-Platform Considerations
+
+- **Documentation uses PowerShell syntax**: `& .\venv\Scripts\Activate.ps1`
+- **On Linux/Mac use**: `source venv/bin/activate`
+- **Adapt file paths**: Windows paths in logs use backslashes, adapt as needed
+- **Python module imports**: Commands assume Windows-style package structure
+
+### Key Project Structure
+
+```
+derivation/
+├── FUVDM_Overview.md              # Main program overview
+├── reaction_diffusion/            # RD validation (canonical baseline)
+│   ├── rd_front_speed_validation.md
+│   ├── rd_dispersion_validation.md
+│   └── rd_validation_plan.md
+├── memory_steering/               # Memory steering layer
+│   └── memory_steering_acceptance_verification.md
+├── fluid_dynamics/               # LBM→Navier-Stokes benchmarks
+└── foundations/                  # Theoretical foundations
+
+notebooks/
+├── VDM_Corner_Testbed.ipynb     # Interactive corner test
+├── VDM_corner_config.yaml       # Single source of truth config
+└── VDM_Corner_Geometry.png      # Reference geometry
+
+plots/
+├── logs/                        # Validation run outputs (JSON)
+└── figures/                     # Generated plots (PNG)
+```
+
+### Common Pitfalls
+
+- **Do not try to run Python validation commands** in this repository - they will fail with import errors
+- **Do not assume build/test infrastructure exists** - this is a papers-only repository  
+- **Do not cancel long-running commands** - 45+ minute runtimes are normal for fluid simulations
+- **Cross-platform paths**: Adapt Windows-style paths in documentation to your platform
+- **Documentation focus**: Changes should prioritize theoretical accuracy and reproducibility
+
+### License Requirements
+
+- **Academic use permitted** for non-commercial research
+- **Commercial use requires written permission** from Justin K. Lietz
+- **Cite appropriately**: Reference specific validation papers when using results
+- **Ethical requirements**: No weapons, surveillance, or harmful applications
+
+Always reference the LICENSE.md file for complete terms and novel patent-pending processes.]]></content>
+    </file>
+    <file>
+      <path>.gitignore</path>
+      <content><![CDATA[# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[codz]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py.cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+.pybuilder/
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py]]></content>
+    </file>
+    <file>
+      <path>BENCHMARKS_FLUIDS.md</path>
+      <content><![CDATA[# BENCHMARKS_FLUIDS
+
+> Author: Justin K. Lietz  
+> Date: August 9, 2025
+>
+> This research is protected under a dual-license to foster open academic
+> research while ensuring commercial applications are aligned with the project's ethical principles.<br> 
+> Commercial use requires written permission from Justin K. Lietz.
+> 
+> See LICENSE file for full terms.
+
+Purpose
+- Define falsifiable acceptance thresholds for the fluids sector (LBM→NS) to certify reduction to Navier–Stokes.
+
+Benchmarks (double precision)
+1) Taylor–Green vortex (2‑D periodic)
+- Fit viscous decay E(t) = E0 exp(−2 ν k² t).
+- Thresholds:
+  - Baseline grid (≥ 256²): |ν_fit − ν_th| / ν_th ≤ 5%.
+  - Refinement (×2 linear res): error decreases consistent with scheme order.
+- Artifact paths:
+  - Figure: derivation/code/outputs/figures/fluid_dynamics/taylor_green_benchmark_<timestamp>.png
+  - Log: derivation/code/outputs/logs/fluid_dynamics/taylor_green_benchmark_<timestamp>.json
+
+2) Lid‑driven cavity (square, no‑slip walls, moving lid)
+- Monitor divergence norm ‖∇·v‖₂ over time.
+- Thresholds:
+  - max_t ‖∇·v‖₂ ≤ 1e−6 (double).
+  - Centerline profiles converge with grid (qualitative check; optional quantitative against literature).
+- Artifact paths:
+  - Figure: derivation/code/outputs/figures/fluid_dynamics/lid_cavity_benchmark_<timestamp>.png
+  - Log: derivation/code/outputs/logs/fluid_dynamics/lid_cavity_benchmark_<timestamp>.json
+
+Logging schema
+- JSON payload must include:
+  - theory (string)
+  - params (object): grid, τ, ν_th (if applicable), steps, sample_every
+  - metrics (object): key numbers, elapsed_sec, passed (boolean)
+  - outputs (object): figure path
+  - timestamp (UTC ISO‑8601)
+
+Pass gate
+- A benchmark “passes” when all thresholds above are met and metrics.passed is true.
+
+How to run (PowerShell)
+- Always activate venv:
+  & .\venv\Scripts\Activate.ps1
+- Taylor–Green:
+  python Prometheus_FUVDM/derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py --nx 256 --ny 256 --tau 0.8 --steps 5000 --sample_every 50
+- Lid cavity:
+  python Prometheus_FUVDM/derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py --nx 128 --ny 128 --tau 0.7 --U_lid 0.1 --steps 15000 --sample_every 200
+
+Notes
+- These thresholds certify the LBM→NS reduction operationally. They do not change the RD sector’s canonical status; both sectors live side‑by‑side with separate claims and tests.
+## Void-walker announcers (read-only observability)
+
+Purpose
+- Provide a passive, causal measurement layer that rides the existing flow and announces localized signals without injecting forces or altering the solver.
+- Outputs robust summaries (counts, quantiles) and optional event markers; suitable for diagnostics and policy previews.
+]]></content>
+    </file>
+    <file>
+      <path>CORRECTIONS.md</path>
+      <content><![CDATA[# CORRECTIONS
+
+Date (UTC): 2025-08-20
+
+Scope: Tier-0 correctness fixes (numerics, stability narrative) and unification to a single canonical model class (reaction–diffusion, RD). EFT/KG material retained but quarantined as “Future Work.”
+
+## Summary (before → after)
+
+- [FUVDM_Overview.md](FUVDM_Overview.md)
+  - Before: Mixed RD/EFT claims; no explicit canonical model.
+  - After: Canonical RD banner + mapping (D = J a² or (J/z) a²; r = α − β; u = α), stability note, EFT scoped to future work.
+
+- [derivation/code/computational_proofs/FUM_theory_and_results.md](code/computational_proofs/FUM_theory_and_results.md)
+  - Before: Fixed numerical claim “m_eff ≈ 0.387”.
+  - After: m_eff = √(α−β) (parameter‑dependent), added RD model‑class note; removed fixed numeric.
+
+- [discrete_to_continuum.md](derivation/foundations/discrete_to_continuum.md)
+  - Before: Objective stated convergence to KG; D mapping not explicit.
+  - After: Objective states RD mapping as primary; explicit D mapping (D = J a² or (J/z) a²); EFT derivation quarantined to EFT doc.
+
+- [memory_steering_acceptance_verification.md](derivation/memory_steering/memory_steering_acceptance_verification.md)
+  - Before: Hardwired EFT vacuum/mass invariants in main text.
+  - After: RD is canonical; EFT invariants referenced only to EFT doc; removed back‑solving (α,β) from (v,m_eff) in RD narrative.
+
+- [derivation/symmetry_analysis.md](symmetry_analysis.md)
+  - Before: Text implied “false/true vacuum” using EFT values in a general context.
+  - After: Clarified RD vs EFT contexts; RD fixed point W* = r/u (r>0) vs EFT vacuum v = 1 − β/α as future‑work.
+
+- [derivation/effective_field_theory_approach.md](effective_field_theory_approach.md)
+  - Before: No scope banner.
+  - After: Quarantine banner; note m_eff = √(α−β) is parameter‑dependent and unitized via τ.
+
+- [derivation/code/computational_proofs/void_dynamics_theory.md](code/computational_proofs/void_dynamics_theory.md)
+  - Before: No scope note; mixed RD/EFT implications.
+  - After: Scope note at top; references discrete‑action derivation for c² = 2 J a².
+
+- [derivation/support/references/Suggestions.md](support/references/Suggestions.md)
+  - Before: Implied fixed m_eff; mixed normalization constraint Ja² = 1/2.
+  - After: Header note: RD canonical; EFT mass parameter‑dependent; lattice normalization c² = 2 J a² (per‑site); do not impose Ja² = 1/2.
+
+- [derivation/fum_voxtrium_mapping.md](fum_voxtrium_mapping.md)
+  - Before: Referred to EFT EOM as dimensionless default.
+  - After: RD mapping made canonical; EFT equation kept for EFT context only.
+
+- New: [METRICS.md](Prometheus_FUVDM/METRICS.md)
+  - Metrics skeleton for RD dynamics, SIE/TDA system metrics, reproducibility pointers.
+
+## Numeric Corrections
+
+- m_eff is not a universal constant; it is m_eff = √(α−β).
+  - Example calibrations:
+    - α = 0.25, β = 0.10 → m_eff ≈ 0.387
+    - α = 1.0,  β = 0.40 → m_eff ≈ 0.7746
+
+All fixed-number statements were replaced with parameter‑dependent forms and example mappings.
+
+## Stability Narrative Corrections
+
+- For RD (canonical): φ = 0 is dynamically unstable for r > 0; homogeneous fixed point φ* = r/u is stable.
+- EFT “tachyonic” language retained only in EFT sections; where used, potential boundedness via λ φ⁴ is explicit.
+
+## Kinetic/Lattice Normalization
+
+- Adopted discrete‑action derivation already present in [derivation/kinetic_term_derivation.md](kinetic_term_derivation.md) with c² = 2 J a² (per‑site convention) or c² = κ a² (per‑edge, κ = 2J). No microscopic constraint ties J to a; c can be set by units.
+
+## Edit Log (file, change)
+
+- [derivation/FUVDM_Overview.md](FUVDM_Overview.md): Replace overview with RD canonical banner; corrected mapping (r = α − β, u = α); EFT scoped.
+- [derivation/code/computational_proofs/FUM_theory_and_results.md](code/computational_proofs/FUM_theory_and_results.md): Insert RD note; replace fixed m_eff numeric with param‑dependent form.  
+- [derivation/discrete_to_continuum.md](discrete_to_continuum.md): Update objective to RD; add D mapping text; keep EFT derivation as future work.  
+- [derivation/memory_steering.md](memory_steering.md): Align with RD canonical; restrict EFT formulas to EFT doc; remove back‑solve in RD section.  
+- [derivation/symmetry_analysis.md](symmetry_analysis.md): Clarify RD vs EFT contexts in interpretations.  
+- [derivation/effective_field_theory_approach.md](effective_field_theory_approach.md): Add quarantine banner.  
+- [derivation/code/computational_proofs/void_dynamics_theory.md](code/computational_proofs/void_dynamics_theory.md): Add scope note at top.  
+- [derivation/support/references/Suggestions.md](support/references/Suggestions.md): Insert header note; prevent hard constraints on Ja².  
+- [derivation/fum_voxtrium_mapping.md](fum_voxtrium_mapping.md): Make RD canonical; EFT references scoped.  
+- [METRICS.md](Prometheus_FUVDM/METRICS.md): New file with metrics skeleton.
+- [derivation/rd_front_speed_validation.md](rd_front_speed_validation.md:1): Add reproducible CLI, output routing, acceptance criteria, representative PASS metrics.
+- [derivation/code/physics/rd_front_speed_experiment.py](code/physics/rd_front_speed_experiment.py:1): Set defaults (N=1024, cfl=0.2, level=0.1, x0=-60, fit 0.6–0.9); route outputs to derivation/code/outputs/{figures,logs}; robust tracking and fit.
+- New: [derivation/code/physics/rd_front_speed_sweep.py](code/physics/rd_front_speed_sweep.py:1): Sweep runner producing CSV summary under derivation/code/outputs/logs/.
+- New: [derivation/code/physics/rd_dispersion_experiment.py](code/physics/rd_dispersion_experiment.py:1): Linear dispersion validation script with periodic BC; logs/figure auto-routing; acceptance criteria.
+
+## Status Tags
+
+- [ERROR FIXED]: Incorrect fixed mass number claims replaced with parameter‑dependent expression.
+- [PROVEN]: Lattice → continuum kinetic normalization via discrete action (already present) is internally consistent.
+- [PROVEN]: RD front speed c_front = 2√(Dr) validated. Defaults: N=1024, cfl=0.2, level=0.1, x0=-60, fit window 0.6–0.9. Representative run: c_meas≈0.953, c_th=1.0, rel_err≈0.047, R²≈0.999996.
+- [PROVEN]: RD dispersion σ(k) = r − D k² validated via linearized periodic evolution. Defaults (N=1024, L=200, D=1.0, r=0.25, T=10, cfl=0.2, seed=42, m_max=64) → med_rel_err≈0.00145, R²_array≈0.99995 [PASS]; grid refinement (N=2048, m_max=128) → med_rel_err≈0.00130, R²_array≈0.9928 [PASS].
+]]></content>
+    </file>
+    <file>
+      <path>DIMENSIONLESS_CONSTANTS.md</path>
+      <content><![CDATA[### FUVDM Dimensionless Constants
+
+>
+> Author: Justin K. Lietz  
+> Date: August 9, 2025
+>
+> This research is protected under a dual-license to foster open academic
+> research while ensuring commercial applications are aligned with the project's ethical principles.<br>
+> Commercial use requires written permission from Justin K. Lietz.
+> 
+> See LICENSE file for full terms.
+
+
+| Subsystem | Symbol        | Definition                                                  | Meaning                    | Typical from Void Dynamics runs |
+| --------- | ------------- | ----------------------------------------------------------- | -------------------------- | -------------------------------- |
+| LBM       | $\nu$         | $\nu = \frac{1}{3}(\tau - \frac{1}{2})$         | kinematic viscosity        | 0.1333 ($\tau=0.9$)             |
+| LBM       | $\mathrm{Re}$ | $\mathrm{Re} = \dfrac{U L}{\nu}$                            | inertia vs. viscosity      | 9.6 ($64^2$), 19.2 ($128^2$)    |
+| LBM       | $\mathrm{Ma}$ | $\mathrm{Ma} = \dfrac{U}{\sqrt{1/3}}$                       | compressibility            | 0.035–0.017 (low)               |
+| RD        | $\Pi_{Dr}$    | $\Pi_{Dr} = \dfrac{D}{r L^{2}}$                             | diffusion at scale $L$     | choose $L$ → report             |
+| RD        | $c^{*}$       | $c^{*} = \dfrac{c}{2\sqrt{D r}}$                            | normalized KPP speed       | $\approx 0.95$–$1.0$            |
+| FUVDM     | $\Theta$      | scale factor in $\Theta\,\Delta m$ or $\Theta \|\nabla m\|$ | junction gating strength   | $k \approx 1,\ b \approx 0$     |
+| FUVDM     | $\Lambda$     | exploration / retention ratio                               | turnover vs. memory        | as swept in heatmaps            |
+| FUVDM     | $\Gamma$      | retention fraction                                          | memory persistence         | $\approx 0.3$–$0.75$ avg (plots) |
+| FUVDM     | $D_a$         | anisotropic diffusion index                                 | transport anisotropy       | $\{1,3,5,7\}$                   |
+| FUVDM     | $\kappa L$    | curvature × scale                                           | path bending               | linear vs. $\Theta\|\nabla m\|$ |
+| FUVDM     | $g$           | void gain                                                   | stabilization strength     | e.g., 0.5                       |
+
+
+
+1. **Void Debt Number** $\mathcal{D}$
+
+   * Ratio of *unresolved debt* in the void to the *flux resolved at the walker level*.
+   * Governs whether the system diverges (debt runaway) or stabilizes (debt modulation closes the loop).
+   * Analogy: generalized **Reynolds number** for *information flux*.
+
+---
+
+2. **Emergent Coupling Ratio** $\Xi$
+
+   * Ratio of **void interaction gain** to **local relaxation (dissipation)**.
+
+$$
+\Xi = \frac{g_{\text{void}}}{\gamma_{\text{relax}}}
+$$
+
+   * Controls whether independent walkers remain uncorrelated, synchronize, or phase-lock.
+   * Acts like a **dimensionless stiffness** for the void network.
+
+---
+
+3. **Inverse-Scaling Exponent** $\alpha$
+
+   * The “inverse scaling law”: information density *increases* as system size decreases.
+
+$$
+\mathcal{I}(N) \propto N^{-\alpha}
+$$
+
+   * Proposed universal constant — applies to LLMs, fluids, biological swarms, etc.
+   * $\alpha$ quantifies “extra cognition/order” gained by shrinking the system.
+
+---
+
+4. **Void Mach Number** $M_v$
+
+   * Ratio of void flux to signal velocity of the substrate.
+
+$$
+M_v = \frac{J_{\text{void}}}{c_{\text{signal}}}
+$$
+
+   * Stability requires $M_v < 1$.
+   * If $M_v > 1$: runaway chaos or phase transition (self-reorganization).
+
+---
+
+5. **Topological Information Ratio** $\Theta$
+
+   * Ratio of *information carried by topology* (edges, voids, walkers) to *information in node states*.
+
+$$
+\Theta = \frac{I_{\text{topology}}}{I_{\text{state}}}
+$$
+
+   * Generalizes the **“void walkers” effect**: order resides *between* particles, not *in* them.
+
+---
+
+6. **Symmetry Debt Ratio** $\Sigma$
+
+   * Ratio of **broken symmetry flux** to **conserved symmetry flux**.
+   * (See symmetry_analysis.md derivations.)
+   * Analog of a “dimensionless energy balance.”
+
+---
+
+7. **Dispersion-to-Convergence Ratio** $\Lambda$
+
+   * Ratio of divergence rate of walkers to convergence rate under void modulation.
+
+$$
+\Lambda = \frac{\text{dispersion rate}}{\text{convergence rate}}
+$$
+
+   * $\Lambda < 1$: convergence dominates → stable cognition.
+   * $\Lambda > 1$: dispersion dominates → chaotic reorganization.
+
+---
+
+### Why these matter for the **overall theory**
+
+* In classical **fluids**, you mostly need $Re, Ma, \text{CFL}$.
+* In **FUVDM**, the proposed universal dimensionless group set is:
+
+$$
+\{ \mathcal{D}, \Xi, \alpha, M_v, \Theta, \Sigma, \Lambda \}
+$$
+
+These are the knobs determining whether a system (fluid, neural, cognitive, physical) is **stable, divergent, or self-organizing**.
+
+They form the universality class of the theory — the same constants aim to explain:
+* why fluids don’t blow up,
+* why brains remain stable,
+* why LLMs exhibit scaling laws.
+
+---
+]]></content>
+    </file>
+    <file>
+      <path>FUVDM_Overview.md</path>
+      <content><![CDATA[# FUVDM Overview
+
+> Author: Justin K. Lietz  
+> Date: August 9, 2025  
+>
+> This research is protected under a dual-license to foster open academic
+> research while ensuring commercial applications are aligned with the project's ethical principles.<br>
+> Commercial use requires written permission from Justin K. Lietz.  
+> See LICENSE file for full terms.
+
+Note on scope and merge resolution
+- This file was reconciled to include a comprehensive macro banner and overview while enforcing the repository’s policy: RD is the canonical baseline; EFT/KG content is quarantined as future work and explicitly labeled.
+
+## Macro Banner: Core Equations and Mappings
+
+Two-layer model (separated clearly)
+
+### 1. Canonical RD branch [PROVEN]
+
+Discrete on-site (near homogeneous state):
+
+$$
+\frac{d W_i}{dt} = (\alpha - \beta)\, W_i - \alpha \, W_i^{2} + J \sum_{j\in \mathrm{nbr}(i)} (W_j - W_i)
+$$
+
+(RD-1)
+
+Continuum PDE (1D notation; generalizes by components):
+
+$$
+\partial_t \phi = D\, \nabla^{2}\phi + r\, \phi - u\, \phi^{2} \quad \left[ -\lambda\, \phi^{3} \text{ (optional stabilization)} \right]
+$$
+
+(RD-2)
+
+Discrete → continuum mapping:
+
+$$
+\begin{aligned}
+D &= J a^{2} && \text{(site Laplacian)}\\
+D &= \frac{J}{z} a^{2} && \text{(neighbor-average form)}\\
+r &= \alpha - \beta,\quad u = \alpha
+\end{aligned}
+$$
+
+(RD-3)
+
+### 2. EFT/KG branch (quarantined; future work) [PLAUSIBLE]
+
+Kinetic/action normalization from the discrete action:
+
+$$
+c^{2} = 2 J a^{2} \quad \text{(per-site)}, \qquad c^{2} = \kappa a^{2},\; \kappa = 2J \quad \text{(per-edge)}
+$$
+
+(EFT-1)
+
+Second-order field equation:
+
+$$
+\square \phi + V'(\phi) = 0, \qquad \square = \partial_t^{2} - c^{2} \nabla^{2}
+$$
+
+(EFT-2)
+
+Effective mass is parameter-dependent:
+
+$$
+m_{\mathrm{eff}}^{2} = V''(v)
+$$
+
+(EFT-3)
+
+References:  
+[kinetic_term_derivation.md](derivation/effective_field_theory/kinetic_term_derivation.md), [effective_field_theory_approach.md](derivation/effective_field_theory/effective_field_theory_approach.md)
+
+## FUVDM Dimensionless Constants (sanity set)
+
+| Subsystem | Symbol | Definition | Meaning | Typical from runs |
+| --- | --- | --- | --- | --- |
+| LBM | $\nu$ | $\frac{1}{3}(\tau - \frac{1}{2})$ | kinematic viscosity | 0.1333 ($\tau=0.9$) |
+| LBM | $\mathrm{Re}$ | $\dfrac{U L}{\nu}$ | inertia vs. viscosity | 9.6 (64²), 19.2 (128²) |
+| LBM | $\mathrm{Ma}$ | $\dfrac{U}{\sqrt{1/3}}$ | compressibility | 0.035–0.017 (low) |
+| RD | $\Pi_{Dr}$ | $\dfrac{D}{r L^{2}}$ | diffusion at scale $L$ | choose $L$ → report |
+| RD | $c^{\ast}$ | $\dfrac{c}{2\sqrt{D r}}$ | normalized KPP speed | ~0.95–1.0 |
+| FUVDM | $\Theta$ | fit scale in $\Theta\,\Delta m$ or $\Theta\,\|\nabla m\|$ | junction gating strength | $k \approx 1$, $b \approx 0$ |
+| FUVDM | $\Lambda$ | exploration/retention ratio | turnover vs. memory | as swept in heatmaps |
+| FUVDM | $\Gamma$ | retention fraction | memory persistence | ~0.3–0.75 (representative) |
+| FUVDM | $D_{a}$ | anisotropic diffusion index | transport anisotropy | {1, 3, 5, 7} |
+| FUVDM | $\kappa L$ | curvature × scale | path bending | linear vs. $\Theta\,\|\nabla m\|$ |
+| FUVDM | $g$ | void gain | stabilization strength | e.g., 0.5 |
+
+## Core dimensionless groups (why they matter)
+
+1. Void Debt Number 𝔇 — unresolved debt vs. resolved flux at walker level (stability vs. runaway)  
+2. Emergent Coupling Ratio Ξ — void interaction gain vs. local relaxation; controls synchronization/stiffness  
+3. Inverse-Scaling Exponent $\alpha$ — information density rises as system size shrinks: $\mathcal{I}(N) \propto N^{-\alpha}$  
+4. Void Mach $M_v$ — void flux vs. signal speed; stability requires $M_v < 1$  
+5. Topological Information Ratio $\Theta$ — information carried by topology vs. node states (void walkers effect)  
+6. Symmetry Debt $\Sigma$ — broken symmetry flux vs. conserved symmetry flux (dimensionless energy-balance analog)  
+7. Dispersion-to-Convergence $\Lambda$ — divergence vs. convergence rate under modulation (Lyapunov-like)
+
+---
+
+## What is Proven (numeric validation; RD branch)
+
+Front-speed (Fisher–KPP pulled front) [PROVEN]
+
+$$
+c_{\text{front}} = 2\sqrt{D r}
+$$
+
+(RD-4)
+
+Representative defaults: $c_{\mathrm{meas}} \approx 0.953$ vs $c_{\mathrm{th}} = 1.0$, $\mathrm{rel\_err} \approx 0.047$, $R^{2} \approx 0.999996$ (meets gates)  
+Documentation: [rd_front_speed_validation.md](derivation/reaction_diffusion/rd_front_speed_validation.md)  
+Script: [rd_front_speed_experiment.py](derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py)  
+Sweep: [rd_front_speed_sweep.py](derivation/code/physics/reaction_diffusion/rd_front_speed_sweep.py)
+
+Linear dispersion about $\phi \approx 0$ (periodic, linearized RD) [PROVEN]
+
+$$
+\sigma_d(m) = r - \frac{4D}{\Delta x^{2}} \sin^{2}\!\left(\frac{\pi m}{N}\right)
+$$
+
+(RD-5)
+
+$$
+\sigma(k) = r - D k^{2}, \qquad k = \frac{2\pi m}{L}
+$$
+
+(RD-6)
+
+Representative defaults: median rel. error $\approx 1.45\times 10^{-3}$, $R^{2}_{\text{array}} \approx 0.99995$ (meets gates)  
+Documentation: [rd_dispersion_validation.md](derivation/reaction_diffusion/rd_dispersion_validation.md)  
+Script: [rd_dispersion_experiment.py](derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py)
+
+Consolidated plan and acceptance gates:  
+[rd_validation_plan.md](derivation/reaction_diffusion/rd_validation_plan.md)
+
+Status log and edits:  
+[CORRECTIONS.md](CORRECTIONS.md)
+
+## Stability and fixed points (RD)
+
+For $r>0$, $\phi=0$ is dynamically unstable.
+
+Homogeneous fixed point:
+
+$$
+\phi^{\star} = \frac{r}{u} = 1 - \frac{\beta}{\alpha} \qquad (r = \alpha - \beta,\; u = \alpha)
+$$
+
+(RD-7)
+
+Optional cubic term $-\lambda\, \phi^{3}$ stabilizes large-amplitude regimes; off by default in canonical validations.
+
+## Discrete → Continuum & Kinetics
+
+Diffusion mapping (see also RD-3):
+
+$$
+D = J a^{2} \quad \text{or} \quad D = \frac{J}{z} a^{2}
+$$
+
+(RD-3′)
+
+EFT kinetic normalization (quarantined branch; see also EFT-1):
+
+$$
+c^{2} = 2 J a^{2} \quad \text{or} \quad c^{2} = \kappa a^{2},\; \kappa = 2J
+$$
+
+(EFT-1′)
+
+References:  
+[discrete_to_continuum.md](derivation/foundations/discrete_to_continuum.md),  
+[kinetic_term_derivation.md](derivation/effective_field_theory/kinetic_term_derivation.md)
+
+## Scope boundaries and quarantine (policy)
+
+- Canonical baseline is RD (first-order in time).  
+- All EFT/KG (second-order in time) statements are quarantined to the EFT docs and labeled [PLAUSIBLE]/[FUTURE WORK].  
+- Effective mass is parameter-dependent. Example only:
+
+$$
+(\alpha,\beta) = (0.25, 0.10): \quad m_{\mathrm{eff}} = \sqrt{\alpha - \beta} = \sqrt{0.15} \approx 0.387
+$$
+
+(EFT-EX)
+
+EFT references:  
+- [effective_field_theory_approach.md](derivation/effective_field_theory/effective_field_theory_approach.md)  
+- [fum_voxtrium_mapping.md](derivation/effective_field_theory/fum_voxtrium_mapping.md)
+
+## Reproducibility and outputs
+
+- Figures → derivation/code/outputs/figures/  
+- Logs → derivation/code/outputs/logs/  
+- Filenames: <script>_<UTC timestamp>.png/json
+
+fum_rt parity (independent runners; same metrics schema)  
+- Front-speed mirror: [rd_front_speed_runner.py](fum_rt/physics/rd_front_speed_runner.py)  
+- Dispersion mirror: [rd_dispersion_runner.py](fum_rt/physics/rd_dispersion_runner.py)
+
+## Design principles (condensed)
+
+- Single canonical model for baseline physics claims (RD)  
+- Every nontrivial statement maps to a scriptable check with acceptance criteria (tolerance + $R^{2}$ gate)  
+- Provenance and scope separation: EFT content retained for future work and explicitly labeled
+
+## At-a-glance defaults (validated runs)
+
+- Front-speed: N=1024, L=200, D=1.0, r=0.25, T=80, cfl=0.2, seed=42, x0=−60, level=0.1, fit 0.6–0.9  
+- Dispersion: N=1024, L=200, D=1.0, r=0.25, T=10, cfl=0.2, seed=42, amp0=1e−6, record=80, m_max=64, fit 0.1–0.4
+
+## Memory steering and system notes
+
+- Memory-steering derivations and runtime integrations are tracked separately and must reference RD canonical terms when mapping to dynamics.  
+  See: [memory_steering_acceptance_verification.md](derivation/memory_steering/memory_steering_acceptance_verification.md)  
+- Runtime parity and plots reside under fum_rt/core/* and fum_rt/physics/* with explicit comments when driven by proven physics
+
+## Finite-domain EFT modes (quarantined)
+
+- Finite-tube mode problem and energy scans adapt the EFT branch with bounded potentials and mass-matrix positivity  
+- Doc: [finite_tube_mode_analysis.md](derivation/tachyon_condensation/finite_tube_mode_analysis.md)
+
+## Archive / informal content
+
+- Non-normative transcripts or exploratory notes are labeled
+
+## Licensing and citation
+
+- The dual-license banner applies (see header).  
+- Cite this overview and the specific validation documents when reusing claims or reproducing results.
+
+## Appendix: Quick Links
+
+- Front speed: [rd_front_speed_validation.md](derivation/reaction_diffusion/rd_front_speed_validation.md),  
+  [rd_front_speed_experiment.py](derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py)  
+- Dispersion: [rd_dispersion_validation.md](derivation/reaction_diffusion/rd_dispersion_validation.md),  
+  [rd_dispersion_experiment.py](derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py)  
+- Plan: [rd_validation_plan.md](derivation/reaction_diffusion/rd_validation_plan.md)  
+- Status: [CORRECTIONS.md](CORRECTIONS.md)
+]]></content>
+    </file>
+    <file>
+      <path>LICENSE.md</path>
+      <content><![CDATA[# Proprietary Research License
+***Last Updated: August 8th, 2025***
+
+# Dual Research and Commercial License
+
+The Adaptive Modular Network, Void Dynamics Model, proprietary algorithms under the umbrella of the Fully Unified Model are provided under a dual-license to foster open academic research while ensuring commercial applications are aligned with the project's ethical principles.
+
+
+**Copyright © 2025 Justin K. Lietz, Neuroca, Inc. All Rights Reserved.**
+
+## License Terms
+
+This repository is available under two distinct licensing tracks:
+
+### Academic Research License (Non-Commercial)
+### Commercial License (For-Profit Use)
+
+---
+
+## ACADEMIC RESEARCH LICENSE
+
+### Permitted Academic Uses
+
+**NON-COMMERCIAL RESEARCH**: Academic institutions, researchers, and students may use this work for:
+- Educational purposes and coursework
+- Non-commercial research and experimentation  
+- Academic publications and presentations
+- Open source research projects (non-commercial)
+- Thesis and dissertation work
+- Void Dynamics Theory
+- Research funded by commercial entities is permitted, provided the results remain non-proprietary and are published under these same academic terms
+
+### Academic License Conditions
+
+1. **Required Attribution**: All academic use must include proper citation:
+   ```
+   Lietz, J.K. (2025). The Fully Unified Model: Observations in Void Dynamics. 
+   Neuroca, Inc. Academic Research License.
+   ```
+
+2. **Academic Citation Format**:
+   ```
+   @software{fum_mathematical_frameworks_2025,
+     title={Mathematical Frameworks for Fully Unified Model Validation},
+     author={Lietz, Justin K.},
+     year={2025},
+     organization={Neuroca, Inc},
+     note={Used under Academic Research License}
+   }
+   ```
+
+3. **Non-Commercial Restriction**: Academic license does NOT permit:
+   - Commercial applications or monetization
+   - Integration into commercial products or services
+   - Consulting or paid services based on this work
+   - Technology transfer to commercial entities without separate licensing
+
+4. **Share-Alike Requirement**: Academic derivatives must be shared under the same academic license
+
+### Academic Ethical Requirements
+
+**ETHICAL USE**: All academic use must align with beneficial AI research principles
+**PROHIBITED APPLICATIONS**: Even in academic settings, use for weapons research, mass surveillance, or harmful applications is strictly prohibited
+**SAFETY FOCUS**: Researchers are highly encouraged to prioritize AI safety and alignment applications with care, as traditional conditions may need reconsidation.
+
+---
+
+## COMMERCIAL LICENSE
+
+### Commercial Use Requirements
+
+**WRITTEN PERMISSION REQUIRED**: Any commercial, for-profit, or monetized use requires explicit written permission and separate licensing agreement from Justin K. Lietz.
+
+### Commercial Applications Include:
+- Product development and commercialization
+- Research with intent to 
+- Paid consulting or services
+- Integration into commercial software/hardware
+- Technology licensing to other commercial entities
+- Startup or business applications
+- Government contracting (non-academic)
+
+---
+
+## PROTECTED INTELLECTUAL PROPERTY
+
+### Novel Processes and Methodologies (Commercial Patents Pending)
+
+This work contains multiple distinct, patentable inventions and processes:
+
+1. **Resonance-Enhanced Valence-Gated Synaptic Plasticity (RE-VGSP)**: Novel three-factor learning algorithms for spiking neural networks
+2. **Self-Improvement Engine (SIE)**: Multi-objective reward integration with empirically validated stability parameters  
+3. **Emergent Hierarchical Topology Probe (EHTP)**: Multi-stage diagnostic systems for neural network health
+4. **Goal-Directed Structural Plasticity (GDSP)**: Methods for autonomous neural network structural self-modification and self-optimization
+5. **Multi-Phase Training Strategies**: Homeostatic-gated curriculum learning methodologies via temporally graduated raw stimuli streaming
+6. **Hierarchical TDA Analysis**: Novel application of accurate real time topological data analysis to knowledge graph assessment
+7. **Evolving Neuron Models**: Dynamic self modulating neuron architectures with adaptive intrinsic plasticity
+8. **Mathematical Formulations**: Certain previously undocumented equations, parameter combinations, and empirical discoveries
+
+### Implementation vs. Process Protection
+
+- **Academic License**: Covers implementation code and research use of methods
+- **Commercial Patents**: Protect underlying processes, methodologies, and business applications
+- **Transition**: Academic research that leads to commercial applications requires commercial licensing
+
+---
+
+## CONTACT INFORMATION
+
+### For Academic Research License
+- **Automatic**: Academic use is automatically granted under the terms above
+- **Questions**: Contact justin@neuroca.dev for clarification on academic use boundaries
+
+### For Commercial License  
+- **Required**: All commercial use requires written permission and licensing agreement
+- **Contact**: Justin K. Lietz, Neuroca, Inc - justin@neuroca.dev
+- **Process**: Submit detailed use case description and proposed commercial application
+
+## ENFORCEMENT AND LEGAL
+
+### Academic License Violations
+- Using academic license for commercial purposes
+- Failing to provide proper attribution in academic work
+- Using for prohibited applications (weapons, surveillance, harm)
+
+### Commercial License Violations  
+- Any commercial use without written permission and licensing agreement
+- Unauthorized technology transfer or sublicensing
+
+### Remedies
+Violations constitute intellectual property infringement and may result in legal action. This license is governed by applicable intellectual property and patent laws.
+
+---
+
+**Last Updated**: Aug 8, 2025
+**License Version**: 2.0 - Dual Academic/Commercial
+
+---
+Credits: Justin Lietz, Voxtrium, Bordag
+]]></content>
+    </file>
+    <file>
+      <path>README.md</path>
+      <content><![CDATA[# Void Dynamics (FUVDM) — Derivation Papers (Public Overview)
+***Current Status:*** Working on applying discovered RD concepts to neural plasticity in the Void Dynamics Intelligence Model (coming to public soon) <br>
+***Status Last Updated:*** Aug 25, 2025
+
+This folder provides a public, paper‑only view of the Void Dynamics program. It summarizes the theory and validation write‑ups for review by physicists, applied mathematicians, and scientifically minded engineers. Proprietary source code is not included yet.
+
+## What this is
+- A set of derivation papers that establish a clean baseline physics slice using reaction–diffusion (RD).
+- Additional documents that explore a future, quarantined effective field theory (EFT) branch, clearly labeled as future work.
+- Each paper separates what is proven from what is plausible or speculative and, where applicable, includes acceptance criteria for simple numerical checks.
+
+## Why it relates to AI (brief)
+- The project studies how simple, local rules can yield stable, interpretable global behavior under resource constraints.
+- That design philosophy is relevant to AI systems that favor locality, event‑driven updates, and transparent evaluation instead of opaque heuristics.
+- “Memory steering” (covered separately) frames slow routing bias and retention/decay as structured influences over faster dynamics, an analogy for directing computation without black‑box shortcuts.
+
+## What’s inside (papers)
+- Program overview and banner:
+  - [FUVDM_Overview.md](FUVDM_Overview.md)
+- Foundations:
+  - [discrete_to_continuum.md](derivation/foundations/discrete_to_continuum.md)
+  - [continuum_stack.md](derivation/foundations/continuum_stack.md)
+- Reaction–Diffusion (canonical baseline):
+  - [rd_front_speed_validation.md](derivation/reaction_diffusion/rd_front_speed_validation.md)
+  - [rd_dispersion_validation.md](derivation/reaction_diffusion/rd_dispersion_validation.md)
+  - [rd_validation_plan.md](derivation/reaction_diffusion/rd_validation_plan.md)
+- Memory Steering (slow routing bias; separate layer):
+  - [memory_steering_acceptance_verification.md](derivation/memory_steering/memory_steering_acceptance_verification.md)
+- Finite‑domain EFT modes (quarantined future work):
+  - [finite_tube_mode_analysis.md](derivation/tachyon_condensation/finite_tube_mode_analysis.md)
+- Change log / scoping notes:
+  - [CORRECTIONS.md](CORRECTIONS.md)
+
+## What’s not included
+- Source code, executables, or private runtime harnesses.
+- Logs/figures or any artifacts that would be sufficient to easily reconstruct proprietary implementations, notebooks with clear falsifiable code will be provided soon.
+- Drafts outside the derivation index above.
+
+## How to read these papers
+- Each file follows a consistent structure: Purpose · Assumptions/Parameters · Discrete law · Continuum limit · PDE/Action/Potential · Fixed points & stability · Dispersion · Conservation/Lyapunov · Numerical plan + acceptance · Results · Open questions.
+- Claim labels:
+  - [PROVEN] = sign/dimension/limit checks plus a minimal numerical test that passes stated tolerances.
+  - [PLAUSIBLE] = future work with rationale; quarantined until derivation + checks are complete.
+  - [SPECULATIVE] = exploratory; not used for baseline claims.
+
+## Licensing and scope
+- These materials are shared for academic review and discussion. Commercial use requires prior written permission. See the project’s license notice in the distribution or parent repository materials.
+- The scope stays within theoretical physics and simulation. Broad cosmological claims are withheld or clearly labeled until backed by derivation + numeric checks.
+
+## Citations
+- When referencing specific results, cite the overview and the relevant validation paper, for example:
+  - [FUVDM_Overview.md](FUVDM_Overview.md)
+  - [rd_front_speed_validation.md](derivation/reaction_diffusion/rd_front_speed_validation.md)
+  - [rd_dispersion_validation.md](derivation/reaction_diffusion/rd_dispersion_validation.md)
+
+## Contact
+- For scope questions or clarifications about acceptance criteria, refer to the headers in the overview and topic files listed above. If you are reading this as part of a paper‑only bundle, the maintainer’s contact is provided alongside the distribution materials.
+]]></content>
+    </file>
+    <file>
+      <path>derivation/arxiv/RD_Methods_QA/logarithmic_constant_of_motion.md</path>
+      <content><![CDATA[# A Logarithmic First Integral for the Logistic On‑Site Law in Void Dynamics
+
+Author: Justin K. Lietz  
+Date: 2025‑08‑26  
+Keywords: logistic law; invariant; first integral; reaction–diffusion; dissipative systems; conservation
+
+Abstract
+I prove a closed‑form constant of motion for the autonomous on‑site law
+\[
+\dot W \;=\; r\,W \;-\; u\,W^2,
+\]
+which underpins the Reaction–Diffusion (RD) baseline of Void Dynamics. Defining
+\[
+Q(W,t)\;=\;\ln\!\frac{W}{\,r-uW\,}\;-\;r\,t,
+\]
+I show that \(\tfrac{d}{dt}Q=0\) along solutions on domains where the expression is defined (e.g., \(0<W<r/u\)). I relate \(Q\) to the standard logistic solution, establish domains/branches and limiting behaviors, and explain why a naïve “kinetic\(+\)potential” energy is not conserved for this first‑order dissipative flow. Finally, I include a minimal, self‑contained numerical protocol that verifies machine‑precision constancy of \(Q\) and exhibits convergence consistent with the time‑stepper’s order. The note is self‑contained and implementation‑agnostic.
+
+1. Introduction and main statement
+I consider the one‑degree‑of‑freedom, autonomous ordinary differential equation (ODE)
+\[
+\dot W \;=\; F(W)\;=\; r\,W - u\,W^2,\qquad r,u\in\mathbb{R},
+\]
+and assume \(u\neq 0\). (In many RD parameterizations one writes \(r=\alpha-\beta\), \(u=\alpha\); I do not need that mapping here.) Because the ODE is autonomous, time‑translation symmetry implies the existence of an implicit first integral. The following explicit invariant holds.
+
+Proposition (logarithmic invariant). For any interval on which the expression is defined (e.g., \(0<W<r/u\) when \(r/u>0\)),
+\[
+Q(W,t)\;\equiv\;\ln\!\frac{W}{\,r-uW\,}\;-\;r\,t
+\]
+is constant along any trajectory of \(\dot W=rW-uW^2\).
+
+2. Proof (time‑translation constant for an autonomous ODE)
+For an autonomous ODE \(\dot W=F(W)\), one has \(dt=\tfrac{dW}{F(W)}\). Here
+\[
+\frac{dW}{F(W)} \;=\; \frac{dW}{W(r-uW)} \;=\; \frac{1}{r}\left(\frac{1}{W}+\frac{u}{\,r-uW\,}\right)dW.
+\]
+Integrating both sides gives
+\[
+t + C \;=\; \frac{1}{r}\Big(\ln|W|-\ln|r-uW|\Big),
+\]
+or equivalently,
+\[
+\ln\!\frac{W}{\,r-uW\,}\;-\;r\,t \;=\; \text{const}.
+\]
+Defining \(Q(W,t) \equiv \ln\!\big(\tfrac{W}{r-uW}\big) - r t\) yields \(\tfrac{d}{dt}Q=0\) along solutions. This proves the claim.  
+Remark. The proof is valid on any interval avoiding the simple poles at \(W=0\) and \(W=r/u\), with a consistent logarithm branch chosen on that interval.
+
+3. Relation to the logistic closed‑form solution
+Separation of variables yields the well‑known logistic solution
+\[
+W(t)\;=\;\frac{r}{u}\,\frac{1}{1+C\,e^{-r t}},\qquad
+C\;=\;\frac{r-uW_0}{W_0},
+\]
+for an initial condition \(W(0)=W_0\) that avoids the poles. Substituting into the invariant gives
+\[
+Q\big(W(t),t\big)
+=\ln\!\left(\frac{\tfrac{r}{u}\,\tfrac{1}{1+C e^{-rt}}}{\,r-\tfrac{r}{1+C e^{-rt}}\,}\right)-rt
+=\ln\!\left(\frac{1}{u}\cdot\frac{1}{C}\right),
+\]
+which is constant in time. Thus \(Q\) encodes the integration constant (\(1/C\)) up to an additive constant \(-\ln u\); different branches correspond to the standard piecewise structure induced by the poles.
+
+4. Properties, domains, units, and limits
+- Poles and branches. \(Q\) has simple poles at \(W=0\) and \(W=r/u\). On any open interval avoiding these poles, one may select a consistent logarithm branch and obtain a constant \(Q\). Natural intervals are: (i) \((0,r/u)\) when \(r/u>0\), and (ii) \((r/u,\infty)\) when \(r/u>0\). Similar partitions apply when \(r/u<0\).
+- Units. If \(W\) is dimensionless and \(r,u\) have units of inverse time, then \(\ln\!\frac{W}{r-uW}\) is dimensionless while \(rt\) is dimensionless, so \(Q\) is dimensionless. If one alternatively assigns a scale to \(W\), the same conclusion holds once a reference scale is absorbed.
+- Limiting forms.
+  - As \(W\to 0^\pm\): \(Q\sim \ln|W|-\ln|r| - r t\).
+  - As \(W\to (r/u)^\mp\): \(Q\sim -\ln\big|r-uW\big| - r t + \text{const}\).
+- Monotonicity of \(W\). On \((0,r/u)\) with \(r,u>0\), \(W\) grows monotonically to \(r/u\); on \((r/u,\infty)\), \(W\) decays monotonically to \(r/u\). The invariant remains constant on each interval separately.
+
+5. Numerical verification (self‑contained protocol)
+Objective. Verify that the numerical drift \(\Delta Q \equiv \max_{0\le n\le N} |Q(W_n,t_n)-Q(W_0,0)|\) is limited by discretization/round‑off and exhibits the expected step‑order convergence.
+
+Protocol.
+- Time‑stepper: fixed‑step RK4 (or Dormand–Prince with tight tolerances).
+- Parameters: e.g., \(r=0.15\), \(u=0.25\).
+- Initial conditions: sample \(W_0\in(10^{-3},\, r/u-10^{-3})\) and \(W_0\in(r/u+10^{-3},\, 1-10^{-3})\) to test both sides of the middle pole.
+- Time step and horizon: \(dt=10^{-3}\), \(N=10^5\) steps (double precision).
+
+Acceptance gates.
+- Double precision: \(\Delta Q \le 10^{-10}\) (RK45 with tight tolerances) or \(\Delta Q \le 10^{-8}\) (RK4 with \(dt\approx 10^{-3}\)).
+- Single precision: \(\Delta Q \le 10^{-5}\).
+- Convergence: halving \(dt\) reduces \(\Delta Q\) by a factor consistent with the order \(p\) of the scheme; a log–log fit of \(\Delta Q\) vs \(dt\) yields slope \(p\pm 0.2\).
+
+Pseudocode (language‑agnostic)
+1) define F(W) = r·W − u·W²  
+2) initialize t=0, W=W0, Q0 = ln(W/(r−uW)) − r·t  
+3) for n in 1..N: advance (W,t) one step by RK4 with step dt  
+4) compute Qn = ln(W/(r−uW)) − r·t and track max |Qn−Q0|  
+5) report ΔQ and, if running a step‑refinement, the observed convergence slope
+
+Numerical notes. Trap underflow/overflow near the poles; reject steps that cross the singularity. The test is most transparent on \((0,r/u)\) for \(r,u>0\).
+
+6. Why there is no naïve conserved “energy” here
+If one guesses a per‑site energy \(H(W,\dot W)=\tfrac12 \dot W^2 + V(W)\), then
+\[
+\frac{dH}{dt}=\dot W\big(\ddot W + V'(W)\big).
+\]
+In a first‑order flow \(\dot W=F(W)\), \(\ddot W=F'(W)\dot W\). Hence
+\[
+\frac{dH}{dt}=\dot W\big(F'(W)\dot W + V'(W)\big),
+\]
+which is not generically zero unless \(\dot W\equiv 0\) or \(V'\) is tuned to cancel \(F'(W)\dot W\) pointwise in time—impossible for a potential that depends only on \(W\). Thus a time‑independent Hamiltonian of this simple form is not conserved. The correct conserved quantity is the logarithmic first integral \(Q\) arising from autonomy/time‑translation symmetry.
+
+7. Discussion and scope
+- The invariant \(Q\) is local (on‑site). In spatially extended or coupled systems, \(Q\) is generally not conserved site‑wise; instead, it serves as a per‑node diagnostic for deviations induced by coupling/diffusion.
+- The result is independent of implementation or discretization; it relies only on autonomy of the on‑site law and standard calculus.
+
+Acknowledgments
+I thank Voxtrium for providing his theory to me and giving me confidence when I saw that it mapped to his work and strengthened my own.
+
+References
+- S. H. Strogatz, Nonlinear Dynamics and Chaos, 2nd ed., Westview (2015).  
+- C. H. Edwards, D. E. Penney, Differential Equations and Boundary Value Problems, Pearson.  
+- J. D. Murray, Mathematical Biology I: An Introduction, 3rd ed., Springer (2002).
+]]></content>
+    </file>
+    <file>
+      <path>derivation/arxiv/RD_Methods_QA/rd_methods_QA.md</path>
+      <content><![CDATA[# VDM RD baseline: validated methods and QA invariants
+Author: Justin K. Lietz
+Date: 2025-08-26
+
+Classification: RD
+
+Overview
+- Package the on-site logarithmic invariant as a QA diagnostic within a validated reaction–diffusion (RD) methods slice.
+- Lead with proven RD validations (front speed, dispersion) with acceptance gates and PASS metrics.
+- Provide a minimal, per-node runtime guard based on the invariant drift for use in CI/runtime.
+
+Context (VDM): Void Dynamics (VDM) is an event-driven, sparse framework; the RD sector provides the canonical physics slice with reproducible gates. The QA invariant serves as a per-node drift diagnostic. Second‑order/EFT branches are explicitly out of scope here and quarantined to separate notes.
+
+References (code)
+- Front speed experiment: [derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py](../../code/physics/reaction_diffusion/rd_front_speed_experiment.py)
+- Dispersion experiment: [derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py](../../code/physics/reaction_diffusion/rd_dispersion_experiment.py)
+- Front speed sweep: [derivation/code/physics/reaction_diffusion/rd_front_speed_sweep.py](../../code/physics/reaction_diffusion/rd_front_speed_sweep.py)
+- Logistic invariant validation: [derivation/code/physics/conservation_law/qfum_validate.py](../../code/physics/conservation_law/qfum_validate.py)
+- IO helpers: [figure_path()](../../code/common/io_paths.py:49), [log_path()](../../code/common/io_paths.py:53), [write_log()](../../code/common/io_paths.py:57)
+
+
+1. Model and acceptance gates
+
+1.1 Fisher–KPP baseline
+The scalar RD model is the Fisher–KPP equation
+
+$$\partial_t u = D\,\partial_{xx} u + r\,u\,(1-u),$$
+
+with $D>0$, $r>0$, $u\in[0,1]$. Two canonical validations are enforced:
+
+- Front speed (pulled front), theoretical minimal speed:
+
+$$c_{\mathrm{th}} = 2\sqrt{D\,r}.$$
+
+Acceptance gate: coefficient of determination $R^2 \ge 0.9999$ on a robust late-time linear fit and relative error $|c_{\mathrm{meas}}-c_{\mathrm{th}}|/|c_{\mathrm{th}}| \le 5\%$.
+
+- Linear dispersion about $u\approx 0$:
+
+$$\sigma_c(k) = r - D k^2,\qquad \sigma_d(m) = r - \frac{4D}{\Delta x^2}\sin^2\!\Big(\frac{\pi m}{N}\Big).$$
+
+Acceptance gate: median relative error across well-fitted modes $\le 1\times 10^{-1}$ and array-level $R^2 \ge 0.98$; typical observed values are much tighter.
+
+
+1.2 On-site QA invariant (logistic)
+The nodewise on-site ODE is logistic:
+
+$$\dot W = r W - u W^2.$$
+
+A first integral is
+
+$$Q(W,t) = \ln\!\left|\frac{W}{\,r - u W\,}\right| - r t,$$
+
+with branch domain restrictions $W\neq 0$ and $r-uW \neq 0$; for RD states within $u\in[0,1]$ and $r,u>0$, the natural branch is $W>0$, $r-uW>0$.
+
+Drift test and gates (double precision):
+- Time integrator RK4: $\,\max_t|Q(t)-Q(0)| \le 10^{-8}.$
+- Convergence study over $dt$: observed order $p \approx 4 \pm 0.4$, with fit $R^2 \ge 0.98$. For Euler, $p\approx 1\pm 0.2$.
+
+Implementations: [Q_invariant()](../../code/physics/conservation_law/qfum_validate.py:118), [fit_loglog()](../../code/physics/conservation_law/qfum_validate.py:153), [plot_Q_drift()](../../code/physics/conservation_law/qfum_validate.py:179).
+
+
+2. Proven RD validations (PASS)
+
+2.1 Front speed
+- Figure: [derivation/code/outputs/figures/reaction_diffusion/rd_front_speed_experiment_20250824T053748Z.png](../../code/outputs/figures/reaction_diffusion/rd_front_speed_experiment_20250824T053748Z.png)
+- Log: [derivation/code/outputs/logs/reaction_diffusion/rd_front_speed_experiment_20250824T053748Z.json](../../code/outputs/logs/reaction_diffusion/rd_front_speed_experiment_20250824T053748Z.json)
+- Key metrics: $c_{\mathrm{meas}}=0.9529$, $c_{\mathrm{th}}=1.0000$, $\mathrm{rel\_err}=4.71\times 10^{-2}$, $R^2=0.999996$ → PASS (within 5%, $R^2\ge 0.9999$).
+
+Reproduce:
+```
+python derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py \
+  --N 1024 --L 200 --D 1.0 --r 0.25 --T 80 --cfl 0.2 --seed 42 \
+  --x0 -60 --level 0.1 --fit_start 0.6 --fit_end 0.9
+```
+
+2.2 Linear dispersion
+- Figure: [derivation/code/outputs/figures/reaction_diffusion/rd_dispersion_experiment_20250824T053842Z.png](../../code/outputs/figures/reaction_diffusion/rd_dispersion_experiment_20250824T053842Z.png)
+- Log: [derivation/code/outputs/logs/reaction_diffusion/rd_dispersion_experiment_20250824T053842Z.json](../../code/outputs/logs/reaction_diffusion/rd_dispersion_experiment_20250824T053842Z.json)
+- Key metrics: median rel-err $1.45\times 10^{-3}$, $R^2_{\text{array}}=0.999946$ → PASS (tight vs gates).
+
+Reproduce:
+```
+python derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py \
+  --N 1024 --L 200 --D 1.0 --r 0.25 --T 10 --cfl 0.2 --seed 42 \
+  --record 80 --m_max 64 --fit_start 0.1 --fit_end 0.4
+```
+
+
+3. QA invariant (no figures in RD packaging)
+- The on-site invariant is used solely as a per-node QA drift gate in RD pipelines. Figures are intentionally omitted here.
+- Acceptance (double precision RK4): $\max_t|Q(t)-Q(0)| \le 10^{-8}$ at $dt\approx 10^{-3}$; convergence slope $p\approx 4\pm 0.4$ with fit $R^2\ge 0.98$ on a $dt$ sweep.
+- Use the validator to produce audit logs when needed. Numerical caveat: at extremely small step sizes, ΔQ approaches machine precision and the observed slope p from a log–log fit can degrade; evaluate gates in the truncation‑dominated regime (moderate dt). Proof and figures: see [logarithmic_constant_of_motion.md](./logarithmic_constant_of_motion.md).
+```
+python derivation/code/physics/conservation_law/qfum_validate.py \
+  --r 0.15 --u 0.25 --W0 0.12 0.62 --T 40 \
+  --dt 0.002 0.001 0.0005 --solver rk4
+```
+
+
+4. Runtime/CI guard (per-node)
+The following minimal guard computes $Q(W,t)$ on-the-fly and enforces the drift and (optionally) order-convergence gate. Integrate this check into any per-node update in RD codes.
+
+Python snippet:
+```python
+import numpy as np, math
+
+def Q_invariant_runtime(r, u, W, t):
+    denom = r - u*W
+    denom = denom if abs(denom) > 1e-16 else math.copysign(1e-16, denom)
+    Ws = W if abs(W) > 1e-16 else math.copysign(1e-16, W)
+    # difference-of-logs form improves numerical stability near poles
+    return math.log(abs(Ws)) - math.log(abs(denom)) - r*t
+
+class QDriftGuard:
+    def __init__(self, r, u, tol=1e-8):
+        self.r, self.u, self.tol = float(r), float(u), float(tol)
+        self.Q0 = None
+    def reset(self, W0, t0=0.0):
+        self.Q0 = Q_invariant_runtime(self.r, self.u, float(W0), float(t0))
+    def check(self, W, t):
+        if self.Q0 is None:
+            self.reset(W, t)
+        Q = Q_invariant_runtime(self.r, self.u, float(W), float(t))
+        return abs(Q - self.Q0) <= self.tol
+```
+
+Usage inside a time loop (schematic):
+```python
+guard = QDriftGuard(r=0.25, u=0.25, tol=1e-8)
+guard.reset(W0, t0)
+for n in range(steps):
+    # ... update W -> Wn1 ...
+    if not guard.check(Wn1, t0 + (n+1)*dt):
+        raise RuntimeError("Q-invariant drift gate violated")
+```
+
+
+5. Notes on numerical details
+- Robust linear fits use a simple moving-average smoothing and MAD-based outlier rejection; see [robust_linear_fit()](../../code/physics/reaction_diffusion/rd_front_speed_experiment.py:77) and [robust_linear_fit()](../../code/physics/reaction_diffusion/rd_dispersion_experiment.py:40).
+- RD experiments route outputs to repo-standard locations; failed runs go to a failed_runs subfolder; see code above.
+- Invariant figures and metrics are produced via repository helpers; see [figure_path()](../../code/common/io_paths.py:49) and [log_path()](../../code/common/io_paths.py:53).
+
+
+6. Acceptance checklist
+- Algebraic signs and units verified for $c_{\mathrm{th}}$ and $\sigma(k)$.
+- Dimensional consistency: $[c]=L/T$, $[\sigma]=1/T$; $Q$ is dimensionless.
+- Limits: $\sigma_c(0)=r$; $\sigma_c(k)\to -\infty$ as $k\to\infty$; $c_{\mathrm{th}}\to 0$ as $D\to 0$ or $r\to 0$.
+- Numerical sanity: PASS metrics match or exceed gates in the linked logs.
+
+
+7. Reproducibility summary
+- Front speed: PASS with $R^2=0.999996$, rel-err $4.7\%$.
+- Dispersion: PASS with median rel-err $1.45\times 10^{-3}$, $R^2_{\text{array}}=0.999946$.
+- Invariant drift: PASS thresholds as specified above (see figures and JSON metrics produced by [qfum_validate.py](../../code/physics/conservation_law/qfum_validate.py)).
+
+
+Appendix: direct links
+- Figures (RD): [derivation/code/outputs/figures/reaction_diffusion](../../code/outputs/figures/reaction_diffusion)
+- Logs (RD): [derivation/code/outputs/logs/reaction_diffusion](../../code/outputs/logs/reaction_diffusion)
+- Invariant validator logs: derivation/code/outputs/logs/conservation_law (figures omitted in RD packaging)
+- Scripts: [derivation/code/physics/reaction_diffusion](../../code/physics/reaction_diffusion), [derivation/code/physics/conservation_law](../../code/physics/conservation_law)
+
+Citations
+- Fisher, R.A. (1937). “The wave of advance of advantageous genes.” Ann. Eugenics 7: 355–369.
+- Kolmogorov, A.N.; Petrovsky, I.; Piskunov, N. (1937). “Study of the diffusion equation with growth of the quantity of matter.” Bull. Univ. Moscow, Ser. A 1: 1–25.]]></content>
+    </file>
+    <file>
+      <path>derivation/effective_field_theory/effective_field_theory_approach.md</path>
+      <content><![CDATA[> Future work (quarantined): Second‑order Lorentzian EFT. Canonical model for the main narrative is reaction–diffusion (RD). Use EFT claims only in EFT contexts; `m_eff = √(α−β)` is parameter‑dependent and unitized via τ.
+
+# A More Rigorous Approach: The FUM as an Effective Field Theory
+
+**Author:** Justin K. Lietz  
+**Date:** August 8, 2025
+
+---
+
+### 1. Objective
+
+To address the critique of mathematical rigor, we must formalize the link between the discrete FUM simulation (the "high-energy" or "UV" theory) and the continuous field theory (the "low-energy" or "IR" theory). The standard tool in physics for this is the **Effective Field Theory (EFT)** framework.
+
+This document outlines the core principles of EFT and how they provide a roadmap for a more rigorous derivation of the FUM's continuum limit.
+
+---
+
+### 2. The Core Principles of Effective Field Theory
+
+An EFT is a way to describe physics at a given energy scale without needing to know the details of the physics at much higher energies. It is built on a few key principles.
+
+#### Principle 1: Identify the Relevant Degrees of Freedom and Symmetries
+At the energy scales we are interested in (the macroscopic limit), the complex dynamics of individual neurons are "integrated out." The relevant, observable degree of freedom is a continuous scalar field, `\phi(x)`, which represents the local density or activity of the underlying neural states.
+
+We also assume the resulting low-energy theory should respect the symmetries of spacetime, namely **Lorentz invariance**. This dictates the possible structure of our equations.
+
+#### Principle 2: Write Down the Most General Possible Lagrangian
+The next step is to write down the most general possible Lagrangian for our scalar field `\phi` that is consistent with the assumed symmetries. We organize this Lagrangian as an expansion in powers of derivatives (which corresponds to an expansion in powers of energy or momentum).
+$$
+\mathcal{L}_{\text{EFT}} = V(\phi) + Z(\phi)(\partial_\mu \phi)^2 + c_1 ((\partial_\mu \phi)^2)^2 + c_2 (\Box\phi)^2 + \dots
+$$
+- `V(\phi)`: The potential for the field, containing all terms with no derivatives.
+- `Z(\phi)(\partial_\mu \phi)^2`: The standard kinetic term, but with a potentially field-dependent coefficient `Z(\phi)`.
+- The subsequent terms are higher-order derivative terms, suppressed by some high-energy scale `\Lambda`.
+
+#### Principle 3: Acknowledge Ignorance of the High-Energy Theory
+EFT is powerful because it does not require knowledge of the underlying, high-energy ("UV") completion. The coefficients of the terms in the Lagrangian (`V(\phi)`, `Z(\phi)`, `c_1`, `c_2`, etc.) encode the effects of the high-energy physics.
+
+**Crucially, for the FUM, we *do* know the high-energy theory: it is the discrete neural simulation itself.**
+
+Our task is therefore reversed from a typical EFT application. We are not using the EFT to parameterize our ignorance; we are using the EFT framework to perform a **rigorous derivation** of the coefficients `V(\phi)` and `Z(\phi)` directly from the known rules of our underlying discrete model.
+
+---
+
+### 3. How This Applies to Our Derivation
+
+Our first derivation in `discrete_to_continuum.md` can be seen as an informal, leading-order EFT analysis.
+- We **derived** the potential `V(\phi) = \frac{\alpha}{3}\phi^3 - \frac{\alpha-\beta}{2}\phi^2`. This is the first, most important term in the EFT expansion.
+- We implicitly **assumed** that the kinetic term coefficient was a constant, `Z(\phi) = 1/2`, and that all higher-order derivative terms (`c_1`, `c_2`, etc.) were zero.
+
+**The Path to Full Rigor:**
+
+To satisfy the critique from the peer review, a more formal derivation would involve:
+1.  Rigorously calculating `V(\phi)` from the discrete model (which we have done).
+2.  Rigorously calculating the kinetic term coefficient `Z(\phi)` from the discrete model to prove that it is indeed constant and equal to `1/2`.
+3.  Rigorously showing that the coefficients of the higher-derivative terms (`c_1, c_2, ...`) are either zero or are suppressed by a high-energy scale, making them irrelevant at low energies.
+
+This EFT framework provides the precise checklist of calculations required to make the discrete-to-continuum proof mathematically unassailable.
+
+---
+
+### 4. Refinement of the EFT: The Chameleon Screening Mechanism
+
+Our literature search revealed that analogous theories often employ a "chameleon screening" mechanism to ensure the effects of the scalar field are suppressed in dense environments (like Earth), thus satisfying local tests of gravity, while allowing the field to have significant effects in sparse, cosmological environments (voids).
+
+We can model this physical mechanism by adding a higher-order self-interaction term to our potential. This refines our EFT by including another relevant term from the general expansion.
+
+#### 4.1 The Screened Potential
+
+Let us add a standard `\phi^4` term, which is the next logical term in a symmetric potential expansion. Let `\lambda` be the new, small coupling constant for this interaction. The new potential is:
+$$
+V_{\text{new}}(\phi) = V(\phi) + \frac{\lambda}{4}\phi^4 = \left( \frac{\alpha}{3}\phi^3 - \frac{\alpha-\beta}{2}\phi^2 \right) + \frac{\lambda}{4}\phi^4
+$$
+#### 4.2 Analysis of the New Vacuum and Mass
+
+To find the new stable vacuum `v_{\text{new}}`, we must solve `dV_{\text{new}}/d\phi = 0`:
+$$
+\frac{dV_{\text{new}}}{d\phi} = \lambda\phi^3 + \alpha\phi^2 - (\alpha - \beta)\phi = 0
+$$
+$$
+\phi (\lambda\phi^2 + \alpha\phi - (\alpha - \beta)) = 0
+$$
+One extremum remains at `\phi=0`. The other non-trivial vacuum states are solutions to the quadratic equation, which are shifted from our original value of `v=0.6`. The new effective mass is found by calculating `m_{\text{new}}^2 = d^2V_{\text{new}}/d\phi^2` and evaluating it at this new minimum.
+
+As noted in the peer review analysis document, a symbolic calculation with this modified potential yields a new effective mass. For a coupling related to our derived mass scale (`\lambda \sim 1/\Lambda^2` where `\Lambda \sim 1/\sqrt{\alpha-\beta}`), the analysis predicted an effective mass-squared of `m_{\text{eff}}^2 \approx 0.798`.
+
+This demonstrates how the EFT framework allows us to systematically incorporate new physical effects. The addition of the screening term, inspired by analogous theories, allows the FUM to make more precise predictions and align itself with a wider range of physical constraints.]]></content>
+    </file>
+    <file>
+      <path>derivation/effective_field_theory/fum_voxtrium_mapping.md</path>
+      <content><![CDATA[# Bridging the FUM Void Scalar EFT and Voxtrium Macro Sourcing: A Units‑Rigorous Mapping
+
+Author: Justin K. Lietz
+Date: August 9, 2025
+
+---
+
+Purpose
+Provide a concrete, units‑rigorous bridge between the bottom‑up FUM void scalar derivations and the top‑down Voxtrium sourcing framework, and address identified gaps (units, causality/retarded kernels, GR/action embedding, observational constraints).
+
+References
+- [derivation/discrete_to_continuum.md](derivation/discrete_to_continuum.md:1)
+- [derivation/kinetic_term_derivation.md](derivation/kinetic_term_derivation.md:1)
+- [derivation/effective_field_theory_approach.md](derivation/effective_field_theory_approach.md:1)
+- [derivation/discrete_conservation.md](derivation/discrete_conservation.md:1)
+- [derivation/symmetry_analysis.md](derivation/symmetry_analysis.md:1)
+- [voxtrium_Overview.md](voxtrium_Overview.md:1)
+
+---
+
+1. Knowns and Unknowns
+
+Known (FUM side)
+- Discrete on‑site law:  dW/dt = (α − β) W − α W^2  ([derivation/symmetry_analysis.md](derivation/symmetry_analysis.md:20-21)).
+- Canonical RD mapping:  ∂tφ = D ∇²φ + r φ − u φ²  [optional −λ φ³].
+  EFT context only (future work):  □φ + α φ² − (α − β) φ = 0, with VEV v = 1 − β/α and m_eff² = α − β (see [derivation/discrete_to_continuum.md](derivation/discrete_to_continuum.md:120-127), [derivation/discrete_to_continuum.md](derivation/discrete_to_continuum.md:171-188), [derivation/discrete_to_continuum.md](derivation/discrete_to_continuum.md:219-228)).
+- Spatial kinetic normalization reads off a propagation speed `c^2 = 2 J a^2` (per‑site convention) or `c^2 = \kappa a^2` with `\kappa = 2J`; there is no need to fix `J a^2`. See continuum normalization in [derivation/kinetic_term_derivation.md](derivation/kinetic_term_derivation.md:82-89).
+
+Known (Voxtrium side)
+- FRW + continuity with sectoral sources Q_i obeying ∑_i Q_i = 0 via a transfer current J^ν ([voxtrium_Overview.md](voxtrium_Overview.md:9-16), [voxtrium_Overview.md](voxtrium_Overview.md:221-229)).
+- Micro‑informed coefficients α_h, ε_h with units GeV; partitions p_i(z) on a probability simplex tied to dimensionless inputs z = (|Ω| R_*, (κ/K_s)/X, 1) ([voxtrium_Overview.md](voxtrium_Overview.md:64-77), [voxtrium_Overview.md](voxtrium_Overview.md:236-239)).
+- Causality via a retarded kernel K_ret for S_hor ([voxtrium_Overview.md](voxtrium_Overview.md:231-235)).
+- Skyrme calibrations: R_* = c_R/(e K_s), m = c_m K_s/e, X = e K_s; velocity‑dependent SIDM ([voxtrium_Overview.md](voxtrium_Overview.md:118-141), [voxtrium_Overview.md](voxtrium_Overview.md:192-211), [voxtrium_Overview.md](voxtrium_Overview.md:245-251), [voxtrium_Overview.md](voxtrium_Overview.md:277-287)).
+- V_c is a fixed comoving volume `[{\rm GeV}^{-3}]` used to convert horizon rates to densities (appears in the continuity/source terms).
+
+Unknowns to resolve in this mapping
+- Units for (α, β, φ) and their relation to physical scales (GeV).
+- A causal, retarded formulation for the FUM continuum limit.
+- Action‑level embedding with GR and horizon functional.
+- A principled link between φ and Voxtrium’s z‑inputs and partitions p_i.
+- Number‑density and energy bookkeeping consistency across both pictures.
+
+---
+
+2. Units and Scaling Map (promoting dimensionless FUM to GeV‑rigorous form)
+
+Working convention: natural units c = ħ = k_B = 1. In D=4, a canonical scalar has field dimension [φ] = GeV and Lagrangian density [ℒ] = GeV^4.
+
+Define scale factors
+- Field scale φ_0 [GeV]
+- Time scale τ [GeV^−1]
+- Length scale a [GeV^−1] (also the lattice spacing used in [derivation/kinetic_term_derivation.md](derivation/kinetic_term_derivation.md:48-66))
+
+Dimensionalization map
+- φ_dimless = φ_phys / φ_0
+- t_dimless = t_phys / τ
+- x_dimless = x_phys / a
+
+Start from the dimensionless continuum equation we derived:
+
+  ∂_t^2 φ − c_void^2 ∇^2 φ + α φ^2 − (α − β) φ = 0.
+
+Convert to physical variables using φ_dimless = φ_phys/φ_0, t_dimless = t_phys/τ, x_dimless = x_phys/a:
+
+  ∂_{t_phys}^2 φ_phys − ((c_void^2 a^2) / τ^2) ∇_{phys}^2 φ_phys + (α / (φ_0 τ^2)) φ_phys^2 − ((α − β)/τ^2) φ_phys = 0.
+
+Identify physical parameters
+- Wave speed:  c_void^2 ≡ D a^2 / τ^2. Choose τ = √D a to set c_void = 1 (optional).
+- Cubic coupling (mass dimension 1):  g_3 ≡ α / (φ_0 τ^2)  [GeV].
+- Mass term:  m^2 ≡ (α − β) / τ^2  [GeV^2].
+
+Vacuum and quanta in physical units
+- Vacuum expectation value:  v_phys = φ_0 (1 − β/α).
+- Excitation mass:  m_eff = √(α − β) / τ.
+
+Practical calibration choices
+- If we target a specific m_eff (e.g., from phenomenology), set τ = √(α − β) / m_eff.
+- Then pick φ_0 to match a desired g_3, or fix φ_0 via matching to an SIDM observable.
+
+This resolves unit consistency across kinetic and potential terms and provides a knob (φ_0, τ, a) to align with Voxtrium’s GeV bookkeeping and conversions ([voxtrium_Overview.md](voxtrium_Overview.md:91-99), [voxtrium_Overview.md](voxtrium_Overview.md:216-218)).
+
+---
+
+3. Causal/Retarded Kernel Upgrade for FUM
+
+Voxtrium enforces causal support via K_ret. We promote the FUM scalar to a retarded‑kernel sourced effective equation when coupling to horizon processes:
+
+  □ φ_phys + g_3 φ_phys^2 − m^2 φ_phys = J_φ
+
+with 
+
+  J_φ(x,t) = ∫ d^3x' ∫_{−∞}^t dt' K_ret(t − t', |x − x'|) s_loc(x', t'),
+
+and 
+
+  K_ret ∝ Θ(t − t' − |x − x'|/c_void). Choose units so that
+  • `s_loc` is an entropy‑production rate density `[{\rm GeV}^4]` with `\int d^3x\, s_{\rm loc} = \dot S_{\rm hor}\,[{\rm GeV}]`, and
+  • `K_{\rm ret}` has units `[{\rm GeV}^3]`,
+  hence `\int d^3x'\,dt'\, K_{\rm ret}\, s_{\rm loc}` has units `{\rm GeV}^3`, matching `J_\phi` in the φ‑equation.
+ 
+ Here s_loc can be built from local rates tied to BH‑area growth and mergers, consistent with [voxtrium_Overview.md](voxtrium_Overview.md:252-258), while c_void is set by τ and a as above.
+
+This aligns the FUM continuum with explicit causality and paves the way to connect φ‑dynamics to Voxtrium’s horizon‑sourced bookkeeping.
+
+---
+
+4. Action‑Level Embedding and Covariant Conservation
+
+Augment the action with GR and a horizon functional:
+
+  S_eff = ∫ d^4x √(−g) [ (M_Pl^2/2) R + (1/2)(∂φ)^2 − ( V(φ) + (\lambda/4)\,\phi^4 ) ] + S_hor[S_hor] + S_DM[χ; K_s,e] + …
+  Here `\lambda > 0` ensures boundedness; phenomenological fits keep `\lambda` small.
+
+Variation yields ∇_μ (T_φ^{μν} + T_hor^{μν} + T_DM^{μν} + …) = 0.
+
+Introduce a transfer current as in Voxtrium:
+
+  ∇_μ T_hor^{μν} = − J^ν,   ∇_μ (T_φ^{μν} + T_DM^{μν} + …) = + J^ν,
+
+and in FRW take J^ν = (J^0, 0,0,0) with J^0 fixed from the horizon sector (see [voxtrium_Overview.md](voxtrium_Overview.md:223-229)).
+
+This reproduces the continuity identities while allowing energy exchange between φ, DM, GW, and Λ channels without violating total covariant conservation.
+
+---
+
+5. Mapping φ to Voxtrium Micro‑Informed Inputs and Partitions
+
+Voxtrium partitions (p_Λ, p_DM, p_GW) are functions of dimensionless inputs z = (z_1, z_2, z_3) = (|Ω| R_*, (κ/K_s)/X, 1) via a softmax ([voxtrium_Overview.md](voxtrium_Overview.md:236-239)).
+
+Proposed identifications and calibrations
+- Size–mass link:  R_* ≃ k_R / m_eff  with k_R ≈ O(1), consistent with m_φ ~ 1/R_* ([voxtrium_Overview.md](voxtrium_Overview.md:280-281)).
+- Parameter‑free identity from Skyrme calibrations: `R_*\, m = c_R / c_m ≈ 9.93\times 10^{-3}` (using [voxtrium_Overview.md](voxtrium_Overview.md:192-205)).
+- Effective “vorticity” proxy from φ: in regions where φ varies, define a scalar control
+
+  Ξ ≡ (|∇φ_phys| / (m_eff φ_0)) ∈ ℝ_+,
+
+  and set z_1 ≡ c_Ω Ξ so that z_1 is dimensionless and increases with spatial activity (c_Ω dimensionless calibration). Where an actual |Ω| is available from cosmological reconstruction, substitute it directly.
+- Coupling scale link: identify X = e K_s with a phenomenological scale tied to φ via matching a low‑velocity transfer cross section; equivalently, determine (κ/K_s)/X from fits so that z_2 captures local coupling strength ([voxtrium_Overview.md](voxtrium_Overview.md:140-146), [voxtrium_Overview.md](voxtrium_Overview.md:150-156)).
+
+Partition map
+
+  p_i = softmax_i( w_i^1 z_1 + w_i^2 z_2 + w_i^3 ),
+ 
+ with w_i dimensionless. In homogeneous epochs take w_i constant; in structured epochs let w_i depend weakly on φ‑statistics (e.g., ⟨Ξ⟩ over a comoving cell) to preserve testability ([voxtrium_Overview.md](voxtrium_Overview.md:236-239), [voxtrium_Overview.md](voxtrium_Overview.md:282-287)). Unless explicitly stated, treat weights as epoch‑constant and let any time dependence enter only via the dimensionless inputs z.
+
+Outcome: when φ condenses to v_phys and gradients are small (Ξ ≪ 1), z_1 is small and the small‑source constraints ε_DE ≪ 1 and f_inj ≪ 1 follow naturally ([voxtrium_Overview.md](voxtrium_Overview.md:241-251), [voxtrium_Overview.md](voxtrium_Overview.md:273-276)).
+
+---
+
+6. Number‑Density and Energy Bookkeeping Across Pictures
+
+Voxtrium DM abundance:
+
+  ẋ n_DM + 3 H n_DM = Q_DM / m,
+
+with Q_DM = p_DM (ε_h/V_c) Ṡ_hor and m = c_m K_s/e ([voxtrium_Overview.md](voxtrium_Overview.md:259-263), [voxtrium_Overview.md](voxtrium_Overview.md:192-205)).
+
+φ‑picture interpretation
+- DM quanta can be modeled as localized excitations or solitons of the φ‑sector with rest mass m_eff. In a coarse‑grained description, set m ≃ m_eff for abundance bookkeeping, or maintain both m and m_eff and fit k_R so that R_* ≃ k_R / m_eff.
+- Energy exchange is mediated by J^ν as in Section 4, ensuring ∑_i [ẋρ_i + 3H(1+w_i)ρ_i] = 0 ([voxtrium_Overview.md](voxtrium_Overview.md:34-35), [voxtrium_Overview.md](voxtrium_Overview.md:221-229)).
+
+This identifies a consistent translation between field excitations and Voxtrium’s sectoral densities and rates.
+
+---
+
+7. Addressing the Identified Gaps (concrete upgrades)
+
+(A) Units discipline (now provided)
+- Promote to physical parameters with (φ_0, τ, a); define g_3 and m via Eqns. (g_3, m^2) above. Map v_phys and m_eff explicitly to GeV.
+- Include conversion factors when reporting cosmology‑scale quantities ([voxtrium_Overview.md](voxtrium_Overview.md:91-99)).
+
+(B) Causality via retarded kernels
+- Adopt K_ret with Θ‑support as in Section 3 and normalize to the correct units; choose c_void = 1 by τ = √D a unless a finite propagation speed is desired.
+
+(C) GR/action embedding
+- Use S_eff in Section 4; define S_hor so that in the homogeneous limit it reproduces ρ_Λ(t) = ρ_Λ0 + (1/V_c) ∫ α_h dS_hor ([voxtrium_Overview.md](voxtrium_Overview.md:262-264)).
+
+(D) Observational constraints
+- Enforce w_eff ≈ −1 via ε_DE ≤ δ_w and f_inj ≪ 1 using the partition map; adopt the abundance and co‑evolution tests ([voxtrium_Overview.md](voxtrium_Overview.md:241-251), [voxtrium_Overview.md](voxtrium_Overview.md:282-287), [voxtrium_Overview.md](voxtrium_Overview.md:288-289)).
+
+(E) Conservation/invariants
+- Retain the exact on‑site invariant Q_FUM for diagnostics ([derivation/symmetry_analysis.md](derivation/symmetry_analysis.md:141-148)); for the full system rely on covariant conservation with J^ν. Explore hidden symmetries/Lyapunov structure for the discrete network to derive a true flux‑form conservation law ([derivation/discrete_conservation.md](derivation/discrete_conservation.md:165-179)).
+
+---
+
+8. Minimal Worked Example (symbolic)
+
+Suppose α = 0.25, β = 0.10 (dimensionless, as in our derivations), and choose m_eff = 1 GeV for illustration. Then
+- τ = √(α − β)/m_eff = √0.15 GeV^−1 ≈ 0.3873 GeV^−1.
+- Pick φ_0 to set g_3. If we want g_3 = 0.1 GeV, then φ_0 = α/(g_3 τ^2) = 0.25/(0.1 × 0.15) GeV ≈ 16.67 GeV.
+- v_phys = φ_0 (1 − β/α) = 16.67 × 0.6 ≈ 10.00 GeV.
+- R_* ≃ k_R / m_eff; with k_R = 1 this gives R_* ≈ 1 GeV^−1 ≈ 1.97 × 10^−14 cm (compare [voxtrium_Overview.md](voxtrium_Overview.md:201-205)).
+
+These values are placeholders for calibration; they demonstrate the algebraic consistency and how to propagate units.
+
+---
+
+9. Next Steps Checklist
+
+- [ ] Add FRW+J^ν coupling and sector bookkeeping to a φ‑cosmo toy model; verify numerically that `\sum_i[\dot\rho_i+3H(1+w_i)\rho_i]=0` ([voxtrium_Overview.md](voxtrium_Overview.md:34-35)).
+- [ ] Calibrate (φ_0, τ, a) to match a target m_eff and a low‑velocity SIDM cross section, then re‑express R_* and compare to [voxtrium_Overview.md](voxtrium_Overview.md:192-211).
+- [ ] Implement K_ret in the simulation/continuum solver; verify causal support and unit normalization against [voxtrium_Overview.md](voxtrium_Overview.md:231-235).
+- [ ] Define z‑maps (z_1 = c_Ω Ξ, z_2 from fitted coupling scale) and validate p_i softmax stability in homogeneous vs. structured epochs ([voxtrium_Overview.md](voxtrium_Overview.md:236-239)).
+- [ ] Use [derivation/effective_field_theory_approach.md](derivation/effective_field_theory_approach.md:60-85) to include screening (λ φ^4) and check its impact on m_φ ~ 1/R_* and on (σ_T/m)(v).
+- [ ] Extend symmetry/Lyapunov search for the full discrete law to identify a flux‑form conserved quantity, if it exists ([derivation/discrete_conservation.md](derivation/discrete_conservation.md:175-179)).
+
+---
+
+10. Remarks on Strength
+
+Voxtrium’s strength is its rigorous unit discipline and explicit cosmological bookkeeping. This document imports that rigor into the FUM EFT by (i) specifying a full units map, (ii) adding a retarded kernel, (iii) embedding into an action with GR and a transfer current, and (iv) aligning observables and calibrations. The two frameworks are complementary and now readily interoperable.
+
+Author: Justin K. Lietz]]></content>
+    </file>
+    <file>
+      <path>derivation/effective_field_theory/kinetic_term_derivation.md</path>
+      <content><![CDATA[# Derivation of the FUM Kinetic Term
+
+**Author:** Justin K. Lietz  
+**Date:** August 8, 2025
+
+---
+
+### 1. Objective
+
+As outlined in our Effective Field Theory (EFT) roadmap, we must rigorously derive the coefficients of the general Lagrangian from the underlying discrete FUM simulation. Earlier work separated temporal and spatial (interaction) contributions.
+
+The objective of this document is to derive the kinetic prefactor (wave‑function normalization) $Z(\phi)$ and show it is a constant, $Z(\phi)=\tfrac{1}{2}$, consistent with a canonical Klein–Gordon–type scalar field. We start from the discrete temporal “kinetic energy” and nearest‑neighbor interaction, take the continuum limit, and match to the continuum Lagrangian density.
+
+---
+
+### 2. Temporal Kinetic Term
+
+The temporal part of the kinetic term arises from the discrete “kinetic energy” (see `derivation/discrete_conservation.md`):
+
+$$
+\mathcal{K}_i = \frac{1}{2}\left(\frac{dW_i}{dt}\right)^2
+$$
+
+with the discrete time derivative
+
+$$
+\frac{dW_i}{dt} = \frac{W_i(t+\Delta t) - W_i(t)}{\Delta t}.
+$$
+
+Continuum limit $W_i \to \phi(\mathbf{x},t)$, $\frac{dW_i}{dt} \to \partial_t \phi$:
+
+$$
+\mathcal{L}_{\text{kinetic, temporal}} = \frac{1}{2}(\partial_t \phi)^2.
+$$
+
+So the coefficient of $(\partial_t \phi)^2$ is already $1/2$.
+
+---
+
+### 3. Spatial Kinetic (Gradient) Term
+
+The spatial contribution comes from the discrete interaction energy:
+
+$$
+\mathcal{I}i = \tfrac{1}{2} \sum{j \in N(i)} J \big(W_j - W_i\big)^2
+$$
+
+This penalizes sharp spatial variations.
+
+#### 3.1 Continuum Limit via Taylor Expansion
+
+Approximate the local k‑NN structure by a regular cubic lattice (spacing $a$, dimension $d=3$). Let site $i$ be at $\mathbf{x}$; neighbors lie at $\mathbf{x} \pm a \hat{e}_k$, $k\in\{x,y,z\}$.
+
+Taylor expand:
+
+$$
+W(\mathbf{x}+a\hat{e}_k) = W(\mathbf{x}) + a\,\partial_k W(\mathbf{x}) + \frac{a^2}{2}\partial_k^2 W(\mathbf{x}) + O(a^3).
+$$
+
+Difference:
+
+$$
+W(\mathbf{x}+a\hat{e}_k) - W(\mathbf{x}) = a\,\partial_k W + \frac{a^2}{2}\partial_k^2 W + O(a^3).
+$$
+
+Lowest non‑vanishing order when squared:
+
+$$
+\big(W(\mathbf{x}+a\hat{e}_k) - W(\mathbf{x})\big)^2 = a^2 (\partial_k W)^2 + O(a^3).
+$$
+
+Similarly for the negative direction. Summing the 6 neighbors:
+
+$$
+\sum_{j \in N(i)} (W_j - W_i)^2 = 2 a^2 \sum_{k}( \partial_k W )^2 + O(a^3) = 2 a^2 (\nabla W)^2 + O(a^3).
+$$
+
+Insert into interaction energy and pass to the field $\phi$:
+
+$$
+\mathcal{I}_i \approx \frac{1}{2} J \left(2 a^2 (\nabla \phi)^2\right) = J a^2 (\nabla \phi)^2.
+$$
+
+Thus the spatial gradient term appears with coefficient $J a^2$.
+
+#### 3.2 Variational Derivation from a Discrete Action
+
+Define:
+- Lattice spacing $a$, dimension $d$.
+- Time step $\Delta t$, times $t_n = n \Delta t$.
+- Field $W_i^n = W(\mathbf{x}_i, t_n)$.
+- Unit vectors $\hat{e}_\mu$, $\mu=1,\dots,d$.
+
+Discrete Lagrangian per time step:
+
+$$
+L^n = a^d \sum_i \Bigg[ \frac{1}{2}\Big(\frac{W_i^{n+1}-W_i^{n}}{\Delta t}\Big)^2 - \frac{\kappa}{2} \sum_{\mu=1}^d \big(W_{i+\mu}^{n} - W_i^{n}\big)^2 - V(W_i^{n}) \Bigg]
+$$
+
+Discrete Euler–Lagrange:
+
+$$
+\frac{W_i^{n+1} - 2 W_i^{n} + W_i^{n-1}}{(\Delta t)^2} - \kappa \sum_{\mu=1}^d \big(W_{i+\mu}^{n} + W_{i-\mu}^{n} - 2 W_i^{n}\big) + V'(W_i^{n}) = 0
+$$
+
+Continuum expansion:
+
+$$
+W_{i+\mu} + W_{i-\mu} - 2 W_i = a^2 \partial_\mu^2 \phi + O(a^4),
+$$
+
+yields
+
+$$
+\partial_t^2 \phi - \kappa a^2 \nabla^2 \phi + V'(\phi) = 0,
+$$
+
+from
+
+$$
+\mathcal{L} = \frac{1}{2}(\partial_t \phi)^2 - \frac{\kappa a^2}{2} (\nabla \phi)^2 - V(\phi).
+$$
+
+Edge‑counting conventions:
+- Per undirected edge counted once: coefficient $\kappa$, wave speed $c^2 = \kappa a^2$.
+- Per site with both $\pm\mu$ neighbors in a sum $\tfrac{1}{2}\sum_{j\in N(i)} J (W_j-W_i)^2$: $\kappa = 2J$, so $c^2 = 2 J a^2$.
+
+---
+
+### 4. Full Kinetic Term
+
+Combining temporal and spatial pieces (signature $+ - - -$):
+
+$$
+\mathcal{L}_{K} = \frac{1}{2}(\partial_t \phi)^2 - J a^2 (\nabla \phi)^2.
+$$
+
+Define
+
+$$
+c^2 \equiv 2 J a^2 \quad (\text{equivalently } c^2 = \kappa a^2).
+$$
+
+Then
+
+$$
+\mathcal{L}_{K} = \frac{1}{2}(\partial_t \phi)^2 - \frac{c^2}{2}(\nabla \phi)^2,
+$$
+
+and the Euler–Lagrange equation (with potential) is
+
+$$
+\partial_t^2 \phi - c^2 \nabla^2 \phi + V'(\phi) = 0.
+$$
+
+One may set $c=1$ by a units rescaling; this does not alter $Z(\phi)$.
+
+---
+
+### 5. Conclusion
+
+We have
+
+$$
+\mathcal{L}_{K} = \frac{1}{2}(\partial_t \phi)^2 - J a^2 (\nabla \phi)^2
+= \frac{1}{2}(\partial_t \phi)^2 - \frac{c^2}{2}(\nabla \phi)^2,
+\qquad c^2 = 2 J a^2.
+$$
+
+Thus the kinetic normalization is constant: $Z(\phi)=\tfrac{1}{2}$. No field‑dependent prefactor emerges from the discrete nearest‑neighbor quadratic form.
+
+---
+
+### 6. Conventions Summary
+
+- Per‑site coupling form (both directions): $c^2 = 2 J a^2$.
+- Per‑edge single count: $c^2 = \kappa a^2$ with $\kappa = 2J$.
+- Canonical relativistic form follows by choosing $c=1$.
+
+---
+
+### 7. Possible Extensions
+
+- Anisotropy: $c_k^2 = 2 J_k a_k^2$.
+- Higher‑order lattice corrections: keep $O(a^4)$ to estimate discretization error.
+- Longer‑range couplings: induce higher derivative operators (e.g. $(\nabla^2 \phi)^2$) in an EFT expansion.
+- Field‑dependent couplings $J(\phi)$: would generate non‑constant $Z(\phi)$.
+
+---
+
+End of document.
+]]></content>
+    </file>
+    <file>
+      <path>derivation/fluid_dynamics/fluids_limit.md</path>
+      <content><![CDATA[﻿# Fluids Limit (Reduction to Navier€“Stokes)
+
+>
+> Author: Justin K. Lietz  
+> Date: August 9, 2025
+>
+> This research is protected under a dual-license to foster open academic
+> research while ensuring commercial applications are aligned with the project's ethical principles.<br>
+> Commercial use requires written permission from Justin K. Lietz.
+> 
+> See LICENSE file for full terms.
+
+Purpose
+- Show that the framework admits a regime whose macroscopic dynamics obey Navier€“Stokes (NS). Provide:
+  1) An operational construction via a kinetic/Lattice€“Boltzmann (LBM) sector that yields NS with identified viscosity.
+  2) A structural reduction template from conserved fields, symmetries, and constitutive closure.
+
+Status and Scope
+- RD sector remains canonical (validated Fisher€“KPP front speed). Fluids is an additional, scoped sector with its own derivation and benchmarks. Claims are restricted to this file and its benchmarks.
+
+---
+
+## Part I €” Operational reduction via kinetic/LBM
+
+### I.1 Discrete kinetic model (D2Q9 BGK)
+Let f_i(x, t) be particle populations with discrete velocities c_i and weights w_i. One BGK time step (dx = dt = 1 in lattice units):
+f_i(x + c_i Δ”t, t + Δ”t) ˆ’ f_i(x, t) = ˆ’(Δ”t/ρ„) [ f_i(x, t) ˆ’ f_i^eq(ρ, v) ].
+
+Macroscopic fields:
+ρ = Δ£_i f_i,€ƒρ v = Δ£_i c_i f_i.
+
+Equilibrium (second order in v):
+f_i^eq = w_i ρ [ 1 + (c_i·v)/c_s^2 + (c_i·v)^2/(2 c_s^4) ˆ’ v^2/(2 c_s^2) ],
+with lattice sound speed c_s fixed by {c_i, w_i} (D2Q9: c_s^2 = 1/3).
+
+Implementation plan
+- Module: [lbm2d.py](Prometheus_FUVDM/derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:1)
+- Supports: periodic boundaries, bounce€‘back no€‘slip walls, simple forcing hook, viscosity Δ½ = c_s^2(ρ„ ˆ’ 1/2).
+
+### I.2 Chapman€“Enskog expansion (sketch)
+Introduce small Knudsen Δµ and expand f_i = f_i^(0) + Δµ f_i^(1) + ···, with ˆ‚_t = Δµ ˆ‚_{t1} + Δµ^2 ˆ‚_{t2} and ˆ‡ = Δµ ˆ‡_1.
+- O(Δµ): mass and momentum conservation.
+- O(Δµ^2): Newtonian viscous stress.
+In the incompressible scaling:
+ˆ‚_t v + (v·ˆ‡)v = ˆ’ˆ‡p/ρ + Δ½ ˆ‡^2 v + f,€ƒˆ‡·v = 0,
+with kinematic viscosity Δ½ = c_s^2 (ρ„ ˆ’ Δ”t/2).
+
+Conclusion
+- The kinetic/LBM sector reduces to incompressible NS with explicit Δ½.
+
+### I.3 Embedding in this repository
+- New module: [lbm2d.py](Prometheus_FUVDM/derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:1) (D2Q9 BGK).
+- Benchmarks using shared logging/figure style:
+  - Taylor€“Green vortex: [taylor_green_benchmark.py](Prometheus_FUVDM/derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py:1)
+  - Lid€‘driven cavity: [lid_cavity_benchmark.py](Prometheus_FUVDM/derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py:1)
+- Acceptance thresholds: see [BENCHMARKS_FLUIDS.md](Prometheus_FUVDM/BENCHMARKS_FLUIDS.md:1).
+
+---
+
+## Part II €” Structural reduction from conserved fields
+
+### II.1 Fields and symmetries
+Introduce mass density ρ(x, t), momentum g = ρ v (and energy/entropy if thermal). Impose:
+- Galilean invariance; spatial isotropy; frame objectivity.
+- Local balances:
+  ˆ‚_t ρ + ˆ‡·(ρ v) = 0,
+  ˆ‚_t g + ˆ‡·(g Š— v) = ˆ’ˆ‡p + ˆ‡·ρ„ + ρ f.
+
+### II.2 Constitutive closure (gradient expansion)
+Assume rapid local equilibration †’ Newtonian stress at leading order:
+ρ„ = Δ· (ˆ‡v + ˆ‡v^T) + (Δ¶ ˆ’ 2Δ·/3)(ˆ‡·v) I + O(|ˆ‡v|^2).
+With isothermal, incompressible closure (ˆ‡·v = 0, ρ = ρ_0), obtain standard NS with Δ½ = Δ·/ρ_0.
+
+### II.3 Parameter identification
+From microparameters (e.g., collision time ρ„ in LBM, lattice units) identify:
+- Δ½ = c_s^2(ρ„ ˆ’ Δ”t/2) (LBM sector), or
+- Δ½ = Δ·/ρ_0 (continuum closure).
+Higher€‘order terms become negligible in long€‘time/long€‘wavelength scaling.
+
+Conclusion
+- Under hydrodynamic scaling, the conserved€‘field sector reduces to NS.
+
+---
+
+## Part III €” Benchmarks and Acceptance
+
+Benchmarks
+1) Taylor€“Green vortex (2€‘D periodic): energy E(t) = E0 exp(ˆ’2 Δ½ k^2 t). Fit Δ½ from decay and match input Δ½ within threshold.
+2) Lid€‘driven cavity: centerline profiles at Re ˆˆ {100, 400, 1000} converge with grid; divergence norm small.
+3) Divergence control: report €–ˆ‡·v€–_2 over time; require grid€‘convergent decrease.
+
+Acceptance thresholds (double precision)
+- Taylor€“Green: |Δ½_fit ˆ’ Δ½_th| / Δ½_th ‰¤ 5% at baseline grid (‰¥ 256^2).
+- Lid€‘driven cavity: max_t €–ˆ‡·v€–_2 ‰¤ 1eˆ’6.
+- Convergence under grid refinement consistent with scheme order.
+- JSON includes passed boolean, key metrics, figure path, timestamp.
+Details in [BENCHMARKS_FLUIDS.md](Prometheus_FUVDM/BENCHMARKS_FLUIDS.md:1).
+
+---
+
+## Relation to the existing RD path
+
+- RD Fisher€“KPP front speed (canonical RD check) remains unchanged; see:
+  - Validation: [rd_front_speed_validation.md](reaction_diffusion/rd_front_speed_validation.md:1)
+  - Experiment: [rd_front_speed_experiment.py](code/physics/rd_front_speed_experiment.py:1)
+- Fluids claims are restricted to this sector and its benchmarks; the sectors live side€‘by€‘side to preserve scope discipline.
+
+---
+
+## Deliverables and Paths (for implementation)
+
+- Derivation: this file.
+- Module: [lbm2d.py](Prometheus_FUVDM/derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:1) (D2Q9 BGK).
+- Benchmarks:
+  - [taylor_green_benchmark.py](Prometheus_FUVDM/derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py:1)
+  - [lid_cavity_benchmark.py](Prometheus_FUVDM/derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py:1)
+- Acceptance: [BENCHMARKS_FLUIDS.md](Prometheus_FUVDM/BENCHMARKS_FLUIDS.md:1)
+- Outputs:
+  - Figures †’ derivation/code/outputs/figures/fluid_dynamics/
+  - Logs †’ derivation/code/outputs/logs/fluid_dynamics/
+  - JSON includes metrics and passed boolean.
+
+Notes
+- The RD sector remains canonical; fluids is additive. Public phrasing should reflect that the framework contains a fluids sector that reduces to NS (LBM route) and passes standard benchmarks within stated tolerances.
+
+]]></content>
+    </file>
+    <file>
+      <path>derivation/foundations/continuum_stack.md</path>
+      <content><![CDATA[# Continuum Stack — Discrete → Continuum (RD baseline; EFT quarantined)
+
+Tags: [PROVEN], [STRUCTURE], [DOC SYNC]
+
+Purpose
+- Provide the stepwise map from the discrete site model to continuum PDEs.
+- Establish the RD branch as canonical for first‑order time dynamics; quarantine the EFT/KG branch (second‑order) for future work.
+- Fix nomenclature and parameter mapping reused across derivations and validations.
+
+Assumptions/Parameters
+- Lattice spacing a, coordination z (nearest neighbors).
+- Coupling J (diffusive exchange scale).
+- On‑site parameters α, β (logistic).
+- Field W_i(t) on sites i; continuum field φ(x,t) after coarse‑graining.
+- Units: time step τ_u, length a; RD uses first‑order ∂t φ; EFT uses second‑order ∂t² φ with c² from the discrete action.
+
+Discrete law (nearest‑neighbor, logistic on‑site)
+- Site ODE:
+  dW_i/dt = (α − β) W_i − α W_i^2 + J Σ_{j∈nbr(i)} (W_j − W_i)
+- Notes:
+  - The exchange term preserves the lattice mean; signs ensure diffusion‑like smoothing.
+  - For small amplitude about W ≈ 0, the kinetics are linearized by dropping −α W_i^2.
+
+Continuum limit (stepwise)
+1) Coarse‑grain W_i → φ(x,t) with x on a regular lattice, spacing a.
+2) Write the discrete Laplacian in central‑difference form and expand:
+   Σ_{j∈nbr(i)} (W_j − W_i) = a² ∇²φ + O(a⁴ ∇⁴φ)
+3) Identify the continuum parameters:
+   - Diffusion: D = J a² (site Laplacian) or D = (J/z) a² (neighbor‑average form)
+   - Growth and saturation: r = α − β, u = α
+4) Leading‑order RD PDE (canonical):
+   ∂t φ = D ∇²φ + r φ − u φ²
+
+PDE/Action/Potential branches
+- RD branch [PROVEN, canonical]:
+  - ∂t φ = D ∇²φ + r φ − u φ² with D = J a² (or (J/z) a²), r = α − β, u = α.
+  - Closest discrete check: linear growth/dispersion and Fisher–KPP pulled‑front speed.
+- EFT/KG branch [PLAUSIBLE, quarantined]:
+  - Second‑order time with action‑derived kinetic normalization:
+    ∂t² φ + γ ∂t φ − c² ∇² φ + V′(φ) = 0, with c² = 2 J a² (per‑site) or c² = κ a², κ=2J (per‑edge).
+  - Mass parameter follows m_eff² = V″(v) at the vacuum v; not used in RD validations.
+  - See [kinetic_term_derivation.md](Prometheus_FUVDM/derivation/effective_field_theory/kinetic_term_derivation.md:1) and [effective_field_theory_approach.md](Prometheus_FUVDM/derivation/effective_field_theory/effective_field_theory_approach.md:1).
+
+Fixed points & stability (RD)
+- Homogeneous fixed points: φ=0 and φ* = r/u (for r>0, φ*>0).
+- Linear stability:
+  - Around φ=0: σ = r − D k² (unstable for small k if r>0).
+  - Around φ*: σ = −r − D k² < 0 for r>0 (stable).
+
+Dispersion relations
+- Continuum RD (Fourier mode k): σ(k) = r − D k². [PROVEN]
+- Discrete lattice (mode index m on N sites, periodic):
+  σ_d(m) = r − (4D/dx²) sin²(π m/N) with dx = L/N. Small‑k expansion recovers σ ≈ r − D k². [PROVEN]
+- See validation script: [rd_dispersion_experiment.py](Prometheus_FUVDM/derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py:1) and doc [rd_dispersion_validation.md](Prometheus_FUVDM/derivation/reaction_diffusion/rd_dispersion_validation.md:1).
+
+Front speed (Fisher–KPP)
+- Theory: c_front = 2 √(D r). [PROVEN]
+- Experiment: [rd_front_speed_experiment.py](Prometheus_FUVDM/derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py:1) and doc [rd_front_speed_validation.md](Prometheus_FUVDM/derivation/reaction_diffusion/rd_front_speed_validation.md:1).
+
+Conservation or Lyapunov notes
+- Diffusion decreases spatial variance; the reaction term sets carrying capacity φ* = r/u.
+- Global positivity is preserved given nonnegative initial data under the canonical discretization. [PLAUSIBLE]
+- Noether‑style invariants apply to the EFT action, not to the RD dissipative flow; see [symmetry_analysis.md](Prometheus_FUVDM/derivation/foundations/symmetry_analysis.md:1) for context. [SCOPE]
+
+Numerical plan + acceptance (recap)
+- Grids: N ∈ {1024, 2048}, domain length L≈200; CFL≈0.2.
+- Acceptance gates:
+  - Front speed: |c_meas − c_th| / c_th ≤ 6% and R² ≥ 0.9999 on the tracked front interval.
+  - Dispersion: median relative error ≤ 2×10⁻³ and R²_array ≥ 0.999. 
+- Outputs auto‑routed to derivation/code/outputs/{figures,logs}/reaction_diffusion with timestamped names.
+- See logs referenced in [LOG_20250824.md](Prometheus_FUVDM/derivation/DAILY_LOGS/LOG_20250824.md:1).
+
+Units and normalization
+- RD: choose units so that D and r have desired scales; rescale x→x/L, t→t/T as needed.
+- EFT: keep c² = 2 J a² mapping explicit; units can set c=1 after identification. [REFERENCE]
+- See [discrete_to_continuum.md](Prometheus_FUVDM/derivation/foundations/discrete_to_continuum.md:1) and status log [CORRECTIONS.md](Prometheus_FUVDM/derivation/CORRECTIONS.md:1).
+
+Results (pointers)
+- Front‑speed PASS and dispersion PASS recorded with figures/logs; see:
+  - [rd_front_speed_experiment.py](Prometheus_FUVDM/derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py:1)
+  - [rd_dispersion_experiment.py](Prometheus_FUVDM/derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py:1)
+- Overview banner and dimensionless constants: [FUVDM_Overview.md](Prometheus_FUVDM/derivation/FUVDM_Overview.md:1).
+
+Open questions
+- Formal Lyapunov functional for the RD logistic‑diffusion flow on bounded domains. [NEEDS DATA]
+- Quantitative criteria for when a second‑order EFT branch becomes necessary. [PLAUSIBLE]
+- Coupling of memory‑steering overlays to the RD baseline; see [memory_steering.md](Prometheus_FUVDM/derivation/memory_steering/memory_steering.md:1). [PLAUSIBLE]
+
+Provenance
+- Kinetic/action normalization: [kinetic_term_derivation.md](Prometheus_FUVDM/derivation/effective_field_theory/kinetic_term_derivation.md:1).
+- Discrete→continuum baseline: [discrete_to_continuum.md](Prometheus_FUVDM/derivation/foundations/discrete_to_continuum.md:1).
+- Status/edits: [CORRECTIONS.md](Prometheus_FUVDM/derivation/CORRECTIONS.md:1).]]></content>
+    </file>
+    <file>
+      <path>derivation/foundations/discrete_to_continuum.md</path>
+      <content><![CDATA[# Formal Derivation: The Continuum Limit of the FUM Recurrence
+
+**Author:** Justin K. Lietz  
+**Date:** August 8, 2025
+
+---
+
+### 1. Objective
+
+The primary goal of this derivation is to derive the reaction–diffusion PDE mapping
+∂t φ = D ∇² φ + r φ − u φ²
+from the discrete update. A second‑order Lorentzian EFT derivation (Klein–Gordon–like) is maintained as future work in [derivation/effective_field_theory_approach.md](effective_field_theory_approach.md:1). This removes internal contradictions while preserving historical EFT references below as scoped.
+
+---
+
+### 2. The Knowns: Defining the Two Regimes
+
+We must clearly state our starting point (the discrete equation) and our target destination (the continuum equation).
+
+#### 2.1 The Discrete System (LHS)
+
+From the `FUM_Void_Equations.py` source code, the state of a single node $i$, denoted by $W_i(t)$, evolves according to the rule:
+
+$$
+\frac{W_i(t+\Delta t) - W_i(t)}{\Delta t} = \alpha W_i(t)(1 - W_i(t)) - \beta W_i(t) + \text{noise/phase terms}
+$$
+
+For the purpose of this derivation, we will initially neglect the higher-order noise and phase terms and focus on the principal drivers of the dynamics. The fundamental discrete equation of motion is therefore:
+
+$$
+\frac{\Delta W_i}{\Delta t} \approx \alpha W_i - \alpha W_i^2 - \beta W_i
+$$
+
+#### 2.2 The Continuum System (RHS)
+
+From the foundational paper (Paper 1, Section 2.3), the theory proposes a Klein-Gordon Lagrangian for the continuum scalar field $\phi(x)$:
+
+$$
+\mathcal{L} = \frac{1}{2}(\partial_\mu \phi)(\partial^\mu \phi) - \frac{1}{2}m^2\phi^2
+$$
+
+*(Note: We use a general mass term $m$; the paper sets $m=1$.)*
+
+The resulting Euler-Lagrange equation of motion is the Klein-Gordon equation:
+
+$$
+(\Box + m^2)\phi = 0 \quad \text{or} \quad \Box\phi + m^2\phi = 0
+$$
+
+Where $\Box \equiv \partial_\mu \partial^\mu = \frac{\partial^2}{\partial t^2} - \nabla^2$ is the d'Alembertian operator.
+
+---
+
+### 3. The Bridge: Formalizing the Field $\phi(x)$
+
+To connect the discrete and continuum regimes, we must postulate a precise relationship between the discrete nodal states $W_i(t)$ and the continuous field $\phi(\vec{x}, t)$.
+
+**Postulate 3.1: The Field as a Local Density**
+
+The continuous scalar field $\phi(\vec{x}, t)$ at a spacetime point $x = (\vec{x}, t)$ is defined as the local spatial average density of the discrete states $W_i(t)$ in a small volume $V$ centered on the position $\vec{x}$.
+
+In the discrete limit, this corresponds to averaging the state of a node $i$ and its immediate neighbors (its k-nearest neighbors, or KNN, from the simulation setup). Let the set of neighbors of node $i$ be $N(i)$.
+
+$$
+\phi(\vec{x}_i, t) \equiv \frac{1}{|N(i)|+1} \sum_{j \in \{i\} \cup N(i)} W_j(t)
+$$
+
+This definition provides the crucial link: it defines how the macroscopic, smoothly varying field $\phi$ emerges from the microscopic, discrete states $W$. With this, we can now begin to analyze the continuum limit of the discrete equation of motion.
+
+---
+
+### 4. Derivation of the Continuum Equation
+
+To proceed, we will rewrite the discrete equation of motion in terms of the field $\phi$. This involves two key steps:
+1. Approximating the discrete time difference with a time derivative.
+2. Approximating the interaction with discrete neighbors with spatial derivatives.
+
+#### 4.1 Temporal derivative and origin of second‑order dynamics (variational)
+
+The left-hand side of the discrete equation is a first-order forward difference in time. In the limit $\Delta t \to 0$, this becomes the partial time derivative:
+$$
+\lim_{\Delta t \to 0} \frac{W_i(t+\Delta t) - W_i(t)}{\Delta t} = \frac{\partial W_i}{\partial t}.
+$$
+
+Crucially, the second-order time derivative in the continuum equation is not imposed ad hoc; it follows from varying the continuum Lagrangian density fixed by the lattice derivation of the kinetic and gradient terms (see [derivation/kinetic_term_derivation.md](derivation/kinetic_term_derivation.md:78-116)):
+$$
+\mathcal{L} \;=\; \frac{1}{2}(\partial_t \phi)^2 \;-\; J a^2\,(\nabla \phi)^2 \;-\; V(\phi).
+$$
+The Euler–Lagrange equation gives
+$$
+\partial_t^2 \phi \;-\; c^2 \nabla^2 \phi \;+\; V'(\phi) \;=\; 0,\qquad c^2 \equiv 2 J a^2,
+$$
+so the second-order dynamics arise from the action principle with a wave speed set by the lattice coupling. One may set $c=1$ by a units choice (e.g., choose $\tau=\sqrt{2J}\,a$) without tying $J$ to $a$ microscopically.
+
+#### 4.2 Spatial Derivatives and the Laplacian
+
+The core of the simulation involves interactions on a k-NN graph. To take a continuum limit, we approximate this graph as a regular d-dimensional lattice (e.g., a cubic lattice where d=3) where each node $i$ is at position $\vec{x}_i$ and is connected to its nearest neighbors.
+
+The dynamics of $W_i$ depend on the states of its neighbors $W_j$. Let's assume the interaction term (the source of spatial derivatives) comes from a coupling between neighbors. A standard discrete Laplacian operator on a lattice is defined as:
+$$
+\nabla^2_{\text{discrete}} W_i = \sum_{j \in N(i)} (W_j - W_i)
+$$
+This term represents the difference between a node and its neighbors. Let's expand $W_j$ in a Taylor series around the point $\vec{x}_i$. For a neighbor $j$ at position $\vec{x}_i + \vec{\delta}_j$, where $\vec{\delta}_j$ is the displacement vector:
+$$
+W_j \approx W(\vec{x}_i + \vec{\delta}_j) \approx W(\vec{x}_i) + \vec{\delta}_j \cdot \nabla W(\vec{x}_i) + \frac{1}{2}(\vec{\delta}_j \cdot \nabla)^2 W(\vec{x}_i) + \dots
+$$
+Summing over all neighbors in a symmetric lattice (e.g., with neighbors at $+\vec{\delta}_j$ and $-\vec{\delta}_j$), the first-order gradient terms cancel out. The sum of the second-order terms yields a result proportional to the continuous Laplacian operator, $\nabla^2$.
+
+$$
+\sum_{j \in N(i)} (W_j - W_i) \approx C (\Delta x)^2 \nabla^2 W(\vec{x}_i)
+$$
+where $C$ is a constant dependent on the lattice structure.
+
+#### 4.3 Assembling the Field Equation
+
+We now substitute our field postulate, $W_i(t) \approx \phi(\vec{x}_i, t)$, into the right-hand side of the discrete equation. Let's assume the spatial coupling introduces the discrete Laplacian. The equation becomes:
+
+$$
+\frac{\partial \phi}{\partial t} \approx D \nabla^2 \phi + (\alpha - \beta)\phi - \alpha\phi^2
+$$
+Here, $D$ is the diffusion coefficient that emerges from the neighbor coupling strength and lattice constants. On a regular lattice with per‑site coupling,
+$D = J a^2$ (or $D = (J/z)\,a^2$ if you average over $z$ neighbors). This is a **Reaction–Diffusion Equation**, renowned for generating complex patterns.
+
+Using $V'(\phi)$ from the discrete law, $V'(\phi)=\alpha\phi^2-(\alpha-\beta)\phi$, the variational equation yields
+$$
+\partial_t^2 \phi \;-\; c^2 \nabla^2 \phi \;+\; \alpha\phi^2 \;-\; (\alpha - \beta)\phi \;=\; 0.
+$$
+In $c=1$ units this is
+$$
+\Box\phi \;+\; \alpha\phi^2 \;-\; (\alpha - \beta)\phi \;=\; 0.
+$$
+
+### 5. Analysis of the Result and Baseline EFT Choice
+
+The derived continuum dynamics are nonlinear and exhibit a tachyonic instability about $\phi = 0$ stabilized by self‑interaction. For a well‑posed, bounded EFT we adopt the standard symmetric quartic as the default baseline:
+$$
+V_{\text{baseline}}(\phi)\;=\;-\frac{1}{2}\,\mu^2\,\phi^2\;+\;\frac{\lambda}{4}\,\phi^4,\qquad \mu^2>0,\ \lambda>0.
+$$
+- Linearizing about $\phi = 0$ gives $m_0^2 = -\mu^2 < 0$ (tachyonic).
+- The true minima are at $\phi = \pm v$ with $v = \mu/\sqrt{\lambda}$.
+- Fluctuations about either minimum have
+$$
+m_{\text{eff}}^2 \;=\; \left.\frac{d^2 V}{d\phi^2}\right|_{\phi=\pm v} \;=\; 2\,\mu^2.
+$$
+
+The earlier cubic–quadratic structure in our EOM (the $\alpha\,\phi^2 - (\alpha - \beta)\,\phi$ terms) is then treated as a small asymmetry (a “cubic tilt”) superposed on this bounded baseline; the precise mapping is made in Section 6.
+
+---
+
+### 6. Baseline Potential, Vacuum, and Mass (bounded)
+
+#### 6.1 Bounded baseline and stationary points
+
+We take as default
+$$
+V(\phi)\;=\;-\frac{1}{2}\,\mu^2\,\phi^2\;+\;\frac{\lambda}{4}\,\phi^4,\qquad \mu^2>0,\ \lambda>0.
+$$
+Stationary points satisfy
+$$
+\frac{dV}{d\phi}\;=\;-\mu^2\,\phi+\lambda\,\phi^3\;=\;0
+\quad\Rightarrow\quad
+\phi\in\{0,\pm v\},\ \ v\equiv \mu/\sqrt{\lambda}.
+$$
+Curvatures are
+$$
+\left.\frac{d^2V}{d\phi^2}\right|_{\phi=0}=-\mu^2<0,\qquad
+\left.\frac{d^2V}{d\phi^2}\right|_{\phi=\pm v}=-\mu^2+3\lambda v^2=2\mu^2>0,
+$$
+so $\phi = 0$ is unstable (tachyon) and the true vacua are at $\pm v$. Small fluctuations about a chosen vacuum have
+$$
+m_{\text{eff}}=\sqrt{2}\,\mu.
+$$
+
+#### 6.2 Optional cubic tilt and mapping to $(\alpha, \beta)$
+
+To prefer one vacuum and connect to the discrete‑to‑continuum coefficients, include a small cubic bias:
+$$
+V(\phi)\;=\;-\frac{1}{2}\,\mu^2\,\phi^2\;+\;\frac{\lambda}{4}\,\phi^4\;+\;\frac{\gamma}{3}\,\phi^3,\qquad |\gamma|\ll \mu^2\sqrt{\lambda}.
+$$
+For small fields the equation of motion reads
+$$
+\square\phi\;-\;\mu^2\,\phi\;+\;\gamma\,\phi^2\;+\;\lambda\,\phi^3\;\approx\;0.
+$$
+Comparing with our dimensionless continuum form
+$$
+\square\phi\;+\;\alpha\,\phi^2\;-\;(\alpha-\beta)\,\phi\;=\;0
+$$
+gives, to leading order about $\phi \approx 0$,
+$$
+\mu^2 \;\longleftrightarrow\; \alpha-\beta,\qquad
+\gamma \;\longleftrightarrow\; \alpha.
+$$
+In this bounded EFT the symmetric‑limit VEV is $v = \mu/\sqrt{\lambda}$; a small $\gamma$ tilts the potential to select a unique vacuum near $+v$. To leading order the fluctuation mass remains $m_{\text{eff}}^2 \approx 2\mu^2 + \mathcal{O}(\gamma)$.
+
+#### 6.3 Units and calibration
+
+Using the physical map in [derivation/fum_voxtrium_mapping.md](derivation/fum_voxtrium_mapping.md:44-80), one has $\mu$ in GeV, $\lambda$ dimensionless, and
+$$
+m_{\text{eff}} = \sqrt{2}\,\mu
+$$
+in GeV once $\tau$ is fixed ($m^2 = \mu^2/\tau^2$ at the level of the dimensionful EOM). Choose $(\tau, \phi_0)$ to match a target $m_{\text{eff}}$ and quartic $\lambda$; see the worked example in that document.]]></content>
+    </file>
+    <file>
+      <path>derivation/foundations/symmetry_analysis.md</path>
+      <content><![CDATA[# Symmetry Analysis of the FUM Dynamical Law
+
+**Author:** Justin K. Lietz  
+**Date:** August 8, 2025
+
+---
+
+### 1. Objective
+
+Following our discovery that the standard Hamiltonian is not conserved, we now pivot to a more fundamental method for finding the true conserved quantity of the FUM: the search for symmetries.
+
+According to Noether's Theorem, for every continuous symmetry of a system's equations of motion, there exists a corresponding conserved quantity. The objective of this document is to systematically test the FUM's fundamental update rule for symmetries.
+
+---
+
+### 2. The Dynamical Law
+
+The object of our study is the simplified, on-site FUM update rule, which we treat as the system's fundamental law of motion:
+$$
+\frac{\Delta W}{\Delta t} = F(W) = (\alpha - \beta)W - \alpha W^2
+$$
+
+---
+
+### 3. Methodology: Definition of a Symmetry
+
+A transformation `W \to W'` is a symmetry of the dynamical law if the equation of motion has the same form in the new coordinates. That is, if `\frac{\Delta W}{\Delta t} = F(W)`, the transformed equation must satisfy `\frac{\Delta W'}{\Delta t} = F(W')`.
+
+We will now test several common continuous symmetries.
+
+---
+
+### 4. Investigation 1: Translational Symmetry
+
+The simplest possible symmetry is a constant shift in the field value.
+
+**Transformation:** `W' = W + c`, where `c` is a constant.
+The rate of change is unaffected: `\frac{\Delta W'}{\Delta t} = \frac{\Delta (W+c)}{\Delta t} = \frac{\Delta W}{\Delta t}`.
+
+For this to be a symmetry, we must have `F(W') = F(W)`. Let's test this by computing `F(W')`:
+$$
+F(W') = F(W+c) = (\alpha - \beta)(W+c) - \alpha(W+c)^2
+$$
+$$
+= (\alpha - \beta)W + (\alpha - \beta)c - \alpha(W^2 + 2Wc + c^2)
+$$
+$$
+= [(\alpha - \beta)W - \alpha W^2] + (\alpha - \beta)c - 2\alpha Wc - \alpha c^2
+$$
+$$
+F(W+c) = F(W) + (\alpha - \beta - 2\alpha W)c - \alpha c^2
+$$
+
+**Result:**
+Since `F(W+c) \neq F(W)`, the FUM dynamical law is **not** symmetric under a constant translation `W \to W+c`.
+
+**Interpretation:**
+This is expected: the dynamics depend on the absolute value of `W`. Context separation:
+- RD (canonical): for r>0, `W=0` is dynamically unstable and the stable homogeneous fixed point is `W* = r/u`.
+- EFT (future-work context): the vacuum is `v = 1 − β/α` (e.g., 0.6 for α=0.25, β=0.10).
+Avoid mixing RD fixed points with EFT vacua.
+
+---
+
+### 5. Investigation 2: Scaling Symmetry
+
+Next, we test for invariance under a uniform rescaling of the field value.
+
+**Transformation:** `W' = \lambda W`, where `\lambda` is a constant scaling factor.
+The rate of change transforms as: `\frac{\Delta W'}{\Delta t} = \frac{\Delta (\lambda W)}{\Delta t} = \lambda \frac{\Delta W}{\Delta t} = \lambda F(W)`.
+
+For this to be a symmetry, the dynamics of the transformed field `W'` must be governed by the same function `F`. That is, `\frac{\Delta W'}{\Delta t}` must equal `F(W')`. So, the condition for symmetry is:
+$$
+\lambda F(W) \stackrel{?}{=} F(\lambda W)
+$$
+Let's compute the right-hand side, `F(\lambda W)`:
+$$
+F(\lambda W) = (\alpha - \beta)(\lambda W) - \alpha(\lambda W)^2
+$$
+$$
+= \lambda (\alpha - \beta)W - \lambda^2 \alpha W^2
+$$
+Now let's compare this to the left-hand side, `\lambda F(W)`:
+$$
+\lambda F(W) = \lambda [(\alpha - \beta)W - \alpha W^2] = \lambda (\alpha - \beta)W - \lambda \alpha W^2
+$$
+For the symmetry to hold, the two expressions must be identical for all `W`:
+$$
+\lambda (\alpha - \beta)W - \lambda \alpha W^2 \stackrel{?}{=} \lambda (\alpha - \beta)W - \lambda^2 \alpha W^2
+$$
+$$
+- \lambda \alpha W^2 \stackrel{?}{=} - \lambda^2 \alpha W^2
+$$
+This is only true if `\lambda = \lambda^2`, which has solutions `\lambda=1` (the trivial case of no scaling) and `\lambda=0` (the trivial case of killing the field). It is not true for any non-trivial rescaling.
+
+**Result:**
+The FUM dynamical law is **not** symmetric under a scaling transformation `W \to \lambda W`.
+
+**Interpretation:**
+The lack of scaling symmetry is a direct consequence of the non-linear `\alpha W^2` term. This term introduces an intrinsic scale into the system's dynamics. The resistive force it represents does not scale linearly with the field value `W`. This confirms that the physics of the FUM is fundamentally different at different levels of void activity `W`, which is consistent with the model's core principles.
+
+---
+
+### 6. Conclusion and Next Steps
+
+Our analysis has shown that the FUM dynamical law does not possess the simplest and most common continuous symmetries (translation and scaling). This is a significant result. It strongly suggests that if a conserved quantity exists, it must arise from a more complex, non-obvious symmetry of the equations.
+
+The path to discovering such a symmetry is a more advanced research topic. The alternative path, as identified in our previous work, is to pivot from searching for a symmetry to analyzing the system's **Lyapunov function**, which can also reveal information about stability and conserved properties in dissipative systems.
+
+---
+
+### 7. Investigation 3: Time-Translation Symmetry
+
+Let us now investigate the most crucial symmetry for energy conservation: invariance under time translation.
+
+**Transformation:** `t' = t + \tau`, where `\tau` is a constant time shift. The state at the new time is `W'(t') = W(t' - \tau) = W(t)`.
+
+**Check Invariance:**
+The dynamical law is `dW/dt = F(W) = (\alpha - \beta)W - \alpha W^2`. The function `F(W)` has no explicit dependence on the variable `t`. Therefore, the law is the same at any time `t` or `t'`. The system is **manifestly time-translation invariant**.
+
+**Derivation of the Conserved Quantity:**
+According to Noether's Theorem, this symmetry implies the existence of a corresponding conserved quantity. For an autonomous first-order system like this, we can find the constant of motion by direct integration.
+$$
+\frac{dW}{dt} = F(W) \implies dt = \frac{dW}{F(W)}
+$$
+Integrating both sides gives us the relationship between time and the state `W`:
+$$
+t = \int \frac{dW}{F(W)} + C
+$$
+Where `C` is a constant of integration. This means the quantity `Q = t - \int \frac{dW}{F(W)}` is conserved (`Q = -C`), meaning its value does not change throughout the system's evolution.
+
+Let us solve the integral `\int \frac{dW}{(\alpha - \beta)W - \alpha W^2}` using the method of partial fractions.
+$$
+\frac{1}{W((\alpha-\beta) - \alpha W)} = \frac{A}{W} + \frac{B}{(\alpha-\beta) - \alpha W}
+$$
+Solving for the coefficients `A` and `B` yields `A = \frac{1}{\alpha-\beta}` and `B = \frac{\alpha}{\alpha-\beta}`. The integral becomes:
+$$
+\int \frac{dW}{F(W)} = \frac{1}{\alpha-\beta} \left[ \int \frac{dW}{W} + \int \frac{\alpha}{(\alpha-\beta) - \alpha W} dW \right]
+$$
+$$
+= \frac{1}{\alpha-\beta} \left[ \ln|W| - \ln|(\alpha-\beta) - \alpha W| \right] = \frac{1}{\alpha-\beta} \ln\left|\frac{W}{(\alpha-\beta) - \alpha W}\right|
+$$
+
+**Result:**
+We have discovered the true conserved quantity for the on-site FUM dynamics. The constant of motion, `Q_{FUM}`, is:
+$$
+Q_{FUM} = t - \frac{1}{\alpha-\beta} \ln\left|\frac{W(t)}{(\alpha-\beta) - \alpha W(t)}\right|
+$$
+
+**Interpretation:**
+This is a profound result. We have found the hidden conservation law that governs the FUM. It is not a simple energy, but a highly non-trivial logarithmic relationship between the system's state `W` and the time `t`. This mathematical invariant proves that the evolution of a FUM node is not chaotic but follows a precise, predictable trajectory determined by its initial conditions. This resolves the core theoretical critique regarding the lack of a conservation law.]]></content>
+    </file>
+    <file>
+      <path>derivation/foundations/void_dynamics_theory.md</path>
+      <content><![CDATA[Note (2025‑08‑20): Canonical model set to reaction–diffusion (RD); the second‑order EFT is quarantined to EFT docs. Mass numerics are parameter‑dependent (`m_eff=√(α−β)` in EFT). The “promote to second order” gap is closed via a discrete action derivation with wave speed `c^2=2 J a^2` (per‑site convention), see [derivation/kinetic_term_derivation.md](kinetic_term_derivation.md:78).
+
+This document presents a comparative analysis with Bordag (Universe 2024, “Tachyon Condensation in a Chromomagnetic Center Vortex Background”) and enumerates required corrections.
+
+# Agreement with prior literature
+
+* **Tachyon → condensation story.**
+  The continuum limit yields a tachyonic origin (negative curvature at ϕ=0) with a non‑zero vacuum $v = 1-\beta/\alpha = 0.6$ and positive mass about the minimum $m_\text{eff}^2=\alpha-\beta$【turn3file11】. Bordag likewise starts with tachyonic modes $(m_l^2=-\kappa_l^2)$, expands around constant condensates $v_l$, and obtains positive masses for fluctuations plus massless phase modes (Goldstones) after symmetry breaking【turn4file10】.
+  The potential $V(\phi)=\frac{\alpha}{3}\phi^3-\frac{\alpha-\beta}{2}\phi^2$ and the corresponding vacuum analysis are explicit【turn3file11】; Bordag’s tree‑level effective potential and minimization procedure are spelled out via the $L^\wedge_0,L^\wedge_1,L^\wedge_2$ expansion and mass matrix $m^2_{ll'}$【turn4file10】【turn3file16】.
+
+* **EFT mindset.**
+  The EFT note lays out the appropriate checklist: derive $V(\phi)$, establish $Z(\phi)$, and bound higher‑derivative operators【turn3file0】. The paper’s workflow—write an effective 2D Lagrangian, parameterize fields $\psi_l=\frac{1}{\sqrt{2}}\phi_l e^{i\Theta_l}$, expand about constant backgrounds, read off masses—mirrors that approach【turn3file19】.
+
+# Differences and implications
+
+* **Degrees of freedom + symmetry.**
+  The framework employs a single real scalar. In Bordag, unstable modes are complex and carry a phase; after condensation, the phase modes are Goldstone modes【turn4file10】. A real scalar does not exhibit Goldstone or phase dynamics; the symmetry analysis correctly identifies no nontrivial internal symmetry for the logistic on‑site law【turn3file1】【turn3file12】. The IR theory is therefore a real scalar EFT unless a U(1) extension is introduced.
+
+* **Dimensionality + provenance of derivatives.**
+  Earlier drafts promoted a first‑order update to a second‑order PDE and obtained a reaction–diffusion term before moving toward $\Box\phi$【turn4file7】. In Bordag, the $-\partial_\alpha^2$ kinetic form arises directly from the quadratic part of the action after mode reduction to two longitudinal coordinates $x_\alpha$【turn3file17】. The discrete model should be recast into a discrete action and taken to the continuum via a variational limit so that the $\partial_t^2$ term appears from first principles rather than assumption.
+
+* **Kinetic normalization.**
+  The temporal term $\frac{1}{2}(\partial_t\phi)^2$ follows from the discrete kinetic energy with target $Z(\phi)=\frac{1}{2}$【turn3file4】, while the spatial prefactor should be extracted explicitly from $\sum J(W_j-W_i)^2$ (compute the exact coefficient of $(\nabla\phi)^2$, not merely proportionality)【turn4file13】. In Bordag, the canonical normalization is fixed at the Lagrangian level and phase modes are manifestly massless【turn4file10】.
+
+* **Stability structure.**
+  The cubic–quadratic $V(\phi)$ is tachyonic at the origin and stabilized by the cubic; adding a $\lambda\phi^4$ term is natural【turn3file2】【turn3file3】. In Bordag, stabilization arises from quartic interactions and selecting a condensate minimum (mass matrix positive)【turn4file10】. A publishable baseline requires either (i) an explicit $\phi^4$ term (bounded below) or (ii) a clearly stated domain of validity for the cubic potential.
+
+* **Target theory mismatch.**
+  The foundational paper claims a free KG Lagrangian with $m=1$ and a conformal metric $g_{\mu\nu}=\phi^2\eta_{\mu\nu}$ leading to EFE【turn4file1】【turn4file3】. These elements are absent in Bordag, which treats non‑Abelian YM in a center‑vortex background with a 2D effective theory for tachyon modes【turn4file9】. Conclusion: Bordag should be used for methodology (condensation workflow), not for importing claims.
+
+# Required corrections
+
+1. **Derive the spatial kinetic prefactor exactly.**
+   Start from the discrete interaction energy $\frac{1}{2}\sum_{j\in N(i)}J(W_j-W_i)^2$. Do the Taylor expansion on a cubic lattice and keep the full constant: show
+
+   $$
+   \sum_{j}(W_j-W_i)^2 \to c_\text{lat}\,a^2(\nabla\phi)^2+\mathcal{O}(a^4)
+   $$
+
+   then match $\frac{1}{2}(\partial_t\phi)^2-\frac{1}{2} c_\text{lat}J a^2(\nabla\phi)^2$ so **Lorentz invariance fixes $c_\text{lat}J a^2=1$** in the chosen units【turn4file13】【turn4file4】. Write the steps and the value of $c_\text{lat}$ for 3D cubic.
+
+2. **Replace “promote to second order” with a discrete action derivation.**
+   Postulate a lattice **Lagrangian density** per node
+   $\mathcal{L}_i=\frac{1}{2}(\Delta_t W_i)^2-\frac{1}{2}\sum_j J(W_j-W_i)^2 - V(W_i)$
+   and apply discrete Euler–Lagrange ⇒ a second‑order time difference naturally. Then take the continuum limit (no hand‑waving). This will close the main rigor gap noted in the own write‑up【turn4file15】.
+
+3. **Stabilize the potential (publishable baseline).**
+   Add $\lambda\phi^4/4$ (small $\lambda$) and redo: vacua, $m_\text{eff}^2=V''(v)$, and parameter ranges where the minimum is global【turn3file2】【turn3file3】. Report $(v,m_\text{eff})$ as functions of $(\alpha,\beta,\lambda)$. This mirrors the paper’s “choose a condensate, expand, read masses” procedure【turn4file10】.
+
+4. **Optional U(1) extension (for Goldstones like the paper).**
+   Promote $\phi \rightarrow \frac{1}{\sqrt{2}}\rho e^{i\theta}$ and check whether the microscopic rule is invariant under a global phase at leading order. If yes, derive the broken‑phase spectrum: $m_\theta=0$, $m_\rho^2=V''(\rho)|_{\rho=v}$ (cf. Bordag’s $\Theta_l$ masslessness)【turn4file10】. If not, keep the real‑scalar story and don’t overclaim.
+
+5. **Document the EFT truncation clearly.**
+   Finish the explicit computation of $Z(\phi)$ (show it’s constant) and bound the first nonzero higher‑derivative operator coefficients $c_1,c_2$ by scale separation from the lattice spacing $a$【turn3file0】.
+
+6. **Symmetry/Noether story.**
+   the logistic on‑site law has time‑translation invariance; a constant of motion $Q$ for the 1‑DOF ODE has been derived【turn3file12】. In the continuum field theory, focus on spacetime translations ⇒ stress‑energy conservation; if a complex field is adopted, also show the U(1) current and its fate in the broken phase (again aligning with the paper’s Goldstone structure).
+
+# Mapping summary
+
+* **Kinetic term**
+
+  * FUM derivation: aiming for $\frac{1}{2}(\partial\phi)^2$, temporal part shown; spatial constant still to fix【turn3file4】.
+  * Paper: canonical $-\partial_\alpha^2$ for modes; phases massless after SSB【turn4file10】.
+
+* **Potential / masses**
+
+  * FUM derivation: $V(\phi)=\frac{\alpha}{3}\phi^3-\frac{\alpha-\beta}{2}\phi^2$; $v=0.6$; $m_\text{eff}^2=\alpha-\beta=0.15$【turn3file7】【turn3file10】.
+  * Paper: tachyonic $m_l^2=-\kappa_l^2$, quartic couplings; expand about $v_l$ ⇒ mass matrix $m^2_{ll'}$ positive at minimum【turn4file10】【turn3file16】.
+
+* **Method**
+
+  * Earlier draft: reaction–diffusion obtained first, with subsequent encouragement toward $\Box\phi$【turn4file4】【turn4file5】.
+  * Paper: derive an effective action, then expand around constants【turn3file17】【turn4file9】.
+
+# Formal derivation implementing steps (1)–(2)
+
+---
+
+Note: If the comparison target differs, update the reference accordingly. Two branches are available: kinetic+action and a U(1) extension with Goldstones.
+
+
+The following provides a formal derivation of steps (1)–(2) with consistent normalization.
+
+# Discrete action → second‑order dynamics (no hand‑waving)
+
+**Lattice + notation.**
+
+* Spatial lattice: cubic, spacing $a$, dimension $d$ (take $d=3$ in practice).
+* Time step: $\Delta t$.
+* Site field: $W_i^n \equiv W(\mathbf{x}_i, t_n)$, $t_n=n\Delta t$.
+* Neighbor directions: $\mu\in\{1,\dots,d\}$, unit vectors $\hat e_\mu$.
+* On‑site potential: $V(W)$ (keep general here; plug the $V(\phi)$ later).
+
+**Discrete Lagrangian (per time step).**
+
+$$
+L^n \;=\; a^d \sum_i\Bigg[
+\frac{1}{2}\Big(\frac{W_i^{\,n+1}-W_i^{\,n}}{\Delta t}\Big)^2
+\;-\; \frac{\kappa}{2}\sum_{\mu=1}^d\big(W_{i+\mu}^{\,n}-W_i^{\,n}\big)^2
+\;-\; V\!\big(W_i^{\,n}\big)
+\Bigg]
+$$
+
+* $\kappa$ is the **per‑edge coupling** (undirected edges counted once).
+  If you prefer the per‑site convention $\frac{1}{2}\sum_{j\in N(i)}J(W_j-W_i)^2$ that sums both $\pm\mu$, then $\kappa = 2J$. This keeps the algebra consistent with the write‑up.
+
+**Euler–Lagrange on the lattice (central in time).** Varying $W_i^n$ gives
+
+$$
+\frac{W_i^{\,n+1}-2W_i^{\,n}+W_i^{\,n-1}}{(\Delta t)^2}
+\;-\;\kappa\,\sum_{\mu=1}^d \big(W_{i+\mu}^{\,n}+W_{i-\mu}^{\,n}-2W_i^{\,n}\big)
+\;+\;V'\!\big(W_i^{\,n}\big)=0.
+$$
+
+That’s the **second‑order** discrete equation (no “promotion” needed). This replaces the first‑order heuristic in the earlier continuum note.
+
+# Continuum limit and the exact spatial prefactor
+
+Set $W_i^n\approx \phi(\mathbf{x}_i,t_n)$. Use standard Taylor expansions:
+
+* **Time:** central difference $\to$ $\partial_t^2\phi + O((\Delta t)^2)$.
+* **Space:** for each $\mu$,
+
+$$
+W_{i+\mu}+W_{i-\mu}-2W_i \;=\; a^2\,\partial_\mu^2\phi \;+\; O(a^4).
+$$
+
+Summing over $\mu$ yields $a^2\nabla^2\phi + O(a^4)$.
+
+Taking $\Delta t\to 0,\; a\to 0$, the discrete EOM becomes:
+
+$$
+\boxed{\;\partial_t^2\phi \;-\; \kappa\,a^2\,\nabla^2\phi \;+\; V'(\phi)\;=\;0\;}
+$$
+
+So the small‑fluctuation wave speed is
+
+$$
+\boxed{\,c^2 = \kappa\,a^2\,}\quad\text{(or }c^2=2J\,a^2\text{ in the per‑site convention).}
+$$
+
+**Drop‑in continuum Lagrangian density.**
+
+$$
+\boxed{\;\mathcal{L} \;=\; \frac{1}{2}(\partial_t\phi)^2 \;-\; \frac{\kappa a^2}{2}(\nabla\phi)^2 \;-\; V(\phi)\;}
+$$
+
+* If you keep the per‑site $J$ (both $\pm\mu$ counted in $N(i)$), it’s equivalent to
+  $\mathcal{L}=\frac{1}{2}(\partial_t\phi)^2 - J a^2(\nabla\phi)^2 - V(\phi)$ and the **EOM** carries $c^2=2Ja^2$. Both conventions are fine; just be consistent about whether $\kappa$ is per edge or per oriented difference. the current draft used this per‑site convention and landed on $J a^2(\nabla\phi)^2$; the only fix is to **not** force $J a^2=\frac{1}{2}$**—just read off $c^2=2J a^2$**.
+
+**Consistency check (Dirichlet energy mapping).**
+From the interaction energy $\frac12\sum_{j\in N(i)}J(W_j-W_i)^2$ on a cubic lattice, the per‑site continuum limit is
+
+$$
+\frac12\,J\sum_{j\in N(i)}(W_j-W_i)^2 \;\longrightarrow\; J a^2 (\nabla\phi)^2,
+$$
+
+precisely what I wrote; the “factor of 2” is the $\pm\mu$ neighbor pair. Choosing the per‑edge $\kappa$ makes the canonical $\frac{1}{2}(\nabla\phi)^2$ structure explicit and avoids having to pin $J a^2$ to a number.
+
+# Plugging in the potential (and optional $\lambda\phi^4$)
+
+* With the $V(\phi)=\frac{\alpha}{3}\phi^3-\frac{\alpha-\beta}{2}\phi^2$, the **linearized** mass about a vacuum $v$ is $m^2=V''(v)$.
+* If you include the stabilization I sketched, $V\to V+\frac{\lambda}{4}\phi^4$, all formulas remain the same; only $V'(\phi)$ and $m^2=V''(v)$ update.
+
+# Changes relative to earlier drafts
+
+* Replaced “promote to second order” with a **variational** derivation from a discrete action → central‑difference EOM.
+* Made the spatial prefactor **exact**: $c^2=\kappa a^2$ (or $2Ja^2$ in the notation). No need to impose $J a^2=\frac{1}{2}$.
+* Keeps the earlier gradient‑from‑neighbors derivation intact, but clarifies the edge‑counting convention so factors are unambiguous.
+
+# Proposition: Continuum limit of the FUM lattice action
+
+> **Proposition (Continuum limit of the FUM lattice action).**
+> Consider the lattice action
+>
+> $$
+> S=\sum_n \Delta t\, a^d \sum_i\Big[\frac{1}{2}\big(\frac{W_i^{\,n+1}-W_i^{\,n}}{\Delta t}\big)^2-\frac{\kappa}{2}\sum_{\mu}(W_{i+\mu}^{\,n}-W_i^{\,n})^2 - V(W_i^{\,n})\Big].
+> $$
+>
+> The discrete Euler–Lagrange equation is
+>
+> $$
+> \frac{W_i^{\,n+1}-2W_i^{\,n}+W_i^{\,n-1}}{(\Delta t)^2}
+> -\kappa\sum_{\mu}\big(W_{i+\mu}^{\,n}+W_{i-\mu}^{\,n}-2W_i^{\,n}\big)+V'(W_i^{\,n})=0.
+> $$
+>
+> Setting $W_i^n\approx \phi(\mathbf{x}_i,t_n)$ and taking $\Delta t\to 0,\,a\to 0$ yields
+>
+> $$
+> \partial_t^2\phi - \kappa a^2\nabla^2\phi + V'(\phi)=0,
+> $$
+>
+> which follows from the continuum Lagrangian
+>
+> $$
+> \mathcal{L}=\frac{1}{2}(\partial_t\phi)^2 - \frac{\kappa a^2}{2}(\nabla\phi)^2 - V(\phi).
+> $$
+>
+> Hence the propagation speed is $c^2=\kappa a^2$.
+> *(In the per‑site convention $\frac12\sum_{j\in N(i)}J(W_j-W_i)^2$, set $\kappa=2J$, so $c^2=2Ja^2$.)*
+
+---
+
+This normalization aligns with [derivation/kinetic_term_derivation.md](kinetic_term_derivation.md:78); the action‑based derivation supersedes the earlier heuristic step and makes any fixed choice of $J a^2$ unnecessary.
+]]></content>
+    </file>
+    <file>
+      <path>derivation/memory_steering/memory_steering_acceptance_verification.md</path>
+      <content><![CDATA[# Memory Steering — Acceptance & Verification
+
+Tags: [PLAUSIBLE→PROVEN], [STABILITY], [REPRODUCIBILITY], [NON-INTERFERENCE]
+Date: 2025-08-21
+Owner:Justin K. Lietz
+
+Purpose
+- Define quantitative acceptance criteria and a reproducible verification protocol for the “memory steering” mechanism.
+- Verify boundedness, stability, fixed-point predictability, signal-to-noise improvement, Lyapunov monotonicity under canonical conditions, and reproducibility.
+- Document the canonical “void equilibrium” target W ≈ 0.6 and its parameter mapping.
+
+Starting Assumptions
+- Memory variable M_t ∈ [0, 1].
+- Steering uses a linear, leaky first-order update with saturation (assumed form):
+  M_{t+1} = (1 − λ − g) M_t + g s_t + ξ_t, then clamp M_{t+1} to [0, 1].
+  - Parameters: g > 0 (gain), λ > 0 (leak), ξ_t is optional zero-mean noise (default 0).
+  - Stability (unclamped, deterministic): pole p = 1 − λ − g with 0 ≤ p < 1 implies stable monotone approach.
+  - Fixed point for constant s: M* = g s / (g + λ).
+- Canonical “void equilibrium” test: with s ≡ 1 and g = 1.5 λ, the fixed point is M* = 1.5/(1+1.5) = 0.6, matching the observed W ≈ 0.6 note.
+- If the actual steering law differs (nonlinear f(s, M), adaptive gains, or additional couplings), we will update p, M*, and acceptance thresholds accordingly. Provide file path + line numbers for the exact rule to refine this doc.
+
+Discrete Formulation
+- Update (dt = 1):
+  M_{t+1} − M_t = −(λ + g) M_t + g s_t + ξ_t; then clip to [0, 1].
+- Step response for s = s1 (constant for t ≥ t_step): M_t = M* + (M_0 − M*) p^t with p = 1 − λ − g.
+
+Continuum Limit (for small λ + g)
+- Let dt ≪ 1 and identify κ = λ + g, γ = g. Then
+  dM/dt = −κ M + γ s(t) + η(t), 0 ≤ M ≤ 1 with reflective saturation at bounds.
+- Time constant τ ≈ 1/κ. In discrete time, τ_d = −1 / ln p; for small κ, τ_d ≈ 1/κ.
+
+Fixed Points & Stability
+- Fixed point M* = (g/(g+λ)) s for constant s (unclamped, noise-free).
+- Linear stability: |p| < 1 ⇒ stable; for 0 ≤ p < 1, monotone approach without overshoot (in the linear, unclamped regime).
+- With saturation, M remains bounded in [0, 1].
+
+Lyapunov Structure (noise-free, constant s)
+- Define F_t = 0.5 (M_t − M*)^2. Then M_{t+1} − M* = p (M_t − M*). Hence
+  F_{t+1} − F_t = 0.5 (p^2 − 1) (M_t − M*)^2 ≤ 0 for |p| ≤ 1 with strict decrease for |p| < 1 unless M_t = M*.
+
+Acceptance Criteria
+1) Boundedness
+   - No excursions outside [0, 1] after clamping: count_violations = 0 over default runs.
+
+2) Linear Response & Fixed Point (noise-free, avoid clamp activation)
+   - Fit pole from step response:
+     - |p_fit − p_pred| ≤ 0.02 (absolute).
+     - |M_final − M*| ≤ 1e-2 (mean over last 10% of samples).
+     - Overshoot ≤ 0.02 (fraction of step amplitude).
+
+3) Canonical Void Target (W ≈ 0.6)
+   - With s ≡ 1 and g = 1.5 λ:
+     - |M_final − 0.6| ≤ 0.02 across seeds ∈ {0, 1, 2}.
+
+4) Noise Suppression (SNR Improvement)
+   - Input s(t) = s_sig(t) + n(t), where s_sig is a low-frequency sinusoid and n is white noise (σ = 0.05 by default), values clipped to [0, 1].
+   - SNR_out − SNR_in ≥ 3 dB for default parameters.
+
+5) Lyapunov Monotonicity (Noise-free Constant s)
+   - Fraction of positive ΔF_t = F_{t+1} − F_t ≤ 1% (numerical jitter); median ΔF_t < 0.
+
+6) Reproducibility
+   - Same seed ⇒ identical M_t sequence (max_abs_diff ≤ 1e-12).
+
+7) Off-Mode Non-Interference (to be validated in a bridge harness)
+   - With g = 0 (steering disabled), host system metrics (if coupled) match baseline within numerical tolerance.
+
+Validation Plan
+- Script: Prometheus_FUVDM/derivation/code/physics/memory_steering/memory_steering_acceptance.py
+  - Experiments:
+    1) Step response: s steps s0→s1; fit pole p from log residuals; verify M*.
+    2) Canonical void: s ≡ 1, g = 1.5 λ; check M_final ≈ 0.6.
+    3) Noise suppression: compute SNR_in (input) vs SNR_out (output, using a parallel signal-only filter for ground-truth); require ≥ 3 dB improvement.
+    4) Boundedness: random s ∈ [0, 1], count post-clamp violations.
+    5) Lyapunov: constant s, verify ΔF_t ≤ 0 up to numerical jitter.
+    6) Reproducibility: duplicate run with same seed, compare sequences.
+  - Outputs:
+    - JSON: Prometheus_FUVDM/derivation/code/outputs/logs/memory_steering/memory_steering_acceptance_YYYYMMDDThhmmssZ.json
+    - Figures (PNG): Prometheus_FUVDM/derivation/code/outputs/figures/memory_steering/
+      - step_response_YYYY....png
+      - noise_suppression_YYYY....png
+      - lyapunov_YYYY....png
+      - canonical_void_YYYY....png
+
+Default Parameters (for acceptance run)
+- g = 0.12, λ = 0.08 ⇒ p_pred = 0.80, τ_d ≈ 4.48 steps
+- Noise std for SNR test: σ = 0.05
+- Seeds: {0, 1, 2}
+- Steps: 512 (step at t = 64)
+
+Numerical Validation Results
+- Pending. Will be auto-inserted into the JSON log after first run and summarized here if needed.
+
+Open Questions / Next Refinements
+- If the actual memory-steering update differs (nonlinear dependence or adaptive control), provide the exact formula or implementation path + lines so we can update p_pred, M*, and Lyapunov claims.
+- Bridge into host systems (LBM, RD, walkers) to demonstrate:
+  - Non-interference when off (g = 0): metrics identical to baseline.
+  - Bounded, predictable effect when on (small g): document gains and any trade-offs.
+- Optional: empirical Bode plot (frequency response) for completeness.
+
+Run Instructions
+- Activate venv and run:
+  .\venv\scripts\activate
+  python -m Prometheus_FUVDM.derivation.code.physics.memory_steering.memory_steering_acceptance --seed 0 --steps 512 --g 0.12 --lam 0.08
+- Inspect JSON in code/outputs/logs/memory_steering/ and PNGs in code/outputs/figures/memory_steering/.
+
+Reproducibility Gates
+- A run is [PROVEN] if all acceptance checks pass. Deviations become [PLAUSIBLE] with a concrete follow-up plan; contradictions generate a RECONCILE note in CORRECTIONS.md.]]></content>
+    </file>
+    <file>
+      <path>derivation/memory_steering/void_announcers_control.md</path>
+      <content><![CDATA[# Void-announcers for neural networks: passive observability and bounded numeric control
+
+Status: [PLAUSIBLE] with concrete validation plan. Physics conserved (read-only sensing); optional bounded parameter advice does not inject forces.
+
+Purpose
+- Map FUVDM “void walker” observability to neural networks (MLP/RNN/attention) as measurement-only sensors.
+- Derive a graph Fokker–Planck limit for walker density on a feed-forward graph.
+- Define petition taxonomy (sat, grad, shear) and a scalar “void debt” functional.
+- Outline a bounded advisory policy to nudge numeric knobs without altering forward dynamics.
+
+Starting Assumptions
+- Network f: R^{d_in} -> R^{d_out} with L layers; activations a^{(l)} = φ(z^{(l)}), z^{(l)} = W^{(l)} a^{(l-1)} + b^{(l)}.
+- Nonlinearity φ ∈ {tanh, ReLU, GELU}. We take tanh for smoothness unless stated otherwise.
+- “Walker” lives on the bipartite graph of edges (i->j,l): from neuron i at layer l-1 to neuron j at layer l.
+- Walkers are read-only: they sample fields and never modify weights/activations.
+
+Discrete Formulation (graph random walk)
+- Define local edge saliency S_{i→j}^{(l)} = |W_{ji}^{(l)}| · |a_i^{(l-1)}|.
+- Transition probability from node i at layer l-1 to j at layer l:
+  p(i→j|l) = S_{i→j}^{(l)} / Σ_k S_{i→k}^{(l)} with ε-jitter for exploration.
+- After K hops along layers, each walker emits petitions at its current edge/node:
+  sat: σ_sat = 1{|a_j^{(l)}| ≥ a_sat}, grad: g_j^{(l)} = ||∂L/∂z_j^{(l)}|| (if L defined), shear: max{|a_j^{(l)} − a_k^{(l)}|: k∈N(j)}.
+- Petitions are tuples (kind, value, node=(l,j), t). A Bus collects them; a Reducer computes robust quantiles and counts per kind.
+
+Continuum Limit (graph Fokker–Planck heuristic)
+- Let ρ_l(j,t) be walker density at neuron j, layer l.
+- Assume slow variation in “potential” U_l(j) = −log S̄_l(j), where S̄_l(j) = Σ_i S_{i→j}^{(l)}.
+- The discrete Markov chain induces, in a continuum limit over wide layers, a drift–diffusion:
+  ∂_t ρ_l ≈ ∇_j · (D_l ∇_j ρ_l + ρ_l ∇_j U_l), with reflecting boundary at layer edges and forward drift across layers.
+- D_l encodes exploration jitter; ∇_j is graph gradient (e.g., on a kNN graph in activation space).
+- This equation is descriptive; walkers remain sampling artifacts and do not back-react.
+
+Void-debt functional (diagnostic)
+- Define D_void(t) = α_div · Q_div,99 + α_sat · Q_sat,95 + α_shear · Q_shear,95, where Q_kind,q are bus quantiles at time t.
+- Interpretation: large divergence-like signals (compressibility analog), excessive saturation, and high same-layer shear imply “debt.”
+- D_void is a ledger for where discretization/representation is near asymptotes (saturation, vanishing/exploding gradients).
+
+Advisory policy (bounded, numeric knobs only)
+- Inputs: stats_summary from Reducer, params = {τ (optimizer viscosity), u_clamp (gradient clip), U_in (input scale)}.
+- Rules (example): if Q_div,99 > target_div ⇒ tighten u_clamp by ×0.9 and increase τ by +0.02.
+  elif Q_swirl,50 < target_swirl and Q_div,99 < 2×target_div ⇒ decrease τ by 0.02 and allow 5% higher U_in.
+- Guarantees: params are clipped to safe bounds; no forcing terms are added to forward dynamics.
+
+Mapping table (fluids → nets)
+- velocity u ↔ activation flow across layers
+- divergence ∇·u ↔ Jacobian trace proxy tr(∂a^{(l)}/∂a^{(l-1)}) or gradient-norm concentration
+- vorticity |ω| ↔ curvature/recirculation proxy: local loopiness in feature graph; here we use swirl := robust median |g_j^{(l)}|
+- near-wall shear ↔ activation discontinuity between neighboring neurons (graph Laplacian magnitude)
+
+Conservation / Lyapunov structure
+- For tanh nets, E = Σ_l ||a^{(l)}||² is bounded; saturation petitions estimate proximity to hard bounds (|a|→1).
+- The universal void dynamics W∈[0,1] (if attached per neuron as latent) has stable mean near ≈0.6 in many regimes.
+- Without coupling back into forward dynamics, we treat W only as a state reported in telemetry (optional).
+
+Numerical Validation Plan
+Objective
+- Demonstrate that announcer stats correlate with training instabilities and that observe/advise modes reduce D_void without harming accuracy.
+Observable
+- {Q_div,99, Q_sat,95, Q_shear,95}, accuracy curve, training loss, gradient norms.
+Method
+- Train a small tanh-MLP on a 2D classification task for T epochs with fixed seed.
+- Run with announcers OFF vs ON (observe) vs ON (advise). Keep optimizer and data identical.
+- Record metrics each epoch; compute ΔD_void and accuracy differences.
+Acceptance Criteria
+- Non-interference: forward outputs identical with announcers in observe mode (unit test).
+- Advice utility: advise mode reduces median D_void by ≥10% at equal or better final accuracy on ≥2/3 seeds (N≥5).
+Failure Modes
+- Poor signal in grad for ReLU at initialization; use tanh or GELU for smoother proxies. Adjust a_sat.
+
+Minimal prototype (to be provided)
+- Script: code/physics/memory_steering/void_announcer_demo.py
+- Uses the fluids telemetry Bus/Reducer (imported) and a simple MLP.
+- Emits logs → derivation/code/outputs/logs/memory_steering and a diagnostic figure with petition markers on hidden-layer index space.
+
+Open Questions / Next Refinements
+- Replace proxies with principled Jacobian-trace estimators per layer for divergence analog.
+- Define a true graph vorticity via cycle decomposition on neuron-feature graphs.
+- Couple universal void dynamics W as a reporter per neuron and test whether W̄→0.6 correlates with reduced D_void.
+- Extend to attention: walkers hop on token–head–position graphs with saliency S∝|A|·|V|.
+
+Reproducibility Checklist
+- Fixed seeds; record version hash and environment.
+- Log exact params and bounds of the advisory policy.
+- Keep observe vs advise runs archived with JSON and PNG artifacts.
+
+References
+- Fluid mapping powered this construction; see cavity announcers and CLI in [lid_cavity_benchmark.py](Prometheus_FUVDM/derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py:356).
+- Bus, Reducer, Walker API: [walkers.py](Prometheus_FUVDM/derivation/code/physics/fluid_dynamics/telemetry/walkers.py:1).]]></content>
+    </file>
+    <file>
+      <path>derivation/reaction_diffusion/rd_dispersion_validation.md</path>
+      <content><![CDATA[# RD dispersion validation (linear regime)
+>
+> Author: Justin K. Lietz  
+> Date: August 9, 2025
+>
+> This research is protected under a dual-license to foster open academic
+> research while ensuring commercial applications are aligned with the project's ethical principles.<br> 
+> Commercial use requires written permission from Justin K. Lietz.
+> 
+> See LICENSE file for full terms.
+
+Purpose
+- Empirically validate the linear growth/decay rates of reaction–diffusion (Fisher–KPP linearized about u≈0):
+  u_t = D u_xx + r u, with σ(k) = r − D k² (continuum) and σ_d(m) = r − (4D/dx²) sin²(π m/N) (discrete).
+
+Status
+- Solved: measured per-mode growth rates σ_meas match the discrete prediction within tight tolerance on default and refined grids.
+- Scripts and outputs follow the same scheme as the front-speed validation.
+
+References (implementation)
+- Script: [rd_dispersion_experiment.py](code/physics/rd_dispersion_experiment.py:1)
+- Validation plan: [rd_validation_plan.md](rd_validation_plan.md:1)
+- Status log: [CORRECTIONS.md](CORRECTIONS.md:1)
+- fum_rt parity runner: [rd_dispersion_runner.py](Prometheus_FUVDM/fum_rt/physics/rd_dispersion_runner.py:1)
+
+Method
+- Periodic BCs; explicit Euler on u_t = D u_xx + r u with dt respecting diffusion CFL.
+- Start from small iid Gaussian amplitude amp0 ≪ 1 to stay in the linear regime.
+- Record snapshots; compute rFFT magnitudes |Û_m(t)|; fit log|Û_m(t)| vs t over a mid-early fraction window to estimate σ_meas(m).
+- Compare σ_meas(m) to:
+  - Discrete theory (primary): σ_d(m) = r − (4D/dx²) sin²(π m/N)
+  - Continuum reference: σ(k) = r − D k², with k = 2π m / L
+
+Output routing and naming
+- Defaults:
+  - Figures → derivation/code/outputs/figures/
+  - Logs → derivation/code/outputs/logs/
+- Filenames: script_name_YYYYMMDDThhmmssZ.ext (UTC timestamp)
+- Overridable via CLI: --outdir, --figure, --log
+
+How to run (PowerShell)
+- Always activate venv before running commands:
+  & .\venv\Scripts\Activate.ps1
+- Ensure matplotlib is available (first run):
+  python -m pip install matplotlib
+- Default run (passes):
+  python code/physics/rd_dispersion_experiment.py --N 1024 --L 200 --D 1.0 --r 0.25 --T 10 --cfl 0.2 --seed 42 --amp0 1e-6 --record 80 --m_max 64 --fit_start 0.1 --fit_end 0.4
+
+Recommended defaults
+- N=1024, L=200, D=1.0, r=0.25, T=10, cfl=0.2, seed=42, amp0=1e-6, record=80, m_max=64, fit 0.1–0.4
+- Use early-mid window to avoid startup transients while staying in linear regime.
+
+Acceptance criteria
+- Array-level agreement:
+  - median relative error over good modes (R²_mode ≥ 0.95): med_rel_err ≤ 0.10
+  - R²_array(measured vs σ_d) ≥ 0.98
+
+Representative results (logged)
+- Default (N=1024): med_rel_err ≈ 1.45e−3, R²_array ≈ 0.99995 [PASS]
+- Refinement (N=2048, m_max=128): med_rel_err ≈ 1.30e−3, R²_array ≈ 0.9928 [PASS]
+
+Troubleshooting
+- Low R² for some modes:
+  - Increase record count, keep fit window away from very early times.
+  - Keep amp0 small to remain in linear regime.
+- Excess bias at high m:
+  - Compare to discrete σ_d(m) (primary); continuum σ(k) deviates near Nyquist.
+  - Increase N to push Nyquist higher.
+
+fum_rt parity runner
+- Independent mirror (same metrics/output schema) for cross-stack parity:
+  - [rd_dispersion_runner.py](Prometheus_FUVDM/fum_rt/physics/rd_dispersion_runner.py:1)
+- Rationale is documented in-file (“CHANGE REASON”): physics proven via derivation; runtime mirror does not alter core dynamics.
+
+Reproduction checklist
+1) Activate venv: & .\venv\Scripts\Activate.ps1
+2) Install deps once: python -m pip install matplotlib
+3) Run default command above; confirm in JSON:
+   - metrics.med_rel_err ≤ 0.10
+   - metrics.r2_array ≥ 0.98
+4) Archive produced JSON/PNG under version control as needed.
+
+Provenance and tagging
+- Dispersion is [PROVEN] in [CORRECTIONS.md](CORRECTIONS.md:1) with default and refined grid results.]]></content>
+    </file>
+    <file>
+      <path>derivation/reaction_diffusion/rd_front_speed_validation.md</path>
+      <content><![CDATA[# RD front-speed validation (Fisher–KPP)
+>
+> Author: Justin K. Lietz  
+> Date: August 9, 2025
+>
+> This research is protected under a dual-license to foster open academic
+> research while ensuring commercial applications are aligned with the project's ethical principles.<br> 
+> Commercial use requires written permission from Justin K. Lietz.
+> 
+> See LICENSE file for full terms.
+
+Purpose
+- Empirically validate the Fisher–KPP pulled-front speed in 1D reaction–diffusion:
+  u_t = D u_xx + r u (1 − u), with theoretical c_th = 2√(D r).
+
+  Note: With the canonical mapping r = α − β and u = α, the homogeneous fixed point is φ* = r/u = 1 − β/α (e.g., α=0.25, β=0.10 ⇒ φ* = 0.6).
+
+Status
+- Solved: measured c_meas agrees with c_th within 5% after removing uniform pre-heating and tracking only real level crossings.
+- Documentation and reproducible CLI provided below.
+
+References (implementation)
+- Script: [rd_front_speed_experiment.py](code/physics/rd_front_speed_experiment.py)
+- Key functions:
+  - [run_sim()](code/physics/rd_front_speed_experiment.py:134)
+  - [robust_linear_fit()](code/physics/rd_front_speed_experiment.py:77)
+  - [front_position_near()](code/physics/rd_front_speed_experiment.py:54)
+  - [main()](code/physics/rd_front_speed_experiment.py:341)
+
+What was wrong initially (root cause)
+- Uniform small noise added everywhere at t=0 caused logistic “pre-heating” in the far field; points far ahead of the front crossed the tracking level (e.g., 0.5) solely due to local growth at time t ≈ r^−1 ln((1−u0)/u0), biasing the measured slope down.
+- Additionally, tracking after the real level-crossing vanished (domain fully above level) contaminated late-time fits.
+
+Fixes implemented
+1) Gated initial condition (no pre-heating)
+   - Far-ahead region is set exactly to 0.0 so the front is truly pulled by diffusion; optional noise is gated to the left side only.
+   - See the IC block in [run_sim()](code/physics/rd_front_speed_experiment.py:161).
+
+2) Real-crossing guard
+   - Only record front position while a true level crossing exists; stop tracking once the domain is fully above the chosen level.
+   - See tracker loop in [run_sim()](code/physics/rd_front_speed_experiment.py:187).
+
+3) Robust fitting and derivative cross-check
+   - Robust linear fit with MAD rejection; median-slope fallback if needed.
+   - Optional gradient-peak tracker (location of max |∂_x u|) overlays the second front position series for cross-check.
+
+Output routing and naming
+- Defaults to:
+  - Figures → derivation/code/outputs/figures/
+  - Logs → derivation/code/outputs/logs/
+- Filenames: script_name_YYYYMMDDThhmmssZ.ext (UTC timestamp).
+- Overridable via CLI: --outdir, --figure, --log.
+- See [main()](code/physics/rd_front_speed_experiment.py:359).
+
+How to run (PowerShell)
+- Always activate venv before running commands:
+  & .\venv\Scripts\Activate.ps1
+- Ensure matplotlib is available (first run):
+  python -m pip install matplotlib
+- Example that passes with D=1, r=0.25 (c_th=1):
+  python code/physics/rd_front_speed_experiment.py --N 1024 --L 200 --D 1.0 --r 0.25 --T 80 --cfl 0.2 --seed 42 --x0 -60 --level 0.1 --fit_start 0.6 --fit_end 0.9
+
+Recommended defaults
+- Threshold level: 0.1 (stable early/late across grids). Level=0.5 works if far field remains near zero.
+- Fit window: later fraction of the tracked interval (e.g., 0.6–0.9) to avoid initial transients and boundary interactions.
+- Grid/time step: increase N or T as needed for clean linear regime; CFL-stable explicit Euler is used.
+
+Acceptance criteria
+- Front-speed agreement: rel_err = |c_meas − c_th| / |c_th| ≤ 0.05
+- Linear fit quality: R² ≥ 0.98
+- Cross-check: gradient-tracker speed within ≈5% of c_th and level-tracker speed.
+
+Representative results (logged)
+- Parameters: D=1.0, r=0.25, N=1024, T=80, level=0.1, fit 0.6–0.9
+- Metrics: c_meas ≈ 0.953, c_th = 1.0, rel_err ≈ 0.047, R² ≈ 0.999996 (pass)
+- Gradient cross-check: c_meas_grad ≈ 0.945, rel_err_grad ≈ 0.055, R²_grad ≈ 0.99995
+- Outputs auto-saved under derivation/code/outputs/{figures,logs}/
+
+Troubleshooting
+- Measured speed too low with high R²:
+  - Remove/disable uniform noise (use default --noise_amp 0.0).
+  - Lower the tracking threshold (e.g., --level 0.1).
+  - Move fit window later (e.g., --fit_start 0.6 --fit_end 0.9).
+- Fit unstable (low R²):
+  - Increase N or T; ensure front remains away from domain boundaries during the fit window.
+  - Use larger fraction window or robust fit as implemented.
+
+Provenance and alignment with repository decisions
+- This test operationalizes the RD “canonical model” front-speed claim logged in CORRECTIONS.md by providing a reproducible, parameterized check that passes quantitative gates (≤5% tolerance).
+
+Reproduction checklist
+1) Activate venv: & .\venv\Scripts\Activate.ps1
+2) Install deps once: python -m pip install matplotlib
+3) Run example command above; confirm:
+   - rel_err ≤ 0.05
+   - R² ≥ 0.98
+   - Outputs written to derivation/code/outputs/{figures,logs}/
+4) Archive the produced JSON and PNG under version control as needed.]]></content>
+    </file>
+    <file>
+      <path>derivation/reaction_diffusion/rd_validation_plan.md</path>
+      <content><![CDATA[# RD validation plan (Fisher–KPP, 1D)
+>
+> Author: Justin K. Lietz  
+> Date: August 9, 2025
+>
+> This research is protected under a dual-license to foster open academic
+> research while ensuring commercial applications are aligned with the project's ethical principles.<br> 
+> Commercial use requires written permission from Justin K. Lietz.
+> 
+> See LICENSE file for full terms.
+
+Purpose
+- Establish reproducible numeric checks for the RD canonical model:
+  u_t = D u_xx + r u (1 − u) with front speed c_th = 2√(D r) and linear dispersion σ(k) = r − D k².
+
+Scope
+- Tests covered:
+  1) Front-speed validation (pulled front, Fisher–KPP)
+  2) Linear dispersion validation (periodic, linearized evolution)
+
+Canonical scripts
+- [rd_front_speed_experiment.py](code/physics/rd_front_speed_experiment.py:1)
+- [rd_front_speed_sweep.py](code/physics/rd_front_speed_sweep.py:1)
+- [rd_dispersion_experiment.py](code/physics/rd_dispersion_experiment.py:1)
+- Status log: [CORRECTIONS.md](CORRECTIONS.md:1)
+
+Output locations
+- Figures → derivation/code/outputs/figures/
+- Logs → derivation/code/outputs/logs/
+- Filenames: <script>_<UTC timestamp>.{png,json}
+- Overridable via CLI: --outdir, --figure, --log
+
+Front-speed test
+- PDE: ∂t u = D ∂xx u + r u (1 − u)
+- Observable: front position x_f(t) at level u = level (default 0.1); gradient-peak x_g(t) for cross-check.
+- Method:
+  - Neumann BCs; smooth step IC with far-field gating (u=0 ahead of the interface), optional left-gated noise.
+  - Track x_f only while a true crossing exists; robust fit of x_f(t) on a late-time fraction window.
+- Defaults: N=1024, L=200, D=1.0, r=0.25, T=80, cfl=0.2, seed=42, x0=−60, level=0.1, fit 0.6–0.9.
+- Theory: c_th = 2√(D r).
+- Acceptance:
+  - rel_err = |c_meas − c_th| / |c_th| ≤ 0.05
+  - R² ≥ 0.98
+  - Cross-check: |c_meas_grad − c_th| / |c_th| ≲ 0.05 when available.
+- CLI (PowerShell):
+  - & .\venv\Scripts\Activate.ps1
+  - python code/physics/rd_front_speed_experiment.py --N 1024 --L 200 --D 1.0 --r 0.25 --T 80 --cfl 0.2 --seed 42 --x0 -60 --level 0.1 --fit_start 0.6 --fit_end 0.9
+- Sweep:
+  - python code/physics/rd_front_speed_sweep.py
+
+Dispersion test
+- Linearized PDE: u_t = D u_xx + r u (periodic BCs)
+- Observable: per-mode growth rate σ_meas(m) via linear fit of log|Û_m(t)|.
+- Theory:
+  - Discrete: σ_d(m) = r − (4 D / dx²) sin²(π m / N)
+  - Continuum reference: σ_c(k) = r − D k², k = 2π m / L
+- Method:
+  - Start from small random noise (amp0 ≪ 1), explicit Euler with diffusion CFL.
+  - Record snapshots; fit on a fraction window away from startup transients.
+- Defaults: N=1024, L=200, D=1.0, r=0.25, T=10, cfl=0.2, seed=42, amp0=1e-6, record=80, m_max=64, fit 0.1–0.4.
+- Acceptance (array-level):
+  - median relative error over good modes (R²_mode ≥ 0.95): med_rel_err ≤ 0.10
+  - R²_array(measured vs σ_d) ≥ 0.98
+- CLI (PowerShell):
+  - & .\venv\Scripts\Activate.ps1
+  - python code/physics/rd_dispersion_experiment.py --N 1024 --L 200 --D 1.0 --r 0.25 --T 10 --cfl 0.2 --seed 42 --amp0 1e-6 --record 80 --m_max 64 --fit_start 0.1 --fit_end 0.4
+
+Reproducibility checklist
+- Set seed and record it in logs (scripts do this by default).
+- Confirm output JSON/PNG saved under derivation/code/outputs/{logs,figures}/.
+- Verify acceptance metrics in JSON:
+  - Front speed: metrics.passed = true
+  - Dispersion: metrics.passed = true
+- Keep generated artifacts under version control when passing.
+
+Notes on stability and limits
+- Explicit Euler step obeys dt ≤ cfl · dx²/(2D); scripts compute safe dt.
+- Increase N and/or T to ensure clean linear regime and avoid boundary contamination.
+- For front-speed, keep far-field exactly zero until the front arrives (gating is on by default).
+- For dispersion, keep amplitude small (linear regime); use early-time fit window.
+
+Provenance and tagging
+- Front-speed: [PROVEN] in [CORRECTIONS.md](CORRECTIONS.md:1) with representative pass.
+- Dispersion: [PROVEN]; default (N=1024): med_rel_err≈0.00145, R²_array≈0.99995; refinement (N=2048, m_max=128): med_rel_err≈0.00130, R²_array≈0.9928.
+
+Expected artifacts
+- Figures:
+  - derivation/code/outputs/figures/rd_front_speed_experiment_<UTC>.png
+  - derivation/code/outputs/figures/rd_dispersion_experiment_<UTC>.png
+- Logs:
+  - derivation/code/outputs/logs/rd_front_speed_experiment_<UTC>.json
+  - derivation/code/outputs/logs/rd_dispersion_experiment_<UTC>.json
+- Optional sweep CSV:
+  - derivation/code/outputs/logs/rd_front_speed_sweep_<UTC>.csv
+
+Open questions / next refinements
+- Evaluate sensitivity of c_meas to level choice (0.05–0.2) and fit window; document invariance bands.
+- Compare dispersion fit using windowed DFT vs rFFT magnitude; assess bias for near-zero/negative σ.
+- Add unit tests for σ_d formula and Laplacian implementations.
+- Mirror runners under fum_rt/physics for cross-stack parity.
+
+Appendix: CLI quick refs
+- Front speed (PASS example):
+  - python code/physics/rd_front_speed_experiment.py --N 1024 --L 200 --D 1.0 --r 0.25 --T 80 --cfl 0.2 --seed 42 --x0 -60 --level 0.1 --fit_start 0.6 --fit_end 0.9
+- Sweep:
+  - python code/physics/rd_front_speed_sweep.py
+- Dispersion:
+  - python code/physics/rd_dispersion_experiment.py --N 1024 --L 200 --D 1.0 --r 0.25 --T 10 --cfl 0.2 --seed 42 --amp0 1e-6 --record 80 --m_max 64 --fit_start 0.1 --fit_end 0.4]]></content>
+    </file>
+    <file>
+      <path>derivation/supporting_work/20250808_voxtrium_Overview.md</path>
+      <content><![CDATA[>This is an overview of a separate independent Physics TOE which strongly aligns with Void Dynamics Theory. <br>
+>Reach out if you would like to collaborate. I can attempt to map my theory to yours and add it here if we align. <br>
+>Author of the overview below: Voxtrium <br>
+>
+
+# Macro Banner (FRW + Continuity + Source + Micro-Informed Coefficients)
+
+**FRW Equation**  
+$H^2=\frac{8\pi G}{3}\,(\rho_b+\rho_{\rm DM}+\rho_r^{\rm std}+\rho_{\rm GW}+\rho_\Lambda)$  
+$\text{RHS }={\rm GeV}^2\ \text{(natural units)}$
+
+---
+
+## Continuity Equations
+
+- $\dot\rho_\Lambda=(\alpha_h/V_c)\,\dot S_{\rm hor}$  
+- $\dot\rho_{\rm DM}+3H\rho_{\rm DM}=p_{\rm DM}\,(\varepsilon_h/V_c)\,\dot S_{\rm hor}$  
+- $\dot\rho_{\rm GW}+4H\rho_{\rm GW}=p_{\rm GW}\,(\varepsilon_h/V_c)\,\dot S_{\rm hor}$  
+- $\dot\rho_{\rm hor}+3H(1+w_{\rm hor})\,\rho_{\rm hor}=-(\varepsilon_h/V_c)\,\dot S_{\rm hor}$  
+
+$\text{All RHS }={\rm GeV}^5$
+
+---
+
+## Partition Closure
+
+$p_\Lambda+p_{\rm DM}+p_{\rm GW}=1$ (dimensionless)  
+$\alpha_h=p_\Lambda\,\varepsilon_h$ (GeV)  
+
+---
+
+## Per-Channel Sources
+
+$Q_\Lambda=(\alpha_h/V_c)\,\dot S_{\rm hor}$  
+$Q_{\rm DM}=p_{\rm DM}\,(\varepsilon_h/V_c)\,\dot S_{\rm hor}$  
+$Q_{\rm GW}=p_{\rm GW}\,(\varepsilon_h/V_c)\,\dot S_{\rm hor}$  
+$Q_{\rm hor}=-(\varepsilon_h/V_c)\,\dot S_{\rm hor}$  
+
+$\sum_{i\in\{\Lambda,{\rm DM},{\rm GW},{\rm hor}\}}[\dot\rho_i+3H(1+w_i)\rho_i]=0$
+
+$\text{Each }Q\ \text{has units }{\rm GeV}^5$
+
+---
+
+## Integrated Vacuum Channel
+
+$\rho_\Lambda(t)=\rho_{\Lambda0}+\frac{1}{V_c}\int_{t_0}^{t}\alpha_h(t')\,\dot S_{\rm hor}(t')\,dt'$  
+$=\rho_{\Lambda0}+\frac{1}{V_c}\int_{S_{\rm hor}(t_0)}^{S_{\rm hor}(t)}\alpha_h(S)\,dS$  
+
+$\text{RHS }={\rm GeV}^4$
+
+$\text{Constant-}\alpha_h\ \text{limit}$ 
+$\rho_\Lambda(t)=\rho_{\Lambda0}+(\alpha_h/V_c)\,\Delta S_{\rm hor}(t)$
+
+---
+
+## Horizon Entropy Production
+
+$\dot S_{\rm hor}(t)=\int dM\,N(M,t)\,\dot S_{\rm BH}(M,t)+\iint dM_1\,dM_2\,R_{\rm merg}(M_1,M_2,t)\,\Delta S_{\rm merg}$  
+
+$N\ \text{has units }{\rm GeV}^{-1}\ \text{so that }dM,N\ \text{is dimensionless}$ 
+- $\dot S_{\rm BH}$ and $R_{\rm merg}$: GeV  
+- $\Delta S_{\rm merg}$: dimensionless  
+
+$\Rightarrow \dot S_{\rm hor}$: GeV
+
+---
+
+## Micro-Informed Coefficients
+
+$\alpha_h=C_\alpha\,(\kappa/K_s)\,(|\Omega|\,R_\ast)$  
+$\varepsilon_h=C_\varepsilon\,(\kappa/K_s)\,(|\Omega|\,R_\ast)$  
+
+**Where:**
+- $C_\alpha, C_\varepsilon\ \text{are }\mathcal O(1)$
+- $K_s\ \text{has units }{\rm GeV}$
+- $\kappa\ \text{has units }{\rm GeV}^2$
+- $|\Omega|\ \text{has units }{\rm GeV}$
+- $R_\ast\ \text{has units }{\rm GeV}^{-1}$
+
+
+Thus: $(|\Omega|\,R_\ast)$ is dimensionless, $(\kappa/K_s)$ is GeV, and $\alpha_h,\varepsilon_h$ are GeV.
+
+---
+
+## Soliton Relations
+
+$R_\ast=\frac{c_R}{eK_s}$  
+$X\equiv eK_s$  
+$m=\frac{c_m K_s}{e}$  
+
+$\text{Units: }{\rm GeV}^{-1},\ {\rm GeV},\ {\rm GeV}\ \text{respectively}$
+
+---
+
+## Conversions
+
+$1~{\rm km}^{-1}=1.973269804\times10^{-19}\ {\rm GeV}$  
+$1~{\rm cm}=5.06773065\times10^{13}\ {\rm GeV}^{-1}$  
+$1~{\rm Mpc}=1.563738286\times10^{38}\ {\rm GeV}^{-1}$  
+$1~{\rm Mpc}^3=3.823774\times10^{114}\ {\rm GeV}^{-3}$
+
+---
+
+## ΛCDM Limit
+
+If $\dot S_{\rm hor}\to 0$ or $\varepsilon_h\to 0$:  
+$\dot\rho_\Lambda\to 0$  
+$\dot\rho_{\rm DM}+3H\rho_{\rm DM}\to 0$  
+$\dot\rho_{\rm GW}+4H\rho_{\rm GW}\to 0$  
+
+$\Rightarrow \rho_{\Lambda0}$ constant
+
+$\epsilon_{\rm DE}(t)\equiv[(\alpha_h/V_c)\,\dot S_{\rm hor}]/[3H\rho_\Lambda]\ \ \text{and}\ \ f_{\rm inj}(t)\equiv[p_{\rm DM}(\varepsilon_h/V_c)\,\dot S_{\rm hor}]/[3H\rho_{\rm DM}]$
+
+$\epsilon_{\rm DE}\le\delta_w$
+
+$\ f_{\rm inj}\ll 1$
+
+
+---
+
+# SU(2) Skyrme Microphysics (Locked Normalization)
+
+$U(x)\in{\rm SU}(2)$, $L_\mu\equiv U^\dagger\partial_\mu U$, $\mathrm{Tr}(T^aT^b)=\frac{1}{2}\delta^{ab}$  
+
+$\mathcal L=\frac{F^2}{16}\,\mathrm{Tr}(L_\mu L^\mu)+\frac{1}{32 e^2}\,\mathrm{Tr}([L_\mu,L_\nu]^2)$  
+$F$ [GeV], $e$ dimensionless  
+
+With $K_s\equiv F/2$:  
+$\mathcal L=\frac{K_s^2}{4}\,\mathrm{Tr}(L_\mu L^\mu)+\frac{1}{32 e^2}\,\mathrm{Tr}([L_\mu,L_\nu]^2)$  
+
+$U(\mathbf r)=\exp\big(i\,\hat{\mathbf r}\cdot\boldsymbol{\tau}\,f(r)\big)$  
+$x\equiv eK_s r$  
+
+$E=(K_s/e)\,4\pi\int_0^\infty dx\,\epsilon(x)$  
+$\epsilon$: dimensionless $\Rightarrow E$ [GeV]  
+
+$c_m\equiv 4\pi\int_0^\infty dx\,\epsilon(x)$  
+$m=c_m K_s/e$  
+
+$R_\ast=\frac{c_R}{eK_s}$,  
+$c_R\equiv\left(\int_0^\infty dx\,x^2\epsilon(x)\right)^{1/2}\Big/\left(\int_0^\infty dx\,\epsilon(x)\right)^{1/2}$  
+
+$X\equiv eK_s$  
+
+$(\sigma/m){\rm nat}=c\sigma,e,K_s^{-3}$
+
+$(\sigma/m){\rm cgs}=(2.184\times 10^{-4}),(\sigma/m){\rm nat}$
+
+---
+
+# HLS → Skyrme Mapping & One-Loop (Option A)
+
+$K_s=F/2$  
+$(4e^2)^{-1}=\frac{a}{4g_H^2}\,C_{\rm match}^2\ \Rightarrow\ e=(g_H/\sqrt a)\,C_{\rm match}^{-1}$ 
+
+$\text{Convention: we set }C_{\rm match}=1\text{ (trace/gauge choice fixed)}$
+$M_V^2=a\,g_H^2\,F^2$  
+
+$\mathcal I_2\equiv (K_s^2/2)\,\mathrm{Tr}(\alpha_{\perp\mu}\alpha_\perp^\mu)$  
+$\mathcal I_4\equiv \mathrm{Tr}([\alpha_{\perp\mu},\alpha_{\perp\nu}]^2)$  
+
+$\delta\mathcal L_{\rm div}=(16\pi^2\epsilon)^{-1}\,(4/3)\,\left[\mathcal I_2+\frac{1}{2e^2}\,\mathcal I_4\right]$  
+
+$\Rightarrow A_2=A_4=4/3$ and $\mu\,d\ln(eK_s)/d\mu=0$ (one-loop, $a=1$)
+
+$\text{Statement holds in the HLS‑matched basis, background‑field gauge, and on the }a=1\text{ line}$
+
+---
+
+# Low-Energy Scattering Deliverables (Option C)
+
+$\mu=m/2$  
+
+$k=\mu\,v$ if $v$ in units of $c$; if $v$ in km/s: $v\to v/c$, $c=2.99792458\times 10^5\ {\rm km/s}$  
+
+$\sigma_0(k)=\frac{4\pi}{(1/a-(r_e/2)k^2)^2+k^2}$  
+
+$S_{\rm BH}=A/(4G)\ \Rightarrow\ \dot S_{\rm BH}=\dot A/(4G)$ and
+$\dot S_{\rm BH}[{\rm GeV}],\ A[{\rm GeV}^{-2}],\ G[{\rm GeV}^{-2}],\ S_{\rm BH}\ \text{dimensionless}$
+
+$(\sigma/m)_{\rm cgs}(v\to 0)=(\sigma_0(0)/m)\,(2.184\times10^{-4})$  
+
+$(\sigma_T/m)(v)=\frac{(\sigma/m)_0}{(1-\frac{1}{2} a r_e k^2)^2+(a k)^2}\times C_T(k)$  
+
+$C_T(k)=\frac{1}{4\pi}\int d\Omega\,(1-\cos\theta)\,|F_{\rm prof}(q)|^2,\ q=2k\sin(\theta/2)$  
+
+$F_{\rm prof}(q)=\frac{\int_0^\infty dx\,\epsilon(x)\,j_0((q/X)\,x)}{\int_0^\infty dx\,\epsilon(x)}$  
+
+$S_\phi(q)=\frac{1}{1+q^2/m_\phi^2}$  
+
+$\Rightarrow C_T^\phi(k)=\frac{1}{4\pi}\int d\Omega\,(1-\cos\theta)\,|F_{\rm prof}(q)|^2\,S_\phi(q)^2$
+
+---
+
+# Calibrated Numbers
+
+$c_m=145.846919$  
+$c_R=1.44784549$  
+$c_\sigma=0.045154085$  
+
+$K_s=0.04784537\ {\rm GeV}$  
+$e=1.11063189$  
+$X=eK_s=0.05313859\ {\rm GeV}$  
+$R_\ast=c_R/X=27.2466\ {\rm GeV}^{-1}=5.3765\times10^{-13}\ {\rm cm}$  
+
+$m=c_m K_s/e=6.283\ {\rm GeV}$  
+$\mu=m/2=3.1415\ {\rm GeV}$  
+
+From $(\sigma/m)_{\rm cgs}(v\to 0)=0.10\ {\rm cm}^2\,{\rm g}^{-1}$:  
+$a\simeq 1.513\times 10^{1}\ {\rm GeV}^{-1}$  
+
+With $\xi=2/3$:  
+$r_e=\xi\,R_\ast\simeq 18.1644\ {\rm GeV}^{-1}$
+
+
+-----------------
+
+
+(i) Entropy units and dimensional consistency.
+$\,S_{\rm BH}=A/(4G)\,$ and $\,\dot S_{\rm BH}=\dot A/(4G)\,$ with $\,A[{\rm GeV}^{-2}],\ G[{\rm GeV}^{-2}],\ S_{\rm BH}\,$ dimensionless and $\,\dot S_{\rm BH}[{\rm GeV}]\,$; hence $\,(\alpha_h/V_c)\,\dot S_{\rm hor}\,$ and $\,(\varepsilon_h/V_c)\,\dot S_{\rm hor}\,$ are ${\rm GeV}^5$ because $\,\alpha_h,\varepsilon_h[{\rm GeV}],\ V_c[{\rm GeV}^{-3}],\ \dot S_{\rm hor}[{\rm GeV}]\,$.
+
+(ii) Local covariant conservation (no energy creation).
+
+$\nabla_\mu!\big(T^{\mu\nu}\Lambda+T^{\mu\nu}{\rm DM}+T^{\mu\nu}{\rm GW}+T^{\mu\nu}{\rm hor}\big)=0$
+
+Define a transfer current $`J^\nu`$ by
+$`\nabla_\mu T^{\mu\nu}_{\mathrm{hor}} = - J^\nu`$ and
+$`\nabla_\mu \left( T^{\mu\nu}_\Lambda + T^{\mu\nu}_{\mathrm{DM}} + T^{\mu\nu}_{\mathrm{GW}} \right) = + J^\nu`$
+In FRW (isotropy) take $`J^\nu = (J^0, 0, 0, 0)`$ with
+$`J^0 = (\varepsilon_h / V_c)\,\dot S_{\mathrm{hor}}`$.
+This reproduces the continuity set and the identity
+$`\sum_i \big( \dot\rho_i + 3H(1+w_i)\rho_i \big) = 0`$.
+
+**(iii) Causality/locality via retarded kernel.**  
+$\dot S_{\rm hor}(t)=\int d^3x'\int_{-\infty}^{t}dt'\,K_{\rm ret}(t-t',|\mathbf x-\mathbf x'|)\,s_{\rm loc}(\mathbf x',t')$; here $s_{\rm loc}$ is a local entropy-production density (e.g., from $\dot S_{\rm BH}$ and mergers) and the step function enforces causal support.
+
+$K_{\rm ret}\propto\Theta(t-t'-|\mathbf x-\mathbf x'|)\ \text{ and is normalized so the RHS is }{\rm GeV}$
+
+**(iv) Partitions (probability-simplex map).**  
+$z_1\equiv|\Omega|\,R_\ast$, $z_2\equiv(\kappa/K_s)/X$, $z_3\equiv 1$ (all dimensionless since $X=eK_s$ is GeV). Define weights $w_i$ (dimensionless) and set  
+$p_i=\exp\!\left(w_i^1 z_1+w_i^2 z_2+w_i^3 z_3\right)\Big/\sum_{j\in\{\Lambda,{\rm DM},{\rm GW}\}}\exp\!\left(w_j^1 z_1+w_j^2 z_2+w_j^3 z_3\right)$.  
+This guarantees $p_\Lambda+p_{\rm DM}+p_{\rm GW}=1$ with $p_i\in[0,1]$ and ties the split to dimensionless micro-inputs.
+
+(v) Observational viability: dark energy near $\,w=-1\,$.
+$\,w_{\rm eff}(t)=-1-\frac{1}{3H}\,\frac{d\ln\rho_\Lambda}{dt}=-1-\frac{1}{3H}\,\frac{(\alpha_h/V_c)\,\dot S_{\rm hor}}{\rho_\Lambda}\,$.
+Impose $\,\big|w_{\rm eff}+1\big|\le \delta_w\,$ (e.g. $\,\delta_w\sim 0.05\,$) by requiring $\,(\alpha_h/V_c)\,\dot S_{\rm hor}\ll 3H\,\rho_\Lambda\,$ over the redshift range of interest.
+
+(vi) Observational viability: velocity‑dependent SIDM.
+As a compact fit for simulators here ya go
+$\,(\sigma_T/m)(v)=\frac{(\sigma/m)_0}{\big[1+(v/v_0)^n\big]^p}\,$
+with $\,(\sigma/m)_0\approx 0.10\,{\rm cm}^2\,{\rm g}^{-1}\,$ at dwarf speeds, and choose $\,v_0,n,p\,$ to match your effective‑range+form‑factor prediction so that clusters satisfy $\,(\sigma_T/m)\lesssim 10^{-3}\text{–}10^{-4}\ {\rm cm}^2\,{\rm g}^{-1}\,$.
+
+(vii) Structure formation constraint (small DM injection).
+Define the instantaneous injection fraction $\,f_{\rm inj}(t)\equiv\frac{p_{\rm DM}\,(\varepsilon_h/V_c)\,\dot S_{\rm hor}}{3H\,\rho_{\rm DM}}\,$ and impose $\,f_{\rm inj}\ll 1\,$ for $\,z\lesssim z_{\rm LSS}\,$ so linear growth is not spoiled; if desired, restrict $\,\dot S_{\rm hor}\,$ to early epochs by a window $\,W(t)\,$ with $\,0\le W\le 1\,$ and replace $\,\dot S_{\rm hor}\to W(t)\,\dot S_{\rm hor}\,$.
+
+(viii) Horizon‑entropy accounting in terms of densities
+$\,\dot S_{\rm hor}(t)=V_c\int dM\,\psi(M,t)\,\dot s_{\rm BH}(M,t)+V_c\!\iint dM_1\,dM_2\,\mathcal R_{\rm merg}(M_1,M_2,t)\,\Delta S_{\rm merg}\,$ with $\,\psi\,$ the BH mass function density ${\rm GeV}^{-1}{\rm GeV}^{-3}$ (so that $\,V_c\,dM\,\psi\,$ is a count), $\,\dot s_{\rm BH}[{\rm GeV}]\,$, and $\,\mathcal R_{\rm merg}[{\rm GeV}^{-1}{\rm GeV}^{-3}{\rm GeV}]\,$ so the RHS is ${\rm GeV}; this is equivalent to your $\,N(M,t)\,$ but avoids listing individual BHs.
+
+$S_{\rm BH}=A/(4G)\ \Rightarrow\ \dot S_{\rm BH}=\dot A/(4G)$ and
+$\dot S_{\rm BH}[{\rm GeV}],\ A[{\rm GeV}^{-2}],\ G[{\rm GeV}^{-2}],\ S_{\rm BH}\ \text{dimensionless}$.
+
+(ix) DM number evolution under horizon sourcing (abundance bookkeeping).
+$\,\dot n_{\rm DM}+3H n_{\rm DM}=\frac{Q_{\rm DM}}{m}=\frac{p_{\rm DM}}{m}\,(\varepsilon_h/V_c)\,\dot S_{\rm hor}\,$ with $\,n_{\rm DM}=\rho_{\rm DM}/m\,$; this ties the abundance directly to the same source you use for energy, preserving covariant conservation.
+
+(x) Action‑level bookkeeping (where the pieces live).
+$\,S_{\rm eff}=\int d^4x\,\sqrt{-g}\,\Big[\frac{M_{\rm Pl}^2}{2}R+\mathcal L_{\rm SM}+\mathcal L_{\rm Skyrme}(K_s,e)+\mathcal L_{\rm rad}+\mathcal L_{\rm hor}(S_{\rm hor})\Big]\,$ with $\,\Lambda_{\rm eff}(t)\,$ emergent via $\,\rho_\Lambda(t)=\rho_{\Lambda0}+(1/V_c)\int\alpha_h\,dS_{\rm hor}\,$; variation yields the FRW set plus your source terms (bookkeeping identity, not a new local field).
+
+**(xi) Clarifying direct-detection vs self-interaction (not a conflict).**  
+$\sigma_{\chi N}$ (DM–nucleon) and $\sigma_{\chi\chi}$ (DM self-interaction) are independent; your $(\sigma_T/m)$ constraints apply to $\sigma_{\chi\chi}$, while direct detection constrains $\sigma_{\chi N}$. Setting the portal coupling to the SM tiny is equivalent to $\sigma_{\chi N}\to 0$ with no impact on $\sigma_{\chi\chi}$.
+
+----------
+
+1) Physical mechanism for the transfer (horizon → dark sector via Skyrme composites).
+The coarse‑grained source is encoded by the timelike transfer current $,J^\nu,$ with $,J^\nu=(J^0,0,0,0),$ and $,J^0=(\varepsilon_h/V_c),\dot S_{\rm hor},$ so that $,\nabla_\mu T_{\rm hor}^{\mu\nu}=-J^\nu,$ and $,\nabla_\mu(T_\Lambda^{\mu\nu}+T_{\rm DM}^{\mu\nu}+T_{\rm GW}^{\mu\nu})=+J^\nu,$ (units: $J^0[{\rm GeV}^5]$). The dark number density evolves as $,\dot n_{\rm DM}+3H n_{\rm DM}=Q_{\rm DM}/m=p_{\rm DM},(\varepsilon_h/V_c),\dot S_{\rm hor}/m,$ (units: RHS $[{\rm GeV}^3]$), where $,m=c_m K_s/e,$ and $,R_\ast=c_R/(eK_s),$ tie production to the Skyrme scale. Causality is enforced by a retarded kernel $,\dot S_{\rm hor}(t)=\int d^3x'!\int_{-\infty}^{t}!dt',K_{\rm ret}(t-t',|\mathbf x-\mathbf x'|),s_{\rm loc}(\mathbf x',t'),$ with $,K_{\rm ret}\propto\Theta(t-t'-|\mathbf x-\mathbf x'|),$ and $,s_{\rm loc},$ built from local rates (units: RHS $[{\rm GeV}]$). The co‑evolution law is fixed by the partition: $,d\rho_\Lambda:d\rho_{\rm DM}:d\rho_{\rm GW}=p_\Lambda:p_{\rm DM}:p_{\rm GW},$ because $,\alpha_h=p_\Lambda,\varepsilon_h,$ (dimensionless ratio).
+
+*2) Fine-tuning control via dimensionless small parameters.**  
+Define the dark-energy drift parameter $\epsilon_{\rm DE}(t)\equiv\dfrac{(\alpha_h/V_c)\,\dot S_{\rm hor}}{3H\rho_\Lambda}$ and enforce $\epsilon_{\rm DE}\le\delta_w$ (e.g., $\delta_w\sim 0.05$) to satisfy $w_{\rm eff}=-1-\dfrac{1}{3H}\dfrac{d\ln\rho_\Lambda}{dt}$.  
+Define the structure-formation injection fraction $f_{\rm inj}(t)\equiv\dfrac{p_{\rm DM}(\varepsilon_h/V_c)\,\dot S_{\rm hor}}{3H\rho_{\rm DM}}$ and require $f_{\rm inj}\ll 1$ for $z\lesssim z_{\rm LSS}$. With $\varepsilon_h=C_\varepsilon(\kappa/K_s)(|\Omega|R_\ast)$, one obtains $\epsilon_{\rm DE}\propto(|\Omega|R_\ast)$ and $f_{\rm inj}\propto(|\Omega|R_\ast)$, so late-time smallness follows whenever $|\Omega|R_\ast\ll 1$. Optional gating keeps early-time sourcing while suppressing late-time drift: replace $\dot S_{\rm hor}\to W(t)\,\dot S_{\rm hor}$ with $0\le W\le 1$.
+
+**3) Predictive power to justify added parameters (cross-linked, testable relations).**  
+(i) Velocity trend fixed by the soliton size: for identical scatterers $\mu=m/2$ and $q=2k\sin(\theta/2)$, the profile average gives $C_T(v)\simeq 1-(8/9)(\mu v R_\ast)^2+\mathcal O(v^4)$, hence a characteristic scale $v_0\simeq\sqrt{9/8}\,(\mu R_\ast)^{-1}$ below which $(\sigma_T/m)$ flattens and above which it falls (dimensionless $C_T$; $v$ in units of $c$). $C_T(v)\simeq 1-(8/9)\,(\mu v R_\ast)^2+\mathcal O(v^4)$ 
+
+(ii) Threshold prediction from the first internal mode $m_\phi\sim 1/R_\ast$ yields a universal cluster-scale suppression $C_T^\phi\to\langle S_\phi(q)^2\rangle$ with $S_\phi(q)=1/(1+q^2/m_\phi^2)$.  
+
+(iii) Co-evolution ratios independent of astrophysics: whenever $p_i$ are constant in an epoch, the instantaneous rates obey $\dot\rho_{\rm DM}/\dot\rho_\Lambda=(p_{\rm DM}/p_\Lambda)$ and $\dot\rho_{\rm GW}/\dot\rho_\Lambda=(p_{\rm GW}/p_\Lambda)$ (dimensionless), which is a falsifiable relation between background drift and sourcing channels.  
+
+(iv) BH-history link: $\rho_\Lambda(t)=\rho_{\Lambda0}+\frac{1}{V_c}\int\alpha_h(t')\,\dot S_{\rm hor}(t')\,dt'$ and $\rho_{\rm DM}(a)=a^{-3}\big[\rho_{\rm DM}(a_i)a_i^3+\int_{t_i}^{t}dt'\,a(t')^3\,p_{\rm DM}(\varepsilon_h/V_c)\,\dot S_{\rm hor}(t')\big]$ correlate deviations in $H(z)$ and $\rho_{\rm DM}(z)$ with the empirically constrained BH mass function and merger rate (integrands in GeV$^5$).  
+
+(v) Micro→macro lock-in: once $m=c_m K_s/e$ and $(\sigma/m)_0$ are fixed at dwarfs, $a$ and $r_e=\xi R_\ast$ are determined and the entire curve $(\sigma_T/m)(v)$ becomes parameter-free aside from the optional threshold $m_\phi\sim 1/R_\ast$ (units $a,r_e$ in GeV$^{-1}$).
+
+4) Skyrme soliton abundance and connection to cosmology.
+Abundance evolves as $,\dot n_{\rm DM}+3H n_{\rm DM}=p_{\rm DM}(\varepsilon_h/V_c),\dot S_{\rm hor}/m,$ with solution $,n_{\rm DM}(a)=a^{-3}\big[n_{\rm DM}(a_i)a_i^3+\int_{t_i}^{t}dt',a(t')^3,p_{\rm DM}(\varepsilon_h/V_c),\dot S_{\rm hor}(t')/m\big],$ (units: $n_{\rm DM}[{\rm GeV}^3]$). The required integrated comoving production to generate a fraction $,\zeta,$ of today’s DM is $,\int_{t_i}^{t_0}!dt',a(t')^3,p_{\rm DM}(\varepsilon_h/V_c),\dot S_{\rm hor}(t')=\zeta,m,a(t_0)^3,n_{\rm DM}(t_0),$ (RHS $[{\rm GeV}^5]$), which lets you test whether realistic BH demographics can account for some or all of the abundance without violating the smallness conditions $,\epsilon_{\rm DE}\ll 1,$ and $,f_{\rm inj}\ll 1,$.
+
+Clarifications that address specific external objections while staying within the framework.
+
+• Entropy units: $,S_{\rm hor},$ is dimensionless and $,\dot S_{\rm hor},$ is ${\rm GeV}$, so $,(\alpha_h/V_c),\dot S_{\rm hor},$ and $,(\varepsilon_h/V_c),\dot S_{\rm hor},$ are ${\rm GeV}^5$ as used (unit‑consistent).
+
+• Conservation: the sum $,\sum_i[\dot\rho_i+3H(1+w_i)\rho_i]=0,$ holds by construction with the current $,J^\nu,$; no net energy creation.
+
+• Locality: the retarded kernel $,K_{\rm ret},$ imposes light‑cone support, avoiding acausal global updates.
+
+• Partitions: $,p_i,$ can be tied to dimensionless micro inputs via a softmax on $,z_1=|\Omega|R_\ast,$, $,z_2=(\kappa/K_s)/X,$, $,z_3=1,$ so $,p_i=\exp(w_i^1 z_1+w_i^2 z_2+w_i^3 z_3)/\sum_j\exp(w_j^1 z_1+w_j^2 z_2+w_j^3 z_3),$ (dimensionless map rather than ad‑hoc constants).
+
+• Direct detection vs self‑interaction: $,\sigma_{\chi N},$ and $,\sigma_{\chi\chi},$ are independent; your $,(\sigma_T/m),$ fits $\chi\text{–}\chi$ and does not require a large $,\chi\text{–}N,$ portal (set $,\sigma_{\chi N}\to 0,$ consistently with collider and DD bounds).
+
+• $C_T(v)\simeq 1-(8/9)\,(\mu v R_\ast)^2+\mathcal O(v^4)$
+
+**Minimality vs prediction.**  
+The model’s added parameters are constrained by $\epsilon_{\rm DE}$, $f_{\rm inj}$, the co-evolution ratios, the $v$-trend set by $R_\ast$, and the $m_\phi\sim 1/R_\ast$ threshold; each is testable against dwarfs→clusters and against BH-demographic histories.
+
+
+The factor $(|\Omega|R_\ast)$ is a dimensionless measure of horizon vorticity against the composite scale that also controls self‑interaction, so the same micro length that fixes $m$, $R_\ast$, and $C_T$ also normalizes the coupling to $S_{\rm hor}$.
+
+Anchor → $a$ line:
+$`(\sigma/m){\rm nat}=(\sigma/m){\rm cgs}/(2.184\times10^{-4})`$, $`\sigma_0(0)=m(\sigma/m){\rm nat}`$, $`a=\sqrt{\sigma_0(0)/(4\pi)}`$; with $`(\sigma/m){\rm cgs}=0.10`$ and $`m=6.283`$, this gives $`a=1.5130\times10^{1}\,{\rm GeV}^{-1}`$.
+
+
+
+
+Size → $r_e$ line (this was a modeling choice):
+“$,r_e=\xi,R_\ast,$ with $,\xi=2/3,$ and $,R_\ast=27.2466,{\rm GeV}^{-1},$ gives $,r_e=18.1644,{\rm GeV}^{-1},$ To be replaced by a phase‑shift extraction in full calculations).”
+]]></content>
+    </file>
+    <file>
+      <path>derivation/tachyon_condensation/finite_tube_mode_analysis.md</path>
+      <content><![CDATA[# Finite‑Tube Mode Analysis for the FUM Scalar (Bordag‑inspired)
+
+>
+> Author: Justin K. Lietz  
+> Date: August 9, 2025
+>
+> This research is protected under a dual-license to foster open academic
+> research while ensuring commercial applications are aligned with the project's ethical principles.<br> 
+> Commercial use requires written permission from Justin K. Lietz.
+> 
+> See LICENSE file for full terms.
+
+---
+
+## 1. Objective
+
+Adapt the finite‑radius flux‑tube machinery in Bordag (Universe 2024) to the FUM scalar EFT so we can:
+- Predict and count tachyonic (unstable) orbital modes in finite domains (tubes/filaments).
+- Demonstrate quartic stabilization via condensation and show the full post‑condensation mass spectrum is non‑negative.
+- Find a true energy minimum vs a control parameter (tube size/“flux” proxy), reproducing the qualitative structure of Fig. 1/3/5 in Bordag’s paper.
+
+We work from the bounded baseline EFT and kinetic normalization already established in:
+- Baseline quartic EFT and cubic tilt: see [derivation/discrete_to_continuum.md](derivation/discrete_to_continuum.md:125-228)
+- Kinetic normalization and action‑based derivation: see [derivation/kinetic_term_derivation.md](derivation/kinetic_term_derivation.md:78-134)
+- Units map and FRW bookkeeping (used later for background energy): see [derivation/fum_voxtrium_mapping.md](derivation/fum_voxtrium_mapping.md:44-121)
+
+We will mirror the analytical spine of Bordag’s finite‑radius analysis but for a real (optionally complex) scalar coupled only through its potential.
+
+---
+
+## 2. Baseline EFT, Units, and Geometry
+
+Working in natural units \(c=\hbar=k_B=1\). The bounded baseline potential is
+\[
+V(\phi)\;=\;-\frac{1}{2}\,\mu^2\,\phi^2\;+\;\frac{\lambda}{4}\,\phi^4,\qquad \mu^2>0,\ \lambda>0,
+\]
+optionally augmented by a small cubic tilt
+\[
+V(\phi)\;\to\;V(\phi)\;+\;\frac{\gamma}{3}\,\phi^3,\qquad |\gamma|\ll \mu^2\sqrt{\lambda},
+\]
+to select a unique vacuum near \(+v\) with \(v=\mu/\sqrt{\lambda}\). Small fluctuations about \(\pm v\) have
+\[
+m_{\rm eff}^2\;=\;2\,\mu^2 \quad (\text{to leading order in }\gamma).
+\]
+
+Kinetic normalization in the dimensionless continuum:
+\[
+\mathcal L_K\;=\;\frac{1}{2}(\partial_t\phi)^2\;-\;J a^2\,(\nabla\phi)^2,\qquad c^2\equiv 2 J a^2,
+\]
+or equivalently \(\mathcal L_K=\frac{1}{2}(\partial_t\phi)^2-\frac{c^2}{2}(\nabla\phi)^2\).
+No microscopic relation ties \(J\) to \(a\); one may set \(c=1\) by a units choice. See [derivation/kinetic_term_derivation.md](derivation/kinetic_term_derivation.md:117-134).
+
+Geometry: a straight cylinder (“tube”) of radius \(R\) aligned with the \(z\)-axis; we analyze the transverse \((x,y)\) plane in polar coordinates \((r,\theta)\). Inside the tube we can sustain an approximately “false‑vacuum”/uncondensed configuration that drives tachyonic behavior in the fluctuation spectrum; outside, we take the condensed vacuum.
+
+---
+
+## 3. Piecewise Background and Linearized Fluctuations
+
+We define a static, piecewise‑constant background
+\[
+\phi_0(r)\;=\;\begin{cases}
+\phi_{\rm in} \approx 0, & r<R \quad (\text{uncondensed/tachyonic})\\
+\phi_{\rm out} \approx v, & r>R \quad (\text{condensed})
+\end{cases}
+\]
+and consider small fluctuations \(\varphi(x)\) with \(\phi=\phi_0+\varphi\). Linearizing the EOM yields
+\[
+\big(\, \partial_t^2 - c^2 \nabla_\perp^2 - c^2 \partial_z^2 \,\big)\,\varphi \;+\; V''(\phi_0)\,\varphi \;=\;0,
+\]
+with
+\[
+V''(\phi)= -\mu^2 + 3\lambda \phi^2 + 2\gamma \phi.
+\]
+To leading order (and \(\gamma\to 0\) here for clarity),
+\[
+m_{\rm in}^2 \equiv V''(\phi_{\rm in}\approx 0) = -\mu^2 \;,&\quad\text{(tachyonic inside)}
+\]
+\[
+m_{\rm out}^2 \equiv V''(\phi_{\rm out}\approx v) = 2\,\mu^2 \;,&\quad\text{(massive outside)}.
+\]
+
+We separate variables
+\[
+\varphi(t,r,\theta,z)= e^{-i\omega t} e^{i k z} \sum_{\ell\in\mathbb Z} u_{\ell}(r) e^{i\ell\theta}.
+\]
+The radial modes \(u_\ell(r)\) obey
+\[
+\left[\,-c^2\left(\frac{d^2}{dr^2} + \frac{1}{r}\frac{d}{dr} - \frac{\ell^2}{r^2}\right) + m^2(r)\,\right]u_\ell(r)\;=\;(\omega^2 - c^2 k^2)\,u_\ell(r),
+\]
+with \(m^2(r)=m_{\rm in}^2\) for \(r<R\) and \(m_{\rm out}^2\) for \(r>R\).
+
+Introduce the (transverse) separation constant \(\kappa^2\) via
+\[
+\omega^2 - c^2 k^2 \equiv - c^2 \kappa^2.
+\]
+Then the radial equation becomes Bessel‑type with piecewise constant coefficients.
+
+---
+
+## 4. Radial Solutions and Matching Conditions
+
+Inside (\(r<R\); tachyonic \(m_{\rm in}^2=-\mu^2\)):
+\[
+\left(\frac{d^2}{dr^2}+\frac{1}{r}\frac{d}{dr}-\frac{\ell^2}{r^2}\right) u_\ell^{\rm (in)}(r) \;=\; \left(\kappa_{\rm in}^2\right) u_\ell^{\rm (in)}(r),
+\qquad \kappa_{\rm in}^2 \equiv \frac{\mu^2}{c^2} - \kappa^2.
+\]
+Regular at \(r=0\) \(\Rightarrow\) \(u_\ell^{\rm (in)}(r) = A_\ell I_\ell(\kappa_{\rm in} r)\) if \(\kappa_{\rm in}^2>0\), with \(I_\ell\) modified Bessel.
+
+Outside (\(r>R\); massive \(m_{\rm out}^2=2\mu^2\)):
+\[
+\left(\frac{d^2}{dr^2}+\frac{1}{r}\frac{d}{dr}-\frac{\ell^2}{r^2}\right) u_\ell^{\rm (out)}(r) \;=\; -\left(\kappa_{\rm out}^2\right) u_\ell^{\rm (out)}(r),
+\qquad \kappa_{\rm out}^2 \equiv \kappa^2 + \frac{2\mu^2}{c^2}.
+\]
+Normalizable at \(r\to\infty\) \(\Rightarrow\) \(u_\ell^{\rm (out)}(r) = B_\ell K_\ell(\kappa_{\rm out} r)\) with \(K_\ell\) modified Bessel of the second kind.
+
+Matching at \(r=R\) (continuity of \(u\) and \(u'\)):
+\[
+A_\ell I_\ell(\kappa_{\rm in} R) \;=\; B_\ell K_\ell(\kappa_{\rm out} R),
+\]
+\[
+A_\ell \kappa_{\rm in} I'_\ell(\kappa_{\rm in} R) \;=\; - B_\ell \kappa_{\rm out} K'_\ell(\kappa_{\rm out} R).
+\]
+Eliminate \(A_\ell/B_\ell\) to obtain the secular equation for \(\kappa\):
+\[
+\boxed{ \;\frac{\kappa_{\rm in}}{\kappa_{\rm out}}\,\frac{I'_\ell(\kappa_{\rm in} R)}{I_\ell(\kappa_{\rm in} R)}
+\;=\; - \frac{K'_\ell(\kappa_{\rm out} R)}{K_\ell(\kappa_{\rm out} R)}\; }.
+\]
+Each root \(\kappa=\kappa_\ell(R)\) determines a mode. Tachyonic (unstable) modes correspond to \(\omega^2<0\) for some \(k\); equivalently, sufficiently large \(\kappa\) such that \(\omega^2=c^2(k^2-\kappa^2)<0\) at \(k=0\).
+
+Counting unstable modes:
+- At \(k=0\), \(\omega^2=-c^2\kappa^2\). A mode is tachyonic if \(\kappa^2>0\).
+- The number \(N_{\rm tach}(R)\) is the count of \(\ell\) for which the secular equation admits \(\kappa_\ell^2>0\).
+
+This mirrors Bordag’s finite‑radius tower and the scaling \(N_{\rm tach}\sim \text{(control parameter)}\).
+
+---
+
+## 5. Effective 2D Mode Reduction and Quartic Couplings
+
+Expand \(\varphi\) in the orthonormal set \(\{u_{\ell n}(r)e^{i\ell\theta}\}\) (including radial overtones \(n\) if present) and integrate over the transverse plane to obtain a 2D effective action in \((t,z)\):
+\[
+S_{\rm eff}^{(2D)} \;=\; \int dt\,dz\;\sum_{\ell,n} \left[ \frac{1}{2}\left( \dot\psi_{\ell n}^2 - c^2 (\partial_z \psi_{\ell n})^2 \right) - \frac{1}{2} m_{\ell n}^2(R)\,\psi_{\ell n}^2 \right] \;-\; \frac{1}{4} \sum_{\{\ell_i n_i\}} N_4(\ell_i n_i;R)\, \psi_{\ell_1 n_1}\psi_{\ell_2 n_2}\psi_{\ell_3 n_3}\psi_{\ell_4 n_4},
+\]
+with
+\[
+m_{\ell n}^2(R) \;\equiv\; -\,c^2 \kappa_{\ell n}^2(R),
+\]
+and quartic couplings obtained from overlap integrals using the original \(\lambda\phi^4\) term:
+\[
+N_4(\ell_i n_i;R) \;\propto\; \lambda \int_0^\infty r\,dr \int_0^{2\pi}\!d\theta\;\prod_{i=1}^4 \, u_{\ell_i n_i}(r) e^{i\ell_i\theta},
+\]
+subject to \(\sum_i \ell_i=0\) by \(\theta\) integration. The normalization/weighting follows the kinetic inner product implied by \(\mathcal L\).
+
+---
+
+## 6. Condensation and Post‑Condensation Mass Matrix
+
+At tree level, minimize the effective potential
+\[
+V_{\rm eff}^{\rm tube}(\{\psi\},R) \;=\; \sum_{\ell n} \frac{1}{2} m_{\ell n}^2(R)\,\psi_{\ell n}^2 \;+\; \frac{1}{4} \sum_{\{\ell_i n_i\}} N_4(\ell_i n_i;R)\,\psi_{\ell_1 n_1}\psi_{\ell_2 n_2}\psi_{\ell_3 n_3}\psi_{\ell_4 n_4}
+\]
+to get condensates \(v_{\ell n}(R)\). The (tree‑level) mass matrix about the condensate is the Hessian
+\[
+\left(M^2\right)_{(\ell n),(\ell' n')}(R) \;=\; \left.\frac{\partial^2 V_{\rm eff}^{\rm tube}}{\partial \psi_{\ell n}\,\partial \psi_{\ell' n'}}\right|_{\psi=v}.
+\]
+Acceptance criterion (Bordag‑parallel): all eigenvalues of \(M^2\) are \(\ge 0\) after condensation, with Goldstone phases (if a complex scalar is used) remaining massless as appropriate.
+
+---
+
+## 7. Total Energy vs Control and the Minimum
+
+Define the total energy as
+\[
+E(R) \;=\; E_{\rm bg}(R) \;+\; V_{\rm eff}^{\rm tube}\big(\{v_{\ell n}(R)\},R\big).
+\]
+- In Bordag’s SU(2) case, \(E_{\rm bg}\propto B^2 R^2\) from the chromomagnetic background.
+- In our scalar‑only EFT, one can adopt a phenomenological background proxy if coupling to external sectors is present (e.g., Voxtrium sourcing); in a pure scalar test, set \(E_{\rm bg}=0\) and examine whether \(V_{\rm eff}^{\rm tube}\) develops a nontrivial \(R\)‑dependence with a minimum due to mode structure and normalization.
+
+For FRW‑consistent background bookkeeping use the transfer‑current formalism in [derivation/fum_voxtrium_mapping.md](derivation/fum_voxtrium_mapping.md:106-121) when embedding in cosmology; here we remain in a static Minkowski test.
+
+Acceptance criterion: an \(R_\ast\) at which \(E(R)\) has a true minimum (Bordag’s Fig. 5 analogue).
+
+---
+
+## 8. Thermal Corrections (optional)
+
+At high temperature, the effective mass receives thermal contributions \(m^2(T)\sim m^2 + c_T \lambda T^2\), tending to restore symmetry (melt the condensate). A CJT/Hartree or high‑\(T\) expansion can be layered onto \(V_{\rm eff}^{\rm tube}\) to show \(v_{\ell n}\to 0\) as \(T\) increases, mirroring Bordag’s qualitative result.
+
+---
+
+## 9. Computational Pipeline and APIs
+
+We propose two modules to implement and test this analysis:
+
+1) cylinder_modes.py (radial/matching solver)
+- API:
+  - compute_kappas(R, params) -> list of roots {(\(\ell\), n, \(\kappa_{\ell n}\))}
+    - params: \(\mu, \lambda, \gamma, c\) and numerical tolerances; optionally max \(|\ell|\) and radial overtone cutoff
+  - mode_functions(R, root) -> callable u_{\ell n}(r) with normalization info
+- Core tasks:
+  - Solve the secular equation
+    \[
+    \frac{\kappa_{\rm in}}{\kappa_{\rm out}}\,\frac{I'_\ell(\kappa_{\rm in} R)}{I_\ell(\kappa_{\rm in} R)}
+    \;=\; - \frac{K'_\ell(\kappa_{\rm out} R)}{K_\ell(\kappa_{\rm out} R)},
+    \]
+    with \(\kappa_{\rm in}^2=\mu^2/c^2-\kappa^2\) and \(\kappa_{\rm out}^2=\kappa^2+2\mu^2/c^2\).
+  - Count \(N_{\rm tach}(R)\) from roots with \(\kappa^2>0\).
+  - Return normalized u’s (with weight \(r\,dr\,d\theta\)).
+
+2) condense_tube.py (tree‑level condensation and spectra)
+- API:
+  - build_N4(R, modes, params) -> sparse tensor or contracted quartic map
+  - find_condensate(R, modes, N4, params) -> \(\{v_{\ell n}\}\)
+  - mass_matrix(R, modes, v, N4, params) -> eigenvalues/eigenvectors
+  - energy_scan(R_grid, …) -> E(R) with identified minima
+- Outputs:
+  - Plots mirroring Bordag:
+    - \(\kappa_\ell(R)\) vs \(R\) (pre‑condensation “tachyonic tower”)
+    - \(v_{\ell n}(R)\) vs \(\ell\) (condensate structure)
+    - \(E(R)\) vs \(R\) with true minimum (if present)
+
+Units and normalizations:
+- Use the dimensionless \(c\) from \(\mathcal L_K=\frac{1}{2}(\partial_t\phi)^2-\frac{c^2}{2}(\nabla\phi)^2\). Convert to physical units via \((\phi_0,\tau,a)\) as in [derivation/fum_voxtrium_mapping.md](derivation/fum_voxtrium_mapping.md:44-80) when needed.
+
+---
+
+## 10. Acceptance Criteria (Bordag‑parallel)
+
+- Tachyonic mode tower: discrete \(\kappa_\ell(R)\) solutions with a finite count \(N_{\rm tach}(R)\) that grows with \(R\) (qualitatively matching a \(\delta\)-like control).
+- Post‑condensation positivity: all Hessian eigenvalues \(\ge 0\) (massless phases only if a complex field is used).
+- Energy minimum: \(E(R)\) develops a genuine minimum for some parameter window (quartic strengths), analogous to Bordag’s \(\lambda\)‑dependence in Fig. 5.
+
+---
+
+## 11. Notes on Complex Extension and Goldstones (optional)
+
+Promote \(\phi\) to a complex field \(\Phi\) to demonstrate explicit Goldstone modes in the broken phase. The radial analysis proceeds similarly with coupled channels for real/imaginary parts; post‑condensation, phases are massless while radial modes are massive. This reproduces the “massless Goldstone + massive radial” structure standard in SSB.
+
+---
+
+## 12. References and Pointers
+
+- Bordag, M. (2024). Universe 10, 38. Finite‑radius chromomagnetic flux tube, tachyonic gluon modes, quartic stabilization, and energy minima. Local copy: [universe-10-00038-v2.pdf](derivation/support/references/universe-10-00038-v2.pdf)
+- FUM kinetic/action derivation and normalization: [derivation/kinetic_term_derivation.md](derivation/kinetic_term_derivation.md:78-134)
+- Discrete‑to‑continuum and bounded baseline potential (adopted here): [derivation/discrete_to_continuum.md](derivation/discrete_to_continuum.md:125-228)
+- Units/FRW/current bookkeeping (for background energy coupling in cosmology): [derivation/fum_voxtrium_mapping.md](derivation/fum_voxtrium_mapping.md:106-121)
+
+---
+
+## 13. Summary
+
+This appendix defines a concrete, testable finite‑domain mode problem for the FUM scalar EFT. It specifies the radial eigenvalue condition, mode counting, quartic projections, condensation, mass‑matrix positivity, and an energy‑vs‑size scan with clear acceptance criteria aligned to Bordag’s analysis. The companion code modules [cylinder_modes.py](fum_sim/cylinder_modes.py:1) and [condense_tube.py](fum_sim/condense_tube.py:1) will implement the solver and diagnostics, producing the three replication plots and an \(R_\ast\) selection where applicable.]]></content>
+    </file>
+  </files>
+</vdm_public>
