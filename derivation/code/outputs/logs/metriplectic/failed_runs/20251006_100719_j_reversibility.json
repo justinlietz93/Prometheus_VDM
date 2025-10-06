@@ -1,0 +1,21 @@
+{
+  "cap_ok": false,
+  "dt": 0.00125,
+  "l2_drifts": {
+    "W1_minus_W0": 1.159849993825901e-12,
+    "W2_minus_W0": 2.3197554988030333e-12
+  },
+  "l2_norms": {
+    "W0": 0.4420212928458738,
+    "W1": 0.442021292844714,
+    "W2": 0.44202129284355407
+  },
+  "passes": false,
+  "passes_strict": false,
+  "rev_inf_error": 1.2426589271474775e-10,
+  "tolerances": {
+    "l2_cap": 1e-10,
+    "rev_inf_cap": 1e-10,
+    "rev_inf_strict": 1e-12
+  }
+}

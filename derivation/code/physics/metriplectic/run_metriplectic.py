@@ -43,9 +43,11 @@ def select_stepper(scheme: str, dx: float, params: Dict[str, Any]):
     if s == "j_only":
         return lambda W, dt: j_only_step(W, dt, dx, params)
     elif s == "m_only":
-        return lambda W, dt: m_only_step(W, dt, dx, params)
+        # Enforce dg_tol by using with-stats and discarding stats
+        return lambda W, dt: m_only_step_with_stats(W, dt, dx, params)[0]
     elif s == "jmj":
-        return lambda W, dt: jmj_strang_step(W, dt, dx, params)
+        # Enforce dg_tol by using with-stats and discarding stats
+        return lambda W, dt: jmj_strang_step_with_stats(W, dt, dx, params)[0]
     else:
         return lambda W, dt: j_only_step(W, dt, dx, params)
 
@@ -58,8 +60,9 @@ def sweep_two_grid(spec: StepSpec) -> Dict[str, Any]:
     dt_vals = [float(d) for d in spec.dt_sweep]
     dt_to_errs: Dict[float, List[float]] = {d: [] for d in dt_vals}
     samples = []
+    seed_scale = float(spec.params.get("seed_scale", 0.1))
     for seed in seed_list:
-        W0 = rng_field(N, 0.1, seed)
+        W0 = rng_field(N, seed_scale, seed)
         for dt in dt_vals:
             e = two_grid_error_inf(step, W0, dt)
             dt_to_errs[dt].append(e)
@@ -80,9 +83,12 @@ def sweep_two_grid(spec: StepSpec) -> Dict[str, Any]:
         ss_res = float(np.sum((y - y_pred) ** 2))
         ss_tot = float(np.sum((y - np.mean(y)) ** 2))
         R2 = 1.0 - (ss_res / ss_tot if ss_tot > 0 else 0.0)
-        # Expected slope mapping: JMJ ≈ 2 (Strang composition), M-only ≈ 2, J-only N/A
+        # Gates: allow explicit thresholds via params; fallback to expected ~2 for JMJ/M-only
+        gate_slope = spec.params.get("gate_slope")
+        gate_R2 = float(spec.params.get("gate_R2", 0.999))
         expected = 2.0 if s_lower in ("jmj", "m_only") else None
-        failed_gate = bool((expected is not None and slope < expected - 0.1) or (R2 < 0.999))
+        slope_min = float(gate_slope) if gate_slope is not None else (expected - 0.1 if expected is not None else -np.inf)
+        failed_gate = bool((slope < slope_min) or (R2 < gate_R2))
 
     # Artifacts
     fig_path = figure_path("metriplectic", f"residual_vs_dt_{spec.scheme}", failed=failed_gate)
@@ -105,6 +111,7 @@ def sweep_two_grid(spec: StepSpec) -> Dict[str, Any]:
         "fit": {"slope": float(slope), "R2": float(R2)},
         "expected_slope": (None if expected is None else float(expected)),
         "failed": failed_gate,
+        "gate": {"slope_min": (None if np.isneginf(slope_min) else float(slope_min)), "R2_min": float(gate_R2)},
         "figure": str(fig_path),
         "trivial_exact": trivial_exact
     }
@@ -118,11 +125,11 @@ def sweep_two_grid(spec: StepSpec) -> Dict[str, Any]:
 
 
 def j_reversibility_check(spec: StepSpec) -> Dict[str, Any]:
-    if spec.scheme.lower() != "j_only":
-        return {"skipped": True}
-    N = int(spec.grid["N"]); dx = float(spec.grid["dx"]) ; dt = float(min(spec.dt_sweep))
+    # Always evaluate J-only reversibility, independent of provided scheme
+    N = int(spec.grid["N"]) ; dx = float(spec.grid["dx"]) ; dt = float(min(spec.dt_sweep))
     step = select_stepper("j_only", dx, spec.params)
-    W0 = rng_field(N, 0.1, 17)
+    seed_scale = float(spec.params.get("seed_scale", 0.1))
+    W0 = rng_field(N, seed_scale, 17)
     W1 = step(W0, dt)
     # Reverse with -dt
     W2 = step(W1, -dt)
@@ -133,15 +140,23 @@ def j_reversibility_check(spec: StepSpec) -> Dict[str, Any]:
     l2_2 = float(np.linalg.norm(W2))
     l2_drift_01 = float(abs(l2_1 - l2_0))
     l2_drift_20 = float(abs(l2_2 - l2_0))
-    tol_rev = 1e-7
-    tol_l2 = 2e-8
-    passes = (rev_err <= tol_rev) and (l2_drift_01 <= tol_l2) and (l2_drift_20 <= tol_l2)
+    # Gates: strict and cap thresholds
+    tol_rev_strict = float(spec.params.get("j_only_rev_strict", 1e-12))
+    tol_rev_cap = float(spec.params.get("j_only_rev_cap", 1e-10))
+    tol_l2 = float(spec.params.get("j_only_l2_cap", 1e-10))
+    passes_strict = (rev_err <= tol_rev_strict) and (l2_drift_01 <= tol_l2) and (l2_drift_20 <= tol_l2)
+    cap_ok = (rev_err <= tol_rev_cap) and (l2_drift_01 <= tol_l2) and (l2_drift_20 <= tol_l2)
+    passes = passes_strict
     logj = {
         "rev_inf_error": rev_err, "dt": dt, "passes": passes,
+        "passes_strict": passes_strict, "cap_ok": cap_ok,
         "l2_norms": {"W0": l2_0, "W1": l2_1, "W2": l2_2},
         "l2_drifts": {"W1_minus_W0": l2_drift_01, "W2_minus_W0": l2_drift_20},
-        "tolerances": {"rev_inf": tol_rev, "l2": tol_l2}
+        "tolerances": {"rev_inf_strict": tol_rev_strict, "rev_inf_cap": tol_rev_cap, "l2_cap": tol_l2}
     }
+    # If strict fails but cap holds, log justification and mark as failed to keep gate conservative
+    if (not passes) and cap_ok:
+        logj["justification"] = "FFT round-off observed; strict 1e-12 not met, but <= 1e-10 cap holds."
     write_log(log_path("metriplectic", "j_reversibility", failed=not passes), logj)
     return logj
 
@@ -156,7 +171,8 @@ def m_lyapunov_check(spec: StepSpec) -> Dict[str, Any]:
         if k not in params:
             return {"skipped": True, "reason": f"missing_param:{k}"}
     step = select_stepper(spec.scheme, dx, params)
-    W = rng_field(N, 0.1, 123)
+    seed_scale = float(spec.params.get("seed_scale", 0.1))
+    W = rng_field(N, seed_scale, 123)
     series = []
     L_prev = lyapunov_values(W, dx, float(params.get("D", 0.0)), float(params.get("r", 0.0)), float(params.get("u", 0.0)))
     for k in range(20):
@@ -190,13 +206,14 @@ def small_dt_sweep_polish(spec: StepSpec) -> Dict[str, Any]:
         return {"skipped": True}
     N = int(spec.grid["N"]) ; dx = float(spec.grid["dx"]) ; params = dict(spec.params)
     params["dg_tol"] = float(params.get("dg_tol", 1e-12))
-    dt_vals = [0.02, 0.01, 0.005, 0.0025]
+    dt_vals = [0.02, 0.01, 0.005, 0.0025, 0.00125]
     dt_vals = [float(d) for d in spec.params.get("dt_sweep_small", dt_vals)]
     seeds = list(range(int(spec.seeds))) if isinstance(spec.seeds, int) else [int(s) for s in spec.seeds]
     dt_to_errs: Dict[float, List[float]] = {d: [] for d in dt_vals}
     newton_rows = []
+    seed_scale = float(spec.params.get("seed_scale", 0.1))
     for seed in seeds:
-        W0 = rng_field(N, 0.1, seed)
+        W0 = rng_field(N, seed_scale, seed)
         for dt in dt_vals:
             # Run JMJ with stats to capture Newton behavior in the M step
             step_stats = []
@@ -264,11 +281,14 @@ def commutator_defect_diagnostic(spec: StepSpec) -> Dict[str, Any]:
     if spec.scheme.lower() != "jmj":
         return {"skipped": True}
     N = int(spec.grid["N"]) ; dx = float(spec.grid["dx"]) ; params = dict(spec.params)
-    dt_vals = [0.04, 0.02, 0.01, 0.005]
+    # Prefer the small-dt sweep for defect measurement if provided
+    dt_default = [0.02, 0.01, 0.005, 0.0025, 0.00125]
+    dt_vals = [float(d) for d in params.get("defect_dt", params.get("dt_sweep_small", dt_default))]
     seeds = list(range(int(spec.seeds))) if isinstance(spec.seeds, int) else [int(s) for s in spec.seeds]
     dt_to_def: Dict[float, List[float]] = {float(d): [] for d in dt_vals}
+    seed_scale = float(spec.params.get("seed_scale", 0.1))
     for seed in seeds:
-        W0 = rng_field(N, 0.1, seed)
+        W0 = rng_field(N, seed_scale, seed)
         for dt in dt_vals:
             W_jmj = jmj_strang_step(W0, dt, dx, params)
             W_mjm = mjm_strang_step(W0, dt, dx, params)
@@ -366,9 +386,15 @@ def main():
     })
 
     # Diagnostics
+    # Always compute J-only reversibility on the same grid/dt
     j_rev = j_reversibility_check(spec)
+    # Lyapunov series for JMJ and M-only
     m_lya = m_lyapunov_check(spec)
+    spec_m = StepSpec(bc=spec.bc, scheme="m_only", grid=spec.grid, params=spec.params, dt_sweep=spec.dt_sweep, seeds=spec.seeds, notes=spec.notes)
+    m_lya_m = m_lyapunov_check(spec_m)
+    # Two-grid sweeps for both JMJ and M-only
     sweep = sweep_two_grid(spec)
+    sweep_m = sweep_two_grid(spec_m)
     small = small_dt_sweep_polish(spec)
     defect = commutator_defect_diagnostic(spec)
     v5 = robustness_v5_grid(spec)
@@ -382,8 +408,10 @@ def main():
     print(json.dumps({
         "scheme": spec.scheme,
         "j_reversibility": j_rev,
-        "m_lyapunov": m_lya,
-        "two_grid": sweep,
+        "m_lyapunov_jmj": m_lya,
+        "m_lyapunov_m_only": m_lya_m,
+        "two_grid_jmj": sweep,
+        "two_grid_m_only": sweep_m,
         "small_dt_sweep": small,
         "strang_defect": defect,
         "robustness_v5": v5
@@ -413,6 +441,7 @@ def _fixed_dt_deltaS_compare(spec: StepSpec) -> Dict[str, Any]:
         return float(np.sum(Q_from_coeffs(W, a0, a1, a2)) * dx)
 
     seed_list = list(range(int(spec.seeds))) if isinstance(spec.seeds, int) else [int(s) for s in spec.seeds]
+    seed_scale = float(spec.params.get("seed_scale", 0.1))
     schemes = ["j_only", "m_only", "jmj"]
     step_map = {s: select_stepper(s, dx, params) for s in schemes}
 
@@ -424,7 +453,7 @@ def _fixed_dt_deltaS_compare(spec: StepSpec) -> Dict[str, Any]:
         vals = [] 
         samples = []
         for seed in seed_list:
-            W0 = rng_field(N, 0.1, seed)
+            W0 = rng_field(N, seed_scale, seed)
             S0 = S_of(W0)
             W1 = step_map[sch](W0, dt)
             S1 = S_of(W1)
