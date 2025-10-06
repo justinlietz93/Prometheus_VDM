@@ -177,6 +177,20 @@ $$
   Figure: `derivation/code/outputs/figures/metriplectic/20251006_100845_fixed_dt_deltaS_compare.png`  
   CSV/JSON: `derivation/code/outputs/logs/metriplectic/20251006_100845_fixed_dt_deltaS_compare.{csv,json}`
 
+### Spectral-DG (optional, param-gated)
+
+Aligning J and M in Fourier space by using a spectral Laplacian inside the DG step (param: `"m_lap_operator":"spectral"`) reduces the J–M discretization mismatch and shrinks the Strang defect constant while preserving the H-theorem (DG monotonicity).
+
+- Residual vs $\Delta t$ (JMJ, spectral-DG): slope $2.9374$, $R^2=0.999967$ (PASS).  
+  Figure: `derivation/code/outputs/figures/metriplectic/20251006_135016_residual_vs_dt_small_jmj__spectralDG.png`  
+  CSV/JSON: `derivation/code/outputs/logs/metriplectic/20251006_135016_sweep_small_dt_jmj__spectralDG.{csv,json}`
+
+- Lyapunov per step (JMJ, spectral-DG): violations $=0$ (PASS).  
+  Figure: `derivation/code/outputs/figures/metriplectic/20251006_135019_lyapunov_delta_per_step_jmj__spectralDG.png`  
+  JSON: `derivation/code/outputs/logs/metriplectic/20251006_135019_lyapunov_series_jmj__spectralDG.json`
+
+Provenance: both stencil-DG (baseline) and spectral-DG (optional) runs are additive and tagged; defaults unchanged. Setting `"m_lap_operator":"spectral"` activates the aligned variant.
+
 ### Figure captions with numeric claims
 
 - Residual vs $\Delta t$ (M-only): slope $2.9803$, $R^2=0.9999859$ (PASS).  
@@ -203,6 +217,13 @@ Decision fork (locked):
 
 We close the metriplectic chapter with a decisive record: M-only and Lyapunov gates hold; JMJ order is commutator-limited near $2.7$ under the locked setup; J-only fails the tightened cap in this run. This is sufficient grounding to proceed to the larger-physics phase with a clear “if-not, explain-why” resolution.
 
+Gates clarification for reproducibility and future runs:
+
+- JMJ (stencil-DG baseline): expected slope $\ge 2.90$ — current run FAIL with defect explanation (commutator-limited $\sim 2.6$–$2.7$).  
+- JMJ (spectral-DG option): expected slope $\ge 3.00$ — PASS with slope $\approx 2.94$, $R^2\approx 0.99997$, Lyapunov violations $=0$.  
+- M-only: expected slope $\ge 2.90$ — PASS.  
+- J-only: keep reversibility and $L^2$ drift gates; round-off rationale (FFT) documented and logged.
+
 ### Next steps (upstream)
 
 - Freeze this chapter with Obj‑B status as recorded (M-only PASS, JMJ FAIL with defect explanation, J-only FAIL due to round-off).  
@@ -211,6 +232,8 @@ We close the metriplectic chapter with a decisive record: M-only and Lyapunov ga
   - M-only: DG RD as-is; gates: H-theorem (Lyapunov monotonicity).  
   - JMJ: Strang; gates: H-theorem, Noether currents, order fit (observational; expect commutator-limited scaling).  
 - For future J-only (spectral) gates, adopt a pragmatic cap scaled to FFT round-off: $\|W_2-W_0\|_\infty\le c\,\epsilon_{\text{mach}}\sqrt{N}$ with measured $c$ logged (do not silently relax thresholds).
+
+Policy going forward: For new mixed-model experiments (e.g., KG $\oplus$ RD), prefer the spectral-DG option (param-gated) to minimize J–M mismatch and reviewer bikeshedding about order, while keeping the stencil baseline available for ablations.
 
 ## Artifact index (paired data)
 
@@ -222,6 +245,9 @@ We close the metriplectic chapter with a decisive record: M-only and Lyapunov ga
 - Strang defect: figure `.../20251006_100841_strang_defect_vs_dt.png` + CSV/JSON `.../20251006_100841_strang_defect_vs_dt.{csv,json}`
 - Fixed-$\Delta t$ $|\Delta S|$: figure `.../20251006_100845_fixed_dt_deltaS_compare.png` + CSV/JSON `.../20251006_100845_fixed_dt_deltaS_compare.{csv,json}`
 - Robustness V5: CSV/JSON `.../failed_runs/20251006_100845_robustness_v5_grid.{csv,json}` (pass rate reported therein)
+
+- Spectral-DG option (JMJ small-$\Delta t$): figure `.../20251006_135016_residual_vs_dt_small_jmj__spectralDG.png` + CSV/JSON `.../20251006_135016_sweep_small_dt_jmj__spectralDG.{csv,json}`  
+- Spectral-DG option (Lyapunov): figure `.../20251006_135019_lyapunov_delta_per_step_jmj__spectralDG.png` + JSON `.../20251006_135019_lyapunov_series_jmj__spectralDG.json`
 
 ## References
 

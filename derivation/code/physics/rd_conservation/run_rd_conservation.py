@@ -350,13 +350,34 @@ def dg_rd_step(Wn: np.ndarray, dt: float, dx: float, D: float, r: float, u: floa
 
 
 def dg_rd_step_with_stats(Wn: np.ndarray, dt: float, dx: float, D: float, r: float, u: float,
-                          tol: float = 1e-12, max_iter: int = 20, max_backtracks: int = 10) -> tuple[np.ndarray, Dict[str, Any]]:
-    """DG RD step with Newton iteration stats and simple backtracking line search."""
+                          tol: float = 1e-12, max_iter: int = 20, max_backtracks: int = 10,
+                          lap_operator: str = "stencil") -> tuple[np.ndarray, Dict[str, Any]]:
+    """DG RD step with Newton iteration stats and simple backtracking line search.
+
+    lap_operator: 'stencil' (3-pt periodic) or 'spectral' (FFT-based circulant). Default 'stencil'.
+    """
     N = Wn.size
     W1 = Wn.copy()
     stats = {"iters": 0, "final_residual_inf": None, "backtracks": 0, "converged": False}
-    def lap(x):
-        return laplacian_periodic_1d(x, dx)
+    # Prepare Laplacian operator according to mode
+    lap_mode = str(lap_operator or "stencil").lower()
+    if lap_mode == "spectral":
+        N = Wn.size
+        k_cyc = np.fft.fftfreq(N, d=dx)
+        omega_sq = (2.0 * np.pi) ** 2 * (k_cyc ** 2)
+        lam_spec = - omega_sq  # symbol for ∂xx
+        # Dense circulant matrix of spectral Laplacian (real)
+        kernel = np.fft.ifft(lam_spec).real
+        C_spec = np.empty((N, N), dtype=float)
+        for i in range(N):
+            C_spec[i, :] = np.roll(kernel, i)
+        def lap(x):
+            # Use dense circulant for consistency with Jacobian
+            return C_spec @ x
+    else:
+        C_spec = None
+        def lap(x):
+            return laplacian_periodic_1d(x, dx)
     prev_res = None
     for it in range(1, max_iter + 1):
         mid = 0.5 * (W1 + Wn)
@@ -369,11 +390,15 @@ def dg_rd_step_with_stats(Wn: np.ndarray, dt: float, dx: float, D: float, r: flo
             break
         # Build dense Jacobian
         J = np.eye(N)
-        coeff = - dt * 0.5 * D / (dx * dx)
-        for i in range(N):
-            J[i, i] += - coeff * (-2.0)
-            J[i, (i - 1) % N] += - coeff * (1.0)
-            J[i, (i + 1) % N] += - coeff * (1.0)
+        if lap_mode == "spectral":
+            # Add - dt * 0.5 * D * L_spec
+            J += (- dt * 0.5 * D) * C_spec
+        else:
+            coeff = - dt * 0.5 * D / (dx * dx)
+            for i in range(N):
+                J[i, i] += - coeff * (-2.0)
+                J[i, (i - 1) % N] += - coeff * (1.0)
+                J[i, (i + 1) % N] += - coeff * (1.0)
         diag_add = - dt * (0.5 * r - u * (Wn / 3.0 + (2.0 / 3.0) * W1))
         J[np.arange(N), np.arange(N)] += diag_add
         d = np.linalg.solve(J, -F)
