@@ -1,0 +1,259 @@
+{
+  "bc": "periodic",
+  "cas": {
+    "coeffs": {
+      "a0": -0.11981195843466279,
+      "a1": -0.41852671100629474,
+      "a2": 0.49382068748536756,
+      "b1": -0.2848893698816234,
+      "b2": 0.23227074265713948,
+      "b4": -0.6568941805464064
+    },
+    "cond_est": 62.62344511911084,
+    "singular_values": [
+      60.564206385890714,
+      12.145527911417696,
+      5.615190420161988,
+      1.4674060578930874,
+      1.0436345774891693,
+      0.9671171279493899
+    ],
+    "sv_max": 60.564206385890714,
+    "sv_min": 0.9671171279493899
+  },
+  "claim": "Exact conservation for Euler RD with polynomial Q' (\u2264 quadratic) and antisymmetric polynomial flux basis",
+  "class": {
+    "Q_prime": "a0 + a1 W + a2 W^2",
+    "flux": "b1*(Wp-Wi)+b2*(Wp^2-Wi^2)+b4*(Wi*Wp*(Wp-Wi))"
+  },
+  "controls": {
+    "diffusion_only_mass": {
+      "machine_epsilon": true
+    },
+    "lyapunov": {
+      "pass": true,
+      "violations": 0
+    },
+    "objB_two_grid": {
+      "R2": 0.9999700828587187,
+      "pass": true,
+      "slope": 2.9436204141327673
+    },
+    "reaction_only_two_grid_rk4": {
+      "slope_ge_3.9_and_R2_ge_0.999": true
+    }
+  },
+  "fixed_dt_summary": {
+    "failed": true,
+    "figure": "/mnt/ironwolf/git/Void_Unity_Proofs/derivation/code/outputs/figures/rd_conservation/failed_runs/20251006_071432_objA_fixed_dt_abs_deltaS_hist.png",
+    "samples": [
+      {
+        "delta_S": -0.0004282806366476821,
+        "seed": 0
+      },
+      {
+        "delta_S": -0.0004693735621840167,
+        "seed": 1
+      },
+      {
+        "delta_S": -0.0004850919584414859,
+        "seed": 2
+      },
+      {
+        "delta_S": -0.0005015853215510901,
+        "seed": 3
+      },
+      {
+        "delta_S": -0.000545148204174617,
+        "seed": 4
+      },
+      {
+        "delta_S": -0.00045137222162650037,
+        "seed": 5
+      },
+      {
+        "delta_S": -0.00044192771953488474,
+        "seed": 6
+      },
+      {
+        "delta_S": -0.00042325963574763037,
+        "seed": 7
+      },
+      {
+        "delta_S": -0.0004914094090424648,
+        "seed": 8
+      },
+      {
+        "delta_S": -0.0005859321766673586,
+        "seed": 9
+      },
+      {
+        "delta_S": -0.0004765541057398792,
+        "seed": 10
+      },
+      {
+        "delta_S": -0.0003200406929444455,
+        "seed": 11
+      },
+      {
+        "delta_S": -0.0004061167571550728,
+        "seed": 12
+      },
+      {
+        "delta_S": -0.0005446652659406581,
+        "seed": 13
+      },
+      {
+        "delta_S": -0.00042140907024312835,
+        "seed": 14
+      },
+      {
+        "delta_S": -0.0005575577665383191,
+        "seed": 15
+      },
+      {
+        "delta_S": -0.00044520593807950704,
+        "seed": 16
+      },
+      {
+        "delta_S": -0.0004810480055910116,
+        "seed": 17
+      },
+      {
+        "delta_S": -0.00046654509778609743,
+        "seed": 18
+      },
+      {
+        "delta_S": -0.0004832956195113258,
+        "seed": 19
+      },
+      {
+        "delta_S": -0.00040996293760864333,
+        "seed": 20
+      },
+      {
+        "delta_S": -0.0004295496526672826,
+        "seed": 21
+      },
+      {
+        "delta_S": -0.0005487741884484532,
+        "seed": 22
+      },
+      {
+        "delta_S": -0.0004882133566059821,
+        "seed": 23
+      },
+      {
+        "delta_S": -0.000521847673329412,
+        "seed": 24
+      },
+      {
+        "delta_S": -0.00040893493787408364,
+        "seed": 25
+      },
+      {
+        "delta_S": -0.0005102810857838813,
+        "seed": 26
+      },
+      {
+        "delta_S": -0.0003808416424886385,
+        "seed": 27
+      },
+      {
+        "delta_S": -0.0005202092322421636,
+        "seed": 28
+      },
+      {
+        "delta_S": -0.00046348369545745616,
+        "seed": 29
+      },
+      {
+        "delta_S": -0.0005170972963216558,
+        "seed": 30
+      },
+      {
+        "delta_S": -0.0004620606373479941,
+        "seed": 31
+      },
+      {
+        "delta_S": -0.0005008000256534473,
+        "seed": 32
+      },
+      {
+        "delta_S": -0.0004672901729722012,
+        "seed": 33
+      },
+      {
+        "delta_S": -0.00045289359665912077,
+        "seed": 34
+      },
+      {
+        "delta_S": -0.0003983162506423499,
+        "seed": 35
+      },
+      {
+        "delta_S": -0.0005093722949622848,
+        "seed": 36
+      },
+      {
+        "delta_S": -0.00042004776249160436,
+        "seed": 37
+      },
+      {
+        "delta_S": -0.0004547550676610168,
+        "seed": 38
+      },
+      {
+        "delta_S": -0.0005108442882038045,
+        "seed": 39
+      }
+    ],
+    "scheme": "strang",
+    "stats": {
+      "D": 1.0,
+      "N": 128,
+      "dt": 0.005,
+      "dx": 1.0,
+      "max_abs_delta_S": 0.0005859321766673586,
+      "mean_abs_delta_S": 0.0004700348740142163,
+      "median_abs_delta_S": 0.00046833186757810896,
+      "r": 0.2,
+      "u": 0.25
+    }
+  },
+  "relative_sigma": 0.01596846034417275,
+  "scheme": "strang",
+  "step_spec": {
+    "adjacency": {
+      "kind": "fd_1d_centered"
+    },
+    "bc": "periodic",
+    "cfl_threshold": 0.5,
+    "cfl_used": true,
+    "dt_sweep": [
+      0.04,
+      0.02,
+      0.01,
+      0.005
+    ],
+    "expected_dt_slope": 2,
+    "grid": {
+      "N": 128,
+      "dx": 1.0
+    },
+    "notes": "Obj-A/B periodic RD; Neumann only used in separate front-speed control runs.",
+    "order_p": 1,
+    "params": {
+      "D": 1.0,
+      "r": 0.2,
+      "u": 0.25
+    },
+    "safety": {
+      "clamp": false,
+      "nan_to_num": false
+    },
+    "scheme": "strang",
+    "seeds": 40
+  },
+  "timestamp": null
+}

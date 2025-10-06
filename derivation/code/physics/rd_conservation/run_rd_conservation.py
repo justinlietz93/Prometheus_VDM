@@ -13,7 +13,7 @@ from dataclasses import dataclass
 import argparse
 from typing import List, Dict, Any
 from common.io_paths import figure_path, log_path, write_log
-from physics.reaction_diffusion.reaction_exact import logistic_invariant_Q
+from physics.reaction_diffusion.reaction_exact import logistic_invariant_Q, reaction_exact_step
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -234,16 +234,34 @@ def discrete_lyapunov_Lh(W: np.ndarray, dx: float, D: float, r: float, ucoef: fl
     return float(np.sum(0.5 * D * grad_sq + energy_potential_Vhat(W, r, ucoef)) * dx)
 
 
-def lyapunov_monitor(N: int, dx: float, D: float, r: float, ucoef: float, dt: float, steps: int, seed: int) -> Dict[str, Any]:
+def lyapunov_monitor(N: int, dx: float, D: float, r: float, ucoef: float, dt: float, steps: int, seed: int, stepper=None) -> Dict[str, Any]:
     rng = np.random.default_rng(seed)
     W = rng.random(N).astype(float) * 0.1
     series = []
     L_prev = discrete_lyapunov_Lh(W, dx, D, r, ucoef)
     for k in range(steps):
-        lap = laplacian_periodic_1d(W, dx)
-        W = W + dt * (r * W - ucoef * W * W + D * lap)
+        if stepper is None:
+            lap = laplacian_periodic_1d(W, dx)
+            W = W + dt * (r * W - ucoef * W * W + D * lap)
+        else:
+            W_prev = W.copy()
+            W = stepper(W, dt, dx, D, r, ucoef)
+            # If DG RD, compute identity residuals for certification
+            if stepper is dg_rd_step:
+                mid = 0.5 * (W + W_prev)
+                over_f = r * (W_prev + 0.5 * (W - W_prev)) - ucoef * ((W_prev * W_prev + W_prev * W + W * W) / 3.0)
+                G = D * laplacian_periodic_1d(mid, dx) + over_f
+                # Energy identity residuals
+                id_res_energy = (discrete_lyapunov_Lh(W, dx, D, r, ucoef) - L_prev) / dt + float(np.sum(G * G) * dx)
+                id_res_dot = (discrete_lyapunov_Lh(W, dx, D, r, ucoef) - L_prev) - float(np.sum(G * (W - W_prev)) * dx)
+            else:
+                id_res_energy = None
+                id_res_dot = None
         L_now = discrete_lyapunov_Lh(W, dx, D, r, ucoef)
-        series.append({"step": k + 1, "delta_L": float(L_now - L_prev), "L": float(L_now)})
+        entry = {"step": k + 1, "delta_L": float(L_now - L_prev), "L": float(L_now)}
+        if stepper is dg_rd_step:
+            entry.update({"dg_identity_energy_res": id_res_energy, "dg_identity_dot_res": id_res_dot})
+        series.append(entry)
         L_prev = L_now
     # Gate: Lyapunov should be non-increasing within a small tolerance
     tol_pos = 1e-12
@@ -270,6 +288,65 @@ def rd_euler_step(W: np.ndarray, dt: float, dx: float, D: float, r: float, ucoef
     return W + dt * (r * W - ucoef * W * W + D * lap)
 
 
+def diffusion_CN_step_periodic(W: np.ndarray, dt: float, dx: float, D: float) -> np.ndarray:
+    """Crank–Nicolson diffusion half/whole step via spectral diagonalization (periodic)."""
+    if D == 0.0 or dt == 0.0:
+        return W.copy()
+    N = W.size
+    k = np.fft.fftfreq(N, d=dx)  # cycles per unit length
+    # Symbol of discrete Laplacian: lambda = -4 sin^2(pi k dx)/(dx^2)
+    theta = 2.0 * np.pi * k * dx
+    lam = -4.0 * (np.sin(0.5 * theta) ** 2) / (dx * dx)
+    alpha = 0.5 * dt * D
+    G = (1.0 + alpha * lam) / (1.0 - alpha * lam)
+    W_hat = np.fft.fft(W)
+    Wn1_hat = G * W_hat
+    Wn1 = np.fft.ifft(Wn1_hat).real
+    return Wn1
+
+
+def strang_step(W: np.ndarray, dt: float, dx: float, D: float, r: float, ucoef: float) -> np.ndarray:
+    """Strang split: 1/2 diffusion (CN), exact reaction, 1/2 diffusion (CN)."""
+    W_half = diffusion_CN_step_periodic(W, 0.5 * dt, dx, D)
+    W_react = reaction_exact_step(W_half, r, ucoef, dt)
+    W_out = diffusion_CN_step_periodic(W_react, 0.5 * dt, dx, D)
+    return W_out
+
+
+def dg_rd_step(Wn: np.ndarray, dt: float, dx: float, D: float, r: float, u: float, tol: float = 1e-12, max_iter: int = 20) -> np.ndarray:
+    """Discrete-gradient RD implicit step (AVF for reaction, midpoint Laplacian), Newton solve (dense)."""
+    N = Wn.size
+    W1 = Wn.copy()
+    def lap(x):
+        return laplacian_periodic_1d(x, dx)
+    for it in range(max_iter):
+        mid = 0.5 * (W1 + Wn)
+        # overline f (AVF) for logistic: r*(Wn + 0.5*(W1-Wn)) - u*((Wn^2 + Wn W1 + W1^2)/3)
+        dW = (W1 - Wn)
+        over_f = r * (Wn + 0.5 * dW) - u * ((Wn * Wn + Wn * W1 + W1 * W1) / 3.0)
+        F = W1 - Wn - dt * (D * lap(mid) + over_f)
+        res = np.linalg.norm(F, ord=np.inf)
+        if res <= tol:
+            break
+        # Build dense Jacobian: I - dt*(0.5 D L + 0.5 r I - u*(Wn/3 + 2/3 W1) I)
+        # Laplacian linear operator with periodic stencil
+        J = np.eye(N)
+        # Add - dt * 0.5 D L
+        coeff = - dt * 0.5 * D / (dx * dx)
+        for i in range(N):
+            J[i, i] += - coeff * (-2.0)
+            J[i, (i - 1) % N] += - coeff * (1.0)
+            J[i, (i + 1) % N] += - coeff * (1.0)
+        # Add - dt * (0.5 r I - u*(Wn/3 + 2/3 W1) I)
+        diag_add = - dt * (0.5 * r - u * (Wn / 3.0 + (2.0 / 3.0) * W1))
+        J[np.arange(N), np.arange(N)] += diag_add
+        d = np.linalg.solve(J, -F)
+        W1 = W1 + d
+        if np.linalg.norm(d, ord=np.inf) <= tol * 0.1:
+            break
+    return W1
+
+
 def residuals_H0_Q_logistic(W0: np.ndarray, W1: np.ndarray, dt: float, r: float, ucoef: float, t0: float) -> np.ndarray:
     # Legacy metric (kept for reference): reaction-only invariant residual; not used in Obj-A/B
     Q0 = logistic_invariant_Q(W0, r, ucoef, t0)
@@ -280,8 +357,15 @@ def residuals_H0_Q_logistic(W0: np.ndarray, W1: np.ndarray, dt: float, r: float,
 def objA_objB_sweeps(N: int, dx: float, D: float, r: float, ucoef: float, dt_list: List[float], seeds: List[int], scheme: str, order_p: int, expected_dt_slope: float) -> tuple[Dict[str, Any], Dict[str, Any]]:
     # Richardson two-grid error on the same stepper under test
     def step_fn(W: np.ndarray, dt: float) -> np.ndarray:
-        # TODO: extend for Strang, RK, etc. when added
-        return rd_euler_step(W, dt, dx, D, r, ucoef) if scheme.lower() == "euler" else rd_euler_step(W, dt, dx, D, r, ucoef)
+        s = scheme.lower()
+        if s == "euler":
+            return rd_euler_step(W, dt, dx, D, r, ucoef)
+        elif s == "strang":
+            return strang_step(W, dt, dx, D, r, ucoef)
+        elif s == "dg_rd":
+            return dg_rd_step(W, dt, dx, D, r, ucoef)
+        else:
+            return rd_euler_step(W, dt, dx, D, r, ucoef)
 
     def two_grid_error_inf(W0: np.ndarray, dt: float) -> float:
         W_big = step_fn(W0, dt)
@@ -321,7 +405,13 @@ def objA_objB_sweeps(N: int, dx: float, D: float, r: float, ucoef: float, dt_lis
         "samples": exact_samples
     }
     # Gate for Obj-A/B: slope near expected and good linear fit
-    expected = float(expected_dt_slope)
+    # Determine expected slope by scheme if not explicitly provided
+    if scheme.lower() == "strang":
+        expected = 3.0
+    elif scheme.lower() == "dg_rd":
+        expected = 3.0
+    else:
+        expected = float(expected_dt_slope)
     # V3 gate: slope >= (expected - 0.1) and R2 >= 0.999
     slope_ok = float(slope) >= (expected - 0.1)
     R2_ok = float(R2) >= 0.999
@@ -365,12 +455,186 @@ def objA_objB_sweeps(N: int, dx: float, D: float, r: float, ucoef: float, dt_lis
     return sweep_exact, sweep_dt
 
 
+# =========================
+# Obj-A CAS attempt helpers
+# =========================
+def _cas_build_row(Wm: float, Wi: float, Wp: float, dx: float, D: float, r: float, u: float) -> np.ndarray:
+    """Build one linear equation row for unknowns [a0,a1,a2,b1,b2,b4] in L - R = 0.
+    Q'(Wi) = a0 + a1 Wi + a2 Wi^2
+    H_{i+1/2}(Wi,Wp) = (b1*(Wp - Wi) + b2*(Wp**2 - Wi**2) + b4*(Wi*Wp*(Wp - Wi)))
+    Equation: Q'(Wi)*(r Wi - u Wi^2 + D*(Wp - 2Wi + Wm)/dx^2) = (1/dx)*(H_{i+1/2} - H_{i-1/2})
+    Rearranged to coeffs dot x = 0.
+    """
+    lap = (Wp - 2.0 * Wi + Wm) / (dx * dx)
+    Fi = (r * Wi - u * Wi * Wi) + D * lap
+    # Coeffs for a0,a1,a2 from left side
+    c_a0 = Fi
+    c_a1 = Wi * Fi
+    c_a2 = (Wi * Wi) * Fi
+    # Right side terms contribute with negative sign to bring to LHS
+    # H_{i+1/2}
+    d1_p = (Wp - Wi)
+    d2_p = (Wp * Wp - Wi * Wi)
+    d4_p = (Wi * Wp * (Wp - Wi))
+    # H_{i-1/2} with (Wm,Wi)
+    d1_m = (Wi - Wm)
+    d2_m = (Wi * Wi - Wm * Wm)
+    d4_m = (Wm * Wi * (Wi - Wm))
+    flux_diff = np.array([d1_p - d1_m, d2_p - d2_m, d4_p - d4_m], dtype=float) / dx
+    # Move RHS to LHS: coefficients for b's are -flux_diff components
+    c_b1, c_b2, c_b4 = -flux_diff[0], -flux_diff[1], -flux_diff[2]
+    return np.array([c_a0, c_a1, c_a2, c_b1, c_b2, c_b4], dtype=float)
+
+
+def cas_solve_linear_balance(dx: float, D: float, r: float, u: float, samples: int = 2000, seed: int = 0) -> Dict[str, Any]:
+    rng = np.random.default_rng(seed)
+    # Sample Wi triplets well inside (0, r/u) to avoid logistic barriers
+    upper = (r / u) if u != 0 else 1.0
+    lo = 0.01 * upper
+    hi = 0.99 * upper
+    rows = []
+    for _ in range(samples):
+        Wm, Wi, Wp = rng.uniform(lo, hi, size=3)
+        rows.append(_cas_build_row(Wm, Wi, Wp, dx, float(D), float(r), float(u)))
+    A = np.vstack(rows)
+    # Solve for nullspace vector minimizing ||A x|| subject to ||x||=1 via SVD
+    U, s, VT = np.linalg.svd(A, full_matrices=False)
+    x = VT[-1, :]
+    resid = float(s[-1])
+    cond = float(s[0] / (s[-1] + 1e-30)) if s[-1] > 0 else np.inf
+    sol = {
+        "coeffs": {"a0": float(x[0]), "a1": float(x[1]), "a2": float(x[2]), "b1": float(x[3]), "b2": float(x[4]), "b4": float(x[5])},
+        "sv_min": resid,
+        "sv_max": float(s[0]),
+        "cond_est": cond,
+        "singular_values": [float(si) for si in s.tolist()]
+    }
+    return sol
+
+
+def Q_from_coeffs(W: np.ndarray, a0: float, a1: float, a2: float) -> np.ndarray:
+    # Integrate Q'(W) = a0 + a1 W + a2 W^2 → Q(W) = a0 W + 0.5 a1 W^2 + (1/3) a2 W^3 (constant irrelevant)
+    return a0 * W + 0.5 * a1 * (W ** 2) + (a2 / 3.0) * (W ** 3)
+
+
+def objA_fixed_dt_sweep(N: int, dx: float, D: float, r: float, u: float, dt: float, seeds: List[int], coeffs: Dict[str, float], stepper=None, scheme_label: str = "euler") -> Dict[str, Any]:
+    a0, a1, a2 = coeffs["a0"], coeffs["a1"], coeffs["a2"]
+    rng = np.random.default_rng(12345)
+    res = []
+    for seed in seeds:
+        W = np.array(np.random.default_rng(seed).random(N) * 0.1, dtype=float)
+        S0 = float(np.sum(Q_from_coeffs(W, a0, a1, a2)) * dx)
+        if stepper is None:
+            W1 = rd_euler_step(W, dt, dx, D, r, u)
+        else:
+            W1 = stepper(W, dt, dx, D, r, u)
+        S1 = float(np.sum(Q_from_coeffs(W1, a0, a1, a2)) * dx)
+        res.append({"seed": int(seed), "delta_S": float(S1 - S0)})
+    deltas = [abs(x["delta_S"]) for x in res]
+    stats = {
+        "dt": float(dt),
+        "max_abs_delta_S": float(np.max(deltas)),
+        "median_abs_delta_S": float(np.median(deltas)),
+        "mean_abs_delta_S": float(np.mean(deltas)),
+        "N": N,
+        "dx": dx,
+        "D": D,
+        "r": r,
+        "u": u
+    }
+    # Figure: histogram of |ΔS|
+    failed_gate = bool(stats["max_abs_delta_S"] > 1e-12)
+    fig_path = figure_path("rd_conservation", "objA_fixed_dt_abs_deltaS_hist", failed=failed_gate)
+    plt.figure(figsize=(6, 4))
+    plt.hist(deltas, bins=20)
+    plt.xlabel("|ΔS|"); plt.ylabel("count")
+    plt.title(f"Obj-A fixed-dt |ΔS| (dt={dt}, scheme={scheme_label})")
+    plt.tight_layout(); plt.savefig(fig_path, dpi=150); plt.close()
+    # Logs
+    summary = {"figure": str(fig_path), "stats": stats, "samples": res, "failed": failed_gate, "scheme": scheme_label}
+    write_log(log_path("rd_conservation", "objA_fixed_dt_summary", failed=failed_gate), summary)
+    csv_path = log_path("rd_conservation", "objA_fixed_dt_abs_deltaS", failed=failed_gate, type="csv")
+    with csv_path.open("w", encoding="utf-8") as f:
+        f.write("seed,abs_delta_S\n")
+        for x in res:
+            f.write(f"{x['seed']},{abs(x['delta_S'])}\n")
+    return summary
+
+
+def euler_Q_drift_scaling_vs_dt(N: int, dx: float, D: float, r: float, u: float, dt_list: List[float], seeds: List[int], coeffs: Dict[str, float]) -> Dict[str, Any]:
+    """Measure |ΔS| vs dt under one Euler RD step using CAS-derived Q; aggregate by median across seeds.
+
+    Expect slope ≈ 2 for Euler (O(dt^2) change of nonlinear invariants at one step).
+    """
+    a0, a1, a2 = coeffs["a0"], coeffs["a1"], coeffs["a2"]
+    def S_of(W: np.ndarray) -> float:
+        return float(np.sum(Q_from_coeffs(W, a0, a1, a2)) * dx)
+
+    dt_vals = [float(d) for d in dt_list]
+    med_abs_dS: List[float] = []
+    for dt in dt_vals:
+        per_seed: List[float] = []
+        for seed in seeds:
+            rng = np.random.default_rng(seed)
+            W = rng.random(N).astype(float) * 0.1
+            S0 = S_of(W)
+            W1 = rd_euler_step(W, dt, dx, D, r, u)
+            S1 = S_of(W1)
+            per_seed.append(abs(S1 - S0))
+        med_abs_dS.append(float(np.median(per_seed)))
+
+    # Fit slope on log-log
+    eps = 1e-30
+    x = np.log(np.array(dt_vals, dtype=float))
+    y = np.log(np.array(med_abs_dS, dtype=float) + eps)
+    A = np.vstack([x, np.ones_like(x)]).T
+    coeff, *_ = np.linalg.lstsq(A, y, rcond=None)
+    slope, b = coeff
+    y_pred = A @ coeff
+    ss_res = float(np.sum((y - y_pred) ** 2))
+    ss_tot = float(np.sum((y - np.mean(y)) ** 2))
+    R2 = 1.0 - (ss_res / ss_tot if ss_tot > 0 else 0.0)
+
+    # Gate and routing
+    expected = 2.0
+    slope_ok = float(slope) >= (expected - 0.1)
+    R2_ok = float(R2) >= 0.999
+    failed_gate = not (slope_ok and R2_ok)
+
+    fig_path = figure_path("rd_conservation", "euler_deltaS_vs_dt", failed=failed_gate)
+    plt.figure(figsize=(6, 4))
+    plt.plot(dt_vals, med_abs_dS, "o-")
+    plt.xscale("log"); plt.yscale("log")
+    plt.xlabel("dt"); plt.ylabel("median |ΔS| (one Euler step)")
+    plt.title(f"Euler RD: |ΔS| vs dt (slope≈{float(slope):.3f}, R2≈{float(R2):.4f})")
+    plt.tight_layout(); plt.savefig(fig_path, dpi=150); plt.close()
+
+    caption = {
+        "figure": str(fig_path),
+        "dt": dt_vals,
+        "median_abs_deltaS": med_abs_dS,
+        "fit": {"slope": float(slope), "R2": float(R2)},
+        "expected_slope": expected,
+        "failed": failed_gate
+    }
+    write_log(log_path("rd_conservation", "euler_deltaS_vs_dt", failed=failed_gate), caption)
+    csv_path = log_path("rd_conservation", "euler_deltaS_vs_dt", failed=failed_gate, type="csv")
+    with csv_path.open("w", encoding="utf-8") as f:
+        f.write("dt,median_abs_deltaS\n")
+        for d, s in zip(dt_vals, med_abs_dS):
+            f.write(f"{d},{s}\n")
+    return caption
+
+
 def main():
     parser = argparse.ArgumentParser(description="RD Conservation Harness")
     parser.add_argument("--spec", type=str, default=str(Path(__file__).resolve().parent / "step_spec.example.json"), help="Path to step_spec.json")
+    parser.add_argument("--scheme", type=str, default=None, help="Override scheme in spec: euler|strang|dg_rd")
     args = parser.parse_args()
     spec_path = Path(args.spec)
     spec = StepSpec(**json.loads(spec_path.read_text()))
+    if args.scheme:
+        spec.scheme = args.scheme
 
     # Controls — Diffusion-only mass conservation
     N = int(spec.grid["N"])
@@ -446,8 +710,53 @@ def main():
     write_log(log_path("rd_conservation", "objAB_gate", failed=objAB_failed), objAB_gate_log)
 
     # Obj-C Lyapunov
-    lyap = lyapunov_monitor(N, dx, D, float(spec.params["r"]), float(spec.params["u"]), min(spec.dt_sweep), steps=50, seed=123)
+    # Choose stepper for Lyapunov if non-Euler
+    stepper = None
+    if spec.scheme.lower() == "strang":
+        stepper = lambda W, dt, dx_, D_, r_, u_: strang_step(W, dt, dx_, D_, r_, u_)
+    elif spec.scheme.lower() == "dg_rd":
+        stepper = lambda W, dt, dx_, D_, r_, u_: dg_rd_step(W, dt, dx_, D_, r_, u_)
+    lyap = lyapunov_monitor(N, dx, D, float(spec.params["r"]), float(spec.params["u"]), min(spec.dt_sweep), steps=50, seed=123, stepper=stepper)
     write_log(log_path("rd_conservation", "lyapunov_series", failed=bool(lyap.get("failed", False))), lyap)
+
+    # Obj-A CAS attempt: linear balance class, then fixed-dt numeric sweep
+    cas = cas_solve_linear_balance(dx, D, float(spec.params["r"]), float(spec.params["u"]), samples=4000, seed=7)
+    # Log CAS singular values and candidate coefficients
+    rel_sv = (cas["sv_min"] / cas["sv_max"]) if cas.get("sv_max", 0.0) else float("inf")
+    cas_log = {"cas": cas, "relative_sigma": float(rel_sv)}
+    write_log(log_path("rd_conservation", "objA_cas_linear_balance", failed=False), cas_log)
+
+    # Numeric fixed-dt certification using the CAS-derived Q' coefficients
+    coeffs = cas["coeffs"]
+    dt_fixed = float(min(spec.dt_sweep))
+    objA_summary = objA_fixed_dt_sweep(N, dx, D, float(spec.params["r"]), float(spec.params["u"]), dt_fixed, seed_list, coeffs, stepper=stepper, scheme_label=spec.scheme)
+    objA_pass = bool(objA_summary["stats"]["max_abs_delta_S"] <= 1e-12)
+    # Emit contradiction report if Obj-A fails for this class & scheme
+    if not objA_pass:
+        contradiction = {
+            "claim": "Exact conservation for Euler RD with polynomial Q' (≤ quadratic) and antisymmetric polynomial flux basis",
+            "scheme": spec.scheme,
+            "bc": spec.bc,
+            "class": {
+                "Q_prime": "a0 + a1 W + a2 W^2",
+                "flux": "b1*(Wp-Wi)+b2*(Wp^2-Wi^2)+b4*(Wi*Wp*(Wp-Wi))"
+            },
+            "cas": cas,
+            "relative_sigma": float(rel_sv),
+            "fixed_dt_summary": objA_summary,
+            "controls": {
+                "diffusion_only_mass": ctrl_diff_log["passes"],
+                "reaction_only_two_grid_rk4": ctrl_reac_log["passes"],
+                "objB_two_grid": {"slope": sweep_dt.get("fit", {}).get("slope"), "R2": sweep_dt.get("fit", {}).get("R2"), "pass": not sweep_dt.get("failed", True)},
+                "lyapunov": {"violations": lyap.get("violations", 0), "pass": not lyap.get("failed", False)}
+            },
+            "step_spec": spec_log,
+            "timestamp": None
+        }
+        write_log(log_path("rd_conservation", "CONTRADICTION_REPORT", failed=True), contradiction)
+
+    # Euler |ΔS| vs dt scaling to confirm method-induced O(dt^2) drift
+    euler_scaling = euler_Q_drift_scaling_vs_dt(N, dx, D, float(spec.params["r"]), float(spec.params["u"]), [float(d) for d in spec.dt_sweep], seed_list, coeffs)
 
     print(json.dumps({
         "controls_diffusion": ctrl_diff_log["passes"],
@@ -457,7 +766,8 @@ def main():
         "objB_fit_slope": sweep_dt.get("fit", {}).get("slope"),
         "objB_fit_R2": sweep_dt.get("fit", {}).get("R2"),
         "objB_pass": (not objAB_failed),
-        "objC_series_len": len(lyap.get("series", []))
+        "objC_series_len": len(lyap.get("series", [])),
+        "objA_pass": objA_pass
     }, indent=2))
 
 
