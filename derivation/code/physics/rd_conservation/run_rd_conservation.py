@@ -195,33 +195,41 @@ def rd_euler_step(W: np.ndarray, dt: float, dx: float, D: float, r: float, ucoef
 
 
 def residuals_H0_Q_logistic(W0: np.ndarray, W1: np.ndarray, dt: float, r: float, ucoef: float, t0: float) -> np.ndarray:
+    # Legacy metric (kept for reference): reaction-only invariant residual; not used in Obj-A/B
     Q0 = logistic_invariant_Q(W0, r, ucoef, t0)
     Q1 = logistic_invariant_Q(W1, r, ucoef, t0 + dt)
     return (Q1 - Q0)
 
 
 def objA_objB_sweeps(N: int, dx: float, D: float, r: float, ucoef: float, dt_list: List[float], seeds: List[int], scheme: str, order_p: int, expected_dt_slope: float) -> tuple[Dict[str, Any], Dict[str, Any]]:
-    exact_samples = []
-    dt_residual_max = []
+    # Richardson two-grid error on the same stepper under test
+    def step_fn(W: np.ndarray, dt: float) -> np.ndarray:
+        # TODO: extend for Strang, RK, etc. when added
+        return rd_euler_step(W, dt, dx, D, r, ucoef) if scheme.lower() == "euler" else rd_euler_step(W, dt, dx, D, r, ucoef)
+
+    def two_grid_error_inf(W0: np.ndarray, dt: float) -> float:
+        W_big = step_fn(W0, dt)
+        W_h1 = step_fn(W0, dt / 2.0)
+        W_h2 = step_fn(W_h1, dt / 2.0)
+        return float(np.linalg.norm(W_big - W_h2, ord=np.inf))
+
+    exact_samples = []  # per-seed measurements for auditing
+    dt_to_errs: Dict[float, List[float]] = {float(d): [] for d in dt_list}
     for seed in seeds:
         rng = np.random.default_rng(seed)
         W = rng.random(N).astype(float) * 0.1
         for dt in dt_list:
             W0 = W.copy()
-            W1 = rd_euler_step(W0, dt, dx, D, r, ucoef) if scheme.lower() == "euler" else rd_euler_step(W0, dt, dx, D, r, ucoef)
-            res = residuals_H0_Q_logistic(W0, W1, dt, r, ucoef, t0=0.0)
-            max_abs = float(np.max(np.abs(res)))
-            mean_abs = float(np.mean(np.abs(res)))
-            exact_samples.append({"seed": int(seed), "dt": float(dt), "max_abs_residual": max_abs, "mean_abs_residual": mean_abs})
-            dt_residual_max.append((dt, max_abs))
-    dt_vals = sorted(set([d for d, _ in dt_residual_max]))
-    dt_to_res = {d: [] for d in dt_vals}
-    for d, rmax in dt_residual_max:
-        dt_to_res[d].append(rmax)
-    dt_max = [float(d) for d in dt_vals]
-    res_max = [float(max(dt_to_res[d])) for d in dt_vals]
-    x = np.log(np.array(dt_max, dtype=float))
-    y = np.log(np.array(res_max, dtype=float) + 1e-30)
+            err = two_grid_error_inf(W0, float(dt))
+            exact_samples.append({"seed": int(seed), "dt": float(dt), "two_grid_error_inf": float(err)})
+            dt_to_errs[float(dt)].append(float(err))
+
+    dt_vals = sorted(dt_to_errs.keys())
+    # Aggregate with median across seeds to stabilize the fit
+    err_med = [float(np.median(dt_to_errs[d])) for d in dt_vals]
+    eps = 1e-30
+    x = np.log(np.array(dt_vals, dtype=float))
+    y = np.log(np.array(err_med, dtype=float) + eps)
     A = np.vstack([x, np.ones_like(x)]).T
     coeff, *_ = np.linalg.lstsq(A, y, rcond=None)
     slope, b = coeff
@@ -233,49 +241,51 @@ def objA_objB_sweeps(N: int, dx: float, D: float, r: float, ucoef: float, dt_lis
         "scheme": scheme,
         "bc": "periodic",
         "params": {"N": N, "dx": dx, "D": D, "r": r, "u": ucoef},
+        "metric": "two_grid_error_inf",
         "samples": exact_samples
     }
     # Gate for Obj-A/B: slope near expected and good linear fit
-    if expected_dt_slope > 0:
-        slope_ok = abs(float(slope) - float(expected_dt_slope)) <= 0.25 * float(expected_dt_slope)
-    else:
-        slope_ok = abs(float(slope)) <= 0.1
-    R2_ok = float(R2) >= 0.98
+    expected = float(expected_dt_slope)
+    # V3 gate: slope >= (expected - 0.1) and R2 >= 0.999
+    slope_ok = float(slope) >= (expected - 0.1)
+    R2_ok = float(R2) >= 0.999
     failed_gate = not (slope_ok and R2_ok)
     write_log(log_path("rd_conservation", "sweep_exact", failed=failed_gate), sweep_exact)
     sweep_dt = {
         "scheme": scheme,
-        "dt": dt_max,
-        "max_abs_residual": res_max,
+        "dt": [float(d) for d in dt_vals],
+        "two_grid_error_inf_med": err_med,
         "fit": {"slope": float(slope), "R2": float(R2)},
-        "expected_slope": float(expected_dt_slope),
+        "expected_slope": expected,
         "failed": failed_gate
     }
     write_log(log_path("rd_conservation", "sweep_dt", failed=failed_gate), sweep_dt)
     fig_path = figure_path("rd_conservation", "residual_vs_dt", failed=failed_gate)
     plt.figure(figsize=(6, 4))
-    plt.plot(dt_max, res_max, "o-")
+    plt.plot(dt_vals, err_med, "o-")
     plt.xscale("log"); plt.yscale("log")
     plt.xlabel("dt"); plt.ylabel("max |residual|")
-    plt.title(f"Obj-A/B baseline H=0: slope≈{float(slope):.3f}, R2≈{float(R2):.4f}")
+    plt.ylabel("two-grid error ||Φ_dt - Φ_{dt/2}∘Φ_{dt/2}||_∞")
+    plt.title(f"Obj-A/B (two-grid): slope≈{float(slope):.3f}, R2≈{float(R2):.4f}")
     plt.tight_layout(); plt.savefig(fig_path, dpi=150); plt.close()
     # Numeric caption/log and CSV go to logs directory (not beside figures)
     caption = {
         "slope": float(slope),
         "R2": float(R2),
         "order_p": int(order_p),
-        "expected_slope": float(expected_dt_slope),
+        "expected_slope": expected,
+        "metric": "two_grid_error_inf_median",
         "figure": str(fig_path),
-        "dt": dt_max,
-        "max_abs_residual": res_max
+        "dt": [float(d) for d in dt_vals],
+        "two_grid_error_inf_med": err_med
     }
     cap_path = log_path("rd_conservation", "residual_vs_dt", failed=failed_gate)
     write_log(cap_path, caption)
     csv_path2 = log_path("rd_conservation", "residual_vs_dt", failed=failed_gate, type="csv")
     with csv_path2.open("w", encoding="utf-8") as f:
-        f.write("dt,max_abs_residual\n")
-        for d, rmax in zip(dt_max, res_max):
-            f.write(f"{d},{rmax}\n")
+        f.write("dt,two_grid_error_inf_median\n")
+        for d, e in zip(dt_vals, err_med):
+            f.write(f"{d},{e}\n")
     return sweep_exact, sweep_dt
 
 

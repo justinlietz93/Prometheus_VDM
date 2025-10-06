@@ -1,0 +1,20 @@
+{
+  "R2": 0.9999999998665895,
+  "dt": [
+    0.005,
+    0.01,
+    0.02,
+    0.04
+  ],
+  "expected_slope": 2.0,
+  "figure": "/mnt/ironwolf/git/Void_Unity_Proofs/derivation/code/outputs/figures/rd_conservation/20251006_062520_residual_vs_dt.png",
+  "metric": "two_grid_error_inf_median",
+  "order_p": 1,
+  "slope": 1.999921670815621,
+  "two_grid_error_inf_med": [
+    3.263842429775121e-06,
+    1.3055061559352765e-05,
+    5.221778095976237e-05,
+    0.00020885140161771426
+  ]
+}
