@@ -2,7 +2,7 @@
 
 ## Current Goals
 
-- Goal 1
+- Focus: RD discrete conservation vs balance experiment. Status: theory brief synthesized; proposal alignment check done. Next: confirm production integrator (Euler vs Strang/RK) and add step-spec JSON schema; plan CAS ansatz + dt-sweep harness.
 
 ## Current Blockers
 

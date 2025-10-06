@@ -177,3 +177,21 @@ The following context from the memory bank informs your work:
 5. Pay attention to performance and memory usage
 
 Remember: Your role is to implement solutions that are not only functional but also maintainable, efficient, and aligned with the project's standards. Quality and consistency are key priorities.
+
+
+## Important Context:
+
+/mnt/ironwolf/git/Void_Unity_Proofs/derivation/AGENCY_FIELD.md
+/mnt/ironwolf/git/Void_Unity_Proofs/derivation/ALGORITHMS.md
+/mnt/ironwolf/git/Void_Unity_Proofs/derivation/BC_IC_GEOMETRY.md
+/mnt/ironwolf/git/Void_Unity_Proofs/derivation/CONSTANTS.md
+/mnt/ironwolf/git/Void_Unity_Proofs/derivation/CANON_MAP.md
+/mnt/ironwolf/git/Void_Unity_Proofs/derivation/DATA_PRODUCTS.md
+/mnt/ironwolf/git/Void_Unity_Proofs/derivation/EQUATIONS.md
+/mnt/ironwolf/git/Void_Unity_Proofs/derivation/VALIDATION_METRICS.md
+/mnt/ironwolf/git/Void_Unity_Proofs/derivation/UNITS_NORMALIZATION.md
+/mnt/ironwolf/git/Void_Unity_Proofs/derivation/SYMBOLS.md
+/mnt/ironwolf/git/Void_Unity_Proofs/derivation/SCHEMAS.md
+/mnt/ironwolf/git/Void_Unity_Proofs/derivation/ROADMAP.md
+/mnt/ironwolf/git/Void_Unity_Proofs/derivation/OPEN_QUESTIONS.md
+/mnt/ironwolf/git/Void_Unity_Proofs/derivation/NAMING_CONVENTIONS.md
