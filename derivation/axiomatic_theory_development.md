@@ -5,6 +5,7 @@
 **Scope:** Systematic development of a fully axiomatic foundation for the Field-Unified Void Dynamics Model (VDM), addressing theoretical gaps identified in the current derivation and establishing rigorous mathematical foundations.
 
 **References:**
+
 - [void_dynamics_theory.md](foundations/void_dynamics_theory.md) - Current theory framework and identified gaps
 - [CORRECTIONS.md](CORRECTIONS.md) - Required corrections and validation issues  
 - [discrete_to_continuum.md](foundations/discrete_to_continuum.md) - Mapping between discrete and continuum descriptions
@@ -153,7 +154,7 @@ On a Riemannian domain $(\Omega,g_{ij})$ the diffusion term is $\nabla_i(D\,g^{i
 - [x] **4.1 Equation of Motion Derivation**
   - [x] Derive field equations from variational principle
   - [x] Establish connection to reaction-diffusion form: $\partial_t \phi = D \nabla^2 \phi + f(\phi)$
-  - [x] Identify diffusion coefficient $D$ and reaction term $f(\phi)$ 
+  - [x] Identify diffusion coefficient $D$ and reaction term $f(\phi)$
   - [x] Compare with Klein-Gordon form for EFT applications
   - **Status:** ✓ Completed - Complete field equation derivation with RD/EFT connections
   - **References:** RD mapping in [CORRECTIONS.md](CORRECTIONS.md#summary-before--after)
@@ -203,7 +204,9 @@ On a Riemannian domain $(\Omega,g_{ij})$ the diffusion term is $\nabla_i(D\,g^{i
 ### Current Status: Phase I.1 - Establishing Core Axioms
 
 #### Axiom 1: Field Variable Definition
+
 **Statement:** The fundamental dynamical variable is a real scalar field $W: \mathbb{Z}^d \times \mathbb{Z} \to \mathbb{R}$, where:
+
 - $W_i^n \equiv W(\mathbf{x}_i, t_n)$ represents the field value at lattice site $\mathbf{x}_i$ and time step $t_n$
 - $\mathbf{x}_i = (i_1 a, i_2 a, \ldots, i_d a)$ with $\mathbf{i} = (i_1, \ldots, i_d) \in \mathbb{Z}^d$ and lattice spacing $a > 0$
 - $t_n = n \Delta t$ with $n \in \mathbb{Z}$ and time step $\Delta t > 0$
@@ -212,7 +215,9 @@ On a Riemannian domain $(\Omega,g_{ij})$ the diffusion term is $\nabla_i(D\,g^{i
 **Justification:** This establishes the discrete spacetime arena and ensures the field is well-defined with appropriate regularity for physical applications.
 
 #### Axiom 2: Lattice Structure  
+
 **Statement:** The spatial lattice is a regular cubic lattice $\Lambda = a \mathbb{Z}^d$ with:
+
 - Dimension $d \geq 1$ (take $d = 3$ for physical applications)
 - Uniform spacing $a > 0$ (lattice constant)
 - Neighborhood structure: each site $i$ has $2d$ nearest neighbors $j \in N(i)$ where $|\mathbf{x}_j - \mathbf{x}_i| = a$
@@ -220,7 +225,9 @@ On a Riemannian domain $(\Omega,g_{ij})$ the diffusion term is $\nabla_i(D\,g^{i
 **Justification:** Cubic symmetry ensures isotropy in the continuum limit and provides the simplest non-trivial interaction structure for deriving spatial derivatives.
 
 #### Axiom 3: Locality Principle
+
 **Statement:** The dynamics at site $i$ and time $n$ depend only on:
+
 1. The field value $W_i^n$ at the same site and time
 2. The field values $W_j^n$ at neighboring sites $j \in N(i)$ at the same time  
 3. The field value $W_i^{n-1}$ at the same site and previous time
@@ -228,18 +235,21 @@ On a Riemannian domain $(\Omega,g_{ij})$ the diffusion term is $\nabla_i(D\,g^{i
 **Justification:** This embodies causality and ensures the continuum limit will produce local field equations without instantaneous action-at-a-distance.
 
 #### Axiom 4: Action Principle
+
 **Statement:** The discrete dynamics are governed by a stationary action principle with action:
 $$S = \sum_{n=1}^{N-1} \Delta t \sum_{i \in \Lambda} a^d \mathcal{L}_i^n$$
 where the Lagrangian density per site is:
 $$\mathcal{L}_i^n = \frac{1}{2}\left(\frac{W_i^{n+1} - W_i^n}{\Delta t}\right)^2 - \frac{J}{2}\sum_{j \in N(i)}(W_j^n - W_i^n)^2 - V(W_i^n)$$
 
 **Parameters:**
+
 - $J > 0$: coupling strength between neighboring sites
 - $V(W)$: on-site potential function (to be specified)
 
 **Justification:** This is the minimal action containing kinetic energy (time derivatives), interaction energy (spatial derivatives), and potential energy, while respecting the locality and symmetry constraints.
 
 **Next Steps:**
+
 1. Apply Euler-Lagrange equations to derive the discrete field equations
 2. Analyze the potential function $V(W)$ and its properties
 3. Study conservation laws from symmetries of the action
@@ -257,6 +267,7 @@ Taking the variation with respect to $W_i^n$:
 $$\frac{\delta S}{\delta W_i^n} = \Delta t \cdot a^d \left[ \frac{\partial \mathcal{L}_i^n}{\partial W_i^n} + \frac{\partial \mathcal{L}_i^{n-1}}{\partial W_i^n} + \sum_{j \in N(i)} \frac{\partial \mathcal{L}_j^n}{\partial W_i^n} \right]$$
 
 **Term by term:**
+
 1. From $\mathcal{L}_i^n$: $\frac{\partial \mathcal{L}_i^n}{\partial W_i^n} = -\frac{1}{\Delta t^2}(W_i^{n+1} - W_i^n) + J \sum_{j \in N(i)}(W_j^n - W_i^n) - V'(W_i^n)$
 
 2. From $\mathcal{L}_i^{n-1}$: $\frac{\partial \mathcal{L}_i^{n-1}}{\partial W_i^n} = \frac{1}{\Delta t^2}(W_i^n - W_i^{n-1})$
@@ -268,7 +279,8 @@ $$\frac{W_i^{n+1} - 2W_i^n + W_i^{n-1}}{\Delta t^2} = J \sum_{j \in N(i)}(W_j^n 
 
 This is a **second-order difference equation in time**, naturally arising from the variational principle without any "promotion" from first-order dynamics.
 
-#### Key Observations:
+#### Key Observations
+
 1. **Natural second-order structure**: No hand-waving needed to get $\partial_t^2$ terms
 2. **Discrete Laplacian**: The sum $\sum_{j \in N(i)}(W_j^n - W_i^n)$ is the discrete Laplacian operator
 3. **Local force balance**: Time acceleration = spatial forces + potential forces
@@ -317,15 +329,17 @@ This matches the result referenced in [void_dynamics_theory.md](foundations/void
 #### Derivation 2.1.1: Scaling Limits and Field Redefinition
 
 **Scaling Ansatz:** Take the simultaneous limits:
+
 - $a \to 0$ (lattice spacing)
 - $\Delta t \to 0$ (time step)  
 - Keep fixed: $c = a/\Delta t$ (speed of light)
 - Keep fixed: Physical scales $L, T$ such that $L \gg a$ and $T \gg \Delta t$
 
-**Field Redefinition:** 
+**Field Redefinition:**
 $$W_i^n \to \phi(x,t) \text{ where } x = ia, \; t = n\Delta t$$
 
 **Discrete to Continuum Operators:**
+
 1. **Time derivative:** $\frac{W_i^{n+1} - W_i^{n-1}}{2\Delta t} \to \frac{\partial \phi}{\partial t}$
 2. **Second time derivative:** $\frac{W_i^{n+1} - 2W_i^n + W_i^{n-1}}{\Delta t^2} \to \frac{\partial^2 \phi}{\partial t^2}$
 3. **Spatial Laplacian:** $\sum_{j \in N(i)}(W_j^n - W_i^n) \to a^2 \nabla^2 \phi$
@@ -334,6 +348,7 @@ $$W_i^n \to \phi(x,t) \text{ where } x = ia, \; t = n\Delta t$$
 $$S_{\text{discrete}} = \sum_{n=1}^{N-1} \Delta t \sum_{i \in \Lambda} a^d \left[ \frac{1}{2}\left(\frac{W_i^{n+1} - W_i^n}{\Delta t}\right)^2 - \frac{J}{2}\sum_{j \in N(i)}(W_j^n - W_i^n)^2 - V(W_i^n) \right]$$
 
 In the continuum limit:
+
 - $\sum_{n=1}^{N-1} \Delta t \to \int_{t_1}^{t_2} dt$
 - $\sum_{i \in \Lambda} a^d \to \int d^d x$
 - Using our result $c^2 = 2J a^2$:
@@ -341,6 +356,7 @@ In the continuum limit:
 $$S_{\text{continuum}} = \int dt \int d^d x \left[ \frac{1}{2}\left(\frac{\partial \phi}{\partial t}\right)^2 - \frac{c^2}{2}|\nabla \phi|^2 - V(\phi) \right]$$
 
 **Key Result:** The continuum action is a standard scalar field theory with:
+
 - Canonical kinetic term $\frac{1}{2}(\partial_t \phi)^2$
 - Spatial kinetic term $-\frac{c^2}{2}|\nabla \phi|^2$ with speed $c = \sqrt{2Ja^2}$
 - Potential term $V(\phi)$ unchanged in form
@@ -357,7 +373,8 @@ This is the **Klein-Gordon equation with nonlinear potential** - a second-order 
 $$\frac{\partial \phi}{\partial t} \approx \frac{c^2}{\gamma} \nabla^2 \phi - \frac{1}{\gamma} V'(\phi)$$
 
 where $\gamma$ is a damping coefficient. This is the **reaction-diffusion form** with:
-- Diffusion coefficient: $D = c^2/\gamma = 2Ja^2/\gamma$ 
+
+- Diffusion coefficient: $D = c^2/\gamma = 2Ja^2/\gamma$
 - Reaction term: $f(\phi) = -V'(\phi)/\gamma$
 
 **Next:** Analyze the potential function to ensure stability.
@@ -376,6 +393,7 @@ $$\mathcal{L}_i^n = \frac{1}{2}\left(\frac{W_i^{n+1} - W_i^n}{\Delta t}\right)^2
 **Symmetry 1: Time Translation Invariance**
 
 **Transformation:** $t' = t + \tau$ (constant time shift)
+
 - Field transformation: $W_i^{n'} = W_i^{n'-k}$ where $k = \tau/\Delta t$
 - The Lagrangian has no explicit time dependence, so $\mathcal{L}_i^{n+k} = \mathcal{L}_i^n$
 
@@ -390,6 +408,7 @@ $$\rho_i^n = \frac{1}{2}\left(\frac{W_i^{n+1} - W_i^n}{\Delta t}\right)^2 + \fra
 **Symmetry 2: Spatial Translation Invariance**
 
 **Transformation:** $\mathbf{x}' = \mathbf{x} + \mathbf{a}$ (constant spatial shift)
+
 - Field transformation: $W_{i'}^n = W_{i-k}^n$ where $k = \mathbf{a}/a$
 - Lattice structure preserves nearest-neighbor relations under translation
 
@@ -406,6 +425,7 @@ where $\hat{\mathbf{n}}_{ij}$ is the unit vector from site $i$ to $j$.
 **Symmetry 3: Field Translation (Broken Symmetry)**
 
 **Transformation:** $W' = W + c$ (constant field shift)
+
 - From our earlier analysis: $\mathcal{L}(W+c) \neq \mathcal{L}(W)$ due to nonlinear potential
 - **Symmetry is broken** by the $V(W)$ term
 - No associated Noether current (spontaneous symmetry breaking possible)
@@ -418,6 +438,7 @@ $$V(\phi) = \frac{\alpha}{3}\phi^3 - \frac{\alpha-\beta}{2}\phi^2 + \frac{\lambd
 has critical points at $\phi = 0$ and vacuum solution $\phi = v_\lambda > 0$ (for $\alpha > \beta$).
 
 **Broken Symmetry Pattern:**
+
 1. **At $\phi = 0$:** No explicit field translation symmetry due to nonlinear potential
 2. **At vacuum $\phi = v_\lambda$:** Fluctuations $\eta = \phi - v_\lambda$ have shifted potential
 3. **No Goldstone modes** for real scalar field (no continuous symmetry to break)
@@ -445,7 +466,7 @@ $$= \dot{\phi}[c^2 \nabla^2 \phi - V'(\phi)] + c^2 \nabla \cdot (\dot{\phi}\nabl
 
 #### Derivation 3.2.2: Momentum Conservation in Continuum Limit
 
-**Continuum Momentum Density:** 
+**Continuum Momentum Density:**
 $$\mathbf{p}(\phi, \dot{\phi}, \nabla\phi) = \dot{\phi} \nabla\phi$$
 
 **Momentum Conservation:** From spatial translation symmetry:
@@ -457,6 +478,7 @@ $$T^{\mu\nu} = \partial^\mu \phi \partial^\nu \phi - g^{\mu\nu} \mathcal{L}$$
 where $\mathcal{L} = \frac{1}{2}\dot{\phi}^2 - \frac{c^2}{2}|\nabla\phi|^2 - V(\phi)$.
 
 **Components:**
+
 - $T^{00} = \mathcal{H}$ (energy density)
 - $T^{0i} = \dot{\phi} \partial_i \phi$ (energy flux)  
 - $T^{ij} = \partial_i \phi \partial_j \phi - \delta_{ij}[\frac{c^2}{2}|\nabla\phi|^2 + V(\phi)]$ (stress tensor)
@@ -477,7 +499,7 @@ where $f(\phi) = D \nabla^2 \phi - V'(\phi)/\gamma$ is the reaction-diffusion fu
 
 **Physical Interpretation:** This represents the "age" of the field configuration - how long it takes to reach a given state from initial conditions.
 
-#### Key Results of Phase III:
+#### Key Results of Phase III
 
 1. **Time Translation Symmetry → Energy Conservation:** Exactly verified in both discrete and continuum limits
 2. **Spatial Translation Symmetry → Momentum Conservation:** Exactly verified via stress-energy tensor
@@ -512,10 +534,12 @@ This gives the **canonical RD form**:
 $$\frac{\partial \phi}{\partial t} = D \nabla^2 \phi + f(\phi)$$
 
 where:
+
 - **Diffusion coefficient:** $D = \frac{c^2}{\gamma} = \frac{2Ja^2}{\gamma}$
 - **Reaction term:** $f(\phi) = -\frac{V'(\phi)}{\gamma} = \frac{1}{\gamma}\left[(\alpha-\beta)\phi - \alpha\phi^2 - \lambda\phi^3\right]$
 
 **Parameter Mapping to Existing Framework:**
+
 - $r = \frac{\alpha-\beta}{\gamma}$ (growth rate)
 - $u = \frac{\alpha}{\gamma}$ (saturation parameter)  
 - $\kappa = \frac{\lambda}{\gamma}$ (stabilization parameter)
@@ -523,12 +547,14 @@ where:
 #### Derivation 4.1.2: Dual Regime Analysis
 
 **Regime 1: Hyperbolic (Klein-Gordon)**
+
 - **Validity:** When $\gamma^{-1} \ll c/L$ (fast dynamics, small damping)
 - **Characteristic:** Wave-like propagation with speed $c$
 - **Applications:** EFT analysis, tachyon condensation, cosmological models
 - **Dispersion:** $\omega^2 = c^2 k^2 + m_{\text{eff}}^2$
 
 **Regime 2: Parabolic (Reaction-Diffusion)**  
+
 - **Validity:** When $\gamma^{-1} \gg c/L$ (slow dynamics, high damping)
 - **Characteristic:** Diffusive propagation with front speed $c_{\text{front}} = 2\sqrt{Dr}$
 - **Applications:** Pattern formation, void dynamics, computational validations
@@ -555,7 +581,7 @@ with bounded domain $\Omega \subset \mathbb{R}^d$ and appropriate boundary condi
 $$E[\phi,\dot{\phi}] = \int_\Omega \left[ \frac{1}{2}\dot{\phi}^2 + \frac{c^2}{2}|\nabla\phi|^2 + V(\phi) \right] dx$$
 is bounded below and conserved, then $T = \infty$ (global existence).
 
-**Proof Sketch:** 
+**Proof Sketch:**
 1. Energy conservation ensures $\|\phi(t)\|_{H^1} + \|\dot{\phi}(t)\|_{L^2} \leq C(E[0])$
 2. Bounded potential $V(\phi) \geq -C(1 + \phi^2)$ prevents blowup  
 3. Standard hyperbolic PDE theory applies with energy estimates
@@ -650,7 +676,7 @@ $$c_{\text{front}} = 2\sqrt{Dr} = 2\sqrt{\frac{2Ja^2(\alpha-\beta)}{\gamma^2}} =
 - Parameter range: $\alpha = 0.25$, $\beta = 0.10$, giving $r = 0.15$
 - Stable fixed point at $\phi_* = r/u = (\alpha-\beta)/\alpha = 0.6$
 
-**Consistency Check:** 
+**Consistency Check:**
 $$\frac{r}{u} = \frac{(\alpha-\beta)/\gamma}{\alpha/\gamma} = \frac{\alpha-\beta}{\alpha} = 1 - \frac{\beta}{\alpha}$$
 
 This exactly matches our theoretical vacuum solution in the small-$\lambda$ limit.
@@ -886,7 +912,7 @@ $$S \to S' = \int d^4x \sqrt{-g'} \left[ \frac{1}{2}\Omega^{-2}g'^{\mu\nu}\parti
 $$\ddot{\phi} + 3H\dot{\phi} + V'(\phi) = 0$$
 $$H^2 = \frac{8\pi G}{3}\left[\frac{1}{2}\dot{\phi}^2 + V(\phi)\right]$$
 
-**Fixed Points:** 
+**Fixed Points:**
 1. **Kinetic Domination:** $\dot{\phi}^2 \gg V(\phi)$ → $\phi \propto t^{2/3}$, $H \propto t^{-1}$
 2. **Potential Domination:** $\dot{\phi}^2 \ll V(\phi)$ → $H \approx \text{const}$ (inflation/dark energy)
 3. **Scaling Solutions:** $\dot{\phi}^2 \sim V(\phi)$ → intermediate behavior
@@ -897,7 +923,7 @@ $$H^2 = \frac{8\pi G}{3}\left[\frac{1}{2}\dot{\phi}^2 + V(\phi)\right]$$
 $$\langle\rho_{\text{DE}}\rangle = V(v) + \frac{1}{2}m_{\text{eff}}^2\langle\eta^2\rangle$$
 $$\langle p_{\text{DE}}\rangle = V(v) - \frac{1}{2}m_{\text{eff}}^2\langle\eta^2\rangle$$
 
-**Equation of State:** 
+**Equation of State:**
 $$w_{\text{DE}} = \frac{\langle p_{\text{DE}}\rangle}{\langle\rho_{\text{DE}}\rangle} = \frac{V(v) - \frac{1}{2}m_{\text{eff}}^2\langle\eta^2\rangle}{V(v) + \frac{1}{2}m_{\text{eff}}^2\langle\eta^2\rangle}$$
 
 **Limits:**
@@ -1142,7 +1168,7 @@ $$m_{\text{eff}}^2 \approx (\alpha-\beta) + O(\lambda)$$
 
 **Parameter Constraints:**
 1. **Stability:** $\lambda > 0$
-2. **Vacuum existence:** $\alpha > \beta$ 
+2. **Vacuum existence:** $\alpha > \beta$
 3. **Perturbative regime:** $\lambda \ll \alpha^2/(\alpha-\beta)$
 
 **Result:** The stabilized potential provides:
@@ -1203,7 +1229,7 @@ This gives $J$ dimensions of frequency-squared, consistent with its role as a sp
    - $[D] = [L]^2/[T]$ ✓ (standard diffusion dimensions)
    - $[\gamma] = [T]^{-1}$ (damping rate)
 
-2. **Reaction Parameters:** 
+2. **Reaction Parameters:**
    - $r = (\alpha-\beta)/\gamma$ with $[r] = [T]^{-1}$ ✓
    - $u = \alpha/\gamma$ with $[u] = [T]^{-1}/[\phi]$ ✓
 
