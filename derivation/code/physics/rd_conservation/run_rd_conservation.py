@@ -80,6 +80,82 @@ def rk4_reaction_only_step(u: np.ndarray, r: float, ucoef: float, dt: float) -> 
     return u + (dt / 6.0) * (k1 + 2 * k2 + 2 * k3 + k4)
 
 
+def integrate_reaction_rk4(u0: np.ndarray, r: float, ucoef: float, dt: float, T: float) -> tuple[np.ndarray, int]:
+    """Integrate reaction-only ODE du/dt = r u - ucoef u^2 with RK4 to time T using step dt."""
+    steps = max(1, int(np.ceil(T / dt)))
+    u = u0.copy()
+    t = 0.0
+    for _ in range(steps):
+        u = rk4_reaction_only_step(u, r, ucoef, dt)
+        t += dt
+    return u, steps
+
+
+def reaction_only_two_grid_convergence(r: float, ucoef: float, W0: float, dt_list: List[float], T: float, norm: str = "inf") -> Dict[str, Any]:
+    """Global two-grid error at fixed T for RK4 reaction-only; expect slope ≈ 4.
+
+    E(dt) = || U_T(dt) - U_T(dt/2) ||, where each U_T(·) integrates from 0 to T with RK4.
+    """
+    err: List[float] = []
+    for dt in dt_list:
+        u0 = np.array([W0], dtype=float)
+        U_dt, n1 = integrate_reaction_rk4(u0, r, ucoef, float(dt), T)
+        U_h1, _ = integrate_reaction_rk4(u0, r, ucoef, float(dt) / 2.0, T)
+        # Compare final states at T
+        if norm == "inf":
+            e = float(np.linalg.norm(U_dt - U_h1, ord=np.inf))
+        else:
+            e = float(np.linalg.norm(U_dt - U_h1))
+        err.append(e)
+    # Fit slope
+    eps = 1e-30
+    x = np.log(np.array(dt_list, dtype=float))
+    y = np.log(np.array(err, dtype=float) + eps)
+    A = np.vstack([x, np.ones_like(x)]).T
+    slope, intercept = np.linalg.lstsq(A, y, rcond=None)[0]
+    y_pred = A @ np.array([slope, intercept])
+    ss_res = float(np.sum((y - y_pred) ** 2))
+    ss_tot = float(np.sum((y - np.mean(y)) ** 2))
+    R2 = 1.0 - (ss_res / ss_tot if ss_tot > 0 else 0.0)
+
+    # Gate and artifact routing
+    expected_slope = 4.0
+    failed_gate = bool((slope < 3.9) or (R2 < 0.999))
+    fig_path = figure_path("rd_conservation", "reaction_two_grid_convergence", failed=failed_gate)
+    plt.figure(figsize=(6, 4))
+    plt.plot(dt_list, err, "o-")
+    plt.xscale("log"); plt.yscale("log")
+    plt.xlabel("dt"); plt.ylabel("||U_T(dt) - U_T(dt/2)||_∞")
+    plt.title(f"RK4 reaction-only (two-grid): slope≈{slope:.3f}, R2≈{R2:.4f}")
+    plt.tight_layout(); plt.savefig(fig_path, dpi=150); plt.close()
+
+    # Logs
+    tg_log = {
+        "figure": str(fig_path),
+        "slope": float(slope),
+        "R2": float(R2),
+        "expected_slope": float(expected_slope),
+        "dt": [float(d) for d in dt_list],
+        "two_grid_error": [float(e) for e in err],
+        "metric": "global_two_grid_reaction_rk4",
+        "failed": failed_gate
+    }
+    tg_log_path = log_path("rd_conservation", "reaction_two_grid_convergence", failed=failed_gate)
+    write_log(tg_log_path, tg_log)
+    csv_path = log_path("rd_conservation", "reaction_two_grid_convergence", failed=failed_gate, type="csv")
+    with csv_path.open("w", encoding="utf-8") as f:
+        f.write("dt,two_grid_error\n")
+        for d, e in zip(dt_list, err):
+            f.write(f"{d},{e}\n")
+    return {
+        "dt": dt_list,
+        "two_grid_error": err,
+        "fit": {"slope": float(slope), "intercept": float(intercept), "R2": float(R2)},
+        "figure": str(fig_path),
+        "failed": failed_gate
+    }
+
+
 def reaction_only_q_invariant_convergence(r: float, ucoef: float, W0: float, dt_list: List[float], T: float) -> Dict[str, Any]:
     max_drifts: List[float] = []
     domain_violations: List[int] = []
@@ -315,17 +391,21 @@ def main():
     }
     write_log(log_path("rd_conservation", "controls_diffusion", failed=not ctrl_diff_log["passes"]["machine_epsilon"]), ctrl_diff_log)
 
-    # Controls — Reaction-only Q invariant (RK4 expected order-4)
+    # Controls — Reaction-only RK4 two-grid (expected order-4)
     q_T = 10.0
-    q_dt_list = [0.02, 0.01, 0.005]
-    q_ctrl = reaction_only_q_invariant_convergence(float(spec.params["r"]), float(spec.params["u"]), W0=0.12, dt_list=q_dt_list, T=q_T)
+    # Safer dt_list to sit in asymptotic regime
+    q_dt_list = [0.05, 0.025, 0.0125, 0.00625]
+    # Safe initial condition away from logistic barriers
+    r_val = float(spec.params["r"]); u_val = float(spec.params["u"])
+    W0_safe = 0.2 * (r_val / u_val) if u_val != 0 else 0.1
+    q_ctrl = reaction_only_two_grid_convergence(r_val, u_val, W0=W0_safe, dt_list=q_dt_list, T=q_T)
     ctrl_reac_log = {
-        "control": "reaction_only_Q_invariant_rk4",
-        "spec": {"r": spec.params["r"], "u": spec.params["u"], "dt_list": q_dt_list, "T": q_T},
+        "control": "reaction_only_two_grid_rk4",
+        "spec": {"r": r_val, "u": u_val, "dt_list": q_dt_list, "T": q_T, "W0": float(W0_safe)},
         "metrics": q_ctrl,
-        "passes": {"slope_ge_3.9": q_ctrl["fit"]["slope"] >= 3.9}
+        "passes": {"slope_ge_3.9_and_R2_ge_0.999": (q_ctrl["fit"]["slope"] >= 3.9 and q_ctrl["fit"].get("R2", 0.0) >= 0.999)}
     }
-    write_log(log_path("rd_conservation", "controls_reaction", failed=not ctrl_reac_log["passes"]["slope_ge_3.9"]), ctrl_reac_log)
+    write_log(log_path("rd_conservation", "controls_reaction", failed=not ctrl_reac_log["passes"]["slope_ge_3.9_and_R2_ge_0.999"]), ctrl_reac_log)
 
     # Record step_spec for this run (as a convenience)
     cfl_thresh = (dx * dx) / (2.0 * D) if D > 0 else float("inf")

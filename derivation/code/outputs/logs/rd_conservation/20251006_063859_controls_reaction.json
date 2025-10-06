@@ -1,0 +1,39 @@
+{
+  "control": "reaction_only_two_grid_rk4",
+  "metrics": {
+    "dt": [
+      0.05,
+      0.025,
+      0.0125,
+      0.00625
+    ],
+    "failed": false,
+    "figure": "/mnt/ironwolf/git/Void_Unity_Proofs/derivation/code/outputs/figures/rd_conservation/20251006_063858_reaction_two_grid_convergence.png",
+    "fit": {
+      "R2": 0.9998410200843351,
+      "intercept": -14.600473539897207,
+      "slope": 3.916091275720303
+    },
+    "two_grid_error": [
+      3.790634472977672e-12,
+      2.3658852654762086e-13,
+      1.532107773982716e-14,
+      1.1102230246251565e-15
+    ]
+  },
+  "passes": {
+    "slope_ge_3.9_and_R2_ge_0.999": true
+  },
+  "spec": {
+    "T": 10.0,
+    "W0": 0.16000000000000003,
+    "dt_list": [
+      0.05,
+      0.025,
+      0.0125,
+      0.00625
+    ],
+    "r": 0.2,
+    "u": 0.25
+  }
+}
