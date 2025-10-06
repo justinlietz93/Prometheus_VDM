@@ -25,13 +25,14 @@ log = {
     "metrics": metrics,
     "status": "success"
 }
-write_log(log_path(domain, slug, failed=False), log)
+write_log(log_path(domain, slug, failed=False, type="json"), log)
 
 # In Markdown (relative to derivation/):
 # ![Corner test r_c scan](code/outputs/figures/fluid_dynamics/20250823_corner_test_r_c_scan.png)
 # [Run log](code/outputs/logs/fluid_dynamics/20250823_corner_test_r_c_scan.json)
 
 '''
+import csv
 from pathlib import Path
 from datetime import datetime
 import json
@@ -43,18 +44,39 @@ def _ts():
     return datetime.now().strftime("%Y%m%d_%H%M%S")
 
 def ensure_dir(p: Path) -> Path:
+    """Ensure that a directory exists."""
     p.mkdir(parents=True, exist_ok=True)
     return p
 
 def figure_path(domain: str, slug: str, failed: bool=False) -> Path:
+    """Generate a path for saving a figure.
+    Args:
+        domain (str): The domain of the experiment (e.g., "fluid_dynamics").
+        slug (str): A short descriptive identifier for the experiment.
+        failed (bool): Whether this is for a failed run."""
     base = OUTPUTS / "figures" / domain / ("failed_runs" if failed else "")
     return ensure_dir(base) / f"{_ts()}_{slug}.png"
 
-def log_path(domain: str, slug: str, failed: bool=False) -> Path:
+def log_path(domain: str, slug: str, failed: bool=False, type: str="json") -> Path:
+    """Generate a path for saving a log file.
+    Args:
+        domain (str): The domain of the experiment (e.g., "fluid_dynamics").
+        slug (str): A short descriptive identifier for the experiment.
+        failed (bool): Whether this is for a failed run.
+        type (str): The log file type, either 'json' or 'csv'."""
     base = OUTPUTS / "logs" / domain / ("failed_runs" if failed else "")
-    return ensure_dir(base) / f"{_ts()}_{slug}.json"
+    return ensure_dir(base) / f"{_ts()}_{slug}.{type}"
 
 def write_log(path: Path, data: dict):
+    """Write a log file in JSON or CSV format.
+    Args:
+        path (Path): The file path to write the log to.
+        data (dict): The log data to write."""
     ensure_dir(path.parent)
     with open(path, "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=2, sort_keys=True)
+        if path.suffix == ".json":
+            json.dump(data, f, indent=2, sort_keys=True)
+        elif path.suffix == ".csv":
+            writer = csv.DictWriter(f, fieldnames=data.keys())
+            writer.writeheader()
+            writer.writerow(data)

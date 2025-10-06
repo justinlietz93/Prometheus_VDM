@@ -2,12 +2,12 @@
 
 ## Done
 
-- Created rd_conservation harness with controls and step_spec snapshot logging; fixed Codacy lint warnings.
+- Implemented failed_runs routing across Q-invariant, Obj-A/B residuals, and Lyapunov; verified with a harness run that failing artifacts route to outputs/*/rd_conservation/failed_runs and logs/CSVs land under logs.
 
 ## Doing
 
-- Wire dt-sweep and Obj-A/B residuals with periodic BC and adjacency fidelity; add CONTRADICTION_REPORT logic.
+- Tune pass/fail thresholds if needed and clean legacy sidecars under figures from prior runs.
 
 ## Next
 
-- Integrate CAS attempt (symbolic Q/H forms), discrete Lyapunov computation (Obj-C), and V5 out-of-sample re-run with frozen params.
+- Add Obj-B explicit gate reporting to console summary and a CONTRADICTION_REPORT stub if any gate fails.

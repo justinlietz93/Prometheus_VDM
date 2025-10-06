@@ -1,0 +1,7 @@
+{
+  "slope": 0.18033646326437686,
+  "R2": 0.997001114574403,
+  "order_p": 1,
+  "expected_slope": 2.0,
+  "figure": "/mnt/ironwolf/git/Void_Unity_Proofs/derivation/code/outputs/figures/rd_conservation/20251006_060411_residual_vs_dt.png"
+}
