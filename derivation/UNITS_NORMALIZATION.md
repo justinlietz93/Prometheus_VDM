@@ -47,6 +47,7 @@
 ## 3) Nondimensionalization Maps (forward & inverse)
 
 ##### LBM Lattice Units → Physical Units
+
 **Context:** derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:3,106 • ec0833a
 
 $$
@@ -62,6 +63,7 @@ $$
 ---
 
 ##### Discrete Lattice → Continuum (RD)
+
 **Context:** derivation/SYMBOLS.md:23-27; derivation/foundations/continuum_stack.md:29,36 • ec0833a
 
 $$
@@ -83,6 +85,7 @@ $$
 ---
 
 ##### Dimensionless RD Rescaling
+
 **Context:** derivation/foundations/continuum_stack.md:74 • ec0833a
 
 $$
@@ -94,6 +97,7 @@ $$
 ---
 
 ##### Agency Field Dimensionless Form
+
 **Context:** derivation/EQUATIONS.md:81-87 • ec0833a
 
 $$
@@ -111,6 +115,7 @@ $$
 ---
 
 ##### EFT Dimensionalization (FUM → Voxtrium)
+
 **Context:** derivation/effective_field_theory/fum_voxtrium_mapping.md:54-80 • ec0833a
 
 $$
@@ -140,6 +145,7 @@ $$
 ---
 
 ##### Memory Steering Field Normalization
+
 **Context:** derivation/memory_steering/memory_steering.md:59 • ec0833a
 
 $$
@@ -180,7 +186,6 @@ $$
 | $E_{\min}^{(v_0)}$<sup>[↗](../derivations/SYMBOLS.md#sym-Emin-v0)</sup>          | steps         | derivation/EQUATIONS.md:VDM-E-083 • HEAD           | Minimal budget to reach $V\!\ge\!v_0$ at slip $p$     |
 | $n_{\text{act}}$<sup>[↗](../derivations/SYMBOLS.md#sym-n-act)</sup>               | actuators     | derivation/CONSTANTS.md:§Agency • HEAD             | Actuator count used in the probe context              |
 
-
 ---
 
 ## 5) Dimensionless Numbers (unit statements only)
@@ -210,6 +215,7 @@ $$
 <!-- Tool-maintained list of anchors for quick lookup -->
 
 **Quick Index:**
+
 - [LBM Lattice Units](#lbm-lattice-units--physical-units)
 - [Discrete Lattice → Continuum (RD)](#discrete-lattice--continuum-rd)
 - [Dimensionless RD Rescaling](#dimensionless-rd-rescaling)
@@ -236,4 +242,5 @@ $$
 <!-- END AUTOSECTION: UNITS-INDEX -->
 
 ## Change Log
+
 - 2024-10-03 • Initial compilation from repository sources • ec0833a
