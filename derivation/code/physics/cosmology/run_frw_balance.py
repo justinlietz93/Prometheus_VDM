@@ -56,7 +56,7 @@ def run_frw_balance(spec: FRWSpec) -> Dict[str, Any]:
 
     # Artifacts
     import matplotlib.pyplot as plt
-    figp = figure_path("metriplectic", f"frw_continuity_residual__{spec.tag}", failed=not passed)
+    figp = figure_path("cosmology", f"frw_continuity_residual__{spec.tag}", failed=not passed)
     plt.figure(figsize=(6.4, 4.0))
     plt.plot(t, res, "-o", ms=3)
     plt.axhline(0.0, color="#444", lw=1)
@@ -65,16 +65,16 @@ def run_frw_balance(spec: FRWSpec) -> Dict[str, Any]:
     plt.title(f"FRW continuity residual (RMS ≈ {rms:.3e})")
     plt.tight_layout(); plt.savefig(figp, dpi=150); plt.close()
 
-    csvp = log_path("metriplectic", f"frw_continuity_residual__{spec.tag}", failed=not passed, type="csv")
+    csvp = log_path("cosmology", f"frw_continuity_residual__{spec.tag}", failed=not passed, type="csv")
     with csvp.open("w", encoding="utf-8") as f:
         f.write("t,rho,a,residual\n")
         for ti, ri, ai, rsi in zip(t, rho, a, res):
             f.write(f"{ti},{ri},{ai},{rsi}\n")
 
     logj = {"tol_rms": float(spec.tol_rms), "rms": rms, "passed": passed, "figure": str(figp), "csv": str(csvp)}
-    write_log(log_path("metriplectic", f"frw_balance__{spec.tag}", failed=not passed), logj)
+    write_log(log_path("cosmology", f"frw_balance__{spec.tag}", failed=not passed), logj)
     if not passed:
-        write_log(log_path("metriplectic", f"CONTRADICTION_REPORT_frw_balance__{spec.tag}", failed=True), {
+        write_log(log_path("cosmology", f"CONTRADICTION_REPORT_frw_balance__{spec.tag}", failed=True), {
             "reason": "FRW continuity RMS residual exceeded tolerance",
             "gate": {"rms": f"<= {spec.tol_rms}"},
             "metrics": logj,

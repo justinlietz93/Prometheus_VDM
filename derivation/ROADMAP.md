@@ -890,6 +890,7 @@ Central list of active proposals with links to their source documents. See each 
 - Metriplectic Variant (Symplectic + DG): [PROPOSAL_Metriplectic_SymplecticPlusDG.md](metriplectic/PROPOSAL_Metriplectic_SymplecticPlusDG.md)
 - Conservation vs Balance (RD): [PROPOSAL_RD_Discrete_Conservation_vs_Balance.md](conservation_law/PROPOSAL_RD_Discrete_Conservation_vs_Balance.md)
 - Dark Photons (Decoherence Portals): [PROPOSAL_Decoherence_Portals.md](dark_photons/PROPOSAL_Decoherence_Portals.md)
+- Quantum Gravity Bridge (Observational): [PROPOSAL_Quantum_Gravity_Bridge_v1.md](speculations/PROPOSAL_Quantum_Gravity_Bridge_v1.md)
 
 ## Change Log
 

@@ -33,9 +33,9 @@ Questions addressed:
 
 Artifacts (tag A6-collapse-v1):
 
-- Figure: derivation/code/outputs/figures/metriplectic/.../a6_collapse_overlay__A6-collapse-v1.png
-- CSV: derivation/code/outputs/logs/metriplectic/.../a6_collapse_envelope__A6-collapse-v1.csv
-- JSON: derivation/code/outputs/logs/metriplectic/.../a6_collapse__A6-collapse-v1.json
+- Figure: derivation/code/outputs/figures/collapse/a6_collapse_overlay__A6-collapse-v1.png
+- CSV: derivation/code/outputs/logs/collapse/a6_collapse_envelope__A6-collapse-v1.csv
+- JSON: derivation/code/outputs/logs/collapse/a6_collapse__A6-collapse-v1.json
 
 ## 5.2 Experimental runplan
 
