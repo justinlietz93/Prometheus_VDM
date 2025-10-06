@@ -1,4 +1,5 @@
 <!-- DOC-GUARD: CANONICAL -->
+<!-- markdownlint-disable MD033 MD022 MD032 MD001 -->
 # VDM Data Products (Auto-compiled)
 
 **Scope:** Single source of truth for data products used/produced by this repository: purpose, shape, units, storage format, file paths, and provenance.  

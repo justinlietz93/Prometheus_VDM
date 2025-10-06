@@ -1,4 +1,5 @@
 <!-- DOC-GUARD: CANONICAL -->
+<!-- markdownlint-disable MD033 MD022 MD032 MD001 -->
 # VDM Validation Metrics & KPIs (Auto-compiled)
 
 **Scope:** Single source of truth for validation metrics used in this repository: names, purposes, thresholds/bands, and references to their definitions and implementations.  
