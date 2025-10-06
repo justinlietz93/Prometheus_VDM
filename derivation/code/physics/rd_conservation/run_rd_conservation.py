@@ -254,13 +254,15 @@ def lyapunov_monitor(N: int, dx: float, D: float, r: float, ucoef: float, dt: fl
                 # Energy identity residuals
                 id_res_energy = (discrete_lyapunov_Lh(W, dx, D, r, ucoef) - L_prev) / dt + float(np.sum(G * G) * dx)
                 id_res_dot = (discrete_lyapunov_Lh(W, dx, D, r, ucoef) - L_prev) - float(np.sum(G * (W - W_prev)) * dx)
+                grad_norm_sq = float(np.sum(G * G) * dx)
             else:
                 id_res_energy = None
                 id_res_dot = None
+                grad_norm_sq = None
         L_now = discrete_lyapunov_Lh(W, dx, D, r, ucoef)
         entry = {"step": k + 1, "delta_L": float(L_now - L_prev), "L": float(L_now)}
         if stepper is dg_rd_step:
-            entry.update({"dg_identity_energy_res": id_res_energy, "dg_identity_dot_res": id_res_dot})
+            entry.update({"dg_identity_energy_res": id_res_energy, "dg_identity_dot_res": id_res_dot, "dg_grad_norm_sq": grad_norm_sq})
         series.append(entry)
         L_prev = L_now
     # Gate: Lyapunov should be non-increasing within a small tolerance
@@ -277,9 +279,9 @@ def lyapunov_monitor(N: int, dx: float, D: float, r: float, ucoef: float, dt: fl
     # CSV companion for ΔL series — write to logs directory
     csv_path3 = log_path("rd_conservation", "lyapunov_delta_per_step", failed=failed_gate, type="csv")
     with csv_path3.open("w", encoding="utf-8") as f:
-        f.write("step,delta_L,L\n")
+        f.write("step,delta_L,L,dg_grad_norm_sq,dg_identity_energy_res,dg_identity_dot_res\n")
         for s in series:
-            f.write(f"{s['step']},{s['delta_L']},{s['L']}\n")
+            f.write(f"{s['step']},{s['delta_L']},{s['L']},{s.get('dg_grad_norm_sq','')},{s.get('dg_identity_energy_res','')},{s.get('dg_identity_dot_res','')}\n")
     return {"series": series, "figure": str(fig_path), "failed": failed_gate, "violations": violations, "tol_pos": tol_pos}
 
 
@@ -345,6 +347,99 @@ def dg_rd_step(Wn: np.ndarray, dt: float, dx: float, D: float, r: float, u: floa
         if np.linalg.norm(d, ord=np.inf) <= tol * 0.1:
             break
     return W1
+
+
+def dg_rd_step_with_stats(Wn: np.ndarray, dt: float, dx: float, D: float, r: float, u: float,
+                          tol: float = 1e-12, max_iter: int = 20, max_backtracks: int = 10) -> tuple[np.ndarray, Dict[str, Any]]:
+    """DG RD step with Newton iteration stats and simple backtracking line search."""
+    N = Wn.size
+    W1 = Wn.copy()
+    stats = {"iters": 0, "final_residual_inf": None, "backtracks": 0, "converged": False}
+    def lap(x):
+        return laplacian_periodic_1d(x, dx)
+    prev_res = None
+    for it in range(1, max_iter + 1):
+        mid = 0.5 * (W1 + Wn)
+        dW = (W1 - Wn)
+        over_f = r * (Wn + 0.5 * dW) - u * ((Wn * Wn + Wn * W1 + W1 * W1) / 3.0)
+        F = W1 - Wn - dt * (D * lap(mid) + over_f)
+        res = float(np.linalg.norm(F, ord=np.inf))
+        if res <= tol:
+            stats.update({"iters": it, "final_residual_inf": res, "converged": True})
+            break
+        # Build dense Jacobian
+        J = np.eye(N)
+        coeff = - dt * 0.5 * D / (dx * dx)
+        for i in range(N):
+            J[i, i] += - coeff * (-2.0)
+            J[i, (i - 1) % N] += - coeff * (1.0)
+            J[i, (i + 1) % N] += - coeff * (1.0)
+        diag_add = - dt * (0.5 * r - u * (Wn / 3.0 + (2.0 / 3.0) * W1))
+        J[np.arange(N), np.arange(N)] += diag_add
+        d = np.linalg.solve(J, -F)
+        # Backtracking line search to ensure residual decrease
+        step = 1.0
+        W_trial = W1 + step * d
+        # Evaluate residual at trial
+        mid_t = 0.5 * (W_trial + Wn)
+        over_f_t = r * (Wn + 0.5 * (W_trial - Wn)) - u * ((Wn * Wn + Wn * W_trial + W_trial * W_trial) / 3.0)
+        F_t = W_trial - Wn - dt * (D * lap(mid_t) + over_f_t)
+        res_t = float(np.linalg.norm(F_t, ord=np.inf))
+        bt = 0
+        while res_t > res and bt < max_backtracks:
+            step *= 0.5
+            W_trial = W1 + step * d
+            mid_t = 0.5 * (W_trial + Wn)
+            over_f_t = r * (Wn + 0.5 * (W_trial - Wn)) - u * ((Wn * Wn + Wn * W_trial + W_trial * W_trial) / 3.0)
+            F_t = W_trial - Wn - dt * (D * lap(mid_t) + over_f_t)
+            res_t = float(np.linalg.norm(F_t, ord=np.inf))
+            bt += 1
+        if bt > 0:
+            stats["backtracks"] = stats.get("backtracks", 0) + bt
+        W1 = W_trial
+        prev_res = res
+        stats.update({"iters": it, "final_residual_inf": res_t})
+        if np.linalg.norm(step * d, ord=np.inf) <= tol * 0.1:
+            # Step small enough
+            stats["converged"] = True
+            break
+    return W1, stats
+
+
+def fixed_dt_deltaS_comparison(N: int, dx: float, D: float, r: float, u: float, dt: float, seeds: List[int], coeffs: Dict[str, float]) -> Dict[str, Any]:
+    """Produce a 1x3 panel figure comparing |ΔS| histograms at fixed dt for Euler, Strang, DG."""
+    schemes = ["euler", "strang", "dg_rd"]
+    steppers = {
+        "euler": None,
+        "strang": lambda W, dt_, dx_, D_, r_, u_: strang_step(W, dt_, dx_, D_, r_, u_),
+        "dg_rd": lambda W, dt_, dx_, D_, r_, u_: dg_rd_step(W, dt_, dx_, D_, r_, u_),
+    }
+    summaries = {}
+    combined_rows = []
+    fig_path = figure_path("rd_conservation", "fixed_dt_deltaS_compare", failed=False)
+    plt.figure(figsize=(12, 4))
+    for idx, sch in enumerate(schemes, start=1):
+        summ = objA_fixed_dt_sweep(N, dx, D, r, u, dt, seeds, coeffs, stepper=steppers[sch], scheme_label=sch)
+        summaries[sch] = summ["stats"]
+        for row in summ["samples"]:
+            combined_rows.append({"scheme": sch, "seed": row["seed"], "abs_delta_S": abs(row["delta_S"])})
+        plt.subplot(1, 3, idx)
+        vals = [abs(x["delta_S"]) for x in summ["samples"]]
+        plt.hist(vals, bins=20)
+        plt.xlabel("|ΔS|")
+        if idx == 1:
+            plt.ylabel("count")
+        plt.title(f"{sch} (dt={dt})")
+    plt.tight_layout(); plt.savefig(fig_path, dpi=150); plt.close()
+    # Logs
+    logj = {"figure": str(fig_path), "dt": float(dt), "summaries": summaries}
+    write_log(log_path("rd_conservation", "fixed_dt_deltaS_compare", failed=False), logj)
+    csv_path = log_path("rd_conservation", "fixed_dt_deltaS_compare", failed=False, type="csv")
+    with csv_path.open("w", encoding="utf-8") as f:
+        f.write("scheme,seed,abs_delta_S\n")
+        for rrow in combined_rows:
+            f.write(f"{rrow['scheme']},{rrow['seed']},{rrow['abs_delta_S']}\n")
+    return logj
 
 
 def residuals_H0_Q_logistic(W0: np.ndarray, W1: np.ndarray, dt: float, r: float, ucoef: float, t0: float) -> np.ndarray:
@@ -715,7 +810,7 @@ def main():
     if spec.scheme.lower() == "strang":
         stepper = lambda W, dt, dx_, D_, r_, u_: strang_step(W, dt, dx_, D_, r_, u_)
     elif spec.scheme.lower() == "dg_rd":
-        stepper = lambda W, dt, dx_, D_, r_, u_: dg_rd_step(W, dt, dx_, D_, r_, u_)
+        stepper = lambda W, dt, dx_, D_, r_, u_: dg_rd_step_with_stats(W, dt, dx_, D_, r_, u_)[0]
     lyap = lyapunov_monitor(N, dx, D, float(spec.params["r"]), float(spec.params["u"]), min(spec.dt_sweep), steps=50, seed=123, stepper=stepper)
     write_log(log_path("rd_conservation", "lyapunov_series", failed=bool(lyap.get("failed", False))), lyap)
 
@@ -757,6 +852,8 @@ def main():
 
     # Euler |ΔS| vs dt scaling to confirm method-induced O(dt^2) drift
     euler_scaling = euler_Q_drift_scaling_vs_dt(N, dx, D, float(spec.params["r"]), float(spec.params["u"]), [float(d) for d in spec.dt_sweep], seed_list, coeffs)
+    # Fixed-dt |ΔS| comparison across Euler/Strang/DG
+    fixed_dt_compare = fixed_dt_deltaS_comparison(N, dx, D, float(spec.params["r"]), float(spec.params["u"]), dt_fixed, seed_list, coeffs)
 
     print(json.dumps({
         "controls_diffusion": ctrl_diff_log["passes"],

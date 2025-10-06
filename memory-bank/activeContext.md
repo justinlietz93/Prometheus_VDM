@@ -2,7 +2,7 @@
 
 ## Current Goals
 
-- Focus: RD discrete conservation vs balance experiment. Status: theory brief synthesized; proposal alignment check done. Next: confirm production integrator (Euler vs Strang/RK) and add step-spec JSON schema; plan CAS ansatz + dt-sweep harness.
+- Bringing RESULTS_RD_Discrete_Conservation_vs_Balance.md into strict compliance with PAPER_STANDARDS.md: restructure sections (I–X), enforce third-person tone, add TL;DR artifact pointer, pair figures with CSV/JSON, include methods, variables, equipment, results, discussion, and conclusions; ensure logs/figures paths are pinned; then re-run harness if needed to fetch any missing artifacts.
 
 ## Current Blockers
 

@@ -2,12 +2,12 @@
 
 ## Done
 
-- Implemented failed_runs routing across Q-invariant, Obj-A/B residuals, and Lyapunov; verified with a harness run that failing artifacts route to outputs/*/rd_conservation/failed_runs and logs/CSVs land under logs.
+- Rewrote RESULTS_RD_Discrete_Conservation_vs_Balance.md to conform exactly to PAPER_STANDARDS with numbered sections I–X, third-person tone, pinned artifact path, and paired CSV/JSON references; fixed markdown lints MD041 and MD033.
 
 ## Doing
 
-- Tune pass/fail thresholds if needed and clean legacy sidecars under figures from prior runs.
+- Ready to proceed to metriplectic integrator composition once you approve the RESULTS document.
 
 ## Next
 
-- Add Obj-B explicit gate reporting to console summary and a CONTRADICTION_REPORT stub if any gate fails.
+
