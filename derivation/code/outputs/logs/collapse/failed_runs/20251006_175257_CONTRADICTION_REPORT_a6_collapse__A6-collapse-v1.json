@@ -1,0 +1,13 @@
+{
+  "artifacts": {
+    "csv": "/mnt/ironwolf/git/Void_Unity_Proofs/derivation/code/outputs/logs/collapse/failed_runs/20251006_175257_a6_collapse_envelope__A6-collapse-v1.csv",
+    "figure": "/mnt/ironwolf/git/Void_Unity_Proofs/derivation/code/outputs/figures/collapse/failed_runs/20251006_175257_a6_collapse_overlay__A6-collapse-v1.png"
+  },
+  "gate": {
+    "max_envelope": "<= 0.02"
+  },
+  "metrics": {
+    "env_max": 0.031
+  },
+  "reason": "A6 collapse envelope exceeded tolerance"
+}
