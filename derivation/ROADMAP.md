@@ -1,4 +1,5 @@
 <!-- DOC-GUARD: REFERENCE -->
+<!-- markdownlint-disable MD033 -->
 # VDM Roadmap (Compiled from Repository Evidence)
 
 **Scope:** Milestones and tasks already recorded in this repository (docs, comments, logs, exported issues).  
@@ -7,6 +8,32 @@
 ---
 
 ## Near-Term Milestones
+
+## <a id="ms-frw-balance"></a>FRW Continuity Residual Validation (Gravity)
+
+**Status:** Done • **Priority:** P1  
+**Source:** derivation/cosmology/PROPOSAL_FRW_Balance_v1.md; derivation/code/physics/cosmology/run_frw_balance.py  
+
+**Goal (verbatim/condensed from source):** Validate FRW energy continuity with source bookkeeping by measuring the RMS residual of the continuity equation under controlled scenarios (e.g., dust) with causal sourcing gates.
+
+**Acceptance criteria (links only, no formulas):**
+
+- Metrics/KPIs: RMS continuity residual ≤ tolerance (double precision scale)  
+- Data products to produce: `DATA_PRODUCTS.md` entry for cosmology/FRW residuals (add upon standardization)
+
+**Dependencies:** Axiomatic bookkeeping and units normalization  
+**Risks/Constraints:**
+
+- Requires causal source kernel consistency across channels  
+- Tight numerical tolerances can mask discretization artifacts if grids are too coarse
+
+**Deliverables:**
+
+- derivation/cosmology/PROPOSAL_FRW_Balance_v1.md  
+- derivation/code/physics/cosmology/run_frw_balance.py  
+- Tagged artifacts: `derivation/code/outputs/{logs,figures}/cosmology/FRW-balance-v1/*`
+
+**Target timeframe (if stated):** ✓ Completed — RMS ≈ O(10⁻¹⁵) in baseline dust sanity test (PASS)
 
 ## <a id="ms-axiomatic-foundation"></a>Axiomatic Foundation Development
 
@@ -244,6 +271,32 @@
 
 ## Mid-Term Milestones
 
+## <a id="ms-dark-photon-portal"></a>Dark Photon Portal Program (Decoherence Portals)
+
+**Status:** Planned • **Priority:** P2  
+**Source:** derivation/dark_photons/PROPOSAL_Decoherence_Portals.md; derivation/dark_photons/Observable-Signatures-of-Void-Dynamics-via-Dark-Photon-Portals.md  
+
+**Goal (verbatim/condensed from source):** Operationalize dark‑photon (A′) kinetic‑mixing as a VDM portal with acceptance‑gated analyses: detector noise budget, Fisher sensitivity for ε, and EFT scale ladder tied to VDM partitions and causal sourcing.
+
+**Acceptance criteria (links only, no formulas):**
+
+- Data products: Noise‑budget SNR vs integration plots and JSON/CSV sidecars; Fisher quick‑estimate JSON for σ(ε); EFT ladder figure  
+- Validation gates: annotated regime split (quantum‑ vs thermal‑limited), finite‑difference Fisher cross‑check consistency
+
+**Dependencies:** Units and EFT normalization; background cosmology partition discipline  
+**Risks/Constraints:**
+
+- Feeble mixing requires careful treatment of systematics; astrophysical production stories must respect small‑source late‑time bounds
+
+**Deliverables:**
+
+- derivation/dark_photons/PROPOSAL_Decoherence_Portals.md  
+- derivation/dark_photons/Observable-Signatures-of-Void-Dynamics-via-Dark-Photon-Portals.md  
+- derivation/dark_photons/Noise_Budget.md, fisher_example.csv, noise_budget.csv (schemas)  
+- Tagged artifacts: `derivation/code/outputs/{logs,figures}/dark_photons/*` (upon execution)
+
+**Target timeframe (if stated):** To be scheduled after FRW and A6 baselines
+
 ## <a id="ms-eft-validation"></a>EFT/KG Branch Validation (Quarantined)
 
 **Status:** Planned • **Priority:** P3  
@@ -347,6 +400,30 @@
 ---
 
 ## Long-Term / Research Threads
+
+## <a id="ms-quantum-gravity-bridge"></a>Quantum Gravity Bridge (Observational Thread)
+
+**Status:** Planned • **Priority:** P3  
+**Source:** derivation/speculations/Bridging-Quantum-Gravity-and-Astrophysical-Observations.md  
+
+**Goal (verbatim/condensed from source):** Leverage public astrophysical and HEP datasets (Planck, DES, LHC/NA64, etc.) to confront VDM’s gravitational and portal predictions; aim to connect quantum‑scale narratives to GR‑scale observables without new experimental builds.
+
+**Acceptance criteria (links only, no formulas):**
+
+- Data products: Comparative goodness‑of‑fit metrics (χ², residual analyses) across cosmology and particle datasets; reproducible pipelines  
+- Algorithms/Tools: CLASS/CAMB integration for FRW perturbations; ROOT/likelihood scaffolds for exclusions
+
+**Dependencies:** EFT/KG quarantined thread; FRW/units normalization  
+**Risks/Constraints:**
+
+- Cross‑domain systematics and prior choices can dominate; requires disciplined partition mapping and small‑source consistency
+
+**Deliverables:**
+
+- derivation/speculations/Bridging-Quantum-Gravity-and-Astrophysical-Observations.md  
+- Forthcoming proposal(s) to scope concrete dataset tests and gate thresholds
+
+**Target timeframe (if stated):** Future work; follow‑on after dark‑photon portal scoping
 
 ## <a id="ms-utoe-framework"></a>UTOE Framework Development
 
@@ -771,6 +848,9 @@
 - [VDM-Fluids Corner Testbed](#ms-vdm-fluids-corner)
 - [Extend Walkers to Attention Graphs](#ms-walker-extension-attention)
 - [Memory-Steering System Integration](#ms-memory-steering-bridges)
+- [FRW Continuity Residual Validation (Gravity)](#ms-frw-balance)
+- [Dark Photon Portal Program (Decoherence Portals)](#ms-dark-photon-portal)
+- [Quantum Gravity Bridge (Observational Thread)](#ms-quantum-gravity-bridge)
 
 ### Task Index
 
@@ -800,6 +880,18 @@
 
 <!-- END AUTOSECTION: ROADMAP-INDEX -->
 
+## Proposals Index
+
+Central list of active proposals with links to their source documents. See each proposal for scope, acceptance gates, and artifact tags.
+
+- Collapse Physics: [PROPOSAL_A6_Collapse_v1.md](collapse/PROPOSAL_A6_Collapse_v1.md)
+- Cosmology (FRW Balance): [PROPOSAL_FRW_Balance_v1.md](cosmology/PROPOSAL_FRW_Balance_v1.md)
+- Metriplectic (RD + KG): [PROPOSAL_KG_plus_RD_Metriplectic.md](metriplectic/PROPOSAL_KG_plus_RD_Metriplectic.md)
+- Metriplectic Variant (Symplectic + DG): [PROPOSAL_Metriplectic_SymplecticPlusDG.md](metriplectic/PROPOSAL_Metriplectic_SymplecticPlusDG.md)
+- Conservation vs Balance (RD): [PROPOSAL_RD_Discrete_Conservation_vs_Balance.md](conservation_law/PROPOSAL_RD_Discrete_Conservation_vs_Balance.md)
+- Dark Photons (Decoherence Portals): [PROPOSAL_Decoherence_Portals.md](dark_photons/PROPOSAL_Decoherence_Portals.md)
+
 ## Change Log
 
 - 2024-10-04 • Initial roadmap compiled from repository evidence • 77f055f
+- 2025-10-06 • Added milestones: FRW Continuity Residual (Gravity), Dark Photon Portal program, Quantum Gravity Bridge; backfilled Proposals Index (A6 Collapse, FRW Balance, Metriplectic variants, RD Conservation, Dark Photons)

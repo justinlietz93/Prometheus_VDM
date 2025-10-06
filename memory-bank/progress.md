@@ -2,14 +2,12 @@
 
 ## Done
 
-- Implemented H_energy two-grid norm and ran kgRD-v1b; artifacts pinned
-- Added KG Noether checks (energy/momentum) and dispersion module; ran and logged results
-- Introduced metriplectic structure checks; verified skew(J) and PSD(M)
+- Backfilled ROADMAP with Proposals Index and added milestones for FRW Continuity (gravity), Dark Photon Portal, and Quantum Gravity Bridge
 
 ## Doing
 
-- Summarizing gates and pinned paths; integrating short RESULTS snippet
+- Prepare brief follow-up to link artifacts/tags where needed
 
 ## Next
 
-- Optionally refine J-only energy oscillation diagnostic to multi-step amplitude; otherwise freeze Obj-B as EXPLAINED-BY-DEFECT per gate
+- Optionally add DATA_PRODUCTS anchors for new milestones; integrate gates into VALIDATION_METRICS
