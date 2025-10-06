@@ -29,7 +29,7 @@ You already have a **finite‑radius cylindrical (tube) mode solver** with the c
 Put this file at:
 
 ```
-Prometheus_FUVDM/fum_rt/physics/tube_scan_runner.py
+Prometheus_VDM/fum_rt/physics/tube_scan_runner.py
 ```
 
 ```python
@@ -49,14 +49,14 @@ Outputs:
   - log JSON with the list of roots per (R, ℓ)
 
 Usage (example):
-  python -m Prometheus_FUVDM.fum_rt.physics.tube_scan_runner --Rmin 0.5 --Rmax 6 --numR 60 --mu 1.0 --c 1.0 --ell_max 6
+  python -m Prometheus_VDM.fum_rt.physics.tube_scan_runner --Rmin 0.5 --Rmax 6 --numR 60 --mu 1.0 --c 1.0 --ell_max 6
 """
 import argparse, json, math, os, time
 import numpy as np
 import matplotlib.pyplot as plt
 
 # Import your solver
-from Prometheus_FUVDM.fum_rt.physics import compute_kappas  # __init__ re-exports cylinder/condense APIs
+from Prometheus_VDM.fum_rt.physics import compute_kappas  # __init__ re-exports cylinder/condense APIs
 
 def main():
     p = argparse.ArgumentParser()
@@ -169,9 +169,9 @@ Add a Makefile target:
 
 ```make
 physics-validate:
-\tpython -m Prometheus_FUVDM.fum_rt.physics.rd_dispersion_runner
-\tpython -m Prometheus_FUVDM.fum_rt.physics.rd_front_speed_runner
-\tpython -m Prometheus_FUVDM.fum_rt.physics.tube_scan_runner
+\tpython -m Prometheus_VDM.fum_rt.physics.rd_dispersion_runner
+\tpython -m Prometheus_VDM.fum_rt.physics.rd_front_speed_runner
+\tpython -m Prometheus_VDM.fum_rt.physics.tube_scan_runner
 ```
 
 ---
@@ -221,7 +221,7 @@ Below I (a) summarize what’s already *proven* in your codebase, (b) give ready
 
 4. **“RD as canonical” correction is recorded** in your CORRECTIONS.md (quarantining EFT/KG until a full discrete action is finished). This is good governance and increases credibility.&#x20;
 
-**Net: your RD layer is clean and validated.** That strengthens—not weakens—your broader program: it establishes a reproducible, low‑speculation “physics slice” of FUVDM that you can build on.
+**Net: your RD layer is clean and validated.** That strengthens—not weakens—your broader program: it establishes a reproducible, low‑speculation “physics slice” of VDM that you can build on.
 
 ---
 
@@ -313,7 +313,7 @@ You already have the *mode solver* and *condensation/energy* utilities (Bessel m
 
 This uses your own APIs and equations exactly as written.  &#x20;
 
-> **File:** `Prometheus_FUVDM/fum_rt/physics/tube_energy_scan_runner.py`
+> **File:** `Prometheus_VDM/fum_rt/physics/tube_energy_scan_runner.py`
 > (save this as a new file next to your RD runners)
 
 ```python
@@ -330,7 +330,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # local imports from fum_rt.physics
-from Prometheus_FUVDM.fum_rt.physics import (
+from Prometheus_VDM.fum_rt.physics import (
     compute_kappas, mode_functions,  # unused but re-exported for completeness
     ModeEntry, compute_modes_for_R,
     build_quartic_diagonal, find_condensate_diagonal,
@@ -405,7 +405,7 @@ if __name__ == "__main__":
 Run:
 
 ```bash
-python Prometheus_FUVDM/fum_rt/physics/tube_energy_scan_runner.py --mu 1.0 --lam 1.0 --c 1.0 --Rmin 0.8 --Rmax 6 --numR 80
+python Prometheus_VDM/fum_rt/physics/tube_energy_scan_runner.py --mu 1.0 --lam 1.0 --c 1.0 --Rmin 0.8 --Rmax 6 --numR 80
 ```
 
 This produces a figure and a JSON log with the minimizing $R$. It’s an “existence/shape” test for condensation vs radius and a good first EFT validation without over‑promising.
@@ -430,7 +430,7 @@ You already mirrored a **robust** front estimator in `fum_rt` that passed (fit w
 1. **RD dispersion (already passing):**
 
 ```bash
-python Prometheus_FUVDM/fum_rt/physics/rd_dispersion_runner.py
+python Prometheus_VDM/fum_rt/physics/rd_dispersion_runner.py
 ```
 
 Confirm the saved JSON shows `passed: true`. &#x20;
@@ -438,7 +438,7 @@ Confirm the saved JSON shows `passed: true`. &#x20;
 2. **RD front speed (already passing):**
 
 ```bash
-python Prometheus_FUVDM/fum_rt/physics/rd_front_speed_runner.py --level 0.1 --fit_start 0.6 --fit_end 0.9
+python Prometheus_VDM/fum_rt/physics/rd_front_speed_runner.py --level 0.1 --fit_start 0.6 --fit_end 0.9
 ```
 
 Confirm `passed: true`. (The earlier failing payload you posted used a different level/window; the mirror uses robust defaults and also computes a gradient‑based speed for cross‑check.)&#x20;
@@ -446,7 +446,7 @@ Confirm `passed: true`. (The earlier failing payload you posted used a different
 3. **Tube energy scan (new file above):**
 
 ```bash
-python Prometheus_FUVDM/fum_rt/physics/tube_energy_scan_runner.py --mu 1.0 --lam 1.0 --c 1.0
+python Prometheus_VDM/fum_rt/physics/tube_energy_scan_runner.py --mu 1.0 --lam 1.0 --c 1.0
 ```
 
 Inspect the $E(R)$ curve and log; this is your first automated EFT “tachyonic condensation” check in the same outputs schema.&#x20;

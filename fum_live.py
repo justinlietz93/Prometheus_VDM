@@ -7,7 +7,7 @@ from fum_rt.frontend.app import build_app
 
 
 def main() -> None:
-    ap = argparse.ArgumentParser(description="FUVDM Live Dashboard launcher (compat shim).")
+    ap = argparse.ArgumentParser(description="VDM Live Dashboard launcher (compat shim).")
     ap.add_argument("--runs-root", default="runs", help="Path to runs root directory (default: ./runs)")
     ap.add_argument("--host", default="127.0.0.1", help="Dash host (default: 127.0.0.1)")
     ap.add_argument("--port", type=int, default=8060, help="Dash port (default: 8060)")

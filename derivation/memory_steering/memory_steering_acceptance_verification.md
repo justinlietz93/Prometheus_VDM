@@ -66,7 +66,7 @@ Acceptance Criteria
    - With g = 0 (steering disabled), host system metrics (if coupled) match baseline within numerical tolerance.
 
 Validation Plan
-- Script: Prometheus_FUVDM/derivation/code/physics/memory_steering/memory_steering_acceptance.py
+- Script: Prometheus_VDM/derivation/code/physics/memory_steering/memory_steering_acceptance.py
   - Experiments:
     1) Step response: s steps s0→s1; fit pole p from log residuals; verify M*.
     2) Canonical void: s ≡ 1, g = 1.5 λ; check M_final ≈ 0.6.
@@ -75,8 +75,8 @@ Validation Plan
     5) Lyapunov: constant s, verify ΔF_t ≤ 0 up to numerical jitter.
     6) Reproducibility: duplicate run with same seed, compare sequences.
   - Outputs:
-    - JSON: Prometheus_FUVDM/derivation/code/outputs/logs/memory_steering/memory_steering_acceptance_YYYYMMDDThhmmssZ.json
-    - Figures (PNG): Prometheus_FUVDM/derivation/code/outputs/figures/memory_steering/
+    - JSON: Prometheus_VDM/derivation/code/outputs/logs/memory_steering/memory_steering_acceptance_YYYYMMDDThhmmssZ.json
+    - Figures (PNG): Prometheus_VDM/derivation/code/outputs/figures/memory_steering/
       - step_response_YYYY....png
       - noise_suppression_YYYY....png
       - lyapunov_YYYY....png
@@ -101,7 +101,7 @@ Open Questions / Next Refinements
 Run Instructions
 - Activate venv and run:
   .\venv\scripts\activate
-  python -m Prometheus_FUVDM.derivation.code.physics.memory_steering.memory_steering_acceptance --seed 0 --steps 512 --g 0.12 --lam 0.08
+  python -m Prometheus_VDM.derivation.code.physics.memory_steering.memory_steering_acceptance --seed 0 --steps 512 --g 0.12 --lam 0.08
 - Inspect JSON in code/outputs/logs/memory_steering/ and PNGs in code/outputs/figures/memory_steering/.
 
 Reproducibility Gates

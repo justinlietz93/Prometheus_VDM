@@ -8,7 +8,7 @@ CHANGE REASON:
 - This module is scoped; it does not alter RD canonical sector. It provides the operational path to NS.
 
 References:
-- derivation: [fluids_limit.md](Prometheus_FUVDM/derivation/fluids_limit.md:1)
+- derivation: [fluids_limit.md](Prometheus_VDM/derivation/fluids_limit.md:1)
 - benchmarks: taylor_green_benchmark.py, lid_cavity_benchmark.py
 """
 
@@ -16,8 +16,8 @@ from __future__ import annotations
 import numpy as np
 from dataclasses import dataclass
 
-# Integrate FUVDM void dynamics (bounded, stabilizing)
-# --- FUVDM / Void dynamics (optional) ----------------------------------------
+# Integrate VDM void dynamics (bounded, stabilizing)
+# --- VDM / Void dynamics (optional) ----------------------------------------
 import os, importlib.util
 
 universal_void_dynamics = None
@@ -33,16 +33,16 @@ def _load_module_by_path(path: str, modname: str):
         return mod
     return None
 
-# 1) Preferred: in-repo Prometheus_FUVDM files (package import)
+# 1) Preferred: in-repo Prometheus_VDM files (package import)
 try:
-    from Prometheus_FUVDM.derivation.code.FUM_Void_Equations import universal_void_dynamics as _u
-    from Prometheus_FUVDM.derivation.code.FUM_Void_Debt_Modulation import VoidDebtModulation as _V
+    from Prometheus_VDM.derivation.code.FUM_Void_Equations import universal_void_dynamics as _u
+    from Prometheus_VDM.derivation.code.FUM_Void_Debt_Modulation import VoidDebtModulation as _V
     universal_void_dynamics, VoidDebtModulation = _u, _V
-    VOID_SOURCE = "Prometheus_FUVDM.derivation.code"
+    VOID_SOURCE = "Prometheus_VDM.derivation.code"
 except Exception:
     # 2) Fallback: load by file path from derivation/code/ next to this physics folder
     try:
-        _ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))  # → Prometheus_FUVDM/derivation/code
+        _ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))  # → Prometheus_VDM/derivation/code
         _eq_path = os.path.join(_ROOT, "FUM_Void_Equations.py")
         _mod_path = os.path.join(_ROOT, "FUM_Void_Debt_Modulation.py")
         _eq = _load_module_by_path(_eq_path, "FUM_Void_Equations_local")
@@ -114,7 +114,7 @@ class LBMConfig:
     forcing: tuple[float, float] = (0.0, 0.0)  # body force (fx, fy)
     periodic_x: bool = True
     periodic_y: bool = True
-    # FUVDM void dynamics coupling (bounded stabilizer)
+    # VDM void dynamics coupling (bounded stabilizer)
     void_enabled: bool = True
     void_domain: str = "standard_model"
     void_gain: float = 0.5
@@ -140,7 +140,7 @@ class LBM2D:
         # solid mask for bounce-back (False = fluid, True = solid)
         self.solid = np.zeros((self.ny, self.nx), dtype=bool)
 
-        # FUVDM void dynamics state and metrics
+        # VDM void dynamics state and metrics
         self.t = 0
         self.W = 0.5 * np.ones((self.ny, self.nx), dtype=np.float64)
         self.omega_eff = np.full((self.ny, self.nx), self.omega, dtype=np.float64)
@@ -159,7 +159,7 @@ class LBM2D:
 
         # Fail-fast if user requested void but module not available
         if getattr(self.cfg, "void_enabled", False) and universal_void_dynamics is None:
-            raise RuntimeError("void_enabled=True but universal_void_dynamics not available; ensure Prometheus_FUVDM/derivation/code/FUM_Void_Equations.py is present or install fum_rt/FUM_Demo_original.")
+            raise RuntimeError("void_enabled=True but universal_void_dynamics not available; ensure Prometheus_VDM/derivation/code/FUM_Void_Equations.py is present or install fum_rt/FUM_Demo_original.")
 
         self._set_equilibrium()
 
@@ -316,7 +316,7 @@ class LBM2D:
         """Advance nsteps time steps."""
         for _ in range(nsteps):
             self.moments()
-            # FUVDM void-stabilized omega update
+            # VDM void-stabilized omega update
             if getattr(self.cfg, "void_enabled", False):
                 self._void_update()
             else:

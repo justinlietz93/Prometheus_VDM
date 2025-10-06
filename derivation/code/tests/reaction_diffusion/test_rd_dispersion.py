@@ -13,8 +13,8 @@ _REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")
 if _REPO_ROOT not in sys.path:
     sys.path.insert(0, _REPO_ROOT)
 
-from Prometheus_FUVDM.derivation.code.physics.rd_dispersion_experiment import laplacian_periodic
-from Prometheus_FUVDM.derivation.code.physics.rd_front_speed_experiment import laplacian_neumann
+from Prometheus_VDM.derivation.code.physics.rd_dispersion_experiment import laplacian_periodic
+from Prometheus_VDM.derivation.code.physics.rd_front_speed_experiment import laplacian_neumann
 
 def test_discrete_dispersion_matches_eigenvalues():
     N = 256

@@ -1,6 +1,6 @@
 import numpy as np
 
-from Prometheus_FUVDM.derivation.code.physics.memory_steering.memory_steering_acceptance import run_filter
+from Prometheus_VDM.derivation.code.physics.memory_steering.memory_steering_acceptance import run_filter
 
 
 def test_fixed_point_linear():

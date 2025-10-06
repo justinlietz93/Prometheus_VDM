@@ -1,0 +1,19 @@
+{
+  "timestamp": 1756477394,
+  "sweep_file": "/workspaces/Prometheus_VDM/derivation/outputs/logs/conservation_law/flux_sweep_1756476135.json",
+  "free_symbols": [
+    "tau0"
+  ],
+  "initial_params": [
+    0.0
+  ],
+  "best_params": [
+    0.618034
+  ],
+  "rms_before": 0.1585780180009884,
+  "rms_after": 0.15857801800098834,
+  "optimizer_result": {
+    "success": true,
+    "message": "Optimization terminated successfully."
+  }
+}
