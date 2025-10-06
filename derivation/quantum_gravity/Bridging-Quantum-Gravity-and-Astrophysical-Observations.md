@@ -1,17 +1,9 @@
-# Technical Summary Report
+# **Empirical Framework for the Void Dynamics Model: Bridging Quantum Gravity and Astrophysical Observations**
 
-**Generated on:** October 6, 2025 at 4:58 PM CDT
+**Author**: Justin K. Lietz
+**Date**: October 6, 2025
 
----
-
-## Generated Summary
-
-**I. Title**
-Empirical Framework for the Void Dynamics Model: Bridging Quantum Gravity and Astrophysical Observations
-Author: Justin K. Lietz
-Date: October 6, 2025
-
-This research is protected under a dual-license to foster open academic
+>This research is protected under a dual-license to foster open academic
 research while ensuring commercial applications are aligned with the project's ethical principles.
 Commercial use requires citation and written permission from Justin K. Lietz.
 See LICENSE file for full terms.
