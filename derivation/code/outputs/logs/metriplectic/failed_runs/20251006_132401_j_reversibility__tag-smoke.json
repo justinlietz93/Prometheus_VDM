@@ -1,0 +1,27 @@
+{
+  "cap_ok": false,
+  "dt": 0.02,
+  "fft_roundoff_bound": {
+    "epsilon": 2.220446049250313e-16,
+    "epsilon_sqrtN": 3.552713678800501e-15,
+    "observed_c": 8951366.0,
+    "sqrtN": 16.0
+  },
+  "l2_drifts": {
+    "W1_minus_W0": 2.9683083768716756e-10,
+    "W2_minus_W0": 5.933687430292878e-10
+  },
+  "l2_norms": {
+    "W0": 0.4420212928458738,
+    "W1": 0.442021292549043,
+    "W2": 0.4420212922525051
+  },
+  "passes": false,
+  "passes_strict": false,
+  "rev_inf_error": 3.1801640432149725e-08,
+  "tolerances": {
+    "l2_cap": 1e-10,
+    "rev_inf_cap": 1e-10,
+    "rev_inf_strict": 1e-12
+  }
+}

@@ -1,0 +1,2 @@
+seed,dt,iters,final_residual_inf,backtracks,converged
+0,0.02,10,2.2569121051196905e-13,0,1

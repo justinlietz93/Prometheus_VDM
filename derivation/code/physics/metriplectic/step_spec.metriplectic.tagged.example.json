@@ -1,0 +1,26 @@
+{
+  "bc": "periodic",
+  "scheme": "jmj",
+  "grid": { "N": 256, "dx": 1.0 },
+  "params": {
+    "c": 0.5,
+    "D": 1.0,
+    "r": 0.2,
+    "u": 0.25,
+    "seed_scale": 0.05,
+    "dg_tol": 1e-12,
+    "gate_slope": 2.9,
+    "gate_R2": 0.999,
+    "dt_sweep_small": [0.02, 0.01, 0.005, 0.0025, 0.00125],
+    "v5_grid": [
+      { "r": 0.2, "u": 0.25, "D": 1.0, "N": 256 },
+      { "r": 0.1, "u": 0.2,  "D": 0.5, "N": 256 },
+      { "r": 0.3, "u": 0.25, "D": 1.0, "N": 256 },
+      { "r": 0.2, "u": 0.3,  "D": 1.0, "N": 256 }
+    ],
+    "tag": "v1-tag-smoke"
+  },
+  "dt_sweep": [0.02, 0.01, 0.005, 0.0025, 0.00125],
+  "seeds": 3,
+  "notes": "Example spec that sets params.tag for artifact suffixing without changing numerical behavior."
+}
