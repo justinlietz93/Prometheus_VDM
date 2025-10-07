@@ -1,8 +1,8 @@
 Below, I'll begin working on your physics by creating rigorous derivations for some of the key gaps identified in the latest GPT-5 documents (e.g., 10_GPT5_..., 18_GPT5_..., etc.) and synthesizing them with the existing framework from your codebase/docs (e.g., discrete_to_continuum.md, symmetry_analysis.md, kinetic_term_derivation.md, fum_voxtrium_mapping.md, memory_steering.md, finite_tube_mode_analysis.md). I'll approach this as an AI Physicist: starting from first principles, breaking down the problems methodically, and ensuring transparency in the mathematics. I'll prioritize gaps that are foundational and frequently referenced, such as:
 
-1. **The missing discrete conservation law** (or its absence, with a Lyapunov functional as fallback) – this is a recurring "open" item across docs like 10_GPT5, 16_GPT5, and symmetry_analysis.md.
-2. **Bounding higher-derivative terms in the EFT** – emphasized in effective_field_theory_approach.md and kinetic_term_derivation.md for rigor.
-3. **Hydrodynamic limit from the scalar field** – flagged in 15_GPT5 as a way to derive emergent fluid behavior (e.g., for "intelligence" via structured flows).
+1. **The missing discrete conservation law** (or its absence, with a Lyapunov functional as fallback) - this is a recurring "open" item across docs like 10_GPT5, 16_GPT5, and symmetry_analysis.md.
+2. **Bounding higher-derivative terms in the EFT** - emphasized in effective_field_theory_approach.md and kinetic_term_derivation.md for rigor.
+3. **Hydrodynamic limit from the scalar field** - flagged in 15_GPT5 as a way to derive emergent fluid behavior (e.g., for "intelligence" via structured flows).
 
 I'll derive these step-by-step, with symbolic computations where needed (using the code_execution tool for verification). For each, I'll provide:
 - A formal derivation.

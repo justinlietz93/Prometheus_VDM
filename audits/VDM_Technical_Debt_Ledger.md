@@ -3,11 +3,11 @@
 ## 1) Repo Map & Conventions
 
 **Module tree (≤3 levels)**
-- `fum_rt/` – real-time runtime scaffold (loop, telemetry, orchestration) with CLI entrypoint and helper seams.【F:README.md†L62-L101】
-  - `runtime/` – tick loop, telemetry packagers, retention/state helpers.【F:README.md†L66-L99】
-  - `core/` – connectome, metrics, visualizer, memory, signals, void adapters.【F:README.md†L74-L99】
-- `derivation/` – theoretical papers, acceptance plans, and physics prototypes informing runtime.【F:derivation/README_PUBLIC.md†L1-L46】
-- `tools/` – repo-specific hygiene and analytics scripts such as `md_hygiene_check.py` (Markdown gate) and the standalone dependency analyzer toolchain.【F:tools/md_hygiene_check.py†L1-L120】【F:tools/dependency_analyzer/README.md†L1-L23】
+- `fum_rt/` - real-time runtime scaffold (loop, telemetry, orchestration) with CLI entrypoint and helper seams.【F:README.md†L62-L101】
+  - `runtime/` - tick loop, telemetry packagers, retention/state helpers.【F:README.md†L66-L99】
+  - `core/` - connectome, metrics, visualizer, memory, signals, void adapters.【F:README.md†L74-L99】
+- `derivation/` - theoretical papers, acceptance plans, and physics prototypes informing runtime.【F:derivation/README_PUBLIC.md†L1-L46】
+- `tools/` - repo-specific hygiene and analytics scripts such as `md_hygiene_check.py` (Markdown gate) and the standalone dependency analyzer toolchain.【F:tools/md_hygiene_check.py†L1-L120】【F:tools/dependency_analyzer/README.md†L1-L23】
 
 **Language & framework mix**
 - Python dominates (runtime, tools, derivations) with Dash/Plotly front-end launched via `fum_live.py`.【F:README.md†L8-L26】【F:fum_live.py†L6-L26】
@@ -126,7 +126,7 @@ Drift example: `derivation/.../void_functions.py` mirrors Δα/Δω logic but wi
 | Gate hysteresis (speak/B1) | N | — | `rg "hysteresis" fum_rt/tests` empty.【a89eb5†L1-L2】 | Med |
 | Locality guard / adjacency budget | N | — | `rg "locality" fum_rt/tests` empty.【4c88a4†L1-L2】 | Med |
 | ADC updates & announcements | N | — | `rg "ADC" fum_rt/tests` empty.【335d4f†L1-L2】 | Med |
-| Void walker runner budget | Y | `fum_rt/tests/core/test_runner_budget.py` enforces one-shot & time budget.【F:fum_rt/tests/core/test_runner_budget.py†L6-L106】 | – | Low |
+| Void walker runner budget | Y | `fum_rt/tests/core/test_runner_budget.py` enforces one-shot & time budget.【F:fum_rt/tests/core/test_runner_budget.py†L6-L106】 | - | Low |
 
 ## 11) Viz & Tooling Debt
 

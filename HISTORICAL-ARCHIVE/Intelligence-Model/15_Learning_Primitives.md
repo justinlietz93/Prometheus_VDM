@@ -10,25 +10,25 @@ I’m giving you three things:
 
 # 1) Curriculum ladder (what to teach, when to promote)
 
-Think “gates” that open only when the graph proves it has reorganized. Each stage uses void‑native metrics only (no tokens, no global scans). All thresholds below are sane defaults for 1k–100k neurons; you’ll tune once you watch a couple runs.
+Think “gates” that open only when the graph proves it has reorganized. Each stage uses void‑native metrics only (no tokens, no global scans). All thresholds below are sane defaults for 1k-100k neurons; you’ll tune once you watch a couple runs.
 
 ### Stage P0 — Primitives (symbols, rhythms, small patterns)
 
-**Input:** single symbols, 2–3‑symbol rhythms, tiny arithmetic identities, micro mazes.
+**Input:** single symbols, 2-3‑symbol rhythms, tiny arithmetic identities, micro mazes.
 **Goal:** stabilize a coherent substrate that can *reliably replay* and *locally generalize* primitives.
-**Promotion gates (hold all for ≥ M status intervals, e.g., 30–60s):**
+**Promotion gates (hold all for ≥ M status intervals, e.g., 30-60s):**
 
 * Cohesion: `cohesion_components → 1` and stays there ≥T\_hold.
 * Coverage: `vt_coverage ≥ 0.35` *and* rising slope ≥ ε (e.g., 0.001/s).
 * Complexity: `complexity_cycles` monotonic-ish ↑, no stalls ≥ T\_hold; occasional **B1 spikes** (z ≥ 3) appear and decay (plasticity + consolidation).
 * SIE: rolling `sie_valence_01 ≥ 0.55` (novelty > habituation) and not oscillating wildly.
-* ADC: territories stabilize (2–8), boundaries non‑explosive (≤ 1 per 10s).
+* ADC: territories stabilize (2-8), boundaries non‑explosive (≤ 1 per 10s).
 
 **If not met:** reduce habituation τ a bit, increase walkers/hops, open domain modulation slightly.
 
 ---
 
-### Stage P1 — Blocks (compositions of 2–6 primitives)
+### Stage P1 — Blocks (compositions of 2-6 primitives)
 
 **Input:** short sequences/forms (e.g., “a+b=c”, small maze motifs, simple logical forms).
 **Goal:** robust binding and reuse (walkers repeatedly hit the same sub‑loops).
@@ -333,7 +333,7 @@ python -m fum_rt.run_nexus \
   --checkpoint-every 60 --checkpoint-format h5
 ```
 
-You’ll see it begin in **P0**; after \~1–3 minutes it should promote to **P1** (watch status payloads: `director_stage: P1:blocks`). When you type into stdin, your text is re‑encoded by UTE; self‑speak will fire on topology spikes + positive valence.
+You’ll see it begin in **P0**; after \~1-3 minutes it should promote to **P1** (watch status payloads: `director_stage: P1:blocks`). When you type into stdin, your text is re‑encoded by UTE; self‑speak will fire on topology spikes + positive valence.
 
 ### 100k sparse rehearsal (headless)
 
@@ -355,7 +355,7 @@ python -m fum_rt.run_nexus \
 * **ADC** territories stabilize; boundary churn quiets between bursts.
 * **Self‑speak** explains itself (we include a “why”: b1\_z, territory IDs, last observation kinds).
 
-If gates stall for > 2–3 minutes at P0/P1, don’t “force.” Give it fresh stimuli (new primitives) or allow a little more domain modulation (from 0.05 → 0.08) and increase walkers/hops.
+If gates stall for > 2-3 minutes at P0/P1, don’t “force.” Give it fresh stimuli (new primitives) or allow a little more domain modulation (from 0.05 → 0.08) and increase walkers/hops.
 
 ---
 

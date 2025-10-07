@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Taylor–Green viscosity recovery unit test (fluid_dynamics domain).
+Taylor-Green viscosity recovery unit test (fluid_dynamics domain).
 
 Pathing rule:
 - Tests live under derivation/code/tests/<domain>/

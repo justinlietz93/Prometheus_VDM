@@ -38,7 +38,7 @@ Classification: Runtime-only
 ## Verification
 
 * **No-dense guarantee:** Starting the runtime **without** `FORCE_DENSE` must succeed; importing dense `Connectome` should still raise the “validation-only” error → **PASS** when the error text appears if someone tries it.&#x20;
-* **Sparse edits only:** In a run with `N≈5–50k`, confirm:
+* **Sparse edits only:** In a run with `N≈5-50k`, confirm:
 
   * **Adaptive pruning** counters tick (`_last_pruned_count>0` at least once) with **no** global matrix sweep.&#x20;
   * **Bridging** uses **`bridge_budget`** (<=8 per tick by default), not scan-all.&#x20;
@@ -74,7 +74,7 @@ Classification: Runtime-only
 
 * The dense routine shows the **shape** (bridge on S\_ij and prune by mean-based threshold), but remains a **dense** artifact; we keep it off in sparse and do all edits through the sparse path + GDSP actuator.&#x20;
 
-If you want, I’ll draft the exact 12–20-line **GDSP gate** block for your loop with the env/phase knobs and territory sampling call — all sparse and scan-free.
+If you want, I’ll draft the exact 12-20-line **GDSP gate** block for your loop with the env/phase knobs and territory sampling call — all sparse and scan-free.
 
 
 
@@ -124,10 +124,10 @@ Classification: Runtime-only
 * **1) Neuron classes with target‑degree bands (k) + rarity.**
   Define a small set of neuron classes with explicit targets and rarity. The runtime enforces *per‑neuron* `k_target` (in+out capacities) and per‑class plasticity schedules; the growth/prune actuators keep each neuron within its band using only local neighbor sets (no global scans).
 
-  * **Relay:** common; `k_target=3–4`; fast decay; high exploration.
-  * **Interneuron (Inhibitory):** common; `k_target=6–12`; medium decay; stabilizes activity.
-  * **Integrator:** less common; `k_target=20–60`; slow decay; memory retention.
-  * **Purkinje‑like:** rare; `k_target≈200–500` (bounded by territory size); very slow decay; heavy fan‑in.
+  * **Relay:** common; `k_target=3-4`; fast decay; high exploration.
+  * **Interneuron (Inhibitory):** common; `k_target=6-12`; medium decay; stabilizes activity.
+  * **Integrator:** less common; `k_target=20-60`; slow decay; memory retention.
+  * **Purkinje‑like:** rare; `k_target≈200-500` (bounded by territory size); very slow decay; heavy fan‑in.
     Rarity is enforced by **growth budgets per class** (e.g., ≤0.5% Purkinje‑like of N). All selection is **territory‑scoped** to stay sub‑quadratic.&#x20;
 
 * **2) Void‑walker tags → bus → structural votes (no polling).**
@@ -143,7 +143,7 @@ Classification: Runtime-only
   Map your list to concrete walker types / gates:
 
   * **Use‑it‑or‑lose‑it:** walker maintains `use_score_ij` (EMA of co‑spikes) → low‑use edges accrue `tag.prune_synapse`.
-  * **Microglia–C3 analogue:** complement‑tag walker marks weak/erratic synapses with `tag.C3` → microglia walker consumes `tag.C3` → emits `tag.prune_synapse`.
+  * **Microglia-C3 analogue:** complement‑tag walker marks weak/erratic synapses with `tag.C3` → microglia walker consumes `tag.C3` → emits `tag.prune_synapse`.
   * **Semaphorin‑like retraction:** boundary‑gradient walker tags axon branches in specific territories for branch retraction (`tag.retract_axonal_branch` → translates to local out‑degree decrement and pruning budget).
   * **Excitotoxicity sentinel:** high firing‑rate + “calcium proxy” (integrated depolarization) triggers `tag.cull_neuron` with cooldown.
   * **Ischemia surrogate:** track per‑territory “ATP debt” = (spike work − supply budget). Sustained debt emits `tag.cull_neuron` with higher threshold; immediate `tag.prune_synapse` on the most costly edges first.
@@ -260,7 +260,7 @@ JSON events under `runs/<ts>/events.jsonl` with `struct.actuator.{pruned,bridged
 2. Implement **Tag schema**, **Scoreboard**, and **GDSPSparseActuator**; wire the loop.
 3. Turn on **Hebbian‑style strengthening + decay** kernel updates (CSR‑local).
 4. Add **acceptance tests** above (particularly **No‑dense**, **Budget**, **Use‑it‑or‑lose‑it**, **Bridge/repair**).
-5. Add 2–3 **walker types** (C3/microglia, semaphorin, excitotoxicity) that publish tags with realistic TTLs and weights.
+5. Add 2-3 **walker types** (C3/microglia, semaphorin, excitotoxicity) that publish tags with realistic TTLs and weights.
 
 ---
 
@@ -285,7 +285,7 @@ Map your list to concrete walker types / gates:
 
 Use‑it‑or‑lose‑it: walker maintains use_score_ij (EMA of co‑spikes) → low‑use edges accrue tag.prune_synapse.
 
-Microglia–C3 analogue: complement‑tag walker marks weak/erratic synapses with tag.C3 → microglia walker consumes tag.C3 → emits tag.prune_synapse.
+Microglia-C3 analogue: complement‑tag walker marks weak/erratic synapses with tag.C3 → microglia walker consumes tag.C3 → emits tag.prune_synapse.
 
 Semaphorin‑like retraction: boundary‑gradient walker tags axon branches in specific territories for branch retraction (tag.retract_axonal_branch → translates to local out‑degree decrement and pruning budget).
 
@@ -334,7 +334,7 @@ Classification: Runtime-only
 * **Actuator effect:** prune only those (i,j) tagged, up to `PRUNE_BUDGET` per tick.
 * **This implements** “prune infrequent, reinforce frequent” sparsely.
 
-### 2) Microglia–C3 analogue (selective pruning)
+### 2) Microglia-C3 analogue (selective pruning)
 
 * **Local metric:** volatility & weakness flags on (i,j): high variance, low mean `w_ij`.
 * **Walkers:**

@@ -10,9 +10,9 @@ Got ‘em. Here’s the quick read on your options-probe.
 
 * **Diminishing returns with budget (slip=0):** +2 steps adds ~1.63, 1.08, 0.69, 0.57 bits (2→4→6→8→10).
 * **Penalty of noise (budget=10):** each +0.1 slip costs ~1.59, 1.37, 1.14 bits (from 0.0→0.3).
-* **Feasibility frontiers:** to reach ≥3 bits you need budget ≥ {2,4,8,10} for slip {0.0,0.1,0.2,0.3}. For ≥4 bits: {4,6,10,–}. There’s a clear “dead zone” (upper-left) where useful options collapse.
+* **Feasibility frontiers:** to reach ≥3 bits you need budget ≥ {2,4,8,10} for slip {0.0,0.1,0.2,0.3}. For ≥4 bits: {4,6,10,-}. There’s a clear “dead zone” (upper-left) where useful options collapse.
 * **Yield (useful/reachable) at 4 actuators:**
-  slip 0.1 ≈ 0.27–0.33, slip 0.2 ≈ 0.09–0.13, slip 0.3 ≈ 0–0.06; longer budgets claw back some yield under noise.
+  slip 0.1 ≈ 0.27-0.33, slip 0.2 ≈ 0.09-0.13, slip 0.3 ≈ 0-0.06; longer budgets claw back some yield under noise.
 
 ### Scaling with actuators (same grid/goal)
 
@@ -63,7 +63,7 @@ Yes—this is a clean trade-off surface. I pulled your `options.csv`, filtered t
   • at `p=0.30, E=6`: **εₚ ≈ −0.54** (10% slip bump → ~5.4% V loss).
   • at `p=0.10, E=10`: **εₚ ≈ −0.027** (more forgiving).
 
-* **Operational envelope recommendation (4 actuators):** if you want **≥5 useful bits** under **up to 10% slip**, plan for **`E ≥ 8`**. If you’re chasing **≥6–7 bits**, you basically need **perfect actuators** (or a different design knob).
+* **Operational envelope recommendation (4 actuators):** if you want **≥5 useful bits** under **up to 10% slip**, plan for **`E ≥ 8`**. If you’re chasing **≥6-7 bits**, you basically need **perfect actuators** (or a different design knob).
 
 You’ve got the underlying tables and curves to verify/adjust:
 
@@ -177,7 +177,7 @@ Translate the picture into **three regime gates** your Agency/Consciousness fiel
    Action: let walkers branch more; raise exploration bias; log discoveries.
 
 2. **BUDGET-LIMITED**
-   Condition: **~8–30 good endings** (≈ “3–5 bits”) **and** slip ≤ 0.1.
+   Condition: **~8-30 good endings** (≈ “3-5 bits”) **and** slip ≤ 0.1.
    Action: grant a few more steps; keep policy as-is.
 
 3. **NOISE-LIMITED**

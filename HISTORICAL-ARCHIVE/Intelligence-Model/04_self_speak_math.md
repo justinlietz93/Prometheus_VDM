@@ -12,7 +12,7 @@ Below you’ll get:
 
 # Run plan (1000 neurons, self‑speak on)
 
-> Goal: run 5–10 minutes @ 10 Hz, ingest math text continuously, let SIE + topology‑spike gating decide when to “speak,” then take over interactively (questions via stdin) while it keeps learning.
+> Goal: run 5-10 minutes @ 10 Hz, ingest math text continuously, let SIE + topology‑spike gating decide when to “speak,” then take over interactively (questions via stdin) while it keeps learning.
 
 ## 0) Files you already have (from the repo/agent)
 
@@ -115,7 +115,7 @@ python -m fum_rt.run_nexus \
   <(cat math_corpus.txt -)
 ```
 
-(You can push to 200k–500kN on your box comfortably; sparse mode is designed for it.)
+(You can push to 200k-500kN on your box comfortably; sparse mode is designed for it.)
 
 ---
 

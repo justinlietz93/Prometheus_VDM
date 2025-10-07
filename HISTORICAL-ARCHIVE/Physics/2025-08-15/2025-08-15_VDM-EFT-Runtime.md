@@ -95,7 +95,7 @@ $f_{\rm inj}\equiv[p_{\rm DM}(\varepsilon_h/V_c)\dot S_{\rm hor}]/(3H\rho_{\rm D
 
 ### Context cross‑checks against your living notes
 
-The above closes the exact kinetic normalization and continuum limit (Sections 1–2), the EFT program (Section 3), the tube appendix (Section 3/5), the negative discrete‑Hamiltonian result + invariants (Section 4), and the Voxtrium FRW banner (Section 5). This is consistent with your consolidated draft and “single derivation+code plan.”        &#x20;
+The above closes the exact kinetic normalization and continuum limit (Sections 1-2), the EFT program (Section 3), the tube appendix (Section 3/5), the negative discrete‑Hamiltonian result + invariants (Section 4), and the Voxtrium FRW banner (Section 5). This is consistent with your consolidated draft and “single derivation+code plan.”        &#x20;
 
 ---
 
@@ -339,7 +339,7 @@ def convolve_retarded(s_loc_time_radial: np.ndarray, K: np.ndarray) -> np.ndarra
 
 ### F) Steering layer (already in your repo plan)
 
-You already have the minimal memory‑steering law and its graph discretization (write–decay–spread PDE + softmax routing). Keep it orthogonal to the conservative $\phi$ sector, schedule the slow step $dt_{\text{slow}} \ll dt$, and instrument the two falsifiable signatures: **junction logistic collapse** and **curvature scaling** vs $\Theta |\nabla m|$. &#x20;
+You already have the minimal memory‑steering law and its graph discretization (write-decay-spread PDE + softmax routing). Keep it orthogonal to the conservative $\phi$ sector, schedule the slow step $dt_{\text{slow}} \ll dt$, and instrument the two falsifiable signatures: **junction logistic collapse** and **curvature scaling** vs $\Theta |\nabla m|$. &#x20;
 
 ---
 

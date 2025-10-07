@@ -10,11 +10,11 @@ It explains that a working pre‑release exists, shows how outsiders can *evalua
 The **Void Dynamics Model (VDM)** is a physics‑grounded, spiking, self‑organizing intelligence architecture. At a high level:
 
 * **Local substrate:** sparse spiking ELIF neurons learn by **Resonance‑Enhanced Valence‑Gated Synaptic Plasticity (RE‑VGSP)**.
-* **Global guidance:** a **Self‑Improvement Engine (SIE)** computes a composite reward (TD error + novelty – habituation + stability) and gates learning.
+* **Global guidance:** a **Self‑Improvement Engine (SIE)** computes a composite reward (TD error + novelty - habituation + stability) and gates learning.
 * **Physical adaptation:** a **Synaptic Actuator (GDSP)** grows, prunes, and repairs the connectome under introspective signals (EHTP).
 * **Emergent map:** territories/“domains” form and reconfigure; active cartography keeps global control light while the emergent core does the work.
 
-For an architectural overview and definitions, see the internal **How\_The\_FUM\_Works** docs (Units 1–3), which cover ELIF, RE‑VGSP, SIE, GDSP, EHTP, sparsity targets, and validation landmarks.&#x20;
+For an architectural overview and definitions, see the internal **How\_The\_FUM\_Works** docs (Units 1-3), which cover ELIF, RE‑VGSP, SIE, GDSP, EHTP, sparsity targets, and validation landmarks.&#x20;
 
 ---
 
@@ -66,12 +66,12 @@ You can share the **figures** and the **Preview notebooks**. Reviewers can:
 2. **Optionally** connect to a private wheel to run live, bounded sims under **Guardian Shield** (see below).
 
 > **Guardian Shield (preview defaults)**
-> – offline by default (no network/file writes)
-> – capped steps and population size
-> – read‑only memory maps; weight export disabled
-> – reward terms clamped/normalized; TD learning bounded
-> – EHTP “deep scan” disabled by default; only shallow health checks
-> – audit log is always on
+> - offline by default (no network/file writes)
+> - capped steps and population size
+> - read‑only memory maps; weight export disabled
+> - reward terms clamped/normalized; TD learning bounded
+> - EHTP “deep scan” disabled by default; only shallow health checks
+> - audit log is always on
 
 ---
 
@@ -188,7 +188,7 @@ Not yet. The preview is evaluation‑oriented. Select components may be opened l
 It lets evaluators exercise the system *without* access to source or reversible traces and lets us enforce runtime guardrails.
 
 **Where can I learn the underlying theory?**
-The **How\_The\_FUM\_Works** corpus (Units 1–3) describes ELIF, RE‑VGSP, SIE, GDSP, EHTP, sparsity, and stability controls; Units 4–5 outline lifecycle, scaling, and validation criteria.&#x20;
+The **How\_The\_FUM\_Works** corpus (Units 1-3) describes ELIF, RE‑VGSP, SIE, GDSP, EHTP, sparsity, and stability controls; Units 4-5 outline lifecycle, scaling, and validation criteria.&#x20;
 
 ---
 

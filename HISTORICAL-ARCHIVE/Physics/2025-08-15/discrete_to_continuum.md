@@ -84,7 +84,7 @@ Crucially, the second-order time derivative in the continuum equation is not imp
 $$
 \mathcal{L} \;=\; \tfrac{1}{2}(\partial_t \phi)^2 \;-\; J a^2\,(\nabla \phi)^2 \;-\; V(\phi).
 $$
-The Euler–Lagrange equation gives
+The Euler-Lagrange equation gives
 $$
 \partial_t^2 \phi \;-\; c^2 \nabla^2 \phi \;+\; V'(\phi) \;=\; 0,\qquad c^2 \equiv 2 J a^2,
 $$
@@ -140,7 +140,7 @@ $$
 m_{\text{eff}}^2 \;=\; \left.\frac{d^2 V}{d\phi^2}\right|_{\phi=\pm v} \;=\; 2\,\mu^2.
 $$
 
-The earlier cubic–quadratic structure in our EOM (the $\alpha\,\phi^2 - (\alpha - \beta)\,\phi$ terms) is then treated as a small asymmetry (a “cubic tilt”) superposed on this bounded baseline; the precise mapping is made in Section 6.
+The earlier cubic-quadratic structure in our EOM (the $\alpha\,\phi^2 - (\alpha - \beta)\,\phi$ terms) is then treated as a small asymmetry (a “cubic tilt”) superposed on this bounded baseline; the precise mapping is made in Section 6.
 
 ---
 

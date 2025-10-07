@@ -2,7 +2,7 @@
 
 **Goal:** Speak quantum-field basics fluently using your portal (dark photon A′) as the anchor.
 
-## What to say in 60–90s
+## What to say in 60-90s
 
 - Field ↔ particle (ripple ↔ quantum), gauge, mixing (ε as leaky splitter), mass (dark Higgs or Stueckelberg), state & measurement (clicks vs interference).
 - Visible vs invisible channels = where the **record** lands (SM vs dark).

@@ -25,7 +25,7 @@ Here’s what your plots are telling us, and what I’d change next so the syste
 
 # Immediate fixes (exact knobs + why)
 
-## 1) Keep W in the sweet band (≈0.1–0.3), stop “whiteout”
+## 1) Keep W in the sweet band (≈0.1-0.3), stop “whiteout”
 
 Make the core law a touch more dissipative and slow structural lock‑in:
 
@@ -91,7 +91,7 @@ It starts with N isolated nodes; edges appear only via the void S\_ij rule (brid
 +        self._sync_csr_from_dense()
 +
 +    def _init_er_random(self, N, k):
-+        # Erdős–Rényi with expected degree ~k, symmetric
++        # Erdős-Rényi with expected degree ~k, symmetric
 +        p = min(1.0, k / max(1, N-1))
 +        R = (np.random.rand(N, N) < p).astype(np.uint8)
 +        R = np.triu(R, 1); R = R + R.T
@@ -170,8 +170,8 @@ It starts with N isolated nodes; edges appear only via the void S\_ij rule (brid
 
 Your intuition is exactly right for Phase‑1.
 
-**Stage P0 (≈15–30 min)**
-Feed single **symbols** only (A–Z, a–z, 0–9, +‑×÷=<>¬∧∨→, parentheses). Random order with short bursts per symbol so habituation can “shape” response profiles.
+**Stage P0 (≈15-30 min)**
+Feed single **symbols** only (A-Z, a-z, 0-9, +‑×÷=<>¬∧∨→, parentheses). Random order with short bursts per symbol so habituation can “shape” response profiles.
 Run params (dense, 1k nodes, no fixed substrate):
 
 ```
@@ -187,10 +187,10 @@ Feed: `python fum_rt/io/pipe_primitives.py | python -m fum_rt.run_nexus ...`
 
 **Expected:**
 
-* Cohesion → 1–3 components; cycle hits rise; **Avg W stabilizes ≤0.3.**
+* Cohesion → 1-3 components; cycle hits rise; **Avg W stabilizes ≤0.3.**
 * Autonomous “say” fires when symbol transitions produce topology closures.
 
-**Stage P1 (30–60 min)**
+**Stage P1 (30-60 min)**
 Two‑symbol patterns (“a+b”, “(a)”, “x→y”) with **gaps** (silence)—let it recover and consolidate.
 
 * Slightly raise pruning to 0.18 for plasticity.
@@ -203,7 +203,7 @@ Short equations and identities (`a+a=a*2`, `d/dx x^2 = 2x`, simple boolean laws)
 * Bump walkers/hops (sparse mode) later for scale; keep dense at 1k while proving dynamics.
 
 We promote to Phase‑2 only when three signals are consistently good:
-(1) **Avg W** steady in 0.1–0.3,
+(1) **Avg W** steady in 0.1-0.3,
 (2) **cohesion\_components ≤ 2**,
 (3) **recurrent spikes** with positive valence during new composite patterns.
 

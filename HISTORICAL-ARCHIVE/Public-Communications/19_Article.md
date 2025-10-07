@@ -34,14 +34,14 @@ Void Dynamics defines a **continuous‑time field** over the connectome. Each ne
 
 # 5) Next step and long‑term arc
 
-**Immediate next step (2–6 weeks).**
+**Immediate next step (2-6 weeks).**
 
 * Bring **UTE v1** from syntactic to **semantic**: map words/symbols to UKG regions using novelty/reward‑aligned teacher signals; add simple grounding loops (e.g., math parsing → UKG programs).
 * Ship **UTD v1**: read active UKG subgraphs and serialize them to text/tool calls; start simple (templates + beam over concept paths) and let the void rule tune it.
 * Keep the **SIE** loop online (TD‑error, novelty, habituation, stability) for continual improvement; persist the full **Engram** journal (HDF5) for replay/analysis.
 * Accelerate **B1 persistence & pruning** with void‑guided sampling: estimate topology on the *frontier* the field is actually using rather than the whole graph.
 
-**12–18 months.**
+**12-18 months.**
 
 * Scale neurons (≥10⁶), add multi‑agent “bundles” for parallel exploration, spin up domain‑specific UKG lobes (robotics, markets, biomed).
 * Release a **Nexus‑hosted API** for real‑time ingestion/actuation; on‑prem binaries for regulated customers.
@@ -81,7 +81,7 @@ Recommended strategy: file provisionals on the update operator, traversal cost, 
 
 ### Quantifying the advantage
 
-* **Search cost**: void‑guided expansion prunes 90–99% of the graph on typical tasks (observed in internal runs), bringing effective expansions/decision near *log‑like* in UKG size.
+* **Search cost**: void‑guided expansion prunes 90-99% of the graph on typical tasks (observed in internal runs), bringing effective expansions/decision near *log‑like* in UKG size.
 * **Data/compute efficiency**: because skills are composed, adding a related skill costs a fraction of first‑skill training time (reuse factor grows with UKG maturity).
 * **Latency**: always‑on field means reaction time is bounded by a few micro‑steps; no cold‑start decoding.
 * **Audit**: the Engram journal gives causal, replayable histories—something black‑box models struggle to provide.
@@ -113,4 +113,4 @@ So, you don’t toggle “math” versus “robotics.” You tune a few homeosta
 
 > **Neuroca FUM** is a real‑time, self‑organizing AI whose behavior and learning are governed by a single continuous‑time field law (“Void Dynamics”). The system encodes, searches, and decides by flowing along its own energy landscape; it prunes and specializes as it goes, leaving behind reusable structure in a Unified Knowledge Graph. Because each new skill is routed through what already exists, capability compounds faster than cost—the essence of its **inverse scaling law**.
 
-If you want, I can shape this into a 1,200–1,800‑word article with figures (field flow sketch, inverse‑scaling curve, UKG snapshots) and a brief sidebar noting the physics analogy to unstable modes condensing into a new, stable ground state, with a public reference for readers who enjoy that angle.&#x20;
+If you want, I can shape this into a 1,200-1,800‑word article with figures (field flow sketch, inverse‑scaling curve, UKG snapshots) and a brief sidebar noting the physics analogy to unstable modes condensing into a new, stable ground state, with a public reference for readers who enjoy that angle.&#x20;

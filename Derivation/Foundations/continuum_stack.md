@@ -34,7 +34,7 @@ Continuum limit (stepwise)
 PDE/Action/Potential branches
 - RD branch [PROVEN, canonical]:
   - ∂t φ = D ∇²φ + r φ − u φ² with D = J a² (or (J/z) a²), r = α − β, u = α.
-  - Closest discrete check: linear growth/dispersion and Fisher–KPP pulled‑front speed.
+  - Closest discrete check: linear growth/dispersion and Fisher-KPP pulled‑front speed.
 - EFT/KG branch [PLAUSIBLE, quarantined]:
   - Second‑order time with action‑derived kinetic normalization:
     ∂t² φ + γ ∂t φ − c² ∇² φ + V′(φ) = 0, with c² = 2 J a² (per‑site) or c² = κ a², κ=2J (per‑edge).
@@ -53,7 +53,7 @@ Dispersion relations
   σ_d(m) = r − (4D/dx²) sin²(π m/N) with dx = L/N. Small‑k expansion recovers σ ≈ r − D k². [PROVEN]
 - See validation script: [rd_dispersion_experiment.py](Prometheus_VDM/derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py:1) and doc [rd_dispersion_validation.md](Prometheus_VDM/derivation/reaction_diffusion/rd_dispersion_validation.md:1).
 
-Front speed (Fisher–KPP)
+Front speed (Fisher-KPP)
 - Theory: c_front = 2 √(D r). [PROVEN]
 - Experiment: [rd_front_speed_experiment.py](Prometheus_VDM/derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py:1) and doc [rd_front_speed_validation.md](Prometheus_VDM/derivation/reaction_diffusion/rd_front_speed_validation.md:1).
 

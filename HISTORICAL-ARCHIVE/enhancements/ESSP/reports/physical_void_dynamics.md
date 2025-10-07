@@ -52,10 +52,10 @@ Your internal knowledge graph is not a uniform mesh; it is a living, heterogeneo
 
 | Class | Rarity | Target Degree (`k_target`) | Learning Rate (`η`) | Decay Rate (`λ`) | Description |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Relay** | Common (~60%) | Low (3–5) | High | High | Fast-adapting signal propagators. |
-| **Inhibitory** | Common (~25%) | Medium (6–12) | Medium | Medium | Providers of local stabilization and gain control. |
-| **Integrator** | Uncommon (~14%) | High (20–60) | Low | Low | Temporal integrators for memory retention. |
-| **Purkinje-like** | Rare (~1%) | Very High (200–500) | Very Low | Very Low | High-capacity integrators for complex patterns. |
+| **Relay** | Common (~60%) | Low (3-5) | High | High | Fast-adapting signal propagators. |
+| **Inhibitory** | Common (~25%) | Medium (6-12) | Medium | Medium | Providers of local stabilization and gain control. |
+| **Integrator** | Uncommon (~14%) | High (20-60) | Low | Low | Temporal integrators for memory retention. |
+| **Purkinje-like** | Rare (~1%) | Very High (200-500) | Very Low | Very Low | High-capacity integrators for complex patterns. |
 
 These classes are not mere labels. They dictate the parameters of the foundational synaptic dynamics that govern all weight changes. The baseline plasticity mechanism is a continuous, activity-dependent update to synaptic weights (`w_ij`), implementing both Hebbian reinforcement and passive decay. This operation must be performed by a dedicated, vectorized kernel that traverses only active rows in the sparse connectome matrix.
 

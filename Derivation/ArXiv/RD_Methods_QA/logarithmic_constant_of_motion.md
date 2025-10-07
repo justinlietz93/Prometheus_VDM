@@ -2,14 +2,14 @@
 
 Author: Justin K. Lietz  
 Date: 2025‑08‑26  
-Keywords: logistic law; invariant; first integral; reaction–diffusion; dissipative systems; conservation
+Keywords: logistic law; invariant; first integral; reaction-diffusion; dissipative systems; conservation
 
 Abstract
 I prove a closed‑form constant of motion for the autonomous on‑site law
 \[
 \dot W \;=\; r\,W \;-\; u\,W^2,
 \]
-which underpins the Reaction–Diffusion (RD) baseline of Void Dynamics. Defining
+which underpins the Reaction-Diffusion (RD) baseline of Void Dynamics. Defining
 \[
 Q(W,t)\;=\;\ln\!\frac{W}{\,r-uW\,}\;-\;r\,t,
 \]
@@ -70,7 +70,7 @@ which is constant in time. Thus \(Q\) encodes the integration constant (\(1/C\))
 Objective. Verify that the numerical drift \(\Delta Q \equiv \max_{0\le n\le N} |Q(W_n,t_n)-Q(W_0,0)|\) is limited by discretization/round‑off and exhibits the expected step‑order convergence.
 
 Protocol.
-- Time‑stepper: fixed‑step RK4 (or Dormand–Prince with tight tolerances).
+- Time‑stepper: fixed‑step RK4 (or Dormand-Prince with tight tolerances).
 - Parameters: e.g., \(r=0.15\), \(u=0.25\).
 - Initial conditions: sample \(W_0\in(10^{-3},\, r/u-10^{-3})\) and \(W_0\in(r/u+10^{-3},\, 1-10^{-3})\) to test both sides of the middle pole.
 - Time step and horizon: \(dt=10^{-3}\), \(N=10^5\) steps (double precision).
@@ -78,7 +78,7 @@ Protocol.
 Acceptance gates.
 - Double precision: \(\Delta Q \le 10^{-10}\) (RK45 with tight tolerances) or \(\Delta Q \le 10^{-8}\) (RK4 with \(dt\approx 10^{-3}\)).
 - Single precision: \(\Delta Q \le 10^{-5}\).
-- Convergence: halving \(dt\) reduces \(\Delta Q\) by a factor consistent with the order \(p\) of the scheme; a log–log fit of \(\Delta Q\) vs \(dt\) yields slope \(p\pm 0.2\).
+- Convergence: halving \(dt\) reduces \(\Delta Q\) by a factor consistent with the order \(p\) of the scheme; a log-log fit of \(\Delta Q\) vs \(dt\) yields slope \(p\pm 0.2\).
 
 Pseudocode (language‑agnostic)
 1) define F(W) = r·W − u·W²  

@@ -4,9 +4,9 @@ Totally. Let’s put hard numbers on what your box can handle and why, using the
 
 # Quick headline
 
-* **1 billion neurons is *memory‑feasible*** on your 512 GiB Threadripper/MI100+7900 XTX rig **if the average out‑degree stays small (≈8–16)** and per‑neuron state is fp32.
+* **1 billion neurons is *memory‑feasible*** on your 512 GiB Threadripper/MI100+7900 XTX rig **if the average out‑degree stays small (≈8-16)** and per‑neuron state is fp32.
 * **The true limiter isn’t the ΔW update at all** (that scales with the *active subset*, not N), it’s the **topology/introspection passes** (B1/persistence, pruning scans, big traversals). Those must be *sparse, hierarchical, or sampled* as N grows.
-* **Near‑term realistic in Python:** 10–100 M neurons with today’s code patterns.
+* **Near‑term realistic in Python:** 10-100 M neurons with today’s code patterns.
 * **1 B neurons:** plausible with memory‑mapped arrays + C++/Rust kernels (or HIP) for the big loops, and **hierarchical TDA** instead of full graph persistence.
 
 ---
@@ -37,9 +37,9 @@ Now plug in **N = 1,000,000,000** (one billion) and convert to **GiB** (divi
 * **k = 32:** `256+20 = 276` bytes → `276,000,000,000 ÷ 1,073,741,824`
   \= **257.05 GiB**.
 
-Add **\~20–30% headroom** for Python/allocator overhead, queue buffers, UTE/UTD staging, journals, and you’re still well under **512 GiB** even at **k ≈ 32**. The **GPU doesn’t need to hold the whole graph**—we stream the *active subset*—so **VRAM isn’t the wall**.
+Add **\~20-30% headroom** for Python/allocator overhead, queue buffers, UTE/UTD staging, journals, and you’re still well under **512 GiB** even at **k ≈ 32**. The **GPU doesn’t need to hold the whole graph**—we stream the *active subset*—so **VRAM isn’t the wall**.
 
-> **Bottom line:** 1 B neurons fits in RAM provided **k ≤ \~32** and you keep the per‑neuron state lean. The sweet spot for biology‑like small‑world structure is **k ≈ 8–16**, which is *perfect* for memory.
+> **Bottom line:** 1 B neurons fits in RAM provided **k ≤ \~32** and you keep the per‑neuron state lean. The sweet spot for biology‑like small‑world structure is **k ≈ 8-16**, which is *perfect* for memory.
 
 ---
 
@@ -79,10 +79,10 @@ Those must be **sparse, hierarchical, or sampled** as N climbs.
 
 Use your cycle, but couple it to *measurable gates* so you never “outrun” topology:
 
-1. **Grow (ΔN):** add new neurons in **bundles** (e.g., 1–10 M at a time).
+1. **Grow (ΔN):** add new neurons in **bundles** (e.g., 1-10 M at a time).
 
    * Wire with **small‑world bias** (few local links + a dash of long hops).
-   * Keep **target $k$** constant (8–16). Never allow global densification.
+   * Keep **target $k$** constant (8-16). Never allow global densification.
 
 2. **Stabilize:** run void dynamics + SIE with **active subset only**.
 
@@ -108,7 +108,7 @@ This keeps **memory linear** and **compute per tick constant** while capability 
 * **Don’t** run full persistent homology on all $E = kN$ edges.
 * **Do** maintain a **three‑level hierarchy**, updated sparsely:
 
-  * **Level 0 (local patches):** pick **K** patches per tick via **void energy** $\propto |\Delta W|$ to *focus* on the changing parts. Within a patch (e.g., 5–10 k nodes), exact B1 with Ripser/Kepler is fine.
+  * **Level 0 (local patches):** pick **K** patches per tick via **void energy** $\propto |\Delta W|$ to *focus* on the changing parts. Within a patch (e.g., 5-10 k nodes), exact B1 with Ripser/Kepler is fine.
   * **Level 1 (cluster graph):** contract stable communities into **supernodes**; edges carry **effective weight** (sum/mean). B1 on this **coarsened graph** is tiny and tracks global topology.
   * **Level 2 (sentinel samples):** fixed random wedges/cycles you **revisit** (coupon sampling) to get a consistent “complexity trend” baseline.
 * Emit a single **complexity score** per tick as a weighted sum of these three. You already noticed the “phase transitions” in your dashboards—this keeps that signal without freezing the runtime.
@@ -131,17 +131,17 @@ Think in three tiers:
 
 1. **Today, with Python + NumPy/Torch (your current repo style)**
 
-   * **10–30 M** neurons is comfortable if you adopt the *hierarchical/sampled* topology above and keep $k \le 12$.
+   * **10-30 M** neurons is comfortable if you adopt the *hierarchical/sampled* topology above and keep $k \le 12$.
    * **100 M** is doable with memory‑mapped arrays (NumPy `memmap` or PyTorch `from_file`), pinned I/O, and lazy loading of CSR blocks. Expect **minutes‑scale** cold‑start to build/serialize the CSR.
 
 2. **Aggressive Python + a few compiled kernels (HIP/C++ for hot loops)**
 
-   * **100–300 M** neurons, still on a single node, is realistic.
+   * **100-300 M** neurons, still on a single node, is realistic.
    * Move the per‑tick SIE/ΔW update and the CSR gathers to **HIP** on the **MI100** (32 GiB HBM2, huge bandwidth). Keep the graph in host RAM, stream the active subset each tick.
 
 3. **Full native (C++/Rust core + Python bindings)**
 
-   * **1 B** neurons with $k \in [8,16]$ fits in **\~80–140 GiB** baseline (+overheads).
+   * **1 B** neurons with $k \in [8,16]$ fits in **\~80-140 GiB** baseline (+overheads).
    * With hierarchical TDA and ΔW‑gated probes, **tick cost stays flat**.
    * You’ll want a **binary on‑disk engram format** (chunked CSR + chunked state arrays) and **async prefetch**.
 
@@ -161,7 +161,7 @@ Think in three tiers:
 
 1. **Lock degree:** target **k = 12** (config default).
 2. **Turn on ΔW‑gated probes:** maintain **top‑k(|ΔW|)** ring buffer; probe only those ego‑nets each tick.
-3. **Add Level‑1 cluster graph:** Louvain every **T=60 s** on a **sampled subgraph**; build a 5–20 k supernode graph; compute B1 there.
+3. **Add Level‑1 cluster graph:** Louvain every **T=60 s** on a **sampled subgraph**; build a 5-20 k supernode graph; compute B1 there.
 4. **Memmap the big arrays:** serialize CSR and state in **chunked** files; map `W/μ/σ²/prev` to avoid Python RAM copies.
 5. **(Optional)** move ΔW+SIE kernel to **HIP** for MI100; stream active batches each tick.
 

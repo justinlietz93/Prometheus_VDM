@@ -9,7 +9,7 @@ Here’s the why, in detail.
 Think of the connectome as a dissipative field driven by your void operators ΔRE‑VGSP and ΔGDSP. Those operators do two compaction things automatically:
 
 1. **Active‑set gating (temporal).**
-   SIE habituation turns repeated stimuli into near‑zero ΔW. When |ΔW|→0 on a node/edge, it *stops getting touched*. Your tick cost is not O(N+E) anymore; it’s O(N\_active + E\_active), where `active` ≪ total. Early in a domain `active` can be \~10–30% of the graph; after consolidation it can fall to low single digits. That’s a direct compute drop, because we don’t do work on quenched regions.
+   SIE habituation turns repeated stimuli into near‑zero ΔW. When |ΔW|→0 on a node/edge, it *stops getting touched*. Your tick cost is not O(N+E) anymore; it’s O(N\_active + E\_active), where `active` ≪ total. Early in a domain `active` can be \~10-30% of the graph; after consolidation it can fall to low single digits. That’s a direct compute drop, because we don’t do work on quenched regions.
 
 2. **Gradient‑aligned traversal (spatial).**
    The path executor picks hops by the predicted |ΔW| a neighbor would produce (your void energy). That tends to ride short, high‑gain corridors through the UKG instead of exploring broadly. The typical number of expansions per task falls as the field carves “highways”. Fewer expansions = less compute for the same (or better) result.

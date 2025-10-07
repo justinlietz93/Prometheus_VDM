@@ -52,7 +52,7 @@ A more profound training strategy involves treating the software libraries thems
 
 ### **1.2. PDE Theory & Numerical Analysis**
 
-This domain focuses on the practical implementation and validation of the continuous theories described in the previous section. The training data must capture the essential characteristics of numerical methods for solving Partial Differential Equations (PDEs), including convergence properties, stability criteria (such as the Courant–Friedrichs–Lewy condition), and the nature of discretization errors. A model trained on this data will be equipped to critically assess the fidelity of simulation data encountered in all subsequent tiers.
+This domain focuses on the practical implementation and validation of the continuous theories described in the previous section. The training data must capture the essential characteristics of numerical methods for solving Partial Differential Equations (PDEs), including convergence properties, stability criteria (such as the Courant-Friedrichs-Lewy condition), and the nature of discretization errors. A model trained on this data will be equipped to critically assess the fidelity of simulation data encountered in all subsequent tiers.
 
 **Primary Data Sources:**
 
@@ -77,9 +77,9 @@ The data sources for stochastic processes reveal a deep, unifying mathematical s
 
 This tier forms the conceptual bedrock of the physics project, establishing the primary systems of interest. It focuses on reaction-diffusion (RD) phenomena as the fundamental baseline for pattern formation and nonequilibrium thermodynamics as the essential framework for ensuring the physical consistency of all dynamical models. The datasets in this tier must be of the highest quality to serve as robust benchmarks for the model's core understanding of dissipation, stability, and emergent complexity.
 
-### **2.1. RD & Pattern Formation (Fisher–KPP, Turing)**
+### **2.1. RD & Pattern Formation (Fisher-KPP, Turing)**
 
-This domain addresses the canonical models of pattern formation arising from the interplay of local reactions and spatial diffusion. The Fisher–KPP equation describes traveling wave fronts, while Turing systems, such as the Gray-Scott model, generate a rich variety of stationary and dynamic spatial patterns. The data must be comprehensive enough to capture this diversity and structured for direct use in machine learning workflows.
+This domain addresses the canonical models of pattern formation arising from the interplay of local reactions and spatial diffusion. The Fisher-KPP equation describes traveling wave fronts, while Turing systems, such as the Gray-Scott model, generate a rich variety of stationary and dynamic spatial patterns. The data must be comprehensive enough to capture this diversity and structured for direct use in machine learning workflows.
 
 **Primary Data Source:**
 
@@ -288,7 +288,7 @@ The goal is to provide the model with data on fundamental plasma processes like 
   * **Data Type:** Synthetic-Toolkit / Raw-Simulation.  
   * **Links:** [Athena++ Homepage](https://www.athena-astro.app/) 11,(  
     [https://www.researchgate.net/publication/324246228\_A\_Particle\_Module\_for\_the\_PLUTO\_Code\_I\_-\_an\_implementation\_of\_the\_MHD-PIC\_equations](https://www.researchgate.net/publication/324246228_A_Particle_Module_for_the_PLUTO_Code_I_-_an_implementation_of_the_MHD-PIC_equations)).24  
-  * **Significance:** These toolkits can be used to generate large datasets of MHD turbulence and magnetic reconnection. For example, the Orszag-Tang vortex problem is a standard test for MHD turbulence, and simulations of current sheets can be used to study reconnection rates. The dimensionless numbers governing these processes, such as the Lundquist number (S), magnetic Reynolds number (Rm), plasma beta (β), and Alfvén Mach number (MA​), can be systematically varied to train the model on the scaling laws of MHD, such as the observation that fast reconnection rates are typically in the range of 0.01–0.1.
+  * **Significance:** These toolkits can be used to generate large datasets of MHD turbulence and magnetic reconnection. For example, the Orszag-Tang vortex problem is a standard test for MHD turbulence, and simulations of current sheets can be used to study reconnection rates. The dimensionless numbers governing these processes, such as the Lundquist number (S), magnetic Reynolds number (Rm), plasma beta (β), and Alfvén Mach number (MA​), can be systematically varied to train the model on the scaling laws of MHD, such as the observation that fast reconnection rates are typically in the range of 0.01-0.1.
 
 ---
 
@@ -418,8 +418,8 @@ In conclusion, the resources required to execute the proposed tiered training pr
 26. Direct Simulation Monte Carlo for Atmospheric Entry. 1\. Theoretical Basis and Physical Models \- DTIC, accessed September 2, 2025, [https://apps.dtic.mil/sti/tr/pdf/ADA568174.pdf](https://apps.dtic.mil/sti/tr/pdf/ADA568174.pdf)  
 27. Direct simulation Monte Carlo \- Wikipedia, accessed September 2, 2025, [https://en.wikipedia.org/wiki/Direct\_simulation\_Monte\_Carlo](https://en.wikipedia.org/wiki/Direct_simulation_Monte_Carlo)  
 28. Direct simulation Monte Carlo: Recent Advances and Applications \- ResearchGate, accessed September 2, 2025, [https://www.researchgate.net/publication/234151137\_Direct\_simulation\_Monte\_Carlo\_Recent\_Advances\_and\_Applications](https://www.researchgate.net/publication/234151137_Direct_simulation_Monte_Carlo_Recent_Advances_and_Applications)  
-29. Chapman–Enskog theory \- Wikipedia, accessed September 2, 2025, [https://en.wikipedia.org/wiki/Chapman%E2%80%93Enskog\_theory](https://en.wikipedia.org/wiki/Chapman%E2%80%93Enskog_theory)  
-30. Chapman–Enskog derivation of multicomponent Navier–Stokes equations \- Sébastien GUISSET, accessed September 2, 2025, [https://guisset.perso.math.cnrs.fr/Articles/chapman.pdf](https://guisset.perso.math.cnrs.fr/Articles/chapman.pdf)  
+29. Chapman-Enskog theory \- Wikipedia, accessed September 2, 2025, [https://en.wikipedia.org/wiki/Chapman%E2%80%93Enskog\_theory](https://en.wikipedia.org/wiki/Chapman%E2%80%93Enskog_theory)  
+30. Chapman-Enskog derivation of multicomponent Navier-Stokes equations \- Sébastien GUISSET, accessed September 2, 2025, [https://guisset.perso.math.cnrs.fr/Articles/chapman.pdf](https://guisset.perso.math.cnrs.fr/Articles/chapman.pdf)  
 31. Convergence of Chapman-Enskog calculation of transport coefficients of magnetized argon plasma | Request PDF \- ResearchGate, accessed September 2, 2025, [https://www.researchgate.net/publication/200702764\_Convergence\_of\_Chapman-Enskog\_calculation\_of\_transport\_coefficients\_of\_magnetized\_argon\_plasma](https://www.researchgate.net/publication/200702764_Convergence_of_Chapman-Enskog_calculation_of_transport_coefficients_of_magnetized_argon_plasma)  
 32. Revised Chapman-Enskog analysis for a class of forcing schemes in the lattice Boltzmann method | Phys. Rev. E, accessed September 2, 2025, [https://link.aps.org/doi/10.1103/PhysRevE.94.043313](https://link.aps.org/doi/10.1103/PhysRevE.94.043313)  
 33. DATABASE \- UKTC 2018-2026 \- UK Turbulence Consortium, accessed September 2, 2025, [https://www.ukturbulence.co.uk/database.html](https://www.ukturbulence.co.uk/database.html)  
@@ -435,7 +435,7 @@ In conclusion, the resources required to execute the proposed tiered training pr
 43. AMEP: The Active Matter Evaluation Package for Python \- ResearchGate, accessed September 2, 2025, [https://www.researchgate.net/publication/380881241\_AMEP\_The\_Active\_Matter\_Evaluation\_Package\_for\_Python](https://www.researchgate.net/publication/380881241_AMEP_The_Active_Matter_Evaluation_Package_for_Python)  
 44. \[2404.16533\] AMEP: The Active Matter Evaluation Package for Python \- arXiv, accessed September 2, 2025, [https://arxiv.org/abs/2404.16533](https://arxiv.org/abs/2404.16533)  
 45. Dataset Description \- Cell Tracking Challenge, accessed September 2, 2025, [https://celltrackingchallenge.net/datasets/](https://celltrackingchallenge.net/datasets/)  
-46. Cell Tracking Challenge – Where your software moves cells, accessed September 2, 2025, [https://celltrackingchallenge.net/](https://celltrackingchallenge.net/)  
+46. Cell Tracking Challenge - Where your software moves cells, accessed September 2, 2025, [https://celltrackingchallenge.net/](https://celltrackingchallenge.net/)  
 47. Chemotaxis Assay Example Data | Download & Analyze \- ibidi, accessed September 2, 2025, [https://ibidi.com/content/305-example-chemotaxis-data](https://ibidi.com/content/305-example-chemotaxis-data)  
 48. A multiscale 3D chemotaxis assay reveals bacterial navigation mechanisms, accessed September 2, 2025, [https://home.uni-leipzig.de/sysbiophys/files/Grognot\_CommBiol\_2021.pdf](https://home.uni-leipzig.de/sysbiophys/files/Grognot_CommBiol_2021.pdf)  
 49. (PDF) Microfluidics for bacterial chemotaxis \- ResearchGate, accessed September 2, 2025, [https://www.researchgate.net/publication/47521001\_Microfluidics\_for\_bacterial\_chemotaxis](https://www.researchgate.net/publication/47521001_Microfluidics_for_bacterial_chemotaxis)  

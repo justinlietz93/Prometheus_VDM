@@ -7,9 +7,9 @@
 
 ### 1. Objective
 
-The primary goal of this derivation is to derive the reaction–diffusion PDE mapping
+The primary goal of this derivation is to derive the reaction-diffusion PDE mapping
 ∂t φ = D ∇² φ + r φ − u φ²
-from the discrete update. A second‑order Lorentzian EFT derivation (Klein–Gordon–like) is maintained as future work in [derivation/effective_field_theory_approach.md](effective_field_theory_approach.md:1). This removes internal contradictions while preserving historical EFT references below as scoped.
+from the discrete update. A second‑order Lorentzian EFT derivation (Klein-Gordon-like) is maintained as future work in [derivation/effective_field_theory_approach.md](effective_field_theory_approach.md:1). This removes internal contradictions while preserving historical EFT references below as scoped.
 
 ---
 
@@ -86,7 +86,7 @@ Crucially, the second-order time derivative in the continuum equation is not imp
 $$
 \mathcal{L} \;=\; \frac{1}{2}(\partial_t \phi)^2 \;-\; J a^2\,(\nabla \phi)^2 \;-\; V(\phi).
 $$
-The Euler–Lagrange equation gives
+The Euler-Lagrange equation gives
 $$
 \partial_t^2 \phi \;-\; c^2 \nabla^2 \phi \;+\; V'(\phi) \;=\; 0,\qquad c^2 \equiv 2 J a^2,
 $$
@@ -119,7 +119,7 @@ $$
 \frac{\partial \phi}{\partial t} \approx D \nabla^2 \phi + (\alpha - \beta)\phi - \alpha\phi^2
 $$
 Here, $D$ is the diffusion coefficient that emerges from the neighbor coupling strength and lattice constants. On a regular lattice with per‑site coupling,
-$D = J a^2$ (or $D = (J/z)\,a^2$ if you average over $z$ neighbors). This is a **Reaction–Diffusion Equation**, renowned for generating complex patterns.
+$D = J a^2$ (or $D = (J/z)\,a^2$ if you average over $z$ neighbors). This is a **Reaction-Diffusion Equation**, renowned for generating complex patterns.
 
 Using $V'(\phi)$ from the discrete law, $V'(\phi)=\alpha\phi^2-(\alpha-\beta)\phi$, the variational equation yields
 $$
@@ -143,7 +143,7 @@ $$
 m_{\text{eff}}^2 \;=\; \left.\frac{d^2 V}{d\phi^2}\right|_{\phi=\pm v} \;=\; 2\,\mu^2.
 $$
 
-The earlier cubic–quadratic structure in our EOM (the $\alpha\,\phi^2 - (\alpha - \beta)\,\phi$ terms) is then treated as a small asymmetry (a “cubic tilt”) superposed on this bounded baseline; the precise mapping is made in Section 6.
+The earlier cubic-quadratic structure in our EOM (the $\alpha\,\phi^2 - (\alpha - \beta)\,\phi$ terms) is then treated as a small asymmetry (a “cubic tilt”) superposed on this bounded baseline; the precise mapping is made in Section 6.
 
 ---
 

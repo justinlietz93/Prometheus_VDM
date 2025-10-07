@@ -35,7 +35,7 @@ Search the entire repository (docs, code comments, TODO blocks, notebooks, exper
 **Status:** <Planned | In progress | Blocked | Done> • **Priority:** <P1/P2/P3 if present>  
 **Source:** <path/to/file>:<line-range> • <short-commit>  (list all if multiple)
 
-**Goal (verbatim/condensed from source):** <one–three lines>
+**Goal (verbatim/condensed from source):** <one-three lines>
 
 **Acceptance criteria (links only, no formulas):**
 - Metrics/KPIs: `VALIDATION_METRICS.md#kpi-...`
@@ -56,7 +56,7 @@ Search the entire repository (docs, code comments, TODO blocks, notebooks, exper
 ```markdown
 ### <Task Title as in repo>  <a id="task-<slug>"></a>
 **Source:** <path:lines> • <short-commit>  
-**Description:** <one–two lines lifted>  
+**Description:** <one-two lines lifted>  
 **Linked canon:** symbols → `SYMBOLS.md#sym-...`, equations → `EQUATIONS.md#vdm-e-...`, constants → `CONSTANTS.md#const-...`, algorithms → `ALGORITHMS.md#vdm-a-...`  
 **Exit criteria:** reference KPIs/figures/artifacts by anchor/path (no formulas)  
 **Owner (if present):** <name/handle> • **Status:** <…>

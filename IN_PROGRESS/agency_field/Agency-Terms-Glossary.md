@@ -41,7 +41,7 @@
     *   **Category:** Technical Metric
     *   **Related Terms:** S(x,t), R-squared, Mutual Information Rate, C-score
 *   **Term:** I_net(x,t) (Integration/Coherence Proxy)
-    *   **Definition:** A measure of how parts of a system cooperate to create new information beyond their individual contributions, serving as a proxy for integration and coherence (e.g., sum of transfer entropies or Lempel–Ziv complexity). It is a component of the source term S(x,t).
+    *   **Definition:** A measure of how parts of a system cooperate to create new information beyond their individual contributions, serving as a proxy for integration and coherence (e.g., sum of transfer entropies or Lempel-Ziv complexity). It is a component of the source term S(x,t).
     *   **Category:** Technical Metric
     *   **Related Terms:** S(x,t), Transfer Entropy, Lempel-Ziv Complexity
 *   **Term:** U(x,t) (Control Efficacy)
@@ -100,7 +100,7 @@
     *   **Definition:** The discrete step sizes for time and space used in numerical simulations of the field equations.
     *   **Category:** Technical Parameter
     *   **Related Terms:** CFL Condition
-*   **Term:** CFL (Courant–Friedrichs–Lewy) Stability Condition
+*   **Term:** CFL (Courant-Friedrichs-Lewy) Stability Condition
     *   **Definition:** A stability condition for numerical methods (e.g., explicit Euler) used to solve partial differential equations, ensuring that the time step (`Δt`) is sufficiently small relative to the spatial step (`Δx`) and diffusion coefficient (`D`) to prevent numerical instability.
     *   **Category:** Technical Concept
     *   **Related Terms:** Numerical Simulation, Δt, Δx

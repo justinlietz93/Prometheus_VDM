@@ -6,12 +6,12 @@ This mini-pack helps you **verify and quantify** the GR-like orbital behaviour y
 
 **What you get**
 
-- `specs/gravity_regression_spec.md` – the concise test contract.
-- `scripts/compute_precession.py` – post-processes a simple CSV of `(t, x, y)` coordinates and reports precession per orbit.
-- `scripts/graph_checks.py` – sanity-checks a connectome edgelist for “ring lattice” symptoms; emits metrics + a plot.
-- `templates/orbit_log_example.csv` – format example for the orbital track exported from your runtime.
-- `templates/edgelist_example.csv` – format example for connectome edgelist.
-- `outputs/` – where figures and CSV reports are written.
+- `specs/gravity_regression_spec.md` - the concise test contract.
+- `scripts/compute_precession.py` - post-processes a simple CSV of `(t, x, y)` coordinates and reports precession per orbit.
+- `scripts/graph_checks.py` - sanity-checks a connectome edgelist for “ring lattice” symptoms; emits metrics + a plot.
+- `templates/orbit_log_example.csv` - format example for the orbital track exported from your runtime.
+- `templates/edgelist_example.csv` - format example for connectome edgelist.
+- `outputs/` - where figures and CSV reports are written.
 
 ## Quickstart
 

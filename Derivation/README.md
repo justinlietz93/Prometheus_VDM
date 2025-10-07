@@ -8,7 +8,7 @@ This directory contains the rigorously maintained derivation documents, organize
 ## Topics
 - Foundations: discrete→continuum, symmetry, continuum stack
 - Effective Field Theory: kinetic term derivation, FRW/units mapping, roadmap
-- Reaction–Diffusion (canonical): front‑speed, dispersion, validation plan
+- Reaction-Diffusion (canonical): front‑speed, dispersion, validation plan
 - Memory Steering: theory, acceptance/verification
 - Tachyon Condensation (finite tube): modes, energy scan, acceptance
 - Conservation Law: discrete conservation

@@ -127,7 +127,7 @@ This reproduces the continuity identities while allowing energy exchange between
 Voxtrium partitions (p_Λ, p_DM, p_GW) are functions of dimensionless inputs z = (z_1, z_2, z_3) = (|Ω| R_*, (κ/K_s)/X, 1) via a softmax ([voxtrium_Overview.md](voxtrium_Overview.md:236-239)).
 
 Proposed identifications and calibrations
-- Size–mass link:  R_* ≃ k_R / m_eff  with k_R ≈ O(1), consistent with m_φ ~ 1/R_* ([voxtrium_Overview.md](voxtrium_Overview.md:280-281)).
+- Size-mass link:  R_* ≃ k_R / m_eff  with k_R ≈ O(1), consistent with m_φ ~ 1/R_* ([voxtrium_Overview.md](voxtrium_Overview.md:280-281)).
 - Parameter‑free identity from Skyrme calibrations: `R_*\, m = c_R / c_m ≈ 9.93\times 10^{-3}` (using [voxtrium_Overview.md](voxtrium_Overview.md:192-205)).
 - Effective “vorticity” proxy from φ: in regions where φ varies, define a scalar control
 

@@ -1,4 +1,4 @@
-# 1. **Metriplectic Integrator for Mixed Conservative–Dissipative Dynamics: Symplectic J-step ⊕ Discrete-Gradient M-step**
+# 1. **Metriplectic Integrator for Mixed Conservative-Dissipative Dynamics: Symplectic J-step ⊕ Discrete-Gradient M-step**
 
 **Date:** 2025-10-06 12:55:11Z
 
@@ -10,7 +10,7 @@
 
 We propose to implement and certify a **metriplectic time integrator** that composes a **symplectic step** for the conservative (J) sector with a **discrete-gradient (DG) step** for the dissipative (M) sector:
 $J(\Delta t/2) \to M(\Delta t) \to J(\Delta t/2)$ (Strang composition).
-The J-step preserves Noether invariants (to machine precision) and is time-reversible/volume-preserving; the M-step enforces an exact discrete H-theorem via the DG chain rule for the reaction–diffusion (RD) Lyapunov functional. Diagnostics reuse the RD harness just completed (two-grid order, fixed-$\Delta t$ $|\Delta S|$, Lyapunov monitors) **without modifying any prior scripts or outputs** to preserve reproducibility; new code paths are additive (new module/CLI only) and write to separate output folders. Success yields a scheme that mirrors A4/A5 at the discrete level: conserved quantities for J and monotone entropy for M, with global second-order accuracy for the composition.
+The J-step preserves Noether invariants (to machine precision) and is time-reversible/volume-preserving; the M-step enforces an exact discrete H-theorem via the DG chain rule for the reaction-diffusion (RD) Lyapunov functional. Diagnostics reuse the RD harness just completed (two-grid order, fixed-$\Delta t$ $|\Delta S|$, Lyapunov monitors) **without modifying any prior scripts or outputs** to preserve reproducibility; new code paths are additive (new module/CLI only) and write to separate output folders. Success yields a scheme that mirrors A4/A5 at the discrete level: conserved quantities for J and monotone entropy for M, with global second-order accuracy for the composition.
 
 ## 4. Background & Scientific Rationale
 

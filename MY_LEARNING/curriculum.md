@@ -2,7 +2,7 @@ Here’s a **minimum-viable curriculum** to read, run, and extend VDM end-to-end
 
 ---
 
-# Phase 0 — Orientation (2–3 days)
+# Phase 0 — Orientation (2-3 days)
 
 **M0. Vocabulary & artifacts**
 
@@ -13,7 +13,7 @@ Here’s a **minimum-viable curriculum** to read, run, and extend VDM end-to-end
 
 ---
 
-# Phase 1 — Math & numerics you actually need (6–8 weeks @ ~10 h/week)
+# Phase 1 — Math & numerics you actually need (6-8 weeks @ ~10 h/week)
 
 **M1. Single-variable calculus (log/exp chain-rule)**
 
@@ -27,7 +27,7 @@ Here’s a **minimum-viable curriculum** to read, run, and extend VDM end-to-end
 * **Goal:** Read/fit straight lines; recognize growth rates.
 * **Learn:** Least squares, (R^2), eigenvalue = growth/decay rate for linearized systems.
 * **Do:** Fit logit(u) vs t and report slope, (R^2).
-* **Exit:** Explain why leading-edge linearization controls Fisher–KPP front speed.
+* **Exit:** Explain why leading-edge linearization controls Fisher-KPP front speed.
 
 **M3. Nondimensionalization**
 
@@ -36,11 +36,11 @@ Here’s a **minimum-viable curriculum** to read, run, and extend VDM end-to-end
 * **Do:** Redo the scaling; write the two lines that set (r=D=1).
 * **Exit:** Name the resulting dimensionless groups (there are none left).
 
-**M4. Fisher–KPP traveling fronts (just the skeleton)**
+**M4. Fisher-KPP traveling fronts (just the skeleton)**
 
 * **Goal:** Know why the minimal speed is (c_\ast=2) for (u_t=u_{xx}+u(1-u)).
 * **Learn:** Linearize near (u=0); exponential ansatz → dispersion relation → speed bound.
-* **Do:** Write the 6–8 line sketch that yields (c_\ast=2).
+* **Do:** Write the 6-8 line sketch that yields (c_\ast=2).
 * **Exit:** Look at a speed plot and say if it’s plausibly correct.
 
 **M5. Finite differences + stability**
@@ -66,7 +66,7 @@ Here’s a **minimum-viable curriculum** to read, run, and extend VDM end-to-end
 
 ---
 
-# Phase 2 — VDM runtime concepts (4–6 weeks)
+# Phase 2 — VDM runtime concepts (4-6 weeks)
 
 **M8. Event-driven sensing (“walkers”)**
 
@@ -92,7 +92,7 @@ Here’s a **minimum-viable curriculum** to read, run, and extend VDM end-to-end
 **M11. Runtime scaling & telemetry**
 
 * **Goal:** Prove “no dense scans” with numbers.
-* **Learn:** Instrumentation; log–log regression of step-time vs active sites; CI for slope.
+* **Learn:** Instrumentation; log-log regression of step-time vs active sites; CI for slope.
 * **Do:** Produce scaling slope (\beta) near 1 with CI; P50/95/99 latency.
 * **Exit:** `telemetry.json` shows (\beta\in[0.9,1.1]); stable tails over long runs.
 
@@ -105,7 +105,7 @@ Here’s a **minimum-viable curriculum** to read, run, and extend VDM end-to-end
 
 ---
 
-# Phase 3 — “Not yet built” topics you’ll need (aim: 8–16 weeks)
+# Phase 3 — “Not yet built” topics you’ll need (aim: 8-16 weeks)
 
 **M13. Gradient-flow viewpoint (just enough)**
 
@@ -121,10 +121,10 @@ Here’s a **minimum-viable curriculum** to read, run, and extend VDM end-to-end
 * **Do:** Recreate `curvature_*` figures; report slope, intercept, (R^2), RMSE.
 * **Exit:** Signed/unsigned curvature behave as in your calibration with quantified error.
 
-**M15. Advection–diffusion coupling (toward fluids)**
+**M15. Advection-diffusion coupling (toward fluids)**
 
 * **Goal:** Add transport without wrecking stability.
-* **Learn:** Advection term ( \mathbf{v}\cdot\nabla u ); upwinding; Godunov vs central; CFL for advection–diffusion.
+* **Learn:** Advection term ( \mathbf{v}\cdot\nabla u ); upwinding; Godunov vs central; CFL for advection-diffusion.
 * **Do:** Add a 1D constant-velocity advection term; verify dispersion/front gates still pass.
 * **Exit:** Stability region chart vs ((\Delta x,\Delta t, |\mathbf v|)).
 
@@ -152,7 +152,7 @@ Here’s a **minimum-viable curriculum** to read, run, and extend VDM end-to-end
 **M19. Performance on AMD/ROCm (pragmatic)**
 
 * **Goal:** Don’t leave perf on the table.
-* **Learn:** Memory coalescing; tiling; avoiding host–device ping-pong; ROCm profiling basics.
+* **Learn:** Memory coalescing; tiling; avoiding host-device ping-pong; ROCm profiling basics.
 * **Do:** Profile a hotspot; remove one avoidable global pass; show step-time improvement.
 * **Exit:** Before/after telemetry with improved active-site throughput.
 
@@ -177,10 +177,10 @@ Here’s a **minimum-viable curriculum** to read, run, and extend VDM end-to-end
 **C1. “Read the whole paper” pack (1 week):**
 Write a 1-page “Claims → Evidence” audit for your combined paper where every claim has an artifact path and a pass/fail. If anything’s missing, add that figure/CSV.
 
-**C2. “Extend the substrate” pack (2–3 weeks):**
+**C2. “Extend the substrate” pack (2-3 weeks):**
 Add constant-velocity advection + simple control target. Re-run all gates; add a new “advection stability” gate and its CSV/figure.
 
-**C3. “Public reproducibility” pack (2–3 days):**
+**C3. “Public reproducibility” pack (2-3 days):**
 Fresh-env run of `00_RUN_ALL.ipynb` on a second machine; upload artifacts + a short HOWTO that cites gate thresholds and how to tighten them.
 
 ---
@@ -189,7 +189,7 @@ Fresh-env run of `00_RUN_ALL.ipynb` on a second machine; upload artifacts + a sh
 
 * **Mon/Wed/Fri:** Learn a small chunk (one module’s Learn).
 * **Tue/Thu/Sat:** Build the matching Do; produce the figure/CSV.
-* **Sun:** Write the 1–2 paragraph “what failed, why, and how I fixed it.”
+* **Sun:** Write the 1-2 paragraph “what failed, why, and how I fixed it.”
 
 ---
 

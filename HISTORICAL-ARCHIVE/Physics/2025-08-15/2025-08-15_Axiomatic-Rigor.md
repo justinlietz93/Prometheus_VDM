@@ -73,7 +73,7 @@ and the **sound speed** near a vacuum (mass gap $m_\mathrm{eff}=\sqrt{2}\mu$) re
 ### D2. Vorticity & viscosity (add the minimal, physics‑faithful pieces)
 
 * **Vorticity:** Promote $\phi\to \Phi=\rho^{1/2}e^{i\theta}$. The conserved U(1) current yields $\mathbf v=\frac{c^2}{\omega_\phi}\nabla\theta$ and quantized vortices; Goldstones appear automatically (optional but one‑file change in your code).
-* **Viscosity:** Couple to the slow “memory” field $M$ you formalized. Integrating out $M$ adds a *retarded* stress with kernel width $\tau_M$, giving effective shear/bulk viscosities scaling like $\eta,\zeta \sim \Theta^2\,\gamma \tau_M$ (from your write–decay–spread law). This is the clean, testable origin of dissipation—no hand‑tuned friction.&#x20;
+* **Viscosity:** Couple to the slow “memory” field $M$ you formalized. Integrating out $M$ adds a *retarded* stress with kernel width $\tau_M$, giving effective shear/bulk viscosities scaling like $\eta,\zeta \sim \Theta^2\,\gamma \tau_M$ (from your write-decay-spread law). This is the clean, testable origin of dissipation—no hand‑tuned friction.&#x20;
 
 > **Code hook.** Keep scalar core as‑is; add optional `ComplexScalarEFT` (phase advection) and the existing `memory_steering` module to supply retarded stresses; verify the two **scaling collapses** you already use (junction logistic; curvature∝$\Theta|\nabla m|$).&#x20;
 

@@ -10,7 +10,7 @@
 
 ## Deliverables
 
-- 1 box diagram (system–bath–readout) + 3 bullets on how decoherence appears.
+- 1 box diagram (system-bath-readout) + 3 bullets on how decoherence appears.
 
 ## Acceptance gates
 

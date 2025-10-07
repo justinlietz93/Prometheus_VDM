@@ -1,4 +1,4 @@
-# RD validation plan (Fisher–KPP, 1D)
+# RD validation plan (Fisher-KPP, 1D)
 
 Purpose
 
@@ -23,7 +23,7 @@ $$
 Scope
 
 - Tests covered:
-  1) Front-speed validation (pulled front, Fisher–KPP)
+  1) Front-speed validation (pulled front, Fisher-KPP)
   2) Linear dispersion validation (periodic, linearized evolution)
 
 Canonical scripts
@@ -52,7 +52,7 @@ $$
 - Method:
   - Neumann BCs; smooth step IC with far-field gating (u=0 ahead of the interface), optional left-gated noise.
   - Track $x_f$ only while a true crossing exists; robust fit of $x_f(t)$ on a late-time fraction window.
-- Defaults: N=1024, L=200, D=1.0, r=0.25, T=80, cfl=0.2, seed=42, x0=−60, level=0.1, fit 0.6–0.9.
+- Defaults: N=1024, L=200, D=1.0, r=0.25, T=80, cfl=0.2, seed=42, x0=−60, level=0.1, fit 0.6-0.9.
 - Theory: 
 
 $$
@@ -96,7 +96,7 @@ $$
 - Method:
   - Start from small random noise (amp0 ≪ 1), explicit Euler with diffusion CFL.
   - Record snapshots; fit on a fraction window away from startup transients.
-- Defaults: N=1024, L=200, D=1.0, r=0.25, T=10, cfl=0.2, seed=42, amp0=1e-6, record=80, m_max=64, fit 0.1–0.4.
+- Defaults: N=1024, L=200, D=1.0, r=0.25, T=10, cfl=0.2, seed=42, amp0=1e-6, record=80, m_max=64, fit 0.1-0.4.
 - Acceptance (array-level):
   - median relative error over good modes $(R²\_mode ≥ 0.95)$: $med\_rel\_err ≤ 0.10$
   - $R²\_array(measured vs σ\_d) ≥ 0.98$
@@ -138,7 +138,7 @@ Expected artifacts
 
 Open questions / next refinements
 
-- Evaluate sensitivity of c_meas to level choice (0.05–0.2) and fit window; document invariance bands.
+- Evaluate sensitivity of c_meas to level choice (0.05-0.2) and fit window; document invariance bands.
 - Compare dispersion fit using windowed DFT vs rFFT magnitude; assess bias for near-zero/negative σ.
 - Add unit tests for σ_d formula and Laplacian implementations.
 - Mirror runners under fum_rt/physics for cross-stack parity.

@@ -40,7 +40,7 @@ This **steering law** is geometric and independent of the φ‑sector’s kineti
 
 ---
 
-## 3. Memory Dynamics (Write–Decay–Spread)
+## 3. Memory Dynamics (Write-Decay-Spread)
 
 We posit a minimal, testable PDE for memory evolution:
 \[
@@ -76,7 +76,7 @@ with the **dimensionless groups**:
 D_a=\frac{\gamma R_0 T}{M_0},\qquad \Lambda=\delta T,\qquad \Gamma=\frac{\kappa T}{L^2}.
 \]
 
-- \( \Theta \): memory–coupling strength (steering curvature per normalized gradient).
+- \( \Theta \): memory-coupling strength (steering curvature per normalized gradient).
 - \( D_a \): write rate relative to observation time.
 - \( \Lambda \): forgetting over \( T \).
 - \( \Gamma \): smoothing relative to system size.

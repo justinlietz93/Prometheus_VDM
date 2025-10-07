@@ -1,4 +1,4 @@
-> Note (2025-08-20): Canonical model class is reaction–diffusion (RD). All second‑order EFT/KG claims are quarantined to [effective_field_theory_approach.md](Prometheus_VDM/derivation/effective_field_theory_approach.md:1). Any mass number is parameter‑dependent: m_eff = √(α−β). Example values: α=0.25, β=0.10 → 0.387; α=1, β=0.4 → 0.7746. Kinetic normalization from the lattice uses c² = 2 J a² (per‑site convention), see [kinetic_term_derivation.md](Prometheus_VDM/derivation/kinetic_term_derivation.md:78). Do not impose J a² = 1/2 as a constraint; that is a units choice in EFT contexts only.
+> Note (2025-08-20): Canonical model class is reaction-diffusion (RD). All second‑order EFT/KG claims are quarantined to [effective_field_theory_approach.md](Prometheus_VDM/derivation/effective_field_theory_approach.md:1). Any mass number is parameter‑dependent: m_eff = √(α−β). Example values: α=0.25, β=0.10 → 0.387; α=1, β=0.4 → 0.7746. Kinetic normalization from the lattice uses c² = 2 J a² (per‑site convention), see [kinetic_term_derivation.md](Prometheus_VDM/derivation/kinetic_term_derivation.md:78). Do not impose J a² = 1/2 as a constraint; that is a units choice in EFT contexts only.
 
 Comparative summary of **Bordag (tachyon condensation in SU(2) center‑vortex)** vs **FUM derivations**.
 
@@ -7,14 +7,14 @@ Comparative summary of **Bordag (tachyon condensation in SU(2) center‑vortex)*
 * **Bordag (Universe 2024):**
   Studies SU(2) gluodynamics in a finite‑radius chromomagnetic flux tube (center‑vortex). Finds tachyonic gluon modes (spin‑1 Landau LLL, $m^2=-gB$) inside the tube; shows these modes self‑interact, condense, and *stabilize* by generating positive real masses after condensation. Energy has a minimum at finite flux $\delta=BR^2/2$, with details depending on $g$ and $\lambda=g^2/\pi$. Figures show level splitting vs flux and the emergence of condensates across orbital modes $l$.&#x20;
   • Figure 1 (p.7): tachyonic levels $\kappa_l(\delta)$, $l_{\max}\!\approx\!\delta$.
-  • Eqs. (37)–(45): 2D effective theory for the tachyonic sector with masses $m_l^2=-\kappa_l^2$ and quartic couplings $N_4$.
+  • Eqs. (37)-(45): 2D effective theory for the tachyonic sector with masses $m_l^2=-\kappa_l^2$ and quartic couplings $N_4$.
   • Figure 3 (p.11): nonzero condensates $v_l$ and negative tree‑level $V_\text{eff}$.
   • Figure 5 (p.11): total energy $E(\delta)$ gets a minimum for $\lambda\!\lesssim\!0.12$.
   • Abstract/Discussion: high‑T expansion restores symmetry (tachyon condensate melts).&#x20;
 
 * **FUM (current derivations):**
   Starts from a discrete update $\Delta W/\Delta t\approx \alpha W-\alpha W^2-\beta W$ on a k‑NN graph and derives a continuum scalar‑field model. Demonstrates a tachyonic point at $\phi=0$ (negative mass‑squared) that relaxes to a stable vacuum $v=1-\beta/\alpha$ with positive excitation mass $m_\text{eff}^2=\alpha-\beta$ (e.g., $\alpha{=}0.25,\beta{=}0.10\Rightarrow v{=}0.6$, $m_\text{eff}\approx0.387$). An EFT completion is outlined with optional $\lambda \phi^4$ (screening) to bound the potential. A kinetic‑term derivation is provided with $Z(\phi)=\tfrac12$; any prior $Ja^2=\tfrac12$ constraint is superseded by $c^2=2Ja^2$.
-  • Continuum Lagrangian sketch (KG‑like) and conformal metric $g_{\mu\nu}=\phi^2\eta_{\mu\nu}$ appear in the PDF (Sec. 2.3–2.4, pp.2–3).
+  • Continuum Lagrangian sketch (KG‑like) and conformal metric $g_{\mu\nu}=\phi^2\eta_{\mu\nu}$ appear in the PDF (Sec. 2.3-2.4, pp.2-3).
   • Discrete→continuum equation: $\Box\phi + \alpha\phi^2-(\alpha-\beta)\phi=0$; $V(\phi)=\frac{\alpha}{3}\phi^3-\frac{\alpha-\beta}{2}\phi^2$; $v=1-\beta/\alpha$; $m_\text{eff}^2=\alpha-\beta$.
   • EFT note adds $\lambda \phi^4/4$ and discusses parameter shifts; argues toward rigorous $Z(\phi)$ and higher‑derivative suppression.
   • Kinetic normalization: $\mathcal L_K=\tfrac12(\partial_t\phi)^2 - J a^2(\nabla\phi)^2$ with $c^2=2Ja^2$; no microscopic constraint ties $J$ to $a$.
@@ -35,7 +35,7 @@ Comparative summary of **Bordag (tachyon condensation in SU(2) center‑vortex)*
 
 * **Spatial structure / modes**
 
-  * Bordag: finite‑radius tube with flux $\delta=BR^2/2$. Degeneracy splitting; finite set of tachyonic orbital modes $l=0,\dots,l_{\max}\!\approx\!\delta$. Explicit mass matrix mixing across $l$; nontrivial $N_4(l_i)$ couplings (Fig. 1–4).&#x20;
+  * Bordag: finite‑radius tube with flux $\delta=BR^2/2$. Degeneracy splitting; finite set of tachyonic orbital modes $l=0,\dots,l_{\max}\!\approx\!\delta$. Explicit mass matrix mixing across $l$; nontrivial $N_4(l_i)$ couplings (Fig. 1-4).&#x20;
   * FUM: no flux‑tube geometry; no orbital‑mode tower; no $l$-dependent mass matrix. (All dynamics packed into one scalar $\phi$.)&#x20;
 
 * **Potential shape & boundedness**
@@ -73,7 +73,7 @@ Comparative summary of **Bordag (tachyon condensation in SU(2) center‑vortex)*
    * Add a static vector potential $A_\mu$ (Abelian to start) and couple $\phi$ via $|D_\mu\phi|^2$ with $D_\mu=\partial_\mu - i A_\mu$. Pick $A_\phi=\mu(r)/r$ to mimic Eq. (20) and $B(r)=\mu'(r)/r=B\,\Theta(R-r)$. Track $\delta=BR^2/2$. Goal: replicate Fig. 1’s $l_{\max}\!\approx\!\delta$ and level splitting numerically.&#x20;
 
 3. **Build the 2D tachyon sector explicitly (FUM)**
-   Repeat Bordag’s projection: integrate transverse coordinates, get a *finite set* of complex fields $\psi_l(x_\alpha)$ with $m_l^2=-\kappa_l^2$ and quartic couplings $N_4(l_i)$. Then *diagonalize the mass matrix* $m^2_{ll'}$ after condensation (cf. Eqs. 37–45; Fig. 4). Deliverable: your Fig. 4‑style plot from FUM.&#x20;
+   Repeat Bordag’s projection: integrate transverse coordinates, get a *finite set* of complex fields $\psi_l(x_\alpha)$ with $m_l^2=-\kappa_l^2$ and quartic couplings $N_4(l_i)$. Then *diagonalize the mass matrix* $m^2_{ll'}$ after condensation (cf. Eqs. 37-45; Fig. 4). Deliverable: your Fig. 4‑style plot from FUM.&#x20;
 
 4. **Add the background energy term and find the real minimum**
    Compute $E(\delta)=E_\text{bg}+V_\text{eff}(\{v_l\})$ with $E_\text{bg}=\frac{\pi}{2}B^2R^2$. Scan $\delta$ and $\lambda$ to locate minima like Fig. 5; report the critical $\lambda$ where minima appear.&#x20;
@@ -94,14 +94,14 @@ Comparative summary of **Bordag (tachyon condensation in SU(2) center‑vortex)*
 
 * Coupling $\phi$ to geometry via $g_{\mu\nu}=\phi^2\eta_{\mu\nu}$ and aiming at EFE in the IR is outside QCD; that’s your differentiator. Keep it—just wall it off from the QCD‑style condensation section so the comparisons stay apples‑to‑apples.&#x20;
 
-If you want, I’ll implement steps **(1)–(3)** as a clean patch: update potential → add Abelian tube background → compute $\kappa_l(\delta)$, $N_4$, and mass‑matrix diagonalization → generate the three replication plots (your Fig. 1/3/5 analogs). Then we can layer **(4)–(5)**.
+If you want, I’ll implement steps **(1)-(3)** as a clean patch: update potential → add Abelian tube background → compute $\kappa_l(\delta)$, $N_4$, and mass‑matrix diagonalization → generate the three replication plots (your Fig. 1/3/5 analogs). Then we can layer **(4)-(5)**.
 Integrated comparison and implementation plan.
 
 # 1) What Bordag actually does vs what you already have
 
 **Bordag (Universe 2024)**
 
-* Works in SU(2) Yang–Mills with a *finite‑radius chromomagnetic flux tube* (center vortex). Inside the tube the field is homogeneous; outside it’s zero. This geometry produces **tachyonic modes** (negative $m^2$) for the charged gluon field $W_\mu$. He decomposes those into orbital modes $\psi_\ell(x^\alpha)$ (2D in $(x^0,x^3)$) with discrete $\ell=0,\dots,\ell_{\max}(\delta)$ where $\delta\equiv BR^2/2$ encodes flux and tube radius. Degeneracy splits as soon as $R<\infty$.&#x20;
+* Works in SU(2) Yang-Mills with a *finite‑radius chromomagnetic flux tube* (center vortex). Inside the tube the field is homogeneous; outside it’s zero. This geometry produces **tachyonic modes** (negative $m^2$) for the charged gluon field $W_\mu$. He decomposes those into orbital modes $\psi_\ell(x^\alpha)$ (2D in $(x^0,x^3)$) with discrete $\ell=0,\dots,\ell_{\max}(\delta)$ where $\delta\equiv BR^2/2$ encodes flux and tube radius. Degeneracy splits as soon as $R<\infty$.&#x20;
 * Keeps only the unstable modes, builds a 2D effective theory with **quartic self‑interaction**, shifts to a condensate, and **all tachyonic modes acquire real positive masses**. Goldstone phases remain massless; he diagonalizes a mass matrix and shows positivity.&#x20;
 * The **energy minimized** is $E = E_{\text{bg}} + V_{\text{eff}}^{\text{tree}}$. For moderate coupling there’s a genuine minimum (for his sample numerics, the minimum appears only below about $\lambda\sim0.12$), and the condensate depth grows with flux $\delta$.&#x20;
 
@@ -121,11 +121,11 @@ Integrated comparison and implementation plan.
 * **Mass matrix & Goldstones.** He shows phase modes stay massless (spontaneous symmetry breaking), and the *radial* combinations go massive. The EFT with $\phi^4$ is the minimal stage to reproduce the same pattern in your scalar sector. &#x20;
 * **Background + condensate bookkeeping.** His $E_{\text{bg}}+V_{\text{eff}}$ matches your **action‑level split with a transfer current $J^\nu$**—you already have the machinery to cleanly separate “background sector” vs “condensate sector” energy in FRW.&#x20;
 
-# 3) Key differences to keep straight (no apples–oranges)
+# 3) Key differences to keep straight (no apples-oranges)
 
 * **Gauge vs scalar.** Bordag’s tachyon is a charged gluon mode in SU(2); your field is a real scalar encoding void density. That’s fine: we port the *condensation mechanics*, not the color structure.&#x20;
 * **Dimensionality/geometry.** His effective theory is 2D along the tube axis; you’re 3+1D but can analyze **codimension‑two “void filaments/tubes”** similarly (solve the radial bound‑state problem for small fluctuations in a cylinder).&#x20;
-* **Potential shape.** He uses a symmetric quartic; you start from a **cubic–quadratic** potential (tachyonic with explicit asymmetry) but have already added $\lambda\phi^4$ for boundedness and screening—good; keep it. &#x20;
+* **Potential shape.** He uses a symmetric quartic; you start from a **cubic-quadratic** potential (tachyonic with explicit asymmetry) but have already added $\lambda\phi^4$ for boundedness and screening—good; keep it. &#x20;
 
 # 4) Action plan (fast, concrete, testable)
 
@@ -152,13 +152,13 @@ Integrated comparison and implementation plan.
 # 5) Quick wins you can claim once this lands
 
 * **Predict a preferred tube/filament radius $R_*$** from the minimum of $E(R)$ (Bordag’s analogue shows a clear minimum). That ties directly into the Voxtrium mapping where $R_*\sim 1/m_\phi$ is already related and used in SIDM phenomenology. &#x20;
-* **Show before/after spectra.** Plot $\kappa_\ell(R)$ (pre‑condensation) and the **positive mass eigenvalues** (post‑condensation). This visually mirrors Bordag’s Figs. 3–5 and will make reviewers comfortable that your tachyonic language is standard.&#x20;
+* **Show before/after spectra.** Plot $\kappa_\ell(R)$ (pre‑condensation) and the **positive mass eigenvalues** (post‑condensation). This visually mirrors Bordag’s Figs. 3-5 and will make reviewers comfortable that your tachyonic language is standard.&#x20;
 * **Boundedness & screening** are no longer a hand‑wave: the $\lambda\phi^4$ piece is *required* in your potential exactly as in the QCD story, and you’ve already scaffolded it.&#x20;
 
-# 6) Implementation checklist (1–2 focused sprints)
+# 6) Implementation checklist (1-2 focused sprints)
 
-1. **Module: cylinder\_modes.py** – radial solver with matching (Bessel/Kummer), returns $\kappa_\ell(R)$, eigenfunctions, and $N_{\rm tach}(R)$. Target parity with Bordag’s matching at $r=R$.&#x20;
-2. **Module: condense\_tube.py** – expand $\phi$ in modes, add $\lambda\phi^4$, shift by $v_\ell$, minimize $V_{\text{eff}}^{\text{tube}}$, diagonalize mass matrix; plot spectra and condensates versus $R$.&#x20;
+1. **Module: cylinder\_modes.py** - radial solver with matching (Bessel/Kummer), returns $\kappa_\ell(R)$, eigenfunctions, and $N_{\rm tach}(R)$. Target parity with Bordag’s matching at $r=R$.&#x20;
+2. **Module: condense\_tube.py** - expand $\phi$ in modes, add $\lambda\phi^4$, shift by $v_\ell$, minimize $V_{\text{eff}}^{\text{tube}}$, diagonalize mass matrix; plot spectra and condensates versus $R$.&#x20;
 3. **Hook into Voxtrium:** add $E_{\text{bg}}(R)$ via your $J^\nu$ bookkeeping and units map; output $R_*$, $m_\phi\sim 1/R_*$, and the implied cross‑section velocity scale—you already defined the units and conservation scaffolding. &#x20;
 4. **Diagnostics:** track $Q_{\rm FUM}$ and wave‑speed normalization during runs. &#x20;
 
@@ -181,7 +181,7 @@ Summary: the analysis is consistent with a standard tachyon‑condensation narra
    Bordag builds a 2D effective theory for unstable gluon modes in a finite‑radius chromomagnetic flux tube, shows the condensate forms, and that the unstable modes gain real masses; total energy has a minimum vs. flux strength/size (their δ parameter). That arc mirrors yours conceptually (roll off the hill → stable vacuum → massive fluctuations).&#x20;
 
 5. **The empirical signals look like symmetry breaking & organization.**
-   In your *Void Intelligence* PDF, **cluster count collapses** while average weight increases and topological complexity spikes then settles (Figure 3, p. 6) — all consistent with a system organizing into a single phase with structured defects/features. The graph snapshots (pp. 4–5) show a dense core with sparse tendrils—again what I’d expect after a phase transition in a sparse relational medium.&#x20;
+   In your *Void Intelligence* PDF, **cluster count collapses** while average weight increases and topological complexity spikes then settles (Figure 3, p. 6) — all consistent with a system organizing into a single phase with structured defects/features. The graph snapshots (pp. 4-5) show a dense core with sparse tendrils—again what I’d expect after a phase transition in a sparse relational medium.&#x20;
 
 # where to tighten (one real fix + three proofs)
 

@@ -102,12 +102,12 @@ Benchmarks
 
 1) Taylor€“Green vortex (2€‘D periodic): energy E(t) = E0 exp(ˆ’2 Δ½ k^2 t). Fit Δ½ from decay and match input Δ½ within threshold.
 2) Lid€‘driven cavity: centerline profiles at Re ˆˆ {100, 400, 1000} converge with grid; divergence norm small.
-3) Divergence control: report €–ˆ‡·v€–_2 over time; require grid€‘convergent decrease.
+3) Divergence control: report €-ˆ‡·v€-_2 over time; require grid€‘convergent decrease.
 
 Acceptance thresholds (double precision)
 
 - Taylor€“Green: |Δ½_fit ˆ’ Δ½_th| / Δ½_th ‰¤ 5% at baseline grid (‰¥ 256^2).
-- Lid€‘driven cavity: max_t €–ˆ‡·v€–_2 ‰¤ 1eˆ’6.
+- Lid€‘driven cavity: max_t €-ˆ‡·v€-_2 ‰¤ 1eˆ’6.
 - Convergence under grid refinement consistent with scheme order.
 - JSON includes passed boolean, key metrics, figure path, timestamp.
 Details in [BENCHMARKS_FLUIDS.md](Prometheus_VDM/BENCHMARKS_FLUIDS.md:1).

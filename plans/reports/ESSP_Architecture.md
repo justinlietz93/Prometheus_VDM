@@ -30,10 +30,10 @@ The framework operates on a unidirectional, decoupled pipeline ensuring scalabil
 
 | Class | Rarity | Target Degree (`k_target`) | Learning Rate (`η`) | Decay Rate (`λ`) |
 | :--- | :--- | :--- | :--- | :--- |
-| **Relay** | ~60% | 3–5 | 0.08 | 0.03 |
-| **Inhibitory**| ~25% | 6–12 | 0.05 | 0.02 |
-| **Integrator** | ~14% | 20–60 | 0.01 | 0.005 |
-| **Purkinje-like**| ~1% | 200–500| 0.002 | 0.0005 |
+| **Relay** | ~60% | 3-5 | 0.08 | 0.03 |
+| **Inhibitory**| ~25% | 6-12 | 0.05 | 0.02 |
+| **Integrator** | ~14% | 20-60 | 0.01 | 0.005 |
+| **Purkinje-like**| ~1% | 200-500| 0.002 | 0.0005 |
 
 *   **Safety Rails & Dynamic Targets:**
     *   **Target Degree (`k_target`)** is a dynamic target, not fixed, but bounded by a capacity cap to prevent pathological behavior in small territories:

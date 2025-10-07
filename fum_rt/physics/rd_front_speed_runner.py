@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-RD front-speed validation runner (Fisher–KPP) for fum_rt.
+RD front-speed validation runner (Fisher-KPP) for fum_rt.
 
 CHANGE REASON:
 - This file mirrors the validated physics from derivation scripts to the runtime stack.
-- We have PROVEN the Fisher–KPP front speed c = 2√(D r) via reproducible scripts and derivations:
+- We have PROVEN the Fisher-KPP front speed c = 2√(D r) via reproducible scripts and derivations:
   [rd_front_speed_experiment.py](Prometheus_VDM/derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py:1),
   [rd_front_speed_validation.md](Prometheus_VDM/derivation/rd_front_speed_validation.md:1),
   [CORRECTIONS.md](Prometheus_VDM/derivation/computational_proofs/CORRECTIONS.md:1).

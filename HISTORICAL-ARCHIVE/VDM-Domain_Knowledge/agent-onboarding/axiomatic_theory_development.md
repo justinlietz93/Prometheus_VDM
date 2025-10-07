@@ -18,10 +18,10 @@ Tag Legend: [AXIOM], [THEOREM-PROVEN], [LEMMA-PROVEN], [COROLLARY], [CONJECTURE]
 
 ## Tagging Scheme (Unified)
 Allowed status tags (each non‑axiom statement MUST carry one):
-- `[THEOREM-PROVEN]` formally derived from A1–A4 with proof sketch or full derivation.
+- `[THEOREM-PROVEN]` formally derived from A1-A4 with proof sketch or full derivation.
 - `[LEMMA-PROVEN]` auxiliary proven step used in a theorem proof.
 - `[COROLLARY]` immediate logical consequence of proved theorems/lemmas.
-- `[CONJECTURE]` claim not yet proven from A1–A4; accompanied by explicit proof obligations.
+- `[CONJECTURE]` claim not yet proven from A1-A4; accompanied by explicit proof obligations.
 - `[NUM-EVIDENCE]` empirically supported numerical observation (figures/logs referenced) — never upgrades logical status.
 
 Unused / legacy labels (e.g. quarantine, heuristic) are deprecated in this document and replaced by the above.
@@ -43,10 +43,10 @@ No additional axioms; everything else is derived, conditioned, or conjectural.
 
 ## Section 2. Core Derivations from the Action
 
-### Derivation A (Discrete Euler–Lagrange → Second‑Order Update) [THEOREM-PROVEN]
+### Derivation A (Discrete Euler-Lagrange → Second‑Order Update) [THEOREM-PROVEN]
 Variation of Axiom 4 yields the *core discrete equation*:
 \[\frac{W_i^{n+1}-2W_i^{n}+W_i^{n-1}}{\Delta t^{2}} = 2J \sum_{j\in N(i)}(W_j^{n}-W_i^{n}) - V'(W_i^{n}).\]
-Derivation note: the interaction term in the action is edge‑doubled (each pair \((i,j)\) appears in both the \(i\)- and \(j\)-centered sums). Hence the variation of \(-\tfrac{J}{2}\sum_{j\in N(i)}(W_j-W_i)^2\) plus the symmetric neighbor contributions yields the factor \(+\,2J\sum_{j\in N(i)}(W_j-W_i)\) in the Euler–Lagrange equation.
+Derivation note: the interaction term in the action is edge‑doubled (each pair \((i,j)\) appears in both the \(i\)- and \(j\)-centered sums). Hence the variation of \(-\tfrac{J}{2}\sum_{j\in N(i)}(W_j-W_i)^2\) plus the symmetric neighbor contributions yields the factor \(+\,2J\sum_{j\in N(i)}(W_j-W_i)\) in the Euler-Lagrange equation.
 Taylor expansion (Axiom 2) of the neighbour term gives the *continuum inertial form* (quarantined inertial label):
 \[\partial_{tt}\phi - c^{2}\nabla^{2}\phi + V'(\phi)=0, \qquad c^{2}=2J a^{2}. \tag{1} [EFT-KG]\]
 Error control is given explicitly by Lemma S.1 (spatial Taylor remainder) and Lemma T.1 (temporal Taylor remainder) below.
@@ -71,7 +71,7 @@ LIMIT‑ASSUMPTIONS (explicit):
 2. Smoothness: \(\phi\in C^{4}(\Omega)\) with bounded derivatives to apply Lemma S.1 and control discretization errors.
 3. Scale hierarchy: \(a/\ell \ll 1\) for characteristic variation length \(\ell\) so higher‑derivative truncation is controlled by Lemma S.1.
 
-### Theorem S.Compactness (Discrete Aubin–Lions) [THEOREM-PROVEN]
+### Theorem S.Compactness (Discrete Aubin-Lions) [THEOREM-PROVEN]
 Hypotheses: let \(\Omega\subset\mathbb R^{d}\) be a bounded Lipschitz domain and fix Axiom 5 BCs (periodic or homogeneous Neumann). Consider sequences of meshes with spacing \(a\to0\) and time step \(\Delta t\to0\) with the CFL‑like ratio \(\kappa=a/\Delta t\) bounded. Let \(W^{(a,\Delta t)}_{i}(t_n)\) be discrete solutions to the update from Axiom 4 with initial data having a uniform discrete energy bound
 \[E_a(0):=a^{d}\sum_{i}\Big(\tfrac12\Big(\frac{W^{1}_i-W^{0}_i}{\Delta t}\Big)^2 + \tfrac{J}{2}\sum_{j\in N(i)}(W^{0}_j-W^{0}_i)^2 + V(W^{0}_i)\Big) \le E_{0}<\infty\]
 independent of \(a,\Delta t\).
@@ -85,7 +85,7 @@ for an absolute constant \(C_1\) depending only on lattice coordination and J; t
 2. Time control. The discrete equation and the uniform energy bound provide a uniform bound on discrete time differences
 \[a^{d}\sum_{n}\sum_{i} \Big(\frac{W^{n+1}_i-W^{n}_i}{\Delta t}\Big)^2 \le C_2 E_a(0)/\Delta t\]
 which, after piecewise‑linear interpolation, yields equicontinuity in time in L²(\Omega) modulo the standard time‑translation estimate (Helly/BV discrete form). The constant \(C_2\) is explicit from the discrete energy identity.
-3. Discrete Aubin–Lions. With uniform discrete H¹ in space and equicontinuity in time we invoke a discrete Aubin–Lions compactness theorem (see e.g. Eymard–Gallouët–Herbin style discrete compactness): there exists a strongly convergent subsequence in L²_{t,x}.
+3. Discrete Aubin-Lions. With uniform discrete H¹ in space and equicontinuity in time we invoke a discrete Aubin-Lions compactness theorem (see e.g. Eymard-Gallouët-Herbin style discrete compactness): there exists a strongly convergent subsequence in L²_{t,x}.
 4. Passage to the limit. Use Lemma S.1 and Lemma T.1 (constants displayed above) to control the truncation remainders when replacing discrete Laplacian and discrete second differences by continuum operators; these remainders vanish as \(a,\Delta t\to0\) at rates \(O(a^{2})\) and \(O(\Delta t^{2})\) respectively. The inertial term disappears under the time‑scale separation hypothesis, producing the weak form of (2) for the limit \(\phi\).
 
 Remarks: hypotheses include boundedness of \(E_a(0)\) and Lipschitz regularity of \(\partial\Omega\); constants \(C_1,C_2\) are computable from J and lattice coordination numbers and from Lemmas S.1/T.1.
@@ -108,7 +108,7 @@ Then \(\sum_i \phi_i^{n+1}=\sum_i \phi_i^{n}\) exactly for \(f\equiv 0\). Proof:
 ### Lemma DG.1 (Discrete‑gradient Lyapunov step) [LEMMA-PROVEN]
 Let \(\mathcal L[\phi]=\int_{\Omega}(\tfrac{D}{2}|\nabla\phi|^{2}+\hat V(\phi))dx\) with Axiom 5 BCs and define the discrete‑gradient update so that
 \[\frac{\phi^{n+1}-\phi^{n}}{\Delta t} = D\nabla^{2}_h \bar\phi + \bar f,\qquad \text{with } \hat V'(\bar\phi)=-\bar f,\]
-where the bars denote a suitable discrete gradient in the sense of Gonzalez/Quispel–McLaren. Then
+where the bars denote a suitable discrete gradient in the sense of Gonzalez/Quispel-McLaren. Then
 \[\mathcal L^{n+1}-\mathcal L^{n} = -\Delta t\,\Big\|\frac{\phi^{n+1}-\phi^{n}}{\Delta t}\Big\|_{2}^{2}\le 0.\]
 Proof: standard discrete‑gradient identity; BCs eliminate boundary terms on the discrete Green’s identity.
 
@@ -134,7 +134,7 @@ Then the temporal remainder obeys
 \[\|\delta_{tt}\phi-\partial_{tt}\phi\|_{\infty} \le C_{time}\, \Delta t^{2}\, \|\partial_{t}^{4}\phi\|_{\infty},\qquad C_{time}=\frac{1}{12}.\]
 Proof sketch: Standard Taylor expansion in time about \(t\) to fourth order; central difference cancels odd derivatives leaving a fourth derivative remainder with coefficient \(1/12\).
 
-### L0–L3 Layering (Model Abstraction Levels)
+### L0-L3 Layering (Model Abstraction Levels)
 - L0 (Microscopic): discrete action, microstate dynamics, explicit lattice spacing \(a\) and time step \(\Delta t\).
 - L1 (Mesoscopic): coarse‑grained fields \(\phi(x,t)\), Taylor expansions with remainders controlled by Lemmas S.1/T.1.
 - L2 (Continuum PDE): inertial PDE (1) and gradient‑flow PDE (2); effective coefficients \(D,c\) expressed in terms of \(J,a\).
@@ -325,9 +325,9 @@ End of ground truths block. Additions to this block must reference produced arti
 
 ## Section 13. Comparative Review (Validation‑Only) — external works mapped to axiom‑core
 
-All items below are strictly [NUM-EVIDENCE] and/or [CONJECTURE] with explicit [LIMIT-ASSUMPTIONS]. None alter Axioms 1–5 or introduce new primitives. They serve as runners and cross‑checks against our derived theorems/lemmas/gates.
+All items below are strictly [NUM-EVIDENCE] and/or [CONJECTURE] with explicit [LIMIT-ASSUMPTIONS]. None alter Axioms 1-5 or introduce new primitives. They serve as runners and cross‑checks against our derived theorems/lemmas/gates.
 
-### 13.1 Quantum Keldysh reaction–diffusion (Gerbino–Lesanovsky–Perfetto, 2024) [NUM-EVIDENCE][LIMIT-ASSUMPTIONS]
+### 13.1 Quantum Keldysh reaction-diffusion (Gerbino-Lesanovsky-Perfetto, 2024) [NUM-EVIDENCE][LIMIT-ASSUMPTIONS]
 - Source: [2307.14945v3.pdf](derivation/supporting_work/NEEDS_REVIEW/Reaction-Diffusion/2307.14945v3.pdf)
 - Scope: Open quantum Fermi gas with Lindblad two‑body loss; Euler‑scale kinetic (Boltzmann‑like) equation for Wigner density; universal homogeneous decay exponent \(\tilde n \sim \tilde t^{-d/(d+1)}\); 1D links to TGGE; inhomogeneous quenches via trap parameter \(\Omega\).
 - Mapping to this document:
@@ -341,9 +341,9 @@ All items below are strictly [NUM-EVIDENCE] and/or [CONJECTURE] with explicit [L
   - Gate Q2: In 1D, verify TGGE correspondence via momentum‑space observables.
   - Gate Q3: With added diffusion, check approach to classical RD dispersion/front metrics.
 
-### 13.2 Field theories & basis‑independent RD (del Razo–Lamma–Merbis, 2025) [NUM-EVIDENCE][LIMIT-ASSUMPTIONS]
+### 13.2 Field theories & basis‑independent RD (del Razo-Lamma-Merbis, 2025) [NUM-EVIDENCE][LIMIT-ASSUMPTIONS]
 - Source: [2409.13377v2.pdf](derivation/supporting_work/NEEDS_REVIEW/Reaction-Diffusion/2409.13377v2.pdf)
-- Scope: Unified Fock‑space/Doi–Peliti/CDME framework; basis‑independent creation/annihilation; Galerkin discretization with convergence to RDME; path integrals for arbitrary discretizations; RG universality statements.
+- Scope: Unified Fock‑space/Doi-Peliti/CDME framework; basis‑independent creation/annihilation; Galerkin discretization with convergence to RDME; path integrals for arbitrary discretizations; RG universality statements.
 - Mapping:
   - L0→L2 consistency runner: compare our Axiom‑driven L0→L2 limit to CDME/RDME on matched meshes/BCs.
   - Use to validate dispersion \(\sigma(k)=r-Dk^{2}\) [U1], front speed \(c_{front}=2\sqrt{Dr}\) [U2], and Lyapunov decay (Theorem 2) in expectation.
@@ -367,7 +367,7 @@ All items below are strictly [NUM-EVIDENCE] and/or [CONJECTURE] with explicit [L
   - M2: Linear‑response consistency around the prior PDE.
   - M3: If constrained within class (2), verify \(d\mathcal L/dt\le0\); otherwise tag [CONJECTURE].
 
-### 13.4 Time‑fractional Fisher–KPP numerics (Gortsas, 2025) [CONJECTURE][NUM-EVIDENCE][LIMIT-ASSUMPTIONS]
+### 13.4 Time‑fractional Fisher-KPP numerics (Gortsas, 2025) [CONJECTURE][NUM-EVIDENCE][LIMIT-ASSUMPTIONS]
 - Source: [2508.16241v1.pdf](derivation/supporting_work/NEEDS_REVIEW/Reaction-Diffusion/2508.16241v1.pdf)
 - Scope: LD‑BEM and meshless FPM for time‑fractional (Caputo / RL / fractal) KPP; sparse matrices and reduced volume integrals; accuracy metrics \(E_{\infty},E_{2}\).
 - Mapping:
@@ -379,7 +379,7 @@ All items below are strictly [NUM-EVIDENCE] and/or [CONJECTURE] with explicit [L
   - F2: Stability and reported error orders match claims.
   - F3: Any fractional H‑theorem analogue is [CONJECTURE] until proven; test monotone proxies.
 
-### 13.5 Hamiltonian simulation via CLS (Carleman + Schrödingerization) (Sasaki–Endo–Muramatsu, 2025) [NUM-EVIDENCE][LIMIT-ASSUMPTIONS]
+### 13.5 Hamiltonian simulation via CLS (Carleman + Schrödingerization) (Sasaki-Endo-Muramatsu, 2025) [NUM-EVIDENCE][LIMIT-ASSUMPTIONS]
 - Source: [2508.01640v1.pdf](derivation/supporting_work/NEEDS_REVIEW/Hamiltonian/2508.01640v1.pdf)
 - Scope: Carleman linearization truncated at order \(K\), then Warped‑Phase Transformation to a skew‑Hermitian operator enabling Hamiltonian simulation of nonlinear PDEs inc. RD; classical validations: first‑order in \(K\), second‑order in \(\Delta x\), first‑order in \(\Delta p\).
 - Mapping:
@@ -391,7 +391,7 @@ All items below are strictly [NUM-EVIDENCE] and/or [CONJECTURE] with explicit [L
   - QCLS‑2: Transformed operator skew‑Hermiticity/unitarity checks pass.
   - QCLS‑3: U1/U2 recovery within tolerances on benchmark ICs.
 
-Summary: None of the above modifies Axioms 1–5. They serve as validation targets or runners gated by Section 14.
+Summary: None of the above modifies Axioms 1-5. They serve as validation targets or runners gated by Section 14.
 
 ---
 
@@ -410,7 +410,7 @@ Summary: None of the above modifies Axioms 1–5. They serve as validation targe
 - Front gate: \(c_{front}=2\sqrt{Dr}\) [Theorem U2]; band: relative error \(\le 5\%\) on calibrated meshes.
 - Discrete compactness: L0→L2 convergence under energy bound [Theorem S.Compactness]; remainders \(\sim O(a^{2})+O(\Delta t^{2})\).
 - Noether (inertial sandbox): conservative‑limit energy/momentum drift \(\le 10^{-4}\) over \(10^{4}\) steps; all inertial claims carry [EFT-KG].
-- External runner gates: Q1–Q3 (13.1), S1–S3 (13.2), M1–M3 (13.3), F1–F3 (13.4), QCLS‑1–3 (13.5).
+- External runner gates: Q1-Q3 (13.1), S1-S3 (13.2), M1-M3 (13.3), F1-F3 (13.4), QCLS‑1-3 (13.5).
 
 ### 14.3 Scaling groups (dimensionless program)
 For the RD PDE (2):
@@ -449,22 +449,22 @@ Artifacts:
 
 14.4.2 Stochastic RDME/CDME runner
 - Location: [derivation/code/physics/reaction_diffusion/](derivation/code/physics/reaction_diffusion/) (stochastic sub‑runner)
-- Tasks: simulate RDME/CDME consistent with 13.2; verify S1–S3; report CI bands across seeds.
+- Tasks: simulate RDME/CDME consistent with 13.2; verify S1-S3; report CI bands across seeds.
 - Outputs: ensemble logs with seed lists and CI; recovery of U1/U2 in the large‑copy limit.
 
 14.4.3 Fractional RD runner (Caputo/RL/fractal)
 - Location: [derivation/code/physics/reaction_diffusion/](derivation/code/physics/reaction_diffusion/) (fractional sub‑runner)
-- Tasks: implement fractional time derivative as per 13.4; verify F1–F3; mark all claims [CONJECTURE] unless derived from Axiom 4.
+- Tasks: implement fractional time derivative as per 13.4; verify F1-F3; mark all claims [CONJECTURE] unless derived from Axiom 4.
 - Outputs: error‑order tables and classical‑limit recovery plots.
 
 14.4.4 Quantum CLS runner (Carleman + Schrödingerization)
 - Location: [derivation/code/physics/reaction_diffusion/](derivation/code/physics/reaction_diffusion/) (quantum sub‑runner)
-- Tasks: simulate (2) via CLS; verify QCLS‑1–3; monitor \(p\)-domain advection artifacts and boundary handling.
+- Tasks: simulate (2) via CLS; verify QCLS‑1-3; monitor \(p\)-domain advection artifacts and boundary handling.
 - Outputs: convergence curves vs \(K,\Delta x,\Delta p\); dispersion/front comparisons.
 
 14.4.5 Quantum Keldysh/Euler runner (ballistic sector)
 - Location: [derivation/code/physics/reaction_diffusion/](derivation/code/physics/reaction_diffusion/) (quantum kinetic sub‑runner)
-- Tasks: implement kinetic equation in the Euler‑scale regime for validation only; verify Q1–Q3; never use to justify RD axioms.
+- Tasks: implement kinetic equation in the Euler‑scale regime for validation only; verify Q1-Q3; never use to justify RD axioms.
 - Outputs: decay‑exponent fits; optional crossover tests with added diffusion.
 
 Runtime integration hooks (non‑invasive):
@@ -494,7 +494,7 @@ Runtime integration hooks (non‑invasive):
 Scope (regex): derivation/(supporting_work|code/outputs|code/physics|outputs|arxiv|conservation_law|foundations)/ and fum_rt/core/*.
 
 Findings (this document’s references only):
-- Reaction–diffusion runners present:
+- Reaction-diffusion runners present:
   - [rd_front_speed_experiment.py](derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py:1), [rd_dispersion_experiment.py](derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py:1), [rd_front_speed_sweep.py](derivation/code/physics/reaction_diffusion/rd_front_speed_sweep.py:1).
 - Conservation law/invariant references present:
   - [qfum_validate.py](derivation/code/physics/conservation_law/qfum_validate.py:1), [discrete_conservation.md](derivation/conservation_law/discrete_conservation.md:1).
@@ -552,7 +552,7 @@ Purpose: event‑driven, sparse micro‑updates that respect Axiom 1 (locality),
   - H‑theorem gate: stepwise \(\Delta \mathcal L \le 0\) (no violations); diffusion mass conservation verified for \(f\equiv0\).
 
 ## Section 15. Alignment Gap Matrix for NEEDS_REVIEW themes (Validation‑only) — mapping to axiom‑core
-All items below are external or phenomenological sources. They do not alter Axioms 1–5 or introduce primitives. Each entry records: Mapping (how to compare), Limits (assumptions to keep explicit), and Validation gates (runners/metrics). Status tags remain [NUM-EVIDENCE] and/or [CONJECTURE] with [LIMIT-ASSUMPTIONS].
+All items below are external or phenomenological sources. They do not alter Axioms 1-5 or introduce primitives. Each entry records: Mapping (how to compare), Limits (assumptions to keep explicit), and Validation gates (runners/metrics). Status tags remain [NUM-EVIDENCE] and/or [CONJECTURE] with [LIMIT-ASSUMPTIONS].
 
 15.1 Accretion‑Disks [NUM-EVIDENCE][LIMIT-ASSUMPTIONS]
 - Source: [2508.01384v2.pdf](derivation/supporting_work/NEEDS_REVIEW/Accretion-Disks/2508.01384v2.pdf)
@@ -570,13 +570,13 @@ All items below are external or phenomenological sources. They do not alter Axio
 - Sources: multiple PDFs under [Entropy](derivation/supporting_work/NEEDS_REVIEW/Entropy/)
 - Mapping: Use only as inference overlays (e.g., MaxCal/SB) on top of (2), per 13.3; do not modify dynamics.
 - Limits: Declared priors and constraints.
-- Gates: M1–M3 of §13.3; explicit check that \(d\mathcal L/dt\le0\) is preserved when projected back into RD.
+- Gates: M1-M3 of §13.3; explicit check that \(d\mathcal L/dt\le0\) is preserved when projected back into RD.
 
 15.4 Hamiltonian/CLS [NUM-EVIDENCE][LIMIT-ASSUMPTIONS]
 - Source: [2508.01640v1.pdf](derivation/supporting_work/NEEDS_REVIEW/Hamiltonian/2508.01640v1.pdf)
 - Mapping: Computational runner; compare outputs to L2 PDE (2).
 - Limits: Truncation order \(K\), discretizations.
-- Gates: QCLS‑1–3 (Section 13.5). All inertial analogies stay [EFT-KG] quarantined.
+- Gates: QCLS‑1-3 (Section 13.5). All inertial analogies stay [EFT-KG] quarantined.
 
 15.5 Gravity [CONJECTURE][NUM-EVIDENCE][LIMIT-ASSUMPTIONS]
 - Source: folder [Gravity](derivation/supporting_work/NEEDS_REVIEW/Gravity/)
@@ -592,7 +592,7 @@ All items below are external or phenomenological sources. They do not alter Axio
 
 15.7 Reaction‑Diffusion (external) [NUM-EVIDENCE][LIMIT-ASSUMPTIONS]
 - Sources: [2307.14945v3.pdf](derivation/supporting_work/NEEDS_REVIEW/Reaction-Diffusion/2307.14945v3.pdf), [2409.13377v2.pdf](derivation/supporting_work/NEEDS_REVIEW/Reaction-Diffusion/2409.13377v2.pdf), [2411.09880v1.pdf](derivation/supporting_work/NEEDS_REVIEW/Reaction-Diffusion/2411.09880v1.pdf), [2508.16241v1.pdf](derivation/supporting_work/NEEDS_REVIEW/Reaction-Diffusion/2508.16241v1.pdf)
-- Mapping/Limits/Gates: As in §13.1–13.4 (Q1–Q3, S1–S3, M1–M3, F1–F3). No import to axioms.
+- Mapping/Limits/Gates: As in §13.1-13.4 (Q1-Q3, S1-S3, M1-M3, F1-F3). No import to axioms.
 
 15.8 Self‑Supervision / Subquadratic‑Architecture [NUM-EVIDENCE][LIMIT-ASSUMPTIONS]
 - Sources: [Self-Supervision](derivation/supporting_work/NEEDS_REVIEW/Self-Supervision/), [Subquadratic-Architecture](derivation/supporting_work/NEEDS_REVIEW/Subquadratic-Architecture/)
@@ -606,9 +606,9 @@ All items below are external or phenomenological sources. They do not alter Axio
 - Limits: Documented per‑runner assumptions.
 - Gates: Reproducibility and segregation from axiom‑core; any derived comparisons tagged [NUM-EVIDENCE].
 
-Status: This matrix completes the alignment‑gap identification across NEEDS_REVIEW themes at the granularity required for validation‑only use. Any future elevation requires explicit derivations from Axioms 1–5 and satisfaction of Section 14 gates.
+Status: This matrix completes the alignment‑gap identification across NEEDS_REVIEW themes at the granularity required for validation‑only use. Any future elevation requires explicit derivations from Axioms 1-5 and satisfaction of Section 14 gates.
 
 End of truth‑first axiomatic document. All non‑axiom / regime claims above are tagged; no content follows this termination marker.
-[File terminates here intentionally – minimal source enforced.]
+[File terminates here intentionally - minimal source enforced.]
 
 

@@ -222,7 +222,7 @@ Append near “Diagnostics & Data Products” or wherever you group probe metric
 
 # EQUATIONS.md — add numbered entries (next free numbers)
 
-Use the next available IDs in your file; if 080 is your last, these become 081–084.
+Use the next available IDs in your file; if 080 is your last, these become 081-084.
 
 ```markdown
 #### VDM-E-081 — Finite-difference estimators for $\nabla V$
@@ -588,10 +588,10 @@ you also need to update the constants table you gave me to match this
 | <a id="const-nu-typical"></a> $\nu$ [LBM typical] | Kinematic viscosity | 0.1333 |  | LBM units | derivation/DIMENSIONLESS_CONSTANTS.md:16; VDM_Overview.md:81 • 0922758 | $\nu = \frac{1}{3}(\tau - \frac{1}{2})$ for $\tau=0.9$ |
 | <a id="const-Re-64"></a>$\mathrm{Re}$ [LBM 64²] | Reynolds number (64²) | 9.6 |  | nondimensional | derivation/DIMENSIONLESS_CONSTANTS.md:17; VDM_Overview.md:82 • 0922758 | $\mathrm{Re} = UL/\nu$ |
 | <a id="const-Re-128"></a>$\mathrm{Re}$ [LBM 128²] | Reynolds number (128²) | 19.2 |  | nondimensional | derivation/DIMENSIONLESS_CONSTANTS.md:17; VDM_Overview.md:82 • 0922758 | $\mathrm{Re} = UL/\nu$ |
-| <a id="const-Ma-low"></a>$\mathrm{Ma}$ [LBM typical] | Mach number range | 0.017–0.035 |  | nondimensional | derivation/DIMENSIONLESS_CONSTANTS.md:18; VDM_Overview.md:83 • 0922758 | $\mathrm{Ma} = U/\sqrt{1/3}$ (low compressibility) |
-| <a id="const-c_star"></a> $c^*$ [RD normalized] | Normalized KPP speed | 0.95–1.0 |  | nondimensional | derivation/DIMENSIONLESS_CONSTANTS.md:20; VDM_Overview.md:85 • 0922758 | $c^* = c/(2\sqrt{Dr})$ |
+| <a id="const-Ma-low"></a>$\mathrm{Ma}$ [LBM typical] | Mach number range | 0.017-0.035 |  | nondimensional | derivation/DIMENSIONLESS_CONSTANTS.md:18; VDM_Overview.md:83 • 0922758 | $\mathrm{Ma} = U/\sqrt{1/3}$ (low compressibility) |
+| <a id="const-c_star"></a> $c^*$ [RD normalized] | Normalized KPP speed | 0.95-1.0 |  | nondimensional | derivation/DIMENSIONLESS_CONSTANTS.md:20; VDM_Overview.md:85 • 0922758 | $c^* = c/(2\sqrt{Dr})$ |
 | <a id="const-Theta"></a> $\Theta$ [VDM junction] | Junction gating strength | $k \approx 1, b \approx 0$ |  | nondimensional | derivation/DIMENSIONLESS_CONSTANTS.md:21; VDM_Overview.md:86 • 0922758 | Fit scale in $\Theta \Delta m$ or $\Theta \|\nabla m\|$ |
-| <a id="const-Gamma"></a> $\Gamma$ [VDM retention] | Retention fraction | 0.3–0.75 |  | nondimensional | derivation/DIMENSIONLESS_CONSTANTS.md:23; VDM_Overview.md:88 • 0922758 | Memory persistence (representative avg from plots) |
+| <a id="const-Gamma"></a> $\Gamma$ [VDM retention] | Retention fraction | 0.3-0.75 |  | nondimensional | derivation/DIMENSIONLESS_CONSTANTS.md:23; VDM_Overview.md:88 • 0922758 | Memory persistence (representative avg from plots) |
 | <a id="const-D_a"></a> $D_a$ [VDM anisotropic] | Anisotropic diffusion index | {1, 3, 5, 7} |  | nondimensional | derivation/DIMENSIONLESS_CONSTANTS.md:24; VDM_Overview.md:89 • 0922758 | Transport anisotropy discrete values |
 
 <!-- BEGIN AUTOSECTION: CONSTANTS-INDEX -->

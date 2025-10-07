@@ -296,7 +296,7 @@ repos:
 
 ## 7) Run it on **your workstation** (1k neurons, dense) and chat live
 
-You’ve got 32C/64T Threadripper + MI100 + 512 GB—plenty for 1k–100k. Start with 1k dense to verify all signals, then move to sparse.
+You’ve got 32C/64T Threadripper + MI100 + 512 GB—plenty for 1k-100k. Start with 1k dense to verify all signals, then move to sparse.
 
 **Warm‑up (1k, dense, autonomous speak on topology spikes)**
 
@@ -349,7 +349,7 @@ Your “Symmetry Analysis” notes make this clean: the per‑site law has **tim
 * **Sparse path first**:
   `--sparse-mode --walkers 512 --hops 4 --threshold 0.15 --lambda-omega 0.1 --candidates 64`
   This keeps per‑tick cost ≈ O(N·k).
-* **Memory discipline**: HDF5 snapshots every 30–60 ticks with chunking; turn off viz.
+* **Memory discipline**: HDF5 snapshots every 30-60 ticks with chunking; turn off viz.
 * **I/O**: keep UTD rate limited (`--status-interval 2…10`) on large runs.
 * **MI100 acceleration (when you flip it on)**: wire a HIP SpMV and a per‑node ΔW kernel behind a simple provider (we already left the hook). That pushes the heavy ops to the GPU without changing semantics.
 

@@ -17,14 +17,14 @@ Great—those three files are exactly what we needed. Here’s what each one is,
    *How to use:* rename to `docs/Appendix_EFT_Spine.md` and include as **Appendix A (formal EFT control)**. This strengthens the math where reviewers will push hardest.
 
 3. **`02_Grok4_20250815_042516.md`**
-   *What it is:* a **methods/notes file** capturing the toy FRW integration (with causal $K_{\rm ret}$), the finite‑tube secular‑equation scan prototype, and a first micro–macro calibration sketch. It shows conservation checks ($\sum_i[\dot\rho_i+3H(1+w_i)\rho_i]=0$ numerically), small $\epsilon_{\rm DE}$, and tiny DM injection in the toy runs—good integrity checks for the Voxtrium embedding.  &#x20;
+   *What it is:* a **methods/notes file** capturing the toy FRW integration (with causal $K_{\rm ret}$), the finite‑tube secular‑equation scan prototype, and a first micro-macro calibration sketch. It shows conservation checks ($\sum_i[\dot\rho_i+3H(1+w_i)\rho_i]=0$ numerically), small $\epsilon_{\rm DE}$, and tiny DM injection in the toy runs—good integrity checks for the Voxtrium embedding.  &#x20;
    *How to use:* rename to `docs/Appendix_Methods_FRW_and_Tube.md` and quote it as **Appendix B (numerical toys & acceptance tests)**. Tone down any “finished” language (keep it as “proof‑of‑concept / acceptance tests passed on toy settings”).
 
 Download the three files you just asked about:
 
-* **Unified derivation** – [download](sandbox:/mnt/data/00_GPT5_20250815_041412.md)
-* **EFT spine appendix** – [download](sandbox:/mnt/data/01_GPT5_20250815_042444.md)
-* **Methods & toy checks** – [download](sandbox:/mnt/data/02_Grok4_20250815_042516.md)
+* **Unified derivation** - [download](sandbox:/mnt/data/00_GPT5_20250815_041412.md)
+* **EFT spine appendix** - [download](sandbox:/mnt/data/01_GPT5_20250815_042444.md)
+* **Methods & toy checks** - [download](sandbox:/mnt/data/02_Grok4_20250815_042516.md)
 
 ---
 

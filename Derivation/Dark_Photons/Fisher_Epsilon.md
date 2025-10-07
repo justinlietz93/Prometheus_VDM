@@ -8,7 +8,7 @@
 
 ## Tasks
 
-- Compute a simple Fisher estimate for ε in 1–2 bins (analytic or finite-diff).
+- Compute a simple Fisher estimate for ε in 1-2 bins (analytic or finite-diff).
 - Output a tiny JSON summary with the estimated σ(ε).
 
 ## Acceptance gates

@@ -8,11 +8,11 @@
 > Commercial use requires citation and written permission from Justin K. Lietz.
 > See LICENSE file for full terms.
 
-TL;DR — Gate-driven QC of a metriplectic KG⊕RD scheme (spectral-DG for M, Störmer–Verlet for KG J, Strang JMJ). Pinned spec snapshot: derivation/code/outputs/logs/metriplectic/20251006_142434_step_spec_snapshot__kgRD-v1.json
+TL;DR — Gate-driven QC of a metriplectic KG⊕RD scheme (spectral-DG for M, Störmer-Verlet for KG J, Strang JMJ). Pinned spec snapshot: derivation/code/outputs/logs/metriplectic/20251006_142434_step_spec_snapshot__kgRD-v1.json
 
 ## Introduction
 
-This note evaluates a metriplectic time integrator that couples a conservative Klein–Gordon (KG) field with a dissipative reaction–diffusion (RD) flow via operator splitting. The objective is quality control (QC): verify discrete invariants (time-reversal for J; Lyapunov monotonicity for M), confirm expected error scalings under Strang composition, and document pass/fail against explicit gates with pinned artifacts.
+This note evaluates a metriplectic time integrator that couples a conservative Klein-Gordon (KG) field with a dissipative reaction-diffusion (RD) flow via operator splitting. The objective is quality control (QC): verify discrete invariants (time-reversal for J; Lyapunov monotonicity for M), confirm expected error scalings under Strang composition, and document pass/fail against explicit gates with pinned artifacts.
 
 This coupling is representative of multi-physics models where a Hamiltonian subsystem (wave-like KG) interacts with dissipative kinetics (RD). The metriplectic framework separates skew (Poisson) and metric (dissipative) brackets; here, alignment of spectral operators across J and M is used to reduce splitting constants without sacrificing the H-theorem.
 
@@ -20,7 +20,7 @@ Scope: QC only, for a fixed grid and Δt sweep; no novelty claims. All claims ar
 
 ## Research question
 
-To what extent does the time step Δt (s, normalized) control the observed log–log two‑grid error slope p (unitless) for the KG⊕RD Strang JMJ composition when using a spectral discrete‑gradient (DG) M‑step? Secondary: does the KG J‑only integrator meet strict per‑step energy and reversibility gates under our normalization?
+To what extent does the time step Δt (s, normalized) control the observed log-log two‑grid error slope p (unitless) for the KG⊕RD Strang JMJ composition when using a spectral discrete‑gradient (DG) M‑step? Secondary: does the KG J‑only integrator meet strict per‑step energy and reversibility gates under our normalization?
 
 Dependent measurements and instruments:
 
@@ -32,9 +32,9 @@ Dependent measurements and instruments:
 Minimal framework and definitions:
 
 - Metriplectic dynamics split conservative and dissipative evolution via a Poisson bracket {·,·} and a metric bracket (·,·), with Hamiltonian H and Lyapunov L such that dH/dt = 0 and dL/dt ≤ 0 in the continuum (Onsager; JKO).
-- Discrete‑gradient (DG) schemes (Gonzalez; Quispel–McLaren) enforce a discrete identity preserving the sign of the entropy/Lyapunov production.
-- Strang splitting (JMJ) is second‑order; its leading local defect scales O(Δt³), so a defect diagnostic exhibits slope near 3 on log–log axes.
-- Symplectic Störmer–Verlet preserves a modified Hamiltonian; exact per‑step H conservation is not expected, but time‑reversal symmetry and bounded energy oscillations are (Hairer–Lubich–Wanner).
+- Discrete‑gradient (DG) schemes (Gonzalez; Quispel-McLaren) enforce a discrete identity preserving the sign of the entropy/Lyapunov production.
+- Strang splitting (JMJ) is second‑order; its leading local defect scales O(Δt³), so a defect diagnostic exhibits slope near 3 on log-log axes.
+- Symplectic Störmer-Verlet preserves a modified Hamiltonian; exact per‑step H conservation is not expected, but time‑reversal symmetry and bounded energy oscillations are (Hairer-Lubich-Wanner).
 
 Core equations (variables dimensionless under our normalization):
 
@@ -68,7 +68,7 @@ Mapping to gates:
 - Strang ⇒ target two‑grid slope ≥ 2.90 with R² ≥ 0.999 in the asymptotic range; defect slope near 3.
 - Symplectic J ⇒ reversibility ≤ 1e−12; energy drift gate set at ≤ 1e−12 (strict) with discussion of modified energy behavior.
 
-Citations: Strang (1968); Hairer–Lubich–Wanner (2006); Gonzalez (1996); Quispel–McLaren (2008); Onsager (1931); Jordan–Kinderlehrer–Otto (1998).
+Citations: Strang (1968); Hairer-Lubich-Wanner (2006); Gonzalez (1996); Quispel-McLaren (2008); Onsager (1931); Jordan-Kinderlehrer-Otto (1998).
 
 ## Variables
 
@@ -97,7 +97,7 @@ Citations: Strang (1968); Hairer–Lubich–Wanner (2006); Gonzalez (1996); Quis
 
 Materials and setup:
 
-- J (KG): spectral gradient; Störmer–Verlet on (ϕ, π) with periodic BCs.
+- J (KG): spectral gradient; Störmer-Verlet on (ϕ, π) with periodic BCs.
 - M (RD): discrete‑gradient (AVF) with spectral Laplacian.
 - Composition: JMJ (primary), MJM (defect diagnostic).
 
@@ -157,7 +157,7 @@ Explanations and next checks:
 
 ## Conclusions
 
-Aim: QC of a metriplectic KG⊕RD integrator (spectral‑DG M, Störmer–Verlet J, Strang JMJ) against explicit gates.
+Aim: QC of a metriplectic KG⊕RD integrator (spectral‑DG M, Störmer-Verlet J, Strang JMJ) against explicit gates.
 
 Outcomes: reversibility PASS; Strang defect consistent; two‑grid gates not met in v1 under ϕ‑only measurement and current Δt set; strict per‑step energy gate FAIL as expected for symplectic schemes without modified‑energy tracking.
 
@@ -174,7 +174,7 @@ Planned bounded follow‑ups:
 - Gonzalez, O. (1996). Time integration and discrete Hamiltonian systems. J. Nonlinear Sci.
 - Quispel, G. R. W., McLaren, D. I. (2008). A new class of energy‑preserving numerical integration methods. J. Phys. A.
 - Onsager, L. (1931). Reciprocal relations in irreversible processes. Phys. Rev.
-- Jordan, R., Kinderlehrer, D., Otto, F. (1998). The variational formulation of the Fokker–Planck equation. SIAM J. Math. Anal.
+- Jordan, R., Kinderlehrer, D., Otto, F. (1998). The variational formulation of the Fokker-Planck equation. SIAM J. Math. Anal.
 
 ---
 

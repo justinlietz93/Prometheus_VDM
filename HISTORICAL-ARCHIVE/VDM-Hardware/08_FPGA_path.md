@@ -30,7 +30,7 @@ Everything else (SIE blend, ADC, UTE/UTD, logging) stays on CPU/GPU and later ge
 
 # How this fits your workstation **today**
 
-* **GPU first (MI100 + 7900 XTX)**: wire Kernels A/C onto the GPU via HIP. You already have HIP‑ready code paths; we’ll flesh them out so a single CLI flag switches dense CPU → sparse GPU. Expect a 10–50× lift on N=10^6 versus NumPy.
+* **GPU first (MI100 + 7900 XTX)**: wire Kernels A/C onto the GPU via HIP. You already have HIP‑ready code paths; we’ll flesh them out so a single CLI flag switches dense CPU → sparse GPU. Expect a 10-50× lift on N=10^6 versus NumPy.
 
 * **FPGA when you’re ready**: drop the same math (A/B/C/D) into Vitis HLS (Xilinx) or Intel HLS. Your Threadripper box can drive a PCIe FPGA (Alveo U280/U55C or Stratix 10) with a Python host through your existing Nexus.
 
@@ -45,7 +45,7 @@ This staging lets you *prove* the design at scale on your rig, then harden the h
 * **Numeric format**: Q0.16 or Q1.15 fixed‑point for W, α, ω, S\_{ij}. Keep one 32‑bit floating control plane on CPU/GPU for hyper‑params; stream quantized coefficients to FPGA. Add a compile‑time switch for BF16 if the board has hardened FP.
 * **On‑chip SRAM**:
 
-  * BRAM banks for W tiles (e.g., 256–1024 neurons per bank).
+  * BRAM banks for W tiles (e.g., 256-1024 neurons per bank).
   * Small LUT‑RAM heaps (k=8..32) per neuron for top‑k S\_{ij}.
   * FIFO mailboxes for ADC announcements (walker events, topology spikes).
 * **Off‑chip**: giant sharded arrays for adjacency (sparse lists) and W if N exceeds BRAM. Use burst DMA into tile SRAMs.
@@ -97,7 +97,7 @@ extern "C" void void_update(q16 *W_in, q16 *W_out, int N, VoidParams params) {
 }
 ```
 
-**Why this wins**: the datapath is narrow and regular; the FPGA can instantiate many parallel lanes (unroll factor U) to hit 100–400 GB/s effective update throughput limited by memory.
+**Why this wins**: the datapath is narrow and regular; the FPGA can instantiate many parallel lanes (unroll factor U) to hit 100-400 GB/s effective update throughput limited by memory.
 
 ## Kernel B: sparse structural homeostasis (void top‑k)
 
@@ -151,7 +151,7 @@ You control emergence with **θ** (bridge threshold), **k**, and **c** (candidat
 
 Each walker core: read a seed, advance `hops` times: sample a neighbor via alias table / reservoir from the top‑k list, emit short per‑hop events (node ids, local W, small S\_{ij}) into an on‑chip FIFO; DMA bursts them to the CPU for ADC.
 
-Design: 64–512 walkers × II=1 pipeline each ⇒ millions of hop/s at modest clocks.
+Design: 64-512 walkers × II=1 pipeline each ⇒ millions of hop/s at modest clocks.
 
 ## Kernel D: streaming B1 proxy & spike z‑score
 
@@ -232,7 +232,7 @@ CLI switches already in your runner can grow to: `--fpga --xclbin build/fum_v1.x
 
 # Throughput & scaling (ballpark)
 
-* **Kernel A**: unroll 16 lanes @ 250 MHz ⇒ 4 G updates/s (16 neurons per cycle). At 2 bytes/sample (Q1.15), that’s 8 GB/s—PCIe‑Gen4 x16 sustains \~25–28 GB/s, so you’re IO‑bound only if you stream the *entire* W each tick. With tiling and double‑buffering, you can hide much of it.
+* **Kernel A**: unroll 16 lanes @ 250 MHz ⇒ 4 G updates/s (16 neurons per cycle). At 2 bytes/sample (Q1.15), that’s 8 GB/s—PCIe‑Gen4 x16 sustains \~25-28 GB/s, so you’re IO‑bound only if you stream the *entire* W each tick. With tiling and double‑buffering, you can hide much of it.
 
 * **Kernel B** (sparse): for k=16, c=64, you evaluate 64 S\_{ij} per node and keep 16—pure compute. 16 lanes @ 250 MHz ⇒ \~4 G S\_{ij}/s. With N=10^6, you can refresh the structural top‑k in \~16 ms.
 

@@ -27,7 +27,7 @@ class NoiseSpec:
 
 
 def thermal_psd(T: float, R: float) -> float:
-    # Johnson–Nyquist: 4 k_B T R (leave units abstract; PSD scale OK)
+    # Johnson-Nyquist: 4 k_B T R (leave units abstract; PSD scale OK)
     kB = 1.380649e-23
     return 4.0 * kB * T * R
 

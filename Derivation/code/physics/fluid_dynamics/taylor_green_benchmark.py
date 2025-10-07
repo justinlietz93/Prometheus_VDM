@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Taylor–Green vortex (2-D) viscosity recovery benchmark for the fluids sector.
+Taylor-Green vortex (2-D) viscosity recovery benchmark for the fluids sector.
 
 CHANGE REASON:
 - Relocated into derivation/code/physics/fluid_dynamics per repo rules (no Prometheus_VDM/bench/).
@@ -44,7 +44,7 @@ def energy(ux, uy):
 
 
 def main():
-    ap = argparse.ArgumentParser(description="Taylor–Green vortex viscosity recovery (LBM→NS).")
+    ap = argparse.ArgumentParser(description="Taylor-Green vortex viscosity recovery (LBM→NS).")
     ap.add_argument("--nx", type=int, default=256)
     ap.add_argument("--ny", type=int, default=256)
     ap.add_argument("--tau", type=float, default=0.8, help="Relaxation time (nu = cs^2*(tau-0.5))")
@@ -142,7 +142,7 @@ if not passed:
     plt.savefig(figure_path, dpi=140)
     plt.close()
     payload = {
-        "theory": "LBM→NS; Taylor–Green viscous decay E=E0 exp(-2 nu k^2 t)",
+        "theory": "LBM→NS; Taylor-Green viscous decay E=E0 exp(-2 nu k^2 t)",
         "params": {
             "nx": int(args.nx), "ny": int(args.ny), "tau": float(args.tau), "nu_th": nu_th,
             "U0": float(args.U0), "k": float(args.k),

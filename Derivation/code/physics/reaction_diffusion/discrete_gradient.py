@@ -8,7 +8,7 @@ with Lyapunov functional
     L[φ] = ∫ ( D/2 |∇φ|^2 + V_hat(φ) ) dx,   with  V_hat'(φ) = -f(φ)
 ⇒  V_hat(φ) = - (r/2) φ^2 + (u/3) φ^3 + (λ/4) φ^4 + const.
 
-AVF discrete step (Gonzalez/Quispel–McLaren style):
+AVF discrete step (Gonzalez/Quispel-McLaren style):
     (φ^{n+1} - φ^n)/Δt = D ∇²_h( (φ^{n+1}+φ^n)/2 ) + f_bar(φ^n, φ^{n+1})
 with
     f_bar = - (V_hat(φ^{n+1}) - V_hat(φ^n)) / (φ^{n+1} - φ^n)   if φ^{n+1} ≠ φ^n,

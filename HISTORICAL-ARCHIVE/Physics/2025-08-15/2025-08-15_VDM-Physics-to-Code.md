@@ -4,11 +4,11 @@ Justin — below is a compact, *physics → code → tests* continuation that cl
 
 ## 0) What is already on firm ground in your notes
 
-* **Continuum EFT from the discrete rule.** You have a clean, action‑level derivation of the scalar with canonical kinetic term $\tfrac12(\partial_t\phi)^2-\tfrac{c^2}{2}(\nabla\phi)^2$ and $c^2=2Ja^2$ (no microscopic constraint tying $J$ to $a$); Euler–Lagrange gives $\partial_t^2\phi-c^2\nabla^2\phi+V'(\phi)=0$.&#x20;
+* **Continuum EFT from the discrete rule.** You have a clean, action‑level derivation of the scalar with canonical kinetic term $\tfrac12(\partial_t\phi)^2-\tfrac{c^2}{2}(\nabla\phi)^2$ and $c^2=2Ja^2$ (no microscopic constraint tying $J$ to $a$); Euler-Lagrange gives $\partial_t^2\phi-c^2\nabla^2\phi+V'(\phi)=0$.&#x20;
   The discrete‑to‑continuum write‑up makes the bounded quartic baseline explicit with optional small cubic tilt that maps to your $(\alpha,\beta)$.
 * **Conservation/structure of the on‑site dynamics.** Time‑translation invariance of the autonomous ODE gives an exact integral $Q_{\text{FUM}}=t-\!\int dW/F(W)$ (a constant of motion for the *trajectory clock*, not a Hamiltonian), and the on‑site Lyapunov drop $\dot V(W)=-F(W)^2\le0$ was established in your discrete conservation analysis. This is the right lens (dissipative flow), not a naive energy conservation.
 * **Finite‑tube instability and stabilization.** Your Bordag‑inspired cylinder analysis (credit: Voxtrium → Bordag) shows how a finite‑radius “false‑vacuum” core supports tachyonic modes that condense to non‑negative masses after quartic stabilization; counting and matching conditions are spelled out with the Bessel secular equation.
-* **Memory steering is dimensionless, falsifiable.** The eikonal law $n=\exp(\eta M)\Rightarrow \kappa_{\text{path}}=\eta\,|\nabla_\perp M|$ and the write–decay–spread PDE $\partial_t M=\gamma R-\delta M+\kappa\nabla^2M$ are formalized, with non‑dimensional groups $\Theta=\eta M_0$, $D_a=\gamma R_0T/M_0$, $\Lambda=\delta T$, $\Gamma=\kappa T/L^2$. Junction logistic and curvature‑scaling collapses follow immediately.&#x20;
+* **Memory steering is dimensionless, falsifiable.** The eikonal law $n=\exp(\eta M)\Rightarrow \kappa_{\text{path}}=\eta\,|\nabla_\perp M|$ and the write-decay-spread PDE $\partial_t M=\gamma R-\delta M+\kappa\nabla^2M$ are formalized, with non‑dimensional groups $\Theta=\eta M_0$, $D_a=\gamma R_0T/M_0$, $\Lambda=\delta T$, $\Gamma=\kappa T/L^2$. Junction logistic and curvature‑scaling collapses follow immediately.&#x20;
 * **Units‑rigorous bridge to Voxtrium.** Physical scalings $(\phi_0,\tau,a)$, retarded kernels for causal sourcing, and FRW transfer‑current bookkeeping are laid out; Λ/DM/GW partitions live on a probability simplex with micro‑informed inputs. (Credit Voxtrium.)
 
 These pieces are solid and we will build directly on them.
@@ -52,7 +52,7 @@ Where `quantum_pressure` is the standard discrete Laplacian on $\sqrt{\rho}$. Ti
 
 ### 1.2 Incompressible or viscous behavior
 
-* **Viscosity from memory coupling.** Couple the slow memory field $M$ into the phase dynamics as a weak Rayleigh dissipation functional $\mathcal R=\frac{\nu(M)}{2}\,(\nabla\theta)^2$. This adds a term $-\nu(M)\nabla^2\mathbf u$ to the Euler equation (Navier–Stokes form). Choose $\nu(M)=\nu_0+\nu_1\,(\Gamma,\Lambda)$ consistent with your dimensionless groups so that stronger smoothing ($\Gamma$) increases effective viscosity and large forgetting ($\Lambda$) suppresses it.&#x20;
+* **Viscosity from memory coupling.** Couple the slow memory field $M$ into the phase dynamics as a weak Rayleigh dissipation functional $\mathcal R=\frac{\nu(M)}{2}\,(\nabla\theta)^2$. This adds a term $-\nu(M)\nabla^2\mathbf u$ to the Euler equation (Navier-Stokes form). Choose $\nu(M)=\nu_0+\nu_1\,(\Gamma,\Lambda)$ consistent with your dimensionless groups so that stronger smoothing ($\Gamma$) increases effective viscosity and large forgetting ($\Lambda$) suppresses it.&#x20;
 * **Incompressible projection (optional).** If you need the $\nabla\!\cdot\mathbf u=0$ limit, apply a Helmholtz projection to the discrete velocity at each step; the complex scalar still gives you the *source* of vorticity (defect lines), but you enforce incompressibility numerically.
 
 **Acceptance tests.**
@@ -118,7 +118,7 @@ $$
 \;-\; \underbrace{\Theta\,M(\gamma(s))}_{\text{memory attraction}}\Big\},
 $$
 
-with curvature $\kappa$ and $\Theta=\eta M_0$ from the memory law. The Euler–Lagrange equation gives the **shape** equation
+with curvature $\kappa$ and $\Theta=\eta M_0$ from the memory law. The Euler-Lagrange equation gives the **shape** equation
 
 $$
 \chi\,\gamma'''' - \sigma\,\gamma'' + \Theta\,\nabla_\perp M = 0,
@@ -171,14 +171,14 @@ Stop when $\max_k\|\Delta p_k\|$ falls below tolerance → a folded, memory‑fu
 
 **Caveats (straight talk).**
 
-* Full Navier–Stokes with all turbulence features is **not** guaranteed unless you enforce incompressibility and include explicit viscous terms; the complex‑scalar route gives you compressible, potential flows + quantized vortices, which is already a huge step.
+* Full Navier-Stokes with all turbulence features is **not** guaranteed unless you enforce incompressibility and include explicit viscous terms; the complex‑scalar route gives you compressible, potential flows + quantized vortices, which is already a huge step.
 * The Voxtrium macro coupling should stay *optional* in the runtime; use it for cosmology‑facing experiments, not for local intelligence loops unless you really want macro bookkeeping in the loop.
 
 ---
 
 ## 6) Proof checkpoints you can close this week
 
-1. **Hydro derivation notebook.** Show amplitude–phase variation → continuity + Euler with $c$ matching $2Ja^2$. (One page.)&#x20;
+1. **Hydro derivation notebook.** Show amplitude-phase variation → continuity + Euler with $c$ matching $2Ja^2$. (One page.)&#x20;
 2. **Junction law from softmax.** For a 2‑branch node: $P(A)=\sigma(\Theta\Delta m)$ — literally two lines. (Already reflected by your figure.)&#x20;
 3. **Curvature law.** From Fermat with $n=e^{\eta M}$: $\kappa=\eta|\nabla_\perp M|$. (One paragraph derivation; matches your plot.)&#x20;
 4. **Tube solver sanity.** Solve the Bessel secular eqn., count $N_{\rm tach}(R)$, condense, and confirm a non‑negative Hessian eigen‑spectrum (Bordag parity). (Credit Voxtrium/Bordag.)

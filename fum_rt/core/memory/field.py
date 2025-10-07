@@ -8,7 +8,7 @@ research while ensuring commercial applications are aligned with the project's e
 See LICENSE file for full terms.
 
 Module: fum_rt.core.memory.field
-Purpose: Event-driven memory field with write–decay–spread dynamics (void-faithful).
+Purpose: Event-driven memory field with write-decay-spread dynamics (void-faithful).
 
 Design constraints
 - Sparse-first: no dense global passes; updates are event-local only.

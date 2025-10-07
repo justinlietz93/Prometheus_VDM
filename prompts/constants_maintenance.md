@@ -46,7 +46,7 @@ Search the entire repository (code, tests, notebooks, configs, `.env`, CLI defau
 * **Default/Value:** the literal numeric value as it appears (respect scientific notation). If computed from other constants at load time and there is no literal, leave blank and put the formula in **Notes**.
 * **Range/Limits:** infer only from explicit code constraints (e.g., asserts, clamps, validator ranges) or documented bands; otherwise leave blank.
 * **Units:** reference `derivation/UNITS_NORMALIZATION.md` terms (e.g., “LBM units”, “nondimensional”). Use MathJax for symbols if needed.
-* **Source:** `path:line-start–line-end • <short-commit>`; include all occurrences if multiple apply.
+* **Source:** `path:line-start-line-end • <short-commit>`; include all occurrences if multiple apply.
 * **Notes:** brief context like “applies per-channel $c$”, “budget per objective $k$”, or the literal formula if value is computed (MathJax allowed).
 
 **End of file — append-only index block for tools:**

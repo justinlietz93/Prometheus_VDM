@@ -1,13 +1,13 @@
 Awesome—let’s push the proof program forward **and** wire it cleanly into the runtime to boost “intelligence” (routing quality, stability, self‑calibration). I’ll keep this in two tracks:
 
-1. **Physics proofs/extensions** you can paste into Sections 10–11.
+1. **Physics proofs/extensions** you can paste into Sections 10-11.
 2. **Production‑grade code stubs** and integration points that apply the math immediately.
 
 I’ll cite your derivations inline so everything stays source‑anchored.
 
 ---
 
-## A) Physics: finishing Step 1 rigorously + advancing Steps 2–4
+## A) Physics: finishing Step 1 rigorously + advancing Steps 2-4
 
 ### A1) **Appendix — Lattice → EFT $p^4$ matching (drop‑in text)**
 

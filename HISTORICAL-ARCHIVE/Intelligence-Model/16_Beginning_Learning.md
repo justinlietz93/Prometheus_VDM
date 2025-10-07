@@ -160,7 +160,7 @@ You can let the system *decide* when to graduate from single‑char primitives t
 
 Add this to your primitives script (or make a tiny sidecar) that *watches status* and flips phases when the graph is clearly stable:
 
-* **Promote** when all three hold for, say, 30–60s:
+* **Promote** when all three hold for, say, 30-60s:
 
   * `cohesion_components == 1`
   * `vt_coverage ≥ 0.75` (or your comfort level)
@@ -178,14 +178,14 @@ If you want, I can wire this promotion logic into `Nexus` directly so it flips a
 * **SIE tuned for priming.** For Phase‑0, prefer higher novelty weight and a slightly shorter habituation horizon so you get crisp spikes:
 
   * `w_td=0.40, w_nov=0.35, w_hab=0.10, w_hsi=0.15`
-  * `hab_tau ~ 150–300` ticks for your 10 Hz runs.
+  * `hab_tau ~ 150-300` ticks for your 10 Hz runs.
 * **Save engrams.** Use `--checkpoint-every 60` (HDF5 by default). If a phase looks golden, snapshot it and resume later with `--load-engram .../state_xxxx.h5`.
 
 ---
 
 # Quick sanity checks (what “good” looks like)
 
-After \~3–5 minutes of primitives:
+After \~3-5 minutes of primitives:
 
 * **Cohesion → 1**, stays there most of the time (micro‑tears that heal are fine).
 * **Avg synaptic weight** rises and then undulates slightly (homeostasis working).

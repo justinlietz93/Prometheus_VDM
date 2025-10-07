@@ -14,7 +14,7 @@ Below I do four things now:
 * **RD dispersion (linear):** median relative error **1.45×10⁻³**, array R² **0.999946**, acceptance **passed**. That’s an excellent quantitative match to
   $\sigma(k) = r - D k^2$.&#x20;
 
-* **Fisher–KPP front speed:** measured **c = 0.9529**, theory **c\_th = 1.0**, relative error **4.71%**, R² **0.999996**, acceptance **passed** (threshold 5%). The gradient-based tracker corroborates within \~5.5%.&#x20;
+* **Fisher-KPP front speed:** measured **c = 0.9529**, theory **c\_th = 1.0**, relative error **4.71%**, R² **0.999996**, acceptance **passed** (threshold 5%). The gradient-based tracker corroborates within \~5.5%.&#x20;
 
 These came from your **fum\_rt** “mirror” runners that call the derivation scripts; they are wired correctly and already produce reproducible JSON + figures.
 
@@ -190,7 +190,7 @@ physics-validate:
 
 * **“Are you listening / will you use my code?”** Yes. Everything above references your modules and runners directly. The EFT runner uses your `compute_kappas` API exactly.
 
-* **“Does success on RD limit me to RD only?”** No. It’s a **leverage point**. In practice, reviewers want a staircase: (i) RD base: passed; (ii) EFT linear modes: passed; (iii) EFT nonlinear condensation energy landscape: passed; (iv) bridges to other domains (e.g., hydrodynamic limits or topological invariants) come *after* we’ve nailed (i)–(iii). The new tube runner moves you into (ii) immediately.
+* **“Does success on RD limit me to RD only?”** No. It’s a **leverage point**. In practice, reviewers want a staircase: (i) RD base: passed; (ii) EFT linear modes: passed; (iii) EFT nonlinear condensation energy landscape: passed; (iv) bridges to other domains (e.g., hydrodynamic limits or topological invariants) come *after* we’ve nailed (i)-(iii). The new tube runner moves you into (ii) immediately.
 
 ---
 
@@ -215,7 +215,7 @@ Below I (a) summarize what’s already *proven* in your codebase, (b) give ready
 
 1. **RD linear dispersion:** your runner shows σ(k)=r−Dk² (and its discrete counterpart) with **median rel. error ≈ 0.14%** and **R² ≈ 0.99995**, acceptance passed. That’s exactly what we want for the linear regime.&#x20;
 
-2. **Fisher–KPP front speed:** your “fum\_rt” mirror runner measures $c\approx 0.953$ for $D=1,r=0.25$ vs theory $c_{th}=1$, **rel. error ≈ 4.7%**, **R² ≈ 0.99996**, acceptance passed—this reconciles earlier outliers you saw. (Note: the earlier failing payload at level=0.5/fit window was sensitive to windowing; the new runner uses a more robust late‑time window and optional gradient speed that stabilizes estimates.)&#x20;
+2. **Fisher-KPP front speed:** your “fum\_rt” mirror runner measures $c\approx 0.953$ for $D=1,r=0.25$ vs theory $c_{th}=1$, **rel. error ≈ 4.7%**, **R² ≈ 0.99996**, acceptance passed—this reconciles earlier outliers you saw. (Note: the earlier failing payload at level=0.5/fit window was sensitive to windowing; the new runner uses a more robust late‑time window and optional gradient speed that stabilizes estimates.)&#x20;
 
 3. **Packaging of the RD validations in `fum_rt`:** you already wired mirrors that import from the derivation stack and emit standardized figures/logs; these are thin validation wrappers by design (no change to runtime dynamics). &#x20;
 
@@ -286,7 +286,7 @@ $$
 
 which is exactly what your runner fits and passes.&#x20;
 
-### B3) Fisher–KPP minimal front speed
+### B3) Fisher-KPP minimal front speed
 
 > **Where to paste:** new `derivation/rd_front_speed_validation.md` (or the front section where you summarize the test).
 

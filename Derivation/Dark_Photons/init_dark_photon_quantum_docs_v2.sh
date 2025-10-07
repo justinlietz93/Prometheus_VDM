@@ -59,7 +59,7 @@ create_portal_lingo() {
 # Portal → Quantum: Lingo & Mapping
 **Goal:** Speak quantum-field basics fluently using your portal (dark photon A′) as the anchor.
 
-## What to say in 60–90s
+## What to say in 60-90s
 - Field ↔ particle (ripple ↔ quantum), gauge, mixing (ε as leaky splitter), mass (dark Higgs or Stueckelberg), state & measurement (clicks vs interference).
 - Visible vs invisible channels = where the **record** lands (SM vs dark).
 
@@ -109,7 +109,7 @@ create_decoherence_md() {
 - Bath B (invisible): dark sector (no direct record)
 
 ## Deliverables
-- 1 box diagram (system–bath–readout) + 3 bullets on how decoherence appears.
+- 1 box diagram (system-bath-readout) + 3 bullets on how decoherence appears.
 
 ## Acceptance gates
 - [ ] Diagram present.
@@ -129,7 +129,7 @@ create_fisher_md() {
 - CSV: `fisher_example.csv` with columns: `bin_label, expected_signal, background, exposure, eff_signal, eff_background`.
 
 ## Tasks
-- Compute a simple Fisher estimate for ε in 1–2 bins (analytic or finite-diff).
+- Compute a simple Fisher estimate for ε in 1-2 bins (analytic or finite-diff).
 - Output a tiny JSON summary with the estimated σ(ε).
 
 ## Acceptance gates
@@ -148,7 +148,7 @@ create_eft_ladder_md() {
 **Goal:** One ladder figure + 5 bullets explaining assumptions at each rung.
 
 ## Rungs (edit as needed)
-1. **Detector scale** (Hz–GHz): noise model, materials, coherence time.
+1. **Detector scale** (Hz-GHz): noise model, materials, coherence time.
 2. **Portal scale** (m_A′, ε): decay modes, lifetime, production mechanism.
 3. **Dark-sector dynamics** (α_D, dark Higgs): in/visible branching, self-interactions.
 4. **SM matching** (loops, thresholds): running couplings, radiative mixings.

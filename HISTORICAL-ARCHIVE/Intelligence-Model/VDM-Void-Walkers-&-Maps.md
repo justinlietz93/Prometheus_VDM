@@ -9,9 +9,9 @@ Below is a concrete, production‑level plan + drop‑in code.
 
 **Create three reducers under `fum_rt/core/cortex/maps/`:**
 
-1. **`HeatMap`** – short‑half‑life activity (recency‑weighted usage).
-2. **`ExcitationMap`** – same as `HeatMap` but integrates **only excitatory** activity.
-3. **`InhibitionMap`** – same as `HeatMap` but integrates **only inhibitory** activity.
+1. **`HeatMap`** - short‑half‑life activity (recency‑weighted usage).
+2. **`ExcitationMap`** - same as `HeatMap` but integrates **only excitatory** activity.
+3. **`InhibitionMap`** - same as `HeatMap` but integrates **only inhibitory** activity.
 
 **Strict constraints (void‑faithful):**
 
@@ -21,14 +21,14 @@ Below is a concrete, production‑level plan + drop‑in code.
 
 **File worklist (exact):**
 
-* `core/cortex/maps/base_decay_map.py` – shared bounded, exponential‑decay map base (head/p95/p99).
-* `core/cortex/maps/heatmap.py` – concrete `HeatMap`.
-* `core/cortex/maps/excitationmap.py` – filters excitatory events only.
-* `core/cortex/maps/inhibitionmap.py` – filters inhibitory events only.
-* `core/proprioception/events.py` – ensure we have `SpikeEvent` (node, sign, amp) and optional `DeltaWEvent` (node, dW).
-* `core/cortex/maps/__init__.py` – re‑export the four: `ColdMap`, `HeatMap`, `ExcitationMap`, `InhibitionMap`.
-* `core/engine.py` – instantiate + fold each tick; expose `evt_heat_*`, `evt_exc_*`, `evt_inh_*` in `snapshot()`.
-* `runtime/loop.py` – no behavior change; keep bus‑drain → reducers → metrics, consistent with your event‑driven ADC rule.&#x20;
+* `core/cortex/maps/base_decay_map.py` - shared bounded, exponential‑decay map base (head/p95/p99).
+* `core/cortex/maps/heatmap.py` - concrete `HeatMap`.
+* `core/cortex/maps/excitationmap.py` - filters excitatory events only.
+* `core/cortex/maps/inhibitionmap.py` - filters inhibitory events only.
+* `core/proprioception/events.py` - ensure we have `SpikeEvent` (node, sign, amp) and optional `DeltaWEvent` (node, dW).
+* `core/cortex/maps/__init__.py` - re‑export the four: `ColdMap`, `HeatMap`, `ExcitationMap`, `InhibitionMap`.
+* `core/engine.py` - instantiate + fold each tick; expose `evt_heat_*`, `evt_exc_*`, `evt_inh_*` in `snapshot()`.
+* `runtime/loop.py` - no behavior change; keep bus‑drain → reducers → metrics, consistent with your event‑driven ADC rule.&#x20;
 
 **Rationale & alignment**
 
@@ -434,7 +434,7 @@ Float32Array exc   (n elements)
 Float32Array inh   (n elements)
 ```
 
-For 65,536 nodes this is \~256 KB per channel → \~768 KB per frame. At 10 fps that’s \~7.5 MB/s—fine over local websockets. If you need <2 MB/s, (a) lower fps to 5–8, (b) send **downsampled tiles** (e.g., 128×128), or (c) gzip/deflate (browser‑side pako).
+For 65,536 nodes this is \~256 KB per channel → \~768 KB per frame. At 10 fps that’s \~7.5 MB/s—fine over local websockets. If you need <2 MB/s, (a) lower fps to 5-8, (b) send **downsampled tiles** (e.g., 128×128), or (c) gzip/deflate (browser‑side pako).
 
 ---
 
@@ -602,7 +602,7 @@ function drawComposite(
 
 * 256×256 at 10 fps: **<10% CPU** in a modern browser tab.
 * For **>1M nodes**, publish a **quadtree pyramid**: {256², 512², 1024² tiles}; the UI requests LOD based on zoom.
-* Use a **ring buffer** on the server (capacity 2–3 frames). If subscriber lags, **drop** the oldest.
+* Use a **ring buffer** on the server (capacity 2-3 frames). If subscriber lags, **drop** the oldest.
 
 ---
 
@@ -632,7 +632,7 @@ function drawComposite(
 5. **Safeguards**
 
    * Type checks (`float32`, little‑endian).
-   * Rate limiter (e.g., 5–15 fps).
+   * Rate limiter (e.g., 5-15 fps).
    * Back‑pressure: skip frames when the UI is busy.
 
 ---
@@ -644,7 +644,7 @@ function drawComposite(
 
 If you want, I can adapt the schema to your existing event bus and fold the publisher into your `telemetry.py`/runtime loop so this is live in one pass.
 
-Short answer: **budget \~1–16 MiB per active map view**, depending on resolution and buffering. Here’s the concrete breakdown and what I’d set as defaults.
+Short answer: **budget \~1-16 MiB per active map view**, depending on resolution and buffering. Here’s the concrete breakdown and what I’d set as defaults.
 
 ---
 
@@ -679,8 +679,8 @@ If you show **three separate panels** (heat, exc, inh) **from the same payload**
 
 * **Default desktop:** 512×512, single payload + single canvas, **\~4 MiB per map view**.
   If you need buttery playback, allow a 2‑frame buffer: **\~8 MiB**.
-* **Mobile/low‑end:** 256×256, **\~1–2 MiB**.
-* **High‑detail bursts (zoom/inspect):** 1024×1024 for the focused view only, **16–32 MiB**. Don’t keep multiple 1024² canvases alive.
+* **Mobile/low‑end:** 256×256, **\~1-2 MiB**.
+* **High‑detail bursts (zoom/inspect):** 1024×1024 for the focused view only, **16-32 MiB**. Don’t keep multiple 1024² canvases alive.
 
 If you routinely keep **three panels visible**, target **≤ 18 MiB** total at 512² (shared payload + 3 RGBA canvases, double‑buffered payload).
 
@@ -692,7 +692,7 @@ If you routinely keep **three panels visible**, target **≤ 18 MiB** total 
    Keep **one** `Float32Array` payload (3 channels interleaved or adjacent). Each panel owns only its **RGBA** canvas buffer (4N bytes).
 
 2. **Avoid persistent frame rings unless you need scrubbing.**
-   For live playback, **0–1 extra payload buffer** is enough. If you need a scrubber, cap the ring at **≤ 3 frames** and store **compressed** (see #4).
+   For live playback, **0-1 extra payload buffer** is enough. If you need a scrubber, cap the ring at **≤ 3 frames** and store **compressed** (see #4).
 
 3. **Pre‑allocate and reuse buffers.**
 
@@ -761,8 +761,8 @@ mapMemMiB(1024,1024,{bytesPerVal:2})     // ~10.0 MiB (Uint16 quantized)
 
 ## Bottom line
 
-* **Ship a 512² composite view by default → \~4–8 MiB per viewer.**
-* **Only escalate to 1024² on demand for a single focused view → 16–32 MiB.**
+* **Ship a 512² composite view by default → \~4-8 MiB per viewer.**
+* **Only escalate to 1024² on demand for a single focused view → 16-32 MiB.**
 * If you need to shave memory/bandwidth further, **quantize to `Uint16`** and keep at most **one extra payload buffer**.
 
 That keeps the visualization essentially “free” computationally, and the memory footprint predictable and small—even with heat/excitation/inhibition all live.
@@ -828,7 +828,7 @@ Define a pure function:
 
 ```python
 def mint_gdsp_budget(total_reward: float, void_debt: float) -> int:
-    # Example: 0–3 edits per tick, monotone in both signals
+    # Example: 0-3 edits per tick, monotone in both signals
     # void_debt from your universal modulation (β/α) style ratios
     base = 1 if abs(total_reward) > 1e-6 else 0
     extra = 0
@@ -903,7 +903,7 @@ for opp in gdsp_opportunities_this_tick:
 
 * Telemetry fields: `evt_gdsp_apply{tick, node, reason, used}`, and counters per reason.
 * Add a **runtime assert**: if last call site to GDSP was not via `consider()`, raise.
-* CI test: run 2–3k ticks with **no opportunities** → assert 0 GDSP applies; inject synthetic cold gaps → assert applies appear only then.
+* CI test: run 2-3k ticks with **no opportunities** → assert 0 GDSP applies; inject synthetic cold gaps → assert applies appear only then.
 * Docs: “GDSP is emergent; there is no scheduler or cadence.”
 
 ---
@@ -1122,7 +1122,7 @@ Nothing changes from your redline except we **codify** the trigger table + optio
 * $|\mathrm{td\_signal}| \ge {\tt GDSP\_TD\_THRESH}$ (default 0.2)
 * `cohesion_components > 1`
 
-**If trigger fires but territory indices insufficient:** emit a **`bias_hint`** (see §5) to pull local scouts into that region for 1–2 ticks, then re‑attempt. (Still emergent; no cadence.)
+**If trigger fires but territory indices insufficient:** emit a **`bias_hint`** (see §5) to pull local scouts into that region for 1-2 ticks, then re‑attempt. (Still emergent; no cadence.)
 
 ---
 
@@ -1178,7 +1178,7 @@ Scouts are **read‑only walkers**. They consume maps & hints, explore within a 
   * `ENABLE_{COLD,HEAT,EXC,INH}_SCOUTS=1`
 * **Scheduler (budgeted)**
 
-  * At `engine.step`: allocate a small step budget (e.g., ≤1–3% tick time) across active scout types.
+  * At `engine.step`: allocate a small step budget (e.g., ≤1-3% tick time) across active scout types.
   * Respect `bias_hint` to prioritize tiles/regions *this tick only*.
 * **Acceptance**
 
@@ -1236,7 +1236,7 @@ Design this like a particle system / render target:
     If you truly need floats, `RGBA16F` is \~32 MB; `RGBA32F` is \~64 MB.
   * **WebGPU:** `rgba8unorm` (or `rgba16float` if needed).
 
-Keep **two copies** (ping‑pong) to apply decay without reading back → **32–64 MB** total for 8‑bit.
+Keep **two copies** (ping‑pong) to apply decay without reading back → **32-64 MB** total for 8‑bit.
 
 ### 2) Apply decay on‑GPU each frame
 
@@ -1246,7 +1246,7 @@ Keep **two copies** (ping‑pong) to apply decay without reading back → **32�
 ### 3) Add sparse event updates (“splat” the changes) on‑GPU
 
 * From your bus, collect only the **K updates** this tick (node index + Δexc/Δheat/Δinh). K is usually ≪ N.
-* Upload **just those K updates** (e.g., a SSBO/vertex buffer with `(x, y, dExc, dHeat, dInh)`), typically a few KB–MB.
+* Upload **just those K updates** (e.g., a SSBO/vertex buffer with `(x, y, dExc, dHeat, dInh)`), typically a few KB-MB.
 * Draw **K point sprites** into the map FBO with **additive blending** (`ONE, ONE`) so each event increments its pixel.
 
   * Vertex shader converts node index → (x, y) → NDC.
@@ -1282,9 +1282,9 @@ No full‑frame copies, no per‑pixel JS loops.
 
 **Files**
 
-* `ui/gl/maps_renderer.ts` – WebGL2 renderer (init + three passes below)
-* `ui/gl/shaders/` – `decay.fs`, `splat_vs.glsl`, `splat_fs.glsl`, `composite.fs`
-* `ui/state/maps_stream.ts` – subscribes to **events**, batches `(idx, dExc, dHeat, dInh)` each tick
+* `ui/gl/maps_renderer.ts` - WebGL2 renderer (init + three passes below)
+* `ui/gl/shaders/` - `decay.fs`, `splat_vs.glsl`, `splat_fs.glsl`, `composite.fs`
+* `ui/state/maps_stream.ts` - subscribes to **events**, batches `(idx, dExc, dHeat, dInh)` each tick
 
 **Initialization**
 
@@ -1441,7 +1441,7 @@ This is **not** a heavy “physics sim”; it’s a light, dimensionless law to 
 
 **IO/Transport**
 
-* `io/maps_ring.py` (new) — shared‑memory ring for frames (2–3 slots).
+* `io/maps_ring.py` (new) — shared‑memory ring for frames (2-3 slots).
 * `io/websocket_server.py` (new) — bounded, drop‑oldest, localhost default.
 
 **Tests**
@@ -1508,11 +1508,11 @@ You’re right—and I’m going to keep anchoring every change to **void‑fait
 
 ### A) Zero‑copy, void‑faithful visualization path (GPU + tiles)
 
-**Goal:** Render 1–4M neurons at 5–15 fps with near‑zero main‑thread load and no back‑pressure on the announce bus.
+**Goal:** Render 1-4M neurons at 5-15 fps with near‑zero main‑thread load and no back‑pressure on the announce bus.
 
 1. **Separate transport**
 
-   * Create `fum_rt/io/maps_ring.py` — fixed‑capacity (2–3 frames) shared‑memory ring for **maps frames**.
+   * Create `fum_rt/io/maps_ring.py` — fixed‑capacity (2-3 frames) shared‑memory ring for **maps frames**.
    * Create `fum_rt/io/websocket_server.py` — forwards **only** maps frames (header JSON + binary) with **drop‑oldest**.
    * The announce bus remains for compact events only.
 
@@ -1643,9 +1643,9 @@ You’re right—and I’m going to keep anchoring every change to **void‑fait
 
 **Transport & GPU**
 
-* [ ] `io/maps_ring.py`: SHM ring (2–3 frames), push/pop, drop‑oldest on full.
+* [ ] `io/maps_ring.py`: SHM ring (2-3 frames), push/pop, drop‑oldest on full.
 * [ ] `runtime/telemetry.py`: write `frame.v2` (u8) into ring each tick (or `tiles.v1` when enabled).
-* [ ] `io/websocket_server.py`: forward header JSON + bytes; rate limit to 5–15 fps; drop‑oldest.
+* [ ] `io/websocket_server.py`: forward header JSON + bytes; rate limit to 5-15 fps; drop‑oldest.
 * [ ] `ui/maps_renderer.ts`: WebGL2 renderer, R8 textures per channel, tile sub‑updates, RGB composite shader, range sliders/toggles.
 
 **Reducers & Scouts**
@@ -1713,7 +1713,7 @@ This plan **prioritizes massive, practical improvements** (GPU + tiles + u8 quan
    ```python
    # fum_rt/runtime/loop.py  (inside the main tick)
    from time import perf_counter_ns
-   MAX_US = int(os.getenv("SCOUT_BUDGET_US", "2000"))  # e.g., ≤1–3% of tick
+   MAX_US = int(os.getenv("SCOUT_BUDGET_US", "2000"))  # e.g., ≤1-3% of tick
    VISITS = int(os.getenv("SCOUT_VISITS", "16"))
    EDGES  = int(os.getenv("SCOUT_EDGES",  "8"))
    TTL    = int(os.getenv("SCOUT_TTL",    "64"))
@@ -1864,7 +1864,7 @@ If you want, I can also give you a tiny patch that renames any existing `schedul
 
 ### C) Memory‑steering (improves performance)
 
-1. **Add `core/memory/field.py`** (EMA write–decay–spread on graph Laplacian):
+1. **Add `core/memory/field.py`** (EMA write-decay-spread on graph Laplacian):
    $\dot m=\gamma r-\delta m-\kappa Lm$ with sparse Laplacian. Walker transition softmax $P(i\!\to\!j)\propto e^{\Theta m_j}$.&#x20;
 2. **Agent rule**: walkers read `m` locally; **never** scan whole $m$. Budgeted updates only (events/rings).
 3. **Expose $\Theta, D_a, \Lambda, \Gamma$** in telemetry; tune for stability band.&#x20;
@@ -1877,7 +1877,7 @@ If you want, I can also give you a tiny patch that renames any existing `schedul
    * **Heat**: chase recent activity.
    * **Exc/Inh**: chase polarity fronts.
      All **announce** `probe_*` and `vt_touch` events; none modify structure.
-2. Scheduler = **budgeted** per tick (e.g., ≤1–3% time). TTL + blue‑noise reseed. No periodic “cron”.
+2. Scheduler = **budgeted** per tick (e.g., ≤1-3% time). TTL + blue‑noise reseed. No periodic “cron”.
 
 ### E) Learners: emergent only
 
@@ -1888,12 +1888,12 @@ If you want, I can also give you a tiny patch that renames any existing `schedul
 
 1. All structural metrics (components, cycles, edges\_active) are derived from **active edges** via DSU over the active set only.
 2. If deletions happen, track a *dirty* flag and perform a **bounded audit** (stream ≤E\_max active edges) to tighten `components_lb`. No dense adjacency.
-3. Bridge budget B (8–32) operates only when `components_lb > 1` and affinity > 0; updates DSU incrementally.
+3. Bridge budget B (8-32) operates only when `components_lb > 1` and affinity > 0; updates DSU incrementally.
 
 ### G) Maps/frame v2 for scale
 
 1. Add **v2 channel**: u8 quantized `heat|exc|inh|m` (optional) + **node→(x,y)** tile indices.
-2. Transport via **shared‑memory ring** (2–3 frames) + websocket forwarder with drop‑oldest.
+2. Transport via **shared‑memory ring** (2-3 frames) + websocket forwarder with drop‑oldest.
 3. UI draws RGB = \[exc, heat, inh]; slider to swap **M** into G channel for steering debug.
 
 ### H) CPU/GPU split (now, not later)
@@ -2214,7 +2214,7 @@ Short answer: **the `BaseScout` you pasted is just a safe scaffold.** It does no
 
 **B. Implement physics‑aware scouts under `fum_rt/core/cortex/void_walkers/`**
 
-1. **`void_ray.py` – `VoidRayScout` (φ‑gradient bias)**
+1. **`void_ray.py` - `VoidRayScout` (φ‑gradient bias)**
 
    * Goal: prefer neighbors where $\Delta\phi_{ij} = \phi_j - \phi_i$ is favorable.
    * Logit per neighbor: `logit_j = lambda_phi * (phi[j] - phi[i]) + theta_mem * m[j]` (see (2) below).
@@ -2225,7 +2225,7 @@ Short answer: **the `BaseScout` you pasted is just a safe scaffold.** It does no
      * optional `SpikeEvent(node=j, sign=+1 if Δφ>0 else -1)` for EI maps.
    * **Local‑read only**: for each hop you read `phi[i]`, `phi[j]`, (and `memory[j]` if available). No global arrays are scanned.
 
-2. **`memory_ray.py` – `MemoryRayScout` (steering by memory)**
+2. **`memory_ray.py` - `MemoryRayScout` (steering by memory)**
 
    * Use your steering law with an index $n=\exp(\eta M)$. In a graph discretization this reduces to
 
@@ -2236,7 +2236,7 @@ Short answer: **the `BaseScout` you pasted is just a safe scaffold.** It does no
      which becomes a logistic at a two‑branch fork $P(A)=\sigma(\Theta\,\Delta m)$. This is **exactly** the prediction in your steering note.  &#x20;
    * Everything stays local: read `memory[j]` for neighbors of the current node, do a softmax, hop, emit the same events.
 
-3. **`ei_scouts.py` – `ExcitationScout` and `InhibitionScout`**
+3. **`ei_scouts.py` - `ExcitationScout` and `InhibitionScout`**
 
    * Bias routing using your event‑folded maps (no weight scans). Example: prefer neighbors currently hot in `exc` (or `inh`) heads from the reducers. Keep budgets small; emit `SpikeEvent(sign=+1)` or `sign=-1` respectively.
 
@@ -2481,7 +2481,7 @@ This gives you scouts that *do* “use your void equations,” remain emergence�
    ```python
    # fum_rt/runtime/loop.py  (inside the main tick)
    from time import perf_counter_ns
-   MAX_US = int(os.getenv("SCOUT_BUDGET_US", "2000"))  # e.g., ≤1–3% of tick
+   MAX_US = int(os.getenv("SCOUT_BUDGET_US", "2000"))  # e.g., ≤1-3% of tick
    VISITS = int(os.getenv("SCOUT_VISITS", "16"))
    EDGES  = int(os.getenv("SCOUT_EDGES",  "8"))
    TTL    = int(os.getenv("SCOUT_TTL",    "64"))
@@ -2632,7 +2632,7 @@ If you want, I can also give you a tiny patch that renames any existing `schedul
 
 ### C) Memory‑steering (improves performance)
 
-1. **Add `core/memory/field.py`** (EMA write–decay–spread on graph Laplacian):
+1. **Add `core/memory/field.py`** (EMA write-decay-spread on graph Laplacian):
    $\dot m=\gamma r-\delta m-\kappa Lm$ with sparse Laplacian. Walker transition softmax $P(i\!\to\!j)\propto e^{\Theta m_j}$.&#x20;
 2. **Agent rule**: walkers read `m` locally; **never** scan whole $m$. Budgeted updates only (events/rings).
 3. **Expose $\Theta, D_a, \Lambda, \Gamma$** in telemetry; tune for stability band.&#x20;
@@ -2645,7 +2645,7 @@ If you want, I can also give you a tiny patch that renames any existing `schedul
    * **Heat**: chase recent activity.
    * **Exc/Inh**: chase polarity fronts.
      All **announce** `probe_*` and `vt_touch` events; none modify structure.
-2. Scheduler = **budgeted** per tick (e.g., ≤1–3% time). TTL + blue‑noise reseed. No periodic “cron”.
+2. Scheduler = **budgeted** per tick (e.g., ≤1-3% time). TTL + blue‑noise reseed. No periodic “cron”.
 
 ### E) Learners: emergent only
 
@@ -2656,12 +2656,12 @@ If you want, I can also give you a tiny patch that renames any existing `schedul
 
 1. All structural metrics (components, cycles, edges\_active) are derived from **active edges** via DSU over the active set only.
 2. If deletions happen, track a *dirty* flag and perform a **bounded audit** (stream ≤E\_max active edges) to tighten `components_lb`. No dense adjacency.
-3. Bridge budget B (8–32) operates only when `components_lb > 1` and affinity > 0; updates DSU incrementally.
+3. Bridge budget B (8-32) operates only when `components_lb > 1` and affinity > 0; updates DSU incrementally.
 
 ### G) Maps/frame v2 for scale
 
 1. Add **v2 channel**: u8 quantized `heat|exc|inh|m` (optional) + **node→(x,y)** tile indices.
-2. Transport via **shared‑memory ring** (2–3 frames) + websocket forwarder with drop‑oldest.
+2. Transport via **shared‑memory ring** (2-3 frames) + websocket forwarder with drop‑oldest.
 3. UI draws RGB = \[exc, heat, inh]; slider to swap **M** into G channel for steering debug.
 
 ### H) CPU/GPU split (now, not later)
@@ -2982,7 +2982,7 @@ Short answer: **the `BaseScout` you pasted is just a safe scaffold.** It does no
 
 **B. Implement physics‑aware scouts under `fum_rt/core/cortex/void_walkers/`**
 
-1. **`void_ray.py` – `VoidRayScout` (φ‑gradient bias)**
+1. **`void_ray.py` - `VoidRayScout` (φ‑gradient bias)**
 
    * Goal: prefer neighbors where $\Delta\phi_{ij} = \phi_j - \phi_i$ is favorable.
    * Logit per neighbor: `logit_j = lambda_phi * (phi[j] - phi[i]) + theta_mem * m[j]` (see (2) below).
@@ -2993,7 +2993,7 @@ Short answer: **the `BaseScout` you pasted is just a safe scaffold.** It does no
      * optional `SpikeEvent(node=j, sign=+1 if Δφ>0 else -1)` for EI maps.
    * **Local‑read only**: for each hop you read `phi[i]`, `phi[j]`, (and `memory[j]` if available). No global arrays are scanned.
 
-2. **`memory_ray.py` – `MemoryRayScout` (steering by memory)**
+2. **`memory_ray.py` - `MemoryRayScout` (steering by memory)**
 
    * Use your steering law with an index $n=\exp(\eta M)$. In a graph discretization this reduces to
 
@@ -3004,7 +3004,7 @@ Short answer: **the `BaseScout` you pasted is just a safe scaffold.** It does no
      which becomes a logistic at a two‑branch fork $P(A)=\sigma(\Theta\,\Delta m)$. This is **exactly** the prediction in your steering note.  &#x20;
    * Everything stays local: read `memory[j]` for neighbors of the current node, do a softmax, hop, emit the same events.
 
-3. **`ei_scouts.py` – `ExcitationScout` and `InhibitionScout`**
+3. **`ei_scouts.py` - `ExcitationScout` and `InhibitionScout`**
 
    * Bias routing using your event‑folded maps (no weight scans). Example: prefer neighbors currently hot in `exc` (or `inh`) heads from the reducers. Keep budgets small; emit `SpikeEvent(sign=+1)` or `sign=-1` respectively.
 
@@ -3236,7 +3236,7 @@ Below is a concrete, void‑faithful plan that uses what you already have (Heat/
 
 * **Short‑term “trail repulsion”** (prevents immediate re‑traversal).
 
-  * Use your existing **HeatMap** (recency EMA) as the *trail* signal or add a dedicated **TrailMap** with a **very short half‑life** (e.g., 10–50 ticks).
+  * Use your existing **HeatMap** (recency EMA) as the *trail* signal or add a dedicated **TrailMap** with a **very short half‑life** (e.g., 10-50 ticks).
   * Scouts treat *heat/trail* as a **negative logit** (avoid hot/trampled nodes right now).
 
 * **Long‑term “memory steering”** (guides toward useful regions).
@@ -3283,7 +3283,7 @@ All of these values are **already available from your reducers** (Heat/Exc/Inh) 
 ## Exactly what to tell your coding agent
 
 **A. Add a short‑term TrailMap (optional if you reuse HeatMap)**
-`fum_rt/core/cortex/maps/trailmap.py` – identical to `HeatMap` but with **half\_life\_ticks ≈ 10–50** and a slightly larger increment per `vt_touch`. Export in `maps/__init__.py`. (If you prefer, just reuse HeatMap with a negative coefficient in scouts.)
+`fum_rt/core/cortex/maps/trailmap.py` - identical to `HeatMap` but with **half\_life\_ticks ≈ 10-50** and a slightly larger increment per `vt_touch`. Export in `maps/__init__.py`. (If you prefer, just reuse HeatMap with a negative coefficient in scouts.)
 
 **B. Extend scouts to support repulsion + memory steer (local only)**
 In each scout under `core/cortex/void_walkers/` (Cold/Heat/Exc/Inh, and your physics‑aware scouts):
@@ -3360,12 +3360,12 @@ Short answer: **you’re fine.** With the way you’ve designed them—**event�
 
 ## Numbers to keep in mind
 
-For **10k neurons @ 10 Hz** (your current run), with `keep_max≈4–8k`:
+For **10k neurons @ 10 Hz** (your current run), with `keep_max≈4-8k`:
 
 * **Per map memory** (Python): a few MB (value + last\_tick + dict overhead). Four maps = low tens of MB.
 * **Per tick CPU**: typically sub‑millisecond (fold + prune). The connectome step dwarfs these reducers.
 
-For **4 M neurons**, you still don’t store 4 M entries—only `keep_max`. The only time you touch O(N) is when you **choose** to emit a *dense* `maps/frame` for the UI. Use v2 quantized frames, downsample/tiles, and a shared‑memory ring when you scale; keep UI FPS at 3–8 and you’re fine.
+For **4 M neurons**, you still don’t store 4 M entries—only `keep_max`. The only time you touch O(N) is when you **choose** to emit a *dense* `maps/frame` for the UI. Use v2 quantized frames, downsample/tiles, and a shared‑memory ring when you scale; keep UI FPS at 3-8 and you’re fine.
 
 ---
 
@@ -3373,7 +3373,7 @@ For **4 M neurons**, you still don’t store 4 M entries—only `keep_max`. 
 
 1. **Unbounded working sets.**
 
-   * **Guardrail:** set `keep_max` (e.g., 4–16k at 10k N; 32–128k at multi‑million N). Keep quantiles/head exact over the working set only.
+   * **Guardrail:** set `keep_max` (e.g., 4-16k at 10k N; 32-128k at multi‑million N). Keep quantiles/head exact over the working set only.
 
 2. **Too many events per tick.**
 
@@ -3391,18 +3391,18 @@ For **4 M neurons**, you still don’t store 4 M entries—only `keep_max`. 
 
 ## Recommended defaults (good starting points)
 
-* **Half‑life (Heat/Exc/Inh):** 150–300 ticks.
-* **Gains:** `vt_touch_gain≈0.25`, `spike_gain≈1.0`, `dW_gain≈0.25–0.5`.
-* **keep\_max:** 8k for 10k N; 32–128k at multi‑million N (raise slowly; profile).
-* **Prune sample size:** 256–1024 keys; drop the smallest.
-* **UI:** v2 quantized frames, 3–8 FPS, shared‑memory ring (2–3 frames), RGB = \[exc, heat, inh].
+* **Half‑life (Heat/Exc/Inh):** 150-300 ticks.
+* **Gains:** `vt_touch_gain≈0.25`, `spike_gain≈1.0`, `dW_gain≈0.25-0.5`.
+* **keep\_max:** 8k for 10k N; 32-128k at multi‑million N (raise slowly; profile).
+* **Prune sample size:** 256-1024 keys; drop the smallest.
+* **UI:** v2 quantized frames, 3-8 FPS, shared‑memory ring (2-3 frames), RGB = \[exc, heat, inh].
 
 ---
 
 ## “Free” coupling with walkers (what you described is right)
 
 * **Yes**—seed scouts from **UTE hits** and **pulse** out at each stimulated neuron. You’re consuming exactly the local information you just produced, so the marginal cost is just the **local neighbor picks** and a few events.
-* Add slow **Memory steering** (EMA write–decay + stochastic edge smoothing) and let scouts bias to $\exp(\Theta\,m_j)$ neighbors; the junction choice collapses to a logistic in $\Theta\,\Delta m$, which you can verify in CI/telemetry. This is your theory in action, still event‑driven and scan‑free.&#x20;
+* Add slow **Memory steering** (EMA write-decay + stochastic edge smoothing) and let scouts bias to $\exp(\Theta\,m_j)$ neighbors; the junction choice collapses to a logistic in $\Theta\,\Delta m$, which you can verify in CI/telemetry. This is your theory in action, still event‑driven and scan‑free.&#x20;
 
 ---
 
@@ -3463,8 +3463,8 @@ File: `fum_rt/core/cortex/void_walkers/runner.py`
 **B) Add a tiny TrailMap (short‑term repulsion)**
 Files:
 
-* `core/cortex/maps/trailmap.py` – subclass your `BaseDecayMap` (half‑life \~30–100 ticks, `keep_max ~ 8–16× head_k`)
-* `core/engine.py` – instantiate `self.trailmap`, fold **only** `vt_touch` and `edge_on` events, and expose:
+* `core/cortex/maps/trailmap.py` - subclass your `BaseDecayMap` (half‑life \~30-100 ticks, `keep_max ~ 8-16× head_k`)
+* `core/engine.py` - instantiate `self.trailmap`, fold **only** `vt_touch` and `edge_on` events, and expose:
 
   * `trail_head`: small top‑K list for seeds
   * `trail_dict`: compact dict of current working set (for neighbor scoring)
@@ -3477,7 +3477,7 @@ Files:
 **D) Add a slow MemoryField (event‑driven update; no scans)**
 Files:
 
-* `core/memory/field.py` – simple struct holding:
+* `core/memory/field.py` - simple struct holding:
 
   * `m: Dict[int, float]` (bounded working set with pruning)
   * Params: `gamma` (write), `delta` (decay), `kappa` (edge smoothing), `half_life` (for decay discretization)
@@ -3650,7 +3650,7 @@ Here’s the full list, what each one does, and exactly what’s still missing s
 
 8. **CycleHunterScout** — short‑cycle finder
    **File:** `fum_rt/core/cortex/void_walkers/cycle_scout.py`
-   *Role:* Seek and report small cycles (3–6 hops) to keep `cycles_est` alive.
+   *Role:* Seek and report small cycles (3-6 hops) to keep `cycles_est` alive.
    *Local rule:* TTL‑limited random walk with **tiny path memory** (e.g., last 5 nodes). When the next neighbor is in the path window, emit a cycle hit.
    *Signals:* none required beyond neighbors; optional bias to heat/exc heads.
    *Events:* `EdgeOnEvent` along the path, `VTTouchEvent`. If you already have a `CycleHitEvent`, emit that too; otherwise the `EdgeOnEvent`s are enough for reducers.
@@ -3745,7 +3745,7 @@ What’s **still missing / easy to forget** (and needed to get the full benefit)
    * Implement:
 
      * **TrailMap** (short half‑life, fold `vt_touch`+`edge_on`, bounded working set).
-     * **MemoryMap / MemoryField** (event‑driven write–decay–spread; one‑edge smoothing per touched edge).
+     * **MemoryMap / MemoryField** (event‑driven write-decay-spread; one‑edge smoothing per touched edge).
    * This is exactly the “steering by memory” law you derived (softmax/logistic at forks; curvature ∝ gradient), and it’s **orthogonal** to φ dynamics.&#x20;
 
 2. **Seeds should work for *every* scout**
@@ -3756,7 +3756,7 @@ What’s **still missing / easy to forget** (and needed to get the full benefit)
 3. **Fairness in the runner**
 
    * With a global micro‑budget, early scouts may starve late scouts.
-   * **Fix:** either (A) rotate the start index each tick (round‑robin), or (B) assign tiny **per‑scout** micro‑budgets (e.g., 300–500 µs each) inside the one‑shot runner. Still one call per tick; still no scheduler.
+   * **Fix:** either (A) rotate the start index each tick (round‑robin), or (B) assign tiny **per‑scout** micro‑budgets (e.g., 300-500 µs each) inside the one‑shot runner. Still one call per tick; still no scheduler.
 
 4. **Env gating per scout**
 
@@ -3775,7 +3775,7 @@ What’s **still missing / easy to forget** (and needed to get the full benefit)
 6. **Frontier/Cycle boundedness check**
 
    * Confirm the “shared‑neighbor” check in Frontier is **hard‑capped** (you mentioned cap=64)—no accidental growth into adjacency scans.
-   * CycleHunter windows should be tiny (e.g., path length ≤4–6) and sample‑bounded per tick.
+   * CycleHunter windows should be tiny (e.g., path length ≤4-6) and sample‑bounded per tick.
 
 7. **Invariants & docs**
 

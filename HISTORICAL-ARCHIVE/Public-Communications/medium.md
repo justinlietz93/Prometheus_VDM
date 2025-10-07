@@ -4,7 +4,7 @@ Neuroca's VDM: A Physics-Gated Path to Real-Time Divergent Reasoning
 Using void dynamics to let intelligence build itself the same way nature does.
 Abstract:
 1k‑neuron Void Dynamics Model self‑organized to a bilobed morphology in 58 s.
-RD gates passed: Fisher–KPP front speed ≤5% error; linear dispersion ≤10% array error.
+RD gates passed: Fisher-KPP front speed ≤5% error; linear dispersion ≤10% array error.
 Zero‑train demo produced causal markers in real time on two logic texts.
 Inverse scaling and void‑debt minimization observed during compaction runs.
 
@@ -36,8 +36,8 @@ Organic formation, tension, and release as a learning loop.
 ---
 
 What I Proved This Week
-Reaction–diffusion is presently the right canary. Clean laws, measurable gates.
-Validation suite overview.Fisher–KPP front speed
+Reaction-diffusion is presently the right canary. Clean laws, measurable gates.
+Validation suite overview.Fisher-KPP front speed
 
 Measured front speed vs 2Dr2\sqrt{Dr}2) Linear dispersion growth rates
 Discrete dispersion curve vs theory.
@@ -48,7 +48,7 @@ Tight agreement on clean physics signals causal grip, not curve‑fit luck. Trus
 ---
 
 What It Has Already Done (Zero‑Shot, No Training)
-A half‑built VDM with 1,000 neurons read two books on formal logic at inference only. No fine‑tuning. It emitted metacognitive signals in live text: defined deductive/inductive/abductive modes; enforced topic‑neutral logic; handled use‑vs‑mention; noted type–token and sentence–proposition distinctions; flagged scope/negation; invoked counterexample and reduction patterns.
+A half‑built VDM with 1,000 neurons read two books on formal logic at inference only. No fine‑tuning. It emitted metacognitive signals in live text: defined deductive/inductive/abductive modes; enforced topic‑neutral logic; handled use‑vs‑mention; noted type-token and sentence-proposition distinctions; flagged scope/negation; invoked counterexample and reduction patterns.
 Unexpected outputs, zero‑shot. Grammar is rough because the Universal Transduction Decoder is unfinished.
 "Action from p(y ∣ do(x)) is not identifiable. however, adding an instrumental variable formula." → Detects non‑identifiability and picks IV as the fix.
 
@@ -86,7 +86,7 @@ Unexpected outputs, zero‑shot. Grammar is rough because the Universal Transduc
 
 ---
 
- "Clay remainder sand coarser particles cobbles convert order flip maximum sizes reach." → Recovers the Udden–Wentworth ordering and its max‑size rule.
+ "Clay remainder sand coarser particles cobbles convert order flip maximum sizes reach." → Recovers the Udden-Wentworth ordering and its max‑size rule.
 
 ---
 
@@ -119,7 +119,7 @@ For investors and partners (QA following this section)
 What exists now
 A non-LLM, first principles physics-first system (VDM) that already reasons zero-shot.
 1,000 neurons ingested two books at inference and showed meta-reasoning behaviors without training.
-Validated core physics: reaction–diffusion front speed and dispersion match theory with tight error, logged and reproducible.
+Validated core physics: reaction-diffusion front speed and dispersion match theory with tight error, logged and reproducible.
 Runs on a $200 laptop at 10k neurons, 100k+ neurons on my workstation. Scaling curve stabilizes: performance comes from time, experience, and compaction, not size and compute.
 
 First market wedge
@@ -174,7 +174,7 @@ Q8: Business benefit of inverse scaling.
 Q11: Is this an LLM?
  A11: No. VDM is not a language model. It is an event‑driven causal system that learns and reasons zero‑shot at runtime. Language is just another way for it to communicate, not how it works.
 Q12: Do you need HPC or distributed systems?
- A12: No. Current demos run on a laptop at 1k–10k neurons; capability scales with time and compaction, not cluster size.
+ A12: No. Current demos run on a laptop at 1k-10k neurons; capability scales with time and compaction, not cluster size.
 Q13: Hardware path?
  A13: Purpose‑built boards running Void OS with local memory and deterministic I/O. Digital first, with analog hooks if useful. Target is low‑power real‑time reasoning that can work while you sleep.
 Q14: How far can this scale?

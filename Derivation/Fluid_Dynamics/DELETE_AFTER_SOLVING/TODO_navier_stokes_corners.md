@@ -17,7 +17,7 @@
       \tau_u\,\partial_{tt}u + \partial_t u = c^2\nabla^2 u - \frac{\partial V}{\partial u}(u,s) .
     $$
 
-    (Telegraph/Klein–Gordon damped wave—see Section C below for why this is void‑faithful.)
+    (Telegraph/Klein-Gordon damped wave—see Section C below for why this is void‑faithful.)
   * **Void‑Debt Modulation (VDM)** variable $\mathcal{D}(x,t)$ gating both diffusion and transport:
 
     $$
@@ -278,13 +278,13 @@ If you want, I can turn this into a small JAX/PyTorch‑FD notebook stub that ru
 
 Short answer: it likely **picked one tractable face** of your theory (the growth/assimilation side) and ignored the **propagating‑signal face**. Your own docs already describe a **two‑system** world: a fast local substrate with plasticity plus a slower global guidance, with explicit mechanisms (RE‑VGSP, SIE, GDSP) for wave‑like routes and structural change. A faithful continuum surrogate therefore **needs both**:
 
-* a **first‑order** equation to reshape the substrate (reaction–diffusion‑like), **and**
+* a **first‑order** equation to reshape the substrate (reaction-diffusion‑like), **and**
 * a **hyperbolic/telegraph** equation for finite‑speed signal transport on that substrate.
 
 Treat the RD vs Lorentzian EFT tension as **scale separation**, not contradiction:
 
 * **Near‑equilibrium, slow morphology:** RD is the right coarse law for assimilation/repair.
-* **Fast transients and routing:** the **telegraph/Klein–Gordon** form preserves causality and eliminates infinite‑speed artifacts.
+* **Fast transients and routing:** the **telegraph/Klein-Gordon** form preserves causality and eliminates infinite‑speed artifacts.
   Both sit under your VDM umbrella once you add the **void‑debt gate $\mathcal{D}$** that couples them.
 
 *(Your public docs already emphasize valence‑gated learning, introspection/repair, and growth triggers that map cleanly to this two‑equation picture. The RD‑only framing missed that second piece.)*&#x20;

@@ -92,7 +92,7 @@ L^n \;=\; a^d \sum_i\Bigg[
 \Bigg].
 $$
 
-Discrete Euler–Lagrange (central in time):
+Discrete Euler-Lagrange (central in time):
 $$
 \frac{W_i^{\,n+1}-2W_i^{\,n}+W_i^{\,n-1}}{(\Delta t)^2}
 \;-\;\kappa\,\sum_{\mu=1}^d \big(W_{i+\mu}^{\,n}+W_{i-\mu}^{\,n}-2W_i^{\,n}\big)
@@ -125,7 +125,7 @@ Equivalently, compare to the standard relativistic form `\frac{1}{2}(\partial_\m
 $$
 c^2 \equiv 2\,J\,a^2,
 $$
-so the Euler–Lagrange equation carries `\partial_t^2\phi - c^2 \nabla^2 \phi + V'(\phi)=0`. One may set `c=1` by a benign rescaling of units (choose `\Delta t` and `a`, or equivalently `\tau` and `a` in the physical map); there is no need to hard‑wire a relation between `J` and `a`.
+so the Euler-Lagrange equation carries `\partial_t^2\phi - c^2 \nabla^2 \phi + V'(\phi)=0`. One may set `c=1` by a benign rescaling of units (choose `\Delta t` and `a`, or equivalently `\tau` and `a` in the physical map); there is no need to hard‑wire a relation between `J` and `a`.
 
 Note on edge‑counting conventions: if instead you count undirected edges once via a per‑edge coupling `\kappa`, the spatial term is `( \kappa / 2 ) \sum_\mu (W_{i+\mu}-W_i)^2` and the continuum prefactor is `\kappa a^2`; identifying `\kappa = 2J` gives `c^2=\kappa a^2 = 2 J a^2`.
 **Conclusion:** We have successfully derived the full kinetic term from the discrete Hamiltonian. The derivation confirms that the kinetic term coefficient, `Z(\phi)`, is a constant and not a function of the field `\phi`. This is a successful and crucial step in formalizing the FUM.

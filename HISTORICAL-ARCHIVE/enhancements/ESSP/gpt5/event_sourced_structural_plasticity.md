@@ -44,10 +44,10 @@ To support diverse functional roles, the system defines multiple neuron classes.
 
 | Class | Rarity | Target Degree (`k_target`) | Learning Rate (`η`) | Decay Rate (`λ`) | Description |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Relay** | ~60% | 3–5 | High (0.08) | High (0.03) | Common, fast-adapting neuron for signal propagation. |
-| **Inhibitory** | ~25% | 6–12 | Medium (0.05) | Medium (0.02) | Common, provides local stabilization and gain control. |
-| **Integrator** | ~14% | 20–60 | Low (0.01) | Low (0.005) | Less common, for temporal integration and memory retention. |
-| **Purkinje-like** | ~1% | 200–500 | Very Low (0.002) | Very Low (0.0005) | Rare, high-capacity neuron for complex pattern integration. |
+| **Relay** | ~60% | 3-5 | High (0.08) | High (0.03) | Common, fast-adapting neuron for signal propagation. |
+| **Inhibitory** | ~25% | 6-12 | Medium (0.05) | Medium (0.02) | Common, provides local stabilization and gain control. |
+| **Integrator** | ~14% | 20-60 | Low (0.01) | Low (0.005) | Less common, for temporal integration and memory retention. |
+| **Purkinje-like** | ~1% | 200-500 | Very Low (0.002) | Very Low (0.0005) | Rare, high-capacity neuron for complex pattern integration. |
 
 **Implementation:**
 
@@ -109,7 +109,7 @@ Where:
 
 Higher-order structural changes are governed by specific walker types that model biological processes.
 
-#### 4.2.1. Selective Pruning (Microglia–C3 Analog)
+#### 4.2.1. Selective Pruning (Microglia-C3 Analog)
 
 This is a two-stage mechanism to ensure robust pruning of weak and ineffective synapses.
 
@@ -648,7 +648,7 @@ Bottom line: the demo’s **dense, synchronous, deterministic** routine papered 
 2. **Soften the hard gate in the loop (still sparse).**
    In `runtime/loop/main.py`, change the actuator predicate to:
    `if (components>1) or b1_spike or (abs(td) >= GDSP_TD_THRESH) or (step % GDSP_MAX_PERIOD==0): run_gdsp()`
-   Set `GDSP_MAX_PERIOD` small (e.g., 128–256) to guarantee occasional budgeted maintenance even in quiet regimes—no global scans.
+   Set `GDSP_MAX_PERIOD` small (e.g., 128-256) to guarantee occasional budgeted maintenance even in quiet regimes—no global scans.
 
 3. **Bridge like the demo, but locally and budgeted.**
    Keep the demo’s “bundle bridges” idea, but operate only on *boundary nodes* of components discovered by the event‑folded union‑find (already in the runtime). Each call: sample ≤B nodes per component and add ≤P candidate pairs; add ≤`BRIDGE_BUDGET` symmetric edges with the outer‑product free scorer already in the code (node‑local only). This preserves the demo’s “it heals fragmentation” feel while staying sub‑quadratic.
@@ -885,7 +885,7 @@ python gravity_regression/vdm_gravity_regression_pack/graph_checks.py \
 ## Next Steps (max 5)
 
 1. Implement `BudgetGovernor` and swap env budgets for emergent outputs in the runtime loop.&#x20;
-2. Extend Scoreboard with μ/σ streams and publish `budget.snapshot` telemetry every 100–500 ticks.&#x20;
+2. Extend Scoreboard with μ/σ streams and publish `budget.snapshot` telemetry every 100-500 ticks.&#x20;
 3. Add dynamic `k_star` and hook it into the Boundary‑Retraction and Grow walkers (pressure = `deg_out − k_star`).&#x20;
 4. Re‑run FUM demo with **emergent gates**; compare backpressure + graph health A/B.&#x20;
 5. If green, remove default env constants entirely; keep them only as opt‑in debug overrides.&#x20;
@@ -937,8 +937,8 @@ Classification: RD
 
 ## What to use (short answer)
 
-* **Yes, use Reaction–Diffusion (RD)**—but *only as a local, event‑scoped field* that runs on tiny patches around where walkers raise tags (not a global PDE). It gives us closed‑form checkables (front speed, dispersion) and a clean micro‑foundation for how tag influence spreads through a sparse graph.
-* **Micro‑foundation:** a **biased branching random walk (BRW)** of walker tags with birth–death gives, in the continuum limit,
+* **Yes, use Reaction-Diffusion (RD)**—but *only as a local, event‑scoped field* that runs on tiny patches around where walkers raise tags (not a global PDE). It gives us closed‑form checkables (front speed, dispersion) and a clean micro‑foundation for how tag influence spreads through a sparse graph.
+* **Micro‑foundation:** a **biased branching random walk (BRW)** of walker tags with birth-death gives, in the continuum limit,
 
   $$
   \partial_t a = r\,a + D\,\nabla^2 a
@@ -953,7 +953,7 @@ This keeps us faithful to your “no static limits, rules emerge” requirement:
 
 ## Action Plan (event‑scoped RD, zero dense scans)
 
-1. **Tag field on edges/nodes (sparse).** When a walker emits a tag (e.g., `tag.prune_synapse{i,j}`), instantiate a small **RD patch** on the 1–2‑hop ego‑net around {i,j}:
+1. **Tag field on edges/nodes (sparse).** When a walker emits a tag (e.g., `tag.prune_synapse{i,j}`), instantiate a small **RD patch** on the 1-2‑hop ego‑net around {i,j}:
    discrete step
 
    $$
@@ -974,7 +974,7 @@ This keeps us faithful to your “no static limits, rules emerge” requirement:
 
 * **Files/paths to create:**
 
-  * `fum_rt/core/walkers/rd_patch.py` — BRW→RD patch integrator (1–2 hop ego‑nets).
+  * `fum_rt/core/walkers/rd_patch.py` — BRW→RD patch integrator (1-2 hop ego‑nets).
   * `fum_rt/core/structural/scoreboard.py` — decaying votes per (entity, reason); TTL.
   * `fum_rt/core/structural/actuator_sparse.py` — budgeted `{prune,grow,cull,bridge}`.
   * `fum_rt/core/telemetry/tag_transport.py` — estimate $b,d$, hop variance → $r,D$.

@@ -12,7 +12,7 @@ From your “FUM Performance Dashboard” + “Discovery & Self‑Speak” plots
 
 * **Cohesion → 1**: components drop to a single giant component and stay there — homeostasis is healing the graph. That’s good.
 * **Complexity (cycle hits) climbs smoothly** with small plateaus: the system is *making* loops but not suddenly. That’s why the **B1 z‑spike** (our streaming z‑score of the *difference* in cycles) stayed mostly near zero; only a few negative spikes (likely structural pruning bundles) crossed threshold. With conservative gates, it won’t “say” much.
-* **Average W approaches \~1.0** in your long run. That’s a red flag for over‑saturation: novelty falls, habituation wins, valence drops → quiet organism. We want W to live in a band (e.g., \~0.2–0.8) so TD and novelty keep breathing.
+* **Average W approaches \~1.0** in your long run. That’s a red flag for over‑saturation: novelty falls, habituation wins, valence drops → quiet organism. We want W to live in a band (e.g., \~0.2-0.8) so TD and novelty keep breathing.
 
 **Translation:** it *is* organizing, but too calmly and too saturated. You’ll hear it when (a) the topology churns (cycle diff spikes), and (b) SIE valence rises (fresh data or stronger exploration). Let’s fix that.
 
@@ -252,7 +252,7 @@ These changes keep everything inside your void math, but stop the “creep to W�
 ### A. Keep W away from saturation
 
 * Run with:
-  `--domain-mod 0.6` (or dynamically modulate 0.4–0.8)
+  `--domain-mod 0.6` (or dynamically modulate 0.4-0.8)
   This scales the effective ΔW so the logistic term doesn’t slam W to 1.
 * Add a *soft ceiling* gate in the adapter (no global caps, just a fieldwise safety):
   `dW *= (1.0 - np.clip(W, 0.85, 1.0)) * 1.5`
@@ -269,7 +269,7 @@ These changes keep everything inside your void math, but stop the “creep to W�
 
 * Your self‑speak gate is right; reduce thresholds when you first boot a new run:
   `--speak-z 2.0 --speak-valence-thresh 0.2 --speak-cooldown-ticks 10`
-  Then raise `--speak-z` to 3.0–3.5 after it warms up.
+  Then raise `--speak-z` to 3.0-3.5 after it warms up.
 * With the new dashboard, you’ll *see* discovery spikes (b1\_z) and the green speak markers.
 
 ### D. Kill the static ring lattice

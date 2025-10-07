@@ -17,5 +17,5 @@
   },
   "dt_sweep": [0.02, 0.01, 0.005, 0.0025, 0.00125],
   "seeds": 10,
-  "notes": "Param-gated spectral Laplacian in the DG M-step to reduce J–M discretization mismatch."
+  "notes": "Param-gated spectral Laplacian in the DG M-step to reduce J-M discretization mismatch."
 }
