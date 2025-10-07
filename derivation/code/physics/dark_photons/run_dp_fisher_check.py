@@ -35,7 +35,7 @@ def negloglike(theta: float, x: np.ndarray, y: np.ndarray, sigma: float) -> floa
     return 0.5 * float(np.sum(r * r) / (sigma * sigma))
 
 
-def run_fisher_check(spec: FisherSpec) -> Dict[str, Any]:
+def run_fisher_check(spec: FisherSpec, pre_registered: bool = False, engineering_only: bool = False) -> Dict[str, Any]:
     rng = np.random.default_rng(spec.seed)
     x = rng.normal(0.0, 1.0, size=spec.n)
     theta0 = 0.3
@@ -58,7 +58,8 @@ def run_fisher_check(spec: FisherSpec) -> Dict[str, Any]:
     passed = bool(rel_err <= spec.rel_tol and np.isfinite([I_fd, I_analytic, rel_err]).all())
 
     # CSV table (single-row but keep extensible)
-    csvp = log_path("dark_photons", f"fisher_check__{spec.tag}", failed=not passed, type="csv")
+    quarantine = engineering_only or (not pre_registered)
+    csvp = log_path("dark_photons", f"fisher_check__{spec.tag}", failed=(not passed) or quarantine, type="csv")
     with csvp.open("w", encoding="utf-8") as fcsv:
         fcsv.write("I_analytic,I_fd,rel_err,theta_hat,n,sigma,dx\n")
         fcsv.write(f"{I_analytic},{I_fd},{rel_err},{theta_hat},{spec.n},{spec.sigma},{spec.dx}\n")
@@ -68,9 +69,14 @@ def run_fisher_check(spec: FisherSpec) -> Dict[str, Any]:
         "estimates": {"I_analytic": I_analytic, "I_fd": I_fd, "theta_hat": theta_hat},
         "rel_err": rel_err,
         "gate": {"rel_tol": spec.rel_tol, "passed": passed},
+        "policy": {
+            "pre_registered": bool(pre_registered),
+            "engineering_only": bool(engineering_only),
+            "quarantined": bool(quarantine)
+        },
         "csv": str(csvp)
     }
-    write_log(log_path("dark_photons", f"fisher_check__{spec.tag}", failed=not passed), logj)
+    write_log(log_path("dark_photons", f"fisher_check__{spec.tag}", failed=(not passed) or quarantine), logj)
     return logj
 
 
@@ -83,9 +89,14 @@ def main():
     p.add_argument("--rel_tol", type=float, default=0.10)
     p.add_argument("--seed", type=int, default=7)
     p.add_argument("--tag", type=str, default="DP-fisher-v1")
+    p.add_argument("--allow-unapproved", action="store_true", help="Allow running without pre-registration approval; marks outputs as engineering_only and quarantines artifacts")
     args = p.parse_args()
+    pre_registered = False
+    if not pre_registered and not args.allow_unapproved:
+        print("ERROR: Proposal not approved. Use --allow-unapproved for engineering-only smoke (artifacts will be quarantined).", file=sys.stderr)
+        sys.exit(2)
     spec = FisherSpec(n=args.n, sigma=args.sigma, seed=args.seed, dx=args.dx, rel_tol=args.rel_tol, tag=args.tag)
-    out = run_fisher_check(spec)
+    out = run_fisher_check(spec, pre_registered=pre_registered, engineering_only=(not pre_registered))
     print(json.dumps(out, indent=2))
 
 

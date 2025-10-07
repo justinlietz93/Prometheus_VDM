@@ -1,10 +1,6 @@
-# Proposal: Decoherence Portals via Dark-Photon Mixing (DP-Portal-v1)
+# Proposal: Decoherence Portals via Dark-Photon Mixing: Noise-Spectrum and Fisher-Budget Tests of Kinetic Mixing in Shielded Cavities (DP-Portal-v1)
 
-Date: 2025-10-06
-
-
-
-Decoherence Portals via Dark-Photon Mixing: Noise-Spectrum and Fisher-Budget Tests of Kinetic Mixing in Shielded Cavities (DP-Portal-v1) — 2025-10-06
+**Date**: 2025-10-06
 
 ## 2. List of proposers and associated institutions/companies
 
@@ -13,6 +9,16 @@ Decoherence Portals via Dark-Photon Mixing: Noise-Spectrum and Fisher-Budget Tes
 ## 3. Abstract
 
 We propose a disciplined, pre-registered investigation of dark-photon (DP) kinetic mixing as a decoherence portal that leaves measurable imprints in precision electromagnetic noise spectra and parameter-estimation Fisher budgets in shielded resonant cavities. The central hypothesis is that a small kinetic-mixing parameter $\varepsilon$ produces: (i) a predictable modification of the power spectral density (PSD) in well-characterized frequency bands, and (ii) a reproducible scaling of information content (Fisher matrix elements) with integration time and bandwidth under stationary Gaussian assumptions. We define falsifiable key performance indicators (KPIs) a priori, specify calibration and control runs, and separate modeling from execution. No experimental results are reported in this proposal; only testable predictions and a rigorous plan. Success would constrain or detect portal-like decoherence consistent with DP mixing, with clear follow-up pathways to stronger limits and systematics stress tests.
+
+> **Pre-Registration Checklist**
+>
+> - **Commit:** a54d638e2b097cd6bf5606d669fc9984650e2307  
+> - **Spec snapshot(s):** `derivation/specs/dark_photons/step_spec.dp.v1.json` (to be frozen at approval)
+> - **Seeds / Replicates:** $N_{\text{seeds}}=10$ (calibration), $N_{\text{seeds}}=20$ (science)
+> - **Environment:** Python `3.13.5`, NumPy `2.2.6`, platform `Linux-6.14.0-32-generic-x86_64-with-glibc2.41`  
+> - **Artifact root:** `derivation/code/outputs/{logs,figures}/dark_photons/`  
+> - **Tag required:** every run must set `"tag": "<approved-tag>"` in the spec
+> - **Policy:** *No runs before approval.* Engineering smokes must pass `--allow-unapproved` and are quarantined from RESULTS.
 
 ## 4. Background & Scientific Rationale
 
@@ -71,20 +77,34 @@ Contingencies:
 - Success path: KPIs pass; proceed to parameter inference and constraints on $\varepsilon$ with systematic budget.
 - Failure path: Any gate fails triggers a CONTRADICTION_REPORT with raw artifacts and root-cause analysis; no claims about DP signals are made.
 
-### Pre-registered KPIs (no results claimed here)
+### Pre-registered KPIs & Gates (mechanically checkable)
 
-1) PSD sanity and regime annotation (background-only):
-   - Finite and non-negative PSD across all bins; $1/f$ component monotone for low-$f$ segment.
-   - Annotate $f_\star$ where $S_{\mathrm{inst}}(f_\star) \approx S_{\mathrm{thermal}}(f_\star)$ by closest approach; used for reporting only.
+1. **PSD sanity & regime annotation**  
+   For each sweep with frequencies $\{f_i\}_{i=1}^M$:
+   - **Non-negativity:** $\min_i S_{\rm total}(f_i) \ge 0$ (gate: pass iff true).
+   - **Low-band $1/f$ monotone for $S_{\rm inst}$:** for the first $K$ bins (from spec),
+     $$\Delta_i = S_{\rm inst}(f_{i+1}) - S_{\rm inst}(f_i) \le 0,\quad i=1,\dots,K-1$$
+     (gate: all $\Delta_i \le 0$).
+   - **Thermal floor dominance:** $\operatorname{median}_{i\in[1..M]}\big(S_{\rm bg}(f_i) - S_{\rm inst}(f_i)\big) \ge 0$ (gate: pass iff true).
+   - **Regime split point $f^\star$ (annotation, not a claim):**
+     $$f^\star = \arg\min_{f_i} \left|\,S_{\rm inst}(f_i) - S_{\rm bg}(f_i)\,\right|,$$
+     with tie-break to the lower-$f$ bin. (No gate; recorded for plots.)
 
-2) Fisher consistency gate (injection or background-only as appropriate):
-   - For parameter $\theta$ representing a template amplitude, analytic Fisher $\mathcal{I}_{\mathrm{an}}(\theta)$ matches finite-difference Hessian $\mathcal{I}_{\mathrm{fd}}(\theta)$ within relative error $\leq 10\%$ under stationary Gaussian assumptions.
-   - Scaling: $\mathcal{I} \propto \tau\,B$ within tolerance band set by calibration uncertainties.
+2. **Fisher consistency (analytic vs. finite-difference)**  
+   For parameters $\theta_j$,
+   $$\varepsilon_j=\frac{\left|\,\mathcal{I}_{\rm an}(\theta_j)-\mathcal{I}_{\rm fd}(\theta_j)\,\right|}{\max\big(\mathcal{I}_{\rm an}(\theta_j),\,10^{-30}\big)}.$$
+   Gate: $\operatorname{median}_j \, \varepsilon_j \le 0.10$ and $\max_j \, \varepsilon_j \le 0.20$.
 
-3) DP template test (science run, model comparison only):
-   - Reported only if (1) and (2) PASS. Perform likelihood ratio or information criteria comparison between $S_{\mathrm{bg}}$ and $S_{\mathrm{bg}}+S_{\mathrm{DP}}$; claims require predefined evidence thresholds.
+3. **Exposure scaling sanity**  
+   With exposure proxy $X=\tau\cdot B$ and fixed priors, fit $\log SNR = \alpha + \beta \log X$.  
+   Gate: $\beta \in [0.9,1.1]$ with $R^2 \ge 0.99$.
 
-All KPIs are falsifiable without prior data; thresholds are fixed herein.
+4. **Approval condition**  
+   All KPI gates above must pass in calibration **and** injection validation before any science runs are authorized.
+
+**Evidence & Reproducibility.** At approval we will pin a spec snapshot and a single canonical artifact path in RESULTS (per PAPER_STANDARDS).  
+On any gate failure we will emit:
+`CONTRADICTION_REPORT.json = { "gate": <name>, "spec_path": <path>, "tag": <tag>, "seed": <seed>, "figure": <png>, "csv": <csv>, "notes": <free text> }`.
 
 ## 6. Personnel
 
@@ -95,4 +115,3 @@ Proposer: Justin K. Lietz — responsible for modeling, pre-registration, runpla
 - B. Holdom, Two U(1)’s and Epsilon Charge Shifts, Phys. Lett. B 166 (1986) 196–198.
 - J. Jaeckel and A. Ringwald, The Low-Energy Frontier of Particle Physics, Ann. Rev. Nucl. Part. Sci. 60 (2010) 405–437.
 - M. Fabbrichesi, E. Gabrielli, and G. Lanfranchi, The Physics of the Dark Photon, SpringerBriefs in Physics (2020), arXiv:2005.01515.
-

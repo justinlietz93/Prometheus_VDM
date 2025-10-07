@@ -16,4 +16,10 @@
     "sigma": 1.0
   },
   "rel_err": 1.499558979657854e-11
+  ,
+  "policy": {
+    "pre_registered": false,
+    "engineering_only": true,
+    "quarantined": true
+  }
 }

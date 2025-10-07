@@ -1,2 +1,0 @@
-freq_Hz,integration_time_s,shot_noise,thermal_noise,amplifier_noise,total_noise,SNR
-1.0e6,1,0,0,0,0,0
