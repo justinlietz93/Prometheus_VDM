@@ -131,4 +131,4 @@ Note on edge‑counting conventions: if instead you count undirected edges once 
 **Conclusion:** We have successfully derived the full kinetic term from the discrete Hamiltonian. The derivation confirms that the kinetic term coefficient, `Z(\phi)`, is a constant and not a function of the field `\phi`. This is a successful and crucial step in formalizing the FUM.
 
 **Note.** There is no microscopic constraint tying `J` to `a`. The continuum limit yields
-`𝓛_K = ½(∂_t φ)^2 − J a^2 (∇φ)^2` and the wave speed `c^2 = 2 J a^2` (or `c^2 = κ a^2` with `κ = 2J`). One may set `c = 1` by a benign rescaling of time/length units (choose `Δt` and `a`, or equivalently `τ` and `a` in the physical map); this is a units choice, not a constraint.
+`𝓛_K = ½(∂_t φ)^2 - J a^2 (∇φ)^2` and the wave speed `c^2 = 2 J a^2` (or `c^2 = κ a^2` with `κ = 2J`). One may set `c = 1` by a benign rescaling of time/length units (choose `Δt` and `a`, or equivalently `τ` and `a` in the physical map); this is a units choice, not a constraint.

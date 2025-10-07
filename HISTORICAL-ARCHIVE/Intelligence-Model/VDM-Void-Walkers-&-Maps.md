@@ -400,7 +400,7 @@ Below is a drop‑in plan + minimal code that’s fast, stable, and production�
 * Anything that forces the UI to re‑integrate the model
 
 > If you don’t already compute `exc`/`inh` in core, add two **O(nnz)** streaming accumulators during your step to produce
-> `E_i = Σ_j max(W_ij, 0)·r_j` and `I_i = Σ_j max(−W_ij, 0)·r_j`.
+> `E_i = Σ_j max(W_ij, 0)·r_j` and `I_i = Σ_j max(-W_ij, 0)·r_j`.
 > That’s one sparse sweep you’re already doing for dynamics; expose the row sums.
 
 ---
@@ -616,7 +616,7 @@ function drawComposite(
 2. **Core emitters**
 
    * During `engine.step`, accumulate `E_i` and `I_i` (net excit/inh currents).
-   * Maintain EMA heat: `heat_i ← (1−λ)·heat_i + λ·r_i`.
+   * Maintain EMA heat: `heat_i ← (1-λ)·heat_i + λ·r_i`.
 
 3. **Telemetry builder**
 
@@ -1633,7 +1633,7 @@ You’re right—and I’m going to keep anchoring every change to **void‑fait
 
 ## WHY THIS STAYS VOID‑FAITHFUL (with your math)
 
-* The **kinetic structure** and “no hidden scans” ethos are exactly what you formalized: `𝓛_K = ½(∂_t φ)^2 − J a^2(∇φ)^2`, with `c^2=2Ja^2` set by units—not by hidden global work. The render path is a **consumer** of reducer outputs, not a producer of dynamics.&#x20;
+* The **kinetic structure** and “no hidden scans” ethos are exactly what you formalized: `𝓛_K = ½(∂_t φ)^2 - J a^2(∇φ)^2`, with `c^2=2Ja^2` set by units—not by hidden global work. The render path is a **consumer** of reducer outputs, not a producer of dynamics.&#x20;
 * Your **discrete on‑site law** and its EFT mapping remain the only sources of state change; scouts and maps observe and bias exploration (when enabled) but never write.&#x20;
 * The optional **memory steering** is a slow, external index that shapes path choice without altering on‑site evolution—exactly how you framed it.&#x20;
 
@@ -3621,7 +3621,7 @@ Here’s the full list, what each one does, and exactly what’s still missing s
 4. **InhibitionScout** (`void_inhibition_scout.py`)
    *Role:* Ride inhibitory fronts.
    *Signals:* `InhibitionMap` head/dict.
-   *Events:* `VTTouchEvent`, `EdgeOnEvent`, optional `SpikeEvent(sign=−1)`.
+   *Events:* `VTTouchEvent`, `EdgeOnEvent`, optional `SpikeEvent(sign=-1)`.
 
 ---
 
@@ -3630,9 +3630,9 @@ Here’s the full list, what each one does, and exactly what’s still missing s
 5. **VoidRayScout** — physics‑aware (φ‑bias)
    **File:** `fum_rt/core/cortex/void_walkers/void_ray_scout.py`
    *Role:* Prefer neighbors with favorable **local** change in the fast field φ.
-   *Local rule (no scans):* For hop `i→j`, score `s_j = λ_φ·(φ[j]−φ[i]) + θ_mem·m[j]`; sample neighbor via a temperatured choice (softmax).
+   *Local rule (no scans):* For hop `i→j`, score `s_j = λ_φ·(φ[j]-φ[i]) + θ_mem·m[j]`; sample neighbor via a temperatured choice (softmax).
    *Signals:* `connectome.phi` (vector) and optional `memory_dict`.
-   *Events:* `VTTouchEvent`, `EdgeOnEvent`, optional `SpikeEvent(sign=+1 if Δφ≥0 else −1)`.
+   *Events:* `VTTouchEvent`, `EdgeOnEvent`, optional `SpikeEvent(sign=+1 if Δφ≥0 else -1)`.
 
 6. **MemoryRayScout** — memory steering
    **File:** `fum_rt/core/cortex/void_walkers/memory_ray_scout.py`

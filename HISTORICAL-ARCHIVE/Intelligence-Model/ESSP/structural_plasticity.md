@@ -146,7 +146,7 @@ Classification: Runtime-only
   * **Microglia-C3 analogue:** complement‑tag walker marks weak/erratic synapses with `tag.C3` → microglia walker consumes `tag.C3` → emits `tag.prune_synapse`.
   * **Semaphorin‑like retraction:** boundary‑gradient walker tags axon branches in specific territories for branch retraction (`tag.retract_axonal_branch` → translates to local out‑degree decrement and pruning budget).
   * **Excitotoxicity sentinel:** high firing‑rate + “calcium proxy” (integrated depolarization) triggers `tag.cull_neuron` with cooldown.
-  * **Ischemia surrogate:** track per‑territory “ATP debt” = (spike work − supply budget). Sustained debt emits `tag.cull_neuron` with higher threshold; immediate `tag.prune_synapse` on the most costly edges first.
+  * **Ischemia surrogate:** track per‑territory “ATP debt” = (spike work - supply budget). Sustained debt emits `tag.cull_neuron` with higher threshold; immediate `tag.prune_synapse` on the most costly edges first.
   * **Trauma:** external event marks a territory window; walkers flood it with `tag.cull_neuron/prune_synapse` at raised weights.
   * **Apoptosis:** integrate multi‑signal danger score; when above bound for `T_apop`, emit `tag.cull_neuron` (graceful teardown: detach in k‑sized chunks per tick).
     All of these are **event‑sourced** and **territory‑bounded**—no dense scans.&#x20;
@@ -191,7 +191,7 @@ Classification: Runtime-only
     PURKINJE:  dict(k_min=200, k_max=500, eta=0.002,decay=0.0005,rarity=0.01),
   }
   ```
-* `fum_rt/core/connectome_state.py` — add arrays on GPU: `neuron_class[i]`, `k_target[i]`, `eta_vec[i]`, `lambda_decay[i]`, and `free_slots[i]` (derived from k\_target − current degree).
+* `fum_rt/core/connectome_state.py` — add arrays on GPU: `neuron_class[i]`, `k_target[i]`, `eta_vec[i]`, `lambda_decay[i]`, and `free_slots[i]` (derived from k\_target - current degree).
 * `fum_rt/core/neuroplasticity/params.py` — **PlasticityManager** that maps `neuron_class[]` → full `eta_vec`, `lambda_vec` (re‑emit on neurogenesis/class change).
 * `fum_rt/core/walkers/tags.py` — canonical Tag schema + reason codes (e.g., `C3`, `SEMAPHORIN`, `EXCITOTOX`, `ATP_DEBT`, `TRAUMA`, `APOPTOSIS`).
 * `fum_rt/core/bus_topics.py` — `tag.*` topic names; `struct.actuator.*` result events.
@@ -291,7 +291,7 @@ Semaphorin‑like retraction: boundary‑gradient walker tags axon branches in s
 
 Excitotoxicity sentinel: high firing‑rate + “calcium proxy” (integrated depolarization) triggers tag.cull_neuron with cooldown.
 
-Ischemia surrogate: track per‑territory “ATP debt” = (spike work − supply budget). Sustained debt emits tag.cull_neuron with higher threshold; immediate tag.prune_synapse on the most costly edges first.
+Ischemia surrogate: track per‑territory “ATP debt” = (spike work - supply budget). Sustained debt emits tag.cull_neuron with higher threshold; immediate tag.prune_synapse on the most costly edges first.
 
 Trauma: external event marks a territory window; walkers flood it with tag.cull_neuron/prune_synapse at raised weights.
 
@@ -329,7 +329,7 @@ Classification: Runtime-only
 
 ### 1) Use‑it‑or‑lose‑it (synaptic activity)
 
-* **Local metric:** `use_ij(t) = EMA_{τ_use}[ s_i(t) * s_j(t−Δ) ]` (co‑activity).
+* **Local metric:** `use_ij(t) = EMA_{τ_use}[ s_i(t) * s_j(t-Δ) ]` (co‑activity).
 * **Walker:** *UseTracker* updates `use_ij`; if `use_ij < θ_use` for `T_idle` → `tag.prune_synapse{pre:i, post:j, reason:"low_use", ttl}`.
 * **Actuator effect:** prune only those (i,j) tagged, up to `PRUNE_BUDGET` per tick.
 * **This implements** “prune infrequent, reinforce frequent” sparsely.
@@ -365,7 +365,7 @@ Classification: Runtime-only
 * **Local metric (territory T):**
   `work_T = EMA[ α_spike·Σ_i s_i + α_syn·Σ_(i,j∈T) |w_ij|·activity_ij ]`
   `supply_T = config.metab_supply_T`
-  `m_debt_T = EMA[ work_T − supply_T ]`
+  `m_debt_T = EMA[ work_T - supply_T ]`
 * **Walker:** *MetabolicAuditor* emits
 
   * `tag.prune_synapse{...,"reason":"metab"}` for top cost edges,
@@ -422,7 +422,7 @@ $$
 * `fum_rt/core/walkers/{use_tracker.py, complement_tagger.py, microglia.py, boundary_retraction.py, excitotox_sentinel.py, metabolic_auditor.py}` — each emits tags above.
 * `fum_rt/core/structural/actuator_sparse.py` — applies (prune/grow/bridge/cull) **only** on IDs from scoreboard; per‑tick budgets.
 * `fum_rt/runtime/loop/main.py` — collect `scoreboard.above(θ)` per category → call actuator. **No dense codepaths** (assert if called).
-* `fum_rt/core/neuroplasticity/update_kernel.cu|hip` — implement `w ← (1−λ)w + η e M` for touched edges.
+* `fum_rt/core/neuroplasticity/update_kernel.cu|hip` — implement `w ← (1-λ)w + η e M` for touched edges.
 
 **CLIs**
 

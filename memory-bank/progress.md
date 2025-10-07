@@ -2,15 +2,15 @@
 
 ## Done
 
-- Updated VALIDATION_METRICS: dark-photon KPIs marked planned; fixed implementation paths.
-- Implemented runner guardrails in run_dp_noise_budget.py and run_dp_fisher_check.py with --allow-unapproved and policy stamping.
-- Quarantined existing DP smoke artifacts; added README notices under logs/ and figures/.
+- Created `vdm_equations.py` with potential/reaction/dispersion/front-speed/mappings/KG speed and vacuum evaluators.
+- Added gated unit test `test_vdm_equations.py` and package initializers for Derivation packages.
+- Smoke-checked module with internal self-check (OK).
 
 ## Doing
 
-- Prepare approval registry hook to flip pre_registered once proposal is approved.
+- Offer to wire new module into existing physics runners to de-duplicate formulas.
 
 ## Next
 
-- Propagate guardrails pattern to other experimental runners (where applicable).
-- Add unit tests for CLI guard behavior (exit=2 on unapproved).
+- Auto-compile constants/equations into the module (codegen) to prevent drift.
+- Enable Codacy CLI MCP and run analysis on new files once available.

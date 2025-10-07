@@ -19,12 +19,12 @@ Discrete Formulation (graph random walk)
 - Transition probability from node i at layer l-1 to j at layer l:
   p(i→j|l) = S_{i→j}^{(l)} / Σ_k S_{i→k}^{(l)} with ε-jitter for exploration.
 - After K hops along layers, each walker emits petitions at its current edge/node:
-  sat: σ_sat = 1{|a_j^{(l)}| ≥ a_sat}, grad: g_j^{(l)} = ||∂L/∂z_j^{(l)}|| (if L defined), shear: max{|a_j^{(l)} − a_k^{(l)}|: k∈N(j)}.
+  sat: σ_sat = 1{|a_j^{(l)}| ≥ a_sat}, grad: g_j^{(l)} = ||∂L/∂z_j^{(l)}|| (if L defined), shear: max{|a_j^{(l)} - a_k^{(l)}|: k∈N(j)}.
 - Petitions are tuples (kind, value, node=(l,j), t). A Bus collects them; a Reducer computes robust quantiles and counts per kind.
 
 Continuum Limit (graph Fokker-Planck heuristic)
 - Let ρ_l(j,t) be walker density at neuron j, layer l.
-- Assume slow variation in “potential” U_l(j) = −log S̄_l(j), where S̄_l(j) = Σ_i S_{i→j}^{(l)}.
+- Assume slow variation in “potential” U_l(j) = -log S̄_l(j), where S̄_l(j) = Σ_i S_{i→j}^{(l)}.
 - The discrete Markov chain induces, in a continuum limit over wide layers, a drift-diffusion:
   ∂_t ρ_l ≈ ∇_j · (D_l ∇_j ρ_l + ρ_l ∇_j U_l), with reflecting boundary at layer edges and forward drift across layers.
 - D_l encodes exploration jitter; ∇_j is graph gradient (e.g., on a kNN graph in activation space).

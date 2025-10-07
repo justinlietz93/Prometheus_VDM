@@ -12,22 +12,22 @@ Purpose
 Starting Assumptions
 - Memory variable M_t ∈ [0, 1].
 - Steering uses a linear, leaky first-order update with saturation (assumed form):
-  M_{t+1} = (1 − λ − g) M_t + g s_t + ξ_t, then clamp M_{t+1} to [0, 1].
+  M_{t+1} = (1 - λ - g) M_t + g s_t + ξ_t, then clamp M_{t+1} to [0, 1].
   - Parameters: g > 0 (gain), λ > 0 (leak), ξ_t is optional zero-mean noise (default 0).
-  - Stability (unclamped, deterministic): pole p = 1 − λ − g with 0 ≤ p < 1 implies stable monotone approach.
+  - Stability (unclamped, deterministic): pole p = 1 - λ - g with 0 ≤ p < 1 implies stable monotone approach.
   - Fixed point for constant s: M* = g s / (g + λ).
 - Canonical “void equilibrium” test: with s ≡ 1 and g = 1.5 λ, the fixed point is M* = 1.5/(1+1.5) = 0.6, matching the observed W ≈ 0.6 note.
 - If the actual steering law differs (nonlinear f(s, M), adaptive gains, or additional couplings), we will update p, M*, and acceptance thresholds accordingly. Provide file path + line numbers for the exact rule to refine this doc.
 
 Discrete Formulation
 - Update (dt = 1):
-  M_{t+1} − M_t = −(λ + g) M_t + g s_t + ξ_t; then clip to [0, 1].
-- Step response for s = s1 (constant for t ≥ t_step): M_t = M* + (M_0 − M*) p^t with p = 1 − λ − g.
+  M_{t+1} - M_t = -(λ + g) M_t + g s_t + ξ_t; then clip to [0, 1].
+- Step response for s = s1 (constant for t ≥ t_step): M_t = M* + (M_0 - M*) p^t with p = 1 - λ - g.
 
 Continuum Limit (for small λ + g)
 - Let dt ≪ 1 and identify κ = λ + g, γ = g. Then
-  dM/dt = −κ M + γ s(t) + η(t), 0 ≤ M ≤ 1 with reflective saturation at bounds.
-- Time constant τ ≈ 1/κ. In discrete time, τ_d = −1 / ln p; for small κ, τ_d ≈ 1/κ.
+  dM/dt = -κ M + γ s(t) + η(t), 0 ≤ M ≤ 1 with reflective saturation at bounds.
+- Time constant τ ≈ 1/κ. In discrete time, τ_d = -1 / ln p; for small κ, τ_d ≈ 1/κ.
 
 Fixed Points & Stability
 - Fixed point M* = (g/(g+λ)) s for constant s (unclamped, noise-free).
@@ -35,8 +35,8 @@ Fixed Points & Stability
 - With saturation, M remains bounded in [0, 1].
 
 Lyapunov Structure (noise-free, constant s)
-- Define F_t = 0.5 (M_t − M*)^2. Then M_{t+1} − M* = p (M_t − M*). Hence
-  F_{t+1} − F_t = 0.5 (p^2 − 1) (M_t − M*)^2 ≤ 0 for |p| ≤ 1 with strict decrease for |p| < 1 unless M_t = M*.
+- Define F_t = 0.5 (M_t - M*)^2. Then M_{t+1} - M* = p (M_t - M*). Hence
+  F_{t+1} - F_t = 0.5 (p^2 - 1) (M_t - M*)^2 ≤ 0 for |p| ≤ 1 with strict decrease for |p| < 1 unless M_t = M*.
 
 Acceptance Criteria
 1) Boundedness
@@ -44,20 +44,20 @@ Acceptance Criteria
 
 2) Linear Response & Fixed Point (noise-free, avoid clamp activation)
    - Fit pole from step response:
-     - |p_fit − p_pred| ≤ 0.02 (absolute).
-     - |M_final − M*| ≤ 1e-2 (mean over last 10% of samples).
+     - |p_fit - p_pred| ≤ 0.02 (absolute).
+     - |M_final - M*| ≤ 1e-2 (mean over last 10% of samples).
      - Overshoot ≤ 0.02 (fraction of step amplitude).
 
 3) Canonical Void Target (W ≈ 0.6)
    - With s ≡ 1 and g = 1.5 λ:
-     - |M_final − 0.6| ≤ 0.02 across seeds ∈ {0, 1, 2}.
+     - |M_final - 0.6| ≤ 0.02 across seeds ∈ {0, 1, 2}.
 
 4) Noise Suppression (SNR Improvement)
    - Input s(t) = s_sig(t) + n(t), where s_sig is a low-frequency sinusoid and n is white noise (σ = 0.05 by default), values clipped to [0, 1].
-   - SNR_out − SNR_in ≥ 3 dB for default parameters.
+   - SNR_out - SNR_in ≥ 3 dB for default parameters.
 
 5) Lyapunov Monotonicity (Noise-free Constant s)
-   - Fraction of positive ΔF_t = F_{t+1} − F_t ≤ 1% (numerical jitter); median ΔF_t < 0.
+   - Fraction of positive ΔF_t = F_{t+1} - F_t ≤ 1% (numerical jitter); median ΔF_t < 0.
 
 6) Reproducibility
    - Same seed ⇒ identical M_t sequence (max_abs_diff ≤ 1e-12).

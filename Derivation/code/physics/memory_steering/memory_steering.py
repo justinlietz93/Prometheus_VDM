@@ -10,7 +10,7 @@ Memory-driven steering on graphs: rigorous mapping to the FUM derivations + dime
 How this maps to your derivations (clickable refs):
 - Fast φ-sector (propagation + mass gap): the continuum equation and invariants are already derived
   in [derivation/discrete_to_continuum.md](derivation/discrete_to_continuum.md:121-128), with vacuum
-  v = 1 − β/α and excitation mass m_eff² = α − β. The kinetic normalization c² = 2 J a² comes
+  v = 1 - β/α and excitation mass m_eff² = α - β. The kinetic normalization c² = 2 J a² comes
   from the discrete action in [derivation/kinetic_term_derivation.md](derivation/kinetic_term_derivation.md:121-128).
   This module does not alter those results. φ governs propagation/modes; “memory” M biases routing.
 
@@ -22,7 +22,7 @@ How this maps to your derivations (clickable refs):
   Here r'' is the curvature of the path, ∇_⊥ is the transverse gradient, and η is a coupling.
 
 - Memory dynamics (slow field): the minimal causal PDE
-      ∂_t M = γ R − δ M + κ ∇² M,
+      ∂_t M = γ R - δ M + κ ∇² M,
   where R is a usage/co-activation rate (e.g., STDP proxy), γ is write gain, δ decay, κ consolidation/spread.
   This produces stored structure that later steers dynamics via n=exp(η M).
 
@@ -38,14 +38,14 @@ How this maps to your derivations (clickable refs):
   See [derivation/memory_steering.md](derivation/memory_steering.md:1) for the full statement.
 
 Graph discretization used here (orthogonal to φ):
-- We represent M on nodes (vector m), and use the unnormalized graph Laplacian L = D − A to discretize ∇².
-- Memory PDE (Euler step):  m ← m + dt ( γ r − δ m − κ L m ), where r is an independently measured usage proxy.
+- We represent M on nodes (vector m), and use the unnormalized graph Laplacian L = D - A to discretize ∇².
+- Memory PDE (Euler step):  m ← m + dt ( γ r - δ m - κ L m ), where r is an independently measured usage proxy.
 - Steering at node i toward neighbor j is modeled by a softmax over neighbor memory:
       P(i→j) ∝ exp(Θ m_j).
   At a two-branch junction this reduces to the logistic P(A)=σ(Θ Δm), matching the prediction.
 
 What this module provides:
-- build_graph_laplacian(A): compute L = D − A (undirected).
+- build_graph_laplacian(A): compute L = D - A (undirected).
 - update_memory(m, r, L, gamma, delta, kappa, dt): Euler step for the memory PDE (slow M-dynamics).
 - transition_probs(i, neighbors, m, theta): softmax steering P(i→j) ∝ exp(Θ m_j).
 - transition_probs_temp(i, neighbors, m, theta, temperature=1.0): temperatured softmax (default T=1).
@@ -72,8 +72,8 @@ import numpy as np
 
 def build_graph_laplacian(A: np.ndarray) -> np.ndarray:
     """
-    Build the unnormalized graph Laplacian L = D − A (continuum analogue of −∇²).
-    This is the standard discrete operator used in the memory PDE ∂_t m = γ r − δ m − κ L m,
+    Build the unnormalized graph Laplacian L = D - A (continuum analogue of -∇²).
+    This is the standard discrete operator used in the memory PDE ∂_t m = γ r - δ m - κ L m,
     mapping directly to the ∇² term in [derivation/memory_steering.md](derivation/memory_steering.md:1).
 
     Args:
@@ -83,7 +83,7 @@ def build_graph_laplacian(A: np.ndarray) -> np.ndarray:
         L: np.ndarray (N x N) Laplacian.
 
     Notes:
-        - L = D − A is the unnormalized Laplacian (Dirichlet energy), which converges to −∇² under mesh refinement.
+        - L = D - A is the unnormalized Laplacian (Dirichlet energy), which converges to -∇² under mesh refinement.
         - Self-loops are ignored (diagonal set to 0 in degree).
     """
     A = np.asarray(A)
@@ -105,14 +105,14 @@ def update_memory(
 ) -> np.ndarray:
     """
     One explicit Euler step for the slow memory PDE (write-decay-spread),
-        ∂_t m = γ r − δ m − κ L m,
-    which is the graph-discretized form of ∂_t M = γ R − δ M + κ ∇² M in
+        ∂_t m = γ r - δ m - κ L m,
+    which is the graph-discretized form of ∂_t M = γ R - δ M + κ ∇² M in
     [derivation/memory_steering.md](derivation/memory_steering.md:1).
 
     Args:
         m: np.ndarray (N,). Memory field (dimensionless m = M/M0 if normalized to M0).
         r: np.ndarray (N,). Independent usage/co-activation proxy (dimensionless ρ = R/R0 if normalized to R0).
-        L: np.ndarray (N x N). Graph Laplacian L = D − A.
+        L: np.ndarray (N x N). Graph Laplacian L = D - A.
         gamma, delta, kappa: PDE coefficients (map to D_a, Λ, Γ via compute_dimensionless_groups).
         dt: time step.
 
@@ -138,7 +138,7 @@ def transition_probs(
     Softmax steering probabilities from node i toward its neighbors based on memory values:
         P(i→j) ∝ exp(Θ m_j),   Θ = η M0.
     At a 2-branch fork with memories (m_A, m_B) this reduces to the logistic
-        P(A) = σ(Θ (m_A − m_B)),
+        P(A) = σ(Θ (m_A - m_B)),
     matching the prediction P(A) ≈ σ(Θ Δm) in [derivation/memory_steering.md](derivation/memory_steering.md:1).
 
     Args:
@@ -225,7 +225,7 @@ def sample_next_neighbor_heading(
 
     Score for each neighbor j:
         score_j = Θ m_j + heading_bias * cos(∠(heading, step_ij))
-    with step_ij = pos[j] − pos[i] and softmax at temperature T.
+    with step_ij = pos[j] - pos[i] and softmax at temperature T.
 
     This approximates the ray-limit routing r'' ∝ Θ ∇_⊥ m with an inertial heading term,
     reducing grid-quantization artifacts seen with purely memory-driven argmax hopping.

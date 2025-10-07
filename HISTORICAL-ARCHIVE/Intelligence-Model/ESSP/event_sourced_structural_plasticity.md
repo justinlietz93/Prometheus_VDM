@@ -146,7 +146,7 @@ This mechanism prevents runaway energy consumption within a territory.
 *   **Territory-Local Metric (`m_debt_T`):**
     `work_T = EMA[ α_spike·Σ_i s_i + α_syn·Σ_(i,j∈T) |w_ij|·activity_ij ]`
     `supply_T = config.metabolic_supply_T`
-    `m_debt_T = EMA[ work_T − supply_T ]`
+    `m_debt_T = EMA[ work_T - supply_T ]`
 *   **Trigger:** If `m_debt_T > θ_debt` for a duration of $T_{\text{debt}}$, the walker emits:
     1.  `tag.prune_synapse` for the computationally most expensive synapses in the territory.
     2.  `tag.cull_neuron` for the highest-contributing neurons if the debt persists.
@@ -886,7 +886,7 @@ python gravity_regression/vdm_gravity_regression_pack/graph_checks.py \
 
 1. Implement `BudgetGovernor` and swap env budgets for emergent outputs in the runtime loop.&#x20;
 2. Extend Scoreboard with μ/σ streams and publish `budget.snapshot` telemetry every 100-500 ticks.&#x20;
-3. Add dynamic `k_star` and hook it into the Boundary‑Retraction and Grow walkers (pressure = `deg_out − k_star`).&#x20;
+3. Add dynamic `k_star` and hook it into the Boundary‑Retraction and Grow walkers (pressure = `deg_out - k_star`).&#x20;
 4. Re‑run FUM demo with **emergent gates**; compare backpressure + graph health A/B.&#x20;
 5. If green, remove default env constants entirely; keep them only as opt‑in debug overrides.&#x20;
 

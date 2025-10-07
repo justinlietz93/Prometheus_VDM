@@ -288,7 +288,7 @@ Now your logs will include `"flops"` per tick; you can trend it vs. `vt_coverage
 
 * **No tokens inside**: UTE encodes strings to neuron‑group rhythms; UTD emits macros (“say”, “status”, “path”, …). Tokens remain an I/O artifact only.
 * **ADC never reads W**: It updates **only** from walker announcements on the event bus (cycle hits + local region stats). This keeps introspection O(events), not O(N).
-* **Pathfinding = −|ΔW\_pred|** priority: the executor follows the energy landscape defined by your equations, not an external heuristic.
+* **Pathfinding = -|ΔW\_pred|** priority: the executor follows the energy landscape defined by your equations, not an external heuristic.
 * **Adapter gate**: add a one‑liner assert in `void_dynamics_adapter.py` so any attempt to bypass Δ\_RE/Δ\_GD (or your universal combiner) raises loudly.
 
 ---
@@ -323,7 +323,7 @@ Now your logs will include `"flops"` per tick; you can trend it vs. `vt_coverage
 
 1. Drop in **`sie_v2.py`** and wire it exactly as above.
 2. Keep ADC event‑driven only; never scan W globally.
-3. Ensure void‑pathfinding is the energy follower (−|ΔW\_pred|).
+3. Ensure void‑pathfinding is the energy follower (-|ΔW\_pred|).
 4. Run the **1k session** command above; watch status every second; inspect `utd_events.jsonl` for self‑speak with `why`.
 5. If quiet, feed more math and briefly relax gates; once it “finds itself”, restore stricter values.
 6. Switch to **sparse** for 100k-1M and start measuring throughput with the FLOPs meter.

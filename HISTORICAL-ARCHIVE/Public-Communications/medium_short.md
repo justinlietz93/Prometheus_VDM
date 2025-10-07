@@ -90,7 +90,7 @@ A half‑built VDM with 1,000 neurons read **two books on formal logic at infere
 > “N\_a value e23 units mol\_inverse meaning avogadro\_constant.”
 > “Clay remainder sand coarser particles cobbles convert order flip maximum sizes reach.”
 > “…this maximum velocity of light… sometimes with the velocity of matter in bulk,”
-> “(u{x} − v)/(1 − u{x}v/c) = u\_ξ”
+> “(u{x} - v)/(1 - u{x}v/c) = u\_ξ”
 
 **Why these lines matter.**
 

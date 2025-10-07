@@ -226,7 +226,7 @@ def onsite_lyapunov(W: np.ndarray, alpha: float, beta: float) -> float:
     return float(np.sum(-0.5*(alpha-beta)*W*W + (alpha/3.0)*W*W*W))
 ```
 
-* **Policy:** monitor `ΔQ ≡ std(Q_FUM(t+Δt)−Q_FUM(t))`. If `ΔQ > ε_Q`, **halve dt** and retry; if persistently small, allow dt to grow to a CFL‑limited cap. Enforce `Δ(onsite_lyapunov) ≤ 0` for the on‑site flow. &#x20;
+* **Policy:** monitor `ΔQ ≡ std(Q_FUM(t+Δt)-Q_FUM(t))`. If `ΔQ > ε_Q`, **halve dt** and retry; if persistently small, allow dt to grow to a CFL‑limited cap. Enforce `Δ(onsite_lyapunov) ≤ 0` for the on‑site flow. &#x20;
 
 ---
 

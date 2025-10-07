@@ -14,7 +14,7 @@ def lbm_cs() -> float:
     return 1.0 / SQRT3
 
 def lbm_viscosity_from_tau(tau: float) -> float:
-    """D2Q9 BGK kinematic viscosity ν in lattice units: ν=(τ−0.5)/3."""
+    """D2Q9 BGK kinematic viscosity ν in lattice units: ν=(τ-0.5)/3."""
     return (float(tau) - 0.5) / 3.0
 
 def reynolds_lbm(U: float, L: float, tau: float) -> float:

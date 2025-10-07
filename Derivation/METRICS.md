@@ -1,9 +1,9 @@
 # METRICS
 
 ## Dynamics (RD model)
-- Growth rate around φ=0:  σ(k) = r − D k².
+- Growth rate around φ=0:  σ(k) = r - D k².
 - Front speed (pulled front): c = 2√(D r).
-- Fixed-point stability: f'(φ*) < 0, with f(φ)=rφ−uφ²−λφ³.
+- Fixed-point stability: f'(φ*) < 0, with f(φ)=rφ-uφ²-λφ³.
 
 ## SIE/TDA System metrics
 - Update latency vs nodes N: fit τ(N) = A N^b; report b and 95% CI.

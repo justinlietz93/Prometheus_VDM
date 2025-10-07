@@ -8,7 +8,7 @@ compares the resulting equation-of-state residuals against the ΛCDM baseline.
 
 The emitted JSON payload follows the RD runner schema: configuration snapshot,
 metrics, per-sample timeline table, and artifact paths.  The figure plots the
-w(z)+1 residual to make deviations from −1 immediately visible.
+w(z)+1 residual to make deviations from -1 immediately visible.
 
 Usage example::
 

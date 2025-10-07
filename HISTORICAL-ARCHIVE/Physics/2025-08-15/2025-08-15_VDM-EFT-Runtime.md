@@ -226,14 +226,14 @@ def energy_density(phi: np.ndarray, pi_half: np.ndarray, a: float, c2: float, mu
 import numpy as np
 
 def Q_FUM(W: np.ndarray, alpha: float, beta: float, t: float) -> np.ndarray:
-    """Per-node invariant for dW/dt = (α−β)W − α W^2."""
+    """Per-node invariant for dW/dt = (α-β)W - α W^2."""
     eps = 1e-12
     num = np.clip(np.abs(W), eps, None)
     den = np.clip(np.abs((alpha - beta) - alpha*W), eps, None)
     return t - (1.0/(alpha - beta)) * np.log(num/den)
 
 def L_onsite(W: np.ndarray, alpha: float, beta: float) -> float:
-    """Σ V(W) with V'(W) = −F(W) = −[(α−β)W − αW^2]."""
+    """Σ V(W) with V'(W) = -F(W) = -[(α-β)W - αW^2]."""
     # integrate once (up to an irrelevant constant)
     return float(np.sum(-0.5*(alpha - beta)*W*W + (alpha/3.0)*W*W*W))
 

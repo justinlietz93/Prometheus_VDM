@@ -284,7 +284,7 @@ Frame this as the FUM's intelligent "immune system." The **Void Pulses** are the
 ### **Blueprint Adherence Justification**
 
 * **Formula:** The core formula guiding GDSP's intelligent actions is the void potential field, `S_ij`:
-    `S_ij = ReLU(Δα_i)·ReLU(Δα_j) − λ·|Δω_i − Δω_j|`
+    `S_ij = ReLU(Δα_i)·ReLU(Δα_j) - λ·|Δω_i - Δω_j|`
     The TDA uses the B1 Persistence formula: `M1 = Σ(d - b)` over the persistence diagram of the small locus.
 
 * **Complete Parameter List:**

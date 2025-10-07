@@ -5,7 +5,7 @@ Purpose
 - Empirically validate the Fisher-KPP pulled-front speed in 1D reaction-diffusion:
 
 $$
-u_t = D u_xx + r u (1 − u)
+u_t = D u_xx + r u (1 - u)
 $$
 
 with theoretical
@@ -14,7 +14,7 @@ $$
 c_th = 2√(D r)
 $$
 
-  Note: With the canonical mapping $r = α − β$ and $u = α$, the homogeneous fixed point is $φ*= r/u = 1 − β/α$ (e.g., $α=0.25, β=0.10 ⇒ φ* = 0.6$).
+  Note: With the canonical mapping $r = α - β$ and $u = α$, the homogeneous fixed point is $φ*= r/u = 1 - β/α$ (e.g., $α=0.25, β=0.10 ⇒ φ* = 0.6$).
 
 Status
 
@@ -32,7 +32,7 @@ References (implementation)
 
 What was wrong initially (root cause)
 
-- Uniform small noise added everywhere at t=0 caused logistic “pre-heating” in the far field; points far ahead of the front crossed the tracking level (e.g., 0.5) solely due to local growth at time $t ≈ r^−1 ln((1−u0)/u0)$, biasing the measured slope down.
+- Uniform small noise added everywhere at t=0 caused logistic “pre-heating” in the far field; points far ahead of the front crossed the tracking level (e.g., 0.5) solely due to local growth at time $t ≈ r^-1 ln((1-u0)/u0)$, biasing the measured slope down.
 - Additionally, tracking after the real level-crossing vanished (domain fully above level) contaminated late-time fits.
 
 Fixes implemented
@@ -75,7 +75,7 @@ Recommended defaults
 
 Acceptance criteria
 
-- Front-speed agreement: $rel\_err = |c\_meas − c\_th| / |c\_th| ≤ 0.05$
+- Front-speed agreement: $rel\_err = |c\_meas - c\_th| / |c\_th| ≤ 0.05$
 - Linear fit quality: $R² ≥ 0.98$
 - Cross-check: gradient-tracker speed within ≈5% of c_th and level-tracker speed.
 

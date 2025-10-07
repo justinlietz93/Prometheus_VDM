@@ -36,6 +36,7 @@ import csv
 from pathlib import Path
 from datetime import datetime
 import json
+import os
 
 DERIVATION_ROOT = Path(__file__).resolve().parents[1]  # .../derivation/code
 OUTPUTS = DERIVATION_ROOT / "outputs"
@@ -48,12 +49,29 @@ def ensure_dir(p: Path) -> Path:
     p.mkdir(parents=True, exist_ok=True)
     return p
 
+def _policy_quarantine(default_failed: bool) -> bool:
+    """Honor policy env to force quarantine when not approved.
+    If VDM_POLICY_APPROVED=0, override failed=True. If VDM_POLICY_HARD_BLOCK=1, raise.
+    """
+    require_approval = os.getenv("VDM_REQUIRE_APPROVAL", "0") == "1"
+    # If approval is required, default to not approved unless explicitly set to 1
+    approved_env = os.getenv("VDM_POLICY_APPROVED")
+    approved = (approved_env == "1") if require_approval else (approved_env != "0")
+    hard_block = os.getenv("VDM_POLICY_HARD_BLOCK", "0") == "1"
+    if not approved and hard_block:
+        raise RuntimeError("Run is not approved by policy and hard block is enabled (VDM_POLICY_HARD_BLOCK=1)")
+    if not approved:
+        return True
+    return default_failed
+
+
 def figure_path(domain: str, slug: str, failed: bool=False) -> Path:
     """Generate a path for saving a figure.
     Args:
         domain (str): The domain of the experiment (e.g., "fluid_dynamics").
         slug (str): A short descriptive identifier for the experiment.
         failed (bool): Whether this is for a failed run."""
+    failed = _policy_quarantine(failed)
     base = OUTPUTS / "figures" / domain / ("failed_runs" if failed else "")
     return ensure_dir(base) / f"{_ts()}_{slug}.png"
 
@@ -64,6 +82,7 @@ def log_path(domain: str, slug: str, failed: bool=False, type: str="json") -> Pa
         slug (str): A short descriptive identifier for the experiment.
         failed (bool): Whether this is for a failed run.
         type (str): The log file type, either 'json' or 'csv'."""
+    failed = _policy_quarantine(failed)
     base = OUTPUTS / "logs" / domain / ("failed_runs" if failed else "")
     return ensure_dir(base) / f"{_ts()}_{slug}.{type}"
 

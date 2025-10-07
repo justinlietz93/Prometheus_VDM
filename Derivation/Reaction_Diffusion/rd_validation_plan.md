@@ -5,7 +5,7 @@ Purpose
 - Establish reproducible numeric checks for the RD canonical model:
 
 $$
-u_t = D u_xx + r u (1 − u)
+u_t = D u_xx + r u (1 - u)
 $$
 
 with front speed 
@@ -17,7 +17,7 @@ $$
 and linear dispersion 
 
 $$
-σ(k) = r − D k²
+σ(k) = r - D k²
 $$
 
 Scope
@@ -45,14 +45,14 @@ Front-speed test
 - PDE: 
 
 $$
-∂t u = D ∂xx u + r u (1 − u)
+∂t u = D ∂xx u + r u (1 - u)
 $$
 
 - Observable: front position $x_f(t)$ at level u = level (default 0.1); gradient-peak x_g(t) for cross-check.
 - Method:
   - Neumann BCs; smooth step IC with far-field gating (u=0 ahead of the interface), optional left-gated noise.
   - Track $x_f$ only while a true crossing exists; robust fit of $x_f(t)$ on a late-time fraction window.
-- Defaults: N=1024, L=200, D=1.0, r=0.25, T=80, cfl=0.2, seed=42, x0=−60, level=0.1, fit 0.6-0.9.
+- Defaults: N=1024, L=200, D=1.0, r=0.25, T=80, cfl=0.2, seed=42, x0=-60, level=0.1, fit 0.6-0.9.
 - Theory: 
 
 $$
@@ -60,9 +60,9 @@ c_th = 2√(D r)
 $$
 
 - Acceptance:
-  - $rel\_err = |c\_meas − c\_th| / |c\_th| ≤ 0.05$
+  - $rel\_err = |c\_meas - c\_th| / |c\_th| ≤ 0.05$
   - $R² ≥ 0.98$
-  - Cross-check: $|c\_meas\_grad − c\_th| / |c\_th| ≲ 0.05$ when available.
+  - Cross-check: $|c\_meas\_grad - c\_th| / |c\_th| ≲ 0.05$ when available.
 - CLI (PowerShell):
   - & .\venv\Scripts\Activate.ps1
   - python code/physics/rd_front_speed_experiment.py --N 1024 --L 200 --D 1.0 --r 0.25 --T 80 --cfl 0.2 --seed 42 --x0 -60 --level 0.1 --fit_start 0.6 --fit_end 0.9
@@ -84,13 +84,13 @@ $$
   - Discrete:
   
 $$
-σ_d(m) = r − (4 D / dx²) sin²(π m / N)
+σ_d(m) = r - (4 D / dx²) sin²(π m / N)
 $$
 
 - Continuum reference:
   
 $$
-σ_c(k) = r − D k², k = 2π m / L
+σ_c(k) = r - D k², k = 2π m / L
 $$
 
 - Method:

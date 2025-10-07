@@ -274,7 +274,7 @@ class Connectome:
         """
         Apply one update tick driven entirely by Void Equations:
         - Structural growth/rewiring: candidates sampled via alias table built from ReLU(Δalpha)
-        - Affinity S_ij = ReLU(Δalpha_i) * ReLU(Δalpha_j) − λ * |Δomega_i − Δomega_j|
+        - Affinity S_ij = ReLU(Δalpha_i) * ReLU(Δalpha_j) - λ * |Δomega_i - Δomega_j|
         - Top‑k neighbors per node; symmetric adjacency
         - Node field update via universal_void_dynamics, multiplicatively gated by SIE valence (Rule 3)
         """

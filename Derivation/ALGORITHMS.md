@@ -397,7 +397,7 @@ DRAW SAMPLES:
 * `E` (eligibility traces): **CSR** with **identical sparsity pattern** as `W` (same `indptr/indices`); three-factor scaling via `ΔW *= E.data`
 * `total_reward (r)`: `float` — fold into `domain_modulation` (bounded gain)
 * `plv ∈ [0,1]`: `float` — choose **one**: scale `phase_sens` *or* multiply `domain_modulation`
-* `neuron_polarities ∈ {−1,+1}`: optional row mask applied to **RE-VGSP** update values only
+* `neuron_polarities ∈ {-1,+1}`: optional row mask applied to **RE-VGSP** update values only
 * `spike_data`, `lambda_decay`: used **only** to maintain/update `E`; not passed to `delta_*` (separate pseudocode section handles E updates)
 
 **Depends on code:**

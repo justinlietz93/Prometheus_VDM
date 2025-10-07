@@ -59,9 +59,9 @@ Yes—this is a clean trade-off surface. I pulled your `options.csv`, filtered t
   `E: 2→4` gives **+1.63 bits** (~0.81/step), while `8→10` gives **+0.57 bits** (~0.28/step).
 
 * **Slip hurts multiplicatively:** elasticity w.r.t. slip (εₚ = (p/V) dV/dp) is negative everywhere and gets harsher in the sloppier regime. Examples (4-actuators):
-  • at `p=0.20, E=6`: **εₚ ≈ −0.118** (a 10% relative increase in slip → ~1.2% drop in V).
-  • at `p=0.30, E=6`: **εₚ ≈ −0.54** (10% slip bump → ~5.4% V loss).
-  • at `p=0.10, E=10`: **εₚ ≈ −0.027** (more forgiving).
+  • at `p=0.20, E=6`: **εₚ ≈ -0.118** (a 10% relative increase in slip → ~1.2% drop in V).
+  • at `p=0.30, E=6`: **εₚ ≈ -0.54** (10% slip bump → ~5.4% V loss).
+  • at `p=0.10, E=10`: **εₚ ≈ -0.027** (more forgiving).
 
 * **Operational envelope recommendation (4 actuators):** if you want **≥5 useful bits** under **up to 10% slip**, plan for **`E ≥ 8`**. If you’re chasing **≥6-7 bits**, you basically need **perfect actuators** (or a different design knob).
 
@@ -107,7 +107,7 @@ Pick a row (slip) and column (budget). The color/value is the number of successf
 
 **“Elasticity/sensitivity” in human terms**
 
-* When I say elasticity wrt slip is, say, **−0.54** at p=0.30, E=6, it means: bump slip by 10% (0.30→0.33) and you lose ~**5.4%** of your useful bits. That’s a steep cliff.
+* When I say elasticity wrt slip is, say, **-0.54** at p=0.30, E=6, it means: bump slip by 10% (0.30→0.33) and you lose ~**5.4%** of your useful bits. That’s a steep cliff.
 * At p=0.10, E=10, elasticity is small (gentle slope). Here, extra steps are effective; at high slip, steps are mostly wasted.
 
 **How to use this in VDM**
@@ -255,7 +255,7 @@ That picture is a **weather report for your agent’s future**. It tells you, gi
 Think of a small rover (your walker) crossing a valley (your field).
 
 * **Fuel = steps (energy budget E).** How long the rover can drive before stopping.
-* **Traction = 1 − slip.** With good traction the rover goes where you steer; with ice (high slip) it slides and wastes moves.
+* **Traction = 1 - slip.** With good traction the rover goes where you steer; with ice (high slip) it slides and wastes moves.
 * **“Useful endings” = unique vantage points that matter.** Not just “I drove somewhere,” but “I ended somewhere that actually gives me a new shot of the valley.” Duplicate shots and cul-de-sacs don’t count.
 
 What the heatmap shows is:

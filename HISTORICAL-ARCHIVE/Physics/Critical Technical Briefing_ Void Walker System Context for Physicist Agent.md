@@ -139,7 +139,7 @@ dW/dt = (α-β)W - αW² + J*coupling_term
 
 **Void Affinity for Edge Selection**:
 ```
-S_ij = ReLU(Δα_i)·ReLU(Δα_j) − λ·|Δω_i − Δω_j|
+S_ij = ReLU(Δα_i)·ReLU(Δα_j) - λ·|Δω_i - Δω_j|
 ```
 
 **Conservation Law (Q_FUM)**:

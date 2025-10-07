@@ -7,7 +7,7 @@ User: Sounds good
 
 -- 2
 
-"- fum_sie.py: SelfImprovementEngine computes a modulation_factor = 2·sigmoid(total_reward) − 1 (from fum_validated_math), novelty with exponential decay, self_benefit = 1 − density(W), and returns a unified valence in [0, 1]. I’ll adapt this to Blueprint Rule 3 total_reward in [-1,1] and gate dW."
+"- fum_sie.py: SelfImprovementEngine computes a modulation_factor = 2·sigmoid(total_reward) - 1 (from fum_validated_math), novelty with exponential decay, self_benefit = 1 - density(W), and returns a unified valence in [0, 1]. I’ll adapt this to Blueprint Rule 3 total_reward in [-1,1] and gate dW."
 
 User: what's the benefit of this? Is the blueprint rule 3 explicitly clear and make the better case or is this idea better?
 
@@ -62,7 +62,7 @@ ref - /mnt/ironwolf/git/Void_Dynamics_Model/archive/Void_Intelligence_Theory/Doc
 
 "Void-driven structural growth (Rules 1, 4/4.1)
 - Convert connectome to CSR.
-- Each tick compute S_ij = ReLU(Δalpha_i)·ReLU(Δalpha_j) − λ·|Δω_i − Δω_j|.
+- Each tick compute S_ij = ReLU(Δalpha_i)·ReLU(Δalpha_j) - λ·|Δω_i - Δω_j|.
 - Candidate provider pluggable: alias (default) or FAISS HNSW ef_search=64, M=16; epsilon_explore=0.05 alias mix. Always rescore by exact S_ij, then symmetric top‑k.
 - Stage‑1 healing: if components > 1, add cross‑component edge with max S_ij among candidates.
 - Maintenance pruning (defer timers to Phase 2): prune edges with tiny S_ij or persistently sub-threshold weight."
@@ -166,7 +166,7 @@ What’s in your substrate files
 Mapping to Blueprint rules and the void‑pulse plan
 - Rule 3 SIE gating: use your valence/total_reward to (a) gate ΔW and (b) feed GrowthArbiter’s “residual pressure” accumulator. We’ll migrate fum_validated_math into fum_sie.py and compute total_reward in [-1,1], logging your original valence alongside.
 - Rule 4/4.1 structural homeostasis:
-  - Keep your adaptive pruning, but replace it with void‑faithful pruning: prune if S_ij < θS AND |w| < θw, where S_ij = ReLU(Δα_i)·ReLU(Δα_j) − λ·|Δω_i−Δω_j|.
+  - Keep your adaptive pruning, but replace it with void‑faithful pruning: prune if S_ij < θS AND |w| < θw, where S_ij = ReLU(Δα_i)·ReLU(Δα_j) - λ·|Δω_i-Δω_j|.
   - Replace random bridging with void‑affinity bridging: for each excess component, add BUNDLE_SIZE bridges between the component pair that maximizes S_ij across the boundary (chosen from the current void_index or pulse frontier). This keeps the exact healing intent but makes it void‑equation driven.
 - Growth arbiter: we’ll preserve your stability windows, thresholds, and linear debt→growth rule. The “how many new neurons” is decided there; the “where to place and wire them” will be done by hypertrophy (see below).
 
@@ -178,7 +178,7 @@ Void pulses and the “Swiss‑cheese tomography”
 - All of this is asynchronous; modules subscribe to the announce bus.
 
 E/I and initialization
-- We keep neuron polarity (+1 excitatory, −1 inhibitory) and sign weights accordingly. We are not removing E/I.
+- We keep neuron polarity (+1 excitatory, -1 inhibitory) and sign weights accordingly. We are not removing E/I.
 - We won’t use sklearn kNN. Structure will be fully void‑driven each tick (S_ij + pulses). New neurons get initial wiring by the hypertrophy policy (void‑affinity to nearby high‑S frontier), not by kNN.
 
 UTD/UTE quick notes

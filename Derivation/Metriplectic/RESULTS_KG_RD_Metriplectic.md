@@ -64,9 +64,9 @@ $$
 
 Mapping to gates:
 
-- DG identity ⇒ enforce ΔL ≤ 0 and identity residuals ≤ 1e−12 for M and JMJ.
+- DG identity ⇒ enforce ΔL ≤ 0 and identity residuals ≤ 1e-12 for M and JMJ.
 - Strang ⇒ target two‑grid slope ≥ 2.90 with R² ≥ 0.999 in the asymptotic range; defect slope near 3.
-- Symplectic J ⇒ reversibility ≤ 1e−12; energy drift gate set at ≤ 1e−12 (strict) with discussion of modified energy behavior.
+- Symplectic J ⇒ reversibility ≤ 1e-12; energy drift gate set at ≤ 1e-12 (strict) with discussion of modified energy behavior.
 
 Citations: Strang (1968); Hairer-Lubich-Wanner (2006); Gonzalez (1996); Quispel-McLaren (2008); Onsager (1931); Jordan-Kinderlehrer-Otto (1998).
 
@@ -84,7 +84,7 @@ Citations: Strang (1968); Hairer-Lubich-Wanner (2006); Gonzalez (1996); Quispel-
 | Seeds | 10, seed_scale = 0.05 | Fixed RNG seeds | Median across seeds, robustness |
 | Params | (c, m, D, r, u) = (1.0, 0.5, 1.0, 0.2, 0.25) | Fixed physical coefficients | Reproducible dynamics |
 | M‑Laplacian | spectral | Step spec `"m_lap_operator":"spectral"` | Align J and M operators |
-| DG tolerance | 1e−12 | Newton/backtracking tolerances | Tight identity enforcement |
+| DG tolerance | 1e-12 | Newton/backtracking tolerances | Tight identity enforcement |
 | Composition | JMJ; MJM (diag) | Fixed | Compare Strang vs. swapped defect |
 
 ## Equipment / Hardware
@@ -108,7 +108,7 @@ Steps:
 3. M‑only two‑grid: sweep Δt; compute residual E from coarse/fine pairing; fit p, R²; emit CSV/JSON/PNG.
 4. JMJ two‑grid: sweep Δt; compute E on ϕ (v1); fit p, R²; emit artifacts.
 5. Strang defect: compare JMJ vs. MJM; fit slope; emit artifacts.
-6. Enforce gates: ΔL ≤ 0; identity residuals ≤ 1e−12; slope ≥ 2.90 with R² ≥ 0.999; reversibility ≤ 1e−12; route failures under failed_runs/.
+6. Enforce gates: ΔL ≤ 0; identity residuals ≤ 1e-12; slope ≥ 2.90 with R² ≥ 0.999; reversibility ≤ 1e-12; route failures under failed_runs/.
 
 Risk assessment (computational): potential under‑resolved asymptotics at coarse Δt (mitigated by planned smaller Δt); strict energy gate for symplectic J may fail despite correct reversibility (addressed in Discussion).
 
@@ -120,9 +120,9 @@ Table 1 — Summary of gates and outcomes (median over seeds; v1 two‑grid on �
 
 | Test | Gate | Outcome | Artifact (one pinned) |
 | --- | --- | --- | --- |
-| J‑only (KG) | reversibility ≤ 1e−12; ΔH per‑step ≤ 1e−12 | rev ≈ 6.94×10⁻¹⁸ (PASS); ΔH ≈ 2.16×10⁻⁷ (FAIL) | logs/metriplectic/failed_runs/20251006_142434_j_reversibility_kg__kgRD-v1.json |
-| M‑only (RD, spectral‑DG) | ΔL ≤ 0; ids ≤ 1e−12; slope ≥ 2.90; R² ≥ 0.999 | slope 2.8715; R² 0.999843 (slope FAIL) | figures/metriplectic/failed_runs/20251006_142435_residual_vs_dt_m_only__kgRD-v1.png |
-| JMJ (Strang, spectral‑DG) | ΔL ≤ 0; ids ≤ 1e−12; slope ≥ 2.90; R² ≥ 0.999 | slope 2.1087; R² 0.999922 (slope FAIL) | figures/metriplectic/failed_runs/20251006_142436_residual_vs_dt_jmj__kgRD-v1.png |
+| J‑only (KG) | reversibility ≤ 1e-12; ΔH per‑step ≤ 1e-12 | rev ≈ 6.94×10⁻¹⁸ (PASS); ΔH ≈ 2.16×10⁻⁷ (FAIL) | logs/metriplectic/failed_runs/20251006_142434_j_reversibility_kg__kgRD-v1.json |
+| M‑only (RD, spectral‑DG) | ΔL ≤ 0; ids ≤ 1e-12; slope ≥ 2.90; R² ≥ 0.999 | slope 2.8715; R² 0.999843 (slope FAIL) | figures/metriplectic/failed_runs/20251006_142435_residual_vs_dt_m_only__kgRD-v1.png |
+| JMJ (Strang, spectral‑DG) | ΔL ≤ 0; ids ≤ 1e-12; slope ≥ 2.90; R² ≥ 0.999 | slope 2.1087; R² 0.999922 (slope FAIL) | figures/metriplectic/failed_runs/20251006_142436_residual_vs_dt_jmj__kgRD-v1.png |
 | Strang defect (diag) | slope near 3; R² ≥ 0.999 | slope 2.945; R² 0.999971 (OK) | figures/metriplectic/20251006_142436_strang_defect_vs_dt__kgRD-v1.png |
 
 Figures (each has CSV/JSON sidecars):

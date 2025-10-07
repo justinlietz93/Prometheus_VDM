@@ -559,7 +559,7 @@ def onsite_lyapunov(W: np.ndarray, alpha: float, beta: float) -> float:
     return float(np.sum(-0.5*(alpha-beta)*W*W + (alpha/3.0)*W*W*W))
 ```
 
-* **Policy:** monitor `ΔQ ≡ std(Q_FUM(t+Δt)−Q_FUM(t))`. If `ΔQ > ε_Q`, **halve dt** and retry; if persistently small, allow dt to grow to a CFL‑limited cap. Enforce `Δ(onsite_lyapunov) ≤ 0` for the on‑site flow. &#x20;
+* **Policy:** monitor `ΔQ ≡ std(Q_FUM(t+Δt)-Q_FUM(t))`. If `ΔQ > ε_Q`, **halve dt** and retry; if persistently small, allow dt to grow to a CFL‑limited cap. Enforce `Δ(onsite_lyapunov) ≤ 0` for the on‑site flow. &#x20;
 
 ---
 
@@ -833,7 +833,7 @@ Below, each **\[P]** item is the physics statement; **\[C]** is the concrete cha
 
   * `memory_field.py`: stores node‑wise $m$.
   * `memory_update.py`: forward‑Euler or Crank-Nicolson on graph Laplacian $L$:
-    `m ← m + Δt(γR − δm − κ L m)`.
+    `m ← m + Δt(γR - δm - κ L m)`.
     **CFL for stability:** for explicit diffusion on degree‑bounded graphs, choose `Δt ≤ 1/(κ λ_max(L))` (precompute largest Laplacian eigenvalue or bound by max degree).
   * `steering.py`: transition rule at node i for neighbors j,
 
@@ -1787,14 +1787,14 @@ def energy_density(phi: np.ndarray, pi_half: np.ndarray, a: float, c2: float, mu
 import numpy as np
 
 def Q_FUM(W: np.ndarray, alpha: float, beta: float, t: float) -> np.ndarray:
-    """Per-node invariant for dW/dt = (α−β)W − α W^2."""
+    """Per-node invariant for dW/dt = (α-β)W - α W^2."""
     eps = 1e-12
     num = np.clip(np.abs(W), eps, None)
     den = np.clip(np.abs((alpha - beta) - alpha*W), eps, None)
     return t - (1.0/(alpha - beta)) * np.log(num/den)
 
 def L_onsite(W: np.ndarray, alpha: float, beta: float) -> float:
-    """Σ V(W) with V'(W) = −F(W) = −[(α−β)W − αW^2]."""
+    """Σ V(W) with V'(W) = -F(W) = -[(α-β)W - αW^2]."""
     # integrate once (up to an irrelevant constant)
     return float(np.sum(-0.5*(alpha - beta)*W*W + (alpha/3.0)*W*W*W))
 
@@ -4263,7 +4263,7 @@ Field‑dependent metric diffusion (nonlinear metric). [CONJECTURE]
 <!-- Quarantine note removed; replaced by explicit Conjectures + Ledger above. -->
 
 ## Section 10. Hygiene / Assumption Checklist
-- Forbidden phrases (should be absent): hand‑wave, assume small (unbounded), training, learn, fit, optimize, theory complete, undeniable proof, c²=Ja², −(Ja²/2)|∇φ|². (Manual scan PASS.)
+- Forbidden phrases (should be absent): hand‑wave, assume small (unbounded), training, learn, fit, optimize, theory complete, undeniable proof, c²=Ja², -(Ja²/2)|∇φ|². (Manual scan PASS.)
 - Logistic invariant flagged ODE‑only (Section 2) ✔
 - Single spatial kinetic mapping \(c^{2}=2Ja^{2}\) only in inertial / [EFT-KG] contexts ✔
 - Potential derivative trio appears only once (Axiom 3 / Section 6) ✔
@@ -4345,7 +4345,7 @@ This short log records the concrete numeric and symbolic artifacts produced whil
     - `fum_rt/core/tests/test_conservation_flux.py` — pytest that snapshots `Q` before/after a single `Connectome.step()` (dense mode in previous runs was avoided in later runs; scripts sample W directly where possible).
 
 - Short, machine-verified ground truths (what we can assert now):
-    1. The per-site logarithmic invariant Q(W,t)=ln(W)−ln(r−uW)−rt is an on-site first integral for the autonomous logistic ODE; its derivation and numeric validation are implemented in `derivation/code/physics/conservation_law/qfum_validate.py` and are recorded in the repository prior to this analysis. [THEOREM-PROVEN (ODE); NUM-EVIDENCE]
+    1. The per-site logarithmic invariant Q(W,t)=ln(W)-ln(r-uW)-rt is an on-site first integral for the autonomous logistic ODE; its derivation and numeric validation are implemented in `derivation/code/physics/conservation_law/qfum_validate.py` and are recorded in the repository prior to this analysis. [THEOREM-PROVEN (ODE); NUM-EVIDENCE]
  2. For the full FUM discrete update (deterministic skeleton and full runtime including interactions), the global sum Σ_i Q_i is not conserved: single-step Δ(Σ_i Q_i) ≠ 0 in general (see `flux_sweep_*.json`). [NUM-EVIDENCE]
  3. A direct search for a constant-coefficient polynomial edge correction (simple basis) yields only a tiny antisymmetric coefficient and modest residual reduction; no closed-form constant-coefficient H_edge was found. [RESULT: NUM-EVIDENCE]
  4. Small‑N symbolic CAS produced a parametric family of local H expressions (free symbols remain). These solutions generally contain rational factors that require numeric protection (denominator regularization) when evaluated on runtime samples. [RESULT: SYMBOLIC → parametric family]

@@ -32,7 +32,7 @@ Keep it quarantined as future work with falsifiable observables, not a full deri
    • Figures: (a) event flow (walker→event→scoreboard→actuator), (b) Q_FUM drift under steering (line ~0 within tolerance), (c) engram retention/decay step-response, (d) budget ablation (steering shuts off cleanly).
    • CLI: `vdm.ms_step --budget ... --no-dense-check --qfum-check`.
    • Gates: Q_FUM conservation, RD regime intact, event-driven & budget compliance all PASS.   
-3. **Fluid Dynamics methods note**: ship the Taylor-Green viscous decay benchmark with its single decisive metric (|ν_fit/ν_th − 1| ≤ 1%). Include reproducible seeds/logs. 
+3. **Fluid Dynamics methods note**: ship the Taylor-Green viscous decay benchmark with its single decisive metric (|ν_fit/ν_th - 1| ≤ 1%). Include reproducible seeds/logs. 
 4. **Link both to the RD baseline** runners/figures to emphasize continuity of method (front speed, dispersion, invariant-as-QA). 
 5. **Provenance bundle**: in each preprint, add “Reproducibility & Outputs” (figures/logs layout; filenames; CLI) exactly as your baseline does. 
 6. **Scope page refresh**: pin RD as canonical; stamp fluids note as “Methods/Validation,” memory steering as “Runtime-physics acceptance,” and park gravity in “Quarantined hypothesis.” 

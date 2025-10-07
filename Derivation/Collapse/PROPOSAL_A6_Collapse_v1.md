@@ -17,7 +17,7 @@ Test a dimensionless scaling collapse predicted by the steering layer: when rout
 
 ## 4. Background & Scientific Rationale
 
-The derivation shows that a softmax router with index n = exp(Θ m) leads to binary logistic selection at a two-branch junction, P(A) = σ(Θ (m_A − m_B)). Thus, plotting P(A) against X = Θ Δm should collapse curves for different Θ. This collapse demonstrates universality of the steering mechanism and isolates Θ as the only slope parameter. The experiment is low risk, high value: a clear falsification test with explicit gates, sensible diagnostics, and small compute cost.
+The derivation shows that a softmax router with index n = exp(Θ m) leads to binary logistic selection at a two-branch junction, P(A) = σ(Θ (m_A - m_B)). Thus, plotting P(A) against X = Θ Δm should collapse curves for different Θ. This collapse demonstrates universality of the steering mechanism and isolates Θ as the only slope parameter. The experiment is low risk, high value: a clear falsification test with explicit gates, sensible diagnostics, and small compute cost.
 
 Questions addressed:
 
@@ -28,7 +28,7 @@ Questions addressed:
 ## 5.1 Experimental Setup and Diagnostics
 
 - Protocol: sample P(A) at a junction for several Θ and Δm sweeps; compute the envelope on a shared X grid.
-- Parameters: Θ ∈ {1.5, 2.5, 3.5}; Δm ∈ [−2, 2] sampled uniformly (25 points); trials per Δm = 4000.
+- Parameters: Θ ∈ {1.5, 2.5, 3.5}; Δm ∈ [-2, 2] sampled uniformly (25 points); trials per Δm = 4000.
 - Diagnostics: overlay plot; envelope CSV; JSON with env_max and gate result. Gate: max envelope ≤ 0.02.
 
 Artifacts (tag A6-collapse-v1):

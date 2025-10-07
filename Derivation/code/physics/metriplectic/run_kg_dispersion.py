@@ -14,6 +14,7 @@ if str(CODE_ROOT) not in sys.path:
     sys.path.insert(0, str(CODE_ROOT))
 
 from common.io_paths import figure_path, log_path, write_log
+from common.approval import check_tag_approval
 from physics.metriplectic.kg_ops import kg_verlet_step
 
 
@@ -63,7 +64,7 @@ def _measure_omega_from_zero_crossings(t: np.ndarray, y: np.ndarray) -> float:
     return 2.0 * np.pi / T_mean
 
 
-def run_dispersion(spec: DispersionSpec) -> Dict[str, Any]:
+def run_dispersion(spec: DispersionSpec, approved: bool = False, engineering_only: bool = False, proposal: str | None = None) -> Dict[str, Any]:
     x, dx = _grid(spec)
     results: List[Tuple[int, float, float]] = []  # (mode, k, omega)
     t = np.arange(spec.steps + 1, dtype=float) * spec.dt
@@ -104,7 +105,8 @@ def run_dispersion(spec: DispersionSpec) -> Dict[str, Any]:
 
     # Artifacts
     import matplotlib.pyplot as plt
-    figp = figure_path("metriplectic", f"kg_dispersion_fit__{spec.tag}", failed=not passed)
+    quarantine = engineering_only or (not approved)
+    figp = figure_path("metriplectic", f"kg_dispersion_fit__{spec.tag}", failed=(not passed) or quarantine)
     xmin, xmax = float(np.min(k2)), float(np.max(k2))
     xs = np.linspace(xmin, xmax, 200)
     plt.figure(figsize=(6.2, 4.2))
@@ -118,7 +120,7 @@ def run_dispersion(spec: DispersionSpec) -> Dict[str, Any]:
     plt.tight_layout(); plt.savefig(figp, dpi=150); plt.close()
 
     # CSV
-    csvp = log_path("metriplectic", f"kg_dispersion_fit__{spec.tag}", failed=not passed, type="csv")
+    csvp = log_path("metriplectic", f"kg_dispersion_fit__{spec.tag}", failed=(not passed) or quarantine, type="csv")
     with csvp.open("w", encoding="utf-8") as fcsv:
         fcsv.write("mode,k,k2,omega,omega2\n")
         for (m_idx, kk, ww) in results:
@@ -136,10 +138,11 @@ def run_dispersion(spec: DispersionSpec) -> Dict[str, Any]:
             "rel_slope": float(rel_slope), "rel_intercept": float(rel_intercept)
         },
         "gate": {"passed": passed, "R2_min": 0.999, "rel_tol": 0.01},
+        "policy": {"approved": bool(approved), "engineering_only": bool(engineering_only), "quarantined": bool(quarantine), "tag": spec.tag, "proposal": proposal},
         "table": {"k": k_arr.tolist(), "omega": w_arr.tolist()},
         "figure": str(figp), "csv": str(csvp)
     }
-    write_log(log_path("metriplectic", f"kg_dispersion_fit__{spec.tag}", failed=not passed), logj)
+    write_log(log_path("metriplectic", f"kg_dispersion_fit__{spec.tag}", failed=(not passed) or quarantine), logj)
     return logj
 
 
@@ -155,10 +158,13 @@ def main():
     p.add_argument("--steps", type=int, default=8000)
     p.add_argument("--modes", type=str, default="1,2,3,4,5,6,8,10")
     p.add_argument("--tag", type=str, default="KG-dispersion-v1")
+    p.add_argument("--allow-unapproved", action="store_true", help="Allow running with an unapproved tag (engineering-only; artifacts quarantined)")
     args = p.parse_args()
     modes = tuple(int(s) for s in args.modes.split(",") if s.strip())
+    # Tag approval (shared utility)
+    approved, engineering_only, proposal = check_tag_approval("metriplectic", args.tag, args.allow_unapproved, CODE_ROOT)
     spec = DispersionSpec(N=args.N, L=args.L, c=args.c, m=args.m, A=args.A, dt=args.dt, steps=args.steps, modes=modes, tag=args.tag)
-    out = run_dispersion(spec)
+    out = run_dispersion(spec, approved=approved, engineering_only=engineering_only, proposal=proposal)
     print(json.dumps(out, indent=2))
 
 

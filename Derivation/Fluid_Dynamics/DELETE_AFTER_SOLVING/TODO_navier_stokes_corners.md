@@ -58,7 +58,7 @@ This is a minimal shape that reproduces the “corner singularity.” The long s
 
 ### 2) **Mesh (short)**
 
-* **Graded quad/tri mesh**, refined near the inner wall: base `Δ = H/80`, with **geometric grading** to `Δ_min ≈ H/400` inside a box `Ω_refine = [−H..+H] × [−H..+H]` centered at the corner.
+* **Graded quad/tri mesh**, refined near the inner wall: base `Δ = H/80`, with **geometric grading** to `Δ_min ≈ H/400` inside a box `Ω_refine = [-H..+H] × [-H..+H]` centered at the corner.
 
 **Expanded:**
 You don’t need a CFD monster. A mild global resolution plus a refined box is enough to capture the corner gradients and the VDM response. If you’re using finite‑difference, mirror this with a stretched grid. If finite‑volume/finite‑element, set a refinement region tag for easy on/off.

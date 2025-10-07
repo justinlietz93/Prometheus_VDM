@@ -169,7 +169,7 @@ The core concepts here are universality and scaling. Near a critical point, micr
 * **Ising/XY Model Monte Carlo (MC) Simulations:** The most direct way to generate data for these models is through Monte Carlo simulation using algorithms like Metropolis-Hastings or more advanced cluster algorithms (e.g., Wolff) that mitigate critical slowing down.  
   * **Data Type:** Synthetic-Toolkit / Raw-Simulation.  
   * **Links:** Numerous public repositories on GitHub provide well-documented Python or MATLAB implementations of MC simulations for the 2D Ising model 52 and the 2D XY model.54 These repositories often include code to calculate key observables like energy, magnetization, specific heat, and magnetic susceptibility as a function of temperature.  
-  * **Significance:** These toolkits are invaluable for generating large, systematic datasets. By running simulations on lattices of different sizes (L×L) and sweeping the temperature (T) across the critical point (Tc​), one can produce a comprehensive dataset of equilibrium spin configurations (σ(i,j)) and the corresponding macroscopic observables. This data is perfectly suited for testing the principles of finite-size scaling. For instance, observables like the magnetic susceptibility (χ) are expected to scale as χ∼Lγ/νf((T−Tc​)L1/ν), where γ and ν are critical exponents. The AI model can be trained to perform a "scaling collapse," where data from different lattice sizes, when plotted with appropriately rescaled axes, fall onto a single universal curve. Achieving a high coefficient of determination (R2≥0.98) for this collapse is the primary validation gate for this tier. The theoretical background and simulation methodology are extensively described in review articles and tutorials.56
+  * **Significance:** These toolkits are invaluable for generating large, systematic datasets. By running simulations on lattices of different sizes (L×L) and sweeping the temperature (T) across the critical point (Tc​), one can produce a comprehensive dataset of equilibrium spin configurations (σ(i,j)) and the corresponding macroscopic observables. This data is perfectly suited for testing the principles of finite-size scaling. For instance, observables like the magnetic susceptibility (χ) are expected to scale as χ∼Lγ/νf((T-Tc​)L1/ν), where γ and ν are critical exponents. The AI model can be trained to perform a "scaling collapse," where data from different lattice sizes, when plotted with appropriately rescaled axes, fall onto a single universal curve. Achieving a high coefficient of determination (R2≥0.98) for this collapse is the primary validation gate for this tier. The theoretical background and simulation methodology are extensively described in review articles and tutorials.56
 
 ### **4.2. Nonlinear Waves & Reaction-Diffusion-Advection**
 
@@ -179,8 +179,8 @@ This section bridges the gap between the purely diffusive dynamics of Tier 1 and
 
 * Extended Gray-Scott Model Simulations: The canonical Gray-Scott model can be extended to include an advection term. The governing equations would take the form:
 
-  ∂t∂u​=Du​∇2u−uv2+f(1−u)−v⋅∇u  
-  ∂t∂v​=Dv​∇2v+uv2−(f+k)v−v⋅∇v
+  ∂t∂u​=Du​∇2u-uv2+f(1-u)-v⋅∇u  
+  ∂t∂v​=Dv​∇2v+uv2-(f+k)v-v⋅∇v
 
   where v is a prescribed velocity field.  
   * **Data Type:** Synthetic-Toolkit.  

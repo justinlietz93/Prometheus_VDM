@@ -213,7 +213,7 @@ Below I (a) summarize what’s already *proven* in your codebase, (b) give ready
 
 ## A. What is **already proven** in your repo (with your data)
 
-1. **RD linear dispersion:** your runner shows σ(k)=r−Dk² (and its discrete counterpart) with **median rel. error ≈ 0.14%** and **R² ≈ 0.99995**, acceptance passed. That’s exactly what we want for the linear regime.&#x20;
+1. **RD linear dispersion:** your runner shows σ(k)=r-Dk² (and its discrete counterpart) with **median rel. error ≈ 0.14%** and **R² ≈ 0.99995**, acceptance passed. That’s exactly what we want for the linear regime.&#x20;
 
 2. **Fisher-KPP front speed:** your “fum\_rt” mirror runner measures $c\approx 0.953$ for $D=1,r=0.25$ vs theory $c_{th}=1$, **rel. error ≈ 4.7%**, **R² ≈ 0.99996**, acceptance passed—this reconciles earlier outliers you saw. (Note: the earlier failing payload at level=0.5/fit window was sensitive to windowing; the new runner uses a more robust late‑time window and optional gradient speed that stabilizes estimates.)&#x20;
 

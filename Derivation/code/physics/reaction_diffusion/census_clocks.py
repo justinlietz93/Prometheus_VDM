@@ -14,15 +14,15 @@ Hazard (per site):
 
 Clock update:
     c_i ← c_i + h_i Δt
-    if c_i ≥ 1: site i fires with microstep δt_i := θ / h_i, then c_i ← c_i − 1
+    if c_i ≥ 1: site i fires with microstep δt_i := θ / h_i, then c_i ← c_i - 1
 
 Reaction (exact at fired sites):
-    W^{+} = ( r W e^{r δt_i} ) / ( u W (e^{r δt_i} − 1) + r )
+    W^{+} = ( r W e^{r δt_i} ) / ( u W (e^{r δt_i} - 1) + r )
 
 Diffusion (local flux transfers from fired sites only):
     For each fired i and each neighbor j∈N(i):
-        F_{ij} = - (D/a) (φ_j − φ_i) = -F_{ji}
-        φ_i ← φ_i − (δt_i/a) F_{ij}
+        F_{ij} = - (D/a) (φ_j - φ_i) = -F_{ji}
+        φ_i ← φ_i - (δt_i/a) F_{ij}
         φ_j ← φ_j + (δt_i/a) F_{ij}
     (Mass conserved exactly when f≡0 and BCs are periodic/Neumann.)
 

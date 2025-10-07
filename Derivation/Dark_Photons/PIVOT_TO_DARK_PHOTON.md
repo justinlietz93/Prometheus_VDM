@@ -4,7 +4,7 @@ Love this pivot. Here’s a crisp, **do-this-next** checklist to turn the “tac
 
 **Your tachyonic scalar** (negative mass-squared, quartic stabilization, condensation) → becomes the **dark Higgs** that gives the dark photon its mass. In other words:
 
-* “Tachyonic” instability lives in the **dark Higgs potential** (−μ_D²|S|² + λ_D|S|⁴), not in visible space; condensation ⟶ ⟨S⟩≠0 ⟶ **m_{A′} = g_D ⟨S⟩**.
+* “Tachyonic” instability lives in the **dark Higgs potential** (-μ_D²|S|² + λ_D|S|⁴), not in visible space; condensation ⟶ ⟨S⟩≠0 ⟶ **m_{A′} = g_D ⟨S⟩**.
 * The **dark photon A′** is a separate gauge field with tiny **kinetic mixing** ε with our photon; it’s the “leaky bridge” you’ve been intuiting.
 * Your **tube-mode counting/condensation** machinery was built for a scalar living in a piecewise background (tachyonic inside, massive outside) with Bessel matching, κ-roots, etc. That’s perfect to **source the mass-generation story (dark Higgs SSB)**, but the flagship observables now shift to **portal phenomenology** rather than tube instabilities.  
 
@@ -20,7 +20,7 @@ Love this pivot. Here’s a crisp, **do-this-next** checklist to turn the “tac
 ## 1) State the minimal model (one page, plain-English + one equation block)
 
 * **Define fields:** dark photon A′ (hidden U(1)_D), dark Higgs S (complex scalar), SM fields.
-* **Couplings:** kinetic mixing ε with EM; dark gauge g_D; dark Higgs potential V(S)=−μ_D²|S|²+λ_D|S|⁴.
+* **Couplings:** kinetic mixing ε with EM; dark gauge g_D; dark Higgs potential V(S)=-μ_D²|S|²+λ_D|S|⁴.
 * **Mass:** m_{A′}=g_D⟨S⟩ after SSB; visible couplings ∝ ε.
 * **Deliverable:** `docs/models/DarkPhoton_Minimal.md` with a one-minute explainer and your “Overarching Lenses” block.
 

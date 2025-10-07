@@ -157,7 +157,7 @@ class SparseConnectome:
 - `cyclomatic_complexity()`: Cycle detection and complexity measurement
 
 **Mathematical Foundation**:
-- **Void Affinity**: `S_ij = ReLU(Δα_i)·ReLU(Δα_j) − λ·|Δω_i − Δω_j|`
+- **Void Affinity**: `S_ij = ReLU(Δα_i)·ReLU(Δα_j) - λ·|Δω_i - Δω_j|`
 - **Transition Weights**: `max(0, a[i]*a[j] - λ*|ω_i-ω_j|)`
 - **Active Edge Criterion**: `W[i]*W[j] > threshold`
 

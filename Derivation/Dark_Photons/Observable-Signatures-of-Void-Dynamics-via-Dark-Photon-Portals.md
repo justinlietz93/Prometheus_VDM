@@ -44,7 +44,7 @@ $$
 $$
 This represents the inertial/EFT branch (VDM-E-014, VDM-E-043).
 
-For mass generation, particularly for a dark Higgs, the potential could take the form: $V(S)=−\mu_D²|S|²+λ_D|S|⁴$. Upon spontaneous symmetry breaking (SSB), the dark photon ($A'$) acquires a mass $m_{A'}=g_D⟨S⟩$, where $g_D$ is the dark gauge coupling and $⟨S⟩$ is the vacuum expectation value of the dark Higgs field. Visible couplings for the dark photon are then proportional to the kinetic mixing parameter $\varepsilon$. The effective mass squared can also be derived from the second derivative of the potential at the vacuum solution:
+For mass generation, particularly for a dark Higgs, the potential could take the form: $V(S)=-\mu_D²|S|²+λ_D|S|⁴$. Upon spontaneous symmetry breaking (SSB), the dark photon ($A'$) acquires a mass $m_{A'}=g_D⟨S⟩$, where $g_D$ is the dark gauge coupling and $⟨S⟩$ is the vacuum expectation value of the dark Higgs field. Visible couplings for the dark photon are then proportional to the kinetic mixing parameter $\varepsilon$. The effective mass squared can also be derived from the second derivative of the potential at the vacuum solution:
 $$
 m_{\mathrm{eff}}^{2} = V''(v)
 $$

@@ -23,8 +23,8 @@ Files:
 
 Acceptance gates:
 
-- V1/V2 exactness (if a candidate S is provided) with (|ΔS|≤1e−12).
-- V3 dt‑slope ≥ p+1−0.1 with R² ≥ 0.999.
+- V1/V2 exactness (if a candidate S is provided) with (|ΔS|≤1e-12).
+- V3 dt‑slope ≥ p+1-0.1 with R² ≥ 0.999.
 - V4 controls: diffusion‑only mass (machine‑epsilon), reaction‑only Q‑invariant order‑4 with RK4.
 - V5 out‑of‑sample: freeze any fitted H parameters and rerun on fresh seeds.
 

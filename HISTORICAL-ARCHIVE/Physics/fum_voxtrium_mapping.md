@@ -21,8 +21,8 @@ References
 1. Knowns and Unknowns
 
 Known (FUM side)
-- Discrete on‑site law:  dW/dt = (α − β) W − α W^2  ([derivation/symmetry_analysis.md](derivation/symmetry_analysis.md:20-21)).
-- Continuum EOM (dimensionless form used in our notes):  □φ + α φ^2 − (α − β) φ = 0, with VEV v = 1 − β/α and m_eff^2 = α − β ([derivation/discrete_to_continuum.md](derivation/discrete_to_continuum.md:120-127), [derivation/discrete_to_continuum.md](derivation/discrete_to_continuum.md:171-188), [derivation/discrete_to_continuum.md](derivation/discrete_to_continuum.md:219-228)).
+- Discrete on‑site law:  dW/dt = (α - β) W - α W^2  ([derivation/symmetry_analysis.md](derivation/symmetry_analysis.md:20-21)).
+- Continuum EOM (dimensionless form used in our notes):  □φ + α φ^2 - (α - β) φ = 0, with VEV v = 1 - β/α and m_eff^2 = α - β ([derivation/discrete_to_continuum.md](derivation/discrete_to_continuum.md:120-127), [derivation/discrete_to_continuum.md](derivation/discrete_to_continuum.md:171-188), [derivation/discrete_to_continuum.md](derivation/discrete_to_continuum.md:219-228)).
 - Spatial kinetic normalization reads off a propagation speed `c^2 = 2 J a^2` (per‑site convention) or `c^2 = \kappa a^2` with `\kappa = 2J`; there is no need to fix `J a^2`. See continuum normalization in [derivation/kinetic_term_derivation.md](derivation/kinetic_term_derivation.md:82-89).
 
 Known (Voxtrium side)
@@ -47,8 +47,8 @@ Working convention: natural units c = ħ = k_B = 1. In D=4, a canonical scalar h
 
 Define scale factors
 - Field scale φ_0 [GeV]
-- Time scale τ [GeV^−1]
-- Length scale a [GeV^−1] (also the lattice spacing used in [derivation/kinetic_term_derivation.md](derivation/kinetic_term_derivation.md:48-66))
+- Time scale τ [GeV^-1]
+- Length scale a [GeV^-1] (also the lattice spacing used in [derivation/kinetic_term_derivation.md](derivation/kinetic_term_derivation.md:48-66))
 
 Dimensionalization map
 - φ_dimless = φ_phys / φ_0
@@ -57,23 +57,23 @@ Dimensionalization map
 
 Start from the dimensionless continuum equation we derived:
 
-  ∂_t^2 φ − c_void^2 ∇^2 φ + α φ^2 − (α − β) φ = 0.
+  ∂_t^2 φ - c_void^2 ∇^2 φ + α φ^2 - (α - β) φ = 0.
 
 Convert to physical variables using φ_dimless = φ_phys/φ_0, t_dimless = t_phys/τ, x_dimless = x_phys/a:
 
-  ∂_{t_phys}^2 φ_phys − ((c_void^2 a^2) / τ^2) ∇_{phys}^2 φ_phys + (α / (φ_0 τ^2)) φ_phys^2 − ((α − β)/τ^2) φ_phys = 0.
+  ∂_{t_phys}^2 φ_phys - ((c_void^2 a^2) / τ^2) ∇_{phys}^2 φ_phys + (α / (φ_0 τ^2)) φ_phys^2 - ((α - β)/τ^2) φ_phys = 0.
 
 Identify physical parameters
 - Wave speed:  c_void^2 ≡ D a^2 / τ^2. Choose τ = √D a to set c_void = 1 (optional).
 - Cubic coupling (mass dimension 1):  g_3 ≡ α / (φ_0 τ^2)  [GeV].
-- Mass term:  m^2 ≡ (α − β) / τ^2  [GeV^2].
+- Mass term:  m^2 ≡ (α - β) / τ^2  [GeV^2].
 
 Vacuum and quanta in physical units
-- Vacuum expectation value:  v_phys = φ_0 (1 − β/α).
-- Excitation mass:  m_eff = √(α − β) / τ.
+- Vacuum expectation value:  v_phys = φ_0 (1 - β/α).
+- Excitation mass:  m_eff = √(α - β) / τ.
 
 Practical calibration choices
-- If we target a specific m_eff (e.g., from phenomenology), set τ = √(α − β) / m_eff.
+- If we target a specific m_eff (e.g., from phenomenology), set τ = √(α - β) / m_eff.
 - Then pick φ_0 to match a desired g_3, or fix φ_0 via matching to an SIDM observable.
 
 This resolves unit consistency across kinetic and potential terms and provides a knob (φ_0, τ, a) to align with Voxtrium’s GeV bookkeeping and conversions ([voxtrium_Overview.md](voxtrium_Overview.md:91-99), [voxtrium_Overview.md](voxtrium_Overview.md:216-218)).
@@ -84,15 +84,15 @@ This resolves unit consistency across kinetic and potential terms and provides a
 
 Voxtrium enforces causal support via K_ret. We promote the FUM scalar to a retarded‑kernel sourced effective equation when coupling to horizon processes:
 
-  □ φ_phys + g_3 φ_phys^2 − m^2 φ_phys = J_φ
+  □ φ_phys + g_3 φ_phys^2 - m^2 φ_phys = J_φ
 
 with 
 
-  J_φ(x,t) = ∫ d^3x' ∫_{−∞}^t dt' K_ret(t − t', |x − x'|) s_loc(x', t'),
+  J_φ(x,t) = ∫ d^3x' ∫_{-∞}^t dt' K_ret(t - t', |x - x'|) s_loc(x', t'),
 
 and 
 
-  K_ret ∝ Θ(t − t' − |x − x'|/c_void). Choose units so that
+  K_ret ∝ Θ(t - t' - |x - x'|/c_void). Choose units so that
   • `s_loc` is an entropy‑production rate density `[{\rm GeV}^4]` with `\int d^3x\, s_{\rm loc} = \dot S_{\rm hor}\,[{\rm GeV}]`, and
   • `K_{\rm ret}` has units `[{\rm GeV}^3]`,
   hence `\int d^3x'\,dt'\, K_{\rm ret}\, s_{\rm loc}` has units `{\rm GeV}^3`, matching `J_\phi` in the φ‑equation.
@@ -107,14 +107,14 @@ This aligns the FUM continuum with explicit causality and paves the way to conne
 
 Augment the action with GR and a horizon functional:
 
-  S_eff = ∫ d^4x √(−g) [ (M_Pl^2/2) R + (1/2)(∂φ)^2 − ( V(φ) + (\lambda/4)\,\phi^4 ) ] + S_hor[S_hor] + S_DM[χ; K_s,e] + …
+  S_eff = ∫ d^4x √(-g) [ (M_Pl^2/2) R + (1/2)(∂φ)^2 - ( V(φ) + (\lambda/4)\,\phi^4 ) ] + S_hor[S_hor] + S_DM[χ; K_s,e] + …
   Here `\lambda > 0` ensures boundedness; phenomenological fits keep `\lambda` small.
 
 Variation yields ∇_μ (T_φ^{μν} + T_hor^{μν} + T_DM^{μν} + …) = 0.
 
 Introduce a transfer current as in Voxtrium:
 
-  ∇_μ T_hor^{μν} = − J^ν,   ∇_μ (T_φ^{μν} + T_DM^{μν} + …) = + J^ν,
+  ∇_μ T_hor^{μν} = - J^ν,   ∇_μ (T_φ^{μν} + T_DM^{μν} + …) = + J^ν,
 
 and in FRW take J^ν = (J^0, 0,0,0) with J^0 fixed from the horizon sector (see [voxtrium_Overview.md](voxtrium_Overview.md:223-229)).
 
@@ -175,7 +175,7 @@ This identifies a consistent translation between field excitations and Voxtrium�
 - Use S_eff in Section 4; define S_hor so that in the homogeneous limit it reproduces ρ_Λ(t) = ρ_Λ0 + (1/V_c) ∫ α_h dS_hor ([voxtrium_Overview.md](voxtrium_Overview.md:262-264)).
 
 (D) Observational constraints
-- Enforce w_eff ≈ −1 via ε_DE ≤ δ_w and f_inj ≪ 1 using the partition map; adopt the abundance and co‑evolution tests ([voxtrium_Overview.md](voxtrium_Overview.md:241-251), [voxtrium_Overview.md](voxtrium_Overview.md:282-287), [voxtrium_Overview.md](voxtrium_Overview.md:288-289)).
+- Enforce w_eff ≈ -1 via ε_DE ≤ δ_w and f_inj ≪ 1 using the partition map; adopt the abundance and co‑evolution tests ([voxtrium_Overview.md](voxtrium_Overview.md:241-251), [voxtrium_Overview.md](voxtrium_Overview.md:282-287), [voxtrium_Overview.md](voxtrium_Overview.md:288-289)).
 
 (E) Conservation/invariants
 - Retain the exact on‑site invariant Q_FUM for diagnostics ([derivation/symmetry_analysis.md](derivation/symmetry_analysis.md:141-148)); for the full system rely on covariant conservation with J^ν. Explore hidden symmetries/Lyapunov structure for the discrete network to derive a true flux‑form conservation law ([derivation/discrete_conservation.md](derivation/discrete_conservation.md:165-179)).
@@ -185,10 +185,10 @@ This identifies a consistent translation between field excitations and Voxtrium�
 8. Minimal Worked Example (symbolic)
 
 Suppose α = 0.25, β = 0.10 (dimensionless, as in our derivations), and choose m_eff = 1 GeV for illustration. Then
-- τ = √(α − β)/m_eff = √0.15 GeV^−1 ≈ 0.3873 GeV^−1.
+- τ = √(α - β)/m_eff = √0.15 GeV^-1 ≈ 0.3873 GeV^-1.
 - Pick φ_0 to set g_3. If we want g_3 = 0.1 GeV, then φ_0 = α/(g_3 τ^2) = 0.25/(0.1 × 0.15) GeV ≈ 16.67 GeV.
-- v_phys = φ_0 (1 − β/α) = 16.67 × 0.6 ≈ 10.00 GeV.
-- R_* ≃ k_R / m_eff; with k_R = 1 this gives R_* ≈ 1 GeV^−1 ≈ 1.97 × 10^−14 cm (compare [voxtrium_Overview.md](voxtrium_Overview.md:201-205)).
+- v_phys = φ_0 (1 - β/α) = 16.67 × 0.6 ≈ 10.00 GeV.
+- R_* ≃ k_R / m_eff; with k_R = 1 this gives R_* ≈ 1 GeV^-1 ≈ 1.97 × 10^-14 cm (compare [voxtrium_Overview.md](voxtrium_Overview.md:201-205)).
 
 These values are placeholders for calibration; they demonstrate the algebraic consistency and how to propagate units.
 

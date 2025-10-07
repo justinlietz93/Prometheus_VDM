@@ -18,7 +18,7 @@ What this file does (experiments layer)
 How this maps to your φ‑EFT derivations (orthogonal layer)
 - The fast φ‑sector continuum equation and invariants are already derived in
   [derivation/discrete_to_continuum.md](derivation/discrete_to_continuum.md:121-128):
-      □φ + α φ² − (α − β) φ = 0,   v = 1 − β/α,   m_eff² = α − β.
+      □φ + α φ² - (α - β) φ = 0,   v = 1 - β/α,   m_eff² = α - β.
 - The kinetic normalization c² = 2 J a² is rigorously obtained from a discrete action in
   [derivation/kinetic_term_derivation.md](derivation/kinetic_term_derivation.md:121-128).
 - The memory‑steering layer (M) is slow and biases routing only; it does not modify φ propagation,
@@ -224,7 +224,7 @@ def run_junction_logistic(theta: float = 2.0, delta_m_values: Sequence[float] = 
     - In [derivation/memory_steering.md](derivation/memory_steering.md:1) the steering index is n=exp(η M).
       At a fork, the two outgoing neighbors (A,B) inherit memory values (m_A, m_B). The softmax routing
       P(i→j) ∝ exp(Θ m_j) reduces to a binary logistic:
-          P(A) = σ(Θ (m_A − m_B)) = σ(Θ Δm).
+          P(A) = σ(Θ (m_A - m_B)) = σ(Θ Δm).
       Hence plotting P(A) vs Θ Δm should overlay across graph sizes/speeds, demonstrating a
       dimensionless collapse (Θ is the only slope).
 
@@ -304,8 +304,8 @@ def polyline_curvature_signed(pts: np.ndarray) -> np.ndarray:
 
     - Uses the same magnitude estimator as polyline_curvature:
           |κ| ≈ 2 sin(Δθ/2) / ℓ
-      but multiplies by the sign sgn = sign( (v1 × v2)_z ) where v1 = p1−p0, v2 = p2−p1.
-      In 2D, (v1 × v2)_z = v1_x v2_y − v1_y v2_x.
+      but multiplies by the sign sgn = sign( (v1 × v2)_z ) where v1 = p1-p0, v2 = p2-p1.
+      In 2D, (v1 × v2)_z = v1_x v2_y - v1_y v2_x.
 
     - This returns the signed bending, suitable for falsification via gradient/Θ sign flips:
           ⟨κ_signed⟩ ∝ Θ (∇m · n_⊥)
@@ -552,7 +552,7 @@ def run_curvature_scaling_signed(
 
     - Domain: continuous rays in a box of size (nx, ny), with constant gradient in m along +y.
     - For each target X = Theta*|grad m|, pick Theta = X/|grad m| and average path curvature over many seeds.
-    - Signed test: for ~3 midpoints of X, repeat runs with (1) gradient flipped (|∇m|→−|∇m|) and (2) Theta→−Theta.
+    - Signed test: for ~3 midpoints of X, repeat runs with (1) gradient flipped (|∇m|→-|∇m|) and (2) Theta→-Theta.
 
     Returns:
         X_all: array of X = Theta*|grad m|
@@ -653,7 +653,7 @@ def run_stability_band(
     """
     Stability band in (D_a, Λ, Γ) with dose control and discriminative metrics.
 
-    PDE: ∂_t m = γ r − δ m − κ L m
+    PDE: ∂_t m = γ r - δ m - κ L m
     Dimensionless: D_a = γ R_0 T / M_0, Λ = δ T, Γ = κ T / L²
 
     Protocol (two‑phase):
@@ -671,7 +671,7 @@ def run_stability_band(
       - Fidelity_shuffle  = corr(m_end, shuffle(R_mask))
       - Fidelity_edge     = corr(L m_end, L R_mask)
       - AUC_end           = ROC AUC for score=m_end vs mask
-      - SNR_end           = (μ_in − μ_out) / σ_out
+      - SNR_end           = (μ_in - μ_out) / σ_out
       - AUPRC_topk        = truncated AP using top k=floor(topk_frac*N) predictions
       - BPER              = band‑pass energy ratio = ||L_norm m_end|| / ||m_end||
 
@@ -679,7 +679,7 @@ def run_stability_band(
       (D_a, Λ, Γ, Ret, Fid_w, Fid_end, Fid_shuffle, Fid_edge, AUC_end, SNR_end, AUPRC_topk, BPER)
 
     Notes:
-      - L is the combinatorial Laplacian; L_norm = I − D^{-1/2} A D^{-1/2}
+      - L is the combinatorial Laplacian; L_norm = I - D^{-1/2} A D^{-1/2}
       - We clamp κ by a CFL condition: dt * κ * λ_max(L) ≤ cfl_limit with λ_max(L) ≈ 2 * deg_max
     """
     N = nx * ny

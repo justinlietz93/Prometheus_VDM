@@ -230,7 +230,7 @@ Field‑dependent metric diffusion (nonlinear metric). [CONJECTURE]
 <!-- Quarantine note removed; replaced by explicit Conjectures + Ledger above. -->
 
 ## Section 10. Hygiene / Assumption Checklist
-- Forbidden phrases (should be absent): hand‑wave, assume small (unbounded), training, learn, fit, optimize, theory complete, undeniable proof, c²=Ja², −(Ja²/2)|∇φ|². (Manual scan PASS.)
+- Forbidden phrases (should be absent): hand‑wave, assume small (unbounded), training, learn, fit, optimize, theory complete, undeniable proof, c²=Ja², -(Ja²/2)|∇φ|². (Manual scan PASS.)
 - Logistic invariant flagged ODE‑only (Section 2) ✔
 - Single spatial kinetic mapping \(c^{2}=2Ja^{2}\) only in inertial / [EFT-KG] contexts ✔
 - Potential derivative trio appears only once (Axiom 3 / Section 6) ✔
@@ -312,7 +312,7 @@ This short log records the concrete numeric and symbolic artifacts produced whil
 	- `fum_rt/core/tests/test_conservation_flux.py` — pytest that snapshots `Q` before/after a single `Connectome.step()` (dense mode in previous runs was avoided in later runs; scripts sample W directly where possible).
 
 - Short, machine-verified ground truths (what we can assert now):
-	1. The per-site logarithmic invariant Q(W,t)=ln(W)−ln(r−uW)−rt is an on-site first integral for the autonomous logistic ODE; its derivation and numeric validation are implemented in `derivation/code/physics/conservation_law/qfum_validate.py` and are recorded in the repository prior to this analysis. [THEOREM-PROVEN (ODE); NUM-EVIDENCE]
+	1. The per-site logarithmic invariant Q(W,t)=ln(W)-ln(r-uW)-rt is an on-site first integral for the autonomous logistic ODE; its derivation and numeric validation are implemented in `derivation/code/physics/conservation_law/qfum_validate.py` and are recorded in the repository prior to this analysis. [THEOREM-PROVEN (ODE); NUM-EVIDENCE]
  2. For the full FUM discrete update (deterministic skeleton and full runtime including interactions), the global sum Σ_i Q_i is not conserved: single-step Δ(Σ_i Q_i) ≠ 0 in general (see `flux_sweep_*.json`). [NUM-EVIDENCE]
  3. A direct search for a constant-coefficient polynomial edge correction (simple basis) yields only a tiny antisymmetric coefficient and modest residual reduction; no closed-form constant-coefficient H_edge was found. [RESULT: NUM-EVIDENCE]
  4. Small‑N symbolic CAS produced a parametric family of local H expressions (free symbols remain). These solutions generally contain rational factors that require numeric protection (denominator regularization) when evaluated on runtime samples. [RESULT: SYMBOLIC → parametric family]

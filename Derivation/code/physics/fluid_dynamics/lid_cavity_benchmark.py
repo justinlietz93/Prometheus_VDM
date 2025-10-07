@@ -151,7 +151,7 @@ class AutoTuner:
 
 def compute_streamfunction_poisson(omega, solid=None, iters=400, tol=1e-3):
     """
-    Solve ∇²ψ = −ω on a 2D grid with Dirichlet ψ=0 at domain boundaries and at solid cells.
+    Solve ∇²ψ = -ω on a 2D grid with Dirichlet ψ=0 at domain boundaries and at solid cells.
     Uses Jacobi iterations with grid spacing h=1.0.
     """
     import numpy as _np
@@ -669,7 +669,7 @@ def main():
         except Exception:
             pass
 
-    # Optional streamfunction contours overlay (solve ∇²ψ = −ω)
+    # Optional streamfunction contours overlay (solve ∇²ψ = -ω)
     if getattr(args, "psi_contours", False):
         try:
             psi = compute_streamfunction_poisson(omega=om,

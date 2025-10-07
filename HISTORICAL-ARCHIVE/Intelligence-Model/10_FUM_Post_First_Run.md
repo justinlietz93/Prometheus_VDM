@@ -15,7 +15,7 @@ That all aligns with your blueprint and supports the scaling you’re after.
 
 * Forbid any delta path that doesn’t come through your void adapter.
 * Enforce “ADC never touches W/CSR”—only bus events.
-* Path‑finding cost must be **−|ΔW\_pred|** (RE‑VGSP + GDSP) at the candidate node.
+* Path‑finding cost must be **-|ΔW\_pred|** (RE‑VGSP + GDSP) at the candidate node.
 * Add a tiny linter that blocks forbidden patterns (“softmax”, “token”, global W scans in ADC).
 
 2. **Make the organism chatty at the *right* times**
@@ -92,7 +92,7 @@ Below are the exact diffs.
 
 ---
 
-## 2) Void‑equation path‑finder (−|ΔW\_pred| priority)
+## 2) Void‑equation path‑finder (-|ΔW\_pred| priority)
 
 **Dense:** `fum_rt/core/connectome.py`
 **Sparse:** `fum_rt/core/sparse_connectome.py`

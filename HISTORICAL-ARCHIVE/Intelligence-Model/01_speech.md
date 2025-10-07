@@ -8,7 +8,7 @@ Below is a concrete, void‑faithful way to wire it in, plus patches you can dro
 
 **Primary trigger (topology):**
 
-* **ΔB1 spike** = B1(t) − B1(t−Δt)
+* **ΔB1 spike** = B1(t) - B1(t-Δt)
 * Use a **z‑score** of ΔB1 against a short, exponential history so you don’t have to hand‑pick a raw threshold across different scales.
 * Split births and deaths: large positive ΔB1 (many new cycles) versus large negative ΔB1 (many cycles collapsing). Either can be salient but may carry different “valence”.
 
@@ -234,7 +234,7 @@ index fd2a89c..6f0fbcd 100644
 Yes. In practice you’ll want both:
 
 1. **Increase threshold** (primary): `z(ΔB1) ≥ z_hi`
-2. **Decrease threshold** (optional): `z(−ΔB1) ≥ z_hi_collapse`
+2. **Decrease threshold** (optional): `z(-ΔB1) ≥ z_hi_collapse`
    Useful when a large *loss* of cycles signals pruning or a structural re‑organization worth narrating.
 
 You can keep one pair of hysteresis bands or separate them for births vs. deaths if you want different talkativeness for “discovery” vs “consolidation.”

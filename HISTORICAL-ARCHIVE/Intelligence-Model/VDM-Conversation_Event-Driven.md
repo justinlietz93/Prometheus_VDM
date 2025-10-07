@@ -1164,7 +1164,7 @@ Here’s the full list, what each one does, and exactly what’s still missing s
 4. **InhibitionScout** (`void_inhibition_scout.py`)
    *Role:* Ride inhibitory fronts.
    *Signals:* `InhibitionMap` head/dict.
-   *Events:* `VTTouchEvent`, `EdgeOnEvent`, optional `SpikeEvent(sign=−1)`.
+   *Events:* `VTTouchEvent`, `EdgeOnEvent`, optional `SpikeEvent(sign=-1)`.
 
 ---
 
@@ -1173,9 +1173,9 @@ Here’s the full list, what each one does, and exactly what’s still missing s
 5. **VoidRayScout** — physics‑aware (φ‑bias)
    **File:** `fum_rt/core/cortex/void_walkers/void_ray_scout.py`
    *Role:* Prefer neighbors with favorable **local** change in the fast field φ.
-   *Local rule (no scans):* For hop `i→j`, score `s_j = λ_φ·(φ[j]−φ[i]) + θ_mem·m[j]`; sample neighbor via a temperatured choice (softmax).
+   *Local rule (no scans):* For hop `i→j`, score `s_j = λ_φ·(φ[j]-φ[i]) + θ_mem·m[j]`; sample neighbor via a temperatured choice (softmax).
    *Signals:* `connectome.phi` (vector) and optional `memory_dict`.
-   *Events:* `VTTouchEvent`, `EdgeOnEvent`, optional `SpikeEvent(sign=+1 if Δφ≥0 else −1)`.
+   *Events:* `VTTouchEvent`, `EdgeOnEvent`, optional `SpikeEvent(sign=+1 if Δφ≥0 else -1)`.
 
 6. **MemoryRayScout** — memory steering
    **File:** `fum_rt/core/cortex/void_walkers/memory_ray_scout.py`
