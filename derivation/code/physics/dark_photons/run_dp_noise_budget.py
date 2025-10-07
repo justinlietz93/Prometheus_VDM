@@ -32,7 +32,7 @@ def thermal_psd(T: float, R: float) -> float:
     return 4.0 * kB * T * R
 
 
-def run_noise_budget(spec: NoiseSpec) -> Dict[str, Any]:
+def run_noise_budget(spec: NoiseSpec, pre_registered: bool = False, engineering_only: bool = False) -> Dict[str, Any]:
     f = np.geomspace(spec.f_min, spec.f_max, spec.npts)
     # Simple model: instrument white floor S_inst0, plus 1/f knee S_knee*(f0/f)
     f0 = 10.0
@@ -50,7 +50,9 @@ def run_noise_budget(spec: NoiseSpec) -> Dict[str, Any]:
 
     # Artifacts
     import matplotlib.pyplot as plt
-    figp = figure_path("dark_photons", f"noise_budget__{spec.tag}", failed=not passed)
+    # Route to failed/engineering quarantine if not pre-registered or gate fails
+    quarantine = engineering_only or (not pre_registered)
+    figp = figure_path("dark_photons", f"noise_budget__{spec.tag}", failed=(not passed) or quarantine)
     plt.figure(figsize=(6.4, 4.2))
     plt.loglog(f, S_inst, label="S_inst")
     plt.loglog(f, S_bg, label="S_bg (thermal)")
@@ -68,7 +70,7 @@ def run_noise_budget(spec: NoiseSpec) -> Dict[str, Any]:
     plt.tight_layout(); plt.savefig(figp, dpi=150); plt.close()
 
     # CSV sidecar
-    csvp = log_path("dark_photons", f"noise_budget__{spec.tag}", failed=not passed, type="csv")
+    csvp = log_path("dark_photons", f"noise_budget__{spec.tag}", failed=(not passed) or quarantine, type="csv")
     with csvp.open("w", encoding="utf-8") as fcsv:
         fcsv.write("f,S_inst,S_bg,S_total\n")
         for fi, si, sb, st in zip(f, S_inst, S_bg, S_total):
@@ -87,12 +89,17 @@ def run_noise_budget(spec: NoiseSpec) -> Dict[str, Any]:
             "S_total_min": float(np.min(S_total)), "S_total_max": float(np.max(S_total))
         },
         "annotation": {"f_star": f_star},
-    "sanity": {"finite_all": bool(finite_all), "nonneg_all": bool(nonneg_all), "monotone_ok": bool(monotone_ok)},
+        "sanity": {"finite_all": bool(finite_all), "nonneg_all": bool(nonneg_all), "monotone_ok": bool(monotone_ok)},
         "passed": passed,
+        "policy": {
+            "pre_registered": bool(pre_registered),
+            "engineering_only": bool(engineering_only),
+            "quarantined": bool(quarantine)
+        },
         "figure": str(figp),
         "csv": str(csvp)
     }
-    write_log(log_path("dark_photons", f"noise_budget__{spec.tag}", failed=not passed), logj)
+    write_log(log_path("dark_photons", f"noise_budget__{spec.tag}", failed=(not passed) or quarantine), logj)
     return logj
 
 
@@ -106,9 +113,15 @@ def main():
     p.add_argument("--R", type=float, default=50.0)
     p.add_argument("--S_inst0", type=float, default=1e-22)
     p.add_argument("--tag", type=str, default="DP-noise-v1")
+    p.add_argument("--allow-unapproved", action="store_true", help="Allow running without pre-registration approval; marks outputs as engineering_only and quarantines artifacts")
     args = p.parse_args()
+    # Approval policy: deny by default unless explicitly allowed for engineering-only smoke
+    pre_registered = False  # default; integrate with approval registry when available
+    if not pre_registered and not args.allow_unapproved:
+        print("ERROR: Proposal not approved. Use --allow-unapproved for engineering-only smoke (artifacts will be quarantined).", file=sys.stderr)
+        sys.exit(2)
     spec = NoiseSpec(f_min=args.f_min, f_max=args.f_max, npts=args.npts, T=args.T, R=args.R, S_inst0=args.S_inst0, tag=args.tag)
-    out = run_noise_budget(spec)
+    out = run_noise_budget(spec, pre_registered=pre_registered, engineering_only=(not pre_registered))
     print(json.dumps(out, indent=2))
 
 

@@ -4,7 +4,7 @@
 > Date: 2025-10-06
 >
 > TL;DR — Final locked run (N=256, seeds=10, seed_scale=0.05, dg_tol=1e−12; $\Delta t\in[0.02,0.01,0.005,0.0025,0.00125]$):
-
+>
 > - M-only: PASS (slope 2.9803, $R^2=0.999986$), Lyapunov violations = 0.
 > - JMJ (Strang): FAIL on slope gate (slope 2.7287, $R^2=0.999379$), Lyapunov violations = 0. The Strang defect scales with slope 2.6325 ($R^2=0.999098$), explaining the near-$2.7$ asymptote (commutator-limited regime).
 > - J-only: FAIL at strict/cap (rev $\|W_2-W_0\|_\infty=1.04\times10^{-9}$, $L^2$ drift up to $2.24\times10^{-10}$). We log FFT round-off sensitivity; the $10^{-10}$ cap was not met in this run.
@@ -67,7 +67,6 @@ $$
 $$
 
 so $\Delta L_h = L(W^{k+1})-L(W^{k}) \le 0$ holds for converged solves.
-
 
 - Strang composition (JMJ):
 

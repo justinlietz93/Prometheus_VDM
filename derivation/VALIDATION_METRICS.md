@@ -228,12 +228,14 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Purpose:** Ensure noise budget analysis properly annotates regime split (quantum‑ vs thermal‑limited)  <br/>
 **Defined by:** `EQUATIONS.md#vdm-e-dp-noise`  <br/>
 **Inputs:** SNR curves vs integration time/bandwidth; PSD components  <br/>
-**Computation implemented at:** `derivation/code/physics/dark_photons/noise_budget.py` (planned)  <br/>
+**Computation implemented at:** `derivation/code/physics/dark_photons/run_dp_noise_budget.py:run_noise_budget`  <br/>
 **Pass band / thresholds:** Annotation present with boundary estimate `t_*`/bandwidth crossover; curve continuity across regimes  <br/>
 **Units / normalization:** detector‑native; SNR dimensionless  <br/>
 **Typical datasets / experiments:** Detector models spanning quantum and thermal limits  <br/>
 **Primary figure/artifact (if referenced):** `derivation/code/outputs/figures/dark_photons/noise_budget__<tag>.png`  <br/>
 **Notes:** Advisory KPI; pairs with Fisher consistency below.
+<br/>
+**Status:** planned (pre-registered); execution blocked pending proposal approval. Engineering-only smokes must be run with `--allow-unapproved` and are quarantined from RESULTS/KPIs.
 
 #### Fisher Consistency (Finite‑Difference Cross‑Check)  <a id="kpi-dp-fisher-consistency"></a>
 
@@ -241,12 +243,14 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Purpose:** Cross‑check quick Fisher estimate for $\varepsilon$ against finite‑difference; guards against analytic mismatch  <br/>
 **Defined by:** `EQUATIONS.md#vdm-e-dp-fisher`  <br/>
 **Inputs:** Likelihood model, step size `h`, baseline $\varepsilon$  <br/>
-**Computation implemented at:** `derivation/code/physics/dark_photons/fisher_quick.py` (planned)  <br/>
+**Computation implemented at:** `derivation/code/physics/dark_photons/run_dp_fisher_check.py:run_fisher_check`  <br/>
 **Pass band / thresholds:** `\text{rel\_err} \le 0.1` (≤ 10%)  <br/>
 **Units / normalization:** dimensionless  <br/>
 **Typical datasets / experiments:** Simulated signals with known injection  <br/>
 **Primary figure/artifact (if referenced):** JSON log with `sigma_epsilon` and `finite_difference_check` fields  <br/>
 **Notes:** Report step size and numerical stability notes in `params`.
+<br/>
+**Status:** planned (pre-registered); execution blocked pending proposal approval. Engineering-only smokes must be run with `--allow-unapproved` and are quarantined from RESULTS/KPIs.
 
 #### CFL Condition  <a id="kpi-cfl-condition"></a>
 

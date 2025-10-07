@@ -577,8 +577,8 @@
 **Provenance (code locations):** TODO (planned)  
 **Validation hooks / KPIs:** `VALIDATION_METRICS.md#kpi-dp-regime-split`  
 **Retention / access constraints:** none  
-**Example artifact (if referenced):** none (pattern established)  
-**Notes:** Plot should label regime boundary $t_*$/bandwidth crossover and slopes.
+**Example artifact (if referenced):** none (planned; pre-registered)  
+**Notes:** Planned (pre-registered). Execution blocked pending proposal approval. Plot should label regime boundary $t_*$/bandwidth crossover and slopes.
 
 ---
 
@@ -1268,8 +1268,8 @@
 **Provenance (code locations):** TODO (planned)  
 **Validation hooks / KPIs:** `VALIDATION_METRICS.md#kpi-dp-regime-split`  
 **Retention / access constraints:** none  
-**Example artifact (if referenced):** none  
-**Notes:** Include detector noise PSD decomposition and any calibration factors in `params`.
+**Example artifact (if referenced):** none (planned; pre-registered)  
+**Notes:** Planned (pre-registered). Execution blocked pending proposal approval. Include detector noise PSD decomposition and any calibration factors in `params`.
 
 ---
 
@@ -1297,8 +1297,8 @@
 **Provenance (code locations):** TODO (planned)  
 **Validation hooks / KPIs:** `VALIDATION_METRICS.md#kpi-dp-fisher-consistency`  
 **Retention / access constraints:** none  
-**Example artifact (if referenced):** none  
-**Notes:** Prefer analytic derivatives where available; include finite‑difference step size in `params`.
+**Example artifact (if referenced):** none (planned; pre-registered)  
+**Notes:** Planned (pre-registered). Execution blocked pending proposal approval. Prefer analytic derivatives where available; include finite‑difference step size in `params`.
 
 ---
 
@@ -1326,8 +1326,8 @@
 **Provenance (code locations):** TODO (planned)  
 **Validation hooks / KPIs:** `VALIDATION_METRICS.md#kpi-dp-eft-coverage`  
 **Retention / access constraints:** none  
-**Example artifact (if referenced):** none  
-**Notes:** Link each labeled regime to references/constraints in caption or sidecar JSON.
+**Example artifact (if referenced):** none (planned; pre-registered)  
+**Notes:** Planned (pre-registered). Execution blocked pending proposal approval. Link each labeled regime to references/constraints in caption or sidecar JSON.
 
 ---
 
