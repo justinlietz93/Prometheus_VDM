@@ -18,7 +18,7 @@ Here’s a **minimum-viable curriculum** to read, run, and extend VDM end-to-end
 **M1. Single-variable calculus (log/exp chain-rule)**
 
 * **Goal:** Differentiate and integrate logs/exponentials without hesitation.
-* **Learn:** Chain rule; derivative of `log(u/(1−u))`; basic separable ODE solution.
+* **Learn:** Chain rule; derivative of `log(u/(1-u))`; basic separable ODE solution.
 * **Do:** Derive ( \frac{d}{dt},\log!\frac{u}{1-u}=\frac{\dot u}{u(1-u)} ).
 * **Exit:** One-line proof that (F(u,t)=\log\frac{u}{1-u}-rt) is constant for (\dot u=ru(1-u)).
 

@@ -10,7 +10,7 @@ Here’s the clean story, top-down and analogy-friendly.
 
 Antiparticles carry the **opposite values** of certain conserved “buckets” (charge, lepton number, etc.).
 
-* Electron (charge −1) ↔ positron (charge +1).
+* Electron (charge -1) ↔ positron (charge +1).
 * Photon’s buckets? **All zero** (no charge, no baryon/lepton number). Flip the signs and… you still have a photon. That’s why it’s **self-conjugate** (its own antiparticle).
 
 # Why people mention “anti-photon” anyway (and why it misleads)
@@ -75,7 +75,7 @@ Think of a **shadow walkie-talkie channel**: a hidden U(1) force (call it **U(1)
 
 ## Why people care
 
-It’s a simple **portal** that could link normal matter to a dark sector, possibly tied to dark matter or small anomalies (like muon g−2 in extended models). The **minimal** dark photon alone doesn’t solve g−2; the PDG notes you need extra ingredients or different mediators. ([Particle Data Group][3])
+It’s a simple **portal** that could link normal matter to a dark sector, possibly tied to dark matter or small anomalies (like muon g-2 in extended models). The **minimal** dark photon alone doesn’t solve g-2; the PDG notes you need extra ingredients or different mediators. ([Particle Data Group][3])
 
 ## How we look for it (status snapshot)
 
@@ -128,7 +128,7 @@ Here’s a tight, top-down card you can drop into your map.
 K7-L1_Quantum-&-Quanta/
   P3-L2_Fields-&-Portals/
     C2-L3_Dark-Photon_(A-Prime)/
-      O1-L4_Visible-Decays  — A′ → e+e− / μ+μ− (prompt)
+      O1-L4_Visible-Decays  — A′ → e+e- / μ+μ- (prompt)
       O2-L4_Invisible-Decays — A′ → dark-sector states
       O3-L4_Long-Lived      — displaced vertices / beam-dumps
       O4-L4_Mass-Genesis    — dark-Higgs vs Stueckelberg
@@ -283,7 +283,7 @@ Love this pivot. Here’s a crisp, **do-this-next** checklist to turn the “tac
 
 **Your tachyonic scalar** (negative mass-squared, quartic stabilization, condensation) → becomes the **dark Higgs** that gives the dark photon its mass. In other words:
 
-* “Tachyonic” instability lives in the **dark Higgs potential** (−μ_D²|S|² + λ_D|S|⁴), not in visible space; condensation ⟶ ⟨S⟩≠0 ⟶ **m_{A′} = g_D ⟨S⟩**.
+* “Tachyonic” instability lives in the **dark Higgs potential** (-μ_D²|S|² + λ_D|S|⁴), not in visible space; condensation ⟶ ⟨S⟩≠0 ⟶ **m_{A′} = g_D ⟨S⟩**.
 * The **dark photon A′** is a separate gauge field with tiny **kinetic mixing** ε with our photon; it’s the “leaky bridge” you’ve been intuiting.
 * Your **tube-mode counting/condensation** machinery was built for a scalar living in a piecewise background (tachyonic inside, massive outside) with Bessel matching, κ-roots, etc. That’s perfect to **source the mass-generation story (dark Higgs SSB)**, but the flagship observables now shift to **portal phenomenology** rather than tube instabilities.  
 
@@ -299,7 +299,7 @@ Love this pivot. Here’s a crisp, **do-this-next** checklist to turn the “tac
 ## 1) State the minimal model (one page, plain-English + one equation block)
 
 * **Define fields:** dark photon A′ (hidden U(1)_D), dark Higgs S (complex scalar), SM fields.
-* **Couplings:** kinetic mixing ε with EM; dark gauge g_D; dark Higgs potential V(S)=−μ_D²|S|²+λ_D|S|⁴.
+* **Couplings:** kinetic mixing ε with EM; dark gauge g_D; dark Higgs potential V(S)=-μ_D²|S|²+λ_D|S|⁴.
 * **Mass:** m_{A′}=g_D⟨S⟩ after SSB; visible couplings ∝ ε.
 * **Deliverable:** `docs/models/DarkPhoton_Minimal.md` with a one-minute explainer and your “Overarching Lenses” block.
 
@@ -1461,7 +1461,7 @@ Operational proxies (pick one and stick to it first):
 Plain words: coordination beats interference.
 Proxies:
 
-* **Non-interference index**: synergy − redundancy from partial-information decomposition (or simpler: performance gain from diversity minus congestion cost).
+* **Non-interference index**: synergy - redundancy from partial-information decomposition (or simpler: performance gain from diversity minus congestion cost).
 * **Congestion metric**: throughput/latency vs coupling; should peak at intermediate coupling.
 
 **Agency / consciousness field C**
@@ -1565,7 +1565,7 @@ Run these on your VDM agent and on organisms (or published datasets). Each exper
 * **Gate:** (V_\tau) increases with added actuators/sensors and **decreases** under resource clamps.
 * **CSV:** `trial, horizon_tau, reachable_states, entropy_bits, z_options`.
 
-**Balance (B)** (applies across A-C): compute a simple **non-interference index** = (performance of diverse ensemble − best single unit) / (theoretical max). Penalize over-synchrony (e.g., high pairwise correlations with no performance gain).
+**Balance (B)** (applies across A-C): compute a simple **non-interference index** = (performance of diverse ensemble - best single unit) / (theoretical max). Penalize over-synchrony (e.g., high pairwise correlations with no performance gain).
 
 # 2) Toy systems you can hit this week (with expected patterns)
 
@@ -1875,7 +1875,7 @@ GPT-5:
 | (U(x,t))                     |             1/E | **Control efficacy** (error reduction per joule)                               | (U=\big(\mathbb E[L_{\text{noctl}}]-\mathbb E[L_{\text{ctl}}]\big)/\text{energy})           |
 | (\sigma(x))                  |               — | **Susceptibility** of substrate (amplification of a given source)              | Calibrate by comparing (C) vs (S) across media (e.g., cortex vs air)                        |
 | (V(x,t))                     |        — (bits) | **Option capacity** (empowerment; reachable-state entropy over horizon (\tau)) | Count/estimate distinct useful futures within (\tau) under constraints                      |
-| (B(x,t))                     |               — | **Balance** (non-interference / coordination index)                            | Diversity benefit − congestion penalty; e.g., ensemble gain minus redundancy                |
+| (B(x,t))                     |               — | **Balance** (non-interference / coordination index)                            | Diversity benefit - congestion penalty; e.g., ensemble gain minus redundancy                |
 | (g(V),h(B))                  |               — | Saturating gates for headroom/coordination                                     | Use (g(V)=V/(1+V)), (h(B)=B/(1+B)) (edit as needed)                                         |
 | (Q_C(\Omega,t))              |               — | **Regional charge** of (C) in domain (\Omega)                                  | Spatial integral (or sum over sensors) of (C)                                               |
 | (G_{\text{ret}})             |               — | Retarded kernel for causal propagation                                         | Green’s function of (\partial_t-D\nabla^2+\gamma)                                           |
@@ -1942,7 +1942,7 @@ C(t)=C_{\text{ss}}+\big(C(0)-C_{\text{ss}}\big)e^{-\gamma t},}
 ;-;\underbrace{\gamma \int*{\Omega}! C,dV}*{\text{decay}}
 ;+;\underbrace{\int*{\Omega}! S,dV}_{\text{source}};}
 ]
-**Meaning:** change inside a region = boundary flux in/out − decay + sources.
+**Meaning:** change inside a region = boundary flux in/out - decay + sources.
 
 ---
 
@@ -2381,7 +2381,7 @@ From any run, you need four streams (windowed over horizon (\tau)):
 * **Prediction (P)**: mutual information (or simple (R^2)) of `state_t → input_{t+Δ}`.
 * **Control (U)**: drop in loss when actions are enabled, **per joule**.
 * **Options (V_\tau)**: entropy of **reachable useful states** within (\tau) under your constraints.
-* **Balance (B)**: integration gain (ensemble vs median unit) × anti-redundancy (1 − mean corr).
+* **Balance (B)**: integration gain (ensemble vs median unit) × anti-redundancy (1 - mean corr).
 
 Then assemble the **source** (S=\kappa_1P+\kappa_2I_{\text{net}}+\kappa_3U), gate it by (g(V)h(B)), and either:
 

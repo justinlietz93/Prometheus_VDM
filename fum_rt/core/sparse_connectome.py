@@ -275,7 +275,7 @@ class SparseConnectome:
         Sparse, void‑faithful tick:
         - Compute Δalpha/Δomega by void equations
         - Build per-node candidate list via alias sampler ~ ReLU(Δalpha)
-        - Score candidates by S_ij = ReLU(Δα_i)·ReLU(Δα_j) − λ·|Δω_i − Δω_j|
+        - Score candidates by S_ij = ReLU(Δα_i)·ReLU(Δα_j) - λ·|Δω_i - Δω_j|
         - Take symmetric top‑k neighbors (undirected)
         - Update node field with universal_void_dynamics gated by SIE valence
         - Run traversal to publish vt_* findings

@@ -227,7 +227,7 @@ def compute_kappas(
     Args:
       R: cylinder radius (dimensionless units)
       mu: tachyon scale (baseline EFT parameter)
-      c: wave speed (from 𝓛_K = ½(∂_t φ)^2 − ½ c^2 (∇φ)^2)
+      c: wave speed (from 𝓛_K = ½(∂_t φ)^2 - ½ c^2 (∇φ)^2)
       ell_max: highest angular momentum to consider
       kappa_max: optional upper bound (< μ/c), defaults to 0.999 μ/c
       num_brackets: grid count for sign bracketing

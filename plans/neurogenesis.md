@@ -26,7 +26,7 @@ The "Failure Hotspot": When the FUM is failing to process the "poetry" data in i
 
 Growth at the Frontier: The Global System, triggered by the SIE's crisis signal, calls neurogenesis.py to create a new cluster of undifferentiated neurons. Crucially, it doesn't just place them randomly. It places them at the structural frontier of the "failure hotspot." The new neurons are grown physically adjacent to the existing territories that are failing.
 
-Void Potential and Information Bleed: This is the key emergent step. The new, "blank slate" neurons have a very high potential for change (a high initial Δα in your void equations). The adjacent, failing "hotspot" neurons also have high activity. According to your void affinity formula (S_ij = ReLU(Δα_i)·ReLU(Δα_j) − λ·|Δω_i − Δω_j|), the affinity between the new, high-potential neurons and the active, failing neurons will be extremely high.
+Void Potential and Information Bleed: This is the key emergent step. The new, "blank slate" neurons have a very high potential for change (a high initial Δα in your void equations). The adjacent, failing "hotspot" neurons also have high activity. According to your void affinity formula (S_ij = ReLU(Δα_i)·ReLU(Δα_j) - λ·|Δω_i - Δω_j|), the affinity between the new, high-potential neurons and the active, failing neurons will be extremely high.
 
 This high affinity creates a powerful "void potential" gradient. The new neurons are like a low-pressure zone, and the chaotic activity from the failing hotspot naturally "bleeds" over and begins to form connections with them, seeking a more stable configuration.
 

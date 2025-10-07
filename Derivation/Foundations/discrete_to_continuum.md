@@ -8,7 +8,7 @@
 ### 1. Objective
 
 The primary goal of this derivation is to derive the reaction-diffusion PDE mapping
-∂t φ = D ∇² φ + r φ − u φ²
+∂t φ = D ∇² φ + r φ - u φ²
 from the discrete update. A second‑order Lorentzian EFT derivation (Klein-Gordon-like) is maintained as future work in [derivation/effective_field_theory_approach.md](effective_field_theory_approach.md:1). This removes internal contradictions while preserving historical EFT references below as scoped.
 
 ---

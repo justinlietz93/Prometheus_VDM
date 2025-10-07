@@ -19,7 +19,7 @@ The metriplectic chapter for 1D RD is frozen: M-only obeys the H-theorem exactly
 
 - 1D periodic grid; reuse I/O, artifact hygiene, and seed/median infra.
 - Implement KG J-only step (symplectic, e.g., velocity Verlet or leapfrog) with:
-  - Reversibility check: advance Δt then −Δt.
+  - Reversibility check: advance Δt then -Δt.
   - Noether currents (energy/momentum) drift checks.
 - Reuse RD DG for M-only (existing), with Lyapunov monotonicity.
 - Compose JMJ for the coupled system; measure order via two-grid medians and report Strang defect when helpful.
@@ -27,7 +27,7 @@ The metriplectic chapter for 1D RD is frozen: M-only obeys the H-theorem exactly
 ## Gates (hard where meaningful)
 
 - J-only (KG):
-  - Reversibility: ∥W₂−W₀∥∞ ≤ c·ε_mach·√N (log measured c).
+  - Reversibility: ∥W₂-W₀∥∞ ≤ c·ε_mach·√N (log measured c).
   - Noether drifts: |ΔE|, |ΔP| within cap scaling with ε_mach·T (log constants).
 - M-only (RD DG):
   - H-theorem: ΔL_h ≤ 0 per step (violations = 0).

@@ -294,7 +294,7 @@ Notes
 ### “Cycles” metric (complexity_cycles)
 
 - Definition: A topology‑only proxy for the number of simple cycles in the active subgraph. It is computed from the active graph induced by W[i]*W[j] > threshold. The proxy is the cyclomatic complexity formula:
-  cycles = E_active − N + C_active
+  cycles = E_active - N + C_active
   where E_active is the number of active edges, N is the number of nodes, and C_active is the number of connected components over the active nodes.
 - Implementations:
   - Dense backend: [Connectome.cyclomatic_complexity()](fum_rt/core/connectome.py:375)

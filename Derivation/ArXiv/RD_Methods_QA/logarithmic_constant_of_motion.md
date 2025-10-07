@@ -81,10 +81,10 @@ Acceptance gates.
 - Convergence: halving \(dt\) reduces \(\Delta Q\) by a factor consistent with the order \(p\) of the scheme; a log-log fit of \(\Delta Q\) vs \(dt\) yields slope \(p\pm 0.2\).
 
 Pseudocode (language‑agnostic)
-1) define F(W) = r·W − u·W²  
-2) initialize t=0, W=W0, Q0 = ln(W/(r−uW)) − r·t  
+1) define F(W) = r·W - u·W²  
+2) initialize t=0, W=W0, Q0 = ln(W/(r-uW)) - r·t  
 3) for n in 1..N: advance (W,t) one step by RK4 with step dt  
-4) compute Qn = ln(W/(r−uW)) − r·t and track max |Qn−Q0|  
+4) compute Qn = ln(W/(r-uW)) - r·t and track max |Qn-Q0|  
 5) report ΔQ and, if running a step‑refinement, the observed convergence slope
 
 Numerical notes. Trap underflow/overflow near the poles; reject steps that cross the singularity. The test is most transparent on \((0,r/u)\) for \(r,u>0\).

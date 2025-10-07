@@ -1,4 +1,4 @@
-> Future work (quarantined): Second‑order Lorentzian EFT. Canonical model for the main narrative is reaction-diffusion (RD). Use EFT claims only in EFT contexts; `m_eff = √(α−β)` is parameter‑dependent and unitized via τ.
+> Future work (quarantined): Second‑order Lorentzian EFT. Canonical model for the main narrative is reaction-diffusion (RD). Use EFT claims only in EFT contexts; `m_eff = √(α-β)` is parameter‑dependent and unitized via τ.
 
 # A More Rigorous Approach: The FUM as an Effective Field Theory
 

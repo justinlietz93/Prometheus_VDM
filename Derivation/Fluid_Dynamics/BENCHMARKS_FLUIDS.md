@@ -14,9 +14,9 @@ Purpose
 
 Benchmarks (double precision)
 1) Taylor-Green vortex (2‑D periodic)
-- Fit viscous decay E(t) = E0 exp(−2 ν k² t).
+- Fit viscous decay E(t) = E0 exp(-2 ν k² t).
 - Thresholds:
-  - Baseline grid (≥ 256²): |ν_fit − ν_th| / ν_th ≤ 5%.
+  - Baseline grid (≥ 256²): |ν_fit - ν_th| / ν_th ≤ 5%.
   - Refinement (×2 linear res): error decreases consistent with scheme order.
 - Artifact paths:
   - Figure: derivation/code/outputs/figures/fluid_dynamics/taylor_green_benchmark_<timestamp>.png
@@ -25,7 +25,7 @@ Benchmarks (double precision)
 2) Lid‑driven cavity (square, no‑slip walls, moving lid)
 - Monitor divergence norm ‖∇·v‖₂ over time.
 - Thresholds:
-  - max_t ‖∇·v‖₂ ≤ 1e−6 (double).
+  - max_t ‖∇·v‖₂ ≤ 1e-6 (double).
   - Centerline profiles converge with grid (qualitative check; optional quantitative against literature).
 - Artifact paths:
   - Figure: derivation/code/outputs/figures/fluid_dynamics/lid_cavity_benchmark_<timestamp>.png

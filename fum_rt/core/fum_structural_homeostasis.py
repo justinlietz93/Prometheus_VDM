@@ -20,7 +20,7 @@ import numpy as np
 # - Pruning: O(M) over active edges via masked thresholding (vectorized).
 #
 # Formulae:
-# - S_ij = ReLU(Δalpha_i) * ReLU(Δalpha_j) − λ * |Δomega_i − Δomega_j|
+# - S_ij = ReLU(Δalpha_i) * ReLU(Δalpha_j) - λ * |Δomega_i - Δomega_j|
 # - Prune if |E_ij| < prune_threshold (adaptive fraction of |E| mean)
 #
 # Parameters:
@@ -33,7 +33,7 @@ def _compute_affinity(a: np.ndarray, w: np.ndarray, lambda_omega: float) -> np.n
     """Compute void‑affinity matrix S_ij from Δalpha (a) and Δomega (w)."""
     a_relu = np.maximum(0.0, a.astype(np.float32))
     w = w.astype(np.float32)
-    # S_ij = relu(a_i) * relu(a_j) − λ |Δω_i − Δω_j|
+    # S_ij = relu(a_i) * relu(a_j) - λ |Δω_i - Δω_j|
     S = a_relu[:, None] * a_relu[None, :] - lambda_omega * np.abs(w[:, None] - w[None, :])
     np.fill_diagonal(S, -np.inf)
     return S

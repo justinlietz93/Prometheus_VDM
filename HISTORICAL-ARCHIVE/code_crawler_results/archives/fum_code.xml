@@ -821,7 +821,7 @@ Notes
 ### “Cycles” metric (complexity_cycles)
 
 - Definition: A topology‑only proxy for the number of simple cycles in the active subgraph. It is computed from the active graph induced by W[i]*W[j] > threshold. The proxy is the cyclomatic complexity formula:
-  cycles = E_active − N + C_active
+  cycles = E_active - N + C_active
   where E_active is the number of active edges, N is the number of nodes, and C_active is the number of connected components over the active nodes.
 - Implementations:
   - Dense backend: [Connectome.cyclomatic_complexity()](fum_rt/core/connectome.py:375)
@@ -1712,7 +1712,7 @@ class Connectome:
         """
         Apply one update tick driven entirely by Void Equations:
         - Structural growth/rewiring: candidates sampled via alias table built from ReLU(Δalpha)
-        - Affinity S_ij = ReLU(Δalpha_i) * ReLU(Δalpha_j) − λ * |Δomega_i − Δomega_j|
+        - Affinity S_ij = ReLU(Δalpha_i) * ReLU(Δalpha_j) - λ * |Δomega_i - Δomega_j|
         - Top‑k neighbors per node; symmetric adjacency
         - Node field update via universal_void_dynamics, multiplicatively gated by SIE valence (Rule 3)
         """
@@ -6844,7 +6844,7 @@ import numpy as np
 # - Pruning: O(M) over active edges via masked thresholding (vectorized).
 #
 # Formulae:
-# - S_ij = ReLU(Δalpha_i) * ReLU(Δalpha_j) − λ * |Δomega_i − Δomega_j|
+# - S_ij = ReLU(Δalpha_i) * ReLU(Δalpha_j) - λ * |Δomega_i - Δomega_j|
 # - Prune if |E_ij| < prune_threshold (adaptive fraction of |E| mean)
 #
 # Parameters:
@@ -6857,7 +6857,7 @@ def _compute_affinity(a: np.ndarray, w: np.ndarray, lambda_omega: float) -> np.n
     """Compute void‑affinity matrix S_ij from Δalpha (a) and Δomega (w)."""
     a_relu = np.maximum(0.0, a.astype(np.float32))
     w = w.astype(np.float32)
-    # S_ij = relu(a_i) * relu(a_j) − λ |Δω_i − Δω_j|
+    # S_ij = relu(a_i) * relu(a_j) - λ |Δω_i - Δω_j|
     S = a_relu[:, None] * a_relu[None, :] - lambda_omega * np.abs(w[:, None] - w[None, :])
     np.fill_diagonal(S, -np.inf)
     return S
@@ -7414,7 +7414,7 @@ def qfum_logistic_value(w: float, t: float, *, alpha: float, beta: float, eps: f
         Q = t - (1/α) ln( W / (K - W) ) - (β/α) t
 
     Justification:
-      Using W/(K − W) = e^{k t}/A, we obtain
+      Using W/(K - W) = e^{k t}/A, we obtain
         Q = t - (k/α) t + (1/α) ln A - (β/α) t = (1/α) ln A (constant).
     This helper computes Q(w, t) robustly with safe clamping at boundaries.
     If α ≤ 0 or K ≤ 0, returns 0.0 (fail-soft) since the invariant is undefined.
@@ -8033,9 +8033,9 @@ Dynamics (per tick, event-driven)
   where r_i is a small stimulus inferred from event weight (default 1.0).
 
 - On edge_on(i, j) smoothing (one-edge local spread):
-    δm = κ · (m[j] − m[i]) · Δt
+    δm = κ · (m[j] - m[i]) · Δt
     m[i] += δm
-    m[j] −= δm
+    m[j] -= δm
 
 - Optional burst footprints:
     SpikeEvent(node=j, amp) → m[j] += γ_s · amp · Δt
@@ -10770,7 +10770,7 @@ class SparseConnectome:
         Sparse, void‑faithful tick:
         - Compute Δalpha/Δomega by void equations
         - Build per-node candidate list via alias sampler ~ ReLU(Δalpha)
-        - Score candidates by S_ij = ReLU(Δα_i)·ReLU(Δα_j) − λ·|Δω_i − Δω_j|
+        - Score candidates by S_ij = ReLU(Δα_i)·ReLU(Δα_j) - λ·|Δω_i - Δω_j|
         - Take symmetric top‑k neighbors (undirected)
         - Update node field with universal_void_dynamics gated by SIE valence
         - Run traversal to publish vt_* findings
@@ -21817,7 +21817,7 @@ Memory-driven steering on graphs: rigorous mapping to the FUM derivations + dime
 How this maps to your derivations (clickable refs):
 - Fast φ-sector (propagation + mass gap): the continuum equation and invariants are already derived
   in [derivation/discrete_to_continuum.md](derivation/discrete_to_continuum.md:121-128), with vacuum
-  v = 1 − β/α and excitation mass m_eff² = α − β. The kinetic normalization c² = 2 J a² comes
+  v = 1 - β/α and excitation mass m_eff² = α - β. The kinetic normalization c² = 2 J a² comes
   from the discrete action in [derivation/kinetic_term_derivation.md](derivation/kinetic_term_derivation.md:121-128).
   This module does not alter those results. φ governs propagation/modes; “memory” M biases routing.
 
@@ -21829,7 +21829,7 @@ How this maps to your derivations (clickable refs):
   Here r'' is the curvature of the path, ∇_⊥ is the transverse gradient, and η is a coupling.
 
 - Memory dynamics (slow field): the minimal causal PDE
-      ∂_t M = γ R − δ M + κ ∇² M,
+      ∂_t M = γ R - δ M + κ ∇² M,
   where R is a usage/co-activation rate (e.g., STDP proxy), γ is write gain, δ decay, κ consolidation/spread.
   This produces stored structure that later steers dynamics via n=exp(η M).
 
@@ -21845,14 +21845,14 @@ How this maps to your derivations (clickable refs):
   See [derivation/memory_steering.md](derivation/memory_steering.md:1) for the full statement.
 
 Graph discretization used here (orthogonal to φ):
-- We represent M on nodes (vector m), and use the unnormalized graph Laplacian L = D − A to discretize ∇².
-- Memory PDE (Euler step):  m ← m + dt ( γ r − δ m − κ L m ), where r is an independently measured usage proxy.
+- We represent M on nodes (vector m), and use the unnormalized graph Laplacian L = D - A to discretize ∇².
+- Memory PDE (Euler step):  m ← m + dt ( γ r - δ m - κ L m ), where r is an independently measured usage proxy.
 - Steering at node i toward neighbor j is modeled by a softmax over neighbor memory:
       P(i→j) ∝ exp(Θ m_j).
   At a two-branch junction this reduces to the logistic P(A)=σ(Θ Δm), matching the prediction.
 
 What this module provides:
-- build_graph_laplacian(A): compute L = D − A (undirected).
+- build_graph_laplacian(A): compute L = D - A (undirected).
 - update_memory(m, r, L, gamma, delta, kappa, dt): Euler step for the memory PDE (slow M-dynamics).
 - transition_probs(i, neighbors, m, theta): softmax steering P(i→j) ∝ exp(Θ m_j).
 - transition_probs_temp(i, neighbors, m, theta, temperature=1.0): temperatured softmax (default T=1).
@@ -21879,8 +21879,8 @@ import numpy as np
 
 def build_graph_laplacian(A: np.ndarray) -> np.ndarray:
     """
-    Build the unnormalized graph Laplacian L = D − A (continuum analogue of −∇²).
-    This is the standard discrete operator used in the memory PDE ∂_t m = γ r − δ m − κ L m,
+    Build the unnormalized graph Laplacian L = D - A (continuum analogue of -∇²).
+    This is the standard discrete operator used in the memory PDE ∂_t m = γ r - δ m - κ L m,
     mapping directly to the ∇² term in [derivation/memory_steering.md](derivation/memory_steering.md:1).
 
     Args:
@@ -21890,7 +21890,7 @@ def build_graph_laplacian(A: np.ndarray) -> np.ndarray:
         L: np.ndarray (N x N) Laplacian.
 
     Notes:
-        - L = D − A is the unnormalized Laplacian (Dirichlet energy), which converges to −∇² under mesh refinement.
+        - L = D - A is the unnormalized Laplacian (Dirichlet energy), which converges to -∇² under mesh refinement.
         - Self-loops are ignored (diagonal set to 0 in degree).
     """
     A = np.asarray(A)
@@ -21912,14 +21912,14 @@ def update_memory(
 ) -> np.ndarray:
     """
     One explicit Euler step for the slow memory PDE (write-decay-spread),
-        ∂_t m = γ r − δ m − κ L m,
-    which is the graph-discretized form of ∂_t M = γ R − δ M + κ ∇² M in
+        ∂_t m = γ r - δ m - κ L m,
+    which is the graph-discretized form of ∂_t M = γ R - δ M + κ ∇² M in
     [derivation/memory_steering.md](derivation/memory_steering.md:1).
 
     Args:
         m: np.ndarray (N,). Memory field (dimensionless m = M/M0 if normalized to M0).
         r: np.ndarray (N,). Independent usage/co-activation proxy (dimensionless ρ = R/R0 if normalized to R0).
-        L: np.ndarray (N x N). Graph Laplacian L = D − A.
+        L: np.ndarray (N x N). Graph Laplacian L = D - A.
         gamma, delta, kappa: PDE coefficients (map to D_a, Λ, Γ via compute_dimensionless_groups).
         dt: time step.
 
@@ -21945,7 +21945,7 @@ def transition_probs(
     Softmax steering probabilities from node i toward its neighbors based on memory values:
         P(i→j) ∝ exp(Θ m_j),   Θ = η M0.
     At a 2-branch fork with memories (m_A, m_B) this reduces to the logistic
-        P(A) = σ(Θ (m_A − m_B)),
+        P(A) = σ(Θ (m_A - m_B)),
     matching the prediction P(A) ≈ σ(Θ Δm) in [derivation/memory_steering.md](derivation/memory_steering.md:1).
 
     Args:
@@ -22032,7 +22032,7 @@ def sample_next_neighbor_heading(
 
     Score for each neighbor j:
         score_j = Θ m_j + heading_bias * cos(∠(heading, step_ij))
-    with step_ij = pos[j] − pos[i] and softmax at temperature T.
+    with step_ij = pos[j] - pos[i] and softmax at temperature T.
 
     This approximates the ray-limit routing r'' ∝ Θ ∇_⊥ m with an inertial heading term,
     reducing grid-quantization artifacts seen with purely memory-driven argmax hopping.
@@ -22289,7 +22289,7 @@ What this file does (experiments layer)
 How this maps to your φ‑EFT derivations (orthogonal layer)
 - The fast φ‑sector continuum equation and invariants are already derived in
   [derivation/discrete_to_continuum.md](derivation/discrete_to_continuum.md:121-128):
-      □φ + α φ² − (α − β) φ = 0,   v = 1 − β/α,   m_eff² = α − β.
+      □φ + α φ² - (α - β) φ = 0,   v = 1 - β/α,   m_eff² = α - β.
 - The kinetic normalization c² = 2 J a² is rigorously obtained from a discrete action in
   [derivation/kinetic_term_derivation.md](derivation/kinetic_term_derivation.md:121-128).
 - The memory‑steering layer (M) is slow and biases routing only; it does not modify φ propagation,
@@ -22495,7 +22495,7 @@ def run_junction_logistic(theta: float = 2.0, delta_m_values: Sequence[float] = 
     - In [derivation/memory_steering.md](derivation/memory_steering.md:1) the steering index is n=exp(η M).
       At a fork, the two outgoing neighbors (A,B) inherit memory values (m_A, m_B). The softmax routing
       P(i→j) ∝ exp(Θ m_j) reduces to a binary logistic:
-          P(A) = σ(Θ (m_A − m_B)) = σ(Θ Δm).
+          P(A) = σ(Θ (m_A - m_B)) = σ(Θ Δm).
       Hence plotting P(A) vs Θ Δm should overlay across graph sizes/speeds, demonstrating a
       dimensionless collapse (Θ is the only slope).
 
@@ -22575,8 +22575,8 @@ def polyline_curvature_signed(pts: np.ndarray) -> np.ndarray:
 
     - Uses the same magnitude estimator as polyline_curvature:
           |κ| ≈ 2 sin(Δθ/2) / ℓ
-      but multiplies by the sign sgn = sign( (v1 × v2)_z ) where v1 = p1−p0, v2 = p2−p1.
-      In 2D, (v1 × v2)_z = v1_x v2_y − v1_y v2_x.
+      but multiplies by the sign sgn = sign( (v1 × v2)_z ) where v1 = p1-p0, v2 = p2-p1.
+      In 2D, (v1 × v2)_z = v1_x v2_y - v1_y v2_x.
 
     - This returns the signed bending, suitable for falsification via gradient/Θ sign flips:
           ⟨κ_signed⟩ ∝ Θ (∇m · n_⊥)
@@ -22823,7 +22823,7 @@ def run_curvature_scaling_signed(
 
     - Domain: continuous rays in a box of size (nx, ny), with constant gradient in m along +y.
     - For each target X = Theta*|grad m|, pick Theta = X/|grad m| and average path curvature over many seeds.
-    - Signed test: for ~3 midpoints of X, repeat runs with (1) gradient flipped (|∇m|→−|∇m|) and (2) Theta→−Theta.
+    - Signed test: for ~3 midpoints of X, repeat runs with (1) gradient flipped (|∇m|→-|∇m|) and (2) Theta→-Theta.
 
     Returns:
         X_all: array of X = Theta*|grad m|
@@ -22924,7 +22924,7 @@ def run_stability_band(
     """
     Stability band in (D_a, Λ, Γ) with dose control and discriminative metrics.
 
-    PDE: ∂_t m = γ r − δ m − κ L m
+    PDE: ∂_t m = γ r - δ m - κ L m
     Dimensionless: D_a = γ R_0 T / M_0, Λ = δ T, Γ = κ T / L²
 
     Protocol (two‑phase):
@@ -22942,7 +22942,7 @@ def run_stability_band(
       - Fidelity_shuffle  = corr(m_end, shuffle(R_mask))
       - Fidelity_edge     = corr(L m_end, L R_mask)
       - AUC_end           = ROC AUC for score=m_end vs mask
-      - SNR_end           = (μ_in − μ_out) / σ_out
+      - SNR_end           = (μ_in - μ_out) / σ_out
       - AUPRC_topk        = truncated AP using top k=floor(topk_frac*N) predictions
       - BPER              = band‑pass energy ratio = ||L_norm m_end|| / ||m_end||
 
@@ -22950,7 +22950,7 @@ def run_stability_band(
       (D_a, Λ, Γ, Ret, Fid_w, Fid_end, Fid_shuffle, Fid_edge, AUC_end, SNR_end, AUPRC_topk, BPER)
 
     Notes:
-      - L is the combinatorial Laplacian; L_norm = I − D^{-1/2} A D^{-1/2}
+      - L is the combinatorial Laplacian; L_norm = I - D^{-1/2} A D^{-1/2}
       - We clamp κ by a CFL condition: dt * κ * λ_max(L) ≤ cfl_limit with λ_max(L) ≈ 2 * deg_max
     """
     N = nx * ny
@@ -23678,7 +23678,7 @@ RD dispersion validation runner (linear regime) for fum_rt.
 
 CHANGE REASON:
 - This file mirrors the validated physics from derivation scripts to the runtime stack.
-- We have PROVEN the RD linear dispersion σ(k) = r − D k^2 via reproducible scripts and derivations:
+- We have PROVEN the RD linear dispersion σ(k) = r - D k^2 via reproducible scripts and derivations:
   [rd_dispersion_experiment.py](Prometheus_FUVDM/derivation/code/physics/rd_dispersion_experiment.py),
   [rd_validation_plan.md](Prometheus_FUVDM/derivation/rd_validation_plan.md),
   [CORRECTIONS.md](Prometheus_FUVDM/derivation/computational_proofs/CORRECTIONS.md).
@@ -24477,7 +24477,7 @@ def compute_kappas(
     Args:
       R: cylinder radius (dimensionless units)
       mu: tachyon scale (baseline EFT parameter)
-      c: wave speed (from 𝓛_K = ½(∂_t φ)^2 − ½ c^2 (∇φ)^2)
+      c: wave speed (from 𝓛_K = ½(∂_t φ)^2 - ½ c^2 (∇φ)^2)
       ell_max: highest angular momentum to consider
       kappa_max: optional upper bound (< μ/c), defaults to 0.999 μ/c
       num_brackets: grid count for sign bracketing

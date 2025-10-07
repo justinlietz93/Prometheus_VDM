@@ -254,9 +254,9 @@ Purpose
 
 Benchmarks (double precision)
 1) Taylor-Green vortex (2‑D periodic)
-- Fit viscous decay E(t) = E0 exp(−2 ν k² t).
+- Fit viscous decay E(t) = E0 exp(-2 ν k² t).
 - Thresholds:
-  - Baseline grid (≥ 256²): |ν_fit − ν_th| / ν_th ≤ 5%.
+  - Baseline grid (≥ 256²): |ν_fit - ν_th| / ν_th ≤ 5%.
   - Refinement (×2 linear res): error decreases consistent with scheme order.
 - Artifact paths:
   - Figure: derivation/code/outputs/figures/fluid_dynamics/taylor_green_benchmark_<timestamp>.png
@@ -265,7 +265,7 @@ Benchmarks (double precision)
 2) Lid‑driven cavity (square, no‑slip walls, moving lid)
 - Monitor divergence norm ‖∇·v‖₂ over time.
 - Thresholds:
-  - max_t ‖∇·v‖₂ ≤ 1e−6 (double).
+  - max_t ‖∇·v‖₂ ≤ 1e-6 (double).
   - Centerline profiles converge with grid (qualitative check; optional quantitative against literature).
 - Artifact paths:
   - Figure: derivation/code/outputs/figures/fluid_dynamics/lid_cavity_benchmark_<timestamp>.png
@@ -350,11 +350,11 @@ Scope: Tier-0 correctness fixes (numerics, stability narrative) and unification 
 
 - [derivation/FUVDM_Overview.md](FUVDM_Overview.md)
   - Before: Mixed RD/EFT claims; no explicit canonical model.
-  - After: Canonical RD banner + mapping (D = J a² or (J/z) a²; r = α − β; u = α), stability note, EFT scoped to future work.
+  - After: Canonical RD banner + mapping (D = J a² or (J/z) a²; r = α - β; u = α), stability note, EFT scoped to future work.
 
 - [derivation/code/computational_proofs/FUM_theory_and_results.md](code/computational_proofs/FUM_theory_and_results.md)
   - Before: Fixed numerical claim “m_eff ≈ 0.387”.
-  - After: m_eff = √(α−β) (parameter‑dependent), added RD model‑class note; removed fixed numeric.
+  - After: m_eff = √(α-β) (parameter‑dependent), added RD model‑class note; removed fixed numeric.
 
 - [derivation/discrete_to_continuum.md](discrete_to_continuum.md)
   - Before: Objective stated convergence to KG; D mapping not explicit.
@@ -366,11 +366,11 @@ Scope: Tier-0 correctness fixes (numerics, stability narrative) and unification 
 
 - [derivation/symmetry_analysis.md](symmetry_analysis.md)
   - Before: Text implied “false/true vacuum” using EFT values in a general context.
-  - After: Clarified RD vs EFT contexts; RD fixed point W* = r/u (r>0) vs EFT vacuum v = 1 − β/α as future‑work.
+  - After: Clarified RD vs EFT contexts; RD fixed point W* = r/u (r>0) vs EFT vacuum v = 1 - β/α as future‑work.
 
 - [derivation/effective_field_theory_approach.md](effective_field_theory_approach.md)
   - Before: No scope banner.
-  - After: Quarantine banner; note m_eff = √(α−β) is parameter‑dependent and unitized via τ.
+  - After: Quarantine banner; note m_eff = √(α-β) is parameter‑dependent and unitized via τ.
 
 - [derivation/code/computational_proofs/void_dynamics_theory.md](code/computational_proofs/void_dynamics_theory.md)
   - Before: No scope note; mixed RD/EFT implications.
@@ -389,7 +389,7 @@ Scope: Tier-0 correctness fixes (numerics, stability narrative) and unification 
 
 ## Numeric Corrections
 
-- m_eff is not a universal constant; it is m_eff = √(α−β).
+- m_eff is not a universal constant; it is m_eff = √(α-β).
   - Example calibrations:
     - α = 0.25, β = 0.10 → m_eff ≈ 0.387
     - α = 1.0,  β = 0.40 → m_eff ≈ 0.7746
@@ -407,7 +407,7 @@ All fixed-number statements were replaced with parameter‑dependent forms and e
 
 ## Edit Log (file, change)
 
-- [derivation/FUVDM_Overview.md](FUVDM_Overview.md): Replace overview with RD canonical banner; corrected mapping (r = α − β, u = α); EFT scoped.
+- [derivation/FUVDM_Overview.md](FUVDM_Overview.md): Replace overview with RD canonical banner; corrected mapping (r = α - β, u = α); EFT scoped.
 - [derivation/code/computational_proofs/FUM_theory_and_results.md](code/computational_proofs/FUM_theory_and_results.md): Insert RD note; replace fixed m_eff numeric with param‑dependent form.  
 - [derivation/discrete_to_continuum.md](discrete_to_continuum.md): Update objective to RD; add D mapping text; keep EFT derivation as future work.  
 - [derivation/memory_steering.md](memory_steering.md): Align with RD canonical; restrict EFT formulas to EFT doc; remove back‑solve in RD section.  
@@ -427,7 +427,7 @@ All fixed-number statements were replaced with parameter‑dependent forms and e
 - [ERROR FIXED]: Incorrect fixed mass number claims replaced with parameter‑dependent expression.
 - [PROVEN]: Lattice → continuum kinetic normalization via discrete action (already present) is internally consistent.
 - [PROVEN]: RD front speed c_front = 2√(Dr) validated. Defaults: N=1024, cfl=0.2, level=0.1, x0=-60, fit window 0.6-0.9. Representative run: c_meas≈0.953, c_th=1.0, rel_err≈0.047, R²≈0.999996.
-- [PROVEN]: RD dispersion σ(k) = r − D k² validated via linearized periodic evolution. Defaults (N=1024, L=200, D=1.0, r=0.25, T=10, cfl=0.2, seed=42, m_max=64) → med_rel_err≈0.00145, R²_array≈0.99995 [PASS]; grid refinement (N=2048, m_max=128) → med_rel_err≈0.00130, R²_array≈0.9928 [PASS].
+- [PROVEN]: RD dispersion σ(k) = r - D k² validated via linearized periodic evolution. Defaults (N=1024, L=200, D=1.0, r=0.25, T=10, cfl=0.2, seed=42, m_max=64) → med_rel_err≈0.00145, R²_array≈0.99995 [PASS]; grid refinement (N=2048, m_max=128) → med_rel_err≈0.00130, R²_array≈0.9928 [PASS].
 ]]></content>
     </file>
     <file>
@@ -451,18 +451,18 @@ New Artifacts
 
 Assumed Steering Law (to be reconciled if different)
 - Discrete update with saturation:
-  M_{t+1} = (1 − λ − g) M_t + g s_t + ξ_t, then clip to [0, 1]
+  M_{t+1} = (1 - λ - g) M_t + g s_t + ξ_t, then clip to [0, 1]
   - Parameters: g > 0 (gain), λ > 0 (leak), ξ_t zero-mean noise (default 0).
-  - Pole: p_pred = 1 − λ − g; stable for |p| < 1 (monotone if 0 ≤ p < 1).
+  - Pole: p_pred = 1 - λ - g; stable for |p| < 1 (monotone if 0 ≤ p < 1).
   - Fixed point (constant s): M* = g s / (g + λ).
 - Canonical mapping to W ≈ 0.6:
   - With s ≡ 1 and g = 1.5 λ ⇒ M* = 1.5/(1+1.5) = 0.6.
 
 Acceptance Criteria (codified in harness)
 1) Boundedness: no post-clamp excursions outside [0, 1].
-2) Linear step response: |p_fit − p_pred| ≤ 0.02; |M_final − M*| ≤ 1e-2; overshoot ≤ 0.02.
-3) Canonical void target: |M_final − 0.6| ≤ 0.02 for seeds {0,1,2}.
-4) Noise suppression: ΔSNR_out−in ≥ 3 dB for default sinusoid+white noise.
+2) Linear step response: |p_fit - p_pred| ≤ 0.02; |M_final - M*| ≤ 1e-2; overshoot ≤ 0.02.
+3) Canonical void target: |M_final - 0.6| ≤ 0.02 for seeds {0,1,2}.
+4) Noise suppression: ΔSNR_out-in ≥ 3 dB for default sinusoid+white noise.
 5) Lyapunov monotonicity (constant s, no noise): frac(ΔF>0) ≤ 1%; median ΔF < 0.
 6) Reproducibility: same seed ⇒ max_abs_diff ≤ 1e-12.
 
@@ -919,8 +919,8 @@ fum_rt parity (independent runners; same metrics schema)
 
 ## At-a-glance defaults (validated runs)
 
-- Front-speed: N=1024, L=200, D=1.0, r=0.25, T=80, cfl=0.2, seed=42, x0=−60, level=0.1, fit 0.6-0.9  
-- Dispersion: N=1024, L=200, D=1.0, r=0.25, T=10, cfl=0.2, seed=42, amp0=1e−6, record=80, m_max=64, fit 0.1-0.4
+- Front-speed: N=1024, L=200, D=1.0, r=0.25, T=80, cfl=0.2, seed=42, x0=-60, level=0.1, fit 0.6-0.9  
+- Dispersion: N=1024, L=200, D=1.0, r=0.25, T=10, cfl=0.2, seed=42, amp0=1e-6, record=80, m_max=64, fit 0.1-0.4
 
 ## Memory steering and system notes
 
@@ -1076,9 +1076,9 @@ phi_star = r / u = 1 - beta/alpha    # using r = alpha - beta, u = alpha
       <content><![CDATA[# METRICS
 
 ## Dynamics (RD model)
-- Growth rate around φ=0:  σ(k) = r − D k².
+- Growth rate around φ=0:  σ(k) = r - D k².
 - Front speed (pulled front): c = 2√(D r).
-- Fixed-point stability: f'(φ*) < 0, with f(φ)=rφ−uφ²−λφ³.
+- Fixed-point stability: f'(φ*) < 0, with f(φ)=rφ-uφ²-λφ³.
 
 ## SIE/TDA System metrics
 - Update latency vs nodes N: fit τ(N) = A N^b; report b and 95% CI.
@@ -1283,10 +1283,10 @@ Acceptance gates.
 - Convergence: halving \(dt\) reduces \(\Delta Q\) by a factor consistent with the order \(p\) of the scheme; a log-log fit of \(\Delta Q\) vs \(dt\) yields slope \(p\pm 0.2\).
 
 Pseudocode (language‑agnostic)
-1) define F(W) = r·W − u·W²  
-2) initialize t=0, W=W0, Q0 = ln(W/(r−uW)) − r·t  
+1) define F(W) = r·W - u·W²  
+2) initialize t=0, W=W0, Q0 = ln(W/(r-uW)) - r·t  
 3) for n in 1..N: advance (W,t) one step by RK4 with step dt  
-4) compute Qn = ln(W/(r−uW)) − r·t and track max |Qn−Q0|  
+4) compute Qn = ln(W/(r-uW)) - r·t and track max |Qn-Q0|  
 5) report ΔQ and, if running a step‑refinement, the observed convergence slope
 
 Numerical notes. Trap underflow/overflow near the poles; reject steps that cross the singularity. The test is most transparent on \((0,r/u)\) for \(r,u>0\).
@@ -1778,7 +1778,7 @@ def lbm_cs() -> float:
     return 1.0 / SQRT3
 
 def lbm_viscosity_from_tau(tau: float) -> float:
-    """D2Q9 BGK kinematic viscosity ν in lattice units: ν=(τ−0.5)/3."""
+    """D2Q9 BGK kinematic viscosity ν in lattice units: ν=(τ-0.5)/3."""
     return (float(tau) - 0.5) / 3.0
 
 def reynolds_lbm(U: float, L: float, tau: float) -> float:
@@ -3745,7 +3745,7 @@ This document summarizes the key theoretical properties of the Fully Unified Mod
 
 ### Key Findings:
 
-> Model class note: Canonical continuum description is reaction-diffusion (RD): ∂tφ = D∇²φ + rφ − uφ² [−λφ³ optional]. Second‑order EFT/KG claims are quarantined to [effective_field_theory_approach.md](Prometheus_FUVDM/derivation/effective_field_theory_approach.md:1). Any mass value is parameter‑dependent: m_eff = √(α−β).
+> Model class note: Canonical continuum description is reaction-diffusion (RD): ∂tφ = D∇²φ + rφ - uφ² [-λφ³ optional]. Second‑order EFT/KG claims are quarantined to [effective_field_theory_approach.md](Prometheus_FUVDM/derivation/effective_field_theory_approach.md:1). Any mass value is parameter‑dependent: m_eff = √(α-β).
 
 1.  **Continuum Field Theory:** The discrete FUM simulation has a continuum limit that is described by a **non-linear, tachyonic scalar field theory**. The governing equation of motion is:
     $$
@@ -4536,7 +4536,7 @@ class LBM2D:
         rho = (f0 + f1 + f3 + 2.0*(f2 + f5 + f6))  # uy=0 here
         # Reconstruct unknowns pointing into fluid from the top wall
         self.f[4, y, x] = f2
-        self.f[7, y, x] = f5 - 0.5*(f1 - f3) - (1.0/6.0) * rho * U  # Zou/He top lid: f7 gets −ρU/6
+        self.f[7, y, x] = f5 - 0.5*(f1 - f3) - (1.0/6.0) * rho * U  # Zou/He top lid: f7 gets -ρU/6
         self.f[8, y, x] = f6 + 0.5*(f1 - f3) + (1.0/6.0) * rho * U  # Zou/He top lid: f8 gets +ρU/6
 
     def moments(self):
@@ -4852,7 +4852,7 @@ class AutoTuner:
 
 def compute_streamfunction_poisson(omega, solid=None, iters=400, tol=1e-3):
     """
-    Solve ∇²ψ = −ω on a 2D grid with Dirichlet ψ=0 at domain boundaries and at solid cells.
+    Solve ∇²ψ = -ω on a 2D grid with Dirichlet ψ=0 at domain boundaries and at solid cells.
     Uses Jacobi iterations with grid spacing h=1.0.
     """
     import numpy as _np
@@ -5370,7 +5370,7 @@ def main():
         except Exception:
             pass
 
-    # Optional streamfunction contours overlay (solve ∇²ψ = −ω)
+    # Optional streamfunction contours overlay (solve ∇²ψ = -ω)
     if getattr(args, "psi_contours", False):
         try:
             psi = compute_streamfunction_poisson(omega=om,
@@ -5916,7 +5916,7 @@ Memory-driven steering on graphs: rigorous mapping to the FUM derivations + dime
 How this maps to your derivations (clickable refs):
 - Fast φ-sector (propagation + mass gap): the continuum equation and invariants are already derived
   in [derivation/discrete_to_continuum.md](derivation/discrete_to_continuum.md:121-128), with vacuum
-  v = 1 − β/α and excitation mass m_eff² = α − β. The kinetic normalization c² = 2 J a² comes
+  v = 1 - β/α and excitation mass m_eff² = α - β. The kinetic normalization c² = 2 J a² comes
   from the discrete action in [derivation/kinetic_term_derivation.md](derivation/kinetic_term_derivation.md:121-128).
   This module does not alter those results. φ governs propagation/modes; “memory” M biases routing.
 
@@ -5928,7 +5928,7 @@ How this maps to your derivations (clickable refs):
   Here r'' is the curvature of the path, ∇_⊥ is the transverse gradient, and η is a coupling.
 
 - Memory dynamics (slow field): the minimal causal PDE
-      ∂_t M = γ R − δ M + κ ∇² M,
+      ∂_t M = γ R - δ M + κ ∇² M,
   where R is a usage/co-activation rate (e.g., STDP proxy), γ is write gain, δ decay, κ consolidation/spread.
   This produces stored structure that later steers dynamics via n=exp(η M).
 
@@ -5944,14 +5944,14 @@ How this maps to your derivations (clickable refs):
   See [derivation/memory_steering.md](derivation/memory_steering.md:1) for the full statement.
 
 Graph discretization used here (orthogonal to φ):
-- We represent M on nodes (vector m), and use the unnormalized graph Laplacian L = D − A to discretize ∇².
-- Memory PDE (Euler step):  m ← m + dt ( γ r − δ m − κ L m ), where r is an independently measured usage proxy.
+- We represent M on nodes (vector m), and use the unnormalized graph Laplacian L = D - A to discretize ∇².
+- Memory PDE (Euler step):  m ← m + dt ( γ r - δ m - κ L m ), where r is an independently measured usage proxy.
 - Steering at node i toward neighbor j is modeled by a softmax over neighbor memory:
       P(i→j) ∝ exp(Θ m_j).
   At a two-branch junction this reduces to the logistic P(A)=σ(Θ Δm), matching the prediction.
 
 What this module provides:
-- build_graph_laplacian(A): compute L = D − A (undirected).
+- build_graph_laplacian(A): compute L = D - A (undirected).
 - update_memory(m, r, L, gamma, delta, kappa, dt): Euler step for the memory PDE (slow M-dynamics).
 - transition_probs(i, neighbors, m, theta): softmax steering P(i→j) ∝ exp(Θ m_j).
 - transition_probs_temp(i, neighbors, m, theta, temperature=1.0): temperatured softmax (default T=1).
@@ -5978,8 +5978,8 @@ import numpy as np
 
 def build_graph_laplacian(A: np.ndarray) -> np.ndarray:
     """
-    Build the unnormalized graph Laplacian L = D − A (continuum analogue of −∇²).
-    This is the standard discrete operator used in the memory PDE ∂_t m = γ r − δ m − κ L m,
+    Build the unnormalized graph Laplacian L = D - A (continuum analogue of -∇²).
+    This is the standard discrete operator used in the memory PDE ∂_t m = γ r - δ m - κ L m,
     mapping directly to the ∇² term in [derivation/memory_steering.md](derivation/memory_steering.md:1).
 
     Args:
@@ -5989,7 +5989,7 @@ def build_graph_laplacian(A: np.ndarray) -> np.ndarray:
         L: np.ndarray (N x N) Laplacian.
 
     Notes:
-        - L = D − A is the unnormalized Laplacian (Dirichlet energy), which converges to −∇² under mesh refinement.
+        - L = D - A is the unnormalized Laplacian (Dirichlet energy), which converges to -∇² under mesh refinement.
         - Self-loops are ignored (diagonal set to 0 in degree).
     """
     A = np.asarray(A)
@@ -6011,14 +6011,14 @@ def update_memory(
 ) -> np.ndarray:
     """
     One explicit Euler step for the slow memory PDE (write-decay-spread),
-        ∂_t m = γ r − δ m − κ L m,
-    which is the graph-discretized form of ∂_t M = γ R − δ M + κ ∇² M in
+        ∂_t m = γ r - δ m - κ L m,
+    which is the graph-discretized form of ∂_t M = γ R - δ M + κ ∇² M in
     [derivation/memory_steering.md](derivation/memory_steering.md:1).
 
     Args:
         m: np.ndarray (N,). Memory field (dimensionless m = M/M0 if normalized to M0).
         r: np.ndarray (N,). Independent usage/co-activation proxy (dimensionless ρ = R/R0 if normalized to R0).
-        L: np.ndarray (N x N). Graph Laplacian L = D − A.
+        L: np.ndarray (N x N). Graph Laplacian L = D - A.
         gamma, delta, kappa: PDE coefficients (map to D_a, Λ, Γ via compute_dimensionless_groups).
         dt: time step.
 
@@ -6044,7 +6044,7 @@ def transition_probs(
     Softmax steering probabilities from node i toward its neighbors based on memory values:
         P(i→j) ∝ exp(Θ m_j),   Θ = η M0.
     At a 2-branch fork with memories (m_A, m_B) this reduces to the logistic
-        P(A) = σ(Θ (m_A − m_B)),
+        P(A) = σ(Θ (m_A - m_B)),
     matching the prediction P(A) ≈ σ(Θ Δm) in [derivation/memory_steering.md](derivation/memory_steering.md:1).
 
     Args:
@@ -6131,7 +6131,7 @@ def sample_next_neighbor_heading(
 
     Score for each neighbor j:
         score_j = Θ m_j + heading_bias * cos(∠(heading, step_ij))
-    with step_ij = pos[j] − pos[i] and softmax at temperature T.
+    with step_ij = pos[j] - pos[i] and softmax at temperature T.
 
     This approximates the ray-limit routing r'' ∝ Θ ∇_⊥ m with an inertial heading term,
     reducing grid-quantization artifacts seen with purely memory-driven argmax hopping.
@@ -6701,7 +6701,7 @@ What this file does (experiments layer)
 How this maps to your φ‑EFT derivations (orthogonal layer)
 - The fast φ‑sector continuum equation and invariants are already derived in
   [derivation/discrete_to_continuum.md](derivation/discrete_to_continuum.md:121-128):
-      □φ + α φ² − (α − β) φ = 0,   v = 1 − β/α,   m_eff² = α − β.
+      □φ + α φ² - (α - β) φ = 0,   v = 1 - β/α,   m_eff² = α - β.
 - The kinetic normalization c² = 2 J a² is rigorously obtained from a discrete action in
   [derivation/kinetic_term_derivation.md](derivation/kinetic_term_derivation.md:121-128).
 - The memory‑steering layer (M) is slow and biases routing only; it does not modify φ propagation,
@@ -6909,7 +6909,7 @@ def run_junction_logistic(theta: float = 2.0, delta_m_values: Sequence[float] = 
     - In [derivation/memory_steering.md](derivation/memory_steering.md:1) the steering index is n=exp(η M).
       At a fork, the two outgoing neighbors (A,B) inherit memory values (m_A, m_B). The softmax routing
       P(i→j) ∝ exp(Θ m_j) reduces to a binary logistic:
-          P(A) = σ(Θ (m_A − m_B)) = σ(Θ Δm).
+          P(A) = σ(Θ (m_A - m_B)) = σ(Θ Δm).
       Hence plotting P(A) vs Θ Δm should overlay across graph sizes/speeds, demonstrating a
       dimensionless collapse (Θ is the only slope).
 
@@ -6989,8 +6989,8 @@ def polyline_curvature_signed(pts: np.ndarray) -> np.ndarray:
 
     - Uses the same magnitude estimator as polyline_curvature:
           |κ| ≈ 2 sin(Δθ/2) / ℓ
-      but multiplies by the sign sgn = sign( (v1 × v2)_z ) where v1 = p1−p0, v2 = p2−p1.
-      In 2D, (v1 × v2)_z = v1_x v2_y − v1_y v2_x.
+      but multiplies by the sign sgn = sign( (v1 × v2)_z ) where v1 = p1-p0, v2 = p2-p1.
+      In 2D, (v1 × v2)_z = v1_x v2_y - v1_y v2_x.
 
     - This returns the signed bending, suitable for falsification via gradient/Θ sign flips:
           ⟨κ_signed⟩ ∝ Θ (∇m · n_⊥)
@@ -7237,7 +7237,7 @@ def run_curvature_scaling_signed(
 
     - Domain: continuous rays in a box of size (nx, ny), with constant gradient in m along +y.
     - For each target X = Theta*|grad m|, pick Theta = X/|grad m| and average path curvature over many seeds.
-    - Signed test: for ~3 midpoints of X, repeat runs with (1) gradient flipped (|∇m|→−|∇m|) and (2) Theta→−Theta.
+    - Signed test: for ~3 midpoints of X, repeat runs with (1) gradient flipped (|∇m|→-|∇m|) and (2) Theta→-Theta.
 
     Returns:
         X_all: array of X = Theta*|grad m|
@@ -7338,7 +7338,7 @@ def run_stability_band(
     """
     Stability band in (D_a, Λ, Γ) with dose control and discriminative metrics.
 
-    PDE: ∂_t m = γ r − δ m − κ L m
+    PDE: ∂_t m = γ r - δ m - κ L m
     Dimensionless: D_a = γ R_0 T / M_0, Λ = δ T, Γ = κ T / L²
 
     Protocol (two‑phase):
@@ -7356,7 +7356,7 @@ def run_stability_band(
       - Fidelity_shuffle  = corr(m_end, shuffle(R_mask))
       - Fidelity_edge     = corr(L m_end, L R_mask)
       - AUC_end           = ROC AUC for score=m_end vs mask
-      - SNR_end           = (μ_in − μ_out) / σ_out
+      - SNR_end           = (μ_in - μ_out) / σ_out
       - AUPRC_topk        = truncated AP using top k=floor(topk_frac*N) predictions
       - BPER              = band‑pass energy ratio = ||L_norm m_end|| / ||m_end||
 
@@ -7364,7 +7364,7 @@ def run_stability_band(
       (D_a, Λ, Γ, Ret, Fid_w, Fid_end, Fid_shuffle, Fid_edge, AUC_end, SNR_end, AUPRC_topk, BPER)
 
     Notes:
-      - L is the combinatorial Laplacian; L_norm = I − D^{-1/2} A D^{-1/2}
+      - L is the combinatorial Laplacian; L_norm = I - D^{-1/2} A D^{-1/2}
       - We clamp κ by a CFL condition: dt * κ * λ_max(L) ≤ cfl_limit with λ_max(L) ≈ 2 * deg_max
     """
     N = nx * ny
@@ -8392,8 +8392,8 @@ RD dispersion validation (linear regime) for Fisher-KPP:
 Linearized about u≈0: u_t ≈ D u_xx + r u
 
 Predictions:
-  Continuum:  σ_c(k) = r − D k^2
-  Discrete (periodic second-difference):  σ_d(m) = r − (4 D / dx^2) sin^2(π m / N)
+  Continuum:  σ_c(k) = r - D k^2
+  Discrete (periodic second-difference):  σ_d(m) = r - (4 D / dx^2) sin^2(π m / N)
 
 Method:
   - Evolve the linearized PDE with periodic BCs from small random amplitude.
@@ -9342,7 +9342,7 @@ Directory layout
   - fluid_dynamics/
   - tachyonic_condensation/
 - Example
-  - [test_taylor_green_decay.py](Prometheus_FUVDM/derivation/code/tests/fluid_dynamics/test_taylor_green_decay.py:1) — verifies ν recovery from Taylor-Green energy decay with |ν_fit−ν_th|/ν_th ≤ 5%.
+  - [test_taylor_green_decay.py](Prometheus_FUVDM/derivation/code/tests/fluid_dynamics/test_taylor_green_decay.py:1) — verifies ν recovery from Taylor-Green energy decay with |ν_fit-ν_th|/ν_th ≤ 5%.
 
 Conventions
 - Location: derivation/code/tests/<domain>/test_*.py
@@ -9369,10 +9369,10 @@ Pathing rules (applies repo‑wide)
 
 Example: Taylor-Green (fluid_dynamics)
 - Unit test: [test_taylor_green_decay.py](Prometheus_FUVDM/derivation/code/tests/fluid_dynamics/test_taylor_green_decay.py:1)
-  - Builds a small D2Q9 LBM system (τ=0.8 ⇒ ν_th=(τ−0.5)/3).
+  - Builds a small D2Q9 LBM system (τ=0.8 ⇒ ν_th=(τ-0.5)/3).
   - Samples energy E(t) and fits log E.
   - Uses correct lattice scaling K² = k²(1/nx² + 1/ny²).
-  - Asserts |ν_fit−ν_th|/ν_th ≤ 0.05.
+  - Asserts |ν_fit-ν_th|/ν_th ≤ 0.05.
 - Benchmark (separate, writes artifacts): see physics/README
   - [taylor_green_benchmark.py](Prometheus_FUVDM/derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py:1)
 
@@ -10079,7 +10079,7 @@ This is a crucial result. The total rate of change of the on-site energy is **no
     </file>
     <file>
       <path>effective_field_theory/effective_field_theory_approach.md</path>
-      <content><![CDATA[> Future work (quarantined): Second‑order Lorentzian EFT. Canonical model for the main narrative is reaction-diffusion (RD). Use EFT claims only in EFT contexts; `m_eff = √(α−β)` is parameter‑dependent and unitized via τ.
+      <content><![CDATA[> Future work (quarantined): Second‑order Lorentzian EFT. Canonical model for the main narrative is reaction-diffusion (RD). Use EFT claims only in EFT contexts; `m_eff = √(α-β)` is parameter‑dependent and unitized via τ.
 
 # A More Rigorous Approach: The FUM as an Effective Field Theory
 
@@ -10192,9 +10192,9 @@ References
 1. Knowns and Unknowns
 
 Known (FUM side)
-- Discrete on‑site law:  dW/dt = (α − β) W − α W^2  ([derivation/symmetry_analysis.md](derivation/symmetry_analysis.md:20-21)).
-- Canonical RD mapping:  ∂tφ = D ∇²φ + r φ − u φ²  [optional −λ φ³].
-  EFT context only (future work):  □φ + α φ² − (α − β) φ = 0, with VEV v = 1 − β/α and m_eff² = α − β (see [derivation/discrete_to_continuum.md](derivation/discrete_to_continuum.md:120-127), [derivation/discrete_to_continuum.md](derivation/discrete_to_continuum.md:171-188), [derivation/discrete_to_continuum.md](derivation/discrete_to_continuum.md:219-228)).
+- Discrete on‑site law:  dW/dt = (α - β) W - α W^2  ([derivation/symmetry_analysis.md](derivation/symmetry_analysis.md:20-21)).
+- Canonical RD mapping:  ∂tφ = D ∇²φ + r φ - u φ²  [optional -λ φ³].
+  EFT context only (future work):  □φ + α φ² - (α - β) φ = 0, with VEV v = 1 - β/α and m_eff² = α - β (see [derivation/discrete_to_continuum.md](derivation/discrete_to_continuum.md:120-127), [derivation/discrete_to_continuum.md](derivation/discrete_to_continuum.md:171-188), [derivation/discrete_to_continuum.md](derivation/discrete_to_continuum.md:219-228)).
 - Spatial kinetic normalization reads off a propagation speed `c^2 = 2 J a^2` (per‑site convention) or `c^2 = \kappa a^2` with `\kappa = 2J`; there is no need to fix `J a^2`. See continuum normalization in [derivation/kinetic_term_derivation.md](derivation/kinetic_term_derivation.md:82-89).
 
 Known (Voxtrium side)
@@ -10219,8 +10219,8 @@ Working convention: natural units c = ħ = k_B = 1. In D=4, a canonical scalar h
 
 Define scale factors
 - Field scale φ_0 [GeV]
-- Time scale τ [GeV^−1]
-- Length scale a [GeV^−1] (also the lattice spacing used in [derivation/kinetic_term_derivation.md](derivation/kinetic_term_derivation.md:48-66))
+- Time scale τ [GeV^-1]
+- Length scale a [GeV^-1] (also the lattice spacing used in [derivation/kinetic_term_derivation.md](derivation/kinetic_term_derivation.md:48-66))
 
 Dimensionalization map
 - φ_dimless = φ_phys / φ_0
@@ -10229,23 +10229,23 @@ Dimensionalization map
 
 Start from the dimensionless continuum equation we derived:
 
-  ∂_t^2 φ − c_void^2 ∇^2 φ + α φ^2 − (α − β) φ = 0.
+  ∂_t^2 φ - c_void^2 ∇^2 φ + α φ^2 - (α - β) φ = 0.
 
 Convert to physical variables using φ_dimless = φ_phys/φ_0, t_dimless = t_phys/τ, x_dimless = x_phys/a:
 
-  ∂_{t_phys}^2 φ_phys − ((c_void^2 a^2) / τ^2) ∇_{phys}^2 φ_phys + (α / (φ_0 τ^2)) φ_phys^2 − ((α − β)/τ^2) φ_phys = 0.
+  ∂_{t_phys}^2 φ_phys - ((c_void^2 a^2) / τ^2) ∇_{phys}^2 φ_phys + (α / (φ_0 τ^2)) φ_phys^2 - ((α - β)/τ^2) φ_phys = 0.
 
 Identify physical parameters
 - Wave speed:  c_void^2 ≡ D a^2 / τ^2. Choose τ = √D a to set c_void = 1 (optional).
 - Cubic coupling (mass dimension 1):  g_3 ≡ α / (φ_0 τ^2)  [GeV].
-- Mass term:  m^2 ≡ (α − β) / τ^2  [GeV^2].
+- Mass term:  m^2 ≡ (α - β) / τ^2  [GeV^2].
 
 Vacuum and quanta in physical units
-- Vacuum expectation value:  v_phys = φ_0 (1 − β/α).
-- Excitation mass:  m_eff = √(α − β) / τ.
+- Vacuum expectation value:  v_phys = φ_0 (1 - β/α).
+- Excitation mass:  m_eff = √(α - β) / τ.
 
 Practical calibration choices
-- If we target a specific m_eff (e.g., from phenomenology), set τ = √(α − β) / m_eff.
+- If we target a specific m_eff (e.g., from phenomenology), set τ = √(α - β) / m_eff.
 - Then pick φ_0 to match a desired g_3, or fix φ_0 via matching to an SIDM observable.
 
 This resolves unit consistency across kinetic and potential terms and provides a knob (φ_0, τ, a) to align with Voxtrium’s GeV bookkeeping and conversions ([voxtrium_Overview.md](voxtrium_Overview.md:91-99), [voxtrium_Overview.md](voxtrium_Overview.md:216-218)).
@@ -10256,15 +10256,15 @@ This resolves unit consistency across kinetic and potential terms and provides a
 
 Voxtrium enforces causal support via K_ret. We promote the FUM scalar to a retarded‑kernel sourced effective equation when coupling to horizon processes:
 
-  □ φ_phys + g_3 φ_phys^2 − m^2 φ_phys = J_φ
+  □ φ_phys + g_3 φ_phys^2 - m^2 φ_phys = J_φ
 
 with 
 
-  J_φ(x,t) = ∫ d^3x' ∫_{−∞}^t dt' K_ret(t − t', |x − x'|) s_loc(x', t'),
+  J_φ(x,t) = ∫ d^3x' ∫_{-∞}^t dt' K_ret(t - t', |x - x'|) s_loc(x', t'),
 
 and 
 
-  K_ret ∝ Θ(t − t' − |x − x'|/c_void). Choose units so that
+  K_ret ∝ Θ(t - t' - |x - x'|/c_void). Choose units so that
   • `s_loc` is an entropy‑production rate density `[{\rm GeV}^4]` with `\int d^3x\, s_{\rm loc} = \dot S_{\rm hor}\,[{\rm GeV}]`, and
   • `K_{\rm ret}` has units `[{\rm GeV}^3]`,
   hence `\int d^3x'\,dt'\, K_{\rm ret}\, s_{\rm loc}` has units `{\rm GeV}^3`, matching `J_\phi` in the φ‑equation.
@@ -10279,14 +10279,14 @@ This aligns the FUM continuum with explicit causality and paves the way to conne
 
 Augment the action with GR and a horizon functional:
 
-  S_eff = ∫ d^4x √(−g) [ (M_Pl^2/2) R + (1/2)(∂φ)^2 − ( V(φ) + (\lambda/4)\,\phi^4 ) ] + S_hor[S_hor] + S_DM[χ; K_s,e] + …
+  S_eff = ∫ d^4x √(-g) [ (M_Pl^2/2) R + (1/2)(∂φ)^2 - ( V(φ) + (\lambda/4)\,\phi^4 ) ] + S_hor[S_hor] + S_DM[χ; K_s,e] + …
   Here `\lambda > 0` ensures boundedness; phenomenological fits keep `\lambda` small.
 
 Variation yields ∇_μ (T_φ^{μν} + T_hor^{μν} + T_DM^{μν} + …) = 0.
 
 Introduce a transfer current as in Voxtrium:
 
-  ∇_μ T_hor^{μν} = − J^ν,   ∇_μ (T_φ^{μν} + T_DM^{μν} + …) = + J^ν,
+  ∇_μ T_hor^{μν} = - J^ν,   ∇_μ (T_φ^{μν} + T_DM^{μν} + …) = + J^ν,
 
 and in FRW take J^ν = (J^0, 0,0,0) with J^0 fixed from the horizon sector (see [voxtrium_Overview.md](voxtrium_Overview.md:223-229)).
 
@@ -10347,7 +10347,7 @@ This identifies a consistent translation between field excitations and Voxtrium�
 - Use S_eff in Section 4; define S_hor so that in the homogeneous limit it reproduces ρ_Λ(t) = ρ_Λ0 + (1/V_c) ∫ α_h dS_hor ([voxtrium_Overview.md](voxtrium_Overview.md:262-264)).
 
 (D) Observational constraints
-- Enforce w_eff ≈ −1 via ε_DE ≤ δ_w and f_inj ≪ 1 using the partition map; adopt the abundance and co‑evolution tests ([voxtrium_Overview.md](voxtrium_Overview.md:241-251), [voxtrium_Overview.md](voxtrium_Overview.md:282-287), [voxtrium_Overview.md](voxtrium_Overview.md:288-289)).
+- Enforce w_eff ≈ -1 via ε_DE ≤ δ_w and f_inj ≪ 1 using the partition map; adopt the abundance and co‑evolution tests ([voxtrium_Overview.md](voxtrium_Overview.md:241-251), [voxtrium_Overview.md](voxtrium_Overview.md:282-287), [voxtrium_Overview.md](voxtrium_Overview.md:288-289)).
 
 (E) Conservation/invariants
 - Retain the exact on‑site invariant Q_FUM for diagnostics ([derivation/symmetry_analysis.md](derivation/symmetry_analysis.md:141-148)); for the full system rely on covariant conservation with J^ν. Explore hidden symmetries/Lyapunov structure for the discrete network to derive a true flux‑form conservation law ([derivation/discrete_conservation.md](derivation/discrete_conservation.md:165-179)).
@@ -10357,10 +10357,10 @@ This identifies a consistent translation between field excitations and Voxtrium�
 8. Minimal Worked Example (symbolic)
 
 Suppose α = 0.25, β = 0.10 (dimensionless, as in our derivations), and choose m_eff = 1 GeV for illustration. Then
-- τ = √(α − β)/m_eff = √0.15 GeV^−1 ≈ 0.3873 GeV^−1.
+- τ = √(α - β)/m_eff = √0.15 GeV^-1 ≈ 0.3873 GeV^-1.
 - Pick φ_0 to set g_3. If we want g_3 = 0.1 GeV, then φ_0 = α/(g_3 τ^2) = 0.25/(0.1 × 0.15) GeV ≈ 16.67 GeV.
-- v_phys = φ_0 (1 − β/α) = 16.67 × 0.6 ≈ 10.00 GeV.
-- R_* ≃ k_R / m_eff; with k_R = 1 this gives R_* ≈ 1 GeV^−1 ≈ 1.97 × 10^−14 cm (compare [voxtrium_Overview.md](voxtrium_Overview.md:201-205)).
+- v_phys = φ_0 (1 - β/α) = 16.67 × 0.6 ≈ 10.00 GeV.
+- R_* ≃ k_R / m_eff; with k_R = 1 this gives R_* ≈ 1 GeV^-1 ≈ 1.97 × 10^-14 cm (compare [voxtrium_Overview.md](voxtrium_Overview.md:201-205)).
 
 These values are placeholders for calibration; they demonstrate the algebraic consistency and how to propagate units.
 
@@ -10518,7 +10518,7 @@ Note on edge‑counting conventions: if instead you count undirected edges once 
 **Conclusion:** We have successfully derived the full kinetic term from the discrete Hamiltonian. The derivation confirms that the kinetic term coefficient, `Z(\phi)`, is a constant and not a function of the field `\phi`. This is a successful and crucial step in formalizing the FUM.
 
 **Note.** There is no microscopic constraint tying `J` to `a`. The continuum limit yields
-`𝓛_K = ½(∂_t φ)^2 − J a^2 (∇φ)^2` and the wave speed `c^2 = 2 J a^2` (or `c^2 = κ a^2` with `κ = 2J`). One may set `c = 1` by a benign rescaling of time/length units (choose `Δt` and `a`, or equivalently `τ` and `a` in the physical map); this is a units choice, not a constraint.]]></content>
+`𝓛_K = ½(∂_t φ)^2 - J a^2 (∇φ)^2` and the wave speed `c^2 = 2 J a^2` (or `c^2 = κ a^2` with `κ = 2J`). One may set `c = 1` by a benign rescaling of time/length units (choose `Δt` and `a`, or equivalently `τ` and `a` in the physical map); this is a units choice, not a constraint.]]></content>
     </file>
     <file>
       <path>fluid_dynamics/fluids_limit.md</path>
@@ -10669,41 +10669,41 @@ Assumptions/Parameters
 
 Discrete law (nearest‑neighbor, logistic on‑site)
 - Site ODE:
-  dW_i/dt = (α − β) W_i − α W_i^2 + J Σ_{j∈nbr(i)} (W_j − W_i)
+  dW_i/dt = (α - β) W_i - α W_i^2 + J Σ_{j∈nbr(i)} (W_j - W_i)
 - Notes:
   - The exchange term preserves the lattice mean; signs ensure diffusion‑like smoothing.
-  - For small amplitude about W ≈ 0, the kinetics are linearized by dropping −α W_i^2.
+  - For small amplitude about W ≈ 0, the kinetics are linearized by dropping -α W_i^2.
 
 Continuum limit (stepwise)
 1) Coarse‑grain W_i → φ(x,t) with x on a regular lattice, spacing a.
 2) Write the discrete Laplacian in central‑difference form and expand:
-   Σ_{j∈nbr(i)} (W_j − W_i) = a² ∇²φ + O(a⁴ ∇⁴φ)
+   Σ_{j∈nbr(i)} (W_j - W_i) = a² ∇²φ + O(a⁴ ∇⁴φ)
 3) Identify the continuum parameters:
    - Diffusion: D = J a² (site Laplacian) or D = (J/z) a² (neighbor‑average form)
-   - Growth and saturation: r = α − β, u = α
+   - Growth and saturation: r = α - β, u = α
 4) Leading‑order RD PDE (canonical):
-   ∂t φ = D ∇²φ + r φ − u φ²
+   ∂t φ = D ∇²φ + r φ - u φ²
 
 PDE/Action/Potential branches
 - RD branch [PROVEN, canonical]:
-  - ∂t φ = D ∇²φ + r φ − u φ² with D = J a² (or (J/z) a²), r = α − β, u = α.
+  - ∂t φ = D ∇²φ + r φ - u φ² with D = J a² (or (J/z) a²), r = α - β, u = α.
   - Closest discrete check: linear growth/dispersion and Fisher-KPP pulled‑front speed.
 - EFT/KG branch [PLAUSIBLE, quarantined]:
   - Second‑order time with action‑derived kinetic normalization:
-    ∂t² φ + γ ∂t φ − c² ∇² φ + V′(φ) = 0, with c² = 2 J a² (per‑site) or c² = κ a², κ=2J (per‑edge).
+    ∂t² φ + γ ∂t φ - c² ∇² φ + V′(φ) = 0, with c² = 2 J a² (per‑site) or c² = κ a², κ=2J (per‑edge).
   - Mass parameter follows m_eff² = V″(v) at the vacuum v; not used in RD validations.
   - See [kinetic_term_derivation.md](Prometheus_FUVDM/derivation/effective_field_theory/kinetic_term_derivation.md:1) and [effective_field_theory_approach.md](Prometheus_FUVDM/derivation/effective_field_theory/effective_field_theory_approach.md:1).
 
 Fixed points & stability (RD)
 - Homogeneous fixed points: φ=0 and φ* = r/u (for r>0, φ*>0).
 - Linear stability:
-  - Around φ=0: σ = r − D k² (unstable for small k if r>0).
-  - Around φ*: σ = −r − D k² < 0 for r>0 (stable).
+  - Around φ=0: σ = r - D k² (unstable for small k if r>0).
+  - Around φ*: σ = -r - D k² < 0 for r>0 (stable).
 
 Dispersion relations
-- Continuum RD (Fourier mode k): σ(k) = r − D k². [PROVEN]
+- Continuum RD (Fourier mode k): σ(k) = r - D k². [PROVEN]
 - Discrete lattice (mode index m on N sites, periodic):
-  σ_d(m) = r − (4D/dx²) sin²(π m/N) with dx = L/N. Small‑k expansion recovers σ ≈ r − D k². [PROVEN]
+  σ_d(m) = r - (4D/dx²) sin²(π m/N) with dx = L/N. Small‑k expansion recovers σ ≈ r - D k². [PROVEN]
 - See validation script: [rd_dispersion_experiment.py](Prometheus_FUVDM/derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py:1) and doc [rd_dispersion_validation.md](Prometheus_FUVDM/derivation/reaction_diffusion/rd_dispersion_validation.md:1).
 
 Front speed (Fisher-KPP)
@@ -10718,7 +10718,7 @@ Conservation or Lyapunov notes
 Numerical plan + acceptance (recap)
 - Grids: N ∈ {1024, 2048}, domain length L≈200; CFL≈0.2.
 - Acceptance gates:
-  - Front speed: |c_meas − c_th| / c_th ≤ 6% and R² ≥ 0.9999 on the tracked front interval.
+  - Front speed: |c_meas - c_th| / c_th ≤ 6% and R² ≥ 0.9999 on the tracked front interval.
   - Dispersion: median relative error ≤ 2×10⁻³ and R²_array ≥ 0.999. 
 - Outputs auto‑routed to derivation/code/outputs/{figures,logs}/reaction_diffusion with timestamped names.
 - See logs referenced in [LOG_20250824.md](Prometheus_FUVDM/derivation/DAILY_LOGS/LOG_20250824.md:1).
@@ -10756,7 +10756,7 @@ Provenance
 ### 1. Objective
 
 The primary goal of this derivation is to derive the reaction-diffusion PDE mapping
-∂t φ = D ∇² φ + r φ − u φ²
+∂t φ = D ∇² φ + r φ - u φ²
 from the discrete update. A second‑order Lorentzian EFT derivation (Klein-Gordon-like) is maintained as future work in [derivation/effective_field_theory_approach.md](effective_field_theory_approach.md:1). This removes internal contradictions while preserving historical EFT references below as scoped.
 
 ---
@@ -11009,7 +11009,7 @@ Since `F(W+c) \neq F(W)`, the FUM dynamical law is **not** symmetric under a con
 **Interpretation:**
 This is expected: the dynamics depend on the absolute value of `W`. Context separation:
 - RD (canonical): for r>0, `W=0` is dynamically unstable and the stable homogeneous fixed point is `W* = r/u`.
-- EFT (future-work context): the vacuum is `v = 1 − β/α` (e.g., 0.6 for α=0.25, β=0.10).
+- EFT (future-work context): the vacuum is `v = 1 - β/α` (e.g., 0.6 for α=0.25, β=0.10).
 Avoid mixing RD fixed points with EFT vacua.
 
 ---
@@ -11104,7 +11104,7 @@ This is a profound result. We have found the hidden conservation law that govern
     </file>
     <file>
       <path>foundations/void_dynamics_theory.md</path>
-      <content><![CDATA[Note (2025‑08‑20): Canonical model set to reaction-diffusion (RD); the second‑order EFT is quarantined to EFT docs. Mass numerics are parameter‑dependent (`m_eff=√(α−β)` in EFT). The “promote to second order” gap is closed via a discrete action derivation with wave speed `c^2=2 J a^2` (per‑site convention), see [derivation/kinetic_term_derivation.md](kinetic_term_derivation.md:78).
+      <content><![CDATA[Note (2025‑08‑20): Canonical model set to reaction-diffusion (RD); the second‑order EFT is quarantined to EFT docs. Mass numerics are parameter‑dependent (`m_eff=√(α-β)` in EFT). The “promote to second order” gap is closed via a discrete action derivation with wave speed `c^2=2 J a^2` (per‑site convention), see [derivation/kinetic_term_derivation.md](kinetic_term_derivation.md:78).
 
 This document presents a comparative analysis with Bordag (Universe 2024, “Tachyon Condensation in a Chromomagnetic Center Vortex Background”) and enumerates required corrections.
 
@@ -11797,22 +11797,22 @@ Purpose
 Starting Assumptions
 - Memory variable M_t ∈ [0, 1].
 - Steering uses a linear, leaky first-order update with saturation (assumed form):
-  M_{t+1} = (1 − λ − g) M_t + g s_t + ξ_t, then clamp M_{t+1} to [0, 1].
+  M_{t+1} = (1 - λ - g) M_t + g s_t + ξ_t, then clamp M_{t+1} to [0, 1].
   - Parameters: g > 0 (gain), λ > 0 (leak), ξ_t is optional zero-mean noise (default 0).
-  - Stability (unclamped, deterministic): pole p = 1 − λ − g with 0 ≤ p < 1 implies stable monotone approach.
+  - Stability (unclamped, deterministic): pole p = 1 - λ - g with 0 ≤ p < 1 implies stable monotone approach.
   - Fixed point for constant s: M* = g s / (g + λ).
 - Canonical “void equilibrium” test: with s ≡ 1 and g = 1.5 λ, the fixed point is M* = 1.5/(1+1.5) = 0.6, matching the observed W ≈ 0.6 note.
 - If the actual steering law differs (nonlinear f(s, M), adaptive gains, or additional couplings), we will update p, M*, and acceptance thresholds accordingly. Provide file path + line numbers for the exact rule to refine this doc.
 
 Discrete Formulation
 - Update (dt = 1):
-  M_{t+1} − M_t = −(λ + g) M_t + g s_t + ξ_t; then clip to [0, 1].
-- Step response for s = s1 (constant for t ≥ t_step): M_t = M* + (M_0 − M*) p^t with p = 1 − λ − g.
+  M_{t+1} - M_t = -(λ + g) M_t + g s_t + ξ_t; then clip to [0, 1].
+- Step response for s = s1 (constant for t ≥ t_step): M_t = M* + (M_0 - M*) p^t with p = 1 - λ - g.
 
 Continuum Limit (for small λ + g)
 - Let dt ≪ 1 and identify κ = λ + g, γ = g. Then
-  dM/dt = −κ M + γ s(t) + η(t), 0 ≤ M ≤ 1 with reflective saturation at bounds.
-- Time constant τ ≈ 1/κ. In discrete time, τ_d = −1 / ln p; for small κ, τ_d ≈ 1/κ.
+  dM/dt = -κ M + γ s(t) + η(t), 0 ≤ M ≤ 1 with reflective saturation at bounds.
+- Time constant τ ≈ 1/κ. In discrete time, τ_d = -1 / ln p; for small κ, τ_d ≈ 1/κ.
 
 Fixed Points & Stability
 - Fixed point M* = (g/(g+λ)) s for constant s (unclamped, noise-free).
@@ -11820,8 +11820,8 @@ Fixed Points & Stability
 - With saturation, M remains bounded in [0, 1].
 
 Lyapunov Structure (noise-free, constant s)
-- Define F_t = 0.5 (M_t − M*)^2. Then M_{t+1} − M* = p (M_t − M*). Hence
-  F_{t+1} − F_t = 0.5 (p^2 − 1) (M_t − M*)^2 ≤ 0 for |p| ≤ 1 with strict decrease for |p| < 1 unless M_t = M*.
+- Define F_t = 0.5 (M_t - M*)^2. Then M_{t+1} - M* = p (M_t - M*). Hence
+  F_{t+1} - F_t = 0.5 (p^2 - 1) (M_t - M*)^2 ≤ 0 for |p| ≤ 1 with strict decrease for |p| < 1 unless M_t = M*.
 
 Acceptance Criteria
 1) Boundedness
@@ -11829,20 +11829,20 @@ Acceptance Criteria
 
 2) Linear Response & Fixed Point (noise-free, avoid clamp activation)
    - Fit pole from step response:
-     - |p_fit − p_pred| ≤ 0.02 (absolute).
-     - |M_final − M*| ≤ 1e-2 (mean over last 10% of samples).
+     - |p_fit - p_pred| ≤ 0.02 (absolute).
+     - |M_final - M*| ≤ 1e-2 (mean over last 10% of samples).
      - Overshoot ≤ 0.02 (fraction of step amplitude).
 
 3) Canonical Void Target (W ≈ 0.6)
    - With s ≡ 1 and g = 1.5 λ:
-     - |M_final − 0.6| ≤ 0.02 across seeds ∈ {0, 1, 2}.
+     - |M_final - 0.6| ≤ 0.02 across seeds ∈ {0, 1, 2}.
 
 4) Noise Suppression (SNR Improvement)
    - Input s(t) = s_sig(t) + n(t), where s_sig is a low-frequency sinusoid and n is white noise (σ = 0.05 by default), values clipped to [0, 1].
-   - SNR_out − SNR_in ≥ 3 dB for default parameters.
+   - SNR_out - SNR_in ≥ 3 dB for default parameters.
 
 5) Lyapunov Monotonicity (Noise-free Constant s)
-   - Fraction of positive ΔF_t = F_{t+1} − F_t ≤ 1% (numerical jitter); median ΔF_t < 0.
+   - Fraction of positive ΔF_t = F_{t+1} - F_t ≤ 1% (numerical jitter); median ΔF_t < 0.
 
 6) Reproducibility
    - Same seed ⇒ identical M_t sequence (max_abs_diff ≤ 1e-12).
@@ -11915,12 +11915,12 @@ Discrete Formulation (graph random walk)
 - Transition probability from node i at layer l-1 to j at layer l:
   p(i→j|l) = S_{i→j}^{(l)} / Σ_k S_{i→k}^{(l)} with ε-jitter for exploration.
 - After K hops along layers, each walker emits petitions at its current edge/node:
-  sat: σ_sat = 1{|a_j^{(l)}| ≥ a_sat}, grad: g_j^{(l)} = ||∂L/∂z_j^{(l)}|| (if L defined), shear: max{|a_j^{(l)} − a_k^{(l)}|: k∈N(j)}.
+  sat: σ_sat = 1{|a_j^{(l)}| ≥ a_sat}, grad: g_j^{(l)} = ||∂L/∂z_j^{(l)}|| (if L defined), shear: max{|a_j^{(l)} - a_k^{(l)}|: k∈N(j)}.
 - Petitions are tuples (kind, value, node=(l,j), t). A Bus collects them; a Reducer computes robust quantiles and counts per kind.
 
 Continuum Limit (graph Fokker-Planck heuristic)
 - Let ρ_l(j,t) be walker density at neuron j, layer l.
-- Assume slow variation in “potential” U_l(j) = −log S̄_l(j), where S̄_l(j) = Σ_i S_{i→j}^{(l)}.
+- Assume slow variation in “potential” U_l(j) = -log S̄_l(j), where S̄_l(j) = Σ_i S_{i→j}^{(l)}.
 - The discrete Markov chain induces, in a continuum limit over wide layers, a drift-diffusion:
   ∂_t ρ_l ≈ ∇_j · (D_l ∇_j ρ_l + ρ_l ∇_j U_l), with reflecting boundary at layer edges and forward drift across layers.
 - D_l encodes exploration jitter; ∇_j is graph gradient (e.g., on a kNN graph in activation space).
@@ -12393,9 +12393,9 @@ Acceptance gates.
 - Single precision: \(\Delta Q \le 10^{-5}\).
 
 Reference pseudocode.
-1) define F(W) = (α−β)W − αW²
+1) define F(W) = (α-β)W - αW²
 2) advance W with RK4 over dt, N steps
-3) at each step compute Q = t − (1/(α−β))·log(|W/((α−β)−αW)|)
+3) at each step compute Q = t - (1/(α-β))·log(|W/((α-β)-αW)|)
 4) track max absolute drift relative to Q at step 0
 
 5. Why a naïve “kinetic + potential” energy is not conserved
@@ -12435,7 +12435,7 @@ Dimensional analysis: with \(t\) carrying time units and \(W\) dimensionless, \(
 
 Purpose
 - Empirically validate the linear growth/decay rates of reaction-diffusion (Fisher-KPP linearized about u≈0):
-  u_t = D u_xx + r u, with σ(k) = r − D k² (continuum) and σ_d(m) = r − (4D/dx²) sin²(π m/N) (discrete).
+  u_t = D u_xx + r u, with σ(k) = r - D k² (continuum) and σ_d(m) = r - (4D/dx²) sin²(π m/N) (discrete).
 
 Status
 - Solved: measured per-mode growth rates σ_meas match the discrete prediction within tight tolerance on default and refined grids.
@@ -12452,8 +12452,8 @@ Method
 - Start from small iid Gaussian amplitude amp0 ≪ 1 to stay in the linear regime.
 - Record snapshots; compute rFFT magnitudes |Û_m(t)|; fit log|Û_m(t)| vs t over a mid-early fraction window to estimate σ_meas(m).
 - Compare σ_meas(m) to:
-  - Discrete theory (primary): σ_d(m) = r − (4D/dx²) sin²(π m/N)
-  - Continuum reference: σ(k) = r − D k², with k = 2π m / L
+  - Discrete theory (primary): σ_d(m) = r - (4D/dx²) sin²(π m/N)
+  - Continuum reference: σ(k) = r - D k², with k = 2π m / L
 
 Output routing and naming
 - Defaults:
@@ -12480,8 +12480,8 @@ Acceptance criteria
   - R²_array(measured vs σ_d) ≥ 0.98
 
 Representative results (logged)
-- Default (N=1024): med_rel_err ≈ 1.45e−3, R²_array ≈ 0.99995 [PASS]
-- Refinement (N=2048, m_max=128): med_rel_err ≈ 1.30e−3, R²_array ≈ 0.9928 [PASS]
+- Default (N=1024): med_rel_err ≈ 1.45e-3, R²_array ≈ 0.99995 [PASS]
+- Refinement (N=2048, m_max=128): med_rel_err ≈ 1.30e-3, R²_array ≈ 0.9928 [PASS]
 
 Troubleshooting
 - Low R² for some modes:
@@ -12513,9 +12513,9 @@ Provenance and tagging
 
 Purpose
 - Empirically validate the Fisher-KPP pulled-front speed in 1D reaction-diffusion:
-  u_t = D u_xx + r u (1 − u), with theoretical c_th = 2√(D r).
+  u_t = D u_xx + r u (1 - u), with theoretical c_th = 2√(D r).
 
-  Note: With the canonical mapping r = α − β and u = α, the homogeneous fixed point is φ* = r/u = 1 − β/α (e.g., α=0.25, β=0.10 ⇒ φ* = 0.6).
+  Note: With the canonical mapping r = α - β and u = α, the homogeneous fixed point is φ* = r/u = 1 - β/α (e.g., α=0.25, β=0.10 ⇒ φ* = 0.6).
 
 Status
 - Solved: measured c_meas agrees with c_th within 5% after removing uniform pre-heating and tracking only real level crossings.
@@ -12530,7 +12530,7 @@ References (implementation)
   - [main()](code/physics/rd_front_speed_experiment.py:341)
 
 What was wrong initially (root cause)
-- Uniform small noise added everywhere at t=0 caused logistic “pre-heating” in the far field; points far ahead of the front crossed the tracking level (e.g., 0.5) solely due to local growth at time t ≈ r^−1 ln((1−u0)/u0), biasing the measured slope down.
+- Uniform small noise added everywhere at t=0 caused logistic “pre-heating” in the far field; points far ahead of the front crossed the tracking level (e.g., 0.5) solely due to local growth at time t ≈ r^-1 ln((1-u0)/u0), biasing the measured slope down.
 - Additionally, tracking after the real level-crossing vanished (domain fully above level) contaminated late-time fits.
 
 Fixes implemented
@@ -12568,7 +12568,7 @@ Recommended defaults
 - Grid/time step: increase N or T as needed for clean linear regime; CFL-stable explicit Euler is used.
 
 Acceptance criteria
-- Front-speed agreement: rel_err = |c_meas − c_th| / |c_th| ≤ 0.05
+- Front-speed agreement: rel_err = |c_meas - c_th| / |c_th| ≤ 0.05
 - Linear fit quality: R² ≥ 0.98
 - Cross-check: gradient-tracker speed within ≈5% of c_th and level-tracker speed.
 
@@ -12605,7 +12605,7 @@ Reproduction checklist
 
 Purpose
 - Establish reproducible numeric checks for the RD canonical model:
-  u_t = D u_xx + r u (1 − u) with front speed c_th = 2√(D r) and linear dispersion σ(k) = r − D k².
+  u_t = D u_xx + r u (1 - u) with front speed c_th = 2√(D r) and linear dispersion σ(k) = r - D k².
 
 Scope
 - Tests covered:
@@ -12625,17 +12625,17 @@ Output locations
 - Overridable via CLI: --outdir, --figure, --log
 
 Front-speed test
-- PDE: ∂t u = D ∂xx u + r u (1 − u)
+- PDE: ∂t u = D ∂xx u + r u (1 - u)
 - Observable: front position x_f(t) at level u = level (default 0.1); gradient-peak x_g(t) for cross-check.
 - Method:
   - Neumann BCs; smooth step IC with far-field gating (u=0 ahead of the interface), optional left-gated noise.
   - Track x_f only while a true crossing exists; robust fit of x_f(t) on a late-time fraction window.
-- Defaults: N=1024, L=200, D=1.0, r=0.25, T=80, cfl=0.2, seed=42, x0=−60, level=0.1, fit 0.6-0.9.
+- Defaults: N=1024, L=200, D=1.0, r=0.25, T=80, cfl=0.2, seed=42, x0=-60, level=0.1, fit 0.6-0.9.
 - Theory: c_th = 2√(D r).
 - Acceptance:
-  - rel_err = |c_meas − c_th| / |c_th| ≤ 0.05
+  - rel_err = |c_meas - c_th| / |c_th| ≤ 0.05
   - R² ≥ 0.98
-  - Cross-check: |c_meas_grad − c_th| / |c_th| ≲ 0.05 when available.
+  - Cross-check: |c_meas_grad - c_th| / |c_th| ≲ 0.05 when available.
 - CLI (PowerShell):
   - & .\venv\Scripts\Activate.ps1
   - python code/physics/rd_front_speed_experiment.py --N 1024 --L 200 --D 1.0 --r 0.25 --T 80 --cfl 0.2 --seed 42 --x0 -60 --level 0.1 --fit_start 0.6 --fit_end 0.9
@@ -12646,8 +12646,8 @@ Dispersion test
 - Linearized PDE: u_t = D u_xx + r u (periodic BCs)
 - Observable: per-mode growth rate σ_meas(m) via linear fit of log|Û_m(t)|.
 - Theory:
-  - Discrete: σ_d(m) = r − (4 D / dx²) sin²(π m / N)
-  - Continuum reference: σ_c(k) = r − D k², k = 2π m / L
+  - Discrete: σ_d(m) = r - (4 D / dx²) sin²(π m / N)
+  - Continuum reference: σ_c(k) = r - D k², k = 2π m / L
 - Method:
   - Start from small random noise (amp0 ≪ 1), explicit Euler with diffusion CFL.
   - Record snapshots; fit on a fraction window away from startup transients.
@@ -13240,7 +13240,7 @@ Below I (a) summarize what’s already *proven* in your codebase, (b) give ready
 
 ## A. What is **already proven** in your repo (with your data)
 
-1. **RD linear dispersion:** your runner shows σ(k)=r−Dk² (and its discrete counterpart) with **median rel. error ≈ 0.14%** and **R² ≈ 0.99995**, acceptance passed. That’s exactly what we want for the linear regime.&#x20;
+1. **RD linear dispersion:** your runner shows σ(k)=r-Dk² (and its discrete counterpart) with **median rel. error ≈ 0.14%** and **R² ≈ 0.99995**, acceptance passed. That’s exactly what we want for the linear regime.&#x20;
 
 2. **Fisher-KPP front speed:** your “fum\_rt” mirror runner measures $c\approx 0.953$ for $D=1,r=0.25$ vs theory $c_{th}=1$, **rel. error ≈ 4.7%**, **R² ≈ 0.99996**, acceptance passed—this reconciles earlier outliers you saw. (Note: the earlier failing payload at level=0.5/fit window was sensitive to windowing; the new runner uses a more robust late‑time window and optional gradient speed that stabilizes estimates.)&#x20;
 

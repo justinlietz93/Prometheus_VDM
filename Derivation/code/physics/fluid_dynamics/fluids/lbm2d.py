@@ -193,7 +193,7 @@ class LBM2D:
         rho = (f0 + f1 + f3 + 2.0*(f2 + f5 + f6))  # uy=0 here
         # Reconstruct unknowns pointing into fluid from the top wall
         self.f[4, y, x] = f2
-        self.f[7, y, x] = f5 - 0.5*(f1 - f3) - (1.0/6.0) * rho * U  # Zou/He top lid: f7 gets −ρU/6
+        self.f[7, y, x] = f5 - 0.5*(f1 - f3) - (1.0/6.0) * rho * U  # Zou/He top lid: f7 gets -ρU/6
         self.f[8, y, x] = f6 + 0.5*(f1 - f3) + (1.0/6.0) * rho * U  # Zou/He top lid: f8 gets +ρU/6
 
     def moments(self):

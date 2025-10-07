@@ -94,7 +94,7 @@ Unexpected outputs, zero‑shot. Grammar is rough because the Universal Transduc
 
 ---
 
- "(u{x} − v)/(1 − u{x}v/c) = u_ξ" → Writes the velocity‑addition form; physics mapped onto narrative tension.
+ "(u{x} - v)/(1 - u{x}v/c) = u_ξ" → Writes the velocity‑addition form; physics mapped onto narrative tension.
 Method snapshot.
 Neurons: 1,000. Inputs: two books at inference time. Training: none.
 Behavior: Spontaneous meta‑reasoning markers emerged as above; no prompt scaffolds, just given a human readable graduate level exam on causality. Evidence set archived alongside RD gates.

@@ -13,6 +13,7 @@ if str(CODE_ROOT) not in sys.path:
     sys.path.insert(0, str(CODE_ROOT))
 
 from common.io_paths import figure_path, log_path, write_log
+from common.approval import check_tag_approval
 from physics.metriplectic.kg_ops import kg_verlet_step
 
 
@@ -61,7 +62,7 @@ def _radius_at_threshold(phi: np.ndarray, x: np.ndarray, x0: float, thresh: floa
     return float(R)
 
 
-def run_light_cone(spec: ConeSpec) -> Dict[str, Any]:
+def run_light_cone(spec: ConeSpec, approved: bool = False, engineering_only: bool = False, proposal: str | None = None) -> Dict[str, Any]:
     x, dx = _grid(spec)
     x0 = 0.5 * spec.L
     phi0 = _initial_gaussian(spec, x)
@@ -90,7 +91,8 @@ def run_light_cone(spec: ConeSpec) -> Dict[str, Any]:
     # Artifacts
     import matplotlib.pyplot as plt
     # spacetime image (optional but helpful): show |phi| with light-cone overlay
-    figp = figure_path("metriplectic", f"kg_light_cone__{spec.tag}", failed=not passed)
+    quarantine = engineering_only or (not approved)
+    figp = figure_path("metriplectic", f"kg_light_cone__{spec.tag}", failed=(not passed) or quarantine)
     plt.figure(figsize=(6.4, 4.4))
     # downsample for visualization
     # create a small spacetime image by sampling every N//256
@@ -118,7 +120,7 @@ def run_light_cone(spec: ConeSpec) -> Dict[str, Any]:
     plt.tight_layout(); plt.savefig(figp, dpi=140); plt.close()
 
     # CSV
-    csvp = log_path("metriplectic", f"kg_light_cone__{spec.tag}", failed=not passed, type="csv")
+    csvp = log_path("metriplectic", f"kg_light_cone__{spec.tag}", failed=(not passed) or quarantine, type="csv")
     with csvp.open("w", encoding="utf-8") as fcsv:
         fcsv.write("t,R\n")
         for ti, Ri in zip(t, R):
@@ -132,10 +134,11 @@ def run_light_cone(spec: ConeSpec) -> Dict[str, Any]:
             "thresh_frac": spec.thresh_frac
         },
         "fit": {"v": float(v), "b": float(b), "R2": float(R2)},
-    "gate": {"passed": passed, "v_max": spec.c * (1.0 + 0.02)},
+        "gate": {"passed": passed, "v_max": spec.c * (1.0 + 0.02)},
+        "policy": {"approved": bool(approved), "engineering_only": bool(engineering_only), "quarantined": bool(quarantine), "tag": spec.tag, "proposal": proposal},
         "figure": str(figp), "csv": str(csvp)
     }
-    write_log(log_path("metriplectic", f"kg_light_cone__{spec.tag}", failed=not passed), logj)
+    write_log(log_path("metriplectic", f"kg_light_cone__{spec.tag}", failed=(not passed) or quarantine), logj)
     return logj
 
 
@@ -152,9 +155,12 @@ def main():
     p.add_argument("--steps", type=int, default=4000)
     p.add_argument("--thresh_frac", type=float, default=1e-6)
     p.add_argument("--tag", type=str, default="KG-cone-v1")
+    p.add_argument("--allow-unapproved", action="store_true", help="Allow running with an unapproved tag (engineering-only; artifacts quarantined)")
     args = p.parse_args()
+    # Tag approval (shared utility)
+    approved, engineering_only, proposal = check_tag_approval("metriplectic", args.tag, args.allow_unapproved, CODE_ROOT)
     spec = ConeSpec(N=args.N, L=args.L, c=args.c, m=args.m, A=args.A, sigma=args.sigma, dt=args.dt, steps=args.steps, thresh_frac=args.thresh_frac, tag=args.tag)
-    out = run_light_cone(spec)
+    out = run_light_cone(spec, approved=approved, engineering_only=engineering_only, proposal=proposal)
     print(json.dumps(out, indent=2))
 
 

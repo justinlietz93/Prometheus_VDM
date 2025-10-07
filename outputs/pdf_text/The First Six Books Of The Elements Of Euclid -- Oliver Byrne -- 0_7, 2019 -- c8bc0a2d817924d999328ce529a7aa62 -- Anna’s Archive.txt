@@ -151,7 +151,7 @@ or
 .
 Eithertheredorblueangleislessthattheyellowangle.
 5.
-−
+-
 =
 .
 Inotherterms,theyellowanglemadelessbetheblue
@@ -663,7 +663,7 @@ ten.
 +isreadplus(more),thesignofaddition;wheninter-
 posed betweentwo ormore magnitudes,signifiestheir
 sum.
-−isreadminus(less),signifies subtraction;and when
+-isreadminus(less),signifies subtraction;and when
 placed betweentwo quantities denotesthat thelatter is
 takenfromtheformer.
 ×thissignexpressestheproductoftwoormorenum-
@@ -1855,11 +1855,11 @@ But
  =
  (pr.1.8)
 ∴
- −
+ -
  =
  ,
 and
- −
+ -
  =
  ;
 ∴
@@ -4509,12 +4509,12 @@ and
 Then
 ×
 =
-2−
+2-
 2(pr.2.6),
 or
 ×
 =
-2−
+2-
 2.
 ∴
 ×
@@ -4558,11 +4558,11 @@ Let
 draw
 fromthecentretothepointofcontact;
 2=
-2−
+2-
 2(pr.1.47),
 or
 2=
-2−
+2-
 2,
 ∴
 2=
@@ -4577,12 +4577,12 @@ and
 Then
  ×
 =
-2−
+2-
 2(pr.2.6),
 thatis,
  ×
 =
-2−
+2-
 2,
 ∴
  ×
@@ -5780,13 +5780,13 @@ and
 =M′
 ,
 ∴
-−
+-
 =M′
-−M′
+-M′
 ,
 ∴
  =M′(
-−
+-
 ),
 and∴
  =M′
@@ -5802,24 +5802,24 @@ Let
 ;and
  =M′
 then
- −m′
+ -m′
 =M′
-−m′
-= (M′−m′)
+-m′
+= (M′-m′)
 and
- −m′
+ -m′
 =M′
-−m′
-= (M′−m′)
+-m′
+= (M′-m′)
 .
-Hence,(M′ −m′)
-and(M′ −m′)
+Hence,(M′ -m′)
+and(M′ -m′)
 areequimultiplesof
 and
 ,andequal
 to
 and
-,whenM′ −m′=1.
+,whenM′ -m′=1.
 ∴Iftwomagnitudesbeequ imultiples,&c.
 BOOKVPROP.A.THEOR. 173
 ftheﬁrstof thefourmagnitudeshas the same
@@ -6266,15 +6266,15 @@ is>m′
 asm′
 isthefirstmultiplewhichfirst
 becomes>M′
-,than(m′ −1)
+,than(m′ -1)
 or
 m′
-−
+-
 is≯M′
 ,and
 ≯M′
 ∴m′
-−
+-
 +
 mustbe<M′
 +M′
@@ -6321,14 +6321,14 @@ becomesg reaterthanM′
 =M′
 .
 ∴m′
-−
+-
 is≯M′
 ,
 and
 is≯M′
 ;consequen tly
 m′
-−
+-
 +
 is<M′
 +M′
@@ -6899,7 +6899,7 @@ secondistothesecond,astheexcessofthethirdabovethe
 fourth,istothefourth.
 LetA:B::C:D;
 by“dividendo”itisinferred
-A−B:B::C−D:D.
+A-B:B::C-D:D.
 Accordingtotheabove,Aissupposed tobegreater
 thanB,andCgreaterthanD;ifthisbenotthecase,but
 to haveBgreater thanA,andDgreater thanC,Band
@@ -6907,7 +6907,7 @@ Dcanbemade tostandasantecedents,andAandCas
 consequents,by“invertion”
 B:A::D:C;
 then,by“dividendo,”weinfer
-B−A:A::D−C:C
+B-A:A::D-C:C
 198 BOOKVPROP.XVII.THEOR.
 fmagnitudes, takenjointly,be proportionals,
 theyshallalso be proportionals whentaken

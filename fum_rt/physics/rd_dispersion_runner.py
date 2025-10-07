@@ -4,7 +4,7 @@ RD dispersion validation runner (linear regime) for fum_rt.
 
 CHANGE REASON:
 - This file mirrors the validated physics from derivation scripts to the runtime stack.
-- We have PROVEN the RD linear dispersion σ(k) = r − D k^2 via reproducible scripts and derivations:
+- We have PROVEN the RD linear dispersion σ(k) = r - D k^2 via reproducible scripts and derivations:
   [rd_dispersion_experiment.py](Prometheus_VDM/derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py),
   [rd_validation_plan.md](Prometheus_VDM/derivation/rd_validation_plan.md),
   [CORRECTIONS.md](Prometheus_VDM/derivation/computational_proofs/CORRECTIONS.md).

@@ -8,11 +8,11 @@ Scope: Tier-0 correctness fixes (numerics, stability narrative) and unification 
 
 - [derivation/VDM_Overview.md](VDM_Overview.md)
   - Before: Mixed RD/EFT claims; no explicit canonical model.
-  - After: Canonical RD banner + mapping (D = J a² or (J/z) a²; r = α − β; u = α), stability note, EFT scoped to future work.
+  - After: Canonical RD banner + mapping (D = J a² or (J/z) a²; r = α - β; u = α), stability note, EFT scoped to future work.
 
 - [derivation/code/computational_proofs/FUM_theory_and_results.md](code/computational_proofs/FUM_theory_and_results.md)
   - Before: Fixed numerical claim “m_eff ≈ 0.387”.
-  - After: m_eff = √(α−β) (parameter‑dependent), added RD model‑class note; removed fixed numeric.
+  - After: m_eff = √(α-β) (parameter‑dependent), added RD model‑class note; removed fixed numeric.
 
 - [derivation/discrete_to_continuum.md](discrete_to_continuum.md)
   - Before: Objective stated convergence to KG; D mapping not explicit.
@@ -24,11 +24,11 @@ Scope: Tier-0 correctness fixes (numerics, stability narrative) and unification 
 
 - [derivation/symmetry_analysis.md](symmetry_analysis.md)
   - Before: Text implied “false/true vacuum” using EFT values in a general context.
-  - After: Clarified RD vs EFT contexts; RD fixed point W* = r/u (r>0) vs EFT vacuum v = 1 − β/α as future‑work.
+  - After: Clarified RD vs EFT contexts; RD fixed point W* = r/u (r>0) vs EFT vacuum v = 1 - β/α as future‑work.
 
 - [derivation/effective_field_theory_approach.md](effective_field_theory_approach.md)
   - Before: No scope banner.
-  - After: Quarantine banner; note m_eff = √(α−β) is parameter‑dependent and unitized via τ.
+  - After: Quarantine banner; note m_eff = √(α-β) is parameter‑dependent and unitized via τ.
 
 - [derivation/code/computational_proofs/void_dynamics_theory.md](code/computational_proofs/void_dynamics_theory.md)
   - Before: No scope note; mixed RD/EFT implications.
@@ -47,7 +47,7 @@ Scope: Tier-0 correctness fixes (numerics, stability narrative) and unification 
 
 ## Numeric Corrections
 
-- m_eff is not a universal constant; it is m_eff = √(α−β).
+- m_eff is not a universal constant; it is m_eff = √(α-β).
   - Example calibrations:
     - α = 0.25, β = 0.10 → m_eff ≈ 0.387
     - α = 1.0,  β = 0.40 → m_eff ≈ 0.7746
@@ -65,7 +65,7 @@ All fixed-number statements were replaced with parameter‑dependent forms and e
 
 ## Edit Log (file, change)
 
-- [derivation/VDM_Overview.md](VDM_Overview.md): Replace overview with RD canonical banner; corrected mapping (r = α − β, u = α); EFT scoped.
+- [derivation/VDM_Overview.md](VDM_Overview.md): Replace overview with RD canonical banner; corrected mapping (r = α - β, u = α); EFT scoped.
 - [derivation/code/computational_proofs/FUM_theory_and_results.md](code/computational_proofs/FUM_theory_and_results.md): Insert RD note; replace fixed m_eff numeric with param‑dependent form.  
 - [derivation/discrete_to_continuum.md](discrete_to_continuum.md): Update objective to RD; add D mapping text; keep EFT derivation as future work.  
 - [derivation/memory_steering.md](memory_steering.md): Align with RD canonical; restrict EFT formulas to EFT doc; remove back‑solve in RD section.  
@@ -85,4 +85,4 @@ All fixed-number statements were replaced with parameter‑dependent forms and e
 - [ERROR FIXED]: Incorrect fixed mass number claims replaced with parameter‑dependent expression.
 - [PROVEN]: Lattice → continuum kinetic normalization via discrete action (already present) is internally consistent.
 - [PROVEN]: RD front speed c_front = 2√(Dr) validated. Defaults: N=1024, cfl=0.2, level=0.1, x0=-60, fit window 0.6-0.9. Representative run: c_meas≈0.953, c_th=1.0, rel_err≈0.047, R²≈0.999996.
-- [PROVEN]: RD dispersion σ(k) = r − D k² validated via linearized periodic evolution. Defaults (N=1024, L=200, D=1.0, r=0.25, T=10, cfl=0.2, seed=42, m_max=64) → med_rel_err≈0.00145, R²_array≈0.99995 [PASS]; grid refinement (N=2048, m_max=128) → med_rel_err≈0.00130, R²_array≈0.9928 [PASS].
+- [PROVEN]: RD dispersion σ(k) = r - D k² validated via linearized periodic evolution. Defaults (N=1024, L=200, D=1.0, r=0.25, T=10, cfl=0.2, seed=42, m_max=64) → med_rel_err≈0.00145, R²_array≈0.99995 [PASS]; grid refinement (N=2048, m_max=128) → med_rel_err≈0.00130, R²_array≈0.9928 [PASS].

@@ -23,9 +23,9 @@ Dynamics (per tick, event-driven)
   where r_i is a small stimulus inferred from event weight (default 1.0).
 
 - On edge_on(i, j) smoothing (one-edge local spread):
-    δm = κ · (m[j] − m[i]) · Δt
+    δm = κ · (m[j] - m[i]) · Δt
     m[i] += δm
-    m[j] −= δm
+    m[j] -= δm
 
 - Optional burst footprints:
     SpikeEvent(node=j, amp) → m[j] += γ_s · amp · Δt

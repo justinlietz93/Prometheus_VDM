@@ -16,7 +16,7 @@
 | (U(x,t))                     |             1/E | **Control efficacy** (error reduction per joule)                               | (U=\big(\mathbb E[L_{\text{noctl}}]-\mathbb E[L_{\text{ctl}}]\big)/\text{energy})           |
 | (\sigma(x))                  |               — | **Susceptibility** of substrate (amplification of a given source)              | Calibrate by comparing (C) vs (S) across media (e.g., cortex vs air)                        |
 | (V(x,t))                     |        — (bits) | **Option capacity** (empowerment; reachable-state entropy over horizon (\tau)) | Count/estimate distinct useful futures within (\tau) under constraints                      |
-| (B(x,t))                     |               — | **Balance** (non-interference / coordination index)                            | Diversity benefit − congestion penalty; e.g., ensemble gain minus redundancy                |
+| (B(x,t))                     |               — | **Balance** (non-interference / coordination index)                            | Diversity benefit - congestion penalty; e.g., ensemble gain minus redundancy                |
 | (g(V),h(B))                  |               — | Saturating gates for headroom/coordination                                     | Use (g(V)=V/(1+V)), (h(B)=B/(1+B)) (edit as needed)                                         |
 | (Q_C(\Omega,t))              |               — | **Regional charge** of (C) in domain (\Omega)                                  | Spatial integral (or sum over sensors) of (C)                                               |
 | (G_{\text{ret}})             |               — | Retarded kernel for causal propagation                                         | Green’s function of (\partial_t-D\nabla^2+\gamma)                                           |
@@ -83,7 +83,7 @@ C(t)=C_{\text{ss}}+\big(C(0)-C_{\text{ss}}\big)e^{-\gamma t},}
 ;-;\underbrace{\gamma \int*{\Omega}! C,dV}*{\text{decay}}
 ;+;\underbrace{\int*{\Omega}! S,dV}_{\text{source}};}
 ]
-**Meaning:** change inside a region = boundary flux in/out − decay + sources.
+**Meaning:** change inside a region = boundary flux in/out - decay + sources.
 
 ---
 

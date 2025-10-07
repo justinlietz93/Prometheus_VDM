@@ -788,7 +788,7 @@ class Connectome:
         """
         Apply one update tick driven entirely by Void Equations:
         - Structural growth/rewiring: candidates sampled via alias table built from ReLU(Δalpha)
-        - Affinity S_ij = ReLU(Δalpha_i) * ReLU(Δalpha_j) − λ * |Δomega_i − Δomega_j|
+        - Affinity S_ij = ReLU(Δalpha_i) * ReLU(Δalpha_j) - λ * |Δomega_i - Δomega_j|
         - Top‑k neighbors per node; symmetric adjacency
         - Node field update via universal_void_dynamics, multiplicatively gated by SIE valence (Rule 3)
         """
@@ -5920,7 +5920,7 @@ import numpy as np
 # - Pruning: O(M) over active edges via masked thresholding (vectorized).
 #
 # Formulae:
-# - S_ij = ReLU(Δalpha_i) * ReLU(Δalpha_j) − λ * |Δomega_i − Δomega_j|
+# - S_ij = ReLU(Δalpha_i) * ReLU(Δalpha_j) - λ * |Δomega_i - Δomega_j|
 # - Prune if |E_ij| < prune_threshold (adaptive fraction of |E| mean)
 #
 # Parameters:
@@ -5933,7 +5933,7 @@ def _compute_affinity(a: np.ndarray, w: np.ndarray, lambda_omega: float) -> np.n
     """Compute void‑affinity matrix S_ij from Δalpha (a) and Δomega (w)."""
     a_relu = np.maximum(0.0, a.astype(np.float32))
     w = w.astype(np.float32)
-    # S_ij = relu(a_i) * relu(a_j) − λ |Δω_i − Δω_j|
+    # S_ij = relu(a_i) * relu(a_j) - λ |Δω_i - Δω_j|
     S = a_relu[:, None] * a_relu[None, :] - lambda_omega * np.abs(w[:, None] - w[None, :])
     np.fill_diagonal(S, -np.inf)
     return S
@@ -6490,7 +6490,7 @@ def qfum_logistic_value(w: float, t: float, *, alpha: float, beta: float, eps: f
         Q = t - (1/α) ln( W / (K - W) ) - (β/α) t
 
     Justification:
-      Using W/(K − W) = e^{k t}/A, we obtain
+      Using W/(K - W) = e^{k t}/A, we obtain
         Q = t - (k/α) t + (1/α) ln A - (β/α) t = (1/α) ln A (constant).
     This helper computes Q(w, t) robustly with safe clamping at boundaries.
     If α ≤ 0 or K ≤ 0, returns 0.0 (fail-soft) since the invariant is undefined.
@@ -7109,9 +7109,9 @@ Dynamics (per tick, event-driven)
   where r_i is a small stimulus inferred from event weight (default 1.0).
 
 - On edge_on(i, j) smoothing (one-edge local spread):
-    δm = κ · (m[j] − m[i]) · Δt
+    δm = κ · (m[j] - m[i]) · Δt
     m[i] += δm
-    m[j] −= δm
+    m[j] -= δm
 
 - Optional burst footprints:
     SpikeEvent(node=j, amp) → m[j] += γ_s · amp · Δt
@@ -9846,7 +9846,7 @@ class SparseConnectome:
         Sparse, void‑faithful tick:
         - Compute Δalpha/Δomega by void equations
         - Build per-node candidate list via alias sampler ~ ReLU(Δalpha)
-        - Score candidates by S_ij = ReLU(Δα_i)·ReLU(Δα_j) − λ·|Δω_i − Δω_j|
+        - Score candidates by S_ij = ReLU(Δα_i)·ReLU(Δα_j) - λ·|Δω_i - Δω_j|
         - Take symmetric top‑k neighbors (undirected)
         - Update node field with universal_void_dynamics gated by SIE valence
         - Run traversal to publish vt_* findings

@@ -5,13 +5,13 @@ Purpose
 - Empirically validate the linear growth/decay rates of reaction-diffusion (Fisher-KPP linearized about u≈0):
   
 $$
-u_t = D u_xx + r u, with σ(k) = r − D k²
+u_t = D u_xx + r u, with σ(k) = r - D k²
 $$
 
 (continuum) and
 
 $$
-σ_d(m) = r − (4D/dx²) sin²(π m/N)
+σ_d(m) = r - (4D/dx²) sin²(π m/N)
 $$
 
 (discrete).
@@ -34,8 +34,8 @@ Method
 - Start from small iid Gaussian amplitude amp0 ≪ 1 to stay in the linear regime.
 - Record snapshots; compute rFFT magnitudes $|Û_m(t)|; fit log|Û_m(t)|$ vs $t$ over a mid-early fraction window to estimate $σ_meas(m)$.
 - Compare $σ_meas(m)$ to:
-  - Discrete theory (primary): $σ_d(m) = r − (4D/dx²) sin²(π m/N)$
-  - Continuum reference: $σ(k) = r − D k², with k = 2π m / L$
+  - Discrete theory (primary): $σ_d(m) = r - (4D/dx²) sin²(π m/N)$
+  - Continuum reference: $σ(k) = r - D k², with k = 2π m / L$
 
 Output routing and naming
 
@@ -67,8 +67,8 @@ Acceptance criteria
 
 Representative results (logged)
 
-- Default (N=1024): $med\_rel\_err ≈ 1.45e−3, R²\_array ≈ 0.99995$ [PASS]
-- Refinement (N=2048, m_max=128): $med\_rel\_err ≈ 1.30e−3, R²\_array ≈ 0.9928$ [PASS]
+- Default (N=1024): $med\_rel\_err ≈ 1.45e-3, R²\_array ≈ 0.99995$ [PASS]
+- Refinement (N=2048, m_max=128): $med\_rel\_err ≈ 1.30e-3, R²\_array ≈ 0.9928$ [PASS]
 
 Troubleshooting
 

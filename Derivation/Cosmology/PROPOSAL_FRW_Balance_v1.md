@@ -24,7 +24,7 @@ Energy conservation in FRW for a perfect fluid obeys \( \frac{d}{dt}(\rho a^3) +
 - Input: arrays ρ(t), a(t), t covering a monotone time span.
 - Default test: dust (ρ ∝ a⁻³).
 - Output: figure of residual vs t, CSV with (t, ρ, a, residual), JSON summary and PASS/FAIL vs tol.
-- Gate: RMS residual ≤ tol (default 1e−6); emit CONTRADICTION_REPORT on fail.
+- Gate: RMS residual ≤ tol (default 1e-6); emit CONTRADICTION_REPORT on fail.
 
 Artifacts (tag FRW-balance-v1):
 

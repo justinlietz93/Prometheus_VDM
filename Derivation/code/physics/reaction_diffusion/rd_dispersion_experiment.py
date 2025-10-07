@@ -5,8 +5,8 @@ RD dispersion validation (linear regime) for Fisher-KPP:
 Linearized about u≈0: u_t ≈ D u_xx + r u
 
 Predictions:
-  Continuum:  σ_c(k) = r − D k^2
-  Discrete (periodic second-difference):  σ_d(m) = r − (4 D / dx^2) sin^2(π m / N)
+  Continuum:  σ_c(k) = r - D k^2
+  Discrete (periodic second-difference):  σ_d(m) = r - (4 D / dx^2) sin^2(π m / N)
 
 Method:
   - Evolve the linearized PDE with periodic BCs from small random amplitude.

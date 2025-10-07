@@ -167,7 +167,7 @@ def qfum_logistic_value(w: float, t: float, *, alpha: float, beta: float, eps: f
         Q = t - (1/α) ln( W / (K - W) ) - (β/α) t
 
     Justification:
-      Using W/(K − W) = e^{k t}/A, we obtain
+      Using W/(K - W) = e^{k t}/A, we obtain
         Q = t - (k/α) t + (1/α) ln A - (β/α) t = (1/α) ln A (constant).
     This helper computes Q(w, t) robustly with safe clamping at boundaries.
     If α ≤ 0 or K ≤ 0, returns 0.0 (fail-soft) since the invariant is undefined.
