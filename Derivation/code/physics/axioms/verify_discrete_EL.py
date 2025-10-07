@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Verify the 2J coefficient in the discrete Euler–Lagrange equation arising from the
+Verify the 2J coefficient in the discrete Euler-Lagrange equation arising from the
 spatial interaction term in the discrete action:
 
   S_spatial = - (J/2) ∑_i ∑_{j∈N(i)} (W_j - W_i)^2
