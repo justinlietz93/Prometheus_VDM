@@ -2,7 +2,7 @@
 
 ## Current Goals
 
-- Completed kgRD-v1b sweep (H_energy norm) with J reversibility PASS-only gate; added Noether (energy/momentum) module with discrete invariants and dispersion; added metriplectic structure checks; updated RESULTS addendum with near-cubic note and Obj-B EXPLAINED-BY-DEFECT policy.
+- Pre-register proposals first; suspend new experiments until proposal approval. Focus: document rigor (hypotheses, KPIs, gates) and keep DP canon entries as planned, not implemented.
 
 ## Current Blockers
 
