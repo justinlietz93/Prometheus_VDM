@@ -40,7 +40,7 @@ $$
 \quad \kappa_{\rm in}^2=\frac{\mu^2}{c^2}-\kappa^2,\ \ \kappa_{\rm out}^2=\kappa^2+\frac{2\mu^2}{c^2}.
 $$
 
-Counting/condensing those modes reproduces the Bordag‑style “tachyonic tower → quartic stabilization → positive mass spectrum after condensation” story (we adapt his SU(2) analysis to a scalar EFT).  See the reference finite‑radius, mode‑counting and energy‑minimum structure in Bordag’s *Universe* paper (tachyon levels vs flux, condensate minima, positive post‑condensation masses), esp. pp. 7–12.&#x20;
+Counting/condensing those modes reproduces the Bordag‑style “tachyonic tower → quartic stabilization → positive mass spectrum after condensation” story (we adapt his SU(2) analysis to a scalar EFT).  See the reference finite‑radius, mode‑counting and energy‑minimum structure in Bordag’s *Universe* paper (tachyon levels vs flux, condensate minima, positive post‑condensation masses), esp. pp. 7-12.&#x20;
 
 **Code.**
 
@@ -88,7 +88,7 @@ with $p_\Lambda+p_{\rm DM}+p_{\rm GW}=1$ and a **retarded kernel** for $\dot S_{
 * **Hidden conservation at the full network level.** The exact $Q_{\rm FUM}$ is on‑site. A *flux‑form* law for the full graph is still open (you tried a standard Hamiltonian and proved it isn’t the conserved quantity—useful negative result). Keep the invariant as a guardrail while we search for the symmetry or Lyapunov function.&#x20;
 * **Tube minimum $E(R)$.** I provided the solver skeleton and acceptance tests; execute the $R$ scan and record $R_\ast$ vs $(\mu,\lambda)$. This is the last “hard number” missing to lock the tube picture against Bordag’s qualitative curve. &#x20;
 * **RG for $(\lambda,\gamma)$.** Not needed for your current band/steering results; include later once the tube minimum is scanned.
-* **φ ↔ Voxtrium $z$-inputs.** Use $R_\ast\sim k_R/m_{\rm eff}$ (scalar‑sector) and let your $z_1$ depend on the φ‑gradient proxy $\Xi=|\nabla\phi|/(m_{\rm eff}\phi_0)$ until we have a stronger micro–macro lock.&#x20;
+* **φ ↔ Voxtrium $z$-inputs.** Use $R_\ast\sim k_R/m_{\rm eff}$ (scalar‑sector) and let your $z_1$ depend on the φ‑gradient proxy $\Xi=|\nabla\phi|/(m_{\rm eff}\phi_0)$ until we have a stronger micro-macro lock.&#x20;
 
 ---
 

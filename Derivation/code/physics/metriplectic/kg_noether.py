@@ -40,7 +40,7 @@ def stiffness(phi: np.ndarray, dx: float, c: float, m: float) -> np.ndarray:
 
 
 def verlet_step_with_half(phi: np.ndarray, pi: np.ndarray, dt: float, dx: float, c: float, m: float) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
-    """Perform one Störmer–Verlet step returning (phi_new, pi_half, pi_new)."""
+    """Perform one Störmer-Verlet step returning (phi_new, pi_half, pi_new)."""
     lap_phi = spectral_laplacian(phi, dx)
     pi_half = pi + 0.5 * dt * ((c * c) * lap_phi - (m * m) * phi)
     phi_new = phi + dt * pi_half

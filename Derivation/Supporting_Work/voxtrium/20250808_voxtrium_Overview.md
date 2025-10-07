@@ -245,7 +245,7 @@ Impose $\,\big|w_{\rm eff}+1\big|\le \delta_w\,$ (e.g. $\,\delta_w\sim 0.05\,$) 
 (vi) Observational viability: velocity‑dependent SIDM.
 As a compact fit for simulators here ya go
 $\,(\sigma_T/m)(v)=\frac{(\sigma/m)_0}{\big[1+(v/v_0)^n\big]^p}\,$
-with $\,(\sigma/m)_0\approx 0.10\,{\rm cm}^2\,{\rm g}^{-1}\,$ at dwarf speeds, and choose $\,v_0,n,p\,$ to match your effective‑range+form‑factor prediction so that clusters satisfy $\,(\sigma_T/m)\lesssim 10^{-3}\text{–}10^{-4}\ {\rm cm}^2\,{\rm g}^{-1}\,$.
+with $\,(\sigma/m)_0\approx 0.10\,{\rm cm}^2\,{\rm g}^{-1}\,$ at dwarf speeds, and choose $\,v_0,n,p\,$ to match your effective‑range+form‑factor prediction so that clusters satisfy $\,(\sigma_T/m)\lesssim 10^{-3}\text{-}10^{-4}\ {\rm cm}^2\,{\rm g}^{-1}\,$.
 
 (vii) Structure formation constraint (small DM injection).
 Define the instantaneous injection fraction $\,f_{\rm inj}(t)\equiv\frac{p_{\rm DM}\,(\varepsilon_h/V_c)\,\dot S_{\rm hor}}{3H\,\rho_{\rm DM}}\,$ and impose $\,f_{\rm inj}\ll 1\,$ for $\,z\lesssim z_{\rm LSS}\,$ so linear growth is not spoiled; if desired, restrict $\,\dot S_{\rm hor}\,$ to early epochs by a window $\,W(t)\,$ with $\,0\le W\le 1\,$ and replace $\,\dot S_{\rm hor}\to W(t)\,\dot S_{\rm hor}\,$.
@@ -263,7 +263,7 @@ $\,\dot n_{\rm DM}+3H n_{\rm DM}=\frac{Q_{\rm DM}}{m}=\frac{p_{\rm DM}}{m}\,(\va
 $\,S_{\rm eff}=\int d^4x\,\sqrt{-g}\,\Big[\frac{M_{\rm Pl}^2}{2}R+\mathcal L_{\rm SM}+\mathcal L_{\rm Skyrme}(K_s,e)+\mathcal L_{\rm rad}+\mathcal L_{\rm hor}(S_{\rm hor})\Big]\,$ with $\,\Lambda_{\rm eff}(t)\,$ emergent via $\,\rho_\Lambda(t)=\rho_{\Lambda0}+(1/V_c)\int\alpha_h\,dS_{\rm hor}\,$; variation yields the FRW set plus your source terms (bookkeeping identity, not a new local field).
 
 **(xi) Clarifying direct-detection vs self-interaction (not a conflict).**  
-$\sigma_{\chi N}$ (DM–nucleon) and $\sigma_{\chi\chi}$ (DM self-interaction) are independent; your $(\sigma_T/m)$ constraints apply to $\sigma_{\chi\chi}$, while direct detection constrains $\sigma_{\chi N}$. Setting the portal coupling to the SM tiny is equivalent to $\sigma_{\chi N}\to 0$ with no impact on $\sigma_{\chi\chi}$.
+$\sigma_{\chi N}$ (DM-nucleon) and $\sigma_{\chi\chi}$ (DM self-interaction) are independent; your $(\sigma_T/m)$ constraints apply to $\sigma_{\chi\chi}$, while direct detection constrains $\sigma_{\chi N}$. Setting the portal coupling to the SM tiny is equivalent to $\sigma_{\chi N}\to 0$ with no impact on $\sigma_{\chi\chi}$.
 
 ----------
 
@@ -298,7 +298,7 @@ Clarifications that address specific external objections while staying within th
 
 • Partitions: $,p_i,$ can be tied to dimensionless micro inputs via a softmax on $,z_1=|\Omega|R_\ast,$, $,z_2=(\kappa/K_s)/X,$, $,z_3=1,$ so $,p_i=\exp(w_i^1 z_1+w_i^2 z_2+w_i^3 z_3)/\sum_j\exp(w_j^1 z_1+w_j^2 z_2+w_j^3 z_3),$ (dimensionless map rather than ad‑hoc constants).
 
-• Direct detection vs self‑interaction: $,\sigma_{\chi N},$ and $,\sigma_{\chi\chi},$ are independent; your $,(\sigma_T/m),$ fits $\chi\text{–}\chi$ and does not require a large $,\chi\text{–}N,$ portal (set $,\sigma_{\chi N}\to 0,$ consistently with collider and DD bounds).
+• Direct detection vs self‑interaction: $,\sigma_{\chi N},$ and $,\sigma_{\chi\chi},$ are independent; your $,(\sigma_T/m),$ fits $\chi\text{-}\chi$ and does not require a large $,\chi\text{-}N,$ portal (set $,\sigma_{\chi N}\to 0,$ consistently with collider and DD bounds).
 
 • $C_T(v)\simeq 1-(8/9)\,(\mu v R_\ast)^2+\mathcal O(v^4)$
 

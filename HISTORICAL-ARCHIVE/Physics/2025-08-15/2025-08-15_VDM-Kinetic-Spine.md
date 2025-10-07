@@ -176,7 +176,7 @@ eps_DE, f_inj = smallness_monitors(state, state.H, alpha_h, eps_h, Vc, Sdot, par
 
 1. **Continuum/range validity**
 
-   * Dispersion fit: $\omega(k)$ from `measure_frequency()` vs. $c|k|$ → slope within 10–15% at small $k$.
+   * Dispersion fit: $\omega(k)$ from `measure_frequency()` vs. $c|k|$ → slope within 10-15% at small $k$.
    * EFT window: ensure $(a^2 k^2)/6\ll 1$ in your runs (auto‑printed bound).&#x20;
 
 2. **Fork logistic & curvature collapse**

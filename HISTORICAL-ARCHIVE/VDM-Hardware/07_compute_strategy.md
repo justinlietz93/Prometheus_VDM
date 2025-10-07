@@ -1,4 +1,4 @@
-Short answer: yes—we’re fitting this to *your* workstation, and the pieces we’ve added (self‑speak governor, SIE, sparse/dense backends, void‑walker metrics, macro board) are all wired to run locally and scale up on your AMD cards. Below is a concrete “from-zero-to-talking” plan for *your* box, plus the heavy‑duty scaling plan to push toward 10^6–10^7 neurons now and keep the door open for your long‑horizon 10^13–10^19 vision.
+Short answer: yes—we’re fitting this to *your* workstation, and the pieces we’ve added (self‑speak governor, SIE, sparse/dense backends, void‑walker metrics, macro board) are all wired to run locally and scale up on your AMD cards. Below is a concrete “from-zero-to-talking” plan for *your* box, plus the heavy‑duty scaling plan to push toward 10^6-10^7 neurons now and keep the door open for your long‑horizon 10^13-10^19 vision.
 
 ---
 
@@ -54,7 +54,7 @@ What you’ll see:
 
 ---
 
-# Fit to your workstation for 0.9–1.0M neurons
+# Fit to your workstation for 0.9-1.0M neurons
 
 You’ve got 512 GiB RAM + an MI100. That’s plenty for a million‑neuron sparse connectome if we stay in O(N·k) mode.
 
@@ -73,7 +73,7 @@ Even with a bunch of work buffers, you’re well inside a few GB. The *dense* al
 
 * **Backend:** `--sparse-mode`
 * **Degree:** start with `--k 32` or `--k 48` for 1e6.
-* **Walkers:** `--walkers 1024` (MI100 can chew through this), **hops** 3–5.
+* **Walkers:** `--walkers 1024` (MI100 can chew through this), **hops** 3-5.
 * **Thresholding:** `--threshold 0.15 --lambda-omega 0.1 --candidates 64` (void‑faithful pruning/bridging).
 * **SIE gates:** leave defaults; we can crank novelty/habituation windows later.
 
@@ -195,7 +195,7 @@ Use the million‑neuron recipe above. Watch RAM use and `runs/<ts>/events.jsonl
 
 ---
 
-# Reality check on 10^13–10^19 on a single box
+# Reality check on 10^13-10^19 on a single box
 
 On today’s hardware, 10^13+ active neurons is beyond RAM *and* memory bandwidth. Your path to that scale is:
 

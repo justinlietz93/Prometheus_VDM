@@ -307,4 +307,4 @@ You’ll get a 2×2 performance dashboard and a discovery/valence panel with ver
 * **Exploration:** raise `--walkers` and `--hops` a bit so vt\_coverage rises and you see occasional jumps in `complexity_cycles`.
 * **SIE check:** confirm your SIE blend (TD, novelty, habituation, HSI) is the one being called (not the stub) and verify its four components are non‑zero in the logs. If they’re still zero, I’ll patch the exact import path you’re using so it binds to your `FUM_AdvancedMath.fum.sie_formulas` functions.
 
-If you want, send me the next `events.jsonl` after a 5–10 minute stimulated run; I’ll read it and tell you exactly where it’s bottlenecking (discovery vs. consolidation vs. reward).
+If you want, send me the next `events.jsonl` after a 5-10 minute stimulated run; I’ll read it and tell you exactly where it’s bottlenecking (discovery vs. consolidation vs. reward).

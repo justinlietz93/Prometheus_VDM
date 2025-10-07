@@ -198,4 +198,4 @@ python simulate_inverted_u.py
 * **Energy budget link:** (C) tracks source power with an exponential time constant (1/\gamma).
 * **Balance principle:** there’s a sweet spot between fragmentation and lockstep where the **C-score** peaks—exactly your “interactions become more complex without bumping” intuition.
 
-If you want, I can also add a **τ-horizon options probe** script (empowerment proxy via reachable-state counting) so you can complete the P–U–V triangle.
+If you want, I can also add a **τ-horizon options probe** script (empowerment proxy via reachable-state counting) so you can complete the P-U-V triangle.

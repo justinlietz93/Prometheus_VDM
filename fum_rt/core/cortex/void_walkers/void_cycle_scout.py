@@ -4,7 +4,7 @@ from __future__ import annotations
 fum_rt.core.cortex.void_walkers.void_cycle_scout
 
 CycleHunterScout (read-only, void-faithful):
-- Seeks short cycles (3–6 hops) using a TTL-limited walk with a tiny path window.
+- Seeks short cycles (3-6 hops) using a TTL-limited walk with a tiny path window.
 - Purely local: only neighbor lists are read; no global scans or dense conversions.
 - Emits vt_touch and edge_on events; reducers can infer cycle hits from returned edge traces.
 

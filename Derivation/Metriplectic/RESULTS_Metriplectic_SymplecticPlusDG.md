@@ -13,7 +13,7 @@
 
 ## Introduction
 
-The goal is to evaluate a 1D metriplectic time integrator that composes an energy-conserving symplectic/Hamiltonian map (J) with a dissipative gradient-flow map (M) using Strang splitting, abbreviated JMJ. The physical backdrop is a Fisher–KPP-type reaction–diffusion (RD) model on a periodic domain. Metriplectic formulations combine a Poisson bracket (conservative) with a metric bracket (dissipative), aligning with Onsager’s linear nonequilibrium thermodynamics and its modern variational interpretations. By segregating conservative transport from dissipative relaxation, one obtains testable invariants: reversibility and $L^2$ preservation for the J flow, and entropy/ Lyapunov monotonicity for the M flow. This separation makes quality-control gates crisp and falsifiable.
+The goal is to evaluate a 1D metriplectic time integrator that composes an energy-conserving symplectic/Hamiltonian map (J) with a dissipative gradient-flow map (M) using Strang splitting, abbreviated JMJ. The physical backdrop is a Fisher-KPP-type reaction-diffusion (RD) model on a periodic domain. Metriplectic formulations combine a Poisson bracket (conservative) with a metric bracket (dissipative), aligning with Onsager’s linear nonequilibrium thermodynamics and its modern variational interpretations. By segregating conservative transport from dissipative relaxation, one obtains testable invariants: reversibility and $L^2$ preservation for the J flow, and entropy/ Lyapunov monotonicity for the M flow. This separation makes quality-control gates crisp and falsifiable.
 
 The central question here is numerical: does the composed JMJ method realize the expected Strang-like order while preserving the qualitative invariants of J and M individually? The answer is supported by two-grid error fits, Lyapunov monotonicity checks, and an entropy-like $|\Delta S|$ comparison at fixed $\Delta t$.
 
@@ -23,13 +23,13 @@ To what extent does the composed JMJ integrator achieve second-order convergence
 
 - Independent variable: time step $\Delta t \in \{0.02, 0.01, 0.005, 0.0025, 0.00125\}$ (s).
 - Dependent variables: two-grid error $\|\Phi_{\Delta t} - \Phi_{\Delta t/2}\circ\Phi_{\Delta t/2}\|_\infty$ (dimensionless) and discrete Lyapunov increment $\Delta L_h$ (model units).
-- Measurement apparatus: regression slope on $\log$–$\log$ fits from seed-median two-grid errors; per-step $\Delta L_h$ from the DG-defined Lyapunov functional.
+- Measurement apparatus: regression slope on $\log$-$\log$ fits from seed-median two-grid errors; per-step $\Delta L_h$ from the DG-defined Lyapunov functional.
 
 ## Background information
 
 - J-step (conservative): exact periodic advection implemented by a spectral phase shift; unitary in $L^2$ and time-reversible, so forward $\Delta t$ followed by $-\Delta t$ recovers initial data up to roundoff.
 - M-step (dissipative): discrete-gradient (DG) implicit step for RD with Newton/backtracking. The discrete gradient ensures $\Delta L_h \le 0$ on converged steps.
-- Composition: JMJ Strang splitting. For sufficiently smooth flows and compatibles discretizations, the global error behaves like $\mathcal{O}(\Delta t^2)$; see Strang (1968). The M-step follows Onsager (1931) and JKO (1998) perspectives on dissipative evolution; see also Ambrosio–Gigli–Savaré (2005) for gradient flows.
+- Composition: JMJ Strang splitting. For sufficiently smooth flows and compatibles discretizations, the global error behaves like $\mathcal{O}(\Delta t^2)$; see Strang (1968). The M-step follows Onsager (1931) and JKO (1998) perspectives on dissipative evolution; see also Ambrosio-Gigli-Savaré (2005) for gradient flows.
 
 ### Theory primer (concise)
 
@@ -111,7 +111,7 @@ JMJ per step: half-J, full-M, half-J; J is spectral phase shift; M is DG implici
 
 1. Load the step spec (grid, parameters, seeds, $\Delta t$ sweep).  
 2. Validate J-only reversibility by advancing $\Delta t$ then $-\Delta t$ and measuring $\|W_2-W_0\|_\infty$ and $L^2$ drifts.  
-3. For M-only and JMJ, compute two-grid errors for each $\Delta t$ and seed, aggregate the median across seeds, and fit a line in $\log$–$\log$ space to obtain slope and $R^2$ (gates: slope $\ge 2.90$, $R^2\ge 0.999$).  
+3. For M-only and JMJ, compute two-grid errors for each $\Delta t$ and seed, aggregate the median across seeds, and fit a line in $\log$-$\log$ space to obtain slope and $R^2$ (gates: slope $\ge 2.90$, $R^2\ge 0.999$).  
 4. Monitor $\Delta L_h$ over 20 steps to confirm non-positivity (violations = 0).  
 5. At fixed $\Delta t=0.005$, compute an entropy-like functional $S(W)=\sum_i Q(W_i)\,\Delta x$ from a CAS-derived $Q'(W)=a_0+a_1 W + a_2 W^2$ and plot $|\Delta S|$ histograms for j_only, m_only, jmj with log-scaled x-axes.
 
@@ -178,7 +178,7 @@ $$
 
 ### Spectral-DG (optional, param-gated)
 
-Aligning J and M in Fourier space by using a spectral Laplacian inside the DG step (param: `"m_lap_operator":"spectral"`) reduces the J–M discretization mismatch and shrinks the Strang defect constant while preserving the H-theorem (DG monotonicity).
+Aligning J and M in Fourier space by using a spectral Laplacian inside the DG step (param: `"m_lap_operator":"spectral"`) reduces the J-M discretization mismatch and shrinks the Strang defect constant while preserving the H-theorem (DG monotonicity).
 
 - Residual vs $\Delta t$ (JMJ, spectral-DG): slope $2.9374$, $R^2=0.999967$ (PASS).  
   Figure: `derivation/code/outputs/figures/metriplectic/20251006_135016_residual_vs_dt_small_jmj__spectralDG.png`  
@@ -218,7 +218,7 @@ We close the metriplectic chapter with a decisive record: M-only and Lyapunov ga
 
 Gates clarification for reproducibility and future runs:
 
-- JMJ (stencil-DG baseline): expected slope $\ge 2.90$ — current run FAIL with defect explanation (commutator-limited $\sim 2.6$–$2.7$).  
+- JMJ (stencil-DG baseline): expected slope $\ge 2.90$ — current run FAIL with defect explanation (commutator-limited $\sim 2.6$-$2.7$).  
 - JMJ (spectral-DG option): expected slope $\ge 3.00$ — PASS with slope $\approx 2.94$, $R^2\approx 0.99997$, Lyapunov violations $=0$.  
 - M-only: expected slope $\ge 2.90$ — PASS.  
 - J-only: keep reversibility and $L^2$ drift gates; round-off rationale (FFT) documented and logged.
@@ -232,7 +232,7 @@ Gates clarification for reproducibility and future runs:
   - JMJ: Strang; gates: H-theorem, Noether currents, order fit (observational; expect commutator-limited scaling).  
 - For future J-only (spectral) gates, adopt a pragmatic cap scaled to FFT round-off: $\|W_2-W_0\|_\infty\le c\,\epsilon_{\text{mach}}\sqrt{N}$ with measured $c$ logged (do not silently relax thresholds).
 
-Policy going forward: For new mixed-model experiments (e.g., KG $\oplus$ RD), prefer the spectral-DG option (param-gated) to minimize J–M mismatch and reviewer bikeshedding about order, while keeping the stencil baseline available for ablations.
+Policy going forward: For new mixed-model experiments (e.g., KG $\oplus$ RD), prefer the spectral-DG option (param-gated) to minimize J-M mismatch and reviewer bikeshedding about order, while keeping the stencil baseline available for ablations.
 
 ## Artifact index (paired data)
 

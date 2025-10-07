@@ -7,7 +7,7 @@
 | Symbol                                             | Meaning                        | When / Why                                          | Tiny Example                                                                                           |
 | -------------------------------------------------- | ------------------------------ | --------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
 | $\mathbf{x}\in\mathbb{R}^d,; t$                    | spatial coordinate, time       | state lives on lattice/continuum                    | probe field at walker location $x_w(t)$                                                                |
-| $\boldsymbol{\phi}(\mathbf{x},t)\in\mathbb{R}^{C}$ | $C$-channel field stack (fast) | reaction–diffusion-like substrate                   | $\partial_t\boldsymbol{\phi}=\mathbf{D}\nabla^2\boldsymbol{\phi}+\mathbf{R}(\boldsymbol{\phi})+\cdots$ |
+| $\boldsymbol{\phi}(\mathbf{x},t)\in\mathbb{R}^{C}$ | $C$-channel field stack (fast) | reaction-diffusion-like substrate                   | $\partial_t\boldsymbol{\phi}=\mathbf{D}\nabla^2\boldsymbol{\phi}+\mathbf{R}(\boldsymbol{\phi})+\cdots$ |
 | $\mathcal{V}(\mathbf{x},t)$                        | “void” baseline scalar         | reference/energy-like background for gating         | prefer edits near $\mathcal{V}$ minima                                                                 |
 | $\rho(\mathbf{x},t)$                               | activity density (saliency)    | cheap heatmap of local events                       | $\rho=\sum_w K_\sigma(\mathbf{x}-\mathbf{x}_w)$                                                        |
 | $\mathcal{W}$                                      | set of walkers                 | local samplers/processors                           | $w\in\mathcal{W}$ carries state $s_w$                                                                  |
@@ -121,7 +121,7 @@
 | $\Sigma$      | symmetry debt ratio         | broken-symmetry / conserved flux        | regime classifier                |
 | $\Lambda$     | dispersion / convergence    | exploration vs consolidation            | boundary $\sim 1$                |
 | $\Theta$      | junction gate strength      | scale in $\Theta,\Delta m$              | e.g. $k!\approx!1,\ b!\approx!0$ |
-| $\Gamma$      | retention fraction          | memory persistence                      | $0.3$ – $0.75$                     |
+| $\Gamma$      | retention fraction          | memory persistence                      | $0.3$ - $0.75$                     |
 | $D_a$         | anisotropic diffusion index | transport anisotropy class              | ${1,3,5,7}$ discrete             |
 | $\kappa L$ | curvature $\times$ scale | path bending measure | compare to $\Theta\lVert \nabla m\rVert$ |
 | $g$           | void gain                   | stabilization / bias strength           | e.g. $0.5$                       |
@@ -132,7 +132,7 @@
 | Symbol      | Meaning                | When / Why                | Tiny Example                        |
 | ----------- | ---------------------- | ------------------------- | ----------------------------------- |
 | $\Pi_{Dr}$  | diffusion at scale $L$ | $D/(rL^2)$                | pick $L$ per experiment             |
-| $c^*$       | normalized KPP speed   | $c/(2\sqrt{Dr})$          | $\approx 0.95\text{–}1.0$ when validated |
+| $c^*$       | normalized KPP speed   | $c/(2\sqrt{Dr})$          | $\approx 0.95\text{-}1.0$ when validated |
 | \mathrm{Da} | Damköhler number       | reaction / transport rate | regime classifier                   |
 
 ## Dimensionless Groups — LBM / Fluids

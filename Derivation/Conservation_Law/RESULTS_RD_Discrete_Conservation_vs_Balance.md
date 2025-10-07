@@ -1,4 +1,4 @@
-# **I. Discrete Conservation vs Balance in Reaction–Diffusion (RD) Steppers**
+# **I. Discrete Conservation vs Balance in Reaction-Diffusion (RD) Steppers**
 
 > Author: Justin K. Lietz
 > Date: 2025-10-06
@@ -12,7 +12,7 @@ TL;DR (with one artifact path): Near-conservation scales with method order; Eule
 
 ## **II. Introduction**
 
-This report evaluates whether a one-step update for a Fisher–KPP-type reaction–diffusion (RD) system exhibits an exact discrete conservation law for a global state functional $S$ or whether the proper structure is a local balance law coupled with a discrete Lyapunov (entropy) decrease. This question is fundamental to designing metriplectic integrators that combine conservative and dissipative mechanisms without violating thermodynamic constraints. Establishing the correct discrete structure guides choice of numerical schemes in pattern formation, morphogenesis, and data-assimilation contexts where stability and correctness must be certified.
+This report evaluates whether a one-step update for a Fisher-KPP-type reaction-diffusion (RD) system exhibits an exact discrete conservation law for a global state functional $S$ or whether the proper structure is a local balance law coupled with a discrete Lyapunov (entropy) decrease. This question is fundamental to designing metriplectic integrators that combine conservative and dissipative mechanisms without violating thermodynamic constraints. Establishing the correct discrete structure guides choice of numerical schemes in pattern formation, morphogenesis, and data-assimilation contexts where stability and correctness must be certified.
 
 Scope: The study restricts to periodic boundary conditions for the Obj‑A/B order and balance tests; Neumann boundaries are out-of-scope here. The logistic reaction is used as a standard nonlinearity; novelty is not claimed for the physics, only for the test harness and certification gates.
 
@@ -34,14 +34,14 @@ $$
 \partial_t W = D\,\Delta W + f(W), \quad f(W)=r\,W(1-W),
 $$
 
-with diffusion coefficient $D$ and logistic reaction rate $r$ (Verhulst; Fisher–KPP for traveling fronts). Dissipative systems like RD are naturally cast as gradient flows with entropy/energy functionals and monotone decay (Onsager). Discrete-gradient (DG) methods enforce a discrete chain rule to guarantee stepwise Lyapunov decrease without requiring small steps. Strang splitting achieves order 2 for generic noncommuting flows and order 3 in certain symmetric error metrics. The explicit Euler method is first-order and does not, in general, conserve nonlinear invariants.
+with diffusion coefficient $D$ and logistic reaction rate $r$ (Verhulst; Fisher-KPP for traveling fronts). Dissipative systems like RD are naturally cast as gradient flows with entropy/energy functionals and monotone decay (Onsager). Discrete-gradient (DG) methods enforce a discrete chain rule to guarantee stepwise Lyapunov decrease without requiring small steps. Strang splitting achieves order 2 for generic noncommuting flows and order 3 in certain symmetric error metrics. The explicit Euler method is first-order and does not, in general, conserve nonlinear invariants.
 
-References (lineage): Fisher (1937); Kolmogorov–Petrovsky–Piskunov (1937); Strang (1968); Crank–Nicolson (1947); Gonzalez (1996, discrete gradient); Onsager (1931); Jordan–Kinderlehrer–Otto (1998, gradient flows in $\mathcal W_2$).
+References (lineage): Fisher (1937); Kolmogorov-Petrovsky-Piskunov (1937); Strang (1968); Crank-Nicolson (1947); Gonzalez (1996, discrete gradient); Onsager (1931); Jordan-Kinderlehrer-Otto (1998, gradient flows in $\mathcal W_2$).
 
 ## **V. Variables**
 
 - Independent variable (with range rationale):
-  - Time step $\Delta t \in \{\Delta t_{\max},\ldots,\Delta t_{\min}\}$ (dimensionless), chosen to span a decade while remaining stable for explicit Euler and informative for higher-order steppers; ensures a reliable log–log fit.
+  - Time step $\Delta t \in \{\Delta t_{\max},\ldots,\Delta t_{\min}\}$ (dimensionless), chosen to span a decade while remaining stable for explicit Euler and informative for higher-order steppers; ensures a reliable log-log fit.
 - Dependent variables (with instruments/uncertainty):
   - Two-grid error $E_\infty$ (dimensionless), measured by infinity norm; uncertainty reported via linear-fit confidence and $R^2$.
   - $\lvert\Delta S\rvert$ (dimensionless), computed from $S=\sum_i Q(W_i)\,\Delta x$; uncertainty summarized by distribution across randomized seeds.
@@ -92,7 +92,7 @@ Two-grid slopes (median across seeds):
 
 Graph and paired artifacts:
 
-- Obj‑B sweep (DG RD shown): logs/rd_conservation/20251006_072250_sweep_dt.json; figure: figures/rd_conservation/20251006_072250_residual_vs_dt.png; CSV sidecar: logs/rd_conservation/20251006_072250_residual_vs_dt.csv. Caption: “Log–log residual vs $\Delta t$; $\hat\beta=2.9422$, $R^2=0.999968$.”
+- Obj‑B sweep (DG RD shown): logs/rd_conservation/20251006_072250_sweep_dt.json; figure: figures/rd_conservation/20251006_072250_residual_vs_dt.png; CSV sidecar: logs/rd_conservation/20251006_072250_residual_vs_dt.csv. Caption: “Log-log residual vs $\Delta t$; $\hat\beta=2.9422$, $R^2=0.999968$.”
 - Reaction-only control: logs/rd_conservation/20251006_072249_controls_reaction.json; figure: figures/rd_conservation/20251006_072249_reaction_two_grid_convergence.png; CSV sidecar: logs/rd_conservation/20251006_072249_reaction_two_grid_convergence.csv. Caption: “RK4 two-grid slope $\hat\beta=3.916$, $R^2=0.99984$.”
 
 Fixed‑step $\lvert\Delta S\rvert$ comparison (same $\Delta t$ across schemes):
@@ -116,7 +116,7 @@ Contradiction report (Euler, Obj‑A class tested):
 
 ## **IX. Discussion / Analysis**
 
-Key findings: Two-grid slopes scale with scheme order (Euler $\approx 2$, Strang/DG $\approx 3$) with $R^2\ge 0.9999$ for the higher-order schemes. No exact discrete invariant $S$ was found for Euler within the tested $Q'$–flux class. DG RD enforces an H-theorem discretely: $\Delta L\le 0$ with identity residuals near machine precision.
+Key findings: Two-grid slopes scale with scheme order (Euler $\approx 2$, Strang/DG $\approx 3$) with $R^2\ge 0.9999$ for the higher-order schemes. No exact discrete invariant $S$ was found for Euler within the tested $Q'$-flux class. DG RD enforces an H-theorem discretely: $\Delta L\le 0$ with identity residuals near machine precision.
 
 Explanations: The two-grid metric aligns the measurement with the integrator, avoiding bias from monitoring a reaction-only quantity under full RD. The contradiction report limits claims: it certifies a no-go for a specific ansatz, not for all possible invariants. The fixed-step $\lvert\Delta S\rvert$ distributions are consistent with truncation error order.
 

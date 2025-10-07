@@ -1,7 +1,7 @@
 
 ## A) Graph connectivity & topology (event‑driven, no scans)
 
-1. **DSU / Union–Find (with `grow_to`, O(1) component count)**
+1. **DSU / Union-Find (with `grow_to`, O(1) component count)**
    **Use for:** live **cohesion** (`components`), **territory** membership, and **budgeted bridging** decisions—fold only `edge_on(u,v)` events.
    **Why:** near O(1) amortized per union; no global passes; perfect fit for your **ADC + scouts** event stream.
    **How:** keep `parent:int32`, `rank:int8`, optional `size:int32`, `components:int`; add `grow_to(n)` for dynamic graphs; an optional `count_sets(mask)` is **telemetry‑only** (rare).
@@ -28,7 +28,7 @@
 
 6. **Count‑Min Sketch (CMS) + head map**
    **Use for:** VT **coverage/entropy** and heavy hitters: sketch for tail, exact **top‑K** head for the front.
-   **Pairs with:** **Misra–Gries** (stream heavy hitters) if you want true deterministic bounds.
+   **Pairs with:** **Misra-Gries** (stream heavy hitters) if you want true deterministic bounds.
 
 7. **t‑digest / GK quantiles (optional)**
    **Use for:** telemetry quantiles without full buffers (p95/p99 of per‑node signals).
@@ -59,7 +59,7 @@
 
 ## D) Change detection & emergent gates (no schedulers)
 
-14. **CUSUM / Page–Hinkley**
+14. **CUSUM / Page-Hinkley**
     **Use for:** **emergent** GDSP/RevGSP triggers on **TD**, **b1\_z**, or cohesion drift; low overhead, fewer false alarms than raw thresholding.
 
 15. **Hysteresis gates**
@@ -114,7 +114,7 @@
 
 ---
 
-# Deep dive: DSU / Union–Find (with `grow_to`)
+# Deep dive: DSU / Union-Find (with `grow_to`)
 
 **What it guarantees**
 
@@ -161,11 +161,11 @@
 ## Quick “ready‑to‑copy” choices
 
 * **DSU:** `int32 parent`, `int8 rank`, `int32 size`, `int64 components`; implement `grow_to(n)`, `count_sets(mask)` (telemetry‑only).
-* **Heat/Exc/Inh maps:** EMA half‑life 100–300 ticks; **keep\_max** 4k–16k per map; **head\_k** 256.
-* **CMS:** width \~ 2–4× head\_k, depth 3–5; store **top‑K head** in a heap/dict.
-* **Bridging budget:** B = 4–16 per tick; target `components → 1` monotone; log `bridged_count`.
-* **Change detection:** Page–Hinkley with small drift `δ`, alarm at \~3–5σ; add hysteresis.
-* **Maps transport:** u8 (per‑channel min/max) + tile LOD; ring capacity 2–3 frames; **drop‑oldest** on overflow.
+* **Heat/Exc/Inh maps:** EMA half‑life 100-300 ticks; **keep\_max** 4k-16k per map; **head\_k** 256.
+* **CMS:** width \~ 2-4× head\_k, depth 3-5; store **top‑K head** in a heap/dict.
+* **Bridging budget:** B = 4-16 per tick; target `components → 1` monotone; log `bridged_count`.
+* **Change detection:** Page-Hinkley with small drift `δ`, alarm at \~3-5σ; add hysteresis.
+* **Maps transport:** u8 (per‑channel min/max) + tile LOD; ring capacity 2-3 frames; **drop‑oldest** on overflow.
 
 ---
 

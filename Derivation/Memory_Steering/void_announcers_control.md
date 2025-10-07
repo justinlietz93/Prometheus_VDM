@@ -4,7 +4,7 @@ Status: [PLAUSIBLE] with concrete validation plan. Physics conserved (read-only 
 
 Purpose
 - Map VDM “void walker” observability to neural networks (MLP/RNN/attention) as measurement-only sensors.
-- Derive a graph Fokker–Planck limit for walker density on a feed-forward graph.
+- Derive a graph Fokker-Planck limit for walker density on a feed-forward graph.
 - Define petition taxonomy (sat, grad, shear) and a scalar “void debt” functional.
 - Outline a bounded advisory policy to nudge numeric knobs without altering forward dynamics.
 
@@ -22,10 +22,10 @@ Discrete Formulation (graph random walk)
   sat: σ_sat = 1{|a_j^{(l)}| ≥ a_sat}, grad: g_j^{(l)} = ||∂L/∂z_j^{(l)}|| (if L defined), shear: max{|a_j^{(l)} − a_k^{(l)}|: k∈N(j)}.
 - Petitions are tuples (kind, value, node=(l,j), t). A Bus collects them; a Reducer computes robust quantiles and counts per kind.
 
-Continuum Limit (graph Fokker–Planck heuristic)
+Continuum Limit (graph Fokker-Planck heuristic)
 - Let ρ_l(j,t) be walker density at neuron j, layer l.
 - Assume slow variation in “potential” U_l(j) = −log S̄_l(j), where S̄_l(j) = Σ_i S_{i→j}^{(l)}.
-- The discrete Markov chain induces, in a continuum limit over wide layers, a drift–diffusion:
+- The discrete Markov chain induces, in a continuum limit over wide layers, a drift-diffusion:
   ∂_t ρ_l ≈ ∇_j · (D_l ∇_j ρ_l + ρ_l ∇_j U_l), with reflecting boundary at layer edges and forward drift across layers.
 - D_l encodes exploration jitter; ∇_j is graph gradient (e.g., on a kNN graph in activation space).
 - This equation is descriptive; walkers remain sampling artifacts and do not back-react.
@@ -76,7 +76,7 @@ Open Questions / Next Refinements
 - Replace proxies with principled Jacobian-trace estimators per layer for divergence analog.
 - Define a true graph vorticity via cycle decomposition on neuron-feature graphs.
 - Couple universal void dynamics W as a reporter per neuron and test whether W̄→0.6 correlates with reduced D_void.
-- Extend to attention: walkers hop on token–head–position graphs with saliency S∝|A|·|V|.
+- Extend to attention: walkers hop on token-head-position graphs with saliency S∝|A|·|V|.
 
 Reproducibility Checklist
 - Fixed seeds; record version hash and environment.

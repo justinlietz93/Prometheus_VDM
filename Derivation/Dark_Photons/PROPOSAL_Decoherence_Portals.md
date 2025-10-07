@@ -26,7 +26,7 @@ Dark photons arise from an additional $U(1)$ gauge sector with kinetic mixing wi
 
 We pursue two orthogonal, model-minimal probes:
 
-1) PSD portal signature: In a cryogenic, shielded cavity with well-calibrated readout chain, DP mixing effectively introduces a weak, broadband or narrow-band excess consistent with an additional, stationary Gaussian source coupled proportionally to $\varepsilon^2$. After accounting for known floors (Johnson–Nyquist $4k_BTR$, amplifier white floor, and $1/f$ knees), a DP-compatible excess induces a frequency-localized deviation bounded by calibration priors.
+1) PSD portal signature: In a cryogenic, shielded cavity with well-calibrated readout chain, DP mixing effectively introduces a weak, broadband or narrow-band excess consistent with an additional, stationary Gaussian source coupled proportionally to $\varepsilon^2$. After accounting for known floors (Johnson-Nyquist $4k_BTR$, amplifier white floor, and $1/f$ knees), a DP-compatible excess induces a frequency-localized deviation bounded by calibration priors.
 
 2) Fisher-budget consistency: For a parameterized spectral model (background + DP component), the Fisher information $\mathcal{I}(\theta)$ for parameter(s) $\theta$ (e.g., amplitude of a template with central frequency $f_\star$ and width $\Delta f$) should scale with integration time $\tau$ and bandwidth $B$ as predicted under stationary Gaussian noise. Any systematic departure beyond pre-registered tolerance indicates unmodeled systematics and falsifies the DP interpretation.
 
@@ -112,6 +112,6 @@ Proposer: Justin K. Lietz — responsible for modeling, pre-registration, runpla
 
 ## 7. References
 
-- B. Holdom, Two U(1)’s and Epsilon Charge Shifts, Phys. Lett. B 166 (1986) 196–198.
-- J. Jaeckel and A. Ringwald, The Low-Energy Frontier of Particle Physics, Ann. Rev. Nucl. Part. Sci. 60 (2010) 405–437.
+- B. Holdom, Two U(1)’s and Epsilon Charge Shifts, Phys. Lett. B 166 (1986) 196-198.
+- J. Jaeckel and A. Ringwald, The Low-Energy Frontier of Particle Physics, Ann. Rev. Nucl. Part. Sci. 60 (2010) 405-437.
 - M. Fabbrichesi, E. Gabrielli, and G. Lanfranchi, The Physics of the Dark Photon, SpringerBriefs in Physics (2020), arXiv:2005.01515.

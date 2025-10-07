@@ -104,7 +104,7 @@ def update_memory(
     dt: float,
 ) -> np.ndarray:
     """
-    One explicit Euler step for the slow memory PDE (write–decay–spread),
+    One explicit Euler step for the slow memory PDE (write-decay-spread),
         ∂_t m = γ r − δ m − κ L m,
     which is the graph-discretized form of ∂_t M = γ R − δ M + κ ∇² M in
     [derivation/memory_steering.md](derivation/memory_steering.md:1).

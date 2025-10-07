@@ -14,7 +14,7 @@ $$
 \mathcal L_K=\tfrac12(\partial_t\phi)^2-\tfrac{c^2}{2}(\nabla\phi)^2,\quad c^2=2Ja^2.
 $$
 
-This is the Euler–Lagrange outcome of your discrete Lagrangian (central‑time difference + nearest‑neighbor springs). Therefore $Z(\phi)$ is **constant** at tree level.&#x20;
+This is the Euler-Lagrange outcome of your discrete Lagrangian (central‑time difference + nearest‑neighbor springs). Therefore $Z(\phi)$ is **constant** at tree level.&#x20;
 
 **Bound the leading irrelevant terms.** Fourier‑analyze the lattice Laplacian:
 
@@ -114,7 +114,7 @@ Micro‑informed partitions $p_i(z)$ close the system on a probability simplex. 
 
 ### 6) **One‑pager summary, all in one place**
 
-Your consolidated “single derivation” ties 1–5 together (discrete→bounded EFT, finite tubes, FRW, units, diagnostics) and flags what is strong vs open. We’re now closing those opens with precise tests and code below.
+Your consolidated “single derivation” ties 1-5 together (discrete→bounded EFT, finite tubes, FRW, units, diagnostics) and flags what is strong vs open. We’re now closing those opens with precise tests and code below.
 
 ---
 

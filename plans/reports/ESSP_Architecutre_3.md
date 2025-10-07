@@ -39,7 +39,7 @@ The framework supports diverse neuronal roles through heterogeneous classes and 
 
 Higher-order changes are governed by specific walkers modeling physiological processes.
 
-*   **Selective Pruning (Microglia–C3 Analog):** A two-stage process where a `ComplementTagger` walker first marks volatile, low-efficacy synapses with `tag.C3`. A `Microglia` walker then "engulfs" them by emitting a definitive `tag.prune_synapse` only if corroborated by other signals like low use, ensuring a quorum for destructive actions.
+*   **Selective Pruning (Microglia-C3 Analog):** A two-stage process where a `ComplementTagger` walker first marks volatile, low-efficacy synapses with `tag.C3`. A `Microglia` walker then "engulfs" them by emitting a definitive `tag.prune_synapse` only if corroborated by other signals like low use, ensuring a quorum for destructive actions.
 *   **Neuron Culling:** Gated by severe pathological signals:
     *   **Excitotoxicity:** Triggered by sustained high firing rates and integrated membrane potential.
     *   **Metabolic Homeostasis:** A `MetabolicAuditor` walker monitors territory-local `metabolic_debt` (distinct from the global `sie.void_debt`). Persistent debt triggers pruning of high-cost synapses, followed by culling of high-contributing neurons.

@@ -31,7 +31,7 @@ These are the hard parts; what remains is mostly execution and cross‑checks.
 **Status.** You have a canonical scalar with action and stress tensor; the gradient expansion and sound speed follow. The path to **compressible hydrodynamics** is straightforward; **vorticity** needs an added phase (complex field) or multicomponent sector. &#x20;
 **Feasible path.**
 
-* Compute $T^{\mu\nu}$ from your $\mathcal L=\tfrac12(\partial\phi)^2-\tfrac{c^2}{2}(\nabla\phi)^2 - V$, identify $\rho, p, u^\mu$ via Landau frame, and derive the hydrodynamic limit (Chapman–Enskog / gradient expansion).&#x20;
+* Compute $T^{\mu\nu}$ from your $\mathcal L=\tfrac12(\partial\phi)^2-\tfrac{c^2}{2}(\nabla\phi)^2 - V$, identify $\rho, p, u^\mu$ via Landau frame, and derive the hydrodynamic limit (Chapman-Enskog / gradient expansion).&#x20;
 * For vorticity/two‑fluid behavior, promote to a **complex scalar** $\Phi= \sqrt{\rho}\,e^{i\theta}$ so that $\mathbf v \propto \nabla\theta$ and quantized circulation emerges; this is still first‑principles EFT, not ML. (Your EFT framework anticipates such extensions.)&#x20;
   **Code to add:** a stress‑tensor module that outputs $\rho, p, u^\mu$ snapshots from $\phi$; verify linearized modes give $\omega^2=c^2k^2+m_{\rm eff}^2$. Acceptance: recovery of the compressible Euler equations at long wavelengths; optional complex‑field run exhibits circulation/phase defects.
 
@@ -68,7 +68,7 @@ These are the hard parts; what remains is mostly execution and cross‑checks.
 
 ## Physics ↔ Code: the exact upgrades to implement now
 
-1. **Action‑driven lattice core.** Keep your discrete Lagrangian form and verify the continuum Euler–Lagrange limit you derived; log $c^2=2Ja^2$ and validate against measured $\omega(k)$. (Closes the “is the kinetic term really constant?” loop.)&#x20;
+1. **Action‑driven lattice core.** Keep your discrete Lagrangian form and verify the continuum Euler-Lagrange limit you derived; log $c^2=2Ja^2$ and validate against measured $\omega(k)$. (Closes the “is the kinetic term really constant?” loop.)&#x20;
 
 2. **Tube solver module** per your spec (roots → modes → overlaps → condensates → masses → $E(R)$). This is the most direct physics deliverable and connects cleanly to Voxtrium phenomenology. &#x20;
 

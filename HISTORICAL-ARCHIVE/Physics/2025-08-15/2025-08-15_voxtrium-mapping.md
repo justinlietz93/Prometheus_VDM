@@ -2,7 +2,7 @@ Below is a **single, self‑contained derivation document** that unifies your di
 
 ---
 
-# The Fully Unified Void–Field Model (FUM), Voxtrium Sourcing, and Finite‑Tube Tachyon Condensation
+# The Fully Unified Void-Field Model (FUM), Voxtrium Sourcing, and Finite‑Tube Tachyon Condensation
 
 **Author:** *Justin K. Lietz* (derivations, simulations, figures)
 **Additional credit:** *Voxtrium* (macro sourcing framework and FRW bookkeeping referenced herein)
@@ -37,7 +37,7 @@ $$
 \mathcal L=\tfrac12(\partial_t\phi)^2-\tfrac{c^2}{2}(\nabla \phi)^2-V(\phi),\qquad c^2\equiv 2Ja^2,
 $$
 
-yielding the Euler–Lagrange equation
+yielding the Euler-Lagrange equation
 
 $$
 \partial_t^2\phi-c^2\nabla^2\phi+V'(\phi)=0,
@@ -103,7 +103,7 @@ $$
 
 Units close $({\rm GeV}^5)$ and causality is enforced by a retarded kernel for $\dot S_{\rm hor}$. *(Credit: Voxtrium)*&#x20;
 
-### 2.4 Micro–macro locks and soliton scales (Voxtrium)
+### 2.4 Micro-macro locks and soliton scales (Voxtrium)
 
 In the Skyrme normalization used by Voxtrium, $m=c_mK_s/e$, $R_\ast=c_R/(eK_s)$, $X=eK_s$. These relations fix the characteristic length and velocity scales that also enter the self‑interaction phenomenology (e.g., transfer cross‑section trends). *(Credit: Voxtrium)*&#x20;
 
@@ -129,7 +129,7 @@ Each root gives a mode with $\omega^2=c^2(k^2-\kappa^2)$, hence tachyonic at $k=
 
 ### 3.3 Quartic stabilization, condensates, and positivity
 
-Projecting the quartic interaction onto the tube modes yields a 2D effective action in $(t,z)$ with mode masses $m_{\ell n}^2(R)=-c^2\kappa_{\ell n}^2$ and mode‑dependent quartic couplings (overlap integrals). Minimizing the effective potential gives condensates $v_{\ell n}(R)$ and a mass matrix $M^2(R)$ that is **non‑negative definite** (tachyons lifted), which is the scalar analogue of Bordag’s stabilized tachyon Lagrangian (*cf.* his tree‑level minima and positive post‑condensation masses shown in *Figs. 4–5, pages 11–12*).
+Projecting the quartic interaction onto the tube modes yields a 2D effective action in $(t,z)$ with mode masses $m_{\ell n}^2(R)=-c^2\kappa_{\ell n}^2$ and mode‑dependent quartic couplings (overlap integrals). Minimizing the effective potential gives condensates $v_{\ell n}(R)$ and a mass matrix $M^2(R)$ that is **non‑negative definite** (tachyons lifted), which is the scalar analogue of Bordag’s stabilized tachyon Lagrangian (*cf.* his tree‑level minima and positive post‑condensation masses shown in *Figs. 4-5, pages 11-12*).
 
 ### 3.4 Energy vs. control and the minimum
 
@@ -180,7 +180,7 @@ This is robust and unit‑consistent, with causal support enforced by the retard
 
 A. **Higher‑derivative EFT control**: A full proof that coefficients $c_1, c_2,\dots$ are suppressed (or vanish) in the continuum limit from your discrete UV is not yet done; this is needed for mathematical closure.&#x20;
 B. **Discrete conservation law**: The naive graph Hamiltonian is *not* conserved; a flux‑form invariant or hidden Noether symmetry remains to be discovered (or you embrace intrinsic dissipation in the discrete UV).&#x20;
-C. **End‑to‑end calibration**: While Voxtrium provides the bookkeeping and micro–macro locks, the EFT parameters $(\mu,\lambda,\gamma,c)$ are not yet fit against a specific cosmology data vector subject to $\epsilon_{\rm DE}$ and $f_{\rm inj}$ bounds. *(Credit: Voxtrium)*&#x20;
+C. **End‑to‑end calibration**: While Voxtrium provides the bookkeeping and micro-macro locks, the EFT parameters $(\mu,\lambda,\gamma,c)$ are not yet fit against a specific cosmology data vector subject to $\epsilon_{\rm DE}$ and $f_{\rm inj}$ bounds. *(Credit: Voxtrium)*&#x20;
 D. **Hydro limit**: Deriving compressible/incompressible hydrodynamics and viscosity from the scalar sector (with possible multi‑component extension) is conceptually clear but not yet executed here.
 
 ---
@@ -201,7 +201,7 @@ Set $R_\ast\sim k_R/m_{\rm eff}$ to tie the tube analysis to Voxtrium’s micro�
 
 ## 8. Acknowledgements
 
-* *Voxtrium* is credited for the FRW + transfer‑current macro‑sourcing framework, unit discipline for $\alpha_h,\varepsilon_h,V_c$, causal retarded kernels, and Skyrme normalization used in the micro–macro locks.&#x20;
+* *Voxtrium* is credited for the FRW + transfer‑current macro‑sourcing framework, unit discipline for $\alpha_h,\varepsilon_h,V_c$, causal retarded kernels, and Skyrme normalization used in the micro-macro locks.&#x20;
 * *Michael Bordag* is credited for the finite‑radius chromomagnetic tube analysis that we adapted (mutatis mutandis) as a scalar finite‑tube tachyon program; figures and mode‑count behavior referenced explicitly above.&#x20;
 * *Justin K. Lietz* is credited for the discrete→continuum derivation, EFT formulation and mapping, finite‑tube scalar adaptation, units‑rigorous Voxtrium coupling, and all figures and simulations reported here.
 

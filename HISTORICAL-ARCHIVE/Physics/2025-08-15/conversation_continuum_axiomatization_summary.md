@@ -22,7 +22,7 @@ Legacy Situation (Pre-Upgrade)
 - Problem: Over-axiomatization reduces falsifiability and obscures which properties stem from the lattice equations.
 
 ------------------------------------------------------------------
-Upgraded Theorem (T1_upgraded) – Core Claim (Condensed)
+Upgraded Theorem (T1_upgraded) - Core Claim (Condensed)
 Given lattice solutions W^{(k)} on grids with spacing a_k→0 and Δt_k = a_k/c, periodic BCs, and uniform initial energy E_{a_k}^0 ≤ E_*, the interpolants φ^{(k)} possess a subsequence converging strongly in C^0_t L^2_x and L^2_t H^1_x to φ solving ∂_t^2 φ - c^2 Δφ + V'(φ)=0 weakly. Residual (in H^{-2}) is O(a_k^2). With higher initial Sobolev regularity (s>1+d/2), φ is classical and test-function residual pairing is second-order.
 
 Key Clauses
@@ -35,7 +35,7 @@ Key Clauses
 ------------------------------------------------------------------
 Derived Components (Definitions / Roles)
 DS (Discrete Stability): Provides uniform energy and H^1 bounds from discrete energy conservation / coercivity.
-CT (Compactness): Uses Aubin–Lions (bounded in L^∞ H^1; time differences bounded in L^2 L^2) to extract strong convergence subsequence.
+CT (Compactness): Uses Aubin-Lions (bounded in L^∞ H^1; time differences bounded in L^2 L^2) to extract strong convergence subsequence.
 QR (Quantitative Remainders): Local truncation expansions for temporal second difference and spatial Laplacian plus interpolation error of nonlinearity → O(a^2) in H^{-2}.
 WF (Weak Form Derivation): Standalone discrete summation-by-parts showing lattice EL ⇒ weak PDE with explicit remainder; term-by-term continuum limit justification.
 RB (Regularity Bootstrap): Energy hierarchy on spatial derivatives (using H^s algebra for s > d/2, d ≤ 3) to upgrade weak to classical solution and control higher norms.
@@ -45,10 +45,10 @@ Supporting / Modified Files (Planned)
 1. proofs/T1_upgraded.md (new authoritative theorem).
 2. proofs/regularity_bootstrap.md (RB content: energy induction, Grönwall bounds).
 3. proofs/weak_form_derivation.md (WF: detailed discrete → continuum weak form derivation, O(a^2) residual estimate).
-4. proofs/T1_continuum_limit.md (legacy) – prepend deprecation / supersession notice.
-5. core_axioms.md – revise A6 to minimal uniform initial energy bound.
-6. dependency_graph.md – add WF and RB nodes; edges: DS → CT → T1_upgraded; WF & QR → T1_upgraded; RB → T1_upgraded (classical clause). Remove direct convergence assumptions from A6.
-7. README – add Derivation Roadmap + acceptance test overview.
+4. proofs/T1_continuum_limit.md (legacy) - prepend deprecation / supersession notice.
+5. core_axioms.md - revise A6 to minimal uniform initial energy bound.
+6. dependency_graph.md - add WF and RB nodes; edges: DS → CT → T1_upgraded; WF & QR → T1_upgraded; RB → T1_upgraded (classical clause). Remove direct convergence assumptions from A6.
+7. README - add Derivation Roadmap + acceptance test overview.
 
 ------------------------------------------------------------------
 Proof Architecture Flow

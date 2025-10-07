@@ -49,7 +49,7 @@ Search the entire repository (code, tests, notebooks, docs, comments, configs) a
 * **Domain/Codomain:** MathJax like `$ \mathbb{R}^d \to \mathbb{R}^C $` or `$ \{0,1\} $` if discrete; leave blank if not stated.
 * **Units:** “nondimensional”, “LBM units”, or link to `UNITS_NORMALIZATION.md` anchor; leave blank if unspecified.
 * **Appears In:** comma-separated links to equation IDs from `EQUATIONS.md` (e.g., `[VDM-E-012](../derivation/EQUATIONS.md#vdm-e-012)`).
-* **Source:** `path:line-start–line-end • <short-commit>` where the symbol & meaning are evidenced.
+* **Source:** `path:line-start-line-end • <short-commit>` where the symbol & meaning are evidenced.
 * **Notes:** aliases (e.g., “also written `$ \varphi $` in `<path>`”), or pointers like “default in `CONSTANTS.md#const-alpha_plast`”.
 
 **Aliases & collisions:**
@@ -60,7 +60,7 @@ Search the entire repository (code, tests, notebooks, docs, comments, configs) a
 **Ordering:**
 
 * Sort rows by the **normalized LaTeX token** of `Symbol` (case-sensitive). Keep ordering stable across runs.
-* Grouping/headings are not required; a single table is fine. If the list grows large, insert alphabetical subheaders (`A–C`, `D–F`, …) without changing the table schema.
+* Grouping/headings are not required; a single table is fine. If the list grows large, insert alphabetical subheaders (`A-C`, `D-F`, …) without changing the table schema.
 
 **Coverage & cross-check:**
 

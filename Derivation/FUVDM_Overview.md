@@ -80,12 +80,12 @@ References:
 | --- | --- | --- | --- | --- |
 | LBM | $\nu$ | $\tfrac{1}{3}\bigl(\tau - \tfrac{1}{2}\bigr)$ | kinematic viscosity | 0.1333 ($\tau=0.9$) |
 | LBM | $\mathrm{Re}$ | $\dfrac{U L}{\nu}$ | inertia vs. viscosity | 9.6 (64²), 19.2 (128²) |
-| LBM | $\mathrm{Ma}$ | $\dfrac{U}{\sqrt{1/3}}$ | compressibility | 0.035–0.017 (low) |
+| LBM | $\mathrm{Ma}$ | $\dfrac{U}{\sqrt{1/3}}$ | compressibility | 0.035-0.017 (low) |
 | RD | $\Pi_{Dr}$ | $\dfrac{D}{r L^{2}}$ | diffusion at scale $L$ | choose $L$ → report |
-| RD | $c^{\ast}$ | $\dfrac{c}{2\sqrt{D r}}$ | normalized KPP speed | ~0.95–1.0 |
+| RD | $c^{\ast}$ | $\dfrac{c}{2\sqrt{D r}}$ | normalized KPP speed | ~0.95-1.0 |
 | VDM | $\Theta$ | fit scale in $\Theta\,\Delta m$ or $\Theta\,\|\nabla m\|$ | junction gating strength | $k \approx 1$, $b \approx 0$ |
 | VDM | $\Lambda$ | exploration/retention ratio | turnover vs. memory | as swept in heatmaps |
-| VDM | $\Gamma$ | retention fraction | memory persistence | ~0.3–0.75 (representative) |
+| VDM | $\Gamma$ | retention fraction | memory persistence | ~0.3-0.75 (representative) |
 | VDM | $D_{a}$ | anisotropic diffusion index | transport anisotropy | {1, 3, 5, 7} |
 | VDM | $\kappa L$ | curvature × scale | path bending | linear vs. $\Theta\,\|\nabla m\|$ |
 | VDM | $g$ | void gain | stabilization strength | e.g., 0.5 |
@@ -104,7 +104,7 @@ References:
 
 ## What is Proven (numeric validation; RD branch)
 
-Front-speed (Fisher–KPP pulled front) [PROVEN]
+Front-speed (Fisher-KPP pulled front) [PROVEN]
 
 $$
 c_{\text{front}} = 2\sqrt{D r}
@@ -211,8 +211,8 @@ fum_rt parity (independent runners; same metrics schema)
 
 ## At-a-glance defaults (validated runs)
 
-- Front-speed: N=1024, L=200, D=1.0, r=0.25, T=80, cfl=0.2, seed=42, x0=−60, level=0.1, fit 0.6–0.9  
-- Dispersion: N=1024, L=200, D=1.0, r=0.25, T=10, cfl=0.2, seed=42, amp0=1e−6, record=80, m_max=64, fit 0.1–0.4
+- Front-speed: N=1024, L=200, D=1.0, r=0.25, T=80, cfl=0.2, seed=42, x0=−60, level=0.1, fit 0.6-0.9  
+- Dispersion: N=1024, L=200, D=1.0, r=0.25, T=10, cfl=0.2, seed=42, amp0=1e−6, record=80, m_max=64, fit 0.1-0.4
 
 ## Memory steering and system notes
 

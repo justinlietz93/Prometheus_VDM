@@ -757,7 +757,7 @@ $$
 v_{\lambda} = \frac{-\alpha + \sqrt{\alpha^2 + 4\lambda(\alpha-\beta)}}{2\lambda}
 $$
 
-**Notes:** Physical vacuum for $\phi > 0$ when $\alpha > \beta$; $small\text{–}\lambda$ expansion: $v_{\lambda} \approx \frac{\alpha-\beta}{\alpha} - \frac{\lambda(\alpha-\beta)^2}{2\alpha^3} + O(\lambda^2)$.
+**Notes:** Physical vacuum for $\phi > 0$ when $\alpha > \beta$; $small\text{-}\lambda$ expansion: $v_{\lambda} \approx \frac{\alpha-\beta}{\alpha} - \frac{\lambda(\alpha-\beta)^2}{2\alpha^3} + O(\lambda^2)$.
 
 ---
 

@@ -10,10 +10,10 @@
 > See LICENSE file for full terms.
 
 Purpose
-- Define falsifiable acceptance thresholds for the fluids sector (LBM→NS) to certify reduction to Navier–Stokes.
+- Define falsifiable acceptance thresholds for the fluids sector (LBM→NS) to certify reduction to Navier-Stokes.
 
 Benchmarks (double precision)
-1) Taylor–Green vortex (2‑D periodic)
+1) Taylor-Green vortex (2‑D periodic)
 - Fit viscous decay E(t) = E0 exp(−2 ν k² t).
 - Thresholds:
   - Baseline grid (≥ 256²): |ν_fit − ν_th| / ν_th ≤ 5%.
@@ -45,7 +45,7 @@ Pass gate
 How to run (PowerShell)
 - Always activate venv:
   & .\venv\Scripts\Activate.ps1
-- Taylor–Green:
+- Taylor-Green:
   python Prometheus_VDM/derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py --nx 256 --ny 256 --tau 0.8 --steps 5000 --sample_every 50
 - Lid cavity:
   python Prometheus_VDM/derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py --nx 128 --ny 128 --tau 0.7 --U_lid 0.1 --steps 15000 --sample_every 200

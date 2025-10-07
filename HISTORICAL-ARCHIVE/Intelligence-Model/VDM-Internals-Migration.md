@@ -28,7 +28,7 @@ Here’s the updated, single plan—**move all internals to `core/`** and make m
   fum_rt/nexus.py   # thin façade re-exporting Nexus
   ```
 * Copy current Nexus logic into `runtime/*` and delegate.
-* **Golden run parity:** 2–3k ticks; `why` blobs byte-for-byte; first 200 macro lines identical; tick P50/P99 ±2%.
+* **Golden run parity:** 2-3k ticks; `why` blobs byte-for-byte; first 200 macro lines identical; tick P50/P99 ±2%.
 
 ---
 
@@ -121,7 +121,7 @@ cold_score = α*(t_now - last_update_t) +
 
 ## Scheduler (bounded)
 
-* Step budget ≤ 1–3% of tick time; K scouts; TTL 50–200 steps each.
+* Step budget ≤ 1-3% of tick time; K scouts; TTL 50-200 steps each.
 * Priority = most-cold tiles; preempt/resume next tick if over budget.
 
 **Result:** hot path = event folding only; “scanner” reduced to rare auditor (low cadence, budgeted micro-slices).
@@ -138,7 +138,7 @@ cold_score = α*(t_now - last_update_t) +
 ## Optional — Auditor (rare, budgeted)
 
 * Triggers: drift between incremental vs last audit > ε, stalest tiles, idle.
-* Budget: e.g., 300–1000 μs/tick; epoch snapshot; idempotent reconcile.
+* Budget: e.g., 300-1000 μs/tick; epoch snapshot; idempotent reconcile.
 
 ---
 

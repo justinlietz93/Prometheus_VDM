@@ -14,7 +14,7 @@
 
 ## Introduction
 
-This note quality-controls the Friedman–Robertson–Walker (FRW) continuity bookkeeping for the dust control ($w=0$). For pressureless matter, $\rho(a) \propto a^{-3}$, implying exact conservation of $\rho a^3$. We validate that the discretized residual is at machine precision on a synthetic series, establishing a baseline before adding sources or curvature.
+This note quality-controls the Friedman-Robertson-Walker (FRW) continuity bookkeeping for the dust control ($w=0$). For pressureless matter, $\rho(a) \propto a^{-3}$, implying exact conservation of $\rho a^3$. We validate that the discretized residual is at machine precision on a synthetic series, establishing a baseline before adding sources or curvature.
 
 Scope: This is a QC-only experiment. No cosmological inference is attempted; we strictly test a bookkeeping identity under controlled conditions.
 

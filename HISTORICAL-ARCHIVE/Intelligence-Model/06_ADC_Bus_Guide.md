@@ -24,7 +24,7 @@ I’ll break it into four things you can actually drop into your tree today:
 * Drops messages if overloaded (bounded), because walkers resume next tick anyway.
 * This is the *only* input stream to the ADC.
 
-**ADC – Active Domain Cartography (master cartographer)**
+**ADC - Active Domain Cartography (master cartographer)**
 
 * Never looks at `W`. Ever.
 * Consumes observation events and incrementally updates a territory graph:
@@ -67,7 +67,7 @@ class Observation:
 ```
 
 * This is purposely tiny (a few dozen bytes per event).
-* Walkers produce \~1–4 observations each, per tick, bounded by your `--walkers/--hops` budget.
+* Walkers produce \~1-4 observations each, per tick, bounded by your `--walkers/--hops` budget.
 
 ---
 
@@ -132,7 +132,7 @@ class Boundary:
 
 **Complexity**
 
-* Each event touches at most a handful of territories/boundaries → `O(1)` per event, not `O(N)`. Even with thousands of events per second, you’re comfortably sub‑linear in N, which is what you want for 10⁶–10⁹ neurons and beyond.
+* Each event touches at most a handful of territories/boundaries → `O(1)` per event, not `O(N)`. Even with thousands of events per second, you’re comfortably sub‑linear in N, which is what you want for 10⁶-10⁹ neurons and beyond.
 
 ---
 
@@ -266,9 +266,9 @@ I’m giving you minimal, surgical additions that won’t fight the code your ot
 
 For N=1,000; k≈12; hz=10:
 
-* Walkers: 64 walkers × 3–5 hops = \~320–500 neighbor touches per tick → \~5–8k touches/s.
+* Walkers: 64 walkers × 3-5 hops = \~320-500 neighbor touches per tick → \~5-8k touches/s.
 * Each touch executes a handful of float ops (void deltas; a few EWMAs). This is peanuts on TR Pro 5955WX.
-* Event volume: \~200–500 observations/s → a few tens of KB/s to the bus and logs.
+* Event volume: \~200-500 observations/s → a few tens of KB/s to the bus and logs.
 * Memory: territories/boundaries O(#emergent regions) ≪ N.
 
 The same pattern scales to millions of nodes in sparse mode (O(N·k) storage) because cost rides on the event rate, not N.
@@ -292,7 +292,7 @@ python -m fum_rt.run_nexus \
   --domain math_physics --use-time-dynamics
 ```
 
-2. Let it ingest the math lines for \~1–3 minutes. You should see:
+2. Let it ingest the math lines for \~1-3 minutes. You should see:
 
    * `cohesion_components → 1`
    * `vt_coverage ↑`, `vt_entropy stable/modestly ↑`

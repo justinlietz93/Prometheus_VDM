@@ -7,7 +7,7 @@
 ## Generated Summary
 
 ### Identified Components
-*   **Fully Unified Void–Field Model (FUM):** The core theoretical model, starting as a discrete update rule for `W_i` on a k-NN graph and extending to a continuum scalar effective field theory (EFT) using `phi(x,t)`.
+*   **Fully Unified Void-Field Model (FUM):** The core theoretical model, starting as a discrete update rule for `W_i` on a k-NN graph and extending to a continuum scalar effective field theory (EFT) using `phi(x,t)`.
 *   **Connectome (Dense/Sparse):** The fundamental neural network structure, implementing void dynamics, structural homeostasis, and providing graph-theoretic metrics. It can operate in dense or sparse mode, supporting different scales of neurons (`N`) and average degrees (`k`).
 *   **Self-Improvement Engine (SIE):** A learning core that computes intrinsic signals like novelty, TD reward, habituation, and a composite `total_reward_mean` / `valence_01`, used for internal decision-making.
 *   **Continuum Scalar Effective Field Theory (EFT):** A field theory description derived from the discrete FUM, characterized by a Lagrangian (`mathcal L`) with kinetic terms, wave-speed (`c^2`), and a potential (`V(phi)`). Its parameters (`mu^2`, `lambda`, `gamma`) map to the discrete model.
@@ -86,7 +86,7 @@
 
 ## Key Highlights
 
-* The system's core theoretical model, the Fully Unified Void–Field Model (FUM), transitions from discrete dynamics on a neural network (Connectome) to a Continuum Scalar Effective Field Theory (EFT).
+* The system's core theoretical model, the Fully Unified Void-Field Model (FUM), transitions from discrete dynamics on a neural network (Connectome) to a Continuum Scalar Effective Field Theory (EFT).
 * The scalar EFT is embedded into an FRW cosmological background using the Voxtrium Macro-Sourcing Framework, ensuring unit consistency, causal sourcing, and energy-momentum conservation.
 * A Self-Improvement Engine (SIE) computes intrinsic signals such as novelty, reward, and habituation, which are crucial for the system's internal decision-making and learning processes.
 * Nexus serves as the central orchestrator, managing input/output through UTE/UTD, coordinating the Connectome and SIE, and implementing autonomous behaviors like speech.

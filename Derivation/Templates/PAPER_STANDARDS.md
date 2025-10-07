@@ -58,11 +58,11 @@
 
 9. [**Example:**](https://www.clastify.com/ia/physics/64a6ed1b701b5600139b4265) This IA has good background information since it describes the main concept being studied (pendulum damping), and provides the relevant equations for the mechanism occurring. It includes relevant diagrams such as the forces on a pendulum and the angular displacement over time. The background information section is directly focused on the research question and contains in-text citations where applicable.
 
-10. Scope and larger theory (required, concise): Briefly situate the experiment within its parent framework (e.g., metriplectic dynamics; gradient flows), define the minimal terms used later, and explain why the framework is appropriate. Provide 2–4 citations to foundational sources.
+10. Scope and larger theory (required, concise): Briefly situate the experiment within its parent framework (e.g., metriplectic dynamics; gradient flows), define the minimal terms used later, and explain why the framework is appropriate. Provide 2-4 citations to foundational sources.
 
-11. Core equations (required): Present 3–5 equations that are directly used in Methods/Results (e.g., invariants, discretizations, error models), with variable definitions and units. Keep derivations brief; link or cite for details.
+11. Core equations (required): Present 3-5 equations that are directly used in Methods/Results (e.g., invariants, discretizations, error models), with variable definitions and units. Keep derivations brief; link or cite for details.
 
-12. Map to gates (required): Explicitly connect each theoretical property to its experimental gate or metric (e.g., “DG ⇒ ΔL ≤ 0,” “Strang ⇒ slope ≥ 2 on log–log two-grid”).
+12. Map to gates (required): Explicitly connect each theoretical property to its experimental gate or metric (e.g., “DG ⇒ ΔL ≤ 0,” “Strang ⇒ slope ≥ 2 on log-log two-grid”).
 
 13. If additional context is needed beyond a few paragraphs, add a short “Theory Primer” subsection or an Appendix. Do not omit crucial background—relocate it rather than compressing away needed clarity.
 
@@ -194,13 +194,13 @@ Summarize what you learned in the lab, with specific references to the scientifi
 
 ### Runtime & Scaling
 
-- **Never claim scaling without a log–log slope.** Report β ± CI for step-time vs active sites.
+- **Never claim scaling without a log-log slope.** Report β ± CI for step-time vs active sites.
 - **Always report P50/P95/P99 latency and jitter.** Show stability over hours.
 - **Quantify “no dense scans.”** Log fraction of cells touched per tick; enforce a budget.
 
 ### Citations & Prior Art
 
-- **Cite lineage at first use.** Logistic → Verhulst; fronts → Fisher–KPP; gradient flow → Onsager/JKO/AGS; RD patterns → Turing/Murray.
+- **Cite lineage at first use.** Logistic → Verhulst; fronts → Fisher-KPP; gradient flow → Onsager/JKO/AGS; RD patterns → Turing/Murray.
 - **Keep related work minimal but present.** Four bullets beat zero citations.
 - **Never bury citations in an appendix.** Put them where skepticism arises.
 

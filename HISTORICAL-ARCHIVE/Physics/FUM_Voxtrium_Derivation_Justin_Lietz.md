@@ -40,7 +40,7 @@ Postulate the discrete Lagrangian (per time step) with site kinetic and edge‑s
 L^n &= a^d\sum_i\Big[\tfrac12\Big(\tfrac{W_i^{n+1}-W_i^n}{\Delta t}\Big)^2
 -\tfrac{\kappa}{2}\sum_{\mu=1}^d\big(W_{i+\mu}^n-W_i^n\big)^2 - V(W_i^n)\Big],
 \end{aligned}\]
-which yields the discrete Euler–Lagrange equation. Taking \(a,\Delta t\to0\), \(W_i^n\to\phi\) gives
+which yields the discrete Euler-Lagrange equation. Taking \(a,\Delta t\to0\), \(W_i^n\to\phi\) gives
 \[\partial_t^2\phi-c^2\nabla^2\phi+V'(\phi)=0,\qquad c^2\equiv \kappa a^2=2Ja^2.\]
 
 **Result.** The continuum kinetic term is canonical: \(\mathcal L_K=\tfrac12(\partial_t\phi)^2-\tfrac{c^2}{2}(\nabla\phi)^2\). The coefficient \(Z(\phi)\) is constant; higher‑derivative operators are suppressed (EFT expansion).

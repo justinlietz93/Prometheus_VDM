@@ -90,7 +90,7 @@ $$
 \mathbf r''=\nabla_\perp \ln n=\eta\,\nabla_\perp M,
 $$
 
-and memory evolves by **write–decay–spread**
+and memory evolves by **write-decay-spread**
 
 $$
 \partial_t M=\gamma R-\delta M+\kappa \nabla^2 M.
@@ -166,7 +166,7 @@ is **conserved** along trajectories (Noether for time translations in a first‑
 
 3. **`fum/memory/model.py`**
 
-   * Graph Laplacian update $\dot{\mathbf m}=\gamma \mathbf r-\delta\mathbf m-\kappa L\mathbf m$ with stable integrator (e.g., semi‑implicit Euler or Crank–Nicolson on Laplacian term).
+   * Graph Laplacian update $\dot{\mathbf m}=\gamma \mathbf r-\delta\mathbf m-\kappa L\mathbf m$ with stable integrator (e.g., semi‑implicit Euler or Crank-Nicolson on Laplacian term).
    * Router: `route(i) -> j` via $P(i\to j)\propto e^{\Theta m_j}$.
    * Expose dimensionless groups $(\Theta,D_a,\Lambda,\Gamma)$ as the public API. **Source:** memory law & discretization.&#x20;
 
@@ -178,7 +178,7 @@ is **conserved** along trajectories (Noether for time translations in a first‑
 ### F.2 Efficiency wins (why this is faster & smarter)
 
 * **Closed‑form onsite flow:** Use your conserved quantity $Q_{\rm FUM}$ to **analytically step** the logistic onsite rule where applicable—no tiny dt. (Invert $Q$ to get $W(t+\Delta t)$ exactly.) **Physics → speedup.**&#x20;
-* **Semi‑implicit memory:** The stiff $-\kappa L m$ term is unconditionally stable with Crank–Nicolson → **larger steps** without blowup. **Physics → stability.**&#x20;
+* **Semi‑implicit memory:** The stiff $-\kappa L m$ term is unconditionally stable with Crank-Nicolson → **larger steps** without blowup. **Physics → stability.**&#x20;
 * **Mode truncation:** Tube solver keeps only unstable $\{\ell,n\}$ and lowest few stable modes → **orders‑of‑magnitude cheaper** than full PDEs while preserving dynamics that matter (per Bordag). **Physics → reduced basis.**&#x20;
 
 ### F.3 Tests that certify “physics‑faithfulness”
@@ -207,7 +207,7 @@ is **conserved** along trajectories (Noether for time translations in a first‑
 **Weak / open (do next):**
 
 * One‑loop corrections to tube energy $E(R)$ and the precise minimum (Bordag has the template; compute for scalar).&#x20;
-* Full hydrodynamic limit (derive Euler–Navier form explicitly from wavepackets + $M$, then benchmark viscosity vs. $\Gamma$).&#x20;
+* Full hydrodynamic limit (derive Euler-Navier form explicitly from wavepackets + $M$, then benchmark viscosity vs. $\Gamma$).&#x20;
 * EFT higher‑derivative suppression bounds $c_1,c_2$ (calculate or bound by lattice spacing/UV scale).&#x20;
 * Cosmology calibration of $p_i(z)$ weights and $K_{\rm ret}$ normalization to observed $(w_{\rm eff},\sigma/m(v))$. (Voxtrium.)&#x20;
 
@@ -263,8 +263,8 @@ is **conserved** along trajectories (Noether for time translations in a first‑
 
 ## K. Closing the remaining gaps (roadmap)
 
-* **One‑loop tube energy $E(R)$:** adopt Bordag’s 2D effective action for the unstable tower, compute Coleman‑Weinberg–type corrections, and compare the minimum vs. your “flux proxy.” (Voxtrium’s observation about polynomial vs. exponential smallness is a target signature.)&#x20;
-* **Hydro from packets:** derive the Euler–Bernoulli form by Wigner‑transforming the φ field, then coarse‑graining with the $M$ back‑reaction. Validate effective viscosity vs. $\Gamma$.&#x20;
+* **One‑loop tube energy $E(R)$:** adopt Bordag’s 2D effective action for the unstable tower, compute Coleman‑Weinberg-type corrections, and compare the minimum vs. your “flux proxy.” (Voxtrium’s observation about polynomial vs. exponential smallness is a target signature.)&#x20;
+* **Hydro from packets:** derive the Euler-Bernoulli form by Wigner‑transforming the φ field, then coarse‑graining with the $M$ back‑reaction. Validate effective viscosity vs. $\Gamma$.&#x20;
 * **Higher‑derivative bounds:** compute or bound $c_1,c_2$ in $\mathcal L_{\rm EFT}$ by lattice spacing $a$ and temporal scale $\tau$ so the IR truncation is mathematically watertight.&#x20;
 * **Cosmo calibration:** fit $p_i(z)$ weights and $K_{\rm ret}$ normalization to $(w_{\rm eff},\,\sigma/m(v))$ constraints using the Skyrme calibration numbers you recorded. (Voxtrium.)&#x20;
 

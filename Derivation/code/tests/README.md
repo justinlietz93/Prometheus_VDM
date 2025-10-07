@@ -9,7 +9,7 @@ Directory layout
   - fluid_dynamics/
   - tachyonic_condensation/
 - Example
-  - [test_taylor_green_decay.py](Prometheus_VDM/derivation/code/tests/fluid_dynamics/test_taylor_green_decay.py:1) — verifies ν recovery from Taylor–Green energy decay with |ν_fit−ν_th|/ν_th ≤ 5%.
+  - [test_taylor_green_decay.py](Prometheus_VDM/derivation/code/tests/fluid_dynamics/test_taylor_green_decay.py:1) — verifies ν recovery from Taylor-Green energy decay with |ν_fit−ν_th|/ν_th ≤ 5%.
 
 Conventions
 - Location: derivation/code/tests/<domain>/test_*.py
@@ -34,7 +34,7 @@ Pathing rules (applies repo‑wide)
 - Logs: derivation/code/outputs/logs/<domain>/
 - This naming ensures domain‑scoped artifacts and simple globbing.
 
-Example: Taylor–Green (fluid_dynamics)
+Example: Taylor-Green (fluid_dynamics)
 - Unit test: [test_taylor_green_decay.py](Prometheus_VDM/derivation/code/tests/fluid_dynamics/test_taylor_green_decay.py:1)
   - Builds a small D2Q9 LBM system (τ=0.8 ⇒ ν_th=(τ−0.5)/3).
   - Samples energy E(t) and fits log E.

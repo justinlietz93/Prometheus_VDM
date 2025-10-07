@@ -55,7 +55,7 @@ Think: **supersaturated vapor condenses** on contact with a cold window—mist (
 
 **Observables (how it shows up)**
 
-* **Visible decays**: narrow e⁺e⁻ or μ⁺μ⁻ bumps (dark photon–like).
+* **Visible decays**: narrow e⁺e⁻ or μ⁺μ⁻ bumps (dark photon-like).
 * **Invisible channels**: **missing energy** in fixed-target or collider events.
 * **Long-lived** decays: displaced vertices / beam dumps.
 * **Fifth-force / equivalence-principle** tests if the field mediates a weak force.
@@ -69,7 +69,7 @@ Think: **supersaturated vapor condenses** on contact with a cold window—mist (
 2. **Anomalies/gauge consistency:** charges must cancel if you gauge the void field.
 3. **Lorentz/causality:** if you bend these, say **where** and **how small** (EFT with cutoff Λ).
 4. **Portal size vs bounds:** tiny is fine; just check it doesn’t already contradict lab/astro limits.
-5. **Energy accounting:** “evaporation” must conserve energy–momentum; translate it to **decay**, **scattering**, or **phase change**.
+5. **Energy accounting:** “evaporation” must conserve energy-momentum; translate it to **decay**, **scattering**, or **phase change**.
 
 ---
 
@@ -100,7 +100,7 @@ Each leaf gets your one-minute explainer: **what moves, what restores, what resi
 
 ---
 
-## A 60–90s demo script you can use now
+## A 60-90s demo script you can use now
 
 “Imagine a **second field**—a fog that rarely touches ours. When it **leaks** through a tiny portal, the fog **condenses** into ordinary particles and **picks up mass** because the symmetry that kept it diffuse no longer holds. The ‘mystery’ behavior—like being everywhere and nowhere—**collapses into classical-looking stuff** once it interacts (that’s **decoherence**, not law-breaking). We look for the leaks as **rare decays, missing energy, or long-lived tracks**, while cosmology and stars limit how leaky it can be.”
 
@@ -131,7 +131,7 @@ If you want attention with minimal thrash, lean into two VDM-native threads:
 
 2. **Astro “leak & return” windows:** use your **retarded-kernel** sourcing to model production in supernova/compact-object environments with **feeble mixing**, keeping today’s injection tiny while predicting narrow signals (visible bumps, missing-energy, or displaced). 
 
-Bottom line: your framework isn’t just compatible—it’s **pre-wired** for a dark-photon portal story. If you’d like, I’ll add a quiet drop-in: a “Dark Photon (A′) – Portal Cards + Limits” skeleton using your indices and acceptance gates so you can start generating artifacts immediately.
+Bottom line: your framework isn’t just compatible—it’s **pre-wired** for a dark-photon portal story. If you’d like, I’ll add a quiet drop-in: a “Dark Photon (A′) - Portal Cards + Limits” skeleton using your indices and acceptance gates so you can start generating artifacts immediately.
 
 
 Medical References:

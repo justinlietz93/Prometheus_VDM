@@ -2722,7 +2722,7 @@ __all__ = ["ColdScout", "VoidColdScoutWalker"]
 fum_rt.core.cortex.void_walkers.void_cycle_scout
 
 CycleHunterScout (read-only, void-faithful):
-- Seeks short cycles (3–6 hops) using a TTL-limited walk with a tiny path window.
+- Seeks short cycles (3-6 hops) using a TTL-limited walk with a tiny path window.
 - Purely local: only neighbor lists are read; no global scans or dense conversions.
 - Emits vt_touch and edge_on events; reducers can infer cycle hits from returned edge traces.
 
@@ -6344,7 +6344,7 @@ Notes
 
 Void-faithful
 - Pure numeric helpers; no external imports beyond typing/math/statistics.
-- O(#samples) time; callers pass bounded samples (e.g., 256–2048 indices).
+- O(#samples) time; callers pass bounded samples (e.g., 256-2048 indices).
 """
 
 from typing import Dict, Iterable, Optional, Sequence, Tuple
@@ -7094,7 +7094,7 @@ research while ensuring commercial applications are aligned with the project's e
 See LICENSE file for full terms.
 
 Module: fum_rt.core.memory.field
-Purpose: Event-driven memory field with write–decay–spread dynamics (void-faithful).
+Purpose: Event-driven memory field with write-decay-spread dynamics (void-faithful).
 
 Design constraints
 - Sparse-first: no dense global passes; updates are event-local only.

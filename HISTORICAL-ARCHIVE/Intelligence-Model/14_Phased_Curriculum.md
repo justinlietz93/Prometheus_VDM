@@ -206,7 +206,7 @@ You and the agent already wired this; double‑check the CLI is exposed in `make
 
 # 2) Runbook: 1k neurons, feed math, then chat live
 
-Your machine is perfect (Threadripper + 512 GB RAM + XTX + MI100). The CPU path alone can do 1k–100k with the sparse backend; HIP acceleration is a pure bonus.
+Your machine is perfect (Threadripper + 512 GB RAM + XTX + MI100). The CPU path alone can do 1k-100k with the sparse backend; HIP acceleration is a pure bonus.
 
 **Create env + deps (Ubuntu 24.04):**
 
@@ -254,7 +254,7 @@ cat fum_rt/data/math/math_corpus.txt - | python -m fum_rt.run_nexus \
 * **Cohesion** (component count) trending down toward 1.
 * **Average weight** trending upward then plateauing with small oscillations.
 * **Complexity (cycle hits / B1 proxy)** rising sublinearly then showing intermittent spikes.
-* **SIE valence** hovering in 0.5–0.7 while input flows; dropping back toward 0.5 when idle.
+* **SIE valence** hovering in 0.5-0.7 while input flows; dropping back toward 0.5 when idle.
 * **Autonomous “say”** events aligned with those spikes, not random.
 
 **If you still see ring‑lattice artifacts**: ensure structural homeostasis is driving rewiring *every tick* (no deterministic scaffold). Your dense backend should be doing **local pruning + void‑guided bridging** with the CLI `--bundle-size` / `--prune-factor` applied; the sparse backend handles it with top‑k by Sij per node (O(N·k)).
@@ -295,7 +295,7 @@ Now your logs will include `"flops"` per tick; you can trend it vs. `vt_coverage
 
 # 6) Scale path on your workstation
 
-* **100k–1M**: use `--sparse-mode`, keep `k∈[16,32]`, set `--walkers 256–1024`, `--hops 3–5`. With 512 GB RAM you have ample headroom for O(N·k) adjacency.
+* **100k-1M**: use `--sparse-mode`, keep `k∈[16,32]`, set `--walkers 256-1024`, `--hops 3-5`. With 512 GB RAM you have ample headroom for O(N·k) adjacency.
 * **ROCm/HIP** (optional): if your PyTorch ROCm is installed, the dense backend can push CSR matvecs to the MI100. The sparse backend already avoids N^2; the big wins for HIP come from batched **top‑k by Sij** and walker expansions (we can CK/MIopen these later).
 * **Out‑of‑core plan**: the sparse adjacency can be sharded in flat files by node‑range; walkers touch only the shards they enter. That gives you the 10^9 rehearsal path without swapping.
 
@@ -314,7 +314,7 @@ Now your logs will include `"flops"` per tick; you can trend it vs. `vt_coverage
 2. **ADC attached?** Status should include `adc_territories/adc_boundaries`; if missing, bus isn’t wired.
 3. **B1 proxy meaningful?** `complexity_cycles` should rise then spike; if not, increase `--walkers/--hops`.
 4. **Self‑speak gates too strict?** Temporarily set `--speak-z 0.8`, `--speak-valence-thresh 0.1`, `--speak-cooldown-ticks 5`.
-5. **Structural homeostasis on?** Adjust `--bundle-size 3–5`, `--prune-factor 0.08–0.15`.
+5. **Structural homeostasis on?** Adjust `--bundle-size 3-5`, `--prune-factor 0.08-0.15`.
 6. **SIE alive?** Status fields `sie_total_reward` and `sie_valence_01` should fluctuate with input; if they’re pinned \~0.5/0.0, double‑check the SIE wiring into `step()`.
 
 ---
@@ -326,6 +326,6 @@ Now your logs will include `"flops"` per tick; you can trend it vs. `vt_coverage
 3. Ensure void‑pathfinding is the energy follower (−|ΔW\_pred|).
 4. Run the **1k session** command above; watch status every second; inspect `utd_events.jsonl` for self‑speak with `why`.
 5. If quiet, feed more math and briefly relax gates; once it “finds itself”, restore stricter values.
-6. Switch to **sparse** for 100k–1M and start measuring throughput with the FLOPs meter.
+6. Switch to **sparse** for 100k-1M and start measuring throughput with the FLOPs meter.
 
 Everything here preserves your blueprint’s spirit: **the void equations do the work**, memory is **structural and emergent**, introspection is **event‑driven**, and speech is **valence‑gated** by **topology spikes**. If you want, I can also port your exact SIE coefficient schedule (from your April notebook) into `SIECfg` and expose those on the CLI so you can sweep them live.

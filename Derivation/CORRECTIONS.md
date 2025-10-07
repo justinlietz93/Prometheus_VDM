@@ -2,7 +2,7 @@
 
 Date (UTC): 2025-08-20
 
-Scope: Tier-0 correctness fixes (numerics, stability narrative) and unification to a single canonical model class (reaction–diffusion, RD). EFT/KG material retained but quarantined as “Future Work.”
+Scope: Tier-0 correctness fixes (numerics, stability narrative) and unification to a single canonical model class (reaction-diffusion, RD). EFT/KG material retained but quarantined as “Future Work.”
 
 ## Summary (before → after)
 
@@ -76,7 +76,7 @@ All fixed-number statements were replaced with parameter‑dependent forms and e
 - [derivation/fum_voxtrium_mapping.md](fum_voxtrium_mapping.md): Make RD canonical; EFT references scoped.  
 - [METRICS.md](Prometheus_VDM/METRICS.md): New file with metrics skeleton.
 - [derivation/rd_front_speed_validation.md](rd_front_speed_validation.md:1): Add reproducible CLI, output routing, acceptance criteria, representative PASS metrics.
-- [derivation/code/physics/rd_front_speed_experiment.py](code/physics/rd_front_speed_experiment.py:1): Set defaults (N=1024, cfl=0.2, level=0.1, x0=-60, fit 0.6–0.9); route outputs to derivation/code/outputs/{figures,logs}; robust tracking and fit.
+- [derivation/code/physics/rd_front_speed_experiment.py](code/physics/rd_front_speed_experiment.py:1): Set defaults (N=1024, cfl=0.2, level=0.1, x0=-60, fit 0.6-0.9); route outputs to derivation/code/outputs/{figures,logs}; robust tracking and fit.
 - New: [derivation/code/physics/rd_front_speed_sweep.py](code/physics/rd_front_speed_sweep.py:1): Sweep runner producing CSV summary under derivation/code/outputs/logs/.
 - New: [derivation/code/physics/rd_dispersion_experiment.py](code/physics/rd_dispersion_experiment.py:1): Linear dispersion validation script with periodic BC; logs/figure auto-routing; acceptance criteria.
 
@@ -84,5 +84,5 @@ All fixed-number statements were replaced with parameter‑dependent forms and e
 
 - [ERROR FIXED]: Incorrect fixed mass number claims replaced with parameter‑dependent expression.
 - [PROVEN]: Lattice → continuum kinetic normalization via discrete action (already present) is internally consistent.
-- [PROVEN]: RD front speed c_front = 2√(Dr) validated. Defaults: N=1024, cfl=0.2, level=0.1, x0=-60, fit window 0.6–0.9. Representative run: c_meas≈0.953, c_th=1.0, rel_err≈0.047, R²≈0.999996.
+- [PROVEN]: RD front speed c_front = 2√(Dr) validated. Defaults: N=1024, cfl=0.2, level=0.1, x0=-60, fit window 0.6-0.9. Representative run: c_meas≈0.953, c_th=1.0, rel_err≈0.047, R²≈0.999996.
 - [PROVEN]: RD dispersion σ(k) = r − D k² validated via linearized periodic evolution. Defaults (N=1024, L=200, D=1.0, r=0.25, T=10, cfl=0.2, seed=42, m_max=64) → med_rel_err≈0.00145, R²_array≈0.99995 [PASS]; grid refinement (N=2048, m_max=128) → med_rel_err≈0.00130, R²_array≈0.9928 [PASS].

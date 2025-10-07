@@ -73,7 +73,7 @@ and the **sound speed** near a vacuum (mass gap $m_\mathrm{eff}=\sqrt{2}\mu$) re
 ### D2. Vorticity & viscosity (add the minimal, physics‑faithful pieces)
 
 * **Vorticity:** Promote $\phi\to \Phi=\rho^{1/2}e^{i\theta}$. The conserved U(1) current yields $\mathbf v=\frac{c^2}{\omega_\phi}\nabla\theta$ and quantized vortices; Goldstones appear automatically (optional but one‑file change in your code).
-* **Viscosity:** Couple to the slow “memory” field $M$ you formalized. Integrating out $M$ adds a *retarded* stress with kernel width $\tau_M$, giving effective shear/bulk viscosities scaling like $\eta,\zeta \sim \Theta^2\,\gamma \tau_M$ (from your write–decay–spread law). This is the clean, testable origin of dissipation—no hand‑tuned friction.&#x20;
+* **Viscosity:** Couple to the slow “memory” field $M$ you formalized. Integrating out $M$ adds a *retarded* stress with kernel width $\tau_M$, giving effective shear/bulk viscosities scaling like $\eta,\zeta \sim \Theta^2\,\gamma \tau_M$ (from your write-decay-spread law). This is the clean, testable origin of dissipation—no hand‑tuned friction.&#x20;
 
 > **Code hook.** Keep scalar core as‑is; add optional `ComplexScalarEFT` (phase advection) and the existing `memory_steering` module to supply retarded stresses; verify the two **scaling collapses** you already use (junction logistic; curvature∝$\Theta|\nabla m|$).&#x20;
 
@@ -313,7 +313,7 @@ This verifies $Z$ and nails the $p^4$ envelope **without** relying on potential�
 
 ---
 
-## How this plugs into Steps 2–4 (one‑liners)
+## How this plugs into Steps 2-4 (one‑liners)
 
 * **Step 2 (finite‑tube tachyon→condensate):** use the locked $Z, c$ to populate the radial eigenvalue problem and the post‑condensation Hessian; positivity of masses after condensation follows the appendix workflow.&#x20;
 * **Step 3 (units / Voxtrium mapping):** promote $a,\Delta t$ to $(\phi_0,\tau,a)$ and keep $c^2=2Ja^2$; $m^2=(\alpha-\beta)/\tau^2$; all bookkeeping remains GeV‑consistent.&#x20;
@@ -333,14 +333,14 @@ If you want, I’ll draft the exact “Appendix: lattice‑to‑EFT $p^4$ matchi
 
 Awesome—let’s push the proof program forward **and** wire it cleanly into the runtime to boost “intelligence” (routing quality, stability, self‑calibration). I’ll keep this in two tracks:
 
-1. **Physics proofs/extensions** you can paste into Sections 10–11.
+1. **Physics proofs/extensions** you can paste into Sections 10-11.
 2. **Production‑grade code stubs** and integration points that apply the math immediately.
 
 I’ll cite your derivations inline so everything stays source‑anchored.
 
 ---
 
-## A) Physics: finishing Step 1 rigorously + advancing Steps 2–4
+## A) Physics: finishing Step 1 rigorously + advancing Steps 2-4
 
 ### A1) **Appendix — Lattice → EFT $p^4$ matching (drop‑in text)**
 
@@ -766,7 +766,7 @@ $$
 \mathcal L=\tfrac12(\partial_t\phi)^2-\tfrac{c^2}{2}(\nabla\phi)^2-V(\phi),\qquad c^2=2Ja^2.
 $$
 
-This removes any ambiguity about “promoting” the time derivative and shows the Klein–Gordon structure is not an assumption but the continuum limit of your lattice dynamics.&#x20;
+This removes any ambiguity about “promoting” the time derivative and shows the Klein-Gordon structure is not an assumption but the continuum limit of your lattice dynamics.&#x20;
 You also documented the discrete‑to‑continuum bridge and choice of a **bounded quartic** baseline potential with an optional small cubic tilt (tachyon at ϕ≈0, true vacua ±v, $m_{\rm eff}^2=2\mu^2$), which is the correct way to stabilize the tachyon while keeping the original $(\alpha,\beta)$ heritage.&#x20;
 
 **B. Units‑rigorous map to macro sourcing (Voxtrium).**
@@ -783,10 +783,10 @@ and—independently—the potential $V(W)$ decreases monotonically,
 $\dot V=-F(W)^2\le 0$, so $V$ is a Lyapunov function. This clarifies *what is* and *is not* conserved at the micro level. &#x20;
 
 **D. Finite‑tube (flux‑tube) instability and post‑condensation stability are on firm ground.**
-Your Bordag‑style cylinder analysis derives the Bessel matching condition, counts tachyonic modes, constructs the 2D mode EFT along the tube, and shows that quartic self‑interaction lifts all tachyons after condensation (non‑negative mass matrix). That matches the logic and even the **secular equation** structure seen in the reference study (Universe 2024) for SU(2) vortices (see the secular condition and tachyon towers and the stepwise $l_{\max}(\delta)$ on **pp. 7–9**, Fig. 1). &#x20;
+Your Bordag‑style cylinder analysis derives the Bessel matching condition, counts tachyonic modes, constructs the 2D mode EFT along the tube, and shows that quartic self‑interaction lifts all tachyons after condensation (non‑negative mass matrix). That matches the logic and even the **secular equation** structure seen in the reference study (Universe 2024) for SU(2) vortices (see the secular condition and tachyon towers and the stepwise $l_{\max}(\delta)$ on **pp. 7-9**, Fig. 1). &#x20;
 
 **E. Memory‑driven steering is a compact, testable add‑on that does not pollute the φ‑kinematics.**
-You cleanly separated a slow “memory” field $M$ with index $n=\exp(\eta M)$ that bends rays by $\mathbf r''=\eta\nabla_\perp M$, and a minimal write–decay–spread PDE
+You cleanly separated a slow “memory” field $M$ with index $n=\exp(\eta M)$ that bends rays by $\mathbf r''=\eta\nabla_\perp M$, and a minimal write-decay-spread PDE
 $\partial_t M=\gamma R-\delta M+\kappa\nabla^2 M$; after non‑dimensionalization, the **one‑parameter steering law** ($\Theta\equiv \eta M_0$) predicts (i) logistic fork choice $P(A)=\sigma(\Theta\Delta m)$, (ii) curvature $\kappa_{\rm path}\propto \Theta|\nabla m|$, and (iii) a retention **band** in $(D_a,\Lambda,\Gamma)$. These are falsifiable and align with your figures.&#x20;
 
 ---
@@ -794,10 +794,10 @@ $\partial_t M=\gamma R-\delta M+\kappa\nabla^2 M$; after non‑dimensionalizatio
 ## 2) What is still weak/open (physics), and how to tighten it
 
 **(1) Higher‑derivative EFT terms.**
-You sketched the EFT tower $ \mathcal L = V + Z(\phi)(\partial\phi)^2 + c_1((\partial\phi)^2)^2 + c_2(\Box\phi)^2+\cdots$ and proved $Z$ is constant, but you haven’t bounded $c_{1,2,\dots}$. The discrete‑action derivation lets you estimate their suppression ($\sim a^2,\Delta t^2$) by expanding the discrete Euler–Lagrange equations beyond leading order. Do that once and bank it. &#x20;
+You sketched the EFT tower $ \mathcal L = V + Z(\phi)(\partial\phi)^2 + c_1((\partial\phi)^2)^2 + c_2(\Box\phi)^2+\cdots$ and proved $Z$ is constant, but you haven’t bounded $c_{1,2,\dots}$. The discrete‑action derivation lets you estimate their suppression ($\sim a^2,\Delta t^2$) by expanding the discrete Euler-Lagrange equations beyond leading order. Do that once and bank it. &#x20;
 
 **(2) Hydrodynamic limit.**
-You have the ingredients (mass gap, propagation speed $c$, slow $M$ sector) but not the closed derivation of compressible hydrodynamics or a two‑fluid model. The fastest path is a **Chapman–Enskog‑style** expansion of the φ kinetic equation around a locally condensed background to produce continuity + momentum equations with viscosity emerging from small damping (or from memory‑coupled dissipation). This is a prime remaining proof to finish. &#x20;
+You have the ingredients (mass gap, propagation speed $c$, slow $M$ sector) but not the closed derivation of compressible hydrodynamics or a two‑fluid model. The fastest path is a **Chapman-Enskog‑style** expansion of the φ kinetic equation around a locally condensed background to produce continuity + momentum equations with viscosity emerging from small damping (or from memory‑coupled dissipation). This is a prime remaining proof to finish. &#x20;
 
 **(3) Tube energy minimum $E(R)$ with a *physical* background term.**
 You have the post‑condensation positivity and a formal $E(R)$ definition; what remains is choosing/deriving the background energy $E_{\rm bg}(R)$ consistently (in pure scalar: domain‑wall tension or sourcing proxy; in Voxtrium: use a causal kernel contribution). The machinery is in place; pick the background and compute $R_\ast$. &#x20;
@@ -817,7 +817,7 @@ Below, each **\[P]** item is the physics statement; **\[C]** is the concrete cha
 * **\[C]** New `fum_rt/phi/`:
 
   * `phi_state.py`: holds φ, π≡∂tφ, spatial stencil (graph Laplacian or lattice).
-  * `phi_stepper.py`: leapfrog (Stormer–Verlet):
+  * `phi_stepper.py`: leapfrog (Stormer-Verlet):
 
     ```python
     # π_{n+1/2} = π_{n-1/2} + Δt[ c^2 ∇^2 φ_n - V'(φ_n) ]
@@ -832,7 +832,7 @@ Below, each **\[P]** item is the physics statement; **\[C]** is the concrete cha
 * **\[C]** New `fum_rt/memory/`:
 
   * `memory_field.py`: stores node‑wise $m$.
-  * `memory_update.py`: forward‑Euler or Crank–Nicolson on graph Laplacian $L$:
+  * `memory_update.py`: forward‑Euler or Crank-Nicolson on graph Laplacian $L$:
     `m ← m + Δt(γR − δm − κ L m)`.
     **CFL for stability:** for explicit diffusion on degree‑bounded graphs, choose `Δt ≤ 1/(κ λ_max(L))` (precompute largest Laplacian eigenvalue or bound by max degree).
   * `steering.py`: transition rule at node i for neighbors j,
@@ -851,7 +851,7 @@ Below, each **\[P]** item is the physics statement; **\[C]** is the concrete cha
   * `overlaps.py`: compute $N_4(\{\ell_i n_i\};R)$ by radial quadrature using the normalized $u_{\ell n}(r)$.
   * `condense.py`: minimize $V_{\rm eff}^{\rm tube}=\tfrac12\sum m_{\ell n}^2\psi^2 + \tfrac14\sum N_4 \psi^4$ to get $v_{\ell n}(R)$; build Hessian to verify non‑negative eigenvalues.
   * `energy_R.py`: $E(R)=E_{\rm bg}(R)+V_{\rm eff}^{\rm tube}(v(R),R)$ with pluggable $E_{\rm bg}$ model.
-* **\[T]** (i) **Mode counting:** recover $N_{\rm tach}(R)$ staircase with flux proxy (cf. Fig. 1 of Bordag, page 7–8) and your stepwise $l_{\max}$. (ii) **Post‑condensation positivity:** all eigenvalues ≥0. (iii) **Energy minimum:** a genuine $R_\ast$ once $E_{\rm bg}$ is specified.&#x20;
+* **\[T]** (i) **Mode counting:** recover $N_{\rm tach}(R)$ staircase with flux proxy (cf. Fig. 1 of Bordag, page 7-8) and your stepwise $l_{\max}$. (ii) **Post‑condensation positivity:** all eigenvalues ≥0. (iii) **Energy minimum:** a genuine $R_\ast$ once $E_{\rm bg}$ is specified.&#x20;
 
 ### 3.4 Causal macro coupling (no acausality, no free energy leaks)
 
@@ -866,7 +866,7 @@ Below, each **\[P]** item is the physics statement; **\[C]** is the concrete cha
 
 ## 4) Immediate proofs/derivations you can lock in, right now
 
-1. **Higher‑derivative suppression from the lattice.** Expand the discrete Euler–Lagrange equation two orders beyond leading and show corrections appear as $a^2\nabla^4\phi$, $(\Delta t)^2\partial_t^4\phi$, etc., with coefficients $\mathcal O(a^2,\Delta t^2)$. That rigorously justifies truncating the EFT after $(\partial\phi)^2$ in your operating regime. (Scaffold is in your discrete action; just carry the Taylor expansion through.) &#x20;
+1. **Higher‑derivative suppression from the lattice.** Expand the discrete Euler-Lagrange equation two orders beyond leading and show corrections appear as $a^2\nabla^4\phi$, $(\Delta t)^2\partial_t^4\phi$, etc., with coefficients $\mathcal O(a^2,\Delta t^2)$. That rigorously justifies truncating the EFT after $(\partial\phi)^2$ in your operating regime. (Scaffold is in your discrete action; just carry the Taylor expansion through.) &#x20;
 
 2. **Hydrodynamic equations from φ + weak damping.** Linearize φ about a slowly varying condensate $v(\mathbf x,t)$, define density/phase variables, and integrate out short‑time fluctuations to get
 
@@ -887,7 +887,7 @@ with $h'(\rho)$ from $V(\phi)$ and $\nu$ generated either by memory‑sector dec
 
   * φ leapfrog: $Δt \le \frac{2}{\sqrt{4c^2\lambda_{\max}(L)+m_{\rm eff}^2}}$ for linear stability on a graph Laplacian $L$.
   * Memory explicit diffusion: $Δt \le 1/(\kappa\,\lambda_{\max}(L))$. (Precompute $\lambda_{\max}$ by a 20‑step power iteration once per topology.)
-* **Separation of scales.** Update memory every $N_{\rm slow}$ φ‑steps so $\tau_M \gg \tau_\phi$ (e.g., $N_{\rm slow}=10$–100) consistent with the derivation of geometric steering.&#x20;
+* **Separation of scales.** Update memory every $N_{\rm slow}$ φ‑steps so $\tau_M \gg \tau_\phi$ (e.g., $N_{\rm slow}=10$-100) consistent with the derivation of geometric steering.&#x20;
 * **Validation hooks.**
 
   * φ energy diagnostic (with $E_{\rm bg}=0$): $E_\phi=\int d^3x\,[\tfrac12\pi^2+\tfrac{c^2}{2}|\nabla\phi|^2+V(\phi)]$ should be conserved to ≤0.1% over many steps in the absence of sources.&#x20;
@@ -1067,14 +1067,14 @@ Great—those three files are exactly what we needed. Here’s what each one is,
    *How to use:* rename to `docs/Appendix_EFT_Spine.md` and include as **Appendix A (formal EFT control)**. This strengthens the math where reviewers will push hardest.
 
 3. **`02_Grok4_20250815_042516.md`**
-   *What it is:* a **methods/notes file** capturing the toy FRW integration (with causal $K_{\rm ret}$), the finite‑tube secular‑equation scan prototype, and a first micro–macro calibration sketch. It shows conservation checks ($\sum_i[\dot\rho_i+3H(1+w_i)\rho_i]=0$ numerically), small $\epsilon_{\rm DE}$, and tiny DM injection in the toy runs—good integrity checks for the Voxtrium embedding.  &#x20;
+   *What it is:* a **methods/notes file** capturing the toy FRW integration (with causal $K_{\rm ret}$), the finite‑tube secular‑equation scan prototype, and a first micro-macro calibration sketch. It shows conservation checks ($\sum_i[\dot\rho_i+3H(1+w_i)\rho_i]=0$ numerically), small $\epsilon_{\rm DE}$, and tiny DM injection in the toy runs—good integrity checks for the Voxtrium embedding.  &#x20;
    *How to use:* rename to `docs/Appendix_Methods_FRW_and_Tube.md` and quote it as **Appendix B (numerical toys & acceptance tests)**. Tone down any “finished” language (keep it as “proof‑of‑concept / acceptance tests passed on toy settings”).
 
 Download the three files you just asked about:
 
-* **Unified derivation** – [download](sandbox:/mnt/data/00_GPT5_20250815_041412.md)
-* **EFT spine appendix** – [download](sandbox:/mnt/data/01_GPT5_20250815_042444.md)
-* **Methods & toy checks** – [download](sandbox:/mnt/data/02_Grok4_20250815_042516.md)
+* **Unified derivation** - [download](sandbox:/mnt/data/00_GPT5_20250815_041412.md)
+* **EFT spine appendix** - [download](sandbox:/mnt/data/01_GPT5_20250815_042444.md)
+* **Methods & toy checks** - [download](sandbox:/mnt/data/02_Grok4_20250815_042516.md)
 
 ---
 
@@ -1275,7 +1275,7 @@ These are the hard parts; what remains is mostly execution and cross‑checks.
 **Status.** You have a canonical scalar with action and stress tensor; the gradient expansion and sound speed follow. The path to **compressible hydrodynamics** is straightforward; **vorticity** needs an added phase (complex field) or multicomponent sector. &#x20;
 **Feasible path.**
 
-* Compute $T^{\mu\nu}$ from your $\mathcal L=\tfrac12(\partial\phi)^2-\tfrac{c^2}{2}(\nabla\phi)^2 - V$, identify $\rho, p, u^\mu$ via Landau frame, and derive the hydrodynamic limit (Chapman–Enskog / gradient expansion).&#x20;
+* Compute $T^{\mu\nu}$ from your $\mathcal L=\tfrac12(\partial\phi)^2-\tfrac{c^2}{2}(\nabla\phi)^2 - V$, identify $\rho, p, u^\mu$ via Landau frame, and derive the hydrodynamic limit (Chapman-Enskog / gradient expansion).&#x20;
 * For vorticity/two‑fluid behavior, promote to a **complex scalar** $\Phi= \sqrt{\rho}\,e^{i\theta}$ so that $\mathbf v \propto \nabla\theta$ and quantized circulation emerges; this is still first‑principles EFT, not ML. (Your EFT framework anticipates such extensions.)&#x20;
   **Code to add:** a stress‑tensor module that outputs $\rho, p, u^\mu$ snapshots from $\phi$; verify linearized modes give $\omega^2=c^2k^2+m_{\rm eff}^2$. Acceptance: recovery of the compressible Euler equations at long wavelengths; optional complex‑field run exhibits circulation/phase defects.
 
@@ -1312,7 +1312,7 @@ These are the hard parts; what remains is mostly execution and cross‑checks.
 
 ## Physics ↔ Code: the exact upgrades to implement now
 
-1. **Action‑driven lattice core.** Keep your discrete Lagrangian form and verify the continuum Euler–Lagrange limit you derived; log $c^2=2Ja^2$ and validate against measured $\omega(k)$. (Closes the “is the kinetic term really constant?” loop.)&#x20;
+1. **Action‑driven lattice core.** Keep your discrete Lagrangian form and verify the continuum Euler-Lagrange limit you derived; log $c^2=2Ja^2$ and validate against measured $\omega(k)$. (Closes the “is the kinetic term really constant?” loop.)&#x20;
 
 2. **Tube solver module** per your spec (roots → modes → overlaps → condensates → masses → $E(R)$). This is the most direct physics deliverable and connects cleanly to Voxtrium phenomenology. &#x20;
 
@@ -1656,7 +1656,7 @@ $f_{\rm inj}\equiv[p_{\rm DM}(\varepsilon_h/V_c)\dot S_{\rm hor}]/(3H\rho_{\rm D
 
 ### Context cross‑checks against your living notes
 
-The above closes the exact kinetic normalization and continuum limit (Sections 1–2), the EFT program (Section 3), the tube appendix (Section 3/5), the negative discrete‑Hamiltonian result + invariants (Section 4), and the Voxtrium FRW banner (Section 5). This is consistent with your consolidated draft and “single derivation+code plan.”        &#x20;
+The above closes the exact kinetic normalization and continuum limit (Sections 1-2), the EFT program (Section 3), the tube appendix (Section 3/5), the negative discrete‑Hamiltonian result + invariants (Section 4), and the Voxtrium FRW banner (Section 5). This is consistent with your consolidated draft and “single derivation+code plan.”        &#x20;
 
 ---
 
@@ -1900,7 +1900,7 @@ def convolve_retarded(s_loc_time_radial: np.ndarray, K: np.ndarray) -> np.ndarra
 
 ### F) Steering layer (already in your repo plan)
 
-You already have the minimal memory‑steering law and its graph discretization (write–decay–spread PDE + softmax routing). Keep it orthogonal to the conservative $\phi$ sector, schedule the slow step $dt_{\text{slow}} \ll dt$, and instrument the two falsifiable signatures: **junction logistic collapse** and **curvature scaling** vs $\Theta |\nabla m|$. &#x20;
+You already have the minimal memory‑steering law and its graph discretization (write-decay-spread PDE + softmax routing). Keep it orthogonal to the conservative $\phi$ sector, schedule the slow step $dt_{\text{slow}} \ll dt$, and instrument the two falsifiable signatures: **junction logistic collapse** and **curvature scaling** vs $\Theta |\nabla m|$. &#x20;
 
 ---
 
@@ -2016,7 +2016,7 @@ $$
 \quad \kappa_{\rm in}^2=\frac{\mu^2}{c^2}-\kappa^2,\ \ \kappa_{\rm out}^2=\kappa^2+\frac{2\mu^2}{c^2}.
 $$
 
-Counting/condensing those modes reproduces the Bordag‑style “tachyonic tower → quartic stabilization → positive mass spectrum after condensation” story (we adapt his SU(2) analysis to a scalar EFT).  See the reference finite‑radius, mode‑counting and energy‑minimum structure in Bordag’s *Universe* paper (tachyon levels vs flux, condensate minima, positive post‑condensation masses), esp. pp. 7–12.&#x20;
+Counting/condensing those modes reproduces the Bordag‑style “tachyonic tower → quartic stabilization → positive mass spectrum after condensation” story (we adapt his SU(2) analysis to a scalar EFT).  See the reference finite‑radius, mode‑counting and energy‑minimum structure in Bordag’s *Universe* paper (tachyon levels vs flux, condensate minima, positive post‑condensation masses), esp. pp. 7-12.&#x20;
 
 **Code.**
 
@@ -2064,7 +2064,7 @@ with $p_\Lambda+p_{\rm DM}+p_{\rm GW}=1$ and a **retarded kernel** for $\dot S_{
 * **Hidden conservation at the full network level.** The exact $Q_{\rm FUM}$ is on‑site. A *flux‑form* law for the full graph is still open (you tried a standard Hamiltonian and proved it isn’t the conserved quantity—useful negative result). Keep the invariant as a guardrail while we search for the symmetry or Lyapunov function.&#x20;
 * **Tube minimum $E(R)$.** I provided the solver skeleton and acceptance tests; execute the $R$ scan and record $R_\ast$ vs $(\mu,\lambda)$. This is the last “hard number” missing to lock the tube picture against Bordag’s qualitative curve. &#x20;
 * **RG for $(\lambda,\gamma)$.** Not needed for your current band/steering results; include later once the tube minimum is scanned.
-* **φ ↔ Voxtrium $z$-inputs.** Use $R_\ast\sim k_R/m_{\rm eff}$ (scalar‑sector) and let your $z_1$ depend on the φ‑gradient proxy $\Xi=|\nabla\phi|/(m_{\rm eff}\phi_0)$ until we have a stronger micro–macro lock.&#x20;
+* **φ ↔ Voxtrium $z$-inputs.** Use $R_\ast\sim k_R/m_{\rm eff}$ (scalar‑sector) and let your $z_1$ depend on the φ‑gradient proxy $\Xi=|\nabla\phi|/(m_{\rm eff}\phi_0)$ until we have a stronger micro-macro lock.&#x20;
 
 ---
 
@@ -2167,7 +2167,7 @@ $$
 \mathcal L_K=\tfrac12(\partial_t\phi)^2-\tfrac{c^2}{2}(\nabla\phi)^2,\quad c^2=2Ja^2.
 $$
 
-This is the Euler–Lagrange outcome of your discrete Lagrangian (central‑time difference + nearest‑neighbor springs). Therefore $Z(\phi)$ is **constant** at tree level.&#x20;
+This is the Euler-Lagrange outcome of your discrete Lagrangian (central‑time difference + nearest‑neighbor springs). Therefore $Z(\phi)$ is **constant** at tree level.&#x20;
 
 **Bound the leading irrelevant terms.** Fourier‑analyze the lattice Laplacian:
 
@@ -2267,7 +2267,7 @@ Micro‑informed partitions $p_i(z)$ close the system on a probability simplex. 
 
 ### 6) **One‑pager summary, all in one place**
 
-Your consolidated “single derivation” ties 1–5 together (discrete→bounded EFT, finite tubes, FRW, units, diagnostics) and flags what is strong vs open. We’re now closing those opens with precise tests and code below.
+Your consolidated “single derivation” ties 1-5 together (discrete→bounded EFT, finite tubes, FRW, units, diagnostics) and flags what is strong vs open. We’re now closing those opens with precise tests and code below.
 
 ---
 
@@ -2629,7 +2629,7 @@ eps_DE, f_inj = smallness_monitors(state, state.H, alpha_h, eps_h, Vc, Sdot, par
 
 1. **Continuum/range validity**
 
-   * Dispersion fit: $\omega(k)$ from `measure_frequency()` vs. $c|k|$ → slope within 10–15% at small $k$.
+   * Dispersion fit: $\omega(k)$ from `measure_frequency()` vs. $c|k|$ → slope within 10-15% at small $k$.
    * EFT window: ensure $(a^2 k^2)/6\ll 1$ in your runs (auto‑printed bound).&#x20;
 
 2. **Fork logistic & curvature collapse**
@@ -2694,7 +2694,7 @@ $$
 \mathcal L=\tfrac12(\partial_t\phi)^2-\tfrac{c^2}{2}(\nabla\phi)^2-V(\phi),\quad c^2=\kappa a^2=2J a^2,
 $$
 
-with **no** $\phi$–dependence in the quadratic kinetic term. Hence $Z(\phi)\equiv\tfrac12$ exactly at tree level.&#x20;
+with **no** $\phi$-dependence in the quadratic kinetic term. Hence $Z(\phi)\equiv\tfrac12$ exactly at tree level.&#x20;
 
 **Leading lattice artifacts (irrelevant in IR).** For small $ka,\,\omega\Delta t$,
 
@@ -2727,7 +2727,7 @@ obeys $\frac{dQ_{\rm FUM}}{dt}=0$. This is your precise “hidden conservation�
 
 **Why the naïve Hamiltonian is not conserved.** Your derivation shows the standard $\mathcal H=\mathcal K+\mathcal I+\mathcal V$ fails to close to a flux form under the update—establishing intrinsic **dissipation** at the UV scale. That negative result is important and stands.&#x20;
 
-**Lattice‑level Lyapunov (useful in code).** A convex “free‑energy–like” functional
+**Lattice‑level Lyapunov (useful in code).** A convex “free‑energy-like” functional
 
 $$
 \mathcal L_\mathrm{net}[W]\;\equiv\;\sum_i\!\left[W_i\ln\frac{W_i}{v}+(v-W_i)\ln\frac{v-W_i}{v}\right]\;+\;\frac{\eta}{2}\sum_{\langle i j\rangle}(W_i-W_j)^2
@@ -2979,7 +2979,7 @@ $$
 \mathbf r''=\nabla_\perp \ln n=\eta\,\nabla_\perp M,
 $$
 
-and memory evolves by **write–decay–spread**
+and memory evolves by **write-decay-spread**
 
 $$
 \partial_t M=\gamma R-\delta M+\kappa \nabla^2 M.
@@ -3055,7 +3055,7 @@ is **conserved** along trajectories (Noether for time translations in a first‑
 
 3. **`fum/memory/model.py`**
 
-   * Graph Laplacian update $\dot{\mathbf m}=\gamma \mathbf r-\delta\mathbf m-\kappa L\mathbf m$ with stable integrator (e.g., semi‑implicit Euler or Crank–Nicolson on Laplacian term).
+   * Graph Laplacian update $\dot{\mathbf m}=\gamma \mathbf r-\delta\mathbf m-\kappa L\mathbf m$ with stable integrator (e.g., semi‑implicit Euler or Crank-Nicolson on Laplacian term).
    * Router: `route(i) -> j` via $P(i\to j)\propto e^{\Theta m_j}$.
    * Expose dimensionless groups $(\Theta,D_a,\Lambda,\Gamma)$ as the public API. **Source:** memory law & discretization.&#x20;
 
@@ -3067,7 +3067,7 @@ is **conserved** along trajectories (Noether for time translations in a first‑
 ### F.2 Efficiency wins (why this is faster & smarter)
 
 * **Closed‑form onsite flow:** Use your conserved quantity $Q_{\rm FUM}$ to **analytically step** the logistic onsite rule where applicable—no tiny dt. (Invert $Q$ to get $W(t+\Delta t)$ exactly.) **Physics → speedup.**&#x20;
-* **Semi‑implicit memory:** The stiff $-\kappa L m$ term is unconditionally stable with Crank–Nicolson → **larger steps** without blowup. **Physics → stability.**&#x20;
+* **Semi‑implicit memory:** The stiff $-\kappa L m$ term is unconditionally stable with Crank-Nicolson → **larger steps** without blowup. **Physics → stability.**&#x20;
 * **Mode truncation:** Tube solver keeps only unstable $\{\ell,n\}$ and lowest few stable modes → **orders‑of‑magnitude cheaper** than full PDEs while preserving dynamics that matter (per Bordag). **Physics → reduced basis.**&#x20;
 
 ### F.3 Tests that certify “physics‑faithfulness”
@@ -3096,7 +3096,7 @@ is **conserved** along trajectories (Noether for time translations in a first‑
 **Weak / open (do next):**
 
 * One‑loop corrections to tube energy $E(R)$ and the precise minimum (Bordag has the template; compute for scalar).&#x20;
-* Full hydrodynamic limit (derive Euler–Navier form explicitly from wavepackets + $M$, then benchmark viscosity vs. $\Gamma$).&#x20;
+* Full hydrodynamic limit (derive Euler-Navier form explicitly from wavepackets + $M$, then benchmark viscosity vs. $\Gamma$).&#x20;
 * EFT higher‑derivative suppression bounds $c_1,c_2$ (calculate or bound by lattice spacing/UV scale).&#x20;
 * Cosmology calibration of $p_i(z)$ weights and $K_{\rm ret}$ normalization to observed $(w_{\rm eff},\sigma/m(v))$. (Voxtrium.)&#x20;
 
@@ -3152,8 +3152,8 @@ is **conserved** along trajectories (Noether for time translations in a first‑
 
 ## K. Closing the remaining gaps (roadmap)
 
-* **One‑loop tube energy $E(R)$:** adopt Bordag’s 2D effective action for the unstable tower, compute Coleman‑Weinberg–type corrections, and compare the minimum vs. your “flux proxy.” (Voxtrium’s observation about polynomial vs. exponential smallness is a target signature.)&#x20;
-* **Hydro from packets:** derive the Euler–Bernoulli form by Wigner‑transforming the φ field, then coarse‑graining with the $M$ back‑reaction. Validate effective viscosity vs. $\Gamma$.&#x20;
+* **One‑loop tube energy $E(R)$:** adopt Bordag’s 2D effective action for the unstable tower, compute Coleman‑Weinberg-type corrections, and compare the minimum vs. your “flux proxy.” (Voxtrium’s observation about polynomial vs. exponential smallness is a target signature.)&#x20;
+* **Hydro from packets:** derive the Euler-Bernoulli form by Wigner‑transforming the φ field, then coarse‑graining with the $M$ back‑reaction. Validate effective viscosity vs. $\Gamma$.&#x20;
 * **Higher‑derivative bounds:** compute or bound $c_1,c_2$ in $\mathcal L_{\rm EFT}$ by lattice spacing $a$ and temporal scale $\tau$ so the IR truncation is mathematically watertight.&#x20;
 * **Cosmo calibration:** fit $p_i(z)$ weights and $K_{\rm ret}$ normalization to $(w_{\rm eff},\,\sigma/m(v))$ constraints using the Skyrme calibration numbers you recorded. (Voxtrium.)&#x20;
 
@@ -3174,11 +3174,11 @@ Justin — below is a compact, *physics → code → tests* continuation that cl
 
 ## 0) What is already on firm ground in your notes
 
-* **Continuum EFT from the discrete rule.** You have a clean, action‑level derivation of the scalar with canonical kinetic term $\tfrac12(\partial_t\phi)^2-\tfrac{c^2}{2}(\nabla\phi)^2$ and $c^2=2Ja^2$ (no microscopic constraint tying $J$ to $a$); Euler–Lagrange gives $\partial_t^2\phi-c^2\nabla^2\phi+V'(\phi)=0$.&#x20;
+* **Continuum EFT from the discrete rule.** You have a clean, action‑level derivation of the scalar with canonical kinetic term $\tfrac12(\partial_t\phi)^2-\tfrac{c^2}{2}(\nabla\phi)^2$ and $c^2=2Ja^2$ (no microscopic constraint tying $J$ to $a$); Euler-Lagrange gives $\partial_t^2\phi-c^2\nabla^2\phi+V'(\phi)=0$.&#x20;
   The discrete‑to‑continuum write‑up makes the bounded quartic baseline explicit with optional small cubic tilt that maps to your $(\alpha,\beta)$.
 * **Conservation/structure of the on‑site dynamics.** Time‑translation invariance of the autonomous ODE gives an exact integral $Q_{\text{FUM}}=t-\!\int dW/F(W)$ (a constant of motion for the *trajectory clock*, not a Hamiltonian), and the on‑site Lyapunov drop $\dot V(W)=-F(W)^2\le0$ was established in your discrete conservation analysis. This is the right lens (dissipative flow), not a naive energy conservation.
 * **Finite‑tube instability and stabilization.** Your Bordag‑inspired cylinder analysis (credit: Voxtrium → Bordag) shows how a finite‑radius “false‑vacuum” core supports tachyonic modes that condense to non‑negative masses after quartic stabilization; counting and matching conditions are spelled out with the Bessel secular equation.
-* **Memory steering is dimensionless, falsifiable.** The eikonal law $n=\exp(\eta M)\Rightarrow \kappa_{\text{path}}=\eta\,|\nabla_\perp M|$ and the write–decay–spread PDE $\partial_t M=\gamma R-\delta M+\kappa\nabla^2M$ are formalized, with non‑dimensional groups $\Theta=\eta M_0$, $D_a=\gamma R_0T/M_0$, $\Lambda=\delta T$, $\Gamma=\kappa T/L^2$. Junction logistic and curvature‑scaling collapses follow immediately.&#x20;
+* **Memory steering is dimensionless, falsifiable.** The eikonal law $n=\exp(\eta M)\Rightarrow \kappa_{\text{path}}=\eta\,|\nabla_\perp M|$ and the write-decay-spread PDE $\partial_t M=\gamma R-\delta M+\kappa\nabla^2M$ are formalized, with non‑dimensional groups $\Theta=\eta M_0$, $D_a=\gamma R_0T/M_0$, $\Lambda=\delta T$, $\Gamma=\kappa T/L^2$. Junction logistic and curvature‑scaling collapses follow immediately.&#x20;
 * **Units‑rigorous bridge to Voxtrium.** Physical scalings $(\phi_0,\tau,a)$, retarded kernels for causal sourcing, and FRW transfer‑current bookkeeping are laid out; Λ/DM/GW partitions live on a probability simplex with micro‑informed inputs. (Credit Voxtrium.)
 
 These pieces are solid and we will build directly on them.
@@ -3222,7 +3222,7 @@ Where `quantum_pressure` is the standard discrete Laplacian on $\sqrt{\rho}$. Ti
 
 ### 1.2 Incompressible or viscous behavior
 
-* **Viscosity from memory coupling.** Couple the slow memory field $M$ into the phase dynamics as a weak Rayleigh dissipation functional $\mathcal R=\frac{\nu(M)}{2}\,(\nabla\theta)^2$. This adds a term $-\nu(M)\nabla^2\mathbf u$ to the Euler equation (Navier–Stokes form). Choose $\nu(M)=\nu_0+\nu_1\,(\Gamma,\Lambda)$ consistent with your dimensionless groups so that stronger smoothing ($\Gamma$) increases effective viscosity and large forgetting ($\Lambda$) suppresses it.&#x20;
+* **Viscosity from memory coupling.** Couple the slow memory field $M$ into the phase dynamics as a weak Rayleigh dissipation functional $\mathcal R=\frac{\nu(M)}{2}\,(\nabla\theta)^2$. This adds a term $-\nu(M)\nabla^2\mathbf u$ to the Euler equation (Navier-Stokes form). Choose $\nu(M)=\nu_0+\nu_1\,(\Gamma,\Lambda)$ consistent with your dimensionless groups so that stronger smoothing ($\Gamma$) increases effective viscosity and large forgetting ($\Lambda$) suppresses it.&#x20;
 * **Incompressible projection (optional).** If you need the $\nabla\!\cdot\mathbf u=0$ limit, apply a Helmholtz projection to the discrete velocity at each step; the complex scalar still gives you the *source* of vorticity (defect lines), but you enforce incompressibility numerically.
 
 **Acceptance tests.**
@@ -3288,7 +3288,7 @@ $$
 \;-\; \underbrace{\Theta\,M(\gamma(s))}_{\text{memory attraction}}\Big\},
 $$
 
-with curvature $\kappa$ and $\Theta=\eta M_0$ from the memory law. The Euler–Lagrange equation gives the **shape** equation
+with curvature $\kappa$ and $\Theta=\eta M_0$ from the memory law. The Euler-Lagrange equation gives the **shape** equation
 
 $$
 \chi\,\gamma'''' - \sigma\,\gamma'' + \Theta\,\nabla_\perp M = 0,
@@ -3341,14 +3341,14 @@ Stop when $\max_k\|\Delta p_k\|$ falls below tolerance → a folded, memory‑fu
 
 **Caveats (straight talk).**
 
-* Full Navier–Stokes with all turbulence features is **not** guaranteed unless you enforce incompressibility and include explicit viscous terms; the complex‑scalar route gives you compressible, potential flows + quantized vortices, which is already a huge step.
+* Full Navier-Stokes with all turbulence features is **not** guaranteed unless you enforce incompressibility and include explicit viscous terms; the complex‑scalar route gives you compressible, potential flows + quantized vortices, which is already a huge step.
 * The Voxtrium macro coupling should stay *optional* in the runtime; use it for cosmology‑facing experiments, not for local intelligence loops unless you really want macro bookkeeping in the loop.
 
 ---
 
 ## 6) Proof checkpoints you can close this week
 
-1. **Hydro derivation notebook.** Show amplitude–phase variation → continuity + Euler with $c$ matching $2Ja^2$. (One page.)&#x20;
+1. **Hydro derivation notebook.** Show amplitude-phase variation → continuity + Euler with $c$ matching $2Ja^2$. (One page.)&#x20;
 2. **Junction law from softmax.** For a 2‑branch node: $P(A)=\sigma(\Theta\Delta m)$ — literally two lines. (Already reflected by your figure.)&#x20;
 3. **Curvature law.** From Fermat with $n=e^{\eta M}$: $\kappa=\eta|\nabla_\perp M|$. (One paragraph derivation; matches your plot.)&#x20;
 4. **Tube solver sanity.** Solve the Bessel secular eqn., count $N_{\rm tach}(R)$, condense, and confirm a non‑negative Hessian eigen‑spectrum (Bordag parity). (Credit Voxtrium/Bordag.)
@@ -3376,7 +3376,7 @@ Below is a **single, self‑contained derivation document** that unifies your di
 
 ---
 
-# The Fully Unified Void–Field Model (FUM), Voxtrium Sourcing, and Finite‑Tube Tachyon Condensation
+# The Fully Unified Void-Field Model (FUM), Voxtrium Sourcing, and Finite‑Tube Tachyon Condensation
 
 **Author:** *Justin K. Lietz* (derivations, simulations, figures)
 **Additional credit:** *Voxtrium* (macro sourcing framework and FRW bookkeeping referenced herein)
@@ -3411,7 +3411,7 @@ $$
 \mathcal L=\tfrac12(\partial_t\phi)^2-\tfrac{c^2}{2}(\nabla \phi)^2-V(\phi),\qquad c^2\equiv 2Ja^2,
 $$
 
-yielding the Euler–Lagrange equation
+yielding the Euler-Lagrange equation
 
 $$
 \partial_t^2\phi-c^2\nabla^2\phi+V'(\phi)=0,
@@ -3477,7 +3477,7 @@ $$
 
 Units close $({\rm GeV}^5)$ and causality is enforced by a retarded kernel for $\dot S_{\rm hor}$. *(Credit: Voxtrium)*&#x20;
 
-### 2.4 Micro–macro locks and soliton scales (Voxtrium)
+### 2.4 Micro-macro locks and soliton scales (Voxtrium)
 
 In the Skyrme normalization used by Voxtrium, $m=c_mK_s/e$, $R_\ast=c_R/(eK_s)$, $X=eK_s$. These relations fix the characteristic length and velocity scales that also enter the self‑interaction phenomenology (e.g., transfer cross‑section trends). *(Credit: Voxtrium)*&#x20;
 
@@ -3503,7 +3503,7 @@ Each root gives a mode with $\omega^2=c^2(k^2-\kappa^2)$, hence tachyonic at $k=
 
 ### 3.3 Quartic stabilization, condensates, and positivity
 
-Projecting the quartic interaction onto the tube modes yields a 2D effective action in $(t,z)$ with mode masses $m_{\ell n}^2(R)=-c^2\kappa_{\ell n}^2$ and mode‑dependent quartic couplings (overlap integrals). Minimizing the effective potential gives condensates $v_{\ell n}(R)$ and a mass matrix $M^2(R)$ that is **non‑negative definite** (tachyons lifted), which is the scalar analogue of Bordag’s stabilized tachyon Lagrangian (*cf.* his tree‑level minima and positive post‑condensation masses shown in *Figs. 4–5, pages 11–12*).
+Projecting the quartic interaction onto the tube modes yields a 2D effective action in $(t,z)$ with mode masses $m_{\ell n}^2(R)=-c^2\kappa_{\ell n}^2$ and mode‑dependent quartic couplings (overlap integrals). Minimizing the effective potential gives condensates $v_{\ell n}(R)$ and a mass matrix $M^2(R)$ that is **non‑negative definite** (tachyons lifted), which is the scalar analogue of Bordag’s stabilized tachyon Lagrangian (*cf.* his tree‑level minima and positive post‑condensation masses shown in *Figs. 4-5, pages 11-12*).
 
 ### 3.4 Energy vs. control and the minimum
 
@@ -3554,7 +3554,7 @@ This is robust and unit‑consistent, with causal support enforced by the retard
 
 A. **Higher‑derivative EFT control**: A full proof that coefficients $c_1, c_2,\dots$ are suppressed (or vanish) in the continuum limit from your discrete UV is not yet done; this is needed for mathematical closure.&#x20;
 B. **Discrete conservation law**: The naive graph Hamiltonian is *not* conserved; a flux‑form invariant or hidden Noether symmetry remains to be discovered (or you embrace intrinsic dissipation in the discrete UV).&#x20;
-C. **End‑to‑end calibration**: While Voxtrium provides the bookkeeping and micro–macro locks, the EFT parameters $(\mu,\lambda,\gamma,c)$ are not yet fit against a specific cosmology data vector subject to $\epsilon_{\rm DE}$ and $f_{\rm inj}$ bounds. *(Credit: Voxtrium)*&#x20;
+C. **End‑to‑end calibration**: While Voxtrium provides the bookkeeping and micro-macro locks, the EFT parameters $(\mu,\lambda,\gamma,c)$ are not yet fit against a specific cosmology data vector subject to $\epsilon_{\rm DE}$ and $f_{\rm inj}$ bounds. *(Credit: Voxtrium)*&#x20;
 D. **Hydro limit**: Deriving compressible/incompressible hydrodynamics and viscosity from the scalar sector (with possible multi‑component extension) is conceptually clear but not yet executed here.
 
 ---
@@ -3575,7 +3575,7 @@ Set $R_\ast\sim k_R/m_{\rm eff}$ to tie the tube analysis to Voxtrium’s micro�
 
 ## 8. Acknowledgements
 
-* *Voxtrium* is credited for the FRW + transfer‑current macro‑sourcing framework, unit discipline for $\alpha_h,\varepsilon_h,V_c$, causal retarded kernels, and Skyrme normalization used in the micro–macro locks.&#x20;
+* *Voxtrium* is credited for the FRW + transfer‑current macro‑sourcing framework, unit discipline for $\alpha_h,\varepsilon_h,V_c$, causal retarded kernels, and Skyrme normalization used in the micro-macro locks.&#x20;
 * *Michael Bordag* is credited for the finite‑radius chromomagnetic tube analysis that we adapted (mutatis mutandis) as a scalar finite‑tube tachyon program; figures and mode‑count behavior referenced explicitly above.&#x20;
 * *Justin K. Lietz* is credited for the discrete→continuum derivation, EFT formulation and mapping, finite‑tube scalar adaptation, units‑rigorous Voxtrium coupling, and all figures and simulations reported here.
 
@@ -3613,9 +3613,9 @@ This document is ready to serve as the single derivation reference for your repo
 
 Below, I'll begin working on your physics by creating rigorous derivations for some of the key gaps identified in the latest GPT-5 documents (e.g., 10_GPT5_..., 18_GPT5_..., etc.) and synthesizing them with the existing framework from your codebase/docs (e.g., discrete_to_continuum.md, symmetry_analysis.md, kinetic_term_derivation.md, fum_voxtrium_mapping.md, memory_steering.md, finite_tube_mode_analysis.md). I'll approach this as an AI Physicist: starting from first principles, breaking down the problems methodically, and ensuring transparency in the mathematics. I'll prioritize gaps that are foundational and frequently referenced, such as:
 
-1. **The missing discrete conservation law** (or its absence, with a Lyapunov functional as fallback) – this is a recurring "open" item across docs like 10_GPT5, 16_GPT5, and symmetry_analysis.md.
-2. **Bounding higher-derivative terms in the EFT** – emphasized in effective_field_theory_approach.md and kinetic_term_derivation.md for rigor.
-3. **Hydrodynamic limit from the scalar field** – flagged in 15_GPT5 as a way to derive emergent fluid behavior (e.g., for "intelligence" via structured flows).
+1. **The missing discrete conservation law** (or its absence, with a Lyapunov functional as fallback) - this is a recurring "open" item across docs like 10_GPT5, 16_GPT5, and symmetry_analysis.md.
+2. **Bounding higher-derivative terms in the EFT** - emphasized in effective_field_theory_approach.md and kinetic_term_derivation.md for rigor.
+3. **Hydrodynamic limit from the scalar field** - flagged in 15_GPT5 as a way to derive emergent fluid behavior (e.g., for "intelligence" via structured flows).
 
 I'll derive these step-by-step, with symbolic computations where needed (using the code_execution tool for verification). For each, I'll provide:
 - A formal derivation.
@@ -3926,7 +3926,7 @@ Legacy Situation (Pre-Upgrade)
 - Problem: Over-axiomatization reduces falsifiability and obscures which properties stem from the lattice equations.
 
 ------------------------------------------------------------------
-Upgraded Theorem (T1_upgraded) – Core Claim (Condensed)
+Upgraded Theorem (T1_upgraded) - Core Claim (Condensed)
 Given lattice solutions W^{(k)} on grids with spacing a_k→0 and Δt_k = a_k/c, periodic BCs, and uniform initial energy E_{a_k}^0 ≤ E_*, the interpolants φ^{(k)} possess a subsequence converging strongly in C^0_t L^2_x and L^2_t H^1_x to φ solving ∂_t^2 φ - c^2 Δφ + V'(φ)=0 weakly. Residual (in H^{-2}) is O(a_k^2). With higher initial Sobolev regularity (s>1+d/2), φ is classical and test-function residual pairing is second-order.
 
 Key Clauses
@@ -3939,7 +3939,7 @@ Key Clauses
 ------------------------------------------------------------------
 Derived Components (Definitions / Roles)
 DS (Discrete Stability): Provides uniform energy and H^1 bounds from discrete energy conservation / coercivity.
-CT (Compactness): Uses Aubin–Lions (bounded in L^∞ H^1; time differences bounded in L^2 L^2) to extract strong convergence subsequence.
+CT (Compactness): Uses Aubin-Lions (bounded in L^∞ H^1; time differences bounded in L^2 L^2) to extract strong convergence subsequence.
 QR (Quantitative Remainders): Local truncation expansions for temporal second difference and spatial Laplacian plus interpolation error of nonlinearity → O(a^2) in H^{-2}.
 WF (Weak Form Derivation): Standalone discrete summation-by-parts showing lattice EL ⇒ weak PDE with explicit remainder; term-by-term continuum limit justification.
 RB (Regularity Bootstrap): Energy hierarchy on spatial derivatives (using H^s algebra for s > d/2, d ≤ 3) to upgrade weak to classical solution and control higher norms.
@@ -3949,10 +3949,10 @@ Supporting / Modified Files (Planned)
 1. proofs/T1_upgraded.md (new authoritative theorem).
 2. proofs/regularity_bootstrap.md (RB content: energy induction, Grönwall bounds).
 3. proofs/weak_form_derivation.md (WF: detailed discrete → continuum weak form derivation, O(a^2) residual estimate).
-4. proofs/T1_continuum_limit.md (legacy) – prepend deprecation / supersession notice.
-5. core_axioms.md – revise A6 to minimal uniform initial energy bound.
-6. dependency_graph.md – add WF and RB nodes; edges: DS → CT → T1_upgraded; WF & QR → T1_upgraded; RB → T1_upgraded (classical clause). Remove direct convergence assumptions from A6.
-7. README – add Derivation Roadmap + acceptance test overview.
+4. proofs/T1_continuum_limit.md (legacy) - prepend deprecation / supersession notice.
+5. core_axioms.md - revise A6 to minimal uniform initial energy bound.
+6. dependency_graph.md - add WF and RB nodes; edges: DS → CT → T1_upgraded; WF & QR → T1_upgraded; RB → T1_upgraded (classical clause). Remove direct convergence assumptions from A6.
+7. README - add Derivation Roadmap + acceptance test overview.
 
 ------------------------------------------------------------------
 Proof Architecture Flow
@@ -4051,10 +4051,10 @@ Tag Legend: [AXIOM], [THEOREM-PROVEN], [LEMMA-PROVEN], [COROLLARY], [CONJECTURE]
 
 ## Tagging Scheme (Unified)
 Allowed status tags (each non‑axiom statement MUST carry one):
-- `[THEOREM-PROVEN]` formally derived from A1–A4 with proof sketch or full derivation.
+- `[THEOREM-PROVEN]` formally derived from A1-A4 with proof sketch or full derivation.
 - `[LEMMA-PROVEN]` auxiliary proven step used in a theorem proof.
 - `[COROLLARY]` immediate logical consequence of proved theorems/lemmas.
-- `[CONJECTURE]` claim not yet proven from A1–A4; accompanied by explicit proof obligations.
+- `[CONJECTURE]` claim not yet proven from A1-A4; accompanied by explicit proof obligations.
 - `[NUM-EVIDENCE]` empirically supported numerical observation (figures/logs referenced) — never upgrades logical status.
 
 Unused / legacy labels (e.g. quarantine, heuristic) are deprecated in this document and replaced by the above.
@@ -4076,10 +4076,10 @@ No additional axioms; everything else is derived, conditioned, or conjectural.
 
 ## Section 2. Core Derivations from the Action
 
-### Derivation A (Discrete Euler–Lagrange → Second‑Order Update) [THEOREM-PROVEN]
+### Derivation A (Discrete Euler-Lagrange → Second‑Order Update) [THEOREM-PROVEN]
 Variation of Axiom 4 yields the *core discrete equation*:
 \[\frac{W_i^{n+1}-2W_i^{n}+W_i^{n-1}}{\Delta t^{2}} = 2J \sum_{j\in N(i)}(W_j^{n}-W_i^{n}) - V'(W_i^{n}).\]
-Derivation note: the interaction term in the action is edge‑doubled (each pair \((i,j)\) appears in both the \(i\)- and \(j\)-centered sums). Hence the variation of \(-\tfrac{J}{2}\sum_{j\in N(i)}(W_j-W_i)^2\) plus the symmetric neighbor contributions yields the factor \(+\,2J\sum_{j\in N(i)}(W_j-W_i)\) in the Euler–Lagrange equation.
+Derivation note: the interaction term in the action is edge‑doubled (each pair \((i,j)\) appears in both the \(i\)- and \(j\)-centered sums). Hence the variation of \(-\tfrac{J}{2}\sum_{j\in N(i)}(W_j-W_i)^2\) plus the symmetric neighbor contributions yields the factor \(+\,2J\sum_{j\in N(i)}(W_j-W_i)\) in the Euler-Lagrange equation.
 Taylor expansion (Axiom 2) of the neighbour term gives the *continuum inertial form* (quarantined inertial label):
 \[\partial_{tt}\phi - c^{2}\nabla^{2}\phi + V'(\phi)=0, \qquad c^{2}=2J a^{2}. \tag{1} [EFT-KG]\]
 Error control is given explicitly by Lemma S.1 (spatial Taylor remainder) and Lemma T.1 (temporal Taylor remainder) below.
@@ -4104,7 +4104,7 @@ LIMIT‑ASSUMPTIONS (explicit):
 2. Smoothness: \(\phi\in C^{4}(\Omega)\) with bounded derivatives to apply Lemma S.1 and control discretization errors.
 3. Scale hierarchy: \(a/\ell \ll 1\) for characteristic variation length \(\ell\) so higher‑derivative truncation is controlled by Lemma S.1.
 
-### Theorem S.Compactness (Discrete Aubin–Lions) [THEOREM-PROVEN]
+### Theorem S.Compactness (Discrete Aubin-Lions) [THEOREM-PROVEN]
 Hypotheses: let \(\Omega\subset\mathbb R^{d}\) be a bounded Lipschitz domain and fix Axiom 5 BCs (periodic or homogeneous Neumann). Consider sequences of meshes with spacing \(a\to0\) and time step \(\Delta t\to0\) with the CFL‑like ratio \(\kappa=a/\Delta t\) bounded. Let \(W^{(a,\Delta t)}_{i}(t_n)\) be discrete solutions to the update from Axiom 4 with initial data having a uniform discrete energy bound
 \[E_a(0):=a^{d}\sum_{i}\Big(\tfrac12\Big(\frac{W^{1}_i-W^{0}_i}{\Delta t}\Big)^2 + \tfrac{J}{2}\sum_{j\in N(i)}(W^{0}_j-W^{0}_i)^2 + V(W^{0}_i)\Big) \le E_{0}<\infty\]
 independent of \(a,\Delta t\).
@@ -4118,7 +4118,7 @@ for an absolute constant \(C_1\) depending only on lattice coordination and J; t
 2. Time control. The discrete equation and the uniform energy bound provide a uniform bound on discrete time differences
 \[a^{d}\sum_{n}\sum_{i} \Big(\frac{W^{n+1}_i-W^{n}_i}{\Delta t}\Big)^2 \le C_2 E_a(0)/\Delta t\]
 which, after piecewise‑linear interpolation, yields equicontinuity in time in L²(\Omega) modulo the standard time‑translation estimate (Helly/BV discrete form). The constant \(C_2\) is explicit from the discrete energy identity.
-3. Discrete Aubin–Lions. With uniform discrete H¹ in space and equicontinuity in time we invoke a discrete Aubin–Lions compactness theorem (see e.g. Eymard–Gallouët–Herbin style discrete compactness): there exists a strongly convergent subsequence in L²_{t,x}.
+3. Discrete Aubin-Lions. With uniform discrete H¹ in space and equicontinuity in time we invoke a discrete Aubin-Lions compactness theorem (see e.g. Eymard-Gallouët-Herbin style discrete compactness): there exists a strongly convergent subsequence in L²_{t,x}.
 4. Passage to the limit. Use Lemma S.1 and Lemma T.1 (constants displayed above) to control the truncation remainders when replacing discrete Laplacian and discrete second differences by continuum operators; these remainders vanish as \(a,\Delta t\to0\) at rates \(O(a^{2})\) and \(O(\Delta t^{2})\) respectively. The inertial term disappears under the time‑scale separation hypothesis, producing the weak form of (2) for the limit \(\phi\).
 
 Remarks: hypotheses include boundedness of \(E_a(0)\) and Lipschitz regularity of \(\partial\Omega\); constants \(C_1,C_2\) are computable from J and lattice coordination numbers and from Lemmas S.1/T.1.
@@ -4141,7 +4141,7 @@ Then \(\sum_i \phi_i^{n+1}=\sum_i \phi_i^{n}\) exactly for \(f\equiv 0\). Proof:
 ### Lemma DG.1 (Discrete‑gradient Lyapunov step) [LEMMA-PROVEN]
 Let \(\mathcal L[\phi]=\int_{\Omega}(\tfrac{D}{2}|\nabla\phi|^{2}+\hat V(\phi))dx\) with Axiom 5 BCs and define the discrete‑gradient update so that
 \[\frac{\phi^{n+1}-\phi^{n}}{\Delta t} = D\nabla^{2}_h \bar\phi + \bar f,\qquad \text{with } \hat V'(\bar\phi)=-\bar f,\]
-where the bars denote a suitable discrete gradient in the sense of Gonzalez/Quispel–McLaren. Then
+where the bars denote a suitable discrete gradient in the sense of Gonzalez/Quispel-McLaren. Then
 \[\mathcal L^{n+1}-\mathcal L^{n} = -\Delta t\,\Big\|\frac{\phi^{n+1}-\phi^{n}}{\Delta t}\Big\|_{2}^{2}\le 0.\]
 Proof: standard discrete‑gradient identity; BCs eliminate boundary terms on the discrete Green’s identity.
 
@@ -4167,7 +4167,7 @@ Then the temporal remainder obeys
 \[\|\delta_{tt}\phi-\partial_{tt}\phi\|_{\infty} \le C_{time}\, \Delta t^{2}\, \|\partial_{t}^{4}\phi\|_{\infty},\qquad C_{time}=\frac{1}{12}.\]
 Proof sketch: Standard Taylor expansion in time about \(t\) to fourth order; central difference cancels odd derivatives leaving a fourth derivative remainder with coefficient \(1/12\).
 
-### L0–L3 Layering (Model Abstraction Levels)
+### L0-L3 Layering (Model Abstraction Levels)
 - L0 (Microscopic): discrete action, microstate dynamics, explicit lattice spacing \(a\) and time step \(\Delta t\).
 - L1 (Mesoscopic): coarse‑grained fields \(\phi(x,t)\), Taylor expansions with remainders controlled by Lemmas S.1/T.1.
 - L2 (Continuum PDE): inertial PDE (1) and gradient‑flow PDE (2); effective coefficients \(D,c\) expressed in terms of \(J,a\).
@@ -4358,9 +4358,9 @@ End of ground truths block. Additions to this block must reference produced arti
 
 ## Section 13. Comparative Review (Validation‑Only) — external works mapped to axiom‑core
 
-All items below are strictly [NUM-EVIDENCE] and/or [CONJECTURE] with explicit [LIMIT-ASSUMPTIONS]. None alter Axioms 1–5 or introduce new primitives. They serve as runners and cross‑checks against our derived theorems/lemmas/gates.
+All items below are strictly [NUM-EVIDENCE] and/or [CONJECTURE] with explicit [LIMIT-ASSUMPTIONS]. None alter Axioms 1-5 or introduce new primitives. They serve as runners and cross‑checks against our derived theorems/lemmas/gates.
 
-### 13.1 Quantum Keldysh reaction–diffusion (Gerbino–Lesanovsky–Perfetto, 2024) [NUM-EVIDENCE][LIMIT-ASSUMPTIONS]
+### 13.1 Quantum Keldysh reaction-diffusion (Gerbino-Lesanovsky-Perfetto, 2024) [NUM-EVIDENCE][LIMIT-ASSUMPTIONS]
 - Source: [2307.14945v3.pdf](derivation/supporting_work/NEEDS_REVIEW/Reaction-Diffusion/2307.14945v3.pdf)
 - Scope: Open quantum Fermi gas with Lindblad two‑body loss; Euler‑scale kinetic (Boltzmann‑like) equation for Wigner density; universal homogeneous decay exponent \(\tilde n \sim \tilde t^{-d/(d+1)}\); 1D links to TGGE; inhomogeneous quenches via trap parameter \(\Omega\).
 - Mapping to this document:
@@ -4374,9 +4374,9 @@ All items below are strictly [NUM-EVIDENCE] and/or [CONJECTURE] with explicit [L
   - Gate Q2: In 1D, verify TGGE correspondence via momentum‑space observables.
   - Gate Q3: With added diffusion, check approach to classical RD dispersion/front metrics.
 
-### 13.2 Field theories & basis‑independent RD (del Razo–Lamma–Merbis, 2025) [NUM-EVIDENCE][LIMIT-ASSUMPTIONS]
+### 13.2 Field theories & basis‑independent RD (del Razo-Lamma-Merbis, 2025) [NUM-EVIDENCE][LIMIT-ASSUMPTIONS]
 - Source: [2409.13377v2.pdf](derivation/supporting_work/NEEDS_REVIEW/Reaction-Diffusion/2409.13377v2.pdf)
-- Scope: Unified Fock‑space/Doi–Peliti/CDME framework; basis‑independent creation/annihilation; Galerkin discretization with convergence to RDME; path integrals for arbitrary discretizations; RG universality statements.
+- Scope: Unified Fock‑space/Doi-Peliti/CDME framework; basis‑independent creation/annihilation; Galerkin discretization with convergence to RDME; path integrals for arbitrary discretizations; RG universality statements.
 - Mapping:
   - L0→L2 consistency runner: compare our Axiom‑driven L0→L2 limit to CDME/RDME on matched meshes/BCs.
   - Use to validate dispersion \(\sigma(k)=r-Dk^{2}\) [U1], front speed \(c_{front}=2\sqrt{Dr}\) [U2], and Lyapunov decay (Theorem 2) in expectation.
@@ -4400,7 +4400,7 @@ All items below are strictly [NUM-EVIDENCE] and/or [CONJECTURE] with explicit [L
   - M2: Linear‑response consistency around the prior PDE.
   - M3: If constrained within class (2), verify \(d\mathcal L/dt\le0\); otherwise tag [CONJECTURE].
 
-### 13.4 Time‑fractional Fisher–KPP numerics (Gortsas, 2025) [CONJECTURE][NUM-EVIDENCE][LIMIT-ASSUMPTIONS]
+### 13.4 Time‑fractional Fisher-KPP numerics (Gortsas, 2025) [CONJECTURE][NUM-EVIDENCE][LIMIT-ASSUMPTIONS]
 - Source: [2508.16241v1.pdf](derivation/supporting_work/NEEDS_REVIEW/Reaction-Diffusion/2508.16241v1.pdf)
 - Scope: LD‑BEM and meshless FPM for time‑fractional (Caputo / RL / fractal) KPP; sparse matrices and reduced volume integrals; accuracy metrics \(E_{\infty},E_{2}\).
 - Mapping:
@@ -4412,7 +4412,7 @@ All items below are strictly [NUM-EVIDENCE] and/or [CONJECTURE] with explicit [L
   - F2: Stability and reported error orders match claims.
   - F3: Any fractional H‑theorem analogue is [CONJECTURE] until proven; test monotone proxies.
 
-### 13.5 Hamiltonian simulation via CLS (Carleman + Schrödingerization) (Sasaki–Endo–Muramatsu, 2025) [NUM-EVIDENCE][LIMIT-ASSUMPTIONS]
+### 13.5 Hamiltonian simulation via CLS (Carleman + Schrödingerization) (Sasaki-Endo-Muramatsu, 2025) [NUM-EVIDENCE][LIMIT-ASSUMPTIONS]
 - Source: [2508.01640v1.pdf](derivation/supporting_work/NEEDS_REVIEW/Hamiltonian/2508.01640v1.pdf)
 - Scope: Carleman linearization truncated at order \(K\), then Warped‑Phase Transformation to a skew‑Hermitian operator enabling Hamiltonian simulation of nonlinear PDEs inc. RD; classical validations: first‑order in \(K\), second‑order in \(\Delta x\), first‑order in \(\Delta p\).
 - Mapping:
@@ -4424,7 +4424,7 @@ All items below are strictly [NUM-EVIDENCE] and/or [CONJECTURE] with explicit [L
   - QCLS‑2: Transformed operator skew‑Hermiticity/unitarity checks pass.
   - QCLS‑3: U1/U2 recovery within tolerances on benchmark ICs.
 
-Summary: None of the above modifies Axioms 1–5. They serve as validation targets or runners gated by Section 14.
+Summary: None of the above modifies Axioms 1-5. They serve as validation targets or runners gated by Section 14.
 
 ---
 
@@ -4443,7 +4443,7 @@ Summary: None of the above modifies Axioms 1–5. They serve as validation targe
 - Front gate: \(c_{front}=2\sqrt{Dr}\) [Theorem U2]; band: relative error \(\le 5\%\) on calibrated meshes.
 - Discrete compactness: L0→L2 convergence under energy bound [Theorem S.Compactness]; remainders \(\sim O(a^{2})+O(\Delta t^{2})\).
 - Noether (inertial sandbox): conservative‑limit energy/momentum drift \(\le 10^{-4}\) over \(10^{4}\) steps; all inertial claims carry [EFT-KG].
-- External runner gates: Q1–Q3 (13.1), S1–S3 (13.2), M1–M3 (13.3), F1–F3 (13.4), QCLS‑1–3 (13.5).
+- External runner gates: Q1-Q3 (13.1), S1-S3 (13.2), M1-M3 (13.3), F1-F3 (13.4), QCLS‑1-3 (13.5).
 
 ### 14.3 Scaling groups (dimensionless program)
 For the RD PDE (2):
@@ -4482,22 +4482,22 @@ Artifacts:
 
 14.4.2 Stochastic RDME/CDME runner
 - Location: [derivation/code/physics/reaction_diffusion/](derivation/code/physics/reaction_diffusion/) (stochastic sub‑runner)
-- Tasks: simulate RDME/CDME consistent with 13.2; verify S1–S3; report CI bands across seeds.
+- Tasks: simulate RDME/CDME consistent with 13.2; verify S1-S3; report CI bands across seeds.
 - Outputs: ensemble logs with seed lists and CI; recovery of U1/U2 in the large‑copy limit.
 
 14.4.3 Fractional RD runner (Caputo/RL/fractal)
 - Location: [derivation/code/physics/reaction_diffusion/](derivation/code/physics/reaction_diffusion/) (fractional sub‑runner)
-- Tasks: implement fractional time derivative as per 13.4; verify F1–F3; mark all claims [CONJECTURE] unless derived from Axiom 4.
+- Tasks: implement fractional time derivative as per 13.4; verify F1-F3; mark all claims [CONJECTURE] unless derived from Axiom 4.
 - Outputs: error‑order tables and classical‑limit recovery plots.
 
 14.4.4 Quantum CLS runner (Carleman + Schrödingerization)
 - Location: [derivation/code/physics/reaction_diffusion/](derivation/code/physics/reaction_diffusion/) (quantum sub‑runner)
-- Tasks: simulate (2) via CLS; verify QCLS‑1–3; monitor \(p\)-domain advection artifacts and boundary handling.
+- Tasks: simulate (2) via CLS; verify QCLS‑1-3; monitor \(p\)-domain advection artifacts and boundary handling.
 - Outputs: convergence curves vs \(K,\Delta x,\Delta p\); dispersion/front comparisons.
 
 14.4.5 Quantum Keldysh/Euler runner (ballistic sector)
 - Location: [derivation/code/physics/reaction_diffusion/](derivation/code/physics/reaction_diffusion/) (quantum kinetic sub‑runner)
-- Tasks: implement kinetic equation in the Euler‑scale regime for validation only; verify Q1–Q3; never use to justify RD axioms.
+- Tasks: implement kinetic equation in the Euler‑scale regime for validation only; verify Q1-Q3; never use to justify RD axioms.
 - Outputs: decay‑exponent fits; optional crossover tests with added diffusion.
 
 Runtime integration hooks (non‑invasive):
@@ -4527,7 +4527,7 @@ Runtime integration hooks (non‑invasive):
 Scope (regex): derivation/(supporting_work|code/outputs|code/physics|outputs|arxiv|conservation_law|foundations)/ and fum_rt/core/*.
 
 Findings (this document’s references only):
-- Reaction–diffusion runners present:
+- Reaction-diffusion runners present:
   - [rd_front_speed_experiment.py](derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py:1), [rd_dispersion_experiment.py](derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py:1), [rd_front_speed_sweep.py](derivation/code/physics/reaction_diffusion/rd_front_speed_sweep.py:1).
 - Conservation law/invariant references present:
   - [qfum_validate.py](derivation/code/physics/conservation_law/qfum_validate.py:1), [discrete_conservation.md](derivation/conservation_law/discrete_conservation.md:1).
@@ -4585,7 +4585,7 @@ Purpose: event‑driven, sparse micro‑updates that respect Axiom 1 (locality),
   - H‑theorem gate: stepwise \(\Delta \mathcal L \le 0\) (no violations); diffusion mass conservation verified for \(f\equiv0\).
 
 ## Section 15. Alignment Gap Matrix for NEEDS_REVIEW themes (Validation‑only) — mapping to axiom‑core
-All items below are external or phenomenological sources. They do not alter Axioms 1–5 or introduce primitives. Each entry records: Mapping (how to compare), Limits (assumptions to keep explicit), and Validation gates (runners/metrics). Status tags remain [NUM-EVIDENCE] and/or [CONJECTURE] with [LIMIT-ASSUMPTIONS].
+All items below are external or phenomenological sources. They do not alter Axioms 1-5 or introduce primitives. Each entry records: Mapping (how to compare), Limits (assumptions to keep explicit), and Validation gates (runners/metrics). Status tags remain [NUM-EVIDENCE] and/or [CONJECTURE] with [LIMIT-ASSUMPTIONS].
 
 15.1 Accretion‑Disks [NUM-EVIDENCE][LIMIT-ASSUMPTIONS]
 - Source: [2508.01384v2.pdf](derivation/supporting_work/NEEDS_REVIEW/Accretion-Disks/2508.01384v2.pdf)
@@ -4603,13 +4603,13 @@ All items below are external or phenomenological sources. They do not alter Axio
 - Sources: multiple PDFs under [Entropy](derivation/supporting_work/NEEDS_REVIEW/Entropy/)
 - Mapping: Use only as inference overlays (e.g., MaxCal/SB) on top of (2), per 13.3; do not modify dynamics.
 - Limits: Declared priors and constraints.
-- Gates: M1–M3 of §13.3; explicit check that \(d\mathcal L/dt\le0\) is preserved when projected back into RD.
+- Gates: M1-M3 of §13.3; explicit check that \(d\mathcal L/dt\le0\) is preserved when projected back into RD.
 
 15.4 Hamiltonian/CLS [NUM-EVIDENCE][LIMIT-ASSUMPTIONS]
 - Source: [2508.01640v1.pdf](derivation/supporting_work/NEEDS_REVIEW/Hamiltonian/2508.01640v1.pdf)
 - Mapping: Computational runner; compare outputs to L2 PDE (2).
 - Limits: Truncation order \(K\), discretizations.
-- Gates: QCLS‑1–3 (Section 13.5). All inertial analogies stay [EFT-KG] quarantined.
+- Gates: QCLS‑1-3 (Section 13.5). All inertial analogies stay [EFT-KG] quarantined.
 
 15.5 Gravity [CONJECTURE][NUM-EVIDENCE][LIMIT-ASSUMPTIONS]
 - Source: folder [Gravity](derivation/supporting_work/NEEDS_REVIEW/Gravity/)
@@ -4625,7 +4625,7 @@ All items below are external or phenomenological sources. They do not alter Axio
 
 15.7 Reaction‑Diffusion (external) [NUM-EVIDENCE][LIMIT-ASSUMPTIONS]
 - Sources: [2307.14945v3.pdf](derivation/supporting_work/NEEDS_REVIEW/Reaction-Diffusion/2307.14945v3.pdf), [2409.13377v2.pdf](derivation/supporting_work/NEEDS_REVIEW/Reaction-Diffusion/2409.13377v2.pdf), [2411.09880v1.pdf](derivation/supporting_work/NEEDS_REVIEW/Reaction-Diffusion/2411.09880v1.pdf), [2508.16241v1.pdf](derivation/supporting_work/NEEDS_REVIEW/Reaction-Diffusion/2508.16241v1.pdf)
-- Mapping/Limits/Gates: As in §13.1–13.4 (Q1–Q3, S1–S3, M1–M3, F1–F3). No import to axioms.
+- Mapping/Limits/Gates: As in §13.1-13.4 (Q1-Q3, S1-S3, M1-M3, F1-F3). No import to axioms.
 
 15.8 Self‑Supervision / Subquadratic‑Architecture [NUM-EVIDENCE][LIMIT-ASSUMPTIONS]
 - Sources: [Self-Supervision](derivation/supporting_work/NEEDS_REVIEW/Self-Supervision/), [Subquadratic-Architecture](derivation/supporting_work/NEEDS_REVIEW/Subquadratic-Architecture/)
@@ -4639,10 +4639,10 @@ All items below are external or phenomenological sources. They do not alter Axio
 - Limits: Documented per‑runner assumptions.
 - Gates: Reproducibility and segregation from axiom‑core; any derived comparisons tagged [NUM-EVIDENCE].
 
-Status: This matrix completes the alignment‑gap identification across NEEDS_REVIEW themes at the granularity required for validation‑only use. Any future elevation requires explicit derivations from Axioms 1–5 and satisfaction of Section 14 gates.
+Status: This matrix completes the alignment‑gap identification across NEEDS_REVIEW themes at the granularity required for validation‑only use. Any future elevation requires explicit derivations from Axioms 1-5 and satisfaction of Section 14 gates.
 
 End of truth‑first axiomatic document. All non‑axiom / regime claims above are tagged; no content follows this termination marker.
-[File terminates here intentionally – minimal source enforced.]
+[File terminates here intentionally - minimal source enforced.]
 
 
 ---
@@ -4983,7 +4983,7 @@ Crucially, the second-order time derivative in the continuum equation is not imp
 $$
 \mathcal{L} \;=\; \tfrac{1}{2}(\partial_t \phi)^2 \;-\; J a^2\,(\nabla \phi)^2 \;-\; V(\phi).
 $$
-The Euler–Lagrange equation gives
+The Euler-Lagrange equation gives
 $$
 \partial_t^2 \phi \;-\; c^2 \nabla^2 \phi \;+\; V'(\phi) \;=\; 0,\qquad c^2 \equiv 2 J a^2,
 $$
@@ -5039,7 +5039,7 @@ $$
 m_{\text{eff}}^2 \;=\; \left.\frac{d^2 V}{d\phi^2}\right|_{\phi=\pm v} \;=\; 2\,\mu^2.
 $$
 
-The earlier cubic–quadratic structure in our EOM (the $\alpha\,\phi^2 - (\alpha - \beta)\,\phi$ terms) is then treated as a small asymmetry (a “cubic tilt”) superposed on this bounded baseline; the precise mapping is made in Section 6.
+The earlier cubic-quadratic structure in our EOM (the $\alpha\,\phi^2 - (\alpha - \beta)\,\phi$ terms) is then treated as a small asymmetry (a “cubic tilt”) superposed on this bounded baseline; the precise mapping is made in Section 6.
 
 ---
 

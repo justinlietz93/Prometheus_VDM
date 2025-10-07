@@ -18,7 +18,7 @@ $$
 \mathcal L=\tfrac12(\partial_t\phi)^2-\tfrac{c^2}{2}(\nabla\phi)^2-V(\phi),\quad c^2=\kappa a^2=2J a^2,
 $$
 
-with **no** $\phi$–dependence in the quadratic kinetic term. Hence $Z(\phi)\equiv\tfrac12$ exactly at tree level.&#x20;
+with **no** $\phi$-dependence in the quadratic kinetic term. Hence $Z(\phi)\equiv\tfrac12$ exactly at tree level.&#x20;
 
 **Leading lattice artifacts (irrelevant in IR).** For small $ka,\,\omega\Delta t$,
 
@@ -51,7 +51,7 @@ obeys $\frac{dQ_{\rm FUM}}{dt}=0$. This is your precise “hidden conservation�
 
 **Why the naïve Hamiltonian is not conserved.** Your derivation shows the standard $\mathcal H=\mathcal K+\mathcal I+\mathcal V$ fails to close to a flux form under the update—establishing intrinsic **dissipation** at the UV scale. That negative result is important and stands.&#x20;
 
-**Lattice‑level Lyapunov (useful in code).** A convex “free‑energy–like” functional
+**Lattice‑level Lyapunov (useful in code).** A convex “free‑energy-like” functional
 
 $$
 \mathcal L_\mathrm{net}[W]\;\equiv\;\sum_i\!\left[W_i\ln\frac{W_i}{v}+(v-W_i)\ln\frac{v-W_i}{v}\right]\;+\;\frac{\eta}{2}\sum_{\langle i j\rangle}(W_i-W_j)^2

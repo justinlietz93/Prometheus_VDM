@@ -8,7 +8,7 @@ This document summarizes the key theoretical properties of the Fully Unified Mod
 
 ### Key Findings:
 
-> Model class note: Canonical continuum description is reaction–diffusion (RD): ∂tφ = D∇²φ + rφ − uφ² [−λφ³ optional]. Second‑order EFT/KG claims are quarantined to [effective_field_theory_approach.md](Prometheus_VDM/derivation/effective_field_theory_approach.md:1). Any mass value is parameter‑dependent: m_eff = √(α−β).
+> Model class note: Canonical continuum description is reaction-diffusion (RD): ∂tφ = D∇²φ + rφ − uφ² [−λφ³ optional]. Second‑order EFT/KG claims are quarantined to [effective_field_theory_approach.md](Prometheus_VDM/derivation/effective_field_theory_approach.md:1). Any mass value is parameter‑dependent: m_eff = √(α−β).
 
 1.  **Continuum Field Theory:** The discrete FUM simulation has a continuum limit that is described by a **non-linear, tachyonic scalar field theory**. The governing equation of motion is:
     $$

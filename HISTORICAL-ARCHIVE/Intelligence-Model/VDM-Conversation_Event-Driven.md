@@ -24,7 +24,7 @@
    ```python
    # fum_rt/runtime/loop.py  (inside the main tick)
    from time import perf_counter_ns
-   MAX_US = int(os.getenv("SCOUT_BUDGET_US", "2000"))  # e.g., ≤1–3% of tick
+   MAX_US = int(os.getenv("SCOUT_BUDGET_US", "2000"))  # e.g., ≤1-3% of tick
    VISITS = int(os.getenv("SCOUT_VISITS", "16"))
    EDGES  = int(os.getenv("SCOUT_EDGES",  "8"))
    TTL    = int(os.getenv("SCOUT_TTL",    "64"))
@@ -175,7 +175,7 @@ If you want, I can also give you a tiny patch that renames any existing `schedul
 
 ### C) Memory‑steering (improves performance)
 
-1. **Add `core/memory/field.py`** (EMA write–decay–spread on graph Laplacian):
+1. **Add `core/memory/field.py`** (EMA write-decay-spread on graph Laplacian):
    $\dot m=\gamma r-\delta m-\kappa Lm$ with sparse Laplacian. Walker transition softmax $P(i\!\to\!j)\propto e^{\Theta m_j}$.&#x20;
 2. **Agent rule**: walkers read `m` locally; **never** scan whole $m$. Budgeted updates only (events/rings).
 3. **Expose $\Theta, D_a, \Lambda, \Gamma$** in telemetry; tune for stability band.&#x20;
@@ -188,7 +188,7 @@ If you want, I can also give you a tiny patch that renames any existing `schedul
    * **Heat**: chase recent activity.
    * **Exc/Inh**: chase polarity fronts.
      All **announce** `probe_*` and `vt_touch` events; none modify structure.
-2. Scheduler = **budgeted** per tick (e.g., ≤1–3% time). TTL + blue‑noise reseed. No periodic “cron”.
+2. Scheduler = **budgeted** per tick (e.g., ≤1-3% time). TTL + blue‑noise reseed. No periodic “cron”.
 
 ### E) Learners: emergent only
 
@@ -199,12 +199,12 @@ If you want, I can also give you a tiny patch that renames any existing `schedul
 
 1. All structural metrics (components, cycles, edges\_active) are derived from **active edges** via DSU over the active set only.
 2. If deletions happen, track a *dirty* flag and perform a **bounded audit** (stream ≤E\_max active edges) to tighten `components_lb`. No dense adjacency.
-3. Bridge budget B (8–32) operates only when `components_lb > 1` and affinity > 0; updates DSU incrementally.
+3. Bridge budget B (8-32) operates only when `components_lb > 1` and affinity > 0; updates DSU incrementally.
 
 ### G) Maps/frame v2 for scale
 
 1. Add **v2 channel**: u8 quantized `heat|exc|inh|m` (optional) + **node→(x,y)** tile indices.
-2. Transport via **shared‑memory ring** (2–3 frames) + websocket forwarder with drop‑oldest.
+2. Transport via **shared‑memory ring** (2-3 frames) + websocket forwarder with drop‑oldest.
 3. UI draws RGB = \[exc, heat, inh]; slider to swap **M** into G channel for steering debug.
 
 ### H) CPU/GPU split (now, not later)
@@ -525,7 +525,7 @@ Short answer: **the `BaseScout` you pasted is just a safe scaffold.** It does no
 
 **B. Implement physics‑aware scouts under `fum_rt/core/cortex/void_walkers/`**
 
-1. **`void_ray.py` – `VoidRayScout` (φ‑gradient bias)**
+1. **`void_ray.py` - `VoidRayScout` (φ‑gradient bias)**
 
    * Goal: prefer neighbors where $\Delta\phi_{ij} = \phi_j - \phi_i$ is favorable.
    * Logit per neighbor: `logit_j = lambda_phi * (phi[j] - phi[i]) + theta_mem * m[j]` (see (2) below).
@@ -536,7 +536,7 @@ Short answer: **the `BaseScout` you pasted is just a safe scaffold.** It does no
      * optional `SpikeEvent(node=j, sign=+1 if Δφ>0 else -1)` for EI maps.
    * **Local‑read only**: for each hop you read `phi[i]`, `phi[j]`, (and `memory[j]` if available). No global arrays are scanned.
 
-2. **`memory_ray.py` – `MemoryRayScout` (steering by memory)**
+2. **`memory_ray.py` - `MemoryRayScout` (steering by memory)**
 
    * Use your steering law with an index $n=\exp(\eta M)$. In a graph discretization this reduces to
 
@@ -547,7 +547,7 @@ Short answer: **the `BaseScout` you pasted is just a safe scaffold.** It does no
      which becomes a logistic at a two‑branch fork $P(A)=\sigma(\Theta\,\Delta m)$. This is **exactly** the prediction in your steering note.  &#x20;
    * Everything stays local: read `memory[j]` for neighbors of the current node, do a softmax, hop, emit the same events.
 
-3. **`ei_scouts.py` – `ExcitationScout` and `InhibitionScout`**
+3. **`ei_scouts.py` - `ExcitationScout` and `InhibitionScout`**
 
    * Bias routing using your event‑folded maps (no weight scans). Example: prefer neighbors currently hot in `exc` (or `inh`) heads from the reducers. Keep budgets small; emit `SpikeEvent(sign=+1)` or `sign=-1` respectively.
 
@@ -779,7 +779,7 @@ Below is a concrete, void‑faithful plan that uses what you already have (Heat/
 
 * **Short‑term “trail repulsion”** (prevents immediate re‑traversal).
 
-  * Use your existing **HeatMap** (recency EMA) as the *trail* signal or add a dedicated **TrailMap** with a **very short half‑life** (e.g., 10–50 ticks).
+  * Use your existing **HeatMap** (recency EMA) as the *trail* signal or add a dedicated **TrailMap** with a **very short half‑life** (e.g., 10-50 ticks).
   * Scouts treat *heat/trail* as a **negative logit** (avoid hot/trampled nodes right now).
 
 * **Long‑term “memory steering”** (guides toward useful regions).
@@ -826,7 +826,7 @@ All of these values are **already available from your reducers** (Heat/Exc/Inh) 
 ## Exactly what to tell your coding agent
 
 **A. Add a short‑term TrailMap (optional if you reuse HeatMap)**
-`fum_rt/core/cortex/maps/trailmap.py` – identical to `HeatMap` but with **half\_life\_ticks ≈ 10–50** and a slightly larger increment per `vt_touch`. Export in `maps/__init__.py`. (If you prefer, just reuse HeatMap with a negative coefficient in scouts.)
+`fum_rt/core/cortex/maps/trailmap.py` - identical to `HeatMap` but with **half\_life\_ticks ≈ 10-50** and a slightly larger increment per `vt_touch`. Export in `maps/__init__.py`. (If you prefer, just reuse HeatMap with a negative coefficient in scouts.)
 
 **B. Extend scouts to support repulsion + memory steer (local only)**
 In each scout under `core/cortex/void_walkers/` (Cold/Heat/Exc/Inh, and your physics‑aware scouts):
@@ -903,12 +903,12 @@ Short answer: **you’re fine.** With the way you’ve designed them—**event�
 
 ## Numbers to keep in mind
 
-For **10k neurons @ 10 Hz** (your current run), with `keep_max≈4–8k`:
+For **10k neurons @ 10 Hz** (your current run), with `keep_max≈4-8k`:
 
 * **Per map memory** (Python): a few MB (value + last\_tick + dict overhead). Four maps = low tens of MB.
 * **Per tick CPU**: typically sub‑millisecond (fold + prune). The connectome step dwarfs these reducers.
 
-For **4 M neurons**, you still don’t store 4 M entries—only `keep_max`. The only time you touch O(N) is when you **choose** to emit a *dense* `maps/frame` for the UI. Use v2 quantized frames, downsample/tiles, and a shared‑memory ring when you scale; keep UI FPS at 3–8 and you’re fine.
+For **4 M neurons**, you still don’t store 4 M entries—only `keep_max`. The only time you touch O(N) is when you **choose** to emit a *dense* `maps/frame` for the UI. Use v2 quantized frames, downsample/tiles, and a shared‑memory ring when you scale; keep UI FPS at 3-8 and you’re fine.
 
 ---
 
@@ -916,7 +916,7 @@ For **4 M neurons**, you still don’t store 4 M entries—only `keep_max`. 
 
 1. **Unbounded working sets.**
 
-   * **Guardrail:** set `keep_max` (e.g., 4–16k at 10k N; 32–128k at multi‑million N). Keep quantiles/head exact over the working set only.
+   * **Guardrail:** set `keep_max` (e.g., 4-16k at 10k N; 32-128k at multi‑million N). Keep quantiles/head exact over the working set only.
 
 2. **Too many events per tick.**
 
@@ -934,18 +934,18 @@ For **4 M neurons**, you still don’t store 4 M entries—only `keep_max`. 
 
 ## Recommended defaults (good starting points)
 
-* **Half‑life (Heat/Exc/Inh):** 150–300 ticks.
-* **Gains:** `vt_touch_gain≈0.25`, `spike_gain≈1.0`, `dW_gain≈0.25–0.5`.
-* **keep\_max:** 8k for 10k N; 32–128k at multi‑million N (raise slowly; profile).
-* **Prune sample size:** 256–1024 keys; drop the smallest.
-* **UI:** v2 quantized frames, 3–8 FPS, shared‑memory ring (2–3 frames), RGB = \[exc, heat, inh].
+* **Half‑life (Heat/Exc/Inh):** 150-300 ticks.
+* **Gains:** `vt_touch_gain≈0.25`, `spike_gain≈1.0`, `dW_gain≈0.25-0.5`.
+* **keep\_max:** 8k for 10k N; 32-128k at multi‑million N (raise slowly; profile).
+* **Prune sample size:** 256-1024 keys; drop the smallest.
+* **UI:** v2 quantized frames, 3-8 FPS, shared‑memory ring (2-3 frames), RGB = \[exc, heat, inh].
 
 ---
 
 ## “Free” coupling with walkers (what you described is right)
 
 * **Yes**—seed scouts from **UTE hits** and **pulse** out at each stimulated neuron. You’re consuming exactly the local information you just produced, so the marginal cost is just the **local neighbor picks** and a few events.
-* Add slow **Memory steering** (EMA write–decay + stochastic edge smoothing) and let scouts bias to $\exp(\Theta\,m_j)$ neighbors; the junction choice collapses to a logistic in $\Theta\,\Delta m$, which you can verify in CI/telemetry. This is your theory in action, still event‑driven and scan‑free.&#x20;
+* Add slow **Memory steering** (EMA write-decay + stochastic edge smoothing) and let scouts bias to $\exp(\Theta\,m_j)$ neighbors; the junction choice collapses to a logistic in $\Theta\,\Delta m$, which you can verify in CI/telemetry. This is your theory in action, still event‑driven and scan‑free.&#x20;
 
 ---
 
@@ -1006,8 +1006,8 @@ File: `fum_rt/core/cortex/void_walkers/runner.py`
 **B) Add a tiny TrailMap (short‑term repulsion)**
 Files:
 
-* `core/cortex/maps/trailmap.py` – subclass your `BaseDecayMap` (half‑life \~30–100 ticks, `keep_max ~ 8–16× head_k`)
-* `core/engine.py` – instantiate `self.trailmap`, fold **only** `vt_touch` and `edge_on` events, and expose:
+* `core/cortex/maps/trailmap.py` - subclass your `BaseDecayMap` (half‑life \~30-100 ticks, `keep_max ~ 8-16× head_k`)
+* `core/engine.py` - instantiate `self.trailmap`, fold **only** `vt_touch` and `edge_on` events, and expose:
 
   * `trail_head`: small top‑K list for seeds
   * `trail_dict`: compact dict of current working set (for neighbor scoring)
@@ -1020,7 +1020,7 @@ Files:
 **D) Add a slow MemoryField (event‑driven update; no scans)**
 Files:
 
-* `core/memory/field.py` – simple struct holding:
+* `core/memory/field.py` - simple struct holding:
 
   * `m: Dict[int, float]` (bounded working set with pruning)
   * Params: `gamma` (write), `delta` (decay), `kappa` (edge smoothing), `half_life` (for decay discretization)
@@ -1193,7 +1193,7 @@ Here’s the full list, what each one does, and exactly what’s still missing s
 
 8. **CycleHunterScout** — short‑cycle finder
    **File:** `fum_rt/core/cortex/void_walkers/cycle_scout.py`
-   *Role:* Seek and report small cycles (3–6 hops) to keep `cycles_est` alive.
+   *Role:* Seek and report small cycles (3-6 hops) to keep `cycles_est` alive.
    *Local rule:* TTL‑limited random walk with **tiny path memory** (e.g., last 5 nodes). When the next neighbor is in the path window, emit a cycle hit.
    *Signals:* none required beyond neighbors; optional bias to heat/exc heads.
    *Events:* `EdgeOnEvent` along the path, `VTTouchEvent`. If you already have a `CycleHitEvent`, emit that too; otherwise the `EdgeOnEvent`s are enough for reducers.
@@ -1288,7 +1288,7 @@ What’s **still missing / easy to forget** (and needed to get the full benefit)
    * Implement:
 
      * **TrailMap** (short half‑life, fold `vt_touch`+`edge_on`, bounded working set).
-     * **MemoryMap / MemoryField** (event‑driven write–decay–spread; one‑edge smoothing per touched edge).
+     * **MemoryMap / MemoryField** (event‑driven write-decay-spread; one‑edge smoothing per touched edge).
    * This is exactly the “steering by memory” law you derived (softmax/logistic at forks; curvature ∝ gradient), and it’s **orthogonal** to φ dynamics.&#x20;
 
 2. **Seeds should work for *every* scout**
@@ -1299,7 +1299,7 @@ What’s **still missing / easy to forget** (and needed to get the full benefit)
 3. **Fairness in the runner**
 
    * With a global micro‑budget, early scouts may starve late scouts.
-   * **Fix:** either (A) rotate the start index each tick (round‑robin), or (B) assign tiny **per‑scout** micro‑budgets (e.g., 300–500 µs each) inside the one‑shot runner. Still one call per tick; still no scheduler.
+   * **Fix:** either (A) rotate the start index each tick (round‑robin), or (B) assign tiny **per‑scout** micro‑budgets (e.g., 300-500 µs each) inside the one‑shot runner. Still one call per tick; still no scheduler.
 
 4. **Env gating per scout**
 
@@ -1318,7 +1318,7 @@ What’s **still missing / easy to forget** (and needed to get the full benefit)
 6. **Frontier/Cycle boundedness check**
 
    * Confirm the “shared‑neighbor” check in Frontier is **hard‑capped** (you mentioned cap=64)—no accidental growth into adjacency scans.
-   * CycleHunter windows should be tiny (e.g., path length ≤4–6) and sample‑bounded per tick.
+   * CycleHunter windows should be tiny (e.g., path length ≤4-6) and sample‑bounded per tick.
 
 7. **Invariants & docs**
 

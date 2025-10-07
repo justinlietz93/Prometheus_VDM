@@ -1,11 +1,11 @@
-# PROPOSAL — Discrete Conservation vs. Balance in a Reaction–Diffusion Update (Void Dynamics Model)
+# PROPOSAL — Discrete Conservation vs. Balance in a Reaction-Diffusion Update (Void Dynamics Model)
 
 **Date:** 2025-10-06 08:58:39Z  
 **Proposers:** Justin K. Lietz — Independent Researcher (VDM Project)
 
 ## 1. Abstract
 
-We will adjudicate whether the *one-step* FUM reaction–diffusion (RD) update admits an **exact global discrete conservation law** expressible as a per-site density plus an **antisymmetric edge term**, or whether the correct invariant content is a **balance law** (production + telescoping flux) and a **Lyapunov monotone**. We attempt a symbolic telescoping identity; failing that, we demonstrate an **order-of-accuracy** residual consistent with the chosen time integrator. All figures will be paired with CSV/JSON artifacts and numeric captions per PAPER_STANDARDS.
+We will adjudicate whether the *one-step* FUM reaction-diffusion (RD) update admits an **exact global discrete conservation law** expressible as a per-site density plus an **antisymmetric edge term**, or whether the correct invariant content is a **balance law** (production + telescoping flux) and a **Lyapunov monotone**. We attempt a symbolic telescoping identity; failing that, we demonstrate an **order-of-accuracy** residual consistent with the chosen time integrator. All figures will be paired with CSV/JSON artifacts and numeric captions per PAPER_STANDARDS.
 
 ## 2. Background & Rationale
 
@@ -48,7 +48,7 @@ with $(p)$ the order of the time integrator (e.g., Strang split: $(p=2)$\).
 
 ### 4.1 Model Step Under Test
 
-One step of a reaction–diffusion update on a periodic lattice (or declared BCs):
+One step of a reaction-diffusion update on a periodic lattice (or declared BCs):
 
 $$[
 W^{n+1} = W^n + \Delta t\,\big( f(W^n) + D\,\Delta_{\text{disc}} W^n \big)
@@ -182,7 +182,7 @@ Each figure is paired with its CSV/JSON and a numeric caption (slope, $(R^2)$\, 
 
 - **Day 1:** Wire step-spec + controls, dry run on tiny grid.
 - **Day 2:** CAS attempt; if fail, configure dt-sweep.
-- **Day 3:** Full sweeps (V1–V3), figures + CSV/JSON, draft **Results** section.
+- **Day 3:** Full sweeps (V1-V3), figures + CSV/JSON, draft **Results** section.
 - **Owner:** Justin K. Lietz
 
 ## 11. Deliverables
@@ -195,7 +195,7 @@ Each figure is paired with its CSV/JSON and a numeric caption (slope, $(R^2)$\, 
 
 - [ ] Every figure has a *numeric caption* with fit stats (slope, $(R^2)$, RMSE).
 - [ ] Each figure has a paired CSV/JSON artifact in the same folder.
-- [ ] Acceptance gates (V1–V5) are stated and marked PASS/FAIL with numbers.
+- [ ] Acceptance gates (V1-V5) are stated and marked PASS/FAIL with numbers.
 - [ ] Provenance block lists commit, env, seeds, hardware.
 - [ ] Boxed **LEMMA/THEOREM** or **CONTRADICTION_REPORT** as appropriate.
 - [ ] Units and dimensionless groups stated; BCs and scheme declared.
@@ -207,7 +207,7 @@ Each figure is paired with its CSV/JSON and a numeric caption (slope, $(R^2)$\, 
 # build adjacency and step-spec
 adj = make_adjacency(N, bc="periodic")
 def step(W, dt, params):
-    # reaction–diffusion Euler (replace with declared scheme)
+    # reaction-diffusion Euler (replace with declared scheme)
     return W + dt*(f(W, params['r'], params['u']) + params['D']*laplacian(adj, W))
 
 # exact conservation attempt

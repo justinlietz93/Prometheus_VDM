@@ -1,8 +1,8 @@
-# RD front-speed validation (Fisher–KPP)
+# RD front-speed validation (Fisher-KPP)
 
 Purpose
 
-- Empirically validate the Fisher–KPP pulled-front speed in 1D reaction–diffusion:
+- Empirically validate the Fisher-KPP pulled-front speed in 1D reaction-diffusion:
 
 $$
 u_t = D u_xx + r u (1 − u)
@@ -70,7 +70,7 @@ How to run (PowerShell)
 Recommended defaults
 
 - Threshold level: 0.1 (stable early/late across grids). Level=0.5 works if far field remains near zero.
-- Fit window: later fraction of the tracked interval (e.g., 0.6–0.9) to avoid initial transients and boundary interactions.
+- Fit window: later fraction of the tracked interval (e.g., 0.6-0.9) to avoid initial transients and boundary interactions.
 - Grid/time step: increase N or T as needed for clean linear regime; CFL-stable explicit Euler is used.
 
 Acceptance criteria
@@ -81,7 +81,7 @@ Acceptance criteria
 
 Representative results (logged)
 
-- Parameters: D=1.0, r=0.25, N=1024, T=80, level=0.1, fit 0.6–0.9
+- Parameters: D=1.0, r=0.25, N=1024, T=80, level=0.1, fit 0.6-0.9
 - Metrics: $c\_meas ≈ 0.953, c\_th = 1.0, rel\_err ≈ 0.047, R² ≈ 0.999996$ (pass)
 - Gradient cross-check: $c\_meas\_grad ≈ 0.945, rel\_err\_grad ≈ 0.055, R²\_grad$ ≈ 0.99995
 - Outputs auto-saved under derivation/code/outputs/{figures,logs}/

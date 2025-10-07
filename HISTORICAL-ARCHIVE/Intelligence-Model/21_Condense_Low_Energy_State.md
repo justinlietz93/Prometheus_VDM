@@ -6,7 +6,7 @@ I’ll go subsystem by subsystem and give exactly one instruction per item: what
 
 **Instruction:** Replace your global PH pass with a *streaming Void‑B₁ estimator* that integrates local “circulation of void energy” around short loops and accumulates its persistence over time.
 
-**Why this works:** Your ΔW equations already define an energy landscape. A 1‑cycle “exists” exactly where void flux circulates and resists collapse. Instead of building filtrations and running matrix reductions, we track per‑edge loop energy in the immediate neighborhood (2–3 hops) and integrate it through time—yielding a *persistence‑like* signal without ever leaving local state.
+**Why this works:** Your ΔW equations already define an energy landscape. A 1‑cycle “exists” exactly where void flux circulates and resists collapse. Instead of building filtrations and running matrix reductions, we track per‑edge loop energy in the immediate neighborhood (2-3 hops) and integrate it through time—yielding a *persistence‑like* signal without ever leaving local state.
 
 **How to compute (per tick):**
 
@@ -118,7 +118,7 @@ if debt[e] - lam*credit[e] > tau and local_void_b1(u,v) < tau_b1:
 3. Accumulate $E_u=\sum_{t=1}^K\sum_{v\in\mathcal N^k(u)} |\Delta W_v(t)|$ in a small moving buffer.
 4. The per‑node “importance” is $I_u=E_u/K$ (normalize by degree); export top quantiles.
 
-**Complexity:** $O(|S|\cdot K\cdot \text{avg\_deg})$ amortized; keep $|S|\ll N$ (e.g., 0.1–1%). GPU‑friendly.
+**Complexity:** $O(|S|\cdot K\cdot \text{avg\_deg})$ amortized; keep $|S|\ll N$ (e.g., 0.1-1%). GPU‑friendly.
 
 **Use:** Route UTD to sample from high‑$I_u$ regions when “speaking”.
 

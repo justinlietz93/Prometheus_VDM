@@ -29,10 +29,10 @@ The system is built on a unidirectional, decoupled pipeline, ensuring scalabilit
 
 | Class | Rarity | Target Degree (`k_target`) | Learning Rate (`η`) | Decay Rate (`λ`) |
 | :--- | :--- | :--- | :--- | :--- |
-| **Relay** | ~60% | 3–5 | 0.08 | 0.03 |
-| **Inhibitory** | ~25% | 6–12 | 0.05 | 0.02 |
-| **Integrator** | ~14% | 20–60 | 0.01 | 0.005 |
-| **Purkinje-like**| ~1% | 200–500 | 0.002 | 0.0005|
+| **Relay** | ~60% | 3-5 | 0.08 | 0.03 |
+| **Inhibitory** | ~25% | 6-12 | 0.05 | 0.02 |
+| **Integrator** | ~14% | 20-60 | 0.01 | 0.005 |
+| **Purkinje-like**| ~1% | 200-500 | 0.002 | 0.0005|
 
 *   **Canonical Tag Schema:** A standardized format for all structural change proposals, including reason codes such as `LOW_USE`, `C3_ENGULF`, `EXCITOTOX`, `METABOLIC_DEBT`, and `APOPTOSIS`.
 
@@ -44,7 +44,7 @@ The system is built on a unidirectional, decoupled pipeline, ensuring scalabilit
     $$
     where $e_{ij}(t)$ is the synaptic eligibility trace and $M_t$ is a modulatory factor.
 
-*   **Selective Pruning (Microglia–C3 Analog):** A two-stage, quorum-based mechanism. A `ComplementTagger` walker first marks volatile, low-efficacy synapses with a `tag.C3`. A `Microglia` walker then issues a definitive `tag.prune_synapse` only if the C3 tag is corroborated by other signals (e.g., low use).
+*   **Selective Pruning (Microglia-C3 Analog):** A two-stage, quorum-based mechanism. A `ComplementTagger` walker first marks volatile, low-efficacy synapses with a `tag.C3`. A `Microglia` walker then issues a definitive `tag.prune_synapse` only if the C3 tag is corroborated by other signals (e.g., low use).
 
 *   **Neuron Culling:** Gated by severe pathological signals:
     *   **Excitotoxicity:** Triggered by sustained high firing rates (`r_i > r_max`) and prolonged depolarization (`c_i > c_max`).

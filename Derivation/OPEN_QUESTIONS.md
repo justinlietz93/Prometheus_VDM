@@ -155,7 +155,7 @@
 **Status:** Open  •  **Priority:** P3  •  **Owner:** —  
 **Context:** derivation/reaction_diffusion/rd_validation_plan.md:88 • 8321c50
 
-> Evaluate sensitivity of c_meas to level choice (0.05–0.2) and fit window; document invariance bands.
+> Evaluate sensitivity of c_meas to level choice (0.05-0.2) and fit window; document invariance bands.
 
 **Why it matters (lifted):** Quantifies robustness of front speed measurement protocol.  
 **Related canon (anchors only):**  
@@ -384,7 +384,7 @@
 **Status:** Open  •  **Priority:** P3  •  **Owner:** —  
 **Context:** derivation/memory_steering/void_announcers_control.md:79 • 8321c50
 
-> Extend to attention: walkers hop on token–head–position graphs with saliency S∝|A|·|V|.
+> Extend to attention: walkers hop on token-head-position graphs with saliency S∝|A|·|V|.
 
 **Why it matters (lifted):** Extends walker framework to transformer attention mechanisms.  
 **Related canon (anchors only):**  
@@ -455,7 +455,7 @@
 > **Deliverable:** a one‑pager (math only) containing:
 >
 > - **Morphology/assimilation field** $s(x,t)$ with **RD‑type** evolution
-> - **Signal/transport field** $u(x,t)$ with **finite‑speed propagation** (Telegraph/Klein–Gordon)
+> - **Signal/transport field** $u(x,t)$ with **finite‑speed propagation** (Telegraph/Klein-Gordon)
 > - **Void‑Debt Modulation (VDM)** variable $\mathcal{D}(x,t)$ gating both diffusion and transport
 
 **Why it matters (lifted):** Unifies RD and EFT branches under VDM framework with explicit scale separation.  

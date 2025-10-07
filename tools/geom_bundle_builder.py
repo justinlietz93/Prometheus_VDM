@@ -1,7 +1,7 @@
 """Geometry bundle automation for VDM instrumentation runs.
 
 This script orchestrates the end-to-end workflow described in the
-user's geometry data capture checklist (sections A–J). It handles run
+user's geometry data capture checklist (sections A-J). It handles run
 directory provisioning, provenance capture, activation logging hooks,
 quality checks, and packaging. The heavy lifting of model-specific
 forward passes is delegated to a pluggable adapter that must implement

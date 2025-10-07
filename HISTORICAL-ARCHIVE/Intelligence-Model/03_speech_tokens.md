@@ -14,7 +14,7 @@ Think of a *speak impulse* as a high‑level action triggered when the connectom
 * **Topology spikes**: positive jumps in *streaming* Betti‑1 persistence (B1) mean it just closed or opened loops—classic “aha” moments.
 * **Cohesion heals/breaks**: component count drops to 1 (global connectivity) or temporarily fragments.
 * **Void traversal surges**: vt\_coverage or vt\_entropy rises faster than baseline (the map of an active domain just expanded).
-* **Positive valence**: the SIE composite (TD + novelty – habituation + stability) says “this was good”.
+* **Positive valence**: the SIE composite (TD + novelty - habituation + stability) says “this was good”.
 
 So: speak when **ΔB1\_zscore** crosses a threshold *and* **SIE valence** is high, with hysteresis and a cooldown so it doesn’t spam.
 
@@ -233,7 +233,7 @@ index 8b1a0d2..54e9c1b 100644
          while self._running:
              loop_start = time.time()
 -            # 1) ingest (UTE)
-+            # 1) ingest (UTE) – your UTE already enqueues; you can expand here
++            # 1) ingest (UTE) - your UTE already enqueues; you can expand here
              for ev in self.ute.poll():
                  self._stim_q.append(ev)
 -            # 2) one connectome step
@@ -360,7 +360,7 @@ You’ll see JSON lines from UTD on stdout **and** a few autonomous `say` events
 
 # Tuning knobs you can adjust (and their effects)
 
-* `--z-spike`: higher means the system only speaks on rarer, larger topology jumps. Start \~3.0–3.5.
+* `--z-spike`: higher means the system only speaks on rarer, larger topology jumps. Start \~3.0-3.5.
 * `--b1-half-life`: shorter = more sensitive to *recent* changes; longer = detects regime shifts.
 * `--speak-cooldown`: minimum seconds between autonomous utterances.
 * `--utd-rate/--utd-burst`: soft cap on how chatty the macro channel is (independent of the spike detector).

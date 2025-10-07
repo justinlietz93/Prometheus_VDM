@@ -7,7 +7,7 @@ Absolutely. You can (and should) let it decide when to speak on its own—driven
 Each tick we compute a **speak drive** $D_t$:
 
 * **Novelty**: mean |ΔW| from the current active set (void deltas).
-* **Reward/Valence**: mean of SIE total reward (your TD + novelty + HSI – habituation blend).
+* **Reward/Valence**: mean of SIE total reward (your TD + novelty + HSI - habituation blend).
 * **De‑habituation**: $1 - \mu_{\text{spike}}$ from SIE’s EMA; if it’s getting bored, voice drops.
 * **Topological salience**: short‑window change in **StreamingB1** (new cycles/loops = “I discovered a structure”).
 * **Recency penalty**: exponential cooldown so single discoveries cause a concise burst, not a flood.

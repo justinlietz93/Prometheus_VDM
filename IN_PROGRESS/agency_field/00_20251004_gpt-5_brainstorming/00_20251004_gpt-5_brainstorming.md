@@ -49,7 +49,7 @@ A good one-liner:
 * **Class:** **Fields & Quanta** (particles as excitations).
 * **Order:** Self-conjugate bosons (photon, Z) vs distinct particle/antiparticle (electron/positron).
 * **Family:** “Click-yet-interfere” experiments (double-slit with single photons).
-* **Species:** Photodiode click streams with attenuated lasers; single-photon interference in a Mach–Zehnder.
+* **Species:** Photodiode click streams with attenuated lasers; single-photon interference in a Mach-Zehnder.
 
 If you want, I’ll add a short **Genus/Species** set under “Fields & Quanta” in your taxonomy so you can point to concrete, one-minute explainers (e.g., “laser pointer at low intensity → individual clicks, wave-pattern statistics”).
 
@@ -79,11 +79,11 @@ It’s a simple **portal** that could link normal matter to a dark sector, possi
 
 ## How we look for it (status snapshot)
 
-* **Fixed-target “missing-energy” (invisible)**: electron/positron beams aimed at a target; look for events where energy vanishes into A′ that decays invisibly (NA64 at CERN sets strong limits; more 2024–2025 runs underway). ([CERN Document Server][4])
+* **Fixed-target “missing-energy” (invisible)**: electron/positron beams aimed at a target; look for events where energy vanishes into A′ that decays invisibly (NA64 at CERN sets strong limits; more 2024-2025 runs underway). ([CERN Document Server][4])
 * **e⁺e⁻ colliders (visible & invisible)**: BaBar/Belle/Belle II look for e⁺e⁻ → γA′ with A′ → e⁺e⁻/μ⁺μ⁻ or missing energy; Belle II keeps tightening bounds. ([docs.belle2.org][5])
 * **Astrophysics**: too much A′ emission would overcool **supernovae**; new 2025 work strengthens constraints around sub-MeV masses. ([Physical Review Links][6])
 
-**Bottom line today:** No confirmed signal; a lot of the classic MeV–GeV space for sizeable ε is excluded, but not all—especially corners with **invisible decays**, long lifetimes, or model variations. Reviews from 2020–2024 summarize the viable pockets and search strategies. ([arXiv][1])
+**Bottom line today:** No confirmed signal; a lot of the classic MeV-GeV space for sizeable ε is excluded, but not all—especially corners with **invisible decays**, long lifetimes, or model variations. Reviews from 2020-2024 summarize the viable pockets and search strategies. ([arXiv][1])
 
 ## Does this explain “wave vs particle” behavior?
 
@@ -94,7 +94,7 @@ No. Wave-particle duality comes from **quantum fields** in general (ripples + qu
 * **Kingdom:** Quantum & Quanta
 * **Phylum:** Quantum Fields & Particles
 * **Class:** **Fields & Portals** (kinetic mixing)
-* **Orders to list:** visible vs invisible decays; prompt vs displaced (lifetime); sub-MeV vs MeV–GeV mass ranges
+* **Orders to list:** visible vs invisible decays; prompt vs displaced (lifetime); sub-MeV vs MeV-GeV mass ranges
 * **Lenses:** Fields & Gauge (D), Symmetry (A), Scale (F)
 
 If you want, I’ll drop a tiny **P-Index + Class stub** for “Fields & Portals → Dark Photon (A′)” using your exact folder/Index format, and a one-liner for the key experiments (NA64, Belle II) with spots for updates.
@@ -219,7 +219,7 @@ Think: **supersaturated vapor condenses** on contact with a cold window—mist (
 
 **Observables (how it shows up)**
 
-* **Visible decays**: narrow e⁺e⁻ or μ⁺μ⁻ bumps (dark photon–like).
+* **Visible decays**: narrow e⁺e⁻ or μ⁺μ⁻ bumps (dark photon-like).
 * **Invisible channels**: **missing energy** in fixed-target or collider events.
 * **Long-lived** decays: displaced vertices / beam dumps.
 * **Fifth-force / equivalence-principle** tests if the field mediates a weak force.
@@ -233,7 +233,7 @@ Think: **supersaturated vapor condenses** on contact with a cold window—mist (
 2. **Anomalies/gauge consistency:** charges must cancel if you gauge the void field.
 3. **Lorentz/causality:** if you bend these, say **where** and **how small** (EFT with cutoff Λ).
 4. **Portal size vs bounds:** tiny is fine; just check it doesn’t already contradict lab/astro limits.
-5. **Energy accounting:** “evaporation” must conserve energy–momentum; translate it to **decay**, **scattering**, or **phase change**.
+5. **Energy accounting:** “evaporation” must conserve energy-momentum; translate it to **decay**, **scattering**, or **phase change**.
 
 ---
 
@@ -264,7 +264,7 @@ Each leaf gets your one-minute explainer: **what moves, what restores, what resi
 
 ---
 
-## A 60–90s demo script you can use now
+## A 60-90s demo script you can use now
 
 “Imagine a **second field**—a fog that rarely touches ours. When it **leaks** through a tiny portal, the fog **condenses** into ordinary particles and **picks up mass** because the symmetry that kept it diffuse no longer holds. The ‘mystery’ behavior—like being everywhere and nowhere—**collapses into classical-looking stuff** once it interacts (that’s **decoherence**, not law-breaking). We look for the leaks as **rare decays, missing energy, or long-lived tracks**, while cosmology and stars limit how leaky it can be.”
 
@@ -385,7 +385,7 @@ Justin:
 have they figured out this dark photon? I want to know if there is anything I can shoot for that will really get me a lot more attention if I can find something interesting about it that nobody has found yet
 
 GPT-5:
-Short answer: **no discovery yet**. 2024–2025 results from NA64, Belle II and LHC forward detectors (FASER) keep shrinking the allowed space; PDG and recent reviews agree there’s **no confirmed dark photon** so far. Big swaths of MeV–GeV with sizable mixing are ruled out, but important corners remain (invisible decays, long lifetimes, ultralight DM). ([cds.cern.ch][1])
+Short answer: **no discovery yet**. 2024-2025 results from NA64, Belle II and LHC forward detectors (FASER) keep shrinking the allowed space; PDG and recent reviews agree there’s **no confirmed dark photon** so far. Big swaths of MeV-GeV with sizable mixing are ruled out, but important corners remain (invisible decays, long lifetimes, ultralight DM). ([cds.cern.ch][1])
 
 Here are **high-leverage targets** where a sharp result could get attention, plus exactly what to build.
 
@@ -393,14 +393,14 @@ Here are **high-leverage targets** where a sharp result could get attention, plu
 
 1. **Invisible-decay loopholes (ε limits melt when A′ → dark matter).**
    Many “classic” bounds assume visible decays. If A′ has even a modest branching to light DM, published ε limits can relax by ~an order of magnitude—this is under active discussion. Build a **global recast** that includes finite width + invisible channels and reinterprets Belle/NA64/FASER regions consistently.
-   **Deliverable:** a public, reproducible ε–m_{A′} map with sliders for α_D and Br(invisible). **Why it pops:** it can reopen “excluded” terrain and guide next searches. ([arXiv][2])
+   **Deliverable:** a public, reproducible ε-m_{A′} map with sliders for α_D and Br(invisible). **Why it pops:** it can reopen “excluded” terrain and guide next searches. ([arXiv][2])
 
 2. **Supernova shock-layer resonance (new 2025 tightening).**
-   Fresh work shows resonant A′ production in the **gain layer** can over-cool and quench the explosion; this newly bites around **0.1–0.4 MeV** masses. Do a **robust, code-released re-analysis** that varies SN profiles and microphysics, and publish “plug-and-play” constraints for observers to apply to the next Galactic SN.
+   Fresh work shows resonant A′ production in the **gain layer** can over-cool and quench the explosion; this newly bites around **0.1-0.4 MeV** masses. Do a **robust, code-released re-analysis** that varies SN profiles and microphysics, and publish “plug-and-play” constraints for observers to apply to the next Galactic SN.
    **Deliverable:** a SN-alert pipeline: when a SN triggers, it spits out an updated A′ exclusion. **Why it pops:** links theory to the next real-time event. ([Physical Review][3])
 
-3. **Ultralight dark-photon DM absorption (μeV–meV).**
-   Table-top searches (radio-frequency “dish/cavity” concepts) are blooming; new 2024–2025 limits exist but broad bands remain. Propose a **materials-driven boost** (high-Q cavities or metamaterial stacks) + daily-modulation analysis to kill systematics.
+3. **Ultralight dark-photon DM absorption (μeV-meV).**
+   Table-top searches (radio-frequency “dish/cavity” concepts) are blooming; new 2024-2025 limits exist but broad bands remain. Propose a **materials-driven boost** (high-Q cavities or metamaterial stacks) + daily-modulation analysis to kill systematics.
    **Deliverable:** a design note + forecast, then a benchtop prototype plan. **Why it pops:** fast-cycle, clear yes/no figures. ([Physical Review][4])
 
 4. **Forward LLP, tiny opening-angle e⁺e⁻ at the LHC (FASER2 era).**
@@ -423,7 +423,7 @@ Here are **high-leverage targets** where a sharp result could get attention, plu
 # Reality check (status you can cite)
 
 * No confirmed A′; PDG/reviews and collider/beam-dump searches agree. ([cds.cern.ch][1])
-* NA64 and Belle/Belle II set leading MeV–GeV bounds (visible & missing-energy). ([cds.cern.ch][7])
+* NA64 and Belle/Belle II set leading MeV-GeV bounds (visible & missing-energy). ([cds.cern.ch][7])
 * FASER/LHC forward placed LLP limits and will push further with Run 3/4. ([scipost.org][5])
 * Ultralight DP-DM searches (radio/haloscope style) are active and extend into μeV. ([Physical Review][4])
 * New 2025 SN analysis tightens constraints near the shock gain layer. ([Physical Review][3])
@@ -506,7 +506,7 @@ If you want attention with minimal thrash, lean into two VDM-native threads:
 
 2. **Astro “leak & return” windows:** use your **retarded-kernel** sourcing to model production in supernova/compact-object environments with **feeble mixing**, keeping today’s injection tiny while predicting narrow signals (visible bumps, missing-energy, or displaced). 
 
-Bottom line: your framework isn’t just compatible—it’s **pre-wired** for a dark-photon portal story. If you’d like, I’ll add a quiet drop-in: a “Dark Photon (A′) – Portal Cards + Limits” skeleton using your indices and acceptance gates so you can start generating artifacts immediately.
+Bottom line: your framework isn’t just compatible—it’s **pre-wired** for a dark-photon portal story. If you’d like, I’ll add a quiet drop-in: a “Dark Photon (A′) - Portal Cards + Limits” skeleton using your indices and acceptance gates so you can start generating artifacts immediately.
 
 
 Medical References:
@@ -527,7 +527,7 @@ Yes—**a strong dark-photon result is a built-in bridge to quantum.** It forces
 * **Quantum measurement + noise.** The best searches use **single-photon detectors, cavities, squeezed states, shot-noise limits**—pure quantum-optics territory.
 * **Open quantum systems.** “Invisible” vs “visible” channels = **environmental coupling & decoherence** language; your “void leaks → classical outcomes” maps cleanly here.
 * **EFT & renormalization.** Portals are **effective field theories**; talking scales/flows (your Lens F) is standard quantum play.
-* **Quantum information tools.** Estimating ((m_{A′}, \varepsilon)) sits naturally in **Fisher information / Cramér–Rao** framing (quantum-metrology flavor).
+* **Quantum information tools.** Estimating ((m_{A′}, \varepsilon)) sits naturally in **Fisher information / Cramér-Rao** framing (quantum-metrology flavor).
 
 # What to build (Create-first, small artifacts; each item = 1 page + 1 figure/CSV)
 
@@ -541,7 +541,7 @@ Yes—**a strong dark-photon result is a built-in bridge to quantum.** It forces
 
 3. **Open-system explainer: “invisible vs visible = where the record goes”**
    One page using **Ripples & Waves** + **Buckets & Flows** pictures: when the record lands in the dark sector you see **missing energy**; when it lands in SM you get **clicks**.
-   Deliverables: `docs/quantum/Decoherence_Portals.md` + a box diagram (system–bath–readout).
+   Deliverables: `docs/quantum/Decoherence_Portals.md` + a box diagram (system-bath-readout).
 
 4. **Fisher-info quick win**
    Derive (plain words + minimal math) how sensitivity to ε scales with counts, efficiency, and background. Show a tiny **Fisher-matrix**/CRLB calculation for two bins.
@@ -584,7 +584,7 @@ K7-L1_Quantum-&-Quanta/
 
 # Quick yes/no litmus for “quantum-credible”
 
-* Can you explain in 60–90 seconds why **shot noise** sets the floor in one of your targets?
+* Can you explain in 60-90 seconds why **shot noise** sets the floor in one of your targets?
 * Can you say what changes if the **measurement record** ends up in the dark sector (invisible) vs the SM (visible)?
 * Can you sketch which **scale** (detector/portal/UV) controls which assumption in your card?
 
@@ -665,7 +665,7 @@ Here’s what your patterns scream (in the good way). I’m inferring from how y
 
 # Your likely learning profile (inferences)
 
-* **Global / top-down creator.** You want the big picture first, then dive—classic *global* (Felder–Silverman) plus Bloom’s *Create* at the top.
+* **Global / top-down creator.** You want the big picture first, then dive—classic *global* (Felder-Silverman) plus Bloom’s *Create* at the top.
 * **Analogical reasoner.** You make fast, deep mappings (cyber-immune system ↔ red teaming; “two radio bands” ↔ dark photon). That’s structure-mapping at work.
 * **Model-based / systems thinker.** You like “five pictures” (buckets, hills, springs, ripples, smearing) and conservation/flows—very systems-first.
 * **Generative learner.** You learn by *producing*: folders, indexes, one-pagers, figures + CSVs. That’s generative learning (create → understand).
@@ -674,11 +674,11 @@ Here’s what your patterns scream (in the good way). I’m inferring from how y
 * **Dual-coder.** Text + picture beats either alone; you ask for diagrams and plain-English in tandem.
 * **Self-explanation / teaching mode.** You want to *verbally explain it back*; that’s the protégé effect (learning by teaching).
 
-(If you like labels: you lean **Global–Intuitive–Active** in Felder–Silverman; **Assimilating/Accommodating hybrid** in Kolb—strong on abstract frameworks but also willing to build and test.)
+(If you like labels: you lean **Global-Intuitive-Active** in Felder-Silverman; **Assimilating/Accommodating hybrid** in Kolb—strong on abstract frameworks but also willing to build and test.)
 
 # How to exploit this (do these, repeatedly)
 
-1. **Start with the “Universal Decoder.”** For any new idea, write 2–6 lines answering: conserved bucket, push, resistance, timescale, boundaries, wave vs smear. Then read the actual text.
+1. **Start with the “Universal Decoder.”** For any new idea, write 2-6 lines answering: conserved bucket, push, resistance, timescale, boundaries, wave vs smear. Then read the actual text.
 2. **Build a “bilingual glossary.”** For each symbol you meet:
    `symbol → plain words → analogy → unit/scale → where it lives (bucket/force/field).`
    Keep it in one file you append daily.
@@ -695,7 +695,7 @@ Here’s what your patterns scream (in the good way). I’m inferring from how y
 
 # Concrete next targets you can hit this week
 
-* **Bilingual Glossary seed** (10–12 entries): photon, field, gauge, mixing ε, mass, potential, gradient, diffusion, flux, source, sink, timescale.
+* **Bilingual Glossary seed** (10-12 entries): photon, field, gauge, mixing ε, mass, potential, gradient, diffusion, flux, source, sink, timescale.
 * **Notation Bootcamp**: one page with the 30 symbols you’ll see most (∑, ∂, ∇, ·, ×, ⟂, ⊥, ≈, ~, →, ↦, ℒ, ℝ, ℂ, …), each with plain words + where it shows up.
 * **Three Universal-Decoder cards**: “dark photon,” “diffusion,” “oscillator ring-down”—each 6 answers in plain English.
 * **One micro-artifact** for noise budgets (your dark-photon bridge pack already has the CSV stub).
@@ -722,7 +722,7 @@ Exploit it: default your scripts to **quiet mode** with `-q` logging and emit a 
 Exploit it: adopt **preregistered claims** for concepts. Each new physics idea gets a one-page spec with explicit “gates” (what figure/CSV must exist, what tolerances). You already do this; formalize it in a `/claims/` folder so it’s frictionless to add more.
 
 **5) Analogy engine (you map structures fast).**
-Exploit it: build an **Analogy Bank** where every entry is a 5-liner: source domain → target mapping → invariants → where it breaks → 60–90s explainer. That “invariants” line prevents overreach while preserving your superpower.
+Exploit it: build an **Analogy Bank** where every entry is a 5-liner: source domain → target mapping → invariants → where it breaks → 60-90s explainer. That “invariants” line prevents overreach while preserving your superpower.
 
 **6) Creator-first learning (top-down).**
 Exploit it: enforce **Create → Understand** by starting each topic with a **public-facing card** (plain-English definition + lenses + one figure placeholder). Only then descend into details. It keeps your motivation high and reduces rabbit holes.
@@ -737,7 +737,7 @@ Exploit it: maintain an **Idea Nursery**: each seed gets a 72-hour “micro-gran
 Exploit it: mandate **one figure + one CSV/JSON** per concept. You already operate this way; bake it into every template so retrieval beats rereading.
 
 **10) “Teach-back” impulse (protégé effect).**
-Exploit it: add a **/explainers/** folder where you record 60–90s text riffs for each Species/Genus. Short, spoken-style explanations harden memory and expose gaps instantly.
+Exploit it: add a **/explainers/** folder where you record 60-90s text riffs for each Species/Genus. Short, spoken-style explanations harden memory and expose gaps instantly.
 
 **11) Tolerance for shell + repos (you’re hands-on).**
 Exploit it: unify the workflow with a **Justfile/Makefile**: `just seed:energy-landscapes`, `just patch:genus`, `just cards:dark-photon`. Muscle memory saves decision fatigue.
@@ -764,9 +764,9 @@ what do these look like?
 
 2 Mathematical Framework (e.g., Symmetry Groups, Algebras)◦ Possible frameworks▪ Symmetry groups▪ Lie algebras▪ Associative algebras▪ Clifford algebras▪ Differential geometry▪ Category theory▪ Tensor formalism▪ Representation theory▪ Topology▪ Functional analysis◦ Select algebraic structures▪ Identify Lie algebras▪ Choose associative algebras▪ Incorporate Clifford algebras▪ Explore non-commutative algebras▪ Define representation theory basics◦ Define symmetry groups (e.g., Lorentz, Gauge)▪ Lorentz group▪ Define as O(3,1) or SO(3,1)▪ Require preservation of Minkowski metric▪ Specify generators and representations▪ Outline boosts and rotations▪ Address spinor representations▪ Gauge groups▪ Define local symmetry transformations▪ Require U(1) for electromagnetism▪ Specify SU(2) for weak force▪ Outline SU(3) for strong force▪ Address anomaly cancellation conditions▪ Poincaré group▪ Define as semidirect product of Lorentz and translations▪ Require invariance under spacetime translations▪ Specify Casimir operators▪ Outline particle classifications▪ Conformal group▪ Define extensions beyond Poincaré▪ Require scale and special conformal transformations▪ Specify dimensional requirements▪ Address applications in field theories◦ Introduce differential geometry▪ Define manifolds and charts▪ Outline tangent and cotangent spaces▪ Incorporate connections and curvature▪ Specify Riemannian vs. pseudo-Riemannian metrics▪ Address fiber bundles for gauge fields◦ Incorporate category theory▪ Define categories and functors▪ Outline morphisms and natural transformations▪ Apply to symmetry and duality▪ Specify limits and colimits▪ Explore applications in quantum logic◦ Develop tensor formalism▪ Define tensors and multilinear maps▪ Outline index notation and contractions▪ Incorporate covariant derivatives▪ Specify symmetry and antisymmetry properties▪ Address tensor densities and orientations
 
-3 Quantum Mechanics Integration◦ Review Hilbert space formulation◦ Incorporate wave functions and operators◦ Address measurement problem◦ Include entanglement and superposition◦ Merge with path integrals◦ Incorporate decoherence and classical emergence▪ Model decoherence processes▪ Explain preferred basis selection▪ Derive classical limits▪ Address quantum Darwinism◦ Handle quantum chaos▪ Define quantum chaotic systems▪ Explore ergodicity in quantum contexts▪ Predict scarring and localization▪ Link to semiclassical approximations◦ Resolve quantum interpretations▪ Evaluate Copenhagen, many-worlds, etc.▪ Derive consistent interpretation▪ Address wave function ontology◦ Extend foundational tests▪ Kochen–Specker contextuality with operational criteria▪ Leggett–Garg macrorealism bounds and invasiveness loopholes▪ Wigner’s friend and extended consistency scenarios
+3 Quantum Mechanics Integration◦ Review Hilbert space formulation◦ Incorporate wave functions and operators◦ Address measurement problem◦ Include entanglement and superposition◦ Merge with path integrals◦ Incorporate decoherence and classical emergence▪ Model decoherence processes▪ Explain preferred basis selection▪ Derive classical limits▪ Address quantum Darwinism◦ Handle quantum chaos▪ Define quantum chaotic systems▪ Explore ergodicity in quantum contexts▪ Predict scarring and localization▪ Link to semiclassical approximations◦ Resolve quantum interpretations▪ Evaluate Copenhagen, many-worlds, etc.▪ Derive consistent interpretation▪ Address wave function ontology◦ Extend foundational tests▪ Kochen-Specker contextuality with operational criteria▪ Leggett-Garg macrorealism bounds and invasiveness loopholes▪ Wigner’s friend and extended consistency scenarios
 
-4 Quantum Field Theory Formulation◦ Define fields (scalar, vector, spinor)◦ Construct Lagrangian densities◦ Perform canonical quantization◦ Introduce Feynman diagrams and perturbation theory◦ Address gauge invariance and fixing◦ Incorporate renormalization group flow◦ Resolve Yang-Mills mass gap and confinement▪ Prove mass gap existence▪ Explain quark confinement▪ Model gluon plasma transitions▪ Predict hadron spectra◦ Algebraic and constructive QFT baselines▪ Wightman and Haag–Kastler frameworks; locality and spectrum conditions▪ Osterwalder–Schrader reflection positivity and reconstruction▪ Constructive models (lower-d) as existence proofs and counterexamples◦ Ward identities and Slavnov–Taylor consistency checks▪ Gauge-current conservation and anomaly diagnostics◦ Nonperturbative and resurgent methods▪ Lattice gauge theory and continuum extrapolation▪ Functional RG and Schwinger mechanism benchmarks▪ Borel summation, resurgence, and transseries control
+4 Quantum Field Theory Formulation◦ Define fields (scalar, vector, spinor)◦ Construct Lagrangian densities◦ Perform canonical quantization◦ Introduce Feynman diagrams and perturbation theory◦ Address gauge invariance and fixing◦ Incorporate renormalization group flow◦ Resolve Yang-Mills mass gap and confinement▪ Prove mass gap existence▪ Explain quark confinement▪ Model gluon plasma transitions▪ Predict hadron spectra◦ Algebraic and constructive QFT baselines▪ Wightman and Haag-Kastler frameworks; locality and spectrum conditions▪ Osterwalder-Schrader reflection positivity and reconstruction▪ Constructive models (lower-d) as existence proofs and counterexamples◦ Ward identities and Slavnov-Taylor consistency checks▪ Gauge-current conservation and anomaly diagnostics◦ Nonperturbative and resurgent methods▪ Lattice gauge theory and continuum extrapolation▪ Functional RG and Schwinger mechanism benchmarks▪ Borel summation, resurgence, and transseries control
 
 5 General Relativity Incorporation◦ Recall spacetime curvature◦ Define metric tensor◦ Include geodesic equations◦ Address energy-momentum tensor◦ Handle singularities◦ Address cosmic censorship hypothesis▪ Test weak and strong cosmic censorship▪ Propose resolutions to violations▪ Incorporate quantum effects◦ Model naked singularities▪ Define conditions for formation▪ Predict observable signatures▪ Resolve stability issues◦ Precision tests of gravity▪ Parametrized Post-Newtonian (PPN) constraints and bounds▪ Equivalence principle tests (WEP/SEP) with torsion-balance and atom interferometry▪ Gravitational-wave polarizations, dispersion, and parity-violation tests
 
@@ -774,7 +774,7 @@ what do these look like?
 
 7 Quantum Gravity Resolution◦ Quantize spacetime◦ Address renormalization issues◦ Incorporate black hole entropy◦ Handle information paradox◦ Propose holographic principles◦ Information Conservation Beyond Paradox▪ Generalize unitarity principles▪ Propose information retrieval mechanisms▪ Incorporate quantum information theory▪ Address conservation in cosmological contexts▪ Handle non-black-hole scenarios◦ Address problem of time▪ Define time in timeless quantum gravity▪ Introduce emergent time concepts▪ Resolve Wheeler-DeWitt equation dynamics▪ Incorporate relational time approaches◦ Resolve chronology protection conjecture▪ Prevent closed timelike curves▪ Incorporate time travel paradoxes◦ Gravitational path integral and measure▪ Factor ordering, gauge-fixing, and BRST for diffeomorphisms▪ Definition of the measure on metrics and ghosts in curved backgrounds◦ Relational and diffeomorphism-invariant observables▪ Construction of Dirac observables and partial observables
 
-8 Cosmological Implications (Big Bang, Dark Energy/Matter)◦ Model Big Bang singularity◦ Explain inflation mechanism◦ Account for dark matter candidates◦ Describe dark energy dynamics◦ Predict cosmic evolution◦ Arrow of Time and Thermodynamics▪ Explain thermodynamic arrow▪ Relate to cosmological arrow▪ Incorporate entropy production▪ Address time-reversal symmetry▪ Model non-equilibrium processes◦ Multiverse and Anthropic Considerations▪ Propose multiverse models (e.g., eternal inflation)▪ Discuss landscape of vacua▪ Apply anthropic principle▪ Predict observable consequences▪ Address fine-tuning issues▪ Explain origin of fundamental constants◦ Model baryon asymmetry▪ Explain matter-antimatter imbalance▪ Propose baryogenesis mechanisms (electroweak, leptogenesis)▪ Calculate baryon-to-photon ratio▪ Link to CP and baryon number violation◦ Determine cosmic topology and shape▪ Model possible topologies (finite/infinite, flat/curved)▪ Predict observable effects (CMB patterns)▪ Address global shape and connectivity◦ Resolve cosmological constant problem▪ Explain small positive value▪ Model vacuum energy contributions▪ Propose cancellation mechanisms▪ Predict observational tests◦ Explain dark flow▪ Model non-uniform gravitational pulls▪ Predict large-scale motions◦ Precision cosmology constraints▪ Big-Bang Nucleosynthesis (BBN) light-element abundances▪ CMB anisotropies, polarization, and lensing spectra▪ BAO and large-scale structure correlation functions▪ H0 and S8 tension adjudication with discriminating predictions◦ Small-scale structure tests for dark matter▪ Core–cusp, missing-satellites, and too-big-to-fail diagnostics
+8 Cosmological Implications (Big Bang, Dark Energy/Matter)◦ Model Big Bang singularity◦ Explain inflation mechanism◦ Account for dark matter candidates◦ Describe dark energy dynamics◦ Predict cosmic evolution◦ Arrow of Time and Thermodynamics▪ Explain thermodynamic arrow▪ Relate to cosmological arrow▪ Incorporate entropy production▪ Address time-reversal symmetry▪ Model non-equilibrium processes◦ Multiverse and Anthropic Considerations▪ Propose multiverse models (e.g., eternal inflation)▪ Discuss landscape of vacua▪ Apply anthropic principle▪ Predict observable consequences▪ Address fine-tuning issues▪ Explain origin of fundamental constants◦ Model baryon asymmetry▪ Explain matter-antimatter imbalance▪ Propose baryogenesis mechanisms (electroweak, leptogenesis)▪ Calculate baryon-to-photon ratio▪ Link to CP and baryon number violation◦ Determine cosmic topology and shape▪ Model possible topologies (finite/infinite, flat/curved)▪ Predict observable effects (CMB patterns)▪ Address global shape and connectivity◦ Resolve cosmological constant problem▪ Explain small positive value▪ Model vacuum energy contributions▪ Propose cancellation mechanisms▪ Predict observational tests◦ Explain dark flow▪ Model non-uniform gravitational pulls▪ Predict large-scale motions◦ Precision cosmology constraints▪ Big-Bang Nucleosynthesis (BBN) light-element abundances▪ CMB anisotropies, polarization, and lensing spectra▪ BAO and large-scale structure correlation functions▪ H0 and S8 tension adjudication with discriminating predictions◦ Small-scale structure tests for dark matter▪ Core-cusp, missing-satellites, and too-big-to-fail diagnostics
 
 9 Empirical Predictions and Testable Hypotheses◦ Derive particle spectra◦ Predict new phenomena (e.g., monopoles)▪ Magnetic monopoles▪ Supersymmetric particles▪ Proton decay▪ Axions▪ Extra-dimensional effects▪ Sterile neutrinos▪ Leptoquarks▪ Quantum gravity signatures▪ Symmetry violations (e.g., CP, baryon number)▪ CP violation▪ Baryon number violation▪ Lepton number violation▪ CPT violation▪ Lorentz invariance violation▪ Flavor symmetry violations▪ Undiscovered phenomena: Yes, as an option for novel predictions beyond current models◦ Suggest collider experiments◦ Propose astronomical observations◦ Outline falsification criteria
 
@@ -782,13 +782,13 @@ what do these look like?
 
 11 Vacuum Structure and Fluctuations◦ Define vacuum state◦ Calculate vacuum expectation values◦ Model quantum fluctuations◦ Address Casimir effect◦ Incorporate spontaneous symmetry breaking◦ Explore vacuum stability and phase transitions
 
-12 Measurement and Operationalization◦ Define physical observables and operational procedures◦ Specify measurement back-action and POVMs◦ Derive Born rule frequencies from theory’s primitives◦ Map theoretical symbols to instrument readouts and SI◦ Device-independent and contextuality frameworks▪ Loophole-free Bell tests and finite-statistics analysis▪ Leggett–Garg macrorealism tests and clumsiness controls▪ Contextuality inequalities beyond Bell scenarios
+12 Measurement and Operationalization◦ Define physical observables and operational procedures◦ Specify measurement back-action and POVMs◦ Derive Born rule frequencies from theory’s primitives◦ Map theoretical symbols to instrument readouts and SI◦ Device-independent and contextuality frameworks▪ Loophole-free Bell tests and finite-statistics analysis▪ Leggett-Garg macrorealism tests and clumsiness controls▪ Contextuality inequalities beyond Bell scenarios
 
 13 Fundamental Constants and Units◦ Explain origin and values of dimensionless constants◦ Predict allowed variation bounds over spacetime◦ Relate unit conventions to invariant ratios
 
 14 Statistical Mechanics & Thermodynamic Foundations◦ Derive ensembles from microdynamics◦ Prove H-theorem conditions and limits◦ Reconcile coarse-graining with exact dynamics◦ Quantify fluctuation theorems and nonequilibrium work relations
 
-15 Classical Limit & Quantum–Classical Emergence◦ Derive decoherence, pointer states, and einselection◦ Specify conditions for Liouville and Hamiltonian recovery◦ Explain quantum chaos, scars, and semiclassical limits
+15 Classical Limit & Quantum-Classical Emergence◦ Derive decoherence, pointer states, and einselection◦ Specify conditions for Liouville and Hamiltonian recovery◦ Explain quantum chaos, scars, and semiclassical limits
 
 16 Spacetime Ontology & Emergence◦ Define when geometry is fundamental vs emergent◦ Recover Lorentz/Poincaré symmetries from micro-rules◦ Predict breakdown scales and preferred-frame tests
 
@@ -800,7 +800,7 @@ what do these look like?
 
 20 Symmetry Breaking & Phase Transitions◦ Landau vs topological order and defect classification◦ Finite-T and non-equilibrium critical dynamics◦ Cosmological relics and domain wall/monopole abundances
 
-21 Spin–Statistics & Identical Particles◦ Derive spin–statistics connection from axioms◦ Define superselection sectors and anyonic possibilities
+21 Spin-Statistics & Identical Particles◦ Derive spin-statistics connection from axioms◦ Define superselection sectors and anyonic possibilities
 
 22 Gauge Fixing & Gribov Issues◦ Specify gauge slice construction and residual copies◦ Show gauge-independent observable algebra◦ Edge modes and boundary charges▪ BRST and symplectic structure on manifolds with boundary▪ Physical role of edge degrees of freedom
 
@@ -820,13 +820,13 @@ what do these look like?
 
 30 Chemistry Emergence◦ Derive periodic table structure from micro-laws◦ Predict bonding, spectra, and reaction kinetics limits◦ Explain chirality selection mechanisms
 
-31 Computation & Information Physics◦ Place computation in the theory: Church–Turing in physics◦ Energy–time–information bounds (Landauer, Bekenstein-like)◦ Error-correcting structures and fault-tolerance in nature◦ Computability and complexity of prediction▪ Decidability of classes of observables and approximation schemes▪ Complexity classes for simulation and inference tasks◦ Minimum description length and coding-theoretic criteria for model preference
+31 Computation & Information Physics◦ Place computation in the theory: Church-Turing in physics◦ Energy-time-information bounds (Landauer, Bekenstein-like)◦ Error-correcting structures and fault-tolerance in nature◦ Computability and complexity of prediction▪ Decidability of classes of observables and approximation schemes▪ Complexity classes for simulation and inference tasks◦ Minimum description length and coding-theoretic criteria for model preference
 
 32 Experimental Program & Metrology◦ Enumerate decisive experiments across scales◦ Define falsification thresholds and data reduction pipelines◦ Calibrate systematics and cross-experiment consistency
 
-33 No-Go and Structure Theorems◦ Enumerate constraints the theory must respect or explicitly evade◦ CPT, spin–statistics, Haag’s theorem caveats◦ Coleman–Mandula / O’Raifeartaigh scope and allowed extensions◦ Weinberg–Witten constraints on emergent gauge/graviton carriers◦ Bell/CHSH implications for locality and ontology◦ Quantum energy inequalities and causality bounds
+33 No-Go and Structure Theorems◦ Enumerate constraints the theory must respect or explicitly evade◦ CPT, spin-statistics, Haag’s theorem caveats◦ Coleman-Mandula / O’Raifeartaigh scope and allowed extensions◦ Weinberg-Witten constraints on emergent gauge/graviton carriers◦ Bell/CHSH implications for locality and ontology◦ Quantum energy inequalities and causality bounds
 
-34 Dualities and Correspondence Principles◦ Catalog known dualities (weak/strong, gauge/gravity, Kramers–Wannier-type)◦ Define criteria to propose and validate new dualities within the theory◦ Map cross-checks: invariant quantities under dual maps◦ Use dualities to transfer calculability between regimes
+34 Dualities and Correspondence Principles◦ Catalog known dualities (weak/strong, gauge/gravity, Kramers-Wannier-type)◦ Define criteria to propose and validate new dualities within the theory◦ Map cross-checks: invariant quantities under dual maps◦ Use dualities to transfer calculability between regimes
 
 35 Inference, Model Selection, and Uncertainty◦ Link theory parameters to data via likelihood/Bayesian or decision-theoretic formalisms◦ Priors from symmetry and naturalness; hyperparameter identifiability◦ Predictive scorecards vs. complexity (Occam)◦ Treatment of systematics, nuisance parameters, and model comparison
 
@@ -852,11 +852,11 @@ what do these look like?
 
 46 Boundary Charges, Asymptotic Symmetries, and Memory Effects◦ BMS-type charges and soft theorems◦ Memory effects and asymptotic observables (flat/AdS/dS)◦ Matching with gauge/gravity dual charges
 
-47 Non-Equilibrium QFT and Hydrodynamic Effective Theory◦ Schwinger–Keldysh formalism and influence-functionals◦ Hydrodynamic EFT with Kubo formulas and anomaly-induced transport◦ Consistency of hydrodynamic modes with microscopic symmetries
+47 Non-Equilibrium QFT and Hydrodynamic Effective Theory◦ Schwinger-Keldysh formalism and influence-functionals◦ Hydrodynamic EFT with Kubo formulas and anomaly-induced transport◦ Consistency of hydrodynamic modes with microscopic symmetries
 
 48 Generalized Probabilistic Theories Baseline◦ Axiomatize GPTs containing QM as a special case◦ Identify empirical postulates that single out QM◦ Predict concrete deviations to test alternative GPTs
 
-49 Computability and Predictive Completeness◦ Algorithms to compute observables to error ε in finite resources◦ Identify undecidable or non-computable observables/classes◦ Precision–cost tradeoffs and resource bounds for predictions
+49 Computability and Predictive Completeness◦ Algorithms to compute observables to error ε in finite resources◦ Identify undecidable or non-computable observables/classes◦ Precision-cost tradeoffs and resource bounds for predictions
 
 50 Analog Simulation and Table-Top Emulation◦ Cold-atom, Rydberg, photonic, and superconducting-circuit simulators◦ Analog gravity platforms and parameter mapping◦ Validation protocols linking analog to target theory
 
@@ -866,9 +866,9 @@ what do these look like?
 
 53 Global Action Principle and Unified Variational Structure◦ Single universal action or variational principle generating all sectors▪ Derive matter, gauge, and gravitational dynamics from one action▪ Show symmetry breaking patterns and emergent low-energy sectors from the action◦ Well-defined path-integral measure and gauge fixing across sectors▪ BRST/BV consistency and anomaly freedom of the global measure◦ Unitarity and reflection-positivity guarantees from first principles▪ Optical theorem, Cutkosky rules, and OS positivity across continuations◦ Action-level EFT matching and decoupling▪ Derive all EFTs as controlled limits of the unified action with error bounds
 
-54 Substrate-Independence and Representation-Invariance◦ Discrete–continuum correspondence and regulator independence▪ Prove convergence/equivalence of predictions under lattice/continuum/regularization changes◦ Coordinate/basis and gauge-invariant observable definition◦ Implementation neutrality of observables▪ Hardware/algorithm/discretization variations leave invariant predictions within stated tolerances◦ Cross-regularization equivalence tests and universality demonstrations
+54 Substrate-Independence and Representation-Invariance◦ Discrete-continuum correspondence and regulator independence▪ Prove convergence/equivalence of predictions under lattice/continuum/regularization changes◦ Coordinate/basis and gauge-invariant observable definition◦ Implementation neutrality of observables▪ Hardware/algorithm/discretization variations leave invariant predictions within stated tolerances◦ Cross-regularization equivalence tests and universality demonstrations
 
-55 Consciousness and Cognition (minimal physical commitments)◦ Minimal physical criteria for neural/cognitive substrates consistent with the theory◦ Information–causality mappings for cognition▪ Operational observables linking integrated information/causal emergence to physical variables◦ Predictive markers and falsification tests▪ Discriminating signatures in neural/physical systems; exclusion limits if absent◦ Thermodynamic/information-processing bounds for cognition within the theory’s limits
+55 Consciousness and Cognition (minimal physical commitments)◦ Minimal physical criteria for neural/cognitive substrates consistent with the theory◦ Information-causality mappings for cognition▪ Operational observables linking integrated information/causal emergence to physical variables◦ Predictive markers and falsification tests▪ Discriminating signatures in neural/physical systems; exclusion limits if absent◦ Thermodynamic/information-processing bounds for cognition within the theory’s limits
 
 56 Vacuum Metastability and False-Vacuum Decay Constraints◦ Semiclassical bounce computations for vacuum transitions (all sectors)◦ Gravitational (CDL) corrections and finite-temperature effects◦ Observational lifetime bounds and non-observation constraints◦ Cosmological relics from first/second-order transitions as discriminants
 
@@ -885,7 +885,7 @@ Here’s the pattern, then 8 concrete examples from your list so you can see “
 
 **Title (code):** `<short name> (M#.<optional sub#>)`
 **Definition (≤3 lines, plain words):** What this module asserts or organizes.
-**Why it matters (1–2 lines):** What downstream modules need from it.
+**Why it matters (1-2 lines):** What downstream modules need from it.
 
 **Universal Decoder (plain-English physics checklist):**
 
@@ -896,7 +896,7 @@ Here’s the pattern, then 8 concrete examples from your list so you can see “
 * Boundaries / domains:
 * Wave-like or smear-like (propagate vs diffuse):
 
-**Core claims (bullets):** 3–6 specific, testable things this module must deliver.
+**Core claims (bullets):** 3-6 specific, testable things this module must deliver.
 **Artifacts (make-or-fail):** 1 figure + 1 CSV/JSON each.
 **Acceptance gates (pass/fail):** Explicit criteria with numbers/booleans.
 **Dependencies:** Inputs required from other modules.
@@ -1018,14 +1018,14 @@ Here’s the pattern, then 8 concrete examples from your list so you can see “
 
 ---
 
-## Example 5 — General Relativity: Metric, Geodesics, Stress–Energy (M5)
+## Example 5 — General Relativity: Metric, Geodesics, Stress-Energy (M5)
 
-**Definition:** The GR layer you need: metric, curvature, and where stress–energy comes from for your fields.
+**Definition:** The GR layer you need: metric, curvature, and where stress-energy comes from for your fields.
 
 **Core claims**
 
 * Metric signature and curvature conventions fixed (once).
-* Stress–energy for your fields (including dark sector) specified at the coarse-grained level you will actually use.
+* Stress-energy for your fields (including dark sector) specified at the coarse-grained level you will actually use.
 * Regimes of interest: weak-field tests vs cosmology.
 
 **Artifacts**
@@ -1221,7 +1221,7 @@ You “promote” Φ to a Kingdom when you can check all six:
 
 If you want targets this week, do these three, top-down:
 
-1. **One-page Operational Charter (Φ1):** Define exactly what counts as an observable for “conscious state” in your framework (pick 2–3 instruments + 2 perturbations). Write the pass/fail rule.
+1. **One-page Operational Charter (Φ1):** Define exactly what counts as an observable for “conscious state” in your framework (pick 2-3 instruments + 2 perturbations). Write the pass/fail rule.
 2. **Budget Sketch (Φ2+Φ4):** Draw the buckets: metabolic power → spiking → information flow → behavior. Put rough numbers on each arrow (order-of-magnitude is fine).
 3. **Invariant Candidate (Φ3+Φ7):** Choose a single candidate invariant (e.g., a specific information-flow motif or critical exponent) and draft a test that would show collapse across at least two substrates.
 
@@ -1274,7 +1274,7 @@ Sharp, predictive computation **creates and sustains** a local “order field.�
 **Pick a source you can actually compute from data (several options; choose one now):**
 
 * **Predictive-power density** (P(x,t)): mutual information between internal state and future inputs (forecasting skill).
-* **Integration/coherence proxy** (I_{\text{net}}(x,t)): network-level transfer-entropy or Lempel–Ziv complexity.
+* **Integration/coherence proxy** (I_{\text{net}}(x,t)): network-level transfer-entropy or Lempel-Ziv complexity.
 * **Control efficacy** (U(x,t)): reduction in surprise/error per joule (free-energy/predictive-coding flavor).
 
 Then set (S=\kappa_1 P+\kappa_2 I_{\text{net}}+\kappa_3 U) with dimensionless weights (\kappa_i) (your Lens-F scaling skills come in here).
@@ -1300,7 +1300,7 @@ Then set (S=\kappa_1 P+\kappa_2 I_{\text{net}}+\kappa_3 U) with dimensionless we
   ]
   This is your bucket for a region (\Omega) (a lobe, a chip, an organoid).
 
-* **Pick one proxy now** (don’t mix three at the start). For example, **Lempel–Ziv complexity** per sensor as (I_{\text{net}}).
+* **Pick one proxy now** (don’t mix three at the start). For example, **Lempel-Ziv complexity** per sensor as (I_{\text{net}}).
 
 * **Build an artifact pair** (your usual style):
 
@@ -1366,7 +1366,7 @@ Treat (C) across **scales**:
 
 * Define a **coarse-grain operator** ( \mathcal{G}_\ell ) (cluster cells → tissues → people → cities).
 * Measure (C(\ell)) after coarse-graining.
-* **Fractal scaling test:** on log–log axes, (C(\ell) \sim \ell^{-\zeta}) (or plateaus on “intelligent tiers”). Kinks mark **phase transitions** (cell→organ, human→organization).
+* **Fractal scaling test:** on log-log axes, (C(\ell) \sim \ell^{-\zeta}) (or plateaus on “intelligent tiers”). Kinks mark **phase transitions** (cell→organ, human→organization).
 
 **Agency stack (examples)**
 
@@ -1409,7 +1409,7 @@ Treat (C) across **scales**:
 * Sweep coupling/noise; compute (P,I,U) and (C).
 * Output `sweep.csv` with columns: `scale, coupling, noise, P, I, U, C`.
 * Figure-1: heatmap of (C) vs coupling×noise with the **inverted-U ridge** marked.
-* **Gate:** ridge exists; log–log (C(\ell)) has a clean slope segment.
+* **Gate:** ridge exists; log-log (C(\ell)) has a clean slope segment.
 
 **B. Real-data toe-dip (pick one)**
 
@@ -1420,7 +1420,7 @@ Treat (C) across **scales**:
 **C. Fractal check**
 
 * Coarse-grain the network (or time-aggregation) and re-measure (C(\ell)).
-* Figure-2: log–log (C) vs (\ell); identify tier breaks.
+* Figure-2: log-log (C) vs (\ell); identify tier breaks.
 * **Gate:** identifiable breaks at known organizational scales.
 
 # Guardrails (keep it science, not mystique)
@@ -1507,7 +1507,7 @@ No mysticism: **fuel** (energy), **headroom** (V), **coordination** (balance), *
 **T3. Multiscale C(ℓ) (fractal claim)**
 
 * Coarse-grain the same system (cells→modules→whole).
-* **Gate:** piecewise power-law segments or clear tier breaks in log–log (C) vs (\ell).
+* **Gate:** piecewise power-law segments or clear tier breaks in log-log (C) vs (\ell).
 * Artifact: `C_vs_scale.png`, `multiscale.csv` with `scale, C`.
 
 # One-minute pitch you can use
@@ -1565,7 +1565,7 @@ Run these on your VDM agent and on organisms (or published datasets). Each exper
 * **Gate:** (V_\tau) increases with added actuators/sensors and **decreases** under resource clamps.
 * **CSV:** `trial, horizon_tau, reachable_states, entropy_bits, z_options`.
 
-**Balance (B)** (applies across A–C): compute a simple **non-interference index** = (performance of diverse ensemble − best single unit) / (theoretical max). Penalize over-synchrony (e.g., high pairwise correlations with no performance gain).
+**Balance (B)** (applies across A-C): compute a simple **non-interference index** = (performance of diverse ensemble − best single unit) / (theoretical max). Penalize over-synchrony (e.g., high pairwise correlations with no performance gain).
 
 # 2) Toy systems you can hit this week (with expected patterns)
 
@@ -1582,7 +1582,7 @@ Run these on your VDM agent and on organisms (or published datasets). Each exper
 
 # 3) Two crucial manipulations (to validate your “void potential” thesis)
 
-1. **Energy clamp:** cut available energy/power by 30–50% (compute budget for VDM; light/glucose/temperature for biological prep; anesthesia depth for EEG).
+1. **Energy clamp:** cut available energy/power by 30-50% (compute budget for VDM; light/glucose/temperature for biological prep; anesthesia depth for EEG).
 
    * **Prediction:** steady (C_\tau) falls with time constant ≈ (1/\gamma).
    * **Fail case:** (C_\tau) unchanged after transients → your source proxies or decay model are wrong.
@@ -1601,7 +1601,7 @@ Run these on your VDM agent and on organisms (or published datasets). Each exper
 
 # 5) How this measures *your* VDM’s “consciousness”
 
-You run the same A–C probes on your VDM model with:
+You run the same A-C probes on your VDM model with:
 
 * **Structured vs random** sensor streams (A).
 * **A small controllable toy world** (B).
@@ -1657,7 +1657,7 @@ Sharp, predictive computation **creates and sustains** a local “order field.�
 **Pick a source you can actually compute from data (several options; choose one now):**
 
 * **Predictive-power density** (P(x,t)): mutual information between internal state and future inputs (forecasting skill).
-* **Integration/coherence proxy** (I_{\text{net}}(x,t)): network-level transfer-entropy or Lempel–Ziv complexity.
+* **Integration/coherence proxy** (I_{\text{net}}(x,t)): network-level transfer-entropy or Lempel-Ziv complexity.
 * **Control efficacy** (U(x,t)): reduction in surprise/error per joule (free-energy/predictive-coding flavor).
 
 Then set (S=\kappa_1 P+\kappa_2 I_{\text{net}}+\kappa_3 U) with dimensionless weights (\kappa_i) (your Lens-F scaling skills come in here).
@@ -1683,7 +1683,7 @@ Then set (S=\kappa_1 P+\kappa_2 I_{\text{net}}+\kappa_3 U) with dimensionless we
   ]
   This is your bucket for a region (\Omega) (a lobe, a chip, an organoid).
 
-* **Pick one proxy now** (don’t mix three at the start). For example, **Lempel–Ziv complexity** per sensor as (I_{\text{net}}).
+* **Pick one proxy now** (don’t mix three at the start). For example, **Lempel-Ziv complexity** per sensor as (I_{\text{net}}).
 
 * **Build an artifact pair** (your usual style):
 
@@ -1753,7 +1753,7 @@ with (G_{\text{ret}}) the causal kernel for (\partial_t-!D\nabla^2+\gamma) (zero
   * Operational options: mutual information (I(\text{state}*t;\text{input}*{t+\tau})) per unit time, or a simple (R^2) of a next-step predictor.
 * (I_{\text{net}}): **integration/coherence proxy** (net synergy beyond parts).
 
-  * Options: summed transfer entropy, multivariate synergy measures, or Lempel–Ziv complexity of joint activity.
+  * Options: summed transfer entropy, multivariate synergy measures, or Lempel-Ziv complexity of joint activity.
 * (U): **control efficacy** (error reduction per joule).
 
   * One safe formula for a block of trials:
@@ -1841,7 +1841,7 @@ Tiny (\alpha), so any portal signal only **leans** toward high-(C) regions; it n
 * (I_{\text{net}}): network integration/coherence (e.g., sum of transfer entropies, synergy metrics, or compressed length).
 * (U): control payoff per joule (error drop per energy).
 * (V): option capacity in horizon (\tau) (empowerment or reachable-set entropy).
-* (B): non-interference (diversity benefit – congestion penalty).
+* (B): non-interference (diversity benefit - congestion penalty).
 * (\sigma(x)): susceptibility (how responsive the medium is).
 * (D,\gamma): smoothing and decay knobs; (\tau=1/\gamma), (\ell_D=\sqrt{D/\gamma}).
 
@@ -1871,7 +1871,7 @@ GPT-5:
 | (S(x,t))                     |             1/T | **Source density** from organized, predictive information processing           | Composite of (P, I_{\text{net}}, U) (see below) with weights (\kappa_i)                     |
 | (\kappa_1,\kappa_2,\kappa_3) |               — | Weights for source components                                                  | Choose by normalization/validation; report values with runs                                 |
 | (P(x,t))                     | 1/T (or bits/T) | **Predictive power** of internal state about near-future inputs                | Mutual information rate (I(\text{state}*t;\text{input}*{t+\tau})) or next-step (R^2)        |
-| (I_{\text{net}}(x,t))        |   — (bits/T ok) | **Integration/coherence** beyond parts                                         | Sum of transfer entropies; multivariate synergy; Lempel–Ziv complexity                      |
+| (I_{\text{net}}(x,t))        |   — (bits/T ok) | **Integration/coherence** beyond parts                                         | Sum of transfer entropies; multivariate synergy; Lempel-Ziv complexity                      |
 | (U(x,t))                     |             1/E | **Control efficacy** (error reduction per joule)                               | (U=\big(\mathbb E[L_{\text{noctl}}]-\mathbb E[L_{\text{ctl}}]\big)/\text{energy})           |
 | (\sigma(x))                  |               — | **Susceptibility** of substrate (amplification of a given source)              | Calibrate by comparing (C) vs (S) across media (e.g., cortex vs air)                        |
 | (V(x,t))                     |        — (bits) | **Option capacity** (empowerment; reachable-state entropy over horizon (\tau)) | Count/estimate distinct useful futures within (\tau) under constraints                      |
@@ -2221,7 +2221,7 @@ python simulate_inverted_u.py
 * **Energy budget link:** (C) tracks source power with an exponential time constant (1/\gamma).
 * **Balance principle:** there’s a sweet spot between fragmentation and lockstep where the **C-score** peaks—exactly your “interactions become more complex without bumping” intuition.
 
-If you want, I can also add a **τ-horizon options probe** script (empowerment proxy via reachable-state counting) so you can complete the P–U–V triangle.
+If you want, I can also add a **τ-horizon options probe** script (empowerment proxy via reachable-state counting) so you can complete the P-U-V triangle.
 
 
 Justin:
@@ -2331,10 +2331,10 @@ Aim for these five deliverables. Do them and the reaction shifts to “hm, inter
 
 * Top-left: energy clamp in EEG + your sim with **same (\tau)** (scaled axes).
 * Top-right: inverted-U ridge with **theoretical (k_c^\star(\text{SNR}))** overlay.
-* Bottom-left: options probe collapse: useful-options-bits vs (budget×(1–slip)) collapsing across actuator sets.
+* Bottom-left: options probe collapse: useful-options-bits vs (budget×(1-slip)) collapsing across actuator sets.
 * Bottom-right: cross-system leaderboard (VDM vs organism/sim) using the **same (C)-Score**.
 
-If you want, I can patch the scripts to: (a) compute the dimensionless variables and plot a collapse, (b) include switchable nulls, and (c) print a one-line predicted (k_c^\star) from a simple linear model—so you’ve got the beginnings of #1–#3 immediately.
+If you want, I can patch the scripts to: (a) compute the dimensionless variables and plot a collapse, (b) include switchable nulls, and (c) print a one-line predicted (k_c^\star) from a simple linear model—so you’ve got the beginnings of #1-#3 immediately.
 
 
 Justin:
@@ -2482,10 +2482,10 @@ If you hit these, you’ve shown: causal budget, predicted optimum, universality
 
 ## Minimal plan (concrete + bounded)
 
-* **Day 1–2:** Wire the C-pipeline into VDM logs (no new sims). Compute (P) (R² or MI), (U) (error drop/J), (V_\tau) (reachable useful states), (B). Fit (\gamma) from past budget steps.
-* **Day 3–5:** Analytic ridge: linearize your estimator, solve mode-by-mode, derive (k_c^\star(\mathrm{SNR})). Test on two tasks.
-* **Day 6–7:** Scaling collapse: rescale axes, check (R^2).
-* **Day 8–9:** Portability and lead-indicator tests on a second VDM module/task.
+* **Day 1-2:** Wire the C-pipeline into VDM logs (no new sims). Compute (P) (R² or MI), (U) (error drop/J), (V_\tau) (reachable useful states), (B). Fit (\gamma) from past budget steps.
+* **Day 3-5:** Analytic ridge: linearize your estimator, solve mode-by-mode, derive (k_c^\star(\mathrm{SNR})). Test on two tasks.
+* **Day 6-7:** Scaling collapse: rescale axes, check (R^2).
+* **Day 8-9:** Portability and lead-indicator tests on a second VDM module/task.
 * **Day 10:** Scorecard against the 5 gates → **Go** (≥3 hit) or **No-Go**.
 
 ## If “Go”: next two milestones that move the needle

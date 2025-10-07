@@ -7,8 +7,8 @@ Owner: Justin K. Lietz
 
 Establish a metriplectic composition for a coupled two-field system with:
 
-- J (conservative): Klein–Gordon (KG) field with symplectic integrator and Noether currents.
-- M (dissipative): Reaction–diffusion (RD) field via Discrete-Gradient (DG) step (existing).
+- J (conservative): Klein-Gordon (KG) field with symplectic integrator and Noether currents.
+- M (dissipative): Reaction-diffusion (RD) field via Discrete-Gradient (DG) step (existing).
 - Composition: Strang (JMJ) with clear, falsifiable gates.
 
 ## Why now
@@ -35,7 +35,7 @@ The metriplectic chapter for 1D RD is frozen: M-only obeys the H-theorem exactly
 - JMJ (KG⊕RD):
   - H-theorem: ΔL_h ≤ 0 per step (violations = 0).
   - Noether: report drift magnitudes (expected small but not zero under dissipation).
-  - Two-grid slope: observational; document commutator limitations (expect ~2.6–3 depending on coupling strength).
+  - Two-grid slope: observational; document commutator limitations (expect ~2.6-3 depending on coupling strength).
 
 ## Plan of work
 
@@ -52,7 +52,7 @@ The metriplectic chapter for 1D RD is frozen: M-only obeys the H-theorem exactly
 
 ## Risks & notes
 
-- Higher-order composition beyond Strang is constrained by the Sheng–Suzuki barrier; we’ll report commutator limits rather than "force" higher order.
+- Higher-order composition beyond Strang is constrained by the Sheng-Suzuki barrier; we’ll report commutator limits rather than "force" higher order.
 - Ensure stability for KG time step; document CFL-like constraints.
 - Keep thresholds explicit and logged; do not silently weaken.
 

@@ -5,7 +5,7 @@ Date: 2025-08-26
 Classification: RD
 
 Overview
-- Package the on-site logarithmic invariant as a QA diagnostic within a validated reaction–diffusion (RD) methods slice.
+- Package the on-site logarithmic invariant as a QA diagnostic within a validated reaction-diffusion (RD) methods slice.
 - Lead with proven RD validations (front speed, dispersion) with acceptance gates and PASS metrics.
 - Provide a minimal, per-node runtime guard based on the invariant drift for use in CI/runtime.
 
@@ -21,8 +21,8 @@ References (code)
 
 1. Model and acceptance gates
 
-1.1 Fisher–KPP baseline
-The scalar RD model is the Fisher–KPP equation
+1.1 Fisher-KPP baseline
+The scalar RD model is the Fisher-KPP equation
 
 $$\partial_t u = D\,\partial_{xx} u + r\,u\,(1-u),$$
 
@@ -89,7 +89,7 @@ python derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py \
 3. QA invariant (no figures in RD packaging)
 - The on-site invariant is used solely as a per-node QA drift gate in RD pipelines. Figures are intentionally omitted here.
 - Acceptance (double precision RK4): $\max_t|Q(t)-Q(0)| \le 10^{-8}$ at $dt\approx 10^{-3}$; convergence slope $p\approx 4\pm 0.4$ with fit $R^2\ge 0.98$ on a $dt$ sweep.
-- Use the validator to produce audit logs when needed. Numerical caveat: at extremely small step sizes, ΔQ approaches machine precision and the observed slope p from a log–log fit can degrade; evaluate gates in the truncation‑dominated regime (moderate dt). Proof and figures: see [logarithmic_constant_of_motion.md](./logarithmic_constant_of_motion.md).
+- Use the validator to produce audit logs when needed. Numerical caveat: at extremely small step sizes, ΔQ approaches machine precision and the observed slope p from a log-log fit can degrade; evaluate gates in the truncation‑dominated regime (moderate dt). Proof and figures: see [logarithmic_constant_of_motion.md](./logarithmic_constant_of_motion.md).
 ```
 python derivation/code/physics/conservation_law/qfum_validate.py \
   --r 0.15 --u 0.25 --W0 0.12 0.62 --T 40 \
@@ -155,7 +155,7 @@ for n in range(steps):
 
 
 8. Code availability and provenance
-- The source code for the reaction–diffusion validations is archived privately at a signed commit/tag. This distribution intentionally omits source code to protect proprietary implementations; only the figures and machine logs necessary to verify the results are included in this note.
+- The source code for the reaction-diffusion validations is archived privately at a signed commit/tag. This distribution intentionally omits source code to protect proprietary implementations; only the figures and machine logs necessary to verify the results are included in this note.
 - A reference implementation will be released at a stable tag at the author's discretion (e.g., v1.0.0).
 - Provenance (cryptographic): commit/tag = v1.0.0; private archive digest SHA-256 = TO_BE_PROVIDED.
 - The CLI recipes above reference bare script names (no local paths). VDM/void internals (e.g., QA validator and runtime scaffolding) are not included in this distribution.
@@ -167,5 +167,5 @@ Appendix: direct links
 - Scripts: [derivation/code/physics/reaction_diffusion](../../code/physics/reaction_diffusion), [derivation/code/physics/conservation_law](../../code/physics/conservation_law)
 
 Citations
-- Fisher, R.A. (1937). “The wave of advance of advantageous genes.” Ann. Eugenics 7: 355–369.
-- Kolmogorov, A.N.; Petrovsky, I.; Piskunov, N. (1937). “Study of the diffusion equation with growth of the quantity of matter.” Bull. Univ. Moscow, Ser. A 1: 1–25.
+- Fisher, R.A. (1937). “The wave of advance of advantageous genes.” Ann. Eugenics 7: 355-369.
+- Kolmogorov, A.N.; Petrovsky, I.; Piskunov, N. (1937). “Study of the diffusion equation with growth of the quantity of matter.” Bull. Univ. Moscow, Ser. A 1: 1-25.

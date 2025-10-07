@@ -274,7 +274,7 @@ You should see UTD payloads like:
        "valence":0.58,"msg":"B1 increase detected (...)"}
 ```
 
-Adjust `--b1-half-life` to 5–30 s depending on how fast you’re ticking; lower values make it more sensitive to very recent structure changes.
+Adjust `--b1-half-life` to 5-30 s depending on how fast you’re ticking; lower values make it more sensitive to very recent structure changes.
 
 ---
 

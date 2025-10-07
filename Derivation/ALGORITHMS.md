@@ -112,7 +112,7 @@ TERMINATION:
 > Type: RUNTIME • Binding: PSEUDOCODE • State: writes state • Dependencies: `delta_re_vgsp`, `delta_gdsp` (EQUATIONS TODO)
 > **STATUS:** **BROKEN / WRONG** — docs claim “no dense path,” but the code includes and can execute a **dense scan** branch.
 
-**Context:** `fum_rt/core/connectome.py:272–313` • Commit: `7498744` • Module: `core/connectome`
+**Context:** `fum_rt/core/connectome.py:272-313` • Commit: `7498744` • Module: `core/connectome`
 
 **Role:** Apply one update tick driven by Void Equations: structural growth/rewiring via alias sampling and node field updates.
 

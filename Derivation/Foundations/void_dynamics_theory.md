@@ -1,4 +1,4 @@
-Note (2025‑08‑20): Canonical model set to reaction–diffusion (RD); the second‑order EFT is quarantined to EFT docs. Mass numerics are parameter‑dependent (`m_eff=√(α−β)` in EFT). The “promote to second order” gap is closed via a discrete action derivation with wave speed `c^2=2 J a^2` (per‑site convention), see [derivation/kinetic_term_derivation.md](kinetic_term_derivation.md:78).
+Note (2025‑08‑20): Canonical model set to reaction-diffusion (RD); the second‑order EFT is quarantined to EFT docs. Mass numerics are parameter‑dependent (`m_eff=√(α−β)` in EFT). The “promote to second order” gap is closed via a discrete action derivation with wave speed `c^2=2 J a^2` (per‑site convention), see [derivation/kinetic_term_derivation.md](kinetic_term_derivation.md:78).
 
 This document presents a comparative analysis with Bordag (Universe 2024, “Tachyon Condensation in a Chromomagnetic Center Vortex Background”) and enumerates required corrections.
 
@@ -17,13 +17,13 @@ This document presents a comparative analysis with Bordag (Universe 2024, “Tac
   The framework employs a single real scalar. In Bordag, unstable modes are complex and carry a phase; after condensation, the phase modes are Goldstone modes【turn4file10】. A real scalar does not exhibit Goldstone or phase dynamics; the symmetry analysis correctly identifies no nontrivial internal symmetry for the logistic on‑site law【turn3file1】【turn3file12】. The IR theory is therefore a real scalar EFT unless a U(1) extension is introduced.
 
 * **Dimensionality + provenance of derivatives.**
-  Earlier drafts promoted a first‑order update to a second‑order PDE and obtained a reaction–diffusion term before moving toward $\Box\phi$【turn4file7】. In Bordag, the $-\partial_\alpha^2$ kinetic form arises directly from the quadratic part of the action after mode reduction to two longitudinal coordinates $x_\alpha$【turn3file17】. The discrete model should be recast into a discrete action and taken to the continuum via a variational limit so that the $\partial_t^2$ term appears from first principles rather than assumption.
+  Earlier drafts promoted a first‑order update to a second‑order PDE and obtained a reaction-diffusion term before moving toward $\Box\phi$【turn4file7】. In Bordag, the $-\partial_\alpha^2$ kinetic form arises directly from the quadratic part of the action after mode reduction to two longitudinal coordinates $x_\alpha$【turn3file17】. The discrete model should be recast into a discrete action and taken to the continuum via a variational limit so that the $\partial_t^2$ term appears from first principles rather than assumption.
 
 * **Kinetic normalization.**
   The temporal term $\tfrac12(\partial_t\phi)^2$ follows from the discrete kinetic energy with target $Z(\phi)=\tfrac12$【turn3file4】, while the spatial prefactor should be extracted explicitly from $\sum J(W_j-W_i)^2$ (compute the exact coefficient of $(\nabla\phi)^2$, not merely proportionality)【turn4file13】. In Bordag, the canonical normalization is fixed at the Lagrangian level and phase modes are manifestly massless【turn4file10】.
 
 * **Stability structure.**
-  The cubic–quadratic $V(\phi)$ is tachyonic at the origin and stabilized by the cubic; adding a $\lambda\phi^4$ term is natural【turn3file2】【turn3file3】. In Bordag, stabilization arises from quartic interactions and selecting a condensate minimum (mass matrix positive)【turn4file10】. A publishable baseline requires either (i) an explicit $\phi^4$ term (bounded below) or (ii) a clearly stated domain of validity for the cubic potential.
+  The cubic-quadratic $V(\phi)$ is tachyonic at the origin and stabilized by the cubic; adding a $\lambda\phi^4$ term is natural【turn3file2】【turn3file3】. In Bordag, stabilization arises from quartic interactions and selecting a condensate minimum (mass matrix positive)【turn4file10】. A publishable baseline requires either (i) an explicit $\phi^4$ term (bounded below) or (ii) a clearly stated domain of validity for the cubic potential.
 
 * **Target theory mismatch.**
   The foundational paper claims a free KG Lagrangian with $m=1$ and a conformal metric $g_{\mu\nu}=\phi^2\eta_{\mu\nu}$ leading to EFE【turn4file1】【turn4file3】. These elements are absent in Bordag, which treats non‑Abelian YM in a center‑vortex background with a 2D effective theory for tachyon modes【turn4file9】. Conclusion: Bordag should be used for methodology (condensation workflow), not for importing claims.
@@ -42,7 +42,7 @@ This document presents a comparative analysis with Bordag (Universe 2024, “Tac
 2. **Replace “promote to second order” with a discrete action derivation.**
    Postulate a lattice **Lagrangian density** per node
    $\mathcal{L}_i=\tfrac12(\Delta_t W_i)^2-\tfrac12\sum_j J(W_j-W_i)^2 - V(W_i)$
-   and apply discrete Euler–Lagrange ⇒ a second‑order time difference naturally. Then take the continuum limit (no hand‑waving). This will close the main rigor gap noted in the own write‑up【turn4file15】.
+   and apply discrete Euler-Lagrange ⇒ a second‑order time difference naturally. Then take the continuum limit (no hand‑waving). This will close the main rigor gap noted in the own write‑up【turn4file15】.
 
 3. **Stabilize the potential (publishable baseline).**
    Add $\lambda\phi^4/4$ (small $\lambda$) and redo: vacua, $m_\text{eff}^2=V''(v)$, and parameter ranges where the minimum is global【turn3file2】【turn3file3】. Report $(v,m_\text{eff})$ as functions of $(\alpha,\beta,\lambda)$. This mirrors the paper’s “choose a condensate, expand, read masses” procedure【turn4file10】.
@@ -70,17 +70,17 @@ This document presents a comparative analysis with Bordag (Universe 2024, “Tac
 
 * **Method**
 
-  * Earlier draft: reaction–diffusion obtained first, with subsequent encouragement toward $\Box\phi$【turn4file4】【turn4file5】.
+  * Earlier draft: reaction-diffusion obtained first, with subsequent encouragement toward $\Box\phi$【turn4file4】【turn4file5】.
   * Paper: derive an effective action, then expand around constants【turn3file17】【turn4file9】.
 
-# Formal derivation implementing steps (1)–(2)
+# Formal derivation implementing steps (1)-(2)
 
 ---
 
 Note: If the comparison target differs, update the reference accordingly. Two branches are available: kinetic+action and a U(1) extension with Goldstones.
 
 
-The following provides a formal derivation of steps (1)–(2) with consistent normalization.
+The following provides a formal derivation of steps (1)-(2) with consistent normalization.
 
 # Discrete action → second‑order dynamics (no hand‑waving)
 
@@ -105,7 +105,7 @@ $$
 * $\kappa$ is the **per‑edge coupling** (undirected edges counted once).
   If you prefer the per‑site convention $\frac{1}{2}\sum_{j\in N(i)}J(W_j-W_i)^2$ that sums both $\pm\mu$, then $\kappa = 2J$. This keeps the algebra consistent with the write‑up.&#x20;
 
-**Euler–Lagrange on the lattice (central in time).** Varying $W_i^n$ gives
+**Euler-Lagrange on the lattice (central in time).** Varying $W_i^n$ gives
 
 $$
 \frac{W_i^{\,n+1}-2W_i^{\,n}+W_i^{\,n-1}}{(\Delta t)^2}
@@ -178,7 +178,7 @@ precisely what you wrote; the “factor of 2” is the $\pm\mu$ neighbor pair. C
 > S=\sum_n \Delta t\, a^d \sum_i\Big[\tfrac12\big(\tfrac{W_i^{\,n+1}-W_i^{\,n}}{\Delta t}\big)^2-\tfrac{\kappa}{2}\sum_{\mu}(W_{i+\mu}^{\,n}-W_i^{\,n})^2 - V(W_i^{\,n})\Big].
 > $$
 >
-> The discrete Euler–Lagrange equation is
+> The discrete Euler-Lagrange equation is
 >
 > $$
 > \frac{W_i^{\,n+1}-2W_i^{\,n}+W_i^{\,n-1}}{(\Delta t)^2}

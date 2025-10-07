@@ -54,7 +54,7 @@ Unlike Artificial Neuron Units (ANUs) in standard ANNs (like ReLUs, Sigmoids), *
 **A.6. Intrinsic Plasticity (Adaptivity)**
 
 *   Neuron parameters (`tau_i`, `v_th_i`) adapt over time based on their firing rate to maintain activity within a target range, preventing silent or hyperactive neurons:
-    *   **Target Rate:** 0.1–0.5 Hz (5–25 spikes over a 50-timestep window).
+    *   **Target Rate:** 0.1-0.5 Hz (5-25 spikes over a 50-timestep window).
     *   **Adjustment Rule:**
         *   If `rate_i > 0.5 Hz`, increase `v_th_i` by 0.1mV (`v_th += 0.1`) and decrease `tau_i` by 0.1ms (`tau -= 0.1`), reducing excitability.
         *   If `rate_i < 0.1 Hz`, decrease `v_th_i` by 0.1mV (`v_th -= 0.1`) and increase `tau_i` by 0.1ms (`tau += 0.1`), increasing excitability.

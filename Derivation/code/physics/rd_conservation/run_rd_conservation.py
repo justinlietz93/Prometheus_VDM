@@ -291,7 +291,7 @@ def rd_euler_step(W: np.ndarray, dt: float, dx: float, D: float, r: float, ucoef
 
 
 def diffusion_CN_step_periodic(W: np.ndarray, dt: float, dx: float, D: float) -> np.ndarray:
-    """Crank–Nicolson diffusion half/whole step via spectral diagonalization (periodic)."""
+    """Crank-Nicolson diffusion half/whole step via spectral diagonalization (periodic)."""
     if D == 0.0 or dt == 0.0:
         return W.copy()
     N = W.size

@@ -3,7 +3,7 @@
 
 ## Rungs (edit as needed)
 
-1. **Detector scale** (Hz–GHz): noise model, materials, coherence time.
+1. **Detector scale** (Hz-GHz): noise model, materials, coherence time.
 2. **Portal scale** (m_A′, ε): decay modes, lifetime, production mechanism.
 3. **Dark-sector dynamics** (α_D, dark Higgs): in/visible branching, self-interactions.
 4. **SM matching** (loops, thresholds): running couplings, radiative mixings.

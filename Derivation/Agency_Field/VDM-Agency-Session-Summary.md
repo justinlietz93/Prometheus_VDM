@@ -41,7 +41,7 @@ Here is the synthesized session handoff document:
     -   `S(x,t)`: Source density, derived from operational measures of information processing.
     -   `kappa_i` (κ_i): Dimensionless weights for source components (P, I_net, U).
     -   `P(x,t)`: Predictive-power density (e.g., mutual information rate or R²).
-    -   `I_net(x,t)`: Integration/coherence proxy (e.g., transfer entropy or Lempel–Ziv complexity).
+    -   `I_net(x,t)`: Integration/coherence proxy (e.g., transfer entropy or Lempel-Ziv complexity).
     -   `U(x,t)`: Control efficacy (error reduction per joule).
     -   `sigma(x)` (σ(x)): Substrate susceptibility, representing amplification of source `S`.
     -   `V(x,t)`: Latent option capacity (e.g., empowerment or reachable-state entropy).
@@ -55,7 +55,7 @@ Here is the synthesized session handoff document:
     -   `epsilon_eff` (ε_eff): Optional effective portal mixing, modulated by `C`.
     -   `alpha` (α): Strength of optional `C` modulation on portal mixing.
     -   `Delta_t`, `Delta_x`: Discrete time and space step sizes.
-    -   `CFL`: Courant–Friedrichs–Lewy stability condition for numerical methods.
+    -   `CFL`: Courant-Friedrichs-Lewy stability condition for numerical methods.
     -   `C_tau`: Unitless comparative C-Score for benchmarking across systems.
     -   `z(.)`: Z-score normalization for comparative metrics.
     -   `C_score`: A composite metric (Prediction + Control + Options, z-scored, weighted by Balance) designed to quantify "awareness" or "agency" within the VDM framework.
@@ -148,7 +148,7 @@ Here is the synthesized session handoff document:
 * The core objective is to generate a compact, self-contained specification for the "Agency/Consciousness Field (C)" within the Void Dynamics Model (VDM), encompassing symbols, formulas, a detailed narrative, and testable predictions.
 * Key VDM concepts such as "energy budget," "coordination without lockstep," and "latent void potential" (empowerment) are quantified through specific "smoke tests" provided as ready-to-run Python scripts.
 * A central composite metric called the "C-score" is defined as `(zP + zU + zV) * B`, quantifying "awareness" or "agency" by combining z-scored Predictive Power, Control Efficacy, and Latent Option Capacity, weighted by a Balance index.
-* Three foundational "smoke tests" – the energy clamp, inverted-U ridge, and τ-horizon options probe – have been developed and provided as runnable Python scripts to demonstrate C-field dynamics, optimal system performance, and latent void potential.
+* Three foundational "smoke tests" - the energy clamp, inverted-U ridge, and τ-horizon options probe - have been developed and provided as runnable Python scripts to demonstrate C-field dynamics, optimal system performance, and latent void potential.
 * To achieve scientific rigor, a validation pathway is outlined, requiring derivation of analytic formulas, scaling collapse experiments, cross-substrate replication, adherence to theoretical bounds, and demonstration of out-of-sample prediction.
 * The "Agency/Consciousness Field (C)" is conceptualized as an emergent order parameter for organized, predictive information processing, governed by a reaction-diffusion-decay PDE sourced by measurable proxies.
 * Users are provided with immediate actionable items, including applying the generated specification, running the provided simulation scripts, and computing the C-score directly from their VDM log data using a minimal Python snippet.

@@ -55,7 +55,7 @@ This is an **exact** RD identity, not an EFT. The "mass‑like" parameter is $m_
 
 ### Theorem U2 — Finite‑speed signaling cone from RD gates
 
-Linear RD gives growth rate $\sigma(k)=r-Dk^2$ and Fisher–KPP front $c_{\text{front}}=2\sqrt{Dr}$. The cone $x/t\le 2\sqrt{Dr}$ defines the causal speed of supports created by compact data.
+Linear RD gives growth rate $\sigma(k)=r-Dk^2$ and Fisher-KPP front $c_{\text{front}}=2\sqrt{Dr}$. The cone $x/t\le 2\sqrt{Dr}$ defines the causal speed of supports created by compact data.
 
 **Obligation U2:** Cite the two RD gates as axiomatic predictions and assert that all derived regimes must respect this cone in their envelopes.
 

@@ -3646,7 +3646,7 @@ __all__ = ["ColdScout", "VoidColdScoutWalker"]
 fum_rt.core.cortex.void_walkers.void_cycle_scout
 
 CycleHunterScout (read-only, void-faithful):
-- Seeks short cycles (3–6 hops) using a TTL-limited walk with a tiny path window.
+- Seeks short cycles (3-6 hops) using a TTL-limited walk with a tiny path window.
 - Purely local: only neighbor lists are read; no global scans or dense conversions.
 - Emits vt_touch and edge_on events; reducers can infer cycle hits from returned edge traces.
 
@@ -7268,7 +7268,7 @@ Notes
 
 Void-faithful
 - Pure numeric helpers; no external imports beyond typing/math/statistics.
-- O(#samples) time; callers pass bounded samples (e.g., 256–2048 indices).
+- O(#samples) time; callers pass bounded samples (e.g., 256-2048 indices).
 """
 
 from typing import Dict, Iterable, Optional, Sequence, Tuple
@@ -8018,7 +8018,7 @@ research while ensuring commercial applications are aligned with the project's e
 See LICENSE file for full terms.
 
 Module: fum_rt.core.memory.field
-Purpose: Event-driven memory field with write–decay–spread dynamics (void-faithful).
+Purpose: Event-driven memory field with write-decay-spread dynamics (void-faithful).
 
 Design constraints
 - Sparse-first: no dense global passes; updates are event-local only.
@@ -21911,7 +21911,7 @@ def update_memory(
     dt: float,
 ) -> np.ndarray:
     """
-    One explicit Euler step for the slow memory PDE (write–decay–spread),
+    One explicit Euler step for the slow memory PDE (write-decay-spread),
         ∂_t m = γ r − δ m − κ L m,
     which is the graph-discretized form of ∂_t M = γ R − δ M + κ ∇² M in
     [derivation/memory_steering.md](derivation/memory_steering.md:1).
@@ -23812,11 +23812,11 @@ if __name__ == "__main__":
       <path>physics/rd_front_speed_runner.py</path>
       <content><![CDATA[#!/usr/bin/env python3
 """
-RD front-speed validation runner (Fisher–KPP) for fum_rt.
+RD front-speed validation runner (Fisher-KPP) for fum_rt.
 
 CHANGE REASON:
 - This file mirrors the validated physics from derivation scripts to the runtime stack.
-- We have PROVEN the Fisher–KPP front speed c = 2√(D r) via reproducible scripts and derivations:
+- We have PROVEN the Fisher-KPP front speed c = 2√(D r) via reproducible scripts and derivations:
   [rd_front_speed_experiment.py](Prometheus_FUVDM/derivation/code/physics/rd_front_speed_experiment.py:1),
   [rd_front_speed_validation.md](Prometheus_FUVDM/derivation/rd_front_speed_validation.md:1),
   [CORRECTIONS.md](Prometheus_FUVDM/derivation/computational_proofs/CORRECTIONS.md:1).
@@ -23961,7 +23961,7 @@ See LICENSE file for full terms.
 
 Condensation and spectrum (diagonal-λ baseline) for the finite-tube FUM scalar EFT.
 
-This module implements a minimal, numerically stable first pass of Section 6–7 in
+This module implements a minimal, numerically stable first pass of Section 6-7 in
 [derivation/finite_tube_mode_analysis.md](derivation/finite_tube_mode_analysis.md:1):
 - Build diagonal quartic couplings N4_ℓ ≈ λ ∫ r dr dθ u_ℓ^4 (projecting λ φ^4 onto each mode)
 - Find condensate amplitudes v_ℓ by minimizing V_eff^{tube} ≈ ½ m_ℓ^2 v_ℓ^2 + ¼ N4_ℓ v_ℓ^4

@@ -9,26 +9,26 @@
 
 ## Executive Summary (scope, strengths, limitations)
 
-**Scope.** We derive, in one document, the pathway from the discrete FUM update law to a bounded scalar effective field theory (EFT), embed it in a covariant action with conserved transfer current, and align it with the Voxtrium macro–sourcing framework. We also adapt Bordag’s finite–tube tachyonic–condensate analysis to the FUM baseline to define testable mode problems. We close with the empirical memory–steering figures (logistic collapse, curvature scaling, stability grids).
+**Scope.** We derive, in one document, the pathway from the discrete FUM update law to a bounded scalar effective field theory (EFT), embed it in a covariant action with conserved transfer current, and align it with the Voxtrium macro-sourcing framework. We also adapt Bordag’s finite-tube tachyonic-condensate analysis to the FUM baseline to define testable mode problems. We close with the empirical memory-steering figures (logistic collapse, curvature scaling, stability grids).
 
 **What is strong (demonstrated):**
 - A clear **discrete → continuum** derivation to a scalar EFT with wave speed \(c^2 = 2Ja^2\) and a bounded quartic potential that stabilizes tachyonic onset; the cubic term is a small tilt (vacuum selector).  
-- A **units–rigorous map** from the dimensionless lattice to physical parameters \((\phi_0, \tau, a)\) defining \(g_3\) (cubic) and \(m^2\) consistently.  
-- **Covariant conservation with sources**: FRW continuity with a transfer current \(J^\nu\) and a **retarded kernel** for horizon–entropy sourcing (causality).  
-- A **finite–radius mode problem** (tube/filament) with Bessel/Kummer matching that counts unstable modes and shows quartic stabilization with post–condensation positive spectra; an energy minimum vs. control is defined.  
+- A **units-rigorous map** from the dimensionless lattice to physical parameters \((\phi_0, \tau, a)\) defining \(g_3\) (cubic) and \(m^2\) consistently.  
+- **Covariant conservation with sources**: FRW continuity with a transfer current \(J^\nu\) and a **retarded kernel** for horizon-entropy sourcing (causality).  
+- A **finite-radius mode problem** (tube/filament) with Bessel/Kummer matching that counts unstable modes and shows quartic stabilization with post-condensation positive spectra; an energy minimum vs. control is defined.  
 - **Empirical signatures**: logistic junction behavior, curvature estimator calibration, and stability/retention/fidelity heatmaps consistent with invariances reported in experiments.
 
 **What is weak (open or needs completion):**
-- No closed–form **discrete conserved quantity** is identified yet; the standard guess for a lattice Hamiltonian is not conserved by the FUM update.  
+- No closed-form **discrete conserved quantity** is identified yet; the standard guess for a lattice Hamiltonian is not conserved by the FUM update.  
 - Vector/fluid **hydrodynamics** are not yet derived from the scalar sector; vorticity and incompressible limits would require additional fields or projections.  
-- Macro calibration (**partitions, priors, kernel shape**) remains phenomenological until fit to data; higher–derivative EFT terms are not yet bounded by explicit lattice matching.  
-- The tube–energy minimum and chaos onset beyond certain flux require numerical exploration and loop corrections for full robustness.
+- Macro calibration (**partitions, priors, kernel shape**) remains phenomenological until fit to data; higher-derivative EFT terms are not yet bounded by explicit lattice matching.  
+- The tube-energy minimum and chaos onset beyond certain flux require numerical exploration and loop corrections for full robustness.
 
 ---
 
 ## 1. Discrete → Continuum (bounded EFT backbone)
 
-The on–site discrete evolution \(\dot W \approx (\alpha-\beta)W-\alpha W^2\) coarse–grains to a scalar field \(\phi\) with Lagrangian
+The on-site discrete evolution \(\dot W \approx (\alpha-\beta)W-\alpha W^2\) coarse-grains to a scalar field \(\phi\) with Lagrangian
 \[
 \mathcal L = \tfrac{1}{2}(\partial_t\phi)^2 - \tfrac{c^2}{2}(\nabla\phi)^2 - V(\phi),\qquad c^2=2Ja^2.
 \]
@@ -54,13 +54,13 @@ Embed the scalar (or Skyrme composite sector) in GR with a horizon functional an
 \[
 \sum_i[\dot\rho_i+3H(1+w_i)\rho_i]=0,\qquad \nabla_\mu T_{\rm total}^{\mu\nu}=0,
 \]
-with per–channel sources \(Q_i\propto (\varepsilon_h/V_c)\,\dot S_{\rm hor}\) and a **retarded kernel**
+with per-channel sources \(Q_i\propto (\varepsilon_h/V_c)\,\dot S_{\rm hor}\) and a **retarded kernel**
 \[
 \dot S_{\rm hor}(t) = \int d^3x'\int_{-\infty}^{t}\!dt'\,K_{\rm ret}(t-t',|\mathbf x-\mathbf x'|)\,s_{\rm loc}(\mathbf x',t'),\quad
 K_{\rm ret}\propto \Theta(t-t'-r/c).
 \]
 
-Partitions \(p_i\) (\(\Lambda,\rm DM, GW\)) live on a probability simplex and may be chosen as a softmax of dimensionless micro–informed inputs, e.g. \(z_1=|\Omega|R_\*, z_2=(\kappa/K_s)/X, z_3=1\).
+Partitions \(p_i\) (\(\Lambda,\rm DM, GW\)) live on a probability simplex and may be chosen as a softmax of dimensionless micro-informed inputs, e.g. \(z_1=|\Omega|R_\*, z_2=(\kappa/K_s)/X, z_3=1\).
 
 ---
 

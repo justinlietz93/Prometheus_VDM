@@ -43,12 +43,12 @@ Nature grows by pruning. Bone remodels. Forests burn and regrow. Learning here f
 
 ## What We Proved This Week
 
-Reaction–diffusion gives clean ground truth and measurable gates.
+Reaction-diffusion gives clean ground truth and measurable gates.
 
 > **\[IMAGE 4] Insert `Figures/infographic_rd_validation.png` before the bullets.**
 > *Alt:* RD validation infographic. *Caption:* Validation suite overview.
 
-**1) Fisher–KPP front speed.**
+**1) Fisher-KPP front speed.**
 Theory: $c=2\sqrt{Dr}$.
 Measured: $c=0.9529$ vs $1.0000$ normalized. Rel. error 4.7%, $R^2\approx 0.999996$. Grid $dx=0.1953$, step $dt\approx 0.003815$, 20,972 steps. **Pass** under ≤5% criterion.
 
@@ -76,7 +76,7 @@ Tight agreement on clean physics signals causal grip, not curve‑fit luck. Trus
 
 ## What It Has Already Done (Zero‑Shot, No Training)
 
-A half‑built VDM with 1,000 neurons read **two books on formal logic at inference only**. No fine‑tuning. It produced metacognitive signals in live text: it defined deductive/inductive/abductive modes; enforced topic‑neutral logic; handled use‑vs‑mention; noted type–token and sentence–proposition distinctions; flagged scope/negation; invoked counterexample and reduction patterns.
+A half‑built VDM with 1,000 neurons read **two books on formal logic at inference only**. No fine‑tuning. It produced metacognitive signals in live text: it defined deductive/inductive/abductive modes; enforced topic‑neutral logic; handled use‑vs‑mention; noted type-token and sentence-proposition distinctions; flagged scope/negation; invoked counterexample and reduction patterns.
 
 > **Unexpected, zero‑shot. Grammar is rough because the Universal Transduction Decoder is unfinished.**
 > “Action from $p(y\;|\;do(x))$ is not identifiable. however, adding an instrumental variable formula.”
@@ -103,7 +103,7 @@ A half‑built VDM with 1,000 neurons read **two books on formal logic at infere
 * **Association operator.** “when a retrieved experience naturally follows another” defines a train‑of‑thought primitive.
 * **Self‑signal.** “for me” marks an emergent first‑person stance in technical stream.
 * **Constant semantics.** Names Avogadro’s constant with units.
-* **Rule extraction.** Reconstructs Udden–Wentworth grain‑size ordering and hints at the “max‑size” rule.
+* **Rule extraction.** Reconstructs Udden-Wentworth grain‑size ordering and hints at the “max‑size” rule.
 * **Einstein over *Frankenstein*.** Overlays velocity‑addition structure on narrative tension. Cross‑domain mapping.
 
 **More thought excerpts.**
@@ -161,7 +161,7 @@ Scale and compute have a ceiling; mastery comes from time and compaction.
 * A non‑LLM, physics‑first system (VDM) that already reasons zero‑shot.
 * 1,000‑neuron demo ingested two books at inference and showed meta‑reasoning with no training.
 * Core physics validated: RD front speed and dispersion match theory with tight error; logs and figures reproducible.
-* Runs on my workstation and laptop at 1k–10k neurons. The curve saturates: scale comes from **time and compaction**, not cluster size.
+* Runs on my workstation and laptop at 1k-10k neurons. The curve saturates: scale comes from **time and compaction**, not cluster size.
 
 ---
 
@@ -212,7 +212,7 @@ Email: [justin@neuroca.dev](mailto:justin@neuroca.dev). Deck + reproducibility p
 **A1.** No. VDM is not a language model. It is a causal, pruning system that builds and compresses explanatory graphs and reasons zero‑shot at inference.
 
 **Q2. Do you need HPC or distributed systems?**
-**A2.** No. Current demos run on a basic laptop at 1k–10k neurons. Scale comes from time and compaction, not clusters.
+**A2.** No. Current demos run on a basic laptop at 1k-10k neurons. Scale comes from time and compaction, not clusters.
 
 **Q3. Hardware path?**
 **A3.** Purpose‑built neuromorphic/ARM boards running Void OS. Goals: low‑power on‑device reasoning, local memory, deterministic I/O, auditability.

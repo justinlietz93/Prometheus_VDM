@@ -141,7 +141,7 @@ This verifies $Z$ and nails the $p^4$ envelope **without** relying on potential�
 
 ---
 
-## How this plugs into Steps 2–4 (one‑liners)
+## How this plugs into Steps 2-4 (one‑liners)
 
 * **Step 2 (finite‑tube tachyon→condensate):** use the locked $Z, c$ to populate the radial eigenvalue problem and the post‑condensation Hessian; positivity of masses after condensation follows the appendix workflow.&#x20;
 * **Step 3 (units / Voxtrium mapping):** promote $a,\Delta t$ to $(\phi_0,\tau,a)$ and keep $c^2=2Ja^2$; $m^2=(\alpha-\beta)/\tau^2$; all bookkeeping remains GeV‑consistent.&#x20;

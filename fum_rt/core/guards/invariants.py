@@ -21,7 +21,7 @@ Notes
 
 Void-faithful
 - Pure numeric helpers; no external imports beyond typing/math/statistics.
-- O(#samples) time; callers pass bounded samples (e.g., 256–2048 indices).
+- O(#samples) time; callers pass bounded samples (e.g., 256-2048 indices).
 """
 
 from typing import Dict, Iterable, Optional, Sequence, Tuple

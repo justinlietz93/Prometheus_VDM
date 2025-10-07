@@ -562,7 +562,7 @@
 **Units/Normalization:** `UNITS_NORMALIZATION.md#detector`
 
 **Shape & axes (exact as used):**
-- Shape: raster images, 150–180 DPI
+- Shape: raster images, 150-180 DPI
 - Plots: `SNR(t_int)` and/or `SNR(B)` with regime annotations
 
 **Storage format & path pattern:**
