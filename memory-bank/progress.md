@@ -2,12 +2,12 @@
 
 ## Done
 
-- Backfilled ROADMAP with Proposals Index and added milestones for FRW Continuity (gravity), Dark Photon Portal, and Quantum Gravity Bridge
+- Rewrote dark-photon proposal to a pre-registered plan with explicit hypotheses, KPIs, and gates; no results referenced.
 
 ## Doing
 
-- Prepare brief follow-up to link artifacts/tags where needed
+- Hold on publishing any dark-photon RESULTS pages until proposal is approved; keep DP items as planned in canon.
 
 ## Next
 
-- Optionally add DATA_PRODUCTS anchors for new milestones; integrate gates into VALIDATION_METRICS
+- Add a short Pre-Registration Checklist section to proposals; optionally add a discipline note to ROADMAP.
