@@ -20,8 +20,6 @@ from __future__ import annotations
 
 import argparse
 import datetime as dt
-import hashlib
-import hmac
 import json
 import os
 import sys
@@ -30,7 +28,6 @@ import getpass
 from .approval import (
     ensure_db,
     upsert_approval,
-    compute_expected_key,
     ApprovalRecord,
     ensure_admin_verified,
     set_domain_key,
@@ -47,8 +44,12 @@ def _iso_utc_now() -> str:
 
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument("domain", help="Physics domain name (e.g., metriplectic)")
-    p.add_argument("tag", help="Tag to approve (e.g., KG-dispersion-v1)")
+    sub = p.add_subparsers(dest="cmd", required=False)
+
+    # approve (default/back-compat)
+    p_appr = sub.add_parser("approve", help="Approve a tag for a domain (default)")
+    p_appr.add_argument("domain", help="Physics domain name (e.g., metriplectic)")
+    p_appr.add_argument("tag", help="Tag to approve (e.g., KG-dispersion-v1)")
     p.add_argument(
         "--manifest",
         help="Path to APPROVAL.json (default: Derivation/code/physics/<domain>/APPROVAL.json)",
@@ -56,20 +57,31 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--approver", default=os.getenv("VDM_APPROVER_NAME", "Justin K. Lietz"))
     p.add_argument("--approved-at", dest="approved_at", help="Override ISO-8601 UTC timestamp")
     p.add_argument("--schema", help="Optional schema path to set if missing")
+    p.add_argument("--script", help="Run script name (stem or filename) to include in approval HMAC (policy: domain:script:tag)")
     p.add_argument("--dry-run", action="store_true", help="Do not write changes, just print what would change")
     # Approvals DB (required)
-    p.add_argument("--db", dest="db_path", required=True, help="Path to approvals DB (SQLite). Required.")
+    p.add_argument("--db", dest="db_path", required=False, help="Path to approvals DB (SQLite). Defaults to Derivation/code/common/data/approval.db if present, else requires this flag.")
     p.add_argument("--password-prompt", action="store_true", help="Prompt for a password to derive the expected key (never echoes). Required unless VDM_APPROVAL_DB_PASSWORD is set.")
+
+    # set-domain-key
+    p_dk = sub.add_parser("set-domain-key", help="Set or update a domain approval key (prioritized over tag secrets)")
+    p_dk.add_argument("domain", help="Physics domain name")
+    p_dk.add_argument("domain_key", help="Domain approval key (secret); stored in DB")
+
+    # set-tag-secret
+    p_ts = sub.add_parser("set-tag-secret", help="Set or update a tag/run secret (fallback if domain key missing)")
+    p_ts.add_argument("domain", help="Physics domain name")
+    p_ts.add_argument("tag", help="Tag name")
+    p_ts.add_argument("tag_secret", help="Tag/run secret (secret); stored in DB")
+
+    # check
+    p_ck = sub.add_parser("check", help="Check if a domain:tag has an expected key configured in DB (uses policy domain:script:tag when --script provided)")
+    p_ck.add_argument("domain", help="Physics domain name")
+    p_ck.add_argument("tag", help="Tag name")
+    p_ck.add_argument("--script", help="Run script name (stem or filename) to include in approval HMAC computation")
     args = p.parse_args(argv)
 
-    domain = args.domain.strip()
-    tag = args.tag.strip()
-
-    default_manifest = Path("Derivation") / "code" / "physics" / domain.lower() / "APPROVAL.json"
-    manifest_path = Path(args.manifest) if args.manifest else default_manifest
-    if not manifest_path.exists():
-        print(f"ERROR: Manifest not found: {manifest_path}", file=sys.stderr)
-        return 2
+    cmd = args.cmd or "approve"
 
     # Require password before any DB access
     password = os.getenv("VDM_APPROVAL_DB_PASSWORD")
@@ -80,13 +92,97 @@ def main(argv: list[str] | None = None) -> int:
         return 3
 
     # Verify admin password in DB before any other DB operation
-    dbp = Path(args.db_path)
+    # Resolve DB path: flag > env > default bundled location
+    from .approval import DEFAULT_DB_PATH
+    dbp: Path
+    if args.db_path:
+        dbp = Path(args.db_path)
+    elif os.getenv("VDM_APPROVAL_DB"):
+        dbp = Path(os.getenv("VDM_APPROVAL_DB"))
+    elif DEFAULT_DB_PATH.exists():
+        dbp = DEFAULT_DB_PATH
+    else:
+        print("ERROR: No approvals DB specified. Use --db, set VDM_APPROVAL_DB, or create Derivation/code/common/data/approval.db", file=sys.stderr)
+        return 2
     if not ensure_admin_verified(dbp, password):
         print("ERROR: Admin password did not match the stored database password.", file=sys.stderr)
         return 3
+    if cmd == "set-domain-key":
+        domain = args.domain.strip()
+        dkey = args.domain_key
+        try:
+            ensure_db(dbp)
+            set_domain_key(dbp, domain, dkey)
+            print(f"Domain key set for '{domain}' in {dbp}")
+            return 0
+        except Exception as e:
+            print(f"ERROR: Failed setting domain key: {e}", file=sys.stderr)
+            return 8
 
-    # Derive the approval key from password
-    approval_key = compute_expected_key(password, domain, tag)
+    if cmd == "set-tag-secret":
+        domain = args.domain.strip()
+        tag = args.tag.strip()
+        secret = args.tag_secret
+        try:
+            ensure_db(dbp)
+            set_tag_secret(dbp, domain, tag, secret)
+            print(f"Tag secret set for '{domain}:{tag}' in {dbp}")
+            return 0
+        except Exception as e:
+            print(f"ERROR: Failed setting tag secret: {e}", file=sys.stderr)
+            return 9
+
+    if cmd == "check":
+        from .approval import db_get_expected_key, db_get_domain_key, db_get_tag_secret, compute_expected_key
+        domain = args.domain.strip()
+        tag = args.tag.strip()
+        script = (args.script.strip() if getattr(args, "script", None) else None)
+        exp = db_get_expected_key(dbp, domain, tag)
+        dkey = db_get_domain_key(dbp, domain)
+        tsecret = db_get_tag_secret(dbp, domain, tag)
+        derived = None
+        if tsecret:
+            derived = compute_expected_key(tsecret, domain, tag, script)
+        elif dkey:
+            derived = compute_expected_key(dkey, domain, tag, script)
+        print(json.dumps({
+            "domain": domain,
+            "tag": tag,
+            "db_expected_key_exists": bool(exp),
+            "has_domain_key": bool(dkey),
+            "has_tag_secret": bool(tsecret),
+            "derived_from_priority": "tag_secret" if tsecret else ("domain_key" if dkey else None),
+            "script": script,
+            "match": (exp == derived) if exp and derived else None,
+        }, indent=2))
+        return 0
+
+    # Default: approve flow
+    domain = args.domain.strip()
+    tag = args.tag.strip()
+
+    default_manifest = Path("Derivation") / "code" / "physics" / domain.lower() / "APPROVAL.json"
+    manifest_path = Path(args.manifest) if args.manifest else default_manifest
+    if not manifest_path.exists():
+        print(f"ERROR: Manifest not found: {manifest_path}", file=sys.stderr)
+        return 2
+
+    # Derive the approval key from domain_key or tag_secret in DB (admin password only gates CLI usage)
+    from .approval import db_get_domain_key, db_get_tag_secret, compute_expected_key
+    dkey = db_get_domain_key(dbp, domain)
+    tsecret = db_get_tag_secret(dbp, domain, tag)
+    script = (args.script.strip() if getattr(args, "script", None) else None)
+    if tsecret:
+        approval_key = compute_expected_key(tsecret, domain, tag, script)
+    elif dkey:
+        approval_key = compute_expected_key(dkey, domain, tag, script)
+    else:
+        print(
+            "ERROR: No domain key or tag secret found in the approvals DB for this domain/tag.\n"
+            "Use 'set-domain-key' or 'set-tag-secret' first, then re-run 'approve'.",
+            file=sys.stderr,
+        )
+        return 10
 
     approved_at = args.approved_at or _iso_utc_now()
     approver = args.approver
@@ -109,19 +205,15 @@ def main(argv: list[str] | None = None) -> int:
     approvals = data.setdefault("approvals", {})
     entry = approvals.setdefault(tag, {})
     if args.schema and not entry.get("schema"):
-        # Only set schema if missing and user provided one
         schema_path = args.schema
-        # sanity: schema should exist
         if not Path(schema_path).exists():
             print(f"ERROR: Provided --schema does not exist: {schema_path}", file=sys.stderr)
             return 5
         entry["schema"] = schema_path
 
-    # Require schema to exist in entry to avoid approving without a schema
     if not entry.get("schema"):
         print(
-            "ERROR: No schema set for this tag in manifest and --schema not provided. "
-            "Refusing to approve without a schema.",
+            "ERROR: No schema set for this tag in manifest and --schema not provided. Refusing to approve without a schema.",
             file=sys.stderr,
         )
         return 6
@@ -133,17 +225,14 @@ def main(argv: list[str] | None = None) -> int:
     after = json.dumps(data, sort_keys=True)
     if before == after:
         print("No changes needed; manifest already reflects this approval.")
-        # Still proceed to DB write if requested
-        if args.db_path:
-            try:
-                ensure_db(dbp)
-                upsert_approval(dbp, ApprovalRecord(domain=domain, tag=tag, expected_key=approval_key, approved_by=approver, approved_at=approved_at))
-                print(f"DB updated: {dbp} -> ({domain}, {tag})")
-            except Exception as e:
-                print(f"WARNING: Failed to write approvals DB: {e}")
+        try:
+            ensure_db(dbp)
+            upsert_approval(dbp, ApprovalRecord(domain=domain, tag=tag, expected_key=approval_key, approved_by=approver, approved_at=approved_at))
+            print(f"DB updated: {dbp} -> ({domain}, {tag})")
+        except Exception as e:
+            print(f"WARNING: Failed to write approvals DB: {e}")
         return 0
 
-    # Print a summary of changes
     print("Will apply changes:")
     print(f"  pre_registered: {data.get('pre_registered')}")
     print(f"  allowed_tags includes: {tag}")
@@ -151,6 +240,8 @@ def main(argv: list[str] | None = None) -> int:
     print(f"  approvals['{tag}'].approved_at: {approved_at}")
     print(f"  approvals['{tag}'].approval_key: <hex {len(approval_key)} chars>")
     print(f"  approvals['{tag}'].schema: {entry.get('schema')}")
+    if script:
+        print(f"  approval message scope: domain:{script}:{tag}")
 
     if args.dry_run:
         print("Dry-run mode: no file was written.")
@@ -162,14 +253,12 @@ def main(argv: list[str] | None = None) -> int:
         print(f"ERROR: Failed to write manifest: {e}", file=sys.stderr)
         return 7
 
-    # Optional: write to approvals DB as authoritative source
-    if args.db_path:
-        try:
-            ensure_db(dbp)
-            upsert_approval(dbp, ApprovalRecord(domain=domain, tag=tag, expected_key=approval_key, approved_by=approver, approved_at=approved_at))
-            print(f"DB updated: {dbp} -> ({domain}, {tag})")
-        except Exception as e:
-            print(f"WARNING: Failed to write approvals DB: {e}")
+    try:
+        ensure_db(dbp)
+        upsert_approval(dbp, ApprovalRecord(domain=domain, tag=tag, expected_key=approval_key, approved_by=approver, approved_at=approved_at))
+        print(f"DB updated: {dbp} -> ({domain}, {tag})")
+    except Exception as e:
+        print(f"WARNING: Failed to write approvals DB: {e}")
 
     print(f"Updated manifest: {manifest_path}")
     return 0

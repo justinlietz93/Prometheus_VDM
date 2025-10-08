@@ -49,6 +49,15 @@ def ensure_dir(p: Path) -> Path:
     p.mkdir(parents=True, exist_ok=True)
     return p
 
+def build_slug(name: str, tag: str | None = None) -> str:
+    """Build a canonical slug from a base name and optional tag.
+    Keeps policy centralized so figures/logs remain consistent across experiments.
+    """
+    base = str(name).strip()
+    if tag is None or str(tag).strip() == "":
+        return base
+    return f"{base}_{str(tag).strip()}"
+
 def _policy_quarantine(default_failed: bool) -> bool:
     """Honor policy env to force quarantine when not approved.
     If VDM_POLICY_APPROVED=0, override failed=True. If VDM_POLICY_HARD_BLOCK=1, raise.
@@ -75,6 +84,10 @@ def figure_path(domain: str, slug: str, failed: bool=False) -> Path:
     base = OUTPUTS / "figures" / domain / ("failed_runs" if failed else "")
     return ensure_dir(base) / f"{_ts()}_{slug}.png"
 
+def figure_path_by_tag(domain: str, name: str, tag: str | None, failed: bool=False) -> Path:
+    """Figure path using name+optional tag to build the slug centrally."""
+    return figure_path(domain, build_slug(name, tag), failed=failed)
+
 def log_path(domain: str, slug: str, failed: bool=False, type: str="json") -> Path:
     """Generate a path for saving a log file.
     Args:
@@ -85,6 +98,10 @@ def log_path(domain: str, slug: str, failed: bool=False, type: str="json") -> Pa
     failed = _policy_quarantine(failed)
     base = OUTPUTS / "logs" / domain / ("failed_runs" if failed else "")
     return ensure_dir(base) / f"{_ts()}_{slug}.{type}"
+
+def log_path_by_tag(domain: str, name: str, tag: str | None, failed: bool=False, type: str="json") -> Path:
+    """Log path using name+optional tag to build the slug centrally."""
+    return log_path(domain, build_slug(name, tag), failed=failed, type=type)
 
 def write_log(path: Path, data: dict):
     """Write a log file in JSON or CSV format.

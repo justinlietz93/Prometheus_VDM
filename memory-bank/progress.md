@@ -2,14 +2,16 @@
 
 ## Done
 
-- Added approve_tag.py CLI to automate manifest approval updates (approved_by/at, approval_key, allowed_tags).
-- Updated common/README.md with cleaned instructions and examples for approval workflow and generator usage.
+- Added experiment script resolution and DB dir/file validation to results_db.begin_run
+- Added manifest lookup and tag validation against allowed_tags + approvals
+- Set VDM_RUN_SCRIPT based on resolved script for downstream authorization HMAC scope
+- Fixed Bandit B608 warning by consolidating SQL into single-line f-string with nosec
 
 ## Doing
 
-- Ready to run approve_tag.py for specific tags once you confirm the approver and secret/key setup.
+- Light test pass on results_db.begin_run in a dry environment to assert new validations behave as expected
 
 ## Next
 
-- Optionally integrate unit tests for approval.py and approve_tag.py.
-- Mark approved tags in metriplectic APPROVAL.json using the new tool.
+- Document RESULTSDB_SKIP_APPROVAL_CHECK escape hatch and new preconditions in module docstring
+- Wire results_db into an example runner showing the full lifecycle

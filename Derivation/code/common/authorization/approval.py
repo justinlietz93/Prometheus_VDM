@@ -59,6 +59,55 @@ CREATE TABLE IF NOT EXISTS tag_secrets (
 );
 """
 
+# Default approvals DB path fallback (when VDM_APPROVAL_DB is unset)
+DEFAULT_DB_PATH = Path(__file__).resolve().parents[1] / "data" / "approval.db"
+
+
+def _read_env_file(path: Path) -> dict:
+    env: dict[str, str] = {}
+    try:
+        if not path.exists():
+            return env
+        for line in path.read_text(encoding="utf-8").splitlines():
+            s = line.strip()
+            if not s or s.startswith("#") or "=" not in s:
+                continue
+            k, v = s.split("=", 1)
+            k = k.strip()
+            v = v.strip().strip('"').strip("'")
+            if k:
+                env[k] = v
+    except Exception:
+        return {}
+    return env
+
+
+def _approval_db_path() -> Optional[Path]:
+    # 1) OS environment
+    env = os.getenv("VDM_APPROVAL_DB")
+    if env:
+        p = Path(env)
+        print(f"[authorization] Using approvals DB from environment variable VDM_APPROVAL_DB: {p}", file=sys.stderr)
+        return p
+    # 2) .env files (search upward: code -> Derivation -> repo root)
+    try:
+        code_dir = Path(__file__).resolve().parents[2]
+        deriv_dir = Path(__file__).resolve().parents[3]
+        repo_root = deriv_dir.parent
+        for candidate in [code_dir / ".env", deriv_dir / ".env", repo_root / ".env"]:
+            envs = _read_env_file(candidate)
+            if "VDM_APPROVAL_DB" in envs:
+                p = Path(envs["VDM_APPROVAL_DB"]).expanduser()
+                print(f"[authorization] Using approvals DB from env file {candidate}: {p}", file=sys.stderr)
+                return p
+    except Exception as e:
+        print(f"[authorization] Warning: failed scanning .env files for VDM_APPROVAL_DB: {e}", file=sys.stderr)
+    # 3) default path if present
+    if DEFAULT_DB_PATH.exists():
+        print(f"[authorization] Using approvals DB at default path: {DEFAULT_DB_PATH}", file=sys.stderr)
+        return DEFAULT_DB_PATH
+    return None
+
 
 def ensure_db(dbp: Path) -> None:
     dbp.parent.mkdir(parents=True, exist_ok=True)
@@ -110,8 +159,15 @@ def db_get_tag_secret(dbp: Path, domain: str, tag: str) -> Optional[str]:
         return None
 
 
-def compute_expected_key(secret: str, domain: str, tag: str) -> str:
-    msg = f"{domain}:{tag}".encode("utf-8")
+def compute_expected_key(secret: str, domain: str, tag: str, script: Optional[str] = None) -> str:
+    """Compute HMAC approval key with policy message domain:script:tag.
+
+    If script is None, falls back to domain:tag for backward compatibility.
+    """
+    if script:
+        msg = f"{domain}:{script}:{tag}".encode("utf-8")
+    else:
+        msg = f"{domain}:{tag}".encode("utf-8")
     return hmac.new(secret.encode("utf-8"), msg, hashlib.sha256).hexdigest()
 
 
@@ -222,7 +278,9 @@ def check_tag_approval(domain: str, tag: str, allow_unapproved: bool, code_root:
 
     Required for approval:
       - pre_registered = true
-      - tag in allowed_tags
+                        details.append(
+                            "Approval entry missing 'approval_key' — use approve_tag.py to set a domain key or tag secret, then run 'approve' to stamp the manifest."
+                        )
       - proposal file exists
       - schema file exists and contains {"tag": "<tag>"}
       - approved_by matches VDM_APPROVER_NAME (default: "Justin K. Lietz")
@@ -312,25 +370,21 @@ def check_tag_approval(domain: str, tag: str, allow_unapproved: bool, code_root:
         return True
 
     def _get_expected_key_from_db(domain_: str, tag_: str) -> Optional[str]:
-        db_path = os.getenv("VDM_APPROVAL_DB")
-        if not db_path:
+        p = _approval_db_path()
+        if not p:
             return None
-        p = Path(db_path)
         return db_get_expected_key(p, domain_, tag_)
 
-    def _compute_expected_from_domain_or_tag(domain_: str, tag_: str) -> Optional[str]:
-        db_path = os.getenv("VDM_APPROVAL_DB")
-        if not db_path:
+    def _compute_expected_from_domain_or_tag(domain_: str, tag_: str, script_: Optional[str]) -> Optional[str]:
+        p = _approval_db_path()
+        if not p:
             return None
-        p = Path(db_path)
-        dkey = db_get_domain_key(p, domain_)
-        if dkey:
-            msg = f"{domain_}:{tag_}".encode("utf-8")
-            return hmac.new(dkey.encode("utf-8"), msg, hashlib.sha256).hexdigest()
         tsecret = db_get_tag_secret(p, domain_, tag_)
         if tsecret:
-            msg = f"{domain_}:{tag_}".encode("utf-8")
-            return hmac.new(tsecret.encode("utf-8"), msg, hashlib.sha256).hexdigest()
+            return compute_expected_key(tsecret, domain_, tag_, script_)
+        dkey = db_get_domain_key(p, domain_)
+        if dkey:
+            return compute_expected_key(dkey, domain_, tag_, script_)
         return None
 
     try:
@@ -354,8 +408,17 @@ def check_tag_approval(domain: str, tag: str, allow_unapproved: bool, code_root:
             approval_key_ok = False
             if isinstance(appr_entry, dict):
                 have_key = str(appr_entry.get("approval_key", "")).strip()
-                # DB-only strict mode: require DB and match; compute expected by priority (domain key, then tag secret, then stored expected)
-                expected = _compute_expected_from_domain_or_tag(domain, tag)
+                # DB-only strict mode: require DB and match; compute expected by priority (tag secret first, then domain key, then stored expected)
+                # Determine run script name from env or argv
+                script_name: Optional[str] = os.getenv("VDM_RUN_SCRIPT")
+                if not script_name:
+                    try:
+                        argv0 = sys.argv[0]
+                        if argv0:
+                            script_name = Path(argv0).stem or Path(argv0).name
+                    except Exception:
+                        script_name = None
+                expected = _compute_expected_from_domain_or_tag(domain, tag, script_name)
                 if expected is None:
                     expected = _get_expected_key_from_db(domain, tag)
                 approval_key_ok = bool(have_key and expected and (have_key == expected))
@@ -420,18 +483,26 @@ def check_tag_approval(domain: str, tag: str, allow_unapproved: bool, code_root:
                     exp = os.getenv("VDM_APPROVER_NAME", "Justin K. Lietz")
                     details.append(f"Approval entry missing or lacks 'approved_by' (expected approver: {exp})")
                 if not (isinstance(appr, dict) and str(appr.get("approval_key", "")).strip()):
-                    details.append("Approval entry missing 'approval_key' — generate it with gen_approval_key.py and add to manifest")
+                    details.append("Approval entry missing 'approval_key' — use approve_tag.py to set a domain key or tag secret, then run 'approve --script <run_script>' to stamp the manifest.")
                 else:
                     have_key = str(appr.get("approval_key")).strip()
-                    expected = _compute_expected_from_domain_or_tag(domain, tag)
+                    script_name: Optional[str] = os.getenv("VDM_RUN_SCRIPT")
+                    if not script_name:
+                        try:
+                            argv0 = sys.argv[0]
+                            if argv0:
+                                script_name = Path(argv0).stem or Path(argv0).name
+                        except Exception:
+                            script_name = None
+                    expected = _compute_expected_from_domain_or_tag(domain, tag, script_name)
                     if expected is None:
                         expected = _get_expected_key_from_db(domain, tag)
-                    if os.getenv("VDM_APPROVAL_DB") is None:
-                        details.append("VDM_APPROVAL_DB not set; DB-only verification required")
+                    if _approval_db_path() is None:
+                        details.append("No approvals DB found (set VDM_APPROVAL_DB or create common/data/approval.db)")
                     elif expected is None:
                         details.append("No DB record or keys for this tag/domain in VDM_APPROVAL_DB; approval denied")
                     elif have_key != expected:
-                        details.append("approval_key mismatch against approval DB (VDM_APPROVAL_DB)")
+                        details.append("approval_key mismatch against approval DB (VDM_APPROVAL_DB) using policy message 'domain:script:tag'")
             except Exception as e:
                 details.append(f"Failed to parse manifest: {e}")
 
@@ -440,7 +511,7 @@ def check_tag_approval(domain: str, tag: str, allow_unapproved: bool, code_root:
                 f"ERROR: tag '{tag}' is not approved for domain '{domain}'.\n" +
                 "\n".join(f" - {d}" for d in details) +
                 f"\nTo proceed, create/update {apath} with:\n" +
-                "{\n  \"pre_registered\": true,\n  \"proposal\": \"Derivation/<domain>/PROPOSAL_<slug>.md\",\n  \"allowed_tags\": [\"<tag>\"],\n  \"approvals\": {\n    \"<tag>\": {\n      \"schema\": \"Derivation/<domain>/schemas/<tag>.schema.json\",\n      \"approved_by\": \"Justin K. Lietz\",\n      \"approved_at\": \"YYYY-MM-DD\",\n      \"approval_key\": \"<output of gen_approval_key.py>\"\n    }\n  }\n}\n" +
+                "{\n  \"pre_registered\": true,\n  \"proposal\": \"Derivation/<domain>/PROPOSAL_<slug>.md\",\n  \"allowed_tags\": [\"<tag>\"],\n  \"approvals\": {\n    \"<tag>\": {\n      \"schema\": \"Derivation/<domain>/schemas/<tag>.schema.json\",\n      \"approved_by\": \"Justin K. Lietz\",\n      \"approved_at\": \"YYYY-MM-DD\",\n      \"approval_key\": \"<computed via approve_tag.py --script <run_script>>\"\n    }\n  }\n}\n" +
                 "Or run with --allow-unapproved to quarantine artifacts (engineering-only)."
             ),
             file=sys.stderr,

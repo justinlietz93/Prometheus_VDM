@@ -11,10 +11,10 @@ scaling patterns through universal void dynamics.
 Emerges intelligently from elegant Void Intelligence rules.
 """
 import numpy as np
-from FUM_Void_Equations import delta_re_vgsp, delta_gdsp, get_universal_constants
-from FUM_Void_Debt_Modulation import VoidDebtModulation
+from Void_Equations import delta_re_vgsp, delta_gdsp, get_universal_constants
+from Void_Debt_Modulation import VoidDebtModulation
 
-class FUMBiologyConsciousnessProof:
+class VDMBiologyConsciousnessProof:
     """Biology and Consciousness proof class that derives parameters from AI learning stability."""
     
     def __init__(self):
@@ -95,7 +95,7 @@ class FUMBiologyConsciousnessProof:
     
     def run_proof(self):
         """Main proof execution with multi-scale consciousness analysis."""
-        print("=== FUM Biology and Consciousness Proof: Multi-Scale Void Emergence ===")
+        print("=== VDM Biology and Consciousness Proof: Multi-Scale Void Emergence ===")
         print("Demonstrating consciousness scaling patterns through AI learning stability\n")
         
         constants = get_universal_constants()
@@ -158,7 +158,7 @@ class FUMBiologyConsciousnessProof:
             print("⚠ Partial validation - some scales show inconsistent emergence")
         
         print(f"\nCritical insight: Consciousness emerges consistently across scales")
-        print(f"through the same AI learning stability constants governing FUM physics.")
+        print(f"through the same AI learning stability constants governing VDM physics.")
         
         return {
             'proof_type': 'biology_consciousness',
@@ -184,7 +184,7 @@ class FUMBiologyConsciousnessProof:
 
 def run_proof():
     """Legacy interface for inter-proof data sharing"""
-    proof = FUMBiologyConsciousnessProof()
+    proof = VDMBiologyConsciousnessProof()
     return proof.run_proof()
 
 def main():

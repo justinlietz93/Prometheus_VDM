@@ -2,7 +2,7 @@
 
 ## Current Goals
 
-- Implementing automated checks to block experiment runs until a proposal document and approved tag-specific JSON schema exist. Added robust approval guard in common/approval.py, default approval requirement in common/io_paths.py, and created Metriplectic domain APPROVAL.json scaffold with schemas directory.
+- Aligning approval HMAC policy with latest directive: include run script in message (domain:script:tag) and prioritize tag secret over domain key; updated common/authorization/approval.py and approve_tag.py accordingly.
 
 ## Current Blockers
 
