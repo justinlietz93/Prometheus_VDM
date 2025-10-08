@@ -164,7 +164,7 @@ Summarize what you learned in the lab, with specific references to the scientifi
 
 ---
 
-### **IMPORTANT NOTES BELOW**
+### **IMPORTANT REQUIREMENTS BELOW**
 
 ### Terminology & Framing
 

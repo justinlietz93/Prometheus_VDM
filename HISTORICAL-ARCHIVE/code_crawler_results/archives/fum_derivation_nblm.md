@@ -53,7 +53,7 @@ derivation/
 │   ├── FUM_Void_Equations.py
 │   │   (LOC: 120, Size: 4.7 KB)
 │   ├── common/
-│   │   ├── dimensionless_fuvdm.py
+│   │   ├── constants.py
 │   │   │   (LOC: 70, Size: 2.2 KB)
 │   │   └── io_paths.py
 │   │       (LOC: 60, Size: 1.8 KB)
@@ -1761,7 +1761,7 @@ def get_universal_constants():
     }]]></content>
     </file>
     <file>
-      <path>code/common/dimensionless_fuvdm.py</path>
+      <path>code/common/constants.py</path>
       <content><![CDATA[#!/usr/bin/env python3
 # FUVDM dimensionless helpers (LBM + RD + memory steering)
 """
@@ -4743,7 +4743,7 @@ except Exception:
 
 # Dimensionless helpers (LBM units)
 try:
-    from Prometheus_FUVDM.derivation.code.common.dimensionless_fuvdm import (
+    from Prometheus_FUVDM.derivation.code.common.constants import (
         lbm_viscosity_from_tau, reynolds_lbm, mach_lbm
     )
 except Exception:

@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "KG Light Cone Run Log",
+  "version": "1.0.0",
+  "type": "object",
+  "tag": "KG-cone-v1",
+  "properties": {
+    "params": { "type": "object" },
+    "fit": { "type": "object" },
+    "gate": { "type": "object" },
+    "policy": { "type": "object" }
+  },
+  "required": ["tag", "type"]
+}

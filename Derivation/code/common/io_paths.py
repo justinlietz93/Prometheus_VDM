@@ -53,7 +53,7 @@ def _policy_quarantine(default_failed: bool) -> bool:
     """Honor policy env to force quarantine when not approved.
     If VDM_POLICY_APPROVED=0, override failed=True. If VDM_POLICY_HARD_BLOCK=1, raise.
     """
-    require_approval = os.getenv("VDM_REQUIRE_APPROVAL", "0") == "1"
+    require_approval = os.getenv("VDM_REQUIRE_APPROVAL", "1") == "1"
     # If approval is required, default to not approved unless explicitly set to 1
     approved_env = os.getenv("VDM_POLICY_APPROVED")
     approved = (approved_env == "1") if require_approval else (approved_env != "0")
