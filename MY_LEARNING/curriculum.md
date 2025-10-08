@@ -201,4 +201,3 @@ Fresh-env run of `00_RUN_ALL.ipynb` on a second machine; upload artifacts + a sh
 * You can defend “no dense scans” with a slope (\beta) and active-site fraction plots, not vibes.
 
 If you want, I can turn this into a printable checklist with boxes and a tiny tracker table for seeds and artifact paths so you can mark progress as you go.
-
