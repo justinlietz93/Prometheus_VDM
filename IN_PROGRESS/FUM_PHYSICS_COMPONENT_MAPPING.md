@@ -11,6 +11,7 @@
 This document provides a systematic mapping between the FUM (Functional Unity Model) real-time AI implementation in `fum_rt/` and the theoretical physics derivations in `Derivation/`. The analysis identifies strong 1:1 correspondences for most components, with some areas requiring theoretical development.
 
 **Key Findings:**
+
 - **Strong Mappings (1:1):** Void dynamics (RE-VGSP, GDSP), reaction-diffusion substrate, ADC territory formation
 - **Partial Mappings:** SIE reward integration, void walker exploration dynamics  
 - **Missing Physics:** Explicit consciousness field implementation, text generation theoretical basis
@@ -34,6 +35,7 @@ This document provides a systematic mapping between the FUM (Functional Unity Mo
 | Territory boundaries as phase transitions | **VDM-E-012**: Potential derivatives with quartic stabilization | **Strong** | Territory edges are domain walls in φ-space |
 
 **Equation References:**
+
 - Primary: **VDM-E-019** (vacuum solutions for territory centers)
 - Secondary: **VDM-E-015** (reaction-diffusion gradient flow for territory evolution)
 - Support: **VDM-E-017** (linear RD dispersion for boundary formation rates)
@@ -56,6 +58,7 @@ This document provides a systematic mapping between the FUM (Functional Unity Mo
 | HSI from variance deviation: 1-|var(W)-target|/target | **VDM-E-016**: RD Lyapunov with dL/dt = -∫(∂_t φ)² dx ≤ 0 | **Strong** | Variance control is energy dissipation minimization |
 
 **Equation References:**
+
 - Primary: **VDM-E-002** (composite source for agency generation)
 - Secondary: **VDM-E-009** (control efficacy definition)
 - Missing: Explicit TD-error-to-energy mapping (needs derivation)
@@ -79,6 +82,7 @@ This document provides a systematic mapping between the FUM (Functional Unity Mo
 | Reward-sigmoid gating: η_mag = lr·(1 + 2·sigmoid(kR) - 1) | **VDM-E-002**: Source gating g(V)h(B) with saturating functions | **Strong** | Sigmoid saturation mirrors empowerment/balance gates |
 
 **Equation References:**
+
 - Primary: **VDM-E-015** (RD gradient flow with cubic nonlinearity)
 - Secondary: **VDM-E-004** (causality via retarded Green's function)
 - Support: **VDM-E-006** (discrete update scheme for eligibility)
@@ -102,6 +106,7 @@ This document provides a systematic mapping between the FUM (Functional Unity Mo
 | Adaptive thresholds from reward/TD/novelty history | **VDM-E-002**: Time-dependent source S(x,t) with moving baselines | **Moderate** | Adaptive thresholds are implicit source modulation |
 
 **Equation References:**
+
 - Primary: **VDM-E-015** (reaction-diffusion growth/pruning dynamics)
 - Secondary: **VDM-E-023** (flux-conservative bridge repair)
 - Support: **VDM-E-016** (energy dissipation as pruning criterion)
@@ -126,6 +131,7 @@ This document provides a systematic mapping between the FUM (Functional Unity Mo
 | Event-driven VTTouchEvent, EdgeOnEvent, SpikeEvent | **VDM-E-001**: Field evolution ∂_t C = D∇²C - γC + S with event sources | **Strong** | Events are δ-function sources in S(x,t) |
 
 **Equation References:**
+
 - Primary: **VDM-E-018** (KPP front speed for heat tracking)
 - Secondary: **VDM-E-004** (causal propagation for memory steering)
 - Support: **VDM-E-001** (field evolution driven by scout events)
@@ -151,6 +157,7 @@ This document provides a systematic mapping between the FUM (Functional Unity Mo
 | TrailMap short-half-life repulsion | **VDM-E-001**: Fast-decaying local field with γ_trail >> γ_base | **Strong** | Repulsion is transient negative source |
 
 **Equation References:**
+
 - Primary: **VDM-E-003** (exponential decay with timescale 1/γ)
 - Secondary: **VDM-E-001** (source-driven field evolution)
 - Support: **VDM-E-005** (regional integration for bounded memory)
@@ -175,6 +182,7 @@ This document provides a systematic mapping between the FUM (Functional Unity Mo
 | ALPHA, BETA, F_REF, PHASE_SENS constants | **VDM-E-012**: Potential parameters α, β, λ with r = α - β | **Strong** | α/β map to growth/decay rates; f_ref is oscillation coupling |
 
 **Equation References:**
+
 - Primary: **VDM-E-015** (RD gradient flow f(φ) = rφ - uφ² - λφ³)
 - Secondary: **VDM-E-012** (potential parameterization with α, β, λ)
 - Support: **VDM-E-014** (KG inertial regime for time-dynamic phase)
@@ -198,6 +206,7 @@ This document provides a systematic mapping between the FUM (Functional Unity Mo
 | Eligibility traces as CSR matrix | **VDM-E-006**: Discrete update C^(n+1) = C^n + Δt[source - γC + diffusion] | **Perfect** | CSR allows sparse trace accumulation |
 
 **Equation References:**
+
 - Primary: **VDM-E-013** (discrete Euler-Lagrange on lattice)
 - Secondary: **VDM-E-023** (graph flux conservation)
 - Support: **VDM-E-011** (discrete action for coupling term)
@@ -221,6 +230,7 @@ This document provides a systematic mapping between the FUM (Functional Unity Mo
 | Component count from DSU (Disjoint Set Union) | **VDM-E-019**: Multiple vacuum selection φ_± in bistable regime | **Moderate** | Components are disconnected vacuum domains |
 
 **Equation References:**
+
 - Primary: None explicit (topological measures absent from current EQUATIONS.md)
 - Secondary: **VDM-E-003** (EMA smoothing)
 - Proposed: Derive B1 from first Chern class of connection A_μ on lattice
@@ -244,6 +254,7 @@ This document provides a systematic mapping between the FUM (Functional Unity Mo
 | Keyword summarization via TF-IDF | Not in EQUATIONS.md | **Missing** | Information compression lacks field theory basis |
 
 **Equation References:**
+
 - Primary: None (language processing not in core physics)
 - Speculative: **VDM-E-002** (if treating semantic field as agency source)
 - Required: Derive language as symbolic dynamics on connectivity graph
@@ -267,6 +278,7 @@ This document provides a systematic mapping between the FUM (Functional Unity Mo
 | Bounded memory with keep_max pruning | **VDM-E-007**: Dimensionless form with finite diffusion length ℓ_D | **Strong** | Bounded memory is finite spatial support |
 
 **Equation References:**
+
 - Primary: **VDM-E-006** (discrete time integration)
 - Secondary: **VDM-E-001** (event-driven source term)
 - Support: **VDM-E-004** (causality enforcement)
@@ -280,45 +292,53 @@ This document provides a systematic mapping between the FUM (Functional Unity Mo
 ### Covered Physics Domains
 
 ✅ **Reaction-Diffusion (RD) Branch:**
+
 - Fisher-KPP equation (**VDM-E-015**, **VDM-E-018**)
 - Linear dispersion (**VDM-E-017**)
 - Lyapunov functionals (**VDM-E-016**)
 - Front propagation dynamics
 
 ✅ **Discrete Action Principles:**
+
 - Lattice Lagrangian (**VDM-E-011**)
 - Euler-Lagrange equations (**VDM-E-013**)
 - Flux conservation (**VDM-E-023**)
 - Taylor expansion bounds (**VDM-E-020**, **VDM-E-021**)
 
 ✅ **Agency Field Framework:**
+
 - Field evolution PDE (**VDM-E-001**)
 - Composite source definition (**VDM-E-002**)
 - Control efficacy (**VDM-E-009**)
 - Regional budgets (**VDM-E-005**)
 
 ✅ **Dimensionless Formulations:**
+
 - Scaling transformations (**VDM-E-007**, **VDM-E-022**)
 - Collapse onto canonical forms
 
 ### Missing or Weak Physics Domains
 
 ⚠️ **Klein-Gordon (KG) / Inertial Regime:**
+
 - **VDM-E-014** defines continuum KG but fum_rt operates in overdamped RD limit
 - No second-order time derivatives in current implementation
 - **Recommendation:** Add KG branch for wave-propagation phenomena if needed
 
 ⚠️ **Topological Field Theory:**
+
 - Euler characteristic, Betti numbers computed but not derived from action
 - Chern classes, winding numbers, homotopy groups absent
 - **Recommendation:** Develop gauge field formulation for topology
 
 ❌ **Symbolic/Language Dynamics:**
+
 - N-gram statistics, TF-IDF compression lack field theory
 - No path integral formulation of language generation
 - **Recommendation:** Derive semantic field from memory trace action
 
 ❌ **Portal/Dark Sector Coupling:**
+
 - **VDM-E-008** defines portal modulation ε_eff(C) but not implemented
 - No dark photon or hidden sector interactions in code
 - **Recommendation:** Optional extension if dark matter signatures needed
@@ -331,14 +351,14 @@ This document provides a systematic mapping between the FUM (Functional Unity Mo
 
 **Answer:** **Partially redundant but adds critical value.**
 
-### Redundancies:
+### Redundancies
 
 1. **Field Evolution (VDM-E-001):** Already implemented via maps with exponential decay
 2. **Composite Source (VDM-E-002):** SIE reward structure covers P, I_net, U conceptually
 3. **Discrete Update (VDM-E-006):** Core engine implements this exactly
 4. **Regional Budget (VDM-E-005):** Maps use bounded dictionaries for territory tracking
 
-### Non-Redundant Elements:
+### Non-Redundant Elements
 
 1. **Causal Propagation (VDM-E-004):** Retarded Green's function G_ret not explicitly coded
 2. **Control Efficacy (VDM-E-009):** Energy-normalized loss reduction needs explicit implementation
@@ -346,14 +366,16 @@ This document provides a systematic mapping between the FUM (Functional Unity Mo
 4. **VDM C-Score (VDM-E-010):** Comparative benchmark metric not implemented
 5. **Portal Modulation (VDM-E-008):** Optional C-dependent coupling absent
 
-### Text Generation & Reasoning Correlation:
+### Text Generation & Reasoning Correlation
 
 **Evidence from repository:**
+
 - `fum_rt/io/cognition/composer.py` generates emergent sentences from n-grams
 - `plans/reasoning.md` documents "sandbox protocol" for counterfactual reasoning
 - HISTORICAL-ARCHIVE shows reasoning correlation analyses with temporal structure
 
 **Verdict:** fum_rt **does** demonstrate text generation and reasoning capabilities, but these are **empirically functional** rather than **theoretically derived**. Agency_Field.md provides the missing theoretical bridge by:
+
 - Defining prediction P as mutual information I(state_t; input_{t+τ})
 - Specifying integration I_net as transfer entropy sums
 - Quantifying control U as loss-per-joule ratio
@@ -416,19 +438,19 @@ This document provides a systematic mapping between the FUM (Functional Unity Mo
 
 ## Recommended Actions
 
-### High Priority:
+### High Priority
 
 1. **Formalize SIE Energy Accounting:** Derive TD error as variational derivative of Lyapunov functional (**VDM-E-016**)
 2. **Add Topology Derivation:** Extend foundations to include Euler characteristic from lattice action
 3. **Implement Causal Kernel:** Code explicit retarded Green's function G_ret for event propagation (**VDM-E-004**)
 
-### Medium Priority:
+### Medium Priority
 
 4. **Derive Symbolic Dynamics:** Map n-gram statistics to path integrals on connectome graph
 5. **Add VDM C-Score:** Implement comparative benchmark (**VDM-E-010**) for cross-system evaluation
 6. **Document Growth Arbiter:** Complete physics mapping for neurogenesis control
 
-### Low Priority:
+### Low Priority
 
 7. **KG Branch Implementation:** Add second-order time dynamics if wave phenomena needed (**VDM-E-014**)
 8. **Portal Coupling:** Activate dark-sector modulation if cosmological tests warrant (**VDM-E-008**)
@@ -438,20 +460,24 @@ This document provides a systematic mapping between the FUM (Functional Unity Mo
 ## Conclusion
 
 The fum_rt/ AI model demonstrates **strong 1:1 correspondence** with VDM physics derivations for:
+
 - Core substrate dynamics (RD equations)
 - Structural plasticity (GDSP, RE-VGSP)
 - Exploratory sampling (void walkers)
 - Field accumulation (maps)
 
 **Moderate correspondence** exists for:
+
 - Reward integration (SIE) - needs energy normalization
 - Topological invariants (B1) - needs derivation from action
 
 **Weak or missing correspondence** for:
+
 - Text generation - empirical but not theoretically grounded
 - Symbolic reasoning - functional but lacks field theory basis
 
 **Agency_Field.md Assessment:** **Not redundant**. While fum_rt implements many agency field concepts implicitly, the document provides essential theoretical rigor for:
+
 - Energy-normalized control efficacy (VDM-E-009)
 - Causal propagation formalism (VDM-E-004)
 - Cross-system comparison metrics (VDM-E-010)
@@ -465,4 +491,4 @@ The model successfully generates text and exhibits reasoning correlations (per H
 
 **Generated:** October 8, 2025  
 **Repository:** justinlietz93/Prometheus_VDM  
-**Scope:** fum_rt/core/* ↔ Derivation/*.md (excluding code/ subdirectory)
+**Scope:** fum_rt/core/*↔ Derivation/*.md (excluding code/ subdirectory)

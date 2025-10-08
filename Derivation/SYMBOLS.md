@@ -57,6 +57,7 @@
 | $\mathcal{I}_i$           | interaction energy at node      | coupling to neighbors               | $\mathcal{I}i = \tfrac{1}{2}\sum{j \in N(i)} J, (W_j - W_i)^2$                   |
 | $\vec{J}_i$               | energy flux vector from node    | discrete divergence in conservation | $\frac{\Delta \mathcal{H}_i}{\Delta t} + \nabla \cdot \vec{J}_i = 0$             |
 | $\nabla \cdot$            | discrete divergence operator    | flux balance on graph               | sums net flow across edges                                                        |
+| $L_h[\phi]$               | discrete Lyapunov functional    | monotone under DG dissipative step  | $\sum_i (\tfrac{D}{2}\lvert\nabla_h \phi_i\rvert^2 + \hat V(\phi_i))\,h^d$    |
 
 ## Walkers & Local Dynamics
 
@@ -133,7 +134,7 @@
 | ----------- | ---------------------- | ------------------------- | ----------------------------------- |
 | $\Pi_{Dr}$  | diffusion at scale $L$ | $D/(rL^2)$                | pick $L$ per experiment             |
 | $c^*$       | normalized KPP speed   | $c/(2\sqrt{Dr})$          | $\approx 0.95\text{-}1.0$ when validated |
-| \mathrm{Da} | Damköhler number       | reaction / transport rate | regime classifier                   |
+| $\mathrm{Da}$ | Damköhler number       | reaction / transport rate | regime classifier                   |
 
 ## Dimensionless Groups — LBM / Fluids
 
@@ -142,9 +143,9 @@
 | $\tau$      | BGK relaxation time | controls viscosity                            | $\tau>0.5$                       |
 | $\nu$       | kinematic viscosity | $\tfrac{1}{3}!\left(\tau-\tfrac{1}{2}\right)$ | e.g. $\nu=0.1333$ for $\tau=0.9$ |
 | $c_s$       | lattice sound speed | model constant                                | $1/\sqrt{3}$                     |
-| \mathrm{Re} | Reynolds number     | $UL/\nu$                                      | inertia vs viscosity             |
-| \mathrm{Ma} | Mach number         | $U/c_s$                                       | keep $\ll 1$ for incompressible  |
-| \mathrm{Pe} | Péclet number       | $UL/D$                                        | advection vs diffusion           |
+| $\mathrm{Re}$ | Reynolds number     | $UL/\nu$                                      | inertia vs viscosity             |
+| $\mathrm{Ma}$ | Mach number         | $U/c_s$                                       | keep $\ll 1$ for incompressible  |
+| $\mathrm{Pe}$ | Péclet number       | $UL/D$                                        | advection vs diffusion           |
 
 ## Diagnostics & Data Products
 
@@ -154,6 +155,12 @@
 | $\Pi_c(t)$ | channel utilization | budget/throughput per channel | $\Pi_c=\sum_w \lVert \Delta^{+}*{w,c}\rVert$ |
 | $\mathrm{KDE}*\sigma$ | kernel density estimate | smooth sparse events | choose $\sigma$ per scale |
 | $\Lambda(t)$ | first-integral drift monitor | sanity check (logistic) | $\Lambda=\lVert I_{\log}(\phi,t)-I_{\log}(\phi,0)\rVert$ |
+| $e_{\infty}(\Delta t)$ | two-grid error (inf-norm)   | convergence diagnostic         | $\lVert\Phi_{\Delta t}(W_0)-\Phi_{\Delta t/2}(\Phi_{\Delta t/2}(W_0))\rVert_\infty$ |
+| $p$                    | slope on log–log fit         | order estimate                 | from OLS of $(\log \Delta t, \log \text{median error})$ |
+| $R^2$                  | coefficient of determination | fit quality                    | $R^2\in[0,1]$                                       |
+| $\mathcal{D}_{\text{Strang}}(\Delta t)$ | Strang defect (JMJ vs MJM) | commutator proxy | $\lVert\Phi^{\text{JMJ}}_{\Delta t}-\Phi^{\text{MJM}}_{\Delta t}\rVert_\infty$ |
+| $E(X)$                 | collapse envelope            | universality measure           | $E(X)=\max_i P_i(X)-\min_i P_i(X)$                   |
+| $\mathrm{env\_max}$   | envelope supremum            | pass/fail gate                 | $\sup_X E(X)$                                        |
 
 ## Agency Options Probe
 
@@ -175,3 +182,20 @@
 | Symbol | Meaning           | When / Why                 | Tiny Example                                                 |
 | ------ | ----------------- | -------------------------- | ------------------------------------------------------------ |
 | $L,;T$ | space/time scales | units and stability limits | diffusive CFL: $\Delta t\le \tfrac{\Delta x^2}{2d,D_{\max}}$ |
+
+## Discrete Operators & Integrators
+
+| Symbol            | Meaning                | When / Why             | Tiny Example                                                   |
+| ----------------- | ---------------------- | ---------------------- | -------------------------------------------------------------- |
+| $h$               | grid spacing (DG)      | discretization scale   | alias of lattice spacing $a$ when using DG schemes             |
+| $\nabla_h$        | discrete gradient      | DG finite differences  | use centered/one-sided stencils per boundary conditions        |
+| $\Phi_{\Delta t}$ | one-step map (flow)    | integrator operator    | apply J/M/JMJ/MJM composition for a single time step $\Delta t$ |
+
+## Cosmology (FRW)
+
+| Symbol        | Meaning                    | When / Why            | Tiny Example                                                     |
+| ------------- | -------------------------- | --------------------- | ---------------------------------------------------------------- |
+| $a(t)$        | FRW scale factor           | dust control residual | $r(t)=\tfrac{d}{dt}(\rho a^3) + w\,\rho\,\tfrac{d}{dt}(a^3)$ |
+| $\rho(t)$     | matter density             | dust control residual | used in $r(t)$                                                   |
+| $w$           | equation-of-state parameter| EOS for residual test | $w=0$ (dust)                                                     |
+| $\operatorname{RMS}(r)$ | RMS of residual $r$     | QC metric             | $\sqrt{\tfrac{1}{N}\sum_n r(t_n)^2}$                           |

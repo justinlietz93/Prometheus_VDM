@@ -1,7 +1,3 @@
-Absolutely—here’s the same document rewritten in **strict third person** (no “you/your”), with identical structure and content. Save as `AGENCY_FIELD_SPEC.md`.
-
----
-
 # Agency/Consciousness Field (VDM) — Canon-Aligned Compact Spec
 
 ---

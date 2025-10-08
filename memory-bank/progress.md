@@ -2,14 +2,12 @@
 
 ## Done
 
-- Trail chaining implemented with CLI flags (--trail-chain, --trail-topk, --trail-minval); approved runs completed with enriched DAG outputs
-- Macro VAR Granger DAG with BH-FDR integrated; macro figures and logs saved; interpretable edges validated
+- Inserted VDM-A-013..021 sections with pseudocode and context; updated auto-index and change log; fixed markdownlint issues
 
 ## Doing
 
-- Document new causality runner flags and macro DAG workflow in existing README; add example outputs and interpretation notes
+- Finalize algorithms-first update in ALGORITHMS.md and validate anchors/index
 
 ## Next
 
-- Sensitivity analysis: sweep trail_topk/minval and macro lags/alpha; compare edge stability and density
-- Consider bounded cross-neuron coupling with small max_successors and time tolerance for candidate interactions
+- Wait for approval; if approved, proceed to update EQUATIONS.md anchors referenced by TODOs; then review CONSTANTS/SYMBOLS for any new entries
