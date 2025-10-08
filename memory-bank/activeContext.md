@@ -2,7 +2,7 @@
 
 ## Current Goals
 
-- Aligning approval HMAC policy with latest directive: include run script in message (domain:script:tag) and prioritize tag secret over domain key; updated common/authorization/approval.py and approve_tag.py accordingly.
+- Scoping a causal DAG audit as a low-risk addition: implement a small common helper for event-DAG construction and local-dimension/interval metrics; add an optional experiment runner (approved/tagged) that ingests existing event logs and outputs figures/CSV/JSON under outputs/ with quarantine policy.
 
 ## Current Blockers
 
