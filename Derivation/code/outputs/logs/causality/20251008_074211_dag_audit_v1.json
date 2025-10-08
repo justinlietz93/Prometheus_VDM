@@ -1,0 +1,57 @@
+{
+  "artifacts": {
+    "figure": "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/figures/causality/20251008_074211_dag_audit_v1.png",
+    "figure_warning": "no positive dt/size samples to plot",
+    "log": "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/logs/causality/20251008_074211_dag_audit_v1.json"
+  },
+  "dag": {
+    "acyclic": true,
+    "edges": 0,
+    "nodes": 0
+  },
+  "domain": "causality",
+  "ingest": {
+    "edges": 0,
+    "events": 0,
+    "input_files": [
+      "Derivation/code/physics/causality/data/events.jsonl",
+      "Derivation/code/physics/causality/data/utd_events.jsonl"
+    ],
+    "total_seen": 920263
+  },
+  "metrics": {
+    "d_hat_mean": 1.0,
+    "d_hat_median": 1.0,
+    "diamond_intercept": 0.0,
+    "diamond_slope": 0.0,
+    "r_mean": 1.0,
+    "r_median": 1.0,
+    "samples": 0
+  },
+  "params": {
+    "infer_by_time": false,
+    "k": 256,
+    "max_dt": null,
+    "max_events": null,
+    "max_successors": 0,
+    "min_dt": 0.0,
+    "reach_budget": 8192,
+    "streams": [
+      "events"
+    ],
+    "time_tolerance": 0.0
+  },
+  "policy": {
+    "approved": true,
+    "approved_at": "2025-10-08T12:40:45.722017+00:00",
+    "approved_by": "Justin K. Lietz",
+    "engineering_only": false,
+    "proposal": "Derivation/Causality/PROPOSAL_Causal_DAG_Audits_for_Void_Dynamics_Model.md",
+    "schema": "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/physics/causality/schemas/causal_dag_audit.schema.json"
+  },
+  "proposal": "Derivation/Causality/PROPOSAL_Causal_DAG_Audits_for_Void_Dynamics_Model.md",
+  "script": "run_causality_dag_audit",
+  "status": "success",
+  "tag": "v1",
+  "timestamp": "2025-10-08T07:42:11.881034"
+}

@@ -1,6 +1,6 @@
 ---
 description: Implement features and write high-quality code aligned with the project's established patterns.
-tools: ['runCommands', 'runTasks', 'edit', 'runNotebooks', 'search', 'new', 'extensions', 'usages', 'vscodeAPI', 'problems', 'changes', 'testFailure', 'openSimpleBrowser', 'fetch', 'githubRepo', 'context7', 'pylance mcp server', 'copilotCodingAgent', 'activePullRequest', 'openPullRequest', 'updateContext', 'logDecision', 'updateProgress', 'showMemory', 'switchMode', 'updateProductContext', 'updateSystemPatterns', 'updateProjectBrief', 'updateArchitect', 'getPythonEnvironmentInfo', 'getPythonExecutableCommand', 'installPythonPackage', 'configurePythonEnvironment', 'configureNotebook', 'listNotebookPackages', 'installNotebookPackages', 'websearch']
+tools: ['edit', 'runNotebooks', 'search', 'new', 'runCommands', 'runTasks', 'usages', 'vscodeAPI', 'problems', 'changes', 'testFailure', 'openSimpleBrowser', 'fetch', 'githubRepo', 'extensions', 'runTests', 'context7', 'pylance mcp server', 'copilotCodingAgent', 'activePullRequest', 'openPullRequest', 'updateContext', 'logDecision', 'updateProgress', 'showMemory', 'switchMode', 'updateProductContext', 'updateSystemPatterns', 'updateProjectBrief', 'updateArchitect', 'getPythonEnvironmentInfo', 'getPythonExecutableCommand', 'installPythonPackage', 'configurePythonEnvironment', 'configureNotebook', 'listNotebookPackages', 'installNotebookPackages', 'websearch']
 version: "1.0.0"
 ---
 # Code Expert
@@ -226,3 +226,7 @@ Put the proposal file in the correct domain folder:
 
 Put the results file in the correct domain folder next to the proposal:
    /mnt/ironwolf/git/Prometheus_VDM/derivation/{domain/topic folder}
+
+## ALL new experiments MUST be approved by Justin K. Lietz before running, read this for context:
+/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/ARCHITECTURE.md
+/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/common/authorization/README.md

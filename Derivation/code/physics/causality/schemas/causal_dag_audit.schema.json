@@ -1,0 +1,31 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"title": "Causal DAG Audit Runner Schema",
+	"description": "Schema binding for tag v1 of the causal DAG audit runner; used for approval validation.",
+	"type": "object",
+	"metadata": {
+		"domain": "causality",
+		"script": "run_causality_dag_audit",
+		"tag": "v1"
+	},
+	"properties": {
+		"domain": { "const": "causality" },
+		"script": { "const": "run_causality_dag_audit" },
+		"tag": { "const": "v1" },
+		"params": {
+			"type": "object",
+			"properties": {
+				"infer_by_time": { "type": "boolean" },
+				"max_successors": { "type": "integer", "minimum": 0 },
+				"time_tolerance": { "type": "number", "minimum": 0 },
+				"k": { "type": "integer", "minimum": 0 },
+				"min_dt": { "type": "number", "minimum": 0 },
+				"max_dt": { "type": ["number", "null"], "minimum": 0 },
+				"reach_budget": { "type": "integer", "minimum": 0 },
+				"streams": { "type": ["array", "null"], "items": { "type": "string" } },
+				"max_events": { "type": ["integer", "null"], "minimum": 1 }
+			}
+		}
+	},
+	"required": ["domain", "script", "tag"]
+}

@@ -4,26 +4,41 @@ Purpose
 
 - Domain-scoped simulation and benchmark scripts. These are the source of truth for producing physics figures and logs under derivation/code/outputs/.
 
-Directory layout
+## Rules
 
-- Each research domain gets its own subfolder:
-  - reaction_diffusion/ — canonical RD scripts (e.g., Fisher-KPP dispersion/front-speed)
-  - fluid_dynamics/ — LBM→NS (Taylor-Green, lid-driven cavity), plus solver under fluid_dynamics/fluids/
-  - tachyonic_condensation/ — EFT tube modes, etc.
-- Example (fluid_dynamics):
-  - Core solver: [fluid_dynamics/fluids/lbm2d.py](Prometheus_VDM/derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:1)
-  - Benchmarks:
-    - [taylor_green_benchmark.py](Prometheus_VDM/derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py:1)
-    - [lid_cavity_benchmark.py](Prometheus_VDM/derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py:1)
+- **ALL** domain folders under `Derivation/code/physics` REQUIRE the following items:
+  - `schema/` contains required schema files
+  - `specs/` contains required spec files used to configure experiments and other metadata
+  - `APPROVALS.json` contains required approval information
+  - `README.md` contains required background, equations, and methods for experiments
+- **ALL** experiments MUST use the helpers in `common/` for logs and figures handling, and can additionally be used for existing equations, constants, and additional theory-wide resources.
+- Just for context, here are all current helpers:
+  - `Derivation/code/common/authorization` **This is wired into the other helpers to enforce approval system**
+    - Read this for context: [authorization/README.md](/Derivation/code/common/authorization/README.md)
+  - `Derivation/code/common/plotting` **This is used by other helpers for plotting and creating figures**
+  - `Derivation/code/common/data` **This is where admin credentials, approvals, and experiment results data is stored**
+  - `Derivation/code/common/domain_setup` **This includes helpers for scaffolding new experiment code domain folders**
+  - `Derivation/code/common/vdm_equations.py` **This should include all available equations involved in the Void Dynamics Theory**
+  - `Derivation/code/common/io_paths.py` **This is a helper that correctly routes log and figure files to the respective folders**
+  - `Derivation/code/common/constants.py` **Like the vdm_equations.py file, except it contains all the VDM specific constants for us in experiments**
 
-Output routing
+## Directory layout
 
+- Each research domain gets its own subfolder and must be scaffolded as follows:
+  - Derivation/code/physics/{domain}/
+    - schemas/{schema_name}.schema.json
+    - specs/{spec_name}.{run_tag}.json
+    - APPROVAL.json (this is where approval hashes will be checked against)
+    - Any experiment scripts, code files, or other experiment specific extras will go here. Run scripts will need to import and use the common/ helpers, and have the designated tag. See [Metriplectic/](/Derivation/code/physics/metriplectic) as an example.
+
+## Output routing
+
+- Always use the [io_paths.py](/Derivation/code/common/io_paths.py) helper to handle this.
 - Figures → derivation/code/outputs/figures/{domain}/
 - Logs    → derivation/code/outputs/logs/{domain}/
-- Filenames: <script_name>_YYYYMMDDThhmmssZ.ext (UTC timestamp)
-- Override paths via CLI flags --outdir, --figure, --log when provided by the script.
+- Filenames: YYYYMMDD_hhmmss_{experiment name}_{tag}.ext (UTC timestamp)
 
-Conventions
+## Conventions
 
 - Location: derivation/code/physics/{domain}/*.py
 - Scripts must:
@@ -31,19 +46,21 @@ Conventions
   - Emit JSON logs with theory, params, metrics, outputs.figure, timestamp.
   - Emit a PNG figure (unless explicitly headless by design).
   - Record a pass/fail gate in metrics when applicable.
+  - Use all helpers that are relevant / required: Derivation/code/common
+  - Be approved by Justin K. Lietz, read the authorization README: Derivation/code/common/authorization/README.md
 - Heavy numerics go here; unit tests belong under derivation/code/tests/{domain}/.
 
-Examples
+## Examples
 
-Reaction-Diffusion
+## Metriplectic (KG RD)
 
-- Dispersion experiment: [rd_dispersion_experiment.py](Prometheus_VDM/derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py:1)
-- Front speed: analogous front-speed scripts; outputs under reaction_diffusion/.
+- [Approved Metriplectic Experiments](/Derivation/code/physics/metriplectic)
+- Pre-requisite PROPOSAL writeups, along with post experiment RESULTS writeups: [Derivation/Metriplectic](/Derivation/Metriplectic)
 
-Fluid Dynamics (LBM→NS)
+## Fluid Dynamics (LBM→NS)
 
 - Solver:
-  - [fluids/lbm2d.py](Prometheus_VDM/derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:1)
+  - [fluids/lbm2d.py](/Derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:1)
 - Taylor-Green benchmark:
   - Runs TG vortex and fits log E(t) to recover ν.
   - Uses lattice scaling K² = k²(1/nx² + 1/ny²).
@@ -51,24 +68,3 @@ Fluid Dynamics (LBM→NS)
 - Lid-driven cavity benchmark:
   - Runs no-slip box with moving lid; monitors ‖∇·v‖₂.
   - Outputs → figures/logs under fluid_dynamics/.
-
-How to run (PowerShell)
-
-- Activate venv:
-  - & .\venv\Scripts\Activate.ps1
-- Example (Taylor-Green):
-  - python Prometheus_VDM/derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py --nx 256 --ny 256 --tau 0.8 --U0 0.05 --k 6.283185307179586 --steps 5000 --sample_every 50
-- Example (Lid cavity):
-  - python Prometheus_VDM/derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py --nx 128 --ny 128 --tau 0.7 --U_lid 0.1 --steps 15000 --sample_every 200
-
-Design notes
-
-- Keep solver code (fluids/, etc.) importable and benchmark-agnostic.
-- Keep per-script acceptance gates aligned with BENCHMARKS_*.md.
-- Prefer minimal external deps (numpy, matplotlib) for portability.
-
-Cross-reference
-
-- Benchmarks criteria: [BENCHMARKS_FLUIDS.md](Prometheus_VDM/derivation/BENCHMARKS_FLUIDS.md:1)
-- Fluids derivation: [fluids_limit.md](Prometheus_VDM/derivation/fluids_limit.md:1)
-- Tests overview: [tests/README.md](Prometheus_VDM/derivation/code/tests/README.md:1)

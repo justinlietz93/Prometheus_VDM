@@ -25,7 +25,7 @@ import numpy as np
 
 # Try to align defaults with your universal constants; fall back to safe values.
 try:
-    from FUM_Void_Equations import get_universal_constants  # noqa: F401
+    from Void_Equations import get_universal_constants  # noqa: F401
     _UC = get_universal_constants()
     _ALPHA_DEF = float(_UC.get("ALPHA", 0.25))
     _BETA_DEF = float(_UC.get("BETA", 0.10))

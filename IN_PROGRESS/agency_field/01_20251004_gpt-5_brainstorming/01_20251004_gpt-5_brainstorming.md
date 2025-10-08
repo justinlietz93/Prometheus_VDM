@@ -470,11 +470,11 @@ you also need to update the constants table you gave me to match this
 
 | Name | Meaning | Default/Value | Range/Limits | Units | Source (path:lines • commit) | Notes |
 |---|---|---:|:---:|---|---|---|
-| <a id="const-alpha"></a>`ALPHA` | Universal learning rate for RE-VGSP | 0.25 |  | nondimensional | derivation/code/computational_toy_proofs/FUM_Void_Equations.py:30 • 0922758 | Resonance-Enhanced Valence-Gated Synaptic Plasticity |
-| <a id="const-beta"></a>`BETA` | Universal plasticity rate for GDSP | 0.1 |  | nondimensional | derivation/code/computational_toy_proofs/FUM_Void_Equations.py:31 • 0922758 | Goal-Directed Structural Plasticity |
+| <a id="const-alpha"></a>`ALPHA` | Universal learning rate for RE-VGSP | 0.25 |  | nondimensional | derivation/code/computational_toy_proofs/Void_Equations.py:30 • 0922758 | Resonance-Enhanced Valence-Gated Synaptic Plasticity |
+| <a id="const-beta"></a>`BETA` | Universal plasticity rate for GDSP | 0.1 |  | nondimensional | derivation/code/computational_toy_proofs/Void_Equations.py:31 • 0922758 | Goal-Directed Structural Plasticity |
 | <a id="const-cs2"></a>`CS2` | Speed of sound squared (LBM) | 0.333333 (1/3) |  | LBM units | derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:106 • 0922758 | $c_s^2 = 1/3$ in D2Q9 lattice |
-| <a id="const-f_ref"></a>`F_REF` | Universal reference frequency | 0.02 |  | nondimensional | derivation/code/computational_toy_proofs/FUM_Void_Equations.py:32 • 0922758 | Time modulation frequency |
-| <a id="const-phase_sens"></a>`PHASE_SENS` | Universal phase sensitivity | 0.5 |  | nondimensional | derivation/code/computational_toy_proofs/FUM_Void_Equations.py:33 • 0922758 | Time modulation phase sensitivity |
+| <a id="const-f_ref"></a>`F_REF` | Universal reference frequency | 0.02 |  | nondimensional | derivation/code/computational_toy_proofs/Void_Equations.py:32 • 0922758 | Time modulation frequency |
+| <a id="const-phase_sens"></a>`PHASE_SENS` | Universal phase sensitivity | 0.5 |  | nondimensional | derivation/code/computational_toy_proofs/Void_Equations.py:33 • 0922758 | Time modulation phase sensitivity |
 | <a id="const-D"></a>`D` [RD experiments] | Diffusion coefficient | 1.0 |  | spatial²/time | derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py:142; rd_front_speed_experiment.py:187 • 0922758 | Default for validated RD experiments |
 | <a id="const-r"></a>`r` [RD experiments] | Reaction rate | 0.25 |  | 1/time | derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py:143; rd_front_speed_experiment.py:188 • 0922758 | $r = \alpha - \beta$ |
 | <a id="const-N"></a>`N` [RD experiments] | Grid size | 1024 |  | lattice sites | derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py:141; rd_front_speed_experiment.py:186 • 0922758 | Default spatial resolution |

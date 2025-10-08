@@ -1,7 +1,7 @@
 -- 1
 
 I'll respond to each item:
-"- FUM_Void_Equations.py: canonical Δalpha = delta_re_vgsp and Δomega = delta_gdsp with ALPHA, BETA, F_REF, PHASE_SENS. This stays authoritative.
+"- Void_Equations.py: canonical Δalpha = delta_re_vgsp and Δomega = delta_gdsp with ALPHA, BETA, F_REF, PHASE_SENS. This stays authoritative.
 "
 User: Sounds good
 

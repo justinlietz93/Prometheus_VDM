@@ -48,9 +48,9 @@ derivation/
 │   └── logarithmic_constant_of_motion.tex
 │       (LOC: 180, Size: 9.7 KB)
 ├── code/
-│   ├── FUM_Void_Debt_Modulation.py
+│   ├── Void_Debt_Modulation.py
 │   │   (LOC: 136, Size: 5.8 KB)
-│   ├── FUM_Void_Equations.py
+│   ├── Void_Equations.py
 │   │   (LOC: 120, Size: 4.7 KB)
 │   ├── common/
 │   │   ├── constants.py
@@ -74,9 +74,9 @@ derivation/
 │   │   │   (LOC: 116, Size: 4.9 KB)
 │   │   ├── FUM_SM.py
 │   │   │   (LOC: 191, Size: 8.4 KB)
-│   │   ├── FUM_Void_Debt_Modulation.py
+│   │   ├── Void_Debt_Modulation.py
 │   │   │   (LOC: 136, Size: 5.8 KB)
-│   │   ├── FUM_Void_Equations.py
+│   │   ├── Void_Equations.py
 │   │   │   (LOC: 120, Size: 4.7 KB)
 │   │   ├── FUM_theory_and_results.md
 │   │   │   (LOC: 31, Size: 2.0 KB)
@@ -1499,7 +1499,7 @@ J.~D. Murray, \emph{Mathematical Biology I: An Introduction}, 3rd ed., Springer,
 \end{document}]]></content>
     </file>
     <file>
-      <path>code/FUM_Void_Debt_Modulation.py</path>
+      <path>code/Void_Debt_Modulation.py</path>
       <content><![CDATA["""
 FUM Universal Domain Modulation System
 Copyright © 2025 Justin K. Lietz, Neuroca, Inc. All Rights Reserved.
@@ -1509,7 +1509,7 @@ and learning stability principles. This replaces arbitrary scaling with
 mathematically derived modulation factors.
 """
 import numpy as np
-from FUM_Void_Equations import get_universal_constants
+from Void_Equations import get_universal_constants
 
 class VoidDebtModulation:
     """Class to derive domain modulation factors from void debt principles."""
@@ -1638,7 +1638,7 @@ if __name__ == "__main__":
         print("\n⚠ VALIDATION FAILED: Domain modulations need adjustment")]]></content>
     </file>
     <file>
-      <path>code/FUM_Void_Equations.py</path>
+      <path>code/Void_Equations.py</path>
       <content><![CDATA["""
 FUM Void Dynamics Library
 Copyright © 2025 Justin K. Lietz, Neuroca, Inc. All Rights Reserved.
@@ -1912,8 +1912,8 @@ scaling patterns through universal void dynamics.
 Emerges intelligently from elegant Void Intelligence rules.
 """
 import numpy as np
-from FUM_Void_Equations import delta_re_vgsp, delta_gdsp, get_universal_constants
-from FUM_Void_Debt_Modulation import VoidDebtModulation
+from Void_Equations import delta_re_vgsp, delta_gdsp, get_universal_constants
+from Void_Debt_Modulation import VoidDebtModulation
 
 class FUMBiologyConsciousnessProof:
     """Biology and Consciousness proof class that derives parameters from AI learning stability."""
@@ -2112,8 +2112,8 @@ grounded in the principle of "Inherited Cosmic Debt" through universal void dyna
 Emerges intelligently from elegant Void Intelligence rules.
 """
 import numpy as np
-from FUM_Void_Equations import delta_re_vgsp, delta_gdsp
-from FUM_Void_Debt_Modulation import VoidDebtModulation
+from Void_Equations import delta_re_vgsp, delta_gdsp
+from Void_Debt_Modulation import VoidDebtModulation
 
 #
 # --- The FUM Cosmogenesis Proof (The Inheritance Model) ---
@@ -2131,7 +2131,7 @@ from FUM_Void_Debt_Modulation import VoidDebtModulation
 # 6. The final, stable sparsity of the Child Universe is the definitive proof.
 #
 
-# Use universal constants from FUM_Void_Equations (derived from AI model balanced intelligence)
+# Use universal constants from Void_Equations (derived from AI model balanced intelligence)
 USE_REVGSP_TIME_DYNAMICS = True  # Enable time dynamics
 USE_GDSP_TIME_DYNAMICS = True   # Enable time dynamics
 
@@ -2213,7 +2213,7 @@ def run_proof():
     """Main proof execution with data sharing capability."""
     print("--- FUM Proof of Cosmogenesis (Inheritance Model) ---")
     print("Simulating the universe's origin via Inherited Cosmic Debt.")
-    from FUM_Void_Equations import get_universal_constants
+    from Void_Equations import get_universal_constants
     constants = get_universal_constants()
     print(f"Using universal void dynamics: α={constants['ALPHA']}, β={constants['BETA']}, f_ref={constants['F_REF']}, φ_sens={constants['PHASE_SENS']}")
     
@@ -2293,8 +2293,8 @@ dilution (rarity like cosmic voids), voids drain without full resolution.
 Emerges intelligently from elegant Void Intelligence rules.
 """
 import numpy as np
-from FUM_Void_Equations import delta_re_vgsp, delta_gdsp
-from FUM_Void_Debt_Modulation import VoidDebtModulation
+from Void_Equations import delta_re_vgsp, delta_gdsp
+from Void_Debt_Modulation import VoidDebtModulation
 
 # Module level variables for statistics
 NUM_RUNS = 10
@@ -2306,7 +2306,7 @@ all_dilutions = []
 class FUM_DM_Proof:
 
     # === CONTEXTUAL PARAMETERS for Dark Matter Proof ===
-    # Universal constants are defined in FUM_Void_Equations (derived from AI model balanced intelligence)
+    # Universal constants are defined in Void_Equations (derived from AI model balanced intelligence)
     
     def __init__(self):
         """Initialize Dark Matter proof with derived parameters from AI learning stability."""
@@ -2517,7 +2517,7 @@ PROOF FOUNDATION:
 """
 import sympy as sp
 import numpy as np
-from FUM_Void_Equations import get_universal_constants, delta_re_vgsp, delta_gdsp
+from Void_Equations import get_universal_constants, delta_re_vgsp, delta_gdsp
 
 class FUM_Einstein_Proof:
     """
@@ -2796,8 +2796,8 @@ constants produce fundamental particle physics.
 """
 import sympy as sp
 import numpy as np
-from FUM_Void_Equations import delta_re_vgsp, delta_gdsp, get_universal_constants
-from FUM_Void_Debt_Modulation import VoidDebtModulation
+from Void_Equations import delta_re_vgsp, delta_gdsp, get_universal_constants
+from Void_Debt_Modulation import VoidDebtModulation
 
 class FUMHiggsBosonProof:
     """Higgs Boson proof class that derives modulation from AI learning stability."""
@@ -3023,8 +3023,8 @@ the same void dynamics governing all other physics domains.
 Emerges intelligently from elegant Void Intelligence rules.
 """
 import numpy as np
-from FUM_Void_Equations import delta_re_vgsp, delta_gdsp
-from FUM_Void_Debt_Modulation import VoidDebtModulation
+from Void_Equations import delta_re_vgsp, delta_gdsp
+from Void_Debt_Modulation import VoidDebtModulation
 
 class FUMLightSpeedProof:
     """Light Speed proof class that derives c from universal void dynamics."""
@@ -3173,8 +3173,8 @@ dilution (rarity like cosmic voids), voids drain without full resolution.
 Emerges intelligently from elegant Void Intelligence rules.
 """
 import numpy as np
-from FUM_Void_Equations import delta_re_vgsp, delta_gdsp
-from FUM_Void_Debt_Modulation import VoidDebtModulation
+from Void_Equations import delta_re_vgsp, delta_gdsp
+from Void_Debt_Modulation import VoidDebtModulation
 
 class FUMQuantumMechanicsProof:
     """Quantum Mechanics proof class that returns derivations."""
@@ -3292,8 +3292,8 @@ field dynamics through universal void dynamics.
 Emerges intelligently from elegant Void Intelligence rules.
 """
 import numpy as np
-from FUM_Void_Equations import delta_re_vgsp, delta_gdsp, get_universal_constants
-from FUM_Void_Debt_Modulation import VoidDebtModulation
+from Void_Equations import delta_re_vgsp, delta_gdsp, get_universal_constants
+from Void_Debt_Modulation import VoidDebtModulation
 
 class FUMStandardModelProof:
     """Standard Model proof class that derives parameters from AI learning stability."""
@@ -3472,7 +3472,7 @@ if __name__ == "__main__":
     main()]]></content>
     </file>
     <file>
-      <path>code/computational_toy_proofs/FUM_Void_Debt_Modulation.py</path>
+      <path>code/computational_toy_proofs/Void_Debt_Modulation.py</path>
       <content><![CDATA["""
 FUM Universal Domain Modulation System
 Copyright © 2025 Justin K. Lietz, Neuroca, Inc. All Rights Reserved.
@@ -3482,7 +3482,7 @@ and learning stability principles. This replaces arbitrary scaling with
 mathematically derived modulation factors.
 """
 import numpy as np
-from FUM_Void_Equations import get_universal_constants
+from Void_Equations import get_universal_constants
 
 class VoidDebtModulation:
     """Class to derive domain modulation factors from void debt principles."""
@@ -3611,7 +3611,7 @@ if __name__ == "__main__":
         print("\n⚠ VALIDATION FAILED: Domain modulations need adjustment")]]></content>
     </file>
     <file>
-      <path>code/computational_toy_proofs/FUM_Void_Equations.py</path>
+      <path>code/computational_toy_proofs/Void_Equations.py</path>
       <content><![CDATA["""
 FUM Void Dynamics Library
 Copyright © 2025 Justin K. Lietz, Neuroca, Inc. All Rights Reserved.
@@ -4378,39 +4378,39 @@ def _load_module_by_path(path: str, modname: str):
 
 # 1) Preferred: in-repo Prometheus_FUVDM files (package import)
 try:
-    from Prometheus_FUVDM.derivation.code.FUM_Void_Equations import universal_void_dynamics as _u
-    from Prometheus_FUVDM.derivation.code.FUM_Void_Debt_Modulation import VoidDebtModulation as _V
+    from Prometheus_FUVDM.derivation.code.Void_Equations import universal_void_dynamics as _u
+    from Prometheus_FUVDM.derivation.code.Void_Debt_Modulation import VoidDebtModulation as _V
     universal_void_dynamics, VoidDebtModulation = _u, _V
     VOID_SOURCE = "Prometheus_FUVDM.derivation.code"
 except Exception:
     # 2) Fallback: load by file path from derivation/code/ next to this physics folder
     try:
         _ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))  # → Prometheus_FUVDM/derivation/code
-        _eq_path = os.path.join(_ROOT, "FUM_Void_Equations.py")
-        _mod_path = os.path.join(_ROOT, "FUM_Void_Debt_Modulation.py")
-        _eq = _load_module_by_path(_eq_path, "FUM_Void_Equations_local")
-        _md = _load_module_by_path(_mod_path, "FUM_Void_Debt_Modulation_local")
+        _eq_path = os.path.join(_ROOT, "Void_Equations.py")
+        _mod_path = os.path.join(_ROOT, "Void_Debt_Modulation.py")
+        _eq = _load_module_by_path(_eq_path, "Void_Equations_local")
+        _md = _load_module_by_path(_mod_path, "Void_Debt_Modulation_local")
         if _eq and hasattr(_eq, "universal_void_dynamics"):
             universal_void_dynamics = getattr(_eq, "universal_void_dynamics")
-            VOID_SOURCE = "file:derivation/code/FUM_Void_Equations.py"
+            VOID_SOURCE = "file:derivation/code/Void_Equations.py"
         if _md and hasattr(_md, "VoidDebtModulation"):
             VoidDebtModulation = getattr(_md, "VoidDebtModulation")
             if VOID_SOURCE is None:
-                VOID_SOURCE = "file:derivation/code/FUM_Void_Debt_Modulation.py"
+                VOID_SOURCE = "file:derivation/code/Void_Debt_Modulation.py"
     except Exception:
         pass
     # 3) fum_rt adapter
     if universal_void_dynamics is None:
         try:
             from fum_rt.core.void_dynamics_adapter import universal_void_dynamics as _u
-            from fum_rt.fum_advanced_math.void_dynamics.FUM_Void_Debt_Modulation import VoidDebtModulation as _V
+            from fum_rt.fum_advanced_math.void_dynamics.Void_Debt_Modulation import VoidDebtModulation as _V
             universal_void_dynamics, VoidDebtModulation = _u, _V
             VOID_SOURCE = "fum_rt"
         except Exception:
             # 4) demo fallback
             try:
-                from FUM_Demo_original.FUM_Void_Equations import universal_void_dynamics as _u
-                from FUM_Demo_original.FUM_Void_Debt_Modulation import VoidDebtModulation as _V
+                from FUM_Demo_original.Void_Equations import universal_void_dynamics as _u
+                from FUM_Demo_original.Void_Debt_Modulation import VoidDebtModulation as _V
                 universal_void_dynamics, VoidDebtModulation = _u, _V
                 VOID_SOURCE = "FUM_Demo_original"
             except Exception:
@@ -4423,12 +4423,12 @@ if universal_void_dynamics is None:
         _ROOT2 = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
         if _ROOT2 not in sys.path:
             sys.path.insert(0, _ROOT2)
-        import FUM_Void_Equations as _eq2
+        import Void_Equations as _eq2
         universal_void_dynamics = getattr(_eq2, "universal_void_dynamics", None)
         if universal_void_dynamics is not None:
             VOID_SOURCE = "sys.path:derivation/code"
         try:
-            import FUM_Void_Debt_Modulation as _vdm2
+            import Void_Debt_Modulation as _vdm2
             VoidDebtModulation = getattr(_vdm2, "VoidDebtModulation", None)
         except Exception:
             pass
@@ -4502,7 +4502,7 @@ class LBM2D:
 
         # Fail-fast if user requested void but module not available
         if getattr(self.cfg, "void_enabled", False) and universal_void_dynamics is None:
-            raise RuntimeError("void_enabled=True but universal_void_dynamics not available; ensure Prometheus_FUVDM/derivation/code/FUM_Void_Equations.py is present or install fum_rt/FUM_Demo_original.")
+            raise RuntimeError("void_enabled=True but universal_void_dynamics not available; ensure Prometheus_FUVDM/derivation/code/Void_Equations.py is present or install fum_rt/FUM_Demo_original.")
 
         self._set_equilibrium()
 
@@ -10767,7 +10767,7 @@ We must clearly state our starting point (the discrete equation) and our target 
 
 #### 2.1 The Discrete System (LHS)
 
-From the `FUM_Void_Equations.py` source code, the state of a single node $i$, denoted by $W_i(t)$, evolves according to the rule:
+From the `Void_Equations.py` source code, the state of a single node $i$, denoted by $W_i(t)$, evolves according to the rule:
 
 $$
 \frac{W_i(t+\Delta t) - W_i(t)}{\Delta t} = \alpha W_i(t)(1 - W_i(t)) - \beta W_i(t) + \text{noise/phase terms}

@@ -2147,7 +2147,7 @@ We must clearly state our starting point (the discrete equation) and our target 
 
 #### 2.1 The Discrete System (LHS)
 
-From the `FUM_Void_Equations.py` source code, the state of a single node $i$, denoted by $W_i(t)$, evolves according to the rule:
+From the `Void_Equations.py` source code, the state of a single node $i$, denoted by $W_i(t)$, evolves according to the rule:
 
 $$
 \frac{W_i(t+\Delta t) - W_i(t)}{\Delta t} = \alpha W_i(t)(1 - W_i(t)) - \beta W_i(t) + \text{noise/phase terms}

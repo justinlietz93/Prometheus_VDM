@@ -25,7 +25,7 @@ Artifacts land in `runs/<timestamp>/`:
 - `state_<step>.h5` (or `.npz` fallback) — checkpointed engram state (see `--checkpoint-every`, `--checkpoint-keep`)
 
 ### Where to put your functions
-If your repo already contains `FUM_Void_Equations.py` and `FUM_Void_Debt_Modulation.py` on `PYTHONPATH`,
+If your repo already contains `Void_Equations.py` and `Void_Debt_Modulation.py` on `PYTHONPATH`,
 this runtime will import them automatically.
 
 If not, drop those files at the project root (next to `fum_rt/`) **or** copy them into `fum_rt/core/`.

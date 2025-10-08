@@ -3,7 +3,7 @@
 
 This is a **minimal, production‑oriented** runtime that matches your Nexus ⇄ UTE/UTD vision.
 It runs continuously, ingests input, updates the connectome with your *void equations* if
-present (`FUM_Void_Equations.py`), logs metrics, and renders dashboards and connectome images.
+present (`Void_Equations.py`), logs metrics, and renders dashboards and connectome images.
 
 > Entry point: `python -m fum_rt.run_nexus`
 
@@ -22,7 +22,7 @@ Artifacts land in `runs/<timestamp>/`:
 - `state_<step>.h5` (or `.npz` fallback) — checkpointed engram state (see `--checkpoint-every`, `--checkpoint-keep`)
 
 ### Where to put your functions
-If your repo already contains `FUM_Void_Equations.py` and `FUM_Void_Debt_Modulation.py` on `PYTHONPATH`,
+If your repo already contains `Void_Equations.py` and `Void_Debt_Modulation.py` on `PYTHONPATH`,
 this runtime will import them automatically.
 
 If not, drop those files at the project root (next to `fum_rt/`) **or** copy them into `fum_rt/core/`.
@@ -234,7 +234,7 @@ This section explains three runtime concepts that appear in profiles and logs: d
 
 - Purpose: Selects a modulation factor for the void equations, scaling both the growth and decay elemental deltas before each tick. The value is computed by [get_domain_modulation()](fum_rt/core/void_dynamics_adapter.py:46), and is passed into both Δα and Δω inside the adapter.
 - How it works:
-  - If you provide your own FUM_Void_Debt_Modulation on PYTHONPATH (class with get_universal_domain_modulation), the adapter uses it to obtain domain_modulation.
+  - If you provide your own Void_Debt_Modulation on PYTHONPATH (class with get_universal_domain_modulation), the adapter uses it to obtain domain_modulation.
   - Otherwise, a safe fallback mapping is used internally and the modulation is computed from built‑in targets and the ALPHA/BETA ratio of the void equations.
 - Supported presets (fallback path) include: quantum, standard_model, dark_matter, biology_consciousness, cosmogenesis, higgs. Any unknown string (e.g., "math_physics") resolves to a baseline default in the fallback path unless your module overrides it.
 - Where it is applied: The scalar is fed into the void equations through the adapter and then consumed by the Connectome during step() each tick.
@@ -246,7 +246,7 @@ Examples
   "domain": "math_physics"
 
 To customize the mapping:
-- Add a Python module on PYTHONPATH that exposes a class VoidDebtModulation with get_universal_domain_modulation(domain) → {"domain_modulation": float}. See the adapter’s import logic in [get_domain_modulation()](fum_rt/core/void_dynamics_adapter.py:46) for how it is discovered. A reference template for domain modulation also exists in [computational_proofs/FUM_Void_Debt_Modulation.py](computational_proofs/FUM_Void_Debt_Modulation.py).
+- Add a Python module on PYTHONPATH that exposes a class VoidDebtModulation with get_universal_domain_modulation(domain) → {"domain_modulation": float}. See the adapter’s import logic in [get_domain_modulation()](fum_rt/core/void_dynamics_adapter.py:46) for how it is discovered. A reference template for domain modulation also exists in [computational_proofs/Void_Debt_Modulation.py](computational_proofs/Void_Debt_Modulation.py).
 
 ---
 

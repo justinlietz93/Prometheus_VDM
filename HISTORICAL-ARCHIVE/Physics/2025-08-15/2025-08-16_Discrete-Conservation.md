@@ -19,7 +19,7 @@ If these close the most pressing gaps, great; otherwise, let me know which to ta
 \[
 \dot{W}_i = F(W_i) + \sum_{j \in \mathcal{N}(i)} J_{ij} (W_j - W_i),
 \]
-where \( F(W_i) = (\alpha - \beta) W_i - \alpha W_i^2 \) (on-site, from FUM_Void_Equations.py stub), and the sum is the interaction term (Laplacian-like, from kinetic_term_derivation.md).
+where \( F(W_i) = (\alpha - \beta) W_i - \alpha W_i^2 \) (on-site, from Void_Equations.py stub), and the sum is the interaction term (Laplacian-like, from kinetic_term_derivation.md).
 
 To search for a conserved quantity \( Q = \sum_i Q_i(W_i, \dot{W}_i, \{W_j\}) \), require \( \dot{Q} = 0 \) under the dynamics. Test candidates via Noether-like symmetry or direct computation.
 

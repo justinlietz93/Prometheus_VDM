@@ -15,13 +15,13 @@ sys.path.append(str(Path(__file__).resolve().parents[3]))
 
 # Avoid importing the dense Connectome (do not set FORCE_DENSE).
 # Instead sample W directly using numpy and evaluate void dynamics from
-# the canonical FUM_Void_Equations module. This keeps the test non-invasive.
+# the canonical Void_Equations module. This keeps the test non-invasive.
 import importlib.util
 from pathlib import Path as _P
 
-# load FUM_Void_Equations module directly to avoid fum_rt package init side-effects
-fve_path = _P(__file__).resolve().parents[3] / 'fum_rt' / 'fum_advanced_math' / 'void_dynamics' / 'FUM_Void_Equations.py'
-spec = importlib.util.spec_from_file_location('FUM_Void_Equations', str(fve_path))
+# load Void_Equations module directly to avoid fum_rt package init side-effects
+fve_path = _P(__file__).resolve().parents[3] / 'fum_rt' / 'fum_advanced_math' / 'void_dynamics' / 'Void_Equations.py'
+spec = importlib.util.spec_from_file_location('Void_Equations', str(fve_path))
 FVE = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(FVE)
 
@@ -81,7 +81,7 @@ def main():
         def universal_deterministic(W, t, domain_modulation=1.0, sie_drive=None, use_time_dynamics=False):
             # deterministic skeleton: re = ALPHA * W * (1 - W); gdsp = -BETA * W
             try:
-                from fum_rt.fum_advanced_math.void_dynamics import FUM_Void_Equations as FVE
+                from fum_rt.fum_advanced_math.void_dynamics import Void_Equations as FVE
                 ALPHA = getattr(FVE, 'ALPHA', 0.25)
                 BETA = getattr(FVE, 'BETA', 0.1)
             except Exception:

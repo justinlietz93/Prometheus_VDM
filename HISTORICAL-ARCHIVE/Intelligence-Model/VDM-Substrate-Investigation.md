@@ -69,7 +69,7 @@ This module manages the growth of the **Substrate** by adding new computational 
         *   `grow(substrate, num_new_neurons)`: The core method that expands the `Substrate` instance. It creates new neuron properties, expands the existing connectome, and forms new connections for the added neurons.
 *   **External Relationships:**
     *   Directly modifies a `Substrate` instance by expanding its internal arrays (e.g., `is_excitatory`, `tau_m`, `W`).
-    *   Imports `universal_void_dynamics` from [FUM_Void_Equations](Void_Unity_Proofs/FUM_Demo_original/FUM_Void_Equations.py) to determine the formation of new connections based on void dynamics principles.
+    *   Imports `universal_void_dynamics` from [Void_Equations](Void_Unity_Proofs/FUM_Demo_original/Void_Equations.py) to determine the formation of new connections based on void dynamics principles.
 
 ### [fum_growth_arbiter.py](Void_Unity_Proofs/fum_rt/substrate/fum_growth_arbiter.py)
 This module contains the `GrowthArbiter` class, which decides when and how much the network should grow.

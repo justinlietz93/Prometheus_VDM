@@ -1,0 +1,63 @@
+{
+  "artifacts": {
+    "figure": "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/figures/causality/20251008_091755_dag_audit_v1.png",
+    "figure_warning": null,
+    "log": "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/logs/causality/20251008_091755_dag_audit_v1.json"
+  },
+  "dag": {
+    "acyclic": true,
+    "edges": 9,
+    "nodes": 10
+  },
+  "domain": "causality",
+  "gates": {
+    "failed": false,
+    "reasons": []
+  },
+  "ingest": {
+    "edges": 0,
+    "events": 20000,
+    "input_files": [
+      "Derivation/code/physics/causality/data/10k_Neurons/events.jsonl"
+    ],
+    "skipped": {
+      "filtered_stream": 0,
+      "missing_id": 0,
+      "missing_time": 0
+    },
+    "total_seen": 20000
+  },
+  "metrics": {
+    "d_hat_mean": 10.0,
+    "d_hat_median": 10.0,
+    "diamond_intercept": 0.4146693014616459,
+    "diamond_slope": 0.07671028989423871,
+    "r_mean": 1.0,
+    "r_median": 1.0,
+    "samples": 64
+  },
+  "params": {
+    "infer_by_time": true,
+    "k": 64,
+    "max_dt": null,
+    "max_events": 20000,
+    "max_successors": 6,
+    "min_dt": 0.0,
+    "reach_budget": 2048,
+    "streams": null,
+    "time_tolerance": 0.001
+  },
+  "policy": {
+    "approved": true,
+    "approved_at": "2025-10-08T12:40:45.722017+00:00",
+    "approved_by": "Justin K. Lietz",
+    "engineering_only": false,
+    "proposal": "Derivation/Causality/PROPOSAL_Causal_DAG_Audits_for_Void_Dynamics_Model.md",
+    "schema": "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/physics/causality/schemas/causal_dag_audit.schema.json"
+  },
+  "proposal": "Derivation/Causality/PROPOSAL_Causal_DAG_Audits_for_Void_Dynamics_Model.md",
+  "script": "run_causality_dag_audit",
+  "status": "success",
+  "tag": "v1",
+  "timestamp": "2025-10-08T09:17:55.899712"
+}

@@ -38,7 +38,8 @@ secrets/*
 runs/*
 code_crawler_results/*
 *.db
-
+events.jsonl
+utd_events.jsonl
 
 # Plans and LLM Context
 ## On the Prometheus workstation

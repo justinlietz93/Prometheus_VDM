@@ -2,7 +2,7 @@
 
 ## Current Goals
 
-- Scoping a causal DAG audit as a low-risk addition: implement a small common helper for event-DAG construction and local-dimension/interval metrics; add an optional experiment runner (approved/tagged) that ingests existing event logs and outputs figures/CSV/JSON under outputs/ with quarantine policy.
+- Enhancing causality audit outputs using trail chaining and macro VAR Granger DAGs. Focus: finalize documentation updates (README edits) and prepare sensitivity sweeps for trail parameters (topk/minval) and macro lags/alpha, keeping approvals/gating and PNG-only policy.
 
 ## Current Blockers
 

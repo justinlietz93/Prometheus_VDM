@@ -5473,7 +5473,7 @@ import numpy as np
 
 # Try to align defaults with your universal constants; fall back to safe values.
 try:
-    from FUM_Void_Equations import get_universal_constants  # noqa: F401
+    from Void_Equations import get_universal_constants  # noqa: F401
     _UC = get_universal_constants()
     _ALPHA_DEF = float(_UC.get("ALPHA", 0.25))
     _BETA_DEF = float(_UC.get("BETA", 0.10))
@@ -10387,7 +10387,7 @@ import numpy as np
 import torch
 from scipy.sparse import csc_matrix
 
-from FUM_Void_Equations import universal_void_dynamics
+from Void_Equations import universal_void_dynamics
 
 class Neurogenesis:
     """
@@ -11440,7 +11440,7 @@ import numpy as np
 try:
     # Import only the elemental deltas from the user's equations.
     # We compose universal_void_dynamics locally to guarantee growth+decay are combined.
-    from FUM_Void_Equations import delta_re_vgsp, delta_gdsp, get_universal_constants
+    from Void_Equations import delta_re_vgsp, delta_gdsp, get_universal_constants
     HAVE_EXTERNAL = True
 except Exception:
     HAVE_EXTERNAL = False
@@ -11481,7 +11481,7 @@ def universal_void_dynamics(W, t, domain_modulation=1.0, use_time_dynamics=True)
 def get_domain_modulation(domain: str):
     # Try user's universal modulation
     try:
-        from FUM_Void_Debt_Modulation import VoidDebtModulation
+        from Void_Debt_Modulation import VoidDebtModulation
         mod = VoidDebtModulation().get_universal_domain_modulation(domain)
         return float(mod['domain_modulation'])
     except Exception:
