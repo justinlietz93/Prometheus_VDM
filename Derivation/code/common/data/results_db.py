@@ -221,8 +221,17 @@ def begin_run(domain: str, experiment: str, tag: str, params: Optional[Dict[str,
     # Set env to help downstream authorization policy (domain:script:tag HMAC scope)
     os.environ.setdefault("VDM_RUN_SCRIPT", Path(run_script).stem)
 
-    # Validate tag against manifest prior to DB operations
-    _ensure_tag_allowed(domain, tag)
+    # Approval enforcement: for qualifying scripts/domains, require manifest tag + full approval
+    from ..authorization.approval import should_enforce_approval, check_tag_approval
+    enforce = should_enforce_approval(domain, script_path)
+    if enforce:
+        # First ensure tag is declared in manifest
+        _ensure_tag_allowed(domain, tag)
+        # Then run full approval guard (raises on failure unless engineering_only allowed)
+        code_root = CODE_ROOT
+        approved, eng_only_flag, _proposal = check_tag_approval(domain, tag, allow_unapproved=engineering_only, code_root=code_root)
+        # If not approved and not engineering_only, check_tag_approval would have exited; if engineering_only, mark flag
+        engineering_only = engineering_only or eng_only_flag
 
     # Prepare DB path and validate directory permissions
     db_path = get_db_path(domain)
