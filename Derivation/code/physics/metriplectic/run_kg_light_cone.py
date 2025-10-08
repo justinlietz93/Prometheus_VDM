@@ -3,16 +3,24 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, Any, Tuple
+from typing import Tuple, Dict, Any, List
 
 import numpy as np
 import sys
 
+# Ensure common helpers on path
 CODE_ROOT = Path(__file__).resolve().parents[2]
 if str(CODE_ROOT) not in sys.path:
     sys.path.insert(0, str(CODE_ROOT))
 
 from common.io_paths import figure_path, log_path, write_log
+from common.data.results_db import (
+    begin_run,
+    add_artifacts,
+    log_metrics,
+    end_run_success,
+    end_run_failed,
+)
 from common.authorization.approval import check_tag_approval
 from physics.metriplectic.kg_ops import kg_verlet_step
 
@@ -23,11 +31,11 @@ class ConeSpec:
     L: float = 2.0 * np.pi
     c: float = 1.0
     m: float = 1.0
-    A: float = 1e-4
-    sigma: float = 0.05  # Gaussian width in fraction of L
-    dt: float = 0.005
+    A: float = 1e-4  # slightly larger than dispersion to clear threshold cleanly
+    dt: float = 0.0025
     steps: int = 4000
-    thresh_frac: float = 1e-6
+    sigma_frac: float = 0.01  # sigma = sigma_frac * L
+    threshold_rel: float = 1e-6  # threshold = threshold_rel * A
     tag: str = "KG-cone-v1"
 
 
@@ -37,130 +45,169 @@ def _grid(spec: ConeSpec) -> Tuple[np.ndarray, float]:
     return x, dx
 
 
-def _initial_gaussian(spec: ConeSpec, x: np.ndarray) -> np.ndarray:
+def _periodic_distance(x: np.ndarray, x0: float, L: float) -> np.ndarray:
+    # minimal periodic distance on a ring [0,L)
+    d = np.abs(x - x0)
+    return np.minimum(d, L - d)
+
+
+def _initial_gaussian(spec: ConeSpec, x: np.ndarray) -> Tuple[np.ndarray, np.ndarray, float]:
     x0 = 0.5 * spec.L
-    sig = spec.sigma * spec.L
-    return spec.A * np.exp(-0.5 * ((x - x0) / sig) ** 2)
-
-
-def _radius_at_threshold(phi: np.ndarray, x: np.ndarray, x0: float, thresh: float) -> float:
-    # smallest radius R such that max(|phi| in [x0-R, x0+R]) >= thresh (periodic domain)
-    N = x.size
-    L = x[-1] - x[0] + (x[1] - x[0])
-    dx = x[1] - x[0]
-    # distances with periodic wrap
-    dxs = np.abs(((x - x0 + 0.5 * L) % L) - 0.5 * L)
-    # monotone search over unique radii set
-    order = np.argsort(dxs)
-    max_abs = 0.0
-    R = 0.0
-    for idx in order:
-        max_abs = max(max_abs, abs(phi[idx]))
-        R = dxs[idx]
-        if max_abs >= thresh:
-            return float(R)
-    return float(R)
-
-
-def run_light_cone(spec: ConeSpec, approved: bool = False, engineering_only: bool = False, proposal: str | None = None) -> Dict[str, Any]:
-    x, dx = _grid(spec)
-    x0 = 0.5 * spec.L
-    phi0 = _initial_gaussian(spec, x)
+    sigma = spec.sigma_frac * spec.L
+    phi0 = spec.A * np.exp(-0.5 * ((x - x0) / sigma) ** 2)
     pi0 = np.zeros_like(phi0)
-    peak0 = float(np.max(np.abs(phi0)))
-    thresh = spec.thresh_frac * max(peak0, 1e-30)
+    return phi0, pi0, x0
 
+
+def _front_radius(x: np.ndarray, x0: float, L: float, phi: np.ndarray, thresh: float) -> float:
+    mask = np.abs(phi) >= thresh
+    if not np.any(mask):
+        return 0.0
+    d = _periodic_distance(x, x0, L)
+    return float(np.max(d[mask]))
+
+
+def run_cone(spec: ConeSpec, approved: bool = False, engineering_only: bool = False, proposal: str | None = None) -> Dict[str, Any]:
+    x, dx = _grid(spec)
     t = np.arange(spec.steps + 1, dtype=float) * spec.dt
-    R = np.empty_like(t)
-    cur_phi, cur_pi = phi0.copy(), pi0.copy()
-    R[0] = _radius_at_threshold(cur_phi, x, x0, thresh)
+    phi, pi, x0 = _initial_gaussian(spec, x)
+    thresh = spec.threshold_rel * spec.A
+
+    # Optional space-time for visualization: store |phi| at a stride to limit memory
+    stride_t = max(1, int(spec.steps // 400))  # at most ~400 time slices
+    st_slices: List[np.ndarray] = []
+    st_times: List[float] = []
+
+    R: np.ndarray = np.zeros_like(t)
+    R[0] = _front_radius(x, x0, spec.L, phi, thresh)
+    if 0 % stride_t == 0:
+        st_slices.append(np.abs(phi).copy())
+        st_times.append(t[0])
+
+    cur_phi, cur_pi = phi.copy(), pi.copy()
     for n in range(1, spec.steps + 1):
         cur_phi, cur_pi = kg_verlet_step(cur_phi, cur_pi, spec.dt, dx, spec.c, spec.m)
-        R[n] = _radius_at_threshold(cur_phi, x, x0, thresh)
+        R[n] = _front_radius(x, x0, spec.L, cur_phi, thresh)
+        if n % stride_t == 0:
+            st_slices.append(np.abs(cur_phi).copy())
+            st_times.append(t[n])
 
-    # Linear fit: R(t) ~ v * t + b
-    A = np.vstack([t, np.ones_like(t)]).T
-    v, b = np.linalg.lstsq(A, R, rcond=None)[0]
+    # Fit R(t) = v * t + b
+    coeffs = np.polyfit(t, R, 1)
+    v = float(coeffs[0])
+    b = float(coeffs[1])
     R_pred = v * t + b
     ss_res = float(np.sum((R - R_pred) ** 2))
     ss_tot = float(np.sum((R - float(np.mean(R))) ** 2))
     R2 = 1.0 - (ss_res / ss_tot if ss_tot > 0 else 0.0)
 
-    passed = bool(v <= spec.c * (1.0 + 0.02) + 1e-15)
+    # Gate: speed <= c*(1+eps)
+    eps = 0.02
+    passed = bool(v <= spec.c * (1.0 + eps))
 
     # Artifacts
     import matplotlib.pyplot as plt
-    # spacetime image (optional but helpful): show |phi| with light-cone overlay
     quarantine = engineering_only or (not approved)
     figp = figure_path("metriplectic", f"kg_light_cone__{spec.tag}", failed=(not passed) or quarantine)
-    plt.figure(figsize=(6.4, 4.4))
-    # downsample for visualization
-    # create a small spacetime image by sampling every N//256
-    stride = max(1, spec.N // 256)
-    im = []
-    cur_phi, cur_pi = phi0.copy(), pi0.copy()
-    for n in range(spec.steps + 1):
-        if n > 0:
-            cur_phi, cur_pi = kg_verlet_step(cur_phi, cur_pi, spec.dt, dx, spec.c, spec.m)
-        im.append(np.abs(cur_phi[::stride]))
-    im_arr = np.array(im)
-    extent = [0, spec.L, spec.steps * spec.dt, 0]
-    plt.imshow(im_arr, aspect='auto', extent=extent, cmap='magma')
-    # overlay measured R(t)
-    plt.plot(x0 + R, t, 'c-', lw=1.0, label='R(t)')
-    plt.plot(x0 - R, t, 'c-', lw=1.0)
-    # overlay fitted slope lines (x0 ± v t)
-    plt.plot(x0 + (v * t + b), t, 'w--', lw=1.0, label=f'fit v={v:.4f}, R^2={R2:.5f}')
-    plt.plot(x0 - (v * t + b), t, 'w--', lw=1.0)
-    plt.colorbar(label='|phi|')
-    plt.xlabel('x')
-    plt.ylabel('t')
-    plt.title('KG locality cone')
-    plt.legend(loc='upper right', fontsize=8)
-    plt.tight_layout(); plt.savefig(figp, dpi=140); plt.close()
 
-    # CSV
+    # Build space-time image
+    if st_slices:
+        ST = np.stack(st_slices, axis=0)  # [T, X]
+        extent = [0.0, spec.L, st_times[0], st_times[-1]]  # x from 0..L, t from 0..T
+        plt.figure(figsize=(6.4, 4.2))
+        plt.imshow(ST, aspect='auto', origin='lower', extent=extent, cmap='magma')
+        # Overlay measured front as R(t) around x0 -> draw both +/- branches (unwrapped in [0,L])
+        tt = np.array(st_times)
+        Rt = np.interp(tt, t, R)
+        x_plus = (x0 + Rt)
+        x_minus = (x0 - Rt)
+        # Clip into [0,L]
+        x_plus = np.mod(x_plus, spec.L)
+        x_minus = np.mod(x_minus, spec.L)
+        plt.plot(x_plus, tt, 'c-', lw=1.2, label='front +R(t)')
+        plt.plot(x_minus, tt, 'c--', lw=1.0, label='front -R(t)')
+        # Reference light cone lines at slope c
+        t_line = np.linspace(tt[0], tt[-1], 200)
+        ref_plus = (x0 + spec.c * t_line)
+        ref_minus = (x0 - spec.c * t_line)
+        plt.plot(np.mod(ref_plus, spec.L), t_line, 'w:', lw=1.0, label='|dx/dt|=c')
+        plt.plot(np.mod(ref_minus, spec.L), t_line, 'w:', lw=1.0)
+        plt.colorbar(label='|phi|')
+        plt.xlabel('x')
+        plt.ylabel('t')
+        plt.title('KG local causality cone')
+        plt.legend(loc='upper right', fontsize=7)
+        plt.tight_layout(); plt.savefig(figp, dpi=150); plt.close()
+
+    # CSV of R(t)
     csvp = log_path("metriplectic", f"kg_light_cone__{spec.tag}", failed=(not passed) or quarantine, type="csv")
     with csvp.open("w", encoding="utf-8") as fcsv:
         fcsv.write("t,R\n")
         for ti, Ri in zip(t, R):
             fcsv.write(f"{ti},{Ri}\n")
 
-    # JSON
+    # JSON log
     logj = {
         "params": {
             "N": spec.N, "L": spec.L, "c": spec.c, "m": spec.m,
-            "A": spec.A, "sigma": spec.sigma, "dt": spec.dt, "steps": spec.steps,
-            "thresh_frac": spec.thresh_frac
+            "A": spec.A, "dt": spec.dt, "steps": spec.steps,
+            "sigma_frac": spec.sigma_frac, "threshold_rel": spec.threshold_rel
         },
-        "fit": {"v": float(v), "b": float(b), "R2": float(R2)},
-        "gate": {"passed": passed, "v_max": spec.c * (1.0 + 0.02)},
+        "fit": {"speed": v, "intercept": b, "R2": R2},
+        "gate": {"passed": passed, "speed_max": spec.c * (1.0 + eps), "eps": eps},
         "policy": {"approved": bool(approved), "engineering_only": bool(engineering_only), "quarantined": bool(quarantine), "tag": spec.tag, "proposal": proposal},
-        "figure": str(figp), "csv": str(csvp)
+        "figure": str(figp),
+        "csv": str(csvp),
     }
     write_log(log_path("metriplectic", f"kg_light_cone__{spec.tag}", failed=(not passed) or quarantine), logj)
+
+    # Results DB logging
+    try:
+        handle = begin_run(
+            domain="metriplectic",
+            experiment=str(Path(__file__).resolve()),
+            tag=spec.tag,
+            params={
+                "N": spec.N, "L": spec.L, "c": spec.c, "m": spec.m,
+                "A": spec.A, "dt": spec.dt, "steps": spec.steps,
+                "sigma_frac": spec.sigma_frac, "threshold_rel": spec.threshold_rel,
+            },
+            engineering_only=bool(quarantine),
+        )
+        add_artifacts(handle, {"figure": str(figp), "csv": str(csvp)})
+        log_metrics(handle, {"speed": float(v), "intercept": float(b), "R2": float(R2), "passed": bool(passed)})
+        if passed:
+            end_run_success(handle)
+        else:
+            end_run_failed(handle, metrics={"passed": False})
+    except Exception as _e:
+        _ = _e
+
     return logj
 
 
 def main():
     import argparse, json
-    p = argparse.ArgumentParser(description="KG locality cone: front speed estimate from threshold radius")
+    p = argparse.ArgumentParser(description="KG locality cone: Gaussian packet front speed and space–time plot")
     p.add_argument("--N", type=int, default=512)
     p.add_argument("--L", type=float, default=2.0 * np.pi)
     p.add_argument("--c", type=float, default=1.0)
     p.add_argument("--m", type=float, default=1.0)
     p.add_argument("--A", type=float, default=1e-4)
-    p.add_argument("--sigma", type=float, default=0.05)
-    p.add_argument("--dt", type=float, default=0.005)
+    p.add_argument("--dt", type=float, default=0.0025)
     p.add_argument("--steps", type=int, default=4000)
-    p.add_argument("--thresh_frac", type=float, default=1e-6)
+    p.add_argument("--sigma-frac", dest="sigma_frac", type=float, default=0.01)
+    p.add_argument("--threshold-rel", dest="threshold_rel", type=float, default=1e-6)
     p.add_argument("--tag", type=str, default="KG-cone-v1")
     p.add_argument("--allow-unapproved", action="store_true", help="Allow running with an unapproved tag (engineering-only; artifacts quarantined)")
     args = p.parse_args()
-    # Tag approval (shared utility)
+
+    # Approval check
     approved, engineering_only, proposal = check_tag_approval("metriplectic", args.tag, args.allow_unapproved, CODE_ROOT)
-    spec = ConeSpec(N=args.N, L=args.L, c=args.c, m=args.m, A=args.A, sigma=args.sigma, dt=args.dt, steps=args.steps, thresh_frac=args.thresh_frac, tag=args.tag)
-    out = run_light_cone(spec, approved=approved, engineering_only=engineering_only, proposal=proposal)
+
+    spec = ConeSpec(N=args.N, L=args.L, c=args.c, m=args.m, A=args.A, dt=args.dt, steps=args.steps,
+                    sigma_frac=args.sigma_frac, threshold_rel=args.threshold_rel, tag=args.tag)
+    out = run_cone(spec, approved=approved, engineering_only=engineering_only, proposal=proposal)
     print(json.dumps(out, indent=2))
 
 

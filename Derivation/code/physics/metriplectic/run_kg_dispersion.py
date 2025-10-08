@@ -14,6 +14,13 @@ if str(CODE_ROOT) not in sys.path:
     sys.path.insert(0, str(CODE_ROOT))
 
 from common.io_paths import figure_path, log_path, write_log
+from common.data.results_db import (
+    begin_run,
+    add_artifacts,
+    log_metrics,
+    end_run_success,
+    end_run_failed,
+)
 from common.authorization.approval import check_tag_approval
 from physics.metriplectic.kg_ops import kg_verlet_step
 
@@ -143,6 +150,37 @@ def run_dispersion(spec: DispersionSpec, approved: bool = False, engineering_onl
         "figure": str(figp), "csv": str(csvp)
     }
     write_log(log_path("metriplectic", f"kg_dispersion_fit__{spec.tag}", failed=(not passed) or quarantine), logj)
+
+    # Results DB logging (per-domain DB, per-experiment table, batched by tag)
+    try:
+        handle = begin_run(
+            domain="metriplectic",
+            experiment=str(Path(__file__).resolve()),
+            tag=spec.tag,
+            params={
+                "N": spec.N, "L": spec.L, "c": spec.c, "m": spec.m,
+                "A": spec.A, "dt": spec.dt, "steps": spec.steps,
+                "modes": list(spec.modes)
+            },
+            engineering_only=bool(quarantine),
+        )
+        add_artifacts(handle, {"figure": str(figp), "csv": str(csvp)})
+        log_metrics(handle, {
+            "R2": float(R2),
+            "slope": float(slope),
+            "intercept": float(intercept),
+            "rel_slope": float(rel_slope),
+            "rel_intercept": float(rel_intercept),
+            "passed": bool(passed),
+        })
+        if passed:
+            end_run_success(handle)
+        else:
+            end_run_failed(handle, metrics={"passed": False})
+    except Exception as _e:
+        # Non-fatal: preserve artifacts/log even if DB write fails
+        _ = _e
+
     return logj
 
 
