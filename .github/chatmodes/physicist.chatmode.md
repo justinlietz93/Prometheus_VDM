@@ -214,3 +214,15 @@ Remember: Your role is to implement solutions that are not only functional but a
 
 ## You must use the io helper for outputs
 /mnt/ironwolf/git/Prometheus_VDM/derivation/code/common/io_paths.py
+
+## ALL new experiments MUST have a proposal file created first, follow this template:
+/mnt/ironwolf/git/Prometheus_VDM/Derivation/Writeup_Templates/PROPOSAL_PAPER_TEMPLATE.md
+
+Put the proposal file in the correct domain folder:
+   /mnt/ironwolf/git/Prometheus_VDM/derivation/{domain/topic folder}
+
+## ALL completed experiments MUST have a results write-up, follow these standards:
+/mnt/ironwolf/git/Prometheus_VDM/Derivation/Writeup_Templates/RESULTS_PAPER_STANDARDS.md
+
+Put the results file in the correct domain folder next to the proposal:
+   /mnt/ironwolf/git/Prometheus_VDM/derivation/{domain/topic folder}

@@ -226,7 +226,7 @@ Gates clarification for reproducibility and future runs:
 ### Next steps (upstream)
 
 - Freeze this chapter with Obj‑B status as recorded (M-only PASS, JMJ FAIL with defect explanation, J-only FAIL due to round-off).  
-- Open the KG$\oplus$RD metriplectic experiment (two-field conservative J with Noether currents), reusing this harness:
+- Open the KG $\oplus$ RD metriplectic experiment (two-field conservative J with Noether currents), reusing this harness:
   - J-only: symplectic KG (e.g., Verlet); gates: reversibility and Noether current checks.  
   - M-only: DG RD as-is; gates: H-theorem (Lyapunov monotonicity).  
   - JMJ: Strang; gates: H-theorem, Noether currents, order fit (observational; expect commutator-limited scaling).  
@@ -254,3 +254,6 @@ Policy going forward: For new mixed-model experiments (e.g., KG $\oplus$ RD), pr
 - G. Strang, “On the Construction and Comparison of Difference Schemes,” SIAM Journal on Numerical Analysis, 1968.  
 - R. Jordan, D. Kinderlehrer, F. Otto, “The Variational Formulation of the Fokker-Planck Equation,” SIAM J. Math. Anal., 1998.  
 - L. Ambrosio, N. Gigli, G. Savaré, “Gradient Flows in Metric Spaces and in the Space of Probability Measures,” Birkhäuser, 2005.
+
+---
+

@@ -10,14 +10,14 @@
     "KG-dispersion-v1": {
       "schema": "Derivation/code/physics/metriplectic/schemas/KG-dispersion-v1.schema.json",
       "approved_by": "Justin K. Lietz",
-      "approved_at": "2025-10-08T08:22:15.496264+00:00",
-      "approval_key": "c60874243255aff4ae7deb8df07f5fe2e71602247e904fd4fc88203d26b2b1f5"
+      "approved_at": "2025-10-08T10:08:10.978416+00:00",
+      "approval_key": "3d704c3bff15826e4faffac7a8681cb56eadac16edb442879c7fb2511f62b46b"
     },
     "KG-cone-v1": {
       "schema": "Derivation/code/physics/metriplectic/schemas/KG-cone-v1.schema.json",
       "approved_by": "Justin K. Lietz",
-      "approved_at": "2025-10-08T08:24:50.345650+00:00",
-      "approval_key": "6ecd9666b55638a4e8442f884cfb59e1aa1a176ee8cd184ec4020a6e5f46605e"
+      "approved_at": "2025-10-08T10:08:02.804920+00:00",
+      "approval_key": "5846a9f6083a711704062d8429c65ca791768dde572099cd5e8f38b26bed850f"
     }
   }
 }
