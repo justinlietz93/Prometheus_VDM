@@ -11,11 +11,13 @@
 This document provides a systematic comparison between "legacy" FUM implementations (primarily `fum_sie.py` and related components) and "new" implementations (primarily `sie_v2.py` and related void-faithful components) to determine which better aligns with the theoretical physics derivations in `Derivation/`.
 
 **Key Findings:**
+
 - **SIE v2 (New):** ✅ **Superior physics alignment** - Direct computation from void dynamics (W, dW), explicit EMA decay matching field equations
 - **SIE Legacy:** ⚠️ **Indirect physics mapping** - Blueprint-based with complex external dependencies, density proxies instead of field derivatives
 - **Recommendation:** **Use SIE v2** (`sie_v2.py`) as the canonical implementation for physics-aligned intrinsic motivation
 
 **Critical Distinctions:**
+
 - SIE v2 operates directly on field variables (W, dW) per void dynamics theory
 - SIE Legacy operates on derived metrics (density, external signals) with indirect field coupling
 - SIE v2 has explicit EMA with half-life parameter matching field decay time 1/γ
@@ -28,6 +30,7 @@ This document provides a systematic comparison between "legacy" FUM implementati
 ### 1. Self-Improvement Engine (SIE) - Core Intrinsic Motivation
 
 #### Implementation Locations
+
 - **Legacy:** `fum_rt/core/fum_sie.py` (class `SelfImprovementEngine`)
 - **New:** `fum_rt/core/sie_v2.py` (function `sie_step`)
 
@@ -50,6 +53,7 @@ C_i^{n+1} = C_i^{n}+\Delta t\Big(D\,\Delta_{xx} C_i^{n}-\gamma\,C_i^{n}+S_i^{n}\
 $$
 
 **Analysis:**
+
 - **Legacy approach** treats TD as scalar external feedback or density change, missing the direct field evolution
 - **New approach** computes TD as `W(t) - γ*W(t-1)`, which is exactly the discrete time derivative after factoring out decay - this is the temporal component of the field update equation
 - The discount factor γ=0.99 corresponds to field decay parameter in **VDM-E-001**, **VDM-E-003**
@@ -74,6 +78,7 @@ $$
 $$
 
 **Analysis:**
+
 - **Legacy approach** uses event-triggered novelty with artificial thresholds and decay constants
 - **New approach** directly measures field change magnitude |dW|, which is the discrete version of |∂_t φ|
 - Normalized by maximum ensures scale-invariance without arbitrary constants
@@ -98,6 +103,7 @@ C(t)=C_{\text{ss}}+\big(C(0)-C_{\text{ss}}\big)e^{-\gamma t}
 $$
 
 **Analysis:**
+
 - **Legacy approach** uses arbitrary decay constant (0.995) without physical justification
 - **New approach** uses explicit half-life formula: `α = 1 - exp(ln(0.5)/half_life)`, directly implementing exponential decay with time constant
 - This matches the field relaxation time `1/γ` in **VDM-E-003**
@@ -123,6 +129,7 @@ $$
 $$
 
 **Analysis:**
+
 - **Legacy approach** requires external variance parameter, not always available
 - **New approach** computes stability from EMA statistics of |dW|, which represents |∂_t φ|²
 - The variance term penalizes deviation from target, encouraging Lyapunov functional minimization
@@ -148,6 +155,7 @@ S(x,t) = \sigma(x)\,\big[\kappa_1 P(x,t)+\kappa_2 I_{\text{net}}(x,t)+\kappa_3 U
 $$
 
 **Analysis:**
+
 - **Legacy approach** uses tanh damping and complex external reward paths, obscuring the additive structure
 - **New approach** uses simple linear combination with explicit weights (κ₁, κ₂, κ₃ analogs)
 - The linear blend better matches the additive source structure in **VDM-E-002**
@@ -166,6 +174,7 @@ $$
 | **Physics Mapping** | **VDM-E-001**: Field magnitude C(x,t) (weak) | **VDM-E-003**: Smoothed field with relaxation (strong) | **New aligns better** |
 
 **Analysis:**
+
 - **Legacy approach** produces discontinuous valence from event-triggered novelty
 - **New approach** applies EMA smoothing with explicit time constant (valence_beta)
 - This matches field smoothing in **VDM-E-003** with exponential relaxation
@@ -195,11 +204,13 @@ $$
 #### A. Core Void Equations
 
 **Implementation Locations:**
+
 - **Legacy/Canonical:** `fum_rt/core/Void_Equations.py`
 - **Alternative:** `fum_rt/fum_advanced_math/void_dynamics/FUM_Void_Equations.py` (referenced in derivation tests)
 
 **Analysis:**
 Both implementations define the fundamental void dynamics parameters:
+
 - **ALPHA** (α): Resonance enhancement (typically 0.25)
 - **BETA** (β): Global damping/GDSP (typically 0.10)
 - **Constraint:** α > β ensures tachyonic instability and void structure formation
@@ -212,6 +223,7 @@ $$
 $$
 
 Where:
+
 - `r = α - β` (net growth rate when α > β)
 - RE-VGSP growth ~ `α*W*(1-W)` maps to `rφ - uφ²` term
 - GDSP decay ~ `-β*W` provides stabilizing cubic term
@@ -225,10 +237,12 @@ Where:
 #### A. Connectome Implementations
 
 **Files Found:**
+
 - `fum_rt/core/connectome.py` - Dense connectome (dense NumPy arrays)
 - `fum_rt/core/sparse_connectome.py` - Sparse connectome (scipy.sparse)
 
 **Status:** These are **not** legacy vs new, but rather **dense vs sparse** implementations for different scales:
+
 - Dense: Better for small networks (N < 1000), GPU compatibility
 - Sparse: Necessary for large networks (N > 10,000), memory efficiency
 
@@ -239,6 +253,7 @@ Where:
 #### B. No Other Versioned Components Found
 
 **Search Results:**
+
 - Only `sie_v2.py` has explicit version suffix
 - No `adc_v2.py`, `gdsp_v2.py`, `revgsp_v2.py`, or similar files found
 - Other components in `fum_rt/core/` appear to be single canonical implementations
@@ -266,6 +281,7 @@ Where:
 | Boundary Flux | ❌ Not tracked | ✅ Regional budget VDM-E-005 | **Theory adds capability** |
 
 **Assessment:**
+
 - **SIE provides:** Intrinsic motivation for learning (local neuron-level reward)
 - **Agency Field provides:** Spatial field dynamics, regional budgeting, flux accounting
 - **Recommendation:** Agency Field is **not redundant** - it provides spatial coordination and regional integration that SIE lacks. SIE is a **component source term** for the Agency Field, not a replacement.
@@ -279,6 +295,7 @@ Where:
 **Use `sie_v2.py` as the primary SIE** for all void-faithful implementations:
 
 ✅ **Reasons:**
+
 - Direct computation from field variables (W, dW)
 - Explicit exponential decay with half-life parameter
 - Cleaner mapping to VDM physics equations
@@ -286,6 +303,7 @@ Where:
 - Per-neuron reward vector enables spatial heterogeneity
 
 ⚠️ **Preserve `fum_sie.py` for:**
+
 - Backward compatibility with existing experiments
 - Blueprint Rule 3 reference implementation
 - External signal integration examples
@@ -295,12 +313,14 @@ Where:
 **Implement Agency Field as spatial layer above SIE:**
 
 The Agency Field should:
+
 1. Receive SIE reward signals as local source terms S(x,t)
 2. Compute spatial diffusion via VDM-E-001
 3. Track regional budgets via VDM-E-005
 4. Provide global coordination signal back to SIE
 
 This creates hierarchy:
+
 ```
 Agency Field (spatial, global)
       ↕ ︎ (source terms / modulation)
@@ -322,12 +342,14 @@ For new component development:
 ### 4. Code Organization
 
 **Deprecation plan:**
+
 - Mark `fum_sie.py` as legacy in docstring
 - Add deprecation warning when imported
 - Direct new users to `sie_v2.py`
 - Preserve for 2-3 releases before removal
 
 **File naming:**
+
 - Avoid `_v2`, `_v3` suffixes in production code
 - Use descriptive names: `sie_void_faithful.py` vs `sie_blueprint.py`
 - Keep version history in git, not filenames
@@ -339,6 +361,7 @@ For new component development:
 **Primary Finding:** The **new implementation (`sie_v2.py`)** demonstrates significantly better alignment with VDM physics derivations compared to the legacy implementation (`fum_sie.py`).
 
 **Key Advantages of New Implementation:**
+
 1. ✅ Direct field computation (W, dW) matches void dynamics theory
 2. ✅ Explicit exponential decay with half-life matching field equations
 3. ✅ Per-neuron reward enables spatial heterogeneity

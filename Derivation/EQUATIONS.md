@@ -174,17 +174,25 @@ $$
 
 #### VDM-E-014 — Continuum Klein-Gordon Form (EFT/KG Branch)
 
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-014"></a>
+<!-- markdownlint-enable MD033 -->
+
 **Context:** agent-onboarding/axiomatic_theory_development.md:51 • Commit: 6885588
 
 $$
 \partial_{tt}\phi - c^{2}\nabla^{2}\phi + V'(\phi)=0, \qquad c^{2}=2J a^{2}
 $$
 
-**Notes:** Continuum limit of discrete action; inertial/EFT branch marked [EFT-KG]; $c^2=2Ja^2$ from exact Taylor expansion.
+**Notes:** Continuum limit of discrete action; inertial/EFT branch marked [EFT-KG]; $c^2=2Ja^2$ from exact Taylor expansion. Used by [VDM-A-013](ALGORITHMS.md#vdm-a-013) and [VDM-A-014](ALGORITHMS.md#vdm-a-014).
 
 ---
 
 #### VDM-E-015 — Reaction-Diffusion Gradient Flow
+
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-015"></a>
+<!-- markdownlint-enable MD033 -->
 
 **Context:** agent-onboarding/axiomatic_theory_development.md:56-57 • Commit: 6885588
 
@@ -192,7 +200,7 @@ $$
 \partial_t \phi = D \nabla^{2}\phi + f(\phi), \quad f(\phi)= r\phi - u\phi^{2} - \lambda \phi^{3}, \quad D=2J a^{2}
 $$
 
-**Notes:** Overdamped/gradient-flow limit under time-scale separation; RD canonical form.
+**Notes:** Overdamped/gradient-flow limit under time-scale separation; RD canonical form. Used by [VDM-A-013](ALGORITHMS.md#vdm-a-013).
 
 ---
 
@@ -330,6 +338,10 @@ for $dW/dt = r\,W - u\,W^{2}$
 
 #### VDM-E-026 — Discrete Gradient Lyapunov Step
 
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-026"></a>
+<!-- markdownlint-enable MD033 -->
+
 **Context:** agent-onboarding/axiomatic_theory_development.md:110-112 • Commit: 6885588
 
 $$
@@ -338,7 +350,7 @@ $$
 
 with $\frac{\phi^{n+1}-\phi^{n}}{\Delta t} = D\nabla^{2}_h \bar\phi + \bar f$, $\hat V'(\bar\phi)=-\bar f$
 
-**Notes:** Lemma DG.1; discrete-gradient update preserves energy monotonicity.
+**Notes:** Lemma DG.1; discrete-gradient update preserves energy monotonicity. Used by [VDM-A-013](ALGORITHMS.md#vdm-a-013).
 
 ---
 
@@ -597,6 +609,10 @@ $$
 
 #### VDM-E-047 — Continuum Energy Density (Hamiltonian)
 
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-047"></a>
+<!-- markdownlint-enable MD033 -->
+
 **Context:** derivation/axiomatic_theory_development.md:433 • Commit: 6885588
 
 $$
@@ -617,7 +633,7 @@ $$
 
 with conservation law $\frac{\partial \mathcal{H}}{\partial t} + \nabla \cdot \mathbf{S} = 0$
 
-**Notes:** Energy flux for scalar field; verified using Klein-Gordon equation.
+**Notes:** Energy flux for scalar field; verified using Klein-Gordon equation. Used by [VDM-A-014](ALGORITHMS.md#vdm-a-014).
 
 ---
 
@@ -853,13 +869,17 @@ $$
 
 #### VDM-E-067 — Memory Junction Choice Probability
 
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-067"></a>
+<!-- markdownlint-enable MD033 -->
+
 **Context:** derivation/code/physics/memory_steering/memory_steering.py:35-36 • Commit: 6885588
 
 $$
 P(A) \approx \sigma(\Theta \Delta m)
 $$
 
-**Notes:** Logistic probability at fork; $\Delta m$ is memory difference between branches, $\sigma$ is sigmoid.
+**Notes:** Logistic probability at fork; $\Delta m$ is memory difference between branches, $\sigma$ is sigmoid. Used by [VDM-A-021](ALGORITHMS.md#vdm-a-021).
 
 ---
 
@@ -1238,8 +1258,133 @@ where $(\text{sparsity\_fraction} = \text{target\_sparsity\_pct} / 100)$, and $(
 
 ---
 
+#### VDM-E-090 — Two-Grid Error Metric and Log–Log Fit (Metriplectic QC)
+
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-090"></a>
+<!-- markdownlint-enable MD033 -->
+
+**Context:** Derivation/code/physics/metriplectic/run_metriplectic.py:58-118 • Commit: HEAD
+
+Given a one-step map $\Phi_{\Delta t}$ and an initial state $W_0$, define the two-grid infinity-norm error
+
+$$
+e_{\infty}(\Delta t)
+\;=\; \left\|\, \Phi_{\Delta t}(W_0) \;-
+\; \Phi_{\Delta t/2}\big(\, \Phi_{\Delta t/2}(W_0) \,\big) \,\right\|_{\infty}.
+$$
+
+For a sweep of step sizes $\{\Delta t_i\}$, aggregate across seeds via the median $m_i=\operatorname{median}\, e_{\infty}(\Delta t_i)$, then perform an ordinary least-squares fit on log–log axes:
+
+$$
+x_i = \log \Delta t_i,\qquad y_i = \log m_i,\qquad
+p = \frac{\operatorname{cov}(x,y)}{\operatorname{var}(x)},\quad b = \bar y - p\,\bar x,
+$$
+
+with coefficient of determination
+
+$$
+R^2 = 1 - \frac{\sum_i (y_i - (p x_i + b))^2}{\sum_i (y_i - \bar y)^2}.
+$$
+
+**Notes:** Used to assess convergence order $p$ and goodness-of-fit $R^2$ for M-only and JMJ schemes. Used by [VDM-A-016](ALGORITHMS.md#vdm-a-016), [VDM-A-017](ALGORITHMS.md#vdm-a-017), and [VDM-A-019](ALGORITHMS.md#vdm-a-019).
+
+---
+
+#### VDM-E-091 — Strang Composition Defect (JMJ vs MJM)
+
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-091"></a>
+<!-- markdownlint-enable MD033 -->
+
+**Context:** Derivation/code/physics/metriplectic/run_metriplectic.py:265-316 • Commit: HEAD
+
+For Strang compositions $\Phi^{\text{JMJ}}_{\Delta t}$ and $\Phi^{\text{MJM}}_{\Delta t}$ applied to the same initial state $W_0$, define the defect
+
+$$
+\mathcal{D}_{\text{Strang}}(\Delta t)
+\;=\; \left\|\, \Phi^{\text{JMJ}}_{\Delta t}(W_0) \;-
+\; \Phi^{\text{MJM}}_{\Delta t}(W_0) \,\right\|_{\infty}.
+$$
+
+Fit $\mathcal{D}_{\text{Strang}}(\Delta t)$ versus $\Delta t$ on log–log axes as in VDM-E-090 to estimate slope (expected near $3$ for second-order symmetric schemes) and $R^2$.
+
+**Notes:** Proxies commutator strength between J and M operators. Used by [VDM-A-018](ALGORITHMS.md#vdm-a-018).
+
+---
+
+#### VDM-E-092 — Discrete Lyapunov Functional (Grid Form)
+
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-092"></a>
+<!-- markdownlint-enable MD033 -->
+
+**Context:** Derivation/code/physics/metriplectic/run_metriplectic.py:142-190 • Commit: HEAD
+
+On a regular grid with spacing $h$ and discrete gradient $\nabla_h$, define
+
+$$
+L_h[\phi] \;=\; \sum_{i} \Big( \tfrac{D}{2}\,\lvert \nabla_h \phi_i \rvert^2 + \hat V(\phi_i) \Big) h^d,
+\qquad \text{with}\quad \hat V'(\phi) = - f(\phi),
+$$
+
+so that along a discrete-gradient (DG) dissipative step $\phi^{k}\!\to\!\phi^{k+1}$,
+
+$$
+\Delta L_h = L_h[\phi^{k+1}] - L_h[\phi^{k}] \;\le\; 0.
+$$
+
+**Notes:** Grid analogue of VDM-E-016 (RD Lyapunov); used to check per-step monotonicity under M-only or within JMJ. Used by [VDM-A-015](ALGORITHMS.md#vdm-a-015) and [VDM-A-019](ALGORITHMS.md#vdm-a-019).
+
+---
+
+#### VDM-E-093 — FRW Continuity Residual (Dust) and RMS
+
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-093"></a>
+<!-- markdownlint-enable MD033 -->
+
+**Context:** Derivation/code/physics/cosmology/run_frw_balance.py:1-118 • Commit: HEAD
+
+For scale factor $a(t)$, density $\rho(t)$, and equation-of-state parameter $w$, define the residual
+
+$$
+r(t) = \frac{d}{dt}\big(\rho(t)\, a(t)^3\big) + w\,\rho(t)\,\frac{d}{dt}\big(a(t)^3\big).
+$$
+
+In the dust control case $w=0$, this reduces to $r(t)=\tfrac{d}{dt}(\rho a^3)$. The discrete root-mean-square used in QC is
+
+$$
+\operatorname{RMS}(r) = \sqrt{\frac{1}{N} \sum_{n=1}^{N} r(t_n)^2 }.
+$$
+
+**Notes:** Identity test under synthetic inputs; machine-precision RMS indicates correct finite-difference implementation. Used by [VDM-A-020](ALGORITHMS.md#vdm-a-020).
+
+---
+
+#### VDM-E-094 — Scaling-Collapse Envelope (Junction Logistic Universality)
+
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-094"></a>
+<!-- markdownlint-enable MD033 -->
+
+**Context:** Derivation/code/physics/collapse/run_a6_collapse.py:1-154 • Commit: HEAD
+
+Given reparameterized curves $P_i(X)$ with $X = \Theta\,\Delta m$, define the envelope
+
+$$
+E(X) = \max_i P_i(X) - \min_i P_i(X), \qquad \text{and} \qquad \mathrm{env\_max} = \sup_X E(X),
+$$
+
+computed on a shared $X$-grid via interpolation over the intersection of curve domains.
+
+**Notes:** Universality gate uses $\mathrm{env\_max}$ threshold; logistic junction choice is given in VDM-E-067. Used by [VDM-A-021](ALGORITHMS.md#vdm-a-021).
+
+---
+
 ## Change Log
 
 - VDM-E-001 to VDM-E-071 • 6885588 • Initial compilation from repository files
 - VDM-E-072 to VDM-E-080 • 6885588 • Added discrete conservation law and lattice action equations from derivation/conservation_law/ and derivation/foundations/
 - VDM-E-085 to VDM-E-089 • post-6885588 • Added SIE Weight Update Rule from fum_rt/core/fum_sie.py
+- VDM-E-090 to VDM-E-094 • 2025-10-08 • Added metriplectic QC metrics (two-grid, Strang defect, discrete $L_h$), FRW continuity residual/RMS, and scaling-collapse envelope from derivation/code experiments
