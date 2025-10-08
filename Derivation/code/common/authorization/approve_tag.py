@@ -97,13 +97,14 @@ def main(argv: list[str] | None = None) -> int:
     dbp: Path
     if args.db_path:
         dbp = Path(args.db_path)
+        print(f"[approve_tag] Using approvals DB from --db: {dbp}", file=sys.stderr)
     elif os.getenv("VDM_APPROVAL_DB"):
         dbp = Path(os.getenv("VDM_APPROVAL_DB"))
-    elif DEFAULT_DB_PATH.exists():
-        dbp = DEFAULT_DB_PATH
+        print(f"[approve_tag] Using approvals DB from environment VDM_APPROVAL_DB: {dbp}", file=sys.stderr)
     else:
-        print("ERROR: No approvals DB specified. Use --db, set VDM_APPROVAL_DB, or create Derivation/code/common/data/approval.db", file=sys.stderr)
-        return 2
+        # Fall back to default path and create on first use
+        dbp = DEFAULT_DB_PATH
+        print(f"[approve_tag] Using approvals DB at default path: {dbp} (will create if missing)", file=sys.stderr)
     if not ensure_admin_verified(dbp, password):
         print("ERROR: Admin password did not match the stored database password.", file=sys.stderr)
         return 3

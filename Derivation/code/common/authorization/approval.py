@@ -100,6 +100,13 @@ def _approval_db_path() -> Optional[Path]:
                 p = Path(envs["VDM_APPROVAL_DB"]).expanduser()
                 print(f"[authorization] Using approvals DB from env file {candidate}: {p}", file=sys.stderr)
                 return p
+        # No env variable found anywhere; inform user where to set it
+        checked_paths = ", ".join(str(x) for x in [code_dir / ".env", deriv_dir / ".env", repo_root / ".env"])
+        print(
+            "[authorization] No VDM_APPROVAL_DB found in environment or .env files. "
+            f"You can set it globally (export VDM_APPROVAL_DB=/path/to/approval.db) or add it to one of: {checked_paths}",
+            file=sys.stderr,
+        )
     except Exception as e:
         print(f"[authorization] Warning: failed scanning .env files for VDM_APPROVAL_DB: {e}", file=sys.stderr)
     # 3) default path if present
