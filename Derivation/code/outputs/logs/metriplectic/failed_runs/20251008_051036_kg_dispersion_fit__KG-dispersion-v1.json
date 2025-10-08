@@ -1,0 +1,64 @@
+{
+  "csv": "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/logs/metriplectic/failed_runs/20251008_051036_kg_dispersion_fit__KG-dispersion-v1.csv",
+  "figure": "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/figures/metriplectic/failed_runs/20251008_051036_kg_dispersion_fit__KG-dispersion-v1.png",
+  "fit": {
+    "R2": 0.5337313204532308,
+    "intercept": 34292.29620204924,
+    "rel_intercept": 34291.29620204924,
+    "rel_slope": 740.545637484341,
+    "slope": 741.545637484341
+  },
+  "gate": {
+    "R2_min": 0.999,
+    "passed": false,
+    "rel_tol": 0.01
+  },
+  "params": {
+    "A": 1e-06,
+    "L": 6.283185307179586,
+    "N": 512,
+    "c": 1.0,
+    "dt": 0.01,
+    "m": 1.0,
+    "modes": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      8,
+      10
+    ],
+    "steps": 2000
+  },
+  "policy": {
+    "approved": true,
+    "engineering_only": false,
+    "proposal": "Derivation/Metriplectic/PROPOSAL_Metriplectic_SymplecticPlusDG.md",
+    "quarantined": false,
+    "tag": "KG-dispersion-v1"
+  },
+  "table": {
+    "k": [
+      1.0,
+      2.0,
+      3.0,
+      4.0,
+      5.0,
+      6.0,
+      8.0,
+      10.0
+    ],
+    "omega": [
+      140.7838076233588,
+      161.30235894927523,
+      168.67340040639195,
+      254.69039027105956,
+      314.32742327066677,
+      184.51699832237915,
+      306.0476376754642,
+      312.6702041539611
+    ]
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "csv": "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/logs/metriplectic/20251008_051013_kg_light_cone__KG-cone-v1.csv",
+  "figure": "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/figures/metriplectic/20251008_051013_kg_light_cone__KG-cone-v1.png",
+  "fit": {
+    "R2": 0.532205561285273,
+    "intercept": 1.767769027813705,
+    "speed": 0.19473363871485788
+  },
+  "gate": {
+    "eps": 0.02,
+    "passed": true,
+    "speed_max": 1.02
+  },
+  "params": {
+    "A": 0.0001,
+    "L": 6.283185307179586,
+    "N": 512,
+    "c": 1.0,
+    "dt": 0.0025,
+    "m": 1.0,
+    "sigma_frac": 0.01,
+    "steps": 4000,
+    "threshold_rel": 1e-06
+  },
+  "policy": {
+    "approved": true,
+    "engineering_only": false,
+    "proposal": "Derivation/Metriplectic/PROPOSAL_Metriplectic_SymplecticPlusDG.md",
+    "quarantined": false,
+    "tag": "KG-cone-v1"
+  }
+}

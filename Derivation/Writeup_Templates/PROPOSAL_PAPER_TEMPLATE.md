@@ -18,12 +18,14 @@ but not necessarily an expert in your subfield, to understand your proposal.
 
 ## Some questions to consider
 
-- How novel is this project?
+- How novel is this experiment/project?
 - Why does the experiment need to be done?
 - Are there target findings that would be requisite for future work?
 - What specific area of physics (quantum, gravity, electromagnetic, etc.) will this work impact?
 - What fundamental question or problem will it address?
 - What criticisms might there be of this approach? Should you re-think the proposal based on the answers to this question?
+
+## 5. Intellectual Merit and Procedure
 
 White paper proposals will be reviewed based on the Intellectual Merit and Broader Impacts of
 the proposal. The Intellectual Merit will be judged based on:
