@@ -1,0 +1,16 @@
+{
+  "pre_registered": true,
+  "proposal": "Derivation/Causality/PROPOSAL_Causal_DAG_Audits_for_Void_Dynamics_Model.md",
+  "allowed_tags": [
+    "v1"
+  ],
+  "schema_dir": "Derivation/code/physics/causality/schemas",
+  "approvals": {
+    "v1": {
+      "schema": "Derivation/code/physics/causality/schemas/causal_dag_audit.schema.json",
+      "approved_by": "Justin K. Lietz",
+      "approved_at": "2025-10-08T12:40:45.722017+00:00",
+      "approval_key": "1126c62ef30e1ed965864bcf5f518de698b8213bb2c7c8f7c9d18b060200ca9d"
+    }
+  }
+}

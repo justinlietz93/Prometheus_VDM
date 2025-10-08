@@ -10,7 +10,7 @@ import numpy as np
 import torch
 from scipy.sparse import csc_matrix
 
-from FUM_Void_Equations import universal_void_dynamics
+from Void_Equations import universal_void_dynamics
 
 class Neurogenesis:
     """

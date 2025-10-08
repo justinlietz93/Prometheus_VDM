@@ -5084,7 +5084,7 @@ from tqdm import tqdm
 import plotly.graph_objects as go
 import scipy.sparse
 import os
-from FUM_Void_Equations import delta_re_vgsp, delta_gdsp # Import the void dynamics
+from Void_Equations import delta_re_vgsp, delta_gdsp # Import the void dynamics
 
 def void_driven_layout(W, iterations=50, dim=3):
     """

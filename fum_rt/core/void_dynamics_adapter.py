@@ -53,7 +53,7 @@ def universal_void_dynamics(W, t, domain_modulation=1.0, use_time_dynamics=True)
 def get_domain_modulation(domain: str):
     # Try user's universal modulation
     try:
-        from FUM_Void_Debt_Modulation import VoidDebtModulation
+        from Void_Debt_Modulation import VoidDebtModulation
         mod = VoidDebtModulation().get_universal_domain_modulation(domain)
         return float(mod['domain_modulation'])
     except Exception:

@@ -105,26 +105,39 @@ def build_event_dag(
 def is_acyclic(adj: Dict[str, Set[str]]) -> bool:
     """
     Return True if adjacency adj is acyclic (DAG), False otherwise.
-    Uses DFS coloring. O(V + E).
+    Uses Kahn's algorithm (iterative) to avoid recursion depth issues. O(V + E).
     """
-    color: Dict[str, int] = {u: 0 for u in adj.keys()}  # 0=white,1=gray,2=black
+    # Build indegree map
+    indeg: Dict[str, int] = {u: 0 for u in adj.keys()}
+    for u, vs in adj.items():
+        for v in vs:
+            if v not in indeg:
+                indeg[v] = 0
+            indeg[v] += 1
 
-    def dfs(u: str) -> bool:
-        color[u] = 1
-        for v in adj.get(u, ()):  # type: ignore
-            c = color.get(v, 0)
-            if c == 1:
-                return False  # back-edge
-            if c == 0 and not dfs(v):
-                return False
-        color[u] = 2
-        return True
+    # Initialize queue with zero‑indegree nodes
+    from collections import deque
+    q = deque([u for u, d in indeg.items() if d == 0])
+    visited = 0
 
-    for u in adj.keys():
-        if color[u] == 0:
-            if not dfs(u):
-                return False
-    return True
+    # Copy adjacency to avoid mutating caller data
+    local_adj: Dict[str, Set[str]] = {u: set(vs) for u, vs in adj.items()}
+
+    while q:
+        u = q.popleft()
+        visited += 1
+        for v in list(local_adj.get(u, ())):  # type: ignore
+            indeg[v] -= 1
+            # remove edge u->v from local view
+            try:
+                local_adj[u].remove(v)
+            except KeyError:
+                pass
+            if indeg[v] == 0:
+                q.append(v)
+
+    # If all nodes were visited via zero‑indegree pops, graph is acyclic
+    return visited == len(indeg)
 
 
 def transitive_reduction(

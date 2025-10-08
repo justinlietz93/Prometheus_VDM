@@ -161,7 +161,7 @@ The computational medium representing the FUM's neural substrate:
 ### 2. Domain Modulation
 - **Domain-specific scaling** of void equations
 - **Supported domains**: quantum, standard_model, dark_matter, biology_consciousness, cosmogenesis, higgs
-- **Custom modulation** through `FUM_Void_Debt_Modulation.py`
+- **Custom modulation** through `Void_Debt_Modulation.py`
 
 ### 3. Phase Control System
 - **File-driven profile switching** via `phase.json`
@@ -194,8 +194,8 @@ The computational medium representing the FUM's neural substrate:
 - **Streaming processing** to avoid full-memory loading
 
 ### Extension Points
-- **Void equations** through external `FUM_Void_Equations.py`
-- **Domain modulation** via `FUM_Void_Debt_Modulation.py`
+- **Void equations** through external `Void_Equations.py`
+- **Domain modulation** via `Void_Debt_Modulation.py`
 - **Custom scouts** through base class inheritance
 - **Profile definitions** in Nexus phase system
 

@@ -1,0 +1,28 @@
+{
+  "plot": {
+    "domain": "causality",
+    "slug": "dag_audit_v1",
+    "tag": "v1",
+    "script": "run_causality_dag_audit"
+  },
+  "stats": {
+    "diagnostic": {
+      "nodes": 0,
+      "edges": 0,
+      "samples": 0,
+      "seen": 920263,
+      "skipped_filtered_stream": 0,
+      "skipped_missing_id": 920263,
+      "skipped_missing_time": 0
+    },
+    "metrics": {
+      "samples": 0,
+      "diamond_slope": 0.0,
+      "diamond_intercept": 0.0,
+      "r_mean": 1.0,
+      "r_median": 1.0,
+      "d_hat_mean": 1.0,
+      "d_hat_median": 1.0
+    }
+  }
+}

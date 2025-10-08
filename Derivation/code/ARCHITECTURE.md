@@ -12,6 +12,7 @@
 - **ALL** experiments MUST use the helpers in `common/` for logs and figures handling, and can additionally be used for existing equations, constants, and additional theory-wide resources.
 - Just for context, here are all current helpers:
   - `Derivation/code/common/authorization` **This is wired into the other helpers to enforce approval system**
+    - Read this for context: Derivation/code/common/authorization/README.md
   - `Derivation/code/common/plotting` **This is used by other helpers for plotting and creating figures**
   - `Derivation/code/common/data` **This is where admin credentials, approvals, and experiment results data is stored**
   - `Derivation/code/common/domain_setup` **This includes helpers for scaffolding new experiment code domain folders**
@@ -28,6 +29,7 @@ Derivation/
        ├── common/
 >>     │   ├── __init__.py
        │   ├── authorization/
+>>     │   ├── causality/       
 >>     │   ├── constants.py
        │   │   (LOC: 140, Size: 5.4 KB)
        │   ├── data/

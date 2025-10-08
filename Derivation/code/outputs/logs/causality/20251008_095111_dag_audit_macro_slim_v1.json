@@ -1,0 +1,355 @@
+{
+  "artifacts": {
+    "figure": "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/figures/causality/20251008_095109_dag_audit_macro_slim_v1.png",
+    "figure_warning": null,
+    "log": "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/logs/causality/20251008_095111_dag_audit_macro_slim_v1.json",
+    "macro_figure": "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/figures/causality/20251008_095111_dag_audit_macro_slim_v1_macro.png"
+  },
+  "dag": {
+    "acyclic": true,
+    "edges": 119519,
+    "nodes": 120000
+  },
+  "domain": "causality",
+  "gates": {
+    "failed": false,
+    "reasons": []
+  },
+  "ingest": {
+    "edges": 119519,
+    "events": 120000,
+    "input_files": [
+      "Derivation/code/physics/causality/data/10k_Neurons/events.jsonl"
+    ],
+    "skipped": {
+      "filtered_stream": 0,
+      "missing_id": 139,
+      "missing_time": 0
+    },
+    "total_seen": 3889
+  },
+  "macro": {
+    "edges": [
+      [
+        "evt_inh_count",
+        "evt_exc_count"
+      ],
+      [
+        "evt_trail_count",
+        "evt_exc_count"
+      ],
+      [
+        "vt_coverage",
+        "td_signal"
+      ],
+      [
+        "vt_walkers",
+        "td_signal"
+      ],
+      [
+        "vt_coverage",
+        "sie_valence_01"
+      ],
+      [
+        "td_signal",
+        "sie_valence_01"
+      ],
+      [
+        "vt_walkers",
+        "sie_valence_01"
+      ],
+      [
+        "evt_inh_count",
+        "evt_heat_count"
+      ],
+      [
+        "evt_trail_count",
+        "evt_heat_count"
+      ],
+      [
+        "evt_inh_count",
+        "sie_valence_01"
+      ],
+      [
+        "td_signal",
+        "vt_coverage"
+      ],
+      [
+        "evt_heat_count",
+        "evt_exc_count"
+      ],
+      [
+        "evt_trail_count",
+        "sie_valence_01"
+      ],
+      [
+        "evt_inh_count",
+        "td_signal"
+      ],
+      [
+        "evt_trail_count",
+        "evt_inh_count"
+      ],
+      [
+        "evt_heat_count",
+        "evt_trail_count"
+      ],
+      [
+        "evt_exc_count",
+        "evt_trail_count"
+      ],
+      [
+        "evt_exc_count",
+        "evt_heat_count"
+      ],
+      [
+        "evt_trail_count",
+        "td_signal"
+      ],
+      [
+        "evt_exc_count",
+        "evt_inh_count"
+      ],
+      [
+        "evt_heat_count",
+        "evt_inh_count"
+      ],
+      [
+        "evt_exc_count",
+        "td_signal"
+      ],
+      [
+        "evt_heat_count",
+        "sie_valence_01"
+      ],
+      [
+        "evt_inh_count",
+        "evt_trail_count"
+      ],
+      [
+        "evt_inh_count",
+        "vt_coverage"
+      ],
+      [
+        "evt_exc_count",
+        "vt_coverage"
+      ],
+      [
+        "evt_heat_count",
+        "vt_coverage"
+      ],
+      [
+        "evt_exc_count",
+        "sie_valence_01"
+      ],
+      [
+        "td_signal",
+        "evt_heat_count"
+      ],
+      [
+        "td_signal",
+        "evt_exc_count"
+      ],
+      [
+        "sie_valence_01",
+        "evt_heat_count"
+      ],
+      [
+        "sie_valence_01",
+        "evt_exc_count"
+      ],
+      [
+        "evt_heat_count",
+        "td_signal"
+      ],
+      [
+        "vt_walkers",
+        "vt_coverage"
+      ],
+      [
+        "td_signal",
+        "evt_inh_count"
+      ],
+      [
+        "sie_valence_01",
+        "vt_coverage"
+      ],
+      [
+        "evt_trail_count",
+        "vt_coverage"
+      ],
+      [
+        "td_signal",
+        "evt_trail_count"
+      ],
+      [
+        "sie_valence_01",
+        "evt_inh_count"
+      ],
+      [
+        "sie_valence_01",
+        "evt_trail_count"
+      ],
+      [
+        "sie_valence_01",
+        "td_signal"
+      ],
+      [
+        "vt_coverage",
+        "evt_heat_count"
+      ],
+      [
+        "vt_coverage",
+        "evt_exc_count"
+      ],
+      [
+        "vt_coverage",
+        "evt_inh_count"
+      ],
+      [
+        "vt_walkers",
+        "evt_heat_count"
+      ],
+      [
+        "vt_walkers",
+        "evt_exc_count"
+      ],
+      [
+        "vt_coverage",
+        "evt_trail_count"
+      ],
+      [
+        "vt_walkers",
+        "evt_inh_count"
+      ]
+    ],
+    "enabled": true,
+    "pvals": {
+      "b1_spike->evt_exc_count": 0.2898048682354306,
+      "b1_spike->evt_heat_count": 0.3294569740424903,
+      "b1_spike->evt_inh_count": 0.9582415592613437,
+      "b1_spike->evt_trail_count": 0.9923307745052004,
+      "b1_spike->sie_valence_01": 0.6324401196273354,
+      "b1_spike->td_signal": 0.3911138748179891,
+      "b1_spike->vt_coverage": 0.9250479824689217,
+      "b1_spike->vt_walkers": 0.9988412918600289,
+      "evt_exc_count->b1_spike": 0.5479185546028339,
+      "evt_exc_count->evt_heat_count": 1.3854838584763954e-113,
+      "evt_exc_count->evt_inh_count": 3.128766373239918e-49,
+      "evt_exc_count->evt_trail_count": 1.975313263597743e-115,
+      "evt_exc_count->sie_valence_01": 1.4152775867143206e-29,
+      "evt_exc_count->td_signal": 1.5696120529466794e-40,
+      "evt_exc_count->vt_coverage": 1.9784276201324118e-30,
+      "evt_exc_count->vt_walkers": 0.9665781836019851,
+      "evt_heat_count->b1_spike": 0.5917652197360048,
+      "evt_heat_count->evt_exc_count": 1.8710538183341084e-162,
+      "evt_heat_count->evt_inh_count": 3.9756428455150296e-49,
+      "evt_heat_count->evt_trail_count": 1.0121375151858965e-116,
+      "evt_heat_count->sie_valence_01": 1.425195558758212e-34,
+      "evt_heat_count->td_signal": 9.882285273257948e-16,
+      "evt_heat_count->vt_coverage": 1.39647903732465e-29,
+      "evt_heat_count->vt_walkers": 0.981211129225428,
+      "evt_inh_count->b1_spike": 0.9996778819874244,
+      "evt_inh_count->evt_exc_count": 0.0,
+      "evt_inh_count->evt_heat_count": 0.0,
+      "evt_inh_count->evt_trail_count": 3.082551589955848e-31,
+      "evt_inh_count->sie_valence_01": 4.68615017066097e-194,
+      "evt_inh_count->td_signal": 1.859102887938769e-153,
+      "evt_inh_count->vt_coverage": 8.306636185900869e-31,
+      "evt_inh_count->vt_walkers": 0.9755729714708101,
+      "evt_trail_count->b1_spike": 0.9029855491840413,
+      "evt_trail_count->evt_exc_count": 0.0,
+      "evt_trail_count->evt_heat_count": 0.0,
+      "evt_trail_count->evt_inh_count": 1.0161880890106838e-141,
+      "evt_trail_count->sie_valence_01": 3.385688580039647e-160,
+      "evt_trail_count->td_signal": 1.1067756634456558e-108,
+      "evt_trail_count->vt_coverage": 6.3037585228897e-11,
+      "evt_trail_count->vt_walkers": 0.9860314323466062,
+      "sie_valence_01->b1_spike": 0.5851622502175016,
+      "sie_valence_01->evt_exc_count": 9.840548195598301e-22,
+      "sie_valence_01->evt_heat_count": 5.026912820404605e-22,
+      "sie_valence_01->evt_inh_count": 5.143592247076601e-09,
+      "sie_valence_01->evt_trail_count": 2.0677723221875555e-08,
+      "sie_valence_01->td_signal": 2.551660553226628e-06,
+      "sie_valence_01->vt_coverage": 1.9451466349248762e-12,
+      "sie_valence_01->vt_walkers": 0.08324832589235633,
+      "td_signal->b1_spike": 0.9923517026009373,
+      "td_signal->evt_exc_count": 1.1131549983734511e-22,
+      "td_signal->evt_heat_count": 1.8609135420271682e-23,
+      "td_signal->evt_inh_count": 2.998541054958009e-13,
+      "td_signal->evt_trail_count": 1.6140579221878564e-10,
+      "td_signal->sie_valence_01": 0.0,
+      "td_signal->vt_coverage": 1.0109793306316463e-166,
+      "td_signal->vt_walkers": 0.31332399856360993,
+      "vt_coverage->b1_spike": 0.3616925937256034,
+      "vt_coverage->evt_exc_count": 4.0102209540548036e-05,
+      "vt_coverage->evt_heat_count": 3.125931374028549e-05,
+      "vt_coverage->evt_inh_count": 6.809647705324111e-05,
+      "vt_coverage->evt_trail_count": 0.001167423771278325,
+      "vt_coverage->sie_valence_01": 0.0,
+      "vt_coverage->td_signal": 0.0,
+      "vt_coverage->vt_walkers": 0.1333305660784864,
+      "vt_walkers->b1_spike": 0.42687853529768616,
+      "vt_walkers->evt_exc_count": 0.0006777461164366491,
+      "vt_walkers->evt_heat_count": 0.0006304867177191484,
+      "vt_walkers->evt_inh_count": 0.002891208419093012,
+      "vt_walkers->evt_trail_count": 0.01672619443387581,
+      "vt_walkers->sie_valence_01": 0.0,
+      "vt_walkers->td_signal": 0.0,
+      "vt_walkers->vt_coverage": 1.3819633835940371e-13
+    },
+    "vars": [
+      "vt_coverage",
+      "evt_exc_count",
+      "b1_spike",
+      "td_signal",
+      "vt_walkers",
+      "sie_valence_01",
+      "evt_inh_count",
+      "evt_heat_count",
+      "evt_trail_count"
+    ]
+  },
+  "metrics": {
+    "d_hat_mean": 10.0,
+    "d_hat_median": 10.0,
+    "diamond_intercept": -0.3164889954073704,
+    "diamond_slope": 0.9244975786861106,
+    "r_mean": 1.0,
+    "r_median": 1.0,
+    "samples": 158
+  },
+  "params": {
+    "expand_heads": [
+      "exc",
+      "heat",
+      "inh",
+      "trail"
+    ],
+    "infer_by_time": false,
+    "k": 256,
+    "max_dt": null,
+    "max_events": 120000,
+    "max_successors": 0,
+    "min_dt": 0.0,
+    "reach_budget": 8192,
+    "streams": null,
+    "time_tolerance": 0.0,
+    "trail_chain": true,
+    "trail_minval": 5.0,
+    "trail_topk": 12
+  },
+  "policy": {
+    "approved": true,
+    "approved_at": "2025-10-08T12:40:45.722017+00:00",
+    "approved_by": "Justin K. Lietz",
+    "engineering_only": false,
+    "proposal": "Derivation/Causality/PROPOSAL_Causal_DAG_Audits_for_Void_Dynamics_Model.md",
+    "schema": "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/physics/causality/schemas/causal_dag_audit.schema.json"
+  },
+  "proposal": "Derivation/Causality/PROPOSAL_Causal_DAG_Audits_for_Void_Dynamics_Model.md",
+  "script": "run_causality_dag_audit",
+  "status": "success",
+  "tag": "v1",
+  "timestamp": "2025-10-08T09:51:11.950943"
+}
