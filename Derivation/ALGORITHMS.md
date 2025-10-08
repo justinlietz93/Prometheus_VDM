@@ -5,25 +5,25 @@
 **Rules:** Pseudocode + references only. Link to math/values elsewhere (EQUATIONS/CONSTANTS/SYMBOLS/UNITS).  
 **MathJax:** Only inline `$...$` inside comments when needed.
 
-**Legend:** This file is **PSEUDOCODE** (illustrative).   
+**Legend:** This file is **PSEUDOCODE** (illustrative).
 • Normative math: `derivation/EQUATIONS.md`.  
-• Numbers: `derivation/CONSTANTS.md`.   
+• Numbers: `derivation/CONSTANTS.md`.
 • Symbols/units: `derivation/SYMBOLS.md`, `derivation/UNITS_NORMALIZATION.md`.  
 • Canon map: `CANON_MAP.md`.  
 
-**Per Item Identifier Template:**   
+**Per Item Identifier Template:**
 • Type: RUNTIME|INSTRUMENT|POLICY|EXPERIMENT  
-• Binding: PSEUDOCODE   
+• Binding: PSEUDOCODE
 • State: none|read-only|writes state  
-• Dependencies: (short)   
+• Dependencies: (short)
 • Notes: (short)
-
 
 ---
 
 ## Core Update Loops
 
 #### VDM-A-001 — Runtime Main Loop (Nexus Tick Loop)  <a id="vdm-a-001"></a>
+>
 > Type: RUNTIME • Binding: PSEUDOCODE • State: writes state • Dependencies: none • Notes: agency layer optional; consumes signals only
 
 **Context:** fum_rt/runtime/loop/main.py:283-679 • Commit: 7498744 • Module: runtime/loop
@@ -31,14 +31,17 @@
 **Role:** Execute the main simulation tick loop on the Nexus-like object, orchestrating all subsystems per tick.
 
 **Inputs:**
+
 - Symbols: $t$ (time), $W$ (node weights) - see `SYMBOLS.md`
 - Constants: `CONSTANTS.md#const-alpha`, `CONSTANTS.md#const-beta`
 - Runtime params: step (tick index), duration_s (wall-clock limit), t0 (start timestamp)
 
 **Depends on equations:**
+
 - TODO: add anchor for connectome step equations
 
 **Pseudocode:**
+
 ```text
 INIT:
   - Lazy-init CoreEngine (telemetry seam) if not present
@@ -75,37 +78,42 @@ TERMINATION:
 ```
 
 **Preconditions:**
+
 - nx.connectome, nx.sie, nx.ute, nx.utd must be initialized
 - nx.run_dir must exist for checkpoints/logs
 
 **Postconditions/Invariants:**
+
 - Connectome topology and weights updated per tick
 - Metrics published to bus/logs/Redis
 - Checkpoints saved at configured intervals
 
 **Concurrency/Ordering:**
+
 - Single-threaded per tick; steps are sequential
 - WebSocket/HTTP endpoints may run on background threads (idempotent start)
 
 **Failure/Backoff hooks:**
+
 - Try-except wrappers on all subsystem calls (silent no-op on errors when VOID_STRICT=0)
 - VOID_STRICT=1 re-raises exceptions for debugging
 
 **Emits/Side effects:**
+
 - Logs: nexus_started, checkpoint_saved, why_emitted, smoke_test results
 - Bus: Observations (cycle_hit, region_stat), VTTouchEvent, EdgeOnEvent, SpikeEvent
 - Redis: status JSON, maps snapshots (if enabled)
 - Files: checkpoints (HDF5 or NPZ), plots (if viz enabled)
 
 **Also implemented at:**
+
 - fum_rt/nexus.py:362 (thin wrapper; delegates to run_loop)
 
 > DEBT: GDSP can fail without logs when STRICT gate disabled; add fail-fast/telemetry path, remove any ability to use dense backend even with env. Sparse only, fail fast.  
-> DEBT: Overlapping scout flags; defaults conflict—unify or validate toggles.   
+> DEBT: Overlapping scout flags; defaults conflict—unify or validate toggles.
 > DEBT: Status HTTP lacks auth/TLS; keep localhost default, gate optional token auth.
 
 ---
-
 
 #### VDM-A-002 — Connectome Step (Void-Equation Driven Topology Update)  <a id="vdm-a-002"></a>
 
@@ -118,13 +126,13 @@ TERMINATION:
 
 **Inputs:**
 
-* Symbols: $\alpha$ (ReLU($\Delta\alpha$)), $\omega$ ($\Delta\omega$), $W$ — see `SYMBOLS.md`
-* Constants: `CONSTANTS.md#const-alpha`, `CONSTANTS.md#const-beta`, `threshold`, `lambda_omega`
-* Params: `t` (time), `domain_modulation`, `sie_drive` (SIE valence gate), `use_time_dynamics`
+- Symbols: $\alpha$ (ReLU($\Delta\alpha$)), $\omega$ ($\Delta\omega$), $W$ — see `SYMBOLS.md`
+- Constants: `CONSTANTS.md#const-alpha`, `CONSTANTS.md#const-beta`, `threshold`, `lambda_omega`
+- Params: `t` (time), `domain_modulation`, `sie_drive` (SIE valence gate), `use_time_dynamics`
 
 **Depends on equations:**
 
-* TODO: add anchor for `delta_re_vgsp`, `delta_gdsp` in `EQUATIONS.md`
+- TODO: add anchor for `delta_re_vgsp`, `delta_gdsp` in `EQUATIONS.md`
 
 **Pseudocode (as implemented — with broken bits marked):**
 
@@ -163,34 +171,34 @@ FINALIZE:
 
 **Preconditions:**
 
-* `N`, `k`, `threshold`, `lambda_omega`, `candidates` configured
-* `W` initialized (node weights in `[0,1]`)
-* Env gate: `NO_DENSE_CONNECTOME=1` (tests/CI assert) **(⚠ BROKEN: code still contains a dense branch guarded by runtime flags)**
-* Alias sampler functions available (`delta_re_vgsp`, `delta_gdsp`, `universal_void_dynamics`)
+- `N`, `k`, `threshold`, `lambda_omega`, `candidates` configured
+- `W` initialized (node weights in `[0,1]`)
+- Env gate: `NO_DENSE_CONNECTOME=1` (tests/CI assert) **(⚠ BROKEN: code still contains a dense branch guarded by runtime flags)**
+- Alias sampler functions available (`delta_re_vgsp`, `delta_gdsp`, `universal_void_dynamics`)
 
 **Postconditions/Invariants:**
 
-* `A` symmetric; ~`k` neighbors per node (approx.)
-* `W` stays in `[0,1]`
-* `E` (edge weights) derived from `W` and `A`
+- `A` symmetric; ~`k` neighbors per node (approx.)
+- `W` stays in `[0,1]`
+- `E` (edge weights) derived from `W` and `A`
 
 **Concurrency/Ordering:**
 
-* Sparse alias mode: sequential per current pseudocode (rows can be parallelized)
-* **Dense mode:** vectorized NumPy (**validation only in intent, but present in code**) — **⚠ WRONG relative to “no dense path” policy**
+- Sparse alias mode: sequential per current pseudocode (rows can be parallelized)
+- **Dense mode:** vectorized NumPy (**validation only in intent, but present in code**) — **⚠ WRONG relative to “no dense path” policy**
 
 **Failure/Backoff hooks:**
 
-* External stimulus accumulation wrapped in try/except (silent no-op)
+- External stimulus accumulation wrapped in try/except (silent no-op)
 
 **Emits/Side effects:**
 
-* `self.findings` updated (`vt_visits`, `vt_entropy`, `coverage`)
-* Bus events: `cycle_hit` (during void traversal), `region_stat` (end of traversal)
+- `self.findings` updated (`vt_visits`, `vt_entropy`, `coverage`)
+- Bus events: `cycle_hit` (during void traversal), `region_stat` (end of traversal)
 
 **Also implemented at:**
 
-* `fum_rt/core/sparse_connectome.py` (sparse variant; similar logic)
+- `fum_rt/core/sparse_connectome.py` (sparse variant; similar logic)
 
 > **DEBT:** Dense rebuild / dense top-k path exists; violates “no dense path” policy for large `N`.
 > **DEBT:** Structural rewiring RNG not plumbed from run seed; wire deterministic RNG.
@@ -201,6 +209,7 @@ FINALIZE:
 ## Local Agent/Walker Policies
 
 #### VDM-A-003 — Void Scout Runner (Per-Tick Scout Executor)  <a id="vdm-a-003"></a>
+>
 > Type: INSTRUMENT • Binding: PSEUDOCODE • State: read-only • Publishes: bus events; tags on neurons/edges • Notes: traversal metrics only
 
 **Context:** fum_rt/core/cortex/void_walkers/runner.py:38-136 • Commit: 7498744 • Module: core/cortex/void_walkers
@@ -208,6 +217,7 @@ FINALIZE:
 **Role:** Execute a bounded batch of read-only scouts exactly once per tick, enforcing micro time budget across all scouts.
 
 **Inputs:**
+
 - connectome: read-only neighbor access (N, neighbors/get_neighbors)
 - scouts: sequence of scout instances (HeatScout, ColdScout, etc.)
 - maps: dict of map heads (heat_head, cold_head, exc_head, inh_head)
@@ -215,9 +225,11 @@ FINALIZE:
 - max_us: total microsecond budget per tick
 
 **Depends on equations:**
+
 - (none; read-only traversal only)
 
 **Pseudocode:**
+
 ```text
 INIT:
   - Ensure max_us >= 0                                       # runner.py:66
@@ -243,31 +255,36 @@ RETURN:
 ```
 
 **Preconditions:**
+
 - scouts must have .step(connectome, bus, maps, budget) method
 - connectome must expose neighbors/get_neighbors or adj mapping
 
 **Postconditions/Invariants:**
+
 - Total wall-clock time <= max_us (best-effort; cannot preempt inside scout.step)
 - Round-robin fairness over ticks (start_idx rotates)
 
 **Concurrency/Ordering:**
+
 - Stateless per tick; no background threads
 - Scouts execute sequentially in rotated order
 
 **Failure/Backoff hooks:**
+
 - Try-except on scout.step (swallow errors, return empty list)
 - Try-except on bus.publish_many (swallow errors)
 
 **Emits/Side effects:**
+
 - Bus: VTTouchEvent, EdgeOnEvent, SpikeEvent (via publish_many)
 
 > DEBT: Runner respects mixed flags; clarify single admission gate.
 > DEBT: Scout flag/knob overlap — unify or validate toggles (see ledger §8).
 
-
 ---
 
 #### VDM-A-004 — Cold Scout (Coldness-Driven Walker)  <a id="vdm-a-004"></a>
+>
 > Type: INSTRUMENT • Binding: PSEUDOCODE • State: read-only (publishes explore events only) • Priors: minimal/flat • Notes: baseline cartography; complements goal-driven flows
 
 **Context:** fum_rt/core/cortex/void_walkers/void_cold_scout.py:41-55 • Commit: 7498744 • Module: core/cortex/void_walkers
@@ -275,14 +292,17 @@ RETURN:
 **Role:** Read-only walker that prefers neighbors whose node IDs appear in ColdMap snapshot head (least recently visited nodes).
 
 **Inputs:**
+
 - connectome: read-only neighbor access
 - maps: {"cold_head": [[node, score], ...]}
 - budget: {"visits": int, "edges": int, "ttl": int, "tick": int, "seeds": list[int]}
 
 **Depends on equations:**
+
 - (none; heuristic traversal only)
 
 **Pseudocode:**
+
 ```text
 INIT:
   - Extract priority_set = cold_head nodes from maps (cap=max(64, budget_visits*8))
@@ -298,27 +318,34 @@ RETURN:
 ```
 
 **Preconditions:**
+
 - maps["cold_head"] exists (optional; empty set if missing)
 
 **Postconditions/Invariants:**
+
 - Emits events only for visited nodes/edges (no writes)
 
 **Concurrency/Ordering:**
+
 - Stateless; safe for concurrent read
 
 **Failure/Backoff hooks:**
+
 - Try-except on map extraction (returns empty set)
 
 **Emits/Side effects:**
+
 - VTTouchEvent (kind="vt_touch", token=node)
 - EdgeOnEvent (kind="edge_on", u, v)
 
 **Also implemented at:**
+
 - (similar pattern in void_heat_scout.py, void_excitation_scout.py, void_inhibition_scout.py)
 
 ---
 
 #### VDM-A-005 — Alias Sampling (Vose's Method)  <a id="vdm-a-005"></a>
+>
 > Type: RUNTIME • Binding: PSEUDOCODE • State: none • Dependencies: none • Notes: O(N) build, O(1) draw
 
 **Context:** fum_rt/core/connectome.py:96-127 • Commit: 7498744 • Module: core/connectome
@@ -326,12 +353,15 @@ RETURN:
 **Role:** Build O(N) alias table for sampling from discrete distribution; O(1) per draw.
 
 **Inputs:**
+
 - p: probability array (unnormalized or normalized)
 
 **Depends on equations:**
+
 - (none; sampling algorithm only)
 
 **Pseudocode:**
+
 ```text
 BUILD ALIAS TABLE:
   - Normalize p → p / sum(p)                                # connectome.py:108
@@ -356,20 +386,25 @@ DRAW SAMPLES:
 ```
 
 **Preconditions:**
+
 - p.size > 0 and p.sum() > 0
 
 **Postconditions/Invariants:**
+
 - prob.size == alias.size == N
 - Draws from alias table reproduce original distribution
 
 **Concurrency/Ordering:**
+
 - Build is O(N); single-threaded
 - Draw is O(1) per sample (vectorized for multiple draws)
 
 **Failure/Backoff hooks:**
+
 - If p.sum() <= 0: uniform distribution fallback (p = 1/N)  # connectome.py:110
 
 **Emits/Side effects:**
+
 - None (pure function)
 
 ---
@@ -386,24 +421,24 @@ DRAW SAMPLES:
 
 **Inputs (binding):**
 
-* `W`: **CSR** weights/state, shape `[n,n]` (operate on `W.data`; `indices/indptr` unchanged; densification forbidden)
-* `t`: `int` timestep
-* `alpha (η)`, `beta (γ)`: optional overrides; otherwise use values from `CONSTANTS.md`
-* `domain_modulation`: `float` from `VoidDebtModulation.get_universal_domain_modulation(domain, …)`
-* `f_ref`, `phase_sens`: optional time-modulation knobs (defaults inside `Void_Equations.py`)
+- `W`: **CSR** weights/state, shape `[n,n]` (operate on `W.data`; `indices/indptr` unchanged; densification forbidden)
+- `t`: `int` timestep
+- `alpha (η)`, `beta (γ)`: optional overrides; otherwise use values from `CONSTANTS.md`
+- `domain_modulation`: `float` from `VoidDebtModulation.get_universal_domain_modulation(domain, …)`
+- `f_ref`, `phase_sens`: optional time-modulation knobs (defaults inside `Void_Equations.py`)
 
 **Inputs (adapter-side, not equation parameters):**
 
-* `E` (eligibility traces): **CSR** with **identical sparsity pattern** as `W` (same `indptr/indices`); three-factor scaling via `ΔW *= E.data`
-* `total_reward (r)`: `float` — fold into `domain_modulation` (bounded gain)
-* `plv ∈ [0,1]`: `float` — choose **one**: scale `phase_sens` *or* multiply `domain_modulation`
-* `neuron_polarities ∈ {-1,+1}`: optional row mask applied to **RE-VGSP** update values only
-* `spike_data`, `lambda_decay`: used **only** to maintain/update `E`; not passed to `delta_*` (separate pseudocode section handles E updates)
+- `E` (eligibility traces): **CSR** with **identical sparsity pattern** as `W` (same `indptr/indices`); three-factor scaling via `ΔW *= E.data`
+- `total_reward (r)`: `float` — fold into `domain_modulation` (bounded gain)
+- `plv ∈ [0,1]`: `float` — choose **one**: scale `phase_sens` *or* multiply `domain_modulation`
+- `neuron_polarities ∈ {-1,+1}`: optional row mask applied to **RE-VGSP** update values only
+- `spike_data`, `lambda_decay`: used **only** to maintain/update `E`; not passed to `delta_*` (separate pseudocode section handles E updates)
 
 **Depends on code:**
 
-* `Void_Equations.delta_re_vgsp`, `Void_Equations.delta_gdsp` (values computed per existing edge)
-* `Void_Debt_Modulation.VoidDebtModulation.get_universal_domain_modulation`
+- `Void_Equations.delta_re_vgsp`, `Void_Equations.delta_gdsp` (values computed per existing edge)
+- `Void_Debt_Modulation.VoidDebtModulation.get_universal_domain_modulation`
 
 **Pseudocode:**
 
@@ -453,31 +488,32 @@ OUTPUT: updated CSR W (same sparsity), optional diagnostics (dm, α, β, norms)
 
 **Preconditions:**
 
-* `W` is CSR; `E` (if present) is CSR with **identical pattern**; no densification anywhere
-* `neuron_polarities.shape == (n,)` if provided
+- `W` is CSR; `E` (if present) is CSR with **identical pattern**; no densification anywhere
+- `neuron_polarities.shape == (n,)` if provided
 
 **Postconditions/Invariants:**
 
-* `W.indptr`/`W.indices` unchanged (no structural rewiring here)
-* Value changes bounded by chosen clamps; eligibility decays handled in **separate** E-update pseudocode
+- `W.indptr`/`W.indices` unchanged (no structural rewiring here)
+- Value changes bounded by chosen clamps; eligibility decays handled in **separate** E-update pseudocode
 
 **Concurrency/Ordering:**
 
-* Work is **O(nnz)** per tick; row-local slices may be processed in parallel.
-* Structural add/remove of edges happens in the connectome/rewiring step, not here.
+- Work is **O(nnz)** per tick; row-local slices may be processed in parallel.
+- Structural add/remove of edges happens in the connectome/rewiring step, not here.
 
 **Failure/Backoff hooks:**
 
-* If `domain_modulation` lookup fails: use `dm := 1.0` and log a warning
-* If `E` pattern mismatches `W`: raise error (do not silently densify) or resync pattern explicitly
+- If `domain_modulation` lookup fails: use `dm := 1.0` and log a warning
+- If `E` pattern mismatches `W`: raise error (do not silently densify) or resync pattern explicitly
 
 **Emits/Side effects:**
 
-* Optional debug: norms of `d_re`, `d_gd`, `d`, effective `(dm, α, β)`, and nnz touched
+- Optional debug: norms of `d_re`, `d_gd`, `d`, effective `(dm, α, β)`, and nnz touched
 
 ---
 
 #### VDM-A-007 — GDSP Adaptive Thresholds (Structural Plasticity Gating)  <a id="vdm-a-007"></a>
+>
 > Type: POLICY • Binding: PSEUDOCODE • State: internal state only • Dependencies: none • Notes: heuristic adaptation; bounds enforced
 
 **Context:** fum_rt/core/neuroplasticity/gdsp.py:38-100 • Commit: 7498744 • Module: core/neuroplasticity
@@ -485,14 +521,17 @@ OUTPUT: updated CSR W (same sparsity), optional diagnostics (dm, α, β, norms)
 **Role:** Adaptive threshold manager for GDSP structural plasticity triggers (repair, growth, pruning).
 
 **Inputs:**
+
 - sie_report: {"total_reward": float, "td_error": float, "novelty": float}
 - b1_persistence: float (B1 detector persistence score)
 - Internal state: reward_history, td_error_history, novelty_history (rolling windows)
 
 **Depends on equations:**
+
 - (none; heuristic adaptation only)
 
 **Pseudocode:**
+
 ```text
 UPDATE AND ADAPT:
   - Append current (total_reward, td_error, novelty) to histories
@@ -524,19 +563,24 @@ RECORD ACTIVITY:
 ```
 
 **Preconditions:**
+
 - sie_report keys present (defaults to 0.0 if missing)
 
 **Postconditions/Invariants:**
+
 - Thresholds stay within [min, max] bounds
 - Histories bounded to last 100 samples
 
 **Concurrency/Ordering:**
+
 - Single-threaded; called once per tick
 
 **Failure/Backoff hooks:**
+
 - None (numerical bounds enforced)
 
 **Emits/Side effects:**
+
 - Internal state only (thresholds, histories, counters)
 
 > DEBT: Tests absent for threshold adaptation / activity damping; add regression coverage.  
@@ -546,6 +590,7 @@ RECORD ACTIVITY:
 ## I/O Pipelines & Data Products Generation
 
 #### VDM-A-008 — Fluid Dynamics Walker (LBM Telemetry Agent)  <a id="vdm-a-008"></a>
+>
 > Type: INSTRUMENT • Binding: PSEUDOCODE • State: read-only • Dependencies: bilinear interp/div/vort (EQUATIONS TODO) • Notes: publishes petitions
 
 **Context:** derivation/code/physics/fluid_dynamics/telemetry/walkers.py:57-100 • Commit: 7498744 • Module: physics/fluid_dynamics/telemetry
@@ -553,14 +598,17 @@ RECORD ACTIVITY:
 **Role:** Read-only walker that steps using measured velocity field (advection only) and senses local scalar quantities.
 
 **Inputs:**
+
 - sim: object with {ux, uy, solid, nx, ny} (LBM simulation state)
 - dt: time step (default 1.0)
 - kind: str (scalar type to sense: "div", "swirl", "shear")
 
 **Depends on equations:**
+
 - TODO: add anchor for bilinear interpolation, divergence, vorticity in EQUATIONS.md
 
 **Pseudocode:**
+
 ```text
 INIT:
   - x, y = initial position (float)                         # walkers.py:66
@@ -593,25 +641,31 @@ POST PETITION:
 ```
 
 **Preconditions:**
+
 - sim.ux, sim.uy are 2D arrays (ny, nx)
 - sim.solid is boolean mask (True = solid, False = fluid)
 
 **Postconditions/Invariants:**
+
 - Walker stays inside fluid domain [0.5, nx-1.5] x [0.5, ny-1.5]
 - No writes to sim state (read-only)
 
 **Concurrency/Ordering:**
+
 - Stateless per walker; safe for parallel execution
 
 **Failure/Backoff hooks:**
+
 - Try-except on solid check (jitter inward on error)        # walkers.py:97
 
 **Emits/Side effects:**
+
 - Bus: Petition events (kind, value, x, y, t)
 
 ---
 
 #### VDM-A-009 — Advisory Policy (Fluids Telemetry Feedback)  <a id="vdm-a-009"></a>
+>
 > Type: POLICY • Binding: PSEUDOCODE • State: none • Dependencies: none • Notes: advisory only; caller applies or ignores
 
 **Context:** derivation/code/physics/fluid_dynamics/telemetry/walkers.py:162-219 • Commit: 7498744 • Module: physics/fluid_dynamics/telemetry
@@ -619,14 +673,17 @@ POST PETITION:
 **Role:** Map petition summaries (divergence, vorticity) to suggested small nudges to numerical parameters (never injects forces; caller decides).
 
 **Inputs:**
+
 - stats_summary: {"div_p50": float, "div_p90": float, "vort_p50": float, ...}
 - params: {"tau": float, "void_gain": float, ...}
 - bounds: PolicyBounds (min/max limits for tau, void_gain, etc.)
 
 **Depends on equations:**
+
 - (none; heuristic feedback only)
 
 **Pseudocode:**
+
 ```text
 SUGGEST:
   - Extract div_p90, vort_p90 from stats_summary             # walkers.py:193
@@ -652,21 +709,26 @@ RETURN:
 ```
 
 **Preconditions:**
+
 - stats_summary keys present (defaults to 0.0 if missing)
 - params keys present (no change if missing)
 - bounds configured (defaults to PolicyBounds())
 
 **Postconditions/Invariants:**
+
 - Suggested params stay within bounds
 - No writes to sim state (advisory only)
 
 **Concurrency/Ordering:**
+
 - Stateless; safe for concurrent calls
 
 **Failure/Backoff hooks:**
+
 - Try-except on dict key access (returns original params)
 
 **Emits/Side effects:**
+
 - None (pure function)
 
 ---
@@ -674,6 +736,7 @@ RETURN:
 ## Initialization / Reset / Checkpoint / Restore
 
 #### VDM-A-010 — Checkpoint Save (Periodic Snapshot with Retention)  <a id="vdm-a-010"></a>
+>
 > Type: RUNTIME • Binding: PSEUDOCODE • State: writes files • Dependencies: none • Notes: periodic snapshot + retention
 
 **Context:** fum_rt/runtime/helpers/checkpointing.py:16-50 • Commit: 7498744 • Module: runtime/helpers
@@ -681,13 +744,16 @@ RETURN:
 **Role:** Save checkpoint and run retention policy when configured; mirrors original behavior.
 
 **Inputs:**
+
 - nx: Nexus-like object (connectome, adc, logger, run_dir, checkpoint_every, checkpoint_keep)
 - step: current tick index
 
 **Depends on equations:**
+
 - (none; IO operation only)
 
 **Pseudocode:**
+
 ```text
 SAVE CHECKPOINT:
   IF checkpoint_every > 0 AND (step % checkpoint_every == 0) AND step > 0:
@@ -703,28 +769,34 @@ RETENTION:
 ```
 
 **Preconditions:**
+
 - nx.run_dir exists and is writable
 - nx.connectome is serializable (HDF5 or NPZ format)
 
 **Postconditions/Invariants:**
+
 - Checkpoint file written to run_dir/ckpt_<step>.{h5,npz}
 - Oldest checkpoints pruned to keep only last N
 
 **Concurrency/Ordering:**
+
 - Single-threaded; called from main loop
 - Pruning is atomic (filesystem operations)
 
 **Failure/Backoff hooks:**
+
 - Try-except on save_checkpoint (log error, continue)      # checkpointing.py:43
 - Try-except on prune_checkpoints (silent no-op)           # checkpointing.py:40
 
 **Emits/Side effects:**
+
 - Files: run_dir/ckpt_<step>.{h5,npz}
 - Logs: checkpoint_saved, checkpoint_retention, checkpoint_error
 
 ---
 
 #### VDM-A-011 — Lattice Boltzmann Collision (D2Q9 BGK)  <a id="vdm-a-011"></a>
+>
 > Type: RUNTIME • Binding: PSEUDOCODE • State: writes state • Dependencies: f_eq, void dynamics (EQUATIONS TODO) • Notes: local collision step (BGK)
 
 **Context:** derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:150-250 • Commit: 7498744 • Module: physics/fluid_dynamics/fluids
@@ -732,6 +804,7 @@ RETENTION:
 **Role:** D2Q9 Lattice Boltzmann Method collision step (BGK operator) with optional VDM void dynamics coupling.
 
 **Inputs:**
+
 - f: populations [9, ny, nx] (distribution functions)
 - rho, ux, uy: macroscopic fields (density, velocity)
 - tau: relaxation time (viscosity control)
@@ -739,10 +812,12 @@ RETENTION:
 - void_gain: float (void modulation strength)
 
 **Depends on equations:**
+
 - TODO: add anchor for f_eq (equilibrium distribution) in EQUATIONS.md
 - TODO: add anchor for universal_void_dynamics in EQUATIONS.md
 
 **Pseudocode:**
+
 ```text
 MACROSCOPIC FIELDS:
   - rho = sum_i(f[i])  (density)                            # lbm2d.py:165
@@ -778,23 +853,28 @@ FORCING (optional):
 ```
 
 **Preconditions:**
+
 - f initialized to equilibrium or valid distributions
 - rho, ux, uy consistent with f (sum_i f[i] = rho, etc.)
 - tau > 0.5 (stability constraint)
 
 **Postconditions/Invariants:**
+
 - Mass conserved: sum_i(f[i]) = rho
-- Momentum conserved (with forcing): sum_i(c_i * f[i]) = rho * u + dt * F
+- Momentum conserved (with forcing): sum_i(c_i *f[i]) = rho* u + dt * F
 
 **Concurrency/Ordering:**
+
 - Vectorized NumPy (parallel on multi-core)
 - Collision is local (no communication between cells)
 
 **Failure/Backoff hooks:**
+
 - rho clamping to rho_floor (avoid division by zero)       # lbm2d.py:169
 - velocity clamping to u_clamp (Mach control)              # lbm2d.py:171
 
 **Emits/Side effects:**
+
 - Updates f in-place (populations)
 - Updates rho, ux, uy (macroscopic fields)
 - Updates W (VDM void field) if void_enabled
@@ -804,6 +884,7 @@ FORCING (optional):
 ## Control Plane / Gating / Budget Schedulers
 
 #### VDM-A-012 — Phase Control Polling  <a id="vdm-a-012"></a>
+>
 > Type: POLICY • Binding: PSEUDOCODE • State: writes runtime params • Dependencies: none • Notes: external phase.json polling (optional)
 
 **Context:** fum_rt/runtime/phase.py (called from loop/main.py:550) • Commit: 7498744 • Module: runtime/phase
@@ -811,12 +892,15 @@ FORCING (optional):
 **Role:** Poll external phase.json file for dynamic control plane updates (optional; silent no-op if absent).
 
 **Inputs:**
+
 - nx: Nexus-like object (run_dir, phase profiles, dom_mod, etc.)
 
 **Depends on equations:**
+
 - (none; control plane only)
 
 **Pseudocode:**
+
 ```text
 POLL CONTROL:
   - path = run_dir / "phase.json"                           # phase.py:?
@@ -829,22 +913,27 @@ POLL CONTROL:
 ```
 
 **Preconditions:**
+
 - nx.run_dir exists
 - nx._phase_profiles dict initialized (default or custom)
 
 **Postconditions/Invariants:**
+
 - nx.dom_mod, nx.hz updated if profile found
 - No changes if file absent or profile unknown
 
 **Concurrency/Ordering:**
+
 - Called once per tick from main loop
 - File read is atomic (OS-level)
 
 **Failure/Backoff hooks:**
+
 - Try-except on file read (silent no-op)
 - Try-except on JSON parse (silent no-op)
 
 **Emits/Side effects:**
+
 - Logs: phase_update (if profile applied)
 
 ---
@@ -866,4 +955,5 @@ POLL CONTROL:
 <!-- END AUTOSECTION: ALGO-INDEX -->
 
 ## Change Log
+
 - 2025-10-03 • initial algorithms extracted • 7498744

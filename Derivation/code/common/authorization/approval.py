@@ -28,7 +28,7 @@ def _iso_now_utc() -> str:
     return datetime.now(timezone.utc).isoformat()
 
 
-SCHEMA_SQL = """
+SCHEMA_SQL_PUBLIC = """
 CREATE TABLE IF NOT EXISTS approvals (
   domain TEXT NOT NULL,
   tag TEXT NOT NULL,
@@ -36,14 +36,6 @@ CREATE TABLE IF NOT EXISTS approvals (
   approved_by TEXT NOT NULL,
   approved_at TEXT NOT NULL,
   PRIMARY KEY(domain, tag)
-);
-CREATE TABLE IF NOT EXISTS admin (
-  id INTEGER PRIMARY KEY CHECK(id = 1),
-  password_scheme TEXT NOT NULL,
-  password_hash TEXT NOT NULL,
-  salt TEXT NOT NULL,
-  iterations INTEGER NOT NULL,
-  created_at TEXT NOT NULL
 );
 CREATE TABLE IF NOT EXISTS domain_keys (
   domain TEXT PRIMARY KEY,
@@ -57,28 +49,78 @@ CREATE TABLE IF NOT EXISTS tag_secrets (
   created_at TEXT NOT NULL,
   PRIMARY KEY(domain, tag)
 );
+CREATE TABLE IF NOT EXISTS exempt_scripts (
+    script TEXT PRIMARY KEY,
+    created_at TEXT NOT NULL,
+    noted_by TEXT
+);
+"""
+
+SCHEMA_SQL_ADMIN = """
+CREATE TABLE IF NOT EXISTS admin (
+    id INTEGER PRIMARY KEY CHECK(id = 1),
+    password_scheme TEXT NOT NULL,
+    password_hash TEXT NOT NULL,
+    salt TEXT NOT NULL,
+    iterations INTEGER NOT NULL,
+    created_at TEXT NOT NULL
+);
 """
 
 # Default approvals DB path fallback (when VDM_APPROVAL_DB is unset)
 DEFAULT_DB_PATH = Path(__file__).resolve().parents[1] / "data" / "approval.db"
+# Default admin DB path (separate file) fallback
+DEFAULT_ADMIN_DB_PATH = Path(__file__).resolve().parents[1] / "data" / "approval_admin.db"
 
 
 def _read_env_file(path: Path) -> dict:
+    """Parse a simple .env file.
+
+    - Supports lines like: KEY=value, KEY="value with spaces", export KEY=value
+    - Strips inline comments starting with # when not inside quotes
+    - Trims surrounding single/double quotes
+    """
     env: dict[str, str] = {}
     try:
         if not path.exists():
             return env
-        for line in path.read_text(encoding="utf-8").splitlines():
-            s = line.strip()
-            if not s or s.startswith("#") or "=" not in s:
+        text = path.read_text(encoding="utf-8")
+        for raw in text.splitlines():
+            s = raw.strip()
+            if not s or s.startswith("#"):
+                continue
+            # Drop leading 'export '
+            if s.lower().startswith("export "):
+                s = s[7:].lstrip()
+            if "=" not in s:
+                continue
+            # Remove inline comments outside quotes
+            in_single = False
+            in_double = False
+            cut_idx = None
+            for i, ch in enumerate(s):
+                if ch == "'" and not in_double:
+                    in_single = not in_single
+                elif ch == '"' and not in_single:
+                    in_double = not in_double
+                elif ch == "#" and not in_single and not in_double:
+                    cut_idx = i
+                    break
+            if cut_idx is not None:
+                s = s[:cut_idx].rstrip()
+            if "=" not in s:
                 continue
             k, v = s.split("=", 1)
             k = k.strip()
-            v = v.strip().strip('"').strip("'")
+            v = v.strip()
+            # Trim surrounding quotes if present
+            if (len(v) >= 2) and ((v[0] == v[-1]) and v[0] in ('"', "'")):
+                v = v[1:-1]
             if k:
                 env[k] = v
-    except Exception:
-        return {}
+    except Exception as e:
+        print(f"[authorization] Warning: failed reading env file {path}: {e}", file=sys.stderr)
+        return env
     return env
 
 
@@ -116,10 +158,49 @@ def _approval_db_path() -> Optional[Path]:
     return None
 
 
-def ensure_db(dbp: Path) -> None:
+def _approval_admin_db_path() -> Optional[Path]:
+    # 1) OS environment
+    env = os.getenv("VDM_APPROVAL_ADMIN_DB")
+    if env:
+        p = Path(env)
+        print(f"[authorization] Using admin DB from environment variable VDM_APPROVAL_ADMIN_DB: {p}", file=sys.stderr)
+        return p
+    # 2) .env files (search upward: code -> Derivation -> repo root)
+    try:
+        code_dir = Path(__file__).resolve().parents[2]
+        deriv_dir = Path(__file__).resolve().parents[3]
+        repo_root = deriv_dir.parent
+        for candidate in [code_dir / ".env", deriv_dir / ".env", repo_root / ".env"]:
+            envs = _read_env_file(candidate)
+            if "VDM_APPROVAL_ADMIN_DB" in envs:
+                p = Path(envs["VDM_APPROVAL_ADMIN_DB"]).expanduser()
+                print(f"[authorization] Using admin DB from env file {candidate}: {p}", file=sys.stderr)
+                return p
+    except Exception as e:
+        print(f"[authorization] Warning: failed scanning .env files for VDM_APPROVAL_ADMIN_DB: {e}", file=sys.stderr)
+    # 3) default admin path if present; else fall back to approvals DB path
+    if DEFAULT_ADMIN_DB_PATH.exists():
+        print(f"[authorization] Using admin DB at default path: {DEFAULT_ADMIN_DB_PATH}", file=sys.stderr)
+        return DEFAULT_ADMIN_DB_PATH
+    # fallback to the approvals DB file for backward compatibility
+    return _approval_db_path()
+
+
+def ensure_public_db(dbp: Path) -> None:
     dbp.parent.mkdir(parents=True, exist_ok=True)
     with sqlite3.connect(str(dbp)) as conn:
-        conn.executescript(SCHEMA_SQL)
+        conn.executescript(SCHEMA_SQL_PUBLIC)
+        conn.commit()
+    try:
+        os.chmod(dbp, 0o600)
+    except Exception as _e:
+        _ = _e
+
+
+def ensure_admin_db(dbp: Path) -> None:
+    dbp.parent.mkdir(parents=True, exist_ok=True)
+    with sqlite3.connect(str(dbp)) as conn:
+        conn.executescript(SCHEMA_SQL_ADMIN)
         conn.commit()
     try:
         os.chmod(dbp, 0o600)
@@ -179,7 +260,7 @@ def compute_expected_key(secret: str, domain: str, tag: str, script: Optional[st
 
 
 def upsert_approval(dbp: Path, rec: ApprovalRecord) -> None:
-    ensure_db(dbp)
+    ensure_public_db(dbp)
     with sqlite3.connect(str(dbp)) as conn:
         conn.execute(
             """
@@ -196,7 +277,7 @@ def upsert_approval(dbp: Path, rec: ApprovalRecord) -> None:
 
 
 def set_domain_key(dbp: Path, domain: str, domain_key: str) -> None:
-    ensure_db(dbp)
+    ensure_public_db(dbp)
     with sqlite3.connect(str(dbp)) as conn:
         conn.execute("DELETE FROM domain_keys WHERE domain=?", (domain,))
         conn.execute(
@@ -207,7 +288,7 @@ def set_domain_key(dbp: Path, domain: str, domain_key: str) -> None:
 
 
 def set_tag_secret(dbp: Path, domain: str, tag: str, tag_secret: str) -> None:
-    ensure_db(dbp)
+    ensure_public_db(dbp)
     with sqlite3.connect(str(dbp)) as conn:
         conn.execute(
             """
@@ -230,7 +311,7 @@ def _rand_salt(n: int = 16) -> bytes:
 
 
 def set_admin_password(dbp: Path, password: str, iterations: int = 100_000) -> None:
-    ensure_db(dbp)
+    ensure_admin_db(dbp)
     salt = _rand_salt()
     digest = _pbkdf2(password, salt, iterations=iterations)
     with sqlite3.connect(str(dbp)) as conn:
@@ -265,7 +346,7 @@ def verify_admin_password(dbp: Path, password: str) -> bool:
 
 
 def ensure_admin_verified(dbp: Path, password: str) -> bool:
-    ensure_db(dbp)
+    ensure_admin_db(dbp)
     with sqlite3.connect(str(dbp)) as conn:
         cur = conn.execute("SELECT COUNT(1) FROM admin WHERE id=1")
         exists = bool(cur.fetchone()[0])
@@ -533,3 +614,88 @@ def check_tag_approval(domain: str, tag: str, allow_unapproved: bool, code_root:
     if proposal:
         os.environ["VDM_POLICY_PROPOSAL"] = str(proposal)
     return approved, engineering_only, proposal
+
+
+# --- Enforcement policy helpers (DB-backed) ---
+
+
+def _normalize_rel_script(p: Path) -> str:
+    code_root = Path(__file__).resolve().parents[2]
+    rel = p.resolve()
+    try:
+        rel = rel.relative_to(code_root)
+    except Exception as e:
+        print(f"[authorization] Note: could not relativize script path to code root ({code_root}): {e}", file=sys.stderr)
+    return str(rel).replace("\\", "/").lower()
+
+
+def db_list_exempt_scripts(dbp: Path) -> set[str]:
+    if not dbp.exists():
+        return set()
+    try:
+        with sqlite3.connect(str(dbp)) as conn:
+            cur = conn.execute("SELECT script FROM exempt_scripts")
+            rows = cur.fetchall()
+            return {str(r[0]).lower() for r in rows}
+    except Exception as e:
+        print(f"[authorization] Warning: failed reading exempt scripts from DB: {e}", file=sys.stderr)
+        return set()
+
+
+def db_upsert_exempt_scripts(dbp: Path, scripts: list[str], noted_by: Optional[str] = None) -> int:
+    ensure_public_db(dbp)
+    ts = _iso_now_utc()
+    count = 0
+    try:
+        with sqlite3.connect(str(dbp)) as conn:
+            for s in scripts:
+                conn.execute(
+                    "INSERT OR IGNORE INTO exempt_scripts(script, created_at, noted_by) VALUES(?, ?, ?)",
+                    (s.lower(), ts, noted_by),
+                )
+                count += conn.total_changes
+            conn.commit()
+    except Exception as e:
+        print(f"[authorization] Failed to upsert exempt scripts: {e}", file=sys.stderr)
+    return count
+
+
+def db_remove_exempt_scripts(dbp: Path, scripts: list[str]) -> int:
+    """Remove scripts from the exempt_scripts table. Returns number of rows affected."""
+    if not dbp.exists():
+        return 0
+    removed = 0
+    try:
+        with sqlite3.connect(str(dbp)) as conn:
+            for s in scripts:
+                conn.execute("DELETE FROM exempt_scripts WHERE script=?", (s.lower(),))
+                removed += conn.total_changes
+            conn.commit()
+    except Exception as e:
+        print(f"[authorization] Failed to remove exempt scripts: {e}", file=sys.stderr)
+    return removed
+
+
+def should_enforce_approval(domain: str, script_path: Path) -> bool:
+    """Return True if approval checks must be enforced for the given script.
+
+            Policy:
+                - Global default: enforce approval for all scripts in all domains.
+                - Exception: if script's normalized relative path exists in DB table 'exempt_scripts', do not enforce.
+    """
+    dbp = _approval_db_path()
+    if not dbp:
+        print(f"[authorization] Warning: no approvals DB configured; safest to enforce", file=sys.stderr)
+        return True
+    rel = _normalize_rel_script(script_path)
+    exempt = db_list_exempt_scripts(dbp)
+    return rel not in exempt
+
+
+# Public getters for paths
+def get_approval_db_path() -> Optional[Path]:
+    return _approval_db_path()
+
+
+def get_admin_db_path() -> Optional[Path]:
+    return _approval_admin_db_path()
