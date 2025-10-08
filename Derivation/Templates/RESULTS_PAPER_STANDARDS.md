@@ -215,6 +215,7 @@ Summarize what you learned in the lab, with specific references to the scientifi
 - **Never let floats roam.** Use `[!htbp]` and `\FloatBarrier` (or `[H]` sparingly).
 - **Caption with numbers, not vibes.** Include R², slope, RMSE right in the caption.
 - **One figure = one claim.** Don’t overload panels with multiple unlinked points.
+- **There should ALWAYS be a Jupyter Notebook version of a results writeup located here: `Derivation/Notebooks` These should not require approvals to run, as they must have already been through the approval process.
 
 ### Thread/Etiquette (r/LLMPhysics survival)
 
