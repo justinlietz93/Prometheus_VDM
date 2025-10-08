@@ -3,7 +3,7 @@
 > Author: Justin K. Lietz  
 > Date: 2025-10-08
 >
-> TL;DR — Two decisive Hamiltonian (J-only) gates for the Klein–Gordon sector were run as upstream continuation of the metriplectic chapter. One-click artifact (light cone): `Derivation/code/outputs/figures/metriplectic/failed_runs/20251008_040827_kg_light_cone__KG-cone-v1.png`. All figures have CSV/JSON sidecars; runs were quarantined (engineering-only/unapproved) at execution time.
+> TL;DR — Two decisive Hamiltonian (J-only) gates for the Klein–Gordon sector were run as upstream continuation of the metriplectic chapter. Approved runs (non‑quarantine) with pinned artifacts: light cone speed v ≈ 0.998 (R² ≈ 0.99985), dispersion fit ω² ≈ (1.0002)·k² + 0.9978 (R² ≈ 0.999999997). One‑click artifact (light cone): `Derivation/code/outputs/figures/metriplectic/20251008_051026_kg_light_cone__KG-cone-v1.png`.
 
 ## Introduction (scope and linkages)
 
@@ -63,29 +63,40 @@ Mapping to gates:
 
 ![KG Dispersion Fit](KG_Jonly_Dispersion.png)
 
-- Figure: `Derivation/code/outputs/figures/metriplectic/failed_runs/20251008_041050_kg_dispersion_fit__KG-dispersion-v1.png`
-- CSV: `Derivation/code/outputs/logs/metriplectic/failed_runs/20251008_041051_kg_dispersion_fit__KG-dispersion-v1.csv`
-- JSON: `Derivation/code/outputs/logs/metriplectic/failed_runs/20251008_041051_kg_dispersion_fit__KG-dispersion-v1.json`
+- Figure: `Derivation/code/outputs/figures/metriplectic/20251008_051057_kg_dispersion_fit__KG-dispersion-v1.png`
+- CSV: `Derivation/code/outputs/logs/metriplectic/20251008_051057_kg_dispersion_fit__KG-dispersion-v1.csv`
 
 Gate: slope $\approx c^2$, intercept $\approx m^2$, $R^2\ge 0.999$.  
-Outcome: see JSON for numeric regression and pass/fail.
+Outcome (approved run): slope $\hat s\approx 1.0002$, intercept $\hat b\approx 0.9978$, $R^2\approx 0.999999997$ (PASS).
+
+Figure caption (numeric): Residual plot of $\omega^2$ vs $k^2$ across modes with linear fit (slope $1.0002$, intercept $0.9978$, $R^2=0.999999997$); dashed line shows theory $c^2 k^2 + m^2$.
 
 ### R2. KG locality cone (tag: KG-cone-v1)
 
 ![KG Light Cone](KG_Jonly_Locality.png)
 
-- Figure: `Derivation/code/outputs/figures/metriplectic/failed_runs/20251008_040827_kg_light_cone__KG-cone-v1.png`
-- CSV: `Derivation/code/outputs/logs/metriplectic/failed_runs/20251008_040828_kg_light_cone__KG-cone-v1.csv`
-- JSON: `Derivation/code/outputs/logs/metriplectic/failed_runs/20251008_040828_kg_light_cone__KG-cone-v1.json`
+- Figure: `Derivation/code/outputs/figures/metriplectic/20251008_051026_kg_light_cone__KG-cone-v1.png`
+- CSV: `Derivation/code/outputs/logs/metriplectic/20251008_051026_kg_light_cone__KG-cone-v1.csv`
 
 Gate: $v \le c(1+\epsilon)$ with $\epsilon=0.02$; report $R^2$ of the $R(t)$ fit.  
-Outcome: see JSON for fitted speed and pass/fail.
+Outcome (approved run): speed $v\approx 0.998$, $R^2\approx 0.99985$ (PASS).
+
+Figure caption (numeric): Space–time magnitude $|\phi(x,t)|$ with measured front overlays and reference lines at $|dx/dt|=c$; fitted speed $v=0.998$, $R^2=0.99985$.
 
 ## Discussion / Analysis
 
-- The dispersion fit assesses linear spectrum fidelity of the J-only KG integrator.  
-- The light-cone bound certifies locality; deviations beyond $c(1+\epsilon)$ would indicate discretization or algorithmic issues.  
-- Quarantine context: current artifacts are quarantined due to approval policy; physics metrics remain valid in sidecars. Approved reruns will produce non-quarantine paths and can be pinned here subsequently.
+- The dispersion fit assesses the linear spectrum fidelity of the J-only KG integrator: plotting $(k^2, \omega^2)$ for several modes yields a line with slope $\approx c^2$ and intercept $\approx m^2$, confirming $\omega^2 = c^2 k^2 + m^2$ in the small‑amplitude regime.  
+- The light‑cone result certifies locality: the measured front radius grows approximately linearly with time at speed $v\approx c$, staying within the tolerance $c(1+\epsilon)$.
+
+### Latest run summary (from per‑domain results DB)
+
+- Database: `Derivation/code/outputs/databases/metriplectic.sqlite3`
+- Tables: `kg_dispersion` (from `run_kg_dispersion.py`), `kg_light_cone` (from `run_kg_light_cone.py`)
+
+Recent entries (by tag, latest batch):
+
+- kg_dispersion · tag `KG-dispersion-v1`: status=success; metrics { slope≈1.0002, intercept≈0.9978, R²≈0.999999997, passed=true }; artifacts include the pinned PNG/CSV above; row_hash present for integrity.
+- kg_light_cone · tag `KG-cone-v1`: status=success; metrics { speed≈0.998, R²≈0.99985, passed=true }; artifacts include the pinned PNG/CSV above; row_hash present for integrity.
 
 ## Conclusions
 
