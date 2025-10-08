@@ -27,9 +27,9 @@ Your edge is that you can see patterns and connections across disparate domains 
 
 - You are expected to review and critique your results.
 
-- New proposed experiments must follow this template: /mnt/ironwolf/git/Void_Unity_Proofs/derivation/templates/PROPOSAL_TEMPLATE.md and must be placed in /mnt/ironwolf/git/Void_Unity_Proofs/derivation/{domain/topic folder}
+- New proposed experiments must follow this template: /mnt/ironwolf/git/Prometheus_VDM/derivation/templates/PROPOSAL_TEMPLATE.md and must be placed in /mnt/ironwolf/git/Prometheus_VDM/derivation/{domain/topic folder}
 
-- Post-experiment results must produce a write up following these exact standards: /mnt/ironwolf/git/Void_Unity_Proofs/derivation/templates/PAPER_STANDARDS.md and must be placed in /mnt/ironwolf/git/Void_Unity_Proofs/derivation/{domain/topic folder}
+- Post-experiment results must produce a write up following these exact standards: /mnt/ironwolf/git/Prometheus_VDM/derivation/templates/PAPER_STANDARDS.md and must be placed in /mnt/ironwolf/git/Prometheus_VDM/derivation/{domain/topic folder}
 
 For Author: you can put Justin K. Lietz
 
@@ -49,11 +49,11 @@ For Author: you can put Justin K. Lietz
 
 4. **If Memory Bank Exists:**
    - Read ALL memory bank files in this order:
-     1. Read `productContext.md`
-     2. Read `activeContext.md` 
-     3. Read `systemPatterns.md` 
-     4. Read `decisionLog.md` 
-     5. Read `progress.md`
+     1. Read `memory-bank/productContext.md`
+     2. Read `memory-bank/activeContext.md`
+     3. Read `memory-bank/systemPatterns.md`
+     4. Read `memory-bank/decisionLog.md`
+     5. Read `memory-bank/progress.md`
    - Set status to '[MEMORY BANK: ACTIVE]'
    - Proceed with the task using the context from the Memory Bank
 
@@ -62,26 +62,31 @@ For Author: you can put Justin K. Lietz
 - **UPDATE MEMORY BANK THROUGHOUT THE CHAT SESSION, WHEN SIGNIFICANT CHANGES OCCUR IN THE PROJECT.**
 
 1. **decisionLog.md**:
+   - **File Path**: /mnt/ironwolf/git/Prometheus_VDM/memory-bank/decisionLog.md
    - **When to update**: When a significant architectural decision is made (new component, data flow change, technology choice, etc.).
    - **Format**: "[YYYY-MM-DD HH:MM:SS] - [Summary of Change/Focus/Issue]"
    - Always append new entries, never overwrite existing ones.
 
 2. **productContext.md**:
+   - **File Path**: /mnt/ironwolf/git/Prometheus_VDM/memory-bank/productContext.md
    - **When to update**: When the high-level project description, goals, features, or overall architecture changes significantly.
    - **Format**: "[YYYY-MM-DD HH:MM:SS] - [Summary of Change]"
    - Append new information or modify existing entries if necessary.
 
 3. **systemPatterns.md**:
+   - **File Path**: /mnt/ironwolf/git/Prometheus_VDM/memory-bank/systemPatterns.md
    - **When to update**: When new architectural patterns are introduced or existing ones are modified.
    - **Format**: "[YYYY-MM-DD HH:MM:SS] - [Description of Pattern/Change]"
    - Append new patterns or modify existing entries if warranted.
 
 4. **activeContext.md**:
+   - **File Path**: /mnt/ironwolf/git/Prometheus_VDM/memory-bank/activeContext.md
    - **When to update**: When the current focus of work changes, or when significant progress is made.
    - **Format**: "[YYYY-MM-DD HH:MM:SS] - [Summary of Change/Focus/Issue]"
    - Append to the relevant section or modify existing entries if warranted.
 
 5. **progress.md**:
+   - **File Path**: /mnt/ironwolf/git/Prometheus_VDM/memory-bank/progress.md
    - **When to update**: When a task begins, is completed, or if there are any changes.
    - **Format**: "[YYYY-MM-DD HH:MM:SS] - [Summary of Change/Focus/Issue]"
    - Append new entries, never overwrite existing ones.
@@ -185,27 +190,27 @@ Remember: Your role is to implement solutions that are not only functional but a
 
 ## Important Context:
 
-/mnt/ironwolf/git/Void_Unity_Proofs/derivation/AGENCY_FIELD.md
-/mnt/ironwolf/git/Void_Unity_Proofs/derivation/ALGORITHMS.md
-/mnt/ironwolf/git/Void_Unity_Proofs/derivation/BC_IC_GEOMETRY.md
-/mnt/ironwolf/git/Void_Unity_Proofs/derivation/CONSTANTS.md
-/mnt/ironwolf/git/Void_Unity_Proofs/derivation/CANON_MAP.md
-/mnt/ironwolf/git/Void_Unity_Proofs/derivation/DATA_PRODUCTS.md
-/mnt/ironwolf/git/Void_Unity_Proofs/derivation/EQUATIONS.md
-/mnt/ironwolf/git/Void_Unity_Proofs/derivation/VALIDATION_METRICS.md
-/mnt/ironwolf/git/Void_Unity_Proofs/derivation/UNITS_NORMALIZATION.md
-/mnt/ironwolf/git/Void_Unity_Proofs/derivation/SYMBOLS.md
-/mnt/ironwolf/git/Void_Unity_Proofs/derivation/SCHEMAS.md
-/mnt/ironwolf/git/Void_Unity_Proofs/derivation/ROADMAP.md
-/mnt/ironwolf/git/Void_Unity_Proofs/derivation/OPEN_QUESTIONS.md
-/mnt/ironwolf/git/Void_Unity_Proofs/derivation/NAMING_CONVENTIONS.md
+/mnt/ironwolf/git/Prometheus_VDM/derivation/AGENCY_FIELD.md
+/mnt/ironwolf/git/Prometheus_VDM/derivation/ALGORITHMS.md
+/mnt/ironwolf/git/Prometheus_VDM/derivation/BC_IC_GEOMETRY.md
+/mnt/ironwolf/git/Prometheus_VDM/derivation/CONSTANTS.md
+/mnt/ironwolf/git/Prometheus_VDM/derivation/CANON_MAP.md
+/mnt/ironwolf/git/Prometheus_VDM/derivation/DATA_PRODUCTS.md
+/mnt/ironwolf/git/Prometheus_VDM/derivation/EQUATIONS.md
+/mnt/ironwolf/git/Prometheus_VDM/derivation/VALIDATION_METRICS.md
+/mnt/ironwolf/git/Prometheus_VDM/derivation/UNITS_NORMALIZATION.md
+/mnt/ironwolf/git/Prometheus_VDM/derivation/SYMBOLS.md
+/mnt/ironwolf/git/Prometheus_VDM/derivation/SCHEMAS.md
+/mnt/ironwolf/git/Prometheus_VDM/derivation/ROADMAP.md
+/mnt/ironwolf/git/Prometheus_VDM/derivation/OPEN_QUESTIONS.md
+/mnt/ironwolf/git/Prometheus_VDM/derivation/NAMING_CONVENTIONS.md
 
 ## Experiment code and configs go here:
-/mnt/ironwolf/git/Void_Unity_Proofs/derivation/code/physics/{domain/topic folder}
+/mnt/ironwolf/git/Prometheus_VDM/derivation/code/physics/{domain/topic folder}
 
 ## Result artifacts go here:
-/mnt/ironwolf/git/Void_Unity_Proofs/derivation/code/outputs/logs/{domain/topic folder}
-/mnt/ironwolf/git/Void_Unity_Proofs/derivation/code/outputs/figures/{domain/topic folder}
+/mnt/ironwolf/git/Prometheus_VDM/derivation/code/outputs/logs/{domain/topic folder}
+/mnt/ironwolf/git/Prometheus_VDM/derivation/code/outputs/figures/{domain/topic folder}
 
 ## You must use the io helper for outputs
-/mnt/ironwolf/git/Void_Unity_Proofs/derivation/code/common/io_paths.py
+/mnt/ironwolf/git/Prometheus_VDM/derivation/code/common/io_paths.py

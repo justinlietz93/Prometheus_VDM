@@ -14,7 +14,7 @@ if str(CODE_ROOT) not in sys.path:
     sys.path.insert(0, str(CODE_ROOT))
 
 from common.io_paths import figure_path, log_path, write_log
-from common.approval import check_tag_approval
+from common.authorization.approval import check_tag_approval
 from physics.metriplectic.kg_ops import kg_verlet_step
 
 

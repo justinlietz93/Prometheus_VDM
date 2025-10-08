@@ -1,0 +1,18 @@
+{
+  "pre_registered": false,
+  "proposal": "Derivation/Metriplectic/PROPOSAL_Metriplectic_SymplecticPlusDG.md",
+  "allowed_tags": ["KG-dispersion-v1", "KG-cone-v1"],
+  "schema_dir": "Derivation/code/physics/metriplectic/schemas",
+  "approvals": {
+    "KG-dispersion-v1": {
+      "schema": "Derivation/code/physics/metriplectic/schemas/KG-dispersion-v1.schema.json",
+      "approved_by": "",
+      "approved_at": ""
+    },
+    "KG-cone-v1": {
+      "schema": "Derivation/code/physics/metriplectic/schemas/KG-cone-v1.schema.json",
+      "approved_by": "",
+      "approved_at": ""
+    }
+  }
+}

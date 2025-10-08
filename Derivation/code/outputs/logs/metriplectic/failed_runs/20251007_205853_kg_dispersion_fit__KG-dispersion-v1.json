@@ -1,0 +1,64 @@
+{
+  "csv": "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/logs/metriplectic/failed_runs/20251007_205853_kg_dispersion_fit__KG-dispersion-v1.csv",
+  "figure": "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/figures/metriplectic/failed_runs/20251007_205852_kg_dispersion_fit__KG-dispersion-v1.png",
+  "fit": {
+    "R2": 1.0,
+    "intercept": NaN,
+    "rel_intercept": NaN,
+    "rel_slope": NaN,
+    "slope": NaN
+  },
+  "gate": {
+    "R2_min": 0.999,
+    "passed": false,
+    "rel_tol": 0.01
+  },
+  "params": {
+    "A": 1e-06,
+    "L": 6.283185307179586,
+    "N": 512,
+    "c": 1.0,
+    "dt": 0.01,
+    "m": 1.0,
+    "modes": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      8,
+      10
+    ],
+    "steps": 0
+  },
+  "policy": {
+    "approved": false,
+    "engineering_only": true,
+    "proposal": "Derivation/Metriplectic/PROPOSAL_Metriplectic_SymplecticPlusDG.md",
+    "quarantined": true,
+    "tag": "KG-dispersion-v1"
+  },
+  "table": {
+    "k": [
+      1.0,
+      2.0,
+      3.0,
+      4.0,
+      5.0,
+      6.0,
+      8.0,
+      10.0
+    ],
+    "omega": [
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN
+    ]
+  }
+}

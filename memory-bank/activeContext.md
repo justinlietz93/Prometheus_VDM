@@ -2,7 +2,7 @@
 
 ## Current Goals
 
-- Pre-register proposals first; suspend new experiments until proposal approval. Focus: document rigor (hypotheses, KPIs, gates) and keep DP canon entries as planned, not implemented.
+- Implementing automated checks to block experiment runs until a proposal document and approved tag-specific JSON schema exist. Added robust approval guard in common/approval.py, default approval requirement in common/io_paths.py, and created Metriplectic domain APPROVAL.json scaffold with schemas directory.
 
 ## Current Blockers
 

@@ -1,6 +1,6 @@
 # White Paper Proposal Template
 
-It is strongly encouraged to include the substance of the outlined topics. The
+It is MANDATORY and IMPORTANT to include the substance of the outlined topics. The
 length of the proposal should not exceed five U.S. letter-sized pages (including figures and references).
 
 ## 1. Proposal Title and date

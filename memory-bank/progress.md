@@ -1,16 +1,15 @@
-# Progress (Updated: 2025-10-07)
+# Progress (Updated: 2025-10-08)
 
 ## Done
 
-- Created `vdm_equations.py` with potential/reaction/dispersion/front-speed/mappings/KG speed and vacuum evaluators.
-- Added gated unit test `test_vdm_equations.py` and package initializers for Derivation packages.
-- Smoke-checked module with internal self-check (OK).
+- Added approve_tag.py CLI to automate manifest approval updates (approved_by/at, approval_key, allowed_tags).
+- Updated common/README.md with cleaned instructions and examples for approval workflow and generator usage.
 
 ## Doing
 
-- Offer to wire new module into existing physics runners to de-duplicate formulas.
+- Ready to run approve_tag.py for specific tags once you confirm the approver and secret/key setup.
 
 ## Next
 
-- Auto-compile constants/equations into the module (codegen) to prevent drift.
-- Enable Codacy CLI MCP and run analysis on new files once available.
+- Optionally integrate unit tests for approval.py and approve_tag.py.
+- Mark approved tags in metriplectic APPROVAL.json using the new tool.
