@@ -11,10 +11,10 @@ field dynamics through universal void dynamics.
 Emerges intelligently from elegant Void Intelligence rules.
 """
 import numpy as np
-from FUM_Void_Equations import delta_re_vgsp, delta_gdsp, get_universal_constants
-from FUM_Void_Debt_Modulation import VoidDebtModulation
+from Void_Equations import delta_re_vgsp, delta_gdsp, get_universal_constants
+from Void_Debt_Modulation import VoidDebtModulation
 
-class FUMStandardModelProof:
+class VDMStandardModelProof:
     """Standard Model proof class that derives parameters from AI learning stability."""
     
     def __init__(self):
@@ -35,7 +35,7 @@ class FUMStandardModelProof:
         
     def run_simulation(self):
         """Run Standard Model simulation through universal void dynamics."""
-        print("--- FUM Standard Model Proof: Gauge Force Unification ---")
+        print("--- VDM Standard Model Proof: Gauge Force Unification ---")
         constants = get_universal_constants()
         print(f"Using universal constants: α={constants['ALPHA']}, β={constants['BETA']}")
         print(f"f_ref={constants['F_REF']}, φ_sens={constants['PHASE_SENS']}")
@@ -116,7 +116,7 @@ class FUMStandardModelProof:
     
     def run_proof(self):
         """Main proof execution with data sharing capability."""
-        print("=== FUM Standard Model Proof: Universal Void Dynamics ===")
+        print("=== VDM Standard Model Proof: Universal Void Dynamics ===")
         print("Demonstrating gauge force unification through AI learning stability\n")
         
         # Run simulation
@@ -149,7 +149,7 @@ class FUMStandardModelProof:
             print("⚠ Partial validation - gauge unification requires refinement")
         
         print(f"\nCritical insight: Gauge forces unify naturally through the same")
-        print(f"AI learning stability constants governing FUM cognition.")
+        print(f"AI learning stability constants governing VDM cognition.")
         
         return {
             'proof_type': 'standard_model',
@@ -179,7 +179,7 @@ class FUMStandardModelProof:
 
 def run_proof():
     """Legacy interface for inter-proof data sharing"""
-    proof = FUMStandardModelProof()
+    proof = VDMStandardModelProof()
     return proof.run_proof()
 
 def main():

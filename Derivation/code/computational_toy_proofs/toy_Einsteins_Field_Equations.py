@@ -7,7 +7,7 @@ principles. Commercial use requires written permission from Justin K. Lietz.
 See LICENSE file for full terms.
 
 Einstein Field Equations Speculative Experimental Script: Demonstrates that Einstein's field equations
-naturally emerge from FUM void dynamics. The scalar field φ represents the
+naturally emerge from VDM void dynamics. The scalar field φ represents the
 void state W(t) evolving according to delta_re_vgsp and delta_gdsp functions.
 Universal constants from AI learning stability generate realistic spacetime curvature.
 
@@ -19,11 +19,11 @@ PROOF FOUNDATION:
 """
 import sympy as sp
 import numpy as np
-from FUM_Void_Equations import get_universal_constants, delta_re_vgsp, delta_gdsp
+from Void_Equations import get_universal_constants, delta_re_vgsp, delta_gdsp
 
-class FUM_Einstein_Proof:
+class Einstein_Proof:
     """
-    Class demonstrating emergence of Einstein field equations from FUM void dynamics.
+    Class demonstrating emergence of Einstein field equations from VDM void dynamics.
     Provides falsifiable tests and stores all derived results for later access.
     """
     
@@ -96,10 +96,10 @@ class FUM_Einstein_Proof:
         self.diff = sp.simplify(self.Einstein - self.source)
     
     def test_void_dynamics_integration(self):
-        """Test specific FUM void dynamics functions for Einstein emergence."""
-        print("TESTING ACTUAL FUM VOID DYNAMICS:")
+        """Test specific VDM void dynamics functions for Einstein emergence."""
+        print("TESTING ACTUAL VDM VOID DYNAMICS:")
         
-        # Calculate actual FUM void dynamics with universal constants
+        # Calculate actual VDM void dynamics with universal constants
         delta_re = delta_re_vgsp(self.phi_test, self.t_test, 
                                 alpha=self.universal_constants['ALPHA'],
                                 f_ref=self.universal_constants['F_REF'], 
@@ -211,7 +211,7 @@ class FUM_Einstein_Proof:
         
         if success_rate >= 0.75:
             status = "EMERGENCE_CONFIRMED"
-            print("CONCLUSION: Einstein field equations emerge from FUM void dynamics")
+            print("CONCLUSION: Einstein field equations emerge from VDM void dynamics")
         elif success_rate >= 0.5:
             status = "PARTIAL_EMERGENCE"
             print("CONCLUSION: Partial emergence - some criteria failed")
@@ -237,14 +237,14 @@ class FUM_Einstein_Proof:
     def run_proof(self):
         """
         Main proof execution testing whether Einstein field equations emerge
-        from specific FUM void dynamics with universal constants.
+        from specific VDM void dynamics with universal constants.
         
         Returns complete proof results for integration with other systems.
         """
-        print("=== FUM EINSTEIN FIELD EQUATIONS PROOF ===")
+        print("=== VDM EINSTEIN FIELD EQUATIONS PROOF ===")
         print("Testing emergence of General Relativity from Void Dynamics\n")
         
-        print("Universal Constants from FUM AI Learning Stability:")
+        print("Universal Constants from VDM AI Learning Stability:")
         for key, value in self.universal_constants.items():
             print(f"  {key} = {value}")
         print()
@@ -272,7 +272,7 @@ class FUM_Einstein_Proof:
         return self.symbolic_results.get('energy_momentum_tensor')
     
     def get_void_evolution_rate(self):
-        """Return the void evolution rate from FUM dynamics."""
+        """Return the void evolution rate from VDM dynamics."""
         return self.void_dynamics_results.get('phi_evolution')
     
     def get_universal_constants(self):
@@ -281,7 +281,7 @@ class FUM_Einstein_Proof:
 
 def run_proof():
     """Standalone function for direct script execution."""
-    proof = FUM_Einstein_Proof()
+    proof = Einstein_Proof()
     return proof.run_proof()
 
 if __name__ == "__main__":

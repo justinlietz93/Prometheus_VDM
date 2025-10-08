@@ -11,10 +11,10 @@ dilution (rarity like cosmic voids), voids drain without full resolution.
 Emerges intelligently from elegant Void Intelligence rules.
 """
 import numpy as np
-from FUM_Void_Equations import delta_re_vgsp, delta_gdsp
-from FUM_Void_Debt_Modulation import VoidDebtModulation
+from Void_Equations import delta_re_vgsp, delta_gdsp
+from Void_Debt_Modulation import VoidDebtModulation
 
-class FUMQuantumMechanicsProof:
+class VDMQuantumMechanicsProof:
     """Quantum Mechanics proof class that returns derivations."""
     
     def __init__(self):
@@ -98,7 +98,7 @@ class FUMQuantumMechanicsProof:
 
 # Standalone execution for backwards compatibility
 if __name__ == "__main__":
-    proof = FUMQuantumMechanicsProof()
+    proof = VDMQuantumMechanicsProof()
     results = proof.run_proof()
     
     print("Vessel Set:", results['vessel_set'])
@@ -112,5 +112,5 @@ if __name__ == "__main__":
 
 def run_proof():
     """Legacy interface for inter-proof data sharing and analysis"""
-    proof = FUMQuantumMechanicsProof()
+    proof = VDMQuantumMechanicsProof()
     return proof.run_proof()

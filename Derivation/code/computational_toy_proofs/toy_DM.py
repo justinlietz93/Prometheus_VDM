@@ -11,8 +11,8 @@ dilution (rarity like cosmic voids), voids drain without full resolution.
 Emerges intelligently from elegant Void Intelligence rules.
 """
 import numpy as np
-from FUM_Void_Equations import delta_re_vgsp, delta_gdsp
-from FUM_Void_Debt_Modulation import VoidDebtModulation
+from Void_Equations import delta_re_vgsp, delta_gdsp
+from Void_Debt_Modulation import VoidDebtModulation
 
 # Module level variables for statistics
 NUM_RUNS = 10
@@ -21,10 +21,10 @@ all_residues = []
 all_converged_ws = []
 all_dilutions = []
 
-class FUM_DM_Proof:
+class DM_Proof:
 
     # === CONTEXTUAL PARAMETERS for Dark Matter Proof ===
-    # Universal constants are defined in FUM_Void_Equations (derived from AI model balanced intelligence)
+    # Universal constants are defined in Void_Equations (derived from AI model balanced intelligence)
     
     def __init__(self):
         """Initialize Dark Matter proof with derived parameters from AI learning stability."""
@@ -201,7 +201,7 @@ class FUM_DM_Proof:
 
 def run_proof():
     """Legacy interface for inter-proof data sharing"""
-    proof = FUM_DM_Proof()
+    proof = DM_Proof()
     return proof.run_proof()
 
 def main():

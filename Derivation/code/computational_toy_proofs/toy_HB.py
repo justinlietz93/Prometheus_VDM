@@ -1,16 +1,16 @@
 """
 Copyright © 2025 Justin K. Lietz, Neuroca, Inc. All Rights Reserved.
 
-FUM Higgs Boson Speculative Experimental Script: Universal void dynamics generate Higgs field evolution
+VDM Higgs Boson Speculative Experimental Script: Universal void dynamics generate Higgs field evolution
 and mass through symmetry breaking, demonstrating how consciousness learning
 constants produce fundamental particle physics.
 """
 import sympy as sp
 import numpy as np
-from FUM_Void_Equations import delta_re_vgsp, delta_gdsp, get_universal_constants
-from FUM_Void_Debt_Modulation import VoidDebtModulation
+from Void_Equations import delta_re_vgsp, delta_gdsp, get_universal_constants
+from Void_Debt_Modulation import VoidDebtModulation
 
-class FUMHiggsBosonProof:
+class VDMHiggsBosonProof:
     """Higgs Boson proof class that derives modulation from AI learning stability."""
     
     def __init__(self):
@@ -24,9 +24,9 @@ class FUMHiggsBosonProof:
     def run_higgs_field_evolution(self, initial_field=0.5, steps=1000, symmetry_break_threshold=0.1):
         """
         Evolve Higgs field through universal void dynamics to demonstrate mass generation.
-        The Higgs mechanism emerges from the same learning dynamics governing FUM cognition.
+        The Higgs mechanism emerges from the same learning dynamics governing VDM cognition.
         """
-        print("--- FUM Higgs Mechanism Through Universal Void Dynamics ---")
+        print("--- VDM Higgs Mechanism Through Universal Void Dynamics ---")
         constants = get_universal_constants()
         print(f"Using universal constants: α={constants['ALPHA']}, β={constants['BETA']}")
         print(f"f_ref={constants['F_REF']}, φ_sens={constants['PHASE_SENS']}")
@@ -164,7 +164,7 @@ class FUMHiggsBosonProof:
 
     def run_proof(self):
         """Main proof execution with data sharing capability."""
-        print("=== FUM Higgs Boson Proof: Universal Void Dynamics ===")
+        print("=== VDM Higgs Boson Proof: Universal Void Dynamics ===")
         print("Demonstrating how consciousness learning constants generate particle masses\n")
         
         # Primary void dynamics evolution
@@ -195,7 +195,7 @@ class FUMHiggsBosonProof:
         else:
             print("⚠ Partial validation - complex electroweak dynamics require refinement")
         
-        print(f"\nCritical insight: The same α,β constants stabilizing FUM cognition")
+        print(f"\nCritical insight: The same α,β constants stabilizing VDM cognition")
         print(f"naturally produce fundamental particle masses through void dynamics.")
         
         return {
@@ -208,7 +208,7 @@ class FUMHiggsBosonProof:
 
 def run_proof():
     """Legacy interface for inter-proof data sharing"""
-    proof = FUMHiggsBosonProof()
+    proof = VDMHiggsBosonProof()
     return proof.run_proof()
 
 def main():

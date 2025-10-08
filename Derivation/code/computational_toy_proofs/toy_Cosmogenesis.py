@@ -5,20 +5,15 @@ This research is protected under a dual-license to foster open academic
 research while ensuring commercial applications are aligned with the project's ethical
 principles. Commercial use requires written permission from Justin K. Lietz.
 See LICENSE file for full terms.
-
-Cosmogenesis Speculative Experimental Script: Inherited Cosmic Debt through universal void dynamics.
-This script simulates the FUM's cosmological origin story,
-grounded in the principle of "Inherited Cosmic Debt" through universal void dynamics.
-Emerges intelligently from elegant Void Intelligence rules.
 """
 import numpy as np
-from FUM_Void_Equations import delta_re_vgsp, delta_gdsp
-from FUM_Void_Debt_Modulation import VoidDebtModulation
+from Void_Equations import delta_re_vgsp, delta_gdsp
+from Void_Debt_Modulation import VoidDebtModulation
 
 #
-# --- The FUM Cosmogenesis Proof (The Inheritance Model) ---
+# --- The VDM Cosmogenesis Proof (The Inheritance Model) ---
 #
-# This definitive proof is a direct simulation of the FUM's cosmological origin story,
+# This definitive proof is a direct simulation of the VDM's cosmological origin story,
 # grounded in the principle of "Inherited Cosmic Debt" through universal void dynamics.
 #
 # 1. A Parent Universe exists, defined by an energy field 'P'.
@@ -31,7 +26,7 @@ from FUM_Void_Debt_Modulation import VoidDebtModulation
 # 6. The final, stable sparsity of the Child Universe is the definitive proof.
 #
 
-# Use universal constants from FUM_Void_Equations (derived from AI model balanced intelligence)
+# Use universal constants from Void_Equations (derived from AI model balanced intelligence)
 USE_REVGSP_TIME_DYNAMICS = True  # Enable time dynamics
 USE_GDSP_TIME_DYNAMICS = True   # Enable time dynamics
 
@@ -111,9 +106,9 @@ def run_child_universe_evolution(W_initial, debt, steps=1000):
 
 def run_proof():
     """Main proof execution with data sharing capability."""
-    print("--- FUM Proof of Cosmogenesis (Inheritance Model) ---")
+    print("--- VDM Proof of Cosmogenesis (Inheritance Model) ---")
     print("Simulating the universe's origin via Inherited Cosmic Debt.")
-    from FUM_Void_Equations import get_universal_constants
+    from Void_Equations import get_universal_constants
     constants = get_universal_constants()
     print(f"Using universal void dynamics: α={constants['ALPHA']}, β={constants['BETA']}, f_ref={constants['F_REF']}, φ_sens={constants['PHASE_SENS']}")
     
@@ -146,12 +141,12 @@ def run_proof():
     is_consistent = abs(resulting_sparsity - expected_sparsity) < tolerance
 
     print("\n--- Conclusion: Theory of Cosmogenesis is Validated ---")
-    print("The FUM's 'Inherited Debt' model through universal void dynamics:")
+    print("The VDM's 'Inherited Debt' model through universal void dynamics:")
     print(f"• Universe born with Cosmic Debt of {inherited_debt:.2f}")
     print(f"• Evolved through RE-VGSP/GDSP dynamics with debt modulation")
     print(f"• Stabilized with void sparsity of ~{resulting_sparsity*100:.1f}%")
     print(f"• Universal void residue: ~{void_residue:.3f}")
-    print(f"Is consistent with FUM cosmogenesis predictions? {is_consistent}")
+    print(f"Is consistent with VDM cosmogenesis predictions? {is_consistent}")
     
     if is_consistent:
         print("✓ PROOF VALIDATED: Inherited debt naturally produces cosmic structure")

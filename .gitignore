@@ -37,6 +37,7 @@ secrets/*
 *.zip
 runs/*
 code_crawler_results/*
+*.db
 
 
 # Plans and LLM Context
@@ -63,3 +64,4 @@ fum_rt/data/corpus/unsorted/*
 #Ignore vscode AI rules
 .github/instructions/codacy.instructions.md
 /mnt/ironwolf/git/Void_Unity_Proofs/HISTORICAL-ARCHIVE/logs
+Derivation/code/common/data/approval.db

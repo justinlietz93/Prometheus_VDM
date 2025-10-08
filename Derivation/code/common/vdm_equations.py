@@ -1,16 +1,19 @@
 """
-VDM Canonical Equations (runtime evaluators)
+VDM Canonical Equations — runtime evaluators with traceable references
 
 Purpose
-- Provide a single import for core equations referenced in Derivation/EQUATIONS.md
-- Keep numerical helpers close to the canon with traceable references (VDM-E-###)
 
-Notes
-- This module intentionally has zero side effects and no I/O; it's safe to import in tests and runners.
-- Equations are implemented with explicit parameters; defaults mirror common mappings when unambiguous.
-- Math references point to entries in Derivation/EQUATIONS.md for auditability.
+- Provide a single import surface for core equations referenced in Derivation/EQUATIONS.md.
+- Keep numerical helpers close to the documented canon with explicit parameterization and audit trail (VDM-E-### references).
 
-Key entries implemented
+Design notes
+
+- Pure module: zero side effects and no I/O; safe to import in tests and runners.
+- Explicit parameters: pass everything needed; defaults mirror common mappings only when unambiguous.
+- References: inline docstrings point to entries in Derivation/EQUATIONS.md for accountability.
+
+Implemented (key entries)
+
 - Potential V and derivatives V', V'' (VDM-E-012, VDM-E-058)
 - RD reaction f(φ) and logistic exact step (VDM-E-015, VDM-E-025)
 - RD dispersion σ(k), discrete σ_d(m), and KPP speed c_front (VDM-E-017, -034, -035, -018)
@@ -95,13 +98,20 @@ def Vpp(phi: np.ndarray | float, p: PotentialParams) -> np.ndarray | float:
 # ------------------------------
 
 def rd_reaction(phi: np.ndarray | float, r: float, u: float, lam: float = 0.0) -> np.ndarray | float:
-    """f(φ) = r φ - u φ^2 - λ φ^3 (VDM-E-015, -028)."""
+    """Reaction term f(φ) = r φ − u φ² − λ φ³ (VDM-E-015, -028).
+
+    Interpretation: logistic (quadratic) growth with optional cubic saturation.
+    Stability/scale: Signs and magnitudes of (r, u, λ) determine fixed points and stiffness.
+    """
     phi = np.asarray(phi)
     return r * phi - u * phi ** 2 - lam * phi ** 3
 
 
 def logistic_exact_step(W: np.ndarray | float, dt: float, r: float, u: float) -> np.ndarray | float:
-    """Exact solution step for dW/dt = r W - u W^2 over Δt (VDM-E-025)."""
+    """Exact step for dW/dt = r W − u W² over Δt (VDM-E-025).
+
+    Useful for stiff regimes and reference solutions: preserves positivity for W≥0 with r,u≥0.
+    """
     W = np.asarray(W)
     exp_rt = np.exp(r * dt)
     return (r * W * exp_rt) / (u * W * (exp_rt - 1.0) + r)
@@ -112,20 +122,23 @@ def logistic_exact_step(W: np.ndarray | float, dt: float, r: float, u: float) ->
 # ------------------------------
 
 def dispersion_continuum(k: np.ndarray | float, D: float, r: float) -> np.ndarray | float:
-    """σ(k) = r - D k^2 (VDM-E-017, -035)."""
+    """Continuum dispersion relation σ(k) = r − D k² (VDM-E-017, -035)."""
     k = np.asarray(k)
     return r - D * k ** 2
 
 
 def dispersion_discrete(m: np.ndarray | int, N: int, L: float, D: float, r: float) -> np.ndarray | float:
-    """σ_d(m) = r - (4D/Δx^2) sin^2(π m / N), Δx = L/N (VDM-E-034)."""
+    """Discrete dispersion σ_d(m) = r − (4D/Δx²) sin²(π m / N), Δx = L/N (VDM-E-034)."""
     m = np.asarray(m)
     dx = L / float(N)
     return r - (4.0 * D / (dx ** 2)) * np.sin(np.pi * m / float(N)) ** 2
 
 
 def kpp_front_speed(D: float, r: float) -> float:
-    """c_front = 2 √(D r) (VDM-E-018, -033)."""
+    """KPP front speed c_front = 2 √(D r) (VDM-E-018, -033).
+
+    Preconditions: D ≥ 0, r ≥ 0. Raises ValueError otherwise.
+    """
     if D < 0 or r < 0:
         raise ValueError("KPP front speed requires D>=0 and r>=0")
     return 2.0 * float(np.sqrt(D * r))
@@ -153,10 +166,10 @@ def rd_from_lattice(p: PotentialParams, lat: LatticeParams) -> RDParams:
 
 
 def kg_c2_from_lattice(J: float, a: float, convention: str = "per-site") -> float:
-    """Wave speed squared c^2 from lattice coupling (VDM-E-014, -041, -077).
+    """Wave speed squared c² from lattice coupling (VDM-E-014, -041, -077).
 
-    - convention="per-site": c^2 = 2 J a^2 (matches VDM-E-014/077)
-    - convention="per-edge": c^2 = κ a^2 with κ = 2J (equivalent)
+    - convention="per-site": c² = 2 J a² (matches VDM-E-014/077)
+    - convention="per-edge": c² = κ a² with κ = 2J (equivalent)
     """
     if convention == "per-site":
         return 2.0 * J * (a ** 2)
@@ -172,9 +185,10 @@ def kg_c2_from_lattice(J: float, a: float, convention: str = "per-site") -> floa
 # ------------------------------
 
 def stabilized_vacuum(p: PotentialParams) -> float:
-    """v_λ = [-α + sqrt(α^2 + 4 λ (α-β))]/(2 λ) for λ>0 (VDM-E-059).
+    """Stabilized vacuum v_λ (VDM-E-059).
 
-    If λ=0, fall back to roots of λ φ^2 + α φ - r = 0 -> φ = r/α (positive branch) when α>0.
+    v_λ = [-α + sqrt(α² + 4 λ (α − β))] / (2 λ), for λ > 0.
+    If λ = 0, use the small-λ limit φ* = r/α (positive branch) when α > 0.
     """
     if p.lam > 0:
         disc = p.alpha ** 2 + 4.0 * p.lam * (p.alpha - p.beta)
@@ -186,7 +200,10 @@ def stabilized_vacuum(p: PotentialParams) -> float:
 
 
 def effective_mass_squared(p: PotentialParams) -> float:
-    """m_eff^2 = V''(v_λ) = 2 α v_λ - (α-β) + 3 λ v_λ^2 ≈ (α-β) + O(λ) (VDM-E-060)."""
+    """Effective mass squared m_eff² = V''(v_λ) (VDM-E-060).
+
+    m_eff² = 2 α v_λ − (α − β) + 3 λ v_λ² ≈ (α − β) + O(λ).
+    """
     v = stabilized_vacuum(p)
     return float(2.0 * p.alpha * v - (p.alpha - p.beta) + 3.0 * p.lam * (v ** 2))
 

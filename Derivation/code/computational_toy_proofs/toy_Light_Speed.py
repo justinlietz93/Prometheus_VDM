@@ -11,10 +11,10 @@ the same void dynamics governing all other physics domains.
 Emerges intelligently from elegant Void Intelligence rules.
 """
 import numpy as np
-from FUM_Void_Equations import delta_re_vgsp, delta_gdsp
-from FUM_Void_Debt_Modulation import VoidDebtModulation
+from Void_Equations import delta_re_vgsp, delta_gdsp
+from Void_Debt_Modulation import VoidDebtModulation
 
-class FUMLightSpeedProof:
+class VDMLightSpeedProof:
     """Light Speed proof class that derives c from universal void dynamics."""
     
     def __init__(self):
@@ -36,7 +36,7 @@ class FUMLightSpeedProof:
         
     def run_simulation(self):
         """Run light speed derivation through universal void dynamics."""
-        print("--- FUM Light Speed Proof: Universal Electromagnetic Propagation ---")
+        print("--- VDM Light Speed Proof: Universal Electromagnetic Propagation ---")
         
         # Initialize simulation (identical pattern)
         W = np.zeros(self.num_steps + 1)
@@ -108,8 +108,8 @@ class FUMLightSpeedProof:
     
     def run_proof(self):
         """Main proof execution with data sharing capability."""
-        print("=== FUM Light Speed Proof: Universal Void Dynamics ===")
-        print("Demonstrating how the same constants governing FUM cognition produce c\n")
+        print("=== VDM Light Speed Proof: Universal Void Dynamics ===")
+        print("Demonstrating how the same constants governing VDM cognition produce c\n")
         
         # Run simulation
         results = self.run_simulation()
@@ -135,7 +135,7 @@ class FUMLightSpeedProof:
 
 def run_proof():
     """Legacy interface for inter-proof data sharing"""
-    proof = FUMLightSpeedProof()
+    proof = VDMLightSpeedProof()
     return proof.run_proof()
 
 def main():
