@@ -1,5 +1,8 @@
 <!-- DOC-GUARD: CANONICAL -->
+<!-- RULES for maintaining this file are here: /mnt/ironwolf/git/Prometheus_VDM/prompts/units_normalization_maintenance.md -->
 # VDM Units & Nondimensionalization (Auto-compiled)
+
+Last updated: 2025-10-09 (commit a91b8fa)
 
 **Scope:** Single source of truth for unit systems and nondimensionalization maps used in this repository.  
 **Rules:** Other docs link here; do not restate units elsewhere.  

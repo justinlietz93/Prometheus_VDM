@@ -5,9 +5,9 @@
 > Date: August 9, 2025
 >
 > This research is protected under a dual-license to foster open academic
-> research while ensuring commercial applications are aligned with the project's ethical principles.<br> 
+> research while ensuring commercial applications are aligned with the project's ethical principles.<br>
 > Commercial use requires written permission from Justin K. Lietz.
-> 
+>
 > See LICENSE file for full terms.
 
 ---
@@ -15,11 +15,13 @@
 ## 1. Objective
 
 Adapt the finite‑radius flux‑tube machinery in Bordag (Universe 2024) to the FUM scalar EFT so we can:
+
 - Predict and count tachyonic (unstable) orbital modes in finite domains (tubes/filaments).
 - Demonstrate quartic stabilization via condensation and show the full post‑condensation mass spectrum is non‑negative.
 - Find a true energy minimum vs a control parameter (tube size/“flux” proxy), reproducing the qualitative structure of Fig. 1/3/5 in Bordag’s paper.
 
 We work from the bounded baseline EFT and kinetic normalization already established in:
+
 - Baseline quartic EFT and cubic tilt: see [derivation/foundations/discrete_to_continuum.md](Prometheus_VDM/derivation/foundations/discrete_to_continuum.md:125-228)
 - Kinetic normalization and action‑based derivation: see [derivation/effective_field_theory/kinetic_term_derivation.md](Prometheus_VDM/derivation/effective_field_theory/kinetic_term_derivation.md:78-134)
 - Units map and FRW bookkeeping (used later for background energy): see [derivation/effective_field_theory/fum_voxtrium_mapping.md](Prometheus_VDM/derivation/effective_field_theory/fum_voxtrium_mapping.md:44-121)
@@ -128,6 +130,7 @@ Eliminate \(A_\ell/B_\ell\) to obtain the secular equation for \(\kappa\):
 Each root \(\kappa=\kappa_\ell(R)\) determines a mode. Tachyonic (unstable) modes correspond to \(\omega^2<0\) for some \(k\); equivalently, sufficiently large \(\kappa\) such that \(\omega^2=c^2(k^2-\kappa^2)<0\) at \(k=0\).
 
 Counting unstable modes:
+
 - At \(k=0\), \(\omega^2=-c^2\kappa^2\). A mode is tachyonic if \(\kappa^2>0\).
 - The number \(N_{\rm tach}(R)\) is the count of \(\ell\) for which the secular equation admits \(\kappa_\ell^2>0\).
 
@@ -173,6 +176,7 @@ Define the total energy as
 \[
 E(R) \;=\; E_{\rm bg}(R) \;+\; V_{\rm eff}^{\rm tube}\big(\{v_{\ell n}(R)\},R\big).
 \]
+
 - In Bordag’s SU(2) case, \(E_{\rm bg}\propto B^2 R^2\) from the chromomagnetic background.
 - In our scalar‑only EFT, one can adopt a phenomenological background proxy if coupling to external sectors is present (e.g., Voxtrium sourcing); in a pure scalar test, set \(E_{\rm bg}=0\) and examine whether \(V_{\rm eff}^{\rm tube}\) develops a nontrivial \(R\)‑dependence with a minimum due to mode structure and normalization.
 
@@ -193,6 +197,7 @@ At high temperature, the effective mass receives thermal contributions \(m^2(T)\
 We propose two modules to implement and test this analysis:
 
 1) cylinder_modes.py (radial/matching solver)
+
 - API:
   - compute_kappas(R, params) -> list of roots {(\(\ell\), n, \(\kappa_{\ell n}\))}
     - params: \(\mu, \lambda, \gamma, c\) and numerical tolerances; optionally max \(|\ell|\) and radial overtone cutoff
@@ -208,6 +213,7 @@ We propose two modules to implement and test this analysis:
   - Return normalized u’s (with weight \(r\,dr\,d\theta\)).
 
 2) condense_tube.py (tree‑level condensation and spectra)
+
 - API:
   - build_N4(R, modes, params) -> sparse tensor or contracted quartic map
   - find_condensate(R, modes, N4, params) -> \(\{v_{\ell n}\}\)
@@ -220,6 +226,7 @@ We propose two modules to implement and test this analysis:
     - \(E(R)\) vs \(R\) with true minimum (if present)
 
 Units and normalizations:
+
 - Use the dimensionless \(c\) from \(\mathcal L_K=\frac{1}{2}(\partial_t\phi)^2-\frac{c^2}{2}(\nabla\phi)^2\). Convert to physical units via \((\phi_0,\tau,a)\) as in [derivation/effective_field_theory/fum_voxtrium_mapping.md](Prometheus_VDM/derivation/effective_field_theory/fum_voxtrium_mapping.md:44-80) when needed.
 
 ---

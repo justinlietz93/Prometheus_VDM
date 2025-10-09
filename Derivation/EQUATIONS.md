@@ -1,4 +1,9 @@
+<!-- RULES for maintaining this file are here: /mnt/ironwolf/git/Prometheus_VDM/prompts/equations_maintenance.md -->
 # VDM Canonical Equations & Procedural Math (Auto-compiled)
+
+Note on scope: This document reflects the latest accepted canonical equations only. Historical notes and timeline are maintained in Derivation/CORRECTIONS.md and memory-bank/decisionLog.md.
+
+Last updated: 2025-10-09 (commit a91b8fa)
 
 *Defining equations and procedural math currently present in this repository.*
 
@@ -394,7 +399,7 @@ $$
 
 ---
 
-#### VDM-E-030 — EFT Kinetic Normalization (Quarantined)
+#### VDM-E-030 — EFT Kinetic Normalization (Active; KPI-gated)
 
 **Context:** derivation/VDM_Overview.md:52-54 • Commit: 6885588
 
@@ -402,11 +407,11 @@ $$
 c^{2} = 2 J a^{2} \quad \text{(per-site)}, \qquad c^{2} = \kappa a^{2},\; \kappa = 2J \quad \text{(per-edge)}
 $$
 
-**Notes:** EFT/KG branch [PLAUSIBLE]; quarantined as future work; distinct from RD diffusion coefficient $D$.
+**Notes:** EFT/KG branch [PLAUSIBLE]; active with KPI gates and provenance; distinct from RD diffusion coefficient $D$.
 
 ---
 
-#### VDM-E-031 — EFT Second-Order Field Equation (Quarantined)
+#### VDM-E-031 — EFT Second-Order Field Equation (Active; KPI-gated)
 
 **Context:** derivation/VDM_Overview.md:60-62 • Commit: 6885588
 
@@ -418,7 +423,7 @@ $$
 
 ---
 
-#### VDM-E-032 — EFT Effective Mass (Quarantined)
+#### VDM-E-032 — EFT Effective Mass (Active; KPI-gated)
 
 **Context:** derivation/VDM_Overview.md:68-70 • Commit: 6885588
 
@@ -696,7 +701,7 @@ $$
 **Context:** derivation/axiomatic_theory_development.md:653-654 • Commit: 6885588
 
 $$
-\frac{r}{u} = \frac{(\alpha-\beta)/\gamma}{\alpha/\gamma} = \frac{\alpha-\beta}{\alpha} = 1 - \frac{\beta}{\alpha}
+\frac{r}{u} = \frac{\alpha-\beta}{\alpha} = 1 - \frac{\beta}{\alpha}
 $$
 
 **Notes:** Exactly matches theoretical vacuum solution in small-$\lambda$ limit.
@@ -955,7 +960,7 @@ $$
 
 ---
 
-#### VDM-E-074 — Change in Potential Energy
+#### VDM-E-074 — Potential Energy Dissipation Rate
 
 **Context:** derivation/conservation_law/discrete_conservation.md:76-77 • Commit: 6885588
 
@@ -1382,9 +1387,64 @@ computed on a shared $X$-grid via interpolation over the intersection of curve d
 
 ---
 
+#### VDM-E-095 — Tube Secular Equation (Tachyonic Interior, Massive Exterior)
+
+**Context:** Derivation/Tachyon_Condensation/RESULTS_Tachyonic_Tube_v1.md • Commit: a91b8fa
+
+$$
+ f_\ell(\kappa;R,\mu,c)=\frac{\kappa_{\rm in}}{\kappa_{\rm out}}\,\frac{I'_\ell(\kappa_{\rm in}R)}{I_\ell(\kappa_{\rm in}R)}+\frac{K'_\ell(\kappa_{\rm out}R)}{K_\ell(\kappa_{\rm out}R)}=0
+$$
+
+with
+
+$$
+\kappa_{\rm in}^2 = \frac{\mu^2}{c^2}-\kappa^2,\qquad \kappa_{\rm out}^2 = \kappa^2 + 2\frac{\mu^2}{c^2}.
+$$
+
+**Notes:** Cylindrical tube at axial wavenumber $k=0$ with tachyonic interior and massive exterior. Used by tube spectrum solver [VDM-A-022].
+
+---
+
+#### VDM-E-096 — Physically-Admissible Coverage Metrics (Tube Spectrum QC)
+
+**Context:** Derivation/Tachyon_Condensation/RESULTS_Tachyonic_Tube_v1.md • Commit: a91b8fa
+
+Primary KPI (gate):
+
+$$
+\mathrm{cov}_{\rm phys} = \frac{\#\,\text{roots found}}{\#\,\text{(}R,\ell\text{) with root-potential}},\quad \text{root-potential via sign change of } f_\ell(\kappa).
+$$
+
+Secondary (transparency):
+
+$$
+\mathrm{cov}_{\rm raw} = \frac{\#\,\text{roots found}}{\#\,(R,\ell)\,\text{in sweep}}.
+$$
+
+**Notes:** $\mathrm{cov}_{\rm phys}$ used for gating; $\mathrm{cov}_{\rm raw}$ reported for sweep comparability. Residual quality $\max|f_\ell(\kappa)|$ reported (v1 informational).
+
+---
+
+#### VDM-E-097 — Condensation Energy Model (Diagonal-\lambda) and Background
+
+**Context:** Derivation/Tachyon_Condensation/RESULTS_Tachyonic_Tube_v1.md • Commit: a91b8fa
+
+Mode quartic overlap and mass:
+
+$$
+N4_\ell = (2\pi)\,\lambda\int_0^\infty r\,u_\ell(r)^4\,dr,\qquad m_\ell^2 = -c^2\kappa_\ell^2.
+$$
+
+Background and total energy:
+
+$$
+E_{\rm bg}(R) = 2\pi\sigma R + \frac{\alpha}{R},\qquad E(R)=E_{\rm bg}(R)+\sum_\ell \Big[ \tfrac12 m_\ell^2 v_\ell^2 + \tfrac14 N4_\ell v_\ell^4 \Big].
+$$
+
+**Notes:** Adaptive radial integral with tail handling; curvature gate uses quadratic fit coefficient $a>0$ near interior minimum $R_\star$ (with $\Delta^2 E$ fallback).
+
+---
+
 ## Change Log
 
-- VDM-E-001 to VDM-E-071 • 6885588 • Initial compilation from repository files
-- VDM-E-072 to VDM-E-080 • 6885588 • Added discrete conservation law and lattice action equations from derivation/conservation_law/ and derivation/foundations/
-- VDM-E-085 to VDM-E-089 • post-6885588 • Added SIE Weight Update Rule from fum_rt/core/fum_sie.py
-- VDM-E-090 to VDM-E-094 • 2025-10-08 • Added metriplectic QC metrics (two-grid, Strang defect, discrete $L_h$), FRW continuity residual/RMS, and scaling-collapse envelope from derivation/code experiments
+This section has been retired to honor the “latest-only” canon policy. See Derivation/CORRECTIONS.md for chronology.

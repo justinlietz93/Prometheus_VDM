@@ -19,6 +19,9 @@ Search the entire repository (code, tests, notebooks, scripts, docs, comments) a
 <!-- DOC-GUARD: CANONICAL -->
 # VDM Algorithms & Execution Flows (Auto-compiled)
 
+
+**Last updated**: yyyy-mm-dd 
+**Last commit**: {latest commit hash here}
 **Scope:** Single source of truth for implemented algorithms and control flows in this repository.  
 **Rules:** Pseudocode + references only. Link to math/values elsewhere (EQUATIONS/CONSTANTS/SYMBOLS/UNITS).  
 **MathJax:** Only inline `$...$` inside comments when needed.

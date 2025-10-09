@@ -1,6 +1,9 @@
 <!-- DOC-GUARD: CANONICAL -->
+<!-- RULES for maintaining this file are here: /mnt/ironwolf/git/Prometheus_VDM/prompts/validation_metrics_maintenance.md -->
 <!-- markdownlint-disable MD033 MD022 MD032 MD001 -->
 # VDM Validation Metrics & KPIs (Auto-compiled)
+
+Last updated: 2025-10-09 (commit a91b8fa)
 
 **Scope:** Single source of truth for validation metrics used in this repository: names, purposes, thresholds/bands, and references to their definitions and implementations.  
 **Rules:** Reference-only. Link to equations/constants/symbols/scripts; do not restate formulas here.  
@@ -176,6 +179,73 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Typical datasets / experiments:** Low-frequency sinusoid + white noise, default noise σ=0.05 <br/>
 **Primary figure/artifact (if referenced):** `derivation/code/outputs/figures/memory_steering/noise_suppression_*.png` <br/>
 **Notes:** Uses parallel signal-only filter for ground-truth comparison <br/>
+
+### Tachyonic Condensation (Tube)
+
+#### Spectrum Coverage (physically admissible)  <a id="kpi-tube-cov-phys"></a>
+
+**Symbol (if any):** $\mathrm{cov}_{\mathrm{phys}}$  <br/>
+**Purpose:** Gate for completeness of the discrete mode spectrum over the physically admissible set (pairs $(R,\ell)$ for which the secular equation admits a root by sign-change scan).  <br/>
+**Defined by:** `EQUATIONS.md#vdm-e-096` (coverage metrics; see tube secular equation at `EQUATIONS.md#vdm-e-095`)  <br/>
+**Inputs:** Radius grid $R$, orbital index $\ell\in\{0,1,\ldots,\ell_{\max}\}$, admissibility mask from $\theta$-scan sign-change heuristic  <br/>
+**Computation implemented at:** `derivation/code/physics/tachyonic_condensation/run_tachyon_tube.py:overview_and_heatmap`  <br/>
+**Pass band / thresholds:** $\mathrm{cov}_{\mathrm{phys}} \ge 0.95$ (v1 achieved 1.000)  <br/>
+**Units / normalization:** dimensionless fraction  <br/>
+**Typical datasets / experiments:** tag `tube-spectrum-v1` with $\mu=1$, $\ell_{\max}=8$, $R\in[1,6]$  <br/>
+**Primary figure/artifact (if referenced):** `code/outputs/figures/tachyonic_condensation/*tube_spectrum_overview__<tag>.png` • `.../tube_spectrum_heatmap__<tag>.png` • summary JSON `.../tube_spectrum_summary__<tag>.json`  <br/>
+**Notes:** Denominator counts only physically admissible pairs; see transparency metric below for raw denominator.
+
+#### Spectrum Coverage (raw transparency)  <a id="kpi-tube-cov-raw"></a>
+
+**Symbol (if any):** $\mathrm{cov}_{\mathrm{raw}}$  <br/>
+**Purpose:** Transparency metric reporting found roots over the full attempted set $(R,\ell)$ irrespective of admissibility; not used for gating.  <br/>
+**Defined by:** `EQUATIONS.md#vdm-e-096`  <br/>
+**Inputs:** Total attempts vs successes from spectrum solver  <br/>
+**Computation implemented at:** `derivation/code/physics/tachyonic_condensation/run_tachyon_tube.py:spectrum_solve`  <br/>
+**Pass band / thresholds:** none (informational)  <br/>
+**Units / normalization:** dimensionless fraction  <br/>
+**Typical datasets / experiments:** Same as above  <br/>
+**Primary figure/artifact (if referenced):** Included in spectrum summary JSON  <br/>
+**Notes:** Report alongside $\mathrm{cov}_{\mathrm{phys}}$ to preserve comparability with earlier attempts.
+
+#### Secular Max Residual (informational)  <a id="kpi-tube-residual"></a>
+
+**Symbol (if any):** $\max |\mathcal{S}(\kappa)|$  <br/>
+**Purpose:** Monitor the maximum absolute value of the secular equation $\mathcal{S}(\kappa)$ at reported roots for diagnostic purposes.  <br/>
+**Defined by:** `EQUATIONS.md#vdm-e-095`  <br/>
+**Inputs:** Per-root residuals from bracketed solver  <br/>
+**Computation implemented at:** `derivation/code/physics/tachyonic_condensation/cylinder_modes.py:secular_residual`  <br/>
+**Pass band / thresholds:** none (informational in v1)  <br/>
+**Units / normalization:** dimensionless  <br/>
+**Typical datasets / experiments:** Same as above  <br/>
+**Primary figure/artifact (if referenced):** Included in spectrum summary JSON  <br/>
+**Notes:** Consider adding a tolerance gate in v2 (e.g., $\le 10^{-2}$) once bracket refinement policies are finalized.
+
+#### Condensation Finite-Fraction  <a id="kpi-tube-finite-fraction"></a>
+
+**Symbol (if any):** $f_{\mathrm{finite}}$  <br/>
+**Purpose:** Fraction of scanned radii with finite, real condensate amplitudes and energies after diagonal quartic projection.  <br/>
+**Defined by:** `EQUATIONS.md#vdm-e-097` (condensation energy and fit)  <br/>
+**Inputs:** Radius grid $R$, fitted coefficients from quadratic energy fit near minimum  <br/>
+**Computation implemented at:** `derivation/code/physics/tachyonic_condensation/run_tachyon_tube.py:run_condensation_scan`  <br/>
+**Pass band / thresholds:** $f_{\mathrm{finite}} \ge 0.80$  <br/>
+**Units / normalization:** dimensionless fraction  <br/>
+**Typical datasets / experiments:** tag `tube-condensation-v1` with $R\in[0.8, 6.0]$  <br/>
+**Primary figure/artifact (if referenced):** `code/outputs/figures/tachyonic_condensation/*tube_energy_scan__<tag>.png` • JSON `.../tube_condensation_summary__<tag>.json` • CSV `.../tube_energy_scan__<tag>.csv`  <br/>
+**Notes:** Diagonal-mode baseline; off-diagonal quartic couplings deferred.
+
+#### Condensation Curvature/Minimum OK  <a id="kpi-tube-curvature-ok"></a>
+
+**Symbol (if any):** `curvature_ok` (boolean)  <br/>
+**Purpose:** Verify interior minimum exists with positive quadratic curvature $a>0$ in local fit $E(R) \approx aR^2 + bR + c$ around $R_{\min}$.  <br/>
+**Defined by:** `EQUATIONS.md#vdm-e-097`  <br/>
+**Inputs:** Local polynomial fit coefficients $(a,b,c)$ and location $R_{\min}$  <br/>
+**Computation implemented at:** `derivation/code/physics/tachyonic_condensation/run_tachyon_tube.py:run_condensation_scan`  <br/>
+**Pass band / thresholds:** `curvature_ok = true` and $R_{\min}$ interior to scan range  <br/>
+**Units / normalization:** energy in chosen normalization (dimensionless under baseline)  <br/>
+**Typical datasets / experiments:** Same as above  <br/>
+**Primary figure/artifact (if referenced):** Energy scan figure + CSV; summary JSON includes `fit_coeffs`, `min_R`, `min_E`  <br/>
+**Notes:** Report $(a,b,c)$, $R_{\min}$, and $E_{\min}$ in JSON for reproducibility.
 
 ---
 
@@ -586,3 +656,4 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 ## Change Log
 
 - 2025-10-03 • Initial compilation from repository code and tests • 17a0b72
+- 2025-10-04 • Add tachyonic tube KPIs: cov_phys, cov_raw, residual, curvature_ok and finite_fraction

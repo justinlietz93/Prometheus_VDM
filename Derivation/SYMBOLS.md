@@ -1,4 +1,9 @@
+<!-- RULES for maintaining this file are here: /mnt/ironwolf/git/Prometheus_VDM/prompts/symbols_maintenance.md -->
 # VDM Notation Reference Sheet (v0.3)
+
+Note on scope: This sheet is canonical and latest-only. For historical naming and timelines, refer to Derivation/CORRECTIONS.md.
+
+Last updated: 2025-10-09 (commit a91b8fa)
 
 *Canonical symbols for the Void Dynamics Model physics theory*
 
@@ -47,6 +52,17 @@
 | $c$                                 | wave propagation speed  | from lattice micro-params     | $c^2=2Ja^2$                                                                         |        |                         |
 | $\Box$                              | d’Alembertian operator  | wave/field operator           | $\Box=\partial_t^2-c^2\nabla^2$; EFT EOM: $\Box\phi+V'(\phi)=0$                     |        |                         |
 | $R$                                 | tube/cylinder radius    | boundary quantization scale   | finite-domain mode analysis                                                         |        |                         |
+
+### Tube/Tachyonic disambiguation anchors
+
+- $\ell$ (ell): azimuthal mode index for cylindrical harmonics. Integer $\ell\ge 0$. Used in tube secular equation roots $\kappa_{\ell}(R)$.
+- $\kappa$ (kappa): axial/tube dispersion parameter with dimensions of inverse length. For $k=0$ axial case, $m_\ell^2 = -c^2\kappa_\ell^2$ inside the tachyonic region.
+- $R$: tube radius (length). Controls boundary quantization via arguments $\kappa_{\rm in} R$ and $\kappa_{\rm out} R$.
+
+Cross-references:
+
+- See Equations VDM-E-095 (tube secular equation), VDM-E-096 (coverage metrics), and VDM-E-097 (condensation energy model).
+- See VALIDATION_METRICS.md for KPI definitions kpi-tube-cov-phys (gate) and kpi-tube-cov-raw (transparency).
 
 ## Discrete Conservation Law & Energy Decomposition
 

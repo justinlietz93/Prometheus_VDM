@@ -1,7 +1,11 @@
+<!-- ATTENTION! The proposal documents you create MUST BE whitepaper-grade documents with full structure, MathJax-rendered equations, numeric figure captions tied to actual artifacts if using any for background, explicit thresholds with pass/fail gates, and provenance. You need to imagine if the document will be getting submitted for proposal at the most highly respected and quality Physics journals on Earth. -->
 # White Paper Proposal Template
 
 It is MANDATORY and IMPORTANT to include the substance of the outlined topics. The
 length of the proposal should not exceed five U.S. letter-sized pages (including figures and references).
+
+> {git rev-parse HEAD} and put the latest commit here for provenance.
+> Additionally, reate a hash salted with the commit and put it here.
 
 ## 1. Proposal Title and date
 

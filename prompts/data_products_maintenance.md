@@ -19,6 +19,9 @@ Search the entire repository (code, tests, notebooks, experiment scripts, pipeli
 <!-- DOC-GUARD: CANONICAL -->
 # VDM Data Products (Auto-compiled)
 
+**Last updated**: yyyy-mm-dd 
+**Last commit**: {latest commit hash here}
+
 **Scope:** Single source of truth for data products used/produced by this repository: purpose, shape, units, storage format, file paths, and provenance.  
 **Rules:** Reference-only for math; link to anchors in EQUATIONS/CONSTANTS/SYMBOLS/UNITS/ALGORITHMS.  
 **MathJax:** GitHub-safe `$...$`/`$$...$$` only when quoting existing math.

@@ -2,12 +2,12 @@
 
 ## Done
 
-- Created RESULTS_Tachyonic_Tube_v1.md with artifacts and metrics
+- Enforced latest-only canon policy in EQUATIONS.md, SYMBOLS.md, and OVERVIEW.md; removed EQUATIONS.md historical Change Log; added tube symbol anchors (R, ℓ, κ) with cross-references.
 
 ## Doing
 
-- Update schema/runner to codify cov_phys KPI and residual metric
+- Optional follow-up: light markdown lint pass across SYMBOLS.md tables and EQUATIONS.md anchors; sweep other canon docs for a small latest-only banner if desired.
 
 ## Next
 
-- Draft proposal/schema updates; consider adding residual tolerance gate in v2
+- Add JSON schema validation to tube runners on summary write; add SYMBOLS.md anchor links from KPI docs (VALIDATION_METRICS.md) if needed.

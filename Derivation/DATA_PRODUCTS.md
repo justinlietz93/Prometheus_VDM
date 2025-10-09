@@ -1,6 +1,9 @@
 <!-- DOC-GUARD: CANONICAL -->
+<!-- RULES for maintaining this file are here: /mnt/ironwolf/git/Prometheus_VDM/prompts/data_products_maintenance.md -->
 <!-- markdownlint-disable MD033 MD022 MD032 MD001 -->
 # VDM Data Products (Auto-compiled)
+
+Last updated: 2025-10-09 (commit a91b8fa)
 
 **Scope:** Single source of truth for data products used/produced by this repository: purpose, shape, units, storage format, file paths, and provenance.  
 **Rules:** Reference-only for math; link to anchors in EQUATIONS/CONSTANTS/SYMBOLS/UNITS/ALGORITHMS.  
@@ -611,6 +614,68 @@
 
 ---
 
+#### tachyonic_condensation spectrum artifacts  <a id="data-tube-spectrum"></a>
+**Type:** image + table + log  
+**Purpose:** Discrete spectrum overview and admissible/possible heatmaps, roots table, and summary KPIs for tachyonic tube modes  
+**Produced by:** `derivation/code/physics/tachyonic_condensation/run_tachyon_tube.py:spectrum_solve, overview_and_heatmap`  
+**Defined by (if math):** `EQUATIONS.md#vdm-e-095` (secular equation), `EQUATIONS.md#vdm-e-096` (coverage metrics)  
+**Inputs (symbols/constants):** $\mu$, $c$, $\ell_{\max}$, radius grid $R$  
+**Units/Normalization:** dimensionless  
+
+**Shape & axes (exact as used):**
+- Spectrum overview figure: scatter of found $\kappa_\ell(R)$; axes: $R$ vs mode index/branch
+- Heatmaps: admissible vs found boolean arrays over $(R,\ell)$ grid
+- Roots CSV: columns `R, ell, kappa, residual`
+- Summary JSON: fields `attempts_{raw,phys}`, `successes`, `cov_{raw,phys}`, `max_residual`
+
+**Storage format & path pattern:**
+- Figures (png): `derivation/code/outputs/figures/tachyonic_condensation/tube_spectrum_{overview|heatmap}__<tag>.png`
+- Table (csv): `derivation/code/outputs/logs/tachyonic_condensation/tube_spectrum_roots__<tag>.csv`
+- Log (json): `derivation/code/outputs/logs/tachyonic_condensation/tube_spectrum_summary__<tag>.json`
+
+**Schema / columns (for tables/logs):**
+- CSV: `R:float`, `ell:int`, `kappa:float`, `residual:float`
+- JSON: `attempts_raw:int`, `attempts_phys:int`, `successes:int`, `cov_raw:float`, `cov_phys:float`, `max_residual:float`
+
+**Update cadence / lifecycle:** `per spectrum run`  
+**Provenance (code locations):** `derivation/code/physics/tachyonic_condensation/run_tachyon_tube.py`  
+**Validation hooks / KPIs:** `VALIDATION_METRICS.md#kpi-tube-cov-phys`, `#kpi-tube-cov-raw`, `#kpi-tube-residual`  
+**Retention / access constraints:** policy-aware routing with failed_runs on gate failure  
+**Example artifact (if referenced):** see RESULTS doc referenced in CANON_PROGRESS row  
+**Notes:** Tag must be pre-registered and approved; otherwise artifacts are quarantined.
+
+---
+
+#### tachyonic_condensation condensation artifacts  <a id="data-tube-condensation"></a>
+**Type:** image + table + log  
+**Purpose:** Energy scan $E(R)$ with quadratic fit near minimum, along with finiteness and curvature KPIs  
+**Produced by:** `derivation/code/physics/tachyonic_condensation/run_tachyon_tube.py:run_condensation_scan`  
+**Defined by (if math):** `EQUATIONS.md#vdm-e-097` (condensation energy and curvature fit)  
+**Inputs (symbols/constants):** $\mu$, $\lambda$, $c$, radius grid $R$  
+**Units/Normalization:** dimensionless (baseline)
+
+**Shape & axes (exact as used):**
+- Energy figure: $E(R)$ curve with quadratic fit overlay; axes $R$ vs $E$
+- Energy CSV: columns `R, E`
+- Summary JSON: fields `finite_fraction`, `curvature_ok`, `min_R`, `min_E`, `fit_coeffs`
+
+**Storage format & path pattern:**
+- Figure (png): `derivation/code/outputs/figures/tachyonic_condensation/tube_energy_scan__<tag>.png`
+- Table (csv): `derivation/code/outputs/logs/tachyonic_condensation/tube_energy_scan__<tag>.csv`
+- Log (json): `derivation/code/outputs/logs/tachyonic_condensation/tube_condensation_summary__<tag>.json`
+
+**Schema / columns (for tables/logs):**
+- CSV: `R:float`, `E:float`
+- JSON: `finite_fraction:float`, `curvature_ok:bool`, `min_R:float`, `min_E:float`, `fit_coeffs:array[3]`
+
+**Update cadence / lifecycle:** `per condensation run`  
+**Provenance (code locations):** `derivation/code/physics/tachyonic_condensation/run_tachyon_tube.py`  
+**Validation hooks / KPIs:** `VALIDATION_METRICS.md#kpi-tube-finite-fraction`, `#kpi-tube-curvature-ok`  
+**Retention / access constraints:** policy-aware routing with failed_runs on gate failure  
+**Example artifact (if referenced):** see RESULTS doc referenced in CANON_PROGRESS row  
+**Notes:** Diagonal-mode baseline; off-diagonal quartic couplings planned for future work.
+
+---
 #### a6_collapse log  <a id="data-a6-collapse-log"></a>
 **Type:** log  
 **Purpose:** Gate record for A6 scaling collapse (max envelope) with pass/fail and artifact pointers  

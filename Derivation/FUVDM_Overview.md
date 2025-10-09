@@ -9,7 +9,8 @@
 > See LICENSE file for full terms.
 
 Note on scope and merge resolution
-- This file was reconciled to include a comprehensive macro banner and overview while enforcing the repository’s policy: RD is the canonical baseline; EFT/KG content is quarantined as future work and explicitly labeled.
+
+- This file was reconciled to include a comprehensive macro banner and overview while enforcing the repository’s policy: RD is the canonical baseline; EFT/KG is an active, KPI-gated branch with explicit acceptance criteria and provenance. Unapproved runs remain quarantined by IO policy and are excluded from RESULTS/KPIs.
 
 ## Macro Banner: Core Equations and Mappings
 
@@ -45,7 +46,7 @@ $$
 
 (RD-3)
 
-### 2. EFT/KG branch (quarantined; future work) [PLAUSIBLE]
+### 2. EFT/KG branch (active; KPI-gated) [PLAUSIBLE]
 
 Kinetic/action normalization from the discrete action:
 
@@ -165,7 +166,7 @@ $$
 
 (RD-3′)
 
-EFT kinetic normalization (quarantined branch; see also EFT-1):
+EFT kinetic normalization (active branch; see also EFT-1):
 
 $$
 c^{2} = 2 J a^{2} \quad \text{or} \quad c^{2} = \kappa a^{2},\; \kappa = 2J
@@ -177,10 +178,11 @@ References:
 [discrete_to_continuum.md](Prometheus_VDM/derivation/foundations/discrete_to_continuum.md:1),  
 [kinetic_term_derivation.md](Prometheus_VDM/derivation/effective_field_theory/kinetic_term_derivation.md:1)
 
-## Scope boundaries and quarantine (policy)
+## Scope boundaries and policy
+
 
 - Canonical baseline is RD (first-order in time).  
-- All EFT/KG (second-order in time) statements are quarantined to the EFT docs and labeled [PLAUSIBLE]/[FUTURE WORK].  
+- EFT/KG (second-order in time) is an active branch with explicit KPI gates and provenance; statements are labeled [PLAUSIBLE] unless promoted by passing RESULTS. Unapproved runs are quarantined by IO policy and excluded from RESULTS/KPIs.  
 - Effective mass is parameter-dependent. Example only:
 
 $$
@@ -190,6 +192,7 @@ $$
 (EFT-EX)
 
 EFT references:  
+
 - [effective_field_theory_approach.md](Prometheus_VDM/derivation/effective_field_theory/effective_field_theory_approach.md:1)  
 - [fum_voxtrium_mapping.md](Prometheus_VDM/derivation/effective_field_theory/fum_voxtrium_mapping.md:1)
 
@@ -197,9 +200,10 @@ EFT references:
 
 - Figures → derivation/code/outputs/figures/  
 - Logs → derivation/code/outputs/logs/  
-- Filenames: <script>_<UTC timestamp>.png/json
+- Filenames: script_UTC-timestamp.png/json
 
 fum_rt parity (independent runners; same metrics schema)  
+
 - Front-speed mirror: [rd_front_speed_runner.py](Prometheus_VDM/fum_rt/physics/rd_front_speed_runner.py:1)  
 - Dispersion mirror: [rd_dispersion_runner.py](Prometheus_VDM/fum_rt/physics/rd_dispersion_runner.py:1)
 
@@ -218,9 +222,9 @@ fum_rt parity (independent runners; same metrics schema)
 
 - Memory-steering derivations and runtime integrations are tracked separately and must reference RD canonical terms when mapping to dynamics.  
   See: [memory_steering.md](Prometheus_VDM/derivation/memory_steering/memory_steering.md:1)  
-- Runtime parity and plots reside under fum_rt/core/* and fum_rt/physics/* with explicit comments when driven by proven physics
+- Runtime parity and plots reside under fum_rt/core/ and fum_rt/physics/ with explicit comments when driven by proven physics
 
-## Finite-domain EFT modes (quarantined)
+## Finite-domain EFT modes (active branch)
 
 - Finite-tube mode problem and energy scans adapt the EFT branch with bounded potentials and mass-matrix positivity  
 - Doc: [finite_tube_mode_analysis.md](Prometheus_VDM/derivation/tachyon_condensation/finite_tube_mode_analysis.md:1)

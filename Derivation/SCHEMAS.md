@@ -1,5 +1,8 @@
 <!-- DOC-GUARD: CANONICAL -->
+<!-- RULES for maintaining this file are here: /mnt/ironwolf/git/Prometheus_VDM/prompts/schemas_maintenance.md -->
 # VDM Schemas (Auto-compiled)
+
+Last updated: 2025-10-09 (commit a91b8fa)
 
 **Scope:** Single source of truth for message/record/state/config schemas used in this repository.  
 **Rules:** Paste schema definitions from source; document fields. Link to equations/constants/symbols/units/algorithms.  
@@ -10,11 +13,13 @@
 ## Configs & CLI/ENV
 
 ### Run Profile Configuration  <a id="schema-run-profile"></a>
+
 **Kind:** config  
 **Versioning (if present):** none  
 **Defined at:** `run_profiles/*.json` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
+
 ```json
 {
   "neurons": 1000,
@@ -93,11 +98,13 @@
 ---
 
 #### LBMConfig  <a id="schema-lbmconfig"></a>
+
 **Kind:** config  
 **Versioning (if present):** none  
 **Defined at:** `derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:119-135` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
+
 ```python
 @dataclass
 class LBMConfig:
@@ -143,11 +150,13 @@ class LBMConfig:
 ---
 
 #### GeometryRunConfig  <a id="schema-geometryrunconfig"></a>
+
 **Kind:** config  
 **Versioning (if present):** none  
 **Defined at:** `tools/geom_bundle_builder.py:109-143` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
+
 ```python
 @dataclass
 class GeometryRunConfig:
@@ -212,11 +221,13 @@ class GeometryRunConfig:
 ---
 
 #### VDM Corner Config (YAML)  <a id="schema-vdm-corner-config"></a>
+
 **Kind:** config  
 **Versioning (if present):** v0.1 (draft)  
 **Defined at:** `derivation/notebooks/VDM_corner_config.yaml:1-40` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
+
 ```yaml
 # VDM Corner Testbed — baseline vs VDM-regularized (draft v0.1)
 # Geometry
@@ -299,13 +310,14 @@ save_maxspeed_scan: true
 
 ## State Snapshots & Checkpoints
 
-
 #### RunMetrics  <a id="schema-runmetrics"></a>
+
 **Kind:** record  
 **Versioning (if present):** none  
 **Defined at:** `derivation/code/physics/conservation_law/qfum_validate.py:133-143` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
+
 ```python
 @dataclass
 class RunMetrics:
@@ -344,11 +356,13 @@ class RunMetrics:
 ---
 
 #### ConvergenceMetrics  <a id="schema-convergencemetrics"></a>
+
 **Kind:** record  
 **Versioning (if present):** none  
 **Defined at:** `derivation/code/physics/conservation_law/qfum_validate.py:146-155` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
+
 ```python
 @dataclass
 class ConvergenceMetrics:
@@ -387,11 +401,13 @@ class ConvergenceMetrics:
 ## Buses & Messages
 
 #### Petition  <a id="schema-petition"></a>
+
 **Kind:** message  
 **Versioning (if present):** none  
 **Defined at:** `derivation/code/physics/fluid_dynamics/telemetry/walkers.py:11-17` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
+
 ```python
 @dataclass
 class Petition:
@@ -422,11 +438,13 @@ class Petition:
 ---
 
 #### PolicyBounds  <a id="schema-policybounds"></a>
+
 **Kind:** config/record  
 **Versioning (if present):** none  
 **Defined at:** `derivation/code/physics/fluid_dynamics/telemetry/walkers.py:43-49` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
+
 ```python
 @dataclass
 class PolicyBounds:
@@ -459,11 +477,13 @@ class PolicyBounds:
 ---
 
 #### Observation  <a id="schema-observation"></a>
+
 **Kind:** event  
 **Versioning (if present):** none  
 **Defined at:** `fum_rt/core/announce.py:33-62` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
+
 ```python
 @dataclass
 class Observation:
@@ -510,11 +530,13 @@ class Observation:
 ---
 
 #### BaseEvent  <a id="schema-baseevent"></a>
+
 **Kind:** event  
 **Versioning (if present):** none  
 **Defined at:** `fum_rt/core/proprioception/events.py:49-52` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
+
 ```python
 @dataclass(frozen=True)
 class BaseEvent:
@@ -538,13 +560,14 @@ class BaseEvent:
 
 ---
 
-
 #### DeltaEvent  <a id="schema-deltaevent"></a>
+
 **Kind:** event  
 **Versioning (if present):** none  
 **Defined at:** `fum_rt/core/proprioception/events.py:55-71` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
+
 ```python
 @dataclass(frozen=True)
 class DeltaEvent(BaseEvent):
@@ -584,11 +607,13 @@ class DeltaEvent(BaseEvent):
 ---
 
 #### VTTouchEvent  <a id="schema-vttouchevent"></a>
+
 **Kind:** event  
 **Versioning (if present):** none  
 **Defined at:** `fum_rt/core/proprioception/events.py:73-83` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
+
 ```python
 @dataclass(frozen=True)
 class VTTouchEvent(BaseEvent):
@@ -619,11 +644,13 @@ class VTTouchEvent(BaseEvent):
 ---
 
 #### EdgeOnEvent / EdgeOffEvent  <a id="schema-edgeevent"></a>
+
 **Kind:** event  
 **Versioning (if present):** none  
 **Defined at:** `fum_rt/core/proprioception/events.py:85-94` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
+
 ```python
 @dataclass(frozen=True)
 class EdgeOnEvent(BaseEvent):
@@ -653,11 +680,13 @@ class EdgeOffEvent(BaseEvent):
 ---
 
 #### SpikeEvent  <a id="schema-spikeevent"></a>
+
 **Kind:** event  
 **Versioning (if present):** none  
 **Defined at:** `fum_rt/core/proprioception/events.py:97-103` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
+
 ```python
 @dataclass(frozen=True)
 class SpikeEvent(BaseEvent):
@@ -684,11 +713,13 @@ class SpikeEvent(BaseEvent):
 ---
 
 #### DeltaWEvent  <a id="schema-deltawevent"></a>
+
 **Kind:** event  
 **Versioning (if present):** none  
 **Defined at:** `fum_rt/core/proprioception/events.py:106-110` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
+
 ```python
 @dataclass(frozen=True)
 class DeltaWEvent(BaseEvent):
@@ -713,11 +744,13 @@ class DeltaWEvent(BaseEvent):
 ---
 
 #### MotifEnterEvent / MotifExitEvent  <a id="schema-motifevent"></a>
+
 **Kind:** event  
 **Versioning (if present):** none  
 **Defined at:** `fum_rt/core/proprioception/events.py:112-120` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
+
 ```python
 @dataclass(frozen=True)
 class MotifEnterEvent(BaseEvent):
@@ -744,11 +777,13 @@ class MotifExitEvent(BaseEvent):
 ---
 
 #### ADCEvent  <a id="schema-adcevent"></a>
+
 **Kind:** event  
 **Versioning (if present):** none  
 **Defined at:** `fum_rt/core/proprioception/events.py:122-134` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
+
 ```python
 @dataclass(frozen=True)
 class ADCEvent(BaseEvent):
@@ -782,11 +817,13 @@ class ADCEvent(BaseEvent):
 ---
 
 #### BiasHintEvent  <a id="schema-biashintevent"></a>
+
 **Kind:** event  
 **Versioning (if present):** none  
 **Defined at:** `fum_rt/core/proprioception/events.py:137-149` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
+
 ```python
 @dataclass(frozen=True)
 class BiasHintEvent(BaseEvent):
@@ -820,11 +857,13 @@ class BiasHintEvent(BaseEvent):
 ---
 
 #### HorizonActivityEvent  <a id="schema-horizonactivityevent"></a>
+
 **Kind:** event  
 **Versioning (if present):** none  
 **Defined at:** `fum_rt/core/cosmology/events.py:26-62` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
+
 ```python
 @dataclass(frozen=True)
 class HorizonActivityEvent(BaseEvent):
@@ -859,11 +898,13 @@ class HorizonActivityEvent(BaseEvent):
 ---
 
 #### RouterSplitEvent  <a id="schema-routersplitevent"></a>
+
 **Kind:** event  
 **Versioning (if present):** none  
 **Defined at:** `fum_rt/core/cosmology/events.py:64-94` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
+
 ```python
 @dataclass(frozen=True)
 class RouterSplitEvent(BaseEvent):
@@ -896,11 +937,13 @@ class RouterSplitEvent(BaseEvent):
 ---
 
 #### BudgetTick  <a id="schema-budgettick"></a>
+
 **Kind:** event  
 **Versioning (if present):** none  
 **Defined at:** `fum_rt/core/cosmology/events.py:96-127` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
+
 ```python
 @dataclass(frozen=True)
 class BudgetTick(BaseEvent):
@@ -935,11 +978,13 @@ class BudgetTick(BaseEvent):
 ## Diagnostics & Logs
 
 #### QFUM Metrics JSON Output  <a id="schema-qfum-metrics-json"></a>
+
 **Kind:** file  
 **Versioning (if present):** version field = "1.0"  
 **Defined at:** `derivation/code/outputs/logs/conservation_law/*_qfum_metrics.json` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
+
 ```json
 {
   "version": "1.0",
@@ -1018,14 +1063,113 @@ class BudgetTick(BaseEvent):
 
 ---
 
+#### Tube Spectrum Summary (tachyonic_condensation)  <a id="schema-tube-spectrum-summary"></a>
+
+**Kind:** file (JSON summary)  
+**Versioning (if present):** metrics_version = "v2-phys-aware"  
+**Defined at:** `derivation/code/physics/tachyonic_condensation/schemas/tube-spectrum-summary-v1.schema.json` • a91b8fa
+
+**Definition (verbatim snippet from source):**
+
+```json
+{
+  "tag": "tube-spectrum-v1",
+  "metrics_version": "v2-phys-aware",
+  "coverage_phys": 1.0,
+  "coverage_raw": 0.5481,
+  "attempts": 74,
+  "attempts_phys": 74,
+  "attempts_raw": 135,
+  "successes": 74,
+  "csv": "/.../tube_spectrum_roots__tube-spectrum-v1.csv",
+  "figure": "/.../tube_spectrum_overview__tube-spectrum-v1.png",
+  "heatmap": "/.../tube_spectrum_heatmap__tube-spectrum-v1.png",
+  "max_residual": 0.709,
+  "passed": true
+}
+```
+
+**Fields (expand from source; do not invent):**
+
+| Field             | Type      | Required | Default | Units/Normalization | Description                                                   | Source |
+| ----------------- | --------- | :------: | ------- | ------------------- | -------------------------------------------------------------- | ------ |
+| `tag`             | `string`  |    Y     | n/a     | n/a                 | Tag identifier                                                 | schema |
+| `metrics_version` | `string`  |    Y     | n/a     | n/a                 | Version of KPI computation                                     | schema |
+| `coverage`        | `number`  |    N     | alias   | fraction [0,1]      | Alias of `coverage_phys` (back-compat)                         | schema |
+| `coverage_phys`   | `number`  |    Y     | n/a     | fraction [0,1]      | Primary KPI: successes/attempts over physically admissible set | schema |
+| `coverage_raw`    | `number`  |    Y     | n/a     | fraction [0,1]      | Transparency KPI: successes over total R×ell pairs             | schema |
+| `attempts`        | `integer` |    Y     | n/a     | count               | Physically admissible attempts                                 | schema |
+| `attempts_phys`   | `integer` |    Y     | n/a     | count               | Equals `attempts`                                              | schema |
+| `attempts_raw`    | `integer` |    Y     | n/a     | count               | Total R×ell pairs                                              | schema |
+| `successes`       | `integer` |    Y     | n/a     | count               | Number of roots found (lowest per ell per R)                   | schema |
+| `csv`             | `string`  |    Y     | n/a     | path                | Absolute path to roots CSV                                     | schema |
+| `figure`          | `string|null` | N    | n/a     | path                | Absolute path to overview PNG (optional)                        | schema |
+| `heatmap`         | `string|null` | N    | n/a     | path                | Absolute path to diagnostic heatmap PNG (optional)             | schema |
+| `max_residual`    | `number|null` | N    | n/a     | residual units      | Max absolute secular residual (informational v1)               | schema |
+| `passed`          | `boolean` |    Y     | n/a     | n/a                 | Overall acceptance: `coverage_phys >= 0.95`                    | schema |
+
+**Producers/Consumers:** Produced by `run_tachyon_tube.py --mode spectrum`; consumed by RESULTS and gates.  
+**Related equations (anchors only):** see `EQUATIONS.md#vdm-e-095` (tube secular), `VALIDATION_METRICS.md#kpi-tube-cov-phys`.  
+**Related symbols/constants:** see `SYMBOLS.md` entries for $\kappa, \ell, R$.  
+**Examples (if present):** `derivation/code/outputs/logs/tachyonic_condensation/*_tube_spectrum_summary__tube-spectrum-v1.json`  
+**Invariants/Validation rules:** `0 <= coverage_phys, coverage_raw <= 1`; `attempts_raw = |R_sweep| (ell_max+1)`; `coverage = coverage_phys`.
+
+---
+
+#### Tube Condensation Summary (tachyonic_condensation)  <a id="schema-tube-condensation-summary"></a>
+
+**Kind:** file (JSON summary)  
+**Versioning (if present):** none  
+**Defined at:** `derivation/code/physics/tachyonic_condensation/schemas/tube-condensation-summary-v1.schema.json` • a91b8fa
+
+**Definition (verbatim snippet from source):**
+
+```json
+{
+  "tag": "tube-condensation-v1",
+  "finite_fraction": 1.0,
+  "min_R": 1.35,
+  "min_E": 11.98996,
+  "curvature_ok": true,
+  "fit_coeffs": [1.8109, -4.9177, 15.3284],
+  "csv": "/.../tube_energy_scan__tube-condensation-v1.csv",
+  "figure": "/.../tube_energy_scan__tube-condensation-v1.png",
+  "passed": true
+}
+```
+
+**Fields (expand from source; do not invent):**
+
+| Field             | Type             | Required | Default | Units/Normalization | Description                                         | Source |
+| ----------------- | ---------------- | :------: | ------- | ------------------- | -------------------------------------------------- | ------ |
+| `tag`             | `string`         |    Y     | n/a     | n/a                 | Tag identifier                                     | schema |
+| `finite_fraction` | `number`         |    Y     | n/a     | fraction [0,1]      | Fraction of finite E(R) values over scan grid      | schema |
+| `min_R`           | `number|null`    |    Y     | n/a     | radius units        | Radius at minimum energy (if finite)               | schema |
+| `min_E`           | `number|null`    |    Y     | n/a     | energy units        | Minimum energy value (if finite)                   | schema |
+| `curvature_ok`    | `boolean`        |    Y     | n/a     | n/a                 | True if local convexity near minimum is verified   | schema |
+| `fit_coeffs`      | `array|null`     |    N     | n/a     | coefficients        | [a, b, c] quadratic fit near minimum (if computed) | schema |
+| `csv`             | `string`         |    Y     | n/a     | path                | Absolute path to energy scan CSV                   | schema |
+| `figure`          | `string`         |    Y     | n/a     | path                | Absolute path to energy scan PNG                   | schema |
+| `passed`          | `boolean`        |    Y     | n/a     | n/a                 | Overall acceptance gate                            | schema |
+
+**Producers/Consumers:** Produced by `run_tachyon_tube.py --mode condensation`; consumed by RESULTS and gates.  
+**Related equations (anchors only):** see `EQUATIONS.md#vdm-e-097` (quadratic fit).  
+**Related symbols/constants:** `SYMBOLS.md` entries for $E(R)$.  
+**Examples (if present):** `derivation/code/outputs/logs/tachyonic_condensation/*_tube_condensation_summary__tube-condensation-v1.json`  
+**Invariants/Validation rules:** `finite_fraction in [0,1]`; `passed = (finite_fraction >= 0.80) and curvature_ok`.
+
+---
+
 ## External Interfaces
 
 #### PYTHON_PACKAGE_SCHEMA (TypeScript)  <a id="schema-python-package-schema"></a>
+
 **Kind:** API  
 **Versioning (if present):** none  
 **Defined at:** `tools/python_utilities_generator/services/geminiService.ts:12-35` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
+
 ```typescript
 const PYTHON_PACKAGE_SCHEMA = {
   type: Type.OBJECT,
@@ -1071,11 +1215,13 @@ const PYTHON_PACKAGE_SCHEMA = {
 ---
 
 #### SayRecord  <a id="schema-sayrecord"></a>
+
 **Kind:** record  
 **Versioning (if present):** none  
 **Defined at:** `tools/extract_say_texts.py:31-39` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
+
 ```python
 @dataclass
 class SayRecord:
@@ -1110,11 +1256,13 @@ class SayRecord:
 ---
 
 #### GeometryProbeAdapter (Protocol)  <a id="schema-geometryprobeadapter"></a>
+
 **Kind:** other (Protocol/Interface)  
 **Versioning (if present):** none  
 **Defined at:** `tools/geom_bundle_builder.py:96-106` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
+
 ```python
 class GeometryProbeAdapter(Protocol):
     """Adapter contract for model-specific activation capture."""
@@ -1169,6 +1317,8 @@ class GeometryProbeAdapter(Protocol):
 - [PolicyBounds](#schema-policybounds)
 - [PYTHON_PACKAGE_SCHEMA](#schema-python-package-schema)
 - [QFUM Metrics JSON Output](#schema-qfum-metrics-json)
+- [Tube Spectrum Summary (tachyonic_condensation)](#schema-tube-spectrum-summary)
+- [Tube Condensation Summary (tachyonic_condensation)](#schema-tube-condensation-summary)
 - [RouterSplitEvent](#schema-routersplitevent)
 - [Run Profile Configuration](#schema-run-profile)
 - [RunMetrics](#schema-runmetrics)
@@ -1180,5 +1330,5 @@ class GeometryProbeAdapter(Protocol):
 <!-- END AUTOSECTION: SCHEMAS-INDEX -->
 
 ## Change Log
-- 2025-10-04 • schemas compiled from repository source • 6b63a5e
 
+- 2025-10-04 • schemas compiled from repository source • 6b63a5e

@@ -1,4 +1,5 @@
 <!-- DOC-GUARD: WORKING-THEORY -->
+<!-- RULES for maintaining this file are here: /mnt/ironwolf/git/Prometheus_VDM/prompts/open_questions_maintenance.md -->
 # VDM Open Questions & Working Hypotheses (Auto-compiled)
 
 **Scope:** Repository-sourced questions, hypotheses, uncertainties, and "future work" items.  
@@ -75,7 +76,7 @@
 
 > Quantitative criteria for when a second‑order EFT branch becomes necessary. [PLAUSIBLE]
 
-**Why it matters (lifted):** Defines boundary between RD (canonical) and EFT/KG (quarantined) branches.  
+**Why it matters (lifted):** Defines boundary between RD (canonical) and EFT/KG (active, KPI-gated) branches.  
 **Related canon (anchors only):**  
 
 - Equations: `EQUATIONS.md#vdm-e-008` (RD canonical)

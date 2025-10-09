@@ -1,5 +1,8 @@
 <!-- DOC-GUARD: CANONICAL -->
+<!-- RULES for maintaining this file are here: /mnt/ironwolf/git/Prometheus_VDM/prompts/algorithms_maintenance.md -->
 # VDM Algorithms & Execution Flows (Auto-compiled)
+
+Last updated: 2025-10-09 (commit a91b8fa)
 
 **Scope:** Single source of truth for implemented algorithms and control flows in this repository.  
 **Rules:** Pseudocode + references only. Link to math/values elsewhere (EQUATIONS/CONSTANTS/SYMBOLS/UNITS).  
@@ -581,7 +584,7 @@ RECORD ACTIVITY:
 
 **Emits/Side effects:**
 
-- Internal state only (thresholds, histories, counters)
+- Internal state (thresholds, histories, counters)
 
 > DEBT: Tests absent for threshold adaptation / activity damping; add regression coverage.  
 
@@ -733,567 +736,68 @@ RETURN:
 
 ---
 
-## Initialization / Reset / Checkpoint / Restore
-
-#### VDM-A-010 — Checkpoint Save (Periodic Snapshot with Retention)  <a id="vdm-a-010"></a>
->
-> Type: RUNTIME • Binding: PSEUDOCODE • State: writes files • Dependencies: none • Notes: periodic snapshot + retention
-
-**Context:** fum_rt/runtime/helpers/checkpointing.py:16-50 • Commit: 7498744 • Module: runtime/helpers
-
-**Role:** Save checkpoint and run retention policy when configured; mirrors original behavior.
-
-**Inputs:**
-
-- nx: Nexus-like object (connectome, adc, logger, run_dir, checkpoint_every, checkpoint_keep)
-- step: current tick index
-
-**Depends on equations:**
-
-- (none; IO operation only)
-
-**Pseudocode:**
-
-```text
-SAVE CHECKPOINT:
-  IF checkpoint_every > 0 AND (step % checkpoint_every == 0) AND step > 0:
-    - path = save_checkpoint(run_dir, step, connectome, fmt, adc)
-                                                             # checkpointing.py:23
-    - Log: "checkpoint_saved" with path and step            # checkpointing.py:31
-
-RETENTION:
-  IF checkpoint_keep > 0:
-    - summary = prune_checkpoints(run_dir, keep=checkpoint_keep, last_path=path)
-                                                             # checkpointing.py:36
-    - Log: "checkpoint_retention" with summary              # checkpointing.py:38
-```
-
-**Preconditions:**
-
-- nx.run_dir exists and is writable
-- nx.connectome is serializable (HDF5 or NPZ format)
-
-**Postconditions/Invariants:**
-
-- Checkpoint file written to run_dir/ckpt_<step>.{h5,npz}
-- Oldest checkpoints pruned to keep only last N
-
-**Concurrency/Ordering:**
-
-- Single-threaded; called from main loop
-- Pruning is atomic (filesystem operations)
-
-**Failure/Backoff hooks:**
-
-- Try-except on save_checkpoint (log error, continue)      # checkpointing.py:43
-- Try-except on prune_checkpoints (silent no-op)           # checkpointing.py:40
-
-**Emits/Side effects:**
-
-- Files: run_dir/ckpt_<step>.{h5,npz}
-- Logs: checkpoint_saved, checkpoint_retention, checkpoint_error
-
----
-
-#### VDM-A-011 — Lattice Boltzmann Collision (D2Q9 BGK)  <a id="vdm-a-011"></a>
->
-> Type: RUNTIME • Binding: PSEUDOCODE • State: writes state • Dependencies: f_eq, void dynamics (EQUATIONS TODO) • Notes: local collision step (BGK)
-
-**Context:** derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:150-250 • Commit: 7498744 • Module: physics/fluid_dynamics/fluids
-
-**Role:** D2Q9 Lattice Boltzmann Method collision step (BGK operator) with optional VDM void dynamics coupling.
-
-**Inputs:**
-
-- f: populations [9, ny, nx] (distribution functions)
-- rho, ux, uy: macroscopic fields (density, velocity)
-- tau: relaxation time (viscosity control)
-- void_enabled: bool (VDM coupling flag)
-- void_gain: float (void modulation strength)
-
-**Depends on equations:**
-
-- TODO: add anchor for f_eq (equilibrium distribution) in EQUATIONS.md
-- TODO: add anchor for universal_void_dynamics in EQUATIONS.md
-
-**Pseudocode:**
-
-```text
-MACROSCOPIC FIELDS:
-  - rho = sum_i(f[i])  (density)                            # lbm2d.py:165
-  - ux = sum_i(c_ix * f[i]) / rho  (x-velocity)             # lbm2d.py:166
-  - uy = sum_i(c_iy * f[i]) / rho  (y-velocity)             # lbm2d.py:167
-  - Clamp rho >= rho_floor                                  # lbm2d.py:169
-  - IF u_clamp: clamp |u| <= u_clamp                        # lbm2d.py:171
-
-VOID DYNAMICS (optional):
-  IF void_enabled:
-    - delta_W = universal_void_dynamics(W, t, domain_mod, use_time_dynamics)
-                                                             # lbm2d.py:175
-    - W = clip(W + delta_W, 0, 1)                           # lbm2d.py:176
-    - omega_eff = omega * (1 + void_gain * (W - 0.5))       # lbm2d.py:177
-  ELSE:
-    - omega_eff = omega  (no void modulation)               # lbm2d.py:179
-
-EQUILIBRIUM:
-  - FOR each direction i:
-      u_dot_c = ux*c_ix + uy*c_iy                           # lbm2d.py:183
-      u_sq = ux^2 + uy^2                                    # lbm2d.py:184
-      f_eq[i] = w[i] * rho * (1 + u_dot_c/CS2 + (u_dot_c)^2/(2*CS2^2) - u_sq/(2*CS2))
-                                                             # lbm2d.py:185
-
-COLLISION (BGK):
-  - f = f - omega_eff * (f - f_eq)                          # lbm2d.py:188
-
-FORCING (optional):
-  IF fx != 0 or fy != 0:
-    - FOR each direction i:
-        F_i = w[i] * (c_i - u) · F / CS2                    # lbm2d.py:192
-        f[i] += F_i                                         # lbm2d.py:193
-```
-
-**Preconditions:**
-
-- f initialized to equilibrium or valid distributions
-- rho, ux, uy consistent with f (sum_i f[i] = rho, etc.)
-- tau > 0.5 (stability constraint)
-
-**Postconditions/Invariants:**
-
-- Mass conserved: sum_i(f[i]) = rho
-- Momentum conserved (with forcing): sum_i(c_i *f[i]) = rho* u + dt * F
-
-**Concurrency/Ordering:**
-
-- Vectorized NumPy (parallel on multi-core)
-- Collision is local (no communication between cells)
-
-**Failure/Backoff hooks:**
-
-- rho clamping to rho_floor (avoid division by zero)       # lbm2d.py:169
-- velocity clamping to u_clamp (Mach control)              # lbm2d.py:171
-
-**Emits/Side effects:**
-
-- Updates f in-place (populations)
-- Updates rho, ux, uy (macroscopic fields)
-- Updates W (VDM void field) if void_enabled
-
----
-
-## Control Plane / Gating / Budget Schedulers
-
-#### VDM-A-012 — Phase Control Polling  <a id="vdm-a-012"></a>
->
-> Type: POLICY • Binding: PSEUDOCODE • State: writes runtime params • Dependencies: none • Notes: external phase.json polling (optional)
-
-**Context:** fum_rt/runtime/phase.py (called from loop/main.py:550) • Commit: 7498744 • Module: runtime/phase
-
-**Role:** Poll external phase.json file for dynamic control plane updates (optional; silent no-op if absent).
-
-**Inputs:**
-
-- nx: Nexus-like object (run_dir, phase profiles, dom_mod, etc.)
-
-**Depends on equations:**
-
-- (none; control plane only)
-
-**Pseudocode:**
-
-```text
-POLL CONTROL:
-  - path = run_dir / "phase.json"                           # phase.py:?
-  IF path exists:
-    - Load JSON: {"profile": str}                           # phase.py:?
-    - IF profile in nx._phase_profiles:
-        - Apply profile: nx._apply_phase_profile(prof)      # phase.py:?
-        - Update: nx.dom_mod, nx.hz, etc.                   # phase.py:?
-    - Log: "phase_update" with profile name                 # phase.py:?
-```
-
-**Preconditions:**
-
-- nx.run_dir exists
-- nx._phase_profiles dict initialized (default or custom)
-
-**Postconditions/Invariants:**
-
-- nx.dom_mod, nx.hz updated if profile found
-- No changes if file absent or profile unknown
-
-**Concurrency/Ordering:**
-
-- Called once per tick from main loop
-- File read is atomic (OS-level)
-
-**Failure/Backoff hooks:**
-
-- Try-except on file read (silent no-op)
-- Try-except on JSON parse (silent no-op)
-
-**Emits/Side effects:**
-
-- Logs: phase_update (if profile applied)
-
----
-
-<!-- markdownlint-disable MD033 -->
-## Physics Integrators & QC — Metriplectic
-
-### VDM-A-013 — Metriplectic Step — Strang JMJ Composition  <a id="vdm-a-013"></a>
->
-> Type: RUNTIME • Binding: PSEUDOCODE • State: writes state • Dependencies: J-step, DG M-step • Notes: symmetric second-order
-
-**Context:** Derivation/code/physics/metriplectic/compose.py:33-47 • Commit: HEAD • Module: physics/metriplectic
-
-**Role:** Apply one Strang composition step combining conservative J and dissipative M: J(Δt/2) → M(Δt) → J(Δt/2).
-
-**Inputs:**
-
-- W: state vector/field
-- dt, dx: timestep and grid spacing
-- params: includes c for J; D, r, u and DG tolerances for M
-
-**Depends on equations:**
-
-- [VDM-E-014](EQUATIONS.md#vdm-e-014) — Continuum Klein-Gordon form (J branch context)
-- [VDM-E-015](EQUATIONS.md#vdm-e-015) — RD gradient-flow form (M branch context)
-- [VDM-E-026](EQUATIONS.md#vdm-e-026) — Discrete Gradient Lyapunov step (DG monotonicity)
-
-**Pseudocode:**
-
-```text
-INPUT: W, dt, dx, params
-W1 = J_step(W, 0.5*dt, dx, params)
-W2 = M_step_DG(W1, dt, dx, params)      # robust Newton/backtracking
-W3 = J_step(W2, 0.5*dt, dx, params)
-RETURN W3
-```
-
-**Preconditions:**
-
-- J_step and M_step_DG available; params carry required coefficients
-
-**Postconditions/Invariants:**
-
-- Single full step advanced; DG monotonicity enforced inside M
-
-**Concurrency/Ordering:** sequential
-
-**Failure/Backoff hooks:**
-
-- DG M-step returns convergence stats; caller may react
-
----
-
-### VDM-A-014 — J-only Reversibility Check (Metriplectic QC)  <a id="vdm-a-014"></a>
->
-> Type: EXPERIMENT • Binding: PSEUDOCODE • State: read-only (on diagnostics) • Dependencies: J-step • Notes: measures time-reversal and L2 norm drift
-
-**Context:** Derivation/code/physics/metriplectic/run_metriplectic.py:91-140 • Commit: HEAD • Module: physics/metriplectic
-
-**Role:** Validate spectral J-step time-reversal and L2 stability by advancing dt then reversing −dt and comparing to initial state; log caps and bounds.
-
-**Inputs:**
-
-- StepSpec (grid N, dx; dt_sweep for min dt); params (seed_scale; strict/cap tolerances)
-
-**Depends on equations:**
-
-- [VDM-E-014](EQUATIONS.md#vdm-e-014) — Continuum Klein-Gordon form
-- [VDM-E-047](EQUATIONS.md#vdm-e-047) — Continuum energy density (Hamiltonian)
-
-**Constants:**
-
-- [j_only_rev_strict](CONSTANTS.md#const-j_only_rev_strict) • [j_only_rev_cap](CONSTANTS.md#const-j_only_rev_cap) • [j_only_l2_cap](CONSTANTS.md#const-j_only_l2_cap)
-
-**Pseudocode:**
-
-```text
-W0 ← rng_field(N, seed_scale, seed=17)
-W1 = J_step(W0, dt)
-W2 = J_step(W1, -dt)
-rev_err = ||W2 - W0||_∞
-L2 drifts = | ||W1||_2 - ||W0||_2 |, | ||W2||_2 - ||W0||_2 |
-passes_strict = (rev_err <= tol_rev_strict) ∧ (L2 drifts <= tol_l2)
-cap_ok        = (rev_err <= tol_rev_cap)    ∧ (L2 drifts <= tol_l2)
-log JSON with errors, tolerances, FFT roundoff bound; route failed artifacts if !passes_strict
-```
-
-**Preconditions:** dt = min(dt_sweep); J_step configured
-
-**Postconditions:** Diagnostics logged; no state persisted
-
-**Emits/Side effects:** JSON log under outputs/logs/metriplectic
-
----
-
-### VDM-A-015 — Lyapunov Per-Step Series (M-only / JMJ)  <a id="vdm-a-015"></a>
->
-> Type: EXPERIMENT • Binding: PSEUDOCODE • State: read-only (on diagnostics) • Dependencies: DG Lyapunov L_h • Notes: check ΔL_h ≤ 0 per step
-
-**Context:** Derivation/code/physics/metriplectic/run_metriplectic.py:142-190 • Commit: HEAD • Module: physics/metriplectic
-
-**Role:** Evolve for 20 steps using selected scheme (m_only or jmj) and verify discrete Lyapunov decreases monotonically within tolerance.
-
-**Inputs:**
-
-- StepSpec (scheme, grid, params); dt = min(dt_sweep)
-
-**Depends on equations:**
-
-- [VDM-E-016](EQUATIONS.md#vdm-e-016) — RD Lyapunov functional (continuum)
-- [VDM-E-092](EQUATIONS.md#vdm-e-092) — Discrete Lyapunov functional (grid form)
-
-**Depends on equations:**
-
-- [VDM-E-090](EQUATIONS.md#vdm-e-090) — Two-grid error metric and log–log fit
-
-**Constants:**
-
-- [lyap_tol_pos](CONSTANTS.md#const-lyap_tol_pos)
-
-**Pseudocode:**
-
-```text
-W ← rng_field(N, seed_scale, 123)
-L_prev = L_h(W)
-series = []
-repeat k=1..20:
-  W = step(W, dt)               # scheme: m_only or jmj
-  L_now = L_h(W)
-  series.append(ΔL = L_now - L_prev)
-  L_prev = L_now
-violations = count(ΔL > tol_pos)
-log JSON + PNG (ΔL vs step); route failed if violations>0
-```
-
-**Postconditions:** series and violations logged; figure saved
-
----
-
-### VDM-A-016 — Two-Grid Error Sweep (M-only / JMJ)  <a id="vdm-a-016"></a>
->
-> Type: EXPERIMENT • Binding: PSEUDOCODE • State: read-only • Dependencies: two_grid_error_inf • Notes: log-log fit slope and R²
-
-**Context:** Derivation/code/physics/metriplectic/run_metriplectic.py:58-118 • Commit: HEAD • Module: physics/metriplectic
-
-**Role:** For each dt in sweep and across seeds, compute inf-norm two-grid error and fit slope p and R² on log-log axes; gate by thresholds.
-
-**Inputs:** StepSpec (scheme, grid, params, dt_sweep, seeds)
-
-**Depends on equations:**
-
-- [VDM-E-090](EQUATIONS.md#vdm-e-090) — Two-grid error metric and log–log fit
-
-**Constants:**
-
-- [gate_slope](CONSTANTS.md#const-gate_slope_metriplectic) • [gate_R2](CONSTANTS.md#const-gate_R2_metriplectic)
-
-**Pseudocode:**
-
-```text
-step = select_stepper(scheme)
-for seed in seeds:
-  W0 = rng_field(...)
-  for dt in dt_sweep:
-    e = ||Φ_dt(W0) - Φ_{dt/2}( Φ_{dt/2}(W0) )||_∞
-    append e under dt
-med(dt) = median over seeds
-if scheme==j_only and med≈0: slope=0, R2=1 (trivial)
-else: fit y=log med, x=log dt via least squares → slope,R2
-failed_gate = (slope < gate_slope) or (R2 < gate_R2)
-emit PNG/CSV/JSON; route failed if gate fails
-```
-
-**Emits:** figure_path/log_path under outputs/*/metriplectic (tag-aware)
-
----
-
-### VDM-A-017 — Small-Δt Sweep with Newton Stats (JMJ)  <a id="vdm-a-017"></a>
->
-> Type: EXPERIMENT • Binding: PSEUDOCODE • State: read-only • Dependencies: m_only_step_with_stats • Notes: aggregates DG Newton iterations/backtracks
-
-**Context:** Derivation/code/physics/metriplectic/run_metriplectic.py:192-263 • Commit: HEAD • Module: physics/metriplectic
-
-**Role:** Repeat two-grid sweep on smaller Δt set while capturing per-step DG Newton statistics from the middle M-step; fit slope and R²; log CSVs.
-
-**Depends on equations:**
-
-- [VDM-E-091](EQUATIONS.md#vdm-e-091) — Strang composition defect
-
-**Constants:**
-
-- [dt_sweep_small](CONSTANTS.md#const-dt_sweep_small_metriplectic) • [gate_slope](CONSTANTS.md#const-gate_slope_metriplectic) • [gate_R2](CONSTANTS.md#const-gate_R2_metriplectic) • [dg_tol](CONSTANTS.md#const-dg_tol_metriplectic)
-
-**Pseudocode:**
-
-```text
-dt_vals_small = params.dt_sweep_small or [0.02,0.01,0.005,0.0025,0.00125]  # see CONSTANTS.md#const-dt_sweep_small_metriplectic
-for seed, dt in grid(seeds, dt_vals_small):
-  step_with_stats: J(½dt) → M(dt, capture {iters,residual,backtracks,converged}) → J(½dt)
-  e = two_grid_error_inf(step_with_stats, W0, dt)
-accumulate medians; fit slope,R2; gate (slope≥gate_slope, R2≥gate_R2)
-emit PNG + JSON + two CSVs (errors, Newton stats)
-```
-
----
-
-### VDM-A-018 — Strang Defect Diagnostic (JMJ vs MJM)  <a id="vdm-a-018"></a>
->
-> Type: EXPERIMENT • Binding: PSEUDOCODE • State: read-only • Dependencies: jmj_strang_step, mjm_strang_step • Notes: proxy for commutator strength
-
-**Context:** Derivation/code/physics/metriplectic/run_metriplectic.py:265-316 • Commit: HEAD • Module: physics/metriplectic
-
-**Role:** Measure ||Φ^JMJ_Δt − Φ^MJM_Δt||_∞ vs Δt, fit slope (~3 expected) and R²; emit PNG/CSV/JSON.
-
-**Depends on equations:**
-
-- [VDM-E-090](EQUATIONS.md#vdm-e-090) — Two-grid error metric and log–log fit
-- [VDM-E-092](EQUATIONS.md#vdm-e-092) — Discrete Lyapunov functional (grid form)
-
-**Constants:**
-
-- [strang_R2_min](CONSTANTS.md#const-strang_R2_min)
-
-**Pseudocode:**
-
-```text
-for seed, dt in grid(seeds, dt_vals):
-  W_jmj = JMJ_step(W0, dt)
-  W_mjm = MJM_step(W0, dt)
-  def_err = ||W_jmj - W_mjm||_∞
-median per dt → fit log-log slope,R2; log artifacts
-```
-
----
-
-### VDM-A-019 — Robustness v5 Grid (Param Sweep Aggregator)  <a id="vdm-a-019"></a>
->
-> Type: EXPERIMENT • Binding: PSEUDOCODE • State: read-only • Dependencies: VDM-A-016, VDM-A-015 • Notes: pass-rate across (D,r,u,N)
-
-**Context:** Derivation/code/physics/metriplectic/run_metriplectic.py:318-371 • Commit: HEAD • Module: physics/metriplectic
-
-**Role:** Evaluate a small grid of tuples for slope/R² and Lyapunov violations; pass if ≥80% tuples meet all gates; log per-tuple CSV.
-
-**Constants:**
-
-- [gate_slope](CONSTANTS.md#const-gate_slope_metriplectic) • [gate_R2](CONSTANTS.md#const-gate_R2_metriplectic) • [lyap_tol_pos](CONSTANTS.md#const-lyap_tol_pos) • [robust_v5_pass_rate_min](CONSTANTS.md#const-robust_v5_pass_rate_min)
-
-**Pseudocode:**
-
-```text
-for tup in tuples:
-  local_spec = override(grid.N, params.{D,r,u})
-  sw = two_grid_sweep(local_spec)
-  ly = lyapunov_check(local_spec)
-  ok = (sw.slope≥gate_slope) ∧ (sw.R2≥gate_R2) ∧ (ly.violations==0)
-pass_rate = (#ok)/(#tuples); emit JSON+CSV; route failed if pass_rate < robust_v5_pass_rate_min
-```
-
----
-
-## Physics Validation — Cosmology
-
-### VDM-A-020 — FRW Continuity Residual QC (Dust Control)  <a id="vdm-a-020"></a>
->
-> Type: EXPERIMENT • Binding: PSEUDOCODE • State: writes artifacts • Dependencies: finite-diff • Notes: machine-precision identity under synthetic dust
-
-**Context:** Derivation/code/physics/cosmology/run_frw_balance.py:1-118 • Commit: HEAD • Module: physics/cosmology
-
-**Role:** Compute residual r(t)=d/dt(ρ a^3)+w ρ d/dt(a^3) with w=0 (dust), report RMS and gate; emit PNG/CSV/JSON with pass/fail routing.
-
-**Inputs:** FRWSpec {rho,a,t,tol_rms,tag}
-
-**Depends on equations:**
-
-- [VDM-E-093](EQUATIONS.md#vdm-e-093) — FRW continuity residual (dust) and RMS
-
-**Constants:**
-
-- [tol_rms](CONSTANTS.md#const-frw_tol_rms)
-
-**Pseudocode:**
-
-```text
-res = gradient(rho*a^3, t) + w * rho * gradient(a^3, t)   # w=0
-rms = sqrt(mean(res^2))
-passed = (rms <= tol_rms)
-emit PNG(res vs t), CSV(t,rho,a,res), JSON({rms,passed});
-if !passed: emit CONTRADICTION_REPORT and route to failed_runs/
-```
-
-**Pre/Post:** deterministic synthetic baseline; double precision; artifacts pinned
-
----
-
-## Physics Validation — Collapse / Memory Steering
-
-### VDM-A-021 — A6 Scaling Collapse (Junction Logistic Universality)  <a id="vdm-a-021"></a>
->
-> Type: EXPERIMENT • Binding: PSEUDOCODE • State: writes artifacts • Dependencies: run_junction_logistic • Notes: envelope metric gate
-
-**Context:** Derivation/code/physics/collapse/run_a6_collapse.py:1-154 • Commit: HEAD • Module: physics/collapse
-
-**Role:** Generate P(A) curves for multiple Θ, reparameterize X=Θ Δm, compute envelope E(X) across curves and env_max; gate by threshold and emit artifacts.
-
-**Inputs:** A6Spec {tuples:[{theta, delta_m_values, trials}], tag}
-
-**Depends on equations:**
-
-- [VDM-E-067](EQUATIONS.md#vdm-e-067) — Logistic junction choice probability
-- [VDM-E-094](EQUATIONS.md#vdm-e-094) — Scaling-collapse envelope and env_max
-
-**Constants:**
-
-- [env_max_threshold](CONSTANTS.md#const-a6_env_max)
-
-**Pseudocode:**
-
-```text
-for tup in tuples:
-  X, P = run_junction_logistic(theta, delta_m_values, trials)
-  store curves
-Xc, Ymin, Ymax = compute_envelope(curves, nbins)
-envelope = Ymax - Ymin; env_max = max(envelope)
-passed = (env_max <= env_max_threshold)
-emit PNG overlay + envelope band; CSV(Xc,Ymin,Ymax,envelope); JSON(log)
-if !passed: CONTRADICTION_REPORT and failed_runs/
-```
-
-**Helper (compute_envelope):** build shared X-grid over intersection range; interp each curve; take pointwise min/max.
-
----
-
-<!-- BEGIN AUTOSECTION: ALGO-INDEX -->
-<!-- Tool-maintained list of [VDM-A-###](#vdm-a-###) anchors for quick lookup -->
-- [VDM-A-001](#vdm-a-001) — Runtime Main Loop (Nexus Tick Loop)
-- [VDM-A-002](#vdm-a-002) — Connectome Step (Void-Equation Driven Topology Update)
-- [VDM-A-003](#vdm-a-003) — Void Scout Runner (Per-Tick Scout Executor)
-- [VDM-A-004](#vdm-a-004) — Cold Scout (Coldness-Driven Walker)
-- [VDM-A-005](#vdm-a-005) — Alias Sampling (Vose's Method)
-- [VDM-A-006](#vdm-a-006) — RE-VGSP Learning Step (Three-Factor Synaptic Plasticity)
-- [VDM-A-007](#vdm-a-007) — GDSP Adaptive Thresholds (Structural Plasticity Gating)
-- [VDM-A-008](#vdm-a-008) — Fluid Dynamics Walker (LBM Telemetry Agent)
-- [VDM-A-009](#vdm-a-009) — Advisory Policy (Fluids Telemetry Feedback)
-- [VDM-A-010](#vdm-a-010) — Checkpoint Save (Periodic Snapshot with Retention)
-- [VDM-A-011](#vdm-a-011) — Lattice Boltzmann Collision (D2Q9 BGK)
-- [VDM-A-012](#vdm-a-012) — Phase Control Polling
-- [VDM-A-013](#vdm-a-013) — Metriplectic Step — Strang JMJ Composition
-- [VDM-A-014](#vdm-a-014) — J-only Reversibility Check (Metriplectic QC)
-- [VDM-A-015](#vdm-a-015) — Lyapunov Per-Step Series (M-only / JMJ)
-- [VDM-A-016](#vdm-a-016) — Two-Grid Error Sweep (M-only / JMJ)
-- [VDM-A-017](#vdm-a-017) — Small-Δt Sweep with Newton Stats (JMJ)
-- [VDM-A-018](#vdm-a-018) — Strang Defect Diagnostic (JMJ vs MJM)
-- [VDM-A-019](#vdm-a-019) — Robustness v5 Grid (Param Sweep Aggregator)
-- [VDM-A-020](#vdm-a-020) — FRW Continuity Residual QC (Dust Control)
-- [VDM-A-021](#vdm-a-021) — A6 Scaling Collapse (Junction Logistic Universality)
-<!-- END AUTOSECTION: ALGO-INDEX -->
-
 ## Change Log
 
 - 2025-10-08 • add VDM-A-013..021 (metriplectic integrators & QC; FRW residual QC; A6 collapse) • HEAD
 - 2025-10-03 • initial algorithms extracted • 7498744
 
 <!-- markdownlint-enable MD033 -->
+
+---
+
+### VDM-A-022 — Tube Spectrum and Condensation Harness (Tachyonic Tube v1)  <a id="vdm-a-022"></a>
+> Type: EXPERIMENT • Binding: PSEUDOCODE • State: writes artifacts • Dependencies: Bessel evaluations, adaptive quadrature • Notes: QC gates for spectrum coverage and condensation curvature
+
+**Context:** Derivation/code/physics/tachyonic_condensation (runner + solvers) • Commit: a91b8fa
+
+**Role:** Compute discrete spectrum roots $\kappa_\ell(R)$ at $k=0$ for a finite-radius tube and evaluate condensation energy $E(R)$ with background $E_{\rm bg}(R)$; emit PNG/CSV/JSON artifacts and enforce gates:
+
+- Spectrum coverage gate: $\mathrm{cov}_{\rm phys} \ge 0.95$ (primary KPI), report $\mathrm{cov}_{\rm raw}$.
+- Condensation curvature gate: interior minimum $R_\star$ with quadratic coefficient $a>0$ and finite_fraction $\ge 0.80$.
+
+**Depends on equations:**
+
+- [VDM-E-095] Tube secular equation (\\(f_\ell(\kappa)=0\\))
+- [VDM-E-096] Coverage metrics ($\\mathrm{cov}_{\\rm phys}$, $\\mathrm{cov}_{\\rm raw}$)
+- [VDM-E-097] Condensation energy and background
+
+**Pseudocode (spectrum):**
+
+```text
+INPUT: R_sweep, ell_max, (mu,c), tag
+FOR each R in R_sweep:
+  FOR ell in 0..ell_max:
+    scan theta-grid for sign changes of f_ell(kappa(theta))
+    if sign-change: bracket -> secant/Newton refine -> record kappa
+attempts_phys = count of (R,ell) with any sign-change
+successes = number of refined roots
+cov_phys = successes/attempts_phys; cov_raw = successes/(len(R_sweep)*(ell_max+1))
+emit PNG overview + heatmap; CSV with roots and residual; JSON summary
+```
+
+**Pseudocode (condensation):**
+
+```text
+INPUT: R_sweep, (mu,c,lambda), E_bg params (sigma, alpha), tag
+FOR each R in R_sweep:
+  compute unstable modes (m_ell^2<0)
+  compute N4_ell via adaptive radial integral with tail
+  compute E(R) = E_bg(R) + sum_ell [1/2 m^2 v^2 + 1/4 N4 v^4]
+refine around current min; fit quadratic near R_star -> coeff a
+finite_fraction = fraction of R with finite E(R)
+curvature_ok = (interior min) AND (a>0 or Δ^2E>0)
+emit PNG E(R), CSV series, JSON summary
+```
+
+**Preconditions:**
+
+- io_paths policy and approvals in effect (quarantine unapproved runs)
+
+**Postconditions:**
+
+- Artifacts saved under `outputs/(figures|logs)/tachyonic_condensation/` with tag and timestamps
+
+**Gates:**
+
+- Spectrum: $\mathrm{cov}_{\rm phys} \ge 0.95$ (PASS in v1: 1.000)
+- Condensation: finite_fraction $\ge 0.80$, interior min, $a>0$ (PASS in v1)

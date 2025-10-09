@@ -1,10 +1,10 @@
-# Continuum Stack — Discrete → Continuum (RD baseline; EFT quarantined)
+# Continuum Stack — Discrete → Continuum (RD baseline; EFT active, KPI-gated)
 
 Tags: [PROVEN], [STRUCTURE], [DOC SYNC]
 
 Purpose
 - Provide the stepwise map from the discrete site model to continuum PDEs.
-- Establish the RD branch as canonical for first‑order time dynamics; quarantine the EFT/KG branch (second‑order) for future work.
+- Establish the RD branch as canonical for first‑order time dynamics; maintain EFT/KG (second‑order) as an active, KPI‑gated branch with explicit acceptance criteria.
 - Fix nomenclature and parameter mapping reused across derivations and validations.
 
 Assumptions/Parameters
@@ -35,7 +35,7 @@ PDE/Action/Potential branches
 - RD branch [PROVEN, canonical]:
   - ∂t φ = D ∇²φ + r φ - u φ² with D = J a² (or (J/z) a²), r = α - β, u = α.
   - Closest discrete check: linear growth/dispersion and Fisher-KPP pulled‑front speed.
-- EFT/KG branch [PLAUSIBLE, quarantined]:
+- EFT/KG branch [PLAUSIBLE, active]:
   - Second‑order time with action‑derived kinetic normalization:
     ∂t² φ + γ ∂t φ - c² ∇² φ + V′(φ) = 0, with c² = 2 J a² (per‑site) or c² = κ a², κ=2J (per‑edge).
   - Mass parameter follows m_eff² = V″(v) at the vacuum v; not used in RD validations.
