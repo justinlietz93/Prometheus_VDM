@@ -36,6 +36,21 @@ Parameters: $\mu$, $\lambda$, $c$, $\ell_{\max}$. Diagnostics: (a) root-finding 
 4. Approval: Tag-specific schemas; HMAC script-based manifest approval required before promotion.
 5. Promotion: Once gates pass, produce RESULTS doc summarizing equations and artifact paths; update CANON_PROGRESS row from PLAUSIBLE to PROVEN.
 
+### 5.3 Background energy (optional) and acceptance gates
+
+To model physical surface/core costs consistently with the derivation notes, we optionally include a background term
+
+$$E_{\text{bg}}(R) = 2\pi\,\sigma\,R + \frac{\alpha}{R},$$
+
+with $\sigma \ge 0$ and $\alpha \ge 0$ (documented in the spec when used). This shifts $E(R)$ without altering the diagonal-\(\lambda\) projection mechanics and helps reveal an interior minimum when the diagonal baseline alone is monotone.
+
+Acceptance gates (explicit):
+
+- Spectrum (tube-spectrum-v1): coverage $\ge 0.95$ across $(R,\ell)$ attempts; at least one low-$\ell$ mode (e.g., $\ell\le 2$) detected for some $R$ (robustness check).
+- Condensation (tube-condensation-v1): finite fraction $\ge 0.90$ and an interior minimum certified by either (i) a positive quadratic curvature (fit $a>0$) on a local window around the minimum, or (ii) a discrete second difference $\Delta^2 E(R_i) = E_{i+1}-2E_i+E_{i-1} > 0$ at an interior index $i$.
+
+Both tags are pre-registered with JSON Schemas that pin the tag constant; approvals are script-scoped and recorded in `Derivation/code/physics/tachyonic_condensation/APPROVAL.json`.
+
 Success path: Gates satisfied, stable minimum radius identified. Failure path: Insufficient root coverage or ill-conditioned energy integrals; adjust sweep or tolerance and re-run after amendment.
 
 Runtime estimate: < 2 minutes per tag (ell_max=8, modest R grid) on standard workstation.
@@ -53,4 +68,3 @@ Artifacts embedded in RESULTS markdown with MathJax; CSV/JSON path references re
 Justin K. Lietz: design, implementation, approval, analysis, documentation.
 
 ## 7. References
-

@@ -1,6 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "tube-condensation-v1",
+  "tag": "tube-condensation-v1",
   "type": "object",
   "required": ["tag", "grid", "params"],
   "properties": {

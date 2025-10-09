@@ -1,0 +1,15 @@
+{
+  "csv": "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/logs/tachyonic_condensation/20251009_062600_tube_energy_scan__tube-condensation-v1.csv",
+  "curvature_ok": true,
+  "figure": "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/figures/tachyonic_condensation/20251009_062600_tube_energy_scan__tube-condensation-v1.png",
+  "finite_fraction": 1.0,
+  "fit_coeffs": [
+    1.8109317690624318,
+    -4.917705692131392,
+    15.328445293953143
+  ],
+  "min_E": 11.989960774345741,
+  "min_R": 1.35,
+  "passed": true,
+  "tag": "tube-condensation-v1"
+}
