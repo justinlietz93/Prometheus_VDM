@@ -1,0 +1,16 @@
+{
+  "attempts": 74,
+  "attempts_phys": 74,
+  "attempts_raw": 135,
+  "coverage": 1.0,
+  "coverage_phys": 1.0,
+  "coverage_raw": 0.5481481481481482,
+  "csv": "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/logs/tachyonic_condensation/20251009_084702_tube_spectrum_roots__tube-spectrum-v1.csv",
+  "figure": "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/figures/tachyonic_condensation/20251009_084702_tube_spectrum_overview__tube-spectrum-v1.png",
+  "heatmap": "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/figures/tachyonic_condensation/20251009_084703_tube_spectrum_heatmap__tube-spectrum-v1.png",
+  "max_residual": 0.7089993447220818,
+  "metrics_version": "v2-phys-aware",
+  "passed": true,
+  "successes": 74,
+  "tag": "tube-spectrum-v1"
+}

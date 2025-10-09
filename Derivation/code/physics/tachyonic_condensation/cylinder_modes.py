@@ -549,6 +549,23 @@ def has_root_potential(
     return False
 
 
+def secular_residual(
+    ell: int,
+    R: float,
+    mu: float,
+    c: float,
+    kappa: float,
+) -> float:
+    """Return |f_ell(kappa; R, mu, c)|, the absolute secular residual."""
+    try:
+        val = _secular_value(float(kappa), int(ell), float(R), float(mu), float(c))
+        if val is None or not np.isfinite(val):
+            return float("inf")
+        return float(abs(val))
+    except Exception:
+        return float("inf")
+
+
 def mode_functions(
     R: float,
     root: Dict[str, float],
