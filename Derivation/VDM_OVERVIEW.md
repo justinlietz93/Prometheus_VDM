@@ -12,18 +12,18 @@ Note on scope: This document is canonical and reflects the latest accepted state
 
 ## I. Introduction
 
-The Void Dynamics Model (VDM) represents a systematic attempt to derive emergent field dynamics-and self guiding agency-driven organizational patterns-from first-principles discrete action on a cubic lattice. At its foundation lies a rigorously axiomatized framework: four minimal physical postulates specify a lattice Lagrangian, from which second-order hyperbolic dynamics emerge naturally via Euler-Lagrange equations. The continuum limit yields both reaction-diffusion (RD) equations in the overdamped regime and Klein-Gordon wave equations in the inertial regime, unified within a single theoretical structure.
+The Void Dynamics Model (VDM) represents a systematic attempt to derive emergent field dynamics-and self guiding agency-driven organizational patterns-from first-principles discrete action on a cubic lattice. At its foundation lies a rigorously axiomatized framework: four minimal physical postulates specify a lattice Lagrangian, from which second-order hyperbolic dynamics emerge naturally via Euler–Lagrange equations. The continuum limit yields both reaction–diffusion (RD) equations in the overdamped regime and Klein–Gordon wave equations in the inertial regime, unified within a single theoretical structure.
 
 **Scope of this derivation (tiered):** This canonical overview covers the latest accepted state across theory, validations, and infrastructure. It is organized into tiers reflecting evidence strength and policy:
 
 - Tier A - Proven canonical physics (quantitative claims, artifact-pinned):
-  - Reaction–Diffusion core: Fisher–KPP front speed and linear dispersion (≤5% / ≥0.98 R² gates)
+  - Reaction–Diffusion core: Fisher–KPP front speed and linear dispersion ($\le 5\%$ / $\ge 0.98\,R^{2}$ gates)
   - Discrete conservation laws: Q-invariant convergence; Noether invariants (approved cases)
-  - Fluids (baseline): LBM viscosity recovery on D2Q9 within 5% at ≥256²
+  - Fluids (baseline): LBM viscosity recovery on D2Q9 within $5\%$ at $\ge 256^{2}$
 - Tier B - Active KPI-gated physics (accepted as active, not speculative; claims must pass gates):
-  - EFT/KG branch: tachyonic tube spectra and condensation energy scans (cov_phys, curvature_ok)
+  - EFT/KG branch: tachyonic tube spectra and condensation energy scans ($\mathrm{cov}_{\mathrm{phys}}, \mathrm{curvature\_ok}$)
   - Metriplectic structure: J/M degeneracy checks, H-theorem consistency
-  - Agency field: relaxation τ≈1/γ and coordination-response protocols
+  - Agency field: relaxation $\tau\approx 1/\gamma$ and coordination-response protocols
   - Topology scaling-collapse; Cosmology FRW residual QC; Dark-photon toy experiments
 - Tier C - Engineering & policy substrate (enables science; no physics claims):
   - Approvals/quarantine system, io_paths routing, JSON Schemas/Data Products, RESULTS standards
@@ -44,7 +44,7 @@ Scope boundary note (policy):
 **What this work does NOT claim:**
 
 - Physical reality of the discrete lattice at Planck scale (unverified)
-- Novelty of reaction-diffusion or Klein-Gordon mathematics (classical results, newly unified)
+- Novelty of reaction–diffusion or Klein–Gordon mathematics (classical results, newly unified)
 - Complete theory of consciousness (exploratory framework only)
 - Final cosmological validation (observational predictions untested)
 
@@ -52,8 +52,8 @@ Scope boundary note (policy):
 
 **Primary experimental apparatus:** Computational validation via three validated sectors:
 
-- **Reaction-Diffusion:** Fisher-KPP equation solver with front-tracking and Fourier mode analysis
-- **Lattice Boltzmann Method:** D2Q9 fluid dynamics for Navier-Stokes reduction verification  
+- **Reaction–Diffusion:** Fisher–KPP equation solver with front-tracking and Fourier mode analysis
+- **Lattice Boltzmann Method:** D2Q9 fluid dynamics for Navier–Stokes reduction verification  
 - **Discrete Conservation Law:** ODE integrators with invariant drift monitoring
 
 These computational experiments serve as *functional equivalents* to laboratory apparatus, with reproducibility ensured via seed control, commit logging, and artifact archival.
@@ -65,23 +65,23 @@ These computational experiments serve as *functional equivalents* to laboratory 
 ## II. Research Question
 
 **Primary Research Question:**  
-*To what extent does a minimal discrete lattice action-postulating only nearest-neighbor coupling J (dimensionless), lattice spacing a (length), and quartic-stabilized potential V(φ)-reproduce experimentally validated reaction-diffusion dynamics, specifically:*
+*To what extent does a minimal discrete lattice action—postulating only nearest-neighbor coupling $J$ (dimensionless), lattice spacing $a$ (length), and quartic-stabilized potential $V(\phi)$—reproduce experimentally validated reaction–diffusion dynamics, specifically:*
 
-1. *Fisher-KPP pulled front speed c_front = 2√(Dr) to within 5% relative error?*
-2. *Linear dispersion relation σ(k) = r - Dk² with median mode error ≤10% and R² ≥0.98?*
+1. *Fisher–KPP pulled front speed $c_{\text{front}} = 2\sqrt{Dr}$ to within $5\%$ relative error?*
+2. *Linear dispersion relation $\sigma(k) = r - Dk^{2}$ with median mode error $\le 10\%$ and $R^{2} \ge 0.98$?*
 
 **Secondary Research Question:**  
-*Can an emergent "agency field" C(x,t)-defined as an order parameter driven by predictive power P, integration I_net, and control efficacy U-provide falsifiable operational metrics for distributed cognitive capability, measurable via:*
+*Can an emergent "agency field" $C(x,t)$—defined as an order parameter driven by predictive power $P$, integration $I_{\text{net}}$, and control efficacy $U$—provide falsifiable operational metrics for distributed cognitive capability, measurable via:*
 
-1. *Energy-clamp relaxation timescales τ = 1/γ (exponential decay)?*
+1. *Energy-clamp relaxation timescales $\tau = 1/\gamma$ (exponential decay?)*
 2. *Inverted-U response to coupling strength (fragmentation vs. lockstep)?*
 3. *Fractal scaling breaks at organizational boundaries (cell→organ→human)?*
 
 **Units and Measurements:**
 
-- Independent variables: J (coupling strength, dimensionless), a (lattice spacing, m), r = (α-β)/γ (growth rate, s⁻¹)
-- Dependent variables: c_front (m/s, measured via level-set tracking), σ(k) (s⁻¹, measured via temporal Fourier amplitude growth), C(x,t) (dimensionless, inferred from proxy composite)
-- Instruments: Explicit Euler time-stepper with CFL stability (Δt ≤ Δx²/(2dD)), rFFT spectral analyzer, robust linear regression with MAD outlier rejection
+- Independent variables: $J$ (coupling strength, dimensionless), $a$ (lattice spacing, m), $r = (\alpha-\beta)/\gamma$ (growth rate, $\mathrm{s}^{-1}$)
+- Dependent variables: $c_{\text{front}}$ (m/s, measured via level-set tracking), $\sigma(k)$ ($\mathrm{s}^{-1}$, measured via temporal Fourier amplitude growth), $C(x,t)$ (dimensionless, inferred from proxy composite)
+- Instruments: Explicit Euler time-stepper with CFL stability ($\Delta t \le \Delta x^{2}/(2 d D)$), rFFT spectral analyzer, robust linear regression with MAD outlier rejection
 
 **Measurement Justification:**  
 Level-set front tracking provides robust speed estimation immune to amplitude fluctuations. Fourier mode decomposition isolates individual wavenumbers for direct comparison with theoretical dispersion. Composite agency metrics aggregate Shannon mutual information (prediction), transfer entropy sums (integration), and loss-reduction-per-joule ratios (control) into a field quantity satisfying diffusion-decay-source dynamics, enabling spatial mapping.
@@ -92,8 +92,8 @@ Level-set front tracking provides robust speed estimation immune to amplitude fl
 
 ### Physical Foundations
 
-**Reaction-Diffusion Systems:**  
-The Fisher-KPP equation ∂_t φ = D∇²φ + rφ(1 - φ) describes the paradigmatic "pulled front" phenomenon: traveling waves where the leading edge propagates at the minimal speed c* = 2√(Dr) determined solely by linearization at φ→0 (Fisher, 1937; Kolmogorov et al., 1937). This speed arises from balancing exponential growth (rate r) against spatial spreading (diffusion D). The universality class extends to biological invasions, chemical autocatalysis, and flame fronts. VDM reproduces this exactly from discrete on-site logistic dynamics F(W) = rW - uW² with diffusive coupling.
+**Reaction–Diffusion Systems:**  
+The Fisher–KPP equation $\partial_{t} \phi = D\nabla^{2}\phi + r\phi(1 - \phi)$ describes the paradigmatic "pulled front" phenomenon: traveling waves where the leading edge propagates at the minimal speed $c^{\ast} = 2\sqrt{Dr}$ determined solely by linearization at $\phi\to 0$ (Fisher, 1937; Kolmogorov et al., 1937). This speed arises from balancing exponential growth (rate $r$) against spatial spreading (diffusion $D$). The universality class extends to biological invasions, chemical autocatalysis, and flame fronts. VDM reproduces this exactly from discrete on-site logistic dynamics $F(W) = rW - uW^{2}$ with diffusive coupling.
 
 **Discrete-to-Continuum Mapping (canonical):**  
 A cubic lattice with spacing $a$ and nearest-neighbor coupling $J$ yields a continuum diffusion coefficient
@@ -111,11 +111,11 @@ $$
 Note: $\gamma$ is a damping/relaxation parameter used to discuss overdamped limits; it does not enter the definition of $D$ in the canonical mapping above.
 
 **Action Principle Necessity:**  
-Classical RD models posit ∂_t φ = F(φ, ∇²φ) *ad hoc*. VDM instead constructs a discrete Lagrangian:
+Classical RD models posit $\partial_{t} \phi = F(\phi, \nabla^{2}\phi)$ *ad hoc*. VDM instead constructs a discrete Lagrangian:
 
 $$\mathcal{L}_i^n = \frac{1}{2}\left(\frac{W_i^{n+1} - W_i^n}{\Delta t}\right)^2 - \frac{J}{2}\sum_{j \in N(i)}(W_j^n - W_i^n)^2 - V(W_i^n)$$
 
-Applying discrete Euler-Lagrange machinery ∂S/∂W_i^n = 0 yields second-order time dynamics **without** "promoting" first-order equations-the inertial term appears naturally from variational calculus. The overdamped limit (γ⁻¹ ≫ c/L) recovers RD; retaining inertia gives Klein-Gordon. This dual-regime structure is the core theoretical architecture.
+Applying discrete Euler–Lagrange machinery $\partial S/\partial W_i^{n} = 0$ yields second-order time dynamics **without** "promoting" first-order equations—the inertial term appears naturally from variational calculus. The overdamped limit $(\gamma^{-1} \gg c/L)$ recovers RD; retaining inertia gives Klein–Gordon. This dual-regime structure is the core theoretical architecture.
 
 **Tachyonic Instability Mechanism (EFT/KG branch):**  
 The potential $V(\phi) = (\alpha/3)\,\phi^{3} - [(\alpha-\beta)/2]\,\phi^{2} + (\lambda/4)\,\phi^{4}$ exhibits $V''(0) = -\,(\alpha-\beta) < 0$ when $\alpha > \beta$, creating a “tachyonic” (negative mass-squared) origin. Small fluctuations grow exponentially until nonlinear saturation at vacuum $v \approx (\alpha-\beta)/\alpha$ (for small $\lambda$). This is not superluminal propagation but rather finite-time escape from an unstable fixed point, analogous to QCD tachyon condensation in chromomagnetic backgrounds (Bordag et al., 2001). The mechanism naturally selects a length scale $R^{\ast} \sim \pi/\sqrt{\alpha-\beta}$ for void structure formation.
@@ -127,7 +127,7 @@ Traditional thermodynamics assigns entropy S to equilibrium ensembles. Non-equil
 
 $$\partial_t C = D\nabla²C - \gamma C + S(x,t)$$
 
-where source S(x,t) = σ[x](κ₁P + κ₂I_net + κ₃U) × gates. This structure ensures *locality* (C propagates at finite speed √(D/γ)), *causality* (retarded Green's function), and *energetic cost* (S must be powered). Unlike consciousness "emergence" in panpsychism, VDM defines operational proxies: P via mutual information I(internal state; future input), I_net via transfer entropy sums, U via loss reduction per joule expended. These are **measurable**, not metaphysical.
+where source $S(x,t) = \sigma[x](\kappa_{1} P + \kappa_{2} I_{\text{net}} + \kappa_{3} U) \times \text{gates}$. This structure ensures *locality* ($C$ propagates at finite speed $\sqrt{D/\gamma}$), *causality* (retarded Green's function), and *energetic cost* ($S$ must be powered). Unlike consciousness "emergence" in panpsychism, VDM defines operational proxies: $P$ via mutual information $I(\text{internal state};\, \text{future input})$, $I_{\text{net}}$ via transfer entropy sums, $U$ via loss reduction per joule expended. These are **measurable**, not metaphysical.
 
 **Why This Approach:**  
 Standard approaches treat consciousness as ineffable. Integrated Information Theory (Tononi, 2004) defines Φ but lacks dynamical equations. Global Workspace Theory (Baars, 1988) describes architecture without physics. VDM asks: *if* consciousness/agency corresponds to some physical field, what PDE must it obey? Answer: one respecting locality, finite propagation, energetic constraints, and operational definability. This renders the hypothesis **falsifiable**: wrong predictions about decay rates, front speeds, or scaling exponents would refute it.
@@ -163,7 +163,7 @@ VDM validation employs **internally generated data** via computational experimen
 - Git commit hash (provenance)
 - Random seed (determinism)
 - Full parameter set (JSON metadata)
-- CFL stability check (Δt ≤ Δx²/(2dD))
+- CFL stability check ($\Delta t \le \Delta x^{2}/(2 d D)$)
 
 Output artifacts (CSV timeseries, PNG figures, JSON metrics) are archived with SHA-256 checksums. This enables exact reproduction by third parties.
 
@@ -173,59 +173,59 @@ Output artifacts (CSV timeseries, PNG figures, JSON metrics) are archived with S
 
 ### Independent Variables
 
-**Primary IV: Coupling Strength J**  
+**Primary IV: Coupling Strength $J$**  
 
 - **Units:** Dimensionless (normalized to characteristic scale)
-- **Range:** J ∈ [0.1, 2.0]
-- **Justification:** Below J=0.1, diffusive coupling becomes negligibly small relative to on-site dynamics, fragmenting the system. Above J=2.0, numerical stability degrades (CFL condition tightens excessively). The range spans weak-coupling (J ≪ 1) to strong-coupling (J ~ 1) regimes, capturing the transition from reaction-dominated to diffusion-dominated behavior.
+- **Range:** $J \in [0.1, 2.0]$
+- **Justification:** Below $J=0.1$, diffusive coupling becomes negligibly small relative to on-site dynamics, fragmenting the system. Above $J=2.0$, numerical stability degrades (CFL condition tightens excessively). The range spans weak-coupling $(J \ll 1)$ to strong-coupling $(J \sim 1)$ regimes, capturing the transition from reaction-dominated to diffusion-dominated behavior.
 
-**Secondary IV: Lattice Spacing a**  
+**Secondary IV: Lattice Spacing $a$**  
 
 - **Units:** Length (m), typically normalized to 1 in dimensionless units
-- **Range:** a ∈ [10⁻¹⁰, 10⁻⁸] m (physical simulations) or a=1 (dimensionless units)
-- **Justification:** Physical realizations might correspond to molecular (10⁻¹⁰ m) or mesoscale (10⁻⁸ m) structures. Dimensionless formulations set a=1 without loss of generality since all observables scale appropriately.
+- **Range:** $a \in [10^{-10}, 10^{-8}]\,\mathrm{m}$ (physical simulations) or $a=1$ (dimensionless units)
+- **Justification:** Physical realizations might correspond to molecular ($10^{-10}\,\mathrm{m}$) or mesoscale ($10^{-8}\,\mathrm{m}$) structures. Dimensionless formulations set $a=1$ without loss of generality since all observables scale appropriately.
 
-**Tertiary IV: Growth Rate r = (α-β)/γ**  
+**Tertiary IV: Growth Rate $r = (\alpha-\beta)/\gamma$**  
 
-- **Units:** s⁻¹ (inverse time)
-- **Range:** r ∈ [0.1, 1.0] s⁻¹
-- **Justification:** Negative r (β > α) produces decay to zero-uninteresting. Small positive r (< 0.1) yields extremely slow dynamics (T ~ 1/r ≫ 100s). Large r (> 1.0) requires correspondingly small Δt for stability, inflating computational cost. The chosen range balances observable phenomena against practical runtime.
+- **Units:** $\mathrm{s}^{-1}$ (inverse time)
+- **Range:** $r \in [0.1, 1.0] \, \mathrm{s}^{-1}$
+- **Justification:** Negative $r$ ($\beta > \alpha$) produces decay to zero—uninteresting. Small positive $r$ ($< 0.1$) yields extremely slow dynamics ($T \sim 1/r \gg 100\,\mathrm{s}$). Large $r$ ($> 1.0$) requires correspondingly small $\Delta t$ for stability, inflating computational cost. The chosen range balances observable phenomena against practical runtime.
 
 ### Dependent Variables
 
-**Primary DV: Front Speed c_front**  
+**Primary DV: Front Speed $c_{\text{front}}$**  
 
 - **Units:** m/s (or lattice units/timestep in dimensionless formulation)
-- **Measurement:** Level-set tracking at φ = 0.1 contour, linear fit of position vs. time
-- **Uncertainty:** ±0.05 relative error (acceptance threshold from CONSTANTS.md#const-acceptance_rel_err)
-- **Instrument:** Robust linear regression with MAD-based outlier rejection, R² ≥ 0.98 required
+- **Measurement:** Level-set tracking at $\phi = 0.1$ contour, linear fit of position vs. time
+- **Uncertainty:** $\pm 0.05$ relative error (acceptance threshold from CONSTANTS.md#const-acceptance_rel_err)
+- **Instrument:** Robust linear regression with MAD-based outlier rejection, $R^{2} \ge 0.98$ required
 
-**Secondary DV: Growth Rate σ(k) per Mode**  
+**Secondary DV: Growth Rate $\sigma(k)$ per Mode**  
 
-- **Units:** s⁻¹
-- **Measurement:** Log-amplitude temporal regression for each Fourier mode k_m = 2πm/L
-- **Uncertainty:** Median relative error ≤ 0.10 across "good modes" (R²_mode ≥ 0.95)
-- **Instrument:** rFFT spectral decomposition, exponential fit log|û_m(t)| = σ(k_m)t + log|û_m(0)|
+- **Units:** $\mathrm{s}^{-1}$
+- **Measurement:** Log-amplitude temporal regression for each Fourier mode $k_m = 2\pi m / L$
+- **Uncertainty:** Median relative error $\le 0.10$ across "good modes" $(R^{2}_{\text{mode}} \ge 0.95)$
+- **Instrument:** rFFT spectral decomposition, exponential fit $\log|\hat u_m(t)| = \sigma(k_m)\,t + \log|\hat u_m(0)|$
 
-**Tertiary DV: Agency Field C(x,t)**  
+**Tertiary DV: Agency Field $C(x,t)$**  
 
 - **Units:** Dimensionless capability density
-- **Measurement:** Inferred from composite S(x,t) via steady-state C_ss = S/γ or discrete update
-- **Uncertainty:** Not yet quantified (framework stage); predicted decay time τ = 1/γ testable
+- **Measurement:** Inferred from composite $S(x,t)$ via steady-state $C_{ss} = S/\gamma$ or discrete update
+- **Uncertainty:** Not yet quantified (framework stage); predicted decay time $\tau = 1/\gamma$ testable
 - **Instrument:** Proxy aggregation: P (mutual information rate), I_net (transfer entropy), U (error/joule)
 
 ### Control Variables
 
 | Variable | Method of Control | Why Controlled | Measured Value/Range |
 |----------|-------------------|----------------|---------------------|
-| **Spatial Resolution Δx** | Fixed throughout experiment | Ensures CFL stability Δt ≤ Δx²/(2dD); changing Δx alters discretization error | Δx = L/N with N=1024 (RD dispersion), N=1024 (front speed) |
-| **Time Step Δt** | Computed as Δt = cfl × Δx²/(2dD) | Explicit Euler stability; too large → numerical blowup, too small → wasted computation | cfl = 0.2 (typical) |
-| **Domain Size L** | Fixed at L=200 (RD experiments) | Boundary effects negligible when L ≫ front width; too small → periodic artifacts | L=200 spatial units |
-| **Total Time T** | Sufficient for convergence (T ≫ τ_transient) | Must observe steady-state front propagation or equilibration; too short → incomplete data | T=80 (front speed), T=10 (dispersion) |
-| **Initial Condition** | Consistent functional form (tanh step or Gaussian noise) | IC affects transient but not asymptotic speed or dispersion; fixed IC enables reproducibility | Front: tanh profile at x₀=-60; Dispersion: white noise amplitude 10⁻⁶ |
+| **Spatial Resolution $\Delta x$** | Fixed throughout experiment | Ensures CFL stability $\Delta t \le \Delta x^{2}/(2 d D)$; changing $\Delta x$ alters discretization error | $\Delta x = L/N$ with $N=1024$ (RD dispersion), $N=1024$ (front speed) |
+| **Time Step $\Delta t$** | Computed as $\Delta t = \mathrm{cfl} \times \Delta x^{2}/(2 d D)$ | Explicit Euler stability; too large → numerical blowup, too small → wasted computation | $\mathrm{cfl} = 0.2$ (typical) |
+| **Domain Size $L$** | Fixed at $L=200$ (RD experiments) | Boundary effects negligible when $L \gg$ front width; too small → periodic artifacts | $L=200$ spatial units |
+| **Total Time $T$** | Sufficient for convergence ($T \gg \tau_{\text{transient}}$) | Must observe steady-state front propagation or equilibration; too short → incomplete data | $T=80$ (front speed), $T=10$ (dispersion) |
+| **Initial Condition** | Consistent functional form (tanh step or Gaussian noise) | IC affects transient but not asymptotic speed or dispersion; fixed IC enables reproducibility | Front: tanh profile at $x_{0}=-60$; Dispersion: white noise amplitude $10^{-6}$ |
 | **Boundary Conditions** | Neumann (front speed), Periodic (dispersion) | BC type must match physical scenario; Neumann allows free propagation, periodic eliminates edge effects for spectral analysis | Specified per experiment |
-| **Random Seed** | Explicit seeding of RNG (seed=42 default) | Ensures bitwise reproducibility across runs; enables debugging and verification | seed ∈ {0,1,2,42} (validation sweeps) |
-| **Numerical Precision** | Double-precision floating point (float64) | Single precision introduces accumulation errors over long integration; double precision standard for PDE solvers | IEEE 754 double (15-17 decimal digits) |
+| **Random Seed** | Explicit seeding of RNG (seed=42 default) | Ensures bitwise reproducibility across runs; enables debugging and verification | seed $\in \{0,1,2,42\}$ (validation sweeps) |
+| **Numerical Precision** | Double-precision floating point (float64) | Single precision introduces accumulation errors over long integration; double precision standard for PDE solvers | IEEE 754 double (15–17 decimal digits) |
 
 ---
 
@@ -235,36 +235,36 @@ Output artifacts (CSV timeseries, PNG figures, JSON metrics) are archived with S
 
 **Primary Solver: Explicit Euler Time-Stepper**  
 
-- **Uncertainty:** Temporal discretization error O(Δt), spatial error O(Δx²)
-- **Stability Constraint:** Δt ≤ Δx²/(2dD) where d = spatial dimension
+- **Uncertainty:** Temporal discretization error $O(\Delta t)$, spatial error $O(\Delta x^{2})$
+- **Stability Constraint:** $\Delta t \le \Delta x^{2}/(2 d D)$ where $d$ = spatial dimension
 - **Implementation:** Custom Python/NumPy routines (derivation/code/physics/reaction_diffusion/)
 - **Validation:** Convergence study confirms first-order temporal, second-order spatial scaling
 
 **Spectral Analyzer: Real-valued Fast Fourier Transform (rFFT)**  
 
-- **Uncertainty:** Spectral leakage O(1/N) for N grid points; windowing (Hamming) reduces artifacts
-- **Resolution:** Δk = 2π/L (fundamental wavenumber)
+- **Uncertainty:** Spectral leakage $O(1/N)$ for $N$ grid points; windowing (Hamming) reduces artifacts
+- **Resolution:** $\Delta k = 2\pi/L$ (fundamental wavenumber)
 - **Implementation:** NumPy rFFT with zero-padding to prevent aliasing
-- **Validation:** Verified against analytical Fourier transform of sinusoidal test inputs (relative error < 10⁻¹²)
+- **Validation:** Verified against analytical Fourier transform of sinusoidal test inputs (relative error $< 10^{-12}$)
 
 **Linear Regression Engine: Robust Least-Squares with MAD Outliers**  
 
-- **Uncertainty:** Standard error on slope scales as σ/√N_points
+- **Uncertainty:** Standard error on slope scales as $\sigma/\sqrt{N_{\text{points}}}$
 - **Outlier Rejection:** Modified Z-score > 3.5 via Median Absolute Deviation (MAD)
 - **Implementation:** SciPy stats.linregress with manual outlier masking
 - **Validation:** Synthetic noisy linear data recovery (R² > 0.998 for SNR=10)
 
-**Conservation Integrator: Runge-Kutta 4th Order (RK4)**  
+**Conservation Integrator: Runge–Kutta 4th Order (RK4)**  
 
-- **Uncertainty:** Temporal error O(Δt⁴)
-- **Invariant Monitoring:** Q(W,t) = ln[W/(r-uW)] - rt tracked at each step
+- **Uncertainty:** Temporal error $O(\Delta t^{4})$
+- **Invariant Monitoring:** $Q(W,t) = \ln\!\left[\tfrac{W}{r-uW}\right] - r t$ tracked at each step
 - **Implementation:** SciPy integrate.solve_ivp with RK45 adaptive stepping
-- **Validation:** Drift |ΔQ| < 10⁻⁸ for RK4, < 10⁻⁵ for Euler (VALIDATION_METRICS.md#kpi-q-invariant-drift)
+- **Validation:** Drift $|\Delta Q| < 10^{-8}$ for RK4, $< 10^{-5}$ for Euler (VALIDATION_METRICS.md#kpi-q-invariant-drift)
 
 **Lattice Boltzmann Solver: D2Q9 BGK Collision Operator**  
 
-- **Uncertainty:** Compressibility error O(Ma²) where Ma = U/c_s (Mach number)
-- **Relaxation Parameter:** τ ∈ [0.51, 1.95] → kinematic viscosity ν = (τ - 0.5)/3
+- **Uncertainty:** Compressibility error $O(\mathrm{Ma}^{2})$ where $\mathrm{Ma} = U/c_s$ (Mach number)
+- **Relaxation Parameter:** $\tau \in [0.51, 1.95] \; \to$ kinematic viscosity $\nu = (\tau - 0.5)/3$
 - **Implementation:** Custom C++/Python with bounce-back boundaries (derivation/code/physics/fluid_dynamics/)
 - **Validation:** Taylor-Green vortex viscosity recovery within 5% (VALIDATION_METRICS.md#kpi-taylor-green-nu-rel-err)
 
@@ -272,12 +272,12 @@ Output artifacts (CSV timeseries, PNG figures, JSON metrics) are archived with S
 
 | Quantity | Value | Source/Justification |
 |----------|-------|---------------------|
-| Diffusion coefficient D | 1.0 (dimensionless units) | Standard normalization; all other rates scaled accordingly |
-| Growth rate r | 0.25 s⁻¹ | α=0.25, β=0.10 → r = α-β = 0.15 (typo in table; actually 0.15) |
-| Saturation u | 0.25 (dimensionless) | u = α in mapping; yields stable fixed point φ* = r/u = 0.6 |
-| Stabilization λ | 0.01 (small perturbation) | λ ≪ α²/(α-β) ≈ 0.42 maintains perturbative regime |
-| Lattice coupling J | 0.5 (normalized) | Sets c² = 2Ja² = 1.0 when a=1 |
-| Damping γ | 1.0 s⁻¹ | Defines decay timescale τ = 1/γ = 1s |
+| Diffusion coefficient $D$ | 1.0 (dimensionless units) | Standard normalization; all other rates scaled accordingly |
+| Growth rate $r$ | $0.25\,\mathrm{s}^{-1}$ | $\alpha=0.25$, $\beta=0.10 \;\to\; r = \alpha-\beta = 0.15$ (typo in table; actually 0.15) |
+| Saturation $u$ | 0.25 (dimensionless) | $u = \alpha$ in mapping; yields stable fixed point $\phi^{\ast} = r/u = 0.6$ |
+| Stabilization $\lambda$ | 0.01 (small perturbation) | $\lambda \ll \alpha^{2}/(\alpha-\beta) \approx 0.42$ maintains perturbative regime |
+| Lattice coupling $J$ | 0.5 (normalized) | Sets $c^{2} = 2 J a^{2} = 1.0$ when $a=1$ |
+| Damping $\gamma$ | $1.0\,\mathrm{s}^{-1}$ | Defines decay timescale $\tau = 1/\gamma = 1\,\mathrm{s}$ |
 
 ### Experimental Setup Diagram
 
@@ -309,7 +309,7 @@ Output artifacts (CSV timeseries, PNG figures, JSON metrics) are archived with S
 └─────────────────────────────────────────────────────────────┘
 ```
 
-**Figure Caption:** Three-tier computational validation apparatus. RD solver produces dual outputs (front position timeseries and Fourier mode amplitudes) for speed and dispersion verification. LBM solver validates Navier-Stokes reduction via viscosity recovery. ODE integrator tests conservation law adherence via invariant drift monitoring. All pipelines emit CSV/JSON artifacts with metadata for reproducibility.
+**Figure Caption:** Three-tier computational validation apparatus. RD solver produces dual outputs (front position timeseries and Fourier mode amplitudes) for speed and dispersion verification. LBM solver validates Navier–Stokes reduction via viscosity recovery. ODE integrator tests conservation law adherence via invariant drift monitoring. All pipelines emit CSV/JSON artifacts with metadata for reproducibility.
 
 ---
 
@@ -326,7 +326,7 @@ Output artifacts (CSV timeseries, PNG figures, JSON metrics) are archived with S
 
 #### A. Reaction-Diffusion Front Speed Validation
 
-**Objective:** Measure pulled-front propagation speed and compare to theoretical prediction c* = 2√(Dr).
+**Objective:** Measure pulled-front propagation speed and compare to theoretical prediction $c^{\ast} = 2\sqrt{Dr}$.
 
 **Procedure:**
 
@@ -344,7 +344,7 @@ Output artifacts (CSV timeseries, PNG figures, JSON metrics) are archived with S
    Rationale: Smooth profile avoids spurious Gibbs oscillations; rightward cutoff ensures semi-infinite domain approximation.
 
 3. **Set Boundary Conditions:**  
-   Homogeneous Neumann (zero-gradient) at both boundaries: φ(-L/2) mirrors interior, φ(L/2) mirrors interior. Implemented via ghost cells in Laplacian stencil.
+   Homogeneous Neumann (zero-gradient) at both boundaries: $\phi(-L/2)$ mirrors interior, $\phi(L/2)$ mirrors interior. Implemented via ghost cells in Laplacian stencil.
 
 4. **Compute Time Step:**  
    Apply CFL stability criterion with safety factor:
@@ -353,7 +353,7 @@ Output artifacts (CSV timeseries, PNG figures, JSON metrics) are archived with S
    dt = cfl * (dx**2) / (2 * D)  # cfl = 0.2 default
    ```
 
-   For D=1.0, dx=0.1953, this yields dt ≈ 3.81×10⁻³.
+   For $D=1.0$, $dx=0.1953$, this yields $dt \approx 3.81\times 10^{-3}$.
 
 5. **Temporal Integration:**  
    Explicit Euler update for T=80 time units (≈21,000 steps):
@@ -365,10 +365,10 @@ Output artifacts (CSV timeseries, PNG figures, JSON metrics) are archived with S
    Record snapshots every dt_record = 1.0 for front tracking.
 
 6. **Front Position Extraction:**  
-   At each snapshot, locate level-set contour φ(x_front, t) = 0.1 via linear interpolation between adjacent grid points. Store (t, x_front) pairs.
+   At each snapshot, locate level-set contour $\phi(x_{\text{front}}, t) = 0.1$ via linear interpolation between adjacent grid points. Store $(t, x_{\text{front}})$ pairs.
 
 7. **Speed Measurement:**  
-   Perform robust linear regression on (t, x_front) data with MAD outlier rejection (Z-score threshold 3.5). Extract slope = c_measured and R².
+   Perform robust linear regression on $(t, x_{\text{front}})$ data with MAD outlier rejection (Z-score threshold 3.5). Extract slope $= c_{\text{measured}}$ and $R^{2}$.
 
 8. **Comparison:**  
    Compute relative error:
@@ -380,7 +380,7 @@ Output artifacts (CSV timeseries, PNG figures, JSON metrics) are archived with S
    where c_theoretical = 2 *sqrt(D* r).
 
 9. **Acceptance Criterion:**  
-   rel_err ≤ 0.05 AND R² ≥ 0.98 (thresholds from VALIDATION_METRICS.md).
+   $\mathrm{rel\_err} \le 0.05$ AND $R^{2} \ge 0.98$ (thresholds from VALIDATION_METRICS.md).
 
 **Parameter Values (Canonical Run):**
 
@@ -390,7 +390,7 @@ Output artifacts (CSV timeseries, PNG figures, JSON metrics) are archived with S
 
 #### B. Reaction-Diffusion Dispersion Validation
 
-**Objective:** Verify linear instability growth rates σ(k) = r - Dk² across multiple Fourier modes.
+**Objective:** Verify linear instability growth rates $\sigma(k) = r - D k^{2}$ across multiple Fourier modes.
 
 **Procedure:**
 
@@ -408,7 +408,7 @@ Output artifacts (CSV timeseries, PNG figures, JSON metrics) are archived with S
    Rationale: Broad-spectrum perturbation excites all Fourier modes; linearization valid for amp0 ≪ 1.
 
 3. **Set Boundary Conditions:**  
-   Periodic wrap in Laplacian via np.roll: φ(0) ≡ φ(L), ∂φ(0)/∂x ≡ ∂φ(L)/∂x.
+   Periodic wrap in Laplacian via np.roll: $\phi(0) \equiv \phi(L)$, $\partial\phi(0)/\partial x \equiv \partial\phi(L)/\partial x$.
 
 4. **Compute Time Step:**  
    Same CFL formula as front speed experiment.
@@ -426,7 +426,7 @@ Output artifacts (CSV timeseries, PNG figures, JSON metrics) are archived with S
    Extract amplitude |û_m(t)| for modes m ∈ [1, m_max] where m_max=64.
 
 7. **Growth Rate Fitting:**  
-   For each mode m with wavenumber k_m = 2πm/L, fit:
+   For each mode $m$ with wavenumber $k_m = 2\pi m / L$, fit:
 
    ```python
    log_amp = np.log(np.abs(fft_modes_m))
@@ -437,7 +437,7 @@ Output artifacts (CSV timeseries, PNG figures, JSON metrics) are archived with S
    Discard "bad modes" with R²_m < 0.95 (poor exponential fit).
 
 8. **Comparison:**  
-   Compute theoretical prediction σ_theory(k_m) = r - D*k_m². Calculate:
+   Compute theoretical prediction $\sigma_{\text{theory}}(k_m) = r - D\,k_m^{2}$. Calculate:
 
    ```python
    rel_err_m = abs(sigma_m - sigma_theory) / abs(sigma_theory)
@@ -446,7 +446,7 @@ Output artifacts (CSV timeseries, PNG figures, JSON metrics) are archived with S
    Aggregate via median over good modes.
 
 9. **Acceptance Criteria:**  
-   median(rel_err) ≤ 0.10 AND array-level R² ≥ 0.98 (measured vs. predicted across all good modes).
+   $\operatorname{median}(\mathrm{rel\_err}) \le 0.10$ AND array-level $R^{2} \ge 0.98$ (measured vs. predicted across all good modes).
 
 **Parameter Values:**
 
@@ -455,7 +455,7 @@ Output artifacts (CSV timeseries, PNG figures, JSON metrics) are archived with S
 
 #### C. Conservation Law Invariant Verification
 
-**Objective:** Confirm logarithmic first integral Q(W,t) = ln[W/(r-uW)] - rt remains constant for on-site logistic ODE.
+**Objective:** Confirm logarithmic first integral $Q(W,t) = \ln\!\left[\tfrac{W}{r-uW}\right] - r t$ remains constant for on-site logistic ODE.
 
 **Procedure:**
 
@@ -486,7 +486,7 @@ Output artifacts (CSV timeseries, PNG figures, JSON metrics) are archived with S
    ```
 
 6. **Acceptance Criterion:**  
-   delta_Q_max < 1e-8 for RK4 (threshold from VALIDATION_METRICS.md#kpi-q-invariant-drift).
+   $\Delta Q_{\max} < 10^{-8}$ for RK4 (threshold from VALIDATION_METRICS.md#kpi-q-invariant-drift).
 
 **Parameter Values:**
 
@@ -494,7 +494,7 @@ Output artifacts (CSV timeseries, PNG figures, JSON metrics) are archived with S
 
 #### D. Lattice Boltzmann Viscosity Recovery
 
-**Objective:** Validate LBM→Navier-Stokes reduction via energy decay in Taylor-Green vortex.
+**Objective:** Validate LBM→Navier–Stokes reduction via energy decay in Taylor–Green vortex.
 
 **Procedure:**
 
@@ -533,14 +533,14 @@ Output artifacts (CSV timeseries, PNG figures, JSON metrics) are archived with S
    After transient (t > 500 steps), fit E(t) = E0 *exp(-2*nu_fit*k²*t). Extract nu_fit.
 
 7. **Comparison:**  
-   Theoretical viscosity nu_theory = (tau - 0.5)/3. Compute:
+   Theoretical viscosity $\nu_{\text{theory}} = (\tau - 0.5)/3$. Compute:
 
    ```python
    rel_err_nu = abs(nu_fit - nu_theory) / nu_theory
    ```
 
 8. **Acceptance Criterion:**  
-   rel_err_nu ≤ 0.05 at baseline grid ≥256² (VALIDATION_METRICS.md#kpi-taylor-green-nu-rel-err).
+   $\mathrm{rel\_err}_{\nu} \le 0.05$ at baseline grid $\ge 256^{2}$ (VALIDATION_METRICS.md#kpi-taylor-green-nu-rel-err).
 
 **Parameter Values:**
 
@@ -550,10 +550,10 @@ Output artifacts (CSV timeseries, PNG figures, JSON metrics) are archived with S
 
 | Hazard | Risk Level | Mitigation |
 |--------|-----------|------------|
-| **Numerical Instability (CFL violation)** | Medium | Pre-compute dt with safety factor cfl=0.2; assert dt ≤ threshold before integration; halt on NaN detection |
+| **Numerical Instability (CFL violation)** | Medium | Pre-compute $dt$ with safety factor $\mathrm{cfl}=0.2$; assert $dt \le$ threshold before integration; halt on NaN detection |
 | **Memory Overflow (large grids)** | Low | Current N=1024 requires ~8 MB per field; cap at N=4096 (128 MB) for standard RAM |
 | **Pseudo-Random Non-Reproducibility** | Medium | Explicit seed control; log seed in metadata; verify identical outputs across runs |
-| **Floating-Point Accumulation Error** | Low | Use double precision (float64); verify conservation laws as sanity check; relative errors O(10⁻¹²) acceptable |
+| **Floating-Point Accumulation Error** | Low | Use double precision (float64); verify conservation laws as sanity check; relative errors $O(10^{-12})$ acceptable |
 | **Software Versioning Conflicts** | Low | Pin dependencies via requirements.txt (NumPy==1.21.0, etc.); containerization optional |
 | **Data Integrity (artifact corruption)** | Low | SHA-256 checksums on all CSV/JSON outputs; git-annex for large artifacts |
 | **Computational Resource Exhaustion** | Low | Estimate runtime via profiling (O(N²) per step for 2D grids); timeout after 24h |
@@ -569,19 +569,19 @@ Output artifacts (CSV timeseries, PNG figures, JSON metrics) are archived with S
 ### Qualitative Observations
 
 **Visual Inspection of Front Propagation:**  
-The Fisher-KPP front exhibits characteristic sigmoidal profile: steep leading edge (φ ≈ 1 → 0.1 over ~10 Δx), exponential tail into φ=0 region. Front advances steadily rightward without change in shape after initial transient (~t < 5). No numerical oscillations observed (Gibbs-free due to smooth tanh IC). Neumann boundaries prevent reflection artifacts.
+The Fisher–KPP front exhibits characteristic sigmoidal profile: steep leading edge ($\phi \approx 1 \to 0.1$ over $\sim 10\,\Delta x$), exponential tail into $\phi=0$ region. Front advances steadily rightward without change in shape after initial transient ($\sim t < 5$). No numerical oscillations observed (Gibbs-free due to smooth tanh IC). Neumann boundaries prevent reflection artifacts.
 
 **Fourier Mode Evolution:**  
-Initial white noise spectrum shows all modes growing simultaneously. High-k modes (k > √(r/D)) decay exponentially per dispersion theory. Intermediate modes (k ~ √(r/D)) exhibit maximal growth. Dominant wavelength λ_dom ~ 2π√(D/r) ≈ 16.2 emerges by t=5, consistent with most unstable mode prediction.
+Initial white noise spectrum shows all modes growing simultaneously. High-$k$ modes ($k > \sqrt{r/D}$) decay exponentially per dispersion theory. Intermediate modes ($k \sim \sqrt{r/D}$) exhibit maximal growth. Dominant wavelength $\lambda_{\rm dom} \sim 2\pi\sqrt{D/r} \approx 16.2$ emerges by $t=5$, consistent with most unstable mode prediction.
 
 **Conservation Invariant Behavior:**  
-Q(W,t) exhibits initial fluctuation (~10⁻⁶ relative) during adaptive step-size adjustment (t < 0.1), then settles to constant within machine precision. No systematic drift observed over 40 time units. Euler method shows O(10⁻⁵) linear drift as expected from first-order error accumulation.
+$Q(W,t)$ exhibits initial fluctuation ($\sim 10^{-6}$ relative) during adaptive step-size adjustment ($t < 0.1$), then settles to constant within machine precision. No systematic drift observed over 40 time units. Euler method shows $O(10^{-5})$ linear drift as expected from first-order error accumulation.
 
 ### Raw Data Tables
 
-#### **Table 1: Fisher-KPP Front Speed - Position vs. Time (subset)**
+#### **Table 1: Fisher–KPP Front Speed - Position vs. Time (subset)**
 
-| Time t (s) | Front Position x_front (spatial units) | Notes |
+| Time $t$ (s) | Front Position $x_{\text{front}}$ (spatial units) | Notes |
 |-----------|--------------------------------------|-------|
 | 0.0 | -60.00 | Initial condition center |
 | 10.0 | -52.31 | Early acceleration phase |
@@ -597,7 +597,7 @@ Q(W,t) exhibits initial fluctuation (~10⁻⁶ relative) during adaptive step-si
 
 #### **Table 2: Dispersion Relation - Growth Rates by Mode (first 10 modes shown)**
 
-| Mode m | Wavenumber k (rad/unit) | σ_measured (s⁻¹) | σ_theory (s⁻¹) | Relative Error | R²_mode |
+| Mode $m$ | Wavenumber $k$ (rad/unit) | $\sigma_{\text{measured}}$ ($\mathrm{s}^{-1}$) | $\sigma_{\text{theory}}$ ($\mathrm{s}^{-1}$) | Relative Error | $R^{2}_{\text{mode}}$ |
 |--------|------------------------|------------------|---------------|----------------|---------|
 | 1 | 0.0314 | 0.1490 | 0.1490 | 0.0003 | 0.99996 |
 | 2 | 0.0628 | 0.1461 | 0.1461 | 0.0001 | 0.99998 |
@@ -648,9 +648,9 @@ R2 = 0.99996
 
 ✓ **Passes acceptance:** rel_err < 5%, R² > 0.98
 
-**Dispersion Growth Rate (Mode m=10):**
+**Dispersion Growth Rate (Mode $m=10$):**
 
-Wavenumber k_10 = 2π×10/200 = 0.3142 rad/unit
+Wavenumber $k_{10} = 2\pi\times 10/200 = 0.3142$ rad/unit
 
 Theoretical prediction:
 
@@ -697,8 +697,8 @@ rel_err = |0.0509 - 0.0513| / 0.0513 = 0.0078 = 0.78%
 | Statistic | Value | Threshold | Result |
 |-----------|-------|-----------|--------|
 | Median Relative Error (good modes) | 0.00145 | ≤ 0.10 | ✓ PASS |
-| Array-level R² (σ_measured vs σ_theory) | 0.99995 | ≥ 0.98 | ✓ PASS |
-| Number of Good Modes (R²_mode ≥ 0.95) | 62/64 | - | 96.9% |
+| Array-level $R^{2}$ ($\sigma_{\text{measured}}$ vs $\sigma_{\text{theory}}$) | 0.99995 | $\ge 0.98$ | ✓ PASS |
+| Number of Good Modes ($R^{2}_{\text{mode}} \ge 0.95$) | 62/64 | - | 96.9% |
 | Maximum Mode Error | 0.0318 (mode 58) | - | Informational |
 
 ### Uncertainty Propagation
@@ -724,7 +724,7 @@ delta_c = SE_slope = ±0.0012
 Fractional uncertainty = 0.0012 / 0.7746 = 0.0015 = 0.15%
 ```
 
-**Interpretation:** The 0.15% measurement uncertainty is much smaller than the 0.94% deviation from theory, indicating the discrepancy is not statistical noise but likely systematic (discretization error O(Δx²) ≈ (0.2)² ≈ 4%, partially canceled by high resolution).
+**Interpretation:** The 0.15% measurement uncertainty is much smaller than the 0.94% deviation from theory, indicating the discrepancy is not statistical noise but likely systematic (discretization error $O(\Delta x^{2}) \approx (0.2)^{2} \approx 4\%$, partially canceled by high resolution).
 
 **Dispersion Growth Rate Uncertainty:**
 
@@ -732,14 +732,14 @@ Per-mode fit uncertainty:
 
 ```python
 SE_sigma_m = std_err_m  # from per-mode linregress
-Typical: SE_sigma ≈ 0.0003 s⁻¹ for well-behaved modes
+Typical: $\mathrm{SE}_{\sigma} \approx 3\times 10^{-4}\,\mathrm{s}^{-1}$ for well-behaved modes
 ```
 
 Propagated across array:
 
 ```python
-RMS uncertainty = sqrt(sum(SE_sigma_m²) / N_good) ≈ 0.0004 s⁻¹
-Fractional: 0.0004 / (typical sigma ~0.1) ≈ 0.4%
+RMS uncertainty $= \sqrt{\sum \mathrm{SE}_{\sigma_m}^{2} / N_{\text{good}}} \approx 4\times 10^{-4}\,\mathrm{s}^{-1}$
+Fractional: $4\times 10^{-4} / (\text{typical } \sigma \sim 0.1) \approx 0.4\%$
 ```
 
 **Interpretation:** Sub-percent measurement uncertainty validates high-quality exponential fits. Median relative error 0.145% reflects genuine agreement, not just noisy averages.
@@ -750,11 +750,11 @@ Fractional: 0.0004 / (typical sigma ~0.1) ≈ 0.4%
 
 ![Front Speed Linear Fit](derivation/code/outputs/figures/reaction_diffusion/rd_front_speed_experiment_default.png)
 
-*Figure Caption:* Front position x_front (solid blue) extracted via φ=0.1 level-set tracking, with robust linear fit (dashed red) over t ∈ [10, 80] (excluding initial transient). Fit parameters: slope c_measured = 0.7673 spatial/time, R² = 0.99996. Theoretical prediction c_theory = 0.7746 shown as dotted black line (0.94% relative error). Residuals (inset) exhibit zero mean, confirming linear propagation regime. Parameters: D=1.0, r=0.15, N=1024, L=200.
+*Figure Caption:* Front position $x_{\text{front}}$ (solid blue) extracted via $\phi=0.1$ level-set tracking, with robust linear fit (dashed red) over $t \in [10, 80]$ (excluding initial transient). Fit parameters: slope $c_{\text{measured}} = 0.7673$ spatial/time, $R^{2} = 0.99996$. Theoretical prediction $c_{\text{theory}} = 0.7746$ shown as dotted black line (0.94% relative error). Residuals (inset) exhibit zero mean, confirming linear propagation regime. Parameters: $D=1.0$, $r=0.15$, $N=1024$, $L=200$.
 
 **Graphical Trends:**
 
-- **Positive linear correlation** (R² ≈ 1) confirms constant-speed pulled-front propagation
+- **Positive linear correlation** ($R^{2} \approx 1$) confirms constant-speed pulled-front propagation
 - Initial curvature (t < 10) reflects front "selection" process as exponential tail establishes
 - Near-perfect fit validates Fisher-KPP theory; small discrepancy within discretization error
 - No anomalies detected (no plateaus, jumps, or boundary reflections)
@@ -763,14 +763,14 @@ Fractional: 0.0004 / (typical sigma ~0.1) ≈ 0.4%
 
 ![Dispersion Parabola](derivation/code/outputs/figures/reaction_diffusion/rd_dispersion_experiment_default.png)
 
-*Figure Caption:* Growth rate σ as function of wavenumber k for 62 "good modes" (R²_mode ≥ 0.95). Blue circles: measured from exponential fits to |û_m(t)|. Red curve: theoretical prediction σ = r - Dk² with D=1.0, r=0.15. Array-level R² = 0.99995, median relative error 0.145%. Parabolic maximum at k_max = √(r/D) = 0.387 rad/unit (vertical dashed line). Modes with k > √(4r/D) ≈ 0.775 exhibit decay (σ < 0), as expected. Parameters: N=1024, L=200, T=10, amp0=1e-6.
+*Figure Caption:* Growth rate $\sigma$ as function of wavenumber $k$ for 62 "good modes" ($R^{2}_{\text{mode}} \ge 0.95$). Blue circles: measured from exponential fits to $|\hat u_m(t)|$. Red curve: theoretical prediction $\sigma = r - Dk^{2}$ with $D=1.0$, $r=0.15$. Array-level $R^{2} = 0.99995$, median relative error 0.145%. Parabolic maximum at $k_{\max} = \sqrt{r/D} = 0.387$ rad/unit (vertical dashed line). Modes with $k > \sqrt{4r/D} \approx 0.775$ exhibit decay ($\sigma < 0$), as expected. Parameters: $N=1024$, $L=200$, $T=10$, $\text{amp0}=10^{-6}$.
 
 **Graphical Trends:**
 
 - **Downward parabola** (σ vs k) matches theoretical form perfectly
 - All measured points lie within ±2% of theory curve (< 0.002 s⁻¹ deviation)
 - Mode 58 (mild outlier, 3.2% error) still within acceptable tolerance
-- Zero-crossing near k ≈ 0.775 consistent with decay threshold k² = 4r/D
+- Zero-crossing near $k \approx 0.775$ consistent with decay threshold $k^{2} = 4r/D$
 
 ---
 
@@ -780,18 +780,18 @@ Fractional: 0.0004 / (typical sigma ~0.1) ≈ 0.4%
 
 The computational experiments **conclusively validate** the reaction-diffusion canonical core of VDM:
 
-1. **Fisher-KPP Front Speed (PROVEN):** Measured c_front = 0.7673 spatial/time deviates by only 0.94% from theoretical prediction c* = 2√(Dr) = 0.7746, with R² = 0.99996 indicating near-perfect linear propagation. This result holds across parameter sweeps (D ∈ [1.0, 2.0], r ∈ [0.15, 0.25]), consistently achieving rel_err < 5% acceptance threshold.
+1. **Fisher–KPP Front Speed (PROVEN):** Measured $c_{\text{front}} = 0.7673$ spatial/time deviates by only 0.94% from theoretical prediction $c^{\ast} = 2\sqrt{Dr} = 0.7746$, with $R^{2} = 0.99996$ indicating near-perfect linear propagation. This result holds across parameter sweeps ($D \in [1.0, 2.0]$, $r \in [0.15, 0.25]$), consistently achieving $\mathrm{rel\_err} < 5\%$ acceptance threshold.
 
-2. **Linear Dispersion Relation (PROVEN):** All 62 "good modes" (96.9% of tested range) exhibit exponential growth rates σ(k) = r - Dk² within median error 0.145%, far below the 10% tolerance. Array-level R² = 0.99995 confirms parabolic functional form. This directly verifies the linearization stability analysis from discrete lattice dynamics.
+2. **Linear Dispersion Relation (PROVEN):** All 62 "good modes" (96.9% of tested range) exhibit exponential growth rates $\sigma(k) = r - Dk^{2}$ within median error 0.145%, far below the 10% tolerance. Array-level $R^{2} = 0.99995$ confirms parabolic functional form. This directly verifies the linearization stability analysis from discrete lattice dynamics.
 
-3. **Conservation Law (PROVEN):** Logarithmic invariant Q(W,t) maintains drift |ΔQ| < 10⁻⁸ for RK4 integration over 40 time units (40,000+ ODE steps), confirming theoretical predictions from symmetry analysis. Even first-order Euler exhibits drift < 10⁻⁵, within expected O(Δt) accumulation.
+3. **Conservation Law (PROVEN):** Logarithmic invariant $Q(W,t)$ maintains drift $|\Delta Q| < 10^{-8}$ for RK4 integration over 40 time units (40,000+ ODE steps), confirming theoretical predictions from symmetry analysis. Even first-order Euler exhibits drift $< 10^{-5}$, within expected $O(\Delta t)$ accumulation.
 
-4. **Lattice Boltzmann Reduction (IN PROGRESS):** Taylor-Green viscosity recovery achieves 3.2% error at 256² grid, passing the 5% threshold. Lid cavity divergence max ≈ 2.1×10⁻⁶ satisfies incompressibility constraint (threshold 10⁻⁶). These results validate the LBM→Navier-Stokes mapping, establishing VDM's fluids sector as empirically grounded.
+4. **Lattice Boltzmann Reduction (IN PROGRESS):** Taylor–Green viscosity recovery achieves $3.2\%$ error at $256^{2}$ grid, passing the $5\%$ threshold. Lid cavity divergence max $\approx 2.1\times 10^{-6}$ satisfies incompressibility constraint (threshold $10^{-6}$). These results validate the LBM→Navier–Stokes mapping, establishing VDM's fluids sector as empirically grounded.
 
 ### Physical Interpretation
 
 **Pulled-Front Universality:**  
-The 0.94% agreement between measured and predicted front speeds is **not** a fitting parameter triumph but a genuine theoretical prediction. Fisher-KPP fronts are "pulled" by the leading edge dynamics where φ → 0, making the speed independent of initial profile details (within the monostable regime). VDM reproduces this universality class exactly because the discrete lattice logistic $F(W) = rW - uW^{2}$ maps cleanly to the continuum reaction term $f(\phi) = r\,\phi - u\,\phi^{2}$ under the transformation $r = (\alpha-\beta)/\gamma$, $u = \alpha/\gamma$. The factor-of-2 in $c^{\ast} = 2\sqrt{Dr}$-often mysterious in phenomenological models-emerges automatically from the linear marginal-stability condition applied to the discrete-action continuum limit, i.e., selecting the smallest $c$ for which the leading-edge ansatz $\phi \sim e^{\lambda(x-ct)}$ admits a double root in $\lambda$.
+The 0.94% agreement between measured and predicted front speeds is **not** a fitting-parameter triumph but a genuine theoretical prediction. Fisher–KPP fronts are "pulled" by the leading-edge dynamics where $\phi \to 0$, making the speed independent of initial profile details (within the monostable regime). VDM reproduces this universality class exactly because the discrete lattice logistic $F(W) = rW - uW^{2}$ maps cleanly to the continuum reaction term $f(\phi) = r\,\phi - u\,\phi^{2}$ under the transformation $r = (\alpha-\beta)/\gamma$, $u = \alpha/\gamma$. The factor-of-2 in $c^{\ast} = 2\sqrt{Dr}$—often mysterious in phenomenological models—emerges automatically from the linear marginal-stability condition applied to the discrete-action continuum limit, i.e., selecting the smallest $c$ for which the leading-edge ansatz $\phi \sim e^{\lambda(x-ct)}$ admits a double root in $\lambda$.
 
 **EFT/KG Branch and Tachyonic Mechanism (physical picture):**  
 In the inertial regime, the discrete action yields a Klein–Gordon–like field with effective mass squared $m^{2} = V''(\phi_{0})$. For $V''(0)<0$, small fluctuations grow as $\phi \sim e^{\Gamma t}$ with $\Gamma^{2} = |m^{2}| - c^{2}k^{2}$ for modes $k < |m|/c$, setting an intrinsic length scale $\ell_{\mathrm{tach}} \sim c/|m|$. In cylindrical confinement of radius $R$, the transverse eigenmodes satisfy
@@ -875,6 +875,43 @@ Working domains (purpose snapshots):
 - `Derivation/References` - Source materials, citations, and curated bibliographies.
 
 Each domain houses proposals and RESULTS; only KPI-passing, approved RESULTS update canon.
+
+---
+
+### Domain tiers and current status (snapshot)
+
+| Domain | Tier | Status |
+|---|---|---|
+| Reaction_Diffusion | A | PROVEN (front speed, dispersion) |
+| Effective_Field_Theory | B | Active; PROVEN (tachyonic tube v1) |
+| Tachyon_Condensation | B | PROVEN (spectrum, condensation KPIs) |
+| Fluid_Dynamics | A | PROVEN (LBM viscosity) |
+| Metriplectic | B | Mixed: PROVEN (diagnostics), PLAUSIBLE (two-grid JMJ) |
+| Conservation_Law | A | PROVEN (Q-invariant; Noether cases) |
+| Agency_Field | B | PLAUSIBLE (relaxation/coordination protocols) |
+| Causality | D | PLAUSIBLE (bounded DAG audits) |
+| Thermodynamic_Routing | D | PLAUSIBLE (routing efficiency) |
+| Topology | B | PLAUSIBLE (loop quench) |
+| Cosmology | B | PROVEN (FRW continuity residual QC) |
+| Dark_Photons | B | PLAUSIBLE (noise budget, Fisher check) |
+| Gravity_Regression | D | PLAUSIBLE (bridges) |
+| Quantum_Gravity | D | PLAUSIBLE (bridges) |
+| Quantum | D | Exploratory (no canon claims yet) |
+| Quantum_Witness | D | Exploratory (witness metrics) |
+| Information | D | PLAUSIBLE (SIE invariant) |
+| Collapse | B | PROVEN (A6 scaling collapse) |
+| Foundations | D | Foundational docs (no status) |
+| Supporting_Work | C | Infrastructure/support (no status) |
+| Converging_External_Research | D | Curated literature (no status) |
+| Speculations | D | Exploratory (non-canon) |
+| Draft-Papers | C | Manuscripts (non-canon) |
+| code | C | Engineering substrate (approvals, io_paths, schemas) |
+| Notebooks | C | Interactive (non-canon) |
+| References | C | Bibliography (non-canon) |
+| Legacy_Claims | D | Archived/superseded |
+| Memory_Steering | D | Exploratory (graded-index routing) |
+
+Status provenance: entries marked PROVEN/PLAUSIBLE reflect `Derivation/CANON_PROGRESS.md` at this commit; “Exploratory/no status” indicates non-claim or infra content.
 
 ---
 

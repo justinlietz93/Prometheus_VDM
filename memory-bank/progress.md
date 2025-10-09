@@ -2,12 +2,12 @@
 
 ## Done
 
-- Completed VDM_OVERVIEW.md from cut-off through XV (full-theory coverage).
+- Added domain tiers/status table earlier; broadened scope and completed sections IX–XV.
 
 ## Doing
 
-- Optional: small markdown lint sweep across new sections; cross-link anchors to EQUATIONS.md/ALGORITHMS.md where helpful.
+- Completed MathJax compliance sweep in VDM_OVERVIEW.md: wrapped inline units/symbols, standardized hyphenation (Euler–Lagrange, Klein–Gordon, Reaction–Diffusion, Navier–Stokes), and corrected table headers and figure captions.
 
 ## Next
 
-- If desired, add brief pointers from README canon index to OVERVIEW new sections; consider adding Figure references to pending RESULTS once approved.
+- Optional: mirror domain status snapshot in Derivation/README.md; add cross-links between §X rows and KPI/result sections.
