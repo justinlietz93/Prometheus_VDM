@@ -19,6 +19,8 @@ Search the entire repository (code, tests, notebooks, docs, comments, configs, e
 <!-- DOC-GUARD: WORKING-THEORY -->
 # VDM Open Questions & Working Hypotheses (Auto-compiled)
 
+**Last updated**: yyyy-mm-dd 
+**Last commit**: {latest commit hash here}
 **Scope:** Repository-sourced questions, hypotheses, uncertainties, and “future work” items.  
 **Rules:** Quote/condense from sources; link to canon (SYMBOLS/EQUATIONS/CONSTANTS/UNITS/ALGORITHMS/BC_IC/VALIDATION). Do not restate math or numbers here.  
 **MathJax:** GitHub-safe `$...$`/`$$...$$` only when quoting existing math.

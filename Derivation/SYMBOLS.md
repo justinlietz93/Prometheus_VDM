@@ -3,7 +3,7 @@
 
 Note on scope: This sheet is canonical and latest-only. For historical naming and timelines, refer to Derivation/CORRECTIONS.md.
 
-Last updated: 2025-10-09 (commit a91b8fa)
+Last updated: 2025-10-09 (commit d305c2b)
 
 *Canonical symbols for the Void Dynamics Model physics theory*
 

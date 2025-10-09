@@ -30,7 +30,6 @@ Search the entire repository (code, tests, notebooks, configs, `.env`, CLI defau
 
 **Last updated**: yyyy-mm-dd 
 **Last commit**: {latest commit hash here}
-
 **Scope:** Single source of truth for numerical constants, ranges, and defaults currently present in this repository.  
 **Rules:** Other docs must link here; do not restate numbers elsewhere.  
 **MathJax:** GitHub-safe `$...$` only (no equation environments or tags).  

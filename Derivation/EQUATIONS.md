@@ -3,7 +3,7 @@
 
 Note on scope: This document reflects the latest accepted canonical equations only. Historical notes and timeline are maintained in Derivation/CORRECTIONS.md and memory-bank/decisionLog.md.
 
-Last updated: 2025-10-09 (commit a91b8fa)
+Last updated: 2025-10-09 (commit d305c2b)
 
 *Defining equations and procedural math currently present in this repository.*
 
@@ -1389,7 +1389,7 @@ computed on a shared $X$-grid via interpolation over the intersection of curve d
 
 #### VDM-E-095 — Tube Secular Equation (Tachyonic Interior, Massive Exterior)
 
-**Context:** Derivation/Tachyon_Condensation/RESULTS_Tachyonic_Tube_v1.md • Commit: a91b8fa
+**Context:** Derivation/Tachyon_Condensation/RESULTS_Tachyonic_Tube_v1.md • Commit: d305c2b
 
 $$
  f_\ell(\kappa;R,\mu,c)=\frac{\kappa_{\rm in}}{\kappa_{\rm out}}\,\frac{I'_\ell(\kappa_{\rm in}R)}{I_\ell(\kappa_{\rm in}R)}+\frac{K'_\ell(\kappa_{\rm out}R)}{K_\ell(\kappa_{\rm out}R)}=0
@@ -1407,7 +1407,7 @@ $$
 
 #### VDM-E-096 — Physically-Admissible Coverage Metrics (Tube Spectrum QC)
 
-**Context:** Derivation/Tachyon_Condensation/RESULTS_Tachyonic_Tube_v1.md • Commit: a91b8fa
+**Context:** Derivation/Tachyon_Condensation/RESULTS_Tachyonic_Tube_v1.md • Commit: d305c2b
 
 Primary KPI (gate):
 
@@ -1427,7 +1427,7 @@ $$
 
 #### VDM-E-097 — Condensation Energy Model (Diagonal-\lambda) and Background
 
-**Context:** Derivation/Tachyon_Condensation/RESULTS_Tachyonic_Tube_v1.md • Commit: a91b8fa
+**Context:** Derivation/Tachyon_Condensation/RESULTS_Tachyonic_Tube_v1.md • Commit: d305c2b
 
 Mode quartic overlap and mass:
 

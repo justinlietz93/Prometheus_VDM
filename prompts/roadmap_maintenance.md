@@ -20,6 +20,8 @@ Search the entire repository (docs, code comments, TODO blocks, notebooks, exper
 <!-- DOC-GUARD: REFERENCE -->
 # VDM Roadmap (Compiled from Repository Evidence)
 
+**Last updated**: yyyy-mm-dd 
+**Last commit**: {latest commit hash here}
 **Scope:** Milestones and tasks already recorded in this repository (docs, comments, logs, exported issues).  
 **Rules:** Planning-only. Link to canonical math/specs (SYMBOLS/EQUATIONS/CONSTANTS/UNITS/ALGORITHMS/BC_IC/VALIDATION/DATA_PRODUCTS/SCHEMAS). Do not duplicate canon here.
 ```

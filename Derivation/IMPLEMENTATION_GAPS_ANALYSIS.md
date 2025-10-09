@@ -1,5 +1,7 @@
 # Void Dynamics Model: Implementation Gaps Analysis
 
+Last updated: 2025-10-09 (commit d305c2b)
+
 ## Overview
 
 This document systematically analyzes the gaps between the theoretical physics foundations in the `derivation` directory and the current code implementation in `fum_rt/core`. The analysis reveals critical missing components that prevent the realization of the full Void Dynamics Model.

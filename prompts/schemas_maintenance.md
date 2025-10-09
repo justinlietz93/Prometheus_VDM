@@ -18,6 +18,8 @@ Search the entire repository (code, tests, notebooks, scripts, configs, docs, co
 <!-- DOC-GUARD: CANONICAL -->
 # VDM Schemas (Auto-compiled)
 
+**Last updated**: yyyy-mm-dd 
+**Last commit**: {latest commit hash here}
 **Scope:** Single source of truth for message/record/state/config schemas used in this repository.  
 **Rules:** Paste schema definitions from source; document fields. Link to equations/constants/symbols/units/algorithms.  
 **MathJax:** Inline `$...$` only in descriptions (no display math or LaTeX environments).

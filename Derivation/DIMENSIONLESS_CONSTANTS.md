@@ -1,3 +1,8 @@
+<!-- DOC-GUARD: CANONICAL -->
+# Dimensionless Constants (VDM)
+
+Last updated: 2025-10-09 (commit d305c2b)
+
 ### VDM Dimensionless Constants
 
 >

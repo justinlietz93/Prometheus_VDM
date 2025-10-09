@@ -3,7 +3,7 @@
 <!-- markdownlint-disable MD033 -->
 # VDM Roadmap (Compiled from Repository Evidence)
 
-Last updated: 2025-10-09 (commit a91b8fa)
+Last updated: 2025-10-09 (commit d305c2b)
 
 **Scope:** Milestones and tasks already recorded in this repository (docs, comments, logs, exported issues).  
 **Rules:** Planning-only. Link to canonical math/specs (SYMBOLS/EQUATIONS/CONSTANTS/UNITS/ALGORITHMS/BC_IC/VALIDATION/DATA_PRODUCTS/SCHEMAS). Do not duplicate canon here.

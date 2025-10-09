@@ -227,6 +227,9 @@ Put the proposal file in the correct domain folder:
 Put the results file in the correct domain folder next to the proposal:
    /mnt/ironwolf/git/Prometheus_VDM/derivation/{domain/topic folder}
 
+# ALL experiment runs MUST produce a MINIMUM of 1 figure, 1 CSV log, and 1 JSON log as artifacts. Use the io helper to manage paths and naming:
+/mnt/ironwolf/git/Prometheus_VDM/derivation/code/common/io_paths.py
+
 ## ALL new experiments MUST be approved by Justin K. Lietz before running, read this for context:
 /mnt/ironwolf/git/Prometheus_VDM/Derivation/code/ARCHITECTURE.md
 /mnt/ironwolf/git/Prometheus_VDM/Derivation/code/common/authorization/README.md
