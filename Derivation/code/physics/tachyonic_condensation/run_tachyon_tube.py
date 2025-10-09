@@ -34,7 +34,7 @@ if str(CODE_ROOT) not in sys.path:
 
 from common.io_paths import figure_path, log_path, write_log
 from common.authorization.approval import check_tag_approval
-from physics.tachyonic_condensation.cylinder_modes import compute_kappas, has_root_potential
+from physics.tachyonic_condensation.cylinder_modes import compute_kappas, has_root_potential, secular_residual
 from physics.tachyonic_condensation.condense_tube import (
     compute_modes_for_R, build_quartic_diagonal, find_condensate_diagonal,
     mass_matrix_diagonal, tube_energy_diagonal, energy_scan, ModeEntry
@@ -106,10 +106,15 @@ def run_spectrum(spec: TubeSpec, num_brackets: int = 512) -> Dict[str, Any]:
     passed = coverage_phys >= 0.95
     # Artifact paths
     csvp = log_path("tachyonic_condensation", f"tube_spectrum_roots__{spec.tag}", failed=not passed, type="csv")
+    # Compute residuals and write CSV
+    residuals: List[float] = []
     with csvp.open("w", encoding="utf-8") as f:
-        f.write("R,ell,kappa,k_in,k_out\n")
+        f.write("R,ell,kappa,k_in,k_out,residual\n")
         for r in rows:
-            f.write(",".join(str(x) for x in r) + "\n")
+            Rv, ellv, kv, kinv, koutv = r
+            res = secular_residual(int(ellv), float(Rv), spec.mu, spec.c, float(kv))
+            residuals.append(res)
+            f.write(f"{Rv},{ellv},{kv},{kinv},{koutv},{res}\n")
     # Figure: scatter κ vs R (color by ell) + per-R coverage line
     try:
         import matplotlib.pyplot as plt
@@ -191,6 +196,7 @@ def run_spectrum(spec: TubeSpec, num_brackets: int = 512) -> Dict[str, Any]:
         "csv": str(csvp),
         "figure": figure_path_str,
         "heatmap": heatmap_path_str,
+        "max_residual": float(max(residuals)) if residuals else None,
         "passed": passed,
     }
     write_log(log_path("tachyonic_condensation", f"tube_spectrum_summary__{spec.tag}", failed=not passed), summary)
