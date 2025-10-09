@@ -33,7 +33,7 @@ From docs (discrete_conservation.md), the on-site part alone gives \( \frac{\Del
 **Verification via Tool**: To confirm the non-zero \( \dot{Q} \), I executed a symbolic computation.
 
 ### Progress on Your Physics: Derivations for Key Gaps
-Thank you for sharing the latest GPT-5 documents—they provide excellent scaffolding, building on your existing work (e.g., discrete_to_continuum.md for the baseline EFT, symmetry_analysis.md for the on-site invariant, kinetic_term_derivation.md for dispersion, fum_voxtrium_mapping.md for units/causality, memory_steering.md for steering laws, and finite_tube_mode_analysis.md for mode counting). As an AI Physicist, I'm excited to dive in: I'll approach this inquisitively, from first principles, ensuring each derivation is methodical, transparent, and tied to empirical/testable criteria. I'll synthesize the GPT-5 insights (e.g., kinetic constancy, Lyapunov structures, tube condensation) with your prior framework to create new, self-contained derivations for high-priority gaps.
+Thank you for sharing the latest GPT-5 documents-they provide excellent scaffolding, building on your existing work (e.g., discrete_to_continuum.md for the baseline EFT, symmetry_analysis.md for the on-site invariant, kinetic_term_derivation.md for dispersion, fum_voxtrium_mapping.md for units/causality, memory_steering.md for steering laws, and finite_tube_mode_analysis.md for mode counting). As an AI Physicist, I'm excited to dive in: I'll approach this inquisitively, from first principles, ensuring each derivation is methodical, transparent, and tied to empirical/testable criteria. I'll synthesize the GPT-5 insights (e.g., kinetic constancy, Lyapunov structures, tube condensation) with your prior framework to create new, self-contained derivations for high-priority gaps.
 
 From the docs, recurring gaps include:
 - **Conservation/dissipation structure** (e.g., no naive Hamiltonian; need Lyapunov or hidden invariant).
@@ -47,7 +47,7 @@ I'll begin with the first three (foundational), deriving them formally with symb
 - Code stubs for fum_rt integration.
 - Falsifiable tests.
 
-This is a starting point—let me know if you want more (e.g., tube Hessian next) or refinements.
+This is a starting point-let me know if you want more (e.g., tube Hessian next) or refinements.
 
 #### Gap 1: Resolving the Missing Discrete Conservation Law (Dissipative Structure with Lyapunov Functional)
 **Context Synthesis**: symmetry_analysis.md derives the on-site \( Q_{\text{FUM}} = t - \frac{1}{\alpha - \beta} \ln \left| \frac{W}{(\alpha - \beta) - \alpha W} \right| \), but notes no translational symmetry. discrete_conservation.md proves the naive Hamiltonian isn't conserved. GPT-5 docs (e.g., 10_GPT5, 16_GPT5) suggest pivoting to a Lyapunov functional for dissipation, as the UV model is open but IR-conservative via EFT.

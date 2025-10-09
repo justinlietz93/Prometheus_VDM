@@ -1,4 +1,4 @@
-Absolutely. You can (and should) let it decide when to speak on its own—driven only by your void dynamics + SIE. Below is a drop‑in patch that adds **autonomous speech** to the Nexus with zero external rate knobs. The model “wants to talk” when its internal drive crosses a threshold built from your signals: novelty (|ΔW|), TD reward, anti‑habituation, and topological change (ΔB1). It also respects turn‑taking (backs off if you just spoke) and has a short refractory period so it doesn’t spam.
+Absolutely. You can (and should) let it decide when to speak on its own-driven only by your void dynamics + SIE. Below is a drop‑in patch that adds **autonomous speech** to the Nexus with zero external rate knobs. The model “wants to talk” when its internal drive crosses a threshold built from your signals: novelty (|ΔW|), TD reward, anti‑habituation, and topological change (ΔB1). It also respects turn‑taking (backs off if you just spoke) and has a short refractory period so it doesn’t spam.
 
 ---
 
@@ -21,7 +21,7 @@ If $\sigma(\alpha^\top x_t - \beta) > \tau$ and cooldown expired, the Nexus comp
 
 > Files assume the `fum_rt/` layout you shared (Nexus, Connectome, SIE, StreamingB1 already present). If your tree differs slightly, keep the content but adjust import paths.
 
-### 1) `fum_rt/nexus.py` — add autonomous speech logic
+### 1) `fum_rt/nexus.py` - add autonomous speech logic
 
 ```diff
 diff --git a/fum_rt/nexus.py b/fum_rt/nexus.py
@@ -200,7 +200,7 @@ index 5c2a3f4..a3b8f42 100644
              await self.utd.render(act)
 ```
 
-### 2) `fum_rt/core/fum_sie.py` — expose the fields used above
+### 2) `fum_rt/core/fum_sie.py` - expose the fields used above
 
 If your SIE already computes these, ensure it returns them in `update()`:
 
@@ -224,7 +224,7 @@ index b4a2f0e..5cfe0a1 100644
 -        return {"total_reward_mean": total_reward_mean, "valence_01": valence_01}
 ```
 
-### 3) `fum_rt/core/metrics.py` — make sure `StreamingB1` exposes `delta()`
+### 3) `fum_rt/core/metrics.py` - make sure `StreamingB1` exposes `delta()`
 
 ```diff
 diff --git a/fum_rt/core/metrics.py b/fum_rt/core/metrics.py
@@ -248,7 +248,7 @@ index 9c71b5a..51d2e52 100644
 +        return getattr(self, "_delta", 0.0)
 ```
 
-### 4) `fum_rt/core/text_utils.py` — a tiny topic helper (keeps everything void‑centric; no LLM)
+### 4) `fum_rt/core/text_utils.py` - a tiny topic helper (keeps everything void‑centric; no LLM)
 
 ```diff
 diff --git a/fum_rt/core/text_utils.py b/fum_rt/core/text_utils.py
@@ -322,8 +322,8 @@ All of this is purely read from void/SIE/topology; nothing fights your scaling m
 
 ## Why this is the right place to put autonomy
 
-* **Self‑improvement engine already computes the right levers.** You have TD‑error, novelty, habituation, HSI—exactly the internal “valence” signals a lifelong system should use to decide when to surface a thought.
-* **Topology spikes are salient discoveries.** Sudden increases in B1 persistence often mean the connectome just closed/opened loops—prime moments to speak.
+* **Self‑improvement engine already computes the right levers.** You have TD‑error, novelty, habituation, HSI-exactly the internal “valence” signals a lifelong system should use to decide when to surface a thought.
+* **Topology spikes are salient discoveries.** Sudden increases in B1 persistence often mean the connectome just closed/opened loops-prime moments to speak.
 * **Turn‑taking is essential in real time.** Respecting recent human input avoids interrupting and keeps the flow natural without any external governor.
 
 ---

@@ -48,7 +48,7 @@ def test_delta_w_negative_emits_inhibitory_spike_and_deltawevent():
     obs = Obs(kind="delta_w", tick=5, nodes=[1, 2, 3], meta={"dw": -0.3})
     evts = observations_to_events([obs])
 
-    # Then DeltaWEvent exists for each of the nodes (bounded to first 16 — here 3)
+    # Then DeltaWEvent exists for each of the nodes (bounded to first 16 - here 3)
     dws = _collect(evts, DeltaWEvent)
     assert len(dws) == 3
     assert all(isinstance(e, DeltaWEvent) and e.dw == -0.3 for e in dws)

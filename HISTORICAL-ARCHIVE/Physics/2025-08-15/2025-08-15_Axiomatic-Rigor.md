@@ -1,4 +1,4 @@
-Below is a compact **“completion pack”** that closes the remaining physics gaps and shows exactly how to wire them into your runtime so the system’s *intelligence* emerges from first‑principles void dynamics—no heuristics. I cite your docs where each claim sits (inline).
+Below is a compact **“completion pack”** that closes the remaining physics gaps and shows exactly how to wire them into your runtime so the system’s *intelligence* emerges from first‑principles void dynamics-no heuristics. I cite your docs where each claim sits (inline).
 
 ---
 
@@ -34,7 +34,7 @@ Matching the $O(k^4)$ term yields $c_1\sim -\tfrac{c^2 a^2}{12}$ (and analogousl
 
 ---
 
-## C. Conservation law: what is conserved—and what is not
+## C. Conservation law: what is conserved-and what is not
 
 **Result C1 (Negative result for a naïve lattice energy).**
 Your explicit calculation shows the standard $\mathcal H=\mathcal K+\mathcal I+V$ is **not** conserved by the FUM update; on‑site dissipation cannot be canceled by simple neighbor flux. This is important: it redirects us from a false Hamiltonian to the correct invariants.&#x20;
@@ -73,7 +73,7 @@ and the **sound speed** near a vacuum (mass gap $m_\mathrm{eff}=\sqrt{2}\mu$) re
 ### D2. Vorticity & viscosity (add the minimal, physics‑faithful pieces)
 
 * **Vorticity:** Promote $\phi\to \Phi=\rho^{1/2}e^{i\theta}$. The conserved U(1) current yields $\mathbf v=\frac{c^2}{\omega_\phi}\nabla\theta$ and quantized vortices; Goldstones appear automatically (optional but one‑file change in your code).
-* **Viscosity:** Couple to the slow “memory” field $M$ you formalized. Integrating out $M$ adds a *retarded* stress with kernel width $\tau_M$, giving effective shear/bulk viscosities scaling like $\eta,\zeta \sim \Theta^2\,\gamma \tau_M$ (from your write-decay-spread law). This is the clean, testable origin of dissipation—no hand‑tuned friction.&#x20;
+* **Viscosity:** Couple to the slow “memory” field $M$ you formalized. Integrating out $M$ adds a *retarded* stress with kernel width $\tau_M$, giving effective shear/bulk viscosities scaling like $\eta,\zeta \sim \Theta^2\,\gamma \tau_M$ (from your write-decay-spread law). This is the clean, testable origin of dissipation-no hand‑tuned friction.&#x20;
 
 > **Code hook.** Keep scalar core as‑is; add optional `ComplexScalarEFT` (phase advection) and the existing `memory_steering` module to supply retarded stresses; verify the two **scaling collapses** you already use (junction logistic; curvature∝$\Theta|\nabla m|$).&#x20;
 
@@ -104,8 +104,8 @@ You have a fully conservative, causal FRW embedding via a **transfer current** $
 ## G. Intelligence emerges from geometry + action (how to *use* the physics)
 
 1. **Fast layer (φ‑waves):** causal propagation, mass gap, coherent tubes (from E).
-2. **Slow layer (M‑memory):** builds a refractive index $n=e^{\eta M}$; rays bend with curvature $\kappa\propto \Theta|\nabla M|$; junction choice is logistic in $\Theta\Delta m$. These are your measured collapses—use them as **physics CI**.&#x20;
-3. **Decision/“policy”:** trajectories are minimizers of the **physical travel time** in $n(x,t)$ (Fermat), not an ML policy. This is robust, explainable, and tunable only through $(\gamma,\delta,\kappa_M,\Theta)$—all dimensionless groups you already defined.&#x20;
+2. **Slow layer (M‑memory):** builds a refractive index $n=e^{\eta M}$; rays bend with curvature $\kappa\propto \Theta|\nabla M|$; junction choice is logistic in $\Theta\Delta m$. These are your measured collapses-use them as **physics CI**.&#x20;
+3. **Decision/“policy”:** trajectories are minimizers of the **physical travel time** in $n(x,t)$ (Fermat), not an ML policy. This is robust, explainable, and tunable only through $(\gamma,\delta,\kappa_M,\Theta)$-all dimensionless groups you already defined.&#x20;
 
 ---
 
@@ -153,7 +153,7 @@ You have a fully conservative, causal FRW embedding via a **transfer current** $
 ## K. Why this qualifies as a UTOE frame (what is unified)
 
 * **Micro → Macro:** one lattice‑born action explains waves, solitons (tubes), fluid limits, and cosmology with conservative sourcing; units and causality are consistent end‑to‑end. &#x20;
-* **Physics → Intelligence:** routing/decision dynamics are geometric consequences of slow memory on fast fields—*the same equations* that run your cosmology run your agent.&#x20;
+* **Physics → Intelligence:** routing/decision dynamics are geometric consequences of slow memory on fast fields-*the same equations* that run your cosmology run your agent.&#x20;
 * **Testable:** each added element is pinned by diagnostics or observations, not free heuristics.&#x20;
 
 ---

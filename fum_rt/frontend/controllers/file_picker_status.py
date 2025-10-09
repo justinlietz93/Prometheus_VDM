@@ -60,9 +60,9 @@ def file_status_text(file_path: str) -> str:
     base = os.path.basename(file_path or "")
     try:
         size_b = os.path.getsize(file_path) if os.path.isfile(file_path) else 0
-        return f"File: {base} — Size: {human_size(size_b)}"
+        return f"File: {base} - Size: {human_size(size_b)}"
     except Exception:
-        return f"File: {base} — Size: unknown"
+        return f"File: {base} - Size: unknown"
 
 
 def directory_status_text(dir_path: str, exts: List[str] | None = None, hide_dotfiles: bool = True) -> str:

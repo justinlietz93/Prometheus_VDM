@@ -3,7 +3,7 @@
 <!-- markdownlint-disable MD033 MD022 MD032 MD001 -->
 # VDM Validation Metrics & KPIs (Auto-compiled)
 
-Last updated: 2025-10-09 (commit d305c2b)
+Last updated: 2025-10-09 (commit f1e74a5)
 
 **Scope:** Single source of truth for validation metrics used in this repository: names, purposes, thresholds/bands, and references to their definitions and implementations.  
 **Rules:** Reference-only. Link to equations/constants/symbols/scripts; do not restate formulas here.  
@@ -87,7 +87,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 
 **Symbol (if any):** $ \text{rel\_err}_{\nu} $ <br/>
 **Purpose:** Certify LBM→NS reduction by recovering kinematic viscosity from energy decay <br/>
-**Defined by:** TODO → add equation anchor — source: τ - 0.5 <br/>
+**Defined by:** TODO → add equation anchor - source: τ - 0.5 <br/>
 **Inputs:** [`τ`](CONSTANTS.md#const-tau-taylor) • grid dimensions → wavenumber correction `K² = k²(1/nx² + 1/ny²)` <br/>
 **Computation implemented at:** `derivation/code/tests/fluid_dynamics/test_taylor_green_decay.py:42-83 • 17a0b72` <br/>
 `derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py • 17a0b72` <br/>
@@ -158,7 +158,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 
 **Symbol (if any):** $ M_* = 0.6 $ <br/>
 **Purpose:** Validate void equilibrium target W ≈ 0.6 with canonical parameter mapping <br/>
-**Defined by:** TODO → add equation anchor — source: g+λ <br/>
+**Defined by:** TODO → add equation anchor - source: g+λ <br/>
 **Inputs:** `g=1.5λ` • constant signal `s=1` <br/>
 **Computation implemented at:** `derivation/code/tests/memory_steering/test_memory_steering.py:test_canonical_void • 17a0b72` <br/>
 **Pass band / thresholds:** `|M_final - 0.6| ≤ 0.02` → memory_steering_acceptance_verification.md:52-53   • TODO → link to `CONSTANTS.md#const-...` <br/>
@@ -294,7 +294,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 
 #### Regime Split Annotation Present  <a id="kpi-dp-regime-split"></a>
 
-**Symbol (if any):** —  <br/>
+**Symbol (if any):** -  <br/>
 **Purpose:** Ensure noise budget analysis properly annotates regime split (quantum‑ vs thermal‑limited)  <br/>
 **Defined by:** `EQUATIONS.md#vdm-e-dp-noise`  <br/>
 **Inputs:** SNR curves vs integration time/bandwidth; PSD components  <br/>
@@ -462,7 +462,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 
 **Symbol (if any):** $ \text{sie\_valence\_01} $ or $ \text{sie\_v2\_valence\_01} $ <br/>
 **Purpose:** Scalar valence metric from Semantic Integration Engine for speak gating <br/>
-**Defined by:** TODO → add equation anchor — source: v2 is preferred version with fallback to v1 <br/>
+**Defined by:** TODO → add equation anchor - source: v2 is preferred version with fallback to v1 <br/>
 **Inputs:** SIE processing outputs, connectome state <br/>
 **Computation implemented at:** SIE subsystem (exact implementation in engine) <br/>
 **Pass band / thresholds:** [`speak_valence_thresh`](CONSTANTS.md#const-speak_valence_thresh_4) per phase (e.g., phase 4 threshold) <br/>
@@ -546,7 +546,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 
 **Symbol (if any):** $ \text{ring\_lattice\_suspicion} $ <br/>
 **Purpose:** Boolean flag for detecting degenerate ring-lattice topology <br/>
-**Defined by:** TODO → add equation anchor — source: deg_var < 1.0 <br/>
+**Defined by:** TODO → add equation anchor - source: deg_var < 1.0 <br/>
 **Inputs:** [Degree Variance](#kpi-degree-variance), [Average Clustering](#kpi-avg-clustering), [Cycle Basis Count](#kpi-cycle-basis-count) <br/>
 **Computation implemented at:** `derivation/gravity_regression/vdm_gravity_regression_pack/scripts/graph_checks.py:39 • 17a0b72` <br/>
 **Pass band / thresholds:** Boolean (true=suspect, false=ok)   • TODO → link to `CONSTANTS.md#const-...` <br/>
@@ -561,7 +561,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 
 **Symbol (if any):** $ \text{div\_p50, div\_p90, div\_max} $ <br/>
 **Purpose:** Passive diagnostics of incompressibility violations via walker-based sensors <br/>
-**Defined by:** TODO → add equation anchor — source: p50, p90, max <br/>
+**Defined by:** TODO → add equation anchor - source: p50, p90, max <br/>
 **Inputs:** Velocity field (u_x, u_y) → local divergence at walker positions <br/>
 **Computation implemented at:** `derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py:compute_void_walker_metrics • 17a0b72` <br/>
 **Pass band / thresholds:** No enforcement; observe-only mode (default `walker_mode=observe`)   • TODO → link to `CONSTANTS.md#const-...` <br/>
@@ -574,7 +574,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 
 **Symbol (if any):** $ \text{swirl\_p50, swirl\_p90, swirl\_max} $ <br/>
 **Purpose:** Monitor vorticity magnitude distribution via walker sensors <br/>
-**Defined by:** TODO → add equation anchor — source: where ω = ∂u_y/∂x - ∂u_x/∂y <br/>
+**Defined by:** TODO → add equation anchor - source: where ω = ∂u_y/∂x - ∂u_x/∂y <br/>
 **Inputs:** Velocity field → vorticity at walker positions <br/>
 **Computation implemented at:** `derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py:compute_void_walker_metrics • 17a0b72` <br/>
 **Pass band / thresholds:** Advisory target `policy_swirl_target=5e-3` (default) for optional policy mode   • TODO → link to `CONSTANTS.md#const-...` <br/>
@@ -602,7 +602,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 
 **Symbol (if any):** $ \text{explained\_variance\_ratio} $ <br/>
 **Purpose:** Dimensionality assessment of activation geometry <br/>
-**Defined by:** TODO → add equation anchor — source: n_components=3 default <br/>
+**Defined by:** TODO → add equation anchor - source: n_components=3 default <br/>
 **Inputs:** Activation matrix → PCA decomposition <br/>
 **Computation implemented at:** `tools/geom_bundle_builder.py:_compute_pca • 17a0b72` <br/>
 **Pass band / thresholds:** No explicit threshold; informational for geometry analysis   • TODO → link to `CONSTANTS.md#const-...` <br/>

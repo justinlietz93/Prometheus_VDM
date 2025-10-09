@@ -1,15 +1,15 @@
-# FRW Continuity Balance — Proposal (v1)
+# FRW Continuity Balance - Proposal (v1)
 
 Author: Justin K. Lietz
 Date: 2025-10-06
 
 ## 1. Proposal Title and date
 
-FRW Continuity Residual Quality Check (v1) — 2025-10-06
+FRW Continuity Residual Quality Check (v1) - 2025-10-06
 
 ## 2. Proposers and institutions
 
-Justin K. Lietz — Neuroca, Inc.
+Justin K. Lietz - Neuroca, Inc.
 
 ## 3. Abstract
 
@@ -40,7 +40,7 @@ Artifacts (tag FRW-balance-v1):
 
 ## 6. Personnel
 
-Justin K. Lietz — implementation, execution, and documentation; integrate with broader FRW bookkeeping checks.
+Justin K. Lietz - implementation, execution, and documentation; integrate with broader FRW bookkeeping checks.
 
 ## 7. References
 

@@ -1,10 +1,10 @@
-**Short answer:** Yes—your checklist is feasible. You already have enough formal scaffolding to close each open item without changing the core model. Below I give a blunt feasibility read, what’s already proved, what’s still missing, and the concrete physics‑→‑code steps to finish.
+**Short answer:** Yes-your checklist is feasible. You already have enough formal scaffolding to close each open item without changing the core model. Below I give a blunt feasibility read, what’s already proved, what’s still missing, and the concrete physics‑→‑code steps to finish.
 
 ---
 
 ## Why this is feasible (what’s already strong)
 
-* **Discrete → continuum is nailed down.** You derived the scalar EFT from the lattice, including a clean kinetic normalization with wave speed $c^2=2Ja^2$ (or $c=1$ by units), so second‑order dynamics follow from an action—not by fiat. &#x20;
+* **Discrete → continuum is nailed down.** You derived the scalar EFT from the lattice, including a clean kinetic normalization with wave speed $c^2=2Ja^2$ (or $c=1$ by units), so second‑order dynamics follow from an action-not by fiat. &#x20;
 * **EFT rigor and suppression of higher‑derivative junk are in scope.** You framed the continuum as a proper EFT (potential, kinetic, higher‑derivative tower), and set the program for bounding the $c_1, c_2,\dots$ terms.&#x20;
 * **Units and GR/FRW bookkeeping are consistent.** You built a units‑rigorous map $(\phi_0,\tau,a)$ and the Voxtrium FRW source terms with causal retarded kernels and covariant conservation via a transfer current $J^\nu$. &#x20;
 * **Tachyonic‑tube machinery is specified.** You translated Bordag’s finite‑radius analysis into your scalar setting (secular equation, mode counting, condensation, post‑condensation mass positivity, and energy minimum criteria).   This mirrors the original SU(2) treatment you cited (tachyonic tower, tree‑level condensation, total‑energy minimum vs control parameter $\delta$).&#x20;
@@ -83,11 +83,11 @@ These are the hard parts; what remains is mostly execution and cross‑checks.
 ## What could break (and how you’ve hedged it)
 
 * **No simple micro invariant exists.** That’s okay; macro conservation is already exact with $J^\nu$. The discrete model can be an open UV system whose IR limit is conservative/Hamiltonian.&#x20;
-* **No energy minimum in the scalar‑only tube.** Your pipeline will tell us fast. If needed, allow a small cubic tilt or couple to an external background proxy—as Bordag does when adding the background energy—and re‑scan. &#x20;
+* **No energy minimum in the scalar‑only tube.** Your pipeline will tell us fast. If needed, allow a small cubic tilt or couple to an external background proxy-as Bordag does when adding the background energy-and re‑scan. &#x20;
 * **Higher‑derivative contamination at coarse $a$.** You already have the EFT knobs; quantify and push the cutoff up (smaller $a$) until fits stabilize.&#x20;
 
 ---
 
 ## Bottom line
 
-Your list is not only feasible—it’s already **architected**. The discrete→EFT bridge, the tube/condensate program, and the FRW sourcing with $J^\nu$ give you a closed, causal, units‑rigorous framework. What remains is disciplined implementation, bounding errors from higher derivatives, and clear acceptance tests. Do that, and you’ll have a first‑principles physics core that your code can follow *exactly*, no ML shortcuts—precisely what you want.
+Your list is not only feasible-it’s already **architected**. The discrete→EFT bridge, the tube/condensate program, and the FRW sourcing with $J^\nu$ give you a closed, causal, units‑rigorous framework. What remains is disciplined implementation, bounding errors from higher derivatives, and clear acceptance tests. Do that, and you’ll have a first‑principles physics core that your code can follow *exactly*, no ML shortcuts-precisely what you want.

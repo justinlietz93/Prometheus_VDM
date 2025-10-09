@@ -4,7 +4,7 @@ Note on scope: This document is canonical and reflects the latest accepted state
 
 **Author:** Justin K. Lietz  
 **Last Updated:** October 9, 2025  
-**Commit:** d305c2b
+**Commit:** f1e74a5
 
 **License Notice:** This research is protected under a dual-license to foster open academic research while ensuring commercial applications are aligned with the project's ethical principles. Commercial use requires citation and written permission from Justin K. Lietz. See LICENSE file for full terms.
 
@@ -12,19 +12,34 @@ Note on scope: This document is canonical and reflects the latest accepted state
 
 ## I. Introduction
 
-The Void Dynamics Model (VDM) represents a systematic attempt to derive emergent field dynamics—and potentially consciousness-like organizational patterns—from first-principles discrete action on a cubic lattice. At its foundation lies a rigorously axiomatized framework: four minimal physical postulates specify a lattice Lagrangian, from which second-order hyperbolic dynamics emerge naturally via Euler-Lagrange equations. The continuum limit yields both reaction-diffusion (RD) equations in the overdamped regime and Klein-Gordon wave equations in the inertial regime, unified within a single theoretical structure.
+The Void Dynamics Model (VDM) represents a systematic attempt to derive emergent field dynamics-and self guiding agency-driven organizational patterns-from first-principles discrete action on a cubic lattice. At its foundation lies a rigorously axiomatized framework: four minimal physical postulates specify a lattice Lagrangian, from which second-order hyperbolic dynamics emerge naturally via Euler-Lagrange equations. The continuum limit yields both reaction-diffusion (RD) equations in the overdamped regime and Klein-Gordon wave equations in the inertial regime, unified within a single theoretical structure.
 
-**Scope of this derivation:** This document establishes the mathematical and physical foundations of VDM, focusing on:
+**Scope of this derivation (tiered):** This canonical overview covers the latest accepted state across theory, validations, and infrastructure. It is organized into tiers reflecting evidence strength and policy:
 
-1. The **proven reaction-diffusion canonical core** (validated via Fisher-KPP front speed and linear dispersion with relative errors ≤5%)
-2. The **axiomatic discrete-action foundation** (exact derivation of spatial kinetic prefactor c² = 2Ja², no hand-waving)
-3. The **agency/consciousness field framework** as an *interpretive layer* atop validated physics
-4. Critical assessment of theoretical limitations and speculative elements
+- Tier A - Proven canonical physics (quantitative claims, artifact-pinned):
+  - Reaction–Diffusion core: Fisher–KPP front speed and linear dispersion (≤5% / ≥0.98 R² gates)
+  - Discrete conservation laws: Q-invariant convergence; Noether invariants (approved cases)
+  - Fluids (baseline): LBM viscosity recovery on D2Q9 within 5% at ≥256²
+- Tier B - Active KPI-gated physics (accepted as active, not speculative; claims must pass gates):
+  - EFT/KG branch: tachyonic tube spectra and condensation energy scans (cov_phys, curvature_ok)
+  - Metriplectic structure: J/M degeneracy checks, H-theorem consistency
+  - Agency field: relaxation τ≈1/γ and coordination-response protocols
+  - Topology scaling-collapse; Cosmology FRW residual QC; Dark-photon toy experiments
+- Tier C - Engineering & policy substrate (enables science; no physics claims):
+  - Approvals/quarantine system, io_paths routing, JSON Schemas/Data Products, RESULTS standards
+  - Canon registries and maps: EQUATIONS, SYMBOLS, ALGORITHMS, VALIDATION_METRICS, CANON_MAP/PROGRESS/ROADMAP
+- Tier D - Exploratory & bridges (clearly labeled; promoted to A/B only after approved KPI passes):
+  - Gravity_Regression and Quantum_Gravity bridges; Quantum/Quantum_Witness threads
+  - Thermodynamic_Routing, Causality audit, Memory_Steering, Information, Converging External Research
+
+For a full domain map with purposes and canonical registries, see §X “Unified Architecture and Canon Map.”
 
 Scope boundary note (policy):
 
-- RD is the canonical baseline (first-order in time) used for quantitative claims and validation gates.
-- EFT/KG is an active second branch (second-order in time); quantitative claims are KPI-gated with provenance and explicit acceptance criteria.
+- Canon is latest-only; quantitative claims in Tier A are proven with pinned artifacts and KPIs.
+- Tier B domains are active branches; quantitative claims must meet their KPI gates and approvals.
+- Tier C documents infrastructure and policy; it does not assert physics claims.
+- Tier D is exploratory; content becomes canon only upon KPI-passing RESULTS and formal promotion.
 
 **What this work does NOT claim:**
 
@@ -33,7 +48,7 @@ Scope boundary note (policy):
 - Complete theory of consciousness (exploratory framework only)
 - Final cosmological validation (observational predictions untested)
 
-**Significance:** The crisis in fundamental physics—stalled unification, dark sector mysteries, measurement problem in quantum mechanics—motivates exploration beyond perturbative field theory. VDM offers a **testable alternative starting point**: if large-scale phenomena (pattern formation, self-organization, distributed computation) emerge from simple discrete rules with built-in dissipation and locality, this provides a constructive existence proof that complex behavior requires no *ad hoc* mechanisms. The agency field C(x,t) extends this logic: organized information processing creates measurable gradients in "capability density," potentially bridging physics and cognitive science through operational metrics rather than metaphysical speculation.
+**Significance:** The crisis in fundamental physics-stalled unification, dark sector mysteries, measurement problem in quantum mechanics-motivates exploration beyond perturbative field theory. VDM offers a **testable alternative starting point**: if large-scale phenomena (pattern formation, self-organization, distributed computation) emerge from simple discrete rules with built-in dissipation and locality, this provides a constructive existence proof that complex behavior requires no *ad hoc* mechanisms. The agency field C(x,t) extends this logic: organized information processing creates measurable gradients in "capability density," potentially bridging physics and cognitive science through operational metrics rather than metaphysical speculation.
 
 **Primary experimental apparatus:** Computational validation via three validated sectors:
 
@@ -43,20 +58,20 @@ Scope boundary note (policy):
 
 These computational experiments serve as *functional equivalents* to laboratory apparatus, with reproducibility ensured via seed control, commit logging, and artifact archival.
 
-**Document structure:** Following axiomatic foundations (§II-IV), we derive the RD canonical branch (§V-VI), establish conservation laws (§VII), present validated results (§VIII), critically analyze limitations (§IX), and conclude with experimental predictions (§X).
+**Document structure:** Following axiomatic foundations (§II–IV), we derive the RD canonical branch (§V–VI), establish conservation laws (§VII), present validated results (§VIII), interpret and bound the theory (§VIII–IX), and provide a domain-wide architecture map (§X), policies (§XII), and a forward-looking roadmap (§XIII).
 
 ---
 
 ## II. Research Question
 
 **Primary Research Question:**  
-*To what extent does a minimal discrete lattice action—postulating only nearest-neighbor coupling J (dimensionless), lattice spacing a (length), and quartic-stabilized potential V(φ)—reproduce experimentally validated reaction-diffusion dynamics, specifically:*
+*To what extent does a minimal discrete lattice action-postulating only nearest-neighbor coupling J (dimensionless), lattice spacing a (length), and quartic-stabilized potential V(φ)-reproduce experimentally validated reaction-diffusion dynamics, specifically:*
 
 1. *Fisher-KPP pulled front speed c_front = 2√(Dr) to within 5% relative error?*
 2. *Linear dispersion relation σ(k) = r - Dk² with median mode error ≤10% and R² ≥0.98?*
 
 **Secondary Research Question:**  
-*Can an emergent "agency field" C(x,t)—defined as an order parameter driven by predictive power P, integration I_net, and control efficacy U—provide falsifiable operational metrics for distributed cognitive capability, measurable via:*
+*Can an emergent "agency field" C(x,t)-defined as an order parameter driven by predictive power P, integration I_net, and control efficacy U-provide falsifiable operational metrics for distributed cognitive capability, measurable via:*
 
 1. *Energy-clamp relaxation timescales τ = 1/γ (exponential decay)?*
 2. *Inverted-U response to coupling strength (fragmentation vs. lockstep)?*
@@ -100,7 +115,7 @@ Classical RD models posit ∂_t φ = F(φ, ∇²φ) *ad hoc*. VDM instead constr
 
 $$\mathcal{L}_i^n = \frac{1}{2}\left(\frac{W_i^{n+1} - W_i^n}{\Delta t}\right)^2 - \frac{J}{2}\sum_{j \in N(i)}(W_j^n - W_i^n)^2 - V(W_i^n)$$
 
-Applying discrete Euler-Lagrange machinery ∂S/∂W_i^n = 0 yields second-order time dynamics **without** "promoting" first-order equations—the inertial term appears naturally from variational calculus. The overdamped limit (γ⁻¹ ≫ c/L) recovers RD; retaining inertia gives Klein-Gordon. This dual-regime structure is the core theoretical architecture.
+Applying discrete Euler-Lagrange machinery ∂S/∂W_i^n = 0 yields second-order time dynamics **without** "promoting" first-order equations-the inertial term appears naturally from variational calculus. The overdamped limit (γ⁻¹ ≫ c/L) recovers RD; retaining inertia gives Klein-Gordon. This dual-regime structure is the core theoretical architecture.
 
 **Tachyonic Instability Mechanism (EFT/KG branch):**  
 The potential $V(\phi) = (\alpha/3)\,\phi^{3} - [(\alpha-\beta)/2]\,\phi^{2} + (\lambda/4)\,\phi^{4}$ exhibits $V''(0) = -\,(\alpha-\beta) < 0$ when $\alpha > \beta$, creating a “tachyonic” (negative mass-squared) origin. Small fluctuations grow exponentially until nonlinear saturation at vacuum $v \approx (\alpha-\beta)/\alpha$ (for small $\lambda$). This is not superluminal propagation but rather finite-time escape from an unstable fixed point, analogous to QCD tachyon condensation in chromomagnetic backgrounds (Bordag et al., 2001). The mechanism naturally selects a length scale $R^{\ast} \sim \pi/\sqrt{\alpha-\beta}$ for void structure formation.
@@ -108,7 +123,7 @@ The potential $V(\phi) = (\alpha/3)\,\phi^{3} - [(\alpha-\beta)/2]\,\phi^{2} + (
 Finite-radius tube modes and diagonal condensation scans have been analyzed under explicit acceptance gates. The primary spectrum KPI is the physically admissible coverage $\mathrm{cov}_{\mathrm{phys}}$ (gate $\ge 0.95$), with $\mathrm{cov}_{\mathrm{raw}}$ reported for transparency. See `Derivation/Tachyon_Condensation/RESULTS_Tachyonic_Tube_v1.md` and the output schemas at `Derivation/code/physics/tachyonic_condensation/schemas/` (tube-spectrum-summary, tube-condensation-summary). KPI definitions: `Derivation/VALIDATION_METRICS.md` (kpi-tube-cov-phys, kpi-tube-cov-raw).
 
 **Agency Field Physical Interpretation:**  
-Traditional thermodynamics assigns entropy S to equilibrium ensembles. Non-equilibrium systems—especially those performing computation—require additional order parameters. The agency field C(x,t) is proposed as such: regions with high C maintain large predictive horizons (P), coordinate subsystems effectively (I_net), and achieve goals efficiently (U), all while satisfying diffusion-decay-source PDE:
+Traditional thermodynamics assigns entropy S to equilibrium ensembles. Non-equilibrium systems-especially those performing computation-require additional order parameters. The agency field C(x,t) is proposed as such: regions with high C maintain large predictive horizons (P), coordinate subsystems effectively (I_net), and achieve goals efficiently (U), all while satisfying diffusion-decay-source PDE:
 
 $$\partial_t C = D\nabla²C - \gamma C + S(x,t)$$
 
@@ -174,7 +189,7 @@ Output artifacts (CSV timeseries, PNG figures, JSON metrics) are archived with S
 
 - **Units:** s⁻¹ (inverse time)
 - **Range:** r ∈ [0.1, 1.0] s⁻¹
-- **Justification:** Negative r (β > α) produces decay to zero—uninteresting. Small positive r (< 0.1) yields extremely slow dynamics (T ~ 1/r ≫ 100s). Large r (> 1.0) requires correspondingly small Δt for stability, inflating computational cost. The chosen range balances observable phenomena against practical runtime.
+- **Justification:** Negative r (β > α) produces decay to zero-uninteresting. Small positive r (< 0.1) yields extremely slow dynamics (T ~ 1/r ≫ 100s). Large r (> 1.0) requires correspondingly small Δt for stability, inflating computational cost. The chosen range balances observable phenomena against practical runtime.
 
 ### Dependent Variables
 
@@ -564,7 +579,7 @@ Q(W,t) exhibits initial fluctuation (~10⁻⁶ relative) during adaptive step-si
 
 ### Raw Data Tables
 
-#### **Table 1: Fisher-KPP Front Speed — Position vs. Time (subset)**
+#### **Table 1: Fisher-KPP Front Speed - Position vs. Time (subset)**
 
 | Time t (s) | Front Position x_front (spatial units) | Notes |
 |-----------|--------------------------------------|-------|
@@ -580,7 +595,7 @@ Q(W,t) exhibits initial fluctuation (~10⁻⁶ relative) during adaptive step-si
 
 *Full dataset: 81 rows (every 1.0 time unit), stored in `derivation/code/outputs/data/rd_front_speed_position.csv` (commit 17a0b72)*
 
-#### **Table 2: Dispersion Relation — Growth Rates by Mode (first 10 modes shown)**
+#### **Table 2: Dispersion Relation - Growth Rates by Mode (first 10 modes shown)**
 
 | Mode m | Wavenumber k (rad/unit) | σ_measured (s⁻¹) | σ_theory (s⁻¹) | Relative Error | R²_mode |
 |--------|------------------------|------------------|---------------|----------------|---------|
@@ -683,8 +698,8 @@ rel_err = |0.0509 - 0.0513| / 0.0513 = 0.0078 = 0.78%
 |-----------|-------|-----------|--------|
 | Median Relative Error (good modes) | 0.00145 | ≤ 0.10 | ✓ PASS |
 | Array-level R² (σ_measured vs σ_theory) | 0.99995 | ≥ 0.98 | ✓ PASS |
-| Number of Good Modes (R²_mode ≥ 0.95) | 62/64 | — | 96.9% |
-| Maximum Mode Error | 0.0318 (mode 58) | — | Informational |
+| Number of Good Modes (R²_mode ≥ 0.95) | 62/64 | - | 96.9% |
+| Maximum Mode Error | 0.0318 (mode 58) | - | Informational |
 
 ### Uncertainty Propagation
 
@@ -744,7 +759,7 @@ Fractional: 0.0004 / (typical sigma ~0.1) ≈ 0.4%
 - Near-perfect fit validates Fisher-KPP theory; small discrepancy within discretization error
 - No anomalies detected (no plateaus, jumps, or boundary reflections)
 
-#### **Figure 2: Dispersion Relation σ(k) — Measured vs. Theoretical**
+#### **Figure 2: Dispersion Relation σ(k) - Measured vs. Theoretical**
 
 ![Dispersion Parabola](derivation/code/outputs/figures/reaction_diffusion/rd_dispersion_experiment_default.png)
 
@@ -776,7 +791,7 @@ The computational experiments **conclusively validate** the reaction-diffusion c
 ### Physical Interpretation
 
 **Pulled-Front Universality:**  
-The 0.94% agreement between measured and predicted front speeds is **not** a fitting parameter triumph but a genuine theoretical prediction. Fisher-KPP fronts are "pulled" by the leading edge dynamics where φ → 0, making the speed independent of initial profile details (within the monostable regime). VDM reproduces this universality class exactly because the discrete lattice logistic $F(W) = rW - uW^{2}$ maps cleanly to the continuum reaction term $f(\phi) = r\,\phi - u\,\phi^{2}$ under the transformation $r = (\alpha-\beta)/\gamma$, $u = \alpha/\gamma$. The factor-of-2 in $c^{\ast} = 2\sqrt{Dr}$—often mysterious in phenomenological models—emerges automatically from the linear marginal-stability condition applied to the discrete-action continuum limit, i.e., selecting the smallest $c$ for which the leading-edge ansatz $\phi \sim e^{\lambda(x-ct)}$ admits a double root in $\lambda$.
+The 0.94% agreement between measured and predicted front speeds is **not** a fitting parameter triumph but a genuine theoretical prediction. Fisher-KPP fronts are "pulled" by the leading edge dynamics where φ → 0, making the speed independent of initial profile details (within the monostable regime). VDM reproduces this universality class exactly because the discrete lattice logistic $F(W) = rW - uW^{2}$ maps cleanly to the continuum reaction term $f(\phi) = r\,\phi - u\,\phi^{2}$ under the transformation $r = (\alpha-\beta)/\gamma$, $u = \alpha/\gamma$. The factor-of-2 in $c^{\ast} = 2\sqrt{Dr}$-often mysterious in phenomenological models-emerges automatically from the linear marginal-stability condition applied to the discrete-action continuum limit, i.e., selecting the smallest $c$ for which the leading-edge ansatz $\phi \sim e^{\lambda(x-ct)}$ admits a double root in $\lambda$.
 
 **EFT/KG Branch and Tachyonic Mechanism (physical picture):**  
 In the inertial regime, the discrete action yields a Klein–Gordon–like field with effective mass squared $m^{2} = V''(\phi_{0})$. For $V''(0)<0$, small fluctuations grow as $\phi \sim e^{\Gamma t}$ with $\Gamma^{2} = |m^{2}| - c^{2}k^{2}$ for modes $k < |m|/c$, setting an intrinsic length scale $\ell_{\mathrm{tach}} \sim c/|m|$. In cylindrical confinement of radius $R$, the transverse eigenmodes satisfy
@@ -824,32 +839,40 @@ This section links theory components to their working domains and canonical regi
 
 Canonical registries (latest state only):
 
-- `Derivation/AXIOMS.md` — Minimal postulates and discrete action; links to continuum maps.
-- `Derivation/EQUATIONS.md` — Numbered equations VDM-E-xxx (RD, KG, agency, fluids, FRW QC, etc.).
-- `Derivation/SYMBOLS.md` — Symbol dictionary including tachyonic tube $(R,\ell,\kappa)$ entries.
-- `Derivation/CONSTANTS.md`, `DIMENSIONLESS_CONSTANTS.md`, `UNITS_NORMALIZATION.md` — Units and scales.
-- `Derivation/ALGORITHMS.md` — Numbered algorithms VDM-A-xxx (solvers, structure checks, QC).
-- `Derivation/VALIDATION_METRICS.md` — KPIs, gates, and acceptance thresholds.
-- `Derivation/DATA_PRODUCTS.md`, `SCHEMAS.md` — Artifacts, JSON schemas, and field specs.
-- `Derivation/CANON_MAP.md`, `CANON_PROGRESS.md`, `ROADMAP.md` — Map, status, and milestones.
+- `Derivation/AXIOMS.md` - Minimal postulates and discrete action; links to continuum maps.
+- `Derivation/EQUATIONS.md` - Numbered equations VDM-E-xxx (RD, KG, agency, fluids, FRW QC, etc.).
+- `Derivation/SYMBOLS.md` - Symbol dictionary including tachyonic tube $(R,\ell,\kappa)$ entries.
+- `Derivation/CONSTANTS.md`, `DIMENSIONLESS_CONSTANTS.md`, `UNITS_NORMALIZATION.md` - Units and scales.
+- `Derivation/ALGORITHMS.md` - Numbered algorithms VDM-A-xxx (solvers, structure checks, QC).
+- `Derivation/VALIDATION_METRICS.md` - KPIs, gates, and acceptance thresholds.
+- `Derivation/DATA_PRODUCTS.md`, `SCHEMAS.md` - Artifacts, JSON schemas, and field specs.
+- `Derivation/CANON_MAP.md`, `CANON_PROGRESS.md`, `ROADMAP.md` - Map, status, and milestones.
 
 Working domains (purpose snapshots):
 
-- `Derivation/Reaction_Diffusion` — Canon core; front speed and dispersion RESULTS and code.
-- `Derivation/Effective_Field_Theory` — KG branch scaffolds; dispersion, mass ramps, boundary problems.
-- `Derivation/Tachyon_Condensation` — Tube spectra and condensation scans; KPI-gated RESULTS.
-- `Derivation/Fluid_Dynamics` — LBM (D2Q9) and Navier–Stokes validations; viscosity gates.
-- `Derivation/Metriplectic` — Structure checks for $(J,M)$; degeneracy and H-theorem validations.
-- `Derivation/Conservation_Law` — ODE/PDE invariants (Q-invariant, Noether energy) RESULTS.
-- `Derivation/Agency_Field` — Proxies $(P, I_{\mathrm{net}}, U)$, relaxation experiments, routing.
-- `Derivation/Causality` — DAG audits from runtime logs; bounded chaining; acyclicity gates.
-- `Derivation/Thermodynamic_Routing` — Energy/entropy budgets; routing efficiency $U$.
-- `Derivation/Topology` — Loop/defect dynamics; quench tests; scaling collapse.
-- `Derivation/Cosmology` — FRW residual QC and continuity checks; equation-of-state fits.
-- `Derivation/Gravity_Regression`, `Quantum_Gravity` — Bridges from KG/RD to gravity-like sectors.
-- `Derivation/Dark_Photons` — Noise budgets and Fisher consistency; KPI gates for toy signals.
-- `Derivation/Quantum`, `Quantum_Witness` — KG-to-quantum analogues; witness metrics.
-- `Derivation/Foundations`, `Supporting_Work`, `Converging_External_Research`, `Speculations` — Context, derivations, and literature.
+- `Derivation/Reaction_Diffusion` - Canon core; front speed and dispersion RESULTS and code.
+- `Derivation/Effective_Field_Theory` - KG branch scaffolds; dispersion, mass ramps, boundary problems.
+- `Derivation/Tachyon_Condensation` - Tube spectra and condensation scans; KPI-gated RESULTS.
+- `Derivation/Collapse` - Scaling-collapse narratives, A6 universality checks, envelopes and KPI definitions.
+- `Derivation/Fluid_Dynamics` - LBM (D2Q9) and Navier–Stokes validations; viscosity gates.
+- `Derivation/Metriplectic` - Structure checks for $(J,M)$; degeneracy and H-theorem validations.
+- `Derivation/Conservation_Law` - ODE/PDE invariants (Q-invariant, Noether energy) RESULTS.
+- `Derivation/Agency_Field` - Proxies $(P, I_{\mathrm{net}}, U)$, relaxation experiments, routing.
+- `Derivation/Causality` - DAG audits from runtime logs; bounded chaining; acyclicity gates.
+- `Derivation/Thermodynamic_Routing` - Energy/entropy budgets; routing efficiency $U$.
+- `Derivation/Topology` - Loop/defect dynamics; quench tests; scaling collapse.
+- `Derivation/Cosmology` - FRW residual QC and continuity checks; equation-of-state fits.
+- `Derivation/Gravity_Regression`, `Quantum_Gravity` - Bridges from KG/RD to gravity-like sectors.
+- `Derivation/Dark_Photons` - Noise budgets and Fisher consistency; KPI gates for toy signals.
+- `Derivation/Quantum`, `Quantum_Witness` - KG-to-quantum analogues; witness metrics.
+- `Derivation/Information` - Information-theoretic constructs and metrics (entropy, divergence surrogates).
+- `Derivation/Foundations`, `Supporting_Work`, `Converging_External_Research`, `Speculations` - Context, derivations, and literature.
+- `Derivation/Memory_Steering` - Graded-index memory overlays and routing; acceptance harnesses.
+- `Derivation/Legacy_Claims` - Archived or superseded claims retained for provenance.
+- `Derivation/Draft-Papers` - Manuscripts and in-progress writeups prior to RESULTS/PROPOSAL promotion.
+- `Derivation/code` - Experiment runners, common helpers (io_paths, approvals), outputs/{logs,figures} routing.
+- `Derivation/Notebooks` - Interactive exploration (non-canonical) linked to scripts and RESULTS where applicable.
+- `Derivation/References` - Source materials, citations, and curated bibliographies.
 
 Each domain houses proposals and RESULTS; only KPI-passing, approved RESULTS update canon.
 
@@ -915,8 +938,8 @@ See `Derivation/ROADMAP.md` and `Derivation/CANON_PROGRESS.md` for live status.
 - P. J. Morrison, “Bracket formulation for irreversible classical fields,” Physica D 18, 410–419 (1986).
 - M. Grmela and H. C. Öttinger, “Dynamics and thermodynamics of complex fluids. I. Development of a general formalism,” Phys. Rev. E 56, 6620 (1997).
 - S. Chen and G. Doolen, “Lattice Boltzmann method for fluid flows,” Annu. Rev. Fluid Mech. 30, 329–364 (1998).
-- G. E. Volovik, “The Universe in a Helium Droplet,” Clarendon Press (2003) — emergent phenomena analogies.
-- G. Bordag, U. Mohideen, V. M. Mostepanenko, “New developments in the Casimir effect,” Phys. Rep. 353, 1–205 (2001) — tachyon and instability contexts.
+- G. E. Volovik, “The Universe in a Helium Droplet,” Clarendon Press (2003) - emergent phenomena analogies.
+- G. Bordag, U. Mohideen, V. M. Mostepanenko, “New developments in the Casimir effect,” Phys. Rep. 353, 1–205 (2001) - tachyon and instability contexts.
 - G. Tononi, “An information integration theory of consciousness,” BMC Neuroscience 5, 42 (2004).
 - B. J. Baars, “A Cognitive Theory of Consciousness,” Cambridge Univ. Press (1988).
 
@@ -926,4 +949,4 @@ Additional references and precise equation anchors are maintained in `Derivation
 
 ## XV. Summary
 
-VDM unifies a discrete-action foundation with two continuum regimes—RD (canonical, proven) and EFT/KG (active, KPI-gated)—and overlays an operational agency-field hypothesis. The theory’s credibility rests on rigorous KPIs, artifact-pinned RESULTS, and strict provenance. With fluids, conservation, metriplectic structure, and emerging tachyonic confinement results, the framework provides a concrete, testable pathway from discrete rules to rich continuum behavior. Open sectors (cosmology, gravity, quantum analogues, topology, dark photons, and thermodynamic routing) are mapped with clear acceptance gates to guide future promotions to canon.
+VDM unifies a discrete-action foundation with two continuum regimes-RD (canonical, proven) and EFT/KG (active, KPI-gated)-and overlays an operational agency-field hypothesis. The theory’s credibility rests on rigorous KPIs, artifact-pinned RESULTS, and strict provenance. With fluids, conservation, metriplectic structure, and emerging tachyonic confinement results, the framework provides a concrete, testable pathway from discrete rules to rich continuum behavior. Open sectors (cosmology, gravity, quantum analogues, topology, dark photons, and thermodynamic routing) are mapped with clear acceptance gates to guide future promotions to canon.

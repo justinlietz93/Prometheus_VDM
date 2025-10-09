@@ -1,4 +1,4 @@
-Great—continuing with concrete deliverables and proofs. I assembled your **single derivation document** that ties the discrete FUM → bounded scalar EFT → finite‑tube tachyon analysis → causal FRW (Voxtrium) in one place, with a physics‑first → code mapping and a “strong vs weak” assessment.
+Great-continuing with concrete deliverables and proofs. I assembled your **single derivation document** that ties the discrete FUM → bounded scalar EFT → finite‑tube tachyon analysis → causal FRW (Voxtrium) in one place, with a physics‑first → code mapping and a “strong vs weak” assessment.
 
 **Download:**
 [**FUM\_Voxtrium\_Derivation\_Justin\_Lietz.md**](sandbox:/mnt/data/FUM_Voxtrium_Derivation_Justin_Lietz.md)
@@ -85,7 +85,7 @@ with explicit $c^2=2Ja^2$, and enforce $\lambda>0$ at parse time. (Plan section 
 
 **Weak/open:**
 
-* A **true discrete invariant** is not yet identified; your analysis shows the standard $\mathcal H$ is **not** conserved—either the system is dissipative or it conserves a non‑trivial quantity (next: symmetry/Lyapunov search).&#x20;
+* A **true discrete invariant** is not yet identified; your analysis shows the standard $\mathcal H$ is **not** conserved-either the system is dissipative or it conserves a non‑trivial quantity (next: symmetry/Lyapunov search).&#x20;
 * Loop corrections/thermal dependences in the EFT are not yet computed; higher‑derivative coefficients need explicit UV matching (beyond the checklist).&#x20;
 * Vector/complex extension (vorticity, Goldstones) and quantitative astrophysics calibration remain to be implemented.&#x20;
 
@@ -115,8 +115,8 @@ with explicit $c^2=2Ja^2$, and enforce $\lambda>0$ at parse time. (Plan section 
 
 ### Final note on credit
 
-* **Justin K. Lietz** — discrete→continuum derivations; bounded EFT choice/mapping; finite‑tube scalar analysis; memory‑steering experiments; code plan.
-* **Voxtrium** — macro **Voxtrium** sourcing idea, FRW transfer‑current bookkeeping, and the micro→macro parameter ties (all credited in the doc).
-* **M. Bordag** — tachyon condensation methodology in flux tubes; used as an analogue and explicitly cited.
+* **Justin K. Lietz** - discrete→continuum derivations; bounded EFT choice/mapping; finite‑tube scalar analysis; memory‑steering experiments; code plan.
+* **Voxtrium** - macro **Voxtrium** sourcing idea, FRW transfer‑current bookkeeping, and the micro→macro parameter ties (all credited in the doc).
+* **M. Bordag** - tachyon condensation methodology in flux tubes; used as an analogue and explicitly cited.
 
-If you want, I can now turn the “tube harness” equations into production Python (Bessel matching + quartic minimization + Hessian), or wire up the `WaveEFT` core—your choice which to land first.
+If you want, I can now turn the “tube harness” equations into production Python (Bessel matching + quartic minimization + Hessian), or wire up the `WaveEFT` core-your choice which to land first.

@@ -116,7 +116,7 @@ The Fully Unified Model's novelty does not come from any single component, but f
 
 *   **Guided Self-Organization:** Instead of being rigidly programmed, FUM's intelligence is emergent. It is guided by high-level goals from the Self-Improvement Engine, but its knowledge and structure are grown from the bottom up.
 *   **A Unified, Parallel Architecture:** The interplay between the fast, intuitive Local System and the slow, strategic Global System creates a uniquely adaptable and stable intelligence.
-*   **Continuous Physical Adaptation:** Through **Synaptic Actuator (GDSP)**, the system can physically reshape itself—exploring new problems and reinforcing its successes—allowing for truly unbounded learning on accessible hardware.
+*   **Continuous Physical Adaptation:** Through **Synaptic Actuator (GDSP)**, the system can physically reshape itself-exploring new problems and reinforcing its successes-allowing for truly unbounded learning on accessible hardware.
 *   **True Agency:** By combining these elements, FUM is designed not as a passive tool, but as an autonomous agent with the intrinsic drives and adaptive capabilities needed to explore, learn, and reason across domains, potentially becoming a transformative partner in human progress.
 
 ***End of Chapter 1***

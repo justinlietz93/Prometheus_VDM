@@ -2,11 +2,11 @@
 
 ## 1. Proposal Title and date
 
-**SIE Invariant and Novelty Pulse: Controlled Information Energy** — October 8, 2025
+**SIE Invariant and Novelty Pulse: Controlled Information Energy** - October 8, 2025
 
 ## 2. List of proposers and associated institutions/companies
 
-Justin K. Lietz — VDM Project
+Justin K. Lietz - VDM Project
 
 ## 3. Abstract
 

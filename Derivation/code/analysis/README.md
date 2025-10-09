@@ -1,4 +1,4 @@
-# analysis/ — exploratory math and prototypes
+# analysis/ - exploratory math and prototypes
 
 Purpose
 

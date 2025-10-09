@@ -35,7 +35,7 @@ It is extremely critical to handle the FUM specific documents with extreme care 
 
 ### FUM Unified Blueprint & Authoring Guide V11.0
 
-**Preamble:** This document serves a dual purpose. First, it is the single source of truth—the definitive technical specification for the Fully Unified Model. Second, it is the official authoring guide for creating the FUM "textbook," ensuring a consistent blend of deep technical detail and compelling creative writing to convey the genuine novelty of the design. All documentation and implementations must conform strictly to these rules.
+**Preamble:** This document serves a dual purpose. First, it is the single source of truth-the definitive technical specification for the Fully Unified Model. Second, it is the official authoring guide for creating the FUM "textbook," ensuring a consistent blend of deep technical detail and compelling creative writing to convey the genuine novelty of the design. All documentation and implementations must conform strictly to these rules.
 
 
 **Guiding Principles for Discrepancy Resolution & Authoring**
@@ -57,7 +57,7 @@ When faced with a conflict not explicitly covered by the rules below, or when au
 
 **Intelligence is Emergent, Not Explicitly Coded:** FUM's intelligence arises from the interaction of simple local rules under minimal global guidance. Descriptions must favor mechanisms that act as "scaffolding" rather than rigid, top-down control. The system's behavior must be dominated by emergent dynamics, with a control_impact of < 1e-5.
 
-**Capability is the Goal, Not Scale:** The project's success is measured by demonstrated intelligence—super learning, abstract reasoning, and generalization—not neuron count. Descriptions must frame scale as an enabler of capability, not the objective itself. Any language that fetishizes size over function is misaligned.
+**Capability is the Goal, Not Scale:** The project's success is measured by demonstrated intelligence-super learning, abstract reasoning, and generalization-not neuron count. Descriptions must frame scale as an enabler of capability, not the objective itself. Any language that fetishizes size over function is misaligned.
 
 **Bio-Inspired, Not Bio-Constrained:** Mechanisms should be inspired by the intelligent, efficient, and functional principles of biological systems (e.g., sparse activity, homeostatic stability) but optimized for computational hardware. The goal is functional equivalence, not literal mimicry.
 
@@ -76,7 +76,7 @@ When faced with a conflict not explicitly covered by the rules below, or when au
 
 #### **Narrative Goal**
 
-Frame this as the central story of FUM—a dynamic interplay between the "subcortical nuclei" (Local System) and the "neocortex" (Global System).
+Frame this as the central story of FUM-a dynamic interplay between the "subcortical nuclei" (Local System) and the "neocortex" (Global System).
 
 #### **Blueprint Adherence Justification**
 
@@ -221,7 +221,7 @@ Use the analogy of rain: The Plasticity Impulse is a single raindrop hitting the
 
 #### **Narrative Goal**
 
-Describe the SIE as the source of the system's "intrinsic drives"—curiosity (Novelty), self-preservation (HSI), task focus (TD-Error), and efficiency (Habituation).
+Describe the SIE as the source of the system's "intrinsic drives"-curiosity (Novelty), self-preservation (HSI), task focus (TD-Error), and efficiency (Habituation).
 
 #### **Blueprint Adherence Justification**
 
@@ -611,7 +611,7 @@ Frame this as FUM's journey from a regulated infancy to a resilient adulthood. I
 *   **Performance & Success Metrics:** Success is measured by the ability to perfectly and reliably capture and restore the FUM's state with zero data loss, verified by checksums and restoration tests.
 
 #### **Narrative Goal**
-Frame this as the FUM's "Cellular Engram Archive." It is the process by which the system's complete "genetic code"—its knowledge, its structure, and its memories—can be perfectly preserved, backed up, and replicated, ensuring the survival and continuity of the intelligence it contains.
+Frame this as the FUM's "Cellular Engram Archive." It is the process by which the system's complete "genetic code"-its knowledge, its structure, and its memories-can be perfectly preserved, backed up, and replicated, ensuring the survival and continuity of the intelligence it contains.
 
 #### **Blueprint Adherence Justification**
 *This rule details a critical infrastructure protocol. Adherence is demonstrated by its implementation.*

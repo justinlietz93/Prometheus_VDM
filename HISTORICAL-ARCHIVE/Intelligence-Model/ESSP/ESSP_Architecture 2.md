@@ -223,7 +223,7 @@ The two-tiered write shadowing model is an innovative approach to balance fideli
 
 *   **Oversight in Contention Simulation:** The "Tier 2" contention simulation uses held-but-rolled-back transactions to simulate lock contention. This is a reasonable proxy for database-level locking. However, it is an incomplete model of real-world system load. It largely ignores other critical resource contention vectors:
     *   **I/O Contention:** A rolled-back transaction generates significantly less write I/O (to transaction logs, WALs) than a committed one. The shadow system's disk subsystem will not be stressed in a manner comparable to the primary.
-    *   **CPU and Memory Pressure:** While the transaction logic is executed, the final commit phase—which can be resource-intensive—is skipped. Furthermore, the small sampling rate (e.g., 10% of writes, with only 1% of those simulating contention) may not generate enough aggregate load to reveal bottlenecks in CPU, memory bandwidth, or network saturation that would appear under a 100% production workload.
+    *   **CPU and Memory Pressure:** While the transaction logic is executed, the final commit phase-which can be resource-intensive-is skipped. Furthermore, the small sampling rate (e.g., 10% of writes, with only 1% of those simulating contention) may not generate enough aggregate load to reveal bottlenecks in CPU, memory bandwidth, or network saturation that would appear under a 100% production workload.
 *   **Consequence:** The "high-quality performance data" is primarily a measure of the new backend's ability to handle transactional logic and lock contention, not its ability to sustain the full I/O, CPU, and network load of the production system. An organization might make a costly and difficult-to-reverse decision to re-platform based on optimistic data that fails to model these other critical resource constraints, leading to performance degradation after the switch.
 
 ---
@@ -252,7 +252,7 @@ Original Idea
 
 ### **Summary of Technical Specification: Event-Sourced Structural Plasticity**
 
-This document outlines a comprehensive technical specification for a biologically-plausible structural plasticity framework designed for a runtime connectome. The system's core mandate is that all structural modifications—synapse formation, pruning, strengthening, decay, and neuron culling—must be achieved through a strictly sparse, event-driven, and computationally budgeted model. All operations are local, territory-scoped, and sub-quadratic, explicitly prohibiting dense matrix scans or global polling.
+This document outlines a comprehensive technical specification for a biologically-plausible structural plasticity framework designed for a runtime connectome. The system's core mandate is that all structural modifications-synapse formation, pruning, strengthening, decay, and neuron culling-must be achieved through a strictly sparse, event-driven, and computationally budgeted model. All operations are local, territory-scoped, and sub-quadratic, explicitly prohibiting dense matrix scans or global polling.
 
 #### **1. Core Architecture: Event-Sourced Pipeline**
 The framework operates on a unidirectional, decoupled pipeline ensuring scalability and adherence to the sparse-only constraint:
@@ -878,7 +878,7 @@ The specification provides strong guarantees (`monotonic reads`, `bounded stalen
 
 The multi-stage fragmentation repair protocol is a definite improvement. However, the escalation path from a failed Growth Mandate to a Phased Territory Migration is a leap in complexity and cost.
 
-*   **Potential Flaw:** A Growth Mandate can fail for many reasons, such as temporary network partitions, transient load on the target territory, or simple peer rejection. Escalating immediately to a full-blown subgraph migration—a heavyweight, disruptive, and resource-intensive operation—seems like an overreaction.
+*   **Potential Flaw:** A Growth Mandate can fail for many reasons, such as temporary network partitions, transient load on the target territory, or simple peer rejection. Escalating immediately to a full-blown subgraph migration-a heavyweight, disruptive, and resource-intensive operation-seems like an overreaction.
 *   **Unintended Consequence:** This could lead to unnecessary system churn. If mandates fail due to transient conditions, the system might be better served by retrying the mandate with a different target territory, applying backoff, or simply waiting for the transient condition to resolve. The current logic lacks nuance, jumping from the cheapest solution to one of the most expensive ones without considering intermediate options.
 
 ---
@@ -1096,7 +1096,7 @@ While a powerful idea, its current specification is impractical and introduces s
 
 1.  **Resolve the State Recovery Flaw:** Redesign the crash recovery algorithm (Section 2.1) to be logically sound. You must provide a mechanism that correctly and consistently calculates state decay without relying on the flawed direct comparison between individual record timestamps and the last heartbeat timestamp.
 2.  **Guarantee Migration Integrity:** Revise the Phased Territory Migration protocol (Section 4.2). You must explicitly detail the mechanism (e.g., using watermarks, 2PC, or a Saga variant) that guarantees exactly-once processing of in-flight events during the drain phase. Additionally, you must address the performance bottleneck of `T_src` acting as a forwarder.
-3.  **Provide a Practical Model for Adaptive Storage:** Re-evaluate the Adaptive Storage Migration (Section 5). You must either provide a detailed, realistic specification for the data transformation process—including its impact on migration duration, resource cost, and failure handling—or re-scope it as an offline, planned maintenance operation rather than a dynamic, in-flight capability.
+3.  **Provide a Practical Model for Adaptive Storage:** Re-evaluate the Adaptive Storage Migration (Section 5). You must either provide a detailed, realistic specification for the data transformation process-including its impact on migration duration, resource cost, and failure handling-or re-scope it as an offline, planned maintenance operation rather than a dynamic, in-flight capability.
 
 Forge 5
 Refined by: Systems Architect
@@ -1532,7 +1532,7 @@ The technical specification for "Event-Sourced Structural Plasticity" demonstrat
 
 **1. Critical Dependency on a Fragile Single Point of Failure (Local WAL)**
 
-The entire recovery strategy—both for simple crashes (Section 2.1) and for the "hardened" mid-handoff migration (Section 4.2)—is critically dependent on the integrity and availability of a single, local Write-Ahead Log (WAL) on the Territory Host's disk.
+The entire recovery strategy-both for simple crashes (Section 2.1) and for the "hardened" mid-handoff migration (Section 4.2)-is critically dependent on the integrity and availability of a single, local Write-Ahead Log (WAL) on the Territory Host's disk.
 
 *   **Oversight:** The specification repeatedly assumes the WAL will be "fully intact" after a crash. It does not account for the common failure mode where a crash is caused by, or results in, disk failure, file system corruption, or the permanent loss of the host machine.
 *   **Logical Gap:** In the mid-handoff crash scenario, if `T_src`'s host is lost permanently, its WAL is also lost. The recovery protocol as described is impossible. `T_dest` would be left with a stale snapshot and a buffer of new writes, while the "catch-up log" from `T_src` would be gone forever. This leads to an unrecoverable, inconsistent state and permanent data loss for the migrating subgraph `S`, directly contradicting the "guaranteed handoff" and "zero data loss" claims. This single point of failure makes the entire recovery architecture far more fragile than presented.
@@ -1611,7 +1611,7 @@ Refined by: Systems Architect
 #### **1.3. System Bootstrapping (Expanded)**
 The cold start of the system follows a strict, ordered sequence to ensure a consistent initial state.
 
-1.  **Infrastructure Services Start:** The foundational services—the RCS (etcd) and the Replicated Log Service (BookKeeper/Raft cluster)—are started first and must establish a stable quorum.
+1.  **Infrastructure Services Start:** The foundational services-the RCS (etcd) and the Replicated Log Service (BookKeeper/Raft cluster)-are started first and must establish a stable quorum.
 2.  **Control Plane Initialization:** The control plane components (Territory Manager, Policy Service, etc.) are deployed. They connect to the RCS.
 3.  **Leader Election:** The Territory Manager instances use the RCS to perform leader election. The first instance to acquire the distributed lock becomes the active leader.
 4.  **Initial Topology Creation:** The leader Territory Manager checks the RCS for an existing system topology. If none exists (first-ever boot), it creates and persists the initial configuration: defines the first set of Territories, assigns them unique IDs, and writes the initial `subgraph_ID -> territory_ID` routing map to the RCS.
@@ -1798,7 +1798,7 @@ This specification represents a significant and thoughtful maturation of the sys
 The primary motivation for this refinement is to survive permanent host loss. However, the revised Crash Recovery Logic in Section 2.1 contains a fundamental contradiction.
 
 *   **The Flaw:** The pseudocode `on_territory_restart` begins with the step: `snapshot = storage.get_latest_snapshot()`. This explicitly assumes the snapshot is available locally on the machine where the Territory is restarting. In the critical scenario of a permanent host loss, a new Territory instance will be started on a brand-new host where **no local state or snapshots exist**.
-*   **The Consequence:** In this scenario, `snapshot` would be null, and `last_snapshot_lsn` would be 0. The system would then be forced to `replay_from(1, ...)`—replaying the *entire event history* from the RLS. For a mature Territory, this could involve terabytes of data and take hours or days, completely violating the stated goal of a low Recovery Time Objective (RTO). The design is only fast if the host doesn't actually fail permanently.
+*   **The Consequence:** In this scenario, `snapshot` would be null, and `last_snapshot_lsn` would be 0. The system would then be forced to `replay_from(1, ...)`-replaying the *entire event history* from the RLS. For a mature Territory, this could involve terabytes of data and take hours or days, completely violating the stated goal of a low Recovery Time Objective (RTO). The design is only fast if the host doesn't actually fail permanently.
 *   **Unstated Assumption:** The specification implicitly assumes that snapshots are either not critical for RTO or are somehow available on new hosts without specifying the mechanism. To be resilient to host loss, snapshots must themselves be stored in a durable, location-independent object store (e.g., S3, GCS) and be discoverable by new instances.
 
 ### **2. Introduction of a Dual-Write Availability Bottleneck**
@@ -2233,7 +2233,7 @@ Clarity: 9/10
 The 'Current Refined Idea' significantly improves clarity by replacing ambiguous processes with explicit, deterministic protocols. The introduction of a state machine (`UPLOADING`, `COMMITTED`, etc.) for snapshot registration and the specification of `T_dest`'s last acknowledged LSN as the authoritative source for migration recovery are exceptionally clear. The shift to a logged `TerritoryRecovered` event makes the recovery logic's causality unambiguous. To achieve a perfect score, the Refiner AI should provide more concrete examples for the 'isolated context' in the write shadowing protocol (e.g., `START TRANSACTION...ROLLBACK` for SQL) instead of abstract descriptions, as this would make the implementation details even clearer.
 
 Completeness: 9/10
-This iteration is far more complete by addressing critical edge cases and consequences ignored in the previous idea. It plugs the atomicity gap in snapshot management, ensures state determinism by logging recovery events, and thoughtfully adds strategies for monitoring and mitigating replica lag—a direct consequence of the previous design. The new `Snapshot Integrity Gate` also makes the verification plan more robust. To improve, the Refiner AI needs to add details about the operational aspects of the snapshot reconciliation controller, such as its own high-availability story, how timeouts are determined, and the specifics of the garbage collection grace period.
+This iteration is far more complete by addressing critical edge cases and consequences ignored in the previous idea. It plugs the atomicity gap in snapshot management, ensures state determinism by logging recovery events, and thoughtfully adds strategies for monitoring and mitigating replica lag-a direct consequence of the previous design. The new `Snapshot Integrity Gate` also makes the verification plan more robust. To improve, the Refiner AI needs to add details about the operational aspects of the snapshot reconciliation controller, such as its own high-availability story, how timeouts are determined, and the specifics of the garbage collection grace period.
 
 Actionability: 9/10
 The refined idea is highly actionable. The state machine for snapshots, the acknowledgment protocol for migration streaming, and the explicit `TerritoryRecovered` event pattern are all direct, implementable specifications that an engineering team can build against with confidence. The revised verification gates provide concrete, testable success criteria. To make it even more actionable, the Refiner AI should include sequence diagrams for the multi-party protocols, specifically for the 'Robust Snapshot Persistence Protocol' (showing Territory Host, RCS, DSS) and the 'Mid-Handoff Crash Recovery' (showing Manager, T_dest, RLS), as these would serve as invaluable blueprints for implementation.

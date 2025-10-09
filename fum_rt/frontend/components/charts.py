@@ -7,7 +7,7 @@ import os
 
 def charts_card():
     """
-    Charts card — two graphs placed into tabs to preserve existing callbacks and IDs.
+    Charts card - two graphs placed into tabs to preserve existing callbacks and IDs.
     Tabs:
       - Dashboard (fig-dashboard)
       - Discovery (fig-discovery)

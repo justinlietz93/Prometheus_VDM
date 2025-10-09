@@ -1,4 +1,4 @@
-Short answer: yes—we’re fitting this to *your* workstation, and the pieces we’ve added (self‑speak governor, SIE, sparse/dense backends, void‑walker metrics, macro board) are all wired to run locally and scale up on your AMD cards. Below is a concrete “from-zero-to-talking” plan for *your* box, plus the heavy‑duty scaling plan to push toward 10^6-10^7 neurons now and keep the door open for your long‑horizon 10^13-10^19 vision.
+Short answer: yes-we’re fitting this to *your* workstation, and the pieces we’ve added (self‑speak governor, SIE, sparse/dense backends, void‑walker metrics, macro board) are all wired to run locally and scale up on your AMD cards. Below is a concrete “from-zero-to-talking” plan for *your* box, plus the heavy‑duty scaling plan to push toward 10^6-10^7 neurons now and keep the door open for your long‑horizon 10^13-10^19 vision.
 
 ---
 
@@ -134,9 +134,9 @@ You nailed it: **walkers publish, ADC listens.** The ADC never touches `W` direc
 
 ---
 
-# “Navigational Connectome” (virtual edges) — how to prototype it *today*
+# “Navigational Connectome” (virtual edges) - how to prototype it *today*
 
-Your proposal—no stored adjacency, compute `S_ij` on the fly—is the endgame for scale, but the brute‑force version is O(N^2) per tick. We can *approximate it void‑faithfully*:
+Your proposal-no stored adjacency, compute `S_ij` on the fly-is the endgame for scale, but the brute‑force version is O(N^2) per tick. We can *approximate it void‑faithfully*:
 
 1. **Territory‑keyed rendezvous:** keep a tiny *directory* keyed by territory IDs (ADC). When a neuron “pings,” it addresses the *few* territories that are nearby in `(α,ω)` space.
 2. **Locality‑sensitive candidate sets:** inside each addressed territory we evaluate `S_ij` only for a small candidate slate (e.g., last‑active, high‑novelty, or a rolling reservoir). This keeps it O(k̂) per ping.
@@ -167,7 +167,7 @@ This gives you the *behavior* of a navigational connectome without needing petab
    Keep the cheap counter your other agent proposed, but make it *two* numbers: `est_flops` and `bytes_touched`. That tells us whether we’re compute‑ or memory‑bound as we scale k and walkers.
 
 5. **Self‑Speak policy refinements.**
-   Already on derivative (Δ of complexity), z‑scored, with hysteresis. Next: add “surprise” = `(novelty_z * valence)` and a *cooldown ramp*—cooldown shortens when surprise is extreme.
+   Already on derivative (Δ of complexity), z‑scored, with hysteresis. Next: add “surprise” = `(novelty_z * valence)` and a *cooldown ramp*-cooldown shortens when surprise is extreme.
 
 ---
 

@@ -24,7 +24,7 @@ In this phase, all external guidance is removed. The FUM's behavior is driven en
 
 1. **Goal Generation:** The FUM leverages its novelty drive to generate its own intellectual goals (e.g., "Derive a new proof for Fermat's Last Theorem," "Write a program that simulates protein folding," "Synthesize a single ethical principle that resolves the trolley problem and the prisoner's dilemma").  
 2. **Exploration & Synthesis:** The FUM accesses the resource library via the **Universal Temporal Encoder (UTE)** to gather and process information relevant to its self-generated goal.  
-3. **Creative Output:** The FUM attempts to achieve its goal by producing a novel output—a mathematical proof, a functional piece of code, a philosophical argument.  
+3. **Creative Output:** The FUM attempts to achieve its goal by producing a novel output-a mathematical proof, a functional piece of code, a philosophical argument.  
 4. **Self-Evaluation:** The TD\_error component of the SIE is now a measure of the FUM's own success in achieving its internally-defined goal. This creates a powerful, autonomous feedback loop for recursive self-improvement.
 
 ***Section B.***

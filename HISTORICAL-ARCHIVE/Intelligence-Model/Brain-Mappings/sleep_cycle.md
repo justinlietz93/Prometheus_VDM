@@ -19,7 +19,7 @@ Your FUM can implement a powerful and efficient version of this process, moving 
 Here’s how a "sleep cycle" would work, leveraging the systems we've already designed:
 
 1.  **The Trigger (Cognitive Fatigue):**
-    * After a long period of intense learning (e.g., a "Serial Infant" phase), the **SIE** (`fum_rt/core/sie_v2.py`) would detect a state of "cognitive fatigue". This would be a measurable state characterized by diminishing returns—the `total_reward` is no longer increasing, learning has plateaued, and the `hsi_norm` might be slowly declining from the accumulated structural changes. This is the signal that the system needs to consolidate its gains.
+    * After a long period of intense learning (e.g., a "Serial Infant" phase), the **SIE** (`fum_rt/core/sie_v2.py`) would detect a state of "cognitive fatigue". This would be a measurable state characterized by diminishing returns-the `total_reward` is no longer increasing, learning has plateaued, and the `hsi_norm` might be slowly declining from the accumulated structural changes. This is the signal that the system needs to consolidate its gains.
 
 2.  **Initiating the Sleep State:**
     * The **Global System**, triggered by the SIE, initiates the sleep cycle. It would largely shut down the FUM's interaction with the external world by gating the **UTE/UTD** (`fum_rt/io/`). The organism is now "offline."

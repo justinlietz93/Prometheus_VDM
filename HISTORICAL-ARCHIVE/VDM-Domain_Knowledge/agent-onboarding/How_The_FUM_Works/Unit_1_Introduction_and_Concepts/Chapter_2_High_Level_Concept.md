@@ -41,7 +41,7 @@ FUM's strategy for data efficiency, which sidesteps the scaling laws that govern
 
 **A.2. Ensuring True Generalization (Beyond Memorization & Brittleness)**
 
-Given that the system's organization is kickstarted by a small set of seed data primitives, rigorously ensuring performance represents true generalization—not just optimized interpolation or brittleness—requires a brain-inspired validation strategy that goes beyond standard OOD testing:
+Given that the system's organization is kickstarted by a small set of seed data primitives, rigorously ensuring performance represents true generalization-not just optimized interpolation or brittleness-requires a brain-inspired validation strategy that goes beyond standard OOD testing:
 
 *   **Prioritizing Emergent Validation over Benchmark Optimization:**
     *   *Risk:* Optimizing directly for benchmarks (like MATH, GPQA) or engineered robustness metrics could inadvertently steer development towards conventional solutions, compromising FUM's unique emergent and data-efficient properties (~10% risk of conventional optimization, Hendrycks et al., 2021).

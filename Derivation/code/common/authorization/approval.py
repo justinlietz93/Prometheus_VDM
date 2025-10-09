@@ -367,7 +367,7 @@ def check_tag_approval(domain: str, tag: str, allow_unapproved: bool, code_root:
     Required for approval:
       - pre_registered = true
                         details.append(
-                            "Approval entry missing 'approval_key' — use approve_tag.py to set a domain key or tag secret, then run 'approve' to stamp the manifest."
+                            "Approval entry missing 'approval_key' - use approve_tag.py to set a domain key or tag secret, then run 'approve' to stamp the manifest."
                         )
       - proposal file exists
       - schema file exists and contains {"tag": "<tag>"}
@@ -571,7 +571,7 @@ def check_tag_approval(domain: str, tag: str, allow_unapproved: bool, code_root:
                     exp = os.getenv("VDM_APPROVER_NAME", "Justin K. Lietz")
                     details.append(f"Approval entry missing or lacks 'approved_by' (expected approver: {exp})")
                 if not (isinstance(appr, dict) and str(appr.get("approval_key", "")).strip()):
-                    details.append("Approval entry missing 'approval_key' — use approve_tag.py to set a domain key or tag secret, then run 'approve --script <run_script>' to stamp the manifest.")
+                    details.append("Approval entry missing 'approval_key' - use approve_tag.py to set a domain key or tag secret, then run 'approve --script <run_script>' to stamp the manifest.")
                 else:
                     have_key = str(appr.get("approval_key")).strip()
                     script_name: Optional[str] = os.getenv("VDM_RUN_SCRIPT")

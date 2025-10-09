@@ -1,4 +1,4 @@
-Great—those three files are exactly what we needed. Here’s what each one is, how it fits into the “single‑derivation” package, and what I recommend doing with them right now.
+Great-those three files are exactly what we needed. Here’s what each one is, how it fits into the “single‑derivation” package, and what I recommend doing with them right now.
 
 ---
 
@@ -17,7 +17,7 @@ Great—those three files are exactly what we needed. Here’s what each one is,
    *How to use:* rename to `docs/Appendix_EFT_Spine.md` and include as **Appendix A (formal EFT control)**. This strengthens the math where reviewers will push hardest.
 
 3. **`02_Grok4_20250815_042516.md`**
-   *What it is:* a **methods/notes file** capturing the toy FRW integration (with causal $K_{\rm ret}$), the finite‑tube secular‑equation scan prototype, and a first micro-macro calibration sketch. It shows conservation checks ($\sum_i[\dot\rho_i+3H(1+w_i)\rho_i]=0$ numerically), small $\epsilon_{\rm DE}$, and tiny DM injection in the toy runs—good integrity checks for the Voxtrium embedding.  &#x20;
+   *What it is:* a **methods/notes file** capturing the toy FRW integration (with causal $K_{\rm ret}$), the finite‑tube secular‑equation scan prototype, and a first micro-macro calibration sketch. It shows conservation checks ($\sum_i[\dot\rho_i+3H(1+w_i)\rho_i]=0$ numerically), small $\epsilon_{\rm DE}$, and tiny DM injection in the toy runs-good integrity checks for the Voxtrium embedding.  &#x20;
    *How to use:* rename to `docs/Appendix_Methods_FRW_and_Tube.md` and quote it as **Appendix B (numerical toys & acceptance tests)**. Tone down any “finished” language (keep it as “proof‑of‑concept / acceptance tests passed on toy settings”).
 
 Download the three files you just asked about:
@@ -31,7 +31,7 @@ Download the three files you just asked about:
 ## Why this covers your earlier ask
 
 * **“One single derivation”**: `00_…` is the main, formal, unit‑consistent derivation document. It already separates **what is strong** vs **what is weak/open** and credits **Voxtrium** and **Justin Lietz** explicitly.&#x20;
-* **Formal physics format**: the EFT spine appendix (`01_…`) gives clean propositions and a lattice‑controlled $p^4$ envelope—exactly the sort of content referees want to see.&#x20;
+* **Formal physics format**: the EFT spine appendix (`01_…`) gives clean propositions and a lattice‑controlled $p^4$ envelope-exactly the sort of content referees want to see.&#x20;
 * **Bordag mapping**: the scalar finite‑tube program is stated in the style of Bordag’s flux‑tube analysis (mode equation, quartic overlaps, condensate lifting, energy minimum), with the right literature credit.&#x20;
 
 ---
@@ -79,6 +79,6 @@ Download the three files you just asked about:
 
 ### Bottom line
 
-* **Yes—these three files are the right deliverables.** Use `00_…` as the single derivation document, `01_…` as a formal EFT appendix, and `02_…` as methods/toys.
+* **Yes-these three files are the right deliverables.** Use `00_…` as the single derivation document, `01_…` as a formal EFT appendix, and `02_…` as methods/toys.
 * They already **credit Voxtrium** and **credit Justin Lietz** as requested.&#x20;
 * Once you drop them into `docs/` and tweak the wording in `02_…`, you have a clean, void‑faithful, first‑principles PR ready.

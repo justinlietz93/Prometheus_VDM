@@ -1,4 +1,4 @@
-# Dark Photon — Quantum Bridge (target set)
+# Dark Photon - Quantum Bridge (target set)
 
 **Purpose:** Give immediate, concrete targets that bridge your portal work to quantum credibility, with one artifact per document (figure + CSV). Keep everything plain-English, equation-light.
 

@@ -58,7 +58,7 @@ List reserved words/abbreviations and their canonical expansions (as used).
 |---|---|---|---|---|
 ```
 
-Include items like “SIE — Self Improvement Engine”, “ADC — Adaptive Domain Cartographer”, GDSP, etc., **only if present**. Link to `SYMBOLS.md` entries.
+Include items like “SIE - Self Improvement Engine”, “ADC - Adaptive Domain Cartographer”, GDSP, etc., **only if present**. Link to `SYMBOLS.md` entries.
 
 ---
 
@@ -150,7 +150,7 @@ If a required anchor is missing, add `TODO: missing anchor (see <path>:<line>)`;
 ### De-duplication & ordering
 
 * If multiple files state the **same** convention, keep one row and list all sources.
-* If two conflicting conventions exist, list both with sources and add `Notes: CONFLICT — resolve`.
+* If two conflicting conventions exist, list both with sources and add `Notes: CONFLICT - resolve`.
 * Order rows **lexicographically by Category/Role/Notation**, or by repository path if more natural from sources.
 
 ### End-of-file blocks (append verbatim)
@@ -167,4 +167,4 @@ If a required anchor is missing, add `TODO: missing anchor (see <path>:<line>)`;
 ### Validation
 
 * Render on GitHub; confirm anchors resolve and any quoted MathJax renders.
-* Ensure conventions reflect **only** what is evidenced in the repository—no new rules, no overrides of `SYMBOLS.md` or `EQUATIONS.md`.
+* Ensure conventions reflect **only** what is evidenced in the repository-no new rules, no overrides of `SYMBOLS.md` or `EQUATIONS.md`.

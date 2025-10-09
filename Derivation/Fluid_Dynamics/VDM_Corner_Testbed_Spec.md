@@ -1,4 +1,4 @@
-# VDM Corner Testbed — Spec (v0.1)
+# VDM Corner Testbed - Spec (v0.1)
 
 > **Purpose (terse):** A single, reusable 2‑D 90°‑bend setup to test *baseline* vs *VDM‑regularized* dynamics around a sharp corner.
 >
@@ -23,7 +23,7 @@
 - **Terse:** Run twice: (a) **baseline** (no regularizer); (b) **VDM regularizer ON** (same parameters).  
   **Expanded:** Baseline exposes the well‑known “corner” singular tendency. The VDM run uses your *void‑faithful* limiter to prevent non‑physical blow‑ups *only where the system would otherwise violate finite‑speed, finite‑energy transport*. Everything else stays identical so comparisons are fair.
 
-### 3.1 VDM (Void‑Debt Modulation) — Toy Testbed Form
+### 3.1 VDM (Void‑Debt Modulation) - Toy Testbed Form
 - **Terse:** Introduce a scalar **D(x,y,t)** that accumulates where the flow is “impossible” (high strain); cap advection by `1/(1 + β D)`.  
   **Expanded:** This is a *testbed* embodiment of your theory. Let
   

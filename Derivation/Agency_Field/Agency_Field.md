@@ -1,4 +1,4 @@
-# Agency/Consciousness Field (VDM) — Canon-Aligned Compact Spec
+# Agency/Consciousness Field (VDM) - Canon-Aligned Compact Spec
 
 ---
 
@@ -6,27 +6,27 @@
 
 | Symbol                       |                                   Units | Meaning                                                                        | How to estimate (operational)                                                                                |        |    |
 | ---------------------------- | --------------------------------------: | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------ | -- |
-| $C(x,t)$                     |                                       — | Agency/consciousness **field** (order parameter)                               | From proxies via the source law and steady-state fit; or via discrete update on a sensor grid.               |        |    |
+| $C(x,t)$                     |                                       - | Agency/consciousness **field** (order parameter)                               | From proxies via the source law and steady-state fit; or via discrete update on a sensor grid.               |        |    |
 | $D$                          |                               $L^{2}/T$ | Diffusive coupling (“smearing”) between nearby locations                       | Fit from spatial smoothing rate of $C$ transients; or set by coupling model.                                 |        |    |
 | $\gamma$                     |                                   $1/T$ | **Decay** rate of $C$ without source (timescale $\tau=1/\gamma$)               | Power clamp / “no-task” block; fit exponential relaxation of $C$.                                            |        |    |
 | $S(x,t)$                     |                                   $1/T$ | **Source density** from organized, predictive information processing           | Composite of $P,I_{\text{net}},U$ with weights $\kappa_i$; optional gates $g(V),h(B)$.                       |        |    |
-| $\kappa_1,\kappa_2,\kappa_3$ |                                       — | Weights for source components                                                  | Choose by normalization/validation; report with runs.                                                        |        |    |
+| $\kappa_1,\kappa_2,\kappa_3$ |                                       - | Weights for source components                                                  | Choose by normalization/validation; report with runs.                                                        |        |    |
 | $P(x,t)$                     |                       $1/T$ (bits/s ok) | **Predictive power** of internal state about near-future inputs                | Mutual-information rate $I(\text{state}*t;\text{input}*{t+\tau})$ or next-step $R^2$.                        |        |    |
-| $I_{\text{net}}(x,t)$        |                           — (bits/s ok) | **Integration/coherence** beyond parts                                         | Sum of transfer entropies; multivariate synergy; Lempel–Ziv complexity.                                      |        |    |
+| $I_{\text{net}}(x,t)$        |                           - (bits/s ok) | **Integration/coherence** beyond parts                                         | Sum of transfer entropies; multivariate synergy; Lempel–Ziv complexity.                                      |        |    |
 | $U(x,t)$                     |                                   $1/E$ | **Control efficacy** (error reduction per joule)                               | $U=\big(\mathbb E[L_{\text{noctl}}]-\mathbb E[L_{\text{ctl}}]\big)/\text{energy}$. Define the energy ledger. |        |    |
-| $\sigma(x)$                  |                                       — | **Susceptibility** of substrate (amplification of a given source)              | Calibrate by comparing $C$ vs $S$ across media.                                                              |        |    |
-| $V(x,t)$                     |                                — (bits) | **Option capacity** (empowerment; reachable-state entropy over horizon $\tau$) | Count or estimate distinct useful futures (log base 2).                                                      |        |    |
-| $B(x,t)$                     |                                       — | **Balance** (coordination without interference)                                | Diversity benefit − congestion penalty; ensemble gain − redundancy.                                          |        |    |
-| $g(V),,h(B)$                 |                                       — | Saturating gates for headroom/coordination                                     | e.g., $g(V)=\frac{V}{1+V}$, $h(B)=\frac{B}{1+B}$.                                                            |        |    |
-| $Q_C(\Omega,t)$              |                                       — | **Regional charge** of $C$ in domain $\Omega$                                  | Spatial integral (or sensor sum) of $C$.                                                                     |        |    |
-| $G_{\text{ret}}$             |                                       — | Retarded kernel for causal propagation (parabolic)                             | Green’s function of $\partial_t-D\nabla^2+\gamma$, with $G_{\text{ret}}(t<0)=0$.                             |        |    |
+| $\sigma(x)$                  |                                       - | **Susceptibility** of substrate (amplification of a given source)              | Calibrate by comparing $C$ vs $S$ across media.                                                              |        |    |
+| $V(x,t)$                     |                                - (bits) | **Option capacity** (empowerment; reachable-state entropy over horizon $\tau$) | Count or estimate distinct useful futures (log base 2).                                                      |        |    |
+| $B(x,t)$                     |                                       - | **Balance** (coordination without interference)                                | Diversity benefit − congestion penalty; ensemble gain − redundancy.                                          |        |    |
+| $g(V),,h(B)$                 |                                       - | Saturating gates for headroom/coordination                                     | e.g., $g(V)=\frac{V}{1+V}$, $h(B)=\frac{B}{1+B}$.                                                            |        |    |
+| $Q_C(\Omega,t)$              |                                       - | **Regional charge** of $C$ in domain $\Omega$                                  | Spatial integral (or sensor sum) of $C$.                                                                     |        |    |
+| $G_{\text{ret}}$             |                                       - | Retarded kernel for causal propagation (parabolic)                             | Green’s function of $\partial_t-D\nabla^2+\gamma$, with $G_{\text{ret}}(t<0)=0$.                             |        |    |
 | $\tau$                       |                                     $T$ | Decay time constant                                                            | $\tau=1/\gamma$.                                                                                             |        |    |
 | $\ell_D$                     |                                     $L$ | Diffusion length                                                               | $\ell_D=\sqrt{D/\gamma}$.                                                                                    |        |    |
-| $\tilde t,\tilde x$          |                                       — | Dimensionless time/space                                                       | $\tilde t=\gamma t,;\tilde x=x/\ell_D$.                                                                      |        |    |
-| $\varepsilon_{\text{eff}}$   |                                       — | (Optional) portal mixing, modulated by $C$                                     | $\varepsilon_{\text{eff}}=\varepsilon_0(1+\alpha C)$ with small $\|\alpha\|$  |
-| $\alpha$                     |                                       — | Portal-modulation strength                                                     | Fit from portal-signal correlates (if used).                                                                 |        |    |
+| $\tilde t,\tilde x$          |                                       - | Dimensionless time/space                                                       | $\tilde t=\gamma t,;\tilde x=x/\ell_D$.                                                                      |        |    |
+| $\varepsilon_{\text{eff}}$   |                                       - | (Optional) portal mixing, modulated by $C$                                     | $\varepsilon_{\text{eff}}=\varepsilon_0(1+\alpha C)$ with small $\|\alpha\|$  |
+| $\alpha$                     |                                       - | Portal-modulation strength                                                     | Fit from portal-signal correlates (if used).                                                                 |        |    |
 | $\Delta t,\Delta x$          |                                   $T,L$ | Discrete step sizes (time, space)                                              | Simulation settings.                                                                                         |        |    |
-| CFL                          |                                       — | Explicit-scheme stability indicator                                            | $\Delta t \lesssim \Delta x^2/(2dD)$ in $d$ dimensions.                                                      |        |    |
+| CFL                          |                                       - | Explicit-scheme stability indicator                                            | $\Delta t \lesssim \Delta x^2/(2dD)$ in $d$ dimensions.                                                      |        |    |
 | $c$                          | $L/T$ (unitless under normalized grids) | **Signal speed** (conservative KG transport)                                   | From locality-cone fit: slope of the front trajectory.                                                       |        |    |
 | $m$                          |                                   $1/T$ | **Mass parameter** (KG dispersion intercept)                                   | From linear fit of $\omega^2$ vs $k^2$: intercept $= m^2$.                                                   |        |    |
 
@@ -153,9 +153,9 @@ $$
 
 ## Plain-English Narrative (what this buys)
 
-**What $C$ is:** a **field of organized capability**—how much predictive, coordinated control exists here and now. It is **emergent, local, causal (retarded), and budgeted**: fuel (energy), wiring (coupling), and headroom (options) raise it; without upkeep it decays on $1/\gamma$.
+**What $C$ is:** a **field of organized capability**-how much predictive, coordinated control exists here and now. It is **emergent, local, causal (retarded), and budgeted**: fuel (energy), wiring (coupling), and headroom (options) raise it; without upkeep it decays on $1/\gamma$.
 
-**What drives $C$:** three measurable inputs—**Prediction** $P$, **Integration** $I_{\text{net}}$, **Control** $U$—optionally gated by **headroom** $V$ and **balance** $B$.
+**What drives $C$:** three measurable inputs-**Prediction** $P$, **Integration** $I_{\text{net}}$, **Control** $U$-optionally gated by **headroom** $V$ and **balance** $B$.
 
 **How it generalizes:** the same spec spans **cells → organs → teams → engineered systems**. Sensors/actuators and the energy ledger may change; the equations do not. Use $(\tilde t,\tilde x)$ to compare across scales.
 
@@ -163,17 +163,17 @@ $$
 
 ## Axiom-Level Quality Gates (including the new validations)
 
-### Diffusive (M step) — H-theorem
+### Diffusive (M step) - H-theorem
 
 * **Gate M-Lyapunov:** discrete Lyapunov decreases per converged step
   $$\boxed{;\Delta L_h \le 0;\ \text{per step};}$$
 
-### Strang composition (JMJ) — order behavior
+### Strang composition (JMJ) - order behavior
 
 * **Primary gate (aligned spectral gradients):** two-grid slope $\ge 2.90$, $R^2\ge 0.999$.
 * **Explained-by-defect fallback (baseline stencil):** if slope $<2.90$ but the **Strang-defect diagnostic** (commutator-based) regresses to $\approx 3$ with high $R^2$, stamp **EXPLAINED-BY-DEFECT** instead of fail. Document the gradient mismatch and keep the pass contingent on M-Lyapunov holding.
 
-### Conservative KG (J-only) — **validated** gates
+### Conservative KG (J-only) - **validated** gates
 
 * **KG dispersion:** regress $\omega^2$ on $k^2$; require
 
@@ -235,7 +235,7 @@ $$
 
 ---
 
-## Appendix A — RD ↔ Discrete Mapping (sanity)
+## Appendix A - RD ↔ Discrete Mapping (sanity)
 
 For the logistic RD variant used in some checks:
 $$
@@ -254,7 +254,7 @@ under small-$k$ and unit-mass conventions.
 
 ---
 
-## Appendix B — Strang-defect diagnostic (order sanity)
+## Appendix B - Strang-defect diagnostic (order sanity)
 
 If $A$ (J-step generator) and $B$ (M-step generator) do not commute, the Strang error scales with the commutator:
 $$

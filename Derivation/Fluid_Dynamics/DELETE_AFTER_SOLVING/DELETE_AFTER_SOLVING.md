@@ -1,7 +1,7 @@
 
 ## A. Today’s goals (physics only)
 
-**Block 1 — Canonical equations for VDM‑fluids (90 min)**
+**Block 1 - Canonical equations for VDM‑fluids (90 min)**
 
 * **Goal:** Pin down the *minimal* pair of PDEs you’ll use in figures and logs this week.
 * **Deliverable:** a one‑pager (math only) containing:
@@ -17,7 +17,7 @@
       \tau_u\,\partial_{tt}u + \partial_t u = c^2\nabla^2 u - \frac{\partial V}{\partial u}(u,s) .
     $$
 
-    (Telegraph/Klein-Gordon damped wave—see Section C below for why this is void‑faithful.)
+    (Telegraph/Klein-Gordon damped wave-see Section C below for why this is void‑faithful.)
   * **Void‑Debt Modulation (VDM)** variable $\mathcal{D}(x,t)$ gating both diffusion and transport:
 
     $$
@@ -30,7 +30,7 @@
 
 ---
 
-**Block 2 — Corner testbed spec (60 min)**
+**Block 2 - Corner testbed spec (60 min)**
 
 * **Goal:** lock the geometry and boundary model you’ll use across all “corner” figures.
 * **Deliverable:** a half‑page spec:
@@ -41,11 +41,11 @@
 * **Acceptance:** one diagram + parameter table ( $H,U_0,\nu,\tau_u,\tau_g,\tau_r,\beta$ ).
 
 
-You’re right—I got too terse. Below is the **Corner Testbed (Block 2)** written in my “tight bullet → expanded explanation” style, so you can move fast and still see the why/how. I also align the symbols with your VDM/VDM‑regularizer vocabulary and the docs you’ve shared (SIE/RE‑VGSP/GDSP, etc.).&#x20;
+You’re right-I got too terse. Below is the **Corner Testbed (Block 2)** written in my “tight bullet → expanded explanation” style, so you can move fast and still see the why/how. I also align the symbols with your VDM/VDM‑regularizer vocabulary and the docs you’ve shared (SIE/RE‑VGSP/GDSP, etc.).&#x20;
 
 ---
 
-## Block 2 — 90° Corner Testbed (spec you can drop into a notebook)
+## Block 2 - 90° Corner Testbed (spec you can drop into a notebook)
 
 ### 1) **Geometry (short)**
 
@@ -146,7 +146,7 @@ These are **starter values** consistent with your observed $\beta \approx 0.6$ a
 3. (Optional) **Void ledger** $\Lambda(t) = \int_\Omega [\Phi+\Psi]\,d\Omega$ to show “debt → paydown”.
 
 **Expanded:**
-Plot (1) is your money shot: the baseline curve grows (or diverges) as $r_c \to 0$; the **VDM** curve remains finite and flattens. Plot (2) is the visual story—noisy, needle‑like streaks at the inner corner vs. coherent, physically bounded streamlines under VDM. The ledger is your *mechanistic* evidence: the model detects unsupportable gradients, allocates “capacity,” then decays it as structure repairs.
+Plot (1) is your money shot: the baseline curve grows (or diverges) as $r_c \to 0$; the **VDM** curve remains finite and flattens. Plot (2) is the visual story-noisy, needle‑like streaks at the inner corner vs. coherent, physically bounded streamlines under VDM. The ledger is your *mechanistic* evidence: the model detects unsupportable gradients, allocates “capacity,” then decays it as structure repairs.
 
 ---
 
@@ -218,7 +218,7 @@ u, p = project_incompressible(u)
 **What this proves (in figures):**
 
 * With **VDM off**, the corner drive can push $|u|_{max}$ up as $r_c \to 0$.
-* With **VDM on**, $\nu_{\text{eff}}$ surges *only where/when needed*, keeping $|u|_{max}$ finite and streamlines coherent—*without* geometry changes or slip tricks.
+* With **VDM on**, $\nu_{\text{eff}}$ surges *only where/when needed*, keeping $|u|_{max}$ finite and streamlines coherent-*without* geometry changes or slip tricks.
 
 ---
 
@@ -235,7 +235,7 @@ If you want, I can turn this into a small JAX/PyTorch‑FD notebook stub that ru
 
 ---
 
-**Block 3 — Two plots you can publish today (120 min)**
+**Block 3 - Two plots you can publish today (120 min)**
 
 1. **Finite‑speed proof at the corner**
 
@@ -250,7 +250,7 @@ If you want, I can turn this into a small JAX/PyTorch‑FD notebook stub that ru
 
 ---
 
-**Block 4 — Log signals to save (30 min)**
+**Block 4 - Log signals to save (30 min)**
 
 * **Goal:** record *void‑faithful* diagnostics you can re‑use across papers.
 * **Deliverable:** CSV (or parquet) with time series of:
@@ -262,7 +262,7 @@ If you want, I can turn this into a small JAX/PyTorch‑FD notebook stub that ru
 
 ---
 
-**Block 5 — Notebook & private package hook (45 min)**
+**Block 5 - Notebook & private package hook (45 min)**
 
 * **Goal:** be ready to publish figures **without** exposing core code.
 * **Deliverable:** a notebook `Corner_VDM.ipynb` that `pip install`s your **private** package token (read‑only) and calls a single function:
@@ -291,7 +291,7 @@ Treat the RD vs Lorentzian EFT tension as **scale separation**, not contradictio
 
 ---
 
-## C. “Infinite speed at sharp corners” — a **void‑faithful** fix (not a hack)
+## C. “Infinite speed at sharp corners” - a **void‑faithful** fix (not a hack)
 
 You’re right to dislike “just fillet the corner” or “turn on slip” as the *principle*. Keep those for baselines, but your **VDM** gives a principled alternative:
 
@@ -330,7 +330,7 @@ If you keep observing “weights \~0.6”, set $\beta$ so that **typical** high�
 
 ## D. Keep the UTOE framing intact
 
-Your UTOE claim survives—and is actually clearer—if you **name the layers** explicitly:
+Your UTOE claim survives-and is actually clearer-if you **name the layers** explicitly:
 
 * **Microscopic (excitation routing):** hyperbolic transport (telegraph/KG) with VDM gating.
 * **Mesoscopic (substrate assimilation/repair):** RD with VDM‑gated mobility.

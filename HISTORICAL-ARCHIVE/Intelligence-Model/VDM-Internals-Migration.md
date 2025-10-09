@@ -1,25 +1,25 @@
-Here’s the updated, single plan—**move all internals to `core/`** and make metrics **void-dynamics only** (event-driven from walkers + cold-scout seekers). No whole-connectome scans in the hot path; a tiny auditor remains optional/low-cadence.
+Here’s the updated, single plan-**move all internals to `core/`** and make metrics **void-dynamics only** (event-driven from walkers + cold-scout seekers). No whole-connectome scans in the hot path; a tiny auditor remains optional/low-cadence.
 
 ---
 
 ## Status (2025-08-15)
 
-- [x] Phase A — Move-only migration (modularization and façade)
+- [x] Phase A - Move-only migration (modularization and façade)
   - Façade: [nexus.py](fum_rt/nexus.py); main loop: [run_loop()](fum_rt/runtime/loop.py:40)
   - Telemetry and fold: [macro_why_base()](fum_rt/runtime/telemetry.py:19), [status_payload()](fum_rt/runtime/telemetry.py:48), [tick_fold()](fum_rt/runtime/telemetry.py:99)
   - Control-plane/retention/helpers/emitters extracted: [phase.py](fum_rt/runtime/phase.py), [retention.py](fum_rt/runtime/retention.py), [runtime_helpers.py](fum_rt/runtime/runtime_helpers.py), [initialize_emitters()](fum_rt/runtime/emitters.py:23)
-- [x] Phase B — Core seam locked
+- [x] Phase B - Core seam locked
   - Core engine seam: [engine.py](fum_rt/core/engine.py), methods [snapshot()](fum_rt/core/engine.py:53), [engram_load()](fum_rt/core/engine.py:71), [engram_save()](fum_rt/core/engine.py:80)
   - Core signals seam and B1: [signals.py](fum_rt/core/signals.py), [apply_b1_detector()](fum_rt/core/signals.py:218)
   - Optional event-driven metrics reducers in core with runtime adapters: [proprioception/events.py](fum_rt/core/proprioception/events.py), [observations_to_events()](fum_rt/runtime/events_adapter.py:22), [adc_metrics_to_event()](fum_rt/runtime/events_adapter.py:96)
-- [ ] Phase C — Event-folded reducers in core (replace scans)
-- [ ] Phase D — Cold-scout walkers (core/cortex)
-- [ ] Phase E — Orchestrator uses engine.step(); remove legacy math from Nexus
-- [ ] Optional — Auditor (rare, budgeted)
-- [ ] CI guards — core boundary and runtime NumPy checks
-- [ ] Acceptance — golden-run parity, A/B IDF (k=0.0 vs 0.2), KS tests
+- [ ] Phase C - Event-folded reducers in core (replace scans)
+- [ ] Phase D - Cold-scout walkers (core/cortex)
+- [ ] Phase E - Orchestrator uses engine.step(); remove legacy math from Nexus
+- [ ] Optional - Auditor (rare, budgeted)
+- [ ] CI guards - core boundary and runtime NumPy checks
+- [ ] Acceptance - golden-run parity, A/B IDF (k=0.0 vs 0.2), KS tests
 
-# Phase A — Move-only migration (no logic change)
+# Phase A - Move-only migration (no logic change)
 
 * Create:
 
@@ -32,7 +32,7 @@ Here’s the updated, single plan—**move all internals to `core/`** and make m
 
 ---
 
-# Phase B — Lock the `core/` seam (adapters now, logic move later)
+# Phase B - Lock the `core/` seam (adapters now, logic move later)
 
 * Introduce a single API the runtime talks to:
 
@@ -58,7 +58,7 @@ def compute_vt_metrics(state) -> tuple[float, float]: ...
 
 ---
 
-# Phase C — Put the brain in `core/` (void-only, event-driven)
+# Phase C - Put the brain in `core/` (void-only, event-driven)
 
 Move internals module-by-module; replace scans with incremental folding from **walker/bus events**. Parity after each PR.
 
@@ -97,7 +97,7 @@ Move internals module-by-module; replace scans with incremental folding from **w
 
 ---
 
-# Phase D — Cold-Scout walkers (replace scanning with seekers)
+# Phase D - Cold-Scout walkers (replace scanning with seekers)
 
 Add **read-only** walker species in `core/cortex` to explore stale space and feed metrics.
 
@@ -128,14 +128,14 @@ cold_score = α*(t_now - last_update_t) +
 
 ---
 
-# Phase E — Cut pass-throughs and finalize boundaries
+# Phase E - Cut pass-throughs and finalize boundaries
 
 * Orchestrator loop: control poll → `engine.step()` → `telemetry.collect(engine.snapshot())` → (maybe) speak → retention sweep.
 * Delete legacy math from Nexus; keep UTE/UTD, emitters, CLI outside core.
 
 ---
 
-## Optional — Auditor (rare, budgeted)
+## Optional - Auditor (rare, budgeted)
 
 * Triggers: drift between incremental vs last audit > ε, stalest tiles, idle.
 * Budget: e.g., 300-1000 μs/tick; epoch snapshot; idempotent reconcile.

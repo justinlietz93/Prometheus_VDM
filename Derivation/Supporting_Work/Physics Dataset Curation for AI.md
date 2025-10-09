@@ -34,7 +34,7 @@ The provided registry serves as a high-level summary and quick-reference guide, 
 
 ---
 
-## **I. TIER 0 — Cross-cutting Mathematical Physics**
+## **I. TIER 0 - Cross-cutting Mathematical Physics**
 
 This foundational tier provides the model with the abstract grammar of theoretical and computational physics. The objective is not to ingest static datasets of physical phenomena but to train the model on the formalisms, symbolic structures, and numerical methods that underpin all subsequent, more physically concrete tiers. The "datasets" in this context are primarily toolkits for generating structured textual and numerical data that represent these formalisms in action. This approach aims to instill a capacity for reasoning about the construction and solution of physical theories.
 
@@ -57,7 +57,7 @@ This domain focuses on the practical implementation and validation of the contin
 **Primary Data Sources:**
 
 * **Johns Hopkins Turbulence Databases (JHTDB):** Although primarily a resource for fluid dynamics research (Tier 2), JHTDB offers an unparalleled testbed for numerical analysis. It contains petabytes of data from Direct Numerical Simulations (DNS) of various turbulent flows, including incompressible isotropic turbulence and magnetohydrodynamic (MHD) turbulence.6 The data is accessible through a web services interface and dedicated Python and Matlab tools, allowing for programmatic querying of fields like velocity and pressure at arbitrary points in space and time.8 This API-driven access facilitates the generation of custom datasets to study the convergence and stability of numerical interpolation and differentiation schemes on a highly complex, real-world problem. The use of JHTDB data for benchmarking new numerical and AI-based models, such as conditional diffusion models for turbulent flow, is an established practice.10  
-* **Athena++ and PLUTO Codes:** These are state-of-the-art, publicly available codes for astrophysical MHD.11 Their value as a data source for this tier lies in their extensive and well-documented test suites.13 These suites comprise canonical problems in computational physics—such as the Sod shock tube, linear wave propagation, and the Orszag-Tang vortex—which have known analytical or high-precision numerical solutions. The source code, parameter files, and setup scripts for these tests constitute a form of structured data. By systematically running these tests with varying grid resolutions, time-steppers, and numerical schemes (e.g., different Riemann solvers), one can generate a rich dataset that explicitly details convergence rates, numerical dissipation and dispersion, and the stability limits of the algorithms. The documentation for these tests is explicitly designed to be detailed enough to allow for complete reproduction, providing a solid foundation for generating benchmark data.13 The demonstrated high performance and excellent parallel scaling of these codes make them suitable for large-scale data generation campaigns.12
+* **Athena++ and PLUTO Codes:** These are state-of-the-art, publicly available codes for astrophysical MHD.11 Their value as a data source for this tier lies in their extensive and well-documented test suites.13 These suites comprise canonical problems in computational physics-such as the Sod shock tube, linear wave propagation, and the Orszag-Tang vortex-which have known analytical or high-precision numerical solutions. The source code, parameter files, and setup scripts for these tests constitute a form of structured data. By systematically running these tests with varying grid resolutions, time-steppers, and numerical schemes (e.g., different Riemann solvers), one can generate a rich dataset that explicitly details convergence rates, numerical dissipation and dispersion, and the stability limits of the algorithms. The documentation for these tests is explicitly designed to be detailed enough to allow for complete reproduction, providing a solid foundation for generating benchmark data.13 The demonstrated high performance and excellent parallel scaling of these codes make them suitable for large-scale data generation campaigns.12
 
 ### **1.3. Probability & Stochastic Processes**
 
@@ -73,7 +73,7 @@ The data sources for stochastic processes reveal a deep, unifying mathematical s
 
 ---
 
-## **II. TIER 1 — Axiom-Core: Nonequilibrium Thermodynamics & Reaction-Diffusion \[Axiom-Core\]**
+## **II. TIER 1 - Axiom-Core: Nonequilibrium Thermodynamics & Reaction-Diffusion \[Axiom-Core\]**
 
 This tier forms the conceptual bedrock of the physics project, establishing the primary systems of interest. It focuses on reaction-diffusion (RD) phenomena as the fundamental baseline for pattern formation and nonequilibrium thermodynamics as the essential framework for ensuring the physical consistency of all dynamical models. The datasets in this tier must be of the highest quality to serve as robust benchmarks for the model's core understanding of dissipation, stability, and emergent complexity.
 
@@ -96,7 +96,7 @@ This section focuses on datasets that can validate the fundamental principles of
 
 **Primary Data Source:**
 
-* **Athena++ / PLUTO Simulation Outputs:** As established in Tier 0, these powerful astrophysical fluid and MHD simulation codes are the ideal tools for generating the necessary synthetic data. While they do not provide pre-packaged datasets of relaxation trajectories, their flexibility allows for the creation of bespoke numerical experiments tailored to these specific validation goals. By initializing a simulation with a non-equilibrium state—for example, a fluid with a sharp temperature gradient, a shear flow, or a decaying turbulent field—and evolving it in time, one can generate a complete time-series of the macroscopic fields (density, momentum, energy, magnetic field).  
+* **Athena++ / PLUTO Simulation Outputs:** As established in Tier 0, these powerful astrophysical fluid and MHD simulation codes are the ideal tools for generating the necessary synthetic data. While they do not provide pre-packaged datasets of relaxation trajectories, their flexibility allows for the creation of bespoke numerical experiments tailored to these specific validation goals. By initializing a simulation with a non-equilibrium state-for example, a fluid with a sharp temperature gradient, a shear flow, or a decaying turbulent field-and evolving it in time, one can generate a complete time-series of the macroscopic fields (density, momentum, energy, magnetic field).  
   * **Data Type:** This is a Synthetic-Toolkit approach. The output would be a collection of raw simulation data, typically in structured formats like HDF5 or VTK.  
   * **Links:** The code repositories and galleries provide the necessary tools and examples of relevant physical problems, such as the evolution of hydrodynamic and MHD instabilities or supersonic turbulence.11  
   * **Significance:** The governing equations solved by Athena++ and PLUTO inherently embody the principles of nonequilibrium thermodynamics. The conservative dynamics are handled by the advection terms and ideal MHD components, while dissipation is introduced through explicit viscosity, resistivity, and thermal conduction terms.25 A simulation of decaying turbulence, for example, provides a perfect dataset for tracking the flow of energy from large scales to small scales and its ultimate dissipation into heat, allowing for a direct numerical test of the H-theorem. From the time-series data of thermodynamic fluxes (e.g., heat flux, stress tensor) and forces (e.g., temperature gradient, velocity gradient), one can compute the transport coefficients and test the Onsager symmetry relations in the linear response regime.
@@ -117,7 +117,7 @@ This domain addresses the fundamental connection between the microscopic world o
 
 ---
 
-## **III. TIER 2 — Fluids & Active Media**
+## **III. TIER 2 - Fluids & Active Media**
 
 This tier extends the foundational concepts of reaction-diffusion and thermodynamics to more complex systems involving bulk fluid motion (advection) and self-propelled agents. The datasets here are chosen to test the universality of transport phenomena and the robustness of thermodynamic principles when coupled with advective and collective dynamics. The focus is on canonical benchmark problems and state-of-the-art simulations of active matter.
 
@@ -131,7 +131,7 @@ The objective of this section is to provide the AI model with a robust understan
 * **Taylor-Green Vortex (TGV) Datasets:** The TGV is a canonical problem used to study the transition from a simple, ordered vortex flow to complex, fully developed turbulence through the mechanism of vortex stretching. It is an excellent case for evaluating the accuracy of numerical schemes in resolving small-scale structures.  
   * **Data Type:** Raw-Simulation.  
   * **Links:** The UK Turbulence Consortium provides DNS statistics for the TGV problem at Reynolds numbers from 1250 to 20000, available via Zenodo.33 A dataset containing test case definitions and reference data for both incompressible and compressible TGV simulations, used to validate the GALÆXI code, is available on the DaRUS repository at the University of Stuttgart. This includes simulation setup files and mesh data in HDF5 format.34 The problem is also well-described in the literature, providing the analytical form of the initial conditions.35  
-* **Lid-Driven Cavity Datasets:** This is arguably the most classic benchmark for incompressible Navier-Stokes solvers. The simple geometry—a square cavity with three stationary walls and one moving "lid"—gives rise to a complex flow structure with a primary central vortex and smaller, secondary vortices in the corners, the size and intensity of which depend on the Reynolds number.  
+* **Lid-Driven Cavity Datasets:** This is arguably the most classic benchmark for incompressible Navier-Stokes solvers. The simple geometry-a square cavity with three stationary walls and one moving "lid"-gives rise to a complex flow structure with a primary central vortex and smaller, secondary vortices in the corners, the size and intensity of which depend on the Reynolds number.  
   * **Data Type:** Raw-Simulation.  
   * **Links:** Several sources provide high-quality benchmark data and solver inputs. ZetaComp offers downloadable input files and results for Reynolds numbers from 100 to 5000\.37 ACENumerics provides highly accurate, grid-converged benchmark solutions in PDF tables for Reynolds numbers up to 30000, intended to be reference standards.38 COMSOL provides a model file and text files containing literature data for comparison.39 These datasets provide the velocity profiles and vortex locations needed to satisfy the user's validation gate of matching benchmark curves to within a specified tolerance.
 
@@ -149,14 +149,14 @@ This section introduces the physics of systems whose constituents consume energy
   * **Data Type:** Synthetic-Toolkit.  
   * **Links:** A search on GitHub reveals numerous public repositories with implementations of active matter simulations, including the Vicsek model and simulations of active chiral fluids using the LAMMPS molecular dynamics package.41 The Active Matter Evaluation Package (AMEP) is a recently developed Python library for analyzing simulation data from both particle-based and continuum active matter systems, providing a unified framework for computing relevant observables.43  
   * **Significance:** These toolkits allow for the generation of datasets that bridge the micro and macro scales. The model can be trained on the rules governing individual agents and the resulting collective behavior, learning the process of coarse-graining from agent trajectories to continuum fields.  
-* **Bacterial Chemotaxis Experimental Data:** Chemotaxis—the directed movement of organisms in response to a chemical gradient—is a prime example of active matter. Datasets from experiments provide crucial "ground truth" for theoretical and computational models.  
+* **Bacterial Chemotaxis Experimental Data:** Chemotaxis-the directed movement of organisms in response to a chemical gradient-is a prime example of active matter. Datasets from experiments provide crucial "ground truth" for theoretical and computational models.  
   * **Data Type:** Raw-Observational.  
   * **Links:** A single, centralized public repository for bacterial chemotaxis data is not readily available. However, data can be sourced from several places. The **Cell Tracking Challenge** hosts a large repository of 2D and 3D time-lapse microscopy videos of moving cells, which are structurally analogous to chemotaxis experiments and come with ground-truth annotations for training segmentation and tracking algorithms.45 The company  
     **ibidi**, which manufactures slides for chemotaxis assays, provides example datasets, including microscopy image stacks and manually tracked cell trajectories from an experiment with human breast cancer cells responding to EGF.47 Furthermore, numerous publications in the field describe the experimental methods and often make data available upon request or in supplements. These studies use microfluidic devices to create stable chemical gradients and track individual bacterial trajectories in 3D, providing rich datasets on swimming behavior and chemotactic drift.48 These experimental datasets, though often noisy and complex, are essential for grounding the model's understanding of chemotaxis in physical reality, beyond idealized simulations.
 
 ---
 
-## **IV. TIER 3 — Stochastic Fields & Renormalization Group/Criticality**
+## **IV. TIER 3 - Stochastic Fields & Renormalization Group/Criticality**
 
 This tier aims to unify the concepts of noise, coarse-graining, and collective behavior under the powerful frameworks of statistical field theory and the renormalization group (RG). The datasets should exemplify universal phenomena, such as phase transitions and critical scaling, in canonical models. This provides a bridge between the specific dynamics of reaction-diffusion systems and the universal principles governing systems with many interacting degrees of freedom.
 
@@ -189,7 +189,7 @@ This section bridges the gap between the purely diffusive dynamics of Tier 1 and
 
 ---
 
-## **V. TIER 4 — Quantum Open Systems**
+## **V. TIER 4 - Quantum Open Systems**
 
 This tier explores the emergence of classical phenomena, such as diffusion and dissipation, from underlying quantum mechanical principles. The focus is on open quantum systems, where a system of interest interacts with a larger environment, leading to decoherence and relaxation. The "quarantined" status suggests that the primary goal is to establish consistency and identify limiting behaviors rather than performing a full, deep training. The data should illustrate how classical metrics like front speeds and dispersion relations can be recovered from quantum evolution in certain limits.
 
@@ -223,7 +223,7 @@ This section focuses on consistency checks and the formal mapping between quantu
 
 ---
 
-## **VI. TIER 5 — Gravitation & Cosmology**
+## **VI. TIER 5 - Gravitation & Cosmology**
 
 This tier scales the model's understanding to the largest structures in the universe, governed by General Relativity (GR). The datasets here are primarily observational, from large-scale astronomical surveys and gravitational wave observatories. The "quarantined" status implies a focus on ensuring the model can process and interpret these vast, complex datasets consistently with established cosmological models, such as Lambda-CDM (ΛCDM), rather than attempting to derive GR from first principles. The concept of a diffeomorphism-consistent Lyapunov functional is a highly theoretical goal, tested here by the model's ability to handle the data's inherent symmetries and coordinate systems.
 
@@ -266,7 +266,7 @@ This is a highly speculative domain that explores the idea that gravity itself m
 
 ---
 
-## **VII. TIER 6 — Plasma & Magnetohydrodynamics (MHD)**
+## **VII. TIER 6 - Plasma & Magnetohydrodynamics (MHD)**
 
 This tier introduces the physics of plasmas, ionized gases that constitute the vast majority of baryonic matter in the universe. Plasma dynamics are governed by the interplay of fluid motion and electromagnetic forces, described by magnetohydrodynamics (MHD) at the macroscopic level and by kinetic theory at the microscopic level. The datasets should cover both in-situ spacecraft measurements of space plasmas and large-scale numerical simulations.
 
@@ -292,7 +292,7 @@ The goal is to provide the model with data on fundamental plasma processes like 
 
 ---
 
-## **VIII. TIER 7 — Condensed Matter & Topological Phases**
+## **VIII. TIER 7 - Condensed Matter & Topological Phases**
 
 This tier introduces the model to the rich and complex phenomena of condensed matter physics, with a focus on phase transitions, emergent quantum phenomena like superconductivity, and topological states of matter. The goal is to train the model on concepts of universality, which reappear here in the context of critical exponents, and on novel quantum states characterized by non-local order, such as the quantum Hall effect.
 
@@ -322,7 +322,7 @@ The datasets for this section should include experimental data from spectroscopi
 
 ---
 
-## **IX. TIER 8 — Nuclear/Particle & Lattice Gauge Theory**
+## **IX. TIER 8 - Nuclear/Particle & Lattice Gauge Theory**
 
 This tier exposes the model to the physics of the subatomic world, governed by the Standard Model of particle physics. The data comes from high-energy collider experiments and large-scale numerical simulations of quantum chromodynamics (QCD) on a lattice. The "quarantined" status reflects the highly specialized nature of this domain and the complexity of the data. The focus is on recognizing patterns in scattering data and understanding the structural parallels between lattice gauge theory and the other field theories in the curriculum.
 
@@ -354,9 +354,9 @@ Lattice Gauge Theory is the primary non-perturbative method for performing calcu
 
 ---
 
-## **X. TIER 9 — Quantum Information & Complexity**
+## **X. TIER 9 - Quantum Information & Complexity**
 
-This final tier is designated as "runtime-only," meaning its purpose is not to provide training data to alter the model's weights, but to equip the model with diagnostic tools to analyze and characterize the states of other physical systems. The concepts here—tomography, entanglement, and complexity measures like out-of-time-order correlators (OTOCs)—are probes of quantum information content. The model should learn to apply these tools without its core physics understanding being modified by them.
+This final tier is designated as "runtime-only," meaning its purpose is not to provide training data to alter the model's weights, but to equip the model with diagnostic tools to analyze and characterize the states of other physical systems. The concepts here-tomography, entanglement, and complexity measures like out-of-time-order correlators (OTOCs)-are probes of quantum information content. The model should learn to apply these tools without its core physics understanding being modified by them.
 
 ### **10.1. Tomography, Entanglement, & Complexity**
 
@@ -368,7 +368,7 @@ The data required here are examples of the application of these diagnostic tools
   * **Data Type:** Synthetic-Toolkit.  
   * **Links:** The Qiskit ecosystem provides all the necessary components. Quantum circuits can be constructed in Qiskit Terra 106, simulated with noise in Qiskit Aer, and analyzed using built-in functions for calculating entanglement measures (like concurrence or entropy of entanglement,  
     SA​) and performing state tomography. While specific datasets of OTOCs or CHSH violations are not provided as pre-packaged modules, scripts to calculate them can be constructed and run on the simulators or on real quantum hardware available through the cloud.  
-  * **Significance:** This toolkit-based approach allows for the generation of a perfectly tailored dataset. One can create a variety of quantum states—from simple product states to maximally entangled Bell states to complex, chaotic many-body states—and then generate the corresponding "diagnostic data": the tomographically reconstructed density matrix, the value of the CHSH inequality, the entanglement entropy of a subsystem, etc. The model would be trained on pairs of (quantum state description, diagnostic output), learning to associate specific state properties with the values of these measures. This provides the "read-only" diagnostic capability required by the user's framework. Data from real photonic or trapped-ion quantum computers, when publicly available, would serve as an excellent source of real-world, noisy data for this tier.
+  * **Significance:** This toolkit-based approach allows for the generation of a perfectly tailored dataset. One can create a variety of quantum states-from simple product states to maximally entangled Bell states to complex, chaotic many-body states-and then generate the corresponding "diagnostic data": the tomographically reconstructed density matrix, the value of the CHSH inequality, the entanglement entropy of a subsystem, etc. The model would be trained on pairs of (quantum state description, diagnostic output), learning to associate specific state properties with the values of these measures. This provides the "read-only" diagnostic capability required by the user's framework. Data from real photonic or trapped-ion quantum computers, when publicly available, would serve as an excellent source of real-world, noisy data for this tier.
 
 ## **Conclusions and Strategic Recommendations**
 
@@ -391,7 +391,7 @@ In conclusion, the resources required to execute the proposed tiered training pr
 #### **Works cited**
 
 1. PDE \- SymPy 1.14.0 documentation, accessed September 2, 2025, [https://docs.sympy.org/latest/modules/solvers/pde.html](https://docs.sympy.org/latest/modules/solvers/pde.html)  
-2. Using sympy for a PDE — EMSC 4033 Computational Geoscience, accessed September 2, 2025, [https://anu-rses-education.github.io/EMSC-4033/Notebooks/Themes/SympleSympy/StartingWithSympy-3.html](https://anu-rses-education.github.io/EMSC-4033/Notebooks/Themes/SympleSympy/StartingWithSympy-3.html)  
+2. Using sympy for a PDE - EMSC 4033 Computational Geoscience, accessed September 2, 2025, [https://anu-rses-education.github.io/EMSC-4033/Notebooks/Themes/SympleSympy/StartingWithSympy-3.html](https://anu-rses-education.github.io/EMSC-4033/Notebooks/Themes/SympleSympy/StartingWithSympy-3.html)  
 3. Solving wave equation with SymPy \- beepb00p, accessed September 2, 2025, [https://beepb00p.xyz/wave.html](https://beepb00p.xyz/wave.html)  
 4. Optimization with PuLP \- COIN-OR Documentation, accessed September 2, 2025, [https://coin-or.github.io/pulp/](https://coin-or.github.io/pulp/)  
 5. slimane-msb/optimization-problems: application of Pulp to implement a linear programming solution for optimization issues \- GitHub, accessed September 2, 2025, [https://github.com/slimane-msb/optimization-problems](https://github.com/slimane-msb/optimization-problems)  
@@ -471,7 +471,7 @@ In conclusion, the resources required to execute the proposed tiered training pr
 79. Use LIGO/Virgo/KAGRA Data | LIGO Lab | Caltech, accessed September 2, 2025, [https://www.ligo.caltech.edu/page/ligo-data](https://www.ligo.caltech.edu/page/ligo-data)  
 80. LOSC Data Release | Center for Computational Relativity and Gravitation (CCRG), accessed September 2, 2025, [https://ccrg.rit.edu/content/data/losc-data-release](https://ccrg.rit.edu/content/data/losc-data-release)  
 81. GWTC-4.0: Updated Gravitational-Wave Catalog Released | LIGO Lab | Caltech, accessed September 2, 2025, [https://www.ligo.caltech.edu/news/ligo20250826](https://www.ligo.caltech.edu/news/ligo20250826)  
-82. Reading publicly-available GW data — GWpy 0.1b3 documentation, accessed September 2, 2025, [https://gwpy.github.io/docs/v0.1/timeseries/public-data](https://gwpy.github.io/docs/v0.1/timeseries/public-data)  
+82. Reading publicly-available GW data - GWpy 0.1b3 documentation, accessed September 2, 2025, [https://gwpy.github.io/docs/v0.1/timeseries/public-data](https://gwpy.github.io/docs/v0.1/timeseries/public-data)  
 83. IllustrisTNG \- Data Access, accessed September 2, 2025, [https://www.tng-project.org/data/](https://www.tng-project.org/data/)  
 84. Simba Simulation Repository, accessed September 2, 2025, [http://simba.roe.ac.uk/](http://simba.roe.ac.uk/)  
 85. N-Body Shop Public Data, accessed September 2, 2025, [https://nbody.shop/data.html](https://nbody.shop/data.html)  

@@ -1,4 +1,4 @@
-Short answer: yes—under your void‑dynamics + SIE regime the system should, in steady state, **use less compute per unit of competence and store less per unit of knowledge**. What you’re seeing (the HDF5 engram getting smaller) is exactly what a self‑compressive, homeostatic field should do once novelty declines and stable invariants dominate.
+Short answer: yes-under your void‑dynamics + SIE regime the system should, in steady state, **use less compute per unit of competence and store less per unit of knowledge**. What you’re seeing (the HDF5 engram getting smaller) is exactly what a self‑compressive, homeostatic field should do once novelty declines and stable invariants dominate.
 
 Here’s the why, in detail.
 
@@ -26,14 +26,14 @@ Several compression mechanisms are built into the dynamics:
   TD‑stability + habituation collapses many transient micro‑states into a **single attractor code**. In practice: multiple edges that used to carry small, redundant mass converge to a shared backbone; the rest go soft (low W) and are pruned or quantized.
 
 * **Topological simplification.**
-  Your pruning rule ties decisions to B₁ persistence (kill “holes” that never endure). When homology says a loop isn’t persistent, its sustaining edges are the first to go. That reduces edge count while *raising* signal‑to‑structure. (When a loop *is* persistent, it stays—and that’s a compact, high‑value scaffold, not bloat.)
+  Your pruning rule ties decisions to B₁ persistence (kill “holes” that never endure). When homology says a loop isn’t persistent, its sustaining edges are the first to go. That reduces edge count while *raising* signal‑to‑structure. (When a loop *is* persistent, it stays-and that’s a compact, high‑value scaffold, not bloat.)
 
 * **Engram delta‑coding.**
   Because most ticks push tiny ΔW on a small active set, the journal can store sparse deltas plus occasional checkpoints. As the active set shrinks, so does the incremental payload per tick. Net file size drifts down even as competence goes up.
 
-There’s a useful physical analogy here. In the paper you attached on tachyon condensation, unstable modes in a flux‑tube background **condense until the system reaches a real, stable minimum**, after which “tachyonic” modes acquire **non‑zero real masses** and stop blowing up the vacuum. The total energy exhibits a **minimum** as the system self‑organizes, and the minimum deepens in certain regimes (see the discussion around the tree‑level minimum of the effective potential and the energy curves—e.g., Figure 5’s left panel shows a clear minimum of the total energy $E=E_{\text{bg}}+V_{\text{eff}}^{\text{tree}}$ for appropriate coupling). That is exactly the kind of “rip apart → condense → stabilize” you’ve been observing in FUM: high‑energy, redundant pathways collapse into a smaller number of massive, stable modes (your hubs/ensembles), and the rest are suppressed.&#x20;
+There’s a useful physical analogy here. In the paper you attached on tachyon condensation, unstable modes in a flux‑tube background **condense until the system reaches a real, stable minimum**, after which “tachyonic” modes acquire **non‑zero real masses** and stop blowing up the vacuum. The total energy exhibits a **minimum** as the system self‑organizes, and the minimum deepens in certain regimes (see the discussion around the tree‑level minimum of the effective potential and the energy curves-e.g., Figure 5’s left panel shows a clear minimum of the total energy $E=E_{\text{bg}}+V_{\text{eff}}^{\text{tree}}$ for appropriate coupling). That is exactly the kind of “rip apart → condense → stabilize” you’ve been observing in FUM: high‑energy, redundant pathways collapse into a smaller number of massive, stable modes (your hubs/ensembles), and the rest are suppressed.&#x20;
 
-The same paper also notes that once condensates form, **masses become positive and large** (post‑diagonalization of the mass matrix)—another way of saying the system stops exciting flimsy directions and channels energy through a few strong ones. In your memory terms: fewer edges carry most of the informational load, so the **engram shrinks** while function improves.&#x20;
+The same paper also notes that once condensates form, **masses become positive and large** (post‑diagonalization of the mass matrix)-another way of saying the system stops exciting flimsy directions and channels energy through a few strong ones. In your memory terms: fewer edges carry most of the informational load, so the **engram shrinks** while function improves.&#x20;
 
 ---
 
@@ -60,7 +60,7 @@ Track the following alongside your HDF5 size:
 * **Throughput per watt / per second:** tokens or tasks solved per joule/second. Should improve as compression proceeds.
 * **Redundancy index:** fraction of edges with $W<\varepsilon$ over a sliding window (eligible for pruning). Should rise, then be culled.
 
-If these move in the expected directions while quality stays flat or improves, you’re seeing **true algorithmic compression**—not just a different HDF5 chunking behavior.
+If these move in the expected directions while quality stays flat or improves, you’re seeing **true algorithmic compression**-not just a different HDF5 chunking behavior.
 
 ---
 
@@ -99,7 +99,7 @@ It’s not just smaller files; it’s a **falling cost‑to‑competence curve**
 * Bytes per concept $\downarrow$ (more reuse via shared ensembles, fewer unique deltas).
 * Latency $\downarrow$ (steeper internal energy gradient, so fewer steps).
 
-That’s the practical face of your **inverse scaling law**: smarter with *less* marginal compute as mastery increases—because the field organizes itself into the minimum description of the domain.
+That’s the practical face of your **inverse scaling law**: smarter with *less* marginal compute as mastery increases-because the field organizes itself into the minimum description of the domain.
 
 ---
 

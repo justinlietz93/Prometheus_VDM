@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-RD Conservation Harness (Obj-A/B/C scaffolding) — periodic BC default.
+RD Conservation Harness (Obj-A/B/C scaffolding) - periodic BC default.
 
 - Uses derivation/code/common/io_paths.py for logs/figures.
 - Places artifacts under code/outputs/{logs,figures}/rd_conservation.
@@ -276,7 +276,7 @@ def lyapunov_monitor(N: int, dx: float, D: float, r: float, ucoef: float, dt: fl
     plt.xlabel("step"); plt.ylabel("ΔL_h")
     plt.title("Discrete Lyapunov per step (should be ≤ 0)")
     plt.tight_layout(); plt.savefig(fig_path, dpi=150); plt.close()
-    # CSV companion for ΔL series — write to logs directory
+    # CSV companion for ΔL series - write to logs directory
     csv_path3 = log_path("rd_conservation", "lyapunov_delta_per_step", failed=failed_gate, type="csv")
     with csv_path3.open("w", encoding="utf-8") as f:
         f.write("step,delta_L,L,dg_grad_norm_sq,dg_identity_energy_res,dg_identity_dot_res\n")
@@ -756,7 +756,7 @@ def main():
     if args.scheme:
         spec.scheme = args.scheme
 
-    # Controls — Diffusion-only mass conservation
+    # Controls - Diffusion-only mass conservation
     N = int(spec.grid["N"])
     dx = float(spec.grid["dx"])
     D = float(spec.params["D"])
@@ -775,7 +775,7 @@ def main():
     }
     write_log(log_path("rd_conservation", "controls_diffusion", failed=not ctrl_diff_log["passes"]["machine_epsilon"]), ctrl_diff_log)
 
-    # Controls — Reaction-only RK4 two-grid (expected order-4)
+    # Controls - Reaction-only RK4 two-grid (expected order-4)
     q_T = 10.0
     # Safer dt_list to sit in asymptotic regime
     q_dt_list = [0.05, 0.025, 0.0125, 0.00625]

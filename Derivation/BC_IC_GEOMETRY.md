@@ -2,7 +2,7 @@
 <!-- RULES for maintaining this file are here: /mnt/ironwolf/git/Prometheus_VDM/prompts/bc_ic_geometry_maintenance.md -->
 # VDM Boundary/Initial Conditions & Domain Geometries (Auto-compiled)
 
-Last updated: 2025-10-09 (commit d305c2b)
+Last updated: 2025-10-09 (commit f1e74a5)
 
 **Scope:** Single source of truth for BC/IC and domain geometries used in this repository.  
 **Rules:** Link to equations/constants/symbols by anchor; do not restate them here.  
@@ -197,7 +197,7 @@ Walkers that step outside (\Omega) are removed from the simulation at that step 
 
 **Applies on:** All boundaries of [walker-box-2d](#geom-walker-box-2d)  
 **Parameters:** None    
-**Implemented at:** — (spec; planned alongside agency walker runtime)   
+**Implemented at:** - (spec; planned alongside agency walker runtime)   
 **Notes:** Models “cliff” domains where leaving the workspace terminates control; reduces reachable option-space near walls, which measurably lowers $V_{\text{useful\_bits}}$ under identical noise.
 
 ---
@@ -213,7 +213,7 @@ $(\Delta x\_{\perp} \leftarrow -\Delta x\_{\perp})$\, $(\Delta x\_{\parallel})$ 
 
 **Applies on:** All boundaries of [walker-box-2d](#geom-walker-box-2d)  
 **Parameters:** None    
-**Implemented at:** — (spec; planned alongside agency walker runtime)   
+**Implemented at:** - (spec; planned alongside agency walker runtime)   
 **Notes:** Preserves mass of walkers; appropriate when physical walls exist but agents can “bounce.” Typically raises reachable option-space vs. absorbing, shifting agency thresholds.     
 
 ---
@@ -345,7 +345,7 @@ Sample (N_w) initial positions i.i.d. uniform on $(\Omega)$ (Poisson disc option
 | <a id="lattice-nn-2d"></a>**nn-2d** | 2D von Neumann (torus) | Neighbors $N(i) = \{\text{north, south, east, west}\}$ (periodic) | $N_y \times N_x$ nodes, spacing $a$ | derivation/code/physics/axioms/verify_discrete_EL.py:38-47 • c31d0c9 | Coordination $z = 4$ |
 | <a id="lattice-d2q9"></a>**D2Q9** | D2Q9 LBM lattice (2D) | 9 velocity directions: rest (1), cardinals (4), diagonals (4) | Velocities $\mathbf{c}_i$, weights $w_i$, $c_s^2 = 1/3$ | derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:98-106 • c31d0c9 | Standard LBM D2Q9 stencil; opposite directions via OPP array |
 | <a id="lattice-generic-cartesian"></a>**cartesian-1d-2d** | Regular Cartesian grid (1D/2D) | Uniform spacing $a$, cell-centered values | Grid spacing $a$ (or $dx$) | derivation/code/physics/reaction_diffusion/flux_core.py:14-16 • c31d0c9 | Supports periodic or Neumann BCs; used in flux-conservative RD |
-| <a id="lattice-moore-8"></a>**moore-8** | 2D Moore (8-neighbor) | Neighbors $(N(i)={\text{N,S,E,W,NE,NW,SE,SW}})$ | $(N\_y \times N\_x)$, spacing (a) | — (spec) | If agency walkers step diagonally as well as axially |
+| <a id="lattice-moore-8"></a>**moore-8** | 2D Moore (8-neighbor) | Neighbors $(N(i)={\text{N,S,E,W,NE,NW,SE,SW}})$ | $(N\_y \times N\_x)$, spacing (a) | - (spec) | If agency walkers step diagonally as well as axially |
 
 ---
 

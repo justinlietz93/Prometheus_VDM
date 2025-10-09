@@ -1,4 +1,4 @@
-Yup — the logs you sent do show *some* learning signals, but they’re muted and very “steady‑state.” From your `events.jsonl` (55 ticks), I’m seeing:
+Yup - the logs you sent do show *some* learning signals, but they’re muted and very “steady‑state.” From your `events.jsonl` (55 ticks), I’m seeing:
 
 * **Avg weight**: +0.0355 (\~+6.9%).
 * **Active synapses**: +624 (\~+8.0%).
@@ -20,7 +20,7 @@ So, yes, it’s moving, but it’s not in a discovery regime. Two things to do n
 Below is a single Python script you can run against any run directory to recreate a dashboard like your screenshots **and** overlay self‑speak moments. It expects:
 
 * `runs/<timestamp>/events.jsonl` (status ticks)
-* `runs/<timestamp>/utd_events.jsonl` (macro “say”/status) — optional
+* `runs/<timestamp>/utd_events.jsonl` (macro “say”/status) - optional
 
 It makes two figures:
 
@@ -262,7 +262,7 @@ def main():
         cs = s.get("cohesion_components", np.array([]))
         cc = s.get("complexity_cycles", np.array([]))
         if aw.size and cs.size and cc.size:
-            suf = f" — ΔavgW={aw[-1]-aw[0]:+.4f}, Δcohesion={cs[-1]-cs[0]:+.0f}, Δcycles={cc[-1]-cc[0]:+.0f}"
+            suf = f" - ΔavgW={aw[-1]-aw[0]:+.4f}, Δcohesion={cs[-1]-cs[0]:+.0f}, Δcycles={cc[-1]-cc[0]:+.0f}"
     except Exception:
         pass
 

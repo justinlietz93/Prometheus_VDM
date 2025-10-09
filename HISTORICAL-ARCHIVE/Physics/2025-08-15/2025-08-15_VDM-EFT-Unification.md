@@ -1,4 +1,4 @@
-Absolutely—let’s **finish the physics** and tie each result to **production‑ready code** that improves the system’s “intelligence” by replacing heuristics with hard equations.
+Absolutely-let’s **finish the physics** and tie each result to **production‑ready code** that improves the system’s “intelligence” by replacing heuristics with hard equations.
 
 Below I (A) close the remaining derivations/proofs, (B) give the exact runtime changes (APIs + acceptance tests), and (C) show how each piece plugs into your existing notes/docs.
 
@@ -86,7 +86,7 @@ whose roots $\kappa_{\ell n}(R)$ count tachyons ($\omega^2=-c^2\kappa^2<0$ at $k
 
 ---
 
-### 4) **Hydro emergence (long‑wavelength limit) — what the scalar actually gives you**
+### 4) **Hydro emergence (long‑wavelength limit) - what the scalar actually gives you**
 
 There are two clean limits that connect to fluid language:
 
@@ -98,7 +98,7 @@ There are two clean limits that connect to fluid language:
 
 ---
 
-### 5) **Causal FRW macro‑sourcing (Voxtrium) — conservation & smallness**
+### 5) **Causal FRW macro‑sourcing (Voxtrium) - conservation & smallness**
 
 Your continuity equations with a **transfer current** $J^\nu$ enforce covariant conservation and split sourcing among $\Lambda$, DM, GW, horizon sectors, with **retarded** horizon‑entropy kernels to ensure locality:
 
@@ -120,7 +120,7 @@ Your consolidated “single derivation” ties 1-5 together (discrete→bounded 
 
 ## B) Physics → Code (production‑ready stubs & tests)
 
-> **Design intent:** keep the *void‑faithful* PDE core and layer diagnostics; no learned heuristics steering control—only **measured** memory and **derived** dynamics.
+> **Design intent:** keep the *void‑faithful* PDE core and layer diagnostics; no learned heuristics steering control-only **measured** memory and **derived** dynamics.
 
 ### 1) Scalar EFT core (2nd‑order PDE, CFL‑safe)
 
@@ -243,7 +243,7 @@ Those acceptance criteria are exactly those you set in the appendix.&#x20;
 
 ---
 
-### 4) Memory steering (slow field) — keep as diagnostics & control, not ML
+### 4) Memory steering (slow field) - keep as diagnostics & control, not ML
 
 ```python
 # intelligence/memory_steering.py
@@ -259,7 +259,7 @@ def transition_probs(i, neighbors, m, theta):
     return p
 ```
 
-* **What to test:** (i) **junction logistic** collapse $P=\sigma(\Theta\Delta m)$ with slope $k\approx 1$; (ii) **curvature scaling** $\kappa_{\rm path}\propto \Theta|\nabla m|$ with signed invariance. These are physics diagnostics—not training losses.&#x20;
+* **What to test:** (i) **junction logistic** collapse $P=\sigma(\Theta\Delta m)$ with slope $k\approx 1$; (ii) **curvature scaling** $\kappa_{\rm path}\propto \Theta|\nabla m|$ with signed invariance. These are physics diagnostics-not training losses.&#x20;
 
 ---
 
@@ -288,8 +288,8 @@ def transition_probs(i, neighbors, m, theta):
 ## What this buys you (no sugar‑coating)
 
 * The **core kinetics are settled** (Z‑const, $c^2$ fixed), and the **IR window is explicit** (EFT bounds).
-* The UV is **not Hamiltonian**; it’s **dissipative with a Lyapunov**—that’s fine and explains why the IR EFT is the correct conservative envelope.&#x20;
-* **Tubes/filaments** are no longer a visualization—they’re a **well‑posed eigenproblem** with condensation and a checkable energy minimum.&#x20;
+* The UV is **not Hamiltonian**; it’s **dissipative with a Lyapunov**-that’s fine and explains why the IR EFT is the correct conservative envelope.&#x20;
+* **Tubes/filaments** are no longer a visualization-they’re a **well‑posed eigenproblem** with condensation and a checkable energy minimum.&#x20;
 * **Cosmo closure** is conservative and **causal**, with units wired and drift smallness enforceable at runtime.
 * The “**intelligence**” layer is now a **physics steering** law with measured memory; the logistic and curvature collapses are **acceptance tests** for the whole stack.&#x20;
 

@@ -1,4 +1,4 @@
-Short answer: **mostly yes**—your Step 1 approach aligns with the derivations in your corpus. There are a few **surgical fixes** you should make so the spine is airtight and notation‑clean.
+Short answer: **mostly yes**-your Step 1 approach aligns with the derivations in your corpus. There are a few **surgical fixes** you should make so the spine is airtight and notation‑clean.
 
 ---
 
@@ -122,6 +122,6 @@ Your hand fix (switching from complex $e^{ika}$ algebra to the **real** stencil 
 
 ## Verdict
 
-**Yes—your Step 1 method and conclusions align once you make the sign/notation fixes above.** After that, your Step 2 on‑site invariant, Step 3 finite‑tube pipeline, and Step 4 FRW sourcing all sit consistently on the locked kinetic spine and units map you’ve already established.    &#x20;
+**Yes-your Step 1 method and conclusions align once you make the sign/notation fixes above.** After that, your Step 2 on‑site invariant, Step 3 finite‑tube pipeline, and Step 4 FRW sourcing all sit consistently on the locked kinetic spine and units map you’ve already established.    &#x20;
 
 If you want, I can hand you a compact **“Appendix: lattice→EFT $p^4$ matching”** block that derives the $A,B$ values in three lines and a tiny least‑squares recipe to extract $Z,A,B$ from your two‑point data.

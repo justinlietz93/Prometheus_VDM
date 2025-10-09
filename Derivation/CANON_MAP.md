@@ -1,9 +1,9 @@
 <!-- DOC-GUARD: CANONICAL -->
 # VDM Canonical Registry Map
 
-Last updated: 2025-10-09 (commit d305c2b)
+Last updated: 2025-10-09 (commit f1e74a5)
 
-Got it—keep files separate. Here’s a **no-merge, no-duplication** scheme that protects boundaries while staying easy for agents to follow.
+Got it-keep files separate. Here’s a **no-merge, no-duplication** scheme that protects boundaries while staying easy for agents to follow.
 
 ## Canon map (single owner per concern)
 
@@ -50,7 +50,7 @@ Add explicit HTML anchors so links don’t break if titles change.
 In `EQUATIONS.md`:
 
 ```markdown
-### VDM-E-012 — KPP normalized front speed
+### VDM-E-012 - KPP normalized front speed
 <a id="vdm-e-012"></a>
 $$ c^* = \frac{c}{2\sqrt{Dr}} $$
 ```
@@ -58,7 +58,7 @@ $$ c^* = \frac{c}{2\sqrt{Dr}} $$
 In `SYMBOLS.md`:
 
 ```markdown
-#### $\phi_c$ — channel field
+#### $\phi_c$ - channel field
 <a id="sym-phi_c"></a>
 ```
 
@@ -74,8 +74,8 @@ Use guard rails to keep tools from overwriting curated prose.
 
 ```markdown
 <!-- BEGIN AUTOSECTION: EQUATION-INDEX -->
-- [VDM-E-012](#vdm-e-012) — KPP normalized front speed
-- [VDM-E-013](#vdm-e-013) — Logistic first integral
+- [VDM-E-012](#vdm-e-012) - KPP normalized front speed
+- [VDM-E-013](#vdm-e-013) - Logistic first integral
 <!-- END AUTOSECTION: EQUATION-INDEX -->
 ```
 
@@ -90,4 +90,4 @@ Agents may update only inside `AUTOSECTION` fences; your hand-written sections s
 - Preserve HTML anchors exactly; if moved, update links, not content.
 ```
 
-This keeps concerns clean, prevents clueless overwrites, and avoids the maintenance tax of merging—without giving up rigor or cross-links.
+This keeps concerns clean, prevents clueless overwrites, and avoids the maintenance tax of merging-without giving up rigor or cross-links.

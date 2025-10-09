@@ -358,7 +358,7 @@ This document delineates the critical developmental landmarks for the Fully Unif
 **Progress Toward ASI:** 85-100%
 
 **Justification:**
-*   **Code Built (Foundational):** Foundational. Achieving this final landmark is contingent upon the successful implementation, testing, and integration of all capabilities developed in the preceding stages. The current codebase provides the essential architectural pillars—the Substrate, the SIE, VGSP, and the EHTP—but the advanced reasoning, self-optimization, and autonomous control loops required for superintelligence are the next major frontiers of development.
+*   **Code Built (Foundational):** Foundational. Achieving this final landmark is contingent upon the successful implementation, testing, and integration of all capabilities developed in the preceding stages. The current codebase provides the essential architectural pillars-the Substrate, the SIE, VGSP, and the EHTP-but the advanced reasoning, self-optimization, and autonomous control loops required for superintelligence are the next major frontiers of development.
 
 **Core Capabilities:**
 *   Continuous learning from multimodal inputs without external prompting.

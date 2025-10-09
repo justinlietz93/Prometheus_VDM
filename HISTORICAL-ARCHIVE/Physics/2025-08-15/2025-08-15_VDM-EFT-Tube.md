@@ -1,4 +1,4 @@
-Absolutely—let’s keep pushing this to closure, with *physics‑first* derivations and code you can drop straight into `Prometheus_FUVDM/fum_rt`. I’ve bundled a single derivation document and minimal, faithful modules that implement the **bounded scalar EFT**, the **finite‑tube spectrum**, and **memory steering** exactly as derived—no ML tricks.
+Absolutely-let’s keep pushing this to closure, with *physics‑first* derivations and code you can drop straight into `Prometheus_FUVDM/fum_rt`. I’ve bundled a single derivation document and minimal, faithful modules that implement the **bounded scalar EFT**, the **finite‑tube spectrum**, and **memory steering** exactly as derived-no ML tricks.
 
 **Downloads (ready now):**
 
@@ -26,7 +26,7 @@ and an **action‑level** continuum limit with canonical kinetic normalization $
 **Code.**
 
 * `eft_units.py` maps $(\alpha,\beta,\phi_0,\tau,a,J)\to(m^2,g_3,c^2)$ so your runtime never drifts from the derived scales.
-* Add a **diagnostic** that logs $Q_{\rm FUM}$ per site (or per cell) to catch integration or stability issues—any secular drift is a bug, not physics. (Invariant defined in the doc above; implementation is trivial one‑liner.)
+* Add a **diagnostic** that logs $Q_{\rm FUM}$ per site (or per cell) to catch integration or stability issues-any secular drift is a bug, not physics. (Invariant defined in the doc above; implementation is trivial one‑liner.)
 
 ---
 
@@ -85,7 +85,7 @@ with $p_\Lambda+p_{\rm DM}+p_{\rm GW}=1$ and a **retarded kernel** for $\dot S_{
 
 ### 5) What’s weak/open (and what I did to close it)
 
-* **Hidden conservation at the full network level.** The exact $Q_{\rm FUM}$ is on‑site. A *flux‑form* law for the full graph is still open (you tried a standard Hamiltonian and proved it isn’t the conserved quantity—useful negative result). Keep the invariant as a guardrail while we search for the symmetry or Lyapunov function.&#x20;
+* **Hidden conservation at the full network level.** The exact $Q_{\rm FUM}$ is on‑site. A *flux‑form* law for the full graph is still open (you tried a standard Hamiltonian and proved it isn’t the conserved quantity-useful negative result). Keep the invariant as a guardrail while we search for the symmetry or Lyapunov function.&#x20;
 * **Tube minimum $E(R)$.** I provided the solver skeleton and acceptance tests; execute the $R$ scan and record $R_\ast$ vs $(\mu,\lambda)$. This is the last “hard number” missing to lock the tube picture against Bordag’s qualitative curve. &#x20;
 * **RG for $(\lambda,\gamma)$.** Not needed for your current band/steering results; include later once the tube minimum is scanned.
 * **φ ↔ Voxtrium $z$-inputs.** Use $R_\ast\sim k_R/m_{\rm eff}$ (scalar‑sector) and let your $z_1$ depend on the φ‑gradient proxy $\Xi=|\nabla\phi|/(m_{\rm eff}\phi_0)$ until we have a stronger micro-macro lock.&#x20;
@@ -135,7 +135,7 @@ with $p_\Lambda+p_{\rm DM}+p_{\rm GW}=1$ and a **retarded kernel** for $\dot S_{
 
 * **Correct dynamics gives better exploration:** Steering is a *bias on propagation geometry* (through $n=\exp(\eta M)$), not a learned policy. It lowers expected path length to high‑utility states and explains your logistic junction behavior and curvature trends analytically; the runtime reproduces these with zero data‑driven training.&#x20;
 * **Stable, causal field layer:** The EFT with $c^2=2Ja^2$ and bounded $V(\phi)$ prevents spurious runaways; any “intelligence” you observe is then attributable to **structure in the equations**, not artifacts. &#x20;
-* **Compositional structure (tubes/filaments):** The finite‑tube spectrum gives you **countable, interacting modes** you can excite/attenuate—an engineering handle on “structured memory” that is still 100% physics. &#x20;
+* **Compositional structure (tubes/filaments):** The finite‑tube spectrum gives you **countable, interacting modes** you can excite/attenuate-an engineering handle on “structured memory” that is still 100% physics. &#x20;
 
 ---
 
@@ -170,4 +170,4 @@ with $p_\Lambda+p_{\rm DM}+p_{\rm GW}=1$ and a **retarded kernel** for $\dot S_{
 
 ---
 
-If you want, I can also draft the tiny diff blocks to insert the feature flag and diagnostics in your `fum_rt` entry point—but with the three modules above and the invariant expression, you have everything needed to *implement the physics faithfully* and measure improvement immediately.
+If you want, I can also draft the tiny diff blocks to insert the feature flag and diagnostics in your `fum_rt` entry point-but with the three modules above and the invariant expression, you have everything needed to *implement the physics faithfully* and measure improvement immediately.

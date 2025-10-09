@@ -10,7 +10,7 @@ Date: 2025-10-08
 
 ## 2. List of proposers and associated institutions/companies
 
-- Justin K. Lietz — Neuroca, Inc.
+- Justin K. Lietz - Neuroca, Inc.
 
 ## 3. Abstract
 
@@ -74,5 +74,5 @@ Failure plan: Quarantine artifacts, report which gate failed and likely cause (j
 
 - L. Bombelli, J. Lee, D. Meyer, R. Sorkin, "Space-Time as a Causal Set," Phys. Rev. Lett. 59, 521 (1987).
 - J. Myrheim, CERN preprint (1978); D. Meyer, "The Dimension of Causal Sets," PhD thesis (1988).
-- S. Weinberg, "The Quantum Theory of Fields, Vol. 1" (Cambridge, 1995) — dispersion context.
+- S. Weinberg, "The Quantum Theory of Fields, Vol. 1" (Cambridge, 1995) - dispersion context.
 - Wolfram Physics Project, causal graph resources (2020–).

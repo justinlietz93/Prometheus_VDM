@@ -1,4 +1,4 @@
-Justin — below is a compact, *physics → code → tests* continuation that closes the next set of gaps you flagged (hydrodynamic limit, dissipation bookkeeping, and the protein‑folding/functional dynamics analogy), and makes the upgrades explicit for your `fum_rt` runtime. I keep it first‑principles and tie every statement back to your derivations; where Bordag’s vortex analysis is used, I credit Voxtrium/Bordag.
+Justin - below is a compact, *physics → code → tests* continuation that closes the next set of gaps you flagged (hydrodynamic limit, dissipation bookkeeping, and the protein‑folding/functional dynamics analogy), and makes the upgrades explicit for your `fum_rt` runtime. I keep it first‑principles and tie every statement back to your derivations; where Bordag’s vortex analysis is used, I credit Voxtrium/Bordag.
 
 ---
 
@@ -61,7 +61,7 @@ Where `quantum_pressure` is the standard discrete Laplacian on $\sqrt{\rho}$. Ti
 
 ---
 
-## 2) Dissipation is a feature — make it an accounting identity
+## 2) Dissipation is a feature - make it an accounting identity
 
 Your discrete analysis already shows the on‑site potential $V(W)$ is a **Lyapunov** function: $dV/dt=-F(W)^2\le0$ for $F(W)=(\alpha-\beta)W-\alpha W^2$. That proves the microdynamics are *dissipative* (not Hamiltonian). Use it.&#x20;
 
@@ -146,14 +146,14 @@ Stop when $\max_k\|\Delta p_k\|$ falls below tolerance → a folded, memory‑fu
 
 ### 4.1 Minimal PR outline (atomic commits)
 
-1. **`physics/units.py`** — centralize $(\phi_0,\tau,a)$, expose $c^2=2Ja^2$.&#x20;
-2. **`physics/memory.py`** — implement $\partial_t M=\gamma R-\delta M+\kappa\nabla^2M$ on the graph and the *softmax steering* that reproduces your junction sigmoid exactly:
+1. **`physics/units.py`** - centralize $(\phi_0,\tau,a)$, expose $c^2=2Ja^2$.&#x20;
+2. **`physics/memory.py`** - implement $\partial_t M=\gamma R-\delta M+\kappa\nabla^2M$ on the graph and the *softmax steering* that reproduces your junction sigmoid exactly:
    $P(i\!\to\!j)=\exp(\Theta m_j)/\sum_{k\in N(i)}\exp(\Theta m_k)$. (Your logistic collapse follows.)&#x20;
-3. **`physics/superfluid.py`** — complex scalar hydrodynamics as in §1.1; optional viscous term $\nu(M)\nabla^2\mathbf u$.&#x20;
-4. **`physics/folding.py`** — elastic‑curve descent for tube shapes (§3.1).&#x20;
-5. **`physics/tubes.py`** — Bordag‑style radial solver + condensate Hessian checker, using your secular equation (count unstable modes vs. $R$, then show all post‑condensation eigenvalues $\ge 0$). (Credit Voxtrium/Bordag.)
-6. **`physics/ledger.py`** — dissipation accounting and (optional) retarded‑kernel aggregator to Voxtrium $J^\nu$.
-7. **`core/diagnostics.py`** — report dimensionless groups $(\Theta,D_a,\Lambda,\Gamma)$, stability band plots (retention vs. $\Lambda$, fidelity vs. $\Gamma$) to match your figures.&#x20;
+3. **`physics/superfluid.py`** - complex scalar hydrodynamics as in §1.1; optional viscous term $\nu(M)\nabla^2\mathbf u$.&#x20;
+4. **`physics/folding.py`** - elastic‑curve descent for tube shapes (§3.1).&#x20;
+5. **`physics/tubes.py`** - Bordag‑style radial solver + condensate Hessian checker, using your secular equation (count unstable modes vs. $R$, then show all post‑condensation eigenvalues $\ge 0$). (Credit Voxtrium/Bordag.)
+6. **`physics/ledger.py`** - dissipation accounting and (optional) retarded‑kernel aggregator to Voxtrium $J^\nu$.
+7. **`core/diagnostics.py`** - report dimensionless groups $(\Theta,D_a,\Lambda,\Gamma)$, stability band plots (retention vs. $\Lambda$, fidelity vs. $\Gamma$) to match your figures.&#x20;
 
 ### 4.2 Integration points
 
@@ -167,7 +167,7 @@ Stop when $\max_k\|\Delta p_k\|$ falls below tolerance → a folded, memory‑fu
 
 * **Correct inductive bias.** Routing and structure formation now follow from an action and two PDEs, not heuristics. This massively cuts the search space and makes behavior predictable (better sample efficiency in any planning/optimization that rides on the runtime).
 * **Generalization by scale collapse.** Everything relevant is in $\Theta, D_a, \Lambda, \Gamma$. Your figures already show collapses/logistic fits and a stability band that are *size‑free*; the code will inherit that.&#x20;
-* **Mechanistic function.** Folding gives *functional* structures (channels, junctions) that bias flows — the same reason proteins work. Here it’s tubes biasing void flows. That is a principled way to get emergent competence without any “ML tricks”.
+* **Mechanistic function.** Folding gives *functional* structures (channels, junctions) that bias flows - the same reason proteins work. Here it’s tubes biasing void flows. That is a principled way to get emergent competence without any “ML tricks”.
 
 **Caveats (straight talk).**
 
@@ -179,7 +179,7 @@ Stop when $\max_k\|\Delta p_k\|$ falls below tolerance → a folded, memory‑fu
 ## 6) Proof checkpoints you can close this week
 
 1. **Hydro derivation notebook.** Show amplitude-phase variation → continuity + Euler with $c$ matching $2Ja^2$. (One page.)&#x20;
-2. **Junction law from softmax.** For a 2‑branch node: $P(A)=\sigma(\Theta\Delta m)$ — literally two lines. (Already reflected by your figure.)&#x20;
+2. **Junction law from softmax.** For a 2‑branch node: $P(A)=\sigma(\Theta\Delta m)$ - literally two lines. (Already reflected by your figure.)&#x20;
 3. **Curvature law.** From Fermat with $n=e^{\eta M}$: $\kappa=\eta|\nabla_\perp M|$. (One paragraph derivation; matches your plot.)&#x20;
 4. **Tube solver sanity.** Solve the Bessel secular eqn., count $N_{\rm tach}(R)$, condense, and confirm a non‑negative Hessian eigen‑spectrum (Bordag parity). (Credit Voxtrium/Bordag.)
 5. **Dissipation ledger → retarded source.** Show units flow into $J^0$ with the kernel’s Θ‑support (one‑cell experiment).
@@ -195,6 +195,6 @@ Stop when $\max_k\|\Delta p_k\|$ falls below tolerance → a folded, memory‑fu
 
 ### Bottom line
 
-Yes — this is feasible and worth doing. Make the smallest physics‑faithful extension (complex scalar), wire in the proven memory steering, keep a strict dissipation ledger, and let tubes *fold* by minimizing a free energy tied to $M$. That locks your runtime to the parts of the theory that are already strong and falsifiable, and it will make the system sharper, more predictable, and more *efficiently intelligent* — without touching any “ML crap.”
+Yes - this is feasible and worth doing. Make the smallest physics‑faithful extension (complex scalar), wire in the proven memory steering, keep a strict dissipation ledger, and let tubes *fold* by minimizing a free energy tied to $M$. That locks your runtime to the parts of the theory that are already strong and falsifiable, and it will make the system sharper, more predictable, and more *efficiently intelligent* - without touching any “ML crap.”
 
 If you want, I’ll draft the exact function signatures and a test harness for (i) junction logistic, (ii) curvature scaling, and (iii) tube folding energy drop, all under the same dimensionless knobs so you can merge in small PRs.

@@ -238,7 +238,7 @@ Adopt comprehensive, automated testing pyramid: Heavy unit tests (fast, isolated
 Integration in CI/CD: Run on every commit; fail-fast. Flaky test quarantine.
 
 ### Validation Domains & Best Combination
-Validation ensures correctness across layers. Best combo: Layered defense—client-side (immediate feedback), server-side (authoritative), DB-level (integrity). Combine preventive (static types, schemas) with runtime checks. Use fail-early principle.
+Validation ensures correctness across layers. Best combo: Layered defense-client-side (immediate feedback), server-side (authoritative), DB-level (integrity). Combine preventive (static types, schemas) with runtime checks. Use fail-early principle.
 
 | Domain          | Description & Strategies                          | Best Practices & Combo Integration |
 |-----------------|---------------------------------------------------|------------------------------------|
@@ -249,5 +249,5 @@ Validation ensures correctness across layers. Best combo: Layered defense—clie
 | Security Validation | Auth, encryption, access controls. | Token expiry checks; role validations. Combo: Pen tests + Runtime monitoring; integrate with logging. |
 | Performance Validation | Resource usage, scalability thresholds. | Metrics assertions (e.g., <100ms response). Combo: With chaos; continuous profiling in prod. |
 
-Overall Strategy: Orthogonal validation—cross-cut domains via aspects (e.g., AOP for logging validations). Automate 90%; manual for exploratory. Measure effectiveness via defect escape rate.
+Overall Strategy: Orthogonal validation-cross-cut domains via aspects (e.g., AOP for logging validations). Automate 90%; manual for exploratory. Measure effectiveness via defect escape rate.
 

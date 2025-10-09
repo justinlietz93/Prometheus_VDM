@@ -1,16 +1,16 @@
-# VDM — Canon Progress (Regimes • Fields • Domains)
+# VDM - Canon Progress (Regimes • Fields • Domains)
 
 Status tags: **[DISPROVEN] [PLAUSIBLE] [PLAUSIBLE→PROVEN] [PROVEN]**
 Rule: A row is **PROVEN** only if there’s a runner + CSV/JSON + figure path.
-Last updated: 2025-10-09 (commit d305c2b)
+Last updated: 2025-10-09 (commit f1e74a5)
 
 ---
 
 ## Status highlights
 
-- On-site logistic ODE: ($Q$) conservation — [PROVEN] (proof + validator).
-- With diffusion/coupling: site-wise conservation of ($Q$) — [DISPROVEN]; ($Q$) as diagnostic — [PROVEN].
-- RD causal cone — [DISPROVEN] as a claim in the parabolic model; RD validations remain [PROVEN] for front speed/dispersion.
+- On-site logistic ODE: ($Q$) conservation - [PROVEN] (proof + validator).
+- With diffusion/coupling: site-wise conservation of ($Q$) - [DISPROVEN]; ($Q$) as diagnostic - [PROVEN].
+- RD causal cone - [DISPROVEN] as a claim in the parabolic model; RD validations remain [PROVEN] for front speed/dispersion.
 
 ## A) Core Regimes (J-only / M-only / J+M)
 

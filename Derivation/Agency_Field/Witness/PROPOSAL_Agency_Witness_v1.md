@@ -2,11 +2,11 @@
 
 ## 1) Title & date
 
-**Agency Witness (Swap-Test) for Nonlocal, Predictive Control** — 2025-10-09
+**Agency Witness (Swap-Test) for Nonlocal, Predictive Control** - 2025-10-09
 
 ## 2) Proposers
 
-Justin K. Lietz — VDM Project
+Justin K. Lietz - VDM Project
 
 ## 3) Abstract
 
@@ -131,11 +131,11 @@ Any failed gate emits `CONTRADICTION_REPORT__{tag}.json` with per-seed $W(r)$ hi
 
 **Code layout**
 
-* `Derivation/code/physics/agency/witness/run_agency_witness.py` — CLI runner (`--spec path.json`).
-* `Derivation/code/physics/agency/witness/swap_ops.py` — Fourier phase-scramble + far-field mask + local-match checks.
+* `Derivation/code/physics/agency/witness/run_agency_witness.py` - CLI runner (`--spec path.json`).
+* `Derivation/code/physics/agency/witness/swap_ops.py` - Fourier phase-scramble + far-field mask + local-match checks.
 * Shared I/O & bootstrap from `Derivation/code/common/`.
 
-**StepSpec (example)** — `Derivation/specs/agency/agency_witness.v1b.json`
+**StepSpec (example)** - `Derivation/specs/agency/agency_witness.v1b.json`
 
 ```json
 {

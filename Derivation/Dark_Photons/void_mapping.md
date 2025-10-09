@@ -1,14 +1,14 @@
-Love the ambition. Let’s translate your **Void Dynamics** idea into a clean, physics-compatible shape you can use, discuss, and test—without killing the magic.
+Love the ambition. Let’s translate your **Void Dynamics** idea into a clean, physics-compatible shape you can use, discuss, and test-without killing the magic.
 
 # Void Dynamics → a mainstream-ready scaffold
 
 ## Core narrative (plain words)
 
-* **There’s a second field**—call it the **void field**—mostly decoupled from us.
+* **There’s a second field**-call it the **void field**-mostly decoupled from us.
 * **When it “evaporates” into our world**, energy flows from the void sector to the visible sector.
 * **Crossing over gives it mass and loses its “impossible” traits.** In physics language: an unstable/strange phase **relaxes** into a stable phase with **ordinary particles** and **ordinary uncertainty** (not zero uncertainty, but **effective classicality** due to interactions).
 
-Think: **supersaturated vapor condenses** on contact with a cold window—mist (weird, diffuse) becomes droplets (normal, countable).
+Think: **supersaturated vapor condenses** on contact with a cold window-mist (weird, diffuse) becomes droplets (normal, countable).
 
 ---
 
@@ -19,7 +19,7 @@ Think: **supersaturated vapor condenses** on contact with a cold window—mist (
 | “Another field beyond the physical realm”                  | **Hidden/“dark” sector field** (scalar, vector, or more) living in the same spacetime but with very weak couplings to us                                             | A second guitar string on the same bridge              |
 | “Evaporate into our universe”                              | **Energy transfer / particle production** via tiny **portal couplings** (mixing) or **phase transition** (vacuum decay / reheating-like)                             | Fog condensing into droplets                           |
 | “Gains attributes like mass”                               | **Mass generation** via (a) coupling to our Higgs (**Higgs portal**), (b) its own dark Higgs, (c) environment-induced mass (chameleon/symmetron), or (d) confinement | A loose membrane stiffens when it touches a frame      |
-| “Stripped of paradoxical impossibilities like uncertainty” | **Uncertainty isn’t removed**; instead, interaction with our sector causes **decoherence**, making behavior **effectively classical** for macroscopic pieces         | A camera coming into focus—same photons, clearer image |
+| “Stripped of paradoxical impossibilities like uncertainty” | **Uncertainty isn’t removed**; instead, interaction with our sector causes **decoherence**, making behavior **effectively classical** for macroscopic pieces         | A camera coming into focus-same photons, clearer image |
 
 > Key discipline move: replace “breaks the laws” with **“breaks a symmetry / changes phase / transfers energy through a portal.”** That’s how you stay physical without dulling the idea.
 
@@ -79,11 +79,11 @@ Think: **supersaturated vapor condenses** on contact with a cold window—mist (
 K7-L1_Quantum-&-Quanta/
   P3-L2_Fields-&-Portals/
     C2-L3_Void-Field-and-Portals/
-      O1-L4_Evaporation-as_Phase-Change   — false→true vacuum; bubble nucleation
-      O2-L4_Evaporation-as_Portal-Transfer — kinetic/Higgs/axion/neutrino portals
-      O3-L4_Mass-Genesis                  — dark Higgs / Higgs portal / chameleon
-      O4-L4_Decoherence-&-Emergence       — “uncertainty thinning” as environmental records
-      O5-L4_Observable-Signatures         — visible, invisible, long-lived; fifth forces; astro/cosmo
+      O1-L4_Evaporation-as_Phase-Change   - false→true vacuum; bubble nucleation
+      O2-L4_Evaporation-as_Portal-Transfer - kinetic/Higgs/axion/neutrino portals
+      O3-L4_Mass-Genesis                  - dark Higgs / Higgs portal / chameleon
+      O4-L4_Decoherence-&-Emergence       - “uncertainty thinning” as environmental records
+      O5-L4_Observable-Signatures         - visible, invisible, long-lived; fifth forces; astro/cosmo
         F1-L5_Dark-Photon_Portal
         F2-L5_Higgs_Portal_Scalar
         F3-L5_Axionlike_Portal
@@ -102,7 +102,7 @@ Each leaf gets your one-minute explainer: **what moves, what restores, what resi
 
 ## A 60-90s demo script you can use now
 
-“Imagine a **second field**—a fog that rarely touches ours. When it **leaks** through a tiny portal, the fog **condenses** into ordinary particles and **picks up mass** because the symmetry that kept it diffuse no longer holds. The ‘mystery’ behavior—like being everywhere and nowhere—**collapses into classical-looking stuff** once it interacts (that’s **decoherence**, not law-breaking). We look for the leaks as **rare decays, missing energy, or long-lived tracks**, while cosmology and stars limit how leaky it can be.”
+“Imagine a **second field**-a fog that rarely touches ours. When it **leaks** through a tiny portal, the fog **condenses** into ordinary particles and **picks up mass** because the symmetry that kept it diffuse no longer holds. The ‘mystery’ behavior-like being everywhere and nowhere-**collapses into classical-looking stuff** once it interacts (that’s **decoherence**, not law-breaking). We look for the leaks as **rare decays, missing energy, or long-lived tracks**, while cosmology and stars limit how leaky it can be.”
 
 ---
 
@@ -113,7 +113,7 @@ Short answer: **yes.** Your Void Dynamics stack already has the bones of a dark-
 
 Here’s the tight mapping:
 
-* **Energy exchange scaffold.** You already move energy between sectors with a conserved **transfer current** (J^\nu) in FRW and split it among channels—DM, Λ, GW—via **partitions on a simplex**. That’s exactly the structure a portal (like a dark photon) needs for visible vs invisible branching and budget tracking.   
+* **Energy exchange scaffold.** You already move energy between sectors with a conserved **transfer current** (J^\nu) in FRW and split it among channels-DM, Λ, GW-via **partitions on a simplex**. That’s exactly the structure a portal (like a dark photon) needs for visible vs invisible branching and budget tracking.   
 
 * **“Small late-time leak” discipline.** Your own constraints require tiny late-time injection (small (\epsilon_{\rm DE}), small (f_{\rm inj})), which is the physical regime of **feeble mixing** portals. You even note that once (\phi) settles and gradients are small, those small-source constraints follow. 
 
@@ -131,11 +131,11 @@ If you want attention with minimal thrash, lean into two VDM-native threads:
 
 2. **Astro “leak & return” windows:** use your **retarded-kernel** sourcing to model production in supernova/compact-object environments with **feeble mixing**, keeping today’s injection tiny while predicting narrow signals (visible bumps, missing-energy, or displaced). 
 
-Bottom line: your framework isn’t just compatible—it’s **pre-wired** for a dark-photon portal story. If you’d like, I’ll add a quiet drop-in: a “Dark Photon (A′) - Portal Cards + Limits” skeleton using your indices and acceptance gates so you can start generating artifacts immediately.
+Bottom line: your framework isn’t just compatible-it’s **pre-wired** for a dark-photon portal story. If you’d like, I’ll add a quiet drop-in: a “Dark Photon (A′) - Portal Cards + Limits” skeleton using your indices and acceptance gates so you can start generating artifacts immediately.
 
 
 Medical References:
-1. None — DOI: file-EApnwi7gx88S8dYeQPqLxz
-2. None — DOI: file-5PnhR6mJyvGtSDTR7YAjiN
-3. None — DOI: file-QMccWK9NSqyzBZg38CuQvu
-4. None — DOI: file-7xbBUra6YYN11uLs5LaVaK
+1. None - DOI: file-EApnwi7gx88S8dYeQPqLxz
+2. None - DOI: file-5PnhR6mJyvGtSDTR7YAjiN
+3. None - DOI: file-QMccWK9NSqyzBZg38CuQvu
+4. None - DOI: file-7xbBUra6YYN11uLs5LaVaK

@@ -9,7 +9,7 @@ This document presents a comparative analysis with Bordag (Universe 2024, “Tac
   The potential $V(\phi)=\tfrac{\alpha}{3}\phi^3-\tfrac{\alpha-\beta}{2}\phi^2$ and the corresponding vacuum analysis are explicit【turn3file11】; Bordag’s tree‑level effective potential and minimization procedure are spelled out via the $L^\wedge_0,L^\wedge_1,L^\wedge_2$ expansion and mass matrix $m^2_{ll'}$【turn4file10】【turn3file16】.
 
 * **EFT mindset.**
-  The EFT note lays out the appropriate checklist: derive $V(\phi)$, establish $Z(\phi)$, and bound higher‑derivative operators【turn3file0】. The paper’s workflow—write an effective 2D Lagrangian, parameterize fields $\psi_l=\tfrac1{\sqrt2}\phi_l e^{i\Theta_l}$, expand about constant backgrounds, read off masses—mirrors that approach【turn3file19】.
+  The EFT note lays out the appropriate checklist: derive $V(\phi)$, establish $Z(\phi)$, and bound higher‑derivative operators【turn3file0】. The paper’s workflow-write an effective 2D Lagrangian, parameterize fields $\psi_l=\tfrac1{\sqrt2}\phi_l e^{i\Theta_l}$, expand about constant backgrounds, read off masses-mirrors that approach【turn3file19】.
 
 # Differences and implications
 
@@ -147,7 +147,7 @@ $$
 $$
 
 * If you keep the per‑site $J$ (both $\pm\mu$ counted in $N(i)$), it’s equivalent to
-  $\mathcal{L}=\tfrac12(\partial_t\phi)^2 - J a^2(\nabla\phi)^2 - V(\phi)$ and the **EOM** carries $c^2=2Ja^2$. Both conventions are fine; just be consistent about whether $\kappa$ is per edge or per oriented difference. the current draft used this per‑site convention and landed on $J a^2(\nabla\phi)^2$; the only fix is to **not** force $J a^2=\tfrac12$**—just read off $c^2=2J a^2$**.&#x20;
+  $\mathcal{L}=\tfrac12(\partial_t\phi)^2 - J a^2(\nabla\phi)^2 - V(\phi)$ and the **EOM** carries $c^2=2Ja^2$. Both conventions are fine; just be consistent about whether $\kappa$ is per edge or per oriented difference. the current draft used this per‑site convention and landed on $J a^2(\nabla\phi)^2$; the only fix is to **not** force $J a^2=\tfrac12$**-just read off $c^2=2J a^2$**.&#x20;
 
 **Consistency check (Dirichlet energy mapping).**
 From the interaction energy $\frac12\sum_{j\in N(i)}J(W_j-W_i)^2$ on a cubic lattice, the per‑site continuum limit is

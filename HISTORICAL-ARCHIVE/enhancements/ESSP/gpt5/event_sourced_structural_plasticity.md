@@ -10,7 +10,7 @@
 
 ## 1. Objective
 
-This document specifies the design and implementation of a comprehensive, biologically-plausible structural plasticity framework for the runtime connectome. The primary architectural mandate is to achieve all structural modifications—including synapse formation, pruning, strengthening, decay, and neuron culling—through a strictly sparse, event-driven, and computationally budgeted model. All operations must be local, territory-scoped, and sub-quadratic in complexity, explicitly prohibiting dense matrix scans or global polling mechanisms.
+This document specifies the design and implementation of a comprehensive, biologically-plausible structural plasticity framework for the runtime connectome. The primary architectural mandate is to achieve all structural modifications-including synapse formation, pruning, strengthening, decay, and neuron culling-through a strictly sparse, event-driven, and computationally budgeted model. All operations must be local, territory-scoped, and sub-quadratic in complexity, explicitly prohibiting dense matrix scans or global polling mechanisms.
 
 The target implementation will support heterogeneous neuron classes, each with distinct connectivity targets and plasticity dynamics. The system will be driven by a set of local, autonomous agents ("walkers") that translate physiological and pathological conditions into discrete, actionable events. This specification serves as the definitive guide for the implementing neuro-physicist engineer.
 
@@ -232,7 +232,7 @@ Classification: Runtime-only
 
 **Objective Recap**
 
-* Review your **Event‑Sourced Structural Plasticity** spec and turn it into an implementable, sparse‑only work order with clear gates. No dense scans. Heterogeneous neuron classes. Walker‑tags → bus → scoreboard → actuator—all budgeted.&#x20;
+* Review your **Event‑Sourced Structural Plasticity** spec and turn it into an implementable, sparse‑only work order with clear gates. No dense scans. Heterogeneous neuron classes. Walker‑tags → bus → scoreboard → actuator-all budgeted.&#x20;
 
 ---
 
@@ -353,8 +353,8 @@ class Scoreboard:
         return out
 ```
 
-**Actuator (budgeted prune/grow/bridge/cull) — sparse, CSR‑safe**
-*(pseudocode; you already defined the functions and budgets — wire them exactly this way)*&#x20;
+**Actuator (budgeted prune/grow/bridge/cull) - sparse, CSR‑safe**
+*(pseudocode; you already defined the functions and budgets - wire them exactly this way)*&#x20;
 
 ```python
 def tick_structural(scoreboard, budgets, uf, territory):
@@ -382,12 +382,12 @@ def tick_structural(scoreboard, budgets, uf, territory):
 
 * **Files/paths to create/patch**
 
-  * `fum_rt/core/walkers/tags.py` — Tag dataclass (above) + constants.
-  * `fum_rt/core/structural/scoreboard.py` — decay, quorum, thresholds.
-  * `fum_rt/core/structural/actuator_sparse.py` — `apply_{prune,grow,bridge,cull}` (budgeted; CSR rows only).
-  * `fum_rt/runtime/loop/main.py` — integrate: pull from bus → scoreboard.tick(tags) → tick\_structural(...). Add **hard assert** against dense path unless `FORCE_DENSE=1`.
-  * `fum_rt/core/neuroplasticity/update_kernel.cu|hip` — vectorized $w$ update using per‑neuron $\eta,\lambda$ derived to per‑edge inside the kernel.
-  * (If not present) `fum_rt/core/territory/uf_active.py` — UF over **active** graph only; boundary sampler.
+  * `fum_rt/core/walkers/tags.py` - Tag dataclass (above) + constants.
+  * `fum_rt/core/structural/scoreboard.py` - decay, quorum, thresholds.
+  * `fum_rt/core/structural/actuator_sparse.py` - `apply_{prune,grow,bridge,cull}` (budgeted; CSR rows only).
+  * `fum_rt/runtime/loop/main.py` - integrate: pull from bus → scoreboard.tick(tags) → tick\_structural(...). Add **hard assert** against dense path unless `FORCE_DENSE=1`.
+  * `fum_rt/core/neuroplasticity/update_kernel.cu|hip` - vectorized $w$ update using per‑neuron $\eta,\lambda$ derived to per‑edge inside the kernel.
+  * (If not present) `fum_rt/core/territory/uf_active.py` - UF over **active** graph only; boundary sampler.
 
 * **CLIs (smoke & acceptance)**
 
@@ -428,7 +428,7 @@ def tick_structural(scoreboard, budgets, uf, territory):
 4. Add **quorum** and **class floor** unit tests (cull only on multi‑reason; degrees never below class floors).&#x20;
 5. If green, expand walker set (metabolic, semaphorin) and tune weights; keep budgets tight.&#x20;
 
-**Yes—“like this.”** Your spec has the right shape; the edits above close the last gaps (math for decay/TTL/quorum, repair vs explore split, hard safety rails) and make it PR‑ready without violating the sparse‑only rule.&#x20;
+**Yes-“like this.”** Your spec has the right shape; the edits above close the last gaps (math for decay/TTL/quorum, repair vs explore split, hard safety rails) and make it PR‑ready without violating the sparse‑only rule.&#x20;
 
 
 "Bus backpressure: too many tags → heap. Mitigation: per‑tick compaction by (entity, reason) and TTL decay in the scoreboard."
@@ -469,8 +469,8 @@ Classification: Runtime-only
 
 ### 1) **Bus backpressure vs. per‑tick compaction/TTL**
 
-* **Yes**—the **hierarchical bus** handles *transport‑level* backpressure (topic partitioning, ringbuffers, flow control, drops under pressure).
-* **Still needed**—**scoreboard compaction/TTL** is *semantic* control: it coalesces duplicate tags **by (entity, reason)** and decays votes so the actuator sees *one stable decision per ID*, not a flood.
+* **Yes**-the **hierarchical bus** handles *transport‑level* backpressure (topic partitioning, ringbuffers, flow control, drops under pressure).
+* **Still needed**-**scoreboard compaction/TTL** is *semantic* control: it coalesces duplicate tags **by (entity, reason)** and decays votes so the actuator sees *one stable decision per ID*, not a flood.
 * Why both:
 
   * **Bus:** protects throughput and memory across producers/consumers.
@@ -560,11 +560,11 @@ It’s rare when configs are sane, but these **joint conditions** can spiral:
 
 * **Files/paths**
 
-  * `.../bus/metrics.py` — expose per‑topic `produced, delivered, dropped` counters.
-  * `.../structural/scoreboard.py` — TTL decay, coalesce by (entity, reason), bounded `above_threshold()` APIs.
-  * `.../structural/guards.py` — floors, quorum, cooldown, bridge‑before‑prune switch.
-  * `.../neuroclasses/k_controller.py` — dynamic $k$ target + Δk limiter + $k_{\max}^{\text{cap}}$.
-  * `.../actuator/controller.py` — duty‑cycle controller for `TH_*` using utilization feedback; optional coupling to `sie.void_debt`.
+  * `.../bus/metrics.py` - expose per‑topic `produced, delivered, dropped` counters.
+  * `.../structural/scoreboard.py` - TTL decay, coalesce by (entity, reason), bounded `above_threshold()` APIs.
+  * `.../structural/guards.py` - floors, quorum, cooldown, bridge‑before‑prune switch.
+  * `.../neuroclasses/k_controller.py` - dynamic $k$ target + Δk limiter + $k_{\max}^{\text{cap}}$.
+  * `.../actuator/controller.py` - duty‑cycle controller for `TH_*` using utilization feedback; optional coupling to `sie.void_debt`.
 
 * **CLIs (smoke)**
 
@@ -628,7 +628,7 @@ After inspecting the legacy and current trees you shared, the behaviors diverge 
    The demo didn’t stream thousands of fine‑grained “tags.” It did *work*, not *messages*. So there was nothing to backlog, and you never saw “bus heap” effects. The current runtime has a bounded/overwrite FIFO; it’s safe, but you’ll only see backpressure *because now there is a bus at all*.
 
 3. **No quorum/scoreboard gating.**
-   Legacy logic executed immediately on simple conditions (weight < θ, components >1). The current design intentionally interposes: `walker → tag → bus → scoreboard (EMA/votes) → **budgeted** actuator`. That’s what prevents twitchy edits at scale—but it also means a wiring or gating mistake can produce “nothing happens.”
+   Legacy logic executed immediately on simple conditions (weight < θ, components >1). The current design intentionally interposes: `walker → tag → bus → scoreboard (EMA/votes) → **budgeted** actuator`. That’s what prevents twitchy edits at scale-but it also means a wiring or gating mistake can produce “nothing happens.”
 
 4. **Trigger gating added in the new loop.**
    In the present runtime, the actuator call lives behind emergent gates in `runtime/loop/main.py`: we only run GDSP if **(B1 spike) OR (|TD| ≥ threshold) OR (component\_count > 1)**. If those surfaces never fire (or env vars keep TD high‑threshold), structural plasticity won’t run even when enabled. This is a major reason for “it never gets called.”
@@ -636,7 +636,7 @@ After inspecting the legacy and current trees you shared, the behaviors diverge 
 5. **Different degree semantics.**
    The demo didn’t enforce per‑neuron `k_target` dynamics; your degree distribution mostly came from initial k‑NN + global prune/grow. That sidesteps “high‑k in small territories” and similar O(k²) *local* hazards we now guard against when we allow heterogeneous neuron classes and dynamic k.
 
-Bottom line: the demo’s **dense, synchronous, deterministic** routine papered over many runtime failure modes by *always* doing a little pruning and *always* bridging components right after. Moving to a **sparse, event‑sourced, budgeted** runtime introduces new places to mis‑wire—but it’s the right move for scale and for your “no dense scans, ever” constraint.
+Bottom line: the demo’s **dense, synchronous, deterministic** routine papered over many runtime failure modes by *always* doing a little pruning and *always* bridging components right after. Moving to a **sparse, event‑sourced, budgeted** runtime introduces new places to mis‑wire-but it’s the right move for scale and for your “no dense scans, ever” constraint.
 
 ---
 
@@ -648,13 +648,13 @@ Bottom line: the demo’s **dense, synchronous, deterministic** routine papered 
 2. **Soften the hard gate in the loop (still sparse).**
    In `runtime/loop/main.py`, change the actuator predicate to:
    `if (components>1) or b1_spike or (abs(td) >= GDSP_TD_THRESH) or (step % GDSP_MAX_PERIOD==0): run_gdsp()`
-   Set `GDSP_MAX_PERIOD` small (e.g., 128-256) to guarantee occasional budgeted maintenance even in quiet regimes—no global scans.
+   Set `GDSP_MAX_PERIOD` small (e.g., 128-256) to guarantee occasional budgeted maintenance even in quiet regimes-no global scans.
 
 3. **Bridge like the demo, but locally and budgeted.**
    Keep the demo’s “bundle bridges” idea, but operate only on *boundary nodes* of components discovered by the event‑folded union‑find (already in the runtime). Each call: sample ≤B nodes per component and add ≤P candidate pairs; add ≤`BRIDGE_BUDGET` symmetric edges with the outer‑product free scorer already in the code (node‑local only). This preserves the demo’s “it heals fragmentation” feel while staying sub‑quadratic.
 
 4. **Prune like the demo, but masked.**
-   Use adaptive *local* thresholds (fraction of mean |w| within the touched locus). Apply ≤`PRUNE_BUDGET` weakest edges from loci named by the scoreboard—no row/graph sweeps.
+   Use adaptive *local* thresholds (fraction of mean |w| within the touched locus). Apply ≤`PRUNE_BUDGET` weakest edges from loci named by the scoreboard-no row/graph sweeps.
 
 5. **Wire the scoreboard to real decisions.**
    Ensure tags from walkers (“low\_use”, “C3”, “retract\_branch”, etc.) are actually incrementing decaying votes and crossing `SCORE_THRESH_{PRUNE,GROW,CULL}`. If thresholds are too high, nothing will ever reach the actuator.
@@ -733,7 +733,7 @@ Bottom line: the demo’s **dense, synchronous, deterministic** routine papered 
 
 * **“Tune the weights”:** We are not hand‑tuning; the weights remain self‑tuned by your void‑debt modulation. The only “tuning” here is choosing **budgets and thresholds** for structural edits so the event‑driven pipeline actually applies them.
 
-If you want, I’ll produce the exact diffs for `runtime/loop/main.py` predicate and the telemetry counters in the next message, but the plan above is sufficient to unblock you and keeps us strictly **sparse, event‑sourced, and budgeted**—with the same robust end‑state your demo showed.
+If you want, I’ll produce the exact diffs for `runtime/loop/main.py` predicate and the telemetry counters in the next message, but the plan above is sufficient to unblock you and keeps us strictly **sparse, event‑sourced, and budgeted**-with the same robust end‑state your demo showed.
 
 
 
@@ -751,7 +751,7 @@ Classification: Runtime-only
 
 **Objective Recap**
 
-* Replace static thresholds/limits (budgets, k targets, score cutoffs) with **emergent, self‑tuning rules** that are (i) sparse/event‑sourced, (ii) territory‑local, and (iii) sub‑quadratic—while fixing the “structural plasticity never called” path by wiring the dynamic gates into the walker→bus→scoreboard→actuator pipeline.
+* Replace static thresholds/limits (budgets, k targets, score cutoffs) with **emergent, self‑tuning rules** that are (i) sparse/event‑sourced, (ii) territory‑local, and (iii) sub‑quadratic-while fixing the “structural plasticity never called” path by wiring the dynamic gates into the walker→bus→scoreboard→actuator pipeline.
 
 ---
 
@@ -763,7 +763,7 @@ Classification: Runtime-only
 
      * **Backpressure** `b_T` = EWMA of outstanding tags / delivered tags from the hierarchical bus;
        implement with the existing `EWMA` + Welford variance utilities (they’re already in code).&#x20;
-     * **Cohesion/fragmentation** `χ_T` from UF components (only if `components>1`—you already trigger bridging this way).&#x20;
+     * **Cohesion/fragmentation** `χ_T` from UF components (only if `components>1`-you already trigger bridging this way).&#x20;
      * **Metabolic debt** `m_debt_T` (runtime homeostasis; distinct from SIE void‑debt topics).&#x20;
      * **Event entropy** `H_T` via your stream sketch (Count‑Min + head map) to avoid global histograms.&#x20;
    * Budgets emerge from these signals (no constants):
@@ -798,7 +798,7 @@ Classification: Runtime-only
      k^{\star}_i(t)=k^{\text{class}}_i\;\Big[1+\alpha\,(H_T^*-H_T)-\beta\,m\_debt_T+\gamma\,\text{coverage\_deficit}_T\Big]
      $$
 
-     Smooth with EWMA; **no fixed hard bounds**—use soft saturation. This extends your class table (Relay/Inhibitory/Integrator/Purkinje‑like) with **emergent drift** instead of static targets.&#x20;
+     Smooth with EWMA; **no fixed hard bounds**-use soft saturation. This extends your class table (Relay/Inhibitory/Integrator/Purkinje‑like) with **emergent drift** instead of static targets.&#x20;
 
 4. **Emergent cadences (abolish fixed cadences)**
 
@@ -812,7 +812,7 @@ Classification: Runtime-only
 
 5. **Void‑debt‑aware modulation (but separate from metabolic debt)**
 
-   * Use the **domain/void‑debt modulation** derivation as a **global multiplier** on emergent budgets (topic‑level—still sparse). This replaces hand tuning with a principled gain from your derivation. Keep it **orthogonal** to `metabolic_debt`.&#x20;
+   * Use the **domain/void‑debt modulation** derivation as a **global multiplier** on emergent budgets (topic‑level-still sparse). This replaces hand tuning with a principled gain from your derivation. Keep it **orthogonal** to `metabolic_debt`.&#x20;
 
 6. **Wire it so structural plasticity actually fires**
 
@@ -820,7 +820,7 @@ Classification: Runtime-only
 
 7. **Remove static env knobs by default**
 
-   * Keep `PRUNE_BUDGET`, `GROW_BUDGET`, `BRIDGE_BUDGET` only as **debug override** (off by default). Your own narrative calls for **emergent learning gates** / no fixed cadence—this aligns directly.&#x20;
+   * Keep `PRUNE_BUDGET`, `GROW_BUDGET`, `BRIDGE_BUDGET` only as **debug override** (off by default). Your own narrative calls for **emergent learning gates** / no fixed cadence-this aligns directly.&#x20;
 
 ---
 
@@ -843,7 +843,7 @@ Classification: Runtime-only
 
 * `fum_rt/core/structural/budget_governor.py`
 * `fum_rt/core/structural/scoreboard.py` (extend with μ/σ accumulators + territory buckets)&#x20;
-* `fum_rt/core/structural/actuator_sparse.py` (consume emergent budgets—no changes to CSR semantics)&#x20;
+* `fum_rt/core/structural/actuator_sparse.py` (consume emergent budgets-no changes to CSR semantics)&#x20;
 * `fum_rt/core/types/neurons.py` (class seeds; add dynamic `k_star` field)&#x20;
 * `fum_rt/runtime/loop/main.py` (replace env knobs with BudgetGovernor outputs; keep **hard assert** against dense paths)&#x20;
 
@@ -865,7 +865,7 @@ python gravity_regression/vdm_gravity_regression_pack/graph_checks.py \
 
 ## Verification (acceptance gates)
 
-* **No‑Dense Gate:** Existing assert stays—dense homeostasis path must not execute unless forced.&#x20;
+* **No‑Dense Gate:** Existing assert stays-dense homeostasis path must not execute unless forced.&#x20;
 * **Backpressure Gate:** backlog EWMA/std decreases ≥25% vs static (H1).
 * **Selectivity Gate:** ≥80% of `struct.pruned` edges carry prior `C3` and low‑use corroboration (H2).&#x20;
 * **Topology Gate:** Graph checks pass; degree/clustering evolve smoothly (no step‑wise clamps).&#x20;
@@ -894,8 +894,8 @@ python gravity_regression/vdm_gravity_regression_pack/graph_checks.py \
 
 ### Why this aligns with your principle (“limits emerge”)
 
-* The **pipeline doesn’t change**—walkers tag; the bus transports; the Scoreboard integrates; the **actuator is still the only writer**. We simply **replace static knobs with functions of local, observable signals**: entropy‑based cadences, bus backpressure, metabolic debt, cohesion, and coverage—all of which you already measure or have primitives for.&#x20;
-* This also restores the behavior you wanted originally—**event‑sourced, sparse, no fixed cadence**—as captured in your narrative (“Emergent Learning Gates… no fixed schedulers”).&#x20;
+* The **pipeline doesn’t change**-walkers tag; the bus transports; the Scoreboard integrates; the **actuator is still the only writer**. We simply **replace static knobs with functions of local, observable signals**: entropy‑based cadences, bus backpressure, metabolic debt, cohesion, and coverage-all of which you already measure or have primitives for.&#x20;
+* This also restores the behavior you wanted originally-**event‑sourced, sparse, no fixed cadence**-as captured in your narrative (“Emergent Learning Gates… no fixed schedulers”).&#x20;
 
 If you want, I’ll translate this into the exact diffs (new module stubs + loop wiring) next; but we can already start with `BudgetGovernor` + Scoreboard μ/σ, because those two flip the system from “static limits” to “emergent rules.”
 
@@ -937,7 +937,7 @@ Classification: RD
 
 ## What to use (short answer)
 
-* **Yes, use Reaction-Diffusion (RD)**—but *only as a local, event‑scoped field* that runs on tiny patches around where walkers raise tags (not a global PDE). It gives us closed‑form checkables (front speed, dispersion) and a clean micro‑foundation for how tag influence spreads through a sparse graph.
+* **Yes, use Reaction-Diffusion (RD)**-but *only as a local, event‑scoped field* that runs on tiny patches around where walkers raise tags (not a global PDE). It gives us closed‑form checkables (front speed, dispersion) and a clean micro‑foundation for how tag influence spreads through a sparse graph.
 * **Micro‑foundation:** a **biased branching random walk (BRW)** of walker tags with birth-death gives, in the continuum limit,
 
   $$
@@ -945,7 +945,7 @@ Classification: RD
   $$
 
   with $r=b-d$ (branch minus death rate) and $D=\frac{\mathrm{step\ variance}}{2\Delta t}$. We measure $b,d$ and the step variance from walker telemetry; nothing dense, nothing global.
-* **Everything structural** (prune/grow/cull) still flows through your **event‑sourced pipeline**: *Walker → Tag → Bus → Scoreboard → GDSP Actuator*, with per‑tick budgets and TTL—exactly as in your spec. RD only shapes how tag *evidence* diffuses/decays locally before the Scoreboard thresholds it.&#x20;
+* **Everything structural** (prune/grow/cull) still flows through your **event‑sourced pipeline**: *Walker → Tag → Bus → Scoreboard → GDSP Actuator*, with per‑tick budgets and TTL-exactly as in your spec. RD only shapes how tag *evidence* diffuses/decays locally before the Scoreboard thresholds it.&#x20;
 
 This keeps us faithful to your “no static limits, rules emerge” requirement: thresholds, k‑targets, and budgets are **dual variables** that self‑tune from local signals (reward, metabolic load, void‑debt modulators), not hard constants. The actuator still performs budgeted, surgical edits only where the Scoreboard crosses quorum.&#x20;
 
@@ -961,11 +961,11 @@ This keeps us faithful to your “no static limits, rules emerge” requirement:
    $$
 
    with $r_u,D_u$ pulled from **telemetry** (local spike EMA, path volatility, territory crowding). Stop integrating when the patch’s mass falls below a TTL.
-2. **Map BRW↔RD parameters online.** Set $r=b-d$ from observed tag confirmation/expiry rates; set $D$ from the empirical mean‑square hop of tag carriers per tick in that territory. (No constants—these are measured each patch.)
+2. **Map BRW↔RD parameters online.** Set $r=b-d$ from observed tag confirmation/expiry rates; set $D$ from the empirical mean‑square hop of tag carriers per tick in that territory. (No constants-these are measured each patch.)
 3. **Scoreboard as evidence integrator.** The RD amplitude $a_u$ updates the Scoreboard’s decaying votes; only when votes cross `SCORE_THRESH_*` does the **GDSP actuator** spend budget (prune/grow/cull). This matches your bus/scoreboard/actuator design.&#x20;
-4. **Dynamic $k$ (no fixed limits).** Each neuron holds a *moving* $k_{\text{target}}(t)$ from its **class prior** × **territory dual variable** (budget pressure / “metabolic debt” / void‑debt modulation). The actuator uses $k_{\text{target}}(t)$ only as a *soft* aim when choosing which edges to drop/add; the value itself adapts from signals—no static caps.
-5. **Keep synaptic weight *continuous* and structural *discrete*.** Weights update by your vectorized learning/decay rule (eligibility EMA + modulators); use‑it‑or‑lose‑it and C3/microglia analogs emit tags when weights persistently idle or volatile—exactly what you had in the legacy demo (STDP/eligibility + structural triggers).&#x20;
-6. **RD only as a *gatekeeper metric***. We never “scan the brain.” The only global work is reading **result events** (O(1) to the GlobalSystem), and writes are surgical at given indices—your read/write asymmetry remains intact.&#x20;
+4. **Dynamic $k$ (no fixed limits).** Each neuron holds a *moving* $k_{\text{target}}(t)$ from its **class prior** × **territory dual variable** (budget pressure / “metabolic debt” / void‑debt modulation). The actuator uses $k_{\text{target}}(t)$ only as a *soft* aim when choosing which edges to drop/add; the value itself adapts from signals-no static caps.
+5. **Keep synaptic weight *continuous* and structural *discrete*.** Weights update by your vectorized learning/decay rule (eligibility EMA + modulators); use‑it‑or‑lose‑it and C3/microglia analogs emit tags when weights persistently idle or volatile-exactly what you had in the legacy demo (STDP/eligibility + structural triggers).&#x20;
+6. **RD only as a *gatekeeper metric***. We never “scan the brain.” The only global work is reading **result events** (O(1) to the GlobalSystem), and writes are surgical at given indices-your read/write asymmetry remains intact.&#x20;
 7. **Quality gates (physics‑level).** Every RD patch must pass front‑speed and dispersion checks (below) using your existing RD harness so we don’t regress. Your prior JSON runs already validate those gates; we reuse them on the patches. (Front speed $c_{\text{front}}=2\sqrt{Dr}$; dispersion $\sigma(k)=r-Dk^2$.)
 
 ---
@@ -974,11 +974,11 @@ This keeps us faithful to your “no static limits, rules emerge” requirement:
 
 * **Files/paths to create:**
 
-  * `fum_rt/core/walkers/rd_patch.py` — BRW→RD patch integrator (1-2 hop ego‑nets).
-  * `fum_rt/core/structural/scoreboard.py` — decaying votes per (entity, reason); TTL.
-  * `fum_rt/core/structural/actuator_sparse.py` — budgeted `{prune,grow,cull,bridge}`.
-  * `fum_rt/core/telemetry/tag_transport.py` — estimate $b,d$, hop variance → $r,D$.
-  * `fum_rt/runtime/loop/main.py` — wire: **Walker → Tag → Bus → Scoreboard → Actuator**; assert no dense path unless `FORCE_DENSE=1`.
+  * `fum_rt/core/walkers/rd_patch.py` - BRW→RD patch integrator (1-2 hop ego‑nets).
+  * `fum_rt/core/structural/scoreboard.py` - decaying votes per (entity, reason); TTL.
+  * `fum_rt/core/structural/actuator_sparse.py` - budgeted `{prune,grow,cull,bridge}`.
+  * `fum_rt/core/telemetry/tag_transport.py` - estimate $b,d$, hop variance → $r,D$.
+  * `fum_rt/runtime/loop/main.py` - wire: **Walker → Tag → Bus → Scoreboard → Actuator**; assert no dense path unless `FORCE_DENSE=1`.
 * **CLIs to run + seeds (patch tests, not global):**
 
   * `python -m fum_rt.tests.test_rd_patch --territory T17 --seed 0`
@@ -1008,7 +1008,7 @@ This keeps us faithful to your “no static limits, rules emerge” requirement:
 
 ## Why your original demo didn’t see the “static‑limit” problems
 
-Your legacy stack already blended **continuous weight dynamics** (eligibility + decay) with **sparse structural triggers** (bursts/BDNF proxies/etc.). That architecture naturally avoided global thrash and didn’t impose rigid $k$ caps—plasticity was local and event‑driven, so emergent degrees stabilized without explicit global limits. We’re preserving that: we use RD only as a *local* evidence smoother so the Scoreboard makes fewer false moves, while keeping the same sparse edit pathway you designed.&#x20;
+Your legacy stack already blended **continuous weight dynamics** (eligibility + decay) with **sparse structural triggers** (bursts/BDNF proxies/etc.). That architecture naturally avoided global thrash and didn’t impose rigid $k$ caps-plasticity was local and event‑driven, so emergent degrees stabilized without explicit global limits. We’re preserving that: we use RD only as a *local* evidence smoother so the Scoreboard makes fewer false moves, while keeping the same sparse edit pathway you designed.&#x20;
 
 ---
 
@@ -1035,7 +1035,7 @@ Your legacy stack already blended **continuous weight dynamics** (eligibility + 
 
 ### Final take
 
-We keep the **RD baseline** because it gives us measurable, falsifiable gates on how local *evidence* should spread—without ever re‑introducing dense scans. All structure changes remain **event‑sourced and budgeted**, and all “limits” arise from dual variables (reward, metabolic/void‑debt, territory pressure), not fixed constants—exactly how you want the universe to work.
+We keep the **RD baseline** because it gives us measurable, falsifiable gates on how local *evidence* should spread-without ever re‑introducing dense scans. All structure changes remain **event‑sourced and budgeted**, and all “limits” arise from dual variables (reward, metabolic/void‑debt, territory pressure), not fixed constants-exactly how you want the universe to work.
 
 
 
@@ -1070,7 +1070,7 @@ Classification: RD
 
 **Objective Recap:**
 
-* Decide whether a gravity‑like effect is actually acting in your runtime (vs. a layout artifact), and—if real—hook it into the **sparse, event‑sourced** plasticity pipeline so it *helps* cohesion/bridging without any dense scans.
+* Decide whether a gravity‑like effect is actually acting in your runtime (vs. a layout artifact), and-if real-hook it into the **sparse, event‑sourced** plasticity pipeline so it *helps* cohesion/bridging without any dense scans.
 
 ---
 
@@ -1080,7 +1080,7 @@ Classification: RD
    Those orbital-looking arcs around the dense core can come from the **graph layout** (e.g., ForceAtlas/FR) integrating spring forces and repulsion with inertia. That can produce apparent “perihelion precession” even when the *simulation physics doesn’t include gravity at all*. So first we must separate **visualization dynamics** from **substrate dynamics**.
 
 2. **Should gravity help?**
-   Yes—**if** you model it as a *field* that the walkers/actuator already understand. In your architecture, structure only changes when something produces **tag events → scoreboard → GDSP actuator**; a “gravity” that lives only in the visualizer can’t cause pruning/growth. We can add a **void‑gravity field** that is computed sparsely and used only as a *gate/priority* for existing walkers and the bridge repair routine—fully consistent with the event‑sourced design you already specified (Walker→Tag→Bus→Scoreboard→GDSP), budgets, and “no dense scans.”&#x20;
+   Yes-**if** you model it as a *field* that the walkers/actuator already understand. In your architecture, structure only changes when something produces **tag events → scoreboard → GDSP actuator**; a “gravity” that lives only in the visualizer can’t cause pruning/growth. We can add a **void‑gravity field** that is computed sparsely and used only as a *gate/priority* for existing walkers and the bridge repair routine-fully consistent with the event‑sourced design you already specified (Walker→Tag→Bus→Scoreboard→GDSP), budgets, and “no dense scans.”&#x20;
 
 ---
 
@@ -1094,7 +1094,7 @@ $$
 
 * **Source $\rho$**: territory‑local activity/weight density (EMA of spikes and |w|).
 * **Boundary**: Neumann per territory (no flux).
-* **Use**: **only** as a *priority signal* for walkers/actuator—never as a body force in the PDE update, so baseline RD gates remain invariant.
+* **Use**: **only** as a *priority signal* for walkers/actuator-never as a body force in the PDE update, so baseline RD gates remain invariant.
 
 **Dimensionless knobs (predictive):**
 
@@ -1105,7 +1105,7 @@ $$
 
 ---
 
-## How it helps—without static limits or dense passes
+## How it helps-without static limits or dense passes
 
 Plug $V$ into the **existing sparse pipeline**:
 
@@ -1115,7 +1115,7 @@ Plug $V$ into the **existing sparse pipeline**:
 * **Semaphorin‑like retraction:** when out‑degree exceeds *dynamic* $k_\text{target}(t)$, retract branches projecting against the local gradient.
   All of this remains **event‑sourced and budgeted** under your GDSP actuator; nothing scans the whole graph.&#x20;
 
-**No static “k”:** keep your stance—do **not** hard‑fix $k$. Instead define a **dynamic target degree** per class,
+**No static “k”:** keep your stance-do **not** hard‑fix $k$. Instead define a **dynamic target degree** per class,
 
 $$
 k_\text{target,i}(t)=k_{0,\text{class}(i)}\cdot f\!\left(\text{use}_i,\,|\nabla V|_i,\,\text{metabolic}_T\right),
@@ -1131,7 +1131,7 @@ and let the actuator move degrees **toward** this target via budgeted prune/grow
 2. **Add RD field $V$:** implement per‑territory update of $V$ on the same grid used for territory maps (EMA’d activity → $\rho$).
 3. **Wire to walkers:** scale existing tag scores with $V$ or $\nabla V$ (no new global passes).
 4. **Bridge/repair priority:** make UF bridging choose pairs by largest $-\Delta V$ under `BRIDGE_BUDGET`.
-5. **Dynamic $k_\text{target}$:** per‑class $k_0$ remains a prior; multiplier $f(\cdot)$ comes from local use, $|\nabla V|$, and territory metabolic signal—**no fixed caps**.&#x20;
+5. **Dynamic $k_\text{target}$:** per‑class $k_0$ remains a prior; multiplier $f(\cdot)$ comes from local use, $|\nabla V|$, and territory metabolic signal-**no fixed caps**.&#x20;
 6. **Gates & budgets:** keep GDSP per‑tick budgets; assert **No‑Dense** path (unless `FORCE_DENSE=1`), and log `struct.{grown,pruned,bridged}`.&#x20;
 7. **Compare outcomes:** components ↓, conductance ↑, small‑worldness ↑, while RD **front‑speed** and **dispersion** gates remain within tolerance.
 
@@ -1141,10 +1141,10 @@ and let the actuator move degrees **toward** this target via budgeted prune/grow
 
 **Files/paths to create:**
 
-* `fum_rt/core/fields/void_gravity.py` — territory grid, $\rho$ and $V$ EMA updates (GPU).
-* `fum_rt/core/walkers/vg_modulators.py` — wrappers to scale tag scores with $V,\nabla V$.
-* `fum_rt/core/structural/repair_bridge.py` — UF boundary sampler with $-\Delta V$ priority.
-* `fum_rt/core/dynamics/k_target_dynamic.py` — compute $k_\text{target,i}(t)$ vectors on device.
+* `fum_rt/core/fields/void_gravity.py` - territory grid, $\rho$ and $V$ EMA updates (GPU).
+* `fum_rt/core/walkers/vg_modulators.py` - wrappers to scale tag scores with $V,\nabla V$.
+* `fum_rt/core/structural/repair_bridge.py` - UF boundary sampler with $-\Delta V$ priority.
+* `fum_rt/core/dynamics/k_target_dynamic.py` - compute $k_\text{target,i}(t)$ vectors on device.
 * Outputs: `derivation/code/outputs/{figures,logs}/gdsp/vg_*_<UTC>.{png,json}`.
 
 **CLIs to run + seeds:**
@@ -1185,7 +1185,7 @@ for s in 0 1 2; do ENABLE_VG=1 python run_nexus.py --ticks 10000 --seed $s; done
 
 * **Viz vs physics:** If precession disappears when layout is frozen, “gravity” was a visualization artifact; we still keep $V$ because it provides a *useful* sparse priority field.
 * **Field timescales:** Choose $\Gamma_V,\Theta_V$ so $V$ relaxes slower than spikes but faster than structural changes; otherwise it can chase noise or lag too much.
-* **Coupling creep:** $V$ should only modulate **tag scores/priorities**, never alter the RD kernel—guard with a code‑level assert.
+* **Coupling creep:** $V$ should only modulate **tag scores/priorities**, never alter the RD kernel-guard with a code‑level assert.
 
 ---
 
@@ -1199,7 +1199,7 @@ for s in 0 1 2; do ENABLE_VG=1 python run_nexus.py --ticks 10000 --seed $s; done
 
 ---
 
-**Bottom line:** Gravity can help—but only as an RD **field** that your walkers/actuator already know how to use under the **event‑sourced, budgeted, sparse** rules you’ve set. Let’s wire it in as a *priority signal*, keep the baseline RD gates intact, and measure the lift in cohesion/bridging—no static limits, no dense scans. &#x20;
+**Bottom line:** Gravity can help-but only as an RD **field** that your walkers/actuator already know how to use under the **event‑sourced, budgeted, sparse** rules you’ve set. Let’s wire it in as a *priority signal*, keep the baseline RD gates intact, and measure the lift in cohesion/bridging-no static limits, no dense scans. &#x20;
 
 
 
@@ -1233,13 +1233,13 @@ Classification: Runtime‑only
 
 **Files/paths to create/patch**
 
-* `fum_rt/core/walkers/tags.py` — canonical `Tag` dataclass + reason codes.&#x20;
-* `fum_rt/core/structural/scoreboard.py` — decay, quorum, TTL; territory buckets; μ/σ streams.&#x20;
-* `fum_rt/core/structural/actuator_sparse.py` — budgeted `apply_{prune,grow,bridge,cull}`; CSR‑safe.&#x20;
-* `fum_rt/core/structural/budget_governor.py` — emergent budgets from telemetry; publishes `budget.snapshot`.&#x20;
-* `fum_rt/core/types/neurons.py` — `NeuronClass` enum; `k_star` field.&#x20;
-* `fum_rt/core/neuroplasticity/manager.py` — `PlasticityManager` generating $\eta$, $\lambda$ vectors; integrate in kernels.&#x20;
-* `fum_rt/runtime/loop/main.py` — wire: **bus→scoreboard→actuator**; swap env knobs for `BudgetGovernor`; add **hard assert** against any dense path unless `FORCE_DENSE=1`.&#x20;
+* `fum_rt/core/walkers/tags.py` - canonical `Tag` dataclass + reason codes.&#x20;
+* `fum_rt/core/structural/scoreboard.py` - decay, quorum, TTL; territory buckets; μ/σ streams.&#x20;
+* `fum_rt/core/structural/actuator_sparse.py` - budgeted `apply_{prune,grow,bridge,cull}`; CSR‑safe.&#x20;
+* `fum_rt/core/structural/budget_governor.py` - emergent budgets from telemetry; publishes `budget.snapshot`.&#x20;
+* `fum_rt/core/types/neurons.py` - `NeuronClass` enum; `k_star` field.&#x20;
+* `fum_rt/core/neuroplasticity/manager.py` - `PlasticityManager` generating $\eta$, $\lambda$ vectors; integrate in kernels.&#x20;
+* `fum_rt/runtime/loop/main.py` - wire: **bus→scoreboard→actuator**; swap env knobs for `BudgetGovernor`; add **hard assert** against any dense path unless `FORCE_DENSE=1`.&#x20;
 
 **CLIs to run + seeds (repro stub)**
 
@@ -1266,7 +1266,7 @@ python -m fum_rt.tests.kstar_and_repair --seed 0 --ticks 5000
 * **Emergent $k^\*$ Gate.** Median degree per class stays within adaptive bands; no global hard caps invoked. (PASS = smooth degree/clustering evolution; no ring‑lattice pathology.)&#x20;
 * **Cohesion/Repair Gate.** When UF reports fragmentation, bridging reduces components → 1 within budget‑scaled ticks. (PASS = `struct.bridged` events with declining component count.)&#x20;
 * **Terminology/Topic Gate.** `metabolic_debt` kept separate from `sie.void_debt` (different topics; no cross‑consumers). (PASS = telemetry topics distinct.)&#x20;
-* **O(1) Write Path.** Confirms the event‑driven “surgical strike” write pattern—no searches in the writer. (PASS = flamegraph shows actuator called with **indices**, not scans.)&#x20;
+* **O(1) Write Path.** Confirms the event‑driven “surgical strike” write pattern-no searches in the writer. (PASS = flamegraph shows actuator called with **indices**, not scans.)&#x20;
 
 ---
 
@@ -1312,14 +1312,14 @@ Classification: Runtime-only
 
 **Verdict (concise):**
 
-* **Yes—directionally correct.** “Walkers → Bus → GDSP modifies connectome” matches the intended pipeline. Add one layer and two conventions to make it complete: a **Scoreboard** between Bus and GDSP, plus a **canonical Tag schema** and **dynamic budgets**.&#x20;
+* **Yes-directionally correct.** “Walkers → Bus → GDSP modifies connectome” matches the intended pipeline. Add one layer and two conventions to make it complete: a **Scoreboard** between Bus and GDSP, plus a **canonical Tag schema** and **dynamic budgets**.&#x20;
 
 **What to add / tweak (minimal):**
 
 * Insert **Scoreboard (evidence aggregator)**: Bus events are deduped/EMA‑decayed into thresholded decisions; only threshold crossings reach GDSP. Prevents thrash and keeps writes sparse.&#x20;
 * Use **canonical Tags** from walkers: `tag.prune_synapse`, `tag.grow_synapse`, `tag.cull_neuron`, `tag.C3`, `tag.retract_axonal_branch` with `{entity_ids, reason, ttl, territory_id, emitter}`.&#x20;
 * Keep **walkers read‑only; GDSP sole writer** (no scans). This preserves the **O(1) surgical‑write** pattern you wanted.&#x20;
-* Make the **bus hierarchical** (topics per territory/class) and use **backpressure‑aware budgets**: GDSP picks `GROW/PRUNE` counts each tick from functions of queue depth & health indices—no static limits.&#x20;
+* Make the **bus hierarchical** (topics per territory/class) and use **backpressure‑aware budgets**: GDSP picks `GROW/PRUNE` counts each tick from functions of queue depth & health indices-no static limits.&#x20;
 * Show **GDSP dispatch path** explicitly: Bus → Scoreboard → `struct.*` result events (ack + budgets used).&#x20;
 * (Nice to have) Annotate **neuron class context** (k targets/rarity) so GDSP can respect heterogeneous degree goals during grow/prune.&#x20;
 
@@ -1363,12 +1363,12 @@ Classification: Runtime-only
 * Record `struct.*` acks to confirm **O(1) surgical writes**.
 * Then add C3/microglia and boundary‑retraction walkers.
 
-*(Also aligns with your legacy demo’s structural homeostasis separation—logic vs. actuation remained decoupled there too.)*&#x20;
+*(Also aligns with your legacy demo’s structural homeostasis separation-logic vs. actuation remained decoupled there too.)*&#x20;
 
 
 
 
-You're right—those placeholder paths were wrong. Here’s the **correct wiring based on your docs/code** and a tight work order that stays inside your runtime/physics split.
+You're right-those placeholder paths were wrong. Here’s the **correct wiring based on your docs/code** and a tight work order that stays inside your runtime/physics split.
 
 ```
 Classification: Runtime-only

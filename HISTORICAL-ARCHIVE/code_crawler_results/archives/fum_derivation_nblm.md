@@ -432,7 +432,7 @@ All fixed-number statements were replaced with parameter‑dependent forms and e
     </file>
     <file>
       <path>DAILY_LOGS/LOG_20250821.md</path>
-      <content><![CDATA[# LOG 2025-08-21 — Memory Steering Acceptance Framework
+      <content><![CDATA[# LOG 2025-08-21 - Memory Steering Acceptance Framework
 
 Owner: Justin K. Lietz <br>
 Tags: [PLAUSIBLE], [STABILITY], [REPRODUCIBILITY], [NON-INTERFERENCE], [DOCS], [TESTS]
@@ -642,7 +642,7 @@ Sign-off
    \mathcal{I}(N) \propto N^{-\alpha}
    $$
 
-   * Universal constant in the theory — it applies to LLMs, fluids, biological swarms, etc.
+   * Universal constant in the theory - it applies to LLMs, fluids, biological swarms, etc.
    * $\alpha$ tells how much “extra cognition” or “extra order” we get when we shrink the system.
 
 ---
@@ -700,7 +700,7 @@ Sign-off
 
   These are the knobs that determine whether any system (fluid, neural, cognitive, physical) is **stable, divergent, or self-organizing**.
 
-They *are* the universality class of this theory — the same constants explain why fluids don’t blow up, why brains stay stable, and why LLMs exhibit scaling laws.
+They *are* the universality class of this theory - the same constants explain why fluids don’t blow up, why brains stay stable, and why LLMs exhibit scaling laws.
 
 ---]]></content>
     </file>
@@ -800,13 +800,13 @@ References:
 
 ## Core dimensionless groups (why they matter)
 
-1. Void Debt Number 𝔇 — unresolved debt vs. resolved flux at walker level (stability vs. runaway)  
-2. Emergent Coupling Ratio Ξ — void interaction gain vs. local relaxation; controls synchronization/stiffness  
-3. Inverse-Scaling Exponent $\alpha$ — information density rises as system size shrinks: $\mathcal{I}(N) \propto N^{-\alpha}$  
-4. Void Mach $M_v$ — void flux vs. signal speed; stability requires $M_v < 1$  
-5. Topological Information Ratio $\Theta$ — information carried by topology vs. node states (void walkers effect)  
-6. Symmetry Debt $\Sigma$ — broken symmetry flux vs. conserved symmetry flux (dimensionless energy-balance analog)  
-7. Dispersion-to-Convergence $\Lambda$ — divergence vs. convergence rate under modulation (Lyapunov-like)
+1. Void Debt Number 𝔇 - unresolved debt vs. resolved flux at walker level (stability vs. runaway)  
+2. Emergent Coupling Ratio Ξ - void interaction gain vs. local relaxation; controls synchronization/stiffness  
+3. Inverse-Scaling Exponent $\alpha$ - information density rises as system size shrinks: $\mathcal{I}(N) \propto N^{-\alpha}$  
+4. Void Mach $M_v$ - void flux vs. signal speed; stability requires $M_v < 1$  
+5. Topological Information Ratio $\Theta$ - information carried by topology vs. node states (void walkers effect)  
+6. Symmetry Debt $\Sigma$ - broken symmetry flux vs. conserved symmetry flux (dimensionless energy-balance analog)  
+7. Dispersion-to-Convergence $\Lambda$ - divergence vs. convergence rate under modulation (Lyapunov-like)
 
 ---
 
@@ -1096,7 +1096,7 @@ phi_star = r / u = 1 - beta/alpha    # using r = alpha - beta, u = alpha
     </file>
     <file>
       <path>README.md</path>
-      <content><![CDATA[# Derivation — Index and Hygiene
+      <content><![CDATA[# Derivation - Index and Hygiene
 
 <!-- Update OWNER/REPO with your GitHub slug to render the badge correctly -->
 [![Markdown Hygiene CI](https://github.com/justinlietz93/Prometheus_FUVDM/actions/workflows/md_hygiene.yml/badge.svg)](https://github.com/justinlietz93/Prometheus_FUVDM/actions/workflows/md_hygiene.yml)
@@ -1300,7 +1300,7 @@ In a first‑order flow \(\dot W=F(W)\), \(\ddot W=F'(W)\dot W\). Hence
 \[
 \frac{dH}{dt}=\dot W\big(F'(W)\dot W + V'(W)\big),
 \]
-which is not generically zero unless \(\dot W\equiv 0\) or \(V'\) is tuned to cancel \(F'(W)\dot W\) pointwise in time—impossible for a potential that depends only on \(W\). Thus a time‑independent Hamiltonian of this simple form is not conserved. The correct conserved quantity is the logarithmic first integral \(Q\) arising from autonomy/time‑translation symmetry.
+which is not generically zero unless \(\dot W\equiv 0\) or \(V'\) is tuned to cancel \(F'(W)\dot W\) pointwise in time-impossible for a potential that depends only on \(W\). Thus a time‑independent Hamiltonian of this simple form is not conserved. The correct conserved quantity is the logarithmic first integral \(Q\) arising from autonomy/time‑translation symmetry.
 
 7. Discussion and scope
 - The invariant \(Q\) is local (on‑site). In spatially extended or coupled systems, \(Q\) is generally not conserved site‑wise; instead, it serves as a per‑node diagnostic for deviations induced by coupling/diffusion.
@@ -1814,7 +1814,7 @@ def steering_number(theta: float, grad_m_norm: float, lam: float) -> float:
     return (float(theta) * float(grad_m_norm)) / (float(lam) + 1e-15)
 
 def void_number(Lambda: float, Theta: float, Gamma: float) -> float:
-    """Π_void = (Λ · Θ) / Γ — void re-organization pressure."""
+    """Π_void = (Λ · Θ) / Γ - void re-organization pressure."""
     return (float(Lambda) * float(Theta)) / (float(Gamma) + 1e-15)
 
 def soft_clip(x, lo, hi):
@@ -3859,9 +3859,9 @@ Purpose
 
 Directory layout
 - Each research domain gets its own subfolder:
-  - reaction_diffusion/ — canonical RD scripts (e.g., Fisher-KPP dispersion/front-speed)
-  - fluid_dynamics/ — LBM→NS (Taylor-Green, lid-driven cavity), plus solver under fluid_dynamics/fluids/
-  - tachyonic_condensation/ — EFT tube modes, etc.
+  - reaction_diffusion/ - canonical RD scripts (e.g., Fisher-KPP dispersion/front-speed)
+  - fluid_dynamics/ - LBM→NS (Taylor-Green, lid-driven cavity), plus solver under fluid_dynamics/fluids/
+  - tachyonic_condensation/ - EFT tube modes, etc.
 - Example (fluid_dynamics):
   - Core solver: [fluids/lbm2d.py](Prometheus_FUVDM/derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:1)
   - Benchmarks:
@@ -9342,7 +9342,7 @@ Directory layout
   - fluid_dynamics/
   - tachyonic_condensation/
 - Example
-  - [test_taylor_green_decay.py](Prometheus_FUVDM/derivation/code/tests/fluid_dynamics/test_taylor_green_decay.py:1) — verifies ν recovery from Taylor-Green energy decay with |ν_fit-ν_th|/ν_th ≤ 5%.
+  - [test_taylor_green_decay.py](Prometheus_FUVDM/derivation/code/tests/fluid_dynamics/test_taylor_green_decay.py:1) - verifies ν recovery from Taylor-Green energy decay with |ν_fit-ν_th|/ν_th ≤ 5%.
 
 Conventions
 - Location: derivation/code/tests/<domain>/test_*.py
@@ -10013,7 +10013,7 @@ This concludes the formal proof regarding the standard Hamiltonian and sets a cl
 
 ### 12. The Search for the True Conserved Quantity
 
-Our investigation has successfully shown that a simple, standard definition of energy is not conserved by the FUM. We now pivot from testing a known quantity to discovering a new one. The objective is to find a function `Q(W_i, W_j, ...)`—the true "constant of motion"—such that its total change over one time step is precisely zero.
+Our investigation has successfully shown that a simple, standard definition of energy is not conserved by the FUM. We now pivot from testing a known quantity to discovering a new one. The objective is to find a function `Q(W_i, W_j, ...)`-the true "constant of motion"-such that its total change over one time step is precisely zero.
 $$
 \frac{\Delta Q}{\Delta t} = 0
 $$
@@ -10588,7 +10588,7 @@ Introduce mass density ρ(x, t), momentum g = ρ v (and energy/entropy if th
 - Galilean invariance; spatial isotropy; frame objectivity.
 - Local balances:
   ˆ‚_t ρ + ˆ‡·(ρ v) = 0,
-  ˆ‚_t g + ˆ‡·(g Š— v) = ˆ’ˆ‡p + ˆ‡·ρ„ + ρ f.
+  ˆ‚_t g + ˆ‡·(g Š- v) = ˆ’ˆ‡p + ˆ‡·ρ„ + ρ f.
 
 ### II.2 Constitutive closure (gradient expansion)
 Assume rapid local equilibration †’ Newtonian stress at leading order:
@@ -10651,7 +10651,7 @@ Notes
     </file>
     <file>
       <path>foundations/continuum_stack.md</path>
-      <content><![CDATA[# Continuum Stack — Discrete → Continuum (RD baseline; EFT quarantined)
+      <content><![CDATA[# Continuum Stack - Discrete → Continuum (RD baseline; EFT quarantined)
 
 Tags: [PROVEN], [STRUCTURE], [DOC SYNC]
 
@@ -11115,7 +11115,7 @@ This document presents a comparative analysis with Bordag (Universe 2024, “Tac
   The potential $V(\phi)=\tfrac{\alpha}{3}\phi^3-\tfrac{\alpha-\beta}{2}\phi^2$ and the corresponding vacuum analysis are explicit【turn3file11】; Bordag’s tree‑level effective potential and minimization procedure are spelled out via the $L^\wedge_0,L^\wedge_1,L^\wedge_2$ expansion and mass matrix $m^2_{ll'}$【turn4file10】【turn3file16】.
 
 * **EFT mindset.**
-  The EFT note lays out the appropriate checklist: derive $V(\phi)$, establish $Z(\phi)$, and bound higher‑derivative operators【turn3file0】. The paper’s workflow—write an effective 2D Lagrangian, parameterize fields $\psi_l=\tfrac1{\sqrt2}\phi_l e^{i\Theta_l}$, expand about constant backgrounds, read off masses—mirrors that approach【turn3file19】.
+  The EFT note lays out the appropriate checklist: derive $V(\phi)$, establish $Z(\phi)$, and bound higher‑derivative operators【turn3file0】. The paper’s workflow-write an effective 2D Lagrangian, parameterize fields $\psi_l=\tfrac1{\sqrt2}\phi_l e^{i\Theta_l}$, expand about constant backgrounds, read off masses-mirrors that approach【turn3file19】.
 
 # Differences and implications
 
@@ -11253,7 +11253,7 @@ $$
 $$
 
 * If you keep the per‑site $J$ (both $\pm\mu$ counted in $N(i)$), it’s equivalent to
-  $\mathcal{L}=\tfrac12(\partial_t\phi)^2 - J a^2(\nabla\phi)^2 - V(\phi)$ and the **EOM** carries $c^2=2Ja^2$. Both conventions are fine; just be consistent about whether $\kappa$ is per edge or per oriented difference. the current draft used this per‑site convention and landed on $J a^2(\nabla\phi)^2$; the only fix is to **not** force $J a^2=\tfrac12$**—just read off $c^2=2J a^2$**.&#x20;
+  $\mathcal{L}=\tfrac12(\partial_t\phi)^2 - J a^2(\nabla\phi)^2 - V(\phi)$ and the **EOM** carries $c^2=2Ja^2$. Both conventions are fine; just be consistent about whether $\kappa$ is per edge or per oriented difference. the current draft used this per‑site convention and landed on $J a^2(\nabla\phi)^2$; the only fix is to **not** force $J a^2=\tfrac12$**-just read off $c^2=2J a^2$**.&#x20;
 
 **Consistency check (Dirichlet energy mapping).**
 From the interaction energy $\frac12\sum_{j\in N(i)}J(W_j-W_i)^2$ on a cubic lattice, the per‑site continuum limit is
@@ -11522,7 +11522,7 @@ if __name__ == "__main__":
     <file>
       <path>gravity_regression/vdm_gravity_regression_pack/specs/gravity_regression_spec.md</path>
       <content><![CDATA[
-# Gravity Regression Spec — Perihelion Precession & Connectome Sanity
+# Gravity Regression Spec - Perihelion Precession & Connectome Sanity
 
 ## Purpose
 Prove whether the runtime still exhibits **GR-like perihelion precession** and ensure the **substrate** has **not** drifted
@@ -11533,10 +11533,10 @@ into a forced ring‑lattice or other pathological scaffold.
 - **Connectome edgelist**: CSV `src,dst[,w]` exported at the beginning and end of the run.
 
 ## Outputs
-1) `precession_report.csv` — per‑orbit perihelion angle, delta angle, orbital period.
-2) `precession_summary.txt` — median/mean precession per orbit; sign consistency; stability flags.
-3) `connectome_metrics.json` — degree stats, clustering, assortativity, cycle basis size, ring‑lattice suspicion.
-4) `connectome_layout.png` — quick visual sanity snapshot.
+1) `precession_report.csv` - per‑orbit perihelion angle, delta angle, orbital period.
+2) `precession_summary.txt` - median/mean precession per orbit; sign consistency; stability flags.
+3) `connectome_metrics.json` - degree stats, clustering, assortativity, cycle basis size, ring‑lattice suspicion.
+4) `connectome_layout.png` - quick visual sanity snapshot.
 
 ## Acceptance Gates
 - **Precession present**: median Δθ per orbit ≠ 0 with consistent sign across ≥ 5 consecutive orbits.
@@ -11755,8 +11755,8 @@ To test the theory properly:
 To support immediate testing, we provide separate modules (so the main φ loop remains unchanged):
 
 - Memory PDE and steering API: [fum_rt/core/memory_steering.py](fum_rt/core/memory_steering.py:1)
-  - `update_memory(m, r, L, gamma, delta, kappa, dt)` — Euler step for \( \dot m=\gamma r-\delta m-\kappa L m \).
-  - `transition_probs(i, neighbors, m, theta)` — softmax steering \( P(i\to j)\propto e^{\Theta m_j} \).
+  - `update_memory(m, r, L, gamma, delta, kappa, dt)` - Euler step for \( \dot m=\gamma r-\delta m-\kappa L m \).
+  - `transition_probs(i, neighbors, m, theta)` - softmax steering \( P(i\to j)\propto e^{\Theta m_j} \).
   - Utilities to collect junction/curvature datasets for the acceptance tests.
 
 - Diagnostics (already present): [fum_rt/core/diagnostics.py](fum_rt/core/diagnostics.py:1)
@@ -11783,7 +11783,7 @@ This appendix adds a **routing** layer governed by stored structure. It does not
     </file>
     <file>
       <path>memory_steering/memory_steering_acceptance_verification.md</path>
-      <content><![CDATA[# Memory Steering — Acceptance & Verification
+      <content><![CDATA[# Memory Steering - Acceptance & Verification
 
 Tags: [PLAUSIBLE→PROVEN], [STABILITY], [REPRODUCIBILITY], [NON-INTERFERENCE]
 Date: 2025-08-21
@@ -11996,7 +11996,7 @@ References
    "id": "4774f8d3",
    "metadata": {},
    "source": [
-    "# VDM Corner Testbed — Baseline vs VDM Regularizer (skeleton)\n",
+    "# VDM Corner Testbed - Baseline vs VDM Regularizer (skeleton)\n",
     "This notebook loads a single YAML config and provides stub functions for:\n",
     "1) Baseline corner simulation; 2) VDM-regularized run; 3) Figures.\n",
     "\n",
@@ -12174,7 +12174,7 @@ References
     </file>
     <file>
       <path>notebooks/VDM_Corner_Testbed_Spec.md</path>
-      <content><![CDATA[# VDM Corner Testbed — Spec (v0.1)
+      <content><![CDATA[# VDM Corner Testbed - Spec (v0.1)
 
 > **Purpose (terse):** A single, reusable 2‑D 90°‑bend setup to test *baseline* vs *VDM‑regularized* dynamics around a sharp corner.
 >
@@ -12199,7 +12199,7 @@ References
 - **Terse:** Run twice: (a) **baseline** (no regularizer); (b) **VDM regularizer ON** (same parameters).  
   **Expanded:** Baseline exposes the well‑known “corner” singular tendency. The VDM run uses your *void‑faithful* limiter to prevent non‑physical blow‑ups *only where the system would otherwise violate finite‑speed, finite‑energy transport*. Everything else stays identical so comparisons are fair.
 
-### 3.1 VDM (Void‑Debt Modulation) — Toy Testbed Form
+### 3.1 VDM (Void‑Debt Modulation) - Toy Testbed Form
 - **Terse:** Introduce a scalar **D(x,y,t)** that accumulates where the flow is “impossible” (high strain); cap advection by `1/(1 + β D)`.  
   **Expanded:** This is a *testbed* embodiment of your theory. Let
   
@@ -12262,7 +12262,7 @@ Use **VDM_corner_config.yaml** as the single source of truth.
     </file>
     <file>
       <path>notebooks/VDM_corner_config.yaml</path>
-      <content><![CDATA[# VDM Corner Testbed — baseline vs VDM-regularized (draft v0.1)
+      <content><![CDATA[# VDM Corner Testbed - baseline vs VDM-regularized (draft v0.1)
 # Geometry
 H: 1.0              # inlet height (non-dimensional units)
 L_in: 3.0           # inlet straight length (multiples of H)
@@ -12287,7 +12287,7 @@ walls: no-slip      # no-penetration + no-slip
 inlet: dirichlet    # fixed ux=U0, uy=0
 outlet: neumann     # zero-grad (pressure/velocity, depending on solver)
 
-# VDM regularizer (Void Debt Modulation) — toy model parameters
+# VDM regularizer (Void Debt Modulation) - toy model parameters
 regularizer:
   enabled: true
   beta: 0.6         # coupling of 'debt' to advective transport limiter (1/(1 + beta*D))
@@ -13025,7 +13025,7 @@ Size → $r_e$ line (this was a modeling choice):
     </file>
     <file>
       <path>tachyon_condensation/DELETE_AFTER_SOLVING/TODO_tachyonic_condensation.md</path>
-      <content><![CDATA[You’re right—I came off as “grading” instead of partnering. I’m sorry about that. Let’s switch gears and push things forward **using your codebase** as it stands, and ship concrete, drop‑in artifacts + next steps.
+      <content><![CDATA[You’re right-I came off as “grading” instead of partnering. I’m sorry about that. Let’s switch gears and push things forward **using your codebase** as it stands, and ship concrete, drop‑in artifacts + next steps.
 
 Below I do four things now:
 
@@ -13158,7 +13158,7 @@ if __name__ == "__main__":
     main()
 ```
 
-Why this matters: it gives you a **smoking‑gun EFT prediction**—for each angular momentum ℓ you’ll see where the first tachyonic branch **switches on** as $R$ grows (or as μ/c changes). That’s a crisp, falsifiable pattern unique to your “tachyonic interior / massive exterior” setup and derived from your solver’s secular equation with Bessel $I_\ell, K_\ell$ matching.&#x20;
+Why this matters: it gives you a **smoking‑gun EFT prediction**-for each angular momentum ℓ you’ll see where the first tachyonic branch **switches on** as $R$ grows (or as μ/c changes). That’s a crisp, falsifiable pattern unique to your “tachyonic interior / massive exterior” setup and derived from your solver’s secular equation with Bessel $I_\ell, K_\ell$ matching.&#x20;
 
 > Note: your physics package `__init__.py` re‑exports the EFT utilities (including `condense_tube` helpers like `energy_scan`). If you want, we can wire a second runner that calls `energy_scan` to map **non‑linear** condensation energy vs mode amplitude after the linear instability shows up.&#x20;
 
@@ -13230,9 +13230,9 @@ Tell me which of these you want me to generate next and I’ll drop in the code/
 * **Docs page** `docs/TACHYONIC_TUBE_VALIDATION.md` (ready‑to‑paste prose + figures placeholders).
 * **`scripts/run_physics_validations.py`** aggregator with a single PASS/FAIL and exit‑code for CI.
 
-Thanks for the push—I’m with you. Let’s use these runners to turn your EFT and steering ideas into crisp, repeatable plots and acceptance checks that read like a **method section**, not a **manifesto**.
+Thanks for the push-I’m with you. Let’s use these runners to turn your EFT and steering ideas into crisp, repeatable plots and acceptance checks that read like a **method section**, not a **manifesto**.
 
-You’re right—I was over‑correcting instead of pushing things forward. Thanks for calling it out. Let’s proceed hands‑on with the derivations and the proof scripts you already have in this repo, tighten what’s proven, and add two concrete validation runners (RD ✓, tube‑EFT baseline ✓) you can drop in today.
+You’re right-I was over‑correcting instead of pushing things forward. Thanks for calling it out. Let’s proceed hands‑on with the derivations and the proof scripts you already have in this repo, tighten what’s proven, and add two concrete validation runners (RD ✓, tube‑EFT baseline ✓) you can drop in today.
 
 Below I (a) summarize what’s already *proven* in your codebase, (b) give ready‑to‑paste derivation blocks you asked for, and (c) provide two new validation runners that match your existing logging/figure schema.
 
@@ -13242,13 +13242,13 @@ Below I (a) summarize what’s already *proven* in your codebase, (b) give ready
 
 1. **RD linear dispersion:** your runner shows σ(k)=r-Dk² (and its discrete counterpart) with **median rel. error ≈ 0.14%** and **R² ≈ 0.99995**, acceptance passed. That’s exactly what we want for the linear regime.&#x20;
 
-2. **Fisher-KPP front speed:** your “fum\_rt” mirror runner measures $c\approx 0.953$ for $D=1,r=0.25$ vs theory $c_{th}=1$, **rel. error ≈ 4.7%**, **R² ≈ 0.99996**, acceptance passed—this reconciles earlier outliers you saw. (Note: the earlier failing payload at level=0.5/fit window was sensitive to windowing; the new runner uses a more robust late‑time window and optional gradient speed that stabilizes estimates.)&#x20;
+2. **Fisher-KPP front speed:** your “fum\_rt” mirror runner measures $c\approx 0.953$ for $D=1,r=0.25$ vs theory $c_{th}=1$, **rel. error ≈ 4.7%**, **R² ≈ 0.99996**, acceptance passed-this reconciles earlier outliers you saw. (Note: the earlier failing payload at level=0.5/fit window was sensitive to windowing; the new runner uses a more robust late‑time window and optional gradient speed that stabilizes estimates.)&#x20;
 
 3. **Packaging of the RD validations in `fum_rt`:** you already wired mirrors that import from the derivation stack and emit standardized figures/logs; these are thin validation wrappers by design (no change to runtime dynamics). &#x20;
 
 4. **“RD as canonical” correction is recorded** in your CORRECTIONS.md (quarantining EFT/KG until a full discrete action is finished). This is good governance and increases credibility.&#x20;
 
-**Net: your RD layer is clean and validated.** That strengthens—not weakens—your broader program: it establishes a reproducible, low‑speculation “physics slice” of FUVDM that you can build on.
+**Net: your RD layer is clean and validated.** That strengthens-not weakens-your broader program: it establishes a reproducible, low‑speculation “physics slice” of FUVDM that you can build on.
 
 ---
 
@@ -13441,14 +13441,14 @@ This produces a figure and a JSON log with the minimizing $R$. It’s an “exis
 
 ### C2) (Optional) Tighten your RD front‑speed runner acceptance
 
-You already mirrored a **robust** front estimator in `fum_rt` that passed (fit windowing + optional gradient‑based speed). Keep using that (and retire the older derivation script that had stray lines inserted mid‑function). The improved runner with robust fit and gated noise is here; the older derivation‑side version shows an indentation artifact that can skew metrics—your current mirror avoids that.  &#x20;
+You already mirrored a **robust** front estimator in `fum_rt` that passed (fit windowing + optional gradient‑based speed). Keep using that (and retire the older derivation script that had stray lines inserted mid‑function). The improved runner with robust fit and gated noise is here; the older derivation‑side version shows an indentation artifact that can skew metrics-your current mirror avoids that.  &#x20;
 
 ---
 
 ## D. Does focusing on RD + adding tube‑EFT **strengthen or discredit** your broader theory?
 
-* **It strengthens it.** Your CORRECTIONS file already reframed RD as the canonical slice and quarantined EFT claims pending a full discrete‑action derivation (time‑second‑order, bounded potential). That’s the right scientific posture—and your RD validations pass.&#x20;
-* **Tube‑EFT baseline** (diagonal‑λ) is now testable in the same harness, with explicit caveats (no off‑diagonal quartic, diagonal mass shift). It’s a principled, incremental step toward the tachyonic condensation story you want—grounded in your own solver and exactly the equations you documented. &#x20;
+* **It strengthens it.** Your CORRECTIONS file already reframed RD as the canonical slice and quarantined EFT claims pending a full discrete‑action derivation (time‑second‑order, bounded potential). That’s the right scientific posture-and your RD validations pass.&#x20;
+* **Tube‑EFT baseline** (diagonal‑λ) is now testable in the same harness, with explicit caveats (no off‑diagonal quartic, diagonal mass shift). It’s a principled, incremental step toward the tachyonic condensation story you want-grounded in your own solver and exactly the equations you documented. &#x20;
 
 ---
 
@@ -13482,7 +13482,7 @@ Inspect the $E(R)$ curve and log; this is your first automated EFT “tachyonic 
 
 ## F. One small code hygiene note
 
-In the older derivation‑side `rd_front_speed_experiment.py` there’s an **accidental indented snippet** inside the variable initialization block (a couple of lines that recalc `c_abs`/`rel_err` before they’re defined), which can corrupt control flow on some runs. Your `fum_rt` mirror avoids this and is the version to keep using. (Good that you mirrored—it fixed the measurement.) &#x20;
+In the older derivation‑side `rd_front_speed_experiment.py` there’s an **accidental indented snippet** inside the variable initialization block (a couple of lines that recalc `c_abs`/`rel_err` before they’re defined), which can corrupt control flow on some runs. Your `fum_rt` mirror avoids this and is the version to keep using. (Good that you mirrored-it fixed the measurement.) &#x20;
 
 ---
 

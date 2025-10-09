@@ -38,7 +38,7 @@ def void_driven_layout(W, iterations=50, dim=3):
     weights = np.asarray(weights, dtype=float)
 
     for t_idx in range(iterations):
-        # Repulsion (adaptive) — base global void pressure
+        # Repulsion (adaptive) - base global void pressure
         if num_nodes <= 800:
             delta = pos[:, np.newaxis, :] - pos[np.newaxis, :, :]
             distance = np.linalg.norm(delta, axis=-1) + 1e-9

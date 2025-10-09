@@ -3,7 +3,7 @@
 
 Note on scope: This sheet is canonical and latest-only. For historical naming and timelines, refer to Derivation/CORRECTIONS.md.
 
-Last updated: 2025-10-09 (commit d305c2b)
+Last updated: 2025-10-09 (commit f1e74a5)
 
 *Canonical symbols for the Void Dynamics Model physics theory*
 
@@ -128,7 +128,7 @@ Cross-references:
 | $\Phi_c^{\text{stab}}$          | quartic stabilizer (no break) | soft amplitude clipping          | $\Phi_c^{\text{stab}}=\tfrac{\lambda_c}{4}\phi_c^4$                                                                      |
 | $\star$                         | full fast step                | compose physics + edits          | $\phi_c^{t+\Delta t}=\phi_c^t+D_c\nabla^2\phi_c,\Delta t+R_c,\Delta t-\Phi_c',\Delta t+\gamma_c!\sum_w!\Delta^{+}_{w,c}$ |
 
-## Dimensionless Groups — VDM Control & Stability
+## Dimensionless Groups - VDM Control & Stability
 
 | Symbol        | Meaning                     | When / Why                              | Tiny Example                     |
 | ------------- | --------------------------- | --------------------------------------- | -------------------------------- |
@@ -144,7 +144,7 @@ Cross-references:
 | $g$           | void gain                   | stabilization / bias strength           | e.g. $0.5$                       |
 | $\kappa$      | sparsity ratio              | edits per DOF per step                  | keep $\kappa\ll1$                |
 
-## Dimensionless Groups — RD Systems
+## Dimensionless Groups - RD Systems
 
 | Symbol      | Meaning                | When / Why                | Tiny Example                        |
 | ----------- | ---------------------- | ------------------------- | ----------------------------------- |
@@ -152,7 +152,7 @@ Cross-references:
 | $c^*$       | normalized KPP speed   | $c/(2\sqrt{Dr})$          | $\approx 0.95\text{-}1.0$ when validated |
 | $\mathrm{Da}$ | Damköhler number       | reaction / transport rate | regime classifier                   |
 
-## Dimensionless Groups — LBM / Fluids
+## Dimensionless Groups - LBM / Fluids
 
 | Symbol      | Meaning             | When / Why                                    | Tiny Example                     |
 | ----------- | ------------------- | --------------------------------------------- | -------------------------------- |

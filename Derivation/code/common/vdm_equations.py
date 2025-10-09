@@ -1,5 +1,5 @@
 """
-VDM Canonical Equations — runtime evaluators with traceable references
+VDM Canonical Equations - runtime evaluators with traceable references
 
 Purpose
 

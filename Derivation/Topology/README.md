@@ -1,7 +1,7 @@
-Short answer: yes—we’re making progress, not circling. You’ve got two “green” pillars already:
+Short answer: yes-we’re making progress, not circling. You’ve got two “green” pillars already:
 
 * Junction logistic collapse (A6) passes with a tight envelope (≈1.657%), which is exactly the $P(A)=\sigma(\Theta,\Delta m)$ universality we need for decision routing .
-* The steering/memory law is already spelled out with the right dimensionless knobs $\Theta, D_a, \Lambda, \Gamma$—that’s our agency substrate ($\mathbf r''=\Theta\nabla_\perp m$; memory PDE with write/decay/spread) .
+* The steering/memory law is already spelled out with the right dimensionless knobs $\Theta, D_a, \Lambda, \Gamma$-that’s our agency substrate ($\mathbf r''=\Theta\nabla_\perp m$; memory PDE with write/decay/spread) .
 
 Below is a compact, self-contained **Phase-2 experiment pack** that lives entirely under `Derivation/code/physics/…` and targets the “intelligence” pieces (SIE, ADC/logistic choice, loops) with falsifiable gates. No FUM runtime involved; only helpers in `Derivation/code/common/` as you requested.
 
@@ -28,7 +28,7 @@ Demonstrate that the “intelligence components” are physically measurable law
    * Novelty: inject a brief parameter kick and show **bounded** $Q$ drift that returns to baseline when the kick stops (quantifies “surprise/novelty” without any RL code).
      (This repurposes your $Q$-invariant machinery you already used and keeps it physics-pure.)
 5. **Loop quench test (new; topology-lite).** `physics/topology/run_loop_quench.py`
-   In 2D RD, threshold an excursion set of $\phi$ (or $m$) and count simple cycles via a grid cycle-basis (no heavy TDA). Track count vs discrete Lyapunov $L_h$. Gate: negative rank correlation $\rho\le-0.7$ between $\Delta L_h<0$ and loop count; plus a fast-decay tail for loop lifetimes. Interpretation: dissipative $M$-sector quenches pathological loops faster than they form—aligns with your “loops as pathology” view while acknowledging their transient utility.
+   In 2D RD, threshold an excursion set of $\phi$ (or $m$) and count simple cycles via a grid cycle-basis (no heavy TDA). Track count vs discrete Lyapunov $L_h$. Gate: negative rank correlation $\rho\le-0.7$ between $\Delta L_h<0$ and loop count; plus a fast-decay tail for loop lifetimes. Interpretation: dissipative $M$-sector quenches pathological loops faster than they form-aligns with your “loops as pathology” view while acknowledging their transient utility.
 6. **Results pages.** For each runner, emit `RESULTS_*` with MathJax ($…$, $$…$$), pinned artifacts, and gates. Mirror the A6/FRW style you’ve already set (you’re consistent and clean there) .
 7. **Optional** (after 1–4): add a one-pager “Agency Field: Minimal Lawbook” that just collates the three dimensionless groups and the two primary plots (junction logistic, curvature scaling) with a single sentence per gate, citing the memory-steering doc .
 
@@ -49,7 +49,7 @@ Demonstrate that the “intelligence components” are physically measurable law
 
 1. Have your agent stand up the four runners above in `Derivation/code/physics/{agency,info,topology}` plus tiny helpers under `…/common/`.
 2. Reuse the existing IO/figures/log style and A6/FRW result templates (MathJax: use `$…$` or `$$…$$`).
-3. Start with agency curvature (1) and SIE invariant (4)—both are quick wins with crisp gates.
+3. Start with agency curvature (1) and SIE invariant (4)-both are quick wins with crisp gates.
 4. Then do the stability band (2) and ADC slope check (3).
 5. Close with the loop quench test (5) once the Lyapunov logger is in place.
 

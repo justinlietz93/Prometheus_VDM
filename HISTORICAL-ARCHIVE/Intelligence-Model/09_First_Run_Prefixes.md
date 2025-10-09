@@ -1,9 +1,9 @@
-Alright Justin — here’s the concrete, end‑to‑end plan to purge any stragglers that aren’t void‑faithful, wire the missing pieces, and run a 1k‑neuron real‑time organism on your workstation. I’m giving you (1) an audit checklist, (2) diffs that enforce void‑faithfulness across the runtime, (3) run recipes tuned for your Threadripper + MI100, and (4) quick validation checks so you can prove it’s behaving correctly.
+Alright Justin - here’s the concrete, end‑to‑end plan to purge any stragglers that aren’t void‑faithful, wire the missing pieces, and run a 1k‑neuron real‑time organism on your workstation. I’m giving you (1) an audit checklist, (2) diffs that enforce void‑faithfulness across the runtime, (3) run recipes tuned for your Threadripper + MI100, and (4) quick validation checks so you can prove it’s behaving correctly.
 
 # What “void‑faithful” means here (non‑negotiables)
 
 * **Computation basis:** every decision is derived from your void deltas only:
-  $\Delta W = \delta_{\mathrm{re\text{-}vgsp}}(W,t) + \delta_{\mathrm{gdsp}}(W,t)$ (or your adapter if you swap it) — *no heuristic extras*.
+  $\Delta W = \delta_{\mathrm{re\text{-}vgsp}}(W,t) + \delta_{\mathrm{gdsp}}(W,t)$ (or your adapter if you swap it) - *no heuristic extras*.
 * **Introspection:** *never* scans raw $W$ globally; ADC listens only to **void‑walker announcements** (events) and updates incrementally $O(\text{events})$.
 * **Traversal / pathfinding:** expansion priority is $-|\Delta W_{\text{pred}}|$ at the neighbor (exactly your energy landscape).
 * **Self‑speak:** triggered only by **topology spikes** (B1 proxy via loop closures) gated by **SIE valence** + cooldown. No token policy inside the core; tokens remain I/O‑boundary artifacts (UTE/UTD).
@@ -14,7 +14,7 @@ Alright Justin — here’s the concrete, end‑to‑end plan to purge any strag
 
 ---
 
-# 1) Void‑faithful audit (run this first — 3 mins)
+# 1) Void‑faithful audit (run this first - 3 mins)
 
 In your repo root:
 
@@ -271,7 +271,7 @@ python -m fum_rt.run_nexus \
 
 ---
 
-# 5) Bottlenecks you called out — fixes now baked in
+# 5) Bottlenecks you called out - fixes now baked in
 
 **B1/persistence & pruning (measurement cost):**
 
@@ -319,7 +319,7 @@ python tools/lint_void_faithful.py
 
 # 7) If anything still “feels LLM‑ish”
 
-* Check `grep -R "softmax|logit|cross_entropy" fum_rt` — all must be absent.
+* Check `grep -R "softmax|logit|cross_entropy" fum_rt` - all must be absent.
 * Any “step loop” that walks tokens → relocate to UTE/UTD macros.
 * Any *global* map pass on $W$ → replace with walker events (bus) + ADC local updates.
 
@@ -332,4 +332,4 @@ python tools/lint_void_faithful.py
 * Proven‑by‑construction guards against regressions (STRICT void adapter, ADC attribute trap, sparse “no dense S” breaker, linter).
 * MI100‑friendly runs on your box with clear signals to monitor.
 
-If you want, I can also hand you a tiny script to visualize `b1_z` vs “say” emissions and `flops`—but first, run the 1k demo above and paste the first \~50 lines of `utd_events.jsonl`. I’ll sanity‑check the dynamics and tweak the gates in‑place.
+If you want, I can also hand you a tiny script to visualize `b1_z` vs “say” emissions and `flops`-but first, run the 1k demo above and paste the first \~50 lines of `utd_events.jsonl`. I’ll sanity‑check the dynamics and tweak the gates in‑place.

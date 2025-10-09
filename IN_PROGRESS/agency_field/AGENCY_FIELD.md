@@ -1,4 +1,4 @@
-# Agency/Consciousness Field (VDM) — Compact Draft Spec
+# Agency/Consciousness Field (VDM) - Compact Draft Spec
 
 ---
 
@@ -6,27 +6,27 @@
 
 | Symbol                       |           Units | Meaning                                                                        | How to estimate (operational)                                                               |
 | ---------------------------- | --------------: | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------- |
-| $(C(x,t))$                     |               — | Agency/consciousness **field** (order parameter)                               | From proxies via the source law and steady-state fit; or via discrete update on sensor grid |
+| $(C(x,t))$                     |               - | Agency/consciousness **field** (order parameter)                               | From proxies via the source law and steady-state fit; or via discrete update on sensor grid |
 | $(D)$                          |         $L(^2)/T$ | “Smearing”/diffusive coupling between nearby locations                         | Fit from spatial smoothing rate of $(C)$ transients; or set by coupling model                 |
 | $(\gamma)$                     |             $1/T$ | **Decay** rate of $(C)$ without source $(timescale ( \tau=1/\gamma ))$             | Power clamp or “no-task” block, fit exponential relaxation of $(C)$                           |
 | $(S(x,t))$                     |             $1/T$ | **Source density** from organized, predictive information processing           | Composite of $(P, I_{\text{net}}, U)$ (see below) with weights $(\kappa_i)$                     |
-| $(\kappa_1,\kappa_2,\kappa_3)$ |               — | Weights for source components                                                  | Choose by normalization/validation; report values with runs                                 |
+| $(\kappa_1,\kappa_2,\kappa_3)$ |               - | Weights for source components                                                  | Choose by normalization/validation; report values with runs                                 |
 | $(P(x,t))$                     | $1/T$ (or $bits/T$\) | **Predictive power** of internal state about near-future inputs                | Mutual information rate $(I(\text{state}*t;\text{input}*{t+\tau}))$ or next-step (R^2)        |
-| $(I_{\text{net}}(x,t))$        |   — ($bits/T$ ok) | **Integration/coherence** beyond parts                                         | Sum of transfer entropies; multivariate synergy; Lempel-Ziv complexity                      |
+| $(I_{\text{net}}(x,t))$        |   - ($bits/T$ ok) | **Integration/coherence** beyond parts                                         | Sum of transfer entropies; multivariate synergy; Lempel-Ziv complexity                      |
 | $(U(x,t))$                     |             $1/E$ | **Control efficacy** (error reduction per joule)                               | $(U=\big(\mathbb E[L_{\text{noctl}}]-\mathbb E[L_{\text{ctl}}]\big)/\text{energy})$           |
-| $(\sigma(x))$                  |               — | **Susceptibility** of substrate (amplification of a given source)              | Calibrate by comparing $(C)$ vs $(S)$ across media (e.g., cortex vs air)                        |
-| $(V(x,t))$                     |        — $(bits)$ | **Option capacity** (empowerment; reachable-state entropy over horizon $(\tau)$\) | Count/estimate distinct useful futures within $(\tau)$ under constraints                      |
-| $(B(x,t))$                     |               — | **Balance** (non-interference / coordination index)                            | Diversity benefit - congestion penalty; e.g., ensemble gain minus redundancy                |
-| $(g(V),h(B))$                  |               — | Saturating gates for headroom/coordination                                     | Use $(g(V)=V/(1+V))$\, $(h(B)=B/(1+B))$ (edit as needed)                                         |
-| $(Q_C(\Omega,t))$              |               — | **Regional charge** of $(C)$ in domain $(\Omega)$                                  | Spatial integral (or sum over sensors) of $(C)$                                               |
-| $(G_{\text{ret}})$             |               — | Retarded kernel for causal propagation                                         | Green’s function of $(\partial_t-D\nabla^2+\gamma)$                                           |
+| $(\sigma(x))$                  |               - | **Susceptibility** of substrate (amplification of a given source)              | Calibrate by comparing $(C)$ vs $(S)$ across media (e.g., cortex vs air)                        |
+| $(V(x,t))$                     |        - $(bits)$ | **Option capacity** (empowerment; reachable-state entropy over horizon $(\tau)$\) | Count/estimate distinct useful futures within $(\tau)$ under constraints                      |
+| $(B(x,t))$                     |               - | **Balance** (non-interference / coordination index)                            | Diversity benefit - congestion penalty; e.g., ensemble gain minus redundancy                |
+| $(g(V),h(B))$                  |               - | Saturating gates for headroom/coordination                                     | Use $(g(V)=V/(1+V))$\, $(h(B)=B/(1+B))$ (edit as needed)                                         |
+| $(Q_C(\Omega,t))$              |               - | **Regional charge** of $(C)$ in domain $(\Omega)$                                  | Spatial integral (or sum over sensors) of $(C)$                                               |
+| $(G_{\text{ret}})$             |               - | Retarded kernel for causal propagation                                         | Green’s function of $(\partial_t-D\nabla^2+\gamma)$                                           |
 | $(\tau)$                       |               $T$ | Decay time constant                                                            | $(\tau=1/\gamma)$                                                                             |
 | $(\ell_D)$                     |               $L$ | Diffusion length                                                               | $(\ell_D=\sqrt{D/\gamma})$                                                                    |
-| $(\tilde t,\tilde x)$          |               — | Dimensionless time/space                                                       | $(\tilde t=\gamma t,; \tilde x = x/\ell_D)$                                                   |
-| $(\varepsilon_{\text{eff}})$   |               — | (Optional) portal mixing, modulated by $(C)$                                     | $(\varepsilon_{\text{eff}}=\varepsilon_0(1+\alpha C))$ (tiny $(\alpha)$\)                        |
-| $(\alpha)$                     |               — | (Optional) strength of portal modulation by $(C)$                                | Fit from portal-signal correlates (if used)                                                 |
+| $(\tilde t,\tilde x)$          |               - | Dimensionless time/space                                                       | $(\tilde t=\gamma t,; \tilde x = x/\ell_D)$                                                   |
+| $(\varepsilon_{\text{eff}})$   |               - | (Optional) portal mixing, modulated by $(C)$                                     | $(\varepsilon_{\text{eff}}=\varepsilon_0(1+\alpha C))$ (tiny $(\alpha)$\)                        |
+| $(\alpha)$                     |               - | (Optional) strength of portal modulation by $(C)$                                | Fit from portal-signal correlates (if used)                                                 |
 | $(\Delta t, \Delta x)$         |            $T, L$ | Discrete step sizes $(time, space)$                                              | Simulation/estimation settings                                                              |
-| $CFL$                          |               — | Explicit-scheme stability indicator                                            | $(\Delta t \lesssim \Delta x^2/(2dD))$ in $(d)$ dims                                            |
+| $CFL$                          |               - | Explicit-scheme stability indicator                                            | $(\Delta t \lesssim \Delta x^2/(2dD))$ in $(d)$ dims                                            |
 
 ---
 
@@ -137,7 +137,7 @@ $$
 
 ## Plain-English Narrative (what this buys you)
 
-**What $(C)$ is:** a **field of organized capability**—how much predictive, coordinated control lives here-and-now. It is **not** a new long-range force. It is **emergent**, **local**, **causal**, and **budgeted**: fuel $(energy)$\, wiring $(coupling)$\, and headroom $(options)$ raise it; it drifts down with time $(1/\gamma)$ without upkeep.
+**What $(C)$ is:** a **field of organized capability**-how much predictive, coordinated control lives here-and-now. It is **not** a new long-range force. It is **emergent**, **local**, **causal**, and **budgeted**: fuel $(energy)$\, wiring $(coupling)$\, and headroom $(options)$ raise it; it drifts down with time $(1/\gamma)$ without upkeep.
 
 **What drives (C):** three ingredients you can measure:
 

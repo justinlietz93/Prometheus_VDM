@@ -11,7 +11,7 @@ Directory layout
   - fluid_dynamics/
   - tachyonic_condensation/
 - Example
-  - [test_taylor_green_decay.py](Prometheus_VDM/derivation/code/tests/fluid_dynamics/test_taylor_green_decay.py:1) — verifies ν recovery from Taylor-Green energy decay with |ν_fit-ν_th|/ν_th ≤ 5%.
+  - [test_taylor_green_decay.py](Prometheus_VDM/derivation/code/tests/fluid_dynamics/test_taylor_green_decay.py:1) - verifies ν recovery from Taylor-Green energy decay with |ν_fit-ν_th|/ν_th ≤ 5%.
 
 Conventions
 

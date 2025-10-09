@@ -7,7 +7,7 @@ This chapter addresses the broader philosophical, motivational, and ethical dime
 #### 5.1 Philosophical Considerations
 
 **Question:**
-Does FUM's computational framework—with its specific neuron models, plasticity rules, connectomes, and reinforcement engine—lead to genuine subjective experience or merely replicate its functional correlates? Does emergence provide a stronger basis for consciousness than other systems? What markers might suggest consciousness, and are design aspects like abstraction and a lack of embodiment fundamental insufficiencies?
+Does FUM's computational framework-with its specific neuron models, plasticity rules, connectomes, and reinforcement engine-lead to genuine subjective experience or merely replicate its functional correlates? Does emergence provide a stronger basis for consciousness than other systems? What markers might suggest consciousness, and are design aspects like abstraction and a lack of embodiment fundamental insufficiencies?
 
 **Answer:**
 The project's design philosophy prioritizes functional equivalence over strict biological analogy. The focus is on replicating the brain's efficiency and learning capabilities rather than directly addressing the "hard problem" of consciousness. The goal is to achieve efficient superintelligence through emergent, brain-inspired mechanisms, not to explicitly solve for consciousness. The model's core components are functional optimizers, and its reward signal is computational, not inherently subjective.
@@ -40,7 +40,7 @@ This reflects the core values of Efficiency, Autonomy, and Adaptability, with a 
 What are the long-term existential consequences? Does the technical focus reflect the transformative nature of the project? Are risks adequately engaged?
 
 **Answer:**
-The achievement of superintelligence could reshape the human condition, with the potential for both immense benefits, such as solving intractable global challenges, and significant risks, including economic disruption or a loss of human agency. It is acknowledged that the project's current focus on technical feasibility and stability—ensuring the system works as intended—addresses technical alignment but does not yet cover the full scope of broader existential risks. The project is committed to exploring these risks and potential mitigation strategies, such as phased deployment and robust human oversight, in parallel with technical development.
+The achievement of superintelligence could reshape the human condition, with the potential for both immense benefits, such as solving intractable global challenges, and significant risks, including economic disruption or a loss of human agency. It is acknowledged that the project's current focus on technical feasibility and stability-ensuring the system works as intended-addresses technical alignment but does not yet cover the full scope of broader existential risks. The project is committed to exploring these risks and potential mitigation strategies, such as phased deployment and robust human oversight, in parallel with technical development.
 
 ---
 

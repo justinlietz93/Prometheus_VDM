@@ -4,7 +4,7 @@
 
 ## 2. List of proposers and associated institutions/companies
 
-**Justin K. Lietz** — VDM Project (Independent Researcher)
+**Justin K. Lietz** - VDM Project (Independent Researcher)
 
 ## 3. Abstract
 
@@ -89,7 +89,7 @@ No existing RD files are touched; paths are new and names are scheme-suffixed.
 
 ## 6. Personnel
 
-**Justin K. Lietz** — design, implementation (new modules only), CAS/analysis, and write-up. No changes to prior RD scripts; reproducibility preserved.
+**Justin K. Lietz** - design, implementation (new modules only), CAS/analysis, and write-up. No changes to prior RD scripts; reproducibility preserved.
 
 ## 7. References
 

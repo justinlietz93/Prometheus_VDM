@@ -11,7 +11,7 @@ This chapter details the higher-order dynamics that emerge from the interaction 
 
 **A.1. The Emergent Energy Landscape & Dynamic Criticality**
 
-*   **Emergent Stability:** Unlike networks with predefined energy functions, FUM's stability emerges naturally. The interplay of local learning rules—primarily **Resonance-Enhanced Valence-Gated Synaptic Plasticity (RE-VGSP)** and intrinsic plasticity—and the global guidance of the SIE causes the system to "settle" into low-energy attractor states. These states correspond to efficient, stable solutions for recurring tasks.
+*   **Emergent Stability:** Unlike networks with predefined energy functions, FUM's stability emerges naturally. The interplay of local learning rules-primarily **Resonance-Enhanced Valence-Gated Synaptic Plasticity (RE-VGSP)** and intrinsic plasticity-and the global guidance of the SIE causes the system to "settle" into low-energy attractor states. These states correspond to efficient, stable solutions for recurring tasks.
 *   **Self-Organized Criticality (SOC):** A key goal is to maintain a state of SOC, a dynamic balance between stability and chaos that is believed to be optimal for information processing. FUM achieves this not through rigid control, but by:
     *   **Dynamic Thresholds:** Intervention thresholds for corrective measures (e.g., global inhibition changes) adapt based on recent activity variance, allowing the system to fluctuate naturally within healthy bounds.
     *   **Reliance on Homeostasis:** Core stability is primarily maintained by intrinsic homeostatic plasticity and synaptic scaling, which naturally regulate activity without imposing artificial constraints.

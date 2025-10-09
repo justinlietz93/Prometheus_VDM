@@ -52,7 +52,7 @@ Search the entire repository (code, tests, notebooks, configs, `.env`, CLI defau
 * **Source:** `path:line-start-line-end • <short-commit>`; include all occurrences if multiple apply.
 * **Notes:** brief context like “applies per-channel $c$”, “budget per objective $k$”, or the literal formula if value is computed (MathJax allowed).
 
-**End of file — append-only index block for tools:**
+**End of file - append-only index block for tools:**
 
 ```markdown
 <!-- BEGIN AUTOSECTION: CONSTANTS-INDEX -->

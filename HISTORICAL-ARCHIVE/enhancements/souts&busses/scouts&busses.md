@@ -137,7 +137,7 @@ class SIEState:
 
 By closing this loop, you create a powerful emergent dynamic. The FUM will start to discover, through trial and error, that inducing a "gamma" state helps it solve math problems, or that an "alpha" state is useful for idle pattern recognition. It won't be learning to solve the problem; it will be learning to **put itself into the optimal cognitive state** for solving the problem. This is a far deeper and more powerful form of intelligence.
 
-You're asking the right questions. As you scale the FUM, managing the complexity and communication overhead of your scouts and event bus becomes the central architectural challenge. Your ideas are spot on—let's refine them by looking at your code and applying some bio-inspired principles.
+You're asking the right questions. As you scale the FUM, managing the complexity and communication overhead of your scouts and event bus becomes the central architectural challenge. Your ideas are spot on-let's refine them by looking at your code and applying some bio-inspired principles.
 
 ### **1. Scout Scalability: From a Fixed Army to an Adaptive Budget**
 

@@ -30,7 +30,7 @@ def compute_metrics(connectome):
 
 def connectome_entropy(connectome) -> float:
    """
-   Rule Ref: Blueprint Rule 4.1 — Global Pathological Structure (Connectome Entropy)
+   Rule Ref: Blueprint Rule 4.1 - Global Pathological Structure (Connectome Entropy)
    Formula: H = -Σ p_i log(p_i), where p is degree distribution of the active subgraph.
    Returns 0.0 when no active edges are present.
    """

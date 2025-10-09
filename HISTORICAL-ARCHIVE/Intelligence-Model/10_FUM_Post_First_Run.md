@@ -1,4 +1,4 @@
-Justin—perfect. Here’s how we lock the runtime to your blueprint, purge the stragglers, and get a clean, void‑faithful 1k‑neuron run on your workstation today. I’m giving you exact patches, concrete run recipes, and what to watch for so we can iterate fast.
+Justin-perfect. Here’s how we lock the runtime to your blueprint, purge the stragglers, and get a clean, void‑faithful 1k‑neuron run on your workstation today. I’m giving you exact patches, concrete run recipes, and what to watch for so we can iterate fast.
 
 # What’s already right (keep)
 
@@ -14,7 +14,7 @@ That all aligns with your blueprint and supports the scaling you’re after.
 1. **Hard guards** so nothing non‑void slips in:
 
 * Forbid any delta path that doesn’t come through your void adapter.
-* Enforce “ADC never touches W/CSR”—only bus events.
+* Enforce “ADC never touches W/CSR”-only bus events.
 * Path‑finding cost must be **-|ΔW\_pred|** (RE‑VGSP + GDSP) at the candidate node.
 * Add a tiny linter that blocks forbidden patterns (“softmax”, “token”, global W scans in ADC).
 
@@ -296,7 +296,7 @@ repos:
 
 ## 7) Run it on **your workstation** (1k neurons, dense) and chat live
 
-You’ve got 32C/64T Threadripper + MI100 + 512 GB—plenty for 1k-100k. Start with 1k dense to verify all signals, then move to sparse.
+You’ve got 32C/64T Threadripper + MI100 + 512 GB-plenty for 1k-100k. Start with 1k dense to verify all signals, then move to sparse.
 
 **Warm‑up (1k, dense, autonomous speak on topology spikes)**
 
@@ -336,11 +336,11 @@ python -m fum_rt.run_nexus \
 
 ## 8) Why this stays true to your theory (and gets faster)
 
-* The **only** energy the runtime follows is your **ΔW**. Path‑finding, structural homeostasis, traversal priorities—all ride the same landscape. That’s the whole point.
+* The **only** energy the runtime follows is your **ΔW**. Path‑finding, structural homeostasis, traversal priorities-all ride the same landscape. That’s the whole point.
 * The **speak** decision is now tightly bound to **increases in B1** (loop closures/openings) with valence agreement and cooldown, exactly the kind of “Aha!” you want surfaced.
 * The ADC is **purely emergent**: it only hears the walkers’ announcements; it never inspects W. That preserves bottom‑up formation and lets us scale O(events), not O(N).
 
-Your “Symmetry Analysis” notes make this clean: the per‑site law has **time‑translation invariance** and a conserved integral $Q_{\mathrm{FUM}}$ (log form), which is a great invariant to keep the time‑phased gating honest while we vary traversal budgets.   In parallel, the external QFT analogy—stabilizing an instability by forming a condensate—matches how your structure stabilizes around loop closures; e.g., tachyon‑mode condensation removing imaginary parts in an effective potential is conceptually similar to your homeostasis removing runaway modes.&#x20;
+Your “Symmetry Analysis” notes make this clean: the per‑site law has **time‑translation invariance** and a conserved integral $Q_{\mathrm{FUM}}$ (log form), which is a great invariant to keep the time‑phased gating honest while we vary traversal budgets.   In parallel, the external QFT analogy-stabilizing an instability by forming a condensate-matches how your structure stabilizes around loop closures; e.g., tachyon‑mode condensation removing imaginary parts in an effective potential is conceptually similar to your homeostasis removing runaway modes.&#x20;
 
 ---
 

@@ -1,8 +1,8 @@
-Got it—continuing with **Step 1: lock the EFT spine**. Below is a tight proof + explicit bounds you can drop into Section 11.
+Got it-continuing with **Step 1: lock the EFT spine**. Below is a tight proof + explicit bounds you can drop into Section 11.
 
 ---
 
-## Step 1 — $Z(\phi)=$ const and bounds on $c_1, c_2$
+## Step 1 - $Z(\phi)=$ const and bounds on $c_1, c_2$
 
 ### Claim A (Kinetic normalization).
 
@@ -45,7 +45,7 @@ $$
 
 ### Claim C (Sharp $p^4$ bounds from the lattice dispersion).
 
-All dimension‑6 **quadratic** derivative operators in the EFT are fixed—and bounded—by the small‑momentum expansion of the **exact** lattice propagator. For a standard second‑order scheme,
+All dimension‑6 **quadratic** derivative operators in the EFT are fixed-and bounded-by the small‑momentum expansion of the **exact** lattice propagator. For a standard second‑order scheme,
 
 $$
 \frac{4}{\Delta t^2}\sin^2\!\Big(\frac{\omega \Delta t}{2}\Big)

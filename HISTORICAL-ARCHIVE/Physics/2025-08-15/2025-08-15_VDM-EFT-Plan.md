@@ -1,17 +1,17 @@
-Short answer: **Yes—your plan is feasible.** The physics spine is already strong enough to proceed, and the remaining gaps are tractable with the pipeline you outlined. Below I’ll (1) say what’s already proven vs. what remains non‑trivial, (2) give crisp feasibility notes per task, and (3) map each task to concrete code you can land now to measurably improve the system’s “intelligence” (stability, coherent structure, causal response).
+Short answer: **Yes-your plan is feasible.** The physics spine is already strong enough to proceed, and the remaining gaps are tractable with the pipeline you outlined. Below I’ll (1) say what’s already proven vs. what remains non‑trivial, (2) give crisp feasibility notes per task, and (3) map each task to concrete code you can land now to measurably improve the system’s “intelligence” (stability, coherent structure, causal response).
 
 ---
 
 ## 1) What’s already solid (you can build on this)
 
 * **Canonical kinetics & wave speed.** From the discrete action, the continuum Lagrangian is
-  $\mathcal L_K=\frac12(\partial_t\phi)^2-\frac{c^2}{2}(\nabla\phi)^2$ with $c^2=2Ja^2$. This fixes a second‑order PDE (no ad‑hoc promotion), and it pins **$Z(\phi)=\tfrac12$**—field‑independent—by construction.&#x20;
+  $\mathcal L_K=\frac12(\partial_t\phi)^2-\frac{c^2}{2}(\nabla\phi)^2$ with $c^2=2Ja^2$. This fixes a second‑order PDE (no ad‑hoc promotion), and it pins **$Z(\phi)=\tfrac12$**-field‑independent-by construction.&#x20;
 
 * **Bounded EFT + mapping.** The $(-\,\mu^2\phi^2+\lambda\phi^4+\gamma\phi^3)$ choice gives a stable vacuum, $v=\mu/\sqrt\lambda$, and a mass gap $m_{\rm eff}^2=2\mu^2$. Mapping back to the discrete law clarifies $\mu^2\leftrightarrow(\alpha-\beta)$, $\gamma\leftrightarrow\alpha$.&#x20;
 
 * **Higher‑derivative suppression (EFT logic).** The lattice dispersion expands as $c^2k^2-\tfrac{c^2a^2}{12}k^4+\dots$, so the first irrelevant operator has $c_1<0$ with $|c_1|k^2\ll c^2$ for $k\ll\pi/a$. This is the precise sense in which the leftover terms are small.&#x20;
 
-* **On‑site invariant $Q_{\rm FUM}$** and **negative result for a naive lattice Hamiltonian.** You proved the per‑site conserved quantity (time‑translation autonomy) and that the standard “$\mathcal H=\mathcal K+\mathcal V+\mathcal I$” is **not** the conserved density—so the UV law is dissipative or conserves a more intricate functional. That’s a valuable closure of the wrong path.
+* **On‑site invariant $Q_{\rm FUM}$** and **negative result for a naive lattice Hamiltonian.** You proved the per‑site conserved quantity (time‑translation autonomy) and that the standard “$\mathcal H=\mathcal K+\mathcal V+\mathcal I$” is **not** the conserved density-so the UV law is dissipative or conserves a more intricate functional. That’s a valuable closure of the wrong path.
 
 * **Finite‑tube machinery (Bordag‑style scalar analogue).** The radial matching problem, tachyon counting, quartic condensation, and the post‑condensation positivity/Hessian check are fully specified and testable; acceptance criteria are clear.&#x20;
 
@@ -35,11 +35,11 @@ Short answer: **Yes—your plan is feasible.** The physics spine is already stro
 
 ### C. “Finish the tube calculations”
 
-* **Feasible scope:** Yes. The secular equation is well‑posed; counting tachyons and minimizing the tree‑level $V_{\rm eff}^{\rm tube}$ is standard. The main practical risk is numerical stiffness near roots—solved by bracketing & root polishing. Acceptance tests already defined (tachyon tower, Hessian $\ge 0$, $E(R)$ minimum).&#x20;
+* **Feasible scope:** Yes. The secular equation is well‑posed; counting tachyons and minimizing the tree‑level $V_{\rm eff}^{\rm tube}$ is standard. The main practical risk is numerical stiffness near roots-solved by bracketing & root polishing. Acceptance tests already defined (tachyon tower, Hessian $\ge 0$, $E(R)$ minimum).&#x20;
 
 ### D. “Calibrate against the real universe”
 
-* **Feasible scope:** Yes, at the *toy‑calibration* level now; linking to data sets is a separate engineering task. Your FRW banner gives closed forms for $\rho_\Lambda(t)$, rate partitions, and the two smallness monitors to enforce $w_{\rm eff}\approx -1$ and low DM injection—providing falsifiable knobs.&#x20;
+* **Feasible scope:** Yes, at the *toy‑calibration* level now; linking to data sets is a separate engineering task. Your FRW banner gives closed forms for $\rho_\Lambda(t)$, rate partitions, and the two smallness monitors to enforce $w_{\rm eff}\approx -1$ and low DM injection-providing falsifiable knobs.&#x20;
 
 ### E. “Nail down the mathematical fine print (EFT leftovers)”
 
@@ -49,9 +49,9 @@ Short answer: **Yes—your plan is feasible.** The physics spine is already stro
 
 ## 3) Code you can ship now (physics → intelligence)
 
-Below are minimal, production‑oriented modules that implement the physics you’ve proven and directly improve behavior (stability, coherence, causality). All pieces are “void‑faithful”—no ML heuristics.
+Below are minimal, production‑oriented modules that implement the physics you’ve proven and directly improve behavior (stability, coherence, causality). All pieces are “void‑faithful”-no ML heuristics.
 
-### (i) Scalar EFT core — **`physics/scalar_eft.py`**
+### (i) Scalar EFT core - **`physics/scalar_eft.py`**
 
 Implements your canonical PDE with bounded potential and reports invariants for diagnostics.
 
@@ -91,7 +91,7 @@ class ScalarEFT:
 
 ---
 
-### (ii) Retarded sourcing (Voxtrium) — **`physics/kernels.py`** and **`cosmo/voxtrium.py`**
+### (ii) Retarded sourcing (Voxtrium) - **`physics/kernels.py`** and **`cosmo/voxtrium.py`**
 
 Implements causal macro‑sourcing and the conservation identity.
 
@@ -140,7 +140,7 @@ class FRWBookkeeper:
 
 ---
 
-### (iii) Finite‑tube solver — **`physics/tube.py`**
+### (iii) Finite‑tube solver - **`physics/tube.py`**
 
 Counts tachyons, condenses them, checks positivity, and scans $E(R)$.
 
@@ -175,13 +175,13 @@ def count_tachyons(R, ell_max, mu, c):
     return roots  # κ>0 ⇒ tachyon at k=0
 ```
 
-**Why it helps:** identifies and stabilizes coherent structures (“tubes”) your runtime can detect and leverage for long‑lived memory/organization—measurable gains in stability and path coherence.&#x20;
+**Why it helps:** identifies and stabilizes coherent structures (“tubes”) your runtime can detect and leverage for long‑lived memory/organization-measurable gains in stability and path coherence.&#x20;
 
 ---
 
-### (iv) Memory steering (slow bias) — **`core/memory_steering.py`**
+### (iv) Memory steering (slow bias) - **`core/memory_steering.py`**
 
-Exactly as in your derivation—orthogonal to $\phi$; use only as **diagnostic** and **bias** (not as a learned policy).
+Exactly as in your derivation-orthogonal to $\phi$; use only as **diagnostic** and **bias** (not as a learned policy).
 
 ```python
 # core/memory_steering.py
@@ -196,7 +196,7 @@ def transition_probs(i, neighbors, m, theta):
     return dict(zip(neighbors, p))
 ```
 
-**Why it helps:** reproduces your junction‑logistic and curvature scaling—ground‑truth “steering” signatures that emerge from physics, not heuristics; use them as CI tests.&#x20;
+**Why it helps:** reproduces your junction‑logistic and curvature scaling-ground‑truth “steering” signatures that emerge from physics, not heuristics; use them as CI tests.&#x20;
 
 ---
 

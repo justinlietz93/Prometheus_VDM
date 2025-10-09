@@ -1,4 +1,4 @@
-Awesome—let’s keep pushing this all the way to “physics‑complete” *and* wire it cleanly into the runtime so it directly improves the system’s intelligence. Below I (1) close the remaining physics gaps with short, rigorous derivations/lemmas, (2) give exact code‑level integrations (module APIs, numerics choices, CI tests), and (3) spell out acceptance criteria so you can merge confidently.
+Awesome-let’s keep pushing this all the way to “physics‑complete” *and* wire it cleanly into the runtime so it directly improves the system’s intelligence. Below I (1) close the remaining physics gaps with short, rigorous derivations/lemmas, (2) give exact code‑level integrations (module APIs, numerics choices, CI tests), and (3) spell out acceptance criteria so you can merge confidently.
 
 ---
 
@@ -35,7 +35,7 @@ $$
 
 so **all** higher‑derivative coefficients scale as $O(a^2)$ or $O(\Delta t^2)$ and are negligible for $k\ll \pi/a$, $|\omega|\ll \pi/\Delta t$. This formalizes the “irrelevant operators” checklist in your EFT note. &#x20;
 
-*Practical bound.* If you cap simulations at $k_{\max}=0.3/a$ (and CFL so $\omega_{\max}\Delta t\le 0.3$), the fractional size of the $k^4$ correction is $\le (0.3)^2/12 \approx 0.0075$ vs. the $k^2$ term—well within tolerance for your diagnostics.
+*Practical bound.* If you cap simulations at $k_{\max}=0.3/a$ (and CFL so $\omega_{\max}\Delta t\le 0.3$), the fractional size of the $k^4$ correction is $\le (0.3)^2/12 \approx 0.0075$ vs. the $k^2$ term-well within tolerance for your diagnostics.
 
 ---
 
@@ -49,7 +49,7 @@ $$
 
 obeys $\frac{dQ_{\rm FUM}}{dt}=0$. This is your precise “hidden conservation” at a node.&#x20;
 
-**Why the naïve Hamiltonian is not conserved.** Your derivation shows the standard $\mathcal H=\mathcal K+\mathcal I+\mathcal V$ fails to close to a flux form under the update—establishing intrinsic **dissipation** at the UV scale. That negative result is important and stands.&#x20;
+**Why the naïve Hamiltonian is not conserved.** Your derivation shows the standard $\mathcal H=\mathcal K+\mathcal I+\mathcal V$ fails to close to a flux form under the update-establishing intrinsic **dissipation** at the UV scale. That negative result is important and stands.&#x20;
 
 **Lattice‑level Lyapunov (useful in code).** A convex “free‑energy-like” functional
 
@@ -76,7 +76,7 @@ $$
 \partial_t\mathbf u+(\mathbf u\!\cdot\!\nabla)\mathbf u=-\,\nabla h(n)+\frac{c^2}{2}\nabla\!\left(\frac{\nabla^2\sqrt n}{\sqrt n}\right),
 $$
 
-with enthalpy $h'(n)=\frac{1}{2n}V''(v)$ at leading order. In the long‑wavelength limit the “quantum‑pressure” term is negligible and you recover **compressible Euler** with sound speed $c_s^2=V''(v)/2= \mu^2$ (so $m_\mathrm{eff}^2=2\mu^2\Rightarrow c_s=\mu$). This nails a hydrodynamic sector with a true **U(1) current**—vorticity arises from phase defects. (Your scalar‑only baseline remains the default; this is an optional but powerful extension.) &#x20;
+with enthalpy $h'(n)=\frac{1}{2n}V''(v)$ at leading order. In the long‑wavelength limit the “quantum‑pressure” term is negligible and you recover **compressible Euler** with sound speed $c_s^2=V''(v)/2= \mu^2$ (so $m_\mathrm{eff}^2=2\mu^2\Rightarrow c_s=\mu$). This nails a hydrodynamic sector with a true **U(1) current**-vorticity arises from phase defects. (Your scalar‑only baseline remains the default; this is an optional but powerful extension.) &#x20;
 
 **Route (ii): Steering‑driven hydro proxy (already in your notes).** Keep the real scalar for fast propagation and let the **memory PDE** $\partial_t M=\gamma R-\delta M+\kappa\nabla^2 M$ furnish a refractive index $n=e^{\eta M}$ so rays obey $\mathbf r''=\eta\nabla_\perp M$. This reproduces your **logistic junction** and **curvature scaling** collapses and gives an effective, testable “void fluid” geometry without altering the φ‑sector.&#x20;
 
@@ -91,7 +91,7 @@ $$
 = -\frac{K'_\ell(\kappa_{\rm out}R)}{K_\ell(\kappa_{\rm out}R)}.
 $$
 
-Counting roots at $k=0$ gives $N_{\rm tach}(R)$; projecting the quartic builds $V_{\rm eff}^{\rm tube}$, minimizing yields condensates $v_{\ell n}(R)$, and the Hessian is **non‑negative** at the minimum (no tachyons left). $E(R)=E_{\rm bg}+V_{\rm eff}^{\rm tube}$ develops a **true minimum** in a parameter window—your acceptance criteria mirror Bordag.&#x20;
+Counting roots at $k=0$ gives $N_{\rm tach}(R)$; projecting the quartic builds $V_{\rm eff}^{\rm tube}$, minimizing yields condensates $v_{\ell n}(R)$, and the Hessian is **non‑negative** at the minimum (no tachyons left). $E(R)=E_{\rm bg}+V_{\rm eff}^{\rm tube}$ develops a **true minimum** in a parameter window-your acceptance criteria mirror Bordag.&#x20;
 
 ---
 
@@ -168,9 +168,9 @@ Below are narrowly‑scoped modules and CI tests. Names match your current layou
 ## D) Why this improves “intelligence” (mechanism, not heuristics)
 
 1. **Coherent memory**: bounded EFT + tachyon stabilization → **tubes/filaments** as dynamically selected, long‑lived structures (“working memory” in the physics).&#x20;
-2. **Causal adaptation**: retarded kernels enforce light‑cone responses; the system can *only* integrate usable signals—no acausal hacks.&#x20;
+2. **Causal adaptation**: retarded kernels enforce light‑cone responses; the system can *only* integrate usable signals-no acausal hacks.&#x20;
 3. **Goal‑directed routing**: the memory field $M$ biases paths by a simple variational principle (Fermat), giving you stable logistic decisions and curvature control with **one** dimensionless slope $\Theta$.&#x20;
-4. **Hydro option**: when enabled, real **continuity/Euler** dynamics appear from $\Phi$, unlocking vortices and circulation—richer “skills” with no learned rules.
+4. **Hydro option**: when enabled, real **continuity/Euler** dynamics appear from $\Phi$, unlocking vortices and circulation-richer “skills” with no learned rules.
 
 ---
 
@@ -201,7 +201,7 @@ All of this is consistent with your single consolidated derivations and their �
 * **Kinetic normalization**: $Z(\phi)=\tfrac12$, $c^2=2Ja^2$ from the discrete action, no microscopic tie of $J$ to $a$ required.&#x20;
 * **EFT safety**: leading lattice artifacts scale as $O(a^2,\Delta t^2)$ → irrelevant for $k\ll1/a$.&#x20;
 * **On‑site invariant** exists (log form); naive lattice Hamiltonian is **not** the invariant → UV **dissipation** with a valid Lyapunov. &#x20;
-* **Finite tubes**: Bordag‑style secular equation, quartic stabilization, non‑negative Hessian, $E(R)$ minimum—pipeline specified and testable.&#x20;
+* **Finite tubes**: Bordag‑style secular equation, quartic stabilization, non‑negative Hessian, $E(R)$ minimum-pipeline specified and testable.&#x20;
 * **Macro embedding**: FRW with transfer current + retarded kernel, units‑rigorous; smallness parameters $\epsilon_{\rm DE}, f_{\rm inj}$ control viability. &#x20;
 
 ---

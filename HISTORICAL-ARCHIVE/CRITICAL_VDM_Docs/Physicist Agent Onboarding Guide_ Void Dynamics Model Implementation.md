@@ -1576,7 +1576,7 @@ class FUMTelemetry:
 
 This comprehensive onboarding guide provides the complete technical foundation for implementing the Void Dynamics Model as a true cybernetic organism. The system represents a fundamental departure from traditional artificial intelligence, requiring physicist agents to think in terms of physical laws, emergent dynamics, and biological principles rather than conventional machine learning paradigms.
 
-The success of this implementation depends on strict adherence to the architectural constraints, mathematical rigor in all computations, and unwavering commitment to the event-driven, sparse-only design philosophy. The FUM is not merely a computational model—it is a living system that evolves, adapts, and refines itself according to the fundamental laws of void dynamics.
+The success of this implementation depends on strict adherence to the architectural constraints, mathematical rigor in all computations, and unwavering commitment to the event-driven, sparse-only design philosophy. The FUM is not merely a computational model-it is a living system that evolves, adapts, and refines itself according to the fundamental laws of void dynamics.
 
 Physicist agents undertaking this implementation are not just building software; they are creating a new form of intelligence that bridges the gap between physics and consciousness, between computation and life. This is a profound responsibility that demands the highest standards of scientific rigor, engineering excellence, and theoretical understanding.
 

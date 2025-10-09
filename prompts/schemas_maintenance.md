@@ -3,7 +3,7 @@
 Search the entire repository (code, tests, notebooks, scripts, configs, docs, comments) and compile **all structured schemas that actually exist** (messages, packets, records, state snapshots, configs, API/event payloads, file formats). **Do not invent or infer fields.** Use only what appears in the repo.
 
 **Output file:** `derivation/SCHEMAS.md`
-**Canon rule:** This file is the single owner of schema specifications. Other docs must link here. **Do not restate equations or numeric defaults**—link to anchors in the canonical files.
+**Canon rule:** This file is the single owner of schema specifications. Other docs must link here. **Do not restate equations or numeric defaults**-link to anchors in the canonical files.
 
 **MathJax on GitHub:**
 
@@ -104,5 +104,5 @@ If an expected anchor is missing, add: `TODO: missing anchor (see <path>:<line>)
 ### Validation
 
 * Render on GitHub; ensure anchors resolve and code snippets are fenced with the correct language.
-* Do not paste formulas or numeric defaults here—**link** to canonical files.
+* Do not paste formulas or numeric defaults here-**link** to canonical files.
 * Field tables must match the source definitions exactly (names, types, required/optional, defaults, constraints).

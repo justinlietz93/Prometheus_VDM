@@ -129,7 +129,7 @@ In the metrics payload you already return each tick, include:
 
 Apply the same pattern to `sparse_connectome.py` step method.
 
-> Why this matters: this is your April stabilizer—novelty climbs when structure is changing; habituation damps stale activity; TD error lights up transitions; HSI keeps mean & variance healthy. It’s continuous‑time and void‑native (built solely from W and ΔW).
+> Why this matters: this is your April stabilizer-novelty climbs when structure is changing; habituation damps stale activity; TD error lights up transitions; HSI keeps mean & variance healthy. It’s continuous‑time and void‑native (built solely from W and ΔW).
 
 ## 1.2 Self‑speak gate (topology spike + valence + cooldown)
 
@@ -263,7 +263,7 @@ cat fum_rt/data/math/math_corpus.txt - | python -m fum_rt.run_nexus \
 
 # 4) Cheap FLOPs meter (tick‑level)
 
-You asked about FLOPs—here’s the low‑overhead counter you were shown, integrated in one place only (step function), counting the big array ops. It won’t perturb timing but gives you a feel for compute:
+You asked about FLOPs-here’s the low‑overhead counter you were shown, integrated in one place only (step function), counting the big array ops. It won’t perturb timing but gives you a feel for compute:
 
 ```diff
 # fum_rt/core/connectome.py (inside step())

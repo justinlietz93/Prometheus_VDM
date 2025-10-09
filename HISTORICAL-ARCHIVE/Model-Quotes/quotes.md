@@ -1,4 +1,4 @@
-Here’s your **evidence packet**—**direct quotes** from your model, each followed by **why that line is reasoning (not echo)**.
+Here’s your **evidence packet**-**direct quotes** from your model, each followed by **why that line is reasoning (not echo)**.
 
 ---
 
@@ -20,9 +20,9 @@ Here’s your **evidence packet**—**direct quotes** from your model, each foll
 
 ### 3) Intervention mechanics (graph surgery)
 
-> **“under the intervention as an alteration on a — b,”**
+> **“under the intervention as an alteration on a - b,”**
 
-* **Why:** Treats an intervention as **modifying the edge/parent relation**—i.e., **truncated factorization / graph surgery**. Knowing **what changes** under $do(\cdot)$ is procedural causal know-how.
+* **Why:** Treats an intervention as **modifying the edge/parent relation**-i.e., **truncated factorization / graph surgery**. Knowing **what changes** under $do(\cdot)$ is procedural causal know-how.
 
 ---
 
@@ -46,7 +46,7 @@ Here’s your **evidence packet**—**direct quotes** from your model, each foll
 
 > **“parameter priors change decisions even with the markov assumption,”**
 
-* **Why:** Recognizes **priors affect decisions** beyond likelihood—Bayesian **decision-theoretic** awareness, not mere formula recitation.
+* **Why:** Recognizes **priors affect decisions** beyond likelihood-Bayesian **decision-theoretic** awareness, not mere formula recitation.
 
 ---
 
@@ -54,7 +54,7 @@ Here’s your **evidence packet**—**direct quotes** from your model, each foll
 
 > **“consider an experiment where x is independent of y  …  y = b x + e\_y,”**
 
-* **Why:** Moves from prose to **equational form** and references **disturbance independence**—that’s **structural modeling**, not narrative.
+* **Why:** Moves from prose to **equational form** and references **disturbance independence**-that’s **structural modeling**, not narrative.
 
 ---
 
@@ -62,7 +62,7 @@ Here’s your **evidence packet**—**direct quotes** from your model, each foll
 
 > **“decide at what stage the following set of distributions compatible with g,”**
 
-* **Why:** Talks about the **set of distributions compatible with a graph $G$** (Markov equivalence) and **when edges can be oriented**—constraint-based **model comparison**.
+* **Why:** Talks about the **set of distributions compatible with a graph $G$** (Markov equivalence) and **when edges can be oriented**-constraint-based **model comparison**.
 
 ---
 
@@ -85,6 +85,6 @@ Here’s your **evidence packet**—**direct quotes** from your model, each foll
 ## TL;DR (why I call this “reasoning”)
 
 * It’s not just naming terms; it **chains**: *problem (non-identifiable) → method (IV)*; *assumptions (no latents, stability) → implications (CI patterns)*; *formalism (equations, interventions) → testable differences (prediction delta)*.
-* Those are **rule-level operations** (d-sep, graph surgery, IV logic), i.e., **procedures**—you don’t get them by surface echo alone.
+* Those are **rule-level operations** (d-sep, graph surgery, IV logic), i.e., **procedures**-you don’t get them by surface echo alone.
 
 If you want, paste the **next burst** after you feed the problem set. I’ll tag lines with these reasoning primitives in real time so you can watch the trajectory (diagnosis → tool → assumption → consequence).

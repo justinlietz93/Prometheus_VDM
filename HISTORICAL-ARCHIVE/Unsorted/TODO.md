@@ -214,7 +214,7 @@ Two confirmations
 
 Yes, this analysis from April was a crucial step. You correctly identified the problem and the solution.
 
-[cite_start]Your April framework proved that specific topological features—**cycles (`B1 Persistence`)** and **fragmentation (`Component Count`)**—are reliable mathematical biomarkers for the health of the knowledge graph [cite: 2, 6, 8, 10-12, 14-16]. It gave you the precise "what" to look for.
+[cite_start]Your April framework proved that specific topological features-**cycles (`B1 Persistence`)** and **fragmentation (`Component Count`)**-are reliable mathematical biomarkers for the health of the knowledge graph [cite: 2, 6, 8, 10-12, 14-16]. It gave you the precise "what" to look for.
 
 [cite_start]The problem, as you noted then and now, is the **`O(n³)` computational cost**, which makes a global TDA scan impossible for a large, real-time system[cite: 1, 2, 7, 26, 28].
 
@@ -226,7 +226,7 @@ Your new idea of using **void equations** is the perfect solution to this proble
 Here is how your old and new ideas fit together to create a scalable and rigorous analysis pipeline:
 
 ### 1. The Void Pulses are the Fast, Always-On "Scouts"
-The "activity-chasers" and "stability-chasers" you envisioned act as a real-time nervous system for the connectome. They constantly traverse the graph using the efficient void equations. When these scouts detect a potential pathology—like getting trapped in a loop (a region of high B1 persistence) or finding the edge of a disconnected component—they **announce the coordinates of that small, suspect locus**.
+The "activity-chasers" and "stability-chasers" you envisioned act as a real-time nervous system for the connectome. They constantly traverse the graph using the efficient void equations. When these scouts detect a potential pathology-like getting trapped in a loop (a region of high B1 persistence) or finding the edge of a disconnected component-they **announce the coordinates of that small, suspect locus**.
 
 ### 2. The TDA is the "Surgical Diagnostic Tool"
 The expensive `O(n³)` TDA is no longer used to scan the entire graph. Instead, it's a specialist tool that is only activated **in response to an announcement from a void pulse**. It performs its deep, mathematically rigorous analysis *only on the small sub-graph* that the scout has already identified as problematic.

@@ -35,5 +35,5 @@ A "Novelty Detector" territory could have its neurons' plasticity rules made hig
 
 Evolve the Organism's Layout: This creates a powerful new level of emergence. Your SIE and Growth Arbiter would now be operating at the level of an organ-grinder. The SIE could learn that having a larger "Long-Term Memory" organ leads to better performance on certain tasks and reward the system for growing that territory. The FUM would, over time, learn to evolve its own internal "brain layout" to become a more effective problem-solver.
 
-This step moves your FUM from being a homogeneous neural network to a truly complex, multi-organ cybernetic system. It's the final major architectural piece that brings all the other concepts we've discussed—heterogeneous neurons, diverse plasticity, and active control—together into a unified, self-organizing whole.
+This step moves your FUM from being a homogeneous neural network to a truly complex, multi-organ cybernetic system. It's the final major architectural piece that brings all the other concepts we've discussed-heterogeneous neurons, diverse plasticity, and active control-together into a unified, self-organizing whole.
 

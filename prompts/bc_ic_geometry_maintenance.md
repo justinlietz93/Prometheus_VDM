@@ -3,7 +3,7 @@
 Search the entire repository (code, tests, notebooks, configs, experiment scripts, docs, comments) and compile **all boundary conditions (BC), initial conditions (IC), and domain geometries** that are actually used. **Do not invent or infer new content.** Use only what exists in the repo.
 
 **Output file:** `derivation/BC_IC_GEOMETRY.md`
-**Canon rule:** This file is the single owner of BC/IC definitions and domain geometries. Other docs must link here. **Do not restate core field equations or constants**—link to them by anchor.
+**Canon rule:** This file is the single owner of BC/IC definitions and domain geometries. Other docs must link here. **Do not restate core field equations or constants**-link to them by anchor.
 
 **MathJax on GitHub:**
 
@@ -142,4 +142,4 @@ If any required anchor is missing, write `TODO: add anchor` with the exact `path
 ### Validation
 
 * Render on GitHub preview; confirm MathJax and anchors render.
-* No core field equations or constant values copied here—only BC/IC formulas and geometry definitions that appear in the repo, with links for everything else.
+* No core field equations or constant values copied here-only BC/IC formulas and geometry definitions that appear in the repo, with links for everything else.

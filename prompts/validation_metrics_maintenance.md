@@ -63,7 +63,7 @@ Search the entire repository (code, tests, notebooks, configs, experiment logs, 
 
 3. **Stability & Safety Guards**
 
-   * Thresholds, budget checks, drift monitors, CFL-type guards—link to implementations and constants.
+   * Thresholds, budget checks, drift monitors, CFL-type guards-link to implementations and constants.
 
 4. **Performance / Efficiency Metrics**
 
@@ -71,7 +71,7 @@ Search the entire repository (code, tests, notebooks, configs, experiment logs, 
 
 5. **Domain-Specific Metrics**
 
-   * RD, LBM/fluids, EFT/field-theory, tube/cylinder modes—whatever categories are evidenced by file paths or comments.
+   * RD, LBM/fluids, EFT/field-theory, tube/cylinder modes-whatever categories are evidenced by file paths or comments.
 
 *(Order sections by repository evidence; do not invent categories. It’s OK to have a single flat list if the repo doesn’t group them.)*
 

@@ -114,5 +114,5 @@ If any required anchor is missing, add: `TODO: add anchor (see <path>:<line>)`; 
 ### Validation
 
 * Render on GitHub; confirm anchors resolve and any quoted MathJax renders.
-* No equations or numeric defaults duplicated here—**link** instead.
+* No equations or numeric defaults duplicated here-**link** instead.
 * All shapes, units, formats, and paths must match repository sources exactly.

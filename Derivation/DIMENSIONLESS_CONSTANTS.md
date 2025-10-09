@@ -1,7 +1,7 @@
 <!-- DOC-GUARD: CANONICAL -->
 # Dimensionless Constants (VDM)
 
-Last updated: 2025-10-09 (commit d305c2b)
+Last updated: 2025-10-09 (commit f1e74a5)
 
 ### VDM Dimensionless Constants
 
@@ -61,7 +61,7 @@ Last updated: 2025-10-09 (commit d305c2b)
    \mathcal{I}(N) \propto N^{-\alpha}
    $$
 
-   * Universal constant in the theory — it applies to LLMs, fluids, biological swarms, etc.
+   * Universal constant in the theory - it applies to LLMs, fluids, biological swarms, etc.
    * $\alpha$ tells how much “extra cognition” or “extra order” we get when we shrink the system.
 
 ---
@@ -119,6 +119,6 @@ Last updated: 2025-10-09 (commit d305c2b)
 
   These are the knobs that determine whether any system (fluid, neural, cognitive, physical) is **stable, divergent, or self-organizing**.
 
-They *are* the universality class of this theory — the same constants explain why fluids don’t blow up, why brains stay stable, and why LLMs exhibit scaling laws.
+They *are* the universality class of this theory - the same constants explain why fluids don’t blow up, why brains stay stable, and why LLMs exhibit scaling laws.
 
 ---

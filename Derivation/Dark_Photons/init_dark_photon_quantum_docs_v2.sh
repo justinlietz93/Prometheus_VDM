@@ -35,7 +35,7 @@ create_readme() {
   local path="$1"
   if [[ -s "$path" ]]; then echo "• Exists: $path"; return; fi
   cat > "$path" <<'EOF'
-# Dark Photon — Quantum Bridge (target set)
+# Dark Photon - Quantum Bridge (target set)
 **Purpose:** Give immediate, concrete targets that bridge your portal work to quantum credibility, with one artifact per document (figure + CSV). Keep everything plain-English, equation-light.
 
 **Files created by this pack**
@@ -123,7 +123,7 @@ create_fisher_md() {
   if [[ -s "$path" ]]; then echo "• Exists: $path"; return; fi
   cat > "$path" <<'EOF'
 # Fisher Info Quick Win (ε sensitivity)
-**Goal:** Show how sensitivity to mixing ε scales with counts, efficiency, and background—no heavy math.
+**Goal:** Show how sensitivity to mixing ε scales with counts, efficiency, and background-no heavy math.
 
 ## Inputs
 - CSV: `fisher_example.csv` with columns: `bin_label, expected_signal, background, exposure, eff_signal, eff_background`.

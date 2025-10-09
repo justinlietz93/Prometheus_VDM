@@ -6,17 +6,17 @@ Axiom-core → Derived-limit (RD & fluids) → Runtime-only (memory steering run
 
 # Objective recap
 
-Publish the next two pieces that (1) strengthen your “methodological spine” and (2) showcase the uniquely VDM bits—without outrunning your acceptance gates.
+Publish the next two pieces that (1) strengthen your “methodological spine” and (2) showcase the uniquely VDM bits-without outrunning your acceptance gates.
 
 # Recommendation (order matters)
 
-**1) Memory Steering — “Acceptance & Verification” (next preprint).**
+**1) Memory Steering - “Acceptance & Verification” (next preprint).**
 Why this first: it’s your differentiator and you already defined how it must behave inside the event-driven, sparse-only organism. Bake the checks right into the paper: no dense ops; all structure edits go walker→event→scoreboard→actuator; budgets enforced; physics guards pass (Q_FUM drift ≈ 0; RD regime unchanged by steering). The architecture and tests are already spelled out; turn them into figures and CLI recipes.    
 
-**2) Fluid Dynamics — “Methods Note: LBM→NS Taylor-Green benchmark.”**
+**2) Fluid Dynamics - “Methods Note: LBM→NS Taylor-Green benchmark.”**
 You’ve already got a crisp, low-risk physics validation (ν_fit ≈ 0.0999 vs ν_th = 0.1). Package it as a short, reproducible note (setup, acceptance gate, log/figure, CLI). This keeps the “validated-methods” drumbeat going right after the RD baseline. 
 
-**3) Gravity / dark sector — hold for a scoped hypothesis note.**
+**3) Gravity / dark sector - hold for a scoped hypothesis note.**
 Keep it quarantined as future work with falsifiable observables, not a full derivation yet. Your published scope policy already draws a clear line between canonical RD claims and quarantined second-order/EFT content; mirror that for gravity until you’ve locked (1) and (2). 
 
 # Why this sequence is defensible (and fast to prove)
@@ -58,7 +58,7 @@ Keep it quarantined as future work with falsifiable observables, not a full deri
 # Next steps (concrete)
 
 * Implement the `void_runtime_api` shim and CI grep; update the two public runners to import only through the shim. 
-* Draft “Memory Steering — Acceptance & Verification” with embedded tests and four figures listed above; include Q_FUM drift panel. 
+* Draft “Memory Steering - Acceptance & Verification” with embedded tests and four figures listed above; include Q_FUM drift panel. 
 * Draft “LBM→NS Taylor-Green Methods Note” with the ν_fit vs ν_th figure and a 1-metric acceptance gate. 
 * Ship both as Zenodo DOIs mirroring your RD baseline bundle layout (paper + runner + logs/figures). 
 

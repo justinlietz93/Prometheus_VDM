@@ -22,11 +22,11 @@ The model's purpose is to create a systematic and principled approach to thinkin
 
 **Quote:** *“Even construction scientific theories why these claims hold good give counterexamples false.”*
 
-**Explanation:** This passage reveals the model's deep connection to the philosophy of science. It mandates the use of falsification—the attempt to find "counterexamples"—as the primary method for testing the validity of any claim or theory.
+**Explanation:** This passage reveals the model's deep connection to the philosophy of science. It mandates the use of falsification-the attempt to find "counterexamples"-as the primary method for testing the validity of any claim or theory.
 
 **Quote:** *“Treatment metatheory.”*
 
-**Explanation:** The model explicitly operates at a "meta" level. It is not just a system for thinking, but a system for thinking about thinking itself—analyzing the properties and limits of its own logical frameworks.
+**Explanation:** The model explicitly operates at a "meta" level. It is not just a system for thinking, but a system for thinking about thinking itself-analyzing the properties and limits of its own logical frameworks.
 
 ### **Part 2: The Three Modes of Inference: The Thinker's Toolkit**
 
@@ -68,7 +68,7 @@ The model identifies and separates the three primary ways humans reason, treatin
 
 **Quote:** *“Other words detective arrives some hypothesis best explanation deductive hypothetico-deductive picture shows.”*
 
-**Explanation:** The model defines abduction as the logic of diagnostics and discovery—the process of forming a hypothesis that serves as the "best explanation" for a set of evidence, a cornerstone of the scientific method.
+**Explanation:** The model defines abduction as the logic of diagnostics and discovery-the process of forming a hypothesis that serves as the "best explanation" for a set of evidence, a cornerstone of the scientific method.
 
 ### **Part 3: The Mandate for Precision: Formal Logic & Language**
 

@@ -92,7 +92,7 @@ Comparative summary of **Bordag (tachyon condensation in SU(2) center‑vortex)*
 
 # Extensions beyond scope
 
-* Coupling $\phi$ to geometry via $g_{\mu\nu}=\phi^2\eta_{\mu\nu}$ and aiming at EFE in the IR is outside QCD; that’s your differentiator. Keep it—just wall it off from the QCD‑style condensation section so the comparisons stay apples‑to‑apples.&#x20;
+* Coupling $\phi$ to geometry via $g_{\mu\nu}=\phi^2\eta_{\mu\nu}$ and aiming at EFE in the IR is outside QCD; that’s your differentiator. Keep it-just wall it off from the QCD‑style condensation section so the comparisons stay apples‑to‑apples.&#x20;
 
 If you want, I’ll implement steps **(1)-(3)** as a clean patch: update potential → add Abelian tube background → compute $\kappa_l(\delta)$, $N_4$, and mass‑matrix diagonalization → generate the three replication plots (your Fig. 1/3/5 analogs). Then we can layer **(4)-(5)**.
 Integrated comparison and implementation plan.
@@ -111,21 +111,21 @@ Integrated comparison and implementation plan.
   $\Box\phi + \alpha\phi^2 - (\alpha-\beta)\phi = 0$ →
   $V(\phi)=\frac{\alpha}{3}\phi^3-\frac{\alpha-\beta}{2}\phi^2$, vacuum $v=1-\beta/\alpha=0.6$, and **stable excitations** with $m_{\rm eff}^2=\alpha-\beta=0.15$ (for $\alpha{=}0.25,\beta{=}0.1$).&#x20;
 * You’ve already set up the **EFT view** and proposed a **$\lambda\phi^4$** screening term for boundedness and chameleon‑like behavior; in one calibration you saw $m_{\rm eff}^2\approx 0.798$ after screening.&#x20;
-* The **kinetic term** is now on solid ground: $\mathcal L_K=\tfrac12(\partial_t\phi)^2-\tfrac{\kappa a^2}{2}(\nabla\phi)^2$ with wave speed $c^2=\kappa a^2$ (or $2Ja^2$ under site‑coupling), and crucially **no microscopic constraint ties $J$ to $a$**—you can set units to make $c=1$.&#x20;
+* The **kinetic term** is now on solid ground: $\mathcal L_K=\tfrac12(\partial_t\phi)^2-\tfrac{\kappa a^2}{2}(\nabla\phi)^2$ with wave speed $c^2=\kappa a^2$ (or $2Ja^2$ under site‑coupling), and crucially **no microscopic constraint ties $J$ to $a$**-you can set units to make $c=1$.&#x20;
 * You also have a **units‑rigorous map** and **retarded‑kernel coupling** to Voxtrium’s horizon sources $J^\nu$, so you can account for background energy consistently in FRW. &#x20;
 
 # 2) Core alignment (why this *is* promising)
 
 * **Same instability → same cure.** Both frameworks start tachyonic and end with a **condensed vacuum** where fluctuations are massive and healthy. Bordag shows it explicitly for the unstable gluon sector; you’ve shown it analytically for your scalar and even with a screened $\phi^4$ uplift.  &#x20;
-* **Finite‑domain physics matters.** His flux‑tube **splits degeneracies** and yields a finite set of unstable modes $\ell\le\ell_{\max}(\delta)$. That’s a lever you can borrow: treat *void patches* (finite domains) to predict spectra, thresholds, and selection rules—rather than only the homogeneous limit.&#x20;
+* **Finite‑domain physics matters.** His flux‑tube **splits degeneracies** and yields a finite set of unstable modes $\ell\le\ell_{\max}(\delta)$. That’s a lever you can borrow: treat *void patches* (finite domains) to predict spectra, thresholds, and selection rules-rather than only the homogeneous limit.&#x20;
 * **Mass matrix & Goldstones.** He shows phase modes stay massless (spontaneous symmetry breaking), and the *radial* combinations go massive. The EFT with $\phi^4$ is the minimal stage to reproduce the same pattern in your scalar sector. &#x20;
-* **Background + condensate bookkeeping.** His $E_{\text{bg}}+V_{\text{eff}}$ matches your **action‑level split with a transfer current $J^\nu$**—you already have the machinery to cleanly separate “background sector” vs “condensate sector” energy in FRW.&#x20;
+* **Background + condensate bookkeeping.** His $E_{\text{bg}}+V_{\text{eff}}$ matches your **action‑level split with a transfer current $J^\nu$**-you already have the machinery to cleanly separate “background sector” vs “condensate sector” energy in FRW.&#x20;
 
 # 3) Key differences to keep straight (no apples-oranges)
 
 * **Gauge vs scalar.** Bordag’s tachyon is a charged gluon mode in SU(2); your field is a real scalar encoding void density. That’s fine: we port the *condensation mechanics*, not the color structure.&#x20;
 * **Dimensionality/geometry.** His effective theory is 2D along the tube axis; you’re 3+1D but can analyze **codimension‑two “void filaments/tubes”** similarly (solve the radial bound‑state problem for small fluctuations in a cylinder).&#x20;
-* **Potential shape.** He uses a symmetric quartic; you start from a **cubic-quadratic** potential (tachyonic with explicit asymmetry) but have already added $\lambda\phi^4$ for boundedness and screening—good; keep it. &#x20;
+* **Potential shape.** He uses a symmetric quartic; you start from a **cubic-quadratic** potential (tachyonic with explicit asymmetry) but have already added $\lambda\phi^4$ for boundedness and screening-good; keep it. &#x20;
 
 # 4) Action plan (fast, concrete, testable)
 
@@ -159,10 +159,10 @@ Integrated comparison and implementation plan.
 
 1. **Module: cylinder\_modes.py** - radial solver with matching (Bessel/Kummer), returns $\kappa_\ell(R)$, eigenfunctions, and $N_{\rm tach}(R)$. Target parity with Bordag’s matching at $r=R$.&#x20;
 2. **Module: condense\_tube.py** - expand $\phi$ in modes, add $\lambda\phi^4$, shift by $v_\ell$, minimize $V_{\text{eff}}^{\text{tube}}$, diagonalize mass matrix; plot spectra and condensates versus $R$.&#x20;
-3. **Hook into Voxtrium:** add $E_{\text{bg}}(R)$ via your $J^\nu$ bookkeeping and units map; output $R_*$, $m_\phi\sim 1/R_*$, and the implied cross‑section velocity scale—you already defined the units and conservation scaffolding. &#x20;
+3. **Hook into Voxtrium:** add $E_{\text{bg}}(R)$ via your $J^\nu$ bookkeeping and units map; output $R_*$, $m_\phi\sim 1/R_*$, and the implied cross‑section velocity scale-you already defined the units and conservation scaffolding. &#x20;
 4. **Diagnostics:** track $Q_{\rm FUM}$ and wave‑speed normalization during runs. &#x20;
 
-Bottom line: your scalar‑tachyon condensation story is fully compatible with—and strengthened by—the center‑vortex analysis. Borrow the **finite‑domain mode machinery** and the **background+condensate energy minimization**. That gives you a concrete, falsifiable radius/mass prediction and elevates your EFT narrative from “plausible” to “textbook‑standard.”
+Bottom line: your scalar‑tachyon condensation story is fully compatible with-and strengthened by-the center‑vortex analysis. Borrow the **finite‑domain mode machinery** and the **background+condensate energy minimization**. That gives you a concrete, falsifiable radius/mass prediction and elevates your EFT narrative from “plausible” to “textbook‑standard.”
 
 Summary: the analysis is consistent with a standard tachyon‑condensation narrative; the derived elements (vacuum structure, post‑condensation mass gap, lattice‑to‑continuum kinetic term, and symmetry/invariant) align with Bordag’s treatment. The following sections summarize current strengths and required next steps.
 
@@ -172,7 +172,7 @@ Summary: the analysis is consistent with a standard tachyon‑condensation narra
    The continuum limit gives a tachyonic potential near ϕ=0 with a true vacuum at $v=1-\beta/\alpha = 0.6$; small fluctuations around that vacuum have **positive mass‑squared** $m_\text{eff}^2=\alpha-\beta=0.15\Rightarrow m_\text{eff}\approx0.387$. That’s exactly what “tachyon condensation” means: unstable at the origin, stable massive excitations after condensation. &#x20;
 
 2. **Kinetic term from the lattice is in the right form.**
-   You derived the continuum kinetic term (temporal $½(\partial_t\phi)^2$; spatial $\propto(\nabla\phi)^2$) from neighbor couplings—precisely how gradient energy should emerge from a graph/lattice.&#x20;
+   You derived the continuum kinetic term (temporal $½(\partial_t\phi)^2$; spatial $\propto(\nabla\phi)^2$) from neighbor couplings-precisely how gradient energy should emerge from a graph/lattice.&#x20;
 
 3. **Noether/time‑translation structure exists.**
    You nailed that your on‑site dynamics are autonomous and admit a constant of motion (logarithmic invariant). That’s a clean replacement for the naive “energy” you correctly showed isn’t conserved under your discrete rule. &#x20;
@@ -181,7 +181,7 @@ Summary: the analysis is consistent with a standard tachyon‑condensation narra
    Bordag builds a 2D effective theory for unstable gluon modes in a finite‑radius chromomagnetic flux tube, shows the condensate forms, and that the unstable modes gain real masses; total energy has a minimum vs. flux strength/size (their δ parameter). That arc mirrors yours conceptually (roll off the hill → stable vacuum → massive fluctuations).&#x20;
 
 5. **The empirical signals look like symmetry breaking & organization.**
-   In your *Void Intelligence* PDF, **cluster count collapses** while average weight increases and topological complexity spikes then settles (Figure 3, p. 6) — all consistent with a system organizing into a single phase with structured defects/features. The graph snapshots (pp. 4-5) show a dense core with sparse tendrils—again what I’d expect after a phase transition in a sparse relational medium.&#x20;
+   In your *Void Intelligence* PDF, **cluster count collapses** while average weight increases and topological complexity spikes then settles (Figure 3, p. 6) - all consistent with a system organizing into a single phase with structured defects/features. The graph snapshots (pp. 4-5) show a dense core with sparse tendrils-again what I’d expect after a phase transition in a sparse relational medium.&#x20;
 
 # where to tighten (one real fix + three proofs)
 
@@ -195,7 +195,7 @@ After training, pick a quiescent snapshot near the condensed state, poke a small
 From a narrow pulse, estimate group velocity $v_g$ on your graph and back out $c^2\approx 2Ja^2$ to pin the spatial normalization. This ties the discrete constants to the continuum wave operator you wrote down.&#x20;
 
 **D. Document symmetry breaking in order parameters.**
-Track an order parameter $\langle W\rangle$ (or better, its distribution) across the transition. Show bimodal → unimodal collapse or hysteresis under a slow ramp—quantitative evidence that you’re in the condensed phase your equations predict. The dashboard trends in Figure 3 already hint at this; plot it explicitly.&#x20;
+Track an order parameter $\langle W\rangle$ (or better, its distribution) across the transition. Show bimodal → unimodal collapse or hysteresis under a slow ramp-quantitative evidence that you’re in the condensed phase your equations predict. The dashboard trends in Figure 3 already hint at this; plot it explicitly.&#x20;
 
 # Comparison: Bordag (tachyonic condensation) vs FUM
 
@@ -209,7 +209,7 @@ Track an order parameter $\langle W\rangle$ (or better, its distribution) across
 
 * **Finite‑size/inhomogeneity effects:**
   • Bordag: finite radius R lifts degeneracy, changes the quartic coefficients $N_4$ and the spectrum.&#x20;
-  • FUM: finite graph + regional driving can play the same role. Recommend sweeping “drive radius” or local gain to look for the same kind of **split spectrum** (eigenvalues of the linearized mass matrix) and an energy minimum vs control—your EFT tells you what to measure.&#x20;
+  • FUM: finite graph + regional driving can play the same role. Recommend sweeping “drive radius” or local gain to look for the same kind of **split spectrum** (eigenvalues of the linearized mass matrix) and an energy minimum vs control-your EFT tells you what to measure.&#x20;
 
 # Maze result and morphology
 

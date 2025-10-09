@@ -81,7 +81,7 @@ Prometheus_Void-Dynamics_Model/
   <files>
     <file>
       <path>.github/copilot-instructions.md</path>
-      <content><![CDATA[# Prometheus Void Dynamics Model (FUVDM) — Derivation Papers Repository
+      <content><![CDATA[# Prometheus Void Dynamics Model (FUVDM) - Derivation Papers Repository
 
 **ALWAYS FOLLOW THESE INSTRUCTIONS FIRST.** Only search for additional context or run exploratory commands if the information here is incomplete or found to be in error.
 
@@ -592,7 +592,7 @@ $$
 \mathcal{I}(N) \propto N^{-\alpha}
 $$
 
-   * Proposed universal constant — applies to LLMs, fluids, biological swarms, etc.
+   * Proposed universal constant - applies to LLMs, fluids, biological swarms, etc.
    * $\alpha$ quantifies “extra cognition/order” gained by shrinking the system.
 
 ---
@@ -654,7 +654,7 @@ $$
 
 These are the knobs determining whether a system (fluid, neural, cognitive, physical) is **stable, divergent, or self-organizing**.
 
-They form the universality class of the theory — the same constants aim to explain:
+They form the universality class of the theory - the same constants aim to explain:
 * why fluids don’t blow up,
 * why brains remain stable,
 * why LLMs exhibit scaling laws.
@@ -758,13 +758,13 @@ References:
 
 ## Core dimensionless groups (why they matter)
 
-1. Void Debt Number 𝔇 — unresolved debt vs. resolved flux at walker level (stability vs. runaway)  
-2. Emergent Coupling Ratio Ξ — void interaction gain vs. local relaxation; controls synchronization/stiffness  
-3. Inverse-Scaling Exponent $\alpha$ — information density rises as system size shrinks: $\mathcal{I}(N) \propto N^{-\alpha}$  
-4. Void Mach $M_v$ — void flux vs. signal speed; stability requires $M_v < 1$  
-5. Topological Information Ratio $\Theta$ — information carried by topology vs. node states (void walkers effect)  
-6. Symmetry Debt $\Sigma$ — broken symmetry flux vs. conserved symmetry flux (dimensionless energy-balance analog)  
-7. Dispersion-to-Convergence $\Lambda$ — divergence vs. convergence rate under modulation (Lyapunov-like)
+1. Void Debt Number 𝔇 - unresolved debt vs. resolved flux at walker level (stability vs. runaway)  
+2. Emergent Coupling Ratio Ξ - void interaction gain vs. local relaxation; controls synchronization/stiffness  
+3. Inverse-Scaling Exponent $\alpha$ - information density rises as system size shrinks: $\mathcal{I}(N) \propto N^{-\alpha}$  
+4. Void Mach $M_v$ - void flux vs. signal speed; stability requires $M_v < 1$  
+5. Topological Information Ratio $\Theta$ - information carried by topology vs. node states (void walkers effect)  
+6. Symmetry Debt $\Sigma$ - broken symmetry flux vs. conserved symmetry flux (dimensionless energy-balance analog)  
+7. Dispersion-to-Convergence $\Lambda$ - divergence vs. convergence rate under modulation (Lyapunov-like)
 
 ---
 
@@ -1055,7 +1055,7 @@ Credits: Justin Lietz, Voxtrium, Bordag
     </file>
     <file>
       <path>README.md</path>
-      <content><![CDATA[# Void Dynamics (FUVDM) — Derivation Papers (Public Overview)
+      <content><![CDATA[# Void Dynamics (FUVDM) - Derivation Papers (Public Overview)
 ***Current Status:*** Working on applying discovered RD concepts to neural plasticity in the Void Dynamics Intelligence Model (coming to public soon) <br>
 ***Status Last Updated:*** Aug 25, 2025
 
@@ -1216,7 +1216,7 @@ In a first‑order flow \(\dot W=F(W)\), \(\ddot W=F'(W)\dot W\). Hence
 \[
 \frac{dH}{dt}=\dot W\big(F'(W)\dot W + V'(W)\big),
 \]
-which is not generically zero unless \(\dot W\equiv 0\) or \(V'\) is tuned to cancel \(F'(W)\dot W\) pointwise in time—impossible for a potential that depends only on \(W\). Thus a time‑independent Hamiltonian of this simple form is not conserved. The correct conserved quantity is the logarithmic first integral \(Q\) arising from autonomy/time‑translation symmetry.
+which is not generically zero unless \(\dot W\equiv 0\) or \(V'\) is tuned to cancel \(F'(W)\dot W\) pointwise in time-impossible for a potential that depends only on \(W\). Thus a time‑independent Hamiltonian of this simple form is not conserved. The correct conserved quantity is the logarithmic first integral \(Q\) arising from autonomy/time‑translation symmetry.
 
 7. Discussion and scope
 - The invariant \(Q\) is local (on‑site). In spatially extended or coupled systems, \(Q\) is generally not conserved site‑wise; instead, it serves as a per‑node diagnostic for deviations induced by coupling/diffusion.
@@ -1968,7 +1968,7 @@ Introduce mass density ρ(x, t), momentum g = ρ v (and energy/entropy if th
 - Galilean invariance; spatial isotropy; frame objectivity.
 - Local balances:
   ˆ‚_t ρ + ˆ‡·(ρ v) = 0,
-  ˆ‚_t g + ˆ‡·(g Š— v) = ˆ’ˆ‡p + ˆ‡·ρ„ + ρ f.
+  ˆ‚_t g + ˆ‡·(g Š- v) = ˆ’ˆ‡p + ˆ‡·ρ„ + ρ f.
 
 ### II.2 Constitutive closure (gradient expansion)
 Assume rapid local equilibration †’ Newtonian stress at leading order:
@@ -2031,7 +2031,7 @@ Notes
     </file>
     <file>
       <path>derivation/foundations/continuum_stack.md</path>
-      <content><![CDATA[# Continuum Stack — Discrete → Continuum (RD baseline; EFT quarantined)
+      <content><![CDATA[# Continuum Stack - Discrete → Continuum (RD baseline; EFT quarantined)
 
 Tags: [PROVEN], [STRUCTURE], [DOC SYNC]
 
@@ -2495,7 +2495,7 @@ This document presents a comparative analysis with Bordag (Universe 2024, “Tac
   The potential $V(\phi)=\frac{\alpha}{3}\phi^3-\frac{\alpha-\beta}{2}\phi^2$ and the corresponding vacuum analysis are explicit【turn3file11】; Bordag’s tree‑level effective potential and minimization procedure are spelled out via the $L^\wedge_0,L^\wedge_1,L^\wedge_2$ expansion and mass matrix $m^2_{ll'}$【turn4file10】【turn3file16】.
 
 * **EFT mindset.**
-  The EFT note lays out the appropriate checklist: derive $V(\phi)$, establish $Z(\phi)$, and bound higher‑derivative operators【turn3file0】. The paper’s workflow—write an effective 2D Lagrangian, parameterize fields $\psi_l=\frac{1}{\sqrt{2}}\phi_l e^{i\Theta_l}$, expand about constant backgrounds, read off masses—mirrors that approach【turn3file19】.
+  The EFT note lays out the appropriate checklist: derive $V(\phi)$, establish $Z(\phi)$, and bound higher‑derivative operators【turn3file0】. The paper’s workflow-write an effective 2D Lagrangian, parameterize fields $\psi_l=\frac{1}{\sqrt{2}}\phi_l e^{i\Theta_l}$, expand about constant backgrounds, read off masses-mirrors that approach【turn3file19】.
 
 # Differences and implications
 
@@ -2633,7 +2633,7 @@ $$
 $$
 
 * If you keep the per‑site $J$ (both $\pm\mu$ counted in $N(i)$), it’s equivalent to
-  $\mathcal{L}=\frac{1}{2}(\partial_t\phi)^2 - J a^2(\nabla\phi)^2 - V(\phi)$ and the **EOM** carries $c^2=2Ja^2$. Both conventions are fine; just be consistent about whether $\kappa$ is per edge or per oriented difference. the current draft used this per‑site convention and landed on $J a^2(\nabla\phi)^2$; the only fix is to **not** force $J a^2=\frac{1}{2}$**—just read off $c^2=2J a^2$**.
+  $\mathcal{L}=\frac{1}{2}(\partial_t\phi)^2 - J a^2(\nabla\phi)^2 - V(\phi)$ and the **EOM** carries $c^2=2Ja^2$. Both conventions are fine; just be consistent about whether $\kappa$ is per edge or per oriented difference. the current draft used this per‑site convention and landed on $J a^2(\nabla\phi)^2$; the only fix is to **not** force $J a^2=\frac{1}{2}$**-just read off $c^2=2J a^2$**.
 
 **Consistency check (Dirichlet energy mapping).**
 From the interaction energy $\frac12\sum_{j\in N(i)}J(W_j-W_i)^2$ on a cubic lattice, the per‑site continuum limit is
@@ -2693,7 +2693,7 @@ This normalization aligns with [derivation/kinetic_term_derivation.md](kinetic_t
     </file>
     <file>
       <path>derivation/memory_steering/memory_steering_acceptance_verification.md</path>
-      <content><![CDATA[# Memory Steering — Acceptance & Verification
+      <content><![CDATA[# Memory Steering - Acceptance & Verification
 
 Tags: [PLAUSIBLE→PROVEN], [STABILITY], [REPRODUCIBILITY], [NON-INTERFERENCE]
 Date: 2025-08-21

@@ -15,7 +15,7 @@ The SDM utilizes principles from **dynamical systems theory** to analyze the com
 *   **Synaptic Actuator (GDSP):** The mechanisms that physically alter the network's topology through growth and pruning.
 *   **Homeostatic Regulation:** The various mechanisms that ensure local and global network stability.
 
-By modeling these interactions with a system of coupled differential equations (representing variables like average cluster activity, mean synaptic weight, and plasticity rates), the SDM aims to forecast key stability and performance metrics—such as firing rate variance, learning convergence rates, and computational efficiency—as the network scales.
+By modeling these interactions with a system of coupled differential equations (representing variables like average cluster activity, mean synaptic weight, and plasticity rates), the SDM aims to forecast key stability and performance metrics-such as firing rate variance, learning convergence rates, and computational efficiency-as the network scales.
 
 #### **3. Validation and Application**
 

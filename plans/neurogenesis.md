@@ -18,7 +18,7 @@ High, Persistent Novelty: The novelty component of the SIE's reward function rem
 When the Global System observes this combination of signals from the SIE for a sustained period, it has a clear, data-driven trigger to declare a cognitive crisis and initiate the growth of new neurons.
 
 2. How Information "Bleeds" into New Neurons 🩸
-You are absolutely right—the routing of new information shouldn't be a top-down command. It should be a natural, physical process. Your intuition that information should "bleed into" new neurons is precisely how it works, driven by your Cortex and its void walkers.
+You are absolutely right-the routing of new information shouldn't be a top-down command. It should be a natural, physical process. Your intuition that information should "bleed into" new neurons is precisely how it works, driven by your Cortex and its void walkers.
 
 Here is the emergent routing mechanism:
 

@@ -3,7 +3,7 @@ It explains that a working pre‑release exists, shows how outsiders can *evalua
 
 ---
 
-# Void Dynamics Model (VDM) — Private Preview
+# Void Dynamics Model (VDM) - Private Preview
 
 > **Status:** working pre‑release (closed‑source core) with shareable, non‑reversible artifacts (figures, metrics, gated notebooks). Public usage TBD. Patent pending.
 
@@ -75,7 +75,7 @@ You can share the **figures** and the **Preview notebooks**. Reviewers can:
 
 ---
 
-## Option A — Ship a private PyPI wheel (recommended)
+## Option A - Ship a private PyPI wheel (recommended)
 
 This lets your notebooks import `vdm` without exposing source.
 
@@ -116,7 +116,7 @@ print("Mode:", "live (guarded)" if HAVE_VDM_CORE else "figure-replay")
 
 ---
 
-## Option B — Keep everything offline (“figure‑replay”)
+## Option B - Keep everything offline (“figure‑replay”)
 
 If reviewers shouldn’t run code at all, leave out the wheel. The notebooks will:
 
@@ -203,7 +203,7 @@ Contributions are closed while the core is under review. Please open issues only
 If you reference the preview or figures, cite as:
 
 ```
-Lietz, J. (2025). Void Dynamics Model (VDM) — Private Preview.
+Lietz, J. (2025). Void Dynamics Model (VDM) - Private Preview.
 Neuroca, Inc. Internal documentation and figures.
 ```
 
@@ -211,7 +211,7 @@ Supporting background and terminology come from the internal “How The FUM Work
 
 ---
 
-### Appendix — creating the private wheel & index
+### Appendix - creating the private wheel & index
 
 **Build the wheel**
 

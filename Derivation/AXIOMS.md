@@ -1,7 +1,7 @@
 <!-- DOC-GUARD: CANONICAL -->
 # VDM Axioms (Discrete Lattice Foundation)
 
-Last updated: 2025-10-09 (commit d305c2b)
+Last updated: 2025-10-09 (commit f1e74a5)
 
 **Scope:** Canonical list of axioms used by the Void Dynamics Model. This page declares axioms with minimal wording, anchors for cross-referencing, and source citations. All theorems, equations, and algorithms must reference these axioms rather than restate them.
 
@@ -13,11 +13,11 @@ Last updated: 2025-10-09 (commit d305c2b)
 
 <!-- markdownlint-disable MD033 -->
 
-## Program Axioms (A0–A7) — Closure, Void, Local Causality, Symmetry, Metriplectic, Entropy, Scale, Measurability
+## Program Axioms (A0–A7) - Closure, Void, Local Causality, Symmetry, Metriplectic, Entropy, Scale, Measurability
 
 These program-level axioms are used widely across theory and validation narratives. They complement (not replace) the discrete-lattice core below. Where needed, identify $\Psi\leftrightarrow W$ when mapping to the lattice instantiation.
 
-### A0 — Closure  <a id="vdm-ax-a0"></a> <a id="vdm-ax-010"></a>
+### A0 - Closure  <a id="vdm-ax-a0"></a> <a id="vdm-ax-010"></a>
 
 **Statement:** Only objects defined inside the framework are allowed; no external primitives as foundations.
 
@@ -27,7 +27,7 @@ These program-level axioms are used widely across theory and validation narrativ
 
 ---
 
-### A1 — Void Primacy  <a id="vdm-ax-a1"></a> <a id="vdm-ax-011"></a>
+### A1 - Void Primacy  <a id="vdm-ax-a1"></a> <a id="vdm-ax-011"></a>
 
 **Statement:** A field $\Psi(x,t)$ encodes void fluctuations; all physical observables are functionals of $\Psi$ (and its derivatives).
 
@@ -37,7 +37,7 @@ These program-level axioms are used widely across theory and validation narrativ
 
 ---
 
-### A2 — Local Causality  <a id="vdm-ax-a2"></a> <a id="vdm-ax-012"></a>
+### A2 - Local Causality  <a id="vdm-ax-a2"></a> <a id="vdm-ax-012"></a>
 
 **Statement:** Dynamics are built from local functionals of the state; influence propagates finitely from $\Psi$ and its spatial/temporal derivatives.
 
@@ -49,7 +49,7 @@ These program-level axioms are used widely across theory and validation narrativ
 
 ---
 
-### A3 — Symmetry  <a id="vdm-ax-a3"></a> <a id="vdm-ax-013"></a>
+### A3 - Symmetry  <a id="vdm-ax-a3"></a> <a id="vdm-ax-013"></a>
 
 **Statement:** A group $\mathcal G$ acts on $\Psi$. Invariants under $\mathcal G$ generate conserved currents (Noether).
 
@@ -65,7 +65,7 @@ These program-level axioms are used widely across theory and validation narrativ
 
 ---
 
-### A4 — Dual Generators (Metriplectic Split)  <a id="vdm-ax-a4"></a> <a id="vdm-ax-014"></a>
+### A4 - Dual Generators (Metriplectic Split)  <a id="vdm-ax-a4"></a> <a id="vdm-ax-014"></a>
 
 **Statement:** With state $q\equiv(\Psi,\partial\Psi,\ldots)$,
 $\partial_t q = J(q)\,\frac{\delta \mathcal I}{\delta q} + M(q)\,\frac{\delta \Sigma}{\delta q}$, with $J^\top=-J$ (skew/symplectic), $M^\top=M\ge 0$ (symmetric/metric), and degeneracies $J\,\frac{\delta\Sigma}{\delta q}=0$, $M\,\frac{\delta\mathcal I}{\delta q}=0$.
@@ -76,7 +76,7 @@ $\partial_t q = J(q)\,\frac{\delta \mathcal I}{\delta q} + M(q)\,\frac{\delta \S
 
 ---
 
-### A5 — Entropy Law  <a id="vdm-ax-a5"></a> <a id="vdm-ax-015"></a>
+### A5 - Entropy Law  <a id="vdm-ax-a5"></a> <a id="vdm-ax-015"></a>
 
 **Statement:** The entropy functional $\Sigma[q]$ is non-decreasing along trajectories; equality only at steady states.
 
@@ -86,7 +86,7 @@ $\partial_t q = J(q)\,\frac{\delta \mathcal I}{\delta q} + M(q)\,\frac{\delta \S
 
 ---
 
-### A6 — Scale Program  <a id="vdm-ax-a6"></a> <a id="vdm-ax-016"></a>
+### A6 - Scale Program  <a id="vdm-ax-a6"></a> <a id="vdm-ax-016"></a>
 
 **Statement:** Predictions are formulated in dimensionless groups; units themselves carry no physical claims.
 
@@ -96,7 +96,7 @@ $\partial_t q = J(q)\,\frac{\delta \mathcal I}{\delta q} + M(q)\,\frac{\delta \S
 
 ---
 
-### A7 — Measurability  <a id="vdm-ax-a7"></a> <a id="vdm-ax-017"></a>
+### A7 - Measurability  <a id="vdm-ax-a7"></a> <a id="vdm-ax-017"></a>
 
 **Statement:** Every nontrivial statement must map to concrete observables with a test protocol (falsifiable).
 
@@ -110,7 +110,7 @@ $\partial_t q = J(q)\,\frac{\delta \mathcal I}{\delta q} + M(q)\,\frac{\delta \S
 
 > These are not new axioms; they are direct deductions repeatedly referenced by canon files.
 
-### VDM-AX-C01 — Discrete Euler–Lagrange Equations  <a id="vdm-ax-c01"></a>
+### VDM-AX-C01 - Discrete Euler–Lagrange Equations  <a id="vdm-ax-c01"></a>
 
 From VDM-AX-004:
 $$\frac{W_i^{n+1}-2W_i^n+W_i^{n-1}}{\Delta t^2} = J \sum_{j\in N(i)} (W_j^n - W_i^n) - V'(W_i^n).$$
@@ -119,7 +119,7 @@ $$\frac{W_i^{n+1}-2W_i^n+W_i^{n-1}}{\Delta t^2} = J \sum_{j\in N(i)} (W_j^n - W_
 
 ---
 
-### VDM-AX-C02 — Continuum Limit and Exact Spatial Prefactor  <a id="vdm-ax-c02"></a>
+### VDM-AX-C02 - Continuum Limit and Exact Spatial Prefactor  <a id="vdm-ax-c02"></a>
 
 On the cubic lattice, the continuum action derived from VDM-AX-004 yields
 $$S = \int dt\, d^d x\, \Big[ \tfrac{1}{2}(\partial_t\phi)^2 - \tfrac{c^2}{2}|\nabla\phi|^2 - V(\phi) \Big], \quad c^2 = 2 J a^2.$$
@@ -128,7 +128,7 @@ $$S = \int dt\, d^d x\, \Big[ \tfrac{1}{2}(\partial_t\phi)^2 - \tfrac{c^2}{2}|\n
 
 ---
 
-### VDM-AX-C03 — RD Limit (Overdamped Regime)  <a id="vdm-ax-c03"></a>
+### VDM-AX-C03 - RD Limit (Overdamped Regime)  <a id="vdm-ax-c03"></a>
 
 In the overdamped limit of the corollary equations: $\partial_t \phi = D\nabla^2\phi + f(\phi)$ with $D = c^2/\gamma$ and $f(\phi) = -V'(\phi)/\gamma$.
 
@@ -147,21 +147,21 @@ In the overdamped limit of the corollary equations: $\partial_t \phi = D\nabla^2
 <!-- BEGIN AUTOSECTION: AXIOMS-INDEX -->
 <!-- markdownlint-disable MD051 -->
 <!-- Tool-maintained list of [VDM-AX-###](#vdm-ax-###) anchors for quick lookup -->
-- [A0](#vdm-ax-a0) — Closure
-- [A1](#vdm-ax-a1) — Void Primacy
-- [A2](#vdm-ax-a2) — Local Causality
-- [A3](#vdm-ax-a3) — Symmetry
-- [A4](#vdm-ax-a4) — Dual Generators (Metriplectic Split)
-- [A5](#vdm-ax-a5) — Entropy Law
-- [A6](#vdm-ax-a6) — Scale Program
-- [A7](#vdm-ax-a7) — Measurability
-- [VDM-AX-001](#vdm-ax-001) — Field Variable (Discrete Scalar)
-- [VDM-AX-002](#vdm-ax-002) — Lattice Structure (Regular Cubic)
-- [VDM-AX-003](#vdm-ax-003) — Locality Principle (Nearest-Neighbor, One-Step Memory)
-- [VDM-AX-004](#vdm-ax-004) — Discrete Action Principle (Stationary Action)
-- [VDM-AX-C01](#vdm-ax-c01) — Discrete Euler–Lagrange Equations
-- [VDM-AX-C02](#vdm-ax-c02) — Continuum Limit and Exact Spatial Prefactor
-- [VDM-AX-C03](#vdm-ax-c03) — RD Limit (Overdamped Regime)
+- [A0](#vdm-ax-a0) - Closure
+- [A1](#vdm-ax-a1) - Void Primacy
+- [A2](#vdm-ax-a2) - Local Causality
+- [A3](#vdm-ax-a3) - Symmetry
+- [A4](#vdm-ax-a4) - Dual Generators (Metriplectic Split)
+- [A5](#vdm-ax-a5) - Entropy Law
+- [A6](#vdm-ax-a6) - Scale Program
+- [A7](#vdm-ax-a7) - Measurability
+- [VDM-AX-001](#vdm-ax-001) - Field Variable (Discrete Scalar)
+- [VDM-AX-002](#vdm-ax-002) - Lattice Structure (Regular Cubic)
+- [VDM-AX-003](#vdm-ax-003) - Locality Principle (Nearest-Neighbor, One-Step Memory)
+- [VDM-AX-004](#vdm-ax-004) - Discrete Action Principle (Stationary Action)
+- [VDM-AX-C01](#vdm-ax-c01) - Discrete Euler–Lagrange Equations
+- [VDM-AX-C02](#vdm-ax-c02) - Continuum Limit and Exact Spatial Prefactor
+- [VDM-AX-C03](#vdm-ax-c03) - RD Limit (Overdamped Regime)
 <!-- END AUTOSECTION: AXIOMS-INDEX -->
 <!-- markdownlint-enable MD051 -->
 

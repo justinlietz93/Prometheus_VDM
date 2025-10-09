@@ -76,7 +76,7 @@ def maybe_start_maps_ws(nx: Any) -> None:
                 srv.start()
                 nx._maps_ws_server = srv
             except Exception:
-                # Missing websockets or other failure — safe no-op
+                # Missing websockets or other failure - safe no-op
                 return
     except Exception:
         # Never disrupt runtime parity

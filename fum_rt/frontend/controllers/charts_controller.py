@@ -253,7 +253,7 @@ def compute_dashboard_figures(run_dir: str, state: Optional[SeriesState], ui: Op
         go.Scattergl(x=t, y=entro, name="Connectome entropy", yaxis="y6", line=dict(width=1, color=C["entropy"]))
     ))
     fig1.update_layout(
-        title=f"Dashboard — {os.path.basename(run_dir)}",
+        title=f"Dashboard - {os.path.basename(run_dir)}",
         paper_bgcolor="#10151c",
         plot_bgcolor="#0f141a",
         font=dict(color="#cfd7e3"),

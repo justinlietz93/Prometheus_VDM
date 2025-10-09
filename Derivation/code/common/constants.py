@@ -112,7 +112,7 @@ def steering_number(theta: float, grad_m_norm: float, lam: float) -> float:
     return (float(theta) * float(grad_m_norm)) / (float(lam) + 1e-15)
 
 def void_number(Lambda: float, Theta: float, Gamma: float) -> float:
-    """Compute Π_void = (Λ · Θ) / Γ — a VDM diagnostic for void re-organization pressure.
+    """Compute Π_void = (Λ · Θ) / Γ - a VDM diagnostic for void re-organization pressure.
 
     Interpretation: proportional to the product (Λ · Θ) scaled by Γ; the exact
     physical mapping is domain-specific within VDM and is treated as a diagnostic ratio.

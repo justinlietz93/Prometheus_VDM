@@ -1,5 +1,5 @@
 <!-- DOC-GUARD: REFERENCE -->
-# A6 Scaling Collapse — Junction Logistic Universality (v1)
+# A6 Scaling Collapse - Junction Logistic Universality (v1)
 
 > Author: Justin K. Lietz  
 > Date: 2025-10-06  

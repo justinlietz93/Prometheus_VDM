@@ -1,6 +1,6 @@
-awesome—let’s move one clean step at a time.
+awesome-let’s move one clean step at a time.
 
-# Instruction 1 — Wire **SIE** + **Structure/Morphogenesis** knobs from `phase.json` into the live Nexus (no behavior change, just control)
+# Instruction 1 - Wire **SIE** + **Structure/Morphogenesis** knobs from `phase.json` into the live Nexus (no behavior change, just control)
 
 Goal: your **dashboard** already writes `runs/<ts>/phase.json`. This patch makes the Nexus **consume** new keys and push them directly into the running connectome without restarts:
 
@@ -8,7 +8,7 @@ Goal: your **dashboard** already writes `runs/<ts>/phase.json`. This patch makes
 * `structure`: `{ growth_fraction, alias_sampling_rate, b1_persistence_thresh, pruning_low_w_thresh, pruning_T_prune }`
 * `schedule`: `{ adc_entropy_alpha, ph_snapshot_interval_sec }`
 
-It’s defensive: if an attribute doesn’t exist on your current `Connectome`, it silently skips (so we don’t break your tree). No changes to update rules yet—this just exposes the controls you asked for.
+It’s defensive: if an attribute doesn’t exist on your current `Connectome`, it silently skips (so we don’t break your tree). No changes to update rules yet-this just exposes the controls you asked for.
 
 ---
 
@@ -131,7 +131,7 @@ index 7b1ad1e..94fb2b3 100644
 ### Why this step first
 
 * Your dashboard already writes a validated `phase.json`. Making Nexus ingest **SIE** and **Structure** now unblocks the next two steps (surfacing the sliders on the UI and restoring canonical SIE + void‑driven morphogenesis in the core) without bouncing processes.
-* It doesn’t change learning—just gives you live control paths. If any attribute isn’t in your current `Connectome`, it’s skipped (no crashes).
+* It doesn’t change learning-just gives you live control paths. If any attribute isn’t in your current `Connectome`, it’s skipped (no crashes).
 
 ---
 

@@ -4,7 +4,7 @@
 
 ### **From Abstract Reasoner to Coherent Worldview**
 
-Phase 3 marks the FUM's transition from mastering abstract cognitive primitives to applying them to understand the complex, often contradictory, nature of the world. Having forged a resilient and self-regulating reasoning engine in Phase 2, the FUM is now challenged to move beyond solving isolated problems. The objective of this phase is to synthesize knowledge from disparate domains—such as science, history, and ethics—into a single, cohesive, and internally consistent worldview. This process is a crucible, designed to pressure-test the FUM's ability to resolve contradictions and form high-level, abstract principles.
+Phase 3 marks the FUM's transition from mastering abstract cognitive primitives to applying them to understand the complex, often contradictory, nature of the world. Having forged a resilient and self-regulating reasoning engine in Phase 2, the FUM is now challenged to move beyond solving isolated problems. The objective of this phase is to synthesize knowledge from disparate domains-such as science, history, and ethics-into a single, cohesive, and internally consistent worldview. This process is a crucible, designed to pressure-test the FUM's ability to resolve contradictions and form high-level, abstract principles.
 
 ***Section A.***
 

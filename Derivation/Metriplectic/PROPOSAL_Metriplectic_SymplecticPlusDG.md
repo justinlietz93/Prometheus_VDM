@@ -1,4 +1,4 @@
-# Proposal: Metriplectic — Symplectic (KG) + Discrete-Gradient (RD)
+# Proposal: Metriplectic - Symplectic (KG) + Discrete-Gradient (RD)
 
 Date: 2025-10-08
 
@@ -61,7 +61,7 @@ Novelty: The proposal ties together exact KG invariants, dispersion/causality ba
 
 ## Personnel
 
-Proposer: Justin K. Lietz — designs experiments, sets gates and tags, approves proposals, runs pre-registered scripts, and curates RESULTS and canon updates.
+Proposer: Justin K. Lietz - designs experiments, sets gates and tags, approves proposals, runs pre-registered scripts, and curates RESULTS and canon updates.
 
 ## References
 

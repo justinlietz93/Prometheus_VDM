@@ -1,4 +1,4 @@
-# FUM Demo — Base dependencies (GPU-specific torch is managed separately)
+# FUM Demo - Base dependencies (GPU-specific torch is managed separately)
 #
 # Note: Do NOT install the default CPU-only torch from PyPI on AMD/ROCm.
 # For AMD GPUs, install ROCm wheels, or set up a Docker container (provides torch/torchvision/torchaudio).

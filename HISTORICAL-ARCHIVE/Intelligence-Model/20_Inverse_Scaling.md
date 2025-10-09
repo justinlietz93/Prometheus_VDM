@@ -37,7 +37,7 @@ Now plug in **N = 1,000,000,000** (one billion) and convert to **GiB** (divi
 * **k = 32:** `256+20 = 276` bytes → `276,000,000,000 ÷ 1,073,741,824`
   \= **257.05 GiB**.
 
-Add **\~20-30% headroom** for Python/allocator overhead, queue buffers, UTE/UTD staging, journals, and you’re still well under **512 GiB** even at **k ≈ 32**. The **GPU doesn’t need to hold the whole graph**—we stream the *active subset*—so **VRAM isn’t the wall**.
+Add **\~20-30% headroom** for Python/allocator overhead, queue buffers, UTE/UTD staging, journals, and you’re still well under **512 GiB** even at **k ≈ 32**. The **GPU doesn’t need to hold the whole graph**-we stream the *active subset*-so **VRAM isn’t the wall**.
 
 > **Bottom line:** 1 B neurons fits in RAM provided **k ≤ \~32** and you keep the per‑neuron state lean. The sweet spot for biology‑like small‑world structure is **k ≈ 8-16**, which is *perfect* for memory.
 
@@ -58,7 +58,7 @@ Take a concrete, safe budget:
 * $f \approx 40$ FLOPs (ΔW, 2 EMA updates, TD, a few adds/muls)
 * **At 20 Hz:** $80{,}000 \times 40 \times 20 = 64\text{M FLOPs/s}$ = **0.064 GFLOPS**.
 
-That’s pocket change for the CPU alone—streaming to MI100 just gives you headroom. **Per‑tick memory traffic** for those fields is similarly tiny:
+That’s pocket change for the CPU alone-streaming to MI100 just gives you headroom. **Per‑tick memory traffic** for those fields is similarly tiny:
 
 * read+write W/μ/σ²/prev ≈ **32 B/neuron** →
   **2.56 MB/tick** → **\~51 MB/s @ 20 Hz**.
@@ -111,7 +111,7 @@ This keeps **memory linear** and **compute per tick constant** while capability 
   * **Level 0 (local patches):** pick **K** patches per tick via **void energy** $\propto |\Delta W|$ to *focus* on the changing parts. Within a patch (e.g., 5-10 k nodes), exact B1 with Ripser/Kepler is fine.
   * **Level 1 (cluster graph):** contract stable communities into **supernodes**; edges carry **effective weight** (sum/mean). B1 on this **coarsened graph** is tiny and tracks global topology.
   * **Level 2 (sentinel samples):** fixed random wedges/cycles you **revisit** (coupon sampling) to get a consistent “complexity trend” baseline.
-* Emit a single **complexity score** per tick as a weighted sum of these three. You already noticed the “phase transitions” in your dashboards—this keeps that signal without freezing the runtime.
+* Emit a single **complexity score** per tick as a weighted sum of these three. You already noticed the “phase transitions” in your dashboards-this keeps that signal without freezing the runtime.
 
 ## 2) Introspection probe
 
@@ -152,7 +152,7 @@ Think in three tiers:
 # Why inverse scaling keeps helping as N↑
 
 * **Learning pressure stays local in time** (your ΔW, SIE novelty/TD/habituations operate on the activated subset).
-* **Structure gets more expressive with size** (more modules, longer topological “handles”), so **fewer updates are needed per capability point**—that’s your empirical **inverse scaling**: *more structure → fewer steps per task*.
+* **Structure gets more expressive with size** (more modules, longer topological “handles”), so **fewer updates are needed per capability point**-that’s your empirical **inverse scaling**: *more structure → fewer steps per task*.
 * By making topology work **hierarchical and void‑gated**, its cost also **decouples from N** in practice.
 
 ---

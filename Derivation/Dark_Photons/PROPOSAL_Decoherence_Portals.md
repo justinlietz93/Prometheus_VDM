@@ -108,7 +108,7 @@ On any gate failure we will emit:
 
 ## 6. Personnel
 
-Proposer: Justin K. Lietz — responsible for modeling, pre-registration, runplan compliance, data acquisition oversight, and open-artifacts publication following the PAPER_STANDARDS.
+Proposer: Justin K. Lietz - responsible for modeling, pre-registration, runplan compliance, data acquisition oversight, and open-artifacts publication following the PAPER_STANDARDS.
 
 ## 7. References
 

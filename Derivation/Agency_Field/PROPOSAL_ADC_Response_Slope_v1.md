@@ -2,11 +2,11 @@
 
 ## 1. Proposal Title and date
 
-**ADC Response Function: Logistic Slope Equals (\Theta)** — October 8, 2025
+**ADC Response Function: Logistic Slope Equals (\Theta)** - October 8, 2025
 
 ## 2. List of proposers and associated institutions/companies
 
-Justin K. Lietz — VDM Project
+Justin K. Lietz - VDM Project
 
 ## 3. Abstract
 

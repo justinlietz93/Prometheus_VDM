@@ -1,4 +1,4 @@
-Yes—starting with *primitives first* is exactly the right move, and you don’t need tokens inside the core to do it. Think of Phase‑0 as “teaching the organism the alphabet of reality”: single characters, digits, and a tiny set of logic/math operators, emitted as **temporal rhythms** that UTE turns into group activations. Once the connectome shows stable, void‑native signatures (cohesion ↓, vt\_coverage ↑, entropy ↑, topology spikes now and then), we step up to pairs, then short patterns, then compositional “blocks,” and only later to questions/answers.
+Yes-starting with *primitives first* is exactly the right move, and you don’t need tokens inside the core to do it. Think of Phase‑0 as “teaching the organism the alphabet of reality”: single characters, digits, and a tiny set of logic/math operators, emitted as **temporal rhythms** that UTE turns into group activations. Once the connectome shows stable, void‑native signatures (cohesion ↓, vt\_coverage ↑, entropy ↑, topology spikes now and then), we step up to pairs, then short patterns, then compositional “blocks,” and only later to questions/answers.
 
 Below is a compact, production‑ready way to drive that curriculum on your workstation *today*.
 
@@ -143,7 +143,7 @@ python primitives_stream.py --minutes 4.0 --rate 18 - | \
 * **Cohesion (components)** trending down toward 1 as the early scaffold self‑organizes.
 * **vt\_coverage** climbing; **vt\_entropy** rising then oscillating.
 * **complexity\_cycles** (B1 proxy) stepping up with occasional spikes; **b1\_z** crossing threshold sometimes → self‑speak “say” events.
-* **sie\_valence\_01** above 0 during novelty bursts (falls toward neutral during quiescence—normal).
+* **sie\_valence\_01** above 0 during novelty bursts (falls toward neutral during quiescence-normal).
 
 If the organism is *too* quiet while priming:
 

@@ -134,7 +134,7 @@ def run_structure_checks(spec: StructSpec) -> Dict[str, Any]:
         ax1.set_xscale("log")
         ax1.set_xlabel("|<v, J v>|")
         ax1.set_ylabel("count")
-        ax1.set_title(f"J skew check — median={skew_median:.2e}")
+        ax1.set_title(f"J skew check - median={skew_median:.2e}")
         f1_slug = _slug("metriplectic_structure_checks_J_skew_hist", spec)
         f1 = save_figure("metriplectic", f1_slug, fig1, failed=failed)
         # Log plot metadata to logs directory (not next to figure)
@@ -153,7 +153,7 @@ def run_structure_checks(spec: StructSpec) -> Dict[str, Any]:
         ax2.legend(loc="best")
         ax2.set_xlabel("<u, M u>")
         ax2.set_ylabel("count")
-        ax2.set_title(f"M PSD check — min={float(np.min(vals)):.2e}; neg_count={neg_count}")
+        ax2.set_title(f"M PSD check - min={float(np.min(vals)):.2e}; neg_count={neg_count}")
         f2_slug = _slug("metriplectic_structure_checks_M_psd_hist", spec)
         f2 = save_figure("metriplectic", f2_slug, fig2, failed=failed)
         f2_log = {

@@ -1,4 +1,4 @@
-Yes—I can spin up toy experiments right now. To keep it robust on your machine, here are two **ready-to-run** Python scripts you can drop anywhere and execute immediately. They produce **one figure + one CSV** each, with simple pass/fail expectations so you can sanity-check fast.
+Yes-I can spin up toy experiments right now. To keep it robust on your machine, here are two **ready-to-run** Python scripts you can drop anywhere and execute immediately. They produce **one figure + one CSV** each, with simple pass/fail expectations so you can sanity-check fast.
 
 No external data. Only needs `numpy`, `pandas`, `matplotlib`.
 
@@ -16,7 +16,7 @@ No external data. Only needs `numpy`, `pandas`, `matplotlib`.
 * `energy_clamp.csv` (time series)
 * `energy_clamp.png` (curve + steady-state lines + exponential overlay)
 
-**Script — `simulate_energy_clamp.py`:**
+**Script - `simulate_energy_clamp.py`:**
 
 ```python
 import numpy as np, pandas as pd, matplotlib.pyplot as plt
@@ -90,7 +90,7 @@ python simulate_energy_clamp.py
 * `sweep.csv` (grid of coupling × noise with metrics)
 * `cscore_heatmap.png` (heatmap; ridge = bright band)
 
-**Script — `simulate_inverted_u.py`:**
+**Script - `simulate_inverted_u.py`:**
 
 ```python
 import numpy as np, pandas as pd, matplotlib.pyplot as plt
@@ -196,6 +196,6 @@ python simulate_inverted_u.py
 ## What these two runs “prove out” for your spec
 
 * **Energy budget link:** (C) tracks source power with an exponential time constant (1/\gamma).
-* **Balance principle:** there’s a sweet spot between fragmentation and lockstep where the **C-score** peaks—exactly your “interactions become more complex without bumping” intuition.
+* **Balance principle:** there’s a sweet spot between fragmentation and lockstep where the **C-score** peaks-exactly your “interactions become more complex without bumping” intuition.
 
 If you want, I can also add a **τ-horizon options probe** script (empowerment proxy via reachable-state counting) so you can complete the P-U-V triangle.

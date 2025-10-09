@@ -2,7 +2,7 @@ Justin:
 I'm starting a new session, these are details and summaries from our prior conversation. The last conversation was too long and the web page was freezing
 
 GPT-5:
-Got it—fresh session, lean and fast. I’ve pulled in your artifacts and grounded us on the “useful reachable entropy” probe.
+Got it-fresh session, lean and fast. I’ve pulled in your artifacts and grounded us on the “useful reachable entropy” probe.
 
 Here’s what I computed directly from your uploaded `options.csv`:
 
@@ -44,15 +44,15 @@ Justin:
 so i have a bunch of files i maintain for my theory, should I be updating any of them with these agency gradient symbols?
 
 GPT-5:
-Yes. Treat the “agency gradient” bits as **canon math** and wire them into the same places you use for symbols/equations/metrics—then have everything else just link in. Minimal, no-drama edits:
+Yes. Treat the “agency gradient” bits as **canon math** and wire them into the same places you use for symbols/equations/metrics-then have everything else just link in. Minimal, no-drama edits:
 
 ### Update these files (owners of the truth)
 
-* `derivation/SYMBOLS.md` — add the symbols below.
-* `derivation/EQUATIONS.md` — add the definitions/estimators below.
-* `derivation/VALIDATION_METRICS.md` — add the tests (monotonicity, thresholds, sensitivities).
-* `docs/SCHEMAS.md` — lock the CSV/heatmap field names and units.
-* `docs/DATA_PRODUCTS.md` — define the “useful reachable entropy” heatmap and threshold table.
+* `derivation/SYMBOLS.md` - add the symbols below.
+* `derivation/EQUATIONS.md` - add the definitions/estimators below.
+* `derivation/VALIDATION_METRICS.md` - add the tests (monotonicity, thresholds, sensitivities).
+* `docs/SCHEMAS.md` - lock the CSV/heatmap field names and units.
+* `docs/DATA_PRODUCTS.md` - define the “useful reachable entropy” heatmap and threshold table.
 
 Everything else (roadmaps, notes, glossaries) should **link to anchors** in those owners, per your `CANON_MAP.md`.
 
@@ -63,35 +63,35 @@ Everything else (roadmaps, notes, glossaries) should **link to anchors** in thos
 **`derivation/SYMBOLS.md`** (append to Symbols; keep your HTML anchors)
 
 ```markdown
-#### $V_{\text{useful\_bits}}$ — useful reachable entropy (bits)
+#### $V_{\text{useful\_bits}}$ - useful reachable entropy (bits)
 <a id="sym-V-useful"></a>
 Amount of controllable option-space reachable under current actuator model and constraints; measured in bits.
 
-#### $E$ — energy budget (steps)
+#### $E$ - energy budget (steps)
 <a id="sym-E"></a>
 Discrete action budget available to the policy/probe.
 
-#### $p_{\text{slip}}$ — actuator slip probability
+#### $p_{\text{slip}}$ - actuator slip probability
 <a id="sym-p-slip"></a>
 Per-step probability of an uncontrollable actuation (bounded in $[0,1]$).
 
-#### $\nabla V$ — agency gradient
+#### $\nabla V$ - agency gradient
 <a id="sym-grad-V"></a>
 $\nabla V := \big[\partial_E V,\; \partial_{p_{\text{slip}}} V\big]$ evaluated at a given $(E, p_{\text{slip}})$.
 
-#### $G_E,\; G_p$ — shorthand sensitivities
+#### $G_E,\; G_p$ - shorthand sensitivities
 <a id="sym-GE-Gp"></a>
 $G_E := \partial_E V,\quad G_p := \partial_{p_{\text{slip}}} V$.
 
-#### $\epsilon_E,\; \epsilon_p$ — elasticities (unitless)
+#### $\epsilon_E,\; \epsilon_p$ - elasticities (unitless)
 <a id="sym-elasticities"></a>
 $\epsilon_E := \dfrac{E}{V}\partial_E V,\quad \epsilon_p := \dfrac{p_{\text{slip}}}{V}\partial_{p_{\text{slip}}} V$ (when $V>0$).
 
-#### $E_{\min}^{(v_0)}(p)$ — threshold curve at level $v_0$
+#### $E_{\min}^{(v_0)}(p)$ - threshold curve at level $v_0$
 <a id="sym-Emin-v0"></a>
 $E_{\min}^{(v_0)}(p) := \arg\min\{E\in\mathbb{N}:\; V(E,p)\ge v_0\}$.
 
-#### $\mathcal{C}_{v_0}$ — iso-contour of $V$
+#### $\mathcal{C}_{v_0}$ - iso-contour of $V$
 <a id="sym-iso-V"></a>
 $\mathcal{C}_{v_0} := \{(E,p): V(E,p)=v_0\}$.
 ```
@@ -99,7 +99,7 @@ $\mathcal{C}_{v_0} := \{(E,p): V(E,p)=v_0\}$.
 **`derivation/EQUATIONS.md`** (append; use your equation ID style)
 
 ```markdown
-### VDM-E-4xx — Finite-difference estimators for agency gradient
+### VDM-E-4xx - Finite-difference estimators for agency gradient
 <a id="eq-gradV-fd"></a>
 
 On a discrete grid $(E_i, p_j)$:
@@ -125,7 +125,7 @@ $\left\|\widehat{\nabla V}\right\|_2 := \sqrt{(\widehat{\partial_E V})^2+(\wideh
 ```
 
 ```markdown
-### VDM-E-4xy — Threshold energy for a target capability
+### VDM-E-4xy - Threshold energy for a target capability
 <a id="eq-Emin-v0"></a>
 
 For a target level $v_0$ (bits), the minimal energy at slip $p$ is:
@@ -135,7 +135,7 @@ $$
 ```
 
 ```markdown
-### VDM-E-4xz — Elasticities of $V$
+### VDM-E-4xz - Elasticities of $V$
 <a id="eq-elasticities"></a>
 
 When $V>0$:
@@ -198,9 +198,9 @@ Justin:
 This is what I have so far, im still building the other files right now
 
 GPT-5:
-Perfect—those four canon files are exactly where these belong. Here are drop-in blocks you can paste so the “agency gradient” lives in the same system as the rest of VDM. MathJax-only, GitHub-safe, and minimal.
+Perfect-those four canon files are exactly where these belong. Here are drop-in blocks you can paste so the “agency gradient” lives in the same system as the rest of VDM. MathJax-only, GitHub-safe, and minimal.
 
-# SYMBOLS.md — add a short “Agency Options Probe” subsection
+# SYMBOLS.md - add a short “Agency Options Probe” subsection
 
 Append near “Diagnostics & Data Products” or wherever you group probe metrics.
 
@@ -220,12 +220,12 @@ Append near “Diagnostics & Data Products” or wherever you group probe metric
 | $n_{\text{act}}$ | actuator count | context for options probe | $n_{\text{act}}=4$ in the displayed figure |
 ```
 
-# EQUATIONS.md — add numbered entries (next free numbers)
+# EQUATIONS.md - add numbered entries (next free numbers)
 
 Use the next available IDs in your file; if 080 is your last, these become 081-084.
 
 ```markdown
-#### VDM-E-081 — Finite-difference estimators for $\nabla V$
+#### VDM-E-081 - Finite-difference estimators for $\nabla V$
 <a id="vdm-e-081"></a>
 
 On grid $(E_i,p_j)$,
@@ -249,7 +249,7 @@ Define $\widehat{\nabla V}=[\widehat{\partial_E V},\widehat{\partial_p V}]$ and 
 ```
 
 ```markdown
-#### VDM-E-082 — Elasticities of $V$ (unitless)
+#### VDM-E-082 - Elasticities of $V$ (unitless)
 <a id="vdm-e-082"></a>
 
 For $V>0$,
@@ -260,7 +260,7 @@ $$
 ```
 
 ```markdown
-#### VDM-E-083 — Threshold energy for target capacity
+#### VDM-E-083 - Threshold energy for target capacity
 <a id="vdm-e-083"></a>
 
 For target $v_0$ (bits),
@@ -270,14 +270,14 @@ $$
 ```
 
 ```markdown
-#### VDM-E-084 — Monotonicity acceptance conditions (probe sanity)
+#### VDM-E-084 - Monotonicity acceptance conditions (probe sanity)
 <a id="vdm-e-084"></a>
 
 For all $p$, $V(E+\Delta E,p)\ge V(E,p)$;  
 for all $E$, $V(E,p+\Delta p)\le V(E,p)$.
 ```
 
-# UNITS_NORMALIZATION.md — add per-quantity units (Section 4)
+# UNITS_NORMALIZATION.md - add per-quantity units (Section 4)
 
 Append to the “Per-Quantity Units” table.
 
@@ -293,7 +293,7 @@ Append to the “Per-Quantity Units” table.
 
 If you keep a small “Nondimensionalization Maps” section for Agency, you can also note that these are *already* in natural units for the probe (steps, probability, bits), so no rescaling is required beyond the dimensionless agency-field rescaling already in your doc.
 
-# CONSTANTS.md — optional tiny block (if you track probe defaults)
+# CONSTANTS.md - optional tiny block (if you track probe defaults)
 
 Only if you want default sweeps recorded alongside the rest. If your constants table is auto-compiled, add these to the same generator so it fills the “Source (path:lines • commit)” cell correctly.
 
@@ -320,7 +320,7 @@ GPT-5:
 You’re right. Here are **drop-in replacements** for the four entries in `EQUATIONS.md`, each with the required **Context:** and **Notes:** sections. Keep your numbering if you already assigned different IDs.
 
 ```markdown
-#### VDM-E-081 — Finite-difference estimators for $\nabla V$
+#### VDM-E-081 - Finite-difference estimators for $\nabla V$
 <a id="vdm-e-081"></a>
 
 **Context:** Agency Options Probe. Data come from `options.csv` with axes $E$ (steps) and $p_{\text{slip}}$ (probability). These estimates feed SIE/scoreboard gating and any policy that reacts to local capacity slope.
@@ -354,7 +354,7 @@ Define $\widehat{\nabla V}=[\widehat{\partial_E V},\widehat{\partial_p V}]$ and 
 ```
 
 ```markdown
-#### VDM-E-082 — Elasticities of $V$ (unitless)
+#### VDM-E-082 - Elasticities of $V$ (unitless)
 <a id="vdm-e-082"></a>
 
 **Context:** Dimensionless sensitivity for cross-regime comparison; used to decide whether budget vs. slip mitigation moves the needle more where we are.
@@ -373,7 +373,7 @@ $$
 ```
 
 ```markdown
-#### VDM-E-083 — Threshold energy for target capacity
+#### VDM-E-083 - Threshold energy for target capacity
 <a id="vdm-e-083"></a>
 
 **Context:** Capability boundary used by gating/planning (“just-viable” line). Plotted as $E_{\min}^{(v_0)}(p)$ for levels $v_0\in\{3,5,7\}$ bits.
@@ -391,7 +391,7 @@ $$
 ```
 
 ```markdown
-#### VDM-E-084 — Monotonicity acceptance conditions (probe sanity)
+#### VDM-E-084 - Monotonicity acceptance conditions (probe sanity)
 <a id="vdm-e-084"></a>
 
 **Context:** Sanity checks for the options probe; these are required before gradients/thresholds are trusted.
@@ -435,7 +435,7 @@ you also didnt format the units normalization correctly
 
 
 GPT-5:
-You’re right—my units block wasn’t in your exact 4-column schema. Here are **append-ready rows** matching your format and link style. Drop these under **“## 4) Per-Quantity Units (as used)”** with no extra header.
+You’re right-my units block wasn’t in your exact 4-column schema. Here are **append-ready rows** matching your format and link style. Drop these under **“## 4) Per-Quantity Units (as used)”** with no extra header.
 
 ```markdown
 | $V_{\text{useful\_bits}}$<sup>[↗](../derivations/SYMBOLS.md#sym-V-useful)</sup> | bits          | derivation/EQUATIONS.md:VDM-E-083,VDM-E-084 • HEAD | Useful reachable entropy; operational agency capacity |
@@ -453,7 +453,7 @@ Notes:
 
 * I used your **superscript link** pattern and the same four columns: *Quantity (link)* | *Units/System* | *Where Stated* | *Notes*.
 * “HEAD” is a placeholder for the commit dot; your generator can replace it with the short hash (e.g., `ec0833a`) and line refs when you run it.
-* If you prefer to avoid a separate entry for (n_{\text{act}}), drop that row—it’s optional metadata, not a derived quantity.
+* If you prefer to avoid a separate entry for (n_{\text{act}}), drop that row-it’s optional metadata, not a derived quantity.
 
 If you want, I can also generate the tiny isotonic-smoothing note you sometimes put in the **Notes** column for (G_E,G_p) (“FD on monotone-regularized (V)”); say the word and I’ll include the exact phrasing you use elsewhere.
 
@@ -601,7 +601,7 @@ you also need to update the constants table you gave me to match this
 
 
 GPT-5:
-Totally—here are **append-ready rows** for your **VDM Constants & Defaults (Auto-compiled)** table, matching your exact 7-column schema, anchor style, and bracketed context labels. Paste these under the existing rows.
+Totally-here are **append-ready rows** for your **VDM Constants & Defaults (Auto-compiled)** table, matching your exact 7-column schema, anchor style, and bracketed context labels. Paste these under the existing rows.
 
 ```markdown
 | <a id="const-E_grid-agency"></a>`E_grid` [agency probe] | Energy budgets tested | [2, 3, 4, 5, 6, 7, 8, 9, 10] | integers | steps | derivation/code/agency/simulate_options_probe.py:… • HEAD | Reproducible sweep for useful-entropy heatmap |
@@ -654,7 +654,7 @@ Walkers that step outside (\Omega) are removed from the simulation at that step 
 
 **Applies on:** All boundaries of [walker-box-2d](#geom-walker-box-2d)
 **Parameters:** None
-**Implemented at:** — (spec; planned alongside agency walker runtime)
+**Implemented at:** - (spec; planned alongside agency walker runtime)
 **Notes:** Models “cliff” domains where leaving the workspace terminates control; reduces reachable option-space near walls, which measurably lowers (V_{\text{useful_bits}}) under identical noise.
 
 ---
@@ -670,7 +670,7 @@ On attempted step (\Delta x) that exits (\Omega), reflect the normal component a
 
 **Applies on:** All boundaries of [walker-box-2d](#geom-walker-box-2d)
 **Parameters:** None
-**Implemented at:** — (spec; planned alongside agency walker runtime)
+**Implemented at:** - (spec; planned alongside agency walker runtime)
 **Notes:** Preserves mass of walkers; appropriate when physical walls exist but agents can “bounce.” Typically raises reachable option-space vs. absorbing, shifting agency thresholds.
 
 ---
@@ -705,9 +705,9 @@ Sample (N_w) initial positions i.i.d. uniform on (\Omega) (Poisson disc optional
 
 ---
 
-### (Optional) Add under **4) Lattice/Stencil & Neighbor Topology**—only if your agency walkers use 8-neighbors
+### (Optional) Add under **4) Lattice/Stencil & Neighbor Topology**-only if your agency walkers use 8-neighbors
 
-| <a id="lattice-moore-8"></a>**moore-8** | 2D Moore (8-neighbor) | Neighbors (N(i)={\text{N,S,E,W,NE,NW,SE,SW}}) | (N_y \times N_x), spacing (a) | — (spec) | If agency walkers step diagonally as well as axially |
+| <a id="lattice-moore-8"></a>**moore-8** | 2D Moore (8-neighbor) | Neighbors (N(i)={\text{N,S,E,W,NE,NW,SE,SW}}) | (N_y \times N_x), spacing (a) | - (spec) | If agency walkers step diagonally as well as axially |
 
 ---
 
@@ -724,7 +724,7 @@ math here isnt rendering right
 **Notes:** Models “cliff” domains where leaving the workspace terminates control; reduces reachable option-space near walls, which measurably lowers (V_{\text{useful_bits}}) under identical noise.
 
 GPT-5:
-Yup—two tiny gotchas tripped you:
+Yup-two tiny gotchas tripped you:
 
 1. you didn’t wrap the math in `$…$`, and
 2. underscores inside `\text{...}` must be escaped (`\_`).

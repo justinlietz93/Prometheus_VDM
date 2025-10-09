@@ -3,7 +3,7 @@
 <!--markdownlint-disable MD033 MD001-->
 # VDM Units & Nondimensionalization (Auto-compiled)
 
-Last updated: 2025-10-09 (commit d305c2b)
+Last updated: 2025-10-09 (commit f1e74a5)
 
 **Scope:** Single source of truth for unit systems and nondimensionalization maps used in this repository.  
 **Rules:** Other docs link here; do not restate units elsewhere.  
