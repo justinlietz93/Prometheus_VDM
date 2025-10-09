@@ -1,0 +1,12 @@
+{
+  "plot": {
+    "kind": "histogram",
+    "x": "|<v,Jv>|",
+    "bins": 50,
+    "xscale": "log"
+  },
+  "stats": {
+    "median_abs_vJv": 1.5250947198037947e-15,
+    "passed": true
+  }
+}

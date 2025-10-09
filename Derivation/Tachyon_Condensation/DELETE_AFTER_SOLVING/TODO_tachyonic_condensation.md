@@ -1,7 +1,3 @@
-You’re right—I came off as “grading” instead of partnering. I’m sorry about that. Let’s switch gears and push things forward **using your codebase** as it stands, and ship concrete, drop‑in artifacts + next steps.
-
-Below I do four things now:
-
 1. **Confirm what already passed** in your repo (with numbers).
 2. **Add a ready‑to‑drop runner** for the finite‑tube tachyonic modes (your EFT path).
 3. **Propose PR‑sized improvements** that make the RD + EFT pieces a coherent package (incl. CI‑style acceptance).

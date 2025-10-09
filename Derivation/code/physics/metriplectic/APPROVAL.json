@@ -3,7 +3,9 @@
   "proposal": "Derivation/Metriplectic/PROPOSAL_Metriplectic_SymplecticPlusDG.md",
   "allowed_tags": [
     "KG-dispersion-v1",
-    "KG-cone-v1"
+    "KG-cone-v1",
+    "struct-v1",
+    "KG-noether-v1"
   ],
   "schema_dir": "Derivation/code/physics/metriplectic/schemas",
   "approvals": {
@@ -18,6 +20,18 @@
       "approved_by": "Justin K. Lietz",
       "approved_at": "2025-10-08T10:08:02.804920+00:00",
       "approval_key": "5846a9f6083a711704062d8429c65ca791768dde572099cd5e8f38b26bed850f"
+    },
+    "struct-v1": {
+      "schema": "Derivation/code/physics/metriplectic/schemas/struct-v1.schema.json",
+      "approved_by": "Justin K. Lietz",
+      "approved_at": "2025-10-08T23:05:30.920566+00:00",
+      "approval_key": "f5e0011bde8e3a4bc5b9764d8284d8ceca64e7125777fb7f0914a4e4737e99c2"
+    },
+    "KG-noether-v1": {
+      "schema": "Derivation/code/physics/metriplectic/schemas/KG-noether-v1.schema.json",
+      "approved_by": "Justin K. Lietz",
+      "approved_at": "2025-10-08T23:45:28.002644+00:00",
+      "approval_key": "a924dd54ed5ecc335a91da47377dac861581425a6cfaaf05ebd05306207a1edb"
     }
   }
 }

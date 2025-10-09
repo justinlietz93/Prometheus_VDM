@@ -1,0 +1,15 @@
+{
+  "figure_path": "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/figures/metriplectic/20251008_181036_metriplectic_structure_checks_M_psd_hist__struct-v1.png",
+  "plot": {
+    "bins": 50,
+    "kind": "histogram",
+    "x": "<u,Mu>",
+    "xscale": "linear"
+  },
+  "stats": {
+    "draws": 100,
+    "min": 633.1646908648494,
+    "neg_count": 0,
+    "passed": true
+  }
+}

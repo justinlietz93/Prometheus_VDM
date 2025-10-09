@@ -14,6 +14,12 @@ if str(CODE_ROOT) not in sys.path:
     sys.path.insert(0, str(CODE_ROOT))
 
 from common.io_paths import log_path, write_log
+from common.plotting.core import (
+    apply_style,
+    get_fig_ax,
+    sanitize_for_log,
+    save_figure,
+)
 from physics.metriplectic.kg_ops import spectral_laplacian
 
 
@@ -93,9 +99,74 @@ def run_structure_checks(spec: StructSpec) -> Dict[str, Any]:
         "M_psd": {"min": float(np.min(vals)), "neg_count": int(neg_count), "draws": int(spec.draws), "gate": "0 negatives", "passed": bool(psd_ok)}
     }
     failed = not (skew_gate_ok and psd_ok)
-    write_log(log_path("metriplectic", _slug("metriplectic_structure_checks", spec), failed=failed), logj)
+
+    # Structured JSON log
+    json_path = log_path("metriplectic", _slug("metriplectic_structure_checks", spec), failed=failed, type="json")
+    write_log(json_path, logj)
+
+    # Flat CSV summary for dashboards
+    flat = {
+        "tag": spec.params.get("tag") if isinstance(spec.params, dict) else getattr(spec, "tag", None),
+        "N": int(N),
+        "dx": float(dx),
+        "c": float(c),
+        "m": float(m),
+        "D": float(D),
+        "m_lap_operator": lap,
+        "draws": int(spec.draws),
+        "J_median_abs_vJv": float(skew_median),
+        "J_passed": bool(skew_gate_ok),
+        "M_min": float(np.min(vals)),
+        "M_neg_count": int(neg_count),
+        "M_passed": bool(psd_ok),
+    }
+    csv_path = log_path("metriplectic", _slug("metriplectic_structure_checks_summary", spec), failed=failed, type="csv")
+    write_log(csv_path, flat)
+
+    # Figures: histograms for diagnostics
+    try:
+        apply_style("light")
+
+        # Figure 1: Histogram of |<v, J v>| with log-x
+        fig1, ax1 = get_fig_ax(size=(6.4, 4.0))
+        data_j = np.asarray(inner_vals, dtype=float)
+        ax1.hist(sanitize_for_log(np.abs(data_j)), bins=50, color="#1f77b4", alpha=0.85)
+        ax1.set_xscale("log")
+        ax1.set_xlabel("|<v, J v>|")
+        ax1.set_ylabel("count")
+        ax1.set_title(f"J skew check — median={skew_median:.2e}")
+        f1_slug = _slug("metriplectic_structure_checks_J_skew_hist", spec)
+        f1 = save_figure("metriplectic", f1_slug, fig1, failed=failed)
+        # Log plot metadata to logs directory (not next to figure)
+        f1_log = {
+            "figure_path": str(f1),
+            "plot": {"kind": "histogram", "x": "|<v,Jv>|", "bins": 50, "xscale": "log"},
+            "stats": {"median_abs_vJv": skew_median, "passed": bool(skew_gate_ok)}
+        }
+        write_log(log_path("metriplectic", f1_slug, failed=failed, type="json"), f1_log)
+
+        # Figure 2: Histogram of <u, M u>
+        fig2, ax2 = get_fig_ax(size=(6.4, 4.0))
+        data_m = np.asarray(vals, dtype=float)
+        ax2.hist(data_m, bins=50, color="#2ca02c", alpha=0.85)
+        ax2.axvline(0.0, color="red", linestyle="--", linewidth=1.0, label="0")
+        ax2.legend(loc="best")
+        ax2.set_xlabel("<u, M u>")
+        ax2.set_ylabel("count")
+        ax2.set_title(f"M PSD check — min={float(np.min(vals)):.2e}; neg_count={neg_count}")
+        f2_slug = _slug("metriplectic_structure_checks_M_psd_hist", spec)
+        f2 = save_figure("metriplectic", f2_slug, fig2, failed=failed)
+        f2_log = {
+            "figure_path": str(f2),
+            "plot": {"kind": "histogram", "x": "<u,Mu>", "bins": 50, "xscale": "linear"},
+            "stats": {"min": float(np.min(vals)), "neg_count": int(neg_count), "draws": int(spec.draws), "passed": bool(psd_ok)}
+        }
+        write_log(log_path("metriplectic", f2_slug, failed=failed, type="json"), f2_log)
+    except Exception as _e:
+        # Preserve core outputs even if plotting fails
+        _ = _e
     if failed:
-        write_log(log_path("metriplectic", _slug("CONTRADICTION_REPORT_structure", spec), failed=True), {
+        write_log(log_path("metriplectic", _slug("CONTRADICTION_REPORT_structure", spec), failed=True, type="json"), {
             "reason": "Structure gate failure",
             "spec": {"grid": spec.grid, "params": spec.params, "draws": int(spec.draws)},
             "metrics": logj

@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "tube-condensation-v1",
+  "type": "object",
+  "required": ["tag", "grid", "params"],
+  "properties": {
+    "tag": {"const": "tube-condensation-v1"},
+    "grid": {
+      "type": "object",
+      "required": ["R_sweep"],
+      "properties": {
+        "R_sweep": {"type": "array", "items": {"type": "number"}, "minItems": 4}
+      }
+    },
+    "params": {
+      "type": "object",
+      "required": ["mu", "lam", "c", "ell_max"],
+      "properties": {
+        "mu": {"type": "number", "minimum": 0},
+        "lam": {"type": "number", "minimum": 0},
+        "c": {"type": "number", "minimum": 0},
+        "ell_max": {"type": "integer", "minimum": 0}
+      }
+    }
+  }
+}

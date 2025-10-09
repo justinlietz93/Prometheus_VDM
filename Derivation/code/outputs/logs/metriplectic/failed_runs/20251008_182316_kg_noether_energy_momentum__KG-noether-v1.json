@@ -1,0 +1,20 @@
+{
+  "N": 256,
+  "csv": "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/logs/metriplectic/failed_runs/20251008_182316_kg_noether_energy_momentum__KG-noether-v1.csv",
+  "dt": 0.005,
+  "epsilon": 2.220446049250313e-16,
+  "epsilon_sqrtN": 3.552713678800501e-15,
+  "figure": "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/figures/metriplectic/failed_runs/20251008_182316_kg_noether_energy_momentum__KG-noether-v1.png",
+  "max_per_step_delta": {
+    "E_disc": 8.326672684688674e-17,
+    "P_disc": 2.6020852139652106e-17
+  },
+  "passed": {
+    "energy": true,
+    "momentum": true,
+    "reversibility": true
+  },
+  "sqrtN": 16.0,
+  "steps": 512,
+  "tag": "KG-noether-v1"
+}

@@ -1,0 +1,13 @@
+{
+  "bc": "periodic",
+  "grid": { "N": 256, "dx": 1.0 },
+  "params": {
+    "c": 1.0,
+    "m": 0.5,
+    "seed_scale": 0.05,
+    "tag": "KG-noether-v1"
+  },
+  "dt_sweep": [0.02, 0.01, 0.005],
+  "steps": 512,
+  "notes": "KG J-only Noether invariants (energy, momentum) with Störmer-Verlet; approval-tagged run"
+}

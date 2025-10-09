@@ -1004,6 +1004,10 @@ RETURN W3
 - [VDM-E-014](EQUATIONS.md#vdm-e-014) — Continuum Klein-Gordon form
 - [VDM-E-047](EQUATIONS.md#vdm-e-047) — Continuum energy density (Hamiltonian)
 
+**Constants:**
+
+- [j_only_rev_strict](CONSTANTS.md#const-j_only_rev_strict) • [j_only_rev_cap](CONSTANTS.md#const-j_only_rev_cap) • [j_only_l2_cap](CONSTANTS.md#const-j_only_l2_cap)
+
 **Pseudocode:**
 
 ```text
@@ -1046,6 +1050,10 @@ log JSON with errors, tolerances, FFT roundoff bound; route failed artifacts if 
 
 - [VDM-E-090](EQUATIONS.md#vdm-e-090) — Two-grid error metric and log–log fit
 
+**Constants:**
+
+- [lyap_tol_pos](CONSTANTS.md#const-lyap_tol_pos)
+
 **Pseudocode:**
 
 ```text
@@ -1079,6 +1087,10 @@ log JSON + PNG (ΔL vs step); route failed if violations>0
 
 - [VDM-E-090](EQUATIONS.md#vdm-e-090) — Two-grid error metric and log–log fit
 
+**Constants:**
+
+- [gate_slope](CONSTANTS.md#const-gate_slope_metriplectic) • [gate_R2](CONSTANTS.md#const-gate_R2_metriplectic)
+
 **Pseudocode:**
 
 ```text
@@ -1091,7 +1103,7 @@ for seed in seeds:
 med(dt) = median over seeds
 if scheme==j_only and med≈0: slope=0, R2=1 (trivial)
 else: fit y=log med, x=log dt via least squares → slope,R2
-failed_gate = (slope < slope_min) or (R2 < gate_R2)
+failed_gate = (slope < gate_slope) or (R2 < gate_R2)
 emit PNG/CSV/JSON; route failed if gate fails
 ```
 
@@ -1111,14 +1123,18 @@ emit PNG/CSV/JSON; route failed if gate fails
 
 - [VDM-E-091](EQUATIONS.md#vdm-e-091) — Strang composition defect
 
+**Constants:**
+
+- [dt_sweep_small](CONSTANTS.md#const-dt_sweep_small_metriplectic) • [gate_slope](CONSTANTS.md#const-gate_slope_metriplectic) • [gate_R2](CONSTANTS.md#const-gate_R2_metriplectic) • [dg_tol](CONSTANTS.md#const-dg_tol_metriplectic)
+
 **Pseudocode:**
 
 ```text
-dt_vals_small = params.dt_sweep_small or [0.02,0.01,0.005,0.0025,0.00125]
+dt_vals_small = params.dt_sweep_small or [0.02,0.01,0.005,0.0025,0.00125]  # see CONSTANTS.md#const-dt_sweep_small_metriplectic
 for seed, dt in grid(seeds, dt_vals_small):
   step_with_stats: J(½dt) → M(dt, capture {iters,residual,backtracks,converged}) → J(½dt)
   e = two_grid_error_inf(step_with_stats, W0, dt)
-accumulate medians; fit slope,R2; gate (slope≥2.9,R2≥0.999)
+accumulate medians; fit slope,R2; gate (slope≥gate_slope, R2≥gate_R2)
 emit PNG + JSON + two CSVs (errors, Newton stats)
 ```
 
@@ -1136,6 +1152,10 @@ emit PNG + JSON + two CSVs (errors, Newton stats)
 
 - [VDM-E-090](EQUATIONS.md#vdm-e-090) — Two-grid error metric and log–log fit
 - [VDM-E-092](EQUATIONS.md#vdm-e-092) — Discrete Lyapunov functional (grid form)
+
+**Constants:**
+
+- [strang_R2_min](CONSTANTS.md#const-strang_R2_min)
 
 **Pseudocode:**
 
@@ -1157,6 +1177,10 @@ median per dt → fit log-log slope,R2; log artifacts
 
 **Role:** Evaluate a small grid of tuples for slope/R² and Lyapunov violations; pass if ≥80% tuples meet all gates; log per-tuple CSV.
 
+**Constants:**
+
+- [gate_slope](CONSTANTS.md#const-gate_slope_metriplectic) • [gate_R2](CONSTANTS.md#const-gate_R2_metriplectic) • [lyap_tol_pos](CONSTANTS.md#const-lyap_tol_pos) • [robust_v5_pass_rate_min](CONSTANTS.md#const-robust_v5_pass_rate_min)
+
 **Pseudocode:**
 
 ```text
@@ -1164,8 +1188,8 @@ for tup in tuples:
   local_spec = override(grid.N, params.{D,r,u})
   sw = two_grid_sweep(local_spec)
   ly = lyapunov_check(local_spec)
-  ok = (sw.slope≥2.9) ∧ (sw.R2≥0.999) ∧ (ly.violations==0)
-pass_rate = (#ok)/(#tuples); emit JSON+CSV; route failed if pass_rate<0.8
+  ok = (sw.slope≥gate_slope) ∧ (sw.R2≥gate_R2) ∧ (ly.violations==0)
+pass_rate = (#ok)/(#tuples); emit JSON+CSV; route failed if pass_rate < robust_v5_pass_rate_min
 ```
 
 ---
@@ -1185,6 +1209,10 @@ pass_rate = (#ok)/(#tuples); emit JSON+CSV; route failed if pass_rate<0.8
 **Depends on equations:**
 
 - [VDM-E-093](EQUATIONS.md#vdm-e-093) — FRW continuity residual (dust) and RMS
+
+**Constants:**
+
+- [tol_rms](CONSTANTS.md#const-frw_tol_rms)
 
 **Pseudocode:**
 
@@ -1217,6 +1245,10 @@ if !passed: emit CONTRADICTION_REPORT and route to failed_runs/
 - [VDM-E-067](EQUATIONS.md#vdm-e-067) — Logistic junction choice probability
 - [VDM-E-094](EQUATIONS.md#vdm-e-094) — Scaling-collapse envelope and env_max
 
+**Constants:**
+
+- [env_max_threshold](CONSTANTS.md#const-a6_env_max)
+
 **Pseudocode:**
 
 ```text
@@ -1225,7 +1257,7 @@ for tup in tuples:
   store curves
 Xc, Ymin, Ymax = compute_envelope(curves, nbins)
 envelope = Ymax - Ymin; env_max = max(envelope)
-passed = (env_max <= 0.02)
+passed = (env_max <= env_max_threshold)
 emit PNG overlay + envelope band; CSV(Xc,Ymin,Ymax,envelope); JSON(log)
 if !passed: CONTRADICTION_REPORT and failed_runs/
 ```

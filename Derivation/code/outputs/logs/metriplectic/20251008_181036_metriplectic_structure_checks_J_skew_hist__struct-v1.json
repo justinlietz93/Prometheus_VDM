@@ -1,0 +1,13 @@
+{
+  "figure_path": "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/figures/metriplectic/20251008_181035_metriplectic_structure_checks_J_skew_hist__struct-v1.png",
+  "plot": {
+    "bins": 50,
+    "kind": "histogram",
+    "x": "|<v,Jv>|",
+    "xscale": "log"
+  },
+  "stats": {
+    "median_abs_vJv": 1.5250947198037947e-15,
+    "passed": true
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "grid": { "N": 256, "dx": 1.0 },
+  "params": {
+    "c": 1.0,
+    "m": 0.0,
+    "D": 1.0,
+    "m_lap_operator": "spectral",
+    "tag": "struct-v1"
+  },
+  "draws": 200,
+  "notes": "Structure checks for metriplectic operators: J skew-symmetry and M positive semidefiniteness (spectral Laplacian)."
+}

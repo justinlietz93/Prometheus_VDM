@@ -1,0 +1,14 @@
+{
+  "plot": {
+    "kind": "histogram",
+    "x": "<u,Mu>",
+    "bins": 50,
+    "xscale": "linear"
+  },
+  "stats": {
+    "min": 633.1646908648494,
+    "neg_count": 0,
+    "draws": 100,
+    "passed": true
+  }
+}
