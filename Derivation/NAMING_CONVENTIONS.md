@@ -2,7 +2,7 @@
 <!-- RULES for maintaining this file are here: /mnt/ironwolf/git/Prometheus_VDM/prompts/naming_conventions_maintenance.md -->
 # VDM Naming & Notation Conventions (Auto-compiled)
 
-Last updated: 2025-10-09 (commit f1e74a5)
+Last updated: 2025-10-09 (commit 09f871a)
 
 **Scope:** Single source of truth for mathematical and semantic naming conventions used in this repository.  
 **Rules:** Extract from repository evidence only; link to canonical symbols/equations/units/constants. Do not redefine them here.  

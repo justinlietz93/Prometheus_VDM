@@ -3,7 +3,7 @@
 <!-- markdownlint-disable MD033 MD022 MD032 MD001 -->
 # VDM Validation Metrics & KPIs (Auto-compiled)
 
-Last updated: 2025-10-09 (commit f1e74a5)
+Last updated: 2025-10-09 (commit 09f871a)
 
 **Scope:** Single source of truth for validation metrics used in this repository: names, purposes, thresholds/bands, and references to their definitions and implementations.  
 **Rules:** Reference-only. Link to equations/constants/symbols/scripts; do not restate formulas here.  

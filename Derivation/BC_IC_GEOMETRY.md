@@ -2,7 +2,7 @@
 <!-- RULES for maintaining this file are here: /mnt/ironwolf/git/Prometheus_VDM/prompts/bc_ic_geometry_maintenance.md -->
 # VDM Boundary/Initial Conditions & Domain Geometries (Auto-compiled)
 
-Last updated: 2025-10-09 (commit f1e74a5)
+Last updated: 2025-10-09 (commit 09f871a)
 
 **Scope:** Single source of truth for BC/IC and domain geometries used in this repository.  
 **Rules:** Link to equations/constants/symbols by anchor; do not restate them here.  

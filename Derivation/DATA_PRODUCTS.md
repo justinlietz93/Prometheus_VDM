@@ -3,7 +3,7 @@
 <!-- markdownlint-disable MD033 MD022 MD032 MD001 -->
 # VDM Data Products (Auto-compiled)
 
-Last updated: 2025-10-09 (commit f1e74a5)
+Last updated: 2025-10-09 (commit 09f871a)
 
 **Scope:** Single source of truth for data products used/produced by this repository: purpose, shape, units, storage format, file paths, and provenance.  
 **Rules:** Reference-only for math; link to anchors in EQUATIONS/CONSTANTS/SYMBOLS/UNITS/ALGORITHMS.  

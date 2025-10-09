@@ -4,7 +4,7 @@ Note on scope: This document is canonical and reflects the latest accepted state
 
 **Author:** Justin K. Lietz  
 **Last Updated:** October 9, 2025  
-**Commit:** f1e74a5
+**Commit:** 09f871a
 
 **License Notice:** This research is protected under a dual-license to foster open academic research while ensuring commercial applications are aligned with the project's ethical principles. Commercial use requires citation and written permission from Justin K. Lietz. See LICENSE file for full terms.
 

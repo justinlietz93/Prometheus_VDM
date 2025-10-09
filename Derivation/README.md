@@ -1,6 +1,6 @@
 # Derivation - Index and Hygiene
 
-Last updated: 2025-10-09 (commit f1e74a5)
+Last updated: 2025-10-09 (commit 09f871a)
 
 ## Canonical registries (single source of truth)
 
