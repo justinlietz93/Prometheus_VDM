@@ -2,17 +2,16 @@
 
 ## Done
 
-- Proposal drafted and saved
-- Spec and schema files created
-- Approval manifest initialized
+- Generated quarantine spectrum CSV
+- Generated condensation energy scan CSV/figure
 
 ## Doing
 
-- Tachyonic tube runner scaffold added
+- Diagnosing low spectrum coverage and failed curvature gate
 
 ## Next
 
-- Approve tags via CLI
-- Execute spectrum and condensation runs
-- Create RESULTS_Tachyonic_Tube.md
-- Promote canon row
+- Improve root search (increase num_brackets, extend ell_max)
+- Refine curvature fit (window selection)
+- Re-run approved after gating adjustments
+- Draft RESULTS doc post successful gates
