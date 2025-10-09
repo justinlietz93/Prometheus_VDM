@@ -10,7 +10,8 @@
 
 - Gate tested: $\mathrm{env\_max}\le 0.02$ for logistic-router scaling collapse.  
 - Outcome: PASS with $\mathrm{env\_max}\approx 0.0166$.  
-- Artifact (one-click): `derivation/code/outputs/figures/collapse/20251006_175337_a6_collapse_overlay__A6-collapse-v1.png`
+- Artifact: `derivation/code/outputs/figures/collapse/20251006_175337_a6_collapse_overlay__A6-collapse-v1.png`
+![a6 collapse](figures/a6-collapse.png)
 
 ## Introduction
 

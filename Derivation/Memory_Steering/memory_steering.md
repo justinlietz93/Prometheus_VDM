@@ -8,11 +8,13 @@ Date: August 9, 2025
 ## 1. Objective
 
 Establish a rigorous, minimal theory of how slowly stored structure (“memory”) imposes energy/information gradients that **steer** trajectories, and integrate it with the existing FUM scalar EFT. The result is a compact, falsifiable set of dimensionless laws that:
+
 - Adds a slow “memory” field to bias routing (orthogonal to the fast φ‑propagation already derived).
 - Produces scaling collapses (logistic junction choice, curvature) and a stability band.
 - Admits a clean graph discretization aligned with our runtime.
 
 Cross‑refs:
+
 - Continuum φ‑EOM, vacuum, mass: [derivation/discrete_to_continuum.md](derivation/discrete_to_continuum.md:121-128)
 - Kinetic normalization from a discrete action: [derivation/kinetic_term_derivation.md](derivation/kinetic_term_derivation.md:121-128)
 - Units/FRW/action embedding and retarded kernels: [derivation/fum_voxtrium_mapping.md](derivation/fum_voxtrium_mapping.md:106-121)
@@ -33,6 +35,7 @@ In the high‑frequency (ray/eikonal) limit (Fermat’s principle, geometric opt
 \mathbf r''\;=\;\nabla_\perp \ln n\;=\;\eta\,\nabla_\perp M,
 \]
 where \( \nabla_\perp \) denotes the gradient transverse to the local propagation direction. Interpretation:
+
 - \( \eta>0 \): trajectories bend toward increasing \( M \) (attraction).
 - \( \eta<0 \): trajectories bend away (dispersion).
 
@@ -47,6 +50,7 @@ We posit a minimal, testable PDE for memory evolution:
 \partial_t M\;=\;\gamma\,R(x,t)\;-\;\delta\,M\;+\;\kappa\,\nabla^2 M,
 \]
 with:
+
 - \( R(x,t) \): local usage/co‑activation rate (Hebbian driver; externally measurable, e.g. STDP proxy).
 - \( \gamma \): write gain, \( \delta \): decay rate, \( \kappa \): consolidation/spread.
 
@@ -127,9 +131,11 @@ Memory update (forward Euler per tick \( \Delta t \)):
 \mathbf m \leftarrow \mathbf m + \Delta t\,\dot{\mathbf m}.
 \]
 Notes:
+
 - \( \mathbf r \) is an independently measured usage/co‑activation rate (e.g., STDP proxy over a short window). Avoid circularity by not deriving \( \mathbf r \) from the choice probabilities.
 
 Steering (transition softmax):
+
 - At node \( i \), define index \( n_i=\exp(\eta m_i) \).
 - For neighbors \( j\in N(i) \), set:
 \[
@@ -138,6 +144,7 @@ P(i\to j)\;=\;\frac{\exp(\Theta\,m_j)}{\sum_{k\in N(i)}\exp(\Theta\,m_k)},\qquad
 At a 2‑branch fork, this reduces exactly to \( P(A)=\sigma(\Theta\,\Delta m) \).
 
 Curvature on graphs:
+
 - Approximate discrete curvature along a polyline/path by the turning angle \( \theta_k \) at node \( k \) over arc length \( \ell \):
 \[
 \kappa_{\rm path}\;\approx\;\frac{2\sin(\theta_k/2)}{\ell}.
@@ -159,6 +166,7 @@ This preserves unit discipline alongside φ’s \( m^2=(\alpha-\beta)/\tau^2 \) 
 ## 9. Avoiding Circularity
 
 To test the theory properly:
+
 - Measure \( m \) (or a proxy) independently (e.g., weight change from a predefined STDP protocol).
 - Predict routing/curvature from \( m \). Do not back‑infer \( m \) from the very routing data being tested.
 
@@ -167,15 +175,18 @@ To test the theory properly:
 ## 10. Experimental Protocols and Acceptance Criteria
 
 1) Junction logistic collapse
+
 - Prepare a Y‑junction; write a controlled \( \Delta m \) on branch A; hold \( \Theta \) fixed.
 - Sweep \( \Delta m \); record \( P(A) \) vs. \( \Theta\,\Delta m \) across sizes/latencies.
 - Accept if curves overlay and fit a logistic with slope within ±10% across conditions.
 
 2) Curvature scaling
+
 - Create a smooth gradient in \( m \); emit narrow pulses in φ (propagating at \( c^2=2Ja^2 \)).
 - Accept if \( \kappa_{\rm path} \) vs. \( \Theta|\nabla m| \) collapses to a line ( \( R^2 \ge 0.9 \) ) across \( \Theta \).
 
 3) Stability band
+
 - Sweep \( (\gamma,\delta,\kappa) \); compute \( (D_a,\Lambda,\Gamma) \) and retention/fidelity.
 - Accept if robust memory primarily appears for \( D_a\gtrsim \Lambda \) at intermediate \( \Gamma \).
 
