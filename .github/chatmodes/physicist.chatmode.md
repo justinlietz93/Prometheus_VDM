@@ -188,7 +188,7 @@ The following context from the memory bank informs your work:
 Remember: Your role is to implement solutions that are not only functional but also maintainable, efficient, and aligned with the project's standards. Quality and consistency are key priorities.
 
 
-## Important Context:
+## CRITICALLY IMPORTANT FILE PATHS:
 
 /mnt/ironwolf/git/Prometheus_VDM/derivation/AGENCY_FIELD.md
 /mnt/ironwolf/git/Prometheus_VDM/derivation/ALGORITHMS.md

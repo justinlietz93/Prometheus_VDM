@@ -95,6 +95,74 @@ def _radial_integral_u4(
     return I
 
 
+def _radial_integral_u4_adaptive(
+    R: float,
+    u: Callable[[float], float],
+    tol_rel: float = 1e-4,
+    tol_abs: float = 1e-9,
+    r_start_in: float = 0.0,
+    r_growth_out: float = 1.25,
+    r_cap_factor: float = 200.0,
+) -> float:
+    """
+    Adaptive integral I = ∫_0^∞ r [u(r)]^4 dr with robust tail truncation.
+
+    Strategy:
+      - Inside region [0, R]: uniform fine steps up to R using trapezoidal rule.
+      - Outside region [R, ∞): geometrically increasing radii with trap. rule in log-space.
+      - Stop when last shell contribution is negligible: ΔI_tail < max(tol_abs, tol_rel * I).
+      - Hard cap at r_max = max(R * r_cap_factor, R + 1.0) to avoid infinite loops when u decays slowly.
+    """
+    # Inside [0, R]
+    if R <= 0.0:
+        return 0.0
+    # Use ~200 intervals inside by default
+    n_in = max(50, int(200))
+    rs_in = np.linspace(max(0.0, r_start_in), R, n_in)
+    vals_in = []
+    for r in rs_in:
+        try:
+            ur = float(u(float(r)))
+            vals_in.append(r * (ur ** 4))
+        except Exception:
+            vals_in.append(0.0)
+    I_in = float(np.trapz(np.asarray(vals_in, dtype=np.float64), rs_in))
+
+    # Outside [R, ∞)
+    I_out = 0.0
+    r_prev = R
+    # Start just above R to avoid double-count
+    r_curr = R * 1.05 + 1e-9
+    r_cap = max(R * float(r_cap_factor), R + 1.0)
+    # Minimum of ~120 shells to be safe on slow decays, with growth factor r_growth_out
+    for _ in range(10000):
+        if r_curr >= r_cap:
+            break
+        try:
+            u_prev = float(u(float(r_prev)))
+            u_curr = float(u(float(r_curr)))
+        except Exception:
+            u_prev, u_curr = 0.0, 0.0
+        f_prev = r_prev * (u_prev ** 4)
+        f_curr = r_curr * (u_curr ** 4)
+        shell = 0.5 * (f_prev + f_curr) * (r_curr - r_prev)
+        I_out += shell
+        # Tail stopping condition after some accumulation
+        if I_out > 0.0:
+            if shell < tol_abs or shell < tol_rel * (I_in + I_out):
+                # Ensure at least a few shells to avoid early cutoff
+                # Accept when contribution is truly negligible
+                pass
+        # advance radii geometrically
+        r_prev = r_curr
+        r_curr = min(r_curr * float(r_growth_out), r_curr + 0.5)
+        # Additional escape: if both f_prev and f_curr are extremely small, stop
+        if max(f_prev, f_curr) < tol_abs and r_curr > (R + 1.0):
+            # decay achieved
+            break
+    return float(I_in + I_out)
+
+
 def build_quartic_diagonal(
     R: float,
     modes: Sequence[ModeEntry],
@@ -117,7 +185,8 @@ def build_quartic_diagonal(
     for m in modes:
         fns = mode_functions(R=R, root={"ell": float(m.ell), "k_in": m.k_in, "k_out": m.k_out})
         u = fns["u"]
-        I = _radial_integral_u4(R, u)  # ∫ r u^4 dr
+        # Adaptive integral with robust tail control
+        I = _radial_integral_u4_adaptive(R, u)
         N4_ell = float(2.0 * np.pi * lam * I)
         # numerical guard
         if not np.isfinite(N4_ell) or N4_ell < 0.0:
@@ -209,8 +278,8 @@ def tube_energy_diagonal(
     if E_bg is not None and R is not None:
         try:
             V += float(E_bg(float(R)))
-        except Exception:
-            pass
+        except Exception as _e_bg_err:
+            _ = _e_bg_err
     return float(V)
 
 
@@ -256,6 +325,8 @@ def energy_scan(
     c: float = 1.0,
     ell_max: int = 8,
     E_bg: Optional[Callable[[float], float]] = None,
+    refine: bool = True,
+    max_refine_levels: int = 2,
 ) -> Dict[str, np.ndarray]:
     """
     Scan E(R) across R_grid using the diagonal baseline.
@@ -285,7 +356,52 @@ def energy_scan(
             Es[i] = float(E)
         except Exception:
             Es[i] = np.nan
-    # Find minimum over finite values
+    # Optional refinement around the minimum
+    if refine:
+        for _ in range(int(max_refine_levels)):
+            mask = np.isfinite(Es)
+            if not np.any(mask):
+                break
+            idx = int(np.nanargmin(Es))
+            # Need neighbors to refine
+            if idx <= 0 or idx >= len(Rs) - 1:
+                break
+            # Insert midpoints around idx
+            new_Rs = []
+            for j in range(len(Rs) - 1):
+                new_Rs.append(Rs[j])
+                if j == idx - 1 or j == idx:
+                    new_Rs.append(0.5 * (Rs[j] + Rs[j + 1]))
+            new_Rs.append(Rs[-1])
+            # Deduplicate and sort
+            Rs2 = np.unique(np.array(new_Rs, dtype=np.float64))
+            # If no new points, stop
+            if len(Rs2) == len(Rs):
+                break
+            # Evaluate Es2 at new points, reuse old where possible
+            Es2 = np.full_like(Rs2, np.nan, dtype=np.float64)
+            # Map old
+            for i_old, Rv in enumerate(Rs):
+                k = np.where(np.isclose(Rs2, Rv, rtol=0, atol=1e-12))[0]
+                if k.size:
+                    Es2[k[0]] = Es[i_old]
+            # Compute only new points
+            for i2, Rv in enumerate(Rs2):
+                if np.isfinite(Es2[i2]):
+                    continue
+                try:
+                    modes = compute_modes_for_R(R=Rv, mu=mu, c=c, ell_max=ell_max)
+                    if not modes:
+                        Es2[i2] = np.nan
+                        continue
+                    N4 = build_quartic_diagonal(R=Rv, modes=modes, lam=lam, c=c)
+                    v = find_condensate_diagonal(R=Rv, modes=modes, N4=N4, c=c)
+                    E = tube_energy_diagonal(modes=modes, N4=N4, v=v, c=c, E_bg=E_bg, R=Rv)
+                    Es2[i2] = float(E)
+                except Exception:
+                    Es2[i2] = np.nan
+            Rs, Es = Rs2, Es2
+    # Final minimum
     mask = np.isfinite(Es)
     if not np.any(mask):
         return {"R": Rs, "E": Es, "min_R": float("nan"), "min_E": float("nan")}

@@ -1,0 +1,8 @@
+{
+  "attempts": 63,
+  "coverage": 0.6666666666666666,
+  "csv": "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/logs/tachyonic_condensation/failed_runs/20251009_055231_tube_spectrum_roots__tube-spectrum-v1.csv",
+  "passed": false,
+  "successes": 42,
+  "tag": "tube-spectrum-v1"
+}

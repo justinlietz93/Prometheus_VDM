@@ -339,7 +339,7 @@
 
 ### <a id="task-tachyon-condensation"></a>Tachyon Condensation Analysis
 
-**Source:** derivation/tachyon_condensation/DELETE_AFTER_SOLVING/TODO_tachyonic_condensation.md:1-466 • 77f055f  
+**Source:** Derivation/Tachyon_Condensation/PROPOSAL_Tachyonic_Tube_Condensation.md  
 **Description:** Analyze finite-tube solutions, mode spectra, and radius selection mechanism via Bessel matching  
 **Linked canon:** equations → TODO: add anchor (see derivation/tachyon_condensation/finite_tube_mode_analysis.md), constants → TODO: add anchor (see CONSTANTS.md)  
 **Exit criteria:** κ>0 tachyonic branches identified; energy landscape E(R) mapped; radius selection mechanism established  
