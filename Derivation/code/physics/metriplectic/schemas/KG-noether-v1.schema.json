@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "KG Noether Energy/Momentum Invariants Log (v1)",
+  "tag": "KG-noether-v1",
+  "type": "object",
+  "properties": {
+    "tag": { "type": "string", "const": "KG-noether-v1" },
+    "dt": { "type": "number", "minimum": 0 },
+    "steps": { "type": "integer", "minimum": 1 },
+    "N": { "type": "integer", "minimum": 1 },
+    "max_per_step_delta": {
+      "type": "object",
+      "properties": {
+        "E_disc": { "type": "number" },
+        "P_disc": { "type": "number" }
+      },
+      "required": ["E_disc", "P_disc"]
+    },
+    "passed": {
+      "type": "object",
+      "properties": {
+        "energy": { "type": "boolean" },
+        "momentum": { "type": "boolean" },
+        "reversibility": { "type": "boolean" }
+      },
+      "required": ["energy", "momentum", "reversibility"]
+    },
+    "csv": { "type": "string" },
+    "figure": { "type": "string" },
+    "grid": { "type": "object" },
+    "params": { "type": "object" }
+  },
+  "required": ["dt", "steps", "N", "max_per_step_delta", "passed" ],
+  "additionalProperties": true
+}

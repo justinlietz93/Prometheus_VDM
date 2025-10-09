@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://prometheus-vdm.local/schemas/metriplectic/struct-v1.schema.json",
+  "title": "Metriplectic Structure Checks Log",
+  "description": "Log schema for metriplectic algebraic structure checks: J skew-symmetry and M positive semidefiniteness.",
+  "version": "1.0.0",
+  "type": "object",
+  "tag": "struct-v1",
+  "properties": {
+    "J_skew": {
+      "type": "object",
+      "description": "Statistics for the skew-symmetry check of J via random vectors v ↦ <v, J v>.",
+      "properties": {
+        "median_abs_vJv": { "type": "number", "description": "Median of |<v, J v>| across draws." },
+        "gate": { "type": "string", "description": "Human-readable gate string, e.g., '<=1e-12'." },
+        "passed": { "type": "boolean", "description": "True if gate is satisfied." }
+      },
+      "required": ["median_abs_vJv", "gate", "passed"],
+      "additionalProperties": true
+    },
+    "M_psd": {
+      "type": "object",
+      "description": "Statistics for the PSD check of M via random vectors u ↦ <u, M u>.",
+      "properties": {
+        "min": { "type": "number", "description": "Minimum quadratic form value observed." },
+        "neg_count": { "type": "integer", "minimum": 0, "description": "Number of negative quadratic form values." },
+        "draws": { "type": "integer", "minimum": 1, "description": "Total number of random draws." },
+        "gate": { "type": "string", "description": "Human-readable gate string, e.g., '0 negatives'." },
+        "passed": { "type": "boolean", "description": "True if gate is satisfied." }
+      },
+      "required": ["neg_count", "draws", "passed"],
+      "additionalProperties": true
+    },
+    "policy": { "type": "object", "description": "Optional policy stamp (approval/quarantine)." },
+    "params": { "type": "object", "description": "Optional echo of parameters used in the run." },
+    "grid": { "type": "object", "description": "Optional echo of grid settings (N, dx)." }
+  },
+  "required": ["J_skew", "M_psd"],
+  "additionalProperties": true
+}

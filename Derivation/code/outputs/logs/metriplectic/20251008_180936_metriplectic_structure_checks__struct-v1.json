@@ -1,0 +1,14 @@
+{
+  "J_skew": {
+    "gate": "<=1e-12",
+    "median_abs_vJv": 1.5250947198037947e-15,
+    "passed": true
+  },
+  "M_psd": {
+    "draws": 100,
+    "gate": "0 negatives",
+    "min": 633.1646908648494,
+    "neg_count": 0,
+    "passed": true
+  }
+}

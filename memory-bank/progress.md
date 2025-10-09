@@ -1,13 +1,18 @@
-# Progress (Updated: 2025-10-08)
+# Progress (Updated: 2025-10-09)
 
 ## Done
 
-- Inserted VDM-A-013..021 sections with pseudocode and context; updated auto-index and change log; fixed markdownlint issues
+- Proposal drafted and saved
+- Spec and schema files created
+- Approval manifest initialized
 
 ## Doing
 
-- Finalize algorithms-first update in ALGORITHMS.md and validate anchors/index
+- Tachyonic tube runner scaffold added
 
 ## Next
 
-- Wait for approval; if approved, proceed to update EQUATIONS.md anchors referenced by TODOs; then review CONSTANTS/SYMBOLS for any new entries
+- Approve tags via CLI
+- Execute spectrum and condensation runs
+- Create RESULTS_Tachyonic_Tube.md
+- Promote canon row

@@ -1,0 +1,23 @@
+{
+  "pre_registered": true,
+  "proposal": "Derivation/Tachyon_Condensation/PROPOSAL_Tachyonic_Tube_Condensation.md",
+  "allowed_tags": [
+    "tube-spectrum-v1",
+    "tube-condensation-v1"
+  ],
+  "schema_dir": "Derivation/code/physics/tachyonic_condensation/schemas",
+  "approvals": {
+    "tube-spectrum-v1": {
+      "schema": "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/physics/tachyonic_condensation/schemas/tube-spectrum-v1.schema.json",
+      "approved_by": "Justin K. Lietz",
+      "approved_at": "2025-10-09T00:18:28.922456+00:00",
+      "approval_key": "9cba89da1d73a78c19a071257f810bf4b55759579ceddbe67c9c7f58ae3352d1"
+    },
+    "tube-condensation-v1": {
+      "schema": "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/physics/tachyonic_condensation/schemas/tube-condensation-v1.schema.json",
+      "approved_by": "Justin K. Lietz",
+      "approved_at": "2025-10-09T00:19:58.454610+00:00",
+      "approval_key": "5ad9f82d233d3c244bbc7b1d7a9403cdeb747c2bbc56897350c4110acbfd5755"
+    }
+  }
+}

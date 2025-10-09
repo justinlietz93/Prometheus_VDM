@@ -1,0 +1,2 @@
+tag,N,dx,c,m,D,m_lap_operator,draws,J_median_abs_vJv,J_passed,M_min,M_neg_count,M_passed
+struct-v1,256,1.0,1.0,0.0,1.0,spectral,100,1.5250947198037947e-15,True,633.1646908648494,0,True

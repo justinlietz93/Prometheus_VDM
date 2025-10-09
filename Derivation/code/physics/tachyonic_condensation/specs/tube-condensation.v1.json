@@ -1,0 +1,12 @@
+{
+  "tag": "tube-condensation-v1",
+  "grid": {
+    "R_sweep": [0.8, 1.0, 1.2, 1.5, 1.8, 2.2, 2.6]
+  },
+  "params": {
+    "mu": 1.0,
+    "lam": 0.15,
+    "c": 1.0,
+    "ell_max": 8
+  }
+}

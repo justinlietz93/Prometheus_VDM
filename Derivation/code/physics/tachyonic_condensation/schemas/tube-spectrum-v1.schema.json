@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "tube-spectrum-v1",
+  "type": "object",
+  "required": ["tag", "grid", "params"],
+  "properties": {
+    "tag": {"const": "tube-spectrum-v1"},
+    "grid": {
+      "type": "object",
+      "required": ["R_sweep"],
+      "properties": {
+        "R_sweep": {"type": "array", "items": {"type": "number"}, "minItems": 2}
+      }
+    },
+    "params": {
+      "type": "object",
+      "required": ["mu", "lam", "c"],
+      "properties": {
+        "mu": {"type": "number", "minimum": 0},
+        "lam": {"type": "number", "minimum": 0},
+        "c": {"type": "number", "minimum": 0}
+      }
+    }
+  }
+}

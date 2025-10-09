@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-from __future__ import annotations
 
 from dataclasses import dataclass
 from pathlib import Path
@@ -14,7 +13,9 @@ if str(CODE_ROOT) not in sys.path:
     sys.path.insert(0, str(CODE_ROOT))
 
 from common.io_paths import figure_path, log_path, write_log
+from common.plotting.core import apply_style, get_fig_ax, save_figure
 from physics.metriplectic.kg_ops import spectral_grad, spectral_laplacian
+from common.authorization.approval import check_tag_approval
 
 
 @dataclass
@@ -126,14 +127,29 @@ def run_noether(spec: NoetherSpec) -> Dict[str, Any]:
     rev_err = float(max(np.linalg.norm(phi_f - phi0, ord=np.inf), np.linalg.norm(pi_f - pi0, ord=np.inf)))
     pass_rev = rev_err <= 1e-12 or rev_err <= 1e-10
 
+    # Figure: plot E_d and P_d vs time; figures go to figures/ and no logs beside figures
+    failed = not (pass_energy and pass_momentum and pass_rev)
+    apply_style("light")
+    fig, ax = get_fig_ax(size=(6.4, 4.0))
+    ax.plot(times, E_d, label="E_d (discrete energy)")
+    ax.plot(times, P_d, label="P_d (discrete momentum)")
+    ax.set_xlabel("t")
+    ax.set_ylabel("value")
+    ax.set_title("KG Noether: discrete invariants vs time")
+    ax.legend()
+    figp = save_figure("metriplectic", _slug("kg_noether_energy_momentum", spec), fig, failed=failed)
+
+    # Pull tag for schema/log compliance
+    tag = spec.params.get("tag") if isinstance(spec.params, dict) else getattr(spec, "tag", None)
     logj = {
+        "tag": str(tag) if tag else None,
         "dt": dt, "steps": steps, "N": N,
         "max_per_step_delta": {"E_disc": max_dE, "P_disc": max_dP},
         "epsilon": eps, "sqrtN": sqrtN, "epsilon_sqrtN": bound,
         "passed": {"energy": pass_energy, "momentum": pass_momentum, "reversibility": pass_rev},
-        "csv": str(csvp)
+        "csv": str(csvp),
+        "figure": str(figp)
     }
-    failed = not (pass_energy and pass_momentum and pass_rev)
     write_log(log_path("metriplectic", _slug("kg_noether_energy_momentum", spec), failed=failed), logj)
     if failed:
         write_log(log_path("metriplectic", _slug("CONTRADICTION_REPORT_kg_noether", spec), failed=True), {
@@ -209,15 +225,19 @@ def dispersion_check(spec: NoetherSpec, k_list: List[int] | None = None) -> Dict
 
 def main():
     import argparse, json
+    from common.authorization.approval import check_tag_approval
     p = argparse.ArgumentParser(description="KG Noether checks (energy/momentum) and optional dispersion")
     p.add_argument("--spec", type=str, required=True, help="Path to KG⊕RD spec JSON (for N, dx, c, m, tag)")
     p.add_argument("--steps", type=int, default=256)
     p.add_argument("--dt", type=float, default=None, help="Override dt (default: min of spec.dt_sweep)")
     p.add_argument("--dispersion", action="store_true")
+    p.add_argument("--allow-unapproved", action="store_true", help="Allow run without approval (artifacts quarantined)")
     args = p.parse_args()
     spec_path = Path(args.spec)
     raw = json.loads(spec_path.read_text())
     tag = raw.get("tag") or (raw.get("params", {}).get("tag"))
+    # Enforce approval by policy
+    _approved, _eng_only, _proposal = check_tag_approval("metriplectic", str(tag), args.allow_unapproved, CODE_ROOT)
     dt = float(args.dt if args.dt is not None else min(raw["dt_sweep"]))
     nspec = NoetherSpec(grid=raw["grid"], params=raw["params"], dt=dt, steps=int(args.steps), seed=1234, tag=tag)
     noether = run_noether(nspec)

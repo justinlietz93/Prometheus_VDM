@@ -31,3 +31,13 @@ When runtime logs include per-tick arrays of top-k neuron indices (e.g., evt_*_h
 
 - Derivation/code/physics/causality/run_causality_dag_audit.py head expansion path
 - Derivation/code/common/causality/event_dag.py with is_acyclic via Kahn’s algorithm
+
+
+## Structure-check runner pattern for algebraic invariants
+
+Provide a tiny, policy-aware runner that samples random vectors to test operator properties (e.g., J skew-symmetry via median |<v,Jv>| and M positive semidefiniteness via counts of negative <u,Mu>). Route outputs through io_paths with quarantine on unapproved runs; pair a short RESULTS doc that defines gates and artifact paths.
+
+### Examples
+
+- Derivation/code/physics/metriplectic/metriplectic_structure_checks.py
+- Derivation/Metriplectic/RESULTS_Metriplectic_Structure_Checks.md
