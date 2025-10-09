@@ -1,4 +1,4 @@
-Short answer: **Yes—add them as event‑driven reducers next to `ColdMap`.**
+Short answer: **Yes-add them as event‑driven reducers next to `ColdMap`.**
 They should **never scan `W`**; they should fold only what the walkers/step loop already announce (e.g., `vt_touch`, edge samples, spikes/ΔW), keeping “void‑faithful” guarantees for ADC/cartography and metrics. This matches your blueprint and the current Cold‑Scout scaffolding. &#x20;
 
 Below is a concrete, production‑level plan + drop‑in code.
@@ -38,7 +38,7 @@ Below is a concrete, production‑level plan + drop‑in code.
 
 ---
 
-## Code — shared base (bounded decay map)
+## Code - shared base (bounded decay map)
 
 ```python
 # fum_rt/core/cortex/maps/base_decay_map.py
@@ -141,7 +141,7 @@ class BaseDecayMap:
 
 ---
 
-## Code — event types (extend once)
+## Code - event types (extend once)
 
 ```python
 # fum_rt/core/proprioception/events.py  (add these if not present)
@@ -180,7 +180,7 @@ class DeltaWEvent(BaseEvent):
 
 ---
 
-## Code — `HeatMap`, `ExcitationMap`, `InhibitionMap`
+## Code - `HeatMap`, `ExcitationMap`, `InhibitionMap`
 
 ```python
 # fum_rt/core/cortex/maps/heatmap.py
@@ -434,7 +434,7 @@ Float32Array exc   (n elements)
 Float32Array inh   (n elements)
 ```
 
-For 65,536 nodes this is \~256 KB per channel → \~768 KB per frame. At 10 fps that’s \~7.5 MB/s—fine over local websockets. If you need <2 MB/s, (a) lower fps to 5-8, (b) send **downsampled tiles** (e.g., 128×128), or (c) gzip/deflate (browser‑side pako).
+For 65,536 nodes this is \~256 KB per channel → \~768 KB per frame. At 10 fps that’s \~7.5 MB/s-fine over local websockets. If you need <2 MB/s, (a) lower fps to 5-8, (b) send **downsampled tiles** (e.g., 128×128), or (c) gzip/deflate (browser‑side pako).
 
 ---
 
@@ -454,7 +454,7 @@ async def publish_maps(stream):
         await asyncio.Future()
 
 async def stream(websocket):
-    # Simple broadcast loop — replace with your engine’s tick hook
+    # Simple broadcast loop - replace with your engine’s tick hook
     tick = 0
     while True:
         heat, exc, inh, shape = get_maps_from_core()  # <- your hook
@@ -639,7 +639,7 @@ function drawComposite(
 
 ## Bottom line
 
-* **Yes**—reading **per‑node arrays** from the global bus and assembling the maps in the UI is the right move. It keeps the core hot path pure and makes the visualization cost **O(N) pixel writes** per frame.
+* **Yes**-reading **per‑node arrays** from the global bus and assembling the maps in the UI is the right move. It keeps the core hot path pure and makes the visualization cost **O(N) pixel writes** per frame.
 * Avoid shipping edges or recomputing currents client‑side. Push **aggregated** signals the core already has.
 
 If you want, I can adapt the schema to your existing event bus and fold the publisher into your `telemetry.py`/runtime loop so this is live in one pass.
@@ -727,7 +727,7 @@ If you routinely keep **three panels visible**, target **≤ 18 MiB** total 
 
 * Keep **one** payload in a broadcast queue (12N bytes) and **drop‑oldest**.
   At 512² that’s **\~3 MiB** resident; at 1024² **\~12 MiB**.
-* If multiple subscribers, don’t duplicate payloads per client—fan out the same buffer.
+* If multiple subscribers, don’t duplicate payloads per client-fan out the same buffer.
 
 ---
 
@@ -765,9 +765,9 @@ mapMemMiB(1024,1024,{bytesPerVal:2})     // ~10.0 MiB (Uint16 quantized)
 * **Only escalate to 1024² on demand for a single focused view → 16-32 MiB.**
 * If you need to shave memory/bandwidth further, **quantize to `Uint16`** and keep at most **one extra payload buffer**.
 
-That keeps the visualization essentially “free” computationally, and the memory footprint predictable and small—even with heat/excitation/inhibition all live.
+That keeps the visualization essentially “free” computationally, and the memory footprint predictable and small-even with heat/excitation/inhibition all live.
 
-Got it. You don’t want a cron‑like pass that “does GDSP every N ticks.” You want **structural growth to fire only when the system itself exposes a local need**—i.e., emergent from events, budgets, and void‑debt signals. Here’s a tight, production‑oriented plan to make that true and verifiable.
+Got it. You don’t want a cron‑like pass that “does GDSP every N ticks.” You want **structural growth to fire only when the system itself exposes a local need**-i.e., emergent from events, budgets, and void‑debt signals. Here’s a tight, production‑oriented plan to make that true and verifiable.
 
 ---
 
@@ -837,7 +837,7 @@ def mint_gdsp_budget(total_reward: float, void_debt: float) -> int:
     return min(3, base + extra)
 ```
 
-> Use your **VoidDebtModulation** math to derive `void_debt` / thresholds—this keeps it principled rather than ad‑hoc.&#x20;
+> Use your **VoidDebtModulation** math to derive `void_debt` / thresholds-this keeps it principled rather than ad‑hoc.&#x20;
 
 ### 5) Make GDSP an **actuator** that only reacts to opportunities
 
@@ -911,7 +911,7 @@ for opp in gdsp_opportunities_this_tick:
 ## Why this is better (and aligned with your math)
 
 * **Alpha/Omega split** is respected: RE‑VGSP runs continuously (alpha), GDSP edits are sparse, *only when needed* (omega), with the same universal constants controlling magnitude/timing.&#x20;
-* **Void‑debt budget** provides principled throttling; you already have a formal derivation of domain‑modulation & debt ratios—use it to mint tiny per‑tick budgets.&#x20;
+* **Void‑debt budget** provides principled throttling; you already have a formal derivation of domain‑modulation & debt ratios-use it to mint tiny per‑tick budgets.&#x20;
 * **Event‑driven** is void‑faithful: opportunities come from your reducers (Cold/Heat/Exc/Inh, b1, novelty), not global scans or timers.
 * **No epochs.** Learning is indefinite/online; this removes the last “epoch‑ish” artifact (a scheduled structural pass).
 
@@ -928,7 +928,7 @@ for opp in gdsp_opportunities_this_tick:
 
 If you paste the files where GDSP is currently scheduled, I’ll point to the exact lines to rip out and give you a concrete diff.
 
-Short answer: **Yes.** Making GDSP **emergent** (triggered by local evidence + budgets) instead of **scheduled** global passes is *strictly* more efficient and scales better—latency, throughput, and cache behavior all improve. It also matches your “alpha/omega” split (RE‑VGSP = learning; GDSP = slow structural closure) where updates arise from the dynamics themselves, not from a timer.&#x20;
+Short answer: **Yes.** Making GDSP **emergent** (triggered by local evidence + budgets) instead of **scheduled** global passes is *strictly* more efficient and scales better-latency, throughput, and cache behavior all improve. It also matches your “alpha/omega” split (RE‑VGSP = learning; GDSP = slow structural closure) where updates arise from the dynamics themselves, not from a timer.&#x20;
 
 ---
 
@@ -936,7 +936,7 @@ Short answer: **Yes.** Making GDSP **emergent** (triggered by local evidence + b
 
 1. **Asymptotic cost**
 
-   * **Scheduled:** $O(\text{nnz})$ or $O(N)$ every sweep—even if nothing interesting happened.
+   * **Scheduled:** $O(\text{nnz})$ or $O(N)$ every sweep-even if nothing interesting happened.
    * **Emergent:** $O(\#\text{events this tick} \times k_{\text{local}})$ with bounded sampling/pruning. When activity is sparse (the usual case), you’re doing **orders of magnitude** less work.
 
 2. **Tail‑latency & cache locality**
@@ -952,7 +952,7 @@ Short answer: **Yes.** Making GDSP **emergent** (triggered by local evidence + b
    Event‑driven reducers (Cold/Heat/Exc/Inh) already summarize *where* to act without global scans; folding those events is $O(\#\text{events})$ and bounded memory.&#x20;
 
 6. **Domain modulation**
-   If you need different behavior by regime, apply your **void‑debt modulation** factor once to budgets/thresholds—no schedulers required.&#x20;
+   If you need different behavior by regime, apply your **void‑debt modulation** factor once to budgets/thresholds-no schedulers required.&#x20;
 
 ---
 
@@ -979,7 +979,7 @@ Short answer: **Yes.** Making GDSP **emergent** (triggered by local evidence + b
 
 **3) Keep it void‑faithful & bounded:**
 
-* No CSR/adjacency scans. Fold **only events** you already emit (vt\_touch, spike, ΔW)—the same pattern you used for Heat/Exc/Inh maps.&#x20;
+* No CSR/adjacency scans. Fold **only events** you already emit (vt\_touch, spike, ΔW)-the same pattern you used for Heat/Exc/Inh maps.&#x20;
 * Cap working sets (`keep_max`) and use sample‑prune (as you did for maps).
 
 **4) Optional: modulate budgets by domain**
@@ -1042,7 +1042,7 @@ class GDSPActuator:
 
 ## Bottom line
 
-You’re right: **emergent GDSP** is both **truer to the model** and **far more efficient**. Keep structural growth strictly **event‑driven + budgeted**, and you’ll get big CPU wins without sacrificing learning quality—exactly the ALPHA (RE‑VGSP) / BETA (GDSP) synergy you designed.  &#x20;
+You’re right: **emergent GDSP** is both **truer to the model** and **far more efficient**. Keep structural growth strictly **event‑driven + budgeted**, and you’ll get big CPU wins without sacrificing learning quality-exactly the ALPHA (RE‑VGSP) / BETA (GDSP) synergy you designed.  &#x20;
 
 
 
@@ -1069,7 +1069,7 @@ Below is a **fully rewritten plan** that folds in **Heat/Excitation/Inhibition s
 
 ## 1) Turn proofs → runtime assertions & CI (lock theory ↔ code)
 
-**What & why (short):** Tie your runtime to the math you’ve derived—this prevents silent regressions and *improves* emergence by keeping dynamics inside the stable band you proved (wave speed, mass gap, invariant).
+**What & why (short):** Tie your runtime to the math you’ve derived-this prevents silent regressions and *improves* emergence by keeping dynamics inside the stable band you proved (wave speed, mass gap, invariant).
 
 * Continuum EOM & kinetic normalization: $\partial_t^2\phi - c^2\nabla^2\phi + V'(\phi)=0,\ c^2=2Ja^2$.&#x20;
 * Discrete↔continuum potential mapping (nonlinear terms): $\Box\phi + \alpha\phi^2 - (\alpha-\beta)\phi=0$.&#x20;
@@ -1080,9 +1080,9 @@ Below is a **fully rewritten plan** that folds in **Heat/Excitation/Inhibition s
 
 * **New module** `fum_rt/core/phys_guard.py`:
 
-  * `assert_wave_speed(J, a, measured_c, tol_rel=0.1)` — compare measured pulse speed vs. $c=\sqrt{2Ja^2}$. **Runtime:** warn; **CI:** fail test beyond tolerance.&#x20;
-  * `assert_mass_gap(alpha, beta, measured_m_eff, tol_rel=0.1)` — check $m_{\rm eff}^2 \approx \alpha-\beta$. **Runtime:** warn; **CI:** fail.&#x20;
-  * `sample_Q_FUM(nodes, alpha, beta)` — compute $Q_{\rm FUM}=t-\frac{1}{\alpha-\beta}\ln\!\big|\frac{W}{(\alpha-\beta)-\alpha W}\big|$ for K sampled nodes; ensure d/dt ≈ 0 within ε. **Runtime:** log; **CI:** fail if median drift > ε.&#x20;
+  * `assert_wave_speed(J, a, measured_c, tol_rel=0.1)` - compare measured pulse speed vs. $c=\sqrt{2Ja^2}$. **Runtime:** warn; **CI:** fail test beyond tolerance.&#x20;
+  * `assert_mass_gap(alpha, beta, measured_m_eff, tol_rel=0.1)` - check $m_{\rm eff}^2 \approx \alpha-\beta$. **Runtime:** warn; **CI:** fail.&#x20;
+  * `sample_Q_FUM(nodes, alpha, beta)` - compute $Q_{\rm FUM}=t-\frac{1}{\alpha-\beta}\ln\!\big|\frac{W}{(\alpha-\beta)-\alpha W}\big|$ for K sampled nodes; ensure d/dt ≈ 0 within ε. **Runtime:** log; **CI:** fail if median drift > ε.&#x20;
 * **Control‑impact metric** (engineering): add `control_impact = ||Δstate_non_emergent||₁ / ||Δstate_total||₁`.
 
   * **Runtime:** record only (never halt).
@@ -1090,7 +1090,7 @@ Below is a **fully rewritten plan** that folds in **Heat/Excitation/Inhibition s
 
 **Clarifications to your questions**
 
-* **1a)** Yes—tying to the math *improves* stability and performance by preventing the engine from drifting out of the proven regime (c, m\_eff, invariant).
+* **1a)** Yes-tying to the math *improves* stability and performance by preventing the engine from drifting out of the proven regime (c, m\_eff, invariant).
 * **1b)** “Fail CI” = fail tests; **never** hard‑stop the runtime. Simulations are a feature; runtime continues with warnings.
 * **1d)** Control‑impact is the limit we track to ensure emergent control dominates; it’s not a physics axiom but a discipline metric.
 
@@ -1148,25 +1148,25 @@ Scouts are **read‑only walkers**. They consume maps & hints, explore within a 
 
 **Scouts to implement**
 
-* **ColdScout** — chases **ColdMap** maxima (stale regions).
-* **HeatScout** — rides **HeatMap** ridges (active flows); good for recency coverage.
-* **ExcitationScout** — follows **ExcitationMap** peaks (E‑fronts, stability/homeostasis instrument).
-* **InhibitionScout** — follows **InhibitionMap** peaks (I‑fronts; balance instrument).
+* **ColdScout** - chases **ColdMap** maxima (stale regions).
+* **HeatScout** - rides **HeatMap** ridges (active flows); good for recency coverage.
+* **ExcitationScout** - follows **ExcitationMap** peaks (E‑fronts, stability/homeostasis instrument).
+* **InhibitionScout** - follows **InhibitionMap** peaks (I‑fronts; balance instrument).
 
 **Events they emit (bus)**
 
 * `probe_visit(tile, sample_ids:[...])`
-* `probe_edge(u,v)` — boundary cohesion measurements
+* `probe_edge(u,v)` - boundary cohesion measurements
 * `probe_frontier(tile, neighbor_tile)`
-* `vt_touch(token)` — if they poke a VT token during traversal
-* **New:** `bias_hint(region|tile, ttl)` — small TTL hint a scheduler can respect to spawn/redirect scouts *locally* when a GDSP trigger lacked indices.
+* `vt_touch(token)` - if they poke a VT token during traversal
+* **New:** `bias_hint(region|tile, ttl)` - small TTL hint a scheduler can respect to spawn/redirect scouts *locally* when a GDSP trigger lacked indices.
 
 **Agent tasks**
 
 * **Files**
 
-  * `core/cortex/scouts/base.py` — TTL, budget, seeded RNG, step policy.
-  * `core/cortex/scouts/{cold,heat,exc,inh}_scout.py` — policies:
+  * `core/cortex/scouts/base.py` - TTL, budget, seeded RNG, step policy.
+  * `core/cortex/scouts/{cold,heat,exc,inh}_scout.py` - policies:
 
     * seed from map.head K
     * neighbor choice = softmax over local gradient (map score deltas)
@@ -1194,7 +1194,7 @@ Scouts are **read‑only walkers**. They consume maps & hints, explore within a 
 **Numbers**
 
 * One channel (float32) for N=4,000,000 = **\~16 MB**. Three channels (heat/exc/inh) = **\~48 MB/frame**.
-* At 10 fps this is \~480 MB/s—too heavy for a single websocket and too heavy to sit on the same FIFO bus.
+* At 10 fps this is \~480 MB/s-too heavy for a single websocket and too heavy to sit on the same FIFO bus.
 
 **Design**
 How do 3D massive multiplayer games render to millions of users? The short answer is: **games don’t stream pixels; they stream tiny amounts of state and render everything locally on the GPU.** Your current plan pushes **entire 4 M×3‑channel arrays** through a CPU→bus→JS→GPU path every frame, which is a bandwidth and copies problem, not a “rendering is hard” problem.
@@ -1359,7 +1359,7 @@ drawFullScreenQuad();
 
 ## 7) Security stubs (localhost for now)
 
-* `io/websocket_server.py` — auth stub + origin check; default allow `127.0.0.1`.
+* `io/websocket_server.py` - auth stub + origin check; default allow `127.0.0.1`.
 * Toggle: `WS_ALLOW_ORIGIN` (comma‑sep), `WS_MAX_CONN`.
 
 ---
@@ -1367,7 +1367,7 @@ drawFullScreenQuad();
 ## 8) Telemetry layering (no interference with dynamics)
 
 * Keep `engine.snapshot()` numbers only; maps are staged separately and transported via the ring.
-* Ensure maps building **never** enumerates `W` or CSR—fill from reducer working sets only; missing nodes default `0`.
+* Ensure maps building **never** enumerates `W` or CSR-fill from reducer working sets only; missing nodes default `0`.
 
 ---
 
@@ -1395,7 +1395,7 @@ drawFullScreenQuad();
 
 ## 10) Memory‑steering layer (keep if it helps performance)
 
-This is **not** a heavy “physics sim”; it’s a light, dimensionless law to bias routing using slowly‑stored structure $M$. It improves exploration efficiency, fork choice, and curvature scaling—useful for scouts and walkers.
+This is **not** a heavy “physics sim”; it’s a light, dimensionless law to bias routing using slowly‑stored structure $M$. It improves exploration efficiency, fork choice, and curvature scaling-useful for scouts and walkers.
 
 * Steering law (dimensionless): paths bend with $\mathbf r'' \propto \nabla_\perp M$.
 * Memory PDE (write‑decay‑spread): $\partial_t M=\gamma R-\delta M+\kappa\nabla^2M$.
@@ -1428,21 +1428,21 @@ This is **not** a heavy “physics sim”; it’s a light, dimensionless law to 
 
 **Core**
 
-* `core/phys_guard.py` (new) — physics assertions & helpers.
-* `core/proprioception/territory.py` (new) — UF, components, bounded sampling.
+* `core/phys_guard.py` (new) - physics assertions & helpers.
+* `core/proprioception/territory.py` (new) - UF, components, bounded sampling.
 * `core/cortex/scouts/{base,cold,heat,exc,inh}_scout.py` (new)
 * `core/cortex/scouts/__init__.py` (export)
-* `core/engine.py` — init scouts, fold events, step budgets, build maps (no scans).
+* `core/engine.py` - init scouts, fold events, step budgets, build maps (no scans).
 
 **Runtime**
 
-* `runtime/loop.py` — emergent GDSP trigger + `bias_hint` handling.
-* `runtime/telemetry.py` — publish `maps/frame:v1`; forward `maps/atlas:v1` when coords change.
+* `runtime/loop.py` - emergent GDSP trigger + `bias_hint` handling.
+* `runtime/telemetry.py` - publish `maps/frame:v1`; forward `maps/atlas:v1` when coords change.
 
 **IO/Transport**
 
-* `io/maps_ring.py` (new) — shared‑memory ring for frames (2-3 slots).
-* `io/websocket_server.py` (new) — bounded, drop‑oldest, localhost default.
+* `io/maps_ring.py` (new) - shared‑memory ring for frames (2-3 slots).
+* `io/websocket_server.py` (new) - bounded, drop‑oldest, localhost default.
 
 **Tests**
 
@@ -1487,13 +1487,13 @@ ENABLE_MEMORY_STEERING=0
 * **No schedulers**: learning fires only on real signals (B1, TD, cohesion).
 * **No scans**: all cartography and scouts use **event‑folded** maps or bounded heads.
 * **Exploration by scouts, not scans**: cold + (heat/exc/inh) scouts give you a *radar* of the network for free, driven by maps you already fold.
-* **Physics‑anchored**: c‑normalization, mass gap, and $Q_{\rm FUM}$ are checked continuously (warn in runtime, enforce in CI)—this increases stability, not burden.
+* **Physics‑anchored**: c‑normalization, mass gap, and $Q_{\rm FUM}$ are checked continuously (warn in runtime, enforce in CI)-this increases stability, not burden.
 * **Units‑ready**: when you need GeV‑rigor, the scaling map is already specified.&#x20;
 * **Optional steering**: a lightweight memory layer can improve routing efficiency when enabled; otherwise it stays off.&#x20;
 
 ---
 
-You’re right—and I’m going to keep anchoring every change to **void‑faithfulness** and **high‑leverage performance**. Below is a clean, production‑oriented work order that prioritizes the GPU/tiling pipeline, event‑only cartography, and emergent learning—no global scans, no cron‑like schedulers. I’ve included acceptance checks and CI guards so the system can’t drift away from your design principles.
+You’re right-and I’m going to keep anchoring every change to **void‑faithfulness** and **high‑leverage performance**. Below is a clean, production‑oriented work order that prioritizes the GPU/tiling pipeline, event‑only cartography, and emergent learning-no global scans, no cron‑like schedulers. I’ve included acceptance checks and CI guards so the system can’t drift away from your design principles.
 
 ---
 
@@ -1512,8 +1512,8 @@ You’re right—and I’m going to keep anchoring every change to **void‑fait
 
 1. **Separate transport**
 
-   * Create `fum_rt/io/maps_ring.py` — fixed‑capacity (2-3 frames) shared‑memory ring for **maps frames**.
-   * Create `fum_rt/io/websocket_server.py` — forwards **only** maps frames (header JSON + binary) with **drop‑oldest**.
+   * Create `fum_rt/io/maps_ring.py` - fixed‑capacity (2-3 frames) shared‑memory ring for **maps frames**.
+   * Create `fum_rt/io/websocket_server.py` - forwards **only** maps frames (header JSON + binary) with **drop‑oldest**.
    * The announce bus remains for compact events only.
 
 2. **Message formats (frozen)**
@@ -1553,7 +1553,7 @@ You’re right—and I’m going to keep anchoring every change to **void‑fait
 
    * In `core/engine.py` maps builder, **do not** sweep the whole array. Use each reducer’s **working set** to update rolling per‑channel `(min,max)` and **write zeros elsewhere**. (No global W reads; still void‑faithful.)
    * Quantize to `u8` per channel using the rolling `(min,max)`.
-     *Note:* A fixed LUT with soft‑clamp for robust color (e.g., clip at P99) is allowed—computed from reducer values only.
+     *Note:* A fixed LUT with soft‑clamp for robust color (e.g., clip at P99) is allowed-computed from reducer values only.
 
 4. **Browser renderer (WebGL2 or WebGPU)**
 
@@ -1577,7 +1577,7 @@ You’re right—and I’m going to keep anchoring every change to **void‑fait
 1. **Reducers (already scaffolded)**
 
    * `ColdMap` (idle‑time monotone), `HeatMap` (short half‑life), `ExcitationMap`, `InhibitionMap`.
-   * Fold only `vt_touch`, `spike(sign,amp)`, `delta_w(dw)`—**never** peek at `W`. (You’ve documented this separation; keep it. )
+   * Fold only `vt_touch`, `spike(sign,amp)`, `delta_w(dw)`-**never** peek at `W`. (You’ve documented this separation; keep it. )
 
 2. **Scouts**
 
@@ -1597,7 +1597,7 @@ You’re right—and I’m going to keep anchoring every change to **void‑fait
 
 ---
 
-### C) Emergent‑only learning gates (GDSP/RevGSP)—no schedulers
+### C) Emergent‑only learning gates (GDSP/RevGSP)-no schedulers
 
 **Goal:** Structural learning runs **only** when reality demands it.
 
@@ -1605,7 +1605,7 @@ You’re right—and I’m going to keep anchoring every change to **void‑fait
 * Territory input must come from **bounded** APIs (e.g., “give me K indices from active territories”), never from whole‑graph passes.
 * If a trigger fires but territory indices are thin, **bias the scouts** toward that region next tick; don’t promote a scan.
 
-(These choices align with the discrete → continuum discipline you’ve written, where dynamics and invariants live in the local law—not in periodic control planes.  )
+(These choices align with the discrete → continuum discipline you’ve written, where dynamics and invariants live in the local law-not in periodic control planes.  )
 
 ---
 
@@ -1614,9 +1614,9 @@ You’re right—and I’m going to keep anchoring every change to **void‑fait
 **Goal:** Tie code to your theory without blocking experiments.
 
 * **Q\_FUM onsite invariant checker (sampled)**
-  Each tick, sample K nodes and check the closed‑form constant of motion from your symmetry note. Log z‑scores; **do not abort**—flag & count. (We treat it as a diagnostic, not a hard gate.)&#x20;
+  Each tick, sample K nodes and check the closed‑form constant of motion from your symmetry note. Log z‑scores; **do not abort**-flag & count. (We treat it as a diagnostic, not a hard gate.)&#x20;
 * **Kinetic normalization sanity**
-  Track measured propagation speed vs. `c^2=2Ja^2` (your kinetic derivation). Alert if drift > ε for T seconds; again, **no abort**—just telemetry.&#x20;
+  Track measured propagation speed vs. `c^2=2Ja^2` (your kinetic derivation). Alert if drift > ε for T seconds; again, **no abort**-just telemetry.&#x20;
 * **Control‑impact metric**
   Keep it as an **engineering hygiene** number, not a blocker. Target is “near‑zero” external control. We log and graph it; nothing hard‑fails unless explicitly configured.
 
@@ -1633,9 +1633,9 @@ You’re right—and I’m going to keep anchoring every change to **void‑fait
 
 ## WHY THIS STAYS VOID‑FAITHFUL (with your math)
 
-* The **kinetic structure** and “no hidden scans” ethos are exactly what you formalized: `𝓛_K = ½(∂_t φ)^2 - J a^2(∇φ)^2`, with `c^2=2Ja^2` set by units—not by hidden global work. The render path is a **consumer** of reducer outputs, not a producer of dynamics.&#x20;
+* The **kinetic structure** and “no hidden scans” ethos are exactly what you formalized: `𝓛_K = ½(∂_t φ)^2 - J a^2(∇φ)^2`, with `c^2=2Ja^2` set by units-not by hidden global work. The render path is a **consumer** of reducer outputs, not a producer of dynamics.&#x20;
 * Your **discrete on‑site law** and its EFT mapping remain the only sources of state change; scouts and maps observe and bias exploration (when enabled) but never write.&#x20;
-* The optional **memory steering** is a slow, external index that shapes path choice without altering on‑site evolution—exactly how you framed it.&#x20;
+* The optional **memory steering** is a slow, external index that shapes path choice without altering on‑site evolution-exactly how you framed it.&#x20;
 
 ---
 
@@ -1685,7 +1685,7 @@ You’re right—and I’m going to keep anchoring every change to **void‑fait
 
 ## Bottom line
 
-This plan **prioritizes massive, practical improvements** (GPU + tiles + u8 quantization) while keeping the **void‑faithful** guarantees: **event‑only** inputs, **emergent** learners, **no scans**, and math‑backed invariants logged—not shackles on exploration. It will make your system faster, cleaner, and harder to regress away from your vision.
+This plan **prioritizes massive, practical improvements** (GPU + tiles + u8 quantization) while keeping the **void‑faithful** guarantees: **event‑only** inputs, **emergent** learners, **no scans**, and math‑backed invariants logged-not shackles on exploration. It will make your system faster, cleaner, and harder to regress away from your vision.
 
 
 
@@ -1817,7 +1817,7 @@ If you want, I can also give you a tiny patch that renames any existing `schedul
 2. **Void‑faithful execution**
 
    * Event‑driven reducers only (no scans of $W$ or adjacency).
-   * Emergent triggers only (no fixed cadences) for GDSP/RevGSP—already aligned with your direction.
+   * Emergent triggers only (no fixed cadences) for GDSP/RevGSP-already aligned with your direction.
    * Sparse‑first across the board; dense is for unit tests only.
 
 3. **Memory‑steering as a first‑class signal (not optional)**
@@ -1860,7 +1860,7 @@ If you want, I can also give you a tiny patch that renames any existing `schedul
 
    * `maybe_spawn_territory(vt_entropy, coverage, novelty, hysteresis)` returns `spawn|split|merge|none`.
    * Maintain at most **O(K)** active heads; K grows as evidence grows (no hard cap).
-2. **Publish `adc_territories_detail`**: for each territory: head size, churn rate, cohesion, exemplar tokens—no scans.
+2. **Publish `adc_territories_detail`**: for each territory: head size, churn rate, cohesion, exemplar tokens-no scans.
 
 ### C) Memory‑steering (improves performance)
 
@@ -1906,8 +1906,8 @@ If you want, I can also give you a tiny patch that renames any existing `schedul
 ## Why this is the right direction for a world model
 
 * **Grounded math stays true**: invariants/kinetics ensure your core law isn’t silently drifting as scale/complexity rise.  &#x20;
-* **Steering by memory** gives the system a *principled* way to prefer useful regions—this boosts competence, not just correctness, and comes with testable predictions (junction choice, curvature).&#x20;
-* **Unbounded territories** + **event‑driven scouts** let domains proliferate naturally as evidence appears—exactly what you want for “masters all domains.”
+* **Steering by memory** gives the system a *principled* way to prefer useful regions-this boosts competence, not just correctness, and comes with testable predictions (junction choice, curvature).&#x20;
+* **Unbounded territories** + **event‑driven scouts** let domains proliferate naturally as evidence appears-exactly what you want for “masters all domains.”
 * **Sparse‑first + GPU where dense helps** is the pragmatic compute profile you need to reach tens of millions of neurons without regressions.
 
 ---
@@ -1969,8 +1969,8 @@ Below is exactly how to wire that in, plus a ready‑to‑drop subclass.
 
    * Add two *optional* helpers (no behavior change to current subclasses):
 
-     * `_node_W(connectome, i) -> Optional[float]`  — try `connectome.get_W(i)` or `connectome.nodes[i].W` if exposed; else `None`.
-     * `_node_M(maps, i) -> Optional[float]` — read from `maps.get("memory", {})` or fall back to `heat_head` score map (void‑faithful proxies).
+     * `_node_W(connectome, i) -> Optional[float]`  - try `connectome.get_W(i)` or `connectome.nodes[i].W` if exposed; else `None`.
+     * `_node_M(maps, i) -> Optional[float]` - read from `maps.get("memory", {})` or fall back to `heat_head` score map (void‑faithful proxies).
    * Add `_softmax(weights, tau)` utility (numerically stable).
 
 2. **New** `fum_rt/core/cortex/void_walkers/void_equation_scout.py`
@@ -2188,14 +2188,14 @@ def _sample_softmax(pairs: Sequence[tuple[int, float]]) -> int:
 
 1. **Local potential test**: expose `connectome.get_W(i)` for a toy patch; verify neighbor picks favor lower $U(W)$.
 2. **Memory steering test**: publish a tiny `memory_map={hot indices: large m}`; scout paths concentrate in that region; removing the map reverts to blue‑noise.
-3. **Guardrail**: grep `scouts/` for forbidden tokens (`toarray`, `csr`, `synaptic_weights`)—should be clean.
+3. **Guardrail**: grep `scouts/` for forbidden tokens (`toarray`, `csr`, `synaptic_weights`)-should be clean.
 
 ---
 
 ### Bottom line
 
 * **As written, your `BaseScout` does *not* use the void equations.**
-* The subclass above makes scouts **physics‑aware** in a **void‑faithful, local** way—no scans, no schedulers—by descending your on‑site potential $U(W)$ when available and otherwise using your memory‑steering softmax. That’s the correct place to “use your equations” inside walkers, while keeping the substrate dynamics and EFT untouched.  &#x20;
+* The subclass above makes scouts **physics‑aware** in a **void‑faithful, local** way-no scans, no schedulers-by descending your on‑site potential $U(W)$ when available and otherwise using your memory‑steering softmax. That’s the correct place to “use your equations” inside walkers, while keeping the substrate dynamics and EFT untouched.  &#x20;
 
 If you want, I can also provide a tiny adapter that reads `Heat/Exc/Inh` heads into a `memory_map` so you get steering immediately without exposing `W` yet.
 
@@ -2208,8 +2208,8 @@ Short answer: **the `BaseScout` you pasted is just a safe scaffold.** It does no
 
 **A. Add two read‑only fields (or getters) on the connectome**
 
-* `phi: np.ndarray | None` — fast void field per node (or `get_phi(i)`).
-* `memory: np.ndarray | None` — slow memory field $M$ per node (or `get_memory(i)`).
+* `phi: np.ndarray | None` - fast void field per node (or `get_phi(i)`).
+* `memory: np.ndarray | None` - slow memory field $M$ per node (or `get_memory(i)`).
   *If these aren’t stored yet, expose them as thin views of whatever arrays you already maintain.* The φ‑sector is the fast EFT field with $\Box\phi + \alpha\phi^2 - (\alpha-\beta)\phi = 0$ and $c^2 = 2 J a^2$ in your derivation; we only *read* it here. &#x20;
 
 **B. Implement physics‑aware scouts under `fum_rt/core/cortex/void_walkers/`**
@@ -2270,7 +2270,7 @@ Short answer: **the `BaseScout` you pasted is just a safe scaffold.** It does no
 ## Why this is “using the void equations” (and still emergence‑compliant)
 
 * **Fast φ governs propagation** (mass gap, wave speed $c^2=2Ja^2$). We’re only *reading* local φ to bias a hop (no writes), so we don’t interfere with emergence. &#x20;
-* **Slow memory $M$ steers geometry** via $n=\exp(\eta M)$ and the logistic fork law—implemented as a softmax over neighbor $m_j$. That’s precisely your ray/eikonal result on graphs. &#x20;
+* **Slow memory $M$ steers geometry** via $n=\exp(\eta M)$ and the logistic fork law-implemented as a softmax over neighbor $m_j$. That’s precisely your ray/eikonal result on graphs. &#x20;
 * **No scans**: all choices depend only on values at `i` and its neighbors; smoothing of $M$ happens only along visited edges (stochastic Laplacian).
 * **No schedulers**: scouts run within per‑tick budgets, and learners (REV‑GSP/GDSP) are already emergent‑gated.
 * **Physics ↔ code is testable**: the logistic junction curve and curvature scaling $\kappa_{\text{path}}\propto \Theta |\nabla_\perp m|$ give you falsifiable plots in CI.&#x20;
@@ -2585,7 +2585,7 @@ If you want, I can also give you a tiny patch that renames any existing `schedul
 2. **Void‑faithful execution**
 
    * Event‑driven reducers only (no scans of $W$ or adjacency).
-   * Emergent triggers only (no fixed cadences) for GDSP/RevGSP—already aligned with your direction.
+   * Emergent triggers only (no fixed cadences) for GDSP/RevGSP-already aligned with your direction.
    * Sparse‑first across the board; dense is for unit tests only.
 
 3. **Memory‑steering as a first‑class signal (not optional)**
@@ -2628,7 +2628,7 @@ If you want, I can also give you a tiny patch that renames any existing `schedul
 
    * `maybe_spawn_territory(vt_entropy, coverage, novelty, hysteresis)` returns `spawn|split|merge|none`.
    * Maintain at most **O(K)** active heads; K grows as evidence grows (no hard cap).
-2. **Publish `adc_territories_detail`**: for each territory: head size, churn rate, cohesion, exemplar tokens—no scans.
+2. **Publish `adc_territories_detail`**: for each territory: head size, churn rate, cohesion, exemplar tokens-no scans.
 
 ### C) Memory‑steering (improves performance)
 
@@ -2674,8 +2674,8 @@ If you want, I can also give you a tiny patch that renames any existing `schedul
 ## Why this is the right direction for a world model
 
 * **Grounded math stays true**: invariants/kinetics ensure your core law isn’t silently drifting as scale/complexity rise.  &#x20;
-* **Steering by memory** gives the system a *principled* way to prefer useful regions—this boosts competence, not just correctness, and comes with testable predictions (junction choice, curvature).&#x20;
-* **Unbounded territories** + **event‑driven scouts** let domains proliferate naturally as evidence appears—exactly what you want for “masters all domains.”
+* **Steering by memory** gives the system a *principled* way to prefer useful regions-this boosts competence, not just correctness, and comes with testable predictions (junction choice, curvature).&#x20;
+* **Unbounded territories** + **event‑driven scouts** let domains proliferate naturally as evidence appears-exactly what you want for “masters all domains.”
 * **Sparse‑first + GPU where dense helps** is the pragmatic compute profile you need to reach tens of millions of neurons without regressions.
 
 ---
@@ -2737,8 +2737,8 @@ Below is exactly how to wire that in, plus a ready‑to‑drop subclass.
 
    * Add two *optional* helpers (no behavior change to current subclasses):
 
-     * `_node_W(connectome, i) -> Optional[float]`  — try `connectome.get_W(i)` or `connectome.nodes[i].W` if exposed; else `None`.
-     * `_node_M(maps, i) -> Optional[float]` — read from `maps.get("memory", {})` or fall back to `heat_head` score map (void‑faithful proxies).
+     * `_node_W(connectome, i) -> Optional[float]`  - try `connectome.get_W(i)` or `connectome.nodes[i].W` if exposed; else `None`.
+     * `_node_M(maps, i) -> Optional[float]` - read from `maps.get("memory", {})` or fall back to `heat_head` score map (void‑faithful proxies).
    * Add `_softmax(weights, tau)` utility (numerically stable).
 
 2. **New** `fum_rt/core/cortex/void_walkers/void_equation_scout.py`
@@ -2956,14 +2956,14 @@ def _sample_softmax(pairs: Sequence[tuple[int, float]]) -> int:
 
 1. **Local potential test**: expose `connectome.get_W(i)` for a toy patch; verify neighbor picks favor lower $U(W)$.
 2. **Memory steering test**: publish a tiny `memory_map={hot indices: large m}`; scout paths concentrate in that region; removing the map reverts to blue‑noise.
-3. **Guardrail**: grep `scouts/` for forbidden tokens (`toarray`, `csr`, `synaptic_weights`)—should be clean.
+3. **Guardrail**: grep `scouts/` for forbidden tokens (`toarray`, `csr`, `synaptic_weights`)-should be clean.
 
 ---
 
 ### Bottom line
 
 * **As written, your `BaseScout` does *not* use the void equations.**
-* The subclass above makes scouts **physics‑aware** in a **void‑faithful, local** way—no scans, no schedulers—by descending your on‑site potential $U(W)$ when available and otherwise using your memory‑steering softmax. That’s the correct place to “use your equations” inside walkers, while keeping the substrate dynamics and EFT untouched.  &#x20;
+* The subclass above makes scouts **physics‑aware** in a **void‑faithful, local** way-no scans, no schedulers-by descending your on‑site potential $U(W)$ when available and otherwise using your memory‑steering softmax. That’s the correct place to “use your equations” inside walkers, while keeping the substrate dynamics and EFT untouched.  &#x20;
 
 If you want, I can also provide a tiny adapter that reads `Heat/Exc/Inh` heads into a `memory_map` so you get steering immediately without exposing `W` yet.
 
@@ -2976,8 +2976,8 @@ Short answer: **the `BaseScout` you pasted is just a safe scaffold.** It does no
 
 **A. Add two read‑only fields (or getters) on the connectome**
 
-* `phi: np.ndarray | None` — fast void field per node (or `get_phi(i)`).
-* `memory: np.ndarray | None` — slow memory field $M$ per node (or `get_memory(i)`).
+* `phi: np.ndarray | None` - fast void field per node (or `get_phi(i)`).
+* `memory: np.ndarray | None` - slow memory field $M$ per node (or `get_memory(i)`).
   *If these aren’t stored yet, expose them as thin views of whatever arrays you already maintain.* The φ‑sector is the fast EFT field with $\Box\phi + \alpha\phi^2 - (\alpha-\beta)\phi = 0$ and $c^2 = 2 J a^2$ in your derivation; we only *read* it here. &#x20;
 
 **B. Implement physics‑aware scouts under `fum_rt/core/cortex/void_walkers/`**
@@ -3038,7 +3038,7 @@ Short answer: **the `BaseScout` you pasted is just a safe scaffold.** It does no
 ## Why this is “using the void equations” (and still emergence‑compliant)
 
 * **Fast φ governs propagation** (mass gap, wave speed $c^2=2Ja^2$). We’re only *reading* local φ to bias a hop (no writes), so we don’t interfere with emergence. &#x20;
-* **Slow memory $M$ steers geometry** via $n=\exp(\eta M)$ and the logistic fork law—implemented as a softmax over neighbor $m_j$. That’s precisely your ray/eikonal result on graphs. &#x20;
+* **Slow memory $M$ steers geometry** via $n=\exp(\eta M)$ and the logistic fork law-implemented as a softmax over neighbor $m_j$. That’s precisely your ray/eikonal result on graphs. &#x20;
 * **No scans**: all choices depend only on values at `i` and its neighbors; smoothing of $M$ happens only along visited edges (stochastic Laplacian).
 * **No schedulers**: scouts run within per‑tick budgets, and learners (REV‑GSP/GDSP) are already emergent‑gated.
 * **Physics ↔ code is testable**: the logistic junction curve and curvature scaling $\kappa_{\text{path}}\propto \Theta |\nabla_\perp m|$ give you falsifiable plots in CI.&#x20;
@@ -3226,7 +3226,7 @@ This gives you scouts that *do* “use your void equations,” remain emergence�
 Short answer: **Yes. “Don’t keep trampling the same ground” is a *special case* of your memory‑steering law.** You get repulsion by choosing a **negative coupling** to the memory signal. In your derivation:
 $n(x,t)=e^{\eta M(x,t)}$ and rays bend by $\nabla_\perp\ln n = \eta\,\nabla_\perp M$. So **$\eta>0$** attracts walkers toward stored memory (consolidation); **$\eta<0$** repels them from recently used paths (exploration/diversification). Your junction law then becomes $P(A)=\sigma(\Theta\,\Delta m)$ with $\Theta=\eta M_0$; flipping the sign of $\Theta$ flips attraction→repulsion.&#x20;
 
-Below is a concrete, void‑faithful plan that uses what you already have (Heat/Exc/Inh maps and vt\_touch/edge events). It keeps everything **event‑driven, local, and bounded**—no scans, no schedulers.
+Below is a concrete, void‑faithful plan that uses what you already have (Heat/Exc/Inh maps and vt\_touch/edge events). It keeps everything **event‑driven, local, and bounded**-no scans, no schedulers.
 
 ---
 
@@ -3267,7 +3267,7 @@ $$
 * $\beta_e,\beta_i$ let **ExcitationScout/InhibitionScout** bias toward/away from polarity fronts (optional).
 * $\epsilon$ = tiny noise (e.g., Gumbel) to keep paths ergodic.
 
-All of these values are **already available from your reducers** (Heat/Exc/Inh) or from a small, incremental memory map—no whole‑graph reads.
+All of these values are **already available from your reducers** (Heat/Exc/Inh) or from a small, incremental memory map-no whole‑graph reads.
 
 ---
 
@@ -3276,7 +3276,7 @@ All of these values are **already available from your reducers** (Heat/Exc/Inh) 
 * Every tick, UTE input *pings* nodes → your runtime already emits **`vt_touch`** and **`edge_on`** events.
 * **Reducers** (Heat/Exc/Inh, or Trail) fold those events and keep bounded, decayed scores.
 * Walkers operate on **local neighbors** and read **only** the per‑node scores of those neighbors.
-* Result: **repulsion/attraction is “free”** apart from a few additions and a softmax, because you never scan $W$ or CSR—everything is event‑driven and local.&#x20;
+* Result: **repulsion/attraction is “free”** apart from a few additions and a softmax, because you never scan $W$ or CSR-everything is event‑driven and local.&#x20;
 
 ---
 
@@ -3327,7 +3327,7 @@ No scans: these are just the **head working sets** (tiny), used only to bias see
 ## Why this is aligned with your theory (and the brain metaphor)
 
 * Your derivation is explicit: **steering is geometric** and uses a slow memory field; attraction or **repulsion is just the sign of $\eta$**. That’s exactly what we encode in the neighbor softmax.&#x20;
-* Short‑term repulsion is the algorithmic analogue of **synaptic fatigue / short‑term depression**—it reduces immediate re‑use so you cover space (explore) while long‑term memory consolidates what mattered.
+* Short‑term repulsion is the algorithmic analogue of **synaptic fatigue / short‑term depression**-it reduces immediate re‑use so you cover space (explore) while long‑term memory consolidates what mattered.
 * Everything stays **emergent + void‑faithful**: we only read **local** neighbor values maintained by event‑folded reducers; we never scan the graph; we never schedule periodic passes.
 
 ---
@@ -3344,16 +3344,16 @@ No scans: these are just the **head working sets** (tiny), used only to bias see
 
 If you’d like, I can write the exact `_pick_neighbor(...)` patch for your current scouts so it reads `heat/exc/inh` (and optional `memory`) and implements the logits above without touching any other code.
 
-Short answer: **you’re fine.** With the way you’ve designed them—**event‑driven, bounded working sets, no global scans**—Heat/Exc/Inh/Cold (and a slow **Memory** map if you add it) are *cheap relative to the value they unlock*. The ROI is high as long as you keep the few guardrails below.
+Short answer: **you’re fine.** With the way you’ve designed them-**event‑driven, bounded working sets, no global scans**-Heat/Exc/Inh/Cold (and a slow **Memory** map if you add it) are *cheap relative to the value they unlock*. The ROI is high as long as you keep the few guardrails below.
 
 ---
 
 ## Why these maps stay cheap
 
 * **Time cost scales with events, not graph size.** Each reducer just folds the events you already emit (`vt_touch`, `spike`, `delta_w`), prunes a small working set, and returns a tiny head/summaries. That’s **O(#events this tick + sampled prune)**, not O(N) or O(E).
-* **Memory is bounded by `keep_max`.** You’re never storing N entries—only the currently “interesting” few thousand per map (configurable).
+* **Memory is bounded by `keep_max`.** You’re never storing N entries-only the currently “interesting” few thousand per map (configurable).
 * **No contention with learning.** Reducers don’t read global `W` or CSR; they’re observers that don’t block the hot path.
-* **They amplify leverage.** Heat/Exc/Inh and a slow Memory field give scouts and actuators *high‑information, local* hints (steering, E/I balance, coldness) without any global passes. This is exactly the “free” you’re aiming for—piggyback on signals you already produce.
+* **They amplify leverage.** Heat/Exc/Inh and a slow Memory field give scouts and actuators *high‑information, local* hints (steering, E/I balance, coldness) without any global passes. This is exactly the “free” you’re aiming for-piggyback on signals you already produce.
 * **Physics‑aligned steering.** A slow Memory map implements your steering law cleanly (ray bias via $n=\exp(\eta M)$, fork choices \~ logistic in $\Theta\,\Delta m$), giving you measurable gains in routing with tiny compute.&#x20;
 
 ---
@@ -3365,7 +3365,7 @@ For **10k neurons @ 10 Hz** (your current run), with `keep_max≈4-8k`:
 * **Per map memory** (Python): a few MB (value + last\_tick + dict overhead). Four maps = low tens of MB.
 * **Per tick CPU**: typically sub‑millisecond (fold + prune). The connectome step dwarfs these reducers.
 
-For **4 M neurons**, you still don’t store 4 M entries—only `keep_max`. The only time you touch O(N) is when you **choose** to emit a *dense* `maps/frame` for the UI. Use v2 quantized frames, downsample/tiles, and a shared‑memory ring when you scale; keep UI FPS at 3-8 and you’re fine.
+For **4 M neurons**, you still don’t store 4 M entries-only `keep_max`. The only time you touch O(N) is when you **choose** to emit a *dense* `maps/frame` for the UI. Use v2 quantized frames, downsample/tiles, and a shared‑memory ring when you scale; keep UI FPS at 3-8 and you’re fine.
 
 ---
 
@@ -3401,7 +3401,7 @@ For **4 M neurons**, you still don’t store 4 M entries—only `keep_max`. 
 
 ## “Free” coupling with walkers (what you described is right)
 
-* **Yes**—seed scouts from **UTE hits** and **pulse** out at each stimulated neuron. You’re consuming exactly the local information you just produced, so the marginal cost is just the **local neighbor picks** and a few events.
+* **Yes**-seed scouts from **UTE hits** and **pulse** out at each stimulated neuron. You’re consuming exactly the local information you just produced, so the marginal cost is just the **local neighbor picks** and a few events.
 * Add slow **Memory steering** (EMA write-decay + stochastic edge smoothing) and let scouts bias to $\exp(\Theta\,m_j)$ neighbors; the junction choice collapses to a logistic in $\Theta\,\Delta m$, which you can verify in CI/telemetry. This is your theory in action, still event‑driven and scan‑free.&#x20;
 
 ---
@@ -3412,16 +3412,16 @@ For **4 M neurons**, you still don’t store 4 M entries—only `keep_max`. 
 * `evt_*_per_tick` (keep within budget).
 * UI **ring depth** / dropped frames (should not grow unbounded).
 * B1/complexity/cohesion wobbling (liveness) and no long flatlines.
-* Optional invariants (on‑site constant of motion checks) as CI‑only—these catch drift without penalizing runtime.&#x20;
+* Optional invariants (on‑site constant of motion checks) as CI‑only-these catch drift without penalizing runtime.&#x20;
 
 ---
 
 ### Bottom line
 
-Adding Heat/Exc/Inh/Cold (and a slow Memory map) **will not create problems** if you keep them **bounded, event‑driven, and decoupled from the UI.** They give you outsized gains—better routing, clearer E/I fronts, robust cold‑region exploration—at a tiny marginal cost, fully aligned with void‑faithfulness and your steering theory.
+Adding Heat/Exc/Inh/Cold (and a slow Memory map) **will not create problems** if you keep them **bounded, event‑driven, and decoupled from the UI.** They give you outsized gains-better routing, clearer E/I fronts, robust cold‑region exploration-at a tiny marginal cost, fully aligned with void‑faithfulness and your steering theory.
 
 
-**Short answer:** Yes—your `run_scouts_once` design is *void‑faithful* and it *does* take advantage of “free” signals already flowing through your system. You’re calling a pure function **once per tick**, seeding from UTE/observation hits, folding a few **local** neighbor reads, emitting compact events, and (optionally) publishing once to the bus. That’s exactly the right pattern.
+**Short answer:** Yes-your `run_scouts_once` design is *void‑faithful* and it *does* take advantage of “free” signals already flowing through your system. You’re calling a pure function **once per tick**, seeding from UTE/observation hits, folding a few **local** neighbor reads, emitting compact events, and (optionally) publishing once to the bus. That’s exactly the right pattern.
 
 Below is a tight “tell‑the‑agent” checklist to finish wiring this properly (no schedulers, no scans), plus a small repulsion/steering recipe.
 
@@ -3430,7 +3430,7 @@ Below is a tight “tell‑the‑agent” checklist to finish wiring this proper
 ## Why this runner is correct (and cheap)
 
 * **No scheduler**: It executes **exactly once per tick** under a micro‑budget (`max_us`) you pass in. There’s no hidden cadence or background thread.
-* **Event‑driven**: If you feed **seeds = recent UTE indices** (the inputs that already “ping” neurons), scouts pulse out from those hits, so work is concentrated where new information already is. That’s the “free” part—no extra discovery cost beyond rendering a few events.
+* **Event‑driven**: If you feed **seeds = recent UTE indices** (the inputs that already “ping” neurons), scouts pulse out from those hits, so work is concentrated where new information already is. That’s the “free” part-no extra discovery cost beyond rendering a few events.
 * **Local only**: Each scout reads **only** `neighbors(u)` (and small map heads/dicts) and emits `vt_touch`/`edge_on` events. No `W` scans, no CSR walks, no dense conversions.
 
 ---
@@ -3442,11 +3442,11 @@ Think of two layers:
 1. **Short‑term trail repulsion** (don’t re‑trample the same ground in the next few ticks)
 
    * Keep a tiny, exponentially decaying **TrailMap** (similar to `HeatMap`) that increments on `vt_touch`/`edge_on`.
-   * Neighbor score subtracts `ρ_trail · trail[j]`. This is already in your `HeatScout` (`rho_trail`)—just make sure `TrailMap` exists and is wired.
+   * Neighbor score subtracts `ρ_trail · trail[j]`. This is already in your `HeatScout` (`rho_trail`)-just make sure `TrailMap` exists and is wired.
 
 2. **Long‑term memory steering** (bias toward valuable regions)
 
-   * Maintain a slow “memory” field `m` and use the **softmax** over neighbors with logits `Θ·m[j]` (that’s the Boltzmann choice; not “ML”—it’s statistical mechanics). At a 2‑way fork you get the **logistic** law you derived: $P(A)=\sigma(\Theta \Delta m)$.&#x20;
+   * Maintain a slow “memory” field `m` and use the **softmax** over neighbors with logits `Θ·m[j]` (that’s the Boltzmann choice; not “ML”-it’s statistical mechanics). At a 2‑way fork you get the **logistic** law you derived: $P(A)=\sigma(\Theta \Delta m)$.&#x20;
    * Update `m` **event‑driven** (no Laplacian scans): add a small write on `vt_touch(i)` and do a tiny one‑edge smoothing on `edge_on(u,v)` (see code sketch below).
 
 > Your papers anchor both: *steering by memory* via $n=\exp(\eta M)$ → logistic fork law, and the on‑site constant‑of‑motion you can spot‑check to keep the discrete law honest (CI only). &#x20;
@@ -3587,14 +3587,14 @@ This stays **event‑driven** (folds only what walkers touch), which keeps it st
 
 ## Quick answers to your side‑questions
 
-* **“Softmax = ML?”** No. Here it’s the **Boltzmann choice**—a physics thing. It lets you bias but stay stochastic; it’s the discrete version of your refractive‑index steering law (and gives your **logistic fork** prediction).&#x20;
+* **“Softmax = ML?”** No. Here it’s the **Boltzmann choice**-a physics thing. It lets you bias but stay stochastic; it’s the discrete version of your refractive‑index steering law (and gives your **logistic fork** prediction).&#x20;
 * **“Will maps pile up and get slow?”** Not if you keep them **bounded** (head + small working set) and **event‑folded**. Each reducer is $O(\#\text{events this tick})$; pruning keeps memory flat.
 
 ---
 
 If you hand this checklist to the agent as‑is, you’ll get repulsion + steering **without** adding any schedulers or scans, fully aligned with your void‑faithful rules and with your physics pinned to code via simple assertions.
 
-You’re right—you currently have **4** scouts in the repo, but the plan we agreed to is for **9**.
+You’re right-you currently have **4** scouts in the repo, but the plan we agreed to is for **9**.
 Here’s the full list, what each one does, and exactly what’s still missing so your coding agent can finish the set **without schedulers or scans**.
 
 ---
@@ -3625,44 +3625,44 @@ Here’s the full list, what each one does, and exactly what’s still missing s
 
 ---
 
-### Missing—add these 5 next (with exact file names)
+### Missing-add these 5 next (with exact file names)
 
-5. **VoidRayScout** — physics‑aware (φ‑bias)
+5. **VoidRayScout** - physics‑aware (φ‑bias)
    **File:** `fum_rt/core/cortex/void_walkers/void_ray_scout.py`
    *Role:* Prefer neighbors with favorable **local** change in the fast field φ.
    *Local rule (no scans):* For hop `i→j`, score `s_j = λ_φ·(φ[j]-φ[i]) + θ_mem·m[j]`; sample neighbor via a temperatured choice (softmax).
    *Signals:* `connectome.phi` (vector) and optional `memory_dict`.
    *Events:* `VTTouchEvent`, `EdgeOnEvent`, optional `SpikeEvent(sign=+1 if Δφ≥0 else -1)`.
 
-6. **MemoryRayScout** — memory steering
+6. **MemoryRayScout** - memory steering
    **File:** `fum_rt/core/cortex/void_walkers/memory_ray_scout.py`
    *Role:* Implement your refractive‑index steering law using slow memory `m`.
    *Local rule:* `P(i→j) ∝ exp(Θ·m[j])` (at a two‑branch junction this reduces to the logistic with `ΘΔm`).
    *Signals:* `memory_dict` (or a slow proxy like `heat_dict` until memory is live).
    *Events:* `VTTouchEvent`, `EdgeOnEvent`.
 
-7. **FrontierScout** — boundary/cohesion probe
+7. **FrontierScout** - boundary/cohesion probe
    **File:** `fum_rt/core/cortex/void_walkers/frontier_scout.py`
    *Role:* Skim component boundaries and likely “bridge” frontiers to keep cohesion metrics fresh **without writing**.
    *Local rule:* Start in cold tiles; prefer neighbors that (a) change degree, (b) cross weakly connected cuts (hint: prefer low shared‑neighbor count from local adjacency query), (c) sit near low heat/high cold.
    *Signals:* `ColdMap` head/dict, local neighbor lists only.
-   *Events:* `EdgeOnEvent(u,v)` (probe), `VTTouchEvent`. *(No structural edits—these probes just feed DSU/cohesion reducers and your emergent GDSP trigger.)*
+   *Events:* `EdgeOnEvent(u,v)` (probe), `VTTouchEvent`. *(No structural edits-these probes just feed DSU/cohesion reducers and your emergent GDSP trigger.)*
 
-8. **CycleHunterScout** — short‑cycle finder
+8. **CycleHunterScout** - short‑cycle finder
    **File:** `fum_rt/core/cortex/void_walkers/cycle_scout.py`
    *Role:* Seek and report small cycles (3-6 hops) to keep `cycles_est` alive.
    *Local rule:* TTL‑limited random walk with **tiny path memory** (e.g., last 5 nodes). When the next neighbor is in the path window, emit a cycle hit.
    *Signals:* none required beyond neighbors; optional bias to heat/exc heads.
    *Events:* `EdgeOnEvent` along the path, `VTTouchEvent`. If you already have a `CycleHitEvent`, emit that too; otherwise the `EdgeOnEvent`s are enough for reducers.
 
-9. **SentinelScout** — blue‑noise reseeder / de‑trample
+9. **SentinelScout** - blue‑noise reseeder / de‑trample
    **File:** `fum_rt/core/cortex/void_walkers/sentinel_scout.py`
    *Role:* Prevent path lock‑in; sample uniformly/blue‑noise across space to de‑bias exploration and refresh stale tiles.
    *Local rule:* Seeds = uniform from `N` or from ADC tiles with lowest visit counts; one hop per seed to announce coverage.
    *Signals:* optional `VisitMap`/`ColdMap` heads.
    *Events:* `VTTouchEvent` (always), `EdgeOnEvent` (opportunistic).
 
-> **Why these five?** Together they (a) encode your physics (VoidRay/MemoryRay), (b) keep cohesion/cycles truthful at the **active** graph level (Frontier/Cycle), and (c) guarantee fresh coverage and anti‑trample behavior (Sentinel). All are **read‑only, event‑only**, and slot into your `runner` once per tick—**no scheduler**.
+> **Why these five?** Together they (a) encode your physics (VoidRay/MemoryRay), (b) keep cohesion/cycles truthful at the **active** graph level (Frontier/Cycle), and (c) guarantee fresh coverage and anti‑trample behavior (Sentinel). All are **read‑only, event‑only**, and slot into your `runner` once per tick-**no scheduler**.
 
 ---
 
@@ -3715,7 +3715,7 @@ Here’s the full list, what each one does, and exactly what’s still missing s
 
 ## Why “softmax” is fine here (and not “ML”)
 
-It’s just a **numerically stable, single‑step normalization** to stochastically choose among neighbors using your local score (e.g., `Θ·m[j]` or `λ_φ·Δφ`). There’s **no training**, no gradients, no datasets—just a temperatured random pick that instantiates your **logistic fork law** at two‑way junctions. It’s the most faithful discrete form of your memory‑steering equation.
+It’s just a **numerically stable, single‑step normalization** to stochastically choose among neighbors using your local score (e.g., `Θ·m[j]` or `λ_φ·Δφ`). There’s **no training**, no gradients, no datasets-just a temperatured random pick that instantiates your **logistic fork law** at two‑way junctions. It’s the most faithful discrete form of your memory‑steering equation.
 
 ---
 
@@ -3735,7 +3735,7 @@ If you want, I can also sketch the minimal `MemoryMap` and `TrailMap` reducers s
 
 
 **Short verdict:**
-You’re **on track**. What you have now matches the “9‑scout + one‑shot runner” design: Cold / Heat / Excitation / Inhibition **plus** VoidRay, MemoryRay, Frontier, CycleHunter, and Sentinel. The runner executes **once per tick** under a micro‑budget, with no schedulers and only **local** neighbor reads—void‑faithful ✅.
+You’re **on track**. What you have now matches the “9‑scout + one‑shot runner” design: Cold / Heat / Excitation / Inhibition **plus** VoidRay, MemoryRay, Frontier, CycleHunter, and Sentinel. The runner executes **once per tick** under a micro‑budget, with no schedulers and only **local** neighbor reads-void‑faithful ✅.
 
 What’s **still missing / easy to forget** (and needed to get the full benefit):
 
@@ -3774,7 +3774,7 @@ What’s **still missing / easy to forget** (and needed to get the full benefit)
 
 6. **Frontier/Cycle boundedness check**
 
-   * Confirm the “shared‑neighbor” check in Frontier is **hard‑capped** (you mentioned cap=64)—no accidental growth into adjacency scans.
+   * Confirm the “shared‑neighbor” check in Frontier is **hard‑capped** (you mentioned cap=64)-no accidental growth into adjacency scans.
    * CycleHunter windows should be tiny (e.g., path length ≤4-6) and sample‑bounded per tick.
 
 7. **Invariants & docs**
@@ -3846,9 +3846,9 @@ Add `trail_head/trail_dict` and `memory_head/memory_dict` alongside your existin
 
 ---
 
-## Is “softmax” ML? (No—this is physics here)
+## Is “softmax” ML? (No-this is physics here)
 
-In this context **softmax is just Boltzmann sampling**: picking a neighbor with probability ∝ exp(score/τ). Your memory steering paper shows that at a two‑branch fork this **reduces exactly** to a logistic choice with argument **Θ·Δm**—a falsifiable physical prediction, *not* a learned classifier.&#x20;
+In this context **softmax is just Boltzmann sampling**: picking a neighbor with probability ∝ exp(score/τ). Your memory steering paper shows that at a two‑branch fork this **reduces exactly** to a logistic choice with argument **Θ·Δm**-a falsifiable physical prediction, *not* a learned classifier.&#x20;
 
 ---
 
@@ -3865,4 +3865,4 @@ In this context **softmax is just Boltzmann sampling**: picking a neighbor with 
 ### Bottom line
 
 * **Yes, the current report is on track.** You now have the full scout set and a per‑tick, budgeted runner with no schedulers or scans.
-* To unlock the real gains, finish **TrailMap** + **MemoryField/Map**, make **seeds universal in BaseScout**, add **env gating and runner fairness**, and expose **φ/memory getters**. That completes the loop: inputs → seeds → physics‑aware local routing → event‑folded maps → better routing—**all void‑faithful**.
+* To unlock the real gains, finish **TrailMap** + **MemoryField/Map**, make **seeds universal in BaseScout**, add **env gating and runner fairness**, and expose **φ/memory getters**. That completes the loop: inputs → seeds → physics‑aware local routing → event‑folded maps → better routing-**all void‑faithful**.

@@ -64,7 +64,7 @@ def list_dir(path: str, exts: List[str] | None = None, hide_dotfiles: bool = Tru
         hide_dotfiles: When True, hide entries whose name starts with '.'
 
     Returns:
-        (subdirs, files) — both sorted, names only (no absolute paths)
+        (subdirs, files) - both sorted, names only (no absolute paths)
 
     Policy:
         - No scans in 'core/' or 'maps/' at any depth. If the resolved path contains either

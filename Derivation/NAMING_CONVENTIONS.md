@@ -2,7 +2,7 @@
 <!-- RULES for maintaining this file are here: /mnt/ironwolf/git/Prometheus_VDM/prompts/naming_conventions_maintenance.md -->
 # VDM Naming & Notation Conventions (Auto-compiled)
 
-Last updated: 2025-10-09 (commit d305c2b)
+Last updated: 2025-10-09 (commit f1e74a5)
 
 **Scope:** Single source of truth for mathematical and semantic naming conventions used in this repository.  
 **Rules:** Extract from repository evidence only; link to canonical symbols/equations/units/constants. Do not redefine them here.  
@@ -14,55 +14,55 @@ Last updated: 2025-10-09 (commit d305c2b)
 
 | Category | Convention (MathJax) | Example from repo | Source (path:lines • commit) | Notes |
 |---|---|---|---|---|
-| Vectors | `\mathbf{}` | `$\mathbf{x}$` — spatial coordinate | derivation/SYMBOLS.md:9 • 1060de4 | Position vectors, velocity vectors |
-| Multi-channel fields | `\boldsymbol{}` | `$\boldsymbol{\phi}(\mathbf{x},t)$` — $C$-channel field stack | derivation/SYMBOLS.md:10 • 1060de4 | Tensor/multi-component fields |
-| Multi-channel fields (cont.) | `\boldsymbol{}` | `$\boldsymbol{\mu}(\mathbf{x},t)$` — memory-steering field | derivation/SYMBOLS.md:90 • 1060de4 | Slow bias fields |
-| Multi-channel fields (cont.) | `\boldsymbol{}` | `$\boldsymbol{\gamma}(\mathbf{x},t)$` — gating mask | derivation/SYMBOLS.md:81 • 1060de4 | Channel/space control masks |
-| Sets/spaces | `\mathcal{}` | `$\mathcal{W}$` — set of walkers | derivation/SYMBOLS.md:13 • 1060de4 | Sets, collections |
-| Sets/spaces (cont.) | `\mathcal{}` | `$\mathcal{B}_{\ell}$` — bus at level $\ell$ | derivation/SYMBOLS.md:76 • 1060de4 | Hierarchical structures |
-| Sets/spaces (cont.) | `\mathcal{}` | `$\mathcal{H}$` — bus hierarchy | derivation/SYMBOLS.md:77 • 1060de4 | Hierarchies |
-| Sets/spaces (cont.) | `\mathcal{}` | `$\mathcal{S}(t)$` — scoreboard state | derivation/SYMBOLS.md:79 • 1060de4 | State/status objects |
-| Sets/spaces (cont.) | `\mathcal{}` | `$\mathcal{A}$` — aggregator | derivation/SYMBOLS.md:78 • 1060de4 | Operators/aggregations |
-| Sets/spaces (cont.) | `\mathcal{}` | `$\mathcal{P}$` — plasticity policy | derivation/SYMBOLS.md:93 • 1060de4 | Policies |
-| Sets/spaces (cont.) | `\mathcal{}` | `$\mathcal{J}$` — objective | derivation/SYMBOLS.md:94 • 1060de4 | Objectives, functionals |
-| Sets/spaces (cont.) | `\mathcal{}` | `$\mathcal{C}$` — constraint set | derivation/SYMBOLS.md:84 • 1060de4 | Constraints |
-| Sets/spaces (cont.) | `\mathcal{}` | `$\mathcal{N}_r(\mathbf{x})$` — neighborhood | derivation/SYMBOLS.md:70 • 1060de4 | Neighborhoods |
-| Sets/spaces (cont.) | `\mathcal{}` | `$\mathcal{V}(\mathbf{x},t)$` — void baseline scalar | derivation/SYMBOLS.md:11 • 1060de4 | Reference fields |
-| Sets/spaces (cont.) | `\mathcal{}` | `$\mathcal{H}_i$` — discrete Hamiltonian | derivation/SYMBOLS.md:55 • 1060de4 | Energy densities |
-| Sets/spaces (cont.) | `\mathcal{}` | `$\mathcal{K}_i$` — kinetic energy | derivation/SYMBOLS.md:56 • 1060de4 | Energy components |
-| Sets/spaces (cont.) | `\mathcal{}` | `$\mathcal{I}_i$` — interaction energy | derivation/SYMBOLS.md:57 • 1060de4 | Energy components |
+| Vectors | `\mathbf{}` | `$\mathbf{x}$` - spatial coordinate | derivation/SYMBOLS.md:9 • 1060de4 | Position vectors, velocity vectors |
+| Multi-channel fields | `\boldsymbol{}` | `$\boldsymbol{\phi}(\mathbf{x},t)$` - $C$-channel field stack | derivation/SYMBOLS.md:10 • 1060de4 | Tensor/multi-component fields |
+| Multi-channel fields (cont.) | `\boldsymbol{}` | `$\boldsymbol{\mu}(\mathbf{x},t)$` - memory-steering field | derivation/SYMBOLS.md:90 • 1060de4 | Slow bias fields |
+| Multi-channel fields (cont.) | `\boldsymbol{}` | `$\boldsymbol{\gamma}(\mathbf{x},t)$` - gating mask | derivation/SYMBOLS.md:81 • 1060de4 | Channel/space control masks |
+| Sets/spaces | `\mathcal{}` | `$\mathcal{W}$` - set of walkers | derivation/SYMBOLS.md:13 • 1060de4 | Sets, collections |
+| Sets/spaces (cont.) | `\mathcal{}` | `$\mathcal{B}_{\ell}$` - bus at level $\ell$ | derivation/SYMBOLS.md:76 • 1060de4 | Hierarchical structures |
+| Sets/spaces (cont.) | `\mathcal{}` | `$\mathcal{H}$` - bus hierarchy | derivation/SYMBOLS.md:77 • 1060de4 | Hierarchies |
+| Sets/spaces (cont.) | `\mathcal{}` | `$\mathcal{S}(t)$` - scoreboard state | derivation/SYMBOLS.md:79 • 1060de4 | State/status objects |
+| Sets/spaces (cont.) | `\mathcal{}` | `$\mathcal{A}$` - aggregator | derivation/SYMBOLS.md:78 • 1060de4 | Operators/aggregations |
+| Sets/spaces (cont.) | `\mathcal{}` | `$\mathcal{P}$` - plasticity policy | derivation/SYMBOLS.md:93 • 1060de4 | Policies |
+| Sets/spaces (cont.) | `\mathcal{}` | `$\mathcal{J}$` - objective | derivation/SYMBOLS.md:94 • 1060de4 | Objectives, functionals |
+| Sets/spaces (cont.) | `\mathcal{}` | `$\mathcal{C}$` - constraint set | derivation/SYMBOLS.md:84 • 1060de4 | Constraints |
+| Sets/spaces (cont.) | `\mathcal{}` | `$\mathcal{N}_r(\mathbf{x})$` - neighborhood | derivation/SYMBOLS.md:70 • 1060de4 | Neighborhoods |
+| Sets/spaces (cont.) | `\mathcal{}` | `$\mathcal{V}(\mathbf{x},t)$` - void baseline scalar | derivation/SYMBOLS.md:11 • 1060de4 | Reference fields |
+| Sets/spaces (cont.) | `\mathcal{}` | `$\mathcal{H}_i$` - discrete Hamiltonian | derivation/SYMBOLS.md:55 • 1060de4 | Energy densities |
+| Sets/spaces (cont.) | `\mathcal{}` | `$\mathcal{K}_i$` - kinetic energy | derivation/SYMBOLS.md:56 • 1060de4 | Energy components |
+| Sets/spaces (cont.) | `\mathcal{}` | `$\mathcal{I}_i$` - interaction energy | derivation/SYMBOLS.md:57 • 1060de4 | Energy components |
 | Field spaces | `\mathbb{R}^d`, `\mathbb{R}^C` | `$\mathbf{x}\in\mathbb{R}^d$` | derivation/SYMBOLS.md:9 • 1060de4 | Euclidean spaces |
 | Field spaces (cont.) | `\mathbb{R}^d`, `\mathbb{R}^C` | `$\boldsymbol{\phi}(\mathbf{x},t)\in\mathbb{R}^{C}$` | derivation/SYMBOLS.md:10 • 1060de4 | Multi-channel target spaces |
-| Field spaces (cont.) | `\mathbb{R}^d`, `\mathbb{R}^C` | `$\mathbf{g}(t)\in\mathbb{R}^{K}$` — GDSP score vector | derivation/SYMBOLS.md:80 • 1060de4 | Score vectors |
-| Lattice spaces | `\mathbb{Z}_N` | `$\mathbb{Z}_N$` — cyclic graph | derivation/BC_IC_GEOMETRY.md:18 • c31d0c9 | Discrete periodic lattice |
-| Operators (named) | `\mathrm{}` | `$\mathrm{nbr}(i)$` — neighbor set | derivation/SYMBOLS.md:22 • 1060de4 | Neighbor functions |
-| Operators (named) (cont.) | `\mathrm{}` | `$\mathrm{KDE}_\sigma$` — kernel density estimate | derivation/SYMBOLS.md:155 • 1060de4 | Named operators |
-| Operators (named) (cont.) | `\mathrm{}` | `$\mathrm{SIE}$` — Self Improvement Engine | derivation/SYMBOLS.md:100 • 1060de4 | System abbreviations (upright) |
-| Operators (named) (cont.) | `\mathrm{}` | `$\mathrm{ADC}$` — Adaptive Domain Cartographer | derivation/SYMBOLS.md:101 • 1060de4 | System abbreviations (upright) |
-| Operators (differential) | Standard | `$\nabla^2$` — Laplacian | derivation/SYMBOLS.md:10 • 1060de4 | Differential operators |
-| Operators (differential) (cont.) | Standard | `$\nabla \cdot$` — discrete divergence | derivation/SYMBOLS.md:59 • 1060de4 | Divergence |
-| Operators (differential) (cont.) | Standard | `$\Box$` — d'Alembertian | derivation/SYMBOLS.md:48 • 1060de4 | Wave operator |
+| Field spaces (cont.) | `\mathbb{R}^d`, `\mathbb{R}^C` | `$\mathbf{g}(t)\in\mathbb{R}^{K}$` - GDSP score vector | derivation/SYMBOLS.md:80 • 1060de4 | Score vectors |
+| Lattice spaces | `\mathbb{Z}_N` | `$\mathbb{Z}_N$` - cyclic graph | derivation/BC_IC_GEOMETRY.md:18 • c31d0c9 | Discrete periodic lattice |
+| Operators (named) | `\mathrm{}` | `$\mathrm{nbr}(i)$` - neighbor set | derivation/SYMBOLS.md:22 • 1060de4 | Neighbor functions |
+| Operators (named) (cont.) | `\mathrm{}` | `$\mathrm{KDE}_\sigma$` - kernel density estimate | derivation/SYMBOLS.md:155 • 1060de4 | Named operators |
+| Operators (named) (cont.) | `\mathrm{}` | `$\mathrm{SIE}$` - Self Improvement Engine | derivation/SYMBOLS.md:100 • 1060de4 | System abbreviations (upright) |
+| Operators (named) (cont.) | `\mathrm{}` | `$\mathrm{ADC}$` - Adaptive Domain Cartographer | derivation/SYMBOLS.md:101 • 1060de4 | System abbreviations (upright) |
+| Operators (differential) | Standard | `$\nabla^2$` - Laplacian | derivation/SYMBOLS.md:10 • 1060de4 | Differential operators |
+| Operators (differential) (cont.) | Standard | `$\nabla \cdot$` - discrete divergence | derivation/SYMBOLS.md:59 • 1060de4 | Divergence |
+| Operators (differential) (cont.) | Standard | `$\Box$` - d'Alembertian | derivation/SYMBOLS.md:48 • 1060de4 | Wave operator |
 | Operators (differential) (cont.) | Standard | `$\partial_t$`, `$\partial_n$` | derivation/EQUATIONS.md:14, BC_IC_GEOMETRY.md:50 • various | Partial derivatives |
-| Dimensionless groups | `\mathrm{}` or plain | `$\mathrm{Re}$` — Reynolds number | derivation/SYMBOLS.md:145 • 1060de4 | Named dimensionless numbers (upright) |
-| Dimensionless groups (cont.) | `\mathrm{}` or plain | `$\mathrm{Ma}$` — Mach number | derivation/SYMBOLS.md:146 • 1060de4 | Named dimensionless numbers (upright) |
-| Dimensionless groups (cont.) | `\mathrm{}` or plain | `$\mathrm{Pe}$` — Péclet number | derivation/SYMBOLS.md:147 • 1060de4 | Named dimensionless numbers (upright) |
-| Dimensionless groups (cont.) | `\mathrm{}` or plain | `$\mathrm{Da}$` — Damköhler number | derivation/SYMBOLS.md:136 • 1060de4 | Named dimensionless numbers (upright) |
-| Functions | Italic (default) | `$V(\phi)$` — potential energy | derivation/SYMBOLS.md:41 • 1060de4 | Functions |
-| Functions (cont.) | Italic (default) | `$F(W)$` — discrete dynamics | derivation/SYMBOLS.md:33 • 1060de4 | Functions |
-| Functions (cont.) | Italic (default) | `$Q(W,t)$` — logarithmic first integral | derivation/SYMBOLS.md:28 • 1060de4 | Functions |
-| Greek scalars | Italic (default) | `$\rho(\mathbf{x},t)$` — activity density | derivation/SYMBOLS.md:12 • 1060de4 | Scalar fields |
-| Greek scalars (cont.) | Italic (default) | `$\alpha, \beta$` — on-site rates | derivation/SYMBOLS.md:26 • 1060de4 | Parameters |
-| Greek scalars (cont.) | Italic (default) | `$\epsilon$` — time-scale ratio | derivation/SYMBOLS.md:92 • 1060de4 | Small parameters |
-| Greek scalars (cont.) | Italic (default) | `$\tau$` — BGK relaxation time | derivation/SYMBOLS.md:142 • 1060de4 | Relaxation times |
-| Greek scalars (cont.) | Italic (default) | `$\nu$` — kinematic viscosity | derivation/SYMBOLS.md:143 • 1060de4 | Physical parameters |
-| Greek scalars (cont.) | Italic (default) | `$\lambda, \mu, \gamma$` — EFT parameters | derivation/SYMBOLS.md:43-44 • 1060de4 | Field theory parameters |
-| Indices | Italic (default) | `$i, j$` — spatial site indices | derivation/SYMBOLS.md:21-22 • 1060de4 | Lattice site labels |
-| Indices (cont.) | Italic (default) | `$c$` — channel index | derivation/SYMBOLS.md:10 • 1060de4 | Channel labels |
-| Indices (cont.) | Italic (default) | `$k$` — objective index | derivation/SYMBOLS.md:80 • 1060de4 | Objective/metric labels |
-| Indices (cont.) | Italic (default) | `$w$` — walker index | derivation/SYMBOLS.md:13 • 1060de4 | Walker labels |
-| Indices (cont.) | Italic (default) | `$t, n$` — time indices | derivation/SYMBOLS.md:9, 21 • 1060de4 | Time labels |
-| Indices (cont.) | Italic (default) | `$\ell$` — level index | derivation/SYMBOLS.md:76 • 1060de4 | Hierarchy level |
-| Indices (cont.) | Italic (default) | `$d$` — dimension | derivation/SYMBOLS.md:9 • 1060de4 | Spatial dimension |
+| Dimensionless groups | `\mathrm{}` or plain | `$\mathrm{Re}$` - Reynolds number | derivation/SYMBOLS.md:145 • 1060de4 | Named dimensionless numbers (upright) |
+| Dimensionless groups (cont.) | `\mathrm{}` or plain | `$\mathrm{Ma}$` - Mach number | derivation/SYMBOLS.md:146 • 1060de4 | Named dimensionless numbers (upright) |
+| Dimensionless groups (cont.) | `\mathrm{}` or plain | `$\mathrm{Pe}$` - Péclet number | derivation/SYMBOLS.md:147 • 1060de4 | Named dimensionless numbers (upright) |
+| Dimensionless groups (cont.) | `\mathrm{}` or plain | `$\mathrm{Da}$` - Damköhler number | derivation/SYMBOLS.md:136 • 1060de4 | Named dimensionless numbers (upright) |
+| Functions | Italic (default) | `$V(\phi)$` - potential energy | derivation/SYMBOLS.md:41 • 1060de4 | Functions |
+| Functions (cont.) | Italic (default) | `$F(W)$` - discrete dynamics | derivation/SYMBOLS.md:33 • 1060de4 | Functions |
+| Functions (cont.) | Italic (default) | `$Q(W,t)$` - logarithmic first integral | derivation/SYMBOLS.md:28 • 1060de4 | Functions |
+| Greek scalars | Italic (default) | `$\rho(\mathbf{x},t)$` - activity density | derivation/SYMBOLS.md:12 • 1060de4 | Scalar fields |
+| Greek scalars (cont.) | Italic (default) | `$\alpha, \beta$` - on-site rates | derivation/SYMBOLS.md:26 • 1060de4 | Parameters |
+| Greek scalars (cont.) | Italic (default) | `$\epsilon$` - time-scale ratio | derivation/SYMBOLS.md:92 • 1060de4 | Small parameters |
+| Greek scalars (cont.) | Italic (default) | `$\tau$` - BGK relaxation time | derivation/SYMBOLS.md:142 • 1060de4 | Relaxation times |
+| Greek scalars (cont.) | Italic (default) | `$\nu$` - kinematic viscosity | derivation/SYMBOLS.md:143 • 1060de4 | Physical parameters |
+| Greek scalars (cont.) | Italic (default) | `$\lambda, \mu, \gamma$` - EFT parameters | derivation/SYMBOLS.md:43-44 • 1060de4 | Field theory parameters |
+| Indices | Italic (default) | `$i, j$` - spatial site indices | derivation/SYMBOLS.md:21-22 • 1060de4 | Lattice site labels |
+| Indices (cont.) | Italic (default) | `$c$` - channel index | derivation/SYMBOLS.md:10 • 1060de4 | Channel labels |
+| Indices (cont.) | Italic (default) | `$k$` - objective index | derivation/SYMBOLS.md:80 • 1060de4 | Objective/metric labels |
+| Indices (cont.) | Italic (default) | `$w$` - walker index | derivation/SYMBOLS.md:13 • 1060de4 | Walker labels |
+| Indices (cont.) | Italic (default) | `$t, n$` - time indices | derivation/SYMBOLS.md:9, 21 • 1060de4 | Time labels |
+| Indices (cont.) | Italic (default) | `$\ell$` - level index | derivation/SYMBOLS.md:76 • 1060de4 | Hierarchy level |
+| Indices (cont.) | Italic (default) | `$d$` - dimension | derivation/SYMBOLS.md:9 • 1060de4 | Spatial dimension |
 
 ---
 
@@ -117,23 +117,23 @@ No explicit coordinate system frames or handedness/orientation conventions are s
 
 | Notation | Meaning (as used) | Example link | Source | Notes |
 |---|---|---|---|---|
-| $_c$ (subscript) | Channel index | `$\phi_c$` — field channel $c$ | derivation/SYMBOLS.md:10 • 1060de4 | Multi-channel field component |
-| $_i$ (subscript) | Spatial site index | `$W_i(t)$` — node state at site $i$ | derivation/SYMBOLS.md:21 • 1060de4 | Discrete lattice site |
-| $_w$ (subscript) | Walker index | `$\mathbf{x}_w(t)$` — walker position | derivation/SYMBOLS.md:65 • 1060de4 | Labels walkers |
-| $_k$ (subscript) | Objective/metric index | `$B_k(t)$` — budget for objective $k$ | derivation/SYMBOLS.md:82 • 1060de4 | Objective labels |
-| $_\ell$ (subscript) | Hierarchy level | `$\mathcal{B}_\ell$` — bus at level $\ell$ | derivation/SYMBOLS.md:76 • 1060de4 | Level in hierarchy |
+| $_c$ (subscript) | Channel index | `$\phi_c$` - field channel $c$ | derivation/SYMBOLS.md:10 • 1060de4 | Multi-channel field component |
+| $_i$ (subscript) | Spatial site index | `$W_i(t)$` - node state at site $i$ | derivation/SYMBOLS.md:21 • 1060de4 | Discrete lattice site |
+| $_w$ (subscript) | Walker index | `$\mathbf{x}_w(t)$` - walker position | derivation/SYMBOLS.md:65 • 1060de4 | Labels walkers |
+| $_k$ (subscript) | Objective/metric index | `$B_k(t)$` - budget for objective $k$ | derivation/SYMBOLS.md:82 • 1060de4 | Objective labels |
+| $_\ell$ (subscript) | Hierarchy level | `$\mathcal{B}_\ell$` - bus at level $\ell$ | derivation/SYMBOLS.md:76 • 1060de4 | Level in hierarchy |
 | $_j$ (subscript) | Neighbor site index | `$W_j$` in sum over $j \in \mathrm{nbr}(i)$ | derivation/SYMBOLS.md:21-22 • 1060de4 | Neighbor lattice site |
-| $_t$ (subscript) | Time derivative | `$\partial_t \phi$` — time derivative | derivation/SYMBOLS.md:10, EQUATIONS.md:14 • various | Partial derivative w.r.t. time |
-| $_n$ (subscript) | Normal direction or discrete time | `$\partial_n u$` — normal derivative; $W_i^n$ — time step | BC_IC_GEOMETRY.md:50, SYMBOLS.md:21 • various | Context-dependent: boundary normal or time index |
-| $^n$ (superscript) | Discrete time step | `$W_i^n$` — state at time step $n$ | derivation/SYMBOLS.md:21 • 1060de4 | Discrete time index |
-| $^+$ (superscript) | Forward difference or positive edit | `$\Delta^+_{w,c}$` — sparse local patch edit | derivation/SYMBOLS.md:69 • 1060de4 | Plastic write operation |
-| $^2$ (superscript) | Squared or second-order | `$\nabla^2$` — Laplacian; $c^2$ — speed squared | derivation/SYMBOLS.md:10, 47 • 1060de4 | Exponent or differential order |
-| $^*$ (superscript) | Normalized or conjugate | `$c^*$` — normalized KPP speed | derivation/SYMBOLS.md:135 • 1060de4 | Dimensionless form |
-| `\dot{}` (overdot) | Time derivative | `$\dot{W}_i$` — rate of change | derivation/SYMBOLS.md:21, 56 • 1060de4 | $\dot{W}_i = \frac{dW_i}{dt}$ |
-| `\hat{}` (hat) | Estimator or dimensionless form | `$\hat{V}(\phi)$` — potential | derivation/EQUATIONS.md:187 • various | Fitted or dimensionless version |
-| `\tilde{}` (tilde) | Rescaled or transformed variable | `$\tilde{t}, \tilde{x}$` — nondimensional coordinates | derivation/EQUATIONS.md:84, 87 • various | Dimensionless rescaling |
-| `\prime` (prime) | Derivative or variant | `$V'(\phi)$` — derivative of potential | derivation/SYMBOLS.md:110 • 1060de4 | $V'(\phi) = \frac{dV}{d\phi}$ |
-| `\text{subscript}` (text subscript) | Named subscript | `$\alpha_{\text{plast}}$` — plasticity scale | derivation/SYMBOLS.md:91 • 1060de4 | Multi-letter subscript names (upright) |
+| $_t$ (subscript) | Time derivative | `$\partial_t \phi$` - time derivative | derivation/SYMBOLS.md:10, EQUATIONS.md:14 • various | Partial derivative w.r.t. time |
+| $_n$ (subscript) | Normal direction or discrete time | `$\partial_n u$` - normal derivative; $W_i^n$ - time step | BC_IC_GEOMETRY.md:50, SYMBOLS.md:21 • various | Context-dependent: boundary normal or time index |
+| $^n$ (superscript) | Discrete time step | `$W_i^n$` - state at time step $n$ | derivation/SYMBOLS.md:21 • 1060de4 | Discrete time index |
+| $^+$ (superscript) | Forward difference or positive edit | `$\Delta^+_{w,c}$` - sparse local patch edit | derivation/SYMBOLS.md:69 • 1060de4 | Plastic write operation |
+| $^2$ (superscript) | Squared or second-order | `$\nabla^2$` - Laplacian; $c^2$ - speed squared | derivation/SYMBOLS.md:10, 47 • 1060de4 | Exponent or differential order |
+| $^*$ (superscript) | Normalized or conjugate | `$c^*$` - normalized KPP speed | derivation/SYMBOLS.md:135 • 1060de4 | Dimensionless form |
+| `\dot{}` (overdot) | Time derivative | `$\dot{W}_i$` - rate of change | derivation/SYMBOLS.md:21, 56 • 1060de4 | $\dot{W}_i = \frac{dW_i}{dt}$ |
+| `\hat{}` (hat) | Estimator or dimensionless form | `$\hat{V}(\phi)$` - potential | derivation/EQUATIONS.md:187 • various | Fitted or dimensionless version |
+| `\tilde{}` (tilde) | Rescaled or transformed variable | `$\tilde{t}, \tilde{x}$` - nondimensional coordinates | derivation/EQUATIONS.md:84, 87 • various | Dimensionless rescaling |
+| `\prime` (prime) | Derivative or variant | `$V'(\phi)$` - derivative of potential | derivation/SYMBOLS.md:110 • 1060de4 | $V'(\phi) = \frac{dV}{d\phi}$ |
+| `\text{subscript}` (text subscript) | Named subscript | `$\alpha_{\text{plast}}$` - plasticity scale | derivation/SYMBOLS.md:91 • 1060de4 | Multi-letter subscript names (upright) |
 | `\mathrm{subscript}` (roman subscript) | Named subscript | `$m_{\text{eff}}, m_{\text{in}}, m_{\text{out}}$` | derivation/SYMBOLS.md:45-46 • 1060de4 | Named physical quantities (upright) |
 
 ---
@@ -161,17 +161,17 @@ No explicit coordinate system frames or handedness/orientation conventions are s
 
 | Artifact | Anchor/ID Pattern | Example | Source | Notes |
 |---|---|---|---|---|
-| Equations | `vdm-e-###` (header) | `VDM-E-001` — Agency/Consciousness Field Evolution | derivation/EQUATIONS.md:10 • 6885588 | Equation headers numbered sequentially |
+| Equations | `vdm-e-###` (header) | `VDM-E-001` - Agency/Consciousness Field Evolution | derivation/EQUATIONS.md:10 • 6885588 | Equation headers numbered sequentially |
 | Equations (link) | `#vdm-e-###` | Link: `[VDM-E-012](../derivation/EQUATIONS.md#vdm-e-012)` | derivation/CANON_MAP.md:48 • 1060de4 | Link pattern for equations |
 | Symbols | `sym-...` (not yet used) | Intended: `<a id="sym-phi_c"></a>` | derivation/CANON_MAP.md:56 • 1060de4 | Planned symbol anchors (not yet implemented) |
-| Constants | `const-...` | `<a id="const-alpha"></a>` — `ALPHA` | derivation/CONSTANTS.md:10 • 0922758 | Constant anchors in CONSTANTS.md |
+| Constants | `const-...` | `<a id="const-alpha"></a>` - `ALPHA` | derivation/CONSTANTS.md:10 • 0922758 | Constant anchors in CONSTANTS.md |
 | Constants (link) | `#const-...` | Link: `[ALPHA](../derivation/CONSTANTS.md#const-alpha)` | derivation/CONSTANTS.md:10 • 0922758 | Link pattern for constants |
 | Geometries | `geom-...` | `<a id="geom-1d-periodic-interval"></a>` | derivation/BC_IC_GEOMETRY.md:14 • c31d0c9 | Geometry anchors |
 | Boundary Conditions | `bc-...` | `<a id="bc-periodic-1d-rd-dispersion"></a>` | derivation/BC_IC_GEOMETRY.md:26 • c31d0c9 | BC anchors |
 | Initial Conditions | `ic-...` | `<a id="ic-..."></a>` (pattern used but no examples yet) | derivation/BC_IC_GEOMETRY.md • c31d0c9 | IC anchors (pattern established) |
 | Data Products | `data-...` | `<a id="data-geom-index"></a>` | derivation/DATA_PRODUCTS.md:761 • various | Data product anchors |
 | Algorithms | `vdm-a-###` (intended) | Not yet present | derivation/CANON_MAP.md:84 • 1060de4 | Planned algorithm IDs |
-| Units/Normalization | `#...` (varied) | `<a id="kappa-l"></a>` — $\kappa L$ | derivation/UNITS_NORMALIZATION.md:203 • ec0833a | Varied anchor patterns |
+| Units/Normalization | `#...` (varied) | `<a id="kappa-l"></a>` - $\kappa L$ | derivation/UNITS_NORMALIZATION.md:203 • ec0833a | Varied anchor patterns |
 | Metrics/KPIs | `kpi-...` (intended) | Not yet present | derivation/CANON_MAP.md • 1060de4 | Planned metric anchors |
 
 ---

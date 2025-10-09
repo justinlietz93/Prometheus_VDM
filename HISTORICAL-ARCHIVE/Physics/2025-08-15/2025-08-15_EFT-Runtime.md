@@ -1,4 +1,4 @@
-Awesome—let’s push the proof program forward **and** wire it cleanly into the runtime to boost “intelligence” (routing quality, stability, self‑calibration). I’ll keep this in two tracks:
+Awesome-let’s push the proof program forward **and** wire it cleanly into the runtime to boost “intelligence” (routing quality, stability, self‑calibration). I’ll keep this in two tracks:
 
 1. **Physics proofs/extensions** you can paste into Sections 10-11.
 2. **Production‑grade code stubs** and integration points that apply the math immediately.
@@ -9,7 +9,7 @@ I’ll cite your derivations inline so everything stays source‑anchored.
 
 ## A) Physics: finishing Step 1 rigorously + advancing Steps 2-4
 
-### A1) **Appendix — Lattice → EFT $p^4$ matching (drop‑in text)**
+### A1) **Appendix - Lattice → EFT $p^4$ matching (drop‑in text)**
 
 *(Paste at the end of Section 10 / start of Section 11.)*
 
@@ -48,7 +48,7 @@ Thus the EFT’s dimension‑6 **quadratic** coefficients are locked to the rule
 
 ---
 
-### A2) **Step 2 — invariant & Lyapunov structure (clear, testable)**
+### A2) **Step 2 - invariant & Lyapunov structure (clear, testable)**
 
 * **Exact on‑site invariant** (time‑translation of autonomous ODE):
 
@@ -69,7 +69,7 @@ Thus the EFT’s dimension‑6 **quadratic** coefficients are locked to the rule
 
 ---
 
-### A3) **Step 3 — finite‑tube tachyon→condensation pipeline (operational form)**
+### A3) **Step 3 - finite‑tube tachyon→condensation pipeline (operational form)**
 
 * Radial secular equation (tachyon counting at $k=0$):
 
@@ -85,7 +85,7 @@ Thus the EFT’s dimension‑6 **quadratic** coefficients are locked to the rule
 
 ---
 
-### A4) **Step 4 — causal FRW embedding / units map (tight)**
+### A4) **Step 4 - causal FRW embedding / units map (tight)**
 
 * Promote to physical units via $(\phi_0,\tau,a)$:
 
@@ -317,7 +317,7 @@ def continuity_step(dotS_hor: float, sp: SourceParams, dt: float):
 
 ---
 
-### B6) **Memory‑steering (routing intelligence) — minimal, falsifiable**
+### B6) **Memory‑steering (routing intelligence) - minimal, falsifiable**
 
 ```python
 # fum_rt/core/memory_steering.py
@@ -414,6 +414,6 @@ else:
 
 * **Proofs:** $Z(\phi)=\tfrac12$ locked; exact $p^4$ coeffs $A,B$ from lattice; on‑site invariant $Q_{\rm FUM}$ and Lyapunov monotonicity; finite‑tube secular + condensation pipeline; FRW causal sourcing with unit discipline.     &#x20;
 
-* **Code:** added spine calibration + CFL guard, conservative φ integrator, invariant monitors, tube solver, FRW hooks, and memory‑steering. These **immediately** improve stability, causal propagation, and routing intelligence—and they instrument all the falsifiable predictions you laid out. &#x20;
+* **Code:** added spine calibration + CFL guard, conservative φ integrator, invariant monitors, tube solver, FRW hooks, and memory‑steering. These **immediately** improve stability, causal propagation, and routing intelligence-and they instrument all the falsifiable predictions you laid out. &#x20;
 
 If you want, I can also provide a tiny **unit test suite** (pytest) to pin $A,B$ against synthetic dispersion and to assert Lyapunov monotonicity under the on‑site flow.

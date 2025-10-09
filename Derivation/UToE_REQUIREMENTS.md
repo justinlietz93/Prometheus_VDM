@@ -1,10 +1,10 @@
-# RTM v0.1 — Sections 1-9
+# RTM v0.1 - Sections 1-9
 
-Last updated: 2025-10-09 (commit d305c2b)
+Last updated: 2025-10-09 (commit f1e74a5)
 
 | ID          | Claim (short)                                 | Requirement (what must be shown)                                         | Method (how)                                       | Observable / Test                                         | Falsifier (kill)                                      | Dependencies                     | Status/Risk   |
 | ----------- | --------------------------------------------- | ------------------------------------------------------------------------ | -------------------------------------------------- | --------------------------------------------------------- | ----------------------------------------------------- | -------------------------------- | ------------- |
-| FND-AXIOMS  | Core axioms + ontology/epistemology are fixed | List axioms; prove consistency + non-redundancy; specify epistemic scope | Axiom set + meta-theorems; conservative extensions | Internal model existence; definitional equivalence checks | Inconsistency or hidden circularity                   | —                                | [NOT STARTED] |
+| FND-AXIOMS  | Core axioms + ontology/epistemology are fixed | List axioms; prove consistency + non-redundancy; specify epistemic scope | Axiom set + meta-theorems; conservative extensions | Internal model existence; definitional equivalence checks | Inconsistency or hidden circularity                   | -                                | [NOT STARTED] |
 | FND-SYMM    | Primitive symmetries the theory must respect  | State symmetry group(s) and action on primitives                         | Group action on state space; invariants            | Noether-type conservation at low levels                   | Symmetry-breaking at primitives without mechanism     | FND-AXIOMS                       | [NOT STARTED] |
 | FND-SPACE   | Spacetime is 3+1 (explain extras if any)      | Derive/justify 3+1; specify extra-dim regime & compactification          | Stability/anthropic/stochastic arguments; EFT      | Predict KK modes / deviation scales                       | Non-observation within predicted windows              | FND-AXIOMS, FND-SYMM             | [NOT STARTED] |
 | FND-ENTS    | Fundamental entities are well-defined         | Specify carriers (fields/quasiparticles/walkers); algebra                | Algebraic presentation; state space & observables  | Operational mapping exists (see MEAS-OPS)                 | No consistent observable algebra                      | FND-AXIOMS                       | [NOT STARTED] |
@@ -70,6 +70,6 @@ graph LR
 ## How to work this board
 
 * Treat each ID as a ticket. A ticket is “done” only with a proof/derivation, an algorithm with bounds, or a prediction + discriminating test.
-* When you start an item, append a brief log (“[STARTED] — approach, blockers, next proof lemmas”), then promote to “[DONE]” when the requirement is satisfied. If assumptions are brittle, mark “[DONE*]” and list fragilities.
+* When you start an item, append a brief log (“[STARTED] - approach, blockers, next proof lemmas”), then promote to “[DONE]” when the requirement is satisfied. If assumptions are brittle, mark “[DONE*]” and list fragilities.
 
 Next step from here: I can drop this RTM into a filterable CSV/Notion schema or a canvas board and pre-wire dependency views, then expand 10-12 “most central” tickets (the ones feeding the most arrows) with acceptance tests and initial lemmas.

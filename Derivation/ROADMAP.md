@@ -3,7 +3,7 @@
 <!-- markdownlint-disable MD033 -->
 # VDM Roadmap (Compiled from Repository Evidence)
 
-Last updated: 2025-10-09 (commit d305c2b)
+Last updated: 2025-10-09 (commit f1e74a5)
 
 **Scope:** Milestones and tasks already recorded in this repository (docs, comments, logs, exported issues).  
 **Rules:** Planning-only. Link to canonical math/specs (SYMBOLS/EQUATIONS/CONSTANTS/UNITS/ALGORITHMS/BC_IC/VALIDATION/DATA_PRODUCTS/SCHEMAS). Do not duplicate canon here.
@@ -36,7 +36,7 @@ Last updated: 2025-10-09 (commit d305c2b)
 - derivation/code/physics/cosmology/run_frw_balance.py  
 - Tagged artifacts: `derivation/code/outputs/{logs,figures}/cosmology/FRW-balance-v1/*`
 
-**Target timeframe (if stated):** ✓ Completed — RMS ≈ O(10⁻¹⁵) in baseline dust sanity test (PASS)
+**Target timeframe (if stated):** ✓ Completed - RMS ≈ O(10⁻¹⁵) in baseline dust sanity test (PASS)
 
 ## <a id="ms-axiomatic-foundation"></a>Axiomatic Foundation Development
 
@@ -74,7 +74,7 @@ Last updated: 2025-10-09 (commit d305c2b)
 **Description:** Apply discrete Euler-Lagrange equations rigorously to derive second-order time dynamics naturally (no "promotion")  
 **Linked canon:** symbols → `SYMBOLS.md#sym-W`, equations → `EQUATIONS.md#vdm-e-001`, constants → `CONSTANTS.md#const-J`  
 **Exit criteria:** Second-order time dynamics derived from variational principle without hand-waving  
-**Owner (if present):** — • **Status:** ✓ Completed
+**Owner (if present):** - • **Status:** ✓ Completed
 
 ---
 
@@ -84,7 +84,7 @@ Last updated: 2025-10-09 (commit d305c2b)
 **Description:** Derive exact spatial kinetic prefactor $c_{\text{lat}} a^2 (\nabla\phi)^2$ from discrete interaction energy via Taylor expansion on cubic lattice  
 **Linked canon:** symbols → `SYMBOLS.md#sym-J`, equations → `EQUATIONS.md#vdm-e-002`, constants → `CONSTANTS.md#const-c-lat`  
 **Exit criteria:** Exact value $c_{\text{lat}} = 2$ for 3D cubic lattice; Lorentz invariance condition $c^2 = 2J a^2$  
-**Owner (if present):** — • **Status:** ✓ Completed
+**Owner (if present):** - • **Status:** ✓ Completed
 
 ---
 
@@ -94,7 +94,7 @@ Last updated: 2025-10-09 (commit d305c2b)
 **Description:** Define scaling limits with fixed wave speed; establish field redefinition; derive continuum action from discrete limit  
 **Linked canon:** symbols → `SYMBOLS.md#sym-phi`, equations → `EQUATIONS.md#vdm-e-008`, `EQUATIONS.md#vdm-e-010`  
 **Exit criteria:** Continuum action derived with proper scaling; connection to both RD and Klein-Gordon forms established  
-**Owner (if present):** — • **Status:** ✓ Completed
+**Owner (if present):** - • **Status:** ✓ Completed
 
 ---
 
@@ -104,7 +104,7 @@ Last updated: 2025-10-09 (commit d305c2b)
 **Description:** Add quartic stabilization to potential; determine parameter constraints for global minimum existence; calculate vacuum solutions  
 **Linked canon:** symbols → `SYMBOLS.md#sym-V`, constants → `CONSTANTS.md#const-alpha`, `CONSTANTS.md#const-beta`, `CONSTANTS.md#const-lambda`  
 **Exit criteria:** Bounded-below potential with controlled vacuum structure; effective mass $m_{\text{eff}}^2 = V''(v)$ calculated  
-**Owner (if present):** — • **Status:** ✓ Completed
+**Owner (if present):** - • **Status:** ✓ Completed
 
 ---
 
@@ -114,7 +114,7 @@ Last updated: 2025-10-09 (commit d305c2b)
 **Description:** Apply Noether's theorem to derive conserved currents; analyze symmetry breaking patterns  
 **Linked canon:** equations → `EQUATIONS.md#vdm-e-020` (energy conservation), algorithms → TODO: add anchor (see derivation/foundations/symmetry_analysis.md)  
 **Exit criteria:** Complete conservation law framework; energy, momentum conservation verified  
-**Owner (if present):** — • **Status:** ✓ Completed
+**Owner (if present):** - • **Status:** ✓ Completed
 
 ---
 
@@ -155,7 +155,7 @@ Last updated: 2025-10-09 (commit d305c2b)
 **Description:** Validate theoretical front speed $c_{th} = 2\sqrt{D r}$ against measured front position tracking with Neumann BCs  
 **Linked canon:** equations → `EQUATIONS.md#vdm-e-033`, constants → `CONSTANTS.md#const-D`, `CONSTANTS.md#const-r`  
 **Exit criteria:** rel_err ≤ 0.05, R² ≥ 0.98, cross-check gradient-based speed  
-**Owner (if present):** — • **Status:** ✓ Proven
+**Owner (if present):** - • **Status:** ✓ Proven
 
 ---
 
@@ -165,7 +165,7 @@ Last updated: 2025-10-09 (commit d305c2b)
 **Description:** Validate per-mode growth rate $\sigma(m)$ via linear fit of log|Û_m(t)| against discrete and continuum theory  
 **Linked canon:** equations → TODO: add anchor (see derivation/reaction_diffusion/rd_dispersion_validation.md), constants → `CONSTANTS.md#const-D`, `CONSTANTS.md#const-r`  
 **Exit criteria:** median relative error ≤ 0.10 over good modes (R²_mode ≥ 0.95); R²_array ≥ 0.98  
-**Owner (if present):** — • **Status:** ✓ Proven
+**Owner (if present):** - • **Status:** ✓ Proven
 
 ---
 
@@ -207,7 +207,7 @@ Last updated: 2025-10-09 (commit d305c2b)
 **Description:** Run acceptance harness with fixed parameters (g=0.12, λ=0.08) and verify all acceptance checks pass  
 **Linked canon:** equations → TODO: add anchor (see derivation/memory_steering/memory_steering.md:108), constants → TODO: add anchor (see derivation/memory_steering/memory_steering.md)  
 **Exit criteria:** All acceptance checks pass; drift ≤ 0.02, target convergence verified, SNR improvement ≥ 3 dB  
-**Owner (if present):** — • **Status:** In progress
+**Owner (if present):** - • **Status:** In progress
 
 ---
 
@@ -248,7 +248,7 @@ Last updated: 2025-10-09 (commit d305c2b)
 **Description:** Fit viscous decay E(t) = E₀ exp(-2 ν k² t) and verify |ν_fit - ν_th| / ν_th ≤ 5% at baseline grid ≥ 256²  
 **Linked canon:** equations → TODO: add anchor (see derivation/fluid_dynamics/fluids_limit.md), constants → TODO: add anchor (see BENCHMARKS_FLUIDS.md)  
 **Exit criteria:** Viscosity fit within 5% tolerance; refinement shows order-consistent error decrease  
-**Owner (if present):** — • **Status:** In progress
+**Owner (if present):** - • **Status:** In progress
 
 ---
 
@@ -258,7 +258,7 @@ Last updated: 2025-10-09 (commit d305c2b)
 **Description:** Monitor divergence norm and verify max_t ‖∇·v‖₂ ≤ 1e-6 (double precision)  
 **Linked canon:** equations → TODO: add anchor (see derivation/fluid_dynamics/fluids_limit.md)  
 **Exit criteria:** Divergence below threshold; centerline profiles converge with grid  
-**Owner (if present):** — • **Status:** In progress
+**Owner (if present):** - • **Status:** In progress
 
 ---
 
@@ -268,7 +268,7 @@ Last updated: 2025-10-09 (commit d305c2b)
 **Description:** Ensure read-only walker usage does not alter flow fields; verify max |Δu| = 0 and |Δv| = 0 at end of matched runs  
 **Linked canon:** algorithms → TODO: add anchor (see derivation/code/physics/fluid_dynamics/telemetry/walkers.py)  
 **Exit criteria:** Zero field difference between runs with/without walkers  
-**Owner (if present):** — • **Status:** In progress
+**Owner (if present):** - • **Status:** In progress
 
 ---
 
@@ -336,7 +336,7 @@ Last updated: 2025-10-09 (commit d305c2b)
 **Description:** Define quantitative criteria for boundary between RD (canonical) and EFT/KG (active) branches  
 **Linked canon:** equations → `EQUATIONS.md#vdm-e-008`, `EQUATIONS.md#vdm-e-010`, symbols → `SYMBOLS.md#sym-c`  
 **Exit criteria:** Quantitative criteria established; scale separation analysis complete  
-**Owner (if present):** — • **Status:** Open
+**Owner (if present):** - • **Status:** Open
 
 ---
 
@@ -346,7 +346,7 @@ Last updated: 2025-10-09 (commit d305c2b)
 **Description:** Analyze finite-tube solutions, mode spectra, and radius selection mechanism via Bessel matching  
 **Linked canon:** equations → TODO: add anchor (see derivation/tachyon_condensation/finite_tube_mode_analysis.md), constants → TODO: add anchor (see CONSTANTS.md)  
 **Exit criteria:** κ>0 tachyonic branches identified; energy landscape E(R) mapped; radius selection mechanism established  
-**Owner (if present):** — • **Status:** Planned
+**Owner (if present):** - • **Status:** Planned
 
 ---
 
@@ -461,7 +461,7 @@ Last updated: 2025-10-09 (commit d305c2b)
 **Description:** Establish connection to void dynamics in cosmological contexts; analyze FRW metric coupling; study dark matter and dark energy implications  
 **Linked canon:** equations → TODO: add anchor (see derivation/supporting_work/), constants → TODO: add anchor (see CONSTANTS.md)  
 **Exit criteria:** Complete cosmological framework with observational connections; observational tests defined  
-**Owner (if present):** — • **Status:** Planned
+**Owner (if present):** - • **Status:** Planned
 
 ---
 
@@ -471,7 +471,7 @@ Last updated: 2025-10-09 (commit d305c2b)
 **Description:** Complete quantum renormalization program for discrete lattice structure  
 **Linked canon:** equations → TODO: add anchor (see derivation/foundations/discrete_to_continuum.md)  
 **Exit criteria:** Renormalization group analysis complete; UV/IR behavior characterized  
-**Owner (if present):** — • **Status:** Open
+**Owner (if present):** - • **Status:** Open
 
 ---
 
@@ -481,7 +481,7 @@ Last updated: 2025-10-09 (commit d305c2b)
 **Description:** Determine lattice scale parameter from first principles (currently 20 orders of magnitude uncertainty)  
 **Linked canon:** constants → `CONSTANTS.md#const-a`, units → `UNITS_NORMALIZATION.md#lattice-units`  
 **Exit criteria:** Lattice scale determined from physical principles; uncertainty reduced  
-**Owner (if present):** — • **Status:** Open
+**Owner (if present):** - • **Status:** Open
 
 ---
 
@@ -569,7 +569,7 @@ Last updated: 2025-10-09 (commit d305c2b)
 **Description:** Apply Noether's theorem systematically to identify all continuous symmetries and corresponding conserved currents  
 **Linked canon:** equations → `EQUATIONS.md#vdm-e-020`, algorithms → TODO: add anchor (see derivation/foundations/symmetry_analysis.md)  
 **Exit criteria:** Complete catalog of symmetries and conserved quantities; connection to physical observables established  
-**Owner (if present):** — • **Status:** Open
+**Owner (if present):** - • **Status:** Open
 
 ---
 
@@ -579,7 +579,7 @@ Last updated: 2025-10-09 (commit d305c2b)
 **Description:** Investigate information-theoretic conserved quantity potentially underlying FUM dynamics  
 **Linked canon:** equations → TODO: add anchor (see derivation/foundations/)  
 **Exit criteria:** Information-theoretic quantity identified and proven conserved; connection to entropy established  
-**Owner (if present):** — • **Status:** Open
+**Owner (if present):** - • **Status:** Open
 
 ---
 
@@ -622,7 +622,7 @@ Last updated: 2025-10-09 (commit d305c2b)
 **Description:** Add TagEvent(kind="tag.*", …) to existing event types; fold into incremental reducers (EWMA/CMS/UF) for scoreboard  
 **Linked canon:** schemas → `SCHEMAS.md` (events schema)  
 **Exit criteria:** TagEvent integrated; scoreboard operational  
-**Owner (if present):** — • **Status:** Planned
+**Owner (if present):** - • **Status:** Planned
 
 ---
 
@@ -632,7 +632,7 @@ Last updated: 2025-10-09 (commit d305c2b)
 **Description:** Expose tick(scoreboard, budgets, territory) that calls existing sparse edit routines (prune/grow/bridge/cull) under budgets  
 **Linked canon:** algorithms → TODO: add anchor (see fum_rt/core/neuroplasticity/gdsp.py)  
 **Exit criteria:** GDSP tick callable; sparse operations working under budget constraints  
-**Owner (if present):** — • **Status:** Planned
+**Owner (if present):** - • **Status:** Planned
 
 ---
 
@@ -642,7 +642,7 @@ Last updated: 2025-10-09 (commit d305c2b)
 **Description:** Compute emergent budgets per territory from void-debt/SIE, fragmentation (UF components), backlog EWMA  
 **Linked canon:** algorithms → TODO: add anchor (see fum_rt/core/substrate/growth_arbiter.py)  
 **Exit criteria:** Budgets computed from signals; no static knobs; env knobs debug-only  
-**Owner (if present):** — • **Status:** Planned
+**Owner (if present):** - • **Status:** Planned
 
 ---
 
@@ -680,7 +680,7 @@ Last updated: 2025-10-09 (commit d305c2b)
 **Description:** Define NeuronType enumeration (INTEGRATOR, MESSENGER, etc.) in shared constants module  
 **Linked canon:** schemas → `SCHEMAS.md` (if neuron type schema exists)  
 **Exit criteria:** Neuron types defined; Connectome augmented with type vector  
-**Owner (if present):** — • **Status:** Planned
+**Owner (if present):** - • **Status:** Planned
 
 ---
 
@@ -690,7 +690,7 @@ Last updated: 2025-10-09 (commit d305c2b)
 **Description:** Write GPU kernels to operate on subsets of neuron arrays based on type; partition data for MI100 (integrators) and 7900 XTX (messengers)  
 **Linked canon:** algorithms → TODO: add anchor (see fum_rt/core/connectome.py, void_dynamics_adapter.py)  
 **Exit criteria:** Type-specific kernels working; correct device allocation  
-**Owner (if present):** — • **Status:** Planned
+**Owner (if present):** - • **Status:** Planned
 
 ---
 

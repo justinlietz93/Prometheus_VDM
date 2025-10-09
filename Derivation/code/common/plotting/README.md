@@ -1,4 +1,4 @@
-# plotting/ — generic plotting helpers
+# plotting/ - generic plotting helpers
 
 Purpose
 

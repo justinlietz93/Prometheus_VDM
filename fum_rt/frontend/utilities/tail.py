@@ -32,9 +32,9 @@ def tail_jsonl_bytes(path: str, last_size: int) -> Tuple[List[Any], int]:
       new_size: new file size to store for the next call
 
     Environment (all optional):
-    - FUM_UI_TAIL_CAP_BYTES         (default 1_048_576)  — initial/rotation cap window
-    - FUM_UI_TAIL_MAX_DELTA_BYTES   (default 131_072)    — max bytes read per tick even if more appended
-    - FUM_UI_TAIL_MAX_LINES         (default 600)        — max lines parsed per tick from the new chunk
+    - FUM_UI_TAIL_CAP_BYTES         (default 1_048_576)  - initial/rotation cap window
+    - FUM_UI_TAIL_MAX_DELTA_BYTES   (default 131_072)    - max bytes read per tick even if more appended
+    - FUM_UI_TAIL_MAX_LINES         (default 600)        - max lines parsed per tick from the new chunk
 
     Notes:
     - These bounds are UI-only to avoid lag on very large or fast-growing files; older appended

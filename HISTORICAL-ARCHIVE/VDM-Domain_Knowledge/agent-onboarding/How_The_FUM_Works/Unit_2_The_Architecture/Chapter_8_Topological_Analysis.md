@@ -4,7 +4,7 @@
 
 ### The "Diagnose and Repair" Model
 
-As the Emergent Connectome (UKG) evolves, it requires a sophisticated immune system to maintain its structural health—a system that can diagnose problems and prescribe targeted repairs. In the FUM, this is handled by the **"Diagnose and Repair"** model, a crucial partnership between two distinct components: the **Introspection Probe (aka EHTP)** and **Synaptic Actuator (GDSP)**. The EHTP's purpose is to diagnose structural problems, and the GDSP's purpose is to enact the physical repairs.
+As the Emergent Connectome (UKG) evolves, it requires a sophisticated immune system to maintain its structural health-a system that can diagnose problems and prescribe targeted repairs. In the FUM, this is handled by the **"Diagnose and Repair"** model, a crucial partnership between two distinct components: the **Introspection Probe (aka EHTP)** and **Synaptic Actuator (GDSP)**. The EHTP's purpose is to diagnose structural problems, and the GDSP's purpose is to enact the physical repairs.
 
 ---
 ***Section A.***

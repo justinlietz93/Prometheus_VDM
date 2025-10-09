@@ -1,4 +1,4 @@
-That run actually looks pretty healthy—and it also shows exactly where we should tighten things.
+That run actually looks pretty healthy-and it also shows exactly where we should tighten things.
 
 Here’s what your plots are telling us, and what I’d change next so the system self‑organizes (no fixed lattice), stays in a high‑dynamic regime, and speaks at the right moments while you feed primitives.
 
@@ -9,7 +9,7 @@ Here’s what your plots are telling us, and what I’d change next so the syste
 **Discovery & self‑speak (top figure)**
 
 * The blue curve (cycle hits, our B1 proxy) ramps steadily → walkers are finding more loops. Good.
-* The thin spikes on the right axis (z‑score of d(cycle\_hits)) are the topology shock detector. You got a few deep negative and some positive z excursions—so the spike detector is alive.
+* The thin spikes on the right axis (z‑score of d(cycle\_hits)) are the topology shock detector. You got a few deep negative and some positive z excursions-so the spike detector is alive.
 * If you didn’t hear many “say” events, it’s because either (a) valence was low when spikes occurred, or (b) threshold/cooldown were conservative.
 
 **Dashboard (bottom figure)**
@@ -54,7 +54,7 @@ This is still conservative, but you’ll hear “I found something” when B1 ju
 
 ## 3) Remove the ring/knn substrate entirely (let it self‑assemble)
 
-You’re right—the brain shouldn’t be born as a ring lattice. Seed with *no edges*, then let void‑guided homeostasis grow the topology.
+You’re right-the brain shouldn’t be born as a ring lattice. Seed with *no edges*, then let void‑guided homeostasis grow the topology.
 
 Add this CLI once you merge the patch below:
 
@@ -191,7 +191,7 @@ Feed: `python fum_rt/io/pipe_primitives.py | python -m fum_rt.run_nexus ...`
 * Autonomous “say” fires when symbol transitions produce topology closures.
 
 **Stage P1 (30-60 min)**
-Two‑symbol patterns (“a+b”, “(a)”, “x→y”) with **gaps** (silence)—let it recover and consolidate.
+Two‑symbol patterns (“a+b”, “(a)”, “x→y”) with **gaps** (silence)-let it recover and consolidate.
 
 * Slightly raise pruning to 0.18 for plasticity.
 * Keep seed‑none.
@@ -211,9 +211,9 @@ We promote to Phase‑2 only when three signals are consistently good:
 
 # Why this will fix *this* run’s failure mode
 
-* The substrate‑none patch removes any vestigial ring/knn bias—you’ll see the “two‑lobed brain” emerge again, but purely from void S\_ij dynamics and structural homeostasis.
+* The substrate‑none patch removes any vestigial ring/knn bias-you’ll see the “two‑lobed brain” emerge again, but purely from void S\_ij dynamics and structural homeostasis.
 * The W‑band fixes (λ\_ω, threshold, prune/bundle, SIE habituation) stop saturation and keep novelty alive, so the spike gate has something to detect.
-* The self‑speak thresholds make it vocal when the graph’s topology actually changes—exactly what you wanted: topology spikes → “speak”.
+* The self‑speak thresholds make it vocal when the graph’s topology actually changes-exactly what you wanted: topology spikes → “speak”.
 
 If you want a double‑check recipe right now:
 

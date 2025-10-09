@@ -2,10 +2,10 @@
 FUM Runtime Frontend (modularized)
 
 Modules:
-- fs_utils: filesystem helpers (runs listing, JSON IO) — re-exported from utilities.fs_utils
-- tail: tailing JSONL with byte offsets — re-exported from utilities.tail
-- series: streaming metrics buffers and helpers — re-exported from models.series
-- process_manager: launch/stop runtime process from the UI — re-exported from services.process_manager
+- fs_utils: filesystem helpers (runs listing, JSON IO) - re-exported from utilities.fs_utils
+- tail: tailing JSONL with byte offsets - re-exported from utilities.tail
+- series: streaming metrics buffers and helpers - re-exported from models.series
+- process_manager: launch/stop runtime process from the UI - re-exported from services.process_manager
 - app: Dash app entrypoint (build_app, main)
 """
 

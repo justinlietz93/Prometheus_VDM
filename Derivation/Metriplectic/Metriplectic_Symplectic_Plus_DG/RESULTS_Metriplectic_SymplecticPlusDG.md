@@ -3,7 +3,7 @@
 > Author: Justin K. Lietz  
 > Date: 2025-10-06
 >
-> TL;DR — Final locked run (N=256, seeds=10, seed_scale=0.05, dg_tol=1e-12; $\Delta t\in[0.02,0.01,0.005,0.0025,0.00125]$):
+> TL;DR - Final locked run (N=256, seeds=10, seed_scale=0.05, dg_tol=1e-12; $\Delta t\in[0.02,0.01,0.005,0.0025,0.00125]$):
 >
 > - M-only: PASS (slope 2.9803, $R^2=0.999986$), Lyapunov violations = 0.
 > - JMJ (Strang): FAIL on slope gate (slope 2.7287, $R^2=0.999379$), Lyapunov violations = 0. The Strang defect scales with slope 2.6325 ($R^2=0.999098$), explaining the near-$2.7$ asymptote (commutator-limited regime).
@@ -117,10 +117,10 @@ JMJ per step: half-J, full-M, half-J; J is spectral phase shift; M is DG implici
 
 ### Risk assessment
 
-- Newton non-convergence at large $\Delta t$ — mitigated by backtracking and step-size choice.  
-- Aliasing in spectral J-step — mitigated by fixed $N=128$ and moderate amplitudes.  
-- Roundoff in reversibility and $L^2$ checks — tolerances set at $10^{-7}$ (rev) and $2\times10^{-8}$ ($L^2$ drift).  
-- Stiff regimes — out of scope for this sweep; tighter tolerances and smaller $\Delta t$ are proposed under Next Steps.
+- Newton non-convergence at large $\Delta t$ - mitigated by backtracking and step-size choice.  
+- Aliasing in spectral J-step - mitigated by fixed $N=128$ and moderate amplitudes.  
+- Roundoff in reversibility and $L^2$ checks - tolerances set at $10^{-7}$ (rev) and $2\times10^{-8}$ ($L^2$ drift).  
+- Stiff regimes - out of scope for this sweep; tighter tolerances and smaller $\Delta t$ are proposed under Next Steps.
 
 ## Results / Data
 
@@ -210,17 +210,17 @@ Provenance: both stencil-DG (baseline) and spectral-DG (optional) runs are addit
 
 Decision fork (locked):
 
-- Obj-B (JMJ order gate): FAIL — slope $2.7287<2.90$ with $R^2=0.9994$. Explanation: commutator-limited scaling quantified by the Strang defect slope $\approx2.63$ ($R^2\approx0.9991$). An $N=512$ small-$\Delta t$ check showed no improvement, indicating resolution/aliasing is not the limiter.
-- M-only: PASS — slope $2.9803\ge2.90$, $R^2=0.999986$; Lyapunov violations $=0$.
+- Obj-B (JMJ order gate): FAIL - slope $2.7287<2.90$ with $R^2=0.9994$. Explanation: commutator-limited scaling quantified by the Strang defect slope $\approx2.63$ ($R^2\approx0.9991$). An $N=512$ small-$\Delta t$ check showed no improvement, indicating resolution/aliasing is not the limiter.
+- M-only: PASS - slope $2.9803\ge2.90$, $R^2=0.999986$; Lyapunov violations $=0$.
 - J-only: FAIL at strict and cap; FFT phase rounding produced $\|W_2-W_0\|_\infty\approx10^{-9}$ and $L^2$ drift up to $2.2\times10^{-10}$. Kept gate as specified and logged justification in the artifact.
 
 We close the metriplectic chapter with a decisive record: M-only and Lyapunov gates hold; JMJ order is commutator-limited near $2.7$ under the locked setup; J-only fails the tightened cap in this run. This is sufficient grounding to proceed to the larger-physics phase with a clear “if-not, explain-why” resolution.
 
 Gates clarification for reproducibility and future runs:
 
-- JMJ (stencil-DG baseline): expected slope $\ge 2.90$ — current run FAIL with defect explanation (commutator-limited $\sim 2.6$-$2.7$).  
-- JMJ (spectral-DG option): expected slope $\ge 3.00$ — PASS with slope $\approx 2.94$, $R^2\approx 0.99997$, Lyapunov violations $=0$.  
-- M-only: expected slope $\ge 2.90$ — PASS.  
+- JMJ (stencil-DG baseline): expected slope $\ge 2.90$ - current run FAIL with defect explanation (commutator-limited $\sim 2.6$-$2.7$).  
+- JMJ (spectral-DG option): expected slope $\ge 3.00$ - PASS with slope $\approx 2.94$, $R^2\approx 0.99997$, Lyapunov violations $=0$.  
+- M-only: expected slope $\ge 2.90$ - PASS.  
 - J-only: keep reversibility and $L^2$ drift gates; round-off rationale (FFT) documented and logged.
 
 ### Next steps (upstream)

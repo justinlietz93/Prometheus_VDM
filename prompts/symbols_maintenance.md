@@ -13,7 +13,7 @@ Search the entire repository (code, tests, notebooks, docs, comments, configs) a
 
 **Scope (what to include as a “symbol”):**
 
-* Scalars, vectors, matrices/tensors, fields, functions, operators, sets/spaces, indices, dimensionless numbers, gates/masks, buses, budgets, policies—**if they appear in equations or procedural math**.
+* Scalars, vectors, matrices/tensors, fields, functions, operators, sets/spaces, indices, dimensionless numbers, gates/masks, buses, budgets, policies-**if they appear in equations or procedural math**.
 * Include notational variants that occur in the codebase (e.g., `$ \mathbf{x} $`, `$ x_w $`, `$ \mathcal{B}_\ell $`).
 * **Do not** include numeric defaults or values here (those live in `CONSTANTS.md`). Cross-link instead.
 

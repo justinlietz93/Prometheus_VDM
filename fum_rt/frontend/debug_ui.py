@@ -94,7 +94,7 @@ def build_debug_app(runs_root: str) -> Dash:
     # Layout: runs root input + refresh button, run-dir dropdown, poll interval, component toggles, stats and graphs
     app.layout = html.Div(
         [
-            html.H3("FUM Debug UI — Minimal"),
+            html.H3("FUM Debug UI - Minimal"),
             html.Div(
                 [
                     html.Label("Runs root"),

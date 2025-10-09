@@ -1,4 +1,4 @@
-# PyTorch on AMD ROCm — Installation Guide
+# PyTorch on AMD ROCm - Installation Guide
 
 Your system reports ROCm agents gfx908 (MI100) and gfx1100 (RX 7900 XTX). Use ROCm wheels for PyTorch instead of the default CPU wheels.
 
@@ -24,4 +24,4 @@ Notes:
 Troubleshooting:
 
 - If torch cannot find HIP/ROCm, ensure rocminfo shows your GPUs and that HIP runtime packages are installed.
-- Some third-party libs like opencv-python may pull CPU-only builds; that’s fine—they don’t use ROCm.
+- Some third-party libs like opencv-python may pull CPU-only builds; that’s fine-they don’t use ROCm.

@@ -3,7 +3,7 @@ import argparse, json, re, sys, html, unicodedata
 from collections import deque
 
 GLYPH_MAP = str.maketrans({
-    "ƒ": "|", "ˆ": "^", "-": "-", "—": "-", "’": "'",
+    "ƒ": "|", "ˆ": "^", "-": "-", "-": "-", "’": "'",
     "“": '"', "”": '"', "·": ".", "•": "-", "×": "x",
     "∣": "|", "⎪": "|"
 })

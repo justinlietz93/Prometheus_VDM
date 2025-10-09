@@ -1,4 +1,4 @@
-Absolutely—you can push your FUM core into hardware, and FPGAs are the right stepping stone before custom silicon. Below is a concrete, end‑to‑end plan that keeps everything void‑faithful, runs on your current workstation first, and gives you a clean path to an FPGA kernel (and later an ASIC) without ever smuggling “tokens” into the core.
+Absolutely-you can push your FUM core into hardware, and FPGAs are the right stepping stone before custom silicon. Below is a concrete, end‑to‑end plan that keeps everything void‑faithful, runs on your current workstation first, and gives you a clean path to an FPGA kernel (and later an ASIC) without ever smuggling “tokens” into the core.
 
 ---
 
@@ -19,7 +19,7 @@ Your runtime already breaks cleanly into four inner loops that dominate cost. Al
    The dense version does partial outer products; the sparse version is O(N·k). This is the structural step that forms/tears edges by S\_{ij}. We implement the *sparse* version only in hardware: stream candidate neighbors, compute S\_{ij}, keep a local top‑k with a tiny heap/selection network, then emit edge updates. Kernel B.
 
 3. **Void traversal (walkers) for vt\_* metrics & ADC announcements*\*
-   Thousands of short, independent walks—perfect for a SIMT GPU or a shallow FPGA pipeline with on‑chip RNG (LFSR/Xoshiro). Kernel C.
+   Thousands of short, independent walks-perfect for a SIMT GPU or a shallow FPGA pipeline with on‑chip RNG (LFSR/Xoshiro). Kernel C.
 
 4. **Streaming B1 proxy (topology spike detector)**
    We do *not* run full persistent homology in hardware. Instead we update cyclomatic complexity / short‑cycle counters and a streaming z‑score. That’s enough to drive SIE and self‑speak. Kernel D.
@@ -155,7 +155,7 @@ Design: 64-512 walkers × II=1 pipeline each ⇒ millions of hop/s at modest clo
 
 ## Kernel D: streaming B1 proxy & spike z‑score
 
-Maintain per‑tile counts of edges and components (union‑find or disjoint‑set in BRAM), approximate short cycles with a tiny Bloom/TT count, and stream `complexity_cycles` into an EMA + z‑score; when `z ≥ z_thr + hysteresis` assert a *topology\_spike* bit into the same FIFO the Nexus is already reading. This matches your speak governor—just moved into hardware.
+Maintain per‑tile counts of edges and components (union‑find or disjoint‑set in BRAM), approximate short cycles with a tiny Bloom/TT count, and stream `complexity_cycles` into an EMA + z‑score; when `z ≥ z_thr + hysteresis` assert a *topology\_spike* bit into the same FIFO the Nexus is already reading. This matches your speak governor-just moved into hardware.
 
 ---
 
@@ -232,11 +232,11 @@ CLI switches already in your runner can grow to: `--fpga --xclbin build/fum_v1.x
 
 # Throughput & scaling (ballpark)
 
-* **Kernel A**: unroll 16 lanes @ 250 MHz ⇒ 4 G updates/s (16 neurons per cycle). At 2 bytes/sample (Q1.15), that’s 8 GB/s—PCIe‑Gen4 x16 sustains \~25-28 GB/s, so you’re IO‑bound only if you stream the *entire* W each tick. With tiling and double‑buffering, you can hide much of it.
+* **Kernel A**: unroll 16 lanes @ 250 MHz ⇒ 4 G updates/s (16 neurons per cycle). At 2 bytes/sample (Q1.15), that’s 8 GB/s-PCIe‑Gen4 x16 sustains \~25-28 GB/s, so you’re IO‑bound only if you stream the *entire* W each tick. With tiling and double‑buffering, you can hide much of it.
 
-* **Kernel B** (sparse): for k=16, c=64, you evaluate 64 S\_{ij} per node and keep 16—pure compute. 16 lanes @ 250 MHz ⇒ \~4 G S\_{ij}/s. With N=10^6, you can refresh the structural top‑k in \~16 ms.
+* **Kernel B** (sparse): for k=16, c=64, you evaluate 64 S\_{ij} per node and keep 16-pure compute. 16 lanes @ 250 MHz ⇒ \~4 G S\_{ij}/s. With N=10^6, you can refresh the structural top‑k in \~16 ms.
 
-* **Kernel C**: 256 walkers, 1 hop/clk @ 250 MHz ⇒ 64 G hops/minute—more than enough to keep vt\_\* fresh.
+* **Kernel C**: 256 walkers, 1 hop/clk @ 250 MHz ⇒ 64 G hops/minute-more than enough to keep vt\_\* fresh.
 
 Those numbers dwarf CPU and are competitive with GPUs *at lower power*, which is where FPGAs shine.
 
@@ -285,7 +285,7 @@ Those numbers dwarf CPU and are competitive with GPUs *at lower power*, which is
 # Risks & mitigations
 
 * **Dynamic rewiring pressure**: if edge churn is too high for PCIe, batch structural updates every `M` ticks; walkers can use the previous top‑k without breaking emergence.
-* **Numeric stability**: prove Q1.15 is enough—add a self‑check that compares fixed‑point vs float on a sample each tick; adjust scale or move to BF16 if needed.
+* **Numeric stability**: prove Q1.15 is enough-add a self‑check that compares fixed‑point vs float on a sample each tick; adjust scale or move to BF16 if needed.
 * **Board‑specific toolchain pain**: we isolate kernels and provide HIP mirrors so you never stall the project on FPGA build issues.
 
 ---
@@ -302,9 +302,9 @@ Those numbers dwarf CPU and are competitive with GPUs *at lower power*, which is
 
 # TL;DR
 
-* Yes—you can build the void equations into hardware.
+* Yes-you can build the void equations into hardware.
 * Do **GPU now**, **FPGA next**, **ASIC later**.
-* Keep FUM void‑faithful: W, S\_{ij}, vt\_\*, EMA z‑spikes—no tokens, no alien heuristics.
+* Keep FUM void‑faithful: W, S\_{ij}, vt\_\*, EMA z‑spikes-no tokens, no alien heuristics.
 * The four kernels above are the “top of the Pareto front”: they give you big wins without compromising emergence.
 * I’ve laid out exact modules, APIs, code skeletons, and run commands so you can start on your workstation today and plug an FPGA tomorrow.
 

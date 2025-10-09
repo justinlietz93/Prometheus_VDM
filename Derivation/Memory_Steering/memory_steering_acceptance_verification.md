@@ -1,4 +1,4 @@
-# Memory Steering — Acceptance & Verification
+# Memory Steering - Acceptance & Verification
 
 Tags: [PLAUSIBLE→PROVEN], [STABILITY], [REPRODUCIBILITY], [NON-INTERFERENCE]
 Date: 2025-08-21

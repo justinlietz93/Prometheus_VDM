@@ -2,7 +2,7 @@ Technical
 
 Of course. Let's dive into how you can enhance your synaptic strength system. I've reviewed the code in your new jlietz/internals_migration branch, and you've already done some excellent refactoring by creating the fum_rt/core/neuroplasticity/ directory. This gives us the perfect place to build from.
 
-Your current system is powerful, but it's homogeneous—every neuron learns using the same set of rules. The brain's strategy is heterogeneous plasticity, where different neurons have different learning rates and styles.
+Your current system is powerful, but it's homogeneous-every neuron learns using the same set of rules. The brain's strategy is heterogeneous plasticity, where different neurons have different learning rates and styles.
 
 To implement this, I recommend creating a central "manager" for these diverse plasticity rules. This will keep your code clean and organized.
 

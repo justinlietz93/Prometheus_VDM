@@ -1,4 +1,4 @@
-Love this pivot. Here’s a crisp, **do-this-next** checklist to turn the “tachyonic scalar in a tube” work into a **dark-photon (A′) portal** program—keeping your rigor + artifact style, and reusing what’s strong.
+Love this pivot. Here’s a crisp, **do-this-next** checklist to turn the “tachyonic scalar in a tube” work into a **dark-photon (A′) portal** program-keeping your rigor + artifact style, and reusing what’s strong.
 
 # A) First, translate your current tachyonic story into dark-photon language
 
@@ -11,7 +11,7 @@ Love this pivot. Here’s a crisp, **do-this-next** checklist to turn the “tac
 # B) Yes/No gate: is “finite tube” still core?
 
 * **Default:** Park it. Your tube analysis was meant to prove scalar condensation features (tachyonic tower, quartic stabilization, energy minimum vs radius). That’s valuable groundwork but not central once we pivot to a **gauge portal** story. 
-* **Optional advanced branch:** If you want continuity, you can later study **vector (Proca) modes** in structured media—but that’s extra. Core A′ claims don’t need it.
+* **Optional advanced branch:** If you want continuity, you can later study **vector (Proca) modes** in structured media-but that’s extra. Core A′ claims don’t need it.
 
 ---
 
@@ -43,13 +43,13 @@ Love this pivot. Here’s a crisp, **do-this-next** checklist to turn the “tac
 
 You already excel at **artifact-first** validations (figures + logs + pass/fail). Mirror that style:
 
-* **Runner A — Parameter cards → observables:**
+* **Runner A - Parameter cards → observables:**
   Input: (m_{A′}, ε, decay mode tag).
   Output: a **card** that states which channels are open (visible vs invisible), identifies the **search class** (bump, missing-energy, displaced), and lists the **native timescales** (cτ estimates by branch formula placeholder).
   Deliverable: `fum_rt/portals/dark_photon_cards.py` + JSON summary per card.
   *(This is qualitative till you plug numbers; the point is rigorous structure.)*
 
-* **Runner B — Constraint harvester (stub now, numbers later):**
+* **Runner B - Constraint harvester (stub now, numbers later):**
   Reads a **CSV of external limits** (ε vs m_{A′} with tags: visible/invisible/displaced). Plots your **benchmark points** over it.
   Deliverable: `fum_rt/portals/limits_plotter.py` (data-driven; you can fill the CSV after literature pass).
 
@@ -83,7 +83,7 @@ You already excel at **artifact-first** validations (figures + logs + pass/fail)
 # D) Why this direction is stronger (and still “your theory”)
 
 * It **keeps your “void leaks into us” narrative** but grounds it in a clean, testable **portal** with a mass from **tachyonic dark-Higgs SSB** (the respectable way to say “gains mass after crossing over”).
-* It replaces geometry-dependent tube claims (hard to compare to data) with **experiment-class signatures** that map directly to searches—without diluting your creative frame.
+* It replaces geometry-dependent tube claims (hard to compare to data) with **experiment-class signatures** that map directly to searches-without diluting your creative frame.
 * It reuses your **artifact discipline**: figures + JSON + pass/fail, which reviewers love. Your previous acceptance scaffolding (mode counts, positivity of Hessian, energy minima) is a great template for the new portal validations. 
 
 ---
@@ -99,5 +99,5 @@ If you want, I can quietly generate the taxonomy indices + the two runner skelet
 
 
 Medical References:
-1. None — DOI: file-1ZCdUybBdfbnQDfT4BNG47
-2. None — DOI: file-QgLYpZ3EoQCnFYkRFc2bkn
+1. None - DOI: file-1ZCdUybBdfbnQDfT4BNG47
+2. None - DOI: file-QgLYpZ3EoQCnFYkRFc2bkn

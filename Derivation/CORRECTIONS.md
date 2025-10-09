@@ -6,7 +6,7 @@ Scope: Tier-0 correctness fixes (numerics, stability narrative) and unification 
 
 ---
 
-## 2025-10-09 — Addendum (Provenance-Preserving Updates)
+## 2025-10-09 - Addendum (Provenance-Preserving Updates)
 
 This section appends new corrections and policy clarifications without modifying prior entries. All earlier “before → after” notes remain untouched for historical fidelity.
 

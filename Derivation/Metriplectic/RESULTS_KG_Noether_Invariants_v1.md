@@ -1,11 +1,11 @@
-# KG Noether Invariants — Discrete Energy & Momentum Conservation (Periodic BCs)
+# KG Noether Invariants - Discrete Energy & Momentum Conservation (Periodic BCs)
 
 > Author: Justin K. Lietz  
 > Date: 2025-10-08  
 > Tag: KG-noether-v1  
 > Domain: Metriplectic (J-only linear KG sector)
 >
-> TL;DR — This RESULTS page documents conservation of the Klein–Gordon discrete Noether invariants (energy and spatial translation momentum) under the Störmer–Verlet (leapfrog) integrator on a 1D periodic lattice. Both invariants are conserved to machine precision; observed per-step drifts are O(1e−17), far beneath the acceptance gate (≤ 1e−12 or 10 ε √N) and the reversibility test indicates exact round-trip recovery within numerical noise. This establishes that our discrete scheme faithfully realizes the continuous symmetries (time translation & spatial translation) required for subsequent coupled KG⊕RD diagnostics.
+> TL;DR - This RESULTS page documents conservation of the Klein–Gordon discrete Noether invariants (energy and spatial translation momentum) under the Störmer–Verlet (leapfrog) integrator on a 1D periodic lattice. Both invariants are conserved to machine precision; observed per-step drifts are O(1e−17), far beneath the acceptance gate (≤ 1e−12 or 10 ε √N) and the reversibility test indicates exact round-trip recovery within numerical noise. This establishes that our discrete scheme faithfully realizes the continuous symmetries (time translation & spatial translation) required for subsequent coupled KG⊕RD diagnostics.
 
 ## Research Question
 
@@ -79,9 +79,9 @@ Conclusion: All gates satisfied with wide margin; conservation is limited only b
 - CSV: `Derivation/code/outputs/logs/metriplectic/20251008_184547_kg_noether_energy_momentum__KG-noether-v1.csv`
 - JSON log (embedded in stdout; canonical path if added later) can be produced via rerun with same spec (approval locked).
 
-## Interpretation — What This Test Proves
+## Interpretation - What This Test Proves
 
-1. Symmetry Fidelity: Demonstrates discrete realization of continuous time and space translation symmetries — validating that the implemented Poisson bracket (J-only dynamics) is numerically faithful.
+1. Symmetry Fidelity: Demonstrates discrete realization of continuous time and space translation symmetries - validating that the implemented Poisson bracket (J-only dynamics) is numerically faithful.
 2. Baseline Integrity: Establishes a high-precision baseline invariant pair (E_d, P_d) for detecting future coupling defects when RD (metric M) is added; any drift beyond the O(ε) envelope flags regression.
 3. Reversibility Quality: Near-exact round-trip confirms symplectic time-stepping integrity and absence of hidden damping/injection in the integrator pipeline.
 4. Spectral Operator Sanity: Using spectral Laplacian and gradient, invariants hold; ensures no discretization phase error is accumulating that would spoil momentum conservation.

@@ -74,7 +74,7 @@ Introduce mass density ρ(x, t), momentum g = ρ v (and energy/entropy if th
 - Galilean invariance; spatial isotropy; frame objectivity.
 - Local balances:
   ˆ‚_t ρ + ˆ‡·(ρ v) = 0,
-  ˆ‚_t g + ˆ‡·(g Š— v) = ˆ’ˆ‡p + ˆ‡·ρ„ + ρ f.
+  ˆ‚_t g + ˆ‡·(g Š- v) = ˆ’ˆ‡p + ˆ‡·ρ„ + ρ f.
 
 ### II.2 Constitutive closure (gradient expansion)
 

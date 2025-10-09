@@ -149,7 +149,7 @@ def _maybe_run_revgsp(nx: Any, metrics: Dict[str, Any], step: int) -> None:
     # Filter None values and restrict to signature
     kwargs = {k: v for k, v in candidates.items() if v is not None and (not allowed or k in allowed)}
 
-    # If the function requires args we didn't provide, it will raise — catch and noop.
+    # If the function requires args we didn't provide, it will raise - catch and noop.
     try:
         _adapt(**kwargs)
     except Exception:
@@ -393,7 +393,7 @@ def run_loop(nx: Any, t0: float, step: int, duration_s: Optional[int] = None) ->
             # Compute step and scan-based metrics (parity-preserving)
             m, drive = _compute_step_and_metrics(nx, t, step, idf_scale=idf_scale)
 
-            # Optional: Online learner (RE-VGSP) and structural actuator (GDSP) — default OFF
+            # Optional: Online learner (RE-VGSP) and structural actuator (GDSP) - default OFF
             try:
                 _maybe_run_revgsp(nx, m, int(step))
             except Exception:
@@ -781,7 +781,7 @@ def run_loop(nx: Any, t0: float, step: int, duration_s: Optional[int] = None) ->
             m["ute_in_count"] = int(ute_in_count)
             m["ute_text_count"] = int(ute_text_count)
 
-            # Spool stats (Zip spooler) — expose in status snapshot (UI can show back-pressure)
+            # Spool stats (Zip spooler) - expose in status snapshot (UI can show back-pressure)
             try:
                 utd = getattr(nx, "utd", None)
                 writer = getattr(utd, "_writer", None)

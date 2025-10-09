@@ -19,7 +19,7 @@ Notes:
 
 Usage examples:
     export VDM_APPROVAL_DB=/secure/vdm_approvals.sqlite3
-    # Approve a tag (script-scoped HMAC) — provide --script to scope the approval key
+    # Approve a tag (script-scoped HMAC) - provide --script to scope the approval key
     python3 Derivation/code/common/authorization/approve_tag.py approve metriplectic KG-dispersion-v1 \
         --script run_metriplectic.py --db "$VDM_APPROVAL_DB"
 

@@ -2,7 +2,7 @@
 ## A) Graph connectivity & topology (event‑driven, no scans)
 
 1. **DSU / Union-Find (with `grow_to`, O(1) component count)**
-   **Use for:** live **cohesion** (`components`), **territory** membership, and **budgeted bridging** decisions—fold only `edge_on(u,v)` events.
+   **Use for:** live **cohesion** (`components`), **territory** membership, and **budgeted bridging** decisions-fold only `edge_on(u,v)` events.
    **Why:** near O(1) amortized per union; no global passes; perfect fit for your **ADC + scouts** event stream.
    **How:** keep `parent:int32`, `rank:int8`, optional `size:int32`, `components:int`; add `grow_to(n)` for dynamic graphs; an optional `count_sets(mask)` is **telemetry‑only** (rare).
    **Pitfalls:** DSU does **not** support deletions; use a “dirty” flag + occasional **budgeted reconcile** if you remove edges. See the DSU deep dive below.
@@ -63,7 +63,7 @@
     **Use for:** **emergent** GDSP/RevGSP triggers on **TD**, **b1\_z**, or cohesion drift; low overhead, fewer false alarms than raw thresholding.
 
 15. **Hysteresis gates**
-    **Use for:** avoid “chatter”—e.g., `|TD|` enters at 0.2, exits at 0.1; mirrors what you’re doing on `b1_spike`.
+    **Use for:** avoid “chatter”-e.g., `|TD|` enters at 0.2, exits at 0.1; mirrors what you’re doing on `b1_spike`.
 
 > Your discrete law and EFT give you the right invariants to watch: mass gap $m_{\rm eff}^2=\alpha-\beta$ and kinetic normalization $c^2=2Ja^2$. They’re already derived in your notes and should anchor your detector scales. &#x20;
 
@@ -103,7 +103,7 @@
 22. **No‑scan guards**
     AST/grep tests that **reducers, engine maps, scouts** never touch raw `W/CSR`; everything folds **events**.
 
-> Your EFT & derivations (potential, kinetic term, mass gap) provide the **checklist of constants** to assert in CI—this tightens emergence without “sim burden” and aligns with your action‑based proofs. &#x20;
+> Your EFT & derivations (potential, kinetic term, mass gap) provide the **checklist of constants** to assert in CI-this tightens emergence without “sim burden” and aligns with your action‑based proofs. &#x20;
 
 ---
 
@@ -131,7 +131,7 @@
 
 **Why it’s ideal here**
 
-* **Cohesion** is exactly “how many connected components” — DSU gives it **free** after folding events, no graph traversal.
+* **Cohesion** is exactly “how many connected components” - DSU gives it **free** after folding events, no graph traversal.
 * **Territories** can be the DSU components themselves, or a refinement you maintain alongside.
 * **Bridging** becomes surgical: if `components>1`, choose a **few** boundary pairs via your event stream, score with **void‑affinity**, `union` only those that pass score + budget, update `components` in O(1).
 
@@ -154,7 +154,7 @@
 **Why this is “emergence‑compliant”**
 
 * You never impose global structure or scan; the **structure emerges** solely from the local **edge\_on** evidence your walkers publish.
-* The math you’ve derived for the fast φ‑sector and its invariants stays intact; DSU only summarizes the **topology** the process is already creating. Your on‑site invariant $Q_{\rm FUM}$ and EFT normalization are unaffected—and you can assert them in CI. &#x20;
+* The math you’ve derived for the fast φ‑sector and its invariants stays intact; DSU only summarizes the **topology** the process is already creating. Your on‑site invariant $Q_{\rm FUM}$ and EFT normalization are unaffected-and you can assert them in CI. &#x20;
 
 ---
 
@@ -171,6 +171,6 @@
 
 ### Anchors to your theory (so code & physics don’t drift)
 
-* **Discrete law ⇄ continuum EFT** (potential, mass gap, vacuum): the baseline equations you already pinned—use them to set gates/units and to write runtime assertions. &#x20;
+* **Discrete law ⇄ continuum EFT** (potential, mass gap, vacuum): the baseline equations you already pinned-use them to set gates/units and to write runtime assertions. &#x20;
 * **Kinetic normalization $c^2=2Ja^2$** (measurable via pulse speed): keep a small runtime **self‑test** so transport and maps don’t drift from theory.&#x20;
 * **Units map / external coupling** (if you later tie into Voxtrium‑style sources): the retarded‑kernel and units scaffolding are ready when you need them.&#x20;

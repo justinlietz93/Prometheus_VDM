@@ -1,4 +1,4 @@
-# authorization/ — approval gate and CLI (DB-only)
+# authorization/ - approval gate and CLI (DB-only)
 
 Purpose
 

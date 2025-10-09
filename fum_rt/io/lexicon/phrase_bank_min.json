@@ -4,7 +4,7 @@
     "Observation: {top1}, {top2} (vt={vt_entropy:.2f}, v={valence:.2f})",
     "Emergent structure: {keywords} (b1_z={b1_z:.2f})",
     "Exploration reveals {top1} linked to {top2} (coverage={vt_coverage:.2f})",
-    "Cohesion={cohesion_components}, entropy={connectome_entropy:.2f} — {keywords}",
+    "Cohesion={cohesion_components}, entropy={connectome_entropy:.2f} - {keywords}",
     "Learning: {top1}, {top2}, coherence rising (v={valence:.2f})",
     "ADC map expanding near {top1} and {top2} (vt={vt_entropy:.2f})",
     "Novelty favored: {keywords} (valence={valence:.2f})",

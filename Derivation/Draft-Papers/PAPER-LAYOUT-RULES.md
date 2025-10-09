@@ -4,9 +4,9 @@ Here’s a tight, battle-ready shortlist plus how to bend each to your standards
 
 ## Proposal (≤5 pages, physics-literate audience)
 
-* **NSF Proposal Sample (2023)** — sane structure, modern, tested with research.gov; easy to strip down to your 7 sections. ([Overleaf][1])
-* **NSF Grant Proposal (MIT-MATH)** — clean, minimal preamble, good for single-PI whitepapers (just delete the NSF-isms you don’t need). ([Overleaf][2])
-* **Project Proposal (generic)** — very light scaffolding when you want zero policy baggage. ([Overleaf][3])
+* **NSF Proposal Sample (2023)** - sane structure, modern, tested with research.gov; easy to strip down to your 7 sections. ([Overleaf][1])
+* **NSF Grant Proposal (MIT-MATH)** - clean, minimal preamble, good for single-PI whitepapers (just delete the NSF-isms you don’t need). ([Overleaf][2])
+* **Project Proposal (generic)** - very light scaffolding when you want zero policy baggage. ([Overleaf][3])
 
 Map your proposal sections straight onto any of the above:
 
@@ -15,10 +15,10 @@ Map your proposal sections straight onto any of the above:
 
 ## Results papers (preprint → journal)
 
-* **Basic Academic Journal Article** — Overleaf’s clean vanilla article; perfect for “results + gates + artifacts.” ([Overleaf][4])
-* **Preprint style for arXiv/bioRxiv** — nice figure cross-refs, toggles for single/double column & line numbers; ideal for Zenodo/arXiv drops. ([Overleaf][5])
-* **REVTeX 4.2 (APS/AIP)** — if you might aim at PRX/PRL/PhysRev later, start here to avoid a big refactor. ([Overleaf][6])
-* **Elsevier (elsarticle)** and **Springer Nature** — official classes when targeting those ecosystems. ([Overleaf][7])
+* **Basic Academic Journal Article** - Overleaf’s clean vanilla article; perfect for “results + gates + artifacts.” ([Overleaf][4])
+* **Preprint style for arXiv/bioRxiv** - nice figure cross-refs, toggles for single/double column & line numbers; ideal for Zenodo/arXiv drops. ([Overleaf][5])
+* **REVTeX 4.2 (APS/AIP)** - if you might aim at PRX/PRL/PhysRev later, start here to avoid a big refactor. ([Overleaf][6])
+* **Elsevier (elsarticle)** and **Springer Nature** - official classes when targeting those ecosystems. ([Overleaf][7])
 
 ## Snap-in changes so these match your standards
 
@@ -54,7 +54,7 @@ Your rules require anchored floats and numeric captions with metrics.
 Prove tiny lemmas in one line and box the derivative that equals zero; keep dissipative language to Onsager/entropy.
 
 4. **Artifact pairing & contradiction reports**
-   In your Methods/Results text, for every figure include its CSV/JSON basename and seed/commit; on any failed gate, include the contradiction report. (No special package—just disciplined writing and figure folder layout.)
+   In your Methods/Results text, for every figure include its CSV/JSON basename and seed/commit; on any failed gate, include the contradiction report. (No special package-just disciplined writing and figure folder layout.)
 
 5. **Runtime/scaling disclosures**
    Add a small table (P50/P95/P99, jitter, active-site fraction, slope β) and cite it in captions.

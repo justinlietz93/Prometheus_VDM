@@ -61,7 +61,7 @@ class Visualizer:
                     _plt.subplots_adjust(bottom=0.16)
                 except Exception:
                     pass
-                fig.text(0.01, 0.01, f'Controls: {ctrl_url} — Load Engram', fontsize=9, color='#8b949e')
+                fig.text(0.01, 0.01, f'Controls: {ctrl_url} - Load Engram', fontsize=9, color='#8b949e')
         except Exception:
             pass
 

@@ -1,4 +1,4 @@
-# KG⊕RD Metriplectic QC — Spectral‑DG Primary Profile
+# KG⊕RD Metriplectic QC - Spectral‑DG Primary Profile
 
 > Author: Justin K. Lietz
 > Date: 2025-10-06
@@ -8,7 +8,7 @@
 > Commercial use requires citation and written permission from Justin K. Lietz.
 > See LICENSE file for full terms.
 
-TL;DR — Gate-driven QC of a metriplectic KG⊕RD scheme (spectral-DG for M, Störmer-Verlet for KG J, Strang JMJ). Pinned spec snapshot: derivation/code/outputs/logs/metriplectic/20251006_142434_step_spec_snapshot__kgRD-v1.json
+TL;DR - Gate-driven QC of a metriplectic KG⊕RD scheme (spectral-DG for M, Störmer-Verlet for KG J, Strang JMJ). Pinned spec snapshot: derivation/code/outputs/logs/metriplectic/20251006_142434_step_spec_snapshot__kgRD-v1.json
 
 ## Introduction
 
@@ -116,7 +116,7 @@ Risk assessment (computational): potential under‑resolved asymptotics at coars
 
 Pinned spec snapshot: derivation/code/outputs/logs/metriplectic/20251006_142434_step_spec_snapshot__kgRD-v1.json
 
-Table 1 — Summary of gates and outcomes (median over seeds; v1 two‑grid on ϕ)
+Table 1 - Summary of gates and outcomes (median over seeds; v1 two‑grid on ϕ)
 
 | Test | Gate | Outcome | Artifact (one pinned) |
 | --- | --- | --- | --- |
@@ -147,7 +147,7 @@ Uncertainty treatment: medians across seeds reduce outlier influence; regression
 Key findings:
 
 1. KG J‑only is time‑reversible to machine precision (PASS), but the strict per‑step energy drift gate fails (~2.16×10⁻⁷). This aligns with symplectic Verlet preserving a modified Hamiltonian; energy oscillations around a shadow energy are typical rather than exact per‑step conservation.
-2. Two‑grid slopes for M‑only (2.87) and JMJ (2.11) miss the ≥2.90 gate for the current Δt set and a ϕ‑only residual. The Strang defect slope (~2.95) confirms the expected near‑cubic defect behavior, indicating that coupling/measurement—not algorithmic breakdown—likely explains the low primary slope.
+2. Two‑grid slopes for M‑only (2.87) and JMJ (2.11) miss the ≥2.90 gate for the current Δt set and a ϕ‑only residual. The Strang defect slope (~2.95) confirms the expected near‑cubic defect behavior, indicating that coupling/measurement-not algorithmic breakdown-likely explains the low primary slope.
 
 Explanations and next checks:
 
@@ -178,7 +178,7 @@ Planned bounded follow‑ups:
 
 ---
 
-### Addendum — kgRD‑v1b (H‑energy norm, spectral‑DG; tagged)
+### Addendum - kgRD‑v1b (H‑energy norm, spectral‑DG; tagged)
 
 Short note: Switching from ϕ‑only to the KG energy norm |(Δϕ,Δπ)|_H restores near‑cubic two‑grid scaling for JMJ (H‑norm slope ≈ 2.885, R² ≈ 0.99988), consistent with the Strang defect diagnostic.
 

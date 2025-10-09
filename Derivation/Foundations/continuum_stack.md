@@ -1,4 +1,4 @@
-# Continuum Stack — Discrete → Continuum (RD baseline; EFT active, KPI-gated)
+# Continuum Stack - Discrete → Continuum (RD baseline; EFT active, KPI-gated)
 
 Tags: [PROVEN], [STRUCTURE], [DOC SYNC]
 

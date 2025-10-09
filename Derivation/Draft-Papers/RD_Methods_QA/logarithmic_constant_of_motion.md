@@ -98,7 +98,7 @@ In a first‑order flow \(\dot W=F(W)\), \(\ddot W=F'(W)\dot W\). Hence
 \[
 \frac{dH}{dt}=\dot W\big(F'(W)\dot W + V'(W)\big),
 \]
-which is not generically zero unless \(\dot W\equiv 0\) or \(V'\) is tuned to cancel \(F'(W)\dot W\) pointwise in time—impossible for a potential that depends only on \(W\). Thus a time‑independent Hamiltonian of this simple form is not conserved. The correct conserved quantity is the logarithmic first integral \(Q\) arising from autonomy/time‑translation symmetry.
+which is not generically zero unless \(\dot W\equiv 0\) or \(V'\) is tuned to cancel \(F'(W)\dot W\) pointwise in time-impossible for a potential that depends only on \(W\). Thus a time‑independent Hamiltonian of this simple form is not conserved. The correct conserved quantity is the logarithmic first integral \(Q\) arising from autonomy/time‑translation symmetry.
 
 7. Discussion and scope
 - The invariant \(Q\) is local (on‑site). In spatially extended or coupled systems, \(Q\) is generally not conserved site‑wise; instead, it serves as a per‑node diagnostic for deviations induced by coupling/diffusion.

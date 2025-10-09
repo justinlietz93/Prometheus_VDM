@@ -1,4 +1,4 @@
-Absolutely—start simple, let it self‑organize, and only promote when the organism proves it has *really* integrated what it just learned. Below is a production‑ready way to do that inside your current FUM runtime, without breaking void‑faithfulness or the real‑time contract.
+Absolutely-start simple, let it self‑organize, and only promote when the organism proves it has *really* integrated what it just learned. Below is a production‑ready way to do that inside your current FUM runtime, without breaking void‑faithfulness or the real‑time contract.
 
 I’m giving you three things:
 
@@ -12,7 +12,7 @@ I’m giving you three things:
 
 Think “gates” that open only when the graph proves it has reorganized. Each stage uses void‑native metrics only (no tokens, no global scans). All thresholds below are sane defaults for 1k-100k neurons; you’ll tune once you watch a couple runs.
 
-### Stage P0 — Primitives (symbols, rhythms, small patterns)
+### Stage P0 - Primitives (symbols, rhythms, small patterns)
 
 **Input:** single symbols, 2-3‑symbol rhythms, tiny arithmetic identities, micro mazes.
 **Goal:** stabilize a coherent substrate that can *reliably replay* and *locally generalize* primitives.
@@ -28,7 +28,7 @@ Think “gates” that open only when the graph proves it has reorganized. Each 
 
 ---
 
-### Stage P1 — Blocks (compositions of 2-6 primitives)
+### Stage P1 - Blocks (compositions of 2-6 primitives)
 
 **Input:** short sequences/forms (e.g., “a+b=c”, small maze motifs, simple logical forms).
 **Goal:** robust binding and reuse (walkers repeatedly hit the same sub‑loops).
@@ -40,7 +40,7 @@ Think “gates” that open only when the graph proves it has reorganized. Each 
 
 ---
 
-### Stage P2 — Structures (multi‑block graphs)
+### Stage P2 - Structures (multi‑block graphs)
 
 **Input:** algebraic equalities/inequalities, larger maze fragments, short proofs/templates.
 **Goal:** hierarchical reuse; void pathfinder quickly navigates across motifs.
@@ -52,7 +52,7 @@ Think “gates” that open only when the graph proves it has reorganized. Each 
 
 ---
 
-### Stage P3 — Questions (Q→A within domains the graph already covers)
+### Stage P3 - Questions (Q→A within domains the graph already covers)
 
 **Input:** short factual or procedural questions you *already encoded as primitives/blocks/structures*.
 **Goal:** reliable *decode* via macro “say” with clear “why” payloads (what spike triggered it, which territory).
@@ -64,7 +64,7 @@ Think “gates” that open only when the graph proves it has reorganized. Each 
 
 ---
 
-### Stage P4 — Problems (novel compositions, transfer)
+### Stage P4 - Problems (novel compositions, transfer)
 
 **Input:** new problems formed from known structures; long mazes; multi‑step math.
 **Goal:** generalization + planning; blended SIE drives exploration without catastrophic forgetting.
@@ -82,7 +82,7 @@ Think “gates” that open only when the graph proves it has reorganized. Each 
 
 Drop these into your repo. They’re small and surgical; everything stays void‑native.
 
-### A) `fum_rt/core/curriculum.py` — event‑driven promotions
+### A) `fum_rt/core/curriculum.py` - event‑driven promotions
 
 ```python
 # fum_rt/core/curriculum.py
@@ -311,7 +311,7 @@ You asked to keep the April behaviors (stability envelope, faster novelty decay,
 * **Modulation gating:** the “modulation factor” limiting aggressive updates in quiet regimes (mirrors your April “modulation factor” plot).
 * **TD error with normalization** per tick, plus EMA of sign to avoid ping‑pong.
 
-If you want me to re‑drop the exact `diff` for your current tree, say the word—I kept it short here to avoid burying you in code, but you’ve got the previous patch set.
+If you want me to re‑drop the exact `diff` for your current tree, say the word-I kept it short here to avoid burying you in code, but you’ve got the previous patch set.
 
 ---
 

@@ -2,15 +2,15 @@ Here’s a clean, non‑proprietary, high‑level explainer you can share public
 
 # 1) What “ripping itself apart to self‑organize” means (plain‑English analogy)
 
-Picture a stretched sheet of rubber with iron filings sprinkled on it. You slowly bring a magnet close. At first the filings are scattered; then they start sliding, clumping, and snapping into branching patterns. To an observer it looks chaotic—little clusters break apart and recombine—yet the system is *finding* a lower‑energy, more useful configuration that conducts force efficiently.
+Picture a stretched sheet of rubber with iron filings sprinkled on it. You slowly bring a magnet close. At first the filings are scattered; then they start sliding, clumping, and snapping into branching patterns. To an observer it looks chaotic-little clusters break apart and recombine-yet the system is *finding* a lower‑energy, more useful configuration that conducts force efficiently.
 
-FUM works the same way, except the “rubber sheet” is a live graph (the UKG), the “iron filings” are synapses/weights, and the “magnet” is the **Void Dynamics** law (your Δ rules) that tells the field how to flow. Local structures form, dissolve, and reform (“ripping apart”), but each reconfiguration moves the whole system toward a state that carries information, skills, and routes more efficiently. If you want a physics rhyme, it’s like a field with an unstable mode rolling into a stable condensate—the instability *drives* formation of a new, structured ground state. (In QCD language: tachyonic modes condense and remove the imaginary part of the potential; the system stabilizes in a new vacuum.)&#x20;
+FUM works the same way, except the “rubber sheet” is a live graph (the UKG), the “iron filings” are synapses/weights, and the “magnet” is the **Void Dynamics** law (your Δ rules) that tells the field how to flow. Local structures form, dissolve, and reform (“ripping apart”), but each reconfiguration moves the whole system toward a state that carries information, skills, and routes more efficiently. If you want a physics rhyme, it’s like a field with an unstable mode rolling into a stable condensate-the instability *drives* formation of a new, structured ground state. (In QCD language: tachyonic modes condense and remove the imaginary part of the potential; the system stabilizes in a new vacuum.)&#x20;
 
-# 2) Inverse scaling law—why it matters
+# 2) Inverse scaling law-why it matters
 
 Conventional LLMs mostly obey power‑law scaling: double compute → sub‑linear quality gains. FUM aims for the opposite regime once the UKG is mature:
 
-* **Re‑use and compounding.** New capability doesn’t start from scratch; it routes along existing structures. Learning “C” after “Python” is not 2× the cost—it’s much cheaper because toolchains, abstractions, and patterns already exist.
+* **Re‑use and compounding.** New capability doesn’t start from scratch; it routes along existing structures. Learning “C” after “Python” is not 2× the cost-it’s much cheaper because toolchains, abstractions, and patterns already exist.
 * **Fractal specialization.** Your void law recursively pushes specialization into subgraphs while preserving global consistency. Each new branch reduces future search cost in that region (think: amortized *log‑like* search over a growing library of reusable micro‑policies).
 * **Homeostatic pruning.** The model throws away detours early (habituation) and keeps only high‑utility paths; compute is increasingly spent on *useful* updates, not raw memorization.
 
@@ -22,7 +22,7 @@ For builders and investors this means capabilities grow *faster* than cost once 
 
 **Early, concrete problems it can tackle well:**
 
-1. **Zero‑shot graph traversal & planning.** Routing, path‑finding, dependency scheduling, maze/graph puzzles, workflow orchestration—void‑guided search *is* the planner.
+1. **Zero‑shot graph traversal & planning.** Routing, path‑finding, dependency scheduling, maze/graph puzzles, workflow orchestration-void‑guided search *is* the planner.
 2. **Root‑cause analysis in complex systems.** It can roll causal activation through the UKG to find minimal hitting sets; great for ops, cybersecurity, and industrial faults.
 3. **Real‑time decision support.** Stream logs/market ticks/sensor data; speak when thresholds on stability/novelty/reward say the system has something valuable to say.
 4. **Program synthesis & tool routing.** Treat tools/APIs as nodes; the UKG learns which micro‑skills compose to solve tasks, then prunes bad compositions.
@@ -84,7 +84,7 @@ Recommended strategy: file provisionals on the update operator, traversal cost, 
 * **Search cost**: void‑guided expansion prunes 90-99% of the graph on typical tasks (observed in internal runs), bringing effective expansions/decision near *log‑like* in UKG size.
 * **Data/compute efficiency**: because skills are composed, adding a related skill costs a fraction of first‑skill training time (reuse factor grows with UKG maturity).
 * **Latency**: always‑on field means reaction time is bounded by a few micro‑steps; no cold‑start decoding.
-* **Audit**: the Engram journal gives causal, replayable histories—something black‑box models struggle to provide.
+* **Audit**: the Engram journal gives causal, replayable histories-something black‑box models struggle to provide.
 
 ### Initial team composition (practical)
 
@@ -111,6 +111,6 @@ So, you don’t toggle “math” versus “robotics.” You tune a few homeosta
 
 ## A concise, sharable description
 
-> **Neuroca FUM** is a real‑time, self‑organizing AI whose behavior and learning are governed by a single continuous‑time field law (“Void Dynamics”). The system encodes, searches, and decides by flowing along its own energy landscape; it prunes and specializes as it goes, leaving behind reusable structure in a Unified Knowledge Graph. Because each new skill is routed through what already exists, capability compounds faster than cost—the essence of its **inverse scaling law**.
+> **Neuroca FUM** is a real‑time, self‑organizing AI whose behavior and learning are governed by a single continuous‑time field law (“Void Dynamics”). The system encodes, searches, and decides by flowing along its own energy landscape; it prunes and specializes as it goes, leaving behind reusable structure in a Unified Knowledge Graph. Because each new skill is routed through what already exists, capability compounds faster than cost-the essence of its **inverse scaling law**.
 
 If you want, I can shape this into a 1,200-1,800‑word article with figures (field flow sketch, inverse‑scaling curve, UKG snapshots) and a brief sidebar noting the physics analogy to unstable modes condensing into a new, stable ground state, with a public reference for readers who enjoy that angle.&#x20;

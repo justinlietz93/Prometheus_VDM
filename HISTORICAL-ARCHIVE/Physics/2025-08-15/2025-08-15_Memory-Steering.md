@@ -76,7 +76,7 @@ $$
 V_{\rm eff}^{\rm tube}=\tfrac12\sum m^2_{\ell n}\psi_{\ell n}^2+\tfrac14\sum N_4\,\psi^4
 $$
 
-gives condensates $v_{\ell n}(R)$ that lift all negative masses to positive—**no tachyons remain**, exactly as in Bordag. **Strong (at tree level).** &#x20;
+gives condensates $v_{\ell n}(R)$ that lift all negative masses to positive-**no tachyons remain**, exactly as in Bordag. **Strong (at tree level).** &#x20;
 
 **What remains:** one‑loop corrections to the tube energy and the precise $E(R)$ minimum (plausible; not closed).
 
@@ -177,13 +177,13 @@ is **conserved** along trajectories (Noether for time translations in a first‑
 
 ### F.2 Efficiency wins (why this is faster & smarter)
 
-* **Closed‑form onsite flow:** Use your conserved quantity $Q_{\rm FUM}$ to **analytically step** the logistic onsite rule where applicable—no tiny dt. (Invert $Q$ to get $W(t+\Delta t)$ exactly.) **Physics → speedup.**&#x20;
+* **Closed‑form onsite flow:** Use your conserved quantity $Q_{\rm FUM}$ to **analytically step** the logistic onsite rule where applicable-no tiny dt. (Invert $Q$ to get $W(t+\Delta t)$ exactly.) **Physics → speedup.**&#x20;
 * **Semi‑implicit memory:** The stiff $-\kappa L m$ term is unconditionally stable with Crank-Nicolson → **larger steps** without blowup. **Physics → stability.**&#x20;
 * **Mode truncation:** Tube solver keeps only unstable $\{\ell,n\}$ and lowest few stable modes → **orders‑of‑magnitude cheaper** than full PDEs while preserving dynamics that matter (per Bordag). **Physics → reduced basis.**&#x20;
 
 ### F.3 Tests that certify “physics‑faithfulness”
 
-* **Kinetic normalization test:** plane‑wave dispersion $\omega^2=c^2k^2+m_{\rm eff}^2$ from the lattice—numerically measured $c$ and $m_{\rm eff}$ match input $(J,a,\mu,\lambda)$ within tolerance.&#x20;
+* **Kinetic normalization test:** plane‑wave dispersion $\omega^2=c^2k^2+m_{\rm eff}^2$ from the lattice-numerically measured $c$ and $m_{\rm eff}$ match input $(J,a,\mu,\lambda)$ within tolerance.&#x20;
 * **Tube tower & stabilization:** number of tachyonic modes vs. radius matches the stepped pattern; masses turn positive after condensation. &#x20;
 * **Memory steering collapses:**
 
@@ -219,18 +219,18 @@ is **conserved** along trajectories (Noether for time translations in a first‑
    From $\dot W=F(W)$ (autonomous), $dt=dW/F(W)\Rightarrow t-\!\int^{W}\!d\tilde W/F(\tilde W)=\text{const}$. For $F(W)=(\alpha-\beta)W-\alpha W^2$ this gives your closed form $Q_{\rm FUM}$. **Done** and already documented.&#x20;
 
 2. **Tube secular equation (scalar).**
-   Piecewise constant $m^2(r)$ yields modified Bessel solutions $I_\ell$ (inside) and $K_\ell$ (outside) with the quoted matching condition—your Eq. (boxed) mirrors Bordag’s gluon case and splits degeneracies at finite $R$. **Done.** &#x20;
+   Piecewise constant $m^2(r)$ yields modified Bessel solutions $I_\ell$ (inside) and $K_\ell$ (outside) with the quoted matching condition-your Eq. (boxed) mirrors Bordag’s gluon case and splits degeneracies at finite $R$. **Done.** &#x20;
 
 3. **Geometric steering law.**
-   With $n=e^{\eta M}$, Fermat’s principle gives $\mathbf r''=\nabla_\perp \ln n = \eta\nabla_\perp M$. Then non‑dimensionalize to $\Theta=\eta M_0$ and the three memory control groups—basis for your observed collapses. **Done.**&#x20;
+   With $n=e^{\eta M}$, Fermat’s principle gives $\mathbf r''=\nabla_\perp \ln n = \eta\nabla_\perp M$. Then non‑dimensionalize to $\Theta=\eta M_0$ and the three memory control groups-basis for your observed collapses. **Done.**&#x20;
 
 ---
 
 ## I. Exactly how this **improves intelligence**
 
-* **Principled search bias.** The memory sector provides a *physical* prior over routes ($P\propto e^{\Theta m}$), eliminating ad‑hoc exploration heuristics. This increases **sample‑efficiency** and **stability**—you’ve already seen retention/fidelity bands vs. $(D_a,\Lambda,\Gamma)$.&#x20;
+* **Principled search bias.** The memory sector provides a *physical* prior over routes ($P\propto e^{\Theta m}$), eliminating ad‑hoc exploration heuristics. This increases **sample‑efficiency** and **stability**-you’ve already seen retention/fidelity bands vs. $(D_a,\Lambda,\Gamma)$.&#x20;
 * **Reduced models that preserve causal structure.** The tube basis retains only physically relevant modes; the retarded kernel keeps signals causal. The system “chooses” efficiently because the model space is smaller **and** principled. &#x20;
-* **Exact micro‑steps.** Using $Q_{\rm FUM}$ to step onsite dynamics analytically removes numerical noise and drift—**higher fidelity** per FLOP.&#x20;
+* **Exact micro‑steps.** Using $Q_{\rm FUM}$ to step onsite dynamics analytically removes numerical noise and drift-**higher fidelity** per FLOP.&#x20;
 
 ---
 
@@ -272,6 +272,6 @@ is **conserved** along trajectories (Noether for time translations in a first‑
 
 ### Bottom line
 
-You already have **enough physics finished** to lock the runtime to first‑principles dynamics—no “ML hacks.” Implement the **tube basis** and the **semi‑implicit memory PDE**, add the **analytic onsite stepper**, and certify with the three **steering collapses** + **dispersion** tests. That delivers a void‑faithful, efficient, and **physically intelligent** system today, while we continue closing the loop on one‑loop tube energetics and the explicit hydrodynamic limit.
+You already have **enough physics finished** to lock the runtime to first‑principles dynamics-no “ML hacks.” Implement the **tube basis** and the **semi‑implicit memory PDE**, add the **analytic onsite stepper**, and certify with the three **steering collapses** + **dispersion** tests. That delivers a void‑faithful, efficient, and **physically intelligent** system today, while we continue closing the loop on one‑loop tube energetics and the explicit hydrodynamic limit.
 
 If you want, I can draft the exact function signatures and a short test file for each of the four modules above.

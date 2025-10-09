@@ -195,8 +195,8 @@ To test the theory properly:
 To support immediate testing, we provide separate modules (so the main φ loop remains unchanged):
 
 - Memory PDE and steering API: [fum_rt/core/memory_steering.py](fum_rt/core/memory_steering.py:1)
-  - `update_memory(m, r, L, gamma, delta, kappa, dt)` — Euler step for \( \dot m=\gamma r-\delta m-\kappa L m \).
-  - `transition_probs(i, neighbors, m, theta)` — softmax steering \( P(i\to j)\propto e^{\Theta m_j} \).
+  - `update_memory(m, r, L, gamma, delta, kappa, dt)` - Euler step for \( \dot m=\gamma r-\delta m-\kappa L m \).
+  - `transition_probs(i, neighbors, m, theta)` - softmax steering \( P(i\to j)\propto e^{\Theta m_j} \).
   - Utilities to collect junction/curvature datasets for the acceptance tests.
 
 - Diagnostics (already present): [fum_rt/core/diagnostics.py](fum_rt/core/diagnostics.py:1)

@@ -115,7 +115,7 @@ AUC, SNR, retention, and fidelity trends vs. control parameters (\(\gamma,\lambd
 
 - **Voxtrium.** When *Voxtrium* is referenced for macro sourcing and units discipline, this document explicitly credits that work.  
 - **Michael Bordag** (Universe 2024, 10, 38) for the finite‑radius tachyonic condensate framework adapted here to FUM’s scalar EFT.  
-- **Author:** Justin K. Lietz — derivations, figures, and integration presented here.
+- **Author:** Justin K. Lietz - derivations, figures, and integration presented here.
 
 ---
 

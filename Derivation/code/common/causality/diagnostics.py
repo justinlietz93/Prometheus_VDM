@@ -2,7 +2,7 @@
 Convenience diagnostics that compose event_dag and intervals helpers.
 
 These are pure functions that consume in-memory structures and return dicts.
-No IO, no approvals—safe for CI and unit tests.
+No IO, no approvals-safe for CI and unit tests.
 """
 from __future__ import annotations
 from typing import Dict, Iterable, List, Optional, Sequence, Tuple, Set

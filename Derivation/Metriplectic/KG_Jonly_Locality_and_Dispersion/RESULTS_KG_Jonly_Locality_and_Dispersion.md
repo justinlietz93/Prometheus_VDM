@@ -1,9 +1,9 @@
-# KG J-only Validations — Dispersion and Locality (Metriplectic Upstream)
+# KG J-only Validations - Dispersion and Locality (Metriplectic Upstream)
 
 > Author: Justin K. Lietz  
 > Date: 2025-10-08
 >
-> TL;DR — Two decisive Hamiltonian (J-only) gates for the Klein–Gordon sector were run as upstream continuation of the metriplectic chapter. Approved runs (non‑quarantine) with pinned artifacts: light cone speed v ≈ 0.998 (R² ≈ 0.99985), dispersion fit ω² ≈ (1.0002)·k² + 0.9978 (R² ≈ 0.999999997). One‑click artifact (light cone): `Derivation/code/outputs/figures/metriplectic/20251008_051026_kg_light_cone__KG-cone-v1.png`.
+> TL;DR - Two decisive Hamiltonian (J-only) gates for the Klein–Gordon sector were run as upstream continuation of the metriplectic chapter. Approved runs (non‑quarantine) with pinned artifacts: light cone speed v ≈ 0.998 (R² ≈ 0.99985), dispersion fit ω² ≈ (1.0002)·k² + 0.9978 (R² ≈ 0.999999997). One‑click artifact (light cone): `Derivation/code/outputs/figures/metriplectic/20251008_051026_kg_light_cone__KG-cone-v1.png`.
 
 ## Introduction (scope and linkages)
 

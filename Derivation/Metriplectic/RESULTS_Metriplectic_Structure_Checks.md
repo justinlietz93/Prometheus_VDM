@@ -1,9 +1,9 @@
-# Metriplectic Structure Checks — J Skew and M PSD
+# Metriplectic Structure Checks - J Skew and M PSD
 
 > Author: Justin K. Lietz  
 > Date: 2025-10-08
 >
-> TL;DR — This RESULTS page documents the algebraic structure tests for a metriplectic system: (i) skew-symmetry of the canonical J operator and (ii) positive semidefiniteness (PSD) of the metric operator M on the RD channel. Gates: median |⟨v, J v⟩| ≤ 1e−12 over random draws; count of negative ⟨u, M u⟩ equals 0 across draws. Artifacts to be attached from the policy-aware runner.
+> TL;DR - This RESULTS page documents the algebraic structure tests for a metriplectic system: (i) skew-symmetry of the canonical J operator and (ii) positive semidefiniteness (PSD) of the metric operator M on the RD channel. Gates: median |⟨v, J v⟩| ≤ 1e−12 over random draws; count of negative ⟨u, M u⟩ equals 0 across draws. Artifacts to be attached from the policy-aware runner.
 
 ## Research question
 

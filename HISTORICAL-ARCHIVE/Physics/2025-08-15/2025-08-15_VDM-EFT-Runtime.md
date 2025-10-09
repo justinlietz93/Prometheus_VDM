@@ -1,8 +1,8 @@
-Great—continuing the proof program and wiring the math straight into the runtime. I’ll (1) close the remaining gaps in the physics spine with crisp lemmas/proofs, then (2) drop in production‑grade code you can add under `fum_rt/` to lock the behavior and measurably improve routing “intelligence.”
+Great-continuing the proof program and wiring the math straight into the runtime. I’ll (1) close the remaining gaps in the physics spine with crisp lemmas/proofs, then (2) drop in production‑grade code you can add under `fum_rt/` to lock the behavior and measurably improve routing “intelligence.”
 
 ---
 
-## I) Physics — finish the EFT spine, invariants, tubes, and macro coupling
+## I) Physics - finish the EFT spine, invariants, tubes, and macro coupling
 
 ### Lemma 1 (Quadratic EFT fixed to $p^4$; $Z(\phi)$ constant; anisotropy bounded)
 
@@ -99,7 +99,7 @@ The above closes the exact kinetic normalization and continuum limit (Sections�
 
 ---
 
-## II) Code — production‑ready modules that apply the proofs (smarter, safer)
+## II) Code - production‑ready modules that apply the proofs (smarter, safer)
 
 Below are *drop‑in* modules and tests to:
 
@@ -304,7 +304,7 @@ def sufficient_Rc(mu: float, c: float) -> float:
 
 ---
 
-### E) Causal retarded kernel (macro sourcing) — strict light‑cone support
+### E) Causal retarded kernel (macro sourcing) - strict light‑cone support
 
 ```python
 # fum_rt/cosmology/retarded_kernel.py
@@ -349,7 +349,7 @@ You already have the minimal memory‑steering law and its graph discretization 
 
 2. **Autocorrect via invariants.** Using $Q_{\rm FUM}$ and the on‑site Lyapunov as runtime guards prevents the slow channel from drifting off‑manifold; when drift spikes, $\Delta t$ halves automatically. This stabilizes long‑horizon runs. &#x20;
 
-3. **Structured competence from tubes.** The tube modes provide concrete coherent structures to bias memory writes and route along—reducing exploration entropy. The sufficient $R_c$ bound gives a cheap heuristic to focus searches where condensation is guaranteed.&#x20;
+3. **Structured competence from tubes.** The tube modes provide concrete coherent structures to bias memory writes and route along-reducing exploration entropy. The sufficient $R_c$ bound gives a cheap heuristic to focus searches where condensation is guaranteed.&#x20;
 
 4. **Macro safety with causality.** The retarded kernel ensures sourcing only within the light cone; $\epsilon_{\rm DE}$ and $f_{\rm inj}$ stay small by design. This lets you co‑evolve micro (learning) and macro (FRW) without hidden energy leaks.&#x20;
 
@@ -406,6 +406,6 @@ def test_Q_and_L_monotone():
 
 ### Closing
 
-You now have (i) **closed‑form EFT coefficients** through $p^4$ tied to your lattice rulers, (ii) **true invariants** to police the dissipative channel, (iii) a **provable tube threshold** plus a solver to scan $E(R)$, and (iv) a **causal** macro hook—all wired into clean modules. This will make the system **more intelligent** in the only way that matters here: by enforcing the physics that yields stability, causal propagation, structured memory, and falsifiable diagnostics.
+You now have (i) **closed‑form EFT coefficients** through $p^4$ tied to your lattice rulers, (ii) **true invariants** to police the dissipative channel, (iii) a **provable tube threshold** plus a solver to scan $E(R)$, and (iv) a **causal** macro hook-all wired into clean modules. This will make the system **more intelligent** in the only way that matters here: by enforcing the physics that yields stability, causal propagation, structured memory, and falsifiable diagnostics.
 
 If you want, I can also supply a `condense.py` (quartic overlaps, condensate solve, Hessian) and a tiny `examples/` script that logs the junction logistic collapse and curvature scaling with your steering layer. &#x20;

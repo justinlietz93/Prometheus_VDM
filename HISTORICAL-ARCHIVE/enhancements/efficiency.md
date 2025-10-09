@@ -36,7 +36,7 @@ The real benefit isn't in computational speed, but in **learning efficiency**. B
 
 * **Fast-Learning Neurons (High `eta`):** These neurons can adapt very quickly to new information. They are like a short-term "scratchpad" for the FUM, allowing it to rapidly test new ideas and strategies.
 
-* **Slow-Learning Neurons (Low `eta`):** These neurons are more resistant to change. They form the stable, long-term memory of the system. By changing slowly, they prevent the FUM from "catastrophic forgetting"—where learning a new task erases the knowledge of an old one.
+* **Slow-Learning Neurons (Low `eta`):** These neurons are more resistant to change. They form the stable, long-term memory of the system. By changing slowly, they prevent the FUM from "catastrophic forgetting"-where learning a new task erases the knowledge of an old one.
 
 
 

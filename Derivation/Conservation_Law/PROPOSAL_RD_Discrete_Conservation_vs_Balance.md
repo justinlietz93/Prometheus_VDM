@@ -1,7 +1,7 @@
-# PROPOSAL — Discrete Conservation vs. Balance in a Reaction-Diffusion Update (Void Dynamics Model)
+# PROPOSAL - Discrete Conservation vs. Balance in a Reaction-Diffusion Update (Void Dynamics Model)
 
 **Date:** 2025-10-06 08:58:39Z  
-**Proposers:** Justin K. Lietz — Independent Researcher (VDM Project)
+**Proposers:** Justin K. Lietz - Independent Researcher (VDM Project)
 
 ## 1. Abstract
 
@@ -84,7 +84,7 @@ If exact conservation fails, perform a $(\Delta t)$\-sweep (≥4 halvings) for t
 - Deterministic seeds; fixed commit hash and environment snapshot.
 - No clipping/saturation in proof paths (no `tanh`, `nan_to_num` that alters algebra).
 
-### 4.6 Discrete Lyapunov (Obj‑C) — precise grid form
+### 4.6 Discrete Lyapunov (Obj‑C) - precise grid form
 
 Use the same discrete gradient operator that pairs with the Laplacian stencil to avoid stencil mismatch. For 1D periodic FD with spacing $\Delta x$:
 
@@ -119,7 +119,7 @@ Report $\Delta \mathcal{L}_h \le 0$ per step under periodic/no‑flux BCs.
   - Reaction-only $(Q_{\rm FUM})$ order‑4 convergence with $(R^2 \approx 1)$\.
 - **V5 Out‑of‑sample:** If $(H_{ij})$ has any fitted parameters, freeze them and rerun on fresh seeds; identical tolerances must hold.
 
-## 6. Variables & Ranges (stub — fill before run)
+## 6. Variables & Ranges (stub - fill before run)
 
 | Symbol | Description | Values / Range | Notes |
 |---|---|---|---|
@@ -201,7 +201,7 @@ Each figure is paired with its CSV/JSON and a numeric caption (slope, $(R^2)$\, 
 - [ ] Units and dimensionless groups stated; BCs and scheme declared.
 - [ ] All plots readable in grayscale; axes labeled with symbols and units.
 
-## Appendix A — Minimal Runner Pseudocode
+## Appendix A - Minimal Runner Pseudocode
 
 ```python
 # build adjacency and step-spec
@@ -221,7 +221,7 @@ for seed in seeds:
 # log, then dt-sweep if needed
 ```
 
-## Appendix B — JSON Schema Snippets
+## Appendix B - JSON Schema Snippets
 
 **`sweep_exact.json`**
 

@@ -1,6 +1,6 @@
 ### Chapter 1: Feasibility, Validation, and Strategic Rationale
 
-The goal of the Fully Unified Model (FUM)—to achieve advanced, general intelligence—is ambitious. This chapter outlines the core principles that make this goal feasible, presents the rigorous, phased strategy for validating the model's capabilities, and discusses the strategic and philosophical foundations of the project.
+The goal of the Fully Unified Model (FUM)-to achieve advanced, general intelligence-is ambitious. This chapter outlines the core principles that make this goal feasible, presents the rigorous, phased strategy for validating the model's capabilities, and discusses the strategic and philosophical foundations of the project.
 
 ---
 

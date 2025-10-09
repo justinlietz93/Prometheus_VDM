@@ -119,4 +119,4 @@ If a needed anchor is missing, write: `TODO: add anchor (see <path>:<line>)`. Do
 
 * Render on GitHub; ensure anchors resolve.
 * Planning text must be sourced from the repo (docs/comments/issues in-repo). No new tasks or dates.
-* All acceptance criteria should **link to** canonical metrics/equations/data—no formulas or numbers pasted here.
+* All acceptance criteria should **link to** canonical metrics/equations/data-no formulas or numbers pasted here.

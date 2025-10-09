@@ -10,7 +10,7 @@ To understand the Fully Unified Model (FUM), one must discard the framework of m
 
 **A.1. Principled Emergent Design**
 
-The core architecture follows a philosophy of **Principled Emergent Design**, where intelligence arises from the self-organization of simple, local rules under minimal global guidance. The role of the architect is not to engineer an outcome, but to act as a gardener—to cultivate the cognitive terrain and seed the substrate, allowing the system to grow and discover its own path. This approach is intended to cultivate intelligence, not merely to compute it.
+The core architecture follows a philosophy of **Principled Emergent Design**, where intelligence arises from the self-organization of simple, local rules under minimal global guidance. The role of the architect is not to engineer an outcome, but to act as a gardener-to cultivate the cognitive terrain and seed the substrate, allowing the system to grow and discover its own path. This approach is intended to cultivate intelligence, not merely to compute it.
 
 ***Section B.***
 

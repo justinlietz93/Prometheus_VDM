@@ -3,7 +3,7 @@
 Search the entire repository (code, tests, notebooks, docs, comments, configs, experiment logs, Issues/PRs if mirrored in the repo) and compile **only the questions, hypotheses, uncertainties, and “future work” items that actually exist**. **Do not invent new questions or rewrite meaning.** Use only what’s in the repo.
 
 **Output file:** `derivation/OPEN_QUESTIONS.md`
-**Canon rule:** This file is the single owner of **speculative/working questions**. It must **not** redefine symbols, equations, or values—link to the canonical files.
+**Canon rule:** This file is the single owner of **speculative/working questions**. It must **not** redefine symbols, equations, or values-link to the canonical files.
 
 **MathJax on GitHub:**
 
@@ -40,7 +40,7 @@ Search in: code comments, markdown/docs, notebooks, experiment notes, embedded l
 *(Populate strictly from repository text; keep names/phrasing used in source.)*
 
 ```markdown
-#### OQ-### — <Short question/hypothesis as written>  <a id="oq-###"></a>
+#### OQ-### - <Short question/hypothesis as written>  <a id="oq-###"></a>
 **Status:** <Open | In progress | Resolved>  •  **Priority:** <P1/P2/P3 if present>  •  **Owner:** <name/handle if present>  
 **Context:** <path/to/file>:<line-range> • <short-commit>
 
@@ -58,7 +58,7 @@ Search in: code comments, markdown/docs, notebooks, experiment notes, embedded l
 
 **Evidence so far:** <bullet list of cited files/figures/tests; link to `DATA_PRODUCTS.md#data-...` if applicable>  
 **Proposed experiment/proof (if present in repo):** <lifted bullet(s) with links; no new steps>  
-**Blockers/Dependencies:** <tools, datasets, theory pieces—lifted>  
+**Blockers/Dependencies:** <tools, datasets, theory pieces-lifted>  
 **Next action (if stated):** <literal next step from source or TODO line>
 ```
 
@@ -87,7 +87,7 @@ Search in: code comments, markdown/docs, notebooks, experiment notes, embedded l
 ### De-duplication & conflicts
 
 * If the **same question** appears in multiple places, keep one entry and list all sources under **Context**.
-* If **conflicting statements** exist, note both under **Evidence so far** with sources and add `Notes: CONFLICT — needs resolution`.
+* If **conflicting statements** exist, note both under **Evidence so far** with sources and add `Notes: CONFLICT - needs resolution`.
 
 ---
 
@@ -107,5 +107,5 @@ Search in: code comments, markdown/docs, notebooks, experiment notes, embedded l
 ### Validation
 
 * Render on GitHub; confirm anchors resolve and any quoted MathJax renders.
-* Do **not** paste equations or numeric values—**link** to the canonical files.
+* Do **not** paste equations or numeric values-**link** to the canonical files.
 * Every entry must cite **Context** with `path:lines • commit`. If a needed anchor is missing in canon, add `TODO: add anchor (see <path>:<line>)`; do not create new canon here.

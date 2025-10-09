@@ -67,7 +67,7 @@ adoptedforciblyappealstothe eye, the mostsensitive
 andthemostcomprehensiveofourexternalorgans,and
 its pre-eminencetoimprint its subjectonthe mindis
 supportedbytheincontrovertiblemaximexpressedin
-thewellknownwordsofHorace:—
+thewellknownwordsofHorace:-
 Segniusirritantanimosdemissaperaurem
 Quamquaesun toculissubjectaﬁdelibus
 5
@@ -254,7 +254,7 @@ reflection,thisjunctionofthreecoloursonaplane,givesa
 goodideaofamathematicalpoint.
 Alineislengthwithoutbreadth.Withtheassistance
 ofcolours,nearlyinthesamemanne rasbefore,anideaof
-alinemaybethusgiven:—
+alinemaybethusgiven:-
 Let two colours meetand covera portion ofpaper;
 wheretheymeet is not red,nor isitblue; thereforethe
 junctionoccupiesnoportionoftheplane,andthereforeit
@@ -273,7 +273,7 @@ Q
 Surfaceifthatwhichhaslengthandbreadthwithout
 thickness.
 When we cons idera solid body (PQ),we perceive
-atoncethat ithasthree dimensions,namely :— length,
+atoncethat ithasthree dimensions,namely :- length,
 breadth,andthickness;supposeonepa rtofthissolid(PS)
 to bered,andthe otherpart (QR) yellow,andthat the
 colours be distinctwithoutcommingling, the blue sur-
@@ -5643,7 +5643,7 @@ will⎧{{{
 >,=or<
 Andsoon,withanyotherequimultiplesofthefour
 magnitudes,takeninthesamemanner.
-Euclidexpressesthisdefinitionasfollows:—
+Euclidexpressesthisdefinitionasfollows:-
 Thefirstoffourmagnitudesissaidtohavethesame
 ratiotothe second ,whichthethird hastothefourth,
 whenequimultipleswhatsoeverofthefirstandthirdbeing
@@ -6156,7 +6156,7 @@ tothefourth;orthethirdhastothefourth,undersuch
 circumstances,alessratiothanthefirsthastothesecond:
 although severalotherequimultiples may tendto show
 thatthefourmagnitudesareproportionals.
-Thisdefinitionwillinfuturebeexpressedthus:—
+Thisdefinitionwillinfuturebeexpressedthus:-
 IfM′
 >m′
 ,butM′
@@ -6347,7 +6347,7 @@ amultipleofthefirstgreaterthanthemultipleofthesec-
 ond,butthesamemu ltipleofthethirdwhichhasbeen
 taken of thefirst,notgreater thanthe same mu ltiple of
 thefourth which has been taken of the second ,maybe
-illustratednumericallyasfollows:—
+illustratednumericallyasfollows:-
 Thenumber9hasagreaterratioto7than8hasto7:
 thatis,9:7>8:7;or8+1:7>8:7.
 Themultipleof1,whichfirstbecomesg reaterthan7,
@@ -6358,7 +6358,7 @@ multiplythefirstandthirdby 8,andwehave 64+8and
 64:again, thefirstmultiple of7which becomes g reater
 than64is10times;then,bymultiplyingthesecondand
 fourthby10,weshallhave70and70;then,arrangingthese
-multiples,wehave—
+multiples,wehave-
 8times 10times 8times 10times
 thefirst thesecond thethird thefourth
 64+870 64 70
@@ -6396,7 +6396,7 @@ evidentthat255
 and,accordingtowhathasbeenabo veshown,17hasto19
 agreaterratiothan 13hasto15.
 Sothatthegeneraltermsuponwhichagreater,equal,
-orlessratioexistsareasfollows:—
+orlessratioexistsareasfollows:-
 IfA
 BbegreaterthanC
 D,AissaidtohavetoBagreater
@@ -6465,7 +6465,7 @@ therefore,bythefirstcase,
 =
 .
 ∴Magnitudeswhichhavethesameratio,&c.
-Thismaybeshownotherwise,asfollows:—
+Thismaybeshownotherwise,asfollows:-
 LetA:B=A:C,thenB=C,for,asthefraction
 A
 B=thefractionA
@@ -6825,7 +6825,7 @@ tationoralternately,isusedwhen therearefourpropor-
 tionals,anditisinferredthatthefirsthasthesameratioto
 thethirdwhichthesecondhas tothefourth;orthatthe
 firstistothethirdasthesecondtothefourth: asisshown
-inthefollowingproposition:—
+inthefollowingproposition:-
 Let
 :
 ::
@@ -7114,7 +7114,7 @@ Theterm“convertendo,”byconversion,ismadeuseofby
 geometricians,whentherearefourproportionals,anditis
 inferred,thatthefirstistoitsexcessabovethesecond,as
 thethirdistoitsexcessabovethefourth.Seethefollowing
-proposition:—
+proposition:-
 202 BOOKVPROP.E.THEOR.
 ffourmagnitudesbe proportionals, theyare
 also proportionals byconversion: that is, the
@@ -7379,7 +7379,7 @@ manyothers,which, takentwo andtwoin
 order,havethe sameratio; theﬁrstshallhave
 tothelastoftheﬁrstmagnitudesthesameratio
 which the ﬁrst of the others has to the last of the same.
-N.B.— This is us uallycited by the words“exæquali,”or
+N.B.- This is us uallycited by the words“exæquali,”or
 “ex æquo.”
 First,lettherebemagn itudes
 ,
@@ -7406,7 +7406,7 @@ thenshall
 .
 Let these magn itudes,as wellas anyequimultiples
 whateveroftheantecedentsandconsequen tsoftheratios,
-standasfollows:—
+standasfollows:-
 ,
 ,
 ,
@@ -7520,7 +7520,7 @@ manyothers,which, takentwo andtwoin a
 cross order,havethe sameratio; theﬁrstshall
 havetothelastoftheﬁrstmagnitudesthesame
 ratiowhichtheﬁrstoftheothershastothelastofthesame.
-N.B.— This is us uallycited by the words“exæquali in
+N.B.- This is us uallycited by the words“exæquali in
 proportione perturbatâ;” or “ex æquo perturbato.”
 First,lettherebethreemagnitudes
 ,
@@ -7548,7 +7548,7 @@ thenshall
 :
 .
 Letthesemagn itudesandtheirrespectiveequimulti-
-plesbearrangedasfollows:—
+plesbearrangedasfollows:-
 ,
 ,
 ,
@@ -7836,7 +7836,7 @@ D=thecubeofA
 B.
 Thisdefinitionwillbebetterunderstood,andapplied
 toagreaternumberofmagnitudesthanfourthatarecon-
-tinuedproportionals,asfollows:—
+tinuedproportionals,asfollows:-
 Letar3,ar2,ar,a,befourmagnitudesincontinued
 proportion,thatis,ar3:ar2::ar2:ar::ar:a,
 thenar3
@@ -7857,7 +7857,7 @@ ar=1
 r.
 BOOKVDEFINITIONA 215
 DefinitionA
-Toknowacompoundratio:—
+Toknowacompoundratio:-
 Whenthereareanynumberofmagnitudesofthesame
 kind,thefirstissaidtohavetothelastofthemtheratio
 compoundedo ftheratiowhichthefirsthastothesecond,
@@ -8066,12 +8066,12 @@ berofotherratios,suchthattheratiowhichis
 compounded o fratios,which arethe sameto
 theﬁrst ratios,eachto each, is the sametothe
 ratio whichiscompounded o f ratios,which arethe same,
-eachtoeach, tothelast ratios—andifoneof theﬁrst ratios,
+eachtoeach, tothelast ratios-andifoneof theﬁrst ratios,
 or theratio whichiscompounded o f ratios,which arethe
 sametoseveraloftheﬁrstratios,eachtoeach,bethesame
 tooneofthelastratios,ortotheratiowhichiscompounded
 of ratios,which arethe same,eachto each, to severalof
-thelastratios—thentheremainingratiooftheﬁrst;or,if
+thelastratios-thentheremainingratiooftheﬁrst;or,if
 therebemorethanone,theratiowhichiscompoundedo f
 ratios,which arethe same,eachto each, totheremaining
 ratiosoftheﬁrst,shallbethesametotheremainingratio

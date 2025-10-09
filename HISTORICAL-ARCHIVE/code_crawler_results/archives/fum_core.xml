@@ -166,7 +166,7 @@ This research is protected under a dual-license to foster open academic
 research while ensuring commercial applications are aligned with the project's ethical principles. Commercial use requires written permission from Justin K. Lietz.
 See LICENSE file for full terms.
 
-Active Domain Cartography (ADC) — incremental, void-faithful reducer.
+Active Domain Cartography (ADC) - incremental, void-faithful reducer.
 
 Design
 - ADC consumes compact Observation events from the void-walker announcement bus.
@@ -942,7 +942,7 @@ _HTML = r'''<!doctype html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>FUM Control — Load Engram</title>
+  <title>FUM Control - Load Engram</title>
   <style>
     :root { --fg: #e6edf3; --bg: #0d1117; --muted: #8b949e; --accent: #2f81f7; --danger: #f85149; }
     body { background: var(--bg); color: var(--fg); font: 14px/1.4 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, sans-serif; margin: 0; padding: 0; }
@@ -969,7 +969,7 @@ _HTML = r'''<!doctype html>
 </head>
 <body>
   <div class="wrap">
-    <h1>FUM Control — Load Engram</h1>
+    <h1>FUM Control - Load Engram</h1>
     <p class="note">Run directory: <span class="mono" id="runDir"></span></p>
 
     <div class="card">
@@ -1192,7 +1192,7 @@ class ControlServer:
                 continue
 
         if self._server is None:
-            raise RuntimeError(f"Failed to bind control server on {host}:{port} (+15) — last error: {last_err}")
+            raise RuntimeError(f"Failed to bind control server on {host}:{port} (+15) - last error: {last_err}")
 
         t = threading.Thread(target=self._server.serve_forever, name="fum-control-server", daemon=True)
         t.start()
@@ -7469,7 +7469,7 @@ def compute_metrics(connectome):
 
 def connectome_entropy(connectome) -> float:
    """
-   Rule Ref: Blueprint Rule 4.1 — Global Pathological Structure (Connectome Entropy)
+   Rule Ref: Blueprint Rule 4.1 - Global Pathological Structure (Connectome Entropy)
    Formula: H = -Σ p_i log(p_i), where p is degree distribution of the active subgraph.
    Returns 0.0 when no active edges are present.
    """
@@ -11013,7 +11013,7 @@ class Visualizer:
                     _plt.subplots_adjust(bottom=0.16)
                 except Exception:
                     pass
-                fig.text(0.01, 0.01, f'Controls: {ctrl_url} — Load Engram', fontsize=9, color='#8b949e')
+                fig.text(0.01, 0.01, f'Controls: {ctrl_url} - Load Engram', fontsize=9, color='#8b949e')
         except Exception:
             pass
 

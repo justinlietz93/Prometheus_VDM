@@ -9,7 +9,7 @@
 The Fully Unified Void-Field Model (FUM), also known as the Void Dynamics Model (VDM) or Neuroca, is a cybernetic organism designed to achieve advanced intelligence through self-organization, guided by fundamental physical laws rather than traditional machine learning heuristics. Operating as an event-driven causal system, it learns and reasons zero-shot at runtime, with language serving as a communication interface. FUM adheres to an "inverse scaling law," prioritizing intelligence gains from denser explanations and fewer parameters over sheer scale, aiming for efficient operation on specialized hardware like neuromorphic/ARM boards, with a target of a billion neurons scaling through time and compaction.
 
 **Theoretical Foundations and Core Dynamics**
-At its core, the FUM’s existence is driven by Void Dynamics, a homeostatic process that minimizes `void_debt`—a systemic penalty for internal inefficiencies or paradoxes. The discrete FUM update rule, `ΔW_i/Δt ≈ (α-β)W_i - α W_i²` on a k-NN graph, describes an intrinsically dissipative system at the UV scale, where a naive discrete Hamiltonian is not conserved. However, the on-site dynamics possess an exact invariant `Q_FUM = t - (1/(α-β))ln|W/((α-β)-αW)|`, derived from time-translation invariance via Noether's Theorem, ensuring predictable individual node trajectories. Globally, a Lyapunov functional `L[W]` guarantees dissipative stability and convergence towards fixed points.
+At its core, the FUM’s existence is driven by Void Dynamics, a homeostatic process that minimizes `void_debt`-a systemic penalty for internal inefficiencies or paradoxes. The discrete FUM update rule, `ΔW_i/Δt ≈ (α-β)W_i - α W_i²` on a k-NN graph, describes an intrinsically dissipative system at the UV scale, where a naive discrete Hamiltonian is not conserved. However, the on-site dynamics possess an exact invariant `Q_FUM = t - (1/(α-β))ln|W/((α-β)-αW)|`, derived from time-translation invariance via Noether's Theorem, ensuring predictable individual node trajectories. Globally, a Lyapunov functional `L[W]` guarantees dissipative stability and convergence towards fixed points.
 
 The discrete dynamics are rigorously bridged to two continuum models:
 1.  **Reaction-Diffusion (RD) Branch:** The canonical leading-order model is `∂_t φ = D∇²φ + rφ - uφ²`, with `D = Ja²`, `r = α - β`, and `u = α`. This model's predictions for Fisher-KPP front speed and Linear Dispersion growth rates have been numerically validated with high accuracy.
@@ -55,7 +55,7 @@ Strengths include the rigorous discrete-to-continuum EFT derivation, units-rigor
 *   Bordag, M. (2024). *Universe*, *10*(38). Finite‑radius chromomagnetic flux tube, tachyonic gluon modes, quartic stabilization, and energy minima. Local copy: derivation/supporting_work/external_references/papers/universe-10-00038-v2.pdf
 *   Coleman, S. (1977). *The Fate of the False Vacuum: Semiclassical Theory*. Physical Review D, *15*(10), 2929-2936.
 *   Edwards, C. H., & Penney, D. E. *Differential Equations and Boundary Value Problems*. Pearson.
-*   Lietz, J. (2025). Void Dynamics Model (VDM) — Private Preview. Neuroca, Inc. Internal documentation and figures.
+*   Lietz, J. (2025). Void Dynamics Model (VDM) - Private Preview. Neuroca, Inc. Internal documentation and figures.
 *   Murray, J. D. (2002). *Mathematical Biology I: An Introduction* (3rd ed.). Springer.
 *   Neyman (1935).
 *   Pitman (1937).

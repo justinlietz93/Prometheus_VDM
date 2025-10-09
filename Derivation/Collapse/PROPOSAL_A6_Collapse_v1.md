@@ -1,15 +1,15 @@
-# A6 Scaling Collapse — Proposal (v1)
+# A6 Scaling Collapse - Proposal (v1)
 
 Author: Justin K. Lietz
 Date: 2025-10-06
 
 ## 1. Proposal Title and date
 
-A6 Scaling Collapse: Junction Logistic Universality Test (v1) — 2025-10-06
+A6 Scaling Collapse: Junction Logistic Universality Test (v1) - 2025-10-06
 
 ## 2. Proposers and institutions
 
-Justin K. Lietz — Neuroca, Inc.
+Justin K. Lietz - Neuroca, Inc.
 
 ## 3. Abstract
 
@@ -45,7 +45,7 @@ Artifacts (tag A6-collapse-v1):
 
 ## 6. Personnel
 
-Justin K. Lietz — plan, implement, execute, and document the study; review collapse quality and downstream use in universality claims.
+Justin K. Lietz - plan, implement, execute, and document the study; review collapse quality and downstream use in universality claims.
 
 ## 7. References
 

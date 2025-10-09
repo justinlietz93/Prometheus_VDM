@@ -55,7 +55,7 @@ def get_components_css() -> str:
     .rc-slider-dot{border-color:#233140;background:#10151c}
     .rc-slider-handle{border:1px solid var(--border);background:var(--panel2)}
 
-    /* dcc.Tabs (fum-tabs) — dark theme styling */
+    /* dcc.Tabs (fum-tabs) - dark theme styling */
     .fum-tabs{
       background: transparent;
       border: none;
@@ -66,7 +66,7 @@ def get_components_css() -> str:
       gap: 6px;
     }
 
-    /* Base tab — minimal underline style to match dark theme */
+    /* Base tab - minimal underline style to match dark theme */
     .fum-tabs .tab,
     .fum-tabs button.tab,
     .fum-tabs .fum-tab{
@@ -92,7 +92,7 @@ def get_components_css() -> str:
       border-bottom-color: var(--border) !important;
     }
 
-    /* Selected tab (robust: match class and aria-selected) — accent underline */
+    /* Selected tab (robust: match class and aria-selected) - accent underline */
     .fum-tabs .tab--selected,
     .fum-tabs .tab[aria-selected="true"],
     .fum-tabs button.tab[aria-selected="true"],

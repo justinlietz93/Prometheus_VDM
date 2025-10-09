@@ -1,5 +1,5 @@
 <!-- DOC-GUARD: REFERENCE -->
-# FRW Continuity Residual — Quality Check (v1)
+# FRW Continuity Residual - Quality Check (v1)
 
 > Author: Justin K. Lietz  
 > Date: 2025-10-06  

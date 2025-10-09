@@ -8,7 +8,7 @@
 
 ### **Summary of Technical Specification: Event-Sourced Structural Plasticity**
 
-This document outlines a comprehensive technical specification for a biologically-plausible structural plasticity framework designed for a runtime connectome. The system's core mandate is that all structural modifications—synapse formation, pruning, strengthening, decay, and neuron culling—must be achieved through a strictly sparse, event-driven, and computationally budgeted model. All operations are local, territory-scoped, and sub-quadratic, explicitly prohibiting dense matrix scans or global polling.
+This document outlines a comprehensive technical specification for a biologically-plausible structural plasticity framework designed for a runtime connectome. The system's core mandate is that all structural modifications-synapse formation, pruning, strengthening, decay, and neuron culling-must be achieved through a strictly sparse, event-driven, and computationally budgeted model. All operations are local, territory-scoped, and sub-quadratic, explicitly prohibiting dense matrix scans or global polling.
 
 #### **1. Core Architecture: Event-Sourced Pipeline**
 The framework operates on a unidirectional, decoupled pipeline ensuring scalability and adherence to the sparse-only constraint:

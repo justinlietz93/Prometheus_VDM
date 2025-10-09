@@ -24,7 +24,7 @@ _HTML = r'''<!doctype html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>FUM Control — Load Engram</title>
+  <title>FUM Control - Load Engram</title>
   <style>
     :root { --fg: #e6edf3; --bg: #0d1117; --muted: #8b949e; --accent: #2f81f7; --danger: #f85149; }
     body { background: var(--bg); color: var(--fg); font: 14px/1.4 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, sans-serif; margin: 0; padding: 0; }
@@ -51,7 +51,7 @@ _HTML = r'''<!doctype html>
 </head>
 <body>
   <div class="wrap">
-    <h1>FUM Control — Load Engram</h1>
+    <h1>FUM Control - Load Engram</h1>
     <p class="note">Run directory: <span class="mono" id="runDir"></span></p>
 
     <div class="card">
@@ -274,7 +274,7 @@ class ControlServer:
                 continue
 
         if self._server is None:
-            raise RuntimeError(f"Failed to bind control server on {host}:{port} (+15) — last error: {last_err}")
+            raise RuntimeError(f"Failed to bind control server on {host}:{port} (+15) - last error: {last_err}")
 
         t = threading.Thread(target=self._server.serve_forever, name="fum-control-server", daemon=True)
         t.start()

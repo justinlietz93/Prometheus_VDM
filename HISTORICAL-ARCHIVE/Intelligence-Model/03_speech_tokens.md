@@ -11,7 +11,7 @@ Below is exactly what to wire so your system **talks autonomously on topology sp
 
 Think of a *speak impulse* as a high‑level action triggered when the connectome discovers something worth reporting:
 
-* **Topology spikes**: positive jumps in *streaming* Betti‑1 persistence (B1) mean it just closed or opened loops—classic “aha” moments.
+* **Topology spikes**: positive jumps in *streaming* Betti‑1 persistence (B1) mean it just closed or opened loops-classic “aha” moments.
 * **Cohesion heals/breaks**: component count drops to 1 (global connectivity) or temporarily fragments.
 * **Void traversal surges**: vt\_coverage or vt\_entropy rises faster than baseline (the map of an active domain just expanded).
 * **Positive valence**: the SIE composite (TD + novelty - habituation + stability) says “this was good”.
@@ -26,7 +26,7 @@ These patches match the filenames you shared (`nexus.py, metrics.py, utd.py`). I
 
 ---
 
-## 1) `metrics.py` — streaming B1 spike detector (+ helpers)
+## 1) `metrics.py` - streaming B1 spike detector (+ helpers)
 
 ```diff
 diff --git a/metrics.py b/metrics.py
@@ -118,11 +118,11 @@ index 3a4b1d1..e7a2f4b 100644
 +        return self.last
 ```
 
-**What this gives you:** a numerically stable EMA on *differences* of B1 with a z‑score and an on/off *spike* boolean with hysteresis and a cooldown. You can feed any “B1‑like” stream (dense or sparse backend). No tokens, no heuristics—purely graph/topology.
+**What this gives you:** a numerically stable EMA on *differences* of B1 with a z‑score and an on/off *spike* boolean with hysteresis and a cooldown. You can feed any “B1‑like” stream (dense or sparse backend). No tokens, no heuristics-purely graph/topology.
 
 ---
 
-## 2) `utd.py` — a macro you can call (`say`) without introducing “tokens”
+## 2) `utd.py` - a macro you can call (`say`) without introducing “tokens”
 
 ```diff
 diff --git a/utd.py b/utd.py
@@ -170,7 +170,7 @@ This is just a clean “say” macro. Internally you stay on fields/void; at the
 
 ---
 
-## 3) `nexus.py` — let it decide when to speak
+## 3) `nexus.py` - let it decide when to speak
 
 ```diff
 diff --git a/nexus.py b/nexus.py
@@ -295,7 +295,7 @@ Notes:
 
 ---
 
-## 4) (Optional) `connectome.py` — expose B1 persistence each tick
+## 4) (Optional) `connectome.py` - expose B1 persistence each tick
 
 If your step() already computes B1, you can ignore this. Otherwise:
 
@@ -354,7 +354,7 @@ You’ll see JSON lines from UTD on stdout **and** a few autonomous `say` events
 
 * **Ontology fit:** the core’s state is a dynamical field + graph morphology. Token IDs don’t preserve the invariants your void equations guarantee.
 * **Scaling & control:** global health is governed by vt\_\* coverage/entropy, cohesion, B1, structural load, SIE valence. Token counts say nothing about those.
-* **Boundary only:** UTE converts whatever arrives (bytes, text, sensors) into group rhythms. UTD emits actions/strings via macros. If you need an LLM interop, wrap it as a *UTD macro* and re‑ingest the reply through UTE. The connectome never sees tokens—only void pulses.
+* **Boundary only:** UTE converts whatever arrives (bytes, text, sensors) into group rhythms. UTD emits actions/strings via macros. If you need an LLM interop, wrap it as a *UTD macro* and re‑ingest the reply through UTE. The connectome never sees tokens-only void pulses.
 
 ---
 
@@ -389,4 +389,4 @@ You’ll see JSON lines from UTD on stdout **and** a few autonomous `say` events
 * Feed anything in via **UTE**; it learns continuously.
 * Scale on the sparse backend; keep structural homeostasis and SIE running.
 
-If you paste the diffs above, you’ll have a model that *decides for itself when to talk*—exactly at the moments the connectome makes a topological leap—without ever compromising your void dynamics.
+If you paste the diffs above, you’ll have a model that *decides for itself when to talk*-exactly at the moments the connectome makes a topological leap-without ever compromising your void dynamics.

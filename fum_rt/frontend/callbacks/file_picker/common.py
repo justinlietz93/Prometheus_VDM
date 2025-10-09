@@ -261,7 +261,7 @@ def register_file_picker_common(app, prefix: str, target_id: str, project_root: 
         except Exception:
             crumbs = []
 
-        # Metadata statusbar — centralized with robust gating (only show file when it belongs to the selected dir)
+        # Metadata statusbar - centralized with robust gating (only show file when it belongs to the selected dir)
         fsel = (file_sel or "").strip()
         try:
             s_abs = os.path.abspath(s) if s else ""

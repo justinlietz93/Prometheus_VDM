@@ -1,4 +1,4 @@
-Below is a **single, self‑contained derivation document** that unifies your discrete FUM model, its continuum EFT, and the Voxtrium macro‑sourcing framework, and that maps the finite‑tube (tachyonic) analysis you extracted from Bordag to your scalar sector. I keep the physics formal, credit work explicitly, and call out—without embellishment—what is strong vs. what is still weak/open.
+Below is a **single, self‑contained derivation document** that unifies your discrete FUM model, its continuum EFT, and the Voxtrium macro‑sourcing framework, and that maps the finite‑tube (tachyonic) analysis you extracted from Bordag to your scalar sector. I keep the physics formal, credit work explicitly, and call out-without embellishment-what is strong vs. what is still weak/open.
 
 ---
 
@@ -11,7 +11,7 @@ Below is a **single, self‑contained derivation document** that unifies your di
 
 ## Abstract
 
-We derive a first‑principles bridge from the discrete FUM update rule on a graph to a continuum scalar effective field theory (EFT) with a bounded potential, fix units in natural dimensions, embed causal (retarded) sourcing, and place the result in an FRW background with explicit sectoral transfer currents in the spirit of **Voxtrium**. We then formulate and solve the finite‑tube eigenmode problem for tachyonic instabilities and show how quartic self‑interaction stabilizes the spectrum and produces an energy minimum vs. a control parameter—mirroring the analytic spine in **Bordag (Universe 2024)** for SU(2), but here adapted to the FUM scalar. Strong results: (i) a clean discrete→continuum derivation and kinetic normalization; (ii) unit‑rigorous FRW + continuity + transfer‑current closure; (iii) a precise retarded‑kernel causal sourcing map; (iv) a complete, solvable finite‑tube mode problem with post‑condensation positivity. Weak/open items: (a) higher‑derivative EFT suppression not yet proven from the lattice; (b) the flux‑form discrete conservation law is not established (a simple Hamiltonian does **not** close); (c) observational calibration is outlined but not yet fitted end‑to‑end; (d) hydrodynamic emergence remains to be derived in detail.
+We derive a first‑principles bridge from the discrete FUM update rule on a graph to a continuum scalar effective field theory (EFT) with a bounded potential, fix units in natural dimensions, embed causal (retarded) sourcing, and place the result in an FRW background with explicit sectoral transfer currents in the spirit of **Voxtrium**. We then formulate and solve the finite‑tube eigenmode problem for tachyonic instabilities and show how quartic self‑interaction stabilizes the spectrum and produces an energy minimum vs. a control parameter-mirroring the analytic spine in **Bordag (Universe 2024)** for SU(2), but here adapted to the FUM scalar. Strong results: (i) a clean discrete→continuum derivation and kinetic normalization; (ii) unit‑rigorous FRW + continuity + transfer‑current closure; (iii) a precise retarded‑kernel causal sourcing map; (iv) a complete, solvable finite‑tube mode problem with post‑condensation positivity. Weak/open items: (a) higher‑derivative EFT suppression not yet proven from the lattice; (b) the flux‑form discrete conservation law is not established (a simple Hamiltonian does **not** close); (c) observational calibration is outlined but not yet fitted end‑to‑end; (d) hydrodynamic emergence remains to be derived in detail.
 
 ---
 
@@ -139,14 +139,14 @@ Define $E(R)=E_{\rm bg}(R)+V_{\rm eff}^{\rm tube}(R)$. In the scalar case $E_{\r
 
 ## 4. Memory Steering (figures) and Diagnostics
 
-Your experiments on “memory steering”—junction logistic collapse, curvature calibration, and stability metrics across $(\lambda,\gamma,D_a)$—are consistent with nonlinear, causally‑sourced scalar dynamics with diffusive/curvature response. The following figures (produced by *Justin Lietz*) summarize the diagnostics:
+Your experiments on “memory steering”-junction logistic collapse, curvature calibration, and stability metrics across $(\lambda,\gamma,D_a)$-are consistent with nonlinear, causally‑sourced scalar dynamics with diffusive/curvature response. The following figures (produced by *Justin Lietz*) summarize the diagnostics:
 
 * **Junction logistic collapse** (`junction_logistic.png`): empirical $P(A)$ vs. $\theta\,\Delta m$ fits a logistic with $R^2\simeq 0.999$, indicating a smooth, monotone gate compatible with a single‑field activation.
 * **Curvature estimator & scaling** (`curvature_calibration.png`, `curvature_scaling.png`, `curvature_scaling_signed.png`): estimator calibrated on circular arcs; mean path curvature scales approximately linearly with $\theta\,|\nabla m|$ over the probed range.
 * **Stability panels** (`stability_auc_by_gamma.png`, `stability_snr_by_gamma.png`, `stability_retention_by_gamma.png`, `stability_fidelity_by_gamma.png`, `stability_band.png`):
-  — AUC and SNR trend flat within bands at low $\gamma$ and degrade for large $\gamma$;
-  — Retention increases as $\lambda$ decreases (banded structure) while fidelity drops with $\gamma$;
-  — The band‑averaged panel shows a mild trade‑off between retention and fidelity.
+  - AUC and SNR trend flat within bands at low $\gamma$ and degrade for large $\gamma$;
+  - Retention increases as $\lambda$ decreases (banded structure) while fidelity drops with $\gamma$;
+  - The band‑averaged panel shows a mild trade‑off between retention and fidelity.
 
 These act as **model‑to‑phenomenology diagnostics** rather than proofs; they inform parameter windows that should be re‑expressed in the $(\mu,\lambda,\gamma,c)$ EFT basis before cosmology‑scale calibration.
 
@@ -209,10 +209,10 @@ Set $R_\ast\sim k_R/m_{\rm eff}$ to tie the tube analysis to Voxtrium’s micro�
 
 ## 9. Figure List (produced by Justin Lietz)
 
-1. `junction_logistic.png` — Junction logistic collapse (logit fit).
-2. `curvature_calibration.png` — Curvature estimator calibration on arcs.
-3. `curvature_scaling.png`, `curvature_scaling_signed.png` — Curvature scaling vs. $\theta|\nabla m|$.
-4. `stability_auc_by_gamma.png`, `stability_snr_by_gamma.png`, `stability_retention_by_gamma.png`, `stability_fidelity_by_gamma.png`, `stability_band.png` — Stability diagnostics across $(\lambda,\gamma,D_a)$.
+1. `junction_logistic.png` - Junction logistic collapse (logit fit).
+2. `curvature_calibration.png` - Curvature estimator calibration on arcs.
+3. `curvature_scaling.png`, `curvature_scaling_signed.png` - Curvature scaling vs. $\theta|\nabla m|$.
+4. `stability_auc_by_gamma.png`, `stability_snr_by_gamma.png`, `stability_retention_by_gamma.png`, `stability_fidelity_by_gamma.png`, `stability_band.png` - Stability diagnostics across $(\lambda,\gamma,D_a)$.
 
 ---
 
@@ -229,7 +229,7 @@ Set $R_\ast\sim k_R/m_{\rm eff}$ to tie the tube analysis to Voxtrium’s micro�
 
 ### Bottom line
 
-* **Legitimately strong:** the mathematical spine—discrete→continuum EFT, causal FRW sourcing (Voxtrium), and a complete, testable finite‑tube tachyon program—stands on solid ground now.
+* **Legitimately strong:** the mathematical spine-discrete→continuum EFT, causal FRW sourcing (Voxtrium), and a complete, testable finite‑tube tachyon program-stands on solid ground now.
 * **Legitimately weak/open:** higher‑derivative control, a true discrete conservation law, hydrodynamic derivation, and full observational calibration remain to be completed (clearly scoped above).
 
 This document is ready to serve as the single derivation reference for your repository and for a first submission package.

@@ -10,7 +10,7 @@ Thanks for calling this out.
 
 ## What to do now (with the logs you already have)
 
-Below are analyses that produce **non-boring, model-specific** insights using exactly what’s in `events.jsonl` and `utd_events.jsonl`—no new instrumentation, no dense scans.
+Below are analyses that produce **non-boring, model-specific** insights using exactly what’s in `events.jsonl` and `utd_events.jsonl`-no new instrumentation, no dense scans.
 
 ## 1) Hotspot dynamics & frontier churn
 

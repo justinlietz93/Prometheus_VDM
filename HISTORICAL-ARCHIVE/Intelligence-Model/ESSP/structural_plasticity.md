@@ -1,4 +1,4 @@
-Got it — I hear you. No dense scans, no accidental enable switches, and no “spike-only” homeostasis. We can do this strictly sparse and event-gated.
+Got it - I hear you. No dense scans, no accidental enable switches, and no “spike-only” homeostasis. We can do this strictly sparse and event-gated.
 
 ```
 Classification: Runtime-only
@@ -13,7 +13,7 @@ Classification: Runtime-only
 * **A. Confirm sparse-only guard is active.** The dense backend hard-fails unless `FORCE_DENSE=1` (so we’re not going to trip into dense by accident).&#x20;
 * **B. Wire structural plasticity on the sparse path.** Keep the existing sparse maintenance (adaptive pruning + budgeted bridging) and **add** our actuator hook (GDSP) under a multi-signal gate:
 
-  * Sparse maintenance already does **adaptive pruning** with an edge-local threshold and **budgeted bridging** — both scan-free over the whole matrix (neighbor-set only).&#x20;
+  * Sparse maintenance already does **adaptive pruning** with an edge-local threshold and **budgeted bridging** - both scan-free over the whole matrix (neighbor-set only).&#x20;
   * Add a runtime hook that calls the **GDSPActuator** (repairs, growth, maintenance; all budgeted/CSR-safe) when any of these fire: {topology spike, TD≥τ, fragmentation}. &#x20;
 * **C. Gate by multiple signals (not “spikes only”).** Use:
 
@@ -44,7 +44,7 @@ Classification: Runtime-only
   * **Bridging** uses **`bridge_budget`** (<=8 per tick by default), not scan-all.&#x20;
 * **Multi-signal gating:** Induce any one of {b1 spike, TD≥τ, components>1} and observe a **GDSP call**; with no triggers, **zero calls** (stable plateau). Gate spec & thresholds per the adapter. &#x20;
 * **Territory scope:** When GDSP runs, it consumes **bounded** `territory_indices` from the UF sampler, not full graphs.&#x20;
-* **Actuator behavior:** Verify GDSP can do **repairs** (fragment gaps), **reinforcement** (eligibility-based), **exploratory** growth (similarity+eligibility prefilter), and **timed pruning** — all **CSR-safe** and budgeted.&#x20;
+* **Actuator behavior:** Verify GDSP can do **repairs** (fragment gaps), **reinforcement** (eligibility-based), **exploratory** growth (similarity+eligibility prefilter), and **timed pruning** - all **CSR-safe** and budgeted.&#x20;
 
 ## Assumptions/Risks
 
@@ -64,7 +64,7 @@ Classification: Runtime-only
 
 ### Why the previous behavior looked “spike-only”
 
-* What we call **B1 “spike”** is a **topology spike detector** (z-score on the first difference of a topology metric with hysteresis/cooldown). It’s **not** synaptic spiking and was only one of the possible gates — we’re now explicitly adding TD and cohesion gates so edits aren’t “spike-only.”&#x20;
+* What we call **B1 “spike”** is a **topology spike detector** (z-score on the first difference of a topology metric with hysteresis/cooldown). It’s **not** synaptic spiking and was only one of the possible gates - we’re now explicitly adding TD and cohesion gates so edits aren’t “spike-only.”&#x20;
 
 ### What we can bridge with **sparse**
 
@@ -74,7 +74,7 @@ Classification: Runtime-only
 
 * The dense routine shows the **shape** (bridge on S\_ij and prune by mean-based threshold), but remains a **dense** artifact; we keep it off in sparse and do all edits through the sparse path + GDSP actuator.&#x20;
 
-If you want, I’ll draft the exact 12-20-line **GDSP gate** block for your loop with the env/phase knobs and territory sampling call — all sparse and scan-free.
+If you want, I’ll draft the exact 12-20-line **GDSP gate** block for your loop with the env/phase knobs and territory sampling call - all sparse and scan-free.
 
 
 
@@ -115,7 +115,7 @@ Classification: Runtime-only
 
 **Objective Recap**
 
-* Add **heterogeneous neuron classes** (different target degrees k and plasticity rates), make **void-walker tagging** first‑class on the bus to drive **sparse** prune/grow/cull actions, and ensure **synapse strengthening + decay**—all without any dense scans.
+* Add **heterogeneous neuron classes** (different target degrees k and plasticity rates), make **void-walker tagging** first‑class on the bus to drive **sparse** prune/grow/cull actions, and ensure **synapse strengthening + decay**-all without any dense scans.
 
 ---
 
@@ -137,7 +137,7 @@ Classification: Runtime-only
   * `tag.cull_neuron {nid, reason, ttl}`
   * `tag.grow_synapse {pre, post_hint|territory, reason, ttl}`
   * `tag.neurogenesis {class, territory, k_budget, ttl}`
-    The bus delivers O(1) *surgical* writes because events include exact indices—no searches by the CPU. A **Scoreboard** aggregates votes per edge/node with decay; when a threshold is crossed, the **GDSP actuator** applies the change using only local adjacency.&#x20;
+    The bus delivers O(1) *surgical* writes because events include exact indices-no searches by the CPU. A **Scoreboard** aggregates votes per edge/node with decay; when a threshold is crossed, the **GDSP actuator** applies the change using only local adjacency.&#x20;
 
 * **3) Physiological→runtime triggers (biologically anchored, still sparse).**
   Map your list to concrete walker types / gates:
@@ -149,7 +149,7 @@ Classification: Runtime-only
   * **Ischemia surrogate:** track per‑territory “ATP debt” = (spike work - supply budget). Sustained debt emits `tag.cull_neuron` with higher threshold; immediate `tag.prune_synapse` on the most costly edges first.
   * **Trauma:** external event marks a territory window; walkers flood it with `tag.cull_neuron/prune_synapse` at raised weights.
   * **Apoptosis:** integrate multi‑signal danger score; when above bound for `T_apop`, emit `tag.cull_neuron` (graceful teardown: detach in k‑sized chunks per tick).
-    All of these are **event‑sourced** and **territory‑bounded**—no dense scans.&#x20;
+    All of these are **event‑sourced** and **territory‑bounded**-no dense scans.&#x20;
 
 * **4) Synapse strengthening + decay (vectorized, class‑aware).**
   Maintain per‑edge eligibility $e_{ij}$ (EMA of pre×post correlation). Update rule each tick (GPU kernel, CSR‑local):
@@ -164,7 +164,7 @@ Classification: Runtime-only
   This is exactly the “use it or lose it” behavior you described, but on‑device and sparse.
 
 * **5) Sparse bridging / growth (budgeted).**
-  When fragmentation is detected **locally** (territory UF says components>1 within the territory’s active set), the actuator adds up to `bridge_budget` edges by sampling boundary nodes and **alias‑sampling** a handful of candidates—no S‑matrix, no global search. For class creation/growth, pull from a **per‑class free list** and connect within the territory until each new neuron’s `k_target` is met (or budget exhausted).
+  When fragmentation is detected **locally** (territory UF says components>1 within the territory’s active set), the actuator adds up to `bridge_budget` edges by sampling boundary nodes and **alias‑sampling** a handful of candidates-no S‑matrix, no global search. For class creation/growth, pull from a **per‑class free list** and connect within the territory until each new neuron’s `k_target` is met (or budget exhausted).
 
 * **6) No‑dense guarantee + guardrails.**
 
@@ -180,7 +180,7 @@ Classification: Runtime-only
 
 **Files/paths to create/modify (under your `fum_rt` tree)**
 
-* `fum_rt/core/types/neurons.py` — class enum + metadata:
+* `fum_rt/core/types/neurons.py` - class enum + metadata:
 
   ```python
   NeuronClass = Enum('NeuronClass','RELAY INHIBITORY INTEGRATOR PURKINJE')
@@ -191,20 +191,20 @@ Classification: Runtime-only
     PURKINJE:  dict(k_min=200, k_max=500, eta=0.002,decay=0.0005,rarity=0.01),
   }
   ```
-* `fum_rt/core/connectome_state.py` — add arrays on GPU: `neuron_class[i]`, `k_target[i]`, `eta_vec[i]`, `lambda_decay[i]`, and `free_slots[i]` (derived from k\_target - current degree).
-* `fum_rt/core/neuroplasticity/params.py` — **PlasticityManager** that maps `neuron_class[]` → full `eta_vec`, `lambda_vec` (re‑emit on neurogenesis/class change).
-* `fum_rt/core/walkers/tags.py` — canonical Tag schema + reason codes (e.g., `C3`, `SEMAPHORIN`, `EXCITOTOX`, `ATP_DEBT`, `TRAUMA`, `APOPTOSIS`).
-* `fum_rt/core/bus_topics.py` — `tag.*` topic names; `struct.actuator.*` result events.
-* `fum_rt/core/structural/scoreboard.py` — lock‑free per‑id **vote accumulator** with TTL decay (`score[i] ← γ·score[i] + Σw(events)`), exposing `above(th)` sets.
-* `fum_rt/core/structural/actuator_sparse.py` — **GDSPSparseActuator**:
+* `fum_rt/core/connectome_state.py` - add arrays on GPU: `neuron_class[i]`, `k_target[i]`, `eta_vec[i]`, `lambda_decay[i]`, and `free_slots[i]` (derived from k\_target - current degree).
+* `fum_rt/core/neuroplasticity/params.py` - **PlasticityManager** that maps `neuron_class[]` → full `eta_vec`, `lambda_vec` (re‑emit on neurogenesis/class change).
+* `fum_rt/core/walkers/tags.py` - canonical Tag schema + reason codes (e.g., `C3`, `SEMAPHORIN`, `EXCITOTOX`, `ATP_DEBT`, `TRAUMA`, `APOPTOSIS`).
+* `fum_rt/core/bus_topics.py` - `tag.*` topic names; `struct.actuator.*` result events.
+* `fum_rt/core/structural/scoreboard.py` - lock‑free per‑id **vote accumulator** with TTL decay (`score[i] ← γ·score[i] + Σw(events)`), exposing `above(th)` sets.
+* `fum_rt/core/structural/actuator_sparse.py` - **GDSPSparseActuator**:
 
   * `apply_prune(edges_subset, prune_budget)`
   * `apply_grow(neuron_ids, k_budget, territory_id)`
   * `apply_bridge(territory_id, bridge_budget)` (boundary sampling, alias for candidates)
   * `apply_cull(neuron_ids, k_budget)`
     All kernels operate on CSR lists for touched indices only.
-* `fum_rt/runtime/loop/main.py` — integrate: read `scoreboard.above(th)` per category each tick → call actuator with budgets; update observability events. **No dense calls**; add assert guarding them.
-* `fum_rt/core/neuroplasticity/update.cu/hip` — update kernel to compute `w = (1-λ) w + η e M` for touched edges only (CSR traversal of active rows).
+* `fum_rt/runtime/loop/main.py` - integrate: read `scoreboard.above(th)` per category each tick → call actuator with budgets; update observability events. **No dense calls**; add assert guarding them.
+* `fum_rt/core/neuroplasticity/update.cu/hip` - update kernel to compute `w = (1-λ) w + η e M` for touched edges only (CSR traversal of active rows).
 
 **CLIs to run + seeds**
 
@@ -269,8 +269,8 @@ JSON events under `runs/<ts>/events.jsonl` with `struct.actuator.{pruned,bridged
 * **Heterogeneous neurons:** different k and plasticity by class; rare high‑k are supported but bounded.
 * **Sparse only:** all actions are event‑pointed and budgeted on CSR subsets. No scan‑all; dense path is hard‑blocked.
 * **Walker‑driven structure:** tags carry **reasoned biology analogs** (C3, semaphorin, excitotoxicity, ischemia), aggregated into quorum decisions.
-* **Use‑it‑or‑lose‑it:** strengthening with decay and pruning are explicit, measurable behaviors—not hand‑waving.
-  This is fully aligned with your architecture doc’s **O(1) write via bus events and emergent gating**—we just made the tags and actuators concrete and testable.&#x20;
+* **Use‑it‑or‑lose‑it:** strengthening with decay and pruning are explicit, measurable behaviors-not hand‑waving.
+  This is fully aligned with your architecture doc’s **O(1) write via bus events and emergent gating**-we just made the tags and actuators concrete and testable.&#x20;
 
 If you want, I’ll draft the 40‑line **GDSPSparseActuator** skeleton and the bus `Tag` schema next so your team can drop them in and run the acceptance tests immediately.
 
@@ -296,7 +296,7 @@ Ischemia surrogate: track per‑territory “ATP debt” = (spike work - supply 
 Trauma: external event marks a territory window; walkers flood it with tag.cull_neuron/prune_synapse at raised weights.
 
 Apoptosis: integrate multi‑signal danger score; when above bound for T_apop, emit tag.cull_neuron (graceful teardown: detach in k‑sized chunks per tick).
-All of these are event‑sourced and territory‑bounded—no dense scans."
+All of these are event‑sourced and territory‑bounded-no dense scans."
 
 
 ATP debt? is this void debt? don't start mixing up terminology now and confusing everything. What is the trauma trigger for? please do a better job at explaining remember that
@@ -311,13 +311,13 @@ Classification: Runtime-only
 
 * Explain the “Physiological → runtime triggers” cleanly.
 * Keep terminology consistent (no “ATP debt” vs “void debt” confusion).
-* Specify exactly how walkers tag, how tags become actions (prune/grow/cull), and how synapse strengthening/decay run—**all sparse, budgeted, no dense scans**.&#x20;
+* Specify exactly how walkers tag, how tags become actions (prune/grow/cull), and how synapse strengthening/decay run-**all sparse, budgeted, no dense scans**.&#x20;
 
 ---
 
 ## What that section **means** (plain, precise)
 
-* **Local scouts (walkers) don’t change the graph.** They **observe locally** and publish **Tag events** to the bus with exact IDs (pre, post, weight, reason, TTL). Bus makes writes **O(1)** because the action already has coordinates—no search. A CPU arbiter consumes tags and issues **targeted** “prune/grow/cull” to the GPU actuator with small per‑tick budgets. **No dense scans.**&#x20;
+* **Local scouts (walkers) don’t change the graph.** They **observe locally** and publish **Tag events** to the bus with exact IDs (pre, post, weight, reason, TTL). Bus makes writes **O(1)** because the action already has coordinates-no search. A CPU arbiter consumes tags and issues **targeted** “prune/grow/cull” to the GPU actuator with small per‑tick budgets. **No dense scans.**&#x20;
 
 * **“Physiological → runtime”** = a **mapping** from biology → concrete, sparse, event‑driven rules:
 
@@ -409,7 +409,7 @@ $$
 * **Energy:** `metab.debt.T` (runtime homeostasis) **≠** `sie.void_debt` (SIE objective). Keep both, never intermix fields.&#x20;
 * **Tags from walkers:** `tag.prune_synapse`, `tag.grow_synapse`, `tag.cull_neuron`, `tag.C3`, `tag.retract_axonal_branch`.
 * **Actuator results:** `struct.pruned`, `struct.grown`, `struct.culled`, `struct.bridged`.
-* **All events carry IDs** (pre, post, nid, territory\_id) so the arbiter/actuator never search—**O(1) writes**.&#x20;
+* **All events carry IDs** (pre, post, nid, territory\_id) so the arbiter/actuator never search-**O(1) writes**.&#x20;
 
 ---
 
@@ -417,12 +417,12 @@ $$
 
 **Files/paths**
 
-* `fum_rt/core/walkers/tags.py` — **Tag schema** (reasons, TTL).
-* `fum_rt/core/structural/scoreboard.py` — per‑edge/per‑neuron **vote accumulator** with decay.
-* `fum_rt/core/walkers/{use_tracker.py, complement_tagger.py, microglia.py, boundary_retraction.py, excitotox_sentinel.py, metabolic_auditor.py}` — each emits tags above.
-* `fum_rt/core/structural/actuator_sparse.py` — applies (prune/grow/bridge/cull) **only** on IDs from scoreboard; per‑tick budgets.
-* `fum_rt/runtime/loop/main.py` — collect `scoreboard.above(θ)` per category → call actuator. **No dense codepaths** (assert if called).
-* `fum_rt/core/neuroplasticity/update_kernel.cu|hip` — implement `w ← (1-λ)w + η e M` for touched edges.
+* `fum_rt/core/walkers/tags.py` - **Tag schema** (reasons, TTL).
+* `fum_rt/core/structural/scoreboard.py` - per‑edge/per‑neuron **vote accumulator** with decay.
+* `fum_rt/core/walkers/{use_tracker.py, complement_tagger.py, microglia.py, boundary_retraction.py, excitotox_sentinel.py, metabolic_auditor.py}` - each emits tags above.
+* `fum_rt/core/structural/actuator_sparse.py` - applies (prune/grow/bridge/cull) **only** on IDs from scoreboard; per‑tick budgets.
+* `fum_rt/runtime/loop/main.py` - collect `scoreboard.above(θ)` per category → call actuator. **No dense codepaths** (assert if called).
+* `fum_rt/core/neuroplasticity/update_kernel.cu|hip` - implement `w ← (1-λ)w + η e M` for touched edges.
 
 **CLIs**
 

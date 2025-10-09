@@ -2,11 +2,11 @@
 
 ## 1) Title & date
 
-**Multipartite Coordination Depth (MCD) in Agency Fields** — 2025-10-09
+**Multipartite Coordination Depth (MCD) in Agency Fields** - 2025-10-09
 
 ## 2) Proposers
 
-Justin K. Lietz — VDM Project
+Justin K. Lietz - VDM Project
 
 ## 3) Abstract
 
@@ -134,12 +134,12 @@ All figures include **numeric captions** (CDI, CIs, gate verdicts) and have CSV/
 
 **Code layout**
 
-* `Derivation/code/physics/agency/coord_depth/run_coord_depth.py` — CLI runner (`--spec path.json`)
-* `Derivation/code/physics/agency/coord_depth/block_partition.py` — tiling utilities
-* `Derivation/code/physics/agency/coord_depth/perturb_ops.py` — blockwise phase-scramble + local-match checks
+* `Derivation/code/physics/agency/coord_depth/run_coord_depth.py` - CLI runner (`--spec path.json`)
+* `Derivation/code/physics/agency/coord_depth/block_partition.py` - tiling utilities
+* `Derivation/code/physics/agency/coord_depth/perturb_ops.py` - blockwise phase-scramble + local-match checks
 * Reuse I/O, bootstrap, and discretization helpers from `Derivation/code/common/`
 
-**StepSpec (example)** — `Derivation/specs/agency/coord_depth.v1b.json`
+**StepSpec (example)** - `Derivation/specs/agency/coord_depth.v1b.json`
 
 ```json
 {

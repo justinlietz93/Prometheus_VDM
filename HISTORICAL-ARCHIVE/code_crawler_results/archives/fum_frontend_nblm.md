@@ -158,10 +158,10 @@ frontend/
 FUM Runtime Frontend (modularized)
 
 Modules:
-- fs_utils: filesystem helpers (runs listing, JSON IO) — re-exported from utilities.fs_utils
-- tail: tailing JSONL with byte offsets — re-exported from utilities.tail
-- series: streaming metrics buffers and helpers — re-exported from models.series
-- process_manager: launch/stop runtime process from the UI — re-exported from services.process_manager
+- fs_utils: filesystem helpers (runs listing, JSON IO) - re-exported from utilities.fs_utils
+- tail: tailing JSONL with byte offsets - re-exported from utilities.tail
+- series: streaming metrics buffers and helpers - re-exported from models.series
+- process_manager: launch/stop runtime process from the UI - re-exported from services.process_manager
 - app: Dash app entrypoint (build_app, main)
 """
 
@@ -300,7 +300,7 @@ def build_app(runs_root: str) -> Dash:
         ]
     ]
     profile_options = [{"label": os.path.basename(p), "value": p} for p in list_profiles()]
-    # Data feed files — bound and non-recursive to avoid heavy startup scans
+    # Data feed files - bound and non-recursive to avoid heavy startup scans
     try:
         DATA_SCAN_MAX = int(os.getenv("DASH_DATA_SCAN_MAX", "300"))
     except Exception:
@@ -339,7 +339,7 @@ def build_app(runs_root: str) -> Dash:
                 ],
                 className="grid",
             ),
-            # Global UI poll — environment-tunable and disable-able
+            # Global UI poll - environment-tunable and disable-able
             # DASH_POLL_MS: >0 interval in ms (default 1200); <=0 disables polling
             dcc.Interval(
                 id="poll",
@@ -949,7 +949,7 @@ def register_file_picker_common(app, prefix: str, target_id: str, project_root: 
         except Exception:
             crumbs = []
 
-        # Metadata statusbar — centralized with robust gating (only show file when it belongs to the selected dir)
+        # Metadata statusbar - centralized with robust gating (only show file when it belongs to the selected dir)
         fsel = (file_sel or "").strip()
         try:
             s_abs = os.path.abspath(s) if s else ""
@@ -2511,7 +2511,7 @@ def perf_card():
                             dcc.Checklist(
                                 id="ui-charts-http",
                                 options=[{"label": " On", "value": "on"}],
-                                value=[],  # default OFF — falls back to bounded file tails if HTTP not ready
+                                value=[],  # default OFF - falls back to bounded file tails if HTTP not ready
                             ),
                         ]
                     ),
@@ -3881,7 +3881,7 @@ def compute_dashboard_figures(run_dir: str, state: Optional[SeriesState], ui: Op
         go.Scattergl(x=t, y=entro, name="Connectome entropy", yaxis="y6", line=dict(width=1, color=C["entropy"]))
     ))
     fig1.update_layout(
-        title=f"Dashboard — {os.path.basename(run_dir)}",
+        title=f"Dashboard - {os.path.basename(run_dir)}",
         paper_bgcolor="#10151c",
         plot_bgcolor="#0f141a",
         font=dict(color="#cfd7e3"),
@@ -4106,7 +4106,7 @@ def list_dir(path: str, exts: List[str] | None = None, hide_dotfiles: bool = Tru
         hide_dotfiles: When True, hide entries whose name starts with '.'
 
     Returns:
-        (subdirs, files) — both sorted, names only (no absolute paths)
+        (subdirs, files) - both sorted, names only (no absolute paths)
 
     Policy:
         - No scans in 'core/' or 'maps/' at any depth. If the resolved path contains either
@@ -4285,9 +4285,9 @@ def file_status_text(file_path: str) -> str:
     base = os.path.basename(file_path or "")
     try:
         size_b = os.path.getsize(file_path) if os.path.isfile(file_path) else 0
-        return f"File: {base} — Size: {human_size(size_b)}"
+        return f"File: {base} - Size: {human_size(size_b)}"
     except Exception:
-        return f"File: {base} — Size: unknown"
+        return f"File: {base} - Size: unknown"
 
 
 def directory_status_text(dir_path: str, exts: List[str] | None = None, hide_dotfiles: bool = True) -> str:
@@ -4564,7 +4564,7 @@ def build_debug_app(runs_root: str) -> Dash:
     # Layout: runs root input + refresh button, run-dir dropdown, poll interval, component toggles, stats and graphs
     app.layout = html.Div(
         [
-            html.H3("FUM Debug UI — Minimal"),
+            html.H3("FUM Debug UI - Minimal"),
             html.Div(
                 [
                     html.Label("Runs root"),
@@ -5113,7 +5113,7 @@ def void_driven_layout(W, iterations=50, dim=3):
     weights = np.asarray(weights, dtype=float)
 
     for t_idx in range(iterations):
-        # Repulsion (adaptive) — base global void pressure
+        # Repulsion (adaptive) - base global void pressure
         if num_nodes <= 800:
             delta = pos[:, np.newaxis, :] - pos[np.newaxis, :, :]
             distance = np.linalg.norm(delta, axis=-1) + 1e-9
@@ -6920,9 +6920,9 @@ def tail_jsonl_bytes(path: str, last_size: int) -> Tuple[List[Any], int]:
       new_size: new file size to store for the next call
 
     Environment (all optional):
-    - FUM_UI_TAIL_CAP_BYTES         (default 1_048_576)  — initial/rotation cap window
-    - FUM_UI_TAIL_MAX_DELTA_BYTES   (default 131_072)    — max bytes read per tick even if more appended
-    - FUM_UI_TAIL_MAX_LINES         (default 600)        — max lines parsed per tick from the new chunk
+    - FUM_UI_TAIL_CAP_BYTES         (default 1_048_576)  - initial/rotation cap window
+    - FUM_UI_TAIL_MAX_DELTA_BYTES   (default 131_072)    - max bytes read per tick even if more appended
+    - FUM_UI_TAIL_MAX_LINES         (default 600)        - max lines parsed per tick from the new chunk
 
     Notes:
     - These bounds are UI-only to avoid lag on very large or fast-growing files; older appended

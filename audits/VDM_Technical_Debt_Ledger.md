@@ -122,10 +122,10 @@ Drift example: `derivation/.../void_functions.py` mirrors Δα/Δω logic but wi
 
 | area | tests present? | files | coverage notes | severity |
 | --- | --- | --- | --- | --- |
-| GDSP actuator | N | — | `rg "GDSP" fum_rt/tests` returned none.【2b40c3†L1-L2】 Critical logic untested. | High |
-| Gate hysteresis (speak/B1) | N | — | `rg "hysteresis" fum_rt/tests` empty.【a89eb5†L1-L2】 | Med |
-| Locality guard / adjacency budget | N | — | `rg "locality" fum_rt/tests` empty.【4c88a4†L1-L2】 | Med |
-| ADC updates & announcements | N | — | `rg "ADC" fum_rt/tests` empty.【335d4f†L1-L2】 | Med |
+| GDSP actuator | N | - | `rg "GDSP" fum_rt/tests` returned none.【2b40c3†L1-L2】 Critical logic untested. | High |
+| Gate hysteresis (speak/B1) | N | - | `rg "hysteresis" fum_rt/tests` empty.【a89eb5†L1-L2】 | Med |
+| Locality guard / adjacency budget | N | - | `rg "locality" fum_rt/tests` empty.【4c88a4†L1-L2】 | Med |
+| ADC updates & announcements | N | - | `rg "ADC" fum_rt/tests` empty.【335d4f†L1-L2】 | Med |
 | Void walker runner budget | Y | `fum_rt/tests/core/test_runner_budget.py` enforces one-shot & time budget.【F:fum_rt/tests/core/test_runner_budget.py†L6-L106】 | - | Low |
 
 ## 11) Viz & Tooling Debt
@@ -148,16 +148,16 @@ Drift example: `derivation/.../void_functions.py` mirrors Δα/Δω logic but wi
 ## 13) Consolidated Ledger & Prioritized Actions
 
 **Top-10 debt items (Severity×ROI/Effort)**
-1. Dense connectome rebuild each tick — `fum_rt/core/connectome.py` — O(N²) tick cost blocks scale — Effort: L — Owner: Core Runtime
-2. GDSP actuator silent failure — `fum_rt/runtime/loop/main.py` — Actuator can’t be trusted without logs — Effort: M — Owner: Runtime Loop
-3. Duplicate void dynamics libraries — multiple files — Risk of drift in physics constants — Effort: M — Owner: Advanced Math
-4. Memory steering duplication — `fum_rt/physics/...` & `derivation/...` — Double maintenance, inconsistent fixes — Effort: M — Owner: Physics Team
-5. RNG fallback noise in void adapter — `fum_rt/core/void_dynamics_adapter.py` — Breaks reproducibility baseline — Effort: M — Owner: Core Runtime
-6. Scout flag sprawl — `fum_rt/runtime/loop/main.py` — Hard to audit runtime behavior toggles — Effort: M — Owner: Runtime Loop
-7. Frontend visualizer dense conversions — `fum_rt/frontend/plugins/.../fum_visualizer.py` — UI stalls large runs — Effort: L — Owner: Viz Team
-8. Structural plasticity RNG w/out seed — `fum_rt/fum_advanced_math/.../apply_structural_plasticity.py` — Non-deterministic experiments — Effort: M — Owner: Advanced Math
-9. Status HTTP unauthenticated — `fum_rt/runtime/helpers/status_http.py` — Potential data leak if exposed — Effort: S — Owner: Runtime Ops
-10. Missing GDSP tests — `fum_rt/tests` — Actuator regressions undetected — Effort: M — Owner: QA
+1. Dense connectome rebuild each tick - `fum_rt/core/connectome.py` - O(N²) tick cost blocks scale - Effort: L - Owner: Core Runtime
+2. GDSP actuator silent failure - `fum_rt/runtime/loop/main.py` - Actuator can’t be trusted without logs - Effort: M - Owner: Runtime Loop
+3. Duplicate void dynamics libraries - multiple files - Risk of drift in physics constants - Effort: M - Owner: Advanced Math
+4. Memory steering duplication - `fum_rt/physics/...` & `derivation/...` - Double maintenance, inconsistent fixes - Effort: M - Owner: Physics Team
+5. RNG fallback noise in void adapter - `fum_rt/core/void_dynamics_adapter.py` - Breaks reproducibility baseline - Effort: M - Owner: Core Runtime
+6. Scout flag sprawl - `fum_rt/runtime/loop/main.py` - Hard to audit runtime behavior toggles - Effort: M - Owner: Runtime Loop
+7. Frontend visualizer dense conversions - `fum_rt/frontend/plugins/.../fum_visualizer.py` - UI stalls large runs - Effort: L - Owner: Viz Team
+8. Structural plasticity RNG w/out seed - `fum_rt/fum_advanced_math/.../apply_structural_plasticity.py` - Non-deterministic experiments - Effort: M - Owner: Advanced Math
+9. Status HTTP unauthenticated - `fum_rt/runtime/helpers/status_http.py` - Potential data leak if exposed - Effort: S - Owner: Runtime Ops
+10. Missing GDSP tests - `fum_rt/tests` - Actuator regressions undetected - Effort: M - Owner: QA
 
 **Merge candidates**
 - Collapse void dynamics & domain modulation into `fum_rt/fum_advanced_math/void_dynamics/` and import from derivation notebooks to avoid triple maintenance.【F:fum_rt/fum_advanced_math/void_dynamics/Void_Equations.py†L35-L119】

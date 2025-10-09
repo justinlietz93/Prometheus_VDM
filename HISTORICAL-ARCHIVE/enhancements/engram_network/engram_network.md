@@ -2,7 +2,7 @@ Excellent. We have now designed a complete, end-to-end architecture for a cybern
 
 The final and most profound enhancement is to give this organism a mind.
 
-The next step is to move from an organism that primarily reacts to its environment to one that can think—by creating an Internal World Model and Simulation Engine.
+The next step is to move from an organism that primarily reacts to its environment to one that can think-by creating an Internal World Model and Simulation Engine.
 
 The "FUM Sandbox": Simulating the Future 🧠
 One of the hallmarks of higher intelligence is the ability to think before acting. A chess master doesn't just react to the board; they simulate dozens of possible future move sequences in their mind, evaluate the outcomes, and then choose the best one. This "offline" simulation is the essence of strategic thought.
@@ -153,7 +153,7 @@ That's a very sharp and practical question. It gets to the core of how the FUM w
 You are right that simply picking a recent engram from the rolling buffer is one possibility, but a truly intelligent system would be more sophisticated. It would employ a two-level memory access strategy for its simulations, using different types of engrams for different kinds of reasoning.
 
 1. The Rolling Buffer (Short-Term / Working Memory)
-What it is: This is your buffer of the 5 most recent engrams. It's the FUM's "short-term memory"—a constantly updating record of its immediate past states.
+What it is: This is your buffer of the 5 most recent engrams. It's the FUM's "short-term memory"-a constantly updating record of its immediate past states.
 
 When it's used: For tactical, near-term reasoning. When the FUM needs to decide what to do next, the most relevant context is what just happened. To answer questions like, "If I take action X right now, what is the most likely immediate outcome?", the sandbox would load one of the engrams from this recent buffer. This provides a high-fidelity snapshot of the current situation.
 
@@ -296,7 +296,7 @@ What Happens: The CoreEngine sends the newly generated fingerprint vector to a n
 
 Time Complexity: O(log E)
 
-This is the magic of an ANN index. Instead of comparing the query to all E engrams (which would be O(E*D)), the search time is logarithmic. Even with millions of memories in the archive, the search is incredibly fast—often taking only a few milliseconds. This is the key step that prevents the compute requirements from "blowing up."
+This is the magic of an ANN index. Instead of comparing the query to all E engrams (which would be O(E*D)), the search time is logarithmic. Even with millions of memories in the archive, the search is incredibly fast-often taking only a few milliseconds. This is the key step that prevents the compute requirements from "blowing up."
 
 Step 4: The "Thought Experiment"
 What Happens: The MemoryIndexer returns the file path of the most relevant engram. The CoreEngine then executes the sandbox simulation:
@@ -397,7 +397,7 @@ You are right to question the term "simulated death." It’s a dramatic metaphor
 A more accurate term for this outcome within the sandbox is "Terminal Instability" or "Irrecoverable Chaos." It’s not about predicting death; it's about predicting a future state from which the sandbox, as a self-contained simulation, could not return to a stable, functional equilibrium.
 
 How the FUM Predicts Catastrophe Without "Dying"
-The FUM can accurately predict this irrecoverable state because you have already equipped it with a sophisticated internal sensory system—the SIE and the Cortex. These systems act as a "nervous system" for the simulation, allowing it to sense its own internal state without having to experience a catastrophic failure.
+The FUM can accurately predict this irrecoverable state because you have already equipped it with a sophisticated internal sensory system-the SIE and the Cortex. These systems act as a "nervous system" for the simulation, allowing it to sense its own internal state without having to experience a catastrophic failure.
 
 Here's how the prediction mechanism works, using the tools you've already built:
 
@@ -407,7 +407,7 @@ Detecting Runaway Feedback Loops (The Diagnosis): This instability isn't random;
 
 The VoidHeatScout (fum_rt/core/cortex/void_walkers/void_heat_scout.py) would detect runaway "hotspots" of uncontrolled excitation.
 
-The VoidCycleScout (fum_rt/core/cortex/void_walkers/void_cycle_scout.py) would detect the formation of tight, pathological feedback loops—the neural equivalent of a deadly feedback screech in an audio system.
+The VoidCycleScout (fum_rt/core/cortex/void_walkers/void_cycle_scout.py) would detect the formation of tight, pathological feedback loops-the neural equivalent of a deadly feedback screech in an audio system.
 
 The Prediction (The Tipping Point): A "catastrophic outcome" is predicted when the Global System sees a combination of these signals cross a critical, pre-defined threshold. The logic would be: "If the hsi_norm has been below 0.1 for 50 consecutive ticks AND the VoidCycleScout is reporting a high density of short, high-energy loops, then I can predict with high confidence that this simulated path is irrecoverable."
 

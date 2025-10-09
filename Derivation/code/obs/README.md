@@ -1,4 +1,4 @@
-# obs/ — observability helpers (read-only diagnostics)
+# obs/ - observability helpers (read-only diagnostics)
 
 Purpose
 

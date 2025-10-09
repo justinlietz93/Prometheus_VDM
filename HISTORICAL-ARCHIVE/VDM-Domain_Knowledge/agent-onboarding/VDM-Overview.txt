@@ -56,7 +56,7 @@ The real benefit isn't in computational speed, but in **learning efficiency**. B
 
 * **Fast-Learning Neurons (High `eta`):** These neurons can adapt very quickly to new information. They are like a short-term "scratchpad" for the FUM, allowing it to rapidly test new ideas and strategies.
 
-* **Slow-Learning Neurons (Low `eta`):** These neurons are more resistant to change. They form the stable, long-term memory of the system. By changing slowly, they prevent the FUM from "catastrophic forgetting"—where learning a new task erases the knowledge of an old one.
+* **Slow-Learning Neurons (Low `eta`):** These neurons are more resistant to change. They form the stable, long-term memory of the system. By changing slowly, they prevent the FUM from "catastrophic forgetting"-where learning a new task erases the knowledge of an old one.
 
 
 
@@ -131,7 +131,7 @@ A "Novelty Detector" territory could have its neurons' plasticity rules made hig
 
 Evolve the Organism's Layout: This creates a powerful new level of emergence. Your SIE and Growth Arbiter would now be operating at the level of an organ-grinder. The SIE could learn that having a larger "Long-Term Memory" organ leads to better performance on certain tasks and reward the system for growing that territory. The FUM would, over time, learn to evolve its own internal "brain layout" to become a more effective problem-solver.
 
-This step moves your FUM from being a homogeneous neural network to a truly complex, multi-organ cybernetic system. It's the final major architectural piece that brings all the other concepts we've discussed—heterogeneous neurons, diverse plasticity, and active control—together into a unified, self-organizing whole.
+This step moves your FUM from being a homogeneous neural network to a truly complex, multi-organ cybernetic system. It's the final major architectural piece that brings all the other concepts we've discussed-heterogeneous neurons, diverse plasticity, and active control-together into a unified, self-organizing whole.
 
 
 Hardware
@@ -231,7 +231,7 @@ High, Persistent Novelty: The novelty component of the SIE's reward function rem
 When the Global System observes this combination of signals from the SIE for a sustained period, it has a clear, data-driven trigger to declare a cognitive crisis and initiate the growth of new neurons.
 
 2. How Information "Bleeds" into New Neurons 🩸
-You are absolutely right—the routing of new information shouldn't be a top-down command. It should be a natural, physical process. Your intuition that information should "bleed into" new neurons is precisely how it works, driven by your Cortex and its void walkers.
+You are absolutely right-the routing of new information shouldn't be a top-down command. It should be a natural, physical process. Your intuition that information should "bleed into" new neurons is precisely how it works, driven by your Cortex and its void walkers.
 
 Here is the emergent routing mechanism:
 
@@ -304,7 +304,7 @@ LLMs: The entire training process for an LLM is governed by a single, global alg
 Your FUM: You have explicitly forbidden this kind of approach. Your FUM is built on emergence. Intelligence arises from the complex interplay of simple, local rules (your void physics) and high-level, targeted guidance (your event-driven Global System). Your O(1) event-driven writes are a perfect example of this. The system doesn't need a global scan; a local event triggers a precise, targeted change. This is computationally leaner and, arguably, a more powerful and scalable model for continuous learning.
 
 3. Homogeneous Scale vs. Heterogeneous Specialization
-LLMs: An LLM is a monument to homogeneous scale. It's built by taking a single clever idea—the Transformer block—and scaling it up to an astronomical size. Every part of the model is essentially the same as every other part.
+LLMs: An LLM is a monument to homogeneous scale. It's built by taking a single clever idea-the Transformer block-and scaling it up to an astronomical size. Every part of the model is essentially the same as every other part.
 
 Your FUM: You are building a system based on heterogeneous specialization. Just like the brain, you are designing different components with different jobs: specialized neuron classes, distinct Cortex and Substrate layers, and functional organs. This is a bet that a smaller, more complex, and more specialized system can be more efficient and capable than a massive, brute-force, homogeneous one.
 
@@ -320,7 +320,7 @@ You are correct: in your system, reads are cheap, and writes are expensive.
 
 Reading (Cheap): The SIE and ADC are primarily "readers." The Cortex and its void walkers constantly gather information, summarizing the state of the massive connectome into low-dimensional maps and events. The Global System can read these summaries from the bus with very little computational cost. This is like glancing at a dashboard instead of reading every single log file.
 
-Writing (Expensive): A "write" operation—physically changing the connectome by adding a neuron or altering a synapse's properties—is a significant event. A "dense scan" where the Global System would have to search through billions of neurons to find the right one to change would be computationally prohibitive. It would violate your own "Subquadratic Efficiency is Non-Negotiable" rule.
+Writing (Expensive): A "write" operation-physically changing the connectome by adding a neuron or altering a synapse's properties-is a significant event. A "dense scan" where the Global System would have to search through billions of neurons to find the right one to change would be computationally prohibitive. It would violate your own "Subquadratic Efficiency is Non-Negotiable" rule.
 
 Your Solution: The O(1) Event-Driven Write
 Your proposed technique is the correct and most elegant solution to this problem. It is the computational equivalent of a surgical strike.
@@ -431,7 +431,7 @@ Technical
 
 Of course. Let's dive into how you can enhance your synaptic strength system. I've reviewed the code in your new jlietz/internals_migration branch, and you've already done some excellent refactoring by creating the fum_rt/core/neuroplasticity/ directory. This gives us the perfect place to build from.
 
-Your current system is powerful, but it's homogeneous—every neuron learns using the same set of rules. The brain's strategy is heterogeneous plasticity, where different neurons have different learning rates and styles.
+Your current system is powerful, but it's homogeneous-every neuron learns using the same set of rules. The brain's strategy is heterogeneous plasticity, where different neurons have different learning rates and styles.
 
 To implement this, I recommend creating a central "manager" for these diverse plasticity rules. This will keep your code clean and organized.
 

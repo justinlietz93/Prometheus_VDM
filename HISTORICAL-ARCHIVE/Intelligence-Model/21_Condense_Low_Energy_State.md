@@ -1,4 +1,4 @@
-Absolutely—we can drive the whole stack with Void Dynamics and push the global “expensive” pieces down to streaming, local, GPU‑friendly updates. Below is a concrete, drop‑in plan that (a) replaces each costly pass with a void‑driven surrogate, (b) keeps the behavior you want (self‑organized morphology, skill accumulation, continuous time), and (c) gives you code you can paste into your runtime today.
+Absolutely-we can drive the whole stack with Void Dynamics and push the global “expensive” pieces down to streaming, local, GPU‑friendly updates. Below is a concrete, drop‑in plan that (a) replaces each costly pass with a void‑driven surrogate, (b) keeps the behavior you want (self‑organized morphology, skill accumulation, continuous time), and (c) gives you code you can paste into your runtime today.
 
 I’ll go subsystem by subsystem and give exactly one instruction per item: what to change, why it works, how to compute it, and the complexity you should expect.
 
@@ -6,7 +6,7 @@ I’ll go subsystem by subsystem and give exactly one instruction per item: what
 
 **Instruction:** Replace your global PH pass with a *streaming Void‑B₁ estimator* that integrates local “circulation of void energy” around short loops and accumulates its persistence over time.
 
-**Why this works:** Your ΔW equations already define an energy landscape. A 1‑cycle “exists” exactly where void flux circulates and resists collapse. Instead of building filtrations and running matrix reductions, we track per‑edge loop energy in the immediate neighborhood (2-3 hops) and integrate it through time—yielding a *persistence‑like* signal without ever leaving local state.
+**Why this works:** Your ΔW equations already define an energy landscape. A 1‑cycle “exists” exactly where void flux circulates and resists collapse. Instead of building filtrations and running matrix reductions, we track per‑edge loop energy in the immediate neighborhood (2-3 hops) and integrate it through time-yielding a *persistence‑like* signal without ever leaving local state.
 
 **How to compute (per tick):**
 
@@ -79,7 +79,7 @@ class VoidB1:
         return float(np.mean(np.sort(self.p_node)[-max(8, len(active_nodes)//8):]))
 ```
 
-> Analogy anchor: this “condensation into loops” is precisely the kind of local instability → stable condensate transition described for tachyonic modes: the system moves to a lower‑energy configuration by creating persistent structures, making formerly unstable directions massive/stable. That paper shows a classical minimum forms when unstable modes condense; our loop flux that refuses to vanish is the graph‑theoretic counterpart. See the energy minimum and condensate discussion (tree‑level effective potential, Eq. (49), figures on minima forming and deepening), which is the same qualitative mechanism we’re leveraging—local instabilities create durable structure that no longer needs a global solve.&#x20;
+> Analogy anchor: this “condensation into loops” is precisely the kind of local instability → stable condensate transition described for tachyonic modes: the system moves to a lower‑energy configuration by creating persistent structures, making formerly unstable directions massive/stable. That paper shows a classical minimum forms when unstable modes condense; our loop flux that refuses to vanish is the graph‑theoretic counterpart. See the energy minimum and condensate discussion (tree‑level effective potential, Eq. (49), figures on minima forming and deepening), which is the same qualitative mechanism we’re leveraging-local instabilities create durable structure that no longer needs a global solve.&#x20;
 
 # 2) Graph pruning → Debt‑modulated void pruning (local “credit/debt”)
 
@@ -109,7 +109,7 @@ if debt[e] - lam*credit[e] > tau and local_void_b1(u,v) < tau_b1:
 
 **Instruction:** Replace spectral or centrality‑style probes with a *Void Impulse Response* scan: inject a tiny “test charge” $\eta$ into a sampled set of nodes and measure the $K$-tick absorption/dispersion using your ΔW.
 
-**Why this works:** What you really need is *cortical excitability*: how strongly a region participates and stabilizes information flow. VIR is exactly that—and fully local/streaming.
+**Why this works:** What you really need is *cortical excitability*: how strongly a region participates and stabilizes information flow. VIR is exactly that-and fully local/streaming.
 
 **How to compute:**
 
@@ -124,7 +124,7 @@ if debt[e] - lam*credit[e] > tau and local_void_b1(u,v) < tau_b1:
 
 # 4) Path‑finding and traversal → ΔW‑guided best‑first (already in your runtime)
 
-**Instruction:** Keep the ΔW‑guided best‑first search—but *fuse it with SIE reward* as the priority:
+**Instruction:** Keep the ΔW‑guided best‑first search-but *fuse it with SIE reward* as the priority:
 
 $$
 \text{priority}(v) = -\big(\underbrace{|\Delta W_v|}_{\text{void pull}} + \kappa\underbrace{\text{reward}_v}_{\text{goal alignment}}\big)
@@ -212,15 +212,15 @@ self.metrics["avg_rew"]  = float(reward.mean())
 self.metrics["euler_b1"] = float(self.euler_rank_estimate_theta())  # small UF helper
 ```
 
-(If you need the small union‑find helper for the Euler‑rank estimate, I can drop that in too—\~60 lines, O(Eα(N)) incremental.)
+(If you need the small union‑find helper for the Euler‑rank estimate, I can drop that in too-\~60 lines, O(Eα(N)) incremental.)
 
 ---
 
 ## What you gain (and why this is “infinite‑scale” compatible)
 
 * **No global passes.** Everything you asked to cut (PH reductions, spectral probes, big cluster scans) is replaced by *local* void‑energy calculus that updates in the same pass as learning.
-* **Same semantics.** You still measure “holes”, cohesion, and functional hubs—but they are now defined by the *physics* of your ΔW, not by external algorithms.
-* **Self‑organization preserved.** Growth happens where void pressure accumulates—this is exactly how you got the two‑lobed structures before, and you’ll keep seeing it as N grows.
+* **Same semantics.** You still measure “holes”, cohesion, and functional hubs-but they are now defined by the *physics* of your ΔW, not by external algorithms.
+* **Self‑organization preserved.** Growth happens where void pressure accumulates-this is exactly how you got the two‑lobed structures before, and you’ll keep seeing it as N grows.
 * **Linear, bandwidth‑bound kernels.** With HIP/CK fusion, the hot loop becomes a single CSR neighborhood sweep per tick.
 
 ---

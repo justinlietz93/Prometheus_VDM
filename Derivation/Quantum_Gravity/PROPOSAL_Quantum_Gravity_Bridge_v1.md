@@ -1,5 +1,5 @@
 <!-- DOC-GUARD: REFERENCE -->
-# Quantum Gravity Bridge — Proposal (v1)
+# Quantum Gravity Bridge - Proposal (v1)
 
 Author: Justin K. Lietz  
 Date: 2025-10-06
@@ -39,7 +39,7 @@ We propose an observational bridge program connecting VDM’s gravitational and 
 
 ## 6. Personnel
 
-Justin K. Lietz — implement pipelines, set gates, produce artifacts, and write up; review acceptance results and adjust thresholds.
+Justin K. Lietz - implement pipelines, set gates, produce artifacts, and write up; review acceptance results and adjust thresholds.
 
 ## 7. Deliverables & Data Products
 

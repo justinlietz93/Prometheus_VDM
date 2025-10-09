@@ -5,7 +5,7 @@
 
 Classification: RD | EFT‑quarantined (truth‑first audit)
 
-Provenance (hashes pin evidence artifacts; numeric gates are constraints any corollary must satisfy in that regime — they do NOT elevate claims to axioms):
+Provenance (hashes pin evidence artifacts; numeric gates are constraints any corollary must satisfy in that regime - they do NOT elevate claims to axioms):
 
 | Evidence Gate | Metric (PASS) | Artifact (figure/log) | SHA256 (truncated) |
 |---------------|---------------|------------------------|--------------------|
@@ -25,7 +25,7 @@ Allowed status tags (each non‑axiom statement MUST carry one):
 - `[LEMMA-PROVEN]` auxiliary proven step used in a theorem proof.
 - `[COROLLARY]` immediate logical consequence of proved theorems/lemmas.
 - `[CONJECTURE]` claim not yet proven from A1-A4; accompanied by explicit proof obligations.
-- `[NUM-EVIDENCE]` empirically supported numerical observation (figures/logs referenced) — never upgrades logical status.
+- `[NUM-EVIDENCE]` empirically supported numerical observation (figures/logs referenced) - never upgrades logical status.
 
 Unused / legacy labels (e.g. quarantine, heuristic) are deprecated in this document and replaced by the above.
 
@@ -66,7 +66,7 @@ Then, for solutions of (2) with periodic or no‑flux BCs (Axiom 5),
 \[\frac{d}{dt}\mathcal L[\phi] = \int_{\Omega} (D\nabla\phi\cdot\nabla\partial_t\phi + \hat V'(\phi)\partial_t\phi)\,dx = -\int_{\Omega} (\partial_t\phi)^2\,dx \le0.\]
 Proof (sketch): substitute \(\partial_t\phi=D\nabla^{2}\phi+f(\phi)\) into the time derivative of \(\mathcal L\); integrate the \(\nabla\phi\cdot\nabla\partial_t\phi\) term by parts and apply Axiom 5 (periodic or Neumann BCs) to kill the boundary term; use \(\hat V'=-f\) to combine terms into \(-\int (\partial_t\phi)^2\). All steps use standard Sobolev regularity provided by Axiom 2. □
 
-Assumption‑Purge Box — Theorem 2 [LIMIT-ASSUMPTIONS]
+Assumption‑Purge Box - Theorem 2 [LIMIT-ASSUMPTIONS]
 
 - BC: periodic or homogeneous Neumann (Axiom 5), stated here for each integration by parts.
 - Discrete→continuum replacement bounds: Lemma S.1 with \(C_{spatial}=d/12\); Lemma T.1 with \(C_{time}=1/12\).
@@ -135,7 +135,7 @@ Site‑wise (zero‑diffusion) reduction of (2) yields \(\dot W = rW-uW^{2}\) wi
 
 Neighbour sum identity: \(\sum_{j\in N(i)}(W_j-W_i)^2 = 2 a^{2}|\nabla\phi|^{2}+R_{spatial}(a)\) where Lemma S.1 bounds the remainder \(R_{spatial}(a)\). Hence per‑site energy term \(J a^{2}|\nabla\phi|^{2}\) up to controlled remainder and the inertial mapping coefficient \(c^{2}=2Ja^{2}\). Appears *only* in (1) / quarantined inertial contexts; never inside the gradient‑flow energy density.
 
-### Lemma S.1 (Spatial Taylor Remainder — Supremum Norm) [LEMMA-PROVEN]
+### Lemma S.1 (Spatial Taylor Remainder - Supremum Norm) [LEMMA-PROVEN]
 
 Let \(\phi\in C^{4}(\Omega)\) and consider the nearest‑neighbour lattice Laplacian
 \[\Delta_a\phi(x)=a^{-2}\sum_{j\in N(i)}(\phi(x+a e_j)-\phi(x))\]
@@ -143,7 +143,7 @@ in dimension \(d\) with mesh spacing \(a\). Then the remainder between discrete 
 \[\|\Delta_a\phi-\nabla^{2}\phi\|*{\infty} \le C*{spatial}\, a^{2}\, \|\nabla^{4}\phi\|*{\infty},\qquad C*{spatial}=\frac{d}{12}.\]
 Proof sketch: Expand \(\phi(x+a e_j)\) to fourth order in \(a\); cancellations produce the continuum Laplacian and the fourth derivative term yields the stated remainder with combinatorial factor \(d/12\).
 
-### Lemma T.1 (Temporal Taylor Remainder — Supremum Norm) [LEMMA-PROVEN]
+### Lemma T.1 (Temporal Taylor Remainder - Supremum Norm) [LEMMA-PROVEN]
 
 Let \(\phi\in C^{4}((0,T);X)\) with time derivatives bounded in supremum norm and define the central second difference
 \[\delta_{tt}\phi(t)=\frac{\phi(t+\Delta t)-2\phi(t)+\phi(t-\Delta t)}{\Delta t^{2}}.\]
@@ -185,9 +185,9 @@ Conditions (KPP / linear determinacy class):
 Statement: Under the above KPP conditions and the LIMIT‑ASSUMPTIONS, the asymptotic pulled front speed obeys the envelope formula
 \[c_{front}=2\sqrt{D r}.\]
 Proof sketch: linearize at \(\phi=0\), compute linear spreading speed via marginal stability (saddle point in Fourier‑Laplace plane), then use a comparison‑principle construction to show the nonlinear front is bounded above and below by appropriately translated linear evolution profiles; this pins the nonlinear front speed to the linear spreading value. Numeric gate (Section 0) provides empirical corroboration but does not replace the PDE comparison argument.
-Empirical corroboration: see Section 0 provenance — fig `derivation/code/outputs/figures/reaction_diffusion/rd_front_speed_experiment_20250824T053748Z.png` and log `derivation/code/outputs/logs/reaction_diffusion/rd_front_speed_experiment_20250824T053748Z.json` (SHA256: 5a4c630a… / 2062f64a…), reported rel‑err ≈ 4.7%, R²≈0.999996. (Numeric evidence is [NUM-EVIDENCE], not an axiom.)
+Empirical corroboration: see Section 0 provenance - fig `derivation/code/outputs/figures/reaction_diffusion/rd_front_speed_experiment_20250824T053748Z.png` and log `derivation/code/outputs/logs/reaction_diffusion/rd_front_speed_experiment_20250824T053748Z.json` (SHA256: 5a4c630a… / 2062f64a…), reported rel‑err ≈ 4.7%, R²≈0.999996. (Numeric evidence is [NUM-EVIDENCE], not an axiom.)
 
-Assumption‑Purge Box — U2 [LIMIT-ASSUMPTIONS]
+Assumption‑Purge Box - U2 [LIMIT-ASSUMPTIONS]
 
 - BC: periodic or homogeneous Neumann (Axiom 5) on the domain used for comparison‑principle arguments.
 - Linearization remainder control: Lemma S.1/T.1 bounds invoked for mapping discrete operators to continuum in the small‑amplitude leading edge.
@@ -214,7 +214,7 @@ Note: any field‑dependent metric \(g^{ij}(\phi)\) used in modeling must be int
 
 ### Corollary U6 (Inertial KG Representation) [COROLLARY][EFT-KG]
 
-Equation (1) is recovered from U3 factorization by formal identification of \(L\) with spatial operator and \(\kappa\) with effective mass \(m_{eff}\); strictly an *algebraic identity* contingent on oscillatory doublet introduction — not an independent dynamical postulate.
+Equation (1) is recovered from U3 factorization by formal identification of \(L\) with spatial operator and \(\kappa\) with effective mass \(m_{eff}\); strictly an *algebraic identity* contingent on oscillatory doublet introduction - not an independent dynamical postulate.
 
 ## Section 4. Units & Mapping (Single Source) [LEMMA-PROVEN]
 
@@ -222,7 +222,7 @@ Units with \([\phi]=1\): diffusion constant \(D\) has dimension \(L^{2}T^{-1}\);
 
 1. Discrete neighbour quadratic → continuum gradient: coefficient \(J a^{2}\).
 2. Inertial (1) spatial kinetic normalization: \(-\tfrac{c^{2}}{2}|\nabla\phi|^{2}\) with \(c^{2}=2Ja^{2}\) (only in [EFT-KG] contexts).
-3. Diffusion constant in (2): \(D=2J a^{2}\) (or \(D=(2J/z)a^{2}\) if coordination averaging used; specify variant explicitly if invoked — not mixed).
+3. Diffusion constant in (2): \(D=2J a^{2}\) (or \(D=(2J/z)a^{2}\) if coordination averaging used; specify variant explicitly if invoked - not mixed).
 Consistency Rule: The symbols \(c^{2}\) and \(D\) never appear simultaneously in the same primitive energy functional; mixing implies regime confusion. Parameter identification: when the overdamped scaling is derived directly from Axiom 4 with the potential of Axiom 3, one has \(u\equiv \alpha\) and \(\hat V \equiv V\) up to an additive constant; if coarse‑graining or bath coupling alters site nonlinearities so that \(u\ne \alpha\), tag [LIMIT-ASSUMPTIONS] and enforce \(\hat V'(\phi)=-f(\phi)\). Overdamped time‑scale: introduce \(\gamma_{\mathrm{eff}}\) with units \(T^{-1}\) for frictional coarse‑graining; then \(D=2Ja^{2}/\gamma_{\mathrm{eff}}\). Throughout RD statements we adopt \(\gamma_{\mathrm{eff}}\equiv 1\) (time measured in friction units).
 
 ### Discrete Noether & Energy (Short Note) [LEMMA-PROVEN]
@@ -283,7 +283,7 @@ Field‑dependent metric diffusion (nonlinear metric). [CONJECTURE]
 
 All contradictions currently: NONE observed (manual audit 2025‑08‑29). If future edits introduce conflicts, they must be resolved before asserting new theorems.
 
-## Section 12. Discrete flux / conserved-form search — status, evidence, and recipe [OPEN]
+## Section 12. Discrete flux / conserved-form search - status, evidence, and recipe [OPEN]
 
 Summary of findings
 
@@ -335,7 +335,7 @@ Status mapping to axioms & tags
 
 ## Ground truths & experiment log (compact)
 
-This short log records the concrete numeric and symbolic artifacts produced while searching for a discrete flux form and the operational conclusions derived from those artifacts. Keep this block small and authoritative — it is the traceable ground truth for the flux search work.
+This short log records the concrete numeric and symbolic artifacts produced while searching for a discrete flux form and the operational conclusions derived from those artifacts. Keep this block small and authoritative - it is the traceable ground truth for the flux search work.
 
 - Key numeric/smoke artifacts (deterministic sweep, fits, and diagnostics):
  	- Deterministic sweep JSONs (per-seed ΔQ samples):
@@ -348,15 +348,15 @@ This short log records the concrete numeric and symbolic artifacts produced whil
   		- `derivation/outputs/logs/conservation_law/grid_tau0_report.json` (tau0 sensitivity grid)
 
 - Analysis / helper scripts (in-repo):
- 	- `derivation/code/analysis/flux_sweep.py` — deterministic/random sweep harness; produces `flux_sweep_*.json` and saves sample W0/W1 pairs.
- 	- `derivation/code/analysis/flux_symbolic_full.py` — small‑N CAS solver (SymPy) to search polynomial ansatz; produced a parametric family with free symbols.
- 	- `derivation/code/analysis/fit_H_edge.py` — least-squares fitter for simple polynomial basis.
- 	- `derivation/code/analysis/build_and_test_H_candidate.py` — build symbolic H (fix free params) and test numerically against sweep samples.
- 	- `derivation/code/analysis/optimize_H_params.py` — numeric optimizer for free symbolic parameters with numeric protections.
- 	- `derivation/code/analysis/grid_tau0.py` — quick grid sensitivity scan for `tau0`.
+ 	- `derivation/code/analysis/flux_sweep.py` - deterministic/random sweep harness; produces `flux_sweep_*.json` and saves sample W0/W1 pairs.
+ 	- `derivation/code/analysis/flux_symbolic_full.py` - small‑N CAS solver (SymPy) to search polynomial ansatz; produced a parametric family with free symbols.
+ 	- `derivation/code/analysis/fit_H_edge.py` - least-squares fitter for simple polynomial basis.
+ 	- `derivation/code/analysis/build_and_test_H_candidate.py` - build symbolic H (fix free params) and test numerically against sweep samples.
+ 	- `derivation/code/analysis/optimize_H_params.py` - numeric optimizer for free symbolic parameters with numeric protections.
+ 	- `derivation/code/analysis/grid_tau0.py` - quick grid sensitivity scan for `tau0`.
 
 - Runtime test harness (non-invasive):
- 	- `fum_rt/core/tests/test_conservation_flux.py` — pytest that snapshots `Q` before/after a single `Connectome.step()` (dense mode in previous runs was avoided in later runs; scripts sample W directly where possible).
+ 	- `fum_rt/core/tests/test_conservation_flux.py` - pytest that snapshots `Q` before/after a single `Connectome.step()` (dense mode in previous runs was avoided in later runs; scripts sample W directly where possible).
 
 - Short, machine-verified ground truths (what we can assert now):
  1. The per-site logarithmic invariant Q(W,t)=ln(W)-ln(r-uW)-rt is an on-site first integral for the autonomous logistic ODE; its derivation and numeric validation are implemented in `derivation/code/physics/conservation_law/qfum_validate.py` and are recorded in the repository prior to this analysis. [THEOREM-PROVEN (ODE); NUM-EVIDENCE]
@@ -371,7 +371,7 @@ This short log records the concrete numeric and symbolic artifacts produced whil
 
 End of ground truths block. Additions to this block must reference produced artifact paths and numeric gates (SHA256) when claiming new evidence.
 
-## Section 13. Comparative Review (Validation‑Only) — external works mapped to axiom‑core
+## Section 13. Comparative Review (Validation‑Only) - external works mapped to axiom‑core
 
 All items below are strictly [NUM-EVIDENCE] and/or [CONJECTURE] with explicit [LIMIT-ASSUMPTIONS]. None alter Axioms 1-5 or introduce new primitives. They serve as runners and cross‑checks against our derived theorems/lemmas/gates.
 
@@ -448,7 +448,7 @@ Summary: None of the above modifies Axioms 1-5. They serve as validation targets
 
 ---
 
-## Section 14. Operational program — work order, verification gates, scaling, runners, risks
+## Section 14. Operational program - work order, verification gates, scaling, runners, risks
 
 ### 14.1 Work order (L0→L3 pipeline)
 
@@ -577,7 +577,7 @@ Findings (this document’s references only):
   - [test_conservation_flux.py](fum_rt/core/tests/test_conservation_flux.py:1), [README.md](fum_rt/core/README.md:1).
 Result: PASS. No broken or stale paths detected for the references used in this file. Audit timestamp (UTC): 2025‑08‑31T21:21:56Z.
 
-### 14.9 Asynchronous census engine (runtime‑only; RD) — bottom‑up updates with local hazards
+### 14.9 Asynchronous census engine (runtime‑only; RD) - bottom‑up updates with local hazards
 
 Purpose: event‑driven, sparse micro‑updates that respect Axiom 1 (locality), preserve RD Lyapunov monotonicity, and keep observability read‑only. No external schedulers are introduced; scheduling emerges from local activity.
 
@@ -623,7 +623,7 @@ Purpose: event‑driven, sparse micro‑updates that respect Axiom 1 (locality),
   - RD gates (U1 dispersion, U2 front speed) must pass under census scheduling; log SHA256 into Section 0.
   - H‑theorem gate: stepwise \(\Delta \mathcal L \le 0\) (no violations); diffusion mass conservation verified for \(f\equiv0\).
 
-## Section 15. Alignment Gap Matrix for NEEDS_REVIEW themes (Validation‑only) — mapping to axiom‑core
+## Section 15. Alignment Gap Matrix for NEEDS_REVIEW themes (Validation‑only) - mapping to axiom‑core
 
 All items below are external or phenomenological sources. They do not alter Axioms 1-5 or introduce primitives. Each entry records: Mapping (how to compare), Limits (assumptions to keep explicit), and Validation gates (runners/metrics). Status tags remain [NUM-EVIDENCE] and/or [CONJECTURE] with [LIMIT-ASSUMPTIONS].
 

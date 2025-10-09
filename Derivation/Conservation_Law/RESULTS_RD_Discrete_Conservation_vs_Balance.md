@@ -112,7 +112,7 @@ Controls:
 
 Contradiction report (Euler, Obj‑A class tested):
 
-- logs/rd_conservation/failed_runs/CONTRADICTION_REPORT.json — nullspace not found for the tested $Q'(W)$ up to quadratic with antisymmetric flux basis; fixed-step $\lvert\Delta S\rvert = \mathcal O(\Delta t^2)$.
+- logs/rd_conservation/failed_runs/CONTRADICTION_REPORT.json - nullspace not found for the tested $Q'(W)$ up to quadratic with antisymmetric flux basis; fixed-step $\lvert\Delta S\rvert = \mathcal O(\Delta t^2)$.
 
 ## **IX. Discussion / Analysis**
 

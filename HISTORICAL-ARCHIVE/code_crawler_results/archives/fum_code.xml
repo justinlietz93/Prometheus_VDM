@@ -543,10 +543,10 @@ python -m fum_rt.run_nexus --neurons 800 --hz 10 --domain biology_consciousness 
 ```
 
 Artifacts land in `runs/<timestamp>/`:
-- `events.jsonl`   — structured logs
-- `dashboard.png`  — metrics (updated)
-- `connectome.png` — graph snapshot (updated)
-- `state_<step>.h5` (or `.npz` fallback) — checkpointed engram state (see `--checkpoint-every`, `--checkpoint-keep`)
+- `events.jsonl`   - structured logs
+- `dashboard.png`  - metrics (updated)
+- `connectome.png` - graph snapshot (updated)
+- `state_<step>.h5` (or `.npz` fallback) - checkpointed engram state (see `--checkpoint-every`, `--checkpoint-keep`)
 
 ### Where to put your functions
 If your repo already contains `Void_Equations.py` and `Void_Debt_Modulation.py` on `PYTHONPATH`,
@@ -585,17 +585,17 @@ Domains supported (for auto‑modulation): `quantum`, `standard_model`, `dark_ma
 
 ## Layout
 
-- `fum_rt/run_nexus.py` — CLI entrypoint.
-- `fum_rt/nexus.py` — the real‑time orchestrator.
-- `fum_rt/core/void_dynamics_adapter.py` — loads your void functions or a minimal stub.
-- `fum_rt/core/connectome.py` — kNN‑ish graph + vectorized update step.
-- `fum_rt/core/metrics.py` — sparsity/cohesion/complexity metrics.
-- `fum_rt/core/visualizer.py` — dashboard & graph rendering (matplotlib).
-- `fum_rt/core/memory.py` — engram snapshots (.npz).
-- `fum_rt/io/ute.py` — Universal Temporal Encoder (stdin & synthetic tick sources).
-- `fum_rt/io/utd.py` — Universal Transduction Decoder (stdout & file sink).
-- `fum_rt/utils/logging_setup.py` — structured logger helper.
-- `requirements.txt` — only `numpy`, `networkx`, `matplotlib`.
+- `fum_rt/run_nexus.py` - CLI entrypoint.
+- `fum_rt/nexus.py` - the real‑time orchestrator.
+- `fum_rt/core/void_dynamics_adapter.py` - loads your void functions or a minimal stub.
+- `fum_rt/core/connectome.py` - kNN‑ish graph + vectorized update step.
+- `fum_rt/core/metrics.py` - sparsity/cohesion/complexity metrics.
+- `fum_rt/core/visualizer.py` - dashboard & graph rendering (matplotlib).
+- `fum_rt/core/memory.py` - engram snapshots (.npz).
+- `fum_rt/io/ute.py` - Universal Temporal Encoder (stdin & synthetic tick sources).
+- `fum_rt/io/utd.py` - Universal Transduction Decoder (stdout & file sink).
+- `fum_rt/utils/logging_setup.py` - structured logger helper.
+- `requirements.txt` - only `numpy`, `networkx`, `matplotlib`.
 
 All modules are tiny and documented so you can extend fast.
 
@@ -1093,7 +1093,7 @@ This research is protected under a dual-license to foster open academic
 research while ensuring commercial applications are aligned with the project's ethical principles. Commercial use requires written permission from Justin K. Lietz.
 See LICENSE file for full terms.
 
-Active Domain Cartography (ADC) — incremental, void-faithful reducer.
+Active Domain Cartography (ADC) - incremental, void-faithful reducer.
 
 Design
 - ADC consumes compact Observation events from the void-walker announcement bus.
@@ -1869,7 +1869,7 @@ _HTML = r'''<!doctype html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>FUM Control — Load Engram</title>
+  <title>FUM Control - Load Engram</title>
   <style>
     :root { --fg: #e6edf3; --bg: #0d1117; --muted: #8b949e; --accent: #2f81f7; --danger: #f85149; }
     body { background: var(--bg); color: var(--fg); font: 14px/1.4 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, sans-serif; margin: 0; padding: 0; }
@@ -1896,7 +1896,7 @@ _HTML = r'''<!doctype html>
 </head>
 <body>
   <div class="wrap">
-    <h1>FUM Control — Load Engram</h1>
+    <h1>FUM Control - Load Engram</h1>
     <p class="note">Run directory: <span class="mono" id="runDir"></span></p>
 
     <div class="card">
@@ -2119,7 +2119,7 @@ class ControlServer:
                 continue
 
         if self._server is None:
-            raise RuntimeError(f"Failed to bind control server on {host}:{port} (+15) — last error: {last_err}")
+            raise RuntimeError(f"Failed to bind control server on {host}:{port} (+15) - last error: {last_err}")
 
         t = threading.Thread(target=self._server.serve_forever, name="fum-control-server", daemon=True)
         t.start()
@@ -8396,7 +8396,7 @@ def compute_metrics(connectome):
 
 def connectome_entropy(connectome) -> float:
    """
-   Rule Ref: Blueprint Rule 4.1 — Global Pathological Structure (Connectome Entropy)
+   Rule Ref: Blueprint Rule 4.1 - Global Pathological Structure (Connectome Entropy)
    Formula: H = -Σ p_i log(p_i), where p is degree distribution of the active subgraph.
    Returns 0.0 when no active edges are present.
    """
@@ -11940,7 +11940,7 @@ class Visualizer:
                     _plt.subplots_adjust(bottom=0.16)
                 except Exception:
                     pass
-                fig.text(0.01, 0.01, f'Controls: {ctrl_url} — Load Engram', fontsize=9, color='#8b949e')
+                fig.text(0.01, 0.01, f'Controls: {ctrl_url} - Load Engram', fontsize=9, color='#8b949e')
         except Exception:
             pass
 
@@ -12439,10 +12439,10 @@ def get_domain_modulation(domain: str):
 FUM Runtime Frontend (modularized)
 
 Modules:
-- fs_utils: filesystem helpers (runs listing, JSON IO) — re-exported from utilities.fs_utils
-- tail: tailing JSONL with byte offsets — re-exported from utilities.tail
-- series: streaming metrics buffers and helpers — re-exported from models.series
-- process_manager: launch/stop runtime process from the UI — re-exported from services.process_manager
+- fs_utils: filesystem helpers (runs listing, JSON IO) - re-exported from utilities.fs_utils
+- tail: tailing JSONL with byte offsets - re-exported from utilities.tail
+- series: streaming metrics buffers and helpers - re-exported from models.series
+- process_manager: launch/stop runtime process from the UI - re-exported from services.process_manager
 - app: Dash app entrypoint (build_app, main)
 """
 
@@ -12581,7 +12581,7 @@ def build_app(runs_root: str) -> Dash:
         ]
     ]
     profile_options = [{"label": os.path.basename(p), "value": p} for p in list_profiles()]
-    # Data feed files — bound and non-recursive to avoid heavy startup scans
+    # Data feed files - bound and non-recursive to avoid heavy startup scans
     try:
         DATA_SCAN_MAX = int(os.getenv("DASH_DATA_SCAN_MAX", "300"))
     except Exception:
@@ -12620,7 +12620,7 @@ def build_app(runs_root: str) -> Dash:
                 ],
                 className="grid",
             ),
-            # Global UI poll — environment-tunable and disable-able
+            # Global UI poll - environment-tunable and disable-able
             # DASH_POLL_MS: >0 interval in ms (default 1200); <=0 disables polling
             dcc.Interval(
                 id="poll",
@@ -13230,7 +13230,7 @@ def register_file_picker_common(app, prefix: str, target_id: str, project_root: 
         except Exception:
             crumbs = []
 
-        # Metadata statusbar — centralized with robust gating (only show file when it belongs to the selected dir)
+        # Metadata statusbar - centralized with robust gating (only show file when it belongs to the selected dir)
         fsel = (file_sel or "").strip()
         try:
             s_abs = os.path.abspath(s) if s else ""
@@ -14792,7 +14792,7 @@ def perf_card():
                             dcc.Checklist(
                                 id="ui-charts-http",
                                 options=[{"label": " On", "value": "on"}],
-                                value=[],  # default OFF — falls back to bounded file tails if HTTP not ready
+                                value=[],  # default OFF - falls back to bounded file tails if HTTP not ready
                             ),
                         ]
                     ),
@@ -16162,7 +16162,7 @@ def compute_dashboard_figures(run_dir: str, state: Optional[SeriesState], ui: Op
         go.Scattergl(x=t, y=entro, name="Connectome entropy", yaxis="y6", line=dict(width=1, color=C["entropy"]))
     ))
     fig1.update_layout(
-        title=f"Dashboard — {os.path.basename(run_dir)}",
+        title=f"Dashboard - {os.path.basename(run_dir)}",
         paper_bgcolor="#10151c",
         plot_bgcolor="#0f141a",
         font=dict(color="#cfd7e3"),
@@ -16387,7 +16387,7 @@ def list_dir(path: str, exts: List[str] | None = None, hide_dotfiles: bool = Tru
         hide_dotfiles: When True, hide entries whose name starts with '.'
 
     Returns:
-        (subdirs, files) — both sorted, names only (no absolute paths)
+        (subdirs, files) - both sorted, names only (no absolute paths)
 
     Policy:
         - No scans in 'core/' or 'maps/' at any depth. If the resolved path contains either
@@ -16566,9 +16566,9 @@ def file_status_text(file_path: str) -> str:
     base = os.path.basename(file_path or "")
     try:
         size_b = os.path.getsize(file_path) if os.path.isfile(file_path) else 0
-        return f"File: {base} — Size: {human_size(size_b)}"
+        return f"File: {base} - Size: {human_size(size_b)}"
     except Exception:
-        return f"File: {base} — Size: unknown"
+        return f"File: {base} - Size: unknown"
 
 
 def directory_status_text(dir_path: str, exts: List[str] | None = None, hide_dotfiles: bool = True) -> str:
@@ -16845,7 +16845,7 @@ def build_debug_app(runs_root: str) -> Dash:
     # Layout: runs root input + refresh button, run-dir dropdown, poll interval, component toggles, stats and graphs
     app.layout = html.Div(
         [
-            html.H3("FUM Debug UI — Minimal"),
+            html.H3("FUM Debug UI - Minimal"),
             html.Div(
                 [
                     html.Label("Runs root"),
@@ -17394,7 +17394,7 @@ def void_driven_layout(W, iterations=50, dim=3):
     weights = np.asarray(weights, dtype=float)
 
     for t_idx in range(iterations):
-        # Repulsion (adaptive) — base global void pressure
+        # Repulsion (adaptive) - base global void pressure
         if num_nodes <= 800:
             delta = pos[:, np.newaxis, :] - pos[np.newaxis, :, :]
             distance = np.linalg.norm(delta, axis=-1) + 1e-9
@@ -19201,9 +19201,9 @@ def tail_jsonl_bytes(path: str, last_size: int) -> Tuple[List[Any], int]:
       new_size: new file size to store for the next call
 
     Environment (all optional):
-    - FUM_UI_TAIL_CAP_BYTES         (default 1_048_576)  — initial/rotation cap window
-    - FUM_UI_TAIL_MAX_DELTA_BYTES   (default 131_072)    — max bytes read per tick even if more appended
-    - FUM_UI_TAIL_MAX_LINES         (default 600)        — max lines parsed per tick from the new chunk
+    - FUM_UI_TAIL_CAP_BYTES         (default 1_048_576)  - initial/rotation cap window
+    - FUM_UI_TAIL_MAX_DELTA_BYTES   (default 131_072)    - max bytes read per tick even if more appended
+    - FUM_UI_TAIL_MAX_LINES         (default 600)        - max lines parsed per tick from the new chunk
 
     Notes:
     - These bounds are UI-only to avoid lag on very large or fast-growing files; older appended
@@ -25411,7 +25411,7 @@ def maybe_start_maps_ws(nx: Any) -> None:
                 srv.start()
                 nx._maps_ws_server = srv
             except Exception:
-                # Missing websockets or other failure — safe no-op
+                # Missing websockets or other failure - safe no-op
                 return
     except Exception:
         # Never disrupt runtime parity
@@ -26217,7 +26217,7 @@ def _maybe_run_revgsp(nx: Any, metrics: Dict[str, Any], step: int) -> None:
     # Filter None values and restrict to signature
     kwargs = {k: v for k, v in candidates.items() if v is not None and (not allowed or k in allowed)}
 
-    # If the function requires args we didn't provide, it will raise — catch and noop.
+    # If the function requires args we didn't provide, it will raise - catch and noop.
     try:
         _adapt(**kwargs)
     except Exception:
@@ -26461,7 +26461,7 @@ def run_loop(nx: Any, t0: float, step: int, duration_s: Optional[int] = None) ->
             # Compute step and scan-based metrics (parity-preserving)
             m, drive = _compute_step_and_metrics(nx, t, step, idf_scale=idf_scale)
 
-            # Optional: Online learner (REV-GSP) and structural actuator (GDSP) — default OFF
+            # Optional: Online learner (REV-GSP) and structural actuator (GDSP) - default OFF
             try:
                 _maybe_run_revgsp(nx, m, int(step))
             except Exception:
@@ -26849,7 +26849,7 @@ def run_loop(nx: Any, t0: float, step: int, duration_s: Optional[int] = None) ->
             m["ute_in_count"] = int(ute_in_count)
             m["ute_text_count"] = int(ute_text_count)
 
-            # Spool stats (Zip spooler) — expose in status snapshot (UI can show back-pressure)
+            # Spool stats (Zip spooler) - expose in status snapshot (UI can show back-pressure)
             try:
                 utd = getattr(nx, "utd", None)
                 writer = getattr(utd, "_writer", None)
@@ -30204,7 +30204,7 @@ def test_delta_w_negative_emits_inhibitory_spike_and_deltawevent():
     obs = Obs(kind="delta_w", tick=5, nodes=[1, 2, 3], meta={"dw": -0.3})
     evts = observations_to_events([obs])
 
-    # Then DeltaWEvent exists for each of the nodes (bounded to first 16 — here 3)
+    # Then DeltaWEvent exists for each of the nodes (bounded to first 16 - here 3)
     dws = _collect(evts, DeltaWEvent)
     assert len(dws) == 3
     assert all(isinstance(e, DeltaWEvent) and e.dw == -0.3 for e in dws)

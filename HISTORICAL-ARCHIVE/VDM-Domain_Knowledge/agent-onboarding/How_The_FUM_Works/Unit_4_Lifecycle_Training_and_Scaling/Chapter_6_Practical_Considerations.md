@@ -33,7 +33,7 @@ Ensuring the model's stability during long, autonomous operational phases (Phase
 
 The system must protect critical, learned knowledge while remaining adaptable enough to discard outdated information. This balance is managed through a dynamic persistence mechanism.
 
-*   **Persistence Tags:** Synapses that are part of stable, high-reward pathways are marked as "persistent" to exempt them from decay and disruptive structural changes. To ensure that all essential pathways are correctly identified and protected—including those that are infrequently activated but still critical—tagging is based on multiple criteria:
+*   **Persistence Tags:** Synapses that are part of stable, high-reward pathways are marked as "persistent" to exempt them from decay and disruptive structural changes. To ensure that all essential pathways are correctly identified and protected-including those that are infrequently activated but still critical-tagging is based on multiple criteria:
     *   **Standard Path:** A synapse is tagged if its weight and its territory's average reward are stable and above a validated threshold (e.g., `w > 0.8`, `avg_reward > 0.9`).
     *   **Infrequent Path:** A synapse is also tagged if it is part of a low-activity but high-reward pathway (e.g., `spike_rates < 0.1 Hz` but `avg_reward > 0.9`), or if it contributes to any high-reward output at least once over a long time window.
 *   **Dynamic De-Tagging:** Consolidation is not permanent. The `persistent` tag is removed from a synapse if its pathway begins to consistently produce low rewards, a high negative `total_reward`, or exhibits low output diversity (indicating a repetitive, unhelpful loop). This allows outdated or incorrect knowledge to be pruned or relearned.

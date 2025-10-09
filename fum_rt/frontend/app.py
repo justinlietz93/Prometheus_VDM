@@ -93,7 +93,7 @@ def build_app(runs_root: str) -> Dash:
         ]
     ]
     profile_options = [{"label": os.path.basename(p), "value": p} for p in list_profiles()]
-    # Data feed files — bound and non-recursive to avoid heavy startup scans
+    # Data feed files - bound and non-recursive to avoid heavy startup scans
     try:
         DATA_SCAN_MAX = int(os.getenv("DASH_DATA_SCAN_MAX", "300"))
     except Exception:

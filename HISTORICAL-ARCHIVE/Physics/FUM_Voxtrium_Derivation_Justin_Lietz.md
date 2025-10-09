@@ -64,7 +64,7 @@ Consider a cylindrical “tube” (radius \(R\)) with an interior region that re
 \[\varphi\sim e^{-i\omega t}e^{ikz}u_\ell(r)e^{i\ell\theta},\]
 with a secular equation obtained by matching \(I_\ell\) and \(K_\ell\) solutions at \(r=R\). The eigenvalues define \(\kappa_{\ell}(R)\) via \(\omega^2=c^2(k^2-\kappa_\ell^2)\). Modes with \(\kappa_\ell^2>0\) are tachyonic at \(k=0\). The tower \(N_{\rm tach}(R)\) grows with \(R\).
 
-Define effective 2D fields \(\psi_{\ell n}(t,z)\) by projecting onto the transverse modes, then minimize the quartic‑stabilized tree‑level potential to obtain condensates \(v_{\ell n}(R)\). The post‑condensation Hessian is positive semidefinite (massless phases only if a complex field is used). Total energy \(E(R)=E_{\rm bg}(R)+V_{\rm eff}^{\rm tube}(v_{\ell n};R)\) develops a minimum in a parameter window—our scalar‑EFT analogue of Bordag’s result. (See also §8 for code that reproduces the mode equation numerically.)
+Define effective 2D fields \(\psi_{\ell n}(t,z)\) by projecting onto the transverse modes, then minimize the quartic‑stabilized tree‑level potential to obtain condensates \(v_{\ell n}(R)\). The post‑condensation Hessian is positive semidefinite (massless phases only if a complex field is used). Total energy \(E(R)=E_{\rm bg}(R)+V_{\rm eff}^{\rm tube}(v_{\ell n};R)\) develops a minimum in a parameter window-our scalar‑EFT analogue of Bordag’s result. (See also §8 for code that reproduces the mode equation numerically.)
 
 ---
 

@@ -2,7 +2,7 @@
 <!-- RULES for maintaining this file are here: /mnt/ironwolf/git/Prometheus_VDM/prompts/algorithms_maintenance.md -->
 # VDM Algorithms & Execution Flows (Auto-compiled)
 
-Last updated: 2025-10-09 (commit d305c2b)
+Last updated: 2025-10-09 (commit f1e74a5)
 
 **Scope:** Single source of truth for implemented algorithms and control flows in this repository.  
 **Rules:** Pseudocode + references only. Link to math/values elsewhere (EQUATIONS/CONSTANTS/SYMBOLS/UNITS).  
@@ -25,7 +25,7 @@ Last updated: 2025-10-09 (commit d305c2b)
 
 ## Core Update Loops
 
-#### VDM-A-001 — Runtime Main Loop (Nexus Tick Loop)  <a id="vdm-a-001"></a>
+#### VDM-A-001 - Runtime Main Loop (Nexus Tick Loop)  <a id="vdm-a-001"></a>
 >
 > Type: RUNTIME • Binding: PSEUDOCODE • State: writes state • Dependencies: none • Notes: agency layer optional; consumes signals only
 
@@ -113,15 +113,15 @@ TERMINATION:
 - fum_rt/nexus.py:362 (thin wrapper; delegates to run_loop)
 
 > DEBT: GDSP can fail without logs when STRICT gate disabled; add fail-fast/telemetry path, remove any ability to use dense backend even with env. Sparse only, fail fast.  
-> DEBT: Overlapping scout flags; defaults conflict—unify or validate toggles.
+> DEBT: Overlapping scout flags; defaults conflict-unify or validate toggles.
 > DEBT: Status HTTP lacks auth/TLS; keep localhost default, gate optional token auth.
 
 ---
 
-#### VDM-A-002 — Connectome Step (Void-Equation Driven Topology Update)  <a id="vdm-a-002"></a>
+#### VDM-A-002 - Connectome Step (Void-Equation Driven Topology Update)  <a id="vdm-a-002"></a>
 
 > Type: RUNTIME • Binding: PSEUDOCODE • State: writes state • Dependencies: `delta_re_vgsp`, `delta_gdsp` (EQUATIONS TODO)
-> **STATUS:** **BROKEN / WRONG** — docs claim “no dense path,” but the code includes and can execute a **dense scan** branch.
+> **STATUS:** **BROKEN / WRONG** - docs claim “no dense path,” but the code includes and can execute a **dense scan** branch.
 
 **Context:** `fum_rt/core/connectome.py:272-313` • Commit: `7498744` • Module: `core/connectome`
 
@@ -129,7 +129,7 @@ TERMINATION:
 
 **Inputs:**
 
-- Symbols: $\alpha$ (ReLU($\Delta\alpha$)), $\omega$ ($\Delta\omega$), $W$ — see `SYMBOLS.md`
+- Symbols: $\alpha$ (ReLU($\Delta\alpha$)), $\omega$ ($\Delta\omega$), $W$ - see `SYMBOLS.md`
 - Constants: `CONSTANTS.md#const-alpha`, `CONSTANTS.md#const-beta`, `threshold`, `lambda_omega`
 - Params: `t` (time), `domain_modulation`, `sie_drive` (SIE valence gate), `use_time_dynamics`
 
@@ -137,7 +137,7 @@ TERMINATION:
 
 - TODO: add anchor for `delta_re_vgsp`, `delta_gdsp` in `EQUATIONS.md`
 
-**Pseudocode (as implemented — with broken bits marked):**
+**Pseudocode (as implemented - with broken bits marked):**
 
 ```text
 INIT:
@@ -188,7 +188,7 @@ FINALIZE:
 **Concurrency/Ordering:**
 
 - Sparse alias mode: sequential per current pseudocode (rows can be parallelized)
-- **Dense mode:** vectorized NumPy (**validation only in intent, but present in code**) — **⚠ WRONG relative to “no dense path” policy**
+- **Dense mode:** vectorized NumPy (**validation only in intent, but present in code**) - **⚠ WRONG relative to “no dense path” policy**
 
 **Failure/Backoff hooks:**
 
@@ -211,7 +211,7 @@ FINALIZE:
 
 ## Local Agent/Walker Policies
 
-#### VDM-A-003 — Void Scout Runner (Per-Tick Scout Executor)  <a id="vdm-a-003"></a>
+#### VDM-A-003 - Void Scout Runner (Per-Tick Scout Executor)  <a id="vdm-a-003"></a>
 >
 > Type: INSTRUMENT • Binding: PSEUDOCODE • State: read-only • Publishes: bus events; tags on neurons/edges • Notes: traversal metrics only
 
@@ -282,11 +282,11 @@ RETURN:
 - Bus: VTTouchEvent, EdgeOnEvent, SpikeEvent (via publish_many)
 
 > DEBT: Runner respects mixed flags; clarify single admission gate.
-> DEBT: Scout flag/knob overlap — unify or validate toggles (see ledger §8).
+> DEBT: Scout flag/knob overlap - unify or validate toggles (see ledger §8).
 
 ---
 
-#### VDM-A-004 — Cold Scout (Coldness-Driven Walker)  <a id="vdm-a-004"></a>
+#### VDM-A-004 - Cold Scout (Coldness-Driven Walker)  <a id="vdm-a-004"></a>
 >
 > Type: INSTRUMENT • Binding: PSEUDOCODE • State: read-only (publishes explore events only) • Priors: minimal/flat • Notes: baseline cartography; complements goal-driven flows
 
@@ -347,7 +347,7 @@ RETURN:
 
 ---
 
-#### VDM-A-005 — Alias Sampling (Vose's Method)  <a id="vdm-a-005"></a>
+#### VDM-A-005 - Alias Sampling (Vose's Method)  <a id="vdm-a-005"></a>
 >
 > Type: RUNTIME • Binding: PSEUDOCODE • State: none • Dependencies: none • Notes: O(N) build, O(1) draw
 
@@ -414,7 +414,7 @@ DRAW SAMPLES:
 
 ## Plasticity / Memory-Steering Procedures
 
-#### VDM-A-006 — RE-VGSP Learning Step (Three-Factor Synaptic Plasticity)  <a id="vdm-a-006"></a>
+#### VDM-A-006 - RE-VGSP Learning Step (Three-Factor Synaptic Plasticity)  <a id="vdm-a-006"></a>
 
 > Type: RUNTIME • Binding: PSEUDOCODE • State: writes state • Dependencies: `delta_re_vgsp`, `delta_gdsp`, `VoidDebtModulation.get_universal_domain_modulation` • Notes: three-factor rule (values-only on CSR)
 
@@ -433,8 +433,8 @@ DRAW SAMPLES:
 **Inputs (adapter-side, not equation parameters):**
 
 - `E` (eligibility traces): **CSR** with **identical sparsity pattern** as `W` (same `indptr/indices`); three-factor scaling via `ΔW *= E.data`
-- `total_reward (r)`: `float` — fold into `domain_modulation` (bounded gain)
-- `plv ∈ [0,1]`: `float` — choose **one**: scale `phase_sens` *or* multiply `domain_modulation`
+- `total_reward (r)`: `float` - fold into `domain_modulation` (bounded gain)
+- `plv ∈ [0,1]`: `float` - choose **one**: scale `phase_sens` *or* multiply `domain_modulation`
 - `neuron_polarities ∈ {-1,+1}`: optional row mask applied to **RE-VGSP** update values only
 - `spike_data`, `lambda_decay`: used **only** to maintain/update `E`; not passed to `delta_*` (separate pseudocode section handles E updates)
 
@@ -515,7 +515,7 @@ OUTPUT: updated CSR W (same sparsity), optional diagnostics (dm, α, β, norms)
 
 ---
 
-#### VDM-A-007 — GDSP Adaptive Thresholds (Structural Plasticity Gating)  <a id="vdm-a-007"></a>
+#### VDM-A-007 - GDSP Adaptive Thresholds (Structural Plasticity Gating)  <a id="vdm-a-007"></a>
 >
 > Type: POLICY • Binding: PSEUDOCODE • State: internal state only • Dependencies: none • Notes: heuristic adaptation; bounds enforced
 
@@ -592,7 +592,7 @@ RECORD ACTIVITY:
 
 ## I/O Pipelines & Data Products Generation
 
-#### VDM-A-008 — Fluid Dynamics Walker (LBM Telemetry Agent)  <a id="vdm-a-008"></a>
+#### VDM-A-008 - Fluid Dynamics Walker (LBM Telemetry Agent)  <a id="vdm-a-008"></a>
 >
 > Type: INSTRUMENT • Binding: PSEUDOCODE • State: read-only • Dependencies: bilinear interp/div/vort (EQUATIONS TODO) • Notes: publishes petitions
 
@@ -667,7 +667,7 @@ POST PETITION:
 
 ---
 
-#### VDM-A-009 — Advisory Policy (Fluids Telemetry Feedback)  <a id="vdm-a-009"></a>
+#### VDM-A-009 - Advisory Policy (Fluids Telemetry Feedback)  <a id="vdm-a-009"></a>
 >
 > Type: POLICY • Binding: PSEUDOCODE • State: none • Dependencies: none • Notes: advisory only; caller applies or ignores
 
@@ -745,10 +745,10 @@ RETURN:
 
 ---
 
-### VDM-A-022 — Tube Spectrum and Condensation Harness (Tachyonic Tube v1)  <a id="vdm-a-022"></a>
+### VDM-A-022 - Tube Spectrum and Condensation Harness (Tachyonic Tube v1)  <a id="vdm-a-022"></a>
 > Type: EXPERIMENT • Binding: PSEUDOCODE • State: writes artifacts • Dependencies: Bessel evaluations, adaptive quadrature • Notes: QC gates for spectrum coverage and condensation curvature
 
-**Context:** Derivation/code/physics/tachyonic_condensation (runner + solvers) • Commit: d305c2b
+**Context:** Derivation/code/physics/tachyonic_condensation (runner + solvers) • Commit: f1e74a5
 
 **Role:** Compute discrete spectrum roots $\kappa_\ell(R)$ at $k=0$ for a finite-radius tube and evaluate condensation energy $E(R)$ with background $E_{\rm bg}(R)$; emit PNG/CSV/JSON artifacts and enforce gates:
 

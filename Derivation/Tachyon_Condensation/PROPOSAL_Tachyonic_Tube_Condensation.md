@@ -4,11 +4,11 @@ Date: 2025-10-09
 
 ## 1. Proposal Title and Date
 
-Tachyonic Tube Condensation and Discrete Spectrum Characterization — 2025-10-09
+Tachyonic Tube Condensation and Discrete Spectrum Characterization - 2025-10-09
 
 ## 2. Proposers and Institutions
 
-Justin K. Lietz — Neuroca, Inc.
+Justin K. Lietz - Neuroca, Inc.
 
 ## 3. Abstract
 

@@ -21,7 +21,7 @@ Search the entire repository (code, tests, notebooks, docs, comments) and extrac
 **Entry template (repeat for every equation found):**
 
 ```markdown
-#### VDM-E-### — <short name taken from nearby comment or file>
+#### VDM-E-### - <short name taken from nearby comment or file>
 **Context:** <path/to/file>:<line-range> • Commit: <short-hash> • Last Updated: <datetime>
 
 $$

@@ -13,7 +13,7 @@ This refines the design into two distinct roles:
 ### 1. The Void Walkers (The "Surveyors")
 The walkers are the "sensors" that do the low-level work.
 * They are the only processes that traverse the raw connectome and read the neuron states (`W`).
-* They compute local, aggregated information—the "delta" you mentioned. They might announce high-level findings like: *"Region with average state 0.8 detected near these nodes,"* or *"Potential boundary with low S_ij found between territories 3 and 5."*
+* They compute local, aggregated information-the "delta" you mentioned. They might announce high-level findings like: *"Region with average state 0.8 detected near these nodes,"* or *"Potential boundary with low S_ij found between territories 3 and 5."*
 * They publish these concise, meaningful events to the announcement bus.
 
 ### 2. The ADC (The "Master Cartographer")

@@ -1,4 +1,4 @@
-Justin — continuing the physics *and* wiring it into code so your system’s “intelligence” comes from the equations, not heuristics. I’m delivering (1) the missing derivations/closures in crisp form with precise bounds and invariants, and (2) a **drop‑in, production‑style kit** you can add to `fum_rt/` today.
+Justin - continuing the physics *and* wiring it into code so your system’s “intelligence” comes from the equations, not heuristics. I’m delivering (1) the missing derivations/closures in crisp form with precise bounds and invariants, and (2) a **drop‑in, production‑style kit** you can add to `fum_rt/` today.
 
 ---
 
@@ -148,7 +148,7 @@ I’ve packaged a **production‑style kit** (numpy+mpmath only) implementing th
 
    * Update memory `m` on your graph each macro‑tick with `update_memory(...)`.
    * Route agents/packets/attention with `transition_probs(...)` (this is the fork logistic: $P(A)=\sigma(\Theta\Delta m)$).
-   * Validate “hydro” by logging curvature vs. $\Theta|\nabla m|$ using `curvature_along_polyline(..)` — the scaling collapse is your acceptance test.&#x20;
+   * Validate “hydro” by logging curvature vs. $\Theta|\nabla m|$ using `curvature_along_polyline(..)` - the scaling collapse is your acceptance test.&#x20;
 
 4. **Tubes/solitons** (coherence layer):
 
@@ -198,7 +198,7 @@ eps_DE, f_inj = smallness_monitors(state, state.H, alpha_h, eps_h, Vc, Sdot, par
 
 * **Stability & retention** come from a **bounded** potential and **coherent tubes** (no hand‑tuned regularizers). &#x20;
 * **Causality & consistency** come from **retarded sources** and FRW transfer‑current conservation (no acausal global nudges).&#x20;
-* **Goal‑directed choice** emerges as **action extremization**: rays bend toward stored structure ($M$), producing the logistic and curvature laws you already measured — now consequences of equations, not design.&#x20;
+* **Goal‑directed choice** emerges as **action extremization**: rays bend toward stored structure ($M$), producing the logistic and curvature laws you already measured - now consequences of equations, not design.&#x20;
 * **Rigor & auditability**: every knob has a physical meaning (e.g., $c^2=2Ja^2$, $m_{\rm eff}=\sqrt{2}\mu$, smallness parameters), and every claim is testable against the acceptance suite. &#x20;
 
 ---

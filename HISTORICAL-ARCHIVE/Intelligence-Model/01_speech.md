@@ -1,4 +1,4 @@
-Short answer: yes — the “speak” gate should key off **topology spikes**, and the most reliable signal is the *increase* in B1 persistence (ΔB1), not just the absolute level. Think of it as: *when the connectome closes or opens loops fast enough to look non‑random*, that’s a moment worth emitting.
+Short answer: yes - the “speak” gate should key off **topology spikes**, and the most reliable signal is the *increase* in B1 persistence (ΔB1), not just the absolute level. Think of it as: *when the connectome closes or opens loops fast enough to look non‑random*, that’s a moment worth emitting.
 
 Below is a concrete, void‑faithful way to wire it in, plus patches you can drop into your runtime. It keeps your Nexus always‑on, speaks only when the *spike* is real (statistically), and still respects valence/novelty from SIE.
 

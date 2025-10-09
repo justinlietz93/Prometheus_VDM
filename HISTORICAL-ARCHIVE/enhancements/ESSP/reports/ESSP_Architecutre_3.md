@@ -10,7 +10,7 @@ Here is a concise and comprehensive summary of the provided technical conversati
 
 ### **Summary of Technical Specification: Event-Sourced Structural Plasticity**
 
-This document outlines the design of a sparse, event-driven structural plasticity framework for a runtime connectome, replacing all dense, global operations with local, sub-quadratic, and computationally budgeted mechanisms. The system's core philosophy is that all structural changes—synapse formation, pruning, and neuron culling—emerge from local interactions rather than static, pre-configured rules.
+This document outlines the design of a sparse, event-driven structural plasticity framework for a runtime connectome, replacing all dense, global operations with local, sub-quadratic, and computationally budgeted mechanisms. The system's core philosophy is that all structural changes-synapse formation, pruning, and neuron culling-emerge from local interactions rather than static, pre-configured rules.
 
 #### **1. Core Architecture: The Event-Sourced Pipeline**
 

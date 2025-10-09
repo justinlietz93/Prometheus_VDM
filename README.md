@@ -19,10 +19,10 @@ python -m fum_rt.run_nexus --neurons 800 --hz 10 --domain biology_consciousness 
 ```
 
 Artifacts land in `runs/<timestamp>/`:
-- `events.jsonl`   — structured logs
-- `dashboard.png`  — metrics (updated)
-- `connectome.png` — graph snapshot (updated)
-- `state_<step>.h5` (or `.npz` fallback) — checkpointed engram state (see `--checkpoint-every`, `--checkpoint-keep`)
+- `events.jsonl`   - structured logs
+- `dashboard.png`  - metrics (updated)
+- `connectome.png` - graph snapshot (updated)
+- `state_<step>.h5` (or `.npz` fallback) - checkpointed engram state (see `--checkpoint-every`, `--checkpoint-keep`)
 
 ### Where to put your functions
 If your repo already contains `Void_Equations.py` and `Void_Debt_Modulation.py` on `PYTHONPATH`,
@@ -61,29 +61,29 @@ Domains supported (for auto‑modulation): `quantum`, `standard_model`, `dark_ma
 
 ## Layout
 
-- `fum_rt/run_nexus.py` — CLI entrypoint.
-- `fum_rt/nexus.py` — the real‑time orchestrator (thin façade; delegates loop/telemetry/control‑plane to runtime/*).
-- `fum_rt/runtime/loop.py` — main loop extracted from Nexus.run (parity‑preserving).
-- `fum_rt/runtime/telemetry.py` — telemetry packagers (`macro_why_base`, `status_payload`) and `tick_fold`.
-- `fum_rt/runtime/phase.py` — external control‑plane (phase.json) profiles, apply/poll.
-- `fum_rt/runtime/retention.py` — checkpoint retention policy.
-- `fum_rt/runtime/events_adapter.py` — Observation → core events adapter for event‑driven metrics.
-- `fum_rt/runtime/runtime_helpers.py` — behavior‑preserving helpers (ingest, speak gating, viz, checkpoints).
-- `fum_rt/runtime/emitters.py` — MacroEmitter/ThoughtEmitter initialization.
-- `fum_rt/runtime/orchestrator.py` — orchestrator seam (delegates to Nexus for parity).
-- `fum_rt/runtime/state.py` — optional small runtime context (tick/time, small rings); not required for parity.
-- `fum_rt/core/engine.py` — CoreEngine seam (snapshot, engram_load/save pass‑throughs).
-- `fum_rt/core/signals.py` — core signals seam (B1 detector apply, VT/cohesion/TD helpers).
-- `fum_rt/core/void_dynamics_adapter.py` — loads your void functions or a minimal stub.
-- `fum_rt/core/connectome.py` — kNN‑ish graph + vectorized update step.
-- `fum_rt/core/metrics.py` — sparsity/cohesion/complexity metrics.
-- `fum_rt/core/visualizer.py` — dashboard & graph rendering (matplotlib).
-- `fum_rt/core/memory.py` — engram snapshots (.npz/.h5).
-- `fum_rt/io/lexicon/store.py` — phrase templates and lexicon I/O (learned vocabulary).
-- `fum_rt/io/ute.py` — Universal Temporal Encoder (stdin & synthetic tick sources).
-- `fum_rt/io/utd.py` — Universal Transduction Decoder (stdout & file sink).
-- `fum_rt/utils/logging_setup.py` — structured logger helper.
-- `requirements.txt` — only `numpy`, `networkx`, `matplotlib`.
+- `fum_rt/run_nexus.py` - CLI entrypoint.
+- `fum_rt/nexus.py` - the real‑time orchestrator (thin façade; delegates loop/telemetry/control‑plane to runtime/*).
+- `fum_rt/runtime/loop.py` - main loop extracted from Nexus.run (parity‑preserving).
+- `fum_rt/runtime/telemetry.py` - telemetry packagers (`macro_why_base`, `status_payload`) and `tick_fold`.
+- `fum_rt/runtime/phase.py` - external control‑plane (phase.json) profiles, apply/poll.
+- `fum_rt/runtime/retention.py` - checkpoint retention policy.
+- `fum_rt/runtime/events_adapter.py` - Observation → core events adapter for event‑driven metrics.
+- `fum_rt/runtime/runtime_helpers.py` - behavior‑preserving helpers (ingest, speak gating, viz, checkpoints).
+- `fum_rt/runtime/emitters.py` - MacroEmitter/ThoughtEmitter initialization.
+- `fum_rt/runtime/orchestrator.py` - orchestrator seam (delegates to Nexus for parity).
+- `fum_rt/runtime/state.py` - optional small runtime context (tick/time, small rings); not required for parity.
+- `fum_rt/core/engine.py` - CoreEngine seam (snapshot, engram_load/save pass‑throughs).
+- `fum_rt/core/signals.py` - core signals seam (B1 detector apply, VT/cohesion/TD helpers).
+- `fum_rt/core/void_dynamics_adapter.py` - loads your void functions or a minimal stub.
+- `fum_rt/core/connectome.py` - kNN‑ish graph + vectorized update step.
+- `fum_rt/core/metrics.py` - sparsity/cohesion/complexity metrics.
+- `fum_rt/core/visualizer.py` - dashboard & graph rendering (matplotlib).
+- `fum_rt/core/memory.py` - engram snapshots (.npz/.h5).
+- `fum_rt/io/lexicon/store.py` - phrase templates and lexicon I/O (learned vocabulary).
+- `fum_rt/io/ute.py` - Universal Temporal Encoder (stdin & synthetic tick sources).
+- `fum_rt/io/utd.py` - Universal Transduction Decoder (stdout & file sink).
+- `fum_rt/utils/logging_setup.py` - structured logger helper.
+- `requirements.txt` - only `numpy`, `networkx`, `matplotlib`.
 
 All modules are tiny and documented so you can extend fast.
 

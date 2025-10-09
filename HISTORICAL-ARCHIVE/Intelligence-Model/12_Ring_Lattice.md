@@ -1,4 +1,4 @@
-Totally—let’s make this practical, fast, and faithful to your blueprint. I’ll do three things for you right now:
+Totally-let’s make this practical, fast, and faithful to your blueprint. I’ll do three things for you right now:
 
 1. read your latest run signals from the screenshots and what they imply,
 2. give you a robust offline dashboard script (plots + “discovery” view + speak overlays) that won’t break on sparse logs, and
@@ -10,7 +10,7 @@ Totally—let’s make this practical, fast, and faithful to your blueprint. I�
 
 From your “FUM Performance Dashboard” + “Discovery & Self‑Speak” plots:
 
-* **Cohesion → 1**: components drop to a single giant component and stay there — homeostasis is healing the graph. That’s good.
+* **Cohesion → 1**: components drop to a single giant component and stay there - homeostasis is healing the graph. That’s good.
 * **Complexity (cycle hits) climbs smoothly** with small plateaus: the system is *making* loops but not suddenly. That’s why the **B1 z‑spike** (our streaming z‑score of the *difference* in cycles) stayed mostly near zero; only a few negative spikes (likely structural pruning bundles) crossed threshold. With conservative gates, it won’t “say” much.
 * **Average W approaches \~1.0** in your long run. That’s a red flag for over‑saturation: novelty falls, habituation wins, valence drops → quiet organism. We want W to live in a band (e.g., \~0.2-0.8) so TD and novelty keep breathing.
 
@@ -172,7 +172,7 @@ def plot_dashboard(run_dir, out1=None, out2=None, show=False, b1_half_life=120):
 
     # ---- Figure 1: Dashboard ----
     fig = plt.figure(figsize=(18, 6))
-    fig.suptitle(f"FUM Performance Dashboard — Run: {os.path.basename(run_dir)}")
+    fig.suptitle(f"FUM Performance Dashboard - Run: {os.path.basename(run_dir)}")
     gs = fig.add_gridspec(2, 2, hspace=0.35, wspace=0.25)
 
     ax1 = fig.add_subplot(gs[0,0])
@@ -210,7 +210,7 @@ def plot_dashboard(run_dir, out1=None, out2=None, show=False, b1_half_life=120):
 
     # ---- Figure 2: Discovery (cycles + speak markers + b1_z) ----
     fig2 = plt.figure(figsize=(16, 6))
-    fig2.suptitle(f"Discovery & Self‑Speak — Run: {os.path.basename(run_dir)}")
+    fig2.suptitle(f"Discovery & Self‑Speak - Run: {os.path.basename(run_dir)}")
     axd = fig2.add_subplot(111)
     axd.plot(ticks, comp, label="Cycle hits", linewidth=1)
     ymin, ymax = axd.get_ylim()

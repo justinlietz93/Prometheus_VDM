@@ -1,8 +1,8 @@
-Here’s a **minimum-viable curriculum** to read, run, and extend VDM end-to-end—plus the extra topics you’ll need for the parts you haven’t built yet. It’s split into phases. Each module has: **Goal → Learn (only what’s needed) → Do (tiny project) → Exit test**. Keep a single notebook where you tick off exit tests.
+Here’s a **minimum-viable curriculum** to read, run, and extend VDM end-to-end-plus the extra topics you’ll need for the parts you haven’t built yet. It’s split into phases. Each module has: **Goal → Learn (only what’s needed) → Do (tiny project) → Exit test**. Keep a single notebook where you tick off exit tests.
 
 ---
 
-# Phase 0 — Orientation (2-3 days)
+# Phase 0 - Orientation (2-3 days)
 
 **M0. Vocabulary & artifacts**
 
@@ -13,7 +13,7 @@ Here’s a **minimum-viable curriculum** to read, run, and extend VDM end-to-end
 
 ---
 
-# Phase 1 — Math & numerics you actually need (6-8 weeks @ ~10 h/week)
+# Phase 1 - Math & numerics you actually need (6-8 weeks @ ~10 h/week)
 
 **M1. Single-variable calculus (log/exp chain-rule)**
 
@@ -66,7 +66,7 @@ Here’s a **minimum-viable curriculum** to read, run, and extend VDM end-to-end
 
 ---
 
-# Phase 2 — VDM runtime concepts (4-6 weeks)
+# Phase 2 - VDM runtime concepts (4-6 weeks)
 
 **M8. Event-driven sensing (“walkers”)**
 
@@ -105,7 +105,7 @@ Here’s a **minimum-viable curriculum** to read, run, and extend VDM end-to-end
 
 ---
 
-# Phase 3 — “Not yet built” topics you’ll need (aim: 8-16 weeks)
+# Phase 3 - “Not yet built” topics you’ll need (aim: 8-16 weeks)
 
 **M13. Gradient-flow viewpoint (just enough)**
 

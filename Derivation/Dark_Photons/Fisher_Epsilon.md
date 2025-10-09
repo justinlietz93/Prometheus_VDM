@@ -1,6 +1,6 @@
 # Fisher Info Quick Win (ε sensitivity)
 
-**Goal:** Show how sensitivity to mixing ε scales with counts, efficiency, and background—no heavy math.
+**Goal:** Show how sensitivity to mixing ε scales with counts, efficiency, and background-no heavy math.
 
 ## Inputs
 

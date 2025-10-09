@@ -11,7 +11,7 @@ This summary synthesizes a highly technical conversation transcript detailing th
 ### **Summary of Event-Sourced Structural Plasticity Specification**
 
 #### **1. Overarching Objective & Core Mandate**
-The primary goal is to implement a comprehensive, biologically-plausible structural plasticity framework for a runtime connectome. The system's architectural mandate is an absolute prohibition of dense matrix scans or global polling. All operations—synapse formation, pruning, strengthening, decay, and neuron culling—must be achieved through a strictly sparse, event-driven, local, and computationally budgeted model with sub-quadratic complexity.
+The primary goal is to implement a comprehensive, biologically-plausible structural plasticity framework for a runtime connectome. The system's architectural mandate is an absolute prohibition of dense matrix scans or global polling. All operations-synapse formation, pruning, strengthening, decay, and neuron culling-must be achieved through a strictly sparse, event-driven, local, and computationally budgeted model with sub-quadratic complexity.
 
 #### **2. Core Architecture: The Event-Sourced Pipeline**
 The system is built on a unidirectional, decoupled pipeline, ensuring scalability and adherence to the sparse-only constraint.

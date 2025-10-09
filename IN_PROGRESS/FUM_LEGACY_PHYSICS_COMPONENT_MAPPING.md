@@ -47,7 +47,7 @@ This document provides a systematic comparison between "legacy" FUM implementati
 
 **Physics Equation Reference:**
 
-**VDM-E-006** — Agency Field Discrete Update:
+**VDM-E-006** - Agency Field Discrete Update:
 $$
 C_i^{n+1} = C_i^{n}+\Delta t\Big(D\,\Delta_{xx} C_i^{n}-\gamma\,C_i^{n}+S_i^{n}\Big)
 $$
@@ -72,7 +72,7 @@ $$
 
 **Physics Equation Reference:**
 
-**VDM-E-015** — Reaction-Diffusion Gradient Flow:
+**VDM-E-015** - Reaction-Diffusion Gradient Flow:
 $$
 \partial_t \phi = D \nabla^{2}\phi + f(\phi), \quad f(\phi)= r\phi - u\phi^{2} - \lambda \phi^{3}
 $$
@@ -97,7 +97,7 @@ $$
 
 **Physics Equation Reference:**
 
-**VDM-E-003** — Agency Field Steady State:
+**VDM-E-003** - Agency Field Steady State:
 $$
 C(t)=C_{\text{ss}}+\big(C(0)-C_{\text{ss}}\big)e^{-\gamma t}
 $$
@@ -123,7 +123,7 @@ $$
 
 **Physics Equation Reference:**
 
-**VDM-E-016** — RD Lyapunov Functional:
+**VDM-E-016** - RD Lyapunov Functional:
 $$
 \mathcal{L}[\phi]=\int_{\Omega}\left( \tfrac{D}{2}|\nabla\phi|^{2}+\hat V(\phi)\right)\,dx,\qquad \frac{d}{dt}\mathcal{L}[\phi] = -\int_{\Omega} (\partial_t\phi)^2\,dx \le0
 $$
@@ -149,7 +149,7 @@ $$
 
 **Physics Equation Reference:**
 
-**VDM-E-002** — Agency Field Composite Source:
+**VDM-E-002** - Agency Field Composite Source:
 $$
 S(x,t) = \sigma(x)\,\big[\kappa_1 P(x,t)+\kappa_2 I_{\text{net}}(x,t)+\kappa_3 U(x,t)\big] \times g(V)\,h(B)
 $$
@@ -217,7 +217,7 @@ Both implementations define the fundamental void dynamics parameters:
 
 **Physics Mapping:**
 
-**VDM-E-015** — Reaction-Diffusion Gradient Flow:
+**VDM-E-015** - Reaction-Diffusion Gradient Flow:
 $$
 \partial_t \phi = D \nabla^{2}\phi + f(\phi), \quad f(\phi)= r\phi - u\phi^{2} - \lambda \phi^{3}
 $$

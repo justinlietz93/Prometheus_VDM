@@ -2,11 +2,11 @@
 
 ## 1) Title & date
 
-**Passive Thermodynamic Routing (No-Switch Control) in Metriplectic RD** — 2025-10-09
+**Passive Thermodynamic Routing (No-Switch Control) in Metriplectic RD** - 2025-10-09
 
 ## 2) Proposers
 
-Justin K. Lietz — VDM Project
+Justin K. Lietz - VDM Project
 
 ## 3) Abstract
 
@@ -172,14 +172,14 @@ All figures carry **numeric captions** (gate statistics). Every figure has CSV/J
 
 **Code layout**
 
-* `Derivation/code/physics/thermo_routing/run_thermo_routing.py` — CLI (`--spec path.json`).
-* `Derivation/code/physics/thermo_routing/geometry.py` — channel masks & flux accounting.
-* `Derivation/code/physics/thermo_routing/modal_thermo.py` — Laplacian eigenmaps, modal occupancies, RJ fit.
-* `Derivation/code/physics/thermo_routing/collapse.py` — collapse detector, windowing.
+* `Derivation/code/physics/thermo_routing/run_thermo_routing.py` - CLI (`--spec path.json`).
+* `Derivation/code/physics/thermo_routing/geometry.py` - channel masks & flux accounting.
+* `Derivation/code/physics/thermo_routing/modal_thermo.py` - Laplacian eigenmaps, modal occupancies, RJ fit.
+* `Derivation/code/physics/thermo_routing/collapse.py` - collapse detector, windowing.
 * Optional JMJ reuse from existing metriplectic components (param-gated).
 * Shared I/O & bootstrap live in `Derivation/code/common/`.
 
-**StepSpec (example)** — `Derivation/specs/thermo_routing/tr_v2.json`
+**StepSpec (example)** - `Derivation/specs/thermo_routing/tr_v2.json`
 
 ```json
 {

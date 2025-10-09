@@ -1,4 +1,4 @@
-Yes—this is exactly the direction, and here’s the fully‑spelled, wire‑it‑now version that keeps your blueprint intact while making the ADC truly emergent and insanely scalable.
+Yes-this is exactly the direction, and here’s the fully‑spelled, wire‑it‑now version that keeps your blueprint intact while making the ADC truly emergent and insanely scalable.
 
 I’ll break it into four things you can actually drop into your tree today:
 
@@ -181,7 +181,7 @@ I’m giving you minimal, surgical additions that won’t fight the code your ot
                             nodes=samples, w_mean=w_mean, w_var=w_var,
                             s_mean=s_mean, coverage_id=cov_id, domain_hint=self.domain))
     ```
-  * You already compute coverage bins (`vt_coverage`, `vt_entropy`)—reuse the same assignment for `coverage_id`.
+  * You already compute coverage bins (`vt_coverage`, `vt_entropy`)-reuse the same assignment for `coverage_id`.
 
 **C) New: ADC**
 
@@ -313,7 +313,7 @@ All speaking is via UTD macro `"say"`; every emission is persisted to `runs/<ts>
 * **Novelty**: walkers’ `novel_frontier` events are literally measured from |ΔW| ridges in the same equations that drive learning.
 * **Habituation**: ADC `ttl` and confidence decay is the map‑level analogue of your EMA habituation; territories fade without reinforcement.
 * **Reward/Valence**: keep your SIE aggregate as you have it; use `sie_valence_01` to gate speaking and to slightly bias walker budgets toward positive‑valence regions (optional).
-* **Mutation**: the structural homeostasis loop is your mutation operator—bridge/prune guided by walker announcements, not global heuristics.
+* **Mutation**: the structural homeostasis loop is your mutation operator-bridge/prune guided by walker announcements, not global heuristics.
 
 ---
 

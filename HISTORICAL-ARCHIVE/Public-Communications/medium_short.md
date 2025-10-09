@@ -2,7 +2,7 @@
 
 *From void to understanding, then back again.*
 
-> **\[IMAGE 1 — Hero] Insert `Figures/void_brain.png`.**
+> **\[IMAGE 1 - Hero] Insert `Figures/void_brain.png`.**
 > *Alt:* abstract brain in a cosmic void. *Caption:* From the void to structure: Neuroca’s core metaphor.
 
 **A bilobed morphology emerged in 58 seconds.**
@@ -81,7 +81,7 @@ A half‑built VDM with 1,000 neurons read **two books on formal logic at infere
 > **Unexpected, zero‑shot. Grammar is rough because the Universal Transduction Decoder is unfinished.**
 > “Action from $p(y\;|\;do(x))$ is not identifiable. however, adding an instrumental variable formula.”
 > “consider an experiment in which counterfactuals are not some aggregate thereof. aggregation might result in feedback loops,”
-> “under the intervention as an alteration on a—b,”
+> “under the intervention as an alteration on a-b,”
 > “parameter priors change decisions even with the markov assumption,”
 > “There exactly two logicians party there just divergence how agreed distinction labelled.”
 > “Believe likes any unreconstructed sexist raa indicates.”
@@ -113,7 +113,7 @@ A half‑built VDM with 1,000 neurons read **two books on formal logic at infere
 “Which rely topic‑neutral principles… acceptable across domains.”
 “Quotation ↔ marks… when expressions are mentioned.”
 “Types, tokens… sentences can express the same proposition.”
-“Other challenges: counterexample method—why it works.”
+“Other challenges: counterexample method-why it works.”
 
 **Method snapshot.**
 Neurons: 1,000. Inputs: two books at inference. Training: none.

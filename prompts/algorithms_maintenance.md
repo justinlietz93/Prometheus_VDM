@@ -41,7 +41,7 @@ Search the entire repository (code, tests, notebooks, scripts, docs, comments) a
 *(Populate strictly from repository content; keep naming exactly as used in code/comments.)*
 
 ````markdown
-#### VDM-A-### — <Algorithm/Loop Name as used in repo>  <a id="vdm-a-###"></a>
+#### VDM-A-### - <Algorithm/Loop Name as used in repo>  <a id="vdm-a-###"></a>
 **Per Item Identifier Template:**   
 • Type: RUNTIME|INSTRUMENT|POLICY|EXPERIMENT  
 • Binding: PSEUDOCODE   
@@ -135,5 +135,5 @@ If a needed anchor is missing, add `TODO: add anchor` with exact `<path>:<lines>
 ### Validation
 
 * Render on GitHub; ensure all anchors resolve.
-* Pseudocode only; **no equations or numeric values pasted**—link instead.
+* Pseudocode only; **no equations or numeric values pasted**-link instead.
 * Names, step order, and conditions must match the repository sources exactly.

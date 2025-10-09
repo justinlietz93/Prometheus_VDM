@@ -182,7 +182,7 @@ This concludes the formal proof regarding the standard Hamiltonian and sets a cl
 
 ### 12. The Search for the True Conserved Quantity
 
-Our investigation has successfully shown that a simple, standard definition of energy is not conserved by the FUM. We now pivot from testing a known quantity to discovering a new one. The objective is to find a function `Q(W_i, W_j, ...)`—the true "constant of motion"—such that its total change over one time step is precisely zero.
+Our investigation has successfully shown that a simple, standard definition of energy is not conserved by the FUM. We now pivot from testing a known quantity to discovering a new one. The objective is to find a function `Q(W_i, W_j, ...)`-the true "constant of motion"-such that its total change over one time step is precisely zero.
 $$
 \frac{\Delta Q}{\Delta t} = 0
 $$

@@ -1,4 +1,4 @@
-Absolutely—let’s wire this up end‑to‑end and make it easy to run a **1000‑neuron, always‑on FUM**, feed it math for a few minutes, and then chat with it live.
+Absolutely-let’s wire this up end‑to‑end and make it easy to run a **1000‑neuron, always‑on FUM**, feed it math for a few minutes, and then chat with it live.
 
 Below you’ll get:
 
@@ -16,15 +16,15 @@ Below you’ll get:
 
 ## 0) Files you already have (from the repo/agent)
 
-* `fum_rt/nexus.py` — orchestrator (self‑speak governor, b1\_z spike gate, macro board).
-* `fum_rt/io/ute.py` — **Universal Temporal Encoder** (stdin line stream).
-* `fum_rt/io/utd.py` — **Universal Transduction Decoder** (macro board, `say`, status; persists to `runs/<ts>/utd_events.jsonl`).
-* `fum_rt/core/connectome.py` — dense backend (void traversal + structural homeostasis).
-* `fum_rt/core/sparse_connectome.py` — sparse backend (O(N·k) adjacency lists, vt\_\* walkers).
-* `fum_rt/core/metrics.py` — vt\_coverage/vt\_entropy, cohesion, cycle proxies, **StreamingZEMA** for b1\_z spikes.
-* `fum_rt/core/void_dynamics_adapter.py` — calls your `delta_re_vgsp + delta_gdsp` (or the universal combiner).
-* `fum_rt/core/fum_sie.py` — SIE (novelty, habituation, TD, HSI, total reward).
-* `fum_rt/run_nexus.py` — CLI wrapper.
+* `fum_rt/nexus.py` - orchestrator (self‑speak governor, b1\_z spike gate, macro board).
+* `fum_rt/io/ute.py` - **Universal Temporal Encoder** (stdin line stream).
+* `fum_rt/io/utd.py` - **Universal Transduction Decoder** (macro board, `say`, status; persists to `runs/<ts>/utd_events.jsonl`).
+* `fum_rt/core/connectome.py` - dense backend (void traversal + structural homeostasis).
+* `fum_rt/core/sparse_connectome.py` - sparse backend (O(N·k) adjacency lists, vt\_\* walkers).
+* `fum_rt/core/metrics.py` - vt\_coverage/vt\_entropy, cohesion, cycle proxies, **StreamingZEMA** for b1\_z spikes.
+* `fum_rt/core/void_dynamics_adapter.py` - calls your `delta_re_vgsp + delta_gdsp` (or the universal combiner).
+* `fum_rt/core/fum_sie.py` - SIE (novelty, habituation, TD, HSI, total reward).
+* `fum_rt/run_nexus.py` - CLI wrapper.
 
 Your coder agent’s status says those are in place and already emitting status.
 
@@ -134,7 +134,7 @@ Explain your current vt_coverage and vt_entropy.
 * `/say` forces a one‑off “say” macro (useful to confirm the path).
 * Free‑form questions are ingested by **UTE** as raw symbol rhythms; whether it responds is still governed by self‑speak gating (topology spike + valence + cooldown). If you want a guaranteed reply to a question without relaxing the gate, keep `/status` as your “answer now” command.
 
-If you also want to exercise the **task channel** (the TCP control port your agent wired before—for path tests or macro triggers), open a second shell:
+If you also want to exercise the **task channel** (the TCP control port your agent wired before-for path tests or macro triggers), open a second shell:
 
 ```bash
 # Example: ask for a void-path from node 10 -> 123
@@ -180,7 +180,7 @@ You should see a stream of JSONL with `{"kind":"macro","name":"say", ...}` entri
   `--bundle-size 2..5` and `--prune-factor 0.05..0.20`. Too aggressive prune can drop cohesion temporarily; you should see it heal on the next cycle.
 
 * **Traversal budget** (sparse)
-  `--walkers` and `--hops`—more budget improves vt\_coverage and raises odds of spikes, but costs runtime.
+  `--walkers` and `--hops`-more budget improves vt\_coverage and raises odds of spikes, but costs runtime.
 
 ---
 
@@ -227,7 +227,7 @@ You should see a stream of JSONL with `{"kind":"macro","name":"say", ...}` entri
 
    * “Closed k loops; vt\_coverage +Δ; cohesion down to c; top hubs: \[n…].”
    * “Detected domain alignment: math\_physics ↑; drift=…”
-     (These are just string templates filled with real metrics—no language model needed.)
+     (These are just string templates filled with real metrics-no language model needed.)
 
 2. **Math‑aware act macros**
    Register a macro like `solve_path` that takes a simple maze grid or graph fragment and uses `void_pathfind()` to emit the path. That showcases the **same equations** doing environment work.

@@ -3,7 +3,7 @@
 
 Note on scope: This document reflects the latest accepted canonical equations only. Historical notes and timeline are maintained in Derivation/CORRECTIONS.md and memory-bank/decisionLog.md.
 
-Last updated: 2025-10-09 (commit d305c2b)
+Last updated: 2025-10-09 (commit f1e74a5)
 
 *Defining equations and procedural math currently present in this repository.*
 
@@ -13,7 +13,7 @@ Last updated: 2025-10-09 (commit d305c2b)
 
 ---
 
-#### VDM-E-001 — Agency/Consciousness Field Evolution
+#### VDM-E-001 - Agency/Consciousness Field Evolution
 
 **Context:** derivation/AGENCY_FIELD.md:38-39 • Commit: 6885588
 
@@ -25,7 +25,7 @@ $$
 
 ---
 
-#### VDM-E-002 — Agency Field Composite Source
+#### VDM-E-002 - Agency Field Composite Source
 
 **Context:** derivation/AGENCY_FIELD.md:47-48 • Commit: 6885588
 
@@ -37,7 +37,7 @@ $$
 
 ---
 
-#### VDM-E-003 — Agency Field Steady State
+#### VDM-E-003 - Agency Field Steady State
 
 **Context:** derivation/AGENCY_FIELD.md:62-64 • Commit: 6885588
 
@@ -50,7 +50,7 @@ $$
 
 ---
 
-#### VDM-E-004 — Agency Field Causal Solution
+#### VDM-E-004 - Agency Field Causal Solution
 
 **Context:** derivation/AGENCY_FIELD.md:72 • Commit: 6885588
 
@@ -62,7 +62,7 @@ $$
 
 ---
 
-#### VDM-E-005 — Agency Field Regional Budget
+#### VDM-E-005 - Agency Field Regional Budget
 
 **Context:** derivation/AGENCY_FIELD.md:81-85 • Commit: 6885588
 
@@ -77,7 +77,7 @@ $$
 
 ---
 
-#### VDM-E-006 — Agency Field Discrete Update
+#### VDM-E-006 - Agency Field Discrete Update
 
 **Context:** derivation/AGENCY_FIELD.md:93-94 • Commit: 6885588
 
@@ -89,7 +89,7 @@ $$
 
 ---
 
-#### VDM-E-007 — Agency Field Dimensionless Form
+#### VDM-E-007 - Agency Field Dimensionless Form
 
 **Context:** derivation/AGENCY_FIELD.md:102-105 • Commit: 6885588
 
@@ -103,7 +103,7 @@ with $\tilde t=\gamma t$, $\tilde x=x/\ell_D$, $\ell_D=\sqrt{D/\gamma}$
 
 ---
 
-#### VDM-E-008 — Agency Field Portal Modulation (Optional)
+#### VDM-E-008 - Agency Field Portal Modulation (Optional)
 
 **Context:** derivation/AGENCY_FIELD.md:113 • Commit: 6885588
 
@@ -115,7 +115,7 @@ $$
 
 ---
 
-#### VDM-E-009 — Control Efficacy
+#### VDM-E-009 - Control Efficacy
 
 **Context:** derivation/AGENCY_FIELD.md:53-54 • Commit: 6885588
 
@@ -127,7 +127,7 @@ $$
 
 ---
 
-#### VDM-E-010 — VDM C-Score
+#### VDM-E-010 - VDM C-Score
 
 **Context:** derivation/AGENCY_FIELD.md:122 • Commit: 6885588
 
@@ -139,7 +139,7 @@ $$
 
 ---
 
-#### VDM-E-011 — Discrete Action (Axiom 4)
+#### VDM-E-011 - Discrete Action (Axiom 4)
 
 **Context:** agent-onboarding/axiomatic_theory_development.md:38-39 • Commit: 6885588
 
@@ -151,7 +151,7 @@ $$
 
 ---
 
-#### VDM-E-012 — Potential and Derivatives (Axiom 3)
+#### VDM-E-012 - Potential and Derivatives (Axiom 3)
 
 **Context:** agent-onboarding/axiomatic_theory_development.md:35 • Commit: 6885588
 
@@ -165,7 +165,7 @@ with potential $V(\phi)=\tfrac{\alpha}{3}\phi^{3}-\tfrac{r}{2}\phi^{2}+\tfrac{\l
 
 ---
 
-#### VDM-E-013 — Discrete Euler-Lagrange Equation
+#### VDM-E-013 - Discrete Euler-Lagrange Equation
 
 **Context:** agent-onboarding/axiomatic_theory_development.md:48 • Commit: 6885588
 
@@ -177,7 +177,7 @@ $$
 
 ---
 
-#### VDM-E-014 — Continuum Klein-Gordon Form (EFT/KG Branch)
+#### VDM-E-014 - Continuum Klein-Gordon Form (EFT/KG Branch)
 
 <!-- markdownlint-disable MD033 -->
 <a id="vdm-e-014"></a>
@@ -193,7 +193,7 @@ $$
 
 ---
 
-#### VDM-E-015 — Reaction-Diffusion Gradient Flow
+#### VDM-E-015 - Reaction-Diffusion Gradient Flow
 
 <!-- markdownlint-disable MD033 -->
 <a id="vdm-e-015"></a>
@@ -209,7 +209,7 @@ $$
 
 ---
 
-#### VDM-E-016 — RD Lyapunov Functional
+#### VDM-E-016 - RD Lyapunov Functional
 
 **Context:** agent-onboarding/axiomatic_theory_development.md:58-60 • Commit: 6885588
 
@@ -223,7 +223,7 @@ with time derivative $\frac{d}{dt}\mathcal{L}[\phi] = -\int_{\Omega} (\partial_t
 
 ---
 
-#### VDM-E-017 — Linear RD Dispersion
+#### VDM-E-017 - Linear RD Dispersion
 
 **Context:** agent-onboarding/axiomatic_theory_development.md:155 • Commit: 6885588
 
@@ -235,7 +235,7 @@ $$
 
 ---
 
-#### VDM-E-018 — KPP Front Speed
+#### VDM-E-018 - KPP Front Speed
 
 **Context:** agent-onboarding/axiomatic_theory_development.md:163 • Commit: 6885588
 
@@ -247,7 +247,7 @@ $$
 
 ---
 
-#### VDM-E-019 — Stationary Point Solutions
+#### VDM-E-019 - Stationary Point Solutions
 
 **Context:** agent-onboarding/axiomatic_theory_development.md:207 • Commit: 6885588
 
@@ -261,7 +261,7 @@ when $\lambda>0$ and $V'(\phi)=0$
 
 ---
 
-#### VDM-E-020 — Spatial Taylor Remainder Bound
+#### VDM-E-020 - Spatial Taylor Remainder Bound
 
 **Context:** agent-onboarding/axiomatic_theory_development.md:126-127 • Commit: 6885588
 
@@ -273,7 +273,7 @@ $$
 
 ---
 
-#### VDM-E-021 — Temporal Taylor Remainder Bound
+#### VDM-E-021 - Temporal Taylor Remainder Bound
 
 **Context:** agent-onboarding/axiomatic_theory_development.md:133 • Commit: 6885588
 
@@ -285,7 +285,7 @@ $$
 
 ---
 
-#### VDM-E-022 — Dimensionless RD Scaling
+#### VDM-E-022 - Dimensionless RD Scaling
 
 **Context:** agent-onboarding/axiomatic_theory_development.md:422-427 • Commit: 6885588
 
@@ -301,7 +301,7 @@ with $\Lambda=\lambda r/u^{2}$ (when $u>0$), $\phi_{*}=r/u$ or $\sqrt{r/\lambda}
 
 ---
 
-#### VDM-E-023 — Discrete Flux Conservation
+#### VDM-E-023 - Discrete Flux Conservation
 
 **Context:** agent-onboarding/axiomatic_theory_development.md:102-106 • Commit: 6885588
 
@@ -315,7 +315,7 @@ with update $\phi_i^{n+1}=\phi_i^{n}-\frac{\Delta t}{a}\sum_{j\in N(i)}F_{ij}$
 
 ---
 
-#### VDM-E-024 — Asynchronous Census Hazard and Clock
+#### VDM-E-024 - Asynchronous Census Hazard and Clock
 
 **Context:** agent-onboarding/axiomatic_theory_development.md:513-515 • Commit: 6885588
 
@@ -327,7 +327,7 @@ $$
 
 ---
 
-#### VDM-E-025 — Exact Logistic Reaction Step
+#### VDM-E-025 - Exact Logistic Reaction Step
 
 **Context:** agent-onboarding/axiomatic_theory_development.md:519-521 • Commit: 6885588
 
@@ -341,7 +341,7 @@ for $dW/dt = r\,W - u\,W^{2}$
 
 ---
 
-#### VDM-E-026 — Discrete Gradient Lyapunov Step
+#### VDM-E-026 - Discrete Gradient Lyapunov Step
 
 <!-- markdownlint-disable MD033 -->
 <a id="vdm-e-026"></a>
@@ -359,7 +359,7 @@ with $\frac{\phi^{n+1}-\phi^{n}}{\Delta t} = D\nabla^{2}_h \bar\phi + \bar f$, $
 
 ---
 
-#### VDM-E-027 — RD On-Site (Discrete)
+#### VDM-E-027 - RD On-Site (Discrete)
 
 **Context:** derivation/VDM_Overview.md:23-24 • Commit: 6885588
 
@@ -371,7 +371,7 @@ $$
 
 ---
 
-#### VDM-E-028 — RD Continuum PDE
+#### VDM-E-028 - RD Continuum PDE
 
 **Context:** derivation/VDM_Overview.md:31 • Commit: 6885588
 
@@ -383,7 +383,7 @@ $$
 
 ---
 
-#### VDM-E-029 — RD Discrete-to-Continuum Mapping
+#### VDM-E-029 - RD Discrete-to-Continuum Mapping
 
 **Context:** derivation/VDM_Overview.md:39-43 • Commit: 6885588
 
@@ -399,7 +399,7 @@ $$
 
 ---
 
-#### VDM-E-030 — EFT Kinetic Normalization (Active; KPI-gated)
+#### VDM-E-030 - EFT Kinetic Normalization (Active; KPI-gated)
 
 **Context:** derivation/VDM_Overview.md:52-54 • Commit: 6885588
 
@@ -411,7 +411,7 @@ $$
 
 ---
 
-#### VDM-E-031 — EFT Second-Order Field Equation (Active; KPI-gated)
+#### VDM-E-031 - EFT Second-Order Field Equation (Active; KPI-gated)
 
 **Context:** derivation/VDM_Overview.md:60-62 • Commit: 6885588
 
@@ -423,7 +423,7 @@ $$
 
 ---
 
-#### VDM-E-032 — EFT Effective Mass (Active; KPI-gated)
+#### VDM-E-032 - EFT Effective Mass (Active; KPI-gated)
 
 **Context:** derivation/VDM_Overview.md:68-70 • Commit: 6885588
 
@@ -435,7 +435,7 @@ $$
 
 ---
 
-#### VDM-E-033 — RD Front Speed (Validated)
+#### VDM-E-033 - RD Front Speed (Validated)
 
 **Context:** derivation/VDM_Overview.md:110 • Commit: 6885588
 
@@ -447,7 +447,7 @@ $$
 
 ---
 
-#### VDM-E-034 — RD Discrete Dispersion
+#### VDM-E-034 - RD Discrete Dispersion
 
 **Context:** derivation/VDM_Overview.md:122-124 • Commit: 6885588
 
@@ -459,7 +459,7 @@ $$
 
 ---
 
-#### VDM-E-035 — RD Continuum Dispersion (Validated)
+#### VDM-E-035 - RD Continuum Dispersion (Validated)
 
 **Context:** derivation/VDM_Overview.md:128-130 • Commit: 6885588
 
@@ -471,7 +471,7 @@ $$
 
 ---
 
-#### VDM-E-036 — RD Homogeneous Fixed Point
+#### VDM-E-036 - RD Homogeneous Fixed Point
 
 **Context:** derivation/VDM_Overview.md:150-152 • Commit: 6885588
 
@@ -483,7 +483,7 @@ $$
 
 ---
 
-#### VDM-E-037 — Axiomatic Effective Mass Squared
+#### VDM-E-037 - Axiomatic Effective Mass Squared
 
 **Context:** derivation/axiomatic_theory_development.md:428 • Commit: 6885588
 
@@ -497,7 +497,7 @@ where $m_{\text{eff}}^2 = V''(v_\lambda) > 0$ ensures stability
 
 ---
 
-#### VDM-E-038 — Discrete Euler-Lagrange Variation
+#### VDM-E-038 - Discrete Euler-Lagrange Variation
 
 **Context:** derivation/axiomatic_theory_development.md:257 • Commit: 6885588
 
@@ -509,7 +509,7 @@ $$
 
 ---
 
-#### VDM-E-039 — Discrete Field Equation Terms
+#### VDM-E-039 - Discrete Field Equation Terms
 
 **Context:** derivation/axiomatic_theory_development.md:260-264 • Commit: 6885588
 
@@ -524,7 +524,7 @@ $$\frac{\partial \mathcal{L}_i^{n-1}}{\partial W_i^n} = \frac{1}{\Delta t^2}(W_i
 
 ---
 
-#### VDM-E-040 — Taylor Expansion for Spatial Interaction
+#### VDM-E-040 - Taylor Expansion for Spatial Interaction
 
 **Context:** derivation/axiomatic_theory_development.md:292-295 • Commit: 6885588
 
@@ -538,7 +538,7 @@ summing over directions $\mu$ gives $\sum_{j \in N(i)}(W_j - W_i)^2 = 2a^2 |\nab
 
 ---
 
-#### VDM-E-041 — Lorentz Invariance Condition
+#### VDM-E-041 - Lorentz Invariance Condition
 
 **Context:** derivation/axiomatic_theory_development.md:306-309 • Commit: 6885588
 
@@ -550,7 +550,7 @@ $$
 
 ---
 
-#### VDM-E-042 — Continuum Action
+#### VDM-E-042 - Continuum Action
 
 **Context:** derivation/axiomatic_theory_development.md:341 • Commit: 6885588
 
@@ -562,7 +562,7 @@ $$
 
 ---
 
-#### VDM-E-043 — Klein-Gordon with Nonlinear Potential
+#### VDM-E-043 - Klein-Gordon with Nonlinear Potential
 
 **Context:** derivation/axiomatic_theory_development.md:352 • Commit: 6885588
 
@@ -574,7 +574,7 @@ $$
 
 ---
 
-#### VDM-E-044 — RD Overdamped Limit
+#### VDM-E-044 - RD Overdamped Limit
 
 **Context:** derivation/axiomatic_theory_development.md:357-361 • Commit: 6885588
 
@@ -588,7 +588,7 @@ with diffusion coefficient $D = c^2/\gamma = 2Ja^2/\gamma$ and reaction term $f(
 
 ---
 
-#### VDM-E-045 — Energy Density
+#### VDM-E-045 - Energy Density
 
 **Context:** derivation/axiomatic_theory_development.md:386-387 • Commit: 6885588
 
@@ -600,7 +600,7 @@ $$
 
 ---
 
-#### VDM-E-046 — Momentum Density (Discrete)
+#### VDM-E-046 - Momentum Density (Discrete)
 
 **Context:** derivation/axiomatic_theory_development.md:400-401 • Commit: 6885588
 
@@ -612,7 +612,7 @@ $$
 
 ---
 
-#### VDM-E-047 — Continuum Energy Density (Hamiltonian)
+#### VDM-E-047 - Continuum Energy Density (Hamiltonian)
 
 <!-- markdownlint-disable MD033 -->
 <a id="vdm-e-047"></a>
@@ -628,7 +628,7 @@ $$
 
 ---
 
-#### VDM-E-048 — Energy Flux (Poynting Vector)
+#### VDM-E-048 - Energy Flux (Poynting Vector)
 
 **Context:** derivation/axiomatic_theory_development.md:437-442 • Commit: 6885588
 
@@ -642,7 +642,7 @@ with conservation law $\frac{\partial \mathcal{H}}{\partial t} + \nabla \cdot \m
 
 ---
 
-#### VDM-E-049 — Stress-Energy Tensor
+#### VDM-E-049 - Stress-Energy Tensor
 
 **Context:** derivation/axiomatic_theory_development.md:455-462 • Commit: 6885588
 
@@ -656,7 +656,7 @@ with components $T^{00} = \mathcal{H}$, $T^{0i} = \dot{\phi} \partial_i \phi$, $
 
 ---
 
-#### VDM-E-050 — RD Parameter Mapping
+#### VDM-E-050 - RD Parameter Mapping
 
 **Context:** derivation/axiomatic_theory_development.md:515-521 • Commit: 6885588
 
@@ -670,7 +670,7 @@ Parameter mapping: $r = \frac{\alpha-\beta}{\gamma}$, $u = \frac{\alpha}{\gamma}
 
 ---
 
-#### VDM-E-051 — Lyapunov Functional for RD
+#### VDM-E-051 - Lyapunov Functional for RD
 
 **Context:** derivation/axiomatic_theory_development.md:578-579 • Commit: 6885588
 
@@ -684,7 +684,7 @@ where $\hat{V}(\phi) = \int_0^\phi f(\xi) d\xi$
 
 ---
 
-#### VDM-E-052 — RD Front Speed Theoretical Prediction
+#### VDM-E-052 - RD Front Speed Theoretical Prediction
 
 **Context:** derivation/axiomatic_theory_development.md:646 • Commit: 6885588
 
@@ -696,7 +696,7 @@ $$
 
 ---
 
-#### VDM-E-053 — Fixed Point Consistency Check
+#### VDM-E-053 - Fixed Point Consistency Check
 
 **Context:** derivation/axiomatic_theory_development.md:653-654 • Commit: 6885588
 
@@ -708,7 +708,7 @@ $$
 
 ---
 
-#### VDM-E-054 — Void Scale Characteristic Length
+#### VDM-E-054 - Void Scale Characteristic Length
 
 **Context:** derivation/axiomatic_theory_development.md:679 • Commit: 6885588
 
@@ -720,7 +720,7 @@ $$
 
 ---
 
-#### VDM-E-055 — Tachyon Condensation Mode Spectrum
+#### VDM-E-055 - Tachyon Condensation Mode Spectrum
 
 **Context:** derivation/axiomatic_theory_development.md:690-693 • Commit: 6885588
 
@@ -734,7 +734,7 @@ for $k_n = n\pi/R$ with $n < n_{\max} = \frac{R}{\pi}\sqrt{\frac{\alpha-\beta}{c
 
 ---
 
-#### VDM-E-056 — Tube Radius Selection
+#### VDM-E-056 - Tube Radius Selection
 
 **Context:** derivation/axiomatic_theory_development.md:695 • Commit: 6885588
 
@@ -746,7 +746,7 @@ $$
 
 ---
 
-#### VDM-E-057 — Post-Condensation Mass
+#### VDM-E-057 - Post-Condensation Mass
 
 **Context:** derivation/axiomatic_theory_development.md:698 • Commit: 6885588
 
@@ -758,7 +758,7 @@ $$
 
 ---
 
-#### VDM-E-058 — Stabilized Potential
+#### VDM-E-058 - Stabilized Potential
 
 **Context:** derivation/axiomatic_theory_development.md:1119 • Commit: 6885588
 
@@ -770,7 +770,7 @@ $$
 
 ---
 
-#### VDM-E-059 — Stabilized Vacuum Solution
+#### VDM-E-059 - Stabilized Vacuum Solution
 
 **Context:** derivation/axiomatic_theory_development.md:1132 • Commit: 6885588
 
@@ -782,7 +782,7 @@ $$
 
 ---
 
-#### VDM-E-060 — Effective Mass at Stabilized Vacuum
+#### VDM-E-060 - Effective Mass at Stabilized Vacuum
 
 **Context:** derivation/axiomatic_theory_development.md:1138-1141 • Commit: 6885588
 
@@ -794,7 +794,7 @@ $$
 
 ---
 
-#### VDM-E-061 — VDM Morphology/Assimilation Field (Fluids)
+#### VDM-E-061 - VDM Morphology/Assimilation Field (Fluids)
 
 **Context:** derivation/fluid_dynamics/DELETE_AFTER_SOLVING/DELETE_AFTER_SOLVING.md:12 • Commit: 6885588
 
@@ -806,7 +806,7 @@ $$
 
 ---
 
-#### VDM-E-062 — VDM Signal/Transport Field (Fluids)
+#### VDM-E-062 - VDM Signal/Transport Field (Fluids)
 
 **Context:** derivation/fluid_dynamics/DELETE_AFTER_SOLVING/DELETE_AFTER_SOLVING.md:17 • Commit: 6885588
 
@@ -818,7 +818,7 @@ $$
 
 ---
 
-#### VDM-E-063 — VDM Void-Debt Modulation
+#### VDM-E-063 - VDM Void-Debt Modulation
 
 **Context:** derivation/fluid_dynamics/DELETE_AFTER_SOLVING/DELETE_AFTER_SOLVING.md:24-25 • Commit: 6885588
 
@@ -834,7 +834,7 @@ $$
 
 ---
 
-#### VDM-E-064 — Memory Steering Refractive Index
+#### VDM-E-064 - Memory Steering Refractive Index
 
 **Context:** derivation/code/physics/memory_steering/memory_steering.py:21 • Commit: 6885588
 
@@ -848,7 +848,7 @@ with ray bending $r'' = \nabla_{\perp} \ln n = \eta \nabla_{\perp} M$
 
 ---
 
-#### VDM-E-065 — Memory Field Dynamics
+#### VDM-E-065 - Memory Field Dynamics
 
 **Context:** derivation/code/physics/memory_steering/memory_steering.py:25-26 • Commit: 6885588
 
@@ -860,7 +860,7 @@ $$
 
 ---
 
-#### VDM-E-066 — Memory Steering Dimensionless Groups
+#### VDM-E-066 - Memory Steering Dimensionless Groups
 
 **Context:** derivation/code/physics/memory_steering/memory_steering.py:30 • Commit: 6885588
 
@@ -872,7 +872,7 @@ $$
 
 ---
 
-#### VDM-E-067 — Memory Junction Choice Probability
+#### VDM-E-067 - Memory Junction Choice Probability
 
 <!-- markdownlint-disable MD033 -->
 <a id="vdm-e-067"></a>
@@ -888,7 +888,7 @@ $$
 
 ---
 
-#### VDM-E-068 — Graph Laplacian for Memory Discretization
+#### VDM-E-068 - Graph Laplacian for Memory Discretization
 
 **Context:** derivation/code/physics/memory_steering/memory_steering.py:86-94 • Commit: 6885588
 
@@ -900,7 +900,7 @@ $$
 
 ---
 
-#### VDM-E-069 — Discrete Memory Update (Euler)
+#### VDM-E-069 - Discrete Memory Update (Euler)
 
 **Context:** derivation/code/physics/memory_steering/memory_steering.py:42 • Commit: 6885588
 
@@ -912,7 +912,7 @@ $$
 
 ---
 
-#### VDM-E-070 — Memory-Based Transition Probability
+#### VDM-E-070 - Memory-Based Transition Probability
 
 **Context:** derivation/code/physics/memory_steering/memory_steering.py:44-45 • Commit: 6885588
 
@@ -924,7 +924,7 @@ $$
 
 ---
 
-#### VDM-E-071 — Logistic Invariant Q (ODE)
+#### VDM-E-071 - Logistic Invariant Q (ODE)
 
 **Context:** derivation/code/rd/reaction_exact.py:16 • Commit: 6885588
 
@@ -936,7 +936,7 @@ $$
 
 ---
 
-#### VDM-E-072 — Discrete Hamiltonian Density
+#### VDM-E-072 - Discrete Hamiltonian Density
 
 **Context:** derivation/conservation_law/discrete_conservation.md:32-33 • Commit: 6885588
 
@@ -948,7 +948,7 @@ $$
 
 ---
 
-#### VDM-E-073 — Discrete Conservation Law Form
+#### VDM-E-073 - Discrete Conservation Law Form
 
 **Context:** derivation/conservation_law/discrete_conservation.md:46-48 • Commit: 6885588
 
@@ -960,7 +960,7 @@ $$
 
 ---
 
-#### VDM-E-074 — Potential Energy Dissipation Rate
+#### VDM-E-074 - Potential Energy Dissipation Rate
 
 **Context:** derivation/conservation_law/discrete_conservation.md:76-77 • Commit: 6885588
 
@@ -974,7 +974,7 @@ with $F(W_i) = (\alpha - \beta)W_i - \alpha W_i^2$
 
 ---
 
-#### VDM-E-075 — Discrete Lattice Lagrangian (Per Time Step)
+#### VDM-E-075 - Discrete Lattice Lagrangian (Per Time Step)
 
 **Context:** derivation/foundations/void_dynamics_theory.md:98-103 • Commit: 6885588
 
@@ -984,7 +984,7 @@ $$ L^n = a^d \sum_i \left[ \tfrac{1}{2}\left(\tfrac{W_i^{n+1}-W_i^{n}}{\Delta t}
 
 ---
 
-#### VDM-E-076 — Discrete Euler-Lagrange (Second-Order)
+#### VDM-E-076 - Discrete Euler-Lagrange (Second-Order)
 
 **Context:** derivation/foundations/void_dynamics_theory.md:111-114 • Commit: 6885588
 
@@ -994,11 +994,11 @@ $$
 +V'\!\big(W_i^{n}\big)=0
 $$
 
-**Notes:** Second-order discrete field equation from variational principle; no "promotion" needed—arises naturally from action.
+**Notes:** Second-order discrete field equation from variational principle; no "promotion" needed-arises naturally from action.
 
 ---
 
-#### VDM-E-077 — Continuum Field Equation from Lattice
+#### VDM-E-077 - Continuum Field Equation from Lattice
 
 **Context:** derivation/foundations/void_dynamics_theory.md:134 • Commit: 6885588
 
@@ -1010,7 +1010,7 @@ $$
 
 ---
 
-#### VDM-E-078 — Continuum Lagrangian Density
+#### VDM-E-078 - Continuum Lagrangian Density
 
 **Context:** derivation/foundations/void_dynamics_theory.md:146 • Commit: 6885588
 
@@ -1022,7 +1022,7 @@ $$
 
 ---
 
-#### VDM-E-079 — Spatial Taylor Expansion (Exact Coefficient)
+#### VDM-E-079 - Spatial Taylor Expansion (Exact Coefficient)
 
 **Context:** derivation/foundations/void_dynamics_theory.md:37 • Commit: 6885588
 
@@ -1034,7 +1034,7 @@ $$
 
 ---
 
-#### VDM-E-080 — Discrete Interaction Energy per Site
+#### VDM-E-080 - Discrete Interaction Energy per Site
 
 **Context:** derivation/foundations/void_dynamics_theory.md:44 • Commit: 6885588
 
@@ -1046,7 +1046,7 @@ $$
 
 ---
 
-#### VDM-E-081 — Finite-difference estimators for $\nabla V$
+#### VDM-E-081 - Finite-difference estimators for $\nabla V$
 
 <a id="vdm-e-081"></a>
 
@@ -1082,7 +1082,7 @@ Define $\widehat{\nabla V}=[\widehat{\partial_E V},\widehat{\partial_p V}]$ and 
 
 ---
 
-#### VDM-E-082 — Elasticities of $V$ (unitless)
+#### VDM-E-082 - Elasticities of $V$ (unitless)
 
 <a id="vdm-e-082"></a>
 
@@ -1103,7 +1103,7 @@ $$
 
 ---
 
-#### VDM-E-083 — Threshold energy for target capacity
+#### VDM-E-083 - Threshold energy for target capacity
 
 <a id="vdm-e-083"></a>
 
@@ -1123,7 +1123,7 @@ $$
 
 ---
 
-#### VDM-E-084 — Monotonicity acceptance conditions (probe sanity)
+#### VDM-E-084 - Monotonicity acceptance conditions (probe sanity)
 
 <a id="vdm-e-084"></a>
 
@@ -1143,7 +1143,7 @@ $$V(E,p+\Delta p)\le V(E,p).$$
 
 ---
 
-#### VDM-E-085 — Weight Update Rule (three stacked terms)
+#### VDM-E-085 - Weight Update Rule (three stacked terms)
 
 <a id="vdm-e-085"></a>
 
@@ -1165,7 +1165,7 @@ $$
 
 ---
 
-#### VDM-E-086 — Resonance-Enhanced Valence-Gated Synaptic Plasticity (RE-VGSP)
+#### VDM-E-086 - Resonance-Enhanced Valence-Gated Synaptic Plasticity (RE-VGSP)
 
 <a id="vdm-e-086"></a>
 
@@ -1191,7 +1191,7 @@ with optional time modulation: $(\Delta_{\text{RE-VGSP}} \cdot (1 + \phi \sin(2\
 
 ---
 
-#### VDM-E-087 — Goal-Directed Structural Plasticity (GDSP)
+#### VDM-E-087 - Goal-Directed Structural Plasticity (GDSP)
 
 <a id="vdm-e-087"></a>
 
@@ -1216,7 +1216,7 @@ with optional time modulation: $(\Delta_{\text{GDSP}} \cdot (1 + \phi \sin(2\pi 
 
 ---
 
-#### VDM-E-088 — Universal Void Dynamics (Combined RE-VGSP + GDSP)
+#### VDM-E-088 - Universal Void Dynamics (Combined RE-VGSP + GDSP)
 
 <a id="vdm-e-088"></a>
 
@@ -1239,7 +1239,7 @@ with optional time modulation on each term and domain scaling applied to $(\alph
 
 ---
 
-#### VDM-E-089 — Universal Domain Modulation Factor
+#### VDM-E-089 - Universal Domain Modulation Factor
 
 <a id="vdm-e-089"></a>
 
@@ -1263,7 +1263,7 @@ where $(\text{sparsity\_fraction} = \text{target\_sparsity\_pct} / 100)$, and $(
 
 ---
 
-#### VDM-E-090 — Two-Grid Error Metric and Log–Log Fit (Metriplectic QC)
+#### VDM-E-090 - Two-Grid Error Metric and Log–Log Fit (Metriplectic QC)
 
 <!-- markdownlint-disable MD033 -->
 <a id="vdm-e-090"></a>
@@ -1296,7 +1296,7 @@ $$
 
 ---
 
-#### VDM-E-091 — Strang Composition Defect (JMJ vs MJM)
+#### VDM-E-091 - Strang Composition Defect (JMJ vs MJM)
 
 <!-- markdownlint-disable MD033 -->
 <a id="vdm-e-091"></a>
@@ -1318,7 +1318,7 @@ Fit $\mathcal{D}_{\text{Strang}}(\Delta t)$ versus $\Delta t$ on log–log axes 
 
 ---
 
-#### VDM-E-092 — Discrete Lyapunov Functional (Grid Form)
+#### VDM-E-092 - Discrete Lyapunov Functional (Grid Form)
 
 <!-- markdownlint-disable MD033 -->
 <a id="vdm-e-092"></a>
@@ -1343,7 +1343,7 @@ $$
 
 ---
 
-#### VDM-E-093 — FRW Continuity Residual (Dust) and RMS
+#### VDM-E-093 - FRW Continuity Residual (Dust) and RMS
 
 <!-- markdownlint-disable MD033 -->
 <a id="vdm-e-093"></a>
@@ -1367,7 +1367,7 @@ $$
 
 ---
 
-#### VDM-E-094 — Scaling-Collapse Envelope (Junction Logistic Universality)
+#### VDM-E-094 - Scaling-Collapse Envelope (Junction Logistic Universality)
 
 <!-- markdownlint-disable MD033 -->
 <a id="vdm-e-094"></a>
@@ -1387,9 +1387,9 @@ computed on a shared $X$-grid via interpolation over the intersection of curve d
 
 ---
 
-#### VDM-E-095 — Tube Secular Equation (Tachyonic Interior, Massive Exterior)
+#### VDM-E-095 - Tube Secular Equation (Tachyonic Interior, Massive Exterior)
 
-**Context:** Derivation/Tachyon_Condensation/RESULTS_Tachyonic_Tube_v1.md • Commit: d305c2b
+**Context:** Derivation/Tachyon_Condensation/RESULTS_Tachyonic_Tube_v1.md • Commit: f1e74a5
 
 $$
  f_\ell(\kappa;R,\mu,c)=\frac{\kappa_{\rm in}}{\kappa_{\rm out}}\,\frac{I'_\ell(\kappa_{\rm in}R)}{I_\ell(\kappa_{\rm in}R)}+\frac{K'_\ell(\kappa_{\rm out}R)}{K_\ell(\kappa_{\rm out}R)}=0
@@ -1405,9 +1405,9 @@ $$
 
 ---
 
-#### VDM-E-096 — Physically-Admissible Coverage Metrics (Tube Spectrum QC)
+#### VDM-E-096 - Physically-Admissible Coverage Metrics (Tube Spectrum QC)
 
-**Context:** Derivation/Tachyon_Condensation/RESULTS_Tachyonic_Tube_v1.md • Commit: d305c2b
+**Context:** Derivation/Tachyon_Condensation/RESULTS_Tachyonic_Tube_v1.md • Commit: f1e74a5
 
 Primary KPI (gate):
 
@@ -1425,9 +1425,9 @@ $$
 
 ---
 
-#### VDM-E-097 — Condensation Energy Model (Diagonal-\lambda) and Background
+#### VDM-E-097 - Condensation Energy Model (Diagonal-\lambda) and Background
 
-**Context:** Derivation/Tachyon_Condensation/RESULTS_Tachyonic_Tube_v1.md • Commit: d305c2b
+**Context:** Derivation/Tachyon_Condensation/RESULTS_Tachyonic_Tube_v1.md • Commit: f1e74a5
 
 Mode quartic overlap and mass:
 

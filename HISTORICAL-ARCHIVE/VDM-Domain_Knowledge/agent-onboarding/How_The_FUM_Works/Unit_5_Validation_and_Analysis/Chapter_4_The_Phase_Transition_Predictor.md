@@ -8,7 +8,7 @@ The **Phase Transition Predictor (PTP)** is a specialized analytical tool design
 
 #### **2. Mechanism: Bifurcation Analysis**
 
-The PTP extends the SDM by applying techniques from **bifurcation analysis** to its underlying mathematical framework. Bifurcation analysis is used to identify the precise points in a system's parameter space where its qualitative behavior changes—for example, where a stable state might suddenly become oscillatory or chaotic.
+The PTP extends the SDM by applying techniques from **bifurcation analysis** to its underlying mathematical framework. Bifurcation analysis is used to identify the precise points in a system's parameter space where its qualitative behavior changes-for example, where a stable state might suddenly become oscillatory or chaotic.
 
 By analyzing the equations of the SDM, the PTP seeks to identify potential bifurcation points related to the FUM's most sensitive parameters:
 

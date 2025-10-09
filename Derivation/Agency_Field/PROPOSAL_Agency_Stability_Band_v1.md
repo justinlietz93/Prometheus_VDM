@@ -2,11 +2,11 @@
 
 ## 1. Proposal Title and date
 
-**Agency Stability Band: ((D_a,\Lambda,\Gamma)) Map** — October 8, 2025
+**Agency Stability Band: ((D_a,\Lambda,\Gamma)) Map** - October 8, 2025
 
 ## 2. List of proposers and associated institutions/companies
 
-Justin K. Lietz — VDM Project
+Justin K. Lietz - VDM Project
 
 ## 3. Abstract
 
