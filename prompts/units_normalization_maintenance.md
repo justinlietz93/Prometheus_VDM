@@ -20,6 +20,8 @@ Search the entire repository (code, tests, notebooks, docs, configs, comments) a
 <!-- DOC-GUARD: CANONICAL -->
 # VDM Units & Nondimensionalization (Auto-compiled)
 
+**Last updated**: yyyy-mm-dd 
+**Last commit**: {latest commit hash here}
 **Scope:** Single source of truth for unit systems and nondimensionalization maps used in this repository.  
 **Rules:** Other docs link here; do not restate units elsewhere.  
 **MathJax:** GitHub-safe `$...$` / `$$...$$` only.  

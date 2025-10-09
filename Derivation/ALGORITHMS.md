@@ -2,7 +2,7 @@
 <!-- RULES for maintaining this file are here: /mnt/ironwolf/git/Prometheus_VDM/prompts/algorithms_maintenance.md -->
 # VDM Algorithms & Execution Flows (Auto-compiled)
 
-Last updated: 2025-10-09 (commit a91b8fa)
+Last updated: 2025-10-09 (commit d305c2b)
 
 **Scope:** Single source of truth for implemented algorithms and control flows in this repository.  
 **Rules:** Pseudocode + references only. Link to math/values elsewhere (EQUATIONS/CONSTANTS/SYMBOLS/UNITS).  
@@ -748,7 +748,7 @@ RETURN:
 ### VDM-A-022 — Tube Spectrum and Condensation Harness (Tachyonic Tube v1)  <a id="vdm-a-022"></a>
 > Type: EXPERIMENT • Binding: PSEUDOCODE • State: writes artifacts • Dependencies: Bessel evaluations, adaptive quadrature • Notes: QC gates for spectrum coverage and condensation curvature
 
-**Context:** Derivation/code/physics/tachyonic_condensation (runner + solvers) • Commit: a91b8fa
+**Context:** Derivation/code/physics/tachyonic_condensation (runner + solvers) • Commit: d305c2b
 
 **Role:** Compute discrete spectrum roots $\kappa_\ell(R)$ at $k=0$ for a finite-radius tube and evaluate condensation energy $E(R)$ with background $E_{\rm bg}(R)$; emit PNG/CSV/JSON artifacts and enforce gates:
 

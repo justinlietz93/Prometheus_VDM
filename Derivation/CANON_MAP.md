@@ -1,7 +1,7 @@
 <!-- DOC-GUARD: CANONICAL -->
 # VDM Canonical Registry Map
 
-Last updated: 2025-10-09 (commit a91b8fa)
+Last updated: 2025-10-09 (commit d305c2b)
 
 Got it—keep files separate. Here’s a **no-merge, no-duplication** scheme that protects boundaries while staying easy for agents to follow.
 

@@ -1,5 +1,7 @@
 # RTM v0.1 — Sections 1-9
 
+Last updated: 2025-10-09 (commit d305c2b)
+
 | ID          | Claim (short)                                 | Requirement (what must be shown)                                         | Method (how)                                       | Observable / Test                                         | Falsifier (kill)                                      | Dependencies                     | Status/Risk   |
 | ----------- | --------------------------------------------- | ------------------------------------------------------------------------ | -------------------------------------------------- | --------------------------------------------------------- | ----------------------------------------------------- | -------------------------------- | ------------- |
 | FND-AXIOMS  | Core axioms + ontology/epistemology are fixed | List axioms; prove consistency + non-redundancy; specify epistemic scope | Axiom set + meta-theorems; conservative extensions | Internal model existence; definitional equivalence checks | Inconsistency or hidden circularity                   | —                                | [NOT STARTED] |
@@ -45,7 +47,7 @@
 | EXP-COLL    | Collider program defined                      | Signatures + cuts + stats                                                | MC + EFT fits                                      | Run plans + sensitivities                                 | Null against predicted reach                          | EXP-SPECTRA                      | [NOT STARTED] |
 | EXP-ASTR    | Astro/cosmo program defined                   | Telescopes + targets + stats                                             | Multi-messenger strategy                           | Joint-likelihood constraints                              | Tension with lab sector                               | COS-*, UNI-*                     | [NOT STARTED] |
 
-# High-level dependency map
+## High-level dependency map
 
 ```mermaid
 graph LR
@@ -65,7 +67,7 @@ graph LR
   GR --> EXP
 ```
 
-# How to work this board
+## How to work this board
 
 * Treat each ID as a ticket. A ticket is “done” only with a proof/derivation, an algorithm with bounds, or a prediction + discriminating test.
 * When you start an item, append a brief log (“[STARTED] — approach, blockers, next proof lemmas”), then promote to “[DONE]” when the requirement is satisfied. If assumptions are brittle, mark “[DONE*]” and list fragilities.

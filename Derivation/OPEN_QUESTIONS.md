@@ -2,6 +2,8 @@
 <!-- RULES for maintaining this file are here: /mnt/ironwolf/git/Prometheus_VDM/prompts/open_questions_maintenance.md -->
 # VDM Open Questions & Working Hypotheses (Auto-compiled)
 
+Last updated: 2025-10-09 (commit d305c2b)
+
 **Scope:** Repository-sourced questions, hypotheses, uncertainties, and "future work" items.  
 **Rules:** Quote/condense from sources; link to canon (SYMBOLS/EQUATIONS/CONSTANTS/UNITS/ALGORITHMS/BC_IC/VALIDATION). Do not restate math or numbers here.  
 **MathJax:** GitHub-safe `$...$`/`$$...$$` only when quoting existing math.
