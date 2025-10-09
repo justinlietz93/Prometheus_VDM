@@ -2,7 +2,7 @@
 <!-- RULES for maintaining this file are here: /mnt/ironwolf/git/Prometheus_VDM/prompts/schemas_maintenance.md -->
 # VDM Schemas (Auto-compiled)
 
-Last updated: 2025-10-09 (commit f1e74a5)
+Last updated: 2025-10-09 (commit 09f871a)
 
 **Scope:** Single source of truth for message/record/state/config schemas used in this repository.  
 **Rules:** Paste schema definitions from source; document fields. Link to equations/constants/symbols/units/algorithms.  
@@ -1067,7 +1067,7 @@ class BudgetTick(BaseEvent):
 
 **Kind:** file (JSON summary)  
 **Versioning (if present):** metrics_version = "v2-phys-aware"  
-**Defined at:** `derivation/code/physics/tachyonic_condensation/schemas/tube-spectrum-summary-v1.schema.json` • f1e74a5
+**Defined at:** `derivation/code/physics/tachyonic_condensation/schemas/tube-spectrum-summary-v1.schema.json` • 09f871a
 
 **Definition (verbatim snippet from source):**
 
@@ -1120,7 +1120,7 @@ class BudgetTick(BaseEvent):
 
 **Kind:** file (JSON summary)  
 **Versioning (if present):** none  
-**Defined at:** `derivation/code/physics/tachyonic_condensation/schemas/tube-condensation-summary-v1.schema.json` • f1e74a5
+**Defined at:** `derivation/code/physics/tachyonic_condensation/schemas/tube-condensation-summary-v1.schema.json` • 09f871a
 
 **Definition (verbatim snippet from source):**
 

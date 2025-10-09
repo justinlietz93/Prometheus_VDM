@@ -2,7 +2,7 @@
 
 Status tags: **[DISPROVEN] [PLAUSIBLE] [PLAUSIBLE→PROVEN] [PROVEN]**
 Rule: A row is **PROVEN** only if there’s a runner + CSV/JSON + figure path.
-Last updated: 2025-10-09 (commit f1e74a5)
+Last updated: 2025-10-09 (commit 09f871a)
 
 ---
 

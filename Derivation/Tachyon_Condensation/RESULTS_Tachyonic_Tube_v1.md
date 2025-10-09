@@ -81,7 +81,7 @@ References for special functions and cylinder problems include Abramowitz–Steg
 
 ## Equipment / hardware and provenance
 
-- OS: Linux; repo: Prometheus_VDM; branch: merge; commit: f1e74a5 (git rev-parse HEAD).
+- OS: Linux; repo: Prometheus_VDM; branch: merge; commit: 09f871a (git rev-parse HEAD).
 - Environment: Python per repository `requirements.txt`; deterministic pipeline (no RNG; seed N/A).
 - Repro path: figures and logs under `Derivation/code/outputs/(figures|logs)/tachyonic_condensation/`.
 
@@ -106,9 +106,9 @@ References for special functions and cylinder problems include Abramowitz–Steg
 - Roots CSV: Derivation/code/outputs/logs/tachyonic_condensation/20251009_084702_tube_spectrum_roots__tube-spectrum-v1.csv
 - Figures:
   1) Overview - Derivation/code/outputs/figures/tachyonic_condensation/20251009_084702_tube_spectrum_overview__tube-spectrum-v1.png.
-     Caption (numeric): coverage $\mathrm{cov}_{\rm phys}=1.000$ on $74/74$ admissible pairs; $\mathrm{cov}_{\rm raw}=0.548$ on $74/135$; max residual $|f|=0.709$; tag tube-spectrum-v1; commit f1e74a5; seed N/A.
+     Caption (numeric): coverage $\mathrm{cov}_{\rm phys}=1.000$ on $74/74$ admissible pairs; $\mathrm{cov}_{\rm raw}=0.548$ on $74/135$; max residual $|f|=0.709$; tag tube-spectrum-v1; commit 09f871a; seed N/A.
   2) Possible/found heatmap - Derivation/code/outputs/figures/tachyonic_condensation/20251009_084703_tube_spectrum_heatmap__tube-spectrum-v1.png.
-     Caption (numeric): no possible-but-missed bins; identical coverage metrics as above; tag tube-spectrum-v1; commit f1e74a5.
+     Caption (numeric): no possible-but-missed bins; identical coverage metrics as above; tag tube-spectrum-v1; commit 09f871a.
 
 Gate metrics (metrics_version v2-phys-aware):
 
@@ -122,7 +122,7 @@ Gate metrics (metrics_version v2-phys-aware):
 - Summary JSON: Derivation/code/outputs/logs/tachyonic_condensation/20251009_062600_tube_condensation_summary__tube-condensation-v1.json
 - Energy CSV: Derivation/code/outputs/logs/tachyonic_condensation/20251009_062600_tube_energy_scan__tube-condensation-v1.csv
 - Figure: Derivation/code/outputs/figures/tachyonic_condensation/20251009_062600_tube_energy_scan__tube-condensation-v1.png
-  Caption (numeric): interior minimum at $R_\star\approx 1.35$ with positive curvature ($a=1.8109\dots>0$), finite_fraction $=1.0$; tag tube-condensation-v1; commit f1e74a5.
+  Caption (numeric): interior minimum at $R_\star\approx 1.35$ with positive curvature ($a=1.8109\dots>0$), finite_fraction $=1.0$; tag tube-condensation-v1; commit 09f871a.
 
 Gate metrics:
 
@@ -139,7 +139,7 @@ Gate metrics:
 ## Conclusions
 
 - Aim: evaluate spectrum completeness and condensation curvature gates for the tachyonic tube v1 run.
-- Findings: $\mathrm{cov}_{\rm phys}=1.0$ (PASS); interior minimum with $a>0$ and finite_fraction $=1.0$ (PASS). Artifacts are standards-compliant and reproducible from commit f1e74a5.
+- Findings: $\mathrm{cov}_{\rm phys}=1.0$ (PASS); interior minimum with $a>0$ and finite_fraction $=1.0$ (PASS). Artifacts are standards-compliant and reproducible from commit 09f871a.
 - Next gates: codify $\mathrm{cov}_{\rm phys}$ as primary KPI in schema/specs; optionally add a residual tolerance (e.g., $\max|f|\le 10^{-10}$) in v2; broaden parameter sweeps and consider off-diagonal quartics when physically motivated.
 
 ## References / works cited
