@@ -1,6 +1,9 @@
 <!-- DOC-GUARD: REFERENCE -->
+<!-- RULES for maintaining this file are here: /mnt/ironwolf/git/Prometheus_VDM/prompts/roadmap_maintenance.md -->
 <!-- markdownlint-disable MD033 -->
 # VDM Roadmap (Compiled from Repository Evidence)
+
+Last updated: 2025-10-09 (commit a91b8fa)
 
 **Scope:** Milestones and tasks already recorded in this repository (docs, comments, logs, exported issues).  
 **Rules:** Planning-only. Link to canonical math/specs (SYMBOLS/EQUATIONS/CONSTANTS/UNITS/ALGORITHMS/BC_IC/VALIDATION/DATA_PRODUCTS/SCHEMAS). Do not duplicate canon here.
@@ -297,16 +300,16 @@
 
 **Target timeframe (if stated):** To be scheduled after FRW and A6 baselines
 
-## <a id="ms-eft-validation"></a>EFT/KG Branch Validation (Quarantined)
+## <a id="ms-eft-validation"></a>EFT/KG Branch Validation (Active; KPI-gated)
 
 **Status:** Planned • **Priority:** P3  
 **Source:** derivation/VDM_Overview.md:48 • 77f055f; derivation/foundations/continuum_stack.md:38 • 77f055f; OPEN_QUESTIONS.md#oq-002 • 77f055f
 
-**Goal (verbatim/condensed from source):** Establish quantitative criteria for when second-order EFT branch becomes necessary; validate tachyonic condensation mechanism and finite-tube mode analysis. Currently quarantined as [PLAUSIBLE]/[FUTURE WORK] pending complete discrete action derivation.
+**Goal (verbatim/condensed from source):** Establish quantitative criteria for when second-order EFT branch becomes necessary; validate tachyonic condensation mechanism and finite-tube mode analysis. Marked [PLAUSIBLE] until KPI-gated RESULTS pass; active research branch.
 
 **Acceptance criteria (links only, no formulas):**
 
-- Equations referenced: `EQUATIONS.md#vdm-e-010` (EFT/KG quarantined)
+- Equations referenced: `EQUATIONS.md#vdm-e-010` (EFT/KG active)
 - Data products to produce: TODO: add anchor (see derivation/tachyon_condensation/)
 - Units/normalization context: `UNITS_NORMALIZATION.md#eft-normalization`
 
@@ -330,7 +333,7 @@
 ### <a id="task-eft-criteria"></a>EFT Branch Necessity Criteria
 
 **Source:** OPEN_QUESTIONS.md#oq-002:68-89 • 77f055f  
-**Description:** Define quantitative criteria for boundary between RD (canonical) and EFT/KG (quarantined) branches  
+**Description:** Define quantitative criteria for boundary between RD (canonical) and EFT/KG (active) branches  
 **Linked canon:** equations → `EQUATIONS.md#vdm-e-008`, `EQUATIONS.md#vdm-e-010`, symbols → `SYMBOLS.md#sym-c`  
 **Exit criteria:** Quantitative criteria established; scale separation analysis complete  
 **Owner (if present):** — • **Status:** Open
@@ -834,7 +837,7 @@
 - [RD Canonical Validation](#ms-rd-validation)
 - [Memory Steering Mechanism](#ms-memory-steering)
 - [LBM Fluids Sector Validation](#ms-fluids-sector)
-- [EFT/KG Branch Validation (Quarantined)](#ms-eft-validation)
+- [EFT/KG Branch Validation (Active; KPI-gated)](#ms-eft-validation)
 - [Q_FUM Logistic Invariant Validation](#ms-qfum-invariant)
 - [Agency Field Framework](#ms-agency-field)
 - [UTOE Framework Development](#ms-utoe-framework)

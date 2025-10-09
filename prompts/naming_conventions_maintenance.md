@@ -19,6 +19,8 @@ Search the entire repository (code, tests, notebooks, configs, docs, comments) a
 <!-- DOC-GUARD: CANONICAL -->
 # VDM Naming & Notation Conventions (Auto-compiled)
 
+**Last updated**: yyyy-mm-dd 
+**Last commit**: {latest commit hash here}
 **Scope:** Single source of truth for mathematical and semantic naming conventions used in this repository.  
 **Rules:** Extract from repository evidence only; link to canonical symbols/equations/units/constants. Do not redefine them here.  
 **MathJax:** GitHub-safe `$...$`/`$$...$$` only when quoting existing snippets.

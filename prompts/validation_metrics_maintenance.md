@@ -19,6 +19,8 @@ Search the entire repository (code, tests, notebooks, configs, experiment logs, 
 <!-- DOC-GUARD: CANONICAL -->
 # VDM Validation Metrics & KPIs (Auto-compiled)
 
+**Last updated**: yyyy-mm-dd 
+**Last commit**: {latest commit hash here}
 **Scope:** Single source of truth for validation metrics used in this repository: names, purposes, thresholds/bands, and references to their definitions and implementations.  
 **Rules:** Reference-only. Link to equations/constants/symbols/scripts; do not restate formulas here.  
 **MathJax:** GitHub-safe `$...$`/`$$...$$` only when quoting existing math.

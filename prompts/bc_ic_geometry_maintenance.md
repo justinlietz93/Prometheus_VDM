@@ -19,6 +19,10 @@ Search the entire repository (code, tests, notebooks, configs, experiment script
 <!-- DOC-GUARD: CANONICAL -->
 # VDM Boundary/Initial Conditions & Domain Geometries (Auto-compiled)
 
+
+**Last updated**: yyyy-mm-dd 
+**Last commit**: {latest commit hash here}
+
 **Scope:** Single source of truth for BC/IC and domain geometries used in this repository.  
 **Rules:** Link to equations/constants/symbols by anchor; do not restate them here.  
 **MathJax:** GitHub-safe `$...$`/`$$...$$` only.  

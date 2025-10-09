@@ -2,7 +2,39 @@
 
 Date (UTC): 2025-08-20
 
-Scope: Tier-0 correctness fixes (numerics, stability narrative) and unification to a single canonical model class (reaction-diffusion, RD). EFT/KG material retained but quarantined as “Future Work.”
+Scope: Tier-0 correctness fixes (numerics, stability narrative) and unification to a single canonical model class (reaction-diffusion, RD). EFT/KG material retained as an active, KPI-gated branch with explicit acceptance criteria and provenance. Unapproved runs remain quarantined by IO policy.
+
+---
+
+## 2025-10-09 — Addendum (Provenance-Preserving Updates)
+
+This section appends new corrections and policy clarifications without modifying prior entries. All earlier “before → after” notes remain untouched for historical fidelity.
+
+### Policy Clarifications
+
+- EFT/KG is an active branch with explicit KPIs and acceptance gates; only unapproved runs are quarantined by IO policy. Any “quarantined” label previously attached to EFT/KG in narrative files should be understood as referring to unapproved execution, not the research branch itself.
+- The tachyonic tube RESULTS adopt the physically admissible spectrum coverage $\mathrm{cov}_{\mathrm{phys}}$ as the primary KPI (gate $\ge 0.95$). The raw coverage $\mathrm{cov}_{\mathrm{raw}}$ is reported for transparency only.
+
+### Canonical Mappings and Normalizations
+
+- Discrete → continuum diffusion mapping is reaffirmed as $D = J a^{2}$ (site Laplacian) or $D = (J/z) a^{2}$ (neighbor-average form). The damping parameter $\gamma$ does not appear in the definition of $D$.
+- Kinetic normalization from the discrete action remains $c^{2} = 2 J a^{2}$ (per-site) or $c^{2} = \kappa a^{2}$ with $\kappa=2J$ (per-edge).
+
+### KPIs, Schemas, and Registries
+
+- Validation metrics: `VALIDATION_METRICS.md` updated previously to include tube KPIs (kpi-tube-cov-phys primary; kpi-tube-cov-raw transparency; condensation gates).
+- Output schemas added for auditable summaries:
+  - `code/physics/tachyonic_condensation/schemas/tube-spectrum-summary-v1.schema.json`
+  - `code/physics/tachyonic_condensation/schemas/tube-condensation-summary-v1.schema.json`
+- `SCHEMAS.md` extended with sections for the above.
+- `METRICS.md` remains deprecated as a metrics source; `VALIDATION_METRICS.md` is canonical.
+
+### RESULTS and Overview
+
+- Tube RESULTS v1 documented with explicit gates and artifact paths; provenance is pinned in the RESULTS file. Canon registries (`EQUATIONS.md`, `ALGORITHMS.md`, `CANON_PROGRESS.md`) reflect PROVEN status.
+- `OVERVIEW.md` aligned to the canonical diffusion mapping and kinetic normalization; phrasing updated to present EFT/KG as an active, KPI-gated branch.
+
+Provenance Note: The above reflect repository state as of 2025-10-09; earlier entries below remain as originally logged to preserve history.
 
 ## Summary (before → after)
 
@@ -16,7 +48,7 @@ Scope: Tier-0 correctness fixes (numerics, stability narrative) and unification 
 
 - [derivation/discrete_to_continuum.md](discrete_to_continuum.md)
   - Before: Objective stated convergence to KG; D mapping not explicit.
-  - After: Objective states RD mapping as primary; explicit D mapping (D = J a² or (J/z) a²); EFT derivation quarantined to EFT doc.
+  - After: Objective states RD mapping as primary; explicit D mapping (D = J a² or (J/z) a²); EFT derivation referenced to EFT docs as an active, KPI-gated branch.
 
 - [derivation/memory_steering.md](memory_steering.md)
   - Before: Hardwired EFT vacuum/mass invariants in main text.
@@ -28,7 +60,7 @@ Scope: Tier-0 correctness fixes (numerics, stability narrative) and unification 
 
 - [derivation/effective_field_theory_approach.md](effective_field_theory_approach.md)
   - Before: No scope banner.
-  - After: Quarantine banner; note m_eff = √(α-β) is parameter‑dependent and unitized via τ.
+  - After: Policy banner updated; note m_eff = √(α-β) is parameter‑dependent and unitized via τ; EFT is active with KPI gates.
 
 - [derivation/code/computational_proofs/void_dynamics_theory.md](code/computational_proofs/void_dynamics_theory.md)
   - Before: No scope note; mixed RD/EFT implications.
@@ -70,7 +102,7 @@ All fixed-number statements were replaced with parameter‑dependent forms and e
 - [derivation/discrete_to_continuum.md](discrete_to_continuum.md): Update objective to RD; add D mapping text; keep EFT derivation as future work.  
 - [derivation/memory_steering.md](memory_steering.md): Align with RD canonical; restrict EFT formulas to EFT doc; remove back‑solve in RD section.  
 - [derivation/symmetry_analysis.md](symmetry_analysis.md): Clarify RD vs EFT contexts in interpretations.  
-- [derivation/effective_field_theory_approach.md](effective_field_theory_approach.md): Add quarantine banner.  
+- [derivation/effective_field_theory_approach.md](effective_field_theory_approach.md): Add policy banner (active, KPI‑gated); retain IO quarantine for unapproved runs.  
 - [derivation/code/computational_proofs/void_dynamics_theory.md](code/computational_proofs/void_dynamics_theory.md): Add scope note at top.  
 - [derivation/support/references/Suggestions.md](support/references/Suggestions.md): Insert header note; prevent hard constraints on Ja².  
 - [derivation/fum_voxtrium_mapping.md](fum_voxtrium_mapping.md): Make RD canonical; EFT references scoped.  

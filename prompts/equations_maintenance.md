@@ -22,7 +22,7 @@ Search the entire repository (code, tests, notebooks, docs, comments) and extrac
 
 ```markdown
 #### VDM-E-### — <short name taken from nearby comment or file>
-**Context:** <path/to/file>:<line-range> • Commit: <short-hash>
+**Context:** <path/to/file>:<line-range> • Commit: <short-hash> • Last Updated: <datetime>
 
 $$
 % paste the exact equation from the source, minimally normalized for MathJax if needed

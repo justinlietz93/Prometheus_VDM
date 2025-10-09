@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "tube-spectrum-summary-v1",
+  "type": "object",
+  "required": [
+    "tag",
+    "metrics_version",
+    "coverage_phys",
+    "coverage_raw",
+    "attempts",
+    "attempts_phys",
+    "attempts_raw",
+    "successes",
+    "csv",
+    "passed"
+  ],
+  "properties": {
+    "tag": { "type": "string", "const": "tube-spectrum-v1" },
+    "metrics_version": { "type": "string", "enum": ["v2-phys-aware"], "description": "Version of KPI computation; v2-phys-aware denotes cov_phys primary." },
+    "coverage": { "type": "number", "minimum": 0, "maximum": 1, "description": "Alias of coverage_phys for backward compatibility." },
+    "coverage_phys": { "type": "number", "minimum": 0, "maximum": 1, "description": "Primary KPI: successes / attempts over physically admissible (R, ell) pairs." },
+    "coverage_raw": { "type": "number", "minimum": 0, "maximum": 1, "description": "Transparency KPI: successes / (|R_sweep| * (ell_max+1))." },
+    "attempts": { "type": "integer", "minimum": 0, "description": "Number of physically admissible attempts considered for cov_phys." },
+    "attempts_phys": { "type": "integer", "minimum": 0, "description": "Equals attempts; explicit for clarity." },
+    "attempts_raw": { "type": "integer", "minimum": 0, "description": "Total R-ell pairs, regardless of admissibility." },
+    "successes": { "type": "integer", "minimum": 0 },
+    "csv": { "type": "string", "description": "Absolute path to spectrum roots CSV artifact." },
+    "figure": { "type": ["string", "null"], "description": "Absolute path to overview figure (optional)." },
+    "heatmap": { "type": ["string", "null"], "description": "Absolute path to diagnostic heatmap (optional)." },
+    "max_residual": { "type": ["number", "null"], "description": "Maximum absolute secular residual across reported roots (informational in v1)." },
+    "passed": { "type": "boolean", "description": "Overall acceptance: coverage_phys >= 0.95." }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "tube-condensation-summary-v1",
+  "type": "object",
+  "required": [
+    "tag",
+    "finite_fraction",
+    "min_R",
+    "min_E",
+    "curvature_ok",
+    "csv",
+    "figure",
+    "passed"
+  ],
+  "properties": {
+    "tag": { "type": "string", "const": "tube-condensation-v1" },
+    "finite_fraction": { "type": "number", "minimum": 0, "maximum": 1, "description": "Fraction of finite E(R) values over scan grid (gate: >= 0.80)." },
+    "min_R": { "type": ["number", "null"], "description": "R at minimum energy if finite; null otherwise." },
+    "min_E": { "type": ["number", "null"], "description": "Minimum energy if finite; null otherwise." },
+    "curvature_ok": { "type": "boolean", "description": "True if local quadratic fit near min has positive curvature (a > 0) or discrete second difference indicates convexity." },
+    "fit_coeffs": { "type": ["array", "null"], "items": {"type": "number"}, "minItems": 3, "maxItems": 3, "description": "[a, b, c] from quadratic fit a R^2 + b R + c if computed." },
+    "csv": { "type": "string", "description": "Absolute path to energy scan CSV artifact." },
+    "figure": { "type": "string", "description": "Absolute path to energy scan PNG figure." },
+    "passed": { "type": "boolean", "description": "Overall acceptance: finite_fraction >= 0.80 and curvature_ok == true." }
+  },
+  "additionalProperties": true
+}

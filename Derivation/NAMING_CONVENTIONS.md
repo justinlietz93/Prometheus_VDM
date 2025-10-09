@@ -1,4 +1,5 @@
 <!-- DOC-GUARD: CANONICAL -->
+<!-- RULES for maintaining this file are here: /mnt/ironwolf/git/Prometheus_VDM/prompts/naming_conventions_maintenance.md -->
 # VDM Naming & Notation Conventions (Auto-compiled)
 
 **Scope:** Single source of truth for mathematical and semantic naming conventions used in this repository.  

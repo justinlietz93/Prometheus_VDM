@@ -1,3 +1,4 @@
+<!-- ATTENTION! The results documents you create MUST BE whitepaper-grade documents with full structure, MathJax-rendered equations, numeric figure captions tied to actual artifacts, explicit thresholds with pass/fail gates, and provenance. You need to imagine if the document will be getting submitted for review at the most highly respected and quality Physics journals on Earth. -->
 # **Title Name Here**
 
 > Author: Justin K. Lietz

@@ -2,7 +2,7 @@
 
 Status tags: **[DISPROVEN] [PLAUSIBLE] [PLAUSIBLE→PROVEN] [PROVEN]**
 Rule: A row is **PROVEN** only if there’s a runner + CSV/JSON + figure path.
-Last Updated: October 8, 2025
+Last updated: 2025-10-09 (commit a91b8fa)
 
 ---
 
@@ -43,6 +43,7 @@ Last Updated: October 8, 2025
 | Information (SIE) | SIE invariant and novelty metric | Control: two-grid slope $\ge p+1-0.1$, $R^2\ge 0.999$, $\max\,\lvert Q(t)-Q(0)\rvert\le 10^{-8}$ (RK4) and $\le 10^{-5}$ (Euler); Novelty: bounded peak drift, 95% recovery in $\sim 1/r$ | Proposal: `Derivation/Information/PROPOSAL_SIE_Invariant_and_Novelty_v1.md` (awaiting RESULTS) | **PLAUSIBLE** |
 | Quantum Gravity | Bridge construction and diagnostics | gates per proposal (consistency checks and invariants) | Proposal: `Derivation/Quantum_Gravity/PROPOSAL_Quantum_Gravity_Bridge_v1.md` (awaiting RESULTS) | **PLAUSIBLE** |
 | Topology | Loop quench test | gates per proposal (loop invariants, quench response metrics) | Proposal: `Derivation/Topology/PROPOSAL_Loop_Quench_Test_v1.md` (awaiting RESULTS) | **PLAUSIBLE** |
+| Tachyonic Condensation (tube) | Spectrum complete on admissible set; condensation exhibits interior minimum with positive curvature | Spectrum: $\mathrm{cov}_{\rm phys}\ge 0.95$ (v1: 1.000); Condensation: finite_fraction $\ge 0.80$, interior min, $a>0$ | RESULTS: `Derivation/Tachyon_Condensation/RESULTS_Tachyonic_Tube_v1.md`; Spectrum figs `Derivation/code/outputs/figures/tachyonic_condensation/20251009_084702_tube_spectrum_overview__tube-spectrum-v1.png`, `.../20251009_084703_tube_spectrum_heatmap__tube-spectrum-v1.png`; Condensation fig `Derivation/code/outputs/figures/tachyonic_condensation/20251009_062600_tube_energy_scan__tube-condensation-v1.png` | **PROVEN** |
 
 ---
 
@@ -87,3 +88,4 @@ grep -Eo '\[(DISPROVEN|PLAUSIBLE→PROVEN|PLAUSIBLE|PROVEN)\]' derivation/CANON_
 # block “cone” claims in RD docs
 grep -RIn "cone" derivation write_ups docs | grep -Ei "RD|Fisher|diffus" && \
   { echo "RD must not claim a cone. Use 'front speed'."; exit 1; } || true
+```

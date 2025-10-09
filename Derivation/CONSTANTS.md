@@ -1,5 +1,8 @@
 <!-- DOC-GUARD: CANONICAL -->
+<!-- RULES for maintaining this file are here: /mnt/ironwolf/git/Prometheus_VDM/prompts/constants_maintenance.md -->
 # VDM Constants & Defaults (Auto-compiled)
+
+Last updated: 2025-10-09 (commit a91b8fa)
 
 **Scope:** Single source of truth for numerical constants, ranges, and defaults currently present in this repository.  
 **Rules:** Other docs must link here; do not restate numbers elsewhere.  

@@ -29,6 +29,8 @@ Search the entire repository (code, tests, notebooks, docs, comments, configs) a
 <!-- DOC-GUARD: CANONICAL -->
 # VDM Symbols (Auto-compiled)
 
+**Last updated**: yyyy-mm-dd 
+**Last commit**: {latest commit hash here}
 **Scope:** Single source of truth for meanings and roles of all mathematical symbols present in this repository.  
 **Rules:** Other docs must link here; do not duplicate definitions elsewhere.  
 **MathJax:** GitHub-safe `$...$` / `$$...$$` only.  

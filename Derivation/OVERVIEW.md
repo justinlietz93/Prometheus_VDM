@@ -1,5 +1,9 @@
 # Void Dynamics Model: A Discrete-to-Continuum Field Theory with Agency Emergence
 
+Note on scope: This document is canonical and reflects the latest accepted state only. Historical timelines and prior wordings are preserved in Derivation/CORRECTIONS.md and the memory-bank logs.
+
+Last updated: 2025-10-09 (commit a91b8fa)
+
 **Author:** Justin K. Lietz  
 **Date:** October 6, 2025
 
@@ -17,6 +21,11 @@ The Void Dynamics Model (VDM) represents a systematic attempt to derive emergent
 2. The **axiomatic discrete-action foundation** (exact derivation of spatial kinetic prefactor c² = 2Ja², no hand-waving)
 3. The **agency/consciousness field framework** as an *interpretive layer* atop validated physics
 4. Critical assessment of theoretical limitations and speculative elements
+
+Scope boundary note (policy):
+
+- RD is the canonical baseline (first-order in time) used for quantitative claims and validation gates.
+- EFT/KG is an active second branch (second-order in time); quantitative claims are KPI-gated with provenance and explicit acceptance criteria.
 
 **What this work does NOT claim:**
 
@@ -72,22 +81,32 @@ Level-set front tracking provides robust speed estimation immune to amplitude fl
 **Reaction-Diffusion Systems:**  
 The Fisher-KPP equation ∂_t φ = D∇²φ + rφ(1 - φ) describes the paradigmatic "pulled front" phenomenon: traveling waves where the leading edge propagates at the minimal speed c* = 2√(Dr) determined solely by linearization at φ→0 (Fisher, 1937; Kolmogorov et al., 1937). This speed arises from balancing exponential growth (rate r) against spatial spreading (diffusion D). The universality class extends to biological invasions, chemical autocatalysis, and flame fronts. VDM reproduces this exactly from discrete on-site logistic dynamics F(W) = rW - uW² with diffusive coupling.
 
-**Discrete-to-Continuum Mapping:**  
-A cubic lattice with spacing a and nearest-neighbor coupling J generates, in the limit a→0 with fixed c = a/Δt, a continuum diffusion coefficient:
+**Discrete-to-Continuum Mapping (canonical):**  
+A cubic lattice with spacing $a$ and nearest-neighbor coupling $J$ yields a continuum diffusion coefficient
 
-$$D = 2Ja^2/\gamma$$
+$$
+D = J a^{2} \quad \text{(site Laplacian)}, \qquad D = \tfrac{J}{z} a^{2} \quad \text{(neighbor-average form)}
+$$
 
-where γ is a phenomenological damping rate converting second-order wave dynamics into first-order gradient flow. The factor-of-2 prefactor (c_lat = 2 for 3D cubic) emerges exactly from Taylor expansion of ∑_j(W_j - W_i)² around each lattice direction (Derivation 1.3.1, AGENCY_FIELD.md). This is **not** a fitting parameter but a geometric necessity for rotational symmetry recovery.
+with coordination number $z$ (e.g., $z=2d$ on a $d$-dimensional cubic lattice). The kinetic normalization from the discrete action fixes
+
+$$
+c^{2} = 2 J a^{2} \quad (\text{per-site}), \qquad c^{2} = \kappa a^{2},\; \kappa=2J \quad (\text{per-edge}).
+$$
+
+Note: $\gamma$ is a damping/relaxation parameter used to discuss overdamped limits; it does not enter the definition of $D$ in the canonical mapping above.
 
 **Action Principle Necessity:**  
 Classical RD models posit ∂_t φ = F(φ, ∇²φ) *ad hoc*. VDM instead constructs a discrete Lagrangian:
 
-$$\mathcal{L}_i^n = \frac{1}{2}\left(\frac{W_i^{n+1} - W_i^n}{\Deltaт}\right)^2 - \frac{J}{2}\sum_{j \in N(i)}(W_j^n - W_i^n)^2 - V(W_i^n)$$
+$$\mathcal{L}_i^n = \frac{1}{2}\left(\frac{W_i^{n+1} - W_i^n}{\Delta t}\right)^2 - \frac{J}{2}\sum_{j \in N(i)}(W_j^n - W_i^n)^2 - V(W_i^n)$$
 
 Applying discrete Euler-Lagrange machinery ∂S/∂W_i^n = 0 yields second-order time dynamics **without** "promoting" first-order equations—the inertial term appears naturally from variational calculus. The overdamped limit (γ⁻¹ ≫ c/L) recovers RD; retaining inertia gives Klein-Gordon. This dual-regime structure is the core theoretical architecture.
 
-**Tachyonic Instability Mechanism:**  
-The potential V(φ) = (α/3)φ³ - [(α-β)/2]φ² + (λ/4)φ⁴ exhibits V''(0) = -(α-β) < 0 when α > β, creating a "tachyonic" (negative mass-squared) origin. Small fluctuations grow exponentially until nonlinear saturation at vacuum v ≈ (α-β)/α (for small λ). This is **not** superluminal propagation but rather finite-time escape from an unstable fixed point, analogous to QCD tachyon condensation in chromomagnetic backgrounds (Bordag et al., 2001). The mechanism naturally selects a length scale R* ~ π/√(α-β) for void structure formation.
+**Tachyonic Instability Mechanism (EFT/KG branch):**  
+The potential $V(\phi) = (\alpha/3)\,\phi^{3} - [(\alpha-\beta)/2]\,\phi^{2} + (\lambda/4)\,\phi^{4}$ exhibits $V''(0) = -\,(\alpha-\beta) < 0$ when $\alpha > \beta$, creating a “tachyonic” (negative mass-squared) origin. Small fluctuations grow exponentially until nonlinear saturation at vacuum $v \approx (\alpha-\beta)/\alpha$ (for small $\lambda$). This is not superluminal propagation but rather finite-time escape from an unstable fixed point, analogous to QCD tachyon condensation in chromomagnetic backgrounds (Bordag et al., 2001). The mechanism naturally selects a length scale $R^{\ast} \sim \pi/\sqrt{\alpha-\beta}$ for void structure formation.
+
+Finite-radius tube modes and diagonal condensation scans have been analyzed under explicit acceptance gates. The primary spectrum KPI is the physically admissible coverage $\mathrm{cov}_{\mathrm{phys}}$ (gate $\ge 0.95$), with $\mathrm{cov}_{\mathrm{raw}}$ reported for transparency. See `Derivation/Tachyon_Condensation/RESULTS_Tachyonic_Tube_v1.md` and the output schemas at `Derivation/code/physics/tachyonic_condensation/schemas/` (tube-spectrum-summary, tube-condensation-summary). KPI definitions: `Derivation/VALIDATION_METRICS.md` (kpi-tube-cov-phys, kpi-tube-cov-raw).
 
 **Agency Field Physical Interpretation:**  
 Traditional thermodynamics assigns entropy S to equilibrium ensembles. Non-equilibrium systems—especially those performing computation—require additional order parameters. The agency field C(x,t) is proposed as such: regions with high C maintain large predictive horizons (P), coordinate subsystems effectively (I_net), and achieve goals efficiently (U), all while satisfying diffusion-decay-source PDE:
