@@ -219,7 +219,7 @@ and policy:
   \end{itemize}
 \end{itemize}
 
-For a full domain map with purposes and canonical registries, see §X
+For a full domain map with purposes and canonical registries, see Section~X
 ``Unified Architecture and Canon Map.''
 
 Scope boundary note (policy):
@@ -288,11 +288,11 @@ These computational experiments serve as \emph{functional equivalents}
 to laboratory apparatus, with reproducibility ensured via seed control,
 commit logging, and artifact archival.
 
-\textbf{Document structure:} Following axiomatic foundations (§II--IV),
-we derive the RD canonical branch (§V--VI), establish conservation laws
-(§VII), present validated results (§VIII), interpret and bound the
-theory (§VIII--IX), and provide a domain-wide architecture map (§X),
-policies (§XII), and a forward-looking roadmap (§XIII).
+\textbf{Document structure:} Following axiomatic foundations (Section~II--IV),
+we derive the RD canonical branch (Section~V--VI), establish conservation laws
+(Section~VII), present validated results (Section~VIII), interpret and bound the
+theory (Section~VIII--IX), and provide a domain-wide architecture map (Section~X),
+policies (Section~XII), and a forward-looking roadmap (Section~XIII).
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -335,7 +335,7 @@ via:}
   vs.~lockstep)?}
 \item
   \emph{Fractal scaling breaks at organizational boundaries
-  (cell→organ→human)?}
+  (cell$\rightarrow$organ$\rightarrow$human)?}
 \end{enumerate}
 
 \textbf{Units and Measurements:}
@@ -455,7 +455,7 @@ such: regions with high C maintain large predictive horizons (P),
 coordinate subsystems effectively (I\_net), and achieve goals
 efficiently (U), all while satisfying diffusion-decay-source PDE:
 
-\[\partial_t C = D\nabla²C - \gamma C + S(x,t)\]
+\[\partial_t C = D\nabla^{2}C - \gamma C + S(x,t)\]
 
 where source
 \(S(x,t) = \sigma[x](\kappa_{1} P + \kappa_{2} I_{\text{net}} + \kappa_{3} U) \times \text{gates}\).
@@ -469,7 +469,7 @@ per joule expended. These are \textbf{measurable}, not metaphysical.
 
 \textbf{Why This Approach:}\\
 Standard approaches treat consciousness as ineffable. Integrated
-Information Theory (Tononi, 2004) defines Φ but lacks dynamical
+Information Theory (Tononi, 2004) defines $\Phi$ but lacks dynamical
 equations. Global Workspace Theory (Baars, 1988) describes architecture
 without physics. VDM asks: \emph{if} consciousness/agency corresponds to
 some physical field, what PDE must it obey? Answer: one respecting
@@ -485,14 +485,14 @@ The core governing PDE in RD limit:
 
 \[\partial_t \phi = D\nabla^2\phi + r\phi - u\phi^2 - \lambda\phi^3\]
 
-With λ=0 (no stabilization), this is Fisher-KPP. The quartic term
+With $\lambda = 0$ (no stabilization), this is Fisher-KPP. The quartic term
 prevents unphysical blowup when extending to unbounded domains.
 
 Front speed prediction (Equation VDM-E-033):
 
 \[c_{\text{front}} = 2\sqrt{Dr}\]
 
-Dispersion relation for linearized modes φ \textasciitilde{} exp(σt +
+Dispersion relation for linearized modes $\phi$ \textasciitilde{} exp($\sigma$t +
 ikx) (Equation VDM-E-035):
 
 \[\sigma(k) = r - Dk^2\]
@@ -678,14 +678,14 @@ Ensures CFL stability \(\Delta t \le \Delta x^{2}/(2 d D)\); changing
 \(N=1024\) (RD dispersion), \(N=1024\) (front speed) \\
 \textbf{Time Step \(\Delta t\)} & Computed as
 \(\Delta t = \mathrm{cfl} \times \Delta x^{2}/(2 d D)\) & Explicit Euler
-stability; too large → numerical blowup, too small → wasted computation
+stability; too large $\rightarrow$ numerical blowup, too small $\rightarrow$ wasted computation
 & \(\mathrm{cfl} = 0.2\) (typical) \\
 \textbf{Domain Size \(L\)} & Fixed at \(L=200\) (RD experiments) &
-Boundary effects negligible when \(L \gg\) front width; too small →
+Boundary effects negligible when \(L \gg\) front width; too small $\rightarrow$
 periodic artifacts & \(L=200\) spatial units \\
 \textbf{Total Time \(T\)} & Sufficient for convergence
 (\(T \gg \tau_{\text{transient}}\)) & Must observe steady-state front
-propagation or equilibration; too short → incomplete data & \(T=80\)
+propagation or equilibration; too short $\rightarrow$ incomplete data & \(T=80\)
 (front speed), \(T=10\) (dispersion) \\
 \textbf{Initial Condition} & Consistent functional form (tanh step or
 Gaussian noise) & IC affects transient but not asymptotic speed or
@@ -762,7 +762,7 @@ Outliers}
   \textbf{Implementation:} SciPy stats.linregress with manual outlier
   masking
 \item
-  \textbf{Validation:} Synthetic noisy linear data recovery (R²
+  \textbf{Validation:} Synthetic noisy linear data recovery (R^{2}
   \textgreater{} 0.998 for SNR=10)
 \end{itemize}
 
@@ -845,31 +845,31 @@ Diagram}\label{experimental-setup-diagram}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{┌─────────────────────────────────────────────────────────────┐}
-\NormalTok{│  COMPUTATIONAL VALIDATION PIPELINE                           │}
-\NormalTok{│                                                              │}
-\NormalTok{│  ┌──────────────┐      ┌──────────────┐                    │}
-\NormalTok{│  │ RD Solver    │─────▶│ Front Track  │──▶ c\_front         │}
-\NormalTok{│  │ (Euler PDE)  │      │ (level{-}set)  │    [CSV out]       │}
-\NormalTok{│  └──────────────┘      └──────────────┘                    │}
-\NormalTok{│         │                                                    │}
-\NormalTok{│         │              ┌──────────────┐                    │}
-\NormalTok{│         └─────────────▶│ rFFT + Fit   │──▶ σ(k) array      │}
-\NormalTok{│                        │ (mode growth)│    [JSON out]      │}
-\NormalTok{│                        └──────────────┘                    │}
-\NormalTok{│                                                              │}
-\NormalTok{│  ┌──────────────┐      ┌──────────────┐                    │}
-\NormalTok{│  │ LBM Solver   │─────▶│ Energy Decay │──▶ ν\_fit           │}
-\NormalTok{│  │ (D2Q9 BGK)   │      │ (Taylor{-}Green│    [metrics.json]  │}
-\NormalTok{│  └──────────────┘      └──────────────┘                    │}
-\NormalTok{│                                                              │}
-\NormalTok{│  ┌──────────────┐      ┌──────────────┐                    │}
-\NormalTok{│  │ ODE Integr.  │─────▶│ Q{-}Invariant  │──▶ ΔQ\_max          │}
-\NormalTok{│  │ (RK4/Euler)  │      │ Monitor      │    [drift.png]     │}
-\NormalTok{│  └──────────────┘      └──────────────┘                    │}
-\NormalTok{│                                                              │}
-\NormalTok{│  All stages: seed control + commit logging + artifact SHA256│}
-\NormalTok{└─────────────────────────────────────────────────────────────┘}
+\NormalTok{+-------------------------------------------------------------+}
+\NormalTok{|  COMPUTATIONAL VALIDATION PIPELINE                       |}
+\NormalTok{|                                                             |}
+\NormalTok{|  +------------+      +------------+      c\_front [CSV]     |}
+\NormalTok{|  | RD Solver  | ----> | Front Track| --------------------> |}
+\NormalTok{|  | (Euler PDE)|      | (level-set)|                       |}
+\NormalTok{|  +------------+      +------------+                       |}
+\NormalTok{|         |                                             |    |}
+\NormalTok{|         v              +------------+      $\sigma(k)$ [JSON]   |}
+\NormalTok{|         +------------> | rFFT + Fit | -------------------> |}
+\NormalTok{|                        | (mode growth)|                   |}
+\NormalTok{|                        +------------+                      |}
+\NormalTok{|                                                             |}
+\NormalTok{|  +------------+      +------------+      $\nu_{\text{fit}}$ [metrics]   |}
+\NormalTok{|  | LBM Solver | ----> | Energy Decay| --------------------> |}
+\NormalTok{|  | (D2Q9 BGK) |      | (Taylor-Green)|                     |}
+\NormalTok{|  +------------+      +------------+                       |}
+\NormalTok{|                                                             |}
+\NormalTok{|  +------------+      +------------+      $\Delta Q_{\max}$ [drift]    |}
+\NormalTok{|  | ODE Integr.| ----> | Q-Invariant| --------------------> |}
+\NormalTok{|  | (RK4/Euler)|      | Monitor    |                      |}
+\NormalTok{|  +------------+      +------------+                       |}
+\NormalTok{|                                                             |}
+\NormalTok{|  All stages: seed control + commit logging + artifact SHA256 |}
+\NormalTok{+-------------------------------------------------------------+}
 \end{Highlighting}
 \end{Shaded}
 
@@ -920,11 +920,11 @@ to theoretical prediction \(c^{\ast} = 2\sqrt{Dr}\).
 \def\labelenumi{\arabic{enumi}.}
 \item
   \textbf{Initialize Domain:}\\
-  Construct 1D spatial grid with N=1024 points spanning x ∈ {[}-L/2,
-  L/2{]} where L=200. Set lattice spacing Δx = L/N = 0.1953.
+  Construct 1D spatial grid with N=1024 points spanning x $\in$ {[}-L/2,
+  L/2{]} where L=200. Set lattice spacing \Delta x = L/N = 0.1953.
 \item
   \textbf{Apply Initial Condition:}\\
-  Define smooth tanh step centered at x₀ = -60:
+  Define smooth tanh step centered at x$_0$ = -60:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -954,7 +954,7 @@ to theoretical prediction \(c^{\ast} = 2\sqrt{Dr}\).
   \(dt \approx 3.81\times 10^{-3}\).
 \item
   \textbf{Temporal Integration:}\\
-  Explicit Euler update for T=80 time units (≈21,000 steps):
+  Explicit Euler update for T=80 time units ($\approx$21,000 steps):
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -995,7 +995,7 @@ to theoretical prediction \(c^{\ast} = 2\sqrt{Dr}\).
 \begin{itemize}
 \tightlist
 \item
-  D = 1.0, r = 0.15, u = 0.25 (α=0.25, β=0.10)
+  D = 1.0, r = 0.15, u = 0.25 ($\alpha$=0.25, $\beta$=0.10)
 \item
   N = 1024, L = 200, T = 80, cfl = 0.2
 \item
@@ -1016,11 +1016,11 @@ Validation}\label{b.-reaction-diffusion-dispersion-validation}}
 \def\labelenumi{\arabic{enumi}.}
 \item
   \textbf{Initialize Domain:}\\
-  Construct 1D periodic grid with N=1024 points on x ∈ {[}0, L{]} where
+  Construct 1D periodic grid with N=1024 points on x $\in$ {[}0, L{]} where
   L=200.
 \item
   \textbf{Apply Initial Condition:}\\
-  Small-amplitude white noise around φ=0:
+  Small-amplitude white noise around $\phi$=0:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1030,7 +1030,7 @@ Validation}\label{b.-reaction-diffusion-dispersion-validation}}
 \end{Shaded}
 
   Rationale: Broad-spectrum perturbation excites all Fourier modes;
-  linearization valid for amp0 ≪ 1.
+  linearization valid for amp0 $\ll$ 1.
 \item
   \textbf{Set Boundary Conditions:}\\
   Periodic wrap in Laplacian via np.roll: \(\phi(0) \equiv \phi(L)\),
@@ -1052,7 +1052,7 @@ Validation}\label{b.-reaction-diffusion-dispersion-validation}}
 \end{Highlighting}
 \end{Shaded}
 
-  Extract amplitude \textbar û\_m(t)\textbar{} for modes m ∈ {[}1,
+  Extract amplitude \textbar $\hat{u}$\_m(t)\textbar{} for modes m $\in$ {[}1,
   m\_max{]} where m\_max=64.
 \item
   \textbf{Growth Rate Fitting:}\\
@@ -1066,7 +1066,7 @@ Validation}\label{b.-reaction-diffusion-dispersion-validation}}
 \end{Highlighting}
 \end{Shaded}
 
-  Discard ``bad modes'' with R²\_m \textless{} 0.95 (poor exponential
+  Discard ``bad modes'' with R^{2}\_m \textless{} 0.95 (poor exponential
   fit).
 \item
   \textbf{Comparison:}\\
@@ -1119,7 +1119,7 @@ for on-site logistic ODE.
 \end{Shaded}
 \item
   \textbf{Initial Condition:}\\
-  W(0) = W0 with W0 ∈ {[}0.12, 0.62{]} (sample 5 points).
+  W(0) = W0 with W0 $\in$ {[}0.12, 0.62{]} (sample 5 points).
 \item
   \textbf{Integrate:}\\
   Use SciPy solve\_ivp with method=`RK45' (adaptive RK4/5), rtol=1e-9,
@@ -1152,14 +1152,14 @@ for on-site logistic ODE.
 \begin{itemize}
 \tightlist
 \item
-  r = 0.15, u = 0.25, W0 ∈ \{0.12, 0.24, 0.36, 0.48, 0.62\}, T = 40
+  r = 0.15, u = 0.25, W0 $\in$ \{0.12, 0.24, 0.36, 0.48, 0.62\}, T = 40
 \end{itemize}
 
 \hypertarget{d.-lattice-boltzmann-viscosity-recovery}{%
 \paragraph{D. Lattice Boltzmann Viscosity
 Recovery}\label{d.-lattice-boltzmann-viscosity-recovery}}
 
-\textbf{Objective:} Validate LBM→Navier--Stokes reduction via energy
+\textbf{Objective:} Validate LBM$\rightarrow$Navier--Stokes reduction via energy
 decay in Taylor--Green vortex.
 
 \textbf{Procedure:}
@@ -1171,7 +1171,7 @@ decay in Taylor--Green vortex.
   nx = ny = 256, periodic boundaries in both directions.
 \item
   \textbf{Set Initial Velocity:}\\
-  Analytical Taylor-Green profile with U0=0.05, k=2π:
+  Analytical Taylor-Green profile with U0=0.05, k=2$\pi$:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1180,7 +1180,7 @@ decay in Taylor--Green vortex.
 \end{Highlighting}
 \end{Shaded}
 
-  Initialize populations f\_i to local equilibrium with ρ=1, u=(u\_x,
+  Initialize populations f\_i to local equilibrium with $\rho$=1, u=(u\_x,
   u\_y).
 \item
   \textbf{BGK Collision:}
@@ -1191,7 +1191,7 @@ decay in Taylor--Green vortex.
 \end{Highlighting}
 \end{Shaded}
 
-  where f\_eq\_i is D2Q9 equilibrium distribution, τ = 0.8 (default).
+  where f\_eq\_i is D2Q9 equilibrium distribution, $\tau$ = 0.8 (default).
 \item
   \textbf{Streaming:}\\
   Shift each population in lattice direction c\_i with periodic wrap.
@@ -1207,7 +1207,7 @@ decay in Taylor--Green vortex.
 \item
   \textbf{Exponential Fit:}\\
   After transient (t \textgreater{} 500 steps), fit E(t) = E0
-  \emph{exp(-2}nu\_fit\emph{k²}t). Extract nu\_fit.
+  \emph{exp(-2}nu\_fit\emph{k^{2}}t). Extract nu\_fit.
 \item
   \textbf{Comparison:}\\
   Theoretical viscosity \(\nu_{\text{theory}} = (\tau - 0.5)/3\).
@@ -1229,7 +1229,7 @@ decay in Taylor--Green vortex.
 \begin{itemize}
 \tightlist
 \item
-  nx = ny = 256, tau = 0.8, U0 = 0.05, k = 2π, steps = 5000,
+  nx = ny = 256, tau = 0.8, U0 = 0.05, k = 2$\pi$, steps = 5000,
   sample\_every = 50
 \end{itemize}
 
@@ -1268,7 +1268,7 @@ requirements.txt (NumPy==1.21.0, etc.); containerization optional \\
 \textbf{Data Integrity (artifact corruption)} & Low & SHA-256 checksums
 on all CSV/JSON outputs; git-annex for large artifacts \\
 \textbf{Computational Resource Exhaustion} & Low & Estimate runtime via
-profiling (O(N²) per step for 2D grids); timeout after 24h \\
+profiling (O(N^{2}) per step for 2D grids); timeout after 24h \\
 \end{longtable}
 
 \textbf{Ethical Considerations:} No human/animal subjects. No personally
@@ -1278,7 +1278,7 @@ requires permission).
 
 \textbf{Environmental Impact:} Computational experiments consume
 electricity. Estimated 10 kWh per full validation suite
-(\textasciitilde10 kg CO₂ equivalent). Mitigation: Run during off-peak
+(\textasciitilde10 kg CO$_2$ equivalent). Mitigation: Run during off-peak
 hours; use renewable-powered servers when available; archive results to
 avoid redundant runs.
 
@@ -1445,7 +1445,7 @@ Given position timeseries (t\_i, x\_i), perform robust linear fit:
 \end{Highlighting}
 \end{Shaded}
 
-✓ \textbf{Passes acceptance:} rel\_err \textless{} 5\%, R²
+$\checkmark$ \textbf{Passes acceptance:} rel\_err \textless{} 5\%, R^{2}
 \textgreater{} 0.98
 
 \textbf{Dispersion Growth Rate (Mode \(m=10\)):}
@@ -1456,16 +1456,16 @@ Theoretical prediction:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{sigma\_theory }\OperatorTok{=} \FloatTok{0.15} \OperatorTok{{-}} \FloatTok{1.0}\OperatorTok{*}\NormalTok{(}\FloatTok{0.3142}\OperatorTok{**}\DecValTok{2}\NormalTok{) }\OperatorTok{=} \FloatTok{0.15} \OperatorTok{{-}} \FloatTok{0.0987} \OperatorTok{=} \FloatTok{0.0513}\NormalTok{ s⁻¹}
+\NormalTok{sigma\_theory }\OperatorTok{=} \FloatTok{0.15} \OperatorTok{{-}} \FloatTok{1.0}\OperatorTok{*}\NormalTok{(}\FloatTok{0.3142}\OperatorTok{**}\DecValTok{2}\NormalTok{) }\OperatorTok{=} \FloatTok{0.15} \OperatorTok{{-}} \FloatTok{0.0987} \OperatorTok{=} \FloatTok{0.0513}\NormalTok{ \mathrm{s}^{-1}}
 \end{Highlighting}
 \end{Shaded}
 
-From Fourier amplitudes \textbar û\_10(t)\textbar, extract
+From Fourier amplitudes \textbar $\hat{u}$\_10(t)\textbar, extract
 log-amplitudes:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{log\_amp }\OperatorTok{=}\NormalTok{ [ln(}\FloatTok{2.34e{-}6}\NormalTok{), ln(}\FloatTok{2.89e{-}6}\NormalTok{), ln(}\FloatTok{3.57e{-}6}\NormalTok{), ...]  }\CommentTok{\# 80 points over t ∈ [0,10]}
+\NormalTok{log\_amp }\OperatorTok{=}\NormalTok{ [ln(}\FloatTok{2.34e{-}6}\NormalTok{), ln(}\FloatTok{2.89e{-}6}\NormalTok{), ln(}\FloatTok{3.57e{-}6}\NormalTok{), ...]  }\CommentTok{\# 80 points over t $\in$ [0,10]}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1474,7 +1474,7 @@ Linear regression:
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{sigma\_measured, intercept }\OperatorTok{=}\NormalTok{ linregress(times, log\_amp)[:}\DecValTok{2}\NormalTok{]}
-\NormalTok{sigma\_measured }\OperatorTok{=} \FloatTok{0.0509}\NormalTok{ s⁻¹}
+\NormalTok{sigma\_measured }\OperatorTok{=} \FloatTok{0.0509}\NormalTok{ \mathrm{s}^{-1}}
 \NormalTok{R2\_mode }\OperatorTok{=} \FloatTok{0.9998}
 \end{Highlighting}
 \end{Shaded}
@@ -1487,7 +1487,7 @@ Relative error:
 \end{Highlighting}
 \end{Shaded}
 
-✓ \textbf{Acceptable:} within median error threshold
+$\checkmark$ \textbf{Acceptable:} within median error threshold
 
 \hypertarget{processed-data-tables}{%
 \subsubsection{Processed Data Tables}\label{processed-data-tables}}
@@ -1519,7 +1519,7 @@ c\_measured
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Relative Error
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-R²
+R^{2}
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Pass/Fail
 \end{minipage} \\
@@ -1527,16 +1527,16 @@ Pass/Fail
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-Default & 1.0 & 0.15 & 0.7746 & 0.7673 & 0.0094 & 0.99996 & ✓ PASS \\
-High Growth & 1.0 & 0.25 & 1.0000 & 0.9953 & 0.0047 & 0.99998 & ✓
+Default & 1.0 & 0.15 & 0.7746 & 0.7673 & 0.0094 & 0.99996 & $\checkmark$ PASS \\
+High Growth & 1.0 & 0.25 & 1.0000 & 0.9953 & 0.0047 & 0.99998 & $\checkmark$
 PASS \\
-High Diffusion & 2.0 & 0.15 & 1.0954 & 1.0862 & 0.0084 & 0.99995 & ✓
+High Diffusion & 2.0 & 0.15 & 1.0954 & 1.0862 & 0.0084 & 0.99995 & $\checkmark$
 PASS \\
 \end{longtable}
 
 \hypertarget{thresholds-rel_err-0.05-ruxb2-0.98}{%
-\paragraph{\texorpdfstring{\emph{Thresholds: rel\_err ≤ 0.05, R² ≥
-0.98}}{Thresholds: rel\_err ≤ 0.05, R² ≥ 0.98}}\label{thresholds-rel_err-0.05-ruxb2-0.98}}
+\paragraph{\texorpdfstring{\emph{Thresholds: rel\_err $\le$ 0.05, R^{2} $\ge$
+0.98}}{Thresholds: rel\_err $\le$ 0.05, R^{2} $\ge$ 0.98}}\label{thresholds-rel_err-0.05-ruxb2-0.98}}
 
 \hypertarget{table-4-dispersion-relation-aggregate-metrics}{%
 \paragraph{\texorpdfstring{\textbf{Table 4: Dispersion Relation
@@ -1562,9 +1562,9 @@ Result
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-Median Relative Error (good modes) & 0.00145 & ≤ 0.10 & ✓ PASS \\
+Median Relative Error (good modes) & 0.00145 & $\le$ 0.10 & $\checkmark$ PASS \\
 Array-level \(R^{2}\) (\(\sigma_{\text{measured}}\) vs
-\(\sigma_{\text{theory}}\)) & 0.99995 & \(\ge 0.98\) & ✓ PASS \\
+\(\sigma_{\text{theory}}\)) & 0.99995 & \(\ge 0.98\) & $\checkmark$ PASS \\
 Number of Good Modes (\(R^{2}_{\text{mode}} \ge 0.95\)) & 62/64 & - &
 96.9\% \\
 Maximum Mode Error & 0.0318 (mode 58) & - & Informational \\
@@ -1583,7 +1583,7 @@ Standard error on slope from linear regression:
 \end{Highlighting}
 \end{Shaded}
 
-For N=81 points, R²=0.99996:
+For N=81 points, R^{2}=0.99996:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1595,7 +1595,7 @@ Propagated to theoretical comparison:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{delta\_c }\OperatorTok{=}\NormalTok{ SE\_slope }\OperatorTok{=}\NormalTok{ ±}\FloatTok{0.0012}
+\NormalTok{delta\_c }\OperatorTok{=}\NormalTok{ SE\_slope }\OperatorTok{=}\NormalTok{ $\pm$}\FloatTok{0.0012}
 \NormalTok{Fractional uncertainty }\OperatorTok{=} \FloatTok{0.0012} \OperatorTok{/} \FloatTok{0.7746} \OperatorTok{=} \FloatTok{0.0015} \OperatorTok{=} \FloatTok{0.15}\OperatorTok{\%}
 \end{Highlighting}
 \end{Shaded}
@@ -1671,9 +1671,9 @@ propagation regime. Parameters: \(D=1.0\), \(r=0.15\), \(N=1024\),
 \end{itemize}
 
 \hypertarget{figure-2-dispersion-relation-ux3c3k---measured-vs.-theoretical}{%
-\paragraph{\texorpdfstring{\textbf{Figure 2: Dispersion Relation σ(k) -
+\paragraph{\texorpdfstring{\textbf{Figure 2: Dispersion Relation $\sigma(k)$ -
 Measured
-vs.~Theoretical}}{Figure 2: Dispersion Relation σ(k) - Measured vs.~Theoretical}}\label{figure-2-dispersion-relation-ux3c3k---measured-vs.-theoretical}}
+vs.~Theoretical}}{Figure 2: Dispersion Relation $\sigma(k)$ - Measured vs.~Theoretical}}\label{figure-2-dispersion-relation-ux3c3k---measured-vs.-theoretical}}
 
 \begin{figure}
 \centering
@@ -1696,10 +1696,10 @@ exhibit decay (\(\sigma < 0\)), as expected. Parameters: \(N=1024\),
 \begin{itemize}
 \tightlist
 \item
-  \textbf{Downward parabola} (σ vs k) matches theoretical form perfectly
+  \textbf{Downward parabola} ($\sigma$ vs k) matches theoretical form perfectly
 \item
-  All measured points lie within ±2\% of theory curve (\textless{} 0.002
-  s⁻¹ deviation)
+  All measured points lie within $\pm$2\% of theory curve (\textless{} 0.002
+  \mathrm{s}^{-1} deviation)
 \item
   Mode 58 (mild outlier, 3.2\% error) still within acceptable tolerance
 \item
@@ -1747,7 +1747,7 @@ reaction-diffusion canonical core of VDM:
   viscosity recovery achieves \(3.2\%\) error at \(256^{2}\) grid,
   passing the \(5\%\) threshold. Lid cavity divergence max
   \(\approx 2.1\times 10^{-6}\) satisfies incompressibility constraint
-  (threshold \(10^{-6}\)). These results validate the LBM→Navier--Stokes
+  (threshold \(10^{-6}\)). These results validate the LBM$\rightarrow$Navier--Stokes
   mapping, establishing VDM's fluids sector as empirically grounded.
 \end{enumerate}
 
@@ -2187,7 +2187,7 @@ See \texttt{Derivation/ROADMAP.md} and
   P. J. Morrison, ``Bracket formulation for irreversible classical
   fields,'' Physica D 18, 410--419 (1986).
 \item
-  M. Grmela and H. C. Öttinger, ``Dynamics and thermodynamics of complex
+  M. Grmela and H. C. \"{O}ttinger, ``Dynamics and thermodynamics of complex
   fluids. I. Development of a general formalism,'' Phys. Rev.~E 56, 6620
   (1997).
 \item
