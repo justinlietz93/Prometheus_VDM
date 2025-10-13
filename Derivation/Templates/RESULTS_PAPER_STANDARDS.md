@@ -3,6 +3,7 @@
 
 > Author: Justin K. Lietz
 > Date: {todays date}
+> Commit: {either short or long commit hash}
 >
 > This research is protected under a dual-license to foster open academic
 > research while ensuring commercial applications are aligned with the project's ethical principles.<br>
