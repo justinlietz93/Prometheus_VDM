@@ -2,12 +2,12 @@
 
 ## Done
 
-- Added KG-energy-osc-v1 schema entry to SCHEMAS.md; updated Last updated stamp and index; recorded change log
+- Added supersedence banner to v2 prereg and carried forward JMJ/Strang-defect diagnostic as Appendix A; lint-clean
 
 ## Doing
 
-- Stage optional ROADMAP/VDM_OVERVIEW cross-links noting KG J-only QC certification
+- Assess whether to deprecate or update NoSwitch v1 filename/title to avoid confusion
 
 ## Next
 
-- Begin Passive Thermodynamic Routing v2 scaffold with approvals and KPI gates; optional KG locality addendum
+- Optionally add a redirect note at top of NoSwitch v1 pointing to v2 canonical doc

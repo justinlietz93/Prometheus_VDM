@@ -2,7 +2,7 @@
 
 ## Current Goals
 
-- Prioritize KG J-only energy-oscillation QC (Störmer–Verlet: ΔE amplitude ∝ Δt^2 + strict time-reversal) followed by Passive Thermodynamic Routing (No-Switch) v2 with RJ fit, collapse-windowing, no-switch identity, and routing/energy-floor metrics; keep J⊕M on hold until conservative limb is stamped.
+- Promoting Thermodynamic Routing v2 as canonical: add supersedence banner to v2 prereg, extract unique diagnostics (e.g., JMJ/Strang-defect) from NoSwitch v1, and append as an appendix to v2. Keep diffs minimal and lint-clean.
 
 ## Current Blockers
 

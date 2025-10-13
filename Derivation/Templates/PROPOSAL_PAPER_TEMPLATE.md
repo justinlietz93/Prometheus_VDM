@@ -1,4 +1,4 @@
-<!-- ATTENTION! The proposal documents you create MUST BE whitepaper-grade documents with full structure, MathJax-rendered equations, numeric figure captions tied to actual artifacts if using any for background, explicit thresholds with pass/fail gates, and provenance. You need to imagine if the document will be getting submitted for proposal at the most highly respected and quality Physics journals on Earth. -->
+<!-- ATTENTION! The proposal documents you create MUST BE whitepaper-grade documents with full structure, full narrative, MathJax-rendered equations, numeric figure captions tied to actual artifacts if using any for background, explicit thresholds with pass/fail gates, and provenance. You need to imagine if the document will be getting submitted for proposal at the most highly respected and quality Physics journals on Earth. -->
 # White Paper Proposal Template
 
 It is MANDATORY and IMPORTANT to include the substance of the outlined topics. The
