@@ -2,12 +2,12 @@
 
 ## Done
 
-- Thermo-routing symmetric smoke now passes with H-theorem=0, no-switch ok, finite flux metrics; RJ gate relaxed for smoke
+- Thermo-routing runner JSON enriched with top-level summary fields and commit via .git; linter issues resolved; geometry figure improved with flux inset
 
 ## Doing
 
-- Prepare prereg geometry (no-flux walls + open outlets) and restore RJ gate for canonical run
+- Author smoke RESULTS document for symmetric smoke run using current artifacts/JSON
 
 ## Next
 
-- Add biased-geometry spec; integrate residual whiteness and bootstrap CI for full prereg; document RESULTS once prereg run passes
+- Implement prereg geometry and reinstate RJ gate (R^2 ≥ 0.99) for biased_main; run and produce full RESULTS with robustness gates
