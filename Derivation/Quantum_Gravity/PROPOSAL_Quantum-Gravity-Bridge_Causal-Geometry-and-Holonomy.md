@@ -2,7 +2,7 @@
 
 *(v1, YYYY-MM-DD)*
 
-> **Provenance**: commit `$ {git rev-parse HEAD}` (fill at commit time).
+> **Provenance**: commit `bfd750b`
 > **Salted Hash**: `$ {sha256(commit || “VDM-QG-Bridge-v1”)}` (fill programmatically in pre-commit).
 
 ## 1. Proposal Title and Date

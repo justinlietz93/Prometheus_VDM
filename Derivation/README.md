@@ -83,6 +83,41 @@ Note: These are “latest-only” registries; CORRECTIONS.md remains chronologic
 - Writeup_Templates - `/mnt/ironwolf/git/Prometheus_VDM/Derivation/Writeup_Templates`
   - Canonical PROPOSAL and RESULTS templates governing papers and artifacts.
 
+## Domain tiers and current status (snapshot)
+
+| Domain | Tier | Status |
+|---|---|---|
+| Reaction_Diffusion | A | PROVEN (front speed, dispersion) |
+| Effective_Field_Theory | B | Active; PROVEN (tachyonic tube v1) |
+| Tachyon_Condensation | B | PROVEN (spectrum, condensation KPIs) |
+| Fluid_Dynamics | A | PROVEN (LBM viscosity) |
+| Metriplectic | B | Mixed: PROVEN (diagnostics), PLAUSIBLE (two-grid JMJ) |
+| Conservation_Law | A | PROVEN (Q-invariant; Noether cases) |
+| Agency_Field | B | PLAUSIBLE (relaxation/coordination protocols) |
+| Causality | D | PLAUSIBLE (bounded DAG audits) |
+| Thermodynamic_Routing | D | PLAUSIBLE (routing efficiency) |
+| Topology | B | PLAUSIBLE (loop quench) |
+| Cosmology | B | PROVEN (FRW continuity residual QC) |
+| Dark_Photons | B | PLAUSIBLE (noise budget, Fisher check) |
+| Gravity_Regression | D | PLAUSIBLE (bridges) |
+| Quantum_Gravity | D | PLAUSIBLE (bridges) |
+| Quantum | D | Exploratory (no canon claims yet) |
+| Quantum_Witness | D | Exploratory (witness metrics) |
+| Information | D | PLAUSIBLE (SIE invariant) |
+| Collapse | B | PROVEN (A6 scaling collapse) |
+| Foundations | D | Foundational docs (no status) |
+| Supporting_Work | C | Infrastructure/support (no status) |
+| Converging_External_Research | D | Curated literature (no status) |
+| Speculations | D | Exploratory (non-canon) |
+| Draft-Papers | C | Manuscripts (non-canon) |
+| code | C | Engineering substrate (approvals, io_paths, schemas) |
+| Notebooks | C | Interactive (non-canon) |
+| References | C | Bibliography (non-canon) |
+| Legacy_Claims | D | Archived/superseded |
+| Memory_Steering | D | Exploratory (graded-index routing) |
+
+Status provenance: entries marked PROVEN/PLAUSIBLE reflect `Derivation/CANON_PROGRESS.md` at this commit; “Exploratory/no status” indicates non-claim or infra content.
+
 ## Critically important file paths and rules
 
 Critically important registries:
