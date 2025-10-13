@@ -1,0 +1,2 @@
+timestamp,domain,tag,approved,quarantined,passed,Nx,Ny,dt,steps,rel_balance_err,symmetry_diff,absorber_efficiency,port_j0,port_j1,n_abs,sigma_max,commit
+2025-10-13T14:48:50.664576,thermo_routing,thermo-routing-v2-wave-meter-openports,True,True,False,128,64,0.00025,8000,2.2425907891427683,2.734817449471359e-15,4.216780238642796,16,48,8,4.0,unknown

@@ -5,7 +5,8 @@
     "thermo-routing-v2",
     "thermo-routing-v2-ftmc",
     "thermo-routing-v2-prereg-biased-main",
-    "thermo-routing-v2-wave-meter"
+    "thermo-routing-v2-wave-meter",
+    "thermo-routing-v2-wave-meter-openports"
   ],
   "approvals": {
     "thermo-routing-v2": {
@@ -31,6 +32,12 @@
       "approved_by": "Justin K. Lietz",
       "approved_at": "2025-10-13T18:59:48.317715+00:00",
       "approval_key": "2ebdf703296cd5c124692c33c2f8cd4eaa34f15ed4290289c88fd48e4b168055"
+    },
+    "thermo-routing-v2-wave-meter-openports": {
+      "schema": "Derivation/code/physics/thermo_routing/schemas/wave-flux-meter-openports-summary-v1.schema.json",
+      "approved_by": "Justin K. Lietz",
+      "approved_at": "2025-10-13T19:42:37.359771+00:00",
+      "approval_key": "839ff04f40ed8b9493642cd5abc563915c0a6604d29d18bf7e05e9d390241ded"
     }
   }
 }

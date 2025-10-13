@@ -1,0 +1,80 @@
+{
+  "artifacts": {
+    "figures": [
+      "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_151513_wave_flux_meter_openports_timeseries_thermo-routing-v2-wave-meter-openports-channelmap.png"
+    ],
+    "logs": [
+      "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_151513_wave_flux_meter_openports_v1_metrics_thermo-routing-v2-wave-meter-openports-channelmap.csv",
+      "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_151513_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports-channelmap.json"
+    ]
+  },
+  "compliance": {
+    "absorber_static": true,
+    "map_immutable": true,
+    "probe_limit": true
+  },
+  "domain": "thermo_routing",
+  "env": {
+    "blas": "openblas",
+    "fft": "numpy.pocketfft",
+    "threads": 1
+  },
+  "gates": {
+    "absorber_efficiency": true,
+    "power_balance_rel": true,
+    "symmetry_null_rel": false
+  },
+  "geometry": {
+    "Lx": 8.0,
+    "Ly": 4.0,
+    "Nx": 256,
+    "Ny": 128,
+    "i_left": 8,
+    "i_right": 247,
+    "n_abs": 8,
+    "port_segments": {
+      "left": [
+        [
+          32,
+          42
+        ]
+      ],
+      "right": [
+        [
+          32,
+          96
+        ]
+      ]
+    },
+    "port_y": [
+      32,
+      96
+    ],
+    "ports_auto_from_mu": true
+  },
+  "kpi": {
+    "absorber_efficiency": {
+      "tol": 0.9,
+      "value": 1.6433865592188341
+    },
+    "power_balance_rel": {
+      "mean_abs": 0.05178253356938276,
+      "tol": 0.1
+    },
+    "symmetry_null_rel": {
+      "mean_abs": 0.6036900715146307,
+      "tol": 0.05
+    }
+  },
+  "passed": false,
+  "policy": {
+    "approved": false,
+    "engineering_only": true,
+    "quarantined": true
+  },
+  "provenance": {
+    "commit": "unknown",
+    "commit_full": "unknown"
+  },
+  "tag": "thermo-routing-v2-wave-meter-openports-channelmap"
+}

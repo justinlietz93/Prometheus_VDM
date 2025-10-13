@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Wave Flux Meter — Phase B Open-Ports Summary v1",
+  "tag": "thermo-routing-v2-wave-meter-openports",
+  "type": "object",
+  "required": ["tag", "domain", "passed", "gates", "kpi", "artifacts"],
+  "properties": {
+    "tag": {"type": "string", "const": "thermo-routing-v2-wave-meter-openports"},
+    "domain": {"type": "string", "const": "thermo_routing"},
+    "passed": {"type": "boolean"},
+    "gates": {
+      "type": "object",
+      "required": ["power_balance_rel", "symmetry_null_rel", "absorber_efficiency"],
+      "properties": {
+        "power_balance_rel": {"type": "boolean"},
+        "symmetry_null_rel": {"type": "boolean"},
+        "absorber_efficiency": {"type": "boolean"}
+      }
+    },
+    "kpi": {
+      "type": "object",
+      "required": ["power_balance_rel", "symmetry_null_rel", "absorber_efficiency"],
+      "properties": {
+        "power_balance_rel": {
+          "type": "object",
+          "required": ["mean_abs", "tol"],
+          "properties": {"mean_abs": {"type": "number"}, "tol": {"type": "number"}}
+        },
+        "symmetry_null_rel": {
+          "type": "object",
+          "required": ["mean_abs", "tol"],
+          "properties": {"mean_abs": {"type": "number"}, "tol": {"type": "number"}}
+        },
+        "absorber_efficiency": {
+          "type": "object",
+          "required": ["value", "tol"],
+          "properties": {"value": {"type": "number"}, "tol": {"type": "number"}}
+        }
+      }
+    },
+    "geometry": {"type": "object"},
+    "artifacts": {
+      "type": "object",
+      "required": ["figures", "logs"],
+      "properties": {
+        "figures": {"type": "array", "items": {"type": "string"}},
+        "logs": {"type": "array", "items": {"type": "string"}}
+      }
+    }
+  }
+}
