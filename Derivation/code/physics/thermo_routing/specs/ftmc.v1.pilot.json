@@ -1,0 +1,12 @@
+{
+  "grid": { "Nx": 128, "Ny": 64, "Lx": 8.0, "Ly": 4.0, "stencil": "fd3" },
+  "geometry": { "w_A": 0.35, "w_B": 0.35 },
+  "rd": { "D": 1.0, "r": 0.2, "u": 0.25, "lambda": 0.0 },
+  "ic": { "kind": "random_normal", "amp": 0.1, "seed": 0 },
+  "time": { "dt": 0.01, "T": 2.0, "checkpoints": 20 },
+  "analysis": { "rj_fit": { "kmin": 3, "kmax": 32 }, "avf_iters": 8, "rj_tail_frac": 0.25 },
+  "controls": { "walkers": 256, "hops": 128, "drift_weight": 0.2, "corridor_priority": true, "emit_events": false },
+  "map": { "map_mode": "mobility", "map_path": "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/physics/thermo_routing/passive_thermo_routing/maps/demo_mu.npy" },
+  "seeds": 1,
+  "tag": "thermo-routing-v2-ftmc"
+}

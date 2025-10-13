@@ -2,7 +2,7 @@
 
 ## Current Goals
 
-- Finalizing smoke RESULTS for Thermodynamic Routing v2 (gate_set=smoke_symm) quoting JSON 20251013_045539...; next implement prereg geometry and full gates for biased_main.
+- Wave Flux Meter A-phase RESULTS doc creation and finalization; Phase B (open-port optics) planning next.
 
 ## Current Blockers
 

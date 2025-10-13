@@ -1,0 +1,76 @@
+{
+  "artifacts": {
+    "figures": [
+      "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/figures/thermo_routing/20251013_123502_ftmc_map_paths_thermo-routing-v2-ftmc.png",
+      "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/figures/thermo_routing/20251013_123503_ftmc_flux_vs_hops_thermo-routing-v2-ftmc.png"
+    ],
+    "logs": []
+  },
+  "compliance": {
+    "boundary_model": "walls_reflecting + open_right",
+    "budget_mapping": true,
+    "determinism": true,
+    "flux_convention": "outflux_only",
+    "frozen_map": true,
+    "map_immutable": true,
+    "probe_limit": true,
+    "rj_basis_ok": true
+  },
+  "domain": "thermo_routing",
+  "env": {
+    "blas": "openblas",
+    "fft": "numpy.pocketfft",
+    "fft_plan_mode": "deterministic",
+    "threads": 32
+  },
+  "gate_matrix": {
+    "compliance": "PASS"
+  },
+  "kpi": {
+    "anisotropy": {
+      "ci": [
+        0.8307118287792445,
+        0.8307118287792445
+      ],
+      "value": 0.8307118287792445
+    },
+    "delta_B_ch": {
+      "ci": [
+        0.0,
+        0.0
+      ],
+      "value": 0.0
+    },
+    "eta_ch": {
+      "ci": [
+        0.0,
+        0.0
+      ],
+      "value": 0.0
+    },
+    "meters": {
+      "determinism": {},
+      "h_theorem": {},
+      "rj": {}
+    }
+  },
+  "map": {
+    "hash": "ddfd970b9b6a2b2314cdf8a48ab18095580eb0d09dc39d0cab0abc9e61a6bc46",
+    "mode": "mobility"
+  },
+  "policy": {
+    "approved": true,
+    "engineering_only": false,
+    "proposal": "Derivation/Thermodynamic_Routing/Passive_Thermodynamic_Routing/PROPOSAL_Passive_Thermodynamic_Routing_v2.md",
+    "quarantined": false,
+    "tag": "thermo-routing-v2-ftmc"
+  },
+  "provenance": {
+    "commit": "unknown",
+    "commit_full": "unknown",
+    "salted_hash": "93a96cc72aa11bcf7b8938e0b2ed2a18b87033035076cffec1a1ceb7a994102f",
+    "salted_tag": "FluxThroughMemoryChannels_v1"
+  },
+  "status": "pending",
+  "tag": "thermo-routing-v2-ftmc"
+}

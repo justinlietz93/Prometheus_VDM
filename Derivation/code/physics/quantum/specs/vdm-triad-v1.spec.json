@@ -1,0 +1,24 @@
+{
+  "tag": "vdm-triad-v1",
+  "seed": 42,
+  "suites": ["alpha_propagation", "alpha_oscillation", "beta_confinement", "announcer_steering"],
+  "epochs": {
+    "probe": {
+      "actuators": false,
+      "bus": null,
+      "event_whitelist": ["vt_touch", "edge_on", "spike"],
+      "RJ": {"enabled": true, "diagnostic_only": true},
+      "budget": {"walkers": 256, "hops": 3}
+    },
+    "actuation": {
+      "actuators": true,
+      "gdsp": true,
+      "consume_labels": true
+    }
+  },
+  "compliance": {
+    "probe_limit": true,
+    "memory_field_read_only": true,
+    "determinism": true
+  }
+}

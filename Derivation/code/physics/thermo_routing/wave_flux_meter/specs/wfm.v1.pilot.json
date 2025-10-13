@@ -1,0 +1,9 @@
+{
+  "grid": { "Nx": 128, "Ny": 64, "Lx": 8.0, "Ly": 4.0 },
+  "time": { "dt": 0.00025, "T": 2.0 },
+  "wave": { "c": 1.0, "kx": 1.5707963267948966, "ky": 0.0 },
+  "bc": { "kind": "periodic" },
+  "map": { "map_path": "" },
+  "seeds": 1,
+  "tag": "thermo-routing-v2-wave-meter"
+}

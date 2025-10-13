@@ -1,0 +1,91 @@
+{
+  "artifacts": {
+    "figures": [
+      "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_071432_prereg_aggregate_dashboard_thermo-routing-v2-prereg-biased-main.png"
+    ],
+    "logs": [
+      "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_071432_tr_v2_prereg_biased_main_aggregate_seeds_thermo-routing-v2-prereg-biased-main.csv",
+      "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_071432_tr_v2_prereg_biased_main_aggregate_thermo-routing-v2-prereg-biased-main.json"
+    ]
+  },
+  "bias": {
+    "B_95CI": [
+      0.00878768052811285,
+      0.00878768052811285
+    ],
+    "B_mean": 0.00878768052811285,
+    "delta_gate": 0.02,
+    "rho_centered_95CI": [
+      0.271003154565174,
+      0.271003154565174
+    ],
+    "rho_centered_mean": 0.271003154565174,
+    "signal_ok": true
+  },
+  "domain": "thermo_routing",
+  "energy_floor": {
+    "gate_z": 5.0,
+    "min_z": 24.263713674707684
+  },
+  "env": {
+    "blas": "openblas",
+    "fft": "numpy.pocketfft",
+    "fft_plan_mode": "deterministic",
+    "threads": 32
+  },
+  "gate_matrix": {
+    "bias": "FAIL",
+    "energy_floor": "PASS",
+    "h_theorem": "PASS",
+    "no_switch": "PASS",
+    "rj_fit": "FAIL",
+    "robust_injection": "PASS",
+    "robust_two_source": "FAIL"
+  },
+  "gate_set": "prereg",
+  "receipts": {
+    "checkpoint_hashes": [],
+    "no_switch": "bitwise"
+  },
+  "rj": {
+    "R2_median": 0.7491366294496735,
+    "r2_gate": 0.99
+  },
+  "robustness": {
+    "injection_sweep": {
+      "flux_mag": [
+        0.01623791668468133,
+        0.016213243979046253,
+        0.015744686797137676
+      ],
+      "slope": -0.01057925155404784,
+      "slope_CI": [
+        -0.01149677639027851,
+        -0.009661726717817171
+      ],
+      "y_list": [
+        0.35,
+        0.5,
+        0.65
+      ]
+    },
+    "two_source": {
+      "baseline_flux": 0.016041106959221604,
+      "delta_eta_CI": [
+        -0.08295391343056262,
+        0.08229885116507064
+      ],
+      "delta_eta_values": [
+        -0.07350762951389726,
+        0.0,
+        0.07252503611565929
+      ],
+      "ratios": [
+        0.3,
+        0.5,
+        0.7
+      ]
+    }
+  },
+  "tag": "thermo-routing-v2-prereg-biased-main"
+}

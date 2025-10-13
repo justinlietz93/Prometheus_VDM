@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Thermodynamic Routing v2 Summary (Prereg Biased Main)",
+  "tag": "thermo-routing-v2-prereg-biased-main",
+  "type": "object",
+  "properties": {
+    "tag": {"type": "string"},
+    "domain": {"type": "string"},
+    "env": {
+      "type": "object",
+      "properties": {
+        "threads": {"type": "integer"},
+        "blas": {"type": "string"},
+        "fft": {"type": "string"},
+        "fft_plan_mode": {"type": "string"}
+      },
+      "required": ["threads", "blas", "fft"]
+    },
+    "receipts": {
+      "type": "object",
+      "properties": {
+        "no_switch": {"type": "string", "enum": ["bitwise", "linf", "ulp"]},
+        "checkpoint_hashes": {"type": "array", "items": {"type": "string"}}
+      },
+      "required": ["no_switch", "checkpoint_hashes"]
+    },
+    "rj": {
+      "type": "object",
+      "properties": {
+        "R2": {"type": "number", "minimum": 0, "maximum": 1},
+        "T_hat": {"type": "number"},
+        "mu_hat": {"type": "number"},
+        "k_min": {"type": "integer"},
+        "k_max": {"type": "integer"},
+        "window_t": {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2},
+        "residuals": {"type": "object", "properties": {"DW": {"type": "number"}, "rho1": {"type": "number"}}}
+      },
+      "required": ["R2", "k_min", "k_max", "window_t"]
+    },
+    "flux": {
+      "type": "object",
+      "properties": {
+        "F_A": {"type": "number"},
+        "F_B": {"type": "number"},
+        "B": {"type": "number"},
+        "rho": {"type": "number"},
+        "convention": {"type": "string", "enum": ["outflux_only"]}
+      },
+      "required": ["F_A", "F_B", "B", "rho", "convention"]
+    },
+    "h_theorem": {"type": "object", "properties": {"violations": {"type": "integer"}, "max_pos_dL": {"type": "number"}, "tol": {"type": "number"}}, "required": ["violations"]},
+    "robustness": {"type": "object"},
+    "gate_matrix": {"type": "object"},
+    "artifacts": {
+      "type": "object",
+      "properties": {
+        "figures": {"type": "array", "items": {"type": "string"}},
+        "logs": {"type": "array", "items": {"type": "string"}}
+      }
+    }
+  },
+  "required": ["tag", "domain", "env", "receipts", "rj", "flux", "h_theorem", "gate_matrix", "artifacts"]
+}

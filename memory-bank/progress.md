@@ -2,12 +2,13 @@
 
 ## Done
 
-- Thermo-routing runner JSON enriched with top-level summary fields and commit via .git; linter issues resolved; geometry figure improved with flux inset
+- Wave Flux Meter A-phase run approved and passed gates; artifacts produced via io_paths; schema includes passed and gates.
+- Created finalized RESULTS_Wave_Flux_Meter_A_Phase_v1.md with pinned artifact paths and numeric gate outcomes.
 
 ## Doing
 
-- Author smoke RESULTS document for symmetric smoke run using current artifacts/JSON
+- Plan Phase B: add open ports + absorber/PML with power accounting and symmetry null; define gates and schema.
 
 ## Next
 
-- Implement prereg geometry and reinstate RJ gate (R^2 ≥ 0.99) for biased_main; run and produce full RESULTS with robustness gates
+- Implement Phase B runner and proposal updates; seek approval for new tag; run and produce artifacts; draft RESULTS for Phase B.

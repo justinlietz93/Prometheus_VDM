@@ -1,0 +1,84 @@
+{
+  "artifacts": {
+    "figures": [
+      "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/figures/thermo_routing/20251013_064820_prereg_aggregate_dashboard_thermo-routing-v2-prereg-biased-main.png"
+    ],
+    "logs": [
+      "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/logs/thermo_routing/20251013_064821_tr_v2_prereg_biased_main_aggregate_seeds_thermo-routing-v2-prereg-biased-main.csv",
+      "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/logs/thermo_routing/20251013_064821_tr_v2_prereg_biased_main_aggregate_thermo-routing-v2-prereg-biased-main.json"
+    ]
+  },
+  "bias": {
+    "B_95CI": [
+      0.0,
+      0.0
+    ],
+    "B_mean": 0.0,
+    "delta_gate": 0.02,
+    "rho_centered_95CI": [
+      -0.5,
+      -0.5
+    ],
+    "rho_centered_mean": -0.5
+  },
+  "domain": "thermo_routing",
+  "energy_floor": {
+    "gate_z": 5.0,
+    "min_z": 9.165718571518951
+  },
+  "env": {
+    "blas": "openblas",
+    "fft": "numpy.pocketfft",
+    "fft_plan_mode": "deterministic",
+    "threads": 32
+  },
+  "gate_matrix": {
+    "bias": "FAIL",
+    "energy_floor": "PASS",
+    "h_theorem": "PASS",
+    "no_switch": "PASS",
+    "rj_fit": "FAIL",
+    "robust_injection": "FAIL",
+    "robust_two_source": "PASS"
+  },
+  "gate_set": "prereg",
+  "receipts": {
+    "checkpoint_hashes": [],
+    "no_switch": "bitwise"
+  },
+  "rj": {
+    "R2_median": 0.729635068378943,
+    "r2_gate": 0.99
+  },
+  "robustness": {
+    "injection_sweep": {
+      "slope": 0.0,
+      "slope_CI": [
+        0.0,
+        0.0
+      ],
+      "y_list": [
+        0.9,
+        1.5,
+        2.1
+      ]
+    },
+    "two_source": {
+      "delta_eta_CI": [
+        0.0,
+        0.0
+      ],
+      "delta_eta_values": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ratios": [
+        0.3,
+        0.5,
+        0.7
+      ]
+    }
+  },
+  "tag": "thermo-routing-v2-prereg-biased-main"
+}

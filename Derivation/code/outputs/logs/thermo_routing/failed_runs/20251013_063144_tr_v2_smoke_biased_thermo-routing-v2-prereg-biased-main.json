@@ -1,0 +1,161 @@
+{
+  "artifact_bundle_id": "20251013",
+  "artifacts": {
+    "figures": [
+      "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_063143_lyapunov_h_theorem_thermo-routing-v2-prereg-biased-main.png",
+      "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_063143_kpi_dashboard_thermo-routing-v2-prereg-biased-main.png",
+      "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_063144_geometry_masks_thermo-routing-v2-prereg-biased-main.png"
+    ],
+    "logs": [
+      "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_063144_tr_v2_smoke_biased__lyapunov_series_thermo-routing-v2-prereg-biased-main.csv",
+      "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_063144_tr_v2_smoke_biased_thermo-routing-v2-prereg-biased-main.json"
+    ]
+  },
+  "commit": "unknown",
+  "determinism": {
+    "checkpoints": 19,
+    "clause": "bitwise",
+    "hashes": [
+      "395445193f9446c68916673e712335196b5a359f952a3ed4deaff30d3aa9d0d3",
+      "395445193f9446c68916673e712335196b5a359f952a3ed4deaff30d3aa9d0d3",
+      "395445193f9446c68916673e712335196b5a359f952a3ed4deaff30d3aa9d0d3",
+      "395445193f9446c68916673e712335196b5a359f952a3ed4deaff30d3aa9d0d3",
+      "395445193f9446c68916673e712335196b5a359f952a3ed4deaff30d3aa9d0d3",
+      "395445193f9446c68916673e712335196b5a359f952a3ed4deaff30d3aa9d0d3",
+      "395445193f9446c68916673e712335196b5a359f952a3ed4deaff30d3aa9d0d3",
+      "395445193f9446c68916673e712335196b5a359f952a3ed4deaff30d3aa9d0d3",
+      "395445193f9446c68916673e712335196b5a359f952a3ed4deaff30d3aa9d0d3",
+      "395445193f9446c68916673e712335196b5a359f952a3ed4deaff30d3aa9d0d3",
+      "395445193f9446c68916673e712335196b5a359f952a3ed4deaff30d3aa9d0d3",
+      "395445193f9446c68916673e712335196b5a359f952a3ed4deaff30d3aa9d0d3",
+      "395445193f9446c68916673e712335196b5a359f952a3ed4deaff30d3aa9d0d3",
+      "395445193f9446c68916673e712335196b5a359f952a3ed4deaff30d3aa9d0d3",
+      "395445193f9446c68916673e712335196b5a359f952a3ed4deaff30d3aa9d0d3",
+      "395445193f9446c68916673e712335196b5a359f952a3ed4deaff30d3aa9d0d3",
+      "395445193f9446c68916673e712335196b5a359f952a3ed4deaff30d3aa9d0d3",
+      "395445193f9446c68916673e712335196b5a359f952a3ed4deaff30d3aa9d0d3",
+      "395445193f9446c68916673e712335196b5a359f952a3ed4deaff30d3aa9d0d3"
+    ]
+  },
+  "domain": "thermo_routing",
+  "engineering_only": false,
+  "env": {
+    "blas": "openblas",
+    "fft": "numpy.pocketfft",
+    "fft_plan_mode": "deterministic",
+    "threads": 32
+  },
+  "flux": {
+    "B": null,
+    "F_A": null,
+    "F_B": null,
+    "convention": "outflux_only",
+    "rho": null
+  },
+  "gate_matrix": {
+    "bias": "DIAGNOSTIC",
+    "determinism": "PASS",
+    "energy_floor": "DIAGNOSTIC",
+    "h_theorem": "FAIL",
+    "no_switch": "PASS",
+    "rj_fit": "DIAGNOSTIC"
+  },
+  "gate_set": "smoke_symm",
+  "h_theorem": {
+    "max_pos_dL": 153687838826.30914,
+    "tol": 1e-15,
+    "violations": 1
+  },
+  "kpi": {
+    "bias": {
+      "B": null,
+      "ci": [
+        null,
+        null
+      ],
+      "ci_width": 0.0,
+      "rho": null
+    },
+    "energy_floor": {
+      "L_last": null,
+      "L_min": 153687838917.9724
+    },
+    "h_theorem": {
+      "max_positive_dL": 153687838826.30914,
+      "violations": 1
+    },
+    "no_switch": {
+      "checkpoints": 19,
+      "ok": true
+    },
+    "rj_fit": {
+      "R2": 0.0,
+      "k_max": 24,
+      "k_min": 3,
+      "not_gated_in_smoke": true
+    }
+  },
+  "passed_smoke": false,
+  "policy": {
+    "approved": true,
+    "engineering_only": false,
+    "proposal": "Derivation/Thermodynamic_Routing/Passive_Thermodynamic_Routing/PROPOSAL_Passive_Thermodynamic_Routing_v2.md",
+    "quarantined": false,
+    "tag": "thermo-routing-v2-prereg-biased-main"
+  },
+  "receipts": {
+    "checkpoint_hashes": [
+      "395445193f9446c68916673e712335196b5a359f952a3ed4deaff30d3aa9d0d3",
+      "395445193f9446c68916673e712335196b5a359f952a3ed4deaff30d3aa9d0d3",
+      "395445193f9446c68916673e712335196b5a359f952a3ed4deaff30d3aa9d0d3",
+      "395445193f9446c68916673e712335196b5a359f952a3ed4deaff30d3aa9d0d3",
+      "395445193f9446c68916673e712335196b5a359f952a3ed4deaff30d3aa9d0d3",
+      "395445193f9446c68916673e712335196b5a359f952a3ed4deaff30d3aa9d0d3",
+      "395445193f9446c68916673e712335196b5a359f952a3ed4deaff30d3aa9d0d3",
+      "395445193f9446c68916673e712335196b5a359f952a3ed4deaff30d3aa9d0d3",
+      "395445193f9446c68916673e712335196b5a359f952a3ed4deaff30d3aa9d0d3",
+      "395445193f9446c68916673e712335196b5a359f952a3ed4deaff30d3aa9d0d3",
+      "395445193f9446c68916673e712335196b5a359f952a3ed4deaff30d3aa9d0d3",
+      "395445193f9446c68916673e712335196b5a359f952a3ed4deaff30d3aa9d0d3",
+      "395445193f9446c68916673e712335196b5a359f952a3ed4deaff30d3aa9d0d3",
+      "395445193f9446c68916673e712335196b5a359f952a3ed4deaff30d3aa9d0d3",
+      "395445193f9446c68916673e712335196b5a359f952a3ed4deaff30d3aa9d0d3",
+      "395445193f9446c68916673e712335196b5a359f952a3ed4deaff30d3aa9d0d3",
+      "395445193f9446c68916673e712335196b5a359f952a3ed4deaff30d3aa9d0d3",
+      "395445193f9446c68916673e712335196b5a359f952a3ed4deaff30d3aa9d0d3",
+      "395445193f9446c68916673e712335196b5a359f952a3ed4deaff30d3aa9d0d3"
+    ],
+    "no_switch": "bitwise"
+  },
+  "rj": {
+    "R2": 0.0,
+    "T_hat": 0.0,
+    "k_max": 23,
+    "k_min": 3,
+    "mu_hat": 0.0,
+    "residuals": {
+      "DW": null,
+      "rho1": null
+    },
+    "window_t": [
+      0.9,
+      1.2
+    ]
+  },
+  "robustness": {
+    "injection_sweep": {
+      "slope_CI": [
+        null,
+        null
+      ]
+    },
+    "two_source": {
+      "delta_eta_CI": [
+        null,
+        null
+      ]
+    }
+  },
+  "status": "failed",
+  "tag": "thermo-routing-v2-prereg-biased-main"
+}

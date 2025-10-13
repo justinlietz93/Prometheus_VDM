@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "VDM Particle–Triad Summary (v1)",
+  "description": "Schema for prereg v1 summary JSON of the Particle–Triad Analogy.",
+  "type": "object",
+  "tag": "vdm-triad-v1",
+  "properties": {
+    "tag": {"type": "string", "const": "vdm-triad-v1"},
+    "commit": {"type": "string"},
+    "commit_full": {"type": "string"},
+    "salted_tag": {"type": "string"},
+    "salted_hash": {"type": "string"},
+    "env": {"type": "object"},
+    "policy": {"type": "object"},
+    "compliance": {"type": "object"},
+    "meters": {"type": "object"},
+    "KPIs": {"type": "object"},
+    "gate_matrix": {"type": "object"},
+    "artifacts": {"type": "object"}
+  },
+  "required": ["tag", "commit", "salted_tag", "salted_hash", "policy", "compliance", "KPIs", "gate_matrix", "artifacts"],
+  "additionalProperties": true
+}

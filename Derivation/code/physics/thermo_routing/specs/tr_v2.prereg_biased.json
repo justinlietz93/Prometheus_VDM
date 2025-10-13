@@ -1,0 +1,25 @@
+{
+  "grid": { "Nx": 96, "Ny": 48, "Lx": 6.0, "Ly": 3.0, "stencil": "fd3" },
+  "geometry": { "w_A": 0.55, "w_B": 0.35 },
+  "rd": { "D": 1.0, "r": 0.2, "u": 0.25, "lambda": 0.0 },
+  "ic": { "type": "packet", "x0": 0.25, "y0": 0.5, "sigma": 0.22, "amplitude": 1.0 },
+  "time": { "T": 1.5, "dt": 0.01, "checkpoints": 25 },
+  "analysis": {
+    "rj_fit": { "kmin": 3, "kmax": 24, "r2_gate": 0.99 },
+    "avf_iters": 8,
+    "rj_tail_frac": 0.25,
+    "rj_window_times": [0.8, 1.5],
+    "smoke_relax_rj": false
+  },
+  "controls": {
+    "gate_set": "prereg",
+    "symmetric_geometry": false,
+    "injection_sweep": { "y_list": [0.9, 1.5, 2.1] },
+    "two_source_split": { "ratios": [0.3, 0.5, 0.7] }
+  },
+  "baseline": { "enabled": true },
+  "no_switch": true,
+  "seeds": 5,
+  "gates": { "delta_bias": 0.02 },
+  "tag": "thermo-routing-v2"
+}

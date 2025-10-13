@@ -88,6 +88,8 @@ Bitwise no-switch identity (40/40 checkpoints identical) and recorded checkpoint
 - Symmetric geometry yields near-constant fields at late times, producing weak spectral content and an RJ $R^2$ below the prereg gate value; this is by design not enforced in smoke.  
 - Flux bias remains near zero as expected under symmetry.
 
+Contradiction policy: Any future gate failure emits a CONTRADICTION_REPORT with gate, threshold, seed, and artifact IDs.
+
 ## Next steps (per preregistration)
 
 1) Implement prereg geometry with no-flux walls and open outlets (biased widths), then reinstate RJ gate with $R^2 \ge 0.99$ in an earlier, power-rich window.  
@@ -100,3 +102,14 @@ Bitwise no-switch identity (40/40 checkpoints identical) and recorded checkpoint
 - Runner: Derivation/code/physics/thermo_routing/run_thermo_routing.py  
 - Summary JSON: Derivation/code/outputs/logs/thermo_routing/20251013_045539_tr_v2_smoke_symm_thermo-routing-v2.json  
 - Approval: policy.approved = true; quarantined = false.
+
+---
+
+## License and citation
+
+Copyright (c) 2025 Justin K. Lietz.
+
+This RESULTS document and associated figures/logs are distributed under the repository’s LICENSE. If you use these results, please cite:
+
+Justin K. Lietz, “Passive Thermodynamic Routing v2 — Symmetric Smoke,” Prometheus_VDM (2025), commit 65df9c0.
+

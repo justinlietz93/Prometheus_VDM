@@ -1,0 +1,2 @@
+timestamp,domain,tag,approved,quarantined,passed,Nx,Ny,dt,steps,E_rel_err_max,balance_l2_max,map_hash,commit
+2025-10-13T14:20:50.416466,thermo_routing,thermo-routing-v2-wave-meter,True,False,True,128,64,0.00025,8000,0.0,0.0,de2f256064a0af797747c2b97505dc0b9f3df0de4f489eac731c23ae9ca9cc31,unknown

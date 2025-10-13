@@ -167,9 +167,14 @@ def flux_through_right_boundary(phi: np.ndarray, D: float, a: float, mask_rows: 
     if bc == "periodic":
         phi_east = np.roll(phi, -1, axis=1)
         Fx = -(D / a) * (phi_east - phi)
-        # Outflux-only at the right boundary (clip inflow)
         F_right = np.maximum(Fx[:, -1], 0.0)
-    else:  # neumann: no-flux at right boundary
+    elif bc == "neumann":
+        # One-sided difference using interior cell to approximate gradient at open outlet
+        phi_west = phi[:, -2]
+        phi_right = phi[:, -1]
+        Fx = -(D / a) * (phi_right - phi_west)
+        F_right = np.maximum(Fx, 0.0)
+    else:
         F_right = np.zeros((Ny,), dtype=phi.dtype)
     return float(np.sum(F_right[mask_rows]) * a)
 
@@ -369,9 +374,39 @@ def main() -> int:
         except Exception:
             return "unknown"
 
+    # Commit provenance
+    def _git_full_hash(repo_root: Path) -> str:
+        try:
+            dotgit = repo_root / ".git"
+            head = (dotgit / "HEAD").read_text().strip()
+            if head.startswith("ref:"):
+                ref = head.split(":", 1)[1].strip()
+                ref_path = dotgit / ref
+                if ref_path.exists():
+                    return ref_path.read_text().strip()
+                return head
+            return head
+        except Exception:
+            return "unknown"
+
+    commit_full = _git_full_hash(code_root)
+    commit_short = _git_short_hash_from_dotgit(code_root)
+    salted_tag = os.getenv("VDM_SALTED_TAG", "FluxThroughMemoryChannels_v1")
+    salted_hash = None
+    try:
+        salted_hash = hashlib.sha256((commit_full + "|" + salted_tag).encode("utf-8")).hexdigest()
+    except Exception:
+        salted_hash = None
+
     summary: Dict[str, Any] = {
         "tag": S.tag,
         "domain": DOMAIN,
+        "provenance": {
+            "commit_full": commit_full,
+            "commit": commit_short,
+            "salted_tag": salted_tag,
+            "salted_hash": salted_hash,
+        },
         "env": env_receipts(),
         "receipts": {
             "no_switch": no_switch_clause,
@@ -629,7 +664,10 @@ def main() -> int:
     summary_top = {
         "tag": S.tag,
         "gate_set": summary.get("gate_set", "smoke_symm"),
-        "commit": _git_short_hash_from_dotgit(code_root),
+        "commit": commit_short,
+        "commit_full": commit_full,
+        "salted_tag": salted_tag,
+        "salted_hash": salted_hash,
         "env": summary.get("env", {}),
         "determinism": {
             "clause": no_switch_clause,

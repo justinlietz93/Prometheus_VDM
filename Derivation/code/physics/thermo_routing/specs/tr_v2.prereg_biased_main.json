@@ -1,0 +1,26 @@
+{
+  "grid": { "Nx": 128, "Ny": 64, "Lx": 6.0, "Ly": 3.0, "stencil": "fd3", "bc": "neumann" },
+  "geometry": { "w_A": 0.82, "w_B": 0.15 },
+  "rd": { "D": 0.5, "r": 0.42, "u": 0.36, "lambda": 0.0 },
+  "ic": { "type": "packet", "x0": 0.58, "y0": 0.82, "sigma": 0.14, "amplitude": 0.6 },
+  "time": { "T": 3.8, "dt": 0.0004, "checkpoints": 38 },
+  "analysis": {
+    "rj_fit": { "kmin": 4, "kmax": 20, "r2_gate": 0.99 },
+    "avf_iters": 24,
+    "rj_tail_frac": 0.25,
+    "rj_window_times": [0.05, 0.28],
+    "smoke_relax_rj": false
+  },
+  "controls": {
+    "gate_set": "prereg",
+    "symmetric_geometry": false,
+    "injection_sweep": { "y_list": [0.6, 0.7, 0.8] },
+    "two_source_split": { "ratios": [0.3, 0.5, 0.7] },
+    "baseline": { "enabled": true }
+  },
+  "baseline": { "enabled": true },
+  "no_switch": true,
+  "seeds": 7,
+  "gates": { "delta_bias": 0.02 },
+  "tag": "thermo-routing-v2-prereg-biased-main"
+}

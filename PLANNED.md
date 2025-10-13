@@ -47,9 +47,7 @@
 
 # Up next
 
-```
 Classification: Runtime-only
-```
 
 **Objective Recap**
 

@@ -1,0 +1,2 @@
+timestamp,domain,tag,approved,quarantined,seed_count,walkers,hops,FA_mean,FB_mean,B,B0,delta_B_ch,eta_mean,eta_ci_lo,eta_ci_hi,anis_mean,anis_ci_lo,anis_ci_hi,port_closure_pass,commit,map_hash
+2025-10-13T12:40:27.349415,thermo_routing,thermo-routing-v2-ftmc,True,False,1,256,3,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.8307118287792445,0.8307118287792445,0.8307118287792445,True,unknown,ddfd970b9b6a2b2314cdf8a48ab18095580eb0d09dc39d0cab0abc9e61a6bc46
