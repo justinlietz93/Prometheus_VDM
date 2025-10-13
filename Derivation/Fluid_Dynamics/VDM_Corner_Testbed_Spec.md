@@ -24,6 +24,7 @@
   **Expanded:** Baseline exposes the well‑known “corner” singular tendency. The VDM run uses your *void‑faithful* limiter to prevent non‑physical blow‑ups *only where the system would otherwise violate finite‑speed, finite‑energy transport*. Everything else stays identical so comparisons are fair.
 
 ### 3.1 VDM (Void‑Debt Modulation) - Toy Testbed Form
+
 - **Terse:** Introduce a scalar **D(x,y,t)** that accumulates where the flow is “impossible” (high strain); cap advection by `1/(1 + β D)`.  
   **Expanded:** This is a *testbed* embodiment of your theory. Let
   
@@ -77,6 +78,7 @@ Use **VDM_corner_config.yaml** as the single source of truth.
 ---
 
 ### Files generated for you now
+
 - **Config:** *VDM_corner_config.yaml*
 - **Diagram:** *VDM_Corner_Geometry.png*
 - **Notebook skeleton:** *VDM_Corner_Testbed.ipynb* (loads config; stubs for baseline & VDM runs)
