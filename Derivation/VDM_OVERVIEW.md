@@ -3,8 +3,8 @@
 Note on scope: This document is canonical and reflects the latest accepted state only. Historical timelines and prior wordings are preserved in Derivation/CORRECTIONS.md and the memory-bank logs.
 
 **Author:** Justin K. Lietz  
-**Last Updated:** October 9, 2025  
-**Commit:** 09f871a
+**Last Updated:** October 13, 2025  
+**Commit:** 6be73cf
 
 **License Notice:** This research is protected under a dual-license to foster open academic research while ensuring commercial applications are aligned with the project's ethical principles. Commercial use requires citation and written permission from Justin K. Lietz. See LICENSE file for full terms.
 
@@ -57,6 +57,8 @@ Scope boundary note (policy):
 - **Discrete Conservation Law:** ODE integrators with invariant drift monitoring
 
 These computational experiments serve as *functional equivalents* to laboratory apparatus, with reproducibility ensured via seed control, commit logging, and artifact archival.
+
+Cross-link (canon update): The conservative Klein–Gordon limb (J-only) has been certified via the pre-registered energy‑oscillation scaling and strict time‑reversal gates. See `Derivation/Metriplectic/KG_Energy_Oscillation/RESULTS_KG_Energy_Oscillation_v1.md`, `SCHEMAS.md#kg-energy-oscillation-summary-metriplectic`, and `CANON_PROGRESS.md#metriplectic-status`. J⊕M coupling work proceeds under Passive Thermodynamic Routing v2 with KPI gates. This is a thermodynamic routing analogue, not an optics system; optical-style diagnostics (RJ fit, windowing) are used only as measurement analogues.
 
 **Document structure:** Following axiomatic foundations (§II–IV), we derive the RD canonical branch (§V–VI), establish conservation laws (§VII), present validated results (§VIII), interpret and bound the theory (§VIII–IX), and provide a domain-wide architecture map (§X), policies (§XII), and a forward-looking roadmap (§XIII).
 

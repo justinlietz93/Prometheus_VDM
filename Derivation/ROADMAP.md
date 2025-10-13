@@ -3,7 +3,7 @@
 <!-- markdownlint-disable MD033 -->
 # VDM Roadmap (Compiled from Repository Evidence)
 
-Last updated: 2025-10-09 (commit 09f871a)
+Last updated: 2025-10-13 (commit 6be73cf)
 
 **Scope:** Milestones and tasks already recorded in this repository (docs, comments, logs, exported issues).  
 **Rules:** Planning-only. Link to canonical math/specs (SYMBOLS/EQUATIONS/CONSTANTS/UNITS/ALGORITHMS/BC_IC/VALIDATION/DATA_PRODUCTS/SCHEMAS). Do not duplicate canon here.
@@ -11,6 +11,15 @@ Last updated: 2025-10-09 (commit 09f871a)
 ---
 
 ## Near-Term Milestones
+
+### Conservative Klein-Gordon Instrument Certification (J-only)
+
+Status: PROVEN per gates with artifacts • Priority: P1  
+Source: Derivation/Metriplectic/KG_Energy_Oscillation/RESULTS_KG_Energy_Oscillation_v1.md  
+Canon cross-links: `SCHEMAS.md#kg-energy-oscillation-summary-metriplectic`, `VALIDATION_METRICS.md#kpi-kg-energy-osc`, `CANON_PROGRESS.md#metriplectic-status`  
+Summary: Certified the conservative Klein–Gordon limb via the pre-registered energy-oscillation scaling and strict time-reversal gates. Artifacts pinned (PNG/CSV/JSON) with determinism receipts and environment audit; schema registered. This is the prerequisite for metriplectic thermodynamic routing.
+
+Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reversal error e_rev<1e−12 (2.93×10⁻¹⁶), fine-step relative amplitude <1e−4 (1.346×10⁻⁵). Stability: Δt ladder below Δt_max=0.8/ω_max (discrete spectral operator); seeds aggregated over band-limited ICs. Determinism: single-thread numerics, deterministic FFT plans, array buffer hashing (checkpoint cadence) with env audit logged. Axiom gates: Noether N/A (linear J-only), H-theorem N/A (no M step), locality smoke rechecked (pass).
 
 ## <a id="ms-frw-balance"></a>FRW Continuity Residual Validation (Gravity)
 
@@ -891,6 +900,7 @@ Central list of active proposals with links to their source documents. See each 
 - Cosmology (FRW Balance): [PROPOSAL_FRW_Balance_v1.md](cosmology/PROPOSAL_FRW_Balance_v1.md)
 - Metriplectic (RD + KG): [PROPOSAL_KG_plus_RD_Metriplectic.md](metriplectic/PROPOSAL_KG_plus_RD_Metriplectic.md)
 - Metriplectic Variant (Symplectic + DG): [PROPOSAL_Metriplectic_SymplecticPlusDG.md](metriplectic/PROPOSAL_Metriplectic_SymplecticPlusDG.md)
+  - Note: The J-only Klein–Gordon QC instrument is certified; J⊕M coupling work (Passive Thermodynamic Routing v2) proceeds next under KPI gates. See RESULTS cross-link above.
 - Conservation vs Balance (RD): [PROPOSAL_RD_Discrete_Conservation_vs_Balance.md](conservation_law/PROPOSAL_RD_Discrete_Conservation_vs_Balance.md)
 - Dark Photons (Decoherence Portals): [PROPOSAL_Decoherence_Portals.md](dark_photons/PROPOSAL_Decoherence_Portals.md)
 - Quantum Gravity Bridge (Observational): [PROPOSAL_Quantum_Gravity_Bridge_v1.md](speculations/PROPOSAL_Quantum_Gravity_Bridge_v1.md)
@@ -899,3 +909,4 @@ Central list of active proposals with links to their source documents. See each 
 
 - 2024-10-04 • Initial roadmap compiled from repository evidence • 77f055f
 - 2025-10-06 • Added milestones: FRW Continuity Residual (Gravity), Dark Photon Portal program, Quantum Gravity Bridge; backfilled Proposals Index (A6 Collapse, FRW Balance, Metriplectic variants, RD Conservation, Dark Photons)
+- 2025-10-13 • Added milestone entry for KG J-only QC certification and note under Metriplectic proposals; updated header stamp

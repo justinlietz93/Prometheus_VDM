@@ -1,6 +1,6 @@
 # Derivation - Index and Hygiene
 
-Last updated: 2025-10-09 (commit 09f871a)
+Last updated: 2025-10-13 (commit 6be73cf)
 
 ## Canonical registries (single source of truth)
 
@@ -21,6 +21,8 @@ Last updated: 2025-10-09 (commit 09f871a)
 - OVERVIEW - `/mnt/ironwolf/git/Prometheus_VDM/Derivation/OVERVIEW.md`
 
 Note: These are “latest-only” registries; CORRECTIONS.md remains chronological.
+
+KG J-only instrument pointers (canon): Schema at `Derivation/SCHEMAS.md#kg-energy-oscillation-summary-metriplectic`; RESULTS at `Derivation/Metriplectic/KG_Energy_Oscillation/RESULTS_KG_Energy_Oscillation_v1.md`.
 
 ## Working domain folders (what they’re for)
 
