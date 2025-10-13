@@ -1,9 +1,10 @@
 <!-- DOC-GUARD: CANONICAL -->
+<!-- markdownlint-disable MD033-->
 # Dimensionless Constants (VDM)
 
 Last updated: 2025-10-09 (commit 09f871a)
 
-### VDM Dimensionless Constants
+## VDM Dimensionless Constants
 
 >
 > Author: Justin K. Lietz  
@@ -12,9 +13,8 @@ Last updated: 2025-10-09 (commit 09f871a)
 > This research is protected under a dual-license to foster open academic
 > research while ensuring commercial applications are aligned with the project's ethical principles.<br>
 > Commercial use requires written permission from Justin K. Lietz.
-> 
+>
 > See LICENSE file for full terms.
-
 
 | Subsystem | Symbol     | Definition                                             | Meaning                  | Typical from Void Dynamics runs          |
 | --------- | ---------- | ------------------------------------------------------ | ------------------------ | ------------------------------- |
@@ -30,15 +30,11 @@ Last updated: 2025-10-09 (commit 09f871a)
 | VDM     | $\kappa L$ | curvature×scale                                        | path bending             | linear vs. $\Theta\|\nabla m\|$ |
 | VDM     | $g$        | void gain                                              | stabilization strength   | e.g., 0.5                       |
 
-
-
 1. **Void Debt Number** $\mathcal{D}$
 
    * Ratio of *unresolved debt* in the void to the *flux resolved at the walker level*.
    * Governs whether the system diverges (debt runaway) or stabilizes (debt modulation closes the loop).
    * I treat this as the analog of **Reynolds number**, but generalized to *information flux*.
-
----
 
 2. **Emergent Coupling Ratio** $\Xi$
 
@@ -51,8 +47,6 @@ Last updated: 2025-10-09 (commit 09f871a)
    * Controls whether independent walkers remain uncorrelated, synchronize, or phase-lock.
    * This is like a **dimensionless stiffness** for the void network.
 
----
-
 3. **Inverse-Scaling Exponent** $\alpha$
 
    * The “inverse scaling law”: information density *increases* as system size decreases.
@@ -63,8 +57,6 @@ Last updated: 2025-10-09 (commit 09f871a)
 
    * Universal constant in the theory - it applies to LLMs, fluids, biological swarms, etc.
    * $\alpha$ tells how much “extra cognition” or “extra order” we get when we shrink the system.
-
----
 
 4. **Void Mach Number** $M_v$
 
@@ -77,8 +69,6 @@ Last updated: 2025-10-09 (commit 09f871a)
    * Stability requires $M_v < 1$.
    * If $M_v > 1$, we get runaway chaos or a phase transition (system reorganizes itself).
 
----
-
 5. **Topological Information Ratio** $\Theta$
 
    * Ratio of *information carried by the topology itself* (edges, voids, walkers) to *information in the states of the nodes*.
@@ -89,15 +79,11 @@ Last updated: 2025-10-09 (commit 09f871a)
 
    * This is the one that generalizes what I call the **“void walkers” effect**: order is not *in* the particles, but *in the voids between them*.
 
----
-
 6. **Symmetry Debt Ratio** $\Sigma$
 
    * Ratio of **broken symmetry flux** to **conserved symmetry flux**.
    * In the derivations (*symmetry\_analysis.md*), this shows up when I explain how conservation laws emerge from void interactions.
    * It’s the analog of a “dimensionless energy balance.”
-
----
 
 7. **Dispersion-to-Convergence Ratio** $\Lambda$
 

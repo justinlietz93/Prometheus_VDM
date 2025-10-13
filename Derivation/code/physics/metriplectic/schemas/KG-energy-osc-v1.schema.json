@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "KG Energy Oscillation Scaling & Time-Reversal (v1)",
+  "tag": "KG-energy-osc-v1",
+  "type": "object",
+  "properties": {
+    "tag": { "type": "string", "const": "KG-energy-osc-v1" },
+    "grid": { "type": "object" },
+    "params": { "type": "object" },
+    "dt_list": {
+      "type": "array",
+      "items": { "type": "number", "minimum": 0.0 },
+      "minItems": 1
+    },
+    "AH": {
+      "description": "Median energy oscillation amplitude per dt (half peak-to-peak)",
+      "type": "array",
+      "items": { "type": "number", "minimum": 0.0 },
+      "minItems": 1
+    },
+    "rel_AH": {
+      "description": "Median relative amplitude per dt (AH / mean(H))",
+      "type": "array",
+      "items": { "type": "number", "minimum": 0.0 },
+      "minItems": 1
+    },
+    "fit": {
+      "type": "object",
+      "properties": {
+        "p": { "type": "number" },
+        "R2": { "type": "number", "minimum": 0.0, "maximum": 1.0 }
+      },
+      "required": ["p", "R2"]
+    },
+    "e_rev": {
+      "description": "Max time-reversal sup-norm error across seeds",
+      "type": "number",
+      "minimum": 0.0
+    },
+    "checkpoints": {
+      "description": "Optional list of checkpoint step indices used for hashing",
+      "type": "array",
+      "items": { "type": "integer", "minimum": 0 }
+    },
+    "hashes": {
+      "description": "Optional list of SHA256 hashes of raw buffers at checkpoints",
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "env_audit": { "type": "object" },
+    "figure": { "type": "string" },
+    "csv": { "type": "string" },
+    "gate": { "type": "object" },
+    "passed": { "type": "boolean" }
+  },
+  "required": ["tag", "dt_list", "AH", "fit", "e_rev", "passed"],
+  "additionalProperties": true
+}

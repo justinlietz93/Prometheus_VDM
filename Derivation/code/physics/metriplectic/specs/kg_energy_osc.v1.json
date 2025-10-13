@@ -1,0 +1,17 @@
+{
+  "bc": "periodic",
+  "grid": { "N": 256, "dx": 1.0 },
+  "params": {
+    "c": 1.0,
+    "m": 0.5,
+    "seed_scale": 0.05,
+    "bands": [[1, 8], [9, 24], [25, 48]],
+    "seeds_per_band": 2,
+    "checkpoints": [0, 64, 128, 256, 512],
+    "tag": "KG-energy-osc-v1"
+  },
+  "dt_strategy": "discrete_omega_max_geometric",
+  "dt_ladder_count": 5,
+  "steps": 1024,
+  "notes": "KG J-only energy oscillation amplitude scaling (AH ~ dt^2) and strict time-reversal (erev <= 1e-12); determinism locked; approval-tagged run"
+}

@@ -1,13 +1,13 @@
-# Progress (Updated: 2025-10-09)
+# Progress (Updated: 2025-10-13)
 
 ## Done
 
-- Added domain tiers/status table earlier; broadened scope and completed sections IX–XV.
+- Executed approved KG-energy-osc-v1 run, generated PNG/CSV/JSON artifacts, metrics p≈2.0, R2≈1.0, e_rev≈3e-16; gates passed.
 
 ## Doing
 
-- Completed MathJax compliance sweep in VDM_OVERVIEW.md: wrapped inline units/symbols, standardized hyphenation (Euler–Lagrange, Klein–Gordon, Reaction–Diffusion, Navier–Stokes), and corrected table headers and figure captions.
+
 
 ## Next
 
-- Optional: mirror domain status snapshot in Derivation/README.md; add cross-links between §X rows and KPI/result sections.
+- Draft RESULTS_KG_Energy_Oscillation_v1.md pinning artifacts and summarizing gates; update VALIDATION_METRICS and CANON_PROGRESS rows.
