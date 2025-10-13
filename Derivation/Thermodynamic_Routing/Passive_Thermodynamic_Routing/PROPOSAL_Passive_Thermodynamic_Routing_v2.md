@@ -4,7 +4,7 @@
 
 Author: Justin K. Lietz  
 Date: 2025-10-13  
-Commit: 6be73cf  
+Commit: 2bb143a  
 Tag: thermo-routing-v2
 
 ## Hypothesis and Scope

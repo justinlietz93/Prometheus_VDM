@@ -2,12 +2,12 @@
 
 ## Done
 
-- Added supersedence banner to v2 prereg and carried forward JMJ/Strang-defect diagnostic as Appendix A; lint-clean
+- Thermo-routing symmetric smoke now passes with H-theorem=0, no-switch ok, finite flux metrics; RJ gate relaxed for smoke
 
 ## Doing
 
-- Assess whether to deprecate or update NoSwitch v1 filename/title to avoid confusion
+- Prepare prereg geometry (no-flux walls + open outlets) and restore RJ gate for canonical run
 
 ## Next
 
-- Optionally add a redirect note at top of NoSwitch v1 pointing to v2 canonical doc
+- Add biased-geometry spec; integrate residual whiteness and bootstrap CI for full prereg; document RESULTS once prereg run passes
