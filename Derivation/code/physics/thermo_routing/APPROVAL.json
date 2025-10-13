@@ -2,7 +2,10 @@
   "pre_registered": true,
   "proposal": "Derivation/Thermodynamic_Routing/Passive_Thermodynamic_Routing/PROPOSAL_Passive_Thermodynamic_Routing_v2.md",
   "allowed_tags": [
-    "thermo-routing-v2"
+    "thermo-routing-v2",
+    "thermo-routing-v2-ftmc",
+    "thermo-routing-v2-prereg-biased-main",
+    "thermo-routing-v2-wave-meter"
   ],
   "approvals": {
     "thermo-routing-v2": {
@@ -10,6 +13,24 @@
       "approved_by": "Justin K. Lietz",
       "approved_at": "2025-10-13T08:31:05.092847+00:00",
       "approval_key": "232c505835313363767bc7071603a327fa445e0704ef343c54e0626fdcfc7833"
+    },
+    "thermo-routing-v2-prereg-biased-main": {
+      "schema": "Derivation/code/physics/thermo_routing/schemas/thermo-routing-v2-prereg-biased-main.schema.json",
+      "approved_by": "Justin K. Lietz",
+      "approved_at": "2025-10-13T11:30:08.190071+00:00",
+      "approval_key": "43967a0c5e3312cd4891713979a5f9c8b8dbf6460bdedbf48c0b8d94d5b4a546"
+    },
+    "thermo-routing-v2-ftmc": {
+      "schema": "Derivation/code/physics/thermo_routing/schemas/flux-through-memory-channels-v1.schema.json",
+      "approved_by": "Justin K. Lietz",
+      "approved_at": "2025-10-13T17:13:08.850411+00:00",
+      "approval_key": "8ba078ec63391dd1c2c534239aa95f72b96d772854fc0d76993fe1f56defcfbf"
+    },
+    "thermo-routing-v2-wave-meter": {
+      "schema": "Derivation/code/physics/thermo_routing/schemas/wave-flux-meter-summary-v1.schema.json",
+      "approved_by": "Justin K. Lietz",
+      "approved_at": "2025-10-13T18:59:48.317715+00:00",
+      "approval_key": "2ebdf703296cd5c124692c33c2f8cd4eaa34f15ed4290289c88fd48e4b168055"
     }
   }
 }

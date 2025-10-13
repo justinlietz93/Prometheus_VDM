@@ -1,0 +1,75 @@
+{
+  "artifacts": {
+    "figures": [
+      "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_115326_ftmc_channel_map_thermo-routing-v2-ftmc.png"
+    ],
+    "logs": []
+  },
+  "compliance": {
+    "boundary_model": "walls_reflecting + open_right",
+    "budget_mapping": true,
+    "determinism": true,
+    "flux_convention": "outflux_only",
+    "frozen_map": false,
+    "map_immutable": true,
+    "probe_limit": true,
+    "rj_basis_ok": true
+  },
+  "domain": "thermo_routing",
+  "env": {
+    "blas": "openblas",
+    "fft": "numpy.pocketfft",
+    "fft_plan_mode": "deterministic",
+    "threads": 32
+  },
+  "gate_matrix": {
+    "compliance": "FAIL"
+  },
+  "kpi": {
+    "anisotropy": {
+      "ci": [
+        1.0,
+        1.0
+      ],
+      "value": 1.0
+    },
+    "delta_B_ch": {
+      "ci": [
+        0.0,
+        0.0
+      ],
+      "value": 0.0
+    },
+    "eta_ch": {
+      "ci": [
+        0.0,
+        0.0
+      ],
+      "value": 0.0
+    },
+    "meters": {
+      "determinism": {},
+      "h_theorem": {},
+      "rj": {}
+    }
+  },
+  "map": {
+    "hash": "",
+    "mode": "mobility"
+  },
+  "policy": {
+    "approved": false,
+    "engineering_only": true,
+    "proposal": null,
+    "quarantined": true,
+    "tag": "thermo-routing-v2-ftmc"
+  },
+  "provenance": {
+    "commit": "unknown",
+    "commit_full": "unknown",
+    "salted_hash": "93a96cc72aa11bcf7b8938e0b2ed2a18b87033035076cffec1a1ceb7a994102f",
+    "salted_tag": "FluxThroughMemoryChannels_v1"
+  },
+  "status": "pending",
+  "tag": "thermo-routing-v2-ftmc"
+}

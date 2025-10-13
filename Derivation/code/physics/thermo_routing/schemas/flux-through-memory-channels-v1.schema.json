@@ -1,0 +1,131 @@
+{
+	"tag": "thermo-routing-v2-ftmc",
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"title": "Flux Through Memory Channels v1 summary",
+	"type": "object",
+	"required": [
+		"tag",
+		"domain",
+		"provenance",
+		"env",
+		"compliance",
+		"map",
+		"kpi",
+		"artifacts",
+		"policy",
+		"gate_matrix",
+		"status"
+	],
+	"properties": {
+		"tag": { "type": "string" },
+		"domain": { "type": "string", "const": "thermo_routing" },
+		"provenance": {
+			"type": "object",
+			"required": ["commit_full", "commit", "salted_tag", "salted_hash"],
+			"properties": {
+				"commit_full": { "type": "string" },
+				"commit": { "type": "string" },
+				"salted_tag": { "type": "string" },
+				"salted_hash": { "type": ["string", "null"] }
+			}
+		},
+		"env": {
+			"type": "object",
+			"properties": {
+				"threads": { "type": "integer" },
+				"blas": { "type": ["string", "null"] },
+				"fft": { "type": ["string", "null"] },
+				"fft_plan_mode": { "type": ["string", "null"] }
+			}
+		},
+		"compliance": {
+			"type": "object",
+			"required": [
+				"boundary_model",
+				"flux_convention",
+				"map_immutable",
+				"rj_basis_ok",
+				"determinism",
+				"probe_limit",
+				"frozen_map",
+				"budget_mapping"
+			],
+			"properties": {
+				"boundary_model": { "type": "string" },
+				"flux_convention": { "type": "string" },
+				"map_immutable": { "type": "boolean" },
+				"rj_basis_ok": { "type": "boolean" },
+				"determinism": { "type": "boolean" },
+				"probe_limit": { "type": "boolean" },
+				"frozen_map": { "type": "boolean" },
+				"budget_mapping": { "type": "boolean" }
+			}
+		},
+		"map": {
+			"type": "object",
+			"required": ["mode", "hash"],
+			"properties": {
+				"mode": { "type": "string", "enum": ["mobility", "potential"] },
+				"hash": { "type": "string" }
+			}
+		},
+		"kpi": {
+			"type": "object",
+			"required": ["eta_ch", "delta_B_ch", "anisotropy", "meters"],
+			"properties": {
+				"eta_ch": {
+					"type": "object",
+					"required": ["value", "ci"],
+					"properties": {
+						"value": { "type": "number" },
+						"ci": { "type": "array", "minItems": 2, "maxItems": 2, "items": { "type": ["number", "null"] } }
+					}
+				},
+				"delta_B_ch": {
+					"type": "object",
+					"required": ["value", "ci"],
+					"properties": {
+						"value": { "type": "number" },
+						"ci": { "type": "array", "minItems": 2, "maxItems": 2, "items": { "type": ["number", "null"] } }
+					}
+				},
+				"anisotropy": {
+					"type": "object",
+					"required": ["value", "ci"],
+					"properties": {
+						"value": { "type": "number" },
+						"ci": { "type": "array", "minItems": 2, "maxItems": 2, "items": { "type": ["number", "null"] } }
+					}
+				},
+				"meters": {
+					"type": "object",
+					"properties": {
+						"h_theorem": { "type": "object" },
+						"determinism": { "type": "object" },
+						"rj": { "type": "object" }
+					}
+				}
+			}
+		},
+		"artifacts": {
+			"type": "object",
+			"properties": {
+				"figures": { "type": "array", "items": { "type": "string" } },
+				"logs": { "type": "array", "items": { "type": "string" } }
+			}
+		},
+		"policy": {
+			"type": "object",
+			"properties": {
+				"approved": { "type": "boolean" },
+				"engineering_only": { "type": "boolean" },
+				"quarantined": { "type": "boolean" },
+				"tag": { "type": "string" },
+				"proposal": { "type": ["string", "null"] }
+			}
+		},
+		"gate_matrix": { "type": "object" },
+		"status": { "type": "string", "enum": ["success", "failed", "aborted", "pending"] },
+		"artifact_bundle_id": { "type": ["string", "null"] }
+	}
+}

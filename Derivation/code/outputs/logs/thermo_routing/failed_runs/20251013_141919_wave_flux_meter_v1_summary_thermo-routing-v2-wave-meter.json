@@ -1,0 +1,54 @@
+{
+  "artifacts": {
+    "figures": [
+      "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_141919_wave_flux_meter_energy_thermo-routing-v2-wave-meter.png"
+    ],
+    "logs": [
+      "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_141919_wave_flux_meter_v1_metrics_thermo-routing-v2-wave-meter.csv",
+      "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_141919_wave_flux_meter_v1_summary_thermo-routing-v2-wave-meter.json"
+    ]
+  },
+  "compliance": {
+    "determinism": true,
+    "determinism_clause": "seeded; symplectic",
+    "frozen_map": true,
+    "map_immutable": true,
+    "probe_limit": true
+  },
+  "domain": "thermo_routing",
+  "env": {
+    "blas": "openblas",
+    "fft": "numpy.pocketfft",
+    "fft_plan_mode": "deterministic",
+    "threads": 1
+  },
+  "gates": {
+    "energy_conservation": false,
+    "local_balance_l2": false
+  },
+  "kpi": {
+    "energy_conservation": {
+      "E_rel_err_max": 0.002475912743860185,
+      "gate": false,
+      "tol": 8e-05
+    },
+    "local_balance_l2": {
+      "gate": false,
+      "max": 0.009062279965596137
+    }
+  },
+  "passed": false,
+  "policy": {
+    "approved": true,
+    "engineering_only": false,
+    "proposal": "Derivation/Thermodynamic_Routing/Passive_Thermodynamic_Routing/PROPOSAL_Passive_Thermodynamic_Routing_v2.md",
+    "quarantined": false,
+    "tag": "thermo-routing-v2-wave-meter"
+  },
+  "provenance": {
+    "commit": "unknown",
+    "commit_full": "unknown",
+    "salted_tag": "WaveFluxMeter_v1"
+  },
+  "tag": "thermo-routing-v2-wave-meter"
+}

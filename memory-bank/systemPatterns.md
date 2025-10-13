@@ -41,3 +41,12 @@ Provide a tiny, policy-aware runner that samples random vectors to test operator
 
 - Derivation/code/physics/metriplectic/metriplectic_structure_checks.py
 - Derivation/Metriplectic/RESULTS_Metriplectic_Structure_Checks.md
+
+
+## Experiment artifact and prereg discipline enforcement
+
+All experiments must (1) be approved before running (default-deny; --allow-unapproved routes to quarantine), (2) use common.io_paths for all artifacts, (3) produce at minimum: 1 PNG figure + 1 CSV log + 1 JSON summary, (4) never emit a RESULTS document until metrics are finalized and approved, and (5) include a compliance block in the JSON with approvals, probe-limit, frozen-map, and artifact_minimum receipts.
+
+### Examples
+
+- Derivation/code/physics/thermo_routing/passive_thermo_routing/run_ftmc_v1.py writes 2 figures, a CSV metrics file via log_path_by_tag(..., type='csv'), and a JSON summary; approvals enforced via common.authorization.approval.check_tag_approval; RESULTS output disabled.

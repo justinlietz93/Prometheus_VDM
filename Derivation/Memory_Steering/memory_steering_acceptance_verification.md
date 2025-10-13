@@ -5,11 +5,13 @@ Date: 2025-08-21
 Owner:Justin K. Lietz
 
 Purpose
+
 - Define quantitative acceptance criteria and a reproducible verification protocol for the “memory steering” mechanism.
 - Verify boundedness, stability, fixed-point predictability, signal-to-noise improvement, Lyapunov monotonicity under canonical conditions, and reproducibility.
 - Document the canonical “void equilibrium” target W ≈ 0.6 and its parameter mapping.
 
 Starting Assumptions
+
 - Memory variable M_t ∈ [0, 1].
 - Steering uses a linear, leaky first-order update with saturation (assumed form):
   M_{t+1} = (1 - λ - g) M_t + g s_t + ξ_t, then clamp M_{t+1} to [0, 1].
@@ -20,25 +22,30 @@ Starting Assumptions
 - If the actual steering law differs (nonlinear f(s, M), adaptive gains, or additional couplings), we will update p, M*, and acceptance thresholds accordingly. Provide file path + line numbers for the exact rule to refine this doc.
 
 Discrete Formulation
+
 - Update (dt = 1):
   M_{t+1} - M_t = -(λ + g) M_t + g s_t + ξ_t; then clip to [0, 1].
-- Step response for s = s1 (constant for t ≥ t_step): M_t = M* + (M_0 - M*) p^t with p = 1 - λ - g.
+- Step response for s = s1 (constant for t ≥ t_step): M_t = M*+ (M_0 - M*) p^t with p = 1 - λ - g.
 
 Continuum Limit (for small λ + g)
+
 - Let dt ≪ 1 and identify κ = λ + g, γ = g. Then
   dM/dt = -κ M + γ s(t) + η(t), 0 ≤ M ≤ 1 with reflective saturation at bounds.
 - Time constant τ ≈ 1/κ. In discrete time, τ_d = -1 / ln p; for small κ, τ_d ≈ 1/κ.
 
 Fixed Points & Stability
+
 - Fixed point M* = (g/(g+λ)) s for constant s (unclamped, noise-free).
 - Linear stability: |p| < 1 ⇒ stable; for 0 ≤ p < 1, monotone approach without overshoot (in the linear, unclamped regime).
 - With saturation, M remains bounded in [0, 1].
 
 Lyapunov Structure (noise-free, constant s)
+
 - Define F_t = 0.5 (M_t - M*)^2. Then M_{t+1} - M* = p (M_t - M*). Hence
   F_{t+1} - F_t = 0.5 (p^2 - 1) (M_t - M*)^2 ≤ 0 for |p| ≤ 1 with strict decrease for |p| < 1 unless M_t = M*.
 
 Acceptance Criteria
+
 1) Boundedness
    - No excursions outside [0, 1] after clamping: count_violations = 0 over default runs.
 
@@ -66,6 +73,7 @@ Acceptance Criteria
    - With g = 0 (steering disabled), host system metrics (if coupled) match baseline within numerical tolerance.
 
 Validation Plan
+
 - Script: Prometheus_VDM/derivation/code/physics/memory_steering/memory_steering_acceptance.py
   - Experiments:
     1) Step response: s steps s0→s1; fit pole p from log residuals; verify M*.
@@ -83,15 +91,18 @@ Validation Plan
       - canonical_void_YYYY....png
 
 Default Parameters (for acceptance run)
+
 - g = 0.12, λ = 0.08 ⇒ p_pred = 0.80, τ_d ≈ 4.48 steps
 - Noise std for SNR test: σ = 0.05
 - Seeds: {0, 1, 2}
 - Steps: 512 (step at t = 64)
 
 Numerical Validation Results
+
 - Pending. Will be auto-inserted into the JSON log after first run and summarized here if needed.
 
 Open Questions / Next Refinements
+
 - If the actual memory-steering update differs (nonlinear dependence or adaptive control), provide the exact formula or implementation path + lines so we can update p_pred, M*, and Lyapunov claims.
 - Bridge into host systems (LBM, RD, walkers) to demonstrate:
   - Non-interference when off (g = 0): metrics identical to baseline.
@@ -99,10 +110,12 @@ Open Questions / Next Refinements
 - Optional: empirical Bode plot (frequency response) for completeness.
 
 Run Instructions
+
 - Activate venv and run:
   .\venv\scripts\activate
   python -m Prometheus_VDM.derivation.code.physics.memory_steering.memory_steering_acceptance --seed 0 --steps 512 --g 0.12 --lam 0.08
 - Inspect JSON in code/outputs/logs/memory_steering/ and PNGs in code/outputs/figures/memory_steering/.
 
 Reproducibility Gates
+
 - A run is [PROVEN] if all acceptance checks pass. Deviations become [PLAUSIBLE] with a concrete follow-up plan; contradictions generate a RECONCILE note in CORRECTIONS.md.

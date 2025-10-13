@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Wave Flux Meter v1 Summary",
+  "tag": "thermo-routing-v2-wave-meter",
+  "type": "object",
+  "properties": {
+    "tag": { "type": "string" },
+    "domain": { "type": "string" },
+    "provenance": { "type": "object" },
+    "env": { "type": "object" },
+    "passed": { "type": "boolean" },
+    "gates": {
+      "type": "object",
+      "properties": {
+        "energy_conservation": { "type": "boolean" },
+        "local_balance_l2": { "type": "boolean" }
+      }
+    },
+    "compliance": {
+      "type": "object",
+      "properties": {
+        "map_immutable": { "type": "boolean" },
+        "determinism": { "type": "boolean" },
+        "determinism_clause": { "type": "string" },
+        "probe_limit": { "type": "boolean" },
+        "frozen_map": { "type": "boolean" }
+      },
+      "required": ["map_immutable", "determinism", "probe_limit", "frozen_map"]
+    },
+    "kpi": {
+      "type": "object",
+      "properties": {
+        "energy_conservation": {
+          "type": "object",
+          "properties": {
+            "E_rel_err_max": { "type": "number" },
+            "gate": { "type": "boolean" }
+          },
+          "required": ["E_rel_err_max", "gate"]
+        },
+        "local_balance_l2": {
+          "type": "object",
+          "properties": {
+            "max": { "type": "number" },
+            "gate": { "type": "boolean" }
+          },
+          "required": ["max", "gate"]
+        }
+      },
+      "required": ["energy_conservation", "local_balance_l2"]
+    },
+    "artifacts": { "type": "object" },
+    "policy": { "type": "object" }
+  },
+  "required": ["tag", "domain", "compliance", "kpi", "artifacts", "policy"]
+}

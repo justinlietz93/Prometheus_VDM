@@ -1,0 +1,14 @@
+{
+  "pre_registered": true,
+  "domain": "quantum",
+  "proposal": "Derivation/Quantum/PROPOSAL_VDM_Particle-triad_Analogy_v1.md",
+  "allowed_tags": ["vdm-triad-v1"],
+  "approvals": {
+    "vdm-triad-v1": {
+      "schema": "Derivation/code/physics/quantum/schemas/vdm-triad-v1.schema.json",
+      "approved_by": "Justin K. Lietz",
+      "approved_at": "",
+      "approval_key": ""
+    }
+  }
+}
