@@ -2,7 +2,7 @@
 
 ## Current Goals
 
-- Thermo-routing smoke harness stabilized and passing; shift focus to implementing prereg geometry with correct BC/ports and reinstating RJ gate for canonical run.
+- Finalizing smoke RESULTS for Thermodynamic Routing v2 (gate_set=smoke_symm) quoting JSON 20251013_045539...; next implement prereg geometry and full gates for biased_main.
 
 ## Current Blockers
 

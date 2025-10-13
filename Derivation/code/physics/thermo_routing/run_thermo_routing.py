@@ -28,6 +28,7 @@ import hashlib
 from typing import Tuple, Dict, Any
 
 import numpy as np
+import logging
 import matplotlib.pyplot as plt
 import csv
 
@@ -350,6 +351,24 @@ def main() -> int:
     no_switch_ok = True
 
     # Build summary JSON per schema
+    # Commit (best-effort from .git)
+    def _git_short_hash_from_dotgit(repo_root: Path) -> str:
+        try:
+            dotgit = repo_root / ".git"
+            head = (dotgit / "HEAD").read_text().strip()
+            if head.startswith("ref:"):
+                ref = head.split(":", 1)[1].strip()
+                ref_path = dotgit / ref
+                if ref_path.exists():
+                    full = ref_path.read_text().strip()
+                else:
+                    full = head
+            else:
+                full = head
+            return full[:7]
+        except Exception:
+            return "unknown"
+
     summary: Dict[str, Any] = {
         "tag": S.tag,
         "domain": DOMAIN,
@@ -409,6 +428,9 @@ def main() -> int:
         "proposal": proposal,
     }
 
+    # Artifact bundle id (derive from slug time in first artifact if available)
+    bundle_id = None
+
     # Create upgraded main figure and KPI dashboard
     apply_style("light")
     rj_t0 = (steps - max(4, int(round(steps * rj_tail_frac)))) * dt
@@ -438,6 +460,11 @@ def main() -> int:
     fig_path = save_figure(DOMAIN, slug_fig, fig, failed=failed_flag)
     plt.close(fig)
     summary["artifacts"]["figures"].append(str(fig_path))
+    # Derive artifact bundle id from figure filename prefix (timestamp)
+    try:
+        bundle_id = Path(fig_path).stem.split("_", 1)[0]
+    except Exception:
+        bundle_id = None
 
     # KPI dashboard: RJ, flux, identity timeline, receipts
     fig2, axs = assemble_dashboard_2x2(figsize=(10, 7.5))
@@ -515,7 +542,7 @@ def main() -> int:
     plt.close(fig2)
     summary["artifacts"]["figures"].append(str(fig2_path))
 
-    # Geometry & masks figure (schematic + snapshot)
+    # Geometry & masks figure (schematic + snapshot + flux-density strip)
     fig3, axs3 = plt.subplots(1, 2, figsize=(10, 4.2), constrained_layout=True)
     # Left: categorical schematic via image
     axL = axs3[0]
@@ -570,6 +597,18 @@ def main() -> int:
     axR.axhspan(0, bot_len, xmin=(Nx-1)/Nx, xmax=1.0, color='#ff7f0e', alpha=0.15)
     axR.set_xticks([]); axR.set_yticks([])
     fig3.colorbar(im, ax=axR, fraction=0.046, pad=0.04)
+    # Add slim flux-density strip (Fx_edge vs y) as an inset axes
+    try:
+        inset = fig3.add_axes([0.92, 0.15, 0.02, 0.7])  # [left,bottom,width,height] in figure fraction
+        y = np.arange(Ny)
+        fxn = Fx_edge / (np.max(np.abs(Fx_edge)) + 1e-16)
+        inset.plot(fxn, y, color='#444444', lw=1.0)
+        inset.set_xlabel("Fx")
+        inset.set_yticks([])
+        inset.set_xticks([])
+        inset.set_title("flux", fontsize=8)
+    except Exception as e:
+        logging.debug("Failed to draw flux-density strip: %s", e)
     slug_geom = build_slug("geometry_masks", S.tag)
     fig3_path = save_figure(DOMAIN, slug_geom, fig3, failed=failed_flag)
     plt.close(fig3)
@@ -586,6 +625,43 @@ def main() -> int:
     summary["artifacts"]["logs"].append(str(csv_path))
 
     json_path = log_path_by_tag(DOMAIN, slug, S.tag, failed=failed_flag, type="json")
+    # Populate top-level summary blocks for paper honesty
+    summary_top = {
+        "tag": S.tag,
+        "gate_set": summary.get("gate_set", "smoke_symm"),
+        "commit": _git_short_hash_from_dotgit(code_root),
+        "env": summary.get("env", {}),
+        "determinism": {
+            "clause": no_switch_clause,
+            "checkpoints": len(hashes),
+            "hashes": hashes,
+        },
+        "rj": {
+            "R2": float(R2),
+            "T_hat": float(T_hat),
+            "mu_hat": float(mu_hat),
+            "k_min": int(kmin_eff),
+            "k_max": int(kmax_eff),
+            "window_t": [float(rj_t0), float(rj_t1)],
+            "residuals": {"DW": float(DW), "rho1": float(rho1)},
+        },
+        "flux": {
+            "F_A": float(FA_total),
+            "F_B": float(FB_total),
+            "B": float(B),
+            "rho": float(rho),
+            "convention": "outflux_only",
+        },
+        "h_theorem": {"violations": int(violations), "max_pos_dL": float(max(0.0, max_pos_dL)), "tol": float(MICRO_POS_TOL)},
+        "robustness": {"injection_sweep": {"slope_CI": [None, None]}, "two_source": {"delta_eta_CI": [None, None]}},
+        "gate_matrix": {
+            "determinism": "PASS" if no_switch_ok else "FAIL",
+            **summary.get("gate_matrix", {}),
+        },
+    }
+    summary.update(summary_top)
+    if bundle_id:
+        summary["artifact_bundle_id"] = bundle_id
     summary["artifacts"]["logs"].append(str(json_path))
     # Sanitize NaN/Inf to JSON-safe values (None)
     def _sanitize(obj):
