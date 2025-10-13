@@ -5,7 +5,8 @@
     "KG-dispersion-v1",
     "KG-cone-v1",
     "struct-v1",
-    "KG-noether-v1"
+    "KG-noether-v1",
+    "KG-energy-osc-v1"
   ],
   "schema_dir": "Derivation/code/physics/metriplectic/schemas",
   "approvals": {
@@ -32,6 +33,12 @@
       "approved_by": "Justin K. Lietz",
       "approved_at": "2025-10-08T23:45:28.002644+00:00",
       "approval_key": "a924dd54ed5ecc335a91da47377dac861581425a6cfaaf05ebd05306207a1edb"
+    },
+    "KG-energy-osc-v1": {
+      "schema": "Derivation/code/physics/metriplectic/schemas/KG-energy-osc-v1.schema.json",
+      "approved_by": "Justin K. Lietz",
+      "approved_at": "2025-10-13T06:53:02.462385+00:00",
+      "approval_key": "a269ab8c11fdce428b0340a68692b6aeb2df4ff900a38b0f9423749f02169acb"
     }
   }
 }

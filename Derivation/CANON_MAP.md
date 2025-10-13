@@ -83,7 +83,7 @@ Agents may update only inside `AUTOSECTION` fences; your hand-written sections s
 
 ## Minimal edit policy for tools (paste into prompts/config)
 
-```
+```plaintext
 - Single-owner rule: symbols→SYMBOLS.md, equations→EQUATIONS.md, constants→CONSTANTS.md.
 - Reference-only docs must never paste math or numbers; link by anchor.
 - Append-only inside AUTOSECTION fences; do not modify outside.

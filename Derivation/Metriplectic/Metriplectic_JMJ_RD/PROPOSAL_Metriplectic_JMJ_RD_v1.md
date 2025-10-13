@@ -58,13 +58,13 @@ The J-step preserves Noether invariants (to machine precision) and is time-rever
 **I/O layout (additive; preserves prior work).**
 
 ```plaintext
-derivation/code/physics/metriplectic/
+Derivation/code/physics/metriplectic/
       configs/step_spec.metriplectic.example.json
-derivation/code/outputs/figures/metriplectic/
+Derivation/code/outputs/figures/metriplectic/
       two_grid_error_vs_dt_{scheme}.png
       lyapunov_delta_per_step_{scheme}.png
       fixed_dt_deltaS_compare.png
-derivation/code/outputs/logs/metriplectic/
+Derivation/code/outputs/logs/metriplectic/
       step_spec_snapshot.json
       sweep_dt_{scheme}.json            # two-grid slopes + R²
       lyapunov_series_{scheme}.json     # with DG identity residuals (if scheme includes DG)

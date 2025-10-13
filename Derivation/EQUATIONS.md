@@ -1,4 +1,5 @@
 <!-- RULES for maintaining this file are here: /mnt/ironwolf/git/Prometheus_VDM/prompts/equations_maintenance.md -->
+<!-- markdownlint-disable MD033 -->
 # VDM Canonical Equations & Procedural Math (Auto-compiled)
 
 Note on scope: This document reflects the latest accepted canonical equations only. Historical notes and timeline are maintained in Derivation/CORRECTIONS.md and memory-bank/decisionLog.md.
@@ -13,7 +14,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 ---
 
-#### VDM-E-001 - Agency/Consciousness Field Evolution
+## VDM-E-001 - Agency/Consciousness Field Evolution
 
 **Context:** derivation/AGENCY_FIELD.md:38-39 • Commit: 6885588
 
@@ -25,7 +26,7 @@ $$
 
 ---
 
-#### VDM-E-002 - Agency Field Composite Source
+### VDM-E-002 - Agency Field Composite Source
 
 **Context:** derivation/AGENCY_FIELD.md:47-48 • Commit: 6885588
 

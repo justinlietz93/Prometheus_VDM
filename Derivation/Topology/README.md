@@ -1,19 +1,19 @@
-Short answer: yes-we’re making progress, not circling. You’ve got two “green” pillars already:
+# Topology Progress
 
 * Junction logistic collapse (A6) passes with a tight envelope (≈1.657%), which is exactly the $P(A)=\sigma(\Theta,\Delta m)$ universality we need for decision routing .
 * The steering/memory law is already spelled out with the right dimensionless knobs $\Theta, D_a, \Lambda, \Gamma$-that’s our agency substrate ($\mathbf r''=\Theta\nabla_\perp m$; memory PDE with write/decay/spread) .
 
 Below is a compact, self-contained **Phase-2 experiment pack** that lives entirely under `Derivation/code/physics/…` and targets the “intelligence” pieces (SIE, ADC/logistic choice, loops) with falsifiable gates. No FUM runtime involved; only helpers in `Derivation/code/common/` as you requested.
 
-# Classification
+## Classification
 
 Axiom-core (A0–A7) with mixed flows per A4; agency as a slow steering bias on top of fast $\phi$ dynamics.
 
-# Objective recap
+## Objective recap
 
 Demonstrate that the “intelligence components” are physically measurable laws: (i) memory-steered routing (agency), (ii) decision coupling (ADC) via logistic slope universality, (iii) self-information/invariant behavior (SIE) under controlled perturbations, and (iv) loop pathology is suppressed by dissipation and correlates with Lyapunov drop.
 
-# Action plan (do these in order)
+## Action plan (do these in order)
 
 1. **Agency curvature scaling (new).** `physics/agency/run_agency_curvature.py`
    Prepare a smooth $m(x)$; emit narrow $\phi$ pulses; measure path curvature $\kappa_{\rm path}$ vs $X=\Theta|\nabla m|$. Gate: linear fit with $R^2\ge 0.9$ and slope within 10% across $\Theta$ (collapse). Law: $\kappa_{\rm path}\propto\Theta|\nabla_\perp m|$ (from steering) .
@@ -32,20 +32,20 @@ Demonstrate that the “intelligence components” are physically measurable law
 6. **Results pages.** For each runner, emit `RESULTS_*` with MathJax ($…$, $$…$$), pinned artifacts, and gates. Mirror the A6/FRW style you’ve already set (you’re consistent and clean there) .
 7. **Optional** (after 1–4): add a one-pager “Agency Field: Minimal Lawbook” that just collates the three dimensionless groups and the two primary plots (junction logistic, curvature scaling) with a single sentence per gate, citing the memory-steering doc .
 
-# Verification (what each proves)
+## Verification (what each proves)
 
 * **Agency (steering):** curvature-vs-gradient collapse and the $D_a$–$\Lambda$ band show a slow field biases routes in the predicted dimensionless way, independent of $\phi$ kinetics .
 * **ADC:** A6 is already PASS; the slope-equals-$\Theta$ check nails the coupling constant (not just shape) .
 * **SIE:** constant-of-motion in the clean limit + controlled drift under novelty = a measurable “information energy” that behaves lawfully, no RL scaffolding required.
 * **Loops:** dissipation correlates with loop suppression, converting your runtime intuition into a physical statement tied to $L_h$ (A5 H-theorem spirit).
 
-# Assumptions / risks
+## Assumptions / risks
 
 * **Separation of scales:** steering is slow ($m$) while $\phi$ carries fast excitations. If that separation blurs, curvature fits can smear (mitigate by using pulses and modest gradients).
 * **Discretization:** curvature on grids is approximated by turning angles; use polyline smoothing so we’re measuring geometry, not stair-casing.
 * **Topology-lite:** the cycle-basis counter won’t catch all homology nuance; but for “are loops quenched as $L_h$ drops?” it’s sufficient.
 
-# Next steps
+## Next steps
 
 1. Have your agent stand up the four runners above in `Derivation/code/physics/{agency,info,topology}` plus tiny helpers under `…/common/`.
 2. Reuse the existing IO/figures/log style and A6/FRW result templates (MathJax: use `$…$` or `$$…$$`).
