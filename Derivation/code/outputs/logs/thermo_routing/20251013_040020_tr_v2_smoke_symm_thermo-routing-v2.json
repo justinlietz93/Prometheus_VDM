@@ -1,0 +1,54 @@
+{
+  "artifacts": {
+    "figures": [
+      "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/figures/thermo_routing/20251013_040020_energy_vs_time_thermo-routing-v2.png"
+    ],
+    "logs": [
+      "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/logs/thermo_routing/20251013_040020_tr_v2_smoke_symm__lyapunov_series_thermo-routing-v2.csv",
+      "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/logs/thermo_routing/20251013_040020_tr_v2_smoke_symm_thermo-routing-v2.json"
+    ]
+  },
+  "domain": "thermo_routing",
+  "env": {
+    "blas": "unknown",
+    "fft": "numpy.fft",
+    "fft_plan_mode": "deterministic",
+    "threads": 1
+  },
+  "kpi": {
+    "bias": {
+      "B": NaN,
+      "ci": [
+        NaN,
+        NaN
+      ],
+      "ci_width": 0.0,
+      "rho": NaN
+    },
+    "h_theorem": {
+      "max_positive_dL": 9446502378.79632,
+      "violations": 1
+    },
+    "rj_fit": {
+      "R2": 0.0,
+      "k_max": 32,
+      "k_min": 3
+    }
+  },
+  "receipts": {
+    "checkpoint_hashes": [
+      "e7593b9fdafde68ecb26438dd6a2d1249918c5df966441957f34a839d295f7b4",
+      "e7593b9fdafde68ecb26438dd6a2d1249918c5df966441957f34a839d295f7b4",
+      "e7593b9fdafde68ecb26438dd6a2d1249918c5df966441957f34a839d295f7b4",
+      "e7593b9fdafde68ecb26438dd6a2d1249918c5df966441957f34a839d295f7b4",
+      "e7593b9fdafde68ecb26438dd6a2d1249918c5df966441957f34a839d295f7b4",
+      "e7593b9fdafde68ecb26438dd6a2d1249918c5df966441957f34a839d295f7b4",
+      "e7593b9fdafde68ecb26438dd6a2d1249918c5df966441957f34a839d295f7b4",
+      "e7593b9fdafde68ecb26438dd6a2d1249918c5df966441957f34a839d295f7b4",
+      "e7593b9fdafde68ecb26438dd6a2d1249918c5df966441957f34a839d295f7b4",
+      "e7593b9fdafde68ecb26438dd6a2d1249918c5df966441957f34a839d295f7b4"
+    ],
+    "no_switch": "bitwise"
+  },
+  "tag": "thermo-routing-v2"
+}

@@ -1,0 +1,15 @@
+{
+  "pre_registered": true,
+  "proposal": "Derivation/Thermodynamic_Routing/Passive_Thermodynamic_Routing/PROPOSAL_Passive_Thermodynamic_Routing_v2.md",
+  "allowed_tags": [
+    "thermo-routing-v2"
+  ],
+  "approvals": {
+    "thermo-routing-v2": {
+      "schema": "Derivation/code/physics/thermo_routing/schemas/thermo-routing-v2.schema.json",
+      "approved_by": "Justin K. Lietz",
+      "approved_at": "2025-10-13T08:31:05.092847+00:00",
+      "approval_key": "232c505835313363767bc7071603a327fa445e0704ef343c54e0626fdcfc7833"
+    }
+  }
+}

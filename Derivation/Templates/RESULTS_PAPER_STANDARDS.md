@@ -116,6 +116,7 @@ Summarize what was learned, referencing mathematical structures and computationa
 3. Report (R^2) (if linear), but also residual structure and CI.
 4. Note anomalies with plausible computational causes (grid resonance, stiffness, cancellation) and follow-ups.
 5. Interpret uncertainties relative to effect sizes (relative CI width, etc.).
+6. Determine if the initial proposal provided an accurate prediction of results.
 
 ## **References / Works Cited**
 

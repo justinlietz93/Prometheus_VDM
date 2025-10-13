@@ -1,0 +1,98 @@
+{
+  "artifacts": {
+    "figures": [
+      "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/figures/thermo_routing/20251013_042914_energy_vs_time_thermo-routing-v2.png"
+    ],
+    "logs": [
+      "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/logs/thermo_routing/20251013_042914_tr_v2_smoke_symm__lyapunov_series_thermo-routing-v2.csv",
+      "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/logs/thermo_routing/20251013_042914_tr_v2_smoke_symm_thermo-routing-v2.json"
+    ]
+  },
+  "domain": "thermo_routing",
+  "engineering_only": false,
+  "env": {
+    "blas": "unknown",
+    "fft": "numpy.fft",
+    "fft_plan_mode": "deterministic",
+    "threads": 1
+  },
+  "kpi": {
+    "bias": {
+      "B": -0.003112555019151433,
+      "ci": [
+        -0.003112555019151433,
+        -0.003112555019151433
+      ],
+      "ci_width": 0.0,
+      "rho": 0.3127657495201971
+    },
+    "h_theorem": {
+      "max_positive_dL": 0.0,
+      "violations": 0
+    },
+    "no_switch": {
+      "checkpoints": 40,
+      "ok": true
+    },
+    "rj_fit": {
+      "R2": 0.7325591634567805,
+      "k_max": 32,
+      "k_min": 3
+    }
+  },
+  "passed": true,
+  "policy": {
+    "approved": true,
+    "engineering_only": false,
+    "proposal": "Derivation/Thermodynamic_Routing/Passive_Thermodynamic_Routing/PROPOSAL_Passive_Thermodynamic_Routing_v2.md",
+    "quarantined": false,
+    "tag": "thermo-routing-v2"
+  },
+  "receipts": {
+    "checkpoint_hashes": [
+      "a2805ef0b9667933e4ea8cfcc9b114586d89ae9fa5f845a9cbfd2088170962a6",
+      "714401f83bfc8d8b70574e51d2e20d2b77ebef61bc4cade338dbf53c38f6bb79",
+      "3ea565dbae362eb9a1cc6521b926d3f1d5d56dd7daa926fcd5103923a45a7c93",
+      "f84d0bf75be022b7f42b4ab74d26a86215ef88d63a5ac017d744460b89d419e9",
+      "7b309ee6352a1cd879d66b4766f6593ff80a9e96107b9bc2a07bb2d01bdb37b7",
+      "15ba64c1e2cd251f47aab64c65d64d4c94a9877ee873aef48e291fa65f7eae32",
+      "32936bad120ac33d2bb488842981274efa93bd539e743bdf017fb3006a704855",
+      "607b25e2b540fec09cd9f76ec00a854554fad63971e6367a8a8a8c31f863aa3a",
+      "e749b32f8ccad41c5f0e91e5a6761285ba4ddffe62fac714c7aad4ac671f71d6",
+      "460fec9f6c519806f173c3b20c7f0e757a03034b3e7bed30d43bc20293bb434a",
+      "fa6d8b4e6b7c9ae3c238768ebe65ad580de1a9b34e364de478dc0dccf22dfdc4",
+      "ecf73e8db7d8436c92e2c6205f781ad7d07d46f450d14772c7ce41cb7436a27f",
+      "b1a45563727e3d0ae03ceeb9a61e040a7e91b2e563d7387a1c06e57e26655d3e",
+      "f4459d78bad80a038d631baa622ecff1b9e3b25ae5711e4d9e920bcf2cb66183",
+      "1d7f44a3b640ea4ec3965463bc9de81669300f8cd04a3cb4cb870774553dc06e",
+      "2672ec739f84df078a252b0c021b9e564478ccc11975f4d8b9172970fbd7a79e",
+      "97ed3b0b11c7698d7bc45586aeb50b539203cde3fc0bb149004467f43236ce71",
+      "2a6cd891abbe395cde07d688a0387aa88fad83236690d6681119076be0c2876d",
+      "886723512c9c0e90aab42ea2ecb6fe1cef9d3c40decd13187d8e355bc943df34",
+      "24c78c26296e24a494f38f05e4171901a2089727cb3d342a43453cf65e114775",
+      "4a86dde0f95eca86c2d88d3be02ac5a19812b30ab8edc3452de1f0674756a4fe",
+      "78024e44c9babca04720b8be7431ca553a0e6ca41d1fba0be4ceb20f6fe0a7b9",
+      "871c98651110de1cca7a6afd104cf1b048a66da239e12808ec1dc05dd3e19930",
+      "b8147dd9a21a4faea988bf215ae04b66dfc844cae107b02b406bca9c5a24a94a",
+      "38123c67c40dddecdd6c742e26b9d146c050c89c2ddbf6873666f74c305969f2",
+      "fca1659a9e9036aefc4ef998143baa72abf32fb287ad0bc5ee67a49572484cc6",
+      "44558d54e402c542c2848a41d5a7a6b6e712beae244633365aade26049964ec0",
+      "114ea8f634b6be351b6dd8f2eba5cf79f9b733f663ffd642031dff06179d2883",
+      "42cd2f2cce354ac7b28d89130e0b510ff59dbc47920a181c4c460b2b7f82744a",
+      "c2681a45abb74982953f1cf2fb4ed53ebb07e2682a7a98e2f770f188cc5d38fa",
+      "2d0d50b8e4d195659cb58a3cfdf594f53a217d2de27ca8a172b1442277a033fd",
+      "1659008e58ae8a7107ebd9171247cdd8bbcbf6c8fe64851c90482e55fba9a0da",
+      "11d5dd08ced1fd8b1a9222f7e4e6a4c4497c1ce994a6da02fc973328cfc65656",
+      "b62612a41021b80c7a7135c1487a71babe3f3c999cb41cc7b06e77ef772eab7b",
+      "5a557fd266a7b6b6530d7d0ddb89c0867924f70704c3fdea84d3ec4e32f42ceb",
+      "8a5a4a288a437cc8f4a7f818283bfa223017be7167077aafa926939ccaad7865",
+      "2cab9e049826836d9cbfdd6cbbc5dde511f08859c5c29dad1abf9ca0e3ec761a",
+      "e10031ecdfd911eaae6756ad0f657c8c79f7b824f5ff69ded036f46de49de062",
+      "ffc3d9279f8fa5f324230205cc8f7d5a28e6670430bd9bb19895b489ae46a566",
+      "5a715e1886aeab01cc6a36ab1d5bbf6f0c02e95e4d5c5282cded9d9a973e0ae2"
+    ],
+    "no_switch": "bitwise"
+  },
+  "status": "success",
+  "tag": "thermo-routing-v2"
+}
