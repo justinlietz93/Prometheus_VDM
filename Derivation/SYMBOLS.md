@@ -1,4 +1,5 @@
 <!-- RULES for maintaining this file are here: /mnt/ironwolf/git/Prometheus_VDM/prompts/symbols_maintenance.md -->
+<!-- markdownlint-disable MD033 -->
 # VDM Notation Reference Sheet (v0.3)
 
 Note on scope: This sheet is canonical and latest-only. For historical naming and timelines, refer to Derivation/CORRECTIONS.md.

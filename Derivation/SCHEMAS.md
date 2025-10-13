@@ -1,8 +1,9 @@
 <!-- DOC-GUARD: CANONICAL -->
 <!-- RULES for maintaining this file are here: /mnt/ironwolf/git/Prometheus_VDM/prompts/schemas_maintenance.md -->
+<!-- markdownlint-disable MD033 -->
 # VDM Schemas (Auto-compiled)
 
-Last updated: 2025-10-09 (commit 09f871a)
+Last updated: 2025-10-13 (commit 66eb296)
 
 **Scope:** Single source of truth for message/record/state/config schemas used in this repository.  
 **Rules:** Paste schema definitions from source; document fields. Link to equations/constants/symbols/units/algorithms.  
@@ -1160,6 +1161,62 @@ class BudgetTick(BaseEvent):
 
 ---
 
+#### KG Energy Oscillation Summary (metriplectic)  <a id="schema-kg-energy-osc"></a>
+
+**Kind:** file (JSON summary)  
+**Versioning (if present):** tag = "KG-energy-osc-v1"  
+**Defined at:** `derivation/code/physics/metriplectic/schemas/KG-energy-osc-v1.schema.json`
+
+**Definition (verbatim snippet from source):**
+
+```json
+{
+  "tag": "KG-energy-osc-v1",
+  "dt_list": [1.0e-2, 5.0e-3, 2.5e-3],
+  "AH": [ ... ],
+  "rel_AH": [ ... ],
+  "fit": { "p": 1.9999, "R2": 0.999999 },
+  "e_rev": 2.9e-16,
+  "checkpoints": [100, 200, 300],
+  "hashes": ["sha256:...", "sha256:...", "sha256:..."],
+  "env_audit": { "threads": 1, "fft_determinism": true },
+  "figure": "/.../kg_energy_osc_scaling__KG-energy-osc-v1.png",
+  "csv": "/.../kg_energy_osc_scaling__KG-energy-osc-v1.csv",
+  "gate": { "notes": "Acceptance gates per VALIDATION_METRICS (KG)" },
+  "passed": true
+}
+```
+
+**Fields (expand from source; do not invent):**
+
+| Field           | Type              | Required | Default | Units/Normalization | Description                                                  | Source                                                                 |
+| ----------------| ----------------- | :------: | ------- | ------------------- | ------------------------------------------------------------ | ---------------------------------------------------------------------- |
+| `tag`           | `string`          |    Y     | n/a     | n/a                 | Tag identifier (must equal `"KG-energy-osc-v1"`)             | `derivation/code/physics/metriplectic/schemas/KG-energy-osc-v1.schema.json` |
+| `grid`          | `object`          |    N     | n/a     | n/a                 | Grid specification (shape, spacing, BCs)                     | schema                                                                  |
+| `params`        | `object`          |    N     | n/a     | n/a                 | Physical/numerical parameters used                           | schema                                                                  |
+| `dt_list`       | `array<number>`   |    Y     | n/a     | time step           | Time step ladder used for scaling study (values ≥ 0)         | schema                                                                  |
+| `AH`            | `array<number>`   |    Y     | n/a     | energy units        | Median energy oscillation amplitude per `dt` (half peak–peak) | schema                                                                  |
+| `rel_AH`        | `array<number>`   |    N     | n/a     | normalized          | Median relative amplitude per `dt` (`AH / mean(H)`)          | schema                                                                  |
+| `fit.p`         | `number`          |    Y     | n/a     | log–log slope       | Fitted scaling exponent for `AH ~ dt^p`                       | schema                                                                  |
+| `fit.R2`        | `number`          |    Y     | n/a     | [0,1]               | Coefficient of determination for the log–log fit             | schema                                                                  |
+| `e_rev`         | `number`          |    Y     | n/a     | sup-norm error      | Max time-reversal error across seeds (≥ 0)                   | schema                                                                  |
+| `checkpoints`   | `array<integer>`  |    N     | n/a     | step index          | Step indices for checkpoint hashing                          | schema                                                                  |
+| `hashes`        | `array<string>`   |    N     | n/a     | SHA-256             | Hashes of raw buffers at checkpoints                         | schema                                                                  |
+| `env_audit`     | `object`          |    N     | n/a     | n/a                 | Environment audit (threads, deterministic kernels, etc.)     | schema                                                                  |
+| `figure`        | `string`          |    N     | n/a     | path                | Absolute path to scaling plot PNG                            | schema                                                                  |
+| `csv`           | `string`          |    N     | n/a     | path                | Absolute path to scaling CSV                                 | schema                                                                  |
+| `gate`          | `object`          |    N     | n/a     | n/a                 | Gate parameters snapshot (for transparency)                  | schema                                                                  |
+| `passed`        | `boolean`         |    Y     | n/a     | n/a                 | Overall acceptance flag (per VALIDATION_METRICS KG gates)    | schema                                                                  |
+
+**Producers/Consumers:** Produced by `derivation/code/physics/metriplectic/run_kg_energy_oscillation.py`; consumed by RESULTS and canon gates.  
+**Related equations (anchors only):** see `VALIDATION_METRICS.md` (KG energy-osc KPIs).  
+**Related symbols/constants:** see `SYMBOLS.md`/`CONSTANTS.md` entries for Klein–Gordon normalization and step-size scaling.  
+**Examples (if present):** `derivation/code/outputs/logs/metriplectic/*_KG-energy-osc-v1.json`  
+**Invariants/Validation rules:** `len(dt_list) == len(AH)`; `0 ≤ fit.R2 ≤ 1`; `e_rev ≥ 0`; `passed` reflects conjunction of KG gates defined in canon.  
+**Notes:** Validates two conservative-limb invariants: (i) energy oscillation amplitude scaling with log–log slope near 2 for Störmer–Verlet; (ii) strict time-reversal symmetry. Includes determinism receipts via checkpoint buffer hashes and environment audit.
+
+---
+
 ## External Interfaces
 
 #### PYTHON_PACKAGE_SCHEMA (TypeScript)  <a id="schema-python-package-schema"></a>
@@ -1326,9 +1383,11 @@ class GeometryProbeAdapter(Protocol):
 - [SpikeEvent](#schema-spikeevent)
 - [VDM Corner Config (YAML)](#schema-vdm-corner-config)
 - [VTTouchEvent](#schema-vttouchevent)
+- [KG Energy Oscillation Summary (metriplectic)](#schema-kg-energy-osc)
 
 <!-- END AUTOSECTION: SCHEMAS-INDEX -->
 
 ## Change Log
 
 - 2025-10-04 • schemas compiled from repository source • 6b63a5e
+- 2025-10-13 • added KG energy-oscillation summary schema (metriplectic) • 66eb296

@@ -1,5 +1,6 @@
 <!-- DOC-GUARD: WORKING-THEORY -->
 <!-- RULES for maintaining this file are here: /mnt/ironwolf/git/Prometheus_VDM/prompts/open_questions_maintenance.md -->
+<!-- markdownlint-disable MD033 -->
 # VDM Open Questions & Working Hypotheses (Auto-compiled)
 
 Last updated: 2025-10-09 (commit 09f871a)
@@ -42,7 +43,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 ---
 
-## 1. Dynamics & RD/EFT Questions
+### 1. Dynamics & RD/EFT Questions
 
 #### OQ-001 - Formal Lyapunov functional for RD logistic-diffusion flow  <a id="oq-001"></a>
 
@@ -206,7 +207,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 ---
 
-## 2. Walkers / Control Plane / Plasticity
+### 2. Walkers / Control Plane / Plasticity
 
 #### OQ-003 - Coupling memory-steering overlays to RD baseline  <a id="oq-003"></a>
 
@@ -405,19 +406,19 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 ---
 
-## 3. Units & Normalization / Scaling
+### 3. Units & Normalization / Scaling
 
 *No open questions found in this category beyond those already listed.*
 
 ---
 
-## 4. Validation & Metrics / Safety Guards
+### 4. Validation & Metrics / Safety Guards
 
 *Validation questions integrated into relevant sections above (OQ-001, OQ-016, OQ-017).*
 
 ---
 
-## 5. LBM/Fluids / Geometry-Specific
+### 5. LBM/Fluids / Geometry-Specific
 
 #### OQ-021 - VDM-fluids corner testbed implementation  <a id="oq-021"></a>
 
@@ -485,7 +486,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 ---
 
-## 6. Conservation Laws & Symmetries
+### 6. Conservation Laws & Symmetries
 
 #### OQ-011 - Discover true conserved quantity of FUM  <a id="oq-011"></a>
 
@@ -572,7 +573,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 ---
 
-## 7. Agency Field & Metrics
+### 7. Agency Field & Metrics
 
 #### OQ-018 - Agency field metric operational proxies  <a id="oq-018"></a>
 
@@ -655,7 +656,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 ---
 
-## 8. Axiomatic Foundation & Experimental Validation
+### 8. Axiomatic Foundation & Experimental Validation
 
 #### OQ-023 - Experimental validation of discrete lattice structure  <a id="oq-023"></a>
 
@@ -822,6 +823,6 @@ Last updated: 2025-10-09 (commit 09f871a)
 27. [OQ-027](#oq-027) - Lattice scale parameter determination (20 orders uncertainty)
 <!-- END AUTOSECTION: OPEN-QUESTIONS-INDEX -->
 
-## Change Log
+### Change Log
 
 - 2025-10-04 • initial compilation from repository sources • 8321c50
