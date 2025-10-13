@@ -1,0 +1,14 @@
+{
+  "grid": { "Nx": 128, "Ny": 64, "Lx": 8.0, "Ly": 4.0 },
+  "time": { "dt": 2e-4, "T": 1.0 },
+  "wave": { "c": 1.0 },
+  "bc": { "kind": "periodic" },
+  "absorber": { "thickness": 8, "sigma_max": 5.0, "power": 2.0, "gate_efficiency": 0.9 },
+  "ports": { "height_frac": 0.5, "center_frac": 0.5, "gate_balance_rel": 0.1, "gate_symmetry_rel": 0.05 },
+  "map": {
+    "walls_V": 3.0,
+    "channels": [ { "x0": 24, "x1": 104 } ]
+  },
+  "seeds": 1,
+  "tag": "thermo-routing-v2-wave-meter-openports-channelmap"
+}

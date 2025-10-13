@@ -1,0 +1,16 @@
+{
+  "grid": { "Nx": 256, "Ny": 128, "Lx": 8.0, "Ly": 4.0 },
+  "time": { "dt": 2e-4, "T": 1.0 },
+  "wave": { "c": 1.0 },
+  "bc": { "kind": "periodic" },
+  "absorber": { "thickness": 8, "sigma_max": 5.0, "power": 2.0, "gate_efficiency": 0.9 },
+  "ports": { "height_frac": 0.5, "center_frac": 0.5, "gate_balance_rel": 0.1, "gate_symmetry_rel": 0.05,
+             "mu_thresh_quantile": 0.9, "num_bands": 1, "band_halfwidth": 4, "snap_peaks": true },
+  "map": {
+    "mu_path": "Derivation/code/physics/thermo_routing/passive_thermo_routing/maps/demo_mu.npy",
+    "mu_invert": false,
+    "walls_V": 3.0
+  },
+  "seeds": 1,
+  "tag": "thermo-routing-v2-wave-meter-openports"
+}
