@@ -1,0 +1,201 @@
+% ===========================================
+% White Paper Proposal Template (≤5 pages)
+% ===========================================
+% Compiles on Overleaf with pdfLaTeX.
+% Page limit is 5 total pages (figures + references included).
+% This file provides: US Letter layout, float discipline, clean refs,
+% and the exact section outline you specified.
+%
+% Usage:
+%  - Fill in \ProposalTitle, \ProposalDate, authors/affiliations.
+%  - Keep figures anchored near text; avoid float creep.
+%  - Keep total length ≤5 pages; a compile-time warning is issued if exceeded.
+%
+\documentclass[11pt]{article}
+
+% ---------- Page geometry & typography ----------
+\usepackage[letterpaper,margin=1in]{geometry}
+\usepackage{microtype}
+\usepackage{parskip}            % block paragraphs (no indents)
+\setlength{\parskip}{6pt}
+\setlength{\parindent}{0pt}
+
+% ---------- Math, units, and symbols ----------
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{siunitx}
+\sisetup{detect-all}
+
+% ---------- Figures and float discipline ----------
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[section]{placeins}  % \FloatBarrier at each section
+\usepackage{float}              % allow [H] when truly necessary
+
+% ---------- Lists and spacing ----------
+\usepackage{enumitem}
+\setlist{noitemsep,topsep=2pt}
+
+% ---------- Hyperlinks and cross-references ----------
+\usepackage[hidelinks]{hyperref}
+\usepackage[nameinlink,capitalize]{cleveref}
+
+% ---------- Headers/footers & page-count warning ----------
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{ifthen}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{White Paper Proposal}
+\fancyhead[R]{\leftmark}
+\fancyfoot[C]{Page \thepage\ of \pageref{LastPage} \, (limit: 5)}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ---------- Metadata (edit these) ----------
+\newcommand{\ProposalTitle}{YOUR PROPOSAL TITLE}
+\newcommand{\ProposalDate}{\today}
+
+% For multiple authors/affiliations, use authblk; else keep simple:
+\usepackage{authblk}
+\author[1]{Justin K. Lietz}
+\affil[1]{Neuroca, Inc.}
+\title{\ProposalTitle}
+\date{\ProposalDate}
+
+% ---------- Optional: simple lemma/thm environments ----------
+\usepackage{amsthm}
+\theoremstyle{plain}
+\newtheorem{lemma}{Lemma}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% ---------- Hard page-limit warning at end of document ----------
+\AtEndDocument{%
+  \ifthenelse{\value{page}>5}{%
+    \typeout{***********************************************}%
+    \typeout{WARNING: Page limit exceeded (\thepage\ pages > 5).}%
+    \typeout{***********************************************}%
+  }{}%
+}
+
+\begin{document}
+\maketitle
+
+% =========================================================
+% 1. Proposal Title and date
+% =========================================================
+\section{Proposal Title and date}
+\textbf{Title:} \ProposalTitle
+
+\textbf{Date:} \ProposalDate
+
+% (Keep this section brief; the canonical title/date are also in the title block.)
+
+% =========================================================
+% 2. List of proposers and associated institutions/companies
+% =========================================================
+\section{List of proposers and associated institutions/companies}
+\begin{itemize}
+  \item \textbf{Justin K. Lietz} - Neuroca, Inc. (primary proposer)
+  % \item Add additional proposers with affiliations as needed.
+\end{itemize}
+
+% =========================================================
+% 3. Abstract  (<200 words)
+% =========================================================
+\section{Abstract}
+% ≤200 words. State the motivation, the concrete goal(s), and what counts as success.
+% Keep it decision-useful: what you will test, how you will know, and why it matters.
+% (Abstract text goes here.)
+
+% =========================================================
+% 4. Background \& Scientific Rationale
+% =========================================================
+\section{Background \& Scientific Rationale}
+% Audience: technically literate (physics/math/engineering) but not your subfield.
+% Provide just enough to understand novelty, necessity, and plausibility.
+
+\subsection*{Questions to consider (address concisely)}
+\begin{itemize}
+  \item How novel is this project?
+  \item Why must this experiment be done?
+  \item Are there target findings required for future work?
+  \item What specific area of physics will this impact (e.g., quantum, gravity, EM)?
+  \item What fundamental question/problem will it address?
+  \item What criticisms might apply? If serious, how would you adapt?
+\end{itemize}
+
+\subsection*{Review criteria addressed}
+\begin{enumerate}[label=\textbf{(\arabic*)}]
+  \item Importance of the scientific questions addressed.
+  \item Potential impact of the experiment.
+  \item Clarity and reasonableness of the experimental approach.
+  \item Planned level of rigor and discipline.
+\end{enumerate}
+
+% =========================================================
+% 5. Experimental Plan
+% =========================================================
+\section{Experimental Plan}
+
+\subsection{Experimental Setup and Diagnostics} % 5.1
+% Required parameters; instrument list; diagnostics with counts; fabrication/software needs.
+% Be specific and minimal. Use tables when helpful.
+
+\subsubsection*{Known required parameters}
+% e.g., domain sizes, sampling rates, control variables, seeds/commits if computational.
+
+\subsubsection*{Diagnostics (with counts)}
+% e.g., N oscilloscope channels, M cameras, K probes, loggers, scripts.
+
+\subsubsection*{New equipment, tools, or scripts}
+% Fabrication or coding that must be done before execution.
+
+\subsection{Experimental runplan} % 5.2
+% How 5.1 resources answer the scientific questions; runtime estimates; success/failure branches;
+% publishing plan (figures, artifacts, and whitepaper formatting per PAPER_STANDARDS.md).
+
+\paragraph{Resource employment}
+% How each diagnostic/parameter supports each hypothesis or gate.
+
+\paragraph{Estimated runtime}
+% Wall-clock/compute time; parallelization plan if any.
+
+\paragraph{Plan of action - success}
+% What constitutes success; next steps if gates pass.
+
+\paragraph{Plan of action - failure}
+% Fallback routes; parameter sweeps; what falsifies the claim.
+
+\paragraph{Results publication/display}
+% Figures + paired CSV/JSON, seeds/commits; whitepaper format (see PAPER_STANDARDS.md).
+
+% =========================================================
+% 6. Personnel
+% =========================================================
+\section{Personnel}
+% Roles and responsibilities. Keep concise and action-based.
+\textbf{Justin K. Lietz}: concept, design, execution, analysis, and write-up.
+
+% =========================================================
+% 7. References  (counts toward 5-page limit)
+% =========================================================
+\section{References}
+% Keep this terse and directly relevant. Examples below use manual bibitems
+% to avoid external tooling; replace with your own entries.
+
+\begin{thebibliography}{9}
+\bibitem{Key1} A. Author, \emph{Title}, Journal \textbf{Volume}, pages (Year).
+\bibitem{Key2} B. Author and C. Author, \emph{Title}, arXiv:xxxx.xxxxx.
+\end{thebibliography}
+
+% ---------- Keep figures near where they are cited ----------
+% Example figure (delete if unused). Remember: figures count toward the 5-page limit.
+% \begin{figure}[H]
+%   \centering
+%   \includegraphics[width=0.85\linewidth]{example-figure.png}
+%   \caption{Descriptive caption with any paired artifact filename(s) noted.}
+%   \label{fig:example}
+% \end{figure}
+
+\end{document}

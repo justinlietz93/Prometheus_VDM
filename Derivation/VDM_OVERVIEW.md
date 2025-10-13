@@ -873,6 +873,37 @@ Working domains (purpose snapshots):
 - `Derivation/code` - Experiment runners, common helpers (io_paths, approvals), outputs/{logs,figures} routing.
 - `Derivation/Notebooks` - Interactive exploration (non-canonical) linked to scripts and RESULTS where applicable.
 - `Derivation/References` - Source materials, citations, and curated bibliographies.
+- `Derivation/BC_IC_GEOMETRY.md` - Boundary conditions, initial conditions, and geometry conventions.
+- `Derivation/CANON_MAP.md` - Canonical mapping of domains to registries and RESULTS.
+- `Derivation/CANON_PROGRESS.md` - Live status and milestones per domain.
+- `Derivation/NAMING_CONVENTIONS.md` - Symbol and file naming standards across the project.
+- `Derivation/IMPLEMENTATION_GAPS_ANALYSIS.md` - Known gaps between theory and current code coverage.
+- `Derivation/OPEN_QUESTIONS.md` - Pre-registered questions guiding future experiments.
+- `Derivation/UToE_REQUIREMENTS.md` - Unification-to-Engineering requirements and constraints.
+- `Derivation/TEMPLATES/` - Proposal and results write-up templates for new experiments.
+- `Derivation/SCHEMAS.md` - Index of JSON schemas for outputs.
+
+Code structure (selected subtrees under `Derivation/code/`):
+
+- `analysis/` - Parameter scans, fits, and edge ansatz tooling (e.g., build_and_test_H_candidate.py).
+- `common/` - Shared utilities: io_paths, constants, plotting; authorization/ approvals for RESULTS gating.
+- `computational_toy_proofs/` - Minimal constructs to demonstrate mechanisms in isolation.
+- `obs/` - Observation or data intake scaffolds (if present) for future empirical alignment.
+- `physics/` - Domain runners and schemas:
+  - `reaction_diffusion/`, `rd_conservation/` - RD solvers and conservation checks.
+  - `tachyonic_condensation/` - Tube spectrum/condensation runners and schemas.
+  - `fluid_dynamics/` - LBM D2Q9 implementations and validations.
+  - `metriplectic/` - Structure-check runners and diagnostics.
+  - `conservation_law/` - ODE invariants harnesses.
+  - `cosmology/` - FRW QC runners.
+  - `dark_photons/` - Noise budget and Fisher consistency runners.
+  - `causality/` - DAG audit pipeline.
+  - `agency/` - Relaxation/coordination protocol scaffolds.
+  - `thermo_routing/` - Thermodynamic routing protocols.
+  - `topology/` - Defect/loop experiments.
+  - `memory_steering/` - Graded-index overlays and routing.
+- `outputs/` - Standardized data and figure sinks (via io_paths).
+- `tests/` - Unit/smoke tests per module.
 
 Each domain houses proposals and RESULTS; only KPI-passing, approved RESULTS update canon.
 
