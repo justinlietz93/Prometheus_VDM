@@ -2,7 +2,7 @@
 <!-- RULES for maintaining this file are here: /mnt/ironwolf/git/Prometheus_VDM/prompts/algorithms_maintenance.md -->
 # VDM Algorithms & Execution Flows (Auto-compiled)
 
-Last updated: 2025-10-09 (commit 09f871a)
+Last updated: 2025-10-13 (commit 09f871a)
 
 **Scope:** Single source of truth for implemented algorithms and control flows in this repository.  
 **Rules:** Pseudocode + references only. Link to math/values elsewhere (EQUATIONS/CONSTANTS/SYMBOLS/UNITS).  

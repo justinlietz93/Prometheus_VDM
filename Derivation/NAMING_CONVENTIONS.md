@@ -1,5 +1,6 @@
 <!-- DOC-GUARD: CANONICAL -->
 <!-- RULES for maintaining this file are here: /mnt/ironwolf/git/Prometheus_VDM/prompts/naming_conventions_maintenance.md -->
+<!-- markdownlint-disable MD033 -->
 # VDM Naming & Notation Conventions (Auto-compiled)
 
 Last updated: 2025-10-09 (commit 09f871a)

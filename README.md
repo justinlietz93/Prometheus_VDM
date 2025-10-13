@@ -6,12 +6,14 @@
 ## Quick start
 
 ### Web Dashboard
+
 ```bash
 pip install -r requirements.txt
 python fum_live.py
 ```
 
 ### CLI
+
 ```bash
 pip install -r requirements.txt
 export PYTHONPATH=.
@@ -19,12 +21,14 @@ python -m fum_rt.run_nexus --neurons 800 --hz 10 --domain biology_consciousness 
 ```
 
 Artifacts land in `runs/<timestamp>/`:
+
 - `events.jsonl`   - structured logs
 - `dashboard.png`  - metrics (updated)
 - `connectome.png` - graph snapshot (updated)
 - `state_<step>.h5` (or `.npz` fallback) - checkpointed engram state (see `--checkpoint-every`, `--checkpoint-keep`)
 
 ### Where to put your functions
+
 If your repo already contains `Void_Equations.py` and `Void_Debt_Modulation.py` on `PYTHONPATH`,
 this runtime will import them automatically.
 
@@ -32,13 +36,16 @@ If not, drop those files at the project root (next to `fum_rt/`) **or** copy the
 The adapter will prefer your versions and only fall back to an internal stub if not found.
 
 ### What “real‑time” means here
+
 The Nexus loop ticks at `--hz` (default 10 Hz). Each tick:
+
 1. UTE collects any inbound messages (stdin/queue/synthetic “tick” generator).
 2. Connectome applies your void dynamics to the node field vector `W` (vectorized).
 3. Metrics -> logs; UTD can emit text events opportunistically.
 4. On schedule it saves a dashboard and a connectome image.
 
 ### Checkpoints
+
 Engram checkpoints are saved as HDF5 (`.h5`) by default when `h5py` is available; otherwise snapshots fall back to `.npz`.
 Use `--checkpoint-every S` to enable periodic saves; files live in `runs/<timestamp>/` as `state_<step>.h5` (or `.npz`).
 Use `--checkpoint-keep K` to keep only the last K checkpoints (per format); set `0` to disable retention.
@@ -47,7 +54,7 @@ Use `--checkpoint-keep K` to keep only the last K checkpoints (per format); set 
 
 ## CLI
 
-```
+```plaintext
 python -m fum_rt.run_nexus [--neurons N] [--k K] [--hz HZ] [--domain NAME]
                            [--viz-every S] [--log-every S] [--checkpoint-every S]
                            [--duration S] [--use-time-dynamics/--no-time-dynamics]
@@ -137,18 +144,18 @@ python tools/utd_event_scan.py runs/2025-08-10_21-00-00 --emit-lexicon runs/2025
 - On startup, the Nexus registers macro keys from the run’s `macro_board.json`.
 - Defaults `status` and `say` are always available.
 
-
-
 ---
 
 ## Language output: Macro board, phrase bank, and lexicon
 
 Overview
+
 - Macro board is a simple on-disk registry of macro names used by the UTD output path.
 - Phrase bank provides optional sentence templates the runtime can use to compose richer “say” messages.
 - Lexicon persists a lightweight vocabulary, learned from inbound text and emitted speech.
 
 Files and where they live
+
 - Macro board (auto‑persisted each run): runs/&lt;timestamp&gt;/macro_board.json
   - Runtime source: [fum_rt/io/utd.py](fum_rt/io/utd.py)
   - Nexus reads macros at boot: [fum_rt/nexus.py](fum_rt/nexus.py)
@@ -159,10 +166,12 @@ Files and where they live
   - Grows during the run; periodically saved by the runtime
 
 How the macro board populates
+
 - Whenever the runtime emits a macro that is not already registered, it is auto‑registered and persisted to macro_board.json by the UTD.
 - This requires no configuration. The file will appear in the active run directory as soon as a new macro key is used.
 
 Example macro_board.json
+
 ```json
 {
   "status": { "desc": "Emit structured status payload" },
@@ -178,10 +187,12 @@ Example macro_board.json
 ```
 
 Phrase bank (richer sentences)
+
 - The runtime loads optional sentence templates for the “say” macro from either:
   - runs/&lt;timestamp&gt;/phrase_bank.json, or
   - [fum_rt/io/lexicon/phrase_bank_min.json](fum_rt/io/lexicon/phrase_bank_min.json)
 - Expected shape:
+
 ```json
 {
   "say": [
@@ -191,11 +202,13 @@ Phrase bank (richer sentences)
   ]
 }
 ```
+
 - Supported placeholders the runtime will fill from current metrics/context:
   - {keywords}, {top1}, {top2}
   - {vt_entropy}, {vt_coverage}, {b1_z}, {connectome_entropy}, {valence}
 
 Lexicon (word bank)
+
 - The runtime maintains runs/&lt;timestamp&gt;/lexicon.json as a simple token frequency store learned from:
   - Inbound UTE text messages (your input stream)
   - Emitted “say” lines
@@ -203,24 +216,31 @@ Lexicon (word bank)
 - You can also bootstrap a lexicon from logs using the scanner:
   - Script: [tools/utd_event_scan.py](tools/utd_event_scan.py)
   - Build lexicon JSON from observed “say” macros:
+
     ```bash
     python tools/utd_event_scan.py runs/2025-08-10_21-00-00 --macro say --emit-lexicon runs/2025-08-10_21-00-00/lexicon.json
     ```
 
 How to get more words and whole sentences
+
 1) Feed more text into the UTE
+
 - Stream domain texts to grow the lexicon automatically (no config needed).
 - The more diverse and structured your input, the richer the learned vocabulary.
 
 2) Provide more sentence templates
+
 - Create runs/&lt;timestamp&gt;/phrase_bank.json with many “say” templates (see placeholders above).
 - Templates rotate deterministically each emission; you can include longer, multi‑clause sentences.
 
 3) Seed macro board metadata
+
 - Add a “templates” array under the “say” key in macro_board.json (see example above). The runtime will use these at boot.
 
 4) Tune self‑speak gating to allow more emissions
+
 - Lower the valence threshold and tweak spike detector parameters via CLI:
+
   ```bash
   python -m fum_rt.run_nexus \
     --speak-auto \
@@ -228,13 +248,16 @@ How to get more words and whole sentences
     --speak-z 2.0 \
     --speak-hysteresis 0.5
   ```
+
 - Emissions are still gated by topology spikes (B1 proxy) and valence for stability.
 
 Where to see the outputs
+
 - UTD events: runs/&lt;timestamp&gt;/utd_events.jsonl (type: "macro", macro: "say", args.text: "...").
 - Optional Nexus logs (gating decisions, e.g., speak_suppressed): runs/&lt;timestamp&gt;/events.jsonl.
 
 Scanner quick start (to audit what the model “tried to say”)
+
 ```bash
 # Scan a run for “say” macros (NDJSON)
 python tools/utd_event_scan.py runs/2025-08-10_21-00-00 --macro say
@@ -244,12 +267,14 @@ python tools/utd_event_scan.py runs --macro say --include-nexus --format csv --o
 ```
 
 Operational notes
+
 - Emission path selection: MacroEmitter path priority $UTD_OUT > utd.path > runs/<timestamp>/utd_events.jsonl; ThoughtEmitter path priority $THOUGHT_OUT > runs/<timestamp>/thoughts.ndjson. See [initialize_emitters()](fum_rt/runtime/emitters.py:23).
 - Macro names are persisted automatically when first used; no manual step required.
 - Phrase bank and macro board are complementary; phrase bank supplies sentence templates, macro board is the registry of macro keys and optional metadata like “templates”.
 - The runtime keeps everything compute‑light: deterministic template filling with keywords/tokens from the live lexicon and metrics.
 
---- 
+---
+
 ## Developer utilities (ad hoc; not part of system runtime)
 
 These scripts are standalone developer tools intended to be run manually. They are NOT imported by runtime or core modules, and have no effect on the running system.
@@ -270,5 +295,6 @@ These scripts are standalone developer tools intended to be run manually. They a
     - python tools/geom_bundle_builder.py --config config/geom_config.json --adapter tools.geom_adapter_stub:DeterministicRandomAdapter
 
 Policy:
+
 - No production code imports anything from tools/.
 - Tools are safe to modify/remove without impacting runtime execution.

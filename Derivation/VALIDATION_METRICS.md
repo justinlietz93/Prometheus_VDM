@@ -3,7 +3,7 @@
 <!-- markdownlint-disable MD033 MD022 MD032 MD001 -->
 # VDM Validation Metrics & KPIs (Auto-compiled)
 
-Last updated: 2025-10-09 (commit 09f871a)
+Last updated: 2025-10-13 (commit a9e1c6c)
 
 **Scope:** Single source of truth for validation metrics used in this repository: names, purposes, thresholds/bands, and references to their definitions and implementations.  
 **Rules:** Reference-only. Link to equations/constants/symbols/scripts; do not restate formulas here.  
@@ -26,6 +26,46 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 ## Core Dynamics Metrics
 
 ### Reaction-Diffusion (Fisher-KPP)
+### Klein–Gordon (J-only)
+
+#### Energy Oscillation Scaling Slope  <a id="kpi-kg-energy-osc-slope"></a>
+
+**Symbol (if any):** $ p $  
+**Purpose:** Validate instrument QC by confirming $A_H(\Delta t) \propto (\Delta t)^2$ under Störmer–Verlet for linear KG.  
+**Defined by:** `EQUATIONS.md#vdm-e-090` (modified-equation slope reference)  
+**Inputs:** Time step ladder $\Delta t$; median half-amplitude $A_H$ across band-limited seeds per $\Delta t$.  
+**Computation implemented at:** `Derivation/code/physics/metriplectic/run_kg_energy_oscillation.py` (log–log fit)  
+**Pass band / thresholds:** $p\in[1.95,2.05]$; $R^2\ge 0.999$  
+**Units / normalization:** dimensionless exponent  
+**Typical datasets / experiments:** `specs/kg_energy_osc.v1.json` (N=256, dx=1.0, c=1.0, m=0.5, steps=1024)  
+**Primary figure/artifact (if referenced):** `Derivation/code/outputs/figures/metriplectic/20251013_021321_kg_energy_osc_fit_KG-energy-osc-v1.png` • CSV/JSON sidecars with same slug  
+**Notes:** Uses discrete $\omega_{\max}$ ladder; medians over multi-band seeds reduce resonance bias. Determinism receipts (checkpoint buffer hashes) included in JSON.
+
+#### Time-Reversal Sup-Norm Error  <a id="kpi-kg-reversal-sup"></a>
+
+**Symbol (if any):** $ e_{\mathrm{rev}} $  
+**Purpose:** Certify strict time-reversibility of the symplectic scheme.  
+**Defined by:** `EQUATIONS.md#vdm-e-091` (reversibility diagnostic definition)  
+**Inputs:** Max $\ell_\infty$ difference after forward+backward integration over steps  
+**Computation implemented at:** `Derivation/code/physics/metriplectic/run_kg_energy_oscillation.py`  
+**Pass band / thresholds:** $\le 1\times 10^{-12}$  
+**Units / normalization:** field units (dimensionless in normalized code)  
+**Typical datasets / experiments:** Same as above  
+**Primary figure/artifact (if referenced):** Included in JSON sidecar  
+**Notes:** Machine-precision bound; record env audit and threads/FFT plan.
+
+#### Fine-Step Relative Amplitude  <a id="kpi-kg-rel-amp-fine"></a>
+
+**Symbol (if any):** $ (A_H/\bar H)_{\min \Delta t} $  
+**Purpose:** Ensure intrinsic oscillation noise at finest $\Delta t$ is negligible vs signal.  
+**Defined by:** `EQUATIONS.md#vdm-e-092`  
+**Inputs:** Relative amplitude at smallest $\Delta t$ on the ladder  
+**Computation implemented at:** `Derivation/code/physics/metriplectic/run_kg_energy_oscillation.py`  
+**Pass band / thresholds:** $\le 10^{-4}$  
+**Units / normalization:** dimensionless  
+**Typical datasets / experiments:** Same as above  
+**Primary figure/artifact (if referenced):** CSV/JSON sidecars for the listed figure  
+**Notes:** Guardrail for instrument precision prior to J⊕M coupling.
 
 #### Front Speed Relative Error  <a id="kpi-front-speed-rel-err"></a>
 

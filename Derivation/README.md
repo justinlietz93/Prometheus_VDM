@@ -178,4 +178,3 @@ Put the results file in the correct domain folder next to the proposal:
 ## ALWAYS update the canonical files in the Derivation/ folder root when new discoveries are made, or when experiments are completed and results are confirmed
 
 This should be done AFTER creating a RESULTS_ file in the designated `Derivation/{domain}` folder.
-

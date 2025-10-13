@@ -101,6 +101,8 @@ def run(spec: Spec, approved: bool, engineering_only: bool, proposal: str | None
     AH_all: List[float] = []
     rel_AH_all: List[float] = []
     e_rev_max: float = 0.0
+    # Determinism receipts sample: flattened list of checkpoint hashes for first sampled seed per dt
+    hashes_any: List[str] = []
     
     # Determinism posture is caller-controlled via env; we record audit
     env_audit = _env_audit()
@@ -109,6 +111,7 @@ def run(spec: Spec, approved: bool, engineering_only: bool, proposal: str | None
     for dt in dt_list:
         amps: List[float] = []
         rel_amps: List[float] = []
+        sampled_hashes_for_dt = False
         for (lo, hi) in spec.bands:
             for s in range(spec.seeds_per_band):
                 seed = (lo * 10_000 + hi * 100 + s)
@@ -126,6 +129,11 @@ def run(spec: Spec, approved: bool, engineering_only: bool, proposal: str | None
                         # Hash raw buffers concatenated deterministic order
                         hashes.append(_hash_raw(phi) + ":" + _hash_raw(pi))
                         cpi += 1
+                # Record a determinism receipt sample once per dt (first seed encountered)
+                if (not sampled_hashes_for_dt) and len(hashes) > 0:
+                    for cp_idx, h in zip(spec.checkpoints, hashes):
+                        hashes_any.append(f"dt={dt:.12g};cp={cp_idx};seed={seed};h={h}")
+                    sampled_hashes_for_dt = True
                 # Reverse time
                 for n in range(spec.steps, 0, -1):
                     phi, pi = kg_verlet_step(phi, pi, -dt, spec.dx, spec.c, spec.m)
@@ -186,6 +194,7 @@ def run(spec: Spec, approved: bool, engineering_only: bool, proposal: str | None
         "fit": {"p": float(p), "R2": float(R2)},
         "e_rev": float(e_rev_max),
         "checkpoints": spec.checkpoints,
+        "hashes": hashes_any,
         "env_audit": env_audit,
         "figure": str(figp),
         "csv": str(csvp),

@@ -2,7 +2,7 @@
 
 > Author: Justin K. Lietz  
 > Date: 2025-10-13  
-> Commit: a9e1c6c  
+> Commit: 66eb296  
 >
 > This research is protected under a dual-license to foster open academic  
 > research while ensuring commercial applications are aligned with the project's ethical principles.  
@@ -15,7 +15,7 @@ The study validates the conservative limb of the linear Klein–Gordon (KG) disc
 
 Evaluation question: Does the energy oscillation amplitude scale as $A_H(\Delta t) \propto (\Delta t)^2$ with high linearity and is the scheme strictly time-reversible at machine precision?
 
-Pinned artifact: /mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/figures/metriplectic/20251013_015542_kg_energy_osc_fit_KG-energy-osc-v1.png
+Pinned artifact: /mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/figures/metriplectic/20251013_021321_kg_energy_osc_fit_KG-energy-osc-v1.png
 
 ## Research question
 
@@ -40,6 +40,7 @@ Pinned artifact: /mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/figure
 ## Equipment / Hardware
 
 - Environment audit (from run): Python 3.13.5, NumPy 2.2.6; FFT plan: deterministic; thread envs unset (recorded). Linux host.
+- Determinism receipts: checkpoint buffer hashes logged in the JSON sidecar at fixed checkpoints (0, 64, 128, 256, 512) for one representative seed per $\Delta t$.
 - Provenance: commit a9e1c6c; script Derivation/code/physics/metriplectic/run_kg_energy_oscillation.py; spec specs/kg_energy_osc.v1.json.
 - Measurement limits: fp64 roundoff; FFT real/imag path determinism; cross-architecture ULP-level tolerance.
 
@@ -57,9 +58,14 @@ Pinned artifact: /mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/figure
 - Relative amplitude at smallest $\Delta t$: $1.346\times 10^{-5}$.
 - Gate status: PASS for all thresholds.
 
-![KG Energy Osc Fit](20251013_015542_kg_energy_osc_fit_KG-energy-osc-v1.png)
+![KG Energy Osc Fit](20251013_021321_kg_energy_osc_fit_KG-energy-osc-v1.png)
 
-Figure 1. KG energy-oscillation scaling: log–log fit of $A_H$ vs $\Delta t$ with slope $p\approx 2.000$ and $R^2\approx 1.0$. Artifact (PNG): /mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/figures/metriplectic/20251013_015542_kg_energy_osc_fit_KG-energy-osc-v1.png (CSV sidecar with the same basename). Seed bands and commit a9e1c6c.
+Figure 1. KG energy-oscillation scaling: log–log fit of $A_H$ vs $\Delta t$ with slope $p\approx 2.000$ and $R^2\approx 1.0$. Artifact (PNG): /mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/figures/metriplectic/20251013_021321_kg_energy_osc_fit_KG-energy-osc-v1.png. Sidecars (same slug family):
+
+- CSV: /mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/logs/metriplectic/20251013_021322_kg_energy_osc_fit_KG-energy-osc-v1.csv
+- JSON summary (includes determinism receipts): /mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/logs/metriplectic/20251013_021322_kg_energy_osc_fit_KG-energy-osc-v1.json
+
+Seed bands and commit a9e1c6c.
 
 Sample data points (median over seeds per $\Delta t$):
 
@@ -78,7 +84,7 @@ The results align with the modified-equation prediction for symplectic integrato
 - Aim restated: certify KG J-only integrator as an accurate measuring instrument via $A_H(\Delta t)$ scaling and time-reversal.
 - Outcome: thresholds met with $p\approx 2.000$, $R^2\approx 1.0$, $e_{\mathrm{rev}}\approx 3\times 10^{-16}$, and relative amplitude $\le 10^{-4}$ at finest $\Delta t$.
 - Interpretation: numerical evidence supports the expected second-order behavior and exact reversibility of Störmer–Verlet on the linear KG system.
-- Next gates: run KG-noether-v1 (already PROVEN) as a cross-check on this grid; proceed to Passive Thermodynamic Routing v2 with strict gates; consider adding checkpoint buffer hashes to logs for identity audits.
+- Next gates: run KG-noether-v1 (already PROVEN) as a cross-check on this grid; proceed to Passive Thermodynamic Routing v2 with strict gates; determinism receipts (checkpoint buffer hashes) are now logged for identity audits.
 
 ## References / Works Cited
 
