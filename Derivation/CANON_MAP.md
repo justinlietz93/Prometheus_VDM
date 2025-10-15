@@ -22,6 +22,7 @@ Got it-keep files separate. Here’s a **no-merge, no-duplication** scheme that 
 | `notes/OPEN_QUESTIONS.md`            | Speculation & hypotheses                 | Link to canon as needed              | Masquerade as canon         |
 | `ROADMAP.md`                         | Tasks/milestones (no math)               | Link to issues/PRs                   | Store canonical content     |
 | `AXIOMS.md`                          | All axioms and their definitions         | Link to axioms                       | Store speculations          |
+| `VDM_PROGRESSION_STANDARDS.md`       | Progression rules (status tags, tiers)   | Link to standards                    | Override tier assignments   |
 
 ## Drop-in headers (copy to tops of files)
 

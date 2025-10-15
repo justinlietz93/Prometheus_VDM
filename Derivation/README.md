@@ -18,6 +18,7 @@ Last updated: 2025-10-13 (commit 6be73cf)
 - OPEN_QUESTIONS - `/mnt/ironwolf/git/Prometheus_VDM/Derivation/OPEN_QUESTIONS.md`
 - NAMING_CONVENTIONS - `/mnt/ironwolf/git/Prometheus_VDM/Derivation/NAMING_CONVENTIONS.md`
 - AXIOMS - `/mnt/ironwolf/git/Prometheus_VDM/Derivation/AXIOMS.md`
+- VDM_PROGRESSION_STANDARDS - `/mnt/ironwolf/git/Prometheus_VDM/Derivation/VDM_PROGRESSION_STANDARDS.md`
 - OVERVIEW - `/mnt/ironwolf/git/Prometheus_VDM/Derivation/OVERVIEW.md`
 
 Note: These are “latest-only” registries; CORRECTIONS.md remains chronological.
