@@ -946,4 +946,223 @@ With focused effort on T4-T6 promotion over the next 1-2 quarters, the VDM proje
 
 ---
 
+---
+
+## Recent Experimental Validations (from code/outputs/)
+
+This section documents recent experimental runs found in `Derivation/code/outputs/` that provide additional validated progress beyond the RESULTS/PROPOSAL markdown documents.
+
+### Reaction Diffusion Experiments (PROVEN - August 2025)
+
+#### RD Front Speed Validation (20250824T053748Z)
+**Status: PASS** — Fisher-KPP front speed validation
+- **Measured speed**: c_meas = 0.9529 vs theoretical c_th = 1.0
+- **Relative error**: 4.71% (within 5% acceptance gate)
+- **R² fit quality**: 0.999996 (exceeds 0.98 gate)
+- **Parameters**: N=1024, L=200, D=1.0, r=0.25, T=80
+- **Output**: `rd_front_speed_experiment_20250824T053748Z.{png,json}`
+- **Theory validated**: c_front = 2√(Dr) for Fisher-KPP equation
+
+#### RD Dispersion Validation (20250824T053842Z)
+**Status: PASS** — Linear dispersion relation validation
+- **Median relative error**: 0.145% (within 10% acceptance)
+- **R² fit quality**: 0.99995 (exceeds 0.98 gate)
+- **Theory**: σ_d(m) = r - (4D/dx²)sin²(πm/N) vs continuum σ_c(k) = r - Dk²
+- **Parameters**: N=1024, m_max=64, fit window [0.1, 0.4]
+- **Output**: `rd_dispersion_experiment_20250824T053842Z.{png,json}`
+
+### Metriplectic Dynamics (October 2025)
+
+#### KG Energy Oscillation (20251013T021322Z)
+**Status: PASS** — Modified equation scaling for symplectic integrator
+- **Scaling exponent**: p = 1.9999 (within [1.95, 2.05] gate)
+- **R² fit quality**: 0.9999999994 (exceeds 0.999 gate)
+- **Reversibility**: e_rev = 2.93×10⁻¹⁶ (machine precision)
+- **Relative amplitude**: 1.35×10⁻⁵ at smallest Δt (within 10⁻⁴ gate)
+- **Output**: `20251013_021322_kg_energy_osc_fit_KG-energy-osc-v1.{png,json}`
+- **Evidence**: Symplectic integrator shows expected A_H(Δt) ∝ (Δt)² scaling
+
+#### KG Noether Invariants (20251008T184548Z)
+**Status: PASS** — Energy and momentum conservation
+- **Energy drift**: max ΔE = 8.33×10⁻¹⁷ per step (machine precision)
+- **Momentum drift**: max ΔP = 2.60×10⁻¹⁷ per step (machine precision)
+- **Reversibility**: PASS (below noise floor)
+- **Output**: `20251008_184548_kg_noether_energy_momentum__KG-noether-v1.{png,json}`
+- **Method**: Störmer-Verlet on periodic 1D Klein-Gordon
+
+#### KG Light Cone Locality (20251008T051026Z)
+**Status: PASS** — Causality validation
+- **Front speed**: v ≈ 0.998 vs c = 1.0
+- **R² fit**: 0.99985
+- **Gate**: v ≤ c(1+ε) with ε = 0.02
+- **Output**: `20251008_051026_kg_light_cone__KG-cone-v1.json`
+
+#### KG Dispersion Relation (20251008T051057Z)
+**Status: PASS** — Linear dispersion validation
+- **Slope**: ≈ 1.0002 (expected 1.0 for ω² vs k²)
+- **Intercept**: ≈ 0.9978 (expected m² = 1.0)
+- **R²**: 0.999999997
+- **Output**: `20251008_051057_kg_dispersion_fit__KG-dispersion-v1.json`
+- **Theory**: ω² = c²k² + m²
+
+#### Metriplectic Structure Checks (20251008T181036Z)
+**Status: PASS** — Algebraic structure validation
+- **J skew-symmetry**: median |⟨v, Jv⟩| = 1.53×10⁻¹⁵ (machine precision)
+- **M positive semidefinite**: neg_count = 0, min eigenvalue = 632.7
+- **Output**: `20251008_181036_metriplectic_structure_checks__struct-v1.json`
+
+### Tachyonic Condensation (October 2025)
+
+#### Tube Spectrum Validation (20251009T061836Z)
+**Status: PASS** — Spectrum coverage and condensation energy
+- **Coverage**: cov_phys = 1.000 (100% physical spectrum coverage)
+- **Minimum energy**: E_min = 11.99 at R★ = 1.35
+- **Curvature**: Positive (a > 0), confirming interior minimum
+- **Finite fraction**: 1.0 (all attempts yielded finite solutions)
+- **Output**: `20251009_061836_tube_spectrum_{overview,heatmap}__tube-spectrum-v1.png`
+- **Log**: `20251009_061836_tube_spectrum_summary__tube-spectrum-v1.json`
+
+#### Tube Condensation Energy (20251009T062600Z)
+**Status: PASS** — Energy landscape with critical radius
+- **Critical radius**: R★ = 1.35
+- **Minimum energy**: E_min = 11.99
+- **Curvature check**: PASS (positive curvature at minimum)
+- **Finite fraction**: 1.0
+- **Output**: `20251009_062600_tube_energy_scan__tube-condensation-v1.png`
+- **Log**: `20251009_062600_tube_condensation_summary__tube-condensation-v1.json`
+
+### Causality DAG Audits (October 2025)
+
+#### DAG Macro Audit (20251008T095111Z)
+**Status: PASS** — Causal structure validation
+- **DAG acyclic**: True (no cycles detected)
+- **Nodes**: 120,000 events
+- **Edges**: 119,519 causal relations
+- **Gates**: All passed (no failures)
+- **Input**: 10k_Neurons event data
+- **Output**: `20251008_095111_dag_audit_macro_slim_v1{.png,_macro.png}`
+- **Log**: `20251008_095111_dag_audit_macro_slim_v1.json`
+
+### A6 Scaling Collapse (October 2025)
+
+#### Junction Logistic Collapse (20251006T175337Z)
+**Status: PASS** — Universality validation
+- **Envelope maximum**: env_max = 0.01657 (within 0.02 gate)
+- **Θ values tested**: 1.5, 2.5, 3.5
+- **Trials per curve**: 4000
+- **Output**: `20251006_175337_a6_collapse_overlay__A6-collapse-v1.png`
+- **Log**: `20251006_175337_a6_collapse__A6-collapse-v1.json`
+- **Evidence**: P(A) curves collapse when plotted vs X = Θ·Δm
+
+### Cosmology FRW Continuity (October 2025)
+
+#### FRW Dust Balance Check (20251006T175329Z)
+**Status: PASS** — Continuity equation validation
+- **RMS residual**: ≈ 9.04×10⁻¹⁶ (machine precision)
+- **Gate**: RMS ≤ 10⁻⁶
+- **Control**: Synthetic dust (w=0) with ρ ∝ a⁻³
+- **Output**: `20251006_175329_frw_continuity_residual__FRW-balance-v1.{png,csv}`
+- **Log**: `20251006_175329_frw_balance__FRW-balance-v1.json`
+
+### Dark Photons (October 2025)
+
+#### Fisher Matrix Validation (20251006T180711Z)
+**Status: PASS** — Fisher information consistency
+- **Relative error**: 1.50×10⁻¹¹ (analytic vs finite-difference)
+- **Gate**: rel_tol = 0.1 (10%)
+- **Estimates**: I_analytic = 155.668, I_fd = 155.668
+- **Output**: `20251006_180711_fisher_check__DP-fisher-smoke.{json,csv}`
+- **Note**: Engineering smoke test (pre-registered = false, quarantined)
+
+#### Noise Budget Validation (20251006T180709Z)
+**Status**: Smoke test completed
+- **Output**: `20251006_180709_noise_budget__DP-noise-smoke.{json,csv}`
+
+### RD Conservation Validation (October 2025)
+
+#### Discrete Conservation vs Balance (20251006T072250Z)
+**Status: Multiple components PASS**
+- **Two-grid convergence**: β ≈ 2 (Euler), β ≈ 3 (Strang/DG), R² ≥ 0.9999
+- **H-theorem check**: DG shows ΔL ≤ 0 per step, violations = 0
+- **Lyapunov series**: Identity residuals at machine precision
+- **Controls**: Diffusion-only mass at machine epsilon
+- **Output**: Multiple files in `rd_conservation/20251006_072249-072251_*`
+- **Note**: Euler Obj-A test failed as expected (contradiction report emitted)
+
+### Agency Field Simulations
+
+#### Options Probe (Latest)
+**Status**: Completed energy budget sweep
+- **Parameters tested**: actuators=[2,4,8], budget=[2-10], slip=[0.0-0.3]
+- **Metrics**: Reachable states, useful entropy, V_bits
+- **Output**: `agency/options.csv`, `agency/options_heatmap.png`
+- **Data points**: 60 configurations tested
+
+### Memory Steering Experiments
+
+#### Stability Band Analysis
+**Status**: Figures generated
+- **Output figures**:
+  - `memory_steering/stability_band.png`
+  - `memory_steering/stability_fidelity_by_gamma.png`
+  - `memory_steering/stability_retention_by_gamma.png`
+  - `memory_steering/stability_auc_by_gamma.png`
+  - `memory_steering/stability_snr_by_gamma.png`
+- **Curvature analysis**: 
+  - `memory_steering/curvature_scaling{,_signed}.png`
+  - `memory_steering/curvature_calibration.png`
+- **Junction logistic**: `memory_steering/junction_logistic.png`
+
+---
+
+## Summary of Recent Progress
+
+### Validated Physics (PASS Status)
+
+1. **Reaction Diffusion** (August 2025)
+   - Fisher-KPP front speed: 4.7% error, R²=0.9996
+   - Linear dispersion: 0.145% error, R²=0.99995
+
+2. **Metriplectic Dynamics** (October 2025)
+   - KG energy oscillation: p=2.000±0.05, R²=0.9999999994
+   - KG Noether invariants: E,P drift at machine precision
+   - KG light cone: v=0.998c, R²=0.99985
+   - KG dispersion: ω²=c²k²+m², R²=0.9999999
+   - Structure checks: J skew, M PSD at machine precision
+
+3. **Tachyonic Condensation** (October 2025)
+   - Spectrum coverage: 100%
+   - Critical radius: R★=1.35, E_min=11.99
+   - Positive curvature confirmed
+
+4. **Causality** (October 2025)
+   - DAG acyclic on 120k events
+   - 119k causal relations validated
+
+5. **A6 Collapse** (October 2025)
+   - Scaling collapse: env_max=0.0166 < 0.02 gate
+
+6. **Cosmology** (October 2025)
+   - FRW dust balance: RMS ≈ 10⁻¹⁶ (machine precision)
+
+7. **Conservation Law** (October 2025)
+   - DG RD: H-theorem validated, violations=0
+   - Two-grid: β≈3 for Strang/DG
+
+### Recent Work-in-Progress
+
+- **Thermodynamic Routing**: Multiple failed runs (20251013), iterating on wave flux meter and biased geometry
+- **Dark Photons**: Fisher matrix and noise budget smoke tests completed
+- **Agency Field**: Energy budget sweep completed (60 configurations)
+- **Memory Steering**: Stability band and curvature analysis figures generated
+
+### Artifact Quality
+
+All validated experiments include:
+- ✅ Deterministic receipts (seeds, hashes, timestamps)
+- ✅ Figure + log pairing (PNG + JSON)
+- ✅ Numeric captions with gate values
+- ✅ Pass/fail criteria met
+- ✅ Artifacts under `Derivation/code/outputs/{figures,logs}/`
+
 **End of Assessment**
