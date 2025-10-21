@@ -1,0 +1,88 @@
+{
+  "artifacts": {
+    "figures": [
+      "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_175554_wave_flux_meter_openports_timeseries_thermo-routing-v2-wave-meter-openports.png",
+      "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_175554_wave_flux_meter_channel_map_thermo-routing-v2-wave-meter-openports.png",
+      "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_175554_wave_flux_meter_openports_dashboard_thermo-routing-v2-wave-meter-openports.png"
+    ],
+    "logs": [
+      "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_175555_wave_flux_meter_openports_v1_metrics_thermo-routing-v2-wave-meter-openports.csv",
+      "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_175555_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports.json"
+    ]
+  },
+  "compliance": {
+    "absorber_static": true,
+    "map_immutable": true,
+    "probe_limit": true
+  },
+  "domain": "thermo_routing",
+  "env": {
+    "blas": "openblas",
+    "fft": "numpy.pocketfft",
+    "threads": 1
+  },
+  "gates": {
+    "absorber_efficiency": true,
+    "power_balance_r2": false,
+    "power_imbalance_rel": false,
+    "symmetry_null_rel": true
+  },
+  "geometry": {
+    "Lx": 8.0,
+    "Ly": 4.0,
+    "Nx": 256,
+    "Ny": 128,
+    "i_left": 8,
+    "i_right": 247,
+    "n_abs": 8,
+    "port_segments": {
+      "left": [
+        [
+          32,
+          39
+        ]
+      ],
+      "right": [
+        [
+          32,
+          36
+        ]
+      ]
+    },
+    "port_y": [
+      32,
+      96
+    ],
+    "ports_auto_from_mu": true
+  },
+  "kpi": {
+    "absorber_efficiency": {
+      "tol": 0.9,
+      "value": 7.988366744087076
+    },
+    "power_balance_r2": {
+      "tol": 0.9995,
+      "value": 0.9992456402620129
+    },
+    "power_imbalance_rel": {
+      "mean_abs": 0.02755129658350751,
+      "tol": 0.005
+    },
+    "symmetry_null_rel": {
+      "applicable": false,
+      "mean_abs": 0.5242038729968548,
+      "tol": 0.05
+    }
+  },
+  "passed": false,
+  "policy": {
+    "approved": true,
+    "engineering_only": false,
+    "quarantined": true
+  },
+  "provenance": {
+    "commit": "unknown",
+    "commit_full": "unknown"
+  },
+  "tag": "thermo-routing-v2-wave-meter-openports"
+}
