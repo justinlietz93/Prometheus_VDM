@@ -96,49 +96,97 @@ def sha256_array(arr: np.ndarray) -> str:
     return hashlib.sha256(np.ascontiguousarray(arr).view(np.uint8)).hexdigest()
 
 
-def _laplacian_phi(phi: np.ndarray, a: float, bc: str) -> np.ndarray:
+def _build_face_mu(mu_cell: np.ndarray | None, Ny: int, Nx: int) -> Tuple[np.ndarray, np.ndarray]:
+    """Construct face-based mu on x-faces (Ny x (Nx-1)) and y-faces ((Ny-1) x Nx).
+    If mu_cell is None, return ones.
+    Use harmonic mean for conductivity-like weighting; fall back to arithmetic if needed.
+    """
+    if mu_cell is None:
+        mux = np.ones((Ny, Nx - 1), dtype=float)
+        muy = np.ones((Ny - 1, Nx), dtype=float)
+        return mux, muy
+    mu = np.asarray(mu_cell, dtype=float)
+    # x-faces between i and i+1
+    left = mu[:, :-1]
+    right = mu[:, 1:]
+    with np.errstate(divide='ignore', invalid='ignore'):
+        mux = 2.0 / (1.0 / np.maximum(left, 1e-12) + 1.0 / np.maximum(right, 1e-12))
+    mux[~np.isfinite(mux)] = 0.5 * (left[~np.isfinite(mux)] + right[~np.isfinite(mux)]) if np.any(~np.isfinite(mux)) else mux[~np.isfinite(mux)]
+    # y-faces between j and j+1
+    down = mu[:-1, :]
+    up = mu[1:, :]
+    with np.errstate(divide='ignore', invalid='ignore'):
+        muy = 2.0 / (1.0 / np.maximum(down, 1e-12) + 1.0 / np.maximum(up, 1e-12))
+    muy[~np.isfinite(muy)] = 0.5 * (down[~np.isfinite(muy)] + up[~np.isfinite(muy)]) if np.any(~np.isfinite(muy)) else muy[~np.isfinite(muy)]
+    return mux, muy
+
+
+def _grad_faces(phi: np.ndarray, a: float) -> Tuple[np.ndarray, np.ndarray]:
+    """Face gradients using centered (forward) differences at faces.
+    Returns (dx_phi on x-faces Ny x (Nx-1), dy_phi on y-faces (Ny-1) x Nx).
+    """
+    dx_face = (phi[:, 1:] - phi[:, :-1]) / a  # Ny x (Nx-1)
+    dy_face = (phi[1:, :] - phi[:-1, :]) / a  # (Ny-1) x Nx
+    return dy_face, dx_face  # maintain (gy_face, gx_face) ordering for compatibility
+
+
+def _div_mu_grad(phi: np.ndarray, a: float, c2: float, mux: np.ndarray, muy: np.ndarray) -> np.ndarray:
+    """Discrete operator: c^2 [D_x(mux D_x phi) + D_y(muy D_y phi)] on cell centers.
+    mux shape Ny x (Nx-1), muy shape (Ny-1) x Nx.
+    """
     Ny, Nx = phi.shape
-    if bc == "periodic":
-        ip = np.roll(phi, -1, axis=0)
-        im = np.roll(phi, 1, axis=0)
-        jp = np.roll(phi, -1, axis=1)
-        jm = np.roll(phi, 1, axis=1)
-        return (ip + im + jp + jm - 4 * phi) / (a * a)
-    else:  # simple Neumann copy at edges
-        lap = np.zeros_like(phi)
-        lap[1:-1, 1:-1] = (
-            phi[2:, 1:-1] + phi[:-2, 1:-1] + phi[1:-1, 2:] + phi[1:-1, :-2] - 4 * phi[1:-1, 1:-1]
-        ) / (a * a)
-        lap[0, :] = (phi[1, :] + phi[0, :] + np.pad(phi[0, 1:], (0, 1), mode='edge') + np.pad(phi[0, :-1], (1, 0), mode='edge') - 4 * phi[0, :]) / (a * a)
-        lap[-1, :] = (phi[-1, :] + phi[-2, :] + np.pad(phi[-1, 1:], (0, 1), mode='edge') + np.pad(phi[-1, :-1], (1, 0), mode='edge') - 4 * phi[-1, :]) / (a * a)
-        lap[:, 0] = (np.pad(phi[1:, 0], (0, 1), mode='edge') + np.pad(phi[:-1, 0], (1, 0), mode='edge') + phi[:, 1] + phi[:, 0] - 4 * phi[:, 0]) / (a * a)
-        lap[:, -1] = (np.pad(phi[1:, -1], (0, 1), mode='edge') + np.pad(phi[:-1, -1], (1, 0), mode='edge') + phi[:, -1] + phi[:, -2] - 4 * phi[:, -1]) / (a * a)
-        return lap
+    # face gradients
+    gy_face, gx_face = _grad_faces(phi, a)
+    # x-fluxes on faces: Fx = mux * D_x phi
+    Fx = mux * gx_face  # Ny x (Nx-1)
+    # y-fluxes on faces: Fy = muy * D_y phi
+    Fy = muy * gy_face  # (Ny-1) x Nx
+    # divergence back to cells (zero-Neumann mirrors at domain edges)
+    div = np.zeros_like(phi)
+    # x-part: (Fx[i+1/2] - Fx[i-1/2]) / a
+    div[:, 1:-1] += (Fx[:, 1:] - Fx[:, :-1]) / a
+    # boundaries: copy one-sided (Neumann-like)
+    div[:, 0] += (Fx[:, 0] - 0.0) / a
+    div[:, -1] += (0.0 - Fx[:, -1]) / a
+    # y-part
+    div[1:-1, :] += (Fy[1:, :] - Fy[:-1, :]) / a
+    div[0, :] += (Fy[0, :] - 0.0) / a
+    div[-1, :] += (0.0 - Fy[-1, :]) / a
+    return c2 * div
 
 
-def _grad_phi(phi: np.ndarray, a: float, bc: str) -> Tuple[np.ndarray, np.ndarray]:
+def _energy_density_face_split(phi: np.ndarray, pi_half: np.ndarray, c2: float, mux: np.ndarray, muy: np.ndarray, a: float, V: np.ndarray) -> np.ndarray:
+    """Per-cell energy using symmetric face split (conservation-matching).
+    e_ij = 0.5*pi^2 + 0.5*V*phi^2 + (1/4)*c^2*sum_{faces adj to cell} mu_face (D phi on face)^2
+    Each face contributes half of its 0.5*c^2*mu*(grad)^2 to each adjacent cell.
+    """
     Ny, Nx = phi.shape
-    gy = np.zeros_like(phi)
-    gx = np.zeros_like(phi)
-    if bc == "periodic":
-        gy = 0.5 * (np.roll(phi, -1, axis=0) - np.roll(phi, 1, axis=0)) / a
-        gx = 0.5 * (np.roll(phi, -1, axis=1) - np.roll(phi, 1, axis=1)) / a
-    else:
-        gy[1:-1, :] = 0.5 * (phi[2:, :] - phi[:-2, :]) / a
-        gx[:, 1:-1] = 0.5 * (phi[:, 2:] - phi[:, :-2]) / a
-        gy[0, :] = (phi[1, :] - phi[0, :]) / a
-        gy[-1, :] = (phi[-1, :] - phi[-2, :]) / a
-        gx[:, 0] = (phi[:, 1] - phi[:, 0]) / a
-        gx[:, -1] = (phi[:, -1] - phi[:, -2]) / a
-    return gy, gx
+    e = 0.5 * (pi_half * pi_half) + 0.5 * V * (phi * phi)
+    gy_face, gx_face = _grad_faces(phi, a)
+    # x-faces: contribution 0.25*c2*mux*(Dx phi)^2 to left and right cells
+    ex = 0.25 * c2 * (mux * (gx_face * gx_face))  # Ny x (Nx-1)
+    e[:, :-1] += ex
+    e[:, 1:] += ex
+    # y-faces: contribution 0.25*c2*muy*(Dy phi)^2 to bottom and top cells
+    ey = 0.25 * c2 * (muy * (gy_face * gy_face))  # (Ny-1) x Nx
+    e[:-1, :] += ey
+    e[1:, :] += ey
+    return e
 
 
-def _energy_density(phi: np.ndarray, pi_half: np.ndarray, gy: np.ndarray, gx: np.ndarray, c2: float, V: np.ndarray) -> np.ndarray:
-    return 0.5 * (pi_half * pi_half + c2 * (gy * gy + gx * gx) + V * (phi * phi))
-
-
-def _poynting_like(pi_n: np.ndarray, gy: np.ndarray, gx: np.ndarray, c2: float) -> Tuple[np.ndarray, np.ndarray]:
-    return (-pi_n * c2 * gy, -pi_n * c2 * gx)
+def _poynting_faces(pi_n: np.ndarray, phi: np.ndarray, c2: float, mux: np.ndarray, muy: np.ndarray, a: float) -> Tuple[np.ndarray, np.ndarray]:
+    """Face-based Poynting-like flux components on faces using mid-time pi.
+    s_x on x-faces Ny x (Nx-1), s_y on y-faces (Ny-1) x Nx.
+    s_x = -c^2 * mux * (D_x phi) * (pi at face), where pi(face) is average of adjacent cells.
+    """
+    Ny, Nx = pi_n.shape
+    gy_face, gx_face = _grad_faces(phi, a)
+    # pi averaged to faces
+    pi_x_face = 0.5 * (pi_n[:, 1:] + pi_n[:, :-1])
+    pi_y_face = 0.5 * (pi_n[1:, :] + pi_n[:-1, :])
+    s_x = -c2 * mux * gx_face * pi_x_face
+    s_y = -c2 * muy * gy_face * pi_y_face
+    return s_y, s_x  # keep (sy, sx) ordering
 
 
 def main() -> int:
@@ -164,6 +212,16 @@ def main() -> int:
     c = float(S.wave.get("c", 1.0))
     c2 = c * c
     bc_kind = str(S.bc.get("kind", "periodic")).lower()
+    # CFL guard (explicit leapfrog)
+    CFL = float(S.time.get("CFL", 0.35))
+    dt_max = CFL * min(a, dy) / max(c, 1e-12)
+    if dt > dt_max:
+        # shrink dt and recompute steps to respect T
+        dt = dt_max
+        steps = int(max(1, np.floor(T / dt)))
+        T = steps * dt
+        print(f"[wave_flux_meter] dt reduced by CFL guard to {dt:.6g} (steps={steps})")
+    warmup_frac = float(S.time.get("warmup_frac", 0.10))
 
     # Absorber/sponge profile (sigma)
     n_abs = int(S.absorber.get("thickness", 8))
@@ -262,23 +320,27 @@ def main() -> int:
     w = 0.2 * Lx
     phi = np.exp(-(((XX - x0) ** 2 + (YY - y0) ** 2) / (2 * (w ** 2))))
     # radial outward pi via gradient of Gaussian
-    gy0, gx0 = _grad_phi(phi, a, bc_kind)
+    # gradient for initializing outward momentum
+    gy0 = 0.5 * (np.roll(phi, -1, axis=0) - np.roll(phi, 1, axis=0)) / a
+    gx0 = 0.5 * (np.roll(phi, -1, axis=1) - np.roll(phi, 1, axis=1)) / a
     pi0 = -(gx0 * (XX - x0) + gy0 * (YY - y0))
     pi = np.copy(pi0)
 
-    # Start leapfrog with damping (explicit sigma term)
-    lap = _laplacian_phi(phi, a, bc_kind)
-    pi_half = pi + 0.5 * dt * (c2 * lap - V * phi - sigma * pi)
+    # Build face-based mu (toggle μ-weighting via spec: wave.use_mu_weighting)
+    use_mu_faces = bool(S.wave.get("use_mu_weighting", False))
+    mux, muy = _build_face_mu(mu_corridor if use_mu_faces else None, Ny, Nx)
+
+    # Start leapfrog with damping (explicit sigma term) using divergence form
+    Lphi = _div_mu_grad(phi, a, c2, mux, muy) - V * phi
+    pi_half = pi + 0.5 * dt * (Lphi - sigma * pi)
     pi_half_prev = np.copy(pi_half)
 
     # Helpers
     def energy_density(phi_, pi_half_):
-        gy_, gx_ = _grad_phi(phi_, a, bc_kind)
-        return _energy_density(phi_, pi_half_, gy_, gx_, c2, V)
+        return _energy_density_face_split(phi_, pi_half_, c2, mux, muy, a, V)
 
     def poynting(pi_n_, phi_):
-        gy_, gx_ = _grad_phi(phi_, a, bc_kind)
-        return _poynting_like(pi_n_, gy_, gx_, c2)
+        return _poynting_faces(pi_n_, phi_, c2, mux, muy, a)
 
     def interior_mask() -> np.ndarray:
         mask = np.zeros((Ny, Nx), dtype=bool)
@@ -429,30 +491,55 @@ def main() -> int:
         # compute pi at integer time for flux and dissipation
         pi_n = 0.5 * (pi_half + pi_half_prev)
         sy, sx = poynting(pi_n, phi)
-        # outward normals: left (-x), right (+x)
-        # sample flux at interior boundary indices i_left and i_right within [j0:j1) for ports
+        # sample flux on interior rectangle faces for ports
+        # Face indices for interior rectangle
+        j_min, j_max = n_abs, Ny - n_abs  # rows in interior (cells)
+        i_min, i_max = n_abs, Nx - n_abs  # cols in interior (cells)
+        i_face_left = i_min - 1    # x-face index for left boundary (between i_min-1 and i_min)
+        i_face_right = i_max - 1   # x-face index for right boundary (between i_max-1 and i_max)
+        j_face_bottom = j_min - 1  # y-face index for bottom boundary
+        j_face_top = j_max - 1     # y-face index for top boundary
         # Line integrals across port windows: multiply by edge length dy
         # Sum flux across possibly multiple vertical segments aligned to channels
         P_L = 0.0
         for (jj0, jj1) in port_segments_left:
-            P_L += float(np.sum(-sx[jj0:jj1, i_left]) * dy)
+            # clamp to interior window
+            j0c = max(jj0, j_min)
+            j1c = min(jj1, j_max)
+            if j1c > j0c and (i_face_left >= 0):
+                # outward normal at left is -x => flux = -s_x
+                P_L += float(np.sum((-1.0) * sx[j0c:j1c, i_face_left]) * dy)
         P_R = 0.0
         for (jj0, jj1) in port_segments_right:
-            P_R += float(np.sum(+sx[jj0:jj1, i_right]) * dy)
+            j0c = max(jj0, j_min)
+            j1c = min(jj1, j_max)
+            if j1c > j0c and (i_face_right < sx.shape[1]):
+                # outward normal at right is +x => flux = +s_x
+                P_R += float(np.sum((+1.0) * sx[j0c:j1c, i_face_right]) * dy)
         P_left.append(P_L)
         P_right.append(P_R)
 
         # Full boundary flux across entire interior boundary (four sides)
-        j_min, j_max = n_abs, Ny - n_abs  # rows in interior
-        i_min, i_max = n_abs, Nx - n_abs  # cols in interior
-        # Left side (i=i_left) outward normal -x
-        P_left_full = float(np.sum(-sx[j_min:j_max, i_left]) * dy)
-        # Right side (i=i_right) outward normal +x
-        P_right_full = float(np.sum(+sx[j_min:j_max, i_right]) * dy)
-        # Bottom side (j=j_min) outward normal -y
-        P_bottom_full = float(np.sum(-sy[j_min, i_min:i_max]) * a)
-        # Top side (j=j_max-1) outward normal +y
-        P_top_full = float(np.sum(+sy[j_max - 1, i_min:i_max]) * a)
+        # Left side outward normal -x
+        if i_face_left >= 0:
+            P_left_full = float(np.sum((-1.0) * sx[j_min:j_max, i_face_left]) * dy)
+        else:
+            P_left_full = 0.0
+        # Right side outward normal +x
+        if i_face_right < sx.shape[1]:
+            P_right_full = float(np.sum((+1.0) * sx[j_min:j_max, i_face_right]) * dy)
+        else:
+            P_right_full = 0.0
+        # Bottom side outward normal -y (note: sy shape (Ny-1) x Nx, sum over i in [i_min:i_max))
+        if j_face_bottom >= 0:
+            P_bottom_full = float(np.sum((-1.0) * sy[j_face_bottom, i_min:i_max]) * a)
+        else:
+            P_bottom_full = 0.0
+        # Top side outward normal +y
+        if j_face_top < sy.shape[0]:
+            P_top_full = float(np.sum((+1.0) * sy[j_face_top, i_min:i_max]) * a)
+        else:
+            P_top_full = 0.0
         P_out_full = P_left_full + P_right_full + P_bottom_full + P_top_full
         P_out_full_series.append(P_out_full)
 
@@ -466,15 +553,15 @@ def main() -> int:
         E_interior.append(float(np.sum(e_curr[M_in]) * (a * a)))
 
         # advance one step (explicit damping)
-        lap = _laplacian_phi(phi, a, bc_kind)
-        pi_half_new = pi_half + dt * (c2 * lap - V * phi - sigma * pi_half)
+        Lphi = _div_mu_grad(phi, a, c2, mux, muy) - V * phi
+        pi_half_new = pi_half + dt * (Lphi - sigma * pi_half)
         phi_new = phi + dt * pi_half_new
         # energy at n+1
         e_next = energy_density(phi_new, pi_half_new)
 
-        # balance residual using centered dE/dt when possible
+        # balance residual using first-difference dE/dt aligned to time n (matches P_out computed with pi_n)
         if e_prev is not None:
-            dE_dt = float(((np.sum(e_next[M_in]) - np.sum(e_prev[M_in])) * (a * a)) / (2.0 * dt))
+            dE_dt = float(((np.sum(e_curr[M_in]) - np.sum(e_prev[M_in])) * (a * a)) / dt)
             P_out = P_out_full
             balance_resid.append(abs(dE_dt + P_out))
             dE_dt_series.append(dE_dt)
@@ -492,15 +579,26 @@ def main() -> int:
     # drop first NaN
     balance_vals = [v for v in balance_resid if (v == v)]
 
-    # KPIs
+    # KPIs (exclude warm-up window)
     P_left_arr = np.array(P_left, dtype=float)
     P_right_arr = np.array(P_right, dtype=float)
     P_tot = P_left_arr + P_right_arr
     P_out_full_arr = np.array(P_out_full_series, dtype=float)
-    mean_P = float(np.mean(np.abs(P_out_full_arr)) + 1e-12)
-    mean_balance_err = float(np.mean(np.array(balance_vals)))
+    # centered arrays have length steps-1; compute warm-up cutoff index for centered series
+    n_center = len(dE_dt_series)
+    k0 = int(max(0, min(n_center, np.floor(warmup_frac * max(n_center, 1)))))
+    dE_dt_c = np.array(dE_dt_series[k0:], dtype=float)
+    P_out_c = np.array(P_out_centered[k0:], dtype=float)
+    bal_c = np.array(balance_vals[k0:], dtype=float)
+    mean_P = float(np.mean(np.abs(P_out_c)) + 1e-12)
+    mean_balance_err = float(np.mean(bal_c)) if bal_c.size else float('inf')
     rel_balance_err = float(mean_balance_err / mean_P)
-    symmetry_diff = float(np.mean(np.abs(P_left_arr - P_right_arr)) / (np.mean(np.abs(P_tot)) + 1e-12))
+    # symmetry computed on same window length as P series (skip first sample count equivalent to warmup_frac)
+    k0_ports = int(max(0, min(len(P_left_arr), np.floor(warmup_frac * max(len(P_left_arr), 1)))))
+    P_left_c = P_left_arr[k0_ports:]
+    P_right_c = P_right_arr[k0_ports:]
+    P_tot_c = P_left_c + P_right_c
+    symmetry_diff = float(np.mean(np.abs(P_left_c - P_right_c)) / (np.mean(np.abs(P_tot_c)) + 1e-12)) if P_left_c.size else float('inf')
     # R^2 diagnostics
     def _safe_r2(x: np.ndarray, y: np.ndarray) -> float:
         if len(x) < 3 or np.allclose(np.std(x), 0.0) or np.allclose(np.std(y), 0.0):
@@ -509,25 +607,36 @@ def main() -> int:
         if not (r == r):
             return 0.0
         return float(r * r)
-    balance_r2 = _safe_r2(-np.array(dE_dt_series, dtype=float), np.array(P_out_centered, dtype=float))
-    sym_mask = (np.abs(P_tot) > 1e-12)
+    balance_r2 = _safe_r2(-dE_dt_c, P_out_c)
+    sym_mask = (np.abs(P_tot_c) > 1e-12)
     if np.count_nonzero(sym_mask) >= 3:
-        symmetry_r2 = _safe_r2(P_left_arr[sym_mask], P_right_arr[sym_mask])
+        symmetry_r2 = _safe_r2(P_left_c[sym_mask], P_right_c[sym_mask])
     else:
         symmetry_r2 = 0.0
     # absorber efficiency via time integral comparison
     dt_arr = dt
-    E_inflow_to_abs = float(np.sum(P_out_full_arr) * dt_arr)  # energy leaving interior into absorber (full boundary)
-    E_diss_abs = float(np.sum(np.array(Q_abs_series)) * dt_arr)
+    # Trapezoidal time integration for energies
+    if P_out_full_arr.size >= 2:
+        E_inflow_to_abs = float(np.trapezoid(P_out_full_arr, dx=dt_arr))
+    else:
+        E_inflow_to_abs = float(np.sum(P_out_full_arr) * dt_arr)
+    q_abs_arr = np.array(Q_abs_series, dtype=float)
+    if q_abs_arr.size >= 2:
+        E_diss_abs = float(np.trapezoid(q_abs_arr, dx=dt_arr))
+    else:
+        E_diss_abs = float(np.sum(q_abs_arr) * dt_arr)
     absorber_eff = float(0.0 if E_inflow_to_abs == 0.0 else E_diss_abs / E_inflow_to_abs)
 
-    # Gates
-    gate_balance = rel_balance_err <= float(S.ports.get("gate_balance_rel", 0.1))  # ≤10%
+    # Gates (tight Phase B acceptance)
+    gate_r2 = balance_r2 >= float(S.ports.get("gate_balance_r2", 0.9995))
+    gate_imbalance = rel_balance_err <= float(S.ports.get("gate_imbalance_rel", 0.005))  # ≤0.5%
+    # Back-compat balance gate at 10%
+    gate_balance_rel_legacy = rel_balance_err <= float(S.ports.get("gate_balance_rel", 0.1))
     # Symmetry gate applicability: disable by default when using an external mu map (asym geometry)
     symmetry_applicable = bool(S.ports.get("symmetry_applicable", S.map.get("mu_path") is None))
-    gate_symmetry = True if (not symmetry_applicable) else (symmetry_diff <= float(S.ports.get("gate_symmetry_rel", 0.05)))
+    gate_symmetry = True if (not symmetry_applicable) else (symmetry_diff <= float(S.ports.get("gate_symmetry_rel", 0.005)))
     gate_absorber = absorber_eff >= float(S.absorber.get("gate_efficiency", 0.9))   # ≥90%
-    passed = bool(gate_balance and gate_symmetry and gate_absorber)
+    passed = bool(gate_r2 and gate_imbalance and gate_symmetry and gate_absorber)
 
     # Artifacts
     import matplotlib.pyplot as plt
@@ -555,16 +664,20 @@ def main() -> int:
     ax1.set_xlabel("Time t [s]")
     ax1.set_ylabel("Power [J/s]")
     ax1.grid(True, alpha=0.3)
+    # Shade warm-up window
+    if warmup_frac > 0:
+        ax0.axvspan(0.0, warmup_frac * T, color="#ffcc00", alpha=0.12, label="warm-up")
+        ax1.axvspan(0.0, warmup_frac * T, color="#ffcc00", alpha=0.12)
     # Annotate accuracy metrics (R^2 and relative error)
     sym_applicable = bool(S.ports.get("symmetry_applicable", S.map.get("mu_path") is None))
     annot_lines = [
-        f"balance: R^2(-dE/dt, P_out)={balance_r2:.3f}; rel_err={rel_balance_err:.3f}",
+        f"balance: R^2(-dE/dt, P_out)={balance_r2:.4f}; rel_err={rel_balance_err:.4f}",
         (f"symmetry: R^2(P_L,P_R)={symmetry_r2:.3f}" if sym_applicable else "symmetry: N/A (asymmetric μ)")
     ]
     ax1.text(0.99, 0.98, "\n".join(annot_lines), transform=ax1.transAxes,
              va='top', ha='right', fontsize=9,
              bbox=dict(boxstyle='round', facecolor='white', alpha=0.75, edgecolor='#cccccc'))
-    ax1.legend(loc="best")
+    ax1.legend(loc="upper left", framealpha=0.85)
     failed = bool((not approved) or passed is False or engineering_only)
     fig_path = figure_path_by_tag(DOMAIN, "wave_flux_meter_openports_timeseries", S.tag, failed=failed)
     fig.savefig(fig_path, bbox_inches="tight")
@@ -623,7 +736,7 @@ def main() -> int:
     fig_dash_path = None
     try:
         from matplotlib import gridspec
-        figd = plt.figure(figsize=(10.5, 6.0))
+        figd = plt.figure(figsize=(14.5, 6.0))
         gs = figd.add_gridspec(2, 2, height_ratios=[1, 1], wspace=0.28, hspace=0.35)
         axm2 = figd.add_subplot(gs[0, :])
         axe = figd.add_subplot(gs[1, 0])
@@ -669,12 +782,12 @@ def main() -> int:
         axp.grid(True, alpha=0.3)
         sym_applicable = bool(S.ports.get("symmetry_applicable", S.map.get("mu_path") is None))
         annot = [
-            f"balance R^2={balance_r2:.3f}, rel_err={rel_balance_err:.3f}",
+            f"balance R^2={balance_r2:.4f}, rel_err={rel_balance_err:.4f}",
             (f"sym R^2={symmetry_r2:.3f}" if sym_applicable else "sym: N/A (asymmetric μ)")
         ]
         axp.text(0.99, 0.98, "\n".join(annot), transform=axp.transAxes, va='top', ha='right', fontsize=9,
                  bbox=dict(boxstyle='round', facecolor='white', alpha=0.75, edgecolor='#cccccc'))
-        axp.legend(loc="best")
+        axp.legend(loc="upper left", framealpha=0.85)
 
         figd.suptitle(f"Wave Flux Meter — Open Ports — {S.tag}")
         fig_dash_path = figure_path_by_tag(DOMAIN, "wave_flux_meter_openports_dashboard", S.tag, failed=failed)
@@ -688,15 +801,15 @@ def main() -> int:
         "timestamp": datetime.now().isoformat(),
         "domain": DOMAIN,
         "tag": S.tag,
-        "approved": bool(approved),
+    "approved": bool(approved),
         "quarantined": bool(failed),
         "passed": bool(passed),
         "Nx": int(Nx),
         "Ny": int(Ny),
         "dt": float(dt),
         "steps": int(steps),
-        "rel_balance_err": float(rel_balance_err),
-        "balance_r2": float(balance_r2),
+    "rel_balance_err": float(rel_balance_err),
+    "balance_r2": float(balance_r2),
         "symmetry_diff": float(symmetry_diff),
         "symmetry_r2": float(symmetry_r2),
         "absorber_efficiency": float(absorber_eff),
@@ -718,12 +831,16 @@ def main() -> int:
         "env": {"threads": int(os.getenv("OMP_NUM_THREADS", "1")), "blas": "openblas", "fft": "numpy.pocketfft"},
         "passed": passed,
         "gates": {
-            "power_balance_rel": bool(gate_balance),
+            "power_balance_rel": bool(gate_balance_rel_legacy),
+            "power_balance_r2": bool(gate_r2),
+            "power_imbalance_rel": bool(gate_imbalance),
             "symmetry_null_rel": bool(gate_symmetry),
             "absorber_efficiency": bool(gate_absorber)
         },
         "kpi": {
             "power_balance_rel": {"mean_abs": float(rel_balance_err), "tol": float(S.ports.get("gate_balance_rel", 0.1))},
+            "power_balance_r2": {"value": float(balance_r2), "tol": float(S.ports.get("gate_balance_r2", 0.9995))},
+            "power_imbalance_rel": {"mean_abs": float(rel_balance_err), "tol": float(S.ports.get("gate_imbalance_rel", 0.005))},
             "symmetry_null_rel": {"mean_abs": float(symmetry_diff), "tol": float(S.ports.get("gate_symmetry_rel", 0.05)), "applicable": bool(symmetry_applicable)},
             "absorber_efficiency": {"value": float(absorber_eff), "tol": float(S.absorber.get("gate_efficiency", 0.9))}
         },
@@ -741,6 +858,7 @@ def main() -> int:
     "artifacts": {"figures": [str(p) for p in [fig_path, fig_map_path, fig_dash_path] if p], "logs": [str(csv_path), str(json_path)]},
         "policy": {"approved": bool(approved), "engineering_only": bool(engineering_only), "quarantined": bool(failed)}
     }
+    summary["numerics"] = {"use_mu_weighting": bool(S.wave.get("use_mu_weighting", False)), "CFL": float(S.time.get("CFL", 0.35)), "warmup_frac": float(warmup_frac)}
     write_log(json_path, summary)
     print(json.dumps({"summary_path": str(json_path), "approved": approved}, indent=2))
     return 0
