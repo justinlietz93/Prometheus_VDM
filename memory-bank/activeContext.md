@@ -2,7 +2,7 @@
 
 ## Current Goals
 
-- Wave Flux Meter A-phase RESULTS doc creation and finalization; Phase B (open-port optics) planning next.
+- Working on Intelligence Model Substrate v1: finalize proposal per template, wire APPROVAL manifest and schema for tag 'im-substrate-v1', pause any runnable code until approved.
 
 ## Current Blockers
 

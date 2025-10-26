@@ -1,0 +1,8 @@
+{
+  "tag": "im-substrate-v1",
+  "grid": { "Nx": 96, "Ny": 64, "Lx": 9.6, "Ly": 6.4 },
+  "time": { "dt": 0.02, "T": 2.0 },
+  "controls": { "walkers": 256, "steps": 256, "drift_weight": 0.0 },
+  "seeds": 3,
+  "analysis": { "outflux_floor_eps": 1.0 }
+}

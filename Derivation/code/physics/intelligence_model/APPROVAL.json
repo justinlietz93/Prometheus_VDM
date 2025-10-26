@@ -1,0 +1,15 @@
+{
+	"pre_registered": true,
+	"proposal": "Derivation/Intelligence_Model/PROPOSAL_Physics_Native_Intelligence_v1.md",
+	"allowed_tags": [
+		"im-substrate-v1"
+	],
+	"approvals": {
+		"im-substrate-v1": {
+			"schema": "Derivation/code/physics/intelligence_model/schemas/im-substrate-v1.schema.json",
+			"approved_by": "",
+			"approved_at": "",
+			"approval_key": ""
+		}
+	}
+}
