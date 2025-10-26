@@ -66,3 +66,11 @@ fum_rt/data/corpus/unsorted/*
 .github/instructions/codacy.instructions.md
 /mnt/ironwolf/git/Void_Unity_Proofs/HISTORICAL-ARCHIVE/logs
 Derivation/code/common/data/approval.db
+
+HISTORICAL-ARCHIVE/
+IN_PROGRESS/
+Learning_VDM/
+PUBLIC_PLANS/
+TODO_CHECKLIST.md
+PLANNED.md
+vdm_rt/

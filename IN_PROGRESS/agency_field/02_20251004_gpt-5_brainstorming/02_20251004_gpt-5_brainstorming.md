@@ -122,7 +122,7 @@ If you want a one-liner to remember: **bits ≈ how many real futures you actual
 
 
 Justin:
-i didnt see any heatmap, i dont know what any of that means, youre using too much jargon
+i didnt see any heatmap and youre using too much jargon
 
 GPT-5:
 You’re right; I got too jargony. Here’s the simplest way to read it.
@@ -241,8 +241,6 @@ If you want me to, I’ll convert this gate into your canonical `ALGORITHMS.md` 
 Justin:
 youre still not helping me understand. I need analogic constructivist style learning
 
-Pseudocode and numbers dont help me at all. I need to understand what the point is and why i give a shit
-
 GPT-5:
 You’re right-numbers and pseudocode won’t wire the concept into your head. Let’s rebuild it your way: analogy-first, constructed from things you already use in VDM.
 
@@ -342,7 +340,7 @@ So: the heatmap is a **foundational ingredient**-a control-oriented, preconsciou
 
 
 Justin:
-you are making this way too complicated. You should know what im trying to get at to help me wrap this up and youre avoiding it. You said its option proprioception but then say its not reflection, what the fuck does that mean
+you are making this way too complicated. You should know what im trying to get at to help me wrap this up and youre avoiding it. You said its option proprioception but then say its not reflection, what does that mean
 
 GPT-5:
 Right-let’s strip it to bones.
