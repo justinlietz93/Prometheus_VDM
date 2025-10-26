@@ -127,8 +127,23 @@ Proposed in this document is a preregistered experiment to test a central causal
 
 **Runtime estimate & datasets.** Wall‑clock and storage footprints are logged stage‑wise; processed data are CSV/JSON with commit and seed in filenames per RESULTS standards. 
 
-**Success action.** If all gates pass, promote claim to RESULTS_* with T4 grade; register thresholds, figures (with numeric captions), and artifact paths; schedule T5 robustness (out‑of‑sample parameters) and, later, OTOC‑style echo witnesses as an independent thread. 
+**Success action.** If all gates pass, the claim is promoted to **RESULTS_*** with **T4 (Prereg)** grade; thresholds, numeric figure captions, and artifact paths are registered per RESULTS_PAPER_STANDARDS. **T5 (Pilot)** runs are then scheduled to execute the preregistered design at limited scale (multiple seeds/hardware, minimal parameter set). Contingent on T5 success, a **T6 (Main Result)** execution is conducted at full preregistered scope. Post‑T6, **T7 (Out‑of‑sample prediction)** tests and **T8 (Robustness validation & parameter sweeps)** are undertaken. Planning for **T9 (External verification/reproduction)** proceeds in parallel with artifact packaging.
 
+> **Notes for editors (do not include in the final PDF):**
+> – “Register thresholds, figures, and artifact paths” refers to the RESULTS_PAPER_STANDARDS requirements for numeric captions, CSV/JSON basenames, seed+commit in captions, and contradiction reports on gate failure. 
+> – If an independent OTOC/echo‑witness thread is planned, reference it explicitly as a **separate** preregistered investigation that begins after T6 promotion.
+
+---
+
+### Minimal ladder plan for this project (for the “Tier Grade” box)
+
+* **T4 (Prereg):** Formal preregistration and first execution against the stated gates (pass/fail recorded; no novelty claims beyond the preregistered hypothesis). 
+* **T5 (Pilot):** Limited‑scale confirmation of protocol fidelity (multi‑seed/hardware sanity, stable estimates, no scope expansion). 
+* **T6 (Main Result):** Full‑scale preregistered run; artifact‑pinned figures with numeric captions and provenance.
+* **T7 (Out‑of‑sample prediction):** Hold‑out scenarios/circuits/parameter regimes not seen in T4–T6. 
+* **T8 (Robustness & sweeps):** Systematic parameter sweeps and stress tests; document stability regions and failure modes. 
+* **T9 (External verification):** Independent reproduction by external parties; publish repro bundle. 
+ 
 **Failure action.** Emit CONTRADICTION_REPORT (gate, threshold, seed, commit, artifact pointer); analyze guilty lemma versus axioms per proof‑analysis rules; propose revised coupling or scope adjustment and re‑run as T1/T2.  
 
 **Publication / display.** Results will be posted as RESULTS_* whitepaper‑grade documents with MathJax equations, numeric figure captions, provenance, and explicit pass/fail logs. Approvals follow the repository authorization policy (path: `derivation\code\common\authorization\README.md`). 
