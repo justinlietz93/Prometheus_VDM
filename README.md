@@ -1,22 +1,52 @@
 
 # FUM Real‑Time Runtime (Scaffold v3)
 
+**Version:** 1.0.0
+
 > Logical entry point: `fum_rt.run_nexus`
+
+## Installation
+
+### From Source (Development)
+
+```bash
+git clone https://github.com/justinlietz93/Prometheus_VDM.git
+cd Prometheus_VDM
+pip install -e .
+```
+
+### From PyPI (Coming Soon)
+
+```bash
+pip install prometheus-vdm
+```
+
+### Manual Installation
+
+```bash
+pip install -r requirements.txt
+export PYTHONPATH=.
+```
 
 ## Quick start
 
 ### Web Dashboard
 
 ```bash
-pip install -r requirements.txt
+# If installed via pip
+fum-live
+
+# Or run directly
 python fum_live.py
 ```
 
 ### CLI
 
 ```bash
-pip install -r requirements.txt
-export PYTHONPATH=.
+# If installed via pip
+fum-nexus --neurons 800 --hz 10 --domain biology_consciousness --viz-every 5
+
+# Or run directly
 python -m fum_rt.run_nexus --neurons 800 --hz 10 --domain biology_consciousness --viz-every 5
 ```
 
