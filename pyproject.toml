@@ -1,0 +1,71 @@
+[build-system]
+requires = ["setuptools>=45", "wheel", "setuptools_scm>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "prometheus-vdm"
+version = "1.0.0"
+description = "FUM Real-Time Runtime - A real-time void dynamics modulation system"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "Justin Lietz", email = "justinlietz93@github.com"}
+]
+keywords = ["void", "dynamics", "modulation", "physics", "ai", "consciousness", "real-time"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Physics",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+dependencies = [
+    "numpy",
+    "networkx",
+    "matplotlib",
+    "tqdm",
+    "scipy",
+    "ripser",
+    "imageio",
+    "opencv-python",
+    "librosa",
+    "persim",
+    "h5py",
+    "plotly",
+    "dash",
+    "redis",
+    "pypdf2",
+    "statsmodels",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+]
+test = [
+    "pytest",
+]
+
+[project.urls]
+Homepage = "https://github.com/justinlietz93/Prometheus_VDM"
+Documentation = "https://github.com/justinlietz93/Prometheus_VDM/blob/main/README.md"
+Repository = "https://github.com/justinlietz93/Prometheus_VDM"
+Issues = "https://github.com/justinlietz93/Prometheus_VDM/issues"
+
+[project.scripts]
+fum-nexus = "fum_rt.run_nexus:main"
+fum-live = "fum_live:main"
+
+[tool.setuptools]
+packages = ["fum_rt", "fum_rt.api", "fum_rt.ck", "fum_rt.cli", "fum_rt.core", "fum_rt.data", "fum_rt.frontend", "fum_rt.io", "fum_rt.physics", "fum_rt.runtime", "fum_rt.tests", "fum_rt.utils"]
+
+[tool.setuptools.package-data]
+fum_rt = ["io/lexicon/*.json", "data/**/*"]

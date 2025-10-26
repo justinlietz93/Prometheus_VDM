@@ -1,0 +1,27 @@
+include README.md
+include LICENSE
+include CHANGELOG.md
+include requirements.txt
+include pyproject.toml
+recursive-include fum_rt/io/lexicon *.json
+recursive-include fum_rt/data *
+exclude .env
+exclude .trackerignore
+recursive-exclude tests *
+recursive-exclude tools *
+recursive-exclude outputs *
+recursive-exclude runs *
+recursive-exclude docs *
+recursive-exclude HISTORICAL-ARCHIVE *
+recursive-exclude Derivation *
+recursive-exclude IN_PROGRESS *
+recursive-exclude MY_LEARNING *
+recursive-exclude PUBLIC_PLANS *
+recursive-exclude audits *
+recursive-exclude memory-bank *
+recursive-exclude plans *
+recursive-exclude prompts *
+recursive-exclude run_profiles *
+global-exclude __pycache__
+global-exclude *.py[co]
+global-exclude .DS_Store
