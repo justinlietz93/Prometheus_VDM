@@ -1,0 +1,93 @@
+{
+  "tag": "im-substrate-v1",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Intelligence Model — Substrate v1 summary",
+  "type": "object",
+  "required": [
+    "tag",
+    "domain",
+    "provenance",
+    "env",
+    "compliance",
+    "kpi",
+    "artifacts",
+    "policy",
+    "gate_matrix",
+    "status"
+  ],
+  "properties": {
+    "tag": { "type": "string", "const": "im-substrate-v1" },
+    "domain": { "type": "string", "const": "intelligence_model" },
+    "provenance": {
+      "type": "object",
+      "required": ["commit_full", "commit"],
+      "properties": {
+        "commit_full": { "type": "string" },
+        "commit": { "type": "string" }
+      }
+    },
+    "env": {
+      "type": "object",
+      "properties": {
+        "threads": { "type": ["integer", "null"] },
+        "blas": { "type": ["string", "null"] }
+      }
+    },
+    "compliance": {
+      "type": "object",
+      "required": [
+        "probe_only",
+        "real_time",
+        "void_faithful",
+        "determinism"
+      ],
+      "properties": {
+        "probe_only": { "type": "boolean" },
+        "real_time": { "type": "boolean" },
+        "void_faithful": { "type": "boolean" },
+        "determinism": { "type": "boolean" },
+        "determinism_clause": { "type": ["string", "null"] }
+      }
+    },
+    "dimensionless": {
+      "type": "object",
+      "properties": {
+        "Pi_walk": { "type": ["number", "null"] },
+        "Pi_step": { "type": ["number", "null"] }
+      }
+    },
+    "kpi": {
+      "type": "object",
+      "required": ["shared_score_F"],
+      "properties": {
+        "shared_score_F": {
+          "type": "object",
+          "required": ["value"],
+          "properties": {
+            "value": { "type": "number" },
+            "note": { "type": ["string", "null"] }
+          }
+        }
+      }
+    },
+    "artifacts": {
+      "type": "object",
+      "properties": {
+        "figures": { "type": "array", "items": { "type": "string" } },
+        "logs": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "policy": {
+      "type": "object",
+      "properties": {
+        "approved": { "type": "boolean" },
+        "engineering_only": { "type": "boolean" },
+        "quarantined": { "type": "boolean" },
+        "tag": { "type": "string" },
+        "proposal": { "type": ["string", "null"] }
+      }
+    },
+    "gate_matrix": { "type": "object" },
+    "status": { "type": "string", "enum": ["success", "failed", "aborted", "pending"] }
+  }
+}
