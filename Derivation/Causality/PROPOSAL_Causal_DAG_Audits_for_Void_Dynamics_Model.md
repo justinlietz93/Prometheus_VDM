@@ -1,12 +1,7 @@
-# **White Paper Proposal: **Causal DAG Audits for the Void Dynamics Model (VDM)**
+# Causal DAG Audits for the Void Dynamics Model (VDM)
 
-Date: 2025-10-08
-
-## 1. Proposal Title and date
-
-Causal DAG Audits for the Void Dynamics Model (VDM)
-
-Date: 2025-10-08
+**Date:** 2025-10-08
+**Commit:** 09f571e8edaf344582b2db86aa4e5e1bee25c615
 
 ## 2. List of proposers and associated institutions/companies
 

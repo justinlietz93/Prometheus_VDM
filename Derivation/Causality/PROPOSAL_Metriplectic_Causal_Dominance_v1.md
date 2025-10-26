@@ -23,6 +23,8 @@ In local QFT, luminal *front* velocity (not phase/group) encodes microcausality 
 
 ## Classification
 
+**Commit:** 09f571e8edaf344582b2db86aa4e5e1bee25c615
+
 **Axiom‑core** (A2/A4 locality & degeneracy): “J‑cone causal dominance in metriplectic dynamics.”
 
 ## Objective recap
