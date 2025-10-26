@@ -5,7 +5,7 @@
 > **Motivation.** VDM predicted that self‑monitoring agents coupled through a metriplectic flow can **self‑correct** by closing pathologies in a topology via sparse pulses. The Willow result provides an external, independent instance of feedback‑stabilized echoes. We do **not** claim identity; we propose a controlled comparison and a crisp gate: does a metriplectic J+M loop achieve *echo‑like* error suppression under the same classes of disturbances?
 
 > **Provenance.**
-> Commit: `<fill with {git rev-parse HEAD} at merge time>`
+> Commit: `09f571e8edaf344582b2db86aa4e5e1bee25c615`
 > Salted hash (commit‖proposal‑path): `<fill with CI step>`
 
 <!-- Tier ladder appears in your template. Keep grade consistent with RESULTS_* when produced. -->

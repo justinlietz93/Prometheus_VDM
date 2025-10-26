@@ -4,7 +4,7 @@
 **Date:** 2025‑10‑13
 **Tag:** FV‑VoidDebt‑v1
 **Gate Set:** prereg_main
-**Provenance:** commit = {{GIT_COMMIT_AUTOFILL}} · prov_hash = {{SALTED_HASH_AUTOFILL}}
+**Provenance:** commit = 09f571e8edaf344582b2db86aa4e5e1bee25c615 · prov_hash = {{SALTED_HASH_AUTOFILL}}
 
 ---
 
