@@ -2,7 +2,7 @@
 # White Paper Proposal Template
 
 It is MANDATORY and IMPORTANT to include the substance of the outlined topics. The
-length of the proposal should not exceed five U.S. letter-sized pages (including figures and references).
+length of the proposal should not exceed five U.S. letter-sized pages (including figures and references). Language and phrasing in this document should be objective and third perspectivem, placing the VDM as the subject. When describing methods the focus should be on what is predicted, planned, and what will be done rather than using perspective based verbiage (example: "We/I/They propose a metriplectic..." would be wrong. Instead, do this "Proposed in this document is a metriplectic..." or even "VDM proposes a metriplectic...")
 
 > {git rev-parse HEAD} and put the latest commit here for provenance.
 > Additionally, reate a hash salted with the commit and put it here.
