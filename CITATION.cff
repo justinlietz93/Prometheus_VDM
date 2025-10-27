@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite as below."
+title: "Void Dynamics Model (VDM) — Canon, Instruments, and Nexus Architecture"
+type: software
+authors:
+  - family-names: Lietz
+    given-names: Justin K.
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.TBD
+version: "2025.10.27"
+date-released: "2025-10-27"
+keywords:
+  - physics
+  - simulation
+  - metriplectic
+  - reaction-diffusion
+  - visualization
+preferred-citation:
+  type: article
+  title: "VDM Instruments and Canon Anchors (Priority Note)"
+  authors:
+    - family-names: Lietz
+      given-names: Justin K.
+  year: 2025
+  doi: 10.5281/zenodo.TBD

@@ -1,8 +1,0 @@
-FUM Sandbox - reasoning / predictions
-Rhythmic learning
-Functional organs - adc
-neurogenesis - crisis detection through heatmaps
-reading / writing neurons - how to know where to grow neurons and write to the connectome
-efficiency & negligible computation philosophy
-hardware mapping, cerebrum -> mi100, cerebellum -> 7900 XTX, global slow decision making -> CPU
-neuron types - classes of neurons with different behaviors and properties (integrators *purkinje*, messengers *pyramidal*, etc.)
