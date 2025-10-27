@@ -60,8 +60,10 @@ Begin the task by following the instructions below:
 
 ### **Task 0.3 Validation:**
 
-- [ ] Static analysis (clang-tidy/flake8) shows zero write operations under `../derivation/`.  
-- [ ] Manual run of resolver prints located canon files with correct commit hash metadata.
+- [DONE] Static analysis (clang-tidy/flake8) shows zero write operations under `../derivation/`.
+  - Evidence: [`nexus_static_policy_check.py`](VDM_Nexus/scripts/nexus_static_policy_check.py:1) PASS (exit 0) on VDM_Nexus/.
+- [DONE] Manual run of resolver prints located canon files with correct commit hash metadata.
+  - Evidence: [`nexus_resolver_print.py`](VDM_Nexus/scripts/nexus_resolver_print.py:93) --json reported repo_head f36d3481ed7caaff79a55135348bf6687a6b394f and file_last_commit for AXIOMS/EQUATIONS/VALIDATION_METRICS.
 
 ## Phase 1 — Canon & Policy Alignment
 

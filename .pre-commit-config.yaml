@@ -1,0 +1,15 @@
+# Pre-commit hooks for Prometheus_VDM
+# Install locally:
+#   pip install pre-commit
+#   pre-commit install
+# Run on all files (one-time): pre-commit run --all-files
+
+repos:
+  - repo: local
+    hooks:
+      - id: derivation-change-guard
+        name: Derivation Change Guard (CHRONICLES + Canon)
+        entry: python VDM_Nexus/scripts/precommit_derivation_guard.py --mode precommit
+        language: system
+        pass_filenames: false
+        stages: [commit]

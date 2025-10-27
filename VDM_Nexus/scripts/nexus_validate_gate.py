@@ -128,6 +128,57 @@ def canon_diff_gate(base_ref: str, exclusions: List[str]) -> Dict[str, Any]:
         "base_ref": base_ref,
     }
 
+# Canon docs considered "ALL-CAPS" registry for legitimacy checks
+CANON_DOCS = [
+    "Derivation/AXIOMS.md",
+    "Derivation/EQUATIONS.md",
+    "Derivation/VALIDATION_METRICS.md",
+    "Derivation/ROADMAP.md",
+    "Derivation/CANON_MAP.md",
+    "Derivation/SCHEMAS.md",
+    "Derivation/SYMBOLS.md",
+    "Derivation/UNITS_NORMALIZATION.md",
+    "Derivation/OPEN_QUESTIONS.md",
+    "Derivation/ALGORITHMS.md",
+    "Derivation/CANON_PROGRESS.md",
+]
+
+def derivation_policy_warnings(base_ref: str, changed_tracked: List[str]) -> List[Dict[str, Any]]:
+    """
+    Emit non-fatal warnings for Derivation/ changes:
+    - chronicles_missing: CHRONICLES.md not updated alongside tracked Derivation/ changes
+    - canon_docs_missing: no canonical ALL-CAPS docs updated with Derivation/ changes
+
+    Notes:
+    - This is a WARNING-ONLY path (does not flip summary['ok']). Enforcement can be done
+      via pre-commit and CI workflows that call this tool and decide policy.
+    """
+    warnings: List[Dict[str, Any]] = []
+    if not changed_tracked:
+        return warnings
+
+    changed = git_changed_files(base_ref)
+    chronicles_path = "Derivation/CHRONICLES.md"
+
+    # Minimum documentation: CHRONICLES updated when Derivation/ changes occur
+    if chronicles_path not in changed:
+        warnings.append({
+            "code": "chronicles_missing",
+            "message": "Derivation changes detected but Derivation/CHRONICLES.md was not updated. Document pivots/corrections/shuffles to bypass stricter enforcement.",
+            "details": []
+        })
+
+    # Legitimate canon edits: expect at least one ALL-CAPS canon doc in the diff
+    canon_changed = [p for p in changed if p in CANON_DOCS]
+    if not canon_changed:
+        warnings.append({
+            "code": "canon_docs_missing",
+            "message": "Derivation changes detected; no canonical docs updated (EQUATIONS/VALIDATION_METRICS/ROADMAP/etc.). Legitimate changes should update relevant canon files and their dependency chain.",
+            "details": CANON_DOCS
+        })
+
+    return warnings
+
 
 def lint_json_under_vdm_nexus(root: Path) -> Dict[str, Any]:
     """
@@ -219,13 +270,18 @@ def main() -> int:
     checks = args.check or ["canon-diff", "lint"]
     exclusions = args.exclude or DEFAULT_EXCLUSIONS
 
-    summary: Dict[str, Any] = {"ok": True, "base": args.base, "checks": {}, "exclusions": exclusions}
+    summary: Dict[str, Any] = {"ok": True, "base": args.base, "checks": {}, "exclusions": exclusions, "warnings": []}
 
     if "canon-diff" in checks:
         cd = canon_diff_gate(args.base, exclusions)
         summary["checks"]["canon_diff"] = cd
         if not cd["passed"]:
             summary["ok"] = False
+        # Non-fatal policy warnings for Derivation changes
+        if cd["changed_tracked"]:
+            warn = derivation_policy_warnings(args.base, cd["changed_tracked"])
+            if warn:
+                summary["warnings"].extend(warn)
 
     if "lint" in checks:
         lint_summary: Dict[str, Any] = {}
@@ -272,6 +328,14 @@ def main() -> int:
                 print("[canon-diff] FAIL — modified files under tracked canon paths:")
                 for f in cd["changed_tracked"]:
                     print(f"  - {f}")
+            # Loud warnings (non-fatal) for Derivation policy
+            if summary.get("warnings"):
+                print("\n[canon-diff] WARNINGS (non-fatal):")
+                for w in summary["warnings"]:
+                    print(f"  !! {w.get('code', 'policy_warning')}: {w.get('message')}")
+                    details = w.get("details") or []
+                    for d in details:
+                        print(f"     - {d}")
 
         if "lint" in summary["checks"]:
             ls = summary["checks"]["lint"]
