@@ -22,9 +22,9 @@ Begin the task by following the instructions below:
 
 ### Task 0.1 — Align repository baseline
 
-- [ ] Step 0.1.1 — Create `VDM_Nexus/` top-level directory and place [`NEXUS_ARCHITECTURE.md`](VDM_Nexus/NEXUS_ARCHITECTURE.md:1) under version control. — [STARTED]
-- [ ] Step 0.1.2 — Mirror canonical linting/build configurations (clang-format, CMake presets) from existing runtime packages. — [STARTED]
-- [ ] Step 0.1.3 — Document repo pointers (`VDM_REPO_ROOT`, approvals DB paths) in CONTRIBUTING notes. — [STARTED]
+- [STARTED] Step 0.1.1 — Create `VDM_Nexus/` top-level directory and place [`NEXUS_ARCHITECTURE.md`](VDM_Nexus/NEXUS_ARCHITECTURE.md:1) under version control.
+- [STARTED] Step 0.1.2 — Mirror canonical linting/build configurations (clang-format, CMake presets) from existing runtime packages.
+- [STARTED] Step 0.1.3 — Document repo pointers (`VDM_REPO_ROOT`, approvals DB paths) in CONTRIBUTING notes.
 
 **Validation:**  
 
@@ -44,9 +44,9 @@ Begin the task by following the instructions below:
 
 ### Task 0.3 — Wire canon ingestion scaffolding
 
-- [ ] Step 0.3.1 — Add Nexus configuration file referencing anchors in [AXIOMS](../derivation/AXIOMS.md), [EQUATIONS](../derivation/EQUATIONS.md), and [VALIDATION_METRICS](../derivation/VALIDATION_METRICS.md). — [STARTED]
-- [ ] Step 0.3.2 — Set up repository-relative path resolver for `../derivation/` tree with guard rails against writes. (Note: resolver prints AXIOMS/EQUATIONS/VALIDATION_METRICS + commits.) — [STARTED]
-- [ ] Step 0.3.3 — Draft `CanonSync` CLI skeleton (read-only) for future indexing per standards. — [STARTED]
+- [STARTED] Step 0.3.1 — Add Nexus configuration file referencing anchors in [AXIOMS](../derivation/AXIOMS.md), [EQUATIONS](../derivation/EQUATIONS.md), and [VALIDATION_METRICS](../derivation/VALIDATION_METRICS.md).
+- [STARTED] Step 0.3.2 — Set up repository-relative path resolver for `../derivation/` tree with guard rails against writes. (Note: resolver prints AXIOMS/EQUATIONS/VALIDATION_METRICS + commits.)
+- [STARTED] Step 0.3.3 — Draft `CanonSync` CLI skeleton (read-only) for future indexing per standards.
 
 **Validation:**  
 
@@ -57,9 +57,9 @@ Begin the task by following the instructions below:
 
 ### Task 1.1 — Map canonical sources into Nexus surfaces
 
-- [ ] Step 1.1.1 — Inventory all UI text and ensure every physics reference cites [VDM-AX-A0…A7](../derivation/AXIOMS.md#vdm-ax-a0) and relevant equations ([VDM-E-033](../derivation/EQUATIONS.md#vdm-e-033), [VDM-E-090](../derivation/EQUATIONS.md#vdm-e-090), etc.). — [STARTED]
-- [ ] Step 1.1.2 — Link KPI displays to the authoritative entries in [VALIDATION_METRICS.md](../derivation/VALIDATION_METRICS.md#kpi-front-speed-rel-err); remove duplicated thresholds. — [STARTED]
-- [ ] Step 1.1.3 — Ensure Markdown viewer overlays commit hashes on canon documents for provenance. — [STARTED]
+- [STARTED] Step 1.1.1 — Inventory all UI text and ensure every physics reference cites [VDM-AX-A0…A7](../derivation/AXIOMS.md#vdm-ax-a0) and relevant equations ([VDM-E-033](../derivation/EQUATIONS.md#vdm-e-033), [VDM-E-090](../derivation/EQUATIONS.md#vdm-e-090), etc.).
+- [STARTED] Step 1.1.2 — Link KPI displays to definitions in [VALIDATION_METRICS.md](../derivation/VALIDATION_METRICS.md#kpi-front-speed-rel-err); compute pass/fail with thresholds from the active run's spec/schema; do not duplicate thresholds in GUI.
+- [STARTED] Step 1.1.3 — Ensure Markdown viewer overlays commit hashes on canon documents for provenance.
 
 **Validation:**  
 
@@ -68,9 +68,9 @@ Begin the task by following the instructions below:
 
 ### Task 1.2 — Enforce approvals and quarantine policy
 
-- [ ] Step 1.2.1 — Wrap all approval mutations through `[approve_tag.py](../derivation/code/common/authorization/approve_tag.py)`; no inline SQL. — [STARTED]
-- [ ] Step 1.2.2 — Apply environment precedence (CLI > env > `.env`) for approval DB discovery. — [STARTED]
-- [ ] Step 1.2.3 — Pipe unapproved runs through `[io_paths.py](../derivation/code/common/io_paths.py)` quarantine helpers with policy receipts (`engineering_only=true`). — [STARTED]
+- [STARTED] Step 1.2.1 — Wrap all approval mutations through `[approve_tag.py](../derivation/code/common/authorization/approve_tag.py)`; no inline SQL.
+- [STARTED] Step 1.2.2 — Apply environment precedence (CLI > env > `.env`) for approval DB discovery.
+- [STARTED] Step 1.2.3 — Pipe unapproved runs through `[io_paths.py](../derivation/code/common/io_paths.py)` quarantine helpers with policy receipts (`engineering_only=true`).
 
 **Validation:**  
 
@@ -79,22 +79,22 @@ Begin the task by following the instructions below:
 
 ### Task 1.3 — Surface experiment roadmap context
 
-- [ ] Step 1.3.1 — Ingest Tier ladder status from [`VDM-Progress-Findings.md`](../derivation/VDM-Progress-Findings.md) to tag experiments by maturity (T0–T9).
-- [ ] Step 1.3.2 — Map proposed experiments (e.g., quantum gravity bridge, agency field probes, intelligence model substrate) to dashboard cards.
-- [ ] Step 1.3.3 — Flag missing RESULTS for approved proposals and display prerequisites (e.g., missing T5 pilots, robustness sweeps).
+- [ ] Step 1.3.1 — Present Tier ladder status via read-only link to [VDM-Progress-Findings.md](../derivation/VDM-Progress-Findings.md); do not parse Markdown to drive UI state. Tag experiments by maturity (T0–T9) only from structured sources (approvals DB/specs/JSON registries) when available.
+- [ ] Step 1.3.2 — Map proposed experiments (e.g., quantum gravity bridge, agency field probes, intelligence model substrate) to dashboard cards as read-only links; no thresholds or gating derived from Markdown.
+- [ ] Step 1.3.3 — Flag missing RESULTS using structured artifacts (approvals DB and presence of RESULTS_* artifacts/logs); show prerequisites as links to proposal sections only (no Markdown parsing for logic).
 
-**Validation:**  
+**Validation:**
 
-- [ ] Dashboard panel shows accurate counts per Tier with links to proposals/results.  
-- [ ] Cross-reference check verifies no approved proposal lacks a roadmap entry in Nexus.
+- [ ] Dashboard panel shows accurate counts computed from structured sources, with links to proposals/results.
+- [ ] Cross-reference check verifies no approved proposal lacks a roadmap entry in Nexus; canon docs are viewer-only.
 
 ## Phase 2 — Software Architecture Scaffold
 
 ### Task 2.1 — Implement Clean Architecture seams
 
-- [ ] Step 2.1.1 — Define ports in `application/ports/` (`IApprovalRepo`, `IRunnerService`, `ISchemaCatalog`, `IArtifactStore`, `IMarkdownReader`). — [STARTED]
-- [ ] Step 2.1.2 — Create domain models (Experiment, Approval, RunnerSpec, Gate, Artifact, NexusSettings) with serialization tests. — [STARTED]
-- [ ] Step 2.1.3 — Build infrastructure adapters (SQLite repos, filesystem artifact store, runner service, markdown reader) that operate on derivation resources in place. — [STARTED]
+- [STARTED] Step 2.1.1 — Define ports in `application/ports/` (`IApprovalRepo`, `IRunnerService`, `ISchemaCatalog`, `IArtifactStore`, `IMarkdownReader`).
+- [STARTED] Step 2.1.2 — Create domain models (Experiment, Approval, RunnerSpec, Gate, Artifact, NexusSettings) with serialization tests.
+- [STARTED] Step 2.1.3 — Build infrastructure adapters (SQLite repos, filesystem artifact store, runner service, markdown reader) that operate on derivation resources in place.
 
 **Validation:**  
 
@@ -103,11 +103,12 @@ Begin the task by following the instructions below:
 
 ### Task 2.2 — Configure plugin descriptors and schemas
 
-- [ ] Step 2.2.1 — Author `plugins/physics/{domain}.nexus.json` descriptors referencing runner scripts, schemas, specs. — [STARTED]
-- [ ] Step 2.2.2 — Register visualization plugins (PNG viewer, VTK preview, report exporter) with configuration schemas. — [STARTED]
-- [ ] Step 2.2.3 — Provide Nexus-local JSON Schemas for GUI configuration without duplicating physics schemas. — [STARTED]
-- [ ] Step 2.2.4 — Author viz plugin descriptors: [plugins/viz/volume.viz.json](VDM_Nexus/plugins/viz/volume.viz.json), [plugins/viz/flow.viz.json](VDM_Nexus/plugins/viz/flow.viz.json), [plugins/viz/tensor.viz.json](VDM_Nexus/plugins/viz/tensor.viz.json), [plugins/viz/particles.viz.json](VDM_Nexus/plugins/viz/particles.viz.json); define matches/controls/overlays per [NEXUS_ARCHITECTURE.md](VDM_Nexus/NEXUS_ARCHITECTURE.md) §12.5. — [STARTED]
-- [ ] Step 2.2.5 — Define `vdm.run-manifest.v1` JSON Schema at [schemas/vdm.run-manifest.v1.schema.json](VDM_Nexus/schemas/vdm.run-manifest.v1.schema.json) for manifest validation (fields arrays, topology, spacing, KPI map). — [STARTED]
+- [STARTED] Step 2.2.1 — Author `plugins/physics/{domain}.nexus.json` descriptors referencing runner scripts, schemas, specs.
+- [STARTED] Step 2.2.2 — Register visualization plugins (PNG viewer, VTK preview, report exporter) with configuration schemas.
+- [STARTED] Step 2.2.3 — Provide Nexus-local JSON Schemas for GUI configuration without duplicating physics schemas.
+- [STARTED] Step 2.2.4 — Author viz plugin descriptors: [plugins/viz/volume.viz.json](VDM_Nexus/plugins/viz/volume.viz.json), [plugins/viz/flow.viz.json](VDM_Nexus/plugins/viz/flow.viz.json), [plugins/viz/tensor.viz.json](VDM_Nexus/plugins/viz/tensor.viz.json), [plugins/viz/particles.viz.json](VDM_Nexus/plugins/viz/particles.viz.json); define matches/controls/overlays per [NEXUS_ARCHITECTURE.md](VDM_Nexus/NEXUS_ARCHITECTURE.md) §12.5.
+- [STARTED] Step 2.2.5 — Define `vdm.run-manifest.v1` JSON Schema at [schemas/vdm.run-manifest.v1.schema.json](VDM_Nexus/schemas/vdm.run-manifest.v1.schema.json) for manifest validation (fields arrays, topology, spacing, KPI map).
+- [STARTED] Step 2.2.6 — Implement threshold extraction in ISchemaCatalog to surface gating thresholds from spec/schema to the UI (e.g., thermo routing schemas under Derivation/code/physics/thermo_routing/schemas/*.schema.json).
 
 **Validation:**
 
@@ -129,11 +130,11 @@ Begin the task by following the instructions below:
 
 ### Task 3.1 — Implement run pipeline and telemetry
 
-- [ ] Step 3.1.1 — Integrate `DerivationScanner` with filesystem watchers for live domain/spec changes. — [STARTED]
-- [ ] Step 3.1.2 — Launch Python runners via `IRunnerService` with deterministic env (`VDM_REPO_ROOT`, `VDM_APPROVAL_DB`, `VDM_APPROVAL_ADMIN_DB`, optional `VDM_NEXUS=1`). — [STARTED]
-- [ ] Step 3.1.3 — Stream stdout/stderr and structured telemetry into the UI, tagging seeds and commit hashes. — [STARTED]
-- [ ] Step 3.1.4 — Implement in‑situ adapter to write `run-manifest.json` and VTK datasets (`.vti/.vtu/.vtp` or XDMF/HDF5) every N steps; file-watcher hot‑reload in viewport. — [STARTED]
-- [ ] Step 3.1.5 — Optional socket‑coupled streaming (ParaView Catalyst 2 / Ascent) for true live flythrough; toggle per‑run; runner math unchanged. — [NOT STARTED]
+- [STARTED] Step 3.1.1 — Integrate `DerivationScanner` with filesystem watchers for live domain/spec changes.
+- [STARTED] Step 3.1.2 — Launch Python runners via `IRunnerService` with deterministic env (`VDM_REPO_ROOT`, `VDM_APPROVAL_DB`, `VDM_APPROVAL_ADMIN_DB`, optional `VDM_NEXUS=1`).
+- [STARTED] Step 3.1.3 — Stream stdout/stderr and structured telemetry into the UI, tagging seeds and commit hashes.
+- [STARTED] Step 3.1.4 — Implement in‑situ adapter to write `run-manifest.json` (including `experiment_schema` and `spec_path`) and VTK datasets (`.vti/.vtu/.vtp` or XDMF/HDF5) every N steps; file-watcher hot‑reload in viewport.
+- [NOT STARTED] Step 3.1.5 — Optional socket‑coupled streaming (ParaView Catalyst 2 / Ascent) for true live flythrough; toggle per‑run; runner math unchanged.
 
 **Validation:**
 
@@ -142,9 +143,9 @@ Begin the task by following the instructions below:
 
 ### Task 3.2 — Harvest artifacts and generate reports
 
-- [ ] Step 3.2.1 — Enumerate artifacts via `[io_paths.py](../derivation/code/common/io_paths.py)`; compute SHA-256 hashes per PNG/CSV/JSON. — [STARTED]
-- [ ] Step 3.2.2 — Render KPI cards referencing [VALIDATION_METRICS.md](../derivation/VALIDATION_METRICS.md#kpi-kg-energy-osc-slope) with pass/fail badges. — [STARTED]
-- [ ] Step 3.2.3 — Assemble RESULTS bundles complying with `[RESULTS_PAPER_STANDARDS](../derivation/Writeup_Templates/RESULTS_PAPER_STANDARDS.md)` (figures, metrics tables, provenance block). — [STARTED]
+- [STARTED] Step 3.2.1 — Enumerate artifacts via `[io_paths.py](../derivation/code/common/io_paths.py)`; compute SHA-256 hashes per PNG/CSV/JSON.
+- [STARTED] Step 3.2.2 — Render KPI cards linking to [VALIDATION_METRICS.md](../derivation/VALIDATION_METRICS.md#kpi-kg-energy-osc-slope) anchors; compute pass/fail using thresholds from the run’s spec/schema.
+- [STARTED] Step 3.2.3 — Assemble RESULTS bundles complying with `[RESULTS_PAPER_STANDARDS](../derivation/Writeup_Templates/RESULTS_PAPER_STANDARDS.md)` (figures, metrics tables, provenance block).
 
 **Validation:**
 
@@ -168,25 +169,32 @@ Begin the task by following the instructions below:
 ### Task 4.1 — Build dashboard and document viewers
 
 - Note: Phase 4 remains [NOT STARTED] until ports/adapters compile; see [NEXUS_ARCHITECTURE.md](VDM_Nexus/NEXUS_ARCHITECTURE.md) §12.
-- [ ] Step 4.1.1 — Implement Dashboard panes (Active Experiments, Pending Approvals, KPI summaries, orphan proposals). — [NOT STARTED]
-- [ ] Step 4.1.2 — Develop Artifact browser with filters by domain, tag, gate status, run timestamp. — [NOT STARTED]
-- [ ] Step 4.1.3 — Embed Markdown viewer with math rendering, commit banners, anchor navigation. — [NOT STARTED]
+- [NOT STARTED] Step 4.1.1 — Implement Dashboard panes (Active Experiments, Pending Approvals, KPI summaries, orphan proposals).
+- [NOT STARTED] Step 4.1.2 — Develop Artifact browser with filters by domain, tag, gate status, run timestamp.
+- [NOT STARTED] Step 4.1.3 — Implement Proposal/Results Viewer: render PROPOSAL_* and RESULTS_* Markdown with math rendering, commit banners, anchor navigation; read-only.
+- [NOT STARTED] Step 4.1.4 — Implement Experiment Browser (Configs/Specs): list per-domain experiments and open config/spec JSON with a pretty/JSON-path viewer; display repository path and commit hash; read-only (no writes to derivation).
+- [NOT STARTED] Step 4.1.5 — Implement Schema Viewer: open JSON Schemas co-located with runners; validate selected specs against their schema; display validation errors verbatim; viewer-only.
+- [NOT STARTED] Step 4.1.6 — Implement Approvals pane UI: list pending approvals from approvals DB and trigger Approve/Revoke via [approve_tag.py](../derivation/code/common/authorization/approve_tag.py); present CLI password prompt without storing secrets; display receipts (approver, timestamp, HMAC) and refresh DB status.
 
 **Validation:**
 
 - [ ] UX walkthrough captures each pane showing live data and canon hyperlinks.
 - [ ] Accessibility audit (keyboard navigation, contrast) meets WCAG AA.
+- [ ] Experiment Browser opens sample spec [tr_v2_prereg_biased_main.json](derivation/code/physics/thermo_routing/specs/tr_v2_prereg_biased_main.json) read-only and displays repository path + commit hash.
+- [ ] Schema Viewer validates that spec against [thermo-routing-v2-prereg-biased-main.schema.json](derivation/code/physics/thermo_routing/schemas/thermo-routing-v2-prereg-biased-main.schema.json) and displays validation results verbatim.
+- [ ] Proposal/Results Viewer renders [PROPOSAL_Thermodynamic_Routing_v2_Preg_Biased_Main.md](derivation/Thermodynamic_Routing/Prereg_Biased_Main/PROPOSAL_Thermodynamic_Routing_v2_Preg_Biased_Main.md) and a RESULTS doc with commit and salted-hash banners.
+- [ ] Approvals pane triggers [approve_tag.py](derivation/code/common/authorization/approve_tag.py) for an approval and surfaces receipts; DB status reflects the change; no secrets stored.
 
 ### Task 4.2 — Implement viz and telemetry panels
 
-- [ ] Step 4.2.1 — Integrate figure preview (PNG, SVG, MP4) with caption display citing seeds/commits. — [NOT STARTED]
-- [ ] Step 4.2.2 — Add telemetry timelines for metrics like [Connectome entropy](../derivation/VALIDATION_METRICS.md#kpi-connectome-entropy), [Complexity cycles](../derivation/VALIDATION_METRICS.md#kpi-complexity-cycles), memory steering poles, agency C-score components. — [NOT STARTED]
-- [ ] Step 4.2.3 — Provide log viewer for CSV/JSON outputs with schema-aware column formatting. — [NOT STARTED]
-- [ ] Step 4.2.4 — Offer comparison overlays for multi-seed sweeps (e.g., tachyonic spectrum coverage, wave meter absorber efficiency). — [NOT STARTED]
-- [ ] Step 4.2.5 — Build Qt 6 + VTK viewport (QQuickVTK/QVTKOpenGLNativeWidget): iso-values, orthogonal/oblique slices, streamlines (RK4), volume rendering, probe cursors; ROCm/AMD-friendly path. — [NOT STARTED]
-- [ ] Step 4.2.6 — Add navigation/time: fly/turn/orbit controls; time scrubber/stepper; loop/record MP4; scale bar, world axes, unit banners. — [NOT STARTED]
-- [ ] Step 4.2.7 — Add particle trails and tensor glyphs; clipping box; KPI jump-to-gate events. — [NOT STARTED]
-- [ ] Step 4.2.8 — KPI overlay cards hyperlink to canon anchors from [VALIDATION_METRICS.md](../derivation/VALIDATION_METRICS.md); pass/fail badges mirror thresholds verbatim. — [NOT STARTED]
+- [NOT STARTED] Step 4.2.1 — Integrate figure preview (PNG, SVG, MP4) with caption display citing seeds/commits.
+- [NOT STARTED] Step 4.2.2 — Add telemetry timelines for metrics like [Connectome entropy](../derivation/VALIDATION_METRICS.md#kpi-connectome-entropy), [Complexity cycles](../derivation/VALIDATION_METRICS.md#kpi-complexity-cycles), memory steering poles, agency C-score components.
+- [NOT STARTED] Step 4.2.3 — Provide log viewer for CSV/JSON outputs with schema-aware column formatting.
+- [NOT STARTED] Step 4.2.4 — Offer comparison overlays for multi-seed sweeps (e.g., tachyonic spectrum coverage, wave meter absorber efficiency).
+- [NOT STARTED] Step 4.2.5 — Build Qt 6 + VTK viewport (QQuickVTK/QVTKOpenGLNativeWidget): iso-values, orthogonal/oblique slices, streamlines (RK4), volume rendering, probe cursors; ROCm/AMD-friendly path.
+- [NOT STARTED] Step 4.2.6 — Add navigation/time: fly/turn/orbit controls; time scrubber/stepper; loop/record MP4; scale bar, world axes, unit banners.
+- [NOT STARTED] Step 4.2.7 — Add particle trails and tensor glyphs; clipping box; KPI jump-to-gate events.
+- [NOT STARTED] Step 4.2.8 — KPI overlay cards hyperlink to canon anchors from [VALIDATION_METRICS.md](../derivation/VALIDATION_METRICS.md); pass/fail badges mirror thresholds from the active run’s spec/schema.
 
 **Validation:**
 
@@ -236,7 +244,7 @@ Begin the task by following the instructions below:
 
 ### Task 5.3 — Scientific QA integrations
 
-- [ ] Step 5.3.1 — Add automatic gate verification against [VALIDATION_METRICS.md](../derivation/VALIDATION_METRICS.md) thresholds per domain before marking runs PASS.
+- [ ] Step 5.3.1 — Add automatic gate verification against thresholds declared in the run’s spec/schema before marking runs PASS; cross-reference [VALIDATION_METRICS.md](../derivation/VALIDATION_METRICS.md) for definitions only.
 - [ ] Step 5.3.2 — Integrate dataset-level regression checks (e.g., two-grid slope ≥ 2.90 for metriplectic, R² ≥ 0.999 for KG energy oscillation).
 - [ ] Step 5.3.3 — Provide optional rerun triggers for robustness sweeps (T7) and out-of-sample tests (agency/information probes).
 
