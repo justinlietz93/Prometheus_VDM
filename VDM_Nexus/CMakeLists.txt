@@ -25,6 +25,13 @@ add_subdirectory(plugins)
 add_subdirectory(scripts)
 add_subdirectory(tests)
 
+# Build tests by default (compile-only sanity target)
+option(NEXUS_BUILD_TESTS "Build Nexus compile-only tests" ON)
+if(NEXUS_BUILD_TESTS)
+  # Ensure the compile-only test target is built with 'all'
+  add_custom_target(nexus_build_tests ALL DEPENDS nexus_ports_compile)
+endif()
+
 add_executable(physics_nexus_app)
 target_sources(physics_nexus_app
   PRIVATE

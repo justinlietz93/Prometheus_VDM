@@ -1,3 +1,10 @@
+## Scope Guard (Nexus Schemas Only — No Memory Graph, No MCP, No Tokens)
+
+- This directory is restricted to GUI-local schemas required by the Nexus desktop app itself (e.g., [vdm.run-manifest.v1.schema.json](VDM_Nexus/schemas/vdm.run-manifest.v1.schema.json:1)).
+- Do not add memory-graph, MCP, or token/policy schemas here. Those belong under the external tool context at [memory-bank/MEMORY_GRAPH_CONTEXT](memory-bank/MEMORY_GRAPH_CONTEXT/nexus-sessions/nexus-sessions.index.json:1).
+- Nexus is a read-only desktop UI over Derivation artifacts. It does not own or define memory-graph schemas.
+- If a memory-graph schema or policy appears here by mistake, move it to memory-bank/ and remove references in Nexus.
+
 # vdm_nexus/schemas
 
 Nexus-local JSON Schemas for GUI configuration only. Do not duplicate or move physics experiment schemas here.
