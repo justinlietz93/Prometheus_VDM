@@ -1,0 +1,104 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "VDM_Nexus/schemas/vdm.nexus.policy.v1.schema.json",
+  "title": "VDM Nexus Auto-Inject Policy v1",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema": { "const": "vdm.nexus.policy.v1" },
+    "injection": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Decision policy for retrieval auto-injection per-turn",
+      "properties": {
+        "S_min": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Minimum composite score S to auto-inject"
+        },
+        "k_max": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Max number of chunks to inject when decision=inject"
+        },
+        "score_weights": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Weights for composite score S = w_r*r + w_tau*tau + w_rho*rho + w_c*c. Recommended to sum to 1.",
+          "properties": {
+            "w_r": { "type": "number", "minimum": 0, "maximum": 1 },
+            "w_tau": { "type": "number", "minimum": 0, "maximum": 1 },
+            "w_rho": { "type": "number", "minimum": 0, "maximum": 1 },
+            "w_c": { "type": "number", "minimum": 0, "maximum": 1 }
+          },
+          "required": ["w_r", "w_tau", "w_rho", "w_c"]
+        },
+        "component_mins": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Per-component minimums for r, tau, rho, c before a source can be considered",
+          "properties": {
+            "r_min": { "type": "number", "minimum": 0, "maximum": 1 },
+            "tau_min": { "type": "number", "minimum": 0, "maximum": 1 },
+            "rho_min": { "type": "number", "minimum": 0, "maximum": 1 },
+            "c_min": { "type": "number", "minimum": 0, "maximum": 1 }
+          }
+        },
+        "novelty_min": {
+          "type": "number", "minimum": 0, "maximum": 1,
+          "description": "Minimum novelty to allow injection"
+        },
+        "determinism_min": {
+          "type": "number", "minimum": 0, "maximum": 1,
+          "description": "Minimum determinism to allow injection"
+        },
+        "visibility_min": {
+          "type": "number", "minimum": 0, "maximum": 1,
+          "description": "Minimum UI visibility/clarity score to allow injection"
+        },
+        "propose_band": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Decision band for propose instead of inject",
+          "properties": {
+            "S_lower": { "type": "number", "minimum": 0, "maximum": 1 },
+            "S_upper": { "type": "number", "minimum": 0, "maximum": 1 },
+            "k_propose": { "type": "integer", "minimum": 0 }
+          },
+          "required": ["S_lower", "S_upper", "k_propose"]
+        },
+        "token_budget_per_turn": {
+          "type": "integer", "minimum": 0,
+          "description": "Hard cap on total injected tokens per turn"
+        },
+        "token_budget_window": {
+          "type": "integer", "minimum": 1,
+          "description": "Sliding window (turns) to smooth token budgets"
+        },
+        "latency_slo_ms": {
+          "type": "number", "minimum": 0,
+          "description": "Latency service-level objective for retrieval/injection"
+        }
+      },
+      "required": ["S_min", "k_max", "score_weights", "token_budget_per_turn", "token_budget_window", "latency_slo_ms"]
+    },
+    "audit": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Audit/writeback policy for MCP observations and logs",
+      "properties": {
+        "emit_mcp_observation": { "type": "boolean" },
+        "mcp_tool": { "type": "string", "description": "MCP tool name for writeback (if enabled)" },
+        "log_jsonl_path": { "type": "string", "description": "Optional local JSONL audit path for signals/writebacks" },
+        "redact_fields": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Field paths to redact before emission (e.g., text.input_text)"
+        }
+      },
+      "required": ["emit_mcp_observation"]
+    }
+  },
+  "required": ["schema", "injection"]
+}

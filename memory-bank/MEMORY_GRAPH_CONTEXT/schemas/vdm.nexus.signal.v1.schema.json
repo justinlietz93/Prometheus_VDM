@@ -1,0 +1,133 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "VDM_Nexus/schemas/vdm.nexus.signal.v1.schema.json",
+  "title": "VDM Nexus Signal v1",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema": { "const": "vdm.nexus.signal.v1" },
+    "session": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "set_id": { "type": "string", "minLength": 1 },
+        "session_id": { "type": "string", "minLength": 1 },
+        "turn_id": { "type": ["integer", "string"] },
+        "timestamp_utc": { "type": "string", "format": "date-time" }
+      },
+      "required": ["set_id", "session_id", "turn_id", "timestamp_utc"]
+    },
+    "user": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "role": { "type": "string", "enum": ["user", "assistant", "system", "tool"] },
+        "actor_id": { "type": "string" }
+      },
+      "required": ["role"]
+    },
+    "llm": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "model_id": { "type": "string", "minLength": 1 },
+        "input_tokens": { "type": "integer", "minimum": 0 },
+        "output_tokens": { "type": "integer", "minimum": 0 },
+        "latency_ms": { "type": "number", "minimum": 0 }
+      },
+      "required": ["model_id", "input_tokens", "output_tokens", "latency_ms"]
+    },
+    "text": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "input_text": { "type": "string" },
+        "output_text": { "type": "string" }
+      },
+      "required": ["input_text"]
+    },
+    "retrieval": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "applied": { "type": "boolean" },
+        "injected_k": { "type": "integer", "minimum": 0 },
+        "score_S": { "type": "number", "minimum": 0, "maximum": 1 },
+        "components": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "r": { "type": "number", "minimum": 0, "maximum": 1 },
+            "tau": { "type": "number", "minimum": 0, "maximum": 1 },
+            "rho": { "type": "number", "minimum": 0, "maximum": 1 },
+            "c": { "type": "number", "minimum": 0, "maximum": 1 }
+          },
+          "required": ["r", "tau", "rho", "c"]
+        },
+        "novelty": { "type": "number", "minimum": 0, "maximum": 1 },
+        "determinism": { "type": "number", "minimum": 0, "maximum": 1 },
+        "visibility": { "type": "number", "minimum": 0, "maximum": 1 },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "path": { "type": "string", "minLength": 1 },
+              "commit": { "type": "string" },
+              "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+              "anchor": { "type": "string" },
+              "score": { "type": "number" },
+              "reason": { "type": "string" }
+            },
+            "required": ["path"]
+          }
+        }
+      },
+      "required": ["applied", "injected_k", "score_S", "components", "sources"]
+    },
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "decision": { "type": "string", "enum": ["inject", "propose", "skip"] },
+        "S_min": { "type": "number", "minimum": 0, "maximum": 1 },
+        "k_max": { "type": "integer", "minimum": 0 },
+        "token_budget_per_turn": { "type": "integer", "minimum": 0 },
+        "token_budget_window": { "type": "integer", "minimum": 1 },
+        "latency_slo_ms": { "type": "number", "minimum": 0 }
+      },
+      "required": ["decision", "S_min", "k_max"]
+    },
+    "mcp": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "observations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+              "tool": { "type": "string" },
+              "resource": { "type": "string" },
+              "payload": { "type": "object" }
+            }
+          }
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "repo_head": { "type": "string" },
+        "nexus_commit": { "type": "string" },
+        "seed": { "type": "integer" },
+        "app_version": { "type": "string" }
+      },
+      "required": ["repo_head"]
+    }
+  },
+  "required": ["schema", "session", "user", "llm", "text", "retrieval", "policy", "provenance"]
+}
