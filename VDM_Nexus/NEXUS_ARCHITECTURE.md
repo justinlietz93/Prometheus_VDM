@@ -113,6 +113,108 @@ presentation → application → ports ← infrastructure
 - `IPhysicsEngine` interface may bind to C++ metriplectic backends (Eigen/OpenMP baseline, HIP/ROCm optional) once validated; GUI switches remain read-only until corresponding gates graduate.
 - CanonSync-style indexing of markdown canon is permitted only if it remains read-only, stores commit + salted hash, and offers purge controls to avoid stale copies.
 
+## 12. Viewport & In‑Situ Visualization
+
+This section defines the AMD/ROCm‑friendly, precision‑first visualization pathway that preserves runner primacy and canon gates while enabling a game‑like 3D viewport.
+
+### 12.1 Stack (diagram in words)
+
+Runners (unchanged) → In‑situ adapter → Viewport(s) → Artifacts & Reports
+
+- Runners: scripts under `../derivation/code/physics/*` remain the single source of truth. Nexus never forks equations, thresholds, or gates; UI is read‑only.
+- In‑situ adapter: a tiny library called when `--gui_mode` is present or `VDM_NEXUS=1` is set. It publishes fields per step as VTK XML datasets (ImageData / StructuredGrid / UnstructuredGrid) with metadata (commit, seed, Δt, units).
+- Viewport(s):
+  - Desktop: Qt 6 + VTK (QQuickVTK / QVTKOpenGLNativeWidget) provides a 3D viewport with orbit/pan/fly, time scrubber, slices, isosurfaces, streamlines, volume rendering, and probe cursors.
+  - Remote/Web (optional): mirror via vtk.js or ParaView Live (Catalyst 2).
+- Artifacts & Reports: PNG/CSV/JSON are harvested strictly from runners and gated against canon thresholds from [VALIDATION_METRICS.md](../derivation/VALIDATION_METRICS.md). The GUI never “recalculates physics,” only renders/annotates and hyperlinks KPI cards to anchors.
+
+### 12.2 Minimal data contract (stable)
+
+On every publish (per step or per N frames), the adapter writes/streams:
+```json
+{
+  "schema": "vdm.run-manifest.v1",
+  "repo_commit": "<git-hash>",
+  "seed": 12345,
+  "dt": 0.0005,
+  "t": 1.234,
+  "domain": "kg_rd_metriplectic",
+  "fields": [
+    {"name":"phi_J","kind":"scalar","topology":"image","grid":[Nx,Ny,Nz],"spacing":[dx,dy,dz]},
+    {"name":"phi_M","kind":"scalar","topology":"image"},
+    {"name":"u","kind":"vector","topology":"image"},
+    {"name":"mesh","kind":"unstructured","cells":"tet"},
+    {"name":"particles","kind":"points","attribs":["x","v","mass"]}
+  ],
+  "kpis": {"front_speed_rel_err": 0.031, "kg_energy_osc_slope": -1.98}
+}
+```
+- Datasets: `.vti/.vtu/.vtp` (VTK XML) or XDMF/HDF5.
+- Manifest: co‑located with canonical outputs; read‑only to the GUI; provenance (SHA‑256 + file sizes) recorded.
+
+### 12.3 Viewport features (precision‑first, game‑nice)
+
+- Navigation: fly/turn/orbit; scale bar; world axes; unit banners.
+- Exploration: iso‑value slider, orthogonal/oblique slices, clipping box, streamlines (RK4) from seeds, particle trails, tensor glyphs.
+- Time: real‑time + stepper; loop/record MP4; jump‑to‑gate‑event when KPI crosses thresholds from [VALIDATION_METRICS.md](../derivation/VALIDATION_METRICS.md).
+- Metrics overlay: KPI cards hyperlink to canon anchors; pass/fail badges mirror thresholds verbatim. No GUI‑side edits of metrics or thresholds.
+
+### 12.4 Clean Architecture seams (viewport alignment)
+
+- `IRunnerService`: spawns runner with `--spec ... --gui_mode` and env `{VDM_REPO_ROOT, VDM_APPROVAL_DB, VDM_APPROVAL_ADMIN_DB, VDM_NEXUS=1}`; fails fast without approvals.
+- `IArtifactStore`: enumerates artifacts via `../derivation/code/common/io_paths.py`, computes hashes, and surfaces canonical paths to the UI.
+- `IMarkdownReader`: renders canon docs read‑only with visible commit hashes.
+- `ISchemaCatalog`: validates run manifests and summary JSONs against schemas before the UI trusts them.
+
+### 12.5 Visualization plugins
+
+- `plugins/viz/volume.viz.json`: maps scalar fields to volume/iso/slice views.
+- `plugins/viz/flow.viz.json`: seeds and streamlines for vector fields.
+- `plugins/viz/tensor.viz.json`: tensor glyphs; `plugins/viz/particles.viz.json`: point sprites + trails.
+- Plugins operate on canonical artifacts only (no copies/renames).
+Example descriptor:
+```json
+{
+  "id": "viz.volume.v1",
+  "matches": {"kind":"scalar","topology":"image"},
+  "controls": {"iso": true, "volume": true, "slice": ["X","Y","Z"]},
+  "overlays": {"kpis":["front_speed_rel_err","kg_energy_osc_slope"]}
+}
+```
+
+### 12.6 In‑situ coupling modes (both ROCm‑friendly)
+
+- File‑coupled (fastest to ship): adapter writes VTK/XDMF every N steps; viewport watches the directory and hot‑reloads.
+- Socket‑coupled (Catalyst 2 / Ascent): adapter streams arrays; ParaView/vtk.js attaches for true live flythrough. Enable per‑run; runner math unchanged.
+
+### 12.7 Runner‑side emission example (Python)
+
+```python
+if os.getenv("VDM_NEXUS") == "1" or args.gui_mode:
+    from vdm_nexus_adapter import Publisher  # minimal lib shipped with Nexus
+    pub = Publisher(out_dir=io_paths.step_dir(run_tag))
+    pub.publish_grid("phi_J", phiJ_array, spacing=(dx,dy,dz))
+    pub.publish_grid("phi_M", phiM_array, spacing=(dx,dy,dz))
+    pub.publish_vector("u", u_array)
+    pub.publish_particles("particles", X, V, mass)
+    pub.publish_kpis({"front_speed_rel_err": fs_err, "kg_energy_osc_slope": slope})
+```
+
+### 12.8 QML hook (conceptual)
+
+```qml
+QVTKOpenGLNativeWidget {
+  id: viewport
+  anchors.fill: parent
+  Component.onCompleted: VizController.attach(viewport, manifestPath)
+}
+```
+
+### 12.9 ROCm/AMD profile
+
+- Desktop path uses Qt 6 + VTK OpenGL2 backend; acceleration via VTK‑m; optional Ascent/HIP backends when validated.
+- CUDA is unsupported in Nexus; AMD/ROCm is the preferred GPU path. All KPI gates reference [VALIDATION_METRICS.md](../derivation/VALIDATION_METRICS.md) anchors.
+
 ---
 
 Adhering to these standards keeps Nexus in lockstep with the Void Dynamics Model canon while delivering reproducible, policy-compliant experiment orchestration.
