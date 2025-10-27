@@ -1,0 +1,46 @@
+# Template CI workflow for promoting into .github/workflows/nexus-lint.yml
+# Scope: read-only checks. Keeps enforcement focused on VDM_Nexus and a canon-diff gate with explicit exclusions.
+
+name: Nexus Lint (template)
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: ["**"]
+
+jobs:
+  nexus-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y jq clang-format
+          python -m pip install --upgrade pip
+
+      - name: Run Markdown hygiene (optional)
+        run: |
+          if [ -f tools/md_hygiene_check.py ]; then
+            python tools/md_hygiene_check.py
+          else
+            echo "skip: tools/md_hygiene_check.py not found"
+          fi
+
+      - name: Canon-diff gate and Nexus lint
+        run: |
+          python VDM_Nexus/scripts/nexus_validate_gate.py \
+            --base origin/main \
+            --check canon-diff \
+            --check lint \
+            --json
