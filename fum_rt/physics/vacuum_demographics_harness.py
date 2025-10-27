@@ -1,5 +1,14 @@
 #!/usr/bin/env python3
-"""Vacuum demographics harness for the cosmology router vacuum channel.
+"""
+Copyright © 2025 Justin K. Lietz, Neuroca, Inc. All Rights Reserved.
+
+This research is protected under a dual-license to foster open academic
+research while ensuring commercial applications are aligned with the project's ethical principles.
+
+Commercial use of proprietary VDM code requires written permission from Justin K. Lietz.
+See LICENSE file for full terms.
+
+Vacuum demographics harness for the cosmology router vacuum channel.
 
 This script mirrors the reproducibility pattern used by the other physics
 runners.  It ingests a synthetic (or user-supplied) horizon activity tape,

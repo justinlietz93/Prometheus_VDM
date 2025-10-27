@@ -1,5 +1,14 @@
 #!/usr/bin/env python3
-"""Generate router-on/off comparison figures for cosmology regressions."""
+"""
+Copyright © 2025 Justin K. Lietz, Neuroca, Inc. All Rights Reserved.
+
+This research is protected under a dual-license to foster open academic
+research while ensuring commercial applications are aligned with the project's ethical principles.
+
+Commercial use of proprietary VDM code requires written permission from Justin K. Lietz.
+See LICENSE file for full terms.
+
+Generate router-on/off comparison figures for cosmology regressions."""
 
 from __future__ import annotations
 

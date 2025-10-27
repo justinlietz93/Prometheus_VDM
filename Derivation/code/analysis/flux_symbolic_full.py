@@ -1,5 +1,14 @@
 #!/usr/bin/env python3
-"""Symbolic CAS: small-N search for discrete flux H_ij.
+"""
+Copyright © 2025 Justin K. Lietz, Neuroca, Inc. All Rights Reserved.
+
+This research is protected under a dual-license to foster open academic
+research while ensuring commercial applications are aligned with the project's ethical principles.
+
+Commercial use of proprietary VDM code requires written permission from Justin K. Lietz.
+See LICENSE file for full terms.
+
+Symbolic CAS: small-N search for discrete flux H_ij.
 
 We use N=2 and the first-order approximation ΔQ ≈ Q'(W) * ΔW (small-step/Taylor).
 Ansatz: H_ij = sum_k c_k * W_i^{a_k} * W_j^{b_k} with monomials up to degree 2.

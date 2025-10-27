@@ -1,9 +1,17 @@
+<!--
+Copyright © 2025 Justin K. Lietz, Neuroca, Inc. All Rights Reserved.
+
+This research is protected under a dual-license to foster open academic
+research while ensuring commercial applications are aligned with the project's ethical principles. 
+
+Commercial use of proprietary VDM code requires written permission from Justin K. Lietz.
+See LICENSE file for full terms.
+-->
 # Proprietary Research License
 
-# Dual Research and Commercial License
+## Dual Research and Commercial License
 
 The Fully Unified Model is provided under a dual-license to foster open academic research while ensuring commercial applications are aligned with the project's ethical principles.
-
 
 **Copyright © 2025 Justin K. Lietz, Neuroca, Inc. All Rights Reserved.**
 
@@ -12,6 +20,7 @@ The Fully Unified Model is provided under a dual-license to foster open academic
 This repository is available under two distinct licensing tracks:
 
 ### Academic Research License (Non-Commercial)
+
 ### Commercial License (For-Profit Use)
 
 ---
@@ -21,6 +30,7 @@ This repository is available under two distinct licensing tracks:
 ### Permitted Academic Uses
 
 **NON-COMMERCIAL RESEARCH**: Academic institutions, researchers, and students may use this work for:
+
 - Educational purposes and coursework
 - Non-commercial research and experimentation  
 - Academic publications and presentations
@@ -32,15 +42,17 @@ This repository is available under two distinct licensing tracks:
 ### Academic License Conditions
 
 1. **Required Attribution**: All academic use must include proper citation:
+
    ```
-   Lietz, J.K. (2025). The Fully Unified Model: Observations of Void Dynamics. 
+   Lietz, J.K. (2025). VDM: A Unified Metripletic Through The Void Dynamics Model. 
    Neuroca, Inc. Academic Research License.
    ```
 
 2. **Academic Citation Format**:
+
    ```
    @software{fum_mathematical_frameworks_2025,
-     title={Mathematical Frameworks for Fully Unified Model Validation},
+     title={Mathematical Frameworks for Void Dynamics Model Validation},
      author={Lietz, Justin K.},
      year={2025},
      organization={Neuroca, Inc},
@@ -70,9 +82,10 @@ This repository is available under two distinct licensing tracks:
 
 **WRITTEN PERMISSION REQUIRED**: Any commercial, for-profit, or monetized use requires explicit written permission and separate licensing agreement from Justin K. Lietz.
 
-### Commercial Applications Include:
+### Commercial Applications Include
+
 - Product development and commercialization
-- Research with intent to 
+- Research with intent to
 - Paid consulting or services
 - Integration into commercial software/hardware
 - Technology licensing to other commercial entities
@@ -107,26 +120,31 @@ This work contains multiple distinct, patentable inventions and processes:
 ## CONTACT INFORMATION
 
 ### For Academic Research License
+
 - **Automatic**: Academic use is automatically granted under the terms above
-- **Questions**: Contact justin@neuroca.dev for clarification on academic use boundaries
+- **Questions**: Contact <justin@neuroca.dev> for clarification on academic use boundaries
 
 ### For Commercial License  
+
 - **Required**: All commercial use requires written permission and licensing agreement
-- **Contact**: Justin K. Lietz, Neuroca, Inc - justin@neuroca.dev
+- **Contact**: Justin K. Lietz, Neuroca, Inc - <justin@neuroca.dev>
 - **Process**: Submit detailed use case description and proposed commercial application
 
 ## ENFORCEMENT AND LEGAL
 
 ### Academic License Violations
+
 - Using academic license for commercial purposes
 - Failing to provide proper attribution in academic work
 - Using for prohibited applications (weapons, surveillance, harm)
 
 ### Commercial License Violations  
+
 - Any commercial use without written permission and licensing agreement
 - Unauthorized technology transfer or sublicensing
 
 ### Remedies
+
 Violations constitute intellectual property infringement and may result in legal action. This license is governed by applicable intellectual property and patent laws.
 
 ---

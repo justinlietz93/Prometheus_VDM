@@ -1,0 +1,1516 @@
+{
+  "generated_utc": "2025-10-27T16:34:28Z",
+  "ignore_dirs": [
+    ".cache",
+    ".git",
+    ".idea",
+    ".venv",
+    ".vscode",
+    "Derivation/code/outputs",
+    "VDM_Nexus/build",
+    "__pycache__",
+    "build",
+    "dist",
+    "node_modules",
+    "out",
+    "outputs",
+    "runs",
+    "venv"
+  ],
+  "items": [
+    {
+      "path": "conftest.py",
+      "preview": "\"\"\"Pytest configuration shim to normalize imports.\n\n- Ensures the repository root is present on sys.path so imports like\n  `Prometheus_VDM.*` and `fum_rt.*` resolve reliably during test collection.\n\"\"\"\nimport os\nimport sys\n\nREPO_ROOT = os.path.abspath(os.path.dirname(__file__))\nif REPO_ROOT not in sys.path:\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_live.py",
+      "preview": "from __future__ import annotations\n\nimport argparse\nimport os\n\nfrom fum_rt.frontend.app import build_app\n\n\ndef main() -> None:\n    ap = argparse.ArgumentParser(description=\"VDM Live Dashboard launcher (compat shim).\")\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "test_axiomatic_theory.py",
+      "preview": "#!/usr/bin/env python3\n\"\"\"\nTest suite for validating the axiomatic theory development of VDM.\n\nThis module tests the mathematical consistency and physical validity of the \nrigorously derived theoretical results from axiomatic_theory_development.md.\n\nTests verify:\n1. Discrete-to-continuum mapping exactness\n2. Conservation law validity  \n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": ".codacy/cli-config.yaml",
+      "preview": "",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": ".codacy/cli.sh",
+      "preview": "#!/usr/bin/env bash\n\n\nset -e +o pipefail\n\n# Set up paths first\nbin_name=\"codacy-cli-v2\"\n\n# Determine OS-specific paths\nos_name=$(uname)\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": ".codacy/codacy.yaml",
+      "preview": "runtimes:\n    - dart@3.7.2\n    - go@1.22.3\n    - java@17.0.10\n    - node@22.2.0\n    - python@3.11.11\ntools:\n    - dartanalyzer@3.7.2\n    - eslint@8.57.0\n    - lizard@1.17.31\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "VDM_Nexus/CMakeLists.txt",
+      "preview": "cmake_minimum_required(VERSION 3.24)\n\nproject(physics_nexus\n  VERSION 0.1.0\n  DESCRIPTION \"VDM Nexus desktop application\"\n  LANGUAGES CXX\n)\n\nset(CMAKE_CXX_STANDARD 20)\nset(CMAKE_CXX_STANDARD_REQUIRED ON)\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/__init__.py",
+      "preview": "",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "tools/geom_adapter_stub.py",
+      "preview": "\"\"\"Reference adapter implementations for geometry bundle runs.\n\nThese adapters are primarily intended for smoke-testing the geometry\nbundle workflow. They produce deterministic synthetic activations so\nthat the pipeline can be validated without requiring a fully wired\nmodel. Replace them with project-specific adapters that interface with\nyour actual checkpoints and model layers.\n\"\"\"\n\nfrom __future__ import annotations\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "tools/roo_compact_state.py",
+      "preview": "#!/usr/bin/env python3\n# Row-level compact for VS Code state: caps taskHistory by count + bytes AND\n# caps the entire JSON row by bytes, with aggressive scrubbing of long strings\n# and message-like arrays. Safe: backs up DB, archives pruned tasks.\n\nimport argparse, json, os, sqlite3, sys, time, shutil\nfrom pathlib import Path\nfrom typing import Any, List, Tuple\n\nMESSAGE_KEYS = {\"messages\",\"chunks\",\"diffs\",\"edits\",\"logs\",\"history\",\"items\",\"toolCalls\",\"outputs\",\"events\"}\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "tools/utd_clean.py",
+      "preview": "#!/usr/bin/env python3\nimport argparse, json, re, sys, html, unicodedata\nfrom collections import deque\n\nGLYPH_MAP = str.maketrans({\n    \"\u0192\": \"|\", \"\u02c6\": \"^\", \"-\": \"-\", \"-\": \"-\", \"\u2019\": \"'\",\n    \"\u201c\": '\"', \"\u201d\": '\"', \"\u00b7\": \".\", \"\u2022\": \"-\", \"\u00d7\": \"x\",\n    \"\u2223\": \"|\", \"\u23aa\": \"|\"\n})\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "tools/md_hygiene_check.py",
+      "preview": "#!/usr/bin/env python3\n\"\"\"\nMarkdown hygiene check: UTF-8 (no BOM), mojibake scan, and canonical link paths.\n\nUsage:\n  python Prometheus_VDM/tools/md_hygiene_check.py --root Prometheus_VDM/derivation\n\nExit codes:\n  0 = all checks pass\n  1 = issues found\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "tools/vdm_events_heatmaps.py",
+      "preview": "\n#!/usr/bin/env python3\nimport json, argparse, os, re\nimport numpy as np\nimport pandas as pd\nimport matplotlib.pyplot as plt\n\ndef load_jsonl(path):\n    rows=[]\n    with open(path,\"r\",encoding=\"utf-8\") as f:\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "tools/vdm_events_analyzer.py",
+      "preview": "\n#!/usr/bin/env python3\nimport json, argparse, os, sys, math, re\nfrom collections import defaultdict\nimport numpy as np\nimport pandas as pd\n\ndef load_jsonl(path):\n    rows=[]\n    with open(path,\"r\",encoding=\"utf-8\") as f:\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "tools/axiom_guard.py",
+      "preview": "#!/usr/bin/env python3\n\"\"\"\naxiom_guard.py\n\nEnforces two invariants for the canonical axiomatic file:\n1. Hard termination: no non\u2011whitespace content exists after the termination marker line.\n2. Tag compliance: every theorem/lemma/corollary/conjecture line contains an allowed status tag.\n\nExit codes:\n 0 success\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "tools/golden_run_parity.py",
+      "preview": "#!/usr/bin/env python3\nfrom __future__ import annotations\n\n\"\"\"\nGolden-run parity harness.\n\nPurpose:\n- Compare two completed runs for behavioral parity without re-running the model.\n- Validate that macro emissions and selected 'why' metrics are identical (or within tolerance).\n- Provide basic distribution checks (P50/P99 deltas and two-sample KS statistic) on tick metrics.\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "tools/utd_event_scan.py",
+      "preview": "#!/usr/bin/env python3\nimport os\nimport sys\nimport json\nimport argparse\nimport csv\nimport re\nfrom typing import Iterable, List, Dict, Any, Tuple\n\ndef eprint(*args, **kwargs):\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "tools/extract_say_texts.py",
+      "preview": "#!/usr/bin/env python3\n\n\"\"\"\nScript: extract_say_texts.py\nPurpose: Extract text from 'say' macro events in JSONL logs to CSV/JSONL/text for analysis.\n\nUsage examples:\n  python3 tools/extract_say_texts.py runs/20250818_212345/utd_events.jsonl --out outputs/say_texts.csv --format csv --include-why\n  python3 tools/extract_say_texts.py \"runs/*/utd_events.jsonl\" --format text > outputs/say_texts.txt\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "tools/say_clean_view.py",
+      "preview": "#!/usr/bin/env python3\nimport argparse\nimport json\nimport sys\nimport re\nimport html\nimport os\n\ndef sanitize_text(s: str) -> str:\n    \"\"\"\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "tools/smoke_emissions.py",
+      "preview": "#!/usr/bin/env python3\nfrom __future__ import annotations\n\n\"\"\"\nSmoke emissions verifier.\n\nPurpose:\n- Quick, non-invasive verification that a completed run directory has expected artifacts:\n  * runs/<ts>/utd_events.jsonl with at least one macro emission (default: 'say'), and optionally 'status'\n  * runs/<ts>/events.jsonl with at least one 'tick' record\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "tools/geom_bundle_builder.py",
+      "preview": "\"\"\"Geometry bundle automation for VDM instrumentation runs.\n\nThis script orchestrates the end-to-end workflow described in the\nuser's geometry data capture checklist (sections A-J). It handles run\ndirectory provisioning, provenance capture, activation logging hooks,\nquality checks, and packaging. The heavy lifting of model-specific\nforward passes is delegated to a pluggable adapter that must implement\nthe :class:`GeometryProbeAdapter` protocol.\n\nUsage (basic)::\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/__init__.py",
+      "preview": "",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/Dark_Photons/init_dark_photon_quantum_docs_v2.sh",
+      "preview": "#!/usr/bin/env bash\n# init_dark_photon_quantum_docs_v2.sh\n# Robust version: uses here-docs (no multi-line arg passing). Idempotent.\n# Usage:\n#   ./init_dark_photon_quantum_docs_v2.sh \"<TARGET_DIRECTORY>\"\n\nset -euo pipefail\n\nTARGET_DIR=\"${1:-}\"\nif [[ -z \"${TARGET_DIR}\" ]]; then\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/__init__.py",
+      "preview": "",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/Gravity_Regression/vdm_gravity_regression_pack/scripts/compute_precession.py",
+      "preview": "\nimport argparse, csv, math, os, numpy as np\nimport matplotlib.pyplot as plt\n\ndef load_orbit(path):\n    t,x,y = [],[],[]\n    with open(path) as f:\n        rdr = csv.DictReader(f)\n        for row in rdr:\n            t.append(float(row['time']))\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/Gravity_Regression/vdm_gravity_regression_pack/scripts/graph_checks.py",
+      "preview": "\nimport argparse, os, json, csv, math, networkx as nx\nimport matplotlib.pyplot as plt\nimport numpy as np\n\ndef load_edgelist(path):\n    try:\n        G = nx.read_edgelist(path, delimiter=\",\", data=(('w', float),), create_using=nx.Graph)\n    except Exception:\n        # try without weights\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/Collapse/code/run_a6_collapse.py",
+      "preview": "#!/usr/bin/env python3\nfrom __future__ import annotations\n\nfrom dataclasses import dataclass\nfrom pathlib import Path\nfrom typing import List, Tuple, Dict, Any\n\nimport numpy as np\n\nimport sys\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/Collapse/code/common/io_paths.py",
+      "preview": "# derivation/code/common/io_paths.py\n'''\n# Example usage inside a physics script:\n\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom common.io_paths import figure_path, log_path, write_log\n\ndomain, slug = \"fluid_dynamics\", \"corner_test_r_c_scan\"\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/analysis/fit_H_edge.py",
+      "preview": "#!/usr/bin/env python3\n\"\"\"Fit edge-correction ansatz H_edge using saved deterministic samples.\n\nReads the latest flux_sweep JSON under derivation/outputs/logs/conservation_law,\nreconstructs Connectome adjacency per sample seed, and fits coefficients for\nH_ij = sum_k c_k * phi_k(W_i, W_j) using least squares on equations\n    DeltaQ_i = sum_j (H_ji - H_ij)\n\nBasis functions: [W_i, W_j, W_i*W_j]\n\"\"\"\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/analysis/flux_sweep.py",
+      "preview": "#!/usr/bin/env python3\n\"\"\"Numeric sweep: compute \u0394(sum Q_i) statistics across random seeds.\n\nWrites JSON summary to derivation/code/outputs/logs/conservation_law/flux_sweep_<ts>.json\n\"\"\"\nfrom __future__ import annotations\nimport os, json, time\nfrom pathlib import Path\nimport numpy as np\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/analysis/flux_symbolic_full.py",
+      "preview": "#!/usr/bin/env python3\n\"\"\"Symbolic CAS: small-N search for discrete flux H_ij.\n\nWe use N=2 and the first-order approximation \u0394Q \u2248 Q'(W) * \u0394W (small-step/Taylor).\nAnsatz: H_ij = sum_k c_k * W_i^{a_k} * W_j^{b_k} with monomials up to degree 2.\nSolve linear equations for coefficients c_k such that \u0394Q_i = sum_j (H_ji - H_ij).\n\"\"\"\nfrom sympy import symbols, diff, log, simplify, expand, collect, Eq, solve_linear_system, Matrix\nfrom sympy import Symbol\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/analysis/optimize_H_params.py",
+      "preview": "#!/usr/bin/env python3\n\"\"\"Optimize free symbolic parameters (tau0,tau1) to minimize RMS_after on deterministic samples.\n\nStrategy:\n- Rebuild symbolic solution (linsolve) for the small-N system as in flux_symbolic_full.py.\n- Keep free symbols (tau0,tau1) as optimization variables.\n- Lambdify H(Wi,Wj,alpha,beta,r,u,...free_params).\n- For numeric evaluation apply protections: np.nan_to_num, then tanh scaling to bound H values.\n- Minimize RMS_after across saved deterministic samples using scipy.optimize.minimize.\n\"\"\"\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/analysis/grid_tau0.py",
+      "preview": "#!/usr/bin/env python3\n\"\"\"Quick grid scan over tau0 to evaluate RMS_after for the symbolic H candidate.\nPrints best tau0 and a small table.\n\"\"\"\nfrom pathlib import Path\nimport sys, json, glob\nROOT = Path(__file__).resolve().parents[3]\nsys.path.append(str(ROOT))\n\nimport numpy as np\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/analysis/flux_symbolic.py",
+      "preview": "#!/usr/bin/env python3\n\"\"\"Symbolic CAS simplification script.\n\nThis script performs symbolic simplifications using a computer algebra system.\n\"\"\"\nfrom sympy import symbols, simplify\n\ndef symbolic_simplification(expr):\n    return simplify(expr)\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/analysis/edge_ansatz_fit.py",
+      "preview": "#!/usr/bin/env python3\n\"\"\"Ansatz coefficient fitting script.\n\nThis script fits coefficients for the ansatz using optimization techniques.\n\"\"\"\nimport numpy as np\nfrom scipy.optimize import curve_fit\n\ndef ansatz(x, a, b):\n    return a * x + b\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/analysis/build_and_test_H_candidate.py",
+      "preview": "#!/usr/bin/env python3\n\"\"\"Construct H_candidate from symbolic solution (fix free params) and validate numerically.\n\nThis script recreates the small-N linear system from ``flux_symbolic_full.py``,\nsolves symbolically for coefficients c_k, substitutes free parameters to zero,\nbuilds H_ij(Wi,Wj), and tests the correction on saved deterministic samples\nfrom the latest `flux_sweep_*.json`.\n\"\"\"\nfrom __future__ import annotations\nimport sys\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/tests/test_policy_enforcement.py",
+      "preview": "#!/usr/bin/env python3\nfrom __future__ import annotations\n\nimport os\nfrom pathlib import Path\n\nimport pytest\n\nfrom common.policy_enforcer import scan_physics_roots\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/tests/test_vdm_equations.py",
+      "preview": "import os\nimport math\nimport numpy as np\nimport pytest\n\nif not os.getenv(\"VDM_TEST_VDM_EQUATIONS\"):\n    pytest.skip(\"Skipping vdm_equations tests unless VDM_TEST_VDM_EQUATIONS=1\", allow_module_level=True)\n\nfrom Derivation.code.common.vdm_equations import (\n    PotentialParams,\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/common/io_paths.py",
+      "preview": "# derivation/code/common/io_paths.py\n'''\n# Example usage inside a physics script:\n\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom common.io_paths import figure_path, log_path, write_log\n\ndomain, slug = \"fluid_dynamics\", \"corner_test_r_c_scan\"\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/common/__init__.py",
+      "preview": "",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/common/constants.py",
+      "preview": "#!/usr/bin/env python3\n# VDM dimensionless helpers (LBM + RD + memory steering)\n\"\"\"\nDimensionless numbers and lattice-unit helpers used across VDM runners.\n\nOverview\n- This module centralizes formulas for common non-dimensional groups and lattice-BGK\n    relationships so experiments remain consistent and easy to audit.\n- It is pure (no I/O) and safe to import in any runner or test.\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/common/data/results_db.py",
+      "preview": "#!/usr/bin/env python3\n\"\"\"\nLightweight results database helper.\n\nContract:\n - One SQLite database per physics domain under Derivation/code/outputs/databases/<domain>.sqlite3\n - One table per experiment script (table name = sanitized script stem, e.g., kg_light_cone)\n - Rows keyed by (tag, batch) where batch is incremental per tag within that table\n - Stores params/metrics/artifacts as JSON text; status and timestamps for lifecycle\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/common/data/__init__.py",
+      "preview": "",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/common/causality/event_dag.py",
+      "preview": "\"\"\"\nEvent DAG construction and minimal analyses (acyclicity, transitive reduction).\n\nGoals\n- Pure-Python, bounded algorithms suited for CI hygiene and small/medium analyses.\n- Caller provides events with (id, t, ...). Edges can be provided explicitly or inferred\n  with a simple precedence rule under a time tolerance.\n\nDefinitions\n- Event: a hashable id and a timestamp float t.\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/common/causality/diagnostics.py",
+      "preview": "\"\"\"\nConvenience diagnostics that compose event_dag and intervals helpers.\n\nThese are pure functions that consume in-memory structures and return dicts.\nNo IO, no approvals-safe for CI and unit tests.\n\"\"\"\nfrom __future__ import annotations\nfrom typing import Dict, Iterable, List, Optional, Sequence, Tuple, Set\n\nfrom .event_dag import build_event_dag, is_acyclic, transitive_reduction\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/common/causality/intervals.py",
+      "preview": "\"\"\"\nAlexandrov interval sampling and order-based dimension/scale diagnostics.\n\nWe operate on an order-only DAG (no metric required). Given event times and a DAG\nadjacency, we:\n- Sample intervals I(p, q) = { x | p \u227a x \u227a q }\n- Compute ordering fraction r = (# comparable pairs)/(N*(N-1)/2)\n- Map r -> d_hat (Myrheim\u2013Meyer estimator) via a calibrated monotone approximation\n- Fit diamond growth |I| vs \u0394t on log\u2013log for a mid-scale window\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/common/causality/__init__.py",
+      "preview": "\"\"\"\nCommon causality helpers (order-only diagnostics)\n\nLightweight utilities to:\n- Build an event DAG from timestamped events (with optional edge inference)\n- Check acyclicity and compute a transitive reduction (TR)\n- Sample Alexandrov intervals and estimate Myrheim\u2013Meyer dimension d\u0302\n- Analyze diamond growth |I| vs \u0394t and summarize diagnostics\n\nDesign:\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/common/authorization/approval.py",
+      "preview": "#!/usr/bin/env python3\nfrom __future__ import annotations\n\nfrom pathlib import Path\nfrom typing import Optional, Tuple, Dict, Any\nimport json\nimport sys\nimport os\nimport hmac\nimport hashlib\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/common/authorization/__init__.py",
+      "preview": "",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/common/domain_setup/__init__.py",
+      "preview": "",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/common/plotting/types.py",
+      "preview": "from __future__ import annotations\nfrom dataclasses import dataclass, field\nfrom typing import Optional, Literal, Tuple\n\n\n@dataclass\nclass PlotSpec:\n    domain: str\n    name: str\n    tag: Optional[str] = None\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/common/plotting/helpers.py",
+      "preview": "from __future__ import annotations\nfrom typing import Sequence, Callable, Optional, Tuple, Dict, Any, List\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nfrom .types import PlotSpec\nfrom .core import apply_style, get_fig_ax, save_figure, write_sidecar, sanitize_for_log\nfrom common.io_paths import build_slug\n\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/common/plotting/primitives.py",
+      "preview": "from __future__ import annotations\n\nfrom typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nfrom .core import get_fig_ax\n\n\n# Small utilities\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/common/plotting/core.py",
+      "preview": "from __future__ import annotations\nfrom pathlib import Path\nfrom typing import Tuple, Dict, Any\nimport json\nimport math\n\nimport matplotlib.pyplot as plt\nfrom matplotlib.figure import Figure\nfrom matplotlib.axes import Axes\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/common/plotting/__init__.py",
+      "preview": "\"\"\"Generic plotting helpers for VDM experiments.\n\nUsage examples:\n    from common.plotting import PlotSpec, plot_line\n    fig_path, (fig, ax) = plot_line(x, y, PlotSpec(domain=\"metriplectic\", tag=\"KG-dispersion-v1\", name=\"dispersion\", xlabel=\"k [1/m]\", ylabel=\"\u03c9 [rad/s]\", title=\"KG dispersion\"))\n\nThis package routes saves via common.io_paths so quarantine/approval is honored automatically (based on env policy).\n\"\"\"\n\nfrom .types import PlotSpec\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/tests/memory_steering/test_memory_steering.py",
+      "preview": "import numpy as np\n\nfrom Prometheus_VDM.derivation.code.physics.memory_steering.memory_steering_acceptance import run_filter\n\n\ndef test_fixed_point_linear():\n    \"\"\"\n    For constant s, the linear, leaky memory converges to M* = g/(g+lam) * s.\n    \"\"\"\n    g, lam = 0.12, 0.08\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/tests/fluid_dynamics/cavity_smoke.py",
+      "preview": "#!/usr/bin/env python3\nimport os, sys, time, json\nimport numpy as np\n\n# Ensure repo root on sys.path for absolute import 'Prometheus_VDM.*'\nimport pathlib\n_P = pathlib.Path(__file__).resolve()\nfor _anc in [_P] + list(_P.parents):\n    if _anc.name == \"Prometheus_VDM\":\n        _ROOT = str(_anc.parent)\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/tests/fluid_dynamics/test_stream_bounce_unit.py",
+      "preview": "#!/usr/bin/env python3\nimport json, time, os\nimport numpy as np\nfrom Prometheus_VDM.derivation.code.physics.fluid_dynamics.fluids.lbm2d import LBM2D, LBMConfig\n\ndef run_test1():\n    cfg = LBMConfig(nx=8, ny=8, tau=0.9, periodic_x=False, periodic_y=False, void_enabled=False)\n    sim = LBM2D(cfg)\n    sim.f[:] = 0.0\n    sim.f[2, 4, 4] = 1.0\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/tests/fluid_dynamics/test_taylor_green_decay.py",
+      "preview": "#!/usr/bin/env python3\n\"\"\"\nTaylor-Green viscosity recovery unit test (fluid_dynamics domain).\n\nPathing rule:\n- Tests live under derivation/code/tests/<domain>/\n- This test checks that \u03bd_fit recovered from E(t) decay matches \u03bd_th within 5% at 256x256.\n\nNo figures/logs are written; this is a fast numeric check.\n\"\"\"\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/tests/fluid_dynamics/test_walkers_noninterference.py",
+      "preview": "#!/usr/bin/env python3\n# Non-interference A/B test for read-only walker announcers\n# Ensures stepping/sensing walkers does not alter the fluid dynamics.\n\nimport numpy as np\n\n# Ensure repo root on sys.path for absolute import 'Prometheus_VDM.*'\nimport sys, pathlib\n_P = pathlib.Path(__file__).resolve()\nfor _anc in [_P] + list(_P.parents):\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/tests/reaction_diffusion/test_rd_acceptance.py",
+      "preview": "#!/usr/bin/env python3\n\"\"\"\nAcceptance guards for RD canonical validations.\n\nThese tests directly call simulation helpers (no file I/O) and assert the same acceptance gates as the reproducible scripts:\n- Front speed: rel_err <= 0.05 and R^2 >= 0.98\n- Dispersion: med_rel_err <= 0.10 and r2_array >= 0.98\n\"\"\"\n\nimport os, sys\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/tests/reaction_diffusion/test_rd_dispersion.py",
+      "preview": "#!/usr/bin/env python3\n\"\"\"\nMinimal unit tests for RD dispersion and Laplacians.\n\nReason: Physics validated via derivation/code/physics scripts; these tests guard formulas and signs.\n\"\"\"\n\nimport os, sys\nimport numpy as np\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/physics/thermo_routing/run_thermo_routing.py",
+      "preview": "#!/usr/bin/env python3\n\"\"\"\nThermodynamic Routing v2 runner (smoke-capable) per preregistration.\n\nFeatures (subset for smoke runs):\n- Approvals enforcement (domain/script/tag) with --allow-unapproved escape hatch.\n- Load spec JSON (grid, geometry, rd, time, analysis, controls, seeds, tag).\n- Metric (DG/AVF-style) step using reaction_diffusion.discrete_gradient module.\n- H-theorem monotonicity tracking with micro-tolerance.\n- No-switch identity checkpoints: hash raw buffers at cadence K and verify equality class\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/physics/thermo_routing/run_tr_v2_prereg_biased_main_aggregate.py",
+      "preview": "#!/usr/bin/env python3\n\"\"\"\nThermodynamic Routing v2 \u2014 Prereg Biased Main (aggregation + gates)\n\nRuns multi-seed simulations and robustness sweeps (injection-site sweep and two-source split),\ncomputes 95% confidence intervals, evaluates prereg gates, and writes a combined JSON summary\nplus CSV logs and at least one figure via io_paths. Leaves the published runner untouched.\n\nAssumptions (documented for prereg transparency):\n- RJ gate: require median R\u00b2 across seeds \u2265 r2_gate (default 0.99). Residual diagnostics reported.\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/physics/thermo_routing/run_tr_v2_prereg_biased_main_full.py",
+      "preview": "#!/usr/bin/env python3\n\"\"\"\nThermodynamic Routing v2 \u2014 Prereg Biased Main (full gates, orchestrator)\n\nThis script honors the prereg spec (Gaussian IC, biased geometry) and runs a\nnumerically guarded AVF step (with line-search backtracking) to avoid overflow.\nIt produces the same artifact set and top-level JSON fields as the published\nrunner, but allows prereg gating and aggregated metrics to be introduced.\n\nNote: The published runner remains untouched. This is an additive orchestrator.\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/physics/thermo_routing/run_tr_v2_prereg_biased_main.py",
+      "preview": "#!/usr/bin/env python3\n\"\"\"\nExperiment: Thermodynamic Routing v2 \u2014 Prereg Biased Main (full gates)\n\nThis script is a dedicated entrypoint that sets its own identity for approvals,\nselects the prereg-biased-main spec by default, and delegates to the published runner.\nIt does not modify the legacy runner.\n\"\"\"\nfrom __future__ import annotations\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/physics/thermo_routing/run_tr_v2_prereg_biased.py",
+      "preview": "#!/usr/bin/env python3\n\"\"\"\nExperiment: Thermodynamic Routing v2 \u2014 Prereg Biased Geometry (full gates)\n\nCreates a dedicated entrypoint for the preregistered biased-geometry run.\nThis does not modify the legacy runner. It sets this script's identity for\nscript-scoped approvals and delegates to the existing implementation.\n\"\"\"\nfrom __future__ import annotations\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/physics/collapse/run_a6_collapse.py",
+      "preview": "#!/usr/bin/env python3\nfrom __future__ import annotations\n\nfrom dataclasses import dataclass\nfrom pathlib import Path\nfrom typing import List, Tuple, Dict, Any\n\nimport numpy as np\n\nimport sys\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/physics/agency/simulate_options_probe.py",
+      "preview": "\nimport numpy as np, pandas as pd, matplotlib.pyplot as plt\n\ndef make_grid(n=21, obstacle_density=0.15, seed=0):\n    rng = np.random.default_rng(seed)\n    grid = np.zeros((n,n), dtype=np.int8)\n    mask = rng.random((n,n)) < obstacle_density\n    grid[mask] = 1\n    c = n//2\n    grid[c, c] = 0\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/physics/tachyonic_condensation/run_tachyon_tube.py",
+      "preview": "#!/usr/bin/env python3\n\"\"\"\nTachyonic tube spectrum & condensation runner (diagonal baseline).\n\nGenerates artifacts for two tags:\n  - tube-spectrum-v1: \u03ba-spectrum across R_sweep (lowest root per \u2113)\n  - tube-condensation-v1: Energy scan E(R) with diagonal quartic condensation\n\nApproval policy: requires tag-specific manifest entry plus DB secrets unless --allow-unapproved is passed (artifacts then quarantined).\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/physics/memory_steering/plot_memory_steering.py",
+      "preview": "\"\"\"\nPlotting helper for memory-steering experiments.\n\n- Parses outputs/memory_steering_results.csv (supports 4- or 5-column stability).\n- Produces figures in outputs/.\n- Prints a concise metrics summary that directly tests the three predictions:\n  1) Junction logistic collapse\n  2) Curvature scaling in the ray limit\n  3) Stability band with write\u2192decay protocol (Retention, Fidelity)\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/physics/memory_steering/memory_steering_acceptance.py",
+      "preview": "\"\"\"\nMemory Steering Acceptance Harness\n\nImplements a leaky first-order memory filter with saturation and runs:\n- Step response: fit pole p and verify fixed point M*.\n- Canonical void target: with g = 1.5 * lam and s \u2261 1, verify M_final \u2248 0.6 (multi-seed).\n- Noise suppression: SNR_out improvement \u2265 3 dB.\n- Boundedness: no post-clamp violations outside [0, 1].\n- Lyapunov monotonicity for constant s (noise-free).\n- Reproducibility: identical sequences for the same seed.\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py",
+      "preview": "#!/usr/bin/env python3\n\"\"\"\nTaylor-Green vortex (2-D) viscosity recovery benchmark for the fluids sector.\n\nCHANGE REASON:\n- Relocated into derivation/code/physics/fluid_dynamics per repo rules (no Prometheus_VDM/bench/).\n- Outputs follow RD harness: derivation/code/outputs/{figures,logs}.\n- Ensures JSON uses native Python types (bool/float) to avoid numpy serialization issues.\n\nOutputs (defaults):\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py",
+      "preview": "#!/usr/bin/env python3\n\"\"\"\nLid-driven cavity (2-D) incompressibility benchmark for the fluids sector.\n\nCHANGE REASON:\n- Relocated into derivation/code/physics/fluid_dynamics per repo rules (no Prometheus_VDM/bench/).\n- Outputs follow RD harness: derivation/code/outputs/{figures,logs}.\n- Ensures JSON uses native Python types to avoid numpy serialization issues.\n\nOutputs (defaults):\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/physics/causality/run_causality_dag_audit.py",
+      "preview": "#!/usr/bin/env python3\n\"\"\"\nOrder-only Causal DAG Audit Runner\n\nIngests JSONL event streams, constructs an order-only DAG, samples Alexandrov\nintervals, estimates an effective dimension from ordering fraction, and fits\ndiamond scaling |I| vs \u0394t on a log\u2013log plot.\n\nArtifacts are written via common.io_paths with policy-aware quarantine routing.\nApproval is enforced via common.authorization.approval.check_tag_approval.\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/physics/rd_conservation/run_rd_conservation.py",
+      "preview": "#!/usr/bin/env python3\n\"\"\"\nRD Conservation Harness (Obj-A/B/C scaffolding) - periodic BC default.\n\n- Uses derivation/code/common/io_paths.py for logs/figures.\n- Places artifacts under code/outputs/{logs,figures}/rd_conservation.\n\"\"\"\nfrom __future__ import annotations\nimport json\nfrom pathlib import Path\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/physics/intelligence_model/__init__.py",
+      "preview": "",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/run_kg_dispersion.py",
+      "preview": "#!/usr/bin/env python3\nfrom __future__ import annotations\n\nfrom dataclasses import dataclass\nfrom pathlib import Path\nfrom typing import List, Dict, Any, Tuple\n\nimport numpy as np\nimport sys\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/run_kg_energy_oscillation.py",
+      "preview": "#!/usr/bin/env python3\nfrom __future__ import annotations\n\nimport json\nfrom dataclasses import dataclass\nfrom pathlib import Path\nfrom typing import List, Tuple, Dict, Any\nimport numpy as np\nimport sys\nimport hashlib\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/kg_noether.py",
+      "preview": "#!/usr/bin/env python3\n\nfrom dataclasses import dataclass\nfrom pathlib import Path\nfrom typing import Dict, Any, List, Tuple\n\nimport numpy as np\n\n# Ensure code root on sys.path\nimport sys\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/j_step.py",
+      "preview": "#!/usr/bin/env python3\n\"\"\"\nJ-step (conservative) for metriplectic composition.\n\nImplements an exact periodic advection update via spectral phase rotation:\n    W(x, t + dt) = W(x - c dt, t)\nThis update is unitary (L2-preserving), volume-preserving, and reversible.\n\nNote: This surrogate J-step serves as a symplectic-like conservative flow for a\nsingle field W, avoiding the need for explicit (phi, pi) pairs while preserving\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/compose.py",
+      "preview": "#!/usr/bin/env python3\n\"\"\"\nMetriplectic composition utilities:\n - M-only: reuse DG RD step from RD harness\n - J-only: spectral advection J step\n - J \u2295 M (Strang): J(dt/2) \u2192 M(dt) \u2192 J(dt/2)\n\"\"\"\nfrom __future__ import annotations\nimport sys\nfrom pathlib import Path\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/run_kg_rd_metriplectic.py",
+      "preview": "#!/usr/bin/env python3\nfrom __future__ import annotations\nimport json\nimport sys\nfrom dataclasses import dataclass\nfrom pathlib import Path\nfrom typing import Dict, Any, List, Tuple\n\nimport numpy as np\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/run_metriplectic.py",
+      "preview": "#!/usr/bin/env python3\nfrom __future__ import annotations\nimport json\nimport sys\nfrom dataclasses import dataclass\nfrom pathlib import Path\nfrom typing import Dict, Any, List\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/metriplectic_structure_checks.py",
+      "preview": "#!/usr/bin/env python3\nfrom __future__ import annotations\n\nfrom dataclasses import dataclass\nfrom pathlib import Path\nfrom typing import Dict, Any, Tuple\n\nimport numpy as np\n\n# sys.path setup\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/kg_ops.py",
+      "preview": "#!/usr/bin/env python3\nfrom __future__ import annotations\nimport numpy as np\nfrom typing import Tuple\n\n\ndef _omega(N: int, dx: float) -> np.ndarray:\n    k_cyc = np.fft.fftfreq(N, d=dx)\n    return 2.0 * np.pi * k_cyc\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/run_kg_light_cone.py",
+      "preview": "#!/usr/bin/env python3\nfrom __future__ import annotations\n\nfrom dataclasses import dataclass\nfrom pathlib import Path\nfrom typing import Tuple, Dict, Any, List\n\nimport numpy as np\nimport sys\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/physics/reaction_diffusion/reaction_exact.py",
+      "preview": "#!/usr/bin/env python3\n\"\"\"\nReaction-exact step for the logistic on-site law in RD:\n\ndW/dt = r W - u W^2, with closed form update over dt:\n\nW(t+dt) = ( r W(t) e^{r dt} ) / ( u W(t) (e^{r dt} - 1) + r ).\n\nAssumptions: r>0, u>=0 typical; numerically stabilized via expm1.\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py",
+      "preview": "#!/usr/bin/env python3\n\"\"\"\nRD dispersion validation (linear regime) for Fisher-KPP:\n    \u2202t u = D \u2202xx u + r u (1 - u)\nLinearized about u\u22480: u_t \u2248 D u_xx + r u\n\nPredictions:\n  Continuum:  \u03c3_c(k) = r - D k^2\n  Discrete (periodic second-difference):  \u03c3_d(m) = r - (4 D / dx^2) sin^2(\u03c0 m / N)\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py",
+      "preview": "#!/usr/bin/env python3\n\"\"\"\nRD front-speed validation for Fisher-KPP:\n    \u2202t u = D \u2202xx u + r u (1 - u)\n\nTheory:\n    Minimal pulled-front speed c_th = 2 * sqrt(D * r)\n\nOutputs (defaults):\n    - derivation/code/outputs/figures/<script>_<timestamp>.png\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/physics/reaction_diffusion/rd_front_speed_sweep.py",
+      "preview": "#!/usr/bin/env python3\n\"\"\"\nRD Fisher-KPP front-speed sweep runner.\n\nRuns multiple configurations of the experiment script and writes a CSV summary\nunder: derivation/code/outputs/logs/rd_front_speed_sweep_YYYYMMDDThhmmssZ.csv\n\nUsage (PowerShell, always in venv):\n  & .\\venv\\Scripts\\Activate.ps1\n  python Prometheus_VDM/derivation/code/physics/rd_front_speed_sweep.py\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/physics/quantum/run_vdm_triad_prereg.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nVDM Particle\u2013Triad Analogy (prereg v1) runner scaffold\n\nPolicy:\n- Enforce approvals (DB-backed) before any artifacts.\n- Emit compliance snapshot (probe-limit, determinism receipts, RJ diagnostic basis toggle present, memory field read-only when attached).\n- Use ONLY common helpers (authorization, io_paths, vdm_equations, constants).\n- Produce RESULTS-grade JSON/PNG scaffolds via io_paths; quarantine on unapproved runs.\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/physics/quantum/__init__.py",
+      "preview": "",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/physics/cosmology/run_frw_balance.py",
+      "preview": "#!/usr/bin/env python3\nfrom __future__ import annotations\n\nfrom dataclasses import dataclass\nfrom pathlib import Path\nfrom typing import Dict, Any, List\n\nimport numpy as np\n\nimport sys\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/physics/dark_photons/run_dp_noise_budget.py",
+      "preview": "#!/usr/bin/env python3\nfrom __future__ import annotations\n\nfrom dataclasses import dataclass\nfrom pathlib import Path\nfrom typing import Dict, Any\n\nimport numpy as np\n\nimport sys\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/physics/dark_photons/run_dp_fisher_check.py",
+      "preview": "#!/usr/bin/env python3\nfrom __future__ import annotations\n\nfrom dataclasses import dataclass\nfrom pathlib import Path\nfrom typing import Dict, Any\n\nimport numpy as np\n\nimport sys\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/physics/intelligence_model/modules/__init__.py",
+      "preview": "",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/physics/intelligence_model/tests/__init__.py",
+      "preview": "",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/physics/intelligence_model/runners/__init__.py",
+      "preview": "",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/physics/fluid_dynamics/telemetry/walkers.py",
+      "preview": "#!/usr/bin/env python3\n# Read-only, measurement-only walkers + bus + reducer for fluids telemetry.\n# No imports from fum_rt; self-contained.\n\nfrom __future__ import annotations\nfrom dataclasses import dataclass\nfrom typing import List, Dict, Tuple, Iterable, Optional\nimport numpy as np\n\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/physics/fluid_dynamics/fluids/lbm2d.py",
+      "preview": "#!/usr/bin/env python3\n# D2Q9 LBM (BGK) with periodic BCs and bounce-back no-slip walls.\n# Viscosity (lattice units): nu = c_s^2 * (tau - 0.5), c_s^2 = 1/3, dx=dt=1.\n\"\"\"\nCHANGE REASON:\n- Adds the fluids sector minimal solver (LBM\u2192NS) per TODO_up_next plan.\n- Mirrors the repository's proven practice: scripts emit figures + JSON metrics with a 'passed' gate.\n- This module is scoped; it does not alter RD canonical sector. It provides the operational path to NS.\n\nReferences:\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/physics/thermo_routing/passive_thermo_routing/run_ftmc_v1.py",
+      "preview": "#!/usr/bin/env python3\nfrom __future__ import annotations\n\n\"\"\"\nFlux Through Memory Channels v1 runner (frozen map; passive thermodynamic routing)\n\nRequirements:\n- MUST use Derivation/code/common helpers for IO, plotting, approvals.\n- Enforce approvals (domain/script/tag) with optional --allow-unapproved.\n- Emit compliance snapshot per proposal (boundary model, flux convention, map immutability,\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/physics/thermo_routing/wave_flux_meter/run_wave_flux_meter_v1.py",
+      "preview": "#!/usr/bin/env python3\nfrom __future__ import annotations\n\n\"\"\"\nWave Flux Meter v1 (J-only scalar-wave with frozen potential V and Poynting-analog flux)\n\nGoals (Step A: Meter bring-up, closed box):\n- Energy conservation (periodic/reflecting, V=const): relative drift <= 1e-6 over many periods\n- Local balance: \u2202_t e + \u2207\u00b7s = -0.5 (\u2202_t V) \u03c6^2; with frozen V -> RHS=0; L2 residual <= 1e-6 per step\n- Plane-wave calibration in uniform medium: average s error <= 0.5%; refinement halves error (scaffold only)\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/code/physics/thermo_routing/wave_flux_meter/run_wave_flux_meter_openports_v1.py",
+      "preview": "#!/usr/bin/env python3\nfrom __future__ import annotations\n\n\"\"\"\nWave Flux Meter \u2014 Phase B (Open-Ports with Absorber/Sponge) v1\n\nAdds a damping sponge (sigma) near the outer boundary and defines two PORTS\nat the interior\u2013absorber interfaces (left and right windows). Measures:\n - Power balance: dE_interior/dt + (P_left + P_right) \u2248 0\n - Symmetry null: |P_left - P_right| / (P_left + P_right) small for symmetric IC\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/Templates/Domain_Template/code/run.py",
+      "preview": "",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "Derivation/Templates/Domain_Template/code/common/io_paths.py",
+      "preview": "# derivation/code/common/io_paths.py\n'''\n# Example usage inside a physics script:\n\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom common.io_paths import figure_path, log_path, write_log\n\ndomain, slug = \"fluid_dynamics\", \"corner_test_r_c_scan\"\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "tools/dependency_analyzer/setup.py",
+      "preview": "from setuptools import setup, find_packages\n\nsetup(\n    name=\"dependency-analyzer\",\n    version=\"0.1.0\",\n    description=\"A comprehensive dependency analyzer with live updates\",\n    author=\"Your Name\",\n    author_email=\"your.email@example.com\",\n    packages=find_packages(where=\"src\"),\n    package_dir={\"\": \"src\"},\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "tools/code_crawler_2/__main__.py",
+      "preview": "# Updated __main__.py to make --output optional and add extraction-only mode\n\n# ==============================================================================\n# Code Crawler: Main Execution (`__main__.py`)\n# ==============================================================================\n#\n# This script is the primary entry point for the Code Crawler utility. It is\n# designed to be run as a module from the project root using:\n#\n#   python -m code_crawler --input . --output <report_name>\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "tools/code_crawler_2/diagram_generator.py",
+      "preview": "# ==============================================================================\n# Code Crawler: Mermaid Diagram Generator (`diagram_generator.py`)\n# ==============================================================================\n#\n# This module is responsible for generating a Mermaid syntax diagram that\n# represents the file and directory structure of the analyzed project.\n#\n# HOW IT WORKS:\n#   1.  It receives the \"master report\" dictionary from `__main__.py`, which\n#       contains all the file metadata gathered by the analyzer.\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "tools/code_crawler_2/analyzer.py",
+      "preview": "# ==============================================================================\n# Code Crawler: File Analyzer (`analyzer.py`)\n# ==============================================================================\n#\n# This module contains the core logic for analyzing a directory. It is\n# responsible for:\n#   1.  Walking the directory tree from a given root path.\n#   2.  Applying the ignore patterns defined in `config.py` to filter out\n#       unwanted files and directories.\n#   3.  Gathering metadata for each valid file (size, lines of code, language).\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "tools/code_crawler_2/config.py",
+      "preview": "# ==============================================================================\n# Code Crawler: Ignore Patterns (`config.py`)\n# ==============================================================================\n#\n# This file defines the `ignore_patterns` list, which controls which files and\n# directories are excluded from the analysis.\n#\n# HOW IT WORKS:\n# The list is imported by `analyzer.py` and used to filter the file paths\n# during the directory walk. The patterns are simple glob-style strings that\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "tools/code_crawler_2/__init__.py",
+      "preview": "",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "tools/python_utilities_generator/index.tsx",
+      "preview": "\nimport React from 'react';\nimport ReactDOM from 'react-dom/client';\nimport App from './App';\n\nconst rootElement = document.getElementById('root');\nif (!rootElement) {\n  throw new Error(\"Could not find root element to mount to\");\n}\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "tools/python_utilities_generator/constants.ts",
+      "preview": "\nexport const EXAMPLE_QUERIES = [\n    {\n        title: \"Recursive File Crawler\",\n        query: \"a crawler that starts from the directory it's run in and crawls every folder below the script's location recursively, mapping the contents of each file to a single monolithic file with each file contents wrapped in XML and the file path in the tag, and a meta data analysis report at the very top, with the ascii map just below it, ignoring any files in its config.\",\n    },\n    {\n        title: \"Unused Code Detector\",\n        query: \"a tool that finds unused methods or imports, and mismatched dependencies between packages by parsing requirements.txt.\",\n    },\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "tools/python_utilities_generator/types.ts",
+      "preview": "",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "tools/python_utilities_generator/vite.config.ts",
+      "preview": "import path from 'path';\nimport { defineConfig, loadEnv } from 'vite';\n\nexport default defineConfig(({ mode }) => {\n    const env = loadEnv(mode, '.', '');\n    return {\n      define: {\n        'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),\n        'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY)\n      },\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "tools/python_utilities_generator/App.tsx",
+      "preview": "import React, { useState } from 'react';\nimport QueryForm from './components/QueryForm';\nimport ResultsDisplay from './components/ResultsDisplay';\nimport SettingsModal from './components/SettingsModal';\nimport { PythonIcon, GearIcon } from './components/icons';\nimport { generatePythonPackage } from './services/geminiService';\nimport type { GeneratedFile } from './types';\n\nconst App: React.FC = () => {\n    const [isLoading, setIsLoading] = useState<boolean>(false);\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "tools/provenance/generate_manifest.py",
+      "preview": "#!/usr/bin/env python3\n\"\"\"\nVDM Provenance Manifest Generator\n---------------------------------\nPurpose:\n  - Create an immutable, machine-verifiable manifest of the repository state:\n      * SHA-256 per file\n      * Sizes (bytes)\n      * Deterministic tree hash over the set\n      * Git commit and dirty flag\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "tools/python_utilities_generator/services/geminiService.ts",
+      "preview": "import { GoogleGenAI, Type } from \"@google/genai\";\nimport type { GeneratedFile } from \"../types\";\n\nconst API_KEY = process.env.API_KEY;\n\nif (!API_KEY) {\n  throw new Error(\"API_KEY environment variable not set.\");\n}\n\nconst ai = new GoogleGenAI({ apiKey: API_KEY });\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "tools/python_utilities_generator/components/icons.tsx",
+      "preview": "import React from 'react';\n\nexport const PythonIcon = ({ className }: { className?: string }) => (\n  <svg\n    className={className}\n    xmlns=\"http://www.w3.org/2000/svg\"\n    viewBox=\"0 0 24 24\"\n    fill=\"currentColor\"\n    aria-hidden=\"true\"\n  >\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "tools/python_utilities_generator/components/SettingsModal.tsx",
+      "preview": "import React, { useState, useEffect } from 'react';\n\ninterface SettingsModalProps {\n    isOpen: boolean;\n    onClose: () => void;\n    onSave: (settings: { enhancerModel: string; coderModel: string }) => void;\n    initialEnhancerModel: string;\n    initialCoderModel: string;\n}\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "tools/python_utilities_generator/components/ResultsDisplay.tsx",
+      "preview": "\nimport React, { useState, useEffect } from 'react';\nimport type { GeneratedFile } from '../types';\nimport { CopyIcon, CheckIcon } from './icons';\n\ninterface ResultsDisplayProps {\n  files: GeneratedFile[];\n}\n\nconst FileContentDisplay: React.FC<{ content: string }> = ({ content }) => {\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "tools/python_utilities_generator/components/QueryForm.tsx",
+      "preview": "import React, { useState } from 'react';\nimport { EXAMPLE_QUERIES } from '../constants';\nimport { LoadingSpinner, SparklesIcon, PythonIcon } from './icons';\nimport { enhanceUserPrompt } from '../services/geminiService';\n\ninterface QueryFormProps {\n    onGenerate: (query: string) => void;\n    isLoading: boolean;\n    enhancerModel: string;\n}\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "tools/dependency_analyzer/src/dependency_analyzer/cli.py",
+      "preview": "import argparse\nimport os\nimport sys\nimport time\nfrom watchdog.observers import Observer\nfrom watchdog.events import FileSystemEventHandler\nfrom .utils import setup_logging\nfrom .dependency_map import build_dependency_map, scan_dependencies\nfrom .header_manager import process_files\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "tools/dependency_analyzer/src/dependency_analyzer/utils.py",
+      "preview": "import os\nimport sys\nimport logging\nimport pathspec\n\nclass TrackingHandler(logging.Handler):\n    def __init__(self):\n        super().__init__()\n        self.warning_or_higher_count = 0\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "tools/dependency_analyzer/src/dependency_analyzer/file_parsers.py",
+      "preview": "import ast\nimport os\nimport subprocess\nimport json\nimport logging\n\ntry:\n    from bs4 import BeautifulSoup\nexcept ImportError:\n    BeautifulSoup = None\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "tools/dependency_analyzer/src/dependency_analyzer/header_manager.py",
+      "preview": "import os\nimport json\nimport uuid\nimport re\nimport logging\nfrom .utils import list_files_in_directory\n\ndef generate_file_key():\n    return f\"header_key_{uuid.uuid4().hex}\"\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "tools/dependency_analyzer/src/dependency_analyzer/config.py",
+      "preview": "import os\nfrom .file_parsers import parse_python_file, parse_js_file, parse_html_file\n\n# Standard library modules to exclude from external dependencies\nSTANDARD_LIB = {\n    'os', 'sys', 'json', 'ast', 'pathlib', 're', 'time', 'datetime', 'logging', \n    'sqlite3', 'fastapi', 'uvicorn', 'unittest'\n}\n\n# File parsers by extension\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "tools/dependency_analyzer/src/dependency_analyzer/dependency_map.py",
+      "preview": "import os\nimport json\nimport csv\nimport logging\nfrom .config import FILE_PARSERS, DEPENDENCY_TRACKING_DIR\nfrom .utils import load_gitignore, should_ignore\nfrom .validators import check_file_alignment\n\ndef build_dependency_map(root_dir, output_path=None):\n    logging.info(f\"Building dependency map for {root_dir}...\")\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "tools/dependency_analyzer/src/dependency_analyzer/__init__.py",
+      "preview": "",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "tools/dependency_analyzer/src/dependency_analyzer/validators.py",
+      "preview": "import ast\nimport os\nimport json\nimport logging\nfrom .file_parsers import parse_js_file\n\nclass ImportVisitor(ast.NodeVisitor):\n    def __init__(self):\n        self.imports = []\n        self.file_path = \"\"\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "tools/dependency_analyzer/src/dependency_analyzer/scripts/parse_js.js",
+      "preview": "const fs = require('fs');\nconst parser = require('@babel/parser');\nconst path = require('path');\n\nconst filePath = process.argv[2];\n\nif (!filePath) {\n    console.error(JSON.stringify({\n        provides: [],\n        imports: [],\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/io/maps_ring.py",
+      "preview": "\"\"\"\nCompatibility shim for visualization ring buffer.\n\nDeprecated: import from 'fum_rt.io.visualization.maps_ring' instead.\n\nKept for transitional period to avoid breaking existing imports:\n    from fum_rt.io.maps_ring import MapsRing, MapsFrame\n\"\"\"\n\nfrom __future__ import annotations\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/io/ute.py",
+      "preview": "\nimport sys, time, queue, threading, os, json\n\nclass UTE:\n    \"\"\"Universal Temporal Encoder.\n    Feeds inbound messages into a queue the Nexus can poll every tick.\n    Sources implemented: stdin (lines) and synthetic 'tick' generator.\n    \"\"\"\n    def __init__(self, use_stdin=True, inbox_path=None):\n        self.q = queue.Queue(maxsize=1024)\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/io/utd.py",
+      "preview": "import sys, json, os\nfrom fum_rt.io.logging.rolling_jsonl import RollingJsonlWriter\ntry:\n    # Prefer zip spooler when available\n    from fum_rt.io.logging.rolling_jsonl import RollingZipJsonlWriter  # type: ignore\nexcept Exception:\n    RollingZipJsonlWriter = None  # type: ignore\n\nclass UTD:\n    \"\"\"Universal Transduction Decoder.\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/io/__init__.py",
+      "preview": "",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/physics/sidm_curve_harness.py",
+      "preview": "#!/usr/bin/env python3\n\"\"\"SIDM cross-section harness for the cosmology router grain shim.\n\nThis runner mirrors the FUM reproducibility pattern: it takes a velocity grid,\nqueries :class:`~fum_rt.core.cosmology.GrainScatteringShim`, evaluates the\nmonotonicity/acceptance gates, emits JSON logs, and produces a plot with the\npre-registered dwarf\u2192cluster acceptance bands.\n\nUsage (example)::\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/physics/rd_dispersion_runner.py",
+      "preview": "#!/usr/bin/env python3\n\"\"\"\nRD dispersion validation runner (linear regime) for fum_rt.\n\nCHANGE REASON:\n- This file mirrors the validated physics from derivation scripts to the runtime stack.\n- We have PROVEN the RD linear dispersion \u03c3(k) = r - D k^2 via reproducible scripts and derivations:\n  [rd_dispersion_experiment.py](Prometheus_VDM/derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py),\n  [rd_validation_plan.md](Prometheus_VDM/derivation/rd_validation_plan.md),\n  [CORRECTIONS.md](Prometheus_VDM/derivation/computational_proofs/CORRECTIONS.md).\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/physics/pta_correlation_harness.py",
+      "preview": "#!/usr/bin/env python3\n\"\"\"PTA-band correlation proxy harness for the cosmology router.\"\"\"\n\nfrom __future__ import annotations\n\nimport argparse\nimport json\nimport math\nimport os\nimport sys\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/physics/vacuum_demographics_harness.py",
+      "preview": "#!/usr/bin/env python3\n\"\"\"Vacuum demographics harness for the cosmology router vacuum channel.\n\nThis script mirrors the reproducibility pattern used by the other physics\nrunners.  It ingests a synthetic (or user-supplied) horizon activity tape,\npropagates it through :class:`~fum_rt.core.cosmology.VacuumAccumulator`, and\ncompares the resulting equation-of-state residuals against the \u039bCDM baseline.\n\nThe emitted JSON payload follows the RD runner schema: configuration snapshot,\nmetrics, per-sample timeline table, and artifact paths.  The figure plots the\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/physics/harness_logging.py",
+      "preview": "\"\"\"Reusable helpers for cosmology/physics harness logging payloads.\"\"\"\n\nfrom __future__ import annotations\n\nimport hashlib\nimport json\nimport subprocess\nimport time\nfrom typing import Any, Mapping, MutableMapping\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/physics/ci_gates.py",
+      "preview": "\"\"\"CI gate validators for cosmology router harness payloads.\"\"\"\n\nfrom __future__ import annotations\n\nimport json\nfrom typing import Any, Iterable, Mapping, Sequence\n\n\nclass GateViolationError(RuntimeError):\n    \"\"\"Raised when a payload fails a required CI gate.\"\"\"\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/physics/router_regression_figures.py",
+      "preview": "#!/usr/bin/env python3\n\"\"\"Generate router-on/off comparison figures for cosmology regressions.\"\"\"\n\nfrom __future__ import annotations\n\nimport argparse\nimport json\nimport os\nimport sys\nimport time\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/physics/__init__.py",
+      "preview": "\"\"\"Physics solvers and harnesses for the FUM scalar EFT stack.\"\"\"\n\nfrom __future__ import annotations\n\nfrom importlib import import_module\nfrom typing import TYPE_CHECKING, Any\n\n__all__ = [\n    \"compute_kappas\",\n    \"mode_functions\",\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/physics/rd_front_speed_runner.py",
+      "preview": "#!/usr/bin/env python3\n\"\"\"\nRD front-speed validation runner (Fisher-KPP) for fum_rt.\n\nCHANGE REASON:\n- This file mirrors the validated physics from derivation scripts to the runtime stack.\n- We have PROVEN the Fisher-KPP front speed c = 2\u221a(D r) via reproducible scripts and derivations:\n  [rd_front_speed_experiment.py](Prometheus_VDM/derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py:1),\n  [rd_front_speed_validation.md](Prometheus_VDM/derivation/rd_front_speed_validation.md:1),\n  [CORRECTIONS.md](Prometheus_VDM/derivation/computational_proofs/CORRECTIONS.md:1).\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/data/data_manager.py",
+      "preview": "",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/tests/conftest.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nPytest configuration: ensure repo root on sys.path so 'import fum_rt' works when running tests directly.\nNo heavy imports; minimal stdlib only.\n\"\"\"\n\nimport os as _os\nimport sys as _sys\nfrom pathlib import Path as _Path\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/cli/args.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nCLI argument parser for the FUM runtime.\n\nBehavior:\n- Mirrors the legacy make_parser() previously defined in fum_rt/nexus.py exactly.\n- Kept here to reduce nexus.py size and improve separation of concerns.\n\"\"\"\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/core/signals.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nCore signals seam (Phase B): stable function-level API for core numeric signals.\n\nIntent:\n- Define pure, numeric helpers that outside layers can depend on immediately.\n- Initially forward to existing math/state (move-only). No logging/IO/emitters here.\n- Safe defaults return 0.0/0 for unavailable signals to preserve behavior.\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/core/__init__.py",
+      "preview": "",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/frontend/debug_ui.py",
+      "preview": "from __future__ import annotations\n\nimport os\nimport time\nfrom typing import List, Dict, Any\n\nfrom dash import Dash, html, dcc\nfrom dash.dependencies import Input, Output, State  # type: ignore\nimport plotly.graph_objects as go\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/frontend/__main__.py",
+      "preview": "from __future__ import annotations\n\nimport os\n\nfrom .app import build_app\n\n\ndef main() -> None:\n    rr = os.getenv(\"RUNS_ROOT\", \"\").strip() or os.path.abspath(\"runs\")\n    app = build_app(rr)\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/frontend/__init__.py",
+      "preview": "\"\"\"\nFUM Runtime Frontend (modularized)\n\nModules:\n- fs_utils: filesystem helpers (runs listing, JSON IO) - re-exported from utilities.fs_utils\n- tail: tailing JSONL with byte offsets - re-exported from utilities.tail\n- series: streaming metrics buffers and helpers - re-exported from models.series\n- process_manager: launch/stop runtime process from the UI - re-exported from services.process_manager\n- app: Dash app entrypoint (build_app, main)\n\"\"\"\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/runtime/__init__.py",
+      "preview": "# Runtime package initializer for modularized orchestrator components.\n# Exposes submodules for clarity; keep lightweight to avoid side effects.\n# Note: Nexus remains the external fa\u00e7ade; internals live under runtime/*\n__all__ = [\n    \"phase\",\n    \"loop\",\n    \"telemetry\",\n    \"retention\",\n    \"events_adapter\",\n    \"runtime_helpers\",\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/ck/hip_spmv.cpp",
+      "preview": "\n// Minimal HIP CSR SpMV placeholder (A*y = x) with pybind11 bindings.\n// Replace with tuned Composable Kernel kernels as you iterate.\n#include <hip/hip_runtime.h>\n#include <pybind11/pybind11.h>\n#include <pybind11/numpy.h>\nnamespace py = pybind11;\n\n__global__ void spmv_csr_kernel(\n    const int N,\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/ck/build.sh",
+      "preview": "\n    #!/usr/bin/env bash\n    set -euo pipefail\n    python3 - <<'PY'\nimport sys, os, subprocess, textwrap\nfrom pathlib import Path\ncode = r\"\"\"\nfrom setuptools import setup, Extension\nfrom setuptools.command.build_ext import build_ext\nimport os\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/runtime/loop/__init__.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nfum_rt.runtime.loop package facade\n\nEnsures import seam compliance for boundary tests:\n- Imports runtime.telemetry.tick_fold seam.\n- References core.signals seam.\n- Re-exports run_loop from .main.\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/runtime/helpers/viz.py",
+      "preview": "\"\"\"\nRuntime helper: periodic visualization hooks (dashboard and connectome snapshot).\n\nBehavior:\n- Mirrors legacy Nexus logic and the original runtime_helpers.maybe_visualize()\n- Fail-soft and fully optional; never disrupts runtime\n\"\"\"\n\nfrom __future__ import annotations\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/runtime/helpers/speak.py",
+      "preview": "\"\"\"\nRuntime helper: autonomous speaking (composer + speaker gate + novelty IDF).\n\nBehavior:\n- Mirrors legacy Nexus logic for maybe_auto_speak() exactly.\n- Pure runtime helper; safe fail-soft; no side-effects beyond UTD emissions and learned lexicon updates.\n\"\"\"\n\nfrom __future__ import annotations\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/runtime/helpers/ingest.py",
+      "preview": "\"\"\"\nRuntime helper: message ingestion and per-tick symbol/index extraction.\n\nProvides:\n- process_messages(): Mirrors legacy Nexus/runtime behavior while keeping the runtime layer modular.\n\nPolicy:\n- Runtime helpers may import fum_rt.io.* and fum_rt.core.*.\n\"\"\"\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/runtime/helpers/checkpointing.py",
+      "preview": "\"\"\"\nRuntime helper: checkpointing and retention.\n\nProvides:\n- save_tick_checkpoint(): periodic snapshot with retention, behavior-preserving.\n\"\"\"\n\nfrom __future__ import annotations\n\nfrom typing import Any\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/runtime/helpers/macro_board.py",
+      "preview": "\"\"\"\nRuntime helper: macro board registration on UTD emitter.\n\nBehavior:\n- Registers default macros ('status', 'say')\n- Loads per-run macro_board.json entries only (no external fallbacks)\n\"\"\"\n\nfrom __future__ import annotations\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/runtime/helpers/maps_ws.py",
+      "preview": "\"\"\"\nRuntime helper: maps/frame WebSocket bootstrap (bounded, drop-oldest).\n\n- Safe no-op when ENABLE_MAPS_WS is not truthy or when 'websockets' package is missing.\n- Ensures a bounded MapsRing exists on nx._maps_ring (capacity=MAPS_RING, default 3).\n- Starts MapsWebSocketServer once and stores it on nx._maps_ws_server.\n\nThis file is part of the runtime helpers modularization under fum_rt.runtime.helpers.\n\"\"\"\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/runtime/helpers/redis_out.py",
+      "preview": "\"\"\"\nRedis publishing helpers (optional, bounded, void-faithful).\n\n- Publishes status metrics and/or latest maps/frame from the in-process ring to Redis Streams.\n- No schedulers or background threads here; caller invokes once per tick from the runtime loop.\n- Uses MAXLEN trimming to keep Redis bounded (drop-oldest), mirroring in-memory ring semantics.\n\nEnable via env:\n  REDIS_URL=redis://127.0.0.1:6379/0\n  ENABLE_REDIS_STATUS=1\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/runtime/helpers/smoke.py",
+      "preview": "\"\"\"\nRuntime helper: optional one-shot smoke tests (macros and thought ledger).\n\n- Controlled by env flags:\n  - ENABLE_MACROS_TEST\n  - ENABLE_THOUGHTS_TEST\n\nBehavior:\n- Mirrors legacy Nexus logic exactly; guarded and fail-soft.\n\"\"\"\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/runtime/helpers/engram.py",
+      "preview": "\"\"\"\nRuntime helper: engram load and start-step derivation.\n\nBehavior:\n- maybe_load_engram(nx, path): loads engram state into connectome (and ADC if present), logs outcome.\n- derive_start_step(nx, path): derives starting tick index based on provided path or existing state_* files.\n\nThis module provides the real implementations migrated from the legacy runtime_helpers monolith.\n\"\"\"\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/runtime/helpers/status_http.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nOptional in-process HTTP status endpoint (void-faithful; no schedulers).\n\n- Purpose: serve the latest status payload to UI without any file reads.\n- Behavior: starts a tiny HTTP server in a background thread (event-driven, no timers).\n- Endpoint:\n    GET /status  -> 200 JSON of nx._emit_last_metrics (latest per-tick status) or 204 if not yet available\n    GET /health  -> 200 {\"ok\": true}\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/runtime/helpers/emission.py",
+      "preview": "\"\"\"\nRuntime helper: status emission and macro board status.\n\n- Emits open UTD status payload every status_every ticks.\n- Emits a 'status' macro when valence is high (mirrors legacy behavior).\n\nImports typing + telemetry builder only; no IO side effects besides UTD emits.\n\"\"\"\n\nfrom __future__ import annotations\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/runtime/helpers/__init__.py",
+      "preview": "\"\"\"\nRuntime helpers package (modularized).\n\nTransitional re-exports:\n- During migration away from the monolith [runtime_helpers.py](../runtime_helpers.py), we re-export\n  its functions here to provide a stable import path:\n    from fum_rt.runtime.helpers import process_messages, emit_status_and_macro, ...\n- New helpers live as separate modules under this package (e.g., maps_ws.py).\n\"\"\"\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/frontend/styles/theme.py",
+      "preview": "\"\"\"\nDeprecated shim for FUM Frontend Styles.\n\nOld path (legacy):\n  from fum_rt.frontend.styles.theme import get_global_css\n\nNew canonical path:\n  from fum_rt.frontend.styles import get_global_css\n\nThis module delegates to the modular styles package to preserve backward compatibility.\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/frontend/services/process_manager.py",
+      "preview": "import os\nimport sys\nimport time\nimport threading\nimport subprocess\nfrom typing import Any, Dict, List, Tuple\n\n\nclass ProcessManager:\n    \"\"\"\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/frontend/services/status_client.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nLightweight HTTP status client (frontend-only; zero file IO).\n\n- Purpose: fetch the latest runtime status snapshot from the in-process HTTP endpoint\n  to drive live dashboard charts without scanning or tailing JSONL files.\n- Endpoint (served by runtime.helpers.status_http.maybe_start_status_http):\n  GET /status  -> 200 JSON (latest nx._emit_last_metrics) or 204 when not ready\n  GET /health  -> 200 {\"ok\": true}\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/frontend/components/workspace.py",
+      "preview": "from __future__ import annotations\n\nimport os\nfrom typing import List\nfrom dash import html, dcc\n\n\ndef _runs_root_options(runs_root: str):\n    \"\"\"\n    Build candidate runs-root dropdown options:\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/frontend/components/perf.py",
+      "preview": "from __future__ import annotations\n\nfrom dash import html, dcc\n\n\ndef perf_card():\n    \"\"\"\n    UI Performance card (no environment variables required).\n    Publishes settings into dcc.Store(id=\"ui-state\") via callbacks/perf.register_perf_callbacks.\n    \"\"\"\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/frontend/components/layout.py",
+      "preview": "from __future__ import annotations\n\nimport os\nfrom typing import Any, Dict, List\n\nfrom dash import html, dcc\nfrom fum_rt.frontend.components.widgets.file_picker import file_picker_overlay\n\nfrom fum_rt.frontend.components.workspace import workspace_card\nfrom fum_rt.frontend.components.runtime_controls import runtime_controls_card\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/frontend/components/feed.py",
+      "preview": "from __future__ import annotations\n\nfrom typing import List, Dict\nfrom dash import html, dcc\nfrom fum_rt.frontend.components.widgets.file_picker import file_picker\n\n\ndef feed_card(data_files_options: List[Dict[str, str]]):\n    \"\"\"\n    Feed stdin (optional) card.\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/frontend/components/charts.py",
+      "preview": "from __future__ import annotations\n\nfrom dash import html, dcc\nimport plotly.graph_objects as go\nimport os\n\n\ndef charts_card():\n    \"\"\"\n    Charts card - two graphs placed into tabs to preserve existing callbacks and IDs.\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/frontend/components/runtime_controls.py",
+      "preview": "from __future__ import annotations\n\nfrom typing import Dict, Any\nfrom dash import html, dcc\nfrom fum_rt.frontend.components.widgets.file_picker import file_picker\n\n\ndef runtime_controls_card(default_profile: Dict[str, Any]):\n    \"\"\"\n    Runtime tuning + load-engram controls.\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/frontend/components/chat.py",
+      "preview": "from __future__ import annotations\n\nfrom dash import html, dcc\n\n\ndef chat_card():\n    \"\"\"\n    Chat panel with log view, filter, input, and send button.\n    IDs preserved to match existing callbacks in fum_live.py.\n    \"\"\"\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/frontend/models/series.py",
+      "preview": "from __future__ import annotations\n\nimport os\nimport math\nfrom typing import Any, Dict, List\nfrom dataclasses import dataclass\n\n\nclass StreamingZEMA:\n    \"\"\"\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/frontend/controllers/file_picker_ctx.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nFile Picker Dash Context Helpers\n\nAtomic helper(s) to robustly parse Dash callback_context for pattern-matched components.\n\"\"\"\n\nfrom typing import Optional, Dict, Any\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/frontend/controllers/charts_controller.py",
+      "preview": "from __future__ import annotations\n\nimport os\nimport math\nfrom typing import Tuple, Optional\nimport plotly.graph_objs as go\n\nfrom fum_rt.frontend.utilities.tail import tail_jsonl_bytes\nfrom fum_rt.frontend.models.series import SeriesState, append_event, append_say, ffill, extract_tick\nfrom fum_rt.frontend.services.status_client import get_status_snapshot as _get_status\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/frontend/controllers/file_picker_controller.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nFile Picker Controller Utilities\n\nPurpose:\n- Provide bounded, reusable filesystem helpers for the Dash file-picker\n- Centralize path clamping, directory listing, and initial tree construction\n- Ensure safety (no traversal beyond root), performance (scandir), and filtering (exts, dotfiles)\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/frontend/controllers/chat_controller.py",
+      "preview": "from __future__ import annotations\n\nfrom typing import Any, Dict, Iterable, List, Optional\n\n\ndef parse_utd_macro_record(rec: Dict[str, Any]) -> Optional[Dict[str, Any]]:\n    \"\"\"\n    Convert a single UTD macro record into a standardized chat item dict.\n    Expected rec schema (best-effort):\n      { \"type\": \"macro\", \"macro\": \"...\", \"args\": {...}, \"why\": {...} }\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/frontend/controllers/runtime_controller.py",
+      "preview": "from __future__ import annotations\n\nimport os\nfrom typing import Any, Dict, Iterable, Optional\n\nfrom fum_rt.frontend.utilities.profiles import safe_int as _safe_int, safe_float as _safe_float\nfrom fum_rt.frontend.utilities.fs_utils import read_json_file, write_json_file, latest_checkpoint\n\n\ndef build_phase_update(\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/frontend/controllers/__init__.py",
+      "preview": "\"\"\"\nControllers for reusable business logic extracted from Dash callbacks.\n\"\"\"\n\nfrom .runtime_controller import (\n    build_phase_update,\n    update_phase_json,\n    queue_load_engram,\n    parse_engram_events_for_message,\n)\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/frontend/controllers/file_picker_status.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nFile Picker Status/Formatting Controller (atomic helpers)\n\nPurpose:\n- Pure helpers used by Dash callbacks and widgets to compute status strings and sizes\n- Keep IO bounded and consistent with global guards via controller.list_dir()\n\nContracts:\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/frontend/callbacks/workspace.py",
+      "preview": "from __future__ import annotations\n\nfrom typing import List\nfrom dash import Input, Output, State, no_update  # noqa: F401 (bound by Dash at runtime)\nfrom fum_rt.frontend.utilities.fs_utils import list_runs\n\n\ndef register_workspace_callbacks(app, runs_root: str, manager):\n    \"\"\"\n    Workspace-level callbacks:\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/frontend/callbacks/perf.py",
+      "preview": "from __future__ import annotations\n\nfrom typing import Any, Dict, List\nfrom dash import Input, Output  # noqa: F401\n\n\ndef _is_on(v: Any) -> bool:\n    try:\n        return isinstance(v, list) and (\"on\" in v)\n    except Exception:\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/frontend/callbacks/interval.py",
+      "preview": "from __future__ import annotations\n\nfrom typing import Any\nfrom dash import Input, Output  # noqa: F401\n\n\ndef _int_or(v: Any, dv: int) -> int:\n    try:\n        return int(v)\n    except Exception:\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/frontend/callbacks/process.py",
+      "preview": "from __future__ import annotations\n\nimport os\nimport dash\nfrom typing import Any, Dict, Tuple\nfrom dash import Input, Output, State, no_update  # noqa: F401 (bound at runtime)\n\nfrom fum_rt.frontend.utilities.profiles import assemble_profile as _assemble_profile, safe_int as _safe_int, safe_float as _safe_float\nfrom fum_rt.frontend.utilities.fs_utils import latest_checkpoint\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/frontend/callbacks/engram.py",
+      "preview": "from __future__ import annotations\n\nimport os\nfrom dash import Input, Output, State  # noqa: F401\nfrom fum_rt.frontend.utilities.fs_utils import _list_files\n\n\ndef register_engram_callbacks(app):\n    \"\"\"\n    Engram path helpers:\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/frontend/callbacks/logs.py",
+      "preview": "from __future__ import annotations\n\nimport os\nfrom dash import Input, Output  # noqa: F401\n\n\ndef register_logs_callbacks(app, manager):\n    \"\"\"\n    Launcher log viewer:\n      - Streams the tail of the last launcher log written by ProcessManager.\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/frontend/callbacks/feed.py",
+      "preview": "from __future__ import annotations\n\nimport os\nfrom dash import Input, Output, State, no_update  # noqa: F401\nfrom fum_rt.frontend.utilities.pdf_utils import convert_pdf_to_text_file\n\n\ndef register_feed_callbacks(app, manager, repo_root: str):\n    \"\"\"\n    Feed controls:\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/frontend/callbacks/runtime.py",
+      "preview": "from __future__ import annotations\n\nimport os\nfrom dash import Input, Output, State, no_update  # noqa: F401\nfrom fum_rt.frontend.controllers.runtime_controller import (\n    build_phase_update,\n    update_phase_json,\n    queue_load_engram,\n    parse_engram_events_for_message,\n)\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/frontend/callbacks/profile.py",
+      "preview": "from __future__ import annotations\n\nimport os\nimport dash\nfrom typing import Any, Dict, List\nfrom dash import Input, Output, State  # noqa: F401\n\nfrom fum_rt.frontend.utilities.fs_utils import read_json_file, write_json_file\nfrom fum_rt.frontend.utilities.profiles import (\n    assemble_profile as _assemble_profile,\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/frontend/callbacks/charts.py",
+      "preview": "from __future__ import annotations\n\nimport plotly.graph_objs as go\nfrom dash import Input, Output, State, no_update, dcc  # noqa: F401 (Dash binds these at runtime)\nfrom fum_rt.frontend.controllers.charts_controller import compute_dashboard_figures\nfrom fum_rt.frontend.models.series import SeriesState  # for type awareness in compute\n\n\ndef register_chart_callbacks(app):\n    \"\"\"\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/frontend/callbacks/chat.py",
+      "preview": "from __future__ import annotations\n\nimport os\nimport json\nfrom dash import Input, Output, State, no_update  # noqa: F401\n\nfrom fum_rt.frontend.utilities.tail import tail_jsonl_bytes\nfrom fum_rt.frontend.controllers.chat_controller import (\n    items_from_utd_records,\n    items_from_inbox_records,\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/frontend/utilities/tail.py",
+      "preview": "import os\nimport json\nfrom typing import Any, Tuple, List\n\n\ndef _parse_jsonl_line(line: str) -> Any:\n    try:\n        return json.loads(line)\n    except Exception:\n        return None\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/frontend/utilities/profiles.py",
+      "preview": "\"\"\"\nProfile utilities for FUM Live Dashboard.\nCentralizes default profile defaults and assembly helpers to avoid duplication.\n\"\"\"\n\nfrom typing import Any, Dict, List\n\n\ndef safe_int(x, default=None):\n    try:\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/frontend/utilities/pdf_utils.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nPDF -> Text utilities (bounded, best-effort, dependency-optional)\n\nDesign:\n- Try light, pure extraction first (no OCR) using available libs in this order:\n  1) PyMuPDF (fitz)\n  2) pdfminer.six\n  3) PyPDF2\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/frontend/utilities/fs_utils.py",
+      "preview": "import os\nimport json\nfrom typing import Any, List\n\n\ndef list_runs(root: str) -> List[str]:\n    \"\"\"\n    List run directories under root, sorted by mtime desc.\n    Mirrors logic from the legacy dashboard for identical behavior.\n    \"\"\"\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/frontend/callbacks/graph_tabs/single_graph.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nRegistrar for single-graph tabbed panels.\n\nWires up a single dcc.Graph to a tab-strip (dcc.Tabs) produced by\ngraph_tabs_single_graph_panel(prefix, ...).\n\nContract:\n- The panel creates:\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/frontend/callbacks/file_picker/registrars.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nFile Picker Registrars (package-scoped)\n\n- Static root registrar\n- Dynamic (engram) root registrar\n\nBoth delegate common behavior to .common.register_file_picker_common\n\"\"\"\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/frontend/callbacks/file_picker/common.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nFile Picker Common Callback Registrar (package-scoped)\n\nShared callback logic:\n- Navigation (root/up/open-dir)\n- Tree render (bounded IO; no recursion)\n- Breadcrumbs\n- Status computation (dir vs file)\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/frontend/callbacks/file_picker/__init__.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nFile Picker callbacks package.\n\nExports:\n- register_file_picker_static\n- register_file_picker_engram\n\nImplementation files:\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/frontend/components/widgets/file_breadcrumbs.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nBreadcrumbs widget for the File Picker component.\n\nPure UI builder. No IO, no state. Pattern-matching friendly IDs.\n\"\"\"\n\nfrom dash import html\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/frontend/components/widgets/file_picker.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nReusable, themed file-picker component for Dash (no heavy scans, lazy-only).\n- Compact display: shows selected basename + a \"Choose file\" button\n- Modal overlay: navigable file tree rooted at a configured directory\n- Bounded IO: lists one directory at a time; no recursive scans\n- Integrates with existing callbacks via a target component id to receive the chosen path\n\nUsage:\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/frontend/components/widgets/blocks.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nSnap-block infrastructure for modular, IDE-like layout.\n\nProvides:\n- block_container: grid-based snapping container with consistent gaps and collision-safe isolation/containment.\n- block_panel: base panel with a compact header and collision borders; body clips content and enforces minWidth: 0.\n- block_panel_tabs: panel variant with an internal tab-strip (dcc.Tabs) for tabbed views.\n- file_picker_block: convenience wrapper to render the existing file_picker inside a block_panel (non-invasive).\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/frontend/components/widgets/file_tree.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nFile tree row widgets for the File Picker component.\n\nPure UI builders (no IO, no state). IDs are pattern-matching friendly.\n\"\"\"\n\nfrom dash import html\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/frontend/components/widgets/graph.py",
+      "preview": "from __future__ import annotations\n\nfrom dash import dcc\n\n\ndef graph(id: str, height: int = 420, width: str = \"100%\"):\n    \"\"\"\n    Primitive graph widget (lego block).\n    Used by higher-level components to compose chart cards.\n    \"\"\"\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/core/tests/test_conservation_flux.py",
+      "preview": "import os\nimport time\nimport json\nfrom pathlib import Path\n\n# Enable dense connectome for validation-only import (won't modify runtime files)\nos.environ[\"FORCE_DENSE\"] = \"1\"\n\nimport numpy as np\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/core/cortex/scouts.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nfum_rt.core.cortex.scouts (facade)\n\nThis module is now a thin aggregator that re-exports modular scout classes and maps.\nIt preserves legacy import paths while enforcing void-faithful, read-only traversal.\n\nKey points:\n- No global scans; scouts only use local neighbor reads and bounded TTL/budgets.\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/core/cortex/__init__.py",
+      "preview": "",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/core/memory/__init__.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nfum_rt.core.memory package\n\nExports:\n- MemoryField: event-driven memory field owner (from .field)\n- load_engram, save_checkpoint: engram IO (from .engram_io)\n\nThis resolves the prior module/package name conflict by making\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/core/guards/invariants.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nfum_rt.core.guards.invariants\n\nPhysics \u2194 code guard helpers (CI/runtime-safe, no IO, no scans).\n\nPurpose\n- Provide minimal, deterministic checks that connect implementation to physics notes.\n- Intended for CI tests and optional runtime warnings (callers decide policy).\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/core/cosmology/router.py",
+      "preview": "\"\"\"Retarded sourcing kernel and router channel utilities for the cosmology module.\"\"\"\n\nfrom __future__ import annotations\n\nimport json\nfrom dataclasses import dataclass\nimport math\nfrom typing import Dict, Iterable, List, Sequence, Set, Tuple\n\nfrom .events import BudgetExceededError, BudgetTick, HorizonActivityEvent, RouterSplitEvent\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/core/cosmology/events.py",
+      "preview": "\"\"\"Event schema and guards for the cosmology router feature.\"\"\"\n\nfrom __future__ import annotations\n\nfrom dataclasses import dataclass, field\nimport math\nfrom typing import Iterable, Tuple\n\nfrom fum_rt.core.proprioception.events import BaseEvent\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/core/cosmology/__init__.py",
+      "preview": "\"\"\"Cosmology router core primitives.\"\"\"\n\nfrom .events import (\n    BudgetExceededError,\n    BudgetTick,\n    HorizonActivityEvent,\n    RouterSplitEvent,\n)\nfrom .router import (\n    DenseAccessError,\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/core/engine/__init__.py",
+      "preview": "\"\"\"\nCore Engine package initializer.\n\nExports CoreEngine from the in-package implementation module to avoid any\ncross-file redirects. Implementation resides under this package.\n\"\"\"\n\nfrom .core_engine import CoreEngine\n\n__all__ = [\"CoreEngine\"]",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/core/neuroplasticity/__init__.py",
+      "preview": "",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/core/cortex/void_walkers/void_cycle_scout.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nfum_rt.core.cortex.void_walkers.void_cycle_scout\n\nCycleHunterScout (read-only, void-faithful):\n- Seeks short cycles (3-6 hops) using a TTL-limited walk with a tiny path window.\n- Purely local: only neighbor lists are read; no global scans or dense conversions.\n- Emits vt_touch and edge_on events; reducers can infer cycle hits from returned edge traces.\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/core/cortex/void_walkers/void_inhibition_scout.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nfum_rt.core.cortex.void_walkers.void_inhibition_scout\n\nInhibitionScout (read-only, void-faithful):\n- Duty: Map inhibitory ridges, feeding InhibitionMap strictly via events.\n- Strategy: Seed from InhibitionMap.inh_head; during walk, emit VTTouchEvent per visit and\n            synthesize SpikeEvent(node, amp\u2248local_inh, sign=-1) with bounded amplitude in [0,1].\n            Occasional EdgeOnEvent samples are produced by BaseScout's bounded walk; no global scans.\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/core/cortex/void_walkers/void_cold_scout.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nfum_rt.core.cortex.void_walkers.void_cold_scout\n\nColdScout (read-only, void-faithful):\n- Prefers neighbors whose node ids appear in ColdMap snapshot head (\"cold_head\").\n- Emits only vt_touch and edge_on events.\n- No scans of global structures; uses local neighbor reads and bounded TTL/budgets.\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/core/cortex/void_walkers/runner.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nfum_rt.core.cortex.void_walkers.runner\n\nStateless, per-tick scout executor (void-faithful, no schedulers).\n- Runs a bounded list of read-only scouts exactly once per tick.\n- Enforces a micro time budget (microseconds) across all scouts.\n- Accepts optional seeds (e.g., recent UTE indices) and map heads (heat/exc/inh/cold).\n- Emits only foldable events (vt_touch, edge_on, optional spike/delta_w); no writes.\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/core/cortex/void_walkers/void_ray_scout.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nfum_rt.core.cortex.void_walkers.void_ray_scout\n\nVoidRayScout (read-only, void-faithful):\n- Physics-aware routing that prefers neighbors with favorable local change in a fast field \u03c6.\n- Local scoring (no scans): for hop i\u2192j, s_j = lambda_phi * (\u03c6[j] - \u03c6[i]) + theta_mem * m[j]\n- Temperatured choice via softmax over neighbors; strictly local reads.\n- Emits vt_touch and edge_on events; optional spike can be added by subclasses if needed.\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/core/cortex/void_walkers/frontier_scout.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nShim module for naming convention.\nUse void-prefixed class from [void_frontier_scout.py](fum_rt/core/cortex/void_walkers/void_frontier_scout.py).\n\"\"\"\n\nfrom .void_frontier_scout import FrontierScout\n\n__all__ = [\"FrontierScout\"]",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/core/cortex/void_walkers/base.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nfum_rt.core.cortex.void_walkers.base\n\nVoid-faithful, read-only scout base class.\n- No global scans or dense conversions; no direct access to raw weight arrays or external graph libraries.\n- Operates only on local neighbor reads provided by the active graph.\n- Emits only small, foldable events for reducers and telemetry.\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/core/cortex/void_walkers/void_heat_scout.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nfum_rt.core.cortex.void_walkers.void_heat_scout\n\nHeatScout (read-only, void-faithful):\n- Local-only neighbor selection using a softmax over map signals.\n- Supports trail repulsion (short-term) and optional memory steering (long-term).\n- Emits vt_touch and edge_on events; no writes; no scans.\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/core/cortex/void_walkers/void_memory_ray_scout.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nfum_rt.core.cortex.void_walkers.void_memory_ray_scout\n\nMemoryRayScout (read-only, void-faithful):\n- Implements refractive-index steering using a slow memory field m.\n- Local selection: P(i\u2192j) \u221d exp(Theta * m[j]) with temperature tau (Boltzmann choice).\n- Falls back to HeatMap head/dict when memory is absent to keep behavior useful OOTB.\n- Emits vt_touch and edge_on events; no writes; no scans.\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/core/cortex/void_walkers/void_excitation_scout.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nfum_rt.core.cortex.void_walkers.void_excitation_scout\n\nExcitationScout (read-only, void-faithful):\n- Duty: Map excitatory corridors, feeding ExcitationMap strictly via events.\n- Strategy: Seed from ExcitationMap.exc_head; during walk, emit VTTouchEvent per visit and\n            synthesize SpikeEvent(node, amp\u2248local_exc, sign=+1) with bounded amplitude in [0,1].\n            Occasional EdgeOnEvent samples are produced by BaseScout's bounded walk; no global scans.\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/core/cortex/void_walkers/void_frontier_scout.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nfum_rt.core.cortex.void_walkers.void_frontier_scout\n\nFrontierScout (read-only, void-faithful):\n- Skims component boundaries and likely bridge frontiers to refresh cohesion/cycle estimators.\n- Purely local heuristics; no scans. Emits vt_touch and edge_on only.\n\nLocal neighbor score for hop u\u2192j (bounded, read-only):\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/core/cortex/void_walkers/void_sentinel_scout.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nfum_rt.core.cortex.void_walkers.void_sentinel_scout\n\nSentinelScout (read-only, void-faithful):\n- Blue-noise reseeder / de-trample walker.\n- Purpose: prevent path lock-in by sampling uniformly across space and announcing coverage.\n- Emits vt_touch for coverage and opportunistic edge_on (one hop) when neighbors exist.\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/core/cortex/maps/__init__.py",
+      "preview": "",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/api/llms/router.py",
+      "preview": "",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/api/llms/__init__.py",
+      "preview": "",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/api/llms/providers/openrouter/openrouter_client.py",
+      "preview": "",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/api/llms/providers/openai/openai_client.py",
+      "preview": "",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/api/llms/providers/xai/xai_client.py",
+      "preview": "",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/api/llms/providers/ollama/ollama_client.py",
+      "preview": "",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/api/llms/providers/google/model_loader.py",
+      "preview": "",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/api/llms/providers/google/gemini_client.py",
+      "preview": "",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/tests/physics/test_invariants.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nfum_rt.tests.physics.test_invariants\n\nCI tests for physics \u2194 code guard helpers:\n- Q_FUM (logistic on-site constant of motion) spot-check\n- Kinetic normalization equivalence (c^2 from \u03ba vs 2J)\n- Memory steering dimensionless groups extraction\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/tests/physics/test_pta_correlation_harness.py",
+      "preview": "from __future__ import annotations\n\nimport math\nfrom typing import List\n\nfrom fum_rt.physics.pta_correlation_harness import (\n    CorrelationConfig,\n    compute_correlation_series,\n    evaluate_pta_correlation,\n)\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/tests/physics/test_harness_logging.py",
+      "preview": "from __future__ import annotations\n\nfrom fum_rt.physics.harness_logging import enrich_payload, hash_jsonable\n\n\ndef test_enrich_payload_populates_gate_summary() -> None:\n    base = {\n        \"timestamp\": \"2025-01-01T00:00:00Z\",\n        \"metrics\": {\"status\": \"PASS\"},\n    }\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/tests/physics/test_steering_ab.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nfum_rt.tests.physics.test_steering_ab\n\nCI: Steering A/B acceptance tests (void-faithful, pure numeric; no scans).\n\nScope:\n- Softmax steering law P(i\u2192j) \u221d exp(\u0398 m_j)\n- Junction A/B identity: log(P_B / P_A) == \u0398 * (m_B - m_A)\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/tests/physics/test_router_regression_figures.py",
+      "preview": "import json\nfrom pathlib import Path\n\nimport numpy as np\nimport pytest\n\nimport fum_rt.physics.router_regression_figures as rfig\n\n\npytestmark = pytest.mark.filterwarnings(\"ignore:All-NaN slice encountered\")\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/tests/physics/test_ci_gates.py",
+      "preview": "\"\"\"Tests for cosmology router CI gate validators.\"\"\"\n\nfrom __future__ import annotations\n\nimport pytest\n\nfrom fum_rt.physics.ci_gates import (\n    GateViolationError,\n    validate_payload,\n    validate_required_gates,\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/tests/physics/test_sidm_curve_harness.py",
+      "preview": "from __future__ import annotations\n\nimport json\n\nfrom fum_rt.core.cosmology import GrainScatteringShim\nfrom fum_rt.physics.sidm_curve_harness import (\n    ACCEPTANCE_BANDS,\n    DEFAULT_GRID,\n    build_payload,\n    evaluate_curve,\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/tests/physics/test_vacuum_demographics_harness.py",
+      "preview": "\"\"\"Tests for the vacuum demographics harness.\"\"\"\n\nfrom __future__ import annotations\n\nimport json\nimport math\nfrom pathlib import Path\n\nimport pytest\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/tests/physics/test_memory_kernel_event_local.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nEvent-local memory kernel tests (void-faithful lock-in)\n\nConfirms:\n- Writes occur only at touched nodes (vt_touch, spike, delta_w).\n- Smoothing occurs only along visited edges (edge_on events) and only affects the two endpoints.\n- Determinism under fixed seed and identical event sequences.\n\"\"\"\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/tests/core/test_maps_frame.py",
+      "preview": "import numpy as np\n\nfrom fum_rt.core.engine import CoreEngine\nfrom fum_rt.core.proprioception.events import VTTouchEvent, SpikeEvent, DeltaWEvent\n\n\nclass _StubNx:\n    \"\"\"\n    Minimal nexus-like stub for CoreEngine:\n    - Provides only the attributes CoreEngine.step() actually touches in this test\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/tests/core/test_active_graph_regression.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nfum_rt.tests.core.test_active_graph_regression\n\nRegression tests for active-graph lower-bound component counting and dirty-flag/audit behavior\nin SparseConnectome._maybe_audit_frag (void-faithful, streaming over ACTIVE edges only).\n\nCovers:\n- components_lb reflects the number of components in the ACTIVE subgraph\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/tests/core/test_core_boundary_guards.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nBoundary and policy guard tests.\n\nScope:\n- Enforce core/ isolation: no imports from fum_rt.io, fum_rt.runtime, or fum_rt.nexus\n- Enforce runtime/ is NumPy-free: runtime contains no 'import numpy' or 'from numpy ...'\n- Enforce IDF/lexicon coupling remains outside core/: core must not import IO IDF or reference compute_idf_scale\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/tests/core/test_runner_budget.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nfum_rt.tests.core.test_runner_budget\n\nCI: Verify the void-walker runner is one-shot per tick and enforces microsecond budgets.\n\n- No schedulers, no timers: pure function invoked once per tick by runtime loop.\n- Global time guard must drop remaining scouts upon exceeding max_us.\n- Rotation by budget[\"tick\"] provides fairness (round-robin start index).\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/tests/core/test_void_faithful_guards.py",
+      "preview": "import io\nimport os\nimport re\n\n# CI guard: Ensure void-faithful reducers do not peek global structures\n# and CoreEngine wiring does not scan W/CSR/adjacency for maps.\n\nREPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), \"..\", \"..\"))\n\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/tests/core/test_territory_uf.py",
+      "preview": "import pytest\n\nfrom fum_rt.core.proprioception.territory import TerritoryUF\n\n\nclass Obs:\n    \"\"\"Minimal Observation-like stub with kind and fields used by TerritoryUF.fold().\"\"\"\n    def __init__(self, kind: str, **kwargs):\n        self.kind = kind\n        for k, v in (kwargs or {}).items():\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/tests/core/test_scouts.py",
+      "preview": "from __future__ import annotations\n\nimport os\nimport re\nfrom glob import glob\n\n# CI guard: scouts must remain void-faithful (no scans, no dense ops)\n# Scope: core/cortex/void_walkers/*.py\n\nHERE = os.path.abspath(os.path.dirname(__file__))\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/tests/guards/test_no_scheduler.py",
+      "preview": "from __future__ import annotations\n\nimport os\nimport re\nfrom typing import Iterable, Tuple\n\n\"\"\"\nGuard: deny any scheduler/cadence constructs in core/ and runtime/.\n\nPolicy (void-faithful, emergent-only):\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/tests/frontend/test_frontend_architecture.py",
+      "preview": "import os\nfrom typing import Any, List, Optional\n\nimport pytest\nfrom dash import Dash, html, dcc\n\nfrom fum_rt.frontend.components.layout import build_layout\nfrom fum_rt.frontend.components.widgets.file_picker import file_picker_overlay\nfrom fum_rt.frontend.components.widgets.blocks import (\n    block_container,\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/tests/frontend/test_process_manager_runs_root.py",
+      "preview": "from __future__ import annotations\n\nimport os\nimport re\nimport sys\n\nfrom fum_rt.frontend.services.process_manager import ProcessManager\n\n\ndef _stub_popen(monkeypatch):\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/tests/runtime/test_phase_legacy_key.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nRuntime micro-test: token-clean legacy key alias in apply_phase_profile\n- Verifies that profiles using a legacy 'schedule' key (constructed without embedding\n  the banned token in source) are correctly aliased to 'cadence' and applied.\n- Guards only scan fum_rt/core and fum_rt/runtime; tests may reference legacy tokens.\n\"\"\"\n\nfrom typing import Any, Dict\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/tests/runtime/test_events_adapter_inhibition.py",
+      "preview": "import math\nimport pytest\n\nfrom fum_rt.runtime.events_adapter import observations_to_events\nfrom fum_rt.core.proprioception.events import (\n    BaseEvent,\n    DeltaWEvent,\n    SpikeEvent,\n    VTTouchEvent,\n    EdgeOnEvent,\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/tests/runtime/test_telemetry_frame_v2.py",
+      "preview": "import os\nfrom typing import Dict, Any\n\nimport numpy as np\n\nfrom fum_rt.core.engine.maps_frame import stage_maps_frame\nfrom fum_rt.runtime.telemetry import tick_fold\n\n\nclass _DummyMap:\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/tests/core/cosmology/test_events.py",
+      "preview": "from __future__ import annotations\n\nfrom dataclasses import FrozenInstanceError\n\nimport pytest\n\nfrom fum_rt.core.cosmology import (\n    BudgetExceededError,\n    BudgetTick,\n    HorizonActivityEvent,\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/tests/core/cosmology/test_router.py",
+      "preview": "from __future__ import annotations\n\nimport math\n\nimport pytest\n\nfrom fum_rt.core.cosmology import (\n    BudgetExceededError,\n    BudgetTick,\n    DenseAccessError,\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/physics/memory_steering/plot_memory_steering.py",
+      "preview": "\"\"\"\nPlotting helper for memory-steering experiments.\n\n- Parses outputs/memory_steering_results.csv (supports 4- or 5-column stability).\n- Produces figures in outputs/.\n- Prints a concise metrics summary that directly tests the three predictions:\n  1) Junction logistic collapse\n  2) Curvature scaling in the ray limit\n  3) Stability band with write\u2192decay protocol (Retention, Fidelity)\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/io/actuators/__init__.py",
+      "preview": "",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/io/sensors/__init__.py",
+      "preview": "",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/io/cognition/stimulus.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nCognition - stimulus mapping (Phase 3 move-only).\n\nDeterministic, stateless symbol\u2192group mapping used by Nexus ingestion.\nBehavior preserved: identical arithmetic hash and iteration order.\n\"\"\"\n\nfrom typing import Dict, List, Optional\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/io/cognition/composer.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nCognition - speech composer (Phase 3 move-only).\n\nBehavior-preserving extraction of Nexus._compose_say_text:\n- Prefer emergent sentence generation from streaming n-grams.\n- Fallback to phrase templates with context formatting.\n- Final fallback to keyword summary.\n\"\"\"\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/io/cognition/speaker.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nCognition - speaker gating and scoring (Phase 3 move-only).\n\nBehavior-preserving helpers extracted from Nexus.run():\n- Gating decision based on B1 spike and valence threshold.\n- Novelty-IDF computation and emission score calculation.\n\nNo logging or IO; pure functions only.\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/io/visualization/maps_ring.py",
+      "preview": "\"\"\"\nMaps frames ring buffer (drop-oldest, thread-safe, void-faithful).\n\nCanonical location: fum_rt.io.visualization.maps_ring\n\nPurpose\n- Provide a tiny, bounded ring for maps frames (header+payload) with drop-oldest semantics.\n- Decouples producers (telemetry/core engine) from consumers (UI/websocket) without scans.\n- O(1) amortized operations; no full-buffer copies; copies only payload bytes as provided.\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/io/visualization/websocket_server.py",
+      "preview": "\"\"\"\nMaps frames WebSocket forwarder (bounded, drop-oldest, void-faithful).\n\nCanonical location: fum_rt.io.visualization.websocket_server\n\nPurpose\n- Serve UI consumers with the latest maps/frame payload from a bounded ring.\n- Backpressure-safe: each client receives only the newest frame; old frames are dropped.\n- Local-first: defaults to 127.0.0.1 binding; configurable via args/env.\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/io/visualization/__init__.py",
+      "preview": "",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "fum_rt/io/logging/rolling_jsonl.py",
+      "preview": "\"\"\"\nRolling JSONL writer with bounded main file and archival segments.\n\n- Maintains a capped \"active\" JSONL file (e.g., events.jsonl, utd_events.jsonl).\n- When the active file exceeds the configured size or line cap, the oldest lines\n  are streamed into an archive segment and the active file is rewritten to keep\n  only the newest tail (rolling buffer).\n- Archive segments live under: <run_dir>/archived/<YYYYMMDD_HHMMSS>/<base_name>\n  Example: runs/<ts>/archived/20250815_120828/events.jsonl\n- When the current archive segment exceeds its cap, a new timestamped segment\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "VDM_Nexus/presentation/CMakeLists.txt",
+      "preview": "cmake_minimum_required(VERSION 3.24)\n\n# Presentation layer: QML/Qt UI wiring lives here later.\n# Placeholder interface library to satisfy top-level linking from physics_nexus_app.\nadd_library(physics_nexus_presentation INTERFACE)\n\ntarget_include_directories(physics_nexus_presentation INTERFACE\n  ${CMAKE_CURRENT_SOURCE_DIR}\n)\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "VDM_Nexus/tests/CMakeLists.txt",
+      "preview": "cmake_minimum_required(VERSION 3.24)\n\n# Generate a tiny compile-only test that includes the application ports\nfile(WRITE ${CMAKE_CURRENT_BINARY_DIR}/test_ports_compile.cpp \"\n#include \"${CMAKE_CURRENT_SOURCE_DIR}/../application/ports/ports.hpp\"\nint main() {\n  using namespace vdm_nexus::app;\n  IRunnerService* runner = nullptr;\n  IArtifactStore* store = nullptr;\n  IMarkdownReader* reader = nullptr;\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "VDM_Nexus/resources/CMakeLists.txt",
+      "preview": "cmake_minimum_required(VERSION 3.24)\n\n# Resources layer: qrc/assets and static files (read-only).\n# Placeholder interface target to satisfy top-level add_subdirectory(resources).\nadd_library(physics_nexus_resources INTERFACE)\n\ntarget_include_directories(physics_nexus_resources INTERFACE\n  ${CMAKE_CURRENT_SOURCE_DIR}\n)\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "VDM_Nexus/infrastructure/CMakeLists.txt",
+      "preview": "cmake_minimum_required(VERSION 3.24)\n\n# Infrastructure layer: adapters will be added here (SQLite approvals, filesystem, runners, schema catalog).\n# Placeholder interface library to satisfy top-level add_subdirectory while ports/adapters are implemented.\nadd_library(physics_nexus_infrastructure INTERFACE)\n\ntarget_include_directories(physics_nexus_infrastructure INTERFACE\n  ${CMAKE_CURRENT_SOURCE_DIR}\n)\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "VDM_Nexus/scripts/CMakeLists.txt",
+      "preview": "cmake_minimum_required(VERSION 3.24)\n\n# Scripts layer: helper CLIs/utilities (read-only canon sync, approval wrappers, report packagers).\n# Placeholder interface target to satisfy top-level add_subdirectory(scripts).\nadd_library(physics_nexus_scripts INTERFACE)\n\ntarget_include_directories(physics_nexus_scripts INTERFACE\n  ${CMAKE_CURRENT_SOURCE_DIR}\n)\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "VDM_Nexus/scripts/nexus_validate_gate.py",
+      "preview": "#!/usr/bin/env python3\n\"\"\"\nVDM Nexus \u2014 Validation Gate Tool\n\nScope:\n- Lives under VDM_Nexus/scripts/ (Nexus-only changes; Derivation/ is read-only).\n- Runs two checks required by Phase 0 \u00b7 Task 0.1:\n  1) Canon diff gate with explicit exclusions for reference-only paths\n  2) Local lint probes for Nexus (JSON validity, optional clang-format, optional md hygiene)\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "VDM_Nexus/scripts/nexus_resolver_print.py",
+      "preview": "#!/usr/bin/env python3\n\"\"\"\nVDM Nexus \u2014 Canon Resolver Printer (Task 0.3.2)\n\nPurpose:\n- Resolve canonical files under ../Derivation and print commit metadata for manual validation.\n- Read-only operation. Does not modify Derivation/.\n\nTargets (default):\n- Derivation/AXIOMS.md\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "VDM_Nexus/scripts/nexus_static_policy_check.py",
+      "preview": "#!/usr/bin/env python3\n\"\"\"\nVDM Nexus \u2014 Static Policy Check (Task 0.3.1)\n\nPurpose:\n- Enforce: \"zero write operations under ../derivation/\" from Nexus scope\n- Static source scan only (no execution). Read-only across the repo.\n\nWhat it checks:\n- In VDM_Nexus/**/*.{cpp,cxx,cc,c,hxx,hh,h}:\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "VDM_Nexus/plugins/CMakeLists.txt",
+      "preview": "cmake_minimum_required(VERSION 3.24)\n\n# Plugins layer: declarative descriptors for physics/viz; no code here yet.\n# Placeholder interface target to satisfy top-level add_subdirectory(plugins).\nadd_library(physics_nexus_plugins INTERFACE)\n\ntarget_include_directories(physics_nexus_plugins INTERFACE\n  ${CMAKE_CURRENT_SOURCE_DIR}\n)\n\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "VDM_Nexus/application/CMakeLists.txt",
+      "preview": "cmake_minimum_required(VERSION 3.24)\n\nadd_library(physics_nexus_application INTERFACE)\n\ntarget_include_directories(physics_nexus_application INTERFACE\n  ${CMAKE_CURRENT_SOURCE_DIR}\n  ${CMAKE_CURRENT_SOURCE_DIR}/ports\n)\n\ntarget_compile_features(physics_nexus_application INTERFACE cxx_std_20)",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "VDM_Nexus/domain/CMakeLists.txt",
+      "preview": "cmake_minimum_required(VERSION 3.24)\n\n# Domain layer: plain data models (no Qt/DB/Python). Placeholder library to satisfy top-level wiring.\nadd_library(physics_nexus_domain INTERFACE)\n\ntarget_include_directories(physics_nexus_domain INTERFACE\n  ${CMAKE_CURRENT_SOURCE_DIR}\n)\n\ntarget_compile_features(physics_nexus_domain INTERFACE cxx_std_20)",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "VDM_Nexus/domain/models.hpp",
+      "preview": "#pragma once\n//\n// VDM Nexus \u2014 Domain Models (plain data only; no framework imports)\n// References:\n//   - Architecture seams (\u00a712.4): ../../NEXUS_ARCHITECTURE.md\n//   - Execution plan (Phase 2.1.2 models list): ../../VDM_Nexus/TODO_CHECKLIST.md\n//\n// Rules:\n//   - POD/POJO style structs; no Qt/DB/Python includes.\n//   - No thresholds or equations derived from Markdown canon; thresholds are resolved by ISchemaCatalog from spec/schema.\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "VDM_Nexus/src/main.cpp",
+      "preview": "",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": "VDM_Nexus/application/ports/ports.hpp",
+      "preview": "#pragma once\n//\n// VDM Nexus \u2014 Application Ports (Clean Architecture interfaces)\n// Reference: NEXUS standard \u00a712.4 (Clean Architecture seams)\n//   See: ../../NEXUS_ARCHITECTURE.md\n//\n// Policy:\n// - Read-only lens over canonical derivation tree; no Qt/DB/Python includes here.\n// - Thresholds/approvals are sourced from canonical structured artifacts (schemas/specs/DB), never from Markdown.\n// - Adapters live in ../infrastructure/* and must implement these interfaces.\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": ".codacy/tools-configs/analysis_options.yaml",
+      "preview": "analyzer:\n    errors:\n        avoid_as: warning\n        avoid_catches_without_on_clauses: high\n        avoid_catching_errors: high\n        avoid_double_and_int_checks: warning\n        avoid_dynamic_calls: high\n        avoid_equals_and_hash_code_on_mutable_classes: high\n        avoid_field_initializers_in_const_classes: warning\n        avoid_implementing_value_types: high\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": ".codacy/tools-configs/lizard.yaml",
+      "preview": "patterns:\n    Lizard_ccn-medium:\n        category: Complexity\n        description: Checks if the cyclomatic complexity of a function or logic block exceeds the medium threshold (default is 8).\n        explanation: |-\n            # Medium Cyclomatic Complexity control\n\n            Check the Cyclomatic Complexity value of a function or logic block. If the threshold is not met, raise a Medium issue. The default threshold is 7.\n        id: Lizard_ccn-medium\n        level: Warning\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": ".codacy/tools-configs/trivy.yaml",
+      "preview": "severity:\n  - LOW\n  - MEDIUM\n  - HIGH\n  - CRITICAL\n\nscan:\n  scanners:\n    - vuln\n    - secret\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": ".codacy/tools-configs/eslint.config.mjs",
+      "preview": "export default [\n    {\n        rules: {\n          \"constructor-super\": [\"error\"],\n          \"for-direction\": [\"error\"],\n          \"getter-return\": [\"error\", {\"allowImplicit\": false}],\n          \"no-async-promise-executor\": [\"error\"],\n          \"no-case-declarations\": [\"error\"],\n          \"no-class-assign\": [\"error\"],\n          \"no-compare-neg-zero\": [\"error\"],\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": ".codacy/tools-configs/languages-config.yaml",
+      "preview": "tools:\n    - name: dartanalyzer\n      languages: [Dart]\n      extensions: [.dart]\n      files: []\n    - name: eslint\n      languages: [Javascript, TypeScript]\n      extensions: [.js, .jsm, .jsx, .mjs, .ts, .tsx, .vue]\n      files: []\n    - name: lizard\n",
+      "reason": "no recognizable license header in first 120 lines"
+    },
+    {
+      "path": ".codacy/tools-configs/semgrep.yaml",
+      "preview": "rules:\n    - id: bash.curl.security.curl-eval.curl-eval\n      languages:\n        - bash\n      message: Data is being eval'd from a `curl` command. An attacker with control of the server in the `curl` command could inject malicious code into the `eval`, resulting in a system comrpomise. Avoid eval'ing untrusted data if you can. If you must do this, consider checking the SHA sum of the content returned by the server to verify its integrity.\n      metadata:\n        category: security\n        confidence: MEDIUM\n        cwe:\n            - 'CWE-95: Improper Neutralization of Directives in Dynamically Evaluated Code (''Eval Injection'')'\n",
+      "reason": "no recognizable license header in first 120 lines"
+    }
+  ],
+  "matched_headers": 100,
+  "missing_headers": 296,
+  "patterns": [
+    "copyright\\s*\u00a9\\s*20\\d{2}\\s*justin\\s*k\\.?\\s*lietz",
+    "copyright\\s*\\(c\\)\\s*20\\d{2}\\s*justin\\s*k\\.?\\s*lietz",
+    "justin\\s*k\\.?\\s*lietz",
+    "neuroca,\\s*inc\\.?",
+    "all\\s*rights\\s*reserved",
+    "see\\s+license\\s+file",
+    "void\\s+dynamics\\s+model"
+  ],
+  "repo_head": "e47475d45d2f7a5f29bbabb62ded7ee6cad8f00f",
+  "root": "/mnt/ironwolf/git/Prometheus_VDM",
+  "scanned_files": 396
+}

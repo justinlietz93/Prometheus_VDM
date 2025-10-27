@@ -1,4 +1,13 @@
-"""Geometry bundle automation for VDM instrumentation runs.
+"""
+Copyright © 2025 Justin K. Lietz, Neuroca, Inc. All Rights Reserved.
+
+This research is protected under a dual-license to foster open academic
+research while ensuring commercial applications are aligned with the project's ethical principles.
+
+Commercial use of proprietary VDM code requires written permission from Justin K. Lietz.
+See LICENSE file for full terms.
+
+Geometry bundle automation for VDM instrumentation runs.
 
 This script orchestrates the end-to-end workflow described in the
 user's geometry data capture checklist (sections A-J). It handles run

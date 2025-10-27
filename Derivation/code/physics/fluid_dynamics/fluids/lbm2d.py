@@ -2,6 +2,15 @@
 # D2Q9 LBM (BGK) with periodic BCs and bounce-back no-slip walls.
 # Viscosity (lattice units): nu = c_s^2 * (tau - 0.5), c_s^2 = 1/3, dx=dt=1.
 """
+Copyright © 2025 Justin K. Lietz, Neuroca, Inc. All Rights Reserved.
+
+This research is protected under a dual-license to foster open academic
+research while ensuring commercial applications are aligned with the project's ethical principles.
+
+Commercial use of proprietary VDM code requires written permission from Justin K. Lietz.
+See LICENSE file for full terms.
+
+
 CHANGE REASON:
 - Adds the fluids sector minimal solver (LBM→NS) per TODO_up_next plan.
 - Mirrors the repository's proven practice: scripts emit figures + JSON metrics with a 'passed' gate.
