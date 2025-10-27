@@ -1,4 +1,13 @@
-"""Pytest configuration shim to normalize imports.
+"""
+Copyright © 2025 Justin K. Lietz, Neuroca, Inc. All Rights Reserved.
+
+This research is protected under a dual-license to foster open academic
+research while ensuring commercial applications are aligned with the project's ethical principles.
+
+Commercial use of proprietary VDM code requires written permission from Justin K. Lietz.
+See LICENSE file for full terms.
+
+Pytest configuration shim to normalize imports.
 
 - Ensures the repository root is present on sys.path so imports like
   `Prometheus_VDM.*` and `fum_rt.*` resolve reliably during test collection.

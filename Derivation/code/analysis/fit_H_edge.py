@@ -1,5 +1,14 @@
 #!/usr/bin/env python3
-"""Fit edge-correction ansatz H_edge using saved deterministic samples.
+"""
+Copyright © 2025 Justin K. Lietz, Neuroca, Inc. All Rights Reserved.
+
+This research is protected under a dual-license to foster open academic
+research while ensuring commercial applications are aligned with the project's ethical principles.
+
+Commercial use of proprietary VDM code requires written permission from Justin K. Lietz.
+See LICENSE file for full terms.
+
+Fit edge-correction ansatz H_edge using saved deterministic samples.
 
 Reads the latest flux_sweep JSON under derivation/outputs/logs/conservation_law,
 reconstructs Connectome adjacency per sample seed, and fits coefficients for

@@ -1,0 +1,2577 @@
+{
+  "by_root_summary": [
+    {
+      "matched": 1,
+      "matched_pct": 33.33,
+      "missing": 2,
+      "missing_pct": 66.67,
+      "root": "(repo-root)",
+      "scanned": 3
+    },
+    {
+      "matched": 0,
+      "matched_pct": 0.0,
+      "missing": 9,
+      "missing_pct": 100.0,
+      "root": ".codacy",
+      "scanned": 9
+    },
+    {
+      "matched": 64,
+      "matched_pct": 58.72,
+      "missing": 45,
+      "missing_pct": 41.28,
+      "root": "Derivation",
+      "scanned": 109
+    },
+    {
+      "matched": 1,
+      "matched_pct": 6.25,
+      "missing": 15,
+      "missing_pct": 93.75,
+      "root": "VDM_Nexus",
+      "scanned": 16
+    },
+    {
+      "matched": 182,
+      "matched_pct": 82.73,
+      "missing": 38,
+      "missing_pct": 17.27,
+      "root": "fum_rt",
+      "scanned": 220
+    },
+    {
+      "matched": 22,
+      "matched_pct": 56.41,
+      "missing": 17,
+      "missing_pct": 43.59,
+      "root": "tools",
+      "scanned": 39
+    }
+  ],
+  "fixes_applied": [
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_live.py",
+      "root": "(repo-root)"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/__init__.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": true,
+      "insert_index": 1,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "tools/roo_compact_state.py",
+      "root": "tools"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": true,
+      "insert_index": 1,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "tools/utd_clean.py",
+      "root": "tools"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "tools/vdm_events_heatmaps.py",
+      "root": "tools"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "tools/vdm_events_analyzer.py",
+      "root": "tools"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": true,
+      "insert_index": 1,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "tools/golden_run_parity.py",
+      "root": "tools"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": true,
+      "insert_index": 1,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "tools/utd_event_scan.py",
+      "root": "tools"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": true,
+      "insert_index": 1,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "tools/say_clean_view.py",
+      "root": "tools"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": true,
+      "insert_index": 1,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "tools/smoke_emissions.py",
+      "root": "tools"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "Derivation/__init__.py",
+      "root": "Derivation"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "Derivation/code/__init__.py",
+      "root": "Derivation"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "Derivation/Gravity_Regression/vdm_gravity_regression_pack/scripts/compute_precession.py",
+      "root": "Derivation"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "Derivation/Gravity_Regression/vdm_gravity_regression_pack/scripts/graph_checks.py",
+      "root": "Derivation"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": true,
+      "insert_index": 1,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "Derivation/Collapse/code/run_a6_collapse.py",
+      "root": "Derivation"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": true,
+      "insert_index": 1,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "Derivation/code/tests/test_policy_enforcement.py",
+      "root": "Derivation"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "Derivation/code/tests/test_vdm_equations.py",
+      "root": "Derivation"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "Derivation/code/common/__init__.py",
+      "root": "Derivation"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "Derivation/code/common/data/__init__.py",
+      "root": "Derivation"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": true,
+      "insert_index": 1,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "Derivation/code/common/authorization/approval.py",
+      "root": "Derivation"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "Derivation/code/common/domain_setup/__init__.py",
+      "root": "Derivation"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "Derivation/code/common/plotting/types.py",
+      "root": "Derivation"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "Derivation/code/common/plotting/helpers.py",
+      "root": "Derivation"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "Derivation/code/common/plotting/primitives.py",
+      "root": "Derivation"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "Derivation/code/common/plotting/core.py",
+      "root": "Derivation"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "Derivation/code/tests/memory_steering/test_memory_steering.py",
+      "root": "Derivation"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": true,
+      "insert_index": 1,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "Derivation/code/tests/fluid_dynamics/cavity_smoke.py",
+      "root": "Derivation"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": true,
+      "insert_index": 1,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "Derivation/code/tests/fluid_dynamics/test_stream_bounce_unit.py",
+      "root": "Derivation"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": true,
+      "insert_index": 1,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "Derivation/code/tests/fluid_dynamics/test_walkers_noninterference.py",
+      "root": "Derivation"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": true,
+      "insert_index": 1,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "Derivation/code/physics/collapse/run_a6_collapse.py",
+      "root": "Derivation"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "Derivation/code/physics/agency/simulate_options_probe.py",
+      "root": "Derivation"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": true,
+      "insert_index": 1,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "Derivation/code/physics/metriplectic/run_kg_dispersion.py",
+      "root": "Derivation"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": true,
+      "insert_index": 1,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "Derivation/code/physics/metriplectic/run_kg_energy_oscillation.py",
+      "root": "Derivation"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": true,
+      "insert_index": 1,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "Derivation/code/physics/metriplectic/kg_noether.py",
+      "root": "Derivation"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": true,
+      "insert_index": 1,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "Derivation/code/physics/metriplectic/run_kg_rd_metriplectic.py",
+      "root": "Derivation"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": true,
+      "insert_index": 1,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "Derivation/code/physics/metriplectic/run_metriplectic.py",
+      "root": "Derivation"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": true,
+      "insert_index": 1,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "Derivation/code/physics/metriplectic/metriplectic_structure_checks.py",
+      "root": "Derivation"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": true,
+      "insert_index": 1,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "Derivation/code/physics/metriplectic/kg_ops.py",
+      "root": "Derivation"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": true,
+      "insert_index": 1,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "Derivation/code/physics/metriplectic/run_kg_light_cone.py",
+      "root": "Derivation"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "Derivation/code/physics/quantum/run_vdm_triad_prereg.py",
+      "root": "Derivation"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "Derivation/code/physics/quantum/__init__.py",
+      "root": "Derivation"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": true,
+      "insert_index": 1,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "Derivation/code/physics/cosmology/run_frw_balance.py",
+      "root": "Derivation"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": true,
+      "insert_index": 1,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "Derivation/code/physics/dark_photons/run_dp_noise_budget.py",
+      "root": "Derivation"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": true,
+      "insert_index": 1,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "Derivation/code/physics/dark_photons/run_dp_fisher_check.py",
+      "root": "Derivation"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "Derivation/code/physics/intelligence_model/tests/__init__.py",
+      "root": "Derivation"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": true,
+      "insert_index": 1,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "Derivation/code/physics/fluid_dynamics/telemetry/walkers.py",
+      "root": "Derivation"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": true,
+      "insert_index": 1,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "Derivation/code/physics/thermo_routing/passive_thermo_routing/run_ftmc_v1.py",
+      "root": "Derivation"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": true,
+      "insert_index": 1,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "Derivation/code/physics/thermo_routing/wave_flux_meter/run_wave_flux_meter_v1.py",
+      "root": "Derivation"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": true,
+      "insert_index": 1,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "Derivation/code/physics/thermo_routing/wave_flux_meter/run_wave_flux_meter_openports_v1.py",
+      "root": "Derivation"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "Derivation/Templates/Domain_Template/code/run.py",
+      "root": "Derivation"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "tools/dependency_analyzer/setup.py",
+      "root": "tools"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "tools/code_crawler_2/__main__.py",
+      "root": "tools"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "tools/code_crawler_2/diagram_generator.py",
+      "root": "tools"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "tools/code_crawler_2/analyzer.py",
+      "root": "tools"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "tools/code_crawler_2/config.py",
+      "root": "tools"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "tools/code_crawler_2/__init__.py",
+      "root": "tools"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "tools/dependency_analyzer/src/dependency_analyzer/cli.py",
+      "root": "tools"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "tools/dependency_analyzer/src/dependency_analyzer/utils.py",
+      "root": "tools"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "tools/dependency_analyzer/src/dependency_analyzer/file_parsers.py",
+      "root": "tools"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "tools/dependency_analyzer/src/dependency_analyzer/header_manager.py",
+      "root": "tools"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "tools/dependency_analyzer/src/dependency_analyzer/config.py",
+      "root": "tools"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "tools/dependency_analyzer/src/dependency_analyzer/dependency_map.py",
+      "root": "tools"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "tools/dependency_analyzer/src/dependency_analyzer/__init__.py",
+      "root": "tools"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "tools/dependency_analyzer/src/dependency_analyzer/validators.py",
+      "root": "tools"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/io/ute.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/io/utd.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/io/__init__.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/data/data_manager.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/tests/conftest.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/cli/args.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/core/signals.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/core/__init__.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/frontend/debug_ui.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/frontend/__main__.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/runtime/__init__.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/runtime/loop/__init__.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/runtime/helpers/status_http.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/frontend/services/process_manager.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/frontend/services/status_client.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/frontend/components/workspace.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/frontend/components/perf.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/frontend/components/layout.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/frontend/components/feed.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/frontend/components/charts.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/frontend/components/runtime_controls.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/frontend/components/chat.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/frontend/models/series.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/frontend/controllers/file_picker_ctx.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/frontend/controllers/charts_controller.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/frontend/controllers/file_picker_controller.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/frontend/controllers/chat_controller.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/frontend/controllers/runtime_controller.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/frontend/controllers/file_picker_status.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/frontend/callbacks/workspace.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/frontend/callbacks/perf.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/frontend/callbacks/interval.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/frontend/callbacks/process.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/frontend/callbacks/engram.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/frontend/callbacks/logs.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/frontend/callbacks/feed.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/frontend/callbacks/runtime.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/frontend/callbacks/profile.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/frontend/callbacks/charts.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/frontend/callbacks/chat.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/frontend/utilities/tail.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/frontend/utilities/pdf_utils.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/frontend/utilities/fs_utils.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/frontend/callbacks/graph_tabs/single_graph.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/frontend/callbacks/file_picker/registrars.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/frontend/callbacks/file_picker/common.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/frontend/callbacks/file_picker/__init__.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/frontend/components/config/run_config.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/frontend/components/config/sections.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/frontend/components/config/__init__.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/frontend/components/widgets/file_breadcrumbs.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/frontend/components/widgets/file_picker.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/frontend/components/widgets/blocks.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/frontend/components/widgets/file_tree.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/frontend/components/widgets/graph.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/core/tests/test_conservation_flux.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/core/cortex/scouts.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/core/cortex/__init__.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/core/memory/field.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/core/memory/__init__.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/core/guards/invariants.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/core/proprioception/events.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/core/neuroplasticity/revgsp.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/core/neuroplasticity/__init__.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/core/neuroplasticity/gdsp.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/core/cortex/void_walkers/void_cycle_scout.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/core/cortex/void_walkers/void_inhibition_scout.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/core/cortex/void_walkers/void_cold_scout.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/core/cortex/void_walkers/runner.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/core/cortex/void_walkers/void_ray_scout.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/core/cortex/void_walkers/frontier_scout.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/core/cortex/void_walkers/base.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/core/cortex/void_walkers/void_heat_scout.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/core/cortex/void_walkers/void_memory_ray_scout.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/core/cortex/void_walkers/void_excitation_scout.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/core/cortex/void_walkers/void_frontier_scout.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/core/cortex/void_walkers/void_sentinel_scout.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/core/cortex/maps/trailmap.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/core/cortex/maps/base_decay_map.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/core/cortex/maps/excitationmap.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/core/cortex/maps/coldmap.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/core/cortex/maps/heatmap.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/core/cortex/maps/memorymap.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/core/cortex/maps/inhibitionmap.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/core/cortex/maps/__init__.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/api/llms/router.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/api/llms/__init__.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/api/llms/providers/openrouter/openrouter_client.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/api/llms/providers/openai/openai_client.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/api/llms/providers/xai/xai_client.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/api/llms/providers/ollama/ollama_client.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/api/llms/providers/google/model_loader.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/api/llms/providers/google/gemini_client.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/tests/physics/test_invariants.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/tests/physics/test_pta_correlation_harness.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/tests/physics/test_harness_logging.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/tests/physics/test_steering_ab.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/tests/physics/test_router_regression_figures.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/tests/physics/test_sidm_curve_harness.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/tests/physics/test_memory_kernel_event_local.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/tests/core/test_maps_frame.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/tests/core/test_active_graph_regression.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/tests/core/test_core_boundary_guards.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/tests/core/test_runner_budget.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/tests/core/test_void_faithful_guards.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/tests/core/test_territory_uf.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/tests/core/test_scouts.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/tests/guards/test_no_scheduler.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/tests/frontend/test_frontend_architecture.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/tests/frontend/test_process_manager_runs_root.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/tests/runtime/test_phase_legacy_key.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/tests/runtime/test_events_adapter_inhibition.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/tests/runtime/test_telemetry_frame_v2.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/tests/core/cosmology/test_events.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/tests/core/cosmology/test_router.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/io/actuators/__init__.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/io/sensors/__init__.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/io/cognition/stimulus.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/io/cognition/composer.py",
+      "root": "fum_rt"
+    },
+    {
+      "action": "inserted_license_docstring",
+      "after_encoding_cookie": false,
+      "after_shebang": false,
+      "insert_index": 0,
+      "inserted_bytes": 373,
+      "inserted_lines": 9,
+      "path": "fum_rt/io/cognition/speaker.py",
+      "root": "fum_rt"
+    }
+  ],
+  "fixes_applied_count": 184,
+  "fixes_by_root": [
+    {
+      "inserted": 1,
+      "root": "(repo-root)"
+    },
+    {
+      "inserted": 40,
+      "root": "Derivation"
+    },
+    {
+      "inserted": 121,
+      "root": "fum_rt"
+    },
+    {
+      "inserted": 22,
+      "root": "tools"
+    }
+  ],
+  "generated_utc": "2025-10-27T17:14:59Z",
+  "ignore_dirs": [
+    ".cache",
+    ".git",
+    ".idea",
+    ".venv",
+    ".vscode",
+    "Derivation/code/outputs",
+    "VDM_Nexus/build",
+    "__pycache__",
+    "build",
+    "dist",
+    "node_modules",
+    "out",
+    "outputs",
+    "runs",
+    "venv"
+  ],
+  "items": [
+    {
+      "docstring": "Pytest configuration shim to normalize imports.\n\n- Ensures the repository root is present on sys.path so imports like\n  `Prometheus_VDM.*` and `fum_rt.*` resolve reliably during test collection.\n",
+      "path": "conftest.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nTest suite for validating the axiomatic theory development of VDM.\n\nThis module tests the mathematical consistency and physical validity of the \nrigorously derived theoretical results from axiomatic_theory_development.md.\n\nTests verify:\n1. Discrete-to-continuum mapping exactness\n2. Conservation law validity  \n3. Stability analysis consistency\n4. Parameter mapping accuracy\n5. EFT expansion convergence\n\nAuthor: Axiomatic Theory Development System\nDate: 2025-01-XX\n",
+      "path": "test_axiomatic_theory.py",
+      "reason": "no keywords found"
+    },
+    {
+      "path": ".codacy/cli-config.yaml",
+      "preview": "",
+      "reason": "no keywords found"
+    },
+    {
+      "path": ".codacy/cli.sh",
+      "preview": "#!/usr/bin/env bash\n\n\nset -e +o pipefail\n\n# Set up paths first\nbin_name=\"codacy-cli-v2\"\n\n# Determine OS-specific paths\nos_name=$(uname)\n",
+      "reason": "no keywords found"
+    },
+    {
+      "path": ".codacy/codacy.yaml",
+      "preview": "runtimes:\n    - dart@3.7.2\n    - go@1.22.3\n    - java@17.0.10\n    - node@22.2.0\n    - python@3.11.11\ntools:\n    - dartanalyzer@3.7.2\n    - eslint@8.57.0\n    - lizard@1.17.31\n",
+      "reason": "no keywords found"
+    },
+    {
+      "path": "VDM_Nexus/CMakeLists.txt",
+      "preview": "cmake_minimum_required(VERSION 3.24)\n\nproject(physics_nexus\n  VERSION 0.1.0\n  DESCRIPTION \"VDM Nexus desktop application\"\n  LANGUAGES CXX\n)\n\nset(CMAKE_CXX_STANDARD 20)\nset(CMAKE_CXX_STANDARD_REQUIRED ON)\n",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "Reference adapter implementations for geometry bundle runs.\n\nThese adapters are primarily intended for smoke-testing the geometry\nbundle workflow. They produce deterministic synthetic activations so\nthat the pipeline can be validated without requiring a fully wired\nmodel. Replace them with project-specific adapters that interface with\nyour actual checkpoints and model layers.\n",
+      "path": "tools/geom_adapter_stub.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nMarkdown hygiene check: UTF-8 (no BOM), mojibake scan, and canonical link paths.\n\nUsage:\n  python Prometheus_VDM/tools/md_hygiene_check.py --root Prometheus_VDM/derivation\n\nExit codes:\n  0 = all checks pass\n  1 = issues found\n\nChecks:\n- Encoding: file decodes as UTF-8 and has no BOM.\n- Mojibake: flags common sequences (\u00e2, \u00c2, \u00c3, \u00cf, \u00ce, replacement char \ufffd).\n- Link targets: flags stale/moved doc paths and non-canonical prefixes per repo reorg.\n",
+      "path": "tools/md_hygiene_check.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\naxiom_guard.py\n\nEnforces two invariants for the canonical axiomatic file:\n1. Hard termination: no non\u2011whitespace content exists after the termination marker line.\n2. Tag compliance: every theorem/lemma/corollary/conjecture line contains an allowed status tag.\n\nExit codes:\n 0 success\n 1 violation(s) found\n\nUsage:\n  python tools/axiom_guard.py --file derivation/axiomatic_theory_development.md\n\nIntegrate into CI / pre-commit to prevent accidental tail re-growth or untagged claims.\n",
+      "path": "tools/axiom_guard.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nScript: extract_say_texts.py\nPurpose: Extract text from 'say' macro events in JSONL logs to CSV/JSONL/text for analysis.\n\nUsage examples:\n  python3 tools/extract_say_texts.py runs/20250818_212345/utd_events.jsonl --out outputs/say_texts.csv --format csv --include-why\n  python3 tools/extract_say_texts.py \"runs/*/utd_events.jsonl\" --format text > outputs/say_texts.txt\n\nInput: JSONL where each line is a JSON object with fields like:\n  {\"type\":\"macro\",\"macro\":\"say\",\"args\":{\"text\":\"...\"}, \"why\": {...}, \"score\": 0.5}\n\nThis script streams the input(s) to handle large files; no full-file load.\n",
+      "path": "tools/extract_say_texts.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "Geometry bundle automation for VDM instrumentation runs.\n\nThis script orchestrates the end-to-end workflow described in the\nuser's geometry data capture checklist (sections A-J). It handles run\ndirectory provisioning, provenance capture, activation logging hooks,\nquality checks, and packaging. The heavy lifting of model-specific\nforward passes is delegated to a pluggable adapter that must implement\nthe :class:`GeometryProbeAdapter` protocol.\n\nUsage (basic)::\n\n    python tools/geom_bundle_builder.py --config path/to/config.json         --adapter dotted.module:AdapterClass\n\nThe configuration file may follow the ``geom_config.json`` template\ndescribed in the specification. All generated artifacts follow the\nexpected directory layout so downstream geometry analysis can consume\nthem immediately.\n",
+      "path": "tools/geom_bundle_builder.py",
+      "reason": "no keywords found"
+    },
+    {
+      "path": "Derivation/Dark_Photons/init_dark_photon_quantum_docs_v2.sh",
+      "preview": "#!/usr/bin/env bash\n# init_dark_photon_quantum_docs_v2.sh\n# Robust version: uses here-docs (no multi-line arg passing). Idempotent.\n# Usage:\n#   ./init_dark_photon_quantum_docs_v2.sh \"<TARGET_DIRECTORY>\"\n\nset -euo pipefail\n\nTARGET_DIR=\"${1:-}\"\nif [[ -z \"${TARGET_DIR}\" ]]; then\n",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\n# Example usage inside a physics script:\n\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom common.io_paths import figure_path, log_path, write_log\n\ndomain, slug = \"fluid_dynamics\", \"corner_test_r_c_scan\"\n\n# ... run simulation, compute metrics -> 'metrics' dict\n\n# Save figure\nfig_path = figure_path(domain, slug, failed=False)\nplt.savefig(fig_path, dpi=160, bbox_inches=\"tight\")\n\n# Save log\nlog = {\n    \"timestamp\": __import__(\"datetime\").datetime.now().isoformat(),\n    \"git_hash\": \"YOUR_GIT_HASH_HERE\",\n    \"seed\": 1234,\n    \"domain\": domain,\n    \"slug\": slug,\n    \"params\": {\"H\":1.0, \"nu\":1e-3, \"...\":\"...\"},\n    \"metrics\": metrics,\n    \"status\": \"success\"\n}\nwrite_log(log_path(domain, slug, failed=False, type=\"json\"), log)\n\n# In Markdown (relative to derivation/):\n# ![Corner test r_c scan](code/outputs/figures/fluid_dynamics/20250823_corner_test_r_c_scan.png)\n# [Run log](code/outputs/logs/fluid_dynamics/20250823_corner_test_r_c_scan.json)\n\n",
+      "path": "Derivation/Collapse/code/common/io_paths.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "Fit edge-correction ansatz H_edge using saved deterministic samples.\n\nReads the latest flux_sweep JSON under derivation/outputs/logs/conservation_law,\nreconstructs Connectome adjacency per sample seed, and fits coefficients for\nH_ij = sum_k c_k * phi_k(W_i, W_j) using least squares on equations\n    DeltaQ_i = sum_j (H_ji - H_ij)\n\nBasis functions: [W_i, W_j, W_i*W_j]\n",
+      "path": "Derivation/code/analysis/fit_H_edge.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "Numeric sweep: compute \u0394(sum Q_i) statistics across random seeds.\n\nWrites JSON summary to derivation/code/outputs/logs/conservation_law/flux_sweep_<ts>.json\n",
+      "path": "Derivation/code/analysis/flux_sweep.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "Symbolic CAS: small-N search for discrete flux H_ij.\n\nWe use N=2 and the first-order approximation \u0394Q \u2248 Q'(W) * \u0394W (small-step/Taylor).\nAnsatz: H_ij = sum_k c_k * W_i^{a_k} * W_j^{b_k} with monomials up to degree 2.\nSolve linear equations for coefficients c_k such that \u0394Q_i = sum_j (H_ji - H_ij).\n",
+      "path": "Derivation/code/analysis/flux_symbolic_full.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "Optimize free symbolic parameters (tau0,tau1) to minimize RMS_after on deterministic samples.\n\nStrategy:\n- Rebuild symbolic solution (linsolve) for the small-N system as in flux_symbolic_full.py.\n- Keep free symbols (tau0,tau1) as optimization variables.\n- Lambdify H(Wi,Wj,alpha,beta,r,u,...free_params).\n- For numeric evaluation apply protections: np.nan_to_num, then tanh scaling to bound H values.\n- Minimize RMS_after across saved deterministic samples using scipy.optimize.minimize.\n",
+      "path": "Derivation/code/analysis/optimize_H_params.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "Quick grid scan over tau0 to evaluate RMS_after for the symbolic H candidate.\nPrints best tau0 and a small table.\n",
+      "path": "Derivation/code/analysis/grid_tau0.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "Symbolic CAS simplification script.\n\nThis script performs symbolic simplifications using a computer algebra system.\n",
+      "path": "Derivation/code/analysis/flux_symbolic.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "Ansatz coefficient fitting script.\n\nThis script fits coefficients for the ansatz using optimization techniques.\n",
+      "path": "Derivation/code/analysis/edge_ansatz_fit.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "Construct H_candidate from symbolic solution (fix free params) and validate numerically.\n\nThis script recreates the small-N linear system from ``flux_symbolic_full.py``,\nsolves symbolically for coefficients c_k, substitutes free parameters to zero,\nbuilds H_ij(Wi,Wj), and tests the correction on saved deterministic samples\nfrom the latest `flux_sweep_*.json`.\n",
+      "path": "Derivation/code/analysis/build_and_test_H_candidate.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\n# Example usage inside a physics script:\n\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom common.io_paths import figure_path, log_path, write_log\n\ndomain, slug = \"fluid_dynamics\", \"corner_test_r_c_scan\"\n\n# ... run simulation, compute metrics -> 'metrics' dict\n\n# Save figure\nfig_path = figure_path(domain, slug, failed=False)\nplt.savefig(fig_path, dpi=160, bbox_inches=\"tight\")\n\n# Save log\nlog = {\n    \"timestamp\": __import__(\"datetime\").datetime.now().isoformat(),\n    \"git_hash\": \"YOUR_GIT_HASH_HERE\",\n    \"seed\": 1234,\n    \"domain\": domain,\n    \"slug\": slug,\n    \"params\": {\"H\":1.0, \"nu\":1e-3, \"...\":\"...\"},\n    \"metrics\": metrics,\n    \"status\": \"success\"\n}\nwrite_log(log_path(domain, slug, failed=False, type=\"json\"), log)\n\n# In Markdown (relative to derivation/):\n# ![Corner test r_c scan](code/outputs/figures/fluid_dynamics/20250823_corner_test_r_c_scan.png)\n# [Run log](code/outputs/logs/fluid_dynamics/20250823_corner_test_r_c_scan.json)\n\n",
+      "path": "Derivation/code/common/io_paths.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nDimensionless numbers and lattice-unit helpers used across VDM runners.\n\nOverview\n- This module centralizes formulas for common non-dimensional groups and lattice-BGK\n    relationships so experiments remain consistent and easy to audit.\n- It is pure (no I/O) and safe to import in any runner or test.\n\nAssumptions and conventions\n- Lattice units (LBM): \u0394x = \u0394t = 1 (when stated); D2Q9 BGK with speed of sound\n    c_s = 1/sqrt(3). Kinematic viscosity in lattice units is \u03bd = (\u03c4 - 0.5)/3.\n- Dimensionless groups follow standard fluid/transport conventions.\n- Small epsilons (1e-15) are added in denominators purely to avoid division-by-zero\n    in edge cases; they do not change scaling for well-posed inputs.\n\nUnits (typical)\n- U: velocity [m/s], L: length [m], D: diffusivity [m^2/s], \u03bd: kinematic viscosity [m^2/s]\n- \u03c4 (tau): lattice relaxation time [lattice time units]\n\nQuick reference\n- lbm_cs(): lattice sound speed c_s in lattice units.\n- lbm_viscosity_from_tau(\u03c4): \u03bd = (\u03c4 \u2212 0.5)/3 in lattice units (D2Q9 BGK).\n- reynolds_lbm(U, L, \u03c4): Re = U L / \u03bd using \u03bd from \u03c4 (lattice-unit analysis).\n- mach_lbm(U): Ma = U / c_s in lattice units.\n- peclet(U, L, D): Pe = U L / D.\n- damkohler(...): convective Da = k L / U; diffusive Da = k L^2 / D.\n- steering_number(\u03b8, ||\u2207m||, \u03bb): Si = \u03b8 ||\u2207m|| / \u03bb (internal to VDM steering analyses).\n- void_number(\u039b, \u0398, \u0393): \u03a0_void = (\u039b \u00b7 \u0398) / \u0393 (internal VDM diagnostic).\n",
+      "path": "Derivation/code/common/constants.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nLightweight results database helper.\n\nContract:\n - One SQLite database per physics domain under Derivation/code/outputs/databases/<domain>.sqlite3\n - One table per experiment script (table name = sanitized script stem, e.g., kg_light_cone)\n - Rows keyed by (tag, batch) where batch is incremental per tag within that table\n - Stores params/metrics/artifacts as JSON text; status and timestamps for lifecycle\n\nMinimal API:\n - get_db_path(domain) -> Path\n - ensure_table(db_path, experiment) -> table_name\n - begin_run(domain, experiment, tag, params=None, engineering_only=False) -> RunHandle\n - log_metrics(handle, metrics)\n - add_artifacts(handle, artifacts)\n - end_run_success(handle, metrics=None)\n - end_run_failed(handle, metrics=None, error_message=None)\n\nNotes:\n - Table column 'batch' increments per tag within the same table; (tag, batch) is UNIQUE.\n - A convenience 'run_slug' is stored as f\"{experiment}_{tag}_b{batch:03d}\" for consistent artifact naming.\n - Caller should use io_paths for files; you can reference file paths in artifacts.\n",
+      "path": "Derivation/code/common/data/results_db.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nEvent DAG construction and minimal analyses (acyclicity, transitive reduction).\n\nGoals\n- Pure-Python, bounded algorithms suited for CI hygiene and small/medium analyses.\n- Caller provides events with (id, t, ...). Edges can be provided explicitly or inferred\n  with a simple precedence rule under a time tolerance.\n\nDefinitions\n- Event: a hashable id and a timestamp float t.\n- Edge inference (optional): u -> v if t_v - t_u >= 0 and within a caller-specified window\n  or follows a supplied adjacency rule. By default we infer no edges unless asked, so this\n  module is safe to import without side effects.\n\nNotes\n- For large graphs, prefer providing edges; transitive reduction is bounded by a max edge cap.\n- We avoid third-party graph libs to stay dependency-minimal.\n",
+      "path": "Derivation/code/common/causality/event_dag.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nConvenience diagnostics that compose event_dag and intervals helpers.\n\nThese are pure functions that consume in-memory structures and return dicts.\nNo IO, no approvals-safe for CI and unit tests.\n",
+      "path": "Derivation/code/common/causality/diagnostics.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nAlexandrov interval sampling and order-based dimension/scale diagnostics.\n\nWe operate on an order-only DAG (no metric required). Given event times and a DAG\nadjacency, we:\n- Sample intervals I(p, q) = { x | p \u227a x \u227a q }\n- Compute ordering fraction r = (# comparable pairs)/(N*(N-1)/2)\n- Map r -> d_hat (Myrheim\u2013Meyer estimator) via a calibrated monotone approximation\n- Fit diamond growth |I| vs \u0394t on log\u2013log for a mid-scale window\n\nAll functions are dependency-minimal and bounded via caps.\n",
+      "path": "Derivation/code/common/causality/intervals.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nCommon causality helpers (order-only diagnostics)\n\nLightweight utilities to:\n- Build an event DAG from timestamped events (with optional edge inference)\n- Check acyclicity and compute a transitive reduction (TR)\n- Sample Alexandrov intervals and estimate Myrheim\u2013Meyer dimension d\u0302\n- Analyze diamond growth |I| vs \u0394t and summarize diagnostics\n\nDesign:\n- Dependency-minimal (pure Python + math/random; numpy optional in callers)\n- Bounded algorithms with caps for large graphs\n- Reusable across domains; no IO, no approvals; safe for CI hygiene\n\nModules:\n- event_dag: DAG building, acyclicity, TR\n- intervals: interval sampling, ordering fraction r, d\u0302 mapping, scaling\n- diagnostics: convenience wrappers for one-shot summaries\n",
+      "path": "Derivation/code/common/causality/__init__.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "Authorization package: contains approval gate and CLI.\n\nThis file is intentionally minimal to enable imports like:\n    from common.authorization.approval import check_tag_approval\n",
+      "path": "Derivation/code/common/authorization/__init__.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "Generic plotting helpers for VDM experiments.\n\nUsage examples:\n    from common.plotting import PlotSpec, plot_line\n    fig_path, (fig, ax) = plot_line(x, y, PlotSpec(domain=\"metriplectic\", tag=\"KG-dispersion-v1\", name=\"dispersion\", xlabel=\"k [1/m]\", ylabel=\"\u03c9 [rad/s]\", title=\"KG dispersion\"))\n\nThis package routes saves via common.io_paths so quarantine/approval is honored automatically (based on env policy).\n",
+      "path": "Derivation/code/common/plotting/__init__.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nTaylor-Green viscosity recovery unit test (fluid_dynamics domain).\n\nPathing rule:\n- Tests live under derivation/code/tests/<domain>/\n- This test checks that \u03bd_fit recovered from E(t) decay matches \u03bd_th within 5% at 256x256.\n\nNo figures/logs are written; this is a fast numeric check.\n",
+      "path": "Derivation/code/tests/fluid_dynamics/test_taylor_green_decay.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nAcceptance guards for RD canonical validations.\n\nThese tests directly call simulation helpers (no file I/O) and assert the same acceptance gates as the reproducible scripts:\n- Front speed: rel_err <= 0.05 and R^2 >= 0.98\n- Dispersion: med_rel_err <= 0.10 and r2_array >= 0.98\n",
+      "path": "Derivation/code/tests/reaction_diffusion/test_rd_acceptance.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nMinimal unit tests for RD dispersion and Laplacians.\n\nReason: Physics validated via derivation/code/physics scripts; these tests guard formulas and signs.\n",
+      "path": "Derivation/code/tests/reaction_diffusion/test_rd_dispersion.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nThermodynamic Routing v2 runner (smoke-capable) per preregistration.\n\nFeatures (subset for smoke runs):\n- Approvals enforcement (domain/script/tag) with --allow-unapproved escape hatch.\n- Load spec JSON (grid, geometry, rd, time, analysis, controls, seeds, tag).\n- Metric (DG/AVF-style) step using reaction_diffusion.discrete_gradient module.\n- H-theorem monotonicity tracking with micro-tolerance.\n- No-switch identity checkpoints: hash raw buffers at cadence K and verify equality class\n  between 'passive' and 'controller-disabled' (here paths are identical by design).\n- RJ fit in a small window with R^2 and residual whiteness tests (DW, Ljung-Box(5)).\n- Flux computation at outlet faces and bias metrics (B, rho) for symmetric smoke.\n- Determinism receipts: threads/BLAS/FFT names and thread caps recorded.\n- JSON summary and CSV logs via common.io_paths policy-aware helpers.\n\nNote: This is a minimal implementation for symmetric/bias smoke runs on CPU with NumPy.\n",
+      "path": "Derivation/code/physics/thermo_routing/run_thermo_routing.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nThermodynamic Routing v2 \u2014 Prereg Biased Main (aggregation + gates)\n\nRuns multi-seed simulations and robustness sweeps (injection-site sweep and two-source split),\ncomputes 95% confidence intervals, evaluates prereg gates, and writes a combined JSON summary\nplus CSV logs and at least one figure via io_paths. Leaves the published runner untouched.\n\nAssumptions (documented for prereg transparency):\n- RJ gate: require median R\u00b2 across seeds \u2265 r2_gate (default 0.99). Residual diagnostics reported.\n- Bias gate: test B mean and (rho-0.5) mean against 0 via t-interval; require both 95% CIs exclude 0\n  and |mean| \u2265 \u03b4 (from spec.gates.delta_bias). If one metric is undefined (e.g., degenerate rho), gate fails.\n- Energy-floor: compute tail window of L_h(t); define z = mean(|\u0394L|_tail) / (std(|\u0394L|_tail)+eps). Gate passes if min(z across seeds) \u2265 5.\n  This proxies \"\u22655\u03c3\" floor; baseline.enabled is recorded but not used to run a separate baseline to keep runtime bounded.\n- Injection sweep slope: regress B vs y0 across provided y_list using ordinary least squares; CI via t-interval.\n- Two-source \u0394\u03b7: define \u03b7 = (B_ratio - B_equal)/max(|B_equal|, eps) with ratios in controls.two_source_split.ratios; report CI for \u0394\u03b7; gate passes if |\u0394\u03b7| \u2264 5%.\n\nThese assumptions can be adjusted if prereg text mandates different exact statistics; metrics are exposed in JSON.\n",
+      "path": "Derivation/code/physics/thermo_routing/run_tr_v2_prereg_biased_main_aggregate.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nThermodynamic Routing v2 \u2014 Prereg Biased Main (full gates, orchestrator)\n\nThis script honors the prereg spec (Gaussian IC, biased geometry) and runs a\nnumerically guarded AVF step (with line-search backtracking) to avoid overflow.\nIt produces the same artifact set and top-level JSON fields as the published\nrunner, but allows prereg gating and aggregated metrics to be introduced.\n\nNote: The published runner remains untouched. This is an additive orchestrator.\n",
+      "path": "Derivation/code/physics/thermo_routing/run_tr_v2_prereg_biased_main_full.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nExperiment: Thermodynamic Routing v2 \u2014 Prereg Biased Main (full gates)\n\nThis script is a dedicated entrypoint that sets its own identity for approvals,\nselects the prereg-biased-main spec by default, and delegates to the published runner.\nIt does not modify the legacy runner.\n",
+      "path": "Derivation/code/physics/thermo_routing/run_tr_v2_prereg_biased_main.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nExperiment: Thermodynamic Routing v2 \u2014 Prereg Biased Geometry (full gates)\n\nCreates a dedicated entrypoint for the preregistered biased-geometry run.\nThis does not modify the legacy runner. It sets this script's identity for\nscript-scoped approvals and delegates to the existing implementation.\n",
+      "path": "Derivation/code/physics/thermo_routing/run_tr_v2_prereg_biased.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nTachyonic tube spectrum & condensation runner (diagonal baseline).\n\nGenerates artifacts for two tags:\n  - tube-spectrum-v1: \u03ba-spectrum across R_sweep (lowest root per \u2113)\n  - tube-condensation-v1: Energy scan E(R) with diagonal quartic condensation\n\nApproval policy: requires tag-specific manifest entry plus DB secrets unless --allow-unapproved is passed (artifacts then quarantined).\n\nArtifacts:\n  - Figures: spectrum distribution (optional), energy scan PNG\n  - Logs: CSV (spectrum roots), CSV (energy scan), JSON summary\n\nGates:\n  - Spectrum: coverage fraction \u2265 0.95 (finite \u03ba for \u226595% of (R, \u2113) pairs attempted)\n  - Condensation: finite energy fraction \u2265 0.80 and local minimum has positive second derivative within 10% tolerance from quadratic fit.\n",
+      "path": "Derivation/code/physics/tachyonic_condensation/run_tachyon_tube.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nPlotting helper for memory-steering experiments.\n\n- Parses outputs/memory_steering_results.csv (supports 4- or 5-column stability).\n- Produces figures in outputs/.\n- Prints a concise metrics summary that directly tests the three predictions:\n  1) Junction logistic collapse\n  2) Curvature scaling in the ray limit\n  3) Stability band with write\u2192decay protocol (Retention, Fidelity)\n\nUsage:\n- python3 -m fum_rt.utils.plot_memory_steering\n  or\n- python3 fum_rt/utils/plot_memory_steering.py   (if PYTHONPATH=. is set)\n",
+      "path": "Derivation/code/physics/memory_steering/plot_memory_steering.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nMemory Steering Acceptance Harness\n\nImplements a leaky first-order memory filter with saturation and runs:\n- Step response: fit pole p and verify fixed point M*.\n- Canonical void target: with g = 1.5 * lam and s \u2261 1, verify M_final \u2248 0.6 (multi-seed).\n- Noise suppression: SNR_out improvement \u2265 3 dB.\n- Boundedness: no post-clamp violations outside [0, 1].\n- Lyapunov monotonicity for constant s (noise-free).\n- Reproducibility: identical sequences for the same seed.\n\nCLI:\n  python -m Prometheus_VDM.derivation.code.physics.memory_steering.memory_steering_acceptance       --seed 0 --steps 512 --g 0.12 --lam 0.08 --noise_std 0.0\n\nOutputs:\n- JSON metrics: Prometheus_VDM/derivation/code/outputs/logs/memory_steering/memory_steering_acceptance_<timestamp>.json\n- Figures (PNG): Prometheus_VDM/derivation/code/outputs/figures/memory_steering/\n",
+      "path": "Derivation/code/physics/memory_steering/memory_steering_acceptance.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nTaylor-Green vortex (2-D) viscosity recovery benchmark for the fluids sector.\n\nCHANGE REASON:\n- Relocated into derivation/code/physics/fluid_dynamics per repo rules (no Prometheus_VDM/bench/).\n- Outputs follow RD harness: derivation/code/outputs/{figures,logs}.\n- Ensures JSON uses native Python types (bool/float) to avoid numpy serialization issues.\n\nOutputs (defaults):\n- Figures \u2192 derivation/code/outputs/figures/<script>_<timestamp>.png\n- Logs    \u2192 derivation/code/outputs/logs/<script>_<timestamp>.json\n",
+      "path": "Derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nLid-driven cavity (2-D) incompressibility benchmark for the fluids sector.\n\nCHANGE REASON:\n- Relocated into derivation/code/physics/fluid_dynamics per repo rules (no Prometheus_VDM/bench/).\n- Outputs follow RD harness: derivation/code/outputs/{figures,logs}.\n- Ensures JSON uses native Python types to avoid numpy serialization issues.\n\nOutputs (defaults):\n- Figures \u2192 derivation/code/outputs/figures/<script>_<timestamp>.png\n- Logs    \u2192 derivation/code/outputs/logs/<script>_<timestamp>.json\n",
+      "path": "Derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nOrder-only Causal DAG Audit Runner\n\nIngests JSONL event streams, constructs an order-only DAG, samples Alexandrov\nintervals, estimates an effective dimension from ordering fraction, and fits\ndiamond scaling |I| vs \u0394t on a log\u2013log plot.\n\nArtifacts are written via common.io_paths with policy-aware quarantine routing.\nApproval is enforced via common.authorization.approval.check_tag_approval.\n\nInputs\n- --events: path to events.jsonl or a directory of shards (scans for *.jsonl, *.jsonl.gz)\n- --utd-events: optional path to utd_events.jsonl (model outputs) or a directory\n- --tag: approval tag (default: v1)\n- --allow-unapproved: bypass approval for engineering-only smoke (artifacts quarantined)\n\nNotes\n- JSONL rows may contain fields: {id|event_id}, {t|time|timestamp}, parents (list), stream/kind\n- We accept gzip-compressed files with .gz; zstd is not yet supported.\n",
+      "path": "Derivation/code/physics/causality/run_causality_dag_audit.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nRD Conservation Harness (Obj-A/B/C scaffolding) - periodic BC default.\n\n- Uses derivation/code/common/io_paths.py for logs/figures.\n- Places artifacts under code/outputs/{logs,figures}/rd_conservation.\n",
+      "path": "Derivation/code/physics/rd_conservation/run_rd_conservation.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "Physics-native Intelligence Model package (VDM).\n\nModules are organized under modules/, runners under runners/.\nThis package follows approvals-first, schema-validated summary outputs,\nand io_paths-based artifact routing consistent with Derivation standards.\n",
+      "path": "Derivation/code/physics/intelligence_model/__init__.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nJ-step (conservative) for metriplectic composition.\n\nImplements an exact periodic advection update via spectral phase rotation:\n    W(x, t + dt) = W(x - c dt, t)\nThis update is unitary (L2-preserving), volume-preserving, and reversible.\n\nNote: This surrogate J-step serves as a symplectic-like conservative flow for a\nsingle field W, avoiding the need for explicit (phi, pi) pairs while preserving\nquadratic invariants. It composes cleanly with the dissipative DG M-step.\n",
+      "path": "Derivation/code/physics/metriplectic/j_step.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nMetriplectic composition utilities:\n - M-only: reuse DG RD step from RD harness\n - J-only: spectral advection J step\n - J \u2295 M (Strang): J(dt/2) \u2192 M(dt) \u2192 J(dt/2)\n",
+      "path": "Derivation/code/physics/metriplectic/compose.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nReaction-exact step for the logistic on-site law in RD:\n\ndW/dt = r W - u W^2, with closed form update over dt:\n\nW(t+dt) = ( r W(t) e^{r dt} ) / ( u W(t) (e^{r dt} - 1) + r ).\n\nAssumptions: r>0, u>=0 typical; numerically stabilized via expm1.\n\nRuntime policy:\n- Purely local; supports per-site dt for event-driven census firing.\n- No global scans, no schedulers; observability is read-only.\n\nReference ODE invariant (for diagnostics only):\nQ(W,t) = ln( W / (r - u W) ) - r t.\n",
+      "path": "Derivation/code/physics/reaction_diffusion/reaction_exact.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nRD dispersion validation (linear regime) for Fisher-KPP:\n    \u2202t u = D \u2202xx u + r u (1 - u)\nLinearized about u\u22480: u_t \u2248 D u_xx + r u\n\nPredictions:\n  Continuum:  \u03c3_c(k) = r - D k^2\n  Discrete (periodic second-difference):  \u03c3_d(m) = r - (4 D / dx^2) sin^2(\u03c0 m / N)\n\nMethod:\n  - Evolve the linearized PDE with periodic BCs from small random amplitude.\n  - Record snapshots and fit log |\u00db_m(t)| vs t for selected modes m.\n  - Compare measured growth rates to \u03c3_d(m) (primary) and \u03c3_c(k) (reference).\n\nOutputs (defaults):\n  - derivation/code/outputs/figures/<script>_<timestamp>.png\n  - derivation/code/outputs/logs/<script>_<timestamp>.json\n\nCLI example:\n  python Prometheus_VDM/derivation/code/physics/rd_dispersion_experiment.py --N 1024 --L 200 --D 1.0 --r 0.25 --T 10 --cfl 0.2 --seed 42\n",
+      "path": "Derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nRD front-speed validation for Fisher-KPP:\n    \u2202t u = D \u2202xx u + r u (1 - u)\n\nTheory:\n    Minimal pulled-front speed c_th = 2 * sqrt(D * r)\n\nOutputs (defaults):\n    - derivation/code/outputs/figures/<script>_<timestamp>.png\n    - derivation/code/outputs/logs/<script>_<timestamp>.json\n\nCLI example:\n  python Prometheus_VDM/derivation/code/physics/rd_front_speed_experiment.py     --N 1024 --L 200 --D 1.0 --r 0.25 --T 80 --cfl 0.2 --seed 42 --x0 -60 --level 0.1 --fit_start 0.6 --fit_end 0.9\n",
+      "path": "Derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nRD Fisher-KPP front-speed sweep runner.\n\nRuns multiple configurations of the experiment script and writes a CSV summary\nunder: derivation/code/outputs/logs/rd_front_speed_sweep_YYYYMMDDThhmmssZ.csv\n\nUsage (PowerShell, always in venv):\n  & .\u000benv\\Scripts\\Activate.ps1\n  python Prometheus_VDM/derivation/code/physics/rd_front_speed_sweep.py\n\nOptional flags:\n  --Ds 0.5 1.0 2.0\n  --rs 0.1 0.25\n  --Ns 1024 2048\n  --levels 0.1 0.5\n  --fit_start 0.6\n  --fit_end 0.9\n  --T 80\n  --cfl 0.2\n  --seed 42\n  --x0 -60\n  --noise_amp 0.0\n",
+      "path": "Derivation/code/physics/reaction_diffusion/rd_front_speed_sweep.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "Reusable modules for the physics-native Intelligence Model (VDM).",
+      "path": "Derivation/code/physics/intelligence_model/modules/__init__.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "CLI runners for the physics-native Intelligence Model (VDM).",
+      "path": "Derivation/code/physics/intelligence_model/runners/__init__.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nCHANGE REASON:\n- Adds the fluids sector minimal solver (LBM\u2192NS) per TODO_up_next plan.\n- Mirrors the repository's proven practice: scripts emit figures + JSON metrics with a 'passed' gate.\n- This module is scoped; it does not alter RD canonical sector. It provides the operational path to NS.\n\nReferences:\n- derivation: [fluids_limit.md](Prometheus_VDM/derivation/fluids_limit.md:1)\n- benchmarks: taylor_green_benchmark.py, lid_cavity_benchmark.py\n",
+      "path": "Derivation/code/physics/fluid_dynamics/fluids/lbm2d.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\n# Example usage inside a physics script:\n\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom common.io_paths import figure_path, log_path, write_log\n\ndomain, slug = \"fluid_dynamics\", \"corner_test_r_c_scan\"\n\n# ... run simulation, compute metrics -> 'metrics' dict\n\n# Save figure\nfig_path = figure_path(domain, slug, failed=False)\nplt.savefig(fig_path, dpi=160, bbox_inches=\"tight\")\n\n# Save log\nlog = {\n    \"timestamp\": __import__(\"datetime\").datetime.now().isoformat(),\n    \"git_hash\": \"YOUR_GIT_HASH_HERE\",\n    \"seed\": 1234,\n    \"domain\": domain,\n    \"slug\": slug,\n    \"params\": {\"H\":1.0, \"nu\":1e-3, \"...\":\"...\"},\n    \"metrics\": metrics,\n    \"status\": \"success\"\n}\nwrite_log(log_path(domain, slug, failed=False, type=\"json\"), log)\n\n# In Markdown (relative to derivation/):\n# ![Corner test r_c scan](code/outputs/figures/fluid_dynamics/20250823_corner_test_r_c_scan.png)\n# [Run log](code/outputs/logs/fluid_dynamics/20250823_corner_test_r_c_scan.json)\n\n",
+      "path": "Derivation/Templates/Domain_Template/code/common/io_paths.py",
+      "reason": "no keywords found"
+    },
+    {
+      "path": "tools/python_utilities_generator/index.tsx",
+      "preview": "\nimport React from 'react';\nimport ReactDOM from 'react-dom/client';\nimport App from './App';\n\nconst rootElement = document.getElementById('root');\nif (!rootElement) {\n  throw new Error(\"Could not find root element to mount to\");\n}\n\n",
+      "reason": "no keywords found"
+    },
+    {
+      "path": "tools/python_utilities_generator/constants.ts",
+      "preview": "\nexport const EXAMPLE_QUERIES = [\n    {\n        title: \"Recursive File Crawler\",\n        query: \"a crawler that starts from the directory it's run in and crawls every folder below the script's location recursively, mapping the contents of each file to a single monolithic file with each file contents wrapped in XML and the file path in the tag, and a meta data analysis report at the very top, with the ascii map just below it, ignoring any files in its config.\",\n    },\n    {\n        title: \"Unused Code Detector\",\n        query: \"a tool that finds unused methods or imports, and mismatched dependencies between packages by parsing requirements.txt.\",\n    },\n",
+      "reason": "no keywords found"
+    },
+    {
+      "path": "tools/python_utilities_generator/types.ts",
+      "preview": "",
+      "reason": "no keywords found"
+    },
+    {
+      "path": "tools/python_utilities_generator/vite.config.ts",
+      "preview": "import path from 'path';\nimport { defineConfig, loadEnv } from 'vite';\n\nexport default defineConfig(({ mode }) => {\n    const env = loadEnv(mode, '.', '');\n    return {\n      define: {\n        'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),\n        'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY)\n      },\n",
+      "reason": "no keywords found"
+    },
+    {
+      "path": "tools/python_utilities_generator/App.tsx",
+      "preview": "import React, { useState } from 'react';\nimport QueryForm from './components/QueryForm';\nimport ResultsDisplay from './components/ResultsDisplay';\nimport SettingsModal from './components/SettingsModal';\nimport { PythonIcon, GearIcon } from './components/icons';\nimport { generatePythonPackage } from './services/geminiService';\nimport type { GeneratedFile } from './types';\n\nconst App: React.FC = () => {\n    const [isLoading, setIsLoading] = useState<boolean>(false);\n",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nVDM Provenance Manifest Generator\n---------------------------------\nPurpose:\n  - Create an immutable, machine-verifiable manifest of the repository state:\n      * SHA-256 per file\n      * Sizes (bytes)\n      * Deterministic tree hash over the set\n      * Git commit and dirty flag\n      * UTC timestamp\n  - Optionally pack a release archive (tar.gz) that includes the manifest.\n\nOutput:\n  - PROVENANCE_manifest.json (default) in the selected root\n  - Optional tar.gz archive if --archive is provided\n\nJSON discipline:\n  - json.dump(..., indent=2, sort_keys=True)\n\nExclusions:\n  - Skips common build/cache folders by default (see DEFAULT_EXCLUDES),\n    and the output files themselves.\n\nUsage examples:\n  - python tools/provenance/generate_manifest.py\n  - python tools/provenance/generate_manifest.py --root . --output PROVENANCE_manifest.json\n  - python tools/provenance/generate_manifest.py --archive VDM_RELEASE.tar.gz\n\nNotes:\n  - This tool does not contact external timestamp services. After generating the\n    manifest (and optional archive), submit them to a TSA (RFC3161) or OpenTimestamps\n    to obtain independent time receipts, and store receipts alongside the artifacts.\n",
+      "path": "tools/provenance/generate_manifest.py",
+      "reason": "no keywords found"
+    },
+    {
+      "path": "tools/python_utilities_generator/services/geminiService.ts",
+      "preview": "import { GoogleGenAI, Type } from \"@google/genai\";\nimport type { GeneratedFile } from \"../types\";\n\nconst API_KEY = process.env.API_KEY;\n\nif (!API_KEY) {\n  throw new Error(\"API_KEY environment variable not set.\");\n}\n\nconst ai = new GoogleGenAI({ apiKey: API_KEY });\n",
+      "reason": "no keywords found"
+    },
+    {
+      "path": "tools/python_utilities_generator/components/icons.tsx",
+      "preview": "import React from 'react';\n\nexport const PythonIcon = ({ className }: { className?: string }) => (\n  <svg\n    className={className}\n    xmlns=\"http://www.w3.org/2000/svg\"\n    viewBox=\"0 0 24 24\"\n    fill=\"currentColor\"\n    aria-hidden=\"true\"\n  >\n",
+      "reason": "no keywords found"
+    },
+    {
+      "path": "tools/python_utilities_generator/components/SettingsModal.tsx",
+      "preview": "import React, { useState, useEffect } from 'react';\n\ninterface SettingsModalProps {\n    isOpen: boolean;\n    onClose: () => void;\n    onSave: (settings: { enhancerModel: string; coderModel: string }) => void;\n    initialEnhancerModel: string;\n    initialCoderModel: string;\n}\n\n",
+      "reason": "no keywords found"
+    },
+    {
+      "path": "tools/python_utilities_generator/components/ResultsDisplay.tsx",
+      "preview": "\nimport React, { useState, useEffect } from 'react';\nimport type { GeneratedFile } from '../types';\nimport { CopyIcon, CheckIcon } from './icons';\n\ninterface ResultsDisplayProps {\n  files: GeneratedFile[];\n}\n\nconst FileContentDisplay: React.FC<{ content: string }> = ({ content }) => {\n",
+      "reason": "no keywords found"
+    },
+    {
+      "path": "tools/python_utilities_generator/components/QueryForm.tsx",
+      "preview": "import React, { useState } from 'react';\nimport { EXAMPLE_QUERIES } from '../constants';\nimport { LoadingSpinner, SparklesIcon, PythonIcon } from './icons';\nimport { enhanceUserPrompt } from '../services/geminiService';\n\ninterface QueryFormProps {\n    onGenerate: (query: string) => void;\n    isLoading: boolean;\n    enhancerModel: string;\n}\n",
+      "reason": "no keywords found"
+    },
+    {
+      "path": "tools/dependency_analyzer/src/dependency_analyzer/scripts/parse_js.js",
+      "preview": "const fs = require('fs');\nconst parser = require('@babel/parser');\nconst path = require('path');\n\nconst filePath = process.argv[2];\n\nif (!filePath) {\n    console.error(JSON.stringify({\n        provides: [],\n        imports: [],\n",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nCompatibility shim for visualization ring buffer.\n\nDeprecated: import from 'fum_rt.io.visualization.maps_ring' instead.\n\nKept for transitional period to avoid breaking existing imports:\n    from fum_rt.io.maps_ring import MapsRing, MapsFrame\n",
+      "path": "fum_rt/io/maps_ring.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "SIDM cross-section harness for the cosmology router grain shim.\n\nThis runner mirrors the FUM reproducibility pattern: it takes a velocity grid,\nqueries :class:`~fum_rt.core.cosmology.GrainScatteringShim`, evaluates the\nmonotonicity/acceptance gates, emits JSON logs, and produces a plot with the\npre-registered dwarf\u2192cluster acceptance bands.\n\nUsage (example)::\n\n    python fum_rt/physics/sidm_curve_harness.py         --grid \"10,20,30,50,80,120,200,350,600,900\"         --outdir /tmp/fum_sidm\n\nThe JSON payload mirrors other physics runners: config snapshot, acceptance\nsummary, artifact paths, and timestamp. The acceptance status flips to\n``NEEDS_RECAL`` if any velocity point leaves its band or if the curve ceases to\nbe monotone decreasing.\n",
+      "path": "fum_rt/physics/sidm_curve_harness.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nRD dispersion validation runner (linear regime) for fum_rt.\n\nCHANGE REASON:\n- This file mirrors the validated physics from derivation scripts to the runtime stack.\n- We have PROVEN the RD linear dispersion \u03c3(k) = r - D k^2 via reproducible scripts and derivations:\n  [rd_dispersion_experiment.py](Prometheus_VDM/derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py),\n  [rd_validation_plan.md](Prometheus_VDM/derivation/rd_validation_plan.md),\n  [CORRECTIONS.md](Prometheus_VDM/derivation/computational_proofs/CORRECTIONS.md).\n- This runner provides an independent, apples-to-apples check inside fum_rt with identical metrics/output schema.\n- It DOES NOT alter runtime dynamics; it is a validation wrapper only.\n",
+      "path": "fum_rt/physics/rd_dispersion_runner.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "PTA-band correlation proxy harness for the cosmology router.",
+      "path": "fum_rt/physics/pta_correlation_harness.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "Vacuum demographics harness for the cosmology router vacuum channel.\n\nThis script mirrors the reproducibility pattern used by the other physics\nrunners.  It ingests a synthetic (or user-supplied) horizon activity tape,\npropagates it through :class:`~fum_rt.core.cosmology.VacuumAccumulator`, and\ncompares the resulting equation-of-state residuals against the \u039bCDM baseline.\n\nThe emitted JSON payload follows the RD runner schema: configuration snapshot,\nmetrics, per-sample timeline table, and artifact paths.  The figure plots the\nw(z)+1 residual to make deviations from -1 immediately visible.\n\nUsage example::\n\n    python fum_rt/physics/vacuum_demographics_harness.py         --outdir /tmp/fum_vacuum         --eta 0.02         --tape synthetic\n\nThe harness exits with status ``NEEDS_RECAL`` when the residual tolerance is\nexceeded.\n",
+      "path": "fum_rt/physics/vacuum_demographics_harness.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "Reusable helpers for cosmology/physics harness logging payloads.",
+      "path": "fum_rt/physics/harness_logging.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "CI gate validators for cosmology router harness payloads.",
+      "path": "fum_rt/physics/ci_gates.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "Generate router-on/off comparison figures for cosmology regressions.",
+      "path": "fum_rt/physics/router_regression_figures.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "Physics solvers and harnesses for the FUM scalar EFT stack.",
+      "path": "fum_rt/physics/__init__.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nRD front-speed validation runner (Fisher-KPP) for fum_rt.\n\nCHANGE REASON:\n- This file mirrors the validated physics from derivation scripts to the runtime stack.\n- We have PROVEN the Fisher-KPP front speed c = 2\u221a(D r) via reproducible scripts and derivations:\n  [rd_front_speed_experiment.py](Prometheus_VDM/derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py:1),\n  [rd_front_speed_validation.md](Prometheus_VDM/derivation/rd_front_speed_validation.md:1),\n  [CORRECTIONS.md](Prometheus_VDM/derivation/computational_proofs/CORRECTIONS.md:1).\n- This runner provides an independent, apples-to-apples check inside fum_rt with identical metrics/output schema.\n- It DOES NOT alter runtime dynamics; it is a validation wrapper only.\n",
+      "path": "fum_rt/physics/rd_front_speed_runner.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nFUM Runtime Frontend (modularized)\n\nModules:\n- fs_utils: filesystem helpers (runs listing, JSON IO) - re-exported from utilities.fs_utils\n- tail: tailing JSONL with byte offsets - re-exported from utilities.tail\n- series: streaming metrics buffers and helpers - re-exported from models.series\n- process_manager: launch/stop runtime process from the UI - re-exported from services.process_manager\n- app: Dash app entrypoint (build_app, main)\n",
+      "path": "fum_rt/frontend/__init__.py",
+      "reason": "no keywords found"
+    },
+    {
+      "path": "fum_rt/ck/hip_spmv.cpp",
+      "preview": "\n// Minimal HIP CSR SpMV placeholder (A*y = x) with pybind11 bindings.\n// Replace with tuned Composable Kernel kernels as you iterate.\n#include <hip/hip_runtime.h>\n#include <pybind11/pybind11.h>\n#include <pybind11/numpy.h>\nnamespace py = pybind11;\n\n__global__ void spmv_csr_kernel(\n    const int N,\n",
+      "reason": "no keywords found"
+    },
+    {
+      "path": "fum_rt/ck/build.sh",
+      "preview": "\n    #!/usr/bin/env bash\n    set -euo pipefail\n    python3 - <<'PY'\nimport sys, os, subprocess, textwrap\nfrom pathlib import Path\ncode = r\"\"\"\nfrom setuptools import setup, Extension\nfrom setuptools.command.build_ext import build_ext\nimport os\n",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nRuntime helper: periodic visualization hooks (dashboard and connectome snapshot).\n\nBehavior:\n- Mirrors legacy Nexus logic and the original runtime_helpers.maybe_visualize()\n- Fail-soft and fully optional; never disrupts runtime\n",
+      "path": "fum_rt/runtime/helpers/viz.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nRuntime helper: autonomous speaking (composer + speaker gate + novelty IDF).\n\nBehavior:\n- Mirrors legacy Nexus logic for maybe_auto_speak() exactly.\n- Pure runtime helper; safe fail-soft; no side-effects beyond UTD emissions and learned lexicon updates.\n",
+      "path": "fum_rt/runtime/helpers/speak.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nRuntime helper: message ingestion and per-tick symbol/index extraction.\n\nProvides:\n- process_messages(): Mirrors legacy Nexus/runtime behavior while keeping the runtime layer modular.\n\nPolicy:\n- Runtime helpers may import fum_rt.io.* and fum_rt.core.*.\n",
+      "path": "fum_rt/runtime/helpers/ingest.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nRuntime helper: checkpointing and retention.\n\nProvides:\n- save_tick_checkpoint(): periodic snapshot with retention, behavior-preserving.\n",
+      "path": "fum_rt/runtime/helpers/checkpointing.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nRuntime helper: macro board registration on UTD emitter.\n\nBehavior:\n- Registers default macros ('status', 'say')\n- Loads per-run macro_board.json entries only (no external fallbacks)\n",
+      "path": "fum_rt/runtime/helpers/macro_board.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nRuntime helper: maps/frame WebSocket bootstrap (bounded, drop-oldest).\n\n- Safe no-op when ENABLE_MAPS_WS is not truthy or when 'websockets' package is missing.\n- Ensures a bounded MapsRing exists on nx._maps_ring (capacity=MAPS_RING, default 3).\n- Starts MapsWebSocketServer once and stores it on nx._maps_ws_server.\n\nThis file is part of the runtime helpers modularization under fum_rt.runtime.helpers.\n",
+      "path": "fum_rt/runtime/helpers/maps_ws.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nRedis publishing helpers (optional, bounded, void-faithful).\n\n- Publishes status metrics and/or latest maps/frame from the in-process ring to Redis Streams.\n- No schedulers or background threads here; caller invokes once per tick from the runtime loop.\n- Uses MAXLEN trimming to keep Redis bounded (drop-oldest), mirroring in-memory ring semantics.\n\nEnable via env:\n  REDIS_URL=redis://127.0.0.1:6379/0\n  ENABLE_REDIS_STATUS=1\n  ENABLE_REDIS_MAPS=1\n  REDIS_STREAM_STATUS=fum:status         (optional; default shown)\n  REDIS_STREAM_MAPS=fum:maps             (optional; default shown)\n  REDIS_STATUS_MAXLEN=2000               (approximate trim)\n  REDIS_MAPS_MAXLEN=3                    (approximate trim)\n",
+      "path": "fum_rt/runtime/helpers/redis_out.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nRuntime helper: optional one-shot smoke tests (macros and thought ledger).\n\n- Controlled by env flags:\n  - ENABLE_MACROS_TEST\n  - ENABLE_THOUGHTS_TEST\n\nBehavior:\n- Mirrors legacy Nexus logic exactly; guarded and fail-soft.\n",
+      "path": "fum_rt/runtime/helpers/smoke.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nRuntime helper: engram load and start-step derivation.\n\nBehavior:\n- maybe_load_engram(nx, path): loads engram state into connectome (and ADC if present), logs outcome.\n- derive_start_step(nx, path): derives starting tick index based on provided path or existing state_* files.\n\nThis module provides the real implementations migrated from the legacy runtime_helpers monolith.\n",
+      "path": "fum_rt/runtime/helpers/engram.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nRuntime helper: status emission and macro board status.\n\n- Emits open UTD status payload every status_every ticks.\n- Emits a 'status' macro when valence is high (mirrors legacy behavior).\n\nImports typing + telemetry builder only; no IO side effects besides UTD emits.\n",
+      "path": "fum_rt/runtime/helpers/emission.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nRuntime helpers package (modularized).\n\nTransitional re-exports:\n- During migration away from the monolith [runtime_helpers.py](../runtime_helpers.py), we re-export\n  its functions here to provide a stable import path:\n    from fum_rt.runtime.helpers import process_messages, emit_status_and_macro, ...\n- New helpers live as separate modules under this package (e.g., maps_ws.py).\n",
+      "path": "fum_rt/runtime/helpers/__init__.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nDeprecated shim for FUM Frontend Styles.\n\nOld path (legacy):\n  from fum_rt.frontend.styles.theme import get_global_css\n\nNew canonical path:\n  from fum_rt.frontend.styles import get_global_css\n\nThis module delegates to the modular styles package to preserve backward compatibility.\n",
+      "path": "fum_rt/frontend/styles/theme.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nControllers for reusable business logic extracted from Dash callbacks.\n",
+      "path": "fum_rt/frontend/controllers/__init__.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nProfile utilities for FUM Live Dashboard.\nCentralizes default profile defaults and assembly helpers to avoid duplication.\n",
+      "path": "fum_rt/frontend/utilities/profiles.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "Retarded sourcing kernel and router channel utilities for the cosmology module.",
+      "path": "fum_rt/core/cosmology/router.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "Event schema and guards for the cosmology router feature.",
+      "path": "fum_rt/core/cosmology/events.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "Cosmology router core primitives.",
+      "path": "fum_rt/core/cosmology/__init__.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nCore Engine package initializer.\n\nExports CoreEngine from the in-package implementation module to avoid any\ncross-file redirects. Implementation resides under this package.\n",
+      "path": "fum_rt/core/engine/__init__.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "Tests for cosmology router CI gate validators.",
+      "path": "fum_rt/tests/physics/test_ci_gates.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "Tests for the vacuum demographics harness.",
+      "path": "fum_rt/tests/physics/test_vacuum_demographics_harness.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nPlotting helper for memory-steering experiments.\n\n- Parses outputs/memory_steering_results.csv (supports 4- or 5-column stability).\n- Produces figures in outputs/.\n- Prints a concise metrics summary that directly tests the three predictions:\n  1) Junction logistic collapse\n  2) Curvature scaling in the ray limit\n  3) Stability band with write\u2192decay protocol (Retention, Fidelity)\n\nUsage:\n- python3 -m fum_rt.utils.plot_memory_steering\n  or\n- python3 fum_rt/utils/plot_memory_steering.py   (if PYTHONPATH=. is set)\n",
+      "path": "fum_rt/physics/memory_steering/plot_memory_steering.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nMaps frames ring buffer (drop-oldest, thread-safe, void-faithful).\n\nCanonical location: fum_rt.io.visualization.maps_ring\n\nPurpose\n- Provide a tiny, bounded ring for maps frames (header+payload) with drop-oldest semantics.\n- Decouples producers (telemetry/core engine) from consumers (UI/websocket) without scans.\n- O(1) amortized operations; no full-buffer copies; copies only payload bytes as provided.\n\nContract\n- Frame header schema is producer-defined; commonly:\n  {topic, ver?, tick, n, shape, channels, dtype, endianness, stats, ...}\n- Payload is a bytes-like buffer; typically planar blocks (e.g., Float32 LE: heat|exc|inh).\n\nUsage\n- nx._maps_ring = MapsRing(capacity=int(os.getenv(\"MAPS_RING\", 3)))\n- Producer: nx._maps_ring.push(tick, header, payload)\n- Consumer: ring.latest(), ring.drain(max_items)\n\nSecurity / Backpressure\n- Always drops the oldest on overflow.\n- Readers can choose to read only latest() to avoid client backlog.\n",
+      "path": "fum_rt/io/visualization/maps_ring.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nMaps frames WebSocket forwarder (bounded, drop-oldest, void-faithful).\n\nCanonical location: fum_rt.io.visualization.websocket_server\n\nPurpose\n- Serve UI consumers with the latest maps/frame payload from a bounded ring.\n- Backpressure-safe: each client receives only the newest frame; old frames are dropped.\n- Local-first: defaults to 127.0.0.1 binding; configurable via args/env.\n\nDependencies\n- Optional: 'websockets' Python package (asyncio-based). If unavailable, this module is inert.\n\nEnv (defaults shown)\n- MAPS_FPS=10                # >0 = limit; 0 = off; <0 = unlimited (tests/bench); sends at most this many frames per second when >0\n- WS_MAX_CONN=2              # maximum concurrent WebSocket clients\n- WS_ALLOW_ORIGIN=           # comma-separated origins; if empty, all origins allowed\n\nTransport format\n- Two-message sequence per frame:\n  1) Text frame: JSON dump of header dict (augmented with dtype/ver/quant/etc. by producer)\n  2) Binary frame: raw payload bytes (u8 or f32 LE as dictated by header['dtype'])\n\nNotes\n- This module does not mutate frames; it forwards exactly what producers pushed to the ring.\n- For RGB visualization, typical mapping is RGB = [exc, heat, inh] client-side.\n",
+      "path": "fum_rt/io/visualization/websocket_server.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nVisualization transport primitives.\n\n- maps_ring: bounded, drop-oldest ring buffer for maps/frame payloads\n- websocket_server: bounded WebSocket forwarder for maps frames\n",
+      "path": "fum_rt/io/visualization/__init__.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nRolling JSONL writer with bounded main file and archival segments.\n\n- Maintains a capped \"active\" JSONL file (e.g., events.jsonl, utd_events.jsonl).\n- When the active file exceeds the configured size or line cap, the oldest lines\n  are streamed into an archive segment and the active file is rewritten to keep\n  only the newest tail (rolling buffer).\n- Archive segments live under: <run_dir>/archived/<YYYYMMDD_HHMMSS>/<base_name>\n  Example: runs/<ts>/archived/20250815_120828/events.jsonl\n- When the current archive segment exceeds its cap, a new timestamped segment\n  directory is created and subsequent archival lines are appended there.\n\nConfiguration (env):\n- For events.jsonl (category=\"EVENTS\"):\n    FUM_EVENTS_MAX_MB                  (default: 256)\n    FUM_EVENTS_MAX_LINES               (default: unset; bytes cap used)\n    FUM_EVENTS_ARCHIVE_SEGMENT_MB      (default: 512)\n    FUM_EVENTS_ARCHIVE_SEGMENT_LINES   (default: unset; bytes cap used)\n- For utd_events.jsonl (category=\"UTD\"):\n    FUM_UTD_MAX_MB                     (default: 256)\n    FUM_UTD_MAX_LINES                  (default: unset; bytes cap used)\n    FUM_UTD_ARCHIVE_SEGMENT_MB         (default: 512)\n    FUM_UTD_ARCHIVE_SEGMENT_LINES      (default: unset; bytes cap used)\n- Global:\n    FUM_LOG_ROLL_CHECK_EVERY           (default: 200)  # enforce cadence (per write)\n\nNotes:\n- Uses a cross-process advisory lock via <base_path>.lock to serialize trimming with writers.\n- Writers should not hold persistent file handles; always append per call (MacroEmitter, UTD updated).\n",
+      "path": "fum_rt/io/logging/rolling_jsonl.py",
+      "reason": "no keywords found"
+    },
+    {
+      "path": "VDM_Nexus/presentation/CMakeLists.txt",
+      "preview": "cmake_minimum_required(VERSION 3.24)\n\n# Presentation layer: QML/Qt UI wiring lives here later.\n# Placeholder interface library to satisfy top-level linking from physics_nexus_app.\nadd_library(physics_nexus_presentation INTERFACE)\n\ntarget_include_directories(physics_nexus_presentation INTERFACE\n  ${CMAKE_CURRENT_SOURCE_DIR}\n)\n\n",
+      "reason": "no keywords found"
+    },
+    {
+      "path": "VDM_Nexus/tests/CMakeLists.txt",
+      "preview": "cmake_minimum_required(VERSION 3.24)\n\n# Generate a tiny compile-only test that includes the application ports\nfile(WRITE ${CMAKE_CURRENT_BINARY_DIR}/test_ports_compile.cpp \"\n#include \"${CMAKE_CURRENT_SOURCE_DIR}/../application/ports/ports.hpp\"\nint main() {\n  using namespace vdm_nexus::app;\n  IRunnerService* runner = nullptr;\n  IArtifactStore* store = nullptr;\n  IMarkdownReader* reader = nullptr;\n",
+      "reason": "no keywords found"
+    },
+    {
+      "path": "VDM_Nexus/resources/CMakeLists.txt",
+      "preview": "cmake_minimum_required(VERSION 3.24)\n\n# Resources layer: qrc/assets and static files (read-only).\n# Placeholder interface target to satisfy top-level add_subdirectory(resources).\nadd_library(physics_nexus_resources INTERFACE)\n\ntarget_include_directories(physics_nexus_resources INTERFACE\n  ${CMAKE_CURRENT_SOURCE_DIR}\n)\n\n",
+      "reason": "no keywords found"
+    },
+    {
+      "path": "VDM_Nexus/infrastructure/CMakeLists.txt",
+      "preview": "cmake_minimum_required(VERSION 3.24)\n\n# Infrastructure layer: adapters will be added here (SQLite approvals, filesystem, runners, schema catalog).\n# Placeholder interface library to satisfy top-level add_subdirectory while ports/adapters are implemented.\nadd_library(physics_nexus_infrastructure INTERFACE)\n\ntarget_include_directories(physics_nexus_infrastructure INTERFACE\n  ${CMAKE_CURRENT_SOURCE_DIR}\n)\n\n",
+      "reason": "no keywords found"
+    },
+    {
+      "path": "VDM_Nexus/scripts/CMakeLists.txt",
+      "preview": "cmake_minimum_required(VERSION 3.24)\n\n# Scripts layer: helper CLIs/utilities (read-only canon sync, approval wrappers, report packagers).\n# Placeholder interface target to satisfy top-level add_subdirectory(scripts).\nadd_library(physics_nexus_scripts INTERFACE)\n\ntarget_include_directories(physics_nexus_scripts INTERFACE\n  ${CMAKE_CURRENT_SOURCE_DIR}\n)\n\n",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nVDM Nexus \u2014 Validation Gate Tool\n\nScope:\n- Lives under VDM_Nexus/scripts/ (Nexus-only changes; Derivation/ is read-only).\n- Runs two checks required by Phase 0 \u00b7 Task 0.1:\n  1) Canon diff gate with explicit exclusions for reference-only paths\n  2) Local lint probes for Nexus (JSON validity, optional clang-format, optional md hygiene)\n\nExit codes:\n- 0 = all requested checks passed\n- 1 = one or more checks failed\n\nExample:\n  python VDM_Nexus/scripts/nexus_validate_gate.py       --base origin/main       --check canon-diff --check lint       --exclude Derivation/Converging_External_Research/**       --exclude Derivation/References/**       --exclude Derivation/Speculations/**       --exclude Derivation/Templates/**       --exclude \"Derivation/Supporting_Work/external_references/**\"       --exclude \"Derivation/Supporting_Work/Physics-Based Datasets by Tier_ A Comprehensive Resource Guide.pdf\"\n\nNotes:\n- This tool is read-only except for reading repository state.\n- It uses git to compute diffs; ensure you run it inside the repo root.\n",
+      "path": "VDM_Nexus/scripts/nexus_validate_gate.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nVDM Nexus \u2014 Canon Resolver Printer (Task 0.3.2)\n\nPurpose:\n- Resolve canonical files under ../Derivation and print commit metadata for manual validation.\n- Read-only operation. Does not modify Derivation/.\n\nTargets (default):\n- Derivation/AXIOMS.md\n- Derivation/EQUATIONS.md\n- Derivation/VALIDATION_METRICS.md\n\nPrinted metadata per target:\n- exists: true/false\n- repo_head: repository HEAD commit (git rev-parse HEAD)\n- file_last_commit: last commit that changed this file (git log -n 1 --pretty=%H -- path), if tracked\n- sha256: content hash if file exists\n- size_bytes: file size if file exists\n\nUsage:\n  python VDM_Nexus/scripts/nexus_resolver_print.py\n  python VDM_Nexus/scripts/nexus_resolver_print.py --json\n  python VDM_Nexus/scripts/nexus_resolver_print.py --targets Derivation/EQUATIONS.md Derivation/VALIDATION_METRICS.md\n",
+      "path": "VDM_Nexus/scripts/nexus_resolver_print.py",
+      "reason": "no keywords found"
+    },
+    {
+      "docstring": "\nVDM Nexus \u2014 Static Policy Check (Task 0.3.1)\n\nPurpose:\n- Enforce: \"zero write operations under ../derivation/\" from Nexus scope\n- Static source scan only (no execution). Read-only across the repo.\n\nWhat it checks:\n- In VDM_Nexus/**/*.{cpp,cxx,cc,c,hxx,hh,h}:\n  - std::ofstream(...) (assumed write)\n  - std::fstream(..., std::ios::out...) or flags with out/app\n  - fopen(..., mode) where mode contains 'w' or 'a'\n  - QFile::open(QIODevice::WriteOnly|ReadWrite|Append)\n- In VDM_Nexus/**/*.py:\n  - open(path, mode) where mode includes 'w', 'a', '+'\n  - Path.write_text / Path.write_bytes\n- For any of the above, flag as violation ONLY if the literal path argument contains:\n  - \"../derivation\" or \"/derivation/\" (case-insensitive)\n\nExit codes:\n- 0 = PASS (no violations)\n- 1 = FAIL (violations found)\n\nUsage:\n  python VDM_Nexus/scripts/nexus_static_policy_check.py\n",
+      "path": "VDM_Nexus/scripts/nexus_static_policy_check.py",
+      "reason": "no keywords found"
+    },
+    {
+      "path": "VDM_Nexus/plugins/CMakeLists.txt",
+      "preview": "cmake_minimum_required(VERSION 3.24)\n\n# Plugins layer: declarative descriptors for physics/viz; no code here yet.\n# Placeholder interface target to satisfy top-level add_subdirectory(plugins).\nadd_library(physics_nexus_plugins INTERFACE)\n\ntarget_include_directories(physics_nexus_plugins INTERFACE\n  ${CMAKE_CURRENT_SOURCE_DIR}\n)\n\n",
+      "reason": "no keywords found"
+    },
+    {
+      "path": "VDM_Nexus/application/CMakeLists.txt",
+      "preview": "cmake_minimum_required(VERSION 3.24)\n\nadd_library(physics_nexus_application INTERFACE)\n\ntarget_include_directories(physics_nexus_application INTERFACE\n  ${CMAKE_CURRENT_SOURCE_DIR}\n  ${CMAKE_CURRENT_SOURCE_DIR}/ports\n)\n\ntarget_compile_features(physics_nexus_application INTERFACE cxx_std_20)",
+      "reason": "no keywords found"
+    },
+    {
+      "path": "VDM_Nexus/domain/CMakeLists.txt",
+      "preview": "cmake_minimum_required(VERSION 3.24)\n\n# Domain layer: plain data models (no Qt/DB/Python). Placeholder library to satisfy top-level wiring.\nadd_library(physics_nexus_domain INTERFACE)\n\ntarget_include_directories(physics_nexus_domain INTERFACE\n  ${CMAKE_CURRENT_SOURCE_DIR}\n)\n\ntarget_compile_features(physics_nexus_domain INTERFACE cxx_std_20)",
+      "reason": "no keywords found"
+    },
+    {
+      "path": "VDM_Nexus/domain/models.hpp",
+      "preview": "#pragma once\n//\n// VDM Nexus \u2014 Domain Models (plain data only; no framework imports)\n// References:\n//   - Architecture seams (\u00a712.4): ../../NEXUS_ARCHITECTURE.md\n//   - Execution plan (Phase 2.1.2 models list): ../../VDM_Nexus/TODO_CHECKLIST.md\n//\n// Rules:\n//   - POD/POJO style structs; no Qt/DB/Python includes.\n//   - No thresholds or equations derived from Markdown canon; thresholds are resolved by ISchemaCatalog from spec/schema.\n",
+      "reason": "no keywords found"
+    },
+    {
+      "path": "VDM_Nexus/src/main.cpp",
+      "preview": "",
+      "reason": "no keywords found"
+    },
+    {
+      "path": "VDM_Nexus/application/ports/ports.hpp",
+      "preview": "#pragma once\n//\n// VDM Nexus \u2014 Application Ports (Clean Architecture interfaces)\n// Reference: NEXUS standard \u00a712.4 (Clean Architecture seams)\n//   See: ../../NEXUS_ARCHITECTURE.md\n//\n// Policy:\n// - Read-only lens over canonical derivation tree; no Qt/DB/Python includes here.\n// - Thresholds/approvals are sourced from canonical structured artifacts (schemas/specs/DB), never from Markdown.\n// - Adapters live in ../infrastructure/* and must implement these interfaces.\n",
+      "reason": "no keywords found"
+    },
+    {
+      "path": ".codacy/tools-configs/analysis_options.yaml",
+      "preview": "analyzer:\n    errors:\n        avoid_as: warning\n        avoid_catches_without_on_clauses: high\n        avoid_catching_errors: high\n        avoid_double_and_int_checks: warning\n        avoid_dynamic_calls: high\n        avoid_equals_and_hash_code_on_mutable_classes: high\n        avoid_field_initializers_in_const_classes: warning\n        avoid_implementing_value_types: high\n",
+      "reason": "no keywords found"
+    },
+    {
+      "path": ".codacy/tools-configs/lizard.yaml",
+      "preview": "patterns:\n    Lizard_ccn-medium:\n        category: Complexity\n        description: Checks if the cyclomatic complexity of a function or logic block exceeds the medium threshold (default is 8).\n        explanation: |-\n            # Medium Cyclomatic Complexity control\n\n            Check the Cyclomatic Complexity value of a function or logic block. If the threshold is not met, raise a Medium issue. The default threshold is 7.\n        id: Lizard_ccn-medium\n        level: Warning\n",
+      "reason": "no keywords found"
+    },
+    {
+      "path": ".codacy/tools-configs/trivy.yaml",
+      "preview": "severity:\n  - LOW\n  - MEDIUM\n  - HIGH\n  - CRITICAL\n\nscan:\n  scanners:\n    - vuln\n    - secret\n",
+      "reason": "no keywords found"
+    },
+    {
+      "path": ".codacy/tools-configs/eslint.config.mjs",
+      "preview": "export default [\n    {\n        rules: {\n          \"constructor-super\": [\"error\"],\n          \"for-direction\": [\"error\"],\n          \"getter-return\": [\"error\", {\"allowImplicit\": false}],\n          \"no-async-promise-executor\": [\"error\"],\n          \"no-case-declarations\": [\"error\"],\n          \"no-class-assign\": [\"error\"],\n          \"no-compare-neg-zero\": [\"error\"],\n",
+      "reason": "no keywords found"
+    },
+    {
+      "path": ".codacy/tools-configs/languages-config.yaml",
+      "preview": "tools:\n    - name: dartanalyzer\n      languages: [Dart]\n      extensions: [.dart]\n      files: []\n    - name: eslint\n      languages: [Javascript, TypeScript]\n      extensions: [.js, .jsm, .jsx, .mjs, .ts, .tsx, .vue]\n      files: []\n    - name: lizard\n",
+      "reason": "no keywords found"
+    },
+    {
+      "path": ".codacy/tools-configs/semgrep.yaml",
+      "preview": "rules:\n    - id: bash.curl.security.curl-eval.curl-eval\n      languages:\n        - bash\n      message: Data is being eval'd from a `curl` command. An attacker with control of the server in the `curl` command could inject malicious code into the `eval`, resulting in a system comrpomise. Avoid eval'ing untrusted data if you can. If you must do this, consider checking the SHA sum of the content returned by the server to verify its integrity.\n      metadata:\n        category: security\n        confidence: MEDIUM\n        cwe:\n            - 'CWE-95: Improper Neutralization of Directives in Dynamically Evaluated Code (''Eval Injection'')'\n",
+      "reason": "no keywords found"
+    }
+  ],
+  "matched_headers": 270,
+  "missing_headers": 126,
+  "patterns": [
+    "copyright\\s*\u00a9\\s*20\\d{2}\\s*justin\\s*k\\.?\\s*lietz",
+    "copyright\\s*\\(c\\)\\s*20\\d{2}\\s*justin\\s*k\\.?\\s*lietz",
+    "justin\\s*k\\.?\\s*lietz",
+    "neuroca,\\s*inc\\.?",
+    "all\\s*rights\\s*reserved",
+    "see\\s+license\\s+file",
+    "void\\s+dynamics\\s+model"
+  ],
+  "repo_head": "e47475d45d2f7a5f29bbabb62ded7ee6cad8f00f",
+  "root": "/mnt/ironwolf/git/Prometheus_VDM",
+  "scanned_files": 396
+}

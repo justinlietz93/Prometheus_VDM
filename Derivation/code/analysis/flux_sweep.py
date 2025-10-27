@@ -1,5 +1,14 @@
 #!/usr/bin/env python3
-"""Numeric sweep: compute Δ(sum Q_i) statistics across random seeds.
+"""
+Copyright © 2025 Justin K. Lietz, Neuroca, Inc. All Rights Reserved.
+
+This research is protected under a dual-license to foster open academic
+research while ensuring commercial applications are aligned with the project's ethical principles.
+
+Commercial use of proprietary VDM code requires written permission from Justin K. Lietz.
+See LICENSE file for full terms.
+
+Numeric sweep: compute Δ(sum Q_i) statistics across random seeds.
 
 Writes JSON summary to derivation/code/outputs/logs/conservation_law/flux_sweep_<ts>.json
 """
