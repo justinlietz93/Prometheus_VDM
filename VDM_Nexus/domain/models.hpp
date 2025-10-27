@@ -100,5 +100,83 @@ struct CatalogEntry {
   std::string mtime_utc;     // last-modified time as ISO-8601 for UI freshness
 };
 
+ // --- KG-Lite graph primitives (compile-time only; no IO) ---
+ 
+ enum class Relation {
+   ConstrainedBy,
+   Influences,
+   TensionWith,
+   References,
+   DerivesFrom,
+   Supersedes,
+   Unknown
+ };
+ 
+ struct Node {
+   std::string id;    // stable node identifier
+   std::string label; // human-friendly label
+   std::string kind;  // application-specific kind (e.g., "axis","dimension","signal")
+ };
+ 
+ struct Edge {
+   std::string source;   // Node.id
+   std::string target;   // Node.id
+   Relation relation {Relation::Unknown};
+   std::optional<double> weight; // optional affinity [0,1]
+ };
+ 
+ // KG-Lite chunk types from schema (memory-bank/MEMORY_GRAPH_CONTEXT/kg-lite.chunkenvelope.v1.schema.json)
+ enum class ChunkType {
+   Index,
+   Meta,
+   AxesDimensions,
+   Subfactors,
+   Signals,
+   Edges,
+   RetrievalPolicy,
+   Unknown
+ };
+ 
+ struct ChunkRef {
+   std::string chunk_id;
+   std::string sha256;
+   ChunkType kind {ChunkType::Unknown};
+ };
+ 
+ struct ChunkCounts {
+   int axes {0};
+   int dimensions {0};
+   int subfactors {0};
+   int signals {0};
+   int edges {0};
+ };
+ 
+ struct IndexPayload {
+   std::string schema_version;
+   std::vector<ChunkRef> chunks;
+   ChunkCounts counts;
+ };
+ 
+ // Deterministic envelope metadata; payload stored as canonical JSON string to keep domain pure
+ struct ChunkEnvelope {
+   std::string set_id;
+   std::string set_version;
+   ChunkType chunk_type {ChunkType::Unknown};
+   std::string chunk_id;          // must equal `${set_id}@${set_version}:${chunk_type}`
+   std::optional<std::string> scope;
+   std::string updated;           // ISO-8601 UTC
+   std::string source;            // path to original graph JSON
+   std::string content_sha256;    // SHA-256 of canonical JSON of payload
+   int part {1};
+   int total_parts {1};
+   std::vector<std::string> tags;
+ 
+   // For index payloads, adapters may also provide a parsed form:
+   std::optional<IndexPayload> index_parsed;
+ 
+   // Canonical payload JSON (required). Domain layer treats it as opaque.
+   std::string payload_canonical_json;
+ };
+ 
 } // namespace domain
 } // namespace vdm_nexus

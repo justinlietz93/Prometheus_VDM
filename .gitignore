@@ -293,3 +293,15 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+memory-bank/MEMORY_GRAPH_CONTEXT/justin/justin.index.json
+memory-bank/MEMORY_GRAPH_CONTEXT/justin/chunks/justin@1.0:axes_dimensions.json
+memory-bank/MEMORY_GRAPH_CONTEXT/justin/chunks/justin@1.0:edges.json
+memory-bank/MEMORY_GRAPH_CONTEXT/justin/chunks/justin@1.0:meta.json
+memory-bank/MEMORY_GRAPH_CONTEXT/justin/chunks/justin@1.0:retrieval_policy.json
+memory-bank/MEMORY_GRAPH_CONTEXT/justin/chunks/justin@1.0:signals.json
+memory-bank/MEMORY_GRAPH_CONTEXT/justin/chunks/justin@1.0:subfactors.json
+memory-bank/MEMORY_GRAPH_CONTEXT/justin-graph.json
+memory-bank/MEMORY_GRAPH_CONTEXT/memory-graph-2025-09-25_optimized.md
+memory-bank/MEMORY_GRAPH_CONTEXT/memory-graph-2025-09-25_faithful.md
+memory-bank/MEMORY_GRAPH_CONTEXT/kg-lite_Convo.md
+memory-bank/MEMORY_GRAPH_CONTEXT/chunker.summary.json

@@ -45,6 +45,13 @@ presentation → application → ports ← infrastructure
 - `presentation/` (QML) binds to application use cases only.
 - Domain models remain plain structs with serialization handled by adapters.
 
+### 3.3 Agent memory boundary (external‑agent‑only)
+
+- Memory KG‑Lite belongs to external agents/tools only. VDM Nexus must not vendor, build, or reference any in‑repo implementation or path named "memory_kg_lite".
+- Nexus may define pure ports (interfaces) for read‑only consumption of KG‑Lite artifacts or services. Implementations must live outside VDM_Nexus (e.g., an external microservice) and be configured via plugins/resources; no Nexus‑local adapters are permitted.
+- If KG‑Lite artifacts exist in the repository, they must reside under memory‑bank/ (e.g., memory‑bank/MEMORY_GRAPH_CONTEXT) and are consumed read‑only; Nexus must not write or mutate these files.
+- CI guard: [nexus_static_policy_check.py](VDM_Nexus/scripts/nexus_static_policy_check.py:1) fails when "memory_kg_lite" appears in any VDM_Nexus path or source literal (external‑agent‑only enforcement).
+
 ## 4. Execution Pipeline
 
 1. **Discover.** `DerivationScanner` enumerates domains, runners, specs, and schemas; caches metadata but never writes to derivation; it does not parse Markdown canon to infer configuration (Markdown is viewer‑only).

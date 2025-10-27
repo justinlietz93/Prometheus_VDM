@@ -26,6 +26,8 @@ What it checks:
   - Path.write_text / Path.write_bytes
 - For any of the above, flag as violation ONLY if the literal path argument contains:
   - "../derivation" or "/derivation/" (case-insensitive)
+- Prohibited identifiers in Nexus tree:
+  - "memory_kg_lite" in file paths or string literals (memory KG‑Lite is external‑agent‑only per NEXUS §3)
 
 Exit codes:
 - 0 = PASS (no violations)
@@ -51,6 +53,12 @@ DERIV_PATTERNS = (
     "/derivation/",
 )
 
+# Prohibited identifiers (external-agent-only; must not appear in VDM_Nexus tree)
+PROHIBITED_IDENTIFIERS = {
+    "memory_kg_lite": "Memory KG-Lite belongs to external agents only (not in VDM Nexus)"
+}
+RE_PROHIBITED = re.compile(r"memory_kg_lite", re.IGNORECASE)
+
 # Regex patterns for quick, simple static scan
 RE_CPP_OFSTREAM = re.compile(r"""std::ofstream\s*\(\s*(".*?"|'.*?')""")
 RE_CPP_FSTREAM = re.compile(r"""std::fstream\s*\(\s*(".*?"|'.*?')\s*,\s*[^)]*\b(std::ios::out|std::ios::app)\b""")
@@ -60,6 +68,8 @@ RE_CPP_QFILE_OPEN = re.compile(r"""\.open\s*\(\s*QIODevice::(WriteOnly|ReadWrite
 RE_PY_OPEN = re.compile(r"""open\s*\(\s*(".*?"|'.*?')\s*,\s*(".*?"|'.*?')\s*\)""")
 RE_PY_WRITE_TEXT = re.compile(r"""\.write_text\s*\(""")
 RE_PY_WRITE_BYTES = re.compile(r"""\.write_bytes\s*\(""")
+# Additional prohibited literals in Nexus tree (external-agent-only semantics)
+RE_ACCEPTANCE = re.compile(r"acceptance_test", re.IGNORECASE)
 
 
 def literal_points_to_derivation(lit: str) -> bool:
@@ -135,6 +145,20 @@ def scan_py_text(text: str, file: Path) -> List[Tuple[int, str]]:
     return violations
 
 
+def scan_prohibited_text(text: str, file: Path) -> List[Tuple[int, str]]:
+    violations: List[Tuple[int, str]] = []
+    # Allow this policy file to mention the terms
+    if file.name == "nexus_static_policy_check.py":
+        return violations
+    for m in RE_PROHIBITED.finditer(text):
+        ln = text[: m.start()].count("\n") + 1
+        violations.append((ln, "Prohibited identifier 'memory_kg_lite' in source; external-agent-only"))
+    for m in RE_ACCEPTANCE.finditer(text):
+        ln = text[: m.start()].count("\n") + 1
+        violations.append((ln, "Prohibited literal 'acceptance_test' in Nexus code; KG‑Lite acceptance rules must not be encoded in Nexus"))
+    return violations
+
+
 def main() -> int:
     repo = Path(".").resolve()
     nexus = repo / "VDM_Nexus"
@@ -144,10 +168,17 @@ def main() -> int:
     for p in nexus.rglob("*"):
         if not p.is_file():
             continue
+        # Path-based prohibited identifier check
+        if "memory_kg_lite" in p.as_posix().lower():
+            problems.append((p, 0, "Prohibited path containing 'memory_kg_lite' (external-agent-only)"))
+            continue
         ext = p.suffix.lower()
         try:
             if ext in CPP_EXTS or ext in PY_EXTS:
                 text = p.read_text(encoding="utf-8", errors="ignore")
+                # Source-based prohibited identifier check
+                for (ln, msg) in scan_prohibited_text(text, p):
+                    problems.append((p, ln, msg))
                 if ext in CPP_EXTS:
                     v = scan_cpp_text(text, p)
                 else:
