@@ -1,0 +1,53 @@
+{
+  "chunk_id": "nexus-sessions@1.0:index",
+  "chunk_type": "index",
+  "content_sha256": "f9f18f5a57e925834a76fb54e886a3b52484ca427c509c11a8107b8a00011125",
+  "part": 1,
+  "payload": {
+    "chunks": [
+      {
+        "chunk_id": "nexus-sessions@1.0:meta",
+        "chunk_type": "meta",
+        "content_sha256": "c6ca5409537f090365a59efb0e497d53c97bdb864baedd239e14a893b6d7c01b",
+        "path": "memory-bank/MEMORY_GRAPH_CONTEXT/nexus-sessions/chunks/meta.json"
+      },
+      {
+        "chunk_id": "nexus-sessions@1.0:signals",
+        "chunk_type": "signals",
+        "content_sha256": "9056d2fdb5c963b6a9b2badd2ab1f50d003b9e1d9c613b87816c31f0efde6ff4",
+        "path": "memory-bank/MEMORY_GRAPH_CONTEXT/nexus-sessions/chunks/signals.json"
+      },
+      {
+        "chunk_id": "nexus-sessions@1.0:edges",
+        "chunk_type": "edges",
+        "content_sha256": "80dab868d36cfde17feb07b972cc9d75c11523406da169934716db2ea7e2bea3",
+        "path": "memory-bank/MEMORY_GRAPH_CONTEXT/nexus-sessions/chunks/edges.json"
+      },
+      {
+        "chunk_id": "nexus-sessions@1.0:retrieval_policy",
+        "chunk_type": "retrieval_policy",
+        "content_sha256": "687706db599d5c12e599ea726dcc82ee0f72dd020e913401fc19d390614864fa",
+        "path": "memory-bank/MEMORY_GRAPH_CONTEXT/nexus-sessions/chunks/retrieval_policy.json"
+      }
+    ],
+    "counts": {
+      "chunk_count": 4,
+      "edges": 2,
+      "signals": 2
+    },
+    "set_id": "nexus-sessions",
+    "set_version": "1.0"
+  },
+  "scope": "session",
+  "set_id": "nexus-sessions",
+  "set_version": "1.0",
+  "source": "agent:roo;mode:Physicist;workflow:VDM_Nexus_KG-Lite;repo_head:500d987bddca793bd3986ef6b9a5cf8cab3da467",
+  "tags": [
+    "kg-lite",
+    "index",
+    "nexus",
+    "session"
+  ],
+  "total_parts": 1,
+  "updated": "2025-10-27T19:36:28Z"
+}

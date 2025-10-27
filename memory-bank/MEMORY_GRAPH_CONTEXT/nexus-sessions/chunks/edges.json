@@ -1,0 +1,42 @@
+{
+  "chunk_id": "nexus-sessions@1.0:edges",
+  "chunk_type": "edges",
+  "content_sha256": "80dab868d36cfde17feb07b972cc9d75c11523406da169934716db2ea7e2bea3",
+  "part": 1,
+  "payload": {
+    "edges": [
+      {
+        "from": "sig:kg-lite-adoption",
+        "rel": "implements",
+        "to": "doc:MEMORY_GRAPH_STANDARDS",
+        "weight": 0.9
+      },
+      {
+        "from": "sig:nexus-todos-7-13",
+        "rel": "depends_on",
+        "to": "doc:VDM_Nexus_TODO",
+        "weight": 0.8
+      }
+    ],
+    "relation_ontology": [
+      "implements",
+      "depends_on",
+      "validates",
+      "supports",
+      "contradicts",
+      "has_artifact"
+    ]
+  },
+  "scope": "session",
+  "set_id": "nexus-sessions",
+  "set_version": "1.0",
+  "source": "agent:roo;mode:Physicist;workflow:VDM_Nexus_KG-Lite;repo_head:500d987bddca793bd3986ef6b9a5cf8cab3da467",
+  "tags": [
+    "kg-lite",
+    "edges",
+    "nexus",
+    "session"
+  ],
+  "total_parts": 1,
+  "updated": "2025-10-27T19:36:28Z"
+}
