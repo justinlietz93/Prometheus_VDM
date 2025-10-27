@@ -1,0 +1,203 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "kg-lite.chunkenvelope.v1.schema.json",
+  "title": "KG-Lite Chunk Envelope v1",
+  "$comment": "Deterministic envelope for KG-Lite branches. Enforce gates in code: (1) content_sha256 equals SHA-256 of canonical JSON of payload; (2) chunk_id == `${set_id}@${set_version}:${chunk_type}`; (3) sharding via part/total_parts.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "set_id",
+    "set_version",
+    "chunk_type",
+    "chunk_id",
+    "updated",
+    "source",
+    "content_sha256",
+    "part",
+    "total_parts",
+    "payload"
+  ],
+  "properties": {
+    "set_id": { "type": "string", "maxLength": 120 },
+    "set_version": { "type": "string" },
+    "chunk_type": {
+      "type": "string",
+      "enum": ["index","meta","axes_dimensions","subfactors","signals","edges","retrieval_policy"]
+    },
+    "chunk_id": {
+      "type": "string",
+      "pattern": "^[^@]+@[^:]+:(index|meta|axes_dimensions|subfactors|signals|edges|retrieval_policy)$"
+    },
+    "scope": { "type": "string" },
+    "updated": { "type": "string", "format": "date-time" },
+    "source": { "type": "string" },
+    "content_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "part": { "type": "integer", "minimum": 1 },
+    "total_parts": { "type": "integer", "minimum": 1 },
+    "tags": { "type": "array", "items": { "type": "string" } },
+    "payload": { "type": "object" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "chunk_type": { "const": "index" } } },
+      "then": {
+        "properties": {
+          "payload": {
+            "type": "object",
+            "required": ["schema_version","chunks","counts"],
+            "properties": {
+              "schema_version": { "type": "string" },
+              "chunks": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["chunk_id","sha256","kind"],
+                  "properties": {
+                    "chunk_id": { "type": "string" },
+                    "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+                    "kind": { "type": "string", "enum": ["meta","axes_dimensions","subfactors","signals","edges","retrieval_policy","index"] }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "counts": {
+                "type": "object",
+                "properties": {
+                  "axes": { "type": "integer", "minimum": 0 },
+                  "dimensions": { "type": "integer", "minimum": 0 },
+                  "subfactors": { "type": "integer", "minimum": 0 },
+                  "signals": { "type": "integer", "minimum": 0 },
+                  "edges": { "type": "integer", "minimum": 0 }
+                },
+                "additionalProperties": true
+              }
+            },
+            "additionalProperties": true
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "chunk_type": { "const": "meta" } } },
+      "then": {
+        "properties": {
+          "payload": {
+            "type": "object",
+            "required": ["meta"],
+            "properties": {
+              "meta": {
+                "type": "object",
+                "properties": {
+                  "version": { "type": "string" },
+                  "subject": { "type": "string" },
+                  "graph_updated_at": { "type": "string" },
+                  "notes": { "type": "string" }
+                },
+                "additionalProperties": true
+              }
+            },
+            "additionalProperties": true
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "chunk_type": { "const": "axes_dimensions" } } },
+      "then": {
+        "properties": {
+          "payload": {
+            "type": "object",
+            "required": ["axes","dimensions"],
+            "properties": {
+              "axes": { "type": "array", "items": { "type": "object" } },
+              "dimensions": { "type": "array", "items": { "type": "object" } }
+            },
+            "additionalProperties": true
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "chunk_type": { "const": "subfactors" } } },
+      "then": {
+        "properties": {
+          "payload": {
+            "type": "object",
+            "required": ["subfactors"],
+            "properties": {
+              "subfactors": { "type": "array", "items": { "type": "object" } }
+            },
+            "additionalProperties": true
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "chunk_type": { "const": "signals" } } },
+      "then": {
+        "properties": {
+          "payload": {
+            "type": "object",
+            "required": ["signals"],
+            "properties": {
+              "signals": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["text"],
+                  "properties": {
+                    "text": { "type": "string" },
+                    "probe": { "type": "string" },
+                    "acceptance_test": { "type": "string" }
+                  },
+                  "additionalProperties": true
+                }
+              }
+            },
+            "additionalProperties": true
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "chunk_type": { "const": "edges" } } },
+      "then": {
+        "properties": {
+          "payload": {
+            "type": "object",
+            "required": ["edges"],
+            "properties": {
+              "edges": { "type": "array", "items": { "type": "object" } },
+              "relation_ontology": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": ["constrained_by","influences","tension_with","references","derives_from","supersedes"]
+                }
+              }
+            },
+            "additionalProperties": true
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "chunk_type": { "const": "retrieval_policy" } } },
+      "then": {
+        "properties": {
+          "payload": {
+            "type": "object",
+            "properties": {
+              "path_prune_alpha": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+              "path_threshold": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+              "min_novelty": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+              "k_paths": { "type": "integer", "minimum": 1 },
+              "max_hops": { "type": "integer", "minimum": 1 }
+            },
+            "additionalProperties": true
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1350,12 +1350,67 @@ class GeometryProbeAdapter(Protocol):
 **Notes:** Python Protocol defining adapter contract for model-specific activation capture
 
 ---
-
+ 
+#### KG-Lite Chunk Envelope v1  <a id="schema-kg-lite-chunkenvelope-v1"></a>
+**Kind:** file
+**Versioning (if present):** `set_version` field
+**Defined at:** `memory-bank/MEMORY_GRAPH_CONTEXT/kg-lite.chunkenvelope.v1.schema.json:1-203`
+ 
+**Definition (verbatim snippet from source):**
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "kg-lite.chunkenvelope.v1.schema.json",
+  "title": "KG-Lite Chunk Envelope v1",
+  "$comment": "Deterministic envelope for KG-Lite branches. Enforce gates in code: (1) content_sha256 equals SHA-256 of canonical JSON of payload; (2) chunk_id == `${set_id}@${set_version}:${chunk_type}`; (3) sharding via part/total_parts.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "set_id",
+    "set_version",
+    "chunk_type",
+    "chunk_id",
+    "updated",
+    "source",
+    "content_sha256",
+    "part",
+    "total_parts",
+    "payload"
+  ],
+  "properties": {
+    "set_id": { "type": "string", "maxLength": 120 },
+    "set_version": { "type": "string" },
+    "chunk_type": {
+      "type": "string",
+      "enum": ["index","meta","axes_dimensions","subfactors","signals","edges","retrieval_policy"]
+    }
+}
+```
+ 
+**Fields (expand from source; do not invent):**
+ 
+| Field            | Type        | Required | Default | Units/Normalization | Description (lifted) | Source |
+| ---------------- | ----------- | :------: | ------- | ------------------- | -------------------- | ------ |
+| `set_id`         | `string`    |    Y     | n/a     | n/a                 |                      | `memory-bank/MEMORY_GRAPH_CONTEXT/kg-lite.chunkenvelope.v1.schema.json:21` |
+| `set_version`    | `string`    |    Y     | n/a     | n/a                 |                      | `memory-bank/MEMORY_GRAPH_CONTEXT/kg-lite.chunkenvelope.v1.schema.json:22` |
+| `chunk_type`     | `string`    |    Y     | n/a     | enum                |                      | `memory-bank/MEMORY_GRAPH_CONTEXT/kg-lite.chunkenvelope.v1.schema.json:23` |
+| `chunk_id`       | `string`    |    Y     | n/a     | pattern             |                      | `memory-bank/MEMORY_GRAPH_CONTEXT/kg-lite.chunkenvelope.v1.schema.json:27` |
+| `scope`          | `string`    |    N     | n/a     | n/a                 |                      | `memory-bank/MEMORY_GRAPH_CONTEXT/kg-lite.chunkenvelope.v1.schema.json:31` |
+| `updated`        | `string`    |    Y     | n/a     | date-time           |                      | `memory-bank/MEMORY_GRAPH_CONTEXT/kg-lite.chunkenvelope.v1.schema.json:32` |
+| `source`         | `string`    |    Y     | n/a     | n/a                 |                      | `memory-bank/MEMORY_GRAPH_CONTEXT/kg-lite.chunkenvelope.v1.schema.json:33` |
+| `content_sha256` | `string`    |    Y     | n/a     | sha256 hex          |                      | `memory-bank/MEMORY_GRAPH_CONTEXT/kg-lite.chunkenvelope.v1.schema.json:34` |
+| `part`           | `integer`   |    Y     | n/a     | ≥1                  |                      | `memory-bank/MEMORY_GRAPH_CONTEXT/kg-lite.chunkenvelope.v1.schema.json:35` |
+| `total_parts`    | `integer`   |    Y     | n/a     | ≥1                  |                      | `memory-bank/MEMORY_GRAPH_CONTEXT/kg-lite.chunkenvelope.v1.schema.json:36` |
+| `tags`           | `string[]`  |    N     | n/a     | n/a                 |                      | `memory-bank/MEMORY_GRAPH_CONTEXT/kg-lite.chunkenvelope.v1.schema.json:37` |
+| `payload`        | `object`    |    Y     | n/a     | n/a                 |                      | `memory-bank/MEMORY_GRAPH_CONTEXT/kg-lite.chunkenvelope.v1.schema.json:38` |
+ 
+---
+ 
 <!-- BEGIN AUTOSECTION: SCHEMAS-INDEX -->
 <!-- Tool-maintained list of [Schema](#schema-...) anchors for quick lookup -->
-
+ 
 ### Schema Index
-
+ 
 - [ADCEvent](#schema-adcevent)
 - [BaseEvent](#schema-baseevent)
 - [BiasHintEvent](#schema-biashintevent)
@@ -1384,7 +1439,8 @@ class GeometryProbeAdapter(Protocol):
 - [VDM Corner Config (YAML)](#schema-vdm-corner-config)
 - [VTTouchEvent](#schema-vttouchevent)
 - [KG Energy Oscillation Summary (metriplectic)](#schema-kg-energy-osc)
-
+- [KG-Lite Chunk Envelope v1](#schema-kg-lite-chunkenvelope-v1)
+ 
 <!-- END AUTOSECTION: SCHEMAS-INDEX -->
 
 ## Change Log
