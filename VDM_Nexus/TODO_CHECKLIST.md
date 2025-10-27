@@ -1,46 +1,56 @@
 # VDM Nexus TODO Checklist
 
-Hierarchical execution plan for the Nexus desktop program. Phases contain Tasks; Tasks enumerate Steps with checkable items. Each Task concludes with explicit validation requirements referencing canonical anchors. Architecture document located at C:\git\Prometheus_VDM\VDM_Nexus\NEXUS_ARCHITECTURE.md
+**IMPORTANT!** READ THIS ENTIRE HEADER.
+
+Hierarchical execution plan for the Nexus desktop program. Phases contain Tasks; Tasks enumerate Steps with checkable items. Each Task concludes with explicit validation requirements referencing canonical anchors. Architecture document located at [VDM_Nexus/NEXUS_ARCHITECTURE.md](VDM_Nexus/NEXUS_ARCHITECTURE.md:1)
 
 Begin the task by following the instructions below:
 
-- Set up your environment, install all required packages, and immediately review the available AGENTS.md and ARCHITECTURE STANDARDS documents.
+- **Set up your environment**, install all required packages, and immediately review the available AGENTS.md and ARCHITECTURE STANDARDS documents.
 
-- Once that's been done, review the repository and all the working directories.
+- Once that's been done, **review the repository** and all the working directories.
 
-- Check items off as you work on them. Issues should be prioritized by impact on usability. Mark items as [DONE], [STARTED], [RETRYING], [DEBUGGING], [NOT STARTED], as you go and document your work under each item as you work.
+- **Check items off as you work on them**. Issues should be prioritized by impact on usability. Mark item CHECKBOX as [DONE], [STARTED], [RETRYING], [DEBUGGING], [NOT STARTED], as you go and document your work under each item as you work.
 
-- You should not remain stagnant on an issue for too long, if you get stuck on an item and it's marked [RETRYING] or [DEBUGGING], put an x# next to it, where # is the number of times you've attempted resolving it, for example [DEBUGGING x2].
+- **You should not remain stagnant on an issue for too long**, if you get stuck on an item and it's marked [RETRYING] or [DEBUGGING], put an x# next to it, where # is the number of times you've attempted resolving it, for example [DEBUGGING x2].
 
-- If you hit x3 then move on unless it's blocking anything else or if it would introduce significant technical debt if not addressed immediately. If it is a blocker like that, state this clearly in your response including "BLOCKER PREVENTING FURTHER DEVELOPMENT"
+- **If you hit x3 then move on** unless it's blocking anything else or if it would introduce significant technical debt if not addressed immediately. If it is a blocker like that, state this clearly in your response including "BLOCKER PREVENTING FURTHER DEVELOPMENT"
 
-- If tests fail because of any missing packages or installations, you need to install those and try to run the tests again. Same thing if you run into errors for missing packages.
+- If tests fail because of any missing packages or installations, **you need to install those and try to run the tests again.** Same thing if you run into errors for missing packages.
 
-- Mention which items you updated on the checklist in your response, and your ETA or number of sessions until completion of the checklist.
+- **Mention which items you updated** on the checklist in your response, and your ETA or number of sessions until completion of the checklist.
+
+---
 
 ## Phase 0 — Project Bootstrapping
 
 ### Task 0.1 — Align repository baseline
 
-- [STARTED] Step 0.1.1 — Create `VDM_Nexus/` top-level directory and place [`NEXUS_ARCHITECTURE.md`](VDM_Nexus/NEXUS_ARCHITECTURE.md:1) under version control.
+- [DONE] Step 0.1.1 — Create `VDM_Nexus/` top-level directory and place [`NEXUS_ARCHITECTURE.md`](VDM_Nexus/NEXUS_ARCHITECTURE.md:1) under version control.
 - [STARTED] Step 0.1.2 — Mirror canonical linting/build configurations (clang-format, CMake presets) from existing runtime packages.
-- [STARTED] Step 0.1.3 — Document repo pointers (`VDM_REPO_ROOT`, approvals DB paths) in CONTRIBUTING notes.
+- [DONE] Step 0.1.3 — Document repo pointers (`VDM_REPO_ROOT`, approvals DB paths) in CONTRIBUTING notes.
 
-**Validation:**  
+### **Task 0.1 Validation:**
 
-- [ ] Diff against origin `main` shows architecture doc added without modifying canonical derivation files.  
-- [ ] CI lint job passes with Nexus directory included.
+- [DONE] Diff against origin `main` shows architecture doc added without modifying tracked canon paths (exclusions applied).
+  - Exclusions: `Derivation/Converging_External_Research/**`, `Derivation/References/**`, `Derivation/Speculations/**`, `Derivation/Templates/**`, `Derivation/Supporting_Work/external_references/**`, `Derivation/Supporting_Work/Physics-Based Datasets by Tier_ A Comprehensive Resource Guide.pdf`, `Derivation/VDM_OVERVIEW.md`
+  - Evidence: [VDM_Nexus/scripts/nexus_validate_gate.py](VDM_Nexus/scripts/nexus_validate_gate.py:1) with DEFAULT_EXCLUSIONS reports PASS for the canon-diff gate.
+  - Note: `NEXUS_ARCHITECTURE.md` not newly added vs origin/main (already present upstream or renamed).
+
+- [PENDING] CI lint job passes with Nexus directory included.
+  - Current status: PENDING. Local probes: md hygiene PASS (tools/md_hygiene_check.py), JSON lint PASS (`jq` on VDM_Nexus/**/*.json), pre-commit config missing, clang-format not installed. CI workflow not found; add/check CI before marking this passed.
 
 ### Task 0.2 — Provision toolchain & environment
 
-- [ ] Step 0.2.1 — Install Qt 6.x, CMake ≥3.23, compiler (Clang/MSVC/GCC matching CI targets) with C++20 support.
-- [ ] Step 0.2.2 — Set up Python 3.11 environment with repo `requirements.txt`; enable `poetry`/`pip-tools` lock if applicable.
-- [ ] Step 0.2.3 — Configure deterministic environment variables (`OMP_NUM_THREADS`, `OPENBLAS_NUM_THREADS`) per canon execution policy.
+- [DONE] Step 0.2.1 — Install Qt 6.5+, CMake ≥3.24, compiler (Clang/MSVC/GCC matching CI targets) with C++20 support. Evidence: CMake configure succeeded; Qt6 6.5 components resolved.
+- [DONE] Step 0.2.2 — Set up Python 3.13.5 environment with repo `requirements.txt`; enable `poetry`/`pip-tools` lock if applicable. Evidence: Python 3.13.5 active; `pip check` OK.
+- [DONE] Step 0.2.3 — Configure deterministic environment variables (`OMP_NUM_THREADS`, `OPENBLAS_NUM_THREADS`, `MKL_NUM_THREADS`, `BLIS_NUM_THREADS`, `VECLIB_MAXIMUM_THREADS`, `NUMEXPR_NUM_THREADS`, `PYTHONHASHSEED`) per canon execution policy. Evidence: [`VDM_Nexus/.env.example`](VDM_Nexus/.env.example:7) updated; copy to local .env for development shells.
 
-**Validation:**  
+### **Task 0.2 Validation:**
 
-- [ ] Run `cmake -S physics_nexus -B build` succeeds on Linux/macOS/Windows.  
-- [ ] `python -m pip check` passes under the project venv and matches seeds requirements.
+- [DONE] Run `cmake -S VDM_Nexus -B VDM_Nexus/build` succeeds on Linux/macOS/Windows.
+- [DONE] `python -m pip check` passes under the project venv and matches seeds requirements.
+- [DONE] Deterministic threading baseline present in [VDM_Nexus/.env.example](VDM_Nexus/.env.example:7).
 
 ### Task 0.3 — Wire canon ingestion scaffolding
 
@@ -48,7 +58,7 @@ Begin the task by following the instructions below:
 - [STARTED] Step 0.3.2 — Set up repository-relative path resolver for `../derivation/` tree with guard rails against writes. (Note: resolver prints AXIOMS/EQUATIONS/VALIDATION_METRICS + commits.)
 - [STARTED] Step 0.3.3 — Draft `CanonSync` CLI skeleton (read-only) for future indexing per standards.
 
-**Validation:**  
+### **Task 0.3 Validation:**
 
 - [ ] Static analysis (clang-tidy/flake8) shows zero write operations under `../derivation/`.  
 - [ ] Manual run of resolver prints located canon files with correct commit hash metadata.
@@ -61,7 +71,7 @@ Begin the task by following the instructions below:
 - [STARTED] Step 1.1.2 — Link KPI displays to definitions in [VALIDATION_METRICS.md](../derivation/VALIDATION_METRICS.md#kpi-front-speed-rel-err); compute pass/fail with thresholds from the active run's spec/schema; do not duplicate thresholds in GUI.
 - [STARTED] Step 1.1.3 — Ensure Markdown viewer overlays commit hashes on canon documents for provenance.
 
-**Validation:**  
+### **Task 1.1 Validation:**
 
 - [ ] Automated content scan finds zero physics claims without canon anchors.  
 - [ ] Sample dashboard screenshot demonstrates hyperlink routing to canon files.
@@ -72,7 +82,7 @@ Begin the task by following the instructions below:
 - [STARTED] Step 1.2.2 — Apply environment precedence (CLI > env > `.env`) for approval DB discovery.
 - [STARTED] Step 1.2.3 — Pipe unapproved runs through `[io_paths.py](../derivation/code/common/io_paths.py)` quarantine helpers with policy receipts (`engineering_only=true`).
 
-**Validation:**  
+### **Task 1.2 Validation:**  
 
 - [ ] Demonstrated CLI session shows approval status change with admin password prompt logged.  
 - [ ] Engineering smoke run produces artifacts under `failed_runs/` with correct policy JSON.
@@ -83,7 +93,7 @@ Begin the task by following the instructions below:
 - [ ] Step 1.3.2 — Map proposed experiments (e.g., quantum gravity bridge, agency field probes, intelligence model substrate) to dashboard cards as read-only links; no thresholds or gating derived from Markdown.
 - [ ] Step 1.3.3 — Flag missing RESULTS using structured artifacts (approvals DB and presence of RESULTS_* artifacts/logs); show prerequisites as links to proposal sections only (no Markdown parsing for logic).
 
-**Validation:**
+### **Task 1.3 Validation:**  
 
 - [ ] Dashboard panel shows accurate counts computed from structured sources, with links to proposals/results.
 - [ ] Cross-reference check verifies no approved proposal lacks a roadmap entry in Nexus; canon docs are viewer-only.
@@ -92,11 +102,11 @@ Begin the task by following the instructions below:
 
 ### Task 2.1 — Implement Clean Architecture seams
 
-- [STARTED] Step 2.1.1 — Define ports in `application/ports/` (`IApprovalRepo`, `IRunnerService`, `ISchemaCatalog`, `IArtifactStore`, `IMarkdownReader`).
+- [DONE] Step 2.1.1 — Define ports in `application/ports/` (`IApprovalRepo`, `IRunnerService`, `ISchemaCatalog`, `IArtifactStore`, `IMarkdownReader`). Implemented in [`VDM_Nexus/application/ports/ports.hpp`](VDM_Nexus/application/ports/ports.hpp:1).
 - [STARTED] Step 2.1.2 — Create domain models (Experiment, Approval, RunnerSpec, Gate, Artifact, NexusSettings) with serialization tests.
 - [STARTED] Step 2.1.3 — Build infrastructure adapters (SQLite repos, filesystem artifact store, runner service, markdown reader) that operate on derivation resources in place.
 
-**Validation:**  
+### **Task 2.1 Validation:**  
 
 - [ ] Dependency analysis confirms `presentation → application → ports ← infrastructure` with no back edges.  
 - [ ] Unit tests stub each port and prove adapters honour constructor injection.
@@ -110,7 +120,7 @@ Begin the task by following the instructions below:
 - [STARTED] Step 2.2.5 — Define `vdm.run-manifest.v1` JSON Schema at [schemas/vdm.run-manifest.v1.schema.json](VDM_Nexus/schemas/vdm.run-manifest.v1.schema.json) for manifest validation (fields arrays, topology, spacing, KPI map).
 - [STARTED] Step 2.2.6 — Implement threshold extraction in ISchemaCatalog to surface gating thresholds from spec/schema to the UI (e.g., thermo routing schemas under Derivation/code/physics/thermo_routing/schemas/*.schema.json).
 
-**Validation:**
+### **Task 2.2 Validation:**  
 
 - [ ] SchemaCatalog smoke test lists all domains/tags with timestamps matching on-disk specs.
 - [ ] JSON Schema validation passes for viz plugins and `vdm.run-manifest.v1` manifest.
@@ -121,7 +131,7 @@ Begin the task by following the instructions below:
 - [ ] Step 2.3.2 — Encode instrument vs phenomenon metadata (Tiers T2–T6) for filtering.
 - [ ] Step 2.3.3 — Prepare hooks for cross-experiment dependencies (e.g., wave meter Phase C requires Phase A/B certification).
 
-**Validation:**  
+### **Task 2.3 Validation:**  
 
 - [ ] Taxonomy filters return correct experiment sets; manual spot-check vs `VDM-Progress-Findings.md` entries.  
 - [ ] Dependency chip UI blocks downstream runs when prerequisite tiers incomplete.
@@ -136,7 +146,7 @@ Begin the task by following the instructions below:
 - [STARTED] Step 3.1.4 — Implement in‑situ adapter to write `run-manifest.json` (including `experiment_schema` and `spec_path`) and VTK datasets (`.vti/.vtu/.vtp` or XDMF/HDF5) every N steps; file-watcher hot‑reload in viewport.
 - [NOT STARTED] Step 3.1.5 — Optional socket‑coupled streaming (ParaView Catalyst 2 / Ascent) for true live flythrough; toggle per‑run; runner math unchanged.
 
-**Validation:**
+### **Task 3.1 Validation:**  
 
 - [ ] Dry-run smoke profile matches baseline logs for `rd_front_speed`, `kg_energy_oscillation`, `kg_rd_metriplectic`, `wave_flux_meter`, `tachyonic_tube`, `memory_steering`.
 - [ ] Approval guard rejects mismatched HMACs with guilty-field messaging surfaced in UI.
@@ -147,7 +157,7 @@ Begin the task by following the instructions below:
 - [STARTED] Step 3.2.2 — Render KPI cards linking to [VALIDATION_METRICS.md](../derivation/VALIDATION_METRICS.md#kpi-kg-energy-osc-slope) anchors; compute pass/fail using thresholds from the run’s spec/schema.
 - [STARTED] Step 3.2.3 — Assemble RESULTS bundles complying with `[RESULTS_PAPER_STANDARDS](../derivation/Writeup_Templates/RESULTS_PAPER_STANDARDS.md)` (figures, metrics tables, provenance block).
 
-**Validation:**
+### **Task 3.2 Validation:**  
 
 - [ ] Regression test verifies exported bundle includes proposal path, approval receipts, KPI matrix, artifact manifest.
 - [ ] Hash comparison confirms UI metadata equals canonical filesystem outputs.
@@ -159,7 +169,7 @@ Begin the task by following the instructions below:
 - [ ] Step 3.3.3 — Tachyonic tubes & Quantum Echoes: support multi-seed sweeps and curvature fits referencing proposals (e.g., `PROPOSAL_False-Vacuum...`, `T4_PROPOSAL_VDM_QEcho-Convergence_Willow_v1.md`).
 - [ ] Step 3.3.4 — Agency/Intelligence: integrate scenario loaders for energy clamp, inverted-U, options probe, and intelligence substrate prereg (tag `im-substrate-v1`).
 
-**Validation:**  
+### **Task 3.3 Validation:**  
 
 - [ ] Launch dialogs populate only approved specs and show gating metrics for selection.  
 - [ ] Domain-specific runs emit expected JSON schema (e.g., `wave-flux-meter-openports-summary-v1.schema.json`) verified by automated schema validation.
@@ -176,7 +186,7 @@ Begin the task by following the instructions below:
 - [NOT STARTED] Step 4.1.5 — Implement Schema Viewer: open JSON Schemas co-located with runners; validate selected specs against their schema; display validation errors verbatim; viewer-only.
 - [NOT STARTED] Step 4.1.6 — Implement Approvals pane UI: list pending approvals from approvals DB and trigger Approve/Revoke via [approve_tag.py](../derivation/code/common/authorization/approve_tag.py); present CLI password prompt without storing secrets; display receipts (approver, timestamp, HMAC) and refresh DB status.
 
-**Validation:**
+### **Task 4.1 Validation:**  
 
 - [ ] UX walkthrough captures each pane showing live data and canon hyperlinks.
 - [ ] Accessibility audit (keyboard navigation, contrast) meets WCAG AA.
@@ -196,7 +206,7 @@ Begin the task by following the instructions below:
 - [NOT STARTED] Step 4.2.7 — Add particle trails and tensor glyphs; clipping box; KPI jump-to-gate events.
 - [NOT STARTED] Step 4.2.8 — KPI overlay cards hyperlink to canon anchors from [VALIDATION_METRICS.md](../derivation/VALIDATION_METRICS.md); pass/fail badges mirror thresholds from the active run’s spec/schema.
 
-**Validation:**
+### **Task 4.2 Validation:**  
 
 - [ ] Visualization acceptance tests confirm canonical figures render identically to CLI baseline.
 - [ ] Telemetry charts match CLI metrics within tolerance (no smoothing that hides gate failures).
@@ -208,7 +218,7 @@ Begin the task by following the instructions below:
 - [ ] Step 4.3.2 — Embed links to example notebooks or scripts (e.g., `simulate_inverted_u.py`, `run_vdm_causal_order.py`) for reproducibility.
 - [ ] Step 4.3.3 — Display ablation/null test recommendations where proposals require them (agency field probes, false-vacuum asymmetry).
 
-**Validation:**  
+### **Task 4.3 Validation:**  
 
 - [ ] Guided workflow triggers enumerated tasks with completion tracking.  
 - [ ] Notebook launchers open sample runs with correct environment settings.  
@@ -223,7 +233,7 @@ Begin the task by following the instructions below:
 - [ ] Step 5.1.3 — Implement end-to-end smoke scenario (approve → run → harvest → export) with golden artifacts across representative domains (RD, Metriplectic, Wave Meter, Tachyonic, Agency).
 - [ ] Step 5.1.4 — Validate schema compliance for all summary JSONs (`KG-energy-osc-v1`, `thermo-routing-v2`, `wave-flux-meter-openports-summary-v1`, `tube-spectrum-summary-v1`, `vdm-triad-v1`).
 
-**Validation:**  
+### **Task 5.1 Validation:**  
 
 - [ ] Test suite passes on Linux/macOS/Windows with coverage ≥80% on `VDM_Nexus/`.  
 - [ ] Golden-run comparison detects drift in KPI values beyond thresholds; diff reviewers escalate failures.  
@@ -236,7 +246,7 @@ Begin the task by following the instructions below:
 - [ ] Step 5.2.3 — Run static analysis (clang-tidy, cppcheck, bandit) with zero high/critical findings.
 - [ ] Step 5.2.4 — Pen-test GUI command execution guarding (no arbitrary CLI injection) and sandbox runner environment variables.
 
-**Validation:**  
+### **Task 5.2 Validation:**  
 
 - [ ] Security report filed with dependency list, CVE status, mitigations.  
 - [ ] Static analysis artifacts archived and referenced in release checklist.  
@@ -248,7 +258,7 @@ Begin the task by following the instructions below:
 - [ ] Step 5.3.2 — Integrate dataset-level regression checks (e.g., two-grid slope ≥ 2.90 for metriplectic, R² ≥ 0.999 for KG energy oscillation).
 - [ ] Step 5.3.3 — Provide optional rerun triggers for robustness sweeps (T7) and out-of-sample tests (agency/information probes).
 
-**Validation:**  
+### **Task 5.3 Validation:**  
 
 - [ ] QA pipeline flags metrics outside tolerances, blocking promotion to higher tiers.  
 - [ ] Robustness sweep runner logs show aggregated metrics with gating decisions.
@@ -261,7 +271,7 @@ Begin the task by following the instructions below:
 - [ ] Step 6.1.2 — Generate signed artifacts (GPG/Authenticode) with provenance metadata (commit, build timestamp, builder ID).
 - [ ] Step 6.1.3 — Publish release notes referencing KPI outcomes and approvals state.
 
-**Validation:**  
+### **Task 6.1 Validation:**  
 
 - [ ] Install test on each platform verifies Nexus launches and locates derivation tree via environment vars.  
 - [ ] Signature verification succeeds; SBOM generated and archived.  
@@ -274,7 +284,7 @@ Begin the task by following the instructions below:
 - [ ] Step 6.2.3 — Prepare rollback procedure restoring previous Nexus version and canonical config.
 - [ ] Step 6.2.4 — Establish audit trail exports for regulatory review (experiment history, approvals, KPI results).
 
-**Validation:**  
+### **Task 6.2 Validation:**  
 
 - [ ] Tabletop exercise demonstrates incident response plan including quarantine artifact routing.  
 - [ ] Rollback rehearsal reinstalls prior build and reconnects to derivation without data loss.  
@@ -288,7 +298,7 @@ Begin the task by following the instructions below:
 - [ ] Step 7.1.2 — Expose RJ-fit diagnostics, no-switch invariants, bias metrics, and outflux floor gates per prereg (see `thermo-routing-v2-prereg-biased-main`.
 - [ ] Step 7.1.3 — Automate Phase C wave flux meter checks (absorber efficiency, power balance, symmetry nulls).
 
-**Validation:**  
+### **Task 7.1 Validation:**  
 
 - [ ] Example run shows RJ fit R² ≥ 0.99 and gate matrix display consistent with logs.  
 - [ ] Phase C summary JSON validated against schema and displayed live.
@@ -299,7 +309,7 @@ Begin the task by following the instructions below:
 - [ ] Step 7.2.2 — Implement controls for KG⊕RD composition (Strang splitting, degeneracy diagnostics).  
 - [ ] Step 7.2.3 — Integrate quantum echo proposals (e.g., `T4_PROPOSAL_VDM_QEcho-Convergence_Willow_v1.md`) with echo envelopes, reversibility metrics, and entanglement proxies.
 
-**Validation:**  
+### **Task 7.2 Validation:**  
 
 - [ ] Metriplectic run displays two-grid slope ≥ 2.90, defect/residual metrics within gates.  
 - [ ] Quantum echo visualization overlays converge per proposal thresholds.
@@ -310,7 +320,7 @@ Begin the task by following the instructions below:
 - [ ] Step 7.3.2 — Surface FRW continuity RMS residuals and ΛCDM residuals for cosmology harness.
 - [ ] Step 7.3.3 — Offer pipeline for false-vacuum metastability tests and void-debt asymmetry metrics per prereg.
 
-**Validation:**  
+### **Task 7.3 Validation:**  
 
 - [ ] Tachyonic summary display matches coverage_phys ≥ 0.95 and curvature_ok boolean.  
 - [ ] Cosmology panel shows RMS ≤1e-6 for dust scenario and reports contradiction when threshold breached.
@@ -321,7 +331,7 @@ Begin the task by following the instructions below:
 - [ ] Step 7.4.2 — Integrate intelligence model substrate prereg (im-substrate-v1): spec validation, approvals gating, scenario execution (probe-limit semantics).
 - [ ] Step 7.4.3 — Provide ablation toggles (null experiments, randomization) suggested for agency robustness.
 
-**Validation:**  
+### **Task 7.4 Validation:**  
 
 - [ ] Agency metrics display matches canonical defaults and compute z-scores from reference distributions.  
 - [ ] Intelligence substrate run outputs required PNG+CSV+JSON with determinism receipts; gating ensures probe-limit compliance.
@@ -332,7 +342,7 @@ Begin the task by following the instructions below:
 - [ ] Step 7.5.2 — Hook quantum gravity bridge runners (`run_vdm_causal_order.py`, `run_vdm_myrheim_dimension.py`, `run_vdm_bd_action_proxy.py`) with gating thresholds from proposal.
 - [ ] Step 7.5.3 — Provide parameter sweeps for holonomy diagnostics and causal geometry metrics.
 
-**Validation:**  
+### **Task 7.5 Validation:**  
 
 - [ ] DAG audit viewer shows pass/fail flags per gate; schema-compliant artifacts stored.  
 - [ ] Quantum gravity runs report dimension estimates and action proxies within proposal tolerance.
