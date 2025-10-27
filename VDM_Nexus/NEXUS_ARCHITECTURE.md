@@ -71,7 +71,7 @@ presentation → application → ports ← infrastructure
 - Dark theme QML shell with panes: Dashboard; Experiments; Approvals; Artifacts; Viz; Experiment Browser (Configs/Specs); Schema Viewer; Proposal/Results Viewer.
 - Experiment Browser (read-only): lists per-domain experiments; opens config/spec JSON with a pretty/JSON-path viewer; displays repository path and commit hash; never writes to derivation.
 - Schema Viewer (read-only): opens JSON Schemas co-located with runners; validates selected specs against their schema on demand; displays validation errors verbatim; no inference from Markdown canon.
-- Proposal/Results Viewer (read-only): renders PROPOSAL_* and RESULTS_* Markdown with commit and salted-hash banners; links remain in-viewer; never used for gating or thresholds.
+- Proposal/Results Viewer (read-only): renders PROPOSAL_*and RESULTS_* Markdown with commit and salted-hash banners; links remain in-viewer; never used for gating or thresholds.
 - Approvals pane (actionable): lists pending approvals from approvals DB; "Approve"/"Revoke" actions shell to [approve_tag.py](../derivation/code/common/authorization/approve_tag.py); Nexus never stores admin passwords; receipts (approver, timestamp, HMAC) are shown; DB status refreshes after completion.
 - Results History pane (read-only DB-backed): aggregates per-domain results from per-experiment tables (SQLite, WAL) using [results_db.py](../derivation/code/common/data/results_db.py); filters by domain/script/tag/batch/status/time; opens row details (params_json, metrics_json, artifacts_json) with JSON viewers; never mutates DB.
 - Dashboard shows active experiments, pending approvals, and counts of `PROPOSAL_*` without matching RESULTS.
@@ -144,6 +144,7 @@ Runners (unchanged) → In‑situ adapter → Viewport(s) → Artifacts & Report
 ### 12.2 Minimal data contract (stable)
 
 On every publish (per step or per N frames), the adapter writes/streams:
+
 ```json
 {
   "schema": "vdm.run-manifest.v1",
@@ -164,6 +165,7 @@ On every publish (per step or per N frames), the adapter writes/streams:
   "kpis": {"front_speed_rel_err": 0.031, "kg_energy_osc_slope": -1.98}
 }
 ```
+
 - Datasets: `.vti/.vtu/.vtp` (VTK XML) or XDMF/HDF5.
 - Manifest: co‑located with canonical outputs; read‑only to the GUI; provenance (SHA‑256 + file sizes) recorded.
 
@@ -188,6 +190,7 @@ On every publish (per step or per N frames), the adapter writes/streams:
 - `plugins/viz/tensor.viz.json`: tensor glyphs; `plugins/viz/particles.viz.json`: point sprites + trails.
 - Plugins operate on canonical artifacts only (no copies/renames).
 Example descriptor:
+
 ```json
 {
   "id": "viz.volume.v1",

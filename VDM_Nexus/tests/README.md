@@ -25,6 +25,7 @@ Test suites for the Nexus desktop application. Tests mirror the Clean Architectu
 ## Environment
 
 Resolve roots exactly as the app:
+
 - CLI flags > environment variables > `.env`
 - Expected env: `VDM_REPO_ROOT`, `VDM_APPROVAL_DB`, `VDM_APPROVAL_ADMIN_DB`
 
