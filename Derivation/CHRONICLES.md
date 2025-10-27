@@ -1,4 +1,35 @@
-# CORRECTIONS
+# CHRONICLES
+
+<!-- Change Attestation Policy (Required) -->
+<!-- This section defines the mandatory template for documenting any change under Derivation/. -->
+<!-- The only bypass for Derivation edits without canon updates is explicit documentation here. -->
+
+## Change Attestation — TEMPLATE
+Dependency-Chain-Reviewed: true
+Change-Type: [pivot|minor-correction|file-shuffle|canon-impacting]
+Summary: <one-line description of the change and rationale>
+Paths-Changed:
+- Derivation/path/to/changed/file.ext
+- Derivation/another/changed/path.md
+Canon-Docs-Updated:  # list canon docs if Change-Type is canon-impacting
+- Derivation/EQUATIONS.md#<anchor>
+- Derivation/VALIDATION_METRICS.md#<anchor>
+- Derivation/ROADMAP.md#<anchor>
+Dependency-Notes:
+- Reviewed dependencies: <list related canon docs/registries touched or verified unchanged>
+- Upstream/downstream links: <anchors/paths to impacted sections>
+Approval/PR:
+- PR: <url or owner/number>
+- Approval: <reference to approve_tag.py record or admin note>
+
+Guidance:
+- All Derivation/ changes MUST add a Change Attestation entry in this file.
+- For canon-impacting changes (proposals/experiments/code/results), you MUST also:
+  - Update at least one canonical ALL-CAPS doc (e.g., EQUATIONS, VALIDATION_METRICS, ROADMAP, etc.).
+  - Include the exact line "Dependency-Chain-Reviewed: true" in the attestation above.
+- For non-canon housekeeping (e.g., minor corrections, file shuffles), an attestation entry is still required; canon updates may not be needed if scope is strictly non-canonical.
+
+---
 
 Date (UTC): 2025-08-20
 

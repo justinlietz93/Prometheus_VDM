@@ -1,0 +1,64 @@
+name: Derivation Guard (CHRONICLES + Canon)
+
+on:
+  pull_request:
+    paths:
+      - "Derivation/**"
+      - "VDM_Nexus/**"
+      - ".github/workflows/**"
+      - ".pre-commit-config.yaml"
+  push:
+    branches: [ "main" ]
+    paths:
+      - "Derivation/**"
+      - "VDM_Nexus/**"
+      - ".github/workflows/**"
+      - ".pre-commit-config.yaml"
+
+jobs:
+  derivation-guard:
+    name: Enforce CHRONICLES + Canon policy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (full history)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Determine base ref
+        id: base
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            echo "base_ref=origin/${{ github.base_ref }}" >> "$GITHUB_OUTPUT"
+            git fetch origin "${{ github.base_ref }}:${{ github.base_ref }}" || true
+          else
+            echo "base_ref=origin/main" >> "$GITHUB_OUTPUT"
+            git fetch origin main:main || true
+          fi
+          echo "Using base_ref=${{ steps.base.outputs.base_ref }}"
+
+      - name: Derivation Change Guard (enforced)
+        shell: bash
+        run: |
+          python VDM_Nexus/scripts/precommit_derivation_guard.py --mode ci --base "${{ steps.base.outputs.base_ref }}"
+
+      - name: Nexus Validation Gate (informational — non-fatal)
+        continue-on-error: true
+        shell: bash
+        run: |
+          python VDM_Nexus/scripts/nexus_validate_gate.py \
+            --base "${{ steps.base.outputs.base_ref }}" \
+            --check canon-diff --check lint \
+            --no-clang --no-md-hygiene --json | tee gate.json
+          python - <<'PY'
+          import json
+          with open("gate.json","r") as f:
+              d=json.load(f)
+          print(json.dumps(d, indent=2, sort_keys=True))
+          PY
