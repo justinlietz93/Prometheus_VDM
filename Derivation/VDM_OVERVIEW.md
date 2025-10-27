@@ -3,8 +3,10 @@
 Note on scope: This document is canonical and reflects the latest accepted state only. Historical timelines and prior wordings are preserved in Derivation/CORRECTIONS.md and the memory-bank logs.
 
 **Author:** Justin K. Lietz  
+**Created:** August 9, 2025  
 **Last Updated:** October 13, 2025  
-**Commit:** 6be73cf
+**ORCID:** [0009-0008-9028-1366](https://orcid.org/0009-0008-9028-1366)  
+**Commit:** 6be73cf  
 
 **License Notice:** This research is protected under a dual-license to foster open academic research while ensuring commercial applications are aligned with the project's ethical principles. Commercial use requires citation and written permission from Justin K. Lietz. See LICENSE file for full terms.
 
