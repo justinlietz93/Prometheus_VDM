@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1,viewport-fit=cover"
+/>
+<title>VDM Nexus — Dark Prototype</title>
+<style>
+  :root{
+    --bg:#0f1218;--bg-2:#0b0f14;--panel:#121826;--panel-2:#161b22;--panel-3:#1b2230;
+    --text:#e6edf3;--muted:#9da7b3;--line:#263040;--line-2:#2f3b52;
+    --accent:#7aa2f7;--accent-2:#22c55e;--warn:#f59e0b;--fail:#ef4444;--info:#38bdf8;
+    --chip:#0e1624;--chip-2:#0c1420;--shadow:0 8px 24px rgba(0,0,0,.3);
+    --radius:12px;--radius-sm:9px;--radius-xs:7px;--pad:14px;
+    --font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji";
+    --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font);}
+  .app{display:grid;grid-template-columns:280px 1fr;grid-template-rows:64px 1fr;min-height:100vh}
+  header{grid-column:1/3;grid-row:1;display:flex;align-items:center;gap:12px;padding:0 16px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,var(--panel-2),var(--panel))}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.2px}
+  .brand svg{width:26px;height:26px}
+  .spacer{flex:1}
+  .toolbar{display:flex;gap:8px;align-items:center}
+  .toolbar input[type="search"]{background:var(--bg-2);border:1px solid var(--line);color:var(--text);padding:10px 12px;border-radius:999px;min-width:260px;outline:none}
+  .btn{background:var(--panel-3);border:1px solid var(--line);color:var(--text);padding:9px 12px;border-radius:9px;display:inline-flex;gap:8px;align-items:center;cursor:pointer}
+  .btn:hover{border-color:var(--line-2);background:#1c2535}
+  .btn.primary{border-color:#334a7d;background:linear-gradient(180deg,#1a2a46,#15243d)}
+  .btn svg{width:18px;height:18px}
+  aside{grid-row:2;grid-column:1;display:flex;flex-direction:column;border-right:1px solid var(--line);background:linear-gradient(180deg,var(--panel),var(--panel-2))}
+  .nav{padding:12px}
+  .nav h4{margin:6px 8px 10px;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em}
+  .nav .item{display:flex;align-items:center;gap:10px;padding:10px 12px;margin:6px 0;border-radius:10px;color:var(--text);cursor:pointer;border:1px solid transparent}
+  .nav .item svg{width:18px;height:18px}
+  .nav .item.active,.nav .item:hover{background:var(--chip);border-color:var(--line)}
+  .foot{margin-top:auto;padding:10px 12px;font-size:12px;color:var(--muted);border-top:1px solid var(--line)}
+  main{grid-row:2;grid-column:2;padding:16px 18px 28px;overflow:auto}
+  /* cards */
+  .grid{display:grid;gap:14px}
+  .g-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .g-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .g-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .card{background:var(--panel-2);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+  .card .hd{padding:12px 14px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px}
+  .card .bd{padding:14px}
+  .kpi{display:flex;justify-content:space-between;align-items:center}
+  .kpi .num{font-size:22px;font-weight:700}
+  .chip{display:inline-flex;gap:8px;align-items:center;padding:5px 8px;border:1px solid var(--line);border-radius:999px;background:var(--chip);color:var(--muted);font-size:12px}
+  .chip.pass{color:#b8f3c7;border-color:#2a5a3a;background:#102017}
+  .chip.fail{color:#ffc0c0;border-color:#5a2a2a;background:#1f1212}
+  .chip.warn{color:#ffe2b2;border-color:#6b4a19;background:#21190b}
+  .hl{color:var(--accent)}
+  /* table */
+  table{width:100%;border-collapse:collapse}
+  th,td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:left}
+  thead th{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+  tbody tr:hover{background:rgba(255,255,255,0.02)}
+  .toolbar-row{display:flex;gap:10px;align-items:center;margin-bottom:10px}
+  select,input[type="text"]{background:var(--bg-2);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:8px 10px;outline:none}
+  /* split */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .log{font-family:var(--mono);background:#0a0f18;color:#c9d4e5;border:1px solid var(--line);border-radius:var(--radius-sm);padding:10px;height:260px;overflow:auto;white-space:pre}
+  .progress{height:8px;background:#0b1220;border-radius:6px;border:1px solid var(--line);overflow:hidden}
+  .bar{height:100%;width:0;background:linear-gradient(90deg,#2e67ff,#5e9bff)}
+  .thumbs{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+  .thumb{aspect-ratio:16/10;background:#0c1423;border:1px solid var(--line);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:12px;position:relative}
+  .thumb img{max-width:100%;max-height:100%;border-radius:8px}
+  .thumb .cap{position:absolute;left:6px;bottom:6px;background:rgba(0,0,0,.5);padding:2px 6px;border-radius:6px;font-size:11px}
+  /* markdown */
+  .md{line-height:1.55}
+  .md h1,.md h2,.md h3{margin:.6em 0 .3em}
+  .md h1{font-size:24px}.md h2{font-size:20px}.md h3{font-size:16px}
+  .md p,.md li{color:#cfd7e3}
+  .md code{background:#0b1220;border:1px solid var(--line);padding:2px 6px;border-radius:6px;font-family:var(--mono)}
+  .md pre{background:#0b1220;border:1px solid var(--line);padding:10px;border-radius:8px;overflow:auto}
+  .banner{display:flex;gap:8px;align-items:center;margin-bottom:10px;font-family:var(--mono);font-size:12px;color:var(--muted)}
+  .pill{padding:2px 8px;border:1px solid var(--line);border-radius:999px;background:var(--chip)}
+  /* toasts */
+  .toasts{position:fixed;right:16px;bottom:16px;display:flex;flex-direction:column;gap:10px;z-index:100}
+  .toast{background:#101826;border:1px solid var(--line);border-left:4px solid var(--accent);padding:10px 12px;border-radius:10px;min-width:260px;box-shadow:var(--shadow)}
+  /* small sparkline */
+  canvas.spark{width:100%;height:40px;display:block}
+  /* small helpers */
+  .muted{color:var(--muted)} .right{float:right} .mt8{margin-top:8px} .mt12{margin-top:12px}
+  .mt16{margin-top:16px} .mb8{margin-bottom:8px} .mb12{margin-bottom:12px}
+  .row{display:flex;gap:10px;align-items:center}
+  .nowrap{white-space:nowrap}
+  /* selection highlight */
+  ::selection{background:#1d3b7a;color:#fff}
+  /* scrollbars */
+  ::-webkit-scrollbar{height:12px;width:12px}
+  ::-webkit-scrollbar-thumb{background:#233049;border:3px solid #0e1422;border-radius:8px}
+</style>
+    <!-- three.js for 3D viewport (mock only; desktop app uses Qt+VTK) -->
+    <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+    <script src="https://unpkg.com/three@0.160.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://unpkg.com/three@0.160.0/examples/js/objects/MarchingCubes.js"></script>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="brand" title="Void Dynamics Model — Nexus">
+      <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#7aa2f7"/><stop offset="1" stop-color="#22c55e"/></linearGradient></defs>
+        <circle cx="24" cy="24" r="20" stroke="url(#g)" stroke-width="2" fill="none"/>
+        <path d="M12 24c8-12 16-12 24 0M12 24c8 12 16 12 24 0" stroke="url(#g)" stroke-width="2" fill="none"/>
+      </svg>
+      VDM Nexus
+      <span class="pill">Prototype</span>
+    </div>
+    <div class="spacer"></div>
+    <div class="toolbar">
+      <input id="search" type="search" placeholder="Search experiments, tags, docs…" />
+      <button class="btn" id="btnLoadDerivation" title="Index Derivation/ canon (read only)">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h8l2 2h6v10H4z" stroke="currentColor" stroke-width="1.5"/><path d="M4 17V5h6" stroke="currentColor" stroke-width="1.5"/></svg>
+        Load Derivation Root
+      </button>
+      <button class="btn" id="btnOpenSpec">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M4 4h16v16H4z" stroke="currentColor" stroke-width="1.5"/><path d="M8 4v16M16 4v16" stroke="currentColor" stroke-width="1.5"/></svg>
+        Open Spec JSON
+      </button>
+      <button class="btn primary" id="btnExportReport">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 3v12M7 10l5 5 5-5" stroke="currentColor" stroke-width="1.5"/><rect x="4" y="18" width="16" height="3" rx="1.5" fill="currentColor"/></svg>
+        Export Report
+      </button>
+    </div>
+  </header>
+
+  <aside>
+    <div class="nav">
+      <h4>Navigation</h4>
+      <div class="item active" data-view="dashboard">
+        <svg viewBox="0 0 24 24"><path d="M3 12h7V3H3v9zm0 9h7v-7H3v7zm11 0h7v-9h-7v9zm0-20v7h7V1h-7z" fill="currentColor"/></svg>
+        Dashboard
+      </div>
+      <div class="item" data-view="experiments">
+        <svg viewBox="0 0 24 24"><path d="M7 4h10l1 2-4 6v5l-2 2-2-2v-5L6 6l1-2z" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+        Experiments
+      </div>
+      <div class="item" data-view="approvals">
+        <svg viewBox="0 0 24 24"><path d="M5 4h14v8H5z" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M7 20l5-5 5 5" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+        Approvals
+      </div>
+      <div class="item" data-view="artifacts">
+        <svg viewBox="0 0 24 24"><path d="M3 7h18v10H3z" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M8 7v10M16 7v10" stroke="currentColor" stroke-width="1.5"/></svg>
+        Artifacts
+      </div>
+      <div class="item" data-view="viz">
+        <svg viewBox="0 0 24 24"><path d="M4 12c4-6 12-6 16 0-4 6-12 6-16 0z" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+        Viz
+      </div>
+      <div class="item" data-view="canon">
+        <svg viewBox="0 0 24 24"><path d="M5 4h10l4 4v12H5z" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M15 4v4h4" stroke="currentColor" stroke-width="1.5"/></svg>
+        Canon Docs
+      </div>
+      <div class="item" data-view="schemas">
+        <svg viewBox="0 0 24 24"><path d="M4 4h6v6H4zM14 4h6v6h-6zM9 14h6v6H9z" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+        Schema Viewer
+      </div>
+      <div class="item" data-view="reports">
+        <svg viewBox="0 0 24 24"><path d="M5 4h10l4 4v12H5z" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M8 14h8M8 10h5" stroke="currentColor" stroke-width="1.5"/></svg>
+        Reports
+      </div>
+      <h4>Context</h4>
+      <div class="chip">VDM_NEXUS=1</div>
+      <div class="chip">Read‑only canon</div>
+    </div>
+    <div class="foot">
+      <div class="muted">Repo: <span id="repoPath" class="nowrap">—</span></div>
+      <div class="muted mt8">Commit: <span id="commitHash">—</span></div>
+    </div>
+  </aside>
+
+  <main id="main"></main>
+</div>
+
+<!-- hidden pickers -->
+<input type="file" id="pickerFolder" hidden webkitdirectory multiple />
+<input type="file" id="pickerSpec" hidden accept=".json,application/json" />
+
+<!-- toasts -->
+<div class="toasts" id="toasts"></div>
+
+<script>
+/* ===========================
+   VDM Nexus Prototype Logic
+   ===========================
+   Clean Architecture seam mapping:
+   - domain models: Experiment, Approval, RunnerSpec, Artifact, KPI, NexusSettings
+   - application ports (stubs here):
+     IApprovalRepo, IRunnerService, IArtifactStore, IMarkdownReader, ISchemaCatalog
+   Infra adapters in the Qt app will replace the stubs with real implementations
+   against Derivation/code/common/data and runner CLIs.
+================================*/
+
+// ---------- Utilities ----------
+const $ = (q, el=document) => el.querySelector(q);
+const $$ = (q, el=document) => Array.from(el.querySelectorAll(q));
+const fmt = (n)=> new Intl.NumberFormat().format(n);
+const nowIso = ()=> new Date().toISOString().replace('T',' ').replace('Z',' UTC');
+const toast = (msg, kind="info")=>{
+  const t = document.createElement('div');
+  t.className = 'toast';
+  if(kind==='ok') t.style.borderLeftColor = 'var(--accent-2)';
+  if(kind==='warn') t.style.borderLeftColor = 'var(--warn)';
+  if(kind==='fail') t.style.borderLeftColor = 'var(--fail)';
+  t.textContent = msg;
+  $('#toasts').appendChild(t);
+  setTimeout(()=>t.remove(), 4200);
+};
+
+// Minimal markdown renderer (safe-ish; covers headings, code, bold/italic, links, lists)
+function renderMarkdown(md){
+  let html = md
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  html = html.replace(/```([\s\S]*?)```/g, (_,code)=>`<pre><code>${code}</code></pre>`);
+  html = html.replace(/^### (.*)$/gm,'<h3>$1</h3>')
+             .replace(/^## (.*)$/gm,'<h2>$1</h2>')
+             .replace(/^# (.*)$/gm,'<h1>$1</h1>');
+  html = html.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')
+             .replace(/\*(.*?)\*/g,'<em>$1</em>')
+             .replace(/`([^`]+)`/g,'<code>$1</code>')
+             .replace(/\[([^\]]+)\]\(([^)]+)\)/g,'<a href="$2" target="_blank" rel="noopener">$1</a>');
+  // lists
+  html = html.replace(/^(?:- |\* )(.*)$/gm,'<li>$1</li>');
+  html = html.replace(/(<li>[\s\S]*?<\/li>)/g,'<ul>$1</ul>');
+  // paragraphs
+  html = html.replace(/^(?!<h\d|<ul|<pre|<p|<li|<blockquote)(.+)$/gm,'<p>$1</p>');
+  return `<div class="md">${html}</div>`;
+}
+
+// sparkline
+function drawSpark(canvas, data){
+  const dpr = window.devicePixelRatio || 1;
+  const w = canvas.clientWidth, h = canvas.clientHeight;
+  canvas.width = w*dpr; canvas.height = h*dpr;
+  const ctx = canvas.getContext('2d'); ctx.scale(dpr,dpr);
+  ctx.clearRect(0,0,w,h);
+  const max = Math.max(...data), min = Math.min(...data);
+  ctx.strokeStyle = '#5e9bff'; ctx.lineWidth = 2;
+  ctx.beginPath();
+  data.forEach((v,i)=>{
+    const x = i/(data.length-1)*w;
+    const y = h - ( (v-min)/(max-min||1) * h );
+    if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+  });
+  ctx.stroke();
+}
+
+// ---------- Demo Data (replace with live repositories in Qt app) ----------
+const state = {
+  repoPath: '—',
+  commit: '—',
+  derivationFiles: [], // File objects when loaded
+  docsIndex: [],       // {path, type, name, file}
+  loadedDocs: {},      // cache path -> text
+  runs: [],            // completed simulated runs
+  figures: [],         // {name, dataUrl}
+  logs: [],            // {name, text}
+  selectedSpec: null,  // loaded JSON spec
+};
+
+// Experiments inventory (subset, matching your domains)
+const EXPERIMENTS = [
+  { id:'rd_front_speed', domain:'Reaction–Diffusion', tag:'rd_front_speed', title:'KPP Front Speed',
+    kpi:'c_front', pred: 2*Math.sqrt(1.0*0.25), // D=1, r=0.25 ⇒ 1.0
+    thresholds:{rel_err:0.05}, maturity:'T4', seeds:4, last:'—', status:'idle' },
+  { id:'rd_dispersion', domain:'Reaction–Diffusion', tag:'rd_dispersion', title:'Linear Dispersion',
+    kpi:'sigma(k)', thresholds:{R2:0.98, med_err:0.10}, maturity:'T4', seeds:3, last:'—', status:'idle' },
+  { id:'kg_energy_osc', domain:'Metriplectic', tag:'kg_energy_osc', title:'KG Energy Oscillation (J-only)',
+    kpi:'two-grid slope', thresholds:{slope_min:2.90}, maturity:'T3', seeds:5, last:'—', status:'idle' },
+  { id:'wave_flux_meter_c', domain:'Wave Flux Meter', tag:'wfm_phase_c', title:'Phase C Absorber Efficiency',
+    kpi:'efficiency', thresholds:{eff_min:0.92}, maturity:'T3', seeds:2, last:'—', status:'idle' },
+  { id:'tachyonic_tube', domain:'Tachyonic Tubes', tag:'tube_spectrum_v1', title:'Tube Spectrum Coverage',
+    kpi:'cov_phys', thresholds:{cov_phys_min:0.95}, maturity:'T3', seeds:6, last:'—', status:'idle' },
+  { id:'agency_probe', domain:'Agency Field', tag:'agency_energy_clamp', title:'Energy Clamp Relaxation',
+    kpi:'tau=1/gamma', thresholds:{fit_R2:0.98}, maturity:'T2', seeds:3, last:'—', status:'idle' }
+];
+
+const APPROVALS = [
+  { id:'A-001', tag:'rd_front_speed', status:'pending', approver:null, when:null, hmac:null },
+  { id:'A-002', tag:'wfm_phase_c', status:'approved', approver:'admin', when:'2025-09-10 13:22', hmac:'ab12…' },
+  { id:'A-003', tag:'tube_spectrum_v1', status:'pending', approver:null, when:null, hmac:null },
+];
+
+const SPARK = Array.from({length:24}, (_,i)=> 60 + Math.round(15*Math.sin(i/3)+Math.random()*6));
+
+// ---------- View Renderers ----------
+const main = $('#main');
+function setActive(view){
+  $$('.nav .item').forEach(i=>i.classList.toggle('active', i.dataset.view===view));
+  routes[view]();
+}
+
+const routes = {
+  dashboard(){
+    main.innerHTML = `
+      <div class="grid g-4">
+        <div class="card"><div class="hd">Pending Approvals</div><div class="bd kpi">
+          <div class="num">${fmt(APPROVALS.filter(a=>a.status==='pending').length)}</div>
+          <div><canvas class="spark" id="sp1"></canvas></div>
+        </div></div>
+        <div class="card"><div class="hd">Orphan Proposals</div><div class="bd kpi">
+          <div class="num">3</div><div><canvas class="spark" id="sp2"></canvas></div>
+        </div></div>
+        <div class="card"><div class="hd">Runs (last 7d)</div><div class="bd kpi">
+          <div class="num">${fmt(state.runs.length)}</div><div><canvas class="spark" id="sp3"></canvas></div>
+        </div></div>
+        <div class="card"><div class="hd">Artifacts Indexed</div><div class="bd kpi">
+          <div class="num">${fmt(state.figures.length + state.logs.length)}</div><div><canvas class="spark" id="sp4"></canvas></div>
+        </div></div>
+      </div>
+
+      <div class="grid g-2 mt16">
+        <div class="card">
+          <div class="hd">Active Experiments</div>
+          <div class="bd">
+            <table>
+              <thead><tr><th>Domain</th><th>Title</th><th>Tag</th><th>Status</th><th>Last Run</th></tr></thead>
+              <tbody>
+                ${EXPERIMENTS.map(e=>`
+                  <tr>
+                    <td>${e.domain}</td>
+                    <td>${e.title}</td>
+                    <td><code>${e.tag}</code></td>
+                    <td>${badgeStatus(e.status)}</td>
+                    <td>${e.last}</td>
+                  </tr>`).join('')}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card">
+          <div class="hd">KPI Gate Summary</div>
+          <div class="bd">
+            <div class="row"><div class="chip pass">PASS <strong class="hl">${fmt(state.runs.filter(r=>r.pass).length)}</strong></div><div class="chip fail">FAIL <strong>${fmt(state.runs.filter(r=>!r.pass).length)}</strong></div></div>
+            <div class="mt12 muted">Thresholds come from spec/schema; GUI does not duplicate numbers.</div>
+          </div>
+        </div>
+      </div>
+    `;
+    ['sp1','sp2','sp3','sp4'].forEach(id=> drawSpark($('#'+id), SPARK.map(v=> v + (Math.random()*6-3))));
+  },
+
+  experiments(){
+    const domains = [...new Set(EXPERIMENTS.map(e=>e.domain))];
+    main.innerHTML = `
+      <div class="card">
+        <div class="hd">Experiments</div>
+        <div class="bd">
+          <div class="toolbar-row">
+            <select id="fltDomain"><option value="">All domains</option>${domains.map(d=>`<option>${d}</option>`).join('')}</select>
+            <select id="fltStatus"><option value="">Any status</option><option>idle</option><option>running</option><option>ready</option></select>
+            <input id="fltText" type="text" placeholder="Filter by tag/title…" />
+            <div class="spacer"></div>
+            <button class="btn" id="btnLaunch">Launch Selected</button>
+          </div>
+          <table id="tblExp">
+            <thead><tr><th></th><th>Domain</th><th>Title</th><th>Tag</th><th>Maturity</th><th>Status</th><th>Last Run</th></tr></thead>
+            <tbody>${rowsForExperiments(EXPERIMENTS)}</tbody>
+          </table>
+          <div class="split mt16">
+            <div>
+              <div class="row mb8"><strong>Run Telemetry</strong><span class="chip">VDM_NEXUS=1</span></div>
+              <div class="log" id="log"></div>
+              <div class="progress mt12"><div class="bar" id="bar"></div></div>
+              <div class="row mt12">
+                <button class="btn" id="btnStop">Stop</button>
+                <button class="btn" id="btnManifest">Download run-manifest.json</button>
+              </div>
+            </div>
+            <div>
+              <div class="row mb8"><strong>Artifacts</strong><span class="muted">(auto‑harvest)</span></div>
+              <div class="thumbs" id="thumbs"></div>
+              <div class="row mt12">
+                <div class="chip pass" id="kpiPass" style="display:none;">KPI PASS</div>
+                <div class="chip fail" id="kpiFail" style="display:none;">KPI FAIL</div>
+                <span class="muted" id="kpiMsg"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+    hookExperimentFilters();
+    $('#btnLaunch').onclick = launchSelected;
+    $('#btnStop').onclick = ()=> toast('Runner stopped (simulated).','warn');
+    $('#btnManifest').onclick = downloadManifest;
+  },
+
+  approvals(){
+    main.innerHTML = `
+      <div class="card">
+        <div class="hd">Approvals</div>
+        <div class="bd">
+          <table>
+            <thead><tr><th>Tag</th><th>Status</th><th>Approver</th><th>When</th><th>Action</th></tr></thead>
+            <tbody>${APPROVALS.map(a=>`
+              <tr>
+                <td><code>${a.tag}</code></td>
+                <td>${badgeApproval(a.status)}</td>
+                <td>${a.approver ?? '—'}</td>
+                <td>${a.when ?? '—'}</td>
+                <td>${a.status==='pending'
+                  ? `<button class="btn" data-act="approve" data-id="${a.id}">Approve</button>`
+                  : `<button class="btn" data-act="revoke" data-id="${a.id}">Revoke</button>`}
+                </td>
+              </tr>`).join('')}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    `;
+    $('table').addEventListener('click', (e)=>{
+      const b = e.target.closest('button'); if(!b) return;
+      const id = b.dataset.id; const a = APPROVALS.find(x=>x.id===id);
+      if(b.dataset.act==='approve'){
+        const pw = prompt('Approver password (simulated CLI prompt):');
+        if(pw===null) return;
+        a.status='approved'; a.approver='admin'; a.when=nowIso(); a.hmac=(Math.random().toString(16).slice(2,10)+'…');
+        toast(`Approved ${a.tag} • receipt ${a.hmac}`,'ok');
+      }else{
+        a.status='pending'; a.approver=null; a.when=null; a.hmac=null;
+        toast(`Revoked approval for ${a.tag}`,'warn');
+      }
+      routes.approvals();
+    });
+  },
+
+  artifacts(){
+    main.innerHTML = `
+      <div class="grid g-2">
+        <div class="card">
+          <div class="hd">Figures (${state.figures.length})</div>
+          <div class="bd">
+            <div class="thumbs">
+              ${state.figures.map(f=>`
+                <div class="thumb"><img src="${f.dataUrl}" alt="${f.name}"/><div class="cap">${f.name}</div></div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="hd">Logs (${state.logs.length})</div>
+          <div class="bd">
+            <table>
+              <thead><tr><th>Name</th><th>Size</th><th>Action</th></tr></thead>
+              <tbody>${state.logs.map(l=>`
+                <tr><td>${l.name}</td><td>${fmt(l.text.length)} B</td>
+                <td><button class="btn" data-log="${l.name}">Open</button></td></tr>`).join('')}</tbody>
+            </table>
+            <div class="log mt12" id="logOpen">Select a log…</div>
+          </div>
+        </div>
+      </div>
+    `;
+    $('table').addEventListener('click',(e)=>{
+      const b = e.target.closest('button'); if(!b) return;
+      const l = state.logs.find(x=>x.name===b.dataset.log);
+      $('#logOpen').textContent = l ? l.text : '';
+    });
+  },
+
+  viz(){
+    main.innerHTML = `
+      <div class="card">
+        <div class="hd">Viewport (3D mock)</div>
+        <div class="bd">
+          <div id="vp3d" style="width:100%;height:calc(100vh - 220px);min-height:520px;border:1px solid var(--line);border-radius:10px;background:#0a0f18;position:relative"></div>
+          <div class="row mt12">
+            <label class="muted">Iso</label>
+            <input id="isoSlider" type="range" min="0" max="1" step="0.01" value="0.35" style="width:160px">
+            <button class="btn" id="btnIso">Iso‑surface</button>
+            <button class="btn" id="btnFlow">Particles</button>
+            <button class="btn" id="btnVol">Reset Camera</button>
+            <div class="spacer"></div>
+            <div class="chip">AMD/ROCm path friendly</div>
+          </div>
+          <div class="muted mt8">Orbit: drag • Pan: right-drag • Zoom: wheel</div>
+        </div>
+      </div>
+    `;
+
+    // THREE.js 3D viewport (browser mock). Desktop app: QVTKOpenGLNativeWidget + VTK.
+    const container = $('#vp3d');
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(container.clientWidth, container.clientHeight);
+    renderer.setPixelRatio(window.devicePixelRatio || 1);
+    container.appendChild(renderer.domElement);
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
+    camera.position.set(1.8, 1.4, 2.2);
+
+    const controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.08;
+
+    // Helpers and lights
+    scene.add(new THREE.AxesHelper(0.5));
+    const grid = new THREE.GridHelper(2, 10, 0x334455, 0x223344);
+    scene.add(grid);
+    scene.add(new THREE.AmbientLight(0xffffff, 0.6));
+    const dir = new THREE.DirectionalLight(0xffffff, 0.8); dir.position.set(2,3,1); scene.add(dir);
+
+    // Iso-surface via Marching Cubes (meta-balls demo field)
+    const resolution = 32;
+    const mat = new THREE.MeshStandardMaterial({ color: 0x5e9bff, metalness: 0.1, roughness: 0.8, side: THREE.DoubleSide });
+    const effect = new THREE.MarchingCubes(resolution, mat, true, true);
+    effect.position.set(0,0,0);
+    effect.scale.set(1,1,1);
+    effect.isolation = 35; // mapped from slider [0..1] * 100
+    scene.add(effect);
+
+    // Simple particle layer to suggest "flow"
+    const Np = 800;
+    const particleGeo = new THREE.BufferGeometry();
+    const positions = new Float32Array(Np * 3);
+    for (let i=0;i<Np;i++){ positions[i*3] = Math.random()*1-0.5; positions[i*3+1] = Math.random()*1-0.5; positions[i*3+2] = Math.random()*1-0.5; }
+    particleGeo.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+    const particleMat = new THREE.PointsMaterial({ color: 0x22c55e, size: 0.01 });
+    const particles = new THREE.Points(particleGeo, particleMat);
+    particles.visible = false;
+    scene.add(particles);
+
+    let t = 0;
+    let mode = 'iso'; // 'iso' (default) or 'flow'
+
+    function updateField(eff, time){
+      eff.reset();
+      const num = 5;
+      for(let i=0;i<num;i++){
+        const px = 0.5 * Math.sin(time*0.8 + i*1.7);
+        const py = 0.5 * Math.cos(time*0.6 + i*1.3);
+        const pz = 0.5 * Math.sin(time*0.5 + i*2.1);
+        // addBall expects coords in [0,1]³ and strength/radius
+        eff.addBall(0.5+px, 0.5+py, 0.5+pz, 0.08, 1.0);
+      }
+    }
+    function updateParticles(time){
+      const pos = particles.geometry.attributes.position.array;
+      for(let i=0;i<Np;i++){
+        let x=pos[i*3], y=pos[i*3+1], z=pos[i*3+2];
+        // toy divergence-free swirl field (demo)
+        const u = -y, v = x, w = 0.3*Math.sin(time + x*5 + y*5);
+        x += 0.002*u; y += 0.002*v; z += 0.002*w;
+        // wrap box
+        if(x>0.6) x=-0.6; if(x<-0.6) x=0.6;
+        if(y>0.6) y=-0.6; if(y<-0.6) y=0.6;
+        if(z>0.6) z=-0.6; if(z<-0.6) z=0.6;
+        pos[i*3]=x; pos[i*3+1]=y; pos[i*3+2]=z;
+      }
+      particles.geometry.attributes.position.needsUpdate = true;
+    }
+
+    function animate(){
+      requestAnimationFrame(animate);
+      t += 0.01;
+      updateField(effect, t);
+      particles.visible = (mode === 'flow');
+      if (particles.visible) updateParticles(t);
+      controls.update();
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    // UI
+    $('#isoSlider').oninput = (ev)=>{ const v = parseFloat(ev.target.value || '0.35'); effect.isolation = Math.floor(v*100); };
+    $('#btnIso').onclick = ()=>{ mode='iso'; effect.material.color.setHex(0x5e9bff); };
+    $('#btnFlow').onclick= ()=>{ mode='flow'; effect.material.color.setHex(0x3fa9f5); };
+    $('#btnVol').onclick = ()=>{ controls.reset(); camera.position.set(1.8,1.4,2.2); camera.lookAt(0,0,0); };
+
+    function resizeContainer(){
+      // Fill available vertical space under the toolbar within the card.
+      const rect = container.getBoundingClientRect();
+      const controlsAndPadding = 88; // controls row + inner paddings
+      const margin = 16;
+      const available = Math.max(520, Math.floor(window.innerHeight - rect.top - controlsAndPadding - margin));
+      container.style.height = available + 'px';
+      renderer.setSize(container.clientWidth, available);
+      camera.aspect = container.clientWidth / available;
+      camera.updateProjectionMatrix();
+    }
+    resizeContainer();
+    window.addEventListener('resize', resizeContainer);
+  },
+
+  canon(){
+    main.innerHTML = `
+      <div class="card">
+        <div class="hd">Canon Documents (Derivation/)</div>
+        <div class="bd">
+          <div class="toolbar-row">
+            <div class="chip">Viewer‑only • no writes</div>
+            <div class="spacer"></div>
+            <div class="muted">Loaded: ${fmt(state.docsIndex.length)} files</div>
+          </div>
+          <div class="split">
+            <div>
+              <table id="tblDocs">
+                <thead><tr><th>Path</th><th>Type</th></tr></thead>
+                <tbody>${state.docsIndex.map(d=>`<tr data-path="${d.path}"><td>${d.path}</td><td>${d.type}</td></tr>`).join('')}</tbody>
+              </table>
+            </div>
+            <div>
+              <div class="banner">
+                <span class="pill">Commit</span><code id="docCommit">${state.commit}</code>
+                <span class="pill">Provenance salt</span><code id="docSalt">${Math.random().toString(36).slice(2,8)}</code>
+              </div>
+              <div id="docView" class="md">Open a doc from the left list, or click “Load Derivation Root” in the top bar.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+    $('#tblDocs').addEventListener('click', async (e)=>{
+      const tr = e.target.closest('tr'); if(!tr) return;
+      const path = tr.dataset.path;
+      const entry = state.docsIndex.find(d=>d.path===path);
+      if(!entry) return;
+      const text = await readFile(entry.file);
+      $('#docView').innerHTML = renderMarkdown(text);
+    });
+  },
+
+  schemas(){
+    main.innerHTML = `
+      <div class="card">
+        <div class="hd">Schema/Spec Viewer</div>
+        <div class="bd">
+          <div class="row mb8">
+            <div class="chip">${state.selectedSpec ? 'Spec loaded' : 'No spec loaded'}</div>
+            <div class="spacer"></div>
+            <button class="btn" id="btnValidate">Validate</button>
+          </div>
+          <div class="split">
+            <div>
+              <strong>Spec JSON</strong>
+              <pre style="height:360px" class="md"><code id="specText">${state.selectedSpec ? escapeHtml(JSON.stringify(state.selectedSpec, null, 2)) : 'Open a spec JSON (top bar).'}
+</code></pre>
+            </div>
+            <div>
+              <strong>Validation Result</strong>
+              <div class="log" id="schemaLog">—</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+    $('#btnValidate').onclick = ()=> {
+      const out = $('#schemaLog');
+      if(!state.selectedSpec){ out.textContent = 'No spec loaded.'; return;}
+      const errs = validateSpec(state.selectedSpec);
+      if(errs.length===0){ out.textContent = 'OK: spec validates against minimal Nexus requirements (mock).'; toast('Spec validation passed.','ok'); }
+      else{ out.textContent = 'Errors:\n- ' + errs.join('\n- '); toast('Spec validation failed.','fail'); }
+    };
+  },
+
+  reports(){
+    // simple multi-select of completed runs
+    const opts = state.runs.map((r,i)=> `<label><input type="checkbox" value="${i}"> ${r.id} • ${r.tag} • ${r.when}</label>`).join('<br/>');
+    main.innerHTML = `
+      <div class="card">
+        <div class="hd">Report Builder</div>
+        <div class="bd">
+          <div class="row mb8"><strong>Select Runs</strong></div>
+          <div class="md" id="runPick">${opts || 'No completed runs yet.'}</div>
+          <div class="row mt12">
+            <button class="btn primary" id="btnBuildReport">Build & Download</button>
+          </div>
+          <div class="mt12 muted">Exports a standalone HTML report with KPI table, seed/commit, and artifact links.</div>
+        </div>
+      </div>
+    `;
+    $('#btnBuildReport').onclick = ()=> {
+      const picks = Array.from($('#runPick').querySelectorAll('input:checked')).map(i=> state.runs[+i]);
+      if(picks.length===0){ toast('Pick at least one run.','warn'); return; }
+      const html = buildReportHtml(picks);
+      downloadText('VDM_Nexus_Report.html', html);
+      toast('Report exported.','ok');
+    };
+  }
+};
+
+// ---------- Helpers for views ----------
+function badgeStatus(s){
+  if(s==='running') return `<span class="chip warn">running</span>`;
+  if(s==='ready') return `<span class="chip pass">ready</span>`;
+  return `<span class="chip">${s}</span>`;
+}
+function badgeApproval(s){
+  if(s==='approved') return `<span class="chip pass">approved</span>`;
+  if(s==='pending') return `<span class="chip warn">pending</span>`;
+  return `<span class="chip">${s}</span>`;
+}
+function rowsForExperiments(arr){
+  return arr.map((e,idx)=>`
+    <tr>
+      <td><input type="checkbox" data-idx="${idx}"/></td>
+      <td>${e.domain}</td>
+      <td>${e.title}</td>
+      <td><code>${e.tag}</code></td>
+      <td>${e.maturity}</td>
+      <td>${badgeStatus(e.status)}</td>
+      <td>${e.last}</td>
+    </tr>`).join('');
+}
+function hookExperimentFilters(){
+  const apply = ()=>{
+    const d = $('#fltDomain').value, s=$('#fltStatus').value, t=$('#fltText').value.toLowerCase();
+    const rows = EXPERIMENTS.map((e,idx)=> ({e,idx})).filter(({e})=>{
+      if(d && e.domain!==d) return false;
+      if(s && e.status!==s) return false;
+      if(t && !(e.title.toLowerCase().includes(t)||e.tag.toLowerCase().includes(t))) return false;
+      return true;
+    });
+    $('#tblExp tbody').innerHTML = rowsForExperiments(rows.map(r=>r.e));
+    // keep idx mapping stable
+    $$('#tblExp tbody input[type="checkbox"]').forEach((cb,i)=> cb.dataset.idx = rows[i].idx);
+  };
+  ['#fltDomain','#fltStatus','#fltText'].forEach(sel=> $(sel).addEventListener('input',apply));
+}
+
+// ---------- Runner Simulation ----------
+let currentRun = null, logTimer = null, progTimer = null;
+function launchSelected(){
+  const picks = $$('#tblExp tbody input[type="checkbox"]:checked').map(i=> +i.dataset.idx);
+  if(picks.length===0){ toast('Select a row to launch.','warn'); return; }
+  const e = EXPERIMENTS[picks[0]];
+  if(e.status==='running'){ toast('Already running.','warn'); return; }
+  e.status='running'; e.last = nowIso(); routes.experiments();
+  const log = $('#log'), bar = $('#bar'), thumbs = $('#thumbs');
+  log.textContent = ''; bar.style.width='0%'; thumbs.innerHTML='';
+  const seed = Math.floor(Math.random()*99999);
+  const manifest = {
+    schema:'vdm.run-manifest.v1',
+    id:`run_${Date.now()}`, tag:e.tag, domain:e.domain, experiment:e.id,
+    spec_path: state.selectedSpec?.__path || '—',
+    experiment_schema: state.selectedSpec?.$schema || '—',
+    env:{ VDM_NEXUS:'1', VDM_REPO_ROOT: state.repoPath || '—' },
+    seeds: e.seeds, commit: state.commit, thresholds: e.thresholds
+  };
+  currentRun = { id:manifest.id, tag:e.tag, when:e.last, pass:null, manifest, kpi:null };
+
+  // stream logs
+  const lines = [
+    `vdm-nexus: launching ${e.id} (${e.tag})`,
+    `env: VDM_NEXUS=1`,
+    `spec: ${manifest.spec_path}`,
+    `seeds: ${e.seeds}  • commit: ${manifest.commit}`,
+    `telemetry: streaming…`
+  ];
+  let i=0; logTimer = setInterval(()=>{
+    if(i<lines.length) log.textContent += lines[i++]+'\n';
+    else log.textContent += `step ${i-4}: dt=1e-3, metric=${(Math.random()*0.02+0.98).toFixed(4)}\n`;
+    log.scrollTop = log.scrollHeight;
+  }, 180);
+
+  // progress + fake artifacts + KPI decision
+  let p=0; progTimer = setInterval(()=>{
+    p = Math.min(100, p + Math.random()*9+3);
+    bar.style.width = p.toFixed(1)+'%';
+    if(p>20 && thumbs.childElementCount<1) thumbs.appendChild(genThumb('field_t0.png'));
+    if(p>55 && thumbs.childElementCount<2) thumbs.appendChild(genThumb('spectrum.png'));
+    if(p>80 && thumbs.childElementCount<3) thumbs.appendChild(genThumb('kpi_plot.png'));
+    if(p>=100){
+      clearInterval(logTimer); clearInterval(progTimer);
+      // KPI: pass/fail — thresholds from spec/schema when available
+      let pass = true, msg = '';
+      const th = (state.selectedSpec && state.selectedSpec.kpi_thresholds) ? state.selectedSpec.kpi_thresholds : e.thresholds;
+      if(e.id==='rd_front_speed'){
+        const measured = 1.0*(1 + (Math.random()*0.06-0.03)); // ±3%
+        const rel = Math.abs(measured - e.pred)/e.pred;
+        pass = rel <= th.rel_err;
+        msg = `c_front measured ${measured.toFixed(4)} vs pred ${e.pred.toFixed(4)} • rel_err=${(rel*100).toFixed(2)}%`;
+      }else if(e.id==='rd_dispersion'){
+        const R2 = 0.985 + Math.random()*0.01; const med = 0.08 + Math.random()*0.03;
+        pass = (R2 >= th.R2) && (med <= th.med_err);
+        msg = `dispersion fit R²=${R2.toFixed(3)}, median_err=${(med*100).toFixed(1)}%`;
+      }else if(e.id==='kg_energy_osc'){
+        const slope = 2.92 + Math.random()*0.2; pass = slope>=th.slope_min; msg=`two‑grid slope=${slope.toFixed(2)}`;
+      }else if(e.id==='wave_flux_meter_c'){
+        const eff = 0.91 + Math.random()*0.12; pass = eff>=th.eff_min; msg=`absorber efficiency=${(eff*100).toFixed(1)}%`;
+      }else if(e.id==='tachyonic_tube'){
+        const cov = 0.93 + Math.random()*0.08; pass = cov>=th.cov_phys_min; msg=`coverage_phys=${(cov*100).toFixed(1)}%`;
+      }else if(e.id==='agency_probe'){
+        const R2 = 0.975 + Math.random()*0.03; pass = R2>=th.fit_R2; msg=`relaxation fit R²=${R2.toFixed(3)}`;
+      }
+      $('#kpiMsg').textContent = msg;
+      $('#kpiPass').style.display = pass ? '' : 'none';
+      $('#kpiFail').style.display = pass ? 'none' : '';
+      e.status='ready';
+      currentRun.pass = pass; currentRun.kpi = msg;
+      state.runs.push(currentRun);
+      // harvest logs/artifacts
+      state.logs.push({name:`${currentRun.id}.log`, text: $('#log').textContent});
+      $$('#thumbs .thumb').forEach((th,i)=>{
+        const img = th.querySelector('img'); state.figures.push({name:`${currentRun.id}_${i}.png`, dataUrl: img.src});
+      });
+      toast(`Run ${currentRun.id} ${pass?'PASSED':'FAILED'} gates.`, pass?'ok':'fail');
+      routes.experiments();
+    }
+  }, 220);
+}
+
+function genThumb(name){
+  // generate a small canvas image
+  const c=document.createElement('canvas'), w=300,h=180; c.width=w; c.height=h;
+  const ctx=c.getContext('2d'); const g=ctx.createLinearGradient(0,0,w,h);
+  g.addColorStop(0,'#0b1426'); g.addColorStop(1,'#14223a'); ctx.fillStyle=g; ctx.fillRect(0,0,w,h);
+  ctx.strokeStyle='#2e67ff'; for(let x=0;x<w;x+=3){ const y=h/2+40*Math.sin((x+Math.random()*6)/23); ctx.strokeRect(x,y,1,1); }
+  ctx.fillStyle='#22c55e'; for(let i=0;i<50;i++){ ctx.fillRect(Math.random()*w,Math.random()*h,2,2); }
+  const url=c.toDataURL('image/png');
+  const div=document.createElement('div'); div.className='thumb';
+  div.innerHTML=`<img src="${url}" alt="${name}"/><div class="cap">${name}</div>`;
+  return div;
+}
+
+function downloadManifest(){
+  if(!currentRun){ toast('No current run','warn'); return;}
+  const text = JSON.stringify(currentRun.manifest,null,2);
+  downloadText(`${currentRun.id}__run-manifest.json`, text);
+}
+
+function downloadText(filename, text){
+  const blob = new Blob([text], {type:'text/plain'}), url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href=url; a.download=filename; a.click();
+  URL.revokeObjectURL(url);
+}
+
+// ---------- Derivation folder load ----------
+async function readFile(file){ return new Promise(res=>{ const r=new FileReader(); r.onload=()=>res(r.result); r.readAsText(file); }); }
+function indexDerivation(files){
+  state.derivationFiles = files;
+  const mdFiles = Array.from(files).filter(f=> f.name.endsWith('.md'));
+  state.docsIndex = mdFiles.map(f=>{
+    const p = f.webkitRelativePath || f.name;
+    let type='other';
+    if(/\/Derivation\/code\//i.test(p)) type='code';
+    if(/\/PROPOSAL_/i.test(p)) type='proposal';
+    if(/\/RESULTS_/i.test(p)) type='results';
+    if(/\/Derivation\/.*\.md$/i.test(p) && !/PROPOSAL_|RESULTS_/i.test(p)) type='canon';
+    return {path:p, type, name:f.name, file:f};
+  });
+  toast(`Indexed ${fmt(state.docsIndex.length)} Markdown docs (viewer-only).`,'ok');
+  if($('.nav .item.active')?.dataset.view==='canon') routes.canon();
+}
+
+// ---------- Spec validation (minimal Nexus guard; real JSON Schema in app) ----------
+function escapeHtml(s){ return s.replace(/[&<>"']/g, m=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[m])); }
+function validateSpec(spec){
+  const errs=[];
+  if(!spec || typeof spec!=='object') return ['Spec must be a JSON object.'];
+  if(!spec.tag) errs.push('Missing "tag".');
+  if(!spec.$schema) errs.push('Missing "$schema" URI.');
+  if(!spec.kpi_thresholds || typeof spec.kpi_thresholds!=='object') errs.push('Missing "kpi_thresholds" object.');
+  if(!spec.topology) errs.push('Missing "topology".');
+  if(!spec.fields || !Array.isArray(spec.fields)) errs.push('Missing "fields" array.');
+  return errs;
+}
+
+// ---------- Report builder ----------
+function buildReportHtml(runs){
+  const rows = runs.map(r=>`
+    <tr><td>${r.id}</td><td>${r.tag}</td><td>${r.when}</td><td>${r.pass?'PASS':'FAIL'}</td><td>${escapeHtml(r.kpi||'')}</td></tr>
+  `).join('');
+  const figs = state.figures.slice(-Math.min(6,state.figures.length)).map(f=> `<div style="display:inline-block;margin:6px"><img alt="${f.name}" src="${f.dataUrl}" style="height:120px;border:1px solid #334"/><div style="color:#99a">${f.name}</div></div>`).join('');
+  return `<!doctype html><html><head><meta charset="utf-8"><title>VDM Nexus Report</title>
+  <style>body{font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial;background:#0f1218;color:#e6edf3;padding:20px}
+  table{border-collapse:collapse;width:100%}th,td{border:1px solid #2f3b52;padding:8px;text-align:left}
+  th{color:#9da7b3;text-transform:uppercase;letter-spacing:.08em;font-size:12px}</style></head>
+  <body><h1>VDM Nexus — Report</h1>
+  <p>Generated: ${nowIso()}</p>
+  <p>Repo: ${escapeHtml(state.repoPath)} • Commit: ${escapeHtml(state.commit)}</p>
+  <h3>Runs</h3><table><thead><tr><th>ID</th><th>Tag</th><th>When</th><th>Gate</th><th>KPI</th></tr></thead><tbody>${rows}</tbody></table>
+  <h3>Figures</h3>${figs}
+  <p style="color:#9da7b3">Thresholds reflect spec/schema; this report does not override canon.</p>
+  </body></html>`;
+}
+
+// ---------- Event wiring ----------
+$('.nav').addEventListener('click',(e)=>{
+  const it = e.target.closest('.item'); if(!it) return; setActive(it.dataset.view);
+});
+$('#btnLoadDerivation').onclick = ()=> $('#pickerFolder').click();
+$('#pickerFolder').onchange = (e)=> {
+  const files = e.target.files;
+  if(!files || !files.length){ toast('No files selected.','warn'); return; }
+  // derive root path and a faux commit banner (user can type commit manually in the app later)
+  const any = files[0]; const root = (any.webkitRelativePath || '').split('/').slice(0,2).join('/');
+  state.repoPath = root || '(local selection)'; $('#repoPath').textContent = state.repoPath;
+  state.commit = 'local-'+Math.random().toString(36).slice(2,10); $('#commitHash').textContent = state.commit;
+  indexDerivation(files);
+  // jump to Canon view for immediate feedback
+  setActive('canon');
+};
+$('#btnOpenSpec').onclick = ()=> $('#pickerSpec').click();
+$('#pickerSpec').onchange = async (e)=>{
+  const f = e.target.files?.[0]; if(!f) return;
+  const text = await readFile(f); let spec;
+  try{ spec = JSON.parse(text); }catch{ toast('Invalid JSON','fail'); return; }
+  spec.__path = f.name;
+  state.selectedSpec = spec; toast(`Loaded spec: ${f.name}`,'ok');
+  if($('.nav .item.active')?.dataset.view==='schemas') routes.schemas();
+};
+$('#btnExportReport').onclick = ()=> routes.reports();
+
+// Initial route
+setActive('dashboard');
+</script>
+</body>
+</html>

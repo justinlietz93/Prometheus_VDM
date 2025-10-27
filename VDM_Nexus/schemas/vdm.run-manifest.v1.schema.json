@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "vdm.run-manifest.v1.schema.json",
+  "title": "VDM Run Manifest v1",
+  "description": "Canonical manifest emitted in GUI mode or when VDM_NEXUS=1. References the experiment schema/spec used for KPI thresholds; GUI is read-only and validates against this schema.",
+  "type": "object",
+  "required": ["schema", "repo_commit", "seed", "dt", "t", "domain", "fields"],
+  "properties": {
+    "schema": { "type": "string", "const": "vdm.run-manifest.v1" },
+    "repo_commit": { "type": "string", "description": "Short or full git commit hash of the repo at run time" },
+    "seed": { "type": "integer", "minimum": 0 },
+    "dt": { "type": "number" },
+    "t": { "type": "number" },
+    "domain": { "type": "string", "description": "Physics domain identifier (e.g., kg_rd_metriplectic)" },
+
+    "experiment_schema": { "type": "string", "description": "Path (repo-relative) to the JSON Schema used by this run's spec" },
+    "spec_path": { "type": "string", "description": "Path (repo-relative) to the spec JSON used for this run" },
+
+    "fields": {
+      "type": "array",
+      "description": "Published datasets available for viewport and analysis",
+      "items": {
+        "type": "object",
+        "required": ["name", "kind", "topology"],
+        "properties": {
+          "name": { "type": "string" },
+          "kind": {
+            "type": "string",
+            "enum": ["scalar", "vector", "tensor", "points", "mesh"],
+            "description": "Data kind: scalar field, vector field, tensor field, point set (particles), or mesh"
+          },
+          "topology": {
+            "type": "string",
+            "enum": ["image", "structured", "unstructured", "points"],
+            "description": "Grid topology for VTK mapping (ImageData/StructuredGrid/UnstructuredGrid/PolyData)"
+          },
+          "grid": {
+            "type": "array",
+            "items": { "type": "integer", "minimum": 1 },
+            "minItems": 1,
+            "description": "Optional voxel/point counts per axis (e.g., [Nx,Ny,Nz])"
+          },
+          "spacing": {
+            "type": "array",
+            "items": { "type": "number" },
+            "minItems": 1,
+            "description": "Optional physical spacing per axis (e.g., [dx,dy,dz])"
+          },
+          "cells": { "type": "string", "description": "For unstructured meshes (e.g., tet, hex, tri)" },
+          "attribs": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Attribute names carried by this dataset (e.g., ['x','v','mass'])"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+
+    "kpis": {
+      "type": "object",
+      "description": "Optional per-step KPI summary values emitted by the runner (read-only for GUI)",
+      "additionalProperties": { "type": "number" }
+    },
+
+    "provenance": {
+      "type": "object",
+      "description": "Optional file integrity block recorded by the publisher",
+      "properties": {
+        "sha256": { "type": "string", "description": "SHA-256 hash over the manifest or associated artifact list" },
+        "sizes": {
+          "type": "object",
+          "description": "Map from artifact relative path to byte size",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": true
+}
