@@ -1,0 +1,12 @@
+{
+  "relations": [
+    {
+      "from": "VDM_Nexus_Approval_CLI",
+      "relationType": "wraps",
+      "to": "Canonical_Approve_Tag_CLI"
+    }
+  ],
+  "set_id": "kg-relations",
+  "set_version": "1.0",
+  "updated_utc": "2025-10-28T05:30:30Z"
+}
