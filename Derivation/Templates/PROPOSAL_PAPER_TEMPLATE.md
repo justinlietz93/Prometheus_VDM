@@ -36,18 +36,21 @@ In order for any experiment to run or pass, PROPOSAL_ documents MUST be created.
 -->
 
 ## 1. {Tier Grade} - {Proposal Title}
-Date
+
+Created Date:  
+Commit:  
+
 
 ## 2. List of proposers and associated institutions/companies
 
 ## 3. Abstract
 
-Include a very brief ( <200 words) summary of your proposal’s motivation and anticipated goals.
+Include a very brief ( <200 words) summary of your proposal’s purpose, motivation, and anticipated goals.
 
 ## 4. Background & Scientific Rationale
 
 Include information sufficient for someone with a background in physics, math, or engineering,
-but not necessarily an expert in your subfield, to understand your proposal. Explain the maturity ladder and provenance.
+but not necessarily an expert in your subfield, to understand your proposal. Explain the maturity ladder and provenance. Any prerequisite experiments must be referenced here for clarity and completeness.
 
 ## Some questions to consider
 

@@ -93,6 +93,11 @@
 4. **Risk/Ethics table:** data licensing, compute cost/carbon, execution safety (sandboxing/quotas).
 5. **Security/Integrity:** always log seeds, commits, environment; disclose assistance roles (“Equations in standard RD form; architecture and tests specified by author.”)
 
+## **Entire Formal Derivation Writeup**
+
+* Physics and mathematic formalisms must be clearly explained from start to finish.
+* Vague math or hand waving is prohibited, and this document will be rejected.
+
 ## **Results / Data**
 
 1. Tables of processed results (centered) with clear captions; significant figures and uncertainties respected.
@@ -117,6 +122,7 @@ Summarize what was learned, referencing mathematical structures and computationa
 4. Note anomalies with plausible computational causes (grid resonance, stiffness, cancellation) and follow-ups.
 5. Interpret uncertainties relative to effect sizes (relative CI width, etc.).
 6. Determine if the initial proposal provided an accurate prediction of results.
+7. Name and list next plans and experiments for work to continue exploring the best path for Void Dynamics Model.
 
 ## **References / Works Cited**
 
