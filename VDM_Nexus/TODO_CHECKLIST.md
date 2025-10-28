@@ -54,7 +54,7 @@ Begin the task by following the instructions below:
 
 ### Task 0.3 — Wire canon ingestion scaffolding
 
-- [STARTED] Step 0.3.1 — Add Nexus configuration file referencing anchors in [AXIOMS](../derivation/AXIOMS.md), [EQUATIONS](../derivation/EQUATIONS.md), and [VALIDATION_METRICS](../derivation/VALIDATION_METRICS.md).
+- [STARTED] Step 0.3.1 — Add Nexus configuration file referencing anchors in [AXIOMS](../derivation/AXIOMS.md#vdm-ax-a0), [EQUATIONS](../derivation/EQUATIONS.md#vdm-e-033), and [VALIDATION_METRICS](../derivation/VALIDATION_METRICS.md#kpi-front-speed-rel-err).
 - [STARTED] Step 0.3.2 — Set up repository-relative path resolver for `../derivation/` tree with guard rails against writes. (Note: resolver prints AXIOMS/EQUATIONS/VALIDATION_METRICS + commits.)
 - [STARTED] Step 0.3.3 — Draft `CanonSync` CLI skeleton (read-only) for future indexing per standards.
 
@@ -206,7 +206,7 @@ Begin the task by following the instructions below:
 - [NOT STARTED] Step 4.2.5 — Build Qt 6 + VTK viewport (QQuickVTK/QVTKOpenGLNativeWidget): iso-values, orthogonal/oblique slices, streamlines (RK4), volume rendering, probe cursors; ROCm/AMD-friendly path.
 - [NOT STARTED] Step 4.2.6 — Add navigation/time: fly/turn/orbit controls; time scrubber/stepper; loop/record MP4; scale bar, world axes, unit banners.
 - [NOT STARTED] Step 4.2.7 — Add particle trails and tensor glyphs; clipping box; KPI jump-to-gate events.
-- [NOT STARTED] Step 4.2.8 — KPI overlay cards hyperlink to canon anchors from [VALIDATION_METRICS.md](../derivation/VALIDATION_METRICS.md); pass/fail badges mirror thresholds from the active run’s spec/schema.
+- [NOT STARTED] Step 4.2.8 — KPI overlay cards hyperlink to canon anchors from [VALIDATION_METRICS.md](../derivation/VALIDATION_METRICS.md#kpi-connectome-entropy); pass/fail badges mirror thresholds from the active run’s spec/schema.
 
 ### **Task 4.2 Validation:**  
 
@@ -256,7 +256,7 @@ Begin the task by following the instructions below:
 
 ### Task 5.3 — Scientific QA integrations
 
-- [ ] Step 5.3.1 — Add automatic gate verification against thresholds declared in the run’s spec/schema before marking runs PASS; cross-reference [VALIDATION_METRICS.md](../derivation/VALIDATION_METRICS.md) for definitions only.
+- [ ] Step 5.3.1 — Add automatic gate verification against thresholds declared in the run’s spec/schema before marking runs PASS; cross-reference [VALIDATION_METRICS.md](../derivation/VALIDATION_METRICS.md#kpi-kg-energy-osc-slope) for definitions only.
 - [ ] Step 5.3.2 — Integrate dataset-level regression checks (e.g., two-grid slope ≥ 2.90 for metriplectic, R² ≥ 0.999 for KG energy oscillation).
 - [ ] Step 5.3.3 — Provide optional rerun triggers for robustness sweeps (T7) and out-of-sample tests (agency/information probes).
 

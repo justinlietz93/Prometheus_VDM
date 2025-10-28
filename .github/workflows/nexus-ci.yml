@@ -60,3 +60,7 @@ jobs:
       - name: List built targets
         run: |
           cmake --build VDM_Nexus/build --target help | sed -n '1,200p'
+
+      - name: Canon anchor hygiene (warn-only)
+        run: |
+          python3 VDM_Nexus/scripts/nexus_canon_scan.py scan --root VDM_Nexus --gha
