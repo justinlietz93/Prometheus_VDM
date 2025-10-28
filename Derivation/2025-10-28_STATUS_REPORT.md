@@ -14,7 +14,7 @@ VDM's axiomatic approach is its strategic cornerstone. By starting from a minima
 
 The foundational concept of VDM begins with a discrete action defined on a cubic lattice. A lattice Lagrangian serves as the starting point from which all system dynamics emerge via the application of the Euler-Lagrange equations. This single theoretical origin gives rise to two primary physical regimes:
 
-1. The Canonical Reaction-Diffusion (RD) Regime: This is the overdamped limit of the system and represents the project's canonical model. In this regime, the dynamics map directly to reaction-diffusion equations, with the diffusion coefficient explicitly derived from the lattice parameters as D = 2Ja^2/\gamma.
+1. The Canonical Reaction-Diffusion (RD) Regime: This is the overdamped limit of the system and represents the project's canonical model. In this regime, the dynamics map directly to reaction-diffusion equations, with the diffusion coefficient explicitly derived from the lattice parameters as $D = \frac{2 J a^2}{\gamma}$.
 2. The Klein-Gordon / Effective Field Theory (EFT) Regime: Under different conditions, the model exhibits inertial, second-order wave dynamics. This branch of the theory, which is the subject of active, KPI-gated research, gives rise to a Klein-Gordon (KG) wave equation.
 
 Underpinning these dynamics is the Metriplectic structure, which serves as the fundamental organizing principle for the system's evolution. This structure formally separates the system's evolution into a conservative J-branch and a dissipative M-branch. The J-branch governs the wave-like, energy-conserving dynamics, while the M-branch is responsible for processes related to entropy production and decoherence. This explicit separation is not merely a mathematical convenience; it provides a clear and physically interpretable basis for analyzing the interplay between energy-conserving evolution and entropy-producing processes, a notoriously difficult challenge in complex systems modeling. The full J/M split is a core VDM tenet, with early T1 proposals serving as validation of the conservative J-branch limb.
@@ -44,21 +44,21 @@ Within the VDM framework, T2 instrument certification is a critical and non-nego
 
 ## 4.1 Metriplectic Operators and the J-Branch (Klein-Gordon)
 
-The core metriplectic operators were validated to ensure they conform to their required mathematical structure. The conservative operator, J, was confirmed to be skew-symmetric to machine precision, with a median value of approximately 1.53 × 10⁻¹⁵ for the diagnostic test ⟨v, Jv⟩ (which should be zero for a perfectly skew-symmetric operator). The dissipative operator, M, was confirmed to be positive semidefinite, with no negative eigenvalues detected.
+The core metriplectic operators were validated to ensure they conform to their required mathematical structure. The conservative operator, J, was confirmed to be skew-symmetric to machine precision, with a median value of approximately $1.53 \times 10^{-15}$ for the diagnostic test $\langle v, J v \rangle$ (which should be zero for a perfectly skew-symmetric operator). The dissipative operator, M, was confirmed to be positive semidefinite, with no negative eigenvalues detected.
 
 With the operators certified, we validated the conservative J-only branch, which describes Klein-Gordon (KG) dynamics, through a suite of tests that all returned a "PASS" status:
 
-* Noether Invariants: The instrument demonstrated excellent conservation of energy and momentum. The maximum relative energy drift was measured at approximately 8.33 × 10⁻¹⁷, near machine precision.
-* Energy Oscillation: For the symplectic integrator used, the amplitude of energy oscillation was confirmed to scale with the square of the time step, (\Delta t)^2. The fitted exponent was p ≈ 1.9999 with an R² > 0.99999, matching theoretical expectations.
-* Locality & Dispersion: Our model was shown to respect causality, with the propagation front speed bounded by the theoretical maximum speed c. It also accurately reproduced the theoretical lattice dispersion relation.
+* Noether Invariants: The instrument demonstrated excellent conservation of energy and momentum. The maximum relative energy drift was measured at approximately $8.33 \times 10^{-17}$, near machine precision.
+* Energy Oscillation: For the symplectic integrator used, the amplitude of energy oscillation was confirmed to scale with the square of the time step, $(\Delta t)^2$. The fitted exponent was $p \approx 1.9999$ with an $R^2 > 0.99999$, matching theoretical expectations.
+* Locality & Dispersion: Our model was shown to respect causality, with the propagation front speed bounded by the theoretical maximum speed $c$. It also accurately reproduced the theoretical lattice dispersion relation.
 
 ## 4.2 Tachyonic Condensation Solver
 
-The numerical solver developed for the Tachyonic Tube model was certified by demonstrating its ability to correctly identify the physical spectrum and condensation properties of the system. The instrument successfully passed its gates, achieving a physical spectrum coverage of 100% (gate: ≥ 95%) and confirming the expected condensation curvature properties.
+The numerical solver developed for the Tachyonic Tube model was certified by demonstrating its ability to correctly identify the physical spectrum and condensation properties of the system. The instrument successfully passed its gates, achieving a physical spectrum coverage of 100% (gate: $\ge 95\%$) and confirming the expected condensation curvature properties.
 
 ## 4.3 Cosmological Continuity Meter
 
-A meter was developed to verify the Friedmann-Robertson-Walker (FRW) continuity equation. We certified this instrument by demonstrating its ability to achieve machine precision for a dust universe, a standard test case. The meter successfully passed its gate with a measured root-mean-square (RMS) residual of approximately 9.04 × 10⁻¹⁶.
+A meter was developed to verify the Friedmann-Robertson-Walker (FRW) continuity equation. We certified this instrument by demonstrating its ability to achieve machine precision for a dust universe, a standard test case. The meter successfully passed its gate with a measured root-mean-square (RMS) residual of approximately $9.04 \times 10^{-16}$.
 
 With these core instruments calibrated and certified, we can proceed to test our primary scientific claims with a high degree of confidence in the underlying numerical results.
 
@@ -70,7 +70,7 @@ The scientific claims that follow are presented with the highest degree of confi
 
 The A6 logistic model was developed as a test of junction policy within the VDM framework, examining how the model makes decisions at a fork. The key test for this system was to demonstrate "scaling collapse," a signature of universal behavior where system dynamics, when plotted with rescaled variables, collapse onto a single, universal curve regardless of initial parameters.
 
-Our experiment definitively validated this phenomenon. The measured maximum envelope of the collapsed curves was env_max ≈ 0.0166, successfully passing the pre-registered gate of ≤ 0.02. This result provides strong evidence for the existence of a universal law governing decision-making dynamics at junctions within the model.
+Our experiment definitively validated this phenomenon. The measured maximum envelope of the collapsed curves was $env\_max \approx 0.0166$, successfully passing the pre-registered gate of $\le 0.02$. This result provides strong evidence for the existence of a universal law governing decision-making dynamics at junctions within the model.
 
 ## 5.2 Tachyonic Condensation as a Physical Mechanism
 
@@ -82,7 +82,7 @@ Our model for a finite-radius tachyonic tube was tested and validated. The exper
 
 The stability and accuracy of the metriplectic integrator are crucial for evolving the coupled conservative (J) and dissipative (M) dynamics that lie at the heart of VDM. The "Strang defect" is a diagnostic that measures the error of the numerical composition, which should converge to zero at a near-cubic rate for our second-order scheme.
 
-This diagnostic was tested and achieved "PROVEN" status. The defect scaling slope was measured to be p ≈ 2.945 with a coefficient of determination of R² ≈ 0.999971. This confirms the expected near-cubic convergence order for the numerical scheme, certifying its high fidelity for evolving the coupled J and M dynamics that are central to our model's ability to handle both conservative and dissipative physics simultaneously.
+This diagnostic was tested and achieved "PROVEN" status. The defect scaling slope was measured to be $p \approx 2.945$ with a coefficient of determination of $R^2 \approx 0.999971$. This confirms the expected near-cubic convergence order for the numerical scheme, certifying its high fidelity for evolving the coupled J and M dynamics that are central to our model's ability to handle both conservative and dissipative physics simultaneously.
 
 These validated results, spanning from universal laws in junction dynamics to mechanisms of structure formation, are not isolated successes. They are distinct, experimentally confirmed consequences of the single discrete action Lagrangian and metriplectic structure outlined in our axiomatic foundations. This demonstrates the model's unifying power: the same first principles that govern wave dynamics also give rise to emergent, decision-like behaviors.
 
@@ -92,7 +92,7 @@ The Void Dynamics Model is an active and evolving research program. Building upo
 
 The following are key active research threads currently under investigation:
 
-* The Agency Field: A proposal to model an emergent "agency field," C(x,t), as a quantifiable order parameter for distributed cognitive capability. Planned validations include testing for predicted curvature scaling properties and identifying stable operational bands.
+* The Agency Field: A proposal to model an emergent "agency field," $C(x,t)$, as a quantifiable order parameter for distributed cognitive capability. Planned validations include testing for predicted curvature scaling properties and identifying stable operational bands.
 * Causal Set Theory Audits: A proposal to use event precedence and Directed Acyclic Graphs (DAGs) as a background-free, orthogonal diagnostic to validate the model's causal structure. This complements existing light-cone tests by probing causality without relying on a predefined metric space.
 * Thermodynamic Routing: An investigation into how the metriplectic structure can enable the passive thermodynamic routing of flux through structured domains without active control, with key performance indicators for efficiency and selectivity.
 * Dark Photon Portals: A proposal to model dark photons as a decoherence portal, providing a mechanism for the VDM system to interact with an external environment. Planned experiments will test for Fisher information consistency and validate detector noise budgets.

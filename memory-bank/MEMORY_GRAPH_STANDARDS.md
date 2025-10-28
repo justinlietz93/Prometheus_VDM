@@ -329,12 +329,14 @@ KG‑Lite: retrieve signals for a dataset (consumer expands payload):
 - Primary store: the flat files in §9 (“Flat KG‑Lite CRUD store”). MCP updates are optional; disk is authoritative.
 
 Tooling:
+
 - CLI: [kg_cli.py](memory-bank/MEMORY_GRAPH_CONTEXT/tools/kg_cli.py:1)
   - Determinism: json.dump with indent=2, sort_keys=True
   - Scope: never writes under Derivation/; confined to memory‑bank/
   - Allowed verbs: must use the relation ontology in §1.2 (closed set)
 
 MCP → CLI mapping:
+
 - create_entities → entities add
 - create_relations → relations add
 - delete_entities → entities delete
@@ -342,6 +344,7 @@ MCP → CLI mapping:
 - read_graph/search_nodes → entities list --query …, relations list …, pathrag search
 
 Examples (low verbosity by default; append --json for JSON):
+
 - Add or upsert an entity:
   - python3 memory-bank/MEMORY_GRAPH_CONTEXT/tools/kg_cli.py entities add --name VDM_Nexus_Approval_CLI --type ScriptTool --obs "Path: [approval_cli.py](VDM_Nexus/scripts/approval_cli.py:1)" --obs "Docs: [scripts/README.md](VDM_Nexus/scripts/README.md:41)" --upsert
 - Add a relation:
@@ -350,6 +353,7 @@ Examples (low verbosity by default; append --json for JSON):
   - python3 memory-bank/MEMORY_GRAPH_CONTEXT/tools/kg_cli.py entities list --query approval
 
 PathRAG index:
+
 - Build: python3 memory-bank/MEMORY_GRAPH_CONTEXT/tools/kg_cli.py index build
 - Search by path substring:
   - python3 memory-bank/MEMORY_GRAPH_CONTEXT/tools/kg_cli.py pathrag search --path VDM_Nexus/scripts/approval_cli.py --json
@@ -357,6 +361,7 @@ PathRAG index:
 - Extraction rule: parse Markdown links of the form [label](relative/path:line); normalize path; store segments; map back to entities referencing that path.
 
 Policy:
+
 - Idempotent writes and conflict rules per §7
 - Security/privacy per §8
 - Directory placement per §9
