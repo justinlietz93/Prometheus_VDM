@@ -101,7 +101,7 @@ presentation → application → ports ← infrastructure
 
 ## 8. Validation & Metrics Exposure
 
-Note: Thresholds are sourced from the active run's spec or schema; [VALIDATION_METRICS.md](../derivation/VALIDATION_METRICS.md) anchors provide definitions only.
+Note: Thresholds are sourced from the active run's spec or schema; [VALIDATION_METRICS.md](../derivation/VALIDATION_METRICS.md#kpi-front-speed-rel-err) anchors provide definitions only.
 
 | Domain | KPI anchors | Nexus presentation rule |
 | --- | --- | --- |
@@ -146,7 +146,7 @@ Runners (unchanged) → In‑situ adapter → Viewport(s) → Artifacts & Report
 - Viewport(s):
   - Desktop: Qt 6 + VTK (QQuickVTK / QVTKOpenGLNativeWidget) provides a 3D viewport with orbit/pan/fly, time scrubber, slices, isosurfaces, streamlines, volume rendering, and probe cursors.
   - Remote/Web (optional): mirror via vtk.js or ParaView Live (Catalyst 2).
-- Artifacts & Reports: PNG/CSV/JSON are harvested strictly from runners. Pass/fail gating uses thresholds from the active run's spec/schema; anchors in [VALIDATION_METRICS.md](../derivation/VALIDATION_METRICS.md) are for definitions only. The GUI never “recalculates physics,” only renders/annotates and hyperlinks KPI cards to anchors.
+- Artifacts & Reports: PNG/CSV/JSON are harvested strictly from runners. Pass/fail gating uses thresholds from the active run's spec/schema; anchors in [VALIDATION_METRICS.md](../derivation/VALIDATION_METRICS.md#kpi-kg-energy-osc-slope) are for definitions only. The GUI never “recalculates physics,” only renders/annotates and hyperlinks KPI cards to anchors.
 
 ### 12.2 Minimal data contract (stable)
 
@@ -238,7 +238,7 @@ QVTKOpenGLNativeWidget {
 ### 12.9 ROCm/AMD profile
 
 - Desktop path uses Qt 6 + VTK OpenGL2 backend; acceleration via VTK‑m; optional Ascent/HIP backends when validated.
-- CUDA is unsupported in Nexus; AMD/ROCm is the preferred GPU path. KPI definitions link to [VALIDATION_METRICS.md](../derivation/VALIDATION_METRICS.md) anchors; pass/fail thresholds are sourced from the run's spec/schema.
+- CUDA is unsupported in Nexus; AMD/ROCm is the preferred GPU path. KPI definitions link to [VALIDATION_METRICS.md](../derivation/VALIDATION_METRICS.md#kpi-dispersion-med-rel-err) anchors; pass/fail thresholds are sourced from the run's spec/schema.
 
 ---
 

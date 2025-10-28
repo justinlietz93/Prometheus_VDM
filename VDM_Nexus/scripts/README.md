@@ -56,7 +56,7 @@ What it enforces (summary):
 
 - If any tracked path under Derivation/ changes, then:
   - Derivation/CHRONICLES.md must be updated in the same diff, documenting the change and rationale. See template at [CHRONICLES.md](Derivation/CHRONICLES.md:1).
-  - If the change is canon-impacting (proposals/experiments/code/results), update at least one canonical ALL-CAPS doc (e.g., [EQUATIONS.md](Derivation/EQUATIONS.md), [VALIDATION_METRICS.md](Derivation/VALIDATION_METRICS.md), [ROADMAP.md](Derivation/ROADMAP.md), [CANON_MAP.md](Derivation/CANON_MAP.md), [SCHEMAS.md](Derivation/SCHEMAS.md), [SYMBOLS.md](Derivation/SYMBOLS.md), [UNITS_NORMALIZATION.md](Derivation/UNITS_NORMALIZATION.md), [OPEN_QUESTIONS.md](Derivation/OPEN_QUESTIONS.md), [ALGORITHMS.md](Derivation/ALGORITHMS.md), [CANON_PROGRESS.md](Derivation/CANON_PROGRESS.md)).
+  - If the change is canon-impacting (proposals/experiments/code/results), update at least one canonical ALL-CAPS doc (e.g., [EQUATIONS.md](Derivation/EQUATIONS.md#vdm-e-033), [VALIDATION_METRICS.md](Derivation/VALIDATION_METRICS.md#kpi-front-speed-rel-err), [ROADMAP.md](Derivation/ROADMAP.md), [CANON_MAP.md](Derivation/CANON_MAP.md), [SCHEMAS.md](Derivation/SCHEMAS.md), [SYMBOLS.md](Derivation/SYMBOLS.md), [UNITS_NORMALIZATION.md](Derivation/UNITS_NORMALIZATION.md), [OPEN_QUESTIONS.md](Derivation/OPEN_QUESTIONS.md), [ALGORITHMS.md](Derivation/ALGORITHMS.md), [CANON_PROGRESS.md](Derivation/CANON_PROGRESS.md)).
   - Include the attestation marker in CHRONICLES: Dependency-Chain-Reviewed: true
 
 Canon-impacting heuristic and overrides:
