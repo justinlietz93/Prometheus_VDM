@@ -275,6 +275,11 @@ Interoperability:
 - KG‑Lite datasets (chunked):
   - memory-bank/MEMORY_GRAPH_CONTEXT/{set_id}/chunks/*.json       ← individual [ChunkEnvelope](memory-bank/MEMORY_GRAPH_STANDARDS.md) files
   - memory-bank/MEMORY_GRAPH_CONTEXT/{set_id}/{set_id}.index.json ← dataset index envelope
+- Flat KG‑Lite CRUD store (file‑backed; primary on‑disk truth):
+  - Entities JSON: [memory-bank/MEMORY_GRAPH_CONTEXT/entities/kg-entities.v1.json](memory-bank/MEMORY_GRAPH_CONTEXT/entities/kg-entities.v1.json:1)
+  - Relations JSON: [memory-bank/MEMORY_GRAPH_CONTEXT/relations/kg-relations.v1.json](memory-bank/MEMORY_GRAPH_CONTEXT/relations/kg-relations.v1.json:1)
+  - PathRAG index JSON: [memory-bank/MEMORY_GRAPH_CONTEXT/indexes/kg-pathrag-index.v1.json](memory-bank/MEMORY_GRAPH_CONTEXT/indexes/kg-pathrag-index.v1.json:1)
+  - Formatting: json.dump(..., indent=2, sort_keys=True); writes are idempotent (§7); no destructive deletes (§7).
 - Audit log:
   - memory-bank/logs/memory_audit.jsonl
 
@@ -317,6 +322,45 @@ KG‑Lite: retrieve signals for a dataset (consumer expands payload):
 ```json
 {"op":"open","where":{"type":"Artifact","labels":["kg-lite","signals"],"name":"justin-graph@1.0:signals"}}
 ```
+
+## 11. Local KG‑Lite CRUD CLI and PathRAG (file‑backed)
+
+- Purpose: Provide a minimal, deterministic, on‑disk knowledge graph interface that mirrors MCP Memory semantics while keeping the canonical store under memory‑bank/.
+- Primary store: the flat files in §9 (“Flat KG‑Lite CRUD store”). MCP updates are optional; disk is authoritative.
+
+Tooling:
+- CLI: [kg_cli.py](memory-bank/MEMORY_GRAPH_CONTEXT/tools/kg_cli.py:1)
+  - Determinism: json.dump with indent=2, sort_keys=True
+  - Scope: never writes under Derivation/; confined to memory‑bank/
+  - Allowed verbs: must use the relation ontology in §1.2 (closed set)
+
+MCP → CLI mapping:
+- create_entities → entities add
+- create_relations → relations add
+- delete_entities → entities delete
+- delete_relations → relations delete
+- read_graph/search_nodes → entities list --query …, relations list …, pathrag search
+
+Examples (low verbosity by default; append --json for JSON):
+- Add or upsert an entity:
+  - python3 memory-bank/MEMORY_GRAPH_CONTEXT/tools/kg_cli.py entities add --name VDM_Nexus_Approval_CLI --type ScriptTool --obs "Path: [approval_cli.py](VDM_Nexus/scripts/approval_cli.py:1)" --obs "Docs: [scripts/README.md](VDM_Nexus/scripts/README.md:41)" --upsert
+- Add a relation:
+  - python3 memory-bank/MEMORY_GRAPH_CONTEXT/tools/kg_cli.py relations add --from VDM_Nexus_Approval_CLI --to Canonical_Approve_Tag_CLI --type wraps
+- List entities by substring:
+  - python3 memory-bank/MEMORY_GRAPH_CONTEXT/tools/kg_cli.py entities list --query approval
+
+PathRAG index:
+- Build: python3 memory-bank/MEMORY_GRAPH_CONTEXT/tools/kg_cli.py index build
+- Search by path substring:
+  - python3 memory-bank/MEMORY_GRAPH_CONTEXT/tools/kg_cli.py pathrag search --path VDM_Nexus/scripts/approval_cli.py --json
+- Index file: [kg-pathrag-index.v1.json](memory-bank/MEMORY_GRAPH_CONTEXT/indexes/kg-pathrag-index.v1.json:1)
+- Extraction rule: parse Markdown links of the form [label](relative/path:line); normalize path; store segments; map back to entities referencing that path.
+
+Policy:
+- Idempotent writes and conflict rules per §7
+- Security/privacy per §8
+- Directory placement per §9
+- KG‑Lite chunked datasets remain the interchange format (§6A); the flat CRUD store is for day‑to‑day authoring and retrieval.
 
 Determinism audit of envelopes (pseudo-op; tool computes hash and compares to content_sha256):
 

@@ -38,6 +38,36 @@ Root resolution policy (must match app/infrastructure): CLI flags > environment 
 3. Emit JSON/CSV logs with seeds, commit hashes, and reproducibility receipts if generating any Nexus-side outputs.
 4. Keep files ≤ 500 LOC; include a short docstring pointing to linked standards.
 
+## Approvals wrapper (approval_cli.py)
+
+Thin shell for approvals that enforces environment precedence and never stores secrets.
+
+- Tool: [`approval_cli.py`](VDM_Nexus/scripts/approval_cli.py:1)
+- Underlying canonical CLI: [`approve_tag.py`](../../Derivation/code/common/authorization/approve_tag.py:1)
+- Precedence: CLI flags > env (`VDM_REPO_ROOT`, `VDM_APPROVAL_DB`, `VDM_APPROVAL_ADMIN_DB`) > `.env`
+- Policy: read-only wrapper; prompts and mutations occur only in the canonical CLI.
+
+Examples:
+
+```bash
+# Verify the canonical approvals CLI is resolvable
+python3 VDM_Nexus/scripts/approval_cli.py check --repo-root .
+
+# Inspect resolved environment (shows source of each var)
+python3 VDM_Nexus/scripts/approval_cli.py print-env --repo-root .
+
+# Forward a command to approve_tag.py (args after -- are passed verbatim)
+python3 VDM_Nexus/scripts/approval_cli.py run -- \
+  --domain metriplectic \
+  --script run_kg_energy_oscillation.py \
+  --tag prereg_v1 \
+  --approve
+```
+
+Notes:
+- Wrapper sets VDM_NEXUS=1 in the environment (harmless hint for GUI/in-situ modes).
+- Exit code mirrors the underlying approve_tag.py process.
+
 ## References
 
 - Architecture: [`NEXUS_ARCHITECTURE.md`](../../VDM_Nexus/NEXUS_ARCHITECTURE.md:129)
