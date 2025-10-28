@@ -560,18 +560,273 @@
   "notes": [
     "Do not infer tier (T0\u2013T9) from Markdown; link to TIER_STANDARDS.md and progress summaries only.",
     "Approvals and outputs are enumerated from structured sources (JSON manifests, filesystem artifacts).",
-    "Future: integrate approvals DB and structured registries when available to tag maturity in a first-class way."
+    "Future: integrate approvals DB and structured registries when available to tag maturity in a first-class way.",
+    "Spotlight cards reference canonical proposals; UI must remain read-only (links only).",
+    "Use proposal_status to flag missing RESULTS in dashboard validations."
+  ],
+  "proposal_status": [
+    {
+      "bucket": "Agency_Field",
+      "has_results": false,
+      "proposal": "Derivation/Agency_Field/Coordination_Depth/PROPOSAL_Multipartite_Coordinaton_Depth_v1.md",
+      "results": []
+    },
+    {
+      "bucket": "Agency_Field",
+      "has_results": false,
+      "proposal": "Derivation/Agency_Field/PROPOSAL_ADC_Response_Slope_v1.md",
+      "results": []
+    },
+    {
+      "bucket": "Agency_Field",
+      "has_results": false,
+      "proposal": "Derivation/Agency_Field/PROPOSAL_Agency_Curvature_Scaling_v1.md",
+      "results": []
+    },
+    {
+      "bucket": "Agency_Field",
+      "has_results": false,
+      "proposal": "Derivation/Agency_Field/PROPOSAL_Agency_Stability_Band_v1.md",
+      "results": []
+    },
+    {
+      "bucket": "Agency_Field",
+      "has_results": false,
+      "proposal": "Derivation/Agency_Field/Witness/PROPOSAL_Agency_Witness_v1.md",
+      "results": []
+    },
+    {
+      "bucket": "Causality",
+      "has_results": false,
+      "proposal": "Derivation/Causality/PROPOSAL_Causal_DAG_Audits_for_Void_Dynamics_Model.md",
+      "results": []
+    },
+    {
+      "bucket": "Causality",
+      "has_results": false,
+      "proposal": "Derivation/Causality/PROPOSAL_Metriplectic_Causal_Dominance_v1.md",
+      "results": []
+    },
+    {
+      "bucket": "Collapse",
+      "has_results": false,
+      "proposal": "Derivation/Collapse/PROPOSAL_A6_Collapse_v1.md",
+      "results": []
+    },
+    {
+      "bucket": "Conservation_Law",
+      "has_results": true,
+      "proposal": "Derivation/Conservation_Law/PROPOSAL_RD_Discrete_Conservation_vs_Balance.md",
+      "results": [
+        "Derivation/Conservation_Law/RESULTS_RD_Discrete_Conservation_vs_Balance.md"
+      ]
+    },
+    {
+      "bucket": "Cosmology",
+      "has_results": false,
+      "proposal": "Derivation/Cosmology/PROPOSAL_FRW_Balance_v1.md",
+      "results": []
+    },
+    {
+      "bucket": "Cosmology",
+      "has_results": false,
+      "proposal": "Derivation/Cosmology/PROPOSAL_FRW_Continuity_Predictive_v2.md",
+      "results": []
+    },
+    {
+      "bucket": "Dark_Photons",
+      "has_results": true,
+      "proposal": "Derivation/Dark_Photons/PROPOSAL_Decoherence_Portals.md",
+      "results": [
+        "Derivation/Dark_Photons/RESULTS_Decoherence_Portals.md"
+      ]
+    },
+    {
+      "bucket": "Information",
+      "has_results": false,
+      "proposal": "Derivation/Information/PROPOSAL_SIE_Invariant_and_Novelty_v1.md",
+      "results": []
+    },
+    {
+      "bucket": "Intelligence_Model",
+      "has_results": false,
+      "proposal": "Derivation/Intelligence_Model/PROPOSAL_Physics_Native_Intelligence_v1.md",
+      "results": []
+    },
+    {
+      "bucket": "Metriplectic",
+      "has_results": false,
+      "proposal": "Derivation/Metriplectic/PROPOSAL_Metriplectic_Composition_KGplusRD_v2.md",
+      "results": []
+    },
+    {
+      "bucket": "Metriplectic",
+      "has_results": false,
+      "proposal": "Derivation/Metriplectic/PROPOSAL_Metriplectic_Lindblad_T4.md",
+      "results": []
+    },
+    {
+      "bucket": "Metriplectic",
+      "has_results": false,
+      "proposal": "Derivation/Metriplectic/PROPOSAL_Metriplectic_SymplecticPlusDG.md",
+      "results": []
+    },
+    {
+      "bucket": "Metriplectic",
+      "has_results": false,
+      "proposal": "Derivation/Metriplectic/Strang_Defect_vs_dt_kg_RD/PROPOSAL_KG_plus_RD_Metriplectic.md",
+      "results": []
+    },
+    {
+      "bucket": "Metriplectic",
+      "has_results": true,
+      "proposal": "Derivation/Metriplectic/Strang_Defect_vs_dt_kg_RD/PROPOSAL_Metriplectic_JMJ_RD_v1.md",
+      "results": [
+        "Derivation/Metriplectic/Metriplectic_JMJ_RD/RESULTS_Metriplectic_JMJ_RD_v1.md"
+      ]
+    },
+    {
+      "bucket": "Qualia",
+      "has_results": false,
+      "proposal": "Derivation/Qualia/PROPOSAL_T3_Calibration_of_Psychophysical_Observables_to_C_Field.md",
+      "results": []
+    },
+    {
+      "bucket": "Qualia",
+      "has_results": false,
+      "proposal": "Derivation/Qualia/PROPOSAL_vdm_qualia_program.md",
+      "results": []
+    },
+    {
+      "bucket": "Quantum",
+      "has_results": false,
+      "proposal": "Derivation/Quantum/PROPOSAL_False-Vacuum_Metastability_and_Void-Debt_Asymmetry.md",
+      "results": []
+    },
+    {
+      "bucket": "Quantum",
+      "has_results": false,
+      "proposal": "Derivation/Quantum/PROPOSAL_J_to_Dirac_T4.md",
+      "results": []
+    },
+    {
+      "bucket": "Quantum_Gravity",
+      "has_results": false,
+      "proposal": "Derivation/Quantum_Gravity/PROPOSAL_Dark_Photon_Bridge.md",
+      "results": []
+    },
+    {
+      "bucket": "Quantum_Gravity",
+      "has_results": false,
+      "proposal": "Derivation/Quantum_Gravity/PROPOSAL_Quantum-Gravity-Bridge_Causal-Geometry-and-Holonomy.md",
+      "results": []
+    },
+    {
+      "bucket": "Tachyon_Condensation",
+      "has_results": false,
+      "proposal": "Derivation/Tachyon_Condensation/PROPOSAL_Tachyonic_Tube_Condensation.md",
+      "results": []
+    },
+    {
+      "bucket": "Thermodynamic_Routing",
+      "has_results": false,
+      "proposal": "Derivation/Thermodynamic_Routing/PROPOSAL_Thermodynamic_Routing_NoSwitch_v1.md",
+      "results": []
+    },
+    {
+      "bucket": "Thermodynamic_Routing",
+      "has_results": false,
+      "proposal": "Derivation/Thermodynamic_Routing/Passive_Thermodynamic_Routing/PROPOSAL_Flux_Through_Memory_Channels_v1.md",
+      "results": []
+    },
+    {
+      "bucket": "Thermodynamic_Routing",
+      "has_results": true,
+      "proposal": "Derivation/Thermodynamic_Routing/Passive_Thermodynamic_Routing/PROPOSAL_Passive_Thermodynamic_Routing_v2.md",
+      "results": [
+        "Derivation/Thermodynamic_Routing/Passive_Thermodynamic_Routing/RESULTS_Passive_Thermodynamic_Routing_v2.md"
+      ]
+    },
+    {
+      "bucket": "Thermodynamic_Routing",
+      "has_results": false,
+      "proposal": "Derivation/Thermodynamic_Routing/Prereg_Biased_Main/PROPOSAL_Thermodynamic_Routing_v2_Preg_Biased_Main.md",
+      "results": []
+    },
+    {
+      "bucket": "Thermodynamic_Routing",
+      "has_results": false,
+      "proposal": "Derivation/Thermodynamic_Routing/Wave_Flux_Meter/PROPOSAL_Wave_Flux_Meter_PhaseC_OpenPorts_v1.md",
+      "results": []
+    },
+    {
+      "bucket": "Thermodynamic_Routing",
+      "has_results": true,
+      "proposal": "Derivation/Thermodynamic_Routing/Wave_Flux_Meter/PROPOSAL_Wave_Flux_Meter_Phase_B_OpenPorts_v1.md",
+      "results": [
+        "Derivation/Thermodynamic_Routing/Wave_Flux_Meter/RESULTS_Wave_Flux_Meter_Phase_B_OpenPorts_v1.md"
+      ]
+    },
+    {
+      "bucket": "Thermodynamic_Routing",
+      "has_results": false,
+      "proposal": "Derivation/Thermodynamic_Routing/Wave_Flux_Meter/PROPOSAL_Wave_Flux_Meter_v1.md",
+      "results": []
+    },
+    {
+      "bucket": "Topology",
+      "has_results": false,
+      "proposal": "Derivation/Topology/PROPOSAL_Loop_Quench_Test_Robustness_v2.md",
+      "results": []
+    },
+    {
+      "bucket": "Topology",
+      "has_results": false,
+      "proposal": "Derivation/Topology/PROPOSAL_Loop_Quench_Test_v1.md",
+      "results": []
+    }
   ],
   "references": {
     "canon_map": "Derivation/CANON_MAP.md",
     "data_products": "Derivation/DATA_PRODUCTS.md",
     "progress_findings": "Derivation/VDM-Progress-Findings.md",
     "roadmap": "Derivation/ROADMAP.md",
-    "tier_standards": "Derivation/TIER_STANDARDS.md"
+    "tier_standards": "Derivation/TIER_STANDARDS.md",
+    "tier_summary": "Derivation/VDM-Progress-Findings.md#tier-summary"
   },
-  "repo_head": "a38f9ed52d58782c7a9e2f4f037442ee194b1bc4",
+  "repo_head": "ffcab1105d6b2c694f71494c6943ee9293861574",
   "set_id": "nexus-roadmap-index",
   "set_version": "1.0",
+  "spotlight_cards": [
+    {
+      "bucket": "Quantum_Gravity",
+      "has_results": false,
+      "proposal_path": "Derivation/Quantum_Gravity/PROPOSAL_Quantum-Gravity-Bridge_Causal-Geometry-and-Holonomy.md",
+      "results": [],
+      "title": "Quantum Gravity Bridge"
+    },
+    {
+      "bucket": "Agency_Field",
+      "has_results": false,
+      "proposal_path": "Derivation/Agency_Field/PROPOSAL_Agency_Curvature_Scaling_v1.md",
+      "results": [],
+      "title": "Agency Field Curvature Scaling"
+    },
+    {
+      "bucket": "Intelligence_Model",
+      "has_results": false,
+      "proposal_path": "Derivation/Intelligence_Model/PROPOSAL_Physics_Native_Intelligence_v1.md",
+      "results": [],
+      "title": "Intelligence Model Substrate"
+    }
+  ],
+  "summary": {
+    "code_domains": 17,
+    "doc_buckets": 15,
+    "proposals_missing_results": 30,
+    "proposals_total": 35,
+    "results_total": 15
+  },
   "tier_registry": null,
-  "updated_utc": "2025-10-28T05:46:24.758422+00:00"
+  "updated_utc": "2025-10-28T06:09:45.878920+00:00"
 }

@@ -43,7 +43,7 @@ import sys
 from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple, Set
 
 
 DEFAULT_ENV_FILE = Path(".env")
@@ -230,6 +230,55 @@ def _scan_doc_buckets(repo_root: Path) -> List[DocBucketEntry]:
     return entries
 
 
+def _flatten_proposals(doc_buckets: List[DocBucketEntry]) -> Dict[str, Dict[str, Any]]:
+    """
+    Build a mapping from proposal path to associated results (if any) for downstream dashboards.
+    """
+    proposal_map: Dict[str, Dict[str, Any]] = {}
+    for bucket in doc_buckets:
+        # convert lists to set for faster membership
+        result_set: Set[str] = set(bucket.results)
+        for prop in bucket.proposals:
+            rel_prop = prop
+            # Find matching results that share stem (same base name after removing PROPOSAL_/RESULTS_)
+            stem = Path(prop).name.replace("PROPOSAL_", "").replace(".md", "")
+            matching_results = [
+                r for r in bucket.results if Path(r).name.replace("RESULTS_", "").replace(".md", "") == stem
+            ]
+            proposal_map[rel_prop] = {
+                "bucket": bucket.bucket,
+                "results": matching_results,
+                "has_results": bool(matching_results),
+            }
+    return proposal_map
+
+
+def _spotlight_proposals(proposal_map: Dict[str, Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """
+    Curated spotlight cards for key roadmap experiments (read-only links).
+    """
+    targets = {
+        "Quantum Gravity Bridge": "Derivation/Quantum_Gravity/PROPOSAL_Quantum-Gravity-Bridge_Causal-Geometry-and-Holonomy.md",
+        "Agency Field Curvature Scaling": "Derivation/Agency_Field/PROPOSAL_Agency_Curvature_Scaling_v1.md",
+        "Intelligence Model Substrate": "Derivation/Intelligence_Model/PROPOSAL_Physics_Native_Intelligence_v1.md",
+    }
+    cards: List[Dict[str, Any]] = []
+    for title, path in targets.items():
+        info = proposal_map.get(path)
+        if info is None:
+            continue
+        cards.append(
+            {
+                "title": title,
+                "proposal_path": path,
+                "bucket": info["bucket"],
+                "results": info["results"],
+                "has_results": info["has_results"],
+            }
+        )
+    return cards
+
+
 def _build_index(repo_root: Path) -> Dict[str, Any]:
     # Resolve physics code domains
     code_domains: List[DomainCodeEntry] = []
@@ -252,6 +301,8 @@ def _build_index(repo_root: Path) -> Dict[str, Any]:
 
     # Resolve doc buckets (per top-level Derivation subfolder)
     doc_buckets = _scan_doc_buckets(repo_root)
+    proposal_map = _flatten_proposals(doc_buckets)
+    spotlight = _spotlight_proposals(proposal_map)
 
     # Compose references (read-only anchors; UI should link and display banners/commits, not parse)
     references = {
@@ -260,9 +311,14 @@ def _build_index(repo_root: Path) -> Dict[str, Any]:
         "data_products": "Derivation/DATA_PRODUCTS.md",
         "roadmap": "Derivation/ROADMAP.md",
         "progress_findings": "Derivation/VDM-Progress-Findings.md",
+        "tier_summary": "Derivation/VDM-Progress-Findings.md#tier-summary",
     }
 
     # Serialize
+    total_proposals = sum(len(b.proposals) for b in doc_buckets)
+    total_results = sum(len(b.results) for b in doc_buckets)
+    proposals_missing = [p for p, info in proposal_map.items() if not info["has_results"]]
+
     out = {
         "set_id": "nexus-roadmap-index",
         "set_version": "1.0",
@@ -284,12 +340,31 @@ def _build_index(repo_root: Path) -> Dict[str, Any]:
             for e in code_domains
         ],
         "doc_buckets": [asdict(b) for b in doc_buckets],
+        "proposal_status": [
+            {
+                "proposal": prop,
+                "bucket": info["bucket"],
+                "results": info["results"],
+                "has_results": info["has_results"],
+            }
+            for prop, info in sorted(proposal_map.items())
+        ],
+        "spotlight_cards": spotlight,
+        "summary": {
+            "code_domains": len(code_domains),
+            "doc_buckets": len(doc_buckets),
+            "proposals_total": total_proposals,
+            "results_total": total_results,
+            "proposals_missing_results": len(proposals_missing),
+        },
         # Placeholder for future structured tier registries (not derived from Markdown)
         "tier_registry": None,
         "notes": [
             "Do not infer tier (T0–T9) from Markdown; link to TIER_STANDARDS.md and progress summaries only.",
             "Approvals and outputs are enumerated from structured sources (JSON manifests, filesystem artifacts).",
             "Future: integrate approvals DB and structured registries when available to tag maturity in a first-class way.",
+            "Spotlight cards reference canonical proposals; UI must remain read-only (links only).",
+            "Use proposal_status to flag missing RESULTS in dashboard validations.",
         ],
     }
     return out
