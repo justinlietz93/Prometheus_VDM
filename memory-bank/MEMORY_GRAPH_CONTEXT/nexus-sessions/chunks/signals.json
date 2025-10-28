@@ -1,7 +1,7 @@
 {
   "chunk_id": "nexus-sessions@1.0:signals",
   "chunk_type": "signals",
-  "content_sha256": "9056d2fdb5c963b6a9b2badd2ab1f50d003b9e1d9c613b87816c31f0efde6ff4",
+  "content_sha256": "dac4e910f30bde42bc0a33441d6bb9b7c859c5adaf603cef0ddd7d89299949cd",
   "part": 1,
   "payload": {
     "signals": [
@@ -10,7 +10,7 @@
           "determinism.content_sha256": true,
           "policy.external_agent_only": true
         },
-        "created_utc": "2025-10-27T19:36:28Z",
+        "created_utc": "2025-10-28T02:34:57Z",
         "id": "sig:kg-lite-adoption",
         "labels": [
           "nexus",
@@ -30,7 +30,7 @@
           "todo.8.retention_enforced": "pending",
           "todo.9.pathrag_service": "pending"
         },
-        "created_utc": "2025-10-27T19:36:28Z",
+        "created_utc": "2025-10-28T02:34:57Z",
         "id": "sig:nexus-todos-7-13",
         "labels": [
           "nexus",
@@ -39,13 +39,45 @@
         ],
         "source": "VDM_Nexus/TODO_CHECKLIST.md",
         "text": "Proceed with Nexus TODO items 7\u201313: static policy mapping; privacy/retention; PathRAG microservice; plugin integration + E2E; docs; CI checks; jsonschema target."
+      },
+      {
+        "acceptance_test": {
+          "ci.nexus_build_compiles": "pending",
+          "ci.workflow_present": true
+        },
+        "created_utc": "2025-10-28T02:34:57Z",
+        "id": "sig:nexus-ci-workflow-added",
+        "labels": [
+          "nexus",
+          "workflow",
+          "build",
+          "kg-lite"
+        ],
+        "source": ".github/workflows/nexus-ci.yml",
+        "text": "Added Nexus-only CI compile workflow at .github/workflows/nexus-ci.yml; builds VDM_Nexus with -DNEXUS_BUILD_TESTS=ON; no Derivation writes."
+      },
+      {
+        "acceptance_test": {
+          "guard.ci_workflow_present": "pending",
+          "guard.precommit_configured": true
+        },
+        "created_utc": "2025-10-28T02:34:57Z",
+        "id": "sig:derivation-guard-policy-enforced",
+        "labels": [
+          "nexus",
+          "policy",
+          "canon",
+          "kg-lite"
+        ],
+        "source": "VDM_Nexus/scripts/precommit_derivation_guard.py",
+        "text": "Derivation pre-commit/CI guard enforcing CHRONICLES + canon policy configured; stricter than nexus gate."
       }
     ]
   },
   "scope": "session",
   "set_id": "nexus-sessions",
   "set_version": "1.0",
-  "source": "agent:roo;mode:Physicist;workflow:VDM_Nexus_KG-Lite;repo_head:500d987bddca793bd3986ef6b9a5cf8cab3da467",
+  "source": "agent:roo;mode:Physicist;workflow:VDM_Nexus_KG-Lite;repo_head:1a16c2f0381d0f4f6e88b4c2a58d9f83790af168",
   "tags": [
     "kg-lite",
     "signals",
@@ -53,5 +85,5 @@
     "session"
   ],
   "total_parts": 1,
-  "updated": "2025-10-27T19:36:28Z"
+  "updated": "2025-10-28T02:34:57Z"
 }

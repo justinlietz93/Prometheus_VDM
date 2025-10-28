@@ -1,7 +1,7 @@
 {
   "chunk_id": "nexus-sessions@1.0:meta",
   "chunk_type": "meta",
-  "content_sha256": "c6ca5409537f090365a59efb0e497d53c97bdb864baedd239e14a893b6d7c01b",
+  "content_sha256": "483dda9f8d3659a92b5b28a0244bc7a3f0d771e6a427187c31c4ee530eeb373f",
   "part": 1,
   "payload": {
     "agent": "roo",
@@ -12,13 +12,13 @@
     "notes": "Session dataset for logging Nexus workflow context using KG-Lite envelopes.",
     "policy": "external-agent-only; no in-repo memory impl inside VDM_Nexus",
     "role": "Physicist",
-    "session_utc": "2025-10-27T19:36:28Z",
+    "session_utc": "2025-10-28T02:34:57Z",
     "version": "1.0"
   },
   "scope": "session",
   "set_id": "nexus-sessions",
   "set_version": "1.0",
-  "source": "agent:roo;mode:Physicist;workflow:VDM_Nexus_KG-Lite;repo_head:500d987bddca793bd3986ef6b9a5cf8cab3da467",
+  "source": "agent:roo;mode:Physicist;workflow:VDM_Nexus_KG-Lite;repo_head:1a16c2f0381d0f4f6e88b4c2a58d9f83790af168",
   "tags": [
     "kg-lite",
     "meta",
@@ -26,5 +26,5 @@
     "session"
   ],
   "total_parts": 1,
-  "updated": "2025-10-27T19:36:28Z"
+  "updated": "2025-10-28T02:34:57Z"
 }

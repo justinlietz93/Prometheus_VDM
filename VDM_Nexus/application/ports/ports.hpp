@@ -135,73 +135,11 @@ public:
   virtual std::vector<std::string> list_specs_for_domain(const std::string& domain) const = 0;
 };
  
-// ---- Memory KG-Lite ports (read-only; no Qt/DB/Python includes) ----
-// Reference schema: [kg-lite.chunkenvelope.v1.schema.json](../../memory-bank/MEMORY_GRAPH_CONTEXT/kg-lite.chunkenvelope.v1.schema.json)
- 
-// Minimal descriptor for a chunk entry in the index payload
-struct ChunkDescriptor {
-  std::string chunk_id;   // "${set_id}@${set_version}:${chunk_type}"
-  std::string kind;       // "meta" | "axes_dimensions" | "subfactors" | "signals" | "edges" | "retrieval_policy" | "index"
-  std::string sha256;     // 64-hex; payload canonical JSON hash
-};
- 
-// In-memory mirror of the KG-Lite set index; adapters populate from index envelope
-struct MemoryIndex {
-  std::string set_id;
-  std::string set_version;
-  std::string schema_version;                // payload.schema_version
-  std::vector<ChunkDescriptor> chunks;       // payload.chunks[*]
-  std::map<std::string,int> counts;           // payload.counts (axes, dimensions, subfactors, signals, edges, ...)
-  std::string source;                        // envelope.source (path to justin-graph.json)
-};
- 
-// MemoryStore port exposes read-only access to KG-Lite envelopes stored under memory-bank/
-// Adapters must not mutate or relocate files; all paths are resolved in place.
-class IMemoryStore {
-public:
-  virtual ~IMemoryStore() = default;
- 
-  // List available memory sets (e.g., ["justin@1.0"])
-  virtual std::vector<std::string> list_sets() const = 0;
- 
-  // Load the set index (validates internal invariants and hashes where available)
-  virtual MemoryIndex get_index(const std::string& set_id,
-                                const std::string& set_version) const = 0;
- 
-  // Read the canonical payload JSON for a given chunk_id (opaque to application)
-  virtual std::string read_payload_canonical_json(const std::string& chunk_id) const = 0;
- 
-  // Return the root where chunks are discovered (repo-relative or absolute)
-  virtual std::string chunks_root() const = 0;
-};
- 
-// PathRetriever port encapsulates KG-Lite retrieval policy (PathRAG)
-// It consumes index + edges/signals payloads and yields candidate paths with scores.
-struct PathConfig {
-  double path_prune_alpha {0.8}; // [0,1]
-  double path_threshold   {0.2}; // [0,1]
-  double min_novelty      {0.55}; // [0,1]
-  int    k_paths          {8};    // top-K paths to return
-  int    max_hops         {4};    // hop cap to bound search
-};
- 
-struct PathResult {
-  std::vector<std::string> nodes; // ordered node ids along the path
-  std::vector<std::string> edges; // ordered edge ids or "u->v:relation" strings
-  double score {0.0};              // composite score after pruning
-};
- 
-class IPathRetriever {
-public:
-  virtual ~IPathRetriever() = default;
- 
-  // Find K paths between start and goal within a memory set, honoring retrieval policy.
-  virtual std::vector<PathResult> find_paths(const std::string& set_id,
-                                              const std::string& set_version,
-                                              const std::string& start_node_id,
-                                              const std::string& goal_node_id,
-                                              const PathConfig& cfg) const = 0;
-};
+// Memory graph interfaces removed from Nexus scope (PathRAG, KG‑Lite).
+// Ownership relocated to memory-bank plans and standards:
+//  - [KG_Lite_Retrieval_and_Evaluation.md](../../memory-bank/plans/KG_Lite_Retrieval_and_Evaluation.md:1)
+//  - [MEMORY_GRAPH_STANDARDS.md](../../memory-bank/MEMORY_GRAPH_STANDARDS.md:188)
+// This space intentionally left blank to preserve include stability.
  
 // Notes for implementers (../infrastructure/*):
 // - Match environment precedence: CLI flags > env vars > .env (see NEXUS §7).

@@ -112,6 +112,28 @@ def main():
             },
             "source": "VDM_Nexus/TODO_CHECKLIST.md",
             "created_utc": now
+        },
+        {
+            "id": "sig:nexus-ci-workflow-added",
+            "text": "Added Nexus-only CI compile workflow at .github/workflows/nexus-ci.yml; builds VDM_Nexus with -DNEXUS_BUILD_TESTS=ON; no Derivation writes.",
+            "labels": ["nexus", "workflow", "build", "kg-lite"],
+            "acceptance_test": {
+                "ci.workflow_present": True,
+                "ci.nexus_build_compiles": "pending"
+            },
+            "source": ".github/workflows/nexus-ci.yml",
+            "created_utc": now
+        },
+        {
+            "id": "sig:derivation-guard-policy-enforced",
+            "text": "Derivation pre-commit/CI guard enforcing CHRONICLES + canon policy configured; stricter than nexus gate.",
+            "labels": ["nexus", "policy", "canon", "kg-lite"],
+            "acceptance_test": {
+                "guard.precommit_configured": True,
+                "guard.ci_workflow_present": "pending"
+            },
+            "source": "VDM_Nexus/scripts/precommit_derivation_guard.py",
+            "created_utc": now
         }
     ]
     signals_payload = {"signals": signals}
@@ -123,7 +145,9 @@ def main():
         ],
         "edges": [
             {"from": "sig:kg-lite-adoption", "to": "doc:MEMORY_GRAPH_STANDARDS", "rel": "implements", "weight": 0.9},
-            {"from": "sig:nexus-todos-7-13", "to": "doc:VDM_Nexus_TODO", "rel": "depends_on", "weight": 0.8}
+            {"from": "sig:nexus-todos-7-13", "to": "doc:VDM_Nexus_TODO", "rel": "depends_on", "weight": 0.8},
+            {"from": "sig:nexus-ci-workflow-added", "to": "doc:VDM_Nexus_CI", "rel": "implements", "weight": 0.9},
+            {"from": "sig:derivation-guard-policy-enforced", "to": "doc:Derivation_Guard_Policy", "rel": "implements", "weight": 0.9}
         ]
     }
 

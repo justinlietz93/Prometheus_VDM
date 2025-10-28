@@ -12,7 +12,7 @@
   "scope": "session",
   "set_id": "nexus-sessions",
   "set_version": "1.0",
-  "source": "agent:roo;mode:Physicist;workflow:VDM_Nexus_KG-Lite;repo_head:500d987bddca793bd3986ef6b9a5cf8cab3da467",
+  "source": "agent:roo;mode:Physicist;workflow:VDM_Nexus_KG-Lite;repo_head:1a16c2f0381d0f4f6e88b4c2a58d9f83790af168",
   "tags": [
     "kg-lite",
     "retrieval_policy",
@@ -20,5 +20,5 @@
     "session"
   ],
   "total_parts": 1,
-  "updated": "2025-10-27T19:36:28Z"
+  "updated": "2025-10-28T02:34:57Z"
 }
