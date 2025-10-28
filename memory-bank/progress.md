@@ -46,3 +46,23 @@
 - Thresholds: definitions via [VALIDATION_METRICS.md](derivation/VALIDATION_METRICS.md:1); thresholds exclusively from the experiment spec/schema referenced by the run‑manifest.
 
 ## Update — 2025-10-27 21:45Z (Nexus Phase 1 kickoff)\n\n- CI: Added Nexus-only compile workflow [.github/workflows/nexus-ci.yml](.github/workflows/nexus-ci.yml:1). Builds VDM_Nexus with -DNEXUS_BUILD_TESTS=ON; no app execution; no Derivation writes.\n- CMake wiring: Top-level ensures compile-only ports target builds by default via ALL dep in [VDM_Nexus/CMakeLists.txt](VDM_Nexus/CMakeLists.txt:28). Compile-only source generated in [VDM_Nexus/tests/CMakeLists.txt](VDM_Nexus/tests/CMakeLists.txt:1).\n- Schemas scope guard: Confirmed explicit policy in [VDM_Nexus/schemas/README.md](VDM_Nexus/schemas/README.md:1) (GUI-local only; memory-graph/MCP/tokens out-of-scope for Nexus).\n- Checklist: Phase 0 items 3–5 marked DONE in [VDM_Nexus/TODO_CHECKLIST.md](VDM_Nexus/TODO_CHECKLIST.md:1).\n\nNext (immediate targets)\n1) File-coupled hot-reload MVP (presentation layer): integrate QFileSystemWatcher; on .vti/.vtp/.vtu change → reload viewport; on manifest change → validate against [vdm.run-manifest.v1.schema.json](VDM_Nexus/schemas/vdm.run-manifest.v1.schema.json:1) then refresh KPI overlays (thresholds via ISchemaCatalog).\n2) ISchemaCatalog adapter (infrastructure): enumerate Derivation spec/schema files and surface gating thresholds to UI; no thresholds from Markdown. Anchor definitions from [VALIDATION_METRICS.md](Derivation/VALIDATION_METRICS.md:1) displayed read-only.\n3) Scripts README tightening (Nexus-only scope) and precommit guard tests (simulate diffs; exclusions; CHRONICLES attestation) per [precommit_derivation_guard.py](VDM_Nexus/scripts/precommit_derivation_guard.py:1).\n
+
+## 2025-10-28T04:55:30Z — Phase 1 · Task 1.2 scaffolding (approvals/quarantine)
+
+Work completed:
+- Added approvals wrapper CLI at [`approval_cli.py`](VDM_Nexus/scripts/approval_cli.py:1) to enforce env precedence (CLI &gt; env &gt; .env) and delegate all mutations to canonical [`approve_tag.py`](Derivation/code/common/authorization/approve_tag.py:1). Wrapper is read-only except for invoking the canonical tool.
+- Documented usage, precedence, and examples in [`VDM_Nexus/scripts/README.md`](VDM_Nexus/scripts/README.md:1).
+- Logged decision with rationale in [`memory-bank/decisionLog.md`](memory-bank/decisionLog.md:1).
+- Scope alignment confirmed with Clean Architecture seams in [`NEXUS_ARCHITECTURE.md`](VDM_Nexus/NEXUS_ARCHITECTURE.md:186) (§12.4 ports).
+
+Validation gates to execute next (Task 1.2 Validation):
+- Demo CLI session: use [`approval_cli.py`](VDM_Nexus/scripts/approval_cli.py:1) → [`approve_tag.py`](Derivation/code/common/authorization/approve_tag.py:1) showing approval status change with admin prompt audited.
+- Produce smoke run with unapproved status to confirm quarantine routing to failed_runs/ and policy JSON via [`io_paths.py`](Derivation/code/common/io_paths.py:1).
+
+Determinism and policy:
+- No Derivation/ writes performed by Nexus code; wrapper only shells canonical CLI.
+- Environment is IEEE‑754 double; provenance and seeds are handled by canonical runners. Nexus will mirror pass/fail using thresholds from spec/schema only (see ISchemaCatalog in [`ports.hpp`](VDM_Nexus/application/ports/ports.hpp:122)).
+
+Next actions:
+- Mark checklist item “Document approvals wrapper usage” complete.
+- Execute Task 1.2 validation steps and attach terminal transcript + artifact paths.

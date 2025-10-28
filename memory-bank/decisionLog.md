@@ -80,3 +80,23 @@
 | 2025-10-27 | Ports to implement next: IRunnerService, IArtifactStore, IMarkdownReader, ISchemaCatalog with manifest/spec validation and threshold surfacing. | Clean Architecture enforcement per §12.4; Results DB read‑only; approvals CLI‑only. |
 
 | 2025-10-27 21:41:50Z | Begin VDM Nexus Phase 1 implementation: wire top-level CMake to include nexus_ports_compile by default, add minimal CI Nexus-only build, update schemas/README scope guard, and start file-coupled hot-reload MVP. | Aligns with [VDM_Nexus/TODO_CHECKLIST.md](VDM_Nexus/TODO_CHECKLIST.md:1) Tasks 3–5 and §4.1 items; execution to proceed strictly read-only over Derivation with approvals discipline. |\n| 2025-10-27 21:41:50Z | Adopt Clean Architecture port plan: implement IRunnerService, IArtifactStore, IMarkdownReader, ISchemaCatalog with compile-only ports test on CI. No Derivation writes from GUI. | Enforces Nexus policy per [NEXUS_ARCHITECTURE.md](VDM_Nexus/NEXUS_ARCHITECTURE.md:179); compile seam via [tests/CMakeLists.txt](VDM_Nexus/tests/CMakeLists.txt:1); KPI thresholds sourced from spec/schema, definitions via [VALIDATION_METRICS.md](derivation/VALIDATION_METRICS.md:1). |
+
+## 2025-10-28T04:54:30Z — Nexus Approvals Wrapper Adoption
+
+Decision:
+- Adopt a thin approvals wrapper at [`approval_cli.py`](VDM_Nexus/scripts/approval_cli.py:1) to enforce environment precedence (CLI &gt; env &gt; .env) and shell through the canonical approvals tool [`approve_tag.py`](Derivation/code/common/authorization/approve_tag.py:1). No secrets are stored in Nexus; prompts occur only in the canonical CLI.
+- Documented usage and precedence in [`scripts/README.md`](VDM_Nexus/scripts/README.md:1) with runnable examples. This satisfies Task 1.2 documentation scope.
+
+Rationale:
+- Aligns with Clean Architecture seams in [`NEXUS_ARCHITECTURE.md`](VDM_Nexus/NEXUS_ARCHITECTURE.md:186) §12.4; keeps GUI read-only while enabling policy-compliant admin workflows.
+- Preserves canon discipline and CHRONICLES guard. Approvals mutations remain delegated to canonical tooling.
+- Provides deterministic, auditable env resolution for approvals DB discovery.
+
+Impacts:
+- Checklist: Mark “Document approvals wrapper usage and env precedence” as completed; keep Task 1.2 validation pending until a demo session is recorded and a failed_runs smoke artifact is produced via [`io_paths.py`](Derivation/code/common/io_paths.py:1).
+- No Derivation edits performed; wrapper is additive within VDM_Nexus/ and read-only except for delegating to canonical CLI.
+
+Artifacts/References:
+- Wrapper: [`approval_cli.py`](VDM_Nexus/scripts/approval_cli.py:1)
+- Docs: [`VDM_Nexus/scripts/README.md`](VDM_Nexus/scripts/README.md:1)
+- Canonical approvals: [`approve_tag.py`](Derivation/code/common/authorization/approve_tag.py:1)

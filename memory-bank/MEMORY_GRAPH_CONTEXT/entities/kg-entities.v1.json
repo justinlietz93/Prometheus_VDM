@@ -1,0 +1,73 @@
+{
+  "set_id": "kg-entities",
+  "set_version": "1.0",
+  "updated_utc": "2025-10-28T04:59:45Z",
+  "entities": [
+    {
+      "name": "VDM_Nexus_Approval_CLI",
+      "type": "ScriptTool",
+      "observations": [
+        "Path: [approval_cli.py](VDM_Nexus/scripts/approval_cli.py:1) • Thin wrapper that shells to canonical approvals CLI; read-only wrapper, no secrets.",
+        "Policy: Env precedence CLI > env > .env; sets VDM_NEXUS=1; prompts handled by canonical CLI.",
+        "Docs: [scripts/README.md §Approvals wrapper](VDM_Nexus/scripts/README.md:41)",
+        "Timestamp: 2025-10-28T04:59:13Z"
+      ]
+    },
+    {
+      "name": "Canonical_Approve_Tag_CLI",
+      "type": "CanonicalTool",
+      "observations": [
+        "Path: [approve_tag.py](Derivation/code/common/authorization/approve_tag.py:1) • Admin-gated approvals CLI (password prompt), updates approvals DB.",
+        "Usage overview: [authorization/README.md](Derivation/code/common/authorization/README.md:1)",
+        "Referenced by wrapper: [approval_cli.py](VDM_Nexus/scripts/approval_cli.py:1)"
+      ]
+    },
+    {
+      "name": "Task_1_2_Validation_Plan",
+      "type": "Process",
+      "observations": [
+        "Checklist locus: [TODO_CHECKLIST.md · Task 1.2 Validation](VDM_Nexus/TODO_CHECKLIST.md:87)",
+        "Steps: (1) approval_cli.py check/print-env; (2) approve flow via run -- approve ...; (3) quarantine smoke with --allow-unapproved to produce failed_runs + policy JSON via io_paths.",
+        "Plan recorded: [progress.md entry](memory-bank/progress.md:1)"
+      ]
+    },
+    {
+      "name": "Quarantine_Routing_Policy",
+      "type": "Policy",
+      "observations": [
+        "IO helper reference: [io_paths.py](Derivation/code/common/io_paths.py:1)",
+        "Expectation: unapproved runs route artifacts to failed_runs/ with contradiction/policy receipts (JSON/CSV).",
+        "Cited in checklist validation: [TODO_CHECKLIST.md](VDM_Nexus/TODO_CHECKLIST.md:89)"
+      ]
+    },
+    {
+      "name": "Env_Precedence_Policy",
+      "type": "Policy",
+      "observations": [
+        "Rule: CLI flags > env (VDM_REPO_ROOT, VDM_APPROVAL_DB, VDM_APPROVAL_ADMIN_DB) > .env",
+        "Declared in: [scripts/README.md](VDM_Nexus/scripts/README.md:20) and implemented in [approval_cli.py](VDM_Nexus/scripts/approval_cli.py:102)"
+      ]
+    },
+    {
+      "name": "Memory_Bank_Update_2025-10-28",
+      "type": "Record",
+      "observations": [
+        "Decision log: [decisionLog.md entry](memory-bank/decisionLog.md:1)",
+        "Progress log: [progress.md entry](memory-bank/progress.md:1)",
+        "Scope: adoption of approvals wrapper; documentation; pending Task 1.2 validation."
+      ]
+    }
+  ],
+  "provenance": {
+    "source_files": [
+      "VDM_Nexus/scripts/approval_cli.py",
+      "VDM_Nexus/scripts/README.md",
+      "Derivation/code/common/authorization/approve_tag.py",
+      "Derivation/code/common/authorization/README.md",
+      "VDM_Nexus/TODO_CHECKLIST.md",
+      "Derivation/code/common/io_paths.py",
+      "memory-bank/decisionLog.md",
+      "memory-bank/progress.md"
+    ]
+  }
+}

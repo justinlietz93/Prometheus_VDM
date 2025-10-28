@@ -35,7 +35,8 @@ Additionally, if this PROPOSAL document is graded above T0, there should be exis
 In order for any experiment to run or pass, PROPOSAL_ documents MUST be created. Reference some brief approval standards here C:\git\Prometheus_VDM\derivation\code\common\authorization\README.md
 -->
 
-## 1. Tier Grade, Proposal Title and Date
+## 1. {Tier Grade} - {Proposal Title}
+Date
 
 ## 2. List of proposers and associated institutions/companies
 
