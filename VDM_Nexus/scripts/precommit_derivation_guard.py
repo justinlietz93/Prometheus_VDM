@@ -46,6 +46,7 @@ Notes:
 from __future__ import annotations
 
 import argparse
+import fnmatch
 import subprocess
 import sys
 from pathlib import Path
@@ -107,12 +108,14 @@ def run(cmd: Sequence[str], check: bool = True, capture: bool = True) -> subproc
 
 def path_matches_globs(path: str, patterns: Sequence[str]) -> bool:
     """
-    Git-like ** support via pathlib.Path.match on POSIX-form path.
+    Glob match on POSIX path using fnmatch.fnmatchcase; '*' matches across '/'.
+    Treat '**' as '*' to avoid pathlib.Path.match edge cases across Python versions.
     """
     posix = Path(path).as_posix()
     for pat in patterns:
         p = pat.replace("\\", "/")
-        if Path(posix).match(p):
+        p = p.replace("**", "*")
+        if fnmatch.fnmatchcase(posix, p):
             return True
     return False
 

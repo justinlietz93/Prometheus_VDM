@@ -33,7 +33,7 @@ Root resolution policy (must match app/infrastructure): CLI flags > environment 
 
 ## Rules
 
-1. Scripts must be safe by default (read-only). Any write action must be a thin wrapper over canonical tools like [`approve_tag.py`](../../derivation/code/common/authorization/approve_tag.py:1).
+1. Scripts must be safe by default (read-only). Any write action must be a thin wrapper over canonical tools like [`approve_tag.py`](../../Derivation/code/common/authorization/approve_tag.py:1).
 2. No hard-coded absolute paths. Resolve canonical roots via policy (CLI flags > env > `.env`).
 3. Emit JSON/CSV logs with seeds, commit hashes, and reproducibility receipts if generating any Nexus-side outputs.
 4. Keep files ≤ 500 LOC; include a short docstring pointing to linked standards.
@@ -42,7 +42,7 @@ Root resolution policy (must match app/infrastructure): CLI flags > environment 
 
 - Architecture: [`NEXUS_ARCHITECTURE.md`](../../VDM_Nexus/NEXUS_ARCHITECTURE.md:129)
 - Checklist: [`TODO_CHECKLIST.md`](../../VDM_Nexus/TODO_CHECKLIST.md:129)
-- Approvals: [`approve_tag.py`](../../derivation/code/common/authorization/approve_tag.py:1)
+- Approvals: [`approve_tag.py`](../../Derivation/code/common/authorization/approve_tag.py:1)
 
 ## Derivation Guard (CHRONICLES + Canon)
 
@@ -55,7 +55,7 @@ This repo includes an enforced guard for canon discipline:
 What it enforces (summary):
 
 - If any tracked path under Derivation/ changes, then:
-  - Derivation/CHRONICLES.md must be updated in the same diff, documenting the change and rationale. See template at [CHRONICLES.md](Derivation/CHRONICLES.md).
+  - Derivation/CHRONICLES.md must be updated in the same diff, documenting the change and rationale. See template at [CHRONICLES.md](Derivation/CHRONICLES.md:1).
   - If the change is canon-impacting (proposals/experiments/code/results), update at least one canonical ALL-CAPS doc (e.g., [EQUATIONS.md](Derivation/EQUATIONS.md), [VALIDATION_METRICS.md](Derivation/VALIDATION_METRICS.md), [ROADMAP.md](Derivation/ROADMAP.md), [CANON_MAP.md](Derivation/CANON_MAP.md), [SCHEMAS.md](Derivation/SCHEMAS.md), [SYMBOLS.md](Derivation/SYMBOLS.md), [UNITS_NORMALIZATION.md](Derivation/UNITS_NORMALIZATION.md), [OPEN_QUESTIONS.md](Derivation/OPEN_QUESTIONS.md), [ALGORITHMS.md](Derivation/ALGORITHMS.md), [CANON_PROGRESS.md](Derivation/CANON_PROGRESS.md)).
   - Include the attestation marker in CHRONICLES: Dependency-Chain-Reviewed: true
 
@@ -84,8 +84,8 @@ Output semantics:
 
 Bypass policy:
 
-- The only bypass for Derivation edits without canon updates is to explicitly document the change in [CHRONICLES.md](Derivation/CHRONICLES.md) per the embedded template header. Legitimate canon-impacting changes still require updates to relevant canon registries and the dependency-chain attestation.
+- The only bypass for Derivation edits without canon updates is to explicitly document the change in [CHRONICLES.md](Derivation/CHRONICLES.md:1) per the embedded template header. Legitimate canon-impacting changes still require updates to relevant canon registries and the dependency-chain attestation.
 
 Notes:
 
-- Scripts remain read-only to Derivation/. Any writes must route through canonical tools (e.g., [approve_tag.py](derivation/code/common/authorization/approve_tag.py:1)).
+- Scripts remain read-only to Derivation/. Any writes must route through canonical tools (e.g., [approve_tag.py](../../Derivation/code/common/authorization/approve_tag.py:1)).

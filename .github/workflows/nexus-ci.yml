@@ -1,0 +1,62 @@
+name: nexus-ci
+
+on:
+  push:
+    paths:
+      - 'VDM_Nexus/**'
+      - '.github/workflows/nexus-ci.yml'
+  pull_request:
+    paths:
+      - 'VDM_Nexus/**'
+      - '.github/workflows/nexus-ci.yml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies (CMake, Qt6, VTK9, clang-format)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            build-essential \
+            cmake \
+            qt6-base-dev \
+            qt6-base-dev-tools \
+            libqt6opengl6-dev \
+            libvtk9-dev \
+            clang-format
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Run Nexus linters (JSON + Markdown)
+        run: |
+          python3 VDM_Nexus/scripts/nexus_ci_lint.py --root VDM_Nexus --json --md --max-line-length 120
+
+      - name: Clang-Format dry run (Nexus C/C++ sources)
+        run: |
+          FILES=$(find VDM_Nexus -type f \( -name '*.c' -o -name '*.cc' -o -name '*.cxx' -o -name '*.cpp' -o -name '*.h' -o -name '*.hh' -o -name '*.hpp' \))
+          if [ -n "$FILES" ]; then
+            # Dry run only; do not fail CI if formatting differs
+            clang-format -style=file -n $FILES || true
+          else
+            echo "No C/C++ files under VDM_Nexus for clang-format check"
+          fi
+
+      - name: Configure CMake (Nexus-only)
+        run: cmake -S VDM_Nexus -B VDM_Nexus/build -DCMAKE_BUILD_TYPE=Release -DNEXUS_BUILD_TESTS=ON
+
+      - name: Build Nexus
+        run: cmake --build VDM_Nexus/build -j 4
+
+      - name: Show compile-only test binary (if present)
+        run: |
+          file VDM_Nexus/build/nexus_ports_compile || true
+
+      - name: List built targets
+        run: |
+          cmake --build VDM_Nexus/build --target help | sed -n '1,200p'
