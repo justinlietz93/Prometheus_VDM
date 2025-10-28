@@ -1,0 +1,577 @@
+{
+  "code_domains": [
+    {
+      "approvals": {
+        "allowed_tags": [],
+        "approvals": {},
+        "manifest_path": "Derivation/code/physics/agency/APPROVAL.json",
+        "schema_dir": null
+      },
+      "code_path": "Derivation/code/physics/agency",
+      "domain": "agency",
+      "outputs": {
+        "figures_path": "Derivation/code/outputs/figures/agency",
+        "figures_total": 1,
+        "logs_failed_runs": 0,
+        "logs_path": "Derivation/code/outputs/logs/agency",
+        "logs_total": 1
+      }
+    },
+    {
+      "approvals": {
+        "allowed_tags": [],
+        "approvals": {},
+        "manifest_path": null,
+        "schema_dir": null
+      },
+      "code_path": "Derivation/code/physics/axioms",
+      "domain": "axioms",
+      "outputs": {
+        "figures_path": "Derivation/code/outputs/figures/axioms",
+        "figures_total": 0,
+        "logs_failed_runs": 0,
+        "logs_path": "Derivation/code/outputs/logs/axioms",
+        "logs_total": 0
+      }
+    },
+    {
+      "approvals": {
+        "allowed_tags": [
+          "v1"
+        ],
+        "approvals": {
+          "v1": {
+            "approval_key": "1126c62ef30e1ed965864bcf5f518de698b8213bb2c7c8f7c9d18b060200ca9d",
+            "approved_at": "2025-10-08T12:40:45.722017+00:00",
+            "approved_by": "Justin K. Lietz",
+            "schema": "Derivation/code/physics/causality/schemas/causal_dag_audit.schema.json"
+          }
+        },
+        "manifest_path": "Derivation/code/physics/causality/APPROVAL.json",
+        "schema_dir": "Derivation/code/physics/causality/schemas"
+      },
+      "code_path": "Derivation/code/physics/causality",
+      "domain": "causality",
+      "outputs": {
+        "figures_path": "Derivation/code/outputs/figures/causality",
+        "figures_total": 17,
+        "logs_failed_runs": 1,
+        "logs_path": "Derivation/code/outputs/logs/causality",
+        "logs_total": 12
+      }
+    },
+    {
+      "approvals": {
+        "allowed_tags": [],
+        "approvals": {},
+        "manifest_path": "Derivation/code/physics/collapse/APPROVAL.json",
+        "schema_dir": null
+      },
+      "code_path": "Derivation/code/physics/collapse",
+      "domain": "collapse",
+      "outputs": {
+        "figures_path": "Derivation/code/outputs/figures/collapse",
+        "figures_total": 3,
+        "logs_failed_runs": 3,
+        "logs_path": "Derivation/code/outputs/logs/collapse",
+        "logs_total": 5
+      }
+    },
+    {
+      "approvals": {
+        "allowed_tags": [],
+        "approvals": {},
+        "manifest_path": "Derivation/code/physics/conservation_law/APPROVAL.json",
+        "schema_dir": null
+      },
+      "code_path": "Derivation/code/physics/conservation_law",
+      "domain": "conservation_law",
+      "outputs": {
+        "figures_path": "Derivation/code/outputs/figures/conservation_law",
+        "figures_total": 22,
+        "logs_failed_runs": 6,
+        "logs_path": "Derivation/code/outputs/logs/conservation_law",
+        "logs_total": 16
+      }
+    },
+    {
+      "approvals": {
+        "allowed_tags": [],
+        "approvals": {},
+        "manifest_path": "Derivation/code/physics/cosmology/APPROVAL.json",
+        "schema_dir": null
+      },
+      "code_path": "Derivation/code/physics/cosmology",
+      "domain": "cosmology",
+      "outputs": {
+        "figures_path": "Derivation/code/outputs/figures/cosmology",
+        "figures_total": 3,
+        "logs_failed_runs": 0,
+        "logs_path": "Derivation/code/outputs/logs/cosmology",
+        "logs_total": 4
+      }
+    },
+    {
+      "approvals": {
+        "allowed_tags": [],
+        "approvals": {},
+        "manifest_path": "Derivation/code/physics/dark_photons/APPROVAL.json",
+        "schema_dir": null
+      },
+      "code_path": "Derivation/code/physics/dark_photons",
+      "domain": "dark_photons",
+      "outputs": {
+        "figures_path": "Derivation/code/outputs/figures/dark_photons",
+        "figures_total": 2,
+        "logs_failed_runs": 0,
+        "logs_path": "Derivation/code/outputs/logs/dark_photons",
+        "logs_total": 6
+      }
+    },
+    {
+      "approvals": {
+        "allowed_tags": [],
+        "approvals": {},
+        "manifest_path": "Derivation/code/physics/fluid_dynamics/APPROVAL.json",
+        "schema_dir": null
+      },
+      "code_path": "Derivation/code/physics/fluid_dynamics",
+      "domain": "fluid_dynamics",
+      "outputs": {
+        "figures_path": "Derivation/code/outputs/figures/fluid_dynamics",
+        "figures_total": 5,
+        "logs_failed_runs": 2,
+        "logs_path": "Derivation/code/outputs/logs/fluid_dynamics",
+        "logs_total": 15
+      }
+    },
+    {
+      "approvals": {
+        "allowed_tags": [
+          "im-substrate-v1"
+        ],
+        "approvals": {
+          "im-substrate-v1": {
+            "approval_key": "",
+            "approved_at": "",
+            "approved_by": "",
+            "schema": "Derivation/code/physics/intelligence_model/schemas/im-substrate-v1.schema.json"
+          }
+        },
+        "manifest_path": "Derivation/code/physics/intelligence_model/APPROVAL.json",
+        "schema_dir": null
+      },
+      "code_path": "Derivation/code/physics/intelligence_model",
+      "domain": "intelligence_model",
+      "outputs": {
+        "figures_path": "Derivation/code/outputs/figures/intelligence_model",
+        "figures_total": 0,
+        "logs_failed_runs": 0,
+        "logs_path": "Derivation/code/outputs/logs/intelligence_model",
+        "logs_total": 0
+      }
+    },
+    {
+      "approvals": {
+        "allowed_tags": [],
+        "approvals": {},
+        "manifest_path": "Derivation/code/physics/memory_steering/APPROVAL.json",
+        "schema_dir": null
+      },
+      "code_path": "Derivation/code/physics/memory_steering",
+      "domain": "memory_steering",
+      "outputs": {
+        "figures_path": "Derivation/code/outputs/figures/memory_steering",
+        "figures_total": 10,
+        "logs_failed_runs": 0,
+        "logs_path": "Derivation/code/outputs/logs/memory_steering",
+        "logs_total": 0
+      }
+    },
+    {
+      "approvals": {
+        "allowed_tags": [
+          "KG-cone-v1",
+          "KG-dispersion-v1",
+          "KG-energy-osc-v1",
+          "KG-noether-v1",
+          "struct-v1"
+        ],
+        "approvals": {
+          "KG-cone-v1": {
+            "approval_key": "5846a9f6083a711704062d8429c65ca791768dde572099cd5e8f38b26bed850f",
+            "approved_at": "2025-10-08T10:08:02.804920+00:00",
+            "approved_by": "Justin K. Lietz",
+            "schema": "Derivation/code/physics/metriplectic/schemas/KG-cone-v1.schema.json"
+          },
+          "KG-dispersion-v1": {
+            "approval_key": "3d704c3bff15826e4faffac7a8681cb56eadac16edb442879c7fb2511f62b46b",
+            "approved_at": "2025-10-08T10:08:10.978416+00:00",
+            "approved_by": "Justin K. Lietz",
+            "schema": "Derivation/code/physics/metriplectic/schemas/KG-dispersion-v1.schema.json"
+          },
+          "KG-energy-osc-v1": {
+            "approval_key": "a269ab8c11fdce428b0340a68692b6aeb2df4ff900a38b0f9423749f02169acb",
+            "approved_at": "2025-10-13T06:53:02.462385+00:00",
+            "approved_by": "Justin K. Lietz",
+            "schema": "Derivation/code/physics/metriplectic/schemas/KG-energy-osc-v1.schema.json"
+          },
+          "KG-noether-v1": {
+            "approval_key": "a924dd54ed5ecc335a91da47377dac861581425a6cfaaf05ebd05306207a1edb",
+            "approved_at": "2025-10-08T23:45:28.002644+00:00",
+            "approved_by": "Justin K. Lietz",
+            "schema": "Derivation/code/physics/metriplectic/schemas/KG-noether-v1.schema.json"
+          },
+          "struct-v1": {
+            "approval_key": "f5e0011bde8e3a4bc5b9764d8284d8ceca64e7125777fb7f0914a4e4737e99c2",
+            "approved_at": "2025-10-08T23:05:30.920566+00:00",
+            "approved_by": "Justin K. Lietz",
+            "schema": "Derivation/code/physics/metriplectic/schemas/struct-v1.schema.json"
+          }
+        },
+        "manifest_path": "Derivation/code/physics/metriplectic/APPROVAL.json",
+        "schema_dir": "Derivation/code/physics/metriplectic/schemas"
+      },
+      "code_path": "Derivation/code/physics/metriplectic",
+      "domain": "metriplectic",
+      "outputs": {
+        "figures_path": "Derivation/code/outputs/figures/metriplectic",
+        "figures_total": 35,
+        "logs_failed_runs": 25,
+        "logs_path": "Derivation/code/outputs/logs/metriplectic",
+        "logs_total": 54
+      }
+    },
+    {
+      "approvals": {
+        "allowed_tags": [
+          "vdm-triad-v1"
+        ],
+        "approvals": {
+          "vdm-triad-v1": {
+            "approval_key": "",
+            "approved_at": "",
+            "approved_by": "Justin K. Lietz",
+            "schema": "Derivation/code/physics/quantum/schemas/vdm-triad-v1.schema.json"
+          }
+        },
+        "manifest_path": "Derivation/code/physics/quantum/APPROVAL.json",
+        "schema_dir": null
+      },
+      "code_path": "Derivation/code/physics/quantum",
+      "domain": "quantum",
+      "outputs": {
+        "figures_path": "Derivation/code/outputs/figures/quantum",
+        "figures_total": 0,
+        "logs_failed_runs": 0,
+        "logs_path": "Derivation/code/outputs/logs/quantum",
+        "logs_total": 0
+      }
+    },
+    {
+      "approvals": {
+        "allowed_tags": [],
+        "approvals": {},
+        "manifest_path": "Derivation/code/physics/rd_conservation/APPROVAL.json",
+        "schema_dir": null
+      },
+      "code_path": "Derivation/code/physics/rd_conservation",
+      "domain": "rd_conservation",
+      "outputs": {
+        "figures_path": "Derivation/code/outputs/figures/rd_conservation",
+        "figures_total": 6,
+        "logs_failed_runs": 10,
+        "logs_path": "Derivation/code/outputs/logs/rd_conservation",
+        "logs_total": 25
+      }
+    },
+    {
+      "approvals": {
+        "allowed_tags": [],
+        "approvals": {},
+        "manifest_path": "Derivation/code/physics/reaction_diffusion/APPROVAL.json",
+        "schema_dir": null
+      },
+      "code_path": "Derivation/code/physics/reaction_diffusion",
+      "domain": "reaction_diffusion",
+      "outputs": {
+        "figures_path": "Derivation/code/outputs/figures/reaction_diffusion",
+        "figures_total": 10,
+        "logs_failed_runs": 2,
+        "logs_path": "Derivation/code/outputs/logs/reaction_diffusion",
+        "logs_total": 10
+      }
+    },
+    {
+      "approvals": {
+        "allowed_tags": [
+          "tube-condensation-v1",
+          "tube-spectrum-v1"
+        ],
+        "approvals": {
+          "tube-condensation-v1": {
+            "approval_key": "5ad9f82d233d3c244bbc7b1d7a9403cdeb747c2bbc56897350c4110acbfd5755",
+            "approved_at": "2025-10-09T00:19:58.454610+00:00",
+            "approved_by": "Justin K. Lietz",
+            "schema": "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/physics/tachyonic_condensation/schemas/tube-condensation-v1.schema.json"
+          },
+          "tube-spectrum-v1": {
+            "approval_key": "9cba89da1d73a78c19a071257f810bf4b55759579ceddbe67c9c7f58ae3352d1",
+            "approved_at": "2025-10-09T00:18:28.922456+00:00",
+            "approved_by": "Justin K. Lietz",
+            "schema": "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/physics/tachyonic_condensation/schemas/tube-spectrum-v1.schema.json"
+          }
+        },
+        "manifest_path": "Derivation/code/physics/tachyonic_condensation/APPROVAL.json",
+        "schema_dir": "Derivation/code/physics/tachyonic_condensation/schemas"
+      },
+      "code_path": "Derivation/code/physics/tachyonic_condensation",
+      "domain": "tachyonic_condensation",
+      "outputs": {
+        "figures_path": "Derivation/code/outputs/figures/tachyonic_condensation",
+        "figures_total": 16,
+        "logs_failed_runs": 32,
+        "logs_path": "Derivation/code/outputs/logs/tachyonic_condensation",
+        "logs_total": 42
+      }
+    },
+    {
+      "approvals": {
+        "allowed_tags": [
+          "thermo-routing-v2",
+          "thermo-routing-v2-ftmc",
+          "thermo-routing-v2-prereg-biased-main",
+          "thermo-routing-v2-wave-meter",
+          "thermo-routing-v2-wave-meter-openports"
+        ],
+        "approvals": {
+          "thermo-routing-v2": {
+            "approval_key": "232c505835313363767bc7071603a327fa445e0704ef343c54e0626fdcfc7833",
+            "approved_at": "2025-10-13T08:31:05.092847+00:00",
+            "approved_by": "Justin K. Lietz",
+            "schema": "Derivation/code/physics/thermo_routing/schemas/thermo-routing-v2.schema.json"
+          },
+          "thermo-routing-v2-ftmc": {
+            "approval_key": "8ba078ec63391dd1c2c534239aa95f72b96d772854fc0d76993fe1f56defcfbf",
+            "approved_at": "2025-10-13T17:13:08.850411+00:00",
+            "approved_by": "Justin K. Lietz",
+            "schema": "Derivation/code/physics/thermo_routing/schemas/flux-through-memory-channels-v1.schema.json"
+          },
+          "thermo-routing-v2-prereg-biased-main": {
+            "approval_key": "43967a0c5e3312cd4891713979a5f9c8b8dbf6460bdedbf48c0b8d94d5b4a546",
+            "approved_at": "2025-10-13T11:30:08.190071+00:00",
+            "approved_by": "Justin K. Lietz",
+            "schema": "Derivation/code/physics/thermo_routing/schemas/thermo-routing-v2-prereg-biased-main.schema.json"
+          },
+          "thermo-routing-v2-wave-meter": {
+            "approval_key": "2ebdf703296cd5c124692c33c2f8cd4eaa34f15ed4290289c88fd48e4b168055",
+            "approved_at": "2025-10-13T18:59:48.317715+00:00",
+            "approved_by": "Justin K. Lietz",
+            "schema": "Derivation/code/physics/thermo_routing/schemas/wave-flux-meter-summary-v1.schema.json"
+          },
+          "thermo-routing-v2-wave-meter-openports": {
+            "approval_key": "839ff04f40ed8b9493642cd5abc563915c0a6604d29d18bf7e05e9d390241ded",
+            "approved_at": "2025-10-13T19:42:37.359771+00:00",
+            "approved_by": "Justin K. Lietz",
+            "schema": "Derivation/code/physics/thermo_routing/schemas/wave-flux-meter-openports-summary-v1.schema.json"
+          }
+        },
+        "manifest_path": "Derivation/code/physics/thermo_routing/APPROVAL.json",
+        "schema_dir": null
+      },
+      "code_path": "Derivation/code/physics/thermo_routing",
+      "domain": "thermo_routing",
+      "outputs": {
+        "figures_path": "Derivation/code/outputs/figures/thermo_routing",
+        "figures_total": 137,
+        "logs_failed_runs": 82,
+        "logs_path": "Derivation/code/outputs/logs/thermo_routing",
+        "logs_total": 145
+      }
+    },
+    {
+      "approvals": {
+        "allowed_tags": [],
+        "approvals": {},
+        "manifest_path": "Derivation/code/physics/topology/APPROVAL.json",
+        "schema_dir": null
+      },
+      "code_path": "Derivation/code/physics/topology",
+      "domain": "topology",
+      "outputs": {
+        "figures_path": "Derivation/code/outputs/figures/topology",
+        "figures_total": 0,
+        "logs_failed_runs": 0,
+        "logs_path": "Derivation/code/outputs/logs/topology",
+        "logs_total": 0
+      }
+    }
+  ],
+  "doc_buckets": [
+    {
+      "bucket": "Agency_Field",
+      "proposals": [
+        "Derivation/Agency_Field/Coordination_Depth/PROPOSAL_Multipartite_Coordinaton_Depth_v1.md",
+        "Derivation/Agency_Field/PROPOSAL_ADC_Response_Slope_v1.md",
+        "Derivation/Agency_Field/PROPOSAL_Agency_Curvature_Scaling_v1.md",
+        "Derivation/Agency_Field/PROPOSAL_Agency_Stability_Band_v1.md",
+        "Derivation/Agency_Field/Witness/PROPOSAL_Agency_Witness_v1.md"
+      ],
+      "results": []
+    },
+    {
+      "bucket": "Causality",
+      "proposals": [
+        "Derivation/Causality/PROPOSAL_Causal_DAG_Audits_for_Void_Dynamics_Model.md",
+        "Derivation/Causality/PROPOSAL_Metriplectic_Causal_Dominance_v1.md"
+      ],
+      "results": []
+    },
+    {
+      "bucket": "Collapse",
+      "proposals": [
+        "Derivation/Collapse/PROPOSAL_A6_Collapse_v1.md"
+      ],
+      "results": [
+        "Derivation/Collapse/RESULTS_A6_Scaling_Collapse_Junction_Logistic_Universality.md"
+      ]
+    },
+    {
+      "bucket": "Conservation_Law",
+      "proposals": [
+        "Derivation/Conservation_Law/PROPOSAL_RD_Discrete_Conservation_vs_Balance.md"
+      ],
+      "results": [
+        "Derivation/Conservation_Law/RESULTS_RD_Discrete_Conservation_vs_Balance.md"
+      ]
+    },
+    {
+      "bucket": "Cosmology",
+      "proposals": [
+        "Derivation/Cosmology/PROPOSAL_FRW_Balance_v1.md",
+        "Derivation/Cosmology/PROPOSAL_FRW_Continuity_Predictive_v2.md"
+      ],
+      "results": [
+        "Derivation/Cosmology/RESULTS_FRW_Continuity_Residual_Quality_Check.md"
+      ]
+    },
+    {
+      "bucket": "Dark_Photons",
+      "proposals": [
+        "Derivation/Dark_Photons/PROPOSAL_Decoherence_Portals.md"
+      ],
+      "results": [
+        "Derivation/Dark_Photons/RESULTS_Decoherence_Portals.md"
+      ]
+    },
+    {
+      "bucket": "Information",
+      "proposals": [
+        "Derivation/Information/PROPOSAL_SIE_Invariant_and_Novelty_v1.md"
+      ],
+      "results": []
+    },
+    {
+      "bucket": "Intelligence_Model",
+      "proposals": [
+        "Derivation/Intelligence_Model/PROPOSAL_Physics_Native_Intelligence_v1.md"
+      ],
+      "results": [
+        "Derivation/Intelligence_Model/RESULTS_Physics_Native_Intelligence_Substrate_v1.md"
+      ]
+    },
+    {
+      "bucket": "Metriplectic",
+      "proposals": [
+        "Derivation/Metriplectic/PROPOSAL_Metriplectic_Composition_KGplusRD_v2.md",
+        "Derivation/Metriplectic/PROPOSAL_Metriplectic_Lindblad_T4.md",
+        "Derivation/Metriplectic/PROPOSAL_Metriplectic_SymplecticPlusDG.md",
+        "Derivation/Metriplectic/Strang_Defect_vs_dt_kg_RD/PROPOSAL_KG_plus_RD_Metriplectic.md",
+        "Derivation/Metriplectic/Strang_Defect_vs_dt_kg_RD/PROPOSAL_Metriplectic_JMJ_RD_v1.md"
+      ],
+      "results": [
+        "Derivation/Metriplectic/KG_Energy_Oscillation/RESULTS_KG_Energy_Oscillation_v1.md",
+        "Derivation/Metriplectic/KG_Jonly_Locality_and_Dispersion/RESULTS_KG_Jonly_Locality_and_Dispersion.md",
+        "Derivation/Metriplectic/KG_RD_Metriplectic/RESULTS_KG_RD_Metriplectic.md",
+        "Derivation/Metriplectic/Metriplectic_JMJ_RD/RESULTS_Metriplectic_JMJ_RD_v1.md",
+        "Derivation/Metriplectic/RESULTS_KG_Noether_Invariants_v1.md",
+        "Derivation/Metriplectic/RESULTS_Metriplectic_Structure_Checks.md"
+      ]
+    },
+    {
+      "bucket": "Qualia",
+      "proposals": [
+        "Derivation/Qualia/PROPOSAL_T3_Calibration_of_Psychophysical_Observables_to_C_Field.md",
+        "Derivation/Qualia/PROPOSAL_vdm_qualia_program.md"
+      ],
+      "results": []
+    },
+    {
+      "bucket": "Quantum",
+      "proposals": [
+        "Derivation/Quantum/PROPOSAL_False-Vacuum_Metastability_and_Void-Debt_Asymmetry.md",
+        "Derivation/Quantum/PROPOSAL_J_to_Dirac_T4.md"
+      ],
+      "results": []
+    },
+    {
+      "bucket": "Quantum_Gravity",
+      "proposals": [
+        "Derivation/Quantum_Gravity/PROPOSAL_Dark_Photon_Bridge.md",
+        "Derivation/Quantum_Gravity/PROPOSAL_Quantum-Gravity-Bridge_Causal-Geometry-and-Holonomy.md"
+      ],
+      "results": []
+    },
+    {
+      "bucket": "Tachyon_Condensation",
+      "proposals": [
+        "Derivation/Tachyon_Condensation/PROPOSAL_Tachyonic_Tube_Condensation.md"
+      ],
+      "results": [
+        "Derivation/Tachyon_Condensation/RESULTS_Tachyonic_Tube_v1.md"
+      ]
+    },
+    {
+      "bucket": "Thermodynamic_Routing",
+      "proposals": [
+        "Derivation/Thermodynamic_Routing/PROPOSAL_Thermodynamic_Routing_NoSwitch_v1.md",
+        "Derivation/Thermodynamic_Routing/Passive_Thermodynamic_Routing/PROPOSAL_Flux_Through_Memory_Channels_v1.md",
+        "Derivation/Thermodynamic_Routing/Passive_Thermodynamic_Routing/PROPOSAL_Passive_Thermodynamic_Routing_v2.md",
+        "Derivation/Thermodynamic_Routing/Prereg_Biased_Main/PROPOSAL_Thermodynamic_Routing_v2_Preg_Biased_Main.md",
+        "Derivation/Thermodynamic_Routing/Wave_Flux_Meter/PROPOSAL_Wave_Flux_Meter_PhaseC_OpenPorts_v1.md",
+        "Derivation/Thermodynamic_Routing/Wave_Flux_Meter/PROPOSAL_Wave_Flux_Meter_Phase_B_OpenPorts_v1.md",
+        "Derivation/Thermodynamic_Routing/Wave_Flux_Meter/PROPOSAL_Wave_Flux_Meter_v1.md"
+      ],
+      "results": [
+        "Derivation/Thermodynamic_Routing/Passive_Thermodynamic_Routing/RESULTS_Passive_Thermodynamic_Routing_v2.md",
+        "Derivation/Thermodynamic_Routing/Wave_Flux_Meter/RESULTS_Wave_Flux_Meter_A_Phase_v1.md",
+        "Derivation/Thermodynamic_Routing/Wave_Flux_Meter/RESULTS_Wave_Flux_Meter_Phase_B_OpenPorts_v1.md"
+      ]
+    },
+    {
+      "bucket": "Topology",
+      "proposals": [
+        "Derivation/Topology/PROPOSAL_Loop_Quench_Test_Robustness_v2.md",
+        "Derivation/Topology/PROPOSAL_Loop_Quench_Test_v1.md"
+      ],
+      "results": []
+    }
+  ],
+  "notes": [
+    "Do not infer tier (T0\u2013T9) from Markdown; link to TIER_STANDARDS.md and progress summaries only.",
+    "Approvals and outputs are enumerated from structured sources (JSON manifests, filesystem artifacts).",
+    "Future: integrate approvals DB and structured registries when available to tag maturity in a first-class way."
+  ],
+  "references": {
+    "canon_map": "Derivation/CANON_MAP.md",
+    "data_products": "Derivation/DATA_PRODUCTS.md",
+    "progress_findings": "Derivation/VDM-Progress-Findings.md",
+    "roadmap": "Derivation/ROADMAP.md",
+    "tier_standards": "Derivation/TIER_STANDARDS.md"
+  },
+  "repo_head": "a38f9ed52d58782c7a9e2f4f037442ee194b1bc4",
+  "set_id": "nexus-roadmap-index",
+  "set_version": "1.0",
+  "tier_registry": null,
+  "updated_utc": "2025-10-28T05:46:24.758422+00:00"
+}

@@ -132,11 +132,11 @@ def run_approve_tag(repo_root: Path,
         print(f"[NEXUS][ERROR] approve_tag.py not found at {script}", file=sys.stderr)
         return 2
 
-    # Prefer invoking with the same Python interpreter
-    cmd = [sys.executable, str(script)]
+    # Prefer invoking with the same Python interpreter; execute as module so relative imports work
+    cmd = [sys.executable, "-m", "Derivation.code.common.authorization.approve_tag"]
     # Passthrough args are forwarded exactly (after '--')
     cmd.extend(passthrough_args)
-
+    
     # Merge environment: start from current then overlay resolved
     env = dict(os.environ)
     env.update(resolved_env)

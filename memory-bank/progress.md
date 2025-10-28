@@ -66,3 +66,64 @@ Determinism and policy:
 Next actions:
 - Mark checklist item “Document approvals wrapper usage” complete.
 - Execute Task 1.2 validation steps and attach terminal transcript + artifact paths.
+
+
+## 2025-10-28T05:36:25Z — Phase 1 · Task 1.2 validation (approvals/quarantine)
+
+Validation summary:
+- Wrapper existence check PASS: [approval_cli.py](VDM_Nexus/scripts/approval_cli.py:1) resolved canonical CLI [approve_tag.py](Derivation/code/common/authorization/approve_tag.py:1).
+- Env precedence print PASS: CLI > env > .env reported sources as expected.
+- Canonical status PASS (read-only): approvals DB initialized; admin DB not yet seeded (admin table missing) — expected until interactive setup.
+- Quarantine routing PASS: [io_paths.py](Derivation/code/common/io_paths.py:1) honored VDM_POLICY flags; artifacts landed under failed_runs/.
+
+Artifacts (quarantine smoke):
+- JSON: [20251028_003623_nexus_task_1_2_smoke.json](Derivation/code/outputs/logs/metriplectic/failed_runs/20251028_003623_nexus_task_1_2_smoke.json:1)
+- CSV: [20251028_003623_nexus_task_1_2_smoke.csv](Derivation/code/outputs/logs/metriplectic/failed_runs/20251028_003623_nexus_task_1_2_smoke.csv:1)
+
+Wrapper + status transcript (abridged):
+```text
+=== 1) approvals wrapper: check ===
+[NEXUS][OK] Found: /mnt/ironwolf/git/Prometheus_VDM/Derivation/code/common/authorization/approve_tag.py
+
+=== 2) approvals wrapper: print-env (precedence CLI>env>.env) ===
+[NEXUS][ENV] Resolved variables (source in brackets):
+  VDM_REPO_ROOT=/mnt/ironwolf/git/Prometheus_VDM  [cli]
+  VDM_APPROVAL_DB=/mnt/ironwolf/git/Prometheus_VDM/derivation/code/common/data/approval.db  [.env]
+  VDM_APPROVAL_ADMIN_DB=/mnt/ironwolf/git/Prometheus_VDM/derivation/code/common/data/approval_admin.db  [.env]
+
+=== 3) canonical approvals CLI status (read-only) via wrapper run -- status ===
+[NEXUS][INFO] Launching canonical approvals CLI
+[approve_tag] Using approvals DB at default path: /mnt/ironwolf/git/Prometheus_VDM/Derivation/code/common/data/approval.db (will create if missing)
+[authorization] Using admin DB from env file /mnt/ironwolf/git/Prometheus_VDM/.env: /mnt/ironwolf/git/Prometheus_VDM/derivation/code/common/data/approval_admin.db
+{
+  "public_db": {
+    "path": "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/common/data/approval.db",
+    "exists": true,
+    "tables_present": ["approvals","domain_keys","exempt_scripts","tag_secrets"],
+    "tables_missing": []
+  },
+  "admin_db": {
+    "path": "/mnt/ironwolf/git/Prometheus_VDM/derivation/code/common/data/approval_admin.db",
+    "exists": false,
+    "tables_present": [],
+    "tables_missing": ["admin"]
+  }
+}
+
+=== 4) quarantine smoke using io_paths policy (force unapproved) ===
+JSON_LOG: /mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/logs/metriplectic/failed_runs/20251028_003623_nexus_task_1_2_smoke.json
+CSV_LOG:  /mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/logs/metriplectic/failed_runs/20251028_003623_nexus_task_1_2_smoke.csv
+QUARANTINE_ROUTING_OK
+```
+
+Gates and policy evaluation (Task 1.2):
+- Approvals wrapper gate: PASS — [approval_cli.py](VDM_Nexus/scripts/approval_cli.py:1) enforces precedence and shells canonical CLI without storing secrets.
+- Canonical status probe: PASS — read-only; confirms public DB schema; admin DB seeding still pending (expected).
+- Quarantine routing gate: PASS — with `VDM_REQUIRE_APPROVAL=1`, `VDM_POLICY_APPROVED=0`, `VDM_POLICY_HARD_BLOCK=0`, [io_paths.py](Derivation/code/common/io_paths.py:1) produced failed_runs/ JSON+CSV, carrying policy_env and timestamp.
+
+Notes:
+- No Derivation/ source modifications; only artifacts written under canonical outputs paths per policy.
+- Next optional step to demonstrate a full approval mutation requires interactive admin password:
+  1) Seed admin DB and set domain key or tag secret via [approve_tag.py](Derivation/code/common/authorization/approve_tag.py:1) (interactive).
+  2) Approve a domain:tag with `--script` to scope HMAC; observe DB upsert.
+  3) Re-run status and a runner smoke with approval flags to show non-quarantined artifact routing.
