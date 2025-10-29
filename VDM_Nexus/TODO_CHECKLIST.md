@@ -72,6 +72,7 @@ Begin the task by following the instructions below:
 - [STARTED] Step 1.1.1 — Inventory all UI text and ensure every physics reference cites [VDM-AX-A0…A7](../derivation/AXIOMS.md#vdm-ax-a0) and relevant equations ([VDM-E-033](../derivation/EQUATIONS.md#vdm-e-033), [VDM-E-090](../derivation/EQUATIONS.md#vdm-e-090), etc.).
   - Added dashboard reference chips that resolve canon anchors (VDM-AX-A0…A7, VDM-E-033, VDM-E-090, VALIDATION_METRICS) through `DashboardController::repositoryUrl`, keeping links repo-local.
   - Normalized and deduplicated repository links so dashboard chips only expose safe, canon-tracked anchors.
+  - Hardened anchor handling so repository URLs preserve Markdown fragments after validating targets exist within `VDM_REPO_ROOT`.
 - [STARTED] Step 1.1.2 — Link KPI displays to definitions in [VALIDATION_METRICS.md](../derivation/VALIDATION_METRICS.md#kpi-front-speed-rel-err); compute pass/fail with thresholds from the active run's spec/schema; do not duplicate thresholds in GUI.
   - Dashboard metrics now reference nexus-roadmap summary counts and display gating copy referencing VALIDATION_METRICS while deferring threshold evaluation to controller data.
 - [STARTED] Step 1.1.3 — Ensure Markdown viewer overlays commit hashes on canon documents for provenance.
@@ -98,6 +99,7 @@ Begin the task by following the instructions below:
 - [STARTED] Step 1.3.2 — Map proposed experiments (e.g., quantum gravity bridge, agency field probes, intelligence model substrate) to dashboard cards as read-only links; no thresholds or gating derived from Markdown.
   - Spotlight cards pull from `spotlight_cards` entries to expose proposal paths with click-through to repo files while flagging missing RESULTS status.
   - Spotlight proposal links are sanitized and validated against the repo root before exposing open actions.
+  - Repository resolver now retains proposal anchors/fragments while still preventing traversal outside the repo.
 - [ ] Step 1.3.3 — Flag missing RESULTS using structured artifacts (approvals DB and presence of RESULTS_* artifacts/logs); show prerequisites as links to proposal sections only (no Markdown parsing for logic).
 
 ### **Task 1.3 Validation:**  

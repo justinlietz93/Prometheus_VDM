@@ -8,6 +8,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonValue>
+#include <QRegularExpression>
 #include <QSet>
 #include <QStringList>
 #include <QVariantMap>
@@ -100,6 +101,14 @@ QString normalizedRelativePath(const QString& relativePath) {
   if (trimmed.isEmpty()) {
     return QString();
   }
+
+  QString fragment;
+  const int fragmentIndex = trimmed.indexOf(QLatin1Char('#'));
+  if (fragmentIndex >= 0) {
+    fragment = trimmed.mid(fragmentIndex + 1).trimmed();
+    trimmed = trimmed.left(fragmentIndex);
+  }
+
   QString normalized = trimmed;
   normalized.replace(QChar::fromLatin1(static_cast<char>(0x5C)), QChar::fromLatin1('/'));
   if (normalized.startsWith(QStringLiteral("qrc:"))) {
@@ -132,7 +141,21 @@ QString normalizedRelativePath(const QString& relativePath) {
     safeParts.push_back(part);
   }
 
-  return safeParts.join(QLatin1Char('/'));
+  QString safePath = safeParts.join(QLatin1Char('/'));
+  if (safePath.isEmpty()) {
+    return QString();
+  }
+
+  if (!fragment.isEmpty()) {
+    static const QRegularExpression kFragmentPattern(QStringLiteral("^[A-Za-z0-9_.-]+$"));
+    if (!kFragmentPattern.match(fragment).hasMatch()) {
+      return safePath;
+    }
+    safePath.append(QLatin1Char('#'));
+    safePath.append(fragment);
+  }
+
+  return safePath;
 }
 
 }  // namespace
@@ -314,16 +337,37 @@ QUrl DashboardController::repositoryUrl(const QString& relativePath) const {
     return QUrl();
   }
 
-  auto candidateUrl = [&rel](const QString& base) -> QUrl {
-    if (base.trimmed().isEmpty()) {
+  QString fragment;
+  QString relPath = rel;
+  const int fragmentIndex = rel.indexOf(QLatin1Char('#'));
+  if (fragmentIndex >= 0) {
+    fragment = rel.mid(fragmentIndex + 1);
+    relPath = rel.left(fragmentIndex);
+  }
+
+  auto candidateUrl = [&fragment, &relPath](const QString& base) -> QUrl {
+    if (base.trimmed().isEmpty() || relPath.isEmpty()) {
       return QUrl();
     }
-    const QString candidate = QDir(base).filePath(rel);
+    const QDir baseDir(base);
+    const QString candidate = baseDir.filePath(relPath);
     const QFileInfo info(candidate);
-    if (!info.exists()) {
+    if (!info.exists() || !info.isFile()) {
       return QUrl();
     }
-    return QUrl::fromLocalFile(info.absoluteFilePath());
+    const QString canonicalBase = baseDir.canonicalPath();
+    const QString canonicalFile = info.canonicalFilePath();
+    if (canonicalBase.isEmpty() || canonicalFile.isEmpty()) {
+      return QUrl();
+    }
+    if (!canonicalFile.startsWith(canonicalBase + QLatin1Char('/')) && canonicalFile != canonicalBase) {
+      return QUrl();
+    }
+    QUrl url = QUrl::fromLocalFile(canonicalFile);
+    if (!fragment.isEmpty()) {
+      url.setFragment(fragment);
+    }
+    return url;
   };
 
   const QString envRoot = qEnvironmentVariable("VDM_REPO_ROOT");
