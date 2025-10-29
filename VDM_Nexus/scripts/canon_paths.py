@@ -134,11 +134,11 @@ class CanonResolver:
             raise CanonPathError("Empty canonical path")
 
         path_part, fragment = self._split_fragment(raw)
-        target = Path(path_part)
+        target = Path(path_part).expanduser()
         if target.is_absolute():
-            resolved = target.resolve()
+            resolved = target.resolve(strict=False)
         else:
-            resolved = (self.repo_root / target).resolve()
+            resolved = (self.repo_root / target).resolve(strict=False)
 
         try:
             resolved.relative_to(self.derivation_root)

@@ -74,3 +74,10 @@ def test_metadata_for_missing_file(resolver):
     assert metadata.sha256 is None
     assert metadata.size_bytes is None
     assert metadata.last_commit is None
+
+
+def test_resolve_missing_file_is_read_only(resolver):
+    target = "Derivation/__does_not_exist__.md#future"
+    path, fragment = resolver.resolve(target)
+    assert path == resolver.repo_root / "Derivation" / "__does_not_exist__.md"
+    assert fragment == "future"

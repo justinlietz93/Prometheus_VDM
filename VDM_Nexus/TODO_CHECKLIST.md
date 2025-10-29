@@ -62,6 +62,7 @@ Begin the task by following the instructions below:
 - [DONE] Step 0.3.2 — Set up repository-relative path resolver for `../derivation/` tree with guard rails against writes. (Note: resolver prints AXIOMS/EQUATIONS/VALIDATION_METRICS + commits.)
   - Implemented `scripts/canon_paths.py` providing guarded resolution, git metadata helpers, and enforced Derivation scoping; updated resolver printer to consume it.
   - Hardened metadata collection against filesystem permission errors and added regression tests covering repo resolution, fragment handling, and escape prevention.
+  - Relaxed canonical resolution to operate in non-strict mode so future canon entries that have not landed yet resolve without raising while remaining read-only; added regression coverage for missing-file lookups.
 - [DONE] Step 0.3.3 — Draft `CanonSync` CLI skeleton (read-only) for future indexing per standards.
   - Added `scripts/nexus_canon_sync.py` to emit read-only plans from the canon config using the shared resolver; documented usage in scripts README.
 
