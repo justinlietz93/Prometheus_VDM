@@ -3,13 +3,18 @@
 #include <QCoreApplication>
 #include <QDir>
 #include <QFile>
+#include <QFileInfo>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonValue>
+#include <QSet>
+#include <QStringList>
 #include <QVariantMap>
 
 namespace {
+
+QString normalizedRelativePath(const QString& relativePath);
 
 // Return true if an approval meta object has a non-empty "approved_at" field.
 static bool isApproved(const QJsonObject& meta) {
@@ -31,7 +36,8 @@ QVariantList makeSpotlightCards(const QJsonArray& cards) {
     QVariantMap card;
     card.insert(QStringLiteral("title"), object.value("title").toString());
     card.insert(QStringLiteral("bucket"), object.value("bucket").toString());
-    card.insert(QStringLiteral("proposalPath"), object.value("proposal_path").toString());
+    const QString proposal = object.value("proposal_path").toString();
+    card.insert(QStringLiteral("proposalPath"), normalizedRelativePath(proposal));
     card.insert(QStringLiteral("hasResults"), object.value("has_results").toBool(false));
     card.insert(QStringLiteral("results"), object.value("results"));
     result.push_back(card);
@@ -42,16 +48,26 @@ QVariantList makeSpotlightCards(const QJsonArray& cards) {
 QVariantList makeReferenceLinks(const QJsonObject& references) {
   QVariantList result;
   result.reserve(references.size());
+  QSet<QString> labels;
+
   const auto keys = references.keys();
   for (const QString& key : keys) {
     const QJsonValue value = references.value(key);
     if (!value.isString()) {
       continue;
     }
+    const QString normalized = normalizedRelativePath(value.toString());
+    if (normalized.isEmpty()) {
+      continue;
+    }
+    if (labels.contains(key)) {
+      continue;
+    }
     QVariantMap item;
     item.insert(QStringLiteral("label"), key);
-    item.insert(QStringLiteral("path"), value.toString());
+    item.insert(QStringLiteral("path"), normalized);
     result.push_back(item);
+    labels.insert(key);
   }
 
   // Canon anchors we always expose in the dashboard shell.
@@ -65,10 +81,15 @@ QVariantList makeReferenceLinks(const QJsonObject& references) {
       {"VALIDATION_METRICS", "Derivation/VALIDATION_METRICS.md#kpi-front-speed-rel-err"},
   };
   for (const auto& anchor : canonAnchors) {
+    const QString label = QString::fromUtf8(anchor.label);
+    if (labels.contains(label)) {
+      continue;
+    }
     QVariantMap item;
-    item.insert(QStringLiteral("label"), QString::fromUtf8(anchor.label));
+    item.insert(QStringLiteral("label"), label);
     item.insert(QStringLiteral("path"), QString::fromUtf8(anchor.path));
     result.push_back(item);
+    labels.insert(label);
   }
 
   return result;
@@ -76,10 +97,42 @@ QVariantList makeReferenceLinks(const QJsonObject& references) {
 
 QString normalizedRelativePath(const QString& relativePath) {
   QString trimmed = relativePath.trimmed();
-  if (trimmed.startsWith(QLatin1Char('/'))) {
-    trimmed.remove(0, 1);
+  if (trimmed.isEmpty()) {
+    return QString();
   }
-  return trimmed;
+  QString normalized = trimmed;
+  normalized.replace(QChar::fromLatin1(static_cast<char>(0x5C)), QChar::fromLatin1('/'));
+  if (normalized.startsWith(QStringLiteral("qrc:"))) {
+    return QString();
+  }
+  if (normalized.startsWith(QStringLiteral("//"))) {
+    return QString();
+  }
+  if (normalized.startsWith(QLatin1Char('/'))) {
+    normalized.remove(0, 1);
+  }
+  // Prevent drive letters or scheme usage.
+  if (normalized.contains(QLatin1Char(':'))) {
+    return QString();
+  }
+
+  QStringList parts = normalized.split(QLatin1Char('/'), Qt::SkipEmptyParts);
+  QStringList safeParts;
+  for (const QString& part : parts) {
+    if (part == QLatin1String(".")) {
+      continue;
+    }
+    if (part == QLatin1String("..")) {
+      if (safeParts.isEmpty()) {
+        return QString();
+      }
+      safeParts.removeLast();
+      continue;
+    }
+    safeParts.push_back(part);
+  }
+
+  return safeParts.join(QLatin1Char('/'));
 }
 
 }  // namespace
@@ -166,6 +219,7 @@ bool DashboardController::computeFromJson(const QByteArray& data) {
   int pending = 0;
   int logs = 0;
   int figs = 0;
+  int domainCount = 0;
 
   const QJsonValue cdVal = root.value("code_domains");
   if (cdVal.isArray()) {
@@ -175,6 +229,8 @@ bool DashboardController::computeFromJson(const QByteArray& data) {
       const QJsonObject cd = v.toObject();
 
       // approvals.allowed_tags vs approvals.approvals[tag].approved_at
+      domainCount += 1;
+
       const QJsonObject approvals = cd.value("approvals").toObject();
       const QJsonArray allowed = approvals.value("allowed_tags").toArray();
       const QJsonObject approvedMap = approvals.value("approvals").toObject();
@@ -226,6 +282,12 @@ bool DashboardController::computeFromJson(const QByteArray& data) {
     m_totalProposals = orphan + results;
     m_proposalsMissingResults = orphan;
     m_resultsTotal = results;
+    m_codeDomainsTracked = domainCount;
+  }
+
+  const QJsonValue docBucketsVal = root.value("doc_buckets");
+  if (docBucketsVal.isArray()) {
+    m_documentationBuckets = docBucketsVal.toArray().size();
   }
 
   // spotlight cards provide roadmap context for missing results.
@@ -252,16 +314,32 @@ QUrl DashboardController::repositoryUrl(const QString& relativePath) const {
     return QUrl();
   }
 
+  auto candidateUrl = [&rel](const QString& base) -> QUrl {
+    if (base.trimmed().isEmpty()) {
+      return QUrl();
+    }
+    const QString candidate = QDir(base).filePath(rel);
+    const QFileInfo info(candidate);
+    if (!info.exists()) {
+      return QUrl();
+    }
+    return QUrl::fromLocalFile(info.absoluteFilePath());
+  };
+
   const QString envRoot = qEnvironmentVariable("VDM_REPO_ROOT");
-  if (!envRoot.trimmed().isEmpty()) {
-    return QUrl::fromLocalFile(QDir(envRoot).filePath(rel));
+  if (const QUrl envUrl = candidateUrl(envRoot); envUrl.isValid()) {
+    return envUrl;
   }
 
-  const QString cwdCandidate = QDir::current().filePath(rel);
-  if (QFile::exists(cwdCandidate)) {
-    return QUrl::fromLocalFile(cwdCandidate);
+  const QString cwd = QDir::currentPath();
+  if (const QUrl cwdUrl = candidateUrl(cwd); cwdUrl.isValid()) {
+    return cwdUrl;
   }
 
   const QString appDir = QCoreApplication::applicationDirPath();
-  return QUrl::fromLocalFile(QDir(appDir).filePath(rel));
+  if (const QUrl appUrl = candidateUrl(appDir); appUrl.isValid()) {
+    return appUrl;
+  }
+
+  return QUrl();
 }

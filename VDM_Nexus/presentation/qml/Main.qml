@@ -21,7 +21,7 @@ ApplicationWindow {
             return;
         }
         const url = dashboardController.repositoryUrl(path);
-        if (url && url.toString().length > 0) {
+        if (url && url.isValid() && url.toString().length > 0) {
             Qt.openUrlExternally(url);
         }
     }
