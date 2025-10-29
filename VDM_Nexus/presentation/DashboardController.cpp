@@ -345,43 +345,64 @@ QUrl DashboardController::repositoryUrl(const QString& relativePath) const {
     relPath = rel.left(fragmentIndex);
   }
 
-  auto candidateUrl = [&fragment, &relPath](const QString& base) -> QUrl {
+  auto resolveFromBase = [&fragment, &relPath](const QString& base) -> QUrl {
     if (base.trimmed().isEmpty() || relPath.isEmpty()) {
       return QUrl();
     }
-    const QDir baseDir(base);
-    const QString candidate = baseDir.filePath(relPath);
-    const QFileInfo info(candidate);
-    if (!info.exists() || !info.isFile()) {
+
+    QFileInfo baseInfo(base);
+    QDir dir;
+    if (baseInfo.isDir()) {
+      dir = QDir(baseInfo.absoluteFilePath());
+    } else if (baseInfo.exists()) {
+      dir = baseInfo.dir();
+    } else {
+      dir = QDir(base);
+    }
+
+    if (!dir.exists()) {
       return QUrl();
     }
-    const QString canonicalBase = baseDir.canonicalPath();
-    const QString canonicalFile = info.canonicalFilePath();
-    if (canonicalBase.isEmpty() || canonicalFile.isEmpty()) {
-      return QUrl();
+
+    constexpr int kMaxTraversalDepth = 8;
+    for (int depth = 0; depth < kMaxTraversalDepth; ++depth) {
+      const QString canonicalBase = dir.canonicalPath();
+      if (!canonicalBase.isEmpty()) {
+        const QString candidate = dir.filePath(relPath);
+        const QFileInfo info(candidate);
+        if (info.exists() && info.isFile()) {
+          const QString canonicalFile = info.canonicalFilePath();
+          if (!canonicalFile.isEmpty() &&
+              (canonicalFile.startsWith(canonicalBase + QLatin1Char('/')) || canonicalFile == canonicalBase)) {
+            QUrl url = QUrl::fromLocalFile(canonicalFile);
+            if (!fragment.isEmpty()) {
+              url.setFragment(fragment);
+            }
+            return url;
+          }
+        }
+      }
+
+      if (!dir.cdUp()) {
+        break;
+      }
     }
-    if (!canonicalFile.startsWith(canonicalBase + QLatin1Char('/')) && canonicalFile != canonicalBase) {
-      return QUrl();
-    }
-    QUrl url = QUrl::fromLocalFile(canonicalFile);
-    if (!fragment.isEmpty()) {
-      url.setFragment(fragment);
-    }
-    return url;
+
+    return QUrl();
   };
 
   const QString envRoot = qEnvironmentVariable("VDM_REPO_ROOT");
-  if (const QUrl envUrl = candidateUrl(envRoot); envUrl.isValid()) {
+  if (const QUrl envUrl = resolveFromBase(envRoot); envUrl.isValid()) {
     return envUrl;
   }
 
   const QString cwd = QDir::currentPath();
-  if (const QUrl cwdUrl = candidateUrl(cwd); cwdUrl.isValid()) {
+  if (const QUrl cwdUrl = resolveFromBase(cwd); cwdUrl.isValid()) {
     return cwdUrl;
   }
 
   const QString appDir = QCoreApplication::applicationDirPath();
-  if (const QUrl appUrl = candidateUrl(appDir); appUrl.isValid()) {
+  if (const QUrl appUrl = resolveFromBase(appDir); appUrl.isValid()) {
     return appUrl;
   }
 
