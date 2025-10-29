@@ -112,7 +112,6 @@ Item {
                 color: "#9DA3B4"
                 font.pixelSize: 16
                 font.capitalization: Font.AllUppercase
-                letterSpacing: 2
             }
 
             Text {

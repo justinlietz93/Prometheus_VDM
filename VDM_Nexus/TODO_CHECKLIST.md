@@ -43,6 +43,7 @@ Begin the task by following the instructions below:
 ### Task 0.2 — Provision toolchain & environment
 
 - [DONE] Step 0.2.1 — Install Qt 6.5+, CMake ≥3.24, compiler (Clang/MSVC/GCC matching CI targets) with C++20 support. Evidence: CMake configure succeeded; Qt6 6.5 components resolved.
+  - Installed Qt 6 base + declarative development packages along with QML runtime modules (QtQuick, Controls, Layouts, Templates, WorkerScript) so the dashboard preview can start inside the container.
 - [DONE] Step 0.2.2 — Set up Python 3.13.5 environment with repo `requirements.txt`; enable `poetry`/`pip-tools` lock if applicable. Evidence: Python 3.13.5 active; `pip check` OK.
 - [DONE] Step 0.2.3 — Configure deterministic environment variables (`OMP_NUM_THREADS`, `OPENBLAS_NUM_THREADS`, `MKL_NUM_THREADS`, `BLIS_NUM_THREADS`, `VECLIB_MAXIMUM_THREADS`, `NUMEXPR_NUM_THREADS`, `PYTHONHASHSEED`) per canon execution policy. Evidence: [`VDM_Nexus/.env.example`](VDM_Nexus/.env.example:7) updated; copy to local .env for development shells.
 
@@ -192,6 +193,7 @@ Begin the task by following the instructions below:
 - Note: Phase 4 remains [NOT STARTED] until ports/adapters compile; see [NEXUS_ARCHITECTURE.md](VDM_Nexus/NEXUS_ARCHITECTURE.md) §12.
 - [STARTED] Step 4.1.1 — Implement Dashboard panes (Active Experiments, Pending Approvals, KPI summaries, orphan proposals).
   - Added QML dashboard preview (`presentation/qml/Main.qml`) wiring `DashboardController` metrics into three-card layout with canon anchor links; loads roadmap index read-only at startup.
+  - Packaged dashboard QML into `presentation.qrc` under the `/presentation` prefix and verified the headless Qt Quick runtime loads without missing module errors.
 - [NOT STARTED] Step 4.1.2 — Develop Artifact browser with filters by domain, tag, gate status, run timestamp.
 - [NOT STARTED] Step 4.1.3 — Implement Proposal/Results Viewer: render PROPOSAL_* and RESULTS_* Markdown with math rendering, commit banners, anchor navigation; read-only.
 - [NOT STARTED] Step 4.1.4 — Implement Experiment Browser (Configs/Specs): list per-domain experiments and open config/spec JSON with a pretty/JSON-path viewer; display repository path and commit hash; read-only (no writes to derivation).
