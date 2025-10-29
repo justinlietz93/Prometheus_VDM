@@ -100,3 +100,4 @@ Artifacts/References:
 - Wrapper: [`approval_cli.py`](VDM_Nexus/scripts/approval_cli.py:1)
 - Docs: [`VDM_Nexus/scripts/README.md`](VDM_Nexus/scripts/README.md:1)
 - Canonical approvals: [`approve_tag.py`](Derivation/code/common/authorization/approve_tag.py:1)
+| 2025-10-28 | Queried KG-Lite memory via CLI and validated graph usability. | Ran kg_cli (python3 memory-bank/MEMORY_GRAPH_CONTEXT/tools/kg_cli.py): entities list (count=6) including VDM_Nexus_Approval_CLI and Canonical_Approve_Tag_CLI; relations list shows wrapper wraps canonical; built PathRAG index (entries=0). No inconsistencies detected; no repair needed. Will expand indexing later to include code path anchors. |

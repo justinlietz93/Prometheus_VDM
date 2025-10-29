@@ -299,6 +299,32 @@ class Connectome:
         s = int(max(self.candidates, 2 * k))
         A_new = np.zeros((N, N), dtype=np.int8)
 
+        # Dense-path guardrails: by default, forbid dense usage except in isolated validation,
+        # and optionally block any NxN allocation beyond a configured N threshold.
+        _truthy = {"1","true","yes","on","y","t"}
+        _no_dense = str(_os.getenv("NO_DENSE_CONNECTOME", "1")).strip().lower() in _truthy
+        _allow_dense_validation = str(_os.getenv("ALLOW_DENSE_VALIDATION", "0")).strip().lower() in _truthy
+        try:
+            _dense_n_max = int(_os.getenv("DENSE_N_MAX", "2048"))
+        except Exception:
+            _dense_n_max = 2048
+
+        # Hard gate: if dense mode is requested but global no-dense policy is enabled
+        if self.structural_mode == "dense":
+            if _no_dense and not _allow_dense_validation:
+                raise RuntimeError(
+                    "NO_DENSE_CONNECTOME=1 policy forbids structural_mode='dense'. "
+                    "Use SparseConnectome or set ALLOW_DENSE_VALIDATION=1 only in isolated validation tools. "
+                    "See ALGORITHMS.md#vdm-a-002 for policy notes."
+                )
+
+        # Allocation gate: prevent NxN adjacency allocation beyond threshold under no-dense policy
+        if _no_dense and N > _dense_n_max and not _allow_dense_validation:
+            raise RuntimeError(
+                f"NO_DENSE_CONNECTOME policy blocks dense NxN allocation for N={N} > DENSE_N_MAX={_dense_n_max}. "
+                "Switch to SparseConnectome or lower N for validation."
+            )
+
         if self.structural_mode == "dense" and N <= 4096:
             # Exact affinity (validation/small N)
             S = a[:, None] * a[None, :] - self.lambda_omega * np.abs(om[:, None] - om[None, :])
