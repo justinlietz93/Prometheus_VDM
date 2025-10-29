@@ -122,11 +122,10 @@ def log_preflight(test_name: str, *, config: Dict[str, Any], results: Dict[str, 
         config: Input parameters/config used by the test.
         results: Output metrics/results dictionary.
         status: Optional status (e.g., "pass"/"fail"). If omitted, will try results["passed"].
-        tag: Optional tag override. Default is f"pre-flight-{test_name}".
+        tag: Deprecated/ignored. Preflight rows are stored with a fixed tag value "preflight".
     Returns:
         Path to the per-domain SQLite DB file that was written to.
     """
-    tag_val = tag or f"pre-flight-{test_name}"
     status_val = (status if status is not None else ("pass" if bool(results.get("passed", True)) else "fail"))
 
     # Infer domain from caller path (tests/<domain>/...), then map test -> runner preflight table
@@ -135,7 +134,9 @@ def log_preflight(test_name: str, *, config: Dict[str, Any], results: Dict[str, 
 
     # Begin a run row with engineering_only=True to bypass approvals for tests
     # Use dedicated helper to enforce preflight invariants and routing
-    handle = _rdb.begin_preflight_run(domain, experiment, tag_val, params=_as_jsonable(config))
+    # Begin a run row with engineering_only=True to bypass approvals for tests.
+    # The preflight helper enforces invariant table routing and a fixed tag value 'preflight'.
+    handle = _rdb.begin_preflight_run(domain, experiment, params=_as_jsonable(config))
 
     # Log metrics: attach results + environment + test metadata
     metrics = {

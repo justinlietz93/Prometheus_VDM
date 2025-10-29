@@ -2,6 +2,7 @@
     <qresource prefix="/presentation">
         <file>qml/Main.qml</file>
         <file>qml/DashboardMetrics.qml</file>
+        <file>qml/KpiPanel.qml</file>
     </qresource>
 </RCC>
 

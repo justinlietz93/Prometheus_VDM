@@ -27,7 +27,9 @@ Begin the task by following the instructions below:
 ### Task 0.1 — Align repository baseline
 
 - [DONE] Step 0.1.1 — Create `VDM_Nexus/` top-level directory and place [`NEXUS_ARCHITECTURE.md`](VDM_Nexus/NEXUS_ARCHITECTURE.md:1) under version control.
-- [STARTED] Step 0.1.2 — Mirror canonical linting/build configurations (clang-format, CMake presets) from existing runtime packages.
+- [DONE] Step 0.1.2 — Mirror canonical linting/build configurations (clang-format, CMake presets) from existing runtime packages.
+  - Added `CMakePresets.json` with Linux/macOS/Windows Ninja presets (Debug/Release), `NEXUS_BUILD_TESTS=ON`, and `CMAKE_EXPORT_COMPILE_COMMANDS=ON`.
+  - `.clang-format` already present; matches canonical style.
 - [DONE] Step 0.1.3 — Document repo pointers (`VDM_REPO_ROOT`, approvals DB paths) in CONTRIBUTING notes.
 
 ### **Task 0.1 Validation:**
@@ -38,7 +40,7 @@ Begin the task by following the instructions below:
   - Note: `NEXUS_ARCHITECTURE.md` not newly added vs origin/main (already present upstream or renamed).
 
 - [PENDING] CI lint job passes with Nexus directory included.
-  - Current status: PENDING. Local probes: md hygiene PASS (tools/md_hygiene_check.py), JSON lint PASS (`jq` on VDM_Nexus/**/*.json), pre-commit config missing, clang-format not installed. CI workflow not found; add/check CI before marking this passed.
+  - Current status: Workflow present at `.github/workflows/nexus-ci.yml`; installs cmake/Qt6/VTK/clang-format and builds Nexus. Local probes: md hygiene PASS, JSON lint PASS. Pre-commit config still missing.
 
 ### Task 0.2 — Provision toolchain & environment
 
@@ -57,9 +59,13 @@ Begin the task by following the instructions below:
 
 ### Task 0.3 — Wire canon ingestion scaffolding
 
-- [STARTED] Step 0.3.1 — Add Nexus configuration file referencing anchors in [AXIOMS](../derivation/AXIOMS.md#vdm-ax-a0), [EQUATIONS](../derivation/EQUATIONS.md#vdm-e-033), and [VALIDATION_METRICS](../derivation/VALIDATION_METRICS.md#kpi-front-speed-rel-err).
-- [STARTED] Step 0.3.2 — Set up repository-relative path resolver for `../derivation/` tree with guard rails against writes. (Note: resolver prints AXIOMS/EQUATIONS/VALIDATION_METRICS + commits.)
-- [STARTED] Step 0.3.3 — Draft `CanonSync` CLI skeleton (read-only) for future indexing per standards.
+- [DONE] Step 0.3.1 — Add Nexus configuration file referencing anchors in [AXIOMS](../derivation/AXIOMS.md#vdm-ax-a0), [EQUATIONS](../derivation/EQUATIONS.md#vdm-e-033), and [VALIDATION_METRICS](../derivation/VALIDATION_METRICS.md#kpi-front-speed-rel-err).
+  - Created `VDM_Nexus/config/nexus.config.json` mapping UI chips to repo-local anchors.
+- [DONE] Step 0.3.2 — Set up repository-relative path resolver for `../derivation/` tree with guard rails against writes. (Note: resolver prints AXIOMS/EQUATIONS/VALIDATION_METRICS + commits.)
+  - Implemented via `VDM_Nexus/scripts/nexus_resolver_print.py` (read-only), which resolves canonical files and prints `repo_head` and `file_last_commit`, with SHA-256 and sizes when present.
+  - Guard rails: prevents traversal outside repo, uses relative paths, and never writes to `Derivation/`.
+- [DONE] Step 0.3.3 — Draft `CanonSync` CLI skeleton (read-only) for future indexing per standards.
+  - Added `VDM_Nexus/scripts/canon_sync.py` (read-only) to print configured anchors; no writes to Derivation/.
 
 ### **Task 0.3 Validation:**
 
@@ -72,14 +78,17 @@ Begin the task by following the instructions below:
 
 ### Task 1.1 — Map canonical sources into Nexus surfaces
 
-- [STARTED] Step 1.1.1 — Inventory all UI text and ensure every physics reference cites [VDM-AX-A0…A7](../derivation/AXIOMS.md#vdm-ax-a0) and relevant equations ([VDM-E-033](../derivation/EQUATIONS.md#vdm-e-033), [VDM-E-090](../derivation/EQUATIONS.md#vdm-e-090), etc.).
+- [DONE] Step 1.1.1 — Inventory all UI text and ensure every physics reference cites [VDM-AX-A0…A7](../derivation/AXIOMS.md#vdm-ax-a0) and relevant equations ([VDM-E-033](../derivation/EQUATIONS.md#vdm-e-033), [VDM-E-090](../derivation/EQUATIONS.md#vdm-e-090), etc.).
   - Added dashboard reference chips that resolve canon anchors (VDM-AX-A0…A7, VDM-E-033, VDM-E-090, VALIDATION_METRICS) through `DashboardController::repositoryUrl`, keeping links repo-local.
   - Normalized and deduplicated repository links so dashboard chips only expose safe, canon-tracked anchors.
   - Hardened anchor handling so repository URLs preserve Markdown fragments after validating targets exist within `VDM_REPO_ROOT`.
   - Added repository traversal guard that ascends from build/output directories to find canon files safely, so dashboard chips work even when the app launches outside the repo root.
+  - Added automated Markdown anchor hygiene scanner: `VDM_Nexus/scripts/nexus_canon_scan.py` (warn-only by default; `--strict` to error), indexing AXIOMS/EQUATIONS/VALIDATION_METRICS and flagging missing/invalid anchors.
 - [STARTED] Step 1.1.2 — Link KPI displays to definitions in [VALIDATION_METRICS.md](../derivation/VALIDATION_METRICS.md#kpi-front-speed-rel-err); compute pass/fail with thresholds from the active run's spec/schema; do not duplicate thresholds in GUI.
   - Dashboard metrics now reference nexus-roadmap summary counts and display gating copy referencing VALIDATION_METRICS while deferring threshold evaluation to controller data.
+  - Added KPI panel and loader: `DashboardController::loadKpiSummary(path)` parses JSON with values and schema thresholds (comparator, threshold) to compute PASS/FAIL, and `presentation/qml/KpiPanel.qml` renders cards linking to VALIDATION_METRICS anchors. No thresholds duplicated in GUI.
 - [STARTED] Step 1.1.3 — Ensure Markdown viewer overlays commit hashes on canon documents for provenance.
+  - Added provenance loader `DashboardController::loadCanonIndex(path)` to ingest `nexus_canon_scan.py index --json` output and surface `last_commit`/`sha256` for AXIOMS/EQUATIONS/VALIDATION_METRICS; `KpiPanel.qml` shows a compact "Canon provenance" list until full Markdown viewer lands.
 
 ### **Task 1.1 Validation:**
 

@@ -1,0 +1,8 @@
+{
+  "canon": {
+    "axioms": "Derivation/AXIOMS.md#vdm-ax-a0",
+    "equations": "Derivation/EQUATIONS.md#vdm-e-033",
+    "validation_metrics": "Derivation/VALIDATION_METRICS.md#kpi-front-speed-rel-err"
+  },
+  "notes": "Read-only config mapping UI anchor chips to repo-local paths with fragments."
+}

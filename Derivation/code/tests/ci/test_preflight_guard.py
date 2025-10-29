@@ -71,6 +71,11 @@ def test_allow_begin_preflight_run_and_query(tmp_path: Path):
 
         # Table naming should reflect the preflight variant
         assert handle.table.endswith("_preflight")  # nosec B101
+
+        # Convenience helper should return the latest preflight row
+        latest = rdb.get_latest_preflight(domain, str(script))
+        assert latest is not None  # nosec B101
+        assert latest.get("tag") == "preflight"  # nosec B101
     finally:
         # Cleanup the domain DB file to keep CI workspace tidy
         try:

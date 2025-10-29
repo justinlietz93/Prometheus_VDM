@@ -296,3 +296,19 @@ __marimo__/
 
 # Agent Memory
 memory-bank/*
+
+!runs/new_10kN_20250816_072533
+!runs/original_1kN_20250811_234347
+!runs/original_1kN_20250811_234347/archived/20250815_120828
+
+!runs/new_10kN_20250816_072533/*.zip
+!runs/original_1kN_20250811_234347/*.zip
+!runs/original_1kN_20250811_234347/archived/20250815_120828/*.zip
+
+!runs/new_10kN_20250816_072533/*.jsonl
+!runs/original_1kN_20250811_234347/*.jsonl
+!runs/original_1kN_20250811_234347/archived/*.jsonl
+
+!runs/original_1kN_20250811_234347/reasoning_evidence/*.zip
+
+!runs/original_1kN_20250811_234347/archived/20250815_120828/*.jsonl

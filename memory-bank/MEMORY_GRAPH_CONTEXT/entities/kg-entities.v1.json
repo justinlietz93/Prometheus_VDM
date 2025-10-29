@@ -57,6 +57,81 @@
         "Scope: adoption of approvals wrapper; documentation; pending Task 1.2 validation."
       ],
       "type": "Record"
+    },
+    {
+      "name": "Preflight_Fixed_Tag_Policy",
+      "observations": [
+        "Rule: Preflight runs use fixed tag 'preflight' in DB rows.",
+        "Table variant: '<runner>_preflight'; preflight=1 flag enforced.",
+        "Files: [results_db.py](Derivation/code/common/data/results_db.py:1); [preflight_db.py](Derivation/code/common/data/preflight_db.py:1)",
+        "Timestamp: 2025-10-29T07:02:05Z"
+      ],
+      "type": "Policy"
+    },
+    {
+      "name": "Test_Runtime_Guard_Forbids_Begin_Run_In_Tests",
+      "observations": [
+        "Path: [conftest.py](Derivation/code/tests/conftest.py:1) installs guard on results_db.begin_run",
+        "Enforces preflight-only DB usage in tests; remediation message provided",
+        "Timestamp: 2025-10-29T07:02:11Z"
+      ],
+      "type": "Test"
+    },
+    {
+      "name": "Static_Lint_Preflight_API_Checker",
+      "observations": [
+        "Path: [check_tests_preflight_api.py](tools/lint/check_tests_preflight_api.py:1)",
+        "Flags forbidden begin_run in tests; whitelists [test_preflight_guard.py](Derivation/code/tests/ci/test_preflight_guard.py:1)",
+        "Bandit-safe: avoids bare except/pass; logs warnings",
+        "Timestamp: 2025-10-29T07:02:24Z"
+      ],
+      "type": "ScriptTool"
+    },
+    {
+      "name": "CI_Preflight_Guard_Test",
+      "observations": [
+        "Path: [test_preflight_guard.py](Derivation/code/tests/ci/test_preflight_guard.py:1)",
+        "Asserts begin_run and begin_real_run blocked; begin_preflight_run allowed; validates get_latest_preflight; cleans DB file",
+        "Timestamp: 2025-10-29T07:02:50Z"
+      ],
+      "type": "Test"
+    },
+    {
+      "name": "Results_DB_Preflight_Invariants_And_Helpers",
+      "observations": [
+        "Path: [results_db.py](Derivation/code/common/data/results_db.py:1)",
+        "Added preflight column migration; variant alignment invariants; helpers: begin_preflight_run, begin_real_run, get_preflight_runs, get_latest_preflight, get_real_runs",
+        "Timestamp: 2025-10-29T07:03:12Z"
+      ],
+      "type": "CodeChange"
+    },
+    {
+      "name": "Preflight_DB_Route_And_Tag_Deprecation",
+      "observations": [
+        "Path: [preflight_db.py](Derivation/code/common/data/preflight_db.py:1)",
+        "Route through begin_preflight_run; deprecate/ignore 'tag' in log_preflight; clarified docs",
+        "Timestamp: 2025-10-29T07:03:20Z"
+      ],
+      "type": "CodeChange"
+    },
+    {
+      "name": "Preflight_Separation_Guardrails_Summary",
+      "observations": [
+        "Separation enforced via: runtime guard, static lint, DB invariants, preflight table variant, fixed tag 'preflight'",
+        "Tests avoid outputs artifacts; CI test validates guard + latest preflight helper",
+        "Next: wire lint into CI; document policy + helper APIs",
+        "Timestamp: 2025-10-29T07:04:29Z"
+      ],
+      "type": "Summary"
+    },
+    {
+      "name": "Preflight_Policy_Context",
+      "observations": [
+        "Active context: enforcing strict separation between preflight and real runs; DB-backed logging only; no outputs artifacts from preflight tests",
+        "Latest changes: fixed-tag policy; latest-preflight helper; CI guard test; lint whitelist for enforcement test",
+        "Timestamp: 2025-10-29T07:04:46Z"
+      ],
+      "type": "Context"
     }
   ],
   "provenance": {
@@ -73,5 +148,5 @@
   },
   "set_id": "kg-entities",
   "set_version": "1.0",
-  "updated_utc": "2025-10-28T05:30:30Z"
+  "updated_utc": "2025-10-29T07:04:46Z"
 }

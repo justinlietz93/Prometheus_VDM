@@ -401,6 +401,30 @@ def get_preflight_runs(domain: str, experiment: str, tag: Optional[str] = None) 
     return out
 
 
+def get_latest_preflight(domain: str, experiment: str) -> Optional[dict]:
+    """Return the most recent preflight row for the given runner script, or None if none exist.
+    Uses the preflight table variant and selects the highest batch for the fixed tag 'preflight'.
+    """
+    db_path = get_db_path(domain)
+    table = ensure_table(db_path, experiment, variant="preflight")
+    with sqlite3.connect(str(db_path)) as conn:
+        conn.row_factory = sqlite3.Row
+        _assert_safe_identifier(table)
+        # Prefer ordering by batch for the fixed tag; fall back to started_at if needed in the future
+        sql = f"SELECT * FROM \"{table}\" WHERE preflight=1 AND tag=? ORDER BY batch DESC LIMIT 1"  # nosec B608
+        cur = conn.execute(sql, ("preflight",))
+        row = cur.fetchone()
+        if not row:
+            return None
+        d = {k: row[k] for k in row.keys()}
+        for col in ("params_json", "metrics_json", "artifacts_json"):
+            if d.get(col):
+                try:
+                    d[col] = json.loads(d[col])
+                except Exception:
+                    d[col] = d[col]
+        return d
+
 def get_real_runs(domain: str, experiment: str, tag: Optional[str] = None) -> list[dict]:
     """Return only real (non-preflight) rows from the base table."""
     db_path = get_db_path(domain)

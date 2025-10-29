@@ -19,12 +19,16 @@ class DashboardController : public QObject {
   Q_PROPERTY(QString updatedTimestamp READ updatedTimestamp NOTIFY changed)
   Q_PROPERTY(QVariantList spotlightCards READ spotlightCards NOTIFY changed)
   Q_PROPERTY(QVariantList referenceLinks READ referenceLinks NOTIFY changed)
+  Q_PROPERTY(QVariantList kpiCards READ kpiCards NOTIFY changed)
+  Q_PROPERTY(QVariantList canonProvenance READ canonProvenance NOTIFY changed)
 public:
   explicit DashboardController(QObject* parent=nullptr);
 
   Q_INVOKABLE bool loadIndex(const QString& path);
   Q_INVOKABLE QString defaultIndexPath() const;
   Q_INVOKABLE QUrl repositoryUrl(const QString& relativePath) const;
+  Q_INVOKABLE bool loadKpiSummary(const QString& path);
+  Q_INVOKABLE bool loadCanonIndex(const QString& path);
 
   int pendingApprovals() const { return m_pendingApprovals; }
   int orphanProposals() const { return m_orphanProposals; }
@@ -38,6 +42,8 @@ public:
   QString updatedTimestamp() const { return m_updatedUtc; }
   QVariantList spotlightCards() const { return m_spotlightCards; }
   QVariantList referenceLinks() const { return m_referenceLinks; }
+  QVariantList kpiCards() const { return m_kpiCards; }
+  QVariantList canonProvenance() const { return m_canonProv; }
 
 signals:
   void changed();
@@ -58,4 +64,6 @@ private:
   QString m_updatedUtc;
   QVariantList m_spotlightCards;
   QVariantList m_referenceLinks;
+  QVariantList m_kpiCards;
+  QVariantList m_canonProv;
 };

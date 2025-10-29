@@ -178,6 +178,8 @@ void DashboardController::reset() {
   m_updatedUtc.clear();
   m_spotlightCards.clear();
   m_referenceLinks.clear();
+  m_kpiCards.clear();
+  m_canonProv.clear();
 }
 
 QString DashboardController::defaultIndexPath() const {
@@ -268,6 +270,105 @@ bool DashboardController::loadIndex(const QString& path) {
   const bool ok = computeFromJson(data);
   emit changed();
   return ok;
+}
+
+bool DashboardController::loadKpiSummary(const QString& path) {
+  // Expects a JSON array of objects with fields:
+  // { id, label, value (number), comparator (">=" or "<="), threshold (number), definition_path }
+  QFile f(path);
+  if (!f.exists()) {
+    qWarning().noquote() << "[NEXUS][KPI] missing summary" << path;
+    m_kpiCards.clear();
+    emit changed();
+    return false;
+  }
+  if (!f.open(QIODevice::ReadOnly)) {
+    qWarning().noquote() << "[NEXUS][KPI] unable to open summary" << path;
+    m_kpiCards.clear();
+    emit changed();
+    return false;
+  }
+  const QByteArray data = f.readAll();
+  f.close();
+  QJsonParseError perr{};
+  const QJsonDocument doc = QJsonDocument::fromJson(data, &perr);
+  if (perr.error != QJsonParseError::NoError) {
+    qWarning().noquote() << "[NEXUS][KPI] parse error" << perr.errorString();
+    m_kpiCards.clear();
+    emit changed();
+    return false;
+  }
+  m_kpiCards.clear();
+  if (doc.isArray()) {
+    const QJsonArray arr = doc.array();
+    for (const QJsonValue& v : arr) {
+      if (!v.isObject()) continue;
+      const QJsonObject o = v.toObject();
+      const QString label = o.value("label").toString();
+      const double value = o.value("value").toDouble(std::numeric_limits<double>::quiet_NaN());
+      const double thr = o.value("threshold").toDouble(std::numeric_limits<double>::quiet_NaN());
+      const QString cmp = o.value("comparator").toString();
+      const QString defPath = o.value("definition_path").toString();
+      bool pass = false;
+      if (cmp == QLatin1String(">=")) pass = (value >= thr);
+      else if (cmp == QLatin1String("<=")) pass = (value <= thr);
+      QVariantMap card;
+      card.insert(QStringLiteral("label"), label);
+      card.insert(QStringLiteral("value"), value);
+      card.insert(QStringLiteral("threshold"), thr);
+      card.insert(QStringLiteral("comparator"), cmp);
+      card.insert(QStringLiteral("definitionPath"), defPath);
+      card.insert(QStringLiteral("pass"), pass);
+      m_kpiCards.push_back(card);
+    }
+  }
+  emit changed();
+  return !m_kpiCards.isEmpty();
+}
+
+bool DashboardController::loadCanonIndex(const QString& path) {
+  // Expects JSON from nexus_canon_scan.py index --json
+  QFile f(path);
+  if (!f.exists()) {
+    qWarning().noquote() << "[NEXUS][CANON] missing index" << path;
+    m_canonProv.clear();
+    emit changed();
+    return false;
+  }
+  if (!f.open(QIODevice::ReadOnly)) {
+    qWarning().noquote() << "[NEXUS][CANON] unable to open index" << path;
+    m_canonProv.clear();
+    emit changed();
+    return false;
+  }
+  const QByteArray data = f.readAll();
+  f.close();
+  QJsonParseError perr{};
+  const QJsonDocument doc = QJsonDocument::fromJson(data, &perr);
+  if (perr.error != QJsonParseError::NoError || !doc.isObject()) {
+    qWarning().noquote() << "[NEXUS][CANON] parse error" << perr.errorString();
+    m_canonProv.clear();
+    emit changed();
+    return false;
+  }
+  const QJsonObject root = doc.object();
+  m_canonProv.clear();
+  auto addEntry = [this](const QString& label, const QJsonObject& obj) {
+    QVariantMap m;
+    m.insert(QStringLiteral("label"), label);
+    m.insert(QStringLiteral("lastCommit"), obj.value("last_commit").toString());
+    m.insert(QStringLiteral("sha256"), obj.value("sha256").toString());
+    m.insert(QStringLiteral("path"), obj.value("path").toString());
+    m_canonProv.push_back(m);
+  };
+  const QJsonObject eq = root.value("equations_md").toObject();
+  const QJsonObject ax = root.value("axioms_md").toObject();
+  const QJsonObject kpi = root.value("valid_metrics_md").toObject();
+  if (!eq.isEmpty()) addEntry(QStringLiteral("EQUATIONS.md"), eq);
+  if (!ax.isEmpty()) addEntry(QStringLiteral("AXIOMS.md"), ax);
+  if (!kpi.isEmpty()) addEntry(QStringLiteral("VALIDATION_METRICS.md"), kpi);
+  emit changed();
+  return !m_canonProv.isEmpty();
 }
 
 bool DashboardController::computeFromJson(const QByteArray& data) {

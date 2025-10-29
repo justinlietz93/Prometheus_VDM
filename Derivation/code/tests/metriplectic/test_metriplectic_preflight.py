@@ -98,6 +98,11 @@ def test_j_only_reversibility_and_energy_slope(monkeypatch, tmp_path):
     jr = j_reversibility_kg(spec)
     assert (jr.get("passes_strict") or jr.get("cap_ok")), f"J-only reversibility failed: {jr}"  # nosec B101
 
+    # Noether (energy) drift bound under time-reversal: after +dt then -dt, |W2-W0| <= 1e-8
+    e01 = float(jr.get("energy_drifts", {}).get("W1_minus_W0", float("inf")))
+    e20 = float(jr.get("energy_drifts", {}).get("W2_minus_W0", float("inf")))
+    noether_ok = (abs(e20) <= 1e-8)
+
     # Energy oscillation slope ~2, R^2 ~ 1 (pure in-memory diagnostic, no artifact writes)
     slope, R2 = _energy_slope_in_memory(N=64, dx=1.0, c=1.0, m=0.5, seed_scale=0.05, dt_ladder_count=4, steps=400)
     passed = (1.95 <= slope <= 2.05) and (R2 >= 0.999)
@@ -105,9 +110,10 @@ def test_j_only_reversibility_and_energy_slope(monkeypatch, tmp_path):
     log_preflight(
         "j_only_energy_slope",
         config={"N":64, "dx":1.0, "c":1.0, "m":0.5, "seed_scale":0.05, "dt_ladder_count":4, "steps":400},
-        results={"reversibility": jr, "slope": float(slope), "R2": float(R2), "passed": bool(passed)},
-        status="pass" if passed else "fail",
+        results={"reversibility": jr, "noether_ok": bool(noether_ok), "slope": float(slope), "R2": float(R2), "passed": bool(passed and noether_ok)},
+        status="pass" if (passed and noether_ok) else "fail",
     )
+    assert noether_ok, f"Noether drift out of bounds after time-reversal: W2-W0={e20:.3e}"  # nosec B101
     assert 1.95 <= slope <= 2.05, f"Energy-osc slope out of band: {slope}"  # nosec B101
     assert R2 >= 0.999, f"Energy-osc R2 too low: {R2}"  # nosec B101
 

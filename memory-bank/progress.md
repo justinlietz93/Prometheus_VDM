@@ -2,7 +2,9 @@
 
 ## Done
 
-- Implemented CI preflight guard unit tests and verified they pass
+- Added results_db.get_latest_preflight() helper
+- Updated preflight_db.log_preflight to ignore tag and document fixed-tag policy
+- Extended CI test to validate latest-preflight helper
 
 ## Doing
 
@@ -10,5 +12,5 @@
 
 ## Next
 
-- Wire the static lint tool into CI/pre-commit
-- Document preflight policy and helper APIs in developer docs
+- Document preflight fixed-tag policy in developer docs
+- Optionally add Make target and CI job to run the preflight API lint checker

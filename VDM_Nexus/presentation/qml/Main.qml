@@ -68,6 +68,11 @@ ApplicationWindow {
             controller: dashboardController
         }
 
+        KpiPanel {
+            Layout.fillWidth: true
+            controller: dashboardController
+        }
+
         Rectangle {
             Layout.fillWidth: true
             color: "#1F1F24"

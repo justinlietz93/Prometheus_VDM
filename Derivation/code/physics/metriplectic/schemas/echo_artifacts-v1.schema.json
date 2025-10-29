@@ -1,0 +1,30 @@
+{
+  "$id": "echo_artifacts-v1.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Assisted Echo Artifacts (v1)",
+  "type": "object",
+  "required": ["seeds", "lambdas", "ceg_summary", "per_seed"],
+  "properties": {
+    "seeds": {"type": "array", "items": {"type": "integer"}},
+    "lambdas": {"type": "array", "items": {"type": "number"}},
+    "grid": {"type": "object"},
+    "params": {"type": "object"},
+    "dt": {"type": "number"},
+    "steps": {"type": "integer"},
+    "per_seed": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["seed", "baseline_err", "assisted_err", "ceg"],
+        "properties": {
+          "seed": {"type": "integer"},
+          "baseline_err": {"type": "number"},
+          "assisted_err": {"type": "object"},
+          "ceg": {"type": "object"}
+        }
+      }
+    },
+    "ceg_summary": {"type": "object"}
+  },
+  "additionalProperties": true
+}

@@ -4,9 +4,49 @@
       "from": "VDM_Nexus_Approval_CLI",
       "relationType": "wraps",
       "to": "Canonical_Approve_Tag_CLI"
+    },
+    {
+      "from": "Test_Runtime_Guard_Forbids_Begin_Run_In_Tests",
+      "relationType": "enforces",
+      "to": "Preflight_Fixed_Tag_Policy"
+    },
+    {
+      "from": "Static_Lint_Preflight_API_Checker",
+      "relationType": "enforces",
+      "to": "Preflight_Fixed_Tag_Policy"
+    },
+    {
+      "from": "CI_Preflight_Guard_Test",
+      "relationType": "validates",
+      "to": "Test_Runtime_Guard_Forbids_Begin_Run_In_Tests"
+    },
+    {
+      "from": "CI_Preflight_Guard_Test",
+      "relationType": "validates",
+      "to": "Static_Lint_Preflight_API_Checker"
+    },
+    {
+      "from": "Results_DB_Preflight_Invariants_And_Helpers",
+      "relationType": "implements",
+      "to": "Preflight_Fixed_Tag_Policy"
+    },
+    {
+      "from": "Preflight_DB_Route_And_Tag_Deprecation",
+      "relationType": "implements",
+      "to": "Preflight_Fixed_Tag_Policy"
+    },
+    {
+      "from": "Preflight_Separation_Guardrails_Summary",
+      "relationType": "summarizes",
+      "to": "Preflight_Fixed_Tag_Policy"
+    },
+    {
+      "from": "Preflight_Policy_Context",
+      "relationType": "includes",
+      "to": "Preflight_Separation_Guardrails_Summary"
     }
   ],
   "set_id": "kg-relations",
   "set_version": "1.0",
-  "updated_utc": "2025-10-28T05:30:30Z"
+  "updated_utc": "2025-10-29T07:04:53Z"
 }
