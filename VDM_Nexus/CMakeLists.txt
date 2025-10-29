@@ -14,7 +14,7 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-find_package(Qt6 6.5 REQUIRED COMPONENTS Core Gui Qml Quick Widgets)
+find_package(Qt6 6.4 REQUIRED COMPONENTS Core Gui Qml Quick QuickControls2 Widgets)
 
 add_subdirectory(domain)
 add_subdirectory(application)
@@ -36,6 +36,7 @@ add_executable(physics_nexus_app)
 target_sources(physics_nexus_app
   PRIVATE
     src/main.cpp
+    presentation/presentation.qrc
 )
 target_link_libraries(physics_nexus_app
   PRIVATE
@@ -43,6 +44,7 @@ target_link_libraries(physics_nexus_app
     Qt6::Gui
     Qt6::Qml
     Qt6::Quick
+    Qt6::QuickControls2
     Qt6::Widgets
     physics_nexus_application
     physics_nexus_presentation
