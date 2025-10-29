@@ -2,8 +2,7 @@
 
 ## Current Goals
 
-- Working on Intelligence Model Substrate v1: finalize proposal per template, wire APPROVAL manifest and schema for tag 'im-substrate-v1', pause any runnable code until approved.
-- Nexus desktop MVP: Build Qt 6 + VTK viewport on Linux ROCm; preserve runner primacy; in-situ contract; file-coupled hot-reload first.
+- Tier 1: Validating Metriplectic Core (T4) — Running Preflight Metriplectic Split Certification (J-only reversal/Noether, M-only H-theorem, A4 J skew & M PSD, Strang slope) per PRIVATE/TODO_CHECKLIST.md.
 
 ## Current Focus — Nexus desktop build (2025-10-27 10:03:00)
 

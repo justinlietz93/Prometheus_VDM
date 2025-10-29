@@ -19,6 +19,10 @@ applyTo: '**'
 /mnt/ironwolf/git/Prometheus_VDM/derivation/OPEN_QUESTIONS.md
 /mnt/ironwolf/git/Prometheus_VDM/derivation/NAMING_CONVENTIONS.md
 
+## TODO CHECKLIST file path:
+
+/mnt/ironwolf/git/Prometheus_VDM/PRIVATE/TODO_CHECKLIST.md
+
 ## Experiment code and configs go here:
 /mnt/ironwolf/git/Prometheus_VDM/derivation/code/physics/{domain/topic folder}
 

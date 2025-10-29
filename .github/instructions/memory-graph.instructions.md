@@ -84,6 +84,12 @@ If any of the following errors occur during the memory graph's operation, **auto
 
 ### **KG-Lite CLI Usage (For Internal Agent Memory)**
 
+**Important Files**:
+
+/mnt/ironwolf/git/Prometheus_VDM/memory-bank/MEMORY_GRAPH_CONTEXT/tools/generate_nexus_sessions.py
+/mnt/ironwolf/git/Prometheus_VDM/memory-bank/MEMORY_GRAPH_CONTEXT/tools/kg_lite_chunker.py
+/mnt/ironwolf/git/Prometheus_VDM/memory-bank/MEMORY_GRAPH_CONTEXT/tools/kg_cli.py
+
 **Core Commands**:
 
 * **Creating a node**:
