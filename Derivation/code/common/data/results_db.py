@@ -16,6 +16,7 @@ Contract:
  - One table per experiment script (table name = sanitized script stem, e.g., kg_light_cone)
  - Rows keyed by (tag, batch) where batch is incremental per tag within that table
  - Stores params/metrics/artifacts as JSON text; status and timestamps for lifecycle
+ - Marks preflight rows explicitly to avoid confusion with first-class experiments
 
 Minimal API:
  - get_db_path(domain) -> Path
@@ -86,12 +87,18 @@ def _ensure_db(db_path: Path) -> None:
         conn.execute("PRAGMA foreign_keys=ON;")
 
 
-def ensure_table(db_path: Path, experiment: str) -> str:
-    """Create a table for the experiment if it doesn't exist. Returns the table name.
-    The table has a UNIQUE(tag, batch) constraint to enforce incremental batches per tag.
+def ensure_table(db_path: Path, experiment: str, variant: Optional[str] = None) -> str:
+    """Create a table for the experiment (and optional variant) if it doesn't exist.
+    Returns the table name. The table has a UNIQUE(tag, batch) constraint to enforce
+    incremental batches per tag.
+    - variant allows creating sibling tables like run_xyz_preflight while resolving
+      the actual script path to run_xyz.py.
     """
     _ensure_db(db_path)
-    table = _sanitize_identifier(Path(experiment).stem if experiment.endswith(".py") else experiment)
+    base = Path(experiment).stem if experiment.endswith(".py") else experiment
+    table = _sanitize_identifier(base)
+    if variant:
+        table = f"{table}_{_sanitize_identifier(variant)}"
     _assert_safe_identifier(table)
     ddl = f"""
     CREATE TABLE IF NOT EXISTS "{table}" (
@@ -101,6 +108,7 @@ def ensure_table(db_path: Path, experiment: str) -> str:
         run_script TEXT NOT NULL,
         run_slug TEXT NOT NULL,
         engineering_only INTEGER NOT NULL,
+        preflight INTEGER NOT NULL DEFAULT 0,
         status TEXT NOT NULL,
         started_at TEXT NOT NULL,
         finished_at TEXT,
@@ -114,6 +122,15 @@ def ensure_table(db_path: Path, experiment: str) -> str:
     """
     with sqlite3.connect(str(db_path)) as conn:
         conn.execute(ddl)
+        # Migration: ensure 'preflight' column exists for older tables
+        try:
+            conn.row_factory = sqlite3.Row
+            cur = conn.execute(f'PRAGMA table_info("{table}")')  # nosec B608
+            cols = {str(r[1]).lower() for r in cur.fetchall()}  # name at index 1
+        except Exception as _e:
+            cols = set()
+        if "preflight" not in cols:
+            conn.execute(f'ALTER TABLE "{table}" ADD COLUMN preflight INTEGER NOT NULL DEFAULT 0')  # nosec B608
         conn.commit()
     return table
 
@@ -219,7 +236,16 @@ class RunHandle:
     batch: int
 
 
-def begin_run(domain: str, experiment: str, tag: str, params: Optional[Dict[str, Any]] = None, engineering_only: bool = False) -> RunHandle:
+def begin_run(
+    domain: str,
+    experiment: str,
+    tag: str,
+    params: Optional[Dict[str, Any]] = None,
+    engineering_only: bool = False,
+    *,
+    variant: Optional[str] = None,
+    preflight: bool = False,
+) -> RunHandle:
     """Start a run row and return a handle with (tag, batch).
     - Creates the per-domain DB and experiment table if missing
     - Computes the next batch for the tag and inserts a 'running' row
@@ -233,7 +259,7 @@ def begin_run(domain: str, experiment: str, tag: str, params: Optional[Dict[str,
     # Approval enforcement: for qualifying scripts/domains, require manifest tag + full approval
     from ..authorization.approval import should_enforce_approval, check_tag_approval
     enforce = should_enforce_approval(domain, script_path)
-    if enforce:
+    if enforce and not preflight:
         # First ensure tag is declared in manifest
         _ensure_tag_allowed(domain, tag)
         # Then run full approval guard (raises on failure unless engineering_only allowed)
@@ -241,6 +267,18 @@ def begin_run(domain: str, experiment: str, tag: str, params: Optional[Dict[str,
         approved, eng_only_flag, _proposal = check_tag_approval(domain, tag, allow_unapproved=engineering_only, code_root=code_root)
         # If not approved and not engineering_only, check_tag_approval would have exited; if engineering_only, mark flag
         engineering_only = engineering_only or eng_only_flag
+
+    # Enforce preflight/table-variant alignment to prevent mixups
+    if preflight:
+        # Default the table variant to 'preflight' if not provided
+        if variant is None:
+            variant = "preflight"
+        elif "preflight" not in str(variant).lower():
+            raise ValueError("Preflight runs must use a 'preflight' table variant (variant='preflight').")
+    else:
+        # Disallow writing real runs into preflight tables
+        if variant is not None and "preflight" in str(variant).lower():
+            raise ValueError("Real runs cannot target a preflight table variant. Omit variant or use a non-preflight variant.")
 
     # Prepare DB path and validate directory permissions
     db_path = get_db_path(domain)
@@ -250,7 +288,7 @@ def begin_run(domain: str, experiment: str, tag: str, params: Optional[Dict[str,
         raise PermissionError(f"Results DB directory not writable: {db_path.parent}")
 
     # Ensure table exists (creates DB if needed)
-    table = ensure_table(db_path, experiment)
+    table = ensure_table(db_path, experiment, variant=variant)
     # Verify DB file exists post-initialization
     if not db_path.exists():
         raise FileNotFoundError(f"Results DB was not created at: {db_path}")
@@ -262,7 +300,7 @@ def begin_run(domain: str, experiment: str, tag: str, params: Optional[Dict[str,
         run_slug = f"{_sanitize_identifier(Path(experiment).stem)}_{_sanitize_identifier(tag)}_b{batch:03d}"
         _assert_safe_identifier(table)
         # Build SQL separately to tag with nosec on the assignment line (Bandit B608)
-        sql_insert = f'INSERT INTO "{table}" (tag, batch, run_script, run_slug, engineering_only, status, started_at, params_json, metrics_json, artifacts_json, row_hash) VALUES (?, ?, ?, ?, ?, \'running\', ?, ?, ?, ?, ?)'  # nosec B608
+        sql_insert = f'INSERT INTO "{table}" (tag, batch, run_script, run_slug, engineering_only, preflight, status, started_at, params_json, metrics_json, artifacts_json, row_hash) VALUES (?, ?, ?, ?, ?, ?, \'running\', ?, ?, ?, ?, ?)'  # nosec B608
         params_json = _canonical_json(params)
         metrics_json = _canonical_json({})
         artifacts_json = _canonical_json({})
@@ -272,6 +310,7 @@ def begin_run(domain: str, experiment: str, tag: str, params: Optional[Dict[str,
             run_script=run_script,
             run_slug=run_slug,
             engineering_only=1 if engineering_only else 0,
+            preflight=1 if preflight else 0,
             status="running",
             started_at=started_at,
             finished_at=None,
@@ -288,6 +327,7 @@ def begin_run(domain: str, experiment: str, tag: str, params: Optional[Dict[str,
                 run_script,
                 run_slug,
                 1 if engineering_only else 0,
+                1 if preflight else 0,
                 started_at,
                 params_json,
                 metrics_json,
@@ -297,6 +337,95 @@ def begin_run(domain: str, experiment: str, tag: str, params: Optional[Dict[str,
         )
         conn.commit()
     return RunHandle(db_path=db_path, table=table, tag=tag, batch=batch)
+
+
+def begin_preflight_run(domain: str, experiment: str, tag: Optional[str] = None, params: Optional[Dict[str, Any]] = None) -> RunHandle:
+    """Begin a preflight run row safely (engineering_only, preflight table).
+    Policy:
+    - Preflight rows use a fixed tag value 'preflight' (caller-provided tag is ignored).
+    - Forces variant='preflight' and preflight=True to prevent mixups.
+    - Skips manifest/approval enforcement internally via preflight flag.
+    """
+    fixed_tag = "preflight"
+    return begin_run(
+        domain,
+        experiment,
+        fixed_tag,
+        params=params,
+        engineering_only=True,
+        variant="preflight",
+        preflight=True,
+    )
+
+
+def begin_real_run(domain: str, experiment: str, tag: str, params: Optional[Dict[str, Any]] = None, *, engineering_only: bool = False) -> RunHandle:
+    """Begin a real (non-preflight) run row safely (base table only)."""
+    return begin_run(
+        domain,
+        experiment,
+        tag,
+        params=params,
+        engineering_only=engineering_only,
+        variant=None,
+        preflight=False,
+    )
+
+
+def get_preflight_runs(domain: str, experiment: str, tag: Optional[str] = None) -> list[dict]:
+    """Return only preflight rows for the given runner script.
+    - Targets the 'preflight' table variant explicitly
+    - Adds a defensive WHERE preflight=1 filter
+    """
+    db_path = get_db_path(domain)
+    table = ensure_table(db_path, experiment, variant="preflight")
+    with sqlite3.connect(str(db_path)) as conn:
+        conn.row_factory = sqlite3.Row
+        _assert_safe_identifier(table)
+        if tag is None:
+            sql = f"SELECT * FROM \"{table}\" WHERE preflight=1 ORDER BY tag, batch"  # nosec B608
+            cur = conn.execute(sql)
+        else:
+            sql = f"SELECT * FROM \"{table}\" WHERE tag=? AND preflight=1 ORDER BY batch"  # nosec B608
+            cur = conn.execute(sql, (tag,))
+        rows = cur.fetchall()
+    out: list[dict] = []
+    for r in rows:
+        d = {k: r[k] for k in r.keys()}
+        for col in ("params_json", "metrics_json", "artifacts_json"):
+            if d.get(col):
+                try:
+                    d[col] = json.loads(d[col])
+                except Exception:
+                    d[col] = d[col]
+        out.append(d)
+    return out
+
+
+def get_real_runs(domain: str, experiment: str, tag: Optional[str] = None) -> list[dict]:
+    """Return only real (non-preflight) rows from the base table."""
+    db_path = get_db_path(domain)
+    table = ensure_table(db_path, experiment, variant=None)
+    with sqlite3.connect(str(db_path)) as conn:
+        conn.row_factory = sqlite3.Row
+        _assert_safe_identifier(table)
+        if tag is None:
+            sql = f"SELECT * FROM \"{table}\" WHERE COALESCE(preflight,0)=0 ORDER BY tag, batch"  # nosec B608
+            cur = conn.execute(sql)
+        else:
+            sql = f"SELECT * FROM \"{table}\" WHERE tag=? AND COALESCE(preflight,0)=0 ORDER BY batch"  # nosec B608
+            cur = conn.execute(sql, (tag,))
+        rows = cur.fetchall()
+    out: list[dict] = []
+    for r in rows:
+        d = {k: r[k] for k in r.keys()}
+        for col in ("params_json", "metrics_json", "artifacts_json"):
+            if d.get(col):
+                try:
+                    d[col] = json.loads(d[col])
+                except Exception:
+                    d[col] = d[col]
+        out.append(d)
+    return out
 
 
 def _merge_json(existing_json: Optional[str], new_obj: Dict[str, Any]) -> str:
@@ -321,6 +450,7 @@ def _compute_row_hash_payload(
     run_script: str,
     run_slug: str,
     engineering_only: int,
+    preflight: int,
     status: str,
     started_at: Optional[str],
     finished_at: Optional[str],
@@ -336,6 +466,7 @@ def _compute_row_hash_payload(
         "run_script": run_script,
         "run_slug": run_slug,
         "engineering_only": engineering_only,
+        "preflight": preflight,
         "status": status,
         "started_at": started_at,
         "finished_at": finished_at,
@@ -351,12 +482,12 @@ def _compute_row_hash_payload(
 def log_metrics(handle: RunHandle, metrics: Dict[str, Any]) -> None:
     with sqlite3.connect(str(handle.db_path)) as conn:
         _assert_safe_identifier(handle.table)
-        sql_sel = f"SELECT run_script, run_slug, engineering_only, status, started_at, finished_at, error_message, params_json, metrics_json, artifacts_json FROM \"{handle.table}\" WHERE tag=? AND batch=?"  # nosec B608
+        sql_sel = f"SELECT run_script, run_slug, engineering_only, preflight, status, started_at, finished_at, error_message, params_json, metrics_json, artifacts_json FROM \"{handle.table}\" WHERE tag=? AND batch=?"  # nosec B608
         cur = conn.execute(sql_sel, (handle.tag, handle.batch))
         row = cur.fetchone()
         if not row:
             return
-        run_script, run_slug, eng, status, started_at, finished_at, error_message, params_json, metrics_json, artifacts_json = row
+        run_script, run_slug, eng, preflight, status, started_at, finished_at, error_message, params_json, metrics_json, artifacts_json = row
         merged_metrics = _merge_json(metrics_json, metrics)
         new_hash = _compute_row_hash_payload(
             tag=handle.tag,
@@ -364,6 +495,7 @@ def log_metrics(handle: RunHandle, metrics: Dict[str, Any]) -> None:
             run_script=run_script,
             run_slug=run_slug,
             engineering_only=int(eng),
+            preflight=int(preflight),
             status=status,
             started_at=started_at,
             finished_at=finished_at,
@@ -380,12 +512,12 @@ def log_metrics(handle: RunHandle, metrics: Dict[str, Any]) -> None:
 def add_artifacts(handle: RunHandle, artifacts: Dict[str, Any]) -> None:
     with sqlite3.connect(str(handle.db_path)) as conn:
         _assert_safe_identifier(handle.table)
-        sql_sel = f"SELECT run_script, run_slug, engineering_only, status, started_at, finished_at, error_message, params_json, metrics_json, artifacts_json FROM \"{handle.table}\" WHERE tag=? AND batch=?"  # nosec B608
+        sql_sel = f"SELECT run_script, run_slug, engineering_only, preflight, status, started_at, finished_at, error_message, params_json, metrics_json, artifacts_json FROM \"{handle.table}\" WHERE tag=? AND batch=?"  # nosec B608
         cur = conn.execute(sql_sel, (handle.tag, handle.batch))
         row = cur.fetchone()
         if not row:
             return
-        run_script, run_slug, eng, status, started_at, finished_at, error_message, params_json, metrics_json, artifacts_json = row
+        run_script, run_slug, eng, preflight, status, started_at, finished_at, error_message, params_json, metrics_json, artifacts_json = row
         merged_artifacts = _merge_json(artifacts_json, artifacts)
         new_hash = _compute_row_hash_payload(
             tag=handle.tag,
@@ -393,6 +525,7 @@ def add_artifacts(handle: RunHandle, artifacts: Dict[str, Any]) -> None:
             run_script=run_script,
             run_slug=run_slug,
             engineering_only=int(eng),
+            preflight=int(preflight),
             status=status,
             started_at=started_at,
             finished_at=finished_at,
@@ -410,12 +543,12 @@ def end_run_success(handle: RunHandle, metrics: Optional[Dict[str, Any]] = None)
     finished_at = _iso_utc_now()
     with sqlite3.connect(str(handle.db_path)) as conn:
         _assert_safe_identifier(handle.table)
-        sql_sel = f"SELECT run_script, run_slug, engineering_only, status, started_at, metrics_json, artifacts_json, params_json FROM \"{handle.table}\" WHERE tag=? AND batch=?"  # nosec B608
+        sql_sel = f"SELECT run_script, run_slug, engineering_only, preflight, status, started_at, metrics_json, artifacts_json, params_json FROM \"{handle.table}\" WHERE tag=? AND batch=?"  # nosec B608
         cur = conn.execute(sql_sel, (handle.tag, handle.batch))
         row = cur.fetchone()
         if not row:
             return
-        run_script, run_slug, eng, _status, started_at, metrics_json, artifacts_json, params_json = row
+        run_script, run_slug, eng, preflight, _status, started_at, metrics_json, artifacts_json, params_json = row
         new_metrics = _merge_json(metrics_json, metrics) if metrics else (metrics_json or "{}")
         new_hash = _compute_row_hash_payload(
             tag=handle.tag,
@@ -423,6 +556,7 @@ def end_run_success(handle: RunHandle, metrics: Optional[Dict[str, Any]] = None)
             run_script=run_script,
             run_slug=run_slug,
             engineering_only=int(eng),
+            preflight=int(preflight),
             status="success",
             started_at=started_at,
             finished_at=finished_at,
@@ -444,12 +578,12 @@ def end_run_failed(handle: RunHandle, metrics: Optional[Dict[str, Any]] = None, 
     finished_at = _iso_utc_now()
     with sqlite3.connect(str(handle.db_path)) as conn:
         _assert_safe_identifier(handle.table)
-        sql_sel = f"SELECT run_script, run_slug, engineering_only, status, started_at, metrics_json, artifacts_json, params_json FROM \"{handle.table}\" WHERE tag=? AND batch=?"  # nosec B608
+        sql_sel = f"SELECT run_script, run_slug, engineering_only, preflight, status, started_at, metrics_json, artifacts_json, params_json FROM \"{handle.table}\" WHERE tag=? AND batch=?"  # nosec B608
         cur = conn.execute(sql_sel, (handle.tag, handle.batch))
         row = cur.fetchone()
         if not row:
             return
-        run_script, run_slug, eng, _status, started_at, metrics_json, artifacts_json, params_json = row
+        run_script, run_slug, eng, preflight, _status, started_at, metrics_json, artifacts_json, params_json = row
         new_metrics = _merge_json(metrics_json, metrics) if metrics else (metrics_json or "{}")
         new_hash = _compute_row_hash_payload(
             tag=handle.tag,
@@ -457,6 +591,7 @@ def end_run_failed(handle: RunHandle, metrics: Optional[Dict[str, Any]] = None, 
             run_script=run_script,
             run_slug=run_slug,
             engineering_only=int(eng),
+            preflight=int(preflight),
             status="failed",
             started_at=started_at,
             finished_at=finished_at,
@@ -474,10 +609,10 @@ def end_run_failed(handle: RunHandle, metrics: Optional[Dict[str, Any]] = None, 
         conn.commit()
 
 
-def get_runs(domain: str, experiment: str, tag: Optional[str] = None) -> list[dict]:
+def get_runs(domain: str, experiment: str, tag: Optional[str] = None, *, variant: Optional[str] = None) -> list[dict]:
     """Fetch rows for inspection; for notebooks or quick diagnostics."""
     db_path = get_db_path(domain)
-    table = ensure_table(db_path, experiment)
+    table = ensure_table(db_path, experiment, variant=variant)
     with sqlite3.connect(str(db_path)) as conn:
         conn.row_factory = sqlite3.Row
         _assert_safe_identifier(table)

@@ -6,6 +6,7 @@ from physics.metriplectic.metriplectic_structure_checks import StructSpec, run_s
 from physics.metriplectic.run_kg_rd_metriplectic import StepSpec, j_reversibility_kg, j_energy_oscillation_slope, defect_diagnostic
 from physics.metriplectic.compose import m_only_step_with_stats, lyapunov_values
 from physics.metriplectic.kg_ops import kg_energy, kg_verlet_step
+from common.data.preflight_db import log_preflight
 
 
 def small_stepspec(tag: str = "test-preflight") -> StepSpec:
@@ -87,7 +88,11 @@ def _energy_slope_in_memory(N: int, dx: float, c: float, m: float, seed_scale: f
     return float(slope), float(R2)
 
 
-def test_j_only_reversibility_and_energy_slope():
+def test_j_only_reversibility_and_energy_slope(monkeypatch, tmp_path):
+    # Avoid artifact writes from the runner: patch log_path/write_log to tmp/no-op
+    import physics.metriplectic.run_kg_rd_metriplectic as rk
+    monkeypatch.setattr(rk, "log_path", lambda domain, slug, failed=False, type="json": tmp_path / f"{slug}.{type}", raising=True)
+    monkeypatch.setattr(rk, "write_log", lambda p, data: None, raising=True)
     spec = small_stepspec("preflight-j")
     # Reversibility must pass strict or cap
     jr = j_reversibility_kg(spec)
@@ -95,6 +100,14 @@ def test_j_only_reversibility_and_energy_slope():
 
     # Energy oscillation slope ~2, R^2 ~ 1 (pure in-memory diagnostic, no artifact writes)
     slope, R2 = _energy_slope_in_memory(N=64, dx=1.0, c=1.0, m=0.5, seed_scale=0.05, dt_ladder_count=4, steps=400)
+    passed = (1.95 <= slope <= 2.05) and (R2 >= 0.999)
+    # Log preflight record
+    log_preflight(
+        "j_only_energy_slope",
+        config={"N":64, "dx":1.0, "c":1.0, "m":0.5, "seed_scale":0.05, "dt_ladder_count":4, "steps":400},
+        results={"reversibility": jr, "slope": float(slope), "R2": float(R2), "passed": bool(passed)},
+        status="pass" if passed else "fail",
+    )
     assert 1.95 <= slope <= 2.05, f"Energy-osc slope out of band: {slope}"  # nosec B101
     assert R2 >= 0.999, f"Energy-osc R2 too low: {R2}"  # nosec B101
 
@@ -106,6 +119,12 @@ def test_structure_checks_J_skew_and_M_psd(monkeypatch, tmp_path):
     monkeypatch.setattr(sc, "write_log", lambda p, data: None, raising=True)
     ss = StructSpec(grid={"N": 64, "dx": 1.0}, params={"c": 1.0, "m": 0.5, "D": 1.0, "m_lap_operator": "spectral"}, draws=48, tag="preflight-struct")
     out = run_structure_checks(ss)
+    log_preflight(
+        "structure_checks_J_skew_M_PSD",
+        config={"grid": ss.grid, "params": ss.params, "draws": ss.draws},
+        results=out,
+        status="pass" if (out["J_skew"]["passed"] and out["M_psd"]["passed"]) else "fail",
+    )
     assert out["J_skew"]["passed"], f"J skew check failed: {out}"  # nosec B101
     assert out["M_psd"]["passed"], f"M PSD check failed: {out}"  # nosec B101
 
@@ -120,6 +139,12 @@ def test_strang_defect_slope_near_three(monkeypatch, tmp_path):
     spec = small_stepspec("preflight-defect")
     dd = defect_diagnostic(spec)
     slope = float(dd["fit"]["slope"]) ; R2 = float(dd["fit"]["R2"]) 
+    log_preflight(
+        "strang_defect_jmj_mjm",
+        config={"grid": spec.grid, "params": spec.params, "dt_sweep": spec.dt_sweep, "seeds": int(spec.seeds) if isinstance(spec.seeds, int) else list(spec.seeds)},
+        results={"slope": slope, "R2": R2, "fit": dd.get("fit", {}), "passed": bool(2.8 <= slope <= 3.2 and R2 >= 0.999)},
+        status="pass" if (2.8 <= slope <= 3.2 and R2 >= 0.999) else "fail",
+    )
     assert slope >= 2.8 and slope <= 3.2, f"Strang defect slope not ~3: slope={slope}"  # nosec B101
     assert R2 >= 0.999, f"Strang defect R2 too low: {R2}"  # nosec B101
 
@@ -131,7 +156,18 @@ def test_m_only_h_theorem_monotonicity():
     rng = np.random.default_rng(123)
     W0 = rng.random(N).astype(float) * 0.1
     L0 = lyapunov_values(W0, dx, float(params["D"]), float(params["r"]), float(params["u"]))
+    passed_all = True
+    deltas = []
     for dt in [0.1, 0.05, 0.025, 0.0125]:
         W1, stats = m_only_step_with_stats(W0, dt, dx, params)
         L1 = lyapunov_values(W1, dx, float(params["D"]), float(params["r"]), float(params["u"]))
-        assert L1 <= L0 + 1e-12, f"H-theorem violated at dt={dt}: L1-L0={L1-L0}"  # nosec B101
+        deltas.append(float(L1 - L0))
+        passed = (L1 <= L0 + 1e-12)
+        passed_all = passed_all and passed
+        assert passed, f"H-theorem violated at dt={dt}: L1-L0={L1-L0}"  # nosec B101
+    log_preflight(
+        "m_only_h_theorem",
+        config={"N": N, "dx": dx, "params": params},
+        results={"deltas": deltas, "passed": bool(passed_all)},
+        status="pass" if passed_all else "fail",
+    )
