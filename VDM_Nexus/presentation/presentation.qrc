@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/presentation/qml">
+        <file>qml/Main.qml</file>
+        <file>qml/DashboardMetrics.qml</file>
+    </qresource>
+</RCC>
+

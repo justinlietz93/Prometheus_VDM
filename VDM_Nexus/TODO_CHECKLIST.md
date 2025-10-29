@@ -70,7 +70,9 @@ Begin the task by following the instructions below:
 ### Task 1.1 — Map canonical sources into Nexus surfaces
 
 - [STARTED] Step 1.1.1 — Inventory all UI text and ensure every physics reference cites [VDM-AX-A0…A7](../derivation/AXIOMS.md#vdm-ax-a0) and relevant equations ([VDM-E-033](../derivation/EQUATIONS.md#vdm-e-033), [VDM-E-090](../derivation/EQUATIONS.md#vdm-e-090), etc.).
+  - Added dashboard reference chips that resolve canon anchors (VDM-AX-A0…A7, VDM-E-033, VDM-E-090, VALIDATION_METRICS) through `DashboardController::repositoryUrl`, keeping links repo-local.
 - [STARTED] Step 1.1.2 — Link KPI displays to definitions in [VALIDATION_METRICS.md](../derivation/VALIDATION_METRICS.md#kpi-front-speed-rel-err); compute pass/fail with thresholds from the active run's spec/schema; do not duplicate thresholds in GUI.
+  - Dashboard metrics now reference nexus-roadmap summary counts and display gating copy referencing VALIDATION_METRICS while deferring threshold evaluation to controller data.
 - [STARTED] Step 1.1.3 — Ensure Markdown viewer overlays commit hashes on canon documents for provenance.
 
 ### **Task 1.1 Validation:**
@@ -92,7 +94,8 @@ Begin the task by following the instructions below:
 ### Task 1.3 — Surface experiment roadmap context
 
 - [ ] Step 1.3.1 — Present Tier ladder status via read-only link to [VDM-Progress-Findings.md](../derivation/VDM-Progress-Findings.md); do not parse Markdown to drive UI state. Tag experiments by maturity (T0–T9) only from structured sources (approvals DB/specs/JSON registries) when available.
-- [ ] Step 1.3.2 — Map proposed experiments (e.g., quantum gravity bridge, agency field probes, intelligence model substrate) to dashboard cards as read-only links; no thresholds or gating derived from Markdown.
+- [STARTED] Step 1.3.2 — Map proposed experiments (e.g., quantum gravity bridge, agency field probes, intelligence model substrate) to dashboard cards as read-only links; no thresholds or gating derived from Markdown.
+  - Spotlight cards pull from `spotlight_cards` entries to expose proposal paths with click-through to repo files while flagging missing RESULTS status.
 - [ ] Step 1.3.3 — Flag missing RESULTS using structured artifacts (approvals DB and presence of RESULTS_* artifacts/logs); show prerequisites as links to proposal sections only (no Markdown parsing for logic).
 
 ### **Task 1.3 Validation:**  
@@ -181,7 +184,8 @@ Begin the task by following the instructions below:
 ### Task 4.1 — Build dashboard and document viewers
 
 - Note: Phase 4 remains [NOT STARTED] until ports/adapters compile; see [NEXUS_ARCHITECTURE.md](VDM_Nexus/NEXUS_ARCHITECTURE.md) §12.
-- [NOT STARTED] Step 4.1.1 — Implement Dashboard panes (Active Experiments, Pending Approvals, KPI summaries, orphan proposals).
+- [STARTED] Step 4.1.1 — Implement Dashboard panes (Active Experiments, Pending Approvals, KPI summaries, orphan proposals).
+  - Added QML dashboard preview (`presentation/qml/Main.qml`) wiring `DashboardController` metrics into three-card layout with canon anchor links; loads roadmap index read-only at startup.
 - [NOT STARTED] Step 4.1.2 — Develop Artifact browser with filters by domain, tag, gate status, run timestamp.
 - [NOT STARTED] Step 4.1.3 — Implement Proposal/Results Viewer: render PROPOSAL_* and RESULTS_* Markdown with math rendering, commit banners, anchor navigation; read-only.
 - [NOT STARTED] Step 4.1.4 — Implement Experiment Browser (Configs/Specs): list per-domain experiments and open config/spec JSON with a pretty/JSON-path viewer; display repository path and commit hash; read-only (no writes to derivation).
