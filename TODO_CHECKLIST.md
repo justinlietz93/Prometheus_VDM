@@ -19,7 +19,7 @@ Begin the task by following the instructions below:
 
 - [NOT STARTED] **If you hit x3 then move on** unless it's blocking anything else or if it would introduce significant technical debt if not addressed immediately. If it is a blocker like that, state this clearly in your response including "BLOCKER PREVENTING FURTHER DEVELOPMENT"
 
-- [NOT STARTED] I**f tests fail** because of any missing packages or installations, **you need to install those and try to run the tests again.** Same thing if you run into errors for missing packages.
+- [NOT STARTED] **If tests fail** because of any missing packages or installations, **you need to install those and try to run the tests again.** Same thing if you run into errors for missing packages.
 
 - [STARTED] **Mention which items you updated** on the checklist in your response, and your ETA or number of sessions until completion of the checklist.
   - Logging this response plan to ensure reporting includes checklist deltas and session estimates.
