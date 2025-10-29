@@ -61,6 +61,7 @@ Begin the task by following the instructions below:
   - Published `resources/nexus_canon_config.v1.json` enumerating required canon anchors with summaries for ingestion scaffolding (read-only manifest).
 - [DONE] Step 0.3.2 — Set up repository-relative path resolver for `../derivation/` tree with guard rails against writes. (Note: resolver prints AXIOMS/EQUATIONS/VALIDATION_METRICS + commits.)
   - Implemented `scripts/canon_paths.py` providing guarded resolution, git metadata helpers, and enforced Derivation scoping; updated resolver printer to consume it.
+  - Hardened metadata collection against filesystem permission errors and added regression tests covering repo resolution, fragment handling, and escape prevention.
 - [DONE] Step 0.3.3 — Draft `CanonSync` CLI skeleton (read-only) for future indexing per standards.
   - Added `scripts/nexus_canon_sync.py` to emit read-only plans from the canon config using the shared resolver; documented usage in scripts README.
 
@@ -70,6 +71,7 @@ Begin the task by following the instructions below:
   - Evidence: [`nexus_static_policy_check.py`](VDM_Nexus/scripts/nexus_static_policy_check.py:1) PASS (exit 0) on VDM_Nexus/.
 - [DONE] Manual run of resolver prints located canon files with correct commit hash metadata.
   - Evidence: [`nexus_resolver_print.py`](VDM_Nexus/scripts/nexus_resolver_print.py:93) --json reported repo_head f36d3481ed7caaff79a55135348bf6687a6b394f and file_last_commit for AXIOMS/EQUATIONS/VALIDATION_METRICS.
+- [DONE] Added unit coverage in [`scripts/tests/test_canon_paths.py`](VDM_Nexus/scripts/tests/test_canon_paths.py:1) to enforce guard rails and hashing behaviour against canonical files.
 
 ## Phase 1 — Canon & Policy Alignment
 

@@ -184,18 +184,31 @@ class CanonResolver:
         return (cp.stdout or "").strip() or None
 
     def metadata(self, path: Path) -> FileMetadata:
-        exists = path.exists() and path.is_file()
+        try:
+            exists = path.is_file()
+        except OSError:
+            exists = False
+
         size_bytes: Optional[int] = None
         sha256: Optional[str] = None
         if exists:
-            size_bytes = path.stat().st_size
-            sha256 = _hash_file(path)
+            try:
+                size_bytes = path.stat().st_size
+            except OSError:
+                size_bytes = None
+            try:
+                sha256 = _hash_file(path)
+            except OSError:
+                sha256 = None
+
+        last_commit = self.git_last_commit(path) if exists else None
+
         return FileMetadata(
             path=path,
             exists=exists,
             size_bytes=size_bytes,
             sha256=sha256,
-            last_commit=self.git_last_commit(path) if exists else None,
+            last_commit=last_commit,
         )
 
 
