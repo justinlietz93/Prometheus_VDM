@@ -1,3 +1,13 @@
+[
+{
+  "name": "assisted_echo_runner",
+  "description": "Approval manifest stating that the assisted_echo runner requires explicit sign-off before real runs that write artifacts.",
+  "author": "Justin K. Lietz",
+  "requires_approval": true,
+  "approved_by": null,
+  "approved_at": null,
+  "notes": "Preflight runs (tests) are allowed without approval. To run real experiments that write artifacts, set approved_by and approved_at after explicit review."
+},
 {
   "pre_registered": true,
   "proposal": "Derivation/Metriplectic/PROPOSAL_Metriplectic_SymplecticPlusDG.md",
@@ -42,3 +52,4 @@
     }
   }
 }
+]

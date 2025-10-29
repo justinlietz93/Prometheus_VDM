@@ -1,0 +1,31 @@
+name: Preflight Smoke Tests (push)
+
+on:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  preflight:
+    name: Run preflight smoke tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Run preflight smoke tests
+        env:
+          PYTHONPATH: Derivation/code
+        run: |
+          pytest -q "Derivation/code/tests/**/test_*preflight*.py" -q || (echo "Preflight tests failed" && exit 1)
