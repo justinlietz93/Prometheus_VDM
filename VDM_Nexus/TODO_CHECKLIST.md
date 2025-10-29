@@ -57,9 +57,12 @@ Begin the task by following the instructions below:
 
 ### Task 0.3 — Wire canon ingestion scaffolding
 
-- [STARTED] Step 0.3.1 — Add Nexus configuration file referencing anchors in [AXIOMS](../derivation/AXIOMS.md#vdm-ax-a0), [EQUATIONS](../derivation/EQUATIONS.md#vdm-e-033), and [VALIDATION_METRICS](../derivation/VALIDATION_METRICS.md#kpi-front-speed-rel-err).
-- [STARTED] Step 0.3.2 — Set up repository-relative path resolver for `../derivation/` tree with guard rails against writes. (Note: resolver prints AXIOMS/EQUATIONS/VALIDATION_METRICS + commits.)
-- [STARTED] Step 0.3.3 — Draft `CanonSync` CLI skeleton (read-only) for future indexing per standards.
+- [DONE] Step 0.3.1 — Add Nexus configuration file referencing anchors in [AXIOMS](../derivation/AXIOMS.md#vdm-ax-a0), [EQUATIONS](../derivation/EQUATIONS.md#vdm-e-033), and [VALIDATION_METRICS](../derivation/VALIDATION_METRICS.md#kpi-front-speed-rel-err).
+  - Published `resources/nexus_canon_config.v1.json` enumerating required canon anchors with summaries for ingestion scaffolding (read-only manifest).
+- [DONE] Step 0.3.2 — Set up repository-relative path resolver for `../derivation/` tree with guard rails against writes. (Note: resolver prints AXIOMS/EQUATIONS/VALIDATION_METRICS + commits.)
+  - Implemented `scripts/canon_paths.py` providing guarded resolution, git metadata helpers, and enforced Derivation scoping; updated resolver printer to consume it.
+- [DONE] Step 0.3.3 — Draft `CanonSync` CLI skeleton (read-only) for future indexing per standards.
+  - Added `scripts/nexus_canon_sync.py` to emit read-only plans from the canon config using the shared resolver; documented usage in scripts README.
 
 ### **Task 0.3 Validation:**
 

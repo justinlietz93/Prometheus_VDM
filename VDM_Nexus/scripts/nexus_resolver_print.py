@@ -1,118 +1,100 @@
 #!/usr/bin/env python3
+"""VDM Nexus — Canon Resolver Printer (Task 0.3.2).
+
+Print commit metadata for core canon anchors while guaranteeing that
+all paths resolve inside the Derivation/ tree.  This script is read-only
+and honours the repository root precedence (CLI > env `VDM_REPO_ROOT` >
+filesystem traversal).
 """
-Copyright © 2025 Justin K. Lietz, Neuroca, Inc. All Rights Reserved.
-
-This research is protected under a dual-license to foster open academic
-research while ensuring commercial applications are aligned with the project's ethical principles.
-
-Commercial use of proprietary VDM code requires written permission from Justin K. Lietz.
-See LICENSE file for full terms.
-
-
-VDM Nexus — Canon Resolver Printer (Task 0.3.2)
-
-Purpose:
-- Resolve canonical files under ../Derivation and print commit metadata for manual validation.
-- Read-only operation. Does not modify Derivation/.
-
-Targets (default):
-- Derivation/AXIOMS.md
-- Derivation/EQUATIONS.md
-- Derivation/VALIDATION_METRICS.md
-
-Printed metadata per target:
-- exists: true/false
-- repo_head: repository HEAD commit (git rev-parse HEAD)
-- file_last_commit: last commit that changed this file (git log -n 1 --pretty=%H -- path), if tracked
-- sha256: content hash if file exists
-- size_bytes: file size if file exists
-
-Usage:
-  python VDM_Nexus/scripts/nexus_resolver_print.py
-  python VDM_Nexus/scripts/nexus_resolver_print.py --json
-  python VDM_Nexus/scripts/nexus_resolver_print.py --targets Derivation/EQUATIONS.md Derivation/VALIDATION_METRICS.md
-"""
-
 from __future__ import annotations
 
 import argparse
-import hashlib
 import json
-import subprocess
 from pathlib import Path
-from typing import List, Dict, Any
+from typing import Any, Dict, List
 
+from canon_paths import CanonPathError, CanonResolver
 
 DEFAULT_TARGETS = [
-    "Derivation/AXIOMS.md",
-    "Derivation/EQUATIONS.md",
-    "Derivation/VALIDATION_METRICS.md",
+    "Derivation/AXIOMS.md#vdm-ax-a0",
+    "Derivation/EQUATIONS.md#vdm-e-033",
+    "Derivation/VALIDATION_METRICS.md#kpi-front-speed-rel-err",
 ]
 
 
-def run(cmd: List[str]) -> subprocess.CompletedProcess:
-    return subprocess.run(cmd, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+def _relative_to_repo(resolver: CanonResolver, path: Path) -> str:
+    try:
+        return str(path.relative_to(resolver.repo_root))
+    except ValueError:
+        return str(path)
 
 
-def git_repo_head() -> str:
-    cp = run(["git", "rev-parse", "HEAD"])
-    return (cp.stdout or "").strip() if cp.returncode == 0 else ""
+def resolve_targets(resolver: CanonResolver, targets: List[str]) -> Dict[str, Any]:
+    repo_head = resolver.git_head() or ""
+    entries: List[Dict[str, Any]] = []
+    for target in targets:
+        entry: Dict[str, Any] = {"target": target}
+        try:
+            resolved, fragment = resolver.resolve(target)
+        except CanonPathError as exc:
+            entry["error"] = str(exc)
+            entry["exists"] = False
+            entries.append(entry)
+            continue
+
+        metadata = resolver.metadata(resolved)
+        entry.update(
+            {
+                "resolved_path": _relative_to_repo(resolver, metadata.path),
+                "fragment": fragment,
+                "exists": metadata.exists,
+                "size_bytes": metadata.size_bytes,
+                "sha256": metadata.sha256,
+                "file_last_commit": metadata.last_commit,
+            }
+        )
+        entries.append(entry)
+    return {"repo_head": repo_head, "repo_root": str(resolver.repo_root), "entries": entries}
 
 
-def git_file_last_commit(path: str) -> str:
-    cp = run(["git", "log", "-n", "1", "--pretty=%H", "--", path])
-    return (cp.stdout or "").strip() if cp.returncode == 0 else ""
-
-
-def sha256_of_file(p: Path) -> str:
-    h = hashlib.sha256()
-    with p.open("rb") as f:
-        for chunk in iter(lambda: f.read(1 << 16), b""):
-            h.update(chunk)
-    return h.hexdigest()
-
-
-def resolve_targets(targets: List[str]) -> Dict[str, Any]:
-    repo_head = git_repo_head()
-    out: Dict[str, Any] = {"repo_head": repo_head, "entries": []}
-    for t in targets:
-        p = Path(t)
-        entry: Dict[str, Any] = {"path": t, "exists": p.exists()}
-        entry["repo_head"] = repo_head
-        entry["file_last_commit"] = git_file_last_commit(t)
-        if p.exists() and p.is_file():
-            entry["size_bytes"] = p.stat().st_size
-            try:
-                entry["sha256"] = sha256_of_file(p)
-            except Exception as e:
-                entry["sha256_error"] = str(e)
-        out["entries"].append(entry)
-    return out
-
-
-def main() -> int:
-    parser = argparse.ArgumentParser(description="Print canonical file locations and commit metadata")
-    parser.add_argument("--json", action="store_true", help="Emit JSON")
+def main(argv: List[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(
+        description="Print canonical file locations and commit metadata"
+    )
+    parser.add_argument("--repo-root", help="Explicit repository root (defaults to resolver search)")
+    parser.add_argument("--json", action="store_true", help="Emit JSON output")
     parser.add_argument("--targets", nargs="*", default=None, help="Override target paths")
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
 
+    resolver = CanonResolver.from_sources(args.repo_root)
     targets = args.targets if args.targets else DEFAULT_TARGETS
-    result = resolve_targets(targets)
+    result = resolve_targets(resolver, targets)
 
     if args.json:
         print(json.dumps(result, indent=2, sort_keys=True))
-    else:
-        print("== VDM Nexus — Canon Resolver ==")
-        print(f"Repo HEAD: {result['repo_head']}")
-        for e in result["entries"]:
-            print(f"- {e['path']}: {'FOUND' if e['exists'] else 'MISSING'}")
-            print(f"    last_commit: {e.get('file_last_commit','')}")
-            if e.get("exists") and "sha256" in e:
-                print(f"    sha256: {e['sha256']}")
-                print(f"    size: {e.get('size_bytes','?')} bytes")
+        return 0
 
-    # This script does not enforce PASS/FAIL; it prints metadata for manual validation.
-    # Exit 0 always, to serve as an informational resolver.
+    print("== VDM Nexus — Canon Resolver ==")
+    print(f"Repo root: {result['repo_root']}")
+    print(f"Repo HEAD: {result['repo_head']}")
+    for entry in result["entries"]:
+        target = entry["target"]
+        if entry.get("error"):
+            print(f"- {target}: ERROR — {entry['error']}")
+            continue
+        status = "FOUND" if entry.get("exists") else "MISSING"
+        resolved = entry.get("resolved_path", "?")
+        fragment = entry.get("fragment")
+        if fragment:
+            resolved = f"{resolved}#{fragment}"
+        print(f"- {target}: {status}")
+        print(f"    resolved: {resolved}")
+        print(f"    last_commit: {entry.get('file_last_commit','') or '(none)'}")
+        if entry.get("sha256"):
+            print(f"    sha256: {entry['sha256']}")
+        if entry.get("size_bytes") is not None:
+            print(f"    size: {entry['size_bytes']} bytes")
+
     return 0
 
 

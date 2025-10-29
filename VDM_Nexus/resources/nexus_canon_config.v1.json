@@ -1,0 +1,35 @@
+{
+  "set_id": "nexus-canon-config",
+  "set_version": "1.0",
+  "description": "Read-only canonical anchors required for Task 0.3 ingestion scaffolding.",
+  "notes": [
+    "Anchors reference canon Markdown in-place. Do not duplicate content in Nexus.",
+    "Consumers must resolve these paths via canon_paths.CanonResolver (read-only)."
+  ],
+  "anchors": [
+    {
+      "id": "axioms",
+      "label": "VDM-AX-A0…A7",
+      "path": "Derivation/AXIOMS.md#vdm-ax-a0",
+      "summary": "Primary Void Dynamics axioms; UI surfaces anchors only."
+    },
+    {
+      "id": "equation_rd_front",
+      "label": "VDM-E-033",
+      "path": "Derivation/EQUATIONS.md#vdm-e-033",
+      "summary": "Reaction–diffusion front speed definition used in KPI cards."
+    },
+    {
+      "id": "equation_hyperbolic",
+      "label": "VDM-E-090",
+      "path": "Derivation/EQUATIONS.md#vdm-e-090",
+      "summary": "Hyperbolic transport anchor for dashboard tooltips."
+    },
+    {
+      "id": "validation_front_speed",
+      "label": "KPI Front Speed",
+      "path": "Derivation/VALIDATION_METRICS.md#kpi-front-speed-rel-err",
+      "summary": "Validation metric reference; thresholds remain in spec/schema files."
+    }
+  ]
+}

@@ -23,6 +23,8 @@ Root resolution policy (must match app/infrastructure): CLI flags > environment 
 
 - App icons (SVG/PNG), font files, and theme CSS (e.g., Markdown.css used by the viewer).
 - Qt resource collections (.qrc) referenced by the presentation layer.
+- Canon configuration manifests (e.g., `nexus_canon_config.v1.json`) enumerating
+  read-only anchors for ingestion scaffolding.
 
 ## Out of Scope (remain canonical elsewhere)
 

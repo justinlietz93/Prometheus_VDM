@@ -68,6 +68,34 @@ Notes:
 - Wrapper sets VDM_NEXUS=1 in the environment (harmless hint for GUI/in-situ modes).
 - Exit code mirrors the underlying approve_tag.py process.
 
+## CanonSync skeleton (nexus_canon_sync.py)
+
+Read-only scaffolding for Task 0.3 canon ingestion. The CLI loads
+`resources/nexus_canon_config.v1.json`, resolves each anchor via
+`canon_paths.CanonResolver`, and prints metadata (exists, sha256, last
+commit). Use this to verify canonical anchors without writing to
+`Derivation/`.
+
+Examples:
+
+```bash
+# Emit JSON plan for downstream tooling
+python3 VDM_Nexus/scripts/nexus_canon_sync.py --json
+
+# Use an alternate repository root (e.g., when running from build trees)
+python3 VDM_Nexus/scripts/nexus_canon_sync.py --repo-root ..
+
+# Point at a custom canon config manifest
+python3 VDM_Nexus/scripts/nexus_canon_sync.py --config /tmp/custom_canon.json --json
+```
+
+Notes:
+
+- The command never writes to Derivation/. It only reads canonical
+  Markdown paths listed in the config manifest.
+- Future CanonSync implementations can extend this skeleton to persist
+  metadata into Nexus-local caches (not in scope for Task 0.3).
+
 ## References
 
 - Architecture: [`NEXUS_ARCHITECTURE.md`](../../VDM_Nexus/NEXUS_ARCHITECTURE.md:129)
