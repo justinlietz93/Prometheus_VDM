@@ -1,6 +1,6 @@
-import QtQuick 2.15
-import QtQuick.Controls 2.15
-import QtQuick.Layouts 1.15
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
 
 ApplicationWindow {
     id: root
@@ -9,12 +9,6 @@ ApplicationWindow {
     height: 600
     title: "VDM Nexus — Dashboard Preview"
     color: "#111318"
-
-    Component.onCompleted: {
-        if (dashboardController) {
-            dashboardController.loadIndex("");
-        }
-    }
 
     function openRepoPath(path) {
         if (!dashboardController || !path) {

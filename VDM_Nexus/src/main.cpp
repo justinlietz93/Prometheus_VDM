@@ -4,6 +4,7 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QString>
+#include <QTimer>
 
 #include "../presentation/DashboardController.h"
 
@@ -48,7 +49,18 @@ int main(int argc, char* argv[]) {
 
   engine.load(url);
   if (engine.rootObjects().isEmpty()) {
+    qCritical().noquote() << "[NEXUS][QML] failed to load" << url;
     return -1;
+  }
+
+  const QString platform = qEnvironmentVariable("QT_QPA_PLATFORM");
+  if (platform.compare(QStringLiteral("offscreen"), Qt::CaseInsensitive) == 0) {
+    QTimer::singleShot(0, &app, [&app]() {
+      qInfo().noquote()
+          << "[NEXUS][QML] offscreen platform detected; exiting after successful"
+             " load";
+      app.quit();
+    });
   }
 
   return app.exec();
