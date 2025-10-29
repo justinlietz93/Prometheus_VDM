@@ -6,19 +6,23 @@ Hierarchical execution plan for the Nexus desktop program. Phases contain Tasks;
 
 Begin the task by following the instructions below:
 
-- **Set up your environment**, install all required packages, and immediately review the required documentation if necessary and perform your agent memory updates.
+- [DONE] **Set up your environment**, install all required packages, and immediately review the required documentation if necessary and perform your agent memory updates.
+  - Created a Python virtual environment, installed dependencies from `requirements.txt`, and reviewed `docs/ARCHITECTURE.md` plus `VDM_Nexus/NEXUS_ARCHITECTURE.md` for current standards.
 
-- Once that's been done, **review the repository** and all the working directories.
+- [DONE] Once that's been done, **review the repository** and all the working directories.
+  - Surveyed repository root layout (Derivation/, VDM_Nexus/, docs/, tools/, etc.) to understand current assets and pending Nexus GUI scope.
 
-- **Check items off as you work on them**. Issues should be prioritized by impact on usability. Mark item CHECKBOX as [DONE], [STARTED], [RETRYING], [DEBUGGING], [NOT STARTED], as you go and document your work under each item as you work.
+- [STARTED] **Check items off as you work on them**. Issues should be prioritized by impact on usability. Mark item CHECKBOX as [DONE], [STARTED], [RETRYING], [DEBUGGING], [NOT STARTED], as you go and document your work under each item as you work.
+  - Tracking this directive by updating checklist entries as progress continues; initial housekeeping items updated accordingly.
 
-- **You should not remain stagnant on an issue for too long**, if you get stuck on an item and it's marked [RETRYING] or [DEBUGGING], put an x# next to it, where # is the number of times you've attempted resolving it, for example [DEBUGGING x2].
+- [NOT STARTED] **You should not remain stagnant on an issue for too long**, if you get stuck on an item and it's marked [RETRYING] or [DEBUGGING], put an x# next to it, where # is the number of times you've attempted resolving it, for example [DEBUGGING x2].
 
-- **If you hit x3 then move on** unless it's blocking anything else or if it would introduce significant technical debt if not addressed immediately. If it is a blocker like that, state this clearly in your response including "BLOCKER PREVENTING FURTHER DEVELOPMENT"
+- [NOT STARTED] **If you hit x3 then move on** unless it's blocking anything else or if it would introduce significant technical debt if not addressed immediately. If it is a blocker like that, state this clearly in your response including "BLOCKER PREVENTING FURTHER DEVELOPMENT"
 
-- I**f tests fail** because of any missing packages or installations, **you need to install those and try to run the tests again.** Same thing if you run into errors for missing packages.
+- [NOT STARTED] I**f tests fail** because of any missing packages or installations, **you need to install those and try to run the tests again.** Same thing if you run into errors for missing packages.
 
-- **Mention which items you updated** on the checklist in your response, and your ETA or number of sessions until completion of the checklist.
+- [STARTED] **Mention which items you updated** on the checklist in your response, and your ETA or number of sessions until completion of the checklist.
+  - Logging this response plan to ensure reporting includes checklist deltas and session estimates.
 
 ## HIGH PRIORITY
 

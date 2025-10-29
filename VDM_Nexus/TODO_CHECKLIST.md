@@ -43,6 +43,9 @@ Begin the task by following the instructions below:
 ### Task 0.2 — Provision toolchain & environment
 
 - [DONE] Step 0.2.1 — Install Qt 6.5+, CMake ≥3.24, compiler (Clang/MSVC/GCC matching CI targets) with C++20 support. Evidence: CMake configure succeeded; Qt6 6.5 components resolved.
+  - Installed Qt 6 base + declarative development packages along with QML runtime modules (QtQuick, Controls, Layouts, Templates, WorkerScript) so the dashboard preview can start inside the container.
+  - Supplemented runtime with Qt 6 QML import packages (`qml6-module-qtquick`, `qml6-module-qtquick-controls`, `qml6-module-qtquick-layouts`, `qml6-module-qtqml-workerscript`, `qml6-module-qtquick-templates`, `qml6-module-qtquick-window`) to unblock offscreen test runs of the dashboard shell.
+  - Installed `qml6-module-qtqml-workerscript` explicitly after the offscreen smoke test reported the missing `QtQml.WorkerScript` import so the dashboard QML loads cleanly under headless CI runs.
 - [DONE] Step 0.2.2 — Set up Python 3.13.5 environment with repo `requirements.txt`; enable `poetry`/`pip-tools` lock if applicable. Evidence: Python 3.13.5 active; `pip check` OK.
 - [DONE] Step 0.2.3 — Configure deterministic environment variables (`OMP_NUM_THREADS`, `OPENBLAS_NUM_THREADS`, `MKL_NUM_THREADS`, `BLIS_NUM_THREADS`, `VECLIB_MAXIMUM_THREADS`, `NUMEXPR_NUM_THREADS`, `PYTHONHASHSEED`) per canon execution policy. Evidence: [`VDM_Nexus/.env.example`](VDM_Nexus/.env.example:7) updated; copy to local .env for development shells.
 
@@ -70,7 +73,12 @@ Begin the task by following the instructions below:
 ### Task 1.1 — Map canonical sources into Nexus surfaces
 
 - [STARTED] Step 1.1.1 — Inventory all UI text and ensure every physics reference cites [VDM-AX-A0…A7](../derivation/AXIOMS.md#vdm-ax-a0) and relevant equations ([VDM-E-033](../derivation/EQUATIONS.md#vdm-e-033), [VDM-E-090](../derivation/EQUATIONS.md#vdm-e-090), etc.).
+  - Added dashboard reference chips that resolve canon anchors (VDM-AX-A0…A7, VDM-E-033, VDM-E-090, VALIDATION_METRICS) through `DashboardController::repositoryUrl`, keeping links repo-local.
+  - Normalized and deduplicated repository links so dashboard chips only expose safe, canon-tracked anchors.
+  - Hardened anchor handling so repository URLs preserve Markdown fragments after validating targets exist within `VDM_REPO_ROOT`.
+  - Added repository traversal guard that ascends from build/output directories to find canon files safely, so dashboard chips work even when the app launches outside the repo root.
 - [STARTED] Step 1.1.2 — Link KPI displays to definitions in [VALIDATION_METRICS.md](../derivation/VALIDATION_METRICS.md#kpi-front-speed-rel-err); compute pass/fail with thresholds from the active run's spec/schema; do not duplicate thresholds in GUI.
+  - Dashboard metrics now reference nexus-roadmap summary counts and display gating copy referencing VALIDATION_METRICS while deferring threshold evaluation to controller data.
 - [STARTED] Step 1.1.3 — Ensure Markdown viewer overlays commit hashes on canon documents for provenance.
 
 ### **Task 1.1 Validation:**
@@ -92,7 +100,11 @@ Begin the task by following the instructions below:
 ### Task 1.3 — Surface experiment roadmap context
 
 - [ ] Step 1.3.1 — Present Tier ladder status via read-only link to [VDM-Progress-Findings.md](../derivation/VDM-Progress-Findings.md); do not parse Markdown to drive UI state. Tag experiments by maturity (T0–T9) only from structured sources (approvals DB/specs/JSON registries) when available.
-- [ ] Step 1.3.2 — Map proposed experiments (e.g., quantum gravity bridge, agency field probes, intelligence model substrate) to dashboard cards as read-only links; no thresholds or gating derived from Markdown.
+- [STARTED] Step 1.3.2 — Map proposed experiments (e.g., quantum gravity bridge, agency field probes, intelligence model substrate) to dashboard cards as read-only links; no thresholds or gating derived from Markdown.
+  - Spotlight cards pull from `spotlight_cards` entries to expose proposal paths with click-through to repo files while flagging missing RESULTS status.
+  - Spotlight proposal links are sanitized and validated against the repo root before exposing open actions.
+  - Repository resolver now retains proposal anchors/fragments while still preventing traversal outside the repo.
+  - Repository lookup now walks parent directories when necessary, ensuring sanitized proposal links still reach canon files when the binary executes from a build tree.
 - [ ] Step 1.3.3 — Flag missing RESULTS using structured artifacts (approvals DB and presence of RESULTS_* artifacts/logs); show prerequisites as links to proposal sections only (no Markdown parsing for logic).
 
 ### **Task 1.3 Validation:**  
@@ -181,7 +193,13 @@ Begin the task by following the instructions below:
 ### Task 4.1 — Build dashboard and document viewers
 
 - Note: Phase 4 remains [NOT STARTED] until ports/adapters compile; see [NEXUS_ARCHITECTURE.md](VDM_Nexus/NEXUS_ARCHITECTURE.md) §12.
-- [NOT STARTED] Step 4.1.1 — Implement Dashboard panes (Active Experiments, Pending Approvals, KPI summaries, orphan proposals).
+- [STARTED] Step 4.1.1 — Implement Dashboard panes (Active Experiments, Pending Approvals, KPI summaries, orphan proposals).
+  - Added QML dashboard preview (`presentation/qml/Main.qml`) wiring `DashboardController` metrics into three-card layout with canon anchor links; loads roadmap index read-only at startup.
+  - Packaged dashboard QML into `presentation.qrc` under the `/presentation` prefix and verified the headless Qt Quick runtime loads without missing module errors.
+  - Added headless runtime guard in `main.cpp` that exits automatically when `QT_QPA_PLATFORM=offscreen` after confirming QML load, preventing hung CI sessions.
+  - Default index discovery now walks upward from build and binary directories (in addition to `VDM_REPO_ROOT`) so off-tree builds still locate `nexus-roadmap-index.v1.json`, logging clear warnings when the manifest is missing or unreadable.
+  - Honoured `VDM_REPO_ROOT` values that point directly at the manifest file by short-circuiting the lookup before traversing directories, keeping env-driven preview scripts functional.
+  - Trimmed whitespace from environment-provided manifest paths before resolution so stray spaces in `VDM_REPO_ROOT` no longer break dashboard startup.
 - [NOT STARTED] Step 4.1.2 — Develop Artifact browser with filters by domain, tag, gate status, run timestamp.
 - [NOT STARTED] Step 4.1.3 — Implement Proposal/Results Viewer: render PROPOSAL_* and RESULTS_* Markdown with math rendering, commit banners, anchor navigation; read-only.
 - [NOT STARTED] Step 4.1.4 — Implement Experiment Browser (Configs/Specs): list per-domain experiments and open config/spec JSON with a pretty/JSON-path viewer; display repository path and commit hash; read-only (no writes to derivation).
