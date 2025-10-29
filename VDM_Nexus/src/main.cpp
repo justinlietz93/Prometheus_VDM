@@ -1,24 +1,67 @@
-#include <QGuiApplication>
+#include <QCoreApplication>
 #include <QDebug>
+#include <QGuiApplication>
+#include <QQmlApplicationEngine>
+#include <QQmlContext>
 #include <QString>
+#include <QTimer>
 
 #include "../presentation/DashboardController.h"
 
-// Smoke-ingest the roadmap index JSON at startup (read-only) and print summary counters.
-// This wires Task 1.3 ingestion without any GUI dependency; presentation panes can bind to
-// DashboardController properties later via QML/Widgets.
+namespace {
+
+QString qmlEntryPoint() {
+  return QStringLiteral("qrc:/presentation/qml/Main.qml");
+}
+
+}  // namespace
+
 int main(int argc, char* argv[]) {
   QGuiApplication app(argc, argv);
+  QGuiApplication::setApplicationDisplayName(QStringLiteral("VDM Nexus"));
+  QGuiApplication::setApplicationName(QStringLiteral("VDM Nexus"));
 
-  DashboardController ctrl;
-  const bool ok = ctrl.loadIndex(QString()); // default path resolution (VDM_REPO_ROOT or relative)
+  DashboardController controller;
+  const bool loaded = controller.loadIndex(QString());
   qInfo().noquote() << "[NEXUS][INDEX]"
-                    << (ok ? "loaded" : "missing")
-                    << "repo_head=" << ctrl.repoHead()
-                    << "pending_approvals=" << ctrl.pendingApprovals()
-                    << "orphan_proposals=" << ctrl.orphanProposals()
-                    << "artifacts_total=" << ctrl.artifactsTotal();
+                    << (loaded ? "loaded" : "missing")
+                    << "repo_head=" << controller.repoHead()
+                    << "pending_approvals=" << controller.pendingApprovals()
+                    << "orphan_proposals=" << controller.orphanProposals()
+                    << "results_total=" << controller.resultsTotal()
+                    << "proposals_total=" << controller.totalProposals()
+                    << "code_domains_tracked=" << controller.codeDomainsTracked()
+                    << "documentation_buckets=" << controller.documentationBuckets()
+                    << "artifacts_total=" << controller.artifactsTotal();
 
-  // No GUI loop yet; exit immediately after ingest print (compile/run sanity).
-  return 0;
+  QQmlApplicationEngine engine;
+  engine.rootContext()->setContextProperty(QStringLiteral("dashboardController"), &controller);
+
+  const QUrl url = QUrl::fromUserInput(qmlEntryPoint());
+  QObject::connect(
+      &engine, &QQmlApplicationEngine::objectCreated, &app,
+      [url](QObject* obj, const QUrl& objUrl) {
+        if (!obj && url == objUrl) {
+          QCoreApplication::exit(-1);
+        }
+      },
+      Qt::QueuedConnection);
+
+  engine.load(url);
+  if (engine.rootObjects().isEmpty()) {
+    qCritical().noquote() << "[NEXUS][QML] failed to load" << url;
+    return -1;
+  }
+
+  const QString platform = qEnvironmentVariable("QT_QPA_PLATFORM");
+  if (platform.compare(QStringLiteral("offscreen"), Qt::CaseInsensitive) == 0) {
+    QTimer::singleShot(0, &app, [&app]() {
+      qInfo().noquote()
+          << "[NEXUS][QML] offscreen platform detected; exiting after successful"
+             " load";
+      app.quit();
+    });
+  }
+
+  return app.exec();
 }
