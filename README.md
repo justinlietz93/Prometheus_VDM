@@ -1,24 +1,22 @@
 # Void Dynamics Model - Public Overview
 
-***Current Status:***
+***Current Status:*** Cleaning up and organizing repository, working on agency experiments.
 
-> Cleaning up existing RD papers, adding code files to Zenodo, and writing new papers for Memory Steering + reproducibility code.
-
-> Author: Justin K. Lietz<br>
-<a href="https://orcid.org/0009-0008-9028-1366"><img src="https://img.shields.io/badge/ORCID-0009--0008--9028--1366-blue?" alt="ORCID: 0009-0008-9028-1366"></a> <br>
-> Contact: <justin@neuroca.ai>
+> **Author:** Justin K. Lietz  
+> **Contact:** <justin@neuroca.ai>  
+> <a href="https://orcid.org/0009-0008-9028-1366"><img src="https://img.shields.io/badge/ORCID-0009--0008--9028--1366-blue?" alt="ORCID: 0009-0008-9028-1366"></a>  
 >
-> Created: August 9, 2025<br>
-> README Last Updated: October 28, 2025
-> Codebase Last Updated: October 29, 2025
+> **Created:** August 9, 2025  
+> **README Last Updated:** October 28, 2025  
+> **Codebase Last Updated:** October 29, 2025  
 >
-> This research is protected under a dual-license to foster open academic
-> research while ensuring commercial applications are aligned with the project's ethical principles.
-> Commercial use requires written permission from the author..
+> This research is protected under a dual-license to foster open academic  
+> research while ensuring commercial applications are aligned with the project's ethical principles.  
+> Commercial use requires written permission from the author.  
 >
-> ![Static Badge](https://img.shields.io/badge/Academic%2FCommercial%20Dual-License?label=LICENSE&color=%23fff200&link=https%3A%2F%2Fgithub.com%2FNeuroca-Inc%2FPrometheus_Void-Dynamics_Model%2Fblob%2Fmain%2FLICENSE.md)
+> ![Static Badge](https://img.shields.io/badge/Academic%2FCommercial%20Dual-License?label=LICENSE&color=%23fff200&link=https%3A%2F%2Fgithub.com%2FNeuroca-Inc%2FPrometheus_Void-Dynamics_Model%2Fblob%2Fmain%2FLICENSE.md)  
 >
-> See LICENSE file or click the LICENSE badge above for full terms.
+> See LICENSE file or click the LICENSE badge above for full terms.  
 
 ## 🔥News
 
