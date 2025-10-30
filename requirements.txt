@@ -26,3 +26,5 @@ pypdf2  # For PDF text extraction
 
 # Custom Advanced Math Library
 statsmodels  # For statistical models
+
+# Derivations Code
