@@ -12,13 +12,13 @@ See LICENSE file for full terms.
 Taylor-Green vortex (2-D) viscosity recovery benchmark for the fluids sector.
 
 CHANGE REASON:
-- Relocated into derivation/code/physics/fluid_dynamics per repo rules (no Prometheus_VDM/bench/).
-- Outputs follow RD harness: derivation/code/outputs/{figures,logs}.
+- Relocated into Derivation/code/physics/fluid_dynamics per repo rules (no Prometheus_VDM/bench/).
+- Outputs follow RD harness: Derivation/code/outputs/{figures,logs}.
 - Ensures JSON uses native Python types (bool/float) to avoid numpy serialization issues.
 
 Outputs (defaults):
-- Figures → derivation/code/outputs/figures/<script>_<timestamp>.png
-- Logs    → derivation/code/outputs/logs/<script>_<timestamp>.json
+- Figures → Derivation/code/outputs/figures/<script>_<timestamp>.png
+- Logs    → Derivation/code/outputs/logs/<script>_<timestamp>.json
 """
 
 import os, json, time, math, argparse
@@ -61,7 +61,7 @@ def main():
     ap.add_argument("--k", type=float, default=2*math.pi)
     ap.add_argument("--steps", type=int, default=5000)
     ap.add_argument("--sample_every", type=int, default=50)
-    ap.add_argument("--outdir", type=str, default=None, help="base output dir; defaults to derivation/code/outputs")
+    ap.add_argument("--outdir", type=str, default=None, help="base output dir; defaults to Derivation/code/outputs")
     args = ap.parse_args()
 
     cfg = LBMConfig(nx=args.nx, ny=args.ny, tau=args.tau, periodic_x=True, periodic_y=True)

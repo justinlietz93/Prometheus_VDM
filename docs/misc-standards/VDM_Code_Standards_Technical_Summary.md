@@ -412,15 +412,15 @@
 * For Tachyonic Tube v1, Python environment must conform to `requirements.txt`.
 * For Decoherence Portals, use `run_dp_fisher_check.py` for Fisher estimation.
 * For Decoherence Portals, use `run_dp_noise_budget.py` for noise budget.
-* For FRW Continuity Residual, use `derivation/code/physics/cosmology/run_frw_balance.py` as runner.
+* For FRW Continuity Residual, use `Derivation/code/physics/cosmology/run_frw_balance.py` as runner.
 * For KG Noether Invariants, use `Derivation/code/physics/metriplectic/kg_noether.py` as runner.
-* For Metriplectic Structure Checks, use `derivation/code/physics/metriplectic/metriplectic_structure_checks.py` as runner.
-* For Metriplectic Structure Checks, use `derivation/code/common/io_paths.py` for IO.
+* For Metriplectic Structure Checks, use `Derivation/code/physics/metriplectic/metriplectic_structure_checks.py` as runner.
+* For Metriplectic Structure Checks, use `Derivation/code/common/io_paths.py` for IO.
 * For RD Discrete Conservation, use `run_rd_conservation.py` as custom harness.
 * For RD Discrete Conservation, use `io_paths.py` for artifact routing.
-* For RD Discrete Conservation, use `derivation/code/physics/rd_conservation/run_rd_conservation.py`.
-* For RD Discrete Conservation, use `derivation/code/physics/reaction_diffusion/reaction_exact.py`.
-* For RD Discrete Conservation, use `derivation/code/common/io_paths.py`.
+* For RD Discrete Conservation, use `Derivation/code/physics/rd_conservation/run_rd_conservation.py`.
+* For RD Discrete Conservation, use `Derivation/code/physics/reaction_diffusion/reaction_exact.py`.
+* For RD Discrete Conservation, use `Derivation/code/common/io_paths.py`.
 
 ## Key Highlights
 

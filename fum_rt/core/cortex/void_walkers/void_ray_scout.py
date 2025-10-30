@@ -28,7 +28,7 @@ Guardrails:
 - No schedulers; TTL/budget bounded; emits compact events only.
 
 References:
-- Refractive-index steering law: P(i→j) ∝ exp(Θ · m[j]) with logistic 2-way fork (see derivation/memory_steering.md).
+- Refractive-index steering law: P(i→j) ∝ exp(Θ · m[j]) with logistic 2-way fork (see Derivation/memory_steering.md).
 """
 
 from typing import Any, Dict, Optional, Set, Sequence, List

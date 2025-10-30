@@ -1,5 +1,5 @@
 {
-  "csv": "/mnt/ironwolf/git/Void_Unity_Proofs/derivation/code/outputs/logs/dark_photons/20251006_180711_fisher_check__DP-fisher-smoke.csv",
+  "csv": "/mnt/ironwolf/git/Void_Unity_Proofs/Derivation/code/outputs/logs/dark_photons/20251006_180711_fisher_check__DP-fisher-smoke.csv",
   "estimates": {
     "I_analytic": 155.6678910669158,
     "I_fd": 155.66789106458145,

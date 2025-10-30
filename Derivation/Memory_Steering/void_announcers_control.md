@@ -80,7 +80,7 @@ Minimal prototype (to be provided)
 
 - Script: code/physics/memory_steering/void_announcer_demo.py
 - Uses the fluids telemetry Bus/Reducer (imported) and a simple MLP.
-- Emits logs → derivation/code/outputs/logs/memory_steering and a diagnostic figure with petition markers on hidden-layer index space.
+- Emits logs → Derivation/code/outputs/logs/memory_steering and a diagnostic figure with petition markers on hidden-layer index space.
 
 Open Questions / Next Refinements
 
@@ -97,5 +97,5 @@ Reproducibility Checklist
 
 References
 
-- Fluid mapping powered this construction; see cavity announcers and CLI in [lid_cavity_benchmark.py](Prometheus_VDM/derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py:356).
-- Bus, Reducer, Walker API: [walkers.py](Prometheus_VDM/derivation/code/physics/fluid_dynamics/telemetry/walkers.py:1).
+- Fluid mapping powered this construction; see cavity announcers and CLI in [lid_cavity_benchmark.py](Prometheus_VDM/Derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py:356).
+- Bus, Reducer, Walker API: [walkers.py](Prometheus_VDM/Derivation/code/physics/fluid_dynamics/telemetry/walkers.py:1).

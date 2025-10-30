@@ -9,26 +9,26 @@ Memory-Driven Steering (experiments): rigorous mapping to your derivations + thr
 
 What this file does (experiments layer)
 - Generates datasets (and prints CSV) to test the three predictions introduced in
-  [derivation/memory_steering.md](derivation/memory_steering.md:1) from the Voxtrium note
-  [derivation/voxtrium/voxtrium_message.txt](derivation/voxtrium/voxtrium_message.txt:1):
+  [Derivation/memory_steering.md](Derivation/memory_steering.md:1) from the Voxtrium note
+  [Derivation/voxtrium/voxtrium_message.txt](Derivation/voxtrium/voxtrium_message.txt:1):
   1) Junction logistic collapse:  P(A) ≈ σ(Θ Δm)
   2) Curvature scaling:           ⟨κ_path⟩ ∝ Θ |∇m|
   3) Stability band:              robust memory for D_a ≳ Λ with intermediate Γ
 
 How this maps to your φ‑EFT derivations (orthogonal layer)
 - The fast φ‑sector continuum equation and invariants are already derived in
-  [derivation/discrete_to_continuum.md](derivation/discrete_to_continuum.md:121-128):
+  [Derivation/discrete_to_continuum.md](Derivation/discrete_to_continuum.md:121-128):
       □φ + α φ² - (α - β) φ = 0,   v = 1 - β/α,   m_eff² = α - β.
 - The kinetic normalization c² = 2 J a² is rigorously obtained from a discrete action in
-  [derivation/kinetic_term_derivation.md](derivation/kinetic_term_derivation.md:121-128).
+  [Derivation/kinetic_term_derivation.md](Derivation/kinetic_term_derivation.md:121-128).
 - The memory‑steering layer (M) is slow and biases routing only; it does not modify φ propagation,
-  the vacuum/mass results, nor the on‑site invariant Q_FUM from [derivation/symmetry_analysis.md](derivation/symmetry_analysis.md:141-148).
+  the vacuum/mass results, nor the on‑site invariant Q_FUM from [Derivation/symmetry_analysis.md](Derivation/symmetry_analysis.md:141-148).
 
-Dimensionless groups used implicitly in the tests (see [derivation/memory_steering.md](derivation/memory_steering.md:1))
+Dimensionless groups used implicitly in the tests (see [Derivation/memory_steering.md](Derivation/memory_steering.md:1))
 - Θ = η M0        (steering strength)
 - D_a = γ R0 T / M0,   Λ = δ T,   Γ = κ T / L²
 - We choose simple graph‑native rulers (L, T, M0, R0) inside each test to demonstrate collapse
-  and leave the physical alignment to φ’s (a, τ) to [derivation/fum_voxtrium_mapping.md](derivation/fum_voxtrium_mapping.md:44-80).
+  and leave the physical alignment to φ’s (a, τ) to [Derivation/fum_voxtrium_mapping.md](Derivation/fum_voxtrium_mapping.md:44-80).
 
 Outputs (printed to stdout when run)
 - Junction logistic:            “Theta*Delta_m, P(A)”
@@ -221,7 +221,7 @@ def run_junction_logistic(theta: float = 2.0, delta_m_values: Sequence[float] = 
     Junction logistic collapse: P(A) ≈ σ(Θ Δm)
 
     Why this maps to the derivation:
-    - In [derivation/memory_steering.md](derivation/memory_steering.md:1) the steering index is n=exp(η M).
+    - In [Derivation/memory_steering.md](Derivation/memory_steering.md:1) the steering index is n=exp(η M).
       At a fork, the two outgoing neighbors (A,B) inherit memory values (m_A, m_B). The softmax routing
       P(i→j) ∝ exp(Θ m_j) reduces to a binary logistic:
           P(A) = σ(Θ (m_A - m_B)) = σ(Θ Δm).
@@ -267,7 +267,7 @@ def polyline_curvature(pts: np.ndarray) -> np.ndarray:
           κ ≈ 2 sin(Δθ/2) / ℓ
       (endpoints are set to 0). This delivers a robust, grid‑agnostic estimator of path bending.
 
-    - In the derivation [derivation/memory_steering.md](derivation/memory_steering.md:1), rays obey r'' = ∇_⊥ ln n = Θ ∇_⊥ m
+    - In the derivation [Derivation/memory_steering.md](Derivation/memory_steering.md:1), rays obey r'' = ∇_⊥ ln n = Θ ∇_⊥ m
       (with n=exp(Θ m)). The magnitude of r'' along a path is proportional to |∇m| with a slope ∝ Θ. This function
       yields the ⟨κ_path⟩ metric used in the curvature scaling test ⟨κ_path⟩ ∝ Θ |∇m|.
     """

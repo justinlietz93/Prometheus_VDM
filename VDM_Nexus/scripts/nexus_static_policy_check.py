@@ -12,7 +12,7 @@ See LICENSE file for full terms.
 VDM Nexus — Static Policy Check (Task 0.3.1)
 
 Purpose:
-- Enforce: "zero write operations under ../derivation/" from Nexus scope
+- Enforce: "zero write operations under ../Derivation/" from Nexus scope
 - Static source scan only (no execution). Read-only across the repo.
 
 What it checks:
@@ -25,7 +25,7 @@ What it checks:
   - open(path, mode) where mode includes 'w', 'a', '+'
   - Path.write_text / Path.write_bytes
 - For any of the above, flag as violation ONLY if the literal path argument contains:
-  - "../derivation" or "/derivation/" (case-insensitive)
+  - "../derivation" or "/Derivation/" (case-insensitive)
 - Prohibited identifiers in Nexus tree:
   - "memory_kg_lite" in file paths or string literals (memory KG‑Lite is external‑agent‑only per NEXUS §3)
 
@@ -50,7 +50,7 @@ PY_EXTS = {".py"}
 
 DERIV_PATTERNS = (
     "../derivation",
-    "/derivation/",
+    "/Derivation/",
 )
 
 # Prohibited identifiers (external-agent-only; must not appear in VDM_Nexus tree)

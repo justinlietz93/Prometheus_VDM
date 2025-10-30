@@ -44,7 +44,7 @@ PDE/Action/Potential branches
   - Second‑order time with action‑derived kinetic normalization:
     ∂t² φ + γ ∂t φ - c² ∇² φ + V′(φ) = 0, with c² = 2 J a² (per‑site) or c² = κ a², κ=2J (per‑edge).
   - Mass parameter follows m_eff² = V″(v) at the vacuum v; not used in RD validations.
-  - See [kinetic_term_derivation.md](Prometheus_VDM/derivation/effective_field_theory/kinetic_term_derivation.md:1) and [effective_field_theory_approach.md](Prometheus_VDM/derivation/effective_field_theory/effective_field_theory_approach.md:1).
+  - See [kinetic_term_derivation.md](Prometheus_VDM/Derivation/effective_field_theory/kinetic_term_derivation.md:1) and [effective_field_theory_approach.md](Prometheus_VDM/Derivation/effective_field_theory/effective_field_theory_approach.md:1).
 
 Fixed points & stability (RD)
 
@@ -58,18 +58,18 @@ Dispersion relations
 - Continuum RD (Fourier mode k): σ(k) = r - D k². [PROVEN]
 - Discrete lattice (mode index m on N sites, periodic):
   σ_d(m) = r - (4D/dx²) sin²(π m/N) with dx = L/N. Small‑k expansion recovers σ ≈ r - D k². [PROVEN]
-- See validation script: [rd_dispersion_experiment.py](Prometheus_VDM/derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py:1) and doc [rd_dispersion_validation.md](Prometheus_VDM/derivation/reaction_diffusion/rd_dispersion_validation.md:1).
+- See validation script: [rd_dispersion_experiment.py](Prometheus_VDM/Derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py:1) and doc [rd_dispersion_validation.md](Prometheus_VDM/Derivation/reaction_diffusion/rd_dispersion_validation.md:1).
 
 Front speed (Fisher-KPP)
 
 - Theory: c_front = 2 √(D r). [PROVEN]
-- Experiment: [rd_front_speed_experiment.py](Prometheus_VDM/derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py:1) and doc [rd_front_speed_validation.md](Prometheus_VDM/derivation/reaction_diffusion/rd_front_speed_validation.md:1).
+- Experiment: [rd_front_speed_experiment.py](Prometheus_VDM/Derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py:1) and doc [rd_front_speed_validation.md](Prometheus_VDM/Derivation/reaction_diffusion/rd_front_speed_validation.md:1).
 
 Conservation or Lyapunov notes
 
 - Diffusion decreases spatial variance; the reaction term sets carrying capacity φ* = r/u.
 - Global positivity is preserved given nonnegative initial data under the canonical discretization. [PLAUSIBLE]
-- Noether‑style invariants apply to the EFT action, not to the RD dissipative flow; see [symmetry_analysis.md](Prometheus_VDM/derivation/foundations/symmetry_analysis.md:1) for context. [SCOPE]
+- Noether‑style invariants apply to the EFT action, not to the RD dissipative flow; see [symmetry_analysis.md](Prometheus_VDM/Derivation/foundations/symmetry_analysis.md:1) for context. [SCOPE]
 
 Numerical plan + acceptance (recap)
 
@@ -77,30 +77,30 @@ Numerical plan + acceptance (recap)
 - Acceptance gates:
   - Front speed: |c_meas - c_th| / c_th ≤ 6% and R² ≥ 0.9999 on the tracked front interval.
   - Dispersion: median relative error ≤ 2×10⁻³ and R²_array ≥ 0.999.
-- Outputs auto‑routed to derivation/code/outputs/{figures,logs}/reaction_diffusion with timestamped names.
-- See logs referenced in [LOG_20250824.md](Prometheus_VDM/derivation/DAILY_LOGS/LOG_20250824.md:1).
+- Outputs auto‑routed to Derivation/code/outputs/{figures,logs}/reaction_diffusion with timestamped names.
+- See logs referenced in [LOG_20250824.md](Prometheus_VDM/Derivation/DAILY_LOGS/LOG_20250824.md:1).
 
 Units and normalization
 
 - RD: choose units so that D and r have desired scales; rescale x→x/L, t→t/T as needed.
 - EFT: keep c² = 2 J a² mapping explicit; units can set c=1 after identification. [REFERENCE]
-- See [discrete_to_continuum.md](Prometheus_VDM/derivation/foundations/discrete_to_continuum.md:1) and status log [CORRECTIONS.md](Prometheus_VDM/derivation/CORRECTIONS.md:1).
+- See [discrete_to_continuum.md](Prometheus_VDM/Derivation/foundations/discrete_to_continuum.md:1) and status log [CORRECTIONS.md](Prometheus_VDM/Derivation/CORRECTIONS.md:1).
 
 Results (pointers)
 
 - Front‑speed PASS and dispersion PASS recorded with figures/logs; see:
-  - [rd_front_speed_experiment.py](Prometheus_VDM/derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py:1)
-  - [rd_dispersion_experiment.py](Prometheus_VDM/derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py:1)
-- Overview banner and dimensionless constants: [VDM_Overview.md](Prometheus_VDM/derivation/VDM_Overview.md:1).
+  - [rd_front_speed_experiment.py](Prometheus_VDM/Derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py:1)
+  - [rd_dispersion_experiment.py](Prometheus_VDM/Derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py:1)
+- Overview banner and dimensionless constants: [VDM_Overview.md](Prometheus_VDM/Derivation/VDM_Overview.md:1).
 
 Open questions
 
 - Formal Lyapunov functional for the RD logistic‑diffusion flow on bounded domains. [NEEDS DATA]
 - Quantitative criteria for when a second‑order EFT branch becomes necessary. [PLAUSIBLE]
-- Coupling of memory‑steering overlays to the RD baseline; see [memory_steering.md](Prometheus_VDM/derivation/memory_steering/memory_steering.md:1). [PLAUSIBLE]
+- Coupling of memory‑steering overlays to the RD baseline; see [memory_steering.md](Prometheus_VDM/Derivation/memory_steering/memory_steering.md:1). [PLAUSIBLE]
 
 Provenance
 
-- Kinetic/action normalization: [kinetic_term_derivation.md](Prometheus_VDM/derivation/effective_field_theory/kinetic_term_derivation.md:1).
-- Discrete→continuum baseline: [discrete_to_continuum.md](Prometheus_VDM/derivation/foundations/discrete_to_continuum.md:1).
-- Status/edits: [CORRECTIONS.md](Prometheus_VDM/derivation/CORRECTIONS.md:1).
+- Kinetic/action normalization: [kinetic_term_derivation.md](Prometheus_VDM/Derivation/effective_field_theory/kinetic_term_derivation.md:1).
+- Discrete→continuum baseline: [discrete_to_continuum.md](Prometheus_VDM/Derivation/foundations/discrete_to_continuum.md:1).
+- Status/edits: [CORRECTIONS.md](Prometheus_VDM/Derivation/CORRECTIONS.md:1).

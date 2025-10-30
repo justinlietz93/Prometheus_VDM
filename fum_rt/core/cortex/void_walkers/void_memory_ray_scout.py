@@ -29,7 +29,7 @@ Guardrails:
 - No schedulers; TTL/budget bounded; emits compact events only.
 
 Fork law (two-branch junction):
-- P(A) = sigmoid(Theta * (m_A - m_B)) for tau = 1, aligning with derivation/memory_steering.md
+- P(A) = sigmoid(Theta * (m_A - m_B)) for tau = 1, aligning with Derivation/memory_steering.md
 """
 
 from typing import Any, Dict, Optional, Set, Sequence, List

@@ -1,8 +1,8 @@
-**Create/Update `derivation/ALGORITHMS.md` (pseudocode of loops/flows; references-only for math)**
+**Create/Update `Derivation/ALGORITHMS.md` (pseudocode of loops/flows; references-only for math)**
 
 Search the entire repository (code, tests, notebooks, scripts, docs, comments) and extract **all algorithms currently implemented or specified** (update loops, control flows, schedulers, policies, kernels, pipelines). **Do not invent or re-derive anything.** Use only what exists in the repo.
 
-**Output file:** `derivation/ALGORITHMS.md`
+**Output file:** `Derivation/ALGORITHMS.md`
 **Canon rule:** This file is the single owner of algorithm *descriptions and pseudocode*. **Do not paste equations or numbers here.** Link to equations/constants/symbols by anchor.
 
 **MathJax on GitHub:**
@@ -27,9 +27,9 @@ Search the entire repository (code, tests, notebooks, scripts, docs, comments) a
 **MathJax:** Only inline `$...$` inside comments when needed.
 
 **Legend:** This file is **PSEUDOCODE** (illustrative).   
-• Normative math: `derivation/EQUATIONS.md`.  
-• Numbers: `derivation/CONSTANTS.md`.   
-• Symbols/units: `derivation/SYMBOLS.md`, `derivation/UNITS_NORMALIZATION.md`.  
+• Normative math: `Derivation/EQUATIONS.md`.  
+• Numbers: `Derivation/CONSTANTS.md`.   
+• Symbols/units: `Derivation/SYMBOLS.md`, `Derivation/UNITS_NORMALIZATION.md`.  
 • Canon map: `CANON_MAP.md`. 
 
 ```
@@ -103,10 +103,10 @@ TERMINATION:
 ---
 
 ### Linking rules (anchors only; no duplication of math or values)
-- Equations → `../derivation/EQUATIONS.md#vdm-e-...`  
-- Symbols → `../derivation/SYMBOLS.md#sym-...`  
-- Constants → `../derivation/CONSTANTS.md#const-...`  
-- Units maps → `../derivation/UNITS_NORMALIZATION.md#...`  
+- Equations → `../Derivation/EQUATIONS.md#vdm-e-...`  
+- Symbols → `../Derivation/SYMBOLS.md#sym-...`  
+- Constants → `../Derivation/CONSTANTS.md#const-...`  
+- Units maps → `../Derivation/UNITS_NORMALIZATION.md#...`  
 - Schemas (if any) → `../docs/SCHEMAS.md#...`
 
 If a needed anchor is missing, add `TODO: add anchor` with exact `<path>:<lines>`; do not inline math here.

@@ -24,7 +24,7 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 ## <a id="ms-frw-balance"></a>FRW Continuity Residual Validation (Gravity)
 
 **Status:** Done • **Priority:** P1  
-**Source:** derivation/cosmology/PROPOSAL_FRW_Balance_v1.md; derivation/code/physics/cosmology/run_frw_balance.py  
+**Source:** Derivation/cosmology/PROPOSAL_FRW_Balance_v1.md; Derivation/code/physics/cosmology/run_frw_balance.py  
 
 **Goal (verbatim/condensed from source):** Validate FRW energy continuity with source bookkeeping by measuring the RMS residual of the continuity equation under controlled scenarios (e.g., dust) with causal sourcing gates.
 
@@ -41,16 +41,16 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 
 **Deliverables:**
 
-- derivation/cosmology/PROPOSAL_FRW_Balance_v1.md  
-- derivation/code/physics/cosmology/run_frw_balance.py  
-- Tagged artifacts: `derivation/code/outputs/{logs,figures}/cosmology/FRW-balance-v1/*`
+- Derivation/cosmology/PROPOSAL_FRW_Balance_v1.md  
+- Derivation/code/physics/cosmology/run_frw_balance.py  
+- Tagged artifacts: `Derivation/code/outputs/{logs,figures}/cosmology/FRW-balance-v1/*`
 
 **Target timeframe (if stated):** ✓ Completed - RMS ≈ O(10⁻¹⁵) in baseline dust sanity test (PASS)
 
 ## <a id="ms-axiomatic-foundation"></a>Axiomatic Foundation Development
 
 **Status:** In progress • **Priority:** P1  
-**Source:** derivation/axiomatic_theory_development.md:79-150 • 77f055f
+**Source:** Derivation/axiomatic_theory_development.md:79-150 • 77f055f
 
 **Goal (verbatim/condensed from source):** Establish rigorous axiomatic foundation for VDM, deriving continuum dynamics from discrete action principle. Phases I-III completed (axioms, continuum limit, symmetries). Phase IV (validation) and Phase V (extensions) in progress.
 
@@ -68,10 +68,10 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 
 **Deliverables:**
 
-- derivation/foundations/void_dynamics_theory.md
-- derivation/foundations/discrete_to_continuum.md
-- derivation/foundations/symmetry_analysis.md
-- derivation/foundations/continuum_stack.md
+- Derivation/foundations/void_dynamics_theory.md
+- Derivation/foundations/discrete_to_continuum.md
+- Derivation/foundations/symmetry_analysis.md
+- Derivation/foundations/continuum_stack.md
 
 **Target timeframe (if stated):** Phases I-III ✓ completed; Phase IV-V ongoing
 
@@ -79,7 +79,7 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 
 ### <a id="task-discrete-action"></a>Discrete Action Formulation
 
-**Source:** derivation/axiomatic_theory_development.md:91-97 • 77f055f  
+**Source:** Derivation/axiomatic_theory_development.md:91-97 • 77f055f  
 **Description:** Apply discrete Euler-Lagrange equations rigorously to derive second-order time dynamics naturally (no "promotion")  
 **Linked canon:** symbols → `SYMBOLS.md#sym-W`, equations → `EQUATIONS.md#vdm-e-001`, constants → `CONSTANTS.md#const-J`  
 **Exit criteria:** Second-order time dynamics derived from variational principle without hand-waving  
@@ -89,7 +89,7 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 
 ### <a id="task-spatial-interaction"></a>Spatial Interaction Derivation
 
-**Source:** derivation/axiomatic_theory_development.md:99-106 • 77f055f  
+**Source:** Derivation/axiomatic_theory_development.md:99-106 • 77f055f  
 **Description:** Derive exact spatial kinetic prefactor $c_{\text{lat}} a^2 (\nabla\phi)^2$ from discrete interaction energy via Taylor expansion on cubic lattice  
 **Linked canon:** symbols → `SYMBOLS.md#sym-J`, equations → `EQUATIONS.md#vdm-e-002`, constants → `CONSTANTS.md#const-c-lat`  
 **Exit criteria:** Exact value $c_{\text{lat}} = 2$ for 3D cubic lattice; Lorentz invariance condition $c^2 = 2J a^2$  
@@ -99,7 +99,7 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 
 ### <a id="task-continuum-mapping"></a>Rigorous Continuum Mapping
 
-**Source:** derivation/axiomatic_theory_development.md:110-116 • 77f055f  
+**Source:** Derivation/axiomatic_theory_development.md:110-116 • 77f055f  
 **Description:** Define scaling limits with fixed wave speed; establish field redefinition; derive continuum action from discrete limit  
 **Linked canon:** symbols → `SYMBOLS.md#sym-phi`, equations → `EQUATIONS.md#vdm-e-008`, `EQUATIONS.md#vdm-e-010`  
 **Exit criteria:** Continuum action derived with proper scaling; connection to both RD and Klein-Gordon forms established  
@@ -109,7 +109,7 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 
 ### <a id="task-potential-analysis"></a>Potential Function Analysis
 
-**Source:** derivation/axiomatic_theory_development.md:118-125 • 77f055f  
+**Source:** Derivation/axiomatic_theory_development.md:118-125 • 77f055f  
 **Description:** Add quartic stabilization to potential; determine parameter constraints for global minimum existence; calculate vacuum solutions  
 **Linked canon:** symbols → `SYMBOLS.md#sym-V`, constants → `CONSTANTS.md#const-alpha`, `CONSTANTS.md#const-beta`, `CONSTANTS.md#const-lambda`  
 **Exit criteria:** Bounded-below potential with controlled vacuum structure; effective mass $m_{\text{eff}}^2 = V''(v)$ calculated  
@@ -119,9 +119,9 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 
 ### <a id="task-symmetry-analysis"></a>Symmetry Analysis and Conservation Laws
 
-**Source:** derivation/axiomatic_theory_development.md:136-149 • 77f055f  
+**Source:** Derivation/axiomatic_theory_development.md:136-149 • 77f055f  
 **Description:** Apply Noether's theorem to derive conserved currents; analyze symmetry breaking patterns  
-**Linked canon:** equations → `EQUATIONS.md#vdm-e-020` (energy conservation), algorithms → TODO: add anchor (see derivation/foundations/symmetry_analysis.md)  
+**Linked canon:** equations → `EQUATIONS.md#vdm-e-020` (energy conservation), algorithms → TODO: add anchor (see Derivation/foundations/symmetry_analysis.md)  
 **Exit criteria:** Complete conservation law framework; energy, momentum conservation verified  
 **Owner (if present):** - • **Status:** ✓ Completed
 
@@ -130,7 +130,7 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 ## <a id="ms-rd-validation"></a>RD Canonical Validation
 
 **Status:** Done • **Priority:** P1  
-**Source:** derivation/reaction_diffusion/rd_validation_plan.md:1-99 • 77f055f; derivation/VDM_Overview.md:35 • 77f055f
+**Source:** Derivation/reaction_diffusion/rd_validation_plan.md:1-99 • 77f055f; Derivation/VDM_Overview.md:35 • 77f055f
 
 **Goal (verbatim/condensed from source):** Establish reproducible numeric checks for the RD canonical model with front speed and linear dispersion validation
 
@@ -149,10 +149,10 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 
 **Deliverables:**
 
-- derivation/code/physics/rd_front_speed_experiment.py
-- derivation/code/physics/rd_dispersion_experiment.py
-- derivation/reaction_diffusion/rd_front_speed_validation.md
-- derivation/reaction_diffusion/rd_dispersion_validation.md
+- Derivation/code/physics/rd_front_speed_experiment.py
+- Derivation/code/physics/rd_dispersion_experiment.py
+- Derivation/reaction_diffusion/rd_front_speed_validation.md
+- Derivation/reaction_diffusion/rd_dispersion_validation.md
 
 **Target timeframe (if stated):** ✓ Completed - validated with rel_err ≈ 0.047, R² ≈ 0.999996 (front speed); rel_err ≈ 1.45×10⁻³, R² ≈ 0.99995 (dispersion)
 
@@ -160,7 +160,7 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 
 ### <a id="task-front-speed"></a>Fisher-KPP Front Speed Validation
 
-**Source:** derivation/reaction_diffusion/rd_validation_plan.md:24-40 • 77f055f  
+**Source:** Derivation/reaction_diffusion/rd_validation_plan.md:24-40 • 77f055f  
 **Description:** Validate theoretical front speed $c_{th} = 2\sqrt{D r}$ against measured front position tracking with Neumann BCs  
 **Linked canon:** equations → `EQUATIONS.md#vdm-e-033`, constants → `CONSTANTS.md#const-D`, `CONSTANTS.md#const-r`  
 **Exit criteria:** rel_err ≤ 0.05, R² ≥ 0.98, cross-check gradient-based speed  
@@ -170,9 +170,9 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 
 ### <a id="task-dispersion"></a>Linear Dispersion Validation
 
-**Source:** derivation/reaction_diffusion/rd_validation_plan.md:42-57 • 77f055f  
+**Source:** Derivation/reaction_diffusion/rd_validation_plan.md:42-57 • 77f055f  
 **Description:** Validate per-mode growth rate $\sigma(m)$ via linear fit of log|Û_m(t)| against discrete and continuum theory  
-**Linked canon:** equations → TODO: add anchor (see derivation/reaction_diffusion/rd_dispersion_validation.md), constants → `CONSTANTS.md#const-D`, `CONSTANTS.md#const-r`  
+**Linked canon:** equations → TODO: add anchor (see Derivation/reaction_diffusion/rd_dispersion_validation.md), constants → `CONSTANTS.md#const-D`, `CONSTANTS.md#const-r`  
 **Exit criteria:** median relative error ≤ 0.10 over good modes (R²_mode ≥ 0.95); R²_array ≥ 0.98  
 **Owner (if present):** - • **Status:** ✓ Proven
 
@@ -181,7 +181,7 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 ## <a id="ms-memory-steering"></a>Memory Steering Mechanism
 
 **Status:** In progress • **Priority:** P2  
-**Source:** derivation/memory_steering/memory_steering_acceptance_verification.md:1-108 • 77f055f; OPEN_QUESTIONS.md#oq-004 • 77f055f
+**Source:** Derivation/memory_steering/memory_steering_acceptance_verification.md:1-108 • 77f055f; OPEN_QUESTIONS.md#oq-004 • 77f055f
 
 **Goal (verbatim/condensed from source):** Define quantitative acceptance criteria and reproducible verification protocol for memory steering mechanism; validate fixed-point convergence, boundedness, and canonical void target convergence
 
@@ -190,7 +190,7 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 - Metrics/KPIs: `VALIDATION_METRICS.md#kpi-mem-steering-drift-abs` (≤ 0.02)
 - Metrics/KPIs: `VALIDATION_METRICS.md#kpi-mem-steering-target-abs` (|M_final - 0.6| ≤ 0.02)
 - Metrics/KPIs: `VALIDATION_METRICS.md#kpi-mem-steering-snr-db` (≥ 3 dB improvement)
-- Equations referenced: TODO: add anchor (see derivation/memory_steering/memory_steering.md)
+- Equations referenced: TODO: add anchor (see Derivation/memory_steering/memory_steering.md)
 - Data products to produce: `DATA_PRODUCTS.md#data-memory-steering-acceptance`
 
 **Dependencies:** #ms-rd-validation (RD baseline must be proven)  
@@ -201,10 +201,10 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 
 **Deliverables:**
 
-- derivation/memory_steering/memory_steering.md
-- derivation/memory_steering/memory_steering_acceptance_verification.md
-- derivation/code/physics/memory_steering/memory_steering_acceptance.py
-- derivation/code/physics/memory_steering/memory_steering_experiments.py
+- Derivation/memory_steering/memory_steering.md
+- Derivation/memory_steering/memory_steering_acceptance_verification.md
+- Derivation/code/physics/memory_steering/memory_steering_acceptance.py
+- Derivation/code/physics/memory_steering/memory_steering_experiments.py
 
 **Target timeframe (if stated):** Acceptance harness defined; validation in progress
 
@@ -212,9 +212,9 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 
 ### <a id="task-mem-acceptance"></a>Memory Steering Acceptance Tests
 
-**Source:** derivation/memory_steering/memory_steering_acceptance_verification.md:55-108 • 77f055f  
+**Source:** Derivation/memory_steering/memory_steering_acceptance_verification.md:55-108 • 77f055f  
 **Description:** Run acceptance harness with fixed parameters (g=0.12, λ=0.08) and verify all acceptance checks pass  
-**Linked canon:** equations → TODO: add anchor (see derivation/memory_steering/memory_steering.md:108), constants → TODO: add anchor (see derivation/memory_steering/memory_steering.md)  
+**Linked canon:** equations → TODO: add anchor (see Derivation/memory_steering/memory_steering.md:108), constants → TODO: add anchor (see Derivation/memory_steering/memory_steering.md)  
 **Exit criteria:** All acceptance checks pass; drift ≤ 0.02, target convergence verified, SNR improvement ≥ 3 dB  
 **Owner (if present):** - • **Status:** In progress
 
@@ -223,7 +223,7 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 ## <a id="ms-fluids-sector"></a>LBM Fluids Sector Validation
 
 **Status:** In progress • **Priority:** P2  
-**Source:** derivation/fluid_dynamics/BENCHMARKS_FLUIDS.md:1-98 • 77f055f
+**Source:** Derivation/fluid_dynamics/BENCHMARKS_FLUIDS.md:1-98 • 77f055f
 
 **Goal (verbatim/condensed from source):** Define falsifiable acceptance thresholds for the fluids sector (LBM→NS) to certify reduction to Navier-Stokes; validate Taylor-Green vortex and lid-driven cavity benchmarks
 
@@ -231,8 +231,8 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 
 - Metrics/KPIs: `VALIDATION_METRICS.md#kpi-taylor-green-visc-rel-err` (≤ 0.05 at baseline grid ≥ 256²)
 - Metrics/KPIs: `VALIDATION_METRICS.md#kpi-lid-cavity-div-max` (≤ 1e-6 for double precision)
-- Equations referenced: TODO: add anchor (see derivation/fluid_dynamics/fluids_limit.md)
-- Data products to produce: TODO: add anchor (see derivation/code/outputs/figures/fluid_dynamics/)
+- Equations referenced: TODO: add anchor (see Derivation/fluid_dynamics/fluids_limit.md)
+- Data products to produce: TODO: add anchor (see Derivation/code/outputs/figures/fluid_dynamics/)
 
 **Dependencies:** None (parallel track to RD sector)  
 **Risks/Constraints:**
@@ -242,10 +242,10 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 
 **Deliverables:**
 
-- derivation/fluid_dynamics/BENCHMARKS_FLUIDS.md
-- derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py
-- derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py
-- derivation/code/tests/fluid_dynamics/test_walkers_noninterference.py
+- Derivation/fluid_dynamics/BENCHMARKS_FLUIDS.md
+- Derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py
+- Derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py
+- Derivation/code/tests/fluid_dynamics/test_walkers_noninterference.py
 
 **Target timeframe (if stated):** Benchmarks defined; validation in progress
 
@@ -253,9 +253,9 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 
 ### <a id="task-taylor-green"></a>Taylor-Green Vortex Benchmark
 
-**Source:** derivation/fluid_dynamics/BENCHMARKS_FLUIDS.md:16-23 • 77f055f  
+**Source:** Derivation/fluid_dynamics/BENCHMARKS_FLUIDS.md:16-23 • 77f055f  
 **Description:** Fit viscous decay E(t) = E₀ exp(-2 ν k² t) and verify |ν_fit - ν_th| / ν_th ≤ 5% at baseline grid ≥ 256²  
-**Linked canon:** equations → TODO: add anchor (see derivation/fluid_dynamics/fluids_limit.md), constants → TODO: add anchor (see BENCHMARKS_FLUIDS.md)  
+**Linked canon:** equations → TODO: add anchor (see Derivation/fluid_dynamics/fluids_limit.md), constants → TODO: add anchor (see BENCHMARKS_FLUIDS.md)  
 **Exit criteria:** Viscosity fit within 5% tolerance; refinement shows order-consistent error decrease  
 **Owner (if present):** - • **Status:** In progress
 
@@ -263,9 +263,9 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 
 ### <a id="task-lid-cavity"></a>Lid-Driven Cavity Benchmark
 
-**Source:** derivation/fluid_dynamics/BENCHMARKS_FLUIDS.md:25-32 • 77f055f  
+**Source:** Derivation/fluid_dynamics/BENCHMARKS_FLUIDS.md:25-32 • 77f055f  
 **Description:** Monitor divergence norm and verify max_t ‖∇·v‖₂ ≤ 1e-6 (double precision)  
-**Linked canon:** equations → TODO: add anchor (see derivation/fluid_dynamics/fluids_limit.md)  
+**Linked canon:** equations → TODO: add anchor (see Derivation/fluid_dynamics/fluids_limit.md)  
 **Exit criteria:** Divergence below threshold; centerline profiles converge with grid  
 **Owner (if present):** - • **Status:** In progress
 
@@ -273,9 +273,9 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 
 ### <a id="task-walkers-noninterference"></a>Void-Walker Non-Interference Test
 
-**Source:** derivation/fluid_dynamics/BENCHMARKS_FLUIDS.md:91-96 • 77f055f  
+**Source:** Derivation/fluid_dynamics/BENCHMARKS_FLUIDS.md:91-96 • 77f055f  
 **Description:** Ensure read-only walker usage does not alter flow fields; verify max |Δu| = 0 and |Δv| = 0 at end of matched runs  
-**Linked canon:** algorithms → TODO: add anchor (see derivation/code/physics/fluid_dynamics/telemetry/walkers.py)  
+**Linked canon:** algorithms → TODO: add anchor (see Derivation/code/physics/fluid_dynamics/telemetry/walkers.py)  
 **Exit criteria:** Zero field difference between runs with/without walkers  
 **Owner (if present):** - • **Status:** In progress
 
@@ -286,7 +286,7 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 ## <a id="ms-dark-photon-portal"></a>Dark Photon Portal Program (Decoherence Portals)
 
 **Status:** Planned • **Priority:** P2  
-**Source:** derivation/dark_photons/PROPOSAL_Decoherence_Portals.md; derivation/dark_photons/Observable-Signatures-of-Void-Dynamics-via-Dark-Photon-Portals.md  
+**Source:** Derivation/dark_photons/PROPOSAL_Decoherence_Portals.md; Derivation/dark_photons/Observable-Signatures-of-Void-Dynamics-via-Dark-Photon-Portals.md  
 
 **Goal (verbatim/condensed from source):** Operationalize dark‑photon (A′) kinetic‑mixing as a VDM portal with acceptance‑gated analyses: detector noise budget, Fisher sensitivity for ε, and EFT scale ladder tied to VDM partitions and causal sourcing.
 
@@ -302,24 +302,24 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 
 **Deliverables:**
 
-- derivation/dark_photons/PROPOSAL_Decoherence_Portals.md  
-- derivation/dark_photons/Observable-Signatures-of-Void-Dynamics-via-Dark-Photon-Portals.md  
-- derivation/dark_photons/Noise_Budget.md, fisher_example.csv, noise_budget.csv (schemas)  
-- Tagged artifacts: `derivation/code/outputs/{logs,figures}/dark_photons/*` (upon execution)
+- Derivation/dark_photons/PROPOSAL_Decoherence_Portals.md  
+- Derivation/dark_photons/Observable-Signatures-of-Void-Dynamics-via-Dark-Photon-Portals.md  
+- Derivation/dark_photons/Noise_Budget.md, fisher_example.csv, noise_budget.csv (schemas)  
+- Tagged artifacts: `Derivation/code/outputs/{logs,figures}/dark_photons/*` (upon execution)
 
 **Target timeframe (if stated):** To be scheduled after FRW and A6 baselines
 
 ## <a id="ms-eft-validation"></a>EFT/KG Branch Validation (Active; KPI-gated)
 
 **Status:** Planned • **Priority:** P3  
-**Source:** derivation/VDM_Overview.md:48 • 77f055f; derivation/foundations/continuum_stack.md:38 • 77f055f; OPEN_QUESTIONS.md#oq-002 • 77f055f
+**Source:** Derivation/VDM_Overview.md:48 • 77f055f; Derivation/foundations/continuum_stack.md:38 • 77f055f; OPEN_QUESTIONS.md#oq-002 • 77f055f
 
 **Goal (verbatim/condensed from source):** Establish quantitative criteria for when second-order EFT branch becomes necessary; validate tachyonic condensation mechanism and finite-tube mode analysis. Marked [PLAUSIBLE] until KPI-gated RESULTS pass; active research branch.
 
 **Acceptance criteria (links only, no formulas):**
 
 - Equations referenced: `EQUATIONS.md#vdm-e-010` (EFT/KG active)
-- Data products to produce: TODO: add anchor (see derivation/tachyon_condensation/)
+- Data products to produce: TODO: add anchor (see Derivation/tachyon_condensation/)
 - Units/normalization context: `UNITS_NORMALIZATION.md#eft-normalization`
 
 **Dependencies:** #ms-axiomatic-foundation (complete discrete action with second-order time dynamics)  
@@ -331,9 +331,9 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 
 **Deliverables:**
 
-- derivation/effective_field_theory/effective_field_theory_approach.md
-- derivation/effective_field_theory/kinetic_term_derivation.md
-- derivation/tachyon_condensation/finite_tube_mode_analysis.md
+- Derivation/effective_field_theory/effective_field_theory_approach.md
+- Derivation/effective_field_theory/kinetic_term_derivation.md
+- Derivation/tachyon_condensation/finite_tube_mode_analysis.md
 
 **Target timeframe (if stated):** Future work; retained for research purposes
 
@@ -353,7 +353,7 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 
 **Source:** Derivation/Tachyon_Condensation/PROPOSAL_Tachyonic_Tube_Condensation.md  
 **Description:** Analyze finite-tube solutions, mode spectra, and radius selection mechanism via Bessel matching  
-**Linked canon:** equations → TODO: add anchor (see derivation/tachyon_condensation/finite_tube_mode_analysis.md), constants → TODO: add anchor (see CONSTANTS.md)  
+**Linked canon:** equations → TODO: add anchor (see Derivation/tachyon_condensation/finite_tube_mode_analysis.md), constants → TODO: add anchor (see CONSTANTS.md)  
 **Exit criteria:** κ>0 tachyonic branches identified; energy landscape E(R) mapped; radius selection mechanism established  
 **Owner (if present):** - • **Status:** Planned
 
@@ -362,14 +362,14 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 ## <a id="ms-qfum-invariant"></a>Q_FUM Logistic Invariant Validation
 
 **Status:** Done • **Priority:** P2  
-**Source:** derivation/conservation_law/discrete_conservation.md • 77f055f; agent-onboarding/VDM_Overview_20250826.md:35 • 77f055f
+**Source:** Derivation/conservation_law/discrete_conservation.md • 77f055f; agent-onboarding/VDM_Overview_20250826.md:35 • 77f055f
 
 **Goal (verbatim/condensed from source):** Validate logarithmic first integral Q(W,t) = ln(W/(r - u W)) - r t for autonomous on-site logistic ODE numerically
 
 **Acceptance criteria (links only, no formulas):**
 
 - Metrics/KPIs: `VALIDATION_METRICS.md#kpi-qfum-drift-abs` (ΔQ ≤ 10⁻⁸)
-- Equations referenced: TODO: add anchor (see derivation/conservation_law/discrete_conservation.md)
+- Equations referenced: TODO: add anchor (see Derivation/conservation_law/discrete_conservation.md)
 - Data products to produce: `DATA_PRODUCTS.md#data-qfum-validation`
 
 **Dependencies:** #ms-rd-validation  
@@ -377,8 +377,8 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 
 **Deliverables:**
 
-- derivation/conservation_law/discrete_conservation.md
-- derivation/code/physics/conservation_law/qfum_validate.py
+- Derivation/conservation_law/discrete_conservation.md
+- Derivation/code/physics/conservation_law/qfum_validate.py
 
 **Target timeframe (if stated):** ✓ Completed - numerically proven
 
@@ -387,14 +387,14 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 ## <a id="ms-agency-field"></a>Agency Field Framework
 
 **Status:** In progress • **Priority:** P2  
-**Source:** derivation/AGENCY_FIELD.md:1-158 • 77f055f; OPEN_QUESTIONS.md#oq-018, #oq-019 • 77f055f
+**Source:** Derivation/AGENCY_FIELD.md:1-158 • 77f055f; OPEN_QUESTIONS.md#oq-018, #oq-019 • 77f055f
 
 **Goal (verbatim/condensed from source):** Develop agency field metric operational proxies; establish scientific significance of agency "smoke tests"
 
 **Acceptance criteria (links only, no formulas):**
 
-- Equations referenced: TODO: add anchor (see derivation/AGENCY_FIELD.md)
-- Data products to produce: TODO: add anchor (see derivation/agency_field/)
+- Equations referenced: TODO: add anchor (see Derivation/AGENCY_FIELD.md)
+- Data products to produce: TODO: add anchor (see Derivation/agency_field/)
 
 **Dependencies:** #ms-rd-validation  
 **Risks/Constraints:**
@@ -404,8 +404,8 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 
 **Deliverables:**
 
-- derivation/AGENCY_FIELD.md
-- derivation/agency_field/ (scripts and figures)
+- Derivation/AGENCY_FIELD.md
+- Derivation/agency_field/ (scripts and figures)
 
 **Target timeframe (if stated):** In progress
 
@@ -416,7 +416,7 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 ## <a id="ms-quantum-gravity-bridge"></a>Quantum Gravity Bridge (Observational Thread)
 
 **Status:** Planned • **Priority:** P3  
-**Source:** derivation/speculations/Bridging-Quantum-Gravity-and-Astrophysical-Observations.md  
+**Source:** Derivation/speculations/Bridging-Quantum-Gravity-and-Astrophysical-Observations.md  
 
 **Goal (verbatim/condensed from source):** Leverage public astrophysical and HEP datasets (Planck, DES, LHC/NA64, etc.) to confront VDM’s gravitational and portal predictions; aim to connect quantum‑scale narratives to GR‑scale observables without new experimental builds.
 
@@ -432,7 +432,7 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 
 **Deliverables:**
 
-- derivation/speculations/Bridging-Quantum-Gravity-and-Astrophysical-Observations.md  
+- Derivation/speculations/Bridging-Quantum-Gravity-and-Astrophysical-Observations.md  
 - Forthcoming proposal(s) to scope concrete dataset tests and gate thresholds
 
 **Target timeframe (if stated):** Future work; follow‑on after dark‑photon portal scoping
@@ -440,7 +440,7 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 ## <a id="ms-utoe-framework"></a>UTOE Framework Development
 
 **Status:** Planned • **Priority:** P3  
-**Source:** derivation/axiomatic_theory_development.md:1-75 • 77f055f
+**Source:** Derivation/axiomatic_theory_development.md:1-75 • 77f055f
 
 **Goal (verbatim/condensed from source):** Develop Unified Theory of Everything (UTOE) claim: every observed regime appears as exact identity, corollary, or regime theorem of RD axioms with explicitly stated conditions. No external EFT, no training, no extra postulates.
 
@@ -458,7 +458,7 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 
 **Deliverables:**
 
-- derivation/axiomatic_theory_development.md (comprehensive theory document)
+- Derivation/axiomatic_theory_development.md (comprehensive theory document)
 
 **Target timeframe (if stated):** Long-term research program
 
@@ -466,9 +466,9 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 
 ### <a id="task-cosmological-applications"></a>Cosmological Applications
 
-**Source:** derivation/axiomatic_theory_development.md:192-197 • 77f055f; OPEN_QUESTIONS.md#oq-025 • 77f055f  
+**Source:** Derivation/axiomatic_theory_development.md:192-197 • 77f055f; OPEN_QUESTIONS.md#oq-025 • 77f055f  
 **Description:** Establish connection to void dynamics in cosmological contexts; analyze FRW metric coupling; study dark matter and dark energy implications  
-**Linked canon:** equations → TODO: add anchor (see derivation/supporting_work/), constants → TODO: add anchor (see CONSTANTS.md)  
+**Linked canon:** equations → TODO: add anchor (see Derivation/supporting_work/), constants → TODO: add anchor (see CONSTANTS.md)  
 **Exit criteria:** Complete cosmological framework with observational connections; observational tests defined  
 **Owner (if present):** - • **Status:** Planned
 
@@ -478,7 +478,7 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 
 **Source:** OPEN_QUESTIONS.md#oq-024:234-244 • 77f055f  
 **Description:** Complete quantum renormalization program for discrete lattice structure  
-**Linked canon:** equations → TODO: add anchor (see derivation/foundations/discrete_to_continuum.md)  
+**Linked canon:** equations → TODO: add anchor (see Derivation/foundations/discrete_to_continuum.md)  
 **Exit criteria:** Renormalization group analysis complete; UV/IR behavior characterized  
 **Owner (if present):** - • **Status:** Open
 
@@ -497,14 +497,14 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 ## <a id="ms-discrete-action-recast"></a>Discrete Action Recast
 
 **Status:** Open • **Priority:** P2  
-**Source:** OPEN_QUESTIONS.md#oq-014:93-117 • 77f055f; derivation/foundations/void_dynamics_theory.md:20 • 77f055f
+**Source:** OPEN_QUESTIONS.md#oq-014:93-117 • 77f055f; Derivation/foundations/void_dynamics_theory.md:20 • 77f055f
 
 **Goal (verbatim/condensed from source):** Recast discrete model into discrete action and take to continuum via variational limit so that ∂_t² term appears from first principles rather than assumption
 
 **Acceptance criteria (links only, no formulas):**
 
 - Equations referenced: `EQUATIONS.md#vdm-e-001` (discrete action)
-- Validation metrics: TODO: add anchor (see derivation/foundations/void_dynamics_theory.md)
+- Validation metrics: TODO: add anchor (see Derivation/foundations/void_dynamics_theory.md)
 
 **Dependencies:** #ms-axiomatic-foundation  
 **Risks/Constraints:**
@@ -514,7 +514,7 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 
 **Deliverables:**
 
-- Updated derivation/foundations/void_dynamics_theory.md with complete discrete action derivation
+- Updated Derivation/foundations/void_dynamics_theory.md with complete discrete action derivation
 
 **Target timeframe (if stated):** Mid-term research goal
 
@@ -540,7 +540,7 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 
 **Deliverables:**
 
-- derivation/effective_field_theory/kinetic_term_derivation.md (updated with rigorous derivation)
+- Derivation/effective_field_theory/kinetic_term_derivation.md (updated with rigorous derivation)
 
 **Target timeframe (if stated):** Follows #ms-discrete-action-recast
 
@@ -556,7 +556,7 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 **Acceptance criteria (links only, no formulas):**
 
 - Equations referenced: `EQUATIONS.md#vdm-e-020` (energy conservation)
-- Validation metrics: TODO: add anchor (see derivation/foundations/symmetry_analysis.md)
+- Validation metrics: TODO: add anchor (see Derivation/foundations/symmetry_analysis.md)
 
 **Dependencies:** #ms-axiomatic-foundation, #ms-discrete-action-recast  
 **Risks/Constraints:**
@@ -566,7 +566,7 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 
 **Deliverables:**
 
-- Updated derivation/foundations/symmetry_analysis.md with new conserved quantities
+- Updated Derivation/foundations/symmetry_analysis.md with new conserved quantities
 
 **Target timeframe (if stated):** Long-term research
 
@@ -576,7 +576,7 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 
 **Source:** OPEN_QUESTIONS.md#oq-012:186-196 • 77f055f  
 **Description:** Apply Noether's theorem systematically to identify all continuous symmetries and corresponding conserved currents  
-**Linked canon:** equations → `EQUATIONS.md#vdm-e-020`, algorithms → TODO: add anchor (see derivation/foundations/symmetry_analysis.md)  
+**Linked canon:** equations → `EQUATIONS.md#vdm-e-020`, algorithms → TODO: add anchor (see Derivation/foundations/symmetry_analysis.md)  
 **Exit criteria:** Complete catalog of symmetries and conserved quantities; connection to physical observables established  
 **Owner (if present):** - • **Status:** Open
 
@@ -586,7 +586,7 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 
 **Source:** OPEN_QUESTIONS.md#oq-013:198-207 • 77f055f  
 **Description:** Investigate information-theoretic conserved quantity potentially underlying FUM dynamics  
-**Linked canon:** equations → TODO: add anchor (see derivation/foundations/)  
+**Linked canon:** equations → TODO: add anchor (see Derivation/foundations/)  
 **Exit criteria:** Information-theoretic quantity identified and proven conserved; connection to entropy established  
 **Owner (if present):** - • **Status:** Open
 
@@ -769,7 +769,7 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 **Acceptance criteria (links only, no formulas):**
 
 - Equations referenced: TODO: add anchor (see OPEN_QUESTIONS.md#oq-022)
-- Data products to produce: TODO: add anchor (see derivation/code/outputs/vdm_fluids/)
+- Data products to produce: TODO: add anchor (see Derivation/code/outputs/vdm_fluids/)
 
 **Dependencies:** #ms-rd-validation, #ms-eft-validation  
 **Risks/Constraints:**
@@ -794,7 +794,7 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 
 **Acceptance criteria (links only, no formulas):**
 
-- Algorithms referenced: TODO: add anchor (see derivation/code/obs/walker_glow.py)
+- Algorithms referenced: TODO: add anchor (see Derivation/code/obs/walker_glow.py)
 
 **Dependencies:** Walker infrastructure, attention graph formalism  
 **Risks/Constraints:**

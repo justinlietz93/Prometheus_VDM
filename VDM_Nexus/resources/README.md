@@ -9,13 +9,13 @@ Resources must only reference canonical assets; they must not copy or store phys
 - Data and approvals DBs (canonical, read-only):
   - Windows: C:\git\Prometheus_VDM\derivation\code\common\data\approval.db
   - Windows: C:\git\Prometheus_VDM\derivation\code\common\data\approval_admin.db
-  - Repo-relative: ../derivation/code/common/data/
+  - Repo-relative: ../Derivation/code/common/data/
 - Physics runners/specs/schemas/approvals (canonical, read-only):
   - Windows: C:\git\Prometheus_VDM\derivation\code\physics\{domain}\
-  - Repo-relative: ../derivation/code/physics/{domain}/
+  - Repo-relative: ../Derivation/code/physics/{domain}/
 - Experiment outputs (enumerated in place):
   - Windows: C:\git\Prometheus_VDM\derivation\code\outputs\(figures|logs)\{domain}\
-  - Repo-relative: ../derivation/code/outputs/(figures|logs)/{domain}/
+  - Repo-relative: ../Derivation/code/outputs/(figures|logs)/{domain}/
 
 Root resolution policy (must match app/infrastructure): CLI flags > environment (VDM_REPO_ROOT, VDM_APPROVAL_DB, VDM_APPROVAL_ADMIN_DB) > .env.
 
@@ -26,9 +26,9 @@ Root resolution policy (must match app/infrastructure): CLI flags > environment 
 
 ## Out of Scope (remain canonical elsewhere)
 
-- Data and approvals: ../derivation/code/common/data/
-- Runners, specs, schemas, approvals: ../derivation/code/physics/{domain}/
-- Experiment outputs (PNG/CSV/JSON): ../derivation/code/outputs/(figures|logs)/{domain}/
+- Data and approvals: ../Derivation/code/common/data/
+- Runners, specs, schemas, approvals: ../Derivation/code/physics/{domain}/
+- Experiment outputs (PNG/CSV/JSON): ../Derivation/code/outputs/(figures|logs)/{domain}/
 
 ## Guidelines
 

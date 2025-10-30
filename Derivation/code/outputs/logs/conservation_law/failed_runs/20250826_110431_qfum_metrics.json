@@ -29,13 +29,13 @@
     "u": 0.25
   },
   "figures": {
-    "Q_drift": "/mnt/ironwolf/git/Void_FUM_Private/Void_FUM_Private/Void_Unity_Proofs/derivation/code/outputs/figures/conservation_law/failed_runs/20250826_110431_qfum_Q_drift.png",
+    "Q_drift": "/mnt/ironwolf/git/Void_FUM_Private/Void_FUM_Private/Void_Unity_Proofs/Derivation/code/outputs/figures/conservation_law/failed_runs/20250826_110431_qfum_Q_drift.png",
     "Q_drift_arxiv": "",
     "Q_drift_stable": "",
-    "convergence": "/mnt/ironwolf/git/Void_FUM_Private/Void_FUM_Private/Void_Unity_Proofs/derivation/code/outputs/figures/conservation_law/failed_runs/20250826_110431_qfum_convergence.png",
+    "convergence": "/mnt/ironwolf/git/Void_FUM_Private/Void_FUM_Private/Void_Unity_Proofs/Derivation/code/outputs/figures/conservation_law/failed_runs/20250826_110431_qfum_convergence.png",
     "convergence_arxiv": "",
     "convergence_stable": "",
-    "solution_overlay": "/mnt/ironwolf/git/Void_FUM_Private/Void_FUM_Private/Void_Unity_Proofs/derivation/code/outputs/figures/conservation_law/failed_runs/20250826_110431_qfum_solution_overlay.png",
+    "solution_overlay": "/mnt/ironwolf/git/Void_FUM_Private/Void_FUM_Private/Void_Unity_Proofs/Derivation/code/outputs/figures/conservation_law/failed_runs/20250826_110431_qfum_solution_overlay.png",
     "solution_overlay_arxiv": "",
     "solution_overlay_stable": ""
   },

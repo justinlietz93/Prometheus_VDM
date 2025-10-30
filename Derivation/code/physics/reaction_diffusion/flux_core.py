@@ -18,7 +18,7 @@ Scope:
 
 Runtime policy:
 - Derivation/validation only. Keep observability read-only.
-- No scans in fum_rt/core or maps are introduced here (this is under derivation/).
+- No scans in fum_rt/core or maps are introduced here (this is under Derivation/).
 
 Author: Justin K. Lietz
 """

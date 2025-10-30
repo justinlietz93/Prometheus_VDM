@@ -2,7 +2,7 @@
 
 > **Created Date:**  October 30, 2025
 > **Commit**: 80ee5476e4f887fed3c34534a99daa878f55382f  
-> **Salted Provenance:** spec salted_sha256=7cb47d741d087a65fc5f9eeb73c599904702ba199c101b81ae1954658fc51029; salt_hex=aff7a0cb80e8d430873bc504be978525; prereg_manifest_sha256=c75c279d04ae0ca9376fa9ba4df7456e7fb8fc50c09c951dff079552f0c539f1  
+> **Salted Provenance: spec salted_sha256=b96103661cc6f5b9be1a751581c32e86dcc2fd1613f19d4e6d7168046eb25225; salt_hex=2402d87739d5173cc9b86ee572e68b0b; prereg_manifest_sha256=08f4b3b7829bdd67cdc54d17a706952b046c33b7d560fc71dcb31780f9772c93  
 > **Proposer contact(s):**  (<justin@neuroca.ai>)  
 > **License:** (See LICENSE at repository root)  
 > **Short summary (one sentence TL;DR):**  Test whether a metriplectic, model‑aware assisted‑echo improves echo fidelity under strict Noether/H‑theorem gates and energy‑matching.

@@ -9,16 +9,16 @@ Got it-keep files separate. Here’s a **no-merge, no-duplication** scheme that 
 
 | File                                 | Canonical scope (only owner of…)         | Other files may…                     | Must not…                   |
 | ------------------------------------ | ---------------------------------------- | ------------------------------------ | --------------------------- |
-| `derivation/SYMBOLS.md`             | Symbol meanings/aliases                  | Link to symbols by anchor            | Redefine symbols            |
-| `derivation/EQUATIONS.md`           | All equations/procedural math (MathJax)  | Reference by stable IDs              | Paste equations or variants |
-| `derivation/CONSTANTS.md`           | Numerical constants, defaults, ranges    | Cite constants by name/anchor        | Re-state numbers elsewhere  |
-| `derivation/UNITS_NORMALIZATION.md` | Units + nondimensionalization maps       | Link to specific maps                | Re-explain units            |
-| `derivation/VALIDATION_METRICS.md`  | KPIs + how computed (references only)    | Point to equation IDs & constants    | Reproduce math              |
-| `derivation/BC_IC_GEOMETRY.md`      | Boundary/initial conditions, domains     | Link from tests/docs                 | Embed equations/constants   |
-| `derivation/ALGORITHMS.md`          | Pseudocode of loops/flows (refs to math) | Call out which equation IDs are used | Introduce new math          |
+| `Derivation/SYMBOLS.md`             | Symbol meanings/aliases                  | Link to symbols by anchor            | Redefine symbols            |
+| `Derivation/EQUATIONS.md`           | All equations/procedural math (MathJax)  | Reference by stable IDs              | Paste equations or variants |
+| `Derivation/CONSTANTS.md`           | Numerical constants, defaults, ranges    | Cite constants by name/anchor        | Re-state numbers elsewhere  |
+| `Derivation/UNITS_NORMALIZATION.md` | Units + nondimensionalization maps       | Link to specific maps                | Re-explain units            |
+| `Derivation/VALIDATION_METRICS.md`  | KPIs + how computed (references only)    | Point to equation IDs & constants    | Reproduce math              |
+| `Derivation/BC_IC_GEOMETRY.md`      | Boundary/initial conditions, domains     | Link from tests/docs                 | Embed equations/constants   |
+| `Derivation/ALGORITHMS.md`          | Pseudocode of loops/flows (refs to math) | Call out which equation IDs are used | Introduce new math          |
 | `docs/DATA_PRODUCTS.md`              | Definitions of heatmaps/KDE/logs (I/O)   | Link to equations for formulas       | Re-derive formulas          |
 | `docs/SCHEMAS.md`                    | Message/packet/scoreboard field schemas  | Reference symbol names               | Define symbols here         |
-| `derivation/NAMING_CONVENTIONS.md`   | Reserved names, sign/index conventions   | Link to symbols/equations            | Override conventions        |
+| `Derivation/NAMING_CONVENTIONS.md`   | Reserved names, sign/index conventions   | Link to symbols/equations            | Override conventions        |
 | `notes/OPEN_QUESTIONS.md`            | Speculation & hypotheses                 | Link to canon as needed              | Masquerade as canon         |
 | `ROADMAP.md`                         | Tasks/milestones (no math)               | Link to issues/PRs                   | Store canonical content     |
 | `AXIOMS.md`                          | All axioms and their definitions         | Link to axioms                       | Store speculations          |
@@ -40,7 +40,7 @@ Got it-keep files separate. Here’s a **no-merge, no-duplication** scheme that 
 <!-- DOC-GUARD: REFERENCE -->
 **Scope:** Reference pointers only. Canon lives elsewhere.
 **Rules:** Do not paste or re-derive equations/symbols/constants. Link to anchors in canonical files.
-**Machine note:** Agents: insert links like `[VDM-E-012](../derivation/EQUATIONS.md#vdm-e-012)`; never copy math.
+**Machine note:** Agents: insert links like `[VDM-E-012](../Derivation/EQUATIONS.md#vdm-e-012)`; never copy math.
 ```
 
 ## Stable anchor convention (GitHub-safe)
@@ -65,7 +65,7 @@ In `SYMBOLS.md`:
 Linking anywhere:
 
 ```markdown
-See [VDM-E-012](../derivation/EQUATIONS.md#vdm-e-012) and symbol [$\phi_c$](../derivation/SYMBOLS.md#sym-phi_c).
+See [VDM-E-012](../Derivation/EQUATIONS.md#vdm-e-012) and symbol [$\phi_c$](../Derivation/SYMBOLS.md#sym-phi_c).
 ```
 
 ## Safe “append-only” blocks for agents

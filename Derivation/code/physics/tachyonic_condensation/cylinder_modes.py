@@ -8,14 +8,14 @@ See LICENSE file for full terms.
 Finite-radius cylindrical (tube) mode solver for the FUM scalar EFT.
 
 This implements the radial eigenvalue condition described in
-[derivation/finite_tube_mode_analysis.md](derivation/finite_tube_mode_analysis.md:1).
+[Derivation/finite_tube_mode_analysis.md](Derivation/finite_tube_mode_analysis.md:1).
 
 Equation of motion for small fluctuations about a piecewise-constant background:
     (∂_t^2 - c^2 ∇_⊥^2 - c^2 ∂_z^2) φ + m^2(r) φ = 0
 with
     m_in^2 = -μ^2     for r < R  (tachyonic interior)
     m_out^2 =  2μ^2   for r > R  (massive exterior)
-and wave speed c (dimensionless units; see [derivation/kinetic_term_derivation.md](derivation/kinetic_term_derivation.md:117-134)).
+and wave speed c (dimensionless units; see [Derivation/kinetic_term_derivation.md](Derivation/kinetic_term_derivation.md:117-134)).
 
 Using separation φ ∝ e^{-i ω t} e^{i k z} u_ℓ(r) e^{iℓθ} and defining
     ω^2 - c^2 k^2 = - c^2 κ^2,
@@ -38,9 +38,9 @@ APIs:
     Returns a dict with 'u_in(r)', 'u_out(r)', and 'u(r)' callables normalized so u(R) = 1.
 
 References:
-- [derivation/finite_tube_mode_analysis.md](derivation/finite_tube_mode_analysis.md:1)
-- [derivation/discrete_to_continuum.md](derivation/discrete_to_continuum.md:125-193)
-- [derivation/kinetic_term_derivation.md](derivation/kinetic_term_derivation.md:117-134)
+- [Derivation/finite_tube_mode_analysis.md](Derivation/finite_tube_mode_analysis.md:1)
+- [Derivation/discrete_to_continuum.md](Derivation/discrete_to_continuum.md:125-193)
+- [Derivation/kinetic_term_derivation.md](Derivation/kinetic_term_derivation.md:117-134)
 
 Author: Justin K. Lietz
 Date: 2025-08-09

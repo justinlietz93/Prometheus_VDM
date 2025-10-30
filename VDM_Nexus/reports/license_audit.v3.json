@@ -1970,7 +1970,7 @@
       "reason": "no keywords found"
     },
     {
-      "docstring": "\naxiom_guard.py\n\nEnforces two invariants for the canonical axiomatic file:\n1. Hard termination: no non\u2011whitespace content exists after the termination marker line.\n2. Tag compliance: every theorem/lemma/corollary/conjecture line contains an allowed status tag.\n\nExit codes:\n 0 success\n 1 violation(s) found\n\nUsage:\n  python tools/axiom_guard.py --file derivation/axiomatic_theory_development.md\n\nIntegrate into CI / pre-commit to prevent accidental tail re-growth or untagged claims.\n",
+      "docstring": "\naxiom_guard.py\n\nEnforces two invariants for the canonical axiomatic file:\n1. Hard termination: no non\u2011whitespace content exists after the termination marker line.\n2. Tag compliance: every theorem/lemma/corollary/conjecture line contains an allowed status tag.\n\nExit codes:\n 0 success\n 1 violation(s) found\n\nUsage:\n  python tools/axiom_guard.py --file Derivation/axiomatic_theory_development.md\n\nIntegrate into CI / pre-commit to prevent accidental tail re-growth or untagged claims.\n",
       "path": "tools/axiom_guard.py",
       "reason": "no keywords found"
     },
@@ -1990,17 +1990,17 @@
       "reason": "no keywords found"
     },
     {
-      "docstring": "\n# Example usage inside a physics script:\n\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom common.io_paths import figure_path, log_path, write_log\n\ndomain, slug = \"fluid_dynamics\", \"corner_test_r_c_scan\"\n\n# ... run simulation, compute metrics -> 'metrics' dict\n\n# Save figure\nfig_path = figure_path(domain, slug, failed=False)\nplt.savefig(fig_path, dpi=160, bbox_inches=\"tight\")\n\n# Save log\nlog = {\n    \"timestamp\": __import__(\"datetime\").datetime.now().isoformat(),\n    \"git_hash\": \"YOUR_GIT_HASH_HERE\",\n    \"seed\": 1234,\n    \"domain\": domain,\n    \"slug\": slug,\n    \"params\": {\"H\":1.0, \"nu\":1e-3, \"...\":\"...\"},\n    \"metrics\": metrics,\n    \"status\": \"success\"\n}\nwrite_log(log_path(domain, slug, failed=False, type=\"json\"), log)\n\n# In Markdown (relative to derivation/):\n# ![Corner test r_c scan](code/outputs/figures/fluid_dynamics/20250823_corner_test_r_c_scan.png)\n# [Run log](code/outputs/logs/fluid_dynamics/20250823_corner_test_r_c_scan.json)\n\n",
+      "docstring": "\n# Example usage inside a physics script:\n\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom common.io_paths import figure_path, log_path, write_log\n\ndomain, slug = \"fluid_dynamics\", \"corner_test_r_c_scan\"\n\n# ... run simulation, compute metrics -> 'metrics' dict\n\n# Save figure\nfig_path = figure_path(domain, slug, failed=False)\nplt.savefig(fig_path, dpi=160, bbox_inches=\"tight\")\n\n# Save log\nlog = {\n    \"timestamp\": __import__(\"datetime\").datetime.now().isoformat(),\n    \"git_hash\": \"YOUR_GIT_HASH_HERE\",\n    \"seed\": 1234,\n    \"domain\": domain,\n    \"slug\": slug,\n    \"params\": {\"H\":1.0, \"nu\":1e-3, \"...\":\"...\"},\n    \"metrics\": metrics,\n    \"status\": \"success\"\n}\nwrite_log(log_path(domain, slug, failed=False, type=\"json\"), log)\n\n# In Markdown (relative to Derivation/):\n# ![Corner test r_c scan](code/outputs/figures/fluid_dynamics/20250823_corner_test_r_c_scan.png)\n# [Run log](code/outputs/logs/fluid_dynamics/20250823_corner_test_r_c_scan.json)\n\n",
       "path": "Derivation/Collapse/code/common/io_paths.py",
       "reason": "no keywords found"
     },
     {
-      "docstring": "Fit edge-correction ansatz H_edge using saved deterministic samples.\n\nReads the latest flux_sweep JSON under derivation/outputs/logs/conservation_law,\nreconstructs Connectome adjacency per sample seed, and fits coefficients for\nH_ij = sum_k c_k * phi_k(W_i, W_j) using least squares on equations\n    DeltaQ_i = sum_j (H_ji - H_ij)\n\nBasis functions: [W_i, W_j, W_i*W_j]\n",
+      "docstring": "Fit edge-correction ansatz H_edge using saved deterministic samples.\n\nReads the latest flux_sweep JSON under Derivation/outputs/logs/conservation_law,\nreconstructs Connectome adjacency per sample seed, and fits coefficients for\nH_ij = sum_k c_k * phi_k(W_i, W_j) using least squares on equations\n    DeltaQ_i = sum_j (H_ji - H_ij)\n\nBasis functions: [W_i, W_j, W_i*W_j]\n",
       "path": "Derivation/code/analysis/fit_H_edge.py",
       "reason": "no keywords found"
     },
     {
-      "docstring": "Numeric sweep: compute \u0394(sum Q_i) statistics across random seeds.\n\nWrites JSON summary to derivation/code/outputs/logs/conservation_law/flux_sweep_<ts>.json\n",
+      "docstring": "Numeric sweep: compute \u0394(sum Q_i) statistics across random seeds.\n\nWrites JSON summary to Derivation/code/outputs/logs/conservation_law/flux_sweep_<ts>.json\n",
       "path": "Derivation/code/analysis/flux_sweep.py",
       "reason": "no keywords found"
     },
@@ -2035,7 +2035,7 @@
       "reason": "no keywords found"
     },
     {
-      "docstring": "\n# Example usage inside a physics script:\n\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom common.io_paths import figure_path, log_path, write_log\n\ndomain, slug = \"fluid_dynamics\", \"corner_test_r_c_scan\"\n\n# ... run simulation, compute metrics -> 'metrics' dict\n\n# Save figure\nfig_path = figure_path(domain, slug, failed=False)\nplt.savefig(fig_path, dpi=160, bbox_inches=\"tight\")\n\n# Save log\nlog = {\n    \"timestamp\": __import__(\"datetime\").datetime.now().isoformat(),\n    \"git_hash\": \"YOUR_GIT_HASH_HERE\",\n    \"seed\": 1234,\n    \"domain\": domain,\n    \"slug\": slug,\n    \"params\": {\"H\":1.0, \"nu\":1e-3, \"...\":\"...\"},\n    \"metrics\": metrics,\n    \"status\": \"success\"\n}\nwrite_log(log_path(domain, slug, failed=False, type=\"json\"), log)\n\n# In Markdown (relative to derivation/):\n# ![Corner test r_c scan](code/outputs/figures/fluid_dynamics/20250823_corner_test_r_c_scan.png)\n# [Run log](code/outputs/logs/fluid_dynamics/20250823_corner_test_r_c_scan.json)\n\n",
+      "docstring": "\n# Example usage inside a physics script:\n\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom common.io_paths import figure_path, log_path, write_log\n\ndomain, slug = \"fluid_dynamics\", \"corner_test_r_c_scan\"\n\n# ... run simulation, compute metrics -> 'metrics' dict\n\n# Save figure\nfig_path = figure_path(domain, slug, failed=False)\nplt.savefig(fig_path, dpi=160, bbox_inches=\"tight\")\n\n# Save log\nlog = {\n    \"timestamp\": __import__(\"datetime\").datetime.now().isoformat(),\n    \"git_hash\": \"YOUR_GIT_HASH_HERE\",\n    \"seed\": 1234,\n    \"domain\": domain,\n    \"slug\": slug,\n    \"params\": {\"H\":1.0, \"nu\":1e-3, \"...\":\"...\"},\n    \"metrics\": metrics,\n    \"status\": \"success\"\n}\nwrite_log(log_path(domain, slug, failed=False, type=\"json\"), log)\n\n# In Markdown (relative to Derivation/):\n# ![Corner test r_c scan](code/outputs/figures/fluid_dynamics/20250823_corner_test_r_c_scan.png)\n# [Run log](code/outputs/logs/fluid_dynamics/20250823_corner_test_r_c_scan.json)\n\n",
       "path": "Derivation/code/common/io_paths.py",
       "reason": "no keywords found"
     },
@@ -2080,7 +2080,7 @@
       "reason": "no keywords found"
     },
     {
-      "docstring": "\nTaylor-Green viscosity recovery unit test (fluid_dynamics domain).\n\nPathing rule:\n- Tests live under derivation/code/tests/<domain>/\n- This test checks that \u03bd_fit recovered from E(t) decay matches \u03bd_th within 5% at 256x256.\n\nNo figures/logs are written; this is a fast numeric check.\n",
+      "docstring": "\nTaylor-Green viscosity recovery unit test (fluid_dynamics domain).\n\nPathing rule:\n- Tests live under Derivation/code/tests/<domain>/\n- This test checks that \u03bd_fit recovered from E(t) decay matches \u03bd_th within 5% at 256x256.\n\nNo figures/logs are written; this is a fast numeric check.\n",
       "path": "Derivation/code/tests/fluid_dynamics/test_taylor_green_decay.py",
       "reason": "no keywords found"
     },
@@ -2090,7 +2090,7 @@
       "reason": "no keywords found"
     },
     {
-      "docstring": "\nMinimal unit tests for RD dispersion and Laplacians.\n\nReason: Physics validated via derivation/code/physics scripts; these tests guard formulas and signs.\n",
+      "docstring": "\nMinimal unit tests for RD dispersion and Laplacians.\n\nReason: Physics validated via Derivation/code/physics scripts; these tests guard formulas and signs.\n",
       "path": "Derivation/code/tests/reaction_diffusion/test_rd_dispersion.py",
       "reason": "no keywords found"
     },
@@ -2130,17 +2130,17 @@
       "reason": "no keywords found"
     },
     {
-      "docstring": "\nMemory Steering Acceptance Harness\n\nImplements a leaky first-order memory filter with saturation and runs:\n- Step response: fit pole p and verify fixed point M*.\n- Canonical void target: with g = 1.5 * lam and s \u2261 1, verify M_final \u2248 0.6 (multi-seed).\n- Noise suppression: SNR_out improvement \u2265 3 dB.\n- Boundedness: no post-clamp violations outside [0, 1].\n- Lyapunov monotonicity for constant s (noise-free).\n- Reproducibility: identical sequences for the same seed.\n\nCLI:\n  python -m Prometheus_VDM.derivation.code.physics.memory_steering.memory_steering_acceptance       --seed 0 --steps 512 --g 0.12 --lam 0.08 --noise_std 0.0\n\nOutputs:\n- JSON metrics: Prometheus_VDM/derivation/code/outputs/logs/memory_steering/memory_steering_acceptance_<timestamp>.json\n- Figures (PNG): Prometheus_VDM/derivation/code/outputs/figures/memory_steering/\n",
+      "docstring": "\nMemory Steering Acceptance Harness\n\nImplements a leaky first-order memory filter with saturation and runs:\n- Step response: fit pole p and verify fixed point M*.\n- Canonical void target: with g = 1.5 * lam and s \u2261 1, verify M_final \u2248 0.6 (multi-seed).\n- Noise suppression: SNR_out improvement \u2265 3 dB.\n- Boundedness: no post-clamp violations outside [0, 1].\n- Lyapunov monotonicity for constant s (noise-free).\n- Reproducibility: identical sequences for the same seed.\n\nCLI:\n  python -m Prometheus_VDM.derivation.code.physics.memory_steering.memory_steering_acceptance       --seed 0 --steps 512 --g 0.12 --lam 0.08 --noise_std 0.0\n\nOutputs:\n- JSON metrics: Prometheus_VDM/Derivation/code/outputs/logs/memory_steering/memory_steering_acceptance_<timestamp>.json\n- Figures (PNG): Prometheus_VDM/Derivation/code/outputs/figures/memory_steering/\n",
       "path": "Derivation/code/physics/memory_steering/memory_steering_acceptance.py",
       "reason": "no keywords found"
     },
     {
-      "docstring": "\nTaylor-Green vortex (2-D) viscosity recovery benchmark for the fluids sector.\n\nCHANGE REASON:\n- Relocated into derivation/code/physics/fluid_dynamics per repo rules (no Prometheus_VDM/bench/).\n- Outputs follow RD harness: derivation/code/outputs/{figures,logs}.\n- Ensures JSON uses native Python types (bool/float) to avoid numpy serialization issues.\n\nOutputs (defaults):\n- Figures \u2192 derivation/code/outputs/figures/<script>_<timestamp>.png\n- Logs    \u2192 derivation/code/outputs/logs/<script>_<timestamp>.json\n",
+      "docstring": "\nTaylor-Green vortex (2-D) viscosity recovery benchmark for the fluids sector.\n\nCHANGE REASON:\n- Relocated into Derivation/code/physics/fluid_dynamics per repo rules (no Prometheus_VDM/bench/).\n- Outputs follow RD harness: Derivation/code/outputs/{figures,logs}.\n- Ensures JSON uses native Python types (bool/float) to avoid numpy serialization issues.\n\nOutputs (defaults):\n- Figures \u2192 Derivation/code/outputs/figures/<script>_<timestamp>.png\n- Logs    \u2192 Derivation/code/outputs/logs/<script>_<timestamp>.json\n",
       "path": "Derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py",
       "reason": "no keywords found"
     },
     {
-      "docstring": "\nLid-driven cavity (2-D) incompressibility benchmark for the fluids sector.\n\nCHANGE REASON:\n- Relocated into derivation/code/physics/fluid_dynamics per repo rules (no Prometheus_VDM/bench/).\n- Outputs follow RD harness: derivation/code/outputs/{figures,logs}.\n- Ensures JSON uses native Python types to avoid numpy serialization issues.\n\nOutputs (defaults):\n- Figures \u2192 derivation/code/outputs/figures/<script>_<timestamp>.png\n- Logs    \u2192 derivation/code/outputs/logs/<script>_<timestamp>.json\n",
+      "docstring": "\nLid-driven cavity (2-D) incompressibility benchmark for the fluids sector.\n\nCHANGE REASON:\n- Relocated into Derivation/code/physics/fluid_dynamics per repo rules (no Prometheus_VDM/bench/).\n- Outputs follow RD harness: Derivation/code/outputs/{figures,logs}.\n- Ensures JSON uses native Python types to avoid numpy serialization issues.\n\nOutputs (defaults):\n- Figures \u2192 Derivation/code/outputs/figures/<script>_<timestamp>.png\n- Logs    \u2192 Derivation/code/outputs/logs/<script>_<timestamp>.json\n",
       "path": "Derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py",
       "reason": "no keywords found"
     },
@@ -2150,7 +2150,7 @@
       "reason": "no keywords found"
     },
     {
-      "docstring": "\nRD Conservation Harness (Obj-A/B/C scaffolding) - periodic BC default.\n\n- Uses derivation/code/common/io_paths.py for logs/figures.\n- Places artifacts under code/outputs/{logs,figures}/rd_conservation.\n",
+      "docstring": "\nRD Conservation Harness (Obj-A/B/C scaffolding) - periodic BC default.\n\n- Uses Derivation/code/common/io_paths.py for logs/figures.\n- Places artifacts under code/outputs/{logs,figures}/rd_conservation.\n",
       "path": "Derivation/code/physics/rd_conservation/run_rd_conservation.py",
       "reason": "no keywords found"
     },
@@ -2175,17 +2175,17 @@
       "reason": "no keywords found"
     },
     {
-      "docstring": "\nRD dispersion validation (linear regime) for Fisher-KPP:\n    \u2202t u = D \u2202xx u + r u (1 - u)\nLinearized about u\u22480: u_t \u2248 D u_xx + r u\n\nPredictions:\n  Continuum:  \u03c3_c(k) = r - D k^2\n  Discrete (periodic second-difference):  \u03c3_d(m) = r - (4 D / dx^2) sin^2(\u03c0 m / N)\n\nMethod:\n  - Evolve the linearized PDE with periodic BCs from small random amplitude.\n  - Record snapshots and fit log |\u00db_m(t)| vs t for selected modes m.\n  - Compare measured growth rates to \u03c3_d(m) (primary) and \u03c3_c(k) (reference).\n\nOutputs (defaults):\n  - derivation/code/outputs/figures/<script>_<timestamp>.png\n  - derivation/code/outputs/logs/<script>_<timestamp>.json\n\nCLI example:\n  python Prometheus_VDM/derivation/code/physics/rd_dispersion_experiment.py --N 1024 --L 200 --D 1.0 --r 0.25 --T 10 --cfl 0.2 --seed 42\n",
+      "docstring": "\nRD dispersion validation (linear regime) for Fisher-KPP:\n    \u2202t u = D \u2202xx u + r u (1 - u)\nLinearized about u\u22480: u_t \u2248 D u_xx + r u\n\nPredictions:\n  Continuum:  \u03c3_c(k) = r - D k^2\n  Discrete (periodic second-difference):  \u03c3_d(m) = r - (4 D / dx^2) sin^2(\u03c0 m / N)\n\nMethod:\n  - Evolve the linearized PDE with periodic BCs from small random amplitude.\n  - Record snapshots and fit log |\u00db_m(t)| vs t for selected modes m.\n  - Compare measured growth rates to \u03c3_d(m) (primary) and \u03c3_c(k) (reference).\n\nOutputs (defaults):\n  - Derivation/code/outputs/figures/<script>_<timestamp>.png\n  - Derivation/code/outputs/logs/<script>_<timestamp>.json\n\nCLI example:\n  python Prometheus_VDM/Derivation/code/physics/rd_dispersion_experiment.py --N 1024 --L 200 --D 1.0 --r 0.25 --T 10 --cfl 0.2 --seed 42\n",
       "path": "Derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py",
       "reason": "no keywords found"
     },
     {
-      "docstring": "\nRD front-speed validation for Fisher-KPP:\n    \u2202t u = D \u2202xx u + r u (1 - u)\n\nTheory:\n    Minimal pulled-front speed c_th = 2 * sqrt(D * r)\n\nOutputs (defaults):\n    - derivation/code/outputs/figures/<script>_<timestamp>.png\n    - derivation/code/outputs/logs/<script>_<timestamp>.json\n\nCLI example:\n  python Prometheus_VDM/derivation/code/physics/rd_front_speed_experiment.py     --N 1024 --L 200 --D 1.0 --r 0.25 --T 80 --cfl 0.2 --seed 42 --x0 -60 --level 0.1 --fit_start 0.6 --fit_end 0.9\n",
+      "docstring": "\nRD front-speed validation for Fisher-KPP:\n    \u2202t u = D \u2202xx u + r u (1 - u)\n\nTheory:\n    Minimal pulled-front speed c_th = 2 * sqrt(D * r)\n\nOutputs (defaults):\n    - Derivation/code/outputs/figures/<script>_<timestamp>.png\n    - Derivation/code/outputs/logs/<script>_<timestamp>.json\n\nCLI example:\n  python Prometheus_VDM/Derivation/code/physics/rd_front_speed_experiment.py     --N 1024 --L 200 --D 1.0 --r 0.25 --T 80 --cfl 0.2 --seed 42 --x0 -60 --level 0.1 --fit_start 0.6 --fit_end 0.9\n",
       "path": "Derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py",
       "reason": "no keywords found"
     },
     {
-      "docstring": "\nRD Fisher-KPP front-speed sweep runner.\n\nRuns multiple configurations of the experiment script and writes a CSV summary\nunder: derivation/code/outputs/logs/rd_front_speed_sweep_YYYYMMDDThhmmssZ.csv\n\nUsage (PowerShell, always in venv):\n  & .\u000benv\\Scripts\\Activate.ps1\n  python Prometheus_VDM/derivation/code/physics/rd_front_speed_sweep.py\n\nOptional flags:\n  --Ds 0.5 1.0 2.0\n  --rs 0.1 0.25\n  --Ns 1024 2048\n  --levels 0.1 0.5\n  --fit_start 0.6\n  --fit_end 0.9\n  --T 80\n  --cfl 0.2\n  --seed 42\n  --x0 -60\n  --noise_amp 0.0\n",
+      "docstring": "\nRD Fisher-KPP front-speed sweep runner.\n\nRuns multiple configurations of the experiment script and writes a CSV summary\nunder: Derivation/code/outputs/logs/rd_front_speed_sweep_YYYYMMDDThhmmssZ.csv\n\nUsage (PowerShell, always in venv):\n  & .\u000benv\\Scripts\\Activate.ps1\n  python Prometheus_VDM/Derivation/code/physics/rd_front_speed_sweep.py\n\nOptional flags:\n  --Ds 0.5 1.0 2.0\n  --rs 0.1 0.25\n  --Ns 1024 2048\n  --levels 0.1 0.5\n  --fit_start 0.6\n  --fit_end 0.9\n  --T 80\n  --cfl 0.2\n  --seed 42\n  --x0 -60\n  --noise_amp 0.0\n",
       "path": "Derivation/code/physics/reaction_diffusion/rd_front_speed_sweep.py",
       "reason": "no keywords found"
     },
@@ -2200,12 +2200,12 @@
       "reason": "no keywords found"
     },
     {
-      "docstring": "\nCHANGE REASON:\n- Adds the fluids sector minimal solver (LBM\u2192NS) per TODO_up_next plan.\n- Mirrors the repository's proven practice: scripts emit figures + JSON metrics with a 'passed' gate.\n- This module is scoped; it does not alter RD canonical sector. It provides the operational path to NS.\n\nReferences:\n- derivation: [fluids_limit.md](Prometheus_VDM/derivation/fluids_limit.md:1)\n- benchmarks: taylor_green_benchmark.py, lid_cavity_benchmark.py\n",
+      "docstring": "\nCHANGE REASON:\n- Adds the fluids sector minimal solver (LBM\u2192NS) per TODO_up_next plan.\n- Mirrors the repository's proven practice: scripts emit figures + JSON metrics with a 'passed' gate.\n- This module is scoped; it does not alter RD canonical sector. It provides the operational path to NS.\n\nReferences:\n- derivation: [fluids_limit.md](Prometheus_VDM/Derivation/fluids_limit.md:1)\n- benchmarks: taylor_green_benchmark.py, lid_cavity_benchmark.py\n",
       "path": "Derivation/code/physics/fluid_dynamics/fluids/lbm2d.py",
       "reason": "no keywords found"
     },
     {
-      "docstring": "\n# Example usage inside a physics script:\n\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom common.io_paths import figure_path, log_path, write_log\n\ndomain, slug = \"fluid_dynamics\", \"corner_test_r_c_scan\"\n\n# ... run simulation, compute metrics -> 'metrics' dict\n\n# Save figure\nfig_path = figure_path(domain, slug, failed=False)\nplt.savefig(fig_path, dpi=160, bbox_inches=\"tight\")\n\n# Save log\nlog = {\n    \"timestamp\": __import__(\"datetime\").datetime.now().isoformat(),\n    \"git_hash\": \"YOUR_GIT_HASH_HERE\",\n    \"seed\": 1234,\n    \"domain\": domain,\n    \"slug\": slug,\n    \"params\": {\"H\":1.0, \"nu\":1e-3, \"...\":\"...\"},\n    \"metrics\": metrics,\n    \"status\": \"success\"\n}\nwrite_log(log_path(domain, slug, failed=False, type=\"json\"), log)\n\n# In Markdown (relative to derivation/):\n# ![Corner test r_c scan](code/outputs/figures/fluid_dynamics/20250823_corner_test_r_c_scan.png)\n# [Run log](code/outputs/logs/fluid_dynamics/20250823_corner_test_r_c_scan.json)\n\n",
+      "docstring": "\n# Example usage inside a physics script:\n\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom common.io_paths import figure_path, log_path, write_log\n\ndomain, slug = \"fluid_dynamics\", \"corner_test_r_c_scan\"\n\n# ... run simulation, compute metrics -> 'metrics' dict\n\n# Save figure\nfig_path = figure_path(domain, slug, failed=False)\nplt.savefig(fig_path, dpi=160, bbox_inches=\"tight\")\n\n# Save log\nlog = {\n    \"timestamp\": __import__(\"datetime\").datetime.now().isoformat(),\n    \"git_hash\": \"YOUR_GIT_HASH_HERE\",\n    \"seed\": 1234,\n    \"domain\": domain,\n    \"slug\": slug,\n    \"params\": {\"H\":1.0, \"nu\":1e-3, \"...\":\"...\"},\n    \"metrics\": metrics,\n    \"status\": \"success\"\n}\nwrite_log(log_path(domain, slug, failed=False, type=\"json\"), log)\n\n# In Markdown (relative to Derivation/):\n# ![Corner test r_c scan](code/outputs/figures/fluid_dynamics/20250823_corner_test_r_c_scan.png)\n# [Run log](code/outputs/logs/fluid_dynamics/20250823_corner_test_r_c_scan.json)\n\n",
       "path": "Derivation/Templates/Domain_Template/code/common/io_paths.py",
       "reason": "no keywords found"
     },
@@ -2280,7 +2280,7 @@
       "reason": "no keywords found"
     },
     {
-      "docstring": "\nRD dispersion validation runner (linear regime) for fum_rt.\n\nCHANGE REASON:\n- This file mirrors the validated physics from derivation scripts to the runtime stack.\n- We have PROVEN the RD linear dispersion \u03c3(k) = r - D k^2 via reproducible scripts and derivations:\n  [rd_dispersion_experiment.py](Prometheus_VDM/derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py),\n  [rd_validation_plan.md](Prometheus_VDM/derivation/rd_validation_plan.md),\n  [CORRECTIONS.md](Prometheus_VDM/derivation/computational_proofs/CORRECTIONS.md).\n- This runner provides an independent, apples-to-apples check inside fum_rt with identical metrics/output schema.\n- It DOES NOT alter runtime dynamics; it is a validation wrapper only.\n",
+      "docstring": "\nRD dispersion validation runner (linear regime) for fum_rt.\n\nCHANGE REASON:\n- This file mirrors the validated physics from derivation scripts to the runtime stack.\n- We have PROVEN the RD linear dispersion \u03c3(k) = r - D k^2 via reproducible scripts and derivations:\n  [rd_dispersion_experiment.py](Prometheus_VDM/Derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py),\n  [rd_validation_plan.md](Prometheus_VDM/Derivation/rd_validation_plan.md),\n  [CORRECTIONS.md](Prometheus_VDM/Derivation/computational_proofs/CORRECTIONS.md).\n- This runner provides an independent, apples-to-apples check inside fum_rt with identical metrics/output schema.\n- It DOES NOT alter runtime dynamics; it is a validation wrapper only.\n",
       "path": "fum_rt/physics/rd_dispersion_runner.py",
       "reason": "no keywords found"
     },
@@ -2315,7 +2315,7 @@
       "reason": "no keywords found"
     },
     {
-      "docstring": "\nRD front-speed validation runner (Fisher-KPP) for fum_rt.\n\nCHANGE REASON:\n- This file mirrors the validated physics from derivation scripts to the runtime stack.\n- We have PROVEN the Fisher-KPP front speed c = 2\u221a(D r) via reproducible scripts and derivations:\n  [rd_front_speed_experiment.py](Prometheus_VDM/derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py:1),\n  [rd_front_speed_validation.md](Prometheus_VDM/derivation/rd_front_speed_validation.md:1),\n  [CORRECTIONS.md](Prometheus_VDM/derivation/computational_proofs/CORRECTIONS.md:1).\n- This runner provides an independent, apples-to-apples check inside fum_rt with identical metrics/output schema.\n- It DOES NOT alter runtime dynamics; it is a validation wrapper only.\n",
+      "docstring": "\nRD front-speed validation runner (Fisher-KPP) for fum_rt.\n\nCHANGE REASON:\n- This file mirrors the validated physics from derivation scripts to the runtime stack.\n- We have PROVEN the Fisher-KPP front speed c = 2\u221a(D r) via reproducible scripts and derivations:\n  [rd_front_speed_experiment.py](Prometheus_VDM/Derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py:1),\n  [rd_front_speed_validation.md](Prometheus_VDM/Derivation/rd_front_speed_validation.md:1),\n  [CORRECTIONS.md](Prometheus_VDM/Derivation/computational_proofs/CORRECTIONS.md:1).\n- This runner provides an independent, apples-to-apples check inside fum_rt with identical metrics/output schema.\n- It DOES NOT alter runtime dynamics; it is a validation wrapper only.\n",
       "path": "fum_rt/physics/rd_front_speed_runner.py",
       "reason": "no keywords found"
     },
@@ -2495,7 +2495,7 @@
       "reason": "no keywords found"
     },
     {
-      "docstring": "\nVDM Nexus \u2014 Static Policy Check (Task 0.3.1)\n\nPurpose:\n- Enforce: \"zero write operations under ../derivation/\" from Nexus scope\n- Static source scan only (no execution). Read-only across the repo.\n\nWhat it checks:\n- In VDM_Nexus/**/*.{cpp,cxx,cc,c,hxx,hh,h}:\n  - std::ofstream(...) (assumed write)\n  - std::fstream(..., std::ios::out...) or flags with out/app\n  - fopen(..., mode) where mode contains 'w' or 'a'\n  - QFile::open(QIODevice::WriteOnly|ReadWrite|Append)\n- In VDM_Nexus/**/*.py:\n  - open(path, mode) where mode includes 'w', 'a', '+'\n  - Path.write_text / Path.write_bytes\n- For any of the above, flag as violation ONLY if the literal path argument contains:\n  - \"../derivation\" or \"/derivation/\" (case-insensitive)\n\nExit codes:\n- 0 = PASS (no violations)\n- 1 = FAIL (violations found)\n\nUsage:\n  python VDM_Nexus/scripts/nexus_static_policy_check.py\n",
+      "docstring": "\nVDM Nexus \u2014 Static Policy Check (Task 0.3.1)\n\nPurpose:\n- Enforce: \"zero write operations under ../Derivation/\" from Nexus scope\n- Static source scan only (no execution). Read-only across the repo.\n\nWhat it checks:\n- In VDM_Nexus/**/*.{cpp,cxx,cc,c,hxx,hh,h}:\n  - std::ofstream(...) (assumed write)\n  - std::fstream(..., std::ios::out...) or flags with out/app\n  - fopen(..., mode) where mode contains 'w' or 'a'\n  - QFile::open(QIODevice::WriteOnly|ReadWrite|Append)\n- In VDM_Nexus/**/*.py:\n  - open(path, mode) where mode includes 'w', 'a', '+'\n  - Path.write_text / Path.write_bytes\n- For any of the above, flag as violation ONLY if the literal path argument contains:\n  - \"../derivation\" or \"/Derivation/\" (case-insensitive)\n\nExit codes:\n- 0 = PASS (no violations)\n- 1 = FAIL (violations found)\n\nUsage:\n  python VDM_Nexus/scripts/nexus_static_policy_check.py\n",
       "path": "VDM_Nexus/scripts/nexus_static_policy_check.py",
       "reason": "no keywords found"
     },

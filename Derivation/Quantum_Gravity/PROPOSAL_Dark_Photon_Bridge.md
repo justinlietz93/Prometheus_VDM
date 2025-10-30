@@ -44,11 +44,11 @@ Justin K. Lietz - implement pipelines, set gates, produce artifacts, and write u
 ## 7. Deliverables & Data Products
 
 - Cosmology:
-  - Figures: `derivation/code/outputs/figures/cosmology/frw_continuity_residual__<tag>.png`
-  - Logs: `derivation/code/outputs/logs/cosmology/frw_balance__<tag>.json`, CSV series `.../frw_continuity_residual__<tag>.csv`
+  - Figures: `Derivation/code/outputs/figures/cosmology/frw_continuity_residual__<tag>.png`
+  - Logs: `Derivation/code/outputs/logs/cosmology/frw_balance__<tag>.json`, CSV series `.../frw_continuity_residual__<tag>.csv`
 - Dark photons:
-  - Figures: `derivation/code/outputs/figures/dark_photons/noise_budget__<tag>.png`, `.../eft_ladder__<tag>.png`
-  - Logs: `derivation/code/outputs/logs/dark_photons/noise_budget__<tag>.{json,csv}`, `.../fisher_eps__<tag>.json`
+  - Figures: `Derivation/code/outputs/figures/dark_photons/noise_budget__<tag>.png`, `.../eft_ladder__<tag>.png`
+  - Logs: `Derivation/code/outputs/logs/dark_photons/noise_budget__<tag>.{json,csv}`, `.../fisher_eps__<tag>.json`
 
 ## 8. Risks and Mitigations
 

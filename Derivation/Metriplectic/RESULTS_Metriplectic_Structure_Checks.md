@@ -14,8 +14,8 @@ Do the discrete operators used in our metriplectic integrators satisfy the defin
 
 ## Methods
 
-- Runner: `derivation/code/physics/metriplectic/metriplectic_structure_checks.py`
-- IO: `derivation/code/common/io_paths.py` (policy-aware; quarantines unapproved runs under failed_runs/)
+- Runner: `Derivation/code/physics/metriplectic/metriplectic_structure_checks.py`
+- IO: `Derivation/code/common/io_paths.py` (policy-aware; quarantines unapproved runs under failed_runs/)
 - Spec: grid (N, Δx), params (D, c, m, m_lap_operator), draws (default 100), optional tag.
 - Metrics logged: J_skew.median_abs_vJv; M_psd.neg_count, M_psd.min; pass/fail per gate.
 
@@ -37,7 +37,7 @@ Do the discrete operators used in our metriplectic integrators satisfy the defin
 
 ### Approval details
 
-- Spec path: `derivation/code/physics/metriplectic/specs/struct_checks.v1.json`
+- Spec path: `Derivation/code/physics/metriplectic/specs/struct_checks.v1.json`
 - Proposed tag: `struct-v1`
 - Runner invocation (policy-aware): use the `--spec` argument pointing to the file above; artifacts will be routed under `code/outputs/logs/metriplectic/` with the tag suffix.
 

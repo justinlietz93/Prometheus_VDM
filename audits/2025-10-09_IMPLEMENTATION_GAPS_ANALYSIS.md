@@ -10,7 +10,7 @@ This document systematically analyzes the gaps between the theoretical physics f
 
 ### 1. Reaction-Diffusion Physics Missing
 
-**Theoretical Foundation** (`derivation/reaction_diffusion/`):
+**Theoretical Foundation** (`Derivation/reaction_diffusion/`):
 
 - Core PDE: $\frac{\partial \phi}{\partial t} = D \nabla^2 \phi + r\phi - u\phi^2$
 - Dimensionless groups: $\Pi_1 = \frac{rL^2}{D}$, $\Pi_2 = \frac{u\phi_0 L^2}{D}$
@@ -24,7 +24,7 @@ This document systematically analyzes the gaps between the theoretical physics f
 
 ### 2. Memory Steering Not Integrated
 
-**Theoretical Foundation** (`derivation/memory_steering/`):
+**Theoretical Foundation** (`Derivation/memory_steering/`):
 
 - Memory field: $\frac{\partial M}{\partial t} = \gamma R - \delta M + \kappa \nabla^2 M$
 - Refractive index: $n(m) = n_0 + \alpha m$
@@ -38,7 +38,7 @@ This document systematically analyzes the gaps between the theoretical physics f
 
 ### 3. Fluid Dynamics Limit Absent
 
-**Theoretical Foundation** (`derivation/fluid_dynamics/`):
+**Theoretical Foundation** (`Derivation/fluid_dynamics/`):
 
 - LBM to Navier-Stokes limit: $\nu = c_s^2 (\tau - \Delta t/2)$
 - Reynolds number scaling: $Re = \frac{UL}{\nu}$
@@ -52,7 +52,7 @@ This document systematically analyzes the gaps between the theoretical physics f
 
 ### 4. Effective Field Theory Not Implemented
 
-**Theoretical Foundation** (`derivation/effective_field_theory/`):
+**Theoretical Foundation** (`Derivation/effective_field_theory/`):
 
 - Wilsonian renormalization group flows
 - Scale-dependent coupling constants
@@ -66,7 +66,7 @@ This document systematically analyzes the gaps between the theoretical physics f
 
 ### 5. Conservation Laws Violated
 
-**Theoretical Foundation** (`derivation/conservation_law/`):
+**Theoretical Foundation** (`Derivation/conservation_law/`):
 
 - Discrete conservation laws
 - Symplectic structure preservation
@@ -80,7 +80,7 @@ This document systematically analyzes the gaps between the theoretical physics f
 
 ### 6. Dimensionless Constants Ignored
 
-**Theoretical Foundation** (`derivation/DIMENSIONLESS_CONSTANTS.md`):
+**Theoretical Foundation** (`Derivation/DIMENSIONLESS_CONSTANTS.md`):
 
 - Critical dimensionless numbers govern system behavior
 - Scale invariance principles
@@ -94,7 +94,7 @@ This document systematically analyzes the gaps between the theoretical physics f
 
 ### 7. Continuum-Discrete Bridge Missing
 
-**Theoretical Foundation** (`derivation/foundations/continuum_stack.md`):
+**Theoretical Foundation** (`Derivation/foundations/continuum_stack.md`):
 
 - Smooth continuum limits from discrete dynamics
 - Coarse-graining procedures

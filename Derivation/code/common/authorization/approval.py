@@ -82,6 +82,34 @@ DEFAULT_DB_PATH = Path(__file__).resolve().parents[1] / "data" / "approval.db"
 # Default admin DB path (separate file) fallback
 DEFAULT_ADMIN_DB_PATH = Path(__file__).resolve().parents[1] / "data" / "approval_admin.db"
 
+def _repair_db_path(p: Path, code_dir: Path, deriv_dir: Path) -> Path:
+    """
+    Repair common case-sensitivity/path mistakes for VDM_APPROVAL_DB on case-sensitive filesystems.
+    If 'p' does not exist, try canonical alternatives:
+      - swap 'derivation' ↔ 'Derivation' segment
+      - prefer Derivation/code/common/data/approval.db under repo if present
+    Returns the first existing candidate, else original 'p'.
+    """
+    try:
+        if p.exists():
+            return p
+        s = str(p)
+        candidates: list[Path] = []
+        # Swap case for the common repository folder
+        if "/derivation/" in s:
+            candidates.append(Path(s.replace("/derivation/", "/Derivation/")))
+        if "/Derivation/" in s:
+            candidates.append(Path(s.replace("/Derivation/", "/derivation/")))
+        # Try canonical location under Derivation
+        candidates.append(deriv_dir / "code" / "common" / "data" / "approval.db")
+        for c in candidates:
+            if c.exists():
+                print(f"[authorization] Repair: approval DB path {p} not found; using {c}", file=sys.stderr)
+                return c
+    except Exception as _e:
+        _ = _e
+    return p
+
 
 def _read_env_file(path: Path) -> dict:
     """Parse a simple .env file.
@@ -139,6 +167,14 @@ def _approval_db_path() -> Optional[Path]:
     env = os.getenv("VDM_APPROVAL_DB")
     if env:
         p = Path(env)
+        # Compute reference dirs for repair attempts
+        try:
+            code_dir_env = Path(__file__).resolve().parents[2]
+            deriv_dir_env = Path(__file__).resolve().parents[3]
+        except Exception:
+            code_dir_env = Path(__file__).resolve().parent
+            deriv_dir_env = code_dir_env.parent
+        p = _repair_db_path(p, code_dir_env, deriv_dir_env)
         print(f"[authorization] Using approvals DB from environment variable VDM_APPROVAL_DB: {p}", file=sys.stderr)
         return p
     # 2) .env files (search upward: code -> Derivation -> repo root)
@@ -150,6 +186,7 @@ def _approval_db_path() -> Optional[Path]:
             envs = _read_env_file(candidate)
             if "VDM_APPROVAL_DB" in envs:
                 p = Path(envs["VDM_APPROVAL_DB"]).expanduser()
+                p = _repair_db_path(p, code_dir, deriv_dir)
                 print(f"[authorization] Using approvals DB from env file {candidate}: {p}", file=sys.stderr)
                 return p
         # No env variable found anywhere; inform user where to set it
@@ -406,7 +443,41 @@ def check_tag_approval(domain: str, tag: str, allow_unapproved: bool, code_root:
                 domain_dir = d
                 break
 
-    apath = (code_domain_dir / "APPROVAL.json") if (code_domain_dir / "APPROVAL.json").exists() else (domain_dir / "APPROVAL.json")
+    # Discover manifest deterministically (no env overrides for genuine runs)
+    def _discover_manifest_for_tag() -> Path:
+        # Priority: code_domain_dir over writings domain_dir
+        candidates: list[Path] = []
+        for base in [code_domain_dir, domain_dir]:
+            if base and base.exists():
+                exact = base / f"APPROVAL.{tag}.json"
+                if exact.exists():
+                    return exact
+                for p in sorted(base.glob("APPROVAL*.json")):
+                    candidates.append(p)
+        matching: list[Path] = []
+        for p in candidates:
+            try:
+                data = json.loads(p.read_text(encoding="utf-8"))
+                if isinstance(data, list) and data:
+                    data = data[0]
+                allowed = set((data or {}).get("allowed_tags", []) or [])
+                if tag in allowed:
+                    matching.append(p)
+            except Exception:
+                continue
+        if matching:
+            for m in matching:
+                try:
+                    m.relative_to(code_domain_dir)
+                    return m
+                except Exception:
+                    continue
+            return matching[0]
+        if (code_domain_dir / "APPROVAL.json").exists():
+            return code_domain_dir / "APPROVAL.json"
+        return domain_dir / "APPROVAL.json"
+
+    apath = _discover_manifest_for_tag()
     approved = False
     proposal: Optional[str] = None
 
@@ -767,7 +838,7 @@ def check_tag_approval(domain: str, tag: str, allow_unapproved: bool, code_root:
                 "\n".join(f" - {d}" for d in details) +
                 f"\nTo proceed, create/update {apath} with:\n" +
                 "{\n  \"pre_registered\": true,\n  \"proposal\": \"Derivation/<domain>/PROPOSAL_<slug>.md\",\n  \"allowed_tags\": [\"<tag>\"],\n  \"approvals\": {\n    \"<tag>\": {\n      \"schema\": \"Derivation/<domain>/schemas/<tag>.schema.json\",\n      \"approved_by\": \"Justin K. Lietz\",\n      \"approved_at\": \"YYYY-MM-DD\",\n      \"approval_key\": \"<computed via approve_tag.py --script <run_script>>\"\n    }\n  }\n}\n" +
-                "Or run with --allow-unapproved to quarantine artifacts (engineering-only)."
+                "Do not use --allow-unapproved unless you are doing an engineering-only run to quarantine artifacts (results will be invalid)."
             ),
             file=sys.stderr,
         )

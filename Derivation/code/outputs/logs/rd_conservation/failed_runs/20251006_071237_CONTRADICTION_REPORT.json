@@ -45,7 +45,7 @@
   },
   "fixed_dt_summary": {
     "failed": true,
-    "figure": "/mnt/ironwolf/git/Void_Unity_Proofs/derivation/code/outputs/figures/rd_conservation/failed_runs/20251006_071237_objA_fixed_dt_abs_deltaS_hist.png",
+    "figure": "/mnt/ironwolf/git/Void_Unity_Proofs/Derivation/code/outputs/figures/rd_conservation/failed_runs/20251006_071237_objA_fixed_dt_abs_deltaS_hist.png",
     "samples": [
       {
         "delta_S": -0.00042423545508263327,

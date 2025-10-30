@@ -28,9 +28,9 @@ Energy conservation in FRW for a perfect fluid obeys \( \frac{d}{dt}(\rho a^3) +
 
 Artifacts (tag FRW-balance-v1):
 
-- Figure: derivation/code/outputs/figures/metriplectic/.../frw_continuity_residual__FRW-balance-v1.png
-- CSV: derivation/code/outputs/logs/metriplectic/.../frw_continuity_residual__FRW-balance-v1.csv
-- JSON: derivation/code/outputs/logs/metriplectic/.../frw_balance__FRW-balance-v1.json
+- Figure: Derivation/code/outputs/figures/metriplectic/.../frw_continuity_residual__FRW-balance-v1.png
+- CSV: Derivation/code/outputs/logs/metriplectic/.../frw_continuity_residual__FRW-balance-v1.csv
+- JSON: Derivation/code/outputs/logs/metriplectic/.../frw_balance__FRW-balance-v1.json
 
 ## 5.2 Experimental runplan
 

@@ -14,20 +14,20 @@ Purpose
 
 Usage
 - Basic run (double precision RK4):
-    python derivation/code/physics/conservation_law/qfum_validate.py \\
+    python Derivation/code/physics/conservation_law/qfum_validate.py \\
         --r 0.15 --u 0.25 --W0 0.12 0.62 --T 40 --dt 0.001 --solver rk4
 
 - Convergence sweep (3 stepsizes):
-    python derivation/code/physics/conservation_law/qfum_validate.py \\
+    python Derivation/code/physics/conservation_law/qfum_validate.py \\
         --r 0.15 --u 0.25 --W0 0.12 --T 10 --dt 0.002 0.001 0.0005 --solver rk4
 
 Outputs
 - Figures:
-    derivation/code/outputs/figures/conservation_law/qfum_solution_overlay_UTC.png
-    derivation/code/outputs/figures/conservation_law/qfum_Q_drift_UTC.png
-    derivation/code/outputs/figures/conservation_law/qfum_convergence_UTC.png
+    Derivation/code/outputs/figures/conservation_law/qfum_solution_overlay_UTC.png
+    Derivation/code/outputs/figures/conservation_law/qfum_Q_drift_UTC.png
+    Derivation/code/outputs/figures/conservation_law/qfum_convergence_UTC.png
 - JSON metrics:
-    derivation/code/outputs/logs/conservation_law/qfum_metrics_UTC.json
+    Derivation/code/outputs/logs/conservation_law/qfum_metrics_UTC.json
 
 Dependencies
 - numpy, matplotlib, json, argparse, datetime
@@ -49,7 +49,7 @@ from datetime import datetime, timezone
 from typing import List, Tuple, Dict
 import shutil
 
-# add repo-common IO helpers (derivation/code on sys.path)
+# add repo-common IO helpers (Derivation/code on sys.path)
 sys.path.append(str(Path(__file__).resolve().parents[2]))
 from common.io_paths import figure_path, log_path, write_log
 
@@ -60,7 +60,7 @@ import matplotlib.pyplot as plt
 BASE_OUTDIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "outputs"))
 FIG_DIR = os.path.join(BASE_OUTDIR, "figures", "conservation_law")
 LOG_DIR = os.path.join(BASE_OUTDIR, "logs", "conservation_law")
-ARXIV_FIG_DIR = "derivation/arxiv/RD_Methods_QA/figs"
+ARXIV_FIG_DIR = "Derivation/arxiv/RD_Methods_QA/figs"
 
 
 def utc_stamp() -> str:

@@ -8,7 +8,7 @@
   ],
   "expected_slope": 4.0,
   "failed": false,
-  "figure": "/mnt/ironwolf/git/Void_Unity_Proofs/derivation/code/outputs/figures/rd_conservation/20251006_072249_reaction_two_grid_convergence.png",
+  "figure": "/mnt/ironwolf/git/Void_Unity_Proofs/Derivation/code/outputs/figures/rd_conservation/20251006_072249_reaction_two_grid_convergence.png",
   "metric": "global_two_grid_reaction_rk4",
   "slope": 3.916091275720303,
   "two_grid_error": [

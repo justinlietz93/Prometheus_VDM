@@ -38,7 +38,7 @@ with lattice sound speed c_s fixed by {c_i, w_i} (D2Q9: c_s^2 = 1/3).
 
 Implementation plan
 
-- Module: [lbm2d.py](Prometheus_VDM/derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:1)
+- Module: [lbm2d.py](Prometheus_VDM/Derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:1)
 - Supports: periodic boundaries, bounce€‘back no€‘slip walls, simple forcing hook, viscosity Δ½ = c_s^2(ρ„ ˆ’ 1/2).
 
 ### I.2 Chapman€“Enskog expansion (sketch)
@@ -57,10 +57,10 @@ Conclusion
 
 ### I.3 Embedding in this repository
 
-- New module: [lbm2d.py](Prometheus_VDM/derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:1) (D2Q9 BGK).
+- New module: [lbm2d.py](Prometheus_VDM/Derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:1) (D2Q9 BGK).
 - Benchmarks using shared logging/figure style:
-  - Taylor€“Green vortex: [taylor_green_benchmark.py](Prometheus_VDM/derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py:1)
-  - Lid€‘driven cavity: [lid_cavity_benchmark.py](Prometheus_VDM/derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py:1)
+  - Taylor€“Green vortex: [taylor_green_benchmark.py](Prometheus_VDM/Derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py:1)
+  - Lid€‘driven cavity: [lid_cavity_benchmark.py](Prometheus_VDM/Derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py:1)
 - Acceptance thresholds: see [BENCHMARKS_FLUIDS.md](Prometheus_VDM/BENCHMARKS_FLUIDS.md:1).
 
 ---
@@ -126,14 +126,14 @@ Details in [BENCHMARKS_FLUIDS.md](Prometheus_VDM/BENCHMARKS_FLUIDS.md:1).
 ## Deliverables and Paths (for implementation)
 
 - Derivation: this file.
-- Module: [lbm2d.py](Prometheus_VDM/derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:1) (D2Q9 BGK).
+- Module: [lbm2d.py](Prometheus_VDM/Derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:1) (D2Q9 BGK).
 - Benchmarks:
-  - [taylor_green_benchmark.py](Prometheus_VDM/derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py:1)
-  - [lid_cavity_benchmark.py](Prometheus_VDM/derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py:1)
+  - [taylor_green_benchmark.py](Prometheus_VDM/Derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py:1)
+  - [lid_cavity_benchmark.py](Prometheus_VDM/Derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py:1)
 - Acceptance: [BENCHMARKS_FLUIDS.md](Prometheus_VDM/BENCHMARKS_FLUIDS.md:1)
 - Outputs:
-  - Figures †’ derivation/code/outputs/figures/fluid_dynamics/
-  - Logs †’ derivation/code/outputs/logs/fluid_dynamics/
+  - Figures †’ Derivation/code/outputs/figures/fluid_dynamics/
+  - Logs †’ Derivation/code/outputs/logs/fluid_dynamics/
   - JSON includes metrics and passed boolean.
 
 Notes

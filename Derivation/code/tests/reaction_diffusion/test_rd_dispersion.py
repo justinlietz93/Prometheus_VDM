@@ -11,7 +11,7 @@ See LICENSE file for full terms.
 
 Minimal unit tests for RD dispersion and Laplacians.
 
-Reason: Physics validated via derivation/code/physics scripts; these tests guard formulas and signs.
+Reason: Physics validated via Derivation/code/physics scripts; these tests guard formulas and signs.
 """
 
 import os, sys

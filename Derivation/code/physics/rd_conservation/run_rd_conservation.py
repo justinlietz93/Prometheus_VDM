@@ -11,7 +11,7 @@ See LICENSE file for full terms.
 
 RD Conservation Harness (Obj-A/B/C scaffolding) - periodic BC default.
 
-- Uses derivation/code/common/io_paths.py for logs/figures.
+- Uses Derivation/code/common/io_paths.py for logs/figures.
 - Places artifacts under code/outputs/{logs,figures}/rd_conservation.
 """
 from __future__ import annotations

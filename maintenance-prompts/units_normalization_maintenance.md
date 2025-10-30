@@ -1,8 +1,8 @@
-**Create/Update `derivation/UNITS_NORMALIZATION.md` (MathJax-only)**
+**Create/Update `Derivation/UNITS_NORMALIZATION.md` (MathJax-only)**
 
 Search the entire repository (code, tests, notebooks, docs, configs, comments) and compile **the unit systems and nondimensionalization maps actually used**. **Do not invent or infer new scales.** Use only content that exists in the repo.
 
-**Output file:** `derivation/UNITS_NORMALIZATION.md`
+**Output file:** `Derivation/UNITS_NORMALIZATION.md`
 **Canon rule:** This file is the single owner of units & normalization maps. Other docs must link here; do not restate units elsewhere.
 
 **MathJax rules (GitHub-compatible):**
@@ -110,9 +110,9 @@ Table schema:
 * Preserve original symbols; do not rename. Normalize style only (`\mathbf{}`, `\boldsymbol{}`, `\mathcal{}`, `\mathrm{}`).
 * Use anchors when linking:
 
-  * Symbols: `../derivation/SYMBOLS.md#sym-...`
-  * Equations: `../derivation/EQUATIONS.md#vdm-e-...`
-  * Constants: `../derivation/CONSTANTS.md#const-...`
+  * Symbols: `../Derivation/SYMBOLS.md#sym-...`
+  * Equations: `../Derivation/EQUATIONS.md#vdm-e-...`
+  * Constants: `../Derivation/CONSTANTS.md#const-...`
 * If a map references an undefined symbol/constant, add a **Notes** line: `TODO: link missing <symbol|constant> (see <path>:<line>)`. Do not invent content.
 
 ### Ordering

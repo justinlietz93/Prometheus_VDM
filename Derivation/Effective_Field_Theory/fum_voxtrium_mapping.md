@@ -9,11 +9,11 @@ Purpose
 Provide a concrete, units‑rigorous bridge between the bottom‑up FUM void scalar derivations and the top‑down Voxtrium sourcing framework, and address identified gaps (units, causality/retarded kernels, GR/action embedding, observational constraints).
 
 References
-- [derivation/discrete_to_continuum.md](derivation/discrete_to_continuum.md:1)
-- [derivation/kinetic_term_derivation.md](derivation/kinetic_term_derivation.md:1)
-- [derivation/effective_field_theory_approach.md](derivation/effective_field_theory_approach.md:1)
-- [derivation/discrete_conservation.md](derivation/discrete_conservation.md:1)
-- [derivation/symmetry_analysis.md](derivation/symmetry_analysis.md:1)
+- [Derivation/discrete_to_continuum.md](Derivation/discrete_to_continuum.md:1)
+- [Derivation/kinetic_term_derivation.md](Derivation/kinetic_term_derivation.md:1)
+- [Derivation/effective_field_theory_approach.md](Derivation/effective_field_theory_approach.md:1)
+- [Derivation/discrete_conservation.md](Derivation/discrete_conservation.md:1)
+- [Derivation/symmetry_analysis.md](Derivation/symmetry_analysis.md:1)
 - [voxtrium_Overview.md](voxtrium_Overview.md:1)
 
 ---
@@ -21,10 +21,10 @@ References
 1. Knowns and Unknowns
 
 Known (FUM side)
-- Discrete on‑site law:  dW/dt = (α - β) W - α W^2  ([derivation/symmetry_analysis.md](derivation/symmetry_analysis.md:20-21)).
+- Discrete on‑site law:  dW/dt = (α - β) W - α W^2  ([Derivation/symmetry_analysis.md](Derivation/symmetry_analysis.md:20-21)).
 - Canonical RD mapping:  ∂tφ = D ∇²φ + r φ - u φ²  [optional -λ φ³].
-  EFT context only (future work):  □φ + α φ² - (α - β) φ = 0, with VEV v = 1 - β/α and m_eff² = α - β (see [derivation/discrete_to_continuum.md](derivation/discrete_to_continuum.md:120-127), [derivation/discrete_to_continuum.md](derivation/discrete_to_continuum.md:171-188), [derivation/discrete_to_continuum.md](derivation/discrete_to_continuum.md:219-228)).
-- Spatial kinetic normalization reads off a propagation speed `c^2 = 2 J a^2` (per‑site convention) or `c^2 = \kappa a^2` with `\kappa = 2J`; there is no need to fix `J a^2`. See continuum normalization in [derivation/kinetic_term_derivation.md](derivation/kinetic_term_derivation.md:82-89).
+  EFT context only (future work):  □φ + α φ² - (α - β) φ = 0, with VEV v = 1 - β/α and m_eff² = α - β (see [Derivation/discrete_to_continuum.md](Derivation/discrete_to_continuum.md:120-127), [Derivation/discrete_to_continuum.md](Derivation/discrete_to_continuum.md:171-188), [Derivation/discrete_to_continuum.md](Derivation/discrete_to_continuum.md:219-228)).
+- Spatial kinetic normalization reads off a propagation speed `c^2 = 2 J a^2` (per‑site convention) or `c^2 = \kappa a^2` with `\kappa = 2J`; there is no need to fix `J a^2`. See continuum normalization in [Derivation/kinetic_term_derivation.md](Derivation/kinetic_term_derivation.md:82-89).
 
 Known (Voxtrium side)
 - FRW + continuity with sectoral sources Q_i obeying ∑_i Q_i = 0 via a transfer current J^ν ([voxtrium_Overview.md](voxtrium_Overview.md:9-16), [voxtrium_Overview.md](voxtrium_Overview.md:221-229)).
@@ -49,7 +49,7 @@ Working convention: natural units c = ħ = k_B = 1. In D=4, a canonical scalar h
 Define scale factors
 - Field scale φ_0 [GeV]
 - Time scale τ [GeV^-1]
-- Length scale a [GeV^-1] (also the lattice spacing used in [derivation/kinetic_term_derivation.md](derivation/kinetic_term_derivation.md:48-66))
+- Length scale a [GeV^-1] (also the lattice spacing used in [Derivation/kinetic_term_derivation.md](Derivation/kinetic_term_derivation.md:48-66))
 
 Dimensionalization map
 - φ_dimless = φ_phys / φ_0
@@ -179,7 +179,7 @@ This identifies a consistent translation between field excitations and Voxtrium�
 - Enforce w_eff ≈ -1 via ε_DE ≤ δ_w and f_inj ≪ 1 using the partition map; adopt the abundance and co‑evolution tests ([voxtrium_Overview.md](voxtrium_Overview.md:241-251), [voxtrium_Overview.md](voxtrium_Overview.md:282-287), [voxtrium_Overview.md](voxtrium_Overview.md:288-289)).
 
 (E) Conservation/invariants
-- Retain the exact on‑site invariant Q_FUM for diagnostics ([derivation/symmetry_analysis.md](derivation/symmetry_analysis.md:141-148)); for the full system rely on covariant conservation with J^ν. Explore hidden symmetries/Lyapunov structure for the discrete network to derive a true flux‑form conservation law ([derivation/discrete_conservation.md](derivation/discrete_conservation.md:165-179)).
+- Retain the exact on‑site invariant Q_FUM for diagnostics ([Derivation/symmetry_analysis.md](Derivation/symmetry_analysis.md:141-148)); for the full system rely on covariant conservation with J^ν. Explore hidden symmetries/Lyapunov structure for the discrete network to derive a true flux‑form conservation law ([Derivation/discrete_conservation.md](Derivation/discrete_conservation.md:165-179)).
 
 ---
 
@@ -201,8 +201,8 @@ These values are placeholders for calibration; they demonstrate the algebraic co
 - [ ] Calibrate (φ_0, τ, a) to match a target m_eff and a low‑velocity SIDM cross section, then re‑express R_* and compare to [voxtrium_Overview.md](voxtrium_Overview.md:192-211).
 - [ ] Implement K_ret in the simulation/continuum solver; verify causal support and unit normalization against [voxtrium_Overview.md](voxtrium_Overview.md:231-235).
 - [ ] Define z‑maps (z_1 = c_Ω Ξ, z_2 from fitted coupling scale) and validate p_i softmax stability in homogeneous vs. structured epochs ([voxtrium_Overview.md](voxtrium_Overview.md:236-239)).
-- [ ] Use [derivation/effective_field_theory_approach.md](derivation/effective_field_theory_approach.md:60-85) to include screening (λ φ^4) and check its impact on m_φ ~ 1/R_* and on (σ_T/m)(v).
-- [ ] Extend symmetry/Lyapunov search for the full discrete law to identify a flux‑form conserved quantity, if it exists ([derivation/discrete_conservation.md](derivation/discrete_conservation.md:175-179)).
+- [ ] Use [Derivation/effective_field_theory_approach.md](Derivation/effective_field_theory_approach.md:60-85) to include screening (λ φ^4) and check its impact on m_φ ~ 1/R_* and on (σ_T/m)(v).
+- [ ] Extend symmetry/Lyapunov search for the full discrete law to identify a flux‑form conserved quantity, if it exists ([Derivation/discrete_conservation.md](Derivation/discrete_conservation.md:175-179)).
 
 ---
 

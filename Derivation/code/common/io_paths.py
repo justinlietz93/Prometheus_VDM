@@ -1,4 +1,4 @@
-# derivation/code/common/io_paths.py
+# Derivation/code/common/io_paths.py
 '''
 Copyright © 2025 Justin K. Lietz, Neuroca, Inc. All Rights Reserved.
 
@@ -36,7 +36,7 @@ log = {
 }
 write_log(log_path(domain, slug, failed=False, type="json"), log)
 
-# In Markdown (relative to derivation/):
+# In Markdown (relative to Derivation/):
 # ![Corner test r_c scan](code/outputs/figures/fluid_dynamics/20250823_corner_test_r_c_scan.png)
 # [Run log](code/outputs/logs/fluid_dynamics/20250823_corner_test_r_c_scan.json)
 
@@ -47,7 +47,7 @@ from datetime import datetime
 import json
 import os
 
-DERIVATION_ROOT = Path(__file__).resolve().parents[1]  # .../derivation/code
+DERIVATION_ROOT = Path(__file__).resolve().parents[1]  # .../Derivation/code
 OUTPUTS = DERIVATION_ROOT / "outputs"
 
 def _ts():

@@ -14,20 +14,20 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 | Geometry ID | Dim $d$ | Domain $\Omega$ (MathJax) | Parameters (link) | Boundary sets | Source (path:lines • commit) | Notes |
 |---|---:|---|---|---|---|---|
-| <a id="geom-1d-periodic-interval"></a>**1d-periodic-interval** | 1 | $(0, L)$ with periodic identification | $L$<sup>[↗](CONSTANTS.md#const-L)</sup>, $N$<sup>[↗](CONSTANTS.md#const-N)</sup> | Periodic in $x$ | derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py:110 • c31d0c9 | 1D interval discretized with $N$ sites, spacing $dx = L/N$; used for dispersion validation |
-| <a id="geom-1d-neumann-interval"></a>**1d-neumann-interval** | 1 | $[-L/2, L/2]$ | $L$<sup>[↗](CONSTANTS.md#const-L)</sup>, $N$<sup>[↗](CONSTANTS.md#const-N)</sup> | $\partial\Omega$ (both ends) with Neumann | derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py:148 • c31d0c9 | 1D interval with zero-gradient (Neumann) boundaries at both ends; used for front-speed validation |
-| <a id="geom-2d-periodic-torus"></a>**2d-periodic-torus** | 2 | $(0,1)^2$ with periodic identification | $nx$<sup>[↗](CONSTANTS.md#const-nx)</sup>, $ny$<sup>[↗](CONSTANTS.md#const-ny)</sup> | Periodic in both $x$ and $y$ | derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py:58 • c31d0c9 | 2D periodic torus (unit domain); Taylor-Green vortex benchmark |
-| <a id="geom-2d-square-box"></a>**2d-square-box** | 2 | $[0, nx] \times [0, ny]$ | $nx$<sup>[↗](CONSTANTS.md#const-nx)</sup>, $ny$<sup>[↗](CONSTANTS.md#const-ny)</sup> | $\partial\Omega$ consists of 4 walls | derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py:148-149 • c31d0c9 | 2D square cavity (lid-driven); no-slip walls (bounce-back) on bottom/left/right, velocity BC on top |
-| <a id="geom-1d-periodic-ring"></a>**1d-periodic-ring** | 1 | $\mathbb{Z}_N$ (cyclic graph) | $N$ nodes | Periodic (ring topology) | derivation/code/physics/axioms/verify_discrete_EL.py:30 • c31d0c9 | Discrete 1D periodic lattice (ring); nearest-neighbor connectivity |
-| <a id="geom-2d-periodic-torus-lattice"></a>**2d-periodic-torus-lattice** | 2 | $\mathbb{Z}_{N_y} \times \mathbb{Z}_{N_x}$ (2D torus graph) | $N_y \times N_x$ nodes | Periodic in both directions | derivation/code/physics/axioms/verify_discrete_EL.py:40 • c31d0c9 | Discrete 2D periodic lattice (torus); von Neumann 4-neighborhood |
-| <a id="geom-walker-box-2d"></a>**walker-box-2d** | 2 | Box of size $(n_x, n_y)$ | $(n_x, n_y)$ | Periodic or Neumann | derivation/code/obs/walker_glow.py:22-23 • c31d0c9 | Regular 2D grid for walker observability; supports periodic or homogeneous Neumann BCs |
+| <a id="geom-1d-periodic-interval"></a>**1d-periodic-interval** | 1 | $(0, L)$ with periodic identification | $L$<sup>[↗](CONSTANTS.md#const-L)</sup>, $N$<sup>[↗](CONSTANTS.md#const-N)</sup> | Periodic in $x$ | Derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py:110 • c31d0c9 | 1D interval discretized with $N$ sites, spacing $dx = L/N$; used for dispersion validation |
+| <a id="geom-1d-neumann-interval"></a>**1d-neumann-interval** | 1 | $[-L/2, L/2]$ | $L$<sup>[↗](CONSTANTS.md#const-L)</sup>, $N$<sup>[↗](CONSTANTS.md#const-N)</sup> | $\partial\Omega$ (both ends) with Neumann | Derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py:148 • c31d0c9 | 1D interval with zero-gradient (Neumann) boundaries at both ends; used for front-speed validation |
+| <a id="geom-2d-periodic-torus"></a>**2d-periodic-torus** | 2 | $(0,1)^2$ with periodic identification | $nx$<sup>[↗](CONSTANTS.md#const-nx)</sup>, $ny$<sup>[↗](CONSTANTS.md#const-ny)</sup> | Periodic in both $x$ and $y$ | Derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py:58 • c31d0c9 | 2D periodic torus (unit domain); Taylor-Green vortex benchmark |
+| <a id="geom-2d-square-box"></a>**2d-square-box** | 2 | $[0, nx] \times [0, ny]$ | $nx$<sup>[↗](CONSTANTS.md#const-nx)</sup>, $ny$<sup>[↗](CONSTANTS.md#const-ny)</sup> | $\partial\Omega$ consists of 4 walls | Derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py:148-149 • c31d0c9 | 2D square cavity (lid-driven); no-slip walls (bounce-back) on bottom/left/right, velocity BC on top |
+| <a id="geom-1d-periodic-ring"></a>**1d-periodic-ring** | 1 | $\mathbb{Z}_N$ (cyclic graph) | $N$ nodes | Periodic (ring topology) | Derivation/code/physics/axioms/verify_discrete_EL.py:30 • c31d0c9 | Discrete 1D periodic lattice (ring); nearest-neighbor connectivity |
+| <a id="geom-2d-periodic-torus-lattice"></a>**2d-periodic-torus-lattice** | 2 | $\mathbb{Z}_{N_y} \times \mathbb{Z}_{N_x}$ (2D torus graph) | $N_y \times N_x$ nodes | Periodic in both directions | Derivation/code/physics/axioms/verify_discrete_EL.py:40 • c31d0c9 | Discrete 2D periodic lattice (torus); von Neumann 4-neighborhood |
+| <a id="geom-walker-box-2d"></a>**walker-box-2d** | 2 | Box of size $(n_x, n_y)$ | $(n_x, n_y)$ | Periodic or Neumann | Derivation/code/obs/walker_glow.py:22-23 • c31d0c9 | Regular 2D grid for walker observability; supports periodic or homogeneous Neumann BCs |
 
 ---
 
 ## 2) Boundary Conditions (by geometry and field/channel)
 
 ##### Periodic BC for 1D RD dispersion  <a id="bc-periodic-1d-rd-dispersion"></a>
-**Context:** derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py:34-37, 106, 125 • c31d0c9 • RD dispersion validation
+**Context:** Derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py:34-37, 106, 125 • c31d0c9 • RD dispersion validation
 
 **Field(s):** $\phi$ (linearized Fisher-KPP field $u$) • TODO: add anchor `sym-phi` in SYMBOLS.md:10 for $\boldsymbol{\phi}(\mathbf{x},t)$  
 **Type:** Periodic  
@@ -38,13 +38,13 @@ $$
 
 **Applies on:** All boundaries of [1d-periodic-interval](#geom-1d-periodic-interval)  
 **Parameters:** None (topological identification)  
-**Implemented at:** derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py:34-37 (laplacian_periodic using `np.roll`)  
+**Implemented at:** Derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py:34-37 (laplacian_periodic using `np.roll`)  
 **Notes:** Enforced via periodic wrap in second-order difference stencil; conserves total mass $\sum_i u_i$ in diffusion-only regime
 
 ---
 
 ##### Neumann (zero-gradient) BC for 1D RD front speed  <a id="bc-neumann-1d-rd-front"></a>
-**Context:** derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py:28-36, 183 • c31d0c9 • RD front-speed validation
+**Context:** Derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py:28-36, 183 • c31d0c9 • RD front-speed validation
 
 **Field(s):** $\phi$ (Fisher-KPP field $u$) • TODO: add anchor `sym-phi` in SYMBOLS.md:10 for $\boldsymbol{\phi}(\mathbf{x},t)$  
 **Type:** Neumann (homogeneous / no-flux)  
@@ -56,13 +56,13 @@ $$
 
 **Applies on:** Both endpoints $x = -L/2$ and $x = L/2$ of [1d-neumann-interval](#geom-1d-neumann-interval)  
 **Parameters:** None  
-**Implemented at:** derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py:28-36 (laplacian_neumann with ghost mirroring)  
+**Implemented at:** Derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py:28-36 (laplacian_neumann with ghost mirroring)  
 **Notes:** Allows front to propagate without boundary reflection; conserves total mass when reaction term $f \equiv 0$
 
 ---
 
 ##### Periodic BC for 2D Taylor-Green vortex  <a id="bc-periodic-2d-taylor-green"></a>
-**Context:** derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py:58 • c31d0c9 • Fluids (LBM) Taylor-Green benchmark
+**Context:** Derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py:58 • c31d0c9 • Fluids (LBM) Taylor-Green benchmark
 
 **Field(s):** LBM populations $f_i$, macroscopic velocity $(u_x, u_y)$, density $\rho$  
 **Type:** Periodic  
@@ -74,13 +74,13 @@ $$
 
 **Applies on:** All boundaries of [2d-periodic-torus](#geom-2d-periodic-torus)  
 **Parameters:** None (topological identification)  
-**Implemented at:** derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:115-116 (LBMConfig.periodic_x=True, periodic_y=True), lbm2d.py:274-303 (streaming with periodic wrap)  
+**Implemented at:** Derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:115-116 (LBMConfig.periodic_x=True, periodic_y=True), lbm2d.py:274-303 (streaming with periodic wrap)  
 **Notes:** LBM streaming uses `np.roll` for periodic boundaries; viscous decay validation benchmark
 
 ---
 
 ##### Bounce-back no-slip walls for 2D lid cavity  <a id="bc-bounce-back-lid-cavity"></a>
-**Context:** derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py:379, fluids/lbm2d.py:175, 303-313 • c31d0c9 • Fluids (LBM) lid-driven cavity benchmark
+**Context:** Derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py:379, fluids/lbm2d.py:175, 303-313 • c31d0c9 • Fluids (LBM) lid-driven cavity benchmark
 
 **Field(s):** LBM populations $f_i$ at solid boundaries  
 **Type:** Bounce-back (no-slip wall)  
@@ -93,13 +93,13 @@ where $\bar{i}$ is the opposite direction to $i$ (e.g., $\mathrm{OPP}[i]$ in D2Q
 
 **Applies on:** Bottom, left, and right walls of [2d-square-box](#geom-2d-square-box)  
 **Parameters:** None (half-way bounce-back on boundary nodes)  
-**Implemented at:** derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:303-313 (bounce-back swap at solid cells after streaming)  
+**Implemented at:** Derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:303-313 (bounce-back swap at solid cells after streaming)  
 **Notes:** Enforces zero velocity at walls; no-slip condition in NS limit
 
 ---
 
 ##### Zou/He velocity BC for lid cavity top wall  <a id="bc-zou-he-lid-top"></a>
-**Context:** derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:181-197, lid_cavity_benchmark.py:379 • c31d0c9 • Fluids (LBM) lid-driven cavity
+**Context:** Derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:181-197, lid_cavity_benchmark.py:379 • c31d0c9 • Fluids (LBM) lid-driven cavity
 
 **Field(s):** LBM populations at top boundary (moving lid)  
 **Type:** Zou/He velocity boundary condition (Dirichlet-like for velocity)  
@@ -116,13 +116,13 @@ $$
 
 **Applies on:** Top wall ($y=0$) of [2d-square-box](#geom-2d-square-box), excluding corner cells  
 **Parameters:** $U_{\mathrm{lid}}$<sup>[↗](CONSTANTS.md#const-U_lid)</sup>  
-**Implemented at:** derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:181-197 (set_lid_velocity method)  
+**Implemented at:** Derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:181-197 (set_lid_velocity method)  
 **Notes:** Imposes tangential velocity on top boundary; drives the cavity flow
 
 ---
 
 ##### Periodic BC for walker glow observability (1D/2D)  <a id="bc-periodic-walker-glow"></a>
-**Context:** derivation/code/obs/walker_glow.py:22, 76, 94 • c31d0c9 • Observability layer
+**Context:** Derivation/code/obs/walker_glow.py:22, 76, 94 • c31d0c9 • Observability layer
 
 **Field(s):** Glow intensity $M$, fluxes $F$  
 **Type:** Periodic  
@@ -131,13 +131,13 @@ Wraparound neighbors on a regular grid (1D or 2D); incoming flux from outside th
 
 **Applies on:** All boundaries of [walker-box-2d](#geom-walker-box-2d) (when `bc="periodic"`)  
 **Parameters:** None  
-**Implemented at:** derivation/code/obs/walker_glow.py:76-77, 94-98 (periodic wrap via `np.roll` for incoming flux accumulation)  
+**Implemented at:** Derivation/code/obs/walker_glow.py:76-77, 94-98 (periodic wrap via `np.roll` for incoming flux accumulation)  
 **Notes:** Read-only observability; does not alter dynamics
 
 ---
 
 ##### Neumann BC for walker glow observability (1D/2D)  <a id="bc-neumann-walker-glow"></a>
-**Context:** derivation/code/obs/walker_glow.py:23, 79, 100 • c31d0c9 • Observability layer
+**Context:** Derivation/code/obs/walker_glow.py:23, 79, 100 • c31d0c9 • Observability layer
 
 **Field(s):** Glow intensity $M$, fluxes $F$  
 **Type:** Neumann (homogeneous no-flux)  
@@ -146,13 +146,13 @@ Boundary incoming from outside is zero (no flux across domain boundary).
 
 **Applies on:** All boundaries of [walker-box-2d](#geom-walker-box-2d) (when `bc="neumann"`)  
 **Parameters:** None  
-**Implemented at:** derivation/code/obs/walker_glow.py:79-83, 100-110 (explicit handling of boundary terms, dropping wrap contributions)  
+**Implemented at:** Derivation/code/obs/walker_glow.py:79-83, 100-110 (explicit handling of boundary terms, dropping wrap contributions)  
 **Notes:** Read-only observability; does not alter dynamics
 
 ---
 
 ##### Periodic or Neumann BC for flux-form diffusion  <a id="bc-flux-diffusion"></a>
-**Context:** derivation/code/physics/reaction_diffusion/flux_core.py:11-16, 58-118 • c31d0c9 • Conservative flux-form RD
+**Context:** Derivation/code/physics/reaction_diffusion/flux_core.py:11-16, 58-118 • c31d0c9 • Conservative flux-form RD
 
 **Field(s):** $\phi$ (general RD field) • TODO: add anchor `sym-phi` in SYMBOLS.md:10 for $\boldsymbol{\phi}(\mathbf{x},t)$  
 **Type:** Periodic or Neumann (user-specified)  
@@ -165,7 +165,7 @@ With periodic BCs, fluxes wrap at boundaries; with Neumann BCs, boundary fluxes 
 
 **Applies on:** Boundaries of [1d-periodic-interval](#geom-1d-periodic-interval) or [1d-neumann-interval](#geom-1d-neumann-interval) (1D), or [2d-periodic-torus](#geom-2d-periodic-torus) or analogous Neumann 2D box (2D)  
 **Parameters:** $D$<sup>[↗](CONSTANTS.md#const-D)</sup>, $a$ (lattice spacing), $\Delta t$  
-**Implemented at:** derivation/code/physics/reaction_diffusion/flux_core.py:58-118 (flux_update_periodic, flux_update_neumann)  
+**Implemented at:** Derivation/code/physics/reaction_diffusion/flux_core.py:58-118 (flux_update_periodic, flux_update_neumann)  
 **Notes:** Conserves total mass $\sum_i \phi_i$ to machine precision when $f \equiv 0$; Lemma F.1 validated
 
 ---
@@ -221,7 +221,7 @@ $(\Delta x\_{\perp} \leftarrow -\Delta x\_{\perp})$\, $(\Delta x\_{\parallel})$ 
 ## 3) Initial Conditions
 
 ##### Random noise IC for RD dispersion  <a id="ic-random-noise-rd-dispersion"></a>
-**Context:** derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py:106, 119 • c31d0c9
+**Context:** Derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py:106, 119 • c31d0c9
 
 **Quantity:** Linearized Fisher-KPP field $u(\mathbf{x}, 0)$ • TODO: add anchor `sym-phi` in SYMBOLS.md:10 for $\boldsymbol{\phi}(\mathbf{x},t)$  
 **Definition (quote from source if formula exists):**
@@ -238,7 +238,7 @@ where $\eta(x) \sim \mathcal{N}(0, 1)$ is standard Gaussian noise, and $A_0$ is 
 ---
 
 ##### Smooth tanh step IC for RD front speed  <a id="ic-tanh-step-rd-front"></a>
-**Context:** derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py:157-170 • c31d0c9
+**Context:** Derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py:157-170 • c31d0c9
 
 **Quantity:** Fisher-KPP field $u(\mathbf{x}, 0)$ • TODO: add anchor `sym-phi` in SYMBOLS.md:10 for $\boldsymbol{\phi}(\mathbf{x},t)$  
 **Definition (quote from source if formula exists):**
@@ -255,7 +255,7 @@ where $x_0$ is the initial front position and $w = 2.0$ is the interface width.
 ---
 
 ##### Taylor-Green vortex IC for 2D LBM  <a id="ic-taylor-green-vortex"></a>
-**Context:** derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py:32-39 • c31d0c9
+**Context:** Derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py:32-39 • c31d0c9
 
 **Quantity:** LBM velocity field $(u_x, u_y)$  
 **Definition (quote from source if formula exists):**
@@ -275,7 +275,7 @@ where $x, y \in 0, 1)$ are normalized coordinates, and populations $f_i$ are set
 ---
 
 ##### Equilibrium IC for LBM (lid cavity and general)  <a id="ic-lbm-equilibrium"></a>
-**Context:** derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:166-172 • c31d0c9
+**Context:** Derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:166-172 • c31d0c9
 
 **Quantity:** LBM populations $f_i$ at $t=0$  
 **Definition (quote from source if formula exists):**
@@ -293,7 +293,7 @@ where $w_i$ are D2Q9 weights, $\mathbf{c}_i$ are lattice velocities, and $c_s^2 
 ---
 
 ##### Near-void initial state for discrete lattice (axiom verification)  <a id="ic-near-void-axiom"></a>
-**Context:** derivation/code/computational_toy_proofs/toy_QM.py:28 • c31d0c9
+**Context:** Derivation/code/computational_toy_proofs/toy_QM.py:28 • c31d0c9
 
 **Quantity:** Discrete node state $W(0)$ • TODO: add anchor `sym-Wi` in SYMBOLS.md:21 for $W_i(t)$  
 **Definition (quote from source if formula exists):**
@@ -341,10 +341,10 @@ Sample (N_w) initial positions i.i.d. uniform on $(\Omega)$ (Poisson disc option
 
 | ID | Stencil/Topology | Description (as named) | Parameters (link) | Source | Notes |
 |---|---|---|---|---|---|
-| <a id="lattice-nn-1d"></a>**nn-1d** | 1D nearest-neighbor (ring) | Neighbors $N(i) = \{i-1, i+1\}$ (periodic) | $N$ nodes, lattice spacing $a$ | derivation/code/physics/axioms/verify_discrete_EL.py:28-35 • c31d0c9 | Coordination $z = 2$ |
-| <a id="lattice-nn-2d"></a>**nn-2d** | 2D von Neumann (torus) | Neighbors $N(i) = \{\text{north, south, east, west}\}$ (periodic) | $N_y \times N_x$ nodes, spacing $a$ | derivation/code/physics/axioms/verify_discrete_EL.py:38-47 • c31d0c9 | Coordination $z = 4$ |
-| <a id="lattice-d2q9"></a>**D2Q9** | D2Q9 LBM lattice (2D) | 9 velocity directions: rest (1), cardinals (4), diagonals (4) | Velocities $\mathbf{c}_i$, weights $w_i$, $c_s^2 = 1/3$ | derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:98-106 • c31d0c9 | Standard LBM D2Q9 stencil; opposite directions via OPP array |
-| <a id="lattice-generic-cartesian"></a>**cartesian-1d-2d** | Regular Cartesian grid (1D/2D) | Uniform spacing $a$, cell-centered values | Grid spacing $a$ (or $dx$) | derivation/code/physics/reaction_diffusion/flux_core.py:14-16 • c31d0c9 | Supports periodic or Neumann BCs; used in flux-conservative RD |
+| <a id="lattice-nn-1d"></a>**nn-1d** | 1D nearest-neighbor (ring) | Neighbors $N(i) = \{i-1, i+1\}$ (periodic) | $N$ nodes, lattice spacing $a$ | Derivation/code/physics/axioms/verify_discrete_EL.py:28-35 • c31d0c9 | Coordination $z = 2$ |
+| <a id="lattice-nn-2d"></a>**nn-2d** | 2D von Neumann (torus) | Neighbors $N(i) = \{\text{north, south, east, west}\}$ (periodic) | $N_y \times N_x$ nodes, spacing $a$ | Derivation/code/physics/axioms/verify_discrete_EL.py:38-47 • c31d0c9 | Coordination $z = 4$ |
+| <a id="lattice-d2q9"></a>**D2Q9** | D2Q9 LBM lattice (2D) | 9 velocity directions: rest (1), cardinals (4), diagonals (4) | Velocities $\mathbf{c}_i$, weights $w_i$, $c_s^2 = 1/3$ | Derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:98-106 • c31d0c9 | Standard LBM D2Q9 stencil; opposite directions via OPP array |
+| <a id="lattice-generic-cartesian"></a>**cartesian-1d-2d** | Regular Cartesian grid (1D/2D) | Uniform spacing $a$, cell-centered values | Grid spacing $a$ (or $dx$) | Derivation/code/physics/reaction_diffusion/flux_core.py:14-16 • c31d0c9 | Supports periodic or Neumann BCs; used in flux-conservative RD |
 | <a id="lattice-moore-8"></a>**moore-8** | 2D Moore (8-neighbor) | Neighbors $(N(i)={\text{N,S,E,W,NE,NW,SE,SW}})$ | $(N\_y \times N\_x)$, spacing (a) | - (spec) | If agency walkers step diagonally as well as axially |
 
 ---

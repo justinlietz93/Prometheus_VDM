@@ -4,7 +4,7 @@ from __future__ import annotations
 from typing import Dict, Any
 
 
-def gate_noether(time_reversal_energy_drift: float, tol: float = 1e-8) -> Dict[str, Any]:
+def gate_noether(time_reversal_energy_drift: float, tol: float = 1e-12) -> Dict[str, Any]:
     ok = abs(float(time_reversal_energy_drift)) <= float(tol)
     return {"gate": "G1_Noether_J", "tol": tol, "drift": float(time_reversal_energy_drift), "passed": bool(ok)}
 
@@ -20,5 +20,5 @@ def gate_energy_match(rel_diff: float, tol: float = 1e-4) -> Dict[str, Any]:
 
 
 def gate_strang_defect(slope: float, r2: float) -> Dict[str, Any]:
-    ok = (2.8 <= float(slope) <= 3.2) and (float(r2) >= 0.999)
+    ok = (float(slope) >= 2.90) and (float(r2) >= 0.999)
     return {"gate": "G4_StrangDefect", "slope": float(slope), "R2": float(r2), "passed": bool(ok)}

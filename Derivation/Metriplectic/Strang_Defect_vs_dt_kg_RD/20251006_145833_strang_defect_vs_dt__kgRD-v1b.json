@@ -13,7 +13,7 @@
     0.0025,
     0.00125
   ],
-  "figure": "/mnt/ironwolf/git/Void_Unity_Proofs/derivation/code/outputs/figures/metriplectic/20251006_145832_strang_defect_vs_dt__kgRD-v1b.png",
+  "figure": "/mnt/ironwolf/git/Void_Unity_Proofs/Derivation/code/outputs/figures/metriplectic/20251006_145832_strang_defect_vs_dt__kgRD-v1b.png",
   "fit": {
     "R2": 0.9999694903063632,
     "slope": 2.9566858195528103

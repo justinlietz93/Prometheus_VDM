@@ -69,39 +69,39 @@ Provenance Note: The above reflect repository state as of 2025-10-09; earlier en
 
 ## Summary (before → after)
 
-- [derivation/VDM_Overview.md](VDM_Overview.md)
+- [Derivation/VDM_Overview.md](VDM_Overview.md)
   - Before: Mixed RD/EFT claims; no explicit canonical model.
   - After: Canonical RD banner + mapping (D = J a² or (J/z) a²; r = α - β; u = α), stability note, EFT scoped to future work.
 
-- [derivation/code/computational_proofs/FUM_theory_and_results.md](code/computational_proofs/FUM_theory_and_results.md)
+- [Derivation/code/computational_proofs/FUM_theory_and_results.md](code/computational_proofs/FUM_theory_and_results.md)
   - Before: Fixed numerical claim “m_eff ≈ 0.387”.
   - After: m_eff = √(α-β) (parameter‑dependent), added RD model‑class note; removed fixed numeric.
 
-- [derivation/discrete_to_continuum.md](discrete_to_continuum.md)
+- [Derivation/discrete_to_continuum.md](discrete_to_continuum.md)
   - Before: Objective stated convergence to KG; D mapping not explicit.
   - After: Objective states RD mapping as primary; explicit D mapping (D = J a² or (J/z) a²); EFT derivation referenced to EFT docs as an active, KPI-gated branch.
 
-- [derivation/memory_steering.md](memory_steering.md)
+- [Derivation/memory_steering.md](memory_steering.md)
   - Before: Hardwired EFT vacuum/mass invariants in main text.
   - After: RD is canonical; EFT invariants referenced only to EFT doc; removed back‑solving (α,β) from (v,m_eff) in RD narrative.
 
-- [derivation/symmetry_analysis.md](symmetry_analysis.md)
+- [Derivation/symmetry_analysis.md](symmetry_analysis.md)
   - Before: Text implied “false/true vacuum” using EFT values in a general context.
   - After: Clarified RD vs EFT contexts; RD fixed point W* = r/u (r>0) vs EFT vacuum v = 1 - β/α as future‑work.
 
-- [derivation/effective_field_theory_approach.md](effective_field_theory_approach.md)
+- [Derivation/effective_field_theory_approach.md](effective_field_theory_approach.md)
   - Before: No scope banner.
   - After: Policy banner updated; note m_eff = √(α-β) is parameter‑dependent and unitized via τ; EFT is active with KPI gates.
 
-- [derivation/code/computational_proofs/void_dynamics_theory.md](code/computational_proofs/void_dynamics_theory.md)
+- [Derivation/code/computational_proofs/void_dynamics_theory.md](code/computational_proofs/void_dynamics_theory.md)
   - Before: No scope note; mixed RD/EFT implications.
   - After: Scope note at top; references discrete‑action derivation for c² = 2 J a².
 
-- [derivation/support/references/Suggestions.md](support/references/Suggestions.md)
+- [Derivation/support/references/Suggestions.md](support/references/Suggestions.md)
   - Before: Implied fixed m_eff; mixed normalization constraint Ja² = 1/2.
   - After: Header note: RD canonical; EFT mass parameter‑dependent; lattice normalization c² = 2 J a² (per‑site); do not impose Ja² = 1/2.
 
-- [derivation/fum_voxtrium_mapping.md](fum_voxtrium_mapping.md)
+- [Derivation/fum_voxtrium_mapping.md](fum_voxtrium_mapping.md)
   - Before: Referred to EFT EOM as dimensionless default.
   - After: RD mapping made canonical; EFT equation kept for EFT context only.
 
@@ -124,24 +124,24 @@ All fixed-number statements were replaced with parameter‑dependent forms and e
 
 ## Kinetic/Lattice Normalization
 
-- Adopted discrete‑action derivation already present in [derivation/kinetic_term_derivation.md](kinetic_term_derivation.md) with c² = 2 J a² (per‑site convention) or c² = κ a² (per‑edge, κ = 2J). No microscopic constraint ties J to a; c can be set by units.
+- Adopted discrete‑action derivation already present in [Derivation/kinetic_term_derivation.md](kinetic_term_derivation.md) with c² = 2 J a² (per‑site convention) or c² = κ a² (per‑edge, κ = 2J). No microscopic constraint ties J to a; c can be set by units.
 
 ## Edit Log (file, change)
 
-- [derivation/VDM_Overview.md](VDM_Overview.md): Replace overview with RD canonical banner; corrected mapping (r = α - β, u = α); EFT scoped.
-- [derivation/code/computational_proofs/FUM_theory_and_results.md](code/computational_proofs/FUM_theory_and_results.md): Insert RD note; replace fixed m_eff numeric with param‑dependent form.  
-- [derivation/discrete_to_continuum.md](discrete_to_continuum.md): Update objective to RD; add D mapping text; keep EFT derivation as future work.  
-- [derivation/memory_steering.md](memory_steering.md): Align with RD canonical; restrict EFT formulas to EFT doc; remove back‑solve in RD section.  
-- [derivation/symmetry_analysis.md](symmetry_analysis.md): Clarify RD vs EFT contexts in interpretations.  
-- [derivation/effective_field_theory_approach.md](effective_field_theory_approach.md): Add policy banner (active, KPI‑gated); retain IO quarantine for unapproved runs.  
-- [derivation/code/computational_proofs/void_dynamics_theory.md](code/computational_proofs/void_dynamics_theory.md): Add scope note at top.  
-- [derivation/support/references/Suggestions.md](support/references/Suggestions.md): Insert header note; prevent hard constraints on Ja².  
-- [derivation/fum_voxtrium_mapping.md](fum_voxtrium_mapping.md): Make RD canonical; EFT references scoped.  
+- [Derivation/VDM_Overview.md](VDM_Overview.md): Replace overview with RD canonical banner; corrected mapping (r = α - β, u = α); EFT scoped.
+- [Derivation/code/computational_proofs/FUM_theory_and_results.md](code/computational_proofs/FUM_theory_and_results.md): Insert RD note; replace fixed m_eff numeric with param‑dependent form.  
+- [Derivation/discrete_to_continuum.md](discrete_to_continuum.md): Update objective to RD; add D mapping text; keep EFT derivation as future work.  
+- [Derivation/memory_steering.md](memory_steering.md): Align with RD canonical; restrict EFT formulas to EFT doc; remove back‑solve in RD section.  
+- [Derivation/symmetry_analysis.md](symmetry_analysis.md): Clarify RD vs EFT contexts in interpretations.  
+- [Derivation/effective_field_theory_approach.md](effective_field_theory_approach.md): Add policy banner (active, KPI‑gated); retain IO quarantine for unapproved runs.  
+- [Derivation/code/computational_proofs/void_dynamics_theory.md](code/computational_proofs/void_dynamics_theory.md): Add scope note at top.  
+- [Derivation/support/references/Suggestions.md](support/references/Suggestions.md): Insert header note; prevent hard constraints on Ja².  
+- [Derivation/fum_voxtrium_mapping.md](fum_voxtrium_mapping.md): Make RD canonical; EFT references scoped.  
 - [METRICS.md](Prometheus_VDM/METRICS.md): New file with metrics skeleton.
-- [derivation/rd_front_speed_validation.md](rd_front_speed_validation.md:1): Add reproducible CLI, output routing, acceptance criteria, representative PASS metrics.
-- [derivation/code/physics/rd_front_speed_experiment.py](code/physics/rd_front_speed_experiment.py:1): Set defaults (N=1024, cfl=0.2, level=0.1, x0=-60, fit 0.6-0.9); route outputs to derivation/code/outputs/{figures,logs}; robust tracking and fit.
-- New: [derivation/code/physics/rd_front_speed_sweep.py](code/physics/rd_front_speed_sweep.py:1): Sweep runner producing CSV summary under derivation/code/outputs/logs/.
-- New: [derivation/code/physics/rd_dispersion_experiment.py](code/physics/rd_dispersion_experiment.py:1): Linear dispersion validation script with periodic BC; logs/figure auto-routing; acceptance criteria.
+- [Derivation/rd_front_speed_validation.md](rd_front_speed_validation.md:1): Add reproducible CLI, output routing, acceptance criteria, representative PASS metrics.
+- [Derivation/code/physics/rd_front_speed_experiment.py](code/physics/rd_front_speed_experiment.py:1): Set defaults (N=1024, cfl=0.2, level=0.1, x0=-60, fit 0.6-0.9); route outputs to Derivation/code/outputs/{figures,logs}; robust tracking and fit.
+- New: [Derivation/code/physics/rd_front_speed_sweep.py](code/physics/rd_front_speed_sweep.py:1): Sweep runner producing CSV summary under Derivation/code/outputs/logs/.
+- New: [Derivation/code/physics/rd_dispersion_experiment.py](code/physics/rd_dispersion_experiment.py:1): Linear dispersion validation script with periodic BC; logs/figure auto-routing; acceptance criteria.
 
 ## Status Tags
 

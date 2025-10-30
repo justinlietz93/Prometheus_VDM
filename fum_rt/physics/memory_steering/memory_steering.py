@@ -9,14 +9,14 @@ Memory-driven steering on graphs: rigorous mapping to the FUM derivations + dime
 
 How this maps to your derivations (clickable refs):
 - Fast φ-sector (propagation + mass gap): the continuum equation and invariants are already derived
-  in [derivation/discrete_to_continuum.md](derivation/discrete_to_continuum.md:121-128), with vacuum
+  in [Derivation/discrete_to_continuum.md](Derivation/discrete_to_continuum.md:121-128), with vacuum
   v = 1 - β/α and excitation mass m_eff² = α - β. The kinetic normalization c² = 2 J a² comes
-  from the discrete action in [derivation/kinetic_term_derivation.md](derivation/kinetic_term_derivation.md:121-128).
+  from the discrete action in [Derivation/kinetic_term_derivation.md](Derivation/kinetic_term_derivation.md:121-128).
   This module does not alter those results. φ governs propagation/modes; “memory” M biases routing.
 
 - Steering law (geometric optics/ray limit): documented and derived in
-  [derivation/memory_steering.md](derivation/memory_steering.md:1) from Voxtrium’s note
-  [derivation/voxtrium/voxtrium_message.txt](derivation/voxtrium/voxtrium_message.txt:1).
+  [Derivation/memory_steering.md](Derivation/memory_steering.md:1) from Voxtrium’s note
+  [Derivation/voxtrium/voxtrium_message.txt](Derivation/voxtrium/voxtrium_message.txt:1).
   Define an index n(x,t) = exp[η M(x,t)]; then rays bend toward memory gradients:
       r'' = ∇_⊥ ln n = η ∇_⊥ M.
   Here r'' is the curvature of the path, ∇_⊥ is the transverse gradient, and η is a coupling.
@@ -28,14 +28,14 @@ How this maps to your derivations (clickable refs):
 
 - Dimensionless groups (scaling, not units) with chosen rulers L, T, M0, R0:
       Θ = η M0,    D_a = γ R0 T / M0,    Λ = δ T,    Γ = κ T / L².
-  In [derivation/fum_voxtrium_mapping.md](derivation/fum_voxtrium_mapping.md:44-80) the φ-sector uses (a, τ);
+  In [Derivation/fum_voxtrium_mapping.md](Derivation/fum_voxtrium_mapping.md:44-80) the φ-sector uses (a, τ);
   you can set L=a, T=τ for a shared ruler so this steering layer aligns with the φ units map.
 
 - Predictions (used for the tests in utils):
   • Junction choice:     P(A) ≈ σ(Θ Δm)   (logistic in Θ Δm at a fork)
   • Curvature scaling:   κ_path ∝ Θ |∇_⊥ m|
   • Stability band:      robust memory when D_a ≳ Λ; Γ too low → brittle; Γ too high → washed out
-  See [derivation/memory_steering.md](derivation/memory_steering.md:1) for the full statement.
+  See [Derivation/memory_steering.md](Derivation/memory_steering.md:1) for the full statement.
 
 Graph discretization used here (orthogonal to φ):
 - We represent M on nodes (vector m), and use the unnormalized graph Laplacian L = D - A to discretize ∇².
@@ -74,7 +74,7 @@ def build_graph_laplacian(A: np.ndarray) -> np.ndarray:
     """
     Build the unnormalized graph Laplacian L = D - A (continuum analogue of -∇²).
     This is the standard discrete operator used in the memory PDE ∂_t m = γ r - δ m - κ L m,
-    mapping directly to the ∇² term in [derivation/memory_steering.md](derivation/memory_steering.md:1).
+    mapping directly to the ∇² term in [Derivation/memory_steering.md](Derivation/memory_steering.md:1).
 
     Args:
         A: np.ndarray (N x N). Nonzero → edge; diagonal should be zero. Ensure symmetry for undirected graphs.
@@ -107,7 +107,7 @@ def update_memory(
     One explicit Euler step for the slow memory PDE (write-decay-spread),
         ∂_t m = γ r - δ m - κ L m,
     which is the graph-discretized form of ∂_t M = γ R - δ M + κ ∇² M in
-    [derivation/memory_steering.md](derivation/memory_steering.md:1).
+    [Derivation/memory_steering.md](Derivation/memory_steering.md:1).
 
     Args:
         m: np.ndarray (N,). Memory field (dimensionless m = M/M0 if normalized to M0).
@@ -139,7 +139,7 @@ def transition_probs(
         P(i→j) ∝ exp(Θ m_j),   Θ = η M0.
     At a 2-branch fork with memories (m_A, m_B) this reduces to the logistic
         P(A) = σ(Θ (m_A - m_B)),
-    matching the prediction P(A) ≈ σ(Θ Δm) in [derivation/memory_steering.md](derivation/memory_steering.md:1).
+    matching the prediction P(A) ≈ σ(Θ Δm) in [Derivation/memory_steering.md](Derivation/memory_steering.md:1).
 
     Args:
         i: current node index (unused; included for symmetry/extension).
@@ -336,7 +336,7 @@ def compute_dimensionless_groups(
     """
     Compute the four dimensionless groups (Θ, D_a, Λ, Γ) that control the steering+memory dynamics.
 
-    Definitions (see [derivation/memory_steering.md](derivation/memory_steering.md:1)):
+    Definitions (see [Derivation/memory_steering.md](Derivation/memory_steering.md:1)):
         Θ = η M0,   D_a = γ R0 T / M0,   Λ = δ T,   Γ = κ T / L².
 
     Args:

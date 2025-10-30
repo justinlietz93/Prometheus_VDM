@@ -9,13 +9,13 @@ Infrastructure reads canonical assets in place and never duplicates/moves them:
 - Data and approvals DBs (canonical, read-only from adapters):
   - Windows: `C:\git\Prometheus_VDM\derivation\code\common\data\approval.db`
   - Windows: `C:\git\Prometheus_VDM\derivation\code\common\data\approval_admin.db`
-  - Repo-relative root: `../derivation/code/common/data/`
+  - Repo-relative root: `../Derivation/code/common/data/`
 - Physics runners/specs/schemas/approvals (canonical, read-only):
   - Windows: `C:\git\Prometheus_VDM\derivation\code\physics\{domain}\`
-  - Repo-relative: `../derivation/code/physics/{domain}/`
+  - Repo-relative: `../Derivation/code/physics/{domain}/`
 - Experiment outputs (enumerated in place):
   - Windows: `C:\git\Prometheus_VDM\derivation\code\outputs\(figures|logs)\{domain}\`
-  - Repo-relative: `../derivation/code/outputs/(figures|logs)/{domain}/`
+  - Repo-relative: `../Derivation/code/outputs/(figures|logs)/{domain}/`
 
 Root resolution policy (must match app): CLI flags > env (`VDM_REPO_ROOT`, `VDM_APPROVAL_DB`, `VDM_APPROVAL_ADMIN_DB`) > `.env`.
 
@@ -31,7 +31,7 @@ Root resolution policy (must match app): CLI flags > env (`VDM_REPO_ROOT`, `VDM_
 
 1. Adhere to port interfaces defined in `../application/ports/`.
 2. Use dependency injection; no singletons or hidden globals.
-3. Treat `../derivation/` as read-only; write only via launching approved runners or calling the canonical approval CLI.
+3. Treat `../Derivation/` as read-only; write only via launching approved runners or calling the canonical approval CLI.
 4. Keep file size ≤ 500 LOC and mirror test coverage under `../tests/infrastructure/`.
 
 ## Canon References

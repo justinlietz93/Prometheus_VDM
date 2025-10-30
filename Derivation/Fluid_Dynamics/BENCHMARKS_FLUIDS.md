@@ -19,8 +19,8 @@ Benchmarks (double precision)
   - Baseline grid (≥ 256²): |ν_fit - ν_th| / ν_th ≤ 5%.
   - Refinement (×2 linear res): error decreases consistent with scheme order.
 - Artifact paths:
-  - Figure: derivation/code/outputs/figures/fluid_dynamics/taylor_green_benchmark_<timestamp>.png
-  - Log: derivation/code/outputs/logs/fluid_dynamics/taylor_green_benchmark_<timestamp>.json
+  - Figure: Derivation/code/outputs/figures/fluid_dynamics/taylor_green_benchmark_<timestamp>.png
+  - Log: Derivation/code/outputs/logs/fluid_dynamics/taylor_green_benchmark_<timestamp>.json
 
 2) Lid‑driven cavity (square, no‑slip walls, moving lid)
 - Monitor divergence norm ‖∇·v‖₂ over time.
@@ -28,8 +28,8 @@ Benchmarks (double precision)
   - max_t ‖∇·v‖₂ ≤ 1e-6 (double).
   - Centerline profiles converge with grid (qualitative check; optional quantitative against literature).
 - Artifact paths:
-  - Figure: derivation/code/outputs/figures/fluid_dynamics/lid_cavity_benchmark_<timestamp>.png
-  - Log: derivation/code/outputs/logs/fluid_dynamics/lid_cavity_benchmark_<timestamp>.json
+  - Figure: Derivation/code/outputs/figures/fluid_dynamics/lid_cavity_benchmark_<timestamp>.png
+  - Log: Derivation/code/outputs/logs/fluid_dynamics/lid_cavity_benchmark_<timestamp>.json
 
 Logging schema
 - JSON payload must include:
@@ -46,9 +46,9 @@ How to run (PowerShell)
 - Always activate venv:
   & .\venv\Scripts\Activate.ps1
 - Taylor-Green:
-  python Prometheus_VDM/derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py --nx 256 --ny 256 --tau 0.8 --steps 5000 --sample_every 50
+  python Prometheus_VDM/Derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py --nx 256 --ny 256 --tau 0.8 --steps 5000 --sample_every 50
 - Lid cavity:
-  python Prometheus_VDM/derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py --nx 128 --ny 128 --tau 0.7 --U_lid 0.1 --steps 15000 --sample_every 200
+  python Prometheus_VDM/Derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py --nx 128 --ny 128 --tau 0.7 --U_lid 0.1 --steps 15000 --sample_every 200
 
 Notes
 - These thresholds certify the LBM→NS reduction operationally. They do not change the RD sector’s canonical status; both sectors live side‑by‑side with separate claims and tests.
@@ -75,11 +75,11 @@ CLI (lid cavity)
   - --policy_div_target (default 1e-6), --policy_swirl_target (default 5e-3)
 - Examples:
   - Observe-only metrics:
-    - python [lid_cavity_benchmark.py](Prometheus_VDM/derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py:316) --nx 128 --ny 128 --steps 15000 --warmup 2000 --walker_announce --walkers 210
+    - python [lid_cavity_benchmark.py](Prometheus_VDM/Derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py:316) --nx 128 --ny 128 --steps 15000 --warmup 2000 --walker_announce --walkers 210
   - Overlay markers + tracks:
-    - python [lid_cavity_benchmark.py](Prometheus_VDM/derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py:316) --nx 128 --ny 128 --steps 15000 --warmup 2000 --walker_announce --walkers 210 --walker_overlay --announce_max 256
+    - python [lid_cavity_benchmark.py](Prometheus_VDM/Derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py:316) --nx 128 --ny 128 --steps 15000 --warmup 2000 --walker_announce --walkers 210 --walker_overlay --announce_max 256
   - Advisory preview (prints suggestions; does not apply when --auto is set to avoid controller conflict):
-    - python [lid_cavity_benchmark.py](Prometheus_VDM/derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py:316) --walker_announce --walkers 210 --walker_mode advise
+    - python [lid_cavity_benchmark.py](Prometheus_VDM/Derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py:316) --walker_announce --walkers 210 --walker_mode advise
 
 JSON additions
 - metrics.void_announcers:
@@ -90,7 +90,7 @@ JSON additions
 
 Non-interference test (falsifiable)
 - Ensure read-only walker usage does not alter flow fields.
-- Test file: [test_walkers_noninterference.py](Prometheus_VDM/derivation/code/tests/fluid_dynamics/test_walkers_noninterference.py:1)
+- Test file: [test_walkers_noninterference.py](Prometheus_VDM/Derivation/code/tests/fluid_dynamics/test_walkers_noninterference.py:1)
 - Run (PowerShell):
   - & .\venv\Scripts\Activate.ps1; pytest -q .\Prometheus_VDM\derivation\code\tests\fluid_dynamics\test_walkers_noninterference.py
 - Acceptance: max |Δu| = 0 and |Δv| = 0 at end of matched runs (with/without walkers).

@@ -8,7 +8,7 @@
 > Commercial use requires citation and written permission from Justin K. Lietz.
 > See LICENSE file for full terms.
 
-TL;DR (with one artifact path): Near-conservation scales with method order; Euler shows $\beta\!\approx\!2$, Strang and discrete-gradient (DG) RD show $\beta\!\approx\!3$ on two-grid error, and DG RD satisfies a per-step H-theorem. Pinned artifact: derivation/code/outputs/figures/rd_conservation/20251006_072251_fixed_dt_deltaS_compare.png (paired CSV/JSON under derivation/code/outputs/logs/rd_conservation/).
+TL;DR (with one artifact path): Near-conservation scales with method order; Euler shows $\beta\!\approx\!2$, Strang and discrete-gradient (DG) RD show $\beta\!\approx\!3$ on two-grid error, and DG RD satisfies a per-step H-theorem. Pinned artifact: Derivation/code/outputs/figures/rd_conservation/20251006_072251_fixed_dt_deltaS_compare.png (paired CSV/JSON under Derivation/code/outputs/logs/rd_conservation/).
 
 ## **II. Introduction**
 
@@ -58,7 +58,7 @@ References (lineage): Fisher (1937); Kolmogorov-Petrovsky-Piskunov (1937); Stran
 
 Materials:
 
-- Code modules: `derivation/code/physics/rd_conservation/run_rd_conservation.py`, `derivation/code/physics/reaction_diffusion/reaction_exact.py`, and `derivation/code/common/io_paths.py`.
+- Code modules: `Derivation/code/physics/rd_conservation/run_rd_conservation.py`, `Derivation/code/physics/reaction_diffusion/reaction_exact.py`, and `Derivation/code/common/io_paths.py`.
 - Schemes under test: explicit Euler; Strang splitting (CN half-steps in diffusion with exact reaction); discrete-gradient RD (implicit, AVF reaction + midpoint Laplacian with Newton/backtracking).
 
 Diagram of setup: Not applicable; computational experiment with periodic 1D grid.
@@ -98,7 +98,7 @@ Graph and paired artifacts:
 Fixed‑step $\lvert\Delta S\rvert$ comparison (same $\Delta t$ across schemes):
 
 - Combined figure: ![fixed dt deltaS compare](figure-1.png)
-- CSV: derivation/code/outputs/logs/rd_conservation/20251006_072251_fixed_dt_deltaS_compare.csv (columns: scheme, seed, abs_delta_S); JSON summary: derivation/code/outputs/logs/rd_conservation/20251006_072251_fixed_dt_deltaS_compare.json.
+- CSV: Derivation/code/outputs/logs/rd_conservation/20251006_072251_fixed_dt_deltaS_compare.csv (columns: scheme, seed, abs_delta_S); JSON summary: Derivation/code/outputs/logs/rd_conservation/20251006_072251_fixed_dt_deltaS_compare.json.
 - Summary (example at $\Delta t=0.005$): median $\lvert\Delta S\rvert\approx 4.68\times 10^{-4}$ across Euler/Strang/DG.
 
 DG Lyapunov monitoring:

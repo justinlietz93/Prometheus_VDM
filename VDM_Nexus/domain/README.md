@@ -9,15 +9,15 @@ Nexus does not move or duplicate canonical physics assets. It reads them in plac
 - Data and approvals DBs (canonical, read-only from Nexus):
   - Windows absolute: `C:\git\Prometheus_VDM\derivation\code\common\data\approval.db`
   - Windows absolute: `C:\git\Prometheus_VDM\derivation\code\common\data\approval_admin.db`
-  - Repo-relative: `../derivation/code/common/data/` (resolved by policy: CLI flags > env > `.env`)
+  - Repo-relative: `../Derivation/code/common/data/` (resolved by policy: CLI flags > env > `.env`)
 
 - Physics runners, specs, schemas, approvals (canonical, read-only from Nexus):
   - Windows absolute: `C:\git\Prometheus_VDM\derivation\code\physics\{domain}\`
-  - Repo-relative: `../derivation/code/physics/{domain}/`
+  - Repo-relative: `../Derivation/code/physics/{domain}/`
 
 - Experiment outputs (canonical, enumerated in place):
   - Windows absolute: `C:\git\Prometheus_VDM\derivation\code\outputs\(figures|logs)\{domain}\`
-  - Repo-relative: `../derivation/code/outputs/(figures|logs)/{domain}/`
+  - Repo-relative: `../Derivation/code/outputs/(figures|logs)/{domain}/`
 
 Domain types must reflect these locations via paths/URIs but must not perform any I/O. Any writes occur only by launching approved canonical runners or using the approvals CLI; domain remains pure data.
 

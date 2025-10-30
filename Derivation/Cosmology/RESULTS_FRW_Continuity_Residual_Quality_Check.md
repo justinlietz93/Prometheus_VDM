@@ -10,7 +10,7 @@
 
 - Gate tested: FRW dust continuity residual $\mathrm{RMS}_{\mathrm{FRW}}\le 10^{-6}$.  
 - Outcome: PASS with $\mathrm{RMS}_{\mathrm{FRW}}\approx 9.04\times 10^{-16}$.  
-- Artifact (one-click): `derivation/code/outputs/figures/cosmology/20251006_175329_frw_continuity_residual__FRW-balance-v1.png`
+- Artifact (one-click): `Derivation/code/outputs/figures/cosmology/20251006_175329_frw_continuity_residual__FRW-balance-v1.png`
 
 ## Introduction
 
@@ -51,7 +51,7 @@ Control variables table:
 
 ## Equipment / Software
 
-- Software runner: `derivation/code/physics/cosmology/run_frw_balance.py`  
+- Software runner: `Derivation/code/physics/cosmology/run_frw_balance.py`  
 - Environment: Python scientific stack; double precision floats; Git commit a54d638.
 
 ## Methods / Procedure
@@ -68,9 +68,9 @@ Risk and integrity: If gate fails, artifacts route to `failed_runs/` and a contr
 
 ## Data and artifacts (pinned)
 
-- Figure: `derivation/code/outputs/figures/cosmology/20251006_175329_frw_continuity_residual__FRW-balance-v1.png`
-- CSV: `derivation/code/outputs/logs/cosmology/20251006_175329_frw_continuity_residual__FRW-balance-v1.csv`
-- Log (JSON): `derivation/code/outputs/logs/cosmology/20251006_175329_frw_balance__FRW-balance-v1.json`
+- Figure: `Derivation/code/outputs/figures/cosmology/20251006_175329_frw_continuity_residual__FRW-balance-v1.png`
+- CSV: `Derivation/code/outputs/logs/cosmology/20251006_175329_frw_continuity_residual__FRW-balance-v1.csv`
+- Log (JSON): `Derivation/code/outputs/logs/cosmology/20251006_175329_frw_balance__FRW-balance-v1.json`
 
 Each figure is paired with CSV/JSON; the log includes parameters, RMS value, and pass/fail.
 
@@ -110,7 +110,7 @@ The FRW dust control QC passes with $\mathrm{RMS}_{\mathrm{FRW}}\sim10^{-15}$, e
 
 ## Reproducibility
 
-- Runner: `derivation/code/physics/cosmology/run_frw_balance.py`  
+- Runner: `Derivation/code/physics/cosmology/run_frw_balance.py`  
 - Commit: a54d638e2b097cd6bf5606d669fc9984650e2307  
 - Floating-point: IEEE-754 double precision  
 - RNG: Not used (deterministic synthetic control)  

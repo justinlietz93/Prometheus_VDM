@@ -1,33 +1,33 @@
 # VDM Nexus — Architecture Standards (v2)
 
-**Purpose.** Provide enforceable guardrails so that `physics_nexus` integrates with the canonical `derivation/` tree without duplicating sources, weakening approvals, or breaking provenance.
+**Purpose.** Provide enforceable guardrails so that `physics_nexus` integrates with the canonical `Derivation/` tree without duplicating sources, weakening approvals, or breaking provenance.
 
-**Scope.** Applies to the Qt/QML desktop client, any helper CLIs, and supporting services that ship with Nexus. Physics runners under `derivation/code/physics/` remain authoritative and unmodified.
+**Scope.** Applies to the Qt/QML desktop client, any helper CLIs, and supporting services that ship with Nexus. Physics runners under `Derivation/code/physics/` remain authoritative and unmodified.
 
 ## 1. Canon Commitments
 
 | Canon source | Obligations | Nexus enforcement |
 | --- | --- | --- |
-| [VDM-AX-A0](../derivation/AXIOMS.md#vdm-ax-a0)–[VDM-AX-A7](../derivation/AXIOMS.md#vdm-ax-a7) | Cite axioms instead of paraphrasing; preserve metriplectic split and measurability claims. | UI copy references anchors; toggles for law branches are reporting-only until gates pass. |
-| [VDM-E-033](../derivation/EQUATIONS.md#vdm-e-033), [VDM-E-035](../derivation/EQUATIONS.md#vdm-e-035), [VDM-E-090](../derivation/EQUATIONS.md#vdm-e-090)–[VDM-E-097](../derivation/EQUATIONS.md#vdm-e-097) | Display physics metrics using canonical formulas. | KPI panels pull values from runner JSON; tooltips link to equation anchors. |
-| [VDM-A-013](../derivation/ALGORITHMS.md#vdm-a-013)–[VDM-A-021](../derivation/ALGORITHMS.md#vdm-a-021) | Respect metriplectic integrator and QC algorithms. | Launch dialogues expose only approved algorithm variants; diagnostics re-use existing helper scripts. |
-| [Validation metrics index](../derivation/VALIDATION_METRICS.md#kpi-front-speed-rel-err) | Use repository KPI definitions; thresholds are sourced from the active run's spec/schema. | Pass/fail badges resolve using thresholds from spec/schema; tooltips link to anchors; Nexus never edits thresholds. |
-| RESULTS/PROPOSAL standards | Follow whitepaper-grade report templates and artifact policy (PNG + CSV + JSON). | Report exporter wraps `[RESULTS_PAPER_STANDARDS](../derivation/Writeup_Templates/RESULTS_PAPER_STANDARDS.md)` and enforces artifact lists. |
+| [VDM-AX-A0](../Derivation/AXIOMS.md#vdm-ax-a0)–[VDM-AX-A7](../Derivation/AXIOMS.md#vdm-ax-a7) | Cite axioms instead of paraphrasing; preserve metriplectic split and measurability claims. | UI copy references anchors; toggles for law branches are reporting-only until gates pass. |
+| [VDM-E-033](../Derivation/EQUATIONS.md#vdm-e-033), [VDM-E-035](../Derivation/EQUATIONS.md#vdm-e-035), [VDM-E-090](../Derivation/EQUATIONS.md#vdm-e-090)–[VDM-E-097](../Derivation/EQUATIONS.md#vdm-e-097) | Display physics metrics using canonical formulas. | KPI panels pull values from runner JSON; tooltips link to equation anchors. |
+| [VDM-A-013](../Derivation/ALGORITHMS.md#vdm-a-013)–[VDM-A-021](../Derivation/ALGORITHMS.md#vdm-a-021) | Respect metriplectic integrator and QC algorithms. | Launch dialogues expose only approved algorithm variants; diagnostics re-use existing helper scripts. |
+| [Validation metrics index](../Derivation/VALIDATION_METRICS.md#kpi-front-speed-rel-err) | Use repository KPI definitions; thresholds are sourced from the active run's spec/schema. | Pass/fail badges resolve using thresholds from spec/schema; tooltips link to anchors; Nexus never edits thresholds. |
+| RESULTS/PROPOSAL standards | Follow whitepaper-grade report templates and artifact policy (PNG + CSV + JSON). | Report exporter wraps `[RESULTS_PAPER_STANDARDS](../Derivation/Writeup_Templates/RESULTS_PAPER_STANDARDS.md)` and enforces artifact lists. |
 
 ## 2. Governance & Approvals
 
-1. Approvals remain in `[approval.db](../derivation/code/common/data/approval.db)` (read-only) and `[approval_admin.db](../derivation/code/common/data/approval_admin.db)` (admin writes).
-2. All write operations shell to `[approve_tag.py](../derivation/code/common/authorization/approve_tag.py)`; Nexus never stores admin passwords.
-3. Launch requests validate preregistration (proposal, schema, spec, approver, script HMAC). Failures block execution or route runs through quarantine using `[io_paths.py](../derivation/code/common/io_paths.py)` helpers.
+1. Approvals remain in `[approval.db](../Derivation/code/common/data/approval.db)` (read-only) and `[approval_admin.db](../Derivation/code/common/data/approval_admin.db)` (admin writes).
+2. All write operations shell to `[approve_tag.py](../Derivation/code/common/authorization/approve_tag.py)`; Nexus never stores admin passwords.
+3. Launch requests validate preregistration (proposal, schema, spec, approver, script HMAC). Failures block execution or route runs through quarantine using `[io_paths.py](../Derivation/code/common/io_paths.py)` helpers.
 4. When approvals mismatch, the UI displays the “guilty field” emitted by `common.authorization` and offers remediation instructions.
-5. Artifacts from unapproved runs are tagged `engineering_only` and stored under `../derivation/code/outputs/failed_runs/`.
+5. Artifacts from unapproved runs are tagged `engineering_only` and stored under `../Derivation/code/outputs/failed_runs/`.
 
 ## 3. Directory & Dependency Guardrails
 
 ### 3.1 Directory integration
 
-- Read runners, specs, schemas, approvals, and README files **in place** under `../derivation/code/physics/{domain}/`.
-- Consume figures and logs directly from `../derivation/code/outputs/(figures|logs)/{domain}/` without copying or renaming.
+- Read runners, specs, schemas, approvals, and README files **in place** under `../Derivation/code/physics/{domain}/`.
+- Consume figures and logs directly from `../Derivation/code/outputs/(figures|logs)/{domain}/` without copying or renaming.
 - Keep Nexus sources under `physics_nexus/` with subdirectories `presentation/`, `application/`, `domain/`, `infrastructure/`, `plugins/`, `resources/`, `schemas/`, `scripts/`, and `tests/`.
 - Use constructor injection and repository pattern throughout `application/`; no Qt, DB, or Python imports leak into business logic.
 - Enforce ≤500 LOC per source file and mirror test tree structure in `tests/`.
@@ -56,7 +56,7 @@ presentation → application → ports ← infrastructure
 
 1. **Discover.** `DerivationScanner` enumerates domains, runners, specs, and schemas; caches metadata but never writes to derivation; it does not parse Markdown canon to infer configuration (Markdown is viewer‑only).
 2. **Sanity.** Nexus runs smoke RPCs (`ListDomains`, `ListPendingApprovals`, `SchemaCatalog`) during startup or CI, matching the CI requirements.
-3. **Approve.** From the Approvals pane, the GUI lists pending items and triggers approval via [approve_tag.py](../derivation/code/common/authorization/approve_tag.py); Nexus presents the CLI password prompt without storing secrets, records receipts (approver, timestamp, HMAC), and refreshes DB status. Schema/proposal parity and HMAC IDs are shown alongside each entry.
+3. **Approve.** From the Approvals pane, the GUI lists pending items and triggers approval via [approve_tag.py](../Derivation/code/common/authorization/approve_tag.py); Nexus presents the CLI password prompt without storing secrets, records receipts (approver, timestamp, HMAC), and refreshes DB status. Schema/proposal parity and HMAC IDs are shown alongside each entry.
 4. **Launch.** `IRunnerService` invokes the runner script with `--spec` path and inherited environment variables (`VDM_REPO_ROOT`, `VDM_APPROVAL_DB`, `VDM_APPROVAL_ADMIN_DB`, optionally `VDM_NEXUS=1`). Default compute target is CPU/AMD; CUDA is unsupported.
 5. **Monitor.** `ProcessMonitor` streams stdout/stderr and telemetry without truncation; logs are read-only mirrors of runner output.
 6. **Harvest.** On completion, Nexus reads JSON/CSV/PNG artifacts, computes SHA-256 hashes, and attaches commit + seed metadata.
@@ -79,12 +79,12 @@ presentation → application → ports ← infrastructure
 - Experiment Browser (read-only): lists per-domain experiments; opens config/spec JSON with a pretty/JSON-path viewer; displays repository path and commit hash; never writes to derivation.
 - Schema Viewer (read-only): opens JSON Schemas co-located with runners; validates selected specs against their schema on demand; displays validation errors verbatim; no inference from Markdown canon.
 - Proposal/Results Viewer (read-only): renders PROPOSAL_*and RESULTS_* Markdown with commit and salted-hash banners; links remain in-viewer; never used for gating or thresholds.
-- Approvals pane (actionable): lists pending approvals from approvals DB; "Approve"/"Revoke" actions shell to [approve_tag.py](../derivation/code/common/authorization/approve_tag.py); Nexus never stores admin passwords; receipts (approver, timestamp, HMAC) are shown; DB status refreshes after completion.
-- Results History pane (read-only DB-backed): aggregates per-domain results from per-experiment tables (SQLite, WAL) using [results_db.py](../derivation/code/common/data/results_db.py); filters by domain/script/tag/batch/status/time; opens row details (params_json, metrics_json, artifacts_json) with JSON viewers; never mutates DB.
+- Approvals pane (actionable): lists pending approvals from approvals DB; "Approve"/"Revoke" actions shell to [approve_tag.py](../Derivation/code/common/authorization/approve_tag.py); Nexus never stores admin passwords; receipts (approver, timestamp, HMAC) are shown; DB status refreshes after completion.
+- Results History pane (read-only DB-backed): aggregates per-domain results from per-experiment tables (SQLite, WAL) using [results_db.py](../Derivation/code/common/data/results_db.py); filters by domain/script/tag/batch/status/time; opens row details (params_json, metrics_json, artifacts_json) with JSON viewers; never mutates DB.
 - Dashboard shows active experiments, pending approvals, and counts of `PROPOSAL_*` without matching RESULTS.
 - KPI tables link each metric to the corresponding anchor in `VALIDATION_METRICS.md`.
 - Markdown viewer renders canon docs read-only with displayed commit hashes; viewer‑only (never used to drive thresholds, gates, or any numeric configuration).
-- Report exports comply with `[RESULTS_PAPER_STANDARDS](../derivation/Writeup_Templates/RESULTS_PAPER_STANDARDS.md)` and include artifact manifests (PNG + CSV + JSON paths and hashes).
+- Report exports comply with `[RESULTS_PAPER_STANDARDS](../Derivation/Writeup_Templates/RESULTS_PAPER_STANDARDS.md)` and include artifact manifests (PNG + CSV + JSON paths and hashes).
 
 ## 7. Build & Runtime Profile
 
@@ -101,15 +101,15 @@ presentation → application → ports ← infrastructure
 
 ## 8. Validation & Metrics Exposure
 
-Note: Thresholds are sourced from the active run's spec or schema; [VALIDATION_METRICS.md](../derivation/VALIDATION_METRICS.md#kpi-front-speed-rel-err) anchors provide definitions only.
+Note: Thresholds are sourced from the active run's spec or schema; [VALIDATION_METRICS.md](../Derivation/VALIDATION_METRICS.md#kpi-front-speed-rel-err) anchors provide definitions only.
 
 | Domain | KPI anchors | Nexus presentation rule |
 | --- | --- | --- |
-| Reaction–Diffusion | [Front speed](../derivation/VALIDATION_METRICS.md#kpi-front-speed-rel-err), [Dispersion error](../derivation/VALIDATION_METRICS.md#kpi-dispersion-med-rel-err), [R² front fit](../derivation/VALIDATION_METRICS.md#kpi-r2-front-fit) | Display relative error, gate threshold, and R² with pass/fail badges. |
-| Klein–Gordon (J-only) | [Energy oscillation slope](../derivation/VALIDATION_METRICS.md#kpi-kg-energy-osc-slope), [Time reversal error](../derivation/VALIDATION_METRICS.md#kpi-kg-reversal-sup), [Fine-step amplitude](../derivation/VALIDATION_METRICS.md#kpi-kg-rel-amp-fine) | Show log–log fit plots and residuals; enforce R² ≥ 0.999 gate. |
-| Thermodynamic routing / Wave flux meter | [Flux balance](../derivation/VALIDATION_METRICS.md#kpi-taylor-green-nu-rel-err) analogue, [Dispersion gate reuse](../derivation/VALIDATION_METRICS.md#kpi-dispersion-med-rel-err) | Report prereg gates, absorber efficiency, and symmetry metrics; annotate geometry BCs. |
-| Tachyonic condensation | [Spectrum coverage](../derivation/VALIDATION_METRICS.md#kpi-tube-cov-phys), [Condensation curvature](../derivation/VALIDATION_METRICS.md#kpi-tube-curvature-ok), [Finite fraction](../derivation/VALIDATION_METRICS.md#kpi-tube-finite-fraction) | Provide admissible coverage heatmaps and quadratic fit summaries. |
-| Runtime observability | [Connectome entropy](../derivation/VALIDATION_METRICS.md#kpi-connectome-entropy), [Complexity cycles](../derivation/VALIDATION_METRICS.md#kpi-complexity-cycles), [B1 spike detector](../derivation/VALIDATION_METRICS.md#kpi-b1-spike-z) | Expose telemetry streams with thresholds; no GUI-side recalculation. |
+| Reaction–Diffusion | [Front speed](../Derivation/VALIDATION_METRICS.md#kpi-front-speed-rel-err), [Dispersion error](../Derivation/VALIDATION_METRICS.md#kpi-dispersion-med-rel-err), [R² front fit](../Derivation/VALIDATION_METRICS.md#kpi-r2-front-fit) | Display relative error, gate threshold, and R² with pass/fail badges. |
+| Klein–Gordon (J-only) | [Energy oscillation slope](../Derivation/VALIDATION_METRICS.md#kpi-kg-energy-osc-slope), [Time reversal error](../Derivation/VALIDATION_METRICS.md#kpi-kg-reversal-sup), [Fine-step amplitude](../Derivation/VALIDATION_METRICS.md#kpi-kg-rel-amp-fine) | Show log–log fit plots and residuals; enforce R² ≥ 0.999 gate. |
+| Thermodynamic routing / Wave flux meter | [Flux balance](../Derivation/VALIDATION_METRICS.md#kpi-taylor-green-nu-rel-err) analogue, [Dispersion gate reuse](../Derivation/VALIDATION_METRICS.md#kpi-dispersion-med-rel-err) | Report prereg gates, absorber efficiency, and symmetry metrics; annotate geometry BCs. |
+| Tachyonic condensation | [Spectrum coverage](../Derivation/VALIDATION_METRICS.md#kpi-tube-cov-phys), [Condensation curvature](../Derivation/VALIDATION_METRICS.md#kpi-tube-curvature-ok), [Finite fraction](../Derivation/VALIDATION_METRICS.md#kpi-tube-finite-fraction) | Provide admissible coverage heatmaps and quadratic fit summaries. |
+| Runtime observability | [Connectome entropy](../Derivation/VALIDATION_METRICS.md#kpi-connectome-entropy), [Complexity cycles](../Derivation/VALIDATION_METRICS.md#kpi-complexity-cycles), [B1 spike detector](../Derivation/VALIDATION_METRICS.md#kpi-b1-spike-z) | Expose telemetry streams with thresholds; no GUI-side recalculation. |
 
 ## 9. Continuous Integration & Audit
 
@@ -141,12 +141,12 @@ This section defines the AMD/ROCm‑friendly, precision‑first visualization pa
 
 Runners (unchanged) → In‑situ adapter → Viewport(s) → Artifacts & Reports
 
-- Runners: scripts under `../derivation/code/physics/*` remain the single source of truth. Nexus never forks equations, thresholds, or gates; UI is read‑only.
+- Runners: scripts under `../Derivation/code/physics/*` remain the single source of truth. Nexus never forks equations, thresholds, or gates; UI is read‑only.
 - In‑situ adapter: a tiny library called when `--gui_mode` is present or `VDM_NEXUS=1` is set. It publishes fields per step as VTK XML datasets (ImageData / StructuredGrid / UnstructuredGrid) with metadata (commit, seed, Δt, units).
 - Viewport(s):
   - Desktop: Qt 6 + VTK (QQuickVTK / QVTKOpenGLNativeWidget) provides a 3D viewport with orbit/pan/fly, time scrubber, slices, isosurfaces, streamlines, volume rendering, and probe cursors.
   - Remote/Web (optional): mirror via vtk.js or ParaView Live (Catalyst 2).
-- Artifacts & Reports: PNG/CSV/JSON are harvested strictly from runners. Pass/fail gating uses thresholds from the active run's spec/schema; anchors in [VALIDATION_METRICS.md](../derivation/VALIDATION_METRICS.md#kpi-kg-energy-osc-slope) are for definitions only. The GUI never “recalculates physics,” only renders/annotates and hyperlinks KPI cards to anchors.
+- Artifacts & Reports: PNG/CSV/JSON are harvested strictly from runners. Pass/fail gating uses thresholds from the active run's spec/schema; anchors in [VALIDATION_METRICS.md](../Derivation/VALIDATION_METRICS.md#kpi-kg-energy-osc-slope) are for definitions only. The GUI never “recalculates physics,” only renders/annotates and hyperlinks KPI cards to anchors.
 
 ### 12.2 Minimal data contract (stable)
 
@@ -186,7 +186,7 @@ On every publish (per step or per N frames), the adapter writes/streams:
 ### 12.4 Clean Architecture seams (viewport alignment)
 
 - `IRunnerService`: spawns runner with `--spec ... --gui_mode` and env `{VDM_REPO_ROOT, VDM_APPROVAL_DB, VDM_APPROVAL_ADMIN_DB, VDM_NEXUS=1}`; fails fast without approvals.
-- `IArtifactStore`: enumerates artifacts via `../derivation/code/common/io_paths.py`, computes hashes, and surfaces canonical paths to the UI.
+- `IArtifactStore`: enumerates artifacts via `../Derivation/code/common/io_paths.py`, computes hashes, and surfaces canonical paths to the UI.
 - `IMarkdownReader`: renders canon docs read‑only with visible commit hashes.
 - `ISchemaCatalog`: validates run manifests and summary JSONs against schemas; resolves thresholds only from the spec/schema indicated by the manifest; never from Markdown canon.
 
@@ -238,7 +238,7 @@ QVTKOpenGLNativeWidget {
 ### 12.9 ROCm/AMD profile
 
 - Desktop path uses Qt 6 + VTK OpenGL2 backend; acceleration via VTK‑m; optional Ascent/HIP backends when validated.
-- CUDA is unsupported in Nexus; AMD/ROCm is the preferred GPU path. KPI definitions link to [VALIDATION_METRICS.md](../derivation/VALIDATION_METRICS.md#kpi-dispersion-med-rel-err) anchors; pass/fail thresholds are sourced from the run's spec/schema.
+- CUDA is unsupported in Nexus; AMD/ROCm is the preferred GPU path. KPI definitions link to [VALIDATION_METRICS.md](../Derivation/VALIDATION_METRICS.md#kpi-dispersion-med-rel-err) anchors; pass/fail thresholds are sourced from the run's spec/schema.
 
 ---
 

@@ -255,7 +255,7 @@ Summarize what was learned, referencing mathematical structures and computationa
     </file>
     <file>
       <path>Domain_Template/code/common/io_paths.py</path>
-      <content><![CDATA[# derivation/code/common/io_paths.py
+      <content><![CDATA[# Derivation/code/common/io_paths.py
 '''
 # Example usage inside a physics script:
 
@@ -284,7 +284,7 @@ log = {
 }
 write_log(log_path(domain, slug, failed=False, type="json"), log)
 
-# In Markdown (relative to derivation/):
+# In Markdown (relative to Derivation/):
 # ![Corner test r_c scan](code/outputs/figures/fluid_dynamics/20250823_corner_test_r_c_scan.png)
 # [Run log](code/outputs/logs/fluid_dynamics/20250823_corner_test_r_c_scan.json)
 

@@ -1,8 +1,8 @@
-**Create/Update `derivation/VALIDATION_METRICS.md` (MathJax-friendly, references-only)**
+**Create/Update `Derivation/VALIDATION_METRICS.md` (MathJax-friendly, references-only)**
 
 Search the entire repository (code, tests, notebooks, configs, experiment logs, docs, comments) and compile **all validation metrics/KPIs that are actually used** to assess VDM behavior. **Do not invent new metrics.** Use only what exists in the repo.
 
-**Output file:** `derivation/VALIDATION_METRICS.md`
+**Output file:** `Derivation/VALIDATION_METRICS.md`
 **Canon rule:** This file is the single owner of *metric specs* (names, purposes, thresholds, and links). **Do not paste or re-derive equations here.** Link to equations/constants/symbols by anchor.
 
 **MathJax on GitHub:**
@@ -36,7 +36,7 @@ Search the entire repository (code, tests, notebooks, configs, experiment logs, 
 #### <Metric Name as used in repo>  <a id="kpi-<slug>"></a>
 **Symbol (if any):** `$ <symbol> $`  
 **Purpose:** <one-line purpose lifted from repo>  
-**Defined by:** <link to equation anchor in `EQUATIONS.md` (e.g., `../derivation/EQUATIONS.md#vdm-e-###`)>  
+**Defined by:** <link to equation anchor in `EQUATIONS.md` (e.g., `../Derivation/EQUATIONS.md#vdm-e-###`)>  
 **Inputs:** link symbols/constants used (e.g., `SYMBOLS.md#sym-...`, `CONSTANTS.md#const-...`)  
 **Computation implemented at:** `<path/to/file>:<lines> • <short-commit>` (list all locations if multiple)  
 **Pass band / thresholds:** literal values with links to constants (no formulas). Example: `[a, b]` → `CONSTANTS.md#const-...`  
@@ -87,10 +87,10 @@ Search the entire repository (code, tests, notebooks, configs, experiment logs, 
 
 ### Linking rules (anchors only; no restating math)
 
-* Equations: `../derivation/EQUATIONS.md#vdm-e-###`
-* Symbols: `../derivation/SYMBOLS.md#sym-...`
-* Constants: `../derivation/CONSTANTS.md#const-...`
-* Units maps: `../derivation/UNITS_NORMALIZATION.md#...`
+* Equations: `../Derivation/EQUATIONS.md#vdm-e-###`
+* Symbols: `../Derivation/SYMBOLS.md#sym-...`
+* Constants: `../Derivation/CONSTANTS.md#const-...`
+* Units maps: `../Derivation/UNITS_NORMALIZATION.md#...`
 
 If a required anchor is missing, add `TODO` in the entry and cite the repo lines; do not create content here.
 

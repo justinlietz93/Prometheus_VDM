@@ -1,6 +1,6 @@
 {
   "timestamp": 1756476188,
-  "sweep_file": "/workspaces/Prometheus_VDM/derivation/outputs/logs/conservation_law/flux_sweep_1756476135.json",
+  "sweep_file": "/workspaces/Prometheus_VDM/Derivation/outputs/logs/conservation_law/flux_sweep_1756476135.json",
   "basis": [
     "Wi",
     "Wj",

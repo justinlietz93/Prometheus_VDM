@@ -1,9 +1,9 @@
 
-**Create/Update `derivation/ROADMAP.md` (planning-only; references to canon, no new content)**
+**Create/Update `Derivation/ROADMAP.md` (planning-only; references to canon, no new content)**
 
 Search the entire repository (docs, code comments, TODO blocks, notebooks, experiment logs, exported Issues/PRs if present, CONFIG/README notes) and compile **the roadmap items already captured**: milestones, tasks, dependencies, risks, and acceptance criteria. **Do not invent new work.** Use only what exists in the repo.
 
-**Output file:** `derivation/ROADMAP.md`
+**Output file:** `Derivation/ROADMAP.md`
 
 **Canon rule:** This file is **planning-only**. Do **not** restate symbols, equations, constants, units, or algorithms. Link to them by anchor.
 
@@ -80,15 +80,15 @@ Search the entire repository (docs, code comments, TODO blocks, notebooks, exper
 
 ### Linking rules (anchors only; no duplication)
 
-* Symbols → `../derivation/SYMBOLS.md#sym-...`
-* Equations → `../derivation/EQUATIONS.md#vdm-e-...`
-* Constants → `../derivation/CONSTANTS.md#const-...`
-* Units → `../derivation/UNITS_NORMALIZATION.md#...`
-* Algorithms → `../derivation/ALGORITHMS.md#vdm-a-...`
-* BC/IC/Geometry → `../derivation/BC_IC_GEOMETRY.md#...`
-* Validation metrics → `../derivation/VALIDATION_METRICS.md#kpi-...`
-* Data products → `../derivation/DATA_PRODUCTS.md#data-...`
-* Schemas → `../derivation/SCHEMAS.md#schema-...`
+* Symbols → `../Derivation/SYMBOLS.md#sym-...`
+* Equations → `../Derivation/EQUATIONS.md#vdm-e-...`
+* Constants → `../Derivation/CONSTANTS.md#const-...`
+* Units → `../Derivation/UNITS_NORMALIZATION.md#...`
+* Algorithms → `../Derivation/ALGORITHMS.md#vdm-a-...`
+* BC/IC/Geometry → `../Derivation/BC_IC_GEOMETRY.md#...`
+* Validation metrics → `../Derivation/VALIDATION_METRICS.md#kpi-...`
+* Data products → `../Derivation/DATA_PRODUCTS.md#data-...`
+* Schemas → `../Derivation/SCHEMAS.md#schema-...`
 
 If a needed anchor is missing, write: `TODO: add anchor (see <path>:<line>)`. Do not paste canon here.
 

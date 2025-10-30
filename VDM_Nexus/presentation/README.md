@@ -9,13 +9,13 @@ Presentation only displays information sourced from canonical locations. It must
 - Data and approvals DBs (canonical, read-only):
   - Windows: `C:\git\Prometheus_VDM\derivation\code\common\data\approval.db`
   - Windows: `C:\git\Prometheus_VDM\derivation\code\common\data\approval_admin.db`
-  - Repo-relative: `../derivation/code/common/data/`
+  - Repo-relative: `../Derivation/code/common/data/`
 - Physics runners/specs/schemas/approvals (canonical, read-only):
   - Windows: `C:\git\Prometheus_VDM\derivation\code\physics\{domain}\`
-  - Repo-relative: `../derivation/code/physics/{domain}/`
+  - Repo-relative: `../Derivation/code/physics/{domain}/`
 - Experiment outputs (enumerated and rendered in place):
   - Windows: `C:\git\Prometheus_VDM\derivation\code\outputs\(figures|logs)\{domain}\`
-  - Repo-relative: `../derivation/code/outputs/(figures|logs)/{domain}/`
+  - Repo-relative: `../Derivation/code/outputs/(figures|logs)/{domain}/`
 
 Root resolution policy (match app/infrastructure): CLI flags > env (`VDM_REPO_ROOT`, `VDM_APPROVAL_DB`, `VDM_APPROVAL_ADMIN_DB`) > `.env`.
 

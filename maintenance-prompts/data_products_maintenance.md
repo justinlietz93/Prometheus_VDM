@@ -1,8 +1,8 @@
-**Create/Update `derivation/DATA_PRODUCTS.md` (canonical specs for outputs; references-only for math)**
+**Create/Update `Derivation/DATA_PRODUCTS.md` (canonical specs for outputs; references-only for math)**
 
 Search the entire repository (code, tests, notebooks, experiment scripts, pipelines, configs, docs, comments) and compile **all data products actually produced or consumed** (arrays, timeseries, images, videos, logs, tables, checkpoints, serialized graphs, bus snapshots, etc.). **Do not invent new products.** Use only what exists in the repo.
 
-**Output file:** `derivation/DATA_PRODUCTS.md`
+**Output file:** `Derivation/DATA_PRODUCTS.md`
 **Canon rule:** This file is the single owner of **data product specifications** (purpose, shape, units, file format, provenance). **Do not paste or re-derive equations here.** Link to equations/constants/symbols/algorithms by anchor.
 
 **MathJax on GitHub:**
@@ -36,8 +36,8 @@ Search the entire repository (code, tests, notebooks, experiment scripts, pipeli
 #### <Product Name as used in repo>  <a id="data-<slug>"></a>
 **Type:** <array | timeseries | image | video | table | log | graph | checkpoint | other>  
 **Purpose:** <one-line description lifted from repo>  
-**Produced by:** link algorithms (anchors) → `../derivation/ALGORITHMS.md#vdm-a-###`  
-**Defined by (if math):** link equations (anchors only) → `../derivation/EQUATIONS.md#vdm-e-###`  
+**Produced by:** link algorithms (anchors) → `../Derivation/ALGORITHMS.md#vdm-a-###`  
+**Defined by (if math):** link equations (anchors only) → `../Derivation/EQUATIONS.md#vdm-e-###`  
 **Inputs (symbols/constants):** link anchors → `SYMBOLS.md#sym-...`, `CONSTANTS.md#const-...`  
 **Units/Normalization:** link into `UNITS_NORMALIZATION.md#...` (no re-explanations)
 
@@ -56,7 +56,7 @@ Search the entire repository (code, tests, notebooks, experiment scripts, pipeli
 
 **Update cadence / lifecycle:** `<per tick | per epoch | on event | end-of-run>`  
 **Provenance (code locations):** `<path:lines • short-commit>` (list all writers/consumers)  
-**Validation hooks / KPIs:** link to `../derivation/VALIDATION_METRICS.md#kpi-...`  
+**Validation hooks / KPIs:** link to `../Derivation/VALIDATION_METRICS.md#kpi-...`  
 **Retention / access constraints:** literal policy text if present (do not invent)  
 **Example artifact (if referenced):** `<path/to/example>`  
 **Notes:** aliases, deprecations, versioning flags (lifted from repo)
@@ -80,11 +80,11 @@ Search the entire repository (code, tests, notebooks, experiment scripts, pipeli
 
 ### Linking rules (anchors only; no duplication of math or values)
 
-* **Equations:** `../derivation/EQUATIONS.md#vdm-e-...`
-* **Symbols:** `../derivation/SYMBOLS.md#sym-...`
-* **Constants:** `../derivation/CONSTANTS.md#const-...`
-* **Units maps:** `../derivation/UNITS_NORMALIZATION.md#...`
-* **Algorithms:** `../derivation/ALGORITHMS.md#vdm-a-...`
+* **Equations:** `../Derivation/EQUATIONS.md#vdm-e-...`
+* **Symbols:** `../Derivation/SYMBOLS.md#sym-...`
+* **Constants:** `../Derivation/CONSTANTS.md#const-...`
+* **Units maps:** `../Derivation/UNITS_NORMALIZATION.md#...`
+* **Algorithms:** `../Derivation/ALGORITHMS.md#vdm-a-...`
 
 If any required anchor is missing, add: `TODO: add anchor (see <path>:<line>)`; do not paste formulas here.
 

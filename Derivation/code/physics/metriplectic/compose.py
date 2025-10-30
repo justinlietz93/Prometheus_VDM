@@ -28,6 +28,7 @@ if str(CODE_ROOT) not in sys.path:
 # Local imports
 from physics.metriplectic.j_step import j_step_spectral_periodic
 from physics.rd_conservation.run_rd_conservation import dg_rd_step_with_stats, laplacian_periodic_1d, discrete_lyapunov_Lh
+from physics.metriplectic.kg_ops import spectral_grad
 
 
 def m_step_dg(W: np.ndarray, dt: float, dx: float, D: float, r: float, u: float) -> np.ndarray:
@@ -87,8 +88,24 @@ def lyapunov_values(W: np.ndarray, dx: float, D: float, r: float, u: float) -> f
     return discrete_lyapunov_Lh(W, dx, D, r, u)
 
 
+def lyapunov_values_consistent(W: np.ndarray, dx: float, D: float, r: float, u: float, lap_operator: str | None = None) -> float:
+    """
+    Lyapunov functional L[W] consistent with the chosen Laplacian:
+      L = ∫ ( 0.5 D |∇W|^2 + Vhat(W) ) dx,  Vhat'(W) = - (r W - u W^2)
+    - If lap_operator == 'spectral': use spectral gradient for |∇W| term.
+    - Else: fall back to discrete_lyapunov_Lh which matches 3-point stencil.
+    """
+    mode = str(lap_operator or "stencil").lower()
+    if mode == "spectral":
+        g = spectral_grad(W, dx)
+        Vhat = -(r / 2.0) * (W ** 2) + (u / 3.0) * (W ** 3)
+        return float(np.sum(0.5 * D * (g * g) + Vhat) * dx)
+    else:
+        return discrete_lyapunov_Lh(W, dx, D, r, u)
+
+
 __all__ = [
     "j_only_step", "m_only_step", "m_only_step_with_stats",
     "jmj_strang_step", "jmj_strang_step_with_stats", "mjm_strang_step",
-    "two_grid_error_inf", "lyapunov_values"
+    "two_grid_error_inf", "lyapunov_values", "lyapunov_values_consistent"
 ]

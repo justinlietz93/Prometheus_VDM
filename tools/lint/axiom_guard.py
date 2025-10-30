@@ -19,7 +19,7 @@ Exit codes:
  1 violation(s) found
 
 Usage:
-  python tools/axiom_guard.py --file derivation/axiomatic_theory_development.md
+  python tools/axiom_guard.py --file Derivation/axiomatic_theory_development.md
 
 Integrate into CI / pre-commit to prevent accidental tail re-growth or untagged claims.
 """

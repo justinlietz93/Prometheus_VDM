@@ -12,11 +12,11 @@ See LICENSE file for full terms.
 RD Fisher-KPP front-speed sweep runner.
 
 Runs multiple configurations of the experiment script and writes a CSV summary
-under: derivation/code/outputs/logs/rd_front_speed_sweep_YYYYMMDDThhmmssZ.csv
+under: Derivation/code/outputs/logs/rd_front_speed_sweep_YYYYMMDDThhmmssZ.csv
 
 Usage (PowerShell, always in venv):
   & .\venv\Scripts\Activate.ps1
-  python Prometheus_VDM/derivation/code/physics/rd_front_speed_sweep.py
+  python Prometheus_VDM/Derivation/code/physics/rd_front_speed_sweep.py
 
 Optional flags:
   --Ds 0.5 1.0 2.0
