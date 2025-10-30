@@ -30,7 +30,7 @@ Shown in a table below is the T0–T9 maturity ladder. This ladder distinguishes
 
 Additionally, if this PROPOSAL document is graded above T0, there should be existing supporting work referenced for each tier in sequence. For example, if a T4 experiment is proposed there must be a T0, T1, T2, and T3 that exists within the repository referenced with paths for any existing PROPOSAL and RESULTS documents listed. The figures and logs can also be referenced from each of those prior work items. There should be at a minimum of one for each, but no max limit.
 
-In order for any experiment to run or pass, PROPOSAL_ documents MUST be created. Reference some brief approval standards here C:\git\Prometheus_VDM\derivation\code\common\authorization\README.md -->
+In order for any experiment to run or pass, PROPOSAL_ documents MUST be created. Reference some brief approval standards here Derivation\code\common\authorization\README.md -->
 
 # 1. {Tier Grade} - {Proposal Title}
 
