@@ -1,0 +1,153 @@
+#!/usr/bin/env python3
+"""Stamp a proposal and its preregistration with canonical salted provenance.
+
+Usage:
+  python tools/provenance/stamp_proposal.py --proposal PATH --prereg PATH [--salt-bytes N]
+
+What it does:
+ - Reads the prereg JSON and finds the first spec reference (spec_refs[0]).
+ - If prereg already contains a structured `salted_provenance` with items, uses the first item.
+ - Otherwise computes base SHA256 for the spec, generates a random salt (default 16 bytes), computes salted_sha256 = sha256(base:salt), and writes a structured `salted_provenance` object into prereg.
+ - Computes prereg manifest SHA256 and then inserts (or replaces) a canonical "Salted Provenance" header line into the proposal file.
+
+This helper ensures the proposal header and prereg are canonical for the approval gate.
+"""
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import secrets
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Optional
+
+
+def sha256_file(p: Path) -> str:
+    h = hashlib.sha256()
+    with p.open("rb") as f:
+        while True:
+            b = f.read(1024 * 1024)
+            if not b:
+                break
+            h.update(b)
+    return h.hexdigest()
+
+
+def compute_salted(base_hex: str, salt_hex: str) -> str:
+    return hashlib.sha256(f"{base_hex}:{salt_hex}".encode("utf-8")).hexdigest()
+
+
+def build_salted_provenance_for_spec(spec_path: Path, salt_bytes: int = 16) -> dict:
+    base = sha256_file(spec_path)
+    size = spec_path.stat().st_size
+    salt_hex = secrets.token_hex(salt_bytes)
+    salted = compute_salted(base, salt_hex)
+    return {
+        "schema": "vdm.provenance.salted_hash.v1",
+        "generated_utc": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+        "salt_bytes": int(salt_bytes),
+        "single_salt": True,
+        "salt_hex": salt_hex,
+        "items": [
+            {
+                "path": str(spec_path),
+                "size": int(size),
+                "base_sha256": base,
+                "salt_hex": salt_hex,
+                "salted_sha256": salted,
+            }
+        ],
+    }
+
+
+def insert_or_replace_header(proposal_path: Path, salted_sha256: str, salt_hex: str, prereg_manifest: str) -> None:
+    txt = proposal_path.read_text(encoding="utf-8")
+    header_line = f"Salted Provenance: spec salted_sha256={salted_sha256}; salt_hex={salt_hex}; prereg_manifest_sha256={prereg_manifest}"
+
+    import re
+
+    # replace existing line if present
+    m = re.search(r"Salted\s+Provenance:.*prereg_manifest_sha256=[0-9a-fA-F]{64}", txt)
+    if m:
+        txt = txt[: m.start()] + header_line + txt[m.end():]
+    else:
+        # Try to insert after the commit line (first occurrence of 'Commit')
+        lines = txt.splitlines()
+        inserted = False
+        for i, ln in enumerate(lines):
+            if "Commit" in ln:
+                # insert after this line as a quoted block for readability
+                lines.insert(i + 1, f"> {header_line}  ")
+                inserted = True
+                break
+        if not inserted:
+            # Prepend
+            lines.insert(0, f"> {header_line}  ")
+        txt = "\n".join(lines) + "\n"
+
+    proposal_path.write_text(txt, encoding="utf-8")
+
+
+def main(argv: Optional[list[str]] = None) -> int:
+    p = argparse.ArgumentParser(description=__doc__)
+    p.add_argument("--proposal", required=True, help="Path to proposal markdown file")
+    p.add_argument("--prereg", required=True, help="Path to preregistration JSON file")
+    p.add_argument("--salt-bytes", type=int, default=16, help="Bytes of random salt to generate")
+    args = p.parse_args(argv)
+
+    proposal = Path(args.proposal)
+    prereg = Path(args.prereg)
+    if not proposal.exists():
+        print(f"ERROR: proposal not found: {proposal}")
+        return 2
+    if not prereg.exists():
+        print(f"ERROR: prereg not found: {prereg}")
+        return 3
+
+    # Load prereg
+    try:
+        pdata = json.loads(prereg.read_text(encoding="utf-8"))
+    except Exception as e:
+        print(f"ERROR: failed to parse prereg JSON: {e}")
+        return 4
+
+    prov = pdata.get("salted_provenance")
+    if isinstance(prov, dict) and prov.get("items"):
+        # Use the first item
+        it0 = prov["items"][0]
+        salted_sha256 = str(it0.get("salted_sha256"))
+        salt_hex = str(it0.get("salt_hex"))
+    else:
+        # Need to compute from spec_refs
+        spec_refs = pdata.get("spec_refs") or pdata.get("specs") or []
+        if not spec_refs or not isinstance(spec_refs, list):
+            print("ERROR: prereg has no spec_refs to compute provenance from")
+            return 5
+        # resolve spec path relative to prereg
+        spec_path = Path(spec_refs[0])
+        if not spec_path.is_absolute():
+            spec_path = (prereg.parent / spec_path).resolve()
+        if not spec_path.exists():
+            print(f"ERROR: spec referenced by prereg not found: {spec_path}")
+            return 6
+        newprov = build_salted_provenance_for_spec(spec_path, salt_bytes=args.salt_bytes)
+        pdata["salted_provenance"] = newprov
+        # write prereg back
+        prereg.write_text(json.dumps(pdata, indent=2) + "\n", encoding="utf-8")
+        it0 = newprov["items"][0]
+        salted_sha256 = it0["salted_sha256"]
+        salt_hex = it0["salt_hex"]
+
+    # compute prereg manifest sha
+    manifest = sha256_file(prereg)
+
+    # Insert header into proposal
+    insert_or_replace_header(proposal, salted_sha256, salt_hex, manifest)
+
+    print(json.dumps({"proposal": str(proposal), "prereg": str(prereg), "salted_sha256": salted_sha256, "salt_hex": salt_hex, "prereg_manifest": manifest}, indent=2))
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

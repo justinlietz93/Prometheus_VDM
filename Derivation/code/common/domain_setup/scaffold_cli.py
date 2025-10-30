@@ -322,6 +322,17 @@ def main(argv=None) -> int:
     spec_rel = str(spec_path.relative_to(REPO_ROOT))
     prereg_path = generate_prereg(domain, tier, experiment, spec_rel, args.contact, force=args.force)
 
+    # Stamp proposal/prereg with canonical salted provenance so scaffolded experiments are ready for approval
+    try:
+        stamp_script = REPO_ROOT / "tools" / "provenance" / "stamp_proposal.py"
+        if stamp_script.exists():
+            print("Stamping proposal/prereg with canonical provenance...")
+            subprocess.run([sys.executable, str(stamp_script), "--proposal", str(proposal_path), "--prereg", str(prereg_path)], check=True)
+        else:
+            print(f"Note: stamping helper not found at {stamp_script}; skip stamping.")
+    except subprocess.CalledProcessError as e:
+        print(f"WARNING: stamping helper failed: {e}")
+
     print("\nScaffold complete. Artifacts:")
     for pth in [proposal_path, approval_path, prereg_path, schema_path, spec_path, (REPO_ROOT / "Derivation" / "code" / "physics" / domain / f"run_{experiment}.py"), (REPO_ROOT / "Derivation" / "code" / "physics" / domain / "README.md")]:
         print(" -", pth.relative_to(REPO_ROOT))
