@@ -1,8 +1,12 @@
 # VDM Technical-Debt Ledger (Read-Only)
 
+> Created: 9/28/2025
+> Updated: 10/9/2025
+
 ## 1) Repo Map & Conventions
 
 **Module tree (≤3 levels)**
+
 - `fum_rt/` - real-time runtime scaffold (loop, telemetry, orchestration) with CLI entrypoint and helper seams.【F:README.md†L62-L101】
   - `runtime/` - tick loop, telemetry packagers, retention/state helpers.【F:README.md†L66-L99】
   - `core/` - connectome, metrics, visualizer, memory, signals, void adapters.【F:README.md†L74-L99】
@@ -10,16 +14,19 @@
 - `tools/` - repo-specific hygiene and analytics scripts such as `md_hygiene_check.py` (Markdown gate) and the standalone dependency analyzer toolchain.【F:tools/md_hygiene_check.py†L1-L120】【F:tools/dependency_analyzer/README.md†L1-L23】
 
 **Language & framework mix**
+
 - Python dominates (runtime, tools, derivations) with Dash/Plotly front-end launched via `fum_live.py`.【F:README.md†L8-L26】【F:fum_live.py†L6-L26】
 - Requirements emphasize NumPy, NetworkX, Matplotlib, Torch, SciPy/TDA stacks, Redis, and Dash for telemetry/visualization.【F:requirements.txt†L1-L25】
 
 **Build/CI & conventions**
+
 - No dedicated CI scripts; repo relies on custom tools like `tools/md_hygiene_check.py` and `tools/dependency_analyzer` for linting/coverage gating.【F:tools/md_hygiene_check.py†L1-L120】【F:tools/dependency_analyzer/README.md†L1-L23】
 - Code style unstated; no formatter configs discovered (no `pyproject.toml`/`setup.cfg`). Manual guardrails documented via tests under `fum_rt/tests`.【F:fum_rt/tests/core/test_runner_budget.py†L1-L40】
 
 ## 2) Duplicate & Near-Duplicate Code
 
 Command used:
+
 ```bash
 python - <<'PY'
 import os, hashlib
@@ -47,6 +54,7 @@ for h,paths in clusters.items():
         print()
 PY
 ```
+
 【11dd49†L1-L33】
 
 | cluster_id | files | similarity% | notes |
@@ -55,7 +63,7 @@ PY
 | md5:e6ad008d | `derivation/code/Void_Debt_Modulation.py`; `derivation/code/computational_toy_proofs/Void_Debt_Modulation.py`; `fum_rt/fum_advanced_math/void_dynamics/Void_Debt_Modulation.py` | 100 | Domain modulation tables duplicated verbatim.【F:fum_rt/fum_advanced_math/void_dynamics/Void_Debt_Modulation.py†L1-L133】 |
 | md5:6e6bce7b | `derivation/code/physics/memory_steering/memory_steering.py`; `fum_rt/physics/memory_steering/memory_steering.py` | 100 | Memory steering PDE + sampling API copied directly, drifting only in package path.【F:fum_rt/physics/memory_steering/memory_steering.py†L8-L198】 |
 | md5:e66aadae | `fum_rt/io/sensors/{somatosensory,vision,auditory,symbols}.py`; `fum_rt/io/actuators/{visualize,vocalizer,symbols}.py` | 100 | All eight files contain only boilerplate license docstrings (no code), indicating unused scaffolding duplication.【F:fum_rt/io/sensors/vision.py†L1-L7】 |
-| md5:d41d8cd9 | Multiple `__init__.py` stubs (empty files) across API/io packages | 100 | Empty placeholders offer no functionality; consolidation possible.【F:fum_rt/io/__init__.py†L1-L1】 |
+| md5:d41d8cd9 | Multiple `__init__.py` stubs (empty files) across API/io packages | 100 | Empty placeholders offer no functionality; consolidation possible.【F:fum_rt/io/**init**.py†L1-L1】 |
 
 Drift example: `derivation/.../void_functions.py` mirrors Δα/Δω logic but with altered docstrings while maintaining identical computations, risking divergence if constants change.【F:derivation/code/computational_toy_proofs/void_functions.py†L10-L79】
 
@@ -148,6 +156,7 @@ Drift example: `derivation/.../void_functions.py` mirrors Δα/Δω logic but wi
 ## 13) Consolidated Ledger & Prioritized Actions
 
 **Top-10 debt items (Severity×ROI/Effort)**
+
 1. Dense connectome rebuild each tick - `fum_rt/core/connectome.py` - O(N²) tick cost blocks scale - Effort: L - Owner: Core Runtime
 2. GDSP actuator silent failure - `fum_rt/runtime/loop/main.py` - Actuator can’t be trusted without logs - Effort: M - Owner: Runtime Loop
 3. Duplicate void dynamics libraries - multiple files - Risk of drift in physics constants - Effort: M - Owner: Advanced Math
@@ -160,17 +169,19 @@ Drift example: `derivation/.../void_functions.py` mirrors Δα/Δω logic but wi
 10. Missing GDSP tests - `fum_rt/tests` - Actuator regressions undetected - Effort: M - Owner: QA
 
 **Merge candidates**
+
 - Collapse void dynamics & domain modulation into `fum_rt/fum_advanced_math/void_dynamics/` and import from derivation notebooks to avoid triple maintenance.【F:fum_rt/fum_advanced_math/void_dynamics/Void_Equations.py†L35-L119】
 - Deduplicate memory steering by exporting runtime module to derivation namespace (or vice versa).【F:fum_rt/physics/memory_steering/memory_steering.py†L73-L198】
 
 **Kill switches to add immediately**
+
 - `NO_DENSE_CONNECTOME=1` env gate that asserts if dense path allocates beyond threshold, complementing existing FORCE_DENSE guard.【F:fum_rt/core/connectome.py†L11-L15】
 - `STRICT_GDSP=1` to elevate `_run_gdsp` exceptions instead of silent returns when debugging.【F:fum_rt/runtime/loop/main.py†L269-L283】
 
 **One-week plan (clean foundation)**
+
 1. Refactor connectome step to sparse adjacency structure (reuse `SparseConnectome`) and profile tick latency.
 2. Wire centralized RNG/seed plumbing (runtime seed → void dynamics, structural plasticity, composer).
 3. Consolidate void dynamics & memory steering modules; update derivation imports.
 4. Implement GDSP telemetry + regression tests covering enable/disable flows.
 5. Audit env flags; document in README and add validation for mutually exclusive toggles.
-

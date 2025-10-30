@@ -1,0 +1,26 @@
+[
+{
+  "preflight_name": "preflight runner name",
+  "description": "Approval manifest stating that the preflight runner must pass before real runs that write artifacts.",
+  "author": "Justin K. Lietz",
+  "requires_approval": true,
+  "pre_commit_hook": true,
+  "notes": "Preflight runs (Derivation/code/tests) are allowed without approval. To run real experiments that write artifacts, a relevant PROPOSAL_* must be created at Derivation/{domain}/ explicit review."
+},
+{
+  "pre_registered": true,
+  "proposal": "Derivation/{domain}/{Tier grade}_PROPOSAL_{Experiment Name}.md",
+  "allowed_tags": [
+    "{tag name}-{version number}"
+  ],
+  "schema_dir": "Derivation/code/physics/{domain}/schemas",
+  "approvals": {
+    "{tag name}-{version number}": {
+      "schema": "Derivation/code/physics/{domain}/schemas/{tag name}.schema.json",
+      "approved_by": "Justin K. Lietz",
+      "approved_at": "auto generated timestamp",
+      "approval_key": "auto generated hashed key"
+    }
+  }
+}
+]

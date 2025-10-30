@@ -1,0 +1,8 @@
+{
+  "run_name": "<string>",
+  "version": "<semver>",
+  "tag": "<tag-identifier>",
+  "schema_ref": "<path-or-uri-to-schema>",
+  "parameters": {},
+  "seeds": [0]
+}
