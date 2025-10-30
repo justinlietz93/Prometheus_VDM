@@ -3,6 +3,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Metriplectic Assisted Echo Spec (v1)",
   "type": "object",
+  "metadata": { "tag": "echo_spec-v1" },
   "required": ["grid", "params", "dt", "steps", "seeds", "lambdas", "budget"],
   "properties": {
     "tag": {"type": ["string", "null"]},

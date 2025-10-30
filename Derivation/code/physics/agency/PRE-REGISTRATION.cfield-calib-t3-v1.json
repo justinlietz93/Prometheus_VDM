@@ -1,0 +1,105 @@
+{
+  "proposal_title": "T3 Calibration of Psychophysical Observables to the VDM C-Field",
+  "tier_grade": "T3",
+  "commit": "c2b2dbcccce637815145b3dd665a2ec6908b0e74",
+  "contact": [
+    "Justin K. Lietz <justin@neuroca.ai>"
+  ],
+  "hypotheses": [
+    {
+      "id": "H1",
+      "statement": "C-feature reliability across days is high (ICC \u2265 0.8).",
+      "direction": "no-change"
+    },
+    {
+      "id": "H2",
+      "statement": "Forward model predicts held-out observables with RMSE \u2264 5%.",
+      "direction": "decrease"
+    },
+    {
+      "id": "H3",
+      "statement": "Parameters A, \u03c4 are identifiable with finite CIs (<30%).",
+      "direction": "no-change"
+    },
+    {
+      "id": "H4",
+      "statement": "Convergent/discriminant validity holds across tasks.",
+      "direction": "increase"
+    }
+  ],
+  "variables": {
+    "independent": [
+      "stimulus_gain",
+      "lock_strength",
+      "texture_alpha"
+    ],
+    "dependent": [
+      "C_amp_A",
+      "C_tau",
+      "C_length_l"
+    ],
+    "controls": [
+      "ambient_lux",
+      "monitor_gamma",
+      "session_time"
+    ]
+  },
+  "pass_fail": [
+    {
+      "metric": "ICC_C_features",
+      "operator": ">=",
+      "threshold": 0.8,
+      "unit": ""
+    },
+    {
+      "metric": "RMSE_holdout",
+      "operator": "<=",
+      "threshold": 0.05,
+      "unit": "fraction"
+    },
+    {
+      "metric": "Hessian_cond_kappa",
+      "operator": "<=",
+      "threshold": 1000,
+      "unit": ""
+    },
+    {
+      "metric": "CI_relwidth_A_tau",
+      "operator": "<",
+      "threshold": 0.3,
+      "unit": "fraction"
+    },
+    {
+      "metric": "r_convergent",
+      "operator": ">=",
+      "threshold": 0.6,
+      "unit": ""
+    },
+    {
+      "metric": "r_discriminant",
+      "operator": "<=",
+      "threshold": 0.2,
+      "unit": ""
+    }
+  ],
+  "spec_refs": [
+    "specs/t3_cfield_calibration.v1.json"
+  ],
+  "registration_timestamp": "2025-10-30T00:00:00Z",
+  "salted_provenance": {
+    "schema": "vdm.provenance.salted_hash.v1",
+    "generated_utc": "2025-10-30T17:58:51.177913Z",
+    "salt_bytes": 16,
+    "single_salt": true,
+    "salt_hex": "4b66fe5d9e12409d6d1a1adfc4fa3255",
+    "items": [
+      {
+        "path": "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/physics/agency/specs/t3_cfield_calibration.v1.json",
+        "size": 329,
+        "base_sha256": "ea9a978c32dbfb9e39f9eb57abc644fd366a510218140f70754a92e4502050d7",
+        "salt_hex": "4b66fe5d9e12409d6d1a1adfc4fa3255",
+        "salted_sha256": "eb8eedfd0c8bb6f75ca669b88d2e5e1a92d3b430798ef5f8eda5d13c819e5cf3"
+      }
+    ]
+  }
+}

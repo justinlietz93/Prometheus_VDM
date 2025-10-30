@@ -1,11 +1,11 @@
 # 1. T4 — Counterfactual Echo Gain (CEG): A Metriplectic Assisted‑Echo Experiment in VDM
 
-> Created Date:  
-> {git rev-parse HEAD}  
-> {salted-hash(commit || salt)}  
-> Proposer contact(s):  (<justin@neuroca.ai>)  
-> License: (See LICENSE at repository root)  
-> Short summary (one sentence TL;DR):  Test whether a metriplectic, model‑aware assisted‑echo improves echo fidelity under strict Noether/H‑theorem gates and energy‑matching.
+> **Created Date:**  October 30, 2025
+> **Commit**: 80ee5476e4f887fed3c34534a99daa878f55382f  
+> **Salted Provenance:** spec salted_sha256=7cb47d741d087a65fc5f9eeb73c599904702ba199c101b81ae1954658fc51029; salt_hex=aff7a0cb80e8d430873bc504be978525; prereg_manifest_sha256=c75c279d04ae0ca9376fa9ba4df7456e7fb8fc50c09c951dff079552f0c539f1  
+> **Proposer contact(s):**  (<justin@neuroca.ai>)  
+> **License:** (See LICENSE at repository root)  
+> **Short summary (one sentence TL;DR):**  Test whether a metriplectic, model‑aware assisted‑echo improves echo fidelity under strict Noether/H‑theorem gates and energy‑matching.
 
 **Tier Grade:** T4 (Preregistered claim) — prior support exists at T2 (instrument calibration) and T3 (smoke tests) in the VDM canon (Noether/H‑theorem meters; Strang‑composition QC; scaling‑collapse), with pinned artifacts and logs.
 
@@ -145,8 +145,23 @@ with degeneracies $J,\,\delta\Sigma/\delta q=0$ and $M,\,\delta\mathcal{I}/\delt
 {
   "proposal_title": "CEG Assisted-Echo",
   "tier_grade": "T4",
-  "commit": "<git-sha>",
-  "salted_provenance": "<hash>",
+  "commit": "80ee5476e4f887fed3c34534a99daa878f55382f",
+  "salted_provenance": {
+    "schema": "vdm.provenance.salted_hash.v1",
+    "generated_utc": "2025-10-30T16:49:47.201492Z",
+    "salt_bytes": 16,
+    "single_salt": true,
+    "salt_hex": "aff7a0cb80e8d430873bc504be978525",
+    "items": [
+      {
+        "path": "Derivation/code/physics/metriplectic/specs/assisted_echo.v1.json",
+        "size": 274,
+        "base_sha256": "40917004b65550b10dd89dcaeef43df9191ddb2d2f08656bb9c1e37a7372116d",
+        "salt_hex": "aff7a0cb80e8d430873bc504be978525",
+        "salted_sha256": "7cb47d741d087a65fc5f9eeb73c599904702ba199c101b81ae1954658fc51029"
+      }
+    ]
+  },
   "contact": ["Justin K. Lietz <justin@neuroca.ai>"],
   "hypotheses": [
     { "id": "H1", "statement": "Median CEG >= 0.05 under gates G1–G4.", "direction": "increase" }
@@ -160,7 +175,7 @@ with degeneracies $J,\,\delta\Sigma/\delta q=0$ and $M,\,\delta\mathcal{I}/\delt
     { "metric": "CEG_median", "operator": ">=", "threshold": 0.05, "unit": "dimensionless" }
   ],
   "spec_refs": ["Derivation/code/physics/metriplectic/specs/assisted_echo.v1.json"],
-  "registration_timestamp": "<ISO-8601>"
+  "registration_timestamp": "2025-10-30T16:49:47.201492Z"
 }
 ```
 
@@ -168,12 +183,14 @@ with degeneracies $J,\,\delta\Sigma/\delta q=0$ and $M,\,\delta\mathcal{I}/\delt
 
 ```json
 {
-  "run_name": "assisted_echo",
-  "version": "v1",
-  "tag": "echo_spec-v1",
-  "schema_ref": "Derivation/code/physics/metriplectic/schemas/echo_spec-v1.schema.json",
-  "parameters": {},
-  "seeds": [0]
+  "tag": "assisted-echo-t4-prereg",
+  "grid": { "N": 256, "dx": 1.0 },
+  "params": { "c": 1.0, "m": 0.5, "D": 1.0, "m_lap_operator": "spectral" },
+  "dt": 0.02,
+  "steps": 200,
+  "seeds": [1,2,3,4,5,6,7,8,9,10,11,12],
+  "lambdas": [0.0, 0.1, 0.2, 0.3],
+  "budget": 1e-3
 }
 ```
 

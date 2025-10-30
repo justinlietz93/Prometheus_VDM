@@ -1,62 +1,46 @@
 [
-{
-  "name": "assisted_echo_runner",
-  "description": "Approval manifest stating that the assisted_echo runner requires explicit sign-off before real runs that write artifacts.",
-  "author": "Justin K. Lietz",
-  "requires_approval": true,
-  "approved_by": null,
-  "approved_at": null,
-  "notes": "Preflight runs (tests) are allowed without approval. To run real experiments that write artifacts, set approved_by and approved_at after explicit review."
-},
-{
-  "proposal": "Derivation/Metriplectic/T4_PROPOSAL_CEG_Metriplectic_Assisted-Echo_Experiment.md",
-  "require_provenance": true,
-  "allowed_tags": [
-    "KG-dispersion-v1",
-    "KG-cone-v1",
-    "struct-v1",
-    "KG-noether-v1",
-    "KG-energy-osc-v1",
-    "echo_spec-v1"
-  ],
-  "schema_dir": "Derivation/code/physics/metriplectic/schemas",
-  "approvals": {
-    "KG-dispersion-v1": {
-      "schema": "Derivation/code/physics/metriplectic/schemas/KG-dispersion-v1.schema.json",
-      "approved_by": "Justin K. Lietz",
-      "approved_at": "2025-10-08T10:08:10.978416+00:00",
-      "approval_key": "3d704c3bff15826e4faffac7a8681cb56eadac16edb442879c7fb2511f62b46b"
-    },
-    "KG-cone-v1": {
-      "schema": "Derivation/code/physics/metriplectic/schemas/KG-cone-v1.schema.json",
-      "approved_by": "Justin K. Lietz",
-      "approved_at": "2025-10-08T10:08:02.804920+00:00",
-      "approval_key": "5846a9f6083a711704062d8429c65ca791768dde572099cd5e8f38b26bed850f"
-    },
-    "struct-v1": {
-      "schema": "Derivation/code/physics/metriplectic/schemas/struct-v1.schema.json",
-      "approved_by": "Justin K. Lietz",
-      "approved_at": "2025-10-08T23:05:30.920566+00:00",
-      "approval_key": "f5e0011bde8e3a4bc5b9764d8284d8ceca64e7125777fb7f0914a4e4737e99c2"
-    },
-    "KG-noether-v1": {
-      "schema": "Derivation/code/physics/metriplectic/schemas/KG-noether-v1.schema.json",
-      "approved_by": "Justin K. Lietz",
-      "approved_at": "2025-10-08T23:45:28.002644+00:00",
-      "approval_key": "a924dd54ed5ecc335a91da47377dac861581425a6cfaaf05ebd05306207a1edb"
-    },
-    "KG-energy-osc-v1": {
-      "schema": "Derivation/code/physics/metriplectic/schemas/KG-energy-osc-v1.schema.json",
-      "approved_by": "Justin K. Lietz",
-      "approved_at": "2025-10-13T06:53:02.462385+00:00",
-      "approval_key": "a269ab8c11fdce428b0340a68692b6aeb2df4ff900a38b0f9423749f02169acb"
-    },
-    "echo_spec-v1": {
-      "schema": "Derivation/code/physics/metriplectic/schemas/echo_spec-v1.schema.json",
-      "approved_by": "",
-      "approved_at": "",
-      "approval_key": ""
+  {
+    "proposal": "Derivation/Metriplectic/PROPOSAL_Metriplectic_Composition_KGplusRD_v2.md",
+    "require_provenance": true,
+    "allowed_tags": [
+      "KG-dispersion-v1",
+      "KG-cone-v1",
+      "struct-v1",
+      "KG-noether-v1",
+      "KG-energy-osc-v1"
+    ],
+    "schema_dir": "Derivation/code/physics/metriplectic/schemas",
+    "approvals": {
+      "KG-dispersion-v1": {
+        "schema": "Derivation/code/physics/metriplectic/schemas/KG-dispersion-v1.schema.json",
+        "approved_by": "Justin K. Lietz",
+        "approved_at": "2025-10-08T10:08:10.978416+00:00",
+        "approval_key": "3d704c3bff15826e4faffac7a8681cb56eadac16edb442879c7fb2511f62b46b"
+      },
+      "KG-cone-v1": {
+        "schema": "Derivation/code/physics/metriplectic/schemas/KG-cone-v1.schema.json",
+        "approved_by": "Justin K. Lietz",
+        "approved_at": "2025-10-08T10:08:02.804920+00:00",
+        "approval_key": "5846a9f6083a711704062d8429c65ca791768dde572099cd5e8f38b26bed850f"
+      },
+      "struct-v1": {
+        "schema": "Derivation/code/physics/metriplectic/schemas/struct-v1.schema.json",
+        "approved_by": "Justin K. Lietz",
+        "approved_at": "2025-10-08T23:05:30.920566+00:00",
+        "approval_key": "f5e0011bde8e3a4bc5b9764d8284d8ceca64e7125777fb7f0914a4e4737e99c2"
+      },
+      "KG-noether-v1": {
+        "schema": "Derivation/code/physics/metriplectic/schemas/KG-noether-v1.schema.json",
+        "approved_by": "Justin K. Lietz",
+        "approved_at": "2025-10-08T23:45:28.002644+00:00",
+        "approval_key": "a924dd54ed5ecc335a91da47377dac861581425a6cfaaf05ebd05306207a1edb"
+      },
+      "KG-energy-osc-v1": {
+        "schema": "Derivation/code/physics/metriplectic/schemas/KG-energy-osc-v1.schema.json",
+        "approved_by": "Justin K. Lietz",
+        "approved_at": "2025-10-13T06:53:02.462385+00:00",
+        "approval_key": "a269ab8c11fdce428b0340a68692b6aeb2df4ff900a38b0f9423749f02169acb"
+      }
     }
   }
-}
 ]

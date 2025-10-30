@@ -1,10 +1,10 @@
 # 1. **T4 (Preregistered)** — Testing a Single‑Axis VDM Portal Modulation Against CMB Low‑ℓ Power‑Tensor Anomalies
 
-> **Created Date:** 2025‑10‑30
-> **Commit:** *to be inserted at repo commit time*
-> **Salted hash:** *to be generated from the commit at post*
-> **Proposer contact(s):** ([justin@neuroca.ai](mailto:justin@neuroca.ai))
-> **License:** See LICENSE in repository
+> **Created Date:** 2025‑10‑30  
+> **Commit:** 80ee5476e4f887fed3c34534a99daa878f55382f  
+> **Salted hash:** *to be generated from the commit at post*  
+> **Proposer contact(s):** ([justin@neuroca.ai](mailto:justin@neuroca.ai))  
+> **License:** See LICENSE in repository  
 > **TL;DR:** Proposed is a preregistered, fully specified test of whether a **single, VDM‑predicted anisotropy axis** with small amplitude explains the **persistent low‑ℓ CMB power‑tensor anomalies** across WMAP and Planck; pass/fail gates hinge on axis stability, likelihood improvement, and cross‑release reproducibility.  
 
 ---
@@ -71,26 +71,241 @@ where (C_\ell) is the standard isotropic power (mission‑specific), (\hat f) is
 
 ---
 
-### 5.1.1 **Pre‑Run Config Requirements**
+> **Context note (methods and data):** The configuration below targets the low‑ℓ CMB alignment experiment using the power‑tensor (PT) framework and its power‑entropy (PE), alignment‑tensor entropy (AE), pairwise alignment statistic (x=1-\cos\alpha), Kuiper tests, and the log‑likelihood–style global statistic (\bar x=-\sum_\ell \log[1-F(x_\ell)]) over (2\le \ell\le61). The ℓ‑range, PT/PE/AE definitions, unified mask practice, and simulation discipline follow Patel, Aluri & Ralston (2025).  
+> **Authoring/gates discipline:** Artifacts emitted by the runner must satisfy whitepaper‑grade gates and provenance practices exactly as specified in RESULTS standards.  
 
-**Required config & metadata paths (to be created in repo):**
+---
 
-* `derivation/code/physics/cmb_vdm/APPROVAL.json`
-* `derivation/code/physics/cmb_vdm/schemas/{runner}.schema.json`
-* `derivation/code/physics/cmb_vdm/specs/{run_name}.v1.json`
+## 5.1.1 Pre‑Run Config Requirements
 
-**`APPROVAL.json` (sketch):**
+**Required config and metadata (domain = `cosmology_cmb_lowL_alignments`):**
+
+* `Derivation/code/physics/cosmology_cmb_lowL_alignments/APPROVALS.json`
+* `Derivation/code/physics/cosmology_cmb_lowL_alignments/schemas/`
+
+  * `cmb-pt.schema.json`
+* `Derivation/code/physics/cosmology_cmb_lowL_alignments/specs/`
+
+  * `pt_pe_ae_fullscan.0.1.0.json`
+
+> **Filename note:** The canonical filename for the approval manifest is `APPROVALS.json` (plural). If legacy tooling expects `APPROVAL.json`, create a repo alias/symlink to the pluralized file.
+
+### `APPROVALS.json`
+
+**Shape:** JSON array with two objects, in order: an approval *manifest* and an approval *registry* (which binds PROPOSAL prereg and schema/tag approvals).
+
+```json
+[
+  {
+    "preflight_name": "cmb_lowL_preflight",
+    "description": "Approval manifest stating that the preflight runner must pass before real runs that write artifacts.",
+    "author": "Justin K. Lietz",
+    "requires_approval": true,
+    "pre_commit_hook": true,
+    "domain": "cosmology_cmb_lowL_alignments",
+    "notes": "Preflight runs under Derivation/code/tests are allowed without approval. Any run that writes artifacts requires a PROPOSAL_* in Derivation/cosmology_cmb_lowL_alignments and explicit review."
+  },
+  {
+    "pre_registered": true,
+    "proposal": "Derivation/cosmology_cmb_lowL_alignments/T4_PROPOSAL_CMB_LowL_Alignment_Isotropy_Gate.md",
+    "allowed_tags": [
+      "cmb-pt-2025.10"
+    ],
+    "schema_dir": "Derivation/code/physics/cosmology_cmb_lowL_alignments/schemas",
+    "approvals": {
+      "cmb-pt-2025.10": {
+        "schema": "Derivation/code/physics/cosmology_cmb_lowL_alignments/schemas/cmb-pt.schema.json",
+        "approved_by": "Justin K. Lietz",
+        "approved_at": "<auto ISO-8601 timestamp>",
+        "approval_key": "<auto sha256(proposal|commit|salt)>"
+      }
+    }
+  }
+]
+```
+
+### `PRE-REGISTRATION.json`
+
+**Path:** `Derivation/code/physics/cosmology_cmb_lowL_alignments/PRE-REGISTRATION.json`
+**Minimum keys plus domain‑specific content (placeholders only where automation fills provenance):**
 
 ```json
 {
-  "preflight_name": "cmb_vdm_preflight",
-  "description": "Approval manifest; instrument (T2) must pass before artifact-writing runs.",
-  "author": "Justin K. Lietz",
-  "requires_approval": true,
-  "pre_commit_hook": true,
-  "notes": "Only simulation-free meter checks run before approval; artifact runs require signed approval."
+  "proposal_title": "CMB Low-ℓ Power-Tensor Alignment & Entropy Gates (2 ≤ ℓ ≤ 61)",
+  "tier_grade": "T4",
+  "commit": "<git-sha>",
+  "salted_provenance": "sha256(<git-sha>|<salt>)",
+  "contact": ["Justin K. Lietz <justin@neuroca.ai>"],
+  "hypotheses": [
+    { "id": "H1", "statement": "Global log-like statistic on PE across 2≤ℓ≤61 exceeds the 95th percentile of the isotropic null on Planck2018 SMICA.", "direction": "increase" },
+    { "id": "H2", "statement": "Alignment-entropy SX across 2≤ℓ≤61 is below the 5th percentile of the isotropic null on Planck2018 SMICA.", "direction": "decrease" },
+    { "id": "H3", "statement": "Pairwise PT-PEV alignments among ℓ∈{1,2,3} depart from Uniform[0,1] (x=1−cosα) by a Kuiper test at p≤0.05 in WMAP9 ILC and Planck2018 SMICA.", "direction": "decrease" }
+  ],
+  "variables": {
+    "independent": ["dataset_release", "lmin", "lmax", "n_sims", "mask_fsky"],
+    "dependent": ["pval_global_PE", "pval_SX", "pval_Kuiper_alignments"],
+    "controls": ["nside", "beam_fwhm_deg", "smoothing_kernel", "inpaint_method", "seed"]
+  },
+  "pass_fail": [
+    { "metric": "pval_global_PE_Planck2018_SMICA", "operator": "<=", "threshold": 0.05, "unit": "probability" },
+    { "metric": "pval_Kuiper_x_l123", "operator": "<=", "threshold": 0.05, "unit": "probability" },
+    { "metric": "pval_SX_Planck2018_SMICA_[2,61]", "operator": "<=", "threshold": 0.05, "unit": "probability" }
+  ],
+  "spec_refs": [
+    "Derivation/code/physics/cosmology_cmb_lowL_alignments/specs/pt_pe_ae_fullscan.0.1.0.json"
+  ],
+  "registration_timestamp": "<ISO-8601>"
 }
 ```
+
+### Specs
+
+**Path:**
+`Derivation/code/physics/cosmology_cmb_lowL_alignments/specs/pt_pe_ae_fullscan.0.1.0.json`
+
+**Content (domain‑specific parameters included and validated against `cmb-pt.schema.json`):**
+
+```json
+{
+  "run_name": "pt_pe_ae_fullscan",
+  "version": "0.1.0",
+  "tag": "cmb-pt-2025.10",
+  "schema_ref": "Derivation/code/physics/cosmology_cmb_lowL_alignments/schemas/cmb-pt.schema.json",
+  "parameters": {
+    "datasets": [
+      { "id": "WMAP9_ILC", "source": "LAMBDA" },
+      { "id": "Planck2018_SMICA", "source": "PLA" }
+    ],
+    "lmin": 2,
+    "lmax": 61,
+    "n_sims": 2000,
+    "nside": 512,
+    "beam_fwhm_deg": 1.0,
+    "smoothing_kernel": "gaussian",
+    "mask": {
+      "name": "WMAP9_Kp8_x_Planck2018_common_inpaint",
+      "path": "Derivation/data/cmb_masks/wmap9_kp8_x_planck2018_common_inpaint_n512.fits",
+      "f_sky": 0.929
+    },
+    "inpaint": {
+      "enabled": true,
+      "method": "ISAP",
+      "config": {}
+    },
+    "stats": {
+      "compute": ["PE", "AT_entropy", "pairwise_x", "Kuiper_x", "global_loglike_PE"],
+      "pairwise_ells": [1, 2, 3]
+    },
+    "artifact_dir": "Derivation/artifacts/cosmology_cmb_lowL_alignments/pt_pe_ae_fullscan/0.1.0",
+    "data_sources": {
+      "LAMBDA": "https://lambda.gsfc.nasa.gov/product/wmap/current/",
+      "PLA": "https://www.cosmos.esa.int/web/planck/pla"
+    }
+  },
+  "seeds": [17, 23, 42, 86, 101]
+}
+```
+
+> **Why these values?** The ℓ‑range, unified masking/inpainting flow, and reliance on ILC/SMICA products mirror the analysis choices validated across WMAP and Planck releases; the statistics computed (PE, AE, pairwise (x), Kuiper (V), and (\bar x)) are exactly those needed to test isotropy and alignment robustness as in the reference analysis.  
+
+### Schemas
+
+**Path:**
+`Derivation/code/physics/cosmology_cmb_lowL_alignments/schemas/cmb-pt.schema.json`
+
+**Minimum JSON Schema (draft 2020‑12) with domain‑specific validation for `parameters`:**
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vdm.local/schemas/cmb-pt.schema.json",
+  "title": "CMB Power-Tensor Alignment Experiment Parameters",
+  "type": "object",
+  "properties": {
+    "datasets": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "enum": ["WMAP1_ILC", "WMAP3_ILC", "WMAP5_ILC", "WMAP7_ILC", "WMAP9_ILC", "Planck2013_PR1_ILC", "Planck2015_SMICA", "Planck2018_SMICA"] },
+          "source": { "type": "string", "enum": ["LAMBDA", "PLA"] }
+        },
+        "required": ["id", "source"],
+        "additionalProperties": false
+      }
+    },
+    "lmin": { "type": "integer", "minimum": 2 },
+    "lmax": { "type": "integer", "minimum": 3 },
+    "n_sims": { "type": "integer", "minimum": 500 },
+    "nside": { "type": "integer", "enum": [256, 512, 1024, 2048] },
+    "beam_fwhm_deg": { "type": "number", "exclusiveMinimum": 0 },
+    "smoothing_kernel": { "type": "string", "enum": ["gaussian"] },
+    "mask": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "path": { "type": "string" },
+        "f_sky": { "type": "number", "minimum": 0.0, "maximum": 1.0 }
+      },
+      "required": ["name", "path", "f_sky"],
+      "additionalProperties": false
+    },
+    "inpaint": {
+      "type": "object",
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "method": { "type": "string", "enum": ["ISAP"] },
+        "config": { "type": "object" }
+      },
+      "required": ["enabled", "method"],
+      "additionalProperties": false
+    },
+    "stats": {
+      "type": "object",
+      "properties": {
+        "compute": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["PE", "AT_entropy", "pairwise_x", "Kuiper_x", "global_loglike_PE"] },
+          "minItems": 1
+        },
+        "pairwise_ells": {
+          "type": "array",
+          "items": { "type": "integer", "minimum": 1, "maximum": 10 },
+          "minItems": 2
+        }
+      },
+      "required": ["compute"],
+      "additionalProperties": false
+    },
+    "artifact_dir": { "type": "string" },
+    "data_sources": {
+      "type": "object",
+      "properties": {
+        "LAMBDA": { "type": "string" },
+        "PLA": { "type": "string" }
+      },
+      "required": ["LAMBDA", "PLA"],
+      "additionalProperties": true
+    }
+  },
+  "required": ["datasets", "lmin", "lmax", "n_sims", "nside", "beam_fwhm_deg", "smoothing_kernel", "mask", "inpaint", "stats", "artifact_dir", "data_sources"],
+  "allOf": [
+    { "if": { "properties": { "lmin": { "const": 2 } } }, "then": { "properties": { "lmax": { "minimum": 3 } } } }
+  ],
+  "additionalProperties": false
+}
+```
+
+---
+
+### Implementation notes (for the runner and reviewers)
+
+* **Data sourcing:** The spec encodes authoritative sources for WMAP ILC (LAMBDA) and Planck SMICA (PLA) products; these are the exact releases used in the reference analysis. The runner must verify accessibility and checksums before simulation.  
+* **Gates wiring:** Bind pass/fail evaluation to the three preregistered metrics in `PRE-REGISTRATION.json`. Emit a machine‑readable `passfail.json` alongside figures and CSV/JSON logs per RESULTS standards. 
+* **Provenance:** Surface `commit`, salted hash, seeds, and resolved paths in every artifact filename or companion JSON to satisfy proposal/RESULTS provenance discipline.  
+
+---
 
 Conventions and structure follow the canonical template.  
 

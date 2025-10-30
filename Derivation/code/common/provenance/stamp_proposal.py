@@ -2,7 +2,7 @@
 """Stamp a proposal and its preregistration with canonical salted provenance.
 
 Usage:
-  python tools/provenance/stamp_proposal.py --proposal PATH --prereg PATH [--salt-bytes N]
+  python Derivation/code/common/provenance/stamp_proposal.py --proposal PATH --prereg PATH [--salt-bytes N]
 
 What it does:
  - Reads the prereg JSON and finds the first spec reference (spec_refs[0]).
@@ -20,7 +20,7 @@ import json
 import secrets
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Optional
+from typing import Optional, Dict, Any
 
 
 def sha256_file(p: Path) -> str:
@@ -95,22 +95,23 @@ def main(argv: Optional[list[str]] = None) -> int:
     p.add_argument("--prereg", required=True, help="Path to preregistration JSON file")
     p.add_argument("--salt-bytes", type=int, default=16, help="Bytes of random salt to generate")
     args = p.parse_args(argv)
+    return stamp(args.proposal, args.prereg, salt_bytes=args.salt_bytes) and 0 or 1
 
-    proposal = Path(args.proposal)
-    prereg = Path(args.prereg)
+
+def stamp(proposal: str | Path, prereg: str | Path, *, salt_bytes: int = 16) -> Dict[str, Any]:
+    """Public function: stamp a proposal/prereg. Returns a dict summary.
+
+    This raises exceptions on fatal errors so callers can handle them.
+    """
+    proposal = Path(proposal)
+    prereg = Path(prereg)
     if not proposal.exists():
-        print(f"ERROR: proposal not found: {proposal}")
-        return 2
+        raise FileNotFoundError(f"proposal not found: {proposal}")
     if not prereg.exists():
-        print(f"ERROR: prereg not found: {prereg}")
-        return 3
+        raise FileNotFoundError(f"prereg not found: {prereg}")
 
     # Load prereg
-    try:
-        pdata = json.loads(prereg.read_text(encoding="utf-8"))
-    except Exception as e:
-        print(f"ERROR: failed to parse prereg JSON: {e}")
-        return 4
+    pdata = json.loads(prereg.read_text(encoding="utf-8"))
 
     prov = pdata.get("salted_provenance")
     if isinstance(prov, dict) and prov.get("items"):
@@ -122,16 +123,14 @@ def main(argv: Optional[list[str]] = None) -> int:
         # Need to compute from spec_refs
         spec_refs = pdata.get("spec_refs") or pdata.get("specs") or []
         if not spec_refs or not isinstance(spec_refs, list):
-            print("ERROR: prereg has no spec_refs to compute provenance from")
-            return 5
+            raise ValueError("prereg has no spec_refs to compute provenance from")
         # resolve spec path relative to prereg
         spec_path = Path(spec_refs[0])
         if not spec_path.is_absolute():
             spec_path = (prereg.parent / spec_path).resolve()
         if not spec_path.exists():
-            print(f"ERROR: spec referenced by prereg not found: {spec_path}")
-            return 6
-        newprov = build_salted_provenance_for_spec(spec_path, salt_bytes=args.salt_bytes)
+            raise FileNotFoundError(f"spec referenced by prereg not found: {spec_path}")
+        newprov = build_salted_provenance_for_spec(spec_path, salt_bytes=salt_bytes)
         pdata["salted_provenance"] = newprov
         # write prereg back
         prereg.write_text(json.dumps(pdata, indent=2) + "\n", encoding="utf-8")
@@ -145,8 +144,7 @@ def main(argv: Optional[list[str]] = None) -> int:
     # Insert header into proposal
     insert_or_replace_header(proposal, salted_sha256, salt_hex, manifest)
 
-    print(json.dumps({"proposal": str(proposal), "prereg": str(prereg), "salted_sha256": salted_sha256, "salt_hex": salt_hex, "prereg_manifest": manifest}, indent=2))
-    return 0
+    return {"proposal": str(proposal), "prereg": str(prereg), "salted_sha256": salted_sha256, "salt_hex": salt_hex, "prereg_manifest": manifest}
 
 
 if __name__ == "__main__":

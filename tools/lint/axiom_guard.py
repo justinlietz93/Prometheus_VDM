@@ -8,7 +8,6 @@ research while ensuring commercial applications are aligned with the project's e
 Commercial use of proprietary VDM code requires written permission from Justin K. Lietz.
 See LICENSE file for full terms.
 
-
 axiom_guard.py
 
 Enforces two invariants for the canonical axiomatic file:

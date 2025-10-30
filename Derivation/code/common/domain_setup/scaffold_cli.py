@@ -324,14 +324,18 @@ def main(argv=None) -> int:
 
     # Stamp proposal/prereg with canonical salted provenance so scaffolded experiments are ready for approval
     try:
-        stamp_script = REPO_ROOT / "tools" / "provenance" / "stamp_proposal.py"
-        if stamp_script.exists():
-            print("Stamping proposal/prereg with canonical provenance...")
-            subprocess.run([sys.executable, str(stamp_script), "--proposal", str(proposal_path), "--prereg", str(prereg_path)], check=True)
-        else:
-            print(f"Note: stamping helper not found at {stamp_script}; skip stamping.")
-    except subprocess.CalledProcessError as e:
-        print(f"WARNING: stamping helper failed: {e}")
+        # Prefer importing and calling the helper directly to avoid subprocess overhead and
+        # make the call testable and lint-friendly. Derivation/code is already added to sys.path above.
+        from common.provenance.stamp_proposal import stamp  # type: ignore
+
+        print("Stamping proposal/prereg with canonical provenance (imported helper)...")
+        try:
+            stamp(str(proposal_path), str(prereg_path))
+        except Exception as e:
+            print(f"WARNING: stamping helper raised an error: {e}")
+    except Exception as e:
+        # If import fails, skip stamping rather than invoking subprocesses.
+        print(f"Note: stamping helper import failed — skipping stamping. Error: {e}")
 
     print("\nScaffold complete. Artifacts:")
     for pth in [proposal_path, approval_path, prereg_path, schema_path, spec_path, (REPO_ROOT / "Derivation" / "code" / "physics" / domain / f"run_{experiment}.py"), (REPO_ROOT / "Derivation" / "code" / "physics" / domain / "README.md")]:

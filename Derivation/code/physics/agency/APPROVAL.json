@@ -1,0 +1,22 @@
+{
+  "preflight_name": "preflight.qualia.calibration",
+  "description": "Approval manifest stating that the preflight runner must pass before experiments that write artifacts.",
+  "author": "Justin K. Lietz",
+  "requires_approval": true,
+  "require_provenance": true,
+  "pre_commit_hook": true,
+  "notes": "Preflight tests in Derivation/code/tests may run without approval. Any artifact-writing run requires a matching PROPOSAL_* under Derivation/Qualia/ with explicit review.",
+
+  "pre_registered": true,
+  "proposal": "Derivation/Qualia/PROPOSAL_T3_Calibration_of_Psychophysical_Observables_to_C_Field.md",
+  "allowed_tags": ["cfield-calib-t3-v1"],
+  "schema_dir": "Derivation/code/physics/agency/schemas",
+  "approvals": {
+    "cfield-calib-t3-v1": {
+      "schema": "Derivation/code/physics/agency/schemas/cfield-calib-t3-v1.schema.json",
+      "approved_by": "",
+      "approved_at": "",
+      "approval_key": ""
+    }
+  }
+}

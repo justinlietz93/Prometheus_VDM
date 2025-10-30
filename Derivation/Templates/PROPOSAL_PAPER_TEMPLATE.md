@@ -41,6 +41,21 @@ In order for any experiment to run or pass, PROPOSAL_ documents MUST be created.
 > License: (Link to LICENSE file)
 > Short summary (one sentence TL;DR):  
 
+***Practical Provenance pattern***
+
+- Compute salted hashes with a random salt; store base_sha256, salt_hex, salted_sha256 in the prereg.
+- Commit prereg.
+- Create an annotated, signed tag like prereg.assisted_echo.v1.YYYMMDDThhmmZ whose message includes:
+  - commit SHA
+  - the prereg file path
+  - the salted_provenance items (or a single manifest hash)
+- Push the tag before running. Have the run record that tag in artifacts.
+- The proposal document must include the matching hashes in section 5.1.1  
+- Once the proposal document is fully complete and matches the created artifacts, a hash can be created for the proposal file itself. Then all items can be pushed up before the run. The authorization / approval system will fail a run if this isn't done.
+- Optional: timestamp the tag externally (OpenTimestamps/RFC3161) for independent dating.
+
+***Avoid circularity***
+
 ## 2. List of proposers and associated institutions/companies
 
 List authors (Justin K. Lietz), affiliations, and roles (PI, implementer, approver).

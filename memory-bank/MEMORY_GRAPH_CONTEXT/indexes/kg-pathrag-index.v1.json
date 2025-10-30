@@ -1,6 +1,301 @@
 {
-  "entries": [],
+  "entries": [
+    {
+      "entities": [
+        "Memory_Bank_Update_2025-10-28",
+        "No_Approvals_By_Assistant"
+      ],
+      "path": "memory-bank/decisionlog.md",
+      "segments": [
+        "memory-bank",
+        "decisionlog.md"
+      ]
+    },
+    {
+      "entities": [
+        "Task_1_2_Validation_Plan",
+        "Memory_Bank_Update_2025-10-28"
+      ],
+      "path": "memory-bank/progress.md",
+      "segments": [
+        "memory-bank",
+        "progress.md"
+      ]
+    },
+    {
+      "entities": [
+        "Task_1_2_Validation_Plan",
+        "Quarantine_Routing_Policy"
+      ],
+      "path": "vdm_nexus/todo_checklist.md",
+      "segments": [
+        "vdm_nexus",
+        "todo_checklist.md"
+      ]
+    },
+    {
+      "entities": [
+        "CEG_T4_Assisted_Echo"
+      ],
+      "path": "derivation/metriplectic/t4_proposal_ceg_metriplectic_assisted-echo_experiment.md",
+      "segments": [
+        "derivation",
+        "metriplectic",
+        "t4_proposal_ceg_metriplectic_assisted-echo_experiment.md"
+      ]
+    },
+    {
+      "entities": [
+        "Static_Lint_Preflight_API_Checker"
+      ],
+      "path": "tools/lint/check_tests_preflight_api.py",
+      "segments": [
+        "tools",
+        "lint",
+        "check_tests_preflight_api.py"
+      ]
+    },
+    {
+      "entities": [
+        "VDM_Nexus_Approval_CLI",
+        "Canonical_Approve_Tag_CLI",
+        "Env_Precedence_Policy"
+      ],
+      "path": "vdm_nexus/scripts/approval_cli.py",
+      "segments": [
+        "vdm_nexus",
+        "scripts",
+        "approval_cli.py"
+      ]
+    },
+    {
+      "entities": [
+        "VDM_Nexus_Approval_CLI",
+        "Env_Precedence_Policy"
+      ],
+      "path": "vdm_nexus/scripts/readme.md",
+      "segments": [
+        "vdm_nexus",
+        "scripts",
+        "readme.md"
+      ]
+    },
+    {
+      "entities": [
+        "Quarantine_Routing_Policy"
+      ],
+      "path": "derivation/code/common/io_paths.py",
+      "segments": [
+        "derivation",
+        "code",
+        "common",
+        "io_paths.py"
+      ]
+    },
+    {
+      "entities": [
+        "Test_Runtime_Guard_Forbids_Begin_Run_In_Tests"
+      ],
+      "path": "derivation/code/tests/conftest.py",
+      "segments": [
+        "derivation",
+        "code",
+        "tests",
+        "conftest.py"
+      ]
+    },
+    {
+      "entities": [
+        "Approval_Gate_Provenance",
+        "Provenance_Gating_OptIn"
+      ],
+      "path": "derivation/code/common/authorization/approval.py",
+      "segments": [
+        "derivation",
+        "code",
+        "common",
+        "authorization",
+        "approval.py"
+      ]
+    },
+    {
+      "entities": [
+        "Canonical_Approve_Tag_CLI"
+      ],
+      "path": "derivation/code/common/authorization/approve_tag.py",
+      "segments": [
+        "derivation",
+        "code",
+        "common",
+        "authorization",
+        "approve_tag.py"
+      ]
+    },
+    {
+      "entities": [
+        "Canonical_Approve_Tag_CLI",
+        "Approval_Gate_Provenance"
+      ],
+      "path": "derivation/code/common/authorization/readme.md",
+      "segments": [
+        "derivation",
+        "code",
+        "common",
+        "authorization",
+        "readme.md"
+      ]
+    },
+    {
+      "entities": [
+        "Preflight_Fixed_Tag_Policy",
+        "Preflight_DB_Route_And_Tag_Deprecation"
+      ],
+      "path": "derivation/code/common/data/preflight_db.py",
+      "segments": [
+        "derivation",
+        "code",
+        "common",
+        "data",
+        "preflight_db.py"
+      ]
+    },
+    {
+      "entities": [
+        "Preflight_Fixed_Tag_Policy",
+        "Results_DB_Preflight_Invariants_And_Helpers"
+      ],
+      "path": "derivation/code/common/data/results_db.py",
+      "segments": [
+        "derivation",
+        "code",
+        "common",
+        "data",
+        "results_db.py"
+      ]
+    },
+    {
+      "entities": [
+        "Stamp_Proposal_Helper"
+      ],
+      "path": "derivation/code/common/provenance/stamp_proposal.py",
+      "segments": [
+        "derivation",
+        "code",
+        "common",
+        "provenance",
+        "stamp_proposal.py"
+      ]
+    },
+    {
+      "entities": [
+        "Assisted_Echo_Runner"
+      ],
+      "path": "derivation/code/physics/metriplectic/assisted_echo.py",
+      "segments": [
+        "derivation",
+        "code",
+        "physics",
+        "metriplectic",
+        "assisted_echo.py"
+      ]
+    },
+    {
+      "entities": [
+        "CEG_T4_Assisted_Echo"
+      ],
+      "path": "derivation/code/physics/metriplectic/pre-registration.echo_spec-v1.json",
+      "segments": [
+        "derivation",
+        "code",
+        "physics",
+        "metriplectic",
+        "pre-registration.echo_spec-v1.json"
+      ]
+    },
+    {
+      "entities": [
+        "Static_Lint_Preflight_API_Checker",
+        "CI_Preflight_Guard_Test"
+      ],
+      "path": "derivation/code/tests/ci/test_preflight_guard.py",
+      "segments": [
+        "derivation",
+        "code",
+        "tests",
+        "ci",
+        "test_preflight_guard.py"
+      ]
+    },
+    {
+      "entities": [
+        "Assisted_Echo_Runner"
+      ],
+      "path": "derivation/code/tests/metriplectic/test_assisted_echo_preflight.py",
+      "segments": [
+        "derivation",
+        "code",
+        "tests",
+        "metriplectic",
+        "test_assisted_echo_preflight.py"
+      ]
+    },
+    {
+      "entities": [
+        "Assisted_Echo_Runner"
+      ],
+      "path": "derivation/code/tests/metriplectic/test_ceg_harness_preflight.py",
+      "segments": [
+        "derivation",
+        "code",
+        "tests",
+        "metriplectic",
+        "test_ceg_harness_preflight.py"
+      ]
+    },
+    {
+      "entities": [
+        "Approval_Gate_Provenance"
+      ],
+      "path": "derivation/code/common/authorization/tests/test_approval_provenance.py",
+      "segments": [
+        "derivation",
+        "code",
+        "common",
+        "authorization",
+        "tests",
+        "test_approval_provenance.py"
+      ]
+    },
+    {
+      "entities": [
+        "Assisted_Echo_Runner"
+      ],
+      "path": "derivation/code/physics/metriplectic/schemas/echo_spec-v1.schema.json",
+      "segments": [
+        "derivation",
+        "code",
+        "physics",
+        "metriplectic",
+        "schemas",
+        "echo_spec-v1.schema.json"
+      ]
+    },
+    {
+      "entities": [
+        "CEG_T4_Assisted_Echo"
+      ],
+      "path": "derivation/code/physics/metriplectic/specs/assisted_echo.v1.json",
+      "segments": [
+        "derivation",
+        "code",
+        "physics",
+        "metriplectic",
+        "specs",
+        "assisted_echo.v1.json"
+      ]
+    }
+  ],
   "set_id": "kg-pathrag-index",
   "set_version": "1.0",
-  "updated_utc": "2025-10-29T08:44:07Z"
+  "updated_utc": "2025-10-30T18:14:56Z"
 }
