@@ -21,7 +21,7 @@ VERSION ?= 0.1.0
 TIER ?= T0
 AUTHOR ?= $(shell git config user.name 2>/dev/null || echo "Justin K. Lietz")
 CONTACT ?= $(shell git config user.email 2>/dev/null || echo "justin@neuroca.ai")
-SUMMARY ?= Initial default scaffold
+SUMMARY ?= Initial default scaffold. This should be replaced with a meaningful summary, and is not accurate until done so.
 # Optional: set FORCE=--force to enable overwrite with admin prompt
 FORCE ?=
 
