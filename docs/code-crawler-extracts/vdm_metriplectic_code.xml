@@ -1,0 +1,2934 @@
+<?xml version="1.0" ?>
+<fum_code_report>
+  <generated_timestamp>2025-10-27 23:03:48</generated_timestamp>
+  <metadata>
+    <global_stats>
+      <total_files>28</total_files>
+      <total_size_bytes>113795</total_size_bytes>
+      <total_loc>2747</total_loc>
+    </global_stats>
+    <chunk_stats>
+      <files_in_chunk>28</files_in_chunk>
+      <size_in_chunk_bytes>113795</size_in_chunk_bytes>
+      <loc_in_chunk>2747</loc_in_chunk>
+    </chunk_stats>
+  </metadata>
+  <ascii_map><![CDATA[   metriplectic/
+>> ├── APPROVAL.json
+   │   (LOC: 44, Size: 1.8 KB)
+>> ├── compose.py
+   │   (LOC: 94, Size: 3.7 KB)
+>> ├── j_step.py
+   │   (LOC: 56, Size: 1.8 KB)
+>> ├── kg_noether.py
+   │   (LOC: 260, Size: 11.3 KB)
+>> ├── kg_ops.py
+   │   (LOC: 52, Size: 1.7 KB)
+>> ├── metriplectic_structure_checks.py
+   │   (LOC: 200, Size: 7.4 KB)
+>> ├── run_kg_dispersion.py
+   │   (LOC: 219, Size: 8.3 KB)
+>> ├── run_kg_energy_oscillation.py
+   │   (LOC: 268, Size: 10.7 KB)
+>> ├── run_kg_light_cone.py
+   │   (LOC: 224, Size: 8.4 KB)
+>> ├── run_kg_rd_metriplectic.py
+   │   (LOC: 371, Size: 18.8 KB)
+>> ├── run_metriplectic.py
+   │   (LOC: 552, Size: 25.5 KB)
+   ├── schemas/
+>> │   ├── KG-cone-v1.schema.json
+   │   │   (LOC: 14, Size: 352 B)
+>> │   ├── KG-dispersion-v1.schema.json
+   │   │   (LOC: 14, Size: 358 B)
+>> │   ├── KG-energy-osc-v1.schema.json
+   │   │   (LOC: 58, Size: 1.8 KB)
+>> │   ├── KG-noether-v1.schema.json
+   │   │   (LOC: 35, Size: 1.1 KB)
+>> │   └── struct-v1.schema.json
+   │       (LOC: 40, Size: 2.0 KB)
+   ├── specs/
+>> │   ├── kg_energy_osc.v1.json
+   │   │   (LOC: 17, Size: 514 B)
+>> │   ├── kg_noether.v1.json
+   │   │   (LOC: 13, Size: 311 B)
+>> │   └── struct_checks.v1.json
+   │       (LOC: 12, Size: 301 B)
+>> ├── step_spec.kg_rd.v1.json
+   │   (LOC: 22, Size: 500 B)
+>> ├── step_spec.kg_rd.v1b.json
+   │   (LOC: 22, Size: 551 B)
+>> ├── step_spec.kg_rd.v1c.json
+   │   (LOC: 22, Size: 561 B)
+>> ├── step_spec.metriplectic.N512.json
+   │   (LOC: 25, Size: 681 B)
+>> ├── step_spec.metriplectic.asymptotics.json
+   │   (LOC: 20, Size: 487 B)
+>> ├── step_spec.metriplectic.example.json
+   │   (LOC: 25, Size: 776 B)
+>> ├── step_spec.metriplectic.smoke.json
+   │   (LOC: 21, Size: 470 B)
+>> ├── step_spec.metriplectic.spectralDG.json
+   │   (LOC: 21, Size: 529 B)
+>> └── step_spec.metriplectic.tagged.example.json
+       (LOC: 26, Size: 730 B)]]></ascii_map>
+  <files>
+    <file>
+      <path>APPROVAL.json</path>
+      <content><![CDATA[{
+  "pre_registered": true,
+  "proposal": "Derivation/Metriplectic/PROPOSAL_Metriplectic_SymplecticPlusDG.md",
+  "allowed_tags": [
+    "KG-dispersion-v1",
+    "KG-cone-v1",
+    "struct-v1",
+    "KG-noether-v1",
+    "KG-energy-osc-v1"
+  ],
+  "schema_dir": "Derivation/code/physics/metriplectic/schemas",
+  "approvals": {
+    "KG-dispersion-v1": {
+      "schema": "Derivation/code/physics/metriplectic/schemas/KG-dispersion-v1.schema.json",
+      "approved_by": "Justin K. Lietz",
+      "approved_at": "2025-10-08T10:08:10.978416+00:00",
+      "approval_key": "3d704c3bff15826e4faffac7a8681cb56eadac16edb442879c7fb2511f62b46b"
+    },
+    "KG-cone-v1": {
+      "schema": "Derivation/code/physics/metriplectic/schemas/KG-cone-v1.schema.json",
+      "approved_by": "Justin K. Lietz",
+      "approved_at": "2025-10-08T10:08:02.804920+00:00",
+      "approval_key": "5846a9f6083a711704062d8429c65ca791768dde572099cd5e8f38b26bed850f"
+    },
+    "struct-v1": {
+      "schema": "Derivation/code/physics/metriplectic/schemas/struct-v1.schema.json",
+      "approved_by": "Justin K. Lietz",
+      "approved_at": "2025-10-08T23:05:30.920566+00:00",
+      "approval_key": "f5e0011bde8e3a4bc5b9764d8284d8ceca64e7125777fb7f0914a4e4737e99c2"
+    },
+    "KG-noether-v1": {
+      "schema": "Derivation/code/physics/metriplectic/schemas/KG-noether-v1.schema.json",
+      "approved_by": "Justin K. Lietz",
+      "approved_at": "2025-10-08T23:45:28.002644+00:00",
+      "approval_key": "a924dd54ed5ecc335a91da47377dac861581425a6cfaaf05ebd05306207a1edb"
+    },
+    "KG-energy-osc-v1": {
+      "schema": "Derivation/code/physics/metriplectic/schemas/KG-energy-osc-v1.schema.json",
+      "approved_by": "Justin K. Lietz",
+      "approved_at": "2025-10-13T06:53:02.462385+00:00",
+      "approval_key": "a269ab8c11fdce428b0340a68692b6aeb2df4ff900a38b0f9423749f02169acb"
+    }
+  }
+}
+]]></content>
+    </file>
+    <file>
+      <path>compose.py</path>
+      <content><![CDATA[#!/usr/bin/env python3
+"""
+Copyright © 2025 Justin K. Lietz, Neuroca, Inc. All Rights Reserved.
+
+This research is protected under a dual-license to foster open academic
+research while ensuring commercial applications are aligned with the project's ethical principles.
+
+Commercial use of proprietary VDM code requires written permission from Justin K. Lietz.
+See LICENSE file for full terms.
+
+
+Metriplectic composition utilities:
+ - M-only: reuse DG RD step from RD harness
+ - J-only: spectral advection J step
+ - J ⊕ M (Strang): J(dt/2) → M(dt) → J(dt/2)
+"""
+from __future__ import annotations
+import sys
+from pathlib import Path
+from typing import Dict, Any
+import numpy as np
+
+# Ensure code root on path
+CODE_ROOT = Path(__file__).resolve().parents[2]
+if str(CODE_ROOT) not in sys.path:
+    sys.path.insert(0, str(CODE_ROOT))
+
+# Local imports
+from physics.metriplectic.j_step import j_step_spectral_periodic
+from physics.rd_conservation.run_rd_conservation import dg_rd_step_with_stats, laplacian_periodic_1d, discrete_lyapunov_Lh
+
+
+def m_step_dg(W: np.ndarray, dt: float, dx: float, D: float, r: float, u: float) -> np.ndarray:
+    """DG RD dissipative step (wrapper using robust Newton+backtracking)."""
+    W1, _stats = dg_rd_step_with_stats(W, dt, dx, D, r, u)
+    return W1
+
+
+def j_only_step(W: np.ndarray, dt: float, dx: float, params: Dict[str, Any]) -> np.ndarray:
+    return j_step_spectral_periodic(W, dt, dx, float(params.get("c", 1.0)))
+
+
+def m_only_step(W: np.ndarray, dt: float, dx: float, params: Dict[str, Any]) -> np.ndarray:
+    return m_step_dg(W, dt, dx, float(params["D"]), float(params["r"]), float(params["u"]))
+
+
+def m_only_step_with_stats(W: np.ndarray, dt: float, dx: float, params: Dict[str, Any]) -> tuple[np.ndarray, Dict[str, Any]]:
+    tol = float(params.get("dg_tol", 1e-12))
+    max_iter = int(params.get("dg_max_iter", 20))
+    max_backtracks = int(params.get("dg_max_backtracks", 10))
+    lap_operator = str(params.get("m_lap_operator", "stencil"))
+    return dg_rd_step_with_stats(W, dt, dx, float(params["D"]), float(params["r"]), float(params["u"]), tol=tol, max_iter=max_iter, max_backtracks=max_backtracks, lap_operator=lap_operator)
+
+
+def jmj_strang_step(W: np.ndarray, dt: float, dx: float, params: Dict[str, Any]) -> np.ndarray:
+    """Strang composition: J(dt/2) → M(dt) → J(dt/2)."""
+    W1 = j_only_step(W, 0.5 * dt, dx, params)
+    W2 = m_only_step(W1, dt, dx, params)
+    W3 = j_only_step(W2, 0.5 * dt, dx, params)
+    return W3
+
+
+def jmj_strang_step_with_stats(W: np.ndarray, dt: float, dx: float, params: Dict[str, Any]) -> tuple[np.ndarray, Dict[str, Any]]:
+    """Strang composition with Newton stats for the middle M-step."""
+    W1 = j_only_step(W, 0.5 * dt, dx, params)
+    W2, stats = m_only_step_with_stats(W1, dt, dx, params)
+    W3 = j_only_step(W2, 0.5 * dt, dx, params)
+    return W3, stats
+
+
+def mjm_strang_step(W: np.ndarray, dt: float, dx: float, params: Dict[str, Any]) -> np.ndarray:
+    """Reverse Strang composition: M(dt/2) → J(dt) → M(dt/2)."""
+    W1, _ = m_only_step_with_stats(W, 0.5 * dt, dx, params)
+    W2 = j_only_step(W1, dt, dx, params)
+    W3, _ = m_only_step_with_stats(W2, 0.5 * dt, dx, params)
+    return W3
+
+
+def two_grid_error_inf(step_fn, W0: np.ndarray, dt: float) -> float:
+    W_big = step_fn(W0, dt)
+    W_h1 = step_fn(W0, 0.5 * dt)
+    W_h2 = step_fn(W_h1, 0.5 * dt)
+    return float(np.linalg.norm(W_big - W_h2, ord=np.inf))
+
+
+def lyapunov_values(W: np.ndarray, dx: float, D: float, r: float, u: float) -> float:
+    return discrete_lyapunov_Lh(W, dx, D, r, u)
+
+
+__all__ = [
+    "j_only_step", "m_only_step", "m_only_step_with_stats",
+    "jmj_strang_step", "jmj_strang_step_with_stats", "mjm_strang_step",
+    "two_grid_error_inf", "lyapunov_values"
+]
+]]></content>
+    </file>
+    <file>
+      <path>j_step.py</path>
+      <content><![CDATA[#!/usr/bin/env python3
+"""
+Copyright © 2025 Justin K. Lietz, Neuroca, Inc. All Rights Reserved.
+
+This research is protected under a dual-license to foster open academic
+research while ensuring commercial applications are aligned with the project's ethical principles.
+
+Commercial use of proprietary VDM code requires written permission from Justin K. Lietz.
+See LICENSE file for full terms.
+
+
+J-step (conservative) for metriplectic composition.
+
+Implements an exact periodic advection update via spectral phase rotation:
+    W(x, t + dt) = W(x - c dt, t)
+This update is unitary (L2-preserving), volume-preserving, and reversible.
+
+Note: This surrogate J-step serves as a symplectic-like conservative flow for a
+single field W, avoiding the need for explicit (phi, pi) pairs while preserving
+quadratic invariants. It composes cleanly with the dissipative DG M-step.
+"""
+from __future__ import annotations
+import sys
+from pathlib import Path
+import numpy as np
+
+
+# Ensure code root on sys.path so imports like common.io_paths resolve when used elsewhere
+CODE_ROOT = Path(__file__).resolve().parents[2]
+if str(CODE_ROOT) not in sys.path:
+    sys.path.insert(0, str(CODE_ROOT))
+
+
+def j_step_spectral_periodic(W: np.ndarray, dt: float, dx: float, c: float) -> np.ndarray:
+    """Exact periodic advection by distance c*dt using spectral phase shift.
+
+    Parameters:
+    - W: state array (shape: (N,))
+    - dt: time step (float)
+    - dx: grid spacing (float)
+    - c: advection speed (float)
+
+    Returns: W at time t+dt under W_t + c W_x = 0 with periodic BC.
+    """
+    if dt == 0.0 or c == 0.0:
+        return W.copy()
+    N = W.size
+    # Physical wavenumbers (rad/unit length)
+    k = 2.0 * np.pi * np.fft.fftfreq(N, d=dx)
+    phase = np.exp(-1j * k * (c * dt))
+    W_hat = np.fft.fft(W)
+    Wn1 = np.fft.ifft(W_hat * phase).real
+    return Wn1
+
+
+__all__ = ["j_step_spectral_periodic"]
+]]></content>
+    </file>
+    <file>
+      <path>kg_noether.py</path>
+      <content><![CDATA[#!/usr/bin/env python3
+"""
+Copyright © 2025 Justin K. Lietz, Neuroca, Inc. All Rights Reserved.
+
+This research is protected under a dual-license to foster open academic
+research while ensuring commercial applications are aligned with the project's ethical principles.
+
+Commercial use of proprietary VDM code requires written permission from Justin K. Lietz.
+See LICENSE file for full terms.
+"""
+
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Dict, Any, List, Tuple
+
+import numpy as np
+
+# Ensure code root on sys.path
+import sys
+CODE_ROOT = Path(__file__).resolve().parents[2]
+if str(CODE_ROOT) not in sys.path:
+    sys.path.insert(0, str(CODE_ROOT))
+
+from common.io_paths import figure_path, log_path, write_log
+from common.plotting.core import apply_style, get_fig_ax, save_figure
+from physics.metriplectic.kg_ops import spectral_grad, spectral_laplacian
+from common.authorization.approval import check_tag_approval
+
+
+@dataclass
+class NoetherSpec:
+    grid: Dict[str, Any]
+    params: Dict[str, Any]
+    dt: float
+    steps: int
+    seed: int | None = 1234
+    tag: str | None = None
+
+
+def _slug(base: str, spec: NoetherSpec) -> str:
+    tag = spec.params.get("tag") if isinstance(spec.params, dict) else None
+    if tag is None:
+        tag = getattr(spec, "tag", None)
+    return f"{base}__{str(tag).strip().replace(' ', '-') if tag else base}"
+
+
+def stiffness(phi: np.ndarray, dx: float, c: float, m: float) -> np.ndarray:
+    """K phi = -c^2 Δ_h phi + m^2 phi (periodic spectral)"""
+    return -(c * c) * spectral_laplacian(phi, dx) + (m * m) * phi
+
+
+def verlet_step_with_half(phi: np.ndarray, pi: np.ndarray, dt: float, dx: float, c: float, m: float) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
+    """Perform one Störmer-Verlet step returning (phi_new, pi_half, pi_new)."""
+    lap_phi = spectral_laplacian(phi, dx)
+    pi_half = pi + 0.5 * dt * ((c * c) * lap_phi - (m * m) * phi)
+    phi_new = phi + dt * pi_half
+    lap_phi_new = spectral_laplacian(phi_new, dx)
+    pi_new = pi_half + 0.5 * dt * ((c * c) * lap_phi_new - (m * m) * phi_new)
+    return phi_new, pi_half, pi_new
+
+
+def discrete_energy(phi_n: np.ndarray, phi_np1: np.ndarray, pi_half: np.ndarray, dx: float, c: float, m: float) -> float:
+    """Leapfrog/Verlet discrete energy exactly conserved for linear KG:
+
+    E_d = 1/2 ||pi_{n+1/2}||^2 + 1/2 <phi_{n+1}, K phi_n>.
+    """
+    Kphi_n = stiffness(phi_n, dx, c, m)
+    term_k = 0.5 * float(np.sum(pi_half * pi_half) * dx)
+    term_p = 0.5 * float(np.sum(phi_np1 * Kphi_n) * dx)
+    return term_k + term_p
+
+
+def discrete_momentum(phi_n: np.ndarray, phi_np1: np.ndarray, pi_half: np.ndarray, dx: float) -> float:
+    """Translation Noether momentum (discrete midpoint variant):
+
+    P_d = < pi_{n+1/2}, ∇_h ( (phi_{n+1}+phi_n)/2 ) >.
+    """
+    phi_mid = 0.5 * (phi_np1 + phi_n)
+    grad_mid = spectral_grad(phi_mid, dx)
+    return float(np.sum(pi_half * grad_mid) * dx)
+
+
+def run_noether(spec: NoetherSpec) -> Dict[str, Any]:
+    N = int(spec.grid["N"]) ; dx = float(spec.grid["dx"]) ; dt = float(spec.dt)
+    c = float(spec.params.get("c", 1.0)) ; m = float(spec.params.get("m", 0.0))
+    steps = int(spec.steps)
+    rng = np.random.default_rng(int(spec.seed) if spec.seed is not None else None)
+    scale = float(spec.params.get("seed_scale", 0.05))
+    phi = rng.random(N).astype(float) * scale
+    pi = rng.random(N).astype(float) * scale
+
+    times: List[float] = [] ; E_d: List[float] = [] ; P_d: List[float] = []
+    t = 0.0
+    # initial half-step values derived from first step
+    for n in range(steps):
+        phi_new, pi_half, pi_new = verlet_step_with_half(phi, pi, dt, dx, c, m)
+        Ed = discrete_energy(phi, phi_new, pi_half, dx, c, m)
+        Pd = discrete_momentum(phi, phi_new, pi_half, dx)
+        times.append(t + 0.5 * dt)
+        E_d.append(float(Ed))
+        P_d.append(float(Pd))
+        # advance
+        phi, pi = phi_new, pi_new
+        t += dt
+
+    # per-step changes
+    dE = [abs(E_d[i+1] - E_d[i]) for i in range(len(E_d)-1)]
+    dP = [abs(P_d[i+1] - P_d[i]) for i in range(len(P_d)-1)]
+    max_dE = float(max(dE) if dE else 0.0)
+    max_dP = float(max(dP) if dP else 0.0)
+    eps = float(np.finfo(float).eps) ; sqrtN = float(np.sqrt(N))
+    bound = eps * sqrtN
+    pass_energy = (max_dE <= 1e-12) or (max_dE <= 10.0 * bound)
+    pass_momentum = (max_dP <= 1e-12) or (max_dP <= 10.0 * bound)
+
+    # Save CSV
+    csvp = log_path("metriplectic", _slug("kg_noether_energy_momentum", spec), failed=not (pass_energy and pass_momentum), type="csv")
+    with csvp.open("w", encoding="utf-8") as f:
+        f.write("t,E_disc,P_disc\n")
+        for ti, Ei, Pi in zip(times, E_d, P_d):
+            f.write(f"{ti},{Ei},{Pi}\n")
+
+    # reversibility test over steps
+    phi0, pi0 = np.copy(rng.bit_generator.random_raw() or phi), np.copy(pi)  # placeholders to satisfy type
+    # Reconstruct exact initial (phi0, pi0) by re-running one trajectory with recorded seed
+    rng2 = np.random.default_rng(int(spec.seed) if spec.seed is not None else None)
+    phi0 = rng2.random(N).astype(float) * scale
+    pi0 = rng2.random(N).astype(float) * scale
+    phi_f, pi_f = phi0.copy(), pi0.copy()
+    for _ in range(steps):
+        phi_f, _, pi_f = verlet_step_with_half(phi_f, pi_f, dt, dx, c, m)
+    # reverse
+    for _ in range(steps):
+        # reversing with -dt
+        phi_f, _, pi_f = verlet_step_with_half(phi_f, pi_f, -dt, dx, c, m)
+    rev_err = float(max(np.linalg.norm(phi_f - phi0, ord=np.inf), np.linalg.norm(pi_f - pi0, ord=np.inf)))
+    pass_rev = rev_err <= 1e-12 or rev_err <= 1e-10
+
+    # Figure: plot E_d and P_d vs time; figures go to figures/ and no logs beside figures
+    failed = not (pass_energy and pass_momentum and pass_rev)
+    apply_style("light")
+    fig, ax = get_fig_ax(size=(6.4, 4.0))
+    ax.plot(times, E_d, label="E_d (discrete energy)")
+    ax.plot(times, P_d, label="P_d (discrete momentum)")
+    ax.set_xlabel("t")
+    ax.set_ylabel("value")
+    ax.set_title("KG Noether: discrete invariants vs time")
+    ax.legend()
+    figp = save_figure("metriplectic", _slug("kg_noether_energy_momentum", spec), fig, failed=failed)
+
+    # Pull tag for schema/log compliance
+    tag = spec.params.get("tag") if isinstance(spec.params, dict) else getattr(spec, "tag", None)
+    logj = {
+        "tag": str(tag) if tag else None,
+        "dt": dt, "steps": steps, "N": N,
+        "max_per_step_delta": {"E_disc": max_dE, "P_disc": max_dP},
+        "epsilon": eps, "sqrtN": sqrtN, "epsilon_sqrtN": bound,
+        "passed": {"energy": pass_energy, "momentum": pass_momentum, "reversibility": pass_rev},
+        "csv": str(csvp),
+        "figure": str(figp)
+    }
+    write_log(log_path("metriplectic", _slug("kg_noether_energy_momentum", spec), failed=failed), logj)
+    if failed:
+        write_log(log_path("metriplectic", _slug("CONTRADICTION_REPORT_kg_noether", spec), failed=True), {
+            "reason": "Noether gate failure",
+            "spec": {"dt": dt, "steps": steps, "grid": spec.grid, "params": spec.params},
+            "metrics": logj,
+            "artifacts": {"csv": str(csvp)}
+        })
+    return logj
+
+
+def dispersion_check(spec: NoetherSpec, k_list: List[int] | None = None) -> Dict[str, Any]:
+    N = int(spec.grid["N"]) ; dx = float(spec.grid["dx"]) ; dt = float(spec.dt)
+    c = float(spec.params.get("c", 1.0)) ; m = float(spec.params.get("m", 0.0))
+    steps = int(spec.steps)
+    if not k_list:
+        k_list = [1, 2, 3]
+    omega2: List[float] = [] ; k2: List[float] = []
+    for k in k_list:
+        x = np.arange(N) * dx
+        phi = np.sin(2.0 * np.pi * k * x / (N * dx)) * 1e-3
+        pi = np.zeros_like(phi)
+        samples: List[float] = []
+        for _ in range(steps):
+            phi, _, pi = verlet_step_with_half(phi, pi, dt, dx, c, m)
+            samples.append(float(phi[0]))
+        s = np.array(samples, dtype=float)
+        # dominant frequency via FFT
+        S = np.fft.rfft(s)
+        freqs = np.fft.rfftfreq(s.size, d=dt)
+        idx = int(np.argmax(np.abs(S[1:])) + 1)  # skip zero freq
+        omega = 2.0 * np.pi * freqs[idx]
+        omega2.append(float(omega * omega))
+        k_phys = 2.0 * np.pi * k / (N * dx)
+        k2.append(float(k_phys * k_phys))
+
+    # Fit omega^2 = m^2 + c^2 k^2
+    x = np.array(k2, dtype=float) ; y = np.array(omega2, dtype=float)
+    A = np.vstack([x, np.ones_like(x)]).T
+    slope, intercept = np.linalg.lstsq(A, y, rcond=None)[0]
+    y_pred = A @ np.array([slope, intercept])
+    ss_res = float(np.sum((y - y_pred)**2)) ; ss_tot = float(np.sum((y - np.mean(y))**2))
+    R2 = 1.0 - (ss_res / ss_tot if ss_tot > 0 else 0.0)
+    passed = (abs(slope - c * c) / max(c * c, 1e-12) < 0.05) and (abs(intercept - m * m) / max(m * m, 1e-12) < 0.05) and (R2 >= 0.999)
+
+    # Artifacts
+    import matplotlib.pyplot as plt
+    figp = figure_path("metriplectic", _slug("kg_dispersion", spec), failed=not passed)
+    plt.figure(figsize=(5.2, 4.0))
+    plt.plot(k2, omega2, "o", label="measured")
+    xs = np.linspace(0, max(k2) * 1.05, 100)
+    plt.plot(xs, slope * xs + intercept, "-", label=f"fit: ω^2 ≈ {slope:.3f} k^2 + {intercept:.3f}")
+    plt.xlabel("k^2") ; plt.ylabel("ω^2") ; plt.legend() ; plt.tight_layout()
+    plt.savefig(figp, dpi=150) ; plt.close()
+
+    csvp = log_path("metriplectic", _slug("kg_dispersion", spec), failed=not passed, type="csv")
+    with csvp.open("w", encoding="utf-8") as f:
+        f.write("k2,omega2\n")
+        for xi, yi in zip(k2, omega2):
+            f.write(f"{xi},{yi}\n")
+
+    logj = {"fit": {"slope": float(slope), "intercept": float(intercept), "R2": float(R2)}, "passed": bool(passed), "figure": str(figp), "csv": str(csvp)}
+    write_log(log_path("metriplectic", _slug("kg_dispersion", spec), failed=not passed), logj)
+    if not passed:
+        write_log(log_path("metriplectic", _slug("CONTRADICTION_REPORT_kg_dispersion", spec), failed=True), {
+            "reason": "Dispersion gate failure",
+            "spec": {"dt": float(spec.dt), "steps": int(spec.steps), "grid": spec.grid, "params": spec.params},
+            "metrics": logj,
+            "artifacts": {"figure": str(figp), "csv": str(csvp)}
+        })
+    return logj
+
+
+def main():
+    import argparse, json
+    from common.authorization.approval import check_tag_approval
+    p = argparse.ArgumentParser(description="KG Noether checks (energy/momentum) and optional dispersion")
+    p.add_argument("--spec", type=str, required=True, help="Path to KG⊕RD spec JSON (for N, dx, c, m, tag)")
+    p.add_argument("--steps", type=int, default=256)
+    p.add_argument("--dt", type=float, default=None, help="Override dt (default: min of spec.dt_sweep)")
+    p.add_argument("--dispersion", action="store_true")
+    p.add_argument("--allow-unapproved", action="store_true", help="Allow run without approval (artifacts quarantined)")
+    args = p.parse_args()
+    spec_path = Path(args.spec)
+    raw = json.loads(spec_path.read_text())
+    tag = raw.get("tag") or (raw.get("params", {}).get("tag"))
+    # Enforce approval by policy
+    _approved, _eng_only, _proposal = check_tag_approval("metriplectic", str(tag), args.allow_unapproved, CODE_ROOT)
+    dt = float(args.dt if args.dt is not None else min(raw["dt_sweep"]))
+    nspec = NoetherSpec(grid=raw["grid"], params=raw["params"], dt=dt, steps=int(args.steps), seed=1234, tag=tag)
+    noether = run_noether(nspec)
+    result = {"noether": noether}
+    if args.dispersion:
+        result["dispersion"] = dispersion_check(nspec)
+    print(json.dumps(result, indent=2))
+
+
+if __name__ == "__main__":
+    main()
+]]></content>
+    </file>
+    <file>
+      <path>kg_ops.py</path>
+      <content><![CDATA[#!/usr/bin/env python3
+"""
+Copyright © 2025 Justin K. Lietz, Neuroca, Inc. All Rights Reserved.
+
+This research is protected under a dual-license to foster open academic
+research while ensuring commercial applications are aligned with the project's ethical principles.
+
+Commercial use of proprietary VDM code requires written permission from Justin K. Lietz.
+See LICENSE file for full terms.
+"""
+from __future__ import annotations
+import numpy as np
+from typing import Tuple
+
+
+def _omega(N: int, dx: float) -> np.ndarray:
+    k_cyc = np.fft.fftfreq(N, d=dx)
+    return 2.0 * np.pi * k_cyc
+
+
+def spectral_laplacian(u: np.ndarray, dx: float) -> np.ndarray:
+    N = u.size
+    om = _omega(N, dx)
+    U = np.fft.fft(u)
+    return np.fft.ifft(-(om * om) * U).real
+
+
+def spectral_grad(u: np.ndarray, dx: float) -> np.ndarray:
+    N = u.size
+    om = _omega(N, dx)
+    U = np.fft.fft(u)
+    return np.fft.ifft(1j * om * U).real
+
+
+def kg_energy(phi: np.ndarray, pi: np.ndarray, dx: float, c: float, m: float) -> float:
+    dphi = spectral_grad(phi, dx)
+    kin = 0.5 * float(np.sum(pi * pi) * dx)
+    grad = 0.5 * (c * c) * float(np.sum(dphi * dphi) * dx)
+    pot = 0.5 * (m * m) * float(np.sum(phi * phi) * dx)
+    return kin + grad + pot
+
+
+def kg_verlet_step(phi: np.ndarray, pi: np.ndarray, dt: float, dx: float, c: float, m: float) -> Tuple[np.ndarray, np.ndarray]:
+    # pi half-step
+    lap_phi = spectral_laplacian(phi, dx)
+    pi_half = pi + 0.5 * dt * ((c * c) * lap_phi - (m * m) * phi)
+    # phi full-step
+    phi_new = phi + dt * pi_half
+    # pi half-step with updated phi
+    lap_phi_new = spectral_laplacian(phi_new, dx)
+    pi_new = pi_half + 0.5 * dt * ((c * c) * lap_phi_new - (m * m) * phi_new)
+    return phi_new, pi_new
+]]></content>
+    </file>
+    <file>
+      <path>metriplectic_structure_checks.py</path>
+      <content><![CDATA[#!/usr/bin/env python3
+"""
+Copyright © 2025 Justin K. Lietz, Neuroca, Inc. All Rights Reserved.
+
+This research is protected under a dual-license to foster open academic
+research while ensuring commercial applications are aligned with the project's ethical principles.
+
+Commercial use of proprietary VDM code requires written permission from Justin K. Lietz.
+See LICENSE file for full terms.
+"""
+from __future__ import annotations
+
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Dict, Any, Tuple
+
+import numpy as np
+
+# sys.path setup
+import sys
+CODE_ROOT = Path(__file__).resolve().parents[2]
+if str(CODE_ROOT) not in sys.path:
+    sys.path.insert(0, str(CODE_ROOT))
+
+from common.io_paths import log_path, write_log
+from common.plotting.core import (
+    apply_style,
+    get_fig_ax,
+    sanitize_for_log,
+    save_figure,
+)
+from physics.metriplectic.kg_ops import spectral_laplacian
+
+
+@dataclass
+class StructSpec:
+    grid: Dict[str, Any]
+    params: Dict[str, Any]
+    draws: int = 100
+    tag: str | None = None
+
+
+def _slug(base: str, spec: StructSpec) -> str:
+    tag = spec.params.get("tag") if isinstance(spec.params, dict) else None
+    if tag is None:
+        tag = getattr(spec, "tag", None)
+    return f"{base}__{str(tag).strip().replace(' ', '-') if tag else base}"
+
+
+def apply_J(v: np.ndarray, dx: float, c: float, m: float) -> np.ndarray:
+    """Apply canonical symplectic J to (phi; pi): [[0, I], [-I, 0]] v.
+
+    This checks skew-symmetry of J itself, independent of the Hamiltonian's K.
+    """
+    N2 = v.size
+    if N2 % 2 != 0:
+        raise ValueError("apply_J expects v to be concatenation of (phi, pi) with even length")
+    N = N2 // 2
+    phi = v[:N]
+    pi = v[N:]
+    out_phi = pi
+    out_pi = -phi
+    return np.concatenate([out_phi, out_pi])
+
+
+def apply_M(u: np.ndarray, dx: float, D: float, lap_operator: str) -> np.ndarray:
+    """Apply metric operator M on scalar field (RD). Here we test phi-channel metric only as in code."""
+    # Metric acts on phi only with D*(-Δ) (spectral option)
+    if lap_operator == "spectral":
+        return D * (-spectral_laplacian(u, dx))
+    else:
+        # simple 3-point stencil periodic Laplacian
+        N = u.size
+        um = np.roll(u, 1)
+        up = np.roll(u, -1)
+        return D * ((-up + 2.0 * u - um) / (dx * dx))
+
+
+def run_structure_checks(spec: StructSpec) -> Dict[str, Any]:
+    N = int(spec.grid["N"]) ; dx = float(spec.grid["dx"]) ; c = float(spec.params.get("c", 1.0)) ; m = float(spec.params.get("m", 0.0))
+    D = float(spec.params.get("D", 1.0)) ; lap = str(spec.params.get("m_lap_operator", "spectral"))
+    g = np.random.default_rng(2025)
+
+    # Skew test for J: <v, J v> should be ~ 0
+    inner_vals = []
+    for _ in range(int(spec.draws)):
+        v = g.standard_normal(2 * N).astype(float)
+        Jv = apply_J(v, dx, c, m)
+        inner = float(np.dot(v, Jv) * dx)
+        inner_vals.append(abs(inner))
+    skew_median = float(np.median(inner_vals))
+    skew_gate_ok = skew_median <= 1e-12
+
+    # PSD of M on phi: <u, M u> >= 0
+    neg_count = 0
+    vals = []
+    for _ in range(int(spec.draws)):
+        u = g.standard_normal(N).astype(float)
+        Mu = apply_M(u, dx, D, lap)
+        quad = float(np.dot(u, Mu) * dx)
+        vals.append(quad)
+        if quad < -1e-12:
+            neg_count += 1
+    psd_ok = (neg_count == 0)
+
+    logj = {
+        "J_skew": {"median_abs_vJv": skew_median, "gate": "<=1e-12", "passed": bool(skew_gate_ok)},
+        "M_psd": {"min": float(np.min(vals)), "neg_count": int(neg_count), "draws": int(spec.draws), "gate": "0 negatives", "passed": bool(psd_ok)}
+    }
+    failed = not (skew_gate_ok and psd_ok)
+
+    # Structured JSON log
+    json_path = log_path("metriplectic", _slug("metriplectic_structure_checks", spec), failed=failed, type="json")
+    write_log(json_path, logj)
+
+    # Flat CSV summary for dashboards
+    flat = {
+        "tag": spec.params.get("tag") if isinstance(spec.params, dict) else getattr(spec, "tag", None),
+        "N": int(N),
+        "dx": float(dx),
+        "c": float(c),
+        "m": float(m),
+        "D": float(D),
+        "m_lap_operator": lap,
+        "draws": int(spec.draws),
+        "J_median_abs_vJv": float(skew_median),
+        "J_passed": bool(skew_gate_ok),
+        "M_min": float(np.min(vals)),
+        "M_neg_count": int(neg_count),
+        "M_passed": bool(psd_ok),
+    }
+    csv_path = log_path("metriplectic", _slug("metriplectic_structure_checks_summary", spec), failed=failed, type="csv")
+    write_log(csv_path, flat)
+
+    # Figures: histograms for diagnostics
+    try:
+        apply_style("light")
+
+        # Figure 1: Histogram of |<v, J v>| with log-x
+        fig1, ax1 = get_fig_ax(size=(6.4, 4.0))
+        data_j = np.asarray(inner_vals, dtype=float)
+        ax1.hist(sanitize_for_log(np.abs(data_j)), bins=50, color="#1f77b4", alpha=0.85)
+        ax1.set_xscale("log")
+        ax1.set_xlabel("|<v, J v>|")
+        ax1.set_ylabel("count")
+        ax1.set_title(f"J skew check - median={skew_median:.2e}")
+        f1_slug = _slug("metriplectic_structure_checks_J_skew_hist", spec)
+        f1 = save_figure("metriplectic", f1_slug, fig1, failed=failed)
+        # Log plot metadata to logs directory (not next to figure)
+        f1_log = {
+            "figure_path": str(f1),
+            "plot": {"kind": "histogram", "x": "|<v,Jv>|", "bins": 50, "xscale": "log"},
+            "stats": {"median_abs_vJv": skew_median, "passed": bool(skew_gate_ok)}
+        }
+        write_log(log_path("metriplectic", f1_slug, failed=failed, type="json"), f1_log)
+
+        # Figure 2: Histogram of <u, M u>
+        fig2, ax2 = get_fig_ax(size=(6.4, 4.0))
+        data_m = np.asarray(vals, dtype=float)
+        ax2.hist(data_m, bins=50, color="#2ca02c", alpha=0.85)
+        ax2.axvline(0.0, color="red", linestyle="--", linewidth=1.0, label="0")
+        ax2.legend(loc="best")
+        ax2.set_xlabel("<u, M u>")
+        ax2.set_ylabel("count")
+        ax2.set_title(f"M PSD check - min={float(np.min(vals)):.2e}; neg_count={neg_count}")
+        f2_slug = _slug("metriplectic_structure_checks_M_psd_hist", spec)
+        f2 = save_figure("metriplectic", f2_slug, fig2, failed=failed)
+        f2_log = {
+            "figure_path": str(f2),
+            "plot": {"kind": "histogram", "x": "<u,Mu>", "bins": 50, "xscale": "linear"},
+            "stats": {"min": float(np.min(vals)), "neg_count": int(neg_count), "draws": int(spec.draws), "passed": bool(psd_ok)}
+        }
+        write_log(log_path("metriplectic", f2_slug, failed=failed, type="json"), f2_log)
+    except Exception as _e:
+        # Preserve core outputs even if plotting fails
+        _ = _e
+    if failed:
+        write_log(log_path("metriplectic", _slug("CONTRADICTION_REPORT_structure", spec), failed=True, type="json"), {
+            "reason": "Structure gate failure",
+            "spec": {"grid": spec.grid, "params": spec.params, "draws": int(spec.draws)},
+            "metrics": logj
+        })
+    return logj
+
+
+def main():
+    import argparse, json
+    p = argparse.ArgumentParser(description="Metriplectic structure sanity checks: skew(J), PSD(M)")
+    p.add_argument("--spec", type=str, required=True)
+    p.add_argument("--draws", type=int, default=100)
+    args = p.parse_args()
+    raw = json.loads(Path(args.spec).read_text())
+    tag = raw.get("tag") or (raw.get("params", {}).get("tag"))
+    ss = StructSpec(grid=raw["grid"], params=raw["params"], draws=int(args.draws), tag=tag)
+    out = run_structure_checks(ss)
+    print(json.dumps(out, indent=2))
+
+
+if __name__ == "__main__":
+    main()
+]]></content>
+    </file>
+    <file>
+      <path>run_kg_dispersion.py</path>
+      <content><![CDATA[#!/usr/bin/env python3
+"""
+Copyright © 2025 Justin K. Lietz, Neuroca, Inc. All Rights Reserved.
+
+This research is protected under a dual-license to foster open academic
+research while ensuring commercial applications are aligned with the project's ethical principles.
+
+Commercial use of proprietary VDM code requires written permission from Justin K. Lietz.
+See LICENSE file for full terms.
+"""
+from __future__ import annotations
+
+from dataclasses import dataclass
+from pathlib import Path
+from typing import List, Dict, Any, Tuple
+
+import numpy as np
+import sys
+
+# Ensure common helpers on path
+CODE_ROOT = Path(__file__).resolve().parents[2]
+if str(CODE_ROOT) not in sys.path:
+    sys.path.insert(0, str(CODE_ROOT))
+
+from common.io_paths import figure_path, log_path, write_log
+from common.data.results_db import (
+    begin_run,
+    add_artifacts,
+    log_metrics,
+    end_run_success,
+    end_run_failed,
+)
+from common.authorization.approval import check_tag_approval
+from physics.metriplectic.kg_ops import kg_verlet_step
+
+
+@dataclass
+class DispersionSpec:
+    N: int = 512
+    L: float = 2.0 * np.pi
+    c: float = 1.0
+    m: float = 1.0
+    A: float = 1e-6
+    dt: float = 0.01
+    steps: int = 8000
+    modes: Tuple[int, ...] = (1, 2, 3, 4, 5, 6, 8, 10)
+    tag: str = "KG-dispersion-v1"
+
+
+def _grid(spec: DispersionSpec) -> Tuple[np.ndarray, float]:
+    x = np.linspace(0.0, spec.L, spec.N, endpoint=False)
+    dx = spec.L / spec.N
+    return x, dx
+
+
+def _project_sin(x: np.ndarray, y: np.ndarray, k: float) -> float:
+    # a_k = 2/L ∫ y(x) sin(kx) dx (Riemann sum)
+    L = float(x[-1] - x[0] + (x[1] - x[0]))
+    dx = x[1] - x[0]
+    return (2.0 / L) * float(np.sum(y * np.sin(k * x)) * dx)
+
+
+def _measure_omega_from_zero_crossings(t: np.ndarray, y: np.ndarray) -> float:
+    # Positive-going zero crossings with linear interpolation
+    crossings: List[float] = []
+    for i in range(len(y) - 1):
+        if y[i] < 0.0 and y[i + 1] >= 0.0:
+            dy = y[i + 1] - y[i]
+            if abs(dy) < 1e-30:
+                continue
+            frac = -y[i] / dy
+            t_cross = t[i] + frac * (t[i + 1] - t[i])
+            crossings.append(t_cross)
+    if len(crossings) < 2:
+        return float("nan")
+    periods = np.diff(np.array(crossings))
+    T_mean = float(np.mean(periods))
+    if T_mean <= 0:
+        return float("nan")
+    return 2.0 * np.pi / T_mean
+
+
+def run_dispersion(spec: DispersionSpec, approved: bool = False, engineering_only: bool = False, proposal: str | None = None) -> Dict[str, Any]:
+    x, dx = _grid(spec)
+    results: List[Tuple[int, float, float]] = []  # (mode, k, omega)
+    t = np.arange(spec.steps + 1, dtype=float) * spec.dt
+
+    for m_idx in spec.modes:
+        k = 2.0 * np.pi * (m_idx / spec.L)  # k = 2π m / L
+        # Initial conditions: single sine mode in phi, zero momentum
+        phi = spec.A * np.sin(k * x)
+        pi = np.zeros_like(phi)
+        # Record modal coefficient over time
+        y = np.empty_like(t)
+        y[0] = _project_sin(x, phi, k)
+        cur_phi, cur_pi = phi.copy(), pi.copy()
+        for n in range(1, spec.steps + 1):
+            cur_phi, cur_pi = kg_verlet_step(cur_phi, cur_pi, spec.dt, dx, spec.c, spec.m)
+            y[n] = _project_sin(x, cur_phi, k)
+
+        omega = _measure_omega_from_zero_crossings(t, y)
+        results.append((m_idx, k, omega))
+
+    # Build regression data: y = omega^2, x = k^2
+    k_arr = np.array([r[1] for r in results])
+    w_arr = np.array([r[2] for r in results])
+    k2 = k_arr * k_arr
+    w2 = w_arr * w_arr
+
+    # Linear regression w2 = slope * k2 + intercept
+    slope, intercept = np.polyfit(k2, w2, 1)
+    y_pred = slope * k2 + intercept
+    ss_res = float(np.sum((w2 - y_pred) ** 2))
+    ss_tot = float(np.sum((w2 - float(np.mean(w2))) ** 2))
+    R2 = 1.0 - (ss_res / ss_tot if ss_tot > 0 else 0.0)
+
+    # Gates
+    rel_slope = abs(slope - spec.c * spec.c) / max(spec.c * spec.c, 1e-30)
+    rel_intercept = abs(intercept - spec.m * spec.m) / max(spec.m * spec.m, 1e-30)
+    passed = bool((R2 >= 0.999) and (rel_slope <= 0.01) and (rel_intercept <= 0.01))
+
+    # Artifacts
+    import matplotlib.pyplot as plt
+    quarantine = engineering_only or (not approved)
+    figp = figure_path("metriplectic", f"kg_dispersion_fit__{spec.tag}", failed=(not passed) or quarantine)
+    xmin, xmax = float(np.min(k2)), float(np.max(k2))
+    xs = np.linspace(xmin, xmax, 200)
+    plt.figure(figsize=(6.2, 4.2))
+    plt.plot(k2, w2, "o", label="modes")
+    plt.plot(xs, slope * xs + intercept, "-", label=f"fit: R^2={R2:.6f}")
+    plt.plot(xs, (spec.c * spec.c) * xs + (spec.m * spec.m), "--", label="theory")
+    plt.xlabel(r"$k^2$")
+    plt.ylabel(r"$\omega^2$")
+    plt.title("KG dispersion fit")
+    plt.legend(loc="best", fontsize=8)
+    plt.tight_layout(); plt.savefig(figp, dpi=150); plt.close()
+
+    # CSV
+    csvp = log_path("metriplectic", f"kg_dispersion_fit__{spec.tag}", failed=(not passed) or quarantine, type="csv")
+    with csvp.open("w", encoding="utf-8") as fcsv:
+        fcsv.write("mode,k,k2,omega,omega2\n")
+        for (m_idx, kk, ww) in results:
+            fcsv.write(f"{m_idx},{kk},{kk*kk},{ww},{ww*ww}\n")
+
+    # JSON log
+    logj = {
+        "params": {
+            "N": spec.N, "L": spec.L, "c": spec.c, "m": spec.m,
+            "A": spec.A, "dt": spec.dt, "steps": spec.steps,
+            "modes": list(spec.modes)
+        },
+        "fit": {
+            "slope": float(slope), "intercept": float(intercept), "R2": float(R2),
+            "rel_slope": float(rel_slope), "rel_intercept": float(rel_intercept)
+        },
+        "gate": {"passed": passed, "R2_min": 0.999, "rel_tol": 0.01},
+        "policy": {"approved": bool(approved), "engineering_only": bool(engineering_only), "quarantined": bool(quarantine), "tag": spec.tag, "proposal": proposal},
+        "table": {"k": k_arr.tolist(), "omega": w_arr.tolist()},
+        "figure": str(figp), "csv": str(csvp)
+    }
+    write_log(log_path("metriplectic", f"kg_dispersion_fit__{spec.tag}", failed=(not passed) or quarantine), logj)
+
+    # Results DB logging (per-domain DB, per-experiment table, batched by tag)
+    try:
+        handle = begin_run(
+            domain="metriplectic",
+            experiment=str(Path(__file__).resolve()),
+            tag=spec.tag,
+            params={
+                "N": spec.N, "L": spec.L, "c": spec.c, "m": spec.m,
+                "A": spec.A, "dt": spec.dt, "steps": spec.steps,
+                "modes": list(spec.modes)
+            },
+            engineering_only=bool(quarantine),
+        )
+        add_artifacts(handle, {"figure": str(figp), "csv": str(csvp)})
+        log_metrics(handle, {
+            "R2": float(R2),
+            "slope": float(slope),
+            "intercept": float(intercept),
+            "rel_slope": float(rel_slope),
+            "rel_intercept": float(rel_intercept),
+            "passed": bool(passed),
+        })
+        if passed:
+            end_run_success(handle)
+        else:
+            end_run_failed(handle, metrics={"passed": False})
+    except Exception as _e:
+        # Non-fatal: preserve artifacts/log even if DB write fails
+        _ = _e
+
+    return logj
+
+
+def main():
+    import argparse, json
+    p = argparse.ArgumentParser(description="KG dispersion: single-mode sweep and linear fit of omega^2 vs k^2")
+    p.add_argument("--N", type=int, default=512)
+    p.add_argument("--L", type=float, default=2.0 * np.pi)
+    p.add_argument("--c", type=float, default=1.0)
+    p.add_argument("--m", type=float, default=1.0)
+    p.add_argument("--A", type=float, default=1e-6)
+    p.add_argument("--dt", type=float, default=0.01)
+    p.add_argument("--steps", type=int, default=8000)
+    p.add_argument("--modes", type=str, default="1,2,3,4,5,6,8,10")
+    p.add_argument("--tag", type=str, default="KG-dispersion-v1")
+    p.add_argument("--allow-unapproved", action="store_true", help="Allow running with an unapproved tag (engineering-only; artifacts quarantined)")
+    args = p.parse_args()
+    modes = tuple(int(s) for s in args.modes.split(",") if s.strip())
+    # Tag approval (shared utility)
+    approved, engineering_only, proposal = check_tag_approval("metriplectic", args.tag, args.allow_unapproved, CODE_ROOT)
+    spec = DispersionSpec(N=args.N, L=args.L, c=args.c, m=args.m, A=args.A, dt=args.dt, steps=args.steps, modes=modes, tag=args.tag)
+    out = run_dispersion(spec, approved=approved, engineering_only=engineering_only, proposal=proposal)
+    print(json.dumps(out, indent=2))
+
+
+if __name__ == "__main__":
+    main()
+]]></content>
+    </file>
+    <file>
+      <path>run_kg_energy_oscillation.py</path>
+      <content><![CDATA[#!/usr/bin/env python3
+"""
+Copyright © 2025 Justin K. Lietz, Neuroca, Inc. All Rights Reserved.
+
+This research is protected under a dual-license to foster open academic
+research while ensuring commercial applications are aligned with the project's ethical principles.
+
+Commercial use of proprietary VDM code requires written permission from Justin K. Lietz.
+See LICENSE file for full terms.
+"""
+from __future__ import annotations
+
+import json
+from dataclasses import dataclass
+from pathlib import Path
+from typing import List, Tuple, Dict, Any
+import numpy as np
+import sys
+import hashlib
+import os
+
+# Path setup
+CODE_ROOT = Path(__file__).resolve().parents[2]
+if str(CODE_ROOT) not in sys.path:
+    sys.path.insert(0, str(CODE_ROOT))
+
+from common.io_paths import figure_path_by_tag, log_path_by_tag, write_log, build_slug
+from common.authorization.approval import check_tag_approval
+from common.plotting.core import apply_style, get_fig_ax, save_figure
+from common.data.results_db import (
+    begin_run,
+    add_artifacts,
+    log_metrics,
+    end_run_success,
+    end_run_failed,
+)
+from physics.metriplectic.kg_ops import kg_energy, kg_verlet_step
+
+
+@dataclass
+class Spec:
+    N: int
+    dx: float
+    c: float
+    m: float
+    seed_scale: float
+    bands: List[Tuple[int, int]]
+    seeds_per_band: int
+    checkpoints: List[int]
+    tag: str
+    steps: int
+    dt_strategy: str
+    dt_ladder_count: int
+
+
+def _env_audit() -> Dict[str, Any]:
+    import numpy
+    return {
+        "python": sys.version,
+        "numpy": numpy.__version__,
+        "threads": {
+            "OMP_NUM_THREADS": os.getenv("OMP_NUM_THREADS"),
+            "MKL_NUM_THREADS": os.getenv("MKL_NUM_THREADS"),
+            "OPENBLAS_NUM_THREADS": os.getenv("OPENBLAS_NUM_THREADS"),
+        },
+        "fft": {"plan": os.getenv("VDM_FFT_PLAN", "deterministic")},
+    }
+
+
+def _lambda_k_spectral(N: int, dx: float) -> np.ndarray:
+    # Eigenvalues of -\Delta for spectral derivative: lambda_k = (2πk/L)^2 with L = N*dx
+    L = N * dx
+    k_idx = np.fft.fftfreq(N, d=dx) * L  # integer-like k
+    om = 2.0 * np.pi * k_idx / L
+    return (om * om)
+
+
+def _omega_max(N: int, dx: float, c: float, m: float) -> float:
+    lam = _lambda_k_spectral(N, dx)
+    return float(np.sqrt(m * m + (c * c) * np.max(lam)))
+
+
+def _dt_ladder(spec: Spec) -> List[float]:
+    if spec.dt_strategy == "discrete_omega_max_geometric":
+        wmax = _omega_max(spec.N, spec.dx, spec.c, spec.m)
+        dt_max = 0.8 / max(wmax, 1e-30)
+        return [dt_max / (2 ** j) for j in range(spec.dt_ladder_count)]
+    raise ValueError(f"Unknown dt strategy: {spec.dt_strategy}")
+
+
+def _band_limited_init(N: int, L: float, band: Tuple[int, int], seed: int, scale: float) -> Tuple[np.ndarray, np.ndarray]:
+    rng = np.random.default_rng(seed)
+    x = np.linspace(0.0, L, N, endpoint=False)
+    phi = np.zeros(N, dtype=float)
+    for m in range(band[0], band[1] + 1):
+        phase = rng.uniform(0.0, 2.0 * np.pi)
+        phi += np.sin((2.0 * np.pi * m / L) * x + phase)
+    phi *= (scale / max(np.max(np.abs(phi)), 1e-12))
+    pi = np.zeros_like(phi)
+    return phi, pi
+
+
+def _hash_raw(arr: np.ndarray) -> str:
+    return hashlib.sha256(memoryview(np.ascontiguousarray(arr)).tobytes()).hexdigest()
+
+
+def run(spec: Spec, approved: bool, engineering_only: bool, proposal: str | None) -> Dict[str, Any]:
+    L = spec.N * spec.dx
+    dt_list = _dt_ladder(spec)
+    AH_all: List[float] = []
+    rel_AH_all: List[float] = []
+    e_rev_max: float = 0.0
+    # Determinism receipts sample: flattened list of checkpoint hashes for first sampled seed per dt
+    hashes_any: List[str] = []
+    
+    # Determinism posture is caller-controlled via env; we record audit
+    env_audit = _env_audit()
+
+    # For each dt: run seeds across bands, compute energy amplitude, aggregate median
+    for dt in dt_list:
+        amps: List[float] = []
+        rel_amps: List[float] = []
+        sampled_hashes_for_dt = False
+        for (lo, hi) in spec.bands:
+            for s in range(spec.seeds_per_band):
+                seed = (lo * 10_000 + hi * 100 + s)
+                phi0, pi0 = _band_limited_init(spec.N, L, (lo, hi), seed, spec.seed_scale)
+                # Forward evolve over steps, collect energies, hash checkpoints
+                phi, pi = phi0.copy(), pi0.copy()
+                H_series = np.empty(spec.steps + 1, dtype=float)
+                H_series[0] = kg_energy(phi, pi, spec.dx, spec.c, spec.m)
+                hashes: List[str] = []
+                cpi = 0
+                for n in range(1, spec.steps + 1):
+                    phi, pi = kg_verlet_step(phi, pi, dt, spec.dx, spec.c, spec.m)
+                    H_series[n] = kg_energy(phi, pi, spec.dx, spec.c, spec.m)
+                    if n in spec.checkpoints:
+                        # Hash raw buffers concatenated deterministic order
+                        hashes.append(_hash_raw(phi) + ":" + _hash_raw(pi))
+                        cpi += 1
+                # Record a determinism receipt sample once per dt (first seed encountered)
+                if (not sampled_hashes_for_dt) and len(hashes) > 0:
+                    for cp_idx, h in zip(spec.checkpoints, hashes):
+                        hashes_any.append(f"dt={dt:.12g};cp={cp_idx};seed={seed};h={h}")
+                    sampled_hashes_for_dt = True
+                # Reverse time
+                for n in range(spec.steps, 0, -1):
+                    phi, pi = kg_verlet_step(phi, pi, -dt, spec.dx, spec.c, spec.m)
+                e_rev = max(float(np.max(np.abs(phi - phi0))), float(np.max(np.abs(pi - pi0))))
+                if e_rev > e_rev_max:
+                    e_rev_max = e_rev
+                # Energy amplitude and relative
+                AH = 0.5 * (float(np.max(H_series)) - float(np.min(H_series)))
+                rel = AH / max(float(np.mean(H_series)), 1e-30)
+                amps.append(AH)
+                rel_amps.append(rel)
+        # Aggregate medians across seeds/bands
+        AH_all.append(float(np.median(np.array(amps))))
+        rel_AH_all.append(float(np.median(np.array(rel_amps))))
+
+    # Fit log–log AH vs dt
+    x = np.log(np.array(dt_list))
+    y = np.log(np.array(AH_all))
+    p, b = np.polyfit(x, y, 1)
+    y_pred = p * x + b
+    ss_res = float(np.sum((y - y_pred) ** 2))
+    ss_tot = float(np.sum((y - float(np.mean(y))) ** 2))
+    R2 = 1.0 - (ss_res / ss_tot if ss_tot > 0 else 0.0)
+
+    quarantine = engineering_only or (not approved)
+    # Plotting via common.plotting.core
+    apply_style("light")
+    fig, ax = get_fig_ax(size=(6.2, 4.2))
+    xs = np.linspace(float(np.min(x)), float(np.max(x)), 200)
+    ax.plot(x, y, "o", label="data")
+    ax.plot(xs, p * xs + b, "-", label=f"fit p={p:.4f}, R^2={R2:.6f}")
+    ax.set_xlabel(r"$\log(\Delta t)$"); ax.set_ylabel(r"$\log(A_H)$"); ax.set_title("KG Energy Oscillation Scaling")
+    ax.legend(loc="best", fontsize=8)
+    slug = build_slug("kg_energy_osc_fit", spec.tag)
+    figp = save_figure("metriplectic", slug, fig, failed=quarantine)
+    # Store plot metadata under logs/ (not next to figures)
+    plot_meta = {"plot": {"kind": "loglog", "x": "log(dt)", "y": "log(A_H)"}, "stats": {"p": float(p), "R2": float(R2)}}
+    plot_meta_path = log_path_by_tag("metriplectic", "kg_energy_osc_fit_plotmeta", spec.tag, failed=quarantine, type="json")
+    write_log(plot_meta_path, plot_meta)
+
+    csvp = log_path_by_tag("metriplectic", "kg_energy_osc_fit", spec.tag, failed=quarantine, type="csv")
+    with csvp.open("w", encoding="utf-8") as fcsv:
+        fcsv.write("dt,AH,rel_AH\n")
+        for dt, ah, rah in zip(dt_list, AH_all, rel_AH_all):
+            fcsv.write(f"{dt},{ah},{rah}\n")
+
+    # Gate checks
+    rel_min_dt = float(rel_AH_all[-1]) if len(rel_AH_all) > 0 else float("inf")
+    passed = bool((1.95 <= p <= 2.05) and (R2 >= 0.999) and (rel_min_dt <= 1e-4))
+
+    logj = {
+        "tag": spec.tag,
+        "grid": {"N": spec.N, "dx": spec.dx},
+        "params": {"c": spec.c, "m": spec.m, "seed_scale": spec.seed_scale, "bands": spec.bands, "seeds_per_band": spec.seeds_per_band},
+        "dt_list": dt_list,
+        "AH": AH_all,
+        "rel_AH": rel_AH_all,
+        "fit": {"p": float(p), "R2": float(R2)},
+        "e_rev": float(e_rev_max),
+        "checkpoints": spec.checkpoints,
+        "hashes": hashes_any,
+        "env_audit": env_audit,
+        "figure": str(figp),
+        "csv": str(csvp),
+        "gate": {"p_range": [1.95, 2.05], "R2_min": 0.999, "rel_AH_min_dt": 1e-4},
+        "passed": bool(passed)
+    }
+    write_log(log_path_by_tag("metriplectic", "kg_energy_osc_fit", spec.tag, failed=quarantine), logj)
+
+    # Results DB lifecycle
+    try:
+        handle = begin_run(
+            domain="metriplectic",
+            experiment=str(Path(__file__).resolve()),
+            tag=spec.tag,
+            params={
+                "N": spec.N, "dx": spec.dx, "c": spec.c, "m": spec.m,
+                "seed_scale": spec.seed_scale, "bands": spec.bands,
+                "seeds_per_band": spec.seeds_per_band, "steps": spec.steps,
+                "dt_strategy": spec.dt_strategy, "dt_ladder_count": spec.dt_ladder_count,
+            },
+            engineering_only=bool(quarantine),
+        )
+        add_artifacts(handle, {"figure": str(figp), "csv": str(csvp)})
+        log_metrics(handle, {
+            "p": float(p), "R2": float(R2), "e_rev_max": float(e_rev_max),
+            "rel_AH_min_dt": float(rel_min_dt), "passed": bool(passed)
+        })
+        if passed:
+            end_run_success(handle)
+        else:
+            end_run_failed(handle, metrics={"passed": False})
+    except Exception as _e:
+        # Non-fatal: preserve artifacts/log even if DB write fails
+        _ = _e
+    return logj
+
+
+def main():
+    import argparse
+    p = argparse.ArgumentParser(description="KG J-only energy oscillation amplitude scaling and time-reversal QC")
+    p.add_argument("--spec", type=str, default=str(Path(__file__).with_name("specs") / "kg_energy_osc.v1.json"))
+    p.add_argument("--allow-unapproved", action="store_true")
+    args = p.parse_args()
+
+    # Approval check
+    approved, engineering_only, proposal = check_tag_approval("metriplectic", "KG-energy-osc-v1", args.allow_unapproved, CODE_ROOT)
+
+    with open(args.spec, "r", encoding="utf-8") as fs:
+        s = json.load(fs)
+    spec = Spec(
+        N=int(s["grid"]["N"]), dx=float(s["grid"]["dx"]),
+        c=float(s["params"]["c"]), m=float(s["params"]["m"]), seed_scale=float(s["params"]["seed_scale"]),
+        bands=[tuple(b) for b in s["params"]["bands"]], seeds_per_band=int(s["params"]["seeds_per_band"]),
+        checkpoints=list(s["params"]["checkpoints"]), tag=str(s["params"]["tag"]),
+        steps=int(s["steps"]), dt_strategy=str(s["dt_strategy"]), dt_ladder_count=int(s["dt_ladder_count"]))
+
+    out = run(spec, approved=approved, engineering_only=engineering_only, proposal=proposal)
+    print(json.dumps(out, indent=2))
+
+
+if __name__ == "__main__":
+    main()
+]]></content>
+    </file>
+    <file>
+      <path>run_kg_light_cone.py</path>
+      <content><![CDATA[#!/usr/bin/env python3
+"""
+Copyright © 2025 Justin K. Lietz, Neuroca, Inc. All Rights Reserved.
+
+This research is protected under a dual-license to foster open academic
+research while ensuring commercial applications are aligned with the project's ethical principles.
+
+Commercial use of proprietary VDM code requires written permission from Justin K. Lietz.
+See LICENSE file for full terms.
+"""
+from __future__ import annotations
+
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Tuple, Dict, Any, List
+
+import numpy as np
+import sys
+
+# Ensure common helpers on path
+CODE_ROOT = Path(__file__).resolve().parents[2]
+if str(CODE_ROOT) not in sys.path:
+    sys.path.insert(0, str(CODE_ROOT))
+
+from common.io_paths import figure_path, log_path, write_log
+from common.data.results_db import (
+    begin_run,
+    add_artifacts,
+    log_metrics,
+    end_run_success,
+    end_run_failed,
+)
+from common.authorization.approval import check_tag_approval
+from physics.metriplectic.kg_ops import kg_verlet_step
+
+
+@dataclass
+class ConeSpec:
+    N: int = 512
+    L: float = 2.0 * np.pi
+    c: float = 1.0
+    m: float = 1.0
+    A: float = 1e-4  # slightly larger than dispersion to clear threshold cleanly
+    dt: float = 0.0025
+    steps: int = 4000
+    sigma_frac: float = 0.01  # sigma = sigma_frac * L
+    threshold_rel: float = 1e-6  # threshold = threshold_rel * A
+    tag: str = "KG-cone-v1"
+
+
+def _grid(spec: ConeSpec) -> Tuple[np.ndarray, float]:
+    x = np.linspace(0.0, spec.L, spec.N, endpoint=False)
+    dx = spec.L / spec.N
+    return x, dx
+
+
+def _periodic_distance(x: np.ndarray, x0: float, L: float) -> np.ndarray:
+    # minimal periodic distance on a ring [0,L)
+    d = np.abs(x - x0)
+    return np.minimum(d, L - d)
+
+
+def _initial_gaussian(spec: ConeSpec, x: np.ndarray) -> Tuple[np.ndarray, np.ndarray, float]:
+    x0 = 0.5 * spec.L
+    sigma = spec.sigma_frac * spec.L
+    phi0 = spec.A * np.exp(-0.5 * ((x - x0) / sigma) ** 2)
+    pi0 = np.zeros_like(phi0)
+    return phi0, pi0, x0
+
+
+def _front_radius(x: np.ndarray, x0: float, L: float, phi: np.ndarray, thresh: float) -> float:
+    mask = np.abs(phi) >= thresh
+    if not np.any(mask):
+        return 0.0
+    d = _periodic_distance(x, x0, L)
+    return float(np.max(d[mask]))
+
+
+def run_cone(spec: ConeSpec, approved: bool = False, engineering_only: bool = False, proposal: str | None = None) -> Dict[str, Any]:
+    x, dx = _grid(spec)
+    t = np.arange(spec.steps + 1, dtype=float) * spec.dt
+    phi, pi, x0 = _initial_gaussian(spec, x)
+    thresh = spec.threshold_rel * spec.A
+
+    # Optional space-time for visualization: store |phi| at a stride to limit memory
+    stride_t = max(1, int(spec.steps // 400))  # at most ~400 time slices
+    st_slices: List[np.ndarray] = []
+    st_times: List[float] = []
+
+    R: np.ndarray = np.zeros_like(t)
+    R[0] = _front_radius(x, x0, spec.L, phi, thresh)
+    if 0 % stride_t == 0:
+        st_slices.append(np.abs(phi).copy())
+        st_times.append(t[0])
+
+    cur_phi, cur_pi = phi.copy(), pi.copy()
+    for n in range(1, spec.steps + 1):
+        cur_phi, cur_pi = kg_verlet_step(cur_phi, cur_pi, spec.dt, dx, spec.c, spec.m)
+        R[n] = _front_radius(x, x0, spec.L, cur_phi, thresh)
+        if n % stride_t == 0:
+            st_slices.append(np.abs(cur_phi).copy())
+            st_times.append(t[n])
+
+    # Fit R(t) = v * t + b
+    coeffs = np.polyfit(t, R, 1)
+    v = float(coeffs[0])
+    b = float(coeffs[1])
+    R_pred = v * t + b
+    ss_res = float(np.sum((R - R_pred) ** 2))
+    ss_tot = float(np.sum((R - float(np.mean(R))) ** 2))
+    R2 = 1.0 - (ss_res / ss_tot if ss_tot > 0 else 0.0)
+
+    # Gate: speed <= c*(1+eps)
+    eps = 0.02
+    passed = bool(v <= spec.c * (1.0 + eps))
+
+    # Artifacts
+    import matplotlib.pyplot as plt
+    quarantine = engineering_only or (not approved)
+    figp = figure_path("metriplectic", f"kg_light_cone__{spec.tag}", failed=(not passed) or quarantine)
+
+    # Build space-time image
+    if st_slices:
+        ST = np.stack(st_slices, axis=0)  # [T, X]
+        extent = [0.0, spec.L, st_times[0], st_times[-1]]  # x from 0..L, t from 0..T
+        plt.figure(figsize=(6.4, 4.2))
+        plt.imshow(ST, aspect='auto', origin='lower', extent=extent, cmap='magma')
+        # Overlay measured front as R(t) around x0 -> draw both +/- branches (unwrapped in [0,L])
+        tt = np.array(st_times)
+        Rt = np.interp(tt, t, R)
+        x_plus = (x0 + Rt)
+        x_minus = (x0 - Rt)
+        # Clip into [0,L]
+        x_plus = np.mod(x_plus, spec.L)
+        x_minus = np.mod(x_minus, spec.L)
+        plt.plot(x_plus, tt, 'c-', lw=1.2, label='front +R(t)')
+        plt.plot(x_minus, tt, 'c--', lw=1.0, label='front -R(t)')
+        # Reference light cone lines at slope c
+        t_line = np.linspace(tt[0], tt[-1], 200)
+        ref_plus = (x0 + spec.c * t_line)
+        ref_minus = (x0 - spec.c * t_line)
+        plt.plot(np.mod(ref_plus, spec.L), t_line, 'w:', lw=1.0, label='|dx/dt|=c')
+        plt.plot(np.mod(ref_minus, spec.L), t_line, 'w:', lw=1.0)
+        plt.colorbar(label='|phi|')
+        plt.xlabel('x')
+        plt.ylabel('t')
+        plt.title('KG local causality cone')
+        plt.legend(loc='upper right', fontsize=7)
+        plt.tight_layout(); plt.savefig(figp, dpi=150); plt.close()
+
+    # CSV of R(t)
+    csvp = log_path("metriplectic", f"kg_light_cone__{spec.tag}", failed=(not passed) or quarantine, type="csv")
+    with csvp.open("w", encoding="utf-8") as fcsv:
+        fcsv.write("t,R\n")
+        for ti, Ri in zip(t, R):
+            fcsv.write(f"{ti},{Ri}\n")
+
+    # JSON log
+    logj = {
+        "params": {
+            "N": spec.N, "L": spec.L, "c": spec.c, "m": spec.m,
+            "A": spec.A, "dt": spec.dt, "steps": spec.steps,
+            "sigma_frac": spec.sigma_frac, "threshold_rel": spec.threshold_rel
+        },
+        "fit": {"speed": v, "intercept": b, "R2": R2},
+        "gate": {"passed": passed, "speed_max": spec.c * (1.0 + eps), "eps": eps},
+        "policy": {"approved": bool(approved), "engineering_only": bool(engineering_only), "quarantined": bool(quarantine), "tag": spec.tag, "proposal": proposal},
+        "figure": str(figp),
+        "csv": str(csvp),
+    }
+    write_log(log_path("metriplectic", f"kg_light_cone__{spec.tag}", failed=(not passed) or quarantine), logj)
+
+    # Results DB logging
+    try:
+        handle = begin_run(
+            domain="metriplectic",
+            experiment=str(Path(__file__).resolve()),
+            tag=spec.tag,
+            params={
+                "N": spec.N, "L": spec.L, "c": spec.c, "m": spec.m,
+                "A": spec.A, "dt": spec.dt, "steps": spec.steps,
+                "sigma_frac": spec.sigma_frac, "threshold_rel": spec.threshold_rel,
+            },
+            engineering_only=bool(quarantine),
+        )
+        add_artifacts(handle, {"figure": str(figp), "csv": str(csvp)})
+        log_metrics(handle, {"speed": float(v), "intercept": float(b), "R2": float(R2), "passed": bool(passed)})
+        if passed:
+            end_run_success(handle)
+        else:
+            end_run_failed(handle, metrics={"passed": False})
+    except Exception as _e:
+        _ = _e
+
+    return logj
+
+
+def main():
+    import argparse, json
+    p = argparse.ArgumentParser(description="KG locality cone: Gaussian packet front speed and space–time plot")
+    p.add_argument("--N", type=int, default=512)
+    p.add_argument("--L", type=float, default=2.0 * np.pi)
+    p.add_argument("--c", type=float, default=1.0)
+    p.add_argument("--m", type=float, default=1.0)
+    p.add_argument("--A", type=float, default=1e-4)
+    p.add_argument("--dt", type=float, default=0.0025)
+    p.add_argument("--steps", type=int, default=4000)
+    p.add_argument("--sigma-frac", dest="sigma_frac", type=float, default=0.01)
+    p.add_argument("--threshold-rel", dest="threshold_rel", type=float, default=1e-6)
+    p.add_argument("--tag", type=str, default="KG-cone-v1")
+    p.add_argument("--allow-unapproved", action="store_true", help="Allow running with an unapproved tag (engineering-only; artifacts quarantined)")
+    args = p.parse_args()
+
+    # Approval check
+    approved, engineering_only, proposal = check_tag_approval("metriplectic", args.tag, args.allow_unapproved, CODE_ROOT)
+
+    spec = ConeSpec(N=args.N, L=args.L, c=args.c, m=args.m, A=args.A, dt=args.dt, steps=args.steps,
+                    sigma_frac=args.sigma_frac, threshold_rel=args.threshold_rel, tag=args.tag)
+    out = run_cone(spec, approved=approved, engineering_only=engineering_only, proposal=proposal)
+    print(json.dumps(out, indent=2))
+
+
+if __name__ == "__main__":
+    main()
+]]></content>
+    </file>
+    <file>
+      <path>run_kg_rd_metriplectic.py</path>
+      <content><![CDATA[#!/usr/bin/env python3
+"""
+Copyright © 2025 Justin K. Lietz, Neuroca, Inc. All Rights Reserved.
+
+This research is protected under a dual-license to foster open academic
+research while ensuring commercial applications are aligned with the project's ethical principles.
+
+Commercial use of proprietary VDM code requires written permission from Justin K. Lietz.
+See LICENSE file for full terms.
+"""
+from __future__ import annotations
+import json
+import sys
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Dict, Any, List, Tuple
+
+import numpy as np
+
+# Ensure code root on sys.path
+CODE_ROOT = Path(__file__).resolve().parents[2]
+if str(CODE_ROOT) not in sys.path:
+    sys.path.insert(0, str(CODE_ROOT))
+
+from common.io_paths import figure_path, log_path, write_log
+from physics.metriplectic.kg_ops import kg_verlet_step, kg_energy, spectral_grad
+from physics.metriplectic.compose import (
+    m_only_step_with_stats, jmj_strang_step_with_stats, mjm_strang_step,
+    two_grid_error_inf
+)
+
+
+@dataclass
+class StepSpec:
+    bc: str
+    scheme: str  # j_only | m_only | jmj
+    grid: Dict[str, Any]
+    params: Dict[str, Any]
+    dt_sweep: List[float]
+    seeds: int | List[int]
+    notes: str | None = None
+    tag: str | None = None
+
+
+def _slug(spec: StepSpec, base: str) -> str:
+    tag = spec.params.get("tag") if isinstance(spec.params, dict) else None
+    if tag is None:
+        tag = getattr(spec, "tag", None)
+    if not tag:
+        return base
+    return f"{base}__{str(tag).strip().replace(' ', '-')}"
+
+
+def rng_pair(N: int, scale: float, seed: int) -> Tuple[np.ndarray, np.ndarray]:
+    g = np.random.default_rng(seed)
+    return g.random(N).astype(float) * scale, g.random(N).astype(float) * scale
+
+
+def j_only_kg_step(phi: np.ndarray, pi: np.ndarray, dt: float, dx: float, params: Dict[str, Any]) -> Tuple[np.ndarray, np.ndarray]:
+    return kg_verlet_step(phi, pi, dt, dx, float(params.get("c", 1.0)), float(params.get("m", 0.0)))
+
+
+def j_reversibility_kg(spec: StepSpec) -> Dict[str, Any]:
+    N = int(spec.grid["N"]) ; dx = float(spec.grid["dx"]) ; dt = float(min(spec.dt_sweep))
+    scale = float(spec.params.get("seed_scale", 0.1))
+    phi0, pi0 = rng_pair(N, scale, 17)
+    E0 = kg_energy(phi0, pi0, dx, float(spec.params.get("c", 1.0)), float(spec.params.get("m", 0.0)))
+    phi1, pi1 = j_only_kg_step(phi0, pi0, dt, dx, spec.params)
+    E1 = kg_energy(phi1, pi1, dx, float(spec.params.get("c", 1.0)), float(spec.params.get("m", 0.0)))
+    phi2, pi2 = j_only_kg_step(phi1, pi1, -dt, dx, spec.params)
+    E2 = kg_energy(phi2, pi2, dx, float(spec.params.get("c", 1.0)), float(spec.params.get("m", 0.0)))
+    rev_err = float(max(np.linalg.norm(phi2 - phi0, ord=np.inf), np.linalg.norm(pi2 - pi0, ord=np.inf)))
+    # Gates
+    tol_rev_strict = float(spec.params.get("j_only_rev_strict", 1e-12))
+    tol_rev_cap = float(spec.params.get("j_only_rev_cap", 1e-10))
+    energy_drift_01 = float(abs(E1 - E0))
+    energy_drift_20 = float(abs(E2 - E0))
+    tol_E = float(spec.params.get("j_only_energy_cap", 1e-12))
+    # Gate only on reversibility; energy handled by separate oscillation-slope diagnostic
+    passes_strict = (rev_err <= tol_rev_strict)
+    cap_ok = (rev_err <= tol_rev_cap)
+    # FFT roundoff bound for reference
+    eps = float(np.finfo(float).eps) ; sqrtN = float(np.sqrt(N)) ; denom = eps * sqrtN if eps*sqrtN>0 else 1.0
+    observed_c = float(rev_err / denom)
+    logj = {
+        "rev_inf_error": rev_err,
+        "dt": dt,
+        "passes": passes_strict,
+        "passes_strict": passes_strict,
+        "cap_ok": cap_ok,
+        "energy_drifts": {"W1_minus_W0": energy_drift_01, "W2_minus_W0": energy_drift_20},
+        "tolerances": {"rev_inf_strict": tol_rev_strict, "rev_inf_cap": tol_rev_cap, "E_cap": tol_E},
+        "fft_roundoff_bound": {"epsilon": eps, "sqrtN": sqrtN, "epsilon_sqrtN": eps*sqrtN, "observed_c": observed_c}
+    }
+    if (not passes_strict) and cap_ok:
+        logj["justification"] = "Round-off observed; strict 1e-12 not met; <=1e-10 cap holds."
+    write_log(log_path("metriplectic", _slug(spec, "j_reversibility_kg"), failed=not passes_strict), logj)
+    return logj
+
+
+def j_energy_oscillation_slope(spec: StepSpec) -> Dict[str, Any]:
+    """Measure multi-period peak-to-peak energy oscillation amplitude vs dt for KG J-only.
+
+    For each dt, advance with Verlet for T steps, record H_n = H(phi_n, pi_n),
+    compute amplitude = 0.5*(max(H_n) - min(H_n)) after a small burn-in. Fit log amplitude vs log dt.
+
+    Gate: slope >= 1.9 and R2 >= 0.999 (expected ~2 for Verlet energy oscillation amplitude).
+    """
+    N = int(spec.grid["N"]) ; dx = float(spec.grid["dx"]) ; dt_vals = [float(d) for d in spec.dt_sweep]
+    seeds = list(range(int(spec.seeds))) if isinstance(spec.seeds, int) else [int(s) for s in spec.seeds]
+    scale = float(spec.params.get("seed_scale", 0.1))
+    c = float(spec.params.get("c", 1.0)) ; m = float(spec.params.get("m", 0.0))
+    # Use a fixed physical time horizon T, so steps depend on dt: steps = ceil(T/dt)
+    T_total = float(spec.params.get("j_energy_T", 5.0))
+    T_burn = float(spec.params.get("j_energy_burnT", 0.5))
+    dt_to_amp: Dict[float, List[float]] = {d: [] for d in dt_vals}
+    for seed in seeds:
+        rng = np.random.default_rng(seed)
+        phi = rng.random(N).astype(float) * scale
+        pi = rng.random(N).astype(float) * scale
+        for dt in dt_vals:
+            steps_total = int(np.ceil(T_total / max(dt, 1e-12)))
+            burn = int(np.ceil(T_burn / max(dt, 1e-12)))
+            Hs: List[float] = []
+            ph, pr = phi.copy(), pi.copy()
+            for n in range(steps_total):
+                ph, pr = kg_verlet_step(ph, pr, dt, dx, c, m)
+                if n >= burn:
+                    Hs.append(kg_energy(ph, pr, dx, c, m))
+            if len(Hs) == 0:
+                amp = 0.0
+            else:
+                H_arr = np.array(Hs, dtype=float)
+                amp = 0.5 * float(np.max(H_arr) - np.min(H_arr))
+            dt_to_amp[dt].append(amp)
+    dt_sorted = [float(d) for d in dt_vals]
+    med = [float(np.median(dt_to_amp[d])) for d in dt_sorted]
+    x = np.log(np.array(dt_sorted, dtype=float)) ; y = np.log(np.array(med, dtype=float) + 1e-30)
+    A = np.vstack([x, np.ones_like(x)]).T ; slope, b = np.linalg.lstsq(A, y, rcond=None)[0]
+    y_pred = A @ np.array([slope, b]) ; ss_res = float(np.sum((y - y_pred)**2)) ; ss_tot = float(np.sum((y - np.mean(y))**2))
+    R2 = 1.0 - (ss_res / ss_tot if ss_tot>0 else 0.0)
+    passed = bool((slope >= 1.9) and (R2 >= 0.999))
+    # Artifacts
+    import matplotlib.pyplot as plt
+    figp = figure_path("metriplectic", _slug(spec, f"j_energy_oscillation_vs_dt"), failed=not passed)
+    plt.figure(figsize=(6,4)); plt.plot(dt_sorted, med, "o-"); plt.xscale("log"); plt.yscale("log")
+    plt.xlabel("dt"); plt.ylabel("median peak-to-peak amplitude(H)/2 (J-only)")
+    plt.title(f"KG J-only energy amplitude (multi-period): slope≈{float(slope):.3f}, R2≈{float(R2):.4f}")
+    plt.tight_layout(); plt.savefig(figp, dpi=150); plt.close()
+    logj = {"scheme": "j_only_energy", "dt": dt_sorted, "median_energy_amplitude": med, "fit": {"slope": float(slope), "R2": float(R2)}, "passed": passed, "figure": str(figp),
+        "settings": {"T_total": T_total, "T_burn": T_burn}}
+    write_log(log_path("metriplectic", _slug(spec, "j_energy_oscillation_vs_dt"), failed=not passed), logj)
+    csvp = log_path("metriplectic", _slug(spec, "j_energy_oscillation_vs_dt"), failed=not passed, type="csv")
+    with csvp.open("w", encoding="utf-8") as f:
+        f.write("dt,median_energy_amplitude\n")
+        for d, e in zip(dt_sorted, med):
+            f.write(f"{d},{e}\n")
+    return logj
+
+
+def m_only_sweep(spec: StepSpec) -> Dict[str, Any]:
+    N = int(spec.grid["N"]) ; dx = float(spec.grid["dx"]) ; seeds = list(range(int(spec.seeds))) if isinstance(spec.seeds, int) else [int(s) for s in spec.seeds]
+    dt_vals = [float(d) for d in spec.dt_sweep]
+    seed_scale = float(spec.params.get("seed_scale", 0.1))
+    params = dict(spec.params)
+    params["m_lap_operator"] = str(params.get("m_lap_operator", "spectral"))
+    def m_step_fn(W_in: np.ndarray, dt_in: float):
+        # reuse RD DG step (spectral by default for KG⊕RD)
+        return m_only_step_with_stats(W_in, dt_in, dx, params)[0]
+    # two-grid on scalar field W (apply DG to phi only, pi is not present in M)
+    dt_to_errs: Dict[float, List[float]] = {d: [] for d in dt_vals}
+    for seed in seeds:
+        phi0 = np.random.default_rng(seed).random(N).astype(float) * seed_scale
+        for dt in dt_vals:
+            e = two_grid_error_inf(m_step_fn, phi0, dt)
+            dt_to_errs[dt].append(e)
+    med = [float(np.median(dt_to_errs[d])) for d in dt_vals]
+    x = np.log(np.array(dt_vals, dtype=float)) ; y = np.log(np.array(med, dtype=float) + 1e-30)
+    A = np.vstack([x, np.ones_like(x)]).T ; slope, b = np.linalg.lstsq(A, y, rcond=None)[0]
+    y_pred = A @ np.array([slope, b]) ; ss_res = float(np.sum((y - y_pred)**2)) ; ss_tot = float(np.sum((y - np.mean(y))**2))
+    R2 = 1.0 - (ss_res / ss_tot if ss_tot>0 else 0.0)
+    failed = bool((slope < 2.9) or (R2 < 0.999))
+    # artifacts
+    figp = figure_path("metriplectic", _slug(spec, f"residual_vs_dt_m_only"), failed=failed)
+    import matplotlib.pyplot as plt
+    plt.figure(figsize=(6,4)); plt.plot(dt_vals, med, "o-"); plt.xscale("log"); plt.yscale("log")
+    plt.xlabel("dt"); plt.ylabel("two-grid error ||Φ_dt - Φ_{dt/2}∘Φ_{dt/2}||_∞ (ϕ-only)")
+    plt.title(f"M-only two-grid (ϕ-only): slope≈{float(slope):.3f}, R2≈{float(R2):.4f}")
+    plt.tight_layout(); plt.savefig(figp, dpi=150); plt.close()
+    logj = {"scheme": "m_only", "dt": dt_vals, "two_grid_error_inf_med": med, "fit": {"slope": float(slope), "R2": float(R2)}, "failed": failed, "figure": str(figp)}
+    write_log(log_path("metriplectic", _slug(spec, "sweep_dt_m_only"), failed=failed), logj)
+    csvp = log_path("metriplectic", _slug(spec, "residual_vs_dt_m_only"), failed=failed, type="csv")
+    with csvp.open("w", encoding="utf-8") as f:
+        f.write("dt,two_grid_error_inf_median\n")
+        for d, e in zip(dt_vals, med):
+            f.write(f"{d},{e}\n")
+    return logj
+
+
+def _energy_norm_delta(phi_a: np.ndarray, pi_a: np.ndarray, phi_b: np.ndarray, pi_b: np.ndarray, dx: float, c: float, m: float) -> float:
+    dphi = (phi_a - phi_b)
+    dpi = (pi_a - pi_b)
+    # Spectral gradient consistent with J-step
+    g = spectral_grad(dphi, dx)
+    e2 = float(np.sum(dpi * dpi + (c * c) * (g * g) + (m * m) * (dphi * dphi)) * dx)
+    # Return the norm (sqrt of quadratic form)
+    return float(np.sqrt(max(e2, 0.0)))
+
+
+def jmj_kg_rd_sweep(spec: StepSpec) -> Dict[str, Any]:
+    # Compose J(kg) and M(DG) as Strang with spectral M
+    N = int(spec.grid["N"]) ; dx = float(spec.grid["dx"]) ; dt_vals = [float(d) for d in spec.dt_sweep]
+    seeds = list(range(int(spec.seeds))) if isinstance(spec.seeds, int) else [int(s) for s in spec.seeds]
+    seed_scale = float(spec.params.get("seed_scale", 0.1))
+    params = dict(spec.params)
+    params["m_lap_operator"] = str(params.get("m_lap_operator", "spectral"))
+
+    def jmj_step_vec(phi: np.ndarray, pi: np.ndarray, dt: float) -> Tuple[np.ndarray, np.ndarray]:
+        """Apply Strang JMJ to (phi,pi) and return both components."""
+        c = float(params.get("c", 1.0))
+        m = float(params.get("m", 0.0))
+        # J half
+        phi1, pi1 = kg_verlet_step(phi, pi, 0.5 * dt, dx, c, m)
+        # M full (DG on phi only)
+        phi2, _stats = m_only_step_with_stats(phi1, dt, dx, params)
+        # J half
+        phi3, pi3 = kg_verlet_step(phi2, pi1, 0.5 * dt, dx, c, m)
+        return phi3, pi3
+
+    norm_mode = str(spec.params.get("norm", "phi_only")).lower()
+    dt_to_errs: Dict[float, List[float]] = {d: [] for d in dt_vals}
+    for seed in seeds:
+        rng = np.random.default_rng(seed)
+        phi0 = rng.random(N).astype(float) * seed_scale
+        pi0 = rng.random(N).astype(float) * seed_scale
+        for dt in dt_vals:
+            if norm_mode == "h_energy":
+                # One big step
+                phi_b, pi_b = jmj_step_vec(phi0, pi0, dt)
+                # Two half steps
+                phi_h1, pi_h1 = jmj_step_vec(phi0, pi0, 0.5 * dt)
+                phi_h2, pi_h2 = jmj_step_vec(phi_h1, pi_h1, 0.5 * dt)
+                e = _energy_norm_delta(phi_b, pi_b, phi_h2, pi_h2, dx, float(params.get("c", 1.0)), float(params.get("m", 0.0)))
+            else:
+                # phi-only ablation (legacy)
+                def jmj_step_scalar(W: np.ndarray, dt_in: float) -> np.ndarray:
+                    ph = W.copy()
+                    pi = np.zeros_like(W)
+                    ph1, pi1 = kg_verlet_step(ph, pi, 0.5 * dt_in, dx, float(params.get("c", 1.0)), float(params.get("m", 0.0)))
+                    ph2, _ = m_only_step_with_stats(ph1, dt_in, dx, params)
+                    ph3, _ = kg_verlet_step(ph2, pi1, 0.5 * dt_in, dx, float(params.get("c", 1.0)), float(params.get("m", 0.0)))
+                    return ph3
+                e = two_grid_error_inf(jmj_step_scalar, phi0, dt)
+            dt_to_errs[dt].append(float(e))
+    med = [float(np.median(dt_to_errs[d])) for d in dt_vals]
+    x = np.log(np.array(dt_vals, dtype=float)) ; y = np.log(np.array(med, dtype=float) + 1e-30)
+    A = np.vstack([x, np.ones_like(x)]).T ; slope, b = np.linalg.lstsq(A, y, rcond=None)[0]
+    y_pred = A @ np.array([slope, b]) ; ss_res = float(np.sum((y - y_pred)**2)) ; ss_tot = float(np.sum((y - np.mean(y))**2))
+    R2 = 1.0 - (ss_res / ss_tot if ss_tot>0 else 0.0)
+    # Trivial pass if differences ~ machine precision across all dt
+    eps = float(np.finfo(float).eps)
+    trivial = all(v < 1e-14 for v in med)
+    failed = False if trivial else bool((slope < 2.9) or (R2 < 0.999))
+    # artifacts
+    import matplotlib.pyplot as plt
+    figp = figure_path("metriplectic", _slug(spec, f"residual_vs_dt_jmj"), failed=failed)
+    plt.figure(figsize=(6,4)); plt.plot(dt_vals, med, "o-"); plt.xscale("log"); plt.yscale("log")
+    plt.xlabel("dt")
+    if norm_mode == "h_energy":
+        plt.ylabel("two-grid error |(Δϕ,Δπ)|_H")
+        title_extra = " (H-norm)"
+    else:
+        plt.ylabel("two-grid error ||Δϕ||_∞")
+        title_extra = " (ϕ-only)"
+    plt.title(f"JMJ two-grid (KG⊕RD spectral-DG){title_extra}: slope≈{float(slope):.3f}, R2≈{float(R2):.4f}")
+    plt.tight_layout(); plt.savefig(figp, dpi=150); plt.close()
+    logj = {"scheme": "jmj", "norm": norm_mode, "dt": dt_vals, "two_grid_error_med": med, "fit": {"slope": float(slope), "R2": float(R2)}, "trivial": trivial, "failed": failed, "figure": str(figp)}
+    write_log(log_path("metriplectic", _slug(spec, "sweep_dt_jmj"), failed=failed), logj)
+    csvp = log_path("metriplectic", _slug(spec, "residual_vs_dt_jmj"), failed=failed, type="csv")
+    with csvp.open("w", encoding="utf-8") as f:
+        f.write("dt,two_grid_error_median\n")
+        for d, e in zip(dt_vals, med):
+            f.write(f"{d},{e}\n")
+    return logj
+
+
+def defect_diagnostic(spec: StepSpec) -> Dict[str, Any]:
+    # Measure ||Φ^JMJ_Δt - Φ^MJM_Δt||_∞ on phi component
+    N = int(spec.grid["N"]) ; dx = float(spec.grid["dx"]) ; params = dict(spec.params)
+    params["m_lap_operator"] = str(params.get("m_lap_operator", "spectral"))
+    dt_vals = [float(d) for d in params.get("dt_sweep_small", [0.02, 0.01, 0.005, 0.0025])]
+    seeds = list(range(int(spec.seeds))) if isinstance(spec.seeds, int) else [int(s) for s in spec.seeds]
+    seed_scale = float(spec.params.get("seed_scale", 0.1))
+
+    def jmj_step_pair(W: np.ndarray, dt: float) -> Tuple[np.ndarray, np.ndarray]:
+        phi0 = W.copy(); pi0 = np.zeros_like(W)
+        # J half
+        phi1, pi1 = kg_verlet_step(phi0, pi0, 0.5*dt, dx, float(params.get("c",1.0)), float(params.get("m",0.0)))
+        # M full
+        phi2, _ = m_only_step_with_stats(phi1, dt, dx, params)
+        # J half
+        phi3, pi3 = kg_verlet_step(phi2, pi1, 0.5*dt, dx, float(params.get("c",1.0)), float(params.get("m",0.0)))
+        # Reverse order (MJM)
+        phi_m1, _ = m_only_step_with_stats(phi0, 0.5*dt, dx, params)
+        phi_m2, pi_m2 = kg_verlet_step(phi_m1, pi0, dt, dx, float(params.get("c",1.0)), float(params.get("m",0.0)))
+        phi_m3, _ = m_only_step_with_stats(phi_m2, 0.5*dt, dx, params)
+        return phi3, phi_m3
+
+    dt_to_def: Dict[float, List[float]] = {d: [] for d in dt_vals}
+    for seed in seeds:
+        W0 = np.random.default_rng(seed).random(N).astype(float) * seed_scale
+        for dt in dt_vals:
+            a, b = jmj_step_pair(W0, dt)
+            dt_to_def[dt].append(float(np.linalg.norm(a - b, ord=np.inf)))
+    med = [float(np.median(dt_to_def[d])) for d in dt_vals]
+    x = np.log(np.array(dt_vals, dtype=float)) ; y = np.log(np.array(med, dtype=float) + 1e-30)
+    A = np.vstack([x, np.ones_like(x)]).T ; slope, b = np.linalg.lstsq(A, y, rcond=None)[0]
+    y_pred = A @ np.array([slope, b]) ; ss_res = float(np.sum((y - y_pred)**2)) ; ss_tot = float(np.sum((y - np.mean(y))**2))
+    R2 = 1.0 - (ss_res / ss_tot if ss_tot>0 else 0.0)
+    figp = figure_path("metriplectic", _slug(spec, "strang_defect_vs_dt"), failed=False)
+    import matplotlib.pyplot as plt
+    plt.figure(figsize=(6,4)); plt.plot(dt_vals, med, "o-"); plt.xscale("log"); plt.yscale("log")
+    plt.xlabel("dt"); plt.ylabel("||Φ^JMJ_Δt - Φ^MJM_Δt||_∞ (phi)")
+    plt.title(f"Strang defect (KG⊕RD): slope≈{float(slope):.3f}, R2≈{float(R2):.4f}")
+    plt.tight_layout(); plt.savefig(figp, dpi=150); plt.close()
+    logj = {"dt": dt_vals, "defect_med": med, "fit": {"slope": float(slope), "R2": float(R2)}, "figure": str(figp)}
+    write_log(log_path("metriplectic", _slug(spec, "strang_defect_vs_dt"), failed=False), logj)
+    csvp = log_path("metriplectic", _slug(spec, "strang_defect_vs_dt"), failed=False, type="csv")
+    with csvp.open("w", encoding="utf-8") as f:
+        f.write("dt,strang_defect_median\n")
+        for d, e in zip(dt_vals, med):
+            f.write(f"{d},{e}\n")
+    return logj
+
+
+def main():
+    import argparse
+    p = argparse.ArgumentParser(description="KG⊕RD Metriplectic Runner (additive)")
+    p.add_argument("--spec", type=str, required=True)
+    p.add_argument("--scheme", type=str, default=None)
+    args = p.parse_args()
+    spec_path = Path(args.spec)
+    spec = StepSpec(**json.loads(spec_path.read_text()))
+    if args.scheme:
+        spec.scheme = args.scheme
+
+    # Snapshot with minimal provenance
+    write_log(log_path("metriplectic", _slug(spec, "step_spec_snapshot"), failed=False), {
+        "bc": spec.bc, "scheme": spec.scheme, "grid": spec.grid, "params": spec.params,
+        "dt_sweep": spec.dt_sweep, "seeds": spec.seeds, "notes": spec.notes
+    })
+
+    # Diagnostics
+    j_rev = j_reversibility_kg(spec)
+    j_energy = j_energy_oscillation_slope(spec)
+    m_sw = m_only_sweep(spec)
+    jmj_sw = jmj_kg_rd_sweep(spec)
+    defect = defect_diagnostic(spec)
+
+    print(json.dumps({
+        "scheme": spec.scheme,
+        "j_reversibility_kg": j_rev,
+        "j_energy_oscillation": j_energy,
+        "two_grid_m_only": m_sw,
+        "two_grid_jmj": jmj_sw,
+        "strang_defect": defect
+    }, indent=2))
+
+
+if __name__ == "__main__":
+    main()
+]]></content>
+    </file>
+    <file>
+      <path>run_metriplectic.py</path>
+      <content><![CDATA[#!/usr/bin/env python3
+"""
+Copyright © 2025 Justin K. Lietz, Neuroca, Inc. All Rights Reserved.
+
+This research is protected under a dual-license to foster open academic
+research while ensuring commercial applications are aligned with the project's ethical principles.
+
+Commercial use of proprietary VDM code requires written permission from Justin K. Lietz.
+See LICENSE file for full terms.
+"""
+from __future__ import annotations
+import json
+import sys
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Dict, Any, List
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Ensure code root on sys.path
+CODE_ROOT = Path(__file__).resolve().parents[2]
+if str(CODE_ROOT) not in sys.path:
+    sys.path.insert(0, str(CODE_ROOT))
+
+from common.io_paths import figure_path, log_path, write_log
+from physics.metriplectic.compose import (
+    j_only_step, m_only_step, m_only_step_with_stats,
+    jmj_strang_step, jmj_strang_step_with_stats, mjm_strang_step,
+    two_grid_error_inf, lyapunov_values
+)
+from physics.rd_conservation.run_rd_conservation import cas_solve_linear_balance, Q_from_coeffs
+
+
+@dataclass
+class StepSpec:
+    bc: str
+    scheme: str  # j_only | m_only | jmj
+    grid: Dict[str, Any]
+    params: Dict[str, Any]  # {c} for J, {D,r,u} for M, may include both
+    dt_sweep: List[float]
+    seeds: int | List[int]
+    notes: str | None = None
+    # Optional tag for artifact slugs; may also be supplied via params["tag"].
+    tag: str | None = None
+
+
+def rng_field(N: int, scale: float, seed: int) -> np.ndarray:
+    return np.random.default_rng(seed).random(N).astype(float) * scale
+
+
+def select_stepper(scheme: str, dx: float, params: Dict[str, Any]):
+    s = scheme.lower()
+    if s == "j_only":
+        return lambda W, dt: j_only_step(W, dt, dx, params)
+    elif s == "m_only":
+        # Enforce dg_tol by using with-stats and discarding stats
+        return lambda W, dt: m_only_step_with_stats(W, dt, dx, params)[0]
+    elif s == "jmj":
+        # Enforce dg_tol by using with-stats and discarding stats
+        return lambda W, dt: jmj_strang_step_with_stats(W, dt, dx, params)[0]
+    else:
+        return lambda W, dt: j_only_step(W, dt, dx, params)
+
+
+def _slug(spec: StepSpec, base: str) -> str:
+    """Append optional run tag to a base slug for artifact paths.
+
+    Tag resolution order: spec.params['tag'] if present, else spec.tag.
+    If no tag, returns base unchanged.
+    """
+    tag = None
+    try:
+        tag = spec.params.get("tag")
+    except Exception:
+        tag = None
+    if tag is None:
+        tag = getattr(spec, "tag", None)
+    if tag is None or str(tag).strip() == "":
+        return base
+    # sanitize minimal: replace spaces with '-'
+    safe = str(tag).strip().replace(" ", "-")
+    return f"{base}__{safe}"
+
+def sweep_two_grid(spec: StepSpec) -> Dict[str, Any]:
+    N = int(spec.grid["N"])
+    dx = float(spec.grid["dx"])
+    step = select_stepper(spec.scheme, dx, spec.params)
+    seed_list = list(range(int(spec.seeds))) if isinstance(spec.seeds, int) else [int(s) for s in spec.seeds]
+    dt_vals = [float(d) for d in spec.dt_sweep]
+    dt_to_errs: Dict[float, List[float]] = {d: [] for d in dt_vals}
+    samples = []
+    seed_scale = float(spec.params.get("seed_scale", 0.1))
+    for seed in seed_list:
+        W0 = rng_field(N, seed_scale, seed)
+        for dt in dt_vals:
+            e = two_grid_error_inf(step, W0, dt)
+            dt_to_errs[dt].append(e)
+            samples.append({"seed": int(seed), "dt": float(dt), "two_grid_error_inf": float(e)})
+    med = [float(np.median(dt_to_errs[d])) for d in dt_vals]
+    s_lower = spec.scheme.lower()
+    trivial_exact = bool(s_lower == "j_only" and all(m < 1e-14 for m in med))
+    if trivial_exact:
+        slope, R2 = 0.0, 1.0
+        failed_gate = False
+        expected = None
+    else:
+        x = np.log(np.array(dt_vals, dtype=float))
+        y = np.log(np.array(med, dtype=float) + 1e-30)
+        A = np.vstack([x, np.ones_like(x)]).T
+        slope, intercept = np.linalg.lstsq(A, y, rcond=None)[0]
+        y_pred = A @ np.array([slope, intercept])
+        ss_res = float(np.sum((y - y_pred) ** 2))
+        ss_tot = float(np.sum((y - np.mean(y)) ** 2))
+        R2 = 1.0 - (ss_res / ss_tot if ss_tot > 0 else 0.0)
+        # Gates: allow explicit thresholds via params; fallback to expected ~2 for JMJ/M-only
+        gate_slope = spec.params.get("gate_slope")
+        gate_R2 = float(spec.params.get("gate_R2", 0.999))
+        expected = 2.0 if s_lower in ("jmj", "m_only") else None
+        slope_min = float(gate_slope) if gate_slope is not None else (expected - 0.1 if expected is not None else -np.inf)
+        failed_gate = bool((slope < slope_min) or (R2 < gate_R2))
+
+    # Artifacts
+    fig_path = figure_path("metriplectic", _slug(spec, f"residual_vs_dt_{spec.scheme}"), failed=failed_gate)
+    plt.figure(figsize=(6, 4))
+    plt.plot(dt_vals, med, "o-")
+    plt.xscale("log"); plt.yscale("log")
+    plt.xlabel("dt"); plt.ylabel("two-grid error ||Φ_dt - Φ_{dt/2}∘Φ_{dt/2}||_∞")
+    title = f"{spec.scheme} two-grid: slope≈{float(slope):.3f}, R2≈{float(R2):.4f}"
+    if trivial_exact:
+        title += " (trivial exact)"
+    plt.title(title)
+    plt.tight_layout(); plt.savefig(fig_path, dpi=150); plt.close()
+
+    sweep_exact = {"scheme": spec.scheme, "bc": spec.bc, "samples": samples}
+    write_log(log_path("metriplectic", _slug(spec, f"sweep_exact_{spec.scheme}"), failed=failed_gate), sweep_exact)
+    summary = {
+        "scheme": spec.scheme,
+        "dt": dt_vals,
+        "two_grid_error_inf_med": med,
+        "fit": {"slope": float(slope), "R2": float(R2)},
+        "expected_slope": (None if expected is None else float(expected)),
+        "failed": failed_gate,
+        "gate": {"slope_min": (None if np.isneginf(slope_min) else float(slope_min)), "R2_min": float(gate_R2)},
+        "figure": str(fig_path),
+        "trivial_exact": trivial_exact
+    }
+    write_log(log_path("metriplectic", _slug(spec, f"sweep_dt_{spec.scheme}"), failed=failed_gate), summary)
+    csv_path = log_path("metriplectic", _slug(spec, f"residual_vs_dt_{spec.scheme}"), failed=failed_gate, type="csv")
+    with csv_path.open("w", encoding="utf-8") as f:
+        f.write("dt,two_grid_error_inf_median\n")
+        for d, e in zip(dt_vals, med):
+            f.write(f"{d},{e}\n")
+    return summary
+
+
+def j_reversibility_check(spec: StepSpec) -> Dict[str, Any]:
+    # Always evaluate J-only reversibility, independent of provided scheme
+    N = int(spec.grid["N"]) ; dx = float(spec.grid["dx"]) ; dt = float(min(spec.dt_sweep))
+    step = select_stepper("j_only", dx, spec.params)
+    seed_scale = float(spec.params.get("seed_scale", 0.1))
+    W0 = rng_field(N, seed_scale, 17)
+    W1 = step(W0, dt)
+    # Reverse with -dt
+    W2 = step(W1, -dt)
+    rev_err = float(np.linalg.norm(W2 - W0, ord=np.inf))
+    # L2 norm preservation (unitary spectral shift)
+    l2_0 = float(np.linalg.norm(W0))
+    l2_1 = float(np.linalg.norm(W1))
+    l2_2 = float(np.linalg.norm(W2))
+    l2_drift_01 = float(abs(l2_1 - l2_0))
+    l2_drift_20 = float(abs(l2_2 - l2_0))
+    # Gates: strict and cap thresholds
+    tol_rev_strict = float(spec.params.get("j_only_rev_strict", 1e-12))
+    tol_rev_cap = float(spec.params.get("j_only_rev_cap", 1e-10))
+    tol_l2 = float(spec.params.get("j_only_l2_cap", 1e-10))
+    passes_strict = (rev_err <= tol_rev_strict) and (l2_drift_01 <= tol_l2) and (l2_drift_20 <= tol_l2)
+    cap_ok = (rev_err <= tol_rev_cap) and (l2_drift_01 <= tol_l2) and (l2_drift_20 <= tol_l2)
+    passes = passes_strict
+    # Pragmatic FFT-based bound logging (do not change gates):
+    eps = float(np.finfo(float).eps)
+    sqrtN = float(np.sqrt(N))
+    denom = eps * sqrtN if eps * sqrtN > 0.0 else 1.0
+    observed_c = float(rev_err / denom)
+    logj = {
+        "rev_inf_error": rev_err, "dt": dt, "passes": passes,
+        "passes_strict": passes_strict, "cap_ok": cap_ok,
+        "l2_norms": {"W0": l2_0, "W1": l2_1, "W2": l2_2},
+        "l2_drifts": {"W1_minus_W0": l2_drift_01, "W2_minus_W0": l2_drift_20},
+        "tolerances": {"rev_inf_strict": tol_rev_strict, "rev_inf_cap": tol_rev_cap, "l2_cap": tol_l2},
+        "fft_roundoff_bound": {"epsilon": eps, "sqrtN": sqrtN, "epsilon_sqrtN": denom, "observed_c": observed_c}
+    }
+    # If strict fails but cap holds, log justification and mark as failed to keep gate conservative
+    if (not passes) and cap_ok:
+        logj["justification"] = "FFT round-off observed; strict 1e-12 not met, but <= 1e-10 cap holds."
+    write_log(log_path("metriplectic", _slug(spec, "j_reversibility"), failed=not passes), logj)
+    return logj
+
+
+def m_lyapunov_check(spec: StepSpec) -> Dict[str, Any]:
+    if spec.scheme.lower() not in ("m_only", "jmj"):
+        return {"skipped": True}
+    N = int(spec.grid["N"]); dx = float(spec.grid["dx"]) ; dt = float(min(spec.dt_sweep))
+    params = spec.params
+    # Guard: require DG params for M-step
+    for k in ("D", "r", "u"):
+        if k not in params:
+            return {"skipped": True, "reason": f"missing_param:{k}"}
+    step = select_stepper(spec.scheme, dx, params)
+    seed_scale = float(spec.params.get("seed_scale", 0.1))
+    W = rng_field(N, seed_scale, 123)
+    series = []
+    L_prev = lyapunov_values(W, dx, float(params.get("D", 0.0)), float(params.get("r", 0.0)), float(params.get("u", 0.0)))
+    for k in range(20):
+        Wn1 = step(W, dt)
+        L_now = lyapunov_values(Wn1, dx, float(params.get("D", 0.0)), float(params.get("r", 0.0)), float(params.get("u", 0.0)))
+        series.append({"step": k+1, "delta_L": float(L_now - L_prev), "L": float(L_now)})
+        W = Wn1; L_prev = L_now
+    tol_pos = 1e-12
+    violations = int(sum(1 for s in series if s["delta_L"] > tol_pos))
+    failed = bool(violations > 0)
+    fig_path = figure_path("metriplectic", _slug(spec, f"lyapunov_delta_per_step_{spec.scheme}"), failed=failed)
+    import matplotlib.pyplot as plt
+    from matplotlib.ticker import MaxNLocator
+    plt.figure(figsize=(6,4)); plt.plot([s["step"] for s in series],[s["delta_L"] for s in series],"o-")
+    plt.axhline(0.0, color='k', linewidth=0.8)
+    plt.xlabel("step"); plt.ylabel("ΔL_h")
+    plt.title(f"Lyapunov per step ({spec.scheme})")
+    plt.tight_layout(); plt.savefig(fig_path, dpi=150); plt.close()
+    logj = {"series": series, "violations": violations, "tol_pos": tol_pos, "figure": str(fig_path), "failed": failed}
+    write_log(log_path("metriplectic", _slug(spec, f"lyapunov_series_{spec.scheme}"), failed=failed), logj)
+    return logj
+
+
+def small_dt_sweep_polish(spec: StepSpec) -> Dict[str, Any]:
+    """Repeat JMJ with smaller dt sweep and tighter DG tolerance; log Newton stats.
+
+    Uses dt_sweep_small from params if present, else defaults to [0.02,0.01,0.005,0.0025].
+    Passes dg_tol=1e-12 (overridable via params). Aggregates stats across seeds.
+    """
+    if spec.scheme.lower() != "jmj":
+        return {"skipped": True}
+    N = int(spec.grid["N"]) ; dx = float(spec.grid["dx"]) ; params = dict(spec.params)
+    params["dg_tol"] = float(params.get("dg_tol", 1e-12))
+    dt_vals = [0.02, 0.01, 0.005, 0.0025, 0.00125]
+    dt_vals = [float(d) for d in spec.params.get("dt_sweep_small", dt_vals)]
+    seeds = list(range(int(spec.seeds))) if isinstance(spec.seeds, int) else [int(s) for s in spec.seeds]
+    dt_to_errs: Dict[float, List[float]] = {d: [] for d in dt_vals}
+    newton_rows = []
+    seed_scale = float(spec.params.get("seed_scale", 0.1))
+    for seed in seeds:
+        W0 = rng_field(N, seed_scale, seed)
+        for dt in dt_vals:
+            # Run JMJ with stats to capture Newton behavior in the M step
+            step_stats = []
+            def step_with_stats(W_in, dt_in):
+                W1 = j_only_step(W_in, 0.5 * dt_in, dx, params)
+                W2, stats = m_only_step_with_stats(W1, dt_in, dx, params)
+                step_stats.append({"iters": int(stats.get("iters", 0)), "final_residual_inf": float(stats.get("final_residual_inf", 0.0)), "backtracks": int(stats.get("backtracks", 0)), "converged": bool(stats.get("converged", False))})
+                W3 = j_only_step(W2, 0.5 * dt_in, dx, params)
+                return W3
+            e = two_grid_error_inf(step_with_stats, W0, dt)
+            dt_to_errs[dt].append(e)
+            if step_stats:
+                s0 = step_stats[0]
+                newton_rows.append({"seed": int(seed), "dt": float(dt), **s0})
+    med = [float(np.median(dt_to_errs[d])) for d in dt_vals]
+    x = np.log(np.array(dt_vals, dtype=float))
+    y = np.log(np.array(med, dtype=float) + 1e-30)
+    A = np.vstack([x, np.ones_like(x)]).T
+    slope, intercept = np.linalg.lstsq(A, y, rcond=None)[0]
+    y_pred = A @ np.array([slope, intercept])
+    ss_res = float(np.sum((y - y_pred) ** 2))
+    ss_tot = float(np.sum((y - np.mean(y)) ** 2))
+    R2 = 1.0 - (ss_res / ss_tot if ss_tot > 0 else 0.0)
+    failed_gate = bool(slope < 2.9 or R2 < 0.999)
+    # Artifacts
+    fig_path = figure_path("metriplectic", _slug(spec, f"residual_vs_dt_small_{spec.scheme}"), failed=failed_gate)
+    plt.figure(figsize=(6, 4))
+    plt.plot(dt_vals, med, "o-")
+    plt.xscale("log"); plt.yscale("log")
+    plt.xlabel("dt"); plt.ylabel("two-grid error ||Φ_dt - Φ_{dt/2}∘Φ_{dt/2}||_∞")
+    plt.title(f"{spec.scheme} small-dt: slope≈{float(slope):.3f}, R2≈{float(R2):.4f}")
+    plt.tight_layout(); plt.savefig(fig_path, dpi=150); plt.close()
+    # Logs
+    write_log(log_path("metriplectic", _slug(spec, f"sweep_small_exact_{spec.scheme}"), failed=failed_gate), {"samples": [{"seed": r["seed"], "dt": r["dt"]} for r in newton_rows]})
+    summary = {
+        "scheme": spec.scheme,
+        "dt": dt_vals,
+        "two_grid_error_inf_med": med,
+        "fit": {"slope": float(slope), "R2": float(R2)},
+        "failed": failed_gate,
+        "figure": str(fig_path),
+        "newton_stats": newton_rows,
+        "dg_tol": float(params["dg_tol"]) 
+    }
+    write_log(log_path("metriplectic", _slug(spec, f"sweep_small_dt_{spec.scheme}"), failed=failed_gate), summary)
+    csv_path = log_path("metriplectic", _slug(spec, f"sweep_small_dt_{spec.scheme}"), failed=failed_gate, type="csv")
+    with csv_path.open("w", encoding="utf-8") as f:
+        f.write("dt,two_grid_error_inf_median\n")
+        for d, e in zip(dt_vals, med):
+            f.write(f"{d},{e}\n")
+    # Newton stats CSV
+    csv2 = log_path("metriplectic", _slug(spec, f"newton_stats_small_{spec.scheme}"), failed=failed_gate, type="csv")
+    with csv2.open("w", encoding="utf-8") as f:
+        f.write("seed,dt,iters,final_residual_inf,backtracks,converged\n")
+        for r in newton_rows:
+            f.write(f"{r['seed']},{r['dt']},{r['iters']},{r['final_residual_inf']},{r['backtracks']},{int(r['converged'])}\n")
+    return summary
+
+
+def commutator_defect_diagnostic(spec: StepSpec) -> Dict[str, Any]:
+    """Measure Strang defect ||Φ^JMJ_Δt - Φ^MJM_Δt||_∞ vs Δt and fit scaling.
+
+    Acts as a proxy for commutator strength; expected ≈ O(Δt^3) under smoothness.
+    """
+    if spec.scheme.lower() != "jmj":
+        return {"skipped": True}
+    N = int(spec.grid["N"]) ; dx = float(spec.grid["dx"]) ; params = dict(spec.params)
+    # Prefer the small-dt sweep for defect measurement if provided
+    dt_default = [0.02, 0.01, 0.005, 0.0025, 0.00125]
+    dt_vals = [float(d) for d in params.get("defect_dt", params.get("dt_sweep_small", dt_default))]
+    seeds = list(range(int(spec.seeds))) if isinstance(spec.seeds, int) else [int(s) for s in spec.seeds]
+    dt_to_def: Dict[float, List[float]] = {float(d): [] for d in dt_vals}
+    seed_scale = float(spec.params.get("seed_scale", 0.1))
+    for seed in seeds:
+        W0 = rng_field(N, seed_scale, seed)
+        for dt in dt_vals:
+            W_jmj = jmj_strang_step(W0, dt, dx, params)
+            W_mjm = mjm_strang_step(W0, dt, dx, params)
+            def_err = float(np.linalg.norm(W_jmj - W_mjm, ord=np.inf))
+            dt_to_def[float(dt)].append(def_err)
+    dt_vals = [float(d) for d in dt_vals]
+    med = [float(np.median(dt_to_def[d])) for d in dt_vals]
+    x = np.log(np.array(dt_vals, dtype=float))
+    y = np.log(np.array(med, dtype=float) + 1e-30)
+    A = np.vstack([x, np.ones_like(x)]).T
+    slope, intercept = np.linalg.lstsq(A, y, rcond=None)[0]
+    y_pred = A @ np.array([slope, intercept])
+    ss_res = float(np.sum((y - y_pred) ** 2))
+    ss_tot = float(np.sum((y - np.mean(y)) ** 2))
+    R2 = 1.0 - (ss_res / ss_tot if ss_tot > 0 else 0.0)
+    failed_gate = bool(R2 < 0.999)
+    fig_path = figure_path("metriplectic", _slug(spec, "strang_defect_vs_dt"), failed=failed_gate)
+    plt.figure(figsize=(6,4)); plt.plot(dt_vals, med, "o-"); plt.xscale("log"); plt.yscale("log")
+    plt.xlabel("dt"); plt.ylabel("||Φ^JMJ_Δt - Φ^MJM_Δt||_∞"); plt.title(f"Strang defect: slope≈{float(slope):.3f}, R2≈{float(R2):.4f}")
+    plt.tight_layout(); plt.savefig(fig_path, dpi=150); plt.close()
+    logj = {"dt": dt_vals, "defect_med": med, "fit": {"slope": float(slope), "R2": float(R2)}, "figure": str(fig_path), "failed": failed_gate}
+    write_log(log_path("metriplectic", _slug(spec, "strang_defect_vs_dt"), failed=failed_gate), logj)
+    csv_path = log_path("metriplectic", _slug(spec, "strang_defect_vs_dt"), failed=failed_gate, type="csv")
+    with csv_path.open("w", encoding="utf-8") as f:
+        f.write("dt,strang_defect_median\n")
+        for d, e in zip(dt_vals, med):
+            f.write(f"{d},{e}\n")
+    return logj
+
+
+def robustness_v5_grid(spec: StepSpec) -> Dict[str, Any]:
+    """Run a small grid of (r,u,D,N) tuples; aggregate median slopes and Lyapunov violations.
+
+    Gate: PASS if ≥80% of tuples satisfy (slope ≥ 2.9, R2 ≥ 0.999, Lyapunov violations = 0).
+    """
+    tuples = spec.params.get("v5_grid")
+    if tuples is None:
+        tuples = [
+            {"r": 0.2, "u": 0.25, "D": 1.0, "N": 128},
+            {"r": 0.1, "u": 0.2,  "D": 0.5, "N": 128},
+            {"r": 0.3, "u": 0.25, "D": 1.0, "N": 256},
+        ]
+    results = []
+    passes = 0
+    for tup in tuples:
+        grid = {"N": int(tup.get("N", spec.grid["N"])), "dx": float(spec.grid["dx"])}
+        params = dict(spec.params)
+        params.update({"D": float(tup["D"]), "r": float(tup["r"]), "u": float(tup["u"])})
+        local = StepSpec(bc=spec.bc, scheme=spec.scheme, grid=grid, params=params, dt_sweep=spec.dt_sweep, seeds=spec.seeds, notes="v5_grid")
+        sw = sweep_two_grid(local)
+        ly = m_lyapunov_check(local)
+        slope = float(sw.get("fit", {}).get("slope", 0.0))
+        R2 = float(sw.get("fit", {}).get("R2", 0.0))
+        viol = int(ly.get("violations", 0)) if isinstance(ly, dict) else 0
+        ok = (slope >= 2.9) and (R2 >= 0.999) and (viol == 0)
+        passes += int(ok)
+        results.append({
+            "tuple": tup,
+            "slope": slope,
+            "R2": R2,
+            "lyapunov_violations": viol,
+            "pass": bool(ok),
+            "two_grid_log": sw,
+            "lyapunov_log": ly
+        })
+    pass_rate = float(passes) / float(len(tuples) if tuples else 1)
+    passed = bool(pass_rate >= 0.8)
+    logj = {"results": results, "pass_rate": pass_rate, "passed": passed}
+    write_log(log_path("metriplectic", _slug(spec, "robustness_v5_grid"), failed=not passed), logj)
+    # CSV for quick scan
+    csvp = log_path("metriplectic", _slug(spec, "robustness_v5_grid"), failed=not passed, type="csv")
+    with csvp.open("w", encoding="utf-8") as f:
+        f.write("D,r,u,N,slope,R2,lyapunov_violations,pass\n")
+        for rj in results:
+            t = rj["tuple"]
+            f.write(f"{t['D']},{t['r']},{t['u']},{t['N']},{rj['slope']},{rj['R2']},{rj['lyapunov_violations']},{int(rj['pass'])}\n")
+    return logj
+
+
+def main():
+    import argparse
+    p = argparse.ArgumentParser(description="Metriplectic Harness (additive to RD)")
+    p.add_argument("--spec", type=str, default=str(Path(__file__).resolve().parent / "step_spec.metriplectic.example.json"))
+    p.add_argument("--scheme", type=str, default=None, help="Override scheme: j_only|m_only|jmj")
+    args = p.parse_args()
+    spec_path = Path(args.spec)
+    spec = StepSpec(**json.loads(spec_path.read_text()))
+    if args.scheme:
+        spec.scheme = args.scheme
+
+    # Snapshot spec
+    write_log(log_path("metriplectic", _slug(spec, "step_spec_snapshot"), failed=False), {
+        "bc": spec.bc, "scheme": spec.scheme, "grid": spec.grid, "params": spec.params,
+        "dt_sweep": spec.dt_sweep, "seeds": spec.seeds, "notes": spec.notes
+    })
+
+    # Diagnostics
+    # Always compute J-only reversibility on the same grid/dt
+    j_rev = j_reversibility_check(spec)
+    # Lyapunov series for JMJ and M-only
+    m_lya = m_lyapunov_check(spec)
+    spec_m = StepSpec(bc=spec.bc, scheme="m_only", grid=spec.grid, params=spec.params, dt_sweep=spec.dt_sweep, seeds=spec.seeds, notes=spec.notes)
+    m_lya_m = m_lyapunov_check(spec_m)
+    # Two-grid sweeps for both JMJ and M-only
+    sweep = sweep_two_grid(spec)
+    sweep_m = sweep_two_grid(spec_m)
+    small = small_dt_sweep_polish(spec)
+    defect = commutator_defect_diagnostic(spec)
+    v5 = robustness_v5_grid(spec)
+    # Fixed-dt |ΔS| comparison panel across j_only, m_only, jmj (for paper narrative)
+    try:
+        _fixed_dt_deltaS_compare(spec)
+    except Exception as e:
+        # Non-fatal; logged for transparency
+        write_log(log_path("metriplectic", _slug(spec, "fixed_dt_deltaS_compare_error"), failed=True), {"error": str(e)})
+
+    print(json.dumps({
+        "scheme": spec.scheme,
+        "j_reversibility": j_rev,
+        "m_lyapunov_jmj": m_lya,
+        "m_lyapunov_m_only": m_lya_m,
+        "two_grid_jmj": sweep,
+        "two_grid_m_only": sweep_m,
+        "small_dt_sweep": small,
+        "strang_defect": defect,
+        "robustness_v5": v5
+    }, indent=2))
+
+
+# ----------------------
+# Helpers for |ΔS| panel
+# ----------------------
+
+def _fixed_dt_deltaS_compare(spec: StepSpec) -> Dict[str, Any]:
+    """Produce a 1x3 panel comparing |ΔS| at fixed dt for j_only, m_only, jmj.
+
+    Uses CAS-derived Q'(W)=a0+a1 W+a2 W^2 to build S(W)=∑ Q(W_i) Δx.
+    Logs PNG + CSV + JSON under outputs/{figures,logs}/metriplectic.
+    """
+    import matplotlib.pyplot as plt
+    from matplotlib.ticker import LogLocator, LogFormatter
+    N = int(spec.grid["N"]) ; dx = float(spec.grid["dx"]) ; dt = float(min(spec.dt_sweep))
+    params = spec.params
+    # Derive coefficients for Q' using RD CAS helper (aligned with (D,r,u))
+    cas = cas_solve_linear_balance(dx, float(params.get("D", 0.0)), float(params.get("r", 0.0)), float(params.get("u", 0.0)), samples=4000, seed=7)
+    coeffs = cas["coeffs"]
+    a0, a1, a2 = float(coeffs["a0"]), float(coeffs["a1"]), float(coeffs["a2"])
+
+    def S_of(W: np.ndarray) -> float:
+        return float(np.sum(Q_from_coeffs(W, a0, a1, a2)) * dx)
+
+    seed_list = list(range(int(spec.seeds))) if isinstance(spec.seeds, int) else [int(s) for s in spec.seeds]
+    seed_scale = float(spec.params.get("seed_scale", 0.1))
+    schemes = ["j_only", "m_only", "jmj"]
+    step_map = {s: select_stepper(s, dx, params) for s in schemes}
+
+    combined_rows = []
+    summaries: Dict[str, Any] = {}
+    fig_path = figure_path("metriplectic", _slug(spec, "fixed_dt_deltaS_compare"), failed=False)
+    plt.figure(figsize=(15, 5))
+    for idx, sch in enumerate(schemes, start=1):
+        vals = [] 
+        samples = []
+        for seed in seed_list:
+            W0 = rng_field(N, seed_scale, seed)
+            S0 = S_of(W0)
+            W1 = step_map[sch](W0, dt)
+            S1 = S_of(W1)
+            dS = float(S1 - S0)
+            vals.append(abs(dS))
+            samples.append({"seed": int(seed), "delta_S": dS})
+            combined_rows.append({"scheme": sch, "seed": int(seed), "abs_delta_S": abs(dS)})
+        summaries[sch] = {
+            "dt": dt,
+            "median_abs_delta_S": float(np.median(vals)),
+            "mean_abs_delta_S": float(np.mean(vals)),
+            "max_abs_delta_S": float(np.max(vals))
+        }
+        ax = plt.subplot(1, 3, idx)
+        # Use log-scaled x-axis with log-spaced bins to reduce label crowding
+        vals_pos = [v for v in vals if v > 0]
+        if len(vals_pos) == 0:
+            # Fallback: add a tiny epsilon to avoid zero-only arrays
+            vals_pos = [1e-16]
+        vmin = float(min(vals_pos))
+        vmax = float(max(vals_pos))
+        # Expand bounds slightly for margins
+        lo = max(vmin * 0.9, 1e-20)
+        hi = vmax * 1.1 if vmax > 0 else 1.0
+        bins_count = min(20, max(5, len(vals)//2))
+        edges = np.logspace(np.log10(lo), np.log10(hi), bins_count + 1)
+        ax.hist(vals_pos, bins=edges)
+        ax.set_xscale('log')
+        ax.grid(True, which='both', alpha=0.25)
+        # Ticks: at most ~5 major ticks, with readable log formatter and slight rotation
+        ax.xaxis.set_major_locator(LogLocator(base=10, numticks=5))
+        ax.xaxis.set_major_formatter(LogFormatter(base=10, labelOnlyBase=False))
+        ax.tick_params(axis='x', labelrotation=25)
+        ax.set_xlabel("|ΔS| (log scale)")
+        if idx == 1:
+            ax.set_ylabel("count")
+        ax.set_title(f"{sch} (dt={dt})", fontsize=11)
+        # Annotate median and max for quick read
+        ax.text(0.98, 0.95,
+                f"median={np.median(vals_pos):.2e}\nmax={np.max(vals_pos):.2e}",
+                transform=ax.transAxes, ha='right', va='top', fontsize=9,
+                bbox=dict(boxstyle='round,pad=0.25', facecolor='white', alpha=0.7, edgecolor='none'))
+    plt.tight_layout()
+    plt.subplots_adjust(wspace=0.3)
+    plt.savefig(fig_path, dpi=150)
+    plt.close()
+
+    # Logs: JSON + CSV
+    jsonj = {"figure": str(fig_path), "dt": dt, "summaries": summaries}
+    write_log(log_path("metriplectic", _slug(spec, "fixed_dt_deltaS_compare"), failed=False), jsonj)
+    csv_path = log_path("metriplectic", _slug(spec, "fixed_dt_deltaS_compare"), failed=False, type="csv")
+    with csv_path.open("w", encoding="utf-8") as f:
+        f.write("scheme,seed,abs_delta_S\n")
+        for row in combined_rows:
+            f.write(f"{row['scheme']},{row['seed']},{row['abs_delta_S']}\n")
+    return jsonj
+
+
+if __name__ == "__main__":
+    main()
+]]></content>
+    </file>
+    <file>
+      <path>schemas/KG-cone-v1.schema.json</path>
+      <content><![CDATA[{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "KG Light Cone Run Log",
+  "version": "1.0.0",
+  "type": "object",
+  "tag": "KG-cone-v1",
+  "properties": {
+    "params": { "type": "object" },
+    "fit": { "type": "object" },
+    "gate": { "type": "object" },
+    "policy": { "type": "object" }
+  },
+  "required": ["tag", "type"]
+}
+]]></content>
+    </file>
+    <file>
+      <path>schemas/KG-dispersion-v1.schema.json</path>
+      <content><![CDATA[{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "KG Dispersion Run Log",
+  "version": "1.0.0",
+  "type": "object",
+  "tag": "KG-dispersion-v1",
+  "properties": {
+    "params": { "type": "object" },
+    "fit": { "type": "object" },
+    "gate": { "type": "object" },
+    "policy": { "type": "object" }
+  },
+  "required": ["tag", "type"]
+}
+]]></content>
+    </file>
+    <file>
+      <path>schemas/KG-energy-osc-v1.schema.json</path>
+      <content><![CDATA[{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "KG Energy Oscillation Scaling & Time-Reversal (v1)",
+  "tag": "KG-energy-osc-v1",
+  "type": "object",
+  "properties": {
+    "tag": { "type": "string", "const": "KG-energy-osc-v1" },
+    "grid": { "type": "object" },
+    "params": { "type": "object" },
+    "dt_list": {
+      "type": "array",
+      "items": { "type": "number", "minimum": 0.0 },
+      "minItems": 1
+    },
+    "AH": {
+      "description": "Median energy oscillation amplitude per dt (half peak-to-peak)",
+      "type": "array",
+      "items": { "type": "number", "minimum": 0.0 },
+      "minItems": 1
+    },
+    "rel_AH": {
+      "description": "Median relative amplitude per dt (AH / mean(H))",
+      "type": "array",
+      "items": { "type": "number", "minimum": 0.0 },
+      "minItems": 1
+    },
+    "fit": {
+      "type": "object",
+      "properties": {
+        "p": { "type": "number" },
+        "R2": { "type": "number", "minimum": 0.0, "maximum": 1.0 }
+      },
+      "required": ["p", "R2"]
+    },
+    "e_rev": {
+      "description": "Max time-reversal sup-norm error across seeds",
+      "type": "number",
+      "minimum": 0.0
+    },
+    "checkpoints": {
+      "description": "Optional list of checkpoint step indices used for hashing",
+      "type": "array",
+      "items": { "type": "integer", "minimum": 0 }
+    },
+    "hashes": {
+      "description": "Optional list of SHA256 hashes of raw buffers at checkpoints",
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "env_audit": { "type": "object" },
+    "figure": { "type": "string" },
+    "csv": { "type": "string" },
+    "gate": { "type": "object" },
+    "passed": { "type": "boolean" }
+  },
+  "required": ["tag", "dt_list", "AH", "fit", "e_rev", "passed"],
+  "additionalProperties": true
+}
+]]></content>
+    </file>
+    <file>
+      <path>schemas/KG-noether-v1.schema.json</path>
+      <content><![CDATA[{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "KG Noether Energy/Momentum Invariants Log (v1)",
+  "tag": "KG-noether-v1",
+  "type": "object",
+  "properties": {
+    "tag": { "type": "string", "const": "KG-noether-v1" },
+    "dt": { "type": "number", "minimum": 0 },
+    "steps": { "type": "integer", "minimum": 1 },
+    "N": { "type": "integer", "minimum": 1 },
+    "max_per_step_delta": {
+      "type": "object",
+      "properties": {
+        "E_disc": { "type": "number" },
+        "P_disc": { "type": "number" }
+      },
+      "required": ["E_disc", "P_disc"]
+    },
+    "passed": {
+      "type": "object",
+      "properties": {
+        "energy": { "type": "boolean" },
+        "momentum": { "type": "boolean" },
+        "reversibility": { "type": "boolean" }
+      },
+      "required": ["energy", "momentum", "reversibility"]
+    },
+    "csv": { "type": "string" },
+    "figure": { "type": "string" },
+    "grid": { "type": "object" },
+    "params": { "type": "object" }
+  },
+  "required": ["dt", "steps", "N", "max_per_step_delta", "passed" ],
+  "additionalProperties": true
+}
+]]></content>
+    </file>
+    <file>
+      <path>schemas/struct-v1.schema.json</path>
+      <content><![CDATA[{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://prometheus-vdm.local/schemas/metriplectic/struct-v1.schema.json",
+  "title": "Metriplectic Structure Checks Log",
+  "description": "Log schema for metriplectic algebraic structure checks: J skew-symmetry and M positive semidefiniteness.",
+  "version": "1.0.0",
+  "type": "object",
+  "tag": "struct-v1",
+  "properties": {
+    "J_skew": {
+      "type": "object",
+      "description": "Statistics for the skew-symmetry check of J via random vectors v ↦ <v, J v>.",
+      "properties": {
+        "median_abs_vJv": { "type": "number", "description": "Median of |<v, J v>| across draws." },
+        "gate": { "type": "string", "description": "Human-readable gate string, e.g., '<=1e-12'." },
+        "passed": { "type": "boolean", "description": "True if gate is satisfied." }
+      },
+      "required": ["median_abs_vJv", "gate", "passed"],
+      "additionalProperties": true
+    },
+    "M_psd": {
+      "type": "object",
+      "description": "Statistics for the PSD check of M via random vectors u ↦ <u, M u>.",
+      "properties": {
+        "min": { "type": "number", "description": "Minimum quadratic form value observed." },
+        "neg_count": { "type": "integer", "minimum": 0, "description": "Number of negative quadratic form values." },
+        "draws": { "type": "integer", "minimum": 1, "description": "Total number of random draws." },
+        "gate": { "type": "string", "description": "Human-readable gate string, e.g., '0 negatives'." },
+        "passed": { "type": "boolean", "description": "True if gate is satisfied." }
+      },
+      "required": ["neg_count", "draws", "passed"],
+      "additionalProperties": true
+    },
+    "policy": { "type": "object", "description": "Optional policy stamp (approval/quarantine)." },
+    "params": { "type": "object", "description": "Optional echo of parameters used in the run." },
+    "grid": { "type": "object", "description": "Optional echo of grid settings (N, dx)." }
+  },
+  "required": ["J_skew", "M_psd"],
+  "additionalProperties": true
+}
+]]></content>
+    </file>
+    <file>
+      <path>specs/kg_energy_osc.v1.json</path>
+      <content><![CDATA[{
+  "bc": "periodic",
+  "grid": { "N": 256, "dx": 1.0 },
+  "params": {
+    "c": 1.0,
+    "m": 0.5,
+    "seed_scale": 0.05,
+    "bands": [[1, 8], [9, 24], [25, 48]],
+    "seeds_per_band": 2,
+    "checkpoints": [0, 64, 128, 256, 512],
+    "tag": "KG-energy-osc-v1"
+  },
+  "dt_strategy": "discrete_omega_max_geometric",
+  "dt_ladder_count": 5,
+  "steps": 1024,
+  "notes": "KG J-only energy oscillation amplitude scaling (AH ~ dt^2) and strict time-reversal (erev <= 1e-12); determinism locked; approval-tagged run"
+}
+]]></content>
+    </file>
+    <file>
+      <path>specs/kg_noether.v1.json</path>
+      <content><![CDATA[{
+  "bc": "periodic",
+  "grid": { "N": 256, "dx": 1.0 },
+  "params": {
+    "c": 1.0,
+    "m": 0.5,
+    "seed_scale": 0.05,
+    "tag": "KG-noether-v1"
+  },
+  "dt_sweep": [0.02, 0.01, 0.005],
+  "steps": 512,
+  "notes": "KG J-only Noether invariants (energy, momentum) with Störmer-Verlet; approval-tagged run"
+}
+]]></content>
+    </file>
+    <file>
+      <path>specs/struct_checks.v1.json</path>
+      <content><![CDATA[{
+  "grid": { "N": 256, "dx": 1.0 },
+  "params": {
+    "c": 1.0,
+    "m": 0.0,
+    "D": 1.0,
+    "m_lap_operator": "spectral",
+    "tag": "struct-v1"
+  },
+  "draws": 200,
+  "notes": "Structure checks for metriplectic operators: J skew-symmetry and M positive semidefiniteness (spectral Laplacian)."
+}
+]]></content>
+    </file>
+    <file>
+      <path>step_spec.kg_rd.v1.json</path>
+      <content><![CDATA[{
+  "bc": "periodic",
+  "scheme": "jmj",
+  "grid": { "N": 256, "dx": 1.0 },
+  "params": {
+    "c": 1.0,
+    "m": 0.5,
+    "D": 1.0,
+    "r": 0.2,
+    "u": 0.25,
+    "seed_scale": 0.05,
+    "m_lap_operator": "spectral",
+    "dg_tol": 1e-12,
+    "gate_slope": 2.9,
+    "gate_R2": 0.999,
+    "dt_sweep_small": [0.02, 0.01, 0.005, 0.0025],
+    "tag": "kgRD-v1"
+  },
+  "dt_sweep": [0.04, 0.02, 0.01, 0.005],
+  "seeds": 10,
+  "notes": "KG⊕RD metriplectic v1, spectral-DG primary; additive and tagged."
+}
+]]></content>
+    </file>
+    <file>
+      <path>step_spec.kg_rd.v1b.json</path>
+      <content><![CDATA[{
+  "bc": "periodic",
+  "scheme": "jmj",
+  "grid": { "N": 256, "dx": 1.0 },
+  "params": {
+    "c": 1.0,
+    "m": 0.5,
+    "D": 1.0,
+    "r": 0.2,
+    "u": 0.25,
+    "seed_scale": 0.05,
+    "dg_tol": 1e-12,
+    "m_lap_operator": "spectral",
+    "norm": "H_energy",
+    "tag": "kgRD-v1b",
+    "dt_sweep_small": [0.02, 0.01, 0.005, 0.0025, 0.00125]
+  },
+  "dt_sweep": [0.04, 0.02, 0.01, 0.005],
+  "seeds": 10,
+  "tag": "kgRD-v1b",
+  "notes": "JMJ spectral-DG with H_energy norm for two-grid; extended small-dt; keep J-only and M-only checks unchanged."
+}]]></content>
+    </file>
+    <file>
+      <path>step_spec.kg_rd.v1c.json</path>
+      <content><![CDATA[{
+  "bc": "periodic",
+  "scheme": "jmj",
+  "grid": { "N": 256, "dx": 1.0 },
+  "params": {
+    "c": 1.0,
+    "m": 0.5,
+    "D": 1.0,
+    "r": 0.2,
+    "u": 0.25,
+    "seed_scale": 0.05,
+    "dg_tol": 1e-12,
+    "m_lap_operator": "spectral",
+    "norm": "H_energy",
+    "tag": "kgRD-v1c",
+    "dt_sweep_small": [0.02, 0.01, 0.005, 0.0025, 0.00125, 0.000625]
+  },
+  "dt_sweep": [0.04, 0.02, 0.01, 0.005],
+  "seeds": 10,
+  "tag": "kgRD-v1c",
+  "notes": "JMJ spectral-DG with H_energy norm for two-grid; extended small-dt; keep J-only and M-only checks unchanged."
+}]]></content>
+    </file>
+    <file>
+      <path>step_spec.metriplectic.N512.json</path>
+      <content><![CDATA[{
+  "bc": "periodic",
+  "scheme": "jmj",
+  "grid": { "N": 512, "dx": 1.0 },
+  "params": {
+    "c": 0.5,
+    "D": 1.0,
+    "r": 0.2,
+    "u": 0.25,
+    "seed_scale": 0.05,
+    "dg_tol": 1e-12,
+    "gate_slope": 2.9,
+    "gate_R2": 0.999,
+    "dt_sweep_small": [0.02, 0.01, 0.005, 0.0025, 0.00125],
+    "v5_grid": [
+      { "r": 0.2, "u": 0.25, "D": 1.0, "N": 256 },
+      { "r": 0.1, "u": 0.2,  "D": 0.5, "N": 256 },
+      { "r": 0.3, "u": 0.25, "D": 1.0, "N": 256 },
+      { "r": 0.2, "u": 0.3,  "D": 1.0, "N": 256 }
+    ]
+  },
+  "dt_sweep": [0.02, 0.01, 0.005, 0.0025, 0.00125],
+  "seeds": 10,
+  "notes": "N=512 variant to probe asymptotics; all gates/params same as main run."
+}
+]]></content>
+    </file>
+    <file>
+      <path>step_spec.metriplectic.asymptotics.json</path>
+      <content><![CDATA[{
+  "bc": "periodic",
+  "scheme": "jmj",
+  "grid": { "N": 256, "dx": 1.0 },
+  "params": {
+    "c": 0.5,
+    "D": 1.0,
+    "r": 0.2,
+    "u": 0.25,
+    "seed_scale": 0.01,
+    "dg_tol": 1e-12,
+    "gate_slope": 2.9,
+    "gate_R2": 0.999,
+    "dt_sweep_small": [0.01, 0.005, 0.0025, 0.00125, 0.000625],
+    "tag": "asymptotics-seed01"
+  },
+  "dt_sweep": [0.01, 0.005, 0.0025, 0.00125, 0.000625],
+  "seeds": 10,
+  "notes": "Deeper asymptotics: smaller seed_scale and half-Δt extension."
+}
+]]></content>
+    </file>
+    <file>
+      <path>step_spec.metriplectic.example.json</path>
+      <content><![CDATA[{
+  "bc": "periodic",
+  "scheme": "jmj",
+  "grid": { "N": 256, "dx": 1.0 },
+  "params": {
+    "c": 0.5,
+    "D": 1.0,
+    "r": 0.2,
+    "u": 0.25,
+    "seed_scale": 0.05,
+    "dg_tol": 1e-12,
+    "gate_slope": 2.9,
+    "gate_R2": 0.999,
+    "dt_sweep_small": [0.02, 0.01, 0.005, 0.0025, 0.00125],
+    "v5_grid": [
+      { "r": 0.2, "u": 0.25, "D": 1.0, "N": 256 },
+      { "r": 0.1, "u": 0.2,  "D": 0.5, "N": 256 },
+      { "r": 0.3, "u": 0.25, "D": 1.0, "N": 256 },
+      { "r": 0.2, "u": 0.3,  "D": 1.0, "N": 256 }
+    ]
+  },
+  "dt_sweep": [0.02, 0.01, 0.005, 0.0025, 0.00125],
+  "seeds": 10,
+  "notes": "Run plan (locked): N=256, small-Δt sweep, seed_scale=0.05, dg_tol=1e-12; gather JMJ+M-only sweeps, Lyapunov, J-only reversibility, Strang defect, and V5 robustness."
+}
+]]></content>
+    </file>
+    <file>
+      <path>step_spec.metriplectic.smoke.json</path>
+      <content><![CDATA[{
+  "bc": "periodic",
+  "scheme": "jmj",
+  "grid": { "N": 256, "dx": 1.0 },
+  "params": {
+    "c": 0.5,
+    "D": 1.0,
+    "r": 0.2,
+    "u": 0.25,
+    "seed_scale": 0.05,
+    "dg_tol": 1e-12,
+    "gate_slope": 2.0,
+    "gate_R2": 0.9,
+    "dt_sweep_small": [0.02],
+    "v5_grid": [ { "r": 0.2, "u": 0.25, "D": 1.0, "N": 256 } ],
+    "tag": "tag-smoke"
+  },
+  "dt_sweep": [0.02],
+  "seeds": 1,
+  "notes": "Minimal smoke test spec to exercise tag-aware artifact paths."
+}
+]]></content>
+    </file>
+    <file>
+      <path>step_spec.metriplectic.spectralDG.json</path>
+      <content><![CDATA[{
+  "bc": "periodic",
+  "scheme": "jmj",
+  "grid": { "N": 256, "dx": 1.0 },
+  "params": {
+    "c": 0.5,
+    "D": 1.0,
+    "r": 0.2,
+    "u": 0.25,
+    "seed_scale": 0.05,
+    "dg_tol": 1e-12,
+    "gate_slope": 2.9,
+    "gate_R2": 0.999,
+    "dt_sweep_small": [0.02, 0.01, 0.005, 0.0025, 0.00125],
+    "m_lap_operator": "spectral",
+    "tag": "spectralDG"
+  },
+  "dt_sweep": [0.02, 0.01, 0.005, 0.0025, 0.00125],
+  "seeds": 10,
+  "notes": "Param-gated spectral Laplacian in the DG M-step to reduce J-M discretization mismatch."
+}
+]]></content>
+    </file>
+    <file>
+      <path>step_spec.metriplectic.tagged.example.json</path>
+      <content><![CDATA[{
+  "bc": "periodic",
+  "scheme": "jmj",
+  "grid": { "N": 256, "dx": 1.0 },
+  "params": {
+    "c": 0.5,
+    "D": 1.0,
+    "r": 0.2,
+    "u": 0.25,
+    "seed_scale": 0.05,
+    "dg_tol": 1e-12,
+    "gate_slope": 2.9,
+    "gate_R2": 0.999,
+    "dt_sweep_small": [0.02, 0.01, 0.005, 0.0025, 0.00125],
+    "v5_grid": [
+      { "r": 0.2, "u": 0.25, "D": 1.0, "N": 256 },
+      { "r": 0.1, "u": 0.2,  "D": 0.5, "N": 256 },
+      { "r": 0.3, "u": 0.25, "D": 1.0, "N": 256 },
+      { "r": 0.2, "u": 0.3,  "D": 1.0, "N": 256 }
+    ],
+    "tag": "v1-tag-smoke"
+  },
+  "dt_sweep": [0.02, 0.01, 0.005, 0.0025, 0.00125],
+  "seeds": 3,
+  "notes": "Example spec that sets params.tag for artifact suffixing without changing numerical behavior."
+}
+]]></content>
+    </file>
+  </files>
+</fum_code_report>

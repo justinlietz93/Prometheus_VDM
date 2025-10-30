@@ -10,16 +10,12 @@
 !runs/original_1kN_20250811_234347/*.zip
 !runs/original_1kN_20250811_234347/archived/20250815_120828/*.zip
 
-# 
-!runs/new_10kN_20250816_072533/*.jsonl
-!runs/original_1kN_20250811_234347/*.jsonl
-!runs/original_1kN_20250811_234347/archived/*.jsonl
+# (Do not include JSONL; they are large and excluded from history)
 
 # 
 !runs/original_1kN_20250811_234347/reasoning_evidence/*.zip
 
-# 
-!runs/original_1kN_20250811_234347/archived/20250815_120828/*.jsonl
+# (specific JSONL exceptions removed)
 
 # 
 !Derivation/code/physics/causality/data
@@ -69,6 +65,13 @@ code_crawler_results/*
 *.db
 events.jsonl
 utd_events.jsonl
+
+# Final overrides: ensure proof zips are tracked even with the global *.zip ignore
+!runs/
+!runs/new_10kN_20250816_072533/
+!runs/original_1kN_20250811_234347/
+!runs/new_10kN_20250816_072533/*.zip
+!runs/original_1kN_20250811_234347/*.zip
 
 # Plans and LLM Context
 ## On the Prometheus workstation

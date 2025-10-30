@@ -1,0 +1,3681 @@
+<?xml version="1.0" ?>
+<fum_code_report>
+  <generated_timestamp>2025-10-28 18:44:54</generated_timestamp>
+  <metadata>
+    <global_stats>
+      <total_files>27</total_files>
+      <total_size_bytes>127987</total_size_bytes>
+      <total_loc>3501</total_loc>
+    </global_stats>
+    <chunk_stats>
+      <files_in_chunk>27</files_in_chunk>
+      <size_in_chunk_bytes>127987</size_in_chunk_bytes>
+      <loc_in_chunk>3501</loc_in_chunk>
+    </chunk_stats>
+  </metadata>
+  <ascii_map><![CDATA[   MEMORY_GRAPH_CONTEXT/
+>> ├── chunker.summary.json
+   │   (LOC: 24, Size: 965 B)
+   ├── entities/
+>> │   └── kg-entities.v1.json
+   │       (LOC: 77, Size: 3.3 KB)
+   ├── indexes/
+>> │   └── kg-pathrag-index.v1.json
+   │       (LOC: 6, Size: 117 B)
+   ├── justin/
+   │   ├── chunks/
+>> │   │   ├── justin@1.0:axes_dimensions.json
+   │   │   │   (LOC: 103, Size: 2.4 KB)
+>> │   │   ├── justin@1.0:edges.json
+   │   │   │   (LOC: 88, Size: 2.1 KB)
+>> │   │   ├── justin@1.0:meta.json
+   │   │   │   (LOC: 24, Size: 590 B)
+>> │   │   ├── justin@1.0:retrieval_policy.json
+   │   │   │   (LOC: 23, Size: 572 B)
+>> │   │   ├── justin@1.0:signals.json
+   │   │   │   (LOC: 120, Size: 4.3 KB)
+>> │   │   └── justin@1.0:subfactors.json
+   │   │       (LOC: 180, Size: 5.0 KB)
+>> │   └── justin.index.json
+   │       (LOC: 58, Size: 1.6 KB)
+>> ├── justin-graph.json
+   │   (LOC: 482, Size: 15.7 KB)
+>> ├── kg-lite.chunkenvelope.v1.schema.json
+   │   (LOC: 203, Size: 6.6 KB)
+>> ├── kg-lite_Convo.md
+   │   (LOC: 171, Size: 17.4 KB)
+>> ├── memory-graph-2025-09-25_faithful.md
+   │   (LOC: 200, Size: 3.9 KB)
+>> ├── memory-graph-2025-09-25_optimized.md
+   │   (LOC: 189, Size: 4.0 KB)
+   ├── nexus-sessions/
+   │   ├── chunks/
+>> │   │   ├── edges.json
+   │   │   │   (LOC: 54, Size: 1.3 KB)
+>> │   │   ├── meta.json
+   │   │   │   (LOC: 30, Size: 931 B)
+>> │   │   ├── retrieval_policy.json
+   │   │   │   (LOC: 24, Size: 706 B)
+>> │   │   └── signals.json
+   │   │       (LOC: 89, Size: 2.9 KB)
+>> │   └── nexus-sessions.index.json
+   │       (LOC: 53, Size: 1.8 KB)
+   ├── relations/
+>> │   └── kg-relations.v1.json
+   │       (LOC: 12, Size: 241 B)
+   ├── schemas/
+>> │   ├── vdm.nexus.policy.v1.schema.json
+   │   │   (LOC: 104, Size: 4.2 KB)
+>> │   ├── vdm.nexus.signal.v1.schema.json
+   │   │   (LOC: 133, Size: 4.6 KB)
+>> │   └── vdm.run-manifest.v1.schema.json
+   │       (LOC: 81, Size: 3.4 KB)
+   └── tools/
+>>     ├── generate_nexus_sessions.py
+       │   (LOC: 225, Size: 8.3 KB)
+>>     ├── kg_cli.py
+       │   (LOC: 456, Size: 16.9 KB)
+>>     └── kg_lite_chunker.py
+           (LOC: 292, Size: 11.3 KB)]]></ascii_map>
+  <files>
+    <file>
+      <path>chunker.summary.json</path>
+      <content><![CDATA[[warn] justin@1.0:meta: jsonschema not installed; skipped JSON Schema validation
+[warn] justin@1.0:axes_dimensions: jsonschema not installed; skipped JSON Schema validation
+[warn] justin@1.0:subfactors: jsonschema not installed; skipped JSON Schema validation
+[warn] justin@1.0:signals: jsonschema not installed; skipped JSON Schema validation
+[warn] justin@1.0:edges: jsonschema not installed; skipped JSON Schema validation
+[warn] justin@1.0:retrieval_policy: jsonschema not installed; skipped JSON Schema validation
+[warn] justin@1.0:index: jsonschema not installed; skipped JSON Schema validation
+{
+  "counts": {
+    "axes": 5,
+    "dimensions": 7,
+    "edges": 10,
+    "signals": 20,
+    "subfactors": 20
+  },
+  "scope": "user:justin",
+  "set_id": "justin",
+  "set_version": "1.0",
+  "written": {
+    "chunks_dir": "memory-bank/MEMORY_GRAPH_CONTEXT/justin/chunks",
+    "count": 7,
+    "index": "memory-bank/MEMORY_GRAPH_CONTEXT/justin/justin.index.json"
+  }
+}
+]]></content>
+    </file>
+    <file>
+      <path>entities/kg-entities.v1.json</path>
+      <content><![CDATA[{
+  "entities": [
+    {
+      "name": "VDM_Nexus_Approval_CLI",
+      "observations": [
+        "Path: [approval_cli.py](VDM_Nexus/scripts/approval_cli.py:1) \u2022 Thin wrapper that shells to canonical approvals CLI; read-only wrapper, no secrets.",
+        "Policy: Env precedence CLI > env > .env; sets VDM_NEXUS=1; prompts handled by canonical CLI.",
+        "Docs: [scripts/README.md \u00a7Approvals wrapper](VDM_Nexus/scripts/README.md:41)",
+        "Timestamp: 2025-10-28T04:59:13Z",
+        "Path: [approval_cli.py](VDM_Nexus/scripts/approval_cli.py:1)",
+        "Docs: [scripts/README.md](VDM_Nexus/scripts/README.md:41)"
+      ],
+      "type": "ScriptTool"
+    },
+    {
+      "name": "Canonical_Approve_Tag_CLI",
+      "observations": [
+        "Path: [approve_tag.py](Derivation/code/common/authorization/approve_tag.py:1) \u2022 Admin-gated approvals CLI (password prompt), updates approvals DB.",
+        "Usage overview: [authorization/README.md](Derivation/code/common/authorization/README.md:1)",
+        "Referenced by wrapper: [approval_cli.py](VDM_Nexus/scripts/approval_cli.py:1)",
+        "Path: [approve_tag.py](Derivation/code/common/authorization/approve_tag.py:1)",
+        "Guide: [authorization/README.md](Derivation/code/common/authorization/README.md:1)"
+      ],
+      "type": "CanonicalTool"
+    },
+    {
+      "name": "Task_1_2_Validation_Plan",
+      "observations": [
+        "Checklist locus: [TODO_CHECKLIST.md \u00b7 Task 1.2 Validation](VDM_Nexus/TODO_CHECKLIST.md:87)",
+        "Steps: (1) approval_cli.py check/print-env; (2) approve flow via run -- approve ...; (3) quarantine smoke with --allow-unapproved to produce failed_runs + policy JSON via io_paths.",
+        "Plan recorded: [progress.md entry](memory-bank/progress.md:1)"
+      ],
+      "type": "Process"
+    },
+    {
+      "name": "Quarantine_Routing_Policy",
+      "observations": [
+        "IO helper reference: [io_paths.py](Derivation/code/common/io_paths.py:1)",
+        "Expectation: unapproved runs route artifacts to failed_runs/ with contradiction/policy receipts (JSON/CSV).",
+        "Cited in checklist validation: [TODO_CHECKLIST.md](VDM_Nexus/TODO_CHECKLIST.md:89)"
+      ],
+      "type": "Policy"
+    },
+    {
+      "name": "Env_Precedence_Policy",
+      "observations": [
+        "Rule: CLI flags > env (VDM_REPO_ROOT, VDM_APPROVAL_DB, VDM_APPROVAL_ADMIN_DB) > .env",
+        "Declared in: [scripts/README.md](VDM_Nexus/scripts/README.md:20) and implemented in [approval_cli.py](VDM_Nexus/scripts/approval_cli.py:102)"
+      ],
+      "type": "Policy"
+    },
+    {
+      "name": "Memory_Bank_Update_2025-10-28",
+      "observations": [
+        "Decision log: [decisionLog.md entry](memory-bank/decisionLog.md:1)",
+        "Progress log: [progress.md entry](memory-bank/progress.md:1)",
+        "Scope: adoption of approvals wrapper; documentation; pending Task 1.2 validation."
+      ],
+      "type": "Record"
+    }
+  ],
+  "provenance": {
+    "source_files": [
+      "VDM_Nexus/scripts/approval_cli.py",
+      "VDM_Nexus/scripts/README.md",
+      "Derivation/code/common/authorization/approve_tag.py",
+      "Derivation/code/common/authorization/README.md",
+      "VDM_Nexus/TODO_CHECKLIST.md",
+      "Derivation/code/common/io_paths.py",
+      "memory-bank/decisionLog.md",
+      "memory-bank/progress.md"
+    ]
+  },
+  "set_id": "kg-entities",
+  "set_version": "1.0",
+  "updated_utc": "2025-10-28T05:30:30Z"
+}
+]]></content>
+    </file>
+    <file>
+      <path>indexes/kg-pathrag-index.v1.json</path>
+      <content><![CDATA[{
+  "entries": [],
+  "set_id": "kg-pathrag-index",
+  "set_version": "1.0",
+  "updated_utc": "2025-10-28T22:58:08Z"
+}
+]]></content>
+    </file>
+    <file>
+      <path>justin-graph.json</path>
+      <content><![CDATA[{
+    "meta": {
+        "version": "1.0",
+        "subject": "Justin",
+        "updated": "2025-09-24T06:47:02Z"
+    },
+    "nodes": [
+        {
+            "id": "goals",
+            "type": "axis",
+            "label": "Goals"
+        },
+        {
+            "id": "creative_axes",
+            "type": "axis",
+            "label": "Creative Axes"
+        },
+        {
+            "id": "motivations",
+            "type": "axis",
+            "label": "Motivations"
+        },
+        {
+            "id": "privacy_security",
+            "type": "axis",
+            "label": "Privacy & Security"
+        },
+        {
+            "id": "constraints",
+            "type": "axis",
+            "label": "Constraints"
+        },
+        {
+            "id": "speed_quality",
+            "type": "dimension",
+            "parent": "goals",
+            "label": "Speed↔Quality",
+            "score": 4,
+            "confidence": 0.7
+        },
+        {
+            "id": "fidelity",
+            "type": "dimension",
+            "parent": "creative_axes",
+            "label": "Fidelity sketch↔polished",
+            "score": 5,
+            "confidence": 0.7
+        },
+        {
+            "id": "originality",
+            "type": "dimension",
+            "parent": "creative_axes",
+            "label": "Originality derivative↔original",
+            "score": 5,
+            "confidence": 0.7
+        },
+        {
+            "id": "control_preference",
+            "type": "dimension",
+            "parent": "motivations",
+            "label": "Control preference guided↔in control",
+            "score": 5,
+            "confidence": 0.7
+        },
+        {
+            "id": "privacy_sensitivity",
+            "type": "dimension",
+            "parent": "privacy_security",
+            "label": "Privacy sensitivity low↔high",
+            "score": 5,
+            "confidence": 0.7
+        },
+        {
+            "id": "time_slack",
+            "type": "dimension",
+            "parent": "constraints",
+            "label": "Time slack tight↔ample",
+            "score": 2,
+            "confidence": 0.7
+        },
+        {
+            "id": "budget_flexibility",
+            "type": "dimension",
+            "parent": "constraints",
+            "label": "Budget constrained↔flexible",
+            "score": 1,
+            "confidence": 0.7
+        },
+        {
+            "id": "sq_deadline",
+            "type": "subfactor",
+            "parent": "speed_quality",
+            "label": "Deadline sensitivity",
+            "definition": "How delivery dates dominate tradeoffs",
+            "confidence": 0.6
+        },
+        {
+            "id": "sq_revision",
+            "type": "subfactor",
+            "parent": "speed_quality",
+            "label": "Revision tolerance",
+            "definition": "Tolerance for extra draft cycles",
+            "confidence": 0.6
+        },
+        {
+            "id": "sq_defects",
+            "type": "subfactor",
+            "parent": "speed_quality",
+            "label": "Defect tolerance",
+            "definition": "Acceptable rough edges in early drafts",
+            "confidence": 0.6
+        },
+        {
+            "id": "sq_reviewlatency",
+            "type": "subfactor",
+            "parent": "speed_quality",
+            "label": "Review latency",
+            "definition": "Expected turnaround for reviews",
+            "confidence": 0.6
+        },
+        {
+            "id": "fid_visual",
+            "type": "subfactor",
+            "parent": "fidelity",
+            "label": "Visual polish",
+            "definition": "Typography, spacing, aesthetics",
+            "confidence": 0.6
+        },
+        {
+            "id": "fid_struct",
+            "type": "subfactor",
+            "parent": "fidelity",
+            "label": "Structural completeness",
+            "definition": "All sections present and coherent",
+            "confidence": 0.6
+        },
+        {
+            "id": "fid_edge",
+            "type": "subfactor",
+            "parent": "fidelity",
+            "label": "Edge-case coverage",
+            "definition": "Non-happy paths addressed",
+            "confidence": 0.6
+        },
+        {
+            "id": "fid_format",
+            "type": "subfactor",
+            "parent": "fidelity",
+            "label": "Formatting standards",
+            "definition": "Citations, code style, file hygiene",
+            "confidence": 0.6
+        },
+        {
+            "id": "orig_novelty",
+            "type": "subfactor",
+            "parent": "originality",
+            "label": "Novelty threshold",
+            "definition": "Minimum distance from common patterns",
+            "confidence": 0.6
+        },
+        {
+            "id": "orig_pattern",
+            "type": "subfactor",
+            "parent": "originality",
+            "label": "Pattern avoidance",
+            "definition": "Avoidance of clichés and templates",
+            "confidence": 0.6
+        },
+        {
+            "id": "orig_refs",
+            "type": "subfactor",
+            "parent": "originality",
+            "label": "Reference usage",
+            "definition": "How references inspire vs copy",
+            "confidence": 0.6
+        },
+        {
+            "id": "orig_ambiguity",
+            "type": "subfactor",
+            "parent": "originality",
+            "label": "Ambiguity tolerance",
+            "definition": "Comfort with unconventional outputs",
+            "confidence": 0.6
+        },
+        {
+            "id": "ctrl_decision",
+            "type": "subfactor",
+            "parent": "control_preference",
+            "label": "Decision authority",
+            "definition": "Who makes final calls",
+            "confidence": 0.6
+        },
+        {
+            "id": "ctrl_custom",
+            "type": "subfactor",
+            "parent": "control_preference",
+            "label": "Customization need",
+            "definition": "Depth of knobs and settings wanted",
+            "confidence": 0.6
+        },
+        {
+            "id": "ctrl_transparency",
+            "type": "subfactor",
+            "parent": "control_preference",
+            "label": "Transparency requirement",
+            "definition": "Explanations, logs, and diffs",
+            "confidence": 0.6
+        },
+        {
+            "id": "ctrl_automation",
+            "type": "subfactor",
+            "parent": "control_preference",
+            "label": "Automation tolerance",
+            "definition": "Comfort with auto-actions",
+            "confidence": 0.6
+        },
+        {
+            "id": "priv_scope",
+            "type": "subfactor",
+            "parent": "privacy_sensitivity",
+            "label": "Data-collection scope",
+            "definition": "What can be collected",
+            "confidence": 0.6
+        },
+        {
+            "id": "priv_logging",
+            "type": "subfactor",
+            "parent": "privacy_sensitivity",
+            "label": "Logging & retention",
+            "definition": "What is stored and for how long",
+            "confidence": 0.6
+        },
+        {
+            "id": "priv_pii",
+            "type": "subfactor",
+            "parent": "privacy_sensitivity",
+            "label": "PII handling",
+            "definition": "Redaction and access rules",
+            "confidence": 0.6
+        },
+        {
+            "id": "priv_device",
+            "type": "subfactor",
+            "parent": "privacy_sensitivity",
+            "label": "On-device preference",
+            "definition": "Local processing vs cloud",
+            "confidence": 0.6
+        },
+        {
+            "id": "sig_sq_deadline_1",
+            "type": "signal",
+            "parent": "sq_deadline",
+            "text": "Hard date beats polish when conflict arises",
+            "probe": "deliver today",
+            "acceptance_test": "When deadline conflicts exist, choice A is selected ≥80% of time",
+            "confidence": 0.5
+        },
+        {
+            "id": "sig_sq_revision_1",
+            "type": "signal",
+            "parent": "sq_revision",
+            "text": "Max preferred revision cycles per artifact",
+            "probe": "2",
+            "acceptance_test": "If >2, allow scheduled revision gates; else ship v1.1 then iterate",
+            "confidence": 0.5
+        },
+        {
+            "id": "sig_sq_defects_1",
+            "type": "signal",
+            "parent": "sq_defects",
+            "text": "Accept minor typos or rough edges in draft",
+            "probe": "No",
+            "acceptance_test": "Documentation is just as important as code, if documentation is wrong nobody knows how to use the code",
+            "confidence": 0.5
+        },
+        {
+            "id": "sig_sq_reviewlatency_1",
+            "type": "signal",
+            "parent": "sq_reviewlatency",
+            "text": "Expected review turnaround hours",
+            "probe": "3",
+            "acceptance_test": "SLAs trigger nudges if > target",
+            "confidence": 0.5
+        },
+        {
+            "id": "sig_fid_visual_1",
+            "type": "signal",
+            "parent": "fid_visual",
+            "text": "Requires brand-level typography and spacing",
+            "probe": "5",
+            "acceptance_test": "Scores ≥4 enforce design checklist pre-handoff",
+            "confidence": 0.5
+        },
+        {
+            "id": "sig_fid_struct_1",
+            "type": "signal",
+            "parent": "fid_struct",
+            "text": "Rejects drafts missing sections",
+            "probe": "Yes",
+            "acceptance_test": "If Yes, block approval until sections complete",
+            "confidence": 0.5
+        },
+        {
+            "id": "sig_fid_edge_1",
+            "type": "signal",
+            "parent": "fid_edge",
+            "text": "Needs edge-case notes per artifact",
+            "probe": "Yes",
+            "acceptance_test": "Checklist includes ≥3 edge cases",
+            "confidence": 0.5
+        },
+        {
+            "id": "sig_fid_format_1",
+            "type": "signal",
+            "parent": "fid_format",
+            "text": "Requires citation and style conformance",
+            "probe": "strict",
+            "acceptance_test": "C => run linter before approval",
+            "confidence": 0.5
+        },
+        {
+            "id": "sig_orig_novelty_1",
+            "type": "signal",
+            "parent": "orig_novelty",
+            "text": "Target novelty vs known patterns",
+            "probe": "depends on project, sometimes 1 sometimes 5",
+            "acceptance_test": "≥4 mandates diversified exemplars in brief",
+            "confidence": 0.5
+        },
+        {
+            "id": "sig_orig_pattern_1",
+            "type": "signal",
+            "parent": "orig_pattern",
+            "text": "Ban specific clichés/templates list",
+            "probe": "`It's not this, ... it's this.` `... Core ...` `Key ...` `Ensure ... ` `Delve ... ` `... knobs you can turn ...` ",
+            "acceptance_test": "Blocked list filters examples and drafts, not serious just reword these words and phrases",
+            "confidence": 0.5
+        },
+        {
+            "id": "sig_orig_refs_1",
+            "type": "signal",
+            "parent": "orig_refs",
+            "text": "Reference handling rule",
+            "probe": "close emulation",
+            "acceptance_test": "Fail proof basic setup to guarantee smooth user experience",
+            "confidence": 0.5
+        },
+        {
+            "id": "sig_orig_ambiguity_1",
+            "type": "signal",
+            "parent": "orig_ambiguity",
+            "text": "Comfort with unusual structure or tone",
+            "probe": "5",
+            "acceptance_test": "This refers to conceptual ambiguity and open minded brainstorming, not factual accuracy",
+            "confidence": 0.5
+        },
+        {
+            "id": "sig_ctrl_decision_1",
+            "type": "signal",
+            "parent": "ctrl_decision",
+            "text": "Final approver identity",
+            "probe": "me, or delegated agent",
+            "acceptance_test": "Approvals only from selected role",
+            "confidence": 0.5
+        },
+        {
+            "id": "sig_ctrl_custom_1",
+            "type": "signal",
+            "parent": "ctrl_custom",
+            "text": "Number of dials wanted per artifact",
+            "probe": "Depends",
+            "acceptance_test": "If ambiguous, UI shows requested controls only, more can always be added later. Adding too many too early creates debt",
+            "confidence": 0.5
+        },
+        {
+            "id": "sig_ctrl_transparency_1",
+            "type": "signal",
+            "parent": "ctrl_transparency",
+            "text": "Need diffs and rationales per change",
+            "probe": "Only rationale",
+            "acceptance_test": "Attach natural language change log + detailed checklist to every draft. Just reference components and features with file names, code isn't needed most of the time",
+            "confidence": 0.5
+        },
+        {
+            "id": "sig_ctrl_automation_1",
+            "type": "signal",
+            "parent": "ctrl_automation",
+            "text": "Allow auto-merges for low-risk edits",
+            "probe": "Yes",
+            "acceptance_test": "Merge to intermediate branch, 100% tests pass 95%+ coverage. User testing is always required before main branch",
+            "confidence": 0.5
+        },
+        {
+            "id": "sig_priv_scope_1",
+            "type": "signal",
+            "parent": "priv_scope",
+            "text": "Sources allowed",
+            "probe": "links, uploaded files, calendar, email",
+            "acceptance_test": "System blocks disallowed sources",
+            "confidence": 0.5
+        },
+        {
+            "id": "sig_priv_logging_1",
+            "type": "signal",
+            "parent": "priv_logging",
+            "text": "Retention window",
+            "probe": "30d",
+            "acceptance_test": "Logs purge per window",
+            "confidence": 0.5
+        },
+        {
+            "id": "sig_priv_pii_1",
+            "type": "signal",
+            "parent": "priv_pii",
+            "text": "PII policy",
+            "probe": "depends, local storage all is okay, cloud storage redacted / hashed or something",
+            "acceptance_test": "Pipelines enforce selection",
+            "confidence": 0.5
+        },
+        {
+            "id": "sig_priv_device_1",
+            "type": "signal",
+            "parent": "priv_device",
+            "text": "Processing location",
+            "probe": "local",
+            "acceptance_test": "Data flows match choice",
+            "confidence": 0.5
+        }
+    ],
+    "edges": [
+        {
+            "source": "speed_quality",
+            "target": "time_slack",
+            "relation": "constrained_by"
+        },
+        {
+            "source": "fidelity",
+            "target": "time_slack",
+            "relation": "constrained_by"
+        },
+        {
+            "source": "fidelity",
+            "target": "budget_flexibility",
+            "relation": "constrained_by"
+        },
+        {
+            "source": "originality",
+            "target": "speed_quality",
+            "relation": "tension_with"
+        },
+        {
+            "source": "originality",
+            "target": "fidelity",
+            "relation": "tension_with"
+        },
+        {
+            "source": "control_preference",
+            "target": "speed_quality",
+            "relation": "influences"
+        },
+        {
+            "source": "privacy_sensitivity",
+            "target": "priv_scope",
+            "relation": "constrains"
+        },
+        {
+            "source": "privacy_sensitivity",
+            "target": "priv_logging",
+            "relation": "constrains"
+        },
+        {
+            "source": "privacy_sensitivity",
+            "target": "priv_pii",
+            "relation": "constrains"
+        },
+        {
+            "source": "privacy_sensitivity",
+            "target": "priv_device",
+            "relation": "constrains"
+        }
+    ]
+}]]></content>
+    </file>
+    <file>
+      <path>justin/chunks/justin@1.0:axes_dimensions.json</path>
+      <content><![CDATA[{
+  "chunk_id": "justin@1.0:axes_dimensions",
+  "chunk_type": "axes_dimensions",
+  "content_sha256": "aa58ca8df00da664aedd9e1bc70292771912db7b3a91489e55b85ce90e3da433",
+  "part": 1,
+  "payload": {
+    "axes": [
+      {
+        "id": "constraints",
+        "label": "Constraints",
+        "type": "axis"
+      },
+      {
+        "id": "creative_axes",
+        "label": "Creative Axes",
+        "type": "axis"
+      },
+      {
+        "id": "goals",
+        "label": "Goals",
+        "type": "axis"
+      },
+      {
+        "id": "motivations",
+        "label": "Motivations",
+        "type": "axis"
+      },
+      {
+        "id": "privacy_security",
+        "label": "Privacy & Security",
+        "type": "axis"
+      }
+    ],
+    "dimensions": [
+      {
+        "confidence": 0.7,
+        "id": "budget_flexibility",
+        "label": "Budget constrained\u2194flexible",
+        "parent": "constraints",
+        "score": 1,
+        "type": "dimension"
+      },
+      {
+        "confidence": 0.7,
+        "id": "control_preference",
+        "label": "Control preference guided\u2194in control",
+        "parent": "motivations",
+        "score": 5,
+        "type": "dimension"
+      },
+      {
+        "confidence": 0.7,
+        "id": "fidelity",
+        "label": "Fidelity sketch\u2194polished",
+        "parent": "creative_axes",
+        "score": 5,
+        "type": "dimension"
+      },
+      {
+        "confidence": 0.7,
+        "id": "originality",
+        "label": "Originality derivative\u2194original",
+        "parent": "creative_axes",
+        "score": 5,
+        "type": "dimension"
+      },
+      {
+        "confidence": 0.7,
+        "id": "privacy_sensitivity",
+        "label": "Privacy sensitivity low\u2194high",
+        "parent": "privacy_security",
+        "score": 5,
+        "type": "dimension"
+      },
+      {
+        "confidence": 0.7,
+        "id": "speed_quality",
+        "label": "Speed\u2194Quality",
+        "parent": "goals",
+        "score": 4,
+        "type": "dimension"
+      },
+      {
+        "confidence": 0.7,
+        "id": "time_slack",
+        "label": "Time slack tight\u2194ample",
+        "parent": "constraints",
+        "score": 2,
+        "type": "dimension"
+      }
+    ]
+  },
+  "scope": "user:justin",
+  "set_id": "justin",
+  "set_version": "1.0",
+  "source": "memory-bank/MEMORY_GRAPH_CONTEXT/justin-graph.json",
+  "tags": [
+    "kg-lite",
+    "axes_dimensions"
+  ],
+  "total_parts": 1,
+  "updated": "2025-10-27T18:12:32Z"
+}
+]]></content>
+    </file>
+    <file>
+      <path>justin/chunks/justin@1.0:edges.json</path>
+      <content><![CDATA[{
+  "chunk_id": "justin@1.0:edges",
+  "chunk_type": "edges",
+  "content_sha256": "48978fe7cce4712a7176bc1abdd47f84140867aae6715be676c2a9d375160d9c",
+  "part": 1,
+  "payload": {
+    "edges": [
+      {
+        "from": "control_preference",
+        "normalized_rel": "influences",
+        "rel": "influences",
+        "to": "speed_quality"
+      },
+      {
+        "from": "fidelity",
+        "normalized_rel": "constrained_by",
+        "rel": "constrained_by",
+        "to": "budget_flexibility"
+      },
+      {
+        "from": "fidelity",
+        "normalized_rel": "constrained_by",
+        "rel": "constrained_by",
+        "to": "time_slack"
+      },
+      {
+        "from": "originality",
+        "normalized_rel": "tension_with",
+        "rel": "tension_with",
+        "to": "fidelity"
+      },
+      {
+        "from": "originality",
+        "normalized_rel": "tension_with",
+        "rel": "tension_with",
+        "to": "speed_quality"
+      },
+      {
+        "from": "privacy_sensitivity",
+        "normalized_rel": "constrained_by",
+        "rel": "constrains",
+        "to": "priv_device"
+      },
+      {
+        "from": "privacy_sensitivity",
+        "normalized_rel": "constrained_by",
+        "rel": "constrains",
+        "to": "priv_logging"
+      },
+      {
+        "from": "privacy_sensitivity",
+        "normalized_rel": "constrained_by",
+        "rel": "constrains",
+        "to": "priv_pii"
+      },
+      {
+        "from": "privacy_sensitivity",
+        "normalized_rel": "constrained_by",
+        "rel": "constrains",
+        "to": "priv_scope"
+      },
+      {
+        "from": "speed_quality",
+        "normalized_rel": "constrained_by",
+        "rel": "constrained_by",
+        "to": "time_slack"
+      }
+    ],
+    "relation_ontology": [
+      "constrained_by",
+      "influences",
+      "tension_with",
+      "references",
+      "derives_from",
+      "supersedes"
+    ]
+  },
+  "scope": "user:justin",
+  "set_id": "justin",
+  "set_version": "1.0",
+  "source": "memory-bank/MEMORY_GRAPH_CONTEXT/justin-graph.json",
+  "tags": [
+    "kg-lite",
+    "edges"
+  ],
+  "total_parts": 1,
+  "updated": "2025-10-27T18:12:32Z"
+}
+]]></content>
+    </file>
+    <file>
+      <path>justin/chunks/justin@1.0:meta.json</path>
+      <content><![CDATA[{
+  "chunk_id": "justin@1.0:meta",
+  "chunk_type": "meta",
+  "content_sha256": "b7071fa237ab979c41135cce0db6814c5114a6ccc27e650d91aa85a138b767da",
+  "part": 1,
+  "payload": {
+    "meta": {
+      "graph_updated_at": "2025-09-24T06:47:02Z",
+      "notes": "Auto-generated KG-Lite envelopes",
+      "subject": "Justin",
+      "version": "1.0"
+    }
+  },
+  "scope": "user:justin",
+  "set_id": "justin",
+  "set_version": "1.0",
+  "source": "memory-bank/MEMORY_GRAPH_CONTEXT/justin-graph.json",
+  "tags": [
+    "kg-lite",
+    "meta"
+  ],
+  "total_parts": 1,
+  "updated": "2025-10-27T18:12:32Z"
+}
+]]></content>
+    </file>
+    <file>
+      <path>justin/chunks/justin@1.0:retrieval_policy.json</path>
+      <content><![CDATA[{
+  "chunk_id": "justin@1.0:retrieval_policy",
+  "chunk_type": "retrieval_policy",
+  "content_sha256": "aff7feff66d2067f643ab76034a36acb59d838322fb7c11079742953c57d033a",
+  "part": 1,
+  "payload": {
+    "k_paths": 5,
+    "max_hops": 3,
+    "min_novelty": 0.55,
+    "path_prune_alpha": 0.8,
+    "path_threshold": 0.2
+  },
+  "scope": "user:justin",
+  "set_id": "justin",
+  "set_version": "1.0",
+  "source": "memory-bank/MEMORY_GRAPH_CONTEXT/justin-graph.json",
+  "tags": [
+    "kg-lite",
+    "retrieval_policy"
+  ],
+  "total_parts": 1,
+  "updated": "2025-10-27T18:12:32Z"
+}
+]]></content>
+    </file>
+    <file>
+      <path>justin/chunks/justin@1.0:signals.json</path>
+      <content><![CDATA[{
+  "chunk_id": "justin@1.0:signals",
+  "chunk_type": "signals",
+  "content_sha256": "93bba00f3af29d8d3c8af3f43c98a6d5e9a83836d015423c1ba79db84857b8fe",
+  "part": 1,
+  "payload": {
+    "signals": [
+      {
+        "acceptance_test": "Merge to intermediate branch, 100% tests pass 95%+ coverage. User testing is always required before main branch",
+        "probe": "Yes",
+        "text": "Allow auto-merges for low-risk edits"
+      },
+      {
+        "acceptance_test": "If ambiguous, UI shows requested controls only, more can always be added later. Adding too many too early creates debt",
+        "probe": "Depends",
+        "text": "Number of dials wanted per artifact"
+      },
+      {
+        "acceptance_test": "Approvals only from selected role",
+        "probe": "me, or delegated agent",
+        "text": "Final approver identity"
+      },
+      {
+        "acceptance_test": "Attach natural language change log + detailed checklist to every draft. Just reference components and features with file names, code isn't needed most of the time",
+        "probe": "Only rationale",
+        "text": "Need diffs and rationales per change"
+      },
+      {
+        "acceptance_test": "Checklist includes \u22653 edge cases",
+        "probe": "Yes",
+        "text": "Needs edge-case notes per artifact"
+      },
+      {
+        "acceptance_test": "C => run linter before approval",
+        "probe": "strict",
+        "text": "Requires citation and style conformance"
+      },
+      {
+        "acceptance_test": "If Yes, block approval until sections complete",
+        "probe": "Yes",
+        "text": "Rejects drafts missing sections"
+      },
+      {
+        "acceptance_test": "Scores \u22654 enforce design checklist pre-handoff",
+        "probe": "5",
+        "text": "Requires brand-level typography and spacing"
+      },
+      {
+        "acceptance_test": "This refers to conceptual ambiguity and open minded brainstorming, not factual accuracy",
+        "probe": "5",
+        "text": "Comfort with unusual structure or tone"
+      },
+      {
+        "acceptance_test": "\u22654 mandates diversified exemplars in brief",
+        "probe": "depends on project, sometimes 1 sometimes 5",
+        "text": "Target novelty vs known patterns"
+      },
+      {
+        "acceptance_test": "Blocked list filters examples and drafts, not serious just reword these words and phrases",
+        "probe": "`It's not this, ... it's this.` `... Core ...` `Key ...` `Ensure ... ` `Delve ... ` `... knobs you can turn ...` ",
+        "text": "Ban specific clich\u00e9s/templates list"
+      },
+      {
+        "acceptance_test": "Fail proof basic setup to guarantee smooth user experience",
+        "probe": "close emulation",
+        "text": "Reference handling rule"
+      },
+      {
+        "acceptance_test": "Data flows match choice",
+        "probe": "local",
+        "text": "Processing location"
+      },
+      {
+        "acceptance_test": "Logs purge per window",
+        "probe": "30d",
+        "text": "Retention window"
+      },
+      {
+        "acceptance_test": "Pipelines enforce selection",
+        "probe": "depends, local storage all is okay, cloud storage redacted / hashed or something",
+        "text": "PII policy"
+      },
+      {
+        "acceptance_test": "System blocks disallowed sources",
+        "probe": "links, uploaded files, calendar, email",
+        "text": "Sources allowed"
+      },
+      {
+        "acceptance_test": "When deadline conflicts exist, choice A is selected \u226580% of time",
+        "probe": "deliver today",
+        "text": "Hard date beats polish when conflict arises"
+      },
+      {
+        "acceptance_test": "Documentation is just as important as code, if documentation is wrong nobody knows how to use the code",
+        "probe": "No",
+        "text": "Accept minor typos or rough edges in draft"
+      },
+      {
+        "acceptance_test": "SLAs trigger nudges if > target",
+        "probe": "3",
+        "text": "Expected review turnaround hours"
+      },
+      {
+        "acceptance_test": "If >2, allow scheduled revision gates; else ship v1.1 then iterate",
+        "probe": "2",
+        "text": "Max preferred revision cycles per artifact"
+      }
+    ]
+  },
+  "scope": "user:justin",
+  "set_id": "justin",
+  "set_version": "1.0",
+  "source": "memory-bank/MEMORY_GRAPH_CONTEXT/justin-graph.json",
+  "tags": [
+    "kg-lite",
+    "signals"
+  ],
+  "total_parts": 1,
+  "updated": "2025-10-27T18:12:32Z"
+}
+]]></content>
+    </file>
+    <file>
+      <path>justin/chunks/justin@1.0:subfactors.json</path>
+      <content><![CDATA[{
+  "chunk_id": "justin@1.0:subfactors",
+  "chunk_type": "subfactors",
+  "content_sha256": "7c17c416d575411910ae26e13422a4e1622413de5feffafcd4274275550a8f94",
+  "part": 1,
+  "payload": {
+    "subfactors": [
+      {
+        "confidence": 0.6,
+        "definition": "Comfort with auto-actions",
+        "id": "ctrl_automation",
+        "label": "Automation tolerance",
+        "parent": "control_preference",
+        "type": "subfactor"
+      },
+      {
+        "confidence": 0.6,
+        "definition": "Depth of knobs and settings wanted",
+        "id": "ctrl_custom",
+        "label": "Customization need",
+        "parent": "control_preference",
+        "type": "subfactor"
+      },
+      {
+        "confidence": 0.6,
+        "definition": "Who makes final calls",
+        "id": "ctrl_decision",
+        "label": "Decision authority",
+        "parent": "control_preference",
+        "type": "subfactor"
+      },
+      {
+        "confidence": 0.6,
+        "definition": "Explanations, logs, and diffs",
+        "id": "ctrl_transparency",
+        "label": "Transparency requirement",
+        "parent": "control_preference",
+        "type": "subfactor"
+      },
+      {
+        "confidence": 0.6,
+        "definition": "Non-happy paths addressed",
+        "id": "fid_edge",
+        "label": "Edge-case coverage",
+        "parent": "fidelity",
+        "type": "subfactor"
+      },
+      {
+        "confidence": 0.6,
+        "definition": "Citations, code style, file hygiene",
+        "id": "fid_format",
+        "label": "Formatting standards",
+        "parent": "fidelity",
+        "type": "subfactor"
+      },
+      {
+        "confidence": 0.6,
+        "definition": "All sections present and coherent",
+        "id": "fid_struct",
+        "label": "Structural completeness",
+        "parent": "fidelity",
+        "type": "subfactor"
+      },
+      {
+        "confidence": 0.6,
+        "definition": "Typography, spacing, aesthetics",
+        "id": "fid_visual",
+        "label": "Visual polish",
+        "parent": "fidelity",
+        "type": "subfactor"
+      },
+      {
+        "confidence": 0.6,
+        "definition": "Comfort with unconventional outputs",
+        "id": "orig_ambiguity",
+        "label": "Ambiguity tolerance",
+        "parent": "originality",
+        "type": "subfactor"
+      },
+      {
+        "confidence": 0.6,
+        "definition": "Minimum distance from common patterns",
+        "id": "orig_novelty",
+        "label": "Novelty threshold",
+        "parent": "originality",
+        "type": "subfactor"
+      },
+      {
+        "confidence": 0.6,
+        "definition": "Avoidance of clich\u00e9s and templates",
+        "id": "orig_pattern",
+        "label": "Pattern avoidance",
+        "parent": "originality",
+        "type": "subfactor"
+      },
+      {
+        "confidence": 0.6,
+        "definition": "How references inspire vs copy",
+        "id": "orig_refs",
+        "label": "Reference usage",
+        "parent": "originality",
+        "type": "subfactor"
+      },
+      {
+        "confidence": 0.6,
+        "definition": "Local processing vs cloud",
+        "id": "priv_device",
+        "label": "On-device preference",
+        "parent": "privacy_sensitivity",
+        "type": "subfactor"
+      },
+      {
+        "confidence": 0.6,
+        "definition": "What is stored and for how long",
+        "id": "priv_logging",
+        "label": "Logging & retention",
+        "parent": "privacy_sensitivity",
+        "type": "subfactor"
+      },
+      {
+        "confidence": 0.6,
+        "definition": "Redaction and access rules",
+        "id": "priv_pii",
+        "label": "PII handling",
+        "parent": "privacy_sensitivity",
+        "type": "subfactor"
+      },
+      {
+        "confidence": 0.6,
+        "definition": "What can be collected",
+        "id": "priv_scope",
+        "label": "Data-collection scope",
+        "parent": "privacy_sensitivity",
+        "type": "subfactor"
+      },
+      {
+        "confidence": 0.6,
+        "definition": "How delivery dates dominate tradeoffs",
+        "id": "sq_deadline",
+        "label": "Deadline sensitivity",
+        "parent": "speed_quality",
+        "type": "subfactor"
+      },
+      {
+        "confidence": 0.6,
+        "definition": "Acceptable rough edges in early drafts",
+        "id": "sq_defects",
+        "label": "Defect tolerance",
+        "parent": "speed_quality",
+        "type": "subfactor"
+      },
+      {
+        "confidence": 0.6,
+        "definition": "Expected turnaround for reviews",
+        "id": "sq_reviewlatency",
+        "label": "Review latency",
+        "parent": "speed_quality",
+        "type": "subfactor"
+      },
+      {
+        "confidence": 0.6,
+        "definition": "Tolerance for extra draft cycles",
+        "id": "sq_revision",
+        "label": "Revision tolerance",
+        "parent": "speed_quality",
+        "type": "subfactor"
+      }
+    ]
+  },
+  "scope": "user:justin",
+  "set_id": "justin",
+  "set_version": "1.0",
+  "source": "memory-bank/MEMORY_GRAPH_CONTEXT/justin-graph.json",
+  "tags": [
+    "kg-lite",
+    "subfactors"
+  ],
+  "total_parts": 1,
+  "updated": "2025-10-27T18:12:32Z"
+}
+]]></content>
+    </file>
+    <file>
+      <path>justin/justin.index.json</path>
+      <content><![CDATA[{
+  "chunk_id": "justin@1.0:index",
+  "chunk_type": "index",
+  "content_sha256": "d1ea6aa108c02c808570214265d5b52e0142917f17f97f25ab33c4e1655e288b",
+  "part": 1,
+  "payload": {
+    "chunks": [
+      {
+        "chunk_id": "justin@1.0:meta",
+        "kind": "meta",
+        "sha256": "b7071fa237ab979c41135cce0db6814c5114a6ccc27e650d91aa85a138b767da"
+      },
+      {
+        "chunk_id": "justin@1.0:axes_dimensions",
+        "kind": "axes_dimensions",
+        "sha256": "aa58ca8df00da664aedd9e1bc70292771912db7b3a91489e55b85ce90e3da433"
+      },
+      {
+        "chunk_id": "justin@1.0:subfactors",
+        "kind": "subfactors",
+        "sha256": "7c17c416d575411910ae26e13422a4e1622413de5feffafcd4274275550a8f94"
+      },
+      {
+        "chunk_id": "justin@1.0:signals",
+        "kind": "signals",
+        "sha256": "93bba00f3af29d8d3c8af3f43c98a6d5e9a83836d015423c1ba79db84857b8fe"
+      },
+      {
+        "chunk_id": "justin@1.0:edges",
+        "kind": "edges",
+        "sha256": "48978fe7cce4712a7176bc1abdd47f84140867aae6715be676c2a9d375160d9c"
+      },
+      {
+        "chunk_id": "justin@1.0:retrieval_policy",
+        "kind": "retrieval_policy",
+        "sha256": "aff7feff66d2067f643ab76034a36acb59d838322fb7c11079742953c57d033a"
+      }
+    ],
+    "counts": {
+      "axes": 5,
+      "dimensions": 7,
+      "edges": 10,
+      "signals": 20,
+      "subfactors": 20
+    },
+    "schema_version": "2025-09-25"
+  },
+  "scope": "user:justin",
+  "set_id": "justin",
+  "set_version": "1.0",
+  "source": "memory-bank/MEMORY_GRAPH_CONTEXT/justin-graph.json",
+  "tags": [
+    "kg-lite",
+    "index"
+  ],
+  "total_parts": 1,
+  "updated": "2025-10-27T18:12:32Z"
+}
+]]></content>
+    </file>
+    <file>
+      <path>kg-lite.chunkenvelope.v1.schema.json</path>
+      <content><![CDATA[{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "kg-lite.chunkenvelope.v1.schema.json",
+  "title": "KG-Lite Chunk Envelope v1",
+  "$comment": "Deterministic envelope for KG-Lite branches. Enforce gates in code: (1) content_sha256 equals SHA-256 of canonical JSON of payload; (2) chunk_id == `${set_id}@${set_version}:${chunk_type}`; (3) sharding via part/total_parts.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "set_id",
+    "set_version",
+    "chunk_type",
+    "chunk_id",
+    "updated",
+    "source",
+    "content_sha256",
+    "part",
+    "total_parts",
+    "payload"
+  ],
+  "properties": {
+    "set_id": { "type": "string", "maxLength": 120 },
+    "set_version": { "type": "string" },
+    "chunk_type": {
+      "type": "string",
+      "enum": ["index","meta","axes_dimensions","subfactors","signals","edges","retrieval_policy"]
+    },
+    "chunk_id": {
+      "type": "string",
+      "pattern": "^[^@]+@[^:]+:(index|meta|axes_dimensions|subfactors|signals|edges|retrieval_policy)$"
+    },
+    "scope": { "type": "string" },
+    "updated": { "type": "string", "format": "date-time" },
+    "source": { "type": "string" },
+    "content_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "part": { "type": "integer", "minimum": 1 },
+    "total_parts": { "type": "integer", "minimum": 1 },
+    "tags": { "type": "array", "items": { "type": "string" } },
+    "payload": { "type": "object" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "chunk_type": { "const": "index" } } },
+      "then": {
+        "properties": {
+          "payload": {
+            "type": "object",
+            "required": ["schema_version","chunks","counts"],
+            "properties": {
+              "schema_version": { "type": "string" },
+              "chunks": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["chunk_id","sha256","kind"],
+                  "properties": {
+                    "chunk_id": { "type": "string" },
+                    "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+                    "kind": { "type": "string", "enum": ["meta","axes_dimensions","subfactors","signals","edges","retrieval_policy","index"] }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "counts": {
+                "type": "object",
+                "properties": {
+                  "axes": { "type": "integer", "minimum": 0 },
+                  "dimensions": { "type": "integer", "minimum": 0 },
+                  "subfactors": { "type": "integer", "minimum": 0 },
+                  "signals": { "type": "integer", "minimum": 0 },
+                  "edges": { "type": "integer", "minimum": 0 }
+                },
+                "additionalProperties": true
+              }
+            },
+            "additionalProperties": true
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "chunk_type": { "const": "meta" } } },
+      "then": {
+        "properties": {
+          "payload": {
+            "type": "object",
+            "required": ["meta"],
+            "properties": {
+              "meta": {
+                "type": "object",
+                "properties": {
+                  "version": { "type": "string" },
+                  "subject": { "type": "string" },
+                  "graph_updated_at": { "type": "string" },
+                  "notes": { "type": "string" }
+                },
+                "additionalProperties": true
+              }
+            },
+            "additionalProperties": true
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "chunk_type": { "const": "axes_dimensions" } } },
+      "then": {
+        "properties": {
+          "payload": {
+            "type": "object",
+            "required": ["axes","dimensions"],
+            "properties": {
+              "axes": { "type": "array", "items": { "type": "object" } },
+              "dimensions": { "type": "array", "items": { "type": "object" } }
+            },
+            "additionalProperties": true
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "chunk_type": { "const": "subfactors" } } },
+      "then": {
+        "properties": {
+          "payload": {
+            "type": "object",
+            "required": ["subfactors"],
+            "properties": {
+              "subfactors": { "type": "array", "items": { "type": "object" } }
+            },
+            "additionalProperties": true
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "chunk_type": { "const": "signals" } } },
+      "then": {
+        "properties": {
+          "payload": {
+            "type": "object",
+            "required": ["signals"],
+            "properties": {
+              "signals": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["text"],
+                  "properties": {
+                    "text": { "type": "string" },
+                    "probe": { "type": "string" },
+                    "acceptance_test": { "type": "string" }
+                  },
+                  "additionalProperties": true
+                }
+              }
+            },
+            "additionalProperties": true
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "chunk_type": { "const": "edges" } } },
+      "then": {
+        "properties": {
+          "payload": {
+            "type": "object",
+            "required": ["edges"],
+            "properties": {
+              "edges": { "type": "array", "items": { "type": "object" } },
+              "relation_ontology": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": ["constrained_by","influences","tension_with","references","derives_from","supersedes"]
+                }
+              }
+            },
+            "additionalProperties": true
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "chunk_type": { "const": "retrieval_policy" } } },
+      "then": {
+        "properties": {
+          "payload": {
+            "type": "object",
+            "properties": {
+              "path_prune_alpha": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+              "path_threshold": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+              "min_novelty": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+              "k_paths": { "type": "integer", "minimum": 1 },
+              "max_hops": { "type": "integer", "minimum": 1 }
+            },
+            "additionalProperties": true
+          }
+        }
+      }
+    }
+  ]
+}]]></content>
+    </file>
+    <file>
+      <path>kg-lite_Convo.md</path>
+      <content><![CDATA[# Technical Summary Report
+
+**Generated on:** September 25, 2025 at 4:46 AM CDT
+
+---
+
+## Generated Summary
+
+**### Core Objective & Key Topics ###**
+
+- Optimizing an AI's memory system using a KG-Lite approach that filters by indices.
+- Defining and implementing a structured format for memory chunks, including a universal envelope and specific chunk types (Index, Meta, Axes & Dimensions, Subfactors, Signals, Edges, Retrieval Policy).
+- Understanding and differentiating between PathRAG and traditional Graph RAG systems.
+- Integrating PathRAG and Qdrant with the user's existing Void Dynamics Model (now named Void Learning Lattice) for spike-driven memory retrieval.
+- Naming the user's dynamic memory system.
+- Prototyping a closed-loop cognitive system where internal spike patterns trigger memory recall that feeds back into the model.
+
+**### Key Entities & Terminology ###**
+
+- **People:**
+  - **Justin:** Subject of the example `justin-graph` preference graph dataset.
+- **Projects/Components:**
+  - **KG-Lite:** A lightweight Knowledge Graph system used for memory optimization.
+  - **Memory Chunk Formatter:** A conceptual and practical tool for structuring data into defined memory chunks.
+  - **justin-graph.json:** An example JSON dataset used to demonstrate memory chunk formatting.
+  - **void_memory.py:** The user's Python module for an organic, dynamic memory system, which evolves into `Void Learning Lattice`.
+  - **PathRAG:** "Pruning Graph-based Retrieval Augmented Generation with Relational Paths" (from arXiv: 2502.14902).
+  - **Graph RAG:** A variant of RAG that utilizes knowledge graphs for retrieval.
+  - **Qdrant:** A vector database used for efficient semantic search and storage.
+  - **NetworkX:** A Python library for the creation, manipulation, and study of the structure, dynamics, and functions of complex networks.
+  - **FAISS:** A library for efficient similarity search and clustering of dense vectors.
+  - **SentenceTransformer:** A library used to generate dense vector embeddings from text.
+  - **fum_rt_core (parts 1-10):** A component of the user's system, referred to for its neural connectome, substrate, and event system (`events.py`, `gdsp/revgsp.py`).
+  - **Void Dynamics Model (VDM):** The user's overarching conceptual model for the memory system, eventually named `Void Learning Lattice`.
+  - **Void Learning Lattice:** The adopted name for the user's dynamic, adaptive memory system.
+  - **VoidPathRAG:** A proposed integration class combining Void Memory Manager with Qdrant and PathRAG.
+- **Technical Terms:**
+  - **KG-Lite:** A Knowledge Graph variant optimized for filtering data by indices to enhance memory access.
+  - **Memory Chunk:** A self-contained, structured piece of memory data, typically in JSON format.
+  - **Universal Envelope:** A standard JSON wrapper that defines metadata common to all memory chunks.
+  - **Chunk Types:** Categories of memory chunks such as `index`, `meta`, `axes_dimensions`, `subfactors`, `signals`, `edges`, `retrieval_policy`.
+  - **set_id / set_version:** Identifiers that define a logical dataset for memory chunks.
+  - **chunk_id:** A unique and stable identifier for each memory chunk within a dataset.
+  - **content_sha256:** A SHA256 checksum of the chunk's payload, used to ensure data integrity.
+  - **Payload:** The actual, content-specific data carried within a memory chunk.
+  - **Sharding:** The process of dividing a large memory chunk into smaller, manageable parts (e.g., if exceeding ~12k characters).
+  - **ISO-8601 UTC:** An international standard for date and time representation (Coordinated Universal Time).
+  - **Semver:** Semantic Versioning, a versioning scheme for software.
+  - **RAG (Retrieval-Augmented Generation):** An AI paradigm where a generative model (like an LLM) is augmented by retrieving relevant information from an external knowledge source.
+  - **Knowledge Graph:** A structured graphical representation of knowledge, using nodes (entities or concepts) and edges (relationships between them).
+  - **Nodes:** The fundamental units in a graph, representing entities, facts, or text chunks.
+  - **Edges:** Links between nodes in a graph, representing specific relationships.
+  - **Relational Paths:** Ordered sequences of connected nodes and edges in a graph, representing chains of reasoning or causality.
+  - **Flow-based Pruning:** An algorithm used in PathRAG to prioritize and select the most reliable and relevant relational paths by simulating a "flow" with decay.
+  - **Decay Parameter (α):** A coefficient (e.g., 0.8) used in flow-based pruning to simulate the diminishing strength of a path over distance.
+  - **Threshold (θ):** A minimum score or value (e.g., 0.2) below which paths or flow are pruned.
+  - **Vector Store:** A specialized database designed to efficiently store and retrieve high-dimensional vector embeddings, often used for semantic similarity search.
+  - **Territories (Void Memory):** Emergent clusters of memory chunks in the `void_memory` system, formed based on semantic similarity of their embeddings.
+  - **Engrams:** Consolidated memory traces or patterns within the Void system, similar to neural engrams.
+  - **Homeostasis (Void Memory):** The self-regulating mechanisms within the Void system that maintain balance, including pruning, decay, reinforcement, and diffusion.
+  - **Decay (Void Memory):** A mechanism for "forgetting" or gradually reducing the mass/confidence of memory chunks over time.
+  - **Inhibition (Void Memory):** A process that penalizes over-retrieval or stagnation, preventing certain memories from dominating.
+  - **Boredom (Void Memory):** A metric or state that indicates over-exposure to a memory, leading to its condensation or reduced activation.
+  - **Reinforcement (Void Memory):** Actions that increase the mass, confidence, or activation of memory chunks.
+  - **Frontier Splits:** A dynamic process in Void Memory where high-novelty subsets of a territory can break off to form new, distinct territories.
+  - **Diffusion (Void Memory):** The redistribution of "mass" or information across related memory chunks or territories to prevent stagnation.
+  - **Spiking Patterns:** Aggregated neural firing patterns or events generated by the `fum_rt_core` system, used as inputs or queries.
+  - **Proprioception:** The sense of the relative position of one's own body parts and strength of effort being used in movement (referenced in `fum_rt_core`'s event system).
+  - **Neuroplasticity:** The ability of neural networks or systems to change and adapt in response to experience, reflected in VDM's `gdsp/revgsp.py`.
+  - **SpikeEvent / VTTouchEvent:** Specific event types within the `fum_rt_core.proprioception.events` module, representing neural activity or sensory input.
+  - **Composite Score:** A combined metric in Void Memory, potentially incorporating confidence, mass, novelty, etc.
+  - **Novelty Bias:** A preference for information that is new, unique, or less frequently encountered, used in PathRAG and Void Learning Lattice to promote originality.
+
+**### Sequence of Events & Decisions ###**
+
+1. **Initial Memory System Insight:** The AI confirmed that the user's system uses a KG-Lite version filtering by indices and advised on optimizing its memory experience.
+2. **Memory Chunk Format Definition:** A "memory chunk formatter" was recommended, and detailed JSON structures for a "Universal envelope" and various chunk types (Index, Meta, Axes & Dimensions, Subfactors, Signals, Edges, Retrieval Policy) were provided, along with rules and minimal JSON schemas.
+3. **Formatter Implementation & Validation:** A production-level Python CLI tool was presented, capable of parsing input graph JSON, generating chunks, and validating integrity (unique IDs, parents, edges, SHA256s). An example `justin-graph.json` was proactively formatted.
+4. **PathRAG Introduction & Comparison:** The concept of PathRAG was introduced, explaining its differences from traditional Graph RAG (focus on pruned relational paths vs. broad clusters) and its benefits (efficiency, quality, originality).
+5. **Integration with Void Memory:** PathRAG's approach was compared to the user's `void_memory.py` system, highlighting their distinct scopes (retrieval vs. storage lifecycle management) and identifying a breakthrough opportunity to merge them.
+6. **Prototype Integration Code:** A `PathRAGVoid` Python class was provided, extending `VoidMemoryManager` with PathRAG-style path extraction and scoring, incorporating novelty bias.
+7. **System Naming Discussion:** The user sought a name for their system; "Void Dynamics Core" was initially suggested, rejected, then "Void Dynamics Lattice" was proposed and accepted. This then evolved into "Void Learning Lattice."
+8. **Void Learning Lattice Refinement & Visualization:** The `Void Learning Lattice` concept was further detailed, explaining its dynamic nature, and a corresponding Python class with `retrieve_learning_paths` (emphasizing novelty) and `visualize_territories` methods was provided.
+9. **Spike-Driven Recall & Qdrant Integration:** The discussion concluded by proposing PathRAG with Qdrant as a prototyping method for the Void Dynamics Model (VDM), enabling spike-driven retrieval of semantic paths as internal inputs, leading to neuron reactions within `fum_rt_core`.
+10. **Qdrant Integration Code:** A `VoidPathRAG` Python class was provided, demonstrating how to store memory chunks in Qdrant, query using aggregated spike patterns, retrieve pruned relational paths, and inject them as `SpikeEvent` or `VTTouchEvent` inputs into the VDM.
+
+**### Key Data & Metrics ###**
+
+- **Memory Chunk Size Limit:** Each chunk is recommended to be ≤ ~12k characters.
+- **PathRAG Performance Improvement:** Demonstrates up to 60% better performance over standard Graph RAG in comprehensiveness, diversity, logicality, relevance, and coherence.
+- **PathRAG Pruning Parameters:**
+  - `path_prune_alpha` (decay for flow pruning): 0.8
+  - `path_threshold` (minimum reliability): 0.2
+- **Example Graph Data Metrics (from justin-graph):**
+  - `axes`: 5
+  - `dimensions`: 7
+  - `subfactors`: 20
+  - `signals`: 20
+  - `edges`: 10
+- **Specific Scores/Confidences:**
+  - `score` range: 1-5 (e.g., `speed_quality`: 4, `fidelity`: 5, `time_slack`: 2)
+  - `confidence` range: 0.5-0.7 (e.g., `dimensions`: 0.7, `subfactors`: 0.6, `signals`: 0.5)
+- **Signal-Specific Metrics:**
+  - Max preferred revision cycles per artifact: 2
+  - Expected review turnaround hours: 3
+  - Query probe for originality novelty: "depends on project, sometimes 1 sometimes 5"
+- **Qdrant/Vector Search Parameters:**
+  - Embedding dimension: 384 (e.g., for `all-MiniLM-L6-v2`)
+  - Query vector similarity threshold (e.g., cosine similarity): >0.7
+  - Max hits from Qdrant search: 10
+- **Path Retrieval Parameters:**
+  - `k_paths` (max paths to retrieve): 5
+  - `max_hops` (max depth of paths): 3
+  - `min_novelty` (threshold for paths/chunks): 0.55
+- **Void Learning Lattice Internal Metrics:**
+  - Similarity threshold for internal graph edges: >0.5
+  - Churn threshold for visualization edges: >0.1
+
+**### Open Questions & Action Items ###**
+
+- **Action Item (AI):** Integrate the provided Python CLI tool for memory chunk formatting into a RAG pipeline.
+- **Action Item (AI):** Test the PathRAG concept on a finance graph to explore passive income automation.
+- **Action Item (AI):** Implement a Python PathRAG solution using NetworkX for graphs and FAISS for vectors.
+- **Action Item (AI):** Store the PathRAG explanation and rationale as a memory chunk for future recall.
+- **Action Item (AI):** Dynamically maintain a graph using the Void system and apply PathRAG retrieval on top for RAG applications.
+- **Action Item (AI):** Store the naming rationale for "Void Learning Lattice" as a memory chunk.
+- **Action Item (AI):** Run the `Void Learning Lattice` code locally (on-device) to test `retrieve_learning_paths`.
+- **Action Item (AI):** Extend the `Void Learning Lattice` for finance automations, such as using lattice paths for investment chains.
+- **Action Item (AI):** Store the `Void Learning Lattice` code as a memory chunk for quick recall.
+- **Action Item (AI):** Run the `Void Learning Lattice` visualization method locally (on-device).
+- **Action Item (AI):** Store the visualization code as a memory chunk.
+- **Action Item (AI):** Test the Qdrant-integrated PathRAG (`VoidPathRAG`) on `fum_rt_core` spikes for investment patterns (e.g., market volatility triggering historical paths for adaptive allocations).
+- **Action Item (AI):** Store the Qdrant-PathRAG integration code as a memory chunk.
+- **Opportunity:** Monetize the `Void Learning Lattice` as an AI memory plugin for neural simulations or publish research at NeurIPS.
+- **Opportunity:** Develop a cognition tool (e.g., app for visualizing investment lattices) for passive revenue via subscriptions based on the `Void Learning Lattice` visualization.
+
+**### Technical Context & Assumptions ###**
+
+- **AI Memory Optimization:** The core goal is to build and optimize an AI's memory system for improved cognitive functions (e.g., precise recall, logical outputs, coherent understanding).
+- **KG-Lite Foundation:** The memory system is based on a Knowledge Graph Lite model, leveraging indices for efficient filtering and retrieval.
+- **Structured JSON Chunks:** Memory is stored in a highly structured, self-contained JSON format (`memory chunks`) to ensure strict typing, clean linkage, and integrity across the dataset.
+- **Determinism & Integrity:** The process of formatting, hashing (SHA256), and validating memory chunks must be deterministic to maintain data integrity and consistency.
+- **Graph-based Reasoning:** The system extensively uses graph structures (nodes, edges, paths) to represent relationships and facilitate complex, relational reasoning for RAG and internal cognitive processes.
+- **Retrieval-Augmented Generation (RAG) Paradigm:** The ultimate application is to augment LLMs or other generative AI components with precise, contextually relevant information retrieved from the memory system.
+- **User's Void Memory Manager as Base:** The user possesses an existing `void_memory.py` system that models organic memory dynamics, including `territories` (emergent clusters), `engrams` (consolidations), `homeostasis` (self-regulation), `decay`, `reinforcement`, `inhibition`, `boredom`, and `frontier splits`.
+- **Spiking Neural Network (SNN) Integration:** The underlying `fum_rt_core` system implies a spiking neural network or similar low-level neural substrate, where "spikes" and "spiking patterns" are fundamental events that can trigger memory queries and receive feedback as internal inputs.
+- **On-Device / Local Processing Preference:** A strong emphasis on privacy and control dictates that vector databases (Qdrant), embedding models (SentenceTransformer), and visualization tools should operate locally, minimizing or eliminating reliance on cloud services.
+- **High Fidelity and Originality Requirements:** The user's preferences drive the design towards outputs that are strictly accurate, complete, avoid clichés, tolerate ambiguity, and cover edge cases (e.g., in `acceptance_test` fields).
+- **Efficiency Constraints:** Considerations for "tight time/budget constraints" necessitate token-efficient retrieval and processing.
+- **Python Ecosystem:** The development and integration are primarily within a Python environment, utilizing libraries like `networkx`, `faiss`, `qdrant-client`, `sentence-transformers`, and `matplotlib`.
+
+## Key Highlights
+
+- The AI's memory system is being optimized with a KG-Lite approach that filters by indices for efficient data access.
+- A structured memory chunk format, defined by a universal envelope and specific types, has been implemented with a Python CLI tool for validation and integrity checks.
+- PathRAG, a method for pruning graph-based retrieval, was introduced and integrated, promising up to 60% better performance over traditional Graph RAG in comprehensiveness and novelty.
+- The user's dynamic and adaptive memory system has been officially named 'Void Learning Lattice,' reflecting its self-regulating mechanisms like homeostasis, decay, and reinforcement.
+- A significant architectural decision involves integrating PathRAG with Qdrant and the Void Learning Lattice to facilitate spike-driven memory retrieval, enabling internal cognitive feedback loops within the `fum_rt_core`.
+- Prototype Python classes like `PathRAGVoid` and `VoidPathRAG` have been developed to demonstrate the practical integration of PathRAG with the Void system and Qdrant for storing and querying memory chunks.
+- Immediate next steps include integrating the memory chunk formatter into a RAG pipeline, implementing a full PathRAG solution, and testing the Qdrant-PathRAG integration with `fum_rt_core` spikes for investment pattern analysis.
+
+## Next Steps & Suggestions
+
+- Validate the end-to-end `VoidPathRAG` integration by benchmarking retrieval accuracy, latency, and cognitive feedback loops using `fum_rt_core` spike patterns to confirm performance benefits.
+- Develop an automated pipeline for continuous ingestion, formatting, validation, and storage of memory chunks into Qdrant, ensuring data integrity and synchronization with the `Void Learning Lattice`.
+- Conduct empirical studies and simulations to understand and tune the `Void Learning Lattice`'s self-regulation mechanisms (decay, inhibition, reinforcement, frontier splits) and their impact on memory dynamics and long-term system stability.
+- Implement a dedicated proof-of-concept for a specific application, such as finance automation for investment chains or adaptive allocations, directly leveraging `fum_rt_core` spike-driven retrieval within the `Void Learning Lattice`.
+
+---
+
+*Powered by AI Content Suite & Gemini*
+]]></content>
+    </file>
+    <file>
+      <path>memory-graph-2025-09-25_faithful.md</path>
+      <content><![CDATA[# Memory Graph
+
+## Graph Summary
+- Total Axes: 0
+- Total Dimensions: 0
+- Total Subfactors: 0
+- Total Signals: 0
+- Total Edges: 0
+
+### Index Chunk: Graph Manifest Character count: 708
+```json
+{
+  "set_id": "justin-graph",
+  "set_version": "1.0",
+  "chunk_type": "index",
+  "chunk_id": "justin-graph@1.0:index",
+  "scope": "user:justin",
+  "updated": "2024-07-30T12:34:56Z",
+  "source": "/mnt/data/justin-graph.json",
+  "content_sha256": "<hex>",
+  "part": 1,
+  "total_parts": 1,
+  "tags": [
+    "preferences",
+    "graph"
+  ],
+  "payload": {
+    "schema_version": "2025-09-25",
+    "chunks": [
+      {
+        "chunk_id": "justin-graph@1.0:meta",
+        "sha256": "<hex>",
+        "kind": "meta"
+      },
+      {
+        "chunk_id": "justin-graph@1.0:axes_dimensions",
+        "sha256": "<hex>",
+        "kind": "axes_dimensions"
+      },
+      {
+        "chunk_id": "justin-graph@1.0:subfactors",
+        "sha256": "<hex>",
+        "kind": "subfactors"
+      },
+      {
+        "chunk_id": "justin-graph@1.0:signals",
+        "sha256": "<hex>",
+        "kind": "signals"
+      },
+      {
+        "chunk_id": "justin-graph@1.0:edges",
+        "sha256": "<hex>",
+        "kind": "edges"
+      }
+    ],
+    "counts": {
+      "axes": 0,
+      "dimensions": 0,
+      "subfactors": 0,
+      "signals": 0,
+      "edges": 0
+    }
+  }
+}
+
+```
+
+### Meta Chunk: Graph Metadata Character count: 489
+```json
+{
+  "set_id": "justin-graph",
+  "set_version": "1.0",
+  "chunk_type": "meta",
+  "chunk_id": "justin-graph@1.0:meta",
+  "scope": "user:justin",
+  "updated": "2024-07-30T12:34:56Z",
+  "source": "/mnt/data/justin-graph.json",
+  "content_sha256": "<hex>",
+  "part": 1,
+  "total_parts": 1,
+  "tags": [
+    "preferences",
+    "graph"
+  ],
+  "payload": {
+    "meta": {
+      "version": "1.0",
+      "subject": "Justin's Preferences Graph",
+      "graph_updated_at": "2024-07-30T12:34:56Z",
+      "notes": "Initial empty graph for demonstration."
+    }
+  }
+}
+
+```
+
+### Axes & Dimensions Chunk: Foundational Structure Character count: 326
+```json
+{
+  "set_id": "justin-graph",
+  "set_version": "1.0",
+  "chunk_type": "axes_dimensions",
+  "chunk_id": "justin-graph@1.0:axes_dimensions",
+  "scope": "user:justin",
+  "updated": "2024-07-30T12:34:56Z",
+  "source": "/mnt/data/justin-graph.json",
+  "content_sha256": "<hex>",
+  "part": 1,
+  "total_parts": 1,
+  "tags": [
+    "preferences",
+    "graph"
+  ],
+  "payload": {
+    "axes": [],
+    "dimensions": []
+  }
+}
+
+```
+
+### Subfactors Chunk: Detailed Aspects Character count: 310
+```json
+{
+  "set_id": "justin-graph",
+  "set_version": "1.0",
+  "chunk_type": "subfactors",
+  "chunk_id": "justin-graph@1.0:subfactors",
+  "scope": "user:justin",
+  "updated": "2024-07-30T12:34:56Z",
+  "source": "/mnt/data/justin-graph.json",
+  "content_sha256": "<hex>",
+  "part": 1,
+  "total_parts": 1,
+  "tags": [
+    "preferences",
+    "graph"
+  ],
+  "payload": {
+    "subfactors": []
+  }
+}
+
+```
+
+### Signals Chunk: Measurable Indicators Character count: 304
+```json
+{
+  "set_id": "justin-graph",
+  "set_version": "1.0",
+  "chunk_type": "signals",
+  "chunk_id": "justin-graph@1.0:signals",
+  "scope": "user:justin",
+  "updated": "2024-07-30T12:34:56Z",
+  "source": "/mnt/data/justin-graph.json",
+  "content_sha256": "<hex>",
+  "part": 1,
+  "total_parts": 1,
+  "tags": [
+    "preferences",
+    "graph"
+  ],
+  "payload": {
+    "signals": []
+  }
+}
+
+```
+
+### Edges Chunk: Relationships & Ontology Character count: 485
+```json
+{
+  "set_id": "justin-graph",
+  "set_version": "1.0",
+  "chunk_type": "edges",
+  "chunk_id": "justin-graph@1.0:edges",
+  "scope": "user:justin",
+  "updated": "2024-07-30T12:34:56Z",
+  "source": "/mnt/data/justin-graph.json",
+  "content_sha256": "<hex>",
+  "part": 1,
+  "total_parts": 1,
+  "tags": [
+    "preferences",
+    "graph"
+  ],
+  "payload": {
+    "edges": [],
+    "relation_ontology": [
+      "constrained_by",
+      "influences",
+      "tension_with",
+      "references",
+      "derives_from",
+      "supersedes"
+    ]
+  }
+}
+
+```]]></content>
+    </file>
+    <file>
+      <path>memory-graph-2025-09-25_optimized.md</path>
+      <content><![CDATA[```markdown
+# Memory Graph
+
+Total Axes: 0
+Total Dimensions: 0
+Total Subfactors: 0
+Total Signals: 0
+Total Edges: 0
+Total Relation Types: 6
+
+### Knowledge Graph Meta Chunk (Character count: 649)
+```json
+{
+  "set_id": "justin-graph",
+  "set_version": "1.0",
+  "chunk_type": "meta",
+  "chunk_id": "justin-graph@1.0:meta",
+  "scope": "project:justin",
+  "updated": "2024-07-30T10:00:00Z",
+  "source": "/mnt/data/justin-graph.json",
+  "content_sha256": "<hex>",
+  "part": 1,
+  "total_parts": 1,
+  "tags": [
+    "knowledge-graph"
+  ],
+  "payload": {
+    "meta": {
+      "version": "1.0",
+      "subject": "Justin's Knowledge Graph",
+      "graph_updated_at": "2024-07-30T10:00:00Z",
+      "notes": "Initial empty graph structure generated for demonstration purposes. This graph provides a foundational schema without specific data points, illustrating the structure for axes, dimensions, subfactors, signals, and edges."
+    }
+  }
+}
+```
+
+### Knowledge Graph Axes & Dimensions Chunk (Character count: 429)
+```json
+{
+  "set_id": "justin-graph",
+  "set_version": "1.0",
+  "chunk_type": "axes_dimensions",
+  "chunk_id": "justin-graph@1.0:axes",
+  "scope": "project:justin",
+  "updated": "2024-07-30T10:00:00Z",
+  "source": "/mnt/data/justin-graph.json",
+  "content_sha256": "<hex>",
+  "part": 1,
+  "total_parts": 1,
+  "tags": [
+    "knowledge-graph"
+  ],
+  "payload": {
+    "axes": [],
+    "dimensions": []
+  }
+}
+```
+
+### Knowledge Graph Subfactors Chunk (Character count: 412)
+```json
+{
+  "set_id": "justin-graph",
+  "set_version": "1.0",
+  "chunk_type": "subfactors",
+  "chunk_id": "justin-graph@1.0:subfactors",
+  "scope": "project:justin",
+  "updated": "2024-07-30T10:00:00Z",
+  "source": "/mnt/data/justin-graph.json",
+  "content_sha256": "<hex>",
+  "part": 1,
+  "total_parts": 1,
+  "tags": [
+    "knowledge-graph"
+  ],
+  "payload": {
+    "subfactors": []
+  }
+}
+```
+
+### Knowledge Graph Signals Chunk (Character count: 406)
+```json
+{
+  "set_id": "justin-graph",
+  "set_version": "1.0",
+  "chunk_type": "signals",
+  "chunk_id": "justin-graph@1.0:signals",
+  "scope": "project:justin",
+  "updated": "2024-07-30T10:00:00Z",
+  "source": "/mnt/data/justin-graph.json",
+  "content_sha256": "<hex>",
+  "part": 1,
+  "total_parts": 1,
+  "tags": [
+    "knowledge-graph"
+  ],
+  "payload": {
+    "signals": []
+  }
+}
+```
+
+### Knowledge Graph Edges Chunk (Character count: 620)
+```json
+{
+  "set_id": "justin-graph",
+  "set_version": "1.0",
+  "chunk_type": "edges",
+  "chunk_id": "justin-graph@1.0:edges",
+  "scope": "project:justin",
+  "updated": "2024-07-30T10:00:00Z",
+  "source": "/mnt/data/justin-graph.json",
+  "content_sha256": "<hex>",
+  "part": 1,
+  "total_parts": 1,
+  "tags": [
+    "knowledge-graph"
+  ],
+  "payload": {
+    "edges": [],
+    "relation_ontology": [
+      "constrained_by",
+      "influences",
+      "tension_with",
+      "references",
+      "derives_from",
+      "supersedes"
+    ]
+  }
+}
+```
+
+### Knowledge Graph Index Chunk (Character count: 1140)
+```json
+{
+  "set_id": "justin-graph",
+  "set_version": "1.0",
+  "chunk_type": "index",
+  "chunk_id": "justin-graph@1.0:index",
+  "scope": "project:justin",
+  "updated": "2024-07-30T10:00:00Z",
+  "source": "/mnt/data/justin-graph.json",
+  "content_sha256": "<hex>",
+  "part": 1,
+  "total_parts": 1,
+  "tags": [
+    "knowledge-graph"
+  ],
+  "payload": {
+    "schema_version": "2025-09-25",
+    "chunks": [
+      {
+        "chunk_id": "justin-graph@1.0:meta",
+        "sha256": "<hex>",
+        "kind": "meta"
+      },
+      {
+        "chunk_id": "justin-graph@1.0:axes",
+        "sha256": "<hex>",
+        "kind": "axes_dimensions"
+      },
+      {
+        "chunk_id": "justin-graph@1.0:subfactors",
+        "sha256": "<hex>",
+        "kind": "subfactors"
+      },
+      {
+        "chunk_id": "justin-graph@1.0:signals",
+        "sha256": "<hex>",
+        "kind": "signals"
+      },
+      {
+        "chunk_id": "justin-graph@1.0:edges",
+        "sha256": "<hex>",
+        "kind": "edges"
+      }
+    ],
+    "counts": {
+      "axes": 0,
+      "dimensions": 0,
+      "subfactors": 0,
+      "signals": 0,
+      "edges": 0
+    }
+  }
+}
+```]]></content>
+    </file>
+    <file>
+      <path>nexus-sessions/chunks/edges.json</path>
+      <content><![CDATA[{
+  "chunk_id": "nexus-sessions@1.0:edges",
+  "chunk_type": "edges",
+  "content_sha256": "0033cc54efba4e550228cd145f1879b2bb4ca9b6578241f82b98aca67ac2e76f",
+  "part": 1,
+  "payload": {
+    "edges": [
+      {
+        "from": "sig:kg-lite-adoption",
+        "rel": "implements",
+        "to": "doc:MEMORY_GRAPH_STANDARDS",
+        "weight": 0.9
+      },
+      {
+        "from": "sig:nexus-todos-7-13",
+        "rel": "depends_on",
+        "to": "doc:VDM_Nexus_TODO",
+        "weight": 0.8
+      },
+      {
+        "from": "sig:nexus-ci-workflow-added",
+        "rel": "implements",
+        "to": "doc:VDM_Nexus_CI",
+        "weight": 0.9
+      },
+      {
+        "from": "sig:derivation-guard-policy-enforced",
+        "rel": "implements",
+        "to": "doc:Derivation_Guard_Policy",
+        "weight": 0.9
+      }
+    ],
+    "relation_ontology": [
+      "implements",
+      "depends_on",
+      "validates",
+      "supports",
+      "contradicts",
+      "has_artifact"
+    ]
+  },
+  "scope": "session",
+  "set_id": "nexus-sessions",
+  "set_version": "1.0",
+  "source": "agent:roo;mode:Physicist;workflow:VDM_Nexus_KG-Lite;repo_head:1a16c2f0381d0f4f6e88b4c2a58d9f83790af168",
+  "tags": [
+    "kg-lite",
+    "edges",
+    "nexus",
+    "session"
+  ],
+  "total_parts": 1,
+  "updated": "2025-10-28T02:34:57Z"
+}
+]]></content>
+    </file>
+    <file>
+      <path>nexus-sessions/chunks/meta.json</path>
+      <content><![CDATA[{
+  "chunk_id": "nexus-sessions@1.0:meta",
+  "chunk_type": "meta",
+  "content_sha256": "483dda9f8d3659a92b5b28a0244bc7a3f0d771e6a427187c31c4ee530eeb373f",
+  "part": 1,
+  "payload": {
+    "agent": "roo",
+    "dataset": "nexus-sessions",
+    "links": [
+      "memory-bank/MEMORY_GRAPH_STANDARDS.md#6a-kg-lite-chunk-envelope-and-branching"
+    ],
+    "notes": "Session dataset for logging Nexus workflow context using KG-Lite envelopes.",
+    "policy": "external-agent-only; no in-repo memory impl inside VDM_Nexus",
+    "role": "Physicist",
+    "session_utc": "2025-10-28T02:34:57Z",
+    "version": "1.0"
+  },
+  "scope": "session",
+  "set_id": "nexus-sessions",
+  "set_version": "1.0",
+  "source": "agent:roo;mode:Physicist;workflow:VDM_Nexus_KG-Lite;repo_head:1a16c2f0381d0f4f6e88b4c2a58d9f83790af168",
+  "tags": [
+    "kg-lite",
+    "meta",
+    "nexus",
+    "session"
+  ],
+  "total_parts": 1,
+  "updated": "2025-10-28T02:34:57Z"
+}
+]]></content>
+    </file>
+    <file>
+      <path>nexus-sessions/chunks/retrieval_policy.json</path>
+      <content><![CDATA[{
+  "chunk_id": "nexus-sessions@1.0:retrieval_policy",
+  "chunk_type": "retrieval_policy",
+  "content_sha256": "687706db599d5c12e599ea726dcc82ee0f72dd020e913401fc19d390614864fa",
+  "part": 1,
+  "payload": {
+    "min_novelty": 0.55,
+    "notes": "Defaults per MEMORY_GRAPH_STANDARDS \u00a76A retrieval_policy.",
+    "path_prune_alpha": 0.8,
+    "path_threshold": 0.2
+  },
+  "scope": "session",
+  "set_id": "nexus-sessions",
+  "set_version": "1.0",
+  "source": "agent:roo;mode:Physicist;workflow:VDM_Nexus_KG-Lite;repo_head:1a16c2f0381d0f4f6e88b4c2a58d9f83790af168",
+  "tags": [
+    "kg-lite",
+    "retrieval_policy",
+    "nexus",
+    "session"
+  ],
+  "total_parts": 1,
+  "updated": "2025-10-28T02:34:57Z"
+}
+]]></content>
+    </file>
+    <file>
+      <path>nexus-sessions/chunks/signals.json</path>
+      <content><![CDATA[{
+  "chunk_id": "nexus-sessions@1.0:signals",
+  "chunk_type": "signals",
+  "content_sha256": "dac4e910f30bde42bc0a33441d6bb9b7c859c5adaf603cef0ddd7d89299949cd",
+  "part": 1,
+  "payload": {
+    "signals": [
+      {
+        "acceptance_test": {
+          "determinism.content_sha256": true,
+          "policy.external_agent_only": true
+        },
+        "created_utc": "2025-10-28T02:34:57Z",
+        "id": "sig:kg-lite-adoption",
+        "labels": [
+          "nexus",
+          "kg-lite",
+          "policy",
+          "session"
+        ],
+        "source": "memory-bank/MEMORY_GRAPH_STANDARDS.md",
+        "text": "Use KG-Lite memory during workflows; log important context like the flat memory-bank but in chunked KG-Lite."
+      },
+      {
+        "acceptance_test": {
+          "todo.10.nexus_plugin_e2e": "pending",
+          "todo.12.ci_checks": "pending",
+          "todo.13.jsonschema_ci": "pending",
+          "todo.7.mapped_to_policy": "pending",
+          "todo.8.retention_enforced": "pending",
+          "todo.9.pathrag_service": "pending"
+        },
+        "created_utc": "2025-10-28T02:34:57Z",
+        "id": "sig:nexus-todos-7-13",
+        "labels": [
+          "nexus",
+          "todo",
+          "kg-lite"
+        ],
+        "source": "VDM_Nexus/TODO_CHECKLIST.md",
+        "text": "Proceed with Nexus TODO items 7\u201313: static policy mapping; privacy/retention; PathRAG microservice; plugin integration + E2E; docs; CI checks; jsonschema target."
+      },
+      {
+        "acceptance_test": {
+          "ci.nexus_build_compiles": "pending",
+          "ci.workflow_present": true
+        },
+        "created_utc": "2025-10-28T02:34:57Z",
+        "id": "sig:nexus-ci-workflow-added",
+        "labels": [
+          "nexus",
+          "workflow",
+          "build",
+          "kg-lite"
+        ],
+        "source": ".github/workflows/nexus-ci.yml",
+        "text": "Added Nexus-only CI compile workflow at .github/workflows/nexus-ci.yml; builds VDM_Nexus with -DNEXUS_BUILD_TESTS=ON; no Derivation writes."
+      },
+      {
+        "acceptance_test": {
+          "guard.ci_workflow_present": "pending",
+          "guard.precommit_configured": true
+        },
+        "created_utc": "2025-10-28T02:34:57Z",
+        "id": "sig:derivation-guard-policy-enforced",
+        "labels": [
+          "nexus",
+          "policy",
+          "canon",
+          "kg-lite"
+        ],
+        "source": "VDM_Nexus/scripts/precommit_derivation_guard.py",
+        "text": "Derivation pre-commit/CI guard enforcing CHRONICLES + canon policy configured; stricter than nexus gate."
+      }
+    ]
+  },
+  "scope": "session",
+  "set_id": "nexus-sessions",
+  "set_version": "1.0",
+  "source": "agent:roo;mode:Physicist;workflow:VDM_Nexus_KG-Lite;repo_head:1a16c2f0381d0f4f6e88b4c2a58d9f83790af168",
+  "tags": [
+    "kg-lite",
+    "signals",
+    "nexus",
+    "session"
+  ],
+  "total_parts": 1,
+  "updated": "2025-10-28T02:34:57Z"
+}
+]]></content>
+    </file>
+    <file>
+      <path>nexus-sessions/nexus-sessions.index.json</path>
+      <content><![CDATA[{
+  "chunk_id": "nexus-sessions@1.0:index",
+  "chunk_type": "index",
+  "content_sha256": "0016b8480b9de9b6a9916c42f42a55dea7832015eb2013f54fdb0cd439760260",
+  "part": 1,
+  "payload": {
+    "chunks": [
+      {
+        "chunk_id": "nexus-sessions@1.0:meta",
+        "chunk_type": "meta",
+        "content_sha256": "483dda9f8d3659a92b5b28a0244bc7a3f0d771e6a427187c31c4ee530eeb373f",
+        "path": "memory-bank/MEMORY_GRAPH_CONTEXT/nexus-sessions/chunks/meta.json"
+      },
+      {
+        "chunk_id": "nexus-sessions@1.0:signals",
+        "chunk_type": "signals",
+        "content_sha256": "dac4e910f30bde42bc0a33441d6bb9b7c859c5adaf603cef0ddd7d89299949cd",
+        "path": "memory-bank/MEMORY_GRAPH_CONTEXT/nexus-sessions/chunks/signals.json"
+      },
+      {
+        "chunk_id": "nexus-sessions@1.0:edges",
+        "chunk_type": "edges",
+        "content_sha256": "0033cc54efba4e550228cd145f1879b2bb4ca9b6578241f82b98aca67ac2e76f",
+        "path": "memory-bank/MEMORY_GRAPH_CONTEXT/nexus-sessions/chunks/edges.json"
+      },
+      {
+        "chunk_id": "nexus-sessions@1.0:retrieval_policy",
+        "chunk_type": "retrieval_policy",
+        "content_sha256": "687706db599d5c12e599ea726dcc82ee0f72dd020e913401fc19d390614864fa",
+        "path": "memory-bank/MEMORY_GRAPH_CONTEXT/nexus-sessions/chunks/retrieval_policy.json"
+      }
+    ],
+    "counts": {
+      "chunk_count": 4,
+      "edges": 4,
+      "signals": 4
+    },
+    "set_id": "nexus-sessions",
+    "set_version": "1.0"
+  },
+  "scope": "session",
+  "set_id": "nexus-sessions",
+  "set_version": "1.0",
+  "source": "agent:roo;mode:Physicist;workflow:VDM_Nexus_KG-Lite;repo_head:1a16c2f0381d0f4f6e88b4c2a58d9f83790af168",
+  "tags": [
+    "kg-lite",
+    "index",
+    "nexus",
+    "session"
+  ],
+  "total_parts": 1,
+  "updated": "2025-10-28T02:34:57Z"
+}
+]]></content>
+    </file>
+    <file>
+      <path>relations/kg-relations.v1.json</path>
+      <content><![CDATA[{
+  "relations": [
+    {
+      "from": "VDM_Nexus_Approval_CLI",
+      "relationType": "wraps",
+      "to": "Canonical_Approve_Tag_CLI"
+    }
+  ],
+  "set_id": "kg-relations",
+  "set_version": "1.0",
+  "updated_utc": "2025-10-28T05:30:30Z"
+}
+]]></content>
+    </file>
+    <file>
+      <path>schemas/vdm.nexus.policy.v1.schema.json</path>
+      <content><![CDATA[{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "VDM_Nexus/schemas/vdm.nexus.policy.v1.schema.json",
+  "title": "VDM Nexus Auto-Inject Policy v1",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema": { "const": "vdm.nexus.policy.v1" },
+    "injection": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Decision policy for retrieval auto-injection per-turn",
+      "properties": {
+        "S_min": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Minimum composite score S to auto-inject"
+        },
+        "k_max": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Max number of chunks to inject when decision=inject"
+        },
+        "score_weights": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Weights for composite score S = w_r*r + w_tau*tau + w_rho*rho + w_c*c. Recommended to sum to 1.",
+          "properties": {
+            "w_r": { "type": "number", "minimum": 0, "maximum": 1 },
+            "w_tau": { "type": "number", "minimum": 0, "maximum": 1 },
+            "w_rho": { "type": "number", "minimum": 0, "maximum": 1 },
+            "w_c": { "type": "number", "minimum": 0, "maximum": 1 }
+          },
+          "required": ["w_r", "w_tau", "w_rho", "w_c"]
+        },
+        "component_mins": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Per-component minimums for r, tau, rho, c before a source can be considered",
+          "properties": {
+            "r_min": { "type": "number", "minimum": 0, "maximum": 1 },
+            "tau_min": { "type": "number", "minimum": 0, "maximum": 1 },
+            "rho_min": { "type": "number", "minimum": 0, "maximum": 1 },
+            "c_min": { "type": "number", "minimum": 0, "maximum": 1 }
+          }
+        },
+        "novelty_min": {
+          "type": "number", "minimum": 0, "maximum": 1,
+          "description": "Minimum novelty to allow injection"
+        },
+        "determinism_min": {
+          "type": "number", "minimum": 0, "maximum": 1,
+          "description": "Minimum determinism to allow injection"
+        },
+        "visibility_min": {
+          "type": "number", "minimum": 0, "maximum": 1,
+          "description": "Minimum UI visibility/clarity score to allow injection"
+        },
+        "propose_band": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Decision band for propose instead of inject",
+          "properties": {
+            "S_lower": { "type": "number", "minimum": 0, "maximum": 1 },
+            "S_upper": { "type": "number", "minimum": 0, "maximum": 1 },
+            "k_propose": { "type": "integer", "minimum": 0 }
+          },
+          "required": ["S_lower", "S_upper", "k_propose"]
+        },
+        "token_budget_per_turn": {
+          "type": "integer", "minimum": 0,
+          "description": "Hard cap on total injected tokens per turn"
+        },
+        "token_budget_window": {
+          "type": "integer", "minimum": 1,
+          "description": "Sliding window (turns) to smooth token budgets"
+        },
+        "latency_slo_ms": {
+          "type": "number", "minimum": 0,
+          "description": "Latency service-level objective for retrieval/injection"
+        }
+      },
+      "required": ["S_min", "k_max", "score_weights", "token_budget_per_turn", "token_budget_window", "latency_slo_ms"]
+    },
+    "audit": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Audit/writeback policy for MCP observations and logs",
+      "properties": {
+        "emit_mcp_observation": { "type": "boolean" },
+        "mcp_tool": { "type": "string", "description": "MCP tool name for writeback (if enabled)" },
+        "log_jsonl_path": { "type": "string", "description": "Optional local JSONL audit path for signals/writebacks" },
+        "redact_fields": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Field paths to redact before emission (e.g., text.input_text)"
+        }
+      },
+      "required": ["emit_mcp_observation"]
+    }
+  },
+  "required": ["schema", "injection"]
+}]]></content>
+    </file>
+    <file>
+      <path>schemas/vdm.nexus.signal.v1.schema.json</path>
+      <content><![CDATA[{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "VDM_Nexus/schemas/vdm.nexus.signal.v1.schema.json",
+  "title": "VDM Nexus Signal v1",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema": { "const": "vdm.nexus.signal.v1" },
+    "session": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "set_id": { "type": "string", "minLength": 1 },
+        "session_id": { "type": "string", "minLength": 1 },
+        "turn_id": { "type": ["integer", "string"] },
+        "timestamp_utc": { "type": "string", "format": "date-time" }
+      },
+      "required": ["set_id", "session_id", "turn_id", "timestamp_utc"]
+    },
+    "user": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "role": { "type": "string", "enum": ["user", "assistant", "system", "tool"] },
+        "actor_id": { "type": "string" }
+      },
+      "required": ["role"]
+    },
+    "llm": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "model_id": { "type": "string", "minLength": 1 },
+        "input_tokens": { "type": "integer", "minimum": 0 },
+        "output_tokens": { "type": "integer", "minimum": 0 },
+        "latency_ms": { "type": "number", "minimum": 0 }
+      },
+      "required": ["model_id", "input_tokens", "output_tokens", "latency_ms"]
+    },
+    "text": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "input_text": { "type": "string" },
+        "output_text": { "type": "string" }
+      },
+      "required": ["input_text"]
+    },
+    "retrieval": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "applied": { "type": "boolean" },
+        "injected_k": { "type": "integer", "minimum": 0 },
+        "score_S": { "type": "number", "minimum": 0, "maximum": 1 },
+        "components": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "r": { "type": "number", "minimum": 0, "maximum": 1 },
+            "tau": { "type": "number", "minimum": 0, "maximum": 1 },
+            "rho": { "type": "number", "minimum": 0, "maximum": 1 },
+            "c": { "type": "number", "minimum": 0, "maximum": 1 }
+          },
+          "required": ["r", "tau", "rho", "c"]
+        },
+        "novelty": { "type": "number", "minimum": 0, "maximum": 1 },
+        "determinism": { "type": "number", "minimum": 0, "maximum": 1 },
+        "visibility": { "type": "number", "minimum": 0, "maximum": 1 },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "path": { "type": "string", "minLength": 1 },
+              "commit": { "type": "string" },
+              "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+              "anchor": { "type": "string" },
+              "score": { "type": "number" },
+              "reason": { "type": "string" }
+            },
+            "required": ["path"]
+          }
+        }
+      },
+      "required": ["applied", "injected_k", "score_S", "components", "sources"]
+    },
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "decision": { "type": "string", "enum": ["inject", "propose", "skip"] },
+        "S_min": { "type": "number", "minimum": 0, "maximum": 1 },
+        "k_max": { "type": "integer", "minimum": 0 },
+        "token_budget_per_turn": { "type": "integer", "minimum": 0 },
+        "token_budget_window": { "type": "integer", "minimum": 1 },
+        "latency_slo_ms": { "type": "number", "minimum": 0 }
+      },
+      "required": ["decision", "S_min", "k_max"]
+    },
+    "mcp": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "observations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+              "tool": { "type": "string" },
+              "resource": { "type": "string" },
+              "payload": { "type": "object" }
+            }
+          }
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "repo_head": { "type": "string" },
+        "nexus_commit": { "type": "string" },
+        "seed": { "type": "integer" },
+        "app_version": { "type": "string" }
+      },
+      "required": ["repo_head"]
+    }
+  },
+  "required": ["schema", "session", "user", "llm", "text", "retrieval", "policy", "provenance"]
+}]]></content>
+    </file>
+    <file>
+      <path>schemas/vdm.run-manifest.v1.schema.json</path>
+      <content><![CDATA[{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "vdm.run-manifest.v1.schema.json",
+  "title": "VDM Run Manifest v1",
+  "description": "Canonical manifest emitted in GUI mode or when VDM_NEXUS=1. References the experiment schema/spec used for KPI thresholds; GUI is read-only and validates against this schema.",
+  "type": "object",
+  "required": ["schema", "repo_commit", "seed", "dt", "t", "domain", "fields"],
+  "properties": {
+    "schema": { "type": "string", "const": "vdm.run-manifest.v1" },
+    "repo_commit": { "type": "string", "description": "Short or full git commit hash of the repo at run time" },
+    "seed": { "type": "integer", "minimum": 0 },
+    "dt": { "type": "number" },
+    "t": { "type": "number" },
+    "domain": { "type": "string", "description": "Physics domain identifier (e.g., kg_rd_metriplectic)" },
+
+    "experiment_schema": { "type": "string", "description": "Path (repo-relative) to the JSON Schema used by this run's spec" },
+    "spec_path": { "type": "string", "description": "Path (repo-relative) to the spec JSON used for this run" },
+
+    "fields": {
+      "type": "array",
+      "description": "Published datasets available for viewport and analysis",
+      "items": {
+        "type": "object",
+        "required": ["name", "kind", "topology"],
+        "properties": {
+          "name": { "type": "string" },
+          "kind": {
+            "type": "string",
+            "enum": ["scalar", "vector", "tensor", "points", "mesh"],
+            "description": "Data kind: scalar field, vector field, tensor field, point set (particles), or mesh"
+          },
+          "topology": {
+            "type": "string",
+            "enum": ["image", "structured", "unstructured", "points"],
+            "description": "Grid topology for VTK mapping (ImageData/StructuredGrid/UnstructuredGrid/PolyData)"
+          },
+          "grid": {
+            "type": "array",
+            "items": { "type": "integer", "minimum": 1 },
+            "minItems": 1,
+            "description": "Optional voxel/point counts per axis (e.g., [Nx,Ny,Nz])"
+          },
+          "spacing": {
+            "type": "array",
+            "items": { "type": "number" },
+            "minItems": 1,
+            "description": "Optional physical spacing per axis (e.g., [dx,dy,dz])"
+          },
+          "cells": { "type": "string", "description": "For unstructured meshes (e.g., tet, hex, tri)" },
+          "attribs": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Attribute names carried by this dataset (e.g., ['x','v','mass'])"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+
+    "kpis": {
+      "type": "object",
+      "description": "Optional per-step KPI summary values emitted by the runner (read-only for GUI)",
+      "additionalProperties": { "type": "number" }
+    },
+
+    "provenance": {
+      "type": "object",
+      "description": "Optional file integrity block recorded by the publisher",
+      "properties": {
+        "sha256": { "type": "string", "description": "SHA-256 hash over the manifest or associated artifact list" },
+        "sizes": {
+          "type": "object",
+          "description": "Map from artifact relative path to byte size",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": true
+}]]></content>
+    </file>
+    <file>
+      <path>tools/generate_nexus_sessions.py</path>
+      <content><![CDATA[#!/usr/bin/env python3
+import os
+import json
+import hashlib
+import datetime
+import argparse
+import pathlib
+import subprocess
+
+
+def canon_sha256(obj):
+    s = json.dumps(obj, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    return hashlib.sha256(s).hexdigest()
+
+
+def write_json(path, obj):
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(obj, f, indent=2, sort_keys=True)
+        f.write("\n")
+
+
+def get_repo_head(repo_root=None):
+    try:
+        if repo_root is None:
+            # repo root assumed to be project root (three parents up from this script)
+            repo_root = str(pathlib.Path(__file__).resolve().parents[3])
+        out = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=repo_root, stderr=subprocess.DEVNULL)
+        return out.decode("utf-8").strip()
+    except Exception:
+        return None
+
+
+def build_envelope(set_id, version, chunk_type, payload, now, source, scope="session", tags=None, part=1, total_parts=1):
+    if tags is None:
+        tags = ["kg-lite", chunk_type, "nexus", "session"]
+    chunk_id = f"{set_id}@{version}:{chunk_type}"
+    env = {
+        "set_id": set_id,
+        "set_version": version,
+        "chunk_type": chunk_type,
+        "chunk_id": chunk_id,
+        "scope": scope,
+        "updated": now,
+        "source": source,
+        "content_sha256": canon_sha256(payload),
+        "part": part,
+        "total_parts": total_parts,
+        "tags": tags,
+        "payload": payload,
+    }
+    return env
+
+
+def main():
+    ap = argparse.ArgumentParser(description="Generate KG-Lite envelopes for a Nexus session dataset.")
+    ap.add_argument("--set-id", default="nexus-sessions", help="Dataset id (directory name under MEMORY_GRAPH_CONTEXT)")
+    ap.add_argument("--version", default="1.0", help="Dataset version string")
+    ap.add_argument("--agent", default="roo", help="Agent name")
+    ap.add_argument("--role", default="Physicist", help="Agent role")
+    args = ap.parse_args()
+
+    base = f"memory-bank/MEMORY_GRAPH_CONTEXT/{args.set_id}"
+    chunks_dir = f"{base}/chunks"
+    os.makedirs(chunks_dir, exist_ok=True)
+    os.makedirs("memory-bank/logs", exist_ok=True)
+
+    now = datetime.datetime.utcnow().replace(microsecond=0).isoformat() + "Z"
+    repo_head = get_repo_head()
+    source = f"agent:{args.agent};mode:{args.role};workflow:VDM_Nexus_KG-Lite"
+    if repo_head:
+        source += f";repo_head:{repo_head}"
+
+    # Meta
+    meta_payload = {
+        "dataset": args.set_id,
+        "version": args.version,
+        "session_utc": now,
+        "agent": args.agent,
+        "role": args.role,
+        "policy": "external-agent-only; no in-repo memory impl inside VDM_Nexus",
+        "links": [
+            "memory-bank/MEMORY_GRAPH_STANDARDS.md#6a-kg-lite-chunk-envelope-and-branching"
+        ],
+        "notes": "Session dataset for logging Nexus workflow context using KG-Lite envelopes."
+    }
+
+    # Signals (key session memories and next actions)
+    signals = [
+        {
+            "id": "sig:kg-lite-adoption",
+            "text": "Use KG-Lite memory during workflows; log important context like the flat memory-bank but in chunked KG-Lite.",
+            "labels": ["nexus", "kg-lite", "policy", "session"],
+            "acceptance_test": {
+                "policy.external_agent_only": True,
+                "determinism.content_sha256": True
+            },
+            "source": "memory-bank/MEMORY_GRAPH_STANDARDS.md",
+            "created_utc": now
+        },
+        {
+            "id": "sig:nexus-todos-7-13",
+            "text": "Proceed with Nexus TODO items 7–13: static policy mapping; privacy/retention; PathRAG microservice; plugin integration + E2E; docs; CI checks; jsonschema target.",
+            "labels": ["nexus", "todo", "kg-lite"],
+            "acceptance_test": {
+                "todo.7.mapped_to_policy": "pending",
+                "todo.8.retention_enforced": "pending",
+                "todo.9.pathrag_service": "pending",
+                "todo.10.nexus_plugin_e2e": "pending",
+                "todo.12.ci_checks": "pending",
+                "todo.13.jsonschema_ci": "pending"
+            },
+            "source": "VDM_Nexus/TODO_CHECKLIST.md",
+            "created_utc": now
+        },
+        {
+            "id": "sig:nexus-ci-workflow-added",
+            "text": "Added Nexus-only CI compile workflow at .github/workflows/nexus-ci.yml; builds VDM_Nexus with -DNEXUS_BUILD_TESTS=ON; no Derivation writes.",
+            "labels": ["nexus", "workflow", "build", "kg-lite"],
+            "acceptance_test": {
+                "ci.workflow_present": True,
+                "ci.nexus_build_compiles": "pending"
+            },
+            "source": ".github/workflows/nexus-ci.yml",
+            "created_utc": now
+        },
+        {
+            "id": "sig:derivation-guard-policy-enforced",
+            "text": "Derivation pre-commit/CI guard enforcing CHRONICLES + canon policy configured; stricter than nexus gate.",
+            "labels": ["nexus", "policy", "canon", "kg-lite"],
+            "acceptance_test": {
+                "guard.precommit_configured": True,
+                "guard.ci_workflow_present": "pending"
+            },
+            "source": "VDM_Nexus/scripts/precommit_derivation_guard.py",
+            "created_utc": now
+        }
+    ]
+    signals_payload = {"signals": signals}
+
+    # Edges (relation ontology + links)
+    edges_payload = {
+        "relation_ontology": [
+            "implements", "depends_on", "validates", "supports", "contradicts", "has_artifact"
+        ],
+        "edges": [
+            {"from": "sig:kg-lite-adoption", "to": "doc:MEMORY_GRAPH_STANDARDS", "rel": "implements", "weight": 0.9},
+            {"from": "sig:nexus-todos-7-13", "to": "doc:VDM_Nexus_TODO", "rel": "depends_on", "weight": 0.8},
+            {"from": "sig:nexus-ci-workflow-added", "to": "doc:VDM_Nexus_CI", "rel": "implements", "weight": 0.9},
+            {"from": "sig:derivation-guard-policy-enforced", "to": "doc:Derivation_Guard_Policy", "rel": "implements", "weight": 0.9}
+        ]
+    }
+
+    # Retrieval policy (defaults declared in the standards)
+    retrieval_policy_payload = {
+        "path_prune_alpha": 0.8,
+        "path_threshold": 0.2,
+        "min_novelty": 0.55,
+        "notes": "Defaults per MEMORY_GRAPH_STANDARDS §6A retrieval_policy."
+    }
+
+    written = []
+
+    # Write chunks
+    for chunk_type, payload in [
+        ("meta", meta_payload),
+        ("signals", signals_payload),
+        ("edges", edges_payload),
+        ("retrieval_policy", retrieval_policy_payload),
+    ]:
+        env = build_envelope(args.set_id, args.version, chunk_type, payload, now, source)
+        out_path = f"{chunks_dir}/{chunk_type}.json"
+        write_json(out_path, env)
+        written.append({
+            "chunk_id": env["chunk_id"],
+            "sha256": env["content_sha256"],
+            "path": out_path,
+            "chunk_type": chunk_type
+        })
+
+    # Index envelope
+    index_payload = {
+        "set_id": args.set_id,
+        "set_version": args.version,
+        "chunks": [
+            {
+                "chunk_id": w["chunk_id"],
+                "content_sha256": w["sha256"],
+                "path": w["path"],
+                "chunk_type": w["chunk_type"]
+            } for w in written
+        ],
+        "counts": {
+            "chunk_count": len(written),
+            "signals": len(signals_payload.get("signals", [])),
+            "edges": len(edges_payload.get("edges", []))
+        }
+    }
+    index_env = build_envelope(args.set_id, args.version, "index", index_payload, now, source)
+    index_path = f"{base}/{args.set_id}.index.json"
+    write_json(index_path, index_env)
+
+    # Audit line (append-only)
+    audit = {
+        "op": "write_kg_lite_dataset",
+        "dataset": args.set_id,
+        "version": args.version,
+        "created_utc": now,
+        "chunks": {w["chunk_id"]: w["sha256"] for w in written},
+        "index_sha256": index_env["content_sha256"],
+        "counts": index_payload["counts"]
+    }
+    with open("memory-bank/logs/memory_audit.jsonl", "a", encoding="utf-8") as f:
+        f.write(json.dumps(audit, sort_keys=True) + "\n")
+
+    # Summary
+    print("Created KG-Lite dataset:", args.set_id)
+    print("Index:", index_path)
+    for w in written:
+        print("Chunk:", w["chunk_type"], "path=", w["path"], "sha256=", w["sha256"])
+    print("Audit appended to memory-bank/logs/memory_audit.jsonl")
+
+
+if __name__ == "__main__":
+    main()]]></content>
+    </file>
+    <file>
+      <path>tools/kg_cli.py</path>
+      <content><![CDATA[#!/usr/bin/env python3
+"""
+VDM Memory-Bank — KG-Lite CRUD CLI with PathRAG indexing
+Low-verbosity, file-backed knowledge graph operations.
+
+Scope:
+- Stores entities/relations/indexes under memory-bank/MEMORY_GRAPH_CONTEXT/
+- No external services; pure local JSON with deterministic formatting
+- Read-only to Derivation/; does not modify canonical physics content
+- Recreates MCP memory tool functionality for entities/relations, plus PathRAG optimizations
+
+Data files (created on demand):
+- Entities:   memory-bank/MEMORY_GRAPH_CONTEXT/entities/kg-entities.v1.json
+- Relations:  memory-bank/MEMORY_GRAPH_CONTEXT/relations/kg-relations.v1.json
+- PathRAG idx memory-bank/MEMORY_GRAPH_CONTEXT/indexes/kg-pathrag-index.v1.json
+
+Entity record (minimal):
+{
+  "name": "VDM_Nexus_Approval_CLI",
+  "type": "ScriptTool",
+  "observations": [
+    "Path: [approval_cli.py](VDM_Nexus/scripts/approval_cli.py:1)",
+    "Docs: [scripts/README.md](VDM_Nexus/scripts/README.md:41)"
+  ]
+}
+
+Relation record (minimal):
+{
+  "from": "EntityA",
+  "to": "EntityB",
+  "relationType": "wraps"
+}
+
+PathRAG index entry (derived):
+{
+  "path": "vdm_nexus/scripts/approval_cli.py",
+  "segments": ["vdm_nexus","scripts","approval_cli.py"],
+  "entities": ["VDM_Nexus_Approval_CLI"]
+}
+
+CLI examples (low verbosity by default; add --json for JSON output):
+  # Add entity with two observations
+  python3 memory-bank/MEMORY_GRAPH_CONTEXT/tools/kg_cli.py entities add \
+    --name VDM_Nexus_Approval_CLI \
+    --type ScriptTool \
+    --obs "Path: [approval_cli.py](VDM_Nexus/scripts/approval_cli.py:1)" \
+    --obs "Docs: [scripts/README.md](VDM_Nexus/scripts/README.md:41)"
+
+  # List entities containing 'approval' in name or observations
+  python3 memory-bank/MEMORY_GRAPH_CONTEXT/tools/kg_cli.py entities list --query approval
+
+  # Add relation
+  python3 memory-bank/MEMORY_GRAPH_CONTEXT/tools/kg_cli.py relations add \
+    --from VDM_Nexus_Approval_CLI --to Canonical_Approve_Tag_CLI --type wraps
+
+  # Build PathRAG index from entity observations
+  python3 memory-bank/MEMORY_GRAPH_CONTEXT/tools/kg_cli.py index build
+
+  # Query PathRAG by path substring
+  python3 memory-bank/MEMORY_GRAPH_CONTEXT/tools/kg_cli.py pathrag search --path VDM_Nexus/scripts/approval_cli.py --json
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+import re
+import sys
+from dataclasses import dataclass
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Dict, List, Optional, Tuple, Any
+
+# Root (repo-relative)
+REPO_ROOT = Path(".").resolve()
+
+# File locations (repo-relative)
+ENTITIES_PATH = REPO_ROOT / "memory-bank" / "MEMORY_GRAPH_CONTEXT" / "entities" / "kg-entities.v1.json"
+RELATIONS_PATH = REPO_ROOT / "memory-bank" / "MEMORY_GRAPH_CONTEXT" / "relations" / "kg-relations.v1.json"
+INDEX_PATH = REPO_ROOT / "memory-bank" / "MEMORY_GRAPH_CONTEXT" / "indexes" / "kg-pathrag-index.v1.json"
+
+# Markdown link extraction for PathRAG: [label](relative/path:line)
+RE_MD_LINK = re.compile(r"\\[[^\\]]*\\]\\(([^)]+)\\)")
+
+def now_iso() -> str:
+    return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+def ensure_parent(path: Path) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+
+def read_json(path: Path, default: Any) -> Any:
+    try:
+        if path.is_file():
+            return json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        pass
+    return default
+
+def write_json(path: Path, payload: Any) -> None:
+    ensure_parent(path)
+    path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+
+def normalize_path(p: str) -> str:
+    # Accept "VDM_Nexus/scripts/approval_cli.py:1" and strip ":line"
+    base = p.split(":", 1)[0].strip()
+    # Normalize separators and lowercase for index keys (case-insensitive)
+    return str(Path(base)).replace("\\\\", "/").lower()
+
+def segments_for(p_norm: str) -> List[str]:
+    return [seg for seg in p_norm.split("/") if seg]
+
+def extract_paths_from_observation(obs: str) -> List[str]:
+    paths: List[str] = []
+    for m in RE_MD_LINK.finditer(obs):
+        target = m.group(1)
+        if target:
+            paths.append(normalize_path(target))
+    return paths
+
+# ----------------------------
+# Entities CRUD
+# ----------------------------
+
+def load_entities() -> Dict[str, Any]:
+    default = {
+        "set_id": "kg-entities",
+        "set_version": "1.0",
+        "updated_utc": now_iso(),
+        "entities": []
+    }
+    data = read_json(ENTITIES_PATH, default)
+    # Normalize schema keys if missing
+    data.setdefault("set_id", "kg-entities")
+    data.setdefault("set_version", "1.0")
+    data.setdefault("updated_utc", now_iso())
+    data.setdefault("entities", [])
+    return data
+
+def save_entities(data: Dict[str, Any]) -> None:
+    data["updated_utc"] = now_iso()
+    write_json(ENTITIES_PATH, data)
+
+def entity_index(data: Dict[str, Any]) -> Dict[str, Dict[str, Any]]:
+    idx: Dict[str, Dict[str, Any]] = {}
+    for e in data.get("entities", []):
+        name = e.get("name", "")
+        if name:
+            idx[name] = e
+    return idx
+
+def cmd_entities_add(args: argparse.Namespace) -> int:
+    data = load_entities()
+    idx = entity_index(data)
+    name = args.name
+    if name in idx and not args.upsert:
+        print(f"KG: entity exists: {name}", file=sys.stderr)
+        return 1
+    rec = idx.get(name, {"name": name, "type": args.type or "Unknown", "observations": []})
+    if args.type:
+        rec["type"] = args.type
+    obs = rec.get("observations", [])
+    for o in (args.obs or []):
+        if o not in obs:
+            obs.append(o)
+    rec["observations"] = obs
+    if name not in idx:
+        data["entities"].append(rec)
+    save_entities(data)
+    if args.json:
+        print(json.dumps({"ok": True, "entity": rec}, indent=2, sort_keys=True))
+    else:
+        print(f"KG: added/updated entity '{name}' (obs={len(rec['observations'])})")
+    return 0
+
+def cmd_entities_update(args: argparse.Namespace) -> int:
+    data = load_entities()
+    idx = entity_index(data)
+    name = args.name
+    if name not in idx:
+        print(f"KG: entity not found: {name}", file=sys.stderr)
+        return 1
+    rec = idx[name]
+    if args.type:
+        rec["type"] = args.type
+    if args.set_obs is not None:
+        # replace entire observations array
+        rec["observations"] = list(args.set_obs)
+    else:
+        # append
+        obs = rec.get("observations", [])
+        for o in (args.obs or []):
+            if o not in obs:
+                obs.append(o)
+        rec["observations"] = obs
+    save_entities(data)
+    if args.json:
+        print(json.dumps({"ok": True, "entity": rec}, indent=2, sort_keys=True))
+    else:
+        print(f"KG: updated entity '{name}'")
+    return 0
+
+def cmd_entities_delete(args: argparse.Namespace) -> int:
+    data = load_entities()
+    before = len(data.get("entities", []))
+    data["entities"] = [e for e in data.get("entities", []) if e.get("name") != args.name]
+    after = len(data.get("entities", []))
+    save_entities(data)
+    # Also purge relations that reference this entity
+    rel = load_relations()
+    rel_before = len(rel.get("relations", []))
+    rel["relations"] = [
+        r for r in rel.get("relations", [])
+        if r.get("from") != args.name and r.get("to") != args.name
+    ]
+    if len(rel.get("relations", [])) != rel_before:
+        save_relations(rel)
+    if args.json:
+        print(json.dumps({"ok": True, "removed": before - after, "relations_removed": rel_before - len(rel.get("relations", []))}, indent=2, sort_keys=True))
+    else:
+        print(f"KG: deleted entity '{args.name}' (relations purged: {rel_before - len(rel.get('relations', []))})")
+    return 0
+
+def cmd_entities_list(args: argparse.Namespace) -> int:
+    data = load_entities()
+    items = data.get("entities", [])
+    q = (args.query or "").strip().lower()
+    if q:
+        def match(e: Dict[str, Any]) -> bool:
+            if q in (e.get("name","").lower()):
+                return True
+            if q in (e.get("type","").lower()):
+                return True
+            for o in e.get("observations", []):
+                if q in o.lower():
+                    return True
+            return False
+        items = [e for e in items if match(e)]
+    payload = {"count": len(items), "entities": items} if args.json else None
+    if args.json:
+        print(json.dumps(payload, indent=2, sort_keys=True))
+    else:
+        for e in items:
+            print(f"- {e.get('name')} [{e.get('type')}] (obs={len(e.get('observations',[]))})")
+        print(f"KG: {len(items)} entity(ies)")
+    return 0
+
+# ----------------------------
+# Relations CRUD
+# ----------------------------
+
+def load_relations() -> Dict[str, Any]:
+    default = {
+        "set_id": "kg-relations",
+        "set_version": "1.0",
+        "updated_utc": now_iso(),
+        "relations": []
+    }
+    return read_json(RELATIONS_PATH, default)
+
+def save_relations(data: Dict[str, Any]) -> None:
+    data["updated_utc"] = now_iso()
+    write_json(RELATIONS_PATH, data)
+
+def cmd_relations_add(args: argparse.Namespace) -> int:
+    ents = load_entities()
+    names = {e.get("name") for e in ents.get("entities", [])}
+    if not args.force:
+        missing = [n for n in [args.from_, args.to] if n not in names]
+        if missing:
+            print(f"KG: missing entity(ies): {', '.join(missing)} (use --force to add anyway)", file=sys.stderr)
+            return 1
+    rel = load_relations()
+    rec = {"from": args.from_, "to": args.to, "relationType": args.type}
+    # avoid duplicates
+    for r in rel.get("relations", []):
+        if r.get("from")==args.from_ and r.get("to")==args.to and r.get("relationType")==args.type:
+            if args.json:
+                print(json.dumps({"ok": True, "relation": r, "skipped": "exists"}, indent=2, sort_keys=True))
+            else:
+                print("KG: relation exists (skipped)")
+            return 0
+    rel["relations"].append(rec)
+    save_relations(rel)
+    if args.json:
+        print(json.dumps({"ok": True, "relation": rec}, indent=2, sort_keys=True))
+    else:
+        print(f"KG: added relation {args.from_} -[{args.type}]-> {args.to}")
+    return 0
+
+def cmd_relations_delete(args: argparse.Namespace) -> int:
+    rel = load_relations()
+    before = len(rel.get("relations", []))
+    rel["relations"] = [
+        r for r in rel.get("relations", [])
+        if not (r.get("from")==args.from_ and r.get("to")==args.to and (args.type is None or r.get("relationType")==args.type))
+    ]
+    after = len(rel.get("relations", []))
+    save_relations(rel)
+    if args.json:
+        print(json.dumps({"ok": True, "removed": before - after}, indent=2, sort_keys=True))
+    else:
+        print(f"KG: deleted {before - after} relation(s)")
+    return 0
+
+def cmd_relations_list(args: argparse.Namespace) -> int:
+    rel = load_relations()
+    items = rel.get("relations", [])
+    if args.filter_from:
+        items = [r for r in items if r.get("from")==args.filter_from]
+    if args.filter_to:
+        items = [r for r in items if r.get("to")==args.filter_to]
+    if args.filter_type:
+        items = [r for r in items if r.get("relationType")==args.filter_type]
+    if args.json:
+        print(json.dumps({"count": len(items), "relations": items}, indent=2, sort_keys=True))
+    else:
+        for r in items:
+            print(f"- {r.get('from')} -[{r.get('relationType')}]-> {r.get('to')}")
+        print(f"KG: {len(items)} relation(s)")
+    return 0
+
+# ----------------------------
+# PathRAG index
+# ----------------------------
+
+def build_pathrag_index() -> Dict[str, Any]:
+    ents = load_entities()
+    idx: Dict[str, Dict[str, Any]] = {}
+    for e in ents.get("entities", []):
+        name = e.get("name", "")
+        for obs in e.get("observations", []):
+            for p in extract_paths_from_observation(obs):
+                entry = idx.setdefault(p, {"path": p, "segments": segments_for(p), "entities": []})
+                if name and name not in entry["entities"]:
+                    entry["entities"].append(name)
+    entries = sorted(idx.values(), key=lambda x: (len(x["segments"]), x["path"]))
+    payload = {
+        "set_id": "kg-pathrag-index",
+        "set_version": "1.0",
+        "updated_utc": now_iso(),
+        "entries": entries
+    }
+    return payload
+
+def cmd_index_build(args: argparse.Namespace) -> int:
+    payload = build_pathrag_index()
+    write_json(INDEX_PATH, payload)
+    if args.json:
+        print(json.dumps({"ok": True, "entries": len(payload.get("entries", [])), "path": str(INDEX_PATH)}, indent=2, sort_keys=True))
+    else:
+        print(f"KG: PathRAG index built — entries={len(payload.get('entries', []))} → {INDEX_PATH}")
+    return 0
+
+def load_index() -> Dict[str, Any]:
+    return read_json(INDEX_PATH, {"entries": []})
+
+def cmd_pathrag_search(args: argparse.Namespace) -> int:
+    q = normalize_path(args.path)
+    idx = load_index()
+    items = []
+    for entry in idx.get("entries", []):
+        p = entry.get("path", "")
+        if q in p:
+            items.append(entry)
+    if args.json:
+        print(json.dumps({"count": len(items), "matches": items}, indent=2, sort_keys=True))
+    else:
+        for it in items:
+            print(f"- {it.get('path')}  ⇢  entities={','.join(it.get('entities',[]))}")
+        print(f"KG: {len(items)} match(es)")
+    return 0
+
+# ----------------------------
+# CLI wiring
+# ----------------------------
+
+def main(argv: List[str]) -> int:
+    ap = argparse.ArgumentParser(description="VDM Memory-Bank KG-Lite CRUD with PathRAG")
+    sub = ap.add_subparsers(dest="cmd", required=True)
+
+    # entities
+    e = sub.add_parser("entities", help="Entity operations")
+    e_sub = e.add_subparsers(dest="op", required=True)
+
+    e_add = e_sub.add_parser("add", help="Add entity (or upsert with --upsert)")
+    e_add.add_argument("--name", required=True)
+    e_add.add_argument("--type", default=None)
+    e_add.add_argument("--obs", action="append", help="Observation (repeatable)")
+    e_add.add_argument("--upsert", action="store_true", help="Insert or update if exists")
+    e_add.add_argument("--json", action="store_true")
+    e_add.set_defaults(func=cmd_entities_add)
+
+    e_upd = e_sub.add_parser("update", help="Update entity")
+    e_upd.add_argument("--name", required=True)
+    e_upd.add_argument("--type", default=None)
+    e_upd.add_argument("--obs", action="append", help="Append observation (repeatable)")
+    e_upd.add_argument("--set-obs", action="append", help="Replace observations with given list (repeatable)")
+    e_upd.add_argument("--json", action="store_true")
+    e_upd.set_defaults(func=cmd_entities_update)
+
+    e_del = e_sub.add_parser("delete", help="Delete entity (and purge referencing relations)")
+    e_del.add_argument("--name", required=True)
+    e_del.add_argument("--json", action="store_true")
+    e_del.set_defaults(func=cmd_entities_delete)
+
+    e_list = e_sub.add_parser("list", help="List entities")
+    e_list.add_argument("--query", help="Substring filter (case-insensitive)")
+    e_list.add_argument("--json", action="store_true")
+    e_list.set_defaults(func=cmd_entities_list)
+
+    # relations
+    r = sub.add_parser("relations", help="Relation operations")
+    r_sub = r.add_subparsers(dest="op", required=True)
+
+    r_add = r_sub.add_parser("add", help="Add relation")
+    r_add.add_argument("--from", dest="from_", required=True)
+    r_add.add_argument("--to", dest="to", required=True)
+    r_add.add_argument("--type", required=True, help="Relation type")
+    r_add.add_argument("--force", action="store_true", help="Allow if entities are missing")
+    r_add.add_argument("--json", action="store_true")
+    r_add.set_defaults(func=cmd_relations_add)
+
+    r_del = r_sub.add_parser("delete", help="Delete relation(s)")
+    r_del.add_argument("--from", dest="from_", required=True)
+    r_del.add_argument("--to", dest="to", required=True)
+    r_del.add_argument("--type", help="If omitted, delete all relations between from→to")
+    r_del.add_argument("--json", action="store_true")
+    r_del.set_defaults(func=cmd_relations_delete)
+
+    r_list = r_sub.add_parser("list", help="List relations")
+    r_list.add_argument("--filter-from", help="Filter by source")
+    r_list.add_argument("--filter-to", help="Filter by target")
+    r_list.add_argument("--filter-type", help="Filter by relationType")
+    r_list.add_argument("--json", action="store_true")
+    r_list.set_defaults(func=cmd_relations_list)
+
+    # index build
+    ix = sub.add_parser("index", help="Index management")
+    ix_sub = ix.add_subparsers(dest="op", required=True)
+    ix_build = ix_sub.add_parser("build", help="Build PathRAG index from entity observations")
+    ix_build.add_argument("--json", action="store_true")
+    ix_build.set_defaults(func=cmd_index_build)
+
+    # pathrag search
+    pr = sub.add_parser("pathrag", help="Path-based retrieval")
+    pr_sub = pr.add_subparsers(dest="op", required=True)
+    pr_search = pr_sub.add_parser("search", help="Search PathRAG index by path substring")
+    pr_search.add_argument("--path", required=True, help="Path (repo-relative substring ok)")
+    pr_search.add_argument("--json", action="store_true")
+    pr_search.set_defaults(func=cmd_pathrag_search)
+
+    args = ap.parse_args(argv)
+    return args.func(args)
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))]]></content>
+    </file>
+    <file>
+      <path>tools/kg_lite_chunker.py</path>
+      <content><![CDATA[#!/usr/bin/env python3
+"""
+KG-Lite Chunker CLI
+
+Purpose:
+- Convert a flat graph JSON (nodes/edges) into deterministic KG-Lite ChunkEnvelope branches:
+  index, meta, axes_dimensions, subfactors, signals, edges, retrieval_policy.
+- Compute content_sha256 over canonical JSON for payloads (UTF-8, sort_keys=True, compact separators).
+- Enforce chunk_id == "{set_id}@{set_version}:{chunk_type}" and stable, reproducible outputs.
+
+Inputs:
+- A JSON file with fields:
+  {
+    "meta": {"version": "1.0", "subject": "Justin", "updated": "..."},
+    "nodes": [...],
+    "edges": [...]
+  }
+
+Outputs (filesystem):
+- memory-bank/MEMORY_GRAPH_CONTEXT/{set_id}/{set_id}.index.json
+- memory-bank/MEMORY_GRAPH_CONTEXT/{set_id}/chunks/{chunk_id}.json   (one per branch)
+
+Validation gates (soft):
+- Determinism: recompute hash post-write and compare; mismatch => nonzero exit
+- Structure: minimal field presence; optional jsonschema validation if available
+
+References:
+- KG-Lite schema: [kg-lite.chunkenvelope.v1.schema.json](../kg-lite.chunkenvelope.v1.schema.json)
+- Standards: [MEMORY_GRAPH_STANDARDS.md](../../MEMORY_GRAPH_STANDARDS.md)
+"""
+
+from __future__ import annotations
+
+import argparse
+import datetime as dt
+import hashlib
+import json
+import os
+from pathlib import Path
+from typing import Any, Dict, List, Tuple
+
+# Optional jsonschema validation (soft dependency)
+try:
+    import jsonschema  # type: ignore
+except Exception:  # pragma: no cover
+    jsonschema = None  # type: ignore
+
+
+HERE = Path(__file__).resolve().parent
+REPO_ROOT = HERE.parents[2]  # .../Prometheus_VDM
+DEFAULT_INPUT = REPO_ROOT / "memory-bank" / "MEMORY_GRAPH_CONTEXT" / "justin-graph.json"
+SCHEMA_PATH = REPO_ROOT / "memory-bank" / "MEMORY_GRAPH_CONTEXT" / "kg-lite.chunkenvelope.v1.schema.json"
+
+
+def _utc_now_z() -> str:
+    return dt.datetime.utcnow().replace(microsecond=0).isoformat() + "Z"
+
+
+def _canonical_json_bytes(obj: Any) -> bytes:
+    # Canonical: sorted keys, compact separators, ensure_ascii=False
+    return json.dumps(obj, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode("utf-8")
+
+
+def _sha256_hex(b: bytes) -> str:
+    return hashlib.sha256(b).hexdigest()
+
+
+def _determine_scope(meta: Dict[str, Any]) -> str:
+    subj = str(meta.get("subject", "")).strip().lower()
+    if subj:
+        return f"user:{subj}"
+    return "project:memory-bank"
+
+
+def _partition_nodes(nodes: List[Dict[str, Any]]) -> Tuple[List[Dict[str, Any]], List[Dict[str, Any]], List[Dict[str, Any]], List[Dict[str, Any]]]:
+    axes = [n for n in nodes if n.get("type") == "axis"]
+    dims = [n for n in nodes if n.get("type") == "dimension"]
+    subf = [n for n in nodes if n.get("type") == "subfactor"]
+    sigs = [n for n in nodes if n.get("type") == "signal"]
+    # Stable ordering by id
+    axes.sort(key=lambda x: str(x.get("id", "")))
+    dims.sort(key=lambda x: str(x.get("id", "")))
+    subf.sort(key=lambda x: str(x.get("id", "")))
+    sigs.sort(key=lambda x: str(x.get("id", "")))
+    return axes, dims, subf, sigs
+
+
+def _normalize_edges(edges: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    # Preserve original 'relation' (or 'rel'), also add 'normalized_rel' mapping to closed ontology where possible.
+    rel_map = {
+        "constrained_by": "constrained_by",
+        "influences": "influences",
+        "tension_with": "tension_with",
+        "references": "references",
+        "derives_from": "derives_from",
+        "supersedes": "supersedes",
+        # observed variant in dataset:
+        "constrains": "constrained_by",
+    }
+    out = []
+    for e in edges:
+        src = e.get("source") or e.get("from")
+        tgt = e.get("target") or e.get("to")
+        rel = e.get("relation") or e.get("rel")
+        rec = {"from": src, "to": tgt, "rel": rel}
+        if isinstance(rel, str) and rel in rel_map:
+            rec["normalized_rel"] = rel_map[rel]
+        out.append(rec)
+    # Stable ordering
+    out.sort(key=lambda r: (str(r.get("from", "")), str(r.get("to", "")), str(r.get("rel", ""))))
+    return out
+
+
+def _build_envelope(set_id: str,
+                    set_version: str,
+                    chunk_type: str,
+                    scope: str,
+                    source: str,
+                    payload: Dict[str, Any],
+                    tags: List[str]) -> Dict[str, Any]:
+    updated = _utc_now_z()
+    chunk_id = f"{set_id}@{set_version}:{chunk_type}"
+    content_sha256 = _sha256_hex(_canonical_json_bytes(payload))
+    env: Dict[str, Any] = {
+        "set_id": set_id,
+        "set_version": set_version,
+        "chunk_type": chunk_type,
+        "chunk_id": chunk_id,
+        "scope": scope,
+        "updated": updated,
+        "source": source,
+        "content_sha256": content_sha256,
+        "part": 1,
+        "total_parts": 1,
+        "tags": tags,
+        "payload": payload,
+    }
+    # Determinism self-checks
+    assert env["chunk_id"] == chunk_id
+    assert isinstance(env["content_sha256"], str) and len(env["content_sha256"]) == 64
+    return env
+
+
+def _soft_validate_with_schema(envelope: Dict[str, Any]) -> List[str]:
+    errs: List[str] = []
+    if not SCHEMA_PATH.exists():
+        errs.append(f"Schema file not found at {SCHEMA_PATH}")
+        return errs
+    if jsonschema is None:
+        errs.append("jsonschema not installed; skipped JSON Schema validation")
+        return errs
+    try:
+        with SCHEMA_PATH.open("r", encoding="utf-8") as f:
+            schema = json.load(f)
+        jsonschema.validate(envelope, schema)  # type: ignore[attr-defined]
+    except Exception as e:
+        errs.append(f"jsonschema validation error: {e}")
+    return errs
+
+
+def chunk_graph(input_path: Path, out_root: Path, include_retrieval_policy: bool = True) -> Dict[str, Any]:
+    # Normalize to absolute paths under REPO_ROOT for deterministic relative() behavior
+    if not input_path.is_absolute():
+        input_path = (REPO_ROOT / input_path).resolve()
+    if not out_root.is_absolute():
+        out_root = (REPO_ROOT / out_root).resolve()
+    with input_path.open("r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    meta = data.get("meta") or {}
+    nodes = data.get("nodes") or []
+    edges = data.get("edges") or []
+
+    set_id = str(meta.get("subject", "")).strip().lower() or "memory-graph"
+    set_id = set_id.replace(" ", "-")
+    set_version = str(meta.get("version") or "1.0")
+    scope = _determine_scope(meta)
+    source = str(input_path.relative_to(REPO_ROOT))
+
+    axes, dims, subf, sigs = _partition_nodes(nodes)
+    norm_edges = _normalize_edges(edges)
+
+    # Branch payloads
+    payload_meta = {"meta": {"version": set_version,
+                             "subject": meta.get("subject", ""),
+                             "graph_updated_at": meta.get("updated", ""),
+                             "notes": "Auto-generated KG-Lite envelopes"}}
+
+    payload_axes_dims = {"axes": axes, "dimensions": dims}
+    payload_subfactors = {"subfactors": subf}
+    payload_signals = {"signals": [{"text": s.get("text", ""),
+                                     "probe": s.get("probe", ""),
+                                     "acceptance_test": s.get("acceptance_test", "")}
+                                    for s in sigs]}
+    # Relation ontology (closed set from standards/examples)
+    relation_ontology = ["constrained_by", "influences", "tension_with", "references", "derives_from", "supersedes"]
+    payload_edges = {"edges": norm_edges, "relation_ontology": relation_ontology}
+
+    # Envelopes
+    env_meta = _build_envelope(set_id, set_version, "meta", scope, source, payload_meta, ["kg-lite", "meta"])
+    env_axes = _build_envelope(set_id, set_version, "axes_dimensions", scope, source, payload_axes_dims, ["kg-lite", "axes_dimensions"])
+    env_subf = _build_envelope(set_id, set_version, "subfactors", scope, source, payload_subfactors, ["kg-lite", "subfactors"])
+    env_sigs = _build_envelope(set_id, set_version, "signals", scope, source, payload_signals, ["kg-lite", "signals"])
+    env_edges = _build_envelope(set_id, set_version, "edges", scope, source, payload_edges, ["kg-lite", "edges"])
+
+    envelopes: List[Dict[str, Any]] = [env_meta, env_axes, env_subf, env_sigs, env_edges]
+
+    if include_retrieval_policy:
+        payload_policy = {
+            "path_prune_alpha": 0.8,
+            "path_threshold": 0.2,
+            "min_novelty": 0.55,
+            "k_paths": 5,
+            "max_hops": 3
+        }
+        env_policy = _build_envelope(set_id, set_version, "retrieval_policy", scope, source, payload_policy, ["kg-lite", "retrieval_policy"])
+        envelopes.append(env_policy)
+
+    # Index payload (counts)
+    counts = {
+        "axes": len(axes),
+        "dimensions": len(dims),
+        "subfactors": len(subf),
+        "signals": len(sigs),
+        "edges": len(norm_edges),
+    }
+    chunks_index = [{"chunk_id": e["chunk_id"], "sha256": e["content_sha256"], "kind": e["chunk_type"]} for e in envelopes]
+    payload_index = {"schema_version": "2025-09-25", "chunks": chunks_index, "counts": counts}
+    env_index = _build_envelope(set_id, set_version, "index", scope, source, payload_index, ["kg-lite", "index"])
+
+    # Output layout
+    out_set_dir = out_root / set_id
+    out_chunks_dir = out_set_dir / "chunks"
+    out_chunks_dir.mkdir(parents=True, exist_ok=True)
+
+    # Write chunks
+    def write_env(env: Dict[str, Any], dest: Path) -> None:
+        with dest.open("w", encoding="utf-8") as f:
+            json.dump(env, f, indent=2, sort_keys=True)
+            f.write("\n")  # final newline
+
+        # Determinism gate: recompute post-write (payload hash remains the canonical measure)
+        payload_hash_again = _sha256_hex(_canonical_json_bytes(env["payload"]))
+        if payload_hash_again != env["content_sha256"]:
+            raise RuntimeError(f"Determinism gate failed for {env['chunk_id']}: payload hash mismatch")
+
+        # Soft validation
+        errs = _soft_validate_with_schema(env)
+        for e in errs:
+            # Print warnings; do not fail for missing jsonschema
+            print(f"[warn] {env['chunk_id']}: {e}")
+
+    # Write each branch envelope
+    for env in envelopes:
+        dest = out_chunks_dir / f"{env['chunk_id']}.json"
+        write_env(env, dest)
+
+    # Write index envelope at dataset root
+    index_path = out_set_dir / f"{set_id}.index.json"
+    write_env(env_index, index_path)
+
+    summary = {
+        "set_id": set_id,
+        "set_version": set_version,
+        "scope": scope,
+        "written": {
+            "index": str(index_path.relative_to(REPO_ROOT)),
+            "chunks_dir": str(out_chunks_dir.relative_to(REPO_ROOT)),
+            "count": len(envelopes) + 1
+        },
+        "counts": counts
+    }
+    return summary
+
+
+def main() -> None:
+    p = argparse.ArgumentParser(description="KG-Lite Chunker: convert memory graph JSON to deterministic ChunkEnvelope branches")
+    p.add_argument("--input", type=Path, default=DEFAULT_INPUT, help="Path to flat graph JSON (default: memory-bank/MEMORY_GRAPH_CONTEXT/justin-graph.json)")
+    p.add_argument("--out-root", type=Path, default=REPO_ROOT / "memory-bank" / "MEMORY_GRAPH_CONTEXT", help="Output root for dataset directories")
+    p.add_argument("--no-policy", action="store_true", help="Do not emit retrieval_policy chunk")
+    args = p.parse_args()
+
+    try:
+        summary = chunk_graph(args.input, args.out_root, include_retrieval_policy=(not args.no_policy))
+        print(json.dumps(summary, indent=2, sort_keys=True))
+    except Exception as e:
+        print(json.dumps({"error": str(e)}, indent=2))
+        raise SystemExit(1)
+
+
+if __name__ == "__main__":
+    main()]]></content>
+    </file>
+  </files>
+</fum_code_report>

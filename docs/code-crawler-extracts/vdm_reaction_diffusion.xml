@@ -1,0 +1,1917 @@
+<?xml version="1.0" ?>
+<fum_code_report>
+  <generated_timestamp>2025-10-28 08:26:46</generated_timestamp>
+  <metadata>
+    <global_stats>
+      <total_files>8</total_files>
+      <total_size_bytes>66757</total_size_bytes>
+      <total_loc>1855</total_loc>
+    </global_stats>
+    <chunk_stats>
+      <files_in_chunk>8</files_in_chunk>
+      <size_in_chunk_bytes>66757</size_in_chunk_bytes>
+      <loc_in_chunk>1855</loc_in_chunk>
+    </chunk_stats>
+  </metadata>
+  <ascii_map><![CDATA[   reaction_diffusion/
+>> ├── APPROVAL.json
+   │   (LOC: 0, Size: 0 B)
+>> ├── census_clocks.py
+   │   (LOC: 281, Size: 9.3 KB)
+>> ├── discrete_gradient.py
+   │   (LOC: 185, Size: 6.7 KB)
+>> ├── flux_core.py
+   │   (LOC: 288, Size: 9.5 KB)
+>> ├── rd_dispersion_experiment.py
+   │   (LOC: 354, Size: 13.4 KB)
+>> ├── rd_front_speed_experiment.py
+   │   (LOC: 455, Size: 16.8 KB)
+>> ├── rd_front_speed_sweep.py
+   │   (LOC: 155, Size: 5.2 KB)
+>> ├── reaction_exact.py
+   │   (LOC: 137, Size: 4.3 KB)
+   ├── schemas/
+   └── specs/]]></ascii_map>
+  <files>
+    <file>
+      <path>APPROVAL.json</path>
+      <content/>
+    </file>
+    <file>
+      <path>census_clocks.py</path>
+      <content><![CDATA[#!/usr/bin/env python3
+"""
+Asynchronous census engine (runtime-only, RD regime)
+- Local hazard clocks (no external scheduler)
+- Exact reaction substep at fired sites (logistic closed-form)
+- Conservative, antisymmetric flux diffusion applied locally to fired sites
+- Optional discrete-gradient integrator available separately
+
+PDE (RD):
+    ∂t φ = D ∇² φ + f(φ),  f(φ) = r φ - u φ^2 - λ φ^3
+
+Hazard (per site):
+    h_i := | D Δ_h φ_i + f(φ_i) |
+
+Clock update:
+    c_i ← c_i + h_i Δt
+    if c_i ≥ 1: site i fires with microstep δt_i := θ / h_i, then c_i ← c_i - 1
+
+Reaction (exact at fired sites):
+    W^{+} = ( r W e^{r δt_i} ) / ( u W (e^{r δt_i} - 1) + r )
+
+Diffusion (local flux transfers from fired sites only):
+    For each fired i and each neighbor j∈N(i):
+        F_{ij} = - (D/a) (φ_j - φ_i) = -F_{ji}
+        φ_i ← φ_i - (δt_i/a) F_{ij}
+        φ_j ← φ_j + (δt_i/a) F_{ij}
+    (Mass conserved exactly when f≡0 and BCs are periodic/Neumann.)
+
+BCs supported:
+- "periodic": wraparound neighbors on a regular grid (1D/2D)
+- "neumann": homogeneous no-flux (edge faces carry zero flux)
+
+This module is derivation/validation-side only. No scans in fum_rt/core or maps/.
+
+Author: Justin K. Lietz
+"""
+
+from __future__ import annotations
+from typing import Tuple, Literal, Optional, Dict
+import numpy as np
+
+from .reaction_exact import reaction_exact_step
+from .discrete_gradient import (
+    laplacian_periodic, laplacian_neumann, f_react
+)
+
+BC = Literal["periodic", "neumann"]
+
+
+def compute_hazard(phi: np.ndarray,
+                   D: float, r: float, u: float, lam: float,
+                   a: float, bc: BC = "periodic") -> np.ndarray:
+    """
+    h = | D Δ_h φ + f(φ) |
+    """
+    lap = laplacian_periodic if bc == "periodic" else laplacian_neumann
+    return np.abs(D * lap(phi, a) + f_react(phi, r, u, lam))
+
+
+def _flux_faces_periodic(phi: np.ndarray, D: float, a: float) -> Tuple[np.ndarray, Optional[np.ndarray]]:
+    """
+    Face-centered fluxes for periodic grids.
+    1D: returns (F_right, None), where F_right[i] between cell i and i+1 (wrap at end)
+    2D: returns (Fx, Fy), east and north faces aligned with cell indices
+    """
+    if phi.ndim == 1:
+        phi_right = np.roll(phi, -1)
+        F_right = -(D / a) * (phi_right - phi)
+        return F_right, None
+
+    if phi.ndim == 2:
+        phi_east = np.roll(phi, -1, axis=1)
+        Fx = -(D / a) * (phi_east - phi)  # east faces
+        phi_north = np.roll(phi, -1, axis=0)
+        Fy = -(D / a) * (phi_north - phi)  # north faces
+        return Fx, Fy
+
+    raise ValueError("Only 1D or 2D phi supported.")
+
+
+def _flux_faces_neumann(phi: np.ndarray, D: float, a: float) -> Tuple[np.ndarray, Optional[np.ndarray]]:
+    """
+    Face-centered fluxes for homogeneous Neumann BCs (zero normal flux).
+    """
+    if phi.ndim == 1:
+        N = phi.shape[0]
+        F_right = np.zeros_like(phi)
+        dphi = phi[1:] - phi[:-1]
+        F_right[:-1] = -(D / a) * dphi
+        F_right[-1] = 0.0  # boundary
+        return F_right, None
+
+    if phi.ndim == 2:
+        Ny, Nx = phi.shape
+        Fx = np.zeros_like(phi)
+        Fy = np.zeros_like(phi)
+        # East faces interior
+        Fx[:, :-1] = -(D / a) * (phi[:, 1:] - phi[:, :-1])
+        Fx[:, -1] = 0.0
+        # North faces interior
+        Fy[:-1, :] = -(D / a) * (phi[1:, :] - phi[:-1, :])
+        Fy[-1, :] = 0.0
+        return Fx, Fy
+
+    raise ValueError("Only 1D or 2D phi supported.")
+
+
+def _local_flux_apply_1d(phi: np.ndarray, F_right: np.ndarray, a: float,
+                         fired: np.ndarray, delta_t: np.ndarray, bc: BC) -> np.ndarray:
+    """
+    Apply local flux transfers from fired cells only in 1D.
+    For each fired i:
+      right face: t = (δt_i / a) * F_right[i]
+        φ[i] -= t; φ[i+1] += t   (if periodic; if neumann and i==N-1, skip)
+      left face:  t = (δt_i / a) * F_left(i) with F_left(i) = -(D/a)(φ[i-1]-φ[i]) = -F_right[i-1]
+        φ[i] -= t; φ[i-1] += t   (if neumann and i==0, skip)
+    """
+    N = phi.shape[0]
+    out = phi.copy()
+    # mask and delta_t only where fired
+    dt_masked = np.where(fired, delta_t, 0.0)
+
+    # Right edge transfers
+    t_right = (dt_masked / a) * F_right  # size N
+    if bc == "periodic":
+        out -= t_right
+        out += np.roll(t_right, -1)
+    else:
+        # Neumann: last face is zero by construction; also no incoming from the left of i=0
+        out -= t_right
+        t_in = np.zeros_like(t_right)
+        t_in[:-1] = t_right[:-1]  # transfer into i+1 for i=0..N-2
+        out += t_in
+
+    # Left edge transfers: use F_left(i) = -F_right[i-1]
+    F_left = -np.roll(F_right, 1)
+    t_left = (dt_masked / a) * F_left
+    if bc == "periodic":
+        out -= t_left
+        out += np.roll(t_left, 1)
+    else:
+        out -= t_left
+        t_in = np.zeros_like(t_left)
+        t_in[1:] = t_left[1:]  # transfer into i-1 for i=1..N-1
+        out += t_in
+
+    return out
+
+
+def _local_flux_apply_2d(phi: np.ndarray, Fx: np.ndarray, Fy: np.ndarray, a: float,
+                         fired: np.ndarray, delta_t: np.ndarray, bc: BC) -> np.ndarray:
+    """
+    Apply local flux transfers from fired cells only in 2D.
+    For each fired (i,j):
+      East face:  t = (δt/a) * Fx[i,j];      φ[i,j] -= t; φ[i, j+1] += t
+      West face:  t = (δt/a) * (-Fx[i,j-1]); φ[i,j] -= t; φ[i, j-1] += t
+      North face: t = (δt/a) * Fy[i,j];      φ[i,j] -= t; φ[i+1, j] += t
+      South face: t = (δt/a) * (-Fy[i-1,j]); φ[i,j] -= t; φ[i-1, j] += t
+    """
+    out = phi.copy()
+    dt_masked = np.where(fired, delta_t, 0.0)
+
+    # East contributions
+    t_e = (dt_masked / a) * Fx
+    if bc == "periodic":
+        out -= t_e
+        out += np.roll(t_e, -1, axis=1)
+    else:
+        out -= t_e
+        t_in = np.zeros_like(t_e)
+        t_in[:, :-1] = t_e[:, :-1]  # into j+1 up to Nx-2
+        out += t_in
+
+    # West contributions: need west-face flux seen from cell (i,j)
+    Fx_west = np.roll(Fx, 1, axis=1)
+    t_w = (dt_masked / a) * (-Fx_west)
+    if bc == "periodic":
+        out -= t_w
+        out += np.roll(t_w, 1, axis=1)
+    else:
+        out -= t_w
+        t_in = np.zeros_like(t_w)
+        t_in[:, 1:] = t_w[:, 1:]  # into j-1 from j=1..end
+        out += t_in
+
+    # North contributions
+    t_n = (dt_masked / a) * Fy
+    if bc == "periodic":
+        out -= t_n
+        out += np.roll(t_n, -1, axis=0)
+    else:
+        out -= t_n
+        t_in = np.zeros_like(t_n)
+        t_in[:-1, :] = t_n[:-1, :]  # into i+1 up to Ny-2
+        out += t_in
+
+    # South contributions
+    Fy_south = np.roll(Fy, 1, axis=0)
+    t_s = (dt_masked / a) * (-Fy_south)
+    if bc == "periodic":
+        out -= t_s
+        out += np.roll(t_s, 1, axis=0)
+    else:
+        out -= t_s
+        t_in = np.zeros_like(t_s)
+        t_in[1:, :] = t_s[1:, :]  # into i-1 from i=1..end
+        out += t_in
+
+    return out
+
+
+def census_fire_step(phi: np.ndarray,
+                     clocks: np.ndarray,
+                     D: float, r: float, u: float, lam: float,
+                     a: float, dt: float, theta: float,
+                     bc: BC = "periodic") -> Tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray, Dict[str, np.ndarray]]:
+    """
+    Execute one census update:
+      1) Build hazards h, update clocks, compute fired set and δt_i
+      2) Apply exact reaction at fired sites
+      3) Apply conservative local flux transfers from fired sites only
+
+    Returns
+    -------
+    (phi_next, clocks_next, fired_mask, delta_t, flux_dict)
+      flux_dict:
+        1D: {"F_right": F_right}
+        2D: {"Fx": Fx, "Fy": Fy}
+    """
+    assert theta > 0.0 and theta <= 1.0, "theta must be in (0,1]."
+    # 1) hazard and clocks
+    h = compute_hazard(phi, D, r, u, lam, a, bc=bc)
+    clocks_acc = clocks + h * dt
+    fired = clocks_acc >= 1.0
+    delta_t = np.zeros_like(phi, dtype=phi.dtype)
+    # Avoid divide-by-zero for fired sites with tiny h (degenerate), clamp h
+    h_safe = np.where(fired, np.maximum(h, 1e-15), h)
+    delta_t[fired] = theta / h_safe[fired]
+    clocks_next = np.where(fired, clocks_acc - 1.0, clocks_acc)
+
+    # 2) exact reaction at fired sites (broadcastable dt; non-fired get dt=0)
+    phi_r = reaction_exact_step(phi, r=r, u=u, dt=delta_t)
+
+    # 3) flux transfers from fired sites only
+    if bc == "periodic":
+        Fx, Fy = _flux_faces_periodic(phi_r, D, a)
+    else:
+        Fx, Fy = _flux_faces_neumann(phi_r, D, a)
+
+    if phi.ndim == 1:
+        phi_next = _local_flux_apply_1d(phi_r, Fx, a, fired, delta_t, bc)
+        flux = {"F_right": Fx}
+    elif phi.ndim == 2:
+        assert Fy is not None
+        phi_next = _local_flux_apply_2d(phi_r, Fx, Fy, a, fired, delta_t, bc)
+        flux = {"Fx": Fx, "Fy": Fy}
+    else:
+        raise ValueError("Only 1D/2D fields supported.")
+
+    return phi_next, clocks_next, fired, delta_t, flux
+
+
+if __name__ == "__main__":
+    # Smoke test: conservation with f≡0 (set r=u=lam=0) under periodic
+    rng = np.random.default_rng(1)
+    D = 0.5; r = 0.0; u = 0.0; lam = 0.0; a = 1.0; dt = 0.1; theta = 0.7
+    phi = rng.standard_normal((65, 97))
+    clocks = np.zeros_like(phi)
+
+    m0 = float(np.sum(phi) * (a**phi.ndim))
+    for _ in range(5):
+        phi, clocks, fired, delta_t, flux = census_fire_step(
+            phi, clocks, D, r, u, lam, a, dt, theta, bc="periodic"
+        )
+    m1 = float(np.sum(phi) * (a**phi.ndim))
+    print("mass drift (periodic, f=0):", m1 - m0)
+    assert abs(m1 - m0) < 1e-10
+
+    # Basic fire rate sanity
+    print("fired fraction (approx):", np.mean(fired))
+    print("census_clocks: OK")]]></content>
+    </file>
+    <file>
+      <path>discrete_gradient.py</path>
+      <content><![CDATA[#!/usr/bin/env python3
+"""
+Discrete-gradient (AVF-style) RD integrator ensuring Lyapunov monotonicity in practice.
+
+PDE (dimensionless RD form):
+    ∂t φ = D ∇² φ + f(φ),     f(φ) = r φ - u φ^2 - λ φ^3,
+with Lyapunov functional
+    L[φ] = ∫ ( D/2 |∇φ|^2 + V_hat(φ) ) dx,   with  V_hat'(φ) = -f(φ)
+⇒  V_hat(φ) = - (r/2) φ^2 + (u/3) φ^3 + (λ/4) φ^4 + const.
+
+AVF discrete step (Gonzalez/Quispel-McLaren style):
+    (φ^{n+1} - φ^n)/Δt = D ∇²_h( (φ^{n+1}+φ^n)/2 ) + f_bar(φ^n, φ^{n+1})
+with
+    f_bar = - (V_hat(φ^{n+1}) - V_hat(φ^n)) / (φ^{n+1} - φ^n)   if φ^{n+1} ≠ φ^n,
+    f_bar = f(φ^n)                                              otherwise.
+
+This guarantees ΔL ≤ 0 in the ideal AVF scheme. Here we implement a fixed-point
+solver for φ^{n+1}. For practical use: a few Picard iterations typically suffice.
+
+Scope:
+- 1D/2D regular Cartesian grids, periodic or homogeneous Neumann BCs.
+- NumPy implementation (derivation/validation only). No dense scans in fum_rt/core.
+
+Author: Justin K. Lietz
+"""
+
+from __future__ import annotations
+from typing import Tuple, Literal, Optional
+import numpy as np
+
+BC = Literal["periodic", "neumann"]
+
+
+def V_hat(phi: np.ndarray, r: float, u: float, lam: float) -> np.ndarray:
+    """V_hat(φ) with V_hat'(φ) = -f(φ) = -(r φ - u φ^2 - λ φ^3)."""
+    return -0.5 * r * phi**2 + (u/3.0) * phi**3 + 0.25 * lam * phi**4
+
+
+def f_react(phi: np.ndarray, r: float, u: float, lam: float) -> np.ndarray:
+    """f(φ) = r φ - u φ^2 - λ φ^3."""
+    return r * phi - u * phi**2 - lam * phi**3
+
+
+def f_bar(phi_n: np.ndarray, phi_np1: np.ndarray, r: float, u: float, lam: float, eps: float = 1e-14) -> np.ndarray:
+    """
+    Discrete gradient of V_hat: f_bar = - (V_hat(φ^{n+1}) - V_hat(φ^n)) / (φ^{n+1} - φ^n).
+    Fallback to f(φ^n) when difference is tiny.
+    """
+    dphi = phi_np1 - phi_n
+    mask = np.abs(dphi) > eps
+    out = np.empty_like(phi_n)
+    if np.any(mask):
+        dv = V_hat(phi_np1[mask], r, u, lam) - V_hat(phi_n[mask], r, u, lam)
+        out[mask] = - dv / dphi[mask]
+    if np.any(~mask):
+        out[~mask] = f_react(phi_n[~mask], r, u, lam)
+    return out
+
+
+def laplacian_periodic(phi: np.ndarray, a: float) -> np.ndarray:
+    """Centered periodic discrete Laplacian in 1D/2D."""
+    if phi.ndim == 1:
+        return (np.roll(phi, -1) + np.roll(phi, 1) - 2.0 * phi) / (a*a)
+    if phi.ndim == 2:
+        north = np.roll(phi, -1, axis=0)
+        south = np.roll(phi,  1, axis=0)
+        east  = np.roll(phi, -1, axis=1)
+        west  = np.roll(phi,  1, axis=1)
+        return (north + south + east + west - 4.0 * phi) / (a*a)
+    raise ValueError("laplacian_periodic supports 1D or 2D only.")
+
+
+def laplacian_neumann(phi: np.ndarray, a: float) -> np.ndarray:
+    """
+    Homogeneous Neumann Laplacian using mirrored boundaries (zero normal derivative).
+    """
+    if phi.ndim == 1:
+        left  = np.empty_like(phi); right = np.empty_like(phi)
+        left[0] = phi[0];           left[1:] = phi[:-1]
+        right[-1] = phi[-1];        right[:-1] = phi[1:]
+        return (left + right - 2.0 * phi) / (a*a)
+    if phi.ndim == 2:
+        north = np.empty_like(phi); south = np.empty_like(phi)
+        east  = np.empty_like(phi); west  = np.empty_like(phi)
+        north[0, :] = phi[0, :];               north[1:, :] = phi[:-1, :]
+        south[-1, :] = phi[-1, :];             south[:-1, :] = phi[1:, :]
+        east[:, -1]  = phi[:, -1];             east[:, :-1]  = phi[:, 1:]
+        west[:, 0]   = phi[:, 0];              west[:, 1:]   = phi[:, :-1]
+        return (north + south + east + west - 4.0 * phi) / (a*a)
+    raise ValueError("laplacian_neumann supports 1D or 2D only.")
+
+
+def grad_components(phi: np.ndarray, a: float, bc: BC = "periodic") -> Tuple[np.ndarray, np.ndarray]:
+    """
+    Compute forward-difference gradient components (gx, gy) with BC handling.
+    For 1D, returns (gx, None).
+    """
+    if phi.ndim == 1:
+        if bc == "periodic":
+            gx = (np.roll(phi, -1) - phi) / a
+        else:
+            gx = np.empty_like(phi)
+            gx[:-1] = (phi[1:] - phi[:-1]) / a
+            gx[-1]  = 0.0
+        return gx, None
+    if phi.ndim == 2:
+        if bc == "periodic":
+            gx = (np.roll(phi, -1, axis=1) - phi) / a
+            gy = (np.roll(phi, -1, axis=0) - phi) / a
+        else:
+            gx = np.empty_like(phi); gy = np.empty_like(phi)
+            gx[:, :-1] = (phi[:, 1:] - phi[:, :-1]) / a; gx[:, -1] = 0.0
+            gy[:-1, :] = (phi[1:, :] - phi[:-1, :]) / a; gy[-1, :] = 0.0
+        return gx, gy
+    raise ValueError("grad_components supports 1D or 2D only.")
+
+
+def energy_L(phi: np.ndarray, D: float, a: float, r: float, u: float, lam: float, bc: BC = "periodic") -> float:
+    """
+    Discrete Lyapunov functional:
+        L = Σ cells [ D/2 |∇_h φ|^2 + V_hat(φ) ] a^d
+    with ∇_h computed by forward differences (summation by parts matches Laplacian choices).
+    """
+    gx, gy = grad_components(phi, a, bc=bc)
+    grad_sq = gx**2 if gy is None else gx**2 + gy**2
+    cell = 0.5 * D * grad_sq + V_hat(phi, r, u, lam)
+    d = phi.ndim
+    return float(np.sum(cell) * (a**d))
+
+
+def avf_step(phi: np.ndarray,
+             D: float, r: float, u: float, lam: float,
+             dt: float, a: float, bc: BC = "periodic",
+             iters: int = 3) -> np.ndarray:
+    """
+    One AVF-style discrete-gradient step using Picard iterations.
+
+    (φ^{n+1} - φ^n)/Δt = D ∇²_h( (φ^{n+1}+φ^n)/2 ) + f_bar(φ^n, φ^{n+1})
+
+    Parameters
+    ----------
+    phi : ndarray
+        Current field (1D or 2D).
+    D, r, u, lam : float
+        Model parameters.
+    dt : float
+        Time step.
+    a : float
+        Grid spacing.
+    bc : {"periodic","neumann"}
+        Boundary condition.
+    iters : int
+        Fixed-point iterations (small number sufficient in practice).
+
+    Returns
+    -------
+    ndarray
+        Next field φ^{n+1}.
+    """
+    lap = laplacian_periodic if bc == "periodic" else laplacian_neumann
+
+    # Explicit Euler predictor
+    phi_next = phi + dt * (D * lap(phi, a) + f_react(phi, r, u, lam))
+
+    for _ in range(max(1, iters)):
+        bar_phi = 0.5 * (phi_next + phi)
+        fb = f_bar(phi, phi_next, r, u, lam)
+        rhs = D * lap(bar_phi, a) + fb
+        phi_next = phi + dt * rhs
+
+    return phi_next
+
+
+if __name__ == "__main__":
+    # Smoke test: energy monotonicity (typical)
+    rng = np.random.default_rng(0)
+    a = 1.0; D = 0.5; r = 1.0; u = 0.25; lam = 0.0; dt = 0.1
+    phi = rng.standard_normal((65, 97))
+    L0 = energy_L(phi, D, a, r, u, lam, bc="periodic")
+    phi1 = avf_step(phi, D, r, u, lam, dt, a, bc="periodic", iters=3)
+    L1 = energy_L(phi1, D, a, r, u, lam, bc="periodic")
+    print("ΔL =", L1 - L0)
+    # In practice ΔL ≤ 0; allow tiny positive due to few Picard iters / round-off
+    assert L1 - L0 <= 1e-10
+    print("discrete_gradient: OK")]]></content>
+    </file>
+    <file>
+      <path>flux_core.py</path>
+      <content><![CDATA[#!/usr/bin/env python3
+"""
+Flux-form diffusion update (antisymmetric edge fluxes) for RD PDE:
+
+  ∂t φ = D ∇² φ,  with edge fluxes on a regular grid:
+
+    F_ij = - (D/a) (φ_j - φ_i),   F_ij = -F_ji
+    φ_i^{n+1} = φ_i^{n} - (Δt/a) Σ_{j∈N(i)} F_ij
+
+This module implements conservative updates via discrete divergence of fluxes.
+With periodic or homogeneous Neumann BCs and f ≡ 0, the total mass Σ_i φ_i
+is conserved to machine precision (up to floating round-off), matching Lemma F.1.
+
+Scope:
+- Regular Cartesian grids in 1D and 2D (NumPy). Extension to 3D is straightforward.
+- Periodic and homogeneous Neumann (no-flux) BCs supported.
+- Vectorized, no Python-side global schedulers; pure local stencils.
+
+Runtime policy:
+- Derivation/validation only. Keep observability read-only.
+- No scans in fum_rt/core or maps are introduced here (this is under derivation/).
+
+Author: Justin K. Lietz
+"""
+
+from __future__ import annotations
+from typing import Tuple, Literal, Optional
+import numpy as np
+
+BC = Literal["periodic", "neumann"]
+
+
+def _divergence_from_flux_1d(F_right: np.ndarray, a: float) -> np.ndarray:
+    """
+    Compute -∂x F using right-face fluxes F_right located on edges between i and i+1.
+
+    Cell-centered divergence with periodic wrap assumed by caller when needed:
+      divF[i] = (F_right[i] - F_right[i-1]) / a
+    """
+    # F_right shape: (N,) faces between i and i+1; face i is between i and i+1
+    return (F_right - np.roll(F_right, 1)) / a
+
+
+def _divergence_from_flux_2d(Fx: np.ndarray, Fy: np.ndarray, a: float) -> np.ndarray:
+    """
+    Compute -∇·F using face-centered fluxes Fx, Fy:
+      Fx[i, j] is flux on the face between (i, j) and (i, j+1) (east face),
+      Fy[i, j] is flux on the face between (i, j) and (i+1, j) (north face).
+
+    Cell-centered divergence (i,j):
+      divF[i, j] = (Fx[i, j] - Fx[i, j-1]) / a + (Fy[i, j] - Fy[i-1, j]) / a
+    """
+    div_x = (Fx - np.roll(Fx, 1, axis=1)) / a
+    div_y = (Fy - np.roll(Fy, 1, axis=0)) / a
+    return div_x + div_y
+
+
+def flux_update_periodic(phi: np.ndarray, D: float, dt: float, a: float) -> np.ndarray:
+    """
+    Conservative flux-form update with periodic BCs (1D or 2D).
+
+    Parameters
+    ----------
+    phi : np.ndarray
+        Field values at cell centers. Shape (N,) or (Ny, Nx).
+    D : float
+        Diffusion coefficient (L^2 / T).
+    dt : float
+        Time step (T).
+    a : float
+        Grid spacing (L), uniform.
+
+    Returns
+    -------
+    phi_next : np.ndarray
+        Updated field, same shape as phi.
+    """
+    if phi.ndim == 1:
+        # Right-face flux between i and i+1 with periodic wrap:
+        # F_right[i] between cell i and i+1 (east face)
+        phi_right = np.roll(phi, -1)
+        F_right = -(D / a) * (phi_right - phi)
+        divF = _divergence_from_flux_1d(F_right, a)
+        return phi - dt * divF
+
+    if phi.ndim == 2:
+        # East face fluxes (Fx): faces between (i,j) and (i,j+1)
+        phi_east = np.roll(phi, -1, axis=1)
+        Fx = -(D / a) * (phi_east - phi)
+        # North face fluxes (Fy): faces between (i,j) and (i+1,j)
+        phi_north = np.roll(phi, -1, axis=0)
+        Fy = -(D / a) * (phi_north - phi)
+        divF = _divergence_from_flux_2d(Fx, Fy, a)
+        return phi - dt * divF
+
+    raise ValueError("flux_update_periodic: only 1D or 2D arrays are supported.")
+
+
+def flux_update_neumann(phi: np.ndarray, D: float, dt: float, a: float) -> np.ndarray:
+    """
+    Conservative flux-form update with homogeneous Neumann (no-flux) BCs (1D or 2D).
+
+    Implementation uses zero normal flux at boundaries:
+      - 1D: F_left[0] = F_right[N-1] = 0
+      - 2D: Fx[:, -1] = Fx[:, -1] is the right boundary face: set to 0,
+            Fx[:, -1] contributes as east face of last column; Fx[:, -1] = 0.
+            Similarly for left boundary Fx[:, -1] used via roll; we handle explicitly.
+            For y, set F at top/bottom boundary faces to 0.
+
+    Parameters
+    ----------
+    phi : np.ndarray
+        Field values at cell centers. Shape (N,) or (Ny, Nx).
+    D : float
+        Diffusion coefficient (L^2 / T).
+    dt : float
+        Time step (T).
+    a : float
+        Grid spacing (L), uniform.
+
+    Returns
+    -------
+    phi_next : np.ndarray
+        Updated field, same shape as phi.
+    """
+    if phi.ndim == 1:
+        N = phi.shape[0]
+        # compute right-face fluxes for interior faces i=0..N-2
+        F_right = np.zeros_like(phi)
+        dphi_right = phi[1:] - phi[:-1]
+        F_right[:-1] = -(D / a) * dphi_right
+        # boundary faces (no-flux): F_right[-1] corresponds to face N-1 | out → 0
+        F_right[-1] = 0.0
+        # divergence: (F_right[i] - F_right[i-1]) / a, with F_right[-1] = 0 (no-flux at left out of 0)
+        F_left_shifted = np.roll(F_right, 1)
+        F_left_shifted[0] = 0.0  # no-flux at left boundary
+        divF = (F_right - F_left_shifted) / a
+        return phi - dt * divF
+
+    if phi.ndim == 2:
+        Ny, Nx = phi.shape
+        Fx = np.zeros_like(phi)
+        Fy = np.zeros_like(phi)
+        # Interior east faces j=0..Nx-2
+        dphi_east = phi[:, 1:] - phi[:, :-1]
+        Fx[:, :-1] = -(D / a) * dphi_east
+        Fx[:, -1] = 0.0  # no-flux at right boundary face
+        # Interior north faces i=0..Ny-2
+        dphi_north = phi[1:, :] - phi[:-1, :]
+        Fy[:-1, :] = -(D / a) * dphi_north
+        Fy[-1, :] = 0.0  # no-flux at top boundary face
+
+        # Divergence with explicit boundary handling:
+        # div_x = (Fx[i,j] - Fx[i, j-1]) / a with Fx[:, -1] defined, and Fx[:, -1] as east faces of last col
+        Fx_west = np.zeros_like(Fx)
+        Fx_west[:, 1:] = Fx[:, :-1]
+        Fx_west[:, 0] = 0.0  # no-flux at left boundary face
+        div_x = (Fx - Fx_west) / a
+
+        Fy_south = np.zeros_like(Fy)
+        Fy_south[1:, :] = Fy[:-1, :]
+        Fy_south[0, :] = 0.0  # no-flux at bottom boundary face
+        div_y = (Fy - Fy_south) / a
+
+        divF = div_x + div_y
+        return phi - dt * divF
+
+    raise ValueError("flux_update_neumann: only 1D or 2D arrays are supported.")
+
+
+def step_diffusion_flux(phi: np.ndarray, D: float, dt: float, a: float, bc: BC = "periodic") -> np.ndarray:
+    """
+    Single diffusion step via flux-form update under selected BC.
+
+    Parameters
+    ----------
+    phi : np.ndarray
+        Field values at cell centers (1D or 2D).
+    D : float
+        Diffusion constant.
+    dt : float
+        Time step.
+    a : float
+        Grid spacing.
+    bc : {"periodic","neumann"}
+        Boundary condition.
+
+    Returns
+    -------
+    phi_next : np.ndarray
+    """
+    if bc == "periodic":
+        return flux_update_periodic(phi, D, dt, a)
+    elif bc == "neumann":
+        return flux_update_neumann(phi, D, dt, a)
+    else:
+        raise ValueError(f"Unknown bc='{bc}'")
+
+
+def mass(phi: np.ndarray, a: float) -> float:
+    """
+    Compute discrete mass ∑ φ_i a^d for regular grids.
+    """
+    d = phi.ndim
+    cell_vol = (a ** d)
+    return float(np.sum(phi) * cell_vol)
+
+
+def _laplacian_periodic(phi: np.ndarray, a: float) -> np.ndarray:
+    """
+    Reference periodic Laplacian (for testing equivalence): ∇²_h φ using standard stencil.
+    """
+    if phi.ndim == 1:
+        return (np.roll(phi, -1) + np.roll(phi, 1) - 2.0 * phi) / (a * a)
+    if phi.ndim == 2:
+        north = np.roll(phi, -1, axis=0)
+        south = np.roll(phi,  1, axis=0)
+        east  = np.roll(phi, -1, axis=1)
+        west  = np.roll(phi,  1, axis=1)
+        return (north + south + east + west - 4.0 * phi) / (a * a)
+    raise ValueError("Only 1D/2D supported in test Laplacian.")
+
+
+def verify_mass_conservation(phi: np.ndarray, D: float, dt: float, a: float, bc: BC = "periodic", tol: float = 1e-12) -> Tuple[float, float, float]:
+    """
+    Perform one flux-form step and report (m0, m1, |m1-m0|).
+
+    Returns
+    -------
+    (m0, m1, drift)
+    """
+    m0 = mass(phi, a)
+    phi1 = step_diffusion_flux(phi, D, dt, a, bc=bc)
+    m1 = mass(phi1, a)
+    return m0, m1, abs(m1 - m0)
+
+
+def verify_equivalence_with_laplacian(phi: np.ndarray, D: float, dt: float, a: float, bc: BC = "periodic", tol: float = 1e-12) -> float:
+    """
+    For periodic BCs, check that flux-form update equals standard explicit Laplacian update:
+      φ^{n+1} = φ^n + D dt ∇²_h φ^n
+    Returns max absolute difference.
+    """
+    if bc != "periodic":
+        raise ValueError("Equivalence test is implemented for periodic BC only.")
+    phi_flux = step_diffusion_flux(phi, D, dt, a, bc="periodic")
+    phi_lap = phi + D * dt * _laplacian_periodic(phi, a)
+    return float(np.max(np.abs(phi_flux - phi_lap)))
+
+
+if __name__ == "__main__":
+    # Smoke and conservation tests
+    rng = np.random.default_rng(42)
+
+    # 1D periodic
+    N = 257
+    a = 1.0
+    D = 0.5
+    dt = 0.1
+    phi = rng.normal(size=N)
+    m0, m1, drift = verify_mass_conservation(phi, D, dt, a, bc="periodic")
+    print("[1D periodic] mass drift:", drift)
+    assert drift < 1e-12
+
+    diff = verify_equivalence_with_laplacian(phi, D, dt, a, bc="periodic")
+    print("[1D periodic] flux vs laplacian max|diff|:", diff)
+    assert diff < 1e-12
+
+    # 2D periodic
+    Ny, Nx = 129, 193
+    phi2 = rng.normal(size=(Ny, Nx))
+    m0, m1, drift = verify_mass_conservation(phi2, D, dt, a, bc="periodic")
+    print("[2D periodic] mass drift:", drift)
+    assert drift < 1e-12
+
+    # 1D Neumann
+    phi1 = rng.normal(size=N)
+    m0, m1, drift = verify_mass_conservation(phi1, D, dt, a, bc="neumann")
+    print("[1D neumann] mass drift:", drift)
+    assert drift < 1e-12
+
+    # 2D Neumann
+    phi2n = rng.normal(size=(Ny, Nx))
+    m0, m1, drift = verify_mass_conservation(phi2n, D, dt, a, bc="neumann")
+    print("[2D neumann] mass drift:", drift)
+    assert drift < 1e-12
+
+    print("flux_core: OK")]]></content>
+    </file>
+    <file>
+      <path>rd_dispersion_experiment.py</path>
+      <content><![CDATA[#!/usr/bin/env python3
+"""
+Copyright © 2025 Justin K. Lietz, Neuroca, Inc. All Rights Reserved.
+
+This research is protected under a dual-license to foster open academic
+research while ensuring commercial applications are aligned with the project's ethical principles.
+
+Commercial use of proprietary VDM code requires written permission from Justin K. Lietz.
+See LICENSE file for full terms.
+
+
+RD dispersion validation (linear regime) for Fisher-KPP:
+    ∂t u = D ∂xx u + r u (1 - u)
+Linearized about u≈0: u_t ≈ D u_xx + r u
+
+Predictions:
+  Continuum:  σ_c(k) = r - D k^2
+  Discrete (periodic second-difference):  σ_d(m) = r - (4 D / dx^2) sin^2(π m / N)
+
+Method:
+  - Evolve the linearized PDE with periodic BCs from small random amplitude.
+  - Record snapshots and fit log |Û_m(t)| vs t for selected modes m.
+  - Compare measured growth rates to σ_d(m) (primary) and σ_c(k) (reference).
+
+Outputs (defaults):
+  - derivation/code/outputs/figures/<script>_<timestamp>.png
+  - derivation/code/outputs/logs/<script>_<timestamp>.json
+
+CLI example:
+  python Prometheus_VDM/derivation/code/physics/rd_dispersion_experiment.py --N 1024 --L 200 --D 1.0 --r 0.25 --T 10 --cfl 0.2 --seed 42
+"""
+import argparse
+import json
+import math
+import os
+import time
+from typing import Tuple, List, Dict
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+def laplacian_periodic(u: np.ndarray, dx: float) -> np.ndarray:
+    """1D Laplacian with periodic boundaries."""
+    lap = (np.roll(u, -1) - 2.0 * u + np.roll(u, 1)) / (dx * dx)
+    return lap
+
+
+def robust_linear_fit(t: np.ndarray, y: np.ndarray, smooth_win: int = 5, mad_k: float = 3.0, max_iter: int = 3):
+    """
+    Robust linear fit y(t) ~ a * t + b with moving-average smoothing and MAD-based outlier rejection.
+    Returns (a, R^2). If insufficient points, returns (nan, nan).
+    """
+    t = np.asarray(t, dtype=float).ravel()
+    y = np.asarray(y, dtype=float).ravel()
+    n = t.size
+    if n < 2:
+        return float("nan"), float("nan")
+
+    if smooth_win % 2 == 0:
+        smooth_win += 1
+    if n >= smooth_win and smooth_win > 1:
+        kernel = np.ones(smooth_win, dtype=float) / smooth_win
+        y_s = np.convolve(y, kernel, mode="same")
+    else:
+        y_s = y.copy()
+
+    mask = np.isfinite(y_s)
+    if mask.sum() < 2:
+        return float("nan"), float("nan")
+
+    a = float("nan")
+    b = float("nan")
+    for _ in range(max_iter):
+        tt = t[mask]
+        yy = y_s[mask]
+        if tt.size < 2:
+            break
+        coeffs = np.polyfit(tt, yy, 1)
+        a = float(coeffs[0]); b = float(coeffs[1])
+        pred = a * t + b
+        resid = y_s - pred
+        mad = float(np.median(np.abs(resid[mask])) + 1e-12)
+        new_mask = np.isfinite(y_s) & (np.abs(resid) <= mad_k * mad)
+        if new_mask.sum() < max(5, int(0.2 * n)):
+            break
+        if np.array_equal(new_mask, mask):
+            break
+        mask = new_mask
+
+    tt = t[mask]
+    yy = y_s[mask]
+    if tt.size >= 2 and np.isfinite(a):
+        pred = a * tt + b
+        ss_res = float(np.sum((yy - pred) ** 2))
+        ss_tot = float(np.sum((yy - np.mean(yy)) ** 2) + 1e-12)
+        r2 = 1.0 - ss_res / ss_tot
+    else:
+        a, r2 = float("nan"), float("nan")
+    return a, r2
+
+
+def run_linear_sim(
+    N: int,
+    L: float,
+    D: float,
+    r: float,
+    T: float,
+    cfl: float,
+    seed: int,
+    amp0: float = 1e-6,
+    record_slices: int = 60,
+):
+    """
+    Explicit Euler on u_t = D u_xx + r u with periodic BCs. Start from small random noise.
+    Returns dict with x, dx, dt, steps, snapshots, snapshot_times.
+    """
+    rng = np.random.default_rng(seed)
+    x = np.linspace(0.0, L, N, endpoint=False)
+    dx = x[1] - x[0]
+    # time step from diffusion CFL (linear)
+    dt_diff = cfl * dx * dx / (2.0 * D + 1e-12)
+    dt_reac = 0.2 / r if r > 0 else dt_diff
+    dt = min(dt_diff, dt_reac)
+    steps = int(max(2, math.ceil(T / dt)))
+    dt = T / steps
+
+    u = amp0 * rng.standard_normal(size=N).astype(float)
+    snapshots: List[np.ndarray] = []
+    snapshot_times: List[float] = []
+    out_every = max(1, steps // record_slices)
+
+    for n in range(steps):
+        lap = laplacian_periodic(u, dx)
+        u += dt * (D * lap + r * u)
+        if (n + 1) % out_every == 0:
+            snapshots.append(u.copy())
+            snapshot_times.append((n + 1) * dt)
+
+    return {
+        "x": x, "dx": dx, "dt": dt, "steps": steps,
+        "snapshots": snapshots, "snapshot_times": snapshot_times,
+    }
+
+
+def analyze_dispersion(data: Dict, D: float, r: float, L: float, m_max: int, fit_frac: Tuple[float, float]):
+    """
+    Compute FFT of snapshots, fit growth rates for modes m=0..m_max, and compare to theory.
+    Returns dict with arrays and summary metrics.
+    """
+    snaps = data["snapshots"]
+    times = np.array(data["snapshot_times"], dtype=float)
+    N = snaps[0].size
+    dx = data["dx"]
+
+    # Build 1-sided (non-negative) mode list
+    m_vals = np.arange(0, min(m_max, N // 2) + 1, dtype=int)
+    k_vals = 2.0 * np.pi * m_vals / L
+
+    # Stack FFT amplitudes over time
+    amps = []
+    for u in snaps:
+        U = np.fft.rfft(u)  # length N//2+1
+        amps.append(np.abs(U))
+    amps = np.array(amps)  # shape [T_s, M]
+
+    f0, f1 = fit_frac
+    i0 = int(max(0, min(len(times) - 2, round(f0 * len(times)))))
+    i1 = int(max(i0 + 2, min(len(times), round(f1 * len(times)))))
+    t_fit = times[i0:i1]
+
+    sigma_meas = np.zeros_like(m_vals, dtype=float)
+    r2_meas = np.zeros_like(m_vals, dtype=float)
+
+    for j, m in enumerate(m_vals):
+        a = amps[i0:i1, j]
+        a = np.maximum(a, 1e-30)
+        y = np.log(a)
+        slope, r2 = robust_linear_fit(t_fit, y, smooth_win=5, mad_k=3.0, max_iter=3)
+        sigma_meas[j] = slope
+        r2_meas[j] = r2
+
+    # Theoretical discrete and continuum rates
+    sigma_disc = r - (4.0 * D / (dx * dx)) * (np.sin(np.pi * m_vals / N) ** 2)
+    sigma_cont = r - D * (k_vals ** 2)
+
+    # Compare only where growth/decay is measurable and fit quality decent
+    good = np.isfinite(sigma_meas) & np.isfinite(r2_meas) & (r2_meas >= 0.95)
+    rel_err = np.full_like(sigma_meas, np.nan, dtype=float)
+    rel_err[good] = np.abs(sigma_meas[good] - sigma_disc[good]) / (np.abs(sigma_disc[good]) + 1e-12)
+
+    # Summary metrics
+    med_rel_err = float(np.nanmedian(rel_err))
+    # R² between arrays (meas vs disc) on good subset
+    if np.sum(good) >= 2:
+        A = sigma_meas[good]
+        B = sigma_disc[good]
+        ss_res = float(np.sum((A - B) ** 2))
+        ss_tot = float(np.sum((A - np.mean(A)) ** 2) + 1e-12)
+        r2_array = 1.0 - ss_res / ss_tot
+    else:
+        r2_array = float("nan")
+
+    return {
+        "m_vals": m_vals.tolist(),
+        "k_vals": k_vals.tolist(),
+        "sigma_meas": sigma_meas.tolist(),
+        "r2_meas": r2_meas.tolist(),
+        "sigma_disc": sigma_disc.tolist(),
+        "sigma_cont": sigma_cont.tolist(),
+        "rel_err": rel_err.tolist(),
+        "med_rel_err": med_rel_err,
+        "r2_array": float(r2_array),
+        "good_mask": good.tolist(),
+    }
+
+
+def plot_and_save_dispersion(analysis: Dict, figure_path: str, title: str = "RD dispersion (linear regime)"):
+    m_vals = np.array(analysis["m_vals"], dtype=int)
+    k_vals = np.array(analysis["k_vals"], dtype=float)
+    sig_meas = np.array(analysis["sigma_meas"], dtype=float)
+    sig_disc = np.array(analysis["sigma_disc"], dtype=float)
+    sig_cont = np.array(analysis["sigma_cont"], dtype=float)
+    good = np.array(analysis["good_mask"], dtype=bool)
+
+    plt.figure(figsize=(10, 6))
+    ax = plt.gca()
+    ax.plot(k_vals, sig_disc, "k-", lw=2, label="theory σ_d (discrete)")
+    ax.plot(k_vals, sig_cont, "k--", lw=1, alpha=0.6, label="theory σ_c (continuum)")
+    ax.plot(k_vals[good], sig_meas[good], "o", ms=4, label="measured (fit on log|Û|)")
+    if np.any(~good):
+        ax.plot(k_vals[~good], sig_meas[~good], "o", ms=3, alpha=0.3, label="measured (low R²)")
+    ax.set_xlabel("k = 2π m / L")
+    ax.set_ylabel("σ(k)")
+    ax.set_title(title)
+    ax.legend()
+    plt.tight_layout()
+    os.makedirs(os.path.dirname(figure_path), exist_ok=True)
+    plt.savefig(figure_path, dpi=150)
+    plt.close()
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Validate RD linear dispersion σ(k) using periodic linearized evolution.")
+    parser.add_argument("--N", type=int, default=1024)
+    parser.add_argument("--L", type=float, default=200.0)
+    parser.add_argument("--D", type=float, default=1.0)
+    parser.add_argument("--r", type=float, default=0.25)
+    parser.add_argument("--T", type=float, default=10.0)
+    parser.add_argument("--cfl", type=float, default=0.2)
+    parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--amp0", type=float, default=1e-6, help="Initial noise amplitude (std dev).")
+    parser.add_argument("--record", type=int, default=80, help="Number of snapshots to record.")
+    parser.add_argument("--m_max", type=int, default=64, help="Max mode index m to fit (clamped by N//2).")
+    parser.add_argument("--fit_start", type=float, default=0.1, help="fractional start of fit window")
+    parser.add_argument("--fit_end", type=float, default=0.4, help="fractional end of fit window")
+    parser.add_argument("--outdir", type=str, default=None, help="base output dir; defaults to derivation/code/outputs next to this script")
+    parser.add_argument("--figure", type=str, default=None, help="override figure path; otherwise script_name_timestamp.png in outdir/figures")
+    parser.add_argument("--log", type=str, default=None, help="override log path; otherwise script_name_timestamp.json in outdir/logs")
+    args = parser.parse_args()
+
+    script_name = os.path.splitext(os.path.basename(__file__))[0]
+    tstamp = time.strftime("%Y%m%dT%H%M%SZ", time.gmtime())
+    # Follow repo convention: write to derivation/code/outputs/{figures,logs}/reaction_diffusion
+    default_base = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "outputs"))
+    base_outdir = os.path.abspath(args.outdir) if args.outdir else default_base
+    fig_dir = os.path.join(base_outdir, "figures", "reaction_diffusion")
+    log_dir = os.path.join(base_outdir, "logs", "reaction_diffusion")
+    figure_path = args.figure if args.figure else os.path.join(fig_dir, f"{script_name}_{tstamp}.png")
+    log_path = args.log if args.log else os.path.join(log_dir, f"{script_name}_{tstamp}.json")
+    os.makedirs(os.path.dirname(figure_path), exist_ok=True)
+    os.makedirs(os.path.dirname(log_path), exist_ok=True)
+
+    t0 = time.time()
+    sim = run_linear_sim(args.N, args.L, args.D, args.r, args.T, args.cfl, args.seed, amp0=args.amp0, record_slices=args.record)
+    analysis = analyze_dispersion(sim, args.D, args.r, args.L, args.m_max, (args.fit_start, args.fit_end))
+    elapsed = time.time() - t0
+
+    # Acceptance criteria (conservative for multi-mode fit)
+    acceptance = {
+        "med_rel_err_max": 0.10,
+        "r2_array_min": 0.98,
+    }
+    passed = (
+        (math.isfinite(analysis["med_rel_err"]) and analysis["med_rel_err"] <= acceptance["med_rel_err_max"]) and
+        (math.isfinite(analysis["r2_array"]) and analysis["r2_array"] >= acceptance["r2_array_min"])
+    )
+    if not passed:
+        if args.figure is None:
+            figure_path = os.path.join(fig_dir, "failed_runs", f"{script_name}_{tstamp}.png")
+        if args.log is None:
+            log_path = os.path.join(log_dir, "failed_runs", f"{script_name}_{tstamp}.json")
+    os.makedirs(os.path.dirname(figure_path), exist_ok=True)
+    os.makedirs(os.path.dirname(log_path), exist_ok=True)
+    plot_and_save_dispersion(analysis, figure_path, title=f"RD dispersion (linear): D={args.D}, r={args.r}")
+
+    # Acceptance criteria (conservative for multi-mode fit)
+    acceptance = {
+        "med_rel_err_max": 0.10,
+        "r2_array_min": 0.98,
+    }
+    passed = (
+        (math.isfinite(analysis["med_rel_err"]) and analysis["med_rel_err"] <= acceptance["med_rel_err_max"]) and
+        (math.isfinite(analysis["r2_array"]) and analysis["r2_array"] >= acceptance["r2_array_min"])
+    )
+
+    payload = {
+        "theory": {
+            "continuum": "sigma_c(k) = r - D k^2",
+            "discrete": "sigma_d(m) = r - (4 D / dx^2) sin^2(pi m / N)"
+        },
+        "params": {
+            "N": args.N, "L": args.L, "D": args.D, "r": args.r, "T": args.T,
+            "cfl": args.cfl, "seed": args.seed, "amp0": args.amp0,
+            "record": args.record, "m_max": args.m_max,
+            "fit_start": args.fit_start, "fit_end": args.fit_end,
+        },
+        "metrics": {
+            "med_rel_err": analysis["med_rel_err"],
+            "r2_array": analysis["r2_array"],
+            "acceptance": acceptance,
+            "passed": passed,
+        },
+        "series": {
+            "m_vals": analysis["m_vals"],
+            "k_vals": analysis["k_vals"],
+            "sigma_meas": analysis["sigma_meas"],
+            "sigma_disc": analysis["sigma_disc"],
+            "sigma_cont": analysis["sigma_cont"],
+            "r2_meas": analysis["r2_meas"],
+            "rel_err": analysis["rel_err"],
+            "good_mask": analysis["good_mask"],
+        },
+        "outputs": {
+            "figure": figure_path
+        },
+        "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+        "elapsed_sec": elapsed,
+    }
+
+    with open(log_path, "w", encoding="utf-8") as f:
+        json.dump(payload, f, indent=2)
+
+    print(json.dumps({
+        "figure": figure_path,
+        "log": log_path,
+        "med_rel_err": payload["metrics"]["med_rel_err"],
+        "r2_array": payload["metrics"]["r2_array"],
+        "passed": payload["metrics"]["passed"],
+    }, indent=2))
+
+
+if __name__ == "__main__":
+    main()]]></content>
+    </file>
+    <file>
+      <path>rd_front_speed_experiment.py</path>
+      <content><![CDATA[#!/usr/bin/env python3
+"""
+Copyright © 2025 Justin K. Lietz, Neuroca, Inc. All Rights Reserved.
+
+This research is protected under a dual-license to foster open academic
+research while ensuring commercial applications are aligned with the project's ethical principles.
+
+Commercial use of proprietary VDM code requires written permission from Justin K. Lietz.
+See LICENSE file for full terms.
+
+
+RD front-speed validation for Fisher-KPP:
+    ∂t u = D ∂xx u + r u (1 - u)
+
+Theory:
+    Minimal pulled-front speed c_th = 2 * sqrt(D * r)
+
+Outputs (defaults):
+    - derivation/code/outputs/figures/<script>_<timestamp>.png
+    - derivation/code/outputs/logs/<script>_<timestamp>.json
+
+CLI example:
+  python Prometheus_VDM/derivation/code/physics/rd_front_speed_experiment.py \
+    --N 1024 --L 200 --D 1.0 --r 0.25 --T 80 --cfl 0.2 --seed 42 --x0 -60 --level 0.1 --fit_start 0.6 --fit_end 0.9
+"""
+import argparse
+import json
+import math
+import os
+import time
+from typing import Tuple, Optional
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+def laplacian_neumann(u: np.ndarray, dx: float) -> np.ndarray:
+    """1D Laplacian with zero-gradient (Neumann) boundaries."""
+    lap = np.empty_like(u)
+    # interior
+    lap[1:-1] = (u[2:] - 2*u[1:-1] + u[:-2]) / (dx*dx)
+    # Neumann at boundaries: ghost = mirror interior point
+    lap[0] = (u[1] - 2*u[0] + u[1]) / (dx*dx)          # 2*(u1 - u0)/dx^2
+    lap[-1] = (u[-2] - 2*u[-1] + u[-2]) / (dx*dx)      # 2*(u_{N-2} - u_{N-1})/dx^2
+    return lap
+
+
+def front_position(x: np.ndarray, u: np.ndarray, level: float = 0.5) -> float:
+    """Find x where u crosses 'level' via linear interpolation."""
+    crossed = np.where((u[:-1] - level) * (u[1:] - level) <= 0)[0]
+    if crossed.size == 0:
+        # fallback: argmin |u - level|
+        i = int(np.argmin(np.abs(u - level)))
+        return float(x[i])
+    i = int(crossed[0])
+    u0, u1 = u[i], u[i+1]
+    if u1 == u0:
+        return float(x[i])
+    frac = (level - u0) / (u1 - u0)
+    return float(x[i] + frac * (x[i+1] - x[i]))
+
+
+def front_position_near(x: np.ndarray, u: np.ndarray, level: float, x_guess: float) -> float:
+    """
+    Find a level crossing near a previous position x_guess.
+    This stabilizes tracking (avoids picking a different crossing due to noise).
+    """
+    dif = u - level
+    idx = np.where(dif[:-1] * dif[1:] <= 0)[0]
+    if idx.size == 0:
+        j = int(np.argmin(np.abs(dif)))
+        return float(x[j])
+    xs = []
+    for i in idx:
+        u0, u1 = u[i], u[i+1]
+        if u1 == u0:
+            xs.append(float(x[i]))
+        else:
+            frac = (level - u0) / (u1 - u0)
+            xs.append(float(x[i] + frac * (x[i+1] - x[i])))
+    xs = np.array(xs, dtype=float)
+    j = int(np.argmin(np.abs(xs - x_guess)))
+    return float(xs[j])
+
+
+def robust_linear_fit(t: np.ndarray, x: np.ndarray, smooth_win: int = 7, mad_k: float = 3.0, max_iter: int = 3):
+    """
+    Robust linear fit x(t) ~ a * t + b with simple moving-average smoothing and MAD-based outlier rejection.
+    Returns (a, R^2). If insufficient points, returns (nan, nan).
+    """
+    t = np.asarray(t, dtype=float).ravel()
+    x = np.asarray(x, dtype=float).ravel()
+    n = t.size
+    if n < 2:
+        return float("nan"), float("nan")
+
+    # Smooth x with moving average (odd window)
+    if smooth_win % 2 == 0:
+        smooth_win += 1
+    if n >= smooth_win and smooth_win > 1:
+        kernel = np.ones(smooth_win, dtype=float) / smooth_win
+        x_s = np.convolve(x, kernel, mode="same")
+    else:
+        x_s = x.copy()
+
+    mask = np.ones(n, dtype=bool)
+    a = float("nan")
+    b = float("nan")
+
+    for _ in range(max_iter):
+        tt = t[mask]
+        xx = x_s[mask]
+        if tt.size < 2:
+            break
+        coeffs = np.polyfit(tt, xx, 1)
+        a = float(coeffs[0])
+        b = float(coeffs[1])
+        pred = a * t + b
+        resid = x_s - pred
+        mad = float(np.median(np.abs(resid[mask])) + 1e-12)
+        new_mask = np.abs(resid) <= mad_k * mad
+        # Ensure we keep enough points
+        if new_mask.sum() < max(5, int(0.2 * n)):
+            break
+        # If mask stabilizes, stop
+        if np.array_equal(new_mask, mask):
+            break
+        mask = new_mask
+
+    # Final R^2 on kept points
+    tt = t[mask]
+    xx = x_s[mask]
+    if tt.size >= 2 and np.isfinite(a):
+        pred = a * tt + b
+        ss_res = float(np.sum((xx - pred) ** 2))
+        ss_tot = float(np.sum((xx - np.mean(xx)) ** 2) + 1e-12)
+        r2 = 1.0 - ss_res / ss_tot
+    else:
+        a, r2 = float("nan"), float("nan")
+    return a, r2
+
+
+def run_sim(
+    N: int,
+    L: float,
+    D: float,
+    r: float,
+    T: float,
+    cfl: float,
+    seed: int,
+    level: float = 0.5,
+    x0: Optional[float] = None,
+    fit_frac: Tuple[float, float] = (0.2, 0.9),
+    noise_amp: float = 0.0,
+):
+    rng = np.random.default_rng(seed)
+    x = np.linspace(-L/2, L/2, N, endpoint=False)
+    dx = x[1] - x[0]
+    # stability-limited timestep (explicit Euler)
+    dt_diff = cfl * dx*dx / (2.0*D + 1e-12)
+    dt_reac = 0.2 / r if r > 0 else dt_diff
+    dt = min(dt_diff, dt_reac)
+    steps = int(max(2, math.ceil(T / dt)))
+    dt = T / steps
+
+    # Smooth step IC: left ~1, right ~0; place interface well inside domain
+    w = 2.0  # interface width
+    if x0 is None:
+        x0 = -L / 4.0
+    u = 0.5 * (1.0 - np.tanh((x - x0) / w))
+    # keep far-ahead region identically zero to avoid uniform logistic growth
+    region_edge = x0 + 6.0 * w
+    u[x > region_edge] = 0.0
+    # optional: gated noise only on the left side of the interface
+    if noise_amp > 0.0:
+        noise = noise_amp * rng.standard_normal(size=N)
+        noise[x > region_edge] = 0.0
+        u += noise
+    u = np.clip(u, 0.0, 1.0)
+
+    rec_t = []
+    rec_xf = []
+    rec_xg = []
+    snapshot_times = []
+    snapshots = []
+
+    out_every = max(1, steps // 400)
+    snap_every = max(1, steps // 6)
+    last_xf = None
+
+    for n in range(steps):
+        lap = laplacian_neumann(u, dx)
+        u += dt * (D * lap + r * u * (1.0 - u))
+        u = np.clip(u, 0.0, 1.0)
+
+        if n % out_every == 0:
+            t = (n+1) * dt
+            # real level crossing?
+            dif = u - level
+            has_cross = np.any(dif[:-1] * dif[1:] <= 0)
+            if has_cross:
+                if last_xf is None:
+                    xf = front_position(x, u, level)
+                else:
+                    xf = front_position_near(x, u, level, last_xf)
+                last_xf = xf
+                rec_t.append(t)
+                rec_xf.append(xf)
+                # gradient-peak tracker (cross-check)
+                grad = np.empty_like(u)
+                grad[1:-1] = (u[2:] - u[:-2]) / (2.0 * dx)
+                grad[0] = (u[1] - u[0]) / dx
+                grad[-1] = (u[-1] - u[-2]) / dx
+                xg = float(x[np.argmax(np.abs(grad))])
+                rec_xg.append(xg)
+            else:
+                # front has passed; if domain is fully invaded (> level), stop tracking
+                if float(np.min(u)) > level:
+                    break
+        if n % snap_every == 0:
+            snapshot_times.append((n+1) * dt)
+            snapshots.append(u.copy())
+
+    rec_t = np.array(rec_t)
+    rec_xf = np.array(rec_xf)
+
+    # Fit speed from late-time window
+    f0, f1 = fit_frac
+    i0 = int(max(0, min(len(rec_t)-2, round(f0 * len(rec_t)))))
+    i1 = int(max(i0+2, min(len(rec_t), round(f1 * len(rec_t)))))
+    t_fit = rec_t[i0:i1]
+    x_fit = rec_xf[i0:i1]
+
+    if t_fit.size >= 5:
+        c_meas, r2 = robust_linear_fit(t_fit, x_fit, smooth_win=7, mad_k=3.0, max_iter=3)
+        # Fallback if robustness failed
+        if (not math.isfinite(c_meas)) or (not math.isfinite(r2)) or (r2 < 0.6):
+            half = len(t_fit) // 2
+            if half >= 1:
+                dx_med = float(np.median(x_fit[half:]) - np.median(x_fit[:half]))
+                dt_med = float(np.median(t_fit[half:]) - np.median(t_fit[:half]) + 1e-12)
+                c_meas = dx_med / dt_med
+                # Simple R^2 estimate with this slope
+                b0 = float(np.median(x_fit) - c_meas * np.median(t_fit))
+                x_pred = c_meas * t_fit + b0
+                ss_res = float(np.sum((x_fit - x_pred) ** 2))
+                ss_tot = float(np.sum((x_fit - np.mean(x_fit)) ** 2) + 1e-12)
+                r2 = 1.0 - ss_res / ss_tot
+            else:
+                c_meas, r2 = float("nan"), float("nan")
+    else:
+        c_meas, r2 = float("nan"), float("nan")
+
+    # Final metrics after fit
+    c_th = 2.0 * math.sqrt(D * r)
+    c_abs = abs(c_meas) if math.isfinite(c_meas) else float("nan")
+    rel_err = abs(c_abs - c_th) / (abs(c_th) + 1e-12)
+
+    # Determine sign via slope between medians if fit unreliable
+    if not math.isfinite(c_meas) or not math.isfinite(r2) or r2 < 0.5:
+        half = len(rec_t) // 2
+        if half >= 2:
+            dx_med = float(np.median(rec_xf[half:]) - np.median(rec_xf[:half]))
+            dt_med = float(np.median(rec_t[half:]) - np.median(rec_t[:half]) + 1e-12)
+            c_meas = dx_med / dt_med
+            # Update derived metrics after fallback
+            c_abs = abs(c_meas) if math.isfinite(c_meas) else float("nan")
+            rel_err = abs(c_abs - c_th) / (abs(c_th) + 1e-12)
+
+    # Gradient-based front speed (optional cross-check)
+    if len(rec_xg) == len(rec_t) and len(rec_t) >= 5:
+        tg = rec_t[i0:i1]
+        xg = np.array(rec_xg[i0:i1], dtype=float)
+        if tg.size >= 5:
+            c_meas_grad, r2_grad = robust_linear_fit(tg, xg, smooth_win=7, mad_k=3.0, max_iter=3)
+            c_abs_grad = abs(c_meas_grad) if math.isfinite(c_meas_grad) else float("nan")
+            rel_err_grad = abs(c_abs_grad - c_th) / (abs(c_th) + 1e-12)
+        else:
+            c_meas_grad = float("nan"); r2_grad = float("nan"); c_abs_grad = float("nan"); rel_err_grad = float("nan")
+    else:
+        c_meas_grad = float("nan"); r2_grad = float("nan"); c_abs_grad = float("nan"); rel_err_grad = float("nan")
+
+    return {
+        "x": x,
+        "snapshots": snapshots,
+        "snapshot_times": snapshot_times,
+        "rec_t": rec_t,
+        "rec_xf": rec_xf,
+        "rec_xg": rec_xg,
+        "c_meas": c_meas,
+        "c_abs": c_abs,
+        "c_th": c_th,
+        "rel_err": rel_err,
+        "r2": r2,
+        "c_meas_grad": c_meas_grad,
+        "c_abs_grad": c_abs_grad,
+        "rel_err_grad": rel_err_grad,
+        "r2_grad": r2_grad,
+        "dx": dx,
+        "dt": dt,
+        "steps": steps,
+        "level": level,
+        "fit_frac": [f0, f1],
+    }
+
+
+def plot_and_save(data: dict, figure_path: str):
+    x = data["x"]
+    snapshots = data["snapshots"]
+    snapshot_times = data["snapshot_times"]
+    rec_t = data["rec_t"]
+    rec_xf = data["rec_xf"]
+    c_meas = data["c_meas"]
+    c_abs = data["c_abs"]
+    c_th = data["c_th"]
+    r2 = data["r2"]
+
+    plt.figure(figsize=(10, 7))
+    # Top: snapshots
+    ax1 = plt.subplot(2, 1, 1)
+    for u, t in zip(snapshots, snapshot_times):
+        ax1.plot(x, u, lw=1, label=f"t={t:.1f}")
+    ax1.set_title("RD Fisher-KPP front evolution")
+    ax1.set_xlabel("x")
+    ax1.set_ylabel("u")
+    if len(snapshot_times) <= 8 and len(snapshot_times) > 0:
+        ax1.legend(ncol=2, fontsize=8)
+
+    # Bottom: front position vs time
+    ax2 = plt.subplot(2, 1, 2)
+    ax2.plot(rec_t, rec_xf, ".", ms=3, label="x_front(t)")
+    # optional gradient-peak tracker overlay
+    if len(data.get("rec_xg", [])) == len(rec_t) and len(rec_t) > 0:
+        ax2.plot(rec_t, data["rec_xg"], "g.", ms=3, alpha=0.6, label="x_grad(t)")
+    if np.isfinite(c_meas):
+        t_line = np.array([rec_t.min(), rec_t.max()])
+        ax2.plot(t_line, c_meas * t_line + (rec_xf[0] - c_meas * rec_t[0]), "r--",
+                 label=f"fit c={c_meas:.3f}, |c|={c_abs:.3f}, R2={r2:.3f}")
+        ax2.plot(t_line, c_th * t_line + (rec_xf[0] - c_th * rec_t[0]), "k-.",
+                 label=f"theory c=2√(Dr)={c_th:.3f}")
+    ax2.set_xlabel("t")
+    ax2.set_ylabel("x_front")
+    ax2.legend()
+    plt.tight_layout()
+    os.makedirs(os.path.dirname(figure_path), exist_ok=True)
+    plt.savefig(figure_path, dpi=150)
+    plt.close()
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Validate Fisher-KPP front speed c=2√(Dr).")
+    parser.add_argument("--N", type=int, default=1024)
+    parser.add_argument("--L", type=float, default=200.0)
+    parser.add_argument("--D", type=float, default=1.0)
+    parser.add_argument("--r", type=float, default=0.25)
+    parser.add_argument("--T", type=float, default=80.0)
+    parser.add_argument("--cfl", type=float, default=0.2)
+    parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--level", type=float, default=0.1)
+    parser.add_argument("--x0", type=float, default=-60.0)
+    parser.add_argument("--fit_start", type=float, default=0.6, help="fractional start of fit window")
+    parser.add_argument("--fit_end", type=float, default=0.9, help="fractional end of fit window")
+    parser.add_argument("--outdir", type=str, default=None, help="base output dir; defaults to derivation/code/outputs next to this script")
+    parser.add_argument("--figure", type=str, default=None, help="override figure path; otherwise script_name_timestamp.png in outdir/figures")
+    parser.add_argument("--log", type=str, default=None, help="override log path; otherwise script_name_timestamp.json in outdir/logs")
+    parser.add_argument("--noise_amp", type=float, default=0.0, help="optional gated noise amplitude (applied only left of the front)")
+    args = parser.parse_args()
+
+    # Compute output paths based on script name and UTC timestamp
+    script_name = os.path.splitext(os.path.basename(__file__))[0]
+    tstamp = time.strftime("%Y%m%dT%H%M%SZ", time.gmtime())
+    # Follow repo convention: write to derivation/code/outputs/{figures,logs}/reaction_diffusion
+    default_base = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "outputs"))
+    base_outdir = os.path.abspath(args.outdir) if args.outdir else default_base
+    fig_dir = os.path.join(base_outdir, "figures", "reaction_diffusion")
+    log_dir = os.path.join(base_outdir, "logs", "reaction_diffusion")
+    figure_path = args.figure if args.figure else os.path.join(fig_dir, f"{script_name}_{tstamp}.png")
+    log_path = args.log if args.log else os.path.join(log_dir, f"{script_name}_{tstamp}.json")
+    os.makedirs(os.path.dirname(figure_path), exist_ok=True)
+    os.makedirs(os.path.dirname(log_path), exist_ok=True)
+
+    t0 = time.time()
+    data = run_sim(
+        args.N, args.L, args.D, args.r, args.T, args.cfl, args.seed,
+        level=args.level,
+        x0=args.x0,
+        fit_frac=(args.fit_start, args.fit_end),
+        noise_amp=args.noise_amp,
+    )
+    elapsed = time.time() - t0
+
+    acceptance_rel_err = 0.05
+    acceptance_r2 = 0.98
+    passed = (data["rel_err"] <= acceptance_rel_err) and (np.isfinite(data["r2"]) and data["r2"] >= acceptance_r2)
+    if not passed:
+        if args.figure is None:
+            figure_path = os.path.join(fig_dir, "failed_runs", f"{script_name}_{tstamp}.png")
+        if args.log is None:
+            log_path = os.path.join(log_dir, "failed_runs", f"{script_name}_{tstamp}.json")
+    os.makedirs(os.path.dirname(figure_path), exist_ok=True)
+    os.makedirs(os.path.dirname(log_path), exist_ok=True)
+
+    plot_and_save(data, figure_path)
+
+    payload = {
+        "theory": "Fisher-KPP front speed c=2*sqrt(D*r)",
+        "params": {
+            "N": args.N, "L": args.L, "D": args.D, "r": args.r, "T": args.T,
+            "cfl": args.cfl, "seed": args.seed, "level": args.level,
+            "x0": args.x0, "fit_start": args.fit_start, "fit_end": args.fit_end,
+            "noise_amp": args.noise_amp
+        },
+        "metrics": {
+            "c_meas": data["c_meas"],
+            "c_abs": data["c_abs"],
+            "c_sign": (1.0 if (np.isfinite(data['c_meas']) and data['c_meas'] >= 0) else -1.0),
+            "c_th": data["c_th"],
+            "rel_err": data["rel_err"],
+            "r2": data["r2"],
+            "dx": data["dx"],
+            "dt": data["dt"],
+            "steps": data["steps"],
+            "elapsed_sec": elapsed,
+            "acceptance_rel_err": 0.05,
+            "passed": (data["rel_err"] <= 0.05) and (np.isfinite(data["r2"]) and data["r2"] >= 0.98),
+            "c_meas_grad": data.get("c_meas_grad", float("nan")),
+            "c_abs_grad": data.get("c_abs_grad", float("nan")),
+            "rel_err_grad": data.get("rel_err_grad", float("nan")),
+            "r2_grad": data.get("r2_grad", float("nan"))
+        },
+        "outputs": {
+            "figure": figure_path
+        },
+        "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+    }
+    with open(log_path, "w", encoding="utf-8") as f:
+        json.dump(payload, f, indent=2)
+
+    print(json.dumps({
+        "figure": figure_path,
+        "log": log_path,
+        "c_meas": data["c_meas"],
+        "c_abs": data["c_abs"],
+        "c_th": data["c_th"],
+        "rel_err": data["rel_err"],
+        "r2": data["r2"],
+        "c_meas_grad": data.get("c_meas_grad"),
+        "c_abs_grad": data.get("c_abs_grad"),
+        "rel_err_grad": data.get("rel_err_grad"),
+        "r2_grad": data.get("r2_grad")
+    }, indent=2))
+
+
+if __name__ == "__main__":
+    main()]]></content>
+    </file>
+    <file>
+      <path>rd_front_speed_sweep.py</path>
+      <content><![CDATA[#!/usr/bin/env python3
+"""
+Copyright © 2025 Justin K. Lietz, Neuroca, Inc. All Rights Reserved.
+
+This research is protected under a dual-license to foster open academic
+research while ensuring commercial applications are aligned with the project's ethical principles.
+
+Commercial use of proprietary VDM code requires written permission from Justin K. Lietz.
+See LICENSE file for full terms.
+
+
+RD Fisher-KPP front-speed sweep runner.
+
+Runs multiple configurations of the experiment script and writes a CSV summary
+under: derivation/code/outputs/logs/rd_front_speed_sweep_YYYYMMDDThhmmssZ.csv
+
+Usage (PowerShell, always in venv):
+  & .\venv\Scripts\Activate.ps1
+  python Prometheus_VDM/derivation/code/physics/rd_front_speed_sweep.py
+
+Optional flags:
+  --Ds 0.5 1.0 2.0
+  --rs 0.1 0.25
+  --Ns 1024 2048
+  --levels 0.1 0.5
+  --fit_start 0.6
+  --fit_end 0.9
+  --T 80
+  --cfl 0.2
+  --seed 42
+  --x0 -60
+  --noise_amp 0.0
+"""
+import argparse
+import csv
+import json
+import os
+import subprocess
+import sys
+import time
+from pathlib import Path
+from itertools import product
+
+
+def utc_stamp():
+    return time.strftime("%Y%m%dT%H%M%SZ", time.gmtime())
+
+
+def default_out_dirs():
+    here = Path(__file__).resolve()
+    base = (here.parent.parent / "outputs").resolve()
+    fig_dir = base / "figures"
+    log_dir = base / "logs"
+    fig_dir.mkdir(parents=True, exist_ok=True)
+    log_dir.mkdir(parents=True, exist_ok=True)
+    return base, fig_dir, log_dir
+
+
+def run_one(python_exe, exp_path, params):
+    """Run a single experiment via subprocess; return printed JSON as dict."""
+    cmd = [
+        python_exe,
+        str(exp_path),
+        "--N", str(params["N"]),
+        "--L", str(params["L"]),
+        "--D", str(params["D"]),
+        "--r", str(params["r"]),
+        "--T", str(params["T"]),
+        "--cfl", str(params["cfl"]),
+        "--seed", str(params["seed"]),
+        "--x0", str(params["x0"]),
+        "--level", str(params["level"]),
+        "--fit_start", str(params["fit_start"]),
+        "--fit_end", str(params["fit_end"]),
+    ]
+    if params.get("noise_amp", 0.0) and float(params["noise_amp"]) != 0.0:
+        cmd += ["--noise_amp", str(params["noise_amp"])]
+
+    # Let the experiment auto-route outputs; we capture printed JSON
+    res = subprocess.run(cmd, capture_output=True, text=True)
+    if res.returncode != 0:
+        raise RuntimeError(f"Experiment failed ({res.returncode}): {res.stderr.strip()}")
+
+    # Find last JSON object in stdout
+    out = res.stdout.strip()
+    last_brace = out.rfind("{")
+    if last_brace == -1:
+        raise ValueError(f"No JSON in experiment stdout:\n{out}")
+    payload = json.loads(out[last_brace:])
+    return payload
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Sweep Fisher-KPP front-speed cases and summarize results.")
+    parser.add_argument("--Ds", nargs="+", type=float, default=[0.5, 1.0, 2.0])
+    parser.add_argument("--rs", nargs="+", type=float, default=[0.1, 0.25])
+    parser.add_argument("--Ns", nargs="+", type=int, default=[1024])
+    parser.add_argument("--levels", nargs="+", type=float, default=[0.1, 0.5])
+    parser.add_argument("--fit_start", type=float, default=0.6)
+    parser.add_argument("--fit_end", type=float, default=0.9)
+    parser.add_argument("--T", type=float, default=80.0)
+    parser.add_argument("--cfl", type=float, default=0.2)
+    parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--x0", type=float, default=-60.0)
+    parser.add_argument("--noise_amp", type=float, default=0.0)
+    args = parser.parse_args()
+
+    here = Path(__file__).resolve()
+    exp_path = (here.parent / "rd_front_speed_experiment.py").resolve()
+    python_exe = sys.executable
+
+    base, _, log_dir = default_out_dirs()
+    stamp = utc_stamp()
+    csv_path = log_dir / f"rd_front_speed_sweep_{stamp}.csv"
+
+    header = [
+        "timestamp", "N", "L", "D", "r", "T", "cfl", "seed", "x0", "level",
+        "fit_start", "fit_end", "noise_amp",
+        "c_meas", "c_th", "rel_err", "r2",
+        "c_meas_grad", "rel_err_grad", "r2_grad",
+        "figure", "log", "passed"
+    ]
+
+    L = 200.0  # fixed domain length for this sweep
+    rows = []
+    for N, D, r, level in product(args.Ns, args.Ds, args.rs, args.levels):
+        params = dict(
+            N=N, L=L, D=D, r=r, T=args.T, cfl=args.cfl, seed=args.seed,
+            x0=args.x0, level=level, fit_start=args.fit_start, fit_end=args.fit_end,
+            noise_amp=args.noise_amp
+        )
+        payload = run_one(python_exe, exp_path, params)
+        m = payload.get("metrics", {})
+        rows.append([
+            stamp, N, L, D, r, args.T, args.cfl, args.seed, args.x0, level,
+            args.fit_start, args.fit_end, args.noise_amp,
+            m.get("c_meas"), m.get("c_th"), m.get("rel_err"), m.get("r2"),
+            m.get("c_meas_grad"), m.get("rel_err_grad"), m.get("r2_grad"),
+            payload.get("figure"), payload.get("log"), m.get("passed"),
+        ])
+
+    with open(csv_path, "w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f)
+        w.writerow(header)
+        w.writerows(rows)
+
+    print(json.dumps({
+        "summary_csv": str(csv_path),
+        "cases": len(rows),
+        "base_outdir": str(base),
+    }, indent=2))
+
+
+if __name__ == "__main__":
+    main()]]></content>
+    </file>
+    <file>
+      <path>reaction_exact.py</path>
+      <content><![CDATA[#!/usr/bin/env python3
+"""
+Copyright © 2025 Justin K. Lietz, Neuroca, Inc. All Rights Reserved.
+
+This research is protected under a dual-license to foster open academic
+research while ensuring commercial applications are aligned with the project's ethical principles.
+
+Commercial use of proprietary VDM code requires written permission from Justin K. Lietz.
+See LICENSE file for full terms.
+
+
+Reaction-exact step for the logistic on-site law in RD:
+
+dW/dt = r W - u W^2, with closed form update over dt:
+
+W(t+dt) = ( r W(t) e^{r dt} ) / ( u W(t) (e^{r dt} - 1) + r ).
+
+Assumptions: r>0, u>=0 typical; numerically stabilized via expm1.
+
+Runtime policy:
+- Purely local; supports per-site dt for event-driven census firing.
+- No global scans, no schedulers; observability is read-only.
+
+Reference ODE invariant (for diagnostics only):
+Q(W,t) = ln( W / (r - u W) ) - r t.
+"""
+
+from typing import Union, Optional
+import numpy as np
+
+ArrayLike = Union[float, np.ndarray]
+
+def reaction_exact_step(W: ArrayLike,
+                        r: ArrayLike,
+                        u: ArrayLike,
+                        dt: ArrayLike,
+                        clip_eps: float = 1e-12,
+                        dtype: Optional[np.dtype] = None) -> np.ndarray:
+    """
+    Compute the exact logistic reaction step over one micro-interval dt.
+
+    Parameters
+    ----------
+    W : array-like
+        Current on-site values (scalar or ndarray).
+    r : array-like
+        Linear growth coefficient.
+    u : array-like
+        Quadratic saturation coefficient.
+    dt : array-like
+        Time increment (scalar or broadcastable to W).
+    clip_eps : float
+        Denominator guard to prevent catastrophic cancellation.
+    dtype : Optional[np.dtype]
+        Computation dtype (defaults to float64).
+
+    Returns
+    -------
+    np.ndarray
+        Next values W(t+dt) with shape broadcast from inputs.
+    """
+    x = np.array(W, dtype=dtype if dtype is not None else np.float64)
+    r_arr = np.array(r, dtype=x.dtype)
+    u_arr = np.array(u, dtype=x.dtype)
+    dt_arr = np.array(dt, dtype=x.dtype)
+
+    # Use expm1 for numerical stability: e = exp(r dt), s = e - 1
+    s = np.expm1(r_arr * dt_arr)
+    e = s + 1.0
+
+    # Handle u ≈ 0 path (linear growth) separately to avoid 0/0 in formula
+    u_zero = np.isclose(u_arr, 0.0)
+
+    denom = u_arr * x * s + r_arr
+    if np.isscalar(denom):
+        if abs(denom) < clip_eps:
+            denom = np.sign(denom) * clip_eps if denom != 0 else clip_eps
+    else:
+        zero_mask = np.isclose(denom, 0.0, atol=clip_eps, rtol=0.0)
+       # Replace near-zero denominators with signed epsilon to keep direction
+        denom = np.where(zero_mask,
+                         np.where(denom > 0, clip_eps, -clip_eps),
+                         denom)
+
+    num = r_arr * x * e
+    W_next = num / denom
+
+    if np.any(u_zero):
+        W_lin = x * e
+        mask = u_zero
+        if not np.array(mask).shape == x.shape:
+            mask = np.broadcast_to(mask, x.shape)
+        W_next = np.where(mask, W_lin, W_next)
+
+    return W_next
+
+
+def logistic_invariant_Q(W: ArrayLike,
+                         r: ArrayLike,
+                         u: ArrayLike,
+                         t: ArrayLike) -> np.ndarray:
+    """
+    Logarithmic first integral for the autonomous logistic ODE:
+    Q(W,t) = ln( W / (r - u W) ) - r t.
+
+    Note: This is ODE-only; with diffusion the invariant is not preserved.
+    """
+    x = np.array(W, dtype=np.float64)
+    r_arr = np.array(r, dtype=x.dtype)
+    u_arr = np.array(u, dtype=x.dtype)
+    t_arr = np.array(t, dtype=x.dtype)
+    eps = 1e-15
+    denom = r_arr - u_arr * x
+    zero_mask = np.isclose(denom, 0.0, atol=eps, rtol=0.0)
+    denom = np.where(zero_mask,
+                     np.where(denom > 0, eps, -eps),
+                     denom)
+    return np.log(x / denom) - r_arr * t_arr
+
+
+if __name__ == "__main__":
+    # Smoke tests
+    W0 = np.array([0.1, 0.5], dtype=np.float64)
+    r = 0.25
+    u = 0.25
+    dt = 1.0
+    W1 = reaction_exact_step(W0, r, u, dt)
+    print("W1:", W1)
+
+    # u -> 0 limit should match exponential growth exactly
+    W1_lin = reaction_exact_step(W0, r, 0.0, dt)
+    W1_lin_ref = W0 * np.exp(r * dt)
+    rel_err = np.max(np.abs(W1_lin - W1_lin_ref) /
+                     np.maximum(1e-12, np.abs(W1_lin_ref)))
+    print("u=0 rel_err:", rel_err)
+    assert rel_err < 1e-12
+    print("reaction_exact_step: OK")]]></content>
+    </file>
+  </files>
+</fum_code_report>

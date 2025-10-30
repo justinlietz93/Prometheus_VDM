@@ -1,0 +1,400 @@
+<?xml version="1.0" ?>
+<fum_code_report>
+  <generated_timestamp>2025-10-28 08:28:51</generated_timestamp>
+  <metadata>
+    <global_stats>
+      <total_files>3</total_files>
+      <total_size_bytes>13511</total_size_bytes>
+      <total_loc>363</total_loc>
+    </global_stats>
+    <chunk_stats>
+      <files_in_chunk>3</files_in_chunk>
+      <size_in_chunk_bytes>13511</size_in_chunk_bytes>
+      <loc_in_chunk>363</loc_in_chunk>
+    </chunk_stats>
+  </metadata>
+  <ascii_map><![CDATA[   Reaction_Diffusion/
+>> ├── rd_dispersion_validation.md
+   │   (LOC: 99, Size: 3.5 KB)
+>> ├── rd_front_speed_validation.md
+   │   (LOC: 111, Size: 4.7 KB)
+>> └── rd_validation_plan.md
+       (LOC: 153, Size: 5.0 KB)]]></ascii_map>
+  <files>
+    <file>
+      <path>rd_dispersion_validation.md</path>
+      <content><![CDATA[# RD dispersion validation (linear regime)
+
+Purpose
+
+- Empirically validate the linear growth/decay rates of reaction-diffusion (Fisher-KPP linearized about u≈0):
+  
+$$
+u_t = D u_xx + r u, with σ(k) = r - D k²
+$$
+
+(continuum) and
+
+$$
+σ_d(m) = r - (4D/dx²) sin²(π m/N)
+$$
+
+(discrete).
+
+Status
+
+- Solved: measured per-mode growth rates σ_meas match the discrete prediction within tight tolerance on default and refined grids.
+- Scripts and outputs follow the same scheme as the front-speed validation.
+
+References (implementation)
+
+- Script: [rd_dispersion_experiment.py](code/physics/rd_dispersion_experiment.py:1)
+- Validation plan: [rd_validation_plan.md](rd_validation_plan.md:1)
+- Status log: [CORRECTIONS.md](CORRECTIONS.md:1)
+- fum_rt parity runner: [rd_dispersion_runner.py](Prometheus_VDM/fum_rt/physics/rd_dispersion_runner.py:1)
+
+Method
+
+- Periodic BCs; explicit Euler on $u_t = D u_xx + r u$ with dt respecting diffusion CFL.
+- Start from small iid Gaussian amplitude amp0 ≪ 1 to stay in the linear regime.
+- Record snapshots; compute rFFT magnitudes $|Û_m(t)|; fit log|Û_m(t)|$ vs $t$ over a mid-early fraction window to estimate $σ_meas(m)$.
+- Compare $σ_meas(m)$ to:
+  - Discrete theory (primary): $σ_d(m) = r - (4D/dx²) sin²(π m/N)$
+  - Continuum reference: $σ(k) = r - D k², with k = 2π m / L$
+
+Output routing and naming
+
+- Defaults:
+  - Figures → derivation/code/outputs/figures/
+  - Logs → derivation/code/outputs/logs/
+- Filenames: script_name_YYYYMMDDThhmmssZ.ext (UTC timestamp)
+- Overridable via CLI: --outdir, --figure, --log
+
+How to run (PowerShell)
+
+- Always activate venv before running commands:
+  & .\venv\Scripts\Activate.ps1
+- Ensure matplotlib is available (first run):
+  python -m pip install matplotlib
+- Default run (passes):
+  python code/physics/rd_dispersion_experiment.py --N 1024 --L 200 --D 1.0 --r 0.25 --T 10 --cfl 0.2 --seed 42 --amp0 1e-6 --record 80 --m_max 64 --fit_start 0.1 --fit_end 0.4
+
+Recommended defaults
+
+- N=1024, L=200, D=1.0, r=0.25, T=10, cfl=0.2, seed=42, amp0=1e-6, record=80, m_max=64, fit 0.1-0.4
+- Use early-mid window to avoid startup transients while staying in linear regime.
+
+Acceptance criteria
+
+- Array-level agreement:
+  - median relative error over good modes (R²_mode ≥ 0.95): med_rel_err ≤ 0.10
+  - R²_array(measured vs σ_d) ≥ 0.98
+
+Representative results (logged)
+
+- Default (N=1024): $med\_rel\_err ≈ 1.45e-3, R²\_array ≈ 0.99995$ [PASS]
+- Refinement (N=2048, m_max=128): $med\_rel\_err ≈ 1.30e-3, R²\_array ≈ 0.9928$ [PASS]
+
+Troubleshooting
+
+- Low R² for some modes:
+  - Increase record count, keep fit window away from very early times.
+  - Keep amp0 small to remain in linear regime.
+- Excess bias at high m:
+  - Compare to discrete σ_d(m) (primary); continuum σ(k) deviates near Nyquist.
+  - Increase N to push Nyquist higher.
+
+fum_rt parity runner
+
+- Independent mirror (same metrics/output schema) for cross-stack parity:
+  - [rd_dispersion_runner.py](Prometheus_VDM/fum_rt/physics/rd_dispersion_runner.py:1)
+- Rationale is documented in-file (“CHANGE REASON”): physics proven via derivation; runtime mirror does not alter core dynamics.
+
+Reproduction checklist
+
+1) Activate venv: & .\venv\Scripts\Activate.ps1
+2) Install deps once: python -m pip install matplotlib
+3) Run default command above; confirm in JSON:
+   - metrics.med_rel_err ≤ 0.10
+   - metrics.r2_array ≥ 0.98
+4) Archive produced JSON/PNG under version control as needed.
+
+Provenance and tagging
+
+- Dispersion is [PROVEN] in [CORRECTIONS.md](CORRECTIONS.md:1) with default and refined grid results.
+]]></content>
+    </file>
+    <file>
+      <path>rd_front_speed_validation.md</path>
+      <content><![CDATA[# RD front-speed validation (Fisher-KPP)
+
+Purpose
+
+- Empirically validate the Fisher-KPP pulled-front speed in 1D reaction-diffusion:
+
+$$
+u_t = D u_xx + r u (1 - u)
+$$
+
+with theoretical
+
+$$
+c_th = 2√(D r)
+$$
+
+  Note: With the canonical mapping $r = α - β$ and $u = α$, the homogeneous fixed point is $φ*= r/u = 1 - β/α$ (e.g., $α=0.25, β=0.10 ⇒ φ* = 0.6$).
+
+Status
+
+- Solved: measured c_meas agrees with c_th within 5% after removing uniform pre-heating and tracking only real level crossings.
+- Documentation and reproducible CLI provided below.
+
+References (implementation)
+
+- Script: [rd_front_speed_experiment.py](code/physics/rd_front_speed_experiment.py)
+- Key functions:
+  - [run_sim()](code/physics/rd_front_speed_experiment.py:134)
+  - [robust_linear_fit()](code/physics/rd_front_speed_experiment.py:77)
+  - [front_position_near()](code/physics/rd_front_speed_experiment.py:54)
+  - [main()](code/physics/rd_front_speed_experiment.py:341)
+
+What was wrong initially (root cause)
+
+- Uniform small noise added everywhere at t=0 caused logistic “pre-heating” in the far field; points far ahead of the front crossed the tracking level (e.g., 0.5) solely due to local growth at time $t ≈ r^-1 ln((1-u0)/u0)$, biasing the measured slope down.
+- Additionally, tracking after the real level-crossing vanished (domain fully above level) contaminated late-time fits.
+
+Fixes implemented
+
+1) Gated initial condition (no pre-heating)
+   - Far-ahead region is set exactly to 0.0 so the front is truly pulled by diffusion; optional noise is gated to the left side only.
+   - See the IC block in [run_sim()](code/physics/rd_front_speed_experiment.py:161).
+
+2) Real-crossing guard
+   - Only record front position while a true level crossing exists; stop tracking once the domain is fully above the chosen level.
+   - See tracker loop in [run_sim()](code/physics/rd_front_speed_experiment.py:187).
+
+3) Robust fitting and derivative cross-check
+   - Robust linear fit with MAD rejection; median-slope fallback if needed.
+   - Optional gradient-peak tracker (location of max $|∂_x u|$) overlays the second front position series for cross-check.
+
+Output routing and naming
+
+- Defaults to:
+  - Figures → derivation/code/outputs/figures/
+  - Logs → derivation/code/outputs/logs/
+- Filenames: script_name_YYYYMMDDThhmmssZ.ext (UTC timestamp).
+- Overridable via CLI: --outdir, --figure, --log.
+- See [main()](code/physics/rd_front_speed_experiment.py:359).
+
+How to run (PowerShell)
+
+- Always activate venv before running commands:
+  & .\venv\Scripts\Activate.ps1
+- Ensure matplotlib is available (first run):
+  python -m pip install matplotlib
+- Example that passes with $D=1, r=0.25 (c\_th=1)$:
+  python code/physics/rd_front_speed_experiment.py --N 1024 --L 200 --D 1.0 --r 0.25 --T 80 --cfl 0.2 --seed 42 --x0 -60 --level 0.1 --fit_start 0.6 --fit_end 0.9
+
+Recommended defaults
+
+- Threshold level: 0.1 (stable early/late across grids). Level=0.5 works if far field remains near zero.
+- Fit window: later fraction of the tracked interval (e.g., 0.6-0.9) to avoid initial transients and boundary interactions.
+- Grid/time step: increase N or T as needed for clean linear regime; CFL-stable explicit Euler is used.
+
+Acceptance criteria
+
+- Front-speed agreement: $rel\_err = |c\_meas - c\_th| / |c\_th| ≤ 0.05$
+- Linear fit quality: $R² ≥ 0.98$
+- Cross-check: gradient-tracker speed within ≈5% of c_th and level-tracker speed.
+
+Representative results (logged)
+
+- Parameters: D=1.0, r=0.25, N=1024, T=80, level=0.1, fit 0.6-0.9
+- Metrics: $c\_meas ≈ 0.953, c\_th = 1.0, rel\_err ≈ 0.047, R² ≈ 0.999996$ (pass)
+- Gradient cross-check: $c\_meas\_grad ≈ 0.945, rel\_err\_grad ≈ 0.055, R²\_grad$ ≈ 0.99995
+- Outputs auto-saved under derivation/code/outputs/{figures,logs}/
+
+Troubleshooting
+
+- Measured speed too low with high $R²$:
+  - Remove/disable uniform noise (use default --noise_amp 0.0).
+  - Lower the tracking threshold (e.g., --level 0.1).
+  - Move fit window later (e.g., --fit_start 0.6 --fit_end 0.9).
+- Fit unstable (low $R²$):
+  - Increase N or T; ensure front remains away from domain boundaries during the fit window.
+  - Use larger fraction window or robust fit as implemented.
+
+Provenance and alignment with repository decisions
+
+- This test operationalizes the RD “canonical model” front-speed claim logged in CORRECTIONS.md by providing a reproducible, parameterized check that passes quantitative gates (≤5% tolerance).
+
+Reproduction checklist
+
+1) Activate venv: & .\venv\Scripts\Activate.ps1
+2) Install deps once: python -m pip install matplotlib
+3) Run example command above; confirm:
+   - rel_err ≤ 0.05
+   - $R²$ ≥ 0.98
+   - Outputs written to derivation/code/outputs/{figures,logs}/
+4) Archive the produced JSON and PNG under version control as needed.
+]]></content>
+    </file>
+    <file>
+      <path>rd_validation_plan.md</path>
+      <content><![CDATA[# RD validation plan (Fisher-KPP, 1D)
+
+Purpose
+
+- Establish reproducible numeric checks for the RD canonical model:
+
+$$
+u_t = D u_xx + r u (1 - u)
+$$
+
+with front speed 
+
+$$
+c_th = 2√(D r)
+$$
+
+and linear dispersion 
+
+$$
+σ(k) = r - D k²
+$$
+
+Scope
+
+- Tests covered:
+  1) Front-speed validation (pulled front, Fisher-KPP)
+  2) Linear dispersion validation (periodic, linearized evolution)
+
+Canonical scripts
+
+- [rd_front_speed_experiment.py](code/physics/rd_front_speed_experiment.py:1)
+- [rd_front_speed_sweep.py](code/physics/rd_front_speed_sweep.py:1)
+- [rd_dispersion_experiment.py](code/physics/rd_dispersion_experiment.py:1)
+- Status log: [CORRECTIONS.md](CORRECTIONS.md:1)
+
+Output locations
+
+- Figures → derivation/code/outputs/figures/
+- Logs → derivation/code/outputs/logs/
+- Filenames: {script}_{UTC timestamp}.{png,json}
+- Overridable via CLI: --outdir, --figure, --log
+
+Front-speed test
+
+- PDE: 
+
+$$
+∂t u = D ∂xx u + r u (1 - u)
+$$
+
+- Observable: front position $x_f(t)$ at level u = level (default 0.1); gradient-peak x_g(t) for cross-check.
+- Method:
+  - Neumann BCs; smooth step IC with far-field gating (u=0 ahead of the interface), optional left-gated noise.
+  - Track $x_f$ only while a true crossing exists; robust fit of $x_f(t)$ on a late-time fraction window.
+- Defaults: N=1024, L=200, D=1.0, r=0.25, T=80, cfl=0.2, seed=42, x0=-60, level=0.1, fit 0.6-0.9.
+- Theory: 
+
+$$
+c_th = 2√(D r)
+$$
+
+- Acceptance:
+  - $rel\_err = |c\_meas - c\_th| / |c\_th| ≤ 0.05$
+  - $R² ≥ 0.98$
+  - Cross-check: $|c\_meas\_grad - c\_th| / |c\_th| ≲ 0.05$ when available.
+- CLI (PowerShell):
+  - & .\venv\Scripts\Activate.ps1
+  - python code/physics/rd_front_speed_experiment.py --N 1024 --L 200 --D 1.0 --r 0.25 --T 80 --cfl 0.2 --seed 42 --x0 -60 --level 0.1 --fit_start 0.6 --fit_end 0.9
+- Sweep:
+  - python code/physics/rd_front_speed_sweep.py
+
+Dispersion test
+
+- Linearized PDE: 
+
+$$
+u_t = D u_xx + r u
+$$
+
+(periodic BCs)
+
+- Observable: per-mode growth rate $σ_meas(m)$ via linear fit of $log|Û_m(t)|$.
+- Theory:
+  - Discrete:
+  
+$$
+σ_d(m) = r - (4 D / dx²) sin²(π m / N)
+$$
+
+- Continuum reference:
+  
+$$
+σ_c(k) = r - D k², k = 2π m / L
+$$
+
+- Method:
+  - Start from small random noise (amp0 ≪ 1), explicit Euler with diffusion CFL.
+  - Record snapshots; fit on a fraction window away from startup transients.
+- Defaults: N=1024, L=200, D=1.0, r=0.25, T=10, cfl=0.2, seed=42, amp0=1e-6, record=80, m_max=64, fit 0.1-0.4.
+- Acceptance (array-level):
+  - median relative error over good modes $(R²\_mode ≥ 0.95)$: $med\_rel\_err ≤ 0.10$
+  - $R²\_array(measured vs σ\_d) ≥ 0.98$
+- CLI (PowerShell):
+  - & .\venv\Scripts\Activate.ps1
+  - python code/physics/rd_dispersion_experiment.py --N 1024 --L 200 --D 1.0 --r 0.25 --T 10 --cfl 0.2 --seed 42 --amp0 1e-6 --record 80 --m_max 64 --fit_start 0.1 --fit_end 0.4
+
+Reproducibility checklist
+
+- Set seed and record it in logs (scripts do this by default).
+- Confirm output JSON/PNG saved under derivation/code/outputs/{logs,figures}/.
+- Verify acceptance metrics in JSON:
+  - Front speed: metrics.passed = true
+  - Dispersion: metrics.passed = true
+- Keep generated artifacts under version control when passing.
+
+Notes on stability and limits
+
+- Explicit Euler step obeys $dt ≤ cfl · dx²/(2D)$\; scripts compute safe dt.
+- Increase N and/or T to ensure clean linear regime and avoid boundary contamination.
+- For front-speed, keep far-field exactly zero until the front arrives (gating is on by default).
+- For dispersion, keep amplitude small (linear regime); use early-time fit window.
+
+Provenance and tagging
+
+- Front-speed: [PROVEN] in [CORRECTIONS.md](CORRECTIONS.md:1) with representative pass.
+- Dispersion: [PROVEN]; default (N=1024): med_rel_err≈0.00145, R²_array≈0.99995; refinement (N=2048, m_max=128): med_rel_err≈0.00130, R²_array≈0.9928.
+
+Expected artifacts
+
+- Figures:
+  - derivation/code/outputs/figures/rd_front_speed_experiment_<UTC>.png
+  - derivation/code/outputs/figures/rd_dispersion_experiment_<UTC>.png
+- Logs:
+  - derivation/code/outputs/logs/rd_front_speed_experiment_<UTC>.json
+  - derivation/code/outputs/logs/rd_dispersion_experiment_<UTC>.json
+- Optional sweep CSV:
+  - derivation/code/outputs/logs/rd_front_speed_sweep_<UTC>.csv
+
+Open questions / next refinements
+
+- Evaluate sensitivity of c_meas to level choice (0.05-0.2) and fit window; document invariance bands.
+- Compare dispersion fit using windowed DFT vs rFFT magnitude; assess bias for near-zero/negative σ.
+- Add unit tests for σ_d formula and Laplacian implementations.
+- Mirror runners under fum_rt/physics for cross-stack parity.
+
+Appendix: CLI quick refs
+
+- Front speed (PASS example):
+  - python code/physics/rd_front_speed_experiment.py --N 1024 --L 200 --D 1.0 --r 0.25 --T 80 --cfl 0.2 --seed 42 --x0 -60 --level 0.1 --fit_start 0.6 --fit_end 0.9
+- Sweep:
+  - python code/physics/rd_front_speed_sweep.py
+- Dispersion:
+  - python code/physics/rd_dispersion_experiment.py --N 1024 --L 200 --D 1.0 --r 0.25 --T 10 --cfl 0.2 --seed 42 --amp0 1e-6 --record 80 --m_max 64 --fit_start 0.1 --fit_end 0.4
+]]></content>
+    </file>
+  </files>
+</fum_code_report>
