@@ -38,13 +38,15 @@ with explicit physics gates: **J‑Noether drift** bounded, **M‑monotonicity**
 $$
 \dot q = J(q)\,\frac{\delta \mathcal{I}}{\delta q} + M(q)\,\frac{\delta \Sigma}{\delta q},\quad J^\top=-J,\; M^\top = M\succeq 0
 $$
-with degeneracies (J,\delta\Sigma/\delta q=0,; M,\delta\mathcal{I}/\delta q=0). The (J) limb preserves invariants (e.g., discrete Hamiltonian), while (M) increases an entropy/Lyapunov functional (\Sigma) (discrete H‑theorem). VDM’s existing canon documents meters for these properties and composition‑error scaling under Strang splitting.
+with degeneracies $J,\,\delta\Sigma/\delta q=0$ and $M,\,\delta\mathcal{I}/\delta q=0$. The $J$ limb preserves invariants (e.g., discrete Hamiltonian), while $M$ increases an entropy/Lyapunov functional $\Sigma$ (discrete H‑theorem). VDM’s existing canon documents meters for these properties and composition‑error scaling under Strang splitting.
 
-**Governing equations used later.** The validated KG/RD branches and conservation‑law diagnostics provide the measurement substrate for the echo tests; e.g., the discrete action and Lagrangian/Euler–Lagrange structure (for (J)), and gradient‑flow RD updates (for (M)). These appear in the EQUATIONS registry used as the computational “instrument manual.”
+**Governing equations used later.** The validated KG/RD branches and conservation‑law diagnostics provide the measurement substrate for the echo tests; e.g., the discrete action and Lagrangian/Euler–Lagrange structure (for $J$), and gradient‑flow RD updates (for $M$). These appear in the EQUATIONS registry used as the computational “instrument manual.”
+
+**Maturity ladder (T0–T9) in brief.** Tiers track evidence maturity and scope: T0 (Concept) articulates ideas and falsifiers; T1 (Proto‑model) implements the first working toy; T2 (Instrument) certifies meters/instruments; T3 (Smoke) demonstrates phenomena with certified instruments; T4–T6 (Preregistered → Pilot → Main) make formal, preregistered claims with increasing sample and scope; T7–T8 (Out‑of‑sample → Robustness) validate forecasts and parameter sweeps; T9 (Reproduction) is external verification. This document is a T4 preregistration, building on existing T2/T3 artifacts (Noether/H‑theorem meters, Strang QC, scaling collapse) and specifying explicit pass/fail gates and machine‑readable configs. Successful passage promotes follow‑on work to T5 (Pilot) and T7/T8 checks.
 
 **Why this experiment now.** Prior VDM work certified the **meters** (T2): J‑only reversibility and Noether drift, M‑only monotonicity, and Strang‑defect slopes; T3 smoke tests showed scaling collapses and routing discipline. The present T4 proposal upgrades echoes from instrument checks to a **phenomenon test**: whether **internal J/M knowledge** can be operationally exploited to improve a reversible‑attempt under dissipation, **without breaking the gates**.
 
-**Novelty & targets.** The novelty is not the echo sequence itself, but the **gate‑bounded, metriplectic assisted‑echo** and its preregistered metric (CEG). Target findings: (i) statistically robust (\mathrm{CEG}>0) under energy‑matched controls; (ii) zero violations of J‑Noether bounds and M‑monotonicity; (iii) sensitivity map (where assistance pays off most).
+**Novelty & targets.** The novelty is not the echo sequence itself, but the **gate‑bounded, metriplectic assisted‑echo** and its preregistered metric (CEG). Target findings: (i) statistically robust $(\mathrm{CEG}>0)$ under energy‑matched controls; (ii) zero violations of J‑Noether bounds and M‑monotonicity; (iii) sensitivity map (where assistance pays off most).
 
 **Criticisms & responses.**
 *Critique:* “Assistance could cheat by injecting energy.” *Response:* energy‑matching gate.
@@ -63,9 +65,9 @@ with degeneracies (J,\delta\Sigma/\delta q=0,; M,\delta\mathcal{I}/\delta q=0). 
 
 ### 5.1 Experimental Setup and Diagnostics
 
-**State and splits.** Domain (\Omega\subset\mathbb{R}^d) (1D/2D) with field (W) (KG for (J); RD/gradient‑flow for (M)). Discrete action and updates from EQUATIONS registry; canonical constants from CONSTANTS registry.  
+**State and splits.** Domain $\Omega\subset\mathbb{R}^d$ (1D/2D) with field $W$ (KG for $J$; RD/gradient‑flow for $M$). Discrete action and updates from EQUATIONS registry; canonical constants from CONSTANTS registry.  
 
-**Integrator.** Strang JMJ (or MJM as control): symplectic step for (J); discrete‑gradient step for (M). Diagnostics on each limb are enabled during both forward and reverse phases.
+**Integrator.** Strang JMJ (or MJM as control): symplectic step for $J$; discrete‑gradient step for $M$. Diagnostics on each limb are enabled during both forward and reverse phases.
 
 **Primary observable.** Echo error $E \equiv \|q_{\text{final}}-q_0\|_{\mathcal{H}}$ in a declared discrete energy norm $\|\cdot\|_{\mathcal{H}}$ (per VDM discrete Hamiltonian density). CEG as above.
 
@@ -192,16 +194,16 @@ with degeneracies (J,\delta\Sigma/\delta q=0,; M,\delta\mathcal{I}/\delta q=0). 
 ### 5.2 Experimental runplan
 
 **RP‑1 Baseline calibration (meters).**
-Run J‑only reversibility, M‑only monotonicity, and Strang defect slope across the grid; must pass G1–G2–G4 before any assisted runs. (Artifacts posted with same‑basename CSV/JSON and figure captions that include slope/(R^2) and seed/commit.)
+Run J‑only reversibility, M‑only monotonicity, and Strang defect slope across the grid; must pass G1–G2–G4 before any assisted runs. (Artifacts posted with same‑basename CSV/JSON and figure captions that include slope/$R^2$ and seed/commit.)
 
 **RP‑2 Assisted‑echo implementation.**
-Insert a micro‑sequence during the reverse M‑segment using the internal (M) estimator, with assistance parameter $\lambda$ and **energy‑match clamp**. Log assistance work, ensure G3.
+Insert a micro‑sequence during the reverse M‑segment using the internal $M$ estimator, with assistance parameter $\lambda$ and **energy‑match clamp**. Log assistance work, ensure G3.
 
 **RP‑3 Preregistered evaluation.**
 For each grid point and seed: forward JMJ → perturb (“walker” pulse) → reverse. Record $E_{\text{baseline}}$ at $\lambda=0$ and $E_{\text{assisted}}$ for $\lambda>0$. Compute CEG and gate statuses.
 
 **RP‑4 Ablations & controls.**
-Model‑blind assistance (scramble (M) map), J‑scramble, M‑scramble, and MJM ordering as controls; same energy budget, same seeds.
+Model‑blind assistance (scramble $M$ map), J‑scramble, M‑scramble, and MJM ordering as controls; same energy budget, same seeds.
 
 **RP‑5 Publication pipeline.**
 Prepare **RESULTS_CEG_AssistedEcho.md** with TL;DR, gates, tables, figures with numeric captions, and reproducibility manifests (commit/seed). Emit contradiction reports if any gate fails.
