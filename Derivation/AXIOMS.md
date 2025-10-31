@@ -106,7 +106,7 @@ $\partial_t q = J(q)\,\frac{\delta \mathcal I}{\delta q} + M(q)\,\frac{\delta \S
 
 ---
 
-# A8 (Candidate) — Lietz Infinity Resolution
+### A8 (Candidate) — Lietz Infinity Resolution
 
 **Status:** CANDIDATE (awaiting T8 PASS)  
 **Pointer:** Derivation/Proposals/PROPOSAL_T8_A8_Lietz_Infinity_Resolution_v1.md
