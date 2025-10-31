@@ -106,6 +106,19 @@ $\partial_t q = J(q)\,\frac{\delta \mathcal I}{\delta q} + M(q)\,\frac{\delta \S
 
 ---
 
+# A8 (Candidate) — Lietz Infinity Resolution
+
+**Status:** CANDIDATE (awaiting T8 PASS)  
+**Pointer:** Derivation/Proposals/PROPOSAL_T8_A8_Lietz_Infinity_Resolution_v1.md
+
+**Statement (exact):**
+
+In metriplectic scalar-field systems with tachyonic origin $V''(0)<0$ that admit pulled fronts with exponential tails, any finite-excess-energy large-domain trajectory must organize into a finite-depth hierarchical partition with logarithmic depth $N(L)=\Theta(\log(L/\lambda))$, scale-gap separation $\rho\in(\rho_{\min},\rho_{\max})$, and boundary energy/information concentration fractions $\alpha,\alpha_\mathcal{I}>0$.
+
+**Promotion rule:** On PROPOSAL T8 PASS (G1–G8), copy this statement verbatim into `Canon/AXIOMS.md` as **A8**, update status here to **ACCEPTED**, and archive artifacts under `Derivation/code/outputs/axioms/a8_infinity_resolution/`.
+
+---
+
 ## Immediate Corollaries (Used Throughout)
 
 > These are not new axioms; they are direct deductions repeatedly referenced by canon files.
