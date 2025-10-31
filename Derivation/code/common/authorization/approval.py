@@ -85,17 +85,27 @@ DEFAULT_ADMIN_DB_PATH = Path(__file__).resolve().parents[1] / "data" / "approval
 def _repair_db_path(p: Path, code_dir: Path, deriv_dir: Path) -> Path:
     """
     Repair common case-sensitivity/path mistakes for VDM_APPROVAL_DB on case-sensitive filesystems.
-    If 'p' does not exist, try canonical alternatives:
-      - swap 'derivation' ↔ 'Derivation' segment
-      - prefer Derivation/code/common/data/approval.db under repo if present
-    Returns the first existing candidate, else original 'p'.
+
+    Preferences (in order):
+      1) If the provided path exists and contains '/derivation/', prefer the canonical '/Derivation/' twin if it exists.
+      2) If the provided path does not exist, try canonical alternatives:
+         - swap 'derivation' ↔ 'Derivation' segment
+         - prefer Derivation/code/common/data/approval.db under repo if present
+    Returns the first existing candidate that matches these preferences, else the original 'p'.
     """
     try:
-        if p.exists():
-            return p
         s = str(p)
+        if p.exists():
+            # Prefer canonical 'Derivation' if both exist
+            if "/derivation/" in s:
+                twin = Path(s.replace("/derivation/", "/Derivation/"))
+                if twin.exists():
+                    print(f"[authorization] Repair: prefer canonical path {twin} over {p}", file=sys.stderr)
+                    return twin
+            return p
+        # p does not exist; try candidates
         candidates: list[Path] = []
-        # Swap case for the common repository folder
+        # Swap case for the common repository folder (prefer canonical Derivation first)
         if "/derivation/" in s:
             candidates.append(Path(s.replace("/derivation/", "/Derivation/")))
         if "/Derivation/" in s:

@@ -45,6 +45,9 @@ from .approval import (
     ensure_admin_verified,
     set_domain_key,
     set_tag_secret,
+    DEFAULT_DB_PATH,
+    get_admin_db_path,
+    get_approval_db_path,
 )  # type: ignore
 
 
@@ -114,19 +117,20 @@ def main(argv: list[str] | None = None) -> int:
     cmd = args.cmd or "approve"
 
     # Verify admin password in DB before any other DB operation
-    # Resolve DB path: flag > env > default bundled location
-    from .approval import DEFAULT_DB_PATH, get_admin_db_path
+    # Resolve DB path: flag > helper (env/.env w/ repairs) > default bundled location
     dbp: Path
     if args.db_path:
         dbp = Path(args.db_path)
         print(f"[approve_tag] Using approvals DB from --db: {dbp}", file=sys.stderr)
-    elif os.getenv("VDM_APPROVAL_DB"):
-        dbp = Path(os.getenv("VDM_APPROVAL_DB"))
-        print(f"[approve_tag] Using approvals DB from environment VDM_APPROVAL_DB: {dbp}", file=sys.stderr)
     else:
-        # Fall back to default path and create on first use
-        dbp = DEFAULT_DB_PATH
-        print(f"[approve_tag] Using approvals DB at default path: {dbp} (will create if missing)", file=sys.stderr)
+        resolved = get_approval_db_path()
+        if resolved:
+            dbp = resolved
+            print(f"[approve_tag] Using approvals DB resolved by helper: {dbp}", file=sys.stderr)
+        else:
+            # Fall back to default path and create on first use
+            dbp = DEFAULT_DB_PATH
+            print(f"[approve_tag] Using approvals DB at default path: {dbp} (will create if missing)", file=sys.stderr)
     # Determine if this command mutates the approvals DB (requires admin verification)
     write_ops = (
         (cmd in {"approve", "set-domain-key", "set-tag-secret"}) or
