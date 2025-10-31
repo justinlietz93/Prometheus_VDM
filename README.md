@@ -21,7 +21,7 @@
 ## 🔥News
 
 - **October 31, 2025**
-  - Added a T8 grade proposal for a new Axiom candidate as [A8 - Lietz Infinity Conjecture](Derivation/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md) which provides an elegant assumption for how our universe evolved to be how it is from a beginning state to now. It includes the derived rules for how our universe would be structured at hierarchical scales to dissipate away the instabilities of void fluctuations.
+  - Added a T8 grade proposal for a new Axiom candidate as [A8 - Lietz Infinity Conjecture](/Derivation/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md) which provides an elegant assumption for how our universe evolved to be how it is from a beginning state to now. It includes the derived rules for how our universe would be structured at hierarchical scales to dissipate away the instabilities of void fluctuations.
 - **October 30, 2025**  
   - Added a [historical/](/docs/historical) folder including early original work like:
     - A self healing knowledge graph using [Topological Data Analysis](/docs/historical/Emergent_TDA/20250402_TDA_KG_Metrics_ProtocolOutput.md)
