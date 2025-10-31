@@ -1,8 +1,8 @@
-# Physics scripts (derivation/code/physics/{domain}/)
+# Physics scripts (Derivation/code/physics/{domain}/)
 
 Purpose
 
-- Domain-scoped simulation and benchmark scripts. These are the source of truth for producing physics figures and logs under derivation/code/outputs/.
+- Domain-scoped simulation and benchmark scripts. These are the source of truth for producing physics figures and logs under Derivation/code/outputs/.
 
 ## Rules
 
@@ -34,13 +34,13 @@ Purpose
 ## Output routing
 
 - Always use the [io_paths.py](/Derivation/code/common/io_paths.py) helper to handle this.
-- Figures → derivation/code/outputs/figures/{domain}/
-- Logs    → derivation/code/outputs/logs/{domain}/
+- Figures → Derivation/code/outputs/figures/{domain}/
+- Logs    → Derivation/code/outputs/logs/{domain}/
 - Filenames: YYYYMMDD_hhmmss_{experiment name}_{tag}.ext (UTC timestamp)
 
 ## Conventions
 
-- Location: derivation/code/physics/{domain}/*.py
+- Location: Derivation/code/physics/{domain}/*.py
 - Scripts must:
   - Accept reproducible CLI (with seeds where applicable).
   - Emit JSON logs with theory, params, metrics, outputs.figure, timestamp.
@@ -48,7 +48,7 @@ Purpose
   - Record a pass/fail gate in metrics when applicable.
   - Use all helpers that are relevant / required: Derivation/code/common
   - Be approved by Justin K. Lietz, read the authorization README: Derivation/code/common/authorization/README.md
-- Heavy numerics go here; unit tests belong under derivation/code/tests/{domain}/.
+- Heavy numerics go here; unit tests belong under Derivation/code/tests/{domain}/.
 
 ## Examples
 

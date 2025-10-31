@@ -80,7 +80,8 @@ RELATIONS_PATH = REPO_ROOT / "memory-bank" / "MEMORY_GRAPH_CONTEXT" / "relations
 INDEX_PATH = REPO_ROOT / "memory-bank" / "MEMORY_GRAPH_CONTEXT" / "indexes" / "kg-pathrag-index.v1.json"
 
 # Markdown link extraction for PathRAG: [label](relative/path:line)
-RE_MD_LINK = re.compile(r"\\[[^\\]]*\\]\\(([^)]+)\\)")
+# Correct regex (match standard markdown links without literal backslashes)
+RE_MD_LINK = re.compile(r"\[[^\]]*\]\(([^)]+)\)")
 
 def now_iso() -> str:
     return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
@@ -104,7 +105,8 @@ def normalize_path(p: str) -> str:
     # Accept "VDM_Nexus/scripts/approval_cli.py:1" and strip ":line"
     base = p.split(":", 1)[0].strip()
     # Normalize separators and lowercase for index keys (case-insensitive)
-    return str(Path(base)).replace("\\\\", "/").lower()
+    # Replace single backslashes (Windows-style) with forward slashes
+    return str(Path(base)).replace("\\", "/").lower()
 
 def segments_for(p_norm: str) -> List[str]:
     return [seg for seg in p_norm.split("/") if seg]
@@ -448,6 +450,33 @@ def main(argv: List[str]) -> int:
     pr_search.add_argument("--path", required=True, help="Path (repo-relative substring ok)")
     pr_search.add_argument("--json", action="store_true")
     pr_search.set_defaults(func=cmd_pathrag_search)
+
+    # chunk build (wrapper over kg_lite_chunker.py)
+    ch = sub.add_parser("chunk", help="Build KG-Lite chunked dataset (branches + parent index)")
+    ch_sub = ch.add_subparsers(dest="op", required=True)
+    ch_build = ch_sub.add_parser("build", help="Emit chunked dataset from a flat graph JSON")
+    ch_build.add_argument("--input", required=False, default=str(REPO_ROOT / "memory-bank" / "MEMORY_GRAPH_CONTEXT" / "justin-graph.json"), help="Flat graph JSON (meta/nodes/edges)")
+    ch_build.add_argument("--out-root", required=False, default=str(REPO_ROOT / "memory-bank" / "MEMORY_GRAPH_CONTEXT"), help="Output root for dataset directory")
+    ch_build.add_argument("--no-policy", action="store_true", help="Do not output retrieval_policy chunk")
+
+    def _cmd_chunk_build(args: argparse.Namespace) -> int:
+        try:
+            # local import to avoid hard dependency when not used
+            from kg_lite_chunker import chunk_graph  # type: ignore
+        except Exception as e:
+            print(f"KG: failed to import chunker: {e}", file=sys.stderr)
+            return 2
+        inp = Path(args.input)
+        out = Path(args.out_root)
+        try:
+            summary = chunk_graph(inp, out, include_retrieval_policy=(not args.no_policy))
+            print(json.dumps({"ok": True, "summary": summary}, indent=2, sort_keys=True))
+            return 0
+        except Exception as e:
+            print(json.dumps({"ok": False, "error": str(e)}, indent=2, sort_keys=True))
+            return 3
+
+    ch_build.set_defaults(func=_cmd_chunk_build)
 
     args = ap.parse_args(argv)
     return args.func(args)

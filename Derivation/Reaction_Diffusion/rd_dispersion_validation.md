@@ -40,8 +40,8 @@ Method
 Output routing and naming
 
 - Defaults:
-  - Figures → derivation/code/outputs/figures/
-  - Logs → derivation/code/outputs/logs/
+  - Figures → Derivation/code/outputs/figures/
+  - Logs → Derivation/code/outputs/logs/
 - Filenames: script_name_YYYYMMDDThhmmssZ.ext (UTC timestamp)
 - Overridable via CLI: --outdir, --figure, --log
 

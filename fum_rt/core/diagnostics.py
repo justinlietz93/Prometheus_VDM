@@ -12,10 +12,10 @@ This module provides:
 - Pulse-speed (group velocity) estimation from time-resolved activity
 
 References:
-- [derivation/discrete_to_continuum.md](derivation/discrete_to_continuum.md:125-193)
-- [derivation/kinetic_term_derivation.md](derivation/kinetic_term_derivation.md:117-134)
-- [derivation/finite_tube_mode_analysis.md](derivation/finite_tube_mode_analysis.md:1)
-- [derivation/fum_voxtrium_mapping.md](derivation/fum_voxtrium_mapping.md:44-121)
+- [Derivation/discrete_to_continuum.md](Derivation/discrete_to_continuum.md:125-193)
+- [Derivation/kinetic_term_derivation.md](Derivation/kinetic_term_derivation.md:117-134)
+- [Derivation/finite_tube_mode_analysis.md](Derivation/finite_tube_mode_analysis.md:1)
+- [Derivation/fum_voxtrium_mapping.md](Derivation/fum_voxtrium_mapping.md:44-121)
 
 Conventions:
 - We treat graph shortest-path distance (in hops) as the discrete spatial metric r
@@ -23,7 +23,7 @@ Conventions:
 - The continuum prediction for the static two-point correlator is
   C(r) ~ exp(-r / xi) with mass gap m_eff = 1 / xi (dimensionless units).
 - The wave speed c enters the EOM via c^2 = 2 J a^2 (per-site convention), see
-  [derivation/kinetic_term_derivation.md](derivation/kinetic_term_derivation.md:117-134).
+  [Derivation/kinetic_term_derivation.md](Derivation/kinetic_term_derivation.md:117-134).
   We estimate an effective group velocity v_g from an expanding activity front.
 
 Author: Justin K. Lietz

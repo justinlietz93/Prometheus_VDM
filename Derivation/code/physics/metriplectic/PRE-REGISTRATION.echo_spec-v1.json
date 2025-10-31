@@ -1,0 +1,41 @@
+{
+  "proposal_title": "CEG Assisted-Echo",
+  "tier_grade": "T4",
+  "commit": "80ee5476e4f887fed3c34534a99daa878f55382f",
+  "salted_provenance": {
+    "schema": "vdm.provenance.salted_hash.v1",
+    "generated_utc": "2025-10-30T16:49:47.201492Z",
+    "salt_bytes": 16,
+    "single_salt": true,
+    "salt_hex": "aff7a0cb80e8d430873bc504be978525",
+    "items": [
+      {
+        "path": "Derivation/code/physics/metriplectic/specs/assisted_echo.v1.json",
+        "size": 274,
+        "base_sha256": "40917004b65550b10dd89dcaeef43df9191ddb2d2f08656bb9c1e37a7372116d",
+        "salt_hex": "aff7a0cb80e8d430873bc504be978525",
+        "salted_sha256": "7cb47d741d087a65fc5f9eeb73c599904702ba199c101b81ae1954658fc51029"
+      }
+    ]
+  },
+  "contact": ["Justin K. Lietz <justin@neuroca.ai>"],
+  "hypotheses": [
+    {
+      "id": "H1",
+      "statement": "Median CEG >= 0.05 with G1–G4 gates passing on >=80% of prereg grid points.",
+      "direction": "increase"
+    }
+  ],
+  "variables": {
+    "independent": ["N", "dt", "split", "lambda"],
+    "dependent": ["CEG"],
+    "controls": ["energy_match", "seed"]
+  },
+  "pass_fail": [
+    { "metric": "CEG_median", "operator": ">=", "threshold": 0.05, "unit": "dimensionless" }
+  ],
+  "spec_refs": [
+    "Derivation/code/physics/metriplectic/specs/assisted_echo.v1.json"
+  ],
+  "registration_timestamp": "2025-10-30T16:49:47.201492Z"
+}

@@ -1,8 +1,8 @@
-**Create/Update `derivation/OPEN_QUESTIONS.md` (MathJax-friendly, speculation-only, references-required)**
+**Create/Update `Derivation/OPEN_QUESTIONS.md` (MathJax-friendly, speculation-only, references-required)**
 
 Search the entire repository (code, tests, notebooks, docs, comments, configs, experiment logs, Issues/PRs if mirrored in the repo) and compile **only the questions, hypotheses, uncertainties, and “future work” items that actually exist**. **Do not invent new questions or rewrite meaning.** Use only what’s in the repo.
 
-**Output file:** `derivation/OPEN_QUESTIONS.md`
+**Output file:** `Derivation/OPEN_QUESTIONS.md`
 **Canon rule:** This file is the single owner of **speculative/working questions**. It must **not** redefine symbols, equations, or values-link to the canonical files.
 
 **MathJax on GitHub:**
@@ -48,13 +48,13 @@ Search in: code comments, markdown/docs, notebooks, experiment notes, embedded l
 
 **Why it matters (lifted):** <one line copied/condensed from source>  
 **Related canon (anchors only):**  
-- Equations: `../derivation/EQUATIONS.md#vdm-e-...`  
-- Symbols: `../derivation/SYMBOLS.md#sym-...`  
-- Constants: `../derivation/CONSTANTS.md#const-...`  
-- Units: `../derivation/UNITS_NORMALIZATION.md#...`  
-- Algorithms: `../derivation/ALGORITHMS.md#vdm-a-...`  
-- BC/IC/Geometry: `../derivation/BC_IC_GEOMETRY.md#...`  
-- Metrics: `../derivation/VALIDATION_METRICS.md#kpi-...`
+- Equations: `../Derivation/EQUATIONS.md#vdm-e-...`  
+- Symbols: `../Derivation/SYMBOLS.md#sym-...`  
+- Constants: `../Derivation/CONSTANTS.md#const-...`  
+- Units: `../Derivation/UNITS_NORMALIZATION.md#...`  
+- Algorithms: `../Derivation/ALGORITHMS.md#vdm-a-...`  
+- BC/IC/Geometry: `../Derivation/BC_IC_GEOMETRY.md#...`  
+- Metrics: `../Derivation/VALIDATION_METRICS.md#kpi-...`
 
 **Evidence so far:** <bullet list of cited files/figures/tests; link to `DATA_PRODUCTS.md#data-...` if applicable>  
 **Proposed experiment/proof (if present in repo):** <lifted bullet(s) with links; no new steps>  

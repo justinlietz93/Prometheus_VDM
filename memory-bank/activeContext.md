@@ -2,7 +2,7 @@
 
 ## Current Goals
 
-- Tier 1: Validating Metriplectic Core (T4) — Running Preflight Metriplectic Split Certification (J-only reversal/Noether, M-only H-theorem, A4 J skew & M PSD, Strang slope) per PRIVATE/TODO_CHECKLIST.md.
+- Current focus: CEG (Metriplectic Assisted‑Echo) T4 experiment. Avoid Qualia T3 edits; do not touch approvals (human-only). Ensure prereg/spec/runner alignment and enable preflight → approval → main run flow.
 
 ## Current Focus — Nexus desktop build (2025-10-27 10:03:00)
 

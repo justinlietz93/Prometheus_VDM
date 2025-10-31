@@ -48,7 +48,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### OQ-001 - Formal Lyapunov functional for RD logistic-diffusion flow  <a id="oq-001"></a>
 
 **Status:** Open  •  **Priority:** P2  •  **Owner:** -  
-**Context:** derivation/foundations/continuum_stack.md:85 • 8321c50
+**Context:** Derivation/foundations/continuum_stack.md:85 • 8321c50
 
 > Formal Lyapunov functional for the RD logistic‑diffusion flow on bounded domains. [NEEDS DATA]
 
@@ -62,9 +62,9 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Evidence so far:**
 
-- RD front speed validated (rel_err ≈ 0.047, R² ≈ 0.999996) per derivation/reaction_diffusion/rd_front_speed_validation.md
-- RD dispersion validated (rel_err ≈ 1.45×10⁻³, R² ≈ 0.99995) per derivation/reaction_diffusion/rd_dispersion_validation.md
-- Global positivity preserved for nonnegative initial data [PLAUSIBLE] per derivation/foundations/continuum_stack.md:62
+- RD front speed validated (rel_err ≈ 0.047, R² ≈ 0.999996) per Derivation/reaction_diffusion/rd_front_speed_validation.md
+- RD dispersion validated (rel_err ≈ 1.45×10⁻³, R² ≈ 0.99995) per Derivation/reaction_diffusion/rd_dispersion_validation.md
+- Global positivity preserved for nonnegative initial data [PLAUSIBLE] per Derivation/foundations/continuum_stack.md:62
 
 **Proposed experiment/proof (if present in repo):** -  
 **Blockers/Dependencies:** Formal analysis tools for nonlinear PDEs  
@@ -75,7 +75,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### OQ-002 - Quantitative criteria for second-order EFT branch necessity  <a id="oq-002"></a>
 
 **Status:** Open  •  **Priority:** P3  •  **Owner:** -  
-**Context:** derivation/foundations/continuum_stack.md:86 • 8321c50
+**Context:** Derivation/foundations/continuum_stack.md:86 • 8321c50
 
 > Quantitative criteria for when a second‑order EFT branch becomes necessary. [PLAUSIBLE]
 
@@ -88,13 +88,13 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Evidence so far:**
 
-- RD branch [PROVEN, canonical] per derivation/foundations/continuum_stack.md:35
-- EFT/KG branch [PLAUSIBLE, quarantined] per derivation/foundations/continuum_stack.md:38
-- EFT branch retained for future work per derivation/VDM_Overview.md:48
+- RD branch [PROVEN, canonical] per Derivation/foundations/continuum_stack.md:35
+- EFT/KG branch [PLAUSIBLE, quarantined] per Derivation/foundations/continuum_stack.md:38
+- EFT branch retained for future work per Derivation/VDM_Overview.md:48
 
 **Proposed experiment/proof (if present in repo):**
 
-- Maintained as future work in derivation/effective_field_theory/effective_field_theory_approach.md per derivation/foundations/discrete_to_continuum.md:12
+- Maintained as future work in Derivation/effective_field_theory/effective_field_theory_approach.md per Derivation/foundations/discrete_to_continuum.md:12
 
 **Blockers/Dependencies:** Scale separation analysis, fast transient characterization  
 **Next action (if stated):** -
@@ -104,7 +104,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### OQ-014 - Recast discrete model into discrete action  <a id="oq-014"></a>
 
 **Status:** Open  •  **Priority:** P2  •  **Owner:** -  
-**Context:** derivation/foundations/void_dynamics_theory.md:20 • 8321c50
+**Context:** Derivation/foundations/void_dynamics_theory.md:20 • 8321c50
 
 > The discrete model should be recast into a discrete action and taken to the continuum via a variational limit so that the $\partial_t^2$ term appears from first principles rather than assumption.
 
@@ -112,17 +112,17 @@ Last updated: 2025-10-09 (commit 09f871a)
 **Related canon (anchors only):**  
 
 - Equations: `EQUATIONS.md#vdm-e-010` (Klein-Gordon form)
-- Algorithms: TODO: add anchor (see derivation/effective_field_theory/kinetic_term_derivation.md)
+- Algorithms: TODO: add anchor (see Derivation/effective_field_theory/kinetic_term_derivation.md)
 
 **Evidence so far:**
 
-- Gap closed via discrete action with wave speed $c^2 = 2 J a^2$ per derivation/foundations/void_dynamics_theory.md:1
-- Earlier drafts promoted first-order to second-order per derivation/foundations/void_dynamics_theory.md:20
-- Bordag reference: kinetic form arises from action mode reduction per derivation/foundations/void_dynamics_theory.md:20
+- Gap closed via discrete action with wave speed $c^2 = 2 J a^2$ per Derivation/foundations/void_dynamics_theory.md:1
+- Earlier drafts promoted first-order to second-order per Derivation/foundations/void_dynamics_theory.md:20
+- Bordag reference: kinetic form arises from action mode reduction per Derivation/foundations/void_dynamics_theory.md:20
 
 **Proposed experiment/proof (if present in repo):**
 
-- See derivation/effective_field_theory/kinetic_term_derivation.md:78
+- See Derivation/effective_field_theory/kinetic_term_derivation.md:78
 
 **Blockers/Dependencies:** Variational calculus framework for discrete systems  
 **Next action (if stated):** -
@@ -132,7 +132,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### OQ-015 - Derive kinetic normalization from discrete action  <a id="oq-015"></a>
 
 **Status:** Open  •  **Priority:** P2  •  **Owner:** -  
-**Context:** derivation/foundations/void_dynamics_theory.md:23 • 8321c50
+**Context:** Derivation/foundations/void_dynamics_theory.md:23 • 8321c50
 
 > The spatial prefactor should be extracted explicitly from $\sum J(W_j-W_i)^2$ (compute the exact coefficient of $(\nabla\phi)^2$, not merely proportionality).
 
@@ -145,8 +145,8 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Evidence so far:**
 
-- Temporal term $\frac{1}{2}(\partial_t\phi)^2$ follows from discrete kinetic energy with $Z(\phi)=\frac{1}{2}$ per derivation/foundations/void_dynamics_theory.md:23
-- Bordag: canonical normalization fixed at Lagrangian level per derivation/foundations/void_dynamics_theory.md:23
+- Temporal term $\frac{1}{2}(\partial_t\phi)^2$ follows from discrete kinetic energy with $Z(\phi)=\frac{1}{2}$ per Derivation/foundations/void_dynamics_theory.md:23
+- Bordag: canonical normalization fixed at Lagrangian level per Derivation/foundations/void_dynamics_theory.md:23
 
 **Proposed experiment/proof (if present in repo):** -  
 **Blockers/Dependencies:** Discrete-to-continuum expansion tools  
@@ -157,7 +157,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### OQ-016 - Front speed sensitivity to level choice and fit window  <a id="oq-016"></a>
 
 **Status:** Open  •  **Priority:** P3  •  **Owner:** -  
-**Context:** derivation/reaction_diffusion/rd_validation_plan.md:88 • 8321c50
+**Context:** Derivation/reaction_diffusion/rd_validation_plan.md:88 • 8321c50
 
 > Evaluate sensitivity of c_meas to level choice (0.05-0.2) and fit window; document invariance bands.
 
@@ -169,12 +169,12 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Evidence so far:**
 
-- Front speed validated with rel_err ≈ 0.047, R² ≈ 0.999996 per derivation/reaction_diffusion/rd_front_speed_validation.md
-- CLI example provided in derivation/reaction_diffusion/rd_validation_plan.md:94
+- Front speed validated with rel_err ≈ 0.047, R² ≈ 0.999996 per Derivation/reaction_diffusion/rd_front_speed_validation.md
+- CLI example provided in Derivation/reaction_diffusion/rd_validation_plan.md:94
 
 **Proposed experiment/proof (if present in repo):**
 
-- Run sensitivity sweep per derivation/reaction_diffusion/rd_validation_plan.md:88
+- Run sensitivity sweep per Derivation/reaction_diffusion/rd_validation_plan.md:88
 
 **Blockers/Dependencies:** -  
 **Next action (if stated):** Document invariance bands
@@ -184,7 +184,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### OQ-017 - Dispersion fit method comparison (windowed DFT vs rFFT)  <a id="oq-017"></a>
 
 **Status:** Open  •  **Priority:** P3  •  **Owner:** -  
-**Context:** derivation/reaction_diffusion/rd_validation_plan.md:89 • 8321c50
+**Context:** Derivation/reaction_diffusion/rd_validation_plan.md:89 • 8321c50
 
 > Compare dispersion fit using windowed DFT vs rFFT magnitude; assess bias for near-zero/negative σ.
 
@@ -196,11 +196,11 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Evidence so far:**
 
-- Dispersion validated with median rel. error ≈ 1.45×10⁻³, R² ≈ 0.99995 per derivation/reaction_diffusion/rd_dispersion_validation.md
+- Dispersion validated with median rel. error ≈ 1.45×10⁻³, R² ≈ 0.99995 per Derivation/reaction_diffusion/rd_dispersion_validation.md
 
 **Proposed experiment/proof (if present in repo):**
 
-- Method comparison per derivation/reaction_diffusion/rd_validation_plan.md:89
+- Method comparison per Derivation/reaction_diffusion/rd_validation_plan.md:89
 
 **Blockers/Dependencies:** -  
 **Next action (if stated):** Assess bias for edge cases
@@ -212,7 +212,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### OQ-003 - Coupling memory-steering overlays to RD baseline  <a id="oq-003"></a>
 
 **Status:** Open  •  **Priority:** P2  •  **Owner:** -  
-**Context:** derivation/foundations/continuum_stack.md:87 • 8321c50
+**Context:** Derivation/foundations/continuum_stack.md:87 • 8321c50
 
 > Coupling of memory‑steering overlays to the RD baseline; see memory_steering.md. [PLAUSIBLE]
 
@@ -220,16 +220,16 @@ Last updated: 2025-10-09 (commit 09f871a)
 **Related canon (anchors only):**  
 
 - Equations: `EQUATIONS.md#vdm-e-008` (RD on-site)
-- Algorithms: TODO: add anchor (see derivation/memory_steering/memory_steering.md)
+- Algorithms: TODO: add anchor (see Derivation/memory_steering/memory_steering.md)
 
 **Evidence so far:**
 
-- Memory-steering acceptance tests defined in derivation/memory_steering/memory_steering_acceptance_verification.md
-- Status [PLAUSIBLE→PROVEN] gate per derivation/memory_steering/memory_steering_acceptance_verification.md:3
+- Memory-steering acceptance tests defined in Derivation/memory_steering/memory_steering_acceptance_verification.md
+- Status [PLAUSIBLE→PROVEN] gate per Derivation/memory_steering/memory_steering_acceptance_verification.md:3
 
 **Proposed experiment/proof (if present in repo):**
 
-- Run acceptance harness per derivation/memory_steering/memory_steering_acceptance_verification.md:102-105
+- Run acceptance harness per Derivation/memory_steering/memory_steering_acceptance_verification.md:102-105
 
 **Blockers/Dependencies:** Bridge harness into LBM, RD, walkers  
 **Next action (if stated):** Demonstrate non-interference and bounded effect per OQ-005
@@ -239,7 +239,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### OQ-004 - Memory-steering update formula verification  <a id="oq-004"></a>
 
 **Status:** Open  •  **Priority:** P1  •  **Owner:** -  
-**Context:** derivation/memory_steering/memory_steering_acceptance_verification.md:95 • 8321c50
+**Context:** Derivation/memory_steering/memory_steering_acceptance_verification.md:95 • 8321c50
 
 > If the actual memory-steering update differs (nonlinear dependence or adaptive control), provide the exact formula or implementation path + lines so we can update p_pred, M*, and Lyapunov claims.
 
@@ -251,11 +251,11 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Evidence so far:**
 
-- Pending validation per derivation/memory_steering/memory_steering_acceptance_verification.md:92
+- Pending validation per Derivation/memory_steering/memory_steering_acceptance_verification.md:92
 
 **Proposed experiment/proof (if present in repo):**
 
-- Run harness and compare to model per derivation/memory_steering/memory_steering_acceptance_verification.md:73
+- Run harness and compare to model per Derivation/memory_steering/memory_steering_acceptance_verification.md:73
 
 **Blockers/Dependencies:** Implementation path specification  
 **Next action (if stated):** Provide exact formula or implementation reference
@@ -265,7 +265,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### OQ-005 - Bridge memory-steering into host systems (LBM, RD, walkers)  <a id="oq-005"></a>
 
 **Status:** Open  •  **Priority:** P1  •  **Owner:** -  
-**Context:** derivation/memory_steering/memory_steering_acceptance_verification.md:96-98 • 8321c50
+**Context:** Derivation/memory_steering/memory_steering_acceptance_verification.md:96-98 • 8321c50
 
 > Bridge into host systems (LBM, RD, walkers) to demonstrate:
 >
@@ -280,11 +280,11 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Evidence so far:**
 
-- Acceptance criteria defined in derivation/memory_steering/memory_steering_acceptance_verification.md:55-73
+- Acceptance criteria defined in Derivation/memory_steering/memory_steering_acceptance_verification.md:55-73
 
 **Proposed experiment/proof (if present in repo):**
 
-- Bridge harness implementation per derivation/memory_steering/memory_steering_acceptance_verification.md:67
+- Bridge harness implementation per Derivation/memory_steering/memory_steering_acceptance_verification.md:67
 
 **Blockers/Dependencies:** Host system integration points  
 **Next action (if stated):** Implement bridge harness and run tests
@@ -294,7 +294,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### OQ-006 - Optional empirical Bode plot for memory-steering  <a id="oq-006"></a>
 
 **Status:** Open  •  **Priority:** P3  •  **Owner:** -  
-**Context:** derivation/memory_steering/memory_steering_acceptance_verification.md:99 • 8321c50
+**Context:** Derivation/memory_steering/memory_steering_acceptance_verification.md:99 • 8321c50
 
 > Optional: empirical Bode plot (frequency response) for completeness.
 
@@ -313,7 +313,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### OQ-007 - Replace divergence proxies with Jacobian-trace estimators  <a id="oq-007"></a>
 
 **Status:** Open  •  **Priority:** P2  •  **Owner:** -  
-**Context:** derivation/memory_steering/void_announcers_control.md:76 • 8321c50
+**Context:** Derivation/memory_steering/void_announcers_control.md:76 • 8321c50
 
 > Replace proxies with principled Jacobian-trace estimators per layer for divergence analog.
 
@@ -325,7 +325,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Evidence so far:**
 
-- Proxy implementation exists per derivation/memory_steering/void_announcers_control.md
+- Proxy implementation exists per Derivation/memory_steering/void_announcers_control.md
 
 **Proposed experiment/proof (if present in repo):** -  
 **Blockers/Dependencies:** Efficient Jacobian-trace estimation methods  
@@ -336,7 +336,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### OQ-008 - Define true graph vorticity via cycle decomposition  <a id="oq-008"></a>
 
 **Status:** Open  •  **Priority:** P2  •  **Owner:** -  
-**Context:** derivation/memory_steering/void_announcers_control.md:77 • 8321c50
+**Context:** Derivation/memory_steering/void_announcers_control.md:77 • 8321c50
 
 > Define a true graph vorticity via cycle decomposition on neuron-feature graphs.
 
@@ -348,7 +348,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Evidence so far:**
 
-- Graph-based walker framework per derivation/memory_steering/void_announcers_control.md
+- Graph-based walker framework per Derivation/memory_steering/void_announcers_control.md
 
 **Proposed experiment/proof (if present in repo):** -  
 **Blockers/Dependencies:** Graph cycle decomposition algorithms  
@@ -359,7 +359,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### OQ-009 - Couple universal void dynamics W as reporter per neuron  <a id="oq-009"></a>
 
 **Status:** Open  •  **Priority:** P2  •  **Owner:** -  
-**Context:** derivation/memory_steering/void_announcers_control.md:78 • 8321c50
+**Context:** Derivation/memory_steering/void_announcers_control.md:78 • 8321c50
 
 > Couple universal void dynamics W as a reporter per neuron and test whether W̄→0.6 correlates with reduced D_void.
 
@@ -372,11 +372,11 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Evidence so far:**
 
-- 0.6 weight observation per derivation/fluid_dynamics/DELETE_AFTER_SOLVING/DELETE_AFTER_SOLVING.md:318
+- 0.6 weight observation per Derivation/fluid_dynamics/DELETE_AFTER_SOLVING/DELETE_AFTER_SOLVING.md:318
 
 **Proposed experiment/proof (if present in repo):**
 
-- Test correlation per derivation/memory_steering/void_announcers_control.md:78
+- Test correlation per Derivation/memory_steering/void_announcers_control.md:78
 
 **Blockers/Dependencies:** Per-neuron W implementation  
 **Next action (if stated):** Implement and test correlation
@@ -386,7 +386,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### OQ-010 - Extend walkers to attention graphs (token-head-position)  <a id="oq-010"></a>
 
 **Status:** Open  •  **Priority:** P3  •  **Owner:** -  
-**Context:** derivation/memory_steering/void_announcers_control.md:79 • 8321c50
+**Context:** Derivation/memory_steering/void_announcers_control.md:79 • 8321c50
 
 > Extend to attention: walkers hop on token-head-position graphs with saliency S∝|A|·|V|.
 
@@ -398,7 +398,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Evidence so far:**
 
-- Walker framework for fluids exists per derivation/memory_steering/void_announcers_control.md:87
+- Walker framework for fluids exists per Derivation/memory_steering/void_announcers_control.md:87
 
 **Proposed experiment/proof (if present in repo):** -  
 **Blockers/Dependencies:** Attention graph construction  
@@ -423,7 +423,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### OQ-021 - VDM-fluids corner testbed implementation  <a id="oq-021"></a>
 
 **Status:** Open  •  **Priority:** P1  •  **Owner:** -  
-**Context:** derivation/fluid_dynamics/DELETE_AFTER_SOLVING/DELETE_AFTER_SOLVING.md:1-359 • 8321c50
+**Context:** Derivation/fluid_dynamics/DELETE_AFTER_SOLVING/DELETE_AFTER_SOLVING.md:1-359 • 8321c50
 
 > **Block 1 - Canonical equations for VDM‑fluids (90 min)**
 > **Goal:** Pin down the *minimal* pair of PDEs you'll use in figures and logs this week.
@@ -437,24 +437,24 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Evidence so far:**
 
-- Detailed specification in derivation/fluid_dynamics/DELETE_AFTER_SOLVING/DELETE_AFTER_SOLVING.md:1-359
-- Parameter table and geometry provided per derivation/fluid_dynamics/DELETE_AFTER_SOLVING/DELETE_AFTER_SOLVING.md:164-191
+- Detailed specification in Derivation/fluid_dynamics/DELETE_AFTER_SOLVING/DELETE_AFTER_SOLVING.md:1-359
+- Parameter table and geometry provided per Derivation/fluid_dynamics/DELETE_AFTER_SOLVING/DELETE_AFTER_SOLVING.md:164-191
 
 **Proposed experiment/proof (if present in repo):**
 
-- Geometry sweep: $r_c = \{0, 0.02, 0.05, 0.10\}H$ baseline and VDM per derivation/fluid_dynamics/DELETE_AFTER_SOLVING/DELETE_AFTER_SOLVING.md:133-136
-- VDM ablation: $r_c=0$, vary $\beta \in \{0.0,0.3,0.6,0.9\}$ per derivation/fluid_dynamics/DELETE_AFTER_SOLVING/DELETE_AFTER_SOLVING.md:135
-- Plot max speed vs corner parameter and side-by-side snapshots per derivation/fluid_dynamics/DELETE_AFTER_SOLVING/DELETE_AFTER_SOLVING.md:143-149
+- Geometry sweep: $r_c = \{0, 0.02, 0.05, 0.10\}H$ baseline and VDM per Derivation/fluid_dynamics/DELETE_AFTER_SOLVING/DELETE_AFTER_SOLVING.md:133-136
+- VDM ablation: $r_c=0$, vary $\beta \in \{0.0,0.3,0.6,0.9\}$ per Derivation/fluid_dynamics/DELETE_AFTER_SOLVING/DELETE_AFTER_SOLVING.md:135
+- Plot max speed vs corner parameter and side-by-side snapshots per Derivation/fluid_dynamics/DELETE_AFTER_SOLVING/DELETE_AFTER_SOLVING.md:143-149
 
 **Blockers/Dependencies:** Implementation of VDM-regularized solver  
-**Next action (if stated):** Implement corner testbed and produce figures per derivation/fluid_dynamics/DELETE_AFTER_SOLVING/DELETE_AFTER_SOLVING.md:354-359
+**Next action (if stated):** Implement corner testbed and produce figures per Derivation/fluid_dynamics/DELETE_AFTER_SOLVING/DELETE_AFTER_SOLVING.md:354-359
 
 ---
 
 #### OQ-022 - Canonical equations for VDM-fluids (RD + hyperbolic + VDM)  <a id="oq-022"></a>
 
 **Status:** Open  •  **Priority:** P1  •  **Owner:** -  
-**Context:** derivation/fluid_dynamics/DELETE_AFTER_SOLVING/DELETE_AFTER_SOLVING.md:4-29 • 8321c50
+**Context:** Derivation/fluid_dynamics/DELETE_AFTER_SOLVING/DELETE_AFTER_SOLVING.md:4-29 • 8321c50
 
 > **Deliverable:** a one‑pager (math only) containing:
 >
@@ -473,13 +473,13 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Evidence so far:**
 
-- Math specification in derivation/fluid_dynamics/DELETE_AFTER_SOLVING/DELETE_AFTER_SOLVING.md:9-28
-- Void-faithful fix without geometry changes per derivation/fluid_dynamics/DELETE_AFTER_SOLVING/DELETE_AFTER_SOLVING.md:294-316
-- 0.6 weight observation maps to $\beta$ per derivation/fluid_dynamics/DELETE_AFTER_SOLVING/DELETE_AFTER_SOLVING.md:318-320
+- Math specification in Derivation/fluid_dynamics/DELETE_AFTER_SOLVING/DELETE_AFTER_SOLVING.md:9-28
+- Void-faithful fix without geometry changes per Derivation/fluid_dynamics/DELETE_AFTER_SOLVING/DELETE_AFTER_SOLVING.md:294-316
+- 0.6 weight observation maps to $\beta$ per Derivation/fluid_dynamics/DELETE_AFTER_SOLVING/DELETE_AFTER_SOLVING.md:318-320
 
 **Proposed experiment/proof (if present in repo):**
 
-- Write one-page canonical equations per derivation/fluid_dynamics/DELETE_AFTER_SOLVING/DELETE_AFTER_SOLVING.md:29
+- Write one-page canonical equations per Derivation/fluid_dynamics/DELETE_AFTER_SOLVING/DELETE_AFTER_SOLVING.md:29
 
 **Blockers/Dependencies:** -  
 **Next action (if stated):** Write and commit canonical equations page
@@ -491,7 +491,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### OQ-011 - Discover true conserved quantity of FUM  <a id="oq-011"></a>
 
 **Status:** Open  •  **Priority:** P1  •  **Owner:** -  
-**Context:** derivation/conservation_law/discrete_conservation.md:175, 183-205 • 8321c50
+**Context:** Derivation/conservation_law/discrete_conservation.md:175, 183-205 • 8321c50
 
 > This negative result is exceptionally valuable, as it closes a simple avenue and directs our research toward a more fundamental question. The next phase of work is no longer to test a guessed quantity, but to **discover the true conserved quantity** of the FUM.
 
@@ -503,12 +503,12 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Evidence so far:**
 
-- Standard Hamiltonian $\mathcal{H} = \mathcal{K} + \mathcal{V} + \mathcal{I}$ proven non-conserved per derivation/conservation_law/discrete_conservation.md:169-173
-- Rigorous derivation showing $\Delta \mathcal{H} / \Delta t \neq 0$ per derivation/conservation_law/discrete_conservation.md:149-150
+- Standard Hamiltonian $\mathcal{H} = \mathcal{K} + \mathcal{V} + \mathcal{I}$ proven non-conserved per Derivation/conservation_law/discrete_conservation.md:169-173
+- Rigorous derivation showing $\Delta \mathcal{H} / \Delta t \neq 0$ per Derivation/conservation_law/discrete_conservation.md:149-150
 
 **Proposed experiment/proof (if present in repo):**
 
-- Method 1: Direct algebraic construction per derivation/conservation_law/discrete_conservation.md:191-192
+- Method 1: Direct algebraic construction per Derivation/conservation_law/discrete_conservation.md:191-192
 - Method 2: Symmetry via Noether's Theorem per OQ-012
 - Method 3: Information-theoretic quantities per OQ-013
 
@@ -520,7 +520,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### OQ-012 - Symmetry analysis via Noether's Theorem  <a id="oq-012"></a>
 
 **Status:** Open  •  **Priority:** P1  •  **Owner:** -  
-**Context:** derivation/conservation_law/discrete_conservation.md:176, 194-196 • 8321c50
+**Context:** Derivation/conservation_law/discrete_conservation.md:176, 194-196 • 8321c50
 
 > **Symmetry Analysis (Noether's Theorem):** Investigate the FUM update rule for continuous symmetries. Any identified symmetry will guarantee a corresponding conserved quantity, which would be the "true" Hamiltonian or constant of motion.
 
@@ -528,17 +528,17 @@ Last updated: 2025-10-09 (commit 09f871a)
 **Related canon (anchors only):**  
 
 - Algorithms: TODO: add anchor for FUM update rule
-- See also: derivation/foundations/symmetry_analysis.md:151 (logarithmic conservation law found)
+- See also: Derivation/foundations/symmetry_analysis.md:151 (logarithmic conservation law found)
 
 **Evidence so far:**
 
-- FUM lacks simple translational or scaling symmetries per derivation/conservation_law/discrete_conservation.md:195
-- Hidden conservation law found: logarithmic relationship between state W and time t per derivation/foundations/symmetry_analysis.md:151
+- FUM lacks simple translational or scaling symmetries per Derivation/conservation_law/discrete_conservation.md:195
+- Hidden conservation law found: logarithmic relationship between state W and time t per Derivation/foundations/symmetry_analysis.md:151
 
 **Proposed experiment/proof (if present in repo):**
 
-- Search for complex, non-obvious "hidden" symmetries per derivation/conservation_law/discrete_conservation.md:195
-- See derivation/foundations/symmetry_analysis.md for existing analysis
+- Search for complex, non-obvious "hidden" symmetries per Derivation/conservation_law/discrete_conservation.md:195
+- See Derivation/foundations/symmetry_analysis.md for existing analysis
 
 **Blockers/Dependencies:** Significant research task, requires advanced symmetry analysis  
 **Next action (if stated):** Continue symmetry search, validate logarithmic conservation law
@@ -548,7 +548,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### OQ-013 - Information-theoretic conserved quantity  <a id="oq-013"></a>
 
 **Status:** Open  •  **Priority:** P2  •  **Owner:** -  
-**Context:** derivation/conservation_law/discrete_conservation.md:177, 197-203 • 8321c50
+**Context:** Derivation/conservation_law/discrete_conservation.md:177, 197-203 • 8321c50
 
 > Given the FUM's origin in cognitive science and learning, it is plausible that the most fundamental conserved quantity is not a form of physical energy, but a form of **information**. [...] Potential candidates: Shannon Entropy, Topological Invariant (Betti numbers).
 
@@ -560,13 +560,13 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Evidence so far:**
 
-- Standard energy not conserved per derivation/conservation_law/discrete_conservation.md:172
-- FUM origin in cognitive science suggests information-theoretic framework per derivation/conservation_law/discrete_conservation.md:198
+- Standard energy not conserved per Derivation/conservation_law/discrete_conservation.md:172
+- FUM origin in cognitive science suggests information-theoretic framework per Derivation/conservation_law/discrete_conservation.md:198
 
 **Proposed experiment/proof (if present in repo):**
 
-- Test Shannon Entropy: $S = - \sum_i P(W_i) \log P(W_i)$ per derivation/conservation_law/discrete_conservation.md:201
-- Test Topological Invariant (Betti numbers) per derivation/conservation_law/discrete_conservation.md:202
+- Test Shannon Entropy: $S = - \sum_i P(W_i) \log P(W_i)$ per Derivation/conservation_law/discrete_conservation.md:201
+- Test Topological Invariant (Betti numbers) per Derivation/conservation_law/discrete_conservation.md:202
 
 **Blockers/Dependencies:** Information theory framework, topological analysis tools  
 **Next action (if stated):** Compute and test information-theoretic candidates
@@ -578,7 +578,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### OQ-018 - Agency field metric operational proxies  <a id="oq-018"></a>
 
 **Status:** Open  •  **Priority:** P2  •  **Owner:** -  
-**Context:** derivation/agency_field/VDM-Agency-Session-Summary.md:111 • 8321c50
+**Context:** Derivation/agency_field/VDM-Agency-Session-Summary.md:111 • 8321c50
 
 > User implicitly needs to choose specific operational proxies for `P`, `I_net`, `U`, `V`, and `B` for their system.
 
@@ -591,13 +591,13 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Evidence so far:**
 
-- Python c_score function provided per derivation/agency_field/VDM-Agency-Session-Summary.md:117
-- Smoke test scripts available per derivation/agency_field/VDM-Agency-Session-Summary.md:118-121
+- Python c_score function provided per Derivation/agency_field/VDM-Agency-Session-Summary.md:117
+- Smoke test scripts available per Derivation/agency_field/VDM-Agency-Session-Summary.md:118-121
 
 **Proposed experiment/proof (if present in repo):**
 
-- Apply c_score to VDM log data per derivation/agency_field/VDM-Agency-Session-Summary.md:117
-- Run validation checklist per derivation/agency_field/VDM-Agency-Session-Summary.md:118-121
+- Apply c_score to VDM log data per Derivation/agency_field/VDM-Agency-Session-Summary.md:117
+- Run validation checklist per Derivation/agency_field/VDM-Agency-Session-Summary.md:118-121
 
 **Blockers/Dependencies:** System-specific proxy definitions  
 **Next action (if stated):** Define operational proxies for target system
@@ -607,7 +607,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### OQ-019 - Scientific significance of agency "smoke tests"  <a id="oq-019"></a>
 
 **Status:** Open  •  **Priority:** P3  •  **Owner:** -  
-**Context:** derivation/agency_field/VDM-Agency-Session-Summary.md:109-110 • 8321c50
+**Context:** Derivation/agency_field/VDM-Agency-Session-Summary.md:109-110 • 8321c50
 
 > User query regarding the scientific significance of these "smoke tests" for a physicist and how they relate to VDM (e.g., "are these expected?", "why should I care?").
 
@@ -618,13 +618,13 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Evidence so far:**
 
-- Smoke tests defined in derivation/agency_field/VDM-Agency-Session-Summary.md
+- Smoke tests defined in Derivation/agency_field/VDM-Agency-Session-Summary.md
 
 **Proposed experiment/proof (if present in repo):**
 
 - Derive analytic formula for ridge location per OQ-020
-- Perform scaling collapse experiments per derivation/agency_field/VDM-Agency-Session-Summary.md:124
-- Replicate on actual VDM data and public datasets per derivation/agency_field/VDM-Agency-Session-Summary.md:125
+- Perform scaling collapse experiments per Derivation/agency_field/VDM-Agency-Session-Summary.md:124
+- Replicate on actual VDM data and public datasets per Derivation/agency_field/VDM-Agency-Session-Summary.md:125
 
 **Blockers/Dependencies:** Theoretical framework connecting agency to VDM  
 **Next action (if stated):** Establish theoretical foundation
@@ -634,7 +634,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### OQ-020 - Derive analytic formula for consensus+innovation ridge  <a id="oq-020"></a>
 
 **Status:** Open  •  **Priority:** P2  •  **Owner:** -  
-**Context:** derivation/agency_field/VDM-Agency-Session-Summary.md:123 • 8321c50
+**Context:** Derivation/agency_field/VDM-Agency-Session-Summary.md:123 • 8321c50
 
 > Derive an analytic formula for the ridge location in the consensus+innovation model and overlay it on the heatmap.
 
@@ -645,11 +645,11 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Evidence so far:**
 
-- Inverted-U ridge observed in simulations per derivation/agency_field/VDM-Agency-Session-Summary.md:120
+- Inverted-U ridge observed in simulations per Derivation/agency_field/VDM-Agency-Session-Summary.md:120
 
 **Proposed experiment/proof (if present in repo):**
 
-- Derive and overlay formula per derivation/agency_field/VDM-Agency-Session-Summary.md:123
+- Derive and overlay formula per Derivation/agency_field/VDM-Agency-Session-Summary.md:123
 
 **Blockers/Dependencies:** Model analysis framework  
 **Next action (if stated):** Derive analytic formula
@@ -661,7 +661,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### OQ-023 - Experimental validation of discrete lattice structure  <a id="oq-023"></a>
 
 **Status:** Open  •  **Priority:** P1  •  **Owner:** -  
-**Context:** derivation/axiomatic_theory_development.md:1397, 1452 • 8321c50
+**Context:** Derivation/axiomatic_theory_development.md:1397, 1452 • 8321c50
 
 > Physical reality of discrete lattice structure unverified
 
@@ -673,24 +673,24 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Evidence so far:**
 
-- Theory achieves status of strong candidate theoretical framework per derivation/axiomatic_theory_development.md:1402
-- Internal theoretical consistency within analyzed approximations per derivation/axiomatic_theory_development.md:1045
-- Connection to validated computational results per derivation/axiomatic_theory_development.md:1408
+- Theory achieves status of strong candidate theoretical framework per Derivation/axiomatic_theory_development.md:1402
+- Internal theoretical consistency within analyzed approximations per Derivation/axiomatic_theory_development.md:1045
+- Connection to validated computational results per Derivation/axiomatic_theory_development.md:1408
 
 **Proposed experiment/proof (if present in repo):**
 
-- Computational implementation: numerical verification per derivation/axiomatic_theory_development.md:1416
-- Experimental tests: design laboratory experiments per derivation/axiomatic_theory_development.md:1418
+- Computational implementation: numerical verification per Derivation/axiomatic_theory_development.md:1416
+- Experimental tests: design laboratory experiments per Derivation/axiomatic_theory_development.md:1418
 
 **Blockers/Dependencies:** Experimental design, observational data  
-**Next action (if stated):** Requires experimental verification per derivation/axiomatic_theory_development.md:1404
+**Next action (if stated):** Requires experimental verification per Derivation/axiomatic_theory_development.md:1404
 
 ---
 
 #### OQ-024 - Quantum renormalization program completion  <a id="oq-024"></a>
 
 **Status:** Open  •  **Priority:** P1  •  **Owner:** -  
-**Context:** derivation/axiomatic_theory_development.md:1399, 1453 • 8321c50
+**Context:** Derivation/axiomatic_theory_development.md:1399, 1453 • 8321c50
 
 > Quantum renormalization program requires completion
 
@@ -702,12 +702,12 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Evidence so far:**
 
-- EFT mindset establishes checklist for V(φ), Z(φ), higher-derivative operators per derivation/foundations/void_dynamics_theory.md:11
-- Weak coupling regime identified: $\epsilon_3 \sim \lambda(\alpha-\beta)/\alpha^2$ per derivation/axiomatic_theory_development.md:1030
+- EFT mindset establishes checklist for V(φ), Z(φ), higher-derivative operators per Derivation/foundations/void_dynamics_theory.md:11
+- Weak coupling regime identified: $\epsilon_3 \sim \lambda(\alpha-\beta)/\alpha^2$ per Derivation/axiomatic_theory_development.md:1030
 
 **Proposed experiment/proof (if present in repo):**
 
-- Mathematical extensions: explore generalizations per derivation/axiomatic_theory_development.md:1419
+- Mathematical extensions: explore generalizations per Derivation/axiomatic_theory_development.md:1419
 
 **Blockers/Dependencies:** Quantum field theory framework, renormalization tools  
 **Next action (if stated):** Systematic completion of renormalization program
@@ -717,7 +717,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### OQ-025 - Observational tests of cosmological predictions  <a id="oq-025"></a>
 
 **Status:** Open  •  **Priority:** P1  •  **Owner:** -  
-**Context:** derivation/axiomatic_theory_development.md:1400, 1454 • 8321c50
+**Context:** Derivation/axiomatic_theory_development.md:1400, 1454 • 8321c50
 
 > Observational tests of cosmological implications needed
 
@@ -729,13 +729,13 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Evidence so far:**
 
-- Dark energy equation of state predictions depend on field amplitude per derivation/axiomatic_theory_development.md:1038
-- Structure formation modified by void field coupling per derivation/axiomatic_theory_development.md:1039
-- CMB signatures depend on primordial field fluctuations per derivation/axiomatic_theory_development.md:1040
+- Dark energy equation of state predictions depend on field amplitude per Derivation/axiomatic_theory_development.md:1038
+- Structure formation modified by void field coupling per Derivation/axiomatic_theory_development.md:1039
+- CMB signatures depend on primordial field fluctuations per Derivation/axiomatic_theory_development.md:1040
 
 **Proposed experiment/proof (if present in repo):**
 
-- Observational applications: connect theory to astrophysical and cosmological data per derivation/axiomatic_theory_development.md:1417
+- Observational applications: connect theory to astrophysical and cosmological data per Derivation/axiomatic_theory_development.md:1417
 
 **Blockers/Dependencies:** Astrophysical data, cosmological observations  
 **Next action (if stated):** Connect theory to observational data
@@ -745,7 +745,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### OQ-026 - First-principles parameter determination method  <a id="oq-026"></a>
 
 **Status:** Open  •  **Priority:** P2  •  **Owner:** -  
-**Context:** derivation/axiomatic_theory_development.md:1455 • 8321c50
+**Context:** Derivation/axiomatic_theory_development.md:1455 • 8321c50
 
 > No first-principles method to determine fundamental parameters from observations
 
@@ -757,8 +757,8 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Evidence so far:**
 
-- Natural parameters emerge from fundamental discrete structure without fine-tuning per derivation/axiomatic_theory_development.md:1439
-- Parameter uncertainties documented per derivation/axiomatic_theory_development.md:1032-1040
+- Natural parameters emerge from fundamental discrete structure without fine-tuning per Derivation/axiomatic_theory_development.md:1439
+- Parameter uncertainties documented per Derivation/axiomatic_theory_development.md:1032-1040
 
 **Proposed experiment/proof (if present in repo):** -  
 **Blockers/Dependencies:** Inverse problem framework, observational constraints  
@@ -769,7 +769,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### OQ-027 - Lattice scale parameter determination (20 orders uncertainty)  <a id="oq-027"></a>
 
 **Status:** Open  •  **Priority:** P1  •  **Owner:** -  
-**Context:** derivation/axiomatic_theory_development.md:1033 • 8321c50
+**Context:** Derivation/axiomatic_theory_development.md:1033 • 8321c50
 
 > **Lattice Scale:** $a$ could range from Planck scale to atomic scale - 20 orders of magnitude uncertainty
 
@@ -780,12 +780,12 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Evidence so far:**
 
-- Coupling ratios $\alpha/\beta$ constrained by observations but $\lambda$ largely unconstrained per derivation/axiomatic_theory_development.md:1034
-- Damping rate $\gamma$ depends on unknown microscopic physics per derivation/axiomatic_theory_development.md:1035
+- Coupling ratios $\alpha/\beta$ constrained by observations but $\lambda$ largely unconstrained per Derivation/axiomatic_theory_development.md:1034
+- Damping rate $\gamma$ depends on unknown microscopic physics per Derivation/axiomatic_theory_development.md:1035
 
 **Proposed experiment/proof (if present in repo):**
 
-- Observational constraints from multiple scales per derivation/axiomatic_theory_development.md:1417
+- Observational constraints from multiple scales per Derivation/axiomatic_theory_development.md:1417
 
 **Blockers/Dependencies:** Multi-scale observations, microscopic theory  
 **Next action (if stated):** Constrain lattice scale via observations

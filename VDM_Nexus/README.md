@@ -9,15 +9,15 @@ Nexus does not move or copy canonical files. It resolves and reads them in place
 - Data and approvals DBs (canonical, read-only):
   - Windows: `C:\git\Prometheus_VDM\derivation\code\common\data\approval.db`
   - Windows: `C:\git\Prometheus_VDM\derivation\code\common\data\approval_admin.db`
-  - Repo-relative: `../derivation/code/common/data/`
+  - Repo-relative: `../Derivation/code/common/data/`
 
 - Physics runners, specs, schemas, approvals (canonical, read-only):
   - Windows: `C:\git\Prometheus_VDM\derivation\code\physics\{domain}\`
-  - Repo-relative: `../derivation/code/physics/{domain}/`
+  - Repo-relative: `../Derivation/code/physics/{domain}/`
 
 - Experiment outputs (enumerated in place):
   - Windows: `C:\git\Prometheus_VDM\derivation\code\outputs\(figures|logs)\{domain}\`
-  - Repo-relative: `../derivation/code/outputs/(figures|logs)/{domain}/`
+  - Repo-relative: `../Derivation/code/outputs/(figures|logs)/{domain}/`
 
 Root resolution policy (must match app/infrastructure): CLI flags > env (`VDM_REPO_ROOT`, `VDM_APPROVAL_DB`, `VDM_APPROVAL_ADMIN_DB`) > `.env`.
 
@@ -36,7 +36,7 @@ This database is derivative only and must never be treated as a source of truth 
 - Required provenance columns on ingested rows:
   - `source_path` (relative to repo), `commit`, `salted_hash`, `ingested_utc`
 - Guardrails:
-  - No writes back to `../derivation/`
+  - No writes back to `../Derivation/`
   - No approvals or policy decisions sourced from this DB (read the canonical DBs directly)
   - Provide purge/refresh commands; stale caches must be discardable at any time
 

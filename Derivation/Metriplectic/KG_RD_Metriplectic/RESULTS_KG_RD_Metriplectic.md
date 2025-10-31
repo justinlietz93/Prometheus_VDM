@@ -8,7 +8,7 @@
 > Commercial use requires citation and written permission from Justin K. Lietz.
 > See LICENSE file for full terms.
 
-TL;DR - Gate-driven QC of a metriplectic KG⊕RD scheme (spectral-DG for M, Störmer-Verlet for KG J, Strang JMJ). Pinned spec snapshot: derivation/code/outputs/logs/metriplectic/20251006_142434_step_spec_snapshot__kgRD-v1.json
+TL;DR - Gate-driven QC of a metriplectic KG⊕RD scheme (spectral-DG for M, Störmer-Verlet for KG J, Strang JMJ). Pinned spec snapshot: Derivation/code/outputs/logs/metriplectic/20251006_142434_step_spec_snapshot__kgRD-v1.json
 
 ## Introduction
 
@@ -114,7 +114,7 @@ Risk assessment (computational): potential under‑resolved asymptotics at coars
 
 ## Results / Data
 
-Pinned spec snapshot: derivation/code/outputs/logs/metriplectic/20251006_142434_step_spec_snapshot__kgRD-v1.json
+Pinned spec snapshot: Derivation/code/outputs/logs/metriplectic/20251006_142434_step_spec_snapshot__kgRD-v1.json
 
 Table 1 - Summary of gates and outcomes (median over seeds; v1 two‑grid on ϕ)
 
@@ -127,12 +127,12 @@ Table 1 - Summary of gates and outcomes (median over seeds; v1 two‑grid on ϕ)
 
 Figures (each has CSV/JSON sidecars):
 
-- M‑only residual vs Δt: derivation/code/outputs/figures/metriplectic/failed_runs/20251006_142435_residual_vs_dt_m_only__kgRD-v1.png
-  - Sidecars: derivation/code/outputs/logs/metriplectic/failed_runs/20251006_142435_residual_vs_dt_m_only__kgRD-v1.csv, .../20251006_142435_sweep_dt_m_only__kgRD-v1.json
-- JMJ residual vs Δt: derivation/code/outputs/figures/metriplectic/failed_runs/20251006_142436_residual_vs_dt_jmj__kgRD-v1.png
-  - Sidecars: derivation/code/outputs/logs/metriplectic/failed_runs/20251006_142436_residual_vs_dt_jmj__kgRD-v1.csv, .../20251006_142436_sweep_dt_jmj__kgRD-v1.json
-- Strang defect vs Δt: derivation/code/outputs/figures/metriplectic/20251006_142436_strang_defect_vs_dt__kgRD-v1.png
-  - Sidecars: derivation/code/outputs/logs/metriplectic/20251006_142436_strang_defect_vs_dt__kgRD-v1.{csv,json}
+- M‑only residual vs Δt: Derivation/code/outputs/figures/metriplectic/failed_runs/20251006_142435_residual_vs_dt_m_only__kgRD-v1.png
+  - Sidecars: Derivation/code/outputs/logs/metriplectic/failed_runs/20251006_142435_residual_vs_dt_m_only__kgRD-v1.csv, .../20251006_142435_sweep_dt_m_only__kgRD-v1.json
+- JMJ residual vs Δt: Derivation/code/outputs/figures/metriplectic/failed_runs/20251006_142436_residual_vs_dt_jmj__kgRD-v1.png
+  - Sidecars: Derivation/code/outputs/logs/metriplectic/failed_runs/20251006_142436_residual_vs_dt_jmj__kgRD-v1.csv, .../20251006_142436_sweep_dt_jmj__kgRD-v1.json
+- Strang defect vs Δt: Derivation/code/outputs/figures/metriplectic/20251006_142436_strang_defect_vs_dt__kgRD-v1.png
+  - Sidecars: Derivation/code/outputs/logs/metriplectic/20251006_142436_strang_defect_vs_dt__kgRD-v1.{csv,json}
 
 Sample calculation (slope fit): let x_i = log Δt_i, y_i = log E_i. The least‑squares slope is
 
@@ -186,19 +186,19 @@ Obj‑B status: if the JMJ H‑norm slope remains < 2.90 under the extended smal
 
 Pinned artifacts (tag `kgRD‑v1b`):
 
-- Spec snapshot: derivation/code/outputs/logs/metriplectic/20251006_145830_step_spec_snapshot__kgRD-v1b.json
+- Spec snapshot: Derivation/code/outputs/logs/metriplectic/20251006_145830_step_spec_snapshot__kgRD-v1b.json
 - J‑only energy oscillation vs Δt (slope gate ≈ 2):
-  - Figure: derivation/code/outputs/figures/metriplectic/failed_runs/20251006_145830_j_energy_oscillation_vs_dt__kgRD-v1b.png
-  - Logs: derivation/code/outputs/logs/metriplectic/failed_runs/20251006_145831_j_energy_oscillation_vs_dt__kgRD-v1b.{json,csv}
+  - Figure: Derivation/code/outputs/figures/metriplectic/failed_runs/20251006_145830_j_energy_oscillation_vs_dt__kgRD-v1b.png
+  - Logs: Derivation/code/outputs/logs/metriplectic/failed_runs/20251006_145831_j_energy_oscillation_vs_dt__kgRD-v1b.{json,csv}
 - M‑only two‑grid:
-  - Figure: derivation/code/outputs/figures/metriplectic/failed_runs/20251006_145831_residual_vs_dt_m_only__kgRD-v1b.png
-  - Logs: derivation/code/outputs/logs/metriplectic/failed_runs/20251006_145831_residual_vs_dt_m_only__kgRD-v1b.{json,csv}
+  - Figure: Derivation/code/outputs/figures/metriplectic/failed_runs/20251006_145831_residual_vs_dt_m_only__kgRD-v1b.png
+  - Logs: Derivation/code/outputs/logs/metriplectic/failed_runs/20251006_145831_residual_vs_dt_m_only__kgRD-v1b.{json,csv}
 - JMJ two‑grid (H‑energy norm):
-  - Figure: derivation/code/outputs/figures/metriplectic/failed_runs/20251006_145832_residual_vs_dt_jmj__kgRD-v1b.png
-  - Logs: derivation/code/outputs/logs/metriplectic/failed_runs/20251006_145832_sweep_dt_jmj__kgRD-v1b.json and .../20251006_145832_residual_vs_dt_jmj__kgRD-v1b.csv
+  - Figure: Derivation/code/outputs/figures/metriplectic/failed_runs/20251006_145832_residual_vs_dt_jmj__kgRD-v1b.png
+  - Logs: Derivation/code/outputs/logs/metriplectic/failed_runs/20251006_145832_sweep_dt_jmj__kgRD-v1b.json and .../20251006_145832_residual_vs_dt_jmj__kgRD-v1b.csv
 - Strang defect (JMJ vs MJM):
-  - Figure: derivation/code/outputs/figures/metriplectic/20251006_145832_strang_defect_vs_dt__kgRD-v1b.png
-  - Logs: derivation/code/outputs/logs/metriplectic/20251006_145833_strang_defect_vs_dt__kgRD-v1b.{json,csv}
+  - Figure: Derivation/code/outputs/figures/metriplectic/20251006_145832_strang_defect_vs_dt__kgRD-v1b.png
+  - Logs: Derivation/code/outputs/logs/metriplectic/20251006_145833_strang_defect_vs_dt__kgRD-v1b.{json,csv}
 
 Gate outcomes (median across seeds):
 

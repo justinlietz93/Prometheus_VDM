@@ -10,7 +10,7 @@
 
 - Gate tested: $\mathrm{env\_max}\le 0.02$ for logistic-router scaling collapse.  
 - Outcome: PASS with $\mathrm{env\_max}\approx 0.0166$.  
-- Artifact: `derivation/code/outputs/figures/collapse/20251006_175337_a6_collapse_overlay__A6-collapse-v1.png`
+- Artifact: `Derivation/code/outputs/figures/collapse/20251006_175337_a6_collapse_overlay__A6-collapse-v1.png`
 ![a6 collapse](figures/a6-collapse.png)
 
 ## Introduction
@@ -47,7 +47,7 @@ Control variables table:
 
 ## Equipment / Software
 
-- Software runner: `derivation/code/physics/collapse/run_a6_collapse.py`  
+- Software runner: `Derivation/code/physics/collapse/run_a6_collapse.py`  
 - Environment: Python scientific stack; Git commit a54d638.
 
 ## Methods / Procedure
@@ -64,9 +64,9 @@ Risk and integrity: A failed gate routes artifacts to `failed_runs/` and produce
 
 ## Data and artifacts (pinned)
 
-- Figure: `derivation/code/outputs/figures/collapse/20251006_175337_a6_collapse_overlay__A6-collapse-v1.png`
-- CSV: `derivation/code/outputs/logs/collapse/20251006_175337_a6_collapse_envelope__A6-collapse-v1.csv`
-- Log (JSON): `derivation/code/outputs/logs/collapse/20251006_175337_a6_collapse__A6-collapse-v1.json`
+- Figure: `Derivation/code/outputs/figures/collapse/20251006_175337_a6_collapse_overlay__A6-collapse-v1.png`
+- CSV: `Derivation/code/outputs/logs/collapse/20251006_175337_a6_collapse_envelope__A6-collapse-v1.csv`
+- Log (JSON): `Derivation/code/outputs/logs/collapse/20251006_175337_a6_collapse__A6-collapse-v1.json`
 
 ## Results / Data
 
@@ -104,7 +104,7 @@ The A6 scaling collapse gate passes with $\mathrm{env\_max}\approx 0.0166$. The 
 
 ## Reproducibility
 
-- Runner: `derivation/code/physics/collapse/run_a6_collapse.py`  
+- Runner: `Derivation/code/physics/collapse/run_a6_collapse.py`  
 - Commit: a54d638e2b097cd6bf5606d669fc9984650e2307  
 - Example parameter set (from log): three curves with $\Theta\in\{1.5,2.5,3.5\}$, each with 25 points over $\Delta m\in[-2,2]$, trials per point: 4000.  
 - Artifacts: overlay figure, envelope CSV, JSON log pinned above; CSV contains the envelope $E(X)$ series.

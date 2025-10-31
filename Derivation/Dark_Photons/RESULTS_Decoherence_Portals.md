@@ -34,8 +34,8 @@ Do the simple Fisher estimate of $\epsilon$ and the noise budget sanity checks a
 
 ## Artifacts (to be pinned)
 
-- Figures: `derivation/code/outputs/figures/dark_photons/<tag>_*.png`
-- Logs (CSV/JSON): `derivation/code/outputs/logs/dark_photons/<tag>_*.{csv,json}`
+- Figures: `Derivation/code/outputs/figures/dark_photons/<tag>_*.png`
+- Logs (CSV/JSON): `Derivation/code/outputs/logs/dark_photons/<tag>_*.{csv,json}`
 
 ## Results / Data
 
@@ -43,7 +43,7 @@ Awaiting an approved run; artifacts will be pinned here with numeric gate summar
 
 ## Reproducibility
 
-- Runners: `derivation/code/physics/dark_photons/run_dp_fisher_check.py`, `run_dp_noise_budget.py`
+- Runners: `Derivation/code/physics/dark_photons/run_dp_fisher_check.py`, `run_dp_noise_budget.py`
 - IO discipline: PNG + CSV + JSON sidecars via `common/io_paths.py` with approvals/quarantine policy.
 
 ## References

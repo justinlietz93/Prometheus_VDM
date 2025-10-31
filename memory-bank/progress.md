@@ -1,16 +1,19 @@
-# Progress (Updated: 2025-10-29)
+# Progress (Updated: 2025-10-30)
 
 ## Done
 
-- Added results_db.get_latest_preflight() helper
-- Updated preflight_db.log_preflight to ignore tag and document fixed-tag policy
-- Extended CI test to validate latest-preflight helper
+- Added proposal stamping helper (Derivation/code/common/provenance/stamp_proposal.py) and integrated canonical Salted Provenance header insertion
+- Made provenance gate opt-in per-domain via require_provenance in APPROVAL.json; updated approval.py to enforce only when true
+- Added unit tests for approval gating and provenance checks (Derivation/code/common/authorization/tests/test_approval_provenance.py)
+- Prepared CEG T4 prereg/spec/proposal with salted provenance (metriplectic): PRE-REGISTRATION.echo_spec-v1.json stamped; proposal has matching header; assisted_echo.v1.json exists; runner assisted_echo.py present; preflight tests present
 
 ## Doing
 
-
+- CEG Assisted‑Echo T4: align spec tag with allowed_tags; run preflight tests; prepare for human approvals; after approval, run main assisted_echo with artifact logging
 
 ## Next
 
-- Document preflight fixed-tag policy in developer docs
-- Optionally add Make target and CI job to run the preflight API lint checker
+- PI runs approve_tag.py to set tag secret/domain key and approve echo_spec-v1 (or chosen tag) with script scope
+- Decide tag alignment: change spec tag to echo_spec-v1 or add/approve assisted-echo-t4-prereg
+- Run main assisted_echo.py with approved tag; publish artifacts per RESULTS; compute CEG median and gate ledgers
+- Documentation/runbook updates: authorization/README.md add provenance header and stamping workflow; update proposal templates

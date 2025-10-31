@@ -155,17 +155,17 @@
     },
     {
       "path": "Derivation/Collapse/code/common/io_paths.py",
-      "preview": "# derivation/code/common/io_paths.py\n'''\n# Example usage inside a physics script:\n\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom common.io_paths import figure_path, log_path, write_log\n\ndomain, slug = \"fluid_dynamics\", \"corner_test_r_c_scan\"\n\n",
+      "preview": "# Derivation/code/common/io_paths.py\n'''\n# Example usage inside a physics script:\n\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom common.io_paths import figure_path, log_path, write_log\n\ndomain, slug = \"fluid_dynamics\", \"corner_test_r_c_scan\"\n\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
       "path": "Derivation/code/analysis/fit_H_edge.py",
-      "preview": "#!/usr/bin/env python3\n\"\"\"Fit edge-correction ansatz H_edge using saved deterministic samples.\n\nReads the latest flux_sweep JSON under derivation/outputs/logs/conservation_law,\nreconstructs Connectome adjacency per sample seed, and fits coefficients for\nH_ij = sum_k c_k * phi_k(W_i, W_j) using least squares on equations\n    DeltaQ_i = sum_j (H_ji - H_ij)\n\nBasis functions: [W_i, W_j, W_i*W_j]\n\"\"\"\n",
+      "preview": "#!/usr/bin/env python3\n\"\"\"Fit edge-correction ansatz H_edge using saved deterministic samples.\n\nReads the latest flux_sweep JSON under Derivation/outputs/logs/conservation_law,\nreconstructs Connectome adjacency per sample seed, and fits coefficients for\nH_ij = sum_k c_k * phi_k(W_i, W_j) using least squares on equations\n    DeltaQ_i = sum_j (H_ji - H_ij)\n\nBasis functions: [W_i, W_j, W_i*W_j]\n\"\"\"\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
       "path": "Derivation/code/analysis/flux_sweep.py",
-      "preview": "#!/usr/bin/env python3\n\"\"\"Numeric sweep: compute \u0394(sum Q_i) statistics across random seeds.\n\nWrites JSON summary to derivation/code/outputs/logs/conservation_law/flux_sweep_<ts>.json\n\"\"\"\nfrom __future__ import annotations\nimport os, json, time\nfrom pathlib import Path\nimport numpy as np\n\n",
+      "preview": "#!/usr/bin/env python3\n\"\"\"Numeric sweep: compute \u0394(sum Q_i) statistics across random seeds.\n\nWrites JSON summary to Derivation/code/outputs/logs/conservation_law/flux_sweep_<ts>.json\n\"\"\"\nfrom __future__ import annotations\nimport os, json, time\nfrom pathlib import Path\nimport numpy as np\n\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
@@ -210,7 +210,7 @@
     },
     {
       "path": "Derivation/code/common/io_paths.py",
-      "preview": "# derivation/code/common/io_paths.py\n'''\n# Example usage inside a physics script:\n\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom common.io_paths import figure_path, log_path, write_log\n\ndomain, slug = \"fluid_dynamics\", \"corner_test_r_c_scan\"\n\n",
+      "preview": "# Derivation/code/common/io_paths.py\n'''\n# Example usage inside a physics script:\n\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom common.io_paths import figure_path, log_path, write_log\n\ndomain, slug = \"fluid_dynamics\", \"corner_test_r_c_scan\"\n\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
@@ -310,7 +310,7 @@
     },
     {
       "path": "Derivation/code/tests/fluid_dynamics/test_taylor_green_decay.py",
-      "preview": "#!/usr/bin/env python3\n\"\"\"\nTaylor-Green viscosity recovery unit test (fluid_dynamics domain).\n\nPathing rule:\n- Tests live under derivation/code/tests/<domain>/\n- This test checks that \u03bd_fit recovered from E(t) decay matches \u03bd_th within 5% at 256x256.\n\nNo figures/logs are written; this is a fast numeric check.\n\"\"\"\n",
+      "preview": "#!/usr/bin/env python3\n\"\"\"\nTaylor-Green viscosity recovery unit test (fluid_dynamics domain).\n\nPathing rule:\n- Tests live under Derivation/code/tests/<domain>/\n- This test checks that \u03bd_fit recovered from E(t) decay matches \u03bd_th within 5% at 256x256.\n\nNo figures/logs are written; this is a fast numeric check.\n\"\"\"\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
@@ -325,7 +325,7 @@
     },
     {
       "path": "Derivation/code/tests/reaction_diffusion/test_rd_dispersion.py",
-      "preview": "#!/usr/bin/env python3\n\"\"\"\nMinimal unit tests for RD dispersion and Laplacians.\n\nReason: Physics validated via derivation/code/physics scripts; these tests guard formulas and signs.\n\"\"\"\n\nimport os, sys\nimport numpy as np\n\n",
+      "preview": "#!/usr/bin/env python3\n\"\"\"\nMinimal unit tests for RD dispersion and Laplacians.\n\nReason: Physics validated via Derivation/code/physics scripts; these tests guard formulas and signs.\n\"\"\"\n\nimport os, sys\nimport numpy as np\n\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
@@ -380,12 +380,12 @@
     },
     {
       "path": "Derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py",
-      "preview": "#!/usr/bin/env python3\n\"\"\"\nTaylor-Green vortex (2-D) viscosity recovery benchmark for the fluids sector.\n\nCHANGE REASON:\n- Relocated into derivation/code/physics/fluid_dynamics per repo rules (no Prometheus_VDM/bench/).\n- Outputs follow RD harness: derivation/code/outputs/{figures,logs}.\n- Ensures JSON uses native Python types (bool/float) to avoid numpy serialization issues.\n\nOutputs (defaults):\n",
+      "preview": "#!/usr/bin/env python3\n\"\"\"\nTaylor-Green vortex (2-D) viscosity recovery benchmark for the fluids sector.\n\nCHANGE REASON:\n- Relocated into Derivation/code/physics/fluid_dynamics per repo rules (no Prometheus_VDM/bench/).\n- Outputs follow RD harness: Derivation/code/outputs/{figures,logs}.\n- Ensures JSON uses native Python types (bool/float) to avoid numpy serialization issues.\n\nOutputs (defaults):\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
       "path": "Derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py",
-      "preview": "#!/usr/bin/env python3\n\"\"\"\nLid-driven cavity (2-D) incompressibility benchmark for the fluids sector.\n\nCHANGE REASON:\n- Relocated into derivation/code/physics/fluid_dynamics per repo rules (no Prometheus_VDM/bench/).\n- Outputs follow RD harness: derivation/code/outputs/{figures,logs}.\n- Ensures JSON uses native Python types to avoid numpy serialization issues.\n\nOutputs (defaults):\n",
+      "preview": "#!/usr/bin/env python3\n\"\"\"\nLid-driven cavity (2-D) incompressibility benchmark for the fluids sector.\n\nCHANGE REASON:\n- Relocated into Derivation/code/physics/fluid_dynamics per repo rules (no Prometheus_VDM/bench/).\n- Outputs follow RD harness: Derivation/code/outputs/{figures,logs}.\n- Ensures JSON uses native Python types to avoid numpy serialization issues.\n\nOutputs (defaults):\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
@@ -395,7 +395,7 @@
     },
     {
       "path": "Derivation/code/physics/rd_conservation/run_rd_conservation.py",
-      "preview": "#!/usr/bin/env python3\n\"\"\"\nRD Conservation Harness (Obj-A/B/C scaffolding) - periodic BC default.\n\n- Uses derivation/code/common/io_paths.py for logs/figures.\n- Places artifacts under code/outputs/{logs,figures}/rd_conservation.\n\"\"\"\nfrom __future__ import annotations\nimport json\nfrom pathlib import Path\n",
+      "preview": "#!/usr/bin/env python3\n\"\"\"\nRD Conservation Harness (Obj-A/B/C scaffolding) - periodic BC default.\n\n- Uses Derivation/code/common/io_paths.py for logs/figures.\n- Places artifacts under code/outputs/{logs,figures}/rd_conservation.\n\"\"\"\nfrom __future__ import annotations\nimport json\nfrom pathlib import Path\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
@@ -465,12 +465,12 @@
     },
     {
       "path": "Derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py",
-      "preview": "#!/usr/bin/env python3\n\"\"\"\nRD front-speed validation for Fisher-KPP:\n    \u2202t u = D \u2202xx u + r u (1 - u)\n\nTheory:\n    Minimal pulled-front speed c_th = 2 * sqrt(D * r)\n\nOutputs (defaults):\n    - derivation/code/outputs/figures/<script>_<timestamp>.png\n",
+      "preview": "#!/usr/bin/env python3\n\"\"\"\nRD front-speed validation for Fisher-KPP:\n    \u2202t u = D \u2202xx u + r u (1 - u)\n\nTheory:\n    Minimal pulled-front speed c_th = 2 * sqrt(D * r)\n\nOutputs (defaults):\n    - Derivation/code/outputs/figures/<script>_<timestamp>.png\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
       "path": "Derivation/code/physics/reaction_diffusion/rd_front_speed_sweep.py",
-      "preview": "#!/usr/bin/env python3\n\"\"\"\nRD Fisher-KPP front-speed sweep runner.\n\nRuns multiple configurations of the experiment script and writes a CSV summary\nunder: derivation/code/outputs/logs/rd_front_speed_sweep_YYYYMMDDThhmmssZ.csv\n\nUsage (PowerShell, always in venv):\n  & .\\venv\\Scripts\\Activate.ps1\n  python Prometheus_VDM/derivation/code/physics/rd_front_speed_sweep.py\n",
+      "preview": "#!/usr/bin/env python3\n\"\"\"\nRD Fisher-KPP front-speed sweep runner.\n\nRuns multiple configurations of the experiment script and writes a CSV summary\nunder: Derivation/code/outputs/logs/rd_front_speed_sweep_YYYYMMDDThhmmssZ.csv\n\nUsage (PowerShell, always in venv):\n  & .\\venv\\Scripts\\Activate.ps1\n  python Prometheus_VDM/Derivation/code/physics/rd_front_speed_sweep.py\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
@@ -545,7 +545,7 @@
     },
     {
       "path": "Derivation/Templates/Domain_Template/code/common/io_paths.py",
-      "preview": "# derivation/code/common/io_paths.py\n'''\n# Example usage inside a physics script:\n\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom common.io_paths import figure_path, log_path, write_log\n\ndomain, slug = \"fluid_dynamics\", \"corner_test_r_c_scan\"\n\n",
+      "preview": "# Derivation/code/common/io_paths.py\n'''\n# Example usage inside a physics script:\n\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom common.io_paths import figure_path, log_path, write_log\n\ndomain, slug = \"fluid_dynamics\", \"corner_test_r_c_scan\"\n\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
@@ -705,7 +705,7 @@
     },
     {
       "path": "fum_rt/physics/rd_dispersion_runner.py",
-      "preview": "#!/usr/bin/env python3\n\"\"\"\nRD dispersion validation runner (linear regime) for fum_rt.\n\nCHANGE REASON:\n- This file mirrors the validated physics from derivation scripts to the runtime stack.\n- We have PROVEN the RD linear dispersion \u03c3(k) = r - D k^2 via reproducible scripts and derivations:\n  [rd_dispersion_experiment.py](Prometheus_VDM/derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py),\n  [rd_validation_plan.md](Prometheus_VDM/derivation/rd_validation_plan.md),\n  [CORRECTIONS.md](Prometheus_VDM/derivation/computational_proofs/CORRECTIONS.md).\n",
+      "preview": "#!/usr/bin/env python3\n\"\"\"\nRD dispersion validation runner (linear regime) for fum_rt.\n\nCHANGE REASON:\n- This file mirrors the validated physics from derivation scripts to the runtime stack.\n- We have PROVEN the RD linear dispersion \u03c3(k) = r - D k^2 via reproducible scripts and derivations:\n  [rd_dispersion_experiment.py](Prometheus_VDM/Derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py),\n  [rd_validation_plan.md](Prometheus_VDM/Derivation/rd_validation_plan.md),\n  [CORRECTIONS.md](Prometheus_VDM/Derivation/computational_proofs/CORRECTIONS.md).\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
@@ -740,7 +740,7 @@
     },
     {
       "path": "fum_rt/physics/rd_front_speed_runner.py",
-      "preview": "#!/usr/bin/env python3\n\"\"\"\nRD front-speed validation runner (Fisher-KPP) for fum_rt.\n\nCHANGE REASON:\n- This file mirrors the validated physics from derivation scripts to the runtime stack.\n- We have PROVEN the Fisher-KPP front speed c = 2\u221a(D r) via reproducible scripts and derivations:\n  [rd_front_speed_experiment.py](Prometheus_VDM/derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py:1),\n  [rd_front_speed_validation.md](Prometheus_VDM/derivation/rd_front_speed_validation.md:1),\n  [CORRECTIONS.md](Prometheus_VDM/derivation/computational_proofs/CORRECTIONS.md:1).\n",
+      "preview": "#!/usr/bin/env python3\n\"\"\"\nRD front-speed validation runner (Fisher-KPP) for fum_rt.\n\nCHANGE REASON:\n- This file mirrors the validated physics from derivation scripts to the runtime stack.\n- We have PROVEN the Fisher-KPP front speed c = 2\u221a(D r) via reproducible scripts and derivations:\n  [rd_front_speed_experiment.py](Prometheus_VDM/Derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py:1),\n  [rd_front_speed_validation.md](Prometheus_VDM/Derivation/rd_front_speed_validation.md:1),\n  [CORRECTIONS.md](Prometheus_VDM/Derivation/computational_proofs/CORRECTIONS.md:1).\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
@@ -1435,7 +1435,7 @@
     },
     {
       "path": "VDM_Nexus/scripts/nexus_static_policy_check.py",
-      "preview": "#!/usr/bin/env python3\n\"\"\"\nVDM Nexus \u2014 Static Policy Check (Task 0.3.1)\n\nPurpose:\n- Enforce: \"zero write operations under ../derivation/\" from Nexus scope\n- Static source scan only (no execution). Read-only across the repo.\n\nWhat it checks:\n- In VDM_Nexus/**/*.{cpp,cxx,cc,c,hxx,hh,h}:\n",
+      "preview": "#!/usr/bin/env python3\n\"\"\"\nVDM Nexus \u2014 Static Policy Check (Task 0.3.1)\n\nPurpose:\n- Enforce: \"zero write operations under ../Derivation/\" from Nexus scope\n- Static source scan only (no execution). Read-only across the repo.\n\nWhat it checks:\n- In VDM_Nexus/**/*.{cpp,cxx,cc,c,hxx,hh,h}:\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {

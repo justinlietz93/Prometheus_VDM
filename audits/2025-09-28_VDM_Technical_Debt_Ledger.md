@@ -10,7 +10,7 @@
 - `fum_rt/` - real-time runtime scaffold (loop, telemetry, orchestration) with CLI entrypoint and helper seams.【F:README.md†L62-L101】
   - `runtime/` - tick loop, telemetry packagers, retention/state helpers.【F:README.md†L66-L99】
   - `core/` - connectome, metrics, visualizer, memory, signals, void adapters.【F:README.md†L74-L99】
-- `derivation/` - theoretical papers, acceptance plans, and physics prototypes informing runtime.【F:derivation/README_PUBLIC.md†L1-L46】
+- `Derivation/` - theoretical papers, acceptance plans, and physics prototypes informing runtime.【F:Derivation/README_PUBLIC.md†L1-L46】
 - `tools/` - repo-specific hygiene and analytics scripts such as `md_hygiene_check.py` (Markdown gate) and the standalone dependency analyzer toolchain.【F:tools/md_hygiene_check.py†L1-L120】【F:tools/dependency_analyzer/README.md†L1-L23】
 
 **Language & framework mix**
@@ -59,21 +59,21 @@ PY
 
 | cluster_id | files | similarity% | notes |
 | --- | --- | --- | --- |
-| md5:4dc162a5 | `derivation/code/Void_Equations.py`; `derivation/code/computational_toy_proofs/Void_Equations.py`; `fum_rt/fum_advanced_math/void_dynamics/Void_Equations.py` | 100 | Identical void dynamics (Δα/Δω) implementations repeated across derivation/runtime.【F:derivation/code/Void_Equations.py†L35-L112】【F:fum_rt/fum_advanced_math/void_dynamics/Void_Equations.py†L35-L112】 |
-| md5:e6ad008d | `derivation/code/Void_Debt_Modulation.py`; `derivation/code/computational_toy_proofs/Void_Debt_Modulation.py`; `fum_rt/fum_advanced_math/void_dynamics/Void_Debt_Modulation.py` | 100 | Domain modulation tables duplicated verbatim.【F:fum_rt/fum_advanced_math/void_dynamics/Void_Debt_Modulation.py†L1-L133】 |
-| md5:6e6bce7b | `derivation/code/physics/memory_steering/memory_steering.py`; `fum_rt/physics/memory_steering/memory_steering.py` | 100 | Memory steering PDE + sampling API copied directly, drifting only in package path.【F:fum_rt/physics/memory_steering/memory_steering.py†L8-L198】 |
+| md5:4dc162a5 | `Derivation/code/Void_Equations.py`; `Derivation/code/computational_toy_proofs/Void_Equations.py`; `fum_rt/fum_advanced_math/void_dynamics/Void_Equations.py` | 100 | Identical void dynamics (Δα/Δω) implementations repeated across Derivation/runtime.【F:Derivation/code/Void_Equations.py†L35-L112】【F:fum_rt/fum_advanced_math/void_dynamics/Void_Equations.py†L35-L112】 |
+| md5:e6ad008d | `Derivation/code/Void_Debt_Modulation.py`; `Derivation/code/computational_toy_proofs/Void_Debt_Modulation.py`; `fum_rt/fum_advanced_math/void_dynamics/Void_Debt_Modulation.py` | 100 | Domain modulation tables duplicated verbatim.【F:fum_rt/fum_advanced_math/void_dynamics/Void_Debt_Modulation.py†L1-L133】 |
+| md5:6e6bce7b | `Derivation/code/physics/memory_steering/memory_steering.py`; `fum_rt/physics/memory_steering/memory_steering.py` | 100 | Memory steering PDE + sampling API copied directly, drifting only in package path.【F:fum_rt/physics/memory_steering/memory_steering.py†L8-L198】 |
 | md5:e66aadae | `fum_rt/io/sensors/{somatosensory,vision,auditory,symbols}.py`; `fum_rt/io/actuators/{visualize,vocalizer,symbols}.py` | 100 | All eight files contain only boilerplate license docstrings (no code), indicating unused scaffolding duplication.【F:fum_rt/io/sensors/vision.py†L1-L7】 |
 | md5:d41d8cd9 | Multiple `__init__.py` stubs (empty files) across API/io packages | 100 | Empty placeholders offer no functionality; consolidation possible.【F:fum_rt/io/**init**.py†L1-L1】 |
 
-Drift example: `derivation/.../void_functions.py` mirrors Δα/Δω logic but with altered docstrings while maintaining identical computations, risking divergence if constants change.【F:derivation/code/computational_toy_proofs/void_functions.py†L10-L79】
+Drift example: `Derivation/.../void_functions.py` mirrors Δα/Δω logic but with altered docstrings while maintaining identical computations, risking divergence if constants change.【F:Derivation/code/computational_toy_proofs/void_functions.py†L10-L79】
 
 ## 3) Redundant Implementations (same capability, different modules)
 
 | capability | candidates (file:line) | preferred? | rationale |
 | --- | --- | --- | --- |
-| Void dynamics equations | `fum_rt/fum_advanced_math/void_dynamics/Void_Equations.py:35-119`; `derivation/code/Void_Equations.py:35-119` | Yes → keep runtime copy | Centralize runtime to one authoritative module; derivation copies should import to avoid divergence.【F:fum_rt/fum_advanced_math/void_dynamics/Void_Equations.py†L35-L119】 |
-| Domain modulation factors | `fum_rt/fum_advanced_math/void_dynamics/Void_Debt_Modulation.py:12-133`; `derivation/code/Void_Debt_Modulation.py:12-133` | Yes → keep runtime copy | Triple maintenance burdens updates; prefer runtime export for both theoretical and production consumers.【F:fum_rt/fum_advanced_math/void_dynamics/Void_Debt_Modulation.py†L12-L133】 |
-| Memory steering PDE utilities | `fum_rt/physics/memory_steering/memory_steering.py:73-198`; `derivation/code/physics/memory_steering/memory_steering.py:73-198` | Prefer runtime (`fum_rt`) | Identical APIs; consolidating avoids drift and simplifies test targeting.【F:fum_rt/physics/memory_steering/memory_steering.py†L73-L198】 |
+| Void dynamics equations | `fum_rt/fum_advanced_math/void_dynamics/Void_Equations.py:35-119`; `Derivation/code/Void_Equations.py:35-119` | Yes → keep runtime copy | Centralize runtime to one authoritative module; derivation copies should import to avoid divergence.【F:fum_rt/fum_advanced_math/void_dynamics/Void_Equations.py†L35-L119】 |
+| Domain modulation factors | `fum_rt/fum_advanced_math/void_dynamics/Void_Debt_Modulation.py:12-133`; `Derivation/code/Void_Debt_Modulation.py:12-133` | Yes → keep runtime copy | Triple maintenance burdens updates; prefer runtime export for both theoretical and production consumers.【F:fum_rt/fum_advanced_math/void_dynamics/Void_Debt_Modulation.py†L12-L133】 |
+| Memory steering PDE utilities | `fum_rt/physics/memory_steering/memory_steering.py:73-198`; `Derivation/code/physics/memory_steering/memory_steering.py:73-198` | Prefer runtime (`fum_rt`) | Identical APIs; consolidating avoids drift and simplifies test targeting.【F:fum_rt/physics/memory_steering/memory_steering.py†L73-L198】 |
 | Graph coarse-graining | `fum_rt/fum_advanced_math/graph/coarse_grain_graph.py:12-48` vs runtime connectome heuristics | Prefer integrate into `core` or drop | Standalone coarse-grain helper not referenced; overlaps structural homeostasis logic.【F:fum_rt/fum_advanced_math/graph/coarse_grain_graph.py†L12-L47】 |
 
 ## 4) Dead/Unused Code Paths
@@ -160,7 +160,7 @@ Drift example: `derivation/.../void_functions.py` mirrors Δα/Δω logic but wi
 1. Dense connectome rebuild each tick - `fum_rt/core/connectome.py` - O(N²) tick cost blocks scale - Effort: L - Owner: Core Runtime
 2. GDSP actuator silent failure - `fum_rt/runtime/loop/main.py` - Actuator can’t be trusted without logs - Effort: M - Owner: Runtime Loop
 3. Duplicate void dynamics libraries - multiple files - Risk of drift in physics constants - Effort: M - Owner: Advanced Math
-4. Memory steering duplication - `fum_rt/physics/...` & `derivation/...` - Double maintenance, inconsistent fixes - Effort: M - Owner: Physics Team
+4. Memory steering duplication - `fum_rt/physics/...` & `Derivation/...` - Double maintenance, inconsistent fixes - Effort: M - Owner: Physics Team
 5. RNG fallback noise in void adapter - `fum_rt/core/void_dynamics_adapter.py` - Breaks reproducibility baseline - Effort: M - Owner: Core Runtime
 6. Scout flag sprawl - `fum_rt/runtime/loop/main.py` - Hard to audit runtime behavior toggles - Effort: M - Owner: Runtime Loop
 7. Frontend visualizer dense conversions - `fum_rt/frontend/plugins/.../fum_visualizer.py` - UI stalls large runs - Effort: L - Owner: Viz Team

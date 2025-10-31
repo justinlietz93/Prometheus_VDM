@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "vdm://agency/cfield-calib-t3-v1",
+  "title": "C-Field Calibration T3 Spec",
+  "type": "object",
+  "tag": "cfield-calib-t3-v1",
+  "properties": {
+    "tasks": { "type": "array", "items": { "type": "string" } },
+    "holdout_fraction": { "type": "number", "minimum": 0, "maximum": 0.5 },
+    "bootstrap_B": { "type": "integer", "minimum": 100, "maximum": 100000 }
+  },
+  "required": ["tasks", "holdout_fraction", "bootstrap_B"]
+}

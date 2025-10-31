@@ -7,7 +7,7 @@
     0.04
   ],
   "expected_slope": 3.0,
-  "figure": "/mnt/ironwolf/git/Void_Unity_Proofs/derivation/code/outputs/figures/rd_conservation/20251006_072250_residual_vs_dt.png",
+  "figure": "/mnt/ironwolf/git/Void_Unity_Proofs/Derivation/code/outputs/figures/rd_conservation/20251006_072250_residual_vs_dt.png",
   "metric": "two_grid_error_inf_median",
   "order_p": 1,
   "slope": 2.9421954773488714,

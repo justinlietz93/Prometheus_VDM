@@ -241,7 +241,7 @@ Output artifacts (CSV timeseries, PNG figures, JSON metrics) are archived with S
 
 - **Uncertainty:** Temporal discretization error $O(\Delta t)$, spatial error $O(\Delta x^{2})$
 - **Stability Constraint:** $\Delta t \le \Delta x^{2}/(2 d D)$ where $d$ = spatial dimension
-- **Implementation:** Custom Python/NumPy routines (derivation/code/physics/reaction_diffusion/)
+- **Implementation:** Custom Python/NumPy routines (Derivation/code/physics/reaction_diffusion/)
 - **Validation:** Convergence study confirms first-order temporal, second-order spatial scaling
 
 **Spectral Analyzer: Real-valued Fast Fourier Transform (rFFT)**  
@@ -269,7 +269,7 @@ Output artifacts (CSV timeseries, PNG figures, JSON metrics) are archived with S
 
 - **Uncertainty:** Compressibility error $O(\mathrm{Ma}^{2})$ where $\mathrm{Ma} = U/c_s$ (Mach number)
 - **Relaxation Parameter:** $\tau \in [0.51, 1.95] \; \to$ kinematic viscosity $\nu = (\tau - 0.5)/3$
-- **Implementation:** Custom C++/Python with bounce-back boundaries (derivation/code/physics/fluid_dynamics/)
+- **Implementation:** Custom C++/Python with bounce-back boundaries (Derivation/code/physics/fluid_dynamics/)
 - **Validation:** Taylor-Green vortex viscosity recovery within 5% (VALIDATION_METRICS.md#kpi-taylor-green-nu-rel-err)
 
 ### Standard Solutions / Parameters
@@ -597,7 +597,7 @@ $Q(W,t)$ exhibits initial fluctuation ($\sim 10^{-6}$ relative) during adaptive 
 | 70.0 | -6.45 | Linear regime |
 | 80.0 | 1.19 | Final measurement |
 
-*Full dataset: 81 rows (every 1.0 time unit), stored in `derivation/code/outputs/data/rd_front_speed_position.csv` (commit 17a0b72)*
+*Full dataset: 81 rows (every 1.0 time unit), stored in `Derivation/code/outputs/data/rd_front_speed_position.csv` (commit 17a0b72)*
 
 #### **Table 2: Dispersion Relation - Growth Rates by Mode (first 10 modes shown)**
 
@@ -611,7 +611,7 @@ $Q(W,t)$ exhibits initial fluctuation ($\sim 10^{-6}$ relative) during adaptive 
 | ... | ... | ... | ... | ... | ... |
 | 64 | 2.0106 | -3.8921 | -3.8918 | 0.0001 | 0.99994 |
 
-*Full dataset: 64 rows (modes 1-64), stored in `derivation/code/outputs/data/rd_dispersion_sigma.csv`*
+*Full dataset: 64 rows (modes 1-64), stored in `Derivation/code/outputs/data/rd_dispersion_sigma.csv`*
 
 ### Sample Calculations
 
@@ -752,7 +752,7 @@ Fractional: $4\times 10^{-4} / (\text{typical } \sigma \sim 0.1) \approx 0.4\%$
 
 #### **Figure 1: Fisher-KPP Front Position vs. Time**
 
-![Front Speed Linear Fit](derivation/code/outputs/figures/reaction_diffusion/rd_front_speed_experiment_default.png)
+![Front Speed Linear Fit](Derivation/code/outputs/figures/reaction_diffusion/rd_front_speed_experiment_default.png)
 
 *Figure Caption:* Front position $x_{\text{front}}$ (solid blue) extracted via $\phi=0.1$ level-set tracking, with robust linear fit (dashed red) over $t \in [10, 80]$ (excluding initial transient). Fit parameters: slope $c_{\text{measured}} = 0.7673$ spatial/time, $R^{2} = 0.99996$. Theoretical prediction $c_{\text{theory}} = 0.7746$ shown as dotted black line (0.94% relative error). Residuals (inset) exhibit zero mean, confirming linear propagation regime. Parameters: $D=1.0$, $r=0.15$, $N=1024$, $L=200$.
 
@@ -765,7 +765,7 @@ Fractional: $4\times 10^{-4} / (\text{typical } \sigma \sim 0.1) \approx 0.4\%$
 
 #### **Figure 2: Dispersion Relation σ(k) - Measured vs. Theoretical**
 
-![Dispersion Parabola](derivation/code/outputs/figures/reaction_diffusion/rd_dispersion_experiment_default.png)
+![Dispersion Parabola](Derivation/code/outputs/figures/reaction_diffusion/rd_dispersion_experiment_default.png)
 
 *Figure Caption:* Growth rate $\sigma$ as function of wavenumber $k$ for 62 "good modes" ($R^{2}_{\text{mode}} \ge 0.95$). Blue circles: measured from exponential fits to $|\hat u_m(t)|$. Red curve: theoretical prediction $\sigma = r - Dk^{2}$ with $D=1.0$, $r=0.15$. Array-level $R^{2} = 0.99995$, median relative error 0.145%. Parabolic maximum at $k_{\max} = \sqrt{r/D} = 0.387$ rad/unit (vertical dashed line). Modes with $k > \sqrt{4r/D} \approx 0.775$ exhibit decay ($\sigma < 0$), as expected. Parameters: $N=1024$, $L=200$, $T=10$, $\text{amp0}=10^{-6}$.
 

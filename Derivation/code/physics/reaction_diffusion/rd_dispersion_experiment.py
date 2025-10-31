@@ -23,11 +23,11 @@ Method:
   - Compare measured growth rates to σ_d(m) (primary) and σ_c(k) (reference).
 
 Outputs (defaults):
-  - derivation/code/outputs/figures/<script>_<timestamp>.png
-  - derivation/code/outputs/logs/<script>_<timestamp>.json
+  - Derivation/code/outputs/figures/<script>_<timestamp>.png
+  - Derivation/code/outputs/logs/<script>_<timestamp>.json
 
 CLI example:
-  python Prometheus_VDM/derivation/code/physics/rd_dispersion_experiment.py --N 1024 --L 200 --D 1.0 --r 0.25 --T 10 --cfl 0.2 --seed 42
+  python Prometheus_VDM/Derivation/code/physics/rd_dispersion_experiment.py --N 1024 --L 200 --D 1.0 --r 0.25 --T 10 --cfl 0.2 --seed 42
 """
 import argparse
 import json
@@ -254,14 +254,14 @@ def main():
     parser.add_argument("--m_max", type=int, default=64, help="Max mode index m to fit (clamped by N//2).")
     parser.add_argument("--fit_start", type=float, default=0.1, help="fractional start of fit window")
     parser.add_argument("--fit_end", type=float, default=0.4, help="fractional end of fit window")
-    parser.add_argument("--outdir", type=str, default=None, help="base output dir; defaults to derivation/code/outputs next to this script")
+    parser.add_argument("--outdir", type=str, default=None, help="base output dir; defaults to Derivation/code/outputs next to this script")
     parser.add_argument("--figure", type=str, default=None, help="override figure path; otherwise script_name_timestamp.png in outdir/figures")
     parser.add_argument("--log", type=str, default=None, help="override log path; otherwise script_name_timestamp.json in outdir/logs")
     args = parser.parse_args()
 
     script_name = os.path.splitext(os.path.basename(__file__))[0]
     tstamp = time.strftime("%Y%m%dT%H%M%SZ", time.gmtime())
-    # Follow repo convention: write to derivation/code/outputs/{figures,logs}/reaction_diffusion
+    # Follow repo convention: write to Derivation/code/outputs/{figures,logs}/reaction_diffusion
     default_base = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "outputs"))
     base_outdir = os.path.abspath(args.outdir) if args.outdir else default_base
     fig_dir = os.path.join(base_outdir, "figures", "reaction_diffusion")

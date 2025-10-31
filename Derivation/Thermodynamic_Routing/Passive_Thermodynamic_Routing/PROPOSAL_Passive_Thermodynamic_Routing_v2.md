@@ -163,7 +163,6 @@ Order of triage:
 
 Example spec (path: `Derivation/code/physics/thermo_routing/specs/tr_v2.json`):
 
-
   Note: $\lambda_k$ are the discrete eigenvalues of the same Laplacian operator used in the run (FD-3pt vs spectral) under the run’s boundary conditions; RJ fits use exactly these $\lambda_k$ to avoid operator–spectrum mismatch.
 
   This is an optics-inspired thermodynamic routing analogue in a metriplectic RD medium; we borrow RJ-style diagnostics, not Maxwell’s equations.

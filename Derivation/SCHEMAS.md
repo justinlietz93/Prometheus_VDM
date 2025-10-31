@@ -90,8 +90,8 @@ Last updated: 2025-10-13 (commit 66eb296)
 | `duration`              | `int|null` |   Y     | null    | ticks               | Total simulation duration (null for indefinite)   | `run_profiles/*.json`              |
 
 **Producers/Consumers:** Used by main runtime orchestrator  
-**Related equations (anchors only):** TODO: missing anchor (see derivation/EQUATIONS.md)  
-**Related symbols/constants:** TODO: missing anchor (see derivation/SYMBOLS.md, derivation/CONSTANTS.md)  
+**Related equations (anchors only):** TODO: missing anchor (see Derivation/EQUATIONS.md)  
+**Related symbols/constants:** TODO: missing anchor (see Derivation/SYMBOLS.md, Derivation/CONSTANTS.md)  
 **Examples (if present):** `run_profiles/02_vdm_viz100_20250811.json`, `run_profiles/10kN_viz.json`, `run_profiles/00_vdm_20250810.json`  
 **Invariants/Validation rules:** All numeric fields must be >= 0; `neurons`, `k`, `hz` > 0; `duration` may be null  
 **Notes:** Multiple run profile variants exist with different scale parameters (100, 1k, 10k neurons)
@@ -102,7 +102,7 @@ Last updated: 2025-10-13 (commit 66eb296)
 
 **Kind:** config  
 **Versioning (if present):** none  
-**Defined at:** `derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:119-135` • `6b63a5e`
+**Defined at:** `Derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:119-135` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
 
@@ -128,23 +128,23 @@ class LBMConfig:
 
 | Field                | Type              | Required | Default            | Units/Normalization | Description (lifted)                                       | Source                                                            |
 | -------------------- | ----------------- | :------: | ------------------ | ------------------- | ---------------------------------------------------------- | ----------------------------------------------------------------- |
-| `nx`                 | `int`             |    N     | `256`              | lattice units       | Grid points in x-direction                                 | `derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:120`      |
-| `ny`                 | `int`             |    N     | `256`              | lattice units       | Grid points in y-direction                                 | `derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:121`      |
-| `tau`                | `float`           |    N     | `0.8`              | normalized          | Relaxation time; $\nu = c_s^2 (\tau - 0.5)$               | `derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:122`      |
-| `forcing`            | `tuple[float, float]` |    N | `(0.0, 0.0)`       | lattice force units | Body force $(f_x, f_y)$                                    | `derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:123`      |
-| `periodic_x`         | `bool`            |    N     | `True`             | n/a                 | Enable periodic boundaries in x                            | `derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:124`      |
-| `periodic_y`         | `bool`            |    N     | `True`             | n/a                 | Enable periodic boundaries in y                            | `derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:125`      |
-| `void_enabled`       | `bool`            |    N     | `True`             | n/a                 | VDM void dynamics coupling (bounded stabilizer)          | `derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:127`      |
-| `void_domain`        | `str`             |    N     | `"standard_model"` | n/a                 | Void domain identifier                                     | `derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:128`      |
-| `void_gain`          | `float`           |    N     | `0.5`              | normalized          | Void coupling gain                                         | `derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:129`      |
-| `void_use_modulation`| `bool`            |    N     | `False`            | n/a                 | Enable void debt modulation                                | `derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:130`      |
-| `rho_floor`          | `float`           |    N     | `1e-9`             | lattice density     | Minimum density floor                                      | `derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:131`      |
-| `u_clamp`            | `float | None`    |    N     | `None`             | lattice velocity    | Velocity clamp to keep $Ma \lesssim 0.1$; None disables   | `derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:132`      |
+| `nx`                 | `int`             |    N     | `256`              | lattice units       | Grid points in x-direction                                 | `Derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:120`      |
+| `ny`                 | `int`             |    N     | `256`              | lattice units       | Grid points in y-direction                                 | `Derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:121`      |
+| `tau`                | `float`           |    N     | `0.8`              | normalized          | Relaxation time; $\nu = c_s^2 (\tau - 0.5)$               | `Derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:122`      |
+| `forcing`            | `tuple[float, float]` |    N | `(0.0, 0.0)`       | lattice force units | Body force $(f_x, f_y)$                                    | `Derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:123`      |
+| `periodic_x`         | `bool`            |    N     | `True`             | n/a                 | Enable periodic boundaries in x                            | `Derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:124`      |
+| `periodic_y`         | `bool`            |    N     | `True`             | n/a                 | Enable periodic boundaries in y                            | `Derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:125`      |
+| `void_enabled`       | `bool`            |    N     | `True`             | n/a                 | VDM void dynamics coupling (bounded stabilizer)          | `Derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:127`      |
+| `void_domain`        | `str`             |    N     | `"standard_model"` | n/a                 | Void domain identifier                                     | `Derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:128`      |
+| `void_gain`          | `float`           |    N     | `0.5`              | normalized          | Void coupling gain                                         | `Derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:129`      |
+| `void_use_modulation`| `bool`            |    N     | `False`            | n/a                 | Enable void debt modulation                                | `Derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:130`      |
+| `rho_floor`          | `float`           |    N     | `1e-9`             | lattice density     | Minimum density floor                                      | `Derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:131`      |
+| `u_clamp`            | `float | None`    |    N     | `None`             | lattice velocity    | Velocity clamp to keep $Ma \lesssim 0.1$; None disables   | `Derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:132`      |
 
 **Producers/Consumers:** Used by LBM2D solver in fluid dynamics benchmarks → TODO: link `ALGORITHMS.md#vdm-a-lbm-bgk`  
-**Related equations (anchors only):** TODO: missing anchor for BGK collision operator (see `derivation/EQUATIONS.md`)  
-**Related symbols/constants:** TODO: missing anchor for $c_s$ (see `derivation/SYMBOLS.md`)  
-**Examples (if present):** `derivation/code/physics/fluid_dynamics/benchmarks/taylor_green_benchmark.py`, `derivation/code/physics/fluid_dynamics/benchmarks/lid_cavity_benchmark.py`  
+**Related equations (anchors only):** TODO: missing anchor for BGK collision operator (see `Derivation/EQUATIONS.md`)  
+**Related symbols/constants:** TODO: missing anchor for $c_s$ (see `Derivation/SYMBOLS.md`)  
+**Examples (if present):** `Derivation/code/physics/fluid_dynamics/benchmarks/taylor_green_benchmark.py`, `Derivation/code/physics/fluid_dynamics/benchmarks/lid_cavity_benchmark.py`  
 **Invariants/Validation rules:** `nx, ny > 0`; `tau > 0.5` (for stability); `rho_floor > 0`; if `u_clamp` is not None, must be > 0  
 **Notes:** Integrates VDM void dynamics as a bounded stabilizer when `void_enabled=True`
 
@@ -225,7 +225,7 @@ class GeometryRunConfig:
 
 **Kind:** config  
 **Versioning (if present):** v0.1 (draft)  
-**Defined at:** `derivation/notebooks/VDM_corner_config.yaml:1-40` • `6b63a5e`
+**Defined at:** `Derivation/notebooks/VDM_corner_config.yaml:1-40` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
 
@@ -275,35 +275,35 @@ save_maxspeed_scan: true
 
 | Field                      | Type    | Required | Default     | Units/Normalization | Description (lifted)                                       | Source                                          |
 | -------------------------- | ------- | :------: | ----------- | ------------------- | ---------------------------------------------------------- | ----------------------------------------------- |
-| `H`                        | `float` |    Y     | n/a         | non-dimensional     | Inlet height                                               | `derivation/notebooks/VDM_corner_config.yaml:3` |
-| `L_in`                     | `float` |    Y     | n/a         | multiples of H      | Inlet straight length                                      | `derivation/notebooks/VDM_corner_config.yaml:4` |
-| `L_out`                    | `float` |    Y     | n/a         | multiples of H      | Outlet straight length                                     | `derivation/notebooks/VDM_corner_config.yaml:5` |
-| `rc`                       | `float` |    Y     | n/a         | non-dimensional     | Inner fillet radius; 0.0 for sharp corner                  | `derivation/notebooks/VDM_corner_config.yaml:6` |
-| `rho`                      | `float` |    Y     | n/a         | density units       | Fluid density                                              | `derivation/notebooks/VDM_corner_config.yaml:9` |
-| `nu`                       | `float` |    Y     | n/a         | kinematic viscosity | Kinematic viscosity $\nu$                                  | `derivation/notebooks/VDM_corner_config.yaml:10`|
-| `U0`                       | `float` |    Y     | n/a         | velocity units      | Characteristic inlet speed                                 | `derivation/notebooks/VDM_corner_config.yaml:13`|
-| `Nx`                       | `int`   |    Y     | n/a         | count               | Grid points in x-direction                                 | `derivation/notebooks/VDM_corner_config.yaml:16`|
-| `Ny`                       | `int`   |    Y     | n/a         | count               | Grid points in y-direction                                 | `derivation/notebooks/VDM_corner_config.yaml:17`|
-| `dt`                       | `float` |    Y     | n/a         | time units          | Time step                                                  | `derivation/notebooks/VDM_corner_config.yaml:18`|
-| `t_end`                    | `float` |    Y     | n/a         | time units          | Simulation end time                                        | `derivation/notebooks/VDM_corner_config.yaml:19`|
-| `walls`                    | `str`   |    Y     | n/a         | n/a                 | Wall boundary condition type                               | `derivation/notebooks/VDM_corner_config.yaml:22`|
-| `inlet`                    | `str`   |    Y     | n/a         | n/a                 | Inlet boundary condition type                              | `derivation/notebooks/VDM_corner_config.yaml:23`|
-| `outlet`                   | `str`   |    Y     | n/a         | n/a                 | Outlet boundary condition type                             | `derivation/notebooks/VDM_corner_config.yaml:24`|
-| `regularizer.enabled`      | `bool`  |    Y     | n/a         | n/a                 | Enable VDM regularizer                                     | `derivation/notebooks/VDM_corner_config.yaml:28`|
-| `regularizer.beta`         | `float` |    Y     | n/a         | normalized          | Coupling of debt to advective transport limiter            | `derivation/notebooks/VDM_corner_config.yaml:29`|
-| `regularizer.tau_r`        | `float` |    Y     | n/a         | time units          | Debt relaxation time                                       | `derivation/notebooks/VDM_corner_config.yaml:30`|
-| `regularizer.kappa`        | `float` |    Y     | n/a         | diffusion coeff     | Diffusion of debt field $D$                                | `derivation/notebooks/VDM_corner_config.yaml:31`|
-| `regularizer.alpha`        | `float` |    Y     | n/a         | normalized          | Source strength from strain rate $\|\nabla u\|^2$          | `derivation/notebooks/VDM_corner_config.yaml:32`|
-| `regularizer.tau_u`        | `float` |    Y     | n/a         | time units          | Velocity smoothing timescale                               | `derivation/notebooks/VDM_corner_config.yaml:33`|
-| `regularizer.tau_g`        | `float` |    Y     | n/a         | time units          | Global valence accumulation window                         | `derivation/notebooks/VDM_corner_config.yaml:34`|
-| `save_streamlines`         | `bool`  |    Y     | n/a         | n/a                 | Save streamline visualizations                             | `derivation/notebooks/VDM_corner_config.yaml:37`|
-| `save_vorticity`           | `bool`  |    Y     | n/a         | n/a                 | Save vorticity field outputs                               | `derivation/notebooks/VDM_corner_config.yaml:38`|
-| `save_maxspeed_scan`       | `bool`  |    Y     | n/a         | n/a                 | Save maximum speed scan results                            | `derivation/notebooks/VDM_corner_config.yaml:39`|
+| `H`                        | `float` |    Y     | n/a         | non-dimensional     | Inlet height                                               | `Derivation/notebooks/VDM_corner_config.yaml:3` |
+| `L_in`                     | `float` |    Y     | n/a         | multiples of H      | Inlet straight length                                      | `Derivation/notebooks/VDM_corner_config.yaml:4` |
+| `L_out`                    | `float` |    Y     | n/a         | multiples of H      | Outlet straight length                                     | `Derivation/notebooks/VDM_corner_config.yaml:5` |
+| `rc`                       | `float` |    Y     | n/a         | non-dimensional     | Inner fillet radius; 0.0 for sharp corner                  | `Derivation/notebooks/VDM_corner_config.yaml:6` |
+| `rho`                      | `float` |    Y     | n/a         | density units       | Fluid density                                              | `Derivation/notebooks/VDM_corner_config.yaml:9` |
+| `nu`                       | `float` |    Y     | n/a         | kinematic viscosity | Kinematic viscosity $\nu$                                  | `Derivation/notebooks/VDM_corner_config.yaml:10`|
+| `U0`                       | `float` |    Y     | n/a         | velocity units      | Characteristic inlet speed                                 | `Derivation/notebooks/VDM_corner_config.yaml:13`|
+| `Nx`                       | `int`   |    Y     | n/a         | count               | Grid points in x-direction                                 | `Derivation/notebooks/VDM_corner_config.yaml:16`|
+| `Ny`                       | `int`   |    Y     | n/a         | count               | Grid points in y-direction                                 | `Derivation/notebooks/VDM_corner_config.yaml:17`|
+| `dt`                       | `float` |    Y     | n/a         | time units          | Time step                                                  | `Derivation/notebooks/VDM_corner_config.yaml:18`|
+| `t_end`                    | `float` |    Y     | n/a         | time units          | Simulation end time                                        | `Derivation/notebooks/VDM_corner_config.yaml:19`|
+| `walls`                    | `str`   |    Y     | n/a         | n/a                 | Wall boundary condition type                               | `Derivation/notebooks/VDM_corner_config.yaml:22`|
+| `inlet`                    | `str`   |    Y     | n/a         | n/a                 | Inlet boundary condition type                              | `Derivation/notebooks/VDM_corner_config.yaml:23`|
+| `outlet`                   | `str`   |    Y     | n/a         | n/a                 | Outlet boundary condition type                             | `Derivation/notebooks/VDM_corner_config.yaml:24`|
+| `regularizer.enabled`      | `bool`  |    Y     | n/a         | n/a                 | Enable VDM regularizer                                     | `Derivation/notebooks/VDM_corner_config.yaml:28`|
+| `regularizer.beta`         | `float` |    Y     | n/a         | normalized          | Coupling of debt to advective transport limiter            | `Derivation/notebooks/VDM_corner_config.yaml:29`|
+| `regularizer.tau_r`        | `float` |    Y     | n/a         | time units          | Debt relaxation time                                       | `Derivation/notebooks/VDM_corner_config.yaml:30`|
+| `regularizer.kappa`        | `float` |    Y     | n/a         | diffusion coeff     | Diffusion of debt field $D$                                | `Derivation/notebooks/VDM_corner_config.yaml:31`|
+| `regularizer.alpha`        | `float` |    Y     | n/a         | normalized          | Source strength from strain rate $\|\nabla u\|^2$          | `Derivation/notebooks/VDM_corner_config.yaml:32`|
+| `regularizer.tau_u`        | `float` |    Y     | n/a         | time units          | Velocity smoothing timescale                               | `Derivation/notebooks/VDM_corner_config.yaml:33`|
+| `regularizer.tau_g`        | `float` |    Y     | n/a         | time units          | Global valence accumulation window                         | `Derivation/notebooks/VDM_corner_config.yaml:34`|
+| `save_streamlines`         | `bool`  |    Y     | n/a         | n/a                 | Save streamline visualizations                             | `Derivation/notebooks/VDM_corner_config.yaml:37`|
+| `save_vorticity`           | `bool`  |    Y     | n/a         | n/a                 | Save vorticity field outputs                               | `Derivation/notebooks/VDM_corner_config.yaml:38`|
+| `save_maxspeed_scan`       | `bool`  |    Y     | n/a         | n/a                 | Save maximum speed scan results                            | `Derivation/notebooks/VDM_corner_config.yaml:39`|
 
 **Producers/Consumers:** Used by VDM corner flow benchmarks in notebooks  
-**Related equations (anchors only):** TODO: missing anchor for Navier-Stokes and VDM regularization terms (see `derivation/EQUATIONS.md`)  
-**Related symbols/constants:** TODO: missing anchor for $\nu$, $D$ (see `derivation/SYMBOLS.md`)  
-**Examples (if present):** `derivation/notebooks/VDM_corner_config.yaml`  
+**Related equations (anchors only):** TODO: missing anchor for Navier-Stokes and VDM regularization terms (see `Derivation/EQUATIONS.md`)  
+**Related symbols/constants:** TODO: missing anchor for $\nu$, $D$ (see `Derivation/SYMBOLS.md`)  
+**Examples (if present):** `Derivation/notebooks/VDM_corner_config.yaml`  
 **Invariants/Validation rules:** `H, rho, U0 > 0`; `nu > 0`; `Nx, Ny > 0`; `dt, t_end > 0`; `rc >= 0`  
 **Notes:** Draft v0.1; VDM regularizer implements Void Debt Modulation for flow stability
 
@@ -315,7 +315,7 @@ save_maxspeed_scan: true
 
 **Kind:** record  
 **Versioning (if present):** none  
-**Defined at:** `derivation/code/physics/conservation_law/qfum_validate.py:133-143` • `6b63a5e`
+**Defined at:** `Derivation/code/physics/conservation_law/qfum_validate.py:133-143` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
 
@@ -337,20 +337,20 @@ class RunMetrics:
 
 | Field          | Type    | Required | Default | Units/Normalization | Description (lifted)                                      | Source                                                              |
 | -------------- | ------- | :------: | ------- | ------------------- | --------------------------------------------------------- | ------------------------------------------------------------------- |
-| `r`            | `float` |    Y     | n/a     | rate                | Logistic growth rate parameter                            | `derivation/code/physics/conservation_law/qfum_validate.py:134`     |
-| `u`            | `float` |    Y     | n/a     | rate                | Logistic carrying capacity coefficient                    | `derivation/code/physics/conservation_law/qfum_validate.py:135`     |
-| `solver`       | `str`   |    Y     | n/a     | n/a                 | ODE solver identifier (e.g., "rk4", "euler")              | `derivation/code/physics/conservation_law/qfum_validate.py:136`     |
-| `dt`           | `float` |    Y     | n/a     | time units          | Time step size                                            | `derivation/code/physics/conservation_law/qfum_validate.py:137`     |
-| `T`            | `float` |    Y     | n/a     | time units          | Total integration time                                    | `derivation/code/physics/conservation_law/qfum_validate.py:138`     |
-| `W0`           | `float` |    Y     | n/a     | state variable      | Initial condition for $W$                                 | `derivation/code/physics/conservation_law/qfum_validate.py:139`     |
-| `delta_Q_max`  | `float` |    Y     | n/a     | normalized          | Maximum invariant drift $\|Q(t) - Q(0)\|$                | `derivation/code/physics/conservation_law/qfum_validate.py:140`     |
-| `W_min`        | `float` |    Y     | n/a     | state variable      | Minimum $W$ value observed                                | `derivation/code/physics/conservation_law/qfum_validate.py:141`     |
-| `W_max`        | `float` |    Y     | n/a     | state variable      | Maximum $W$ value observed                                | `derivation/code/physics/conservation_law/qfum_validate.py:142`     |
+| `r`            | `float` |    Y     | n/a     | rate                | Logistic growth rate parameter                            | `Derivation/code/physics/conservation_law/qfum_validate.py:134`     |
+| `u`            | `float` |    Y     | n/a     | rate                | Logistic carrying capacity coefficient                    | `Derivation/code/physics/conservation_law/qfum_validate.py:135`     |
+| `solver`       | `str`   |    Y     | n/a     | n/a                 | ODE solver identifier (e.g., "rk4", "euler")              | `Derivation/code/physics/conservation_law/qfum_validate.py:136`     |
+| `dt`           | `float` |    Y     | n/a     | time units          | Time step size                                            | `Derivation/code/physics/conservation_law/qfum_validate.py:137`     |
+| `T`            | `float` |    Y     | n/a     | time units          | Total integration time                                    | `Derivation/code/physics/conservation_law/qfum_validate.py:138`     |
+| `W0`           | `float` |    Y     | n/a     | state variable      | Initial condition for $W$                                 | `Derivation/code/physics/conservation_law/qfum_validate.py:139`     |
+| `delta_Q_max`  | `float` |    Y     | n/a     | normalized          | Maximum invariant drift $\|Q(t) - Q(0)\|$                | `Derivation/code/physics/conservation_law/qfum_validate.py:140`     |
+| `W_min`        | `float` |    Y     | n/a     | state variable      | Minimum $W$ value observed                                | `Derivation/code/physics/conservation_law/qfum_validate.py:141`     |
+| `W_max`        | `float` |    Y     | n/a     | state variable      | Maximum $W$ value observed                                | `Derivation/code/physics/conservation_law/qfum_validate.py:142`     |
 
 **Producers/Consumers:** Produced by `qfum_validate.py` validation script; serialized to JSON  
-**Related equations (anchors only):** TODO: missing anchor for $Q(W,t) = \ln(W/(r - uW)) - rt$ (see `derivation/EQUATIONS.md`)  
-**Related symbols/constants:** TODO: missing anchor for $W$, $Q$ (see `derivation/SYMBOLS.md`)  
-**Examples (if present):** `derivation/code/outputs/logs/conservation_law/*_qfum_metrics.json`  
+**Related equations (anchors only):** TODO: missing anchor for $Q(W,t) = \ln(W/(r - uW)) - rt$ (see `Derivation/EQUATIONS.md`)  
+**Related symbols/constants:** TODO: missing anchor for $W$, $Q$ (see `Derivation/SYMBOLS.md`)  
+**Examples (if present):** `Derivation/code/outputs/logs/conservation_law/*_qfum_metrics.json`  
 **Invariants/Validation rules:** `r, u, dt, T > 0`; `W0 > 0`; `delta_Q_max >= 0`  
 **Notes:** Used to verify Q_FUM logarithmic first integral conservation
 
@@ -360,7 +360,7 @@ class RunMetrics:
 
 **Kind:** record  
 **Versioning (if present):** none  
-**Defined at:** `derivation/code/physics/conservation_law/qfum_validate.py:146-155` • `6b63a5e`
+**Defined at:** `Derivation/code/physics/conservation_law/qfum_validate.py:146-155` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
 
@@ -381,19 +381,19 @@ class ConvergenceMetrics:
 
 | Field              | Type          | Required | Default | Units/Normalization | Description (lifted)                                 | Source                                                              |
 | ------------------ | ------------- | :------: | ------- | ------------------- | ---------------------------------------------------- | ------------------------------------------------------------------- |
-| `r`                | `float`       |    Y     | n/a     | rate                | Logistic growth rate parameter                       | `derivation/code/physics/conservation_law/qfum_validate.py:147`     |
-| `u`                | `float`       |    Y     | n/a     | rate                | Logistic carrying capacity coefficient               | `derivation/code/physics/conservation_law/qfum_validate.py:148`     |
-| `solver`           | `str`         |    Y     | n/a     | n/a                 | ODE solver identifier                                | `derivation/code/physics/conservation_law/qfum_validate.py:149`     |
-| `dts`              | `List[float]` |    Y     | n/a     | time units          | List of time step sizes tested                       | `derivation/code/physics/conservation_law/qfum_validate.py:150`     |
-| `delta_Q_max_list` | `List[float]` |    Y     | n/a     | normalized          | Maximum invariant drifts for each dt                 | `derivation/code/physics/conservation_law/qfum_validate.py:151`     |
-| `slope`            | `float`       |    Y     | n/a     | log-log slope       | Convergence rate from log-log fit                    | `derivation/code/physics/conservation_law/qfum_validate.py:152`     |
-| `intercept`        | `float`       |    Y     | n/a     | log-log intercept   | Intercept from log-log fit                           | `derivation/code/physics/conservation_law/qfum_validate.py:153`     |
-| `r2`               | `float`       |    Y     | n/a     | normalized          | $R^2$ coefficient of determination                   | `derivation/code/physics/conservation_law/qfum_validate.py:154`     |
+| `r`                | `float`       |    Y     | n/a     | rate                | Logistic growth rate parameter                       | `Derivation/code/physics/conservation_law/qfum_validate.py:147`     |
+| `u`                | `float`       |    Y     | n/a     | rate                | Logistic carrying capacity coefficient               | `Derivation/code/physics/conservation_law/qfum_validate.py:148`     |
+| `solver`           | `str`         |    Y     | n/a     | n/a                 | ODE solver identifier                                | `Derivation/code/physics/conservation_law/qfum_validate.py:149`     |
+| `dts`              | `List[float]` |    Y     | n/a     | time units          | List of time step sizes tested                       | `Derivation/code/physics/conservation_law/qfum_validate.py:150`     |
+| `delta_Q_max_list` | `List[float]` |    Y     | n/a     | normalized          | Maximum invariant drifts for each dt                 | `Derivation/code/physics/conservation_law/qfum_validate.py:151`     |
+| `slope`            | `float`       |    Y     | n/a     | log-log slope       | Convergence rate from log-log fit                    | `Derivation/code/physics/conservation_law/qfum_validate.py:152`     |
+| `intercept`        | `float`       |    Y     | n/a     | log-log intercept   | Intercept from log-log fit                           | `Derivation/code/physics/conservation_law/qfum_validate.py:153`     |
+| `r2`               | `float`       |    Y     | n/a     | normalized          | $R^2$ coefficient of determination                   | `Derivation/code/physics/conservation_law/qfum_validate.py:154`     |
 
 **Producers/Consumers:** Produced by `qfum_validate.py` convergence study; serialized to JSON  
-**Related equations (anchors only):** TODO: missing anchor for convergence analysis (see `derivation/EQUATIONS.md`)  
+**Related equations (anchors only):** TODO: missing anchor for convergence analysis (see `Derivation/EQUATIONS.md`)  
 **Related symbols/constants:** n/a  
-**Examples (if present):** `derivation/code/outputs/logs/conservation_law/*_qfum_metrics.json`  
+**Examples (if present):** `Derivation/code/outputs/logs/conservation_law/*_qfum_metrics.json`  
 **Invariants/Validation rules:** `r, u > 0`; `dts` and `delta_Q_max_list` must have same length; `r2 in [0,1]`  
 **Notes:** Slope should be ≈4 for RK4 solver; tests temporal convergence order
 
@@ -405,7 +405,7 @@ class ConvergenceMetrics:
 
 **Kind:** message  
 **Versioning (if present):** none  
-**Defined at:** `derivation/code/physics/fluid_dynamics/telemetry/walkers.py:11-17` • `6b63a5e`
+**Defined at:** `Derivation/code/physics/fluid_dynamics/telemetry/walkers.py:11-17` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
 
@@ -423,16 +423,16 @@ class Petition:
 
 | Field   | Type    | Required | Default | Units/Normalization | Description (lifted)                      | Source                                                                 |
 | ------- | ------- | :------: | ------- | ------------------- | ----------------------------------------- | ---------------------------------------------------------------------- |
-| `kind`  | `str`   |    Y     | n/a     | n/a                 | Petition type: 'div', 'swirl', or 'shear' | `derivation/code/physics/fluid_dynamics/telemetry/walkers.py:12`       |
-| `value` | `float` |    Y     | n/a     | varies by kind      | Measured scalar value                     | `derivation/code/physics/fluid_dynamics/telemetry/walkers.py:13`       |
-| `x`     | `float` |    Y     | n/a     | spatial coord       | X coordinate of measurement               | `derivation/code/physics/fluid_dynamics/telemetry/walkers.py:14`       |
-| `y`     | `float` |    Y     | n/a     | spatial coord       | Y coordinate of measurement               | `derivation/code/physics/fluid_dynamics/telemetry/walkers.py:15`       |
-| `t`     | `int`   |    Y     | n/a     | timestep            | Timestep of measurement                   | `derivation/code/physics/fluid_dynamics/telemetry/walkers.py:16`       |
+| `kind`  | `str`   |    Y     | n/a     | n/a                 | Petition type: 'div', 'swirl', or 'shear' | `Derivation/code/physics/fluid_dynamics/telemetry/walkers.py:12`       |
+| `value` | `float` |    Y     | n/a     | varies by kind      | Measured scalar value                     | `Derivation/code/physics/fluid_dynamics/telemetry/walkers.py:13`       |
+| `x`     | `float` |    Y     | n/a     | spatial coord       | X coordinate of measurement               | `Derivation/code/physics/fluid_dynamics/telemetry/walkers.py:14`       |
+| `y`     | `float` |    Y     | n/a     | spatial coord       | Y coordinate of measurement               | `Derivation/code/physics/fluid_dynamics/telemetry/walkers.py:15`       |
+| `t`     | `int`   |    Y     | n/a     | timestep            | Timestep of measurement                   | `Derivation/code/physics/fluid_dynamics/telemetry/walkers.py:16`       |
 
 **Producers/Consumers:** Produced by Walker agents; posted to Bus; consumed by Reducer → TODO: link `ALGORITHMS.md#vdm-a-walker`  
-**Related equations (anchors only):** TODO: missing anchor for divergence, vorticity, shear (see `derivation/EQUATIONS.md`)  
+**Related equations (anchors only):** TODO: missing anchor for divergence, vorticity, shear (see `Derivation/EQUATIONS.md`)  
 **Related symbols/constants:** n/a  
-**Examples (if present):** Emitted by walkers in `derivation/code/physics/fluid_dynamics/telemetry/walkers.py:112-125`  
+**Examples (if present):** Emitted by walkers in `Derivation/code/physics/fluid_dynamics/telemetry/walkers.py:112-125`  
 **Invariants/Validation rules:** `kind` must be one of `['div', 'swirl', 'shear']`; `t >= 0`  
 **Notes:** Read-only measurement message; does not modify simulation state
 
@@ -442,7 +442,7 @@ class Petition:
 
 **Kind:** config/record  
 **Versioning (if present):** none  
-**Defined at:** `derivation/code/physics/fluid_dynamics/telemetry/walkers.py:43-49` • `6b63a5e`
+**Defined at:** `Derivation/code/physics/fluid_dynamics/telemetry/walkers.py:43-49` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
 
@@ -461,17 +461,17 @@ class PolicyBounds:
 
 | Field         | Type    | Required | Default | Units/Normalization | Description (lifted)                      | Source                                                                 |
 | ------------- | ------- | :------: | ------- | ------------------- | ----------------------------------------- | ---------------------------------------------------------------------- |
-| `tau_min`     | `float` |    N     | `0.51`  | normalized          | Minimum relaxation time $\tau$            | `derivation/code/physics/fluid_dynamics/telemetry/walkers.py:44`       |
-| `tau_max`     | `float` |    N     | `1.95`  | normalized          | Maximum relaxation time $\tau$            | `derivation/code/physics/fluid_dynamics/telemetry/walkers.py:45`       |
-| `U_min`       | `float` |    N     | `1e-8`  | velocity units      | Minimum characteristic velocity           | `derivation/code/physics/fluid_dynamics/telemetry/walkers.py:46`       |
-| `U_max`       | `float` |    N     | `0.2`   | velocity units      | Maximum characteristic velocity           | `derivation/code/physics/fluid_dynamics/telemetry/walkers.py:47`       |
-| `uclamp_min`  | `float` |    N     | `1e-6`  | velocity units      | Minimum velocity clamp                    | `derivation/code/physics/fluid_dynamics/telemetry/walkers.py:48`       |
-| `uclamp_max`  | `float` |    N     | `0.1`   | velocity units      | Maximum velocity clamp                    | `derivation/code/physics/fluid_dynamics/telemetry/walkers.py:49`       |
+| `tau_min`     | `float` |    N     | `0.51`  | normalized          | Minimum relaxation time $\tau$            | `Derivation/code/physics/fluid_dynamics/telemetry/walkers.py:44`       |
+| `tau_max`     | `float` |    N     | `1.95`  | normalized          | Maximum relaxation time $\tau$            | `Derivation/code/physics/fluid_dynamics/telemetry/walkers.py:45`       |
+| `U_min`       | `float` |    N     | `1e-8`  | velocity units      | Minimum characteristic velocity           | `Derivation/code/physics/fluid_dynamics/telemetry/walkers.py:46`       |
+| `U_max`       | `float` |    N     | `0.2`   | velocity units      | Maximum characteristic velocity           | `Derivation/code/physics/fluid_dynamics/telemetry/walkers.py:47`       |
+| `uclamp_min`  | `float` |    N     | `1e-6`  | velocity units      | Minimum velocity clamp                    | `Derivation/code/physics/fluid_dynamics/telemetry/walkers.py:48`       |
+| `uclamp_max`  | `float` |    N     | `0.1`   | velocity units      | Maximum velocity clamp                    | `Derivation/code/physics/fluid_dynamics/telemetry/walkers.py:49`       |
 
 **Producers/Consumers:** Used by AdvisoryPolicy in fluid dynamics telemetry  
-**Related equations (anchors only):** TODO: missing anchor for LBM stability criteria (see `derivation/EQUATIONS.md`)  
-**Related symbols/constants:** TODO: missing anchor for $\tau$ (see `derivation/SYMBOLS.md`)  
-**Examples (if present):** Instantiated in `derivation/code/physics/fluid_dynamics/telemetry/walkers.py:51`  
+**Related equations (anchors only):** TODO: missing anchor for LBM stability criteria (see `Derivation/EQUATIONS.md`)  
+**Related symbols/constants:** TODO: missing anchor for $\tau$ (see `Derivation/SYMBOLS.md`)  
+**Examples (if present):** Instantiated in `Derivation/code/physics/fluid_dynamics/telemetry/walkers.py:51`  
 **Invariants/Validation rules:** `tau_min > 0.5` (stability); `tau_max > tau_min`; `U_max > U_min > 0`; `uclamp_max > uclamp_min > 0`  
 **Notes:** Advisory policy bounds; numeric parameters only, no forcing
 
@@ -522,8 +522,8 @@ class Observation:
 | `meta`         | `Dict[str, Any]`                     |    N     | `{}`    | n/a                 | Extra metadata (JSON-serializable only)                       | `fum_rt/core/announce.py:62`   |
 
 **Producers/Consumers:** Produced by void-walker agents; published to announcement bus; consumed by Active Domain Cartography (ADC)  
-**Related equations (anchors only):** TODO: missing anchor for RE-VGSP/GDSP deltas (see `derivation/EQUATIONS.md`)  
-**Related symbols/constants:** TODO: missing anchor for $W$, $S_{ij}$ (see `derivation/SYMBOLS.md`)  
+**Related equations (anchors only):** TODO: missing anchor for RE-VGSP/GDSP deltas (see `Derivation/EQUATIONS.md`)  
+**Related symbols/constants:** TODO: missing anchor for $W$, $S_{ij}$ (see `Derivation/SYMBOLS.md`)  
 **Examples (if present):** Validated by `fum_rt/core/announce.py:65-75`  
 **Invariants/Validation rules:** `tick >= 0`; `kind` must be one of the four allowed values; `len(nodes) <= 256`; `loop_len >= 0`  
 **Notes:** Event schema for void-walker announcement bus; kept compact for efficient ADC processing
@@ -599,7 +599,7 @@ class DeltaEvent(BaseEvent):
 | `hsi`     | `float` |    N     | `0.0`   | normalized          | Homeostatic stability/instability component           | `fum_rt/core/proprioception/events.py:70`      |
 
 **Producers/Consumers:** Produced by connectome/walker learning updates; consumed by EventDrivenMetrics  
-**Related equations (anchors only):** TODO: missing anchor for B1 topology, TD learning (see `derivation/EQUATIONS.md`)  
+**Related equations (anchors only):** TODO: missing anchor for B1 topology, TD learning (see `Derivation/EQUATIONS.md`)  
 **Related symbols/constants:** n/a  
 **Examples (if present):** Emitted during structural plasticity events  
 **Invariants/Validation rules:** Immutable (frozen); `novelty, hab >= 0`  
@@ -636,7 +636,7 @@ class VTTouchEvent(BaseEvent):
 | `w`     | `float` |    N     | `1.0`   | weight              | Optional weight                               | `fum_rt/core/proprioception/events.py:82`      |
 
 **Producers/Consumers:** Produced on vocabulary/feature access; consumed by EventDrivenMetrics for coverage/entropy approximation  
-**Related equations (anchors only):** TODO: missing anchor for vocabulary coverage and entropy (see `derivation/EQUATIONS.md`)  
+**Related equations (anchors only):** TODO: missing anchor for vocabulary coverage and entropy (see `Derivation/EQUATIONS.md`)  
 **Related symbols/constants:** n/a  
 **Examples (if present):** Used in VT coverage tracking  
 **Invariants/Validation rules:** Immutable (frozen); `w` typically > 0  
@@ -672,7 +672,7 @@ class EdgeOffEvent(BaseEvent):
 | `v`   | `int` |    N     | `0`     | node ID             | Target node ID        | `fum_rt/core/proprioception/events.py:88,93`   |
 
 **Producers/Consumers:** Produced by structural plasticity; EdgeOn consumed by UnionFindCohesion; EdgeOff marks dirty for reconciliation  
-**Related equations (anchors only):** TODO: missing anchor for cohesion metric (see `derivation/EQUATIONS.md`)  
+**Related equations (anchors only):** TODO: missing anchor for cohesion metric (see `Derivation/EQUATIONS.md`)  
 **Related symbols/constants:** n/a  
 **Examples (if present):** Emitted during edge creation/deletion  
 **Invariants/Validation rules:** Immutable (frozen); `u, v >= 0`  
@@ -705,7 +705,7 @@ class SpikeEvent(BaseEvent):
 | `sign` | `int`   |    N     | `+1`    | polarity            | +1 excitatory, -1 inhibitory, 0 unknown            | `fum_rt/core/proprioception/events.py:102`     |
 
 **Producers/Consumers:** Produced by neurons during activity; consumed by EventDrivenMetrics  
-**Related equations (anchors only):** TODO: missing anchor for void-faithful polarity (see `derivation/EQUATIONS.md`)  
+**Related equations (anchors only):** TODO: missing anchor for void-faithful polarity (see `Derivation/EQUATIONS.md`)  
 **Related symbols/constants:** n/a  
 **Examples (if present):** Emitted during neuron activation  
 **Invariants/Validation rules:** Immutable (frozen); `node >= 0`; `sign in [-1, 0, +1]`; `amp >= 0`  
@@ -736,8 +736,8 @@ class DeltaWEvent(BaseEvent):
 | `dw`   | `float` |    N     | `0.0`   | weight delta        | Signed weight delta $\Delta W$ | `fum_rt/core/proprioception/events.py:109`     |
 
 **Producers/Consumers:** Produced by local learning updates; consumed by EventDrivenMetrics  
-**Related equations (anchors only):** TODO: missing anchor for weight update rules (see `derivation/EQUATIONS.md`)  
-**Related symbols/constants:** TODO: missing anchor for $W$ (see `derivation/SYMBOLS.md`)  
+**Related equations (anchors only):** TODO: missing anchor for weight update rules (see `Derivation/EQUATIONS.md`)  
+**Related symbols/constants:** TODO: missing anchor for $W$ (see `Derivation/SYMBOLS.md`)  
 **Examples (if present):** Emitted during synaptic weight updates  
 **Invariants/Validation rules:** Immutable (frozen); `node >= 0`  
 **Notes:** Optional signed weight delta event for local learning updates
@@ -809,7 +809,7 @@ class ADCEvent(BaseEvent):
 | `adc_cycle_hits`  | `Optional[float]`|    N     | `None`  | count/rate          | ADC cycle hits metric          | `fum_rt/core/proprioception/events.py:133`     |
 
 **Producers/Consumers:** Produced by Active Domain Cartography (ADC) estimator; consumed by telemetry  
-**Related equations (anchors only):** TODO: missing anchor for ADC algorithm (see `derivation/ALGORITHMS.md`)  
+**Related equations (anchors only):** TODO: missing anchor for ADC algorithm (see `Derivation/ALGORITHMS.md`)  
 **Related symbols/constants:** n/a  
 **Examples (if present):** ADC readout snapshots  
 **Invariants/Validation rules:** Immutable (frozen); all fields optional; if present, numeric values >= 0  
@@ -890,8 +890,8 @@ class HorizonActivityEvent(BaseEvent):
 | `dt_ret`     | `float`            |    N     | `0.0`                | time units          | Strictly retarded window duration              | `fum_rt/core/cosmology/events.py:35`      |
 
 **Producers/Consumers:** Produced by horizon activity detection; routed through cosmology event bus  
-**Related equations (anchors only):** TODO: missing anchor for retarded kernel and horizon activity (see `derivation/EQUATIONS.md`)  
-**Related symbols/constants:** TODO: missing anchor for $\dot{A}$ (see `derivation/SYMBOLS.md`)  
+**Related equations (anchors only):** TODO: missing anchor for retarded kernel and horizon activity (see `Derivation/EQUATIONS.md`)  
+**Related symbols/constants:** TODO: missing anchor for $\dot{A}$ (see `Derivation/SYMBOLS.md`)  
 **Examples (if present):** Cosmology router events  
 **Invariants/Validation rules:** Immutable (frozen); `t >= 0`; `x` must contain 1-4 finite coordinates; `dt_ret > 0`; `dotA != 0`; `horizon_id` non-empty  
 **Notes:** Post-init validation ensures all constraints; used in cosmology router feature
@@ -929,7 +929,7 @@ class RouterSplitEvent(BaseEvent):
 | `f_gw`          | `float` |    N     | `0.0`            | fraction $[0,1]$    | Fraction for gravitational wave channel | `fum_rt/core/cosmology/events.py:72`    |
 
 **Producers/Consumers:** Produced by cosmology router; consumed by energy partition subsystem  
-**Related equations (anchors only):** TODO: missing anchor for energy routing (see `derivation/EQUATIONS.md`)  
+**Related equations (anchors only):** TODO: missing anchor for energy routing (see `Derivation/EQUATIONS.md`)  
 **Related symbols/constants:** n/a  
 **Examples (if present):** Router budget split instructions  
 **Invariants/Validation rules:** Immutable (frozen); `energy_budget >= 0`; `f_vac, f_grain, f_gw in [0,1]`; `f_vac + f_grain + f_gw = 1.0` (within 1e-9 tolerance)  
@@ -982,7 +982,7 @@ class BudgetTick(BaseEvent):
 
 **Kind:** file  
 **Versioning (if present):** version field = "1.0"  
-**Defined at:** `derivation/code/outputs/logs/conservation_law/*_qfum_metrics.json` • `6b63a5e`
+**Defined at:** `Derivation/code/outputs/logs/conservation_law/*_qfum_metrics.json` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
 
@@ -1037,28 +1037,28 @@ class BudgetTick(BaseEvent):
 
 | Field                                    | Type          | Required | Default | Units/Normalization | Description (lifted)                              | Source                                              |
 | ---------------------------------------- | ------------- | :------: | ------- | ------------------- | ------------------------------------------------- | --------------------------------------------------- |
-| `version`                                | `str`         |    Y     | n/a     | n/a                 | Schema version                                    | `derivation/code/outputs/logs/conservation_law/*.json:2` |
-| `timestamp_utc`                          | `str`         |    Y     | n/a     | ISO 8601            | UTC timestamp of run                              | `derivation/code/outputs/logs/conservation_law/*.json:3` |
-| `params.r`                               | `float`       |    Y     | n/a     | rate                | Logistic growth rate                              | `derivation/code/outputs/logs/conservation_law/*.json:5` |
-| `params.u`                               | `float`       |    Y     | n/a     | rate                | Logistic carrying capacity coefficient            | `derivation/code/outputs/logs/conservation_law/*.json:6` |
-| `params.T`                               | `float`       |    Y     | n/a     | time units          | Total integration time                            | `derivation/code/outputs/logs/conservation_law/*.json:7` |
-| `params.solver`                          | `str`         |    Y     | n/a     | n/a                 | ODE solver name                                   | `derivation/code/outputs/logs/conservation_law/*.json:8` |
-| `params.W0_list`                         | `List[float]` |    Y     | n/a     | state variable      | List of initial conditions tested                 | `derivation/code/outputs/logs/conservation_law/*.json:9` |
-| `params.dt_list`                         | `List[float]` |    Y     | n/a     | time units          | List of time steps tested                         | `derivation/code/outputs/logs/conservation_law/*.json:10` |
-| `runs`                                   | `List[object]`|    Y     | n/a     | n/a                 | Array of RunMetrics objects (see schema-runmetrics) | `derivation/code/outputs/logs/conservation_law/*.json:12` |
-| `convergence`                            | `object`      |    Y     | n/a     | n/a                 | ConvergenceMetrics object (see schema-convergencemetrics) | `derivation/code/outputs/logs/conservation_law/*.json:24` |
-| `acceptance.drift_ok`                    | `bool`        |    Y     | n/a     | n/a                 | Whether drift test passed                         | `derivation/code/outputs/logs/conservation_law/*.json:34` |
-| `acceptance.drift_gate`                  | `float`       |    Y     | n/a     | threshold           | Drift acceptance threshold                        | `derivation/code/outputs/logs/conservation_law/*.json:35` |
-| `acceptance.convergence_ok`              | `bool`        |    Y     | n/a     | n/a                 | Whether convergence test passed                   | `derivation/code/outputs/logs/conservation_law/*.json:36` |
-| `acceptance.convergence_expected_order`  | `int`         |    Y     | n/a     | order               | Expected convergence order                        | `derivation/code/outputs/logs/conservation_law/*.json:37` |
-| `acceptance.convergence_r2_min`          | `float`       |    Y     | n/a     | threshold           | Minimum $R^2$ for convergence fit                 | `derivation/code/outputs/logs/conservation_law/*.json:38` |
-| `acceptance.order_tol`                   | `float`       |    Y     | n/a     | tolerance           | Tolerance for order match                         | `derivation/code/outputs/logs/conservation_law/*.json:39` |
-| `acceptance.passed`                      | `bool`        |    Y     | n/a     | n/a                 | Overall acceptance gate                           | `derivation/code/outputs/logs/conservation_law/*.json:40` |
+| `version`                                | `str`         |    Y     | n/a     | n/a                 | Schema version                                    | `Derivation/code/outputs/logs/conservation_law/*.json:2` |
+| `timestamp_utc`                          | `str`         |    Y     | n/a     | ISO 8601            | UTC timestamp of run                              | `Derivation/code/outputs/logs/conservation_law/*.json:3` |
+| `params.r`                               | `float`       |    Y     | n/a     | rate                | Logistic growth rate                              | `Derivation/code/outputs/logs/conservation_law/*.json:5` |
+| `params.u`                               | `float`       |    Y     | n/a     | rate                | Logistic carrying capacity coefficient            | `Derivation/code/outputs/logs/conservation_law/*.json:6` |
+| `params.T`                               | `float`       |    Y     | n/a     | time units          | Total integration time                            | `Derivation/code/outputs/logs/conservation_law/*.json:7` |
+| `params.solver`                          | `str`         |    Y     | n/a     | n/a                 | ODE solver name                                   | `Derivation/code/outputs/logs/conservation_law/*.json:8` |
+| `params.W0_list`                         | `List[float]` |    Y     | n/a     | state variable      | List of initial conditions tested                 | `Derivation/code/outputs/logs/conservation_law/*.json:9` |
+| `params.dt_list`                         | `List[float]` |    Y     | n/a     | time units          | List of time steps tested                         | `Derivation/code/outputs/logs/conservation_law/*.json:10` |
+| `runs`                                   | `List[object]`|    Y     | n/a     | n/a                 | Array of RunMetrics objects (see schema-runmetrics) | `Derivation/code/outputs/logs/conservation_law/*.json:12` |
+| `convergence`                            | `object`      |    Y     | n/a     | n/a                 | ConvergenceMetrics object (see schema-convergencemetrics) | `Derivation/code/outputs/logs/conservation_law/*.json:24` |
+| `acceptance.drift_ok`                    | `bool`        |    Y     | n/a     | n/a                 | Whether drift test passed                         | `Derivation/code/outputs/logs/conservation_law/*.json:34` |
+| `acceptance.drift_gate`                  | `float`       |    Y     | n/a     | threshold           | Drift acceptance threshold                        | `Derivation/code/outputs/logs/conservation_law/*.json:35` |
+| `acceptance.convergence_ok`              | `bool`        |    Y     | n/a     | n/a                 | Whether convergence test passed                   | `Derivation/code/outputs/logs/conservation_law/*.json:36` |
+| `acceptance.convergence_expected_order`  | `int`         |    Y     | n/a     | order               | Expected convergence order                        | `Derivation/code/outputs/logs/conservation_law/*.json:37` |
+| `acceptance.convergence_r2_min`          | `float`       |    Y     | n/a     | threshold           | Minimum $R^2$ for convergence fit                 | `Derivation/code/outputs/logs/conservation_law/*.json:38` |
+| `acceptance.order_tol`                   | `float`       |    Y     | n/a     | tolerance           | Tolerance for order match                         | `Derivation/code/outputs/logs/conservation_law/*.json:39` |
+| `acceptance.passed`                      | `bool`        |    Y     | n/a     | n/a                 | Overall acceptance gate                           | `Derivation/code/outputs/logs/conservation_law/*.json:40` |
 
-**Producers/Consumers:** Produced by `derivation/code/physics/conservation_law/qfum_validate.py`; consumed by validation gates  
-**Related equations (anchors only):** TODO: missing anchor for Q_FUM invariant (see `derivation/EQUATIONS.md`)  
-**Related symbols/constants:** TODO: missing anchor for drift_gate, order thresholds (see `derivation/CONSTANTS.md`)  
-**Examples (if present):** `derivation/code/outputs/logs/conservation_law/20250826_110546_qfum_metrics.json`  
+**Producers/Consumers:** Produced by `Derivation/code/physics/conservation_law/qfum_validate.py`; consumed by validation gates  
+**Related equations (anchors only):** TODO: missing anchor for Q_FUM invariant (see `Derivation/EQUATIONS.md`)  
+**Related symbols/constants:** TODO: missing anchor for drift_gate, order thresholds (see `Derivation/CONSTANTS.md`)  
+**Examples (if present):** `Derivation/code/outputs/logs/conservation_law/20250826_110546_qfum_metrics.json`  
 **Invariants/Validation rules:** version must be "1.0"; all numeric params > 0; acceptance.passed is conjunction of sub-gates  
 **Notes:** arXiv-ready validation metrics for Q_FUM conservation law
 
@@ -1068,7 +1068,7 @@ class BudgetTick(BaseEvent):
 
 **Kind:** file (JSON summary)  
 **Versioning (if present):** metrics_version = "v2-phys-aware"  
-**Defined at:** `derivation/code/physics/tachyonic_condensation/schemas/tube-spectrum-summary-v1.schema.json` • 09f871a
+**Defined at:** `Derivation/code/physics/tachyonic_condensation/schemas/tube-spectrum-summary-v1.schema.json` • 09f871a
 
 **Definition (verbatim snippet from source):**
 
@@ -1112,7 +1112,7 @@ class BudgetTick(BaseEvent):
 **Producers/Consumers:** Produced by `run_tachyon_tube.py --mode spectrum`; consumed by RESULTS and gates.  
 **Related equations (anchors only):** see `EQUATIONS.md#vdm-e-095` (tube secular), `VALIDATION_METRICS.md#kpi-tube-cov-phys`.  
 **Related symbols/constants:** see `SYMBOLS.md` entries for $\kappa, \ell, R$.  
-**Examples (if present):** `derivation/code/outputs/logs/tachyonic_condensation/*_tube_spectrum_summary__tube-spectrum-v1.json`  
+**Examples (if present):** `Derivation/code/outputs/logs/tachyonic_condensation/*_tube_spectrum_summary__tube-spectrum-v1.json`  
 **Invariants/Validation rules:** `0 <= coverage_phys, coverage_raw <= 1`; `attempts_raw = |R_sweep| (ell_max+1)`; `coverage = coverage_phys`.
 
 ---
@@ -1121,7 +1121,7 @@ class BudgetTick(BaseEvent):
 
 **Kind:** file (JSON summary)  
 **Versioning (if present):** none  
-**Defined at:** `derivation/code/physics/tachyonic_condensation/schemas/tube-condensation-summary-v1.schema.json` • 09f871a
+**Defined at:** `Derivation/code/physics/tachyonic_condensation/schemas/tube-condensation-summary-v1.schema.json` • 09f871a
 
 **Definition (verbatim snippet from source):**
 
@@ -1156,7 +1156,7 @@ class BudgetTick(BaseEvent):
 **Producers/Consumers:** Produced by `run_tachyon_tube.py --mode condensation`; consumed by RESULTS and gates.  
 **Related equations (anchors only):** see `EQUATIONS.md#vdm-e-097` (quadratic fit).  
 **Related symbols/constants:** `SYMBOLS.md` entries for $E(R)$.  
-**Examples (if present):** `derivation/code/outputs/logs/tachyonic_condensation/*_tube_condensation_summary__tube-condensation-v1.json`  
+**Examples (if present):** `Derivation/code/outputs/logs/tachyonic_condensation/*_tube_condensation_summary__tube-condensation-v1.json`  
 **Invariants/Validation rules:** `finite_fraction in [0,1]`; `passed = (finite_fraction >= 0.80) and curvature_ok`.
 
 ---
@@ -1165,7 +1165,7 @@ class BudgetTick(BaseEvent):
 
 **Kind:** file (JSON summary)  
 **Versioning (if present):** tag = "KG-energy-osc-v1"  
-**Defined at:** `derivation/code/physics/metriplectic/schemas/KG-energy-osc-v1.schema.json`
+**Defined at:** `Derivation/code/physics/metriplectic/schemas/KG-energy-osc-v1.schema.json`
 
 **Definition (verbatim snippet from source):**
 
@@ -1191,7 +1191,7 @@ class BudgetTick(BaseEvent):
 
 | Field           | Type              | Required | Default | Units/Normalization | Description                                                  | Source                                                                 |
 | ----------------| ----------------- | :------: | ------- | ------------------- | ------------------------------------------------------------ | ---------------------------------------------------------------------- |
-| `tag`           | `string`          |    Y     | n/a     | n/a                 | Tag identifier (must equal `"KG-energy-osc-v1"`)             | `derivation/code/physics/metriplectic/schemas/KG-energy-osc-v1.schema.json` |
+| `tag`           | `string`          |    Y     | n/a     | n/a                 | Tag identifier (must equal `"KG-energy-osc-v1"`)             | `Derivation/code/physics/metriplectic/schemas/KG-energy-osc-v1.schema.json` |
 | `grid`          | `object`          |    N     | n/a     | n/a                 | Grid specification (shape, spacing, BCs)                     | schema                                                                  |
 | `params`        | `object`          |    N     | n/a     | n/a                 | Physical/numerical parameters used                           | schema                                                                  |
 | `dt_list`       | `array<number>`   |    Y     | n/a     | time step           | Time step ladder used for scaling study (values ≥ 0)         | schema                                                                  |
@@ -1208,10 +1208,10 @@ class BudgetTick(BaseEvent):
 | `gate`          | `object`          |    N     | n/a     | n/a                 | Gate parameters snapshot (for transparency)                  | schema                                                                  |
 | `passed`        | `boolean`         |    Y     | n/a     | n/a                 | Overall acceptance flag (per VALIDATION_METRICS KG gates)    | schema                                                                  |
 
-**Producers/Consumers:** Produced by `derivation/code/physics/metriplectic/run_kg_energy_oscillation.py`; consumed by RESULTS and canon gates.  
+**Producers/Consumers:** Produced by `Derivation/code/physics/metriplectic/run_kg_energy_oscillation.py`; consumed by RESULTS and canon gates.  
 **Related equations (anchors only):** see `VALIDATION_METRICS.md` (KG energy-osc KPIs).  
 **Related symbols/constants:** see `SYMBOLS.md`/`CONSTANTS.md` entries for Klein–Gordon normalization and step-size scaling.  
-**Examples (if present):** `derivation/code/outputs/logs/metriplectic/*_KG-energy-osc-v1.json`  
+**Examples (if present):** `Derivation/code/outputs/logs/metriplectic/*_KG-energy-osc-v1.json`  
 **Invariants/Validation rules:** `len(dt_list) == len(AH)`; `0 ≤ fit.R2 ≤ 1`; `e_rev ≥ 0`; `passed` reflects conjunction of KG gates defined in canon.  
 **Notes:** Validates two conservative-limb invariants: (i) energy oscillation amplitude scaling with log–log slope near 2 for Störmer–Verlet; (ii) strict time-reversal symmetry. Includes determinism receipts via checkpoint buffer hashes and environment audit.
 

@@ -16,7 +16,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### flux_sweep results  <a id="data-flux-sweep"></a>
 **Type:** log  
 **Purpose:** Conservation law validation data from discrete flux computation experiments  
-**Produced by:** TODO: add anchor (see derivation/code/analysis/flux_sweep.py)  
+**Produced by:** TODO: add anchor (see Derivation/code/analysis/flux_sweep.py)  
 **Defined by (if math):** TODO: add anchor for deltaQ conservation  
 **Inputs (symbols/constants):** TODO: link r, u, N, k parameters  
 **Units/Normalization:** dimensionless (discrete indices, normalized states)
@@ -28,7 +28,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Storage format & path pattern:**
 - Format: `json`
-- Path pattern: `derivation/outputs/logs/conservation_law/flux_sweep_<timestamp>.json`
+- Path pattern: `Derivation/outputs/logs/conservation_law/flux_sweep_<timestamp>.json`
 - Compression/encoding: none
 
 **Schema / columns (for tables/logs):**
@@ -36,10 +36,10 @@ Last updated: 2025-10-09 (commit 09f871a)
 - Index/primary keys: timestamp
 
 **Update cadence / lifecycle:** `on event`  
-**Provenance (code locations):** `derivation/code/analysis/flux_sweep.py:75-157 • 800ceda`  
+**Provenance (code locations):** `Derivation/code/analysis/flux_sweep.py:75-157 • 800ceda`  
 **Validation hooks / KPIs:** residual metrics (delta_sum_Q, delta_max_abs)  
 **Retention / access constraints:** none  
-**Example artifact (if referenced):** `derivation/outputs/logs/conservation_law/flux_sweep_1756475408.json`  
+**Example artifact (if referenced):** `Derivation/outputs/logs/conservation_law/flux_sweep_1756475408.json`  
 **Notes:** Used as input for H_candidate validation and optimization
 
 ---
@@ -47,7 +47,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### H_candidate_test results  <a id="data-h-candidate-test"></a>
 **Type:** log  
 **Purpose:** Test results for conservation law H_candidate function corrections  
-**Produced by:** TODO: add anchor (see derivation/code/analysis/build_and_test_H_candidate.py)  
+**Produced by:** TODO: add anchor (see Derivation/code/analysis/build_and_test_H_candidate.py)  
 **Defined by (if math):** TODO: add anchor for H_ij symbolic form  
 **Inputs (symbols/constants):** flux_sweep data, symbolic coefficients  
 **Units/Normalization:** dimensionless
@@ -58,7 +58,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Storage format & path pattern:**
 - Format: `json`
-- Path pattern: `derivation/outputs/logs/conservation_law/H_candidate_test_<timestamp>.json`
+- Path pattern: `Derivation/outputs/logs/conservation_law/H_candidate_test_<timestamp>.json`
 - Compression/encoding: none
 
 **Schema / columns (for tables/logs):**
@@ -66,10 +66,10 @@ Last updated: 2025-10-09 (commit 09f871a)
 - Index/primary keys: timestamp
 
 **Update cadence / lifecycle:** `on event`  
-**Provenance (code locations):** `derivation/code/analysis/build_and_test_H_candidate.py:127-157 • 800ceda`  
+**Provenance (code locations):** `Derivation/code/analysis/build_and_test_H_candidate.py:127-157 • 800ceda`  
 **Validation hooks / KPIs:** rms_before vs rms_after comparison  
 **Retention / access constraints:** none  
-**Example artifact (if referenced):** `derivation/outputs/logs/conservation_law/H_candidate_test_1756476845.json`  
+**Example artifact (if referenced):** `Derivation/outputs/logs/conservation_law/H_candidate_test_1756476845.json`  
 **Notes:** Tests symbolic H function against numerical flux data
 
 ---
@@ -77,7 +77,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### opt_H_params results  <a id="data-opt-h-params"></a>
 **Type:** log  
 **Purpose:** Optimization results for free parameters in H_candidate function  
-**Produced by:** TODO: add anchor (see derivation/code/analysis/optimize_H_params.py)  
+**Produced by:** TODO: add anchor (see Derivation/code/analysis/optimize_H_params.py)  
 **Defined by (if math):** TODO: add anchor for tau0 parameter  
 **Inputs (symbols/constants):** flux_sweep data, H symbolic form  
 **Units/Normalization:** dimensionless
@@ -88,7 +88,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Storage format & path pattern:**
 - Format: `json`
-- Path pattern: `derivation/outputs/logs/conservation_law/opt_H_params_<timestamp>.json`
+- Path pattern: `Derivation/outputs/logs/conservation_law/opt_H_params_<timestamp>.json`
 - Compression/encoding: none
 
 **Schema / columns (for tables/logs):**
@@ -96,10 +96,10 @@ Last updated: 2025-10-09 (commit 09f871a)
 - Index/primary keys: timestamp
 
 **Update cadence / lifecycle:** `on event`  
-**Provenance (code locations):** `derivation/code/analysis/optimize_H_params.py • 800ceda`  
+**Provenance (code locations):** `Derivation/code/analysis/optimize_H_params.py • 800ceda`  
 **Validation hooks / KPIs:** optimizer success, RMS improvement  
 **Retention / access constraints:** none  
-**Example artifact (if referenced):** `derivation/outputs/logs/conservation_law/opt_H_params_1756477394.json`  
+**Example artifact (if referenced):** `Derivation/outputs/logs/conservation_law/opt_H_params_1756477394.json`  
 **Notes:** Scipy optimizer results for free symbolic parameters
 
 ---
@@ -107,7 +107,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### fit_H_edge results  <a id="data-fit-h-edge"></a>
 **Type:** log  
 **Purpose:** Edge-based ansatz fit results for H function approximation  
-**Produced by:** TODO: add anchor (see derivation/code/analysis/fit_H_edge.py)  
+**Produced by:** TODO: add anchor (see Derivation/code/analysis/fit_H_edge.py)  
 **Defined by (if math):** TODO: add anchor for edge ansatz basis  
 **Inputs (symbols/constants):** flux_sweep data  
 **Units/Normalization:** dimensionless
@@ -118,7 +118,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Storage format & path pattern:**
 - Format: `json`
-- Path pattern: `derivation/outputs/logs/conservation_law/fit_H_edge_<timestamp>.json`
+- Path pattern: `Derivation/outputs/logs/conservation_law/fit_H_edge_<timestamp>.json`
 - Compression/encoding: none
 
 **Schema / columns (for tables/logs):**
@@ -126,10 +126,10 @@ Last updated: 2025-10-09 (commit 09f871a)
 - Index/primary keys: timestamp
 
 **Update cadence / lifecycle:** `on event`  
-**Provenance (code locations):** `derivation/code/analysis/fit_H_edge.py • 800ceda`  
+**Provenance (code locations):** `Derivation/code/analysis/fit_H_edge.py • 800ceda`  
 **Validation hooks / KPIs:** rms_residual threshold  
 **Retention / access constraints:** none  
-**Example artifact (if referenced):** `derivation/outputs/logs/conservation_law/fit_H_edge_1756476036.json`  
+**Example artifact (if referenced):** `Derivation/outputs/logs/conservation_law/fit_H_edge_1756476036.json`  
 **Notes:** Least-squares fit using polynomial edge basis
 
 ---
@@ -137,7 +137,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### grid_tau0_report  <a id="data-grid-tau0"></a>
 **Type:** log  
 **Purpose:** Grid search results for tau0 parameter in conservation law  
-**Produced by:** TODO: add anchor (see derivation/code/analysis/grid_tau0.py)  
+**Produced by:** TODO: add anchor (see Derivation/code/analysis/grid_tau0.py)  
 **Defined by (if math):** TODO: add anchor for tau0  
 **Inputs (symbols/constants):** flux data  
 **Units/Normalization:** dimensionless
@@ -148,7 +148,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Storage format & path pattern:**
 - Format: `json`
-- Path pattern: `derivation/outputs/logs/conservation_law/grid_tau0_report.json`
+- Path pattern: `Derivation/outputs/logs/conservation_law/grid_tau0_report.json`
 - Compression/encoding: none
 
 **Schema / columns (for tables/logs):**
@@ -156,10 +156,10 @@ Last updated: 2025-10-09 (commit 09f871a)
 - Index/primary keys: none
 
 **Update cadence / lifecycle:** `on event`  
-**Provenance (code locations):** `derivation/code/analysis/grid_tau0.py • 800ceda`  
+**Provenance (code locations):** `Derivation/code/analysis/grid_tau0.py • 800ceda`  
 **Validation hooks / KPIs:** optimal tau0 identification  
 **Retention / access constraints:** none  
-**Example artifact (if referenced):** `derivation/outputs/logs/conservation_law/grid_tau0_report.json`  
+**Example artifact (if referenced):** `Derivation/outputs/logs/conservation_law/grid_tau0_report.json`  
 **Notes:** Systematic parameter sweep
 
 ---
@@ -167,7 +167,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### qfum_metrics  <a id="data-qfum-metrics"></a>
 **Type:** log  
 **Purpose:** Quantum FUM conservation validation metrics including Q-drift and convergence  
-**Produced by:** TODO: add anchor (see derivation/code/physics/conservation_law/qfum_validate.py)  
+**Produced by:** TODO: add anchor (see Derivation/code/physics/conservation_law/qfum_validate.py)  
 **Defined by (if math):** TODO: add anchor for Q conservation equation  
 **Inputs (symbols/constants):** discrete walker states, network topology  
 **Units/Normalization:** dimensionless
@@ -178,7 +178,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Storage format & path pattern:**
 - Format: `json`
-- Path pattern: `derivation/code/outputs/logs/conservation_law/<YYYYMMDD_HHMMSS>_qfum_metrics.json`
+- Path pattern: `Derivation/code/outputs/logs/conservation_law/<YYYYMMDD_HHMMSS>_qfum_metrics.json`
 - Compression/encoding: none
 
 **Schema / columns (for tables/logs):**
@@ -186,10 +186,10 @@ Last updated: 2025-10-09 (commit 09f871a)
 - Index/primary keys: timestamp
 
 **Update cadence / lifecycle:** `per experiment run`  
-**Provenance (code locations):** `derivation/code/physics/conservation_law/qfum_validate.py • 800ceda`  
+**Provenance (code locations):** `Derivation/code/physics/conservation_law/qfum_validate.py • 800ceda`  
 **Validation hooks / KPIs:** Q-drift threshold, convergence criteria  
 **Retention / access constraints:** none  
-**Example artifact (if referenced):** `derivation/code/outputs/logs/conservation_law/20250826_110546_qfum_metrics.json`  
+**Example artifact (if referenced):** `Derivation/code/outputs/logs/conservation_law/20250826_110546_qfum_metrics.json`  
 **Notes:** Includes failed_runs subdirectory for non-passing experiments
 
 ---
@@ -197,7 +197,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### frw_conservation_check  <a id="data-frw-conservation"></a>
 **Type:** table  
 **Purpose:** FRW cosmology conservation check timeseries data  
-**Produced by:** TODO: add anchor (see derivation/code/physics/conservation_law/qfum_validate.py)  
+**Produced by:** TODO: add anchor (see Derivation/code/physics/conservation_law/qfum_validate.py)  
 **Defined by (if math):** TODO: add anchor for FRW conservation law  
 **Inputs (symbols/constants):** cosmological parameters  
 **Units/Normalization:** TODO: link to UNITS_NORMALIZATION.md
@@ -208,7 +208,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Storage format & path pattern:**
 - Format: `csv`
-- Path pattern: `derivation/code/outputs/logs/conservation_law/frw_conservation_check.csv`
+- Path pattern: `Derivation/code/outputs/logs/conservation_law/frw_conservation_check.csv`
 - Compression/encoding: none
 
 **Schema / columns (for tables/logs):**
@@ -216,10 +216,10 @@ Last updated: 2025-10-09 (commit 09f871a)
 - Index/primary keys: time index
 
 **Update cadence / lifecycle:** `per tick`  
-**Provenance (code locations):** `derivation/code/physics/conservation_law/qfum_validate.py • 800ceda`  
+**Provenance (code locations):** `Derivation/code/physics/conservation_law/qfum_validate.py • 800ceda`  
 **Validation hooks / KPIs:** conservation residual thresholds  
 **Retention / access constraints:** none  
-**Example artifact (if referenced):** `derivation/code/outputs/logs/conservation_law/frw_conservation_check.csv`  
+**Example artifact (if referenced):** `Derivation/code/outputs/logs/conservation_law/frw_conservation_check.csv`  
 **Notes:** CSV format for easy plotting and analysis
 
 ---
@@ -227,7 +227,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### frw_continuity_residual log  <a id="data-frw-balance-log"></a>
 **Type:** log  
 **Purpose:** Gate record for FRW continuity residual check with pass/fail, RMS, and artifact pointers  
-**Produced by:** `derivation/code/physics/cosmology/run_frw_balance.py:run_frw_balance`  
+**Produced by:** `Derivation/code/physics/cosmology/run_frw_balance.py:run_frw_balance`  
 **Defined by (if math):** `EQUATIONS.md#vdm-e-0xx` (FRW continuity; dust baseline $w=0$)  
 **Inputs (symbols/constants):** $\rho(t)$, $a(t)$, $t$  
 **Units/Normalization:** `UNITS_NORMALIZATION.md#cosmology` (dimensionless baseline OK; relative gate)
@@ -238,7 +238,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Storage format & path pattern:**
 - Format: `json`
-- Path pattern: `derivation/code/outputs/logs/cosmology/frw_balance__<tag>.json` (failed runs routed to `.../failed_runs/`)
+- Path pattern: `Derivation/code/outputs/logs/cosmology/frw_balance__<tag>.json` (failed runs routed to `.../failed_runs/`)
 - Compression/encoding: none
 
 **Schema / columns (for tables/logs):**
@@ -246,10 +246,10 @@ Last updated: 2025-10-09 (commit 09f871a)
 - Index/primary keys: none (singleton per run)
 
 **Update cadence / lifecycle:** `per experiment run`  
-**Provenance (code locations):** `derivation/code/physics/cosmology/run_frw_balance.py:57-91`  
+**Provenance (code locations):** `Derivation/code/physics/cosmology/run_frw_balance.py:57-91`  
 **Validation hooks / KPIs:** `VALIDATION_METRICS.md#kpi-frw-continuity-rms`  
 **Retention / access constraints:** none  
-**Example artifact (if referenced):** `derivation/code/outputs/logs/metriplectic/frw_balance__FRW-balance-v1.json`  
+**Example artifact (if referenced):** `Derivation/code/outputs/logs/metriplectic/frw_balance__FRW-balance-v1.json`  
 **Notes:** CONTRADICTION_REPORT is emitted on gate failure and routed to `failed_runs/`.
 
 ---
@@ -257,7 +257,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### frw_continuity_residual series  <a id="data-frw-balance-series"></a>
 **Type:** table  
 **Purpose:** Per-timestep residual series for FRW continuity equation used to compute RMS gate  
-**Produced by:** `derivation/code/physics/cosmology/run_frw_balance.py:run_frw_balance`  
+**Produced by:** `Derivation/code/physics/cosmology/run_frw_balance.py:run_frw_balance`  
 **Defined by (if math):** `EQUATIONS.md#vdm-e-0xx` (FRW continuity)  
 **Inputs (symbols/constants):** $\rho(t)$, $a(t)$, $t$  
 **Units/Normalization:** `UNITS_NORMALIZATION.md#cosmology`
@@ -268,7 +268,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Storage format & path pattern:**
 - Format: `csv`
-- Path pattern: `derivation/code/outputs/logs/cosmology/frw_continuity_residual__<tag>.csv` (failed → `.../failed_runs/`)
+- Path pattern: `Derivation/code/outputs/logs/cosmology/frw_continuity_residual__<tag>.csv` (failed → `.../failed_runs/`)
 - Compression/encoding: none
 
 **Schema / columns (for tables/logs):**
@@ -276,10 +276,10 @@ Last updated: 2025-10-09 (commit 09f871a)
 - Index/primary keys: `t`
 
 **Update cadence / lifecycle:** `per experiment run`  
-**Provenance (code locations):** `derivation/code/physics/cosmology/run_frw_balance.py:73-81`  
+**Provenance (code locations):** `Derivation/code/physics/cosmology/run_frw_balance.py:73-81`  
 **Validation hooks / KPIs:** `VALIDATION_METRICS.md#kpi-frw-continuity-rms`  
 **Retention / access constraints:** none  
-**Example artifact (if referenced):** `derivation/code/outputs/logs/metriplectic/frw_continuity_residual__FRW-balance-v1.csv`  
+**Example artifact (if referenced):** `Derivation/code/outputs/logs/metriplectic/frw_continuity_residual__FRW-balance-v1.csv`  
 **Notes:** Central-difference gradient for interior points; one-sided at boundaries.
 
 ---
@@ -287,7 +287,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### frw_continuity_residual figure  <a id="data-frw-balance-figure"></a>
 **Type:** image  
 **Purpose:** Visualization of FRW continuity residual vs time with RMS shown in title  
-**Produced by:** `derivation/code/physics/cosmology/run_frw_balance.py:run_frw_balance`  
+**Produced by:** `Derivation/code/physics/cosmology/run_frw_balance.py:run_frw_balance`  
 **Defined by (if math):** N/A (visualization)  
 **Inputs (symbols/constants):** FRW residual series  
 **Units/Normalization:** axis labels included
@@ -298,17 +298,17 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Storage format & path pattern:**
 - Format: `png`
-- Path pattern: `derivation/code/outputs/figures/cosmology/frw_continuity_residual__<tag>.png` (failed → `.../failed_runs/`)
+- Path pattern: `Derivation/code/outputs/figures/cosmology/frw_continuity_residual__<tag>.png` (failed → `.../failed_runs/`)
 - Compression/encoding: PNG lossless
 
 **Schema / columns (for tables/logs):**
 - N/A (image data)
 
 **Update cadence / lifecycle:** `per experiment run`  
-**Provenance (code locations):** `derivation/code/physics/cosmology/run_frw_balance.py:62-71`  
+**Provenance (code locations):** `Derivation/code/physics/cosmology/run_frw_balance.py:62-71`  
 **Validation hooks / KPIs:** `VALIDATION_METRICS.md#kpi-frw-continuity-rms`  
 **Retention / access constraints:** none  
-**Example artifact (if referenced):** `derivation/code/outputs/figures/metriplectic/frw_continuity_residual__FRW-balance-v1.png`  
+**Example artifact (if referenced):** `Derivation/code/outputs/figures/metriplectic/frw_continuity_residual__FRW-balance-v1.png`  
 **Notes:** Title includes RMS value; horizontal zero-line drawn for reference.
 
 ---
@@ -318,7 +318,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### rd_dispersion_experiment results  <a id="data-rd-dispersion"></a>
 **Type:** log  
 **Purpose:** Reaction-diffusion dispersion relation validation experiment results  
-**Produced by:** TODO: add anchor (see derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py)  
+**Produced by:** TODO: add anchor (see Derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py)  
 **Defined by (if math):** TODO: add anchor for dispersion relation $\sigma(k)$  
 **Inputs (symbols/constants):** TODO: link D, r, N, L parameters  
 **Units/Normalization:** TODO: link to UNITS_NORMALIZATION.md
@@ -329,7 +329,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Storage format & path pattern:**
 - Format: `json`
-- Path pattern: `derivation/code/outputs/logs/reaction_diffusion/rd_dispersion_experiment_<YYYYMMDDTHHMMSSZ>.json`
+- Path pattern: `Derivation/code/outputs/logs/reaction_diffusion/rd_dispersion_experiment_<YYYYMMDDTHHMMSSZ>.json`
 - Compression/encoding: none
 
 **Schema / columns (for tables/logs):**
@@ -337,18 +337,18 @@ Last updated: 2025-10-09 (commit 09f871a)
 - Index/primary keys: timestamp in filename
 
 **Update cadence / lifecycle:** `per experiment run`  
-**Provenance (code locations):** `derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py • 800ceda` ; `fum_rt/physics/rd_dispersion_runner.py • 800ceda`  
+**Provenance (code locations):** `Derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py • 800ceda` ; `fum_rt/physics/rd_dispersion_runner.py • 800ceda`  
 **Validation hooks / KPIs:** `med_rel_err_max`, `r2_array_min` acceptance criteria  
 **Retention / access constraints:** none  
-**Example artifact (if referenced):** `derivation/code/outputs/logs/reaction_diffusion/rd_dispersion_experiment_20250823T182316Z.json` ; `fum_rt/physics/outputs/logs/rd_dispersion_runner_20250820T114106Z.json`  
-**Notes:** Includes failed_runs subdirectory; dual locations (derivation/code and fum_rt/physics)
+**Example artifact (if referenced):** `Derivation/code/outputs/logs/reaction_diffusion/rd_dispersion_experiment_20250823T182316Z.json` ; `fum_rt/physics/outputs/logs/rd_dispersion_runner_20250820T114106Z.json`  
+**Notes:** Includes failed_runs subdirectory; dual locations (Derivation/code and fum_rt/physics)
 
 ---
 
 #### rd_front_speed_experiment results  <a id="data-rd-front-speed"></a>
 **Type:** log  
 **Purpose:** Reaction-diffusion traveling wave front speed validation experiment results  
-**Produced by:** TODO: add anchor (see derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py)  
+**Produced by:** TODO: add anchor (see Derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py)  
 **Defined by (if math):** TODO: add anchor for front speed equation  
 **Inputs (symbols/constants):** TODO: link D, r parameters  
 **Units/Normalization:** TODO: link to UNITS_NORMALIZATION.md
@@ -359,7 +359,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Storage format & path pattern:**
 - Format: `json`
-- Path pattern: `derivation/code/outputs/logs/reaction_diffusion/rd_front_speed_experiment_<YYYYMMDDTHHMMSSZ>.json`
+- Path pattern: `Derivation/code/outputs/logs/reaction_diffusion/rd_front_speed_experiment_<YYYYMMDDTHHMMSSZ>.json`
 - Compression/encoding: none
 
 **Schema / columns (for tables/logs):**
@@ -367,18 +367,18 @@ Last updated: 2025-10-09 (commit 09f871a)
 - Index/primary keys: timestamp in filename
 
 **Update cadence / lifecycle:** `per experiment run`  
-**Provenance (code locations):** `derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py • 800ceda` ; `fum_rt/physics/rd_front_speed_runner.py • 800ceda`  
+**Provenance (code locations):** `Derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py • 800ceda` ; `fum_rt/physics/rd_front_speed_runner.py • 800ceda`  
 **Validation hooks / KPIs:** front speed accuracy thresholds  
 **Retention / access constraints:** none  
-**Example artifact (if referenced):** `derivation/code/outputs/logs/reaction_diffusion/rd_front_speed_experiment_20250823T194825Z.json` ; `fum_rt/physics/outputs/logs/rd_front_speed_runner_20250820T114104Z.json`  
-**Notes:** Includes failed_runs subdirectory; dual locations (derivation/code and fum_rt/physics)
+**Example artifact (if referenced):** `Derivation/code/outputs/logs/reaction_diffusion/rd_front_speed_experiment_20250823T194825Z.json` ; `fum_rt/physics/outputs/logs/rd_front_speed_runner_20250820T114104Z.json`  
+**Notes:** Includes failed_runs subdirectory; dual locations (Derivation/code and fum_rt/physics)
 
 ---
 
 #### taylor_green_benchmark results  <a id="data-taylor-green"></a>
 **Type:** log  
 **Purpose:** Taylor-Green vortex benchmark for fluid dynamics validation  
-**Produced by:** TODO: add anchor (see derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py)  
+**Produced by:** TODO: add anchor (see Derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py)  
 **Defined by (if math):** TODO: add anchor for Taylor-Green flow equations  
 **Inputs (symbols/constants):** TODO: link viscosity, grid parameters  
 **Units/Normalization:** TODO: link to UNITS_NORMALIZATION.md
@@ -389,7 +389,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Storage format & path pattern:**
 - Format: `json`
-- Path pattern: `derivation/code/outputs/logs/fluid_dynamics/taylor_green_benchmark_<YYYYMMDDTHHMMSSZ>.json`
+- Path pattern: `Derivation/code/outputs/logs/fluid_dynamics/taylor_green_benchmark_<YYYYMMDDTHHMMSSZ>.json`
 - Compression/encoding: none
 
 **Schema / columns (for tables/logs):**
@@ -397,7 +397,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 - Index/primary keys: timestamp in filename
 
 **Update cadence / lifecycle:** `per benchmark run`  
-**Provenance (code locations):** `derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py • 800ceda`  
+**Provenance (code locations):** `Derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py • 800ceda`  
 **Validation hooks / KPIs:** energy decay rate accuracy  
 **Retention / access constraints:** none  
 **Example artifact (if referenced):** none (pattern identified)  
@@ -408,7 +408,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### lid_cavity_benchmark results  <a id="data-lid-cavity"></a>
 **Type:** log  
 **Purpose:** Lid-driven cavity benchmark for fluid dynamics validation  
-**Produced by:** TODO: add anchor (see derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py)  
+**Produced by:** TODO: add anchor (see Derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py)  
 **Defined by (if math):** TODO: add anchor for cavity flow equations  
 **Inputs (symbols/constants):** TODO: link Reynolds number, grid parameters  
 **Units/Normalization:** TODO: link to UNITS_NORMALIZATION.md
@@ -419,7 +419,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Storage format & path pattern:**
 - Format: `json`
-- Path pattern: `derivation/code/outputs/logs/fluid_dynamics/lid_cavity_benchmark_<YYYYMMDDTHHMMSSZ>.json`
+- Path pattern: `Derivation/code/outputs/logs/fluid_dynamics/lid_cavity_benchmark_<YYYYMMDDTHHMMSSZ>.json`
 - Compression/encoding: none
 
 **Schema / columns (for tables/logs):**
@@ -427,7 +427,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 - Index/primary keys: timestamp in filename
 
 **Update cadence / lifecycle:** `per benchmark run`  
-**Provenance (code locations):** `derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py • 800ceda`  
+**Provenance (code locations):** `Derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py • 800ceda`  
 **Validation hooks / KPIs:** vortex center position accuracy  
 **Retention / access constraints:** none  
 **Example artifact (if referenced):** none (pattern identified)  
@@ -438,7 +438,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### memory_steering stability metrics  <a id="data-memory-steering-metrics"></a>
 **Type:** log  
 **Purpose:** Memory steering stability analysis metrics and acceptance test results  
-**Produced by:** TODO: add anchor (see derivation/code/physics/memory_steering/memory_steering_acceptance.py)  
+**Produced by:** TODO: add anchor (see Derivation/code/physics/memory_steering/memory_steering_acceptance.py)  
 **Defined by (if math):** TODO: add anchor for memory steering equations  
 **Inputs (symbols/constants):** TODO: link gamma parameter  
 **Units/Normalization:** dimensionless
@@ -449,7 +449,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Storage format & path pattern:**
 - Format: `json`
-- Path pattern: `derivation/code/outputs/logs/memory_steering/memory_steering_acceptance_<timestamp>.json` (inferred)
+- Path pattern: `Derivation/code/outputs/logs/memory_steering/memory_steering_acceptance_<timestamp>.json` (inferred)
 - Compression/encoding: none
 
 **Schema / columns (for tables/logs):**
@@ -457,7 +457,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 - Index/primary keys: timestamp
 
 **Update cadence / lifecycle:** `per acceptance test run`  
-**Provenance (code locations):** `derivation/code/physics/memory_steering/memory_steering_acceptance.py • 800ceda` ; `derivation/code/physics/memory_steering/plot_memory_steering.py • 800ceda`  
+**Provenance (code locations):** `Derivation/code/physics/memory_steering/memory_steering_acceptance.py • 800ceda` ; `Derivation/code/physics/memory_steering/plot_memory_steering.py • 800ceda`  
 **Validation hooks / KPIs:** TODO: link to VALIDATION_METRICS.md  
 **Retention / access constraints:** none  
 **Example artifact (if referenced):** none (pattern identified)  
@@ -468,7 +468,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### agency options probe results  <a id="data-options-probe"></a>
 **Type:** table  
 **Purpose:** Agency field options probe simulation results for reachability analysis  
-**Produced by:** TODO: add anchor (see derivation/code/physics/agency/simulate_options_probe.py)  
+**Produced by:** TODO: add anchor (see Derivation/code/physics/agency/simulate_options_probe.py)  
 **Defined by (if math):** TODO: add anchor for option value equations  
 **Inputs (symbols/constants):** actuators, budget, slip, grid parameters  
 **Units/Normalization:** information-theoretic (bits)
@@ -479,7 +479,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Storage format & path pattern:**
 - Format: `csv`
-- Path pattern: `derivation/code/outputs/logs/agency/options.csv`
+- Path pattern: `Derivation/code/outputs/logs/agency/options.csv`
 - Compression/encoding: none
 
 **Schema / columns (for tables/logs):**
@@ -487,10 +487,10 @@ Last updated: 2025-10-09 (commit 09f871a)
 - Index/primary keys: composite (actuators, budget, slip)
 
 **Update cadence / lifecycle:** `per sweep`  
-**Provenance (code locations):** `derivation/code/physics/agency/simulate_options_probe.py • 800ceda`  
+**Provenance (code locations):** `Derivation/code/physics/agency/simulate_options_probe.py • 800ceda`  
 **Validation hooks / KPIs:** reachability metrics, information capacity  
 **Retention / access constraints:** none  
-**Example artifact (if referenced):** `derivation/code/outputs/logs/agency/options.csv`  
+**Example artifact (if referenced):** `Derivation/code/outputs/logs/agency/options.csv`  
 **Notes:** Produces associated options_heatmap.png visualization
 
 ---
@@ -530,7 +530,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### conservation_law diagnostic figures  <a id="data-conservation-figures"></a>
 **Type:** image  
 **Purpose:** Diagnostic plots for conservation law validation (convergence, Q-drift, solution overlay)  
-**Produced by:** TODO: add anchor (see derivation/code/physics/conservation_law/qfum_validate.py)  
+**Produced by:** TODO: add anchor (see Derivation/code/physics/conservation_law/qfum_validate.py)  
 **Defined by (if math):** N/A (visualization)  
 **Inputs (symbols/constants):** qfum_metrics data  
 **Units/Normalization:** N/A (plot axes labeled)
@@ -541,17 +541,17 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Storage format & path pattern:**
 - Format: `png`
-- Path pattern: `derivation/code/outputs/figures/conservation_law/<YYYYMMDD_HHMMSS>_qfum_{convergence|Q_drift|solution_overlay}.png`
+- Path pattern: `Derivation/code/outputs/figures/conservation_law/<YYYYMMDD_HHMMSS>_qfum_{convergence|Q_drift|solution_overlay}.png`
 - Compression/encoding: PNG lossless
 
 **Schema / columns (for tables/logs):**
 - N/A (image data)
 
 **Update cadence / lifecycle:** `per experiment run`  
-**Provenance (code locations):** `derivation/code/physics/conservation_law/qfum_validate.py • 800ceda`  
+**Provenance (code locations):** `Derivation/code/physics/conservation_law/qfum_validate.py • 800ceda`  
 **Validation hooks / KPIs:** visual inspection  
 **Retention / access constraints:** none  
-**Example artifact (if referenced):** `derivation/code/outputs/figures/conservation_law/20250826_110546_qfum_convergence.png`  
+**Example artifact (if referenced):** `Derivation/code/outputs/figures/conservation_law/20250826_110546_qfum_convergence.png`  
 **Notes:** Includes failed_runs subdirectory; also frw_conservation_residual.png
 
 ---
@@ -559,7 +559,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### dark_photon noise budget plots  <a id="data-dp-noise-figures"></a>
 **Type:** image  
 **Purpose:** SNR vs integration time/ bandwidth plots with annotated regime split (quantum- vs thermal-limited)  
-**Produced by:** TODO: add anchor (see `derivation/code/physics/dark_photons/noise_budget.py`)  
+**Produced by:** TODO: add anchor (see `Derivation/code/physics/dark_photons/noise_budget.py`)  
 **Defined by (if math):** `EQUATIONS.md#vdm-e-dp-noise` (noise PSD models; quantum vs thermal)  
 **Inputs (symbols/constants):** detector noise PSDs, bandwidth, integration time grid, mixing $\varepsilon$ (if applicable)  
 **Units/Normalization:** `UNITS_NORMALIZATION.md#detector`
@@ -570,7 +570,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Storage format & path pattern:**
 - Format: `png`
-- Path pattern: `derivation/code/outputs/figures/dark_photons/noise_budget__<tag>.png`
+- Path pattern: `Derivation/code/outputs/figures/dark_photons/noise_budget__<tag>.png`
 - Compression/encoding: PNG lossless
 
 **Schema / columns (for tables/logs):**
@@ -588,7 +588,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### reaction_diffusion diagnostic figures  <a id="data-rd-figures"></a>
 **Type:** image  
 **Purpose:** Reaction-diffusion dispersion and front speed validation plots  
-**Produced by:** TODO: add anchor (see derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py, rd_front_speed_experiment.py)  
+**Produced by:** TODO: add anchor (see Derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py, rd_front_speed_experiment.py)  
 **Defined by (if math):** N/A (visualization)  
 **Inputs (symbols/constants):** experiment results data  
 **Units/Normalization:** N/A (plot axes labeled)
@@ -599,25 +599,25 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Storage format & path pattern:**
 - Format: `png`
-- Path pattern: `derivation/code/outputs/figures/reaction_diffusion/rd_{dispersion|front_speed}_experiment_<YYYYMMDDTHHMMSSZ>.png`
+- Path pattern: `Derivation/code/outputs/figures/reaction_diffusion/rd_{dispersion|front_speed}_experiment_<YYYYMMDDTHHMMSSZ>.png`
 - Compression/encoding: PNG lossless
 
 **Schema / columns (for tables/logs):**
 - N/A (image data)
 
 **Update cadence / lifecycle:** `per experiment run`  
-**Provenance (code locations):** `derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py • 800ceda` ; `derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py • 800ceda` ; `fum_rt/physics/rd_dispersion_runner.py • 800ceda` ; `fum_rt/physics/rd_front_speed_runner.py • 800ceda`  
+**Provenance (code locations):** `Derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py • 800ceda` ; `Derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py • 800ceda` ; `fum_rt/physics/rd_dispersion_runner.py • 800ceda` ; `fum_rt/physics/rd_front_speed_runner.py • 800ceda`  
 **Validation hooks / KPIs:** visual inspection of fit quality  
 **Retention / access constraints:** none  
-**Example artifact (if referenced):** `derivation/code/outputs/figures/reaction_diffusion/rd_dispersion_experiment_20250824T053842Z.png`  
-**Notes:** Includes failed_runs subdirectory; dual locations (derivation/code and fum_rt/physics)
+**Example artifact (if referenced):** `Derivation/code/outputs/figures/reaction_diffusion/rd_dispersion_experiment_20250824T053842Z.png`  
+**Notes:** Includes failed_runs subdirectory; dual locations (Derivation/code and fum_rt/physics)
 
 ---
 
 #### tachyonic_condensation spectrum artifacts  <a id="data-tube-spectrum"></a>
 **Type:** image + table + log  
 **Purpose:** Discrete spectrum overview and admissible/possible heatmaps, roots table, and summary KPIs for tachyonic tube modes  
-**Produced by:** `derivation/code/physics/tachyonic_condensation/run_tachyon_tube.py:spectrum_solve, overview_and_heatmap`  
+**Produced by:** `Derivation/code/physics/tachyonic_condensation/run_tachyon_tube.py:spectrum_solve, overview_and_heatmap`  
 **Defined by (if math):** `EQUATIONS.md#vdm-e-095` (secular equation), `EQUATIONS.md#vdm-e-096` (coverage metrics)  
 **Inputs (symbols/constants):** $\mu$, $c$, $\ell_{\max}$, radius grid $R$  
 **Units/Normalization:** dimensionless  
@@ -629,16 +629,16 @@ Last updated: 2025-10-09 (commit 09f871a)
 - Summary JSON: fields `attempts_{raw,phys}`, `successes`, `cov_{raw,phys}`, `max_residual`
 
 **Storage format & path pattern:**
-- Figures (png): `derivation/code/outputs/figures/tachyonic_condensation/tube_spectrum_{overview|heatmap}__<tag>.png`
-- Table (csv): `derivation/code/outputs/logs/tachyonic_condensation/tube_spectrum_roots__<tag>.csv`
-- Log (json): `derivation/code/outputs/logs/tachyonic_condensation/tube_spectrum_summary__<tag>.json`
+- Figures (png): `Derivation/code/outputs/figures/tachyonic_condensation/tube_spectrum_{overview|heatmap}__<tag>.png`
+- Table (csv): `Derivation/code/outputs/logs/tachyonic_condensation/tube_spectrum_roots__<tag>.csv`
+- Log (json): `Derivation/code/outputs/logs/tachyonic_condensation/tube_spectrum_summary__<tag>.json`
 
 **Schema / columns (for tables/logs):**
 - CSV: `R:float`, `ell:int`, `kappa:float`, `residual:float`
 - JSON: `attempts_raw:int`, `attempts_phys:int`, `successes:int`, `cov_raw:float`, `cov_phys:float`, `max_residual:float`
 
 **Update cadence / lifecycle:** `per spectrum run`  
-**Provenance (code locations):** `derivation/code/physics/tachyonic_condensation/run_tachyon_tube.py`  
+**Provenance (code locations):** `Derivation/code/physics/tachyonic_condensation/run_tachyon_tube.py`  
 **Validation hooks / KPIs:** `VALIDATION_METRICS.md#kpi-tube-cov-phys`, `#kpi-tube-cov-raw`, `#kpi-tube-residual`  
 **Retention / access constraints:** policy-aware routing with failed_runs on gate failure  
 **Example artifact (if referenced):** see RESULTS doc referenced in CANON_PROGRESS row  
@@ -649,7 +649,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### tachyonic_condensation condensation artifacts  <a id="data-tube-condensation"></a>
 **Type:** image + table + log  
 **Purpose:** Energy scan $E(R)$ with quadratic fit near minimum, along with finiteness and curvature KPIs  
-**Produced by:** `derivation/code/physics/tachyonic_condensation/run_tachyon_tube.py:run_condensation_scan`  
+**Produced by:** `Derivation/code/physics/tachyonic_condensation/run_tachyon_tube.py:run_condensation_scan`  
 **Defined by (if math):** `EQUATIONS.md#vdm-e-097` (condensation energy and curvature fit)  
 **Inputs (symbols/constants):** $\mu$, $\lambda$, $c$, radius grid $R$  
 **Units/Normalization:** dimensionless (baseline)
@@ -660,16 +660,16 @@ Last updated: 2025-10-09 (commit 09f871a)
 - Summary JSON: fields `finite_fraction`, `curvature_ok`, `min_R`, `min_E`, `fit_coeffs`
 
 **Storage format & path pattern:**
-- Figure (png): `derivation/code/outputs/figures/tachyonic_condensation/tube_energy_scan__<tag>.png`
-- Table (csv): `derivation/code/outputs/logs/tachyonic_condensation/tube_energy_scan__<tag>.csv`
-- Log (json): `derivation/code/outputs/logs/tachyonic_condensation/tube_condensation_summary__<tag>.json`
+- Figure (png): `Derivation/code/outputs/figures/tachyonic_condensation/tube_energy_scan__<tag>.png`
+- Table (csv): `Derivation/code/outputs/logs/tachyonic_condensation/tube_energy_scan__<tag>.csv`
+- Log (json): `Derivation/code/outputs/logs/tachyonic_condensation/tube_condensation_summary__<tag>.json`
 
 **Schema / columns (for tables/logs):**
 - CSV: `R:float`, `E:float`
 - JSON: `finite_fraction:float`, `curvature_ok:bool`, `min_R:float`, `min_E:float`, `fit_coeffs:array[3]`
 
 **Update cadence / lifecycle:** `per condensation run`  
-**Provenance (code locations):** `derivation/code/physics/tachyonic_condensation/run_tachyon_tube.py`  
+**Provenance (code locations):** `Derivation/code/physics/tachyonic_condensation/run_tachyon_tube.py`  
 **Validation hooks / KPIs:** `VALIDATION_METRICS.md#kpi-tube-finite-fraction`, `#kpi-tube-curvature-ok`  
 **Retention / access constraints:** policy-aware routing with failed_runs on gate failure  
 **Example artifact (if referenced):** see RESULTS doc referenced in CANON_PROGRESS row  
@@ -679,7 +679,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### a6_collapse log  <a id="data-a6-collapse-log"></a>
 **Type:** log  
 **Purpose:** Gate record for A6 scaling collapse (max envelope) with pass/fail and artifact pointers  
-**Produced by:** `derivation/code/physics/collapse/run_a6_collapse.py:run_a6`  
+**Produced by:** `Derivation/code/physics/collapse/run_a6_collapse.py:run_a6`  
 **Defined by (if math):** `EQUATIONS.md#vdm-e-a6-collapse` (junction logistic collapse; reference-only)  
 **Inputs (symbols/constants):** $\Theta$, $\Delta m$ grid, trials per point  
 **Units/Normalization:** dimensionless
@@ -690,17 +690,17 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Storage format & path pattern:**
 - Format: `json`
-- Path pattern: `derivation/code/outputs/logs/collapse/a6_collapse__<tag>.json` (failed → `.../failed_runs/`)
+- Path pattern: `Derivation/code/outputs/logs/collapse/a6_collapse__<tag>.json` (failed → `.../failed_runs/`)
 - Compression/encoding: none
 
 **Schema / columns (for tables/logs):**
 - Columns: `spec:dict`, `passed:bool`, `env_max:float`, `figure:str`, `csv:str`, `raw_curves:list`
 
 **Update cadence / lifecycle:** `per experiment run`  
-**Provenance (code locations):** `derivation/code/physics/collapse/run_a6_collapse.py:61-108`  
+**Provenance (code locations):** `Derivation/code/physics/collapse/run_a6_collapse.py:61-108`  
 **Validation hooks / KPIs:** `VALIDATION_METRICS.md#kpi-a6-envelope-max`  
 **Retention / access constraints:** none  
-**Example artifact (if referenced):** `derivation/code/outputs/logs/collapse/a6_collapse__A6-collapse-v1.json`  
+**Example artifact (if referenced):** `Derivation/code/outputs/logs/collapse/a6_collapse__A6-collapse-v1.json`  
 **Notes:** CONTRADICTION_REPORT emitted on failure with gate and artifact pointers.
 
 ---
@@ -708,7 +708,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### a6_collapse envelope series  <a id="data-a6-collapse-series"></a>
 **Type:** table  
 **Purpose:** Per-bin envelope series for A6 collapse; used to compute max envelope gate  
-**Produced by:** `derivation/code/physics/collapse/run_a6_collapse.py:run_a6`  
+**Produced by:** `Derivation/code/physics/collapse/run_a6_collapse.py:run_a6`  
 **Defined by (if math):** `EQUATIONS.md#vdm-e-a6-collapse`  
 **Inputs (symbols/constants):** $X$, $Y_{\min}$, $Y_{\max}$  
 **Units/Normalization:** dimensionless
@@ -719,7 +719,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Storage format & path pattern:**
 - Format: `csv`
-- Path pattern: `derivation/code/outputs/logs/collapse/a6_collapse_envelope__<tag>.csv` (failed → `.../failed_runs/`)
+- Path pattern: `Derivation/code/outputs/logs/collapse/a6_collapse_envelope__<tag>.csv` (failed → `.../failed_runs/`)
 - Compression/encoding: none
 
 **Schema / columns (for tables/logs):**
@@ -727,10 +727,10 @@ Last updated: 2025-10-09 (commit 09f871a)
 - Index/primary keys: `X`
 
 **Update cadence / lifecycle:** `per experiment run`  
-**Provenance (code locations):** `derivation/code/physics/collapse/run_a6_collapse.py:94-101`  
+**Provenance (code locations):** `Derivation/code/physics/collapse/run_a6_collapse.py:94-101`  
 **Validation hooks / KPIs:** `VALIDATION_METRICS.md#kpi-a6-envelope-max`  
 **Retention / access constraints:** none  
-**Example artifact (if referenced):** `derivation/code/outputs/logs/collapse/a6_collapse_envelope__A6-collapse-v1.csv`  
+**Example artifact (if referenced):** `Derivation/code/outputs/logs/collapse/a6_collapse_envelope__A6-collapse-v1.csv`  
 **Notes:** Envelope computed after interpolating all curves onto shared X grid.
 
 ---
@@ -738,7 +738,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### a6_collapse overlay figure  <a id="data-a6-collapse-figure"></a>
 **Type:** image  
 **Purpose:** Overlay of collapsed curves with envelope fill and max‑envelope in title  
-**Produced by:** `derivation/code/physics/collapse/run_a6_collapse.py:run_a6`  
+**Produced by:** `Derivation/code/physics/collapse/run_a6_collapse.py:run_a6`  
 **Defined by (if math):** N/A (visualization)  
 **Inputs (symbols/constants):** A6 collapse curves and envelope  
 **Units/Normalization:** axis labels included
@@ -749,17 +749,17 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Storage format & path pattern:**
 - Format: `png`
-- Path pattern: `derivation/code/outputs/figures/collapse/a6_collapse_overlay__<tag>.png` (failed → `.../failed_runs/`)
+- Path pattern: `Derivation/code/outputs/figures/collapse/a6_collapse_overlay__<tag>.png` (failed → `.../failed_runs/`)
 - Compression/encoding: PNG lossless
 
 **Schema / columns (for tables/logs):**
 - N/A (image data)
 
 **Update cadence / lifecycle:** `per experiment run`  
-**Provenance (code locations):** `derivation/code/physics/collapse/run_a6_collapse.py:79-92`  
+**Provenance (code locations):** `Derivation/code/physics/collapse/run_a6_collapse.py:79-92`  
 **Validation hooks / KPIs:** `VALIDATION_METRICS.md#kpi-a6-envelope-max`  
 **Retention / access constraints:** none  
-**Example artifact (if referenced):** `derivation/code/outputs/figures/collapse/a6_collapse_overlay__A6-collapse-v1.png`  
+**Example artifact (if referenced):** `Derivation/code/outputs/figures/collapse/a6_collapse_overlay__A6-collapse-v1.png`  
 **Notes:** Curves plotted with markers; fill_between shows envelope band.
 
 ---
@@ -767,7 +767,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### fluid_dynamics diagnostic figures  <a id="data-fluid-figures"></a>
 **Type:** image  
 **Purpose:** Fluid dynamics benchmark validation plots (Taylor-Green, lid cavity)  
-**Produced by:** TODO: add anchor (see derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py, lid_cavity_benchmark.py)  
+**Produced by:** TODO: add anchor (see Derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py, lid_cavity_benchmark.py)  
 **Defined by (if math):** N/A (visualization)  
 **Inputs (symbols/constants):** benchmark results data  
 **Units/Normalization:** N/A (plot axes labeled)
@@ -778,17 +778,17 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Storage format & path pattern:**
 - Format: `png`
-- Path pattern: `derivation/code/outputs/figures/fluid_dynamics/{taylor_green|lid_cavity}_benchmark_<YYYYMMDDTHHMMSSZ>.png`
+- Path pattern: `Derivation/code/outputs/figures/fluid_dynamics/{taylor_green|lid_cavity}_benchmark_<YYYYMMDDTHHMMSSZ>.png`
 - Compression/encoding: PNG lossless
 
 **Schema / columns (for tables/logs):**
 - N/A (image data)
 
 **Update cadence / lifecycle:** `per benchmark run`  
-**Provenance (code locations):** `derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py • 800ceda` ; `derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py • 800ceda`  
+**Provenance (code locations):** `Derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py • 800ceda` ; `Derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py • 800ceda`  
 **Validation hooks / KPIs:** visual inspection  
 **Retention / access constraints:** none  
-**Example artifact (if referenced):** `derivation/code/outputs/figures/fluid_dynamics/lid_cavity_benchmark_20250821T072638Z.png` ; `derivation/code/outputs/figures/fluid_dynamics/lid_cavity_benchmark_20250821T072638Z_vorticity.png`  
+**Example artifact (if referenced):** `Derivation/code/outputs/figures/fluid_dynamics/lid_cavity_benchmark_20250821T072638Z.png` ; `Derivation/code/outputs/figures/fluid_dynamics/lid_cavity_benchmark_20250821T072638Z_vorticity.png`  
 **Notes:** Includes failed_runs subdirectory; cavity produces both standard and vorticity plots
 
 ---
@@ -796,7 +796,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### memory_steering diagnostic figures  <a id="data-memory-figures"></a>
 **Type:** image  
 **Purpose:** Memory steering stability analysis plots (SNR, retention, AUC, fidelity, curvature, band, junction)  
-**Produced by:** TODO: add anchor (see derivation/code/physics/memory_steering/plot_memory_steering.py)  
+**Produced by:** TODO: add anchor (see Derivation/code/physics/memory_steering/plot_memory_steering.py)  
 **Defined by (if math):** N/A (visualization)  
 **Inputs (symbols/constants):** memory steering experiment data  
 **Units/Normalization:** N/A (plot axes labeled)
@@ -807,17 +807,17 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Storage format & path pattern:**
 - Format: `png`
-- Path pattern: `derivation/code/outputs/figures/memory_steering/{stability_snr_by_gamma|stability_retention_by_gamma|stability_auc_by_gamma|stability_fidelity_by_gamma|curvature_scaling|curvature_scaling_signed|stability_band|curvature_calibration|junction_logistic|memory_steering_summary}.png`
+- Path pattern: `Derivation/code/outputs/figures/memory_steering/{stability_snr_by_gamma|stability_retention_by_gamma|stability_auc_by_gamma|stability_fidelity_by_gamma|curvature_scaling|curvature_scaling_signed|stability_band|curvature_calibration|junction_logistic|memory_steering_summary}.png`
 - Compression/encoding: PNG lossless
 
 **Schema / columns (for tables/logs):**
 - N/A (image data)
 
 **Update cadence / lifecycle:** `per analysis run`  
-**Provenance (code locations):** `derivation/code/physics/memory_steering/plot_memory_steering.py • 800ceda`  
+**Provenance (code locations):** `Derivation/code/physics/memory_steering/plot_memory_steering.py • 800ceda`  
 **Validation hooks / KPIs:** visual inspection of stability metrics  
 **Retention / access constraints:** none  
-**Example artifact (if referenced):** `derivation/code/outputs/figures/memory_steering/stability_snr_by_gamma.png`  
+**Example artifact (if referenced):** `Derivation/code/outputs/figures/memory_steering/stability_snr_by_gamma.png`  
 **Notes:** Comprehensive suite of stability metric visualizations
 
 ---
@@ -825,7 +825,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### agency options heatmap  <a id="data-options-heatmap"></a>
 **Type:** image  
 **Purpose:** Heatmap visualization of agency options probe results  
-**Produced by:** TODO: add anchor (see derivation/code/physics/agency/simulate_options_probe.py)  
+**Produced by:** TODO: add anchor (see Derivation/code/physics/agency/simulate_options_probe.py)  
 **Defined by (if math):** N/A (visualization)  
 **Inputs (symbols/constants):** options.csv data  
 **Units/Normalization:** N/A (plot axes labeled)
@@ -836,17 +836,17 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Storage format & path pattern:**
 - Format: `png`
-- Path pattern: `derivation/code/outputs/figures/agency/options_heatmap.png`
+- Path pattern: `Derivation/code/outputs/figures/agency/options_heatmap.png`
 - Compression/encoding: PNG lossless
 
 **Schema / columns (for tables/logs):**
 - N/A (image data)
 
 **Update cadence / lifecycle:** `per probe run`  
-**Provenance (code locations):** `derivation/code/physics/agency/simulate_options_probe.py • 800ceda`  
+**Provenance (code locations):** `Derivation/code/physics/agency/simulate_options_probe.py • 800ceda`  
 **Validation hooks / KPIs:** visual inspection  
 **Retention / access constraints:** none  
-**Example artifact (if referenced):** `derivation/code/outputs/figures/agency/options_heatmap.png`  
+**Example artifact (if referenced):** `Derivation/code/outputs/figures/agency/options_heatmap.png`  
 **Notes:** Visualizes reachability vs budget/slip parameter space
 
 ---
@@ -1250,7 +1250,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### gravity_regression orbit logs  <a id="data-orbit-logs"></a>
 **Type:** table  
 **Purpose:** Orbit precession data for gravity regression validation  
-**Produced by:** TODO: add anchor (see derivation/gravity_regression/vdm_gravity_regression_pack/scripts/compute_precession.py)  
+**Produced by:** TODO: add anchor (see Derivation/gravity_regression/vdm_gravity_regression_pack/scripts/compute_precession.py)  
 **Defined by (if math):** TODO: add anchor for precession equations  
 **Inputs (symbols/constants):** orbit integration data  
 **Units/Normalization:** TODO: link to UNITS_NORMALIZATION.md
@@ -1269,10 +1269,10 @@ Last updated: 2025-10-09 (commit 09f871a)
 - Index/primary keys: orbit_index
 
 **Update cadence / lifecycle:** `per precession analysis run`  
-**Provenance (code locations):** `derivation/gravity_regression/vdm_gravity_regression_pack/scripts/compute_precession.py • 800ceda`  
+**Provenance (code locations):** `Derivation/gravity_regression/vdm_gravity_regression_pack/scripts/compute_precession.py • 800ceda`  
 **Validation hooks / KPIs:** PASS_precession_present, median/mean/cv metrics  
 **Retention / access constraints:** none  
-**Example artifact (if referenced):** `derivation/gravity_regression/vdm_gravity_regression_pack/templates/orbit_log_example.csv`  
+**Example artifact (if referenced):** `Derivation/gravity_regression/vdm_gravity_regression_pack/templates/orbit_log_example.csv`  
 **Notes:** Includes summary statistics in output file
 
 ---
@@ -1280,7 +1280,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### gravity_regression connectome metrics  <a id="data-connectome-metrics"></a>
 **Type:** log  
 **Purpose:** Graph structure metrics for connectome validation in gravity regression  
-**Produced by:** TODO: add anchor (see derivation/gravity_regression/vdm_gravity_regression_pack/scripts/graph_checks.py)  
+**Produced by:** TODO: add anchor (see Derivation/gravity_regression/vdm_gravity_regression_pack/scripts/graph_checks.py)  
 **Defined by (if math):** TODO: add anchor for graph metrics  
 **Inputs (symbols/constants):** connectome graph data  
 **Units/Normalization:** dimensionless (graph metrics)
@@ -1299,7 +1299,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 - Index/primary keys: none
 
 **Update cadence / lifecycle:** `per graph validation run`  
-**Provenance (code locations):** `derivation/gravity_regression/vdm_gravity_regression_pack/scripts/graph_checks.py • 800ceda`  
+**Provenance (code locations):** `Derivation/gravity_regression/vdm_gravity_regression_pack/scripts/graph_checks.py • 800ceda`  
 **Validation hooks / KPIs:** graph structure invariants  
 **Retention / access constraints:** none  
 **Example artifact (if referenced):** none (pattern identified)  
@@ -1310,7 +1310,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### dark_photon noise budget tables  <a id="data-dp-noise"></a>
 **Type:** log  
 **Purpose:** Quantitative noise budget outputs (SNR curves, PSDs, regime boundary) for dark‑photon portal analyses  
-**Produced by:** TODO: add anchor (see `derivation/code/physics/dark_photons/noise_budget.py`)  
+**Produced by:** TODO: add anchor (see `Derivation/code/physics/dark_photons/noise_budget.py`)  
 **Defined by (if math):** `EQUATIONS.md#vdm-e-dp-noise`  
 **Inputs (symbols/constants):** detector model params, temperature, bandwidth, $t_{\text{int}}$ grid  
 **Units/Normalization:** detector-native (PSD units) with normalized SNR
@@ -1322,7 +1322,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Storage format & path pattern:**
 - Format: `json` + `csv`
-- Path pattern: `derivation/code/outputs/logs/dark_photons/noise_budget__<tag>.{json,csv}`
+- Path pattern: `Derivation/code/outputs/logs/dark_photons/noise_budget__<tag>.{json,csv}`
 - Compression/encoding: none
 
 **Schema / columns (for tables/logs):**
@@ -1341,7 +1341,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### dark_photon Fisher quick estimate  <a id="data-dp-fisher"></a>
 **Type:** log  
 **Purpose:** Quick Fisher information estimate for kinetic‑mixing parameter $\varepsilon$ with finite‑difference cross‑check  
-**Produced by:** TODO: add anchor (see `derivation/code/physics/dark_photons/fisher_quick.py`)  
+**Produced by:** TODO: add anchor (see `Derivation/code/physics/dark_photons/fisher_quick.py`)  
 **Defined by (if math):** `EQUATIONS.md#vdm-e-dp-fisher`  
 **Inputs (symbols/constants):** model likelihood, background PSDs, $\varepsilon$  
 **Units/Normalization:** `\sigma(\varepsilon)` dimensionless
@@ -1352,7 +1352,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Storage format & path pattern:**
 - Format: `json`
-- Path pattern: `derivation/code/outputs/logs/dark_photons/fisher_eps__<tag>.json`
+- Path pattern: `Derivation/code/outputs/logs/dark_photons/fisher_eps__<tag>.json`
 - Compression/encoding: none
 
 **Schema / columns (for tables/logs):**
@@ -1370,7 +1370,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### dark_photon EFT ladder figure  <a id="data-dp-eft-figure"></a>
 **Type:** image  
 **Purpose:** Visual ladder of EFT regimes relevant to portal analyses (masses, couplings, production channels)  
-**Produced by:** TODO: add anchor (see `derivation/dark_photons/plot_eft_ladder.py`)  
+**Produced by:** TODO: add anchor (see `Derivation/dark_photons/plot_eft_ladder.py`)  
 **Defined by (if math):** `EQUATIONS.md#vdm-e-dp-eft`  
 **Inputs (symbols/constants):** EFT parameters, cosmology bounds  
 **Units/Normalization:** axis‑appropriate (e.g., eV, GeV)
@@ -1381,7 +1381,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Storage format & path pattern:**
 - Format: `png`
-- Path pattern: `derivation/code/outputs/figures/dark_photons/eft_ladder__<tag>.png`
+- Path pattern: `Derivation/code/outputs/figures/dark_photons/eft_ladder__<tag>.png`
 - Compression/encoding: PNG lossless
 
 **Schema / columns (for tables/logs):**

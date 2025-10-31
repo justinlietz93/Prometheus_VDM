@@ -13,10 +13,10 @@ We propose a disciplined, pre-registered investigation of dark-photon (DP) kinet
 > **Pre-Registration Checklist**
 >
 > - **Commit:** a54d638e2b097cd6bf5606d669fc9984650e2307  
-> - **Spec snapshot(s):** `derivation/specs/dark_photons/step_spec.dp.v1.json` (to be frozen at approval)
+> - **Spec snapshot(s):** `Derivation/specs/dark_photons/step_spec.dp.v1.json` (to be frozen at approval)
 > - **Seeds / Replicates:** $N_{\text{seeds}}=10$ (calibration), $N_{\text{seeds}}=20$ (science)
 > - **Environment:** Python `3.13.5`, NumPy `2.2.6`, platform `Linux-6.14.0-32-generic-x86_64-with-glibc2.41`  
-> - **Artifact root:** `derivation/code/outputs/{logs,figures}/dark_photons/`  
+> - **Artifact root:** `Derivation/code/outputs/{logs,figures}/dark_photons/`  
 > - **Tag required:** every run must set `"tag": "<approved-tag>"` in the spec
 > - **Policy:** *No runs before approval.* Engineering smokes must pass `--allow-unapproved` and are quarantined from RESULTS.
 

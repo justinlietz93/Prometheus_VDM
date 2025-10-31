@@ -383,9 +383,9 @@ This document synthesizes core technical rules, constraints, and requirements sp
     * `void_dynamics_adapter.py` must use dimensionless groups instead of hard-coded constants.
     * `revgsp.py` plasticity must be modulated by physical fields ($\phi$, $M$).
     * `gdsp.py` structural plasticity must respect conservation laws.
-    * Normative math must be defined in `derivation/EQUATIONS.md`.
-    * Numbers must be defined in `derivation/CONSTANTS.md`.
-    * Symbols/units must be defined in `derivation/SYMBOLS.md` and `derivation/UNITS_NORMALIZATION.md`.
+    * Normative math must be defined in `Derivation/EQUATIONS.md`.
+    * Numbers must be defined in `Derivation/CONSTANTS.md`.
+    * Symbols/units must be defined in `Derivation/SYMBOLS.md` and `Derivation/UNITS_NORMALIZATION.md`.
     * The canonical map must be defined in `CANON_MAP.md`.
 2. **Simulation Loop & Control Flow (`VDM-A-001`):**
     * Check `duration_s` termination condition if provided.
@@ -502,7 +502,7 @@ This document synthesizes core technical rules, constraints, and requirements sp
 3. **Experiment Lifecycle:**
     * All new experiments must have a proposal file created first.
     * Follow the specified template for proposal files: `Derivation/Writeup_Templates/PROPOSAL_PAPER_TEMPLATE.md`.
-    * Place proposal files in the correct domain folder: `derivation/{domain/topic folder}`.
+    * Place proposal files in the correct domain folder: `Derivation/{domain/topic folder}`.
     * All completed experiments must have a results write-up.
     * Follow specified standards for results write-ups: `Derivation/Writeup_Templates/RESULTS_PAPER_STANDARDS.md`.
     * Place results files in the correct domain folder next to the corresponding proposal.

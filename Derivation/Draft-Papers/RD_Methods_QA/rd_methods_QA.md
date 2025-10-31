@@ -12,10 +12,10 @@ Overview
 Context (VDM): Void Dynamics (VDM) is an event-driven, sparse framework; the RD sector provides the canonical physics slice with reproducible gates. The QA invariant serves as a per-node drift diagnostic. Second‑order/EFT branches are explicitly out of scope here and quarantined to separate notes.
 
 References (code)
-- Front speed experiment: [derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py](../../code/physics/reaction_diffusion/rd_front_speed_experiment.py)
-- Dispersion experiment: [derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py](../../code/physics/reaction_diffusion/rd_dispersion_experiment.py)
-- Front speed sweep: [derivation/code/physics/reaction_diffusion/rd_front_speed_sweep.py](../../code/physics/reaction_diffusion/rd_front_speed_sweep.py)
-- Logistic invariant validation: [derivation/code/physics/conservation_law/qfum_validate.py](../../code/physics/conservation_law/qfum_validate.py)
+- Front speed experiment: [Derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py](../../code/physics/reaction_diffusion/rd_front_speed_experiment.py)
+- Dispersion experiment: [Derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py](../../code/physics/reaction_diffusion/rd_dispersion_experiment.py)
+- Front speed sweep: [Derivation/code/physics/reaction_diffusion/rd_front_speed_sweep.py](../../code/physics/reaction_diffusion/rd_front_speed_sweep.py)
+- Logistic invariant validation: [Derivation/code/physics/conservation_law/qfum_validate.py](../../code/physics/conservation_law/qfum_validate.py)
 - IO helpers: [figure_path()](../../code/common/io_paths.py:49), [log_path()](../../code/common/io_paths.py:53), [write_log()](../../code/common/io_paths.py:57)
 
 
@@ -62,25 +62,25 @@ Implementations: [Q_invariant()](../../code/physics/conservation_law/qfum_valida
 2. Proven RD validations (PASS)
 
 2.1 Front speed
-- Figure: [derivation/code/outputs/figures/reaction_diffusion/rd_front_speed_experiment_20250824T053748Z.png](../../code/outputs/figures/reaction_diffusion/rd_front_speed_experiment_20250824T053748Z.png)
-- Log: [derivation/code/outputs/logs/reaction_diffusion/rd_front_speed_experiment_20250824T053748Z.json](../../code/outputs/logs/reaction_diffusion/rd_front_speed_experiment_20250824T053748Z.json)
+- Figure: [Derivation/code/outputs/figures/reaction_diffusion/rd_front_speed_experiment_20250824T053748Z.png](../../code/outputs/figures/reaction_diffusion/rd_front_speed_experiment_20250824T053748Z.png)
+- Log: [Derivation/code/outputs/logs/reaction_diffusion/rd_front_speed_experiment_20250824T053748Z.json](../../code/outputs/logs/reaction_diffusion/rd_front_speed_experiment_20250824T053748Z.json)
 - Key metrics: $c_{\mathrm{meas}}=0.9529$, $c_{\mathrm{th}}=1.0000$, $\mathrm{rel\_err}=4.71\times 10^{-2}$, $R^2=0.999996$ → PASS (within 5%, $R^2\ge 0.9999$).
 
 Reproduce:
 ```
-python derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py \
+python Derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py \
   --N 1024 --L 200 --D 1.0 --r 0.25 --T 80 --cfl 0.2 --seed 42 \
   --x0 -60 --level 0.1 --fit_start 0.6 --fit_end 0.9
 ```
 
 2.2 Linear dispersion
-- Figure: [derivation/code/outputs/figures/reaction_diffusion/rd_dispersion_experiment_20250824T053842Z.png](../../code/outputs/figures/reaction_diffusion/rd_dispersion_experiment_20250824T053842Z.png)
-- Log: [derivation/code/outputs/logs/reaction_diffusion/rd_dispersion_experiment_20250824T053842Z.json](../../code/outputs/logs/reaction_diffusion/rd_dispersion_experiment_20250824T053842Z.json)
+- Figure: [Derivation/code/outputs/figures/reaction_diffusion/rd_dispersion_experiment_20250824T053842Z.png](../../code/outputs/figures/reaction_diffusion/rd_dispersion_experiment_20250824T053842Z.png)
+- Log: [Derivation/code/outputs/logs/reaction_diffusion/rd_dispersion_experiment_20250824T053842Z.json](../../code/outputs/logs/reaction_diffusion/rd_dispersion_experiment_20250824T053842Z.json)
 - Key metrics: median rel-err $1.45\times 10^{-3}$, $R^2_{\text{array}}=0.999946$ → PASS (tight vs gates).
 
 Reproduce:
 ```
-python derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py \
+python Derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py \
   --N 1024 --L 200 --D 1.0 --r 0.25 --T 10 --cfl 0.2 --seed 42 \
   --record 80 --m_max 64 --fit_start 0.1 --fit_end 0.4
 ```
@@ -91,7 +91,7 @@ python derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py \
 - Acceptance (double precision RK4): $\max_t|Q(t)-Q(0)| \le 10^{-8}$ at $dt\approx 10^{-3}$; convergence slope $p\approx 4\pm 0.4$ with fit $R^2\ge 0.98$ on a $dt$ sweep.
 - Use the validator to produce audit logs when needed. Numerical caveat: at extremely small step sizes, ΔQ approaches machine precision and the observed slope p from a log-log fit can degrade; evaluate gates in the truncation‑dominated regime (moderate dt). Proof and figures: see [logarithmic_constant_of_motion.md](./logarithmic_constant_of_motion.md).
 ```
-python derivation/code/physics/conservation_law/qfum_validate.py \
+python Derivation/code/physics/conservation_law/qfum_validate.py \
   --r 0.15 --u 0.25 --W0 0.12 0.62 --T 40 \
   --dt 0.002 0.001 0.0005 --solver rk4
 ```
@@ -161,10 +161,10 @@ for n in range(steps):
 - The CLI recipes above reference bare script names (no local paths). VDM/void internals (e.g., QA validator and runtime scaffolding) are not included in this distribution.
 
 Appendix: direct links
-- Figures (RD): [derivation/code/outputs/figures/reaction_diffusion](../../code/outputs/figures/reaction_diffusion)
-- Logs (RD): [derivation/code/outputs/logs/reaction_diffusion](../../code/outputs/logs/reaction_diffusion)
-- Invariant validator logs: derivation/code/outputs/logs/conservation_law (figures omitted in RD packaging)
-- Scripts: [derivation/code/physics/reaction_diffusion](../../code/physics/reaction_diffusion), [derivation/code/physics/conservation_law](../../code/physics/conservation_law)
+- Figures (RD): [Derivation/code/outputs/figures/reaction_diffusion](../../code/outputs/figures/reaction_diffusion)
+- Logs (RD): [Derivation/code/outputs/logs/reaction_diffusion](../../code/outputs/logs/reaction_diffusion)
+- Invariant validator logs: Derivation/code/outputs/logs/conservation_law (figures omitted in RD packaging)
+- Scripts: [Derivation/code/physics/reaction_diffusion](../../code/physics/reaction_diffusion), [Derivation/code/physics/conservation_law](../../code/physics/conservation_law)
 
 Citations
 - Fisher, R.A. (1937). “The wave of advance of advantageous genes.” Ann. Eugenics 7: 355-369.

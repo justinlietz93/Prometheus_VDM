@@ -1,6 +1,6 @@
 {
   "failed": false,
-  "figure": "/mnt/ironwolf/git/Void_Unity_Proofs/derivation/code/outputs/figures/rd_conservation/20251006_072250_lyapunov_delta_per_step.png",
+  "figure": "/mnt/ironwolf/git/Void_Unity_Proofs/Derivation/code/outputs/figures/rd_conservation/20251006_072250_lyapunov_delta_per_step.png",
   "series": [
     {
       "L": 0.05456926931033517,

@@ -79,9 +79,9 @@ suggestions/
 from_physicist_agent/
 FUM_Demo/
 resume.md
-/mnt/ironwolf/git/Void_FUM_Private/Void_FUM_Private/Void_Unity_Proofs/derivation/GPT5
+/mnt/ironwolf/git/Void_FUM_Private/Void_FUM_Private/Void_Unity_Proofs/Derivation/GPT5
 *.bz2
-derivation/GPT5/*
+Derivation/GPT5/*
 UP_NEXT.md
 fum_original_v2
 Void_Unity_Proofs.code-workspace

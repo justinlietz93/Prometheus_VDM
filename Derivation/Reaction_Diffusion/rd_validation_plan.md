@@ -35,8 +35,8 @@ Canonical scripts
 
 Output locations
 
-- Figures → derivation/code/outputs/figures/
-- Logs → derivation/code/outputs/logs/
+- Figures → Derivation/code/outputs/figures/
+- Logs → Derivation/code/outputs/logs/
 - Filenames: {script}_{UTC timestamp}.{png,json}
 - Overridable via CLI: --outdir, --figure, --log
 
@@ -107,7 +107,7 @@ $$
 Reproducibility checklist
 
 - Set seed and record it in logs (scripts do this by default).
-- Confirm output JSON/PNG saved under derivation/code/outputs/{logs,figures}/.
+- Confirm output JSON/PNG saved under Derivation/code/outputs/{logs,figures}/.
 - Verify acceptance metrics in JSON:
   - Front speed: metrics.passed = true
   - Dispersion: metrics.passed = true
@@ -128,13 +128,13 @@ Provenance and tagging
 Expected artifacts
 
 - Figures:
-  - derivation/code/outputs/figures/rd_front_speed_experiment_<UTC>.png
-  - derivation/code/outputs/figures/rd_dispersion_experiment_<UTC>.png
+  - Derivation/code/outputs/figures/rd_front_speed_experiment_<UTC>.png
+  - Derivation/code/outputs/figures/rd_dispersion_experiment_<UTC>.png
 - Logs:
-  - derivation/code/outputs/logs/rd_front_speed_experiment_<UTC>.json
-  - derivation/code/outputs/logs/rd_dispersion_experiment_<UTC>.json
+  - Derivation/code/outputs/logs/rd_front_speed_experiment_<UTC>.json
+  - Derivation/code/outputs/logs/rd_dispersion_experiment_<UTC>.json
 - Optional sweep CSV:
-  - derivation/code/outputs/logs/rd_front_speed_sweep_<UTC>.csv
+  - Derivation/code/outputs/logs/rd_front_speed_sweep_<UTC>.csv
 
 Open questions / next refinements
 

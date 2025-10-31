@@ -390,7 +390,7 @@ Both gates are framed and instrumented per standards with pinned artifacts and C
 > Commercial use requires citation and written permission from Justin K. Lietz.
 > See LICENSE file for full terms.
 
-TL;DR - Gate-driven QC of a metriplectic KG⊕RD scheme (spectral-DG for M, Störmer-Verlet for KG J, Strang JMJ). Pinned spec snapshot: derivation/code/outputs/logs/metriplectic/20251006_142434_step_spec_snapshot__kgRD-v1.json
+TL;DR - Gate-driven QC of a metriplectic KG⊕RD scheme (spectral-DG for M, Störmer-Verlet for KG J, Strang JMJ). Pinned spec snapshot: Derivation/code/outputs/logs/metriplectic/20251006_142434_step_spec_snapshot__kgRD-v1.json
 
 ## Introduction
 
@@ -496,7 +496,7 @@ Risk assessment (computational): potential under‑resolved asymptotics at coars
 
 ## Results / Data
 
-Pinned spec snapshot: derivation/code/outputs/logs/metriplectic/20251006_142434_step_spec_snapshot__kgRD-v1.json
+Pinned spec snapshot: Derivation/code/outputs/logs/metriplectic/20251006_142434_step_spec_snapshot__kgRD-v1.json
 
 Table 1 - Summary of gates and outcomes (median over seeds; v1 two‑grid on ϕ)
 
@@ -509,12 +509,12 @@ Table 1 - Summary of gates and outcomes (median over seeds; v1 two‑grid on ϕ)
 
 Figures (each has CSV/JSON sidecars):
 
-- M‑only residual vs Δt: derivation/code/outputs/figures/metriplectic/failed_runs/20251006_142435_residual_vs_dt_m_only__kgRD-v1.png
-  - Sidecars: derivation/code/outputs/logs/metriplectic/failed_runs/20251006_142435_residual_vs_dt_m_only__kgRD-v1.csv, .../20251006_142435_sweep_dt_m_only__kgRD-v1.json
-- JMJ residual vs Δt: derivation/code/outputs/figures/metriplectic/failed_runs/20251006_142436_residual_vs_dt_jmj__kgRD-v1.png
-  - Sidecars: derivation/code/outputs/logs/metriplectic/failed_runs/20251006_142436_residual_vs_dt_jmj__kgRD-v1.csv, .../20251006_142436_sweep_dt_jmj__kgRD-v1.json
-- Strang defect vs Δt: derivation/code/outputs/figures/metriplectic/20251006_142436_strang_defect_vs_dt__kgRD-v1.png
-  - Sidecars: derivation/code/outputs/logs/metriplectic/20251006_142436_strang_defect_vs_dt__kgRD-v1.{csv,json}
+- M‑only residual vs Δt: Derivation/code/outputs/figures/metriplectic/failed_runs/20251006_142435_residual_vs_dt_m_only__kgRD-v1.png
+  - Sidecars: Derivation/code/outputs/logs/metriplectic/failed_runs/20251006_142435_residual_vs_dt_m_only__kgRD-v1.csv, .../20251006_142435_sweep_dt_m_only__kgRD-v1.json
+- JMJ residual vs Δt: Derivation/code/outputs/figures/metriplectic/failed_runs/20251006_142436_residual_vs_dt_jmj__kgRD-v1.png
+  - Sidecars: Derivation/code/outputs/logs/metriplectic/failed_runs/20251006_142436_residual_vs_dt_jmj__kgRD-v1.csv, .../20251006_142436_sweep_dt_jmj__kgRD-v1.json
+- Strang defect vs Δt: Derivation/code/outputs/figures/metriplectic/20251006_142436_strang_defect_vs_dt__kgRD-v1.png
+  - Sidecars: Derivation/code/outputs/logs/metriplectic/20251006_142436_strang_defect_vs_dt__kgRD-v1.{csv,json}
 
 Sample calculation (slope fit): let x_i = log Δt_i, y_i = log E_i. The least‑squares slope is
 
@@ -568,19 +568,19 @@ Obj‑B status: if the JMJ H‑norm slope remains < 2.90 under the extended smal
 
 Pinned artifacts (tag `kgRD‑v1b`):
 
-- Spec snapshot: derivation/code/outputs/logs/metriplectic/20251006_145830_step_spec_snapshot__kgRD-v1b.json
+- Spec snapshot: Derivation/code/outputs/logs/metriplectic/20251006_145830_step_spec_snapshot__kgRD-v1b.json
 - J‑only energy oscillation vs Δt (slope gate ≈ 2):
-  - Figure: derivation/code/outputs/figures/metriplectic/failed_runs/20251006_145830_j_energy_oscillation_vs_dt__kgRD-v1b.png
-  - Logs: derivation/code/outputs/logs/metriplectic/failed_runs/20251006_145831_j_energy_oscillation_vs_dt__kgRD-v1b.{json,csv}
+  - Figure: Derivation/code/outputs/figures/metriplectic/failed_runs/20251006_145830_j_energy_oscillation_vs_dt__kgRD-v1b.png
+  - Logs: Derivation/code/outputs/logs/metriplectic/failed_runs/20251006_145831_j_energy_oscillation_vs_dt__kgRD-v1b.{json,csv}
 - M‑only two‑grid:
-  - Figure: derivation/code/outputs/figures/metriplectic/failed_runs/20251006_145831_residual_vs_dt_m_only__kgRD-v1b.png
-  - Logs: derivation/code/outputs/logs/metriplectic/failed_runs/20251006_145831_residual_vs_dt_m_only__kgRD-v1b.{json,csv}
+  - Figure: Derivation/code/outputs/figures/metriplectic/failed_runs/20251006_145831_residual_vs_dt_m_only__kgRD-v1b.png
+  - Logs: Derivation/code/outputs/logs/metriplectic/failed_runs/20251006_145831_residual_vs_dt_m_only__kgRD-v1b.{json,csv}
 - JMJ two‑grid (H‑energy norm):
-  - Figure: derivation/code/outputs/figures/metriplectic/failed_runs/20251006_145832_residual_vs_dt_jmj__kgRD-v1b.png
-  - Logs: derivation/code/outputs/logs/metriplectic/failed_runs/20251006_145832_sweep_dt_jmj__kgRD-v1b.json and .../20251006_145832_residual_vs_dt_jmj__kgRD-v1b.csv
+  - Figure: Derivation/code/outputs/figures/metriplectic/failed_runs/20251006_145832_residual_vs_dt_jmj__kgRD-v1b.png
+  - Logs: Derivation/code/outputs/logs/metriplectic/failed_runs/20251006_145832_sweep_dt_jmj__kgRD-v1b.json and .../20251006_145832_residual_vs_dt_jmj__kgRD-v1b.csv
 - Strang defect (JMJ vs MJM):
-  - Figure: derivation/code/outputs/figures/metriplectic/20251006_145832_strang_defect_vs_dt__kgRD-v1b.png
-  - Logs: derivation/code/outputs/logs/metriplectic/20251006_145833_strang_defect_vs_dt__kgRD-v1b.{json,csv}
+  - Figure: Derivation/code/outputs/figures/metriplectic/20251006_145832_strang_defect_vs_dt__kgRD-v1b.png
+  - Logs: Derivation/code/outputs/logs/metriplectic/20251006_145833_strang_defect_vs_dt__kgRD-v1b.{json,csv}
 
 Gate outcomes (median across seeds):
 
@@ -691,10 +691,10 @@ Gate mapping:
 
 ### Materials
 
-- Runner: `derivation/code/physics/metriplectic/run_metriplectic.py`
+- Runner: `Derivation/code/physics/metriplectic/run_metriplectic.py`
 - Steppers: `physics/metriplectic/j_step.py` (J), `physics/metriplectic/compose.py` (J-only, M-only via RD DG, and JMJ Strang)
-- Spec: `derivation/code/physics/metriplectic/step_spec.metriplectic.example.json`
-- IO: `derivation/code/common/io_paths.py`
+- Spec: `Derivation/code/physics/metriplectic/step_spec.metriplectic.example.json`
+- IO: `Derivation/code/common/io_paths.py`
 
 ### Diagram of setup (conceptual)
 
@@ -740,46 +740,46 @@ $$
 ### Summary (locked run; paired artifacts)
 
 - M-only two-grid: slope $p=2.9803$, $R^2=0.9999859$ (PASS).  
-  Figure: `derivation/code/outputs/figures/metriplectic/20251006_100833_residual_vs_dt_m_only.png`  
-  CSV: `derivation/code/outputs/logs/metriplectic/20251006_100833_residual_vs_dt_m_only.csv`  
-  JSON: `derivation/code/outputs/logs/metriplectic/20251006_100833_sweep_dt_m_only.json`
+  Figure: `Derivation/code/outputs/figures/metriplectic/20251006_100833_residual_vs_dt_m_only.png`  
+  CSV: `Derivation/code/outputs/logs/metriplectic/20251006_100833_residual_vs_dt_m_only.csv`  
+  JSON: `Derivation/code/outputs/logs/metriplectic/20251006_100833_sweep_dt_m_only.json`
 
 - JMJ two-grid: slope $p=2.7287$, $R^2=0.9993790$ (FAIL vs $\ge2.90$).  
-  Figure: `derivation/code/outputs/figures/metriplectic/failed_runs/20251006_100844_residual_vs_dt_jmj.png`  
-  CSV: `derivation/code/outputs/logs/metriplectic/failed_runs/20251006_100845_residual_vs_dt_jmj.csv`  
-  JSON: `derivation/code/outputs/logs/metriplectic/failed_runs/20251006_100845_sweep_dt_jmj.json`
+  Figure: `Derivation/code/outputs/figures/metriplectic/failed_runs/20251006_100844_residual_vs_dt_jmj.png`  
+  CSV: `Derivation/code/outputs/logs/metriplectic/failed_runs/20251006_100845_residual_vs_dt_jmj.csv`  
+  JSON: `Derivation/code/outputs/logs/metriplectic/failed_runs/20251006_100845_sweep_dt_jmj.json`
 
 - Strang defect (JMJ vs MJM): slope $p=2.6325$, $R^2=0.999098$ (diagnostic PASS; explanatory).  
-  Figure: `derivation/code/outputs/figures/metriplectic/20251006_100841_strang_defect_vs_dt.png`  
-  CSV/JSON: `derivation/code/outputs/logs/metriplectic/20251006_100841_strang_defect_vs_dt.{csv,json}`
+  Figure: `Derivation/code/outputs/figures/metriplectic/20251006_100841_strang_defect_vs_dt.png`  
+  CSV/JSON: `Derivation/code/outputs/logs/metriplectic/20251006_100841_strang_defect_vs_dt.{csv,json}`
 
 - Lyapunov series (JMJ): violations = 0 (PASS).  
-  Figure: `derivation/code/outputs/figures/metriplectic/20251006_100726_lyapunov_delta_per_step_jmj.png`  
-  JSON: `derivation/code/outputs/logs/metriplectic/20251006_100726_lyapunov_series_jmj.json`
+  Figure: `Derivation/code/outputs/figures/metriplectic/20251006_100726_lyapunov_delta_per_step_jmj.png`  
+  JSON: `Derivation/code/outputs/logs/metriplectic/20251006_100726_lyapunov_series_jmj.json`
 
 - Lyapunov series (M-only): violations = 0 (PASS).  
-  Figure: `derivation/code/outputs/figures/metriplectic/20251006_100825_lyapunov_delta_per_step_m_only.png`  
-  JSON: `derivation/code/outputs/logs/metriplectic/20251006_100825_lyapunov_series_m_only.json`
+  Figure: `Derivation/code/outputs/figures/metriplectic/20251006_100825_lyapunov_delta_per_step_m_only.png`  
+  JSON: `Derivation/code/outputs/logs/metriplectic/20251006_100825_lyapunov_series_m_only.json`
 
 - J-only reversibility and $L^2$: FAIL at strict/cap thresholds.  
   Values: $\|W_2-W_0\|_\infty=1.0399\times10^{-9}$; $\|W_1\|_2-\|W_0\|_2=1.12\times10^{-10}$; $\|W_2\|_2-\|W_0\|_2=2.24\times10^{-10}$.  
-  JSON: `derivation/code/outputs/logs/metriplectic/failed_runs/20251006_100823_j_reversibility.json`.
+  JSON: `Derivation/code/outputs/logs/metriplectic/failed_runs/20251006_100823_j_reversibility.json`.
 
 - Fixed-$\Delta t$ $|\Delta S|$ panel (dt=min sweep = 0.00125): J near round-off; M drives entropy; JMJ overlaps M.  
-  Figure: `derivation/code/outputs/figures/metriplectic/20251006_100845_fixed_dt_deltaS_compare.png`  
-  CSV/JSON: `derivation/code/outputs/logs/metriplectic/20251006_100845_fixed_dt_deltaS_compare.{csv,json}`
+  Figure: `Derivation/code/outputs/figures/metriplectic/20251006_100845_fixed_dt_deltaS_compare.png`  
+  CSV/JSON: `Derivation/code/outputs/logs/metriplectic/20251006_100845_fixed_dt_deltaS_compare.{csv,json}`
 
 ### Spectral-DG (optional, param-gated)
 
 Aligning J and M in Fourier space by using a spectral Laplacian inside the DG step (param: `"m_lap_operator":"spectral"`) reduces the J-M discretization mismatch and shrinks the Strang defect constant while preserving the H-theorem (DG monotonicity).
 
 - Residual vs $\Delta t$ (JMJ, spectral-DG): slope $2.9374$, $R^2=0.999967$ (PASS).  
-  Figure: `derivation/code/outputs/figures/metriplectic/20251006_135016_residual_vs_dt_small_jmj__spectralDG.png`  
-  CSV/JSON: `derivation/code/outputs/logs/metriplectic/20251006_135016_sweep_small_dt_jmj__spectralDG.{csv,json}`
+  Figure: `Derivation/code/outputs/figures/metriplectic/20251006_135016_residual_vs_dt_small_jmj__spectralDG.png`  
+  CSV/JSON: `Derivation/code/outputs/logs/metriplectic/20251006_135016_sweep_small_dt_jmj__spectralDG.{csv,json}`
 
 - Lyapunov per step (JMJ, spectral-DG): violations $=0$ (PASS).  
-  Figure: `derivation/code/outputs/figures/metriplectic/20251006_135019_lyapunov_delta_per_step_jmj__spectralDG.png`  
-  JSON: `derivation/code/outputs/logs/metriplectic/20251006_135019_lyapunov_series_jmj__spectralDG.json`
+  Figure: `Derivation/code/outputs/figures/metriplectic/20251006_135019_lyapunov_delta_per_step_jmj__spectralDG.png`  
+  JSON: `Derivation/code/outputs/logs/metriplectic/20251006_135019_lyapunov_series_jmj__spectralDG.json`
 
 Provenance: both stencil-DG (baseline) and spectral-DG (optional) runs are additive and tagged; defaults unchanged. Setting `"m_lap_operator":"spectral"` activates the aligned variant.
 
@@ -904,7 +904,7 @@ The metriplectic chapter for 1D RD is frozen: M-only obeys the H-theorem exactly
    - Reuse seed/median, two-grid, defect diagnostics, and Lyapunov series.
 3. Run a minimal sweep
    - N=256, seeds=10, dt = [0.02, 0.01, 0.005, 0.0025].
-   - Record gates and artifacts; update a new RESULTS file `derivation/kg_metriplectic/RESULTS_KG_plus_RD.md`.
+   - Record gates and artifacts; update a new RESULTS file `Derivation/kg_metriplectic/RESULTS_KG_plus_RD.md`.
 
 ## Risks & notes
 
@@ -1536,8 +1536,8 @@ Do the discrete operators used in our metriplectic integrators satisfy the defin
 
 ## Methods
 
-- Runner: `derivation/code/physics/metriplectic/metriplectic_structure_checks.py`
-- IO: `derivation/code/common/io_paths.py` (policy-aware; quarantines unapproved runs under failed_runs/)
+- Runner: `Derivation/code/physics/metriplectic/metriplectic_structure_checks.py`
+- IO: `Derivation/code/common/io_paths.py` (policy-aware; quarantines unapproved runs under failed_runs/)
 - Spec: grid (N, Δx), params (D, c, m, m_lap_operator), draws (default 100), optional tag.
 - Metrics logged: J_skew.median_abs_vJv; M_psd.neg_count, M_psd.min; pass/fail per gate.
 
@@ -1559,7 +1559,7 @@ Do the discrete operators used in our metriplectic integrators satisfy the defin
 
 ### Approval details
 
-- Spec path: `derivation/code/physics/metriplectic/specs/struct_checks.v1.json`
+- Spec path: `Derivation/code/physics/metriplectic/specs/struct_checks.v1.json`
 - Proposed tag: `struct-v1`
 - Runner invocation (policy-aware): use the `--spec` argument pointing to the file above; artifacts will be routed under `code/outputs/logs/metriplectic/` with the tag suffix.
 

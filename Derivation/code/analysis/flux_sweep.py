@@ -10,7 +10,7 @@ See LICENSE file for full terms.
 
 Numeric sweep: compute Δ(sum Q_i) statistics across random seeds.
 
-Writes JSON summary to derivation/code/outputs/logs/conservation_law/flux_sweep_<ts>.json
+Writes JSON summary to Derivation/code/outputs/logs/conservation_law/flux_sweep_<ts>.json
 """
 from __future__ import annotations
 import os, json, time

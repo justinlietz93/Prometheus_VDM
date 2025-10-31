@@ -16,7 +16,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 ## VDM-E-001 - Agency/Consciousness Field Evolution
 
-**Context:** derivation/AGENCY_FIELD.md:38-39 • Commit: 6885588
+**Context:** Derivation/AGENCY_FIELD.md:38-39 • Commit: 6885588
 
 $$
 \partial_t C(x,t) = D\,\nabla^2 C(x,t) - \gamma\, C(x,t) + S(x,t)
@@ -28,7 +28,7 @@ $$
 
 ### VDM-E-002 - Agency Field Composite Source
 
-**Context:** derivation/AGENCY_FIELD.md:47-48 • Commit: 6885588
+**Context:** Derivation/AGENCY_FIELD.md:47-48 • Commit: 6885588
 
 $$
 S(x,t) = \sigma(x)\,\big[\kappa_1 P(x,t)+\kappa_2 I_{\text{net}}(x,t)+\kappa_3 U(x,t)\big] \times g(V)\,h(B)
@@ -40,7 +40,7 @@ $$
 
 #### VDM-E-003 - Agency Field Steady State
 
-**Context:** derivation/AGENCY_FIELD.md:62-64 • Commit: 6885588
+**Context:** Derivation/AGENCY_FIELD.md:62-64 • Commit: 6885588
 
 $$
 C_{\text{ss}}=\frac{S_0}{\gamma},\qquad
@@ -53,7 +53,7 @@ $$
 
 #### VDM-E-004 - Agency Field Causal Solution
 
-**Context:** derivation/AGENCY_FIELD.md:72 • Commit: 6885588
+**Context:** Derivation/AGENCY_FIELD.md:72 • Commit: 6885588
 
 $$
 C(x,t)=\iint G_{\text{ret}}(x{-}x',t{-}t')\,S(x',t')\,dx'\,dt'
@@ -65,7 +65,7 @@ $$
 
 #### VDM-E-005 - Agency Field Regional Budget
 
-**Context:** derivation/AGENCY_FIELD.md:81-85 • Commit: 6885588
+**Context:** Derivation/AGENCY_FIELD.md:81-85 • Commit: 6885588
 
 $$
 \frac{dQ_C}{dt}
@@ -80,7 +80,7 @@ $$
 
 #### VDM-E-006 - Agency Field Discrete Update
 
-**Context:** derivation/AGENCY_FIELD.md:93-94 • Commit: 6885588
+**Context:** Derivation/AGENCY_FIELD.md:93-94 • Commit: 6885588
 
 $$
 C_i^{n+1} = C_i^{n}+\Delta t\Big(D\,\Delta_{xx} C_i^{n}-\gamma\,C_i^{n}+S_i^{n}\Big)
@@ -92,7 +92,7 @@ $$
 
 #### VDM-E-007 - Agency Field Dimensionless Form
 
-**Context:** derivation/AGENCY_FIELD.md:102-105 • Commit: 6885588
+**Context:** Derivation/AGENCY_FIELD.md:102-105 • Commit: 6885588
 
 $$
 \partial_{\tilde t} C = \nabla_{\tilde x}^2 C - C + \tilde S(\tilde x,\tilde t)
@@ -106,7 +106,7 @@ with $\tilde t=\gamma t$, $\tilde x=x/\ell_D$, $\ell_D=\sqrt{D/\gamma}$
 
 #### VDM-E-008 - Agency Field Portal Modulation (Optional)
 
-**Context:** derivation/AGENCY_FIELD.md:113 • Commit: 6885588
+**Context:** Derivation/AGENCY_FIELD.md:113 • Commit: 6885588
 
 $$
 \varepsilon_{\text{eff}}(x,t)=\varepsilon_0\big(1+\alpha\,C(x,t)\big),\quad |\alpha|\ll 1
@@ -118,7 +118,7 @@ $$
 
 #### VDM-E-009 - Control Efficacy
 
-**Context:** derivation/AGENCY_FIELD.md:53-54 • Commit: 6885588
+**Context:** Derivation/AGENCY_FIELD.md:53-54 • Commit: 6885588
 
 $$
 U =\frac{\mathbb{E}[L_{\text{no-control}}] - \mathbb{E}[L_{\text{control}}]}{\text{energy used}}
@@ -130,7 +130,7 @@ $$
 
 #### VDM-E-010 - VDM C-Score
 
-**Context:** derivation/AGENCY_FIELD.md:122 • Commit: 6885588
+**Context:** Derivation/AGENCY_FIELD.md:122 • Commit: 6885588
 
 $$
 C_\tau = \big[\mathrm{z}(P_\tau/J)+\mathrm{z}(U_\tau)+\mathrm{z}(V_\tau)\big]\times B
@@ -338,7 +338,7 @@ $$
 
 for $dW/dt = r\,W - u\,W^{2}$
 
-**Notes:** Closed-form exact solution for on-site reaction over time $\delta t$; used in census engine. Also in derivation/code/rd/reaction_exact.py:7.
+**Notes:** Closed-form exact solution for on-site reaction over time $\delta t$; used in census engine. Also in Derivation/code/rd/reaction_exact.py:7.
 
 ---
 
@@ -362,7 +362,7 @@ with $\frac{\phi^{n+1}-\phi^{n}}{\Delta t} = D\nabla^{2}_h \bar\phi + \bar f$, $
 
 #### VDM-E-027 - RD On-Site (Discrete)
 
-**Context:** derivation/VDM_Overview.md:23-24 • Commit: 6885588
+**Context:** Derivation/VDM_Overview.md:23-24 • Commit: 6885588
 
 $$
 \frac{d W_i}{dt} = (\alpha - \beta)\, W_i - \alpha \, W_i^{2} + J \sum_{j\in \mathrm{nbr}(i)} (W_j - W_i)
@@ -374,7 +374,7 @@ $$
 
 #### VDM-E-028 - RD Continuum PDE
 
-**Context:** derivation/VDM_Overview.md:31 • Commit: 6885588
+**Context:** Derivation/VDM_Overview.md:31 • Commit: 6885588
 
 $$
 \partial_t \phi = D\, \nabla^{2}\phi + r\, \phi - u\, \phi^{2} \quad \bigl[ -\lambda\, \phi^{3} \text{ (optional stabilization)} \bigr]
@@ -386,7 +386,7 @@ $$
 
 #### VDM-E-029 - RD Discrete-to-Continuum Mapping
 
-**Context:** derivation/VDM_Overview.md:39-43 • Commit: 6885588
+**Context:** Derivation/VDM_Overview.md:39-43 • Commit: 6885588
 
 $$
 \begin{aligned}
@@ -402,7 +402,7 @@ $$
 
 #### VDM-E-030 - EFT Kinetic Normalization (Active; KPI-gated)
 
-**Context:** derivation/VDM_Overview.md:52-54 • Commit: 6885588
+**Context:** Derivation/VDM_Overview.md:52-54 • Commit: 6885588
 
 $$
 c^{2} = 2 J a^{2} \quad \text{(per-site)}, \qquad c^{2} = \kappa a^{2},\; \kappa = 2J \quad \text{(per-edge)}
@@ -414,7 +414,7 @@ $$
 
 #### VDM-E-031 - EFT Second-Order Field Equation (Active; KPI-gated)
 
-**Context:** derivation/VDM_Overview.md:60-62 • Commit: 6885588
+**Context:** Derivation/VDM_Overview.md:60-62 • Commit: 6885588
 
 $$
 \square \phi + V'(\phi) = 0, \qquad \square = \partial_t^{2} - c^{2} \nabla^{2}
@@ -426,7 +426,7 @@ $$
 
 #### VDM-E-032 - EFT Effective Mass (Active; KPI-gated)
 
-**Context:** derivation/VDM_Overview.md:68-70 • Commit: 6885588
+**Context:** Derivation/VDM_Overview.md:68-70 • Commit: 6885588
 
 $$
 m_{\mathrm{eff}}^{2} = V''(v)
@@ -438,19 +438,19 @@ $$
 
 #### VDM-E-033 - RD Front Speed (Validated)
 
-**Context:** derivation/VDM_Overview.md:110 • Commit: 6885588
+**Context:** Derivation/VDM_Overview.md:110 • Commit: 6885588
 
 $$
 c_{\text{front}} = 2\sqrt{D r}
 $$
 
-**Notes:** Fisher-KPP pulled front speed [PROVEN]; validated with rel_err ≈ 0.047, R² ≈ 0.999996. See derivation/reaction_diffusion/rd_front_speed_validation.md.
+**Notes:** Fisher-KPP pulled front speed [PROVEN]; validated with rel_err ≈ 0.047, R² ≈ 0.999996. See Derivation/reaction_diffusion/rd_front_speed_validation.md.
 
 ---
 
 #### VDM-E-034 - RD Discrete Dispersion
 
-**Context:** derivation/VDM_Overview.md:122-124 • Commit: 6885588
+**Context:** Derivation/VDM_Overview.md:122-124 • Commit: 6885588
 
 $$
 \sigma_d(m) = r - \frac{4D}{\Delta x^{2}} \sin^{2}\!\left(\frac{\pi m}{N}\right)
@@ -462,19 +462,19 @@ $$
 
 #### VDM-E-035 - RD Continuum Dispersion (Validated)
 
-**Context:** derivation/VDM_Overview.md:128-130 • Commit: 6885588
+**Context:** Derivation/VDM_Overview.md:128-130 • Commit: 6885588
 
 $$
 \sigma(k) = r - D k^{2}, \qquad k = \frac{2\pi m}{L}
 $$
 
-**Notes:** Linearized growth rate about $\phi \approx 0$ [PROVEN]; median rel. error ≈ 1.45×10⁻³, R² ≈ 0.99995. See derivation/reaction_diffusion/rd_dispersion_validation.md.
+**Notes:** Linearized growth rate about $\phi \approx 0$ [PROVEN]; median rel. error ≈ 1.45×10⁻³, R² ≈ 0.99995. See Derivation/reaction_diffusion/rd_dispersion_validation.md.
 
 ---
 
 #### VDM-E-036 - RD Homogeneous Fixed Point
 
-**Context:** derivation/VDM_Overview.md:150-152 • Commit: 6885588
+**Context:** Derivation/VDM_Overview.md:150-152 • Commit: 6885588
 
 $$
 \phi^{\star} = \frac{r}{u} = 1 - \frac{\beta}{\alpha} \qquad (r = \alpha - \beta,\; u = \alpha)
@@ -486,7 +486,7 @@ $$
 
 #### VDM-E-037 - Axiomatic Effective Mass Squared
 
-**Context:** derivation/axiomatic_theory_development.md:428 • Commit: 6885588
+**Context:** Derivation/axiomatic_theory_development.md:428 • Commit: 6885588
 
 $$
 V_{\text{eff}}(\eta) = \frac{1}{2}m_{\text{eff}}^2 \eta^2 + \frac{g_3}{3!}\eta^3 + \frac{g_4}{4!}\eta^4 + \ldots
@@ -500,7 +500,7 @@ where $m_{\text{eff}}^2 = V''(v_\lambda) > 0$ ensures stability
 
 #### VDM-E-038 - Discrete Euler-Lagrange Variation
 
-**Context:** derivation/axiomatic_theory_development.md:257 • Commit: 6885588
+**Context:** Derivation/axiomatic_theory_development.md:257 • Commit: 6885588
 
 $$
 \frac{\delta S}{\delta W_i^n} = \Delta t \cdot a^d \left[ \frac{\partial \mathcal{L}_i^n}{\partial W_i^n} + \frac{\partial \mathcal{L}_i^{n-1}}{\partial W_i^n} + \sum_{j \in N(i)} \frac{\partial \mathcal{L}_j^n}{\partial W_i^n} \right]
@@ -512,7 +512,7 @@ $$
 
 #### VDM-E-039 - Discrete Field Equation Terms
 
-**Context:** derivation/axiomatic_theory_development.md:260-264 • Commit: 6885588
+**Context:** Derivation/axiomatic_theory_development.md:260-264 • Commit: 6885588
 
 From $\mathcal{L}_i^n$:
 
@@ -527,7 +527,7 @@ $$\frac{\partial \mathcal{L}_i^{n-1}}{\partial W_i^n} = \frac{1}{\Delta t^2}(W_i
 
 #### VDM-E-040 - Taylor Expansion for Spatial Interaction
 
-**Context:** derivation/axiomatic_theory_development.md:292-295 • Commit: 6885588
+**Context:** Derivation/axiomatic_theory_development.md:292-295 • Commit: 6885588
 
 $$
 (W_{i+\mu} - W_i)^2 + (W_{i-\mu} - W_i)^2 = 2a^2 \left(\frac{\partial \phi}{\partial x_\mu}\right)^2 + O(a^4)
@@ -541,7 +541,7 @@ summing over directions $\mu$ gives $\sum_{j \in N(i)}(W_j - W_i)^2 = 2a^2 |\nab
 
 #### VDM-E-041 - Lorentz Invariance Condition
 
-**Context:** derivation/axiomatic_theory_development.md:306-309 • Commit: 6885588
+**Context:** Derivation/axiomatic_theory_development.md:306-309 • Commit: 6885588
 
 $$
 c^2 = J a^2 = 2Ja^2
@@ -553,7 +553,7 @@ $$
 
 #### VDM-E-042 - Continuum Action
 
-**Context:** derivation/axiomatic_theory_development.md:341 • Commit: 6885588
+**Context:** Derivation/axiomatic_theory_development.md:341 • Commit: 6885588
 
 $$
 S_{\text{continuum}} = \int dt \int d^d x \left[ \frac{1}{2}\left(\frac{\partial \phi}{\partial t}\right)^2 - \frac{c^2}{2}|\nabla \phi|^2 - V(\phi) \right]
@@ -565,7 +565,7 @@ $$
 
 #### VDM-E-043 - Klein-Gordon with Nonlinear Potential
 
-**Context:** derivation/axiomatic_theory_development.md:352 • Commit: 6885588
+**Context:** Derivation/axiomatic_theory_development.md:352 • Commit: 6885588
 
 $$
 \frac{\partial^2 \phi}{\partial t^2} - c^2 \nabla^2 \phi + V'(\phi) = 0
@@ -577,7 +577,7 @@ $$
 
 #### VDM-E-044 - RD Overdamped Limit
 
-**Context:** derivation/axiomatic_theory_development.md:357-361 • Commit: 6885588
+**Context:** Derivation/axiomatic_theory_development.md:357-361 • Commit: 6885588
 
 $$
 \frac{\partial \phi}{\partial t} \approx \frac{c^2}{\gamma} \nabla^2 \phi - \frac{1}{\gamma} V'(\phi)
@@ -591,7 +591,7 @@ with diffusion coefficient $D = c^2/\gamma = 2Ja^2/\gamma$ and reaction term $f(
 
 #### VDM-E-045 - Energy Density
 
-**Context:** derivation/axiomatic_theory_development.md:386-387 • Commit: 6885588
+**Context:** Derivation/axiomatic_theory_development.md:386-387 • Commit: 6885588
 
 $$
 \rho_i^n = \frac{1}{2}\left(\frac{W_i^{n+1} - W_i^n}{\Delta t}\right)^2 + \frac{J}{2}\sum_{j \in N(i)}(W_j^n - W_i^n)^2 + V(W_i^n)
@@ -603,7 +603,7 @@ $$
 
 #### VDM-E-046 - Momentum Density (Discrete)
 
-**Context:** derivation/axiomatic_theory_development.md:400-401 • Commit: 6885588
+**Context:** Derivation/axiomatic_theory_development.md:400-401 • Commit: 6885588
 
 $$
 \mathbf{p}_i^n = -\frac{J a^{d-1}}{2} \sum_{j \in N(i)} (W_j^n - W_i^n) \hat{\mathbf{n}}_{ij} \frac{W_i^{n+1} - W_i^n}{\Delta t}
@@ -619,7 +619,7 @@ $$
 <a id="vdm-e-047"></a>
 <!-- markdownlint-enable MD033 -->
 
-**Context:** derivation/axiomatic_theory_development.md:433 • Commit: 6885588
+**Context:** Derivation/axiomatic_theory_development.md:433 • Commit: 6885588
 
 $$
 \mathcal{H}(\phi, \dot{\phi}, \nabla\phi) = \frac{1}{2}\dot{\phi}^2 + \frac{c^2}{2}|\nabla\phi|^2 + V(\phi)
@@ -631,7 +631,7 @@ $$
 
 #### VDM-E-048 - Energy Flux (Poynting Vector)
 
-**Context:** derivation/axiomatic_theory_development.md:437-442 • Commit: 6885588
+**Context:** Derivation/axiomatic_theory_development.md:437-442 • Commit: 6885588
 
 $$
 \mathbf{S} = -c^2 \dot{\phi} \nabla\phi
@@ -645,7 +645,7 @@ with conservation law $\frac{\partial \mathcal{H}}{\partial t} + \nabla \cdot \m
 
 #### VDM-E-049 - Stress-Energy Tensor
 
-**Context:** derivation/axiomatic_theory_development.md:455-462 • Commit: 6885588
+**Context:** Derivation/axiomatic_theory_development.md:455-462 • Commit: 6885588
 
 $$
 T^{\mu\nu} = \partial^\mu \phi \partial^\nu \phi - g^{\mu\nu} \mathcal{L}
@@ -659,7 +659,7 @@ with components $T^{00} = \mathcal{H}$, $T^{0i} = \dot{\phi} \partial_i \phi$, $
 
 #### VDM-E-050 - RD Parameter Mapping
 
-**Context:** derivation/axiomatic_theory_development.md:515-521 • Commit: 6885588
+**Context:** Derivation/axiomatic_theory_development.md:515-521 • Commit: 6885588
 
 Diffusion coefficient: $D = \frac{c^2}{\gamma} = \frac{2Ja^2}{\gamma}$
 
@@ -673,7 +673,7 @@ Parameter mapping: $r = \frac{\alpha-\beta}{\gamma}$, $u = \frac{\alpha}{\gamma}
 
 #### VDM-E-051 - Lyapunov Functional for RD
 
-**Context:** derivation/axiomatic_theory_development.md:578-579 • Commit: 6885588
+**Context:** Derivation/axiomatic_theory_development.md:578-579 • Commit: 6885588
 
 $$
 \mathcal{V}[\phi] = \int_\Omega \left[ \frac{D}{2}|\nabla\phi|^2 + \hat{V}(\phi) \right] dx
@@ -687,7 +687,7 @@ where $\hat{V}(\phi) = \int_0^\phi f(\xi) d\xi$
 
 #### VDM-E-052 - RD Front Speed Theoretical Prediction
 
-**Context:** derivation/axiomatic_theory_development.md:646 • Commit: 6885588
+**Context:** Derivation/axiomatic_theory_development.md:646 • Commit: 6885588
 
 $$
 c_{\text{front}} = 2\sqrt{Dr} = 2\sqrt{\frac{2Ja^2(\alpha-\beta)}{\gamma^2}} = \frac{2a\sqrt{2J(\alpha-\beta)}}{\gamma}
@@ -699,7 +699,7 @@ $$
 
 #### VDM-E-053 - Fixed Point Consistency Check
 
-**Context:** derivation/axiomatic_theory_development.md:653-654 • Commit: 6885588
+**Context:** Derivation/axiomatic_theory_development.md:653-654 • Commit: 6885588
 
 $$
 \frac{r}{u} = \frac{\alpha-\beta}{\alpha} = 1 - \frac{\beta}{\alpha}
@@ -711,7 +711,7 @@ $$
 
 #### VDM-E-054 - Void Scale Characteristic Length
 
-**Context:** derivation/axiomatic_theory_development.md:679 • Commit: 6885588
+**Context:** Derivation/axiomatic_theory_development.md:679 • Commit: 6885588
 
 $$
 R_* = \frac{\pi a}{\sqrt{2J(\alpha-\beta)}} \approx 8.1 \text{ (lattice units)}
@@ -723,7 +723,7 @@ $$
 
 #### VDM-E-055 - Tachyon Condensation Mode Spectrum
 
-**Context:** derivation/axiomatic_theory_development.md:690-693 • Commit: 6885588
+**Context:** Derivation/axiomatic_theory_development.md:690-693 • Commit: 6885588
 
 $$
 \omega_n^2 = c^2 k_n^2 - (\alpha-\beta) < 0
@@ -737,7 +737,7 @@ for $k_n = n\pi/R$ with $n < n_{\max} = \frac{R}{\pi}\sqrt{\frac{\alpha-\beta}{c
 
 #### VDM-E-056 - Tube Radius Selection
 
-**Context:** derivation/axiomatic_theory_development.md:695 • Commit: 6885588
+**Context:** Derivation/axiomatic_theory_development.md:695 • Commit: 6885588
 
 $$
 R_* \sim \frac{\pi c}{\sqrt{\alpha-\beta}} = \frac{\pi\sqrt{2Ja^2}}{\sqrt{\alpha-\beta}}
@@ -749,7 +749,7 @@ $$
 
 #### VDM-E-057 - Post-Condensation Mass
 
-**Context:** derivation/axiomatic_theory_development.md:698 • Commit: 6885588
+**Context:** Derivation/axiomatic_theory_development.md:698 • Commit: 6885588
 
 $$
 m_{\text{eff}}^2 = V''(v_\lambda) = 2\alpha v_\lambda - (\alpha-\beta) + 3\lambda v_\lambda^2 > 0
@@ -761,7 +761,7 @@ $$
 
 #### VDM-E-058 - Stabilized Potential
 
-**Context:** derivation/axiomatic_theory_development.md:1119 • Commit: 6885588
+**Context:** Derivation/axiomatic_theory_development.md:1119 • Commit: 6885588
 
 $$
 V_{\text{stabilized}}(\phi) = \frac{\alpha}{3}\phi^3 - \frac{\alpha-\beta}{2}\phi^2 + \frac{\lambda}{4}\phi^4
@@ -773,7 +773,7 @@ $$
 
 #### VDM-E-059 - Stabilized Vacuum Solution
 
-**Context:** derivation/axiomatic_theory_development.md:1132 • Commit: 6885588
+**Context:** Derivation/axiomatic_theory_development.md:1132 • Commit: 6885588
 
 $$
 v_{\lambda} = \frac{-\alpha + \sqrt{\alpha^2 + 4\lambda(\alpha-\beta)}}{2\lambda}
@@ -785,7 +785,7 @@ $$
 
 #### VDM-E-060 - Effective Mass at Stabilized Vacuum
 
-**Context:** derivation/axiomatic_theory_development.md:1138-1141 • Commit: 6885588
+**Context:** Derivation/axiomatic_theory_development.md:1138-1141 • Commit: 6885588
 
 $$
 m_{\text{eff}}^2 = V''(v_{\lambda}) = 2\alpha v_{\lambda} - (\alpha-\beta) + 3\lambda v_{\lambda}^2 \approx (\alpha-\beta) + O(\lambda)
@@ -797,7 +797,7 @@ $$
 
 #### VDM-E-061 - VDM Morphology/Assimilation Field (Fluids)
 
-**Context:** derivation/fluid_dynamics/DELETE_AFTER_SOLVING/DELETE_AFTER_SOLVING.md:12 • Commit: 6885588
+**Context:** Derivation/fluid_dynamics/DELETE_AFTER_SOLVING/DELETE_AFTER_SOLVING.md:12 • Commit: 6885588
 
 $$
 \partial_t s = \nabla\!\cdot\!\big(D_s\,M(s,\mathcal{D})\,\nabla s\big) + F(s;\text{valence},\text{resonance})
@@ -809,7 +809,7 @@ $$
 
 #### VDM-E-062 - VDM Signal/Transport Field (Fluids)
 
-**Context:** derivation/fluid_dynamics/DELETE_AFTER_SOLVING/DELETE_AFTER_SOLVING.md:17 • Commit: 6885588
+**Context:** Derivation/fluid_dynamics/DELETE_AFTER_SOLVING/DELETE_AFTER_SOLVING.md:17 • Commit: 6885588
 
 $$
 \tau_u\,\partial_{tt}u + \partial_t u = c^2\nabla^2 u - \frac{\partial V}{\partial u}(u,s)
@@ -821,7 +821,7 @@ $$
 
 #### VDM-E-063 - VDM Void-Debt Modulation
 
-**Context:** derivation/fluid_dynamics/DELETE_AFTER_SOLVING/DELETE_AFTER_SOLVING.md:24-25 • Commit: 6885588
+**Context:** Derivation/fluid_dynamics/DELETE_AFTER_SOLVING/DELETE_AFTER_SOLVING.md:24-25 • Commit: 6885588
 
 $$
 \partial_t \mathcal{D}=\frac{1}{\tau_g}\,g\!\left(\kappa,\lvert\nabla u\rvert,\lvert\nabla s\rvert\right)-\frac{\mathcal{D}}{\tau_r}
@@ -837,7 +837,7 @@ $$
 
 #### VDM-E-064 - Memory Steering Refractive Index
 
-**Context:** derivation/code/physics/memory_steering/memory_steering.py:21 • Commit: 6885588
+**Context:** Derivation/code/physics/memory_steering/memory_steering.py:21 • Commit: 6885588
 
 $$
 n(x,t) = \exp[\eta M(x,t)]
@@ -851,7 +851,7 @@ with ray bending $r'' = \nabla_{\perp} \ln n = \eta \nabla_{\perp} M$
 
 #### VDM-E-065 - Memory Field Dynamics
 
-**Context:** derivation/code/physics/memory_steering/memory_steering.py:25-26 • Commit: 6885588
+**Context:** Derivation/code/physics/memory_steering/memory_steering.py:25-26 • Commit: 6885588
 
 $$
 \partial_t M = \gamma R - \delta M + \kappa \nabla^2 M
@@ -863,7 +863,7 @@ $$
 
 #### VDM-E-066 - Memory Steering Dimensionless Groups
 
-**Context:** derivation/code/physics/memory_steering/memory_steering.py:30 • Commit: 6885588
+**Context:** Derivation/code/physics/memory_steering/memory_steering.py:30 • Commit: 6885588
 
 $$
 \Theta = \eta M_0,\quad D_a = \gamma R_0 T / M_0,\quad \Lambda = \delta T,\quad \Gamma = \kappa T / L^2
@@ -879,7 +879,7 @@ $$
 <a id="vdm-e-067"></a>
 <!-- markdownlint-enable MD033 -->
 
-**Context:** derivation/code/physics/memory_steering/memory_steering.py:35-36 • Commit: 6885588
+**Context:** Derivation/code/physics/memory_steering/memory_steering.py:35-36 • Commit: 6885588
 
 $$
 P(A) \approx \sigma(\Theta \Delta m)
@@ -891,7 +891,7 @@ $$
 
 #### VDM-E-068 - Graph Laplacian for Memory Discretization
 
-**Context:** derivation/code/physics/memory_steering/memory_steering.py:86-94 • Commit: 6885588
+**Context:** Derivation/code/physics/memory_steering/memory_steering.py:86-94 • Commit: 6885588
 
 $$
 L = D - A
@@ -903,7 +903,7 @@ $$
 
 #### VDM-E-069 - Discrete Memory Update (Euler)
 
-**Context:** derivation/code/physics/memory_steering/memory_steering.py:42 • Commit: 6885588
+**Context:** Derivation/code/physics/memory_steering/memory_steering.py:42 • Commit: 6885588
 
 $$
 m \leftarrow m + dt ( \gamma r - \delta m - \kappa L m )
@@ -915,7 +915,7 @@ $$
 
 #### VDM-E-070 - Memory-Based Transition Probability
 
-**Context:** derivation/code/physics/memory_steering/memory_steering.py:44-45 • Commit: 6885588
+**Context:** Derivation/code/physics/memory_steering/memory_steering.py:44-45 • Commit: 6885588
 
 $$
 P(i\to j) \propto \exp(\Theta m_j)
@@ -927,7 +927,7 @@ $$
 
 #### VDM-E-071 - Logistic Invariant Q (ODE)
 
-**Context:** derivation/code/rd/reaction_exact.py:16 • Commit: 6885588
+**Context:** Derivation/code/rd/reaction_exact.py:16 • Commit: 6885588
 
 $$
 Q(W,t) = \ln\left( \frac{W}{r - u W} \right) - r t
@@ -939,7 +939,7 @@ $$
 
 #### VDM-E-072 - Discrete Hamiltonian Density
 
-**Context:** derivation/conservation_law/discrete_conservation.md:32-33 • Commit: 6885588
+**Context:** Derivation/conservation_law/discrete_conservation.md:32-33 • Commit: 6885588
 
 $$
 \mathcal{H}_i = \frac{1}{2}\left(\frac{dW_i}{dt}\right)^2 + \frac{1}{2} \sum_{j \in N(i)} J (W_j - W_i)^2 + V(W_i)
@@ -951,7 +951,7 @@ $$
 
 #### VDM-E-073 - Discrete Conservation Law Form
 
-**Context:** derivation/conservation_law/discrete_conservation.md:46-48 • Commit: 6885588
+**Context:** Derivation/conservation_law/discrete_conservation.md:46-48 • Commit: 6885588
 
 $$
 \frac{\Delta \mathcal{H}_i}{\Delta t} + \nabla \cdot \vec{J}_i = 0
@@ -963,7 +963,7 @@ $$
 
 #### VDM-E-074 - Potential Energy Dissipation Rate
 
-**Context:** derivation/conservation_law/discrete_conservation.md:76-77 • Commit: 6885588
+**Context:** Derivation/conservation_law/discrete_conservation.md:76-77 • Commit: 6885588
 
 $$
 \frac{\Delta V(W_i)}{\Delta t} \approx -[F(W_i)]^2
@@ -977,7 +977,7 @@ with $F(W_i) = (\alpha - \beta)W_i - \alpha W_i^2$
 
 #### VDM-E-075 - Discrete Lattice Lagrangian (Per Time Step)
 
-**Context:** derivation/foundations/void_dynamics_theory.md:98-103 • Commit: 6885588
+**Context:** Derivation/foundations/void_dynamics_theory.md:98-103 • Commit: 6885588
 
 $$ L^n = a^d \sum_i \left[ \tfrac{1}{2}\left(\tfrac{W_i^{n+1}-W_i^{n}}{\Delta t}\right)^2 + \tfrac{\kappa}{2}\sum_{\mu=1}^{d}\big(W_{i+\mu}^{n}-W_i^{n}\big)^2 + V!\big(W_i^{n}\big) \right] $$
 
@@ -987,7 +987,7 @@ $$ L^n = a^d \sum_i \left[ \tfrac{1}{2}\left(\tfrac{W_i^{n+1}-W_i^{n}}{\Delta t}
 
 #### VDM-E-076 - Discrete Euler-Lagrange (Second-Order)
 
-**Context:** derivation/foundations/void_dynamics_theory.md:111-114 • Commit: 6885588
+**Context:** Derivation/foundations/void_dynamics_theory.md:111-114 • Commit: 6885588
 
 $$
 \frac{W_i^{n+1}-2W_i^{n}+W_i^{n-1}}{(\Delta t)^2}
@@ -1001,7 +1001,7 @@ $$
 
 #### VDM-E-077 - Continuum Field Equation from Lattice
 
-**Context:** derivation/foundations/void_dynamics_theory.md:134 • Commit: 6885588
+**Context:** Derivation/foundations/void_dynamics_theory.md:134 • Commit: 6885588
 
 $$
 \partial_t^2\phi - \kappa\,a^2\,\nabla^2\phi + V'(\phi)=0
@@ -1013,7 +1013,7 @@ $$
 
 #### VDM-E-078 - Continuum Lagrangian Density
 
-**Context:** derivation/foundations/void_dynamics_theory.md:146 • Commit: 6885588
+**Context:** Derivation/foundations/void_dynamics_theory.md:146 • Commit: 6885588
 
 $$
 \mathcal{L} = \frac{1}{2}(\partial_t\phi)^2 - \frac{\kappa a^2}{2}(\nabla\phi)^2 - V(\phi)
@@ -1025,7 +1025,7 @@ $$
 
 #### VDM-E-079 - Spatial Taylor Expansion (Exact Coefficient)
 
-**Context:** derivation/foundations/void_dynamics_theory.md:37 • Commit: 6885588
+**Context:** Derivation/foundations/void_dynamics_theory.md:37 • Commit: 6885588
 
 $$
 \sum_{j}(W_j-W_i)^2 \to c_\text{lat}\,a^2(\nabla\phi)^2+\mathcal{O}(a^4)
@@ -1037,7 +1037,7 @@ $$
 
 #### VDM-E-080 - Discrete Interaction Energy per Site
 
-**Context:** derivation/foundations/void_dynamics_theory.md:44 • Commit: 6885588
+**Context:** Derivation/foundations/void_dynamics_theory.md:44 • Commit: 6885588
 
 $$
 \mathcal{L}_i=\tfrac12(\Delta_t W_i)^2-\tfrac12\sum_j J(W_j-W_i)^2 - V(W_i)

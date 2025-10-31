@@ -8,7 +8,7 @@ See LICENSE file for full terms.
 Condensation and spectrum (diagonal-λ baseline) for the finite-tube FUM scalar EFT.
 
 This module implements a minimal, numerically stable first pass of Section 6-7 in
-[derivation/finite_tube_mode_analysis.md](derivation/finite_tube_mode_analysis.md:1):
+[Derivation/finite_tube_mode_analysis.md](Derivation/finite_tube_mode_analysis.md:1):
 - Build diagonal quartic couplings N4_ℓ ≈ λ ∫ r dr dθ u_ℓ^4 (projecting λ φ^4 onto each mode)
 - Find condensate amplitudes v_ℓ by minimizing V_eff^{tube} ≈ ½ m_ℓ^2 v_ℓ^2 + ¼ N4_ℓ v_ℓ^4
 - Compute post-condensation mass matrix in the diagonal approximation M^2_ℓ ≈ m_ℓ^2 + 3 N4_ℓ v_ℓ^2
@@ -33,9 +33,9 @@ Equations:
     M_ℓ^2 = m_ℓ^2 + 3 N4_ℓ v_ℓ^2.
 
 References:
-- [derivation/finite_tube_mode_analysis.md](derivation/finite_tube_mode_analysis.md:1)
-- [derivation/discrete_to_continuum.md](derivation/discrete_to_continuum.md:125-193)
-- [derivation/kinetic_term_derivation.md](derivation/kinetic_term_derivation.md:117-134)
+- [Derivation/finite_tube_mode_analysis.md](Derivation/finite_tube_mode_analysis.md:1)
+- [Derivation/discrete_to_continuum.md](Derivation/discrete_to_continuum.md:125-193)
+- [Derivation/kinetic_term_derivation.md](Derivation/kinetic_term_derivation.md:117-134)
 
 Author: Justin K. Lietz
 Date: 2025-08-09

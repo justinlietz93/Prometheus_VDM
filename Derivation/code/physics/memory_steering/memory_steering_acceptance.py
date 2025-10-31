@@ -23,8 +23,8 @@ CLI:
       --seed 0 --steps 512 --g 0.12 --lam 0.08 --noise_std 0.0
 
 Outputs:
-- JSON metrics: Prometheus_VDM/derivation/code/outputs/logs/memory_steering/memory_steering_acceptance_<timestamp>.json
-- Figures (PNG): Prometheus_VDM/derivation/code/outputs/figures/memory_steering/
+- JSON metrics: Prometheus_VDM/Derivation/code/outputs/logs/memory_steering/memory_steering_acceptance_<timestamp>.json
+- Figures (PNG): Prometheus_VDM/Derivation/code/outputs/figures/memory_steering/
 """
 
 import argparse

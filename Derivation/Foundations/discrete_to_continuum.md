@@ -9,7 +9,7 @@
 
 The primary goal of this derivation is to derive the reaction-diffusion PDE mapping
 ∂t φ = D ∇² φ + r φ - u φ²
-from the discrete update. A second‑order Lorentzian EFT derivation (Klein-Gordon-like) is maintained as future work in [derivation/effective_field_theory_approach.md](effective_field_theory_approach.md:1). This removes internal contradictions while preserving historical EFT references below as scoped.
+from the discrete update. A second‑order Lorentzian EFT derivation (Klein-Gordon-like) is maintained as future work in [Derivation/effective_field_theory_approach.md](effective_field_theory_approach.md:1). This removes internal contradictions while preserving historical EFT references below as scoped.
 
 ---
 
@@ -82,7 +82,7 @@ $$
 \lim_{\Delta t \to 0} \frac{W_i(t+\Delta t) - W_i(t)}{\Delta t} = \frac{\partial W_i}{\partial t}.
 $$
 
-Crucially, the second-order time derivative in the continuum equation is not imposed ad hoc; it follows from varying the continuum Lagrangian density fixed by the lattice derivation of the kinetic and gradient terms (see [derivation/kinetic_term_derivation.md](derivation/kinetic_term_derivation.md:78-116)):
+Crucially, the second-order time derivative in the continuum equation is not imposed ad hoc; it follows from varying the continuum Lagrangian density fixed by the lattice derivation of the kinetic and gradient terms (see [Derivation/kinetic_term_derivation.md](Derivation/kinetic_term_derivation.md:78-116)):
 $$
 \mathcal{L} \;=\; \tfrac{1}{2}(\partial_t \phi)^2 \;-\; J a^2\,(\nabla \phi)^2 \;-\; V(\phi).
 $$
@@ -194,7 +194,7 @@ In this bounded EFT the symmetric‑limit VEV is $v = \mu/\sqrt{\lambda}$; a sma
 
 #### 6.3 Units and calibration
 
-Using the physical map in [derivation/fum_voxtrium_mapping.md](derivation/fum_voxtrium_mapping.md:44-80), one has $\mu$ in GeV, $\lambda$ dimensionless, and
+Using the physical map in [Derivation/fum_voxtrium_mapping.md](Derivation/fum_voxtrium_mapping.md:44-80), one has $\mu$ in GeV, $\lambda$ dimensionless, and
 $$
 m_{\text{eff}} = \sqrt{2}\,\mu
 $$

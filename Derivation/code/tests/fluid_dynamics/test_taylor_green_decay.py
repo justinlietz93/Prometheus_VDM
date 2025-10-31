@@ -12,7 +12,7 @@ See LICENSE file for full terms.
 Taylor-Green viscosity recovery unit test (fluid_dynamics domain).
 
 Pathing rule:
-- Tests live under derivation/code/tests/<domain>/
+- Tests live under Derivation/code/tests/<domain>/
 - This test checks that ν_fit recovered from E(t) decay matches ν_th within 5% at 256x256.
 
 No figures/logs are written; this is a fast numeric check.

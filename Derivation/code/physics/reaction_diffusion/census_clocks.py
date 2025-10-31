@@ -30,7 +30,7 @@ BCs supported:
 - "periodic": wraparound neighbors on a regular grid (1D/2D)
 - "neumann": homogeneous no-flux (edge faces carry zero flux)
 
-This module is derivation/validation-side only. No scans in fum_rt/core or maps/.
+This module is Derivation/validation-side only. No scans in fum_rt/core or maps/.
 
 Author: Justin K. Lietz
 """

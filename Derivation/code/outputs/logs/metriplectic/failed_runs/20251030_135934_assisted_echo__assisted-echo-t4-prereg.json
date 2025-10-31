@@ -1,0 +1,753 @@
+{
+  "CONTRADICTION_REPORT": {
+    "summary": {
+      "G1_Noether_J": {
+        "failed": 12,
+        "n": 12,
+        "pass_rate": 0.0,
+        "passed": 0
+      },
+      "G2_H_theorem_M": {
+        "failed": 0,
+        "n": 12,
+        "pass_rate": 1.0,
+        "passed": 12
+      },
+      "G3_EnergyMatch": {
+        "failed": 12,
+        "n": 12,
+        "pass_rate": 0.0,
+        "passed": 0
+      },
+      "G4_StrangDefect": {
+        "failed": 12,
+        "n": 12,
+        "pass_rate": 0.0,
+        "passed": 0
+      }
+    },
+    "total_failed_gates": 36
+  },
+  "ceg_summary": {
+    "0.0": {
+      "mean": 0.0004953581980171434,
+      "median": 0.00021182161531812268,
+      "n": 12
+    },
+    "0.1": {
+      "mean": 0.0,
+      "median": 0.0,
+      "n": 12
+    },
+    "0.2": {
+      "mean": 0.0,
+      "median": 0.0,
+      "n": 12
+    },
+    "0.3": {
+      "mean": 0.0,
+      "median": 0.0,
+      "n": 12
+    }
+  },
+  "dt": 0.02,
+  "gate_ledger_per_seed": [
+    {
+      "contradiction": {
+        "failed_count": 3,
+        "failed_gates": [
+          "G1_Noether_J",
+          "G3_EnergyMatch",
+          "G4_StrangDefect"
+        ]
+      },
+      "gates": [
+        {
+          "drift": 0.9889189010145981,
+          "gate": "G1_Noether_J",
+          "passed": false,
+          "tol": 1e-08
+        },
+        {
+          "delta_sigma_min": 0.0,
+          "gate": "G2_H_theorem_M",
+          "passed": true,
+          "tol": 1e-12
+        },
+        {
+          "gate": "G3_EnergyMatch",
+          "passed": false,
+          "rel_diff": 0.0002603758573491336,
+          "tol": 0.0001
+        },
+        {
+          "R2": 0.0,
+          "gate": "G4_StrangDefect",
+          "passed": false,
+          "slope": 0.0
+        }
+      ],
+      "seed": 1
+    },
+    {
+      "contradiction": {
+        "failed_count": 3,
+        "failed_gates": [
+          "G1_Noether_J",
+          "G3_EnergyMatch",
+          "G4_StrangDefect"
+        ]
+      },
+      "gates": [
+        {
+          "drift": 0.9646443546722699,
+          "gate": "G1_Noether_J",
+          "passed": false,
+          "tol": 1e-08
+        },
+        {
+          "delta_sigma_min": 0.0,
+          "gate": "G2_H_theorem_M",
+          "passed": true,
+          "tol": 1e-12
+        },
+        {
+          "gate": "G3_EnergyMatch",
+          "passed": false,
+          "rel_diff": 0.0007401438214154883,
+          "tol": 0.0001
+        },
+        {
+          "R2": 0.0,
+          "gate": "G4_StrangDefect",
+          "passed": false,
+          "slope": 0.0
+        }
+      ],
+      "seed": 2
+    },
+    {
+      "contradiction": {
+        "failed_count": 3,
+        "failed_gates": [
+          "G1_Noether_J",
+          "G3_EnergyMatch",
+          "G4_StrangDefect"
+        ]
+      },
+      "gates": [
+        {
+          "drift": 0.9727236254413705,
+          "gate": "G1_Noether_J",
+          "passed": false,
+          "tol": 1e-08
+        },
+        {
+          "delta_sigma_min": 0.0,
+          "gate": "G2_H_theorem_M",
+          "passed": true,
+          "tol": 1e-12
+        },
+        {
+          "gate": "G3_EnergyMatch",
+          "passed": false,
+          "rel_diff": 0.00048507248969700595,
+          "tol": 0.0001
+        },
+        {
+          "R2": 0.0,
+          "gate": "G4_StrangDefect",
+          "passed": false,
+          "slope": 0.0
+        }
+      ],
+      "seed": 3
+    },
+    {
+      "contradiction": {
+        "failed_count": 3,
+        "failed_gates": [
+          "G1_Noether_J",
+          "G3_EnergyMatch",
+          "G4_StrangDefect"
+        ]
+      },
+      "gates": [
+        {
+          "drift": 1.067909507013836,
+          "gate": "G1_Noether_J",
+          "passed": false,
+          "tol": 1e-08
+        },
+        {
+          "delta_sigma_min": 0.0,
+          "gate": "G2_H_theorem_M",
+          "passed": true,
+          "tol": 1e-12
+        },
+        {
+          "gate": "G3_EnergyMatch",
+          "passed": false,
+          "rel_diff": -0.0009086700319899792,
+          "tol": 0.0001
+        },
+        {
+          "R2": 0.0,
+          "gate": "G4_StrangDefect",
+          "passed": false,
+          "slope": 0.0
+        }
+      ],
+      "seed": 4
+    },
+    {
+      "contradiction": {
+        "failed_count": 3,
+        "failed_gates": [
+          "G1_Noether_J",
+          "G3_EnergyMatch",
+          "G4_StrangDefect"
+        ]
+      },
+      "gates": [
+        {
+          "drift": 1.0095176045925973,
+          "gate": "G1_Noether_J",
+          "passed": false,
+          "tol": 1e-08
+        },
+        {
+          "delta_sigma_min": 0.0,
+          "gate": "G2_H_theorem_M",
+          "passed": true,
+          "tol": 1e-12
+        },
+        {
+          "gate": "G3_EnergyMatch",
+          "passed": false,
+          "rel_diff": -0.001357070709302949,
+          "tol": 0.0001
+        },
+        {
+          "R2": 0.0,
+          "gate": "G4_StrangDefect",
+          "passed": false,
+          "slope": 0.0
+        }
+      ],
+      "seed": 5
+    },
+    {
+      "contradiction": {
+        "failed_count": 3,
+        "failed_gates": [
+          "G1_Noether_J",
+          "G3_EnergyMatch",
+          "G4_StrangDefect"
+        ]
+      },
+      "gates": [
+        {
+          "drift": 1.0023361417210448,
+          "gate": "G1_Noether_J",
+          "passed": false,
+          "tol": 1e-08
+        },
+        {
+          "delta_sigma_min": 0.0,
+          "gate": "G2_H_theorem_M",
+          "passed": true,
+          "tol": 1e-12
+        },
+        {
+          "gate": "G3_EnergyMatch",
+          "passed": false,
+          "rel_diff": -0.0011593073234425428,
+          "tol": 0.0001
+        },
+        {
+          "R2": 0.0,
+          "gate": "G4_StrangDefect",
+          "passed": false,
+          "slope": 0.0
+        }
+      ],
+      "seed": 6
+    },
+    {
+      "contradiction": {
+        "failed_count": 3,
+        "failed_gates": [
+          "G1_Noether_J",
+          "G3_EnergyMatch",
+          "G4_StrangDefect"
+        ]
+      },
+      "gates": [
+        {
+          "drift": 0.9990442787291406,
+          "gate": "G1_Noether_J",
+          "passed": false,
+          "tol": 1e-08
+        },
+        {
+          "delta_sigma_min": 0.0,
+          "gate": "G2_H_theorem_M",
+          "passed": true,
+          "tol": 1e-12
+        },
+        {
+          "gate": "G3_EnergyMatch",
+          "passed": false,
+          "rel_diff": -0.001044966686370091,
+          "tol": 0.0001
+        },
+        {
+          "R2": 0.0,
+          "gate": "G4_StrangDefect",
+          "passed": false,
+          "slope": 0.0
+        }
+      ],
+      "seed": 7
+    },
+    {
+      "contradiction": {
+        "failed_count": 3,
+        "failed_gates": [
+          "G1_Noether_J",
+          "G3_EnergyMatch",
+          "G4_StrangDefect"
+        ]
+      },
+      "gates": [
+        {
+          "drift": 0.8976582653054997,
+          "gate": "G1_Noether_J",
+          "passed": false,
+          "tol": 1e-08
+        },
+        {
+          "delta_sigma_min": 0.0,
+          "gate": "G2_H_theorem_M",
+          "passed": true,
+          "tol": 1e-12
+        },
+        {
+          "gate": "G3_EnergyMatch",
+          "passed": false,
+          "rel_diff": -0.0010506403944639117,
+          "tol": 0.0001
+        },
+        {
+          "R2": 0.0,
+          "gate": "G4_StrangDefect",
+          "passed": false,
+          "slope": 0.0
+        }
+      ],
+      "seed": 8
+    },
+    {
+      "contradiction": {
+        "failed_count": 3,
+        "failed_gates": [
+          "G1_Noether_J",
+          "G3_EnergyMatch",
+          "G4_StrangDefect"
+        ]
+      },
+      "gates": [
+        {
+          "drift": 0.9721656981829025,
+          "gate": "G1_Noether_J",
+          "passed": false,
+          "tol": 1e-08
+        },
+        {
+          "delta_sigma_min": 0.0,
+          "gate": "G2_H_theorem_M",
+          "passed": true,
+          "tol": 1e-12
+        },
+        {
+          "gate": "G3_EnergyMatch",
+          "passed": false,
+          "rel_diff": 0.0011323945099089186,
+          "tol": 0.0001
+        },
+        {
+          "R2": 0.0,
+          "gate": "G4_StrangDefect",
+          "passed": false,
+          "slope": 0.0
+        }
+      ],
+      "seed": 9
+    },
+    {
+      "contradiction": {
+        "failed_count": 3,
+        "failed_gates": [
+          "G1_Noether_J",
+          "G3_EnergyMatch",
+          "G4_StrangDefect"
+        ]
+      },
+      "gates": [
+        {
+          "drift": 1.0124003080849397,
+          "gate": "G1_Noether_J",
+          "passed": false,
+          "tol": 1e-08
+        },
+        {
+          "delta_sigma_min": 0.0,
+          "gate": "G2_H_theorem_M",
+          "passed": true,
+          "tol": 1e-12
+        },
+        {
+          "gate": "G3_EnergyMatch",
+          "passed": false,
+          "rel_diff": 0.0007999980695232353,
+          "tol": 0.0001
+        },
+        {
+          "R2": 0.0,
+          "gate": "G4_StrangDefect",
+          "passed": false,
+          "slope": 0.0
+        }
+      ],
+      "seed": 10
+    },
+    {
+      "contradiction": {
+        "failed_count": 3,
+        "failed_gates": [
+          "G1_Noether_J",
+          "G3_EnergyMatch",
+          "G4_StrangDefect"
+        ]
+      },
+      "gates": [
+        {
+          "drift": 0.9765384752067536,
+          "gate": "G1_Noether_J",
+          "passed": false,
+          "tol": 1e-08
+        },
+        {
+          "delta_sigma_min": 0.0,
+          "gate": "G2_H_theorem_M",
+          "passed": true,
+          "tol": 1e-12
+        },
+        {
+          "gate": "G3_EnergyMatch",
+          "passed": false,
+          "rel_diff": 0.0002438642012211893,
+          "tol": 0.0001
+        },
+        {
+          "R2": 0.0,
+          "gate": "G4_StrangDefect",
+          "passed": false,
+          "slope": 0.0
+        }
+      ],
+      "seed": 11
+    },
+    {
+      "contradiction": {
+        "failed_count": 3,
+        "failed_gates": [
+          "G1_Noether_J",
+          "G3_EnergyMatch",
+          "G4_StrangDefect"
+        ]
+      },
+      "gates": [
+        {
+          "drift": 1.0066645255162425,
+          "gate": "G1_Noether_J",
+          "passed": false,
+          "tol": 1e-08
+        },
+        {
+          "delta_sigma_min": 0.0,
+          "gate": "G2_H_theorem_M",
+          "passed": true,
+          "tol": 1e-12
+        },
+        {
+          "gate": "G3_EnergyMatch",
+          "passed": false,
+          "rel_diff": -0.00042364323063624537,
+          "tol": 0.0001
+        },
+        {
+          "R2": 0.0,
+          "gate": "G4_StrangDefect",
+          "passed": false,
+          "slope": 0.0
+        }
+      ],
+      "seed": 12
+    }
+  ],
+  "gate_ledger_summary": {
+    "G1_Noether_J": {
+      "failed": 12,
+      "n": 12,
+      "pass_rate": 0.0,
+      "passed": 0
+    },
+    "G2_H_theorem_M": {
+      "failed": 0,
+      "n": 12,
+      "pass_rate": 1.0,
+      "passed": 12
+    },
+    "G3_EnergyMatch": {
+      "failed": 12,
+      "n": 12,
+      "pass_rate": 0.0,
+      "passed": 0
+    },
+    "G4_StrangDefect": {
+      "failed": 12,
+      "n": 12,
+      "pass_rate": 0.0,
+      "passed": 0
+    }
+  },
+  "grid": {
+    "N": 256,
+    "dx": 1.0
+  },
+  "lambdas": [
+    0.0,
+    0.1,
+    0.2,
+    0.3
+  ],
+  "params": {
+    "D": 1.0,
+    "c": 1.0,
+    "m": 0.5,
+    "m_lap_operator": "spectral",
+    "r": 0.1,
+    "u": 0.0
+  },
+  "per_seed": [
+    {
+      "assisted_err": {
+        "0.0": 0.9891763916212986,
+        "0.1": 0.9908084461120387,
+        "0.2": 0.9931697709072279,
+        "0.3": 0.9957095063992449
+      },
+      "baseline_err": 0.9889189010145981,
+      "ceg": {
+        "0.0": 0.0,
+        "0.1": 0.0,
+        "0.2": 0.0,
+        "0.3": 0.0
+      },
+      "seed": 1
+    },
+    {
+      "assisted_err": {
+        "0.0": 0.965358330231244,
+        "0.1": 0.9675743507878858,
+        "0.2": 0.9702336576735103,
+        "0.3": 0.9729557010348051
+      },
+      "baseline_err": 0.9646443546722699,
+      "ceg": {
+        "0.0": 0.0,
+        "0.1": 0.0,
+        "0.2": 0.0,
+        "0.3": 0.0
+      },
+      "seed": 2
+    },
+    {
+      "assisted_err": {
+        "0.0": 0.9731954669121504,
+        "0.1": 0.9750806196382694,
+        "0.2": 0.9774221203411171,
+        "0.3": 0.9798855305257198
+      },
+      "baseline_err": 0.9727236254413705,
+      "ceg": {
+        "0.0": 0.0,
+        "0.1": 0.0,
+        "0.2": 0.0,
+        "0.3": 0.0
+      },
+      "seed": 3
+    },
+    {
+      "assisted_err": {
+        "0.0": 1.0669391296479354,
+        "0.1": 1.068016393757527,
+        "0.2": 1.0702663201106941,
+        "0.3": 1.0727374223924122
+      },
+      "baseline_err": 1.067909507013836,
+      "ceg": {
+        "0.0": 0.0009086700319899792,
+        "0.1": 0.0,
+        "0.2": 0.0,
+        "0.3": 0.0
+      },
+      "seed": 4
+    },
+    {
+      "assisted_err": {
+        "0.0": 1.008147617820879,
+        "0.1": 1.009721137323851,
+        "0.2": 1.0120969133805797,
+        "0.3": 1.014667599247407
+      },
+      "baseline_err": 1.0095176045925973,
+      "ceg": {
+        "0.0": 0.001357070709302949,
+        "0.1": 0.0,
+        "0.2": 0.0,
+        "0.3": 0.0
+      },
+      "seed": 5
+    },
+    {
+      "assisted_err": {
+        "0.0": 1.0011741260913964,
+        "0.1": 1.003272192919365,
+        "0.2": 1.0060611202993182,
+        "0.3": 1.0090310552786266
+      },
+      "baseline_err": 1.0023361417210448,
+      "ceg": {
+        "0.0": 0.0011593073234425428,
+        "0.1": 0.0,
+        "0.2": 0.0,
+        "0.3": 0.0
+      },
+      "seed": 6
+    },
+    {
+      "assisted_err": {
+        "0.0": 0.99800031073966,
+        "0.1": 0.9995209758342732,
+        "0.2": 1.0018465926065894,
+        "0.3": 1.0043480997909187
+      },
+      "baseline_err": 0.9990442787291406,
+      "ceg": {
+        "0.0": 0.001044966686370091,
+        "0.1": 0.0,
+        "0.2": 0.0,
+        "0.3": 0.0
+      },
+      "seed": 7
+    },
+    {
+      "assisted_err": {
+        "0.0": 0.8967151492715454,
+        "0.1": 0.8995004819878166,
+        "0.2": 0.9027026788365035,
+        "0.3": 0.9060049616060172
+      },
+      "baseline_err": 0.8976582653054997,
+      "ceg": {
+        "0.0": 0.0010506403944639117,
+        "0.1": 0.0,
+        "0.2": 0.0,
+        "0.3": 0.0
+      },
+      "seed": 8
+    },
+    {
+      "assisted_err": {
+        "0.0": 0.9732665732822466,
+        "0.1": 0.9745495811285773,
+        "0.2": 0.9767287635045865,
+        "0.3": 0.9791503655564054
+      },
+      "baseline_err": 0.9721656981829025,
+      "ceg": {
+        "0.0": 0.0,
+        "0.1": 0.0,
+        "0.2": 0.0,
+        "0.3": 0.0
+      },
+      "seed": 9
+    },
+    {
+      "assisted_err": {
+        "0.0": 1.0132102263769924,
+        "0.1": 1.014774093264984,
+        "0.2": 1.0171318294736544,
+        "0.3": 1.0196297319547203
+      },
+      "baseline_err": 1.0124003080849397,
+      "ceg": {
+        "0.0": 0.0,
+        "0.1": 0.0,
+        "0.2": 0.0,
+        "0.3": 0.0
+      },
+      "seed": 10
+    },
+    {
+      "assisted_err": {
+        "0.0": 0.9767766179819717,
+        "0.1": 0.9792623443383849,
+        "0.2": 0.9822935981543655,
+        "0.3": 0.9854182793467412
+      },
+      "baseline_err": 0.9765384752067536,
+      "ceg": {
+        "0.0": 0.0,
+        "0.1": 0.0,
+        "0.2": 0.0,
+        "0.3": 0.0
+      },
+      "seed": 11
+    },
+    {
+      "assisted_err": {
+        "0.0": 1.006238058904486,
+        "0.1": 1.0083275144052561,
+        "0.2": 1.0109381275546707,
+        "0.3": 1.013660275406276
+      },
+      "baseline_err": 1.0066645255162425,
+      "ceg": {
+        "0.0": 0.00042364323063624537,
+        "0.1": 0.0,
+        "0.2": 0.0,
+        "0.3": 0.0
+      },
+      "seed": 12
+    }
+  ],
+  "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "steps": 200
+}

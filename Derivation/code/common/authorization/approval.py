@@ -11,7 +11,7 @@ See LICENSE file for full terms.
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Optional, Tuple, Dict, Any
+from typing import Optional, Tuple, Dict, Any, List
 import json
 import sys
 import os
@@ -20,6 +20,7 @@ import hashlib
 import sqlite3
 from dataclasses import dataclass
 from datetime import datetime, timezone
+import re
 
 
 # --- Module-level DB + admin helpers (single-file design) ---
@@ -81,6 +82,34 @@ DEFAULT_DB_PATH = Path(__file__).resolve().parents[1] / "data" / "approval.db"
 # Default admin DB path (separate file) fallback
 DEFAULT_ADMIN_DB_PATH = Path(__file__).resolve().parents[1] / "data" / "approval_admin.db"
 
+def _repair_db_path(p: Path, code_dir: Path, deriv_dir: Path) -> Path:
+    """
+    Repair common case-sensitivity/path mistakes for VDM_APPROVAL_DB on case-sensitive filesystems.
+    If 'p' does not exist, try canonical alternatives:
+      - swap 'derivation' ↔ 'Derivation' segment
+      - prefer Derivation/code/common/data/approval.db under repo if present
+    Returns the first existing candidate, else original 'p'.
+    """
+    try:
+        if p.exists():
+            return p
+        s = str(p)
+        candidates: list[Path] = []
+        # Swap case for the common repository folder
+        if "/derivation/" in s:
+            candidates.append(Path(s.replace("/derivation/", "/Derivation/")))
+        if "/Derivation/" in s:
+            candidates.append(Path(s.replace("/Derivation/", "/derivation/")))
+        # Try canonical location under Derivation
+        candidates.append(deriv_dir / "code" / "common" / "data" / "approval.db")
+        for c in candidates:
+            if c.exists():
+                print(f"[authorization] Repair: approval DB path {p} not found; using {c}", file=sys.stderr)
+                return c
+    except Exception as _e:
+        _ = _e
+    return p
+
 
 def _read_env_file(path: Path) -> dict:
     """Parse a simple .env file.
@@ -138,6 +167,14 @@ def _approval_db_path() -> Optional[Path]:
     env = os.getenv("VDM_APPROVAL_DB")
     if env:
         p = Path(env)
+        # Compute reference dirs for repair attempts
+        try:
+            code_dir_env = Path(__file__).resolve().parents[2]
+            deriv_dir_env = Path(__file__).resolve().parents[3]
+        except Exception:
+            code_dir_env = Path(__file__).resolve().parent
+            deriv_dir_env = code_dir_env.parent
+        p = _repair_db_path(p, code_dir_env, deriv_dir_env)
         print(f"[authorization] Using approvals DB from environment variable VDM_APPROVAL_DB: {p}", file=sys.stderr)
         return p
     # 2) .env files (search upward: code -> Derivation -> repo root)
@@ -149,6 +186,7 @@ def _approval_db_path() -> Optional[Path]:
             envs = _read_env_file(candidate)
             if "VDM_APPROVAL_DB" in envs:
                 p = Path(envs["VDM_APPROVAL_DB"]).expanduser()
+                p = _repair_db_path(p, code_dir, deriv_dir)
                 print(f"[authorization] Using approvals DB from env file {candidate}: {p}", file=sys.stderr)
                 return p
         # No env variable found anywhere; inform user where to set it
@@ -405,7 +443,41 @@ def check_tag_approval(domain: str, tag: str, allow_unapproved: bool, code_root:
                 domain_dir = d
                 break
 
-    apath = (code_domain_dir / "APPROVAL.json") if (code_domain_dir / "APPROVAL.json").exists() else (domain_dir / "APPROVAL.json")
+    # Discover manifest deterministically (no env overrides for genuine runs)
+    def _discover_manifest_for_tag() -> Path:
+        # Priority: code_domain_dir over writings domain_dir
+        candidates: list[Path] = []
+        for base in [code_domain_dir, domain_dir]:
+            if base and base.exists():
+                exact = base / f"APPROVAL.{tag}.json"
+                if exact.exists():
+                    return exact
+                for p in sorted(base.glob("APPROVAL*.json")):
+                    candidates.append(p)
+        matching: list[Path] = []
+        for p in candidates:
+            try:
+                data = json.loads(p.read_text(encoding="utf-8"))
+                if isinstance(data, list) and data:
+                    data = data[0]
+                allowed = set((data or {}).get("allowed_tags", []) or [])
+                if tag in allowed:
+                    matching.append(p)
+            except Exception:
+                continue
+        if matching:
+            for m in matching:
+                try:
+                    m.relative_to(code_domain_dir)
+                    return m
+                except Exception:
+                    continue
+            return matching[0]
+        if (code_domain_dir / "APPROVAL.json").exists():
+            return code_domain_dir / "APPROVAL.json"
+        return domain_dir / "APPROVAL.json"
+
+    apath = _discover_manifest_for_tag()
     approved = False
     proposal: Optional[str] = None
 
@@ -484,6 +556,142 @@ def check_tag_approval(domain: str, tag: str, allow_unapproved: bool, code_root:
             return compute_expected_key(dkey, domain_, tag_, script_)
         return None
 
+    def _sha256_file(p: Path, bufsize: int = 1024 * 1024) -> str:
+        h = hashlib.sha256()
+        with p.open('rb') as f:
+            while True:
+                b = f.read(bufsize)
+                if not b:
+                    break
+                h.update(b)
+        return h.hexdigest()
+
+    def _compute_salted(base_hex: str, salt_hex: str) -> str:
+        payload = f"{base_hex}:{salt_hex}".encode("utf-8")
+        return hashlib.sha256(payload).hexdigest()
+
+    def _find_prereg_path_for_tag(domain_dir: Path, t: str) -> Optional[Path]:
+        # Look for PRE-REGISTRATION.<tag>.json first, then any PRE-REGISTRATION* containing tag, else PRE-REGISTRATION.json
+        exact = domain_dir / f"PRE-REGISTRATION.{t}.json"
+        if exact.exists():
+            return exact
+        cands: List[Path] = sorted(domain_dir.glob("PRE-REGISTRATION*.json"))
+        for pth in cands:
+            if t in pth.name:
+                return pth
+        fallback = domain_dir / "PRE-REGISTRATION.json"
+        if fallback.exists():
+            return fallback
+        return None
+
+    def _verify_provenance(proposal_path: Optional[Path], prereg_path: Optional[Path], details: List[str]) -> bool:
+        """Hard gate: ensure proposal header and prereg salted_provenance exist and match.
+
+        Checks:
+          - prereg_path exists and is valid JSON with salted_provenance schema
+          - spec file hashes (base and salted) match recomputation
+          - proposal header line contains Salted Provenance with salted_sha256, salt_hex, prereg_manifest_sha256
+          - header salted_sha256 and salt_hex match prereg recomputation
+          - header prereg_manifest_sha256 == sha256(prereg file)
+        """
+        ok = True
+        if prereg_path is None or not prereg_path.exists():
+            details.append("Missing preregistration file for this tag (expected PRE-REGISTRATION.<tag>.json)")
+            return False
+        # Load prereg JSON
+        try:
+            pdata = json.loads(prereg_path.read_text(encoding='utf-8'))
+        except Exception as e:
+            details.append(f"Failed to parse preregistration JSON: {e}")
+            return False
+        prov = pdata.get("salted_provenance")
+        if not isinstance(prov, dict):
+            details.append("prereg.salted_provenance missing or not an object")
+            ok = False
+        else:
+            schema = prov.get("schema")
+            if str(schema) != "vdm.provenance.salted_hash.v1":
+                details.append("prereg.salted_provenance.schema must be 'vdm.provenance.salted_hash.v1'")
+                ok = False
+            items = prov.get("items") if isinstance(prov, dict) else None
+            if not isinstance(items, list) or len(items) == 0:
+                details.append("prereg.salted_provenance.items is missing or empty")
+                ok = False
+            else:
+                # Verify each item
+                for it in items:
+                    if not isinstance(it, dict):
+                        details.append("prereg.salted_provenance.items contains a non-object item")
+                        ok = False
+                        continue
+                    pth = it.get("path")
+                    base_hex = it.get("base_sha256")
+                    salt_hex = it.get("salt_hex")
+                    salted_hex = it.get("salted_sha256")
+                    if not (pth and base_hex and salt_hex and salted_hex):
+                        details.append("salted_provenance item missing one of path/base_sha256/salt_hex/salted_sha256")
+                        ok = False
+                        continue
+                    # Resolve path relative to prereg
+                    spec_path = _resolve_path(str(pth), base_dir=prereg_path.parent)
+                    if not spec_path.exists():
+                        details.append(f"Spec referenced in prereg not found: {spec_path}")
+                        ok = False
+                        continue
+                    recomputed_base = _sha256_file(spec_path)
+                    if recomputed_base != str(base_hex):
+                        details.append(
+                            f"Spec base_sha256 mismatch for {spec_path.name}: prereg={base_hex} recomputed={recomputed_base}"
+                        )
+                        ok = False
+                    recomputed_salted = _compute_salted(str(base_hex), str(salt_hex))
+                    if recomputed_salted != str(salted_hex):
+                        details.append(
+                            f"Spec salted_sha256 mismatch for {spec_path.name}: prereg={salted_hex} recomputed={recomputed_salted}"
+                        )
+                        ok = False
+        # Proposal header check
+        if proposal_path is None or not proposal_path.exists():
+            details.append("Proposal path missing; cannot verify proposal header provenance")
+            ok = False
+        else:
+            try:
+                header = proposal_path.read_text(encoding='utf-8')
+            except Exception as e:
+                details.append(f"Failed reading proposal file: {e}")
+                ok = False
+                header = ""
+            # Look for a Salted Provenance header line
+            m = re.search(r"Salted\s+Provenance:\s*spec\s+salted_sha256=([0-9a-fA-F]{64});\s*salt_hex=([0-9a-fA-F]+);\s*prereg_manifest_sha256=([0-9a-fA-F]{64})",
+                          header)
+            if not m:
+                details.append("Proposal header missing 'Salted Provenance' line with salted_sha256/salt_hex/prereg_manifest_sha256")
+                ok = False
+            else:
+                hdr_salted, hdr_salt, hdr_prereg_manifest = m.group(1).lower(), m.group(2).lower(), m.group(3).lower()
+                # Compare against prereg recomputation (use first item)
+                try:
+                    if isinstance(prov, dict) and isinstance(prov.get("items"), list) and len(prov["items"]) > 0:
+                        it0 = prov["items"][0]
+                        preg_salted = str(it0.get("salted_sha256", "")).lower()
+                        preg_salt = str(it0.get("salt_hex", "")).lower()
+                        if hdr_salted != preg_salted:
+                            details.append(f"Proposal salted_sha256 != prereg salted_sha256 ({hdr_salted} != {preg_salted})")
+                            ok = False
+                        if hdr_salt != preg_salt:
+                            details.append(f"Proposal salt_hex != prereg salt_hex ({hdr_salt} != {preg_salt})")
+                            ok = False
+                except Exception:
+                    pass
+                # Compare prereg manifest sha against actual prereg file hash
+                actual_manifest = _sha256_file(prereg_path)
+                if hdr_prereg_manifest != actual_manifest:
+                    details.append(
+                        f"Proposal prereg_manifest_sha256 does not match actual prereg file hash ({hdr_prereg_manifest} != {actual_manifest})"
+                    )
+                    ok = False
+        return ok
+
     try:
         if apath.exists():
             with apath.open("r", encoding="utf-8") as f:
@@ -520,6 +728,16 @@ def check_tag_approval(domain: str, tag: str, allow_unapproved: bool, code_root:
                     expected = _get_expected_key_from_db(domain, tag)
                 approval_key_ok = bool(have_key and expected and (have_key == expected))
 
+            # New: strong provenance hard gate (proposal header + prereg salted hashes)
+            # Only enforce strict provenance when the manifest declares require_provenance = true
+            require_prov = bool(adata.get("require_provenance", False))
+            prereg_path = _find_prereg_path_for_tag(apath.parent, tag)
+            strong_details: list[str] = []
+            if require_prov:
+                strong_ok = _verify_provenance(proposal_path, prereg_path, strong_details)
+            else:
+                strong_ok = True
+
             approved = bool(
                 adata.get("pre_registered", False)
                 and (tag in allowed)
@@ -528,6 +746,7 @@ def check_tag_approval(domain: str, tag: str, allow_unapproved: bool, code_root:
                 and schema_valid
                 and approved_by_ok
                 and approval_key_ok
+                and strong_ok
             )
 
             if proposal_path:
@@ -600,6 +819,16 @@ def check_tag_approval(domain: str, tag: str, allow_unapproved: bool, code_root:
                         details.append("No DB record or keys for this tag/domain in VDM_APPROVAL_DB; approval denied")
                     elif have_key != expected:
                         details.append("approval_key mismatch against approval DB (VDM_APPROVAL_DB) using policy message 'domain:script:tag'")
+                # Strong provenance diagnostics (only if domain requires provenance)
+                require_prov = bool(_adata.get("require_provenance", False))
+                if require_prov:
+                    prereg_path = _find_prereg_path_for_tag(apath.parent, tag)
+                    strong_details: list[str] = []
+                    _ = _verify_provenance(_resolve_path(_adata.get("proposal"), base_dir=apath.parent) if _adata.get("proposal") else None,
+                                            prereg_path,
+                                            strong_details)
+                    for d in strong_details:
+                        details.append(f"provenance: {d}")
             except Exception as e:
                 details.append(f"Failed to parse manifest: {e}")
 
@@ -609,7 +838,7 @@ def check_tag_approval(domain: str, tag: str, allow_unapproved: bool, code_root:
                 "\n".join(f" - {d}" for d in details) +
                 f"\nTo proceed, create/update {apath} with:\n" +
                 "{\n  \"pre_registered\": true,\n  \"proposal\": \"Derivation/<domain>/PROPOSAL_<slug>.md\",\n  \"allowed_tags\": [\"<tag>\"],\n  \"approvals\": {\n    \"<tag>\": {\n      \"schema\": \"Derivation/<domain>/schemas/<tag>.schema.json\",\n      \"approved_by\": \"Justin K. Lietz\",\n      \"approved_at\": \"YYYY-MM-DD\",\n      \"approval_key\": \"<computed via approve_tag.py --script <run_script>>\"\n    }\n  }\n}\n" +
-                "Or run with --allow-unapproved to quarantine artifacts (engineering-only)."
+                "Do not use --allow-unapproved unless you are doing an engineering-only run to quarantine artifacts (results will be invalid)."
             ),
             file=sys.stderr,
         )

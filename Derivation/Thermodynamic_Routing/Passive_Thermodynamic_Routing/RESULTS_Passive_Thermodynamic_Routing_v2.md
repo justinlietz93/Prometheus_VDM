@@ -112,4 +112,3 @@ Copyright (c) 2025 Justin K. Lietz.
 This RESULTS document and associated figures/logs are distributed under the repository’s LICENSE. If you use these results, please cite:
 
 Justin K. Lietz, “Passive Thermodynamic Routing v2 — Symmetric Smoke,” Prometheus_VDM (2025), commit 65df9c0.
-

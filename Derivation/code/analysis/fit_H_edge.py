@@ -10,7 +10,7 @@ See LICENSE file for full terms.
 
 Fit edge-correction ansatz H_edge using saved deterministic samples.
 
-Reads the latest flux_sweep JSON under derivation/outputs/logs/conservation_law,
+Reads the latest flux_sweep JSON under Derivation/outputs/logs/conservation_law,
 reconstructs Connectome adjacency per sample seed, and fits coefficients for
 H_ij = sum_k c_k * phi_k(W_i, W_j) using least squares on equations
     DeltaQ_i = sum_j (H_ji - H_ij)

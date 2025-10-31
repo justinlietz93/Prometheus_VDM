@@ -122,7 +122,7 @@ def main():
     p.add_argument("--R", type=float, default=50.0)
     p.add_argument("--S_inst0", type=float, default=1e-22)
     p.add_argument("--tag", type=str, default="DP-noise-v1")
-    p.add_argument("--allow-unapproved", action="store_true", help="Allow running without pre-registration approval; marks outputs as engineering_only and quarantines artifacts")
+    p.add_argument("--allow-unapproved", action="store_true", help="Allow running without pre-registration approval; marks outputs as invalid and engineering_only and quarantines artifacts")
     args = p.parse_args()
     # Approval policy: deny by default unless explicitly allowed for engineering-only smoke
     pre_registered = False  # default; integrate with approval registry when available

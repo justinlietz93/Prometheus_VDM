@@ -10,7 +10,7 @@ mathjax: true
 # VDM–Qualia Program: Coupled‑Field Explanations of Psychedelic Phenomenology (Sober Proxies)
 
 **Classification:** Axiom‑core (A0–A7), metriplectic split (conservative **J** + dissipative **M**).
-**Placement in repo:** `derivation/Agency-Field/proposals/VDM_Qualia_Program.md`
+**Placement in repo:** `Derivation/Agency-Field/proposals/VDM_Qualia_Program.md`
 **Related files to cross‑link:** `AXIOMS.md`, `EQUATIONS.md`, `VALIDATION_METRICS.md`, `RESULTS_PAPER_STANDARDS.md`.
 
 ---

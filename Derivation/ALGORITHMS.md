@@ -9,9 +9,9 @@ Last updated: 2025-10-13 (commit 09f871a)
 **MathJax:** Only inline `$...$` inside comments when needed.
 
 **Legend:** This file is **PSEUDOCODE** (illustrative).
-• Normative math: `derivation/EQUATIONS.md`.  
-• Numbers: `derivation/CONSTANTS.md`.
-• Symbols/units: `derivation/SYMBOLS.md`, `derivation/UNITS_NORMALIZATION.md`.  
+• Normative math: `Derivation/EQUATIONS.md`.  
+• Numbers: `Derivation/CONSTANTS.md`.
+• Symbols/units: `Derivation/SYMBOLS.md`, `Derivation/UNITS_NORMALIZATION.md`.  
 • Canon map: `CANON_MAP.md`.  
 
 **Per Item Identifier Template:**
@@ -596,7 +596,7 @@ RECORD ACTIVITY:
 >
 > Type: INSTRUMENT • Binding: PSEUDOCODE • State: read-only • Dependencies: bilinear interp/div/vort (EQUATIONS TODO) • Notes: publishes petitions
 
-**Context:** derivation/code/physics/fluid_dynamics/telemetry/walkers.py:57-100 • Commit: 7498744 • Module: physics/fluid_dynamics/telemetry
+**Context:** Derivation/code/physics/fluid_dynamics/telemetry/walkers.py:57-100 • Commit: 7498744 • Module: physics/fluid_dynamics/telemetry
 
 **Role:** Read-only walker that steps using measured velocity field (advection only) and senses local scalar quantities.
 
@@ -671,7 +671,7 @@ POST PETITION:
 >
 > Type: POLICY • Binding: PSEUDOCODE • State: none • Dependencies: none • Notes: advisory only; caller applies or ignores
 
-**Context:** derivation/code/physics/fluid_dynamics/telemetry/walkers.py:162-219 • Commit: 7498744 • Module: physics/fluid_dynamics/telemetry
+**Context:** Derivation/code/physics/fluid_dynamics/telemetry/walkers.py:162-219 • Commit: 7498744 • Module: physics/fluid_dynamics/telemetry
 
 **Role:** Map petition summaries (divergence, vorticity) to suggested small nudges to numerical parameters (never injects forces; caller decides).
 

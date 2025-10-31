@@ -17,7 +17,7 @@ CHANGE REASON:
 - This module is scoped; it does not alter RD canonical sector. It provides the operational path to NS.
 
 References:
-- derivation: [fluids_limit.md](Prometheus_VDM/derivation/fluids_limit.md:1)
+- derivation: [fluids_limit.md](Prometheus_VDM/Derivation/fluids_limit.md:1)
 - benchmarks: taylor_green_benchmark.py, lid_cavity_benchmark.py
 """
 
@@ -49,20 +49,20 @@ try:
     universal_void_dynamics, VoidDebtModulation = _u, _V
     VOID_SOURCE = "Prometheus_VDM.derivation.code"
 except Exception:
-    # 2) Fallback: load by file path from derivation/code/ next to this physics folder
+    # 2) Fallback: load by file path from Derivation/code/ next to this physics folder
     try:
-        _ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))  # → Prometheus_VDM/derivation/code
+        _ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))  # → Prometheus_VDM/Derivation/code
         _eq_path = os.path.join(_ROOT, "Void_Equations.py")
         _mod_path = os.path.join(_ROOT, "Void_Debt_Modulation.py")
         _eq = _load_module_by_path(_eq_path, "Void_Equations_local")
         _md = _load_module_by_path(_mod_path, "Void_Debt_Modulation_local")
         if _eq and hasattr(_eq, "universal_void_dynamics"):
             universal_void_dynamics = getattr(_eq, "universal_void_dynamics")
-            VOID_SOURCE = "file:derivation/code/Void_Equations.py"
+            VOID_SOURCE = "file:Derivation/code/Void_Equations.py"
         if _md and hasattr(_md, "VoidDebtModulation"):
             VoidDebtModulation = getattr(_md, "VoidDebtModulation")
             if VOID_SOURCE is None:
-                VOID_SOURCE = "file:derivation/code/Void_Debt_Modulation.py"
+                VOID_SOURCE = "file:Derivation/code/Void_Debt_Modulation.py"
     except Exception:
         pass
     # 3) fum_rt adapter
@@ -82,7 +82,7 @@ except Exception:
             except Exception:
                 pass
 
-# Final fallback: add derivation/code to sys.path and import by name if still missing
+# Final fallback: add Derivation/code to sys.path and import by name if still missing
 if universal_void_dynamics is None:
     try:
         import sys
@@ -92,7 +92,7 @@ if universal_void_dynamics is None:
         import Void_Equations as _eq2
         universal_void_dynamics = getattr(_eq2, "universal_void_dynamics", None)
         if universal_void_dynamics is not None:
-            VOID_SOURCE = "sys.path:derivation/code"
+            VOID_SOURCE = "sys.path:Derivation/code"
         try:
             import Void_Debt_Modulation as _vdm2
             VoidDebtModulation = getattr(_vdm2, "VoidDebtModulation", None)
@@ -168,7 +168,7 @@ class LBM2D:
 
         # Fail-fast if user requested void but module not available
         if getattr(self.cfg, "void_enabled", False) and universal_void_dynamics is None:
-            raise RuntimeError("void_enabled=True but universal_void_dynamics not available; ensure Prometheus_VDM/derivation/code/Void_Equations.py is present or install fum_rt/FUM_Demo_original.")
+            raise RuntimeError("void_enabled=True but universal_void_dynamics not available; ensure Prometheus_VDM/Derivation/code/Void_Equations.py is present or install fum_rt/FUM_Demo_original.")
 
         self._set_equilibrium()
 

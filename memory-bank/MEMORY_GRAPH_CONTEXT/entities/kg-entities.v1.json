@@ -132,6 +132,56 @@
         "Timestamp: 2025-10-29T07:04:46Z"
       ],
       "type": "Context"
+    },
+    {
+      "name": "CEG_T4_Assisted_Echo",
+      "observations": [
+        "Proposal: [T4_PROPOSAL_CEG_Metriplectic_Assisted-Echo_Experiment.md](Derivation/Metriplectic/T4_PROPOSAL_CEG_Metriplectic_Assisted-Echo_Experiment.md:1)",
+        "Prereg: [PRE-REGISTRATION.echo_spec-v1.json](Derivation/code/physics/metriplectic/PRE-REGISTRATION.echo_spec-v1.json:1)",
+        "Spec: [assisted_echo.v1.json](Derivation/code/physics/metriplectic/specs/assisted_echo.v1.json:1)"
+      ],
+      "type": "Experiment"
+    },
+    {
+      "name": "Assisted_Echo_Runner",
+      "observations": [
+        "Runner: [assisted_echo.py](Derivation/code/physics/metriplectic/assisted_echo.py:1)",
+        "Schema: [echo_spec-v1.schema.json](Derivation/code/physics/metriplectic/schemas/echo_spec-v1.schema.json:1)",
+        "Preflight: [test_assisted_echo_preflight.py](Derivation/code/tests/metriplectic/test_assisted_echo_preflight.py:1)",
+        "Harness: [test_ceg_harness_preflight.py](Derivation/code/tests/metriplectic/test_ceg_harness_preflight.py:1)"
+      ],
+      "type": "Runner"
+    },
+    {
+      "name": "Approval_Gate_Provenance",
+      "observations": [
+        "Gate: [approval.py](Derivation/code/common/authorization/approval.py:1)",
+        "Tests: [test_approval_provenance.py](Derivation/code/common/authorization/tests/test_approval_provenance.py:1)",
+        "Docs: [README.md](Derivation/code/common/authorization/README.md:1)"
+      ],
+      "type": "Policy"
+    },
+    {
+      "name": "Stamp_Proposal_Helper",
+      "observations": [
+        "Tool: [stamp_proposal.py](Derivation/code/common/provenance/stamp_proposal.py:1)",
+        "Usage: stamps Salted Provenance header and prereg salted_provenance"
+      ],
+      "type": "ScriptTool"
+    },
+    {
+      "name": "Provenance_Gating_OptIn",
+      "observations": [
+        "Manifests: require_provenance=true enables hard salted hash checks (proposal header + prereg) in [approval.py](Derivation/code/common/authorization/approval.py:1)"
+      ],
+      "type": "Policy"
+    },
+    {
+      "name": "No_Approvals_By_Assistant",
+      "observations": [
+        "Decision: approvals and secrets are human-only; assistant must not modify approval DB or approval_key (see [decisionLog.md](memory-bank/decisionLog.md:1))"
+      ],
+      "type": "Decision"
     }
   ],
   "provenance": {
@@ -148,5 +198,5 @@
   },
   "set_id": "kg-entities",
   "set_version": "1.0",
-  "updated_utc": "2025-10-29T07:04:46Z"
+  "updated_utc": "2025-10-30T18:13:29Z"
 }

@@ -17,7 +17,7 @@ The objective of this proof is to formally derive the coefficient `Z(\phi)` and 
 
 The temporal part of the kinetic term, which relates to the change of the field in time, arises from the "kinetic energy" term in our postulated discrete Hamiltonian.
 
-In `derivation/discrete_conservation.md`, we defined the kinetic energy at a node `i` as:
+In `Derivation/discrete_conservation.md`, we defined the kinetic energy at a node `i` as:
 $$
 \mathcal{K}_i = \frac{1}{2}\left(\frac{dW_i}{dt}\right)^2
 $$

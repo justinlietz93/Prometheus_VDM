@@ -84,7 +84,7 @@ Last updated: 2025-10-13 (commit 66eb296)
 
 ```bash
 # enforce allowed tags
-grep -Eo '\[(DISPROVEN|PLAUSIBLE→PROVEN|PLAUSIBLE|PROVEN)\]' derivation/CANON_PROGRESS.md \
+grep -Eo '\[(DISPROVEN|PLAUSIBLE→PROVEN|PLAUSIBLE|PROVEN)\]' Derivation/CANON_PROGRESS.md \
   | wc -l >/dev/null || { echo "Invalid status tag"; exit 1; }
 # block “cone” claims in RD docs
 grep -RIn "cone" derivation write_ups docs | grep -Ei "RD|Fisher|diffus" && \

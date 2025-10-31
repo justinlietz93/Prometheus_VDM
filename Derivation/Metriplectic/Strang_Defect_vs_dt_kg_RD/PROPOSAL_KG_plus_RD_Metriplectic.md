@@ -48,7 +48,7 @@ The metriplectic chapter for 1D RD is frozen: M-only obeys the H-theorem exactly
    - Reuse seed/median, two-grid, defect diagnostics, and Lyapunov series.
 3. Run a minimal sweep
    - N=256, seeds=10, dt = [0.02, 0.01, 0.005, 0.0025].
-   - Record gates and artifacts; update a new RESULTS file `derivation/kg_metriplectic/RESULTS_KG_plus_RD.md`.
+   - Record gates and artifacts; update a new RESULTS file `Derivation/kg_metriplectic/RESULTS_KG_plus_RD.md`.
 
 ## Risks & notes
 

@@ -1,11 +1,11 @@
 # RD Conservation Harness
 
-Location: `derivation/code/physics/rd_conservation`
+Location: `Derivation/code/physics/rd_conservation`
 
 Outputs (via io helper):
 
-- Logs: `derivation/code/outputs/logs/rd_conservation/...`
-- Figures: `derivation/code/outputs/figures/rd_conservation/...`
+- Logs: `Derivation/code/outputs/logs/rd_conservation/...`
+- Figures: `Derivation/code/outputs/figures/rd_conservation/...`
 
 This harness evaluates Obj‑A/B/C for the discrete RD update using the production Euler step (and optionally Strang with an exact reaction substep).
 
@@ -31,10 +31,10 @@ Acceptance gates:
 Run:
 
 ```bash
-python derivation/code/physics/rd_conservation/run_rd_conservation.py --spec derivation/code/physics/rd_conservation/step_spec.example.json
+python Derivation/code/physics/rd_conservation/run_rd_conservation.py --spec Derivation/code/physics/rd_conservation/step_spec.example.json
 ```
 
-Expected outputs (under `derivation/code/outputs`):
+Expected outputs (under `Derivation/code/outputs`):
 
 - Logs (`logs/rd_conservation`):
   - `controls_diffusion-<stamp>.json` (mass conservation)

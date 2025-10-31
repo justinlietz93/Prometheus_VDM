@@ -6,4 +6,4 @@ Engineering-only smoke artifacts are quarantined here when runs are executed wit
 - Each JSON includes a `policy` block: `{ pre_registered: false, engineering_only: true, quarantined: true }`.
 - Approved analyses will emit to the same domain without quarantine once the proposal is approved.
 
-Refer to `derivation/dark_photons/PROPOSAL_Decoherence_Portals.md` for the pre-registration checklist and approval status.
+Refer to `Derivation/dark_photons/PROPOSAL_Decoherence_Portals.md` for the pre-registration checklist and approval status.

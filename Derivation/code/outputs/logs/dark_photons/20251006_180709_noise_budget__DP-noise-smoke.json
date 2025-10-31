@@ -2,8 +2,8 @@
   "annotation": {
     "f_star": 1.0
   },
-  "csv": "/mnt/ironwolf/git/Void_Unity_Proofs/derivation/code/outputs/logs/dark_photons/20251006_180709_noise_budget__DP-noise-smoke.csv",
-  "figure": "/mnt/ironwolf/git/Void_Unity_Proofs/derivation/code/outputs/figures/dark_photons/20251006_180709_noise_budget__DP-noise-smoke.png",
+  "csv": "/mnt/ironwolf/git/Void_Unity_Proofs/Derivation/code/outputs/logs/dark_photons/20251006_180709_noise_budget__DP-noise-smoke.csv",
+  "figure": "/mnt/ironwolf/git/Void_Unity_Proofs/Derivation/code/outputs/figures/dark_photons/20251006_180709_noise_budget__DP-noise-smoke.png",
   "minmax": {
     "S_bg": 8.2838940000000005e-19,
     "S_inst_max": 1.0100000000000001e-20,

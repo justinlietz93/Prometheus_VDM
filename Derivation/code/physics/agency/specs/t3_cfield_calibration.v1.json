@@ -1,0 +1,12 @@
+{
+  "run_name": "t3_cfield_calibration",
+  "version": "1.0.0",
+  "tag": "cfield-calib-t3-v1",
+  "schema_ref": "Derivation/code/physics/agency/schemas/cfield-calib-t3-v1.schema.json",
+  "parameters": {
+    "tasks": ["toj", "xmodal", "texture"],
+    "holdout_fraction": 0.2,
+    "bootstrap_B": 1000
+  },
+  "seeds": [17, 23, 101]
+}

@@ -38,7 +38,7 @@ python Derivation/code/physics/causality/run_causality_dag_audit.py \
 
 Flags:
 
-- `--allow-unapproved` to quarantine artifacts when proposal/tag is not yet approved
+- `--allow-unapproved` (AVOID this) to quarantine artifacts when proposal/tag is not yet approved
 - `--infer-by-time` to add precedence edges by time order when explicit parents are missing
 - `--streams events,utd` to include multiple streams
 - Use `--max-events 200000` to cap ingest for large logs during exploration.

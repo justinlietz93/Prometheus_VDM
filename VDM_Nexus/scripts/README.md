@@ -9,13 +9,13 @@ Scripts here must only reference canonical assets in-place. They never copy, mov
 - Data and approvals DBs (canonical, read-only for scripts):
   - Windows: `C:\git\Prometheus_VDM\derivation\code\common\data\approval.db`
   - Windows: `C:\git\Prometheus_VDM\derivation\code\common\data\approval_admin.db`
-  - Repo-relative: `../derivation/code/common/data/`
+  - Repo-relative: `../Derivation/code/common/data/`
 - Physics runners, specs, schemas, approvals (canonical, read-only):
   - Windows: `C:\git\Prometheus_VDM\derivation\code\physics\{domain}\`
-  - Repo-relative: `../derivation/code/physics/{domain}/`
+  - Repo-relative: `../Derivation/code/physics/{domain}/`
 - Experiment outputs (enumerated in place):
   - Windows: `C:\git\Prometheus_VDM\derivation\code\outputs\(figures|logs)\{domain}\`
-  - Repo-relative: `../derivation/code/outputs/(figures|logs)/{domain}/`
+  - Repo-relative: `../Derivation/code/outputs/(figures|logs)/{domain}/`
 
 Root resolution policy (must match app/infrastructure): CLI flags > environment (`VDM_REPO_ROOT`, `VDM_APPROVAL_DB`, `VDM_APPROVAL_ADMIN_DB`) > `.env`.
 
@@ -27,9 +27,9 @@ Root resolution policy (must match app/infrastructure): CLI flags > environment 
 
 ## Out of Scope (remain canonical)
 
-- Data storage: `../derivation/code/common/data/` — Nexus must only reference these, never create duplicates.
-- Physics simulations and artifacts: `../derivation/code/physics/{domain}/` — Nexus reads these in place, does not copy or modify.
-- Experiment outputs: `../derivation/code/outputs/(figures|logs)/{domain}/` — Nexus enumerates and displays artifacts from canonical locations.
+- Data storage: `../Derivation/code/common/data/` — Nexus must only reference these, never create duplicates.
+- Physics simulations and artifacts: `../Derivation/code/physics/{domain}/` — Nexus reads these in place, does not copy or modify.
+- Experiment outputs: `../Derivation/code/outputs/(figures|logs)/{domain}/` — Nexus enumerates and displays artifacts from canonical locations.
 
 ## Rules
 

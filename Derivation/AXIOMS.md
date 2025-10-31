@@ -115,7 +115,7 @@ $\partial_t q = J(q)\,\frac{\delta \mathcal I}{\delta q} + M(q)\,\frac{\delta \S
 From VDM-AX-004:
 $$\frac{W_i^{n+1}-2W_i^n+W_i^{n-1}}{\Delta t^2} = J \sum_{j\in N(i)} (W_j^n - W_i^n) - V'(W_i^n).$$
 
-**Source:** derivation/axiomatic_theory_development.md ("Derivation 1.2.1: Discrete Euler-Lagrange Equations").
+**Source:** Derivation/axiomatic_theory_development.md ("Derivation 1.2.1: Discrete Euler-Lagrange Equations").
 
 ---
 
@@ -124,7 +124,7 @@ $$\frac{W_i^{n+1}-2W_i^n+W_i^{n-1}}{\Delta t^2} = J \sum_{j\in N(i)} (W_j^n - W_
 On the cubic lattice, the continuum action derived from VDM-AX-004 yields
 $$S = \int dt\, d^d x\, \Big[ \tfrac{1}{2}(\partial_t\phi)^2 - \tfrac{c^2}{2}|\nabla\phi|^2 - V(\phi) \Big], \quad c^2 = 2 J a^2.$$
 
-**Source:** derivation/axiomatic_theory_development.md ("Derivation 1.3.1: Exact Spatial Kinetic Prefactor" and "Derivation 2.1.1/2.1.2").
+**Source:** Derivation/axiomatic_theory_development.md ("Derivation 1.3.1: Exact Spatial Kinetic Prefactor" and "Derivation 2.1.1/2.1.2").
 
 ---
 
@@ -132,7 +132,7 @@ $$S = \int dt\, d^d x\, \Big[ \tfrac{1}{2}(\partial_t\phi)^2 - \tfrac{c^2}{2}|\n
 
 In the overdamped limit of the corollary equations: $\partial_t \phi = D\nabla^2\phi + f(\phi)$ with $D = c^2/\gamma$ and $f(\phi) = -V'(\phi)/\gamma$.
 
-**Source:** derivation/axiomatic_theory_development.md ("Derivation 2.1.2: Continuum Field Equation").
+**Source:** Derivation/axiomatic_theory_development.md ("Derivation 2.1.2: Continuum Field Equation").
 
 ---
 

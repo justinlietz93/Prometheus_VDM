@@ -93,10 +93,10 @@ This document synthesizes the overarching technical rules, syntax requirements, 
   * **Sidecar JSON Format:** Sidecar JSON files must be written with `json.dumps(payload, indent=2)`.
 
 * **Canonical Content & Cross-Referencing:**
-  * **Canonical Ownership:** The following files are the **sole owners** of their respective content: `derivation/SYMBOLS.md`, `derivation/EQUATIONS.md`, `derivation/CONSTANTS.md`, `derivation/UNITS_NORMALIZATION.md`, `derivation/VALIDATION_METRICS.md`, `derivation/BC_IC_GEOMETRY.md`, `derivation/ALGORITHMS.md`, `docs/DATA_PRODUCTS.md`, `docs/SCHEMAS.md`, `derivation/NAMING_CONVENTIONS.md`, `AXIOMS.md`.
+  * **Canonical Ownership:** The following files are the **sole owners** of their respective content: `Derivation/SYMBOLS.md`, `Derivation/EQUATIONS.md`, `Derivation/CONSTANTS.md`, `Derivation/UNITS_NORMALIZATION.md`, `Derivation/VALIDATION_METRICS.md`, `Derivation/BC_IC_GEOMETRY.md`, `Derivation/ALGORITHMS.md`, `docs/DATA_PRODUCTS.md`, `docs/SCHEMAS.md`, `Derivation/NAMING_CONVENTIONS.md`, `AXIOMS.md`.
   * **Equations Page:** The one-page document for canonical equations (RD + hyperbolic + VDM) must be included in the repository.
   * **Referencing Canonical Content:** Other documents must link to canonical content by anchor; content must not be duplicated elsewhere. Reference-only documents must never paste math or numbers; they must link by anchor.
-  * **Link Format:** Agents must insert links using the format `[VDM-E-012](../derivation/EQUATIONS.md#vdm-e-012)`; never copy math.
+  * **Link Format:** Agents must insert links using the format `[VDM-E-012](../Derivation/EQUATIONS.md#vdm-e-012)`; never copy math.
   * **`ALGORITHMS.md` Rules:** Pseudocode must include references only; link to math/values elsewhere (EQUATIONS/CONSTANTS/SYMBOLS/UNITS).
   * **`AXIOMS.md` Rules:** Cite sources from existing repository texts only.
   * **`BC_IC_GEOMETRY.md`:** Link to equations/constants/symbols by anchor; do not restate them.
@@ -110,7 +110,7 @@ This document synthesizes the overarching technical rules, syntax requirements, 
   * **Failed Run Artifacts:** Failed runs must route their artifacts (figures, logs, contradiction reports) to a `failed_runs/` subdirectory. Original logs must be preserved under `failed_runs/` for audit.
   * **Contradiction Reports:** A `CONTRADICTION_REPORT.json` must be emitted on gate failure, including the gate name, spec path, tag, seed, figure/CSV paths, and free text notes.
   * **Tag Approval:** Any tag used for artifacts must be pre-registered and approved; otherwise, artifacts are quarantined.
-  * **Artifact Path Patterns:** All output paths must conform to specified patterns (e.g., `derivation/outputs/logs/conservation_law/flux_sweep_<timestamp>.json`). Default figure output: `derivation/code/outputs/figures/`. Default log output: `derivation/code/outputs/logs/`.
+  * **Artifact Path Patterns:** All output paths must conform to specified patterns (e.g., `Derivation/outputs/logs/conservation_law/flux_sweep_<timestamp>.json`). Default figure output: `Derivation/code/outputs/figures/`. Default log output: `Derivation/code/outputs/logs/`.
   * **Figure Filenames:** Must follow the naming convention `{_ts()}_{slug}.png` (using UTC timestamp).
   * **Log Filenames:** Must follow the naming convention `{_ts()}_{slug}.{type}` (using UTC timestamp), where `type` is either `'json'` or `'csv'`.
   * **Output Path Overrides:** Output paths are overridable via CLI flags (`--outdir`, `--figure`, `--log`).

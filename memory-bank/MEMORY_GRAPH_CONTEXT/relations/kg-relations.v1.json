@@ -44,9 +44,24 @@
       "from": "Preflight_Policy_Context",
       "relationType": "includes",
       "to": "Preflight_Separation_Guardrails_Summary"
+    },
+    {
+      "from": "CEG_T4_Assisted_Echo",
+      "relationType": "uses",
+      "to": "Assisted_Echo_Runner"
+    },
+    {
+      "from": "Stamp_Proposal_Helper",
+      "relationType": "supports",
+      "to": "Approval_Gate_Provenance"
+    },
+    {
+      "from": "Approval_Gate_Provenance",
+      "relationType": "implements",
+      "to": "Provenance_Gating_OptIn"
     }
   ],
   "set_id": "kg-relations",
   "set_version": "1.0",
-  "updated_utc": "2025-10-29T07:04:53Z"
+  "updated_utc": "2025-10-30T18:13:51Z"
 }

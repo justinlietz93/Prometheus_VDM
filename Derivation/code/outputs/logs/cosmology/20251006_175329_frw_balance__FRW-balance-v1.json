@@ -1,6 +1,6 @@
 {
-  "csv": "/mnt/ironwolf/git/Void_Unity_Proofs/derivation/code/outputs/logs/cosmology/20251006_175329_frw_continuity_residual__FRW-balance-v1.csv",
-  "figure": "/mnt/ironwolf/git/Void_Unity_Proofs/derivation/code/outputs/figures/cosmology/20251006_175329_frw_continuity_residual__FRW-balance-v1.png",
+  "csv": "/mnt/ironwolf/git/Void_Unity_Proofs/Derivation/code/outputs/logs/cosmology/20251006_175329_frw_continuity_residual__FRW-balance-v1.csv",
+  "figure": "/mnt/ironwolf/git/Void_Unity_Proofs/Derivation/code/outputs/figures/cosmology/20251006_175329_frw_continuity_residual__FRW-balance-v1.png",
   "passed": true,
   "rms": 9.035118555196328e-16,
   "tol_rms": 1e-06

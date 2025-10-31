@@ -218,7 +218,7 @@ Given the complexity of the expression we found for $\Delta\mathcal{H}/\Delta t$
 
 #### Method 2: Symmetry via Noether's Theorem
 
-This remains the most elegant and fundamental path forward. As outlined in [`derivation/symmetry_analysis.md`](derivation/symmetry_analysis.md:1), Noether's Theorem guarantees that a conserved quantity exists for every continuous symmetry of the system's dynamics. Our initial investigation showed the FUM lacks simple translational or scaling symmetries. The next step would be to search for more complex, non-obvious "hidden" symmetries. This is a significant research task in its own right.
+This remains the most elegant and fundamental path forward. As outlined in [`Derivation/symmetry_analysis.md`](Derivation/symmetry_analysis.md:1), Noether's Theorem guarantees that a conserved quantity exists for every continuous symmetry of the system's dynamics. Our initial investigation showed the FUM lacks simple translational or scaling symmetries. The next step would be to search for more complex, non-obvious "hidden" symmetries. This is a significant research task in its own right.
 
 #### Method 3: Information-Theoretic Quantities
 

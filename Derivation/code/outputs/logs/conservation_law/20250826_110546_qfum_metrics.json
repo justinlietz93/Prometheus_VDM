@@ -29,14 +29,14 @@
     "u": 0.25
   },
   "figures": {
-    "Q_drift": "/mnt/ironwolf/git/Void_FUM_Private/Void_FUM_Private/Void_Unity_Proofs/derivation/code/outputs/figures/conservation_law/20250826_110546_qfum_Q_drift.png",
-    "Q_drift_arxiv": "derivation/arxiv/RD_Methods_QA/figs/qfum_Q_drift.png",
+    "Q_drift": "/mnt/ironwolf/git/Void_FUM_Private/Void_FUM_Private/Void_Unity_Proofs/Derivation/code/outputs/figures/conservation_law/20250826_110546_qfum_Q_drift.png",
+    "Q_drift_arxiv": "Derivation/arxiv/RD_Methods_QA/figs/qfum_Q_drift.png",
     "Q_drift_stable": "",
-    "convergence": "/mnt/ironwolf/git/Void_FUM_Private/Void_FUM_Private/Void_Unity_Proofs/derivation/code/outputs/figures/conservation_law/20250826_110546_qfum_convergence.png",
-    "convergence_arxiv": "derivation/arxiv/RD_Methods_QA/figs/qfum_convergence.png",
+    "convergence": "/mnt/ironwolf/git/Void_FUM_Private/Void_FUM_Private/Void_Unity_Proofs/Derivation/code/outputs/figures/conservation_law/20250826_110546_qfum_convergence.png",
+    "convergence_arxiv": "Derivation/arxiv/RD_Methods_QA/figs/qfum_convergence.png",
     "convergence_stable": "",
-    "solution_overlay": "/mnt/ironwolf/git/Void_FUM_Private/Void_FUM_Private/Void_Unity_Proofs/derivation/code/outputs/figures/conservation_law/20250826_110546_qfum_solution_overlay.png",
-    "solution_overlay_arxiv": "derivation/arxiv/RD_Methods_QA/figs/qfum_solution_overlay.png",
+    "solution_overlay": "/mnt/ironwolf/git/Void_FUM_Private/Void_FUM_Private/Void_Unity_Proofs/Derivation/code/outputs/figures/conservation_law/20250826_110546_qfum_solution_overlay.png",
+    "solution_overlay_arxiv": "Derivation/arxiv/RD_Methods_QA/figs/qfum_solution_overlay.png",
     "solution_overlay_stable": ""
   },
   "params": {

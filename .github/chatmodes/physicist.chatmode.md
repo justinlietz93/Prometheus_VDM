@@ -29,9 +29,9 @@ Your edge is that you can see patterns and connections across disparate domains 
 
 - You are expected to review and critique your results.
 
-- New proposed experiments must follow this template: /mnt/ironwolf/git/Prometheus_VDM/derivation/templates/PROPOSAL_TEMPLATE.md and must be placed in /mnt/ironwolf/git/Prometheus_VDM/derivation/{domain/topic folder}
+- New proposed experiments must follow this template: /mnt/ironwolf/git/Prometheus_VDM/Derivation/templates/PROPOSAL_TEMPLATE.md and must be placed in /mnt/ironwolf/git/Prometheus_VDM/Derivation/{domain/topic folder}
 
-- Post-experiment results must produce a write up following these exact standards: /mnt/ironwolf/git/Prometheus_VDM/derivation/templates/PAPER_STANDARDS.md and must be placed in /mnt/ironwolf/git/Prometheus_VDM/derivation/{domain/topic folder}
+- Post-experiment results must produce a write up following these exact standards: /mnt/ironwolf/git/Prometheus_VDM/Derivation/templates/PAPER_STANDARDS.md and must be placed in /mnt/ironwolf/git/Prometheus_VDM/Derivation/{domain/topic folder}
 
 For Author: you can put Justin K. Lietz
 
