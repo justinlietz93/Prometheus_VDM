@@ -1,0 +1,58 @@
+{
+  "proposal_title": "CEG Assisted-Echo",
+  "tier_grade": "T4",
+  "commit": "80ee5476e4f887fed3c34534a99daa878f55382f",
+  "contact": [
+    "Justin K. Lietz <justin@neuroca.ai>"
+  ],
+  "hypotheses": [
+    {
+      "id": "H1",
+      "statement": "Median CEG >= 0.05 with G1\u2013G4 gates passing on >=80% of prereg grid points.",
+      "direction": "increase"
+    }
+  ],
+  "variables": {
+    "independent": [
+      "N",
+      "dt",
+      "split",
+      "lambda"
+    ],
+    "dependent": [
+      "CEG"
+    ],
+    "controls": [
+      "energy_match",
+      "seed"
+    ]
+  },
+  "pass_fail": [
+    {
+      "metric": "CEG_median",
+      "operator": ">=",
+      "threshold": 0.05,
+      "unit": "dimensionless"
+    }
+  ],
+  "spec_refs": [
+    "specs/assisted_echo.v1c.json"
+  ],
+  "registration_timestamp": "2025-10-31T00:13:30Z",
+  "salted_provenance": {
+    "schema": "vdm.provenance.salted_hash.v1",
+    "generated_utc": "2025-10-31T00:43:18.667412Z",
+    "salt_bytes": 16,
+    "single_salt": true,
+    "salt_hex": "0d91d06c5a715a9bd00909c4ab2a7bdf",
+    "items": [
+      {
+        "path": "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/physics/metriplectic/specs/assisted_echo.v1c.json",
+        "size": 302,
+        "base_sha256": "c1f2d607a57bc310c01c541ad57a72e1cc67405b5c394295f481151e903eb71c",
+        "salt_hex": "0d91d06c5a715a9bd00909c4ab2a7bdf",
+        "salted_sha256": "f44d9159ac0e88407bc494ff51e102ccbd0a0014ec118733f95a1eb70ec9ec9e"
+      }
+    ]
+  }
+}

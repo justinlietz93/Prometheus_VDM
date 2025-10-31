@@ -414,9 +414,17 @@ def main():
     spec = EchoSpec(**raw)
     tag = spec.tag or spec.params.get("tag")
     # Set run script name for approval policy (domain:script:tag) to ensure DB HMAC matches manifest
+    # Determine schema tag from the spec filename to align with the correct prereg schema/approval
+    spec_name = Path(args.spec).name
+    if "v1c" in spec_name:
+        schema_tag = "echo_spec-v1c"
+    elif "v1b" in spec_name:
+        schema_tag = "echo_spec-v1b"
+    else:
+        schema_tag = "echo_spec-v1"
     os.environ.setdefault("VDM_RUN_SCRIPT", "assisted_echo")
     # Enforce approval via policy for genuine runs (deterministic manifest discovery in approval.py)
-    _approved, _eng_only, _proposal = check_tag_approval("metriplectic", "echo_spec-v1b", args.allow_unapproved, CODE_ROOT)
+    _approved, _eng_only, _proposal = check_tag_approval("metriplectic", schema_tag, args.allow_unapproved, CODE_ROOT)
 
     out = run_assisted_echo(spec)
     # Determine failed routing based on gates (route to failed_runs if any gate fails)

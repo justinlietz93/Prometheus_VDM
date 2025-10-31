@@ -1,0 +1,30 @@
+# TDA KNOWLEDGE GRAPH ANALYSIS RESULTS
+
+## Correlation Results
+
+- M1 (Total B1 Persistence) vs Efficiency Score: r=-0.8676, p=0.001143
+- M2 (Persistent B0 Count) vs Pathology Score: r=nan, p=nan
+- Component Count vs Pathology Score: r=0.9967, p=5.289e-10
+
+## Detailed Results
+
+| Snapshot | M1 (B1 Persistence) | M2 (B0 Count) | Component Count | Efficiency | Pathology |
+|----------|---------------------|---------------|-----------------|------------|----------|
+| 00 | 222.00 | 1 | 1 | 0.8532 | 0.1000 |
+| 01 | 61.00 | 1 | 1 | 0.8860 | 0.1000 |
+| 02 | 0.00 | 1 | 2 | 0.9000 | 0.1000 |
+| 03 | 238.00 | 1 | 1 | 0.8325 | 0.1000 |
+| 04 | 66.00 | 1 | 1 | 0.8861 | 0.1000 |
+| 05 | 0.00 | 1 | 1 | 0.9000 | 0.1000 |
+| 06 | 20.00 | 1 | 9 | 0.8896 | 0.4500 |
+| 07 | 8.00 | 1 | 2 | 0.8749 | 0.1000 |
+| 08 | 0.00 | 1 | 17 | 0.9000 | 0.8500 |
+| 09 | 10.00 | 1 | 7 | 0.8697 | 0.3500 |
+
+## Computation Time (seconds)
+
+- avg_time_load: 0.000321
+- avg_time_graph: 0.000866
+- avg_time_distance: 0.001434
+- avg_time_persistence: 0.046222
+- avg_time_metrics: 0.000701

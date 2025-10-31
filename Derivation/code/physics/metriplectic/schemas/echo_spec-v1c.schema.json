@@ -1,0 +1,36 @@
+{
+  "$id": "echo_spec-v1c.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Metriplectic Assisted Echo Spec (v1c)",
+  "type": "object",
+  "metadata": { "tag": "echo_spec-v1c" },
+  "required": ["grid", "params", "dt", "steps", "seeds", "lambdas", "budget"],
+  "properties": {
+    "tag": {"type": ["string", "null"]},
+    "grid": {
+      "type": "object",
+      "required": ["N", "dx"],
+      "properties": {
+        "N": {"type": "integer", "minimum": 8},
+        "dx": {"type": "number", "exclusiveMinimum": 0}
+      }
+    },
+    "params": {
+      "type": "object",
+      "required": ["c", "m", "D", "m_lap_operator"],
+      "properties": {
+        "c": {"type": "number"},
+        "m": {"type": "number"},
+        "D": {"type": "number"},
+        "m_lap_operator": {"type": "string", "enum": ["spectral", "stencil"]}
+      },
+      "additionalProperties": true
+    },
+    "dt": {"type": "number", "exclusiveMinimum": 0},
+    "steps": {"type": "integer", "minimum": 1},
+    "seeds": {"type": "array", "items": {"type": "integer"}, "minItems": 1},
+    "lambdas": {"type": "array", "items": {"type": "number", "minimum": 0}, "minItems": 1},
+    "budget": {"type": "number", "minimum": 0}
+  },
+  "additionalProperties": false
+}

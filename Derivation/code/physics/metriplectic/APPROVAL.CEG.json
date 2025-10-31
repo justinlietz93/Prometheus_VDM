@@ -3,8 +3,10 @@
   "proposal": "Derivation/Metriplectic/T4_PROPOSAL_CEG_Metriplectic_Assisted-Echo_Experiment.md",
   "require_provenance": true,
   "allowed_tags": [
+    "assisted-echo-t4-prereg-v1c",
     "echo_spec-v1",
-    "echo_spec-v1b"
+    "echo_spec-v1b",
+    "echo_spec-v1c"
   ],
   "schema_dir": "Derivation/code/physics/metriplectic/schemas",
   "approvals": {
@@ -19,6 +21,18 @@
       "approved_by": "Justin K. Lietz",
       "approved_at": "2025-10-30T22:48:54.602329+00:00",
       "approval_key": "c7b2497c633e43823d36ad7c5c1e869b024fb65e191f41add6e824c1fc98c862"
+    },
+    "assisted-echo-t4-prereg-v1c": {
+      "schema": "Derivation/code/physics/metriplectic/schemas/assisted-echo-t4-prereg-v1c.schema.json",
+      "approved_by": "Justin K. Lietz",
+      "approved_at": "",
+      "approval_key": ""
+    },
+    "echo_spec-v1c": {
+      "schema": "Derivation/code/physics/metriplectic/schemas/echo_spec-v1c.schema.json",
+      "approved_by": "Justin K. Lietz",
+      "approved_at": "2025-10-31T00:13:02.847254+00:00",
+      "approval_key": "a684b468e6e834fa62d6830ed34b6128ed7a52bb22711ad04d6771e789633c1c"
     }
   }
 }

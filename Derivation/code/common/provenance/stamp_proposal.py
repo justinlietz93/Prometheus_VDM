@@ -95,7 +95,11 @@ def main(argv: Optional[list[str]] = None) -> int:
     p.add_argument("--prereg", required=True, help="Path to preregistration JSON file")
     p.add_argument("--salt-bytes", type=int, default=16, help="Bytes of random salt to generate")
     args = p.parse_args(argv)
-    return stamp(args.proposal, args.prereg, salt_bytes=args.salt_bytes) and 0 or 1
+    try:
+        stamp(args.proposal, args.prereg, salt_bytes=args.salt_bytes)
+        return 0
+    except Exception:
+        return 1
 
 
 def stamp(proposal: str | Path, prereg: str | Path, *, salt_bytes: int = 16) -> Dict[str, Any]:
@@ -114,12 +118,19 @@ def stamp(proposal: str | Path, prereg: str | Path, *, salt_bytes: int = 16) -> 
     pdata = json.loads(prereg.read_text(encoding="utf-8"))
 
     prov = pdata.get("salted_provenance")
+    use_existing = False
     if isinstance(prov, dict) and prov.get("items"):
-        # Use the first item
-        it0 = prov["items"][0]
-        salted_sha256 = str(it0.get("salted_sha256"))
-        salt_hex = str(it0.get("salt_hex"))
-    else:
+        # Validate first item is non-placeholder; otherwise recompute
+        it0_try = prov["items"][0]
+        size0 = int(it0_try.get("size") or 0)
+        base0 = str(it0_try.get("base_sha256") or "")
+        salted0 = str(it0_try.get("salted_sha256") or "")
+        salt_hex0 = str(it0_try.get("salt_hex") or "")
+        if size0 > 0 and base0 and salted0 and salt_hex0:
+            salted_sha256 = salted0
+            salt_hex = salt_hex0
+            use_existing = True
+    if not use_existing:
         # Need to compute from spec_refs
         spec_refs = pdata.get("spec_refs") or pdata.get("specs") or []
         if not spec_refs or not isinstance(spec_refs, list):

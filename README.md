@@ -20,16 +20,28 @@
 
 ## 🔥News
 
-- **October 28, 2025** Published an [article](https://medium.com/p/2b4f5c7d23c9/edit) on Medium about upcoming work.
-  - Published a ["The Physics of Choice"](https://youtu.be/tR3G9Z2ScAc?si=ZFdQVBaqBck06YSW) video, along with a couple other videos on YouTube.
-- **October 23, 2025:** Created a sparsely populated [CANON_PROGRESS.md](/CANON_PROGRESS.md) document to post updates on private work to prevent this public repo from going stale.
-- **September 29, 2025:** First public code release + creation of private Void Dynamics package which can now be imported and run in this repository using workflows and repository secrets.
-- **September 28, 2025:** Posted two pre-prints to [Zenodo](https://doi.org/10.5281/zenodo.17220869). If you've published similar or relevant work on Reaction-Diffusion in the past 3 years on arXiv and want to support this work by endorsing me in a related category, submit an issue, post in the discussion board, or send me an email with `Subject: RD Endorsement` to get my attention. It would be much appreciated!
+- **October 30, 2025**  
+  - Added a [historical/](/docs/historical) folder including early original work like:
+    - A self healing knowledge graph using [Topological Data Analysis](/docs/historical/Emergent_TDA/20250402_TDA_KG_Metrics_ProtocolOutput.md)
+    - As well as a [Self Improvement Engine](/docs/historical/SIE/20250402_SIE_Stability_Analysis_ProtocolOutput.md) that integrates multiple reward components like novelty, self benefit, habituation, and TD error into a single "total reward" signal used to modulate its own neural plasticity for stable self-improvement that avoids weight saturation.
+  - Validated the Counterfactual Echo Gain [hypothesis](/Derivation/Metriplectic/T4_PROPOSAL_CEG_Metriplectic_Assisted-Echo_Experiment.md) by proving the trustworthiness and accuracy of the instrument, and showing that echo assist does modulate and improve the performance of a self aware system with 0 difference in cost compared to baseline.
+- **October 28, 2025**  
+  - Published an [article](https://medium.com/p/2b4f5c7d23c9/edit) on Medium about upcoming work.
+    - Published a ["The Physics of Choice"](https://youtu.be/tR3G9Z2ScAc?si=ZFdQVBaqBck06YSW) video, along with a couple other videos on YouTube.
+- **October 23, 2025:**  
+  - Created a sparsely populated [CANON_PROGRESS.md](/CANON_PROGRESS.md) document to post updates on private work to prevent this public repo from going stale.
+- **September 29, 2025:**  
+  - First public code release + creation of private Void Dynamics package which can now be imported and run in this repository using workflows and repository secrets.
+- **September 28, 2025:**  
+  - Posted two pre-prints to [Zenodo](https://doi.org/10.5281/zenodo.17220869). If you've published similar or relevant work on Reaction-Diffusion in the past 3 years on arXiv and want to support this work by endorsing me in a related category, submit an issue, post in the discussion board, or send me an email with `Subject: RD Endorsement` to get my attention. It would be much appreciated!
 - **August 21, 2025:** Launched public repo
 - ...
-- **March, 2025** Released first falsifiable, reproducible simulations that validated initial claims.
-- **February, 2025** SIE and Emergent KG + Real-Time TDA show very strong statistically significant findings, making feasible the entire model
-- **October, 2024** Initial realization of the idea.
+- **March, 2025**  
+  - Released first falsifiable, reproducible simulations that validated initial claims.
+- **February, 2025**  
+  - SIE and Emergent KG + Real-Time TDA show very strong statistically significant findings, making feasible the entire model
+- **October, 2024**  
+  - Initial realization of the idea.
 
 ## 🎯Planned
 
