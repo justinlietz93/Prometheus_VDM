@@ -77,7 +77,7 @@ $$
 \mathcal{I}(x) = \tfrac{1}{2}\log\!\det\!\big(I + \tau \,\nabla u(x)\nabla u(x)^\top\big),
 $$
 
-and require an analogous boundary concentration for $\mathcal{I}$: a fraction $\alpha_\mathcal{I}$ concentrates in $\mathcal{N}_\epsilon(\cup_\ell \Gamma_\ell)$ as $L\to\infty$.
+and require an analogous boundary concentration for $\mathcal{I}$: a fraction $\alpha_\mathcal{I}$ concentrates in $\mathcal{N}\_\epsilon(\cup\_\ell \Gamma\_\ell)$ as $L\to\infty$.
 
 **Exclusions.** First-order (barrier-crossing) bubble nucleation is not assumed; the onset is spinodal/tachyonic (global roll), consistent with VDM cosmogenesis.
 
