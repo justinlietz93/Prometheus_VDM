@@ -17,15 +17,9 @@ Formalize and test the claim that tachyonic-origin metriplectic field systems th
 
 ## 2. Formal Setting (Definitions)
 
-> **Resolution ($\delta$) and truncation location.** Fix a representation floor ($\delta>0$). For a pulled front with tail amplitude ($A$) and decay length ($\lambda$), define $(x\_\star=\lambda\ln(A/\delta))$. The unresolved region is $({x: x>x\_\star})$ Define the **tail‑loss functional**
-> 
-$$
-\mathcal{L}*{\delta}[\phi];\equiv;\int*{x>x_\star} \big(\kappa,|\nabla \phi|^2 + \tfrac{r}{2}\phi^2\big),dx,
-$$
+**State space.**
 
-> computed in the linear regime $(|\phi|\ll 1)$. Then $(\mathcal{L}\_{\delta}\propto (\delta/A)^2)$.
-
-**State space.** Let $\phi:\Omega\subset\mathbb{R}^d\to\mathbb{R}$ with $\phi\in H^1_{\text{loc}}(\Omega)$, $d\in\{1,2,3\}$.
+Let $\phi:\Omega\subset\mathbb{R}^d\to\mathbb{R}$ with $\phi\in H^1_{\text{loc}}(\Omega)$, $d\in\{1,2,3\}$.  
 
 **Energy functional (excess).**
 
@@ -35,7 +29,13 @@ $$
 
 with $\kappa>0$, a $C^2$ potential $V$ having an unstable critical point at 0 and at least one stable minimizer $\phi_\ast\neq 0$.
 
-**Tachyonic origin.** $V''(0)<0$ (negative curvature at the quiet field). Write $r\equiv -V''(0)>0$.
+---
+
+**Tachyonic origin.** 
+
+$V''(0)<0$ (negative curvature at the quiet field). Write $r\equiv -V''(0)>0$.
+
+---
 
 **Metriplectic evolution.**
 
@@ -45,7 +45,11 @@ $$
 
 with $J(\cdot)$ antisymmetric, $M(\cdot)$ symmetric positive semidefinite; $\mathcal{H}$ an energy-like functional, $\Sigma$ an entropy-like functional. (This encodes causality + arrow of time without sacrificing reversibility.)
 
-**Pulled-front regime.** There exists a traveling interface connecting 0 to $\phi_\ast$ whose speed equals the linear spreading speed:
+---
+
+**Pulled-front regime.**
+
+There exists a traveling interface connecting 0 to $\phi_\ast$ whose speed equals the linear spreading speed:
 
 $$
 c_\star = 2\sqrt{D\,r}, \quad D\propto \kappa,
@@ -53,13 +57,21 @@ $$
 
 with a leading-edge exponential tail $\phi(x)\sim A\,e^{-x/\lambda}$ for some decay length $\lambda\sim \sqrt{D/r}$.
 
-**Finite-energy admissibility.** A family $\{\phi_L\}$ on domains $\Omega_L$ (e.g., cubes of side $L$) is finite-excess-energy if
+---
+
+**Finite-energy admissibility.** 
+
+A family $\{\phi_L\}$ on domains $\Omega_L$ (e.g., cubes of side $L$) is finite-excess-energy if
 
 $$
 \sup_{L} E_{\text{exc}}[\phi_L;\Omega_L] < \infty \quad\text{as } L\to\infty.
 $$
 
-**Hierarchical scale breaks.** A finite-depth hierarchical partition $\mathcal{P}=\{\Gamma_\ell\}_{\ell=1}^{N}$ of $\Omega$ is a nested sequence of codimension-1 interfaces with strictly separated scales:
+---
+
+**Hierarchical scale breaks.** 
+
+A finite-depth hierarchical partition $\mathcal{P}=\{\Gamma_\ell\}_{\ell=1}^{N}$ of $\Omega$ is a nested sequence of codimension-1 interfaces with strictly separated scales:
 
 - **Gap condition:** there exists $\rho\in(0,1)$ and $C\ge 1$ such that interface diameters satisfy
 
@@ -77,7 +89,11 @@ $$
 
 where $\mathcal{N}_\epsilon(\cdot)$ is the $\epsilon$-tubular neighborhood. (Interpretation: a fixed fraction of energy lives in thin boundary layers.)
 
-**Information density (operational).** Define a field-local information proxy $\mathcal{I}(x)$ (chosen at preregistration) such as
+---
+
+**Information density (operational).** 
+
+Define a field-local information proxy $\mathcal{I}(x)$ (chosen at preregistration) such as
 
 $$
 \mathcal{I}(x) = \log\!\big(1 + \tfrac{|\nabla \phi(x)|^2}{\sigma^2}\big)
@@ -87,7 +103,16 @@ $$
 
 and require an analogous boundary concentration for $\mathcal{I}$: a fraction $\alpha_\mathcal{I}$ concentrates in $\mathcal{N}\_\epsilon(\cup\_\ell \Gamma\_\ell)$ as $L\to\infty$.
 
-**Exclusions.** First-order (barrier-crossing) bubble nucleation is not assumed; the onset is spinodal/tachyonic (global roll), consistent with VDM cosmogenesis.
+> **Exclusions.** First-order (barrier-crossing) bubble nucleation is not assumed; the onset is spinodal/tachyonic (global roll), consistent with VDM cosmogenesis.  
+> **Resolution ($\delta$) and truncation location.** Fix a representation floor ($\delta>0$). For a pulled front with tail amplitude ($A$) and decay length ($\lambda$), define $(x\_\star=\lambda\ln(A/\delta))$. The unresolved region is $({x: x>x\_\star})$  
+> Define the **tail‑loss functional**
+> $$
+> \mathcal{L}*{\delta}[\phi];\equiv;\int*{x>x_\star} \big(\kappa,|\nabla \phi|^2 + \tfrac{r}{2}\phi^2\big),dx,
+> $$
+> computed in the linear regime $(|\phi|\ll 1)$. Then $(\mathcal{L}\_{\delta}\propto (\delta/A)^2)$.  
+>
+> **Proxy rationale & invariance.** ( $\mathcal{I}*1$ ) upper‑bounds the log‑contrast needed to encode the field at resolution $(\sigma)$, and co‑locates with the gradient term in $(E*{\text{exc}})$. $( \mathcal{I}_2 )$ is a local Fisher‑type surrogate for predictive curvature of observables; under smooth reparameterizations of $(u)$ it shifts by $(O(|\nabla u|^2))$ only.  
+> **Operational requirement:** all “information‑concentration” claims must hold for both proxies within preregistered tolerances (Gate G‑PX below).
 
 ---
 
@@ -169,12 +194,58 @@ Equivalently, absence of such hierarchical scale breaks implies either:
 
 - **G12 (DSI probe, optional):** Boundary statistics (loop radii histograms, curvature spectra) exhibit **log‑periodic** modulations with a stable ratio $(\rho)$ (±10%) across sizes; absent in controls.
 
+**Additional Gates:**
+
+- **G‑NI (No‑imprint):** Cross‑correlation threshold ≤ 0.05 at non‑tail bands; hierarchy ratio $(\rho)$ unchanged (±5%) relative to the unassisted run.
+
+- **G‑CEG‑Integrity:** CEG improves with $(\eta)$ while $(c)$ and perimeter‑law scaling remain within pulled bounds (ties to G‑PLD and G‑H* hygiene).
+
+- **G‑PX (Proxy concordance):** Boundary fractions from $(\mathcal{I}_1)$ and $(\mathcal{I}*2)$ agree within ±10% across masks/seeds. **PASS** if both exceed the $(\alpha*{\mathcal{I}})$ threshold and differ by ≤10%.
+
+- **G‑PLD (Pulledness diagnostic):** Require $(c/c\_\star \le 1+\epsilon\_c)$ and a good exponential‑tail fit $(adj.(R^2\ge 0.98))$; a steepness sweep shows $(c)$ approaches $(c\_\star)$ from above but does not exceed gate. **PASS** iff all three hold.
+
+- **G‑DIM:** In $(d=1,2)$ the fitted energy exponent equals $(d-1\pm0.1)$; $(\rho)$ consistent within ±10% across $(d)$. Optional $(d=3)$ reported, not required for PASS.
+
+- **G‑ABL‑J:** scramble the **J‑map** (keep compute and energy equal). CEG should **collapse** to baseline.
+  
+- **G‑ABL‑M:** scramble the **M‑map** (same budget). CEG should collapse.
+  
+- **G‑ABL‑Compute:** keep the **assist energy/time budget identical**, but replace metriplectic guidance with random kicks; CEG improvement must **not** meet PASS.
+     Together these prove the gain is due to *knowing the J/M split*, not extra work.
+
+- **G1T (coverage bound):** Measured $(N(L,T))$ satisfies $(N \ge \lceil L/(c_\star T)\rceil)$ within ±1 for ≥90% of seeds.
+
+- **G2T (cost optimality):** Among configurations with equal coverage and $(c_\star)$ integrity, hierarchical runs minimize $(E_{\text{exc}})$ vs. non‑hierarchical baselines by ≥5%.
+
+- **G3T (δ² locality):** Tail‑localized M‑production near $(x_\star)$ obeys δ² ±10% across $(\Delta x)$ refinements.
+
+- **G‑DSI1:** Log‑periodic modulation in boundary statistics is nonzero and stable (amplitude > 3σ, preferred ratio $(\rho)$ stable ±10%) across sizes/masks.
+
+- **G‑DSI2 (Null):** Absent under controls (no limit cycle; pushed fronts).
+
+- **G‑DSI3 (Cross‑metric):** Same $(\rho)$ appears in at least two independent metrics (e.g., loop radii histogram and curvature spectra).
+
+- **G‑ABL‑J:** With a scrambled J‑map (same compute and assist budget), CEG improvement drops below 0.01 (or below 20% of the baseline CEG), p<0.01.
+
+- **G‑ABL‑M:** With a scrambled M‑map (same budget), CEG likewise collapses.
+
+- **G‑ABL‑Compute:** With random‑assist kicks at identical energy/time budget, CEG fails the original CEG PASS gate.
+
 **PASS:** All G1–G5 met; at least one of G6–G7 met; G8 met.  
 **FAIL:** Any of G1–G5 fails, or G8 fails.
 
 ---
 
+### 7.1 Note on Time Budget
+
+> **A8‑T (Finite‑time necessity).**
+> For tachyonic pulled‑front systems with speed cap $(c_\star=2\sqrt{Dr})$, to cover a domain of size $(L)$ within budget $(T)$ while keeping excess energy finite and preserving pulled‑front dynamics, the process must realize at least $(N_\text{fronts}\ge \lceil L/(c_\star T)\rceil)$ concurrent interfaces (parallelism pressure). Under a resolution floor $(\delta)$, each interface incurs tail truncation at $(x_\star=\lambda\ln(A/\delta))$ with localized M‑production $(\propto \delta^2)$, so the energy‑optimal configuration at fixed $((L,T,\delta))$ is a **finite‑depth hierarchical partition** with boundary‑law energy and (optionally) DSI if the coarse‑grained flow runs on a limit cycle.
+
+---
+
 ## 8. Methods & Instruments
+
+> **Steering neutrality.** Assisted nudges are zero‑mean, white in phase, and supported only in the tail’s tubular set ( $\mathcal{N}*\epsilon(x*\star)$ ). A matched‑budget randomized control is run each time. **No‑template test:** cross‑correlation between the final boundary field and the nudge field outside ( $\mathcal{N}*\epsilon(x*\star)$ ) must be ≤ 0.05 (pre‑reg) at all non‑tail scales.
 
 **Analytical track.**
 
@@ -185,12 +256,14 @@ Equivalently, absence of such hierarchical scale breaks implies either:
 
 - RD form: $\partial_t \phi = D\nabla^2\phi + r\phi - u\phi^2 - \lambda_3 \phi^3$ (choose symmetric φ⁴: $\lambda_3=0$ or biased φ³+φ⁴ with clear note).
 - Measure: $E_{\text{exc}}$, $N(L)$, $\rho$, $\alpha$, $\alpha_\mathcal{I}$, $c/c_\star$.
-- Ablations: interface-penalty term $+\mu\,(\\#\text{interfaces})$ or curvature-penalty that suppresses subdivision.
+- Ablations: interface-penalty term $+\mu\,(\\\#\text{interfaces})$ or curvature-penalty that suppresses subdivision.
 - Echo-steering option: use your CEG logic to test whether metriplectic micro-nudges accelerate hierarchy formation while preserving $c_\star$.
-- Log **tail profiles** along interface normals; estimate (A,\lambda) and compute (x_\star(\delta)) on each frame.
-- Measure **M‑production rate density** in a tubular neighborhood of (x_\star).
-- Plot **energy flux (E(k))** vs wavenumber; mark (k_\mathrm{cut}=\pi/\Delta x).
-- Run **refinement triplet** and **noise‑injection** sweeps; fit (\delta^2) scaling.
+- Log **tail profiles** along interface normals; estimate $(A,\lambda)$ and compute $(x\_\star(\delta)$) on each frame.
+- Measure **M‑production rate density** in a tubular neighborhood of $(x\_\star)$.
+- Plot **energy flux (E(k))** vs wavenumber; mark $(k\_\mathrm{cut}=\pi/\Delta x)$.
+- Run **refinement triplet** and **noise‑injection** sweeps; fit $(\delta^2)$ scaling.
+- **Steepness sweep:** Initialize fronts with multiple steepness parameters; measure $(c(\text{steepness}))$ and tail fits.
+- **No‑template control:** Repeat steering with phase‑scrambled nudges of identical power; compare hierarchy stats.
 
 ---
 
@@ -214,6 +287,15 @@ Equivalently, absence of such hierarchical scale breaks implies either:
 
 ## 10. Scope & Exclusions
 
+> **Pulled‑regime criterion.** All claims assume **pulled** propagation:
+> (i) measured speed $(c\le c_\star(1+\epsilon_c))$ with $(\epsilon_c)$ preregistered (e.g., 0.02)
+> (ii) leading edge fits an exponential tail with decay $(\lambda)$ consistent with linear theory (±10%)
+> (iii) the “steepness test”: varying initial front steepness does **not** increase $(c)$ beyond $(c_\star)$ within tolerance.
+> Runs violating any of (i)–(iii) are flagged **pushed** and excluded from A8 grading.
+> **Dimensional note.** All scaling claims are graded in $(d=1,2)$ and optionally $(d=3)$; boundary‑law exponents must match $(d-1)$ within ±0.1 and $(N(L))$ must remain logarithmic with the same base $(\rho)$ (±10%) after finite‑size correction.
+> **Transition band.** If external forcing or large‑amplitude nonlinearity yields $(c>c\_\star)$ (pushed), A8’s necessity direction is not claimed. Such runs are still analyzed but labeled **OUT‑OF‑SCOPE** for A8 and reported separately.
+
+
 **Included:** $d=1,2,3$; spinodal (tachyonic) onset; metriplectic $J/M$ split; pulled-front regime; large-$L$ scaling.
 
 **Excluded:** first-order barrier nucleation; exotic boundary forcing that imprints hierarchy externally; non-pulled fronts (pushed regimes).
@@ -225,6 +307,10 @@ Equivalently, absence of such hierarchical scale breaks implies either:
 - **Risk:** Γ-style proof may require extra regularity. **Mitigation:** Prove weaker lower bounds (liminf) sufficient for G1/G2.
 - **Risk:** Numerics confuse perimeter vs bulk at small $L$. **Mitigation:** 5+ domain sizes; Richardson-style extrapolation.
 - **Risk:** Information proxy choice biases $\alpha_\mathcal{I}$. **Mitigation:** preregister two proxies; demand concordance.
+- **Proxy bias:** Use both (\mathcal{I}_1,\mathcal{I}_2) (G‑PX) and report sensitivity to (\sigma,\tau).
+- **Near‑pushed drift:** Enforce G‑PLD; report transition diagnostics rather than folding them into A8.
+- **Dimension traps:** Enforce G‑DIM; add finite‑size corrections and percolation checks in 2D/3D.
+- **Steering imprint:** Enforce G‑NI; include matched‑budget random control.
 
 ---
 
@@ -265,7 +351,8 @@ Lietz, J. K. (2025). The Lietz Infinity Resolution Conjecture (tachyonic hierarc
 
 **Statement (exact):**
 
-In metriplectic scalar-field systems with tachyonic origin $V''(0)<0$ that admit pulled fronts with exponential tails, any finite-excess-energy large-domain trajectory must organize into a finite-depth hierarchical partition with logarithmic depth $N(L)=\Theta(\log(L/\lambda))$, scale-gap separation $\rho\in(\rho_{\min},\rho_{\max})$, and boundary energy/information concentration fractions $\alpha,\alpha_\mathcal{I}>0$.
+In metriplectic scalar-field systems with tachyonic origin $V''(0)<0$ that admit pulled fronts with exponential tails, any finite-excess-energy large-domain trajectory must organize into a finite-depth hierarchical partition with logarithmic depth 
+$N(L)=\Theta(\log(L/\lambda))$, scale-gap separation $\rho\in(\rho\_{\min},\rho\_{\max})$, and boundary energy/information concentration fractions $\alpha,\alpha\\_\mathcal{I}>0$.
 
 **Promotion rule:** On PROPOSAL T8 PASS (G1–G8), copy this statement verbatim into `Canon/AXIOMS.md` as **A8**, update status here to **ACCEPTED**, and archive artifacts under `Derivation/code/outputs/axioms/a8_infinity_resolution/`.
 ```
