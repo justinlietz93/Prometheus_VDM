@@ -46,6 +46,17 @@
     },
     {
       "entities": [
+        "Assisted_Echo_Data_Routes_Figure_v2"
+      ],
+      "path": "derivation/metriplectic/vdm_echo_landscape_v2.png",
+      "segments": [
+        "derivation",
+        "metriplectic",
+        "vdm_echo_landscape_v2.png"
+      ]
+    },
+    {
+      "entities": [
         "Static_Lint_Preflight_API_Checker"
       ],
       "path": "tools/lint/check_tests_preflight_api.py",
@@ -188,7 +199,8 @@
     },
     {
       "entities": [
-        "Assisted_Echo_Runner"
+        "Assisted_Echo_Runner",
+        "CEG_T4_Assisted_Echo_G1_G3_G4_Fixes"
       ],
       "path": "derivation/code/physics/metriplectic/assisted_echo.py",
       "segments": [
@@ -197,6 +209,32 @@
         "physics",
         "metriplectic",
         "assisted_echo.py"
+      ]
+    },
+    {
+      "entities": [
+        "CEG_T4_Assisted_Echo_G1_G3_G4_Fixes"
+      ],
+      "path": "derivation/code/physics/metriplectic/echo_metrics.py",
+      "segments": [
+        "derivation",
+        "code",
+        "physics",
+        "metriplectic",
+        "echo_metrics.py"
+      ]
+    },
+    {
+      "entities": [
+        "Assisted_Echo_Data_Routes_Figure_v2"
+      ],
+      "path": "derivation/code/physics/metriplectic/plot_echo_routes_data_v2.py",
+      "segments": [
+        "derivation",
+        "code",
+        "physics",
+        "metriplectic",
+        "plot_echo_routes_data_v2.py"
       ]
     },
     {
@@ -268,6 +306,20 @@
     },
     {
       "entities": [
+        "Assisted_Echo_CEG_Summary_v1c_20251030_194555"
+      ],
+      "path": "derivation/code/outputs/logs/metriplectic/20251030_194555_assisted_echo_ceg_summary__assisted-echo-t4-prereg-v1c.csv",
+      "segments": [
+        "derivation",
+        "code",
+        "outputs",
+        "logs",
+        "metriplectic",
+        "20251030_194555_assisted_echo_ceg_summary__assisted-echo-t4-prereg-v1c.csv"
+      ]
+    },
+    {
+      "entities": [
         "Assisted_Echo_Runner"
       ],
       "path": "derivation/code/physics/metriplectic/schemas/echo_spec-v1.schema.json",
@@ -293,9 +345,68 @@
         "specs",
         "assisted_echo.v1.json"
       ]
+    },
+    {
+      "entities": [
+        "Assisted_Echo_CEG_Summary_v1c_20251030_194555"
+      ],
+      "path": "derivation/code/physics/metriplectic/specs/assisted_echo.v1c.json",
+      "segments": [
+        "derivation",
+        "code",
+        "physics",
+        "metriplectic",
+        "specs",
+        "assisted_echo.v1c.json"
+      ]
+    },
+    {
+      "entities": [
+        "Assisted_Echo_Failed_Run_20251030_140141"
+      ],
+      "path": "derivation/code/outputs/figures/metriplectic/failed_runs/20251030_140141_assisted_echo_placeholder__assisted-echo-t4-prereg.png",
+      "segments": [
+        "derivation",
+        "code",
+        "outputs",
+        "figures",
+        "metriplectic",
+        "failed_runs",
+        "20251030_140141_assisted_echo_placeholder__assisted-echo-t4-prereg.png"
+      ]
+    },
+    {
+      "entities": [
+        "Assisted_Echo_Failed_Run_20251030_140141"
+      ],
+      "path": "derivation/code/outputs/logs/metriplectic/failed_runs/20251030_140141_assisted_echo__assisted-echo-t4-prereg.json",
+      "segments": [
+        "derivation",
+        "code",
+        "outputs",
+        "logs",
+        "metriplectic",
+        "failed_runs",
+        "20251030_140141_assisted_echo__assisted-echo-t4-prereg.json"
+      ]
+    },
+    {
+      "entities": [
+        "Assisted_Echo_Failed_Run_20251030_140141"
+      ],
+      "path": "derivation/code/outputs/logs/metriplectic/failed_runs/20251030_140141_assisted_echo_ceg_summary__assisted-echo-t4-prereg.csv",
+      "segments": [
+        "derivation",
+        "code",
+        "outputs",
+        "logs",
+        "metriplectic",
+        "failed_runs",
+        "20251030_140141_assisted_echo_ceg_summary__assisted-echo-t4-prereg.csv"
+      ]
     }
   ],
   "set_id": "kg-pathrag-index",
   "set_version": "1.0",
-  "updated_utc": "2025-10-30T18:14:56Z"
+  "updated_utc": "2025-10-31T02:38:54Z"
 }
