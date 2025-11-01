@@ -17,6 +17,14 @@ Formalize and test the claim that tachyonic-origin metriplectic field systems th
 
 ## 2. Formal Setting (Definitions)
 
+> **Resolution ($\delta$) and truncation location.** Fix a representation floor ($\delta>0$). For a pulled front with tail amplitude ($A$) and decay length ($\lambda$), define $(x\_\star=\lambda\ln(A/\delta))$. The unresolved region is $({x: x>x\_\star})$ Define the **tail‑loss functional**
+> 
+$$
+\mathcal{L}*{\delta}[\phi];\equiv;\int*{x>x_\star} \big(\kappa,|\nabla \phi|^2 + \tfrac{r}{2}\phi^2\big),dx,
+$$
+
+> computed in the linear regime $(|\phi|\ll 1)$. Then $(\mathcal{L}\_{\delta}\propto (\delta/A)^2)$.
+
 **State space.** Let $\phi:\Omega\subset\mathbb{R}^d\to\mathbb{R}$ with $\phi\in H^1_{\text{loc}}(\Omega)$, $d\in\{1,2,3\}$.
 
 **Energy functional (excess).**
@@ -87,6 +95,8 @@ and require an analogous boundary concentration for $\mathcal{I}$: a fraction $\
 
 **Lietz Infinity Resolution Conjecture (tachyonic hierarchy).**
 
+> **Lemma (Tail truncation ⇒ M‑production).** Under metriplectic evolution, eliminating unresolved tail modes beyond $(x\_\star(\delta))$ yields an **effective** M‑term that increases entropy at a rate proportional to $(\partial\_t \mathcal{L}*{\delta})$. In particular, for steady front advance, the localized M‑production near $(x*\star)$ scales $(\propto \delta^2)$.
+
 For metriplectic scalar-field systems with tachyonic origin $V''(0)<0$ that admit pulled fronts with exponential tails and for which a family of states $\{\phi_L\}$ on $\Omega_L$ has finite excess energy in the limit $L\to\infty$, there must exist a hierarchical partition satisfying the gap condition, finite depth $N(L)=\mathcal{O}(\log(L/\lambda))$, and boundary energy concentration $\alpha>0$.
 
 Equivalently, absence of such hierarchical scale breaks implies either:
@@ -151,6 +161,14 @@ Equivalently, absence of such hierarchical scale breaks implies either:
 
 - **G8 (Documentation):** All prereg, code, and artifacts pass your VDM reproducibility checks (hashes, manifests, logbooks).
 
+- **G9 (Refinement collapse):** Run $(\Delta x\in{\Delta,\Delta/2,\Delta/4})$. The small‑scale energy and M‑production curves **collapse** when plotted versus $(k/k_\mathrm{cut})$ if the effect is numerical; **converge** to a finite curve if physical.
+
+- **G10 $((\delta^2)$ law):** With controlled micro‑noise mimicking rounding (variance $(\propto \delta^2)$), measured M‑production near $(x\_\star)$ scales as $(\delta^2\pm 10%)$.
+
+- **G11 (Bottleneck & FDT):** Energy flux shows a spectral kink at $(k\_\mathrm{cut})$; fluctuation–dissipation ratio measured around that band matches the inferred dissipation within ±10%.
+
+- **G12 (DSI probe, optional):** Boundary statistics (loop radii histograms, curvature spectra) exhibit **log‑periodic** modulations with a stable ratio $(\rho)$ (±10%) across sizes; absent in controls.
+
 **PASS:** All G1–G5 met; at least one of G6–G7 met; G8 met.  
 **FAIL:** Any of G1–G5 fails, or G8 fails.
 
@@ -169,6 +187,10 @@ Equivalently, absence of such hierarchical scale breaks implies either:
 - Measure: $E_{\text{exc}}$, $N(L)$, $\rho$, $\alpha$, $\alpha_\mathcal{I}$, $c/c_\star$.
 - Ablations: interface-penalty term $+\mu\,(\\#\text{interfaces})$ or curvature-penalty that suppresses subdivision.
 - Echo-steering option: use your CEG logic to test whether metriplectic micro-nudges accelerate hierarchy formation while preserving $c_\star$.
+- Log **tail profiles** along interface normals; estimate (A,\lambda) and compute (x_\star(\delta)) on each frame.
+- Measure **M‑production rate density** in a tubular neighborhood of (x_\star).
+- Plot **energy flux (E(k))** vs wavenumber; mark (k_\mathrm{cut}=\pi/\Delta x).
+- Run **refinement triplet** and **noise‑injection** sweeps; fit (\delta^2) scaling.
 
 ---
 
