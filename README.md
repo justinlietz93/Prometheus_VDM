@@ -55,6 +55,10 @@
 
 ## DOIs
 
+***T8. Axiom 8 Candidate: The Lietz Infinity Resolution Conjecture***  
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17503344.svg)](https://doi.org/10.5281/zenodo.17503344)
+
+***A Logarithmic First Integral for the Logistic On Site Law in Void Dynamics***  
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17220869.svg)](https://doi.org/10.5281/zenodo.17220869)
 
 <div style="text-align: center;">
