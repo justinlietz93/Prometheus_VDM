@@ -1,0 +1,729 @@
+% =========================================================
+% A8 Axiom Candidate: Lietz Infinity Resolution Conjecture
+% ArXiv-style preprint (VDM-aligned)
+% Author: Justin K. Lietz
+% Date: October 31, 2025
+% =========================================================
+\documentclass{article}
+
+% ---- arXiv preprint look ----
+\usepackage{arxiv}              % provided by the arXiv template
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+% ---- math, figures, tables ----
+\usepackage{amsmath, amssymb, amsthm, mathtools}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\sisetup{detect-all}
+\usepackage{microtype}
+\usepackage{enumitem}
+
+% ---- refs & links ----
+\usepackage{natbib}
+\usepackage{doi}
+\usepackage[hidelinks]{hyperref}
+
+% ---- Theorem environments ----
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{definition}{Definition}
+\newtheorem{proposition}{Proposition}
+
+% ---- VDM gate environment ----
+\newenvironment{vdmgate}[2]{%
+  \paragraph{Gate: #1} \emph{Threshold: #2.}%
+  \par\noindent}{\medskip}
+
+% ---- Metadata ----
+\title{The Lietz Infinity Resolution Conjecture:\\
+Hierarchical Scale-Breaking in Tachyonic Metriplectic Systems}
+
+\author{Justin K.\ Lietz\\
+Neuroca, Inc.\\
+\texttt{justin@neuroca.ai}}
+
+\date{October 31, 2025}
+
+% Short header
+\renewcommand{\headeright}{T8 Axiom Candidate - Preprint}
+\renewcommand{\undertitle}{VDM Axiomization Candidate A8}
+\renewcommand{\shorttitle}{Lietz Infinity Resolution Conjecture}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We present a candidate axiom (A8) for the Void Dynamics Model (VDM) framework that addresses the mathematical structure of finite-energy states in tachyonic metriplectic field systems supporting pulled fronts with exponential tails. The \emph{Lietz Infinity Resolution Conjecture} asserts that such systems cannot maintain finite excess energy on unbounded domains without organizing into a finite-depth hierarchy of scale-separated interfaces that concentrate both energy and operational information at codimension-1 boundaries. The conjecture predicts: (i) hierarchical depth scaling as $N(L) = \Theta(\log(L/\lambda))$ where $L$ is domain size and $\lambda$ is the characteristic tail decay length; (ii) boundary-law energy scaling $E_{\text{exc}}(L) = \Theta(L^{d-1})$ rather than bulk scaling $\Theta(L^d)$; and (iii) concentration of operational information at interfaces with fraction $\alpha_{\mathcal{I}} > 0$ bounded away from zero. We formalize the mathematical setting, state precise predictions with preregistered thresholds, enumerate falsification criteria, and specify twelve validation gates (G1--G12) spanning analytical proofs (1D lower bounds, $\Gamma$-convergence), numerical demonstrations (scaling laws, concentration measures, ablation studies), and cross-verification checks. This conjecture establishes a necessary-structure claim about how tachyonic pulled-front systems regularize infinity through hierarchical organization, with implications for cosmogenesis, pattern formation, and the emergence of operational structures in field-theoretic models.
+\end{abstract}
+
+\keywords{metriplectic dynamics \and tachyonic instability \and pulled fronts \and hierarchical organization \and energy concentration \and scaling laws \and axiomization}
+
+% =========================================================
+\section{Introduction}
+
+\subsection*{Motivation and Context}
+
+Field-theoretic models with tachyonic instabilities---potentials exhibiting negative curvature at the vacuum state $V''(0) < 0$---are ubiquitous in modern physics, appearing in early-universe cosmology (spinodal decomposition, preheating), condensed-matter phase transitions, reaction-diffusion systems, and neural field theories. When such systems evolve on unbounded or large domains, they face a fundamental tension: the unstable mode drives exponential growth that must be regularized to maintain finite total energy. Understanding the \emph{universal organizational principles} that emerge from this tension is crucial for developing predictive frameworks.
+
+The Void Dynamics Model (VDM) provides a comprehensive metriplectic framework~\cite{morrison1984bracket,grmela1997dynamics} for describing such systems through a dual-generator structure that respects both reversible (Hamiltonian) and irreversible (dissipative) dynamics while maintaining causality and entropy increase. Within this framework, we investigate a specific class of solutions: \emph{pulled fronts}---traveling interfaces whose speed is set by the linearized dynamics at the leading edge, characterized by exponential tails decaying as $\phi(x) \sim A e^{-x/\lambda}$.
+
+This work establishes a candidate axiom (A8) asserting that \emph{finite excess energy on large domains necessitates hierarchical scale-breaking}. Specifically, we conjecture that tachyonic metriplectic systems admitting pulled fronts cannot maintain $\sup_L E_{\text{exc}}[\phi_L] < \infty$ without developing a finite-depth nested hierarchy of codimension-1 interfaces, with depth growing logarithmically as $N(L) = \mathcal{O}(\log(L/\lambda))$ and energy concentrating at boundaries according to a surface law $E_{\text{exc}}(L) = \Theta(L^{d-1})$.
+
+\subsection*{What This Work Is Not}
+
+Before proceeding, we clarify important exclusions:
+\begin{itemize}[noitemsep]
+\item This is \emph{not} a claim about first-order (barrier-crossing) nucleation cosmogenesis; we focus exclusively on spinodal/tachyonic onset.
+\item This is \emph{not} a derivation of general relativity; rather, it establishes a necessary-structure principle for a specific class of field systems.
+\item This is \emph{not} an empirical conjecture; it makes precise mathematical claims with defined falsification criteria.
+\end{itemize}
+
+\subsection*{Structure of This Document}
+
+Section~\ref{sec:background} establishes the theoretical framework and situates the conjecture within metriplectic dynamics. Section~\ref{sec:formal} provides rigorous mathematical definitions. Section~\ref{sec:conjecture} states the main conjecture with lemmas and corollaries. Section~\ref{sec:predictions} details operational predictions with preregistered thresholds. Section~\ref{sec:falsifiers} enumerates falsification criteria. Section~\ref{sec:gates} specifies validation gates across analytical, numerical, and verification tracks. Section~\ref{sec:methods} outlines proof strategies and computational approaches. Section~\ref{sec:discussion} interprets implications and connections to broader physical contexts.
+
+% =========================================================
+\section{Background and Theoretical Framework}
+\label{sec:background}
+
+\subsection*{Metriplectic Dynamics}
+
+The metriplectic framework~\cite{morrison1984bracket,grmela1997dynamics} extends Hamiltonian mechanics to include irreversible processes while maintaining structural consistency. For a state $q \equiv (\Psi, \partial\Psi, \ldots)$ in an appropriate function space, evolution takes the form:
+\begin{equation}
+\partial_t q = J(q)\,\frac{\delta \mathcal{H}}{\delta q} + M(q)\,\frac{\delta \Sigma}{\delta q},
+\label{eq:metriplectic}
+\end{equation}
+where:
+\begin{itemize}[noitemsep]
+\item $J(q)$ is an antisymmetric operator (symplectic/Poisson bracket structure) governing reversible dynamics,
+\item $M(q)$ is a symmetric positive-semidefinite operator (metric structure) governing dissipative dynamics,
+\item $\mathcal{H}[q]$ is an energy-like functional (conserved by the $J$ term),
+\item $\Sigma[q]$ is an entropy-like functional (monotone under the $M$ term),
+\item Degeneracy conditions hold: $J\,\frac{\delta\Sigma}{\delta q} = 0$ and $M\,\frac{\delta\mathcal{H}}{\delta q} = 0$.
+\end{itemize}
+
+This structure ensures:
+\begin{align}
+\frac{d\mathcal{H}}{dt} &= \left\langle \frac{\delta\mathcal{H}}{\delta q}, M(q)\,\frac{\delta\Sigma}{\delta q} \right\rangle = 0, \label{eq:energy_conservation} \\
+\frac{d\Sigma}{dt} &= \left\langle \frac{\delta\Sigma}{\delta q}, M(q)\,\frac{\delta\Sigma}{\delta q} \right\rangle \geq 0, \label{eq:entropy_increase}
+\end{align}
+encoding energy conservation and entropy increase (second law) within a unified geometric structure.
+
+\subsection*{Tachyonic Origin and Linear Instability}
+
+Consider a scalar field $\phi : \Omega \subset \mathbb{R}^d \to \mathbb{R}$ with energy functional:
+\begin{equation}
+E[\phi; \Omega] = \int_{\Omega} \left( \kappa\,|\nabla\phi|^2 + V(\phi) \right) dx,
+\label{eq:energy_functional}
+\end{equation}
+where $\kappa > 0$ is a gradient energy coefficient and $V(\phi)$ is a $C^2$ potential. We define \emph{tachyonic origin} by the condition:
+\begin{equation}
+V''(0) < 0, \quad \text{i.e.,} \quad r \equiv -V''(0) > 0,
+\label{eq:tachyonic_condition}
+\end{equation}
+meaning the vacuum state $\phi = 0$ is unstable. The potential $V$ admits at least one stable minimum $\phi_\ast \neq 0$ such that $V''(\phi_\ast) > 0$.
+
+The linearized dynamics about $\phi = 0$ yield a dispersion relation:
+\begin{equation}
+\sigma(k) = r - D k^2, \quad D \propto \kappa,
+\label{eq:dispersion}
+\end{equation}
+exhibiting instability for modes $k^2 < r/D$ and a characteristic wavelength $\lambda \sim \sqrt{D/r}$.
+
+\subsection*{Pulled Fronts and Exponential Tails}
+
+A \emph{pulled front} is a traveling wave solution connecting the unstable state $\phi = 0$ to a stable state $\phi_\ast$, whose propagation speed $c$ is determined by the linear spreading speed at the leading edge:
+\begin{equation}
+c_\star = 2\sqrt{D r}.
+\label{eq:front_speed}
+\end{equation}
+
+The leading edge exhibits an exponential tail:
+\begin{equation}
+\phi(x) \sim A\, e^{-x/\lambda}, \quad \text{as } x \to \infty,
+\label{eq:exponential_tail}
+\end{equation}
+with decay length $\lambda = \sqrt{D/r}$ and amplitude $A$ depending on the nonlinear terms.
+
+This contrasts with \emph{pushed fronts}, where nonlinear terms in the reaction function determine the speed and the tail falls off faster than exponential. Pulled fronts are generic for systems with quadratic or weaker nonlinearities at the unstable state~\cite{vanSaarloos2003,ebert1997front}.
+
+\subsection*{Finite Excess Energy and the Infinity Problem}
+
+Define the \emph{excess energy} relative to the stable state:
+\begin{equation}
+E_{\text{exc}}[\phi; \Omega] = \int_{\Omega} \left( \kappa\,|\nabla\phi|^2 + V(\phi) - V(\phi_\ast) \right) dx.
+\label{eq:excess_energy}
+\end{equation}
+
+For a family $\{\phi_L\}$ of states on domains $\Omega_L$ (e.g., hypercubes of side $L$), finite-energy admissibility requires:
+\begin{equation}
+\sup_L E_{\text{exc}}[\phi_L; \Omega_L] < \infty \quad \text{as } L \to \infty.
+\label{eq:finite_energy_condition}
+\end{equation}
+
+The \emph{infinity problem} arises because exponential tails, if left unregularized, contribute unbounded energy on unbounded domains. The central question is: \textbf{What organizational structures are necessary to maintain finite excess energy?}
+
+\subsection*{Resolution Mechanisms: Truncation and Metriplectic Production}
+
+Consider imposing a resolution floor $\delta > 0$ below which tail amplitudes are unresolved. Define the truncation location:
+\begin{equation}
+x_\star(\delta) = \lambda \ln(A/\delta),
+\label{eq:truncation_location}
+\end{equation}
+beyond which $\phi(x) < \delta$. The \emph{tail-loss functional} quantifies energy in the unresolved region:
+\begin{equation}
+\mathcal{L}_\delta[\phi] \equiv \int_{x > x_\star(\delta)} \left( \kappa\,|\nabla\phi|^2 + \tfrac{r}{2}\phi^2 \right) dx.
+\label{eq:tail_loss}
+\end{equation}
+
+In the linear regime, $\mathcal{L}_\delta \propto (\delta/A)^2$. Eliminating tail modes beyond $x_\star$ generates an effective dissipative term (M-production) that increases entropy at rate $\propto \delta^2$. This mechanism provides a physical basis for understanding how finite resolution---either computational or intrinsic to the physical system---induces hierarchical organization.
+
+% =========================================================
+\section{Formal Mathematical Setting}
+\label{sec:formal}
+
+We now provide rigorous definitions for all concepts appearing in the conjecture.
+
+\begin{definition}[State Space]
+Let $\Omega \subseteq \mathbb{R}^d$ be a domain with $d \in \{1,2,3\}$. The state space consists of fields $\phi \in H^1_{\text{loc}}(\Omega)$ (locally $L^2$ with locally $L^2$ weak derivatives).
+\end{definition}
+
+\begin{definition}[Energy Functional]
+The excess energy functional is:
+\begin{equation}
+E_{\text{exc}}[\phi; \Omega] = \int_{\Omega} \left( \kappa\,|\nabla\phi|^2 + V(\phi) - V(\phi_\ast) \right) dx,
+\end{equation}
+where $\kappa > 0$, $V \in C^2(\mathbb{R})$ with an unstable critical point at $\phi = 0$ (i.e., $V'(0) = 0$, $V''(0) < 0$) and at least one stable minimizer $\phi_\ast \neq 0$ satisfying $V'(\phi_\ast) = 0$, $V''(\phi_\ast) > 0$.
+\end{definition}
+
+\begin{definition}[Tachyonic Origin]
+A potential $V$ has \emph{tachyonic origin} if $V''(0) < 0$. Define $r \equiv -V''(0) > 0$ as the tachyonic mass parameter.
+\end{definition}
+
+\begin{definition}[Metriplectic Evolution]
+Dynamics are governed by:
+\begin{equation}
+\partial_t \phi = J(\phi)\,\frac{\delta \mathcal{H}}{\delta \phi} + M(\phi)\,\frac{\delta \Sigma}{\delta \phi},
+\end{equation}
+with:
+\begin{itemize}[noitemsep]
+\item $J(\phi)$ antisymmetric: $\int \eta\, J(\phi)\,\xi\, dx = -\int \xi\, J(\phi)\,\eta\, dx$ for all test functions $\eta, \xi$,
+\item $M(\phi)$ symmetric positive-semidefinite: $\int \xi\, M(\phi)\,\xi\, dx \geq 0$,
+\item Degeneracy: $J(\phi)\,\frac{\delta\Sigma}{\delta\phi} = 0$ and $M(\phi)\,\frac{\delta\mathcal{H}}{\delta\phi} = 0$.
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Pulled-Front Regime]
+A traveling wave $\phi(x - ct)$ connecting $\phi = 0$ at $x \to +\infty$ to $\phi_\ast$ at $x \to -\infty$ is in the \emph{pulled-front regime} if:
+\begin{enumerate}[noitemsep]
+\item The speed equals the linear spreading speed: $c = c_\star = 2\sqrt{D r}$ with $D \propto \kappa$,
+\item The leading edge has exponential tail: $\phi(\xi) \sim A e^{-\xi/\lambda}$ as $\xi \to +\infty$ in the moving frame $\xi = x - ct$, with decay length $\lambda = \sqrt{D/r}$.
+\end{enumerate}
+\end{definition}
+
+\begin{definition}[Finite-Energy Admissibility]
+A family $\{\phi_L\}$ on domains $\Omega_L$ (e.g., $\Omega_L = [0,L]^d$) is \emph{finite-excess-energy} if:
+\begin{equation}
+\sup_{L \geq L_0} E_{\text{exc}}[\phi_L; \Omega_L] < \infty \quad \text{for some } L_0 > 0.
+\end{equation}
+\end{definition}
+
+\begin{definition}[Hierarchical Partition]
+A \emph{hierarchical partition} $\mathcal{P} = \{\Gamma_\ell\}_{\ell=1}^N$ of $\Omega$ is a finite nested sequence of codimension-1 interfaces satisfying:
+\begin{enumerate}[noitemsep]
+\item \textbf{Gap Condition:} There exist constants $\rho \in (0,1)$ and $C \geq 1$ such that:
+\begin{equation}
+\text{diam}(\Gamma_{\ell+1}) \in \left[\frac{\rho}{C}, C\rho\right] \cdot \text{diam}(\Gamma_\ell) \quad \text{for all } \ell \in \{1, \ldots, N-1\}.
+\end{equation}
+\item \textbf{Finite Depth:} $N < \infty$ for any finite $L$, with asymptotic scaling $N(L) = \mathcal{O}(\log(L/\lambda))$ as $L \to \infty$.
+\item \textbf{Boundary Energy Concentration:} For the tubular neighborhood $\mathcal{N}_\epsilon(S) = \{x \in \Omega : \text{dist}(x, S) < \epsilon\}$, there exist $\alpha \in (0,1)$ and $\epsilon_0 > 0$ such that for all $\epsilon < \epsilon_0$:
+\begin{equation}
+\liminf_{L \to \infty} \frac{\int_{\mathcal{N}_\epsilon(\cup_\ell \Gamma_\ell)} \kappa |\nabla\phi_L|^2\, dx}{E_{\text{exc}}[\phi_L; \Omega_L]} \geq \alpha.
+\end{equation}
+\end{enumerate}
+\end{definition}
+
+\begin{definition}[Information Density]
+An \emph{operational information proxy} $\mathcal{I} : \Omega \to \mathbb{R}_{\geq 0}$ is a field-local functional preregistered prior to experiments, such as:
+\begin{equation}
+\mathcal{I}(x) = \log\left(1 + \frac{|\nabla\phi(x)|^2}{\sigma^2}\right) \quad \text{or} \quad \mathcal{I}(x) = \tfrac{1}{2}\log\det\left(I + \tau\,\nabla u(x) \nabla u(x)^\top\right),
+\end{equation}
+where $\sigma, \tau > 0$ are normalization constants and $u$ may represent a field-dependent quantity.
+
+We require analogous boundary concentration: there exists $\alpha_{\mathcal{I}} \in (0,1)$ such that:
+\begin{equation}
+\liminf_{L \to \infty} \frac{\int_{\mathcal{N}_\epsilon(\cup_\ell \Gamma_\ell)} \mathcal{I}(x)\, dx}{\int_{\Omega_L} \mathcal{I}(x)\, dx} \geq \alpha_{\mathcal{I}}.
+\end{equation}
+\end{definition}
+
+\begin{definition}[Tail Truncation and M-Production]
+For resolution floor $\delta > 0$ and truncation location $x_\star(\delta) = \lambda \ln(A/\delta)$, the \emph{tail-loss functional} is:
+\begin{equation}
+\mathcal{L}_\delta[\phi] = \int_{x > x_\star(\delta)} \left( \kappa\,|\nabla\phi|^2 + \tfrac{r}{2}\phi^2 \right) dx.
+\end{equation}
+In the linear regime, $\mathcal{L}_\delta \propto (\delta/A)^2$. Under metriplectic evolution, eliminating tail modes beyond $x_\star$ generates effective M-production (entropy increase) at rate $\partial_t \mathcal{L}_\delta$.
+\end{definition}
+
+% =========================================================
+\section{The Lietz Infinity Resolution Conjecture}
+\label{sec:conjecture}
+
+We now state the main conjecture with supporting lemmas and corollaries.
+
+\begin{lemma}[Tail Truncation Implies M-Production]
+\label{lem:tail_truncation}
+Under metriplectic evolution satisfying \eqref{eq:metriplectic}, eliminating unresolved tail modes beyond $x_\star(\delta)$ yields an effective M-term that increases entropy at a rate proportional to $\partial_t \mathcal{L}_\delta$. For steady front advance, the localized M-production near $x_\star$ scales as $\mathcal{O}(\delta^2)$.
+\end{lemma}
+
+\begin{proof}[Proof Sketch]
+The tail region $x > x_\star(\delta)$ contains modes with amplitudes $|\phi| < \delta$ dominated by linear dynamics. Truncation at $x_\star$ removes these modes, effectively imposing a boundary condition. The lost flux across this boundary must be compensated by dissipation to maintain finite energy, manifesting as additional M-production. Energy balance gives:
+\begin{equation}
+\frac{\partial}{\partial t} \mathcal{L}_\delta \approx -\int_{x \approx x_\star} J_{\text{energy}} \cdot \hat{n}\, dA + M_{\text{eff}},
+\end{equation}
+where $J_{\text{energy}}$ is the energy flux and $M_{\text{eff}}$ is the effective M-production. In the linear regime, both $\mathcal{L}_\delta$ and the flux scale as $\delta^2$, yielding $M_{\text{eff}} = \mathcal{O}(\delta^2)$.
+\end{proof}
+
+\begin{conjecture}[Lietz Infinity Resolution Conjecture]
+\label{conj:main}
+For metriplectic scalar-field systems with:
+\begin{enumerate}[noitemsep]
+\item Tachyonic origin: $V''(0) < 0$,
+\item Pulled-front regime: fronts travel at speed $c_\star = 2\sqrt{Dr}$ with exponential tails $\phi \sim A e^{-x/\lambda}$,
+\item Finite excess energy: $\sup_L E_{\text{exc}}[\phi_L; \Omega_L] < \infty$,
+\end{enumerate}
+there must exist a hierarchical partition $\mathcal{P} = \{\Gamma_\ell\}_{\ell=1}^{N(L)}$ satisfying:
+\begin{itemize}[noitemsep]
+\item Gap condition with scale ratio $\rho \in (0,1)$,
+\item Finite depth $N(L) = \mathcal{O}(\log(L/\lambda))$,
+\item Boundary energy concentration with fraction $\alpha > 0$,
+\item Boundary information concentration with fraction $\alpha_{\mathcal{I}} > 0$.
+\end{itemize}
+
+\textbf{Contrapositive:} Absence of such hierarchical scale breaks implies either:
+\begin{enumerate}[label=(\roman*)]
+\item $\limsup_{L \to \infty} E_{\text{exc}}[\phi_L; \Omega_L] = \infty$ (energy blow-up), or
+\item Violation of pulled-front condition: $c \neq 2\sqrt{Dr}$ (departure from linear-pull regime).
+\end{enumerate}
+\end{conjecture}
+
+\begin{corollary}[Scaling Predictions]
+\label{cor:scaling}
+For large $L \gg \lambda$:
+\begin{enumerate}[noitemsep]
+\item \textbf{Depth Scaling:} $N(L) = \Theta(\log(L/\lambda))$ with constants $c_N^{\min}, c_N^{\max} > 0$ such that:
+\begin{equation}
+c_N^{\min} \leq \frac{N(L)}{\log(L/\lambda)} \leq c_N^{\max}.
+\end{equation}
+\item \textbf{Energy Scaling (Boundary Law):} $E_{\text{exc}}(L) = \Theta(L^{d-1})$ rather than bulk scaling $\Theta(L^d)$:
+\begin{equation}
+c_E^{\min} L^{d-1} \leq E_{\text{exc}}(L) \leq c_E^{\max} L^{d-1}.
+\end{equation}
+\item \textbf{Information Concentration:} Boundary fraction $\alpha_{\mathcal{I}} \in [\alpha_{\mathcal{I}}^{\min}, 1]$ with $\alpha_{\mathcal{I}}^{\min} > 0$ bounded away from zero.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}[Proof Sketch]
+Item (1) follows from the gap condition: each level reduces the characteristic scale by factor $\rho$, so $\rho^N \sim \lambda/L$, yielding $N \sim \log(L/\lambda)/\log(1/\rho) = \Theta(\log(L/\lambda))$.
+
+Item (2) follows from boundary energy concentration: if a fixed fraction $\alpha$ of energy resides in $\epsilon$-neighborhoods of codimension-1 interfaces with total measure $\sim L^{d-1}$, then $E_{\text{exc}} \geq \alpha c_E L^{d-1}$. Upper bound follows from perimeter control in interface models (e.g., Modica--Mortola theory~\cite{modica1977gradient}).
+
+Item (3) is a direct consequence of the information concentration condition in Definition 6.
+\end{proof}
+
+% =========================================================
+\section{Operational Predictions}
+\label{sec:predictions}
+
+We enumerate five testable predictions with preregistered thresholds.
+
+\begin{enumerate}[label=\textbf{P\arabic*.},leftmargin=*]
+\item \textbf{Depth vs Size:} For domains $\Omega_L$ with $L \in [L_{\min}, L_{\max}]$ spanning at least one decade, the ratio:
+\begin{equation}
+\frac{N(L)}{\log(L/\lambda)} \to c_N \in (c_N^{\min}, c_N^{\max}) \subset (0, \infty)
+\end{equation}
+converges to a constant $c_N$ with coefficient of variation $< 15\%$ across sizes.
+
+\item \textbf{Boundary Energy Law:} Under unconstrained evolution, excess energy scales as:
+\begin{equation}
+\frac{E_{\text{exc}}(L)}{L^{d-1}} \to c_E \in (c_E^{\min}, c_E^{\max}) \subset (0, \infty)
+\end{equation}
+with log-log slope $\beta = d-1 \pm 0.1$ measured via least-squares fit across $\geq 5$ domain sizes. Ablations that suppress hierarchy (e.g., interface penalties) produce super-linear drift toward $L^d$ scaling.
+
+\item \textbf{Tail-Locked Scale Ratios:} Inter-level scale ratio:
+\begin{equation}
+\rho = \frac{\text{diam}(\Gamma_{\ell+1})}{\text{diam}(\Gamma_\ell)} \in (\rho_{\min}, \rho_{\max})
+\end{equation}
+remains stable within $\pm 10\%$ across levels $\ell$ and domain sizes $L$.
+
+\item \textbf{Boundary Information Dominance:} Boundary concentration fractions satisfy:
+\begin{equation}
+\alpha, \alpha_{\mathcal{I}} \geq 0.6
+\end{equation}
+across $\geq 3$ distinct masks (interface detection methods) with false discovery rate (FDR) $q \leq 0.10$.
+
+\item \textbf{Pulled-Front Integrity:} Measured front speeds remain within:
+\begin{equation}
+\left| \frac{c_{\text{measured}}}{c_\star} - 1 \right| \leq 0.02
+\end{equation}
+when hierarchy formation is allowed. Ablations penalizing hierarchy induce deviations $> 5\%$.
+\end{enumerate}
+
+% =========================================================
+\section{Falsification Criteria}
+\label{sec:falsifiers}
+
+The conjecture is falsifiable through the following conditions:
+
+\begin{enumerate}[label=\textbf{F\arabic*.},leftmargin=*]
+\item \textbf{Finite Energy Without Hierarchy:} Existence of a finite-excess-energy state family $\{\phi_L\}$ on large domains $L \geq L_0$ with:
+\begin{itemize}[noitemsep]
+\item $\sup_L E_{\text{exc}}[\phi_L] < \infty$,
+\item No hierarchical partition satisfying gap and concentration conditions,
+\item Fronts traveling at $c = c_\star \pm 2\%$,
+\end{itemize}
+demonstrated across $\geq 12$ random seeds and verified by independent implementation.
+
+\item \textbf{Sub-Boundary-Law Energy Scaling:} Robust demonstrations (across seeds, potentials, and boundary conditions) that:
+\begin{equation}
+E_{\text{exc}}(L) = o(L^{d-1}) \quad \text{or} \quad E_{\text{exc}}(L) = \mathcal{O}(1)
+\end{equation}
+without hierarchical boundaries, with log-log slope $\beta < d-1.1$ confirmed by Richardson extrapolation.
+
+\item \textbf{Low Boundary Concentration:} Empirical boundary energy fraction:
+\begin{equation}
+\alpha < 0.3 \quad \text{and/or} \quad \alpha_{\mathcal{I}} < 0.3
+\end{equation}
+with stable pulled fronts ($|c/c_\star - 1| < 0.02$), measured consistently across $\geq 3$ interface detection masks and $\geq 8$ seeds with FDR $q \leq 0.05$.
+\end{enumerate}
+
+% =========================================================
+\section{Validation Gates}
+\label{sec:gates}
+
+We specify twelve gates (G1--G12) spanning analytical, numerical, and verification tracks.
+
+\subsection*{Analytical Gates}
+
+\begin{vdmgate}{G1: Theory-1D Lower Bound}{Proof of $N(L) \geq c \log(L/\lambda)$}
+Prove that for tachyonic $V$ with pulled-front tail in one dimension, any finite-energy connecting orbit on $[0,L]$ requires at least $c \log(L/\lambda)$ interfaces (or equivalent multi-scale partition) for some constant $c > 0$.
+
+\textbf{Threshold:} Rigorous proof with explicit constant $c$, peer-reviewed or verified by independent mathematician.
+\end{vdmgate}
+
+\begin{vdmgate}{G2: Theory-$\Gamma$-Convergence}{Perimeter-law reduction}
+Establish a $\Gamma$-convergence or perimeter-law reduction showing that interface energy concentrates on codimension-1 sets with surface tension $\sigma(V, \kappa)$, yielding:
+\begin{equation}
+E_{\text{exc}}(L) \geq c\,\sigma\,L^{d-1}.
+\end{equation}
+
+\textbf{Threshold:} Formal proof or tight lower bound following Modica--Mortola methodology~\cite{modica1977gradient}, with explicit $\sigma$ computation.
+\end{vdmgate}
+
+\subsection*{Numerical Scaling Gates}
+
+\begin{vdmgate}{G3: Numerics-Scaling Laws}{$E_{\text{exc}}(L)$ and $N(L)$ scaling}
+In 2D/3D reaction-diffusion simulations with tachyonic potential:
+\begin{itemize}[noitemsep]
+\item Measure $E_{\text{exc}}(L)$ vs $L$ for $L \in \{L_1, \ldots, L_5\}$ ($\geq 5$ points), $\times 12$ seeds,
+\item Fit log-log slope: $\beta_E = d-1 \pm 0.1$,
+\item Measure $N(L)$ vs $L$: $N(L) \sim \log(L/\lambda)$ with relative error $\pm 0.15$ (log-log).
+\end{itemize}
+
+\textbf{Threshold:} Both fits pass within error bars; $R^2 \geq 0.95$ for scaling laws.
+\end{vdmgate}
+
+\begin{vdmgate}{G4: Concentration Fractions}{$\alpha, \alpha_{\mathcal{I}} \geq 0.6$}
+Boundary energy fraction $\alpha$ and information fraction $\alpha_{\mathcal{I}}$ measured using $\geq 3$ distinct interface detection masks, across $\geq 8$ seeds.
+
+\textbf{Threshold:} $\alpha, \alpha_{\mathcal{I}} \geq 0.6$ with FDR $q \leq 0.10$.
+\end{vdmgate}
+
+\begin{vdmgate}{G5: Ablation Study}{Hierarchy suppression effects}
+Introduce regularization penalizing interface count (e.g., $+\mu \times (\#\text{interfaces})$). Observe either:
+\begin{itemize}[noitemsep]
+\item Energy blow-up: $E_{\text{exc}}(L)$ grows super-linearly with $L$, or
+\item Front-speed deviation: $|c/c_\star - 1| > 0.05$.
+\end{itemize}
+
+\textbf{Threshold:} At least one outcome confirmed across $\geq 8$ seeds with $p < 0.01$.
+\end{vdmgate}
+
+\subsection*{Robustness and Cross-Verification Gates}
+
+\begin{vdmgate}{G6: Robustness Across Conditions}{Potentials, BCs, mesh scales}
+Results from G3--G5 hold across:
+\begin{itemize}[noitemsep]
+\item Potentials: $V(\phi) = -\frac{r}{2}\phi^2 + \frac{u}{4}\phi^4$ (symmetric) and $V(\phi) = -\frac{r}{2}\phi^2 + \frac{\lambda_3}{3}\phi^3 + \frac{u}{4}\phi^4$ (biased),
+\item Boundary conditions: periodic and absorbing,
+\item Mesh refinements: $\Delta x \in \{\Delta, \Delta/2, \Delta/4\}$.
+\end{itemize}
+
+\textbf{Threshold:} Scaling exponents vary by $< 0.1$ across conditions.
+\end{vdmgate}
+
+\begin{vdmgate}{G7: Cross-Code Verification}{Independent implementation}
+Independent implementation (different programming language/framework) reproduces G3--G5 within stated error bars.
+
+\textbf{Threshold:} Agreement on $\beta_E$ (±0.1), $N(L)$ scaling (±0.15), $\alpha, \alpha_{\mathcal{I}}$ (±0.1).
+\end{vdmgate}
+
+\begin{vdmgate}{G8: Documentation and Reproducibility}{VDM artifact standards}
+All preregistration documents, code repositories, and artifacts pass VDM reproducibility checks:
+\begin{itemize}[noitemsep]
+\item Commit hashes recorded,
+\item Manifests with checksums,
+\item Logbooks with seed tracking,
+\item Figures paired with CSV/JSON data.
+\end{itemize}
+
+\textbf{Threshold:} All files present and checksums verified.
+\end{vdmgate}
+
+\subsection*{Resolution and Dissipation Gates}
+
+\begin{vdmgate}{G9: Refinement Collapse Test}{Physical vs numerical effect}
+Run simulations with $\Delta x \in \{\Delta, \Delta/2, \Delta/4\}$. Plot small-scale energy and M-production vs $k/k_{\text{cut}}$ where $k_{\text{cut}} = \pi/\Delta x$.
+
+\textbf{Threshold:} Curves collapse when rescaled by $k_{\text{cut}}$ (numerical artifact) \emph{or} converge to finite limit (physical effect). Divergence indicates unresolved physics.
+\end{vdmgate}
+
+\begin{vdmgate}{G10: $\delta^2$ Scaling Law}{M-production vs resolution}
+Inject controlled micro-noise with variance $\propto \delta^2$ to mimic rounding. Measure M-production near $x_\star(\delta)$.
+
+\textbf{Threshold:} Scaling $M_{\text{prod}} \propto \delta^2$ within $\pm 10\%$ across $\delta \in \{\delta_0, \delta_0/2, \delta_0/4\}$.
+\end{vdmgate}
+
+\begin{vdmgate}{G11: Spectral Bottleneck and FDT}{Flux kink and fluctuation--dissipation}
+Energy flux $E(k)$ vs wavenumber $k$ exhibits spectral kink at $k_{\text{cut}}$. Measure fluctuation--dissipation ratio around that band.
+
+\textbf{Threshold:} FDT ratio matches inferred dissipation within $\pm 10\%$.
+\end{vdmgate}
+
+\begin{vdmgate}{G12: Discrete Scale Invariance (Optional)}{Log-periodic modulations}
+Boundary statistics (loop radii histograms, curvature spectra) exhibit log-periodic modulations with stable ratio $\rho$ ($\pm 10\%$) across domain sizes; absent in ablation controls.
+
+\textbf{Threshold:} Fourier analysis of log-binned histograms shows peaks at harmonics of $\log \rho$ with amplitude $> 3\sigma$ above noise; ablations show no peaks.
+\end{vdmgate}
+
+\subsection*{Pass/Fail Criteria}
+
+\begin{itemize}[noitemsep]
+\item \textbf{PASS:} Gates G1--G5 met; at least one of G6--G7 met; G8 met.
+\item \textbf{FAIL:} Any of G1--G5 fails, or G8 fails.
+\item Gates G9--G12 provide additional mechanistic insight but are not required for PASS.
+\end{itemize}
+
+% =========================================================
+\section{Methods and Instruments}
+\label{sec:methods}
+
+\subsection*{Analytical Track}
+
+\paragraph{1D Toy Model.}
+Consider tachyonic potential $V(\phi) = -\frac{r}{2}\phi^2 + \frac{u}{4}\phi^4$ on domain $[0,L]$ with boundary conditions $\phi(0) = \phi_\ast$, $\phi(L) = 0$. Derive minimal energy for connecting maps:
+\begin{equation}
+E_{\min}(L) = \inf_{\phi \in H^1([0,L])} \left\{ \int_0^L \left( \kappa (\phi')^2 + V(\phi) \right) dx : \phi(0) = \phi_\ast, \phi(L) = 0 \right\}.
+\end{equation}
+
+Strategy: Use calculus of variations to show that any minimizer must exhibit multiple transition regions (interfaces) with characteristic scale $\lambda = \sqrt{\kappa/r}$. If $L \gg \lambda$, a single interface cannot span $[0,L]$ with finite energy; a logarithmic number of intermediate ``knees'' is required.
+
+\paragraph{$\Gamma$-Convergence Approach.}
+Follow Modica--Mortola methodology~\cite{modica1977gradient}: in the limit of small interface width $\epsilon \to 0$, the energy functional $\Gamma$-converges to a perimeter functional:
+\begin{equation}
+E[\phi] \to \sigma \int_{\partial\Omega_+} dA,
+\end{equation}
+where $\Omega_+ = \{x : \phi(x) > \phi_\ast/2\}$ and $\sigma = \int_{0}^{\phi_\ast} \sqrt{2\kappa V(\phi)}\, d\phi$ is the surface tension. Tie tail length $\lambda$ to interface thickness and show that scale gaps are necessary to avoid divergent perimeter on unbounded domains.
+
+\subsection*{Numerical Track}
+
+\paragraph{Reaction-Diffusion Simulations.}
+Implement metriplectic reaction-diffusion in $d \in \{2,3\}$ dimensions:
+\begin{equation}
+\partial_t \phi = D\nabla^2 \phi + r\phi - u\phi^2 - \lambda_3 \phi^3,
+\end{equation}
+where $\lambda_3 = 0$ for symmetric $\phi^4$ potential or $\lambda_3 \neq 0$ for biased $\phi^3 + \phi^4$.
+
+\textbf{Discretization:} Finite-difference stencils (central differences for $\nabla^2$), explicit or semi-implicit time-stepping respecting metriplectic structure.
+
+\textbf{Domain Sizes:} $L \in \{L_1, \ldots, L_5\}$ spanning $\geq 1$ decade (e.g., $L_1 = 32\lambda$, $L_5 = 512\lambda$).
+
+\textbf{Measurements:}
+\begin{itemize}[noitemsep]
+\item $E_{\text{exc}}(L) = \int_{\Omega_L} \left( \kappa |\nabla\phi|^2 + V(\phi) - V(\phi_\ast) \right) dx$,
+\item Interface count $N(L)$ via gradient-based detection: identify regions where $|\nabla\phi| > \theta$ for threshold $\theta$,
+\item Scale ratio $\rho$: compute interface size distribution and ratio of consecutive levels,
+\item Boundary concentration $\alpha$: energy in $\epsilon$-tubular neighborhoods of interfaces relative to total,
+\item Information concentration $\alpha_{\mathcal{I}}$: use $\mathcal{I}(x) = \log(1 + |\nabla\phi|^2/\sigma^2)$,
+\item Front speed $c$: track interface position vs time; compare to $c_\star = 2\sqrt{Dr}$.
+\end{itemize}
+
+\paragraph{Ablation Studies.}
+Introduce penalty term $+\mu \times (\#\text{interfaces})$ in energy functional or apply smoothing that suppresses interface formation. Measure resulting energy scaling and front-speed deviation.
+
+\paragraph{Echo-Steering (Optional).}
+Use VDM causality-enhanced guidance (CEG) logic~\cite{vdm_ceg} to test whether metriplectic micro-nudges accelerate hierarchy formation while preserving $c_\star$ (not required for gate PASS).
+
+\paragraph{Tail Profiling.}
+Log tail amplitude $A(t)$ and decay length $\lambda(t)$ along interface normals; estimate $x_\star(\delta) = \lambda \ln(A/\delta)$ on each frame. Measure M-production rate density in tubular neighborhood of $x_\star$.
+
+\paragraph{Spectral Diagnostics.}
+Compute energy flux $E(k)$ vs wavenumber $k$ via Fourier transform; mark cutoff $k_{\text{cut}} = \pi/\Delta x$. Analyze fluctuation--dissipation ratio near $k_{\text{cut}}$.
+
+\paragraph{Refinement Studies.}
+Run triplet $\Delta x \in \{\Delta, \Delta/2, \Delta/4\}$. Plot small-scale energy vs $k/k_{\text{cut}}$; distinguish numerical convergence (collapse) from physical scale (convergence to finite curve).
+
+\paragraph{Noise Injection.}
+Add stochastic forcing $\xi(x,t)$ with $\langle \xi \rangle = 0$, $\langle \xi(x,t) \xi(x',t') \rangle \propto \delta^2 \delta(x-x') \delta(t-t')$. Measure resulting M-production scaling.
+
+\subsection*{Provenance and Reproducibility}
+
+All simulations recorded with:
+\begin{itemize}[noitemsep]
+\item Commit hash from repository,
+\item Random seed for each run,
+\item Hardware/software specifications (CPU/GPU, library versions),
+\item Output artifacts: CSV logs, JSON metadata, figure PDFs.
+\end{itemize}
+
+Primary artifact path:
+\begin{verbatim}
+Derivation/code/outputs/axioms/a8_infinity_resolution/
+  logs/{tag}/
+  figures/{tag}/
+  reports/{tag}/A8_Lietz_Infinity_Resolution_{date}.pdf
+  manifests/A8_{tag}.run-manifest.json
+\end{verbatim}
+
+Preregistration specifications:
+\begin{verbatim}
+Derivation/Proposals/PREREG_A8_{tag}.json
+\end{verbatim}
+containing bands, masks, seeds, thresholds prior to experiments.
+
+% =========================================================
+\section{Discussion and Broader Context}
+\label{sec:discussion}
+
+\subsection*{Interpretation of Results}
+
+The Lietz Infinity Resolution Conjecture establishes a \emph{necessity principle}: tachyonic metriplectic systems with pulled fronts \emph{cannot} maintain finite energy on large domains without hierarchical organization. This is not merely an empirical observation but a structural constraint arising from the interplay between exponential tail divergence and the requirement of finite total energy.
+
+The logarithmic depth scaling $N(L) = \Theta(\log(L/\lambda))$ reflects a geometric series of nested scales, each level reducing the characteristic size by a constant factor $\rho$. This echoes renormalization group flows in critical phenomena and hierarchical structures in turbulence, suggesting a universal principle of scale-breaking under constraints.
+
+The boundary-law energy scaling $E_{\text{exc}}(L) = \Theta(L^{d-1})$ indicates that energy concentrates on interfaces---codimension-1 structures---rather than permeating the bulk. This aligns with interface models (Allen--Cahn, Cahn--Hilliard), phase-field theories, and geometric measure theory approaches to free-boundary problems~\cite{modica1977gradient,gurtin1996generalized}.
+
+\subsection*{Connection to Cosmogenesis}
+
+Within the VDM framework, this conjecture informs cosmogenesis scenarios involving spinodal decomposition of a tachyonic field. Rather than homogeneous nucleation via barrier-crossing, the universe undergoes a global roll from an unstable vacuum, naturally organizing into nested hierarchical structures. These hierarchies may seed the large-scale structure formation observed in cosmology, with the logarithmic depth controlling the number of distinct scales from subatomic to cosmological.
+
+\subsection*{Metriplectic Structure and Entropy Production}
+
+The metriplectic framework is essential for understanding how hierarchy formation respects both energy conservation and entropy increase. The $J$ term preserves symplectic structure (reversible dynamics), while the $M$ term encodes dissipation. The effective M-production arising from tail truncation (Lemma~\ref{lem:tail_truncation}) provides a physical mechanism: unresolved fine scales contribute entropy increase, driving the system toward organized hierarchical states.
+
+\subsection*{Information Concentration}
+
+The requirement that operational information $\mathcal{I}$ concentrates at boundaries suggests that \emph{organizational capacity}---the ability to process, store, and transmit information---is localized at interfaces. This connects to theories of consciousness and agency within VDM~\cite{vdm_agency_field}, where field gradients $\nabla\phi$ serve as proxies for information density. Hierarchical boundaries may thus represent loci of emergent agency or proto-consciousness in field-theoretic models.
+
+\subsection*{Limitations and Open Questions}
+
+\begin{itemize}[noitemsep]
+\item \textbf{Regularity Assumptions:} The $\Gamma$-convergence approach (G2) may require additional regularity on $V$ and $\phi$. Weaker results (liminf bounds) may suffice for conjecture validation.
+\item \textbf{Dimensionality:} Results are stated for $d \in \{1,2,3\}$. Extension to higher dimensions or fractional dimensions is open.
+\item \textbf{Nonlinear Terms:} The conjecture assumes quadratic or weaker nonlinearity at the unstable point (pulled-front regime). Pushed fronts (stronger nonlinearity) are excluded.
+\item \textbf{Boundary Conditions:} Gates require testing across periodic and absorbing BCs. Other boundary types (Dirichlet, Neumann, Robin) merit investigation.
+\item \textbf{Dynamic Hierarchy Formation:} The conjecture asserts existence of hierarchies in finite-energy states but does not address \emph{dynamics} of hierarchy formation. Time-evolution studies (e.g., via echo-steering) are complementary.
+\end{itemize}
+
+\subsection*{Future Directions}
+
+\begin{itemize}[noitemsep]
+\item \textbf{Rigorous Proofs:} Complete G1 (1D lower bound) and G2 ($\Gamma$-convergence) using tools from calculus of variations and geometric measure theory.
+\item \textbf{Multi-Component Systems:} Extend to vector fields $\vec{\phi}$ with coupled tachyonic modes (relevant for gauge theories, non-Abelian fields).
+\item \textbf{Stochastic Forcing:} Investigate hierarchy stability under thermal noise or quantum fluctuations.
+\item \textbf{Observable Predictions:} Map hierarchical structures to observables in cosmology (CMB power spectrum features, large-scale structure correlations) or condensed-matter experiments (phase-separation kinetics).
+\item \textbf{Agency Field Applications:} Explore implications for consciousness emergence models where hierarchical organization encodes nested levels of self-modeling and operational control.
+\end{itemize}
+
+% =========================================================
+\section{Conclusions}
+\label{sec:conclusions}
+
+We have presented the \emph{Lietz Infinity Resolution Conjecture} (A8), a candidate axiom for the Void Dynamics Model asserting that tachyonic metriplectic systems with pulled fronts cannot maintain finite excess energy without developing hierarchical scale-breaking. The conjecture makes precise predictions:
+\begin{itemize}[noitemsep]
+\item Logarithmic depth: $N(L) = \Theta(\log(L/\lambda))$,
+\item Boundary-law energy: $E_{\text{exc}}(L) = \Theta(L^{d-1})$,
+\item Concentration of energy and information at interfaces: $\alpha, \alpha_{\mathcal{I}} > 0$.
+\end{itemize}
+
+These predictions are falsifiable through criteria F1--F3 and testable via twelve validation gates (G1--G12) spanning analytical proofs, numerical scaling studies, ablation experiments, and cross-verification. The conjecture connects to deep questions in cosmogenesis, pattern formation, entropy production, and the emergence of organizational structures in physical systems.
+
+Upon successful validation (PASS on G1--G8), A8 will be promoted to the VDM canonical axioms, providing a foundational principle for understanding how field-theoretic systems regularize infinity through hierarchical organization.
+
+% =========================================================
+\section*{Acknowledgments}
+
+This work builds on foundational contributions to metriplectic dynamics~\cite{morrison1984bracket,grmela1997dynamics}, pulled-front theory~\cite{vanSaarloos2003,ebert1997front}, $\Gamma$-convergence methods~\cite{modica1977gradient}, and the broader VDM program. I thank the open-source community for computational tools and the reviewers for constructive feedback.
+
+% =========================================================
+\section*{Data and Code Availability}
+
+All code, preregistration documents, and artifacts will be made available upon completion of validation experiments at:
+\begin{verbatim}
+https://github.com/justinlietz93/Prometheus_VDM/
+  Derivation/code/outputs/axioms/a8_infinity_resolution/
+\end{verbatim}
+with commit hashes, manifests, and logbooks following VDM reproducibility standards.
+
+% =========================================================
+\bibliographystyle{unsrtnat}
+\begin{thebibliography}{10}
+
+\bibitem{morrison1984bracket}
+P.~J. Morrison.
+\newblock Bracket formulation for irreversible classical fields.
+\newblock \emph{Physics Letters A}, 100(8):423--427, 1984.
+
+\bibitem{grmela1997dynamics}
+M.~Grmela and H.~C. {\"O}ttinger.
+\newblock Dynamics and thermodynamics of complex fluids. {I}. Development of a general formalism.
+\newblock \emph{Physical Review E}, 56(6):6620--6632, 1997.
+
+\bibitem{vanSaarloos2003}
+W.~van Saarloos.
+\newblock Front propagation into unstable states.
+\newblock \emph{Physics Reports}, 386(2-6):29--222, 2003.
+
+\bibitem{ebert1997front}
+U.~Ebert and W.~van Saarloos.
+\newblock Front propagation into unstable states: Universal algebraic convergence towards uniformly translating pulled fronts.
+\newblock \emph{Physica D}, 146(1-4):1--99, 2000.
+
+\bibitem{modica1977gradient}
+L.~Modica and S.~Mortola.
+\newblock Un esempio di $\Gamma^-$-convergenza.
+\newblock \emph{Boll. Un. Mat. Ital. B}, 14(1):285--299, 1977.
+
+\bibitem{gurtin1996generalized}
+M.~E. Gurtin.
+\newblock \emph{Generalized Ginzburg-Landau and Cahn-Hilliard equations based on a microforce balance}.
+\newblock Physica D: Nonlinear Phenomena, 92(3-4):178--192, 1996.
+
+\bibitem{vdm_ceg}
+J.~K. Lietz.
+\newblock Causality-enhanced guidance in the Void Dynamics Model.
+\newblock \emph{VDM Internal Report}, 2025.
+\newblock \url{https://github.com/justinlietz93/Prometheus_VDM/Derivation/}.
+
+\bibitem{vdm_agency_field}
+J.~K. Lietz.
+\newblock Agency field evolution in metriplectic systems.
+\newblock \emph{VDM Canonical Documentation}, 2025.
+\newblock \url{https://github.com/justinlietz93/Prometheus_VDM/Derivation/AGENCY_FIELD.md}.
+
+\end{thebibliography}
+
+\end{document}
