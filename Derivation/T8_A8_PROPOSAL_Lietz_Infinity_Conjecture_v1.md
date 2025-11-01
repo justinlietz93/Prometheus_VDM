@@ -206,8 +206,40 @@ Equivalently, absence of such hierarchical scale breaks implies either:
 
 - **G‑DIM:** In $(d=1,2)$ the fitted energy exponent equals $(d-1\pm0.1)$; $(\rho)$ consistent within ±10% across $(d)$. Optional $(d=3)$ reported, not required for PASS.
 
+- **G‑ABL‑J:** scramble the **J‑map** (keep compute and energy equal). CEG should **collapse** to baseline.
+  
+- **G‑ABL‑M:** scramble the **M‑map** (same budget). CEG should collapse.
+  
+- **G‑ABL‑Compute:** keep the **assist energy/time budget identical**, but replace metriplectic guidance with random kicks; CEG improvement must **not** meet PASS.
+     Together these prove the gain is due to *knowing the J/M split*, not extra work.
+
+- **G1T (coverage bound):** Measured $(N(L,T))$ satisfies $(N \ge \lceil L/(c_\star T)\rceil)$ within ±1 for ≥90% of seeds.
+
+- **G2T (cost optimality):** Among configurations with equal coverage and $(c_\star)$ integrity, hierarchical runs minimize $(E_{\text{exc}})$ vs. non‑hierarchical baselines by ≥5%.
+
+- **G3T (δ² locality):** Tail‑localized M‑production near $(x_\star)$ obeys δ² ±10% across $(\Delta x)$ refinements.
+
+- **G‑DSI1:** Log‑periodic modulation in boundary statistics is nonzero and stable (amplitude > 3σ, preferred ratio $(\rho)$ stable ±10%) across sizes/masks.
+
+- **G‑DSI2 (Null):** Absent under controls (no limit cycle; pushed fronts).
+
+- **G‑DSI3 (Cross‑metric):** Same $(\rho)$ appears in at least two independent metrics (e.g., loop radii histogram and curvature spectra).
+
+- **G‑ABL‑J:** With a scrambled J‑map (same compute and assist budget), CEG improvement drops below 0.01 (or below 20% of the baseline CEG), p<0.01.
+
+- **G‑ABL‑M:** With a scrambled M‑map (same budget), CEG likewise collapses.
+
+- **G‑ABL‑Compute:** With random‑assist kicks at identical energy/time budget, CEG fails the original CEG PASS gate.
+
 **PASS:** All G1–G5 met; at least one of G6–G7 met; G8 met.  
 **FAIL:** Any of G1–G5 fails, or G8 fails.
+
+---
+
+### 7.1 Note on Time Budget
+
+> **A8‑T (Finite‑time necessity).**
+> For tachyonic pulled‑front systems with speed cap $(c_\star=2\sqrt{Dr})$, to cover a domain of size $(L)$ within budget $(T)$ while keeping excess energy finite and preserving pulled‑front dynamics, the process must realize at least $(N_\text{fronts}\ge \lceil L/(c_\star T)\rceil)$ concurrent interfaces (parallelism pressure). Under a resolution floor $(\delta)$, each interface incurs tail truncation at $(x_\star=\lambda\ln(A/\delta))$ with localized M‑production $(\propto \delta^2)$, so the energy‑optimal configuration at fixed $((L,T,\delta))$ is a **finite‑depth hierarchical partition** with boundary‑law energy and (optionally) DSI if the coarse‑grained flow runs on a limit cycle.
 
 ---
 
