@@ -1,4 +1,5 @@
-# Void Dynamics Model - A Physics Theory For Agency
+# Void Dynamics Model
+***A Metriplectic Theory for Agency***
 
 ***Current Status:*** Cleaning up and organizing repository, working on agency experiments.
 
