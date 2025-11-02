@@ -59,9 +59,29 @@
       "from": "Approval_Gate_Provenance",
       "relationType": "implements",
       "to": "Provenance_Gating_OptIn"
+    },
+    {
+      "from": "CEG_T4_Assisted_Echo_G1_G3_G4_Fixes",
+      "relationType": "supports",
+      "to": "Assisted_Echo_Runner"
+    },
+    {
+      "from": "Assisted_Echo_Failed_Run_20251030_140141",
+      "relationType": "derives_from",
+      "to": "Assisted_Echo_Runner"
+    },
+    {
+      "from": "Assisted_Echo_Data_Routes_Figure_v2",
+      "relationType": "derives_from",
+      "to": "Assisted_Echo_Runner"
+    },
+    {
+      "from": "Assisted_Echo_CEG_Summary_v1c_20251030_194555",
+      "relationType": "derives_from",
+      "to": "Assisted_Echo_Runner"
     }
   ],
   "set_id": "kg-relations",
   "set_version": "1.0",
-  "updated_utc": "2025-10-30T18:13:51Z"
+  "updated_utc": "2025-10-31T02:38:54Z"
 }

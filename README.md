@@ -1,14 +1,17 @@
-# Void Dynamics Model - Public Overview
+# Void Dynamics Model
+### ***A Metriplectic Theory for Agency***
 
-***Current Status:*** Cleaning up and organizing repository, working on agency experiments.
+---
+
+***Current Status:*** Working on the VDM Nexus to accelerate experiment management and tie the framework into a seamless GUI application.
 
 > **Author:** Justin K. Lietz  
 > **Contact:** <justin@neuroca.ai>  
 > <a href="https://orcid.org/0009-0008-9028-1366"><img src="https://img.shields.io/badge/ORCID-0009--0008--9028--1366-blue?" alt="ORCID: 0009-0008-9028-1366"></a>  
 >
 > **Created:** August 9, 2025  
-> **README Last Updated:** October 28, 2025  
-> **Codebase Last Updated:** October 29, 2025  
+> **README Last Updated:** November 1, 2025  
+> **Codebase Last Updated:** November 1, 2025  
 >
 > This research is protected under a dual-license to foster open academic  
 > research while ensuring commercial applications are aligned with the project's ethical principles.  
@@ -23,7 +26,7 @@
 - **November 1, 2025**
   - Published early draft of the proposed A8 Axiom candidate to [Zenodo](https://zenodo.org/records/17503344) for provenance.
 - **October 31, 2025**
-  - Added a T8 grade proposal for a new Axiom candidate as [A8 - Lietz Infinity Conjecture](/Derivation/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md) which provides an elegant assumption for how our universe evolved to be how it is from a beginning state to now. It includes the derived rules for how our universe would be structured at hierarchical scales to dissipate away the instabilities of void fluctuations.
+  - Added a T8 grade proposal for a new Axiom candidate as [A8 - Lietz Infinity Conjecture](/Derivation/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md) which provides an elegant explanation for hierarchy and structure.
 - **October 30, 2025**  
   - Added a [historical/](/docs/historical) folder including early original work like:
     - A self healing knowledge graph using [Topological Data Analysis](/docs/historical/Emergent_TDA/20250402_TDA_KG_Metrics_ProtocolOutput.md)
@@ -57,6 +60,10 @@
 
 ## DOIs
 
+***T8. Axiom 8 Candidate: The Lietz Infinity Resolution Conjecture***  
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17503344.svg)](https://doi.org/10.5281/zenodo.17503344)
+
+***A Logarithmic First Integral for the Logistic On Site Law in Void Dynamics***  
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17220869.svg)](https://doi.org/10.5281/zenodo.17220869)
 
 <div style="text-align: center;">
@@ -89,10 +96,8 @@ Remaining proprietary work must be requested directly.
 
 ## 🧭What this is
 
-- A set of derivation papers that establish a clean baseline physics slice
-  using reaction-diffusion (RD).
-- Additional documents that explore a future, quarantined effective field
-  theory (EFT) branch, clearly labeled as future work.
+- A set of derivation papers that establish a clean baseline physics slice starting from a discrete lattice, to a metriplectic split and cosmology.
+- Additional documents that explore future work (proposals).
 - Each paper separates what is proven from what is plausible or speculative
   and, where applicable, includes acceptance criteria for simple numerical
   checks.
@@ -113,6 +118,7 @@ Remaining proprietary work must be requested directly.
 - These materials are shared for academic review and discussion. Commercial
   use requires prior written permission. See the project’s license notice in
   the distribution or parent repository materials.
+- I reserve all legal rights to ownership of any custom or proprietary assets.
 - The scope stays within theoretical physics and simulation. Broad
   cosmological claims are withheld or clearly labeled until backed by
   derivation + numeric checks.

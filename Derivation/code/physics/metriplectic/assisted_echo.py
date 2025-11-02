@@ -202,6 +202,34 @@ def _two_grid_error_hnorm(phi: np.ndarray, pi: np.ndarray, dt: float, dx: float,
     return h_energy_norm_delta(ph_b, pr_b, ph_h2, pr_h2, dx, c, m)
 
 
+def _apply_walker_perturbation(
+    phi: np.ndarray,
+    pi: np.ndarray,
+    rng: np.random.Generator,
+    amp: float,
+    width: int,
+    channel: str
+) -> Tuple[np.ndarray, np.ndarray]:
+    """Inject a localized perturbation between forward and reverse phases (RP-3).
+
+    - amp: peak amplitude (dimensionless, applied to state units)
+    - width: Gaussian width in grid points (int > 0)
+    - channel: 'phi' | 'pi' | 'both'
+    """
+    if amp == 0.0 or width <= 0:
+        return phi, pi
+    N = int(phi.size)
+    center = int(rng.integers(0, N))
+    x = np.arange(N, dtype=float)
+    g = np.exp(-0.5 * ((x - float(center)) / float(width)) ** 2)
+    g = (g / (np.max(g) + 1e-12)) * float(amp)
+    if channel.lower() in ("phi", "both"):
+        phi = (phi + g.astype(float))
+    if channel.lower() in ("pi", "both"):
+        pi = (pi + g.astype(float))
+    return phi, pi
+
+
 def run_assisted_echo(spec: EchoSpec) -> Dict[str, Any]:
     N = int(spec.grid["N"]) ; dx = float(spec.grid["dx"]) ; dt = float(spec.dt)
     c = float(spec.params.get("c", 1.0)) ; m = float(spec.params.get("m", 0.0))
@@ -209,6 +237,16 @@ def run_assisted_echo(spec: EchoSpec) -> Dict[str, Any]:
     lambdas = [float(l) for l in spec.lambdas]
     steps = int(spec.steps)
     tag = spec.tag or spec.params.get("tag")
+
+    # RP/controls toggles (schema allows additionalProperties in params)
+    assist_mode = str(spec.params.get("assist_mode", "model_aware")).lower()           # {'model_aware','model_blind'}
+    reverse_order = str(spec.params.get("reverse_order", "JMJ")).upper()               # {'JMJ','MJM'}
+    enforce_rp1 = bool(spec.params.get("enforce_rp1", True))                           # enforce RP-1 calibration before reverse
+    walker_amp = float(spec.params.get("walker_amp", 0.0))                             # amplitude for walker perturbation
+    walker_width = int(spec.params.get("walker_width", 0))                             # width (grid points)
+    walker_channel = str(spec.params.get("walker_channel", "phi")).lower()            # {'phi','pi','both'}
+    j_scramble_factor = float(spec.params.get("j_scramble_factor", 1.0))               # multiplies c during reverse
+    m_scramble_factor = float(spec.params.get("m_scramble_factor", 1.0))               # multiplies D during reverse
 
     results: Dict[str, Any] = {"seeds": seeds, "lambdas": lambdas, "grid": spec.grid, "params": spec.params, "dt": dt, "steps": steps}
     per_seed: List[Dict[str, Any]] = []
@@ -227,6 +265,34 @@ def run_assisted_echo(spec: EchoSpec) -> Dict[str, Any]:
             delta_sigmas.append(float(dL))
         phiF, piF = ph, pr
 
+        # RP-1 calibration gates before reverse phase
+        time_rev_drift = _j_only_roundtrip_drift(phi0, pi0, dt, steps, dx, c, m)
+        slope, r2 = _strang_two_grid_slope(phi0, pi0, dt, dx, spec.params, c, m)
+        g1 = gate_noether(time_rev_drift)
+        g2 = gate_h_theorem(float(min(delta_sigmas)) if delta_sigmas else 0.0)
+        g4 = gate_strang_defect(slope, r2)
+        rp1_ok = bool(g1.get("passed") and g2.get("passed") and g4.get("passed"))
+        if enforce_rp1 and not rp1_ok:
+            # Record gates only and skip reverse/assisted runs for this seed
+            per_seed.append({
+                "seed": seed,
+                "baseline_err": {},
+                "assisted_err": {},
+                "work_summaries": {},
+                "delta_sigmas": delta_sigmas,
+                "gates_diag": {
+                    "time_rev_drift": time_rev_drift,
+                    "delta_sigma_min": float(min(delta_sigmas)) if delta_sigmas else 0.0,
+                    "rel_diff": 0.0,
+                    "strang": {"slope": slope, "R2": r2}
+                },
+                "ceg": {}
+            })
+            continue
+
+        # RP-3 walker perturbation injection between forward and reverse
+        phiF, piF = _apply_walker_perturbation(phiF, piF, rng, walker_amp, walker_width, walker_channel)
+
         # Equal per-step work policy: for each lambda, baseline and assisted use identical work=lam*budget
         budget = float(spec.budget)
         baseline_errs: Dict[str, float] = {}
@@ -237,18 +303,50 @@ def run_assisted_echo(spec: EchoSpec) -> Dict[str, Any]:
             # Baseline reverse with random corrections
             bl_ph, bl_pr = phiF.copy(), piF.copy()
             bl_work_sum = 0.0
+            bl_work_comp = 0.0  # Kahan compensation for baseline work accumulation
+            # reverse-phase parameter scrambles (RP-4: J/M scramble)
+            c_rev = float(c * j_scramble_factor)
+            m_params_rev = dict(spec.params)
+            m_params_rev["D"] = float(spec.params.get("D", 1.0)) * m_scramble_factor
+
             for i in range(steps):
-                bl_ph, bl_pr = kg_verlet_step(bl_ph, bl_pr, -0.5 * dt, dx, c, m)
                 remaining = float(steps * work - bl_work_sum)
                 target = float(max(0.0, min(work, remaining)))
-                dphi_bl, dpi_bl = _random_correction_pair(rng, bl_ph, bl_pr, dx, target, c, m)
-                zph = np.zeros_like(dphi_bl); zpi = np.zeros_like(dpi_bl)
-                bl_work_sum += float(h_energy_norm_delta(dphi_bl, dpi_bl, zph, zpi, dx, c, m))
-                bl_ph = bl_ph + dphi_bl
-                bl_pr = bl_pr + dpi_bl
-                # Reverse-phase M segment runs forward in time; apply after assistance (phi-channel only)
-                bl_ph, _stats = m_only_step_with_stats(bl_ph, dt, dx, spec.params)
-                bl_ph, bl_pr = kg_verlet_step(bl_ph, bl_pr, -0.5 * dt, dx, c, m)
+
+                if reverse_order == "MJM":
+                    # M(dt/2)
+                    bl_ph, _ = m_only_step_with_stats(bl_ph, 0.5 * dt, dx, m_params_rev)
+                    # apply correction after first segment (baseline uses random correction)
+                    dphi_bl, dpi_bl = _random_correction_pair(rng, bl_ph, bl_pr, dx, target, c_rev, m)
+                    zph = np.zeros_like(dphi_bl); zpi = np.zeros_like(dpi_bl)
+                    _bl_delta = float(h_energy_norm_delta(dphi_bl, dpi_bl, zph, zpi, dx, c_rev, m))
+                    _y = _bl_delta - bl_work_comp
+                    _t = bl_work_sum + _y
+                    bl_work_comp = (_t - bl_work_sum) - _y
+                    bl_work_sum = _t
+                    bl_ph = bl_ph + dphi_bl
+                    bl_pr = bl_pr + dpi_bl
+                    # J(-dt)
+                    bl_ph, bl_pr = kg_verlet_step(bl_ph, bl_pr, -1.0 * dt, dx, c_rev, m)
+                    # M(dt/2)
+                    bl_ph, _ = m_only_step_with_stats(bl_ph, 0.5 * dt, dx, m_params_rev)
+                else:
+                    # J(-dt/2)
+                    bl_ph, bl_pr = kg_verlet_step(bl_ph, bl_pr, -0.5 * dt, dx, c_rev, m)
+                    # apply correction
+                    dphi_bl, dpi_bl = _random_correction_pair(rng, bl_ph, bl_pr, dx, target, c_rev, m)
+                    zph = np.zeros_like(dphi_bl); zpi = np.zeros_like(dpi_bl)
+                    _bl_delta = float(h_energy_norm_delta(dphi_bl, dpi_bl, zph, zpi, dx, c_rev, m))
+                    _y = _bl_delta - bl_work_comp
+                    _t = bl_work_sum + _y
+                    bl_work_comp = (_t - bl_work_sum) - _y
+                    bl_work_sum = _t
+                    bl_ph = bl_ph + dphi_bl
+                    bl_pr = bl_pr + dpi_bl
+                    # M(+dt) on phi-channel
+                    bl_ph, _stats = m_only_step_with_stats(bl_ph, dt, dx, m_params_rev)
+                    # J(-dt/2)
+                    bl_ph, bl_pr = kg_verlet_step(bl_ph, bl_pr, -0.5 * dt, dx, c_rev, m)
             bl_err = h_energy_norm_delta(bl_ph, bl_pr, phi0, pi0, dx, c, m)
             baseline_errs[str(lam)] = bl_err
 
@@ -260,18 +358,56 @@ def run_assisted_echo(spec: EchoSpec) -> Dict[str, Any]:
             # Assisted reverse with model-aware corrections
             as_ph, as_pr = phiF.copy(), piF.copy()
             as_work_sum = 0.0
+            as_work_comp = 0.0  # Kahan compensation for assisted work accumulation
+            # reverse-phase parameter scrambles (RP-4: J/M scramble)
+            c_rev = float(c * j_scramble_factor)
+            m_params_rev = dict(spec.params)
+            m_params_rev["D"] = float(spec.params.get("D", 1.0)) * m_scramble_factor
+
+            # choose assistance mode (RP-4: model_blind vs model_aware)
+            def _assist_pair(curr_phi, curr_pi, targ) -> Tuple[np.ndarray, np.ndarray]:
+                if assist_mode == "model_blind":
+                    return _random_correction_pair(rng, curr_phi, curr_pi, dx, targ, c_rev, m)
+                return _assist_correction_pair(curr_phi, curr_pi, phi0, pi0, dx, spec.params, work=targ, c=c_rev, m=m)
+
             for i in range(steps):
-                as_ph, as_pr = kg_verlet_step(as_ph, as_pr, -0.5 * dt, dx, c, m)
                 remaining = float(steps * work - as_work_sum)
                 target = float(max(0.0, min(work, remaining)))
-                dphi_as, dpi_as = _assist_correction_pair(as_ph, as_pr, phi0, pi0, dx, spec.params, work=target, c=c, m=m)
-                zph = np.zeros_like(dphi_as); zpi = np.zeros_like(dpi_as)
-                as_work_sum += float(h_energy_norm_delta(dphi_as, dpi_as, zph, zpi, dx, c, m))
-                as_ph = as_ph + dphi_as
-                as_pr = as_pr + dpi_as
-                # Reverse-phase M segment runs forward in time; apply after assistance (phi-channel only)
-                as_ph, _stats = m_only_step_with_stats(as_ph, dt, dx, spec.params)
-                as_ph, as_pr = kg_verlet_step(as_ph, as_pr, -0.5 * dt, dx, c, m)
+
+                if reverse_order == "MJM":
+                    # M(dt/2)
+                    as_ph, _ = m_only_step_with_stats(as_ph, 0.5 * dt, dx, m_params_rev)
+                    # apply assistance after first segment
+                    dphi_as, dpi_as = _assist_pair(as_ph, as_pr, target)
+                    zph = np.zeros_like(dphi_as); zpi = np.zeros_like(dpi_as)
+                    _as_delta = float(h_energy_norm_delta(dphi_as, dpi_as, zph, zpi, dx, c_rev, m))
+                    _y = _as_delta - as_work_comp
+                    _t = as_work_sum + _y
+                    as_work_comp = (_t - as_work_sum) - _y
+                    as_work_sum = _t
+                    as_ph = as_ph + dphi_as
+                    as_pr = as_pr + dpi_as
+                    # J(-dt)
+                    as_ph, as_pr = kg_verlet_step(as_ph, as_pr, -1.0 * dt, dx, c_rev, m)
+                    # M(dt/2)
+                    as_ph, _ = m_only_step_with_stats(as_ph, 0.5 * dt, dx, m_params_rev)
+                else:
+                    # J(-dt/2)
+                    as_ph, as_pr = kg_verlet_step(as_ph, as_pr, -0.5 * dt, dx, c_rev, m)
+                    # apply assistance
+                    dphi_as, dpi_as = _assist_pair(as_ph, as_pr, target)
+                    zph = np.zeros_like(dphi_as); zpi = np.zeros_like(dpi_as)
+                    _as_delta = float(h_energy_norm_delta(dphi_as, dpi_as, zph, zpi, dx, c_rev, m))
+                    _y = _as_delta - as_work_comp
+                    _t = as_work_sum + _y
+                    as_work_comp = (_t - as_work_sum) - _y
+                    as_work_sum = _t
+                    as_ph = as_ph + dphi_as
+                    as_pr = as_pr + dpi_as
+                    # M(+dt) on phi-channel
+                    as_ph, _stats = m_only_step_with_stats(as_ph, dt, dx, m_params_rev)
+                    # J(-dt/2)
+                    as_ph, as_pr = kg_verlet_step(as_ph, as_pr, -0.5 * dt, dx, c_rev, m)
             assisted_err = h_energy_norm_delta(as_ph, as_pr, phi0, pi0, dx, c, m)
             assisted_errs[str(lam)] = assisted_err
             work_summaries[str(lam)] = {"baseline_work": bl_work_sum, "assisted_work": as_work_sum}

@@ -182,6 +182,42 @@
         "Decision: approvals and secrets are human-only; assistant must not modify approval DB or approval_key (see [decisionLog.md](memory-bank/decisionLog.md:1))"
       ],
       "type": "Decision"
+    },
+    {
+      "name": "CEG_T4_Assisted_Echo_G1_G3_G4_Fixes",
+      "observations": [
+        "Path: [assisted_echo.py](Derivation/code/physics/metriplectic/assisted_echo.py:1)",
+        "G1 instrument: per-step J roundtrip meter [assisted_echo.py](Derivation/code/physics/metriplectic/assisted_echo.py:102)",
+        "G3 clamp: symmetric per-step budget accounting [assisted_echo.py](Derivation/code/physics/metriplectic/assisted_echo.py:241)",
+        "G4: JMJ vs MJM two-grid slope [assisted_echo.py](Derivation/code/physics/metriplectic/assisted_echo.py:90)",
+        "Metric: H-energy norm [echo_metrics.py](Derivation/code/physics/metriplectic/echo_metrics.py:10)"
+      ],
+      "type": "CodeChange"
+    },
+    {
+      "name": "Assisted_Echo_Failed_Run_20251030_140141",
+      "observations": [
+        "JSON: [20251030_140141_assisted_echo__assisted-echo-t4-prereg.json](Derivation/code/outputs/logs/metriplectic/failed_runs/20251030_140141_assisted_echo__assisted-echo-t4-prereg.json:1)",
+        "CSV: [20251030_140141_assisted_echo_ceg_summary__assisted-echo-t4-prereg.csv](Derivation/code/outputs/logs/metriplectic/failed_runs/20251030_140141_assisted_echo_ceg_summary__assisted-echo-t4-prereg.csv:1)",
+        "PNG: [20251030_140141_assisted_echo_placeholder__assisted-echo-t4-prereg.png](Derivation/code/outputs/figures/metriplectic/failed_runs/20251030_140141_assisted_echo_placeholder__assisted-echo-t4-prereg.png:1)"
+      ],
+      "type": "ArtifactLog"
+    },
+    {
+      "name": "Assisted_Echo_Data_Routes_Figure_v2",
+      "observations": [
+        "Figure: [vdm_echo_landscape_v2.png](Derivation/Metriplectic/vdm_echo_landscape_v2.png:1)",
+        "Script: [plot_echo_routes_data_v2.py](Derivation/code/physics/metriplectic/plot_echo_routes_data_v2.py:1)"
+      ],
+      "type": "Figure"
+    },
+    {
+      "name": "Assisted_Echo_CEG_Summary_v1c_20251030_194555",
+      "observations": [
+        "CSV: [20251030_194555_assisted_echo_ceg_summary__assisted-echo-t4-prereg-v1c.csv](Derivation/code/outputs/logs/metriplectic/20251030_194555_assisted_echo_ceg_summary__assisted-echo-t4-prereg-v1c.csv:1)",
+        "Spec: [assisted_echo.v1c.json](Derivation/code/physics/metriplectic/specs/assisted_echo.v1c.json:1)"
+      ],
+      "type": "ArtifactCSV"
     }
   ],
   "provenance": {
@@ -198,5 +234,5 @@
   },
   "set_id": "kg-entities",
   "set_version": "1.0",
-  "updated_utc": "2025-10-30T18:13:29Z"
+  "updated_utc": "2025-10-31T02:38:54Z"
 }
