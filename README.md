@@ -1,4 +1,4 @@
-# Void Dynamics Model - Public Overview
+# Void Dynamics Model - A Physics Theory For Agency
 
 ***Current Status:*** Cleaning up and organizing repository, working on agency experiments.
 
