@@ -106,9 +106,11 @@ and require an analogous boundary concentration for $\mathcal{I}$: a fraction $\
 > **Exclusions.** First-order (barrier-crossing) bubble nucleation is not assumed; the onset is spinodal/tachyonic (global roll), consistent with VDM cosmogenesis.  
 > **Resolution ($\delta$) and truncation location.** Fix a representation floor ($\delta>0$). For a pulled front with tail amplitude ($A$) and decay length ($\lambda$), define $(x\_\star=\lambda\ln(A/\delta))$. The unresolved region is $({x: x>x\_\star})$  
 > Define the **tail‑loss functional**
+>
 > $$
 > \mathcal{L}*{\delta}[\phi];\equiv;\int*{x>x_\star} \big(\kappa,|\nabla \phi|^2 + \tfrac{r}{2}\phi^2\big),dx,
 > $$
+>
 > computed in the linear regime $(|\phi|\ll 1)$. Then $(\mathcal{L}\_{\delta}\propto (\delta/A)^2)$.  
 >
 > **Proxy rationale & invariance.** ( $\mathcal{I}*1$ ) upper‑bounds the log‑contrast needed to encode the field at resolution $(\sigma)$, and co‑locates with the gradient term in $(E*{\text{exc}})$. $( \mathcal{I}_2 )$ is a local Fisher‑type surrogate for predictive curvature of observables; under smooth reparameterizations of $(u)$ it shifts by $(O(|\nabla u|^2))$ only.  
