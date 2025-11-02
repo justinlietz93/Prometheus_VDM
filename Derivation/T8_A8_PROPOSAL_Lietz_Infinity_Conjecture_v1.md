@@ -331,7 +331,13 @@ Equivalently, absence of such hierarchical scale breaks implies either:
 
 ## 8. Methods & Instruments
 
-> **Steering neutrality.** Assisted nudges are zero‑mean, white in phase, and supported only in the tail’s tubular set ( $\mathcal{N}\*\epsilon(x\*\star)$ ). A matched‑budget randomized control is run each time. **No‑template test:** cross‑correlation between the final boundary field and the nudge field outside ( $\mathcal{N}\*\epsilon(x\*\star)$ ) must be ≤ 0.05 (pre‑reg) at all non‑tail scales.
+**Steering neutrality** 
+
+Assisted nudges are zero‑mean, white in phase, and supported only in the tail’s tubular set ( $\mathcal{N}\*\epsilon(x\*\star)$ ). A matched‑budget randomized control is run each time.
+
+**No‑template test** 
+
+Cross‑correlation between the final boundary field and the nudge field outside ( $\mathcal{N}\*\epsilon(x\*\star)$ ) must be ≤ 0.05 (pre‑reg) at all non‑tail scales.
 
 **Analytical track.**
 
@@ -373,14 +379,16 @@ Equivalently, absence of such hierarchical scale breaks implies either:
 
 ## 10. Scope & Exclusions
 
-> **Pulled‑regime criterion.** All claims assume **pulled** propagation:
-> (i) measured speed $(c\le c_\star(1+\epsilon_c))$ with $(\epsilon_c)$ preregistered (e.g., 0.02)
-> (ii) leading edge fits an exponential tail with decay $(\lambda)$ consistent with linear theory (±10%)
-> (iii) the “steepness test”: varying initial front steepness does **not** increase $(c)$ beyond $(c_\star)$ within tolerance.
-> Runs violating any of (i)–(iii) are flagged **pushed** and excluded from A8 grading.
-> **Dimensional note.** All scaling claims are graded in $(d=1,2)$ and optionally $(d=3)$; boundary‑law exponents must match $(d-1)$ within ±0.1 and $(N(L))$ must remain logarithmic with the same base $(\rho)$ (±10%) after finite‑size correction.
-> **Transition band.** If external forcing or large‑amplitude nonlinearity yields $(c>c\_\star)$ (pushed), A8’s necessity direction is not claimed. Such runs are still analyzed but labeled **OUT‑OF‑SCOPE** for A8 and reported separately.
+**Pulled‑regime criterion.** All claims assume **pulled** propagation:  
+> (i) measured speed $(c\le c_\star(1+\epsilon_c))$ with $(\epsilon_c)$ preregistered (e.g., 0.02)  
+> (ii) leading edge fits an exponential tail with decay $(\lambda)$ consistent with linear theory (±10%)  
+> (iii) the “steepness test”: varying initial front steepness does **not** increase $(c)$ beyond $(c_\star)$ within tolerance.  
+>
+> ***Runs violating any of (i)–(iii) are flagged **pushed** and excluded from A8 admission.***
+> 
+**Dimensional note.** All scaling claims are graded in $(d=1,2)$ and optionally $(d=3)$; boundary‑law exponents must match $(d-1)$ within ±0.1 and $(N(L))$ must remain logarithmic with the same base $(\rho)$ (±10%) after finite‑size correction.
 
+ **Transition band.** If external forcing or large‑amplitude nonlinearity yields $(c>c\_\star)$ (pushed), A8’s necessity direction is not claimed. Such runs are still analyzed but labeled **OUT‑OF‑SCOPE** for A8 and reported separately.
 
 **Included:** $d=1,2,3$; spinodal (tachyonic) onset; metriplectic $J/M$ split; pulled-front regime; large-$L$ scaling.
 
