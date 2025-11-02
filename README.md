@@ -3,7 +3,7 @@
 
 ---
 
-***Current Status:*** Cleaning up and organizing repository, working on agency experiments.
+***Current Status:*** Working on the VDM Nexus to accelerate experiment management and tie the framework into a seamless GUI application.
 
 > **Author:** Justin K. Lietz  
 > **Contact:** <justin@neuroca.ai>  
@@ -23,6 +23,8 @@
 
 ## 🔥News
 
+- **November 1, 2025**
+  - Published early draft of the proposed A8 Axiom candidate to [Zenodo](https://zenodo.org/records/17503344) for provenance.
 - **October 31, 2025**
   - Added a T8 grade proposal for a new Axiom candidate as [A8 - Lietz Infinity Conjecture](/Derivation/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md) which provides an elegant explanation for hierarchy and structure.
 - **October 30, 2025**  
