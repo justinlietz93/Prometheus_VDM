@@ -1,0 +1,551 @@
+[
+  {
+    "title": "Void Dynamics Model (VDM) - Metriplectic Theory for Agency",
+    "What_it_is": "A discrete-to-continuum field theory framework that derives emergent dynamics and self-organizing patterns from first-principles discrete action on a cubic lattice",
+    "Why_it_was_needed": "Addresses the crisis in fundamental physics - stalled unification, dark sector mysteries, and measurement problem in quantum mechanics - by providing a testable alternative starting point",
+    "How_it_was_found_or_built": "Systematic derivation from four minimal physical postulates specifying a lattice Lagrangian, from which second-order hyperbolic dynamics emerge via Euler-Lagrange equations",
+    "When_it_was_built_or_discovered": "Initial realization October 2024; first falsifiable simulations March 2025; public release August 2025",
+    "What_it_enables": "Unified framework for reaction-diffusion, Klein-Gordon dynamics, and agency field emergence; provides computational validation apparatus for theoretical physics",
+    "source_file": "README.md"
+  },
+  {
+    "title": "VDM Theoretical Framework and Validation Apparatus",
+    "What_it_is": "Comprehensive theoretical framework with tiered validation system (Tier A: Proven, Tier B: Active KPI-gated, Tier C: Infrastructure, Tier D: Exploratory)",
+    "Why_it_was_needed": "Provides rigorous structure for separating proven canon from active research and exploratory ideas",
+    "How_it_was_found_or_built": "Developed through systematic theoretical derivation with computational validation via three validated sectors: Reaction-Diffusion, Lattice Boltzmann Method, and Discrete Conservation Law",
+    "When_it_was_built_or_discovered": "August 9, 2025",
+    "What_it_enables": "Enables systematic validation and progression of theoretical physics claims with full artifact archival and reproducibility",
+    "source_file": "Derivation/VDM_OVERVIEW.md"
+  },
+  {
+    "title": "VDM A0 - Closure",
+    "What_it_is": "Fundamental axiom: Only objects defined inside the framework are allowed; no external primitives as foundations.",
+    "Why_it_was_needed": "Establishes theoretical foundation for the Void Dynamics Model",
+    "How_it_was_found_or_built": "Axiomatic theoretical development based on first principles",
+    "When_it_was_built_or_discovered": "2025-11-01",
+    "What_it_enables": "Enforces formal closure and prevents importing unstated structures.\n\n**Source:** Referenced in agency/canon proposals (e.g., `Derivation/Agency_Field/PROPOSAL_Agency_Curvature_Scaling_v1.md`).\n\n---",
+    "source_file": "Derivation/AXIOMS.md"
+  },
+  {
+    "title": "VDM A1 - Void Primacy",
+    "What_it_is": "Fundamental axiom: A field $\\Psi(x,t)$ encodes void fluctuations; all physical observables are functionals of $\\Psi$ (and its derivatives).",
+    "Why_it_was_needed": "Establishes theoretical foundation for the Void Dynamics Model",
+    "How_it_was_found_or_built": "Axiomatic theoretical development based on first principles",
+    "When_it_was_built_or_discovered": "2025-11-01",
+    "What_it_enables": "Establishes a single carrier for observables; in lattice form, identify $\\Psi\\to W$.\n\n**Source:** User-provided canonical list; see also `Derivation/OVERVIEW.md` void-field narrative.\n\n---",
+    "source_file": "Derivation/AXIOMS.md"
+  },
+  {
+    "title": "VDM A2 - Local Causality",
+    "What_it_is": "Fundamental axiom: Dynamics are built from local functionals of the state; influence propagates finitely from $\\Psi$ and its spatial/temporal derivatives.",
+    "Why_it_was_needed": "Establishes theoretical foundation for the Void Dynamics Model",
+    "How_it_was_found_or_built": "Axiomatic theoretical development based on first principles",
+    "When_it_was_built_or_discovered": "2025-11-01",
+    "What_it_enables": "Parabolic derived-limit (RD/Fisher–KPP) has no finite cone; we only claim front speeds there. Finite domain-of-dependence (cone) is asserted and tested only for the hyperbolic (J-only KG) limb or for an explicitly flagged hyperbolic RD regularization.\n\n**Evidence:** KG J-only: cone verified with slope $\\approx c$ using our locality runner; RD: front-speed gates only.\n\n**Source:** Locality themes throughout `Derivation/axiomatic_theory_development.md` and KG diagnostics in canon.\n\n---",
+    "source_file": "Derivation/AXIOMS.md"
+  },
+  {
+    "title": "VDM A3 - Symmetry",
+    "What_it_is": "Fundamental axiom: A group $\\mathcal G$ acts on $\\Psi$. Invariants under $\\mathcal G$ generate conserved currents (Noether).",
+    "Why_it_was_needed": "Establishes theoretical foundation for the Void Dynamics Model",
+    "How_it_was_found_or_built": "Axiomatic theoretical development based on first principles",
+    "When_it_was_built_or_discovered": "2025-11-01",
+    "What_it_enables": "- KG J-only: spatial translations $x \\mapsto x + \\varepsilon$ $\\Rightarrow$ momentum; time translations $t \\mapsto t + \\varepsilon$ $\\Rightarrow$ energy.\n- Pure diffusion: spatial translation invariance $\\Rightarrow$ mass conservation (under periodic/no-flux BCs).\n- Reaction-only on-site ODE: no spatial symmetry; on-site logarithmic invariant is a diagnostic, not Noether.\n\n**Numerical check:** Noether currents are checked numerically in the KG runner; totals drift $\\le 10^{-8}$/period.\n\n**Source:** Noether usage cited across canon; see `Derivation/Conservation_Law/` and overview.\n\n---",
+    "source_file": "Derivation/AXIOMS.md"
+  },
+  {
+    "title": "VDM A4 - Dual Generators (Metriplectic Split)",
+    "What_it_is": "Fundamental axiom: With state $q\\equiv(\\Psi,\\partial\\Psi,\\ldots)$,\n$\\partial_t q = J(q)\\,\\frac{\\delta \\mathcal I}{\\delta q} + M(q)\\,\\frac{\\delta \\Sigma}{\\delta q}$, with $J^\\top=-J$ (skew/symplectic), $M^\\top=M\\ge 0$ (symmetric/metric), and degeneracies $J\\,\\frac{\\delta\\Sigma}{\\delta q}=0$, $M\\,\\frac{\\delta\\mathcal I}{\\delta q}=0$.",
+    "Why_it_was_needed": "Establishes theoretical foundation for the Void Dynamics Model",
+    "How_it_was_found_or_built": "Axiomatic theoretical development based on first principles",
+    "When_it_was_built_or_discovered": "2025-11-01",
+    "What_it_enables": "Canonical split used by metriplectic integrators and QC (two-grid order, Strang-defect, J-only reversibility). Diagnostics: compute $g_1 = \\langle J, \\, \\delta\\Sigma, \\, \\delta\\Sigma \\rangle$ and $g_2 = \\langle M, \\, \\delta\\mathcal I, \\, \\delta\\mathcal I \\rangle$ every $K$ steps; both must be $\\le 10^{-10}$ (grid-refined).\n\n**Source:** Implemented/validated in `ALGORITHMS.md` (VDM-A-013..019) and corresponding runners.\n\n---",
+    "source_file": "Derivation/AXIOMS.md"
+  },
+  {
+    "title": "VDM A5 - Entropy Law",
+    "What_it_is": "Fundamental axiom: The entropy functional $\\Sigma[q]$ is non-decreasing along trajectories; equality only at steady states.",
+    "Why_it_was_needed": "Establishes theoretical foundation for the Void Dynamics Model",
+    "How_it_was_found_or_built": "Axiomatic theoretical development based on first principles",
+    "When_it_was_built_or_discovered": "2025-11-01",
+    "What_it_enables": "H-theorem spirit; used in Lyapunov/entropy monitors and QC gates.\n\n**Source:** Quality gates in algorithms; see metriplectic Lyapunov checks and RESULTS pages.\n\n---",
+    "source_file": "Derivation/AXIOMS.md"
+  },
+  {
+    "title": "VDM A6 - Scale Program",
+    "What_it_is": "Fundamental axiom: Predictions are formulated in dimensionless groups; units themselves carry no physical claims.",
+    "Why_it_was_needed": "Establishes theoretical foundation for the Void Dynamics Model",
+    "How_it_was_found_or_built": "Axiomatic theoretical development based on first principles",
+    "When_it_was_built_or_discovered": "2025-11-01",
+    "What_it_enables": "Underpins scaling-collapse validations (e.g., A6 junction logistic universality).\n\n**Source:** `Derivation/Collapse/PROPOSAL_A6_Collapse_v1.md` and RESULTS; canon uses dimensionless envelopes and gates.\n\n---",
+    "source_file": "Derivation/AXIOMS.md"
+  },
+  {
+    "title": "VDM A7 - Measurability",
+    "What_it_is": "Fundamental axiom: Every nontrivial statement must map to concrete observables with a test protocol (falsifiable).",
+    "Why_it_was_needed": "Establishes theoretical foundation for the Void Dynamics Model",
+    "How_it_was_found_or_built": "Axiomatic theoretical development based on first principles",
+    "When_it_was_built_or_discovered": "2025-11-01",
+    "What_it_enables": "Codified via pre-registration, approvals, and artifacted KPIs in this repository.\n\n**Source:** `Derivation/Writeup_Templates`, approvals policy in `Derivation/code/common/authorization/README.md`.\n\n---",
+    "source_file": "Derivation/AXIOMS.md"
+  },
+  {
+    "title": "Tachyonic Tube v1 - Spectrum completeness and condensation curvature (QC)",
+    "What_it_is": "This note evaluates two quality-control gates for a finite-radius tachyonic tube within a simple scalar EFT baseline: (i) completeness of the discrete spectrum over the physically admissible set, and (ii) the existence of an interior minimum in the condensation energy with positive curvature. These gates are prerequisites for canon promotion of the tube-mode solver and condensation harness.\n\nScientific significance: completeness ensures the secular solver is a reliable measurement instrument; the curvature gate confirms a physically meaningful condensation length scale emerges from the combine...",
+    "Why_it_was_needed": "energy. The methodology is a semi-analytic spectral calculation (cylindrical Bessel matching) coupled to adaptive quadrature for quartic overlaps.",
+    "How_it_was_found_or_built": "is a semi-analytic spectral calculation (cylindrical Bessel matching) coupled to adaptive quadrature for quartic overlaps.",
+    "When_it_was_built_or_discovered": "2025-10-09",
+    "What_it_enables": "are aligned with the project's ethical principles.\n> Commercial use requires citation and written permission from Justin K. Lietz.\n> See LICENSE file for full terms.",
+    "source_file": "Derivation/Tachyon_Condensation/RESULTS_Tachyonic_Tube_v1.md"
+  },
+  {
+    "title": "RESULTS: Physics-Native Intelligence — Substrate-Only v1",
+    "What_it_is": "Scientific results paper in the VDM framework",
+    "Why_it_was_needed": "Validation and quality control of theoretical predictions",
+    "How_it_was_found_or_built": "Computational validation with strict KPI gates and artifact archival",
+    "When_it_was_built_or_discovered": "Date not specified in available documentation",
+    "What_it_enables": "Physics-Native Intelligence — Substrate-Only v1\n\nAuthor: Justin K. Lietz  \nStatus: Placeholder (awaiting approved run)  \nTag: intelligence-model-v1",
+    "source_file": "Derivation/Intelligence_Model/RESULTS_Physics_Native_Intelligence_Substrate_v1.md"
+  },
+  {
+    "title": "FRW Continuity Residual - Quality Check (v1)",
+    "What_it_is": "table:\n\n| Metric | Value |\n|---|---|\n| $\\mathrm{RMS}_{\\mathrm{FRW}}$ | $9.04\\times 10^{-16}$ |\n| Gate threshold | $10^{-6}$ |\n| Pass/Fail | PASS |",
+    "Why_it_was_needed": "To what extent does the FRW dust control satisfy the continuity identity, quantified by the RMS residual $\\mathrm{RMS}_{\\mathrm{FRW}}$ with units of energy density times volume per unit time [e.g., J·m$^{0}$·s$^{-1}$ in SI], and does it pass the gate $\\mathrm{RMS}_{\\mathrm{FRW}} \\le 10^{-6}$ (dimensionless after normalization)? Measurement uses a synthetic analytic series sampled uniformly in time.",
+    "How_it_was_found_or_built": "controlled | Rationale |\n|---|---|---|\n| Equation of state $w$ | Fixed to 0 (dust) | Tests the identity $\\frac{d}{dt}(\\rho a^3)=0$ |\n| Scaling law $\\rho(a)$ | $\\rho_0 a^{-3}$ analytically | Removes modeling ambiguity; sets exact target |\n| Time grid | Uniform $\\Delta t$ | Ensures consistent finite-difference truncation |\n| Differentiation | Central differences | Second-order accurate; symmetric error |",
+    "When_it_was_built_or_discovered": "2025-10-06",
+    "What_it_enables": "/ Data\n\n- Measured: $\\mathrm{RMS}_{\\mathrm{FRW}}=9.04\\times 10^{-16}$ (dimensionless in normalized units).  \n- Gate: PASS since $9.04\\times 10^{-16} \\le 10^{-6}$.",
+    "source_file": "Derivation/Cosmology/RESULTS_FRW_Continuity_Residual_Quality_Check.md"
+  },
+  {
+    "title": "Decoherence Portals \u0014 Results (v1)",
+    "What_it_is": "Do the simple Fisher estimate of $\\epsilon$ and the noise budget sanity checks agree with injected/expected values within the registered tolerances on synthetic or benchmarked inputs?",
+    "Why_it_was_needed": "Do the simple Fisher estimate of $\\epsilon$ and the noise budget sanity checks agree with injected/expected values within the registered tolerances on synthetic or benchmarked inputs?",
+    "How_it_was_found_or_built": "/ Procedure\n\n1. Load or generate a small benchmark with 1\u0010 4 bins (CSV).\n2. Compute Fisher information and [eq] from the benchmark.  \n3. Fit [eq] via a simple likelihood or linearized estimator.  \n4. Compare [eq] to the 10% gate.  \n5. For noise budget, compute residuals against modeled noise components and check they lie within spec.",
+    "When_it_was_built_or_discovered": "2025-10-08",
+    "What_it_enables": "(v1)\n\n> Author: Justin K. Lietz  \n> Date: 2025-10-08  \n> License: Dual-license; see LICENSE.\n\n## TL;DR",
+    "source_file": "Derivation/Dark_Photons/RESULTS_Decoherence_Portals.md"
+  },
+  {
+    "title": "**I. Discrete Conservation vs Balance in Reaction-Diffusion (RD) Steppers**",
+    "What_it_is": "Derivation/code/outputs/logs/rd_conservation/20251006_072251_fixed_dt_deltaS_compare.json.\n- Summary (example at $\\Delta t=0.005$): median $\\lvert\\Delta S\\rvert\\approx 4.68\\times 10^{-4}$ across Euler/Strang/DG.",
+    "Why_it_was_needed": "Information**\n\nConsider a nondimensionalized RD system on a periodic grid:\n\n$$\n\\partial_t W = D\\,\\Delta W + f(W), \\quad f(W)=r\\,W(1-W),\n$$",
+    "How_it_was_found_or_built": "order; Euler shows $\\beta\\!\\approx\\!2$, Strang and discrete-gradient (DG) RD show $\\beta\\!\\approx\\!3$ on two-grid error, and DG RD satisfies a per-step H-theorem. Pinned artifact: Derivation/code/outputs/figures/rd_conservation/20251006_072251_fixed_dt_deltaS_compare.png (paired CSV/JSON under Derivation/code/outputs/logs/rd_conservation/).",
+    "When_it_was_built_or_discovered": "2025-10-06",
+    "What_it_enables": "are aligned with the project's ethical principles.  \n> Commercial use requires citation and written permission from Justin K. Lietz.\n> See LICENSE file for full terms.",
+    "source_file": "Derivation/Conservation_Law/RESULTS_RD_Discrete_Conservation_vs_Balance.md"
+  },
+  {
+    "title": "Metriplectic Structure Checks - J Skew and M PSD",
+    "What_it_is": "Do the discrete operators used in our metriplectic integrators satisfy the defining degeneracy properties numerically on the working grid?",
+    "Why_it_was_needed": "Do the discrete operators used in our metriplectic integrators satisfy the defining degeneracy properties numerically on the working grid?",
+    "How_it_was_found_or_built": "- Runner: `Derivation/code/physics/metriplectic/metriplectic_structure_checks.py`\n- IO: `Derivation/code/common/io_paths.py` (policy-aware; quarantines unapproved runs under failed_runs/)\n- Spec: grid (N, Δx), params (D, c, m, m_lap_operator), draws (default 100), optional tag.\n- Metrics logged: J_skew.median_abs_vJv; M_psd.neg_count, M_psd.min; pass/fail per gate.",
+    "When_it_was_built_or_discovered": "2025-10-08",
+    "What_it_enables": "page documents the algebraic structure tests for a metriplectic system: (i) skew-symmetry of the canonical J operator and (ii) positive semidefiniteness (PSD) of the metric operator M on the RD channel. Gates: median |⟨v, J v⟩| ≤ 1e−12 over random draws; count of negative ⟨u, M u⟩ equals 0 across draws. Artifacts to be attached from the policy-aware runner.",
+    "source_file": "Derivation/Metriplectic/RESULTS_Metriplectic_Structure_Checks.md"
+  },
+  {
+    "title": "KG Noether Invariants - Discrete Energy & Momentum Conservation (Periodic BCs)",
+    "What_it_is": "Does the symplectic Störmer–Verlet discretization of the linear periodic 1D KG equation preserve (i) discrete energy and (ii) discrete translation momentum to the expected symplectic accuracy bounds, demonstrating correct implementation of canonical Poisson flow in the J-only (hyperbolic) sector?",
+    "Why_it_was_needed": "Does the symplectic Störmer–Verlet discretization of the linear periodic 1D KG equation preserve (i) discrete energy and (ii) discrete translation momentum to the expected symplectic accuracy bounds, demonstrating correct implementation of canonical Poisson flow in the J-only (hyperbolic) sector?",
+    "How_it_was_found_or_built": "- Runner: `Derivation/code/physics/metriplectic/kg_noether.py`\n- Spec: `Derivation/code/physics/metriplectic/specs/kg_noether.v1.json` containing grid ([eq], [eq]), parameters ([eq], [eq], tag, seed_scale), [eq] sweep; selected [eq].\n- Integration: 512 Störmer–Verlet steps.\n- Random initial field & momentum with small amplitude (seed_scale=0.05) to avoid aliasing and maintain linear regime.\n- Metrics captured every step for E_d and P_d midpoints; per-step absolute drift recorded.\n- Reversibility test: integrate forward 512 steps, then backward 512 steps (dt → −dt) and measure sup-norm differen...",
+    "When_it_was_built_or_discovered": "2025-10-08",
+    "What_it_enables": "(KG-noether-v1)\n\nObserved metrics:\n\n- $\\max \\Delta E \\approx 8.33\\times10^{-17}$ ($\\ll 10\\,\\epsilon\\sqrt{N}$ and $\\ll 10^{-12}$)\n- $\\max \\Delta P \\approx 2.60\\times10^{-17}$ ($\\ll 10\\,\\epsilon\\sqrt{N}$ and $\\ll 10^{-12}$)\n- Reversibility $\\|\\Delta\\|_{\\infty} \\approx 0$ (below $10^{-12}$ numerical noise floor)",
+    "source_file": "Derivation/Metriplectic/RESULTS_KG_Noether_Invariants_v1.md"
+  },
+  {
+    "title": "A6 Scaling Collapse - Junction Logistic Universality (v1)",
+    "What_it_is": "table:\n\n| Metric | Value |\n|---|---|\n| $\\mathrm{env\\_max}$ | $0.01657$ |\n| Gate threshold | $0.02$ |\n| Pass/Fail | PASS |",
+    "Why_it_was_needed": "To what extent do the curves $P(A)$ across distinct slope parameters $\\Theta$ collapse when reparameterized by $X=\\Theta\\,\\Delta m$, as quantified by the envelope metric $\\mathrm{env\\_max}=\\max_X \\{Y_{\\max}(X)-Y_{\\min}(X)\\}$ with gate $\\mathrm{env\\_max}\\le 0.02$?",
+    "How_it_was_found_or_built": "controlled | Rationale |\n|---|---|---|\n| Router form | Logistic $\\sigma(X)$ | Defines the universality class under test |\n| Collapse coordinate | $X=\\Theta\\,\\Delta m$ | Aligns families across $\\Theta$ |\n| Grid | Shared $X$-grid for interpolation | Enables envelope computation |\n| Trials per curve | Fixed (e.g., 4000) | Stabilizes empirical probability estimates |",
+    "When_it_was_built_or_discovered": "2025-10-06",
+    "What_it_enables": "envelope computation |\n| Trials per curve | Fixed (e.g., 4000) | Stabilizes empirical probability estimates |",
+    "source_file": "Derivation/Collapse/RESULTS_A6_Scaling_Collapse_Junction_Logistic_Universality.md"
+  },
+  {
+    "title": "RESULTS: Passive Thermodynamic Routing v2 — Symmetric Smoke (gate_set = smoke_symm)",
+    "What_it_is": "JSON env and receipts fields.)\n\n## Artifacts (bundle: 20251013_04553x)\n\nFigures:\n\n- Lyapunov + ΔL overlay: Derivation/code/outputs/figures/thermo_routing/20251013_045538_lyapunov_h_theorem_thermo-routing-v2.png\n- KPI dashboard: Derivation/code/outputs/figures/thermo_routing/20251013_045538_kpi_dashboard_thermo-routing-v2.png\n- Geometry & masks: Derivation/code/outputs/figures/thermo_routing/20251013_045539_geometry_masks_thermo-routing-v2.png",
+    "Why_it_was_needed": "Validation and quality control of theoretical predictions",
+    "How_it_was_found_or_built": "(abbrev.)\n\n- Equation: reaction–diffusion metric descent step [eq] with discrete gradient (DG) integrator to ensure [eq].\n- Geometry: symmetric two-outlet control; outflux-only convention at the right boundary.\n- RJ diagnostic: spectral fit of modal power to [eq] over a tail window; recorded but not gated for smoke.\n- No-switch: controller-disabled identity; bitwise comparison at checkpoints; SHA-256 of field buffers.",
+    "When_it_was_built_or_discovered": "2025-10-13",
+    "What_it_enables": "Passive Thermodynamic Routing v2 — Symmetric Smoke (gate_set = smoke_symm)\n\nAuthor: Justin K. Lietz  \nDate: 2025-10-13  \nCommit: 65df9c0  \nTag: thermo-routing-v2",
+    "source_file": "Derivation/Thermodynamic_Routing/Passive_Thermodynamic_Routing/RESULTS_Passive_Thermodynamic_Routing_v2.md"
+  },
+  {
+    "title": "Wave Flux Meter A-Phase: Closed-Box Energy Conservation and Local Balance (J-only Scalar Wave)",
+    "What_it_is": "This document certifies an energy/flux meter for scalar waves used later to audit photonic-style routing. The instrument evolves [eq] with J-only dynamics on a 2D periodic grid and measures energy density [eq] and a Poynting-analog flux [eq]. The scope here is Phase A: a closed box (no ports) with a frozen potential [eq], testing only inherent conservation and consistency of the discretization.",
+    "Why_it_was_needed": "Given a uniform medium with periodic boundaries and frozen $V$,\n\n1) does total energy stay within a leapfrog-consistent tolerance over many steps?  \n2) does the continuity residual $r = \\partial_t e + \\nabla\\cdot\\mathbf{s}$ remain small pointwise (L2 norm) at each step?",
+    "How_it_was_found_or_built": "/ Procedure\n\n- Spatial discretization: second-order centered differences for [eq] and [eq].  \n- Time integrator: leapfrog (Störmer–Verlet), staggering [eq] at half-steps; energy density sampled compatibly with staggering.  \n- Residual evaluation: centered [eq] via [eq], divergence by centered differences; then [eq] per step.  \n- Tolerances: [eq], [eq].",
+    "When_it_was_built_or_discovered": "2025-10-13",
+    "What_it_enables": "are aligned with the project's ethical principles.  \n> Commercial use requires citation and written permission from Justin K. Lietz.  \n> See LICENSE file for full terms.",
+    "source_file": "Derivation/Thermodynamic_Routing/Wave_Flux_Meter/RESULTS_Wave_Flux_Meter_A_Phase_v1.md"
+  },
+  {
+    "title": "Wave Flux Meter — Phase B (Open Ports) Results v1",
+    "What_it_is": "JSON:\n\n- Power balance R^2 = 0.9999827333 (PASS ≥ 0.9995)\n- Relative imbalance ⟨|dE/dt + P_out|⟩/⟨|P_out|⟩ = 0.002977 (0.2977%) (PASS ≤ 0.5%)\n- Absorber efficiency = 1.72077 (PASS ≥ 0.9)\n- Symmetry (raw) = 0.32955; applicable=false (asymmetric μ)",
+    "Why_it_was_needed": "the gates now pass tightly: Discrete bookkeeping uses face-based fluxes aligned with the energy accounting on the interior rectangle; disabling μ-weighted dynamics at this grid avoids small dispersion/storage mismatches near sharp μ transitions while still honoring μ for port placement and walls via V. This drops conservation error to ~0.3% and R^2≈0.99998.\n- Visuals: Legends moved to upper-left; the dashboard was widened to 14.5 inches to avoid overlap with accuracy annotations.",
+    "How_it_was_found_or_built": "Computational validation with strict KPI gates and artifact archival",
+    "When_it_was_built_or_discovered": "2025-10-13",
+    "What_it_enables": "v1\n\n> Author: Justin K. Lietz  \n> Date: 2025-10-13  \n> Commit: 3e4b7f7  \n> Tag: thermo-routing-v2-wave-meter-openports",
+    "source_file": "Derivation/Thermodynamic_Routing/Wave_Flux_Meter/RESULTS_Wave_Flux_Meter_Phase_B_OpenPorts_v1.md"
+  },
+  {
+    "title": "Metriplectic Integrator: Symplectic J-Step Composed with Discrete-Gradient M-Step",
+    "What_it_is": "(locked run; paired artifacts)\n\n- M-only two-grid: slope $p=2.9803$, $R^2=0.9999859$ (PASS).  \n  Figure: `Derivation/code/outputs/figures/metriplectic/20251006_100833_residual_vs_dt_m_only.png`  \n  CSV: `Derivation/code/outputs/logs/metriplectic/20251006_100833_residual_vs_dt_m_only.csv`  \n  JSON: `Derivation/code/outputs/logs/metriplectic/20251006_100833_sweep_dt_m_only.json`",
+    "Why_it_was_needed": "To what extent does the composed JMJ integrator achieve second-order convergence (Strang) while preserving J-only reversibility and ensuring M-induced Lyapunov decrease at fixed $\\Delta t$?",
+    "How_it_was_found_or_built": "realize the expected Strang-like order while preserving the qualitative invariants of J and M individually? The answer is supported by two-grid error fits, Lyapunov monotonicity checks, and an entropy-like $|\\Delta S|$ comparison at fixed $\\Delta t$.",
+    "When_it_was_built_or_discovered": "2025-10-06",
+    "What_it_enables": "/ Data\n\n### Definitions and sample calculations\n\nTwo-grid (Richardson) error for a one-step map $\\Phi_{\\Delta t}$:",
+    "source_file": "Derivation/Metriplectic/Metriplectic_JMJ_RD/RESULTS_Metriplectic_JMJ_RD_v1.md"
+  },
+  {
+    "title": "KG J-only Energy Oscillation Scaling and Time-Reversal (QC)",
+    "What_it_is": "(includes determinism receipts): /mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/logs/metriplectic/20251013_021322_kg_energy_osc_fit_KG-energy-osc-v1.json",
+    "Why_it_was_needed": "- Independent variables: time step [eq] sampled on a geometric ladder from [eq] to [eq], seeds (band-limited ICs across low/mid/high [eq]-bands).\n- Dependent variables: energy oscillation half-amplitude [eq], relative amplitude [eq], and time-reversal error [eq].\n- Estimator: [eq] with [eq]. Multi-seed median aggregation per [eq] avoids resonance bias.\n- Thresholds: slope [eq], [eq], [eq] at smallest [eq] [eq], and [eq].",
+    "How_it_was_found_or_built": "the discrete energy oscillation amplitude scales with the time step and checks strict time-reversal. This quality control (QC) establishes the KG integrator as a precise measuring instrument for subsequent metriplectic coupling.",
+    "When_it_was_built_or_discovered": "2025-10-13",
+    "What_it_enables": "are aligned with the project's ethical principles.  \n> Commercial use requires citation and written permission from Justin K. Lietz.  \n> See LICENSE file for full terms.",
+    "source_file": "Derivation/Metriplectic/KG_Energy_Oscillation/RESULTS_KG_Energy_Oscillation_v1.md"
+  },
+  {
+    "title": "KG J-only Validations - Dispersion and Locality (Metriplectic Upstream)",
+    "What_it_is": "(from per‑domain results DB)\n\n- Database: `Derivation/code/outputs/databases/metriplectic.sqlite3`\n- Tables: `kg_dispersion` (from `run_kg_dispersion.py`), `kg_light_cone` (from `run_kg_light_cone.py`)",
+    "Why_it_was_needed": "To what extent do the J-only KG dynamics satisfy the linear dispersion relation and a locality (light-cone) bound under our normalization?",
+    "How_it_was_found_or_built": "/ Procedure\n\n- Dispersion: initialize a single Fourier mode; run short windows to estimate [eq]; sweep a small set of [eq]; fit [eq] vs [eq]; log fit (slope/intercept/[eq]).\n- Light cone: initialize a narrow Gaussian; threshold on [eq] to measure radius [eq] over steps; fit [eq] vs [eq] for speed; log slope and [eq].\n- Policy routing: runs without approval are stamped `{ engineering_only:true, quarantined:true }` and artifacts routed under `failed_runs/`.",
+    "When_it_was_built_or_discovered": "2025-10-08",
+    "What_it_enables": "standards.\n\n## Research question\n\nTo what extent do the J-only KG dynamics satisfy the linear dispersion relation and a locality (light-cone) bound under our normalization?",
+    "source_file": "Derivation/Metriplectic/KG_Jonly_Locality_and_Dispersion/RESULTS_KG_Jonly_Locality_and_Dispersion.md"
+  },
+  {
+    "title": "KG⊕RD Metriplectic QC - Spectral‑DG Primary Profile",
+    "What_it_is": "This note evaluates a metriplectic time integrator that couples a conservative Klein-Gordon (KG) field with a dissipative reaction-diffusion (RD) flow via operator splitting. The objective is quality control (QC): verify discrete invariants (time-reversal for J; Lyapunov monotonicity for M), confirm expected error scalings under Strang composition, and document pass/fail against explicit gates with pinned artifacts.\n\nThis coupling is representative of multi-physics models where a Hamiltonian subsystem (wave-like KG) interacts with dissipative kinetics (RD). The metriplectic framework separates...",
+    "Why_it_was_needed": "To what extent does the time step Δt (s, normalized) control the observed log-log two‑grid error slope p (unitless) for the KG⊕RD Strang JMJ composition when using a spectral discrete‑gradient (DG) M‑step? Secondary: does the KG J‑only integrator meet strict per‑step energy and reversibility gates under our normalization?",
+    "How_it_was_found_or_built": "/ Procedure\n\nMaterials and setup:\n\n- J (KG): spectral gradient; Störmer-Verlet on (ϕ, π) with periodic BCs.\n- M (RD): discrete‑gradient (AVF) with spectral Laplacian.\n- Composition: JMJ (primary), MJM (defect diagnostic).\n\nSteps:\n\n1. Generate periodic ICs for (ϕ, π) using seeded noise (seed_scale = 0.05). Fix grid, params, tolerances.\n2. J‑only diagnostic: advance by Δt and reverse; record max‑norm reversibility and per‑step ΔH; log JSON.\n3. M‑only two‑grid: sweep Δt; compute residual E from coarse/fine pairing; fit p, R²; emit CSV/JSON/PNG.\n4. JMJ two‑grid: sweep Δt; compute E on ϕ (v1); fit ...",
+    "When_it_was_built_or_discovered": "2025-10-06",
+    "What_it_enables": "are aligned with the project's ethical principles.\n> Commercial use requires citation and written permission from Justin K. Lietz.\n> See LICENSE file for full terms.",
+    "source_file": "Derivation/Metriplectic/KG_RD_Metriplectic/RESULTS_KG_RD_Metriplectic.md"
+  },
+  {
+    "title": "Validated Result: $v_{\\text{front}}$ within 2% of $c$; cone stable under refinement",
+    "What_it_is": "Proven scientific result in Locality cone exists with speed ≤ $c$: $v_{\\text{front}}$ within 2% of $c$; cone stable under refinement",
+    "Why_it_was_needed": "Validation of theoretical predictions in the VDM framework",
+    "How_it_was_found_or_built": "Computational validation with strict KPI gates and artifact archival",
+    "When_it_was_built_or_discovered": "2025-10-13",
+    "What_it_enables": "Establishes validated canon for the Void Dynamics Model",
+    "source_file": "Derivation/CANON_PROGRESS.md"
+  },
+  {
+    "title": "Validated Result: linear fit $R^2 \\ge 0.999$",
+    "What_it_is": "Proven scientific result in Dispersion: $\\omega^2 = c^2 k^2 + m^2$: linear fit $R^2 \\ge 0.999$",
+    "Why_it_was_needed": "Validation of theoretical predictions in the VDM framework",
+    "How_it_was_found_or_built": "Computational validation with strict KPI gates and artifact archival",
+    "When_it_was_built_or_discovered": "2025-10-13",
+    "What_it_enables": "Establishes validated canon for the Void Dynamics Model",
+    "source_file": "Derivation/CANON_PROGRESS.md"
+  },
+  {
+    "title": "Validated Result: \\Delta\\",
+    "What_it_is": "Proven scientific result in `Derivation/code/outputs/figures/metriplectic/20251008_184547_kg_noether_energy_momentum__KG-noether-v1.png`, `Derivation/code/outputs/logs/metriplectic/20251008_184547_kg_noether_energy_momentum__KG-noether-v1.csv` (Gate met: $\\max\\Delta E\\approx8.3\\times10^{-17}$, $\\max\\Delta P\\approx2.6\\times10^{-17}$; $\\epsilon\\sqrt{N}\\approx3.55\\times10^{-15}$; reversibility $\\: \\Delta\\",
+    "Why_it_was_needed": "Validation of theoretical predictions in the VDM framework",
+    "How_it_was_found_or_built": "Computational validation with strict KPI gates and artifact archival",
+    "When_it_was_built_or_discovered": "2025-10-13",
+    "What_it_enables": "Establishes validated canon for the Void Dynamics Model",
+    "source_file": "Derivation/CANON_PROGRESS.md"
+  },
+  {
+    "title": "Validated Result: slope $p\\in[1.95,2.05]$, $R^2\\ge 0.999$; $e_{\\rm rev}\\le 10^{-12}$; $(A_H/\\bar H)_{\\min\\,\\Delta t}\\le 10^{-4}$",
+    "What_it_is": "Proven scientific result in Energy oscillation scaling (instrument QC): slope $p\\in[1.95,2.05]$, $R^2\\ge 0.999$; $e_{\\rm rev}\\le 10^{-12}$; $(A_H/\\bar H)_{\\min\\,\\Delta t}\\le 10^{-4}$",
+    "Why_it_was_needed": "Validation of theoretical predictions in the VDM framework",
+    "How_it_was_found_or_built": "Computational validation with strict KPI gates and artifact archival",
+    "When_it_was_built_or_discovered": "2025-10-13",
+    "What_it_enables": "Establishes validated canon for the Void Dynamics Model",
+    "source_file": "Derivation/CANON_PROGRESS.md"
+  },
+  {
+    "title": "Validated Result: rel-err $\\le 5\\%$, $R^2 \\ge 0.999$",
+    "What_it_is": "Proven scientific result in Fisher–KPP front speed matches $2\\sqrt{D r}$ (collapse $c^*\\to 1$): rel-err $\\le 5\\%$, $R^2 \\ge 0.999$",
+    "Why_it_was_needed": "Validation of theoretical predictions in the VDM framework",
+    "How_it_was_found_or_built": "Computational validation with strict KPI gates and artifact archival",
+    "When_it_was_built_or_discovered": "2025-10-13",
+    "What_it_enables": "Establishes validated canon for the Void Dynamics Model",
+    "source_file": "Derivation/CANON_PROGRESS.md"
+  },
+  {
+    "title": "Validated Result: median rel-err $\\le 2\\times 10^{-3}$, $R^2 \\ge 0.999$",
+    "What_it_is": "Proven scientific result in Linear RD dispersion $\\sigma(k)=r - D k^2$: median rel-err $\\le 2\\times 10^{-3}$, $R^2 \\ge 0.999$",
+    "Why_it_was_needed": "Validation of theoretical predictions in the VDM framework",
+    "How_it_was_found_or_built": "Computational validation with strict KPI gates and artifact archival",
+    "When_it_was_built_or_discovered": "2025-10-13",
+    "What_it_enables": "Establishes validated canon for the Void Dynamics Model",
+    "source_file": "Derivation/CANON_PROGRESS.md"
+  },
+  {
+    "title": "Validated Result: $\\Delta\\Sigma \\ge -\\text{tol}$",
+    "What_it_is": "Proven scientific result in H-theorem / Lyapunov non-increase per step: $\\Delta\\Sigma \\ge -\\text{tol}$",
+    "Why_it_was_needed": "Validation of theoretical predictions in the VDM framework",
+    "How_it_was_found_or_built": "Computational validation with strict KPI gates and artifact archival",
+    "When_it_was_built_or_discovered": "2025-10-13",
+    "What_it_enables": "Establishes validated canon for the Void Dynamics Model",
+    "source_file": "Derivation/CANON_PROGRESS.md"
+  },
+  {
+    "title": "Validated Result: $\\le 10^{-10}\\,N$ (grid-refined)",
+    "What_it_is": "Proven scientific result in Degeneracy: $\\langle J\\,\\delta\\Sigma,\\,\\delta\\Sigma \\rangle \\approx 0$ and $\\langle M\\,\\delta I,\\,\\delta I \\rangle \\approx 0$: $\\le 10^{-10}\\,N$ (grid-refined)",
+    "Why_it_was_needed": "Validation of theoretical predictions in the VDM framework",
+    "How_it_was_found_or_built": "Computational validation with strict KPI gates and artifact archival",
+    "When_it_was_built_or_discovered": "2025-10-13",
+    "What_it_enables": "Establishes validated canon for the Void Dynamics Model",
+    "source_file": "Derivation/CANON_PROGRESS.md"
+  },
+  {
+    "title": "Validated Result: CI “cone-in-RD” linter = clean",
+    "What_it_is": "Proven scientific result in **No causal cone** (front speed only; exponential tails): CI “cone-in-RD” linter = clean",
+    "Why_it_was_needed": "Validation of theoretical predictions in the VDM framework",
+    "How_it_was_found_or_built": "Computational validation with strict KPI gates and artifact archival",
+    "When_it_was_built_or_discovered": "2025-10-13",
+    "What_it_enables": "Establishes validated canon for the Void Dynamics Model",
+    "source_file": "Derivation/CANON_PROGRESS.md"
+  },
+  {
+    "title": "Validated Result: $\\mathrm{RMS}_{\\mathrm{FRW}} \\le 10^{-6}$",
+    "What_it_is": "Proven scientific result in Continuity residual QC at machine precision: $\\mathrm{RMS}_{\\mathrm{FRW}} \\le 10^{-6}$",
+    "Why_it_was_needed": "Validation of theoretical predictions in the VDM framework",
+    "How_it_was_found_or_built": "Computational validation with strict KPI gates and artifact archival",
+    "When_it_was_built_or_discovered": "2025-10-13",
+    "What_it_enables": "Establishes validated canon for the Void Dynamics Model",
+    "source_file": "Derivation/CANON_PROGRESS.md"
+  },
+  {
+    "title": "Validated Result: $\\mathrm{env\\_max} \\le 0.02$",
+    "What_it_is": "Proven scientific result in Scaling collapse envelope tight: $\\mathrm{env\\_max} \\le 0.02$",
+    "Why_it_was_needed": "Validation of theoretical predictions in the VDM framework",
+    "How_it_was_found_or_built": "Computational validation with strict KPI gates and artifact archival",
+    "When_it_was_built_or_discovered": "2025-10-13",
+    "What_it_enables": "Establishes validated canon for the Void Dynamics Model",
+    "source_file": "Derivation/CANON_PROGRESS.md"
+  },
+  {
+    "title": "Validated Result: slope $\\approx 3$, $R^2 \\ge 0.999$",
+    "What_it_is": "Proven scientific result in Strang defect slope near $3$: slope $\\approx 3$, $R^2 \\ge 0.999$",
+    "Why_it_was_needed": "Validation of theoretical predictions in the VDM framework",
+    "How_it_was_found_or_built": "Computational validation with strict KPI gates and artifact archival",
+    "When_it_was_built_or_discovered": "2025-10-13",
+    "What_it_enables": "Establishes validated canon for the Void Dynamics Model",
+    "source_file": "Derivation/CANON_PROGRESS.md"
+  },
+  {
+    "title": "Validated Result: Spectrum: $\\mathrm{cov}_{\\rm phys}\\ge 0.95$ (v1: 1.000); Condensation: finite_fraction $\\ge 0.80$, interior min, $a>0$",
+    "What_it_is": "Proven scientific result in Spectrum complete on admissible set; condensation exhibits interior minimum with positive curvature: Spectrum: $\\mathrm{cov}_{\\rm phys}\\ge 0.95$ (v1: 1.000); Condensation: finite_fraction $\\ge 0.80$, interior min, $a>0$",
+    "Why_it_was_needed": "Validation of theoretical predictions in the VDM framework",
+    "How_it_was_found_or_built": "Computational validation with strict KPI gates and artifact archival",
+    "When_it_was_built_or_discovered": "2025-10-13",
+    "What_it_enables": "Establishes validated canon for the Void Dynamics Model",
+    "source_file": "Derivation/CANON_PROGRESS.md"
+  },
+  {
+    "title": "Validated Result: drift $\\le 10^{-8}$ at $\\Delta t\\sim 10^{-3}$",
+    "What_it_is": "Proven scientific result in $Q$ conservation is exact (proof + validator): drift $\\le 10^{-8}$ at $\\Delta t\\sim 10^{-3}$",
+    "Why_it_was_needed": "Validation of theoretical predictions in the VDM framework",
+    "How_it_was_found_or_built": "Computational validation with strict KPI gates and artifact archival",
+    "When_it_was_built_or_discovered": "2025-10-13",
+    "What_it_enables": "Establishes validated canon for the Void Dynamics Model",
+    "source_file": "Derivation/CANON_PROGRESS.md"
+  },
+  {
+    "title": "Validated Result: bounded by coupling & timestep tolerance",
+    "What_it_is": "Proven scientific result in Site-wise conservation of $Q$ is **not** satisfied; $Q$ serves as a diagnostic: bounded by coupling & timestep tolerance",
+    "Why_it_was_needed": "Validation of theoretical predictions in the VDM framework",
+    "How_it_was_found_or_built": "Computational validation with strict KPI gates and artifact archival",
+    "When_it_was_built_or_discovered": "2025-10-13",
+    "What_it_enables": "Establishes validated canon for the Void Dynamics Model",
+    "source_file": "Derivation/CANON_PROGRESS.md"
+  },
+  {
+    "title": "Algorithm VDM-A-001: Runtime Main Loop (Nexus Tick Loop)  <a id=\"vdm-a-001\"></a>",
+    "What_it_is": "Computational algorithm for Runtime Main Loop (Nexus Tick Loop)  <a id=\"vdm-a-001\"></a>",
+    "Why_it_was_needed": "Enables systematic computational validation of VDM predictions",
+    "How_it_was_found_or_built": "Algorithm development for numerical simulation and validation",
+    "When_it_was_built_or_discovered": "2025-10-13",
+    "What_it_enables": ">\n> Type: RUNTIME • Binding: PSEUDOCODE • State: writes state • Dependencies: none • Notes: agency layer optional; consumes signals only\n\n**Context:** fum_rt/runtime/loop/main.py:283-679 • Commit: 749",
+    "source_file": "Derivation/ALGORITHMS.md"
+  },
+  {
+    "title": "Algorithm VDM-A-002: Connectome Step (Void-Equation Driven Topology Update)  <a id=\"vdm-a-002\"></a>",
+    "What_it_is": "Computational algorithm for Connectome Step (Void-Equation Driven Topology Update)  <a id=\"vdm-a-002\"></a>",
+    "Why_it_was_needed": "Enables systematic computational validation of VDM predictions",
+    "How_it_was_found_or_built": "Algorithm development for numerical simulation and validation",
+    "When_it_was_built_or_discovered": "2025-10-13",
+    "What_it_enables": "> Type: RUNTIME • Binding: PSEUDOCODE • State: writes state • Dependencies: `delta_re_vgsp`, `delta_gdsp` (EQUATIONS TODO)\n> **STATUS:** **BROKEN / WRONG** - docs claim “no dense path,” but the code i",
+    "source_file": "Derivation/ALGORITHMS.md"
+  },
+  {
+    "title": "Algorithm VDM-A-003: Void Scout Runner (Per-Tick Scout Executor)  <a id=\"vdm-a-003\"></a>",
+    "What_it_is": "Computational algorithm for Void Scout Runner (Per-Tick Scout Executor)  <a id=\"vdm-a-003\"></a>",
+    "Why_it_was_needed": "Enables systematic computational validation of VDM predictions",
+    "How_it_was_found_or_built": "Algorithm development for numerical simulation and validation",
+    "When_it_was_built_or_discovered": "2025-10-13",
+    "What_it_enables": ">\n> Type: INSTRUMENT • Binding: PSEUDOCODE • State: read-only • Publishes: bus events; tags on neurons/edges • Notes: traversal metrics only\n\n**Context:** fum_rt/core/cortex/void_walkers/runner.py:38-",
+    "source_file": "Derivation/ALGORITHMS.md"
+  },
+  {
+    "title": "Algorithm VDM-A-004: Cold Scout (Coldness-Driven Walker)  <a id=\"vdm-a-004\"></a>",
+    "What_it_is": "Computational algorithm for Cold Scout (Coldness-Driven Walker)  <a id=\"vdm-a-004\"></a>",
+    "Why_it_was_needed": "Enables systematic computational validation of VDM predictions",
+    "How_it_was_found_or_built": "Algorithm development for numerical simulation and validation",
+    "When_it_was_built_or_discovered": "2025-10-13",
+    "What_it_enables": ">\n> Type: INSTRUMENT • Binding: PSEUDOCODE • State: read-only (publishes explore events only) • Priors: minimal/flat • Notes: baseline cartography; complements goal-driven flows\n\n**Context:** fum_rt/c",
+    "source_file": "Derivation/ALGORITHMS.md"
+  },
+  {
+    "title": "Algorithm VDM-A-005: Alias Sampling (Vose's Method)  <a id=\"vdm-a-005\"></a>",
+    "What_it_is": "Computational algorithm for Alias Sampling (Vose's Method)  <a id=\"vdm-a-005\"></a>",
+    "Why_it_was_needed": "Enables systematic computational validation of VDM predictions",
+    "How_it_was_found_or_built": "Algorithm development for numerical simulation and validation",
+    "When_it_was_built_or_discovered": "2025-10-13",
+    "What_it_enables": ">\n> Type: RUNTIME • Binding: PSEUDOCODE • State: none • Dependencies: none • Notes: O(N) build, O(1) draw\n\n**Context:** fum_rt/core/connectome.py:96-127 • Commit: 7498744 • Module: core/connectome\n\n**",
+    "source_file": "Derivation/ALGORITHMS.md"
+  },
+  {
+    "title": "Algorithm VDM-A-006: RE-VGSP Learning Step (Three-Factor Synaptic Plasticity)  <a id=\"vdm-a-006\"></a>",
+    "What_it_is": "Computational algorithm for RE-VGSP Learning Step (Three-Factor Synaptic Plasticity)  <a id=\"vdm-a-006\"></a>",
+    "Why_it_was_needed": "Enables systematic computational validation of VDM predictions",
+    "How_it_was_found_or_built": "Algorithm development for numerical simulation and validation",
+    "When_it_was_built_or_discovered": "2025-10-13",
+    "What_it_enables": "> Type: RUNTIME • Binding: PSEUDOCODE • State: writes state • Dependencies: `delta_re_vgsp`, `delta_gdsp`, `VoidDebtModulation.get_universal_domain_modulation` • Notes: three-factor rule (values-only ",
+    "source_file": "Derivation/ALGORITHMS.md"
+  },
+  {
+    "title": "Algorithm VDM-A-007: GDSP Adaptive Thresholds (Structural Plasticity Gating)  <a id=\"vdm-a-007\"></a>",
+    "What_it_is": "Computational algorithm for GDSP Adaptive Thresholds (Structural Plasticity Gating)  <a id=\"vdm-a-007\"></a>",
+    "Why_it_was_needed": "Enables systematic computational validation of VDM predictions",
+    "How_it_was_found_or_built": "Algorithm development for numerical simulation and validation",
+    "When_it_was_built_or_discovered": "2025-10-13",
+    "What_it_enables": ">\n> Type: POLICY • Binding: PSEUDOCODE • State: internal state only • Dependencies: none • Notes: heuristic adaptation; bounds enforced\n\n**Context:** fum_rt/core/neuroplasticity/gdsp.py:38-100 • Commi",
+    "source_file": "Derivation/ALGORITHMS.md"
+  },
+  {
+    "title": "Algorithm VDM-A-008: Fluid Dynamics Walker (LBM Telemetry Agent)  <a id=\"vdm-a-008\"></a>",
+    "What_it_is": "Computational algorithm for Fluid Dynamics Walker (LBM Telemetry Agent)  <a id=\"vdm-a-008\"></a>",
+    "Why_it_was_needed": "Enables systematic computational validation of VDM predictions",
+    "How_it_was_found_or_built": "Algorithm development for numerical simulation and validation",
+    "When_it_was_built_or_discovered": "2025-10-13",
+    "What_it_enables": ">\n> Type: INSTRUMENT • Binding: PSEUDOCODE • State: read-only • Dependencies: bilinear interp/div/vort (EQUATIONS TODO) • Notes: publishes petitions\n\n**Context:** Derivation/code/physics/fluid_dynamic",
+    "source_file": "Derivation/ALGORITHMS.md"
+  },
+  {
+    "title": "Algorithm VDM-A-009: Advisory Policy (Fluids Telemetry Feedback)  <a id=\"vdm-a-009\"></a>",
+    "What_it_is": "Computational algorithm for Advisory Policy (Fluids Telemetry Feedback)  <a id=\"vdm-a-009\"></a>",
+    "Why_it_was_needed": "Enables systematic computational validation of VDM predictions",
+    "How_it_was_found_or_built": "Algorithm development for numerical simulation and validation",
+    "When_it_was_built_or_discovered": "2025-10-13",
+    "What_it_enables": ">\n> Type: POLICY • Binding: PSEUDOCODE • State: none • Dependencies: none • Notes: advisory only; caller applies or ignores\n\n**Context:** Derivation/code/physics/fluid_dynamics/telemetry/walkers.py:16",
+    "source_file": "Derivation/ALGORITHMS.md"
+  },
+  {
+    "title": "Algorithm VDM-A-022: Tube Spectrum and Condensation Harness (Tachyonic Tube v1)  <a id=\"vdm-a-022\"></a>",
+    "What_it_is": "Computational algorithm for Tube Spectrum and Condensation Harness (Tachyonic Tube v1)  <a id=\"vdm-a-022\"></a>",
+    "Why_it_was_needed": "Enables systematic computational validation of VDM predictions",
+    "How_it_was_found_or_built": "Algorithm development for numerical simulation and validation",
+    "When_it_was_built_or_discovered": "2025-10-13",
+    "What_it_enables": "> Type: EXPERIMENT • Binding: PSEUDOCODE • State: writes artifacts • Dependencies: Bessel evaluations, adaptive quadrature • Notes: QC gates for spectrum coverage and condensation curvature\n\n**Context",
+    "source_file": "Derivation/ALGORITHMS.md"
+  },
+  {
+    "title": "Metriplectic Domain",
+    "What_it_is": "J/M split structure enabling separation of conservative (J) and dissipative (M) dynamics",
+    "Why_it_was_needed": "Critical component of VDM framework addressing metriplectic",
+    "How_it_was_found_or_built": "Theoretical development and computational validation with strict KPI gates",
+    "When_it_was_built_or_discovered": "2024-2025",
+    "What_it_enables": "Advances VDM capabilities in metriplectic domain",
+    "source_file": "Derivation/Metriplectic/"
+  },
+  {
+    "title": "Reaction Diffusion Domain",
+    "What_it_is": "Fisher-KPP front speed and linear dispersion validation to within 5% error",
+    "Why_it_was_needed": "Critical component of VDM framework addressing reaction diffusion",
+    "How_it_was_found_or_built": "Theoretical development and computational validation with strict KPI gates",
+    "When_it_was_built_or_discovered": "2024-2025",
+    "What_it_enables": "Advances VDM capabilities in reaction diffusion domain",
+    "source_file": "Derivation/Reaction_Diffusion/"
+  },
+  {
+    "title": "Tachyon Condensation Domain",
+    "What_it_is": "Finite-tube mode analysis and tachyonic condensation energy landscape",
+    "Why_it_was_needed": "Critical component of VDM framework addressing tachyon condensation",
+    "How_it_was_found_or_built": "Theoretical development and computational validation with strict KPI gates",
+    "When_it_was_built_or_discovered": "2024-2025",
+    "What_it_enables": "Advances VDM capabilities in tachyon condensation domain",
+    "source_file": "Derivation/Tachyon_Condensation/"
+  },
+  {
+    "title": "Agency Field Domain",
+    "What_it_is": "Capability density field C(x,t) for measuring distributed cognitive capability",
+    "Why_it_was_needed": "Critical component of VDM framework addressing agency field",
+    "How_it_was_found_or_built": "Theoretical development and computational validation with strict KPI gates",
+    "When_it_was_built_or_discovered": "Date not specified in available documentation",
+    "What_it_enables": "Advances VDM capabilities in agency field domain",
+    "source_file": "Derivation/Agency_Field/"
+  },
+  {
+    "title": "Thermodynamic Routing Domain",
+    "What_it_is": "Passive routing via thermodynamic gradients and memory channels",
+    "Why_it_was_needed": "Critical component of VDM framework addressing thermodynamic routing",
+    "How_it_was_found_or_built": "Theoretical development and computational validation with strict KPI gates",
+    "When_it_was_built_or_discovered": "2024-2025",
+    "What_it_enables": "Advances VDM capabilities in thermodynamic routing domain",
+    "source_file": "Derivation/Thermodynamic_Routing/"
+  },
+  {
+    "title": "Cosmology Domain",
+    "What_it_is": "FRW continuity equation validation at machine precision (10^-15)",
+    "Why_it_was_needed": "Critical component of VDM framework addressing cosmology",
+    "How_it_was_found_or_built": "Theoretical development and computational validation with strict KPI gates",
+    "When_it_was_built_or_discovered": "2024-2025",
+    "What_it_enables": "Advances VDM capabilities in cosmology domain",
+    "source_file": "Derivation/Cosmology/"
+  },
+  {
+    "title": "Conservation Law Domain",
+    "What_it_is": "Discrete conservation laws and Noether invariants with < 10^-12 drift",
+    "Why_it_was_needed": "Critical component of VDM framework addressing conservation law",
+    "How_it_was_found_or_built": "Theoretical development and computational validation with strict KPI gates",
+    "When_it_was_built_or_discovered": "2024-2025",
+    "What_it_enables": "Advances VDM capabilities in conservation law domain",
+    "source_file": "Derivation/Conservation_Law/"
+  },
+  {
+    "title": "Collapse Domain",
+    "What_it_is": "A6 scaling collapse universality with envelope < 0.02",
+    "Why_it_was_needed": "Critical component of VDM framework addressing collapse",
+    "How_it_was_found_or_built": "Theoretical development and computational validation with strict KPI gates",
+    "When_it_was_built_or_discovered": "2024-2025",
+    "What_it_enables": "Advances VDM capabilities in collapse domain",
+    "source_file": "Derivation/Collapse/"
+  },
+  {
+    "title": "Intelligence Model Domain",
+    "What_it_is": "Physics-native intelligence substrate framework",
+    "Why_it_was_needed": "Critical component of VDM framework addressing intelligence model",
+    "How_it_was_found_or_built": "Theoretical development and computational validation with strict KPI gates",
+    "When_it_was_built_or_discovered": "Date not specified in available documentation",
+    "What_it_enables": "Advances VDM capabilities in intelligence model domain",
+    "source_file": "Derivation/Intelligence_Model/"
+  },
+  {
+    "title": "Dark Photons Domain",
+    "What_it_is": "Decoherence portal analysis with Fisher information consistency",
+    "Why_it_was_needed": "Critical component of VDM framework addressing dark photons",
+    "How_it_was_found_or_built": "Theoretical development and computational validation with strict KPI gates",
+    "When_it_was_built_or_discovered": "Date not specified in available documentation",
+    "What_it_enables": "Advances VDM capabilities in dark photons domain",
+    "source_file": "Derivation/Dark_Photons/"
+  },
+  {
+    "title": "KG-Lite Memory Graph System for Research Continuity",
+    "What_it_is": "Graph-based memory system that tracks experimental data, decisions, and results in a queryable format for maintaining research continuity",
+    "Why_it_was_needed": "Enables persistent tracking of experimental lineage, decisions, and context across long-running research programs",
+    "How_it_was_found_or_built": "Developed as custom tooling for managing research memory with node/edge graph structure and CLI interface",
+    "When_it_was_built_or_discovered": "2025 (based on memory-bank structure)",
+    "What_it_enables": "Maintains active context, product context, decision logs, and progress tracking; supports knowledge transfer and research auditing",
+    "source_file": "memory-bank/"
+  }
+]
