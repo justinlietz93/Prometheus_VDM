@@ -23,6 +23,8 @@
 
 ## 🔥News
 
+- **November 2, 2025**
+  - Added a conceptual piece called [An Exploration of the Void Dynamics Model](/docs/An%20Exploration%20of%20the%20Void%20Dynamics%20Model.md) that details a plan to unify the Void Dynamics Model roadmap to modern physics. Touching on intuited reasons for the existence of black holes, observers, information, reasons for necessity of hierarchical fractals and so on.
 - **November 1, 2025**
   - Published early draft of the proposed A8 Axiom candidate to [Zenodo](https://zenodo.org/records/17503344) for provenance.
 - **October 31, 2025**
