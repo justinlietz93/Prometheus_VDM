@@ -1,11 +1,12 @@
 # T8 - A8 (Axiom Candidate) — Lietz Infinity Resolution Conjecture
 
-**Title:** A8 (Candidate) — Lietz Infinity Resolution Conjecture  
-**Tier:** T8 — Axiomization Candidate (requires both theorem-level result and cross-domain empirical gates)  
-**Author:** Justin K. Lietz  
-**Date:** 2025-10-31  
-**Domains:** Axioms & Foundations (primary), Cosmology (spinodal), Variational PDEs, Information/Agency  
-**VDM Canon Note:** On PASS, this becomes A8 in Canon/AXIOMS.md with the exact statement below. Until then, treat as CANDIDATE and cite this PROPOSAL.
+> **Title:** A8 (Candidate) — Lietz Infinity Resolution Conjecture  
+> **DOI:** [https://doi.org/10.5281/zenodo.17503344](https://doi.org/10.5281/zenodo.17503344)  
+> **Tier:** T8 — Axiomization Candidate (requires both theorem-level result and cross-domain empirical gates)  
+> **Author:** Justin K. Lietz  
+> **Date:** 2025-10-31  
+> **Domains:** Axioms & Foundations (primary), Cosmology (spinodal), Variational PDEs, Information/Agency  
+> **VDM Canon Note:** On PASS, this becomes A8 in Canon/AXIOMS.md with the exact statement below. Until then, treat as CANDIDATE and cite this PROPOSAL.  
 
 ---
 
@@ -333,18 +334,18 @@ Equivalently, absence of such hierarchical scale breaks implies either:
 
 **Steering neutrality** 
 
-Assisted nudges are zero‑mean, white in phase, and supported only in the tail’s tubular set ( $\mathcal{N}\*\epsilon(x\*\star)$ ). A matched‑budget randomized control is run each time.
+- Assisted nudges are zero‑mean, white in phase, and supported only in the tail’s tubular set ( $\mathcal{N}\*\epsilon(x\*\star)$ ). A matched‑budget randomized control is run each time.
 
 **No‑template test** 
 
-Cross‑correlation between the final boundary field and the nudge field outside ( $\mathcal{N}\*\epsilon(x\*\star)$ ) must be ≤ 0.05 (pre‑reg) at all non‑tail scales.
+- Cross‑correlation between the final boundary field and the nudge field outside ( $\mathcal{N}\*\epsilon(x\*\star)$ ) must be ≤ 0.05 (pre‑reg) at all non‑tail scales.
 
-**Analytical track.**
+**Analytical track**
 
 - 1D toy with tachyonic $V$: derive minimal energy for connecting maps on $[0,L]$ with exponential tail; show necessity of a logarithmic number of "knees"/interfaces or equivalent multi-scale partition.
 - Γ-style argument (Modica–Mortola pattern): show reduction to perimeter energy $\sigma\,\mathcal{H}^{d-1}$ in small-interface-width limit, then tie tail length $\lambda$ to the scale gaps.
 
-**Numerical track.**
+**Numerical track**
 
 - RD form: $\partial_t \phi = D\nabla^2\phi + r\phi - u\phi^2 - \lambda_3 \phi^3$ (choose symmetric φ⁴: $\lambda_3=0$ or biased φ³+φ⁴ with clear note).
 - Measure: $E_{\text{exc}}$, $N(L)$, $\rho$, $\alpha$, $\alpha_\mathcal{I}$, $c/c_\star$.
