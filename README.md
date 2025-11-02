@@ -96,10 +96,8 @@ Remaining proprietary work must be requested directly.
 
 ## 🧭What this is
 
-- A set of derivation papers that establish a clean baseline physics slice
-  using reaction-diffusion (RD).
-- Additional documents that explore a future, quarantined effective field
-  theory (EFT) branch, clearly labeled as future work.
+- A set of derivation papers that establish a clean baseline physics slice starting from a discrete lattice, to a metriplectic split and cosmology.
+- Additional documents that explore future work (proposals).
 - Each paper separates what is proven from what is plausible or speculative
   and, where applicable, includes acceptance criteria for simple numerical
   checks.
@@ -120,6 +118,7 @@ Remaining proprietary work must be requested directly.
 - These materials are shared for academic review and discussion. Commercial
   use requires prior written permission. See the project’s license notice in
   the distribution or parent repository materials.
+- I reserve all legal rights to ownership of any custom or proprietary assets.
 - The scope stays within theoretical physics and simulation. Broad
   cosmological claims are withheld or clearly labeled until backed by
   derivation + numeric checks.
