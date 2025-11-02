@@ -1,7 +1,7 @@
 <!-- DOC-GUARD: CANONICAL -->
 # VDM Axioms (Discrete Lattice Foundation)
 
-Last updated: 2025-10-09 (commit 09f871a)
+Last updated: 2025-11-01 (commit 3d315e7bbabc0a2d1c2afa4ccc5a72d26c836559)
 
 **Scope:** Canonical list of axioms used by the Void Dynamics Model. This page declares axioms with minimal wording, anchors for cross-referencing, and source citations. All theorems, equations, and algorithms must reference these axioms rather than restate them.
 
