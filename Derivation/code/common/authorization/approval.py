@@ -18,6 +18,7 @@ import os
 import hmac
 import hashlib
 import sqlite3
+import shutil
 from dataclasses import dataclass
 from datetime import datetime, timezone
 import re
@@ -96,12 +97,21 @@ def _repair_db_path(p: Path, code_dir: Path, deriv_dir: Path) -> Path:
     try:
         s = str(p)
         if p.exists():
-            # Prefer canonical 'Derivation' if both exist
+            # If path uses '/derivation/', migrate/prefer canonical '/Derivation/' twin
             if "/derivation/" in s:
                 twin = Path(s.replace("/derivation/", "/Derivation/"))
-                if twin.exists():
-                    print(f"[authorization] Repair: prefer canonical path {twin} over {p}", file=sys.stderr)
-                    return twin
+                try:
+                    if twin.exists():
+                        print(f"[authorization] Repair: prefer canonical path {twin} over {p}", file=sys.stderr)
+                        return twin
+                    # If twin doesn't exist but canonical Derivation dir exists, create parent and copy DB
+                    if (twin.parent).exists() or deriv_dir.exists():
+                        twin.parent.mkdir(parents=True, exist_ok=True)
+                        shutil.copy2(str(p), str(twin))
+                        print(f"[authorization] Repair: migrated approvals DB to canonical path {twin} from {p}", file=sys.stderr)
+                        return twin
+                except Exception as _copy_e:
+                    print(f"[authorization] Warning: failed to migrate approvals DB to canonical path: {_copy_e}; using provided path {p}", file=sys.stderr)
             return p
         # p does not exist; try candidates
         candidates: list[Path] = []

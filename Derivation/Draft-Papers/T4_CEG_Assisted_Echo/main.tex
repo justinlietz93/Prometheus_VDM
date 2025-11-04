@@ -1,0 +1,323 @@
+
+% ==================================================================
+% T4 — Counterfactual Echo Gain (CEG): A Metriplectic Assisted‑Echo Experiment in VDM
+% arXiv-style whitepaper source (single file). Ready for Zenodo upload.
+% Requires: arxiv.sty (bundled), orcid.pdf (bundled), pdflatex + bibtex (optional).
+% Compile: pdflatex; bibtex (optional if you add .bib); pdflatex; pdflatex.
+% ==================================================================
+\documentclass{article}
+
+\usepackage{arxiv} % bundled in the package
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath, amssymb, mathtools}
+\usepackage{physics}
+\usepackage{siunitx}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{caption}
+\usepackage{microtype}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=[rgb]{0.10,0.10,0.45},
+  citecolor=[rgb]{0.10,0.45,0.10},
+  urlcolor=[rgb]{0.45,0.10,0.10}
+}
+
+% ---------- ORCID icon + link (expects orcid.pdf in the same directory) ----------
+\newcommand{\orcidicon}{\includegraphics[height=1.6ex]{orcid.pdf}}
+\newcommand{\orcidlink}[1]{\href{https://orcid.org/#1}{\orcidicon}}
+
+% ---------- Listings (JSON, shell, python) ----------
+\lstdefinelanguage{json}{%
+  basicstyle=\ttfamily\small,
+  showstringspaces=false,
+  breaklines=true,
+  literate=
+   *{0}{{{\color{black}0}}}{1}
+    {1}{{{\color{black}1}}}{1}
+    {2}{{{\color{black}2}}}{1}
+    {3}{{{\color{black}3}}}{1}
+    {4}{{{\color{black}4}}}{1}
+    {5}{{{\color{black}5}}}{1}
+    {6}{{{\color{black}6}}}{1}
+    {7}{{{\color{black}7}}}{1}
+    {8}{{{\color{black}8}}}{1}
+    {9}{{{\color{black}9}}}{1}
+    {:}{{{\color{black}{:}}}}{1}
+    {,}{{{\color{black}{,}}}}{1}
+    {"}{{{\color{black}{"}}}}{1},
+}
+\lstset{
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  frame=single,
+  rulecolor=\color{black!20},
+  tabsize=2,
+  xleftmargin=0.5em,
+  xrightmargin=0.5em,
+}
+
+% ------------------------------------------------------------------
+\title{T4\,—\,Counterfactual Echo Gain (CEG): A Metriplectic Assisted‑Echo Experiment in VDM}
+
+\author{%
+  Justin K. Lietz\,\orcidlink{0009-0008-9028-1366}\\
+  \normalsize Prometheus VDM (independent research program)\\
+  \texttt{justin@neuroca.ai}
+}
+
+\date{October 30, 2025}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent
+VDM (Void Dynamics Model) separates dynamics into a conservative limb $J$ and a dissipative limb $M$ (metriplectic split). The proposed experiment defines and tests \emph{Counterfactual Echo Gain} (CEG)\,—\,the improvement in echo fidelity when a system uses its \emph{internal model} of $(J)$ and $(M)$ to assist the time‑reversal phase, relative to an energy‑matched, model‑blind baseline. The preregistered observable is
+\[
+\mathrm{CEG} \equiv \frac{E_{\text{baseline}} - E_{\text{assisted}}}{E_{\text{baseline}}} \in [0,1],
+\]
+with explicit physics gates: \textbf{(i) J‑Noether drift} bounded, \textbf{(ii) M‑monotonicity} (\mbox{H‑theorem}) respected, and \textbf{(iii) energy‑matching} enforced. Passing requires $\mathrm{median}_{\text{seeds}}(\mathrm{CEG}) \ge 0.05$ without gate violations across a preregistered grid of step sizes and split compositions. This elevates echoes from calibration demos to a falsifiable claim about \emph{model‑aware self‑correction} under metriplectic dynamics. All artifacts, gates, and figures are to be posted in RESULTS‑conformant form for provenance.
+\end{abstract}
+
+\keywords{metriplectic dynamics \and assisted echo \and Noether drift \and H‑theorem \and Strang splitting \and preregistration \and reproducibility}
+
+% ------------------------ Provenance panel -------------------------
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Tier grade} & T4 (Preregistered claim); prior support at T2/T3 (meters, smoke tests).\\
+\textbf{Created} & 2025‑10‑30 \\
+\textbf{Commit (repo)} & \texttt{80ee5476e4f887fed3c34534a99daa878f55382f} \\
+\textbf{License} & See \texttt{LICENSE} at repository root. \\
+\textbf{Contact} & Justin K. Lietz \texttt{<justin@neuroca.ai>} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{0.7em}
+\noindent\textbf{Registration statement.} This is a preregistered proposal (T4) with explicit pass/fail gates and a machine‑readable spec. Successful passage promotes follow‑on work to T5 (Pilot) and broader T7/T8 sweeps.
+
+% ========================= 1. Background ===========================
+\section{Background \& Scientific Rationale}
+
+\paragraph{Metriplectic core.}
+VDM enforces two coupled generators on state $q$:
+\begin{equation}
+\dot q = J(q)\,\frac{\delta \mathcal{I}}{\delta q} + M(q)\,\frac{\delta \Sigma}{\delta q},
+\qquad J^\top=-J,\; M^\top = M \succeq 0,
+\label{eq:metriplectic}
+\end{equation}
+with degeneracies $J\,\delta\Sigma/\delta q = 0$ and $M\,\delta\mathcal{I}/\delta q = 0$. The $J$ limb preserves invariants (e.g., discrete Hamiltonian), while $M$ increases a Lyapunov/entropy $\Sigma$ (discrete H‑theorem). The VDM canon documents meters for these properties and composition‑error scaling under Strang splitting.
+
+\paragraph{Governing instruments.}
+Validated KG/RD branches and conservation‑law diagnostics provide the measurement substrate for the echo tests; e.g., the discrete action and Euler–Lagrange structure (for $J$), and gradient‑flow RD updates (for $M$). These appear in the EQUATIONS registry used as the computational ``instrument manual.''
+
+\paragraph{Maturity ladder (T0–T9).}
+Evidence tiers: T0 (Concept), T1 (Proto‑model), T2 (Instrument meters), T3 (Smoke), T4–T6 (Preregistered → Pilot → Main), T7–T8 (Out‑of‑sample → Robustness), T9 (External reproduction). This document is T4, building on T2/T3 artifacts (Noether/H‑theorem meters, Strang QC, scaling collapse) and specifying explicit pass/fail gates and configs.
+
+\paragraph{Why now.}
+Meters are certified (T2) for J‑reversibility, M‑monotonicity, Strang‑defect slopes; T3 smoke tests showed scaling collapses and routing discipline. The present T4 proposal upgrades echoes from instrument checks to a \emph{phenomenon test}: whether \emph{internal $J/M$ knowledge} can be exploited to improve a reversible‑attempt under dissipation, \emph{without breaking the gates}.
+
+\paragraph{Novelty \& targets.}
+Novelty lies in the \emph{gate‑bounded, metriplectic assisted‑echo} and preregistered metric (CEG). Targets: (i) robust $\mathrm{CEG}>0$ under energy‑matched controls; (ii) zero violations of J‑Noether and H‑monotonicity; (iii) sensitivity map over assistance strength and composition ordering.
+
+\paragraph{Critiques (and replies).}
+\emph{Energy cheating?} Energy‑matching gate. \emph{Numerical artifact?} Instruments QC’d (Noether/H‑theorem/Strang) and ablations scramble the model while holding numerics fixed. \emph{Metaphysical self‑awareness?} Claim is \emph{operational}: model‑aware correction under metriplectic gates.
+
+% ========================= 2. Methods ==============================
+\section{Intellectual Merit and Procedure}
+
+\noindent\textbf{Importance.} Establishes a falsifiable competency—\emph{model‑aware self‑correction}—measured under strict conservation/entropy gates.\\
+\textbf{Impact.} If validated, metriplectic assisted‑echoes become tools for probing agency‑like competencies in field models.\\
+\textbf{Approach.} Treat the numerical scheme as a measuring instrument; pair claims with metrics and gates; preregister parameters, seeds, thresholds; publish artifacts per RESULTS standards.
+
+\subsection{Experimental Setup and Diagnostics}
+
+\paragraph{State and splits.}
+Domain $\Omega\subset\mathbb{R}^d$ (1D/2D) with field $W$ (KG for $J$; RD/gradient‑flow for $M$). Discrete action and updates from EQUATIONS registry; canonical constants from CONSTANTS registry.
+
+\paragraph{Integrator.}
+Strang JMJ (or MJM control): symplectic step for $J$; discrete‑gradient step for $M$. Diagnostics on each limb are enabled during both forward and reverse phases.
+
+\paragraph{Observables.}
+Echo error $E \equiv \lVert q_{\text{final}}-q_0\rVert_{\mathcal{H}}$ in a declared discrete energy norm. CEG as in Eq.~(\ref{eq:CEG}).
+\begin{equation}
+\mathrm{CEG} \equiv \frac{E_{\text{baseline}} - E_{\text{assisted}}}{E_{\text{baseline}}}, \qquad 0 \le \mathrm{CEG} \le 1.
+\label{eq:CEG}
+\end{equation}
+
+\paragraph{Gates (physics constraints).}
+\begin{itemize}[leftmargin=1.5em,itemsep=0.25em]
+  \item \textbf{G1 (Noether‑J):} $\max_t \frac{|\Delta \mathcal{I}|}{\mathcal{I}_0} \le 10^{-8}$ (fp64; multi‑seed median).
+  \item \textbf{G2 (H‑M):} $\Delta \Sigma \ge -10^{-12}$ per step (fp rounding tolerance); non‑decreasing cumulative $\Sigma$ in M‑only segments.
+  \item \textbf{G3 (Energy‑match):} assistance work budget equals baseline within $10^{-4}$ relative.
+  \item \textbf{G4 (Composition QC):} Strang defect slope $\beta \in [2.8,3.2]$ on $\Delta t$ log–log fit before assisted tests.
+\end{itemize}
+
+\paragraph{Preregistered grid.}
+$N\in\{256,512,1024\}$; $\Delta t\in\{0.5,1,2\}\times \Delta t_{\text{CFL}}$ (stable envelope per branch); split ordering (JMJ/MJM); assistance $\lambda\in\{0.0,0.1,0.2,0.3\}$; seeds $\ge 12$ (fixed list).
+
+\paragraph{Diagnostics (counts).}
+Noether drift monitor (1), H‑theorem monitor (1), composition‑slope fitter (1), CEG aggregator (1), gate‑ledger (1), optional light‑cone/dispersion probes (2). Artifacts (CSV/JSON/PNG) paired per RESULTS standards.
+
+\paragraph{New tools/scripts.}
+\texttt{experiments/metriplectic/assisted\_echo.py} (SMAE micro‑sequence during rewind; energy‑budget clamp); \texttt{metrics/echo\_fidelity.py} (norms; CEG); \texttt{gates/echo\_gates.py} (G1–G4 JSON pass/fail; contradiction reports); \texttt{schemas/echo\_artifacts.schema.json}.
+
+\paragraph{Compute environment.}
+x86\_64 Linux, Python 3.11+, NumPy/SciPy/FFT; optional ROCm‑accelerated FFT/BLAS on AMD GPUs; commit+seed logged for every run; IEEE‑754 fp64 discipline.
+
+\subsubsection*{Pre‑Run Config (minimum)}
+
+\noindent\textbf{APPROVAL.json (excerpt).}
+\begin{lstlisting}[language=json,caption={APPROVAL.json (excerpt)}]
+[
+  {
+    "preflight_name": "preflight",
+    "description": "Approval manifest stating that the preflight runner must pass before real runs that write artifacts.",
+    "author": "Justin K. Lietz",
+    "requires_approval": true,
+    "pre_commit_hook": true,
+    "notes": "Preflight runs (Derivation/code/tests) are allowed without approval. To run real experiments that write artifacts, a relevant PROPOSAL_* must be created at Derivation/Metriplectic/ and approved."
+  },
+  {
+    "pre_registered": true,
+    "proposal": "Derivation/Metriplectic/T4_PROPOSAL_CEG_Metriplectic_Assisted-Echo_Experiment.md",
+    "allowed_tags": ["echo_spec-v1"],
+    "schema_dir": "Derivation/code/physics/metriplectic/schemas",
+    "approvals": {
+      "echo_spec-v1": {
+        "schema": "Derivation/code/physics/metriplectic/schemas/echo_spec-v1.schema.json",
+        "approved_by": "Justin K. Lietz",
+        "approved_at": "<auto-generated>",
+        "approval_key": "<hashed-key>"
+      }
+    }
+  }
+]
+\end{lstlisting}
+
+\noindent\textbf{PRE‑REGISTRATION.json (minimum).}
+\begin{lstlisting}[language=json,caption={PRE-REGISTRATION.json (minimum keys)}]
+{
+  "proposal_title": "CEG Assisted-Echo",
+  "tier_grade": "T4",
+  "commit": "80ee5476e4f887fed3c34534a99daa878f55382f",
+  "salted_provenance": {
+    "schema": "vdm.provenance.salted_hash.v1",
+    "generated_utc": "2025-10-30T16:49:47.201492Z",
+    "salt_bytes": 16,
+    "single_salt": true,
+    "salt_hex": "aff7a0cb80e8d430873bc504be978525",
+    "items": [
+      {
+        "path": "Derivation/code/physics/metriplectic/specs/assisted_echo.v1.json",
+        "size": 274,
+        "base_sha256": "40917004b65550b10dd89dcaeef43df9191ddb2d2f08656bb9c1e37a7372116d",
+        "salt_hex": "aff7a0cb80e8d430873bc504be978525",
+        "salted_sha256": "7cb47d741d087a65fc5f9eeb73c599904702ba199c101b81ae1954658fc51029"
+      }
+    ]
+  },
+  "contact": ["Justin K. Lietz <justin@neuroca.ai>"],
+  "hypotheses": [
+    { "id": "H1", "statement": "Median CEG >= 0.05 under gates G1–G4.", "direction": "increase" }
+  ],
+  "variables": {
+    "independent": ["N", "dt", "split", "lambda"],
+    "dependent": ["CEG"],
+    "controls": ["energy_match", "seed"]
+  },
+  "pass_fail": [
+    { "metric": "CEG_median", "operator": ">=", "threshold": 0.05, "unit": "dimensionless" }
+  ],
+  "spec_refs": ["Derivation/code/physics/metriplectic/specs/assisted_echo.v1.json"],
+  "registration_timestamp": "2025-10-30T16:49:47.201492Z"
+}
+\end{lstlisting}
+
+\noindent\textbf{Specs (assisted\_echo.v1.json — minimum keys).}
+\begin{lstlisting}[language=json,caption={assisted_echo.v1.json (minimum keys)}]
+{
+  "tag": "assisted-echo-t4-prereg",
+  "grid": { "N": 256, "dx": 1.0 },
+  "params": { "c": 1.0, "m": 0.5, "D": 1.0, "m_lap_operator": "spectral" },
+  "dt": 0.02,
+  "steps": 200,
+  "seeds": [1,2,3,4,5,6,7,8,9,10,11,12],
+  "lambdas": [0.0, 0.1, 0.2, 0.3],
+  "budget": 1e-3
+}
+\end{lstlisting}
+
+\noindent\textbf{Schemas (echo\_spec‑v1.schema.json — minimum).}
+\begin{lstlisting}[language=json,caption={echo_spec-v1.schema.json (minimum)}]
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:metriplectic:echo_spec-v1",
+  "title": "assisted_echo spec schema",
+  "type": "object",
+  "metadata": { "tag": "echo_spec-v1" },
+  "properties": {},
+  "required": []
+}
+\end{lstlisting}
+
+\subsection{Experimental Runplan}
+
+\begin{enumerate}[leftmargin=1.5em,itemsep=0.35em]
+  \item \textbf{RP‑1 Baseline calibration (meters).} Run J‑only reversibility, M‑only monotonicity, and Strang defect slope across the grid; must pass G1–G2–G4 before any assisted runs. (Artifacts posted with CSV/JSON and figure captions including slope/$R^2$ and seed/commit.)
+  \item \textbf{RP‑2 Assisted‑echo implementation.} Insert a micro‑sequence during the reverse M‑segment using the internal $M$ estimator, with assistance $\lambda$ and \emph{energy‑match clamp}. Log assistance work; ensure G3.
+  \item \textbf{RP‑3 Preregistered evaluation.} For each grid point and seed: forward JMJ $\to$ perturb (“walker” pulse) $\to$ reverse. Record $E_{\text{baseline}}$ at $\lambda{=}0$ and $E_{\text{assisted}}$ for $\lambda{>}0$. Compute CEG and gate statuses.
+  \item \textbf{RP‑4 Ablations \& controls.} Model‑blind assistance (scramble $M$ map), J‑scramble, M‑scramble, and MJM ordering as controls; same energy budget, same seeds.
+  \item \textbf{RP‑5 Publication pipeline.} Prepare \texttt{RESULTS\_CEG\_AssistedEcho.md} with TL;DR, gates, tables, figures with numeric captions, and reproducibility manifests (commit/seed). Emit contradiction reports if any gate fails.
+\end{enumerate}
+
+\paragraph{Runtime scope.}
+Total run budget is $(\#\text{grid})\times(\#\text{seeds})\times(\#\lambda)\times(\#\text{steps (fwd+rev)})$ with all artifacts retained; RESULTS standards require per‑figure paired CSV/JSON and gate JSON per run.
+
+\paragraph{Plan of action (success).}
+If $\mathrm{median}_{\text{seeds}}(\mathrm{CEG}) \ge 0.05$ and all gates pass across $\ge$80\% of grid points, promote to T5 (Pilot) with a ridge map of CEG vs.\ $(\lambda,\text{M‑strength})$.
+
+\paragraph{Plan of action (failure).}
+If any gate fails, emit \texttt{CONTRADICTION\_REPORT} (gate, threshold, seed, commit, artifact) and quarantine. If gates pass but $\mathrm{CEG}\le 0$, publish null result; run ablations to bound sensitivity and update assistance design.
+
+% ========================= Personnel ===============================
+\section{Personnel}
+\textbf{Justin K. Lietz (PI):} designs experiment; implements \texttt{assisted\_echo.py}, metrics, gates, and artifact schemas; runs preregistered sweeps; authors RESULTS note; maintains provenance (commit/seed/logging) and compliance with artifact/figure pairing.
+
+% ========================= References ==============================
+\section{References (informal, minimal)}
+\begin{enumerate}[leftmargin=1.4em]
+  \item White Paper Proposal Template (section structure, narrative discipline, provenance requirements).
+  \item RESULTS Paper Standards (figure/CSV pairing, numeric captions, gate JSONs, contradiction‑reporting norms).
+  \item VDM EQUATIONS Registry (discrete action/Lagrangian, Euler–Lagrange, and RD/KG update forms).
+  \item VDM Overview (Canon \& Maturity) (Noether/H‑theorem checks; metriplectic structure gates).
+  \item VDM CONSTANTS (canonical default parameters; CFL guidance).
+  \item Technical \& Scientific Principles (numerical‑as‑instrument, IEEE‑754 discipline).
+\end{enumerate}
+
+% ========================= Appendix ================================
+\appendix
+\section{Instrument Equations Referenced in \S\ref{eq:metriplectic} (KG branch)}
+Discrete Lagrangian / Euler–Lagrange for the $(J)$ limb (KG branch):
+\begin{equation*}
+\frac{W_i^{n+1}-2W_i^{n}+W_i^{n-1}}{(\Delta t)^2}
+\;-\;\kappa \sum_{\mu=1}^d \big(W_{i+\mu}^{n}+W_{i-\mu}^{n}-2W_i^{n}\big)
+\;+\; V'(W_i^{n}) \;=\; 0,
+\qquad
+\mathcal{L} = \tfrac12 (\partial_t \phi)^2 - \tfrac{\kappa a^2}{2} (\nabla \phi)^2 - V(\phi).
+\end{equation*}
+(Continuum limit and notation as in the registry.)
+
+\bigskip
+\noindent\textbf{Reproducibility \& provenance.} All runs log commit, seed, full parameters, and SHA‑256 checksums for CSV/JSON/PNG artifacts, consistent with VDM’s reproducibility policy. Claims here are operational and physical (assisted echoes improve fidelity under metriplectic gates); no metaphysical claims are made.
+
+\end{document}

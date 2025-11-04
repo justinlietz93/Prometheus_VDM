@@ -1,0 +1,21 @@
+{
+  "commit": "unknown",
+  "proposal_title": "CEG Assisted-Echo",
+  "salted_provenance": {
+    "generated_utc": "2025-11-04T17:31:30+00:00",
+    "items": [
+      {
+        "base_sha256": "1fb6bae4bcbac192ec464c017cc4896a5a573805c6a685b555b4034fc011feb2",
+        "path": "Derivation/code/physics/metriplectic/specs/assisted_echo.v1c.json",
+        "salt_hex": "d9893743c090f119a172dbabeafc106c",
+        "salted_sha256": "a2fac1822078e48db33a4a59a0a654ec378b482a6fd79de81acb978e2c104638",
+        "size": 303
+      }
+    ],
+    "salt_bytes": 16,
+    "salt_hex": "d9893743c090f119a172dbabeafc106c",
+    "schema": "vdm.provenance.salted_hash.v1",
+    "single_salt": true
+  },
+  "tier_grade": "T4"
+}

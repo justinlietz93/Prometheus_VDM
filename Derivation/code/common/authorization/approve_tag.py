@@ -21,12 +21,12 @@ Usage examples:
     export VDM_APPROVAL_DB=/secure/vdm_approvals.sqlite3
     # Approve a tag (script-scoped HMAC) - provide --script to scope the approval key
     python3 Derivation/code/common/authorization/approve_tag.py approve metriplectic KG-dispersion-v1 \
-        --script run_metriplectic.py --db "$VDM_APPROVAL_DB"
+        --script run_metriplectic.py
 
     # Exempt management (scripts that skip approval checks)
     python3 Derivation/code/common/authorization/approve_tag.py exempt list --db "$VDM_APPROVAL_DB"
     python3 Derivation/code/common/authorization/approve_tag.py exempt add Derivation/code/physics/metriplectic/run_metriplectic.py \
-        --noted-by "Justin K. Lietz" --db "$VDM_APPROVAL_DB"
+        --noted-by "Justin K. Lietz"
 """
 
 from __future__ import annotations
@@ -180,7 +180,6 @@ def main(argv: list[str] | None = None) -> int:
     if cmd == "status":
         # Read-only status of DB initialization (no password required)
         import sqlite3  # local import to keep dependencies tight
-        from .approval import get_admin_db_path
 
         def _tables_at(path: Path) -> set[str]:
             if not path.exists():

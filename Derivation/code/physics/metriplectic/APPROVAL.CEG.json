@@ -25,8 +25,8 @@
     "assisted-echo-t4-prereg-v1c": {
       "schema": "Derivation/code/physics/metriplectic/schemas/assisted-echo-t4-prereg-v1c.schema.json",
       "approved_by": "Justin K. Lietz",
-      "approved_at": "",
-      "approval_key": ""
+      "approved_at": "2025-11-04T17:13:59.130885+00:00",
+      "approval_key": "971bdcf7a55fe7c036bc00ef5ae724b603404ee0425f9758bd829794a433d7a7"
     },
     "echo_spec-v1c": {
       "schema": "Derivation/code/physics/metriplectic/schemas/echo_spec-v1c.schema.json",

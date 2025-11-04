@@ -1,17 +1,18 @@
-# Void Dynamics Model
-### ***A Metriplectic Theory for Agency***
+<h1 align="center">Void Dynamics Model (VDM)</h1>
+<h4 align="center">
+  "From the impossibility of nothing emerges everything; by mathematical necessity of hierarchies, logarithmically scaled phase transitions force dissipation of problematic infinite exponential tails produced by reaction-diffusion pulled wave fronts into finite energy; concentrated in the complex perimeter evolution of the boundary."</h4>
+<p align="center">- The Void Dynamics Thesis</p>
 
 ---
 
-***Current Status:*** Working on the VDM Nexus to accelerate experiment management and tie the framework into a seamless GUI application.
+***Current Status:*** Active development.
 
 > **Author:** Justin K. Lietz  
 > **Contact:** <justin@neuroca.ai>  
 > <a href="https://orcid.org/0009-0008-9028-1366"><img src="https://img.shields.io/badge/ORCID-0009--0008--9028--1366-blue?" alt="ORCID: 0009-0008-9028-1366"></a>  
 >
 > **Created:** August 9, 2025  
-> **README Last Updated:** November 2, 2025  
-> **Codebase Last Updated:** November 2, 2025  
+> **Last Updated:** November 4, 2025  
 >
 > This research is protected under a dual-license to foster open academic  
 > research while ensuring commercial applications are aligned with the project's ethical principles.  
@@ -23,8 +24,13 @@
 
 ## 🔥News
 
-- **November 2, 2025**
-  - Added a conceptual piece called [An Exploration of the Void Dynamics Model](/docs/An%20Exploration%20of%20the%20Void%20Dynamics%20Model.md) that details a plan to unify the Void Dynamics Model roadmap to modern physics. Touching on intuited reasons for the existence of black holes, observers, information, reasons for necessity of hierarchical fractals and so on.
+- **November 4, 2025**
+  - [Assisted‑Echo T4 (prereg v1c)](/Derivation/Metriplectic/T4_PROPOSAL_CEG_Metriplectic_Assisted-Echo_Experiment.md) rerun with instrument + plotting fixes:
+    - Per‑seed plotting for A2/A5/B11 removes cross‑seed “seed‑chord” artifacts in overlays (error, ΔΣ, λ‑telemetry).
+    - Noether (G1) tolerance scaled to instrument level: tol = max(1e-12, 10·eps·√N·max(h0,1)); routing remains governed by G1–G4 aggregation.
+    - Reruns launched for N∈{512,1024}, dt∈{0.01,0.02,0.04}. Early results: N=512 dt=0.01 and N=512 walker dt=0.02 routed to main outputs with G1–G4 **PASS**; dt=0.04 routed to failed_runs pending CFL tightening.
+    - Artifacts (PNG/CSV/JSON + figure packs) under Derivation/code/outputs/{figures,logs}/metriplectic, tag: assisted-echo-t4-prereg-v1c.
+  - **Next:** upgrade G4 measurement to a multi‑point Δt fit (same thresholds) to harden RP‑1 decisions.
 - **November 1, 2025**
   - Published early draft of the proposed A8 Axiom candidate to [Zenodo](https://zenodo.org/records/17503344) for provenance.
 - **October 31, 2025**
@@ -61,6 +67,9 @@
 - Once published to arXiv, take steps towards a peer reviewed journal and gather criticisms to refine my work.
 
 ## DOIs
+
+***T4. Counterfactual Echo Gain (CEG): A Metriplectic Assisted-Echo Experiment Proposal in VDM***
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17525915.svg)](https://doi.org/10.5281/zenodo.17525915)
 
 ***T8. Axiom 8 Candidate: The Lietz Infinity Resolution Conjecture***  
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17503343.svg)](https://doi.org/10.5281/zenodo.17503343)
