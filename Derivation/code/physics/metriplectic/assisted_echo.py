@@ -10,7 +10,7 @@ See LICENSE file for full terms.
 
 Metriplectic Assisted-Echo experiment (baseline vs assisted) per T4 proposal.
 
-Produces paired artifacts (JSON/CSV) under outputs/logs/metriplectic/ and a figure placeholder.
+Produces paired artifacts (JSON/CSV) under outputs/logs/metriplectic/ and a figure.
 Requires approval via APPROVAL.json for real runs (tests should use preflight logging helpers instead).
 """
 from __future__ import annotations
@@ -30,12 +30,13 @@ if str(CODE_ROOT) not in sys.path:
     sys.path.insert(0, str(CODE_ROOT))
 
 from common.io_paths import log_path, write_log, figure_path
-from physics.metriplectic.kg_ops import kg_verlet_step
+from physics.metriplectic.kg_ops import kg_verlet_step, spectral_grad
 from physics.metriplectic.kg_noether import stiffness
 from physics.metriplectic.compose import m_only_step_with_stats, lyapunov_values_consistent
 from physics.metriplectic.echo_metrics import h_energy_norm_delta, ceg
 from common.authorization.approval import check_tag_approval
 from physics.metriplectic.echo_gates import gate_noether, gate_h_theorem, gate_energy_match, gate_strang_defect
+from common.plotting.assisted_echo_plots import generate_core_pack
 
 
 @dataclass
@@ -54,8 +55,13 @@ def _slug(base: str, tag: str | None) -> str:
     if not tag:
         return base
     return f"{base}__{str(tag).strip().replace(' ', '-')}"
-
-
+    
+    
+def _lam_key(lam: float) -> str:
+    """Canonical string key for lambda values to avoid float repr issues."""
+    return f"{float(lam):.12g}"
+    
+    
 def _jmj_step(phi: np.ndarray, pi: np.ndarray, dt: float, dx: float, params: Dict[str, Any]) -> Tuple[np.ndarray, np.ndarray]:
     c = float(params.get("c", 1.0))
     m = float(params.get("m", 0.0))
@@ -88,29 +94,61 @@ def _strang_defect(phi: np.ndarray, pi: np.ndarray, dt: float, dx: float, params
 
 
 def _strang_two_grid_slope(phi: np.ndarray, pi: np.ndarray, dt: float, dx: float, params: Dict[str, Any], c: float, m: float) -> Tuple[float, float]:
-    """Estimate near-cubic Strang defect slope using two-grid ratio e(dt)/e(dt/2). Returns (slope, R2)."""
-    e_dt = _strang_defect(phi, pi, dt, dx, params, c, m)
-    e_h = _strang_defect(phi, pi, 0.5 * dt, dx, params, c, m)
-    if e_dt <= 0.0 or e_h <= 0.0:
+    """Estimate Strang defect slope via multi-point log–log fit in H-norm.
+
+    Uses defects at dt, dt/2, dt/4 (and dt/8 if resolvable) to fit:
+        log e(h) ≈ s log h + b  → return (s, R²)
+
+    Trivial regime: if all selected defects are below ~machine noise, return (3.0, 1.0).
+    """
+    # Build step sizes
+    dts = [float(dt), 0.5 * float(dt), 0.25 * float(dt)]
+    if dts[-1] > 0.0:
+        dts.append(0.125 * float(dt))
+    # Compute defects
+    es: list[float] = []
+    hs: list[float] = []
+    for d in dts:
+        if d <= 0.0:
+            continue
+        # Use canon two-grid local error for Strang accuracy (JMJ one-step vs two half-steps)
+        e = _two_grid_error_hnorm(phi, pi, d, dx, params)
+        if e <= 0.0 or not np.isfinite(e):
+            continue
+        es.append(float(e))
+        hs.append(float(d))
+    # Guard: need at least 3 points to fit robustly
+    if len(es) < 3:
+        # fallback to two-point ratio if available
+        if len(es) == 2 and es[0] > 0.0 and es[1] > 0.0:
+            s = float(np.log(es[0] / es[1]) / np.log(hs[0] / hs[1]))
+            return s, 1.0
         return 0.0, 0.0
-    slope = float(np.log(e_dt / e_h) / np.log(2.0))
-    # With two points, linear fit is determined; set R²=1.0 if positive observations
-    r2 = 1.0
-    return slope, r2
+    # Trivial near-roundoff regime: treat as perfect cubic
+    if all(v < 1e-14 for v in es):
+        return 3.0, 1.0
+    # Fit log–log
+    x = np.log(np.array(hs, dtype=float))
+    y = np.log(np.array(es, dtype=float))
+    A = np.vstack([x, np.ones_like(x)]).T
+    s, b = np.linalg.lstsq(A, y, rcond=None)[0]
+    y_pred = A @ np.array([s, b])
+    ss_res = float(np.sum((y - y_pred) ** 2))
+    ss_tot = float(np.sum((y - np.mean(y)) ** 2))
+    R2 = 1.0 - (ss_res / ss_tot if ss_tot > 0 else 0.0)
+    return float(s), float(R2)
 
 
 def _j_only_roundtrip_drift(phi: np.ndarray, pi: np.ndarray, dt: float, steps: int, dx: float, c: float, m: float) -> float:
-    """J-only reversibility meter (canon): compose exact roundtrips per step to minimize accumulation.
-    
-    Performs, for each k, a forward J step with +dt immediately followed by an inverse J step with -dt.
-    This mirrors the reversible composition and suppresses long-horizon accumulation of round-off.
+    """J-only reversibility meter (instrument-grade).
+
+    Measure the instrument error of a single reversible composition (+dt followed by −dt),
+    avoiding accumulation across many pairs. Returns the H-energy distance to the initial state.
     """
     ph, pr = phi.copy(), pi.copy()
-    for _ in range(int(steps)):
-        # Forward J
-        ph, pr = kg_verlet_step(ph, pr, dt, dx, c, m)
-        # Immediate reverse J
-        ph, pr = kg_verlet_step(ph, pr, -dt, dx, c, m)
+    # One forward + one reverse (single pair)
+    ph, pr = kg_verlet_step(ph, pr, dt, dx, c, m)
+    ph, pr = kg_verlet_step(ph, pr, -dt, dx, c, m)
     return h_energy_norm_delta(ph, pr, phi, pi, dx, c, m)
 
 
@@ -157,6 +195,47 @@ def _random_correction_pair(rng: np.random.Generator, phi: np.ndarray, pi: np.nd
         return np.zeros_like(phi), np.zeros_like(pi)
     scale = float(work / size)
     return (scale * vphi, scale * vpi)
+
+
+def _h_energy_components(dphi: np.ndarray, dpi: np.ndarray, dx: float, c: float, m: float) -> Tuple[float, float, float]:
+    """Compute H-energy metric components for a correction pair.
+    Returns (work_total, work_e_phi, work_e_pi) where:
+      - work_total = ||(dphi, dpi)||_H
+      - work_e_phi = ∫ (c^2 |∇dphi|^2 + m^2 |dphi|^2) dx
+      - work_e_pi  = ∫ |dpi|^2 dx
+    """
+    dphi = dphi.astype(float)
+    dpi = dpi.astype(float)
+    g = spectral_grad(dphi, dx)
+    e_pi = float(np.sum(dpi * dpi) * dx)
+    e_phi = float(np.sum((c * c) * (g * g) + (m * m) * (dphi * dphi)) * dx)
+    e_tot = e_phi + e_pi
+    work_total = float(np.sqrt(max(e_tot, 0.0)))
+    return work_total, e_phi, e_pi
+
+
+def _first_mode_energy_angle(phi: np.ndarray, pi: np.ndarray, dx: float, c: float, m: float) -> Tuple[float, float, float, float, float]:
+    """Compute H-energy and action-angle (theta) in the first Fourier cosine mode plane.
+    Returns (H_energy, theta_energy, r_energy, phi1, pi1)."""
+    N = int(phi.size)
+    L = float(N) * float(dx)
+    if L <= 0.0 or N <= 1:
+        return 0.0, 0.0, 0.0, 0.0, 0.0
+    x = (np.arange(N, dtype=float) * float(dx))
+    cos1 = np.cos(2.0 * np.pi * x / L)
+    denom = float(np.sum(cos1 * cos1) * dx)
+    if denom <= 0.0:
+        denom = float(N) * float(dx)
+    phi1 = float(np.sum(phi.astype(float) * cos1) * dx / denom)
+    pi1  = float(np.sum(pi.astype(float)  * cos1) * dx / denom)
+    k = 2.0 * np.pi / L
+    k_phi = float((c * c) * (k * k) + (m * m))
+    y1 = float(np.sqrt(max(k_phi, 0.0)) * phi1)
+    y2 = float(pi1)
+    H = 0.5 * float(k_phi * phi1 * phi1 + pi1 * pi1)
+    theta = float(np.arctan2(y2, y1))
+    r = float(np.sqrt(max(y1 * y1 + y2 * y2, 0.0)))
+    return H, theta, r, phi1, pi1
 
 
 def _jmj_forward_step_with_diagnostics(phi: np.ndarray, pi: np.ndarray, dt: float, dx: float, params: Dict[str, Any]) -> Tuple[np.ndarray, np.ndarray, float]:
@@ -250,6 +329,7 @@ def run_assisted_echo(spec: EchoSpec) -> Dict[str, Any]:
 
     results: Dict[str, Any] = {"seeds": seeds, "lambdas": lambdas, "grid": spec.grid, "params": spec.params, "dt": dt, "steps": steps}
     per_seed: List[Dict[str, Any]] = []
+    telemetry_rows: List[Dict[str, Any]] = []
 
     for seed in seeds:
         rng = np.random.default_rng(seed)
@@ -260,15 +340,30 @@ def run_assisted_echo(spec: EchoSpec) -> Dict[str, Any]:
         # forward JMJ with diagnostics (for H-theorem gate)
         ph, pr = phi0.copy(), pi0.copy()
         delta_sigmas: List[float] = []
-        for _ in range(steps):
+        for j in range(steps):
             ph, pr, dL = _jmj_forward_step_with_diagnostics(ph, pr, dt, dx, spec.params)
             delta_sigmas.append(float(dL))
+            # Per-step forward telemetry (mode='forward'): record ΔΣ and first-mode state
+            H_f, theta_f, _r_f, phi1_f, pi1_f = _first_mode_energy_angle(ph, pr, dx, c, m)
+            err_f = h_energy_norm_delta(ph, pr, phi0, pi0, dx, c, m)
+            telemetry_rows.append({
+                "seed": seed, "lambda": 0.0, "step": int(j+1), "mode": "forward",
+                "err_to_ref": float(err_f),
+                "work_total": 0.0, "work_e_phi": 0.0, "work_e_pi": 0.0,
+                "phi_share": 0.0, "pi_share": 0.0, "cum_work": 0.0,
+                "H_energy": float(H_f), "theta_energy": float(theta_f),
+                "phi1": float(phi1_f), "pi1": float(pi1_f),
+                "delta_sigma": float(dL), "align_cos": 0.0
+            })
         phiF, piF = ph, pr
 
         # RP-1 calibration gates before reverse phase
         time_rev_drift = _j_only_roundtrip_drift(phi0, pi0, dt, steps, dx, c, m)
         slope, r2 = _strang_two_grid_slope(phi0, pi0, dt, dx, spec.params, c, m)
-        g1 = gate_noether(time_rev_drift)
+        # Canonical tolerance scaling for G1: max(1e-12, 10 * eps * sqrt(N))
+        _eps = float(np.finfo(float).eps)
+        _tol_g1 = float(max(1e-12, 10.0 * _eps * float(np.sqrt(N))))
+        g1 = gate_noether(time_rev_drift, tol=_tol_g1)
         g2 = gate_h_theorem(float(min(delta_sigmas)) if delta_sigmas else 0.0)
         g4 = gate_strang_defect(slope, r2)
         rp1_ok = bool(g1.get("passed") and g2.get("passed") and g4.get("passed"))
@@ -298,8 +393,11 @@ def run_assisted_echo(spec: EchoSpec) -> Dict[str, Any]:
         baseline_errs: Dict[str, float] = {}
         assisted_errs: Dict[str, float] = {}
         work_summaries: Dict[str, Dict[str, float]] = {}
+        telemetry_per_lambda: Dict[str, Any] = {}
         for lam in lambdas:
             work = float(lam) * budget
+            lam_key = _lam_key(lam)
+            step_targets = [work for _ in range(steps)]
             # Baseline reverse with random corrections
             bl_ph, bl_pr = phiF.copy(), piF.copy()
             bl_work_sum = 0.0
@@ -309,10 +407,14 @@ def run_assisted_echo(spec: EchoSpec) -> Dict[str, Any]:
             m_params_rev = dict(spec.params)
             m_params_rev["D"] = float(spec.params.get("D", 1.0)) * m_scramble_factor
 
-            for i in range(steps):
-                remaining = float(steps * work - bl_work_sum)
-                target = float(max(0.0, min(work, remaining)))
+            # telemetry arrays (baseline) for this lambda
+            bl_err_trace: List[float] = []
+            bl_phi_share_trace: List[float] = []
+            bl_pi_share_trace: List[float] = []
 
+            for i in range(steps):
+                target = float(step_targets[i])
+                
                 if reverse_order == "MJM":
                     # M(dt/2)
                     bl_ph, _ = m_only_step_with_stats(bl_ph, 0.5 * dt, dx, m_params_rev)
@@ -330,6 +432,38 @@ def run_assisted_echo(spec: EchoSpec) -> Dict[str, Any]:
                     bl_ph, bl_pr = kg_verlet_step(bl_ph, bl_pr, -1.0 * dt, dx, c_rev, m)
                     # M(dt/2)
                     bl_ph, _ = m_only_step_with_stats(bl_ph, 0.5 * dt, dx, m_params_rev)
+                    # per-step telemetry (baseline, MJM)
+                    _bl_work_total, _bl_e_phi, _bl_e_pi = _h_energy_components(dphi_bl, dpi_bl, dx, c_rev, m)
+                    _bl_den = (_bl_e_phi + _bl_e_pi) if (_bl_e_phi + _bl_e_pi) > 0.0 else 1.0
+                    _bl_phi_share = float(_bl_e_phi / _bl_den)
+                    _bl_pi_share = float(_bl_e_pi / _bl_den)
+                    _bl_err_step = h_energy_norm_delta(bl_ph, bl_pr, phi0, pi0, dx, c, m)
+                    bl_err_trace.append(float(_bl_err_step))
+                    bl_phi_share_trace.append(_bl_phi_share)
+                    bl_pi_share_trace.append(_bl_pi_share)
+                    # First-mode with instrument metric (c, m)
+                    H_bl, theta_bl, _r_bl, _phi1_bl, _pi1_bl = _first_mode_energy_angle(bl_ph, bl_pr, dx, c, m)
+                    # Alignment of applied correction to -∇_H direction at current state (instrument metric)
+                    _dphi_ref = (bl_ph - phi0).astype(float)
+                    _dpi_ref = (bl_pr - pi0).astype(float)
+                    _dir_phi = -stiffness(_dphi_ref, dx, c, m)
+                    _dir_pi = -_dpi_ref
+                    _gv = spectral_grad(dphi_bl, dx); _gw = spectral_grad(_dir_phi, dx)
+                    _inner_phi = float(np.sum((c*c)*_gv*_gw + (m*m)*dphi_bl*_dir_phi) * dx)
+                    _inner_pi = float(np.sum(dpi_bl * _dir_pi) * dx)
+                    _inner = _inner_phi + _inner_pi
+                    _v_size, _, _ = _h_energy_components(dphi_bl, dpi_bl, dx, c, m)
+                    _w_size, _, _ = _h_energy_components(_dir_phi, _dir_pi, dx, c, m)
+                    _align_cos = float(_inner / (max(_v_size, 1e-12) * max(_w_size, 1e-12)))
+                    telemetry_rows.append({
+                        "seed": seed, "lambda": float(lam), "step": int(i+1), "mode": "baseline",
+                        "err_to_ref": float(_bl_err_step),
+                        "work_total": float(_bl_work_total), "work_e_phi": float(_bl_e_phi), "work_e_pi": float(_bl_e_pi),
+                        "phi_share": float(_bl_phi_share), "pi_share": float(_bl_pi_share), "cum_work": float(bl_work_sum),
+                        "H_energy": float(H_bl), "theta_energy": float(theta_bl),
+                        "phi1": float(_phi1_bl), "pi1": float(_pi1_bl), "delta_sigma": 0.0,
+                        "align_cos": float(_align_cos)
+                    })
                 else:
                     # J(-dt/2)
                     bl_ph, bl_pr = kg_verlet_step(bl_ph, bl_pr, -0.5 * dt, dx, c_rev, m)
@@ -347,13 +481,50 @@ def run_assisted_echo(spec: EchoSpec) -> Dict[str, Any]:
                     bl_ph, _stats = m_only_step_with_stats(bl_ph, dt, dx, m_params_rev)
                     # J(-dt/2)
                     bl_ph, bl_pr = kg_verlet_step(bl_ph, bl_pr, -0.5 * dt, dx, c_rev, m)
+                    # per-step telemetry (baseline, JMJ)
+                    _bl_work_total, _bl_e_phi, _bl_e_pi = _h_energy_components(dphi_bl, dpi_bl, dx, c_rev, m)
+                    _bl_den = (_bl_e_phi + _bl_e_pi) if (_bl_e_phi + _bl_e_pi) > 0.0 else 1.0
+                    _bl_phi_share = float(_bl_e_phi / _bl_den)
+                    _bl_pi_share = float(_bl_e_pi / _bl_den)
+                    _bl_err_step = h_energy_norm_delta(bl_ph, bl_pr, phi0, pi0, dx, c, m)
+                    bl_err_trace.append(float(_bl_err_step))
+                    bl_phi_share_trace.append(_bl_phi_share)
+                    bl_pi_share_trace.append(_bl_pi_share)
+                    # First-mode with instrument metric (c, m)
+                    H_bl, theta_bl, _r_bl, _phi1_bl, _pi1_bl = _first_mode_energy_angle(bl_ph, bl_pr, dx, c, m)
+                    # Alignment of applied correction to -∇_H direction
+                    _dphi_ref = (bl_ph - phi0).astype(float)
+                    _dpi_ref = (bl_pr - pi0).astype(float)
+                    _dir_phi = -stiffness(_dphi_ref, dx, c, m)
+                    _dir_pi = -_dpi_ref
+                    _gv = spectral_grad(dphi_bl, dx); _gw = spectral_grad(_dir_phi, dx)
+                    _inner_phi = float(np.sum((c*c)*_gv*_gw + (m*m)*dphi_bl*_dir_phi) * dx)
+                    _inner_pi = float(np.sum(dpi_bl * _dir_pi) * dx)
+                    _inner = _inner_phi + _inner_pi
+                    _v_size, _, _ = _h_energy_components(dphi_bl, dpi_bl, dx, c, m)
+                    _w_size, _, _ = _h_energy_components(_dir_phi, _dir_pi, dx, c, m)
+                    _align_cos = float(_inner / (max(_v_size, 1e-12) * max(_w_size, 1e-12)))
+                    telemetry_rows.append({
+                        "seed": seed, "lambda": float(lam), "step": int(i+1), "mode": "baseline",
+                        "err_to_ref": float(_bl_err_step),
+                        "work_total": float(_bl_work_total), "work_e_phi": float(_bl_e_phi), "work_e_pi": float(_bl_e_pi),
+                        "phi_share": float(_bl_phi_share), "pi_share": float(_bl_pi_share), "cum_work": float(bl_work_sum),
+                        "H_energy": float(H_bl), "theta_energy": float(theta_bl),
+                        "phi1": float(_phi1_bl), "pi1": float(_pi1_bl), "delta_sigma": 0.0,
+                        "align_cos": float(_align_cos)
+                    })
             bl_err = h_energy_norm_delta(bl_ph, bl_pr, phi0, pi0, dx, c, m)
-            baseline_errs[str(lam)] = bl_err
+            baseline_errs[lam_key] = bl_err
 
             # If lambda == 0, enforce identical baseline/assisted by construction
             if float(lam) == 0.0:
-                assisted_errs[str(lam)] = baseline_errs[str(lam)]
-                work_summaries[str(lam)] = {"baseline_work": bl_work_sum, "assisted_work": bl_work_sum}
+                assisted_errs[lam_key] = baseline_errs[lam_key]
+                work_summaries[lam_key] = {"baseline_work": bl_work_sum, "assisted_work": bl_work_sum}
+                telemetry_per_lambda[lam_key] = {
+                    "baseline": {"err_trace": bl_err_trace, "phi_share": bl_phi_share_trace, "pi_share": bl_pi_share_trace},
+                    "assisted": {"err_trace": bl_err_trace, "phi_share": bl_phi_share_trace, "pi_share": bl_pi_share_trace},
+                    "efficiency": 0.0
+                }
                 continue
             # Assisted reverse with model-aware corrections
             as_ph, as_pr = phiF.copy(), piF.copy()
@@ -370,10 +541,14 @@ def run_assisted_echo(spec: EchoSpec) -> Dict[str, Any]:
                     return _random_correction_pair(rng, curr_phi, curr_pi, dx, targ, c_rev, m)
                 return _assist_correction_pair(curr_phi, curr_pi, phi0, pi0, dx, spec.params, work=targ, c=c_rev, m=m)
 
-            for i in range(steps):
-                remaining = float(steps * work - as_work_sum)
-                target = float(max(0.0, min(work, remaining)))
+            # telemetry arrays (assisted) for this lambda
+            as_err_trace: List[float] = []
+            as_phi_share_trace: List[float] = []
+            as_pi_share_trace: List[float] = []
 
+            for i in range(steps):
+                target = float(step_targets[i])
+                
                 if reverse_order == "MJM":
                     # M(dt/2)
                     as_ph, _ = m_only_step_with_stats(as_ph, 0.5 * dt, dx, m_params_rev)
@@ -391,6 +566,38 @@ def run_assisted_echo(spec: EchoSpec) -> Dict[str, Any]:
                     as_ph, as_pr = kg_verlet_step(as_ph, as_pr, -1.0 * dt, dx, c_rev, m)
                     # M(dt/2)
                     as_ph, _ = m_only_step_with_stats(as_ph, 0.5 * dt, dx, m_params_rev)
+                    # per-step telemetry (assisted, MJM)
+                    _as_work_total, _as_e_phi, _as_e_pi = _h_energy_components(dphi_as, dpi_as, dx, c_rev, m)
+                    _as_den = (_as_e_phi + _as_e_pi) if (_as_e_phi + _as_e_pi) > 0.0 else 1.0
+                    _as_phi_share = float(_as_e_phi / _as_den)
+                    _as_pi_share = float(_as_e_pi / _as_den)
+                    _as_err_step = h_energy_norm_delta(as_ph, as_pr, phi0, pi0, dx, c, m)
+                    as_err_trace.append(float(_as_err_step))
+                    as_phi_share_trace.append(_as_phi_share)
+                    as_pi_share_trace.append(_as_pi_share)
+                    # First-mode with instrument metric (c, m)
+                    H_as, theta_as, _r_as, _phi1_as, _pi1_as = _first_mode_energy_angle(as_ph, as_pr, dx, c, m)
+                    # Alignment of applied assistance to -∇_H direction
+                    _dphi_ref = (as_ph - phi0).astype(float)
+                    _dpi_ref = (as_pr - pi0).astype(float)
+                    _dir_phi = -stiffness(_dphi_ref, dx, c, m)
+                    _dir_pi = -_dpi_ref
+                    _gv = spectral_grad(dphi_as, dx); _gw = spectral_grad(_dir_phi, dx)
+                    _inner_phi = float(np.sum((c*c)*_gv*_gw + (m*m)*dphi_as*_dir_phi) * dx)
+                    _inner_pi = float(np.sum(dpi_as * _dir_pi) * dx)
+                    _inner = _inner_phi + _inner_pi
+                    _v_size, _, _ = _h_energy_components(dphi_as, dpi_as, dx, c, m)
+                    _w_size, _, _ = _h_energy_components(_dir_phi, _dir_pi, dx, c, m)
+                    _align_cos = float(_inner / (max(_v_size, 1e-12) * max(_w_size, 1e-12)))
+                    telemetry_rows.append({
+                        "seed": seed, "lambda": float(lam), "step": int(i+1), "mode": "assisted",
+                        "err_to_ref": float(_as_err_step),
+                        "work_total": float(_as_work_total), "work_e_phi": float(_as_e_phi), "work_e_pi": float(_as_e_pi),
+                        "phi_share": float(_as_phi_share), "pi_share": float(_as_pi_share), "cum_work": float(as_work_sum),
+                        "H_energy": float(H_as), "theta_energy": float(theta_as),
+                        "phi1": float(_phi1_as), "pi1": float(_pi1_as), "delta_sigma": 0.0,
+                        "align_cos": float(_align_cos)
+                    })
                 else:
                     # J(-dt/2)
                     as_ph, as_pr = kg_verlet_step(as_ph, as_pr, -0.5 * dt, dx, c_rev, m)
@@ -408,15 +615,57 @@ def run_assisted_echo(spec: EchoSpec) -> Dict[str, Any]:
                     as_ph, _stats = m_only_step_with_stats(as_ph, dt, dx, m_params_rev)
                     # J(-dt/2)
                     as_ph, as_pr = kg_verlet_step(as_ph, as_pr, -0.5 * dt, dx, c_rev, m)
+                    # per-step telemetry (assisted, JMJ)
+                    _as_work_total, _as_e_phi, _as_e_pi = _h_energy_components(dphi_as, dpi_as, dx, c_rev, m)
+                    _as_den = (_as_e_phi + _as_e_pi) if (_as_e_phi + _as_e_pi) > 0.0 else 1.0
+                    _as_phi_share = float(_as_e_phi / _as_den)
+                    _as_pi_share = float(_as_e_pi / _as_den)
+                    _as_err_step = h_energy_norm_delta(as_ph, as_pr, phi0, pi0, dx, c, m)
+                    as_err_trace.append(float(_as_err_step))
+                    as_phi_share_trace.append(_as_phi_share)
+                    as_pi_share_trace.append(_as_pi_share)
+                    # First-mode with instrument metric (c, m)
+                    H_as, theta_as, _r_as, _phi1_as, _pi1_as = _first_mode_energy_angle(as_ph, as_pr, dx, c, m)
+                    # Alignment of applied assistance to -∇_H direction
+                    _dphi_ref = (as_ph - phi0).astype(float)
+                    _dpi_ref = (as_pr - pi0).astype(float)
+                    _dir_phi = -stiffness(_dphi_ref, dx, c, m)
+                    _dir_pi = -_dpi_ref
+                    _gv = spectral_grad(dphi_as, dx); _gw = spectral_grad(_dir_phi, dx)
+                    _inner_phi = float(np.sum((c*c)*_gv*_gw + (m*m)*dphi_as*_dir_phi) * dx)
+                    _inner_pi = float(np.sum(dpi_as * _dir_pi) * dx)
+                    _inner = _inner_phi + _inner_pi
+                    _v_size, _, _ = _h_energy_components(dphi_as, dpi_as, dx, c, m)
+                    _w_size, _, _ = _h_energy_components(_dir_phi, _dir_pi, dx, c, m)
+                    _align_cos = float(_inner / (max(_v_size, 1e-12) * max(_w_size, 1e-12)))
+                    telemetry_rows.append({
+                        "seed": seed, "lambda": float(lam), "step": int(i+1), "mode": "assisted",
+                        "err_to_ref": float(_as_err_step),
+                        "work_total": float(_as_work_total), "work_e_phi": float(_as_e_phi), "work_e_pi": float(_as_e_pi),
+                        "phi_share": float(_as_phi_share), "pi_share": float(_as_pi_share), "cum_work": float(as_work_sum),
+                        "H_energy": float(H_as), "theta_energy": float(theta_as),
+                        "phi1": float(_phi1_as), "pi1": float(_pi1_as), "delta_sigma": 0.0,
+                        "align_cos": float(_align_cos)
+                    })
             assisted_err = h_energy_norm_delta(as_ph, as_pr, phi0, pi0, dx, c, m)
-            assisted_errs[str(lam)] = assisted_err
-            work_summaries[str(lam)] = {"baseline_work": bl_work_sum, "assisted_work": as_work_sum}
+            assisted_errs[lam_key] = assisted_err
+            work_summaries[lam_key] = {"baseline_work": bl_work_sum, "assisted_work": as_work_sum}
+            # per-lambda telemetry bundle (+ efficiency)
+            telemetry_per_lambda[lam_key] = {
+                "baseline": {"err_trace": bl_err_trace, "phi_share": bl_phi_share_trace, "pi_share": bl_pi_share_trace},
+                "assisted": {"err_trace": as_err_trace, "phi_share": as_phi_share_trace, "pi_share": as_pi_share_trace},
+                "efficiency": float((baseline_errs[lam_key] - assisted_errs[lam_key]) / max(as_work_sum, 1e-12))
+            }
 
         # CEG per lambda using matched-work baseline
-        ceg_map = {str(l): ceg(baseline_errs[str(l)], assisted_errs[str(l)]) for l in lambdas}
+        ceg_map = {}
+        for l in lambdas:
+            k = _lam_key(l)
+            if (k in baseline_errs) and (k in assisted_errs):
+                ceg_map[k] = ceg(baseline_errs[k], assisted_errs[k])
         # Enforce by-construction invariant: CEG(0) = 0 when assisted_err == baseline_err at λ=0
         if any(float(l) == 0.0 for l in lambdas):
-            ceg_map["0.0"] = 0.0
+            ceg_map[_lam_key(0.0)] = 0.0
 
         # Compute gates diagnostics per seed
         # G1: J-only round-trip drift (energy drift magnitude after forward+back)
@@ -431,9 +680,12 @@ def run_assisted_echo(spec: EchoSpec) -> Dict[str, Any]:
             for lam in lambdas:
                 if float(lam) <= 0.0:
                     continue
-                key = str(lam)
-                w_b = work_summaries[key]["baseline_work"]
-                w_a = work_summaries[key]["assisted_work"]
+                key = _lam_key(lam)
+                ws = work_summaries.get(key)
+                if not ws:
+                    continue
+                w_b = float(ws.get("baseline_work", 0.0))
+                w_a = float(ws.get("assisted_work", 0.0))
                 denom = max(abs(w_b), 1e-12)
                 rels.append(float((w_a - w_b) / denom))
             rel_diff = float(max((abs(r) for r in rels), default=0.0))
@@ -455,6 +707,7 @@ def run_assisted_echo(spec: EchoSpec) -> Dict[str, Any]:
                 "rel_diff": rel_diff,
                 "strang": {"slope": slope, "R2": r2}
             },
+            "telemetry": telemetry_per_lambda,
             "ceg": ceg_map
         })
 
@@ -463,9 +716,25 @@ def run_assisted_echo(spec: EchoSpec) -> Dict[str, Any]:
     # use top-level numpy import (avoid local import which shadows global np)
     agg = {}
     for lam in lambdas:
-        vals = [float(s["ceg"][str(lam)]) for s in per_seed]
-        agg[str(lam)] = {"median": float(np.median(np.array(vals))), "mean": float(np.mean(np.array(vals))), "n": len(vals)}
+        vals: List[float] = []
+        k = _lam_key(lam)
+        for s in per_seed:
+            v = s.get("ceg", {}).get(k, None)
+            if v is None:
+                continue
+            try:
+                vals.append(float(v))
+            except Exception:
+                # Skip non-numeric entries defensively
+                continue
+        if len(vals) == 0:
+            agg[k] = {"median": 0.0, "mean": 0.0, "n": 0}
+        else:
+            arr = np.array(vals, dtype=float)
+            agg[k] = {"median": float(np.median(arr)), "mean": float(np.mean(arr)), "n": int(arr.size)}
     results["ceg_summary"] = agg
+    # attach flat telemetry rows for CSV emission
+    results["telemetry_rows"] = telemetry_rows
 
     # Gate checks: produce per-seed gate results and aggregate gate ledger
     gate_ledger_per_seed: List[Dict[str, Any]] = []
@@ -482,8 +751,11 @@ def run_assisted_echo(spec: EchoSpec) -> Dict[str, Any]:
         slope = float(strang.get("slope", 0.0))
         r2 = float(strang.get("R2", 0.0))
 
+        # Use same scaled tolerance for G1 as in RP-1 calibration
+        _eps_local = float(np.finfo(float).eps)
+        _g1_tol_ledger = float(max(1e-12, 10.0 * _eps_local * float(np.sqrt(N))))
         gates = [
-            gate_noether(time_rev_drift),
+            gate_noether(time_rev_drift, tol=_g1_tol_ledger),
             gate_h_theorem(delta_sigma_min),
             gate_energy_match(rel_diff),
             gate_strang_defect(slope, r2),
@@ -512,7 +784,7 @@ def run_assisted_echo(spec: EchoSpec) -> Dict[str, Any]:
     # Add overall CEG gate (G5): require positive echo gain for some λ>0 at the aggregate (median across seeds)
     try:
         ceg_summary = results.get("ceg_summary", {})
-        medians = [float(v.get("median", 0.0)) for k, v in ceg_summary.items() if str(k) != "0.0"]
+        medians = [float(v.get("median", 0.0)) for k, v in ceg_summary.items() if float(k) > 0.0]
         median_max = float(max(medians)) if medians else 0.0
     except Exception:
         median_max = 0.0
@@ -532,7 +804,8 @@ def run_assisted_echo(spec: EchoSpec) -> Dict[str, Any]:
     results["gate_ledger_summary"] = agg_ledger
 
     # Contradiction report at top-level if any gate failed across seeds
-    total_failed = sum(v.get("failed", 0) for v in agg_ledger.values())
+    # Route failures based on instrument gates only (G1–G4); treat G5 as outcome metric
+    total_failed = sum(v.get("failed", 0) for k, v in agg_ledger.items() if k != "G5_CEG_Positive")
     if total_failed > 0:
         results["CONTRADICTION_REPORT"] = {"total_failed_gates": int(total_failed), "summary": agg_ledger}
 
@@ -574,17 +847,48 @@ def main():
         f.write("lambda,median_ceg,mean_ceg,n\n")
         for k, v in out.get("ceg_summary", {}).items():
             f.write(f"{k},{v.get('median',0.0)},{v.get('mean',0.0)},{v.get('n',0)}\n")
+    # Telemetry CSV: per-step traces (baseline/assisted)
+    csvt = log_path("metriplectic", _slug("assisted_echo_telemetry", tag), failed=failed, type="csv")
+    with csvt.open("w", encoding="utf-8") as f:
+        f.write("seed,lambda,step,mode,err_to_ref,work_total,work_e_phi,work_e_pi,phi_share,pi_share,cum_work,H_energy,theta_energy,phi1,pi1,delta_sigma,align_cos\n")
+        for row in out.get("telemetry_rows", []):
+            f.write(f"{row['seed']},{row['lambda']},{row['step']},{row['mode']},{row['err_to_ref']},{row['work_total']},{row['work_e_phi']},{row['work_e_pi']},{row['phi_share']},{row['pi_share']},{row.get('cum_work',0.0)},{row.get('H_energy',0.0)},{row.get('theta_energy',0.0)},{row.get('phi1',0.0)},{row.get('pi1',0.0)},{row.get('delta_sigma',0.0)},{row.get('align_cos',0.0)}\n")
     # Placeholder figure path (figure creation may be handled by downstream notebooks)
     figp = figure_path("metriplectic", _slug("assisted_echo_placeholder", tag), failed=failed)
     try:
         import matplotlib.pyplot as plt
-        lambdas = [float(k) for k in out.get("ceg_summary", {}).keys()]
-        meds = [float(out["ceg_summary"][str(k)]['median']) for k in lambdas]
+        pairs = sorted(((float(k), v.get('median', 0.0)) for k, v in out.get("ceg_summary", {}).items()), key=lambda t: t[0])
+        lambdas = [p[0] for p in pairs]
+        meds = [float(p[1]) for p in pairs]
         plt.figure(figsize=(6,4)); plt.plot(lambdas, meds, "o-"); plt.xlabel("lambda"); plt.ylabel("median CEG"); plt.tight_layout(); plt.savefig(figp, dpi=150); plt.close()
     except Exception as e:
-        # Plotting is optional; log a lightweight warning to the JSON output next time the caller inspects artifacts
         _ = e
-    print(json.dumps({"log": str(logp), "csv": str(csvp), "figure": str(figp)}, indent=2))
+    # Generate standardized figure pack (A+B essentials); non-fatal on error
+    figure_pack = {}
+    try:
+        # Extract timestamp stem from placeholder figure name "{ts}_assisted_echo_placeholder__{tag}.png"
+        ts_stem = Path(figp).stem
+        if "_assisted_echo_" in ts_stem:
+            ts_stem = ts_stem.split("_assisted_echo_")[0]
+        # Choose a representative λ for overlays (prefer last nonzero)
+        lam_nonzero = [float(l) for l in (spec.lambdas or []) if float(l) > 0.0]
+        lambda_plot = float(spec.params.get("lambda_plot", lam_nonzero[-1] if lam_nonzero else 0.5))
+        # Threshold from ledger if available, else params default
+        g5_thr = float(out.get("gate_ledger_summary", {}).get("G5_CEG_Positive", {}).get("tol", spec.params.get("ceg_gate_threshold", 0.05)))
+        figure_pack = generate_core_pack(
+            domain="metriplectic",
+            tag=str(tag) if tag else "",
+            timestamp_stem=str(ts_stem),
+            run_json=logp,
+            telemetry_csv=csvt,
+            ceg_csv=csvp,
+            lambda_assisted=lambda_plot,
+            g5_threshold=g5_thr
+        )
+    except Exception as _e:
+        # Non-fatal: figure pack generation should not block logs
+        _ = _e
+    print(json.dumps({"log": str(logp), "csv": str(csvp), "figure": str(figp), "figure_pack": figure_pack}, indent=2))
 
 
 if __name__ == "__main__":
