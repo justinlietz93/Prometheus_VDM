@@ -3,10 +3,11 @@
 **Author**: Justin K. Lietz
 **Date**: October 6, 2025
 
->This research is protected under a dual-license to foster open academic
+> This research is protected under a dual-license to foster open academic
 research while ensuring commercial applications are aligned with the project's ethical principles.
 Commercial use requires citation and written permission from Justin K. Lietz.
 See LICENSE file for full terms.
+> NOTE: No claims are being made here, this document is purely speculative and conceptual.
 
 **II. Introduction**
 The pursuit of a unified theory of quantum gravity represents a paramount challenge in modern theoretical physics. This field endeavors to reconcile the principles of quantum mechanics, which meticulously describe phenomena at subatomic scales, with general relativity, Einstein's theory detailing gravity and the curvature of spacetime at macroscopic scales. The necessity for such a reconciliation arises from the fundamental incompatibility of these two foundational theories in regimes where both strong gravitational fields and quantum effects are significant, such as within black hole singularities, during the universe's earliest moments, or at the Planck scale (approximately $10^{-35}$ meters) [en.wikipedia.org, plato.stanford.edu]. While quantum mechanics operates on probabilistic principles within a presumed fixed spacetime, general relativity portrays spacetime as a dynamic entity, intrinsically shaped by mass and energy. Leading theoretical approaches to quantum gravity, including string theory and loop quantum gravity, have made significant conceptual advancements, yet a complete and empirically verified theory remains elusive [space.com].
