@@ -1,7 +1,7 @@
 <!-- DOC-GUARD: CANONICAL -->
 # VDM Axioms (Discrete Lattice Foundation)
 
-Last updated: 2025-10-09 (commit 09f871a)
+Last updated: 2025-11-01 (commit 3d315e7bbabc0a2d1c2afa4ccc5a72d26c836559)
 
 **Scope:** Canonical list of axioms used by the Void Dynamics Model. This page declares axioms with minimal wording, anchors for cross-referencing, and source citations. All theorems, equations, and algorithms must reference these axioms rather than restate them.
 
@@ -108,14 +108,14 @@ $\partial_t q = J(q)\,\frac{\delta \mathcal I}{\delta q} + M(q)\,\frac{\delta \S
 
 ### A8 (Candidate) — Lietz Infinity Resolution
 
-**Status:** CANDIDATE (awaiting T8 PASS)  
-**Pointer:** Derivation/Proposals/PROPOSAL_T8_A8_Lietz_Infinity_Resolution_v1.md
+**Status:** CANDIDATE (awaiting [T8](Derivation/Proposals/PROPOSAL_T8_A8_Lietz_Infinity_Resolution_v1.md) PASS)  
+**Pointer:** [T8_A8_PROPOSAL_Lietz_Infinity_Resolution_v1.md](/Derivation/Proposals/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md)
 
 **Statement (exact):**
 
 In metriplectic scalar-field systems with tachyonic origin $V''(0)<0$ that admit pulled fronts with exponential tails, any finite-excess-energy large-domain trajectory must organize into a finite-depth hierarchical partition with logarithmic depth $N(L)=\Theta(\log(L/\lambda))$, scale-gap separation $\rho\in(\rho_{\min},\rho_{\max})$, and boundary energy/information concentration fractions $\alpha,\alpha_\mathcal{I}>0$.
 
-**Promotion rule:** On PROPOSAL T8 PASS (G1–G8), copy this statement verbatim into `Canon/AXIOMS.md` as **A8**, update status here to **ACCEPTED**, and archive artifacts under `Derivation/code/outputs/axioms/a8_infinity_resolution/`.
+**Promotion rule:** On PROPOSAL T8 PASS (G1–G8), stamp axiom as **A8**, update status here to **ACCEPTED**, and archive artifacts under `Derivation/code/outputs/axioms/a8_infinity_resolution/`.
 
 ---
 
