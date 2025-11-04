@@ -1,16 +1,9 @@
-You’re right—my previous document was the **T0 (Concept)**. Below is the **T1 (Proto‑model)** proposal, structured for your repository and enforcement rules. It conforms to your white‑paper template and results documentation standards (provenance header, tier grade, approval block, explicit output paths, gates, and JSON schema).  
-
-> **Intended repo path**
-> `Derivation/doce/physics/proposals/PROPOSAL_VDM_J-branch_QFT-Bootstrap_and_Metriplectic-Decoherence_T1_Proto-model_v1.md`
-
----
-
-<!-- ATTENTION! The proposal documents you create MUST BE whitepaper-grade documents with full structure, full narrative, MathJax-rendered equations ($ ... $ and $$ ... $$), numeric figure captions tied to actual artifacts if using any for background, explicit thresholds with pass/fail gates, and provenance. Imagine this is being submitted to a top physics journal. -->
+<!-- ATTENTION! The proposal documents you create MUST BE whitepaper-grade documents with full structure, full narrative, MathJax-rendered equations ($ ... $ and $$ ... $$), numeric figure captions tied to actual artifacts if using any for background, explicit thresholds with pass/fail gates, and provenance. Imagine this is being submitted to a top physics journal. 
 
 > `{git rev-parse HEAD}` → **{TO_BE_FILLED_AT_RUN}**
 > `salted_proposal_hash(commit ⊕ file_bytes)` → **{TO_BE_FILLED_AT_RUN}**
 
-<!-- Tier Grades
+ Tier Grades
 - T0 (Concept) • T1 (Proto-model) • T2 (Instrument) • T3 (Smoke)
 - T4 (Prereg) • T5 (Pilot) • T6 (Main Result) • T7 (Out-of-sample)
 - T8 (Robustness) • T9 (External reproduction)
@@ -20,17 +13,18 @@ You’re right—my previous document was the **T0 (Concept)**. Below is the **T
 
 * **Tier:** **T1 (Proto‑model)**
 * **Title:** **VDM J‑branch QFT Bootstrap & Metriplectic Decoherence — T1 (Scalar Proto‑model)**
-* **Date:** {YYYY‑MM‑DD}
+* **Author:** Justin K. Lietz
+* **Date:** 2025-11-04
 
-# 2. List of proposers and associated institutions/companies
+## 2. List of proposers and associated institutions/companies
 
 * **Justin K. Lietz** — Prometheus VDM / Neuroca (Independent R&D)
 
-# 3. Abstract
+## 3. Abstract
 
 This T1 establishes a CPU‑deterministic **scalar J‑branch** engine on periodic lattices and validates it against textbook dispersion and conservation diagnostics. It is the first runnable instrument toward the VDM QFT bootstrap: free Klein–Gordon (KG) dynamics, spectral dispersion recovery, approximate equal‑time commutator proxy, and energy drift bounds. All runs must emit the required **PNG/CSV/JSON** artifacts with full provenance (commit, salted proposal hash, code‑hash list, runner config, per‑gate PASS/FAIL, overall verdict). Successful T1 (G0–G3) escalates to **T2** where Dirac/staggered–Wilson and metriplectic decoherence are added.
 
-# 4. Background & Scientific Rationale
+## 4. Background & Scientific Rationale
 
 VDM separates dynamics into a conservative **J‑branch** (wave/quantum‑like) and a dissipative **M‑branch** (entropy/decoherence). At T1 we implement only J: the free scalar field with lattice discretization of the KG equation, validating numerical integrity before adding fermions and metriplectic coupling at T2.
 
@@ -49,7 +43,7 @@ $$
   `Derivation/doce/physics/proposals/PROPOSAL_VDM_J-branch_QFT-Bootstrap_and_Metriplectic-Decoherence_v1.md`
   *(Defines the overall J→Dirac plan and metriplectic role; sets the full gate suite G0–G7.)*
 
-# 5. Intellectual Merit and Procedure
+## 5. Intellectual Merit and Procedure
 
 **Importance.** A validated J‑branch scalar engine is the minimal instrument for the VDM QFT bootstrap and a prerequisite for any fermionic or decoherence claims.
 **Impact.** Provides a checkable, CPU‑only baseline with strict dispersion/energy/commutator gates.
