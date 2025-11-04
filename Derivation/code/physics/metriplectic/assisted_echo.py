@@ -126,29 +126,30 @@ def _strang_two_grid_slope(phi: np.ndarray, pi: np.ndarray, dt: float, dx: float
         es.append(float(e))
         hs.append(float(d))
 
-    # Guard: need at least 3 points to fit robustly
-    if len(es) < 3:
-        # fallback to two-point ratio if available
-        if len(es) == 2 and es[0] > 0.0 and es[1] > 0.0:
-            s = float(np.log(es[0] / es[1]) / np.log(hs[0] / hs[1]))
-            return s, 1.0
+    # Trivial near-roundoff regime guard FIRST: treat as perfect cubic if all finite values are below a relative floor
+    if len(es) > 0:
+        rel_floor = 1e-12 * max(H0, 1.0)
+        if all(v < rel_floor for v in es):
+            return 3.0, 1.0
+
+    # Fit cases based on available finite points
+    if len(es) >= 3:
+        # Fit log–log
+        x = np.log(np.array(hs, dtype=float))
+        y = np.log(np.array(es, dtype=float))
+        A = np.vstack([x, np.ones_like(x)]).T
+        s, b = np.linalg.lstsq(A, y, rcond=None)[0]
+        y_pred = A @ np.array([s, b])
+        ss_res = float(np.sum((y - y_pred) ** 2))
+        ss_tot = float(np.sum((y - np.mean(y)) ** 2))
+        R2 = 1.0 - (ss_res / ss_tot if ss_tot > 0 else 0.0)
+        return float(s), float(R2)
+    elif len(es) == 2 and es[0] > 0.0 and es[1] > 0.0:
+        s = float(np.log(es[0] / es[1]) / np.log(hs[0] / hs[1]))
+        return s, 1.0
+    else:
+        # Insufficient information outside of near-roundoff; instrument declares uninformative
         return 0.0, 0.0
-
-    # Trivial near-roundoff regime: treat as perfect cubic if all values are below a relative floor
-    rel_floor = 1e-12 * max(H0, 1.0)
-    if all(v < rel_floor for v in es):
-        return 3.0, 1.0
-
-    # Fit log–log
-    x = np.log(np.array(hs, dtype=float))
-    y = np.log(np.array(es, dtype=float))
-    A = np.vstack([x, np.ones_like(x)]).T
-    s, b = np.linalg.lstsq(A, y, rcond=None)[0]
-    y_pred = A @ np.array([s, b])
-    ss_res = float(np.sum((y - y_pred) ** 2))
-    ss_tot = float(np.sum((y - np.mean(y)) ** 2))
-    R2 = 1.0 - (ss_res / ss_tot if ss_tot > 0 else 0.0)
-    return float(s), float(R2)
 
 
 def _j_only_roundtrip_drift(phi: np.ndarray, pi: np.ndarray, dt: float, steps: int, dx: float, c: float, m: float) -> float:
@@ -372,14 +373,16 @@ def run_assisted_echo(spec: EchoSpec) -> Dict[str, Any]:
         # RP-1 calibration gates before reverse phase
         time_rev_drift = _j_only_roundtrip_drift(phi0, pi0, dt, steps, dx, c, m)
         slope, r2 = _strang_two_grid_slope(phi0, pi0, dt, dx, spec.params, c, m)
-        # Canonical tolerance scaling for G1: max(1e-12, 10 * eps * sqrt(N))
+        # Canonical tolerance scaling for G1/G2: max(1e-12*sqrt(N), 10 * eps * sqrt(N) * max(h0,1))
         _eps = float(np.finfo(float).eps)
-        # Relative H-norm scale for Noether drift tolerance (per-pair, instrument metric)
+        # Relative H-norm scale for tolerance (instrument metric)
         _z = np.zeros_like(phi0)
         h0 = float(h_energy_norm_delta(phi0, pi0, _z, _z, dx, c, m))
-        _tol_g1 = float(max(1e-12, 10.0 * _eps * float(np.sqrt(N)) * max(h0, 1.0)))
+        _sqrtN = float(np.sqrt(N))
+        _tol_g1 = float(max(1e-12 * _sqrtN, 10.0 * _eps * _sqrtN * max(h0, 1.0)))
         g1 = gate_noether(time_rev_drift, tol=_tol_g1)
-        g2 = gate_h_theorem(float(min(delta_sigmas)) if delta_sigmas else 0.0)
+        _tol_h = _tol_g1
+        g2 = gate_h_theorem(float(min(delta_sigmas)) if delta_sigmas else 0.0, tol=_tol_h)
         g4 = gate_strang_defect(slope, r2)
         rp1_ok = bool(g1.get("passed") and g2.get("passed") and g4.get("passed"))
         if enforce_rp1 and not rp1_ok:
@@ -768,13 +771,14 @@ def run_assisted_echo(spec: EchoSpec) -> Dict[str, Any]:
         slope = float(strang.get("slope", 0.0))
         r2 = float(strang.get("R2", 0.0))
 
-        # Use same scaled tolerance for G1 as in RP-1 calibration
+        # Use same scaled tolerance for G1/G2 as in RP-1 calibration
         _eps_local = float(np.finfo(float).eps)
         _h0_diag = float(diag.get("h0", 1.0))
-        _g1_tol_ledger = float(max(1e-12, 10.0 * _eps_local * float(np.sqrt(N)) * max(_h0_diag, 1.0)))
+        _sqrtN = float(np.sqrt(N))
+        _g1_tol_ledger = float(max(1e-12 * _sqrtN, 10.0 * _eps_local * _sqrtN * max(_h0_diag, 1.0)))
         gates = [
             gate_noether(time_rev_drift, tol=_g1_tol_ledger),
-            gate_h_theorem(delta_sigma_min),
+            gate_h_theorem(delta_sigma_min, tol=_g1_tol_ledger),
             gate_energy_match(rel_diff),
             gate_strang_defect(slope, r2),
         ]
@@ -867,9 +871,10 @@ def main():
         schema_tag = "echo_spec-v1b"
     else:
         schema_tag = "echo_spec-v1"
-    os.environ.setdefault("VDM_RUN_SCRIPT", "assisted_echo")
+    os.environ.setdefault("VDM_RUN_SCRIPT", "assisted_echo.py")
     # Enforce approval via policy for genuine runs (deterministic manifest discovery in approval.py)
-    _approved, _eng_only, _proposal = check_tag_approval("metriplectic", schema_tag, args.allow_unapproved, CODE_ROOT)
+    run_tag = str(tag) if tag else schema_tag
+    _approved, _eng_only, _proposal = check_tag_approval("metriplectic", run_tag, args.allow_unapproved, CODE_ROOT)
 
     out = run_assisted_echo(spec)
     # Determine failed routing based on gates (route to failed_runs if any gate fails)

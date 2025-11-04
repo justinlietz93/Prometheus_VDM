@@ -117,6 +117,81 @@ def _caption(fig, text: str):
         return
     fig.text(0.01, 0.01, text, fontsize=8, va="bottom", ha="left", wrap=True)
 
+def _side_caption(fig, ax, text: str, width_frac: float = 0.26):
+    """
+    Place caption text to the right of the axes, off the plotting area so it never
+    occludes the x-axis. Uses figure coordinates; expands the figure if needed.
+    """
+    if plt is None:
+        return
+    # Current axes box
+    box = ax.get_position()
+    # Compute right-column anchor in figure coords
+    x_right = min(box.x1 + 0.02, 0.98)
+    y_top = min(box.y1, 0.98)
+    # If there is not enough room, gently expand right pad via constrained_layout pads
+    try:
+        fig.set_constrained_layout(True)
+    except Exception:
+        pass
+    # Draw the caption with a light background for readability
+    fig.text(
+        x_right, y_top,
+        text,
+        transform=fig.transFigure,
+        ha="left", va="top",
+        fontsize=8,
+        bbox=dict(boxstyle="round,pad=0.3", fc="#F5F5F5", ec="#BDBDBD", alpha=0.9),
+        wrap=True,
+    )
+
+def _read_gate_decision(tj: Dict[str, Any], name: str) -> Dict[str, Any]:
+    """Fetch a gate decision record from JSON summary; {} if missing."""
+    return (tj.get("gate_ledger_summary", {}) or {}).get(name, {}) or {}
+
+def _instrument_summary(tj: Dict[str, Any]) -> Tuple[bool, str]:
+    """
+    Aggregate instrument gates (G1–G4). Returns (all_pass, text_summary).
+    Uses 'meets_rate' as decision per gate.
+    """
+    gls = tj.get("gate_ledger_summary", {}) or {}
+    names = ["G1_Noether_J", "G2_H_theorem_M", "G3_EnergyMatch", "G4_StrangDefect"]
+    flags = []
+    lines = []
+    for nm in names:
+        rec = gls.get(nm, {}) or {}
+        ok = bool(rec.get("meets_rate", False) or rec.get("passed", False))
+        flags.append(ok)
+        pr = rec.get("pass_rate", None)
+        lines.append(f"{nm}: {'PASS' if ok else 'FAIL'}" + (f" (pass_rate={pr:.2f})" if isinstance(pr, float) else ""))
+    all_ok = all(flags) if flags else False
+    summary = "Instrument (G1–G4): " + ("PASS" if all_ok else "FAIL") + "; " + " | ".join(lines)
+    return all_ok, summary
+
+def _outcome_summary_g5(tj: Dict[str, Any], g5_threshold: float) -> Tuple[bool, str]:
+    """Outcome (G5) summary with measured statistic vs threshold."""
+    g5 = _read_gate_decision(tj, "G5_CEG_Positive")
+    ok = bool(g5.get("passed", 0))
+    medmax = g5.get("median_max", None)
+    if medmax is None:
+        # Fallback: derive from ceg_summary
+        try:
+            ceg_summary = tj.get("ceg_summary", {}) or {}
+            medians = [float(v.get("median", 0.0)) for k, v in ceg_summary.items() if float(k) > 0.0]
+            medmax = float(max(medians)) if medians else 0.0
+        except Exception:
+            medmax = 0.0
+        ok = bool(medmax >= float(g5_threshold))
+    text = f"G5 (outcome): {'PASS' if ok else 'FAIL'}; median_max={medmax:.4g} vs tol={float(g5_threshold):g}"
+    return ok, text
+
+def _apply_gate_badges(ax, tj: Dict[str, Any], g5_threshold: float):
+    """Add instrument and outcome badges to the axes (top-left and top-right)."""
+    inst_ok, _ = _instrument_summary(tj)
+    _badge(ax, "G1–G4 PASS" if inst_ok else "G1–G4 FAIL", color=("#2e7d32" if inst_ok else "#c62828"), loc="upper left")
+    g5_ok, _ = _outcome_summary_g5(tj, g5_threshold)
+    _badge(ax, "G5 (outcome) PASS" if g5_ok else "G5 (outcome) FAIL", color=("#2e7d32" if g5_ok else "#c62828"), loc="upper right")
+
 def _ensure_matplotlib():
     if plt is None:
         raise RuntimeError("matplotlib is not available; cannot generate figures")
@@ -245,38 +320,24 @@ def plot_phase_portrait_H_isolines(
     # Add legend outside to avoid overlap
     ax.legend(loc="center left", bbox_to_anchor=(1.02, 0.5), borderaxespad=0, frameon=False)
 
-    # PASS/FAIL badge for G5 if available
-    g5 = (_read_gate_decision(tj, "G5_CEG_Positive") or {})
-    badge_text = "G5 PASS" if g5.get("passed", 0) else "G5 FAIL"
-    _badge(ax, badge_text, color=("#2e7d32" if g5.get("passed", 0) else "#c62828"))
-
-    # Caption placed on the right, under the legend
-    caption = _caption_text(tj, f"Phase portrait in (phi_1, pi_1). Showing forward, baseline, and assisted (λ={lam_key:g}). H-isolines (instrument metric) overlayed.")
-    cap_wrapped = textwrap.fill(caption, width=42)
-    ax.text(
-        1.02, 0.03, cap_wrapped,
-        transform=ax.transAxes,
-        fontsize=8, va="bottom", ha="left",
-        wrap=True
-    )
+    # Instrument + outcome badges and right-side caption (keep x-axis clear)
+    try:
+        g5_thr = float((tj.get("params", {}) or {}).get("ceg_gate_threshold", 0.05))
+        _apply_gate_badges(ax, tj, g5_thr)
+        inst_ok, inst_txt = _instrument_summary(tj)
+        g5_ok, g5_txt = _outcome_summary_g5(tj, g5_thr)
+        caption = _caption_text(tj, f"Phase portrait in (phi_1, pi_1). Showing forward, baseline, and assisted (λ={lam_key:g}). H-isolines (instrument metric) overlaid. ")
+        cap_wrapped = textwrap.fill(caption, width=42)
+        _side_caption(fig, ax, f"{cap_wrapped}\n{inst_txt}\n{g5_txt}")
+    except Exception:
+        pass
 
     out_png.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(out_png, dpi=150, bbox_inches="tight")
     plt.close(fig)
-    fig.savefig(out_png, dpi=150, bbox_inches="tight")
-    plt.close(fig)
 
 
-def _read_gate_decision(run_json: Dict[str, Any], gate_name: str) -> Optional[Dict[str, Any]]:
-    """Find gate summary with given name in gate_ledger_summary."""
-    gsum = run_json.get("gate_ledger_summary", {})
-    if gate_name in gsum:
-        return gsum.get(gate_name)
-    # Fallback: search by key
-    for k, v in gsum.items():
-        if str(k).strip().lower() == gate_name.strip().lower():
-            return v
-    return None
+# (removed duplicate _read_gate_decision; canonical helper is defined above)
 
 
 def _caption_text(run_json: Dict[str, Any], lead: str) -> str:
@@ -312,42 +373,65 @@ def plot_error_timeseries(
     lambda_assisted: float = 0.5,
     title: str = "Echo error vs. time (H-norm)"
 ) -> None:
+    # Plot per-seed traces to avoid chords between seeds; mirrors per-seed logic in
+    # plot_phase_portrait_H_isolines() for seed-bounded polylines.
     _ensure_matplotlib()
     rows = _read_csv_dicts(telemetry_csv)
 
-    steps_f, err_f = [], []
-    steps_b, err_b = [], []
-    steps_a, err_a = [], []
     lam_key = float(lambda_assisted)
+    # seed -> (steps, errs) per mode
+    f_tr: Dict[int, Tuple[List[int], List[float]]] = {}
+    b_tr: Dict[int, Tuple[List[int], List[float]]] = {}
+    a_tr: Dict[int, Tuple[List[int], List[float]]] = {}
 
     for r in rows:
         mode = r.get("mode", "")
         lam = _as_float(r.get("lambda", 0.0))
+        seed = _as_int(r.get("seed", -1))
         step = _as_int(r.get("step", 0))
         e = _as_float(r.get("err_to_ref", 0.0))
+
         if mode == "forward":
-            steps_f.append(step); err_f.append(e)
+            f_tr.setdefault(seed, ([], []))
+            f_tr[seed][0].append(step); f_tr[seed][1].append(e)
         elif mode == "baseline" and math.isclose(lam, lam_key, rel_tol=0, abs_tol=1e-12):
-            steps_b.append(step); err_b.append(e)
+            b_tr.setdefault(seed, ([], []))
+            b_tr[seed][0].append(step); b_tr[seed][1].append(e)
         elif mode == "assisted" and math.isclose(lam, lam_key, rel_tol=0, abs_tol=1e-12):
-            steps_a.append(step); err_a.append(e)
+            a_tr.setdefault(seed, ([], []))
+            a_tr[seed][0].append(step); a_tr[seed][1].append(e)
+
+    def _sorted_items(tr: Dict[int, Tuple[List[int], List[float]]]):
+        for sd, (xs, ys) in tr.items():
+            if xs:
+                order = np.argsort(np.array(xs, dtype=float))
+                tr[sd] = ([int(xs[i]) for i in order], [float(ys[i]) for i in order])
+        return tr.items()
 
     fig, ax = plt.subplots(figsize=(6, 4), constrained_layout=True)
-    if steps_f:
-        ax.plot(steps_f, err_f, "-", color="#455A64", lw=1.5, label="forward (JMJ)")
-    if steps_b:
-        ax.plot(steps_b, err_b, "-", color="#9E9E9E", lw=1.5, label=f"reverse baseline (λ={lam_key:g})")
-    if steps_a:
-        ax.plot(steps_a, err_a, "-", color="#00796B", lw=2.0, label=f"reverse assisted (λ={lam_key:g})")
+
+    first = True
+    for _, (xs, ys) in _sorted_items(f_tr):
+        ax.plot(xs, ys, "-", color="#455A64", lw=1.5, alpha=(0.85 if first else 0.35), label=("forward (JMJ)" if first else None))
+        first = False
+
+    first = True
+    for _, (xs, ys) in _sorted_items(b_tr):
+        ax.plot(xs, ys, "-", color="#9E9E9E", lw=1.5, alpha=(0.85 if first else 0.35), label=(f"reverse baseline (λ={lam_key:g})" if first else None))
+        first = False
+
+    first = True
+    for _, (xs, ys) in _sorted_items(a_tr):
+        ax.plot(xs, ys, "-", color="#00796B", lw=2.0, alpha=(0.9 if first else 0.45), label=(f"reverse assisted (λ={lam_key:g})" if first else None))
+        first = False
 
     ax.set_xlabel("step")
     ax.set_ylabel("|z - z*|_H")
     ax.set_title(title)
-    ax.legend()
+    ax.legend(loc="best")
     out_png.parent.mkdir(parents=True, exist_ok=True)
-    fig.savefig(out_png, dpi=150)
+    fig.savefig(out_png, dpi=150, bbox_inches="tight")
     plt.close(fig)
-
 
 # -------------------------------
 # Figure A3: CEG vs λ with bootstrap CI
@@ -400,22 +484,25 @@ def plot_ceg_vs_lambda_with_CI(
     if all([not math.isnan(x) for x in ci_low + ci_high]):
         ax.fill_between(lambdas, ci_low, ci_high, color="#90CAF9", alpha=0.4, label="95% CI (bootstrap)")
 
-    # Threshold line and PASS/FAIL badge
+    # Threshold line and badges (instrument + outcome)
     ax.axhline(y=float(g5_threshold), color="#C62828", lw=1.0, ls="--", label=f"G5 threshold = {g5_threshold:g}")
-    g5 = (_read_gate_decision(tj, "G5_CEG_Positive") or {})
-    badge_text = "G5 PASS" if g5.get("passed", 0) else "G5 FAIL"
-    _badge(ax, badge_text, color=("#2e7d32" if g5.get("passed", 0) else "#c62828"))
+    _apply_gate_badges(ax, tj, g5_threshold)
 
     ax.set_xlabel("λ")
     ax.set_ylabel("CEG (Δ error per unit work)")
     ax.set_title(title)
     ax.legend(loc="best")
 
-    caption = _caption_text(tj, "CEG median and 95% CI across seeds; dashed line shows prereg G5 threshold. ")
-    _caption(fig, caption)
+    # Right-side caption: expectations + decisions
+    try:
+        inst_ok, inst_txt = _instrument_summary(tj)
+        g5_ok, g5_txt = _outcome_summary_g5(tj, g5_threshold)
+        _side_caption(fig, ax, f"{inst_txt}\n{g5_txt}\nDashed line = prereg threshold.")
+    except Exception:
+        pass
 
     out_png.parent.mkdir(parents=True, exist_ok=True)
-    fig.savefig(out_png, dpi=150)
+    fig.savefig(out_png, dpi=150, bbox_inches="tight")
     plt.close(fig)
 
 
@@ -485,29 +572,58 @@ def plot_entropy_production(
     out_png: Path,
     title: str = "Entropy production ΔΣ on M-leg (forward JMJ)"
 ) -> None:
+    """
+    Plot forward ΔΣ per-seed traces to avoid straight-line chords between seeds.
+    Also report the histogram of per-seed minima (instrument gate diagnostic).
+    """
     _ensure_matplotlib()
     rows = _read_csv_dicts(telemetry_csv)
 
-    steps, delta_sigmas = [], []
-    min_per_seed: Dict[int, float] = {}
-
+    # Group forward-mode rows by seed
+    seed_traces: Dict[int, Tuple[List[int], List[float]]] = {}
     for r in rows:
         if r.get("mode", "") != "forward":
             continue
+        sd = _as_int(r.get("seed", -1))
         step = _as_int(r.get("step", 0))
         ds = _as_float(r.get("delta_sigma", 0.0))
-        steps.append(step); delta_sigmas.append(ds)
-        seed = _as_int(r.get("seed", 0))
-        mprev = min_per_seed.get(seed, float("+inf"))
-        min_per_seed[seed] = min(mprev, ds)
+        seed_traces.setdefault(sd, ([], []))
+        seed_traces[sd][0].append(step)
+        seed_traces[sd][1].append(ds)
 
-    # Time series + histogram of minima across seeds
+    # Compute minima per seed (over steps)
+    min_per_seed: Dict[int, float] = {}
+    for sd, (xs, ys) in seed_traces.items():
+        if ys:
+            min_per_seed[sd] = float(np.nanmin(np.asarray(ys, dtype=float)))
+
+    # Time series (per-seed) + histogram of minima across seeds
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 4), constrained_layout=True)
-    ax1.plot(steps, delta_sigmas, "-", color="#3949AB", lw=1.2)
+
+    first = True
+    for sd, (xs, ys) in seed_traces.items():
+        if not xs:
+            continue
+        order = np.argsort(np.asarray(xs, dtype=float))
+        xs_sorted = [int(xs[i]) for i in order]
+        ys_sorted = [float(ys[i]) for i in order]
+        ax1.plot(
+            xs_sorted,
+            ys_sorted,
+            "-",
+            color="#3949AB",
+            lw=1.2,
+            alpha=(0.9 if first else 0.4),
+            label=("forward ΔΣ (per-seed)" if first else None),
+        )
+        first = False
+
     ax1.axhline(y=0.0, color="#C62828", lw=1.0, ls="--")
     ax1.set_xlabel("step")
     ax1.set_ylabel("ΔΣ")
     ax1.set_title(title)
+    if not first:
+        ax1.legend(loc="best")
 
     mins = np.array(list(min_per_seed.values()), dtype=float) if min_per_seed else np.array([], dtype=float)
     if mins.size > 0:
@@ -518,7 +634,7 @@ def plot_entropy_production(
     ax2.set_title("Min ΔΣ over steps (by seed)")
 
     out_png.parent.mkdir(parents=True, exist_ok=True)
-    fig.savefig(out_png, dpi=150)
+    fig.savefig(out_png, dpi=150, bbox_inches="tight")
     plt.close(fig)
 
 
@@ -725,30 +841,63 @@ def plot_telemetry_overlay(
     lambdas: Optional[Sequence[float]] = None,
     title: str = "Telemetry overlay across λ (err_to_ref)"
 ) -> None:
+    """
+    Overlay assisted err_to_ref traces across up to 4 λ values.
+    Plot per-seed lines to avoid straight-line chords between seeds.
+    """
     _ensure_matplotlib()
     rows = _read_csv_dicts(telemetry_csv)
-    # If no explicit list, select up to 4 distinct nonzero λ
+    # If no explicit list, select up to 4 distinct nonzero λ observed in assisted mode
     if not lambdas:
-        lam_set = sorted({ _as_float(r.get("lambda", 0.0)) for r in rows if r.get("mode","")=="assisted" })
+        lam_set = sorted({_as_float(r.get("lambda", 0.0)) for r in rows if r.get("mode", "") == "assisted"})
         lambdas = [lam for lam in lam_set if lam > 0.0][:4]
+
+    # Build traces per (λ, seed)
+    lam_seed_traces: Dict[float, Dict[int, Tuple[List[int], List[float]]]] = {}
+    for r in rows:
+        if r.get("mode", "") != "assisted":
+            continue
+        lam = _as_float(r.get("lambda", 0.0))
+        if lambdas and lam not in set(lambdas):
+            continue
+        sd = _as_int(r.get("seed", -1))
+        step = _as_int(r.get("step", 0))
+        val = _as_float(r.get("err_to_ref", 0.0))
+        lam_seed_traces.setdefault(lam, {})
+        lam_seed_traces[lam].setdefault(sd, ([], []))
+        lam_seed_traces[lam][sd][0].append(step)
+        lam_seed_traces[lam][sd][1].append(val)
 
     fig, ax = plt.subplots(figsize=(6, 4), constrained_layout=True)
     colors = ["#00695C", "#0277BD", "#8E24AA", "#EF6C00", "#C62828"]
+
     for j, lam in enumerate(lambdas or []):
-        steps, vals = [], []
-        for r in rows:
-            if r.get("mode","") != "assisted": continue
-            if not math.isclose(_as_float(r.get("lambda", 0.0)), float(lam), 0, 1e-12): continue
-            steps.append(_as_int(r.get("step", 0)))
-            vals.append(_as_float(r.get("err_to_ref", 0.0)))
-        if steps:
-            ax.plot(steps, vals, "-", color=colors[j % len(colors)], lw=1.5, label=f"λ={lam:g}")
+        color = colors[j % len(colors)]
+        first = True
+        for sd, (xs, ys) in (lam_seed_traces.get(float(lam), {}) or {}).items():
+            if not xs:
+                continue
+            order = np.argsort(np.asarray(xs, dtype=float))
+            xs_sorted = [int(xs[i]) for i in order]
+            ys_sorted = [float(ys[i]) for i in order]
+            ax.plot(
+                xs_sorted,
+                ys_sorted,
+                "-",
+                color=color,
+                lw=1.3,
+                alpha=(0.9 if first else 0.4),
+                label=(f"λ={float(lam):g}" if first else None),
+            )
+            first = False
+
     ax.set_xlabel("step")
     ax.set_ylabel("|z - z*|_H")
     ax.set_title(title)
-    ax.legend()
+    if ax.get_legend_handles_labels()[0]:
+        ax.legend(loc="best")
     out_png.parent.mkdir(parents=True, exist_ok=True)
-    fig.savefig(out_png, dpi=150)
+    fig.savefig(out_png, dpi=150, bbox_inches="tight")
     plt.close(fig)
 
 

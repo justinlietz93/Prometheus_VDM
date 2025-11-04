@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:metriplectic:assisted-echo-t4-prereg-v1c",
+  "title": "assisted_echo prereg v1c schema",
+  "type": "object",
+  "metadata": { "tag": "assisted-echo-t4-prereg-v1c" },
+  "properties": {},
+  "required": []
+}

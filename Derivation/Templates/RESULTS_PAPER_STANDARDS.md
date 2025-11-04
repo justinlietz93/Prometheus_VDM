@@ -93,7 +93,8 @@
 4. **Risk/Ethics table:** data licensing, compute cost/carbon, execution safety (sandboxing/quotas).
 5. **Security/Integrity:** always log seeds, commits, environment; disclose assistance roles (“Equations in standard RD form; architecture and tests specified by author.”)
 
-## **Entire Formal Derivation Writeup**
+## **Formal Derivation Writeup**
+<!-- **ENTIRE Formal Derivation Writeup, with narrative flow for clarity**-->
 
 * Physics and mathematic formalisms must be clearly explained from start to finish.
 * Vague math or hand waving is prohibited, and this document will be rejected.
@@ -105,7 +106,7 @@
 3. **Sample calculations:** show how norms, dispersion error, front speed, Richardson extrapolation are computed.
 4. Full processed data tables after the sample.
 5. **Uncertainty propagation:** analytic when possible; otherwise bootstrap/multi-seed. Provide interpretation (uncertainty vs effect size).
-6. **Figures/graphs:** one claim per figure; numeric captions (slope, (R^2), RMSE, CI). Anchor floats (`[!htbp]`/`\FloatBarrier`; `[H]` sparingly). Pair every figure with CSV/JSON of the **same basename**; list seed and commit in the caption.
+6. **Figures/graphs:** (MANDATORY) one claim per figure; numeric captions (slope, (R^2), RMSE, CI). Anchor floats (`[!htbp]`/`\FloatBarrier`; `[H]` sparingly). Pair every figure with CSV/JSON of the **same basename**; list seed and commit in the caption.
 7. **Evidence & reproducibility:** pin one artifact path in text; on any gate failure, emit a **contradiction report** (gate, threshold, seed, commit, artifact pointer).
 
 ## **IX. Discussion / Analysis**
@@ -114,7 +115,7 @@ Open with key findings tied to figures/tables and metrics. Explain patterns via 
 
 ## **Conclusions**
 
-Summarize what was learned, referencing mathematical structures and computational evidence. Discuss **computational error sources** (discretization, tolerance, precision, aliasing, boundary effects); avoid generic “human error.” State whether the research question is fully/partially answered, with numbers. Compare to **analytic/benchmark/literature** and cite inline. Define **next gates** to run.
+Summarize what was learned, referencing mathematical structures and computational evidence. Discuss **computational error sources** (discretization, tolerance, precision, aliasing, boundary effects); avoid generic “human error.” State whether the research question is fully/partially answered, with numbers. Compare to **analytic/benchmark/literature** and cite inline. Define **next gates** to run. Explain how this supports or detracts from other hypotheses and open proposals, whether it changes things for the theory.
 
 1. Restate the aim.
 2. Relate trends back to the question with concrete values.
