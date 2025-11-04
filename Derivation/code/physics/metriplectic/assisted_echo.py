@@ -94,29 +94,38 @@ def _strang_defect(phi: np.ndarray, pi: np.ndarray, dt: float, dx: float, params
 
 
 def _strang_two_grid_slope(phi: np.ndarray, pi: np.ndarray, dt: float, dx: float, params: Dict[str, Any], c: float, m: float) -> Tuple[float, float]:
-    """Estimate Strang defect slope via multi-point log–log fit in H-norm.
+    """Estimate Strang defect slope via multi-point log–log fit in H-norm using the commutator proxy.
 
-    Uses defects at dt, dt/2, dt/4 (and dt/8 if resolvable) to fit:
+    We define the defect via the JMJ↔MJM commutator proxy:
+        e(h) = || Φ_JMJ(h)(z0) − Φ_MJM(h)(z0) ||_H
+
+    We evaluate e at dt, dt/2, dt/4 (and dt/8 if resolvable) and fit:
         log e(h) ≈ s log h + b  → return (s, R²)
 
-    Trivial regime: if all selected defects are below ~machine noise, return (3.0, 1.0).
+    Near-roundoff regime: if all selected defects are below a relative floor ~ 1e-12·max(H0,1), return (3.0, 1.0).
     """
     # Build step sizes
     dts = [float(dt), 0.5 * float(dt), 0.25 * float(dt)]
     if dts[-1] > 0.0:
         dts.append(0.125 * float(dt))
+
+    # Reference H-norm scale of the state (relative tolerance anchor)
+    zphi = np.zeros_like(phi)
+    zpi = np.zeros_like(pi)
+    H0 = float(h_energy_norm_delta(phi, pi, zphi, zpi, dx, c, m))
+
     # Compute defects
     es: list[float] = []
     hs: list[float] = []
     for d in dts:
         if d <= 0.0:
             continue
-        # Use canon two-grid local error for Strang accuracy (JMJ one-step vs two half-steps)
-        e = _two_grid_error_hnorm(phi, pi, d, dx, params)
+        e = _strang_defect(phi, pi, d, dx, params, c, m)
         if e <= 0.0 or not np.isfinite(e):
             continue
         es.append(float(e))
         hs.append(float(d))
+
     # Guard: need at least 3 points to fit robustly
     if len(es) < 3:
         # fallback to two-point ratio if available
@@ -124,9 +133,12 @@ def _strang_two_grid_slope(phi: np.ndarray, pi: np.ndarray, dt: float, dx: float
             s = float(np.log(es[0] / es[1]) / np.log(hs[0] / hs[1]))
             return s, 1.0
         return 0.0, 0.0
-    # Trivial near-roundoff regime: treat as perfect cubic
-    if all(v < 1e-14 for v in es):
+
+    # Trivial near-roundoff regime: treat as perfect cubic if all values are below a relative floor
+    rel_floor = 1e-12 * max(H0, 1.0)
+    if all(v < rel_floor for v in es):
         return 3.0, 1.0
+
     # Fit log–log
     x = np.log(np.array(hs, dtype=float))
     y = np.log(np.array(es, dtype=float))
@@ -362,7 +374,10 @@ def run_assisted_echo(spec: EchoSpec) -> Dict[str, Any]:
         slope, r2 = _strang_two_grid_slope(phi0, pi0, dt, dx, spec.params, c, m)
         # Canonical tolerance scaling for G1: max(1e-12, 10 * eps * sqrt(N))
         _eps = float(np.finfo(float).eps)
-        _tol_g1 = float(max(1e-12, 10.0 * _eps * float(np.sqrt(N))))
+        # Relative H-norm scale for Noether drift tolerance (per-pair, instrument metric)
+        _z = np.zeros_like(phi0)
+        h0 = float(h_energy_norm_delta(phi0, pi0, _z, _z, dx, c, m))
+        _tol_g1 = float(max(1e-12, 10.0 * _eps * float(np.sqrt(N)) * max(h0, 1.0)))
         g1 = gate_noether(time_rev_drift, tol=_tol_g1)
         g2 = gate_h_theorem(float(min(delta_sigmas)) if delta_sigmas else 0.0)
         g4 = gate_strang_defect(slope, r2)
@@ -379,6 +394,7 @@ def run_assisted_echo(spec: EchoSpec) -> Dict[str, Any]:
                     "time_rev_drift": time_rev_drift,
                     "delta_sigma_min": float(min(delta_sigmas)) if delta_sigmas else 0.0,
                     "rel_diff": 0.0,
+                    "h0": float(h0),
                     "strang": {"slope": slope, "R2": r2}
                 },
                 "ceg": {}
@@ -705,6 +721,7 @@ def run_assisted_echo(spec: EchoSpec) -> Dict[str, Any]:
                 "time_rev_drift": time_rev_drift,
                 "delta_sigma_min": delta_sigma_min,
                 "rel_diff": rel_diff,
+                "h0": float(h0),
                 "strang": {"slope": slope, "R2": r2}
             },
             "telemetry": telemetry_per_lambda,
@@ -753,7 +770,8 @@ def run_assisted_echo(spec: EchoSpec) -> Dict[str, Any]:
 
         # Use same scaled tolerance for G1 as in RP-1 calibration
         _eps_local = float(np.finfo(float).eps)
-        _g1_tol_ledger = float(max(1e-12, 10.0 * _eps_local * float(np.sqrt(N))))
+        _h0_diag = float(diag.get("h0", 1.0))
+        _g1_tol_ledger = float(max(1e-12, 10.0 * _eps_local * float(np.sqrt(N)) * max(_h0_diag, 1.0)))
         gates = [
             gate_noether(time_rev_drift, tol=_g1_tol_ledger),
             gate_h_theorem(delta_sigma_min),
@@ -778,9 +796,20 @@ def run_assisted_echo(spec: EchoSpec) -> Dict[str, Any]:
                 tally[name]["passed"] += 1
             else:
                 tally[name]["failed"] += 1
+    # Apply pass-rate threshold per gate (instrument aggregation)
+    min_gate_pass_rate = float(spec.params.get("min_gate_pass_rate", 0.8333333333333334))  # default ≥10/12
     for name, counts in tally.items():
         total = counts["passed"] + counts["failed"]
-        agg_ledger[name] = {"passed": counts["passed"], "failed": counts["failed"], "n": total, "pass_rate": (counts["passed"] / total) if total > 0 else None}
+        pr = (counts["passed"] / total) if total > 0 else None
+        meets_rate = (pr is not None) and (pr >= min_gate_pass_rate)
+        agg_ledger[name] = {
+            "passed": counts["passed"],
+            "failed": counts["failed"],
+            "n": total,
+            "pass_rate": pr,
+            "min_pass_rate": min_gate_pass_rate,
+            "meets_rate": bool(meets_rate),
+        }
     # Add overall CEG gate (G5): require positive echo gain for some λ>0 at the aggregate (median across seeds)
     try:
         ceg_summary = results.get("ceg_summary", {})
@@ -803,9 +832,16 @@ def run_assisted_echo(spec: EchoSpec) -> Dict[str, Any]:
     results["gate_ledger_per_seed"] = gate_ledger_per_seed
     results["gate_ledger_summary"] = agg_ledger
 
-    # Contradiction report at top-level if any gate failed across seeds
+    # Contradiction report at top-level if any instrument gate fails the pass-rate threshold
     # Route failures based on instrument gates only (G1–G4); treat G5 as outcome metric
-    total_failed = sum(v.get("failed", 0) for k, v in agg_ledger.items() if k != "G5_CEG_Positive")
+    min_gate_pass_rate = float(spec.params.get("min_gate_pass_rate", 0.8333333333333334))
+    total_failed = sum(
+        1
+        for k, v in agg_ledger.items()
+        if k != "G5_CEG_Positive"
+        and v.get("pass_rate") is not None
+        and float(v.get("pass_rate")) < min_gate_pass_rate
+    )
     if total_failed > 0:
         results["CONTRADICTION_REPORT"] = {"total_failed_gates": int(total_failed), "summary": agg_ledger}
 

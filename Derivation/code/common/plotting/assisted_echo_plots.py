@@ -141,8 +141,14 @@ def plot_phase_portrait_H_isolines(
     """
     Plot phase trajectories (phi1, pi1) for forward, baseline(λ), assisted(λ),
     overlaid on H-energy isolines for the instrument metric.
+
+    Fixes:
+    - Break lines at seed boundaries to avoid long straight chords between seeds.
+    - Place caption on the right, under the legend, to keep x-axis unobstructed.
     """
     _ensure_matplotlib()
+    import textwrap
+
     tj = _read_json(run_json)
     rows = _read_csv_dicts(telemetry_csv)
 
@@ -155,67 +161,109 @@ def plot_phase_portrait_H_isolines(
     }
     k_phi = _first_mode_kphi(spec["N"], spec["dx"], spec["c"], spec["m"])
 
-    # Collect trajectories
+    # Collect trajectories PER SEED to prevent connecting different seeds with straight lines
     lam_key = float(lambda_assisted)
-    f_phi1, f_pi1 = [], []
-    b_phi1, b_pi1 = [], []
-    a_phi1, a_pi1 = [], []
-    H_vals = []
+    traces = {
+        "forward": {},   # seed -> (xs, ys)
+        "baseline": {},  # seed -> (xs, ys) at selected λ
+        "assisted": {},  # seed -> (xs, ys) at selected λ
+    }
+    H_vals: List[float] = []
 
     for r in rows:
         mode = r.get("mode", "")
+        seed = _as_int(r.get("seed", -1))
         lam = _as_float(r.get("lambda", 0.0))
         phi1 = _as_float(r.get("phi1", 0.0))
         pi1 = _as_float(r.get("pi1", 0.0))
         H = _as_float(r.get("H_energy", 0.0))
+
         if mode == "forward":
-            f_phi1.append(phi1); f_pi1.append(pi1)
-        elif mode == "baseline" and math.isclose(lam, lam_key, rel_tol=0, abs_tol=1e-12):
-            b_phi1.append(phi1); b_pi1.append(pi1)
-        elif mode == "assisted" and math.isclose(lam, lam_key, rel_tol=0, abs_tol=1e-12):
-            a_phi1.append(phi1); a_pi1.append(pi1)
+            sel = True
+            tgt = "forward"
+        elif mode == "baseline":
+            sel = math.isclose(lam, lam_key, rel_tol=0, abs_tol=1e-12)
+            tgt = "baseline"
+        elif mode == "assisted":
+            sel = math.isclose(lam, lam_key, rel_tol=0, abs_tol=1e-12)
+            tgt = "assisted"
+        else:
+            sel = False
+            tgt = ""
+
+        if sel:
+            if seed not in traces[tgt]:
+                traces[tgt][seed] = ([], [])
+            traces[tgt][seed][0].append(phi1)
+            traces[tgt][seed][1].append(pi1)
+
         if H > 0.0:
             H_vals.append(H)
 
-    # Isoline levels from telemetry H (forward)
+    # Isoline levels from telemetry H (use forward telemetry percentiles)
     if len(H_vals) == 0:
         H_levels = [0.1, 0.5, 1.0]
     else:
         arr = np.array(H_vals, dtype=float)
-        H_levels = list(np.nanpercentile(arr, [25, 50, 75, 90]))
+        H_levels = list(np.nanpercentile(arr, [25, 50, 75]))
         H_levels = [float(max(h, 1e-6)) for h in H_levels]
 
     # Build isolines: H = 0.5 (k_phi phi1^2 + pi1^2)
     # => parameterize with angle t: phi1 = sqrt(2H/k_phi) cos t, pi1 = sqrt(2H) sin t
-    fig, ax = plt.subplots(figsize=(6, 4), constrained_layout=True)
+    fig, ax = plt.subplots(figsize=(8.5, 5.0), constrained_layout=True)
     t = np.linspace(0, 2.0 * np.pi, 512)
     for h in H_levels:
         a = math.sqrt(2.0 * h / max(k_phi, 1e-12))
         b = math.sqrt(2.0 * h)
         xx = a * np.cos(t)
         yy = b * np.sin(t)
-        ax.plot(xx, yy, color="#cccccc", lw=1.0, alpha=0.7)
+        ax.plot(xx, yy, color="#cccccc", lw=1.0, alpha=0.5, zorder=1)
 
-    # Trajectories
-    ax.plot(f_phi1, f_pi1, "-", color="#455A64", lw=1.5, label="forward (JMJ)")
-    ax.plot(b_phi1, b_pi1, "-", color="#9E9E9E", lw=1.5, label=f"reverse baseline (λ={lam_key:g})")
-    ax.plot(a_phi1, a_pi1, "-", color="#00796B", lw=2.0, label=f"reverse assisted (λ={lam_key:g})")
+    # Helper to plot per-mode traces without connecting different seeds
+    def _plot_mode(mode: str, color: str, lw: float, label: str) -> None:
+        first = True
+        for _seed, (xs, ys) in traces[mode].items():
+            if xs:
+                ax.plot(
+                    xs, ys, "-", color=color, lw=lw,
+                    alpha=(0.85 if first else 0.35),
+                    label=(label if first else None),
+                    zorder=2 if mode != "assisted" else 3
+                )
+                first = False
+
+    # Trajectories per mode (label only once per mode)
+    _plot_mode("forward",  "#455A64", 1.5, "forward (JMJ)")
+    _plot_mode("baseline", "#9E9E9E", 1.5, f"reverse baseline (λ={lam_key:g})")
+    _plot_mode("assisted", "#00796B", 2.0, f"reverse assisted (λ={lam_key:g})")
 
     ax.set_xlabel("phi_1 (first cosine mode)")
     ax.set_ylabel("pi_1 (first cosine mode)")
     ax.set_title(title)
+    ax.grid(True, which="both", alpha=0.3)
+
+    # Add legend outside to avoid overlap
+    ax.legend(loc="center left", bbox_to_anchor=(1.02, 0.5), borderaxespad=0, frameon=False)
 
     # PASS/FAIL badge for G5 if available
     g5 = (_read_gate_decision(tj, "G5_CEG_Positive") or {})
     badge_text = "G5 PASS" if g5.get("passed", 0) else "G5 FAIL"
     _badge(ax, badge_text, color=("#2e7d32" if g5.get("passed", 0) else "#c62828"))
 
-    # Caption
-    caption = _caption_text(tj, f"Phase portrait in (phi_1, pi_1). Showing forward, baseline, and assisted (λ={lam_key:g}). H-isolines (instrument metric) overlayed. ")
-    _caption(fig, caption)
+    # Caption placed on the right, under the legend
+    caption = _caption_text(tj, f"Phase portrait in (phi_1, pi_1). Showing forward, baseline, and assisted (λ={lam_key:g}). H-isolines (instrument metric) overlayed.")
+    cap_wrapped = textwrap.fill(caption, width=42)
+    ax.text(
+        1.02, 0.03, cap_wrapped,
+        transform=ax.transAxes,
+        fontsize=8, va="bottom", ha="left",
+        wrap=True
+    )
 
     out_png.parent.mkdir(parents=True, exist_ok=True)
-    fig.savefig(out_png, dpi=150)
+    fig.savefig(out_png, dpi=150, bbox_inches="tight")
+    plt.close(fig)
+    fig.savefig(out_png, dpi=150, bbox_inches="tight")
     plt.close(fig)
 
 
