@@ -233,3 +233,7 @@ All fixed-number statements were replaced with parameter‑dependent forms and e
 
 - 2025-10-03 • Initial compilation from repository code and tests • 17a0b72
 - 2025-10-04 • Add tachyonic tube KPIs: cov_phys, cov_raw, residual, curvature_ok and finite_fraction
+
+
+## Change Log
+- 2025-11-05 • updated equations compilation (VDM-E-121–VDM-E-129) • HEAD
