@@ -4,7 +4,7 @@
 
 Note on scope: This document reflects the latest accepted canonical equations only. Historical notes and timeline are maintained in Derivation/CORRECTIONS.md and memory-bank/decisionLog.md.
 
-Last updated: 2025-10-09 (commit 09f871a)
+Last updated: 2025-11-05 (commit a48f2d2)
 
 *Defining equations and procedural math currently present in this repository.*
 
@@ -1148,7 +1148,7 @@ $$V(E,p+\Delta p)\le V(E,p).$$
 
 <a id="vdm-e-085"></a>
 
-**Context:** [RUNTIME-ONLY] Derivation of the synaptic weight update in the Self-Improvement Engine (SIE), integrating time-dependent gain modulation with void-driven plasticity dynamics (RE-VGSP for resonance-enhanced growth and GDSP for goal-directed decay), anti-saturation regularization to prevent over-specialization, and a projection onto a budget-constrained simplex for resource allocation. This rule unifies cognitive adaptation principles with physical void debt mechanisms, supporting emergent intelligence in the Void Dynamics Model. • Source: fum_rt/core/fum_sie.py • Commit: [pending update, e.g., post-6885588].
+**Context:** [RUNTIME-ONLY] Derivation of the synaptic weight update in the Self-Improvement Engine (SIE), integrating time-dependent gain modulation with void-driven plasticity dynamics (RE-VGSP for resonance-enhanced growth and GDSP for goal-directed decay), anti-saturation regularization to prevent over-specialization, and a projection onto a budget-constrained simplex for resource allocation. This rule unifies cognitive adaptation principles with physical void debt mechanisms, supporting emergent intelligence in the Void Dynamics Model. • Source: fum_rt/core/fum_sie.py:1-260 • Commit: a48f2d2 • Last Updated: 2025-11-05T04:23:39Z
 
 **Equation:**
 $$
@@ -1170,7 +1170,7 @@ $$
 
 <a id="vdm-e-086"></a>
 
-**Context:** [RUNTIME-ONLY] Universal function for Resonance-Enhanced Valence-Gated Synaptic Plasticity within the void dynamics framework, modeling fractal energy drain and growth in void states. This component synchronizes with GDSP to drive adaptive evolution, serving as the growth-promoting term in void debt mechanisms for both cognitive stability in the Self-Improvement Engine (SIE) and physical pattern formation in the Void Dynamics Model (VDM). • Source: design/Void_Equations.py • Commit: [pending update, e.g., post-6885588].
+**Context:** [RUNTIME-ONLY] Universal function for Resonance-Enhanced Valence-Gated Synaptic Plasticity within the void dynamics framework, modeling fractal energy drain and growth in void states. This component synchronizes with GDSP to drive adaptive evolution, serving as the growth-promoting term in void debt mechanisms for both cognitive stability in the Self-Improvement Engine (SIE) and physical pattern formation in the Void Dynamics Model (VDM). • Source: fum_rt/core/Void_Equations.py:22-55 • Commit: a48f2d2 • Last Updated: 2025-11-05T04:23:39Z
 
 **Equation:**
 $$
@@ -1196,7 +1196,7 @@ with optional time modulation: $(\Delta_{\text{RE-VGSP}} \cdot (1 + \phi \sin(2\
 
 <a id="vdm-e-087"></a>
 
-**Context:** [RUNTIME-ONLY] Universal function for Goal-Directed Structural Plasticity within the void dynamics framework, modeling weak closure and dissipation in void states. This component synchronizes with RE-VGSP to enforce stability, serving as the decay term in void debt mechanisms for balancing growth in cognitive adaptation via the Self-Improvement Engine (SIE) and physical relaxation in the Void Dynamics Model (VDM). • Source: design/Void_Equations.py • Commit: [pending update, e.g., post-6885588].
+**Context:** [RUNTIME-ONLY] Universal function for Goal-Directed Structural Plasticity within the void dynamics framework, modeling weak closure and dissipation in void states. This component synchronizes with RE-VGSP to enforce stability, serving as the decay term in void debt mechanisms for balancing growth in cognitive adaptation via the Self-Improvement Engine (SIE) and physical relaxation in the Void Dynamics Model (VDM). • Source: fum_rt/core/Void_Equations.py:56-88 • Commit: a48f2d2 • Last Updated: 2025-11-05T04:23:39Z
 
 **Equation:**
 $$
@@ -1221,7 +1221,7 @@ with optional time modulation: $(\Delta_{\text{GDSP}} \cdot (1 + \phi \sin(2\pi 
 
 <a id="vdm-e-088"></a>
 
-**Context:** [RUNTIME-ONLY] Simplified interface for combined void dynamics, applying both RE-VGSP and GDSP with universal constants to compute a single-step evolution of void states. This function encapsulates the synergistic growth-dissipation balance central to void debt, enabling unified application in cognitive self-optimization via the Self-Improvement Engine (SIE) and physical emergence in the Void Dynamics Model (VDM). • Source: design/Void_Equations.py • Commit: [pending update, e.g., post-6885588].
+**Context:** [RUNTIME-ONLY] Simplified interface for combined void dynamics, applying both RE-VGSP and GDSP with universal constants to compute a single-step evolution of void states. This function encapsulates the synergistic growth-dissipation balance central to void debt, enabling unified application in cognitive self-optimization via the Self-Improvement Engine (SIE) and physical emergence in the Void Dynamics Model (VDM). • Source: fum_rt/core/Void_Equations.py:91-99 • Commit: a48f2d2 • Last Updated: 2025-11-05T04:23:39Z
 
 **Equation:**
 $$
@@ -1244,7 +1244,7 @@ with optional time modulation on each term and domain scaling applied to $(\alph
 
 <a id="vdm-e-089"></a>
 
-**Context:** [PLAUSIBLE] [RUNTIME-ONLY] Derivation of domain-specific modulation factors from void debt principles, scaling universal constants like $(\alpha)$ and $(\beta)$ based on target sparsity for different physics regimes. This function ensures cognitive stability constants generate realistic physics, unifying adaptation in the Self-Improvement Engine (SIE) with emergent behaviors in the Void Dynamics Model (VDM) across domains like quantum or cosmogenesis. • Source: design/Void_Debt_Modulation.py • Commit: [pending update, e.g., post-6885588].
+**Context:** [PLAUSIBLE] [RUNTIME-ONLY] Derivation of domain-specific modulation factors from void debt principles, scaling universal constants like $(\alpha)$ and $(\beta)$ based on target sparsity for different physics regimes. This function ensures cognitive stability constants generate realistic physics, unifying adaptation in the Self-Improvement Engine (SIE) with emergent behaviors in the Void Dynamics Model (VDM) across domains like quantum or cosmogenesis. • Source: fum_rt/core/Void_Debt_Modulation.py:49-55 • Commit: a48f2d2 • Last Updated: 2025-11-05T04:23:39Z
 
 **Equation:**
 $$
@@ -1655,3 +1655,204 @@ E_{\mathrm{exc}}(L) \;\sim\; L^{\,d-1}
 $$
 
 **Notes:** Spec-level scaling statement appearing as “Prediction P2”; used in hierarchy/area‑law discussions. Marked as in progress pending canon proofs. TODO: add $E_{\mathrm{exc}},\,L,\,d$ to SYMBOLS.md and link to VALIDATION_METRICS gate when promoted.
+
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-115"></a>
+<!-- markdownlint-enable MD033 -->
+
+#### VDM-E-115 - Excess-energy functional (A8 setup)
+
+**Context:** Derivation/Axioms/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md:27-33 • Commit: a48f2d2 • Last Updated: 2025-11-05T04:32:39Z
+
+$$
+E_{\mathrm{exc}}[\phi;\Omega] \;=\; \int_{\Omega}\Big(\kappa\,\lvert\nabla \phi\rvert^2 \;+\; V(\phi) \;-\; V(\phi_\ast)\Big)\,dx
+$$
+
+**Notes:** A8 baseline energy functional for hierarchy/area-law analyses. TODO: add $\kappa$ to SYMBOLS.md (see [T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md](Derivation/Axioms/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md:27)).
+
+---
+
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-116"></a>
+<!-- markdownlint-enable MD033 -->
+
+#### VDM-E-116 - Pulled-front tail and decay length (A8 setup)
+
+**Context:** Derivation/Axioms/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md:55-60 • Commit: a48f2d2 • Last Updated: 2025-11-05T04:32:39Z
+
+$$
+\phi(x) \sim A\,e^{-x/\lambda},
+\qquad
+\lambda \sim \sqrt{\frac{D}{r}}
+$$
+
+**Notes:** Exponential leading-edge for pulled fronts; decay length set by linear regime. Front speed $c_\star=2\sqrt{Dr}$ is anchored at [VDM-E-018](Derivation/EQUATIONS.md#vdm-e-018). TODO: add $A,\lambda$ to SYMBOLS.md (see [T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md](Derivation/Axioms/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md:55)).
+
+---
+
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-117"></a>
+<!-- markdownlint-enable MD033 -->
+
+#### VDM-E-117 - Hierarchical gap condition (A8 definition)
+
+**Context:** Derivation/Axioms/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md:75-81 • Commit: a48f2d2 • Last Updated: 2025-11-05T04:32:39Z
+
+$$
+\mathrm{diam}(\Gamma_{\ell+1}) \;\in\; \big[\rho/C,\;C\rho\big]\cdot \mathrm{diam}(\Gamma_{\ell}),\quad \forall\,\ell
+$$
+
+**Notes:** Defines log-spaced interface scales in the hierarchical partition. TODO: add $\Gamma_\ell,\rho,C$ to SYMBOLS.md (see source lines).
+
+---
+
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-118"></a>
+<!-- markdownlint-enable MD033 -->
+
+#### VDM-E-118 - Boundary energy concentration fraction (A8 definition)
+
+**Context:** Derivation/Axioms/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md:85-91 • Commit: a48f2d2 • Last Updated: 2025-11-05T04:32:39Z
+
+$$
+\liminf_{L\to\infty}\;
+\frac{ \displaystyle \int_{\mathcal{N}_\epsilon(\cup_\ell \Gamma_\ell)} \kappa\,\lvert\nabla \phi_L\rvert^2\,dx }
+     { \displaystyle E_{\mathrm{exc}}[\phi_L;\Omega_L] }
+\;\ge\; \alpha
+$$
+
+**Notes:** Formalizes boundary-layer concentration of energy in A8. TODO: add $\mathcal{N}_\epsilon(\cdot),\alpha$ to SYMBOLS.md (see source lines).
+
+---
+
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-119"></a>
+<!-- markdownlint-enable MD033 -->
+
+#### VDM-E-119 - Operational information-density proxies (A8 instruments)
+
+**Context:** Derivation/Axioms/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md:97-105 • Commit: a48f2d2 • Last Updated: 2025-11-05T04:32:39Z
+
+$$\begin{aligned}
+\mathcal{I}_1(x) &= \log\!\Big(1 + \frac{\lvert\nabla \phi(x)\rvert^2}{\sigma^2}\Big),\\[4pt]
+\mathcal{I}_2(x) &= \tfrac{1}{2}\,\log\!\det\!\Big(I + \tau\,\nabla u(x)\,\nabla u(x)^\top\Big)
+\end{aligned}$$
+
+**Notes:** Proxies for operational information concentration near interfaces. TODO: add $\mathcal{I},\sigma,\tau,u$ to SYMBOLS.md (see source lines).
+
+---
+
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-120"></a>
+<!-- markdownlint-enable MD033 -->
+
+#### VDM-E-120 - Tail cutoff and tail-loss functional (A8 truncation)
+**Context:** Derivation/Axioms/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md:113-123 • Commit: a48f2d2 • Last Updated: 2025-11-05T04:32:39Z
+
+$$
+x_\star \;=\; \lambda\,\ln\!\Big(\frac{A}{\delta}\Big)
+$$
+
+$$
+\mathcal{L}_\delta[\phi] \;\equiv\; \int_{x>x_\star}\!\Big(\kappa\,\lvert\nabla \phi\rvert^2 + \tfrac{r}{2}\,\phi^2\Big)\,dx
+$$
+
+$$
+\mathcal{L}_\delta \;\propto\; \Big(\frac{\delta}{A}\Big)^{\!2}
+$$
+
+**Notes:** Linear-regime tail truncation produces localized loss functional used in A8 lemmas. TODO: add $\delta,x_\star$ to SYMBOLS.md (see source lines).
+
+---
+
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-121"></a>
+<!-- markdownlint-enable MD033 -->
+
+#### VDM-E-121 - Rayleigh number (RB-Gate)
+**Context:** [Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md](Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md:31-34) • Commit: a48f2d2 • Last Updated: 2025-11-05T04:37:33Z
+
+$$
+\mathrm{Ra} \;=\; \frac{g\,\alpha\,\Delta T\,H^3}{\nu\,\kappa}
+$$
+
+**Notes:** Canonical control parameter for RB onset used in RB-Gate. TODO: add $\mathrm{Ra},\,g,\,\alpha,\,\Delta T,\,H,\,\nu,\,\kappa$ to SYMBOLS.md (see context lines above).
+
+---
+
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-122"></a>
+<!-- markdownlint-enable MD033 -->
+
+#### VDM-E-122 - Boussinesq nondimensional RBC equations (RB-Gate)
+**Context:** [Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md](Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md:74-79) • Commit: a48f2d2 • Last Updated: 2025-11-05T04:37:33Z
+
+$$\begin{aligned}
+\partial_t \mathbf{u} + (\mathbf{u}\cdot\nabla)\mathbf{u} &= -\nabla p + \mathrm{Pr}\,\nabla^2 \mathbf{u} + \mathrm{Pr}\,\mathrm{Ra}\,\theta\,\hat{\mathbf{z}},\\
+\partial_t \theta + (\mathbf{u}\cdot\nabla)\theta - w &= \nabla^2 \theta,\\
+\nabla\cdot\mathbf{u} &= 0.
+\end{aligned}$$
+
+**Notes:** Nondimensional Oberbeck–Boussinesq form used to define RB-Gate dynamics. TODO: add $\mathrm{Pr},\,\theta,\,w,\,\hat{\mathbf{z}}$ to SYMBOLS.md (see source lines).
+
+---
+
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-123"></a>
+<!-- markdownlint-enable MD033 -->
+
+#### VDM-E-123 - Nusselt number (dimensional and nondimensional) (RB-Gate)
+**Context:** [Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md](Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md:93-96) • Commit: a48f2d2 • Last Updated: 2025-11-05T04:37:33Z
+
+$$
+\mathrm{Nu} \;=\; \frac{\langle q_z\rangle}{k\,\Delta T/H},\qquad q_z=\rho c_p\,w\,T - k\,\partial_z T
+$$
+
+$$
+\mathrm{Nu} \;=\; 1 + \langle w\theta\rangle - \langle \partial_z \theta\rangle
+$$
+
+**Notes:** Heat-transport diagnostic used near RB onset; both forms appear in the instrument description. TODO: add $\mathrm{Nu},\,q_z,\,k,\,\rho,\,c_p,\,T$ to SYMBOLS.md (see source lines).
+
+---
+
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-124"></a>
+<!-- markdownlint-enable MD033 -->
+
+#### VDM-E-124 - Depth scaling at fixed microphysics (RB-Gate)
+**Context:** [Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md](Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md:127-128) • Commit: a48f2d2 • Last Updated: 2025-11-05T04:37:33Z
+
+$$
+H \mapsto 2H \;\Rightarrow\; \mathrm{Ra} \mapsto 8\,\mathrm{Ra},\quad \lambda_c \mapsto \approx 2\,\lambda_c
+$$
+
+**Notes:** Procedural scaling check used by RB-Gate. TODO: add $\lambda_c$ to SYMBOLS.md or CONSTANTS.md (critical wavelength), and link to BC-specific $k_c$ values in CONSTANTS.md when registered.
+
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-105"></a>
+<!-- markdownlint-enable MD033 -->
+
+#### VDM-E-105 - Telegraph characteristic speed from relaxation
+**Context:** [Derivation/Transport/Telegraph_From_Relaxation/T1_PROPOSAL_Telegraph_From_Relaxation_v1.md](Derivation/Transport/Telegraph_From_Relaxation/T1_PROPOSAL_Telegraph_From_Relaxation_v1.md:9-12) • Commit: cbc3dd1 • Last Updated: 2025-11-05T04:43:40Z
+
+$$
+c \;=\; \sqrt{\frac{D}{\tau}}
+$$
+
+**Notes:** Spec-level speed law used by the Telegraph-from-Relaxation instrument to calibrate finite-speed transport; appears across causality meters. TODO: add $c,\,D,\,\tau$ to SYMBOLS.md (see source lines).
+
+---
+
+## Change Log
+- VDM-E-105 • cbc3dd1 • Derivation/Transport/Telegraph_From_Relaxation/T1_PROPOSAL_Telegraph_From_Relaxation_v1.md added
+- VDM-E-115 • a48f2d2 • Derivation/Axioms/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md added
+- VDM-E-116 • a48f2d2 • Derivation/Axioms/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md added
+- VDM-E-117 • a48f2d2 • Derivation/Axioms/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md added
+- VDM-E-118 • a48f2d2 • Derivation/Axioms/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md added
+- VDM-E-119 • a48f2d2 • Derivation/Axioms/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md added
+- VDM-E-120 • a48f2d2 • Derivation/Axioms/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md added
+- VDM-E-121 • a48f2d2 • Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md added
+- VDM-E-122 • a48f2d2 • Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md added
+- VDM-E-123 • a48f2d2 • Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md added
+- VDM-E-124 • a48f2d2 • Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md added
