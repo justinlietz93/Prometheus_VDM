@@ -1,6 +1,7 @@
 # 1. **T3 — Calibration of Psychophysical Observables to the VDM (C)-Field**
 
-> **Created Date:** {YYYY‑MM‑DD}
+> **Created Date:** 2025-11-04
+
 > **Commit:** `{git rev-parse HEAD}`
 > Salted Provenance: spec salted_sha256=eb8eedfd0c8bb6f75ca669b88d2e5e1a92d3b430798ef5f8eda5d13c819e5cf3; salt_hex=4b66fe5d9e12409d6d1a1adfc4fa3255; prereg_manifest_sha256=9164111e8046065948873864b506b5e3758f3c0df0ec4b9fd6928b1983d47520  
 > **Proposer contacts:** Justin K. Lietz [justin@neuroca.ai](mailto:justin@neuroca.ai)
@@ -30,7 +31,7 @@ Proposed is a Tier‑3 “smoke‑level” calibration experiment that converts 
 
 **Physics anchor.** VDM works under axioms A0–A7 (closure, void primacy, locality, symmetry, metriplectic split, entropy law, scale program, measurability). In RD‑limit the agency field obeys a diffusion–decay–source PDE, which provides the forward model family we will invert. The calibration is therefore a measurement problem for a physical field with locality/causality and an H‑theorem on the dissipative limb.  
 
-**Why T3 now.** T2 instruments (task code, analysis CLIs) and program‑level gates exist; this T3 provides the disciplined map (\mathcal{O}_k \rightarrow \theta_C=(A,\tau,\ell,\dots)) so later T4–T6 prereg claims can reference a single quantitative drive with audited uncertainty. 
+**Why T3 now.** T2 instruments (task code, analysis CLIs) and program‑level gates exist; this T3 provides the disciplined map (\mathcal{O}_k \rightarrow \theta_C=(A,\tau,\ell,\dots)) so later T4–T6 prereg claims can reference a single quantitative drive with audited uncertainty.
 
 ---
 
@@ -49,11 +50,11 @@ Proposed is a Tier‑3 “smoke‑level” calibration experiment that converts 
 * **Forward model family:** RD‑limit (C)-PDE or its 0‑D reduction, plus minimal readout maps (\widehat{\mathcal{O}}_k(\theta_C)).
 * **Diagnostics (counts):** reliability (1), predictive split (1), identifiability (1), nuisance robustness (1).
 
-*Note:* Task designs mirror the Qualia program’s sober proxies; here they are used solely as **meters**. 
+*Note:* Task designs mirror the Qualia program’s sober proxies; here they are used solely as **meters**.
 
 #### 5.1.1 Pre‑Run Config Requirements
 
-Per the template, the following config/metadata is required. Paths below specialize the **domain** to `agency_field/psychophysics`. 
+Per the template, the following config/metadata is required. Paths below specialize the **domain** to `agency_field/psychophysics`.
 
 * **Required:**
 
@@ -159,7 +160,7 @@ Per the template, the following config/metadata is required. Paths below special
 }
 ```
 
-*(The above structure mirrors the mandatory template subsections and provenance pattern.)* 
+*(The above structure mirrors the mandatory template subsections and provenance pattern.)*
 
 ---
 
@@ -186,12 +187,12 @@ Per the template, the following config/metadata is required. Paths below special
 
 ## 8. Procedure (Concise)
 
-1. **Pre‑registration:** commit, salt, signed tag; push before any artifact‑writing runs (proposal includes matching hashes). 
+1. **Pre‑registration:** commit, salt, signed tag; push before any artifact‑writing runs (proposal includes matching hashes).
 2. **Session A/B (≥24 h apart):** run TOJ, X‑modal, Texture tasks (counter‑balanced).
 3. **Compute observables (\mathcal{O}_k):** per task scripts; optional EEG → ITPC.
 4. **Fit (\theta_C) & (C(t)):** multi‑start inverse; bootstrap; record metrics.
 5. **Hold‑out test:** compute predictive RMSE on blocked, unseen trials.
-6. **Gate evaluation & logs:** emit JSON + CSV with pass/fail and salted provenance; publish figures per RESULTS standard. 
+6. **Gate evaluation & logs:** emit JSON + CSV with pass/fail and salted provenance; publish figures per RESULTS standard.
 
 ---
 
@@ -210,7 +211,7 @@ tests/
   presentation/  application/  domain/  infrastructure/
 ```
 
-**Gates:** ≤500 LOC/file; no outer→inner deps; interfaces for cross‑layer calls; tests mirror source paths; domain/business logic framework‑free. 
+**Gates:** ≤500 LOC/file; no outer→inner deps; interfaces for cross‑layer calls; tests mirror source paths; domain/business logic framework‑free.
 
 ---
 
@@ -218,7 +219,7 @@ tests/
 
 * **In scope:** sober psychophysics; 0‑D/1‑D forward models; subject‑level (C(t)); meter validation.
 * **Out of scope:** substances; claims about semantics/“entities”; across‑lab generalization (reserved for ≥T7).
-* **Linkage:** Once validated, (C(t)) may be plugged into portal equations in other VDM limbs (EM coupling, etc.) as a *measured input* with uncertainty. 
+* **Linkage:** Once validated, (C(t)) may be plugged into portal equations in other VDM limbs (EM coupling, etc.) as a *measured input* with uncertainty.
 
 ---
 
@@ -226,7 +227,7 @@ tests/
 
 * **Risk:** weak reliability (ICC < 0.8). **Kill‑plan:** re‑tune task timing windows; increase trials; if still weak, downgrade meter to T2.
 * **Risk:** non‑identifiable (\theta_C). **Kill‑plan:** simplify parameterization; add a prior only if preregistered; otherwise retire the parameter.
-* **Standards:** follow “Rules for Data Science & Documentation” for model checks, CV, bootstrap uncertainty; separate model selection and inference. 
+* **Standards:** follow “Rules for Data Science & Documentation” for model checks, CV, bootstrap uncertainty; separate model selection and inference.
 
 ---
 
@@ -234,7 +235,7 @@ tests/
 
 * **Artifacts:** `assets/calib/*.csv|json`, figures with numeric captions and seed/commit in filenames.
 * **Provenance:** salted hash triplet in prereg + signed tag recorded in artifacts.
-* **Posting flow:** TL;DR + one artifact path; boxed gates; invitation for tighter thresholds per RESULTS standard. 
+* **Posting flow:** TL;DR + one artifact path; boxed gates; invitation for tighter thresholds per RESULTS standard.
 
 ---
 
