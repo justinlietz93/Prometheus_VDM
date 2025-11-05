@@ -6,7 +6,8 @@
 
 * **Tier:** T1 (Proto‑model)
 * **Title:** Darboux/Kowalevski‑style non‑integrability for UMSL class under A4 degeneracies
-* **Date:** {YYYY‑MM‑DD}
+* **Author:** Justin K. Lietz
+* **Date:** 2025-11-04
 
 ## 3. Abstract
 

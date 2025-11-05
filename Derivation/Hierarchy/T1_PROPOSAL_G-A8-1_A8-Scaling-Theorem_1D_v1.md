@@ -5,8 +5,9 @@
 ## 1. Tier / Title / Date
 
 * **Tier:** T1 (Proto‑model)
-* **Title:** A8 in 1D: existence of (N(L)=\Theta(\log(L/\lambda))) with boundary‑law energy
-* **Date:** {YYYY‑MM‑DD}
+* **Title:** A8 in 1D: existence of $(N(L)=\Theta(\log(L/\lambda)))$ with boundary‑law energy
+* **Author:** Justin K. Lietz
+* **Date:** 2025-11-04
 
 ### 3. Abstract
 

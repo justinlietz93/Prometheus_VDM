@@ -6,7 +6,8 @@
 
 * **Tier:** T1 (Proto‑model)
 * **Title:** Telegraph–Fisher bridge with admissible speed (c=\sqrt{D/\tau}) and cone‑slack inequality
-* **Date:** {YYYY‑MM‑DD}
+* **Author:** Justin K. Lietz
+* **Date:** 2025-11-04
 
 ## 3. Abstract
 

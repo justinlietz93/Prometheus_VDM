@@ -8,7 +8,8 @@
 
 * **Tier:** T1 (Proto‑model)
 * **Title:** Constructive QGT → Metriplectic Mapping (with worked toy model)
-* **Date:** {YYYY‑MM‑DD}
+* **Author:** Justin K. Lietz
+* **Date:** 2025-11-04
 
 ## 2. Proposers and Affiliations
 
