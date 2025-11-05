@@ -135,8 +135,11 @@ If any required anchor is missing, write `TODO: add anchor` with the exact `path
 <!-- Tool-maintained list of [Geometry](#geom-...), [BC](#bc-...), and [IC](#ic-...) anchors -->
 <!-- END AUTOSECTION: BCIC-INDEX -->
 
+**Change Log (ADD THIS TO CHRONICLES.md):**
+
+```markdown
 ## Change Log
-- <date> • updated BC/IC/Geometry • <commit>
+- <date> • added/updated symbols • <commit>
 ```
 
 ### Validation

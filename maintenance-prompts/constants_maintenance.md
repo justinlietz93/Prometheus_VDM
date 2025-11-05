@@ -65,3 +65,10 @@ Search the entire repository (code, tests, notebooks, configs, `.env`, CLI defau
 * Render the Markdown preview on GitHub; confirm all `$...$` inline math displays.
 * Do not alter content outside this file; do not add or change values anywhere else in the repo.
 * No speculative entries. If a symbol appears without a numeric value, add a row only if a concrete default/value exists; otherwise open a TODO in `SYMBOLS.md` instead of guessing.
+
+**Change Log (ADD THIS TO CHRONICLES.md):**
+
+```markdown
+## Change Log
+- <date> • added/updated symbols • <commit>
+```

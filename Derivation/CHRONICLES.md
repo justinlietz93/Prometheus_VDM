@@ -163,3 +163,39 @@ All fixed-number statements were replaced with parameter‑dependent forms and e
 - VDM-E-102 • 393ed61 • [Derivation/Agency_Field/Agency_Field.md](Derivation/Agency_Field/Agency_Field.md:140-148) added
 - VDM-E-103 • 393ed61 • [Derivation/Agency_Field/Agency_Field.md](Derivation/Agency_Field/Agency_Field.md:259-263) added
 - VDM-E-048 • 393ed61 • [Derivation/Thermodynamic_Routing/Wave_Flux_Meter/RESULTS_Wave_Flux_Meter_A_Phase_v1.md](Derivation/Thermodynamic_Routing/Wave_Flux_Meter/RESULTS_Wave_Flux_Meter_A_Phase_v1.md:33-35) additional location noted
+- VDM-E-105 • cbc3dd1 • Derivation/Transport/Telegraph_From_Relaxation/T1_PROPOSAL_Telegraph_From_Relaxation_v1.md added
+- VDM-E-115 • a48f2d2 • Derivation/Axioms/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md added
+- VDM-E-116 • a48f2d2 • Derivation/Axioms/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md added
+- VDM-E-117 • a48f2d2 • Derivation/Axioms/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md added
+- VDM-E-118 • a48f2d2 • Derivation/Axioms/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md added
+- VDM-E-119 • a48f2d2 • Derivation/Axioms/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md added
+- VDM-E-120 • a48f2d2 • Derivation/Axioms/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md added
+- VDM-E-121 • a48f2d2 • Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md added
+- VDM-E-122 • a48f2d2 • Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md added
+- VDM-E-123 • a48f2d2 • Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md added
+- VDM-E-124 • a48f2d2 • Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md added
+
+
+## Change Log - Proposals (2025-11-05 a48f2d2)
+
+- 2025-11-05 • proposals index updated • comprehensive extraction with tier, research questions, setup, diagnostics, gates, methods, personnel, references
+
+## Symbols (2025-11-06 a48f2d2, cbc3dd1)
+
+- 2025-11-05 • added A8 and RB-Gate symbol rows; telegraph speed symbols • sources 
+
+## Change Log — Constants (2025-11-05 b745e83)
+
+- Updated header and metadata in [`CONSTANTS.md`](Derivation/CONSTANTS.md) to maintenance template (date/commit fields).
+- Added RB-Gate spec defaults extracted verbatim from [`T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md`](Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md:199-211 • a48f2d2):
+  g=9.81, alpha=2.0e-4, nu=1.0e-6, kappa=1.4e-7, H=[0.01,0.02], Lx_over_H=8.0, DeltaT=[1.0,2.0], BC=[rigid,free], Pr=[0.1,1.0,7.0], Nx=512, Nz=128, epsilon_noise=1e-6, t_warmup=50.0, t_avg=50.0, dt_max=1e-3.
+- Added RB-Gate critical values from Appendix A in [`T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md`](Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md:304-308 • a48f2d2):
+  Ra_c(rigid)=1707.76, k_c(rigid)=3.117, λ_c/H(rigid)≈2.015; Ra_c(free)=657.5, k_c(free)=2.221, λ_c/H(free)≈2.828; depth scaling H→2H ⇒ Ra×8 and λ_c≈×2.
+- Added RB-Gate stationarity requirement (≤5% drift) from [`T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md`](Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md:251-252 • a48f2d2).
+- Added RB-Gate margin factors for S/C gates from [`T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md`](Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md:262-265 • a48f2d2):
+  Ra_subcritical_factor=0.95; Ra_supercritical_factor=1.10.
+- Registered QFUM validation constants from [`qfum_validate.py`](Derivation/code/physics/conservation_law/qfum_validate.py:289-293 • b745e83):
+  drift_gate (RK4)=1e-8; drift_gate (Euler)=1e-5; conv_r2_min=0.98; order_tol=0.4; expected_order (RK4=4, Euler=1).
+- Paths changed:
+  - [`CONSTANTS.md`](Derivation/CONSTANTS.md)
+- Dependency-Chain-Reviewed: true

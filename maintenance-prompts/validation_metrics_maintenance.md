@@ -103,8 +103,11 @@ If a required anchor is missing, add `TODO` in the entry and cite the repo lines
 <!-- Tool-maintained list of [Metric](#kpi-...) anchors for quick lookup -->
 <!-- END AUTOSECTION: METRICS-INDEX -->
 
+**Change Log (ADD THIS TO CHRONICLES.md):**
+
+```markdown
 ## Change Log
-- <date> • metrics updated • <commit>
+- <date> • added/updated symbols • <commit>
 ```
 
 ---

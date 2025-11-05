@@ -2,7 +2,7 @@
 
 This document provides a comprehensive overview of all research proposals in the Void Dynamics Model (VDM) repository. Each proposal follows the whitepaper-grade template standards and includes explicit gates, MathJax-rendered equations, and full provenance. Proposals are organized by domain and follow the T0-T9 maturity ladder.
 
-**Total Proposals: 35**
+**Total Proposals: 66**
 
 > Last Updated: 2025-11-05  
 > Template: `Templates/PROPOSAL_PAPER_TEMPLATE.md`  
@@ -13,198 +13,536 @@ This document provides a comprehensive overview of all research proposals in the
 
 ## Agency Field (5 proposals)
 
-### Coordination_Depth/
-- **PROPOSAL_Multipartite_Coordination_Depth_v1.md**  
-  Path: `Agency_Field/Coordination_Depth/PROPOSAL_Multipartite_Coordinaton_Depth_v1.md`
-
-### Core Agency Field
 - **PROPOSAL_ADC_Response_Slope_v1.md**  
-  Path: `Agency_Field/PROPOSAL_ADC_Response_Slope_v1.md`  
-  *Testing the decision coupling law at forks: probability of choosing branch A follows P(A)=σ(Θ,Δm) where Δm=m_A-m_B. Validates fitted logistic slope equals programmed parameters.*
+  Path: `Agency_Field/PROPOSAL_ADC_Response_Slope_v1.md`
+  - **Diagnostics**: logistic regression of outcomes vs (\Delta m); slope (\hat\Theta) with CI; KS test for model adequacy.
+  - **Gate(s)**: (|\hat\Theta/\Theta-1|\le 0.05); (R^2\ge 0.99); KS (p>0.1). *Failure plan: increase sample sizes or reduce noise; document deviations.* Publication: RESULTS with ROC overlays, slope table, artifact paths.
 
 - **PROPOSAL_Agency_Curvature_Scaling_v1.md**  
-  Path: `Agency_Field/PROPOSAL_Agency_Curvature_Scaling_v1.md`  
-  *Validates steering component by measuring path curvature of test pulses in memory field m(x). Theory predicts curvature κ_path scales linearly with transverse gradient magnitude X=Θ|∇_⊥m|.*
+  Path: `Agency_Field/PROPOSAL_Agency_Curvature_Scaling_v1.md`
+  - **Diagnostics**: centerline extraction; discrete curvature; linear regression (\kappa) vs (X); collapse across (\Theta). One PNG + CSV + JSON per run.
+  - **Gate(s)**: (|\beta|\le 0.05,\alpha,\bar X); slope CV (\le 10%) across (\Theta); (R^2\ge 0.99). *Failure plan: if gates fail, increase resolution, reduce pulse width, or smooth (m) until grid error falls; record CONTRADICTION_REPORT.* Publication: RESULTS page with MathJax, pinned artifacts, and regression...
 
 - **PROPOSAL_Agency_Stability_Band_v1.md**  
-  Path: `Agency_Field/PROPOSAL_Agency_Stability_Band_v1.md`  
-  *Maps stability/retention regime of memory/agency substrate using dimensionless groups D_a (advective/steering), Λ (loss/decay), and Γ (diffusion/spread).*
+  Path: `Agency_Field/PROPOSAL_Agency_Stability_Band_v1.md`
+  - **Diagnostics**: retention metric (peak/plateau ratio), half-life, spatial SNR. Heatmap over a grid of ((\gamma,\delta,\kappa)).
+  - **Gate(s)**: contiguous band where retention (>0.8), half-life within target window, and cross-slice reproducibility (Jaccard index (\ge 0.7)). *Failure plan: adjust write cadence or amplitude to decouple confounds; record CONTRADICTION_REPORT.* Publication: RESULTS with band plot, slices, and table of...
+
+### Coordination_Depth/
+
+- **PROPOSAL_Multipartite_Coordinaton_Depth_v1.md**  
+  Path: `Agency_Field/Coordination_Depth/PROPOSAL_Multipartite_Coordinaton_Depth_v1.md`
+  *PROPOSAL_Multipartite_Coordination_Depth_v1.1.md*
+  - **Gate(s)**: Primary (Depth certificate) *G1 (Depth): (\mathrm{CDI}\ge 3) with adjusted 95% CI excluding (<3).* G2 (Replication): Jaccard overlap (\ge 0.7) of significant (S) across discretizations; (|\Delta\mathrm{CDI}|\le 1).
 
 ### Witness/
+
 - **PROPOSAL_Agency_Witness_v1.md**  
   Path: `Agency_Field/Witness/PROPOSAL_Agency_Witness_v1.md`
+  *PROPOSAL_Agency_Witness_v1.1.md*
+  - **Gate(s)**: Primary (Nonlocal agency) *$\exists,r_\star>0$ with $ \operatorname{median}W(r_\star)\ \ge\ 5,\sigma_{\text{null}}, $ the 95% adjusted CI excludes $0$, and $\widehat r_{\min}$ replicates across discretizations (within one step).* Significant-$r$ set overlap across discretizations: Jaccard $\ge...
 
 ---
 
-## Causality (2 proposals)
+## Axioms (3 proposals)
+
+- **T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md**  
+  Path: `Axioms/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md`
+  *T8 - A8 (Axiom Candidate) — Lietz Infinity Resolution Conjecture*
+  - **Tier**: T8
+  - **Diagnostics**: rather than folding them into A8. - R6 - Risk: Dimension traps. - Mitigation: Enforce G‑DIM; add finite‑size corrections and percolation checks in 2D/3D. - R7 - Risk: Steering imprint. - Mitigation: Enforce G‑NI; include matched‑budget random control. ---
+
+### A8_Scaling_1D/
+
+- **T1_PROPOSAL_A8_1D_Scaling_v1.md**  
+  Path: `Axioms/A8_Scaling_1D/T1_PROPOSAL_A8_1D_Scaling_v1.md`
+  *T1 (Proto-model) - A8 1D Scaling Instrument: Interface Hierarchy and Area-Law Energy*
+  - **Diagnostics**: Normalization and parameters (per UNITS_NORMALIZATION.md): - Domain length $L$, grid $N$, spacing $\Delta x=L/N$; temporal window $T$ and $\Delta t$ for dynamic relaxation when needed; seeds $S$. - Potential and regime: choose a smooth double‑well tachyonic potential with $V''(0)<0$ (e.g., $V(\phi)=\tfrac{1}{4}(\phi^2-1)^2 - \tfrac{\mu}{2}\phi^2$ with $\mu>0$); or a canonical tachyonic quadratic...
+  - **Gate(s)**: pre-registered for experiments. Assumptions and limitations: - 1D baseline isolates interface counting and energy aggregation; higher‑D generalization is outside scope. - Detector definitions (thresholds and morphological choices) affect $N(L)$; the instrument reports detector sensitivity scans to...
+
+### A8_Scaling_2D3D/
+
+- **T1_PROPOSAL_A8_AreaLaw_2D3D_v1.md**  
+  Path: `Axioms/A8_Scaling_2D3D/T1_PROPOSAL_A8_AreaLaw_2D3D_v1.md`
+  *T1 (Proto-model) — A8 Area-Law Instrument in 2D/3D Domains*
+  - **Diagnostics**: (informational); the primary fit uses the total $E_{\mathrm{exc}}(L)$. 5.4 Regression and reporting - For each $d$ and each detector, regress $\log E_{\mathrm{exc}}$ vs $\log L$ across $L$; report slope, intercept, $R^2$, CIs. - Aggregate across seeds by medians; report interquartile ranges and bootstrap CIs. ---
+  - **Gate(s)**: Primary area-law gate (per dimension $d=2$ or $d=3$): - Fit $\log E_{\mathrm{exc}}(L)$ vs $\log L$; expected slope $\hat\alpha \approx d-1$. - Acceptance band: $|\hat\alpha - (d-1)| \le 0.1$ with $R^2 \ge 0.98$. - Report CI for $\hat\alpha$ via bootstrap across seeds; report detector/threshold...
+
+---
+
+## Causality (4 proposals)
 
 - **PROPOSAL_Causal_DAG_Audits_for_Void_Dynamics_Model.md**  
-  Path: `Causality/PROPOSAL_Causal_DAG_Audits_for_Void_Dynamics_Model.md`  
-  *Lightweight, order-only causality audit for VDM complementing existing metric-based gates (light-cone locality and dispersion) with background-free diagnostics derived from event precedence. Constructs event DAG from timestamped events.*
+  Path: `Causality/PROPOSAL_Causal_DAG_Audits_for_Void_Dynamics_Model.md`
+  *Causal DAG Audits for the Void Dynamics Model (VDM)*
+  - **Experimental Setup**: Known parameters and inputs: - Event list: tuples (id, t[, payload]) from existing logs; strictly increasing time per edge with jitter tolerance δ. - Optional edges: supplied or inferred by time ordering within a tolerance window and a max-successors cap. - Optional node positions: for optional cone-frontier comparison. - Speed scale c and ε from prior KG cone normalization. Diagnostics (generated): - DAG acyclicity (boolean) and counts of negative-lag edges within/outside δ. - Transitive reduction edge count m_TR versus original m. - Interval samples: tuples (p, q, Δt, |I|, r) with ordering...
+  - **Diagnostics**: derived from event precedence. The experiment constructs an event directed acyclic graph (DAG) from timestamped events and: (i) verifies acyclicity (modulo jitter tolerance), (ii) computes a transitive reduction (TR) to expose the minimal causal skeleton, (iii) samples Alexandrov intervals I(p, q) to estimate the Myrheim–Meyer ordering fraction and an effective dimension d̂, and (iv) tests...
+  - **Methods/Protocol**: - Step 1: Approve tag Causal-DAG-audit-v1 for script run_causal_dag_audit with script-scoped HMAC and proposal path. - Step 2: Ingest event logs; build times/adj with edge inference off by default; optionally enable inference with conservative caps. - Step 3: Compute DAG summary and TR; sample K intervals (K≈128–512), compute r and d̂ per sample; fit diamond scaling. - Step 4: Gates: (G1) acyclicity true (within δ jitter), (G2) slope(log|I| vs log Δt) ≈ mean d̂ ± δ_d, (G3 optional) frontier ≤...
 
 - **PROPOSAL_Metriplectic_Causal_Dominance_v1.md**  
   Path: `Causality/PROPOSAL_Metriplectic_Causal_Dominance_v1.md`
+  *Why I think this is a strong proposal (and not a foundation error)*
+
+- **T1_PROPOSAL_G-TF-1_Telegraph-Fisher_Causality_v1.md**  
+  Path: `Causality/T1_PROPOSAL_G-TF-1_Telegraph-Fisher_Causality_v1.md`
+  *4) G‑TF‑1 — **Telegraph–Fisher Causality Bridge (finite‑speed)** (T1, paper‑only)*
+  - **Tier**: T1
+
+### Causal_DAG_Audits/
+
+- **T1_PROPOSAL_Causal_DAG_Audits_v1.md**  
+  Path: `Causality/Causal_DAG_Audits/T1_PROPOSAL_Causal_DAG_Audits_v1.md`
+  *T1 (Proto-model) - Causal DAG Audits via Transfer Entropy (TE/MTE) for Locality-Constrained Transport*
+  - **Diagnostics**: Known parameters (unit normalization per UNITS_NORMALIZATION.md): - Spatial grid: $N$, $\Delta x$; temporal: $T$, $\Delta t$; seeds $S$. - Transport regime knobs for context (when using TF calibration runs): $(D,\tau)$ or equivalent cone-calibration references; alternatively $(c,m)$ for J-baseline. - TE parameters: embedding $(k,l)$, delay sweep $\Delta\ell \in [0,\Delta\ell_{\max}]$, estimator...
+  - **Gate(s)**: require: (i) adjacency recovery matching the grid’s local stencil, (ii) delay structure consistent with the transport cone from Telegraph–Fisher calibration (VDM-E-105), and (iii) near-zero TE outside the cone (acausal pairs). The instrument produces machine-auditable PNG/CSV/JSON artifacts routed...
+
+---
+
+## Closure (1 proposal)
+
+- **T1_PROPOSAL_G-CL-1_Closure-NoHiddenIntegrals_v1.md**  
+  Path: `Closure/T1_PROPOSAL_G-CL-1_Closure-NoHiddenIntegrals_v1.md`
+  *G‑CL‑1 — **Closure/Integrability Test (no hidden invariants)** (T1, paper‑only)*
+  - **Tier**: T1
 
 ---
 
 ## Collapse (1 proposal)
 
 - **PROPOSAL_A6_Collapse_v1.md**  
-  Path: `Collapse/PROPOSAL_A6_Collapse_v1.md`  
-  *A6 Scaling Collapse: Tests dimensionless scaling collapse when routing at Y-junction follows softmax in memory field m. Branch probability should collapse to universal curve P(A)=σ(ΘΔm) when plotted vs X=ΘΔm across multiple Θ values.*
+  Path: `Collapse/PROPOSAL_A6_Collapse_v1.md`
+  *A6 Scaling Collapse - Proposal (v1)*
+  - **Diagnostics**: - Protocol: sample P(A) at a junction for several Θ and Δm sweeps; compute the envelope on a shared X grid. - Parameters: Θ ∈ {1.5, 2.5, 3.5}; Δm ∈ [-2, 2] sampled uniformly (25 points); trials per Δm = 4000. - Diagnostics: overlay plot; envelope CSV; JSON with env_max and gate result. Gate: max envelope ≤ 0.02. Artifacts (tag A6-collapse-v1): - Figure:...
 
 ---
 
 ## Conservation Law (1 proposal)
 
 - **PROPOSAL_RD_Discrete_Conservation_vs_Balance.md**  
-  Path: `Conservation_Law/PROPOSAL_RD_Discrete_Conservation_vs_Balance.md`  
-  *Discrete Conservation vs. Balance in a Reaction-Diffusion Update (Void Dynamics Model)*
+  Path: `Conservation_Law/PROPOSAL_RD_Discrete_Conservation_vs_Balance.md`
+  *PROPOSAL - Discrete Conservation vs. Balance in a Reaction-Diffusion Update (Void Dynamics Model)*
+  - **Gate(s)**: ### 5.1 Mathematical Gates (must all pass for Obj‑A) 1. Exact identity: $(\Delta S \equiv 0)$ for the *implemented* one-step map. 2. Local flux form: $(\Delta Q_i + \sum_{j\in\mathcal N(i)} (H_{ij} - H_{ji}) = 0)$ per node. 3. Scope declared: BCs, scheme (unsplit/split/RKp), parameter domain...; reported); (V1-V5) are stated and marked PASS/FAIL with numbers. - [ ] Provenance block lists commit, env, seeds, hardware. - [ ] Boxed LEMMA/THEOREM or CONTRADICTION_REPORT as appropriate. - [ ] Units and dimensionless groups stated; BCs and scheme declared. - [ ] All plots readable in grayscale; axes...
 
 ---
 
-## Cosmology (2 proposals)
+## Cosmology (4 proposals)
 
 - **PROPOSAL_FRW_Balance_v1.md**  
-  Path: `Cosmology/PROPOSAL_FRW_Balance_v1.md`  
-  *FRW Continuity Balance: Implements dimensionless continuity-law residual for FRW cosmology, testing discrete consistency of input (ρ(t), a(t)). Computes residual of d/dt(ρa³) + wρd/dt(a³) (default dust w=0) with RMS residual ≤ tolerance.*
+  Path: `Cosmology/PROPOSAL_FRW_Balance_v1.md`
+  *FRW Continuity Balance - Proposal (v1)*
+  - **Diagnostics**: - Input: arrays ρ(t), a(t), t covering a monotone time span. - Default test: dust (ρ ∝ a⁻³). - Output: figure of residual vs t, CSV with (t, ρ, a, residual), JSON summary and PASS/FAIL vs tol. - Gate: RMS residual ≤ tol (default 1e-6); emit CONTRADICTION_REPORT on fail. Artifacts (tag FRW-balance-v1): - Figure:...
 
 - **PROPOSAL_FRW_Continuity_Predictive_v2.md**  
-  Path: `Cosmology/PROPOSAL_FRW_Continuity_Predictive_v2.md`
+  Path: `Cosmology/PROPOSAL_FRW_Continuity_Predictive_v2.md`  
+  *(File is empty or could not be parsed)*
+
+- **T4_PROPOSAL_Single_Axis_Portal_Modulation_Against_CMB_Power_Tensor_v1.md**  
+  Path: `Cosmology/T4_PROPOSAL_Single_Axis_Portal_Modulation_Against_CMB_Power_Tensor_v1.md`
+  *1. **T4 (Preregistered)** — Testing a Single‑Axis VDM Portal Modulation Against CMB Low‑ℓ Power‑Tensor Anomalies*
+  - **Diagnostics**: (per ℓ and collectively):** *Power entropy (S(\ell)) and its null p‑value; global statistic (\bar S\equiv -\sum_\ell \log\bigl[1-F(S(\ell))\bigr]).* AT entropy (S_X) and AT‑PEV (\tilde f) for stability of the collective axis. *Axis dispersion: pairwise angular separations between fitted (\hat f) (this model) and data‑driven AT‑PEVs across releases.* Likelihood gain: (\Delta \log \mathcal{L})...
+
+### CMB/
+
+- **T3_PROPOSAL_CMB_Hemispherical_Asymmetry_Test_v1.md**  
+  Path: `Cosmology/CMB/T3_PROPOSAL_CMB_Hemispherical_Asymmetry_Test_v1.md`
+  *1. T3 (Smoke) — CMB Hemispherical Power Asymmetry as VDM Causal Genesis Witness*
+  - **Experimental Setup**: Data: - Planck PR4 FULLSKY component-separated maps (SMICA, Commander) - Masks: Galactic plane + point source masks from PR4 release - Lensing products: PR4/NPIPE lensing for null checks (optional) - Reionization prior: PR4 τ constraint (April 2025 analysis) for low-ℓ calibration Tools: - healpy: SHT via `map2alm`, `anafast`, `alm2map`, `rotator` - libsharp: Fast C99 SHT with MPI (for large-scale transforms) - Python: NumPy, SciPy, Matplotlib for analysis and plotting Parameters and defaults: - Multipole range: ℓ_max ∈ {100, 200, 600} (focus on ℓ < 100 for asymmetry, ℓ < 600 for...
+  - **Diagnostics**: Data: - Planck PR4 FULLSKY component-separated maps (SMICA, Commander) - Masks: Galactic plane + point source masks from PR4 release - Lensing products: PR4/NPIPE lensing for null checks (optional) - Reionization prior: PR4 τ constraint (April 2025 analysis) for low-ℓ calibration
+  - **Methods/Protocol**: Cartesian product of independent variables: - Component method: {SMICA, Commander} - Mask: {conservative (|b| > 30°), aggressive (|b| > 10°)} - ℓ_max: {100, 200, 600} - Observables: {R-metric at ε=0.1, $K_{\ell}^{(\Delta\ell=1)}$ for ℓ < 100} Total conditions: ~12 runs (2 methods × 2 masks × 3 ℓ_max, not all combinations necessary) Estimated runtime: - Per method/mask/ℓ_max: 10-30 minutes (SHT + rotations + MC comparison) - Total compute budget: ~4-8 hours (serial), ~1-2 hours (parallel)...
+
+---
+
+## Dark Matter (1 proposal)
+
+- **T5_PROPOSAL_SkyrmeSIDM_VDM_FirstPrinciples_v1.md**  
+  Path: `Dark_Matter/T5_PROPOSAL_SkyrmeSIDM_VDM_FirstPrinciples_v1.md`
+  *1. T5 (Pilot) — First‑Principles Skyrme‑SIDM × VDM Micro‑to‑Macro Bridge*
+  - **Diagnostics**: Parameters (inputs). *Dwarf anchors: $(m)$ $[GeV]$, $((\sigma_T/m)_0)$ $[cm(^2)/g]$.* ERE choice: $(\xi)$ for $(r\_e=\xi R\_\ast)$ (single global in ($\[0.5,1.0]$\)). * Numerics: ODE tolerances; quadrature tolerances for $(F\_{\rm prof}(q))$; $(k)$ grid.
+  - **References**: *J. K. Lietz. 2025. The Lietz Infinity Resolution Conjecture: Hierarchical Scale-Breaking in Tachyonic Metriplectic Systems (v0.1). Zenodo. <https://doi.org/10.5281/zenodo.17503344>;* J. K. Lietz. 2025. Agency field evolution in metriplectic systems. VDM Canonical Documentation, <https://github.com/justinlietz93/Prometheus_VDM/Derivation/AGENCY_FIELD.md>.; *J. K. Lietz. 2025. Causality-enhanced guidance in the Void Dynamics Model. VDM Internal Report, <https://github.com/justinlietz93/Prometheus_VDM/Derivation/>.;* Voxtrium. 2025. Voxtrium/GR-DM-Interaction-Theory: SU2-Skyrme-SIDM-Microphysics (v1.0). Zenodo. <https://doi.org/10.5281/zenodo.16857209>
 
 ---
 
 ## Dark Photons (1 proposal)
 
 - **PROPOSAL_Decoherence_Portals.md**  
-  Path: `Dark_Photons/PROPOSAL_Decoherence_Portals.md`  
-  *Decoherence Portals via Dark-Photon Mixing: Pre-registered investigation of dark-photon (DP) kinetic mixing as decoherence portal leaving measurable imprints in precision electromagnetic noise spectra and Fisher budgets in shielded resonant cavities.*
+  Path: `Dark_Photons/PROPOSAL_Decoherence_Portals.md`
+  *Proposal: Decoherence Portals via Dark-Photon Mixing: Noise-Spectrum and Fisher-Budget Tests of Kinetic Mixing in Shielded Cavities (DP-Portal-v1)*
+  - **Diagnostics**: Instrumentation (baseline): - Shielded resonant RF cavity (Q characterized), tunable center frequency covering $f\in[\,10^3,10^6\,]$ Hz (example band; exact band to be set by available hardware). - Cryogenic front-end with known $T_{\mathrm{phys}}$ and calibrated readout chain; spectrum analyzer or digitizer with anti-alias filters. - Calibration injection path (synthesizer) for known narrowband...
+
+---
+
+## Entropy (1 proposal)
+
+### Self-Information/
+
+- **T3_PROPOSAL_Agency_Entropy_Echo_Measurement_v1.md**  
+  Path: `Entropy/Self-Information/T3_PROPOSAL_Agency_Entropy_Echo_Measurement_v1.md`
+  *1. T3 (Smoke) — Agency as Entropy-Echo Measurement via Void-Walker Self-Information Flow*
+  - **Experimental Setup**: Domain: - 2D metriplectic field with void-walkers (particles that interact with the field via local coupling and export state tokens/marks) - Field: Telegraph-Fisher substrate with J/M split (Strang composition) - Walkers: Four policy types: thermal (no memory), random (memoryless), scripted (fixed sequence), adaptive (goal-directed with self-model) Parameters and defaults: - Grid: N = 512 (2D), dx = 1.0 - Time step: Δt = 0.5 × CFL - Forward duration: T ∈ {100, 500, 1000} steps - Perturbation: δ ∈ {1e-6, 1e-5, 1e-4} (local kick magnitude) - Walker count: n_walkers = 32 per cluster - Energy...
+  - **Diagnostics**: Domain: - 2D metriplectic field with void-walkers (particles that interact with the field via local coupling and export state tokens/marks) - Field: Telegraph-Fisher substrate with J/M split (Strang composition) - Walkers: Four policy types: thermal (no memory), random (memoryless), scripted (fixed sequence), adaptive (goal-directed with self-model)
+  - **Methods/Protocol**: Cartesian product of independent variables: - Policy: {thermal, random, scripted, adaptive} - T: {100, 500, 1000} - δ: {1e-6, 1e-5, 1e-4} - K: {16, 32, 64} - Seeds: {1..32} Total conditions (selective sampling): ~100-200 runs (not full Cartesian; prioritize adaptive vs. random at multiple δ and T) Estimated runtime: - Per condition (single policy, T, δ, seed): 5-15 minutes (CPU + GPU for walker simulation) - Total compute budget: ~20-50 hours (parallelizable across seeds) Success actions: 1....
+
+---
+
+## Gravity (2 proposals)
+
+### B1938+666_Pinch_Visibility-Plane_Lensing/
+
+- **T4_PROPOSAL_NFW_for_the_B1938+666_Pinch_v1.md**  
+  Path: `Gravity/B1938+666_Pinch_Visibility-Plane_Lensing/T4_PROPOSAL_NFW_for_the_B1938+666_Pinch_v1.md`
+  *1. **T4 (Prereg)** — *VDM vs. NFW for the B1938+666 “Pinch”: a preregistered visibility‑plane lensing test**
+  - **Experimental Setup**: Question. *Does a compact VDM Σ‑profile explain the B1938+666 pinch more convincingly than a truncated‑NFW subhalo on the same meter?* Instrument (T2). Visibility‑plane forward model ( \mathcal{M}(\Theta) ): macro lens + localized perturber + source brightness model → sky → Fourier sample on VLBI ((u,v)) points → complex vis residuals. This is treated as the measuring apparatus, with calibration tests and nulls. (Image‑plane versions are used only for quick smoke checks.) Parameters (required). * Cosmological distances (D_d,D_s,D_{ds}) (fixed to catalog values); critical density (\Sigma_{\rm...
+  - **Diagnostics**: Question. *Does a compact VDM Σ‑profile explain the B1938+666 pinch more convincingly than a truncated‑NFW subhalo on the same meter?*
+  - **Methods/Protocol**: Dimensionless set‑up. Rescale to ( \hat R !=! R/R_E), (\hat \Sigma !=! \Sigma/\Sigma_{\rm crit}), (\hat \alpha !=! \alpha/\theta_E). Predictions and gates are thus unit‑free (A6). Hypothesis tests and gates. *G1 (mass): Fit VDM & NFW classes independently with (m_{80}) soft‑prior; require (|\hat m_{80}-1|\le 0.05).* G2 (meter power): In a preregistered ROI around the pinch, require [ \frac{{\rm RMS}*{\rm ROI}(\text{VDM})}{{\rm RMS}*{\rm ROI}(\text{NFW})};\le;0.80 , ] computed over complex...
+
+### Emergent_Gravity_for_Strong-Lensing/
+
+- **T3_PROPOSAL_Emergent_Gravity_for_Strong-Lensing_Substructure_v1.md**  
+  Path: `Gravity/Emergent_Gravity_for_Strong-Lensing/T3_PROPOSAL_Emergent_Gravity_for_Strong-Lensing_Substructure_v1.md`
+  ***T3→T4 — VDM Emergent Gravity for Strong‑Lensing Substructure (B1938+666‑class)***
+  - **Experimental Setup**: State & equations (canon): Discrete action → KG branch (J‑only): [ \partial_{tt}\phi - c^{2}\nabla^{2}\phi + V'(\phi)=0,\quad c^{2}=2Ja^{2}. ] Overdamped RD (M‑limb): ( \partial_t \phi = D\nabla^{2}\phi + f(\phi) ). (Used for relaxation/seeding only—no external forces added.) **Effective lensing mapping (derived‑limit, *runtime only*):** We adopt the *thin‑lens, geometric‑optics* approximation as a *test meter*, not a new axiom. Light rays follow null geodesics of an effective metric functionally dependent on $\phi$; in the weak‑field/eikonal limit this reduces to a 2‑D potential $\psi$ on...
+  - **Diagnostics**: (T2 instrument)
+  - **Gate(s)**: KS $p>0.1$ and posterior overlap ≥0.5 with the nearest KG‑tube family.; $g_1,g_2\le 10^{-10}$ (refined), $\Delta S\ge0$ in M‑step; locality cone slope matches $c=\sqrt{2Ja^2}$ within 1%.; ΔlnZ ≥ +5 (decisive) or, minimally, ΔlnZ ≥ +3 (strong). ---
+
+---
+
+## Hierarchy (2 proposals)
+
+- **T1_PROPOSAL_G-A8-1_A8-Scaling-Theorem_1D_v1.md**  
+  Path: `Hierarchy/T1_PROPOSAL_G-A8-1_A8-Scaling-Theorem_1D_v1.md`
+  *Formulate and prove (in 1D) that finite‑energy configurations under a tachyonic potential $(V''(0)<0)$ on large domains with stated BCs/regularity yield logarithmic hierarchy depth (N(L)=\Theta(\log(L/\lambda))) and boundary‑law excess energy $(E_{\mathrm{exc}}(L)=\Theta(L^{d-1}))$ (constant in 1D).*
+  - **Tier**: T1
+
+### STIV/
+
+- **T2_PROPOSAL_STIV_Macrostate_&_Gradient-Flow_Meters_v1.md**  
+  Path: `Hierarchy/STIV/T2_PROPOSAL_STIV_Macrostate_&_Gradient-Flow_Meters_v1.md`
+  *1. **T2 (Instrument)** — **STIV Macrostate & Gradient‑Flow Meters for A8 Boundary Hierarchies***
+  - **Diagnostics**: (g₁,g₂), grid invariance, model selection, and bootstrap CIs** are enforced. ---
+  - **Methods/Protocol**: Scope banner: *T2 instrument calibration only; no phenomenon claim.* All A8 claims (G1–G12) remain governed by the separate T8 PROPOSAL. Datasets / testbeds. S1 Analytic shapes (2D/3D): disks, annuli, lattices of holes (Swiss‑cheese), extruded surfaces. Truth for area vs perimeter known → β_E oracle; α, α_{\mathcal I} computable from synthetic $I$ fields. S2 Static segmentations: synthetic hierarchical partitions with prereg $N(L)$ ground truth. S3 Dynamic fields (bench): small RD/KG clips from...
 
 ---
 
 ## Information (1 proposal)
 
 - **PROPOSAL_SIE_Invariant_and_Novelty_v1.md**  
-  Path: `Information/PROPOSAL_SIE_Invariant_and_Novelty_v1.md`  
-  *Certifies clean first integral Q for local information engine (SIE) in reaction-only limit and quantifies controlled deviations under novelty. For logistic-like kinetics, Q is constant; with parameter kick, Q drifts and recovers.*
+  Path: `Information/PROPOSAL_SIE_Invariant_and_Novelty_v1.md`
+  - **Diagnostics**: two-grid error (E(\Delta t)), log–log slope; (Q)-drift time series with/without kick; recovery time.
 
 ---
 
-## Intelligence Model (1 proposal)
+## Intelligence Model (2 proposals)
 
 - **PROPOSAL_Physics_Native_Intelligence_v1.md**  
-  Path: `Intelligence_Model/PROPOSAL_Physics_Native_Intelligence_v1.md`  
-  *Physics-Native Intelligence (VDM) — Substrate v1: First step of physics-native intelligence program avoiding training and operating in real time. Phase 1 establishes conservative, reversible 2D Klein–Gordon substrate for information structures to persist and interact without external learning loops.*
+  Path: `Intelligence_Model/PROPOSAL_Physics_Native_Intelligence_v1.md`
+  *Physics-Native Intelligence (VDM) — Substrate v1 Proposal*
+  - **Experimental Setup**: - Substrate: 2D KG J-only conservative dynamics with leapfrog time-stepping. - Grid/time: $(N_x, N_y)$, spacings $a_x,a_y$, $\Delta t$ with CFL guard. - Boundaries: reflective walls or periodic; choose consistent with meters. - Diagnostics/meters: energy conservation, power balance, symmetry (when applicable), determinism receipts. - Artifacts: at least one PNG figure + one CSV log + one JSON summary per run, via io_paths with tag routing. Equation of motion and continuity residual: $ \partial_t^2\,\phi - c^2\,\nabla^2\phi + \mu^2\,\phi = 0 $ $ r = \partial_t e + \nabla\cdot s, \quad...
+  - **Diagnostics**: - Substrate: 2D KG J-only conservative dynamics with leapfrog time-stepping. - Grid/time: $(N_x, N_y)$, spacings $a_x,a_y$, $\Delta t$ with CFL guard. - Boundaries: reflective walls or periodic; choose consistent with meters. - Diagnostics/meters: energy conservation, power balance, symmetry (when applicable), determinism receipts. - Artifacts: at least one PNG figure + one CSV log + one JSON...
+  - **Methods/Protocol**: Phases and gates for substrate-only certification (no agents): 1) Energy conservation gate - Gate G1: RMS energy drift $\le \epsilon_E$ with scaling $\epsilon_E = K_E (\Delta t / a)^2$. - Success criteria: PASS if drift bound satisfied over $T$ and warm-up excluded. 2) Power balance gate (closed box) - Gate G2: coefficient of determination $R^2 \ge 0.9995$ for $\partial_t e$ vs $-\nabla\cdot s$. - Gate G3: relative imbalance $\le 0.5\%$ after warm-up. 3) Determinism receipts - Gate G4:...
+
+- **T4_PROPOSAL_VDM_Physics_to_AI_Model_v1.md**  
+  Path: `Intelligence_Model/T4_PROPOSAL_VDM_Physics_to_AI_Model_v1.md`
+  *1. T4 (Prereg) — VDM Physics → AI Model Roadmap v1*
+  - **Experimental Setup**: Domains covered - KG J-only substrate (T2/T3 instrumentation) - Metriplectic assisted-echo controllers (T4 prereg) - Thermodynamic routing meters (wave flux) - CMB-meter and T_CMB(z) check (cosmology instrument) - RD pulled-front complexity (new T4 instrument) Common grid/time - N ∈ {256, 512, 1024}, dx = 1.0 (canonical units) - Δt tied to CFL multiples {0.5, 1.0, 2.0} × CFL guard - Steps: 200 (sweeps use early-stop on gate fail) - Seeds: {1..12} Meters and gates used across domains (canon: Derivation/VALIDATION_METRICS.md) - Energy conservation drift: $\Delta E_\mathrm{RMS} =...
+  - **Diagnostics**: Domains covered - KG J-only substrate (T2/T3 instrumentation) - Metriplectic assisted-echo controllers (T4 prereg) - Thermodynamic routing meters (wave flux) - CMB-meter and T_CMB(z) check (cosmology instrument) - RD pulled-front complexity (new T4 instrument) Common grid/time - N ∈ {256, 512, 1024}, dx = 1.0 (canonical units) - Δt tied to CFL multiples {0.5, 1.0, 2.0} × CFL guard - Steps: 200...
 
 ---
 
-## Metriplectic (8 proposals)
+## Metriplectic (14 proposals)
 
 - **PROPOSAL_Metriplectic_Composition_KGplusRD_v2.md**  
-  Path: `Metriplectic/PROPOSAL_Metriplectic_Composition_KGplusRD_v2.md`
+  Path: `Metriplectic/PROPOSAL_Metriplectic_Composition_KGplusRD_v2.md`  
+  *(File is empty or could not be parsed)*
 
 - **PROPOSAL_Metriplectic_Lindblad_T4.md**  
   Path: `Metriplectic/PROPOSAL_Metriplectic_Lindblad_T4.md`
+  - **Gate(s)**: saturation slope (\partial n/\partial N\to 0) beyond (n\simeq 1) (units set by your normalization) across (>90%) of modes tested. F‑2 (Spin/statistics bridge): Provide a route (even if deferred) to anticommutation—e.g., quantizing the J‑limb first, then showing JMJ composites inherit fermionic...; *Predictive validity: out‑of‑sample RMSE (\le 5%) on a held‑out block design.* Identifiability: condition number of Hessian (\kappa \le 10^3); parameter CIs finite and (<30%) relative width for (A,\tau). * Nuisance robustness: inferred (\theta_C) shifts by (<10%) under plausible changes to the...; invariant drift (|\Delta Q|/Q \le 10^{-6}) over (10^6) steps; two‑grid order (\ge 2.0) with (R^2\ge 0.999) on error vs (\Delta t). False‑Vacuum Asymmetry (Open, broken): *Assumptions:* at least one of (i) absorbing/Dirichlet boundary, (ii) biased source/noise (+\epsilon), (iii) explicit coupling to...
 
 - **PROPOSAL_Metriplectic_SymplecticPlusDG.md**  
-  Path: `Metriplectic/PROPOSAL_Metriplectic_SymplecticPlusDG.md`  
-  *Metriplectic - Symplectic (KG) + Discrete-Gradient (RD): Composition of symplectic time-stepping for conservative Klein-Gordon dynamics with discrete-gradient methods for dissipative reaction-diffusion.*
+  Path: `Metriplectic/PROPOSAL_Metriplectic_SymplecticPlusDG.md`
+  *Proposal: Metriplectic - Symplectic (KG) + Discrete-Gradient (RD)*
+  - **Diagnostics**: with documented gates. 4) Rigor. Pre-registration with tag-specific JSON Schemas; DB-backed approvals; pass/fail gates; quarantining of unapproved runs.
+
+- **T1_PROPOSAL_QGT_to_Metriplectic_Instrument.md**  
+  Path: `Metriplectic/T1_PROPOSAL_QGT_to_Metriplectic_Instrument.md`
+  *T1 (Proto-model) — QGT → Metriplectic Instrument*
+  - **Gate(s)**: Structural gates (per Derivation/VALIDATION_METRICS.md): - Skew-symmetry: $\|J+J^\top\|_\infty \le 1\times 10^{-12}$ (grid-refined); PASS/FAIL recorded. - PSD check: all eigenvalues of $M$ $\ge -1\times 10^{-14}$; any negative eigenvalue is projected to 0 and logged; count of negatives must be 0...
+
+- **T4_PROPOSAL_CEG_Metriplectic_Assisted-Echo_Experiment.md**  
+  Path: `Metriplectic/T4_PROPOSAL_CEG_Metriplectic_Assisted-Echo_Experiment.md`
+  *1. T4 — Counterfactual Echo Gain (CEG): A Metriplectic Assisted‑Echo Experiment in VDM*
+
+### CEG_Metric_Definition/
+
+- **T2_PROPOSAL_CEG_Metric_Definition_v1.md**  
+  Path: `Metriplectic/CEG_Metric_Definition/T2_PROPOSAL_CEG_Metric_Definition_v1.md`
+  *1. T2 (Instrument) — Corrective Echo Gain (CEG) Metric Definition and Validation*
+  - **Experimental Setup**: Domains for validation: 1. Reaction-Diffusion (RD): 2D Fisher-KPP or Gray-Scott system with zero-flux boundaries. 2. Klein-Gordon J-only: 2D hyperbolic field with leapfrog integrator. 3. Metriplectic Assisted Echo: 1D telegraph-Fisher with Strang-split J/M composition and walker-mediated assistance. Parameters and defaults: - Grid: N ∈ {256, 512, 1024}, dx = 1.0 (canonical units) - Time step: Δt tied to CFL multiples {0.5, 1.0, 2.0} × CFL_max - Forward duration: T ∈ {100, 200, 500} steps - Seeds: 12 per condition (seed ∈ {1..12}) - Assistance budget (when applicable): λ ∈ {0.0, 0.1, 0.2, 0.3,...
+  - **Diagnostics**: Domains for validation: 1. Reaction-Diffusion (RD): 2D Fisher-KPP or Gray-Scott system with zero-flux boundaries. 2. Klein-Gordon J-only: 2D hyperbolic field with leapfrog integrator. 3. Metriplectic Assisted Echo: 1D telegraph-Fisher with Strang-split J/M composition and walker-mediated assistance.
+  - **Methods/Protocol**: Cartesian product of independent variables: - Regimes: {RD_fisher_kpp, KG_jonly, metriplectic_assisted_echo} - N: {256, 512, 1024} - Δt: {0.5, 1.0, 2.0} × CFL - T: {100, 200, 500} - λ (assistance): {0.0, 0.1, 0.2, 0.3, 0.5} (for metriplectic regime only) - Seeds: {1..12} Estimated runtime: - Per condition (single regime, N, Δt, T, seed): 1-5 minutes (CPU single thread) - Total conditions (excluding full Cartesian): ~100-200 runs (selective sampling) - Total compute budget: ~10-20 hours...
+
+### CEG_Metriplectic_Assistance/
+
+- **T4_PROPOSAL_CEG_Metriplectic_Assisted-Echo_Experiment.md**  
+  Path: `Metriplectic/CEG_Metriplectic_Assistance/T4_PROPOSAL_CEG_Metriplectic_Assisted-Echo_Experiment.md`
+  *1. T4 — Counterfactual Echo Gain (CEG): A Metriplectic Assisted‑Echo Experiment in VDM*
+  - **Experimental Setup**: State and splits. Domain $\Omega\subset\mathbb{R}^d$ (1D/2D) with field $W$ (KG for $J$; RD/gradient‑flow for $M$). Discrete action and updates from EQUATIONS registry; canonical constants from CONSTANTS registry. Integrator. Strang JMJ (or MJM as control): symplectic step for $J$; discrete‑gradient step for $M$. Diagnostics on each limb are enabled during both forward and reverse phases. Primary observable. Echo error $E \equiv \|q_{\text{final}}-q_0\|_{\mathcal{H}}$ in a declared discrete energy norm $\|\cdot\|_{\mathcal{H}}$ (per VDM discrete Hamiltonian density). CEG as above. Gates...
+  - **Diagnostics**: provide the measurement substrate for the echo tests; e.g., the discrete action and Lagrangian/Euler–Lagrange structure (for $J$), and gradient‑flow RD updates (for $M$). These appear in the EQUATIONS registry used as the computational “instrument manual.”
+  - **Methods/Protocol**: RP‑1 Baseline calibration (meters). Run J‑only reversibility, M‑only monotonicity, and Strang defect slope across the grid; must pass G1–G2–G4 before any assisted runs. (Artifacts posted with same‑basename CSV/JSON and figure captions that include slope/$R^2$ and seed/commit.) RP‑2 Assisted‑echo implementation. Insert a micro‑sequence during the reverse M‑segment using the internal $M$ estimator, with assistance parameter $\lambda$ and energy‑match clamp. Log assistance work, ensure G3. RP‑3...
+
+### Constructive_QGT_to_Metriplectic/
+
+- **T1_PROPOSAL_G-QGT-1_QGT-to-Metriplectic_Mapping_v1.md**  
+  Path: `Metriplectic/Constructive_QGT_to_Metriplectic/T1_PROPOSAL_G-QGT-1_QGT-to-Metriplectic_Mapping_v1.md`
+  *G‑QGT‑1 — **Constructive QGT → Metriplectic Mapping** (T1, paper‑only)*
+  - **Tier**: T1
+  - **Diagnostics**: *Objects: (H(\lambda)), eigenframe (|u_n(\lambda)\rangle), (Q_{\mu\nu}), pushforward to observables, functionals (\mathcal I,\Sigma).* Diagnostics (paper‑only): algebraic checks for antisymmetry/PSD; explicit null‑space verifications for degeneracies; coordinate/gauge invariance notes.
+  - **Gate(s)**: align to RESULTS standards.
+
+### Contact_Geometry_Projection/
+
+- **T1_PROPOSAL_G-CG-1_Contact-to-Metriplectic_v1.md**  
+  Path: `Metriplectic/Contact_Geometry_Projection/T1_PROPOSAL_G-CG-1_Contact-to-Metriplectic_v1.md`
+  *G‑CG‑1 — **Contact Geometry Projection → Metriplectic Split** (T1, paper‑only)*
+  - **Tier**: T1
+  - **Diagnostics**: verify (J^\top=-J), (M^\top=M\ge0), and the two degeneracies on chosen functionals (\Sigma,\mathcal I).
+
+### Schrodingerization_KvN/
+
+- **T1_PROPOSAL_Schrodingerization_KvN_v1.md**  
+  Path: `Metriplectic/Schrodingerization_KvN/T1_PROPOSAL_Schrodingerization_KvN_v1.md`
+  *T1 (Proto-model) - Schrödingerization (Koopman–von Neumann) Lifting of Metriplectic J ⊕ M to a Unified Hamiltonian Instrument*
+  - **Diagnostics**: Known parameters (dimensionless normalization consistent with UNITS_NORMALIZATION.md): - Temporal step and horizon: $\Delta t$, $T$; grid sizes $N$, $\Delta x$. - Model knobs for baselines: $(c,m)$ for KG limb; RD coefficients $(D,r,u)$ for $M$-limb comparators. - KvN construction parameters: choice of basis/functions for $\lvert\psi\rangle$, truncation level $K$, projection operator family...
 
 ### Strang_Defect_vs_dt_kg_RD/
+
 - **PROPOSAL_KG_plus_RD_Metriplectic.md**  
-  Path: `Metriplectic/Strang_Defect_vs_dt_kg_RD/PROPOSAL_KG_plus_RD_Metriplectic.md`  
-  *KG ⊕ RD Metriplectic Experiment: Two-field metriplectic dynamics combining Klein-Gordon and reaction-diffusion systems.*
+  Path: `Metriplectic/Strang_Defect_vs_dt_kg_RD/PROPOSAL_KG_plus_RD_Metriplectic.md`
+  *Proposal: KG ⊕ RD Metriplectic Experiment (Two-Field)*
 
 - **PROPOSAL_Metriplectic_JMJ_RD_v1.md**  
-  Path: `Metriplectic/Strang_Defect_vs_dt_kg_RD/PROPOSAL_Metriplectic_JMJ_RD_v1.md`  
-  *Metriplectic Integrator for Mixed Conservative-Dissipative Dynamics: Symplectic J-step ⊕ Discrete-Gradient M-step composition scheme.*
+  Path: `Metriplectic/Strang_Defect_vs_dt_kg_RD/PROPOSAL_Metriplectic_JMJ_RD_v1.md`
+  *1. **Metriplectic Integrator for Mixed Conservative-Dissipative Dynamics: Symplectic J-step ⊕ Discrete-Gradient M-step***
+  - **Diagnostics**: reuse the RD harness just completed (two-grid order, fixed-$\Delta t$ $|\Delta S|$, Lyapunov monitors) without modifying any prior scripts or outputs to preserve reproducibility; new code paths are additive (new module/CLI only) and write to separate output folders. Success yields a scheme that mirrors A4/A5 at the discrete level: conserved quantities for J and monotone entropy for M, with global...
+  - **Gate(s)**: reporting.
 
-### Thermal_Landscape_Quench/
-- **PROPOSAL_Thermal_Landscape_Quench_v1.md**  
-  Path: `Metriplectic/Thermal_Landscape_Quench/PROPOSAL_Thermal_Landscape_Quench_v1.md`
+### TF_Causality/
 
-### PROPOSAL_Echo_vs_Static_Calibration/
-- **PROPOSAL_Echo_CEG_Static_PROPOSAL_v1.md**  
-  Path: `Metriplectic/PROPOSAL_Echo_vs_Static_Calibration/PROPOSAL_Echo_CEG_Static_PROPOSAL_v1.md`
+- **T1_PROPOSAL_TF_Causality_v1.md**  
+  Path: `Metriplectic/TF_Causality/T1_PROPOSAL_TF_Causality_v1.md`
+  *T1 (Proto-model) - Telegraph–Fisher (TF) Causality Instrument: Finite-Speed Transport and Cone Gates*
+  - **Diagnostics**: Known parameters and normalization (per UNITS_NORMALIZATION.md): - Grid: $N$, $\Delta x$; time: $T$, $\Delta t$; seeds. - TF parameters: $\{D,\tau\}$; optional reaction term $f(u)$ for TF–Fisher variants (kept smooth, bounded). - Boundary/IC: periodic or reflecting; localized IC for front measurements; broadband small-amplitude IC for dispersion. Diagnostics (minimum set per run): - $c$ from...
+  - **Gate(s)**: (i) dispersion fits with $R^2\ge 0.999$ matching predicted slope/intercept; (ii) locality cone with measured $v\le c(1+0.02)$; (iii) CFL/stability envelope checks. The design is compatible with metriplectic compositions (J⊕M), but this proposal limits scope to TF causality meters and cones....
 
-### Self_Model_Assisted_Echo/
-- **PROPOSAL_Self_Model_Assisted_Echo_v1.md**  
-  Path: `Metriplectic/Self_Model_Assisted_Echo/PROPOSAL_Self_Model_Assisted_Echo_v1.md`
+### Void_Debt_Transport_Throttle/
+
+- **T1_PROPOSAL_Void_Debt_Transport_Throttle_v1.md**  
+  Path: `Metriplectic/Void_Debt_Transport_Throttle/T1_PROPOSAL_Void_Debt_Transport_Throttle_v1.md`
+  *T1 (Proto-model) - Void-Debt Transport Throttling Instrument: $c_{\mathrm{eff}}=c_0 \exp(-\tfrac{1}{2}\beta D)$ Gates*
+  - **Diagnostics**: Normalization and parameters (per UNITS_NORMALIZATION.md): - Spatial grid: $N$, $\Delta x$; temporal: $\Delta t$, $T$; seeds $S$. - Transport regime: select either J‑only baselines (for $c_0$) or TF (for $c_0=\sqrt{D/\tau}$); optionally metriplectic compositions for stress‑tests. - Boundary detector settings: threshold $\theta$, scale pyramid levels $L_s$, morphological kernel sizes. Diagnostics...
 
 ---
 
 ## Qualia (2 proposals)
 
-- **PROPOSAL_T3_Calibration_of_Psychophysical_Observables_to_C_Field.md**  
-  Path: `Qualia/PROPOSAL_T3_Calibration_of_Psychophysical_Observables_to_C_Field.md`  
-  *T3 — Calibration of Psychophysical Observables to the VDM (C)-Field*
-
 - **PROPOSAL_vdm_qualia_program.md**  
-  Path: `Qualia/PROPOSAL_vdm_qualia_program.md`  
-  *VDM–Qualia Program: Coupled‑Field Explanations of Psychedelic Phenomenology using sober proxies.*
+  Path: `Qualia/PROPOSAL_vdm_qualia_program.md`
+  *VDM–Qualia Program: Coupled‑Field Explanations of Psychedelic Phenomenology (Sober Proxies)*
+  - **Gate(s)**: ≥2 significant spectral peaks (z>3 over baseline) at eigenmodes predicted by simulated $K_{vv}$; color/opponent alternation rate matches band spacing.; Condition A: $\Delta S>0$, priming drop during session, no 24h bias shift. Condition B: same acute effects plus significant 24h bias shift (p<0.01).; Inter‑trial phase coherence (ITPC) at drive frequency increases by ≥0.1; depth‑order error rate increases monotonically with $\chi$.
+
+- **T3_PROPOSAL_Calibration_of_Psychophysical_Observables_to_C_Field.md**  
+  Path: `Qualia/T3_PROPOSAL_Calibration_of_Psychophysical_Observables_to_C_Field.md`
+  *1. **T3 — Calibration of Psychophysical Observables to the VDM (C)-Field***
+  - **Experimental Setup**: Known parameters & defaults *Tasks (2–3): TOJ bias (ms), Cross‑modal projection (psychometric slope / ITPC), Dynamic texture spectrum ((1/f) exponent).* Sampling: within‑subject, (n \ge 20), two sessions ≥24 h apart (test–retest). *Hardware: calibrated display (60–144 Hz), headphones or vibrotactile motor, optional EEG (32ch).* Derived observables (\mathcal{O}*k): (\Delta t*{\mathrm{TOJ}}) bias, projection gain (\hat g), PSD exponent (\hat\beta); optional ITPC at drive frequency. * Forward model family: RD‑limit (C)-PDE or its 0‑D reduction, plus minimal readout maps...
+  - **Diagnostics**: Known parameters & defaults *Tasks (2–3): TOJ bias (ms), Cross‑modal projection (psychometric slope / ITPC), Dynamic texture spectrum ((1/f) exponent).* Sampling: within‑subject, (n \ge 20), two sessions ≥24 h apart (test–retest). *Hardware: calibrated display (60–144 Hz), headphones or vibrotactile motor, optional EEG (32ch).* Derived observables (\mathcal{O}*k): (\Delta t*{\mathrm{TOJ}})...
+  - **Gate(s)**: ≤500 LOC/file; no outer→inner deps; interfaces for cross‑layer calls; tests mirror source paths; domain/business logic framework‑free. ---; (Pass/Fail) *Reliability: (\mathrm{ICC}(\text{C‑features; day1 vs day2}) \ge 0.8).* Predictive validity: held‑out RMSE ≤ 5% (block design). *Identifiability: Hessian condition number (\kappa \le 10^3); (\mathrm{CI}_{A,\tau}<30%).* Convergent/discriminant: tasks designed to correlate must show...
 
 ---
 
-## Quantum Gravity (2 proposals)
+## Quantum (11 proposals)
+
+- **T0_PROPOSAL_VDM_J-branch_QFT-Bootstrap_and_Metriplectic-Decoherence_v1.md**  
+  Path: `Quantum/T0_PROPOSAL_VDM_J-branch_QFT-Bootstrap_and_Metriplectic-Decoherence_v1.md`
+  ***PROPOSAL — VDM J‑branch QFT Bootstrap & Metriplectic Decoherence (v1)***
+  - **Tier**: T0
+  - **Experimental Setup**: Domain routing. Figures → `Derivation/doce/physics/outputs/figures/quantum/` Logs (CSV/JSON) → `Derivation/doce/physics/outputs/logs/quantum/` Minimum artifact set per run (code‑enforced): 1. PNG dashboard, 2) metrics CSV, 3) summary JSON (with commit, salted self‑hash, code‑hash list, proposal name, gate verdicts, overall verdict). Planned file names (example tag `qft-metro-v1`) *`Derivation/doce/physics/outputs/figures/quantum/2025_qft-metro-v1_dashboard.png`* `Derivation/doce/physics/outputs/logs/quantum/2025_qft-metro-v1_metrics.csv` *...
+  - **Diagnostics**: (for T1→T2)
+  - **Methods/Protocol**: T1 (Proto‑model) — Scalar‑only instrument shakedown *Simulate free scalar on 1D/2D periodic lattice.* Estimate ( \omega(k) ) from timeseries; fit to analytic dispersion. *Serialize artifacts to the paths listed above. T2 (Instrument) — Scalar → Dirac + metriplectic coupling* Add staggered or Wilson fermion discretization; verify massless/massive dispersion and control of doublers. *Add metriplectic/Lindblad term with coupling ( \gamma ); measure purity decay vs ( \gamma ).* Perform 2× and...
+
+- **T1_PROPOSAL_VDM_J-branch_Metriplectic_Decoherence__ProtoModel_v1.md**  
+  Path: `Quantum/T1_PROPOSAL_VDM_J-branch_Metriplectic_Decoherence__ProtoModel_v1.md`
+  *1. Tier Grade, Proposal Title and Date*
+  - **Diagnostics**: Domain routing (enforced by `io_paths.py`): *Figures (PNG): `Derivation/doce/physics/outputs/figures/quantum/`* Logs (CSV/JSON): `Derivation/doce/physics/outputs/logs/quantum/`
+
+- **T2_PROPOSAL_VDM_J-branch_Metriplectic_Decoherence_Instrument_v1.md**  
+  Path: `Quantum/T2_PROPOSAL_VDM_J-branch_Metriplectic_Decoherence_Instrument_v1.md`  
+  *(File is empty or could not be parsed)*
+
+- **T4_PROPOSAL_J-to_Dirac_v1.md**  
+  Path: `Quantum/T4_PROPOSAL_J-to_Dirac_v1.md`
+  *1. T4 (Prereg) - T4 — J→Dirac‑Aligned False‑Vacuum Metastability & Void‑Debt Asymmetry (Preregistration v1)*
+  - **Experimental Setup**: Fields & functionals (minimal working form). β‑field with tilted double‑well potential \( V_\beta(\beta)=\tfrac{\lambda}{4}(\beta^2-v^2)^2+\epsilon\,\beta \) with small tilt \(\epsilon\); announcer fields \(\mathcal A\) mediate currents; an optional conserved B‑charge current \(J_B^\mu\). Two asymmetry routes are preregistered: (i) add \(\mu_B J_B^0\) (grand‑canonical bias); (ii) couple \(\beta\) to announcer curvature via a Chern–Simons–type term with coefficient \(\kappa_{CP}\). Action/entropy are schematic: \[\mathcal I[q]=\int (|\nabla\beta|^2 + V_\beta + \mathcal L_\mathcal A + \mathcal...
+  - **Diagnostics**: Fields & functionals (minimal working form). β‑field with tilted double‑well potential \( V_\beta(\beta)=\tfrac{\lambda}{4}(\beta^2-v^2)^2+\epsilon\,\beta \) with small tilt \(\epsilon\); announcer fields \(\mathcal A\) mediate currents; an optional conserved B‑charge current \(J_B^\mu\). Two asymmetry routes are preregistered: (i) add \(\mu_B J_B^0\) (grand‑canonical bias); (ii) couple \(\beta\)...
+  - **Gate(s)**: fit \(R_c=K\,\sigma/\Delta V\) with \(R^2\ge 0.99\) and \(|K/\kappa_d-1|\le 0.15\). *Work/energy check: \(W(R)\) shows extremum at \(R_c\); derivative zero within tol; curvature sign correct. fileciteturn1file18; exponential fit \(R^2\ge 0.99\); KS p\(>0.1\) on tail; CI for \(\Gamma\).* Resolution robustness: doubling spatial resolution changes \(\Gamma\) by \(<10\%\); CI excludes \(\ge 10\%\) change. fileciteturn1file10; \(\langle\Delta Q_B\rangle_{\mu_B>0}-\langle\Delta Q_B\rangle_{0}\ge\delta_Q\) with 95% CI excluding 0 (\(\delta_Q\) set by pilot). * CP‑pumping route: with \(\kappa_{CP}\neq 0\), moving walls pump \(Q_B\). Gate: slope \(d\langle\Delta Q_B\rangle/d\kappa_{CP}>0\) with 95% CI; sign flips under...
+  - **Methods/Protocol**: 1) Meters first (tiny grids). Reversibility ≤ \(10^{-12}\); operator/BC match; determinism receipts; (if M) H‑theorem micro‑tol. 2) Thin‑wall pilot. Measure \(\sigma\), \(\Delta V\); seed bubbles to bracket \(R_c\); size \(\Delta t\) ladder. 3) Lifetime pilot. 50–100 seeds; validate exponential tail and set floors. 4) Asymmetry pilot. Small \(\mu_B\) or \(\kappa_{CP}\) sweep; estimate \(\delta_Q\) and slope; finalize gates. 5) Full prereg execution. Run prereg seeds/horizons; compute...
+
+### Analog_Quantum/
+
+- **T4_PROPOSAL_Cold_Atom_Causal_Cone_Test_v1.md**  
+  Path: `Quantum/Analog_Quantum/T4_PROPOSAL_Cold_Atom_Causal_Cone_Test_v1.md`
+  *1. T4 (Prereg) — Cold-Atom Test of VDM Causal Cone in Metriplectic Optical Lattice*
+  - **Experimental Setup**: System: - 2D optical lattice (square geometry preferred for symmetry) - Ultracold Bose gas (e.g., $^{87}$Rb or $^{39}$K) in Mott insulator or superfluid regime - Quantum-gas microscope with site-resolved imaging (spatial resolution ≤ 1 lattice spacing) - Engineered dissipation: Local atom loss (via resonant light), local dephasing (via AC Stark shift noise), or measurement back-action Parameters and defaults: - Lattice depth: $V_0 \sim 10-20 E_R$ (tunable to control tunneling $J$ and on-site interaction $U$) - Filling: $n \sim 1$ atom/site (Mott regime) or $n < 1$ (superfluid regime) - Quench...
+  - **Diagnostics**: System: - 2D optical lattice (square geometry preferred for symmetry) - Ultracold Bose gas (e.g., $^{87}$Rb or $^{39}$K) in Mott insulator or superfluid regime - Quantum-gas microscope with site-resolved imaging (spatial resolution ≤ 1 lattice spacing) - Engineered dissipation: Local atom loss (via resonant light), local dephasing (via AC Stark shift noise), or measurement back-action
+  - **Methods/Protocol**: Conditions: - Dissipation: {OFF (baseline), ON (Γ = 0.1J, 0.5J, 1.0J)} - Lattice depth: {10, 15, 20} $E_R$ (testing robustness across $J$ values) - Time points: {0, 5, 10, 20, 50, 100} × $J^{-1}$ - Repetitions: $N_{\text{rep}} = 50$ per condition Total runs: ~20 conditions (4 dissipation × 3 depths, with some prioritization) Estimated runtime: - Per time point per condition: 10-30 minutes (including equilibration, quench, imaging, readout) - Total: ~40-80 hours (experiment-dependent; can be...
+
+### Quantum_Echos/
+
+- **T0_PROPOSAL_SIE_Willow-Convergence_v1.md**  
+  Path: `Quantum/Quantum_Echos/T0_PROPOSAL_SIE_Willow-Convergence_v1.md`
+  *T0 PROPOSAL_SIE_Willow-Convergence_v1.md*
+  - **Experimental Setup**: Domain string (for routing): `quantum` Runner (suggested path; you may rename): `Derivation/doce/physics/code/runners/quantum/sie_willow_convergence_v1.py` I/O routing (via `io_paths.py`): *Figure (PNG): `Derivation/doce/physics/outputs/figures/quantum/sie_willow_convergence_v1_timeseries.png`* Metrics (CSV): `Derivation/doce/physics/outputs/logs/quantum/sie_willow_convergence_v1_metrics.csv` * Summary (JSON): `Derivation/doce/physics/outputs/logs/quantum/sie_willow_convergence_v1_summary.json` Mandatory JSON fields (enforced by runner): ```json { "proposal_name":...
+  - **Diagnostics**: Domain string (for routing): `quantum`
+  - **Methods/Protocol**: 1. Initial approval request. Create an approval record for this run tag: *Domain: `quantum`* Tag: `sie_willow_convergence_v1` * Approval record path (text/JSON, committed with this PROPOSAL): `Derivation/doce/physics/approvals/requests/sie_willow_convergence_v1.request.json` Minimal content: ```json { "proposal": "PROPOSAL_SIE_Willow-Convergence_v1.md", "domain": "quantum", "tag": "sie_willow_convergence_v1", "requested_by": "Justin K. Lietz", "requested_at_utc": "<ISO-8601>", "status":...
+
+- **T1_PROPOSAL_VDM_QIS_Quantum‑Echoes_Metriplectic_v1.md**  
+  Path: `Quantum/Quantum_Echos/T1_PROPOSAL_VDM_QIS_Quantum‑Echoes_Metriplectic_v1.md`
+  *PROPOSAL_VDM_QIS_Quantum‑Echoes_Metriplectic_v1.md*
+  - **Experimental Setup**: Domain: `qis` (quantum‑information‑style echo testbed) Outputs (managed by `io_paths.py`): *Figures dir (canonical): `Derivation/code/physics/outputs/figures/qis/`* Logs dir (canonical): `Derivation/code/physics/outputs/logs/qis/` Required output artifacts (minimum): 1. PNG figure — timeseries & gate summaries `Derivation/code/physics/outputs/figures/qis/{RUN_ID}_echo_timeseries_{TAG}.png` 2. CSV metrics — per‑step metrics for all gates `Derivation/code/physics/outputs/logs/qis/{RUN_ID}_metrics_{TAG}.csv` 3. JSON summary — provenance + PASS/FAIL per gate and overall...
+  - **Diagnostics**: Domain: `qis` (quantum‑information‑style echo testbed)
+  - **Gate(s)**: (PASS/FAIL; all must pass):** *G0: Initial Approval Gate — summary JSON includes `approval: {status:"APPROVED", approver, timestamp_utc}`*(Your `approval.py` step writes this to the same logs dir as the run: `Derivation/code/physics/outputs/logs/qis/{RUN_ID}_approval_{TAG}.json` and the runner...
+  - **Methods/Protocol**: Forward–Echo protocol (single trial): 1. Forward‑1: Integrate for (T_f) with full metriplectic flow. Record `baseline_err_pre`. 2. Echo: Apply echo sequence for (T_e): reverse conservative generator ( J \mapsto -J ) (or scripted time‑reversal), maintain/adjust (M) per config. 3. Forward‑2: Resume nominal flow for (T_f). Record `baseline_err_post`. 4. Metrics: *Echo Fidelity on an overlap window ([t_0, t_0+\Delta]): [ F_{\mathrm{echo}} ;=; 1 - \frac{|u_{\mathrm{pre}}(t)-u_{\mathrm{post}}(t)|*2}...
+
+- **T4_PROPOSAL_Echo-Limited-Causality-in-Metriplectic-VDM_T4_v1.md**  
+  Path: `Quantum/Quantum_Echos/T4_PROPOSAL_Echo-Limited-Causality-in-Metriplectic-VDM_T4_v1.md`
+  *1. Tier Grade, Proposal Title and Date*
+  - **Experimental Setup**: Governing fields. *$J$ limb (reversible): $\partial_{tt}\phi - c^{2}\nabla^{2}\phi + V'(\phi)=0$, $c^2=2Ja^2$.* $M$ limb (agency): $\partial_t C = D\nabla^2 C - \gamma C + S(\phi,\dot\phi,\nabla\phi)$; canonical source structure follows VDM agency definitions. Metriplectic split (A4). $\partial_t q = J(q),\delta \mathcal I/\delta q + M(q),\delta \Sigma/\delta q$ with degeneracies; diagnostic invariants $g_1,g_2$ are computed to verify $J,\delta\Sigma=0$, $M,\delta\mathcal I=0$ to tolerance. Dimensionless program (A6). Use $\tilde t=\gamma t$, $\tilde x=x/\ell_D$, $\ell_D=\sqrt{D/\gamma}$...
+  - **Diagnostics**: for KG (cone slope $\approx c$), Noether/H‑theorem monitors, dimensionless scaling program (A6). This proposal (T4) preregisters a falsifiable causality claim using those meters.
+  - **Methods/Protocol**: Plan to employ resources. 1. Calibrate meters (RD dispersion/front; KG locality; agency update stability). 2. Run $J$‑only echo window sanity to pin $c$ and Noether drift. 3. Activate $J\oplus M$ coupling with preregistered $S(\cdot)$; execute impulse and collect $C$ fields. 4. Compute arrival and front metrics; produce cone plots in $(r/(ct),C)$ space. 5. Sweep grid/time resolutions and seeds; repeat with altered $D,\gamma$ to test dimensionless collapse. Runtime estimate & datasets....
+
+- **T4_PROPOSAL_SMAE_CEG_v1.md**  
+  Path: `Quantum/Quantum_Echos/T4_PROPOSAL_SMAE_CEG_v1.md`
+  *1. Tier Grade, Proposal Title and Date*
+  - **Tier**: T4
+  - **Experimental Setup**: System. 1D/2D lattice; JMJ Strang composition with established RD/KG meters (front speed, dispersion, Noether). No body forces, local operators only. AMD stack (VDM rule). Forward pass. J(Δt/2) → M(Δt) → J(Δt/2) for horizon T, with a localized “walker” perturbation mid‑run. Reverse pass (baseline). Same scheme, −Δt, no assistance. Reverse pass (assisted). Insert a tiny corrective micro‑sequence informed by the internal J/M model to pre‑compensate dissipation/commutator defects. Budget: ∑(assist work) = ∑(baseline work). Observables. * Echo errors: E_baseline, E_assisted in a VDM‑standard norm...
+  - **Diagnostics**: System. 1D/2D lattice; JMJ Strang composition with established RD/KG meters (front speed, dispersion, Noether). No body forces, local operators only. AMD stack (VDM rule).
+  - **Gate(s)**: (G1) J‑Noether drift ≤ pre‑registered envelope; (G2) M‑step entropy non‑increase (discrete H‑theorem) holds; (G3) assistance is energy‑matched to baseline. *Causality checks: Ablate self‑model (scramble J, scramble M); CEG → 0 under ablation.* Generalization: modest sweep over loss depth and step...; (i) Noether drift (J‑only runs and in JMJ segments), (ii) Lyapunov/entropy monotonicity per M‑step (discrete gradient gate), (iii) energy budget equality (assist vs baseline). *Ablations: scramble J (e.g., permuted couplings), scramble M (e.g., perturbed metric), recompute CEG.* Artifacts:...; (i) conservation drift within preset J‑drift envelope, (ii) non‑increase of entropy in each M step, (iii) equal energy budgets. PASS requires CEG>0 across seeds and ablations that destroy the self‑model eliminate the gain (causal). If successful, SMAE upgrades the VDM “echo with intent” from...
+  - **Methods/Protocol**: High‑level plan. 1. Meter certification reuse. Confirm RD front speed/dispersion and J‑only Noether/dispersion remain PASS on the exact grid/Δt to be used (spot checks only). 2. Baseline echo. Acquire E_baseline and gate metrics on N_seeds (e.g., 25). 3. Assisted echo. Insert the micro‑sequence (same budget); acquire E_assisted and gates on identical seeds. 4. Primary decision. Compute CEG per seed; report median, CI; perform ablations (J‑scramble, M‑scramble) and recompute. 5. Sweep. Small...
+
+- **T4_PROPOSAL_VDM_QEcho-Convergence_Willow_v1.md**  
+  Path: `Quantum/Quantum_Echos/T4_PROPOSAL_VDM_QEcho-Convergence_Willow_v1.md`
+  *Convergence Note (motivation-first)*
+  - **Experimental Setup**: State & flow. Discretize $z\in\mathbb{R}^d$ on a cubic lattice (periodic), Strang‑split the flow into $J$ and $M$ steps. Echo cycle length: $T_e$. Core equations (discrete): - Reversible (symplectic) step: $z^{n+\frac12} = \Phi_J^{\Delta t}(z^n)$ (symplectic integrator). - Dissipative step (gradient flow): $z^{n+1} = z^{n+\frac12} - \Delta t\, M(z^{n+\frac12})\,\nabla S(z^{n+\frac12})$. - Echo map: $\mathcal{E} = \Phi_J^{\Delta t}\circ \Phi_M^{\Delta t}\circ \Phi_J^{-\Delta t}$. Diagnostics (all recorded to CSV & JSON): - Fidelity gain per cycle: $\Delta F_k := F_{k}-F_{k-1}$, with $F_k =...
+  - **Diagnostics**: State & flow. Discretize $z\in\mathbb{R}^d$ on a cubic lattice (periodic), Strang‑split the flow into $J$ and $M$ steps. Echo cycle length: $T_e$.
+  - **Methods/Protocol**: Plan. For each seed and noise level, run $K$ echo cycles (e.g., $K=256$), record $(F_k,\Delta H_k,S_k)$, compute gates, emit artifacts with hashes. Runtime. CPU; ~{N} minutes per seed × {S} seeds × {levels} noise settings. Success path. All gates pass; publish artifacts & JSON; promote to T5 pilot. Failure path. Post CONTRA_REPORT.md with the failing gate, measured values, and a minimal counterexample seed; file a remediation issue. Publication / display. PNG shows $F_k$ trajectories and drift...
+
+### Quantum_Engine/
+
+- **T4_PROPOSAL_Quantum-Resource-Engine_v1.md**  
+  Path: `Quantum/Quantum_Engine/T4_PROPOSAL_Quantum-Resource-Engine_v1.md`
+  ***T4 — Quantum‑Resource Engine: A Metriplectic Ledger to Test “Beyond‑Carnot” Efficiencies***
+  - **Diagnostics**: State & symbols (VDM canon). We use the canonical notation sheet for fields, fluxes, and ledger variables; Noether energy/flux diagnostics anchor the J‑leg.
+  - **Gate(s)**: PASS/FAIL is mechanical. *Entropy lemma (M‑only): Discrete gradient update yields ( \mathcal L^{n+1}-\mathcal L^n = -\Delta t\lVert(\phi^{n+1}-\phi^n)/\Delta t\rVert_2^2\le 0) in RD‑like tests, validating our dissipative monitor (background QC instrument).* Noether lemma (J‑only): Energy/flux...
+
+---
+
+## Quantum Gravity (3 proposals)
 
 - **PROPOSAL_Dark_Photon_Bridge.md**  
-  Path: `Quantum_Gravity/PROPOSAL_Dark_Photon_Bridge.md`  
-  *Quantum Gravity Bridge v1: Bridging VDM with quantum gravity through dark photon dynamics.*
+  Path: `Quantum_Gravity/PROPOSAL_Dark_Photon_Bridge.md`
+  *Quantum Gravity Bridge - Proposal (v1)*
+  - **Diagnostics**: - Tooling: - Cosmology: CLASS or CAMB CLI bindings; results marshalled into JSON/CSV with provenance. - Portals: Python analyses for noise budgets and Fisher quick estimates. - Diagnostics & acceptance gates: - FRW: `RMS_FRW ≤ tol_rms` with default `1e-6`; figure + CSV series; CONTRADICTION_REPORT on fail. - Dark photons: regime split annotated; Fisher finite-difference relative error ≤ 0.10;...
+  - **Gate(s)**: - FRW: `RMS_FRW ≤ tol_rms` with default `1e-6`; figure + CSV series; CONTRADICTION_REPORT on fail. - Dark photons: regime split annotated; Fisher finite-difference relative error ≤ 0.10; figures and JSON logs. - Artifacts: follow `PAPER_STANDARDS.md`; every figure must have a CSV/JSON sidecar; logs...
 
 - **PROPOSAL_Quantum-Gravity-Bridge_Causal-Geometry-and-Holonomy.md**  
-  Path: `Quantum_Gravity/PROPOSAL_Quantum-Gravity-Bridge_Causal-Geometry-and-Holonomy.md`  
-  *VDM ↔ Quantum-Gravity Bridge: Causal Geometry and Holonomy Tests connecting VDM framework to quantum gravity through causal structure.*
+  Path: `Quantum_Gravity/PROPOSAL_Quantum-Gravity-Bridge_Causal-Geometry-and-Holonomy.md`
+  *VDM ↔ Quantum-Gravity Bridge: Causal Geometry and Holonomy Tests*
+  - **Experimental Setup**: Domains & runners (new): *`Derivation/code/physics/quantum_gravity/run_vdm_causal_order.py`* `Derivation/code/physics/quantum_gravity/run_vdm_myrheim_dimension.py` *`Derivation/code/physics/quantum_gravity/run_vdm_bd_action_proxy.py`* `Derivation/code/physics/quantum_gravity/run_vdm_holonomy_loops.py` State & equations: *Fields $q$ as in VDM (KG-branch and RD-branch available); use KG $J$-only for retarded response and JMJ (Strang) for mixed tests.* Retarded influence set from an impulse at $(x_0,t_0)$: mark sites $(x_i,t_j)$ where $|\delta\phi(x_i,t_j)| \ge \varepsilon$ with...
+  - **Diagnostics**: for the VDM Master Evolution** Date: YYYY-MM-DD
+  - **Methods/Protocol**: Spec parameters (example): *Grid: 1D and 2D lattices; $N\in{256,512}$, $\Delta x$ fixed; periodic BC.* Time: $\Delta t$ sweep for asymptotics (5 points), $T$ sufficient for cones to expand across domain fraction. *Impulse amplitude and threshold $\varepsilon$ pre-registered (e.g., $\varepsilon=10^{-8}$ after normalization).* Seeds: $\ge 10$; aggregation by median. Steps: 1. Causal order extraction (KG J-only): For each seed and $\Delta t$, compute the influence DAG from one impulse. Save...
+
+- **T2_PROPOSAL_QG_Regge_CDT_v1.md**  
+  Path: `Quantum_Gravity/T2_PROPOSAL_QG_Regge_CDT_v1.md`
+  *) Where VDM already overlaps “string‑like” physics*
+  - **Diagnostics**: just as you do now. * A7 Measurability: every claim maps to an observable (balance residuals, spectral proxies, scaling exponents) with thresholds in RESULTS docs. ---
 
 ---
 
 ## Tachyon Condensation (1 proposal)
 
 - **PROPOSAL_Tachyonic_Tube_Condensation.md**  
-  Path: `Tachyon_Condensation/PROPOSAL_Tachyonic_Tube_Condensation.md`  
-  *Tachyonic Tube Condensation and Spectrum: Studies condensation dynamics and spectral properties of tachyonic field configurations in tube geometry.*
+  Path: `Tachyon_Condensation/PROPOSAL_Tachyonic_Tube_Condensation.md`
+  *Tachyonic Tube Condensation and Spectrum (Proposal)*
+  - **Research Question(s)**: Spectrum (tube-spectrum-v1): coverage $\ge 0.95$ across $(R,\ell)$ attempts; at least one low-$\ell$ mode (e.g., $\ell\le 2$) detected for some $R$ (robustness check).
+  - **Experimental Setup**: Parameters: $\mu$, $\lambda$, $c$, $\ell_{\max}$. Diagnostics: (a) root-finding convergence counts, (b) per-mode $\kappa_\ell$, $N4_\ell$, $v_\ell$, $M_\ell^2$, (c) energy scan $E(R)$ and minima statistics. Artifacts: spectrum CSV per tag, condensation summary JSON, energy scan figure + CSV. Scripts: `cylinder_modes.py`, new runner `run_tachyon_tube.py`. No new external libraries beyond SciPy.
+  - **Diagnostics**: Parameters: $\mu$, $\lambda$, $c$, $\ell_{\max}$. Diagnostics: (a) root-finding convergence counts, (b) per-mode $\kappa_\ell$, $N4_\ell$, $v_\ell$, $M_\ell^2$, (c) energy scan $E(R)$ and minima statistics. Artifacts: spectrum CSV per tag, condensation summary JSON, energy scan figure + CSV. Scripts: `cylinder_modes.py`, new runner `run_tachyon_tube.py`. No new external libraries beyond SciPy.
+  - **Gate(s)**: To model physical surface/core costs consistently with the derivation notes, we optionally include a background term $E_{\text{bg}}(R) = 2\pi\,\sigma\,R + \frac{\alpha}{R},$ with $\sigma \ge 0$ and $\alpha \ge 0$ (documented in the spec when used). This shifts $E(R)$ without altering the...
+  - **Methods/Protocol**: 1. Spectrum phase (tag: tube-spectrum-v1): For a sweep of radii $R \in R_{\text{sweep}}$, compute lowest $\kappa_\ell$ per $\ell \le \ell_{\max}$; output CSV with columns $(R, \ell, \kappa, k_{\text{in}}, k_{\text{out}})$. Gate: root solver success fraction $>95\%$ (finite rows present for $\ell=0..\ell_{\max}$ except tolerable misses at high $\ell$ when $R$ small). 2. Condensation phase (tag: tube-condensation-v1): For each $R$ compute diagonal quartic $N4_\ell$, condensates $v_\ell$,...
 
 ---
 
-## Thermodynamic Routing (6 proposals)
+## Thermodynamic Routing (7 proposals)
 
 - **PROPOSAL_Thermodynamic_Routing_NoSwitch_v1.md**  
   Path: `Thermodynamic_Routing/PROPOSAL_Thermodynamic_Routing_NoSwitch_v1.md`
+  *PROPOSAL_Thermodynamic_Routing_NoSwitch_v2.md*
+  - **Gate(s)**: Primary routing / thermodynamics *G1 (H-theorem): all steps satisfy ( \Delta L_h \le 0 ); identity residuals ( \le 10^{-12} ); violations (=0).* G2 (Energy-floor witness): ( \Delta L_{\mathrm{floor}} \equiv L_h^{\text{base}}(T) - L_h^{\text{DG}}(T) \ge 5\sigma ) (bootstrap CI excludes 0). * G3...
 
 ### Passive_Thermodynamic_Routing/
+
 - **PROPOSAL_Flux_Through_Memory_Channels_v1.md**  
-  Path: `Thermodynamic_Routing/Passive_Thermodynamic_Routing/PROPOSAL_Flux_Through_Memory_Channels_v1.md`  
-  *Flux Through Memory Channels (Frozen Landscape) — Passive Thermodynamic Routing v2 Pre‑Registration*
+  Path: `Thermodynamic_Routing/Passive_Thermodynamic_Routing/PROPOSAL_Flux_Through_Memory_Channels_v1.md`
+  *Flux Through Memory Channels (Frozen Landscape) — Passive Thermodynamic Routing v2 (Pre‑Registration)*
+  - **Diagnostics**: - Domain & BCs: 2‑outlet geometry; reflecting sidewalls; open right boundary with two outlet segments A/B. Port closure ablation yields zero outflux by construction. - Channel map: either mobility $\mu(x,y)$ or potential $U(x,y)$ supplied as an input raster; treated as immutable during runs (content hash recorded at start/end; must match). - Dynamics: Eq. (1) with bounded $(D, r, u)$ for...
 
 - **PROPOSAL_Passive_Thermodynamic_Routing_v2.md**  
-  Path: `Thermodynamic_Routing/Passive_Thermodynamic_Routing/PROPOSAL_Passive_Thermodynamic_Routing_v2.md`  
-  *Passive Thermodynamic Routing v2 Pre-Registration: Tests passive routing through memory channels without active switching.*
+  Path: `Thermodynamic_Routing/Passive_Thermodynamic_Routing/PROPOSAL_Passive_Thermodynamic_Routing_v2.md`
+  *PROPOSAL: Passive Thermodynamic Routing v2 (Pre-Registration)*
+  - **Diagnostics**: for the J⊕M coupling limb. No parameter tuning post hoc; windowing and masks are predeclared. Assumptions and exclusions: - Discrete operator stability respected (Δt ≤ 0.8/ω_max from discrete spectral operator) - Single-thread numerics, deterministic FFT/plan where applicable - Seeds: fixed band-limited set; seed-band aggregation via median - Geometry masks: preregistered; any changes trigger...
 
 ### Prereg_Biased_Main/
+
 - **PROPOSAL_Thermodynamic_Routing_v2_Preg_Biased_Main.md**  
-  Path: `Thermodynamic_Routing/Prereg_Biased_Main/PROPOSAL_Thermodynamic_Routing_v2_Preg_Biased_Main.md`  
-  *Thermodynamic Routing v2 — Prereg Biased Main: Pre-registered main study with biased initial conditions.*
+  Path: `Thermodynamic_Routing/Prereg_Biased_Main/PROPOSAL_Thermodynamic_Routing_v2_Preg_Biased_Main.md`
+  *PROPOSAL: Thermodynamic Routing v2 — Prereg Biased Main*
+  - **Diagnostics**: (Durbin–Watson, Ljung–Box(5), ρ₁), routing bias must exhibit nonzero B and ρ with 95% CI excluding 0 meeting a preregistered margin δ, the energy-floor witness must beat a local baseline by ≥ 5σ, and robustness checks (injection-site slope CI≠0, two-source |Δη_route| ≤ 5%) must pass. Artifacts and JSON/CSV logs will be routed via policy-aware helpers with deterministic receipts.
 
 ### Wave_Flux_Meter/
+
 - **PROPOSAL_Wave_Flux_Meter_PhaseC_OpenPorts_v1.md**  
   Path: `Thermodynamic_Routing/Wave_Flux_Meter/PROPOSAL_Wave_Flux_Meter_PhaseC_OpenPorts_v1.md`
 
 - **PROPOSAL_Wave_Flux_Meter_Phase_B_OpenPorts_v1.md**  
-  Path: `Thermodynamic_Routing/Wave_Flux_Meter/PROPOSAL_Wave_Flux_Meter_Phase_B_OpenPorts_v1.md`  
-  *Wave Flux Meter — Phase B (Open-Ports with Absorber) v1*
+  Path: `Thermodynamic_Routing/Wave_Flux_Meter/PROPOSAL_Wave_Flux_Meter_Phase_B_OpenPorts_v1.md`
+  *Proposal: Wave Flux Meter — Phase B (Open-Ports with Absorber) v1*
 
 - **PROPOSAL_Wave_Flux_Meter_v1.md**  
-  Path: `Thermodynamic_Routing/Wave_Flux_Meter/PROPOSAL_Wave_Flux_Meter_v1.md`  
-  *Wave Poynting-Meter Instrument v1 (Thermodynamic Routing — Photonic Track): Establishes wave-based flux measurement instrument.*
+  Path: `Thermodynamic_Routing/Wave_Flux_Meter/PROPOSAL_Wave_Flux_Meter_v1.md`
+  *Proposal: Wave Poynting-Meter Instrument v1 (Thermodynamic Routing — Photonic Track)*
+  - **Gate(s)**: $\max_t \frac{|E(t)-E(0)|}{E(0)} \le 10^{-6}$ over ≥100 periods; time-reversal error ≤ $10^{-12}$. 2. Local balance check (frozen $V$ ⇒ RHS = 0): Balance law: $\partial_t e + \nabla\cdot\mathbf{s} = -\tfrac12 (\partial_t V) \phi^2.$ Gate: with frozen $V$, $\|\partial_t e +...; $\frac{\mathrm{d}}{\mathrm{d}t}\sum e = -\int_{\Gamma_A\cup\Gamma_B} \mathbf{s}\cdot\mathbf{n}\,\mathrm{d}\ell$ holds within ≤1%; absorber loss quantified and ≤2%. 2. Symmetry null (symmetric geometry, centered source): Gate: $\left|\bar F_A-\bar F_B\right|/(\bar F_A+\bar F_B) \le 1\%.$ 3....
 
 ---
 
 ## Topology (2 proposals)
 
 - **PROPOSAL_Loop_Quench_Test_Robustness_v2.md**  
-  Path: `Topology/PROPOSAL_Loop_Quench_Test_Robustness_v2.md`
+  Path: `Topology/PROPOSAL_Loop_Quench_Test_Robustness_v2.md`  
+  *(File is empty or could not be parsed)*
 
 - **PROPOSAL_Loop_Quench_Test_v1.md**  
   Path: `Topology/PROPOSAL_Loop_Quench_Test_v1.md`
+  - **Diagnostics**: Kendall (\tau) between loop count and (-\Delta L_h); loop lifetime histogram; budget residual sanity.
+  - **Gate(s)**: Kendall (\tau \le -0.7) with (p<10^{-6}); lifetime tail fit slope (>2) (fast decay). *Failure plan: refine grid/time step; adjust threshold (\tau) for robustness; log contradictions.* Publication: RESULTS with lifetime plot, correlation table, and pinned artifacts.
+
+---
+
+## Transport (1 proposal)
+
+### Telegraph_From_Relaxation/
+
+- **T1_PROPOSAL_Telegraph_From_Relaxation_v1.md**  
+  Path: `Transport/Telegraph_From_Relaxation/T1_PROPOSAL_Telegraph_From_Relaxation_v1.md`
+  *T1 (Proto-model) - Telegraph From Relaxation Instrument*
+  - **Gate(s)**: Let runs sweep $(D,\tau)$ over a grid and compute $(\hat c, D, \tau)$ tuples. Primary gate (speed law): - Fit $\log \hat c$ vs $\tfrac12(\log D - \log \tau)$: - Slope $\hat s$ within $[0.95, 1.05]$ - $R^2 \ge 0.98$ Secondary gates (stability and repeatability): - Across seeds, coefficient of...
 
 ---
 
@@ -215,3 +553,9 @@ This document provides a comprehensive overview of all research proposals in the
 - Each proposal requires approval before experiments can run
 - Proposals must include: explicit gates, provenance, equations, and artifact paths
 - Higher-tier proposals (T4+) must reference supporting work from lower tiers
+- Experimental setup, diagnostics, variables, methods, and schema documentation must be comprehensive and rigorous
+- All gates must have explicit pass/fail thresholds with units and normalization specified
+
+<!-- BEGIN AUTOSECTION: PROPOSALS-INDEX -->
+<!-- Tool-maintained list of proposals by domain -->
+<!-- END AUTOSECTION: PROPOSALS-INDEX -->

@@ -59,6 +59,7 @@ This document provides a comprehensive overview of all research proposals in the
 ```
 
 **Per-entry requirements:**
+
 * **Tier**: Document the maturity level (T0-T9) if specified; reference TIER_STANDARDS.md for ladder definition
 * **Research Question{s}**: Extract the core scientific questions from Background/Rationale section
 * **Experimental Setup**: Detail the protocol - parameter ranges (e.g., Θ ∈ {1.5, 2.5, 3.5}, Δm ∈ [-2, 2]), sampling strategy, trial counts, computational configuration (grid size, time steps, boundary conditions)
@@ -78,6 +79,7 @@ This document provides a comprehensive overview of all research proposals in the
 ### Sections to populate (organize by domain folders as found in repo)
 
 Scan `Derivation/` for all domain folders containing PROPOSAL_*.md files. Group proposals by domain following the existing folder structure:
+
 * Agency_Field/ (with subsections for subfolders like Coordination_Depth/, Witness/)
 * Causality/
 * Collapse/
@@ -101,14 +103,15 @@ Within each domain, list proposals in alphabetical order by filename.
 ### Cross-reference requirements
 
 For each proposal entry, verify and document:
+
 * **Maturity tier**: If higher-tier proposals (T4+) reference supporting work, document those dependencies
 * **Canonical references**: Ensure proposals reference canonical files where applicable:
-  - Equations → `EQUATIONS.md#vdm-e-...`
-  - Symbols → `SYMBOLS.md#sym-...`
-  - Constants → `CONSTANTS.md#const-...`
-  - Units → `UNITS_NORMALIZATION.md#...`
-  - Algorithms → `ALGORITHMS.md#vdm-a-...`
-  - Schemas → `SCHEMAS.md#schema-...`
+  * Equations → `EQUATIONS.md#vdm-e-...`
+  * Symbols → `SYMBOLS.md#sym-...`
+  * Constants → `CONSTANTS.md#const-...`
+  * Units → `UNITS_NORMALIZATION.md#...`
+  * Algorithms → `ALGORITHMS.md#vdm-a-...`
+  * Schemas → `SCHEMAS.md#schema-...`
 * **Downstream results**: If a corresponding RESULTS_*.md file exists, note it (for tracking proposal → execution → results lineage)
 * **Code locations**: Document planned experiment runner paths (e.g., `code/physics/{domain}/run_{experiment}.py`)
 * **Authorization status**: Note if proposal has been approved for execution (reference authorization README)
@@ -134,8 +137,11 @@ For each proposal entry, verify and document:
 <!-- Tool-maintained list of proposals by domain -->
 <!-- END AUTOSECTION: PROPOSALS-INDEX -->
 
+**Change Log (ADD THIS TO CHRONICLES.md):**
+
+```markdown
 ## Change Log
-- {date} • proposals index updated • {commit}
+- <date> • added/updated symbols • <commit>
 ```
 
 ---
@@ -143,6 +149,7 @@ For each proposal entry, verify and document:
 ### Validation checklist
 
 Before finalizing the update:
+
 * [ ] Every PROPOSAL_*.md file in the repository is listed exactly once
 * [ ] Each entry extracts: tier, research questions, experimental setup, diagnostics, gates, variables, methods, schema, equipment, risks, personnel, references, summary
 * [ ] Experimental setup includes parameter ranges, sampling strategy, trial configuration

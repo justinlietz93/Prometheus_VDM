@@ -1,12 +1,12 @@
 <!-- DOC-GUARD: CANONICAL -->
-<!-- RULES for maintaining this file are here: /mnt/ironwolf/git/Prometheus_VDM/prompts/constants_maintenance.md -->
 # VDM Constants & Defaults (Auto-compiled)
 
-Last updated: 2025-10-09 (commit 09f871a)
 
-**Scope:** Single source of truth for numerical constants, ranges, and defaults currently present in this repository.  
-**Rules:** Other docs must link here; do not restate numbers elsewhere.  
-**MathJax:** GitHub-safe `$...$` only (no equation environments or tags).  
+**Last updated**: 2025-11-05
+**Last commit**: b745e83
+**Scope:** Single source of truth for numerical constants, ranges, and defaults currently present in this repository.
+**Rules:** Other docs must link here; do not restate numbers elsewhere.
+**MathJax:** GitHub-safe `$...$` only (no equation environments or tags).
 
 <!-- markdownlint-disable MD033 -->
 | Name | Meaning | Default/Value | Range/Limits | Units | Source (path:lines • commit) | Notes |
@@ -153,6 +153,38 @@ Last updated: 2025-10-09 (commit 09f871a)
 | <a id="const-strang_R2_min"></a>`strang_R2_min` [metriplectic] | Min $R^2$ for Strang defect fit | 0.999 | $\ge 0.999$ | nondimensional | Derivation/code/physics/metriplectic/run_metriplectic.py:… • HEAD | Gate for commutator defect scaling |
 | <a id="const-frw_tol_rms"></a>`tol_rms` [FRW residual] | RMS residual gate for dust continuity | 1e-6 | $\le 1\times 10^{-6}$ | model units | Derivation/code/physics/cosmology/run_frw_balance.py:… • HEAD | Default dust (w=0) test; compare RMS(residual) to tol |
 | <a id="const-a6_env_max"></a>`env_max_threshold` [A6 collapse] | Max envelope width gate | 0.02 | $\le 0.02$ | probability | Derivation/code/physics/collapse/run_a6_collapse.py:… • HEAD | Gate applied to $\max_X \{Y_{\max}-Y_{\min}\}$ |
+| | <a id="const-rb_g"></a>`g` [RB-Gate] | Gravitational acceleration | 9.81 |  | SI (m/s²) | Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md:199-211 • a48f2d2 | Spec parameters block |
+| | <a id="const-rb_alpha"></a>`alpha` [RB-Gate] | Thermal expansion coefficient | 2.0e-4 |  | SI (1/K) | Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md:199-211 • a48f2d2 | Spec parameters block |
+| | <a id="const-rb_nu"></a>`nu` [RB-Gate] | Kinematic viscosity | 1.0e-6 |  | SI (m²/s) | Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md:199-211 • a48f2d2 | Spec parameters block |
+| | <a id="const-rb_kappa"></a>`kappa` [RB-Gate] | Thermal diffusivity | 1.4e-7 |  | SI (m²/s) | Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md:199-211 • a48f2d2 | Spec parameters block |
+| | <a id="const-rb_H_list"></a>`H_list` [RB-Gate] | Layer depths tested | [0.01, 0.02] |  | SI (m) | Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md:204-209 • a48f2d2 | Spec parameters block |
+| | <a id="const-rb_Lx_over_H"></a>`Lx_over_H` [RB-Gate] | Aspect ratio | 8.0 |  | nondimensional | Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md:204-209 • a48f2d2 | Spec parameters block |
+| | <a id="const-rb_DeltaT_list"></a>`DeltaT_list` [RB-Gate] | Temperature drops tested | [1.0, 2.0] |  | SI (K) | Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md:204-209 • a48f2d2 | Spec parameters block |
+| | <a id="const-rb_BC_set"></a>`BC_set` [RB-Gate] | Boundary conditions | ["rigid","free"] |  | categorical | Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md:205-206 • a48f2d2 | Spec parameters block |
+| | <a id="const-rb_Pr_list"></a>`Pr_list` [RB-Gate] | Prandtl numbers | [0.1, 1.0, 7.0] |  | nondimensional | Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md:206 • a48f2d2 | Spec parameters block |
+| | <a id="const-rb_Nx"></a>`Nx` [RB-Gate] | Horizontal grid size | 512 |  | grid points | Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md:207-208 • a48f2d2 | Spec parameters block |
+| | <a id="const-rb_Nz"></a>`Nz` [RB-Gate] | Vertical grid size | 128 |  | grid points | Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md:207-208 • a48f2d2 | Spec parameters block |
+| | <a id="const-rb_epsilon_noise"></a>`epsilon_noise` [RB-Gate] | Noise amplitude | 1e-6 |  | nondimensional | Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md:207-208 • a48f2d2 | Spec parameters block |
+| | <a id="const-rb_t_warmup"></a>`t_warmup` [RB-Gate] | Warmup duration | 50.0 |  | time (solver units) | Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md:207-209 • a48f2d2 | Averaging window setup |
+| | <a id="const-rb_t_avg"></a>`t_avg` [RB-Gate] | Averaging duration | 50.0 |  | time (solver units) | Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md:207-209 • a48f2d2 | Averaging window setup |
+| | <a id="const-rb_dt_max"></a>`dt_max` [RB-Gate] | Max time step | 1e-3 |  | time | Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md:208-209 • a48f2d2 | Spec guardrail |
+| | <a id="const-Ra_c_rigid"></a>`Ra_c` [RB-Gate rigid] | Critical Rayleigh (rigid–rigid) | 1707.76 |  | nondimensional | Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md:306-308 • a48f2d2 | Appendix A quick reference |
+| | <a id="const-k_c_rigid"></a>`k_c` [RB-Gate rigid] | Critical wavenumber (rigid–rigid) | 3.117 |  | 1/H | Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md:306-308 • a48f2d2 | Appendix A quick reference |
+| | <a id="const-lambda_c_over_H_rigid"></a>`lambda_c_over_H` [RB-Gate rigid] | Critical wavelength ratio | 2.015 |  | nondimensional | Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md:306-308 • a48f2d2 | Appendix A quick reference |
+| | <a id="const-Ra_c_free"></a>`Ra_c` [RB-Gate free] | Critical Rayleigh (free–free) | 657.5 |  | nondimensional | Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md:306-308 • a48f2d2 | Appendix A quick reference |
+| | <a id="const-k_c_free"></a>`k_c` [RB-Gate free] | Critical wavenumber (free–free) | 2.221 |  | 1/H | Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md:306-308 • a48f2d2 | Appendix A quick reference |
+| | <a id="const-lambda_c_over_H_free"></a>`lambda_c_over_H` [RB-Gate free] | Critical wavelength ratio | 2.828 |  | nondimensional | Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md:306-308 • a48f2d2 | Appendix A quick reference |
+| | <a id="const-depth_Ra_factor"></a>`depth_Ra_factor` [RB-Gate] | Ra scaling under H→2H | 8 |  | nondimensional | Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md:308 • a48f2d2 | Appendix A depth scaling |
+| | <a id="const-depth_lambda_factor"></a>`depth_lambda_factor` [RB-Gate] | λ_c scaling under H→2H | ≈2 |  | nondimensional | Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md:308 • a48f2d2 | Appendix A depth scaling |
+| | <a id="const-stationarity_drift_max"></a>`stationarity_drift_max` [RB-Gate] | Max drift during averaging | 0.05 | ≤0.05 | fraction | Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md:251-252 • a48f2d2 | Require stationarity (≤5% drift) |
+| | <a id="const-Ra_subcritical_factor"></a>`Ra_subcritical_factor` [RB-Gate] | Subcritical margin (Gate‑S) | 0.95 |  | nondimensional | Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md:262-265 • a48f2d2 | PASS if Ra ≤ 0.95·Ra_c |
+| | <a id="const-Ra_supercritical_factor"></a>`Ra_supercritical_factor` [RB-Gate] | Supercritical margin (Gate‑C) | 1.10 |  | nondimensional | Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md:262-265 • a48f2d2 | PASS if Ra ≥ 1.10·Ra_c |
+| | <a id="const-qfum_drift_gate_rk4"></a>`drift_gate` [QFUM RK4] | Max invariant drift (RK4) | 1e-8 | ≤1e-8 | nondimensional | Derivation/code/physics/conservation_law/qfum_validate.py:289-295 • b745e83 | Gate applied to delta_Q_max |
+| | <a id="const-qfum_drift_gate_euler"></a>`drift_gate` [QFUM Euler] | Max invariant drift (Euler) | 1e-5 | ≤1e-5 | nondimensional | Derivation/code/physics/conservation_law/qfum_validate.py:289-295 • b745e83 | Gate applied to delta_Q_max |
+| | <a id="const-qfum_conv_r2_min"></a>`conv_r2_min` [QFUM] | Min $R^2$ for convergence fit | 0.98 | ≥0.98 | nondimensional | Derivation/code/physics/conservation_law/qfum_validate.py:291-298 • b745e83 | Convergence study acceptance |
+| | <a id="const-qfum_order_tol"></a>`order_tol` [QFUM] | Order tolerance | 0.4 |  | nondimensional | Derivation/code/physics/conservation_law/qfum_validate.py:292-298 • b745e83 | |slope−expected_order| ≤ tol |
+| | <a id="const-qfum_expected_order_rk4"></a>`expected_order` [QFUM RK4] | Expected order (RK4) | 4 |  |  | Derivation/code/physics/conservation_law/qfum_validate.py:292 • b745e83 | Used in convergence check |
+| | <a id="const-qfum_expected_order_euler"></a>`expected_order` [QFUM Euler] | Expected order (Euler) | 1 |  |  | Derivation/code/physics/conservation_law/qfum_validate.py:292 • b745e83 | Used in convergence check |
 
 <!-- BEGIN AUTOSECTION: CONSTANTS-INDEX -->
 <!-- Tool-maintained list of [Name](#const-...) anchors -->

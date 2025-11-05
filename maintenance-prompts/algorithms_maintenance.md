@@ -76,7 +76,7 @@ LOOP (per <tick/iteration/event>):
 
 TERMINATION:
   <condition or event>  # source path:lines
-````
+```
 
 **Preconditions:** <bullets lifted from asserts/validators/docs>
 **Postconditions/Invariants:** <bullets lifted from code/tests>
@@ -85,7 +85,6 @@ TERMINATION:
 **Emits/Side effects:** <messages, logs, bus writes; link `docs/SCHEMAS.md` if present>
 **Also implemented at:** <other paths/lines if duplicated>
 
-````
 
 ---
 
@@ -126,9 +125,12 @@ If a needed anchor is missing, add `TODO: add anchor` with exact `<path>:<lines>
 <!-- Tool-maintained list of [VDM-A-###](#vdm-a-###) anchors for quick lookup -->
 <!-- END AUTOSECTION: ALGO-INDEX -->
 
+**Change Log (ADD THIS TO CHRONICLES.md):**
+
+```markdown
 ## Change Log
-- <date> • algorithms updated • <commit>
-````
+- <date> • added/updated symbols • <commit>
+```
 
 ---
 
