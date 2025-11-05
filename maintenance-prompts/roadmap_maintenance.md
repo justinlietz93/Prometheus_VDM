@@ -109,8 +109,11 @@ If a needed anchor is missing, write: `TODO: add anchor (see <path>:<line>)`. Do
 <!-- Tool-maintained list of [Milestone](#ms-...) and [Task](#task-...) anchors -->
 <!-- END AUTOSECTION: ROADMAP-INDEX -->
 
+**Change Log (ADD THIS TO CHRONICLES.md):**
+
+```markdown
 ## Change Log
-- <date> • roadmap updated • <commit>
+- <date> • added/updated symbols • <commit>
 ```
 
 ---

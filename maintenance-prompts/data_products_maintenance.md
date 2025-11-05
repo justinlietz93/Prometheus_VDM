@@ -105,8 +105,11 @@ If any required anchor is missing, add: `TODO: add anchor (see <path>:<line>)`; 
 <!-- Tool-maintained list of [Data Product](#data-...) anchors for quick lookup -->
 <!-- END AUTOSECTION: DATA-INDEX -->
 
+**Change Log (ADD THIS TO CHRONICLES.md):**
+
+```markdown
 ## Change Log
-- <date> • data products updated • <commit>
+- <date> • added/updated symbols • <commit>
 ```
 
 ---

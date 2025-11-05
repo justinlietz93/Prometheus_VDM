@@ -98,10 +98,12 @@ Search in: code comments, markdown/docs, notebooks, experiment notes, embedded l
 <!-- Tool-maintained list of [OQ-###](#oq-###) anchors for quick lookup -->
 <!-- END AUTOSECTION: OPEN-QUESTIONS-INDEX -->
 
-## Change Log
-- <date> • questions updated • <commit>
-```
+**Change Log (ADD THIS TO CHRONICLES.md):**
 
+```markdown
+## Change Log
+- <date> • added/updated symbols • <commit>
+```
 ---
 
 ### Validation

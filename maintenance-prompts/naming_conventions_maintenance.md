@@ -160,8 +160,11 @@ If a required anchor is missing, add `TODO: missing anchor (see <path>:<line>)`;
 <!-- Tool-maintained list of anchors/slugs for quick lookup -->
 <!-- END AUTOSECTION: NAMING-INDEX -->
 
+**Change Log (ADD THIS TO CHRONICLES.md):**
+
+```markdown
 ## Change Log
-- <date> • conventions updated • <commit>
+- <date> • added/updated symbols • <commit>
 ```
 
 ### Validation

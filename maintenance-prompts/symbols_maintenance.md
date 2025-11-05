@@ -77,7 +77,7 @@ Search the entire repository (code, tests, notebooks, docs, comments, configs) a
 <!-- END AUTOSECTION: SYMBOLS-INDEX -->
 ```
 
-**Change Log (append section at end):**
+**Change Log (ADD THIS TO CHRONICLES.md):**
 
 ```markdown
 ## Change Log

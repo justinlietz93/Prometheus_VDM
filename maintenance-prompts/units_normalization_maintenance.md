@@ -126,8 +126,11 @@ Table schema:
 <!-- Tool-maintained list of anchors for quick lookup -->
 <!-- END AUTOSECTION: UNITS-INDEX -->
 
+**Change Log (ADD THIS TO CHRONICLES.md):**
+
+```markdown
 ## Change Log
-- <date> • updated units/maps • <commit>
+- <date> • added/updated symbols • <commit>
 ```
 
 ### Validation

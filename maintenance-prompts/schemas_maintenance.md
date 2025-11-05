@@ -40,7 +40,7 @@ Search the entire repository (code, tests, notebooks, scripts, configs, docs, co
 **Definition (verbatim snippet from source):**
 ```<language>  <!-- e.g., json, yaml, python, protobuf, typescript, toml -->
 <exact schema/model/typedef excerpt>
-````
+```
 
 **Fields (expand from source; do not invent):**
 
@@ -54,8 +54,6 @@ Search the entire repository (code, tests, notebooks, scripts, configs, docs, co
 **Examples (if present):** `<path/to/example artifact or test fixture>`
 **Invariants/Validation rules:** copy literal constraints from asserts/validators/JSON-Schema/Pydantic (regex, ranges, enums). Link to constants for thresholds.
 **Notes:** aliases, deprecations, migration guidance (lifted from repo)
-
-````
 
 ---
 
@@ -95,9 +93,12 @@ If an expected anchor is missing, add: `TODO: missing anchor (see <path>:<line>)
 <!-- Tool-maintained list of [Schema](#schema-...) anchors for quick lookup -->
 <!-- END AUTOSECTION: SCHEMAS-INDEX -->
 
+**Change Log (ADD THIS TO CHRONICLES.md):**
+
+```markdown
 ## Change Log
-- <date> • schemas updated • <commit>
-````
+- <date> • added/updated symbols • <commit>
+```
 
 ---
 

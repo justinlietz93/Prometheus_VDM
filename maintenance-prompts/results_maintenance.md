@@ -54,6 +54,7 @@ This document provides a comprehensive overview of all experimental results in t
 ```
 
 **Per-entry requirements:**
+
 * **Run Configuration**: Extract computational setup: grid size (N), time steps (Δt), seeds, tolerances, integrator choices, composition schemes (e.g., Strang JMJ), numerical methods (Störmer-Verlet, discrete-gradient), boundary conditions
 * **Specs**: List key dimensional/dimensionless parameters, control variables from the Variables section
 * **Schema**: Document the structure of output artifacts (JSON logs, CSV columns, figure types). Link to `SCHEMAS.md#schema-...` if formalized
@@ -67,6 +68,7 @@ This document provides a comprehensive overview of all experimental results in t
 ### Sections to populate (organize by domain folders as found in repo)
 
 Scan `Derivation/` for all domain folders containing RESULTS_*.md files. Group results by domain following the existing folder structure:
+
 * Agency_Field/
 * Causality/
 * Collapse/
@@ -90,14 +92,15 @@ Within each domain, list results in alphabetical order by filename.
 ### Cross-reference requirements
 
 For each results entry, verify and document:
+
 * **Corresponding proposal**: Link to the PROPOSAL_*.md file that authorized the experiment (should be cited in results document)
 * **Canonical references**: Ensure results reference canonical files where applicable:
-  - Equations → `EQUATIONS.md#vdm-e-...`
-  - Symbols → `SYMBOLS.md#sym-...`
-  - Constants → `CONSTANTS.md#const-...`
-  - Units → `UNITS_NORMALIZATION.md#...`
-  - Algorithms → `ALGORITHMS.md#vdm-a-...`
-  - Schemas → `SCHEMAS.md#schema-...`
+  * Equations → `EQUATIONS.md#vdm-e-...`
+  * Symbols → `SYMBOLS.md#sym-...`
+  * Constants → `CONSTANTS.md#const-...`
+  * Units → `UNITS_NORMALIZATION.md#...`
+  * Algorithms → `ALGORITHMS.md#vdm-a-...`
+  * Schemas → `SCHEMAS.md#schema-...`
 * **Code locations**: Document the experiment runner path (e.g., `code/physics/{domain}/run_{experiment}.py`)
 
 ---
@@ -134,8 +137,11 @@ For each results entry, verify and document:
 <!-- Tool-maintained list of results by domain -->
 <!-- END AUTOSECTION: RESULTS-INDEX -->
 
+**Change Log (ADD THIS TO CHRONICLES.md):**
+
+```markdown
 ## Change Log
-- {date} • results index updated • {commit}
+- <date> • added/updated symbols • <commit>
 ```
 
 ---
@@ -143,6 +149,7 @@ For each results entry, verify and document:
 ### Validation checklist
 
 Before finalizing the update:
+
 * [ ] Every RESULTS_*.md file in the repository is listed exactly once
 * [ ] Each entry extracts run configuration, specs, schema, methods, gates, outcomes, and artifacts
 * [ ] All artifact paths are validated against actual file locations

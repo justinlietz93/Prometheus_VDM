@@ -179,3 +179,7 @@ All fixed-number statements were replaced with parameter‑dependent forms and e
 ## Change Log - Proposals (2025-11-05 a48f2d2)
 
 - 2025-11-05 • proposals index updated • comprehensive extraction with tier, research questions, setup, diagnostics, gates, methods, personnel, references
+
+## Symbols (2025-11-06 a48f2d2, cbc3dd1)
+
+- 2025-11-05 • added A8 and RB-Gate symbol rows; telegraph speed symbols • sources 

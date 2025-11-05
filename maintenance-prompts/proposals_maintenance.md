@@ -137,8 +137,11 @@ For each proposal entry, verify and document:
 <!-- Tool-maintained list of proposals by domain -->
 <!-- END AUTOSECTION: PROPOSALS-INDEX -->
 
+**Change Log (ADD THIS TO CHRONICLES.md):**
+
+```markdown
 ## Change Log
-- {date} • proposals index updated • {commit}
+- <date> • added/updated symbols • <commit>
 ```
 
 ---
