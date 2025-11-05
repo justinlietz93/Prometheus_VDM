@@ -155,6 +155,8 @@ All fixed-number statements were replaced with parameter‑dependent forms and e
 
 ## Change Log — Equations (2025-11-05T02:53:05Z, 393ed61)
 
+- VDM-E-128 • a48f2d2 • Derivation/Metriplectic/RESULTS_KG_Noether_Invariants_v1.md added
+- VDM-E-129 • a48f2d2 • Derivation/Metriplectic/RESULTS_KG_Noether_Invariants_v1.md added
 - VDM-E-095 • 393ed61 • [Derivation/Thermodynamic_Routing/Wave_Flux_Meter/RESULTS_Wave_Flux_Meter_A_Phase_v1.md](Derivation/Thermodynamic_Routing/Wave_Flux_Meter/RESULTS_Wave_Flux_Meter_A_Phase_v1.md:14) added
 - VDM-E-098 • 393ed61 • [Derivation/SYMBOLS.md](Derivation/SYMBOLS.md:215-216) added
 - VDM-E-099 • 393ed61 • [Derivation/Agency_Field/Agency_Field.md](Derivation/Agency_Field/Agency_Field.md:168-170) added
@@ -179,7 +181,7 @@ All fixed-number statements were replaced with parameter‑dependent forms and e
 
 - 2025-11-05 • proposals index updated • comprehensive extraction with tier, research questions, setup, diagnostics, gates, methods, personnel, references
 
-## Symbols (2025-11-06 a48f2d2, cbc3dd1)
+## Symbols (2025-11-05 a48f2d2, cbc3dd1)
 
 - 2025-11-05 • added A8 and RB-Gate symbol rows; telegraph speed symbols • sources
 
@@ -226,3 +228,8 @@ All fixed-number statements were replaced with parameter‑dependent forms and e
 - 2025-10-04 • schemas compiled from repository source • 6b63a5e
 - 2025-10-13 • added KG energy-oscillation summary schema (metriplectic) • 66eb296
 - 2025-11-05 • added metriplectic echo config/artifacts/prereg schemas • HEAD
+
+## Change Log (Validation Metrics 2025-11-05)
+
+- 2025-10-03 • Initial compilation from repository code and tests • 17a0b72
+- 2025-10-04 • Add tachyonic tube KPIs: cov_phys, cov_raw, residual, curvature_ok and finite_fraction

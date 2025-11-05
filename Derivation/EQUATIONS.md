@@ -1872,6 +1872,30 @@ $$
 $$
 
 **Notes:** Obj‑C discrete form paired with DG step; report $\Delta \mathcal{L}_h \le 0$ per step under periodic/no‑flux BCs. Related continuum form in [VDM-E-016](#vdm-e-016); DG monotonicity statement in [VDM-E-099](#vdm-e-099).
+#### VDM-E-128 - KG discrete energy invariant (Noether, leapfrog)
+**Context:** [RESULTS_KG_Noether_Invariants_v1.md](Derivation/Metriplectic/RESULTS_KG_Noether_Invariants_v1.md:34-38) • Commit: a48f2d2 • Last Updated: 2025-11-05T06:44:59Z
+
+$$
+E_d \;=\; \tfrac{1}{2}\,\lVert \pi_{n+1/2}\rVert^2 \;+\; \tfrac{1}{2}\,\langle \phi_{n+1},\, K\,\phi_n\rangle,
+\qquad
+K\phi \;=\; -\,c^2\,\Delta_h \phi \;+\; m^2\,\phi
+$$
+
+**Notes:** Discrete Noether energy invariant for linear KG with periodic spectral derivatives (leapfrog staggering). Additional location: [kg_noether.py](Derivation/code/physics/metriplectic/kg_noether.py:62-70). TODO: add $\pi_{n+1/2}$ to SYMBOLS.md; confirm $K,\Delta_h$ entries (see cited files).
+
+---
+
+#### VDM-E-129 - KG discrete momentum invariant (Noether, leapfrog)
+**Context:** [RESULTS_KG_Noether_Invariants_v1.md](Derivation/Metriplectic/RESULTS_KG_Noether_Invariants_v1.md:40-42) • Commit: a48f2d2 • Last Updated: 2025-11-05T06:44:59Z
+
+$$
+P_d \;=\; \left\langle \pi_{n+1/2},\; \nabla_h\!\left(\tfrac{1}{2}\,(\phi_{n+1}+\phi_n)\right) \right\rangle
+$$
+
+**Notes:** Discrete Noether momentum invariant under spatial translations (periodic BCs). Additional location: [kg_noether.py](Derivation/code/physics/metriplectic/kg_noether.py:73-80). TODO: add $\pi_{n+1/2}$ to SYMBOLS.md; ensure $\nabla_h$ is linked to existing entry.
+
+---
+
 <a id="vdm-e-105"></a>
 <!-- markdownlint-enable MD033 -->
 
@@ -1883,5 +1907,3 @@ c \;=\; \sqrt{\frac{D}{\tau}}
 $$
 
 **Notes:** Spec-level speed law used by the Telegraph-from-Relaxation instrument to calibrate finite-speed transport; appears across causality meters. TODO: add $c,\,D,\,\tau$ to SYMBOLS.md (see source lines).
-
----
