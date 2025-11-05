@@ -1,18 +1,18 @@
 <!-- DOC-GUARD: CANONICAL -->
-<!-- RULES for maintaining this file are here: /mnt/ironwolf/git/Prometheus_VDM/prompts/algorithms_maintenance.md -->
 # VDM Algorithms & Execution Flows (Auto-compiled)
 
-Last updated: 2025-10-13 (commit 09f871a)
 
-**Scope:** Single source of truth for implemented algorithms and control flows in this repository.  
-**Rules:** Pseudocode + references only. Link to math/values elsewhere (EQUATIONS/CONSTANTS/SYMBOLS/UNITS).  
+**Last updated**: 2025-11-05
+**Last commit**: 60c5156
+**Scope:** Single source of truth for implemented algorithms and control flows in this repository.
+**Rules:** Pseudocode + references only. Link to math/values elsewhere (EQUATIONS/CONSTANTS/SYMBOLS/UNITS).
 **MathJax:** Only inline `$...$` inside comments when needed.
 
 **Legend:** This file is **PSEUDOCODE** (illustrative).
-• Normative math: `Derivation/EQUATIONS.md`.  
+• Normative math: `Derivation/EQUATIONS.md`.
 • Numbers: `Derivation/CONSTANTS.md`.
-• Symbols/units: `Derivation/SYMBOLS.md`, `Derivation/UNITS_NORMALIZATION.md`.  
-• Canon map: `CANON_MAP.md`.  
+• Symbols/units: `Derivation/SYMBOLS.md`, `Derivation/UNITS_NORMALIZATION.md`.
+• Canon map: `CANON_MAP.md`.
 
 **Per Item Identifier Template:**
 • Type: RUNTIME|INSTRUMENT|POLICY|EXPERIMENT  
@@ -206,6 +206,323 @@ FINALIZE:
 > **DEBT:** Dense rebuild / dense top-k path exists; violates “no dense path” policy for large `N`.
 > **DEBT:** Structural rewiring RNG not plumbed from run seed; wire deterministic RNG.
 > **BROKEN / WRONG:** Documentation states *“no dense path whatsoever; void walkers and walker maps only”* while code enables a dense branch under `structural_mode=="dense"` (≤4096).
+
+---
+
+#### VDM-A-010 - Runtime Stepper compute_step_and_metrics  <a id="vdm-a-010"></a>
+
+**Per Item Identifier Template:**
+• Type: RUNTIME
+• Binding: PSEUDOCODE
+• State: writes state
+• Dependencies: core.signals, core.metrics
+• Notes: Mirrors Nexus inline logic (move-only extraction)
+
+**Context:** fum_rt/runtime/stepper.py:29-133 • Commit: 60c5156 • Module: runtime/stepper
+
+**Role:** Compute density/TD/firing_var, derive SIE drive, advance connectome, and build per-tick metrics.
+
+**Inputs:** link symbols/constants (anchors only)
+
+- Symbols: TODO: add `t`, `step` anchors in `SYMBOLS.md` (see fum_rt/runtime/stepper.py:29)
+- Constants/params: domain_modulation (nx.dom_mod), use_time_dynamics (nx.use_time_dynamics)
+
+**Depends on equations:** link anchors only (no math here)
+
+- TODO: add anchors for active-edge density, TD-like signal, firing variability in `EQUATIONS.md`
+
+**Pseudocode (verbatim structure, no new logic):**
+
+```text
+INIT:
+  m := {} ; drive := {}
+
+DENSITY:
+  E, density := compute_active_edge_density(nx.connectome, nx.N)     # core.signals
+
+TD PROXY:
+  prev_E := nx._prev_active_edges or E
+  vte_prev := nx._prev_vt_entropy ; vte_last := nx._last_vt_entropy
+  td_signal := compute_td_signal(prev_E, E, vte_prev, vte_last)      # core.signals
+  nx._prev_active_edges := E
+
+FIRING VAR:
+  firing_var := compute_firing_var(nx.connectome)                     # core.signals
+
+SIE DRIVE:
+  drive := nx.sie.get_drive(W=None, external_signal=td_signal,
+                            time_step=step, firing_var=firing_var,
+                            target_var=0.15, density_override=density,
+                            novelty_idf_scale=idf_scale)
+  sie_drive := drive["valence_01"] default 1.0
+  sie2 := nx.connectome._last_sie2_valence default 0.0
+  sie_gate := max(sie_drive, sie2) ∈ [0,1]
+
+ADVANCE CONNECTOME:
+  nx.connectome.step(t, domain_modulation=nx.dom_mod,
+                     sie_drive=sie_gate, use_time_dynamics=nx.use_time_dynamics)
+
+METRICS:
+  m := core.metrics.compute_metrics(nx.connectome)
+  m["homeostasis_pruned"] := nx.connectome._last_pruned_count
+  m["homeostasis_bridged"] := nx.connectome._last_bridged_count
+  m["active_edges"] := E ; m["td_signal"] := td_signal
+  m["novelty_idf_scale"] := idf_scale
+  if firing_var is not None: m["firing_var"] := firing_var
+  if nx.connectome.findings: m.update(findings)
+  m["sie_gate"] := sie_gate
+
+HISTORY:
+  nx._prev_vt_entropy := nx._last_vt_entropy
+  nx._last_vt_entropy := m.get("vt_entropy", 0.0)
+
+RETURN:
+  (m, drive)
+```
+
+**Preconditions:**
+
+- nx exposes connectome, sie, N, dom_mod, use_time_dynamics
+- core.signals and core.metrics available
+
+**Postconditions/Invariants:**
+
+- Connectome advanced once with sie_gate
+- Metrics dict contains structural and TD diagnostics
+
+**Concurrency/Ordering:**
+
+- Single-threaded per tick; pure function aside from nx mutations
+
+**Failure/Backoff hooks:**
+
+- Try/except guards in implementation swallow errors to preserve parity
+
+---
+
+#### VDM-A-011 - Tick Telemetry Fold (bus → ADC → event metrics → B1)  <a id="vdm-a-011"></a>
+
+**Per Item Identifier Template:**
+• Type: INSTRUMENT
+• Binding: PSEUDOCODE
+• State: writes runtime telemetry only (no dynamics)
+• Dependencies: bus, ADC, optional EventDrivenMetrics
+• Notes: Behavior-preserving seam
+
+**Context:** fum_rt/runtime/telemetry.py:337-650 • Commit: 60c5156 • Module: runtime/telemetry
+
+**Role:** Fold per-tick telemetry: publish neutral delta, drain bus, derive void-topic symbols, update ADC, fold event-driven metrics, and compute complexity proxy with B1 detector.
+
+**Inputs:** link symbols/constants (anchors only)
+
+- Schemas: TODO: add ADC metrics anchors in `SCHEMAS.md` if applicable
+
+**Depends on equations:** link anchors only (no math here)
+
+- Optional: B1 detector references `[VDM-E-###]` if canonized elsewhere
+
+**Pseudocode (verbatim structure, no new logic):**
+
+```text
+DELTA PUBLISH (optional):
+  if nx._evt_metrics:
+    comps := drive.components or {}
+    meta := {"b1":0.0, "nov":comps["nov"]|0, "hab":..., "td":td_signal, "hsi":...}
+    bus.publish(DynObs(t=step, kind="delta", nodes=[], meta))
+    if SYNTH_DELTA_W:
+      nodes_sel := first ≤16 from tick_rev_map keys
+      dw_val := clip(sign(td_signal)*min(0.05, |td_signal|))
+      bus.publish(DynObs(t=step, kind="delta_w", nodes=nodes_sel, meta={"dw":dw_val}))
+
+DRAIN BUS:
+  obs_batch := bus.drain(max_items=nx.bus_drain default 2048)
+  nx._last_obs_batch := obs_batch
+  for obs in obs_batch, map node indices via tick_rev_map → void_topic_symbols
+
+ADC UPDATE:
+  adc.update_from(obs_batch) ; adc_metrics := adc.get_metrics()
+  nx._last_adc_metrics := adc_metrics
+
+EVENT-DRIVEN METRICS (optional):
+  if nx._engine is None and nx._evt_metrics:
+    for ev in obs_to_events(obs_batch): evtm.update(ev)
+    evtm.update(adc_event(adc_metrics, t=step))
+    evsnap := evtm.snapshot(); merge as m["evt_*"] without overriding canonical b1_*
+
+ADC + COMPLEXITY:
+  m.update(adc_metrics)
+  m["complexity_cycles"] += adc_metrics["adc_cycle_hits"] (if present)
+
+RETURN:
+  (m, void_topic_symbols)
+```
+
+**Preconditions:**
+
+- nx.bus present; adc optional; evt_metrics optional
+
+**Postconditions/Invariants:**
+
+- m contains merged adc and evt_* fields; canonical fields preserved
+
+**Concurrency/Ordering:**
+
+- Single-threaded per tick; bounded drain and synthesis
+
+**Failure/Backoff hooks:**
+
+- Extensive try/except to keep parity and avoid IO
+
+---
+
+#### VDM-A-012 - CoreEngine.step (Event-Driven Fold + Maps Staging)  <a id="vdm-a-012"></a>
+
+**Per Item Identifier Template:**
+• Type: INSTRUMENT
+• Binding: PSEUDOCODE
+• State: read-only against connectome; updates telemetry caches
+• Dependencies: EventDrivenMetrics, VOID scout, map reducers
+• Notes: Core seam; no IO/logging
+
+**Context:** fum_rt/core/engine/core_engine.py:82-262 • Commit: 60c5156 • Module: core/engine
+
+**Role:** Fold external events and internal VOID-scout events into event-driven reducers; fold map heads; stage maps_frame payload; refresh cached snapshot.
+
+**Pseudocode (verbatim structure, no new logic):**
+
+```text
+ENSURE EVT INIT:
+  _ensure_evt_init()
+
+FOLD EXTERNAL EVENTS:
+  for ev in ext_events:
+    if hasattr(ev,"kind"): evtm.update(ev); collected_events.append(ev)
+    update cold_map on vt_touch/edge_on
+    track latest_tick from ev.t
+
+FOLD VOID SCOUT EVENTS:
+  tick_hint := last ev.t or nx._emit_step+1
+  for _ev in void_scout.step(nx.connectome, tick_hint):
+    evtm.update(_ev); collected_events.append(_ev)
+    update cold_map on vt_touch/edge_on
+  latest_tick := max(latest_tick, tick_hint)
+
+FOLD MAPS (telemetry-only):
+  fold heat_map, exc_map, inh_map, memory_map, trail_map with collected_events at fold_tick
+
+STAGE FRAME:
+  stage_maps_frame(nx, heat_map, exc_map, inh_map, fold_tick)
+
+REFRESH SNAPSHOT:
+  _last_evt_snapshot := build_evt_snapshot(..., latest_tick, nx)
+```
+
+**Preconditions:**
+
+- nexus-like exposes connectome, b1 config, seed, etc.
+
+**Postconditions/Invariants:**
+
+- No mutation of dynamics; only telemetry caches updated
+
+**Failure/Backoff hooks:**
+
+- Silent no-ops on any error (parity-preserving)
+
+---
+
+#### VDM-A-013 - Optional RE-VGSP Adapter (Learner Hook)  <a id="vdm-a-013"></a>
+
+**Per Item Identifier Template:**
+• Type: POLICY
+• Binding: PSEUDOCODE
+• State: writes state (adapter-controlled)
+• Dependencies: fum_rt.core.neuroplasticity.revgsp.RevGSP
+• Notes: Enabled via ENABLE_REVGSP=1 (default off)
+
+**Context:** fum_rt/runtime/loop/main.py:88-157 • Commit: 60c5156 • Module: runtime/loop
+
+**Role:** Best-effort call into RevGSP.adapt_connectome with kwargs filtered by signature; silent on error.
+
+**Pseudocode:**
+
+```text
+if not ENABLE_REVGSP: return
+try import RevGSP; _adapt := RevGSP().adapt_connectome else return
+substrate := nx.substrate or nx.connectome or return
+sig := inspect.signature(_adapt); allowed := set(sig.parameters)
+eta := env REV_GSP_ETA or nx.rev_gsp_eta ; lam := env REV_GSP_LAMBDA or nx.rev_gsp_lambda
+twin_ms := env REV_GSP_TWIN_MS or 20
+kwargs := {
+  "substrate": substrate, "spike_train": nx.recent_spikes, "spike_phases": nx.spike_phases,
+  "learning_rate": eta, "base_lr": eta, "lambda_decay": lam, "total_reward": metrics["sie_total_reward"],
+  "plv": metrics.get("evt_plv"), "network_latency_estimate": nx.network_latency_estimate or {...},
+  "network_latency": same, "time_window_ms": twin_ms
+}
+kwargs := {k:v for k,v in kwargs if v is not None and (not allowed or k in allowed)}
+try _adapt(**kwargs) except: return
+```
+
+---
+
+#### VDM-A-014 - Optional GDSP Actuator (Structural Plasticity)  <a id="vdm-a-014"></a>
+
+**Per Item Identifier Template:**
+• Type: POLICY
+• Binding: PSEUDOCODE
+• State: writes state (adapter-controlled)
+• Dependencies: fum_rt.core.neuroplasticity.gdsp.GDSPActuator
+• Notes: Enabled via ENABLE_GDSP=1 (default off); emergent triggers only
+
+**Context:** fum_rt/runtime/loop/main.py:160-280 • Commit: 60c5156 • Module: runtime/loop
+
+**Role:** Gate structural repairs/growth/pruning based on b1 spike, TD magnitude, and cohesion components; operate on sparse CSR-only substrate.
+
+**Pseudocode:**
+
+```text
+if not ENABLE_GDSP: return
+td := metrics["td_signal"] default 0.0
+b1_spike := metrics["b1_spike"] or metrics["evt_b1_spike"] default False
+comp := metrics["cohesion_components"] or metrics["evt_cohesion_components"] default 1
+td_thr := env GDSP_TD_THRESH or 0.2
+if not (b1_spike or |td| >= td_thr or comp > 1): return
+
+try import GDSPActuator; _run_gdsp := GDSPActuator().run else return
+s := nx.substrate or nx.connectome or return
+require s has {"synaptic_weights","persistent_synapses","synapse_pruning_timers","eligibility_traces","firing_rates"} else return
+
+introspection_report := {"component_count": comp, "b1_persistence": bounded(|b1_z|/10), "repair_triggered": b1_spike}
+sie_report := {"total_reward": metrics["sie_total_reward"], "td_error": metrics["td_signal"], "novelty": metrics["evt_vt_entropy"]|0}
+territory_indices := nx._territories.sample_any(K) if available else None
+if triggers and not territory_indices: maybe bus.publish(BiasHintEvent(...))
+
+T_prune := env GDSP_T_PRUNE or 100 ; pruning_threshold := env GDSP_PRUNE_THRESHOLD or 0.01
+try _run_gdsp(substrate=s, introspection_report, sie_report, territory_indices, T_prune, pruning_threshold) except: return
+```
+
+---
+
+#### VDM-A-015 - run_loop_once (Single-Tick Helper)  <a id="vdm-a-015"></a>
+
+**Per Item Identifier Template:**
+• Type: RUNTIME
+• Binding: PSEUDOCODE
+• State: none
+• Dependencies: runtime.telemetry.tick_fold
+• Notes: Import seam compliance for boundary tests
+
+**Context:** fum_rt/runtime/loop/**init**.py:35-55 • Commit: 60c5156 • Module: runtime/loop
+
+**Role:** Delegate optional engine.step(events) and always stage telemetry via tick_fold for one tick.
+
+**Pseudocode:**
+
+```text
+if hasattr(engine,"step"):
+  if events: engine.step(step, list(events)) else engine.step(step)
+tick_fold(nx, step, engine)
+```
 
 ---
 
@@ -736,8 +1053,27 @@ RETURN:
 
 ---
 
+<!-- BEGIN AUTOSECTION: ALGO-INDEX -->
+<!-- Tool-maintained list of [VDM-A-###](#vdm-a-###) anchors for quick lookup -->
+- [VDM-A-001](#vdm-a-001)
+- [VDM-A-002](#vdm-a-002)
+- [VDM-A-003](#vdm-a-003)
+- [VDM-A-004](#vdm-a-004)
+- [VDM-A-005](#vdm-a-005)
+- [VDM-A-006](#vdm-a-006)
+- [VDM-A-007](#vdm-a-007)
+- [VDM-A-008](#vdm-a-008)
+- [VDM-A-009](#vdm-a-009)
+- [VDM-A-010](#vdm-a-010)
+- [VDM-A-011](#vdm-a-011)
+- [VDM-A-012](#vdm-a-012)
+- [VDM-A-013](#vdm-a-013)
+- [VDM-A-014](#vdm-a-014)
+- [VDM-A-015](#vdm-a-015)
+- [VDM-A-022](#vdm-a-022)
+<!-- END AUTOSECTION: ALGO-INDEX -->
 ## Change Log
-
+- 2025-11-05 • algorithms updated • 60c5156
 - 2025-10-08 • add VDM-A-013..021 (metriplectic integrators & QC; FRW residual QC; A6 collapse) • HEAD
 - 2025-10-03 • initial algorithms extracted • 7498744
 
@@ -746,6 +1082,7 @@ RETURN:
 ---
 
 ### VDM-A-022 - Tube Spectrum and Condensation Harness (Tachyonic Tube v1)  <a id="vdm-a-022"></a>
+>
 > Type: EXPERIMENT • Binding: PSEUDOCODE • State: writes artifacts • Dependencies: Bessel evaluations, adaptive quadrature • Notes: QC gates for spectrum coverage and condensation curvature
 
 **Context:** Derivation/code/physics/tachyonic_condensation (runner + solvers) • Commit: 09f871a

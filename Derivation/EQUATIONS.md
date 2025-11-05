@@ -1830,6 +1830,48 @@ $$
 **Notes:** Procedural scaling check used by RB-Gate. TODO: add $\lambda_c$ to SYMBOLS.md or CONSTANTS.md (critical wavelength), and link to BC-specific $k_c$ values in CONSTANTS.md when registered.
 
 <!-- markdownlint-disable MD033 -->
+
+#### VDM-E-125 - Strang composition map (JMJ) and order
+**Context:** [RESULTS_Metriplectic_JMJ_RD_v1.md](Derivation/Metriplectic/Metriplectic_JMJ_RD/RESULTS_Metriplectic_JMJ_RD_v1.md:71-75) • Commit: HEAD • Last Updated: 2025-11-05T05:45:01Z
+
+$$
+\Phi^{\mathrm{JMJ}}_{\Delta t} \;=\; \Phi^{\mathrm{J}}_{\Delta t/2} \;\circ\; \Phi^{\mathrm{M}}_{\Delta t} \;\circ\; \Phi^{\mathrm{J}}_{\Delta t/2}, \qquad \text{global error } \mathcal{O}(\Delta t^2)
+$$
+
+**Notes:** Composition used throughout metriplectic runners; defect scaling and commutator context in [VDM-E-091](#vdm-e-091) and [VDM-E-103](#vdm-e-103).
+
+---
+
+#### VDM-E-126 - Taylor–Green energy decay (LBM→NS viscosity recovery)
+**Context:** [taylor_green_benchmark.py](Derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py:93-105) • Commit: HEAD • Last Updated: 2025-11-05T05:45:01Z
+
+$$
+E(t) \;=\; E_0 \exp\!\Big(-2\,\nu\,k^2\big(\tfrac{1}{n_x^2}+\tfrac{1}{n_y^2}\big)\,t\Big)
+$$
+
+Slope inversion (fit on $\log E$ vs $t$):
+$$
+\nu_{\mathrm{fit}} \;=\; -\frac{s}{\,2 k^2\!\big(\tfrac{1}{n_x^2}+\tfrac{1}{n_y^2}\big)\,}
+$$
+
+**Notes:** Used to recover $\nu$ with ≤5% error gate; appears in fluids validation harness.
+
+---
+
+#### VDM-E-127 - Discrete Lyapunov functional (grid form; RD DG)
+**Context:** [PROPOSAL_RD_Discrete_Conservation_vs_Balance.md](Derivation/Conservation_Law/PROPOSAL_RD_Discrete_Conservation_vs_Balance.md:91-101) • Commit: HEAD • Last Updated: 2025-11-05T05:45:01Z
+
+$$
+\mathcal{L}_h[W] \;=\; \sum_{i} \Big[ \tfrac{D}{2}\,\lvert \nabla_h W_i \rvert^2 + \hat V(W_i) \Big] \,\Delta x, \qquad \hat V'(W) = -\,f(W)
+$$
+
+Centered finite-difference operators:
+$$
+\nabla_h W_i \,=\, \frac{W_{i+1}-W_{i-1}}{2\,\Delta x}, \qquad
+\Delta_h W_i \,=\, \frac{W_{i+1}-2W_i+W_{i-1}}{\Delta x^2}.
+$$
+
+**Notes:** Obj‑C discrete form paired with DG step; report $\Delta \mathcal{L}_h \le 0$ per step under periodic/no‑flux BCs. Related continuum form in [VDM-E-016](#vdm-e-016); DG monotonicity statement in [VDM-E-099](#vdm-e-099).
 <a id="vdm-e-105"></a>
 <!-- markdownlint-enable MD033 -->
 
@@ -1844,15 +1886,3 @@ $$
 
 ---
 
-## Change Log
-- VDM-E-105 • cbc3dd1 • Derivation/Transport/Telegraph_From_Relaxation/T1_PROPOSAL_Telegraph_From_Relaxation_v1.md added
-- VDM-E-115 • a48f2d2 • Derivation/Axioms/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md added
-- VDM-E-116 • a48f2d2 • Derivation/Axioms/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md added
-- VDM-E-117 • a48f2d2 • Derivation/Axioms/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md added
-- VDM-E-118 • a48f2d2 • Derivation/Axioms/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md added
-- VDM-E-119 • a48f2d2 • Derivation/Axioms/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md added
-- VDM-E-120 • a48f2d2 • Derivation/Axioms/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md added
-- VDM-E-121 • a48f2d2 • Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md added
-- VDM-E-122 • a48f2d2 • Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md added
-- VDM-E-123 • a48f2d2 • Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md added
-- VDM-E-124 • a48f2d2 • Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md added

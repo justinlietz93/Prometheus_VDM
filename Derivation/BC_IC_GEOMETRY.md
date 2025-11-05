@@ -218,6 +218,36 @@ $(\Delta x\_{\perp} \leftarrow -\Delta x\_{\perp})$\, $(\Delta x\_{\parallel})$ 
 
 ---
 
+##### Periodic BC for metriplectic KG⊕RD  <a id="bc-periodic-metriplectic-kg-rd"></a>
+**Context:** Derivation/code/physics/metriplectic/step_spec.metriplectic.spectralDG.json:1-21 • HEAD • Metriplectic KG⊕RD specs; [Derivation/Metriplectic/RESULTS_KG_Noether_Invariants_v1.md](Derivation/Metriplectic/RESULTS_KG_Noether_Invariants_v1.md:100-105) notes “1D periodic lattice”
+
+**Field(s):** $\phi,\ \pi$ (KG J‑limb); $W$ or $\phi$ (RD M‑limb)
+**Type:** Periodic
+**Definition (quote from source if formula exists):**
+Periodic per spec (“bc”: "periodic"); spectral operators imply wraparound topology.
+  
+**Applies on:** [1d-periodic-ring](#geom-1d-periodic-ring)
+**Parameters:** $N$<sup>[↗](CONSTANTS.md#const-N)</sup>, $dx$ (spec params)
+**Implemented at:** Derivation/code/physics/metriplectic/step_spec.metriplectic.spectralDG.json:1-21; Derivation/code/physics/metriplectic/run_kg_rd_metriplectic.py:210-325 (Strang JMJ with spectral operators)
+**Notes:** J‑step is unitary on periodic grids; M‑step uses DG with spectral Laplacian option; see [RESULTS_Metriplectic_JMJ_RD_v1.md](Derivation/Metriplectic/Metriplectic_JMJ_RD/RESULTS_Metriplectic_JMJ_RD_v1.md:28-76).
+
+---
+
+##### RD harness BC enum (periodic | neumann)  <a id="bc-rd-conservation-enum"></a>
+**Context:** Derivation/code/physics/rd_conservation/step_spec.schema.json:11-15 • HEAD • RD conservation/balance harness schema
+
+**Field(s):** $W$ (RD field)
+**Type:** Periodic or Neumann (schema enum)
+**Definition (quote from source if formula exists):**
+`"bc": { "type": "string", "enum": ["periodic","neumann"] }`
+  
+**Applies on:** [1d-periodic-interval](#geom-1d-periodic-interval), [1d-neumann-interval](#geom-1d-neumann-interval)
+**Parameters:** As per RD harness params ($N, dx, D, r, u$)
+**Implemented at:** Derivation/code/physics/rd_conservation/step_spec.schema.json:11-15; periodic/Neumann implementations in Derivation/code/physics/reaction_diffusion/flux_core.py:58-118
+**Notes:** Matches usage elsewhere (dispersion: periodic; front-speed: Neumann). See [bc-periodic-1d-rd-dispersion](#bc-periodic-1d-rd-dispersion), [bc-neumann-1d-rd-front](#bc-neumann-1d-rd-front).
+
+---
+
 ## 3) Initial Conditions
 
 ##### Random noise IC for RD dispersion  <a id="ic-random-noise-rd-dispersion"></a>
@@ -371,6 +401,8 @@ Sample (N_w) initial positions i.i.d. uniform on $(\Omega)$ (Poisson disc option
 - [bc-neumann-walker-glow](#bc-neumann-walker-glow)
 - [bc-flux-diffusion](#bc-flux-diffusion)
 - [bc-axiom5](#bc-axiom5)
+- [bc-periodic-metriplectic-kg-rd](#bc-periodic-metriplectic-kg-rd)
+- [bc-rd-conservation-enum](#bc-rd-conservation-enum)
 
 **IC Anchors:**
 - [ic-random-noise-rd-dispersion](#ic-random-noise-rd-dispersion)

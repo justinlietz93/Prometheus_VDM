@@ -175,14 +175,13 @@ All fixed-number statements were replaced with parameter‑dependent forms and e
 - VDM-E-123 • a48f2d2 • Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md added
 - VDM-E-124 • a48f2d2 • Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md added
 
-
 ## Change Log - Proposals (2025-11-05 a48f2d2)
 
 - 2025-11-05 • proposals index updated • comprehensive extraction with tier, research questions, setup, diagnostics, gates, methods, personnel, references
 
 ## Symbols (2025-11-06 a48f2d2, cbc3dd1)
 
-- 2025-11-05 • added A8 and RB-Gate symbol rows; telegraph speed symbols • sources 
+- 2025-11-05 • added A8 and RB-Gate symbol rows; telegraph speed symbols • sources
 
 ## Change Log — Constants (2025-11-05 b745e83)
 
@@ -199,3 +198,20 @@ All fixed-number statements were replaced with parameter‑dependent forms and e
 - Paths changed:
   - [`CONSTANTS.md`](Derivation/CONSTANTS.md)
 - Dependency-Chain-Reviewed: true
+
+## Change Log
+
+- VDM-E-105 • cbc3dd1 • Derivation/Transport/Telegraph_From_Relaxation/T1_PROPOSAL_Telegraph_From_Relaxation_v1.md added
+- VDM-E-115 • a48f2d2 • Derivation/Axioms/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md added
+- VDM-E-116 • a48f2d2 • Derivation/Axioms/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md added
+- VDM-E-117 • a48f2d2 • Derivation/Axioms/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md added
+- VDM-E-118 • a48f2d2 • Derivation/Axioms/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md added
+- VDM-E-119 • a48f2d2 • Derivation/Axioms/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md added
+- VDM-E-125 • HEAD • Derivation/Metriplectic/Metriplectic_JMJ_RD/RESULTS_Metriplectic_JMJ_RD_v1.md added
+- VDM-E-126 • HEAD • Derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py added
+- VDM-E-127 • HEAD • Derivation/Conservation_Law/PROPOSAL_RD_Discrete_Conservation_vs_Balance.md added
+- VDM-E-120 • a48f2d2 • Derivation/Axioms/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md added
+- VDM-E-121 • a48f2d2 • Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md added
+- VDM-E-122 • a48f2d2 • Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md added
+- VDM-E-123 • a48f2d2 • Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md added
+- VDM-E-124 • a48f2d2 • Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md added
