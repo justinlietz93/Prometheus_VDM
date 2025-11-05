@@ -3,8 +3,8 @@
 <!-- markdownlint-disable MD033 -->
 # VDM Schemas (Auto-compiled)
 
-Last updated: 2025-10-13 (commit 66eb296)
-
+**Last updated**: 2025-11-05
+**Last commit**: HEAD
 **Scope:** Single source of truth for message/record/state/config schemas used in this repository.  
 **Rules:** Paste schema definitions from source; document fields. Link to equations/constants/symbols/units/algorithms.  
 **MathJax:** Inline `$...$` only in descriptions (no display math or LaTeX environments).
@@ -1350,13 +1350,15 @@ class GeometryProbeAdapter(Protocol):
 **Notes:** Python Protocol defining adapter contract for model-specific activation capture
 
 ---
- 
+
 #### KG-Lite Chunk Envelope v1  <a id="schema-kg-lite-chunkenvelope-v1"></a>
+
 **Kind:** file
 **Versioning (if present):** `set_version` field
 **Defined at:** `memory-bank/MEMORY_GRAPH_CONTEXT/kg-lite.chunkenvelope.v1.schema.json:1-203`
- 
+
 **Definition (verbatim snippet from source):**
+
 ```json
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -1386,9 +1388,9 @@ class GeometryProbeAdapter(Protocol):
     }
 }
 ```
- 
+
 **Fields (expand from source; do not invent):**
- 
+
 | Field            | Type        | Required | Default | Units/Normalization | Description (lifted) | Source |
 | ---------------- | ----------- | :------: | ------- | ------------------- | -------------------- | ------ |
 | `set_id`         | `string`    |    Y     | n/a     | n/a                 |                      | `memory-bank/MEMORY_GRAPH_CONTEXT/kg-lite.chunkenvelope.v1.schema.json:21` |
@@ -1403,14 +1405,633 @@ class GeometryProbeAdapter(Protocol):
 | `total_parts`    | `integer`   |    Y     | n/a     | ≥1                  |                      | `memory-bank/MEMORY_GRAPH_CONTEXT/kg-lite.chunkenvelope.v1.schema.json:36` |
 | `tags`           | `string[]`  |    N     | n/a     | n/a                 |                      | `memory-bank/MEMORY_GRAPH_CONTEXT/kg-lite.chunkenvelope.v1.schema.json:37` |
 | `payload`        | `object`    |    Y     | n/a     | n/a                 |                      | `memory-bank/MEMORY_GRAPH_CONTEXT/kg-lite.chunkenvelope.v1.schema.json:38` |
- 
+
 ---
- 
+
+#### Metriplectic Assisted Echo Spec (v1)  <a id="schema-echo-spec-v1"></a>
+
+**Kind:** config
+**Versioning (if present):** none
+**Defined at:** `Derivation/code/physics/metriplectic/schemas/echo_spec-v1.schema.json:1-36` • HEAD
+
+**Definition (verbatim snippet from source):**
+
+```json
+{
+  "$id": "echo_spec-v1.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Metriplectic Assisted Echo Spec (v1)",
+  "type": "object",
+  "metadata": { "tag": "echo_spec-v1" },
+  "required": ["grid", "params", "dt", "steps", "seeds", "lambdas", "budget"],
+  "properties": {
+    "tag": {"type": ["string", "null"]},
+    "grid": {
+      "type": "object",
+      "required": ["N", "dx"],
+      "properties": {
+        "N": {"type": "integer", "minimum": 8},
+        "dx": {"type": "number", "exclusiveMinimum": 0}
+      }
+    },
+    "params": {
+      "type": "object",
+      "required": ["c", "m", "D", "m_lap_operator"],
+      "properties": {
+        "c": {"type": "number"},
+        "m": {"type": "number"},
+        "D": {"type": "number"},
+        "m_lap_operator": {"type": "string", "enum": ["spectral", "stencil"]}
+      },
+      "additionalProperties": true
+    },
+    "dt": {"type": "number", "exclusiveMinimum": 0},
+    "steps": {"type": "integer", "minimum": 1},
+    "seeds": {"type": "array", "items": {"type": "integer"}, "minItems": 1},
+    "lambdas": {"type": "array", "items": {"type": "number", "minimum": 0}, "minItems": 1},
+    "budget": {"type": "number", "minimum": 0}
+  },
+  "additionalProperties": false
+}
+```
+
+**Fields (expand from source; do not invent):**
+
+| Field                 | Type              | Required | Default | Units/Normalization | Description (lifted) | Source                                                             |
+| --------------------- | ----------------- | :------: | ------- | ------------------- | -------------------- | ------------------------------------------------------------------ |
+| `tag`                 | `string|null`     |    N     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/echo_spec-v1.schema.json:9`  |
+| `grid`                | `object`          |    Y     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/echo_spec-v1.schema.json:10-17` |
+| `grid.N`              | `integer (≥8)`    |    Y     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/echo_spec-v1.schema.json:14` |
+| `grid.dx`             | `number (>0)`     |    Y     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/echo_spec-v1.schema.json:15` |
+| `params`              | `object`          |    Y     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/echo_spec-v1.schema.json:18-28` |
+| `params.c`            | `number`          |    Y     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/echo_spec-v1.schema.json:22` |
+| `params.m`            | `number`          |    Y     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/echo_spec-v1.schema.json:23` |
+| `params.D`            | `number`          |    Y     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/echo_spec-v1.schema.json:24` |
+| `params.m_lap_operator` | `string (enum)` |    Y     | n/a     | n/a                 | enum: `spectral` \| `stencil` | `Derivation/code/physics/metriplectic/schemas/echo_spec-v1.schema.json:25` |
+| `dt`                  | `number (>0)`     |    Y     | n/a     | time step           |                      | `Derivation/code/physics/metriplectic/schemas/echo_spec-v1.schema.json:29` |
+| `steps`               | `integer (≥1)`    |    Y     | n/a     | count               |                      | `Derivation/code/physics/metriplectic/schemas/echo_spec-v1.schema.json:30` |
+| `seeds`               | `integer[]`       |    Y     | n/a     | n/a                 | `minItems: 1`        | `Derivation/code/physics/metriplectic/schemas/echo_spec-v1.schema.json:31` |
+| `lambdas`             | `number[]`        |    Y     | n/a     | n/a                 | `minItems: 1`, elements `≥0` | `Derivation/code/physics/metriplectic/schemas/echo_spec-v1.schema.json:32` |
+| `budget`              | `number (≥0)`     |    Y     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/echo_spec-v1.schema.json:33` |
+
+**Producers/Consumers:** n/a
+**Related equations (anchors only):** n/a
+**Related symbols/constants:** n/a
+**Examples (if present):** n/a
+**Invariants/Validation rules:** `N ≥ 8`; `dx > 0`; `dt > 0`; `steps ≥ 1`; `lambdas[i] ≥ 0`; `budget ≥ 0`; `seeds` non-empty.
+
+---
+
+#### Metriplectic Assisted Echo Spec (v1b)  <a id="schema-echo-spec-v1b"></a>
+
+**Kind:** config
+**Versioning (if present):** none
+**Defined at:** `Derivation/code/physics/metriplectic/schemas/echo_spec-v1b.schema.json:1-36` • HEAD
+
+**Definition (verbatim snippet from source):**
+
+```json
+{
+  "$id": "echo_spec-v1b.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Metriplectic Assisted Echo Spec (v1b)",
+  "type": "object",
+  "metadata": { "tag": "echo_spec-v1b" },
+  "required": ["grid", "params", "dt", "steps", "seeds", "lambdas", "budget"],
+  "properties": {
+    "tag": {"type": ["string", "null"]},
+    "grid": {
+      "type": "object",
+      "required": ["N", "dx"],
+      "properties": {
+        "N": {"type": "integer", "minimum": 8},
+        "dx": {"type": "number", "exclusiveMinimum": 0}
+      }
+    },
+    "params": {
+      "type": "object",
+      "required": ["c", "m", "D", "m_lap_operator"],
+      "properties": {
+        "c": {"type": "number"},
+        "m": {"type": "number"},
+        "D": {"type": "number"},
+        "m_lap_operator": {"type": "string", "enum": ["spectral", "stencil"]}
+      },
+      "additionalProperties": true
+    },
+    "dt": {"type": "number", "exclusiveMinimum": 0},
+    "steps": {"type": "integer", "minimum": 1},
+    "seeds": {"type": "array", "items": {"type": "integer"}, "minItems": 1},
+    "lambdas": {"type": "array", "items": {"type": "number", "minimum": 0}, "minItems": 1},
+    "budget": {"type": "number", "minimum": 0}
+  },
+  "additionalProperties": false
+}
+```
+
+**Fields (expand from source; do not invent):**
+
+| Field                       | Type              | Required | Default | Units/Normalization | Description (lifted) | Source                                                                |
+| --------------------------- | ----------------- | :------: | ------- | ------------------- | -------------------- | --------------------------------------------------------------------- |
+| `tag`                       | `string|null`     |    N     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/echo_spec-v1b.schema.json:9`  |
+| `grid`                      | `object`          |    Y     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/echo_spec-v1b.schema.json:10-17` |
+| `grid.N`                    | `integer (≥8)`    |    Y     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/echo_spec-v1b.schema.json:14` |
+| `grid.dx`                   | `number (>0)`     |    Y     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/echo_spec-v1b.schema.json:15` |
+| `params`                    | `object`          |    Y     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/echo_spec-v1b.schema.json:18-28` |
+| `params.c`                  | `number`          |    Y     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/echo_spec-v1b.schema.json:22` |
+| `params.m`                  | `number`          |    Y     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/echo_spec-v1b.schema.json:23` |
+| `params.D`                  | `number`          |    Y     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/echo_spec-v1b.schema.json:24` |
+| `params.m_lap_operator`     | `string (enum)`   |    Y     | n/a     | n/a                 | enum: `spectral` \| `stencil` | `Derivation/code/physics/metriplectic/schemas/echo_spec-v1b.schema.json:25` |
+| `dt`                        | `number (>0)`     |    Y     | n/a     | time step           |                      | `Derivation/code/physics/metriplectic/schemas/echo_spec-v1b.schema.json:29` |
+| `steps`                     | `integer (≥1)`    |    Y     | n/a     | count               |                      | `Derivation/code/physics/metriplectic/schemas/echo_spec-v1b.schema.json:30` |
+| `seeds`                     | `integer[]`       |    Y     | n/a     | n/a                 | `minItems: 1`        | `Derivation/code/physics/metriplectic/schemas/echo_spec-v1b.schema.json:31` |
+| `lambdas`                   | `number[]`        |    Y     | n/a     | n/a                 | `minItems: 1`, elements `≥0` | `Derivation/code/physics/metriplectic/schemas/echo_spec-v1b.schema.json:32` |
+| `budget`                    | `number (≥0)`     |    Y     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/echo_spec-v1b.schema.json:33` |
+
+**Producers/Consumers:** n/a
+**Related equations (anchors only):** n/a
+**Related symbols/constants:** n/a
+**Examples (if present):** n/a
+**Invariants/Validation rules:** Same as v1.
+
+---
+
+#### Metriplectic Assisted Echo Spec (v1c)  <a id="schema-echo-spec-v1c"></a>
+
+**Kind:** config
+**Versioning (if present):** none
+**Defined at:** `Derivation/code/physics/metriplectic/schemas/echo_spec-v1c.schema.json:1-36` • HEAD
+
+**Definition (verbatim snippet from source):**
+
+```json
+{
+  "$id": "echo_spec-v1c.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Metriplectic Assisted Echo Spec (v1c)",
+  "type": "object",
+  "metadata": { "tag": "echo_spec-v1c" },
+  "required": ["grid", "params", "dt", "steps", "seeds", "lambdas", "budget"],
+  "properties": {
+    "tag": {"type": ["string", "null"]},
+    "grid": {
+      "type": "object",
+      "required": ["N", "dx"],
+      "properties": {
+        "N": {"type": "integer", "minimum": 8},
+        "dx": {"type": "number", "exclusiveMinimum": 0}
+      }
+    },
+    "params": {
+      "type": "object",
+      "required": ["c", "m", "D", "m_lap_operator"],
+      "properties": {
+        "c": {"type": "number"},
+        "m": {"type": "number"},
+        "D": {"type": "number"},
+        "m_lap_operator": {"type": "string", "enum": ["spectral", "stencil"]}
+      },
+      "additionalProperties": true
+    },
+    "dt": {"type": "number", "exclusiveMinimum": 0},
+    "steps": {"type": "integer", "minimum": 1},
+    "seeds": {"type": "array", "items": {"type": "integer"}, "minItems": 1},
+    "lambdas": {"type": "array", "items": {"type": "number", "minimum": 0}, "minItems": 1},
+    "budget": {"type": "number", "minimum": 0}
+  },
+  "additionalProperties": false
+}
+```
+
+**Fields (expand from source; do not invent):**
+
+| Field                       | Type              | Required | Default | Units/Normalization | Description (lifted) | Source                                                                |
+| --------------------------- | ----------------- | :------: | ------- | ------------------- | -------------------- | --------------------------------------------------------------------- |
+| `tag`                       | `string|null`     |    N     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/echo_spec-v1c.schema.json:9`  |
+| `grid`                      | `object`          |    Y     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/echo_spec-v1c.schema.json:10-17` |
+| `grid.N`                    | `integer (≥8)`    |    Y     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/echo_spec-v1c.schema.json:14` |
+| `grid.dx`                   | `number (>0)`     |    Y     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/echo_spec-v1c.schema.json:15` |
+| `params`                    | `object`          |    Y     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/echo_spec-v1c.schema.json:18-28` |
+| `params.c`                  | `number`          |    Y     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/echo_spec-v1c.schema.json:22` |
+| `params.m`                  | `number`          |    Y     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/echo_spec-v1c.schema.json:23` |
+| `params.D`                  | `number`          |    Y     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/echo_spec-v1c.schema.json:24` |
+| `params.m_lap_operator`     | `string (enum)`   |    Y     | n/a     | n/a                 | enum: `spectral` \| `stencil` | `Derivation/code/physics/metriplectic/schemas/echo_spec-v1c.schema.json:25` |
+| `dt`                        | `number (>0)`     |    Y     | n/a     | time step           |                      | `Derivation/code/physics/metriplectic/schemas/echo_spec-v1c.schema.json:29` |
+| `steps`                     | `integer (≥1)`    |    Y     | n/a     | count               |                      | `Derivation/code/physics/metriplectic/schemas/echo_spec-v1c.schema.json:30` |
+| `seeds`                     | `integer[]`       |    Y     | n/a     | n/a                 | `minItems: 1`        | `Derivation/code/physics/metriplectic/schemas/echo_spec-v1c.schema.json:31` |
+| `lambdas`                   | `number[]`        |    Y     | n/a     | n/a                 | `minItems: 1`, elements `≥0` | `Derivation/code/physics/metriplectic/schemas/echo_spec-v1c.schema.json:32` |
+| `budget`                    | `number (≥0)`     |    Y     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/echo_spec-v1c.schema.json:33` |
+
+**Producers/Consumers:** n/a
+**Related equations (anchors only):** n/a
+**Related symbols/constants:** n/a
+**Examples (if present):** n/a
+**Invariants/Validation rules:** Same as v1.
+
+---
+
+#### Assisted Echo Artifacts (v1)  <a id="schema-echo-artifacts-v1"></a>
+
+**Kind:** file
+**Versioning (if present):** none
+**Defined at:** `Derivation/code/physics/metriplectic/schemas/echo_artifacts-v1.schema.json:1-30` • HEAD
+
+**Definition (verbatim snippet from source):**
+
+```json
+{
+  "$id": "echo_artifacts-v1.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Assisted Echo Artifacts (v1)",
+  "type": "object",
+  "required": ["seeds", "lambdas", "ceg_summary", "per_seed"],
+  "properties": {
+    "seeds": {"type": "array", "items": {"type": "integer"}},
+    "lambdas": {"type": "array", "items": {"type": "number"}},
+    "grid": {"type": "object"},
+    "params": {"type": "object"},
+    "dt": {"type": "number"},
+    "steps": {"type": "integer"},
+    "per_seed": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["seed", "baseline_err", "assisted_err", "ceg"],
+        "properties": {
+          "seed": {"type": "integer"},
+          "baseline_err": {"type": "number"},
+          "assisted_err": {"type": "object"},
+          "ceg": {"type": "object"}
+        }
+      }
+    },
+    "ceg_summary": {"type": "object"}
+  },
+  "additionalProperties": true
+}
+```
+
+**Fields (expand from source; do not invent):**
+
+| Field                         | Type           | Required | Default | Units/Normalization | Description (lifted) | Source                                                                       |
+| ----------------------------- | -------------- | :------: | ------- | ------------------- | -------------------- | ---------------------------------------------------------------------------- |
+| `seeds`                       | `integer[]`    |    Y     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/echo_artifacts-v1.schema.json:8`  |
+| `lambdas`                     | `number[]`     |    Y     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/echo_artifacts-v1.schema.json:9`  |
+| `grid`                        | `object`       |    N     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/echo_artifacts-v1.schema.json:10` |
+| `params`                      | `object`       |    N     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/echo_artifacts-v1.schema.json:11` |
+| `dt`                          | `number`       |    N     | n/a     | time step           |                      | `Derivation/code/physics/metriplectic/schemas/echo_artifacts-v1.schema.json:12` |
+| `steps`                       | `integer`      |    N     | n/a     | count               |                      | `Derivation/code/physics/metriplectic/schemas/echo_artifacts-v1.schema.json:13` |
+| `per_seed`                    | `object[]`     |    Y     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/echo_artifacts-v1.schema.json:14-26` |
+| `per_seed[].seed`             | `integer`      |    Y     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/echo_artifacts-v1.schema.json:20` |
+| `per_seed[].baseline_err`     | `number`       |    Y     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/echo_artifacts-v1.schema.json:21` |
+| `per_seed[].assisted_err`     | `object`       |    Y     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/echo_artifacts-v1.schema.json:22` |
+| `per_seed[].ceg`              | `object`       |    Y     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/echo_artifacts-v1.schema.json:23` |
+| `ceg_summary`                 | `object`       |    Y     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/echo_artifacts-v1.schema.json:27` |
+
+**Producers/Consumers:** n/a
+**Related equations (anchors only):** n/a
+**Related symbols/constants:** n/a
+**Examples (if present):** n/a
+**Invariants/Validation rules:** `per_seed[*]` objects must include `seed`, `baseline_err`, `assisted_err`, `ceg`.
+
+---
+
+#### assisted_echo prereg v1c schema  <a id="schema-assisted-echo-t4-prereg-v1c"></a>
+
+**Kind:** config
+**Versioning (if present):** none
+**Defined at:** `Derivation/code/physics/metriplectic/schemas/assisted-echo-t4-prereg-v1c.schema.json:1-9` • HEAD
+
+**Definition (verbatim snippet from source):**
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:metriplectic:assisted-echo-t4-prereg-v1c",
+  "title": "assisted_echo prereg v1c schema",
+  "type": "object",
+  "metadata": { "tag": "assisted-echo-t4-prereg-v1c" },
+  "properties": {},
+  "required": []
+}
+```
+
+**Fields (expand from source; do not invent):**
+
+| Field | Type | Required | Default | Units/Normalization | Description (lifted) | Source |
+| ----- | ---- | :------: | ------- | ------------------- | -------------------- | ------ |
+| —     | —    |    —     | —       | —                   | No fields (empty `properties` and `required`). | `Derivation/code/physics/metriplectic/schemas/assisted-echo-t4-prereg-v1c.schema.json:1-9` |
+
+**Producers/Consumers:** n/a
+**Related equations (anchors only):** n/a
+**Related symbols/constants:** n/a
+**Examples (if present):** n/a
+**Invariants/Validation rules:** none specified.
+
+---
+
+#### KG Dispersion Run Log (metriplectic)  <a id="schema-kg-dispersion-v1"></a>
+
+**Kind:** file  
+**Versioning (if present):** `version` field  
+**Defined at:** `Derivation/code/physics/metriplectic/schemas/KG-dispersion-v1.schema.json:1-14` • HEAD
+
+**Definition (verbatim snippet from source):**
+
+```json
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "KG Dispersion Run Log",
+  "version": "1.0.0",
+  "type": "object",
+  "tag": "KG-dispersion-v1",
+  "properties": {
+    "params": { "type": "object" },
+    "fit": { "type": "object" },
+    "gate": { "type": "object" },
+    "policy": { "type": "object" }
+  },
+  "required": ["tag", "type"]
+}
+```
+
+**Fields (expand from source; do not invent):**
+
+| Field      | Type     | Required | Default | Units/Normalization | Description (lifted) | Source |
+| ---------- | -------- | :------: | ------- | ------------------- | -------------------- | ------ |
+| `params`   | `object` |    N     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/KG-dispersion-v1.schema.json:8` |
+| `fit`      | `object` |    N     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/KG-dispersion-v1.schema.json:9` |
+| `gate`     | `object` |    N     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/KG-dispersion-v1.schema.json:10` |
+| `policy`   | `object` |    N     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/KG-dispersion-v1.schema.json:11` |
+
+**Producers/Consumers:** n/a  
+**Related equations (anchors only):** n/a  
+**Related symbols/constants:** n/a  
+**Examples (if present):** n/a  
+**Invariants/Validation rules:** `required` includes `"tag"` and `"type"`.
+
+---
+
+#### KG Noether Energy/Momentum Invariants Log (v1)  <a id="schema-kg-noether-v1"></a>
+
+**Kind:** file  
+**Versioning (if present):** none  
+**Defined at:** `Derivation/code/physics/metriplectic/schemas/KG-noether-v1.schema.json:1-35` • HEAD
+
+**Definition (verbatim snippet from source):**
+
+```json
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "KG Noether Energy/Momentum Invariants Log (v1)",
+  "tag": "KG-noether-v1",
+  "type": "object",
+  "properties": {
+    "tag": { "type": "string", "const": "KG-noether-v1" },
+    "dt": { "type": "number", "minimum": 0 },
+    "steps": { "type": "integer", "minimum": 1 },
+    "N": { "type": "integer", "minimum": 1 },
+    "max_per_step_delta": {
+      "type": "object",
+      "properties": {
+        "E_disc": { "type": "number" },
+        "P_disc": { "type": "number" }
+      },
+      "required": ["E_disc", "P_disc"]
+    },
+    "passed": {
+      "type": "object",
+      "properties": {
+        "energy": { "type": "boolean" },
+        "momentum": { "type": "boolean" },
+        "reversibility": { "type": "boolean" }
+      },
+      "required": ["energy", "momentum", "reversibility"]
+    },
+    "csv": { "type": "string" },
+    "figure": { "type": "string" },
+    "grid": { "type": "object" },
+    "params": { "type": "object" }
+  },
+  "required": ["dt", "steps", "N", "max_per_step_delta", "passed" ],
+  "additionalProperties": true
+}
+```
+
+**Fields (expand from source; do not invent):**
+
+| Field                     | Type      | Required | Default | Units/Normalization | Description (lifted) | Source |
+| ------------------------- | --------- | :------: | ------- | ------------------- | -------------------- | ------ |
+| `tag`                     | `string`  |    N     | n/a     | const               | `"KG-noether-v1"`    | `Derivation/code/physics/metriplectic/schemas/KG-noether-v1.schema.json:7` |
+| `dt`                      | `number`  |    Y     | n/a     | ≥0                  |                      | `Derivation/code/physics/metriplectic/schemas/KG-noether-v1.schema.json:8` |
+| `steps`                   | `integer` |    Y     | n/a     | ≥1                  |                      | `Derivation/code/physics/metriplectic/schemas/KG-noether-v1.schema.json:9` |
+| `N`                       | `integer` |    Y     | n/a     | ≥1                  |                      | `Derivation/code/physics/metriplectic/schemas/KG-noether-v1.schema.json:10` |
+| `max_per_step_delta`      | `object`  |    Y     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/KG-noether-v1.schema.json:11-18` |
+| `max_per_step_delta.E_disc` | `number`|    Y     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/KG-noether-v1.schema.json:14` |
+| `max_per_step_delta.P_disc` | `number`|    Y     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/KG-noether-v1.schema.json:15` |
+| `passed.energy`           | `boolean` |    Y     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/KG-noether-v1.schema.json:22` |
+| `passed.momentum`         | `boolean` |    Y     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/KG-noether-v1.schema.json:23` |
+| `passed.reversibility`    | `boolean` |    Y     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/KG-noether-v1.schema.json:24` |
+| `csv`                     | `string`  |    N     | n/a     | path                |                      | `Derivation/code/physics/metriplectic/schemas/KG-noether-v1.schema.json:28` |
+| `figure`                  | `string`  |    N     | n/a     | path                |                      | `Derivation/code/physics/metriplectic/schemas/KG-noether-v1.schema.json:29` |
+| `grid`                    | `object`  |    N     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/KG-noether-v1.schema.json:30` |
+| `params`                  | `object`  |    N     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/KG-noether-v1.schema.json:31` |
+
+**Producers/Consumers:** n/a  
+**Related equations (anchors only):** `../Derivation/VALIDATION_METRICS.md#` (Noether gates; link to exact anchors when present)  
+**Related symbols/constants:** `../Derivation/SYMBOLS.md#` (E, P)  
+**Examples (if present):** n/a  
+**Invariants/Validation rules:** `dt ≥ 0`; `steps ≥ 1`; `N ≥ 1`; `max_per_step_delta` includes `E_disc` and `P_disc`; `passed` requires all three booleans.
+
+---
+
+#### KG Light Cone Run Log (v1)  <a id="schema-kg-cone-v1"></a>
+
+**Kind:** file  
+**Versioning (if present):** `version` field  
+**Defined at:** `Derivation/code/physics/metriplectic/schemas/KG-cone-v1.schema.json:1-14` • HEAD
+
+**Definition (verbatim snippet from source):**
+
+```json
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "KG Light Cone Run Log",
+  "version": "1.0.0",
+  "type": "object",
+  "tag": "KG-cone-v1",
+  "properties": {
+    "params": { "type": "object" },
+    "fit": { "type": "object" },
+    "gate": { "type": "object" },
+    "policy": { "type": "object" }
+  },
+  "required": ["tag", "type"]
+}
+```
+
+**Fields (expand from source; do not invent):**
+
+| Field    | Type     | Required | Default | Units/Normalization | Description (lifted) | Source |
+| -------- | -------- | :------: | ------- | ------------------- | -------------------- | ------ |
+| `params` | `object` |    N     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/KG-cone-v1.schema.json:8` |
+| `fit`    | `object` |    N     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/KG-cone-v1.schema.json:9` |
+| `gate`   | `object` |    N     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/KG-cone-v1.schema.json:10` |
+| `policy` | `object` |    N     | n/a     | n/a                 |                      | `Derivation/code/physics/metriplectic/schemas/KG-cone-v1.schema.json:11` |
+
+**Producers/Consumers:** n/a  
+**Related equations (anchors only):** n/a  
+**Related symbols/constants:** n/a  
+**Examples (if present):** n/a  
+**Invariants/Validation rules:** `required` includes `"tag"` and `"type"`.
+
+---
+
+#### Intelligence Model — Substrate v1 summary  <a id="schema-im-substrate-v1"></a>
+
+**Kind:** file  
+**Versioning (if present):** none  
+**Defined at:** `Derivation/code/physics/intelligence_model/schemas/im-substrate-v1.schema.json:1-93` • HEAD
+
+**Definition (verbatim snippet from source):**
+
+```json
+{
+  "tag": "im-substrate-v1",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Intelligence Model — Substrate v1 summary",
+  "type": "object",
+  "required": [
+    "tag",
+    "domain",
+    "provenance",
+    "env",
+    "compliance",
+    "kpi",
+    "artifacts",
+    "policy",
+    "gate_matrix",
+    "status"
+  ],
+  "properties": {
+    "tag": { "type": "string", "const": "im-substrate-v1" },
+    "domain": { "type": "string", "const": "intelligence_model" },
+    "provenance": {
+      "type": "object",
+      "required": ["commit_full", "commit"],
+      "properties": {
+        "commit_full": { "type": "string" },
+        "commit": { "type": "string" }
+      }
+    },
+    "env": {
+      "type": "object",
+      "properties": {
+        "threads": { "type": ["integer", "null"] },
+        "blas": { "type": ["string", "null"] }
+      }
+    },
+    "compliance": {
+      "type": "object",
+      "required": [
+        "probe_only",
+        "real_time",
+        "void_faithful",
+        "determinism"
+      ],
+      "properties": {
+        "probe_only": { "type": "boolean" },
+        "real_time": { "type": "boolean" },
+        "void_faithful": { "type": "boolean" },
+        "determinism": { "type": "boolean" },
+        "determinism_clause": { "type": ["string", "null"] }
+      }
+    },
+    "dimensionless": {
+      "type": "object",
+      "properties": {
+        "Pi_walk": { "type": ["number", "null"] },
+        "Pi_step": { "type": ["number", "null"] }
+      }
+    },
+    "kpi": {
+      "type": "object",
+      "required": ["shared_score_F"],
+      "properties": {
+        "shared_score_F": {
+          "type": "object",
+          "required": ["value"],
+          "properties": {
+            "value": { "type": "number" },
+            "note": { "type": ["string", "null"] }
+          }
+        }
+      }
+    },
+    "artifacts": {
+      "type": "object",
+      "properties": {
+        "figures": { "type": "array", "items": { "type": "string" } },
+        "logs": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "policy": {
+      "type": "object",
+      "properties": {
+        "approved": { "type": "boolean" },
+        "engineering_only": { "type": "boolean" },
+        "quarantined": { "type": "boolean" },
+        "tag": { "type": "string" },
+        "proposal": { "type": ["string", "null"] }
+      }
+    },
+    "gate_matrix": { "type": "object" },
+    "status": { "type": "string", "enum": ["success", "failed", "aborted", "pending"] }
+  }
+}
+```
+
+**Fields (expand from source; do not invent):**
+
+| Field                              | Type                 | Required | Default | Units/Normalization | Description (lifted) | Source |
+| ---------------------------------- | -------------------- | :------: | ------- | ------------------- | -------------------- | ------ |
+| `tag`                              | `string` (const)     |    Y     | n/a     | const               | `"im-substrate-v1"`  | `Derivation/code/physics/intelligence_model/schemas/im-substrate-v1.schema.json:19` |
+| `domain`                           | `string` (const)     |    Y     | n/a     | const               | `"intelligence_model"` | `Derivation/code/physics/intelligence_model/schemas/im-substrate-v1.schema.json:20` |
+| `provenance.commit_full`           | `string`             |    Y     | n/a     | n/a                 |                      | `Derivation/code/physics/intelligence_model/schemas/im-substrate-v1.schema.json:25` |
+| `provenance.commit`                | `string`             |    Y     | n/a     | n/a                 |                      | `Derivation/code/physics/intelligence_model/schemas/im-substrate-v1.schema.json:26` |
+| `env.threads`                      | `integer|null`       |    N     | n/a     | n/a                 |                      | `Derivation/code/physics/intelligence_model/schemas/im-substrate-v1.schema.json:32` |
+| `env.blas`                         | `string|null`        |    N     | n/a     | n/a                 |                      | `Derivation/code/physics/intelligence_model/schemas/im-substrate-v1.schema.json:33` |
+| `compliance.probe_only`            | `boolean`            |    Y     | n/a     | n/a                 |                      | `Derivation/code/physics/intelligence_model/schemas/im-substrate-v1.schema.json:45` |
+| `compliance.real_time`             | `boolean`            |    Y     | n/a     | n/a                 |                      | `Derivation/code/physics/intelligence_model/schemas/im-substrate-v1.schema.json:46` |
+| `compliance.void_faithful`         | `boolean`            |    Y     | n/a     | n/a                 |                      | `Derivation/code/physics/intelligence_model/schemas/im-substrate-v1.schema.json:47` |
+| `compliance.determinism`           | `boolean`            |    Y     | n/a     | n/a                 |                      | `Derivation/code/physics/intelligence_model/schemas/im-substrate-v1.schema.json:48` |
+| `compliance.determinism_clause`    | `string|null`        |    N     | n/a     | n/a                 |                      | `Derivation/code/physics/intelligence_model/schemas/im-substrate-v1.schema.json:49-50` |
+| `dimensionless.Pi_walk`            | `number|null`        |    N     | n/a     | unitless            |                      | `Derivation/code/physics/intelligence_model/schemas/im-substrate-v1.schema.json:55` |
+| `dimensionless.Pi_step`            | `number|null`        |    N     | n/a     | unitless            |                      | `Derivation/code/physics/intelligence_model/schemas/im-substrate-v1.schema.json:56-57` |
+| `kpi.shared_score_F.value`         | `number`             |    Y     | n/a     | unitless            |                      | `Derivation/code/physics/intelligence_model/schemas/im-substrate-v1.schema.json:67` |
+| `kpi.shared_score_F.note`          | `string|null`        |    N     | n/a     | n/a                 |                      | `Derivation/code/physics/intelligence_model/schemas/im-substrate-v1.schema.json:68-69` |
+| `artifacts.figures[]`              | `string[]`           |    N     | n/a     | paths               |                      | `Derivation/code/physics/intelligence_model/schemas/im-substrate-v1.schema.json:76` |
+| `artifacts.logs[]`                 | `string[]`           |    N     | n/a     | paths               |                      | `Derivation/code/physics/intelligence_model/schemas/im-substrate-v1.schema.json:77-78` |
+| `policy.approved`                  | `boolean`            |    N     | n/a     | n/a                 |                      | `Derivation/code/physics/intelligence_model/schemas/im-substrate-v1.schema.json:83` |
+| `policy.engineering_only`          | `boolean`            |    N     | n/a     | n/a                 |                      | `Derivation/code/physics/intelligence_model/schemas/im-substrate-v1.schema.json:84` |
+| `policy.quarantined`               | `boolean`            |    N     | n/a     | n/a                 |                      | `Derivation/code/physics/intelligence_model/schemas/im-substrate-v1.schema.json:85` |
+| `policy.tag`                       | `string`             |    N     | n/a     | n/a                 |                      | `Derivation/code/physics/intelligence_model/schemas/im-substrate-v1.schema.json:86` |
+| `policy.proposal`                  | `string|null`        |    N     | n/a     | n/a                 |                      | `Derivation/code/physics/intelligence_model/schemas/im-substrate-v1.schema.json:87-88` |
+| `gate_matrix`                      | `object`             |    N     | n/a     | n/a                 |                      | `Derivation/code/physics/intelligence_model/schemas/im-substrate-v1.schema.json:90` |
+| `status`                           | `string (enum)`      |    Y     | n/a     | n/a                 | enum: `"success"`, `"failed"`, `"aborted"`, `"pending"` | `Derivation/code/physics/intelligence_model/schemas/im-substrate-v1.schema.json:91-92` |
+
+**Producers/Consumers:** n/a  
+**Related equations (anchors only):** n/a  
+**Related symbols/constants:** n/a  
+**Examples (if present):** n/a  
+**Invariants/Validation rules:** All fields listed under top-level `"required"` must be present in documents conforming to this schema.
+
+---
 <!-- BEGIN AUTOSECTION: SCHEMAS-INDEX -->
 <!-- Tool-maintained list of [Schema](#schema-...) anchors for quick lookup -->
- 
+
 ### Schema Index
- 
+
 - [ADCEvent](#schema-adcevent)
 - [BaseEvent](#schema-baseevent)
 - [BiasHintEvent](#schema-biashintevent)
@@ -1440,10 +2061,5 @@ class GeometryProbeAdapter(Protocol):
 - [VTTouchEvent](#schema-vttouchevent)
 - [KG Energy Oscillation Summary (metriplectic)](#schema-kg-energy-osc)
 - [KG-Lite Chunk Envelope v1](#schema-kg-lite-chunkenvelope-v1)
- 
+
 <!-- END AUTOSECTION: SCHEMAS-INDEX -->
-
-## Change Log
-
-- 2025-10-04 • schemas compiled from repository source • 6b63a5e
-- 2025-10-13 • added KG energy-oscillation summary schema (metriplectic) • 66eb296

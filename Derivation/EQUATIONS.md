@@ -1830,6 +1830,72 @@ $$
 **Notes:** Procedural scaling check used by RB-Gate. TODO: add $\lambda_c$ to SYMBOLS.md or CONSTANTS.md (critical wavelength), and link to BC-specific $k_c$ values in CONSTANTS.md when registered.
 
 <!-- markdownlint-disable MD033 -->
+
+#### VDM-E-125 - Strang composition map (JMJ) and order
+**Context:** [RESULTS_Metriplectic_JMJ_RD_v1.md](Derivation/Metriplectic/Metriplectic_JMJ_RD/RESULTS_Metriplectic_JMJ_RD_v1.md:71-75) • Commit: HEAD • Last Updated: 2025-11-05T05:45:01Z
+
+$$
+\Phi^{\mathrm{JMJ}}_{\Delta t} \;=\; \Phi^{\mathrm{J}}_{\Delta t/2} \;\circ\; \Phi^{\mathrm{M}}_{\Delta t} \;\circ\; \Phi^{\mathrm{J}}_{\Delta t/2}, \qquad \text{global error } \mathcal{O}(\Delta t^2)
+$$
+
+**Notes:** Composition used throughout metriplectic runners; defect scaling and commutator context in [VDM-E-091](#vdm-e-091) and [VDM-E-103](#vdm-e-103).
+
+---
+
+#### VDM-E-126 - Taylor–Green energy decay (LBM→NS viscosity recovery)
+**Context:** [taylor_green_benchmark.py](Derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py:93-105) • Commit: HEAD • Last Updated: 2025-11-05T05:45:01Z
+
+$$
+E(t) \;=\; E_0 \exp\!\Big(-2\,\nu\,k^2\big(\tfrac{1}{n_x^2}+\tfrac{1}{n_y^2}\big)\,t\Big)
+$$
+
+Slope inversion (fit on $\log E$ vs $t$):
+$$
+\nu_{\mathrm{fit}} \;=\; -\frac{s}{\,2 k^2\!\big(\tfrac{1}{n_x^2}+\tfrac{1}{n_y^2}\big)\,}
+$$
+
+**Notes:** Used to recover $\nu$ with ≤5% error gate; appears in fluids validation harness.
+
+---
+
+#### VDM-E-127 - Discrete Lyapunov functional (grid form; RD DG)
+**Context:** [PROPOSAL_RD_Discrete_Conservation_vs_Balance.md](Derivation/Conservation_Law/PROPOSAL_RD_Discrete_Conservation_vs_Balance.md:91-101) • Commit: HEAD • Last Updated: 2025-11-05T05:45:01Z
+
+$$
+\mathcal{L}_h[W] \;=\; \sum_{i} \Big[ \tfrac{D}{2}\,\lvert \nabla_h W_i \rvert^2 + \hat V(W_i) \Big] \,\Delta x, \qquad \hat V'(W) = -\,f(W)
+$$
+
+Centered finite-difference operators:
+$$
+\nabla_h W_i \,=\, \frac{W_{i+1}-W_{i-1}}{2\,\Delta x}, \qquad
+\Delta_h W_i \,=\, \frac{W_{i+1}-2W_i+W_{i-1}}{\Delta x^2}.
+$$
+
+**Notes:** Obj‑C discrete form paired with DG step; report $\Delta \mathcal{L}_h \le 0$ per step under periodic/no‑flux BCs. Related continuum form in [VDM-E-016](#vdm-e-016); DG monotonicity statement in [VDM-E-099](#vdm-e-099).
+#### VDM-E-128 - KG discrete energy invariant (Noether, leapfrog)
+**Context:** [RESULTS_KG_Noether_Invariants_v1.md](Derivation/Metriplectic/RESULTS_KG_Noether_Invariants_v1.md:34-38) • Commit: a48f2d2 • Last Updated: 2025-11-05T06:44:59Z
+
+$$
+E_d \;=\; \tfrac{1}{2}\,\lVert \pi_{n+1/2}\rVert^2 \;+\; \tfrac{1}{2}\,\langle \phi_{n+1},\, K\,\phi_n\rangle,
+\qquad
+K\phi \;=\; -\,c^2\,\Delta_h \phi \;+\; m^2\,\phi
+$$
+
+**Notes:** Discrete Noether energy invariant for linear KG with periodic spectral derivatives (leapfrog staggering). Additional location: [kg_noether.py](Derivation/code/physics/metriplectic/kg_noether.py:62-70). TODO: add $\pi_{n+1/2}$ to SYMBOLS.md; confirm $K,\Delta_h$ entries (see cited files).
+
+---
+
+#### VDM-E-129 - KG discrete momentum invariant (Noether, leapfrog)
+**Context:** [RESULTS_KG_Noether_Invariants_v1.md](Derivation/Metriplectic/RESULTS_KG_Noether_Invariants_v1.md:40-42) • Commit: a48f2d2 • Last Updated: 2025-11-05T06:44:59Z
+
+$$
+P_d \;=\; \left\langle \pi_{n+1/2},\; \nabla_h\!\left(\tfrac{1}{2}\,(\phi_{n+1}+\phi_n)\right) \right\rangle
+$$
+
+**Notes:** Discrete Noether momentum invariant under spatial translations (periodic BCs). Additional location: [kg_noether.py](Derivation/code/physics/metriplectic/kg_noether.py:73-80). TODO: add $\pi_{n+1/2}$ to SYMBOLS.md; ensure $\nabla_h$ is linked to existing entry.
+
+---
+
 <a id="vdm-e-105"></a>
 <!-- markdownlint-enable MD033 -->
 
@@ -1843,16 +1909,53 @@ $$
 **Notes:** Spec-level speed law used by the Telegraph-from-Relaxation instrument to calibrate finite-speed transport; appears across causality meters. TODO: add $c,\,D,\,\tau$ to SYMBOLS.md (see source lines).
 
 ---
+#### VDM-E-121 - Rayleigh number (Boussinesq)
+**Context:** Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md:31-34 • Commit: a48f2d2 • Last Updated: 2025-11-05T06:53:43Z
 
-## Change Log
-- VDM-E-105 • cbc3dd1 • Derivation/Transport/Telegraph_From_Relaxation/T1_PROPOSAL_Telegraph_From_Relaxation_v1.md added
-- VDM-E-115 • a48f2d2 • Derivation/Axioms/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md added
-- VDM-E-116 • a48f2d2 • Derivation/Axioms/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md added
-- VDM-E-117 • a48f2d2 • Derivation/Axioms/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md added
-- VDM-E-118 • a48f2d2 • Derivation/Axioms/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md added
-- VDM-E-119 • a48f2d2 • Derivation/Axioms/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md added
-- VDM-E-120 • a48f2d2 • Derivation/Axioms/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md added
-- VDM-E-121 • a48f2d2 • Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md added
-- VDM-E-122 • a48f2d2 • Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md added
-- VDM-E-123 • a48f2d2 • Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md added
-- VDM-E-124 • a48f2d2 • Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md added
+$$
+\mathrm{Ra} = \frac{g\,\alpha\,\Delta T\,H^3}{\nu\,\kappa}
+$$
+
+**Notes:** Control parameter for Rayleigh–Bénard convection; used for onset thresholds and depth scaling in RB‑Gate.
+
+---
+
+#### VDM-E-122 - Nondimensional RBC equations (momentum, heat, continuity)
+**Context:** Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md:72-79 • Commit: a48f2d2 • Last Updated: 2025-11-05T06:53:43Z
+
+$$
+\begin{aligned}
+\partial_t \mathbf{u} + (\mathbf{u}\cdot\nabla)\,\mathbf{u} &= -\nabla p + \mathrm{Pr}\,\nabla^2 \mathbf{u} + \mathrm{Pr}\,\mathrm{Ra}\,\theta\,\hat{\mathbf{z}},\\
+\partial_t \theta + (\mathbf{u}\cdot\nabla)\,\theta - w &= \nabla^2 \theta,\\
+\nabla\cdot\mathbf{u} &= 0.
+\end{aligned}
+$$
+
+**Notes:** Oberbeck–Boussinesq RBC in units with length $H$ and time $H^2/\kappa$; appears in RB‑Gate diagnostics.
+
+---
+
+#### VDM-E-123 - Nusselt number and vertical heat flux
+**Context:** Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md:92-97 • Commit: a48f2d2 • Last Updated: 2025-11-05T06:53:43Z
+
+$$
+\mathrm{Nu} = \frac{\langle q_z \rangle}{k\,\Delta T / H}, \qquad q_z = \rho c_p w T - k\,\partial_z T
+$$
+
+and in nondimensional form
+$$
+\mathrm{Nu} = 1 + \langle w\,\theta \rangle - \langle \partial_z \theta \rangle.
+$$
+
+**Notes:** Used by RB‑Gate to detect supercritical heat‑transport departure from conduction.
+
+---
+
+#### VDM-E-124 - Depth scaling at onset
+**Context:** Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md:127-128 • Commit: a48f2d2 • Last Updated: 2025-11-05T06:53:43Z
+
+$$
+H \mapsto 2H \;\Rightarrow\; \mathrm{Ra} \mapsto 8\,\mathrm{Ra}, \qquad \lambda_c \mapsto \approx 2\,\lambda_c.
+$$
+
+**Notes:** RB‑Gate “Gate‑H” depth test; verifies correct nondimensional scaling with layer thickness.

@@ -27,6 +27,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 ## 2) Boundary Conditions (by geometry and field/channel)
 
 ##### Periodic BC for 1D RD dispersion  <a id="bc-periodic-1d-rd-dispersion"></a>
+
 **Context:** Derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py:34-37, 106, 125 • c31d0c9 • RD dispersion validation
 
 **Field(s):** $\phi$ (linearized Fisher-KPP field $u$) • TODO: add anchor `sym-phi` in SYMBOLS.md:10 for $\boldsymbol{\phi}(\mathbf{x},t)$  
@@ -44,6 +45,7 @@ $$
 ---
 
 ##### Neumann (zero-gradient) BC for 1D RD front speed  <a id="bc-neumann-1d-rd-front"></a>
+
 **Context:** Derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py:28-36, 183 • c31d0c9 • RD front-speed validation
 
 **Field(s):** $\phi$ (Fisher-KPP field $u$) • TODO: add anchor `sym-phi` in SYMBOLS.md:10 for $\boldsymbol{\phi}(\mathbf{x},t)$  
@@ -62,6 +64,7 @@ $$
 ---
 
 ##### Periodic BC for 2D Taylor-Green vortex  <a id="bc-periodic-2d-taylor-green"></a>
+
 **Context:** Derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py:58 • c31d0c9 • Fluids (LBM) Taylor-Green benchmark
 
 **Field(s):** LBM populations $f_i$, macroscopic velocity $(u_x, u_y)$, density $\rho$  
@@ -80,6 +83,7 @@ $$
 ---
 
 ##### Bounce-back no-slip walls for 2D lid cavity  <a id="bc-bounce-back-lid-cavity"></a>
+
 **Context:** Derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py:379, fluids/lbm2d.py:175, 303-313 • c31d0c9 • Fluids (LBM) lid-driven cavity benchmark
 
 **Field(s):** LBM populations $f_i$ at solid boundaries  
@@ -99,6 +103,7 @@ where $\bar{i}$ is the opposite direction to $i$ (e.g., $\mathrm{OPP}[i]$ in D2Q
 ---
 
 ##### Zou/He velocity BC for lid cavity top wall  <a id="bc-zou-he-lid-top"></a>
+
 **Context:** Derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:181-197, lid_cavity_benchmark.py:379 • c31d0c9 • Fluids (LBM) lid-driven cavity
 
 **Field(s):** LBM populations at top boundary (moving lid)  
@@ -122,6 +127,7 @@ $$
 ---
 
 ##### Periodic BC for walker glow observability (1D/2D)  <a id="bc-periodic-walker-glow"></a>
+
 **Context:** Derivation/code/obs/walker_glow.py:22, 76, 94 • c31d0c9 • Observability layer
 
 **Field(s):** Glow intensity $M$, fluxes $F$  
@@ -137,6 +143,7 @@ Wraparound neighbors on a regular grid (1D or 2D); incoming flux from outside th
 ---
 
 ##### Neumann BC for walker glow observability (1D/2D)  <a id="bc-neumann-walker-glow"></a>
+
 **Context:** Derivation/code/obs/walker_glow.py:23, 79, 100 • c31d0c9 • Observability layer
 
 **Field(s):** Glow intensity $M$, fluxes $F$  
@@ -152,6 +159,7 @@ Boundary incoming from outside is zero (no flux across domain boundary).
 ---
 
 ##### Periodic or Neumann BC for flux-form diffusion  <a id="bc-flux-diffusion"></a>
+
 **Context:** Derivation/code/physics/reaction_diffusion/flux_core.py:11-16, 58-118 • c31d0c9 • Conservative flux-form RD
 
 **Field(s):** $\phi$ (general RD field) • TODO: add anchor `sym-phi` in SYMBOLS.md:10 for $\boldsymbol{\phi}(\mathbf{x},t)$  
@@ -171,12 +179,14 @@ With periodic BCs, fluxes wrap at boundaries; with Neumann BCs, boundary fluxes 
 ---
 
 ##### Axiom 5: Periodic or no-flux (Neumann) BCs for continuum integration by parts  <a id="bc-axiom5"></a>
+
 **Context:** agent-onboarding/axiomatic_theory_development.md:42 • c31d0c9 • Axiomatic foundations
 
 **Field(s):** General continuum field $\phi(\mathbf{x}, t)$  
 **Type:** Periodic or no-flux (homogeneous Neumann)  
 **Definition (quote from source if formula exists):**
 When performing continuum integrations by parts, require one of:
+
 - Periodic BCs, or
 - No-flux (homogeneous Neumann) BCs: $\hat{n} \cdot \nabla \phi = 0$ on $\partial\Omega$
 
@@ -188,39 +198,73 @@ When performing continuum integrations by parts, require one of:
 ---
 
 ##### Absorbing (Dirichlet) boundary for agency walkers  <a id="bc-absorbing-agency-walkers"></a>
-**Context:** AGENCY_FIELD_V2.md:§Runtime Walkers • observability/gating runs (agency)   
 
-**Field(s):** Walker positions (X); optional agency map (M) (read-only)     
-**Type:** Absorbing / Dirichlet (out-of-domain removal)     
+**Context:** AGENCY_FIELD_V2.md:§Runtime Walkers • observability/gating runs (agency)
+
+**Field(s):** Walker positions (X); optional agency map (M) (read-only)
+**Type:** Absorbing / Dirichlet (out-of-domain removal)
 **Definition (quote from source if formula exists):**
 Walkers that step outside (\Omega) are removed from the simulation at that step (no re-injection or wrap). If a scalar field (M) is logged, enforce $(M|_{\partial\Omega}=0)$ for visualization.  
 
 **Applies on:** All boundaries of [walker-box-2d](#geom-walker-box-2d)  
-**Parameters:** None    
-**Implemented at:** - (spec; planned alongside agency walker runtime)   
+**Parameters:** None
+**Implemented at:** - (spec; planned alongside agency walker runtime)
 **Notes:** Models “cliff” domains where leaving the workspace terminates control; reduces reachable option-space near walls, which measurably lowers $V_{\text{useful\_bits}}$ under identical noise.
 
 ---
 
 ##### Reflecting (specular) boundary for agency walkers  <a id="bc-reflecting-agency-walkers"></a>
 
-**Context:** AGENCY_FIELD_V2.md:§Runtime Walkers • explorative runs (agency)    
-**Field(s):** Walker positions (X); optional agency map (M) (read-only)     
-**Type:** Reflecting / Neumann-like (specular reflection)   
-**Definition (quote from source if formula exists):**   
-On attempted step $(\Delta x)$ that exits $(\Omega)$, reflect the normal component at the boundary:     
-$(\Delta x\_{\perp} \leftarrow -\Delta x\_{\perp})$\, $(\Delta x\_{\parallel})$ unchanged; then apply the reflected step.   
+**Context:** AGENCY_FIELD_V2.md:§Runtime Walkers • explorative runs (agency)
+**Field(s):** Walker positions (X); optional agency map (M) (read-only)
+**Type:** Reflecting / Neumann-like (specular reflection)
+**Definition (quote from source if formula exists):**
+On attempted step $(\Delta x)$ that exits $(\Omega)$, reflect the normal component at the boundary:
+$(\Delta x\_{\perp} \leftarrow -\Delta x\_{\perp})$\, $(\Delta x\_{\parallel})$ unchanged; then apply the reflected step.
 
 **Applies on:** All boundaries of [walker-box-2d](#geom-walker-box-2d)  
-**Parameters:** None    
-**Implemented at:** - (spec; planned alongside agency walker runtime)   
-**Notes:** Preserves mass of walkers; appropriate when physical walls exist but agents can “bounce.” Typically raises reachable option-space vs. absorbing, shifting agency thresholds.     
+**Parameters:** None
+**Implemented at:** - (spec; planned alongside agency walker runtime)
+**Notes:** Preserves mass of walkers; appropriate when physical walls exist but agents can “bounce.” Typically raises reachable option-space vs. absorbing, shifting agency thresholds.
+
+---
+
+##### Periodic BC for metriplectic KG⊕RD  <a id="bc-periodic-metriplectic-kg-rd"></a>
+
+**Context:** Derivation/code/physics/metriplectic/step_spec.metriplectic.spectralDG.json:1-21 • HEAD • Metriplectic KG⊕RD specs; [Derivation/Metriplectic/RESULTS_KG_Noether_Invariants_v1.md](Derivation/Metriplectic/RESULTS_KG_Noether_Invariants_v1.md:100-105) notes “1D periodic lattice”
+
+**Field(s):** $\phi,\ \pi$ (KG J‑limb); $W$ or $\phi$ (RD M‑limb)
+**Type:** Periodic
+**Definition (quote from source if formula exists):**
+Periodic per spec (“bc”: "periodic"); spectral operators imply wraparound topology.
+  
+**Applies on:** [1d-periodic-ring](#geom-1d-periodic-ring)
+**Parameters:** $N$<sup>[↗](CONSTANTS.md#const-N)</sup>, $dx$ (spec params)
+**Implemented at:** Derivation/code/physics/metriplectic/step_spec.metriplectic.spectralDG.json:1-21; Derivation/code/physics/metriplectic/run_kg_rd_metriplectic.py:210-325 (Strang JMJ with spectral operators)
+**Notes:** J‑step is unitary on periodic grids; M‑step uses DG with spectral Laplacian option; see [RESULTS_Metriplectic_JMJ_RD_v1.md](Derivation/Metriplectic/Metriplectic_JMJ_RD/RESULTS_Metriplectic_JMJ_RD_v1.md:28-76).
+
+---
+
+##### RD harness BC enum (periodic | neumann)  <a id="bc-rd-conservation-enum"></a>
+
+**Context:** Derivation/code/physics/rd_conservation/step_spec.schema.json:11-15 • HEAD • RD conservation/balance harness schema
+
+**Field(s):** $W$ (RD field)
+**Type:** Periodic or Neumann (schema enum)
+**Definition (quote from source if formula exists):**
+`"bc": { "type": "string", "enum": ["periodic","neumann"] }`
+  
+**Applies on:** [1d-periodic-interval](#geom-1d-periodic-interval), [1d-neumann-interval](#geom-1d-neumann-interval)
+**Parameters:** As per RD harness params ($N, dx, D, r, u$)
+**Implemented at:** Derivation/code/physics/rd_conservation/step_spec.schema.json:11-15; periodic/Neumann implementations in Derivation/code/physics/reaction_diffusion/flux_core.py:58-118
+**Notes:** Matches usage elsewhere (dispersion: periodic; front-speed: Neumann). See [bc-periodic-1d-rd-dispersion](#bc-periodic-1d-rd-dispersion), [bc-neumann-1d-rd-front](#bc-neumann-1d-rd-front).
 
 ---
 
 ## 3) Initial Conditions
 
 ##### Random noise IC for RD dispersion  <a id="ic-random-noise-rd-dispersion"></a>
+
 **Context:** Derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py:106, 119 • c31d0c9
 
 **Quantity:** Linearized Fisher-KPP field $u(\mathbf{x}, 0)$ • TODO: add anchor `sym-phi` in SYMBOLS.md:10 for $\boldsymbol{\phi}(\mathbf{x},t)$  
@@ -238,6 +282,7 @@ where $\eta(x) \sim \mathcal{N}(0, 1)$ is standard Gaussian noise, and $A_0$ is 
 ---
 
 ##### Smooth tanh step IC for RD front speed  <a id="ic-tanh-step-rd-front"></a>
+
 **Context:** Derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py:157-170 • c31d0c9
 
 **Quantity:** Fisher-KPP field $u(\mathbf{x}, 0)$ • TODO: add anchor `sym-phi` in SYMBOLS.md:10 for $\boldsymbol{\phi}(\mathbf{x},t)$  
@@ -255,6 +300,7 @@ where $x_0$ is the initial front position and $w = 2.0$ is the interface width.
 ---
 
 ##### Taylor-Green vortex IC for 2D LBM  <a id="ic-taylor-green-vortex"></a>
+
 **Context:** Derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py:32-39 • c31d0c9
 
 **Quantity:** LBM velocity field $(u_x, u_y)$  
@@ -275,6 +321,7 @@ where $x, y \in 0, 1)$ are normalized coordinates, and populations $f_i$ are set
 ---
 
 ##### Equilibrium IC for LBM (lid cavity and general)  <a id="ic-lbm-equilibrium"></a>
+
 **Context:** Derivation/code/physics/fluid_dynamics/fluids/lbm2d.py:166-172 • c31d0c9
 
 **Quantity:** LBM populations $f_i$ at $t=0$  
@@ -293,6 +340,7 @@ where $w_i$ are D2Q9 weights, $\mathbf{c}_i$ are lattice velocities, and $c_s^2 
 ---
 
 ##### Near-void initial state for discrete lattice (axiom verification)  <a id="ic-near-void-axiom"></a>
+
 **Context:** Derivation/code/computational_toy_proofs/toy_QM.py:28 • c31d0c9
 
 **Quantity:** Discrete node state $W(0)$ • TODO: add anchor `sym-Wi` in SYMBOLS.md:21 for $W_i(t)$  
@@ -311,29 +359,29 @@ $$
 
 ##### Uniform quiescent agency field  <a id="ic-agency-field-quiescent"></a>
 
-**Context:** AGENCY_FIELD_V2.md:§Field Definition • cold-start runs     
+**Context:** AGENCY_FIELD_V2.md:§Field Definition • cold-start runs
 **Quantity:** Agency map $(M(\mathbf{x},0))$ (capability/affordance density; read-only for probes)  
-**Definition (quote from source if formula exists):**   
+**Definition (quote from source if formula exists):**
 $(M(\mathbf{x},0) = 0)$ on $(\Omega)$\.
 
-**Parameters:** None    
-**Randomization/Seeds:** None (deterministic)   
-**Applies to Geometry:** [walker-box-2d](#geom-walker-box-2d)   
-**Notes:** Clean baseline for observing how walkers and constraints imprint structure; pairs with absorbing or reflecting BCs above.    
+**Parameters:** None
+**Randomization/Seeds:** None (deterministic)
+**Applies to Geometry:** [walker-box-2d](#geom-walker-box-2d)
+**Notes:** Clean baseline for observing how walkers and constraints imprint structure; pairs with absorbing or reflecting BCs above.
 
 ---
 
 ##### Seeded walker distribution (Poisson)  <a id="ic-agency-walkers-poisson"></a>
 
-**Context:** AGENCY_FIELD_V2.md:§Runtime Walkers • default seeding      
-**Quantity:** Walker set $({X\_k(0)}\_{k=1}^{N\_w})$     
-**Definition (quote from source if formula exists):**   
-Sample (N_w) initial positions i.i.d. uniform on $(\Omega)$ (Poisson disc optional).    
+**Context:** AGENCY_FIELD_V2.md:§Runtime Walkers • default seeding
+**Quantity:** Walker set $({X\_k(0)}\_{k=1}^{N\_w})$
+**Definition (quote from source if formula exists):**
+Sample (N_w) initial positions i.i.d. uniform on $(\Omega)$ (Poisson disc optional).
 
-**Parameters:** (N_w) (see `walkers` in CONSTANTS.md)   
-**Randomization/Seeds:** Use `seed`<sup>[↗](CONSTANTS.md#const-seed)</sup> to control RNG for reproducibility   
-**Applies to Geometry:** [walker-box-2d](#geom-walker-box-2d)   
-**Notes:** Matches your other ICs: deterministic when seeded; supports side-by-side BC comparisons for agency thresholds.   
+**Parameters:** (N_w) (see `walkers` in CONSTANTS.md)
+**Randomization/Seeds:** Use `seed`<sup>[↗](CONSTANTS.md#const-seed)</sup> to control RNG for reproducibility
+**Applies to Geometry:** [walker-box-2d](#geom-walker-box-2d)
+**Notes:** Matches your other ICs: deterministic when seeded; supports side-by-side BC comparisons for agency thresholds.
 
 ---
 
@@ -353,6 +401,7 @@ Sample (N_w) initial positions i.i.d. uniform on $(\Omega)$ (Poisson disc option
 <!-- Tool-maintained list of [Geometry](#geom-...), [BC](#bc-...), and [IC](#ic-...) anchors -->
 
 **Geometry Anchors:**
+
 - [1d-periodic-interval](#geom-1d-periodic-interval)
 - [1d-neumann-interval](#geom-1d-neumann-interval)
 - [2d-periodic-torus](#geom-2d-periodic-torus)
@@ -362,6 +411,7 @@ Sample (N_w) initial positions i.i.d. uniform on $(\Omega)$ (Poisson disc option
 - [walker-box-2d](#geom-walker-box-2d)
 
 **BC Anchors:**
+
 - [bc-periodic-1d-rd-dispersion](#bc-periodic-1d-rd-dispersion)
 - [bc-neumann-1d-rd-front](#bc-neumann-1d-rd-front)
 - [bc-periodic-2d-taylor-green](#bc-periodic-2d-taylor-green)
@@ -371,8 +421,11 @@ Sample (N_w) initial positions i.i.d. uniform on $(\Omega)$ (Poisson disc option
 - [bc-neumann-walker-glow](#bc-neumann-walker-glow)
 - [bc-flux-diffusion](#bc-flux-diffusion)
 - [bc-axiom5](#bc-axiom5)
+- [bc-periodic-metriplectic-kg-rd](#bc-periodic-metriplectic-kg-rd)
+- [bc-rd-conservation-enum](#bc-rd-conservation-enum)
 
 **IC Anchors:**
+
 - [ic-random-noise-rd-dispersion](#ic-random-noise-rd-dispersion)
 - [ic-tanh-step-rd-front](#ic-tanh-step-rd-front)
 - [ic-taylor-green-vortex](#ic-taylor-green-vortex)
@@ -380,6 +433,7 @@ Sample (N_w) initial positions i.i.d. uniform on $(\Omega)$ (Poisson disc option
 - [ic-near-void-axiom](#ic-near-void-axiom)
 
 **Lattice Anchors:**
+
 - [nn-1d](#lattice-nn-1d)
 - [nn-2d](#lattice-nn-2d)
 - [D2Q9](#lattice-d2q9)
@@ -388,6 +442,7 @@ Sample (N_w) initial positions i.i.d. uniform on $(\Omega)$ (Poisson disc option
 <!-- END AUTOSECTION: BCIC-INDEX -->
 
 ## Change Log
+
 - 2025-10-03 • Initial creation of BC_IC_GEOMETRY.md with all BC/IC/geometries • 24ddc4d
 
 Short version: the **options-probe** itself is parametric (grid over $(E)$ and $(p\_{\text{slip}}$)), so it doesn’t belong in a BC/IC/geometry doc.

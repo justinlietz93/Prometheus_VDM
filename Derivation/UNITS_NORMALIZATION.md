@@ -1,12 +1,10 @@
 <!-- DOC-GUARD: CANONICAL -->
-<!-- RULES for maintaining this file are here: /mnt/ironwolf/git/Prometheus_VDM/prompts/units_normalization_maintenance.md -->
-<!--markdownlint-disable MD033 MD001-->
 # VDM Units & Nondimensionalization (Auto-compiled)
 
-Last updated: 2025-10-09 (commit 09f871a)
-
-**Scope:** Single source of truth for unit systems and nondimensionalization maps used in this repository.  
-**Rules:** Other docs link here; do not restate units elsewhere.  
+**Last updated**: 2025-11-05
+**Last commit**: 60c5156
+**Scope:** Single source of truth for unit systems and nondimensionalization maps used in this repository.
+**Rules:** Other docs link here; do not restate units elsewhere.
 **MathJax:** GitHub-safe `$...$` / `$$...$$` only.
 
 ---
@@ -24,6 +22,9 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 - **System:** GeV (natural units) • **Scope:** EFT/Voxtrium mapping • **Source:** `Derivation/effective_field_theory/fum_voxtrium_mapping.md:47-52 • ec0833a`
   - **Notes:** Natural units $c = \hbar = k_B = 1$; field dimension $[\phi] = \mathrm{GeV}$; Lagrangian density $[\mathcal{L}] = \mathrm{GeV}^4$ in $D=4$.
+
+- **System:** RBC nondimensional (Oberbeck-Boussinesq) • **Scope:** Thermodynamics/Convection (RBC) • **Source:** `Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md:72-80 • 60c5156`
+  - **Notes:** Using scales $H$ (length), $H^2/\kappa$ (time), and $\Delta T$ (temperature); variables are nondimensional in [VDM-E-122](Derivation/EQUATIONS.md#vdm-e-122), [VDM-E-123](Derivation/EQUATIONS.md#vdm-e-123).
 
 ---
 
@@ -97,6 +98,22 @@ x \to \frac{x}{L}, \quad t \to \frac{t}{T}
 $$
 
 **Notes:** Choose $L$ and $T$ to set desired scales for $D$ and $r$; used in experiments to report dimensionless groups $\Pi_{Dr} = D/(rL^2)$.
+
+---
+
+##### RBC Nondimensionalization (Oberbeck-Boussinesq)
+
+**Context:** Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md:72-80 • 60c5156
+
+$$
+x \to \frac{x}{H}, \quad t \to \frac{t\,\kappa}{H^2}
+$$
+
+$$
+\text{temperature scale } \Delta T;\quad \theta \text{ is nondimensional (}\Delta T\text{ scale)}
+$$
+
+**Related:** [VDM-E-122](Derivation/EQUATIONS.md#vdm-e-122), [VDM-E-123](Derivation/EQUATIONS.md#vdm-e-123).
 
 ---
 
@@ -174,6 +191,7 @@ $$
 | $N$<sup>[↗](../derivations/SYMBOLS.md#sym-N)</sup>            | sites          | Derivation/CONSTANTS.md:19 • ec0833a                       | Grid resolution: 256, 512, 1024                              |
 | $\tau$<sup>[↗](../derivations/SYMBOLS.md#sym-tau)</sup>       | time steps     | Derivation/CONSTANTS.md:29-31 • ec0833a                    | BGK relaxation: 0.8, 0.9, 1.0 (LBM)                          |
 | $U$<sup>[↗](../derivations/SYMBOLS.md#sym-U)</sup>            | LBM velocity   | Derivation/CONSTANTS.md:36,38 • ec0833a                    | Lid velocity 0.1; Taylor-Green amplitude 0.05                |
+| $\theta$<sup>[↗](Derivation/SYMBOLS.md#sym-theta)</sup>       | nondimensional | Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md:74-79 • 60c5156 | Temperature fluctuation (nondimensional)                     |
 | $\nu$<sup>[↗](../derivations/SYMBOLS.md#sym-nu)</sup>         | lattice units  | Derivation/code/common/dimensionless_vdm.py:17 • ec0833a | Computed from $\tau$: $\nu = (\tau - 0.5)/3$                 |
 | $g$<sup>[↗](../derivations/SYMBOLS.md#sym-g)</sup>            | nondimensional | Derivation/CONSTANTS.md:42,53 • ec0833a                    | Void gain: 0.5 (lid cavity), 0.12 (memory steering)          |
 | $\Theta$<sup>[↗](../derivations/SYMBOLS.md#sym-Theta)</sup>   | nondimensional | Derivation/DIMENSIONLESS_CONSTANTS.md:21 • ec0833a         | Junction gate strength; fit scale parameter                  |
@@ -201,6 +219,9 @@ $$
 | <a id="pe-lbm"></a>$\mathrm{Pe}$ (Péclet) | Nondimensional; $\mathrm{Pe} = UL/D$ | RD-fluid coupling | Derivation/SYMBOLS.md:147; Derivation/code/common/dimensionless_vdm.py:29 • ec0833a |
 | <a id="pi-dr"></a>$\Pi_{Dr}$ | Nondimensional; $\Pi_{Dr} = D/(rL^2)$ at chosen scale $L$ | RD experiments | Derivation/SYMBOLS.md:134; Derivation/DIMENSIONLESS_CONSTANTS.md:19 • ec0833a |
 | <a id="c-star"></a>$c^*$ | Nondimensional; $c^* = c/(2\sqrt{Dr})$ normalized KPP speed | RD front speed | Derivation/SYMBOLS.md:135; Derivation/CONSTANTS.md:129 • ec0833a |
+| <a id="pr-rbc"></a>$\mathrm{Pr}$ (Prandtl) | Nondimensional; appears in RBC equations | RBC setup | Derivation/SYMBOLS.md:251; Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md:74-79 • 60c5156 |
+| <a id="ra-rbc"></a>$\mathrm{Ra}$ (Rayleigh) | Nondimensional; RBC control parameter from runtime params | RBC setup | Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md:90-91 • 60c5156 |
+| <a id="nu-rbc"></a>$\mathrm{Nu}$ (Nusselt) | Nondimensional; $\mathrm{Nu}=1+\langle w\theta\rangle - \langle \partial_z \theta \rangle$ (RBC nondim) | RBC diagnostics | Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md:93-96 • 60c5156 |
 | <a id="da-damkohler"></a>$\mathrm{Da}$ (Damköhler) | Nondimensional; reaction/transport rate ratio | RD regime classification | Derivation/SYMBOLS.md:136; Derivation/code/common/dimensionless_vdm.py:33 • ec0833a |
 | <a id="void-debt"></a>$\mathcal{D}$ (Void Debt) | Nondimensional; unresolved debt / resolved flux | VDM control | Derivation/SYMBOLS.md:118; Derivation/DIMENSIONLESS_CONSTANTS.md:30 • ec0833a |
 | <a id="xi"></a>$\Xi$ (Coupling Ratio) | Nondimensional; $\Xi = g_{\mathrm{void}}/\gamma_{\mathrm{relax}}$ | VDM control | Derivation/SYMBOLS.md:119; Derivation/DIMENSIONLESS_CONSTANTS.md:38 • ec0833a |
@@ -223,6 +244,7 @@ $$
 - [LBM Lattice Units](#lbm-lattice-units--physical-units)
 - [Discrete Lattice → Continuum (RD)](#discrete-lattice--continuum-rd)
 - [Dimensionless RD Rescaling](#dimensionless-rd-rescaling)
+- [RBC Nondimensionalization](#rbc-nondimensionalization-oberbeck-boussinesq)
 - [Agency Field Dimensionless Form](#agency-field-dimensionless-form)
 - [EFT Dimensionalization](#eft-dimensionalization-fum--voxtrium)
 - [Memory Steering Normalization](#memory-steering-field-normalization)
@@ -245,6 +267,3 @@ $$
 
 <!-- END AUTOSECTION: UNITS-INDEX -->
 
-## Change Log
-
-- 2024-10-03 • Initial compilation from repository sources • ec0833a

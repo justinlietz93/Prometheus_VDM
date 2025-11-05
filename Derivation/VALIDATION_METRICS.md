@@ -692,8 +692,3 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 - [Regime Split Annotation Present](#kpi-dp-regime-split)
 - [Fisher Consistency (Finite‑Difference Cross‑Check)](#kpi-dp-fisher-consistency)
 <!-- END AUTOSECTION: METRICS-INDEX -->
-
-## Change Log
-
-- 2025-10-03 • Initial compilation from repository code and tests • 17a0b72
-- 2025-10-04 • Add tachyonic tube KPIs: cov_phys, cov_raw, residual, curvature_ok and finite_fraction
