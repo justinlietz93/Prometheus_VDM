@@ -49,12 +49,9 @@ $$
 - Labels: entries are headed by `VDM-E-###` (header anchors); no equation tags inside MathJax.
 ```
 
-**Change log (append at end):**
+**Change log:**
 
-```
-## Change Log
-- VDM-E-### • <commit> • <path> added/updated
-```
+This section has been retired, document all changes in Derivation/CHRONICLES.md
 
 **Validation:**
 

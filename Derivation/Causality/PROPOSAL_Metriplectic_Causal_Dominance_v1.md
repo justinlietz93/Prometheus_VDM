@@ -1,8 +1,4 @@
-Short take: your “walk the state, don’t scan the world” instinct is not only coherent—it’s the right lever for a falsifiable proposal. You already proved a light‑cone for the conservative (J‑only, KG) limb and you formalized the agency field on the dissipative (M) limb as a reaction–diffusion (RD) order parameter. What you haven’t logged yet is the *coupled* claim: **does the metriplectic coupling (J⊕M with A4 degeneracy) force the M‑limb’s *operational* influence to stay inside the J‑cone?** If yes (within declared thresholds), that’s a crisp “causal‑dominance” law that naturally connects to GR’s null cones and QFT microcausality—and it squarely matches the “echo” physics Google just demonstrated.  
-
----
-
-## Why I think this is a strong proposal (and not a foundation error)
+# Why I think this is a strong proposal (and not a foundation error)
 
 **1) Your canon already separates where cones do and don’t exist.**
 A2 in your repo explicitly says: finite domain‑of‑dependence is *asserted and tested* only on the hyperbolic (J‑only KG) limb; the parabolic RD limit has *no* finite cone and you only claim front‑speed predictions there. That’s the right baseline and it’s documented with evidence that the J‑only cone has slope ≈ c in your locality runner. 

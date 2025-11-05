@@ -1,10 +1,12 @@
 <!-- PROPOSAL FILE: proposals/PROPOSAL_VDM_QEcho-Convergence_Willow_v1.md -->
 
 > Provenance (commit & salted hash)
+>
 > - git commit (repo state at authoring): {git rev-parse HEAD}
 > - salted content hash (sha256): {sha256(commit || file_contents || SALT)}
 
 > Initial Approval Request (required by repo policy)
+>
 > - request_id: APR-{YYYYMMDD}-{HHMMSS}-{short_commit}
 > - requestor: Justin K. Lietz
 > - branch: {feature/qdynamics-willow-convergence}
@@ -90,11 +92,13 @@ and we publish all artifacts with hashes and PASS/FAIL JSON.
 Strang‑split the flow into $J$ and $M$ steps. Echo cycle length: $T_e$.
 
 **Core equations (discrete):**
+
 - Reversible (symplectic) step: $z^{n+\frac12} = \Phi_J^{\Delta t}(z^n)$ (symplectic integrator).
 - Dissipative step (gradient flow): $z^{n+1} = z^{n+\frac12} - \Delta t\, M(z^{n+\frac12})\,\nabla S(z^{n+\frac12})$.
 - Echo map: $\mathcal{E} = \Phi_J^{\Delta t}\circ \Phi_M^{\Delta t}\circ \Phi_J^{-\Delta t}$.
 
 **Diagnostics (all recorded to CSV & JSON):**
+
 - **Fidelity gain per cycle:** $\Delta F_k := F_{k}-F_{k-1}$, with
   $F_k = \frac{\langle z_k, z_0\rangle}{\|z_k\|\,\|z_0\|}$.
 - **Conservative drift:** $\Delta H_k := H(z_k)-H(z_0)$.
@@ -107,6 +111,7 @@ each cycle, and a structured detuning $\delta$; sweep $\sigma\in\{0,\,\sigma_0,\
 $\delta\in\{0,\,\delta_0\}$.
 
 **Artifact & log paths (must exist post‑run):**
+
 - **Image:** `artifacts/{date}/RESULTS_VDM_QEcho-Convergence_Willow_v1.png`
 - **CSV:**   `artifacts/{date}/RESULTS_VDM_QEcho-Convergence_Willow_v1.csv`
 - **JSON:**  `artifacts/{date}/RESULTS_VDM_QEcho-Convergence_Willow_v1.json`

@@ -639,7 +639,7 @@ $$
 
 with conservation law $\frac{\partial \mathcal{H}}{\partial t} + \nabla \cdot \mathbf{S} = 0$
 
-**Notes:** Energy flux for scalar field; verified using Klein-Gordon equation. Used by [VDM-A-014](ALGORITHMS.md#vdm-a-014).
+**Notes:** Energy flux for scalar field; verified using Klein-Gordon equation. Used by [VDM-A-014](ALGORITHMS.md#vdm-a-014). Additional location: Derivation/Thermodynamic_Routing/Wave_Flux_Meter/RESULTS_Wave_Flux_Meter_A_Phase_v1.md:14,33-35 where the continuity residual is written as $r = \partial_t e + \nabla\cdot\mathbf{s}$.
 
 ---
 
@@ -1446,6 +1446,212 @@ $$
 
 ---
 
-## Change Log
+#### VDM-E-114 - Scalar-wave continuity residual (energy balance)
 
-This section has been retired to honor the “latest-only” canon policy. See Derivation/CORRECTIONS.md for chronology.
+**Context:** [Derivation/Thermodynamic_Routing/Wave_Flux_Meter/RESULTS_Wave_Flux_Meter_A_Phase_v1.md](Derivation/Thermodynamic_Routing/Wave_Flux_Meter/RESULTS_Wave_Flux_Meter_A_Phase_v1.md:14) • Commit: 393ed61 • Last Updated: 2025-11-05T02:53:05Z
+
+$$
+r = \partial_t e + \nabla\cdot\mathbf{s}
+$$
+
+**Notes:** Meter definition used in Wave Flux Meter Phase A (closed box). See also [Derivation/Thermodynamic_Routing/Wave_Flux_Meter/RESULTS_Wave_Flux_Meter_A_Phase_v1.md](Derivation/Thermodynamic_Routing/Wave_Flux_Meter/RESULTS_Wave_Flux_Meter_A_Phase_v1.md:33-35). Related energy density and flux are defined in [VDM-E-047](Derivation/EQUATIONS.md#vdm-e-047) and [VDM-E-048](Derivation/EQUATIONS.md#vdm-e-048).
+
+---
+
+#### VDM-E-102 - KG linear dispersion (J-only diagnostic)
+
+**Context:** [Derivation/Agency_Field/Agency_Field.md](Derivation/Agency_Field/Agency_Field.md:140-148) • Commit: 393ed61 • Last Updated: 2025-11-05T02:53:05Z
+
+$$
+\omega^2 = c^2 k^2 + m^2
+$$
+
+**Notes:** Gate target used for KG diagnostics (slope/intercept fit). Additional location: [Derivation/CANON_PROGRESS.md](Derivation/CANON_PROGRESS.md:20).
+
+---
+
+#### VDM-E-103 - Strang error commutator scaling
+
+**Context:** [Derivation/Agency_Field/Agency_Field.md](Derivation/Agency_Field/Agency_Field.md:259-263) • Commit: 393ed61 • Last Updated: 2025-11-05T02:53:05Z
+
+$$
+\mathrm{Err}_{\text{Strang}}=\mathcal{O}\!\left(\Delta t^3,\,[A,[A,B]]+[B,[B,A]]\right)
+$$
+
+**Notes:** Procedural order diagnostic for composition methods; used to interpret two-grid slope and defect regressions when $[A,B]\neq 0$.
+
+---
+
+#### VDM-E-098 - FRW continuity residual (dust with equation-of-state parameter)
+
+**Context:** [Derivation/SYMBOLS.md](Derivation/SYMBOLS.md:215-216) • Commit: 393ed61 • Last Updated: 2025-11-05T02:53:05Z
+
+$$
+r(t)=\frac{d}{dt}\big(\rho\, a^3\big) + w\,\rho\,\frac{d}{dt}\!\big(a^3\big)
+$$
+
+**Notes:** Used for FRW continuity residual QC (dust baseline $w=0$) referenced by [Derivation/DATA_PRODUCTS.md](Derivation/DATA_PRODUCTS.md:231,261,279). TODO: add $w$ (equation-of-state parameter) to SYMBOLS.md (see [Derivation/SYMBOLS.md](Derivation/SYMBOLS.md:215)).
+
+---
+
+#### VDM-E-099 - M-step Lyapunov monotonicity (per-step)
+
+**Context:** [Derivation/Agency_Field/Agency_Field.md](Derivation/Agency_Field/Agency_Field.md:168-170) • Commit: 393ed61 • Last Updated: 2025-11-05T02:53:05Z
+
+$$
+\boxed{\ \Delta L_h \le 0\ \ \text{per step}\ }
+$$
+
+**Notes:** Axiom-level gate for discrete-gradient (metric) step. Keeps procedural statement intact as written in source. Symbol $L_h$ appears elsewhere in canon; if not present in SYMBOLS registry, align with existing entry. Additional context for metriplectic gates in [Derivation/CANON_PROGRESS.md](Derivation/CANON_PROGRESS.md:41-42).
+
+---
+
+#### VDM-E-100 - KG locality bound (front velocity)
+
+**Context:** [Derivation/Agency_Field/Agency_Field.md](Derivation/Agency_Field/Agency_Field.md:145-148) • Commit: 393ed61 • Last Updated: 2025-11-05T02:53:05Z
+
+$$
+\boxed{\ v_{\text{front}} \le c\,(1+\varepsilon)\ ,\ \ \varepsilon\ \text{set by discretization tolerance}\ }
+$$
+
+**Notes:** Conservative J-only diagnostics gate used with the KG limb (finite cone). See validated instrument summary in [Derivation/CANON_PROGRESS.md](Derivation/CANON_PROGRESS.md:19).
+
+---
+
+#### VDM-E-101 - Metriplectic degeneracy conditions (functional)
+
+**Context:** [Derivation/CANON_PROGRESS.md](Derivation/CANON_PROGRESS.md:26) • Commit: 393ed61 • Last Updated: 2025-11-05T02:53:05Z
+
+$$
+\langle J\,\delta\Sigma,\,\delta\Sigma \rangle \approx 0
+\qquad\text{and}\qquad
+\langle M\,\delta I,\,\delta I \rangle \approx 0
+$$
+
+**Notes:** Gate targets for J/M orthogonality (grid-refined tolerances used in RESULTS). TODO: add $\delta\Sigma$ and $\delta I$ to SYMBOLS.md (see [Derivation/CANON_PROGRESS.md](Derivation/CANON_PROGRESS.md:26)) if not already present.
+
+---
+
+#### VDM-E-104 - Metriplectic evolution with degeneracies (spec-level)
+
+**Context:** [Derivation/Unification/T0_Unification_Program_Spec_v1.md](Derivation/Unification/T0_Unification_Program_Spec_v1.md:52-56) • Commit: cbc3dd1 • Last Updated: 2025-11-05T03:18:26Z
+
+$$
+\dot{\delta x} \;=\; \{x,H\}_J \;+\; (x,S)_M
+$$
+
+and
+
+$$
+\{S,\,\cdot\}_J \;=\; 0
+\qquad\text{and}\qquad
+(H,\,\cdot)_M \;=\; 0
+$$
+
+**Notes:** Spec-level statement in the T0 Unification hyper-proposal; included for traceability. Additional location (background and usage): [Derivation/Metriplectic/Metriplectic_JMJ_RD/RESULTS_Metriplectic_JMJ_RD_v1.md](Derivation/Metriplectic/Metriplectic_JMJ_RD/RESULTS_Metriplectic_JMJ_RD_v1.md:34-73). Status: In progress (spec-level).
+
+---
+
+#### VDM-E-105 - Telegraph characteristic speed from relaxation (spec-level)
+
+**Context:** [Derivation/Unification/T0_Unification_Program_Spec_v1.md](Derivation/Unification/T0_Unification_Program_Spec_v1.md:326-333) • Commit: cbc3dd1 • Last Updated: 2025-11-05T03:18:26Z
+
+$$
+c \;=\; \sqrt{\frac{D}{\tau}}
+$$
+
+**Notes:** Spec-level emergence path for finite-speed transport under moment-closure/relaxation. Additional location (tentative derivations and references): [PRIVATE/Axiom-8/Status/T8-A8_Insights/Collections/code_crawler_results/Support/GPT-Gap-Fill.md](PRIVATE/Axiom-8/Status/T8-A8_Insights/Collections/code_crawler_results/Support/GPT-Gap-Fill.md:246-266). Status: In progress (spec-level). TODO: add $\tau$ to SYMBOLS.md if not already present (see context lines above).
+
+---
+
+#### VDM-E-106 - Void-debt throttled effective speed (spec-level)
+
+**Context:** [Derivation/Unification/T0_Unification_Program_Spec_v1.md](Derivation/Unification/T0_Unification_Program_Spec_v1.md:52-56) • Commit: cbc3dd1 • Last Updated: 2025-11-05T03:18:26Z
+
+$$
+c_{\mathrm{eff}} \;=\; c_0 \,\exp\!\big(-\tfrac{1}{2}\,\beta\, D\big)
+$$
+
+**Notes:** Spec-level throttling law adopted in the Unification spec; additional mention: [Derivation/Unification/T0_Unification_Program_Spec_v1.md](Derivation/Unification/T0_Unification_Program_Spec_v1.md:330-331). Status: In progress (spec-level). TODO: add $\beta$ and $D$ (void-debt) to SYMBOLS.md (see cited lines).
+
+---
+
+#### VDM-E-107 - Hierarchical interface-count scaling (spec-level, A8 program)
+
+**Context:** [Derivation/Unification/T0_Unification_Program_Spec_v1.md](Derivation/Unification/T0_Unification_Program_Spec_v1.md:339-346) • Commit: cbc3dd1 • Last Updated: 2025-11-05T03:18:26Z
+
+$$
+N(L) \;\sim\; \Theta(\log L)
+$$
+
+**Notes:** Spec-level scaling asserted in A8 hierarchy discussion. Tentative supporting sources and bridge sketches appear in: [PRIVATE/Axiom-8/Status/T8-A8_Insights/Collections/code_crawler_results/Support/GPT-Gap-Fill.md](PRIVATE/Axiom-8/Status/T8-A8_Insights/Collections/code_crawler_results/Support/GPT-Gap-Fill.md:168-205,212-242). Status: In progress (spec-level). TODO: add $N$, $L$ to SYMBOLS.md if absent (see context lines above).
+
+#### VDM-E-108 - Quantum Geometric Tensor (QGT) definition (spec-level)
+
+**Context:** [PRIVATE/Axiom-8/Status/T8-A8_Insights/Collections/Support/GPT-Gap-Fill.md](PRIVATE/Axiom-8/Status/T8-A8_Insights/Collections/Support/GPT-Gap-Fill.md:50-55) • Commit: cbc3dd1 • Last Updated: 2025-11-05T03:18:26Z
+
+$$
+Q_{\mu\nu}(R) \;=\; \langle \partial_\mu \psi \mid \partial_\nu \psi \rangle \;-\; \langle \partial_\mu \psi \mid \psi \rangle \, \langle \psi \mid \partial_\nu \psi \rangle
+$$
+
+**Notes:** Spec-level canonical definition used in QGT sources cited in PRIVATE collection. TODO: add $Q_{\mu\nu},\,\psi,\,\partial_\mu$ to SYMBOLS.md with units/normalization anchors.
+
+---
+
+#### VDM-E-109 - QGT split into quantum metric and Berry curvature (spec-level)
+
+**Context:** [PRIVATE/Axiom-8/Status/T8-A8_Insights/Collections/quantum-geometry.md](PRIVATE/Axiom-8/Status/T8-A8_Insights/Collections/quantum-geometry.md:20-22) • Commit: cbc3dd1 • Last Updated: 2025-11-05T03:18:26Z
+
+$$
+Q_{\mu\nu} \;=\; g_{\mu\nu} \;-\; \frac{i}{2}\,\Omega_{\mu\nu}
+$$
+
+**Notes:** Spec-level decomposition: real symmetric part $g_{\mu\nu}$ (metric/M‑limb) and imaginary antisymmetric part $\Omega_{\mu\nu}$ (Berry curvature/J‑limb). Additional location (background and mappings): [PRIVATE/Axiom-8/Status/T8-A8_Insights/Collections/Support/GPT-Gap-Fill.md](PRIVATE/Axiom-8/Status/T8-A8_Insights/Collections/Support/GPT-Gap-Fill.md:81-93). TODO: add $g_{\mu\nu},\,\Omega_{\mu\nu}$ to SYMBOLS.md.
+
+---
+
+#### VDM-E-110 - Schrödingerization (KvN lifting) equation (spec-level)
+
+**Context:** [PRIVATE/Axiom-8/Status/T8-A8_Insights/Collections/schrodingerization.md](PRIVATE/Axiom-8/Status/T8-A8_Insights/Collections/schrodingerization.md:27-31) • Commit: cbc3dd1 • Last Updated: 2025-11-05T03:18:26Z
+
+$$
+i\,\partial_t \lvert \psi \rangle \;=\; \hat{H}_{\mathrm{KvN}} \lvert \psi \rangle
+$$
+
+**Notes:** Spec-level formal lifting of dissipative PDEs to a purely Hamiltonian KvN system; used to unify J⊕M into a single reversible evolution in a higher-dimensional space. TODO: add $\hat{H}_{\mathrm{KvN}}$ and Dirac bra–ket symbols to SYMBOLS.md per house style.
+
+---
+
+#### VDM-E-111 - Transfer Entropy (causality meter definition)
+
+**Context:** [PRIVATE/Axiom-8/Status/T8-A8_Insights/Collections/causality.md](PRIVATE/Axiom-8/Status/T8-A8_Insights/Collections/causality.md:21-24) • Commit: cbc3dd1 • Last Updated: 2025-11-05T03:18:26Z
+
+$$
+TE_{X \to Y} \;=\; I\!\big( Y_{t+1}\,;\, X_t^{(k)} \,\big\vert\, Y_t^{(l)} \big)
+$$
+
+**Notes:** Instrument-level defining equation for the Causal DAG audit; used to validate A2 locality by reconstructing causal adjacency and cone-consistent delays. TODO: add $I(\cdot;\cdot\mid\cdot),\,TE_{X\to Y},\,k,\,l$ to SYMBOLS.md.
+
+---
+
+#### VDM-E-112 - Tachyonic instability condition (spec-level)
+
+**Context:** [PRIVATE/Axiom-8/Status/T8-A8_Insights/Collections/complete-formalism.md](PRIVATE/Axiom-8/Status/T8-A8_Insights/Collections/complete-formalism.md:19-21) • Commit: cbc3dd1 • Last Updated: 2025-11-05T03:18:26Z
+
+$$
+V''(0) \;<\; 0
+$$
+
+**Notes:** Spec-level defining condition for tachyonic regime referenced in A8 program materials and comparison with Sen’s conjecture. TODO: ensure $V(\phi)$ and derivatives are present in SYMBOLS.md with units.
+
+---
+
+#### VDM-E-113 - Excess-energy scaling at boundaries (A8 prediction, spec-level)
+
+**Context:** [PRIVATE/Axiom-8/Status/T8-A8_Insights/Collections/complete-formalism.md](PRIVATE/Axiom-8/Status/T8-A8_Insights/Collections/complete-formalism.md:117-121) • Commit: cbc3dd1 • Last Updated: 2025-11-05T03:18:26Z
+
+$$
+E_{\mathrm{exc}}(L) \;\sim\; L^{\,d-1}
+$$
+
+**Notes:** Spec-level scaling statement appearing as “Prediction P2”; used in hierarchy/area‑law discussions. Marked as in progress pending canon proofs. TODO: add $E_{\mathrm{exc}},\,L,\,d$ to SYMBOLS.md and link to VALIDATION_METRICS gate when promoted.

@@ -32,7 +32,7 @@ with $\kappa>0$, a $C^2$ potential $V$ having an unstable critical point at 0 an
 
 ---
 
-**Tachyonic origin.** 
+**Tachyonic origin.**
 
 $V''(0)<0$ (negative curvature at the quiet field). Write $r\equiv -V''(0)>0$.
 
@@ -60,7 +60,7 @@ with a leading-edge exponential tail $\phi(x)\sim A\,e^{-x/\lambda}$ for some de
 
 ---
 
-**Finite-energy admissibility.** 
+**Finite-energy admissibility.**
 
 A family $\{\phi_L\}$ on domains $\Omega_L$ (e.g., cubes of side $L$) is finite-excess-energy if
 
@@ -70,7 +70,7 @@ $$
 
 ---
 
-**Hierarchical scale breaks.** 
+**Hierarchical scale breaks.**
 
 A finite-depth hierarchical partition $\mathcal{P}=\{\Gamma_\ell\}_{\ell=1}^{N}$ of $\Omega$ is a nested sequence of codimension-1 interfaces with strictly separated scales:
 
@@ -92,7 +92,7 @@ where $\mathcal{N}_\epsilon(\cdot)$ is the $\epsilon$-tubular neighborhood. (Int
 
 ---
 
-**Information density (operational).** 
+**Information density (operational).**
 
 Define a field-local information proxy $\mathcal{I}(x)$ (chosen at preregistration) such as
 
@@ -106,13 +106,13 @@ and require an analogous boundary concentration for $\mathcal{I}$: a fraction $\
 
 > **Exclusions.**  
 > First-order (barrier-crossing) bubble nucleation is not assumed; the onset is spinodal/tachyonic (global roll), consistent with VDM cosmogenesis.
-> 
+>
 > **Operational requirement**  
 > All “information‑concentration” claims must hold for both proxies within preregistered tolerances (Gate G‑PX below).  
 
 **Resolution ($\delta$) and truncation location.**  
 Fix a representation floor ($\delta>0$). For a pulled front with tail amplitude ($A$) and decay length ($\lambda$), define $(x\_\star=\lambda\ln(A/\delta))$. The unresolved region is $({x: x>x\_\star})$
- 
+
 Define the **tail‑loss functional**  
 
 $$
@@ -124,8 +124,6 @@ computed in the linear regime $(|\phi|\ll 1)$. Then $(\mathcal{L}\_{\delta}\prop
 **Proxy rationale & invariance.**  
 
 ( $\mathcal{I}\*1$ ) upper‑bounds the log‑contrast needed to encode the field at resolution $(\sigma)$, and co‑locates with the gradient term in $(E*{\text{exc}})$. $( \mathcal{I}\_2 )$ is a local Fisher‑type surrogate for predictive curvature of observables; under smooth reparameterizations of $(u)$ it shifts by $(O(|\nabla u|^2))$ only.
- 
-
 
 ---
 
@@ -184,147 +182,147 @@ Equivalently, absence of such hierarchical scale breaks implies either:
 ## 7. Gates (PASS/FAIL)
 
 - **G1 (Theory-1D):**
-    - Prove a lower bound in 1D: for tachyonic $V$ with pulled-front tail, any finite-energy sequence on $[0,L]$ must have $N(L)\ge c\log(L/\lambda)$ interfaces (or equivalent multi-scale partition).
+  - Prove a lower bound in 1D: for tachyonic $V$ with pulled-front tail, any finite-energy sequence on $[0,L]$ must have $N(L)\ge c\log(L/\lambda)$ interfaces (or equivalent multi-scale partition).
 
 ---
 
 - **G2 (Theory-Γ-style):**
-    - Show a Γ-convergence or perimeter-law reduction: interface energy concentrates on codimension-1 sets with surface tension $\sigma(V,\kappa)$, establishing $E_{\text{exc}}(L)\ge c\,\sigma\,L^{d-1}$.
+  - Show a Γ-convergence or perimeter-law reduction: interface energy concentrates on codimension-1 sets with surface tension $\sigma(V,\kappa)$, establishing $E_{\text{exc}}(L)\ge c\,\sigma\,L^{d-1}$.
 
 ---
 
 - **G3 (Numerics-scaling):**
-    - In 2D/3D RD sims (tachyonic potential), measure $E_{\text{exc}}(L)$ vs $L$ for $L\in\{L_1,\dots,L_5\}$ (≥5 points, ×12 seeds). Fit shows slope $d-1$ within ±0.1 and $N(L)\sim \log(L/\lambda)$ within ±0.15 (log-log).
+  - In 2D/3D RD sims (tachyonic potential), measure $E_{\text{exc}}(L)$ vs $L$ for $L\in\{L_1,\dots,L_5\}$ (≥5 points, ×12 seeds). Fit shows slope $d-1$ within ±0.1 and $N(L)\sim \log(L/\lambda)$ within ±0.15 (log-log).
 
 ---
 
 - **G4 (Concentration):**
-    - Boundary energy fraction $\alpha\ge 0.6$ and information fraction $\alpha_\mathcal{I}\ge 0.6$ across ≥3 masks, FDR $q\le 0.10$.
+  - Boundary energy fraction $\alpha\ge 0.6$ and information fraction $\alpha_\mathcal{I}\ge 0.6$ across ≥3 masks, FDR $q\le 0.10$.
 
 ---
 
 - **G5 (Ablation):**
-    - Penalize interface count (regularizer discouraging hierarchy). Observe either energy blow-up trend with $L$ or front-speed deviation >5% from $2\sqrt{Dr}$.
+  - Penalize interface count (regularizer discouraging hierarchy). Observe either energy blow-up trend with $L$ or front-speed deviation >5% from $2\sqrt{Dr}$.
 
 ---
 
 - **G6 (Robustness):**
-    - Results hold across potentials with $V''(0)<0$ (φ⁴ symmetric and mildly biased φ³+φ⁴), boundary conditions (periodic/absorbing), and mesh scales (2× refinements).
+  - Results hold across potentials with $V''(0)<0$ (φ⁴ symmetric and mildly biased φ³+φ⁴), boundary conditions (periodic/absorbing), and mesh scales (2× refinements).
 
 ---
 
 - **G7 (Cross-code):**
-    - Independent implementation reproduces G3–G5 within stated error bars.
+  - Independent implementation reproduces G3–G5 within stated error bars.
 
 ---
 
 - **G8 (Documentation):**
-    - All prereg, code, and artifacts pass your VDM reproducibility checks (hashes, manifests, logbooks).
+  - All prereg, code, and artifacts pass your VDM reproducibility checks (hashes, manifests, logbooks).
 
 ---
 
 - **G9 (Refinement collapse):**
-    - Run $(\Delta x\in{\Delta,\Delta/2,\Delta/4})$. The small‑scale energy and M‑production curves **collapse** when plotted versus $(k/k_\mathrm{cut})$ if the effect is numerical; **converge** to a finite curve if physical.
+  - Run $(\Delta x\in{\Delta,\Delta/2,\Delta/4})$. The small‑scale energy and M‑production curves **collapse** when plotted versus $(k/k_\mathrm{cut})$ if the effect is numerical; **converge** to a finite curve if physical.
 
 ---
 
 - **G10 ($\delta^2$ law):**
-    - With controlled micro‑noise mimicking rounding (variance $\propto \delta^2$), measured M‑production near $x_\star$ scales as $\delta^2\pm 10\%$. 
+  - With controlled micro‑noise mimicking rounding (variance $\propto \delta^2$), measured M‑production near $x_\star$ scales as $\delta^2\pm 10\%$.
 
 ---
 
 - **G11 (Bottleneck & FDT):**
-    - Energy flux shows a spectral kink at $(k\_\mathrm{cut})$; fluctuation–dissipation ratio measured around that band matches the inferred dissipation within ±10%.
+  - Energy flux shows a spectral kink at $(k\_\mathrm{cut})$; fluctuation–dissipation ratio measured around that band matches the inferred dissipation within ±10%.
 
 ---
 
 - **G12 (DSI probe, optional):**
-    - Boundary statistics (loop radii histograms, curvature spectra) exhibit **log‑periodic** modulations with a stable ratio $(\rho)$ (±10%) across sizes; absent in controls.
+  - Boundary statistics (loop radii histograms, curvature spectra) exhibit **log‑periodic** modulations with a stable ratio $(\rho)$ (±10%) across sizes; absent in controls.
 
 ---
 
 - **G1T (coverage bound):**
-    - Measured $(N(L,T))$ satisfies $(N \ge \lceil L/(c_\star T)\rceil)$ within ±1 for ≥90% of seeds.
+  - Measured $(N(L,T))$ satisfies $(N \ge \lceil L/(c_\star T)\rceil)$ within ±1 for ≥90% of seeds.
 
 ---
 
 - **G2T (cost optimality):**
-    - Among configurations with equal coverage and $(c_\star)$ integrity, hierarchical runs minimize $(E_{\text{exc}})$ vs. non‑hierarchical baselines by ≥5%.
+  - Among configurations with equal coverage and $(c_\star)$ integrity, hierarchical runs minimize $(E_{\text{exc}})$ vs. non‑hierarchical baselines by ≥5%.
 
 ---
 
 - **G3T (δ² locality):**
-    - Tail‑localized M‑production near $(x_\star)$ obeys δ² ±10% across $(\Delta x)$ refinements.
+  - Tail‑localized M‑production near $(x_\star)$ obeys δ² ±10% across $(\Delta x)$ refinements.
 
 ---
 
 - **G‑ABL‑Compute:**
-    - keep the **assist energy/time budget identical**, but replace metriplectic guidance with random kicks; CEG improvement must **not** meet PASS. Together these prove the gain is due to *knowing the J/M split*, not extra work.
+  - keep the **assist energy/time budget identical**, but replace metriplectic guidance with random kicks; CEG improvement must **not** meet PASS. Together these prove the gain is due to *knowing the J/M split*, not extra work.
 
 ---
 
 - **G‑ABL‑Compute:**
-    - With random‑assist kicks at identical energy/time budget, CEG fails the original CEG PASS gate.
+  - With random‑assist kicks at identical energy/time budget, CEG fails the original CEG PASS gate.
 
 ---
 
 - **G‑ABL‑J:**
-    - Scramble the **J‑map** (keep compute and energy equal). CEG should **collapse** to baseline.
+  - Scramble the **J‑map** (keep compute and energy equal). CEG should **collapse** to baseline.
 
 ---
 
 - **G‑ABL‑J:**
-    - With a scrambled J‑map (same compute and assist budget), CEG improvement drops below 0.01 (or below 20% of the baseline CEG), p<0.01.
+  - With a scrambled J‑map (same compute and assist budget), CEG improvement drops below 0.01 (or below 20% of the baseline CEG), p<0.01.
 
 ---
 
 - **G‑ABL‑M:**
-    - Scramble the **M‑map** (same budget). CEG should collapse.
+  - Scramble the **M‑map** (same budget). CEG should collapse.
 
 ---
 
 - **G‑ABL‑M:**
-    - With a scrambled M‑map (same budget), CEG likewise collapses.
+  - With a scrambled M‑map (same budget), CEG likewise collapses.
 
 ---
 
 - **G‑CEG‑Integrity:**
-    - CEG improves with $(\eta)$ while $(c)$ and perimeter‑law scaling remain within pulled bounds (ties to G‑PLD and G‑H* hygiene).
+  - CEG improves with $(\eta)$ while $(c)$ and perimeter‑law scaling remain within pulled bounds (ties to G‑PLD and G‑H* hygiene).
 
 ---
 
 - **G‑DIM:**
-    - In $(d=1,2)$ the fitted energy exponent equals $(d-1\pm0.1)$; $(\rho)$ consistent within ±10% across $(d)$. Optional $(d=3)$ reported, not required for PASS.
+  - In $(d=1,2)$ the fitted energy exponent equals $(d-1\pm0.1)$; $(\rho)$ consistent within ±10% across $(d)$. Optional $(d=3)$ reported, not required for PASS.
 
 ---
 
 - **G‑DSI1:**
-    - Log‑periodic modulation in boundary statistics is nonzero and stable (amplitude > 3σ, preferred ratio $(\rho)$ stable ±10%) across sizes/masks.
+  - Log‑periodic modulation in boundary statistics is nonzero and stable (amplitude > 3σ, preferred ratio $(\rho)$ stable ±10%) across sizes/masks.
 
 ---
 
 - **G‑DSI2 (Null):**
-    - Absent under controls (no limit cycle; pushed fronts).
+  - Absent under controls (no limit cycle; pushed fronts).
 
 ---
 
 - **G‑DSI3 (Cross‑metric):**
-    - Same $(\rho)$ appears in at least two independent metrics (e.g., loop radii histogram and curvature spectra).
+  - Same $(\rho)$ appears in at least two independent metrics (e.g., loop radii histogram and curvature spectra).
 
 ---
 
 - **G‑NI (No‑imprint):**
-    - Cross‑correlation threshold ≤ 0.05 at non‑tail bands; hierarchy ratio $(\rho)$ unchanged (±5%) relative to the unassisted run.
+  - Cross‑correlation threshold ≤ 0.05 at non‑tail bands; hierarchy ratio $(\rho)$ unchanged (±5%) relative to the unassisted run.
 
 ---
 
 - **G‑PLD (Pulledness diagnostic):**
-    - Require $(c/c\_\star \le 1+\epsilon\_c)$ and a good exponential‑tail fit $(adj.(R^2\ge 0.98))$; a steepness sweep shows $(c)$ approaches $(c\_\star)$ from above but does not exceed gate. **PASS** iff all three hold.
+  - Require $(c/c\_\star \le 1+\epsilon\_c)$ and a good exponential‑tail fit $(adj.(R^2\ge 0.98))$; a steepness sweep shows $(c)$ approaches $(c\_\star)$ from above but does not exceed gate. **PASS** iff all three hold.
 
 ---
 
 - **G‑PX (Proxy concordance):**
-    - Boundary fractions from $(\mathcal{I}\_1)$ and $(\mathcal{I}*2)$ agree within ±10% across masks/seeds. **PASS** if both exceed the $(\alpha\*{\mathcal{I}})$ threshold and differ by ≤10%.
+  - Boundary fractions from $(\mathcal{I}\_1)$ and $(\mathcal{I}*2)$ agree within ±10% across masks/seeds. **PASS** if both exceed the $(\alpha\*{\mathcal{I}})$ threshold and differ by ≤10%.
 
 ---
 
@@ -342,11 +340,11 @@ Equivalently, absence of such hierarchical scale breaks implies either:
 
 ## 8. Methods & Instruments
 
-**Steering neutrality** 
+**Steering neutrality**
 
 - Assisted nudges are zero‑mean, white in phase, and supported only in the tail’s tubular set ( $\mathcal{N}\*\epsilon(x\*\star)$ ). A matched‑budget randomized control is run each time.
 
-**No‑template test** 
+**No‑template test**
 
 - Cross‑correlation between the final boundary field and the nudge field outside ( $\mathcal{N}\*\epsilon(x\*\star)$ ) must be ≤ 0.05 (pre‑reg) at all non‑tail scales.
 
@@ -396,7 +394,7 @@ Equivalently, absence of such hierarchical scale breaks implies either:
 > (iii) the “steepness test”: varying initial front steepness does **not** increase $(c)$ beyond $(c_\star)$ within tolerance.  
 >
 > ***Runs violating any of (i)–(iii) are flagged **pushed** and excluded from A8 admission.***
-> 
+>
 **Dimensional note.** All scaling claims are graded in $(d=1,2)$ and optionally $(d=3)$; boundary‑law exponents must match $(d-1)$ within ±0.1 and $(N(L))$ must remain logarithmic with the same base $(\rho)$ (±10%) after finite‑size correction.
 
  **Transition band.** If external forcing or large‑amplitude nonlinearity yields $(c>c\_\star)$ (pushed), A8’s necessity direction is not claimed. Such runs are still analyzed but labeled **OUT‑OF‑SCOPE** for A8 and reported separately.
@@ -455,7 +453,7 @@ Equivalently, absence of such hierarchical scale breaks implies either:
 
 **Cite as:**
 
-Lietz, J. K. (2025). The Lietz Infinity Resolution Conjecture (tachyonic hierarchy): finite excess energy implies hierarchical scale breaks in pulled-front systems. T8 PROPOSAL. 
+Lietz, J. K. (2025). The Lietz Infinity Resolution Conjecture (tachyonic hierarchy): finite excess energy implies hierarchical scale breaks in pulled-front systems. T8 PROPOSAL.
 
 ---
 

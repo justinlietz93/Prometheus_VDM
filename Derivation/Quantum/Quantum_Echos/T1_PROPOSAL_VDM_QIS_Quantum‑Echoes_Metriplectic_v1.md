@@ -1,12 +1,3 @@
-You're right—I referenced a structure that isn’t in your public repo. Thanks for the correction and for spelling out the *actual* routing rules (via `io_paths.py`) for outputs:
-
-* **Figures** → `Derivation/code/physics/outputs/figures/{domain}/`
-* **Logs** → `Derivation/code/physics/outputs/logs/{domain}/`
-
-Below is a **complete, copy‑pasteable PROPOSAL** that (a) follows your white‑paper template sections exactly, (b) uses only those normative paths, (c) embeds the *initial approval gate* and all required PASS/FAIL gates, and (d) makes no assumptions about non‑existent folders outside that schema. I’ve set the **Tier** to **T1 (Proto‑model)** so the only prerequisite is a **T0 concept**, which already exists in your *Derivation* canon (e.g., `Derivation/VDM_OVERVIEW.md`, `Derivation/AXIOMS.md`, etc.). You can bump the tier later once T2/T3 artifacts exist in‑repo.
-
----
-
 # PROPOSAL_VDM_QIS_Quantum‑Echoes_Metriplectic_v1.md
 
 > **Convergence note (motivation):** Independent convergence with Google’s “Quantum Echoes / Willow” result suggests that a **closed feedback loop** can stabilize dynamics by **time‑reversal–style echoing**. VDM already predicted a self‑correcting regime via **metriplectic coupling** and **void‑walker pulses** that detect/close pathologies in the topology. This proposal formalizes a **minimal, testable T1 proto‑model** where a VDM metriplectic engine executes an echo sequence and reports **self‑correction** with strict provenance and pass/fail gates.
@@ -222,4 +213,5 @@ The **runner** that executes this proposal must:
       "timestamp_utc": "YYYY‑MM‑DDTHH:MM:SSZ"
     }
     ```
+
 * The runner must **ingest** this file and embed the `approval` object in the final summary JSON (G0).

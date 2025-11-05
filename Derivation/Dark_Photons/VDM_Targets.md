@@ -1,8 +1,4 @@
-Short answer: it was a blend. I started from “what the field usually probes” (so you aren’t chasing phantoms) and then filtered hard through the structure of your Void Dynamics / Voxtrium stack-where energy moves between sectors via a transfer current (J^\nu), where rates split by partitions (p_i) on a simplex, and where late-time injections must stay small. That’s why I emphasized astrophysical/cosmological channels and correlated-drift tests over collider-only ideas: it matches your own bookkeeping.
-
-Here’s the split, explicitly:
-
-### What’s “standard playbook” (any dark-photon program would chase)
+# What’s “standard playbook” (any dark-photon program would chase)
 
 * **Beam-dump / fixed-target missing-energy** and **collider invisibles**: model-agnostic ways to see kinetic-mixing portals-good for coverage, not uniquely VDM-ish.
 * **Stellar-cooling / SN-1987A bounds**: classic energy-loss arguments that carve out or hint at low-mass, weakly-mixed regimes.
