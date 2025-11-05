@@ -1907,3 +1907,55 @@ c \;=\; \sqrt{\frac{D}{\tau}}
 $$
 
 **Notes:** Spec-level speed law used by the Telegraph-from-Relaxation instrument to calibrate finite-speed transport; appears across causality meters. TODO: add $c,\,D,\,\tau$ to SYMBOLS.md (see source lines).
+
+---
+#### VDM-E-121 - Rayleigh number (Boussinesq)
+**Context:** Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md:31-34 • Commit: a48f2d2 • Last Updated: 2025-11-05T06:53:43Z
+
+$$
+\mathrm{Ra} = \frac{g\,\alpha\,\Delta T\,H^3}{\nu\,\kappa}
+$$
+
+**Notes:** Control parameter for Rayleigh–Bénard convection; used for onset thresholds and depth scaling in RB‑Gate.
+
+---
+
+#### VDM-E-122 - Nondimensional RBC equations (momentum, heat, continuity)
+**Context:** Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md:72-79 • Commit: a48f2d2 • Last Updated: 2025-11-05T06:53:43Z
+
+$$
+\begin{aligned}
+\partial_t \mathbf{u} + (\mathbf{u}\cdot\nabla)\,\mathbf{u} &= -\nabla p + \mathrm{Pr}\,\nabla^2 \mathbf{u} + \mathrm{Pr}\,\mathrm{Ra}\,\theta\,\hat{\mathbf{z}},\\
+\partial_t \theta + (\mathbf{u}\cdot\nabla)\,\theta - w &= \nabla^2 \theta,\\
+\nabla\cdot\mathbf{u} &= 0.
+\end{aligned}
+$$
+
+**Notes:** Oberbeck–Boussinesq RBC in units with length $H$ and time $H^2/\kappa$; appears in RB‑Gate diagnostics.
+
+---
+
+#### VDM-E-123 - Nusselt number and vertical heat flux
+**Context:** Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md:92-97 • Commit: a48f2d2 • Last Updated: 2025-11-05T06:53:43Z
+
+$$
+\mathrm{Nu} = \frac{\langle q_z \rangle}{k\,\Delta T / H}, \qquad q_z = \rho c_p w T - k\,\partial_z T
+$$
+
+and in nondimensional form
+$$
+\mathrm{Nu} = 1 + \langle w\,\theta \rangle - \langle \partial_z \theta \rangle.
+$$
+
+**Notes:** Used by RB‑Gate to detect supercritical heat‑transport departure from conduction.
+
+---
+
+#### VDM-E-124 - Depth scaling at onset
+**Context:** Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md:127-128 • Commit: a48f2d2 • Last Updated: 2025-11-05T06:53:43Z
+
+$$
+H \mapsto 2H \;\Rightarrow\; \mathrm{Ra} \mapsto 8\,\mathrm{Ra}, \qquad \lambda_c \mapsto \approx 2\,\lambda_c.
+$$
+
+**Notes:** RB‑Gate “Gate‑H” depth test; verifies correct nondimensional scaling with layer thickness.

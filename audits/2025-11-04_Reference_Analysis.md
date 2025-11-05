@@ -842,7 +842,7 @@ Yu et al. (2023), “Extracting the quantum geometric tensor from dynamical resp
 
 S2 — Contact Geometry → Metriplectic; GENERIC (two-generator formalism)
 
-Grmela & Öttinger (1997), “Dynamics and thermodynamics of complex fluids I” — https://link.aps.org/doi/10.1103/PhysRevE.56.662
+Grmela & Öttinger (1997), “Dynamics and thermodynamics of complex fluids I” — https://journals.aps.org/pre/abstract/10.1103/PhysRevE.56.6620
 Grmela & Öttinger (1997), “... II. Illustrations of a general formalism” — https://link.aps.org/doi/10.1103/PhysRevE.56.663
 Bravetti, López‑Monsalvo & Nettel (2017), “Contact geometry and thermodynamics” — https://link.springer.com/article/10.1007/s00220-016-2843-5
 Mrugała (1991), “Contact geometry in thermodynamics: the Legendre submanifolds” — https://www.researchgate.net/publication/225404262_Contact_geometry_in_thermodynamics_The_Legendre_submanifolds
