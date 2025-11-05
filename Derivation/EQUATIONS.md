@@ -1885,4 +1885,3 @@ $$
 **Notes:** Spec-level speed law used by the Telegraph-from-Relaxation instrument to calibrate finite-speed transport; appears across causality meters. TODO: add $c,\,D,\,\tau$ to SYMBOLS.md (see source lines).
 
 ---
-

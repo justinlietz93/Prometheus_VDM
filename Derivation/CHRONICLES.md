@@ -220,3 +220,9 @@ All fixed-number statements were replaced with parameter‑dependent forms and e
 
 - 2025-11-05 • updated units/maps • 60c5156
 - 2024-10-03 • Initial compilation from repository sources • ec0833a
+
+## Change Log (Schemas 2025-11-05)
+
+- 2025-10-04 • schemas compiled from repository source • 6b63a5e
+- 2025-10-13 • added KG energy-oscillation summary schema (metriplectic) • 66eb296
+- 2025-11-05 • added metriplectic echo config/artifacts/prereg schemas • HEAD
