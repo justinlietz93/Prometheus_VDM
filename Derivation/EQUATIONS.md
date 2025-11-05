@@ -1,16 +1,11 @@
-<!-- RULES for maintaining this file are here: /mnt/ironwolf/git/Prometheus_VDM/prompts/equations_maintenance.md -->
-<!-- markdownlint-disable MD033 -->
 # VDM Canonical Equations & Procedural Math (Auto-compiled)
-
-Note on scope: This document reflects the latest accepted canonical equations only. Historical notes and timeline are maintained in Derivation/CORRECTIONS.md and memory-bank/decisionLog.md.
-
-Last updated: 2025-10-09 (commit 09f871a)
-
 *Defining equations and procedural math currently present in this repository.*
 
 - Source of truth: extracted from repository files; do not edit equations here without updating their sources.
 - MathJax only: use `$...$` and `$$...$$`; no numbering/tags/environments not supported by GitHub.
 - Labels: entries are headed by `VDM-E-###` (header anchors); no equation tags inside MathJax.
+
+Last compiled: 2025-11-05 (commit 8f7ba76)
 
 ---
 
