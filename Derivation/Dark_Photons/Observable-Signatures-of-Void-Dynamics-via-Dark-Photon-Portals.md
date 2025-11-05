@@ -1,7 +1,8 @@
 # **Observable Signatures of Void Dynamics via Dark Photon Portals**
+
 ***Spectulative***
 
-**Author**: Justin K. Lietz     
+**Author**: Justin K. Lietz  
 **Date**: October 6, 2025 at 5:26 PM CDT
 
 >This research is protected under a dual-license to foster open academic research while ensuring commercial applications are aligned with the project's ethical principles. Commercial use requires citation and written permission from Justin K. Lietz. See LICENSE file for full terms.

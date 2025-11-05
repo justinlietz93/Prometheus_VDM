@@ -5,10 +5,12 @@
 <!-- The only bypass for Derivation edits without canon updates is explicit documentation here. -->
 
 ## Change Attestation — TEMPLATE
+
 Dependency-Chain-Reviewed: true
 Change-Type: [pivot|minor-correction|file-shuffle|canon-impacting]
 Summary: <one-line description of the change and rationale>
 Paths-Changed:
+
 - Derivation/path/to/changed/file.ext
 - Derivation/another/changed/path.md
 Canon-Docs-Updated:  # list canon docs if Change-Type is canon-impacting
@@ -23,6 +25,7 @@ Approval/PR:
 - Approval: <reference to approve_tag.py record or admin note>
 
 Guidance:
+
 - All Derivation/ changes MUST add a Change Attestation entry in this file.
 - For canon-impacting changes (proposals/experiments/code/results), you MUST also:
   - Update at least one canonical ALL-CAPS doc (e.g., EQUATIONS, VALIDATION_METRICS, ROADMAP, etc.).
@@ -149,3 +152,14 @@ All fixed-number statements were replaced with parameter‑dependent forms and e
 - [PROVEN]: Lattice → continuum kinetic normalization via discrete action (already present) is internally consistent.
 - [PROVEN]: RD front speed c_front = 2√(Dr) validated. Defaults: N=1024, cfl=0.2, level=0.1, x0=-60, fit window 0.6-0.9. Representative run: c_meas≈0.953, c_th=1.0, rel_err≈0.047, R²≈0.999996.
 - [PROVEN]: RD dispersion σ(k) = r - D k² validated via linearized periodic evolution. Defaults (N=1024, L=200, D=1.0, r=0.25, T=10, cfl=0.2, seed=42, m_max=64) → med_rel_err≈0.00145, R²_array≈0.99995 [PASS]; grid refinement (N=2048, m_max=128) → med_rel_err≈0.00130, R²_array≈0.9928 [PASS].
+
+## Change Log — Equations (2025-11-05T02:53:05Z, 393ed61)
+
+- VDM-E-095 • 393ed61 • [Derivation/Thermodynamic_Routing/Wave_Flux_Meter/RESULTS_Wave_Flux_Meter_A_Phase_v1.md](Derivation/Thermodynamic_Routing/Wave_Flux_Meter/RESULTS_Wave_Flux_Meter_A_Phase_v1.md:14) added
+- VDM-E-098 • 393ed61 • [Derivation/SYMBOLS.md](Derivation/SYMBOLS.md:215-216) added
+- VDM-E-099 • 393ed61 • [Derivation/Agency_Field/Agency_Field.md](Derivation/Agency_Field/Agency_Field.md:168-170) added
+- VDM-E-100 • 393ed61 • [Derivation/Agency_Field/Agency_Field.md](Derivation/Agency_Field/Agency_Field.md:145-148) added
+- VDM-E-101 • 393ed61 • [Derivation/CANON_PROGRESS.md](Derivation/CANON_PROGRESS.md:26) added
+- VDM-E-102 • 393ed61 • [Derivation/Agency_Field/Agency_Field.md](Derivation/Agency_Field/Agency_Field.md:140-148) added
+- VDM-E-103 • 393ed61 • [Derivation/Agency_Field/Agency_Field.md](Derivation/Agency_Field/Agency_Field.md:259-263) added
+- VDM-E-048 • 393ed61 • [Derivation/Thermodynamic_Routing/Wave_Flux_Meter/RESULTS_Wave_Flux_Meter_A_Phase_v1.md](Derivation/Thermodynamic_Routing/Wave_Flux_Meter/RESULTS_Wave_Flux_Meter_A_Phase_v1.md:33-35) additional location noted

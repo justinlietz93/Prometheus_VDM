@@ -639,7 +639,7 @@ $$
 
 with conservation law $\frac{\partial \mathcal{H}}{\partial t} + \nabla \cdot \mathbf{S} = 0$
 
-**Notes:** Energy flux for scalar field; verified using Klein-Gordon equation. Used by [VDM-A-014](ALGORITHMS.md#vdm-a-014).
+**Notes:** Energy flux for scalar field; verified using Klein-Gordon equation. Used by [VDM-A-014](ALGORITHMS.md#vdm-a-014). Additional location: Derivation/Thermodynamic_Routing/Wave_Flux_Meter/RESULTS_Wave_Flux_Meter_A_Phase_v1.md:14,33-35 where the continuity residual is written as $r = \partial_t e + \nabla\cdot\mathbf{s}$.
 
 ---
 
@@ -1446,6 +1446,88 @@ $$
 
 ---
 
-## Change Log
+#### VDM-E-095 - Scalar-wave continuity residual (energy balance)
 
-This section has been retired to honor the “latest-only” canon policy. See Derivation/CORRECTIONS.md for chronology.
+**Context:** [Derivation/Thermodynamic_Routing/Wave_Flux_Meter/RESULTS_Wave_Flux_Meter_A_Phase_v1.md](Derivation/Thermodynamic_Routing/Wave_Flux_Meter/RESULTS_Wave_Flux_Meter_A_Phase_v1.md:14) • Commit: 393ed61 • Last Updated: 2025-11-05T02:53:05Z
+
+$$
+r = \partial_t e + \nabla\cdot\mathbf{s}
+$$
+
+**Notes:** Meter definition used in Wave Flux Meter Phase A (closed box). See also [Derivation/Thermodynamic_Routing/Wave_Flux_Meter/RESULTS_Wave_Flux_Meter_A_Phase_v1.md](Derivation/Thermodynamic_Routing/Wave_Flux_Meter/RESULTS_Wave_Flux_Meter_A_Phase_v1.md:33-35). Related energy density and flux are defined in [VDM-E-047](Derivation/EQUATIONS.md#vdm-e-047) and [VDM-E-048](Derivation/EQUATIONS.md#vdm-e-048).
+
+---
+
+#### VDM-E-102 - KG linear dispersion (J-only diagnostic)
+
+**Context:** [Derivation/Agency_Field/Agency_Field.md](Derivation/Agency_Field/Agency_Field.md:140-148) • Commit: 393ed61 • Last Updated: 2025-11-05T02:53:05Z
+
+$$
+\omega^2 = c^2 k^2 + m^2
+$$
+
+**Notes:** Gate target used for KG diagnostics (slope/intercept fit). Additional location: [Derivation/CANON_PROGRESS.md](Derivation/CANON_PROGRESS.md:20).
+
+---
+
+#### VDM-E-103 - Strang error commutator scaling
+
+**Context:** [Derivation/Agency_Field/Agency_Field.md](Derivation/Agency_Field/Agency_Field.md:259-263) • Commit: 393ed61 • Last Updated: 2025-11-05T02:53:05Z
+
+$$
+\mathrm{Err}_{\text{Strang}}=\mathcal{O}\!\left(\Delta t^3,\,[A,[A,B]]+[B,[B,A]]\right)
+$$
+
+**Notes:** Procedural order diagnostic for composition methods; used to interpret two-grid slope and defect regressions when $[A,B]\neq 0$.
+
+---
+
+#### VDM-E-098 - FRW continuity residual (dust with equation-of-state parameter)
+
+**Context:** [Derivation/SYMBOLS.md](Derivation/SYMBOLS.md:215-216) • Commit: 393ed61 • Last Updated: 2025-11-05T02:53:05Z
+
+$$
+r(t)=\frac{d}{dt}\big(\rho\, a^3\big) + w\,\rho\,\frac{d}{dt}\!\big(a^3\big)
+$$
+
+**Notes:** Used for FRW continuity residual QC (dust baseline $w=0$) referenced by [Derivation/DATA_PRODUCTS.md](Derivation/DATA_PRODUCTS.md:231,261,279). TODO: add $w$ (equation-of-state parameter) to SYMBOLS.md (see [Derivation/SYMBOLS.md](Derivation/SYMBOLS.md:215)).
+
+---
+
+#### VDM-E-099 - M-step Lyapunov monotonicity (per-step)
+
+**Context:** [Derivation/Agency_Field/Agency_Field.md](Derivation/Agency_Field/Agency_Field.md:168-170) • Commit: 393ed61 • Last Updated: 2025-11-05T02:53:05Z
+
+$$
+\boxed{\ \Delta L_h \le 0\ \ \text{per step}\ }
+$$
+
+**Notes:** Axiom-level gate for discrete-gradient (metric) step. Keeps procedural statement intact as written in source. Symbol $L_h$ appears elsewhere in canon; if not present in SYMBOLS registry, align with existing entry. Additional context for metriplectic gates in [Derivation/CANON_PROGRESS.md](Derivation/CANON_PROGRESS.md:41-42).
+
+---
+
+#### VDM-E-100 - KG locality bound (front velocity)
+
+**Context:** [Derivation/Agency_Field/Agency_Field.md](Derivation/Agency_Field/Agency_Field.md:145-148) • Commit: 393ed61 • Last Updated: 2025-11-05T02:53:05Z
+
+$$
+\boxed{\ v_{\text{front}} \le c\,(1+\varepsilon)\ ,\ \ \varepsilon\ \text{set by discretization tolerance}\ }
+$$
+
+**Notes:** Conservative J-only diagnostics gate used with the KG limb (finite cone). See validated instrument summary in [Derivation/CANON_PROGRESS.md](Derivation/CANON_PROGRESS.md:19).
+
+---
+
+#### VDM-E-101 - Metriplectic degeneracy conditions (functional)
+
+**Context:** [Derivation/CANON_PROGRESS.md](Derivation/CANON_PROGRESS.md:26) • Commit: 393ed61 • Last Updated: 2025-11-05T02:53:05Z
+
+$$
+\langle J\,\delta\Sigma,\,\delta\Sigma \rangle \approx 0
+\qquad\text{and}\qquad
+\langle M\,\delta I,\,\delta I \rangle \approx 0
+$$
+
+**Notes:** Gate targets for J/M orthogonality (grid-refined tolerances used in RESULTS). TODO: add $\delta\Sigma$ and $\delta I$ to SYMBOLS.md (see [Derivation/CANON_PROGRESS.md](Derivation/CANON_PROGRESS.md:26)) if not already present.
+
+---

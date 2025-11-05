@@ -1,5 +1,3 @@
-Love this pivot. Here’s a crisp, **do-this-next** checklist to turn the “tachyonic scalar in a tube” work into a **dark-photon (A′) portal** program-keeping your rigor + artifact style, and reusing what’s strong.
-
 # A) First, translate your current tachyonic story into dark-photon language
 
 **Your tachyonic scalar** (negative mass-squared, quartic stabilization, condensation) → becomes the **dark Higgs** that gives the dark photon its mass. In other words:
