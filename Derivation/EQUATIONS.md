@@ -1441,6 +1441,55 @@ $$
 
 ---
 
+#### VDM-E-098 - Periodic Boundary Condition (1D RD)
+
+**Context:** Derivation/BC_IC_GEOMETRY.md:35-36 • Commit: 393ed61 • Last Updated: 2025-11-04
+
+$$
+u(0, t) = u(L, t), \quad \partial_x u|_{x=0} = \partial_x u|_{x=L}
+$$
+
+**Notes:** Periodic BC for linearized Fisher-KPP field in 1D dispersion validation; conserves total mass in diffusion-only regime.
+
+---
+
+#### VDM-E-099 - Neumann (Zero-Gradient) Boundary Condition
+
+**Context:** Derivation/BC_IC_GEOMETRY.md:52-55 • Commit: 393ed61 • Last Updated: 2025-11-04
+
+$$
+\partial_n u|_{\partial\Omega} = 0
+$$
+
+**Notes:** Homogeneous Neumann (no-flux) BC; ghost cells mirror interior for discrete stencil. Allows front propagation without boundary reflection.
+
+---
+
+#### VDM-E-100 - Discrete Axiom Corollary (Euler-Lagrange)
+
+**Context:** Derivation/AXIOMS.md:129 • Commit: 393ed61 • Last Updated: 2025-11-04
+
+$$
+\frac{W_i^{n+1}-2W_i^n+W_i^{n-1}}{\Delta t^2} = J \sum_{j\in N(i)} (W_j^n - W_i^n) - V'(W_i^n)
+$$
+
+**Notes:** VDM-AX-C01 - Direct corollary from VDM-AX-004; discrete Euler-Lagrange on lattice. Cross-referenced in Derivation/axiomatic_theory_development.md.
+
+---
+
+#### VDM-E-101 - Continuum Axiom Corollary (Exact Spatial Prefactor)
+
+**Context:** Derivation/AXIOMS.md:138 • Commit: 393ed61 • Last Updated: 2025-11-04
+
+$$
+S = \int dt\, d^d x\, \Big[ \tfrac{1}{2}(\partial_t\phi)^2 - \tfrac{c^2}{2}|\nabla\phi|^2 - V(\phi) \Big], \quad c^2 = 2 J a^2
+$$
+
+**Notes:** VDM-AX-C02 - Continuum action from lattice limit; exact spatial kinetic prefactor $c^2 = 2Ja^2$ from Taylor expansion on cubic lattice.
+
+---
+
+
 ## Change Log
 
 This section has been retired to honor the “latest-only” canon policy. See Derivation/CORRECTIONS.md for chronology.
