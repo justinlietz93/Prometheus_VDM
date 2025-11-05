@@ -1446,7 +1446,7 @@ $$
 
 ---
 
-#### VDM-E-095 - Scalar-wave continuity residual (energy balance)
+#### VDM-E-114 - Scalar-wave continuity residual (energy balance)
 
 **Context:** [Derivation/Thermodynamic_Routing/Wave_Flux_Meter/RESULTS_Wave_Flux_Meter_A_Phase_v1.md](Derivation/Thermodynamic_Routing/Wave_Flux_Meter/RESULTS_Wave_Flux_Meter_A_Phase_v1.md:14) • Commit: 393ed61 • Last Updated: 2025-11-05T02:53:05Z
 
