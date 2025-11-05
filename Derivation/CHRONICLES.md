@@ -215,3 +215,8 @@ All fixed-number statements were replaced with parameter‑dependent forms and e
 - VDM-E-122 • a48f2d2 • Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md added
 - VDM-E-123 • a48f2d2 • Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md added
 - VDM-E-124 • a48f2d2 • Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md added
+
+## Change Log (Units 2025-11-05)
+
+- 2025-11-05 • updated units/maps • 60c5156
+- 2024-10-03 • Initial compilation from repository sources • ec0833a
