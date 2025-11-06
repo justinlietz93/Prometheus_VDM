@@ -1,9 +1,10 @@
 # HYPOTHESES
->
+
+> **Author:** Justin K. Lietz
 > **Created Date:** 2025‑10‑30  
 > **Commit:** 80ee5476e4f887fed3c34534a99daa878f55382f  
 > **Salted hash:** *to be generated from the commit at post*  
-> **Proposer contact(s):** ([justin@neuroca.ai](mailto:justin@neuroca.ai))  
+> **Contact(s):** ([justin@neuroca.ai](mailto:justin@neuroca.ai))  
 > **License:** See LICENSE in repository  
 > **TL;DR:** This document summarizes and indexes current state of hypothesis files in the repository. It can be seen as the sole source of truth for VDM hypotheses. Review the [Tier Grade Maturity Ladder](/Derivation/TIER_STANDARDS.md) for more information on what constitutes a hypothesis in this codebase.
 

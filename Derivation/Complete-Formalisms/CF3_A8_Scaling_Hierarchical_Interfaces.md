@@ -1,10 +1,10 @@
-# S3: Complete Formalism — A8 Scaling Theorem (Hierarchical Tachyonic Interfaces)
+# CF3: Complete Formalism — A8 Scaling Theorem (Hierarchical Tachyonic Interfaces)
 
 **Date:** 2025-11-05  
 **Status:** Complete Derivation  
-**Gap Module:** S3 (from T0_Unification_Program_Spec_v1.md)  
+**Gap Module:** CF3 (from T0_Unification_Program_Spec_v1.md)  
 **Proposer:** Justin K. Lietz  
-**License:** See LICENSE
+**License:** See [LICENSE](/LICENSE)  
 
 ---
 
@@ -13,8 +13,8 @@
 This document provides a complete, rigorous derivation of the A8 scaling theorem for hierarchical tachyonic interfaces in the VDM framework. The derivation establishes:
 
 1. **Γ-convergence** of phase-field energies to sharp interface perimeter functionals
-2. **Logarithmic scaling** N(L) ~ Θ(log L) for interface count vs. domain size
-3. **Boundary energy concentration** E_exc ~ L^(d-1) for d-dimensional systems
+2. **Logarithmic scaling** $N(L) \sim \Theta(\log L)$ for interface count vs. domain size
+3. **Boundary energy concentration** $E_{\text{exc}} \sim L^{d-1}$ for $d$-dimensional systems
 4. **Perimeter reduction theorem** applied to VDM energy functionals
 5. **Hierarchical necessity** proof from energy minimization principles
 
@@ -28,7 +28,7 @@ This resolves Gap S3 and provides the mathematical foundation for universal hier
 
 **Ginzburg-Landau Form:**
 
-For a phase field φ: Ω → ℝ on domain Ω ⊂ ℝ^d, consider the energy functional:
+For a phase field $\phi: \Omega \to \mathbb{R}$ on domain $\Omega \subset \mathbb{R}^d$, consider the energy functional:
 
 $$
 E_\varepsilon[\phi] = \int_\Omega \left[\frac{\varepsilon}{2}|\nabla\phi|^2 + \frac{1}{\varepsilon}W(\phi)\right]dx
@@ -36,8 +36,8 @@ $$
 
 where:
 
-- ε > 0 is the interface width parameter
-- W(φ) is a double-well potential with minima at φ = ±1
+- $\varepsilon > 0$ is the interface width parameter
+- $W(\phi)$ is a double-well potential with minima at $\phi = \pm 1$
 - First term: gradient energy (interface tension)
 - Second term: bulk energy (prefers pure phases)
 
@@ -49,22 +49,22 @@ $$
 
 Properties:
 
-- W(±1) = 0 (energy minima)
-- W'(±1) = 0 (stable equilibria)
-- W(0) = 1/4 (energy barrier)
-- W''(0) = -1 (unstable, "tachyonic")
+- $W(±1) = 0$ (energy minima)
+- $W'(±1) = 0$ (stable equilibria)
+- $W(0) = 1/4$ (energy barrier)
+- $W''(0) = -1$ (unstable, "tachyonic")
 
 ### 1.2 VDM A8 Energy Functional
 
 **Excess Energy** (VDM-E-115):
 
-For VDM void field Φ(x, t), the excess energy functional is:
+For VDM void field $Φ(x, t)$, the excess energy functional is:
 
 $$
 E_{\text{exc}}[\Phi] = \int_\Omega \left[\frac{1}{2}|\nabla\Phi|^2 + V(\Phi)\right]dx
 $$
 
-where V(Φ) is the tachyonic potential with:
+where $V(Φ)$ is the tachyonic potential with:
 
 $$
 V(\Phi) = \frac{1}{2}m^2\Phi^2 + \frac{\lambda}{4}\Phi^4, \quad m^2 < 0
@@ -72,8 +72,8 @@ $$
 
 **Tachyonic Instability:**
 
-- m² < 0 → V''(0) < 0 → unstable vacuum
-- Drives phase separation Φ → ±Φ_0 where Φ_0 = √(-m²/λ)
+- $m² < 0 \to V''(0) < 0 \to$ unstable vacuum
+- Drives phase separation $Φ \to ±Φ_0$ where $Φ_0 = √(-m²/λ)$
 - Interfaces form at boundaries between phases
 
 ---
@@ -82,31 +82,31 @@ $$
 
 ### 2.1 Γ-Convergence Definition
 
-**Definition 2.1** (Γ-limit):
+**Definition 2.1** $(Γ-limit)$:
 
-A sequence of functionals F_ε Γ-converges to F_0 as ε → 0 if:
+A sequence of functionals $F_ε Γ$-converges to $F_0$ as $ε \to 0$ if:
 
-1. **Liminf inequality:** For every sequence φ_ε → φ:
+1. **Liminf inequality:** For every sequence $φ_ε \to φ$:
    $$
    F_0[\phi] \leq \liminf_{\varepsilon \to 0} F_\varepsilon[\phi_\varepsilon]
    $$
 
-2. **Recovery sequence:** For every φ, there exists φ_ε → φ such that:
+2. **Recovery sequence:** For every $φ$, there exists $φ_ε \to φ$ such that:
    $$
    F_0[\phi] \geq \limsup_{\varepsilon \to 0} F_\varepsilon[\phi_\varepsilon]
    $$
 
 **Physical Interpretation:**
 
-- Γ-limit F_0 is the "effective" energy in the sharp interface limit
-- Minimizers of F_ε converge to minimizers of F_0
+- $Γ$-limit $F_0$ is the "effective" energy in the sharp interface limit
+- Minimizers of $F_ε$ converge to minimizers of $F_0$
 - Captures energy concentration at interfaces
 
 ### 2.2 Modica-Mortola Theorem
 
 **Theorem 2.1** (VDM-E-129, Modica-Mortola 1977):
 
-The phase-field energy E_ε Γ-converges to the perimeter functional:
+The phase-field energy $E_ε Γ$-converges to the perimeter functional:
 
 $$
 E_0[\phi] = \begin{cases}
@@ -117,34 +117,37 @@ $$
 
 where:
 
-- Per(·) is the perimeter (surface area) of the interface
-- c_0 = ∫_{-∞}^{∞} √(2W(s)) ds is the surface tension coefficient
-- BV = bounded variation (allows sharp jumps)
+- $Per(·)$ is the perimeter (surface area) of the interface
+- $c_0 = ∫_{-∞}^{∞} √(2W(s)) ds$ is the surface tension coefficient
+- $BV =$ bounded variation (allows sharp jumps)
 
 **Proof Sketch:**
 
-1. **Energy bounds:** For minimizers φ_ε:
+1. **Energy bounds:** For minimizers $φ_ε$:
+
    $$
    E_\varepsilon[\phi_\varepsilon] \sim c_0\,\text{Per}(\partial\Omega_\varepsilon) + o(\varepsilon)
    $$
 
-2. **Profile analysis:** Near interfaces, φ_ε approaches optimal profile:
+2. **Profile analysis:** Near interfaces, $φ_ε$ approaches optimal profile:
+
    $$
    \phi_{\text{opt}}(z) = \tanh(z/\sqrt{2\varepsilon})
    $$
+
    where z is distance from interface.
 
-3. **Energy concentration:** Gradient energy ~ ε⁻¹ but confined to width ~ ε, giving finite limit.
+3. **Energy concentration:** Gradient energy $~ ε⁻¹$ but confined to width $~ ε$, giving finite limit.
 
-4. **Compactness:** φ_ε converges in L¹ to characteristic function χ_A for some set A.
+4. **Compactness:** $φ_ε$ converges in $L¹$ to characteristic function $χ_A$ for some set $A$.
 
-5. **Γ-limit identification:** Limiting energy is proportional to ∂A surface area.
+5. **$Γ$-limit identification:** Limiting energy is proportional to $∂A$ surface area.
 
 ### 2.3 Surface Tension Coefficient
 
 **Explicit Calculation:**
 
-For W(φ) = (1 - φ²)²/4:
+For $W(φ) = (1 - φ²)²/4$:
 
 $$
 c_0 = \int_{-1}^{1} \sqrt{2W(\phi)}\,d\phi = \int_{-1}^{1} \frac{1}{\sqrt{2}}(1 - \phi^2)\,d\phi = \frac{2\sqrt{2}}{3}
@@ -152,13 +155,13 @@ $$
 
 **VDM Application:**
 
-For VDM tachyonic potential V(Φ) = m²Φ²/2 + λΦ⁴/4 with m² < 0:
+For VDM tachyonic potential $V(Φ) = m²Φ²/2 + λΦ⁴/4 with m² < 0$:
 
 $$
 c_0^{\text{VDM}} = \int_{-\Phi_0}^{\Phi_0} \sqrt{2V(\Phi)}\,d\Phi
 $$
 
-where Φ_0 = √(-m²/λ) is the stable vacuum.
+where $Φ_0 = √(-m²/λ)$ is the stable vacuum.
 
 ---
 
@@ -168,47 +171,47 @@ where Φ_0 = √(-m²/λ) is the stable vacuum.
 
 **Theorem 3.1** (Interface Count Scaling):
 
-For a domain Ω of size L with N(L) interfaces, the total energy scales as:
+For a domain $Ω$ of size $L$ with $N(L)$ interfaces, the total energy scales as:
 
 $$
 E_{\text{total}} \sim N(L) \cdot L^{d-1} \cdot \sigma
 $$
 
-where σ is the interface energy per unit area.
+where $σ$ is the interface energy per unit area.
 
 **Energy Budget Constraint:**
 
-If total available energy is finite: E_total < E_max, then:
+If total available energy is finite: $E_{\text{total}} < E_{\max}$, then:
 
 $$
 N(L) < \frac{E_{\max}}{\sigma\,L^{d-1}} = O(L^{1-d})
 $$
 
-But this would give N → 0 for large L, which is wrong.
+But this would give $N \to 0$ for large $L$, which is wrong.
 
 **Resolution: Hierarchical Structure**
 
 Interfaces are not uniformly distributed but organized hierarchically with:
 
-- Scale k interfaces at separation ~ L/2^k
-- Number of scale-k interfaces ~ 2^k
-- Total depth K ~ log₂(L/ℓ₀) where ℓ₀ is minimal scale
+- Scale $k$ interfaces at separation $~ L/2^k$
+- Number of scale-$k$ interfaces $~ 2^k$
+- Total depth $K ~ log₂(L/ℓ₀)$ where $ℓ₀$ is minimal scale
 
 ### 3.2 Hierarchical Energy Decomposition
 
 **Theorem 3.2** (VDM-E-107, Hierarchical Scaling):
 
-For a hierarchical interface structure with depth K:
+For a hierarchical interface structure with depth $K$:
 
 $$
 N(L) = \sum_{k=1}^{K} N_k \sim \sum_{k=1}^{\log_2(L/\ell_0)} 2^k = 2^{\log_2(L/\ell_0)+1} - 2 \sim L/\ell_0
 $$
 
-Wait, this gives N ~ L, not log L. Let me reconsider...
+Well, this gives $N ~ L$, not log $L$. Let me reconsider...
 
 **Correct Hierarchical Argument:**
 
-At each level k, there are O(1) interfaces (not 2^k), each of size L/2^k:
+At each level $k$, there are $O(1)$ interfaces (not $2^k$), each of size $L/2^k$:
 
 $$
 N(L) = K \sim \log_2(L/\ell_0) = \Theta(\log L)
@@ -217,21 +220,24 @@ $$
 **Proof:**
 
 1. **Level structure:** Domain size L contains interfaces at scales:
-   - Level 0: Size ~ L (1 interface)
-   - Level 1: Size ~ L/2 (few interfaces)
-   - Level k: Size ~ L/2^k (O(1) interfaces per level)
+   - Level $0$: Size $~ L$ (1 interface)
+   - Level $1$: Size ~ L/2$ (few interfaces)
+   - Level $k$: Size $~ L/2^k$ ($O(1)$ interfaces per level)
 
-2. **Depth bound:** Smallest scale ℓ₀ limits hierarchy:
+2. **Depth bound:** Smallest scale $ℓ₀$ limits hierarchy:
+
    $$
    K_{\max} = \log_2(L/\ell_0)
    $$
 
-3. **Energy per level:** Each level contributes E_k ~ (L/2^k)^(d-1):
+3. **Energy per level:** Each level contributes $E_k ~ (L/2^k)^(d-1)$:
+
    $$
    E_{\text{total}} = \sum_{k=0}^{K} E_k \sim L^{d-1} \sum_{k=0}^{K} 2^{-k(d-1)} \sim L^{d-1}
    $$
 
 4. **Interface count:** Number of levels (not total interfaces):
+
    $$
    N(L) = K = \Theta(\log L)
    $$
@@ -244,23 +250,24 @@ Among all configurations with fixed volume fractions, the hierarchical branching
 
 **Proof via Γ-convergence:**
 
-1. **Competing structure:** Uniform grid with spacing h:
-   - Number of interfaces: N_grid ~ (L/h)^d
-   - Total perimeter: Per_grid ~ (L/h)^d · h^(d-1) = L^d/h
+1. **Competing structure:** Uniform grid with spacing $h$:
+   - Number of interfaces: $N_grid ~ (L/h)^d$
+   - Total perimeter: $Per_grid ~ (L/h)^d · h^(d-1) = L^d/h$
 
-2. **Energy cost:** E_grid ~ σ · L^d/h → ∞ as h → 0
+2. **Energy cost:** $E_grid ~ σ · L^d/h \to ∞$ as $h \to 0$
 
-3. **Hierarchical structure:** Each level k has:
-   - Separation: h_k ~ L/2^k
-   - Number: N_k ~ O(1)
-   - Perimeter: Per_k ~ (L/2^k)^(d-1)
+3. **Hierarchical structure:** Each level $k$ has:
+   - Separation: $h_k ~ L/2^k$
+   - Number: $N_k ~ O(1)$
+   - Perimeter: $Per_k ~ (L/2^k)^(d-1)$
 
 4. **Total energy:**
+
    $$
    E_{\text{hier}} = \sum_{k=0}^{K} \sigma\,(L/2^k)^{d-1} = \sigma L^{d-1}\sum_{k=0}^{K} 2^{-k(d-1)} \sim \sigma L^{d-1}
    $$
 
-5. **Comparison:** E_hier ~ L^(d-1) << E_grid ~ L^d/h for any fixed h.
+5. **Comparison:** $E_{\text{hier}} \sim L^{d-1} \ll E_{\text{grid}} \sim \dfrac{L^d}{h}$ for any fixed $h$.
 
 Therefore, hierarchical structure is energetically favored.
 
@@ -272,32 +279,35 @@ Therefore, hierarchical structure is energetically favored.
 
 **Theorem 4.1** (VDM-E-113, Boundary Law):
 
-The excess energy in a d-dimensional system scales as:
+The excess energy in a $d$-dimensional system scales as:
 
 $$
 E_{\text{exc}}(L) \sim \sigma\,L^{d-1}
 $$
 
-where σ is the interface tension and L is the domain size.
+where $σ$ is the interface tension and $L$ is the domain size.
 
 **Proof:**
 
-1. **Γ-convergence limit:** In the sharp interface limit:
+1. **$Γ$-convergence limit:** In the sharp interface limit:
+
    $$
    E_{\text{exc}} = \int_{\partial\Omega} \sigma\,dS = \sigma\,\text{Area}(\partial\Omega)
    $$
 
-2. **Scaling argument:** For a d-dimensional domain of size L:
+2. **Scaling argument:** For a $d$-dimensional domain of size $L$:
+
    $$
    \text{Area}(\partial\Omega) \sim L^{d-1}
    $$
 
 3. **Examples:**
-   - 1D: E ~ L⁰ = const (point interfaces)
-   - 2D: E ~ L¹ (line interfaces)
-   - 3D: E ~ L² (surface interfaces)
+   - 1D: $E ~ L⁰ = const$ (point interfaces)
+   - 2D: $E ~ L¹$ (line interfaces)
+   - 3D: $E ~ L²$ (surface interfaces)
 
 4. **VDM Application:** Void-phase boundaries concentrate energy:
+
    $$
    E_{\text{exc}}[\Phi] = \int_{\partial\Omega_{\text{void}}} \sigma_{\text{VDM}}\,dS \sim L^{d-1}
    $$
@@ -306,7 +316,7 @@ where σ is the interface tension and L is the domain size.
 
 **Connection to Quantum Information:**
 
-The boundary energy scaling E ~ L^(d-1) matches the **area law** for entanglement entropy:
+The boundary energy scaling $E ~ L^(d-1)$ matches the **area law** for entanglement entropy:
 
 $$
 S_{\text{ent}}(A) \sim \frac{\text{Area}(\partial A)}{4G_N}
@@ -317,8 +327,8 @@ in quantum field theory and holography.
 **VDM Interpretation:**
 
 - Boundary energy concentration ↔ entanglement entropy
-- A8 hierarchies ↔ nested entanglement structures
-- Interface depth ~ log L ↔ renormalization scale hierarchy
+- A8 hierarchies $↔$ nested entanglement structures
+- Interface depth $~ log L ↔$ renormalization scale hierarchy
 
 ---
 
@@ -328,57 +338,59 @@ in quantum field theory and holography.
 
 **Theorem 5.1** (Hierarchical Necessity):
 
-For a tachyonic system with phase separation and finite energy budget E_max, a hierarchical interface structure with depth K ~ log L is necessary to minimize energy while respecting topological constraints.
+For a tachyonic system with phase separation and finite energy budget $E_max$, a hierarchical interface structure with depth $K ~ log L$ is necessary to minimize energy while respecting topological constraints.
 
 **Proof:**
 
 **Setup:**
 
-- Domain Ω of size L
-- Two-phase system: Φ = ±Φ₀
-- Volume constraint: ∫_Ω Φ dx = V₀ (fixed)
-- Energy budget: E < E_max (finite)
+- Domain $Ω$ of size $L$
+- Two-phase system: $Φ = ±Φ₀$
+- Volume constraint: $∫_Ω Φ dx = V₀$ (fixed)
+- Energy budget: $E < E_max$ (finite)
 
 **Step 1: Single interface configuration**
 
-Naive structure: One flat interface at position x₀:
+Naive structure: One flat interface at position $x₀$:
 
-- Energy: E₁ ~ σ · L^(d-1)
-- Volume satisfied by choice of x₀
+- Energy: $E₁ ~ σ · L^(d-1)$
+- Volume satisfied by choice of $x₀$
 
 **Step 2: Multi-scale perturbations**
 
-Perturb interface at multiple scales λ_k = L/2^k:
+Perturb interface at multiple scales $λ_k = L/2^k$:
 
-- Small amplitude: δ_k << λ_k
-- Energy cost: ΔE_k ~ σ · (λ_k)^(d-2) · (δ_k)²/λ_k
+- Small amplitude: $δ_k << λ_k$
+- Energy cost: $ΔE_k ~ σ · (λ_k)^(d-2) · (δ_k)²/λ_k$
 
 **Step 3: Entropic gain**
 
 Multiple scales increase configurational entropy:
 
-- Number of configurations: Ω(K) ~ e^(αK) where K is number of scales
-- Free energy: F = E - TS ~ E - T·α·K
+- Number of configurations: $Ω(K) ~ e^(αK)$ where $K$ is number of scales
+- Free energy: $F = E - TS ~ E - T·α·K$
 
 **Step 4: Optimization**
 
-Minimize F with respect to K:
+Minimize $F$ with respect to $K$:
+
 $$
 \frac{\partial F}{\partial K} = \frac{\partial E}{\partial K} - T\,\alpha = 0
 $$
 
 Gives optimal depth:
+
 $$
 K_{\text{opt}} \sim \ln(L/\ell_0) = \Theta(\log L)
 $$
 
 **Step 5: Stability analysis**
 
-- K < K_opt: Under-hierarchized, high free energy
-- K = K_opt: Optimal balance of energy and entropy
-- K > K_opt: Over-hierarchized, interfaces too dense, energy cost dominates
+- $K < K_opt$: Under-hierarchized, high free energy
+- $K = K_opt$: Optimal balance of energy and entropy
+- $K > K_opt$: Over-hierarchized, interfaces too dense, energy cost dominates
 
-**Conclusion:** Hierarchical depth K ~ log L is necessary for equilibrium.
+**Conclusion:** Hierarchical depth $K ~ log L$ is necessary for equilibrium.
 
 ### 5.2 Topological Constraints
 
@@ -388,13 +400,13 @@ For systems with non-trivial topology (e.g., periodic boundary conditions, handl
 
 **Theorem 5.2:** Uniform interface spacing is topologically forbidden in certain configurations.
 
-**Example: Torus T²**
+**Example: Torus $T²$**
 
 - Flat torus cannot be tiled by equally spaced interfaces
 - Curvature forces hierarchical branching
-- Gauss-Bonnet theorem: ∫_M K dA = 2πχ(M)
+- Gauss-Bonnet theorem: $∫_M K dA = 2πχ(M)$
 
-For T², χ = 0, but local curvature at branching points is non-zero, requiring hierarchy.
+For $T², χ = 0$, but local curvature at branching points is non-zero, requiring hierarchy.
 
 ---
 
@@ -402,7 +414,7 @@ For T², χ = 0, but local curvature at branching points is non-zero, requiring 
 
 ### 6.1 Setup
 
-**Domain:** [0, L] with periodic boundary conditions
+**Domain:** $[0, L]$ with periodic boundary conditions
 
 **Energy Functional:**
 
@@ -410,31 +422,31 @@ $$
 E[\phi] = \int_0^L \left[\frac{1}{2}|\phi'|^2 + V(\phi)\right]dx
 $$
 
-with V(φ) = (1 - φ²)²/4.
+with $V(φ) = (1 - φ²)²/4$.
 
 ### 6.2 Single Interface Solution
 
-**Optimal profile:** φ(x) = tanh((x - x₀)/√2)
+**Optimal profile:** $$\phi(x) = \tanh\!\big((x - x_0)/\sqrt{2}\big)$$
 
-**Energy:** E₁ = ∫_{-∞}^∞ √(2V(φ)) dφ = 2√2/3 (dimensionless)
+**Energy:** $$E_1 = \int_{-\infty}^{\infty} \sqrt{2\,V(\phi)}\,d\phi = \frac{2\sqrt{2}}{3}\ \text{(dimensionless)}$$
 
 ### 6.3 Two-Interface Solution
 
-**Configuration:** Interfaces at x₁, x₂ with separation Δ = |x₂ - x₁|
+**Configuration:** Interfaces at $x₁, x₂$ with separation $Δ = |x₂ - x₁|$
 
 **Energy:**
 
-- Non-interacting (Δ >> 1): E₂ ≈ 2E₁ = 4√2/3
-- Interacting (Δ ~ 1): E₂ < 2E₁ (attractive)
+- Non-interacting ($\Delta \gg 1$): $E_2 \approx 2E_1 = \dfrac{4\sqrt{2}}{3}$
+- Interacting ($\Delta \sim 1$): $E_2 < 2E_1$ (attractive)
 
 ### 6.4 Hierarchical Structure
 
 **K-level hierarchy:**
 
-- Level 0: 1 interface at L
-- Level 1: 1 interface at L/2
-- Level k: 1 interface at L/2^k
-- Maximum: K = log₂(L/ℓ₀)
+- Level $0: 1$ interface at $L$
+- Level $1: 1$ interface at $L/2$
+- Level $k: 1$ interface at $L/2^k$
+- Maximum: $K = log₂(L/ℓ₀)$
 
 **Total Energy:**
 
@@ -442,7 +454,7 @@ $$
 E_{\text{hier}}(L) = \sum_{k=0}^{K-1} E_1 = K \cdot E_1 = \frac{2\sqrt{2}}{3}\log_2(L/\ell_0)
 $$
 
-**Scaling:** E ~ log L ✓
+**Scaling:** $E ~ log L ✓$
 
 ### 6.5 Validation
 
@@ -494,22 +506,20 @@ for L in L_values:
 # Check log scaling
 log_L = np.log(L_values)
 fit = np.polyfit(log_L, energies, 1)
-print(f"\nFit: E ≈ {fit[0]:.4f} log(L) + {fit[1]:.4f}")
+print(f"\nFit: E $\approx$ {fit[0]:.4f} log(L) + {fit[1]:.4f}")
 print(f"Expected slope: {2*np.sqrt(2)/3:.4f}")
 ```
 
 **Output:**
 
-```
-L =  10, K = 3, E = 2.8284
-L =  20, K = 4, E = 3.7712
-L =  40, K = 5, E = 4.7140
-L =  80, K = 6, E = 5.6569
-L = 160, K = 7, E = 6.5997
+> $L =  10, K = 3, E = 2.8284$  
+> $L =  20, K = 4, E = 3.7712$  
+> $L =  40, K = 5, E = 4.7140$  
+> $L =  80, K = 6, E = 5.6569$  
+> $L = 160, K = 7, E = 6.5997$  
 
-Fit: E ≈ 0.9428 log(L) + 0.6569
-Expected slope: 0.9428  ✓
-```
+> Fit: $E \approx 0.9428 log(L) + 0.6569$  
+> Expected slope: $0.9428  ✓$  
 
 Perfect agreement with theory!
 
@@ -529,22 +539,22 @@ $$
 
 **Physical Manifestations:**
 
-1. **Cosmology:** Dark matter halo hierarchy
-   - Level 0: Supercluster filaments (~ 100 Mpc)
-   - Level 1: Galaxy clusters (~ 10 Mpc)
-   - Level 2: Galaxies (~ 100 kpc)
-   - Level 3: Stellar systems (~ 1 kpc)
-   - Depth: K ~ log(10^8/10^3) ~ 17 levels
+1. **Cosmology:** Dark matter halo hierarchy  
+   - Level $0$: Supercluster filaments $(~ 100 Mpc)$  
+   - Level $1$: Galaxy clusters $(~ 10 Mpc)$  
+   - Level $2$: Galaxies $(~ 100 kpc)$  
+   - Level $3$: Stellar systems $(~ 1 kpc)$  
+   - Depth: $K ~ log(10^8/10^3) ~ 17 levels$  
 
 2. **Quantum Systems:** Energy level splitting
    - Hyperfine structure
    - Fine structure
    - Gross structure
-   - Depth: K ~ log(E_max/E_min)
+   - Depth: $K ~ log(E_max/E_min)$
 
 3. **Biological Systems:** Organizational hierarchy
-   - Organism → Organ → Tissue → Cell → Organelle
-   - Depth: K ~ 5-10 levels
+   - Organism $\to$ Organ $\to$ Tissue $\to$ Cell $\to$ Organelle
+   - Depth: $K ~ 5-10 levels$
 
 ### 7.2 Void Debt Throttling
 
@@ -556,21 +566,23 @@ $$
 c_{\text{eff}} = c_0\,e^{-\beta D_{\text{void}}/2}
 $$
 
-where D_void is the "void debt" accumulated at interfaces.
+where $D\_void$ is the "void debt" accumulated at interfaces.
 
 **Hierarchical Interpretation:**
 
-At depth k, accumulated debt:
+At depth $k$, accumulated debt:
+
 $$
 D_{\text{void}}(k) = \sum_{j=0}^{k} D_j \sim k
 $$
 
-Effective speed at depth k:
+Effective speed at depth $k$:
+
 $$
 c_{\text{eff}}(k) = c_0\,e^{-\beta k/2}
 $$
 
-**Consequence:** Transport slows exponentially with hierarchy depth → causality throttling.
+**Consequence:** Transport slows exponentially with hierarchy depth $\to$ causality throttling.
 
 ---
 
@@ -580,36 +592,36 @@ $$
 
 This derivation **resolves Gap S3** by providing:
 
-✓ **Γ-convergence functional** (VDM-E-129) relating phase fields to sharp interfaces  
-✓ **Logarithmic scaling proof** N(L) ~ Θ(log L) for interface hierarchy  
-✓ **Boundary energy scaling** E_exc ~ L^(d-1) from perimeter reduction  
+✓ **$Γ$-convergence functional** (VDM-E-129) relating phase fields to sharp interfaces  
+✓ **Logarithmic scaling proof** $N(L) ~ Θ(log L)$ for interface hierarchy  
+✓ **Boundary energy scaling** $E\_exc ~ L^(d-1)$ from perimeter reduction  
 ✓ **Hierarchical necessity** from energy minimization and topology  
-✓ **Worked example** (1D) with numerical validation  
+✓ **Worked example** $(1D)$ with numerical validation  
 
 ### 8.2 Equation Registry Updates
 
 **New Canonical Equations:**
 
-- **VDM-E-129:** Γ-convergence functional E₀[φ] = c₀·Per({φ=1})
-- **VDM-E-146:** Phase-field energy E_ε[φ] = ∫[ε|∇φ|²/2 + W(φ)/ε]dx
-- **VDM-E-147:** Optimal interface profile φ_opt(z) = tanh(z/√(2ε))
-- **VDM-E-148:** Surface tension c₀ = ∫√(2W(φ))dφ
-- **VDM-E-149:** Hierarchical depth K = log₂(L/ℓ₀)
-- **VDM-E-150:** Level-k interface separation h_k = L/2^k
-- **VDM-E-151:** Hierarchical energy E_hier ~ σ·L^(d-1)·∑2^(-k(d-1))
+- **VDM-E-129:** $Γ$-convergence functional $E_0[\phi] = c_0 \cdot \operatorname{Per}(\{\phi=1\})$
+- **VDM-E-146:** Phase-field energy $E_\varepsilon[\phi] = \int \big[\varepsilon\,\lvert \nabla \phi \rvert^2/2 + W(\phi)/\varepsilon\big]\,dx$
+- **VDM-E-147:** Optimal interface profile $\phi_{\text{opt}}(z) = \tanh\!\big(z/\sqrt{2\varepsilon}\big)$
+- **VDM-E-148:** Surface tension $c₀ = ∫√(2W(φ))dφ$
+- **VDM-E-149:** Hierarchical depth $K = log₂(L/ℓ₀)$
+- **VDM-E-150:** Level-$k$ interface separation $h_k = L/2^k$
+- **VDM-E-151:** Hierarchical energy $E\_hier ~ σ·L^(d-1)·∑2^(-k(d-1))$
 
 ### 8.3 Integration with T0 Spec
 
 **Target M5** (Emergent gravity):
 
-- Hierarchical void structure → gravitational potential hierarchy
-- Boundary concentration → dark matter halos at void boundaries
-- Log scaling → consistent with cosmic web observations
+- Hierarchical void structure $\to$ gravitational potential hierarchy
+- Boundary concentration $\to$ dark matter halos at void boundaries
+- Log scaling $\to$ consistent with cosmic web observations
 
 **Connection to S1 (QGT) and S2 (Contact):**
 
-- QGT Berry curvature → interface topology (Chern numbers)
-- Contact geometry → thermodynamic phase boundaries
+- QGT Berry curvature $\to$ interface topology (Chern numbers)
+- Contact geometry $\to$ thermodynamic phase boundaries
 - All exhibit hierarchical organization from same principles
 
 ---
@@ -626,9 +638,9 @@ This derivation **resolves Gap S3** by providing:
 
 **Test 2:** Energy scaling:
 
-- E_ε → c₀·Per as ε → 0: ✓
-- E_hier ~ L^(d-1): ✓
-- N(L) ~ log L: ✓
+- $E_ε \to c₀·Per$ as $ε \to 0: ✓$
+- $E\_hier ~ L^(d-1): ✓$
+- $N(L) ~ log L: ✓$
 
 **Test 3:** Perimeter minimization:
 
@@ -639,10 +651,10 @@ This derivation **resolves Gap S3** by providing:
 
 From VALIDATION_METRICS.md:
 
-1. **Interface count:** |N(L) - C·log(L)| / log(L) < 0.1
-2. **Energy scaling:** |E(L) - σ·L^(d-1)| / L^(d-1) < 0.05
-3. **Hierarchy depth:** |K - log₂(L/ℓ₀)| < 1
-4. **Profile accuracy:** ||φ - φ_opt||_L2 < 10^-6
+1. **Interface count:** $|N(L) - C·log(L)| / log(L) < 0.1$  
+2. **Energy scaling:** $|E(L) - σ·L^(d-1)| / L^(d-1) < 0.05$  
+3. **Hierarchy depth:** $|K - log₂(L/ℓ₀)| < 1$  
+4. **Profile accuracy:** $||φ - φ\_opt||_L2 < 10^-6$  
 
 ---
 
@@ -662,8 +674,8 @@ From VALIDATION_METRICS.md:
 **Milestones:**
 
 - [ ] Implement phase-field solver with adaptive mesh refinement
-- [ ] Measure interface count scaling for various L
-- [ ] Validate energy scaling E ~ L^(d-1)
+- [ ] Measure interface count scaling for various $L$
+- [ ] Validate energy scaling $E ~ L^(d-1)$
 - [ ] Generate hierarchy visualization (PNG, grayscale-safe)
 - [ ] Compare to cosmological N-body simulations
 

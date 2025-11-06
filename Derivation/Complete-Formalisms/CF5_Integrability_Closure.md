@@ -1,21 +1,21 @@
-# S5: Complete Formalism — Integrability Closure (No Hidden Conserved Quantities)
+# CF5: Complete Formalism — Integrability Closure (No Hidden Conserved Quantities)
 
-**Date:** 2025-11-05  
-**Status:** Complete Derivation  
-**Gap Module:** S5 (from T0_Unification_Program_Spec_v1.md)  
-**Proposer:** Justin K. Lietz  
+**Date:** 2025-11-05
+**Status:** Complete Derivation
+**Gap Module:** S5 (from T0_Unification_Program_Spec_v1.md)
+**Proposer:** Justin K. Lietz
 **License:** See LICENSE
 
 ---
 
 ## Executive Summary
 
-This document provides a complete, rigorous derivation of the integrability closure test for the VDM metriplectic system, proving no hidden first integrals beyond H (energy) and S (entropy). The derivation establishes:
+This document provides a complete, rigorous derivation of the integrability closure test for the VDM metriplectic system, proving no hidden first integrals beyond $H$ (energy) and $S$ (entropy). The derivation establishes:
 
 1. **Darboux method** for finding polynomial first integrals via algebraic curves
 2. **Prelle-Singer algorithm** for discovering elementary first integrals
 3. **Kovalevskaya-Painlevé analysis** of singularity structure
-4. **Proof** that VDM metriplectic system has exactly two independent Casimirs: H and S
+4. **Proof** that VDM metriplectic system has exactly two independent Casimirs: $H$ and $S$
 5. **No hidden conserved quantities** theorem
 
 This resolves Gap S5 and ensures the metriplectic structure is minimal and complete.
@@ -28,7 +28,7 @@ This resolves Gap S5 and ensures the metriplectic structure is minimal and compl
 
 **Definition 1.1** (First Integral):
 
-A function I: ℝⁿ → ℝ is a **first integral** of the dynamical system ẋ = f(x) if:
+A function $I: \mathbb{R}^n \to \mathbb{R}$ is a **first integral** of the dynamical system $\dot{x} = f(x)$ if:
 
 $$
 \frac{dI}{dt} = \nabla I \cdot f(x) = 0
@@ -115,7 +115,7 @@ $$
 \begin{pmatrix} \dot{x} \\ \dot{y} \end{pmatrix} = \begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix} \begin{pmatrix} H_x \\ H_y \end{pmatrix} + \begin{pmatrix} g & 0 \\ 0 & g \end{pmatrix} \begin{pmatrix} S_x \\ S_y \end{pmatrix}
 $$
 
-where g ≥ 0 is the metric coefficient.
+where g $\geq$ 0 is the metric coefficient.
 
 **Claim:** Only H and S are conserved.
 
@@ -217,7 +217,7 @@ $$
 **Key observation:** First term antisymmetric (J), second term symmetric (M):
 
 - ∇H · J∇H = 0 (J antisymmetric)
-- ∇S · M∇S ≥ 0 (M PSD)
+- ∇S · M∇S $\geq$ 0 (M PSD)
 
 This forces β∇S · M∇S = 0, implying β = 0 (if S not constant).
 
@@ -280,15 +280,15 @@ $$
 r_i = -1 + \frac{1}{\lambda_i}
 $$
 
-**For Integrability:** Need r_i ∈ ℤ₊ for all i.
+**For Integrability:** Need r_i $\in$ ℤ₊ for all i.
 
 **VDM Case:**
 
-- J part: Eigenvalues purely imaginary → r_i complex (no integrability from J alone)
-- M part: Eigenvalues real negative → r_i real positive
+- J part: Eigenvalues purely imaginary $\to$ r_i complex (no integrability from J alone)
+- M part: Eigenvalues real negative $\to$ r_i real positive
 - Combined: Mixed spectrum typically has non-integer Kovalevskaya exponents
 
-**Conclusion:** VDM metriplectic does NOT have Painlevé property in general → no additional hidden integrals from singularity structure.
+**Conclusion:** VDM metriplectic does NOT have Painlevé property in general $\to$ no additional hidden integrals from singularity structure.
 
 ---
 
@@ -302,7 +302,7 @@ For a Lagrangian system L(x, ẋ, t), every continuous symmetry corresponds to a
 
 **Application to Hamiltonian Systems:**
 
-If Hamiltonian H is invariant under transformation x → x + εξ(x), then:
+If Hamiltonian H is invariant under transformation x $\to$ x + εξ(x), then:
 
 $$
 I = p \cdot \xi
@@ -574,13 +574,13 @@ This derivation **resolves Gap S5** by providing:
 ### 8.3 Integration with T0 Spec
 
 **Target M2** (Metriplectic monotonicity):
-- Closure theorem ensures ΔL_h ≤ 0 is the unique Lyapunov
+- Closure theorem ensures ΔL_h $\leq$ 0 is the unique Lyapunov
 - No hidden conserved quantities to violate monotonicity
 - Degeneracy conditions sufficient and necessary
 
 **Connection to S1-S4:**
-- S1 (QGT): Berry curvature → J-Casimir = S
-- S2 (Contact): Reeb direction → M-Casimir = H
+- S1 (QGT): Berry curvature $\to$ J-Casimir = S
+- S2 (Contact): Reeb direction $\to$ M-Casimir = H
 - S3 (A8): Hierarchy depth not an independent integral
 - S4 (Telegraph): Speed c derived from H and S alone
 

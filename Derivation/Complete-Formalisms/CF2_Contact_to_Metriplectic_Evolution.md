@@ -1,9 +1,9 @@
-# S2: Complete Formalism — Contact Geometry to Metriplectic Evolution
+# CF2: Complete Formalism — Contact Geometry to Metriplectic Evolution
 
-**Date:** 2025-11-05  
-**Status:** Complete Derivation  
-**Gap Module:** S2 (from T0_Unification_Program_Spec_v1.md)  
-**Proposer:** Justin K. Lietz  
+**Date:** 2025-11-05
+**Status:** Complete Derivation
+**Gap Module:** S2 (from T0_Unification_Program_Spec_v1.md)
+**Proposer:** Justin K. Lietz
 **License:** See LICENSE
 
 ---
@@ -12,11 +12,11 @@
 
 This document provides a complete, rigorous derivation of the mapping from contact geometric thermodynamics to metriplectic evolution structures in the VDM framework. The derivation establishes:
 
-1. **Contact 1-form** α on thermodynamic phase space (T*Q × ℝ)
-2. **Reeb vector field** R generating time evolution
-3. **Contact Hamiltonian** decomposition into (J, M) metriplectic brackets
+1. **Contact 1-form** $\alpha$ on thermodynamic phase space $(T^*Q \times \mathbb{R})$
+2. **Reeb vector field** $R$ generating time evolution
+3. **Contact Hamiltonian** decomposition into $(J, M)$ metriplectic brackets
 4. **GENERIC formalism** connection (two-generator reversible-irreversible coupling)
-5. **Constructive algorithm** for extracting J and M from contact structure
+5. **Constructive algorithm** for extracting $J$ and $M$ from contact structure
 
 This resolves Gap S2 and provides the geometric foundation for thermodynamic VDM evolution.
 
@@ -28,7 +28,7 @@ This resolves Gap S2 and provides the geometric foundation for thermodynamic VDM
 
 **Definition 1.1** (Contact Manifold):
 
-A contact manifold is an odd-dimensional smooth manifold M^(2n+1) equipped with a 1-form α (contact form) such that:
+A contact manifold is an odd-dimensional smooth manifold $M^{2n+1}$ equipped with a 1-form $\alpha$ (contact form) such that:
 
 $$
 \alpha \wedge (d\alpha)^n \neq 0
@@ -38,16 +38,17 @@ everywhere on M. This is the **maximally non-integrable** condition.
 
 **Standard Coordinates:**
 
-On ℝ^(2n+1) with coordinates (q^i, p_i, s) for i = 1,...,n:
+On $\mathbb{R}^{2n+1}$ with coordinates $(q^i, p_i, s)$ for $i = 1,\ldots,n$:
 
 $$
 \alpha = ds - p_i\,dq^i
 $$
 
 **Physical Interpretation:**
-- (q^i, p_i) are canonical position-momentum pairs
-- s is the "entropy" or "action" coordinate
-- α encodes the first law of thermodynamics
+
+- $(q^i, p_i)$ are canonical position-momentum pairs
+- $s$ is the "entropy" or "action" coordinate
+- $\alpha$ encodes the first law of thermodynamics
 
 ### 1.2 Reeb Vector Field
 
@@ -56,41 +57,43 @@ $$
 The Reeb vector field R is uniquely determined by:
 
 $$
-\begin{align}
+\begin{aligned}
 \iota_R \alpha &= 1 \\
 \iota_R\,d\alpha &= 0
-\end{align}
+\end{aligned}
 $$
 
-where ι denotes interior product (contraction).
+where $\iota$ denotes interior product (contraction).
 
 **Standard Form:**
 
-In coordinates (q^i, p_i, s):
+In coordinates $(q^i, p_i, s)$:
 
 $$
 R = \frac{\partial}{\partial s}
 $$
 
 **Physical Interpretation:**
+
 - R generates flow in the "entropy direction"
-- Integral curves: thermodynamic processes at constant (q, p)
-- Preserves the contact structure: ℒ_R α = 0 (Lie derivative)
+- Integral curves: thermodynamic processes at constant $(q, p)$
+- Preserves the contact structure: $\mathcal{L}_R \alpha = 0$ (Lie derivative)
 
 ### 1.3 Legendre Submanifolds (Equilibrium States)
 
 **Definition 1.3:**
 
-A Legendre submanifold L ⊂ M is an n-dimensional submanifold such that:
+A Legendre submanifold $L \subset M$ is an n-dimensional submanifold such that:
 
 $$
 \alpha|_L = 0 \quad \text{and} \quad d\alpha|_L \text{ is non-degenerate}
 $$
 
 **Thermodynamic Interpretation:**
-- Legendre submanifolds → equilibrium states
-- Contact direction (Reeb) → thermodynamic time evolution
-- Symplectic leaves → constant-entropy slices
+
+- Legendre submanifolds $\to$ equilibrium states
+- Contact direction (Reeb) $\to$ thermodynamic time evolution
+- Symplectic leaves $\to$ constant-entropy slices
 
 ---
 
@@ -100,7 +103,7 @@ $$
 
 **Definition 2.1** (VDM-E-127):
 
-A contact Hamiltonian is a smooth function K: M → ℝ. It generates a contact vector field X_K via:
+A contact Hamiltonian is a smooth function $K: M \to \mathbb{R}$. It generates a contact vector field $X_K$ via:
 
 $$
 \iota_{X_K}\,d\alpha = dK - \frac{\partial K}{\partial s}\,\alpha
@@ -122,11 +125,12 @@ $$
 \{f, g\}_c = \omega(X_f, X_g) + f\,\iota_{X_g}\alpha - g\,\iota_{X_f}\alpha
 $$
 
-where ω = dα is the "almost symplectic" 2-form.
+where $\omega = d\alpha$ is the "almost symplectic" 2-form.
 
 **Properties:**
-- Antisymmetric: {f, g}_c = -{g, f}_c
-- Leibniz rule: {fg, h}_c = f{g,h}_c + g{f,h}_c
+
+- Antisymmetric: $\{f, g\}_c = -\{g, f\}_c$
+- Leibniz rule: $\{fg, h\}_c = f\{g,h\}_c + g\{f,h\}_c$
 - NOT a Poisson bracket (fails Jacobi identity)
 
 ### 2.3 Evolution Equations
@@ -134,15 +138,16 @@ where ω = dα is the "almost symplectic" 2-form.
 **Hamilton's Equations** (contact form):
 
 $$
-\begin{align}
+\begin{aligned}
 \dot{q}^i &= \frac{\partial K}{\partial p_i} \\
 \dot{p}_i &= -\frac{\partial K}{\partial q^i} \\
 \dot{s} &= p_i\frac{\partial K}{\partial p_i} - K
-\end{align}
+\end{aligned}
 $$
 
 **Physical Interpretation:**
-- First two equations: Hamiltonian mechanics on (q, p)
+
+- First two equations: Hamiltonian mechanics on $(q, p)$
 - Third equation: entropy production/thermodynamic evolution
 - K plays role of both energy and generator
 
@@ -164,7 +169,7 @@ on the equilibrium manifold.
 
 **Extended Phase Space:**
 
-Coordinates: (T, S, p, V, U) with contact form:
+Coordinates: $(T, S, p, V, U)$ with contact form:
 
 $$
 \alpha = dU - T\,dS - p\,dV
@@ -194,18 +199,18 @@ $$
 
 **Evolution:**
 $$
-\begin{align}
+\begin{aligned}
 \dot{S} &= T \\
 \dot{V} &= p \\
 \dot{U} &= -S\,T - p\,V
-\end{align}
+\end{aligned}
 $$
 
 ### 3.3 Gibbs' Fundamental Relation
 
 **Contact Geometric Form:**
 
-For extensive variables (S, V, N) and intensive conjugates (T, -p, μ):
+For extensive variables $(S, V, N)$ and intensive conjugates (T, -p, $\mu$):
 
 $$
 \alpha = dU - T\,dS + p\,dV - \mu\,dN
@@ -228,25 +233,26 @@ This is the **Euler relation**, encoded geometrically in the Reeb direction.
 
 **Definition 4.1** (General Equation for Non-Equilibrium Reversible-Irreversible Coupling):
 
-For state variables x, GENERIC posits evolution:
+For state variables $x$, GENERIC posits evolution:
 
 $$
 \dot{x} = L(x)\,\nabla E(x) + M(x)\,\nabla S(x)
 $$
 
 where:
-- L(x): antisymmetric Poisson operator (reversible)
-- M(x): symmetric positive semi-definite operator (irreversible)
-- E(x): total energy
-- S(x): total entropy
+
+- $L(x)$: antisymmetric Poisson operator (reversible)
+- $M(x)$: symmetric positive semi-definite operator (irreversible)
+- $E(x)$: total energy
+- $S(x)$: total entropy
 
 **Degeneracy Conditions:**
 
 $$
-\begin{align}
+\begin{aligned}
 L(x)\,\nabla S(x) &= 0 \quad \text{(entropy conserved by reversible flow)} \\
 M(x)\,\nabla E(x) &= 0 \quad \text{(energy conserved by irreversible flow)}
-\end{align}
+\end{aligned}
 $$
 
 ### 4.2 Connection to Metriplectic Structure
@@ -256,21 +262,21 @@ $$
 The GENERIC framework is equivalent to metriplectic dynamics with:
 
 $$
-\begin{align}
+\begin{aligned}
 \{f, g\}_J &= \nabla f \cdot L(x)\,\nabla g \\
 (f, g)_M &= \nabla f \cdot M(x)\,\nabla g
-\end{align}
+\end{aligned}
 $$
 
 **Proof:**
 
-1. J-bracket: {·,·}_J = L(x)∇(·) defines Poisson bracket if L antisymmetric and satisfies Jacobi
-2. M-bracket: (·,·)_M = M(x)∇(·) defines metric bracket if M symmetric PSD
-3. Degeneracy: L∇S = 0 ⟺ {S,·}_J = 0; M∇E = 0 ⟺ (E,·)_M = 0
+1. J-bracket: ${·,·}_J = L(x)∇(·)$ defines Poisson bracket if $L$ antisymmetric and satisfies Jacobi
+2. M-bracket: $(·,·)_M = M(x)∇(·)$ defines metric bracket if $M$ symmetric PSD
+3. Degeneracy: $L∇S = 0 ⟺ {S,·}_J = 0; M∇E = 0 ⟺ (E,·)_M = 0$
 
 ### 4.3 Contact Structure as Generator of GENERIC
 
-**Theorem 4.2** (Contact → GENERIC Decomposition):
+**Theorem 4.2** (Contact $\to$ GENERIC Decomposition):
 
 A contact Hamiltonian K can be decomposed as:
 
@@ -278,7 +284,7 @@ $$
 K = E(q, p) + \lambda\,S(q, p)
 $$
 
-where λ is the "thermodynamic affinity" (e.g., temperature).
+where $\lambda$ is the "thermodynamic affinity" (e.g., temperature).
 
 The contact evolution then splits into:
 
@@ -287,8 +293,9 @@ $$
 $$
 
 where:
-- X_E^symp: symplectic (Hamiltonian) flow preserving S
-- X_S^diss: dissipative (gradient) flow preserving E
+
+- $X_E^symp$: symplectic (Hamiltonian) flow preserving $S$
+- $X_S^diss$: dissipative (gradient) flow preserving $E$
 
 **Proof:**
 
@@ -303,8 +310,8 @@ where:
    $$
 
 3. Verify degeneracy:
-   - ℒ_{X_E} S = {S, E}_{\text{Poisson}} = 0 (Noether)
-   - ℒ_{X_S} E = gradient flow preserves E if ∇E · ∇S = 0
+   - $ℒ_{X_E} S = {S, E}_{\text{Poisson}} = 0$ (Noether)
+   - $ℒ_{X_S} E =$ gradient flow preserves $E$ if $∇E · ∇S = 0$
 
 ---
 
@@ -313,19 +320,21 @@ where:
 ### 5.1 Constructive Decomposition (VDM-E-128)
 
 **Input:**
-- Contact manifold M with coordinates (q^i, p_i, s)
-- Contact form α = ds - p_i dq^i
-- Contact Hamiltonian K(q, p, s)
+
+- Contact manifold $M$ with coordinates $(q^i, p_i, s)$
+- Contact form $\alpha = ds - p_i dq^i$
+- Contact Hamiltonian $K(q, p, s)$
 
 **Output:**
-- J-bracket operator L(x) (antisymmetric)
-- M-bracket operator M(x) (symmetric PSD)
-- Energy E and entropy S functionals
+
+- $J$-bracket operator $L(x)$ (antisymmetric)
+- $M$-bracket operator $M(x)$ (symmetric PSD)
+- Energy $E$ and entropy $S$ functionals
 - Verification of degeneracy conditions
 
 **Algorithm:**
 
-**Step 1:** Project K onto symplectic slice (s = const):
+**Step 1:** Project $K$ onto symplectic slice ($s$ = const):
 
 $$
 E(q, p) = K(q, p, s)|_{s=s_0}
@@ -339,13 +348,14 @@ $$
 
 (This is the Legendre transform in the s-direction)
 
-**Step 3:** Construct J-bracket from symplectic structure:
+**Step 3:** Construct $J$-bracket from symplectic structure:
 
 $$
 \{f, g\}_J = \frac{\partial f}{\partial q^i}\frac{\partial g}{\partial p_i} - \frac{\partial f}{\partial p_i}\frac{\partial g}{\partial q^i}
 $$
 
 In operator form:
+
 $$
 L = \begin{pmatrix} 0 & I_n \\ -I_n & 0 \end{pmatrix}
 $$
@@ -353,16 +363,19 @@ $$
 **Step 4:** Construct M-bracket from thermodynamic metric:
 
 For ideal systems, use Fisher information metric:
+
 $$
 g_{ij} = \int \frac{1}{p(x)}\,\frac{\partial p}{\partial \theta^i}\,\frac{\partial p}{\partial \theta^j}\,dx
 $$
 
 Or Ruppeiner metric (entropy Hessian):
+
 $$
 g_{ij} = -\frac{\partial^2 S}{\partial X^i \partial X^j}
 $$
 
 In operator form:
+
 $$
 M = g(q, p)\,I_{2n}
 $$
@@ -372,6 +385,7 @@ where g is a positive scalar function.
 **Step 5:** Verify degeneracy:
 
 Check:
+
 $$
 \{S, E\}_J = L\,\nabla S \cdot \nabla E = 0
 $$
@@ -384,12 +398,12 @@ $$
 
 **Numerical Gates:**
 
-1. **Antisymmetry of L:** ||L + L^T|| < 10^-12
-2. **Symmetry of M:** ||M - M^T|| < 10^-12
-3. **PSD of M:** λ_min(M) > -10^-10
-4. **Degeneracy 1:** |{S, E}_J| < 10^-12
-5. **Degeneracy 2:** |(E, S)_M| < 10^-12
-6. **Entropy monotonicity:** dS/dt ≥ -10^-12
+1. **Antisymmetry of L:** $||L + L^T|| < 10^{-12}$
+2. **Symmetry of M:** $||M - M^T|| < 10^{-12}$
+3. **PSD of M:** $\lambda_{\min}(M) > -10^{-10}$
+4. **Degeneracy 1:** $|\{S, E\}_J| < 10^{-12}$
+5. **Degeneracy 2:** $|(E, S)_M| < 10^{-12}$
+6. **Entropy monotonicity:** $dS/dt \geq -10^{-12}$
 
 ---
 
@@ -398,9 +412,10 @@ $$
 ### 6.1 Thermodynamic State Space
 
 **Variables:**
-- q = V (volume)
-- p = -P (momentum conjugate to volume = negative pressure)
-- s = S (entropy coordinate)
+
+- $q = V$ (volume)
+- $p = -P$ (momentum conjugate to volume = negative pressure)
+- $s = S$ (entropy coordinate)
 
 **Contact Form:**
 
@@ -408,7 +423,7 @@ $$
 \alpha = dU + P\,dV - T\,dS
 $$
 
-With U = U(S, V, N) the internal energy.
+With $U = U(S, V, N)$ the internal energy.
 
 ### 6.2 Contact Hamiltonian
 
@@ -421,11 +436,11 @@ $$
 **Contact Evolution:**
 
 $$
-\begin{align}
+\begin{aligned}
 \dot{V} &= \frac{\partial F}{\partial P} = 0 \quad \text{(equilibrium)} \\
 \dot{P} &= -\frac{\partial F}{\partial V} = \frac{Nk_B T}{V} \\
 \dot{S} &= -P\frac{\partial F}{\partial P} - F = T
-\end{align}
+\end{aligned}
 $$
 
 ### 6.3 Metriplectic Decomposition
@@ -448,16 +463,18 @@ $$
 \{V, P\}_J = 1, \quad \{S, \cdot\}_J = 0
 $$
 
-Symplectic structure on (V, P) preserves S.
+Symplectic structure on $(V, P)$ preserves $S$.
 
 **M-bracket:**
 
 From Ruppeiner metric:
+
 $$
 g_{VV} = -\frac{\partial^2 S}{\partial V^2} = \frac{Nk_B}{V^2}
 $$
 
 Metric bracket:
+
 $$
 (f, g)_M = \frac{Nk_B}{V^2}\,\frac{\partial f}{\partial V}\,\frac{\partial g}{\partial V}
 $$
@@ -475,8 +492,9 @@ $$
 $$
 
 **Physical Interpretation:**
-- J-part: Hamiltonian mechanics (reversible expansion/compression)
-- M-part: Thermalization (irreversible approach to equilibrium)
+
+- $J$-part: Hamiltonian mechanics (reversible expansion/compression)
+- $M$-part: Thermalization (irreversible approach to equilibrium)
 
 ### 6.5 Verification
 
@@ -486,11 +504,11 @@ $$
 \{E, S\}_J = \frac{\partial E}{\partial V}\frac{\partial S}{\partial P} - \frac{\partial E}{\partial P}\frac{\partial S}{\partial V} = 0
 $$
 
-(Verified for ideal gas: ∂E/∂V = 0, ∂E/∂P = 0)
+(Verified for ideal gas: $∂E/∂V = 0, ∂E/∂P = 0$)
 
 **Degeneracy 2:** Entropy conserved by energy flow:
 
-Since M has only V-V component and ∂E/∂V = 0 (ideal gas):
+Since $M$ has only $V-V$ component and $∂E/∂V = 0$ (ideal gas):
 $$
 (E, S)_M = 0
 $$
@@ -531,7 +549,7 @@ Additional dissipation from explicit time dependence.
 
 Contact geometry provides natural framework for finite-time cycles:
 
-1. **Isothermal expansion:** λ = T = const, move along Legendre submanifold
+1. **Isothermal expansion:** $\lambda = T = \text{const}$, move along Legendre submanifold
 2. **Adiabatic process:** Move in Reeb direction, s increases
 3. **Isothermal compression:** Return along Legendre submanifold
 4. **Adiabatic return:** Close cycle in contact space
@@ -546,7 +564,7 @@ $$
 
 **Fisher-Rao Metric on Contact Manifold:**
 
-For probability distributions p(x; θ) with parameters θ:
+For probability distributions $p(x; \theta)$ with parameters $\theta$:
 
 $$
 g_{ij}^{\text{Fisher}} = \int p(x)\,\frac{\partial \ln p}{\partial \theta^i}\,\frac{\partial \ln p}{\partial \theta^j}\,dx
@@ -557,9 +575,10 @@ $$
 Unique torsion-free connection preserving Fisher metric.
 
 **VDM Interpretation:**
-- Fisher metric → M-bracket structure
-- Statistical manifold → contact manifold with s = -∫ p ln p
-- Parameter evolution → metriplectic flow
+
+- Fisher metric $\to$ $M$-bracket structure
+- Statistical manifold $\to$ contact manifold with $s = -∫ p ln p$
+- Parameter evolution $\to$ metriplectic flow
 
 ---
 
@@ -580,27 +599,30 @@ This derivation **resolves Gap S2** by providing:
 
 **New Canonical Equations:**
 
-- **VDM-E-125:** Contact form α = ds - p_i dq^i
-- **VDM-E-126:** Reeb vector field R with ι_R α = 1, ι_R dα = 0
-- **VDM-E-127:** Contact Hamiltonian evolution X_K
-- **VDM-E-128:** Contact to metriplectic decomposition K = E + λS
-- **VDM-E-143:** GENERIC evolution ẋ = L∇E + M∇S
-- **VDM-E-144:** GENERIC degeneracy L∇S = 0, M∇E = 0
-- **VDM-E-145:** Legendre submanifold condition α|_L = 0
+- **VDM-E-125:** Contact form $\alpha = ds - p_i dq^i$
+- **VDM-E-126:** Reeb vector field R with $\iota_R \alpha = 1, \iota_R d\alpha = 0$
+- **VDM-E-127:** Contact Hamiltonian evolution $X_K$
+- **VDM-E-128:** Contact to metriplectic decomposition $K = E + \lambda S$
+- **VDM-E-143:** GENERIC evolution $\dot{x} = L\nabla E + M\nabla S$
+- **VDM-E-144:** GENERIC degeneracy $L\nabla S = 0, M\nabla E = 0$
+- **VDM-E-145:** Legendre submanifold condition $\alpha|_L = 0$
 
 ### 8.3 Integration with T0 Spec
 
 **Target M2** (Metriplectic monotonicity):
+
 - Contact geometry ensures thermodynamic consistency
-- Reeb direction → natural time evolution
-- Legendre submanifolds → equilibrium states
+- Reeb direction $\to$ natural time evolution
+- Legendre submanifolds $\to$ equilibrium states
 
 **Target M6** (Measurement as epistemic projection):
-- Contact form → observable thermodynamic variables
-- Reeb flow → coarse-grained evolution
-- Symplectic leaves → fine-grained reversible reality
+
+- Contact form $\to$ observable thermodynamic variables
+- Reeb flow $\to$ coarse-grained evolution
+- Symplectic leaves $\to$ fine-grained reversible reality
 
 **Connection to S1 (QGT):**
+
 - Contact phase space ↔ parameter space
 - Reeb direction ↔ entropy coordinate
 - Legendre transform ↔ classical limit
@@ -612,21 +634,25 @@ This derivation **resolves Gap S2** by providing:
 ### 9.1 Mathematical Consistency Checks
 
 **Test 1:** Maximal non-integrability:
+
 $$
 \alpha \wedge (d\alpha)^n \neq 0
 $$
 
 **Test 2:** Reeb vector uniqueness:
+
 $$
 \iota_R \alpha = 1, \quad \iota_R\,d\alpha = 0
 $$
 
 **Test 3:** Contact bracket antisymmetry:
+
 $$
 \{f, g\}_c = -\{g, f\}_c
 $$
 
 **Test 4:** Legendre submanifold properties:
+
 $$
 \alpha|_L = 0, \quad \text{rank}(d\alpha|_L) = 2n
 $$
@@ -634,21 +660,25 @@ $$
 ### 9.2 Physical Consistency Checks
 
 **Test 1:** First law on equilibrium manifold:
+
 $$
 dU = T\,dS - p\,dV
 $$
 
 **Test 2:** Euler relation:
+
 $$
 U = T\,S - p\,V + \mu\,N
 $$
 
 **Test 3:** Maxwell relations:
+
 $$
 \frac{\partial T}{\partial V}\Big|_S = -\frac{\partial p}{\partial S}\Big|_V
 $$
 
 **Test 4:** Entropy monotonicity:
+
 $$
 \frac{dS}{dt} \geq 0
 $$
@@ -713,7 +743,7 @@ verify_entropy_production()
 
 1. **Infinite-dimensional contact manifolds:** Field theory extension
 2. **Symmetry reduction:** Momentum maps on contact manifolds
-3. **Quantization:** Contact geometry → quantum metriplectic systems
+3. **Quantization:** Contact geometry $\to$ quantum metriplectic systems
 4. **Non-equilibrium steady states:** Attractors in contact flow
 
 ### 10.2 Next Steps (T1 Instruments)
@@ -721,9 +751,10 @@ verify_entropy_production()
 **Child Proposal:** `PROPOSAL_Contact2Metriplectic_T1_Instrument.md`
 
 **Milestones:**
+
 - [ ] Implement contact decomposition algorithm for VDM systems
 - [ ] Validate on thermodynamic examples (ideal gas, van der Waals, etc.)
-- [ ] Extract J and M for VDM field theories
+- [ ] Extract $J$ and $M$ for VDM field theories
 - [ ] Test degeneracy at machine precision
 - [ ] Generate artifacts (PNG, CSV, JSON)
 
@@ -757,12 +788,12 @@ verify_entropy_production()
 
 | Symbol | Description | Units | Domain |
 |--------|-------------|-------|--------|
-| α | Contact 1-form | [action] | T*Q × ℝ → ℝ |
-| R | Reeb vector field | 1/[time] | Vector field on M |
-| K | Contact Hamiltonian | [energy] | M → ℝ |
-| X_K | Contact vector field | 1/[time] | Vector field on M |
-| L | Legendre submanifold | - | n-dimensional submanifold |
-| s | Entropy coordinate | [entropy] | ℝ |
+| $\alpha$ | Contact 1-form | [action] | $T^*Q \times \mathbb{R} \to \mathbb{R}$ |
+| $R$ | Reeb vector field | 1/[time] | Vector field on M |
+| $K$ | Contact Hamiltonian | [energy] | $M \to \mathbb{R}$ |
+| $X_K$ | Contact vector field | 1/[time] | Vector field on M |
+| $L$ | Legendre submanifold | - | n-dimensional submanifold |
+| $s$ | Entropy coordinate | [entropy] | $\mathbb{R}$ |
 
 ---
 

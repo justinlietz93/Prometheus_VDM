@@ -1,22 +1,22 @@
-# Measurement Theory Foundations — Decoherence and Born Rule for VDM
+# CF7: Measurement Theory Foundations — Decoherence and Born Rule for VDM
 
-**Date:** 2025-11-05  
-**Status:** Complete Derivation  
-**Foundation Module:** Quantum Measurement Theory for J→M Projection  
-**Proposer:** Justin K. Lietz  
+**Date:** 2025-11-05
+**Status:** Complete Derivation
+**Foundation Module:** Quantum Measurement Theory for J→M Projection
+**Proposer:** Justin K. Lietz
 **License:** See LICENSE
 
 ---
 
 ## Executive Summary
 
-This document provides complete, rigorous derivations of decoherence mechanisms and the Born rule from symmetry principles, establishing the measurement-theoretic foundation for the VDM J→M projection (reversible to irreversible). The derivation establishes:
+This document provides complete, rigorous derivations of decoherence mechanisms and the Born rule from symmetry principles, establishing the measurement-theoretic foundation for the VDM $J \to M$ projection (reversible to irreversible). The derivation establishes:
 
 1. **Environment-induced decoherence** and einselection of pointer states
-2. **Decoherence timescale** τ_D from system-environment coupling
+2. **Decoherence timescale** $\tau_D$ from system-environment coupling
 3. **Born rule derivation** from information-theoretic symmetry principles (Masanes-Galley-Müller)
 4. **Coarse-graining** and finite-resolution measurement (Kofler-Brukner)
-5. **J→M projection** as necessary consequence of bounded observation
+5. **$J \to M$ projection** as necessary consequence of bounded observation
 6. **Target M6 validation** for Born frequencies in VDM meters
 
 This completes the epistemic foundation for understanding measurement as the M-limb projection of J-limb reality.
@@ -35,11 +35,11 @@ $$
 |\psi\rangle = \sum_i c_i\,|i\rangle
 $$
 
-with |c_i|² interpreted as "probabilities."
+with $|c_i|^2$ interpreted as "probabilities."
 
 **Measurement Postulate:**
 
-Upon measurement, the system "collapses" to eigenstate |i⟩ with probability:
+Upon measurement, the system "collapses" to eigenstate $|i\rangle$ with probability:
 
 $$
 P(i) = |\langle i | \psi \rangle|^2 = |c_i|^2
@@ -48,7 +48,7 @@ $$
 **The Problem:**
 
 1. **What causes collapse?** Schrödinger evolution is unitary (reversible)
-2. **Why probabilities?** Where do |c_i|² come from?
+2. **Why probabilities?** Where do $|c_i|^2$ come from?
 3. **Preferred basis:** Why eigenstates of measurement operator, not others?
 
 **VDM Answer:**
@@ -71,9 +71,9 @@ $$
 
 where:
 
-- H_S: System Hamiltonian
-- H_E: Environment Hamiltonian
-- H_{SE}: System-environment interaction
+- $H_S$: System Hamiltonian
+- $H_E$: Environment Hamiltonian
+- $H_{SE}$: System-environment interaction
 
 **Initial State:**
 
@@ -101,13 +101,13 @@ $$
 
 **Decoherence:**
 
-As t increases, ⟨E_j|E_i⟩ → δ_ij (environment states become orthogonal):
+As t increases, $⟨E_j|E_i⟩ \to δ_ij$ (environment states become orthogonal):
 
 $$
 \rho_S(t) \to \sum_i |c_i|^2\,|i\rangle\langle i|
 $$
 
-Superposition → classical mixture!
+Superposition $\to$ classical mixture!
 
 ### 2.3 Decoherence Timescale
 
@@ -138,15 +138,15 @@ where λ is the system-environment coupling strength.
 
 **Observations:**
 
-- τ_D decreases with T (hotter → faster decoherence)
-- τ_D decreases with λ² (stronger coupling → faster)
-- τ_D → ∞ as T → 0 or λ → 0 (isolated quantum system)
+- $\tau_D$ decreases with $T$ (hotter $\to$ faster decoherence)
+- $\tau_D$ decreases with $\lambda^2$ (stronger coupling $\to$ faster)
+- $\tau_D \to \infty$ as $T \to 0$ or $\lambda \to 0$ (isolated quantum system)
 
 ### 2.4 Einselection (Environment-Induced Superselection)
 
 **Theorem 2.2** (Zurek 2003):
 
-The **pointer basis** {|i⟩} that remains stable under decoherence is determined by:
+The **pointer basis** $\{|i\rangle\}$ that remains stable under decoherence is determined by:
 
 $$
 [H_{SE}, |i\rangle\langle i|] \approx 0
@@ -156,8 +156,8 @@ These are eigenstates of the interaction Hamiltonian.
 
 **Physical Interpretation:**
 
-- Environment "monitors" system observable A_S
-- States stable under monitoring: eigenstates of A_S
+- Environment "monitors" system observable $A_S$
+- States stable under monitoring: eigenstates of $A_S$
 - Superpositions of eigenstates decay rapidly (time ~ τ_D)
 
 **VDM Connection:**
@@ -172,7 +172,7 @@ These are eigenstates of the interaction Hamiltonian.
 
 ### 3.1 Masanes-Galley-Müller Derivation
 
-**Goal:** Derive P(i) = |c_i|² from minimal assumptions, **without** postulating probability.
+**Goal:** Derive $P(i) = |c_i|^2$ from minimal assumptions, **without** postulating probability.
 
 **Assumptions (2019 Derivation):**
 
@@ -191,7 +191,7 @@ $$
 
 **Proof Sketch:**
 
-1. **Measurement on composite system:** ψ ∈ ℋ_A ⊗ ℋ_B
+1. **Measurement on composite system:** ψ $\in$ ℋ_A ⊗ ℋ_B
 
 2. **Local measurement on A:** Outcome probabilities P_A(i|ψ)
 
@@ -254,9 +254,9 @@ $$
 
 Real measurements have limited precision:
 
-- Position: Δx ≥ ℓ_min (detector size)
-- Momentum: Δp ≥ p_min (resolution)
-- Time: Δt ≥ τ_sample (sampling rate)
+- Position: $\Delta x \ge \ell_{\min}$ (detector size)
+- Momentum: $\Delta p \ge p_{\min}$ (resolution)
+- Time: $\Delta t \ge \tau_{\text{sample}}$ (sampling rate)
 
 **Coarse-Grained Observable:**
 
@@ -299,7 +299,7 @@ $$
 
 5. For Δk·Δx >> 1: oscillations average to zero
 
-6. Result: Only diagonal terms survive → classical mixture
+6. Result: Only diagonal terms survive $\to$ classical mixture
 
 ### 4.2 VDM Bounded Observation Window
 
@@ -326,7 +326,7 @@ where:
 **Properties:**
 
 1. **Irreversibility:** Information lost in coarse-graining is irretrievable
-2. **Entropy increase:** S(ρ_M) ≥ S(ρ_J) (subadditivity)
+2. **Entropy increase:** S(ρ_M) $\geq$ S(ρ_J) (subadditivity)
 3. **Born frequencies:** Emerge from W-averaged quantum expectations
 
 ---
@@ -352,14 +352,14 @@ $$
 where:
 
 - f = {f_i}: empirical frequencies
-- p = {|c_i|²}: Born rule probabilities
+- p = $\{|c_i|^2\}$: Born rule probabilities
 - KL = Kullback-Leibler divergence
 
 ### 5.2 Statistical Convergence
 
 **Theorem 5.1** (Convergence of Empirical Frequencies):
 
-For N measurements of quantum state |ψ⟩, the empirical frequencies f_i converge to Born probabilities p_i = |c_i|² with rate:
+For $N$ measurements of quantum state $|\psi\rangle$, the empirical frequencies $f_i$ converge to Born probabilities $p_i = |c_i|^2$ with rate:
 
 $$
 \mathbb{E}[\text{KL}(f \| p)] \sim \frac{d}{2N}
@@ -384,7 +384,7 @@ where d is the Hilbert space dimension.
 
 **Acceptance Criterion:**
 
-For KL ≤ 10^{-3}, need:
+For KL $\leq$ 10^{-3}, need:
 $$
 N \geq \frac{d}{2 \times 10^{-3}} \approx 500\,d
 $$
@@ -521,30 +521,30 @@ This derivation **completes the measurement-theoretic foundation** by providing:
 **New Canonical Equations:**
 
 - **VDM-E-136:** Decoherence time τ_D ~ ℏ/(k_BT λ²)
-- **VDM-E-137:** Born rule P(i) = |⟨i|ψ⟩|² from symmetry
+- **VDM-E-137:** Born rule $P(i) = |\langle i|\psi\rangle|^2$ from symmetry
 - **VDM-E-161:** Reduced density matrix ρ_S = Tr_E[ρ_total]
-- **VDM-E-162:** Einselection condition [H_SE, |i⟩⟨i|] ≈ 0
+- **VDM-E-162:** Einselection condition [H_SE, |i⟩⟨i|] $\approx$ 0
 - **VDM-E-163:** Coarse-grained observable ⟨Ã⟩ = ∫W(x)⟨A(x)⟩dx
 - **VDM-E-164:** J→M projection ρ_M = ∫W ρ_J dμ
 - **VDM-E-165:** KL convergence 𝔼[KL(f||p)] ~ d/(2N)
 
 ### 6.3 Integration with Complete Formalism
 
-**S1 (QGT):** Quantum metric → uncertainty bounds → decoherence rate  
-**S2 (Contact):** Thermodynamic time → decoherence timescale τ_D  
-**S3 (A8):** Hierarchical structure → nested decoherence scales  
-**S4 (Telegraph):** Causality → information propagation ≤ c  
-**S5 (Closure):** No hidden observables → complete pointer basis  
-**Info Geom:** Fisher metric → Cramér-Rao → measurement precision bounds  
+**S1 (QGT):** Quantum metric $\to$ uncertainty bounds $\to$ decoherence rate  
+**S2 (Contact):** Thermodynamic time $\to$ decoherence timescale τ_D  
+**S3 (A8):** Hierarchical structure $\to$ nested decoherence scales  
+**S4 (Telegraph):** Causality $\to$ information propagation $\leq$ c  
+**S5 (Closure):** No hidden observables $\to$ complete pointer basis  
+**Info Geom:** Fisher metric $\to$ Cramér-Rao $\to$ measurement precision bounds  
 
 **Unified Picture:**
 
-J-limb (reversible, complete) → M-limb (irreversible, coarse-grained)
+J-limb (reversible, complete) $\to$ M-limb (irreversible, coarse-grained)
 
 - Mechanism: Decoherence + Bounded observation
 - Timescale: τ_D ~ ℏ/(k_BT λ²)
 - Probabilities: Born rule from symmetry
-- Entropy: S_M ≥ S_J (information loss)
+- Entropy: S_M $\geq$ S_J (information loss)
 
 ---
 
@@ -554,10 +554,10 @@ J-limb (reversible, complete) → M-limb (irreversible, coarse-grained)
 
 From T0 Spec, Target M6 requires:
 
-1. **Born frequencies:** KL(f || p) ≤ 10^{-3}
-2. **Reproducibility:** Same seed → same outcomes
-3. **Independence:** Different seeds → different realizations, same statistics
-4. **Convergence:** N → ∞: f_i → p_i = |c_i|²
+1. **Born frequencies:** KL(f || p) $\leq$ 10^{-3}
+2. **Reproducibility:** Same seed $\to$ same outcomes
+3. **Independence:** Different seeds $\to$ different realizations, same statistics
+4. **Convergence:** $N \to \infty$: $f_i \to p_i = |c_i|^2$
 
 ### 7.2 Implementation Requirements
 

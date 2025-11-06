@@ -1,9 +1,9 @@
-# Information Geometry Foundations — Fisher and Ruppeiner Metrics for VDM M-Limb
+# CF6: Information Geometry Foundations — Fisher and Ruppeiner Metrics for VDM M-Limb
 
-**Date:** 2025-11-05  
-**Status:** Complete Derivation  
-**Foundation Module:** Information Geometry for M-Bracket Construction  
-**Proposer:** Justin K. Lietz  
+**Date:** 2025-11-05
+**Status:** Complete Derivation
+**Foundation Module:** Information Geometry for M-Bracket Construction
+**Proposer:** Justin K. Lietz
 **License:** See LICENSE
 
 ---
@@ -29,13 +29,13 @@ This completes the geometric foundation for understanding the M-limb as epistemi
 
 **Definition 1.1** (Statistical Manifold):
 
-A **statistical manifold** is a smooth manifold M whose points are probability distributions. Locally, points are parametrized by θ = (θ¹, ..., θⁿ) ∈ Θ ⊂ ℝⁿ, with each θ corresponding to a distribution p(x; θ).
+A **statistical manifold** is a smooth manifold $M$ whose points are probability distributions. Locally, points are parametrized by $\theta = (\theta^1, \ldots, \theta^n) \in \Theta \subset \mathbb{R}^n$, with each $\theta$ corresponding to a distribution $p(x; \theta)$.
 
 **Examples:**
 
-- Gaussian manifold: θ = (μ, σ²)
-- Exponential family: p(x; θ) = exp(∑ θ^i T_i(x) - ψ(θ))
-- Quantum density matrices: ρ(θ) (positive, trace-1)
+- Gaussian manifold: $\theta = (\mu, \sigma^2)$
+- Exponential family: $p(x; \theta) = \exp(\sum \theta^i T_i(x) - \psi(\theta))$
+- Quantum density matrices: $\rho(\theta)$ (positive, trace-1)
 
 ### 1.2 Fisher Information Matrix
 
@@ -59,8 +59,8 @@ $$
 
 **Properties:**
 
-1. **Symmetric:** g_ij = g_ji (by definition)
-2. **Positive definite:** For any v ≠ 0:
+1. **Symmetric:** $g_{ij} = g_{ji}$ (by definition)
+2. **Positive definite:** For any v $\neq$ 0:
    $$
    v^T g v = \mathbb{E}\left[\left(\sum_i v^i \frac{\partial \ln p}{\partial \theta^i}\right)^2\right] > 0
    $$
@@ -81,7 +81,7 @@ $$
 
 where the inequality is in the positive semi-definite sense.
 
-**Consequence:** Fisher information g_{ij} is the **maximum precision** achievable in parameter estimation.
+**Consequence:** Fisher information $g_{ij}$ is the **maximum precision** achievable in parameter estimation.
 
 **Proof Sketch:**
 
@@ -101,7 +101,7 @@ where the inequality is in the positive semi-definite sense.
 
 5. Fisher information: Cov(s) = g
 
-6. Result: Cov(θ̂) ≥ g⁻¹
+6. Result: Cov(θ̂) $\geq$ g⁻¹
 
 ### 1.4 Worked Example: Gaussian Distribution
 
@@ -221,21 +221,21 @@ $$
 
 **Observations:**
 
-1. Flat geometry (zero curvature) → no interactions
+1. Flat geometry (zero curvature) $\to$ no interactions
 2. Each component scales as 1/(extensive variable)²
-3. Metric diverges as U, V, N → 0 (singular limits)
+3. Metric diverges as U, V, N $\to$ 0 (singular limits)
 
 ### 2.4 Near Critical Points
 
 **Van der Waals Gas:**
 
-Near critical point (T → T_c, ρ → ρ_c), the Ruppeiner metric diverges:
+Near critical point (T $\to$ T_c, ρ $\to$ ρ_c), the Ruppeiner metric diverges:
 
 $$
 g_{\rho\rho}^{\text{Rup}} \sim \xi^2
 $$
 
-where ξ is the correlation length: ξ ~ |T - T_c|^{-ν} with ν ≈ 0.63 (3D Ising).
+where ξ is the correlation length: ξ ~ |T - T_c|^{-ν} with ν $\approx$ 0.63 (3D Ising).
 
 **Curvature Scalar:**
 
@@ -309,7 +309,7 @@ $$
 
 **is equivalent to** the Quantum Fisher Information for pure states |ψ⟩.
 
-**VDM Unification:** QGT (S1) → Quantum Fisher → Classical Fisher → Ruppeiner → M-bracket
+**VDM Unification:** QGT (S1) $\to$ Quantum Fisher $\to$ Classical Fisher $\to$ Ruppeiner $\to$ M-bracket
 
 ---
 
@@ -344,7 +344,7 @@ where μ is a measure on parameter space.
 **Properties:**
 
 1. **Symmetric:** (f, g)_M = (g, f)_M
-2. **Positive semi-definite:** (f, f)_M ≥ 0
+2. **Positive semi-definite:** (f, f)_M $\geq$ 0
 3. **Generates gradient flow:** ∂f/∂t = (f, S)_M for entropy S
 
 ### 4.3 Entropy Production
@@ -357,7 +357,7 @@ $$
 \frac{dS}{dt} = (S, S)_M = \int g^{ij}\,\frac{\partial S}{\partial \theta^i}\,\frac{\partial S}{\partial \theta^j}\,d\theta \geq 0
 $$
 
-**Proof:** Fisher metric g^{ij} is positive definite → quadratic form ≥ 0.
+**Proof:** Fisher metric g^{ij} is positive definite $\to$ quadratic form $\geq$ 0.
 
 **Physical Interpretation:** M-limb dissipation = information-geometric gradient flow toward maximum entropy.
 
@@ -372,7 +372,7 @@ $$
 - **J-limb:** Reversible, microscopic, complete information
 - **M-limb:** Irreversible, coarse-grained, partial information
 
-**Coarse-Graining Map:** Π: (microscopic states) → (probability distributions)
+**Coarse-Graining Map:** Π: (microscopic states) $\to$ (probability distributions)
 
 **Induced Metric:** Fisher metric on coarse-grained space
 
@@ -395,8 +395,8 @@ The M-limb structure is the unique positive semi-definite bracket induced by pro
 **Proof Outline:**
 
 1. J-limb evolution: exact, reversible
-2. Projection Π: lose information → uncertainty ΔI ~ g_Fisher⁻¹
-3. Indued dissipation: ΔH ≥ T ΔS (second law)
+2. Projection Π: lose information $\to$ uncertainty ΔI ~ g_Fisher⁻¹
+3. Indued dissipation: ΔH $\geq$ T ΔS (second law)
 4. Gradient flow: unique metric flow respecting Fisher bounds
 
 **Conclusion:** M is not ad-hoc; it is the **necessary consequence** of bounded observation of a reversible J-system.
@@ -458,8 +458,8 @@ print(g_theory)
 # Cramér-Rao bound
 cramer_rao = np.linalg.inv(g_theory) / n
 print(f"\nCramér-Rao bound (n={n}):")
-print(f"  Var(μ̂) ≥ {cramer_rao[0,0]:.4f}")
-print(f"  Var(σ̂²) ≥ {cramer_rao[1,1]:.4f}")
+print(f"  Var(μ̂) $\geq$ {cramer_rao[0,0]:.4f}")
+print(f"  Var(σ̂²) $\geq$ {cramer_rao[1,1]:.4f}")
 
 # Actual estimator variance (empirical)
 n_trials = 1000
@@ -497,8 +497,8 @@ Theoretical Fisher information:
  [0.     0.5   ]]
 
 Cramér-Rao bound (n=100):
-  Var(μ̂) ≥ 0.0100
-  Var(σ̂²) ≥ 0.0200
+  Var(μ̂) $\geq$ 0.0100
+  Var(σ̂²) $\geq$ 0.0200
 
 Empirical covariance:
   Var(μ̂) = 0.0103
@@ -579,17 +579,17 @@ This derivation **completes the information-geometric foundation** by providing:
 
 - **VDM-E-130:** Fisher metric g_ij = 𝔼[∂ln p/∂θ^i · ∂ln p/∂θ^j]
 - **VDM-E-131:** Ruppeiner metric g_μν = -∂²S/∂X^μ∂X^ν
-- **VDM-E-158:** Cramér-Rao bound Cov(θ̂) ≥ g⁻¹
+- **VDM-E-158:** Cramér-Rao bound Cov(θ̂) $\geq$ g⁻¹
 - **VDM-E-159:** Fisher-Ruppeiner relation g_Fisher · g_Rup ~ k_B
 - **VDM-E-160:** M-bracket from Fisher (f,g)_M = ∫g^ij ∂_if ∂_jg
 
 ### 7.3 Integration with S1-S5
 
-**S1 (QGT):** Quantum Fisher = quantum metric → Fisher metric (classical limit)  
+**S1 (QGT):** Quantum Fisher = quantum metric $\to$ Fisher metric (classical limit)  
 **S2 (Contact):** Thermodynamic metric = Ruppeiner metric  
-**S3 (A8):** Boundary concentration → Fisher information concentration  
-**S4 (Telegraph):** Causality → Fisher information propagation speed  
-**S5 (Closure):** No hidden integrals → unique M from Fisher geometry  
+**S3 (A8):** Boundary concentration $\to$ Fisher information concentration  
+**S4 (Telegraph):** Causality $\to$ Fisher information propagation speed  
+**S5 (Closure):** No hidden integrals $\to$ unique M from Fisher geometry  
 
 ---
 

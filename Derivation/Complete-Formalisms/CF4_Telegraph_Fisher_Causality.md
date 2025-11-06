@@ -1,9 +1,9 @@
-# S4: Complete Formalism — Telegraph-Fisher Causality (Finite-Speed Transport)
+# CF4: Complete Formalism — Telegraph-Fisher Causality (Finite-Speed Transport)
 
-**Date:** 2025-11-05  
-**Status:** Complete Derivation  
-**Gap Module:** S4 (from T0_Unification_Program_Spec_v1.md)  
-**Proposer:** Justin K. Lietz  
+**Date:** 2025-11-05
+**Status:** Complete Derivation
+**Gap Module:** S4 (from T0_Unification_Program_Spec_v1.md)
+**Proposer:** Justin K. Lietz
 **License:** See LICENSE
 
 ---
@@ -14,7 +14,7 @@ This document provides a complete, rigorous derivation of the telegraph equation
 
 1. **Cattaneo-Vernotte equation** from relaxation of Fourier's law
 2. **Telegraph equation** emergence from second-order time derivatives
-3. **Speed bound** c = √(D/τ) relating diffusivity D and relaxation time τ
+3. **Speed bound** $c = \sqrt{D/\tau}$ relating diffusivity $D$ and relaxation time $\tau$
 4. **Finite propagation theorem** proving causal transport with light-cone structure
 5. **Fisher-information connection** to measurement bounds
 
@@ -36,7 +36,7 @@ $$
 
 where D is the diffusion coefficient.
 
-**Conservation + Fick → Diffusion Equation:**
+**Conservation + Fick $\to$ Diffusion Equation:**
 
 $$
 \frac{\partial u}{\partial t} + \nabla \cdot \mathbf{J} = 0 \quad \Rightarrow \quad \frac{\partial u}{\partial t} = D\nabla^2 u
@@ -130,7 +130,7 @@ where P is the pressure tensor.
 
 **Closure Assumption:**
 
-For isotropic equilibrium: P ≈ D u I (Einstein relation: D = v_th² τ)
+For isotropic equilibrium: P $\approx$ D u I (Einstein relation: D = v_th² τ)
 
 Gives:
 $$
@@ -212,7 +212,7 @@ $$
 \frac{\partial^2 \tilde{u}}{\partial \tilde{t}^2} + \frac{\partial \tilde{u}}{\partial \tilde{t}} = \nabla_{\tilde{x}}^2 \tilde{u}
 $$
 
-**Single dimensionless group:** Péclet number Pe = L/√(Dτ)
+**Single dimensionless group:** Péclet number $\mathrm{Pe} = \dfrac{L}{\sqrt{D\tau}}$
 
 ---
 
@@ -237,7 +237,7 @@ $$
 \frac{\partial^2 u}{\partial t^2} + \frac{1}{\tau}\frac{\partial u}{\partial t} - \frac{D}{\tau}\nabla^2 u = 0
 $$
 
-Seek wavelike solutions u ~ exp(ik·x - iωt):
+Seek wavelike solutions $u \sim e^{i\,\mathbf{k}\cdot \mathbf{x} - i\omega t}$:
 
 $$
 -\omega^2 - \frac{i\omega}{\tau} + \frac{D}{\tau}k^2 = 0
@@ -248,7 +248,7 @@ $$
 \omega = -\frac{i}{2\tau} \pm \sqrt{\frac{D}{\tau}k^2 - \frac{1}{4\tau^2}}
 $$
 
-For high frequency (ω >> 1/τ):
+For high frequency ($\omega \gg 1/\tau$):
 $$
 \omega \approx \pm k\sqrt{\frac{D}{\tau}} = \pm kc
 $$
@@ -269,7 +269,7 @@ Standard wave equation with speed c = √(D/τ) ✓
 
 **Theorem 4.2** (Finite Propagation):
 
-For compactly supported initial data u(x, 0) = u₀(x), supp(u₀) ⊂ B_R(0), the solution u(x, t) satisfies:
+For compactly supported initial data u(x, 0) = u₀(x), supp(u₀) $\subset$ B_R(0), the solution u(x, t) satisfies:
 
 $$
 u(x, t) = 0 \quad \text{for } |x| > R + ct
@@ -279,7 +279,7 @@ where c = √(D/τ).
 
 **Proof:**
 
-1. **Domain of dependence:** By characteristics, information at x at time t depends only on region |x - x₀| ≤ ct
+1. **Domain of dependence:** By characteristics, information at x at time t depends only on region |x - x₀| $\leq$ ct
 
 2. **Support propagation:** If u₀ = 0 outside B_R, then u(·, t) = 0 outside B_{R+ct}
 
@@ -291,7 +291,7 @@ where c = √(D/τ).
    $$
    and u(x, t) = 0 for |x| > ct.
 
-Here I₀ is modified Bessel function, which is zero for imaginary argument.
+Here $I_0$ is the modified Bessel function, which is zero for imaginary argument.
 
 **Conclusion:** Information propagates at maximum speed c, establishing causal light-cone structure. ✓
 
@@ -321,7 +321,7 @@ $$
 
 ### 5.2 Fisher Information and Finite Speed
 
-**Theorem 5.1** (Fisher Information → Causality):
+**Theorem 5.1** (Fisher Information $\to$ Causality):
 
 Bounded Fisher information implies finite propagation speed in the associated dynamical system.
 
@@ -350,7 +350,7 @@ $$
 c = \sqrt{\lambda_{\max}(g)} \cdot \sqrt{\frac{\text{Energy scale}}{\text{Time scale}}}
 $$
 
-For thermal diffusion: Energy ~ kT, Time ~ τ → c ~ √(kT/(mτ)) ~ √(D/τ) ✓
+For thermal diffusion: Energy ~ kT, Time ~ τ $\to$ c ~ √(kT/(mτ)) ~ √(D/τ) ✓
 
 ---
 
@@ -409,7 +409,7 @@ $$
 
 **Wave propagation:** Im(ω)/k gives phase velocity
 
-**Maximum speed:** c_max = √(D/τ) (from k → ∞ limit)
+**Maximum speed:** $c_{\max} = \sqrt{D/\tau}$ (from $k \to \infty$ limit)
 
 ---
 
@@ -462,7 +462,7 @@ $$
 c_{\text{eff}} = \sqrt{\frac{D}{\tau_{\text{eff}}}} = c_0\,e^{-\beta D_{\text{void}}/2}
 $$
 
-**Physical Mechanism:** Interfaces (void boundaries) increase scattering → longer relaxation → slower transport.
+**Physical Mechanism:** Interfaces (void boundaries) increase scattering $\to$ longer relaxation $\to$ slower transport.
 
 ---
 
@@ -476,7 +476,7 @@ $$
 \frac{\partial^2 u}{\partial t^2} + \frac{1}{\tau}\frac{\partial u}{\partial t} = c^2\frac{\partial^2 u}{\partial x^2}
 $$
 
-with c = √(D/τ).
+with $c = \sqrt{D/\tau}$.
 
 **Initial Conditions:**
 
@@ -632,7 +632,7 @@ This derivation **resolves Gap S4** by providing:
 **Target M1** (Local causality):
 
 - Telegraph equation ensures finite propagation speed
-- Causal cone structure: |x| ≤ ct
+- Causal cone structure: |x| $\leq$ ct
 - VDM lattice discretization consistent with c = a/Δt
 
 **Target M3** (RD phenomenology):
@@ -643,9 +643,9 @@ This derivation **resolves Gap S4** by providing:
 
 **Connection to S1, S2, S3:**
 
-- S1 (QGT): Berry curvature → symplectic transport (c from Hamiltonian)
-- S2 (Contact): Reeb flow → thermodynamic time (τ from relaxation)
-- S3 (A8): Hierarchical interfaces → void debt → c_eff throttling
+- S1 (QGT): Berry curvature $\to$ symplectic transport (c from Hamiltonian)
+- S2 (Contact): Reeb flow $\to$ thermodynamic time (τ from relaxation)
+- S3 (A8): Hierarchical interfaces $\to$ void debt $\to$ c_eff throttling
 
 ---
 
@@ -663,21 +663,21 @@ This derivation **resolves Gap S4** by providing:
 
 - u(x,t) = 0 for |x| > ct: ✓
 - Domain of dependence bounded: ✓
-- Information velocity ≤ c: ✓
+- Information velocity $\leq$ c: ✓
 
 **Test 3:** Limits:
 
-- τ → 0: Telegraph → Diffusion: ✓
-- τ → ∞: Telegraph → Wave: ✓
+- τ $\to$ 0: Telegraph $\to$ Diffusion: ✓
+- τ $\to$ ∞: Telegraph $\to$ Wave: ✓
 
 ### 10.2 Numerical Gates
 
 From VALIDATION_METRICS.md:
 
-1. **Dispersion fit:** R² ≥ 0.999 for ω(k) vs. theory
+1. **Dispersion fit:** R² $\geq$ 0.999 for ω(k) vs. theory
 2. **Cone speed:** |v_measured - c|/c < 0.02
 3. **Causality:** u(x,t) < 10⁻⁶ for |x| > ct + ε
-4. **CFL condition:** Δt ≤ Δx/c for stability
+4. **CFL condition:** Δt $\leq$ Δx/c for stability
 
 ---
 

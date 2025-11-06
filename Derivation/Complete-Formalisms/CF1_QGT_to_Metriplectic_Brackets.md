@@ -1,21 +1,21 @@
-# S1: Complete Formalism — Quantum Geometric Tensor to Metriplectic Brackets
+# CF1: Complete Formalism — Quantum Geometric Tensor to Metriplectic Brackets
 
-**Date:** 2025-11-05  
-**Status:** Complete Derivation  
-**Gap Module:** S1 (from T0_Unification_Program_Spec_v1.md)  
-**Proposer:** Justin K. Lietz  
+**Date:** 2025-11-05
+**Status:** Complete Derivation
+**Gap Module:** S1 (from T0_Unification_Program_Spec_v1.md)
+**Proposer:** Justin K. Lietz
 **License:** See LICENSE
 
 ---
 
 ## Executive Summary
 
-This document provides a complete, rigorous derivation of the mapping from the Quantum Geometric Tensor (QGT) to metriplectic bracket structures {·,·}_J and (·,·)_M in the VDM framework. The derivation establishes:
+This document provides a complete, rigorous derivation of the mapping from the Quantum Geometric Tensor (QGT) to metriplectic bracket structures $\{\cdot,\cdot\}_J$ and $(\cdot,\cdot)_M$ in the VDM framework. The derivation establishes:
 
-1. **Berry curvature** Ω_μν (antisymmetric part of QGT) → **J-bracket** (Poisson/symplectic structure)
-2. **Quantum metric** g_μν (symmetric part of QGT) → **M-bracket** (Riemannian/metric structure)
+1. **Berry curvature** $\Omega_{\mu\nu}$ (antisymmetric part of QGT) $\to$ **J-bracket** (Poisson/symplectic structure)
+2. **Quantum metric** $g_{\mu\nu}$ (symmetric part of QGT) $\to$ **M-bracket** (Riemannian/metric structure)
 3. **Constructive algorithm** for computing QGT from parameter-dependent eigenstates
-4. **Classical limit** ℏ → 0 showing emergence of continuous metriplectic flow
+4. **Classical limit** $\hbar \to 0$ showing emergence of continuous metriplectic flow
 
 ---
 
@@ -25,7 +25,7 @@ This document provides a complete, rigorous derivation of the mapping from the Q
 
 **Canonical Form** (VDM-E-108):
 
-For a normalized quantum state |ψ(R)⟩ depending smoothly on parameters R = (R¹, R², ..., Rᵈ), the Quantum Geometric Tensor is defined:
+For a normalized quantum state $|\psi(R)\rangle$ depending smoothly on parameters $R = (R^1, R^2, \ldots, R^d)$, the Quantum Geometric Tensor is defined:
 
 $$
 Q_{\mu\nu}(R) = \langle \partial_\mu \psi | \partial_\nu \psi \rangle - \langle \partial_\mu \psi | \psi \rangle \langle \psi | \partial_\nu \psi \rangle
@@ -33,15 +33,15 @@ $$
 
 where:
 
-- ∂_μ ≡ ∂/∂Rᵘ is the parameter derivative
-- |ψ(R)⟩ is a normalized eigenstate: ⟨ψ|ψ⟩ = 1
+- $\partial_\mu \equiv \partial/\partial R^\mu$ is the parameter derivative
+- $|\psi(R)\rangle$ is a normalized eigenstate: $\langle\psi|\psi\rangle = 1$
 - The second term projects out the gauge-dependent parallel transport contribution
 
 **Physical Interpretation:**
 
-- Q_μν measures the "distance" between nearby quantum states in parameter space
+- $Q_{\mu\nu}$ measures the "distance" between nearby quantum states in parameter space
 - Encodes both geometric (metric) and topological (curvature) information
-- Gauge-invariant under phase transformations |ψ⟩ → e^(iχ(R))|ψ⟩
+- Gauge-invariant under phase transformations $|\psi\rangle \to e^{i\chi(R)}|\psi\rangle$
 
 ### 1.2 Decomposition into Symmetric and Antisymmetric Parts
 
@@ -65,13 +65,13 @@ $$
 
 **Properties:**
 
-- g_μν = g_νμ (symmetric) → Riemannian metric structure
-- Ω_μν = -Ω_νμ (antisymmetric) → symplectic/Poisson structure
+- $g_{\mu\nu} = g_{\nu\mu}$ (symmetric) $\to$ Riemannian metric structure
+- $\Omega_{\mu\nu} = -\Omega_{\nu\mu}$ (antisymmetric) $\to$ symplectic/Poisson structure
 - Both are gauge-invariant and measurable
 
 ---
 
-## 2. Berry Curvature → J-Bracket Mapping
+## 2. Berry Curvature $\to$ J-Bracket Mapping
 
 ### 2.1 Berry Connection and Curvature
 
@@ -89,7 +89,7 @@ $$
 
 **Lemma 2.1** (Berry Curvature as Symplectic Form):
 
-The Berry curvature Ω_μν defines a closed, non-degenerate 2-form on parameter space:
+The Berry curvature $\Omega_{\mu\nu}$ defines a closed, non-degenerate 2-form on parameter space:
 
 $$
 \omega = \frac{1}{2}\Omega_{\mu\nu}\,dR^\mu \wedge dR^\nu
@@ -97,40 +97,40 @@ $$
 
 **Proof:**
 
-1. **Antisymmetry:** Ω_μν = -Ω_νμ by construction
-2. **Closure:** dω = 0 follows from the Bianchi identity:
+1. **Antisymmetry:** $\Omega_{\mu\nu} = -\Omega_{\nu\mu}$ by construction
+2. **Closure:** $d\omega = 0$ follows from the Bianchi identity:
    $$
    \partial_\lambda \Omega_{\mu\nu} + \partial_\mu \Omega_{\nu\lambda} + \partial_\nu \Omega_{\lambda\mu} = 0
    $$
-3. **Non-degeneracy:** For non-trivial topology, det(Ω) ≠ 0 in regions of interest
+3. **Non-degeneracy:** For non-trivial topology, $\det(\Omega) \neq 0$ in regions of interest
 
 ### 2.3 Poisson Bracket Construction
 
 **Definition** (J-bracket from Berry curvature):
 
-For observables f(R), g(R) depending on parameters R, define:
+For observables $f(R)$, $g(R)$ depending on parameters $R$, define:
 
 $$
 \{f, g\}_J = \Omega^{\mu\nu}(R)\,\partial_\mu f\,\partial_\nu g
 $$
 
-where Ω^μν is the inverse of Ω_μν (when non-degenerate).
+where $\Omega^{\mu\nu}$ is the inverse of $\Omega_{\mu\nu}$ (when non-degenerate).
 
 **Theorem 2.1** (Jacobi Identity):
 
-The bracket {·,·}_J satisfies the Jacobi identity:
+The bracket $\{\cdot,\cdot\}_J$ satisfies the Jacobi identity:
 
 $$
 \{\{f, g\}_J, h\}_J + \{\{h, f\}_J, g\}_J + \{\{g, h\}_J, f\}_J = 0
 $$
 
-**Proof:** Follows from the Bianchi identity ∂_λΩ_μν + cyclic = 0.
+**Proof:** Follows from the Bianchi identity $\partial_\lambda\Omega_{\mu\nu} + \text{cyclic} = 0$.
 
 ### 2.4 Hamiltonian Flow from Berry Curvature
 
 **Evolution Equation:**
 
-For a Hamiltonian H(R), the time evolution of parameters is:
+For a Hamiltonian $H(R)$, the time evolution of parameters is:
 
 $$
 \dot{R}^\mu = \{R^\mu, H\}_J = \Omega^{\mu\nu}\,\partial_\nu H
@@ -140,13 +140,13 @@ This generates **reversible, conservative dynamics** on parameter space.
 
 **Connection to VDM:**
 
-- Berry curvature → J-limb (conservative, reversible)
-- Ω^μν plays the role of the Poisson tensor
-- Casimir invariants: Σ_J such that {Σ_J, H}_J = 0
+- Berry curvature $\to$ J-limb (conservative, reversible)
+- $\Omega^{\mu\nu}$ plays the role of the Poisson tensor
+- Casimir invariants: $\Sigma_J$ such that $\{\Sigma_J, H\}_J = 0$
 
 ---
 
-## 3. Quantum Metric → M-Bracket Mapping
+## 3. Quantum Metric $\to$ M-Bracket Mapping
 
 ### 3.1 Quantum Metric as Riemannian Structure
 
@@ -156,12 +156,12 @@ $$
 g_{\mu\nu}(R) = \text{Re}\langle \partial_\mu \psi | \partial_\nu \psi \rangle = \sum_n \frac{|\langle n | \partial_\mu H | \psi \rangle|^2}{(E_\psi - E_n)^2}
 $$
 
-where the sum runs over excited states |n⟩ ≠ |ψ⟩.
+where the sum runs over excited states $|n\rangle \neq |\psi\rangle$.
 
 **Properties:**
 
-- g_μν > 0 (positive definite metric)
-- Defines distance in parameter space: ds² = g_μν dR^μ dR^ν
+- $g_{\mu\nu} > 0$ (positive definite metric)
+- Defines distance in parameter space: $ds^2 = g_{\mu\nu} dR^\mu dR^\nu$
 - Measures sensitivity of ground state to parameter variations
 
 ### 3.2 Fisher Information Metric Connection
@@ -174,11 +174,11 @@ $$
 g_{\mu\nu} = \text{Re}\langle \partial_\mu \psi | \partial_\nu \psi \rangle = \frac{1}{4}\text{Tr}(\rho\,\{L_\mu, L_\nu\})
 $$
 
-where ρ = |ψ⟩⟨ψ| and L_μ is the symmetric logarithmic derivative.
+where $\rho = |\psi\rangle\langle\psi|$ and $L_\mu$ is the symmetric logarithmic derivative.
 
 **Physical Interpretation:**
 
-- g_μν quantifies the distinguishability of nearby quantum states
+- $g_{\mu\nu}$ quantifies the distinguishability of nearby quantum states
 - Lower bound on parameter estimation uncertainty (Cramér-Rao bound)
 - Natural metric for quantum state space
 
@@ -186,7 +186,7 @@ where ρ = |ψ⟩⟨ψ| and L_μ is the symmetric logarithmic derivative.
 
 **Definition** (M-bracket from quantum metric):
 
-For observables f(R), g(R), define the metric bracket:
+For observables $f(R)$, $g(R)$, define the metric bracket:
 
 $$
 (f, g)_M = g_{\mu\nu}(R)\,\partial_\mu f\,\partial_\nu g
@@ -194,21 +194,21 @@ $$
 
 **Theorem 3.1** (Properties of M-bracket):
 
-1. **Symmetry:** (f, g)_M = (g, f)_M
-2. **Positive semi-definiteness:** (f, f)_M ≥ 0
-3. **Degeneracy:** (I, ·)_M = 0 for Casimir I
+1. **Symmetry:** $(f, g)_M = (g, f)_M$
+2. **Positive semi-definiteness:** $(f, f)_M \geq 0$
+3. **Degeneracy:** $(I, \cdot)_M = 0$ for Casimir $I$
 
 **Proof:**
 
-1. Symmetry follows from g_μν = g_νμ
-2. PSD follows from g_μν being a positive definite metric
-3. Degeneracy: If I is constant along certain directions, ∂_μI = 0 in those directions
+1. Symmetry follows from $g_{\mu\nu} = g_{\nu\mu}$
+2. PSD follows from $g_{\mu\nu}$ being a positive definite metric
+3. Degeneracy: If $I$ is constant along certain directions, $\partial_\mu I = 0$ in those directions
 
 ### 3.4 Dissipative Flow from Metric
 
 **Gradient Flow:**
 
-For an entropy functional S(R), the metric bracket generates:
+For an entropy functional $S(R)$, the metric bracket generates:
 
 $$
 \dot{R}^\mu = (R^\mu, S)_M = g^{\mu\nu}\,\partial_\nu S
@@ -216,15 +216,15 @@ $$
 
 This is **gradient flow** on parameter space, which:
 
-- Increases S monotonically: dS/dt = g^μν ∂_μS ∂_νS ≥ 0
+- Increases $S$ monotonically: $dS/dt = g^{\mu\nu} \partial_\mu S \partial_\nu S \geq 0$
 - Is irreversible (breaks time-reversal symmetry)
-- Approaches equilibrium: ∂_μS = 0
+- Approaches equilibrium: $\partial_\mu S = 0$
 
 **Connection to VDM:**
 
-- Quantum metric → M-limb (dissipative, irreversible)
-- g^μν plays the role of the metric tensor
-- Casimir invariants: I_M such that (I_M, S)_M = 0
+- Quantum metric $\to$ M-limb (dissipative, irreversible)
+- $g^{\mu\nu}$ plays the role of the metric tensor
+- Casimir invariants: $I_M$ such that $(I_M, S)_M = 0$
 
 ---
 
@@ -240,8 +240,8 @@ $$
 
 **Degeneracy Conditions:**
 
-- {S, ·}_J = 0: entropy is a Casimir of J-bracket (conserved by Hamiltonian flow)
-- (H, ·)_M = 0: energy is a Casimir of M-bracket (unchanged by dissipation)
+- $\{S, \cdot\}_J = 0$: entropy is a Casimir of J-bracket (conserved by Hamiltonian flow)
+- $(H, \cdot)_M = 0$: energy is a Casimir of M-bracket (unchanged by dissipation)
 
 ### 4.2 Lyapunov Function
 
@@ -262,7 +262,7 @@ $$
 \frac{dF}{dt} = \frac{dH}{dt} - T\frac{dS}{dt} = (H, S)_M - T\,g^{\mu\nu}\,\partial_\mu S\,\partial_\nu S = -T\,g^{\mu\nu}\,\partial_\mu S\,\partial_\nu S
 $$
 
-using the degeneracy condition (H,·)_M = 0.
+using the degeneracy condition $(H,·)_M = 0$.
 
 ### 4.3 VDM Equation Mapping
 
@@ -276,13 +276,13 @@ $$
 
 **QGT Implementation:**
 
-- J-bracket: {x, H}_J = Ω^μν(R) ∂_νH where x = x(R)
-- M-bracket: (x, S)_M = g^μν(R) ∂_νS
+- J-bracket: $\{x, H\}_J = \Omega^{\mu\nu}(R) \partial_\nu H$ where $x = x(R)$
+- M-bracket: $(x, S)_M = g^{\mu\nu}(R) \partial_\nu S$
 
 **Degeneracy Verification:**
 
-- J·δS = Ω^μν ∂_νS = 0 requires ∂_νS orthogonal to all symplectic directions
-- M·δH = g^μν ∂_νH = 0 requires ∂_νH = 0 (energy conservation)
+- $J\cdot\delta S = \Omega^{\mu\nu} \partial_\nu S = 0$ requires $\partial_\nu S$ orthogonal to all symplectic directions
+- $M\cdot\delta H = g^{\mu\nu} \partial_\nu H = 0$ requires $\partial_\nu H = 0$ (energy conservation)
 
 ---
 
@@ -292,15 +292,15 @@ $$
 
 **Input:**
 
-- Hamiltonian H(R) depending on parameters R = (R¹, ..., Rᵈ)
-- Eigenstate |ψ(R)⟩ with eigenvalue E(R)
+- Hamiltonian $H(R)$ depending on parameters $R = (R^1, \ldots, R^d)$
+- Eigenstate $|\psi(R)\rangle$ with eigenvalue $E(R)$
 - Parameter range and discretization
 
 **Output:**
 
-- Quantum Geometric Tensor Q_μν(R)
-- Berry curvature Ω_μν(R)
-- Quantum metric g_μν(R)
+- Quantum Geometric Tensor $Q_{\mu\nu}(R)$
+- Berry curvature $\Omega_{\mu\nu}(R)$
+- Quantum metric $g_{\mu\nu}(R)$
 
 **Steps:**
 
@@ -335,23 +335,23 @@ $$
 
 - Use orthogonalization to avoid gauge ambiguities
 - Employ higher-order finite difference schemes for derivatives
-- Check hermiticity: (Q_μν)* = Q_νμ
+- Check hermiticity: $(Q_{\mu\nu})^* = Q_{\nu\mu}$
 
 **Verification Tests:**
 
-- Antisymmetry: Ω_μν = -Ω_νμ (machine precision)
-- Symmetry: g_μν = g_νμ (machine precision)
-- Positive definiteness: all eigenvalues of g_μν > 0
+- Antisymmetry: $\Omega_{\mu\nu} = -\Omega_{\nu\mu}$ (machine precision)
+- Symmetry: $g_{\mu\nu} = g_{\nu\mu}$ (machine precision)
+- Positive definiteness: all eigenvalues of $g_{\mu\nu} > 0$
 
 ---
 
-## 6. Classical Limit: ℏ → 0
+## 6. Classical Limit: $\hbar \to 0$
 
 ### 6.1 Semiclassical Expansion
 
 **Theorem 6.1** (Classical Limit of QGT):
 
-In the semiclassical limit ℏ → 0, the quantum geometric tensor reduces to classical geometric structures:
+In the semiclassical limit $\hbar \to 0$, the quantum geometric tensor reduces to classical geometric structures:
 
 $$
 g_{\mu\nu} \to g_{\mu\nu}^{\text{cl}} = \partial_\mu q_i \,m_{ij}\, \partial_\nu q_j
@@ -363,28 +363,28 @@ $$
 
 where:
 
-- q_i are classical coordinates
-- m_{ij} is the classical mass/inertia tensor (Riemannian metric)
-- ω_{ij} is the classical symplectic form (Poisson structure)
+- $q_i$ are classical coordinates
+- $m_{ij}$ is the classical mass/inertia tensor (Riemannian metric)
+- $\omega_{ij}$ is the classical symplectic form (Poisson structure)
 
 **Proof Sketch:**
 
-1. WKB ansatz: |ψ⟩ = e^{iS(q,R)/ℏ}|φ(q,R)⟩
+1. WKB ansatz: $|\psi\rangle = e^{iS(q,R)/\hbar}|\phi(q,R)\rangle$
 
-2. Expand QGT in powers of ℏ:
+2. Expand QGT in powers of $\hbar$:
    $$
-   Q_{\mu\nu} = Q_{\mu\nu}^{(0)} + ℏ\,Q_{\mu\nu}^{(1)} + O(\ℏ^2)
+   Q_{\mu\nu} = Q_{\mu\nu}^{(0)} + \hbar\,Q_{\mu\nu}^{(1)} + O(\hbar^2)
    $$
 
-3. Leading order Q^(0)_μν matches classical geometric structures
+3. Leading order $Q^{(0)}_{\mu\nu}$ matches classical geometric structures
 
-4. Quantum corrections appear at O(ℏ) and higher
+4. Quantum corrections appear at $O(\hbar)$ and higher
 
 ### 6.2 Emergence of Continuous Metriplectic Flow
 
 **Continuum Limit:**
 
-As parameter space discretization δR → 0:
+As parameter space discretization $\delta R \to 0$:
 
 $$
 \dot{R}^\mu = \Omega^{\mu\nu}\,\partial_\nu H + g^{\mu\nu}\,\partial_\nu S
@@ -394,10 +394,10 @@ becomes the continuous metriplectic evolution on smooth manifold.
 
 **VDM Connection:**
 
-- Quantum lattice → parameter space R
-- QGT → metriplectic structure (J, M)
-- Eigenstate evolution → field dynamics
-- ℏ → 0 + continuum limit → classical VDM equations
+- Quantum lattice $\to$ parameter space $R$
+- QGT $\to$ metriplectic structure $(J, M)$
+- Eigenstate evolution $\to$ field dynamics
+- $\hbar \to 0$ + continuum limit $\to$ classical VDM equations
 
 ---
 
@@ -410,14 +410,14 @@ $$
 H(\mathbf{B}) = -\mathbf{B} \cdot \boldsymbol{\sigma} = -B_x \sigma_x - B_y \sigma_y - B_z \sigma_z
 $$
 
-where **B** = (B_x, B_y, B_z) are external field parameters.
+where $\mathbf{B} = (B_x, B_y, B_z)$ are external field parameters.
 
 **Ground State:**
 $$
 |\psi(\mathbf{B})\rangle = \cos(\theta/2)|0\rangle + e^{i\phi}\sin(\theta/2)|1\rangle
 $$
 
-where θ, φ are spherical angles: B_z/|B| = cos θ, tan φ = B_y/B_x.
+where $\theta$, $\phi$ are spherical angles: $B_z/|B| = \cos\theta$, $\tan\phi = B_y/B_x$.
 
 ### 7.2 Berry Curvature
 
@@ -483,32 +483,32 @@ $$
 
 ### 8.1 Degeneracy Verification
 
-**Test 1:** Check J·δS = 0
+**Test 1:** Check $J\cdot\delta S = 0$
 
-For entropy S = -k_B Σ_i p_i ln p_i:
+For entropy $S = -k_B \sum_i p_i \ln p_i$:
 $$
 \{S, H\}_J = \Omega^{\mu\nu}\,\partial_\mu S\,\partial_\nu H = 0
 $$
 
-when S is a Casimir (constant on symplectic leaves).
+when $S$ is a Casimir (constant on symplectic leaves).
 
-**Test 2:** Check M·δH = 0
+**Test 2:** Check $M\cdot\delta H = 0$
 
 $$
 (H, S)_M = g^{\mu\nu}\,\partial_\mu H\,\partial_\nu S = 0
 $$
 
-when H is conserved under metric flow.
+when $H$ is conserved under metric flow.
 
 ### 8.2 Numerical Gates
 
 From VALIDATION_METRICS.md:
 
-1. **Antisymmetry:** |Ω_μν + Ω_νμ| ≤ 10^-12
-2. **Symmetry:** |g_μν - g_νμ| ≤ 10^-12  
-3. **Positive definiteness:** λ_min(g) ≥ 10^-10
-4. **Identity residuals:** |{Σ, H}_J| ≤ 10^-12, |(I, S)_M| ≤ 10^-12
-5. **Lyapunov monotonicity:** dF/dt ≤ 10^-12
+1. **Antisymmetry:** $|\Omega_{\mu\nu} + \Omega_{\nu\mu}| \leq 10^{-12}$
+2. **Symmetry:** $|g_{\mu\nu} - g_{\nu\mu}| \leq 10^{-12}$
+3. **Positive definiteness:** $\lambda_{\min}(g) \geq 10^{-10}$
+4. **Identity residuals:** $|\{\Sigma, H\}_J| \leq 10^{-12}$, $|(I, S)_M| \leq 10^{-12}$
+5. **Lyapunov monotonicity:** $dF/dt \leq 10^{-12}$
 
 ---
 
@@ -519,8 +519,8 @@ From VALIDATION_METRICS.md:
 This derivation **resolves Gap S1** by providing:
 
 ✓ **Constructive procedure** for computing QGT from eigenstates (VDM-A-023)  
-✓ **Explicit mapping** Berry curvature → J-bracket  
-✓ **Explicit mapping** quantum metric → M-bracket  
+✓ **Explicit mapping** Berry curvature $\to$ J-bracket
+✓ **Explicit mapping** quantum metric $\to$ M-bracket  
 ✓ **Classical limit** showing emergence of continuous metriplectic flow  
 ✓ **Worked example** demonstrating all steps  
 
@@ -530,11 +530,11 @@ This derivation **resolves Gap S1** by providing:
 
 - **VDM-E-108:** QGT definition (already in registry, now derived)
 - **VDM-E-109:** QGT decomposition (already in registry, now derived)
-- **VDM-E-138:** Berry connection A_μ = i⟨ψ|∂_μψ⟩
-- **VDM-E-139:** Berry curvature Ω_μν = ∂_μA_ν - ∂_νA_μ
+- **VDM-E-138:** Berry connection $A_\mu = i\langle\psi|\partial_\mu\psi\rangle$
+- **VDM-E-139:** Berry curvature $\Omega_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu$
 - **VDM-E-140:** Quantum metric explicit form with excited states
-- **VDM-E-141:** J-bracket from Berry curvature {f,g}_J = Ω^μν ∂_μf ∂_νg
-- **VDM-E-142:** M-bracket from quantum metric (f,g)_M = g_μν ∂^μf ∂^νg
+- **VDM-E-141:** J-bracket from Berry curvature $\{f,g\}_J = \Omega^{\mu\nu} \partial_\mu f \partial_\nu g$
+- **VDM-E-142:** M-bracket from quantum metric $(f,g)_M = g_{\mu\nu} \partial^\mu f \partial^\nu g$
 
 **New Algorithm:**
 
@@ -544,15 +544,15 @@ This derivation **resolves Gap S1** by providing:
 
 **Target M2** (Metriplectic monotonicity):
 
-- Derivation shows dF/dt ≤ 0 under combined J+M evolution
+- Derivation shows $dF/dt \leq 0$ under combined J+M evolution
 - Quantum metric ensures positive dissipation
 - Berry curvature conserves Hamiltonian structure
 
 **Target M6** (Measurement as epistemic projection):
 
 - Quantum metric encodes Fisher information
-- Parameter estimation → bounded observation → M-limb projection
-- Berry phase → unobservable gauge structure → J-limb reality
+- Parameter estimation $\to$ bounded observation $\to$ M-limb projection
+- Berry phase $\to$ unobservable gauge structure $\to$ J-limb reality
 
 ---
 
@@ -609,13 +609,13 @@ This derivation **resolves Gap S1** by providing:
 
 | Symbol | Description | Units | Domain |
 |--------|-------------|-------|--------|
-| Q_μν | Quantum Geometric Tensor | 1/[R]² | Complex Hermitian matrix |
-| g_μν | Quantum metric (symmetric part) | 1/[R]² | Real symmetric PSD matrix |
-| Ω_μν | Berry curvature (antisymmetric part) | 1/[R]² | Real antisymmetric matrix |
-| A_μ | Berry connection (gauge potential) | 1/[R] | Real vector |
-| \|ψ(R)⟩ | Parameter-dependent eigenstate | 1 | Hilbert space vector |
-| R^μ | Parameter space coordinates | [R] | ℝ^d |
-| ∂_μ | Parameter derivative ∂/∂R^μ | 1/[R] | Differential operator |
+| $Q_{\mu\nu}$ | Quantum Geometric Tensor | $1/[R]^2$ | Complex Hermitian matrix |
+| $g_{\mu\nu}$ | Quantum metric (symmetric part) | $1/[R]^2$ | Real symmetric PSD matrix |
+| $\Omega_{\mu\nu}$ | Berry curvature (antisymmetric part) | $1/[R]^2$ | Real antisymmetric matrix |
+| $A_\mu$ | Berry connection (gauge potential) | $1/[R]$ | Real vector |
+| $\|\psi(R)\rangle$ | Parameter-dependent eigenstate | 1 | Hilbert space vector |
+| $R^\mu$ | Parameter space coordinates | $[R]$ | $\mathbb{R}^d$ |
+| $\partial_\mu$ | Parameter derivative $\partial/\partial R^\mu$ | $1/[R]$ | Differential operator |
 
 **Dimensionless Form:**
 
