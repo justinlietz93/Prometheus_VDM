@@ -93,7 +93,7 @@ Target M6 — Measurement as epistemic projection:
 
 2.5 Gap Modules (T0 derivation plans, no numerics)
 
-- S1 — PLAN_QGT_to_Metriplectic_T0.md → see plan skeletons in [T0_Derivation_Plans.md](PRIVATE/Axiom-8/Status/T8-A8_Insights/Collections/code_crawler_results/Support/T0_Derivation_Plans.md)
+- S1 — CF1_QGT_to_Metriplectic_Brackets.md.md → see plan skeletons in [T0_Derivation_Plans.md](PRIVATE/Axiom-8/Status/T8-A8_Insights/Collections/code_crawler_results/Support/T0_Derivation_Plans.md)
   - Sources: [`GPT-Gap-Fill.md`](PRIVATE/Axiom-8/Status/T8-A8_Insights/Collections/code_crawler_results/Support/GPT-Gap-Fill.md) — “G-QGT-1: Quantum Geometric Tensor to Metriplectic Brackets”; [`Claude-Gap-Fill.md`](PRIVATE/Axiom-8/Status/T8-A8_Insights/Collections/code_crawler_results/Support/Claude-Gap-Fill.md) — “Quantum geometric tensor calculations are well-established but classical limit mapping remains synthesis challenge”
 - S2 — PLAN_Contact_to_Metriplectic_T0.md → see [T0_Derivation_Plans.md](PRIVATE/Axiom-8/Status/T8-A8_Insights/Collections/code_crawler_results/Support/T0_Derivation_Plans.md)
   - Sources: [`GPT-Gap-Fill.md`](PRIVATE/Axiom-8/Status/T8-A8_Insights/Collections/code_crawler_results/Support/GPT-Gap-Fill.md) — “G-CG-1: Contact Hamiltonians to Metriplectic Evolution”; [`Claude-Gap-Fill.md`](PRIVATE/Axiom-8/Status/T8-A8_Insights/Collections/code_crawler_results/Support/Claude-Gap-Fill.md) — “Contact geometry solves the metriplectic unification problem”

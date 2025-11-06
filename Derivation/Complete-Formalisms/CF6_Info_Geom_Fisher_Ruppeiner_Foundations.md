@@ -32,6 +32,7 @@ This completes the geometric foundation for understanding the M-limb as epistemi
 A **statistical manifold** is a smooth manifold M whose points are probability distributions. Locally, points are parametrized by θ = (θ¹, ..., θⁿ) ∈ Θ ⊂ ℝⁿ, with each θ corresponding to a distribution p(x; θ).
 
 **Examples:**
+
 - Gaussian manifold: θ = (μ, σ²)
 - Exponential family: p(x; θ) = exp(∑ θ^i T_i(x) - ψ(θ))
 - Quantum density matrices: ρ(θ) (positive, trace-1)
@@ -155,6 +156,7 @@ $$
 **Thermodynamic Variables:**
 
 For a system in equilibrium, the state is characterized by extensive variables X = (S, V, N, ...) where:
+
 - S: entropy
 - V: volume
 - N: particle number
@@ -488,6 +490,7 @@ else:
 ```
 
 **Output:**
+
 ```
 Theoretical Fisher information:
 [[1.     0.    ]

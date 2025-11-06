@@ -70,6 +70,7 @@ H_{\text{total}} = H_S + H_E + H_{SE}
 $$
 
 where:
+
 - H_S: System Hamiltonian
 - H_E: Environment Hamiltonian
 - H_{SE}: System-environment interaction
@@ -252,6 +253,7 @@ $$
 **Finite-Resolution Measurement:**
 
 Real measurements have limited precision:
+
 - Position: Δx ≥ ℓ_min (detector size)
 - Momentum: Δp ≥ p_min (resolution)
 - Time: Δt ≥ τ_sample (sampling rate)
@@ -304,6 +306,7 @@ $$
 **Definition 4.1:**
 
 The M-limb projection window W consists of:
+
 - Spatial extent: Δx (detector size)
 - Temporal extent: Δt (sampling time)
 - Energy resolution: ΔE ~ ℏ/Δt
@@ -315,6 +318,7 @@ $$
 $$
 
 where:
+
 - ρ_J: J-limb density matrix (fine-grained, reversible)
 - W: observation window (coarse-graining)
 - ρ_M: M-limb density matrix (coarse-grained, irreversible)
@@ -346,6 +350,7 @@ $$
 $$
 
 where:
+
 - f = {f_i}: empirical frequencies
 - p = {|c_i|²}: Born rule probabilities
 - KL = Kullback-Leibler divergence
@@ -472,6 +477,7 @@ test_qutrit_born_rule()
 ```
 
 **Output:**
+
 ```
 Qubit Born Rule Convergence:
 N      | f_0    | f_1    | KL divergence | Gate (< 1e-3)?
@@ -534,6 +540,7 @@ This derivation **completes the measurement-theoretic foundation** by providing:
 **Unified Picture:**
 
 J-limb (reversible, complete) → M-limb (irreversible, coarse-grained)
+
 - Mechanism: Decoherence + Bounded observation
 - Timescale: τ_D ~ ℏ/(k_BT λ²)
 - Probabilities: Born rule from symmetry

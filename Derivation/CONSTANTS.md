@@ -1,7 +1,6 @@
 <!-- DOC-GUARD: CANONICAL -->
 # VDM Constants & Defaults (Auto-compiled)
 
-
 **Last updated**: 2025-11-05
 **Last commit**: b745e83
 **Scope:** Single source of truth for numerical constants, ranges, and defaults currently present in this repository.

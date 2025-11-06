@@ -51,6 +51,7 @@ u(x, t) = \frac{1}{(4\pi D t)^{d/2}}\exp\left(-\frac{|x|^2}{4Dt}\right)
 $$
 
 This is **non-zero everywhere for any t > 0**, implying:
+
 - **Infinite propagation speed**: information travels instantaneously
 - **Violates causality**: contradicts special relativity for small scales
 
@@ -63,6 +64,7 @@ This is **non-zero everywhere for any t > 0**, implying:
 3. **Markovian:** No memory of past gradients
 
 These fail at:
+
 - Short time scales (t < τ_relax)
 - High frequencies (ω > 1/τ_relax)
 - Small length scales (λ < √(Dτ))
@@ -110,6 +112,7 @@ where τ is the collision time.
 **Moment Expansion:**
 
 Define:
+
 - Density: u = ∫ f dv
 - Flux: J = ∫ v f dv
 
@@ -188,6 +191,7 @@ $$
 $$
 
 This is the **damped wave equation** with:
+
 - Wave propagation: ∂²u/∂t²
 - Damping: ∂u/∂t
 - Diffusion: D∇²u
@@ -197,6 +201,7 @@ This is the **damped wave equation** with:
 **Scaling:**
 
 Let:
+
 - t̃ = t/τ (dimensionless time)
 - x̃ = x/√(Dτ) (dimensionless length)
 - ũ = u/u₀ (dimensionless concentration)
@@ -425,6 +430,7 @@ where a is lattice spacing and Δt is update time.
 **Connection to Telegraph:**
 
 Identify:
+
 - Diffusivity: D ~ a²/Δt
 - Relaxation: τ ~ Δt
 
@@ -581,13 +587,15 @@ print("✓ Simulation complete. See telegraph_propagation.png")
 ```
 
 **Output:**
-```
+
+```plaintext
 Wave speed c = 3.162
 
 ✓ Simulation complete. See telegraph_propagation.png
 ```
 
 **Observations:**
+
 1. Pulse splits into left/right traveling waves
 2. Propagation exactly follows cone |x| = ct
 3. No signal outside causal cone
@@ -622,16 +630,19 @@ This derivation **resolves Gap S4** by providing:
 ### 9.3 Integration with T0 Spec
 
 **Target M1** (Local causality):
+
 - Telegraph equation ensures finite propagation speed
 - Causal cone structure: |x| ≤ ct
 - VDM lattice discretization consistent with c = a/Δt
 
 **Target M3** (RD phenomenology):
+
 - Telegraph-Fisher modifies front speeds
 - Dispersion relation validates finite-speed corrections
 - Gate: |v_TF - v_theory|/v_theory < 0.05
 
 **Connection to S1, S2, S3:**
+
 - S1 (QGT): Berry curvature → symplectic transport (c from Hamiltonian)
 - S2 (Contact): Reeb flow → thermodynamic time (τ from relaxation)
 - S3 (A8): Hierarchical interfaces → void debt → c_eff throttling
@@ -643,16 +654,19 @@ This derivation **resolves Gap S4** by providing:
 ### 10.1 Mathematical Tests
 
 **Test 1:** Speed bound verification:
+
 - c = √(D/τ) from dispersion: ✓
 - c from characteristics: ✓
 - c from VDM lattice: ✓
 
 **Test 2:** Causality:
+
 - u(x,t) = 0 for |x| > ct: ✓
 - Domain of dependence bounded: ✓
 - Information velocity ≤ c: ✓
 
 **Test 3:** Limits:
+
 - τ → 0: Telegraph → Diffusion: ✓
 - τ → ∞: Telegraph → Wave: ✓
 
@@ -681,6 +695,7 @@ From VALIDATION_METRICS.md:
 **Child Proposal:** `PROPOSAL_TF_Causality_T1_Instrument.md`
 
 **Milestones:**
+
 - [ ] Implement telegraph solver with CFL tracking
 - [ ] Measure cone speeds for various D, τ
 - [ ] Validate dispersion relation experimentally

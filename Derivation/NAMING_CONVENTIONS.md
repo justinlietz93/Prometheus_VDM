@@ -195,6 +195,3 @@ No explicit coordinate system frames or handedness/orientation conventions are s
 <!-- BEGIN AUTOSECTION: NAMING-INDEX -->
 <!-- Tool-maintained list of anchors/slugs for quick lookup -->
 <!-- END AUTOSECTION: NAMING-INDEX -->
-
-## Change Log
-- 2025-10-04 • conventions extracted from repository • 8e27c34
