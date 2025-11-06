@@ -836,96 +836,95 @@ If acquiring papers, useful search queries based on this analysis:
 
 S1 — QGT → Metriplectic (Berry curvature ↔ J, quantum metric ↔ M)
 
-Xiao, Chang & Niu (2010), “Berry phase effects on electronic properties” — https://link.aps.org/doi/10.1103/RevModPhys.82.1959
-Zhang et al. (2019), “Direct measurement of the quantum geometric tensor in a topological Bloch band” — https://www.science.org/doi/10.1126/science.aaz8721
-Yu et al. (2023), “Extracting the quantum geometric tensor from dynamical response” — https://link.aps.org/doi/10.1103/PhysRevResearch.5.L032003
+Xiao, Chang & Niu (2010), “Berry phase effects on electronic properties” — <https://link.aps.org/doi/10.1103/RevModPhys.82.1959>
+Zhang et al. (2019), “Direct measurement of the quantum geometric tensor in a topological Bloch band” — <https://www.science.org/doi/10.1126/science.aaz8721>
+Yu et al. (2023), “Extracting the quantum geometric tensor from dynamical response” — <https://link.aps.org/doi/10.1103/PhysRevResearch.5.L032003>
 
 S2 — Contact Geometry → Metriplectic; GENERIC (two-generator formalism)
 
-Grmela & Öttinger (1997), “Dynamics and thermodynamics of complex fluids I” — https://journals.aps.org/pre/abstract/10.1103/PhysRevE.56.6620
-Grmela & Öttinger (1997), “... II. Illustrations of a general formalism” — https://link.aps.org/doi/10.1103/PhysRevE.56.663
-Bravetti, López‑Monsalvo & Nettel (2017), “Contact geometry and thermodynamics” — https://link.springer.com/article/10.1007/s00220-016-2843-5
-Mrugała (1991), “Contact geometry in thermodynamics: the Legendre submanifolds” — https://www.researchgate.net/publication/225404262_Contact_geometry_in_thermodynamics_The_Legendre_submanifolds
-de León & Lainz Valcázar (2021), “A review on contact Hamiltonian systems” — https://digibug.ugr.es/entities/publication/99b9f2b9-8801-4d9b-9d28-4f390bc6dad8
+Grmela & Öttinger (1997), “Dynamics and thermodynamics of complex fluids I” — <https://journals.aps.org/pre/abstract/10.1103/PhysRevE.56.6620>
+Grmela & Öttinger (1997), “... II. Illustrations of a general formalism” — <https://link.aps.org/doi/10.1103/PhysRevE.56.663>
+Bravetti, López‑Monsalvo & Nettel (2017), “Contact geometry and thermodynamics” — <https://link.springer.com/article/10.1007/s00220-016-2843-5>
+Mrugała (1991), “Contact geometry in thermodynamics: the Legendre submanifolds” — <https://www.researchgate.net/publication/225404262_Contact_geometry_in_thermodynamics_The_Legendre_submanifolds>
+de León & Lainz Valcázar (2021), “A review on contact Hamiltonian systems” — <https://digibug.ugr.es/entities/publication/99b9f2b9-8801-4d9b-9d28-4f390bc6dad8>
 
 S3 — A8 Hierarchical Scaling (Γ‑convergence, microstructure, phase‑field)
 
-Modica & Mortola (1977), “Un esempio di Γ‑convergenza” — https://www.math.cmu.edu/~giacomel/cubmodmica.pdf
-Kohn & Müller (1994), “Surface energy and microstructure in coherent phase transitions” — https://onlinelibrary.wiley.com/doi/abs/10.1002/cpa.3160470402
-Conti (2000), “Branched microstructures: scaling and asymptotic self‑similarity” — https://scispace.com/pdf/branched-microstructures-scaling-and-asymptotic-self-14emes0s6p.pdf
-Choksi et al. (2008), “Ground state energy scaling laws…” — https://www.math.mcgill.ca/rchoksi/pub/cpam2.pdf
-Chan & Conti (2014/2015), “Energy scaling and branched microstructures…” — https://arxiv.org/abs/1403.6242
-Desai & Kapral (2009), *Dynamics of Self‑Organized and Self‑Assembled Structures* (CUP) — https://www.cambridge.org/core/books/dynamics-of-selforganized-and-selfassembled-structures/A7BFC5BDA65E1086F3089345363C3A10
-Krause, Gaffney & Walker (2022/2023), “Concentration‑Dependent Domain Evolution in Reaction–Diffusion Systems” — https://link.springer.com/article/10.1007/s11538-022-01115-2
+Modica & Mortola (1977), “Un esempio di Γ‑convergenza” — <https://www.math.cmu.edu/~giacomel/cubmodmica.pdf>
+Kohn & Müller (1994), “Surface energy and microstructure in coherent phase transitions” — <https://onlinelibrary.wiley.com/doi/abs/10.1002/cpa.3160470402>
+Conti (2000), “Branched microstructures: scaling and asymptotic self‑similarity” — <https://scispace.com/pdf/branched-microstructures-scaling-and-asymptotic-self-14emes0s6p.pdf>
+Choksi et al. (2008), “Ground state energy scaling laws…” — <https://www.math.mcgill.ca/rchoksi/pub/cpam2.pdf>
+Chan & Conti (2014/2015), “Energy scaling and branched microstructures…” — <https://arxiv.org/abs/1403.6242>
+Desai & Kapral (2009), *Dynamics of Self‑Organized and Self‑Assembled Structures* (CUP) — <https://www.cambridge.org/core/books/dynamics-of-selforganized-and-selfassembled-structures/A7BFC5BDA65E1086F3089345363C3A10>
+Krause, Gaffney & Walker (2022/2023), “Concentration‑Dependent Domain Evolution in Reaction–Diffusion Systems” — <https://link.springer.com/article/10.1007/s11538-022-01115-2>
 
 S4 — Telegraph–Fisher Causality (finite‑speed transport from relaxation)
 
-Cattaneo (1958), “Sur une forme de l’équation de la chaleur éliminant le paradoxe d’une propagation instantanée” — https://biprepap2.polito.it/retrieve/01fe68f0-b9c1-4df5-a80d-fb5e7025bf49/cattaneo1958.pdf
-Porrà, Masoliver & Weiss (1997), “When the telegrapher’s equation furnishes a better approximation…” — https://link.aps.org/doi/10.1103/PhysRevE.55.7771
-Masoliver (2017), “Three‑dimensional telegrapher’s equation and its fractional generalization” — https://link.aps.org/doi/10.1103/PhysRevE.96.022101
-Masoliver (2021), “Telegraphic Transport Processes and Their Fractional Generalization” (review) — https://pmc.ncbi.nlm.nih.gov/articles/PMC8003232/
-
+Cattaneo (1958), “Sur une forme de l’équation de la chaleur éliminant le paradoxe d’une propagation instantanée” — <https://biprepap2.polito.it/retrieve/01fe68f0-b9c1-4df5-a80d-fb5e7025bf49/cattaneo1958.pdf>
+Porrà, Masoliver & Weiss (1997), “When the telegrapher’s equation furnishes a better approximation…” — <https://link.aps.org/doi/10.1103/PhysRevE.55.7771>
+Masoliver (2017), “Three‑dimensional telegrapher’s equation and its fractional generalization” — <https://link.aps.org/doi/10.1103/PhysRevE.96.022101>
+Masoliver (2021), “Telegraphic Transport Processes and Their Fractional Generalization” (review) — <https://pmc.ncbi.nlm.nih.gov/articles/PMC8003232/>
 
 S5 — Integrability Closure (no hidden first integrals)
 
-Prelle & Singer (1983), “Elementary first integrals of differential equations” — https://www.sciencedirect.com/science/article/abs/pii/0021904583901631
-Christopher & Llibre (2007), “Integrability via the Darboux method: a survey” — https://link.springer.com/article/10.1007/s10440-006-9062-1
+Prelle & Singer (1983), “Elementary first integrals of differential equations” — <https://www.sciencedirect.com/science/article/abs/pii/0021904583901631>
+Christopher & Llibre (2007), “Integrability via the Darboux method: a survey” — <https://link.springer.com/article/10.1007/s10440-006-9062-1>
 
 Information Geometry & Thermodynamic Metrics (M‑limb foundations)
 
-Ruppeiner (1979), “Thermodynamics: A Riemannian geometric model” — https://link.aps.org/doi/10.1103/PhysRevA.20.1608
-Weinhold (1975), “Metric geometry of equilibrium thermodynamics” — https://pubs.aip.org/aip/jcp/article/63/6/2479/701646/Metric-geometry-of-equilibrium-thermodynamics
-Amari (2016), *Information Geometry and Its Applications* — https://link.springer.com/book/10.1007/978-4-431-55978-8
-Quinn et al. (2022), “Information geometry of multiparameter models” — https://pmc.ncbi.nlm.nih.gov/articles/PMC10018491/
+Ruppeiner (1979), “Thermodynamics: A Riemannian geometric model” — <https://link.aps.org/doi/10.1103/PhysRevA.20.1608>
+Weinhold (1975), “Metric geometry of equilibrium thermodynamics” — <https://pubs.aip.org/aip/jcp/article/63/6/2479/701646/Metric-geometry-of-equilibrium-thermodynamics>
+Amari (2016), *Information Geometry and Its Applications* — <https://link.springer.com/book/10.1007/978-4-431-55978-8>
+Quinn et al. (2022), “Information geometry of multiparameter models” — <https://pmc.ncbi.nlm.nih.gov/articles/PMC10018491/>
 
 Quantum–Classical Transition (Decoherence, coarse‑graining, Born rule)
 
-Zurek (2003), “Decoherence, einselection, and the quantum origins of the classical” — https://link.aps.org/doi/10.1103/RevModPhys.75.715
-Kofler & Brukner (2007), “Classical world arising out of quantum physics under coarse‑grained measurements” — https://link.aps.org/doi/10.1103/PhysRevLett.99.180403
-Masanes, Galley & Müller (2019), “The measurement postulates of quantum mechanics are derivable from the structure of the theory” (Nat. Commun.) — https://www.nature.com/articles/s41467-019-10305-3
+Zurek (2003), “Decoherence, einselection, and the quantum origins of the classical” — <https://link.aps.org/doi/10.1103/RevModPhys.75.715>
+Kofler & Brukner (2007), “Classical world arising out of quantum physics under coarse‑grained measurements” — <https://link.aps.org/doi/10.1103/PhysRevLett.99.180403>
+Masanes, Galley & Müller (2019), “The measurement postulates of quantum mechanics are derivable from the structure of the theory” (Nat. Commun.) — <https://www.nature.com/articles/s41467-019-10305-3>
 
 Entanglement & Area Laws (A8 ↔ boundary energy)
 
-Calabrese & Cardy (2004), “Entanglement entropy and quantum field theory” — https://stacks.iop.org/1742-5468/2004/i=06/a=P06002
-Ryu & Takayanagi (2006), “Holographic derivation of entanglement entropy from AdS/CFT” — https://link.aps.org/doi/10.1103/PhysRevLett.96.181602
+Calabrese & Cardy (2004), “Entanglement entropy and quantum field theory” — <https://stacks.iop.org/1742-5468/2004/i=06/a=P06002>
+Ryu & Takayanagi (2006), “Holographic derivation of entanglement entropy from AdS/CFT” — <https://link.aps.org/doi/10.1103/PhysRevLett.96.181602>
 
 Cosmology (CMB anomalies referenced; for VDM phenomenology)
 
-de Oliveira‑Costa et al. (2004), “The significance of the largest scale CMB fluctuations…” — https://link.aps.org/doi/10.1103/PhysRevD.69.063516
-Vielva et al. (2004), “Detection of a non‑Gaussian spot in WMAP” — https://academic.oup.com/mnras/article/354/3/641/1097443
-Cruz et al. (2007), “A Cosmic Microwave Background feature consistent with a cosmic texture” — https://www.science.org/doi/10.1126/science.1148694
+de Oliveira‑Costa et al. (2004), “The significance of the largest scale CMB fluctuations…” — <https://link.aps.org/doi/10.1103/PhysRevD.69.063516>
+Vielva et al. (2004), “Detection of a non‑Gaussian spot in WMAP” — <https://academic.oup.com/mnras/article/354/3/641/1097443>
+Cruz et al. (2007), “A Cosmic Microwave Background feature consistent with a cosmic texture” — <https://www.science.org/doi/10.1126/science.1148694>
 
 Comparative QG Context (LQG, swampland, causal sets, emergent gravity)
 
-Ashtekar & Lewandowski (2004), “Background independent quantum gravity: a status report” — https://iopscience.iop.org/article/10.1088/0264-9381/21/15/R01
-Vafa (2005), “The String Landscape and the Swampland” — https://arxiv.org/abs/hep-th/0509212
-Palti (2019), “The Swampland: Introduction and review” — https://arxiv.org/abs/1903.06239
-Bombelli, Lee, Meyer & Sorkin (1987), “Space‑Time as a Causal Set” — https://jamesowenweatherall.com/SCPPRG/BombelliEal1987PhysRevLett_SptCauset.pdf
-Surya (2019), “The causal set approach to quantum gravity” (Living Reviews) — https://doi.org/10.1007/s41114-019-0023-1
-Verlinde (2011), “On the origin of gravity and the laws of Newton” — https://link.springer.com/article/10.1007/JHEP04(2011)029
-Verlinde (2017), “Emergent Gravity and the Dark Universe” — https://scipost.org/10.21468/SciPostPhys.2.3.016
-Wolfram (2020), “A Class of Models with the Potential to Represent Fundamental Physics” — https://arxiv.org/abs/2004.08210
+Ashtekar & Lewandowski (2004), “Background independent quantum gravity: a status report” — <https://iopscience.iop.org/article/10.1088/0264-9381/21/15/R01>
+Vafa (2005), “The String Landscape and the Swampland” — <https://arxiv.org/abs/hep-th/0509212>
+Palti (2019), “The Swampland: Introduction and review” — <https://arxiv.org/abs/1903.06239>
+Bombelli, Lee, Meyer & Sorkin (1987), “Space‑Time as a Causal Set” — <https://jamesowenweatherall.com/SCPPRG/BombelliEal1987PhysRevLett_SptCauset.pdf>
+Surya (2019), “The causal set approach to quantum gravity” (Living Reviews) — <https://doi.org/10.1007/s41114-019-0023-1>
+Verlinde (2011), “On the origin of gravity and the laws of Newton” — <https://link.springer.com/article/10.1007/JHEP04(2011)029>
+Verlinde (2017), “Emergent Gravity and the Dark Universe” — <https://scipost.org/10.21468/SciPostPhys.2.3.016>
+Wolfram (2020), “A Class of Models with the Potential to Represent Fundamental Physics” — <https://arxiv.org/abs/2004.08210>
 
 Methods & Numerics (referenced for instruments)
 
-Langtangen & Logg (2017), *Solving PDEs in Python: The FEniCS Tutorial I* — https://pub.fenicsproject.org/tutorial/pdf/fenics-tutorial-vol1.pdf
+Langtangen & Logg (2017), *Solving PDEs in Python: The FEniCS Tutorial I* — <https://pub.fenicsproject.org/tutorial/pdf/fenics-tutorial-vol1.pdf>
 
 ## Small cross‑checks back to the spec/canon (so we wire these correctly)
 
-* Gap modules S1–S5 and the metriplectic two‑generator structure appear in your T0 spec; that’s what I used to sort the links. 
-* You noted missing equation slots (VDM‑E‑125…137). Those are the ones these links support (e.g., Cattaneo → VDM‑E‑132; Fisher metric → VDM‑E‑130). 
+- Gap modules S1–S5 and the metriplectic two‑generator structure appear in your T0 spec; that’s what I used to sort the links.
+- You noted missing equation slots (VDM‑E‑125…137). Those are the ones these links support (e.g., Cattaneo → VDM‑E‑132; Fisher metric → VDM‑E‑130).
 
 ---
 
 ### Items that need a pointer to your local filename (can’t resolve uniquely without more info)
 
-* `Artificial-Intelligence/mathematics-13-02392-with-cover.pdf` — **NEEDS METADATA** (journal, title, authors)
-* `Reaction-Diffusion/concentration-dependent-domain-evolution.pdf` — likely Krause–Gaffney–Walker (2022/2023) above; please confirm filename.
-* Any papers referred to only as “search results show 10+ papers…” across contact geometry, Γ‑convergence, Fisher‑information → telegraph, Darboux/Kovalevskaya, etc. — **supply author–year** so I can bind a DOI.
+- `Artificial-Intelligence/mathematics-13-02392-with-cover.pdf` — **NEEDS METADATA** (journal, title, authors)
+- `Reaction-Diffusion/concentration-dependent-domain-evolution.pdf` — likely Krause–Gaffney–Walker (2022/2023) above; please confirm filename.
+- Any papers referred to only as “search results show 10+ papers…” across contact geometry, Γ‑convergence, Fisher‑information → telegraph, Darboux/Kovalevskaya, etc. — **supply author–year** so I can bind a DOI.
 
 ## Small cross‑checks back to the spec/canon (so we wire these correctly)
 
-* Gap modules S1–S5 and the metriplectic two‑generator structure appear in your T0 spec; that’s what I used to sort the links. 
-* You noted missing equation slots (VDM‑E‑125…137). Those are the ones these links support (e.g., Cattaneo → VDM‑E‑132; Fisher metric → VDM‑E‑130). 
+- Gap modules S1–S5 and the metriplectic two‑generator structure appear in your T0 spec; that’s what I used to sort the links.
+- You noted missing equation slots (VDM‑E‑125…137). Those are the ones these links support (e.g., Cattaneo → VDM‑E‑132; Fisher metric → VDM‑E‑130).
 
 **Next most useful additions**: the exact entries for your local “mathematics‑13‑02392” QGT paper and any contact‑geometry PDFs you already have in `Metriplectic/`. That will close the last “NEEDS METADATA” flags and make this complete.
