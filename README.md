@@ -1,6 +1,6 @@
 <h1 align="center">Void Dynamics Model (VDM)</h1>
-<h4 align="center">
-  "A background‑independent, unified metriplectic field theory with an emergent causal cone and an epistemological J→M projection."</h4>
+<h4 align="center">A background‑independent, unified metriplectic field theory with an emergent causal cone and an epistemological J→M projection.</h4>
+<h6 align="center">AMN-->FUM-->VDM</h6>
 
 ---
 
