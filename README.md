@@ -1,7 +1,6 @@
 <h1 align="center">Void Dynamics Model (VDM)</h1>
-<h4 align="center">
-  "From the impossibility of nothing emerges everything; by mathematical necessity of hierarchies, logarithmically scaled phase transitions force dissipation of problematic infinite exponential tails produced by reaction-diffusion pulled wave fronts into finite energy; concentrated in the complex perimeter evolution of the boundary."</h4>
-<p align="center">- The Void Dynamics Thesis</p>
+<h4 align="center">A background‑independent, unified metriplectic field theory with an emergent causal cone and an epistemological J→M projection.</h4>
+<h6 align="center">AMN-->FUM-->VDM</h6>
 
 ---
 
