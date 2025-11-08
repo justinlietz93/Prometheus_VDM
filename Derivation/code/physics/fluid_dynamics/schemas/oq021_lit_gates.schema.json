@@ -1,0 +1,25 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"OQ-021 LIT Gate Report",
+  "type":"object",
+  "properties":{
+    "tag":{"type":"string"},
+    "dims":{"type":"object","properties":{"Ny":{"type":"integer"},"Nx":{"type":"integer"}},"required":["Ny","Nx"]},
+    "coeffs":{"type":"object","properties":{"kappa":{"type":"number"},"eta":{"type":"number"},"zeta":{"type":"number"}},"required":["kappa","eta","zeta"]},
+    "sigma":{"type":"object","properties":{"min":{"type":"number"},"max":{"type":"number"},"any_negative":{"type":"boolean"}},"required":["min","max","any_negative"]},
+    "onsager":{"type":"object","properties":{"residual_fro":{"type":"number"},"residual_linf":{"type":"number"},"tolerance_fro":{"type":"number"}},"required":["residual_fro","tolerance_fro"]},
+    "curie":{"type":"object","properties":{"violations":{"type":"integer"}},"required":["violations"]},
+    "entropy_monitor":{"type":"object"},
+    "gates":{
+      "type":"object",
+      "properties":{
+        "sigma_nonnegative":{"type":"boolean"},
+        "onsager_within_tol":{"type":"boolean"},
+        "curie_zero_cross":{"type":"boolean"},
+        "PASS":{"type":"boolean"}
+      },
+      "required":["sigma_nonnegative","onsager_within_tol","curie_zero_cross","PASS"]
+    }
+  },
+  "required":["tag","dims","coeffs","sigma","onsager","curie","gates"]
+}

@@ -1,9 +1,11 @@
 # Öttinger → VDM Upgrade Map (GENERIC discipline)
 
 Source reference (do not duplicate content):
+
 - Book: [Beyond Equilibrium Thermodynamics — Hans Christian Öttinger (Wiley, 1998)](../Derivation/References/Thermodynamics/Beyond Equilibrium Thermodynamics -- Hans Christian Öttinger -- 1_ Auflage, 1998 -- John Wiley & Sons, Ltd.pdf)
 
 Purpose:
+
 - This navigator maps Öttinger’s GENERIC formalism (E,S,L,M) to canonical VDM anchors across EQUATIONS, VALIDATION_METRICS, ALGORITHMS, and RESULTS standards.
 - It records where axioms A4/A5 are enforced via testable gates and where extended hydrodynamics (corner regularization, OQ‑021) plugs in.
 - No equations or numbers are re-stated here; follow the anchors.
@@ -27,6 +29,7 @@ Purpose:
   - RG blocking operator and rescaling: [VDM-E-136](../Derivation/EQUATIONS.md#vdm-e-136)
 
 Context pointers:
+
 - Contact/GENERIC program in this repo: [CF2_Contact_to_Metriplectic_Evolution.md](../Derivation/Complete-Formalisms/CF2_Contact_to_Metriplectic_Evolution.md)
 
 ---
@@ -34,20 +37,24 @@ Context pointers:
 ## 2) Validation metrics (KPIs) introduced
 
 GENERIC structure gates:
+
 - Poisson–Jacobi residual (unit test): [kpi-poisson-jacobi-resid](../Derivation/VALIDATION_METRICS.md#kpi-poisson-jacobi-resid)
 - Degeneracy residuals (Casimirs): [kpi-degeneracy-resid](../Derivation/VALIDATION_METRICS.md#kpi-degeneracy-resid)
 - Entropy non-negativity (H‑theorem monitor): [kpi-entropy-prod-nonneg](../Derivation/VALIDATION_METRICS.md#kpi-entropy-prod-nonneg)
 - Curie principle compliance (audit): [kpi-curie-compliance](../Derivation/VALIDATION_METRICS.md#kpi-curie-compliance)
 
 Corner regularization (OQ‑021) gates:
+
 - Corner stress boundedness: [kpi-corner-stress-bound](../Derivation/VALIDATION_METRICS.md#kpi-corner-stress-bound)
 - Corner velocity cap + scaling collapse envelope: [kpi-corner-velocity-cap](../Derivation/VALIDATION_METRICS.md#kpi-corner-velocity-cap)
 - Corner entropy non‑divergence (σ, ΔΣ): [kpi-corner-entropy-nondiv](../Derivation/VALIDATION_METRICS.md#kpi-corner-entropy-nondiv)
 
 RG/scale program:
+
 - RG blocking collapse envelope: [kpi-rg-collapse](../Derivation/VALIDATION_METRICS.md#kpi-rg-collapse)
 
 HMC context (J‑flow sampler QC — DeGrand & DeTar, already present but related to A4):
+
 - Acceptance vs stepsize slope: [kpi-hmc-acceptance-vs-stepsize](../Derivation/VALIDATION_METRICS.md#kpi-hmc-acceptance-vs-stepsize)
 - ΔH histogram diagnostics: [kpi-hmc-deltaH-hist](../Derivation/VALIDATION_METRICS.md#kpi-hmc-deltaH-hist)
 
@@ -56,6 +63,7 @@ HMC context (J‑flow sampler QC — DeGrand & DeTar, already present but relate
 ## 3) Algorithms/pseudocode stubs (adapters and runners)
 
 GENERIC conformance and audits:
+
 - VDM‑GENERIC adapter (constructor + gates): [VDM-A-037](../Derivation/ALGORITHMS.md#vdm-a-037)
 - Hydrodynamic Poisson construction cookbook skeleton: [VDM-A-038](../Derivation/ALGORITHMS.md#vdm-a-038)
 - Poisson–Jacobi identity tester (unit-test harness): [VDM-A-039](../Derivation/ALGORITHMS.md#vdm-a-039)
@@ -63,9 +71,11 @@ GENERIC conformance and audits:
 - Curie compliance linter (tensorial scalarization): [VDM-A-041](../Derivation/ALGORITHMS.md#vdm-a-041)
 
 OQ‑021 corner test runner:
+
 - Corner regularization runner skeleton (c‑field): [VDM-A-042](../Derivation/ALGORITHMS.md#vdm-a-042)
 
 RG utility:
+
 - Blocking operator (field/observable) for scale collapse: [VDM-A-036](../Derivation/ALGORITHMS.md#vdm-a-036)
 
 ---
@@ -73,6 +83,7 @@ RG utility:
 ## 4) RESULTS authoring requirements (when using GENERIC/dissipation)
 
 Authoring standards now require:
+
 - GENERIC block declaration (E,S,L,M) and enforcement artifacts:
   - See “GENERIC metriplectic diagnostics” section in [RESULTS_PAPER_STANDARDS.md](../Derivation/Templates/RESULTS_PAPER_STANDARDS.md)
   - Explicit KPI artifacts for Jacobi residual, degeneracy residuals, entropy monitor, Curie audit

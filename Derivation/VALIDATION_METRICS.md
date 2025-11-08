@@ -854,6 +854,35 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 - Primary figure/artifact (if referenced): Audit JSON; list of flagged couplings if any
 - Notes: Advisory KPI; failures block merge until resolved.
 
+#### Onsager–Casimir Reciprocity Residuals  <a id="kpi-onsager-resid"></a>
+
+- Symbol (if any): `kpi-onsager-resid-fro`, `kpi-onsager-resid-linf`
+- Purpose: Quantify deviation from Onsager–Casimir reciprocity in the near‑equilibrium LIT layer: L ≈ E L^T E with parity matrix E = diag(ε_j) (ε_j = ±1).
+- Defined by: Reciprocity condition in near‑equilibrium irreversible thermodynamics; see de Groot & Mazur (Dover 1984), Ch. IV–VI. Links to Curie scalarization [VDM-E-146](Derivation/EQUATIONS.md#vdm-e-146).
+- Inputs: Phenomenological matrix L (per basis ordering), parity vector ε (even/odd under time reversal).
+- Computation implemented at: [lit_tools.py](Derivation/code/common/instrument_helpers/lit_tools.py) (gate_report + writer)
+- Definition:
+  - `kpi-onsager-resid-fro = ||L - E L^T E||_F`
+  - `kpi-onsager-resid-linf = ||L - E L^T E||_∞`
+- Pass band / thresholds: Tolerances declared per runner; typical near‑equilibrium target `kpi-onsager-resid-fro ≤ 1e-12` (double-precision screen).
+- Units / normalization: Units of L; residuals are homogeneous with L’s entries.
+- Typical datasets / experiments: OQ‑021 near‑equilibrium audits; steady conduction/viscous baseline checks.
+- Primary figure/artifact (if referenced): JSON log written by gate writer with both residuals and parity tag.
+- Notes: Failing this KPI in LIT regime flags microreversibility/parity assignment issues or unit leaks.
+
+#### Curie Violations Count (Audit)  <a id="kpi-curie-violations"></a>
+
+- Symbol (if any): `kpi-curie-violations` (integer)
+- Purpose: Count nonzero entries in L (or M, constitutive blocks) that violate Curie’s tensor‑rank selection rules under isotropy.
+- Defined by: Curie principle scalarization [VDM-E-146](Derivation/EQUATIONS.md#vdm-e-146).
+- Inputs: Declared tensor ranks per force/flux basis; mask of allowed couplings for isotropic media.
+- Computation implemented at: [lit_tools.py](Derivation/code/common/instrument_helpers/lit_tools.py) (gate_report + writer)
+- Pass band / thresholds: `kpi-curie-violations = 0`
+- Units / normalization: n/a
+- Typical datasets / experiments: Same as Curie compliance audit; isotropic fluid L blocks.
+- Primary figure/artifact (if referenced): JSON log with integer violation count and optional list of indices (domain‑specific).
+- Notes: Complements boolean [kpi-curie-compliance](#kpi-curie-compliance) by providing an integer diagnostic for CI diffs.
+
 ---
 ### Fluid Dynamics (Extended Hydrodynamics — Corner Regularization, OQ‑021)
 
