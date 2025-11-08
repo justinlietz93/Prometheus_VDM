@@ -77,11 +77,13 @@ $$
 ### 2.1 Berry Connection and Curvature
 
 **Berry Connection** (gauge potential):
+
 $$
 A_\mu(R) = i\langle \psi(R) | \partial_\mu \psi(R) \rangle
 $$
 
 **Berry Curvature** (field strength):
+
 $$
 \Omega_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu = i(\langle \partial_\mu \psi | \partial_\nu \psi \rangle - \langle \partial_\nu \psi | \partial_\mu \psi \rangle)
 $$
@@ -100,10 +102,12 @@ $$
 
 1. **Antisymmetry:** $\Omega_{\mu\nu} = -\Omega_{\nu\mu}$ by construction
 2. **Closure:** $d\omega = 0$ follows from the Bianchi identity:
-   $$
-   \partial_\lambda \Omega_{\mu\nu} + \partial_\mu \Omega_{\nu\lambda} + \partial_\nu \Omega_{\lambda\mu} = 0
-   $$
-3. **Non-degeneracy:** For non-trivial topology, $\det(\Omega) \neq 0$ in regions of interest
+
+$$
+\partial_\lambda \Omega_{\mu\nu} + \partial_\mu \Omega_{\nu\lambda} + \partial_\nu \Omega_{\lambda\mu} = 0
+$$
+   
+4. **Non-degeneracy:** For non-trivial topology, $\det(\Omega) \neq 0$ in regions of interest
 
 ### 2.3 Poisson Bracket Construction
 
@@ -273,16 +277,19 @@ $$
 **Theorem 4.1** (Monotone Approach to Equilibrium):
 
 Define the free energy:
+
 $$
 F(R) = H(R) - T\,S(R)
 $$
 
 Then:
+
 $$
 \frac{dF}{dt} = -T\,g^{\mu\nu}\,\partial_\mu S\,\partial_\nu S \leq 0
 $$
 
 **Proof:**
+
 $$
 \frac{dF}{dt} = \frac{dH}{dt} - T\frac{dS}{dt} = (H, S)_M - T\,g^{\mu\nu}\,\partial_\mu S\,\partial_\nu S = -T\,g^{\mu\nu}\,\partial_\mu S\,\partial_\nu S
 $$
@@ -330,29 +337,34 @@ $$
 **Steps:**
 
 1. **Compute parameter derivatives** (finite differences or automatic differentiation):
-   $$
-   |\partial_\mu \psi\rangle \approx \frac{|\psi(R + \delta R^\mu)\rangle - |\psi(R)\rangle}{\delta R^\mu}
-   $$
 
-2. **Apply gauge fixing** (parallel transport gauge):
-   $$
-   |\partial_\mu \psi\rangle_{\perp} = |\partial_\mu \psi\rangle - \langle \psi | \partial_\mu \psi\rangle\,|\psi\rangle
-   $$
+$$
+|\partial_\mu \psi\rangle \approx \frac{|\psi(R + \delta R^\mu)\rangle - |\psi(R)\rangle}{\delta R^\mu}
+$$
 
-3. **Compute QGT components**:
-   $$
-   Q_{\mu\nu} = \langle \partial_\mu \psi | \partial_\nu \psi\rangle_{\perp}
-   $$
+3. **Apply gauge fixing** (parallel transport gauge):
 
-4. **Extract Berry curvature**:
-   $$
-   \Omega_{\mu\nu} = -2\,\text{Im}(Q_{\mu\nu})
-   $$
+$$
+|\partial_\mu \psi\rangle_{\perp} = |\partial_\mu \psi\rangle - \langle \psi | \partial_\mu \psi\rangle\,|\psi\rangle
+$$
 
-5. **Extract quantum metric**:
-   $$
-   g_{\mu\nu} = \text{Re}(Q_{\mu\nu})
-   $$
+5. **Compute QGT components**:
+
+$$
+Q_{\mu\nu} = \langle \partial_\mu \psi | \partial_\nu \psi\rangle_{\perp}
+$$
+
+6. **Extract Berry curvature**:
+
+$$
+\Omega_{\mu\nu} = -2\,\text{Im}(Q_{\mu\nu})
+$$
+
+7. **Extract quantum metric**:
+   
+$$
+g_{\mu\nu} = \text{Re}(Q_{\mu\nu})
+$$
 
 ### 5.2 Computational Considerations
 
@@ -397,13 +409,14 @@ where:
 1. WKB ansatz: $|\psi\rangle = e^{iS(q,R)/\hbar}|\phi(q,R)\rangle$
 
 2. Expand QGT in powers of $\hbar$:
-   $$
-   Q_{\mu\nu} = Q_{\mu\nu}^{(0)} + \hbar\,Q_{\mu\nu}^{(1)} + O(\hbar^2)
-   $$
 
-3. Leading order $Q^{(0)}_{\mu\nu}$ matches classical geometric structures
+$$
+Q_{\mu\nu} = Q_{\mu\nu}^{(0)} + \hbar\,Q_{\mu\nu}^{(1)} + O(\hbar^2)
+$$
 
-4. Quantum corrections appear at $O(\hbar)$ and higher
+4. Leading order $Q^{(0)}_{\mu\nu}$ matches classical geometric structures
+
+5. Quantum corrections appear at $O(\hbar)$ and higher
 
 ### 6.2 Emergence of Continuous Metriplectic Flow
 
@@ -431,6 +444,7 @@ becomes the continuous metriplectic evolution on smooth manifold.
 ### 7.1 Setup
 
 **Hamiltonian:**
+
 $$
 H(\mathbf{B}) = -\mathbf{B} \cdot \boldsymbol{\sigma} = -B_x \sigma_x - B_y \sigma_y - B_z \sigma_z
 $$
@@ -438,6 +452,7 @@ $$
 where $\mathbf{B} = (B_x, B_y, B_z)$ are external field parameters.
 
 **Ground State:**
+
 $$
 |\psi(\mathbf{B})\rangle = \cos(\theta/2)|0\rangle + e^{i\phi}\sin(\theta/2)|1\rangle
 $$
@@ -459,6 +474,7 @@ $$
 $$
 
 **Symplectic Form:**
+
 $$
 \omega = \sin\theta\,d\theta \wedge d\phi
 $$
@@ -474,6 +490,7 @@ g_{\theta\theta} = \frac{1}{4}, \quad g_{\phi\phi} = \frac{1}{4}\sin^2\theta, \q
 $$
 
 **Line Element:**
+
 $$
 ds^2 = \frac{1}{4}(d\theta^2 + \sin^2\theta\,d\phi^2)
 $$
@@ -483,16 +500,19 @@ This is the standard metric on the 2-sphere (with radius 1/2).
 ### 7.4 Metriplectic Evolution
 
 **J-bracket (Hamiltonian flow):**
+
 $$
 \{\theta, H\}_J = -\frac{\partial H}{\partial \phi} \cdot \frac{1}{\sin\theta}
 $$
 
 **M-bracket (dissipative flow):**
+
 $$
 (\theta, S)_M = 4\,\frac{\partial S}{\partial \theta}
 $$
 
 **Combined:**
+
 $$
 \dot{\theta} = -\frac{1}{\sin\theta}\frac{\partial H}{\partial \phi} + 4\frac{\partial S}{\partial \theta}
 $$
@@ -511,6 +531,7 @@ $$
 **Test 1:** Check $J\cdot\delta S = 0$
 
 For entropy $S = -k_B \sum_i p_i \ln p_i$:
+
 $$
 \{S, H\}_J = \Omega^{\mu\nu}\,\partial_\mu S\,\partial_\nu H = 0
 $$
