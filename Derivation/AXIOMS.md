@@ -70,9 +70,13 @@ These program-level axioms are used widely across theory and validation narrativ
 **Statement:** With state $q\equiv(\Psi,\partial\Psi,\ldots)$,
 $\partial_t q = J(q)\,\frac{\delta \mathcal I}{\delta q} + M(q)\,\frac{\delta \Sigma}{\delta q}$, with $J^\top=-J$ (skew/symplectic), $M^\top=M\ge 0$ (symmetric/metric), and degeneracies $J\,\frac{\delta\Sigma}{\delta q}=0$, $M\,\frac{\delta\mathcal I}{\delta q}=0$.
 
-**Notes:** Canonical split used by metriplectic integrators and QC (two-grid order, Strang-defect, J-only reversibility). Diagnostics: compute $g_1 = \langle J, \, \delta\Sigma, \, \delta\Sigma \rangle$ and $g_2 = \langle M, \, \delta\mathcal I, \, \delta\mathcal I \rangle$ every $K$ steps; both must be $\le 10^{-10}$ (grid-refined).
+**Notes:** Canonical split used by metriplectic integrators and QC (two-grid order, Strang-defect, J-only reversibility). Diagnostics: compute $g_1 = \langle J, \, \delta\Sigma, \, \delta\Sigma \rangle$ and $g_2 = \langle M, \, \delta\mathcal I, \, \delta\mathcal I \rangle$ every $K$ steps; both must be $\le 10^{-10}$ (grid-refined). Additionally, J‑flow sampler instrumentation is gated by acceptance–stepsize and ΔH histogram KPIs ([VALIDATION_METRICS.md#kpi-hmc-acceptance-vs-stepsize](Derivation/VALIDATION_METRICS.md#kpi-hmc-acceptance-vs-stepsize), [VALIDATION_METRICS.md#kpi-hmc-deltaH-hist](Derivation/VALIDATION_METRICS.md#kpi-hmc-deltaH-hist)); definitions at [VDM-E-130](Derivation/EQUATIONS.md#vdm-e-130), [VDM-E-131](Derivation/EQUATIONS.md#vdm-e-131).
 
-**Source:** Implemented/validated in `ALGORITHMS.md` (VDM-A-013..019) and corresponding runners.
+GENERIC cross-links and gates:
+- Evolution and structure: [VDM-E-140](Derivation/EQUATIONS.md#vdm-e-140), Poisson/Jacobi [VDM-E-141](Derivation/EQUATIONS.md#vdm-e-141), degeneracy [VDM-E-142](Derivation/EQUATIONS.md#vdm-e-142), entropy production [VDM-E-143](Derivation/EQUATIONS.md#vdm-e-143), structural c and metric blocks [VDM-E-144](Derivation/EQUATIONS.md#vdm-e-144)–[VDM-E-145](Derivation/EQUATIONS.md#vdm-e-145), Curie compliance [VDM-E-146](Derivation/EQUATIONS.md#vdm-e-146).
+- KPIs: Poisson–Jacobi residual [kpi-poisson-jacobi-resid](Derivation/VALIDATION_METRICS.md#kpi-poisson-jacobi-resid), degeneracy residuals [kpi-degeneracy-resid](Derivation/VALIDATION_METRICS.md#kpi-degeneracy-resid), entropy nonnegativity [kpi-entropy-prod-nonneg](Derivation/VALIDATION_METRICS.md#kpi-entropy-prod-nonneg), Curie audit [kpi-curie-compliance](Derivation/VALIDATION_METRICS.md#kpi-curie-compliance).
+
+**Source:** Implemented/validated in `ALGORITHMS.md` (VDM-A-013..019, plus samplers/solvers [VDM-A-030..036](ALGORITHMS.md#vdm-a-030)) and corresponding runners.
 
 ---
 
@@ -80,7 +84,7 @@ $\partial_t q = J(q)\,\frac{\delta \mathcal I}{\delta q} + M(q)\,\frac{\delta \S
 
 **Statement:** The entropy functional $\Sigma[q]$ is non-decreasing along trajectories; equality only at steady states.
 
-**Notes:** H-theorem spirit; used in Lyapunov/entropy monitors and QC gates.
+**Notes:** Entropy production monotonicity per [VDM-E-143](Derivation/EQUATIONS.md#vdm-e-143). Enforce non‑negativity each M‑step and cumulatively via KPI [kpi-entropy-prod-nonneg](Derivation/VALIDATION_METRICS.md#kpi-entropy-prod-nonneg) with PNG/CSV/JSON artifacts. When extended hydrodynamics with structural $c$ is present, corner discipline uses KPIs [kpi-corner-stress-bound](Derivation/VALIDATION_METRICS.md#kpi-corner-stress-bound), [kpi-corner-velocity-cap](Derivation/VALIDATION_METRICS.md#kpi-corner-velocity-cap), and [kpi-corner-entropy-nondiv](Derivation/VALIDATION_METRICS.md#kpi-corner-entropy-nondiv) (see [VDM-E-144](Derivation/EQUATIONS.md#vdm-e-144)–[VDM-E-145](Derivation/EQUATIONS.md#vdm-e-145)).
 
 **Source:** Quality gates in algorithms; see metriplectic Lyapunov checks and RESULTS pages.
 
@@ -90,7 +94,7 @@ $\partial_t q = J(q)\,\frac{\delta \mathcal I}{\delta q} + M(q)\,\frac{\delta \S
 
 **Statement:** Predictions are formulated in dimensionless groups; units themselves carry no physical claims.
 
-**Notes:** Underpins scaling-collapse validations (e.g., A6 junction logistic universality).
+**Notes:** Underpins scaling-collapse validations (e.g., A6 junction logistic universality) and RG blocking collapse KPI ([VALIDATION_METRICS.md#kpi-rg-collapse](VALIDATION_METRICS.md#kpi-rg-collapse)); see definitions [VDM-E-136](EQUATIONS.md#vdm-e-136) and envelope gate [VDM-E-094](EQUATIONS.md#vdm-e-094).
 
 **Source:** `Derivation/Collapse/PROPOSAL_A6_Collapse_v1.md` and RESULTS; canon uses dimensionless envelopes and gates.
 
@@ -151,8 +155,8 @@ In the overdamped limit of the corollary equations: $\partial_t \phi = D\nabla^2
 
 ## Cross-References
 
-- Equations: [VDM-E-011](EQUATIONS.md#vdm-e-011) (Discrete Action), [VDM-E-039](EQUATIONS.md#vdm-e-039) (Discrete field terms), [VDM-E-016](EQUATIONS.md#vdm-e-016), [VDM-E-090..094](EQUATIONS.md#vdm-e-090)
-- Algorithms: Metriplectic steps and QC [VDM-A-013..021](ALGORITHMS.md#vdm-a-013)
+- Equations: [VDM-E-011](EQUATIONS.md#vdm-e-011) (Discrete Action), [VDM-E-039](EQUATIONS.md#vdm-e-039) (Discrete field terms), [VDM-E-016](EQUATIONS.md#vdm-e-016), [VDM-E-090..094](EQUATIONS.md#vdm-e-090), [VDM-E-130..136](EQUATIONS.md#vdm-e-130)
+- Algorithms: Metriplectic steps and QC [VDM-A-013..021](ALGORITHMS.md#vdm-a-013); samplers/solvers and RG utilities [VDM-A-030..036](ALGORITHMS.md#vdm-a-030)
 - Constants: Spatial prefactor parameters appear indirectly via $c^2=2Ja^2$ (see related domain configs); numerical gates live in [CONSTANTS.md](CONSTANTS.md)
 
 ---

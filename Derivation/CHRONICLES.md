@@ -234,6 +234,115 @@ All fixed-number statements were replaced with parameter‑dependent forms and e
 - 2025-10-03 • Initial compilation from repository code and tests • 17a0b72
 - 2025-10-04 • Add tachyonic tube KPIs: cov_phys, cov_raw, residual, curvature_ok and finite_fraction
 
-
-## Change Log
 - 2025-11-05 • updated equations compilation (VDM-E-121–VDM-E-129) • HEAD
+
+---
+
+## Change Attestation — 2025-11-06 (Complete Formalisms Reorganization + Documentation Overhaul)
+
+Date (UTC): 2025-11-06
+
+Dependency-Chain-Reviewed: true
+Change-Type: file-shuffle + canon-impacting
+Summary: Reorganized Complete Formalisms to CF# naming convention; consolidated duplicate directories; rewrote VDM_OVERVIEW and HYPOTHESES to canonical DOC-GUARD format; added T8-A8 axiom documentation and new hypotheses (H001, H002).
+
+Paths-Changed:
+
+**File Reorganization (S# → CF# renaming):**
+
+- Derivation/Complete-Formalisms/CF1_QGT_to_Metriplectic_Brackets.md (renamed from S1)
+- Derivation/Complete-Formalisms/CF2_Contact_to_Metriplectic_Evolution.md (renamed from S2)
+- Derivation/Complete-Formalisms/CF3_A8_Scaling_Hierarchical_Interfaces.md (renamed from S3)
+- Derivation/Complete-Formalisms/CF4_Telegraph_Fisher_Causality.md (renamed from S4)
+- Derivation/Complete-Formalisms/CF5_Integrability_Closure.md (renamed from S5)
+- Derivation/Complete-Formalisms/CF6_Info_Geom_Fisher_Ruppeiner_Foundations.md (renamed from Info_Geom)
+- Derivation/Complete-Formalisms/CF7_Measurement_Theory_Decoherence_Born_Rule.md (renamed from Measurement)
+- Derivation/Complete-Formalisms/COMPLETION_SUMMARY.md (major simplification)
+
+**Directory Consolidation:**
+
+- Removed duplicate files from Derivation/Completed-Formalisms/ (typo variant directory)
+- Deleted: Derivation/Completed-Formalisms/S1_QGT_to_Metriplectic_Brackets.md
+- Deleted: Derivation/Completed-Formalisms/S2_Contact_to_Metriplectic_Evolution.md
+- Deleted: Derivation/Completed-Formalisms/S3_A8_Scaling_Hierarchical_Interfaces.md
+- Deleted: Derivation/Completed-Formalisms/S4_Telegraph_Fisher_Causality.md
+- Deleted: Derivation/Completed-Formalisms/S5_Integrability_Closure.md
+- Deleted: Derivation/Completed-Formalisms/S1-S5_VDM_Formalism_v1.md
+
+**Canon Documentation Updates:**
+
+- Derivation/VDM_OVERVIEW.md (complete rewrite to DOC-GUARD format; added canonical model banner with equation anchors)
+- Derivation/HYPOTHESES.md (complete rewrite; added global gates G-J/M, G-Echo, G-H-theorem, G-Locality, G-Artifacts; added H001 entry)
+- Derivation/TIER_STANDARDS.md (minor text correction at line 45)
+- Derivation/Templates/HYPOTHESIS_TEMPLATE.md (formatting update: angle brackets → curly braces in predictions template)
+- Derivation/Unification/T0_Unification_Program_Spec_v1.md (modifications)
+
+**New Axiom Documentation:**
+
+- Derivation/Axioms/T8-A8_Gaps.md (research paper analysis for A8 validation)
+- Derivation/Axioms/T8-A8_Gates.md (gate specifications for A8)
+- Derivation/Axioms/T8-A8_Milestones.md (milestone tracking for A8)
+
+**New Hypotheses:**
+
+- Derivation/Memory_Steering/Born_Meter/H002_Memory_Steering_as_a_Born_Meter.md
+- Derivation/Quantum/Quantum_Gradient_Descent/H001_Quantum-Driven_Gradient_Descent.md
+
+**New References:**
+
+- Derivation/References/Dynamical-Systems/2412.00589v2.pdf
+
+**Maintenance:**
+
+- maintenance-prompts/overview_maintenance.md (new maintenance prompt file)
+
+**Deletions:**
+
+- Derivation/DIMENSIONLESS_CONSTANTS.md (removed; content likely migrated to CONSTANTS.md)
+
+Canon-Docs-Updated:
+
+- Derivation/VDM_OVERVIEW.md (full rewrite)
+  - Added canonical model banner with equations: E-015 (RD PDE), E-016 (RD reaction), E-017 (RD stability), E-018 (RD front)
+  - Added DOC-GUARD: REFERENCE header
+  - Added provenance anchors to SYMBOLS/EQUATIONS/CONSTANTS/UNITS/ALGORITHMS canon files
+  - Scoped EFT/KG and Metriplectic branches with equation anchors
+  - Added RB-Gate and causality meter references
+- Derivation/HYPOTHESES.md (full rewrite)
+  - Added hypothesis status legend and tier progression (H → CF → T0-T9)
+  - Added global gates applicable to all hypotheses
+  - Added H001 (Quantum-Driven Gradient Descent) formal entry
+  - Established hypothesis registry format with classification, owner, status, objectives
+- Derivation/TIER_STANDARDS.md#L45 (minor correction)
+- Derivation/Templates/HYPOTHESIS_TEMPLATE.md (template formatting update)
+
+Dependency-Notes:
+
+- Reviewed dependencies:
+  - EQUATIONS.md: All equation anchors (E-015, E-016, E-017, E-018, E-042, E-091, E-105, E-121-124, E-125) referenced in VDM_OVERVIEW are verified as existing canonical entries
+  - VALIDATION_METRICS.md: Referenced for global gates definition in HYPOTHESES.md
+  - CONSTANTS.md: DIMENSIONLESS_CONSTANTS.md removal assumes content previously migrated (2025-08-20 per CHRONICLES)
+  - TIER_STANDARDS.md: Referenced by hypothesis tier progression in HYPOTHESES.md
+  - HYPOTHESIS_TEMPLATE.md: Template used for H001 and H002 new hypothesis files
+- Upstream/downstream links:
+  - Complete-Formalisms CF1-CF7 naming now referenced by COMPLETION_SUMMARY.md
+  - HYPOTHESES.md global gates will apply to all future hypothesis files
+  - VDM_OVERVIEW.md canonical model banner establishes RD as primary branch; all future proposals should reference this banner
+  - T8-A8 axiom files support the Lietz Infinity Conjecture (T8_A8_PROPOSAL per CHRONICLES line 173-178)
+
+Rationale:
+
+1. **Naming consistency:** S# notation was ambiguous; CF# (Complete Formalism) makes purpose explicit and aligns with repository tier standards
+2. **Directory consolidation:** Removed duplicate "Completed-Formalisms" vs "Complete-Formalisms" directories caused by naming inconsistency
+3. **Documentation standardization:** VDM_OVERVIEW and HYPOTHESES rewritten to DOC-GUARD format with explicit provenance anchors, making all claims traceable to canonical sources
+4. **Hypothesis formalization:** Established hypothesis registry (HYPOTHESES.md) and added first two entries (H001, H002) following template
+5. **A8 axiom support:** Added T8-A8 support files (Gaps, Gates, Milestones) for ongoing Lietz Infinity Conjecture work
+
+Approval/PR:
+
+- PR: pending
+- Approval: awaiting commit and review on nexus branch
+
+Provenance Note: Changes prepared 2025-11-06; awaiting final review before commit.
+
+- 2025-10-04 • conventions extracted from repository • 8e27c34

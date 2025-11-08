@@ -137,6 +137,14 @@ Additionally, if this RESULTS document is graded above T0, there should be exist
 6. **Figures/graphs:** (MANDATORY) one claim per figure; numeric captions (slope, (R^2), RMSE, CI). Anchor floats (`[!htbp]`/`\FloatBarrier`; `[H]` sparingly). Pair every figure with CSV/JSON of the **same basename**; list seed and commit in the caption.
 7. **Evidence & reproducibility:** pin one artifact path in text; on any gate failure, emit a **contradiction report** (gate, threshold, seed, commit, artifact pointer).
 
+### Chain sampling diagnostics (if MCMC is used)
+
+* ΔH histograms per stepsize ε with JSON sidecars (mean/var/skew/kurt) and a panel PNG; see [VDM-E-131](Derivation/EQUATIONS.md#vdm-e-131) and KPI [kpi-hmc-deltaH-hist](Derivation/VALIDATION_METRICS.md#kpi-hmc-deltaH-hist).
+* Acceptance vs stepsize curve: fit 1−α(ε) on log–log axes, report slope p and R²; expected p≈4 for leapfrog. Include the plot + CSV/JSON; see [VDM-E-130](Derivation/EQUATIONS.md#vdm-e-130) and KPI [kpi-hmc-acceptance-vs-stepsize](Derivation/VALIDATION_METRICS.md#kpi-hmc-acceptance-vs-stepsize).
+* τ_int and ESS reporting: estimate τ_int per observable with stated window rule; log ESS=N/(2τ_int). Include a τ_int-vs-window figure or table; see [VDM-E-132](Derivation/EQUATIONS.md#vdm-e-132) and KPI [kpi-tau-int](Derivation/VALIDATION_METRICS.md#kpi-tau-int).
+* τ‑aware binning: use B ≥ 2·τ_int and demonstrate CI stability under B→2B (≤10% relative change). Include a stability plot and JSON; see [VDM-E-133](Derivation/EQUATIONS.md#vdm-e-133) and KPI [kpi-binning-adequacy](Derivation/VALIDATION_METRICS.md#kpi-binning-adequacy).
+* Correlated fits with SVD truncation: when fitting multi‑point observables, use full covariance and include a cutoff‑sweep figure; report χ²/dof and parameter stability past the knee; see [VDM-E-134](Derivation/EQUATIONS.md#vdm-e-134) and KPI [kpi-correlated-chi2-svd](Derivation/VALIDATION_METRICS.md#kpi-correlated-chi2-svd).
+
 ## **IX. Discussion / Analysis**
 
 Open with key findings tied to figures/tables and metrics. Explain patterns via the **derivations** and **discretizations** (e.g., sources of instability, aliasing, boundary effects). Compare alternatives you tried (step sizes/fluxes/precisions) and how results change. Debate **thresholds**, not venues. Keep claims bounded by artifacts.
@@ -159,3 +167,32 @@ Summarize what was learned, referencing mathematical structures and computationa
 * Keep related work minimal but present (four solid bullets beat zero). Don’t bury key citations in an appendix.
 
 ---
+
+## GENERIC metriplectic diagnostics (if dissipative/thermodynamic structure is used)
+
+* Declare the GENERIC building blocks with canon anchors:
+  * Evolution: [VDM-E-140](Derivation/EQUATIONS.md#vdm-e-140) (ẋ = L∇E + M∇S)
+  * Poisson/Jacobi residual: [VDM-E-141](Derivation/EQUATIONS.md#vdm-e-141)
+  * Degeneracy conditions: [VDM-E-142](Derivation/EQUATIONS.md#vdm-e-142)
+  * Entropy production: [VDM-E-143](Derivation/EQUATIONS.md#vdm-e-143)
+  * Structural variable c (if used): [VDM-E-144](Derivation/EQUATIONS.md#vdm-e-144), [VDM-E-145](Derivation/EQUATIONS.md#vdm-e-145)
+  * Curie compliance: [VDM-E-146](Derivation/EQUATIONS.md#vdm-e-146)
+
+* Required gates and artifacts:
+  1) Degeneracy residuals (Casimirs): report g1 = ||L∇S||∞ and g2 = ||M∇E||∞ with JSON sidecar and pass/fail per KPI [kpi-degeneracy-resid](Derivation/VALIDATION_METRICS.md#kpi-degeneracy-resid). Include commit, seeds, grid/mesh meta.
+  2) H‑theorem monitor: plot σ(t) and cumulative ΔΣ; assert non‑negativity to tolerance; provide CSV + JSON as per KPI [kpi-entropy-prod-nonneg](Derivation/VALIDATION_METRICS.md#kpi-entropy-prod-nonneg). State whether σ was computed via discrete‑gradient or continuous approximation.
+  3) Poisson–Jacobi identity check: report e_Jacobi over the basis 𝔅 used, with threshold and histogram QQ‑plot; gate per KPI [kpi-poisson-jacobi-resid](Derivation/VALIDATION_METRICS.md#kpi-poisson-jacobi-resid). Include test functionals definition and BCs.
+  4) Curie principle audit: include the linter output (curie_ok boolean and list of flagged couplings if any) per KPI [kpi-curie-compliance](Derivation/VALIDATION_METRICS.md#kpi-curie-compliance).
+  5) If RG/scale analysis is performed: provide blocking/collapse overlay and envelope metric E_max per KPI [kpi-rg-collapse](Derivation/VALIDATION_METRICS.md#kpi-rg-collapse) with method tag (kernel, Δφ).
+
+* OQ‑021 Corner Regularization (if applicable):
+  * Report three corner KPIs with figures + CSV/JSON:
+    • Stress boundedness near apex (no blow‑up vs r→0): [kpi-corner-stress-bound](Derivation/VALIDATION_METRICS.md#kpi-corner-stress-bound)  
+    • Velocity cap and scaling collapse vs Λ·De_c with envelope E_max ≤ 0.05: [kpi-corner-velocity-cap](Derivation/VALIDATION_METRICS.md#kpi-corner-velocity-cap)  
+    • Entropy non‑divergence (σ components and ΔΣ): [kpi-corner-entropy-nondiv](Derivation/VALIDATION_METRICS.md#kpi-corner-entropy-nondiv)
+  * State the dimensionless groups used (Λ, De_c, Pe_c) and provide their definitions/values in the Variables section.
+  * Confirm GENERIC conformance via the VDM‑GENERIC adapter QC (see [VDM-A-037](Derivation/ALGORITHMS.md#vdm-a-037)) prior to presenting results.
+
+* Provenance:
+  * Pin one artifact path for each KPI figure; filenames must share basenames with CSV/JSON logs (commit hash and seeds included).
+  * If any gate fails, emit a contradiction report JSON and route outputs to failed_runs/ as per repository policy.

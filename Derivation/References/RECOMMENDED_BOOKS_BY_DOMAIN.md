@@ -712,35 +712,35 @@
 ### Online Courses & Lecture Notes
 
 1. **MIT OpenCourseWare** - Multiple courses on statistical mechanics, QFT, PDEs  
-   https://ocw.mit.edu
+   <https://ocw.mit.edu>
 
 2. **David Tong's Lecture Notes** - Excellent notes on QFT, statistical field theory, string theory  
-   http://www.damtp.cam.ac.uk/user/tong/teaching.html
+   <http://www.damtp.cam.ac.uk/user/tong/teaching.html>
 
 3. **John Baez's "This Week's Finds in Mathematical Physics"** - Accessible expositions  
-   https://math.ucr.edu/home/baez/TWF.html
+   <https://math.ucr.edu/home/baez/TWF.html>
 
 ### Review Articles
 
 1. **Living Reviews in Relativity** - Free online review articles on GR and cosmology  
-   https://link.springer.com/journal/41114
+   <https://link.springer.com/journal/41114>
 
 2. **Physics Reports** - Comprehensive review articles across physics domains  
    Elsevier journal
 
 3. **Annual Review of Condensed Matter Physics** - State-of-the-art reviews  
-   https://www.annualreviews.org/journal/conmatphys
+   <https://www.annualreviews.org/journal/conmatphys>
 
 ### Software & Computational Tools
 
 1. **SciPy/NumPy Documentation** - Python scientific computing  
-   https://scipy.org, https://numpy.org
+   <https://scipy.org>, <https://numpy.org>
 
 2. **FFTW Documentation** - Fast Fourier Transform library  
-   http://www.fftw.org
+   <http://www.fftw.org>
 
 3. **Palabos** - Parallel Lattice Boltzmann Solver  
-   https://palabos.unige.ch
+   <https://palabos.unige.ch>
 
 ---
 
@@ -758,16 +758,19 @@ Books were selected based on the following criteria:
 ### Reading Priority Recommendations
 
 **For VDM Core Theory:**
+
 - Start with: Murray (RD), Morrison (metriplectic), Marsden (geometric mechanics)
 - Essential math: Olver (PDEs), Evans (PDEs), Arnold (mechanics)
 - Numerical: Hairer (geometric integration), LeVeque (finite differences)
 
 **For Extending to Quantum/Cosmology:**
+
 - QFT: Srednicki or Peskin & Schroeder, then Weinberg for depth
 - Lattice: Montvay & Münster (lattice field theory)
 - Cosmology: Dodelson & Schmidt (modern), Weinberg (rigorous)
 
 **For Computational Implementation:**
+
 - Numerical Recipes (general methods)
 - Succi (LBM specifics)
 - Hairer (structure-preserving integrators)
@@ -792,13 +795,14 @@ Submit suggestions via pull request to the VDM repository with justification.
 This reading list is provided as part of the Void Dynamics Model research documentation.
 
 **Citation:**
+
 ```
 Lietz, J. K. (2025). Recommended Books by Physics Domain. 
 Void Dynamics Model Research Documentation. 
 GitHub: justinlietz93/Prometheus_VDM/Derivation/References/RECOMMENDED_BOOKS_BY_DOMAIN.md
 ```
 
-**License:** CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)  
+**License:** CC BY 4.0 (<https://creativecommons.org/licenses/by/4.0/>)  
 Commercial use requires written permission from Justin K. Lietz.
 
 ---

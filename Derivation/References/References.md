@@ -3935,3 +3935,9 @@ Wolfram (2020), “A Class of Models with the Potential to Represent Fundamental
 ## Methods & Numerics (referenced for instruments)
 
 Langtangen & Logg (2017), *Solving PDEs in Python: The FEniCS Tutorial I* — <https://pub.fenicsproject.org/tutorial/pdf/fenics-tutorial-vol1.pdf>
+
+## Quantum Advantage
+
+<https://scitechdaily.com/oxford-physicists-simulate-quantum-light-from-darkness-for-the-first-time/> "Oxford Physicists Simulate Quantum “Light from Darkness” for the First Time"
+
+<https://www.nature.com/articles/s42005-025-02128-8> "Computational modelling of the semi-classical quantum vacuum in 3D | Communications Physics"

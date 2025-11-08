@@ -4,7 +4,7 @@
 > Commit: cbc3dd1  
 > Salted provenance (pre-reg to compute): {base_sha256}:{salt_hex}:{salted_sha256}  
 > Proposer contact(s): <justin@neuroca.ai>  
-> License: See LICENSE
+> License: See [LICENSE](/LICENSE)
 
 Short summary (one sentence TL;DR):  
 Quantify the telegraph characteristic speed emerging from relaxation by testing the spec-level relation $c=\sqrt{D/\tau}$ with deterministic meters, artifact routing, and acceptance gates.

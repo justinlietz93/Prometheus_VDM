@@ -1907,3 +1907,300 @@ c \;=\; \sqrt{\frac{D}{\tau}}
 $$
 
 **Notes:** Spec-level speed law used by the Telegraph-from-Relaxation instrument to calibrate finite-speed transport; appears across causality meters. TODO: add $c,\,D,\,\tau$ to SYMBOLS.md (see source lines).
+
+
+---
+ 
+#### VDM-E-130 - HMC Metropolis Rule and Acceptance–ΔH Relation
+ 
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-130"></a>
+<!-- markdownlint-enable MD033 -->
+ 
+**Context:** [A4] Conservative J‑flow proposals validated by reversibility/volume‑preservation checks; acceptance used as a correctness gate (HMC).
+ 
+Given a Hamiltonian $H(q,p)$ and a time‑reversible, volume‑preserving integrator proposal $(q,p)\mapsto(q',p')$, define the energy error
+
+$$
+\Delta H \;=\; H(q',p') - H(q,p).
+$$
+
+The Metropolis acceptance probability is
+
+$$
+\alpha \;=\; \min\!\bigl(1,\,e^{-\Delta H}\bigr).
+$$
+
+For a stepsize ladder $\varepsilon$, an acceptance–stepsize diagnostic fits the scaling of $1-\alpha(\varepsilon)$ on log–log axes (see [VALIDATION_METRICS.md#kpi-hmc-acceptance-vs-stepsize](VALIDATION_METRICS.md#kpi-hmc-acceptance-vs-stepsize)); deviations flag loss of reversibility/volume preservation or poor integrator tuning.
+ 
+---
+ 
+#### VDM-E-131 - HMC Energy Error (ΔH) Moments and Histograms
+ 
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-131"></a>
+<!-- markdownlint-enable MD033 -->
+ 
+**Context:** Acceptance diagnostics for HMC (ΔH distribution).
+ 
+For samples $\{\Delta H_k\}_{k=1}^N$ at fixed stepsize $\varepsilon$, define sample moments
+
+$$
+\bar{\Delta H}=\frac{1}{N}\sum_k \Delta H_k,\quad
+s^2=\frac{1}{N-1}\sum_k(\Delta H_k-\bar{\Delta H})^2,
+$$
+
+with skewness and kurtosis computed in the usual standardized form. Histogram panels and JSON sidecars record $(\bar{\Delta H}, s^2, \text{skew}, \text{kurt})$ per $\varepsilon$ per RESULTS standards. Gates live in [VALIDATION_METRICS.md#kpi-hmc-deltaH-hist](VALIDATION_METRICS.md#kpi-hmc-deltaH-hist).
+ 
+---
+ 
+#### VDM-E-132 - Integrated Autocorrelation Time (τ_int)
+ 
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-132"></a>
+<!-- markdownlint-enable MD033 -->
+ 
+**Context:** Chain‑correlation quantification for uncertainty estimates.
+ 
+For an observable time series $\{O_t\}_{t=1}^{N}$ with empirical mean $\hat\mu$ and autocovariance
+
+$$
+C(t) \;=\; \frac{1}{N-t}\sum_{i=1}^{N-t} (O_i-\hat\mu)(O_{i+t}-\hat\mu),\qquad \rho(t)=\frac{C(t)}{C(0)},
+$$
+
+define the (windowed) integrated autocorrelation time
+
+$$
+\tau_{\text{int}} \;=\; \tfrac12 \;+\; \sum_{t=1}^{W}\rho(t),
+$$
+
+with window $W$ chosen by a positive‑sequence/initial‑convex‑sequence rule. The effective sample size is $\mathrm{ESS}=N/(2\tau_{\text{int}})$. Binning and resampling gates reference this definition (see [VALIDATION_METRICS.md#kpi-binning-adequacy](VALIDATION_METRICS.md#kpi-binning-adequacy)).
+ 
+---
+ 
+#### VDM-E-133 - τ‑Aware Binning (Definitions)
+ 
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-133"></a>
+<!-- markdownlint-enable MD033 -->
+ 
+**Context:** Honest error bars for correlated chains.
+ 
+Partition the sequence into $M$ bins of width $B$ (assume $N=MB$) and define binned means
+
+$$
+\bar O_j \;=\; \frac{1}{B}\sum_{i=1}^{B} O_{(j-1)B+i},\quad j=1,\dots,M,\qquad
+\bar O \;=\; \frac{1}{M}\sum_{j=1}^{M}\bar O_j.
+$$
+
+The variance estimator from bins is
+
+$$
+\widehat{\mathrm{Var}}_{\text{bin}}(\bar O) \;=\; \frac{1}{M(M-1)}\sum_{j=1}^{M}\bigl(\bar O_j-\bar O\bigr)^2.
+$$
+
+Adequacy requires $B\ge 2\,\tau_{\text{int}}$ and stability of CI width under $B\mapsto 2B$ (gate in [VALIDATION_METRICS.md#kpi-binning-adequacy](VALIDATION_METRICS.md#kpi-binning-adequacy)).
+ 
+---
+ 
+#### VDM-E-134 - Correlated χ² with SVD Truncation
+ 
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-134"></a>
+<!-- markdownlint-enable MD033 -->
+ 
+**Context:** Fits with full covariance and numerically stable inverse.
+ 
+For data vector $y\in\mathbb{R}^n$, model $\mu(\theta)$, and covariance $C$, define
+
+$$
+\chi^2(\theta) \;=\; \bigl(y-\mu(\theta)\bigr)^{\!\top}\, C^{+}\, \bigl(y-\mu(\theta)\bigr),
+$$
+
+with SVD (or eigen) truncation $C=V\Sigma V^\top$, $\Sigma=\mathrm{diag}(\sigma_1,\dots,\sigma_n)$ and
+
+$$
+C^{+} \;=\; V\,\Sigma^{+}\,V^\top,\qquad
+\Sigma^{+}_{ii} \;=\; \begin{cases}
+1/\sigma_i, & \sigma_i \ge \sigma_{\mathrm{cut}},\\[4pt]
+0, & \text{otherwise},
+\end{cases}
+$$
+
+where $\sigma_{\mathrm{cut}}$ follows a knee/variance‑capture policy. Stability is assessed by parameter/χ²/dof constancy across a cutoff sweep (gate in [VALIDATION_METRICS.md#kpi-correlated-chi2-svd](VALIDATION_METRICS.md#kpi-correlated-chi2-svd)).
+ 
+---
+ 
+#### VDM-E-135 - Blocked Jackknife and Bootstrap (Definitions)
+ 
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-135"></a>
+<!-- markdownlint-enable MD033 -->
+ 
+**Context:** Resampling for correlated data.
+ 
+- Block‑jackknife (delete‑$d$): form $M$ blocks of size $J$ and compute leave‑one‑block‑out estimates $\{\hat\theta_{(j)}\}_{j=1}^M$; the jackknife mean and variance are
+
+$$
+\hat\theta_{\text{JK}}=\frac{1}{M}\sum_{j=1}^{M}\hat\theta_{(j)},\qquad
+\widehat{\mathrm{Var}}_{\text{JK}}=\frac{M-1}{M}\sum_{j=1}^{M}\bigl(\hat\theta_{(j)}-\hat\theta_{\text{JK}}\bigr)^2.
+$$
+
+- Moving‑block bootstrap: resample blocks of length $J$ with replacement to synthesize series of length $N$; compute bootstrap CIs from the resample distribution.
+ 
+Gates require $J\ge \tau_{\text{int}}$ and CI‑width stability (see [VALIDATION_METRICS.md#kpi-resample-ci-stability](VALIDATION_METRICS.md#kpi-resample-ci-stability)).
+ 
+---
+ 
+#### VDM-E-136 - RG Blocking Operator and Scaling Map
+ 
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-136"></a>
+<!-- markdownlint-enable MD033 -->
+ 
+**Context:** Operationalizing the A6 scale program via blocking and rescaling.
+ 
+Let $s\in\{2,4,\dots\}$ be the scale factor. Define a block‑field map $B_s$ acting on a lattice field $\phi$ by local averaging (or another admissible kernel) over blocks of linear size $s$, combined with a rescaling exponent $\Delta_\phi$:
+
+$$
+\phi^{(s)}(x) \;=\; s^{-\Delta_\phi}\,\bigl(B_s\phi\bigr)(x).
+$$
+
+Couplings transform as $g\;\mapsto\; R_s(g)$ under the induced coarse‑graining. Dimensionless observables built from $\phi^{(s)}$ are compared across $s$ using the envelope gate in [VDM-E-094](#vdm-e-094) and [VALIDATION_METRICS.md#kpi-rg-collapse](VALIDATION_METRICS.md#kpi-rg-collapse).
+
+---
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-136"></a>
+<!-- markdownlint-enable MD033 -->
+
+#### VDM-E-136 - RG Blocking Operator and Rescaling (Scale Program)
+**Context:** ALGO utility [VDM-A-036](Derivation/ALGORITHMS.md#vdm-a-036)
+
+Let a lattice field φ live on blocks of scale s. Define the block operator B_s and rescaling exponent Δ_φ:
+$$
+(B_s \phi)(x_b) \;=\; \frac{1}{|B_s(x_b)|}\sum_{x\in B_s(x_b)} \phi(x), \qquad \phi^{(s)} \;=\; s^{-\Delta_\phi}\,(B_s \phi).
+$$
+
+For an observable O(φ), set $O^{(s)} := O\big(\phi^{(s)}\big)$ with appropriate rescaling. Scaling‑collapse diagnostics compare $O^{(s)}$ across $s\in\{2,4,\dots\}$ and compute the envelope $E_{\max}$ used by KPI [kpi-rg-collapse](Derivation/VALIDATION_METRICS.md#kpi-rg-collapse).
+
+---
+
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-140"></a>
+<!-- markdownlint-enable MD033 -->
+
+#### VDM-E-140 - GENERIC Evolution (Metriplectic Form)
+**Context:** Axiom A4/A5; Öttinger GENERIC
+
+For state $x$, energy $E(x)$, and entropy $S(x)$:
+$$
+\dot{x} \;=\; L(x)\,\nabla E(x) \;+\; M(x)\,\nabla S(x),
+$$
+with $L^\top=-L$ (Poisson/antisymmetric) and $M^\top=M\succeq 0$ (friction/metric).
+
+---
+
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-141"></a>
+<!-- markdownlint-enable MD033 -->
+
+#### VDM-E-141 - Poisson Bracket and Jacobi Identity (Residual Definition)
+Define the J‑bracket by
+$$
+\{F,G\}_J \;=\; \nabla F^\top L \,\nabla G.
+$$
+Jacobi identity (must hold for all F,G,H):
+$$
+\{F,\{G,H\}_J\}_J + \{G,\{H,F\}_J\}_J + \{H,\{F,G\}_J\}_J \;=\; 0.
+$$
+Unit‑test residual (basis‑restricted) for KPI [kpi-poisson-jacobi-resid](Derivation/VALIDATION_METRICS.md#kpi-poisson-jacobi-resid):
+$$
+e_{\mathrm{Jacobi}} \;:=\; \max_{F,G,H\in\mathcal B}\;
+\big\|\,\{F,\{G,H\}\}+\{G,\{H,F\}\}+\{H,\{F,G\}\}\,\big\|_\infty.
+$$
+
+---
+
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-142"></a>
+<!-- markdownlint-enable MD033 -->
+
+#### VDM-E-142 - GENERIC Degeneracy Conditions
+Entropy is a Casimir of J; energy is a Casimir of M:
+$$
+L\,\nabla S \;=\; 0, \qquad M\,\nabla E \;=\; 0.
+$$
+Unit‑test sup‑norm residuals feed KPI [kpi-degeneracy-resid](Derivation/VALIDATION_METRICS.md#kpi-degeneracy-resid).
+
+---
+
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-143"></a>
+<!-- markdownlint-enable MD033 -->
+
+#### VDM-E-143 - Entropy Production (H‑Theorem; Continuous and Discrete)
+GENERIC implies non‑negative entropy production:
+$$
+\frac{dS}{dt} \;=\; \nabla S^\top M \,\nabla S \;\ge\; 0.
+$$
+Discrete step (Δt) monitor:
+$$
+\Delta \Sigma \;=\; \Sigma^{n+1}-\Sigma^n \;\approx\; \Delta t\,\big(\nabla S^\top M \nabla S\big)^n \;\ge\; 0,
+$$
+with tolerance and logging per KPI [kpi-entropy-prod-nonneg](Derivation/VALIDATION_METRICS.md#kpi-entropy-prod-nonneg).
+
+---
+
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-144"></a>
+<!-- markdownlint-enable MD033 -->
+
+#### VDM-E-144 - Structural Variable c: Entropy Functional and Chemical Potential
+**Context:** Extended hydrodynamics template (Öttinger); OQ‑021 corner regularization
+
+Augment entropy functional by a convex part in structural stock $c$:
+$$
+\Sigma[q] \;=\; \int_\Omega \Big(s(\rho,\varepsilon)\;+\;\psi(c)\;+\;\tfrac{\kappa_c}{2}\,|\nabla c|^2\Big)\,dx.
+$$
+The thermodynamic force (chemical potential) is
+$$
+\mu_c \;=\; \frac{\delta \Sigma}{\delta c} \;=\; \psi'(c)\;-\;\kappa_c\,\nabla^2 c.
+$$
+
+---
+
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-145"></a>
+<!-- markdownlint-enable MD033 -->
+
+#### VDM-E-145 - Metric Blocks for Extended Hydrodynamics (c‑Relaxation and Viscous Coupling)
+Let the M‑operator contribute:
+- Viscous dissipation in momentum with c‑dependent viscosities η(c), ζ(c) via the rate‑of‑strain $D_{ij}=\tfrac12(\partial_i v_j+\partial_j v_i)$,
+- Structural relaxation/diffusion for c via τ_c and mobility M_c.
+
+Template (schematic; respects $M\nabla E=0$):
+
+$$
+\dot{\mathbf m}\big|_M \;=\; \nabla\!\cdot \Big(2\,\eta(c)\,D + \zeta(c)\,\mathrm{tr}(D)\,I\Big),\qquad
+\dot c\big|_M \;=\; -\tfrac{1}{\tau_c}\,\psi'(c) \;+\; \nabla\!\cdot\!\big(M_c\,\nabla \mu_c\big).
+$$
+
+Entropy production density (non‑negative) decomposes as
+
+$$
+\sigma \;=\; \frac{2\,\eta(c)}{T}\,D\!:\!D \;+\; \frac{1}{\tau_c\,T}\,\psi'(c)^2 \;+\; \frac{M_c}{T}\,|\nabla \mu_c|^2 \;\ge\; 0,
+$$
+
+feeding KPIs [kpi-entropy-prod-nonneg](Derivation/VALIDATION_METRICS.md#kpi-entropy-prod-nonneg), [kpi-corner-entropy-nondiv](Derivation/VALIDATION_METRICS.md#kpi-corner-entropy-nondiv), and corner stress/velocity gates.
+
+---
+
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-146"></a>
+<!-- markdownlint-enable MD033 -->
+
+#### VDM-E-146 - Curie Principle Compliance (Constitutive Scalarization)
+Admissible couplings in M and constitutive laws must be scalar under the problem’s symmetry group. Examples (in isotropic media):
+- Scalars from vectors/tensors: $D\!:\!D$, $(\nabla c)\!\cdot\!(\nabla c)$, $\mathrm{tr}(D)$.
+- No vector term proportional to a scalar gradient alone; no rank‑mismatch products.
+This equation entry serves as the formal reference for KPI [kpi-curie-compliance](Derivation/VALIDATION_METRICS.md#kpi-curie-compliance).

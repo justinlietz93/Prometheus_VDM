@@ -23,6 +23,8 @@
 
 ## 🔥News
 
+- **November 6, 2025**
+  - 7 complete [formalisms](/Derivation/Complete-Formalisms) have been derived for VDM and documented as some of the final remaining pieces in the work to T8 Axiom 8 candidate.
 - **November 4, 2025**
   - [Assisted‑Echo T4 (prereg v1c)](/Derivation/Metriplectic/T4_PROPOSAL_CEG_Metriplectic_Assisted-Echo_Experiment.md) rerun with instrument + plotting fixes:
     - Per‑seed plotting for A2/A5/B11 removes cross‑seed “seed‑chord” artifacts in overlays (error, ΔΣ, λ‑telemetry).
