@@ -27,6 +27,12 @@ from instrument_helpers.lit_tools import (
     IsotropicFluidCoeffs, build_L_isotropic_fluid, curie_mask, gate_report,
     parity_even, BoundaryEntropyFluxMonitor, write_lit_gate_artifacts
 )
+# Prigogine instruments (representation invariance, interference share, KPI writer)
+from instrument_helpers.prigogine_gates import (
+    repr_invariance_check,
+    interference_share,
+    write_prigogine_kpi_artifacts,
+)
 
 # ---------- helpers ----------
 
@@ -134,6 +140,8 @@ def main():
     ap.add_argument("--tag", required=True)
     ap.add_argument("--onsager_tol_fro", type=float, default=1e-12)
     ap.add_argument("--sigma_tol", type=float, default=0.0)  # nonnegativity floor
+    ap.add_argument("--enable-prigogine-audits", action="store_true",
+                    help="Enable representation-invariance and interference-share audits")
     args = ap.parse_args()
 
     out = Path(args.outdir); out.mkdir(parents=True, exist_ok=True)
@@ -163,6 +171,42 @@ def main():
     # Single snapshot update; for time series, call per step in main loop
     bem.update_from_heat_flux(q_dot_n=Js_rate, T_face=float(np.mean(T)), area=1.0, dt=1.0)
 
+    # Optional Prigogine audits (representation invariance and interference share)
+    prig_payload = None
+    if args.enable_prigogine_audits:
+        # Basis blocks by tensor rank from builder: vector (rank 1), tensor (rank 2)
+        vec_idx = [i for i, r in enumerate(r_forces) if r == 1]
+        ten_idx = [i for i, r in enumerate(r_forces) if r == 2]
+        diag_blocks = [vec_idx, ten_idx] if vec_idx and ten_idx else None
+
+        # Representation invariance (orthonormal sampling by default)
+        repr_rep = repr_invariance_check(L, X_field, n_trials=3, kind="haar")
+        # Interference (cross) share
+        inter_rep = interference_share(L, X_field, diag_blocks=diag_blocks)
+
+        prig_payload = {
+            "repr": {
+                "worst_rel": repr_rep.worst_rel,
+                "worst_abs": repr_rep.worst_abs,
+                "trials": [ {"condA": t.condA, "rel_max_diff": t.rel_max_diff, "max_abs_diff": t.max_abs_diff}
+                            for t in repr_rep.trials ],
+                "m": repr_rep.m,
+                "n_cells": repr_rep.n_cells,
+            },
+            "interference": {
+                "chi_cross": inter_rep.chi_cross,
+                "diag_blocks_psd_ok": inter_rep.diag_blocks_psd_ok,
+                "diag_blocks_min_eigs": inter_rep.diag_blocks_min_eigs,
+                "sigma_total": inter_rep.sigma_total,
+                "sigma_diag": inter_rep.sigma_diag,
+                "sigma_off": inter_rep.sigma_off,
+            },
+        }
+        # Write canonical KPI JSON under logs/fluids
+        write_prigogine_kpi_artifacts(
+            domain="fluids", name="oq021_lit", tag=args.tag, payload=prig_payload
+        )
+
     # Gates
     pass_sigma = (rep.sigma_min >= -abs(args.sigma_tol))
     pass_onsager = (rep.onsager_residual_fro <= args.onsager_tol_fro)
@@ -190,6 +234,8 @@ def main():
             "PASS": bool(pass_sigma and pass_onsager and pass_curie)
         }
     }
+    if prig_payload is not None:
+        js["prigogine"] = prig_payload
 
     # Canonical KPI artifact routed via io_paths (logs/fluids)
     write_lit_gate_artifacts(

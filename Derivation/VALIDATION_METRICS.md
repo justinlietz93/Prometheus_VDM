@@ -3,7 +3,7 @@
 <!-- markdownlint-disable MD033 MD022 MD032 MD001 -->
 # VDM Validation Metrics & KPIs (Auto-compiled)
 
-Last updated: 2025-10-13 (commit a9e1c6c)
+Last updated: 2025-11-08 (commit c187fea979a097fe3940fef40638e5cb848417b4)
 
 **Scope:** Single source of truth for validation metrics used in this repository: names, purposes, thresholds/bands, and references to their definitions and implementations.  
 **Rules:** Reference-only. Link to equations/constants/symbols/scripts; do not restate formulas here.  
@@ -924,3 +924,80 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 - Typical datasets / experiments: Same as above
 - Primary figure/artifact (if referenced): σ(t) panel; CSV/JSON
 - Notes: This KPI operationalizes the H-theorem for the extended hydrodynamics with structural variable c.
+
+---
+
+### Prigogine Near‑Equilibrium Instruments (LIT Enhancements)
+
+#### Representation Invariance of Entropy Production  <a id="kpi-lit-repr-invariance"></a>
+
+- Symbol (if any): `Δ_repr`
+- Purpose: Certify that the entropy production density is representation‑invariant under admissible linear transforms of forces/fluxes, i.e. with (X′, J′) = (A X, A^{−T} J) one has σ′ = σ. Catches force/flux bookkeeping and units leaks.
+- Defined by: Open‑system near‑equilibrium LIT; invariance property of dS/dt under linear changes of rates and affinities (Prigogine, Ch. IV §1–2). Canonical σ anchor: [VDM‑E‑143](Derivation/EQUATIONS.md#vdm-e-143).
+- Inputs: Phenomenological matrix L (m×m), force field X_field (N×m); transform sampler A with conditioning control.
+- Computation implemented at: [prigogine_gates.py](Derivation/code/common/instrument_helpers/prigogine_gates.py) (`repr_invariance_check`)
+- Definition: For each trial A, compute σ = ⟨X, L X⟩ and σ′ = ⟨X′, J′⟩ with J′ = A^{−T} J, report `Δ_repr = |σ − σ′|` (max and relative vs max|σ|).
+- Pass band / thresholds:
+  - For orthonormal A (“haar”): `max_rel(Δ_repr) ≤ 1e−12`.
+  - For well‑conditioned A (cond(A) ≤ 10): `max_rel(Δ_repr) ≤ 1e−10`. Record cond(A).
+- Units / normalization: Relative error normalized by max(1, max|σ|).
+- Typical datasets / experiments: LIT audits (fluids, heat conduction) and pre‑publish QC.
+- Primary figure/artifact (if referenced): JSON summary with per‑trial `condA`, `max_abs_diff`, `rel_max_diff`.
+- Notes: Runner declares sampler mode and number of trials; orthonormal tests are recommended for gating.
+
+#### Interference (Cross‑Coupling) Share  <a id="kpi-lit-interference-share"></a>
+
+- Symbol (if any): `χ_cross`
+- Purpose: Quantify off‑diagonal (“interference”) contribution to σ and assert PSD of diagonal blocks in the declared tensor‑rank basis; flushes illegal cross‑couplings beyond Curie/Onsager.
+- Defined by: Quadratic form decomposition of σ with block‑positivity conditions (Prigogine, Ch. IV §2–4). Curie scalarization: [VDM‑E‑146](Derivation/EQUATIONS.md#vdm-e-146).
+- Inputs: L (m×m) in the declared isotropic basis; block index sets for diagonal PSD checks; X_field (N×m).
+- Computation implemented at: [prigogine_gates.py](Derivation/code/common/instrument_helpers/prigogine_gates.py) (`interference_share`)
+- Definition: `χ_cross = σ_off / σ_total`, where σ_off is the contribution from L’s off‑diagonal entries; assert each diagonal block (symmetric part) is PSD.
+- Pass band / thresholds:
+  - Isotropic L with Curie mask: `χ_cross = 0` and all diagonal blocks PSD (min eig ≥ −1e−12).
+  - General audits: report `χ_cross`; warn if `χ_cross > 0.05` unless physics dictates coupling.
+- Units / normalization: Dimensionless fraction.
+- Typical datasets / experiments: OQ‑021 near‑equilibrium audits; multi‑channel transport checks.
+- Primary figure/artifact (if referenced): JSON summary; optional bar chart (diag vs cross) in RESULTS.
+- Notes: Basis must be stated; use the same basis employed to construct L and Curie masks.
+
+#### Open‑System Entropy Balance (Volume vs Boundary)  <a id="kpi-entropy-balance-open"></a>
+
+- Symbol (if any): none
+- Purpose: Report decomposition of total entropy change into volume production and boundary entropy flux for non‑isolated domains (walls/corners).
+- Defined by: Open‑system entropy balance (Prigogine, Ch. III §8–10). Canon σ anchor: [VDM‑E‑143](Derivation/EQUATIONS.md#vdm-e-143).
+- Inputs: σ field over Ω; cell volume dV; boundary entropy flux components (e.g., heat term −∮ (q·n)/T dA; matter/electrochemical terms if present); optional dS/dt estimate.
+- Computation implemented at: [prigogine_gates.py](Derivation/code/common/instrument_helpers/prigogine_gates.py) (`compute_boundary_heat_entropy_flux`, `entropy_balance_open`)
+- Pass band / thresholds: Report‑required. If dS/dt is available, closure residual `|production − boundary − dS/dt| ≤ ε` (runner‑declared ε).
+- Units / normalization: Entropy units under normalization; report units in JSON.
+- Typical datasets / experiments: OQ‑021 wall/corner runs; conduction benches.
+- Primary figure/artifact (if referenced): JSON with `production`, `boundary_entropy_flux`, optional `closure_residual`.
+- Notes: Boundary components must specify physical content (heat, matter, etc.).
+
+#### Conduction Lyapunov Potential Monotonicity  <a id="kpi-phi-conduction-monotone"></a>
+
+- Symbol (if any): `Φ`
+- Purpose: Provide an auxiliary Lyapunov functional for heat conduction with fixed boundary values; monitor monotonic decay toward steady state.
+- Defined by: Local potential for conduction (Prigogine, Ch. VII §6). Canon anchors for conduction equations reside in EQUATIONS registry.
+- Inputs: Temperature field T(t), reference steady boundary solution T0 (or proxy), timestep Δt, cell volume dV.
+- Computation implemented at: [prigogine_gates.py](Derivation/code/common/instrument_helpers/prigogine_gates.py) (`PhiConductionMonitor`)
+- Definition: Proxy `Φ(T,T0) = ∫ (T − T0)^2 dV`. Gate: per‑step `ΔΦ ≤ tol` (with tol ≈ 1e−12).
+- Pass band / thresholds: `phi_monotone_ok = true` (tolerance‑guarded).
+- Units / normalization: Quadratic in temperature; normalized per RESULTS description.
+- Typical datasets / experiments: Conduction subproblems with Dirichlet boundaries; wall/corner conduction regimes.
+- Primary figure/artifact (if referenced): Time‑series PNG of Φ(t); JSON/CSV summaries.
+- Notes: Only applicable when boundary‑value conduction assumptions hold; optional KPI.
+
+#### Rotation Split Audit (Near Stationarity)  <a id="kpi-rotation-split"></a>
+
+- Symbol (if any): none
+- Purpose: Ensure antisymmetric couplings near steady state are attributed to the reversible Poisson limb J, not to the metric limb M; catch antisymmetric leakage in M.
+- Defined by: Near‑stationary rotation analysis (Prigogine, Ch. VII §5). GENERIC structure: [VDM‑E‑140..145](Derivation/EQUATIONS.md#vdm-e-140).
+- Inputs: Estimated near‑equilibrium metric block M (or local M proxy); tolerance.
+- Computation implemented at: [prigogine_gates.py](Derivation/code/common/instrument_helpers/prigogine_gates.py) (`rotation_split_audit`)
+- Definition: Report `|| (M − M^T)/2 ||_∞` and min eigenvalue of `sym(M)`; gate antisymmetric leakage.
+- Pass band / thresholds: `||antisym(M)||_∞ ≤ 1e−12` (or ratio ≤ 1e−6 vs `||sym(M)||`), min eig of `sym(M)` ≥ −1e−12.
+- Units / normalization: Units of M; gate expressed in absolute or relative form.
+- Typical datasets / experiments: LIT linearizations near steady; QC in metriplectic runners.
+- Primary figure/artifact (if referenced): JSON summary with norms/eigs, tolerance, and pass/fail.
+- Notes: When linearization is unreliable, treat as advisory.
