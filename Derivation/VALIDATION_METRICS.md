@@ -178,6 +178,112 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Primary figure/artifact (if referenced):** `Derivation/code/outputs/figures/conservation_law/qfum_convergence_*.png` <br/>
 **Notes:** Uses `r2` goodness-of-fit; reported in ConvergenceMetrics dataclass (lines 142-150) <br/>
 
+### Markov-Chain Monte Carlo (HMC/RHMC)
+
+#### HMC Acceptance vs Stepsize Fit  <a id="kpi-hmc-acceptance-vs-stepsize"></a>
+
+**Symbol (if any):** —
+**Purpose:** Validate symplectic/reversible proposal quality by confirming the expected acceptance–stepsize scaling predicted by the ΔH statistics for leapfrog HMC.
+**Defined by:** `EQUATIONS.md#vdm-e-130` (accept/reject and ΔH–α relation; placeholder anchor)
+**Inputs:** Stepsize ladder ε; fixed trajectory construction (L, path length); per-trajectory ΔH; acceptance decisions α(ε).
+**Computation implemented at:** planned (pre‑registered) HMC diagnostics script (to be linked post‑merge)
+**Pass band / thresholds:** Fit model 1−α ≈ k·ε^p on log–log axes; require p ∈ [3.5, 4.5] for leapfrog and R² ≥ 0.98.
+**Units / normalization:** dimensionless
+**Typical datasets / experiments:** J‑only Hamiltonian branch with synthetic Gaussian target or quadratic action surrogate; fixed L across ε ladder
+**Primary figure/artifact (if referenced):** Acceptance vs ε plot with fitted slope; CSV/JSON sidecars (per RESULTS standards)
+**Notes:** Deviations indicate loss of reversibility/volume preservation or poor integrator tuning; pair with ΔH histogram diagnostics.
+
+#### HMC ΔH Histogram Diagnostics  <a id="kpi-hmc-deltaH-hist"></a>
+
+**Symbol (if any):** —
+**Purpose:** Sanity‑check Hamiltonian energy error statistics driving Metropolis acceptance.
+**Defined by:** `EQUATIONS.md#vdm-e-131` (ΔH definition and histogram QC; placeholder anchor)
+**Inputs:** Per‑trajectory ΔH on ε ladder; sample size per ladder point
+**Computation implemented at:** planned (pre‑registered) HMC diagnostics
+**Pass band / thresholds:**
+- Centering: |median(ΔH)| ≤ 5·MAD/√N (per ε).
+- Symmetry: |skewness(ΔH)| ≤ 0.5 (per ε).
+- Logging: histogram PNG + JSON moments (mean, var, skew, kurtosis) emitted per ε.
+**Units / normalization:** energy units of target Hamiltonian (dimensionless under normalized code)
+**Typical datasets / experiments:** Same ladder as above
+**Primary figure/artifact (if referenced):** ΔH histogram panel per ε; JSON with moments and sample counts
+**Notes:** Used as an “alarm bell” when acceptance scaling fails; not a substitute for the acceptance‑vs‑ε gate.
+
+---
+
+### Uncertainty Quantification (Chains)
+
+#### Integrated Autocorrelation Time (τ_int)  <a id="kpi-tau-int"></a>
+
+**Symbol (if any):** τ_int
+**Purpose:** Quantify correlation length of Markov chains for observables to support honest error bars.
+**Defined by:** `EQUATIONS.md#vdm-e-132` (τ_int definition and windowing; placeholder anchor)
+**Inputs:** Time series of observable O_t; chain length N; windowing parameters
+**Computation implemented at:** planned (pre‑registered) stats helpers (initial positive sequence / windowed sum)
+**Pass band / thresholds:** Informational KPI; must be reported with method and window used.
+**Units / normalization:** steps (iterations)
+**Typical datasets / experiments:** All HMC/RHMC runs used for estimation
+**Primary figure/artifact (if referenced):** τ_int vs window plot; JSON with τ_int, ESS = N/(2τ_int)
+**Notes:** Downstream gates rely on τ_int for bin sizing and resampling.
+
+#### Binning Adequacy (τ‑aware)  <a id="kpi-binning-adequacy"></a>
+
+**Symbol (if any):** —
+**Purpose:** Ensure reported means/variances are computed with bin sizes large enough to decorrelate samples.
+**Defined by:** `EQUATIONS.md#vdm-e-133` (binning rules; placeholder anchor)
+**Inputs:** Estimated τ_int for observable; chosen bin size B; binned series
+**Computation implemented at:** planned (pre‑registered) stats helpers
+**Pass band / thresholds:** Require B ≥ 2·τ_int and CI‑width stability under B→2B: relative change ≤ 0.10.
+**Units / normalization:** steps; dimensionless relative change
+**Typical datasets / experiments:** Same chains as analysis set
+**Primary figure/artifact (if referenced):** Mean/variance vs bin size curve; stability table (CSV/JSON)
+**Notes:** Failing this gate invalidates downstream error bars.
+
+#### Correlated χ² with SVD Truncation  <a id="kpi-correlated-chi2-svd"></a>
+
+**Symbol (if any):** χ²/dof (correlated)
+**Purpose:** Perform fits using full covariance while regularizing the inverse with SVD cutoff; verify stability.
+**Defined by:** `EQUATIONS.md#vdm-e-134` (correlated χ² and SVD truncation; placeholder anchor)
+**Inputs:** Data vector y, model μ(θ), covariance C, SVD cutoff policy
+**Computation implemented at:** planned (pre‑registered) fitting helpers
+**Pass band / thresholds:** χ²/dof ∈ [0.7, 1.3] and parameter stability across cutoff sweep (post‑knee) with max drift ≤ 0.10σ.
+**Units / normalization:** dimensionless
+**Typical datasets / experiments:** Multi‑point correlators or vector observables from simulations
+**Primary figure/artifact (if referenced):** χ²/dof vs cutoff plot; knee detection report (JSON)
+**Notes:** Encouraged to pair with information criteria (AIC/BIC) when model selection is in scope.
+
+#### Resample CI Stability (Jackknife/Bootstrap)  <a id="kpi-resample-ci-stability"></a>
+
+**Symbol (if any):** CI_width
+**Purpose:** Guard against underestimated uncertainties by enforcing block length J ≥ τ_int and CI stability.
+**Defined by:** `EQUATIONS.md#vdm-e-135` (blocked jackknife/bootstrap; placeholder anchor)
+**Inputs:** Resample block size J; τ_int; resample count B (bootstrap)
+**Computation implemented at:** planned (pre‑registered) stats helpers
+**Pass band / thresholds:** J ≥ τ_int and |CI(J) − CI(2J)| / CI(2J) ≤ 0.10.
+**Units / normalization:** dimensionless
+**Typical datasets / experiments:** Chain‑based estimates feeding RESULTS figures/tables
+**Primary figure/artifact (if referenced):** CI width vs block size plot; JSON with CI bands and stability ratios
+**Notes:** Report method (jackknife vs bootstrap), seeds, and B.
+
+---
+
+### Scale Program (RG Blocking)
+
+#### RG Blocking Collapse  <a id="kpi-rg-collapse"></a>
+
+**Symbol (if any):** E_max (blocked)
+**Purpose:** Demonstrate scale‑program consistency by collapsing blocked observables across scale factors s (e.g., s∈{2,4}).
+**Defined by:** `EQUATIONS.md#vdm-e-136` (block‑spin/field operator and rescaling; placeholder anchor) and [A6 envelope](#kpi-a6-envelope-max)
+**Inputs:** Blocked fields/observables at multiple s; rescaling rules to dimensionless form
+**Computation implemented at:** planned (pre‑registered) RG utility
+**Pass band / thresholds:** Use A6 envelope gate as acceptance: E_max ≤ 0.02 after blocking/rescaling across s.
+**Units / normalization:** dimensionless
+**Typical datasets / experiments:** Lattice runs at matched resolution ladders with blocking operators applied
+**Primary figure/artifact (if referenced):** Scaling‑collapse overlay with envelope band; CSV/JSON sidecars
+**Notes:** Serves as an A6 programmatic check; logs include s, blocking kernel, and rescaling parameters.
+
+---
+
 ### Memory Steering
 
 #### Memory Steering Pole Fit Error  <a id="kpi-memory-pole-fit-err"></a>
@@ -692,3 +798,100 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 - [Regime Split Annotation Present](#kpi-dp-regime-split)
 - [Fisher Consistency (Finite‑Difference Cross‑Check)](#kpi-dp-fisher-consistency)
 <!-- END AUTOSECTION: METRICS-INDEX -->
+
+---
+### GENERIC / Metriplectic Thermodynamics
+
+#### Poisson–Jacobi Identity Residual  <a id="kpi-poisson-jacobi-resid"></a>
+
+- Symbol (if any): $e_{\mathrm{Jacobi}}$
+- Purpose: Certify that Poisson operator constructions for new state variables satisfy the Jacobi identity (GENERIC/VDM A4 discipline).
+- Defined by: TODO → add equation anchor (EQUATIONS.md#vdm-e-14x) for Jacobi identity; see also [CF2_Contact_to_Metriplectic_Evolution.md](Derivation/Complete-Formalisms/CF2_Contact_to_Metriplectic_Evolution.md)
+- Inputs: State variables q; Poisson operator L(q); basis of test functionals F,G,H for nested-bracket evaluation
+- Computation implemented at: planned (pre-registered) Poisson-Jacobi unit test harness
+- Pass band / thresholds: $\|e_{\mathrm{Jacobi}}\|_{\infty} \le 1\times 10^{-12}$ (or scaled machine epsilon) over the test basis
+- Units / normalization: dimensionless residual
+- Typical datasets / experiments: Fluid-like variable sets (ρ, m, ε) and augmented structural variable (c) per OQ-021
+- Primary figure/artifact (if referenced): JSON residual report per construction; optional histogram/QQ-plot of residuals
+- Notes: This gate must pass before admitting any new field into production solvers.
+
+#### Degeneracy Residuals (GENERIC)  <a id="kpi-degeneracy-resid"></a>
+
+- Symbol (if any): $g_1, g_2$
+- Purpose: Enforce GENERIC/VDM degeneracy conditions: $L\nabla S=0$ (entropy Casimir of J) and $M\nabla E=0$ (energy Casimir of M).
+- Defined by: TODO → add equation anchors (EQUATIONS.md#vdm-e-14x) for degeneracy identities
+- Inputs: Functionals E[q], S[q]; operators L(q), M(q); discrete gradients
+- Computation implemented at: planned (pre-registered) metriplectic identity meter
+- Pass band / thresholds: $g_1=\|L\nabla S\|_{\infty} \le 1\times 10^{-12}$; $g_2=\|M\nabla E\|_{\infty} \le 1\times 10^{-12}$
+- Units / normalization: functional-gradient units (dimensionless under normalized code)
+- Typical datasets / experiments: All metriplectic runs (J-only/M-only/J⊕M)
+- Primary figure/artifact (if referenced): JSON with g1, g2, grid, seeds, commit
+- Notes: Mandatory for any J⊕M deployment; failure routes to failed_runs with a contradiction report.
+
+#### Entropy Production Nonnegativity (H-theorem)  <a id="kpi-entropy-prod-nonneg"></a>
+
+- Symbol (if any): $\dot\Sigma$; $\Delta\Sigma$
+- Purpose: Enforce non-negative entropy production under metric flow per GENERIC/Öttinger.
+- Defined by: TODO → add equation anchor (EQUATIONS.md#vdm-e-14x) for $\dot\Sigma=\langle \nabla S, M \nabla S\rangle \ge 0$
+- Inputs: $\nabla S$, M, timestep $\Delta t$
+- Computation implemented at: planned (pre-registered) entropy monitor in metriplectic runners
+- Pass band / thresholds: Per-step $\dot\Sigma \ge -1\times 10^{-12}$ and cumulative $\Delta\Sigma \ge -1\times 10^{-12}$
+- Units / normalization: entropy units of normalization; dimensionless in normalized code
+- Typical datasets / experiments: All M-steps and J⊕M compositions
+- Primary figure/artifact (if referenced): Time series PNG (σ vs t), CSV/JSON with σ, ΔΣ
+- Notes: Report method (discrete gradient vs continuous approximation) and any stabilization.
+
+#### Curie Principle Compliance (Audit)  <a id="kpi-curie-compliance"></a>
+
+- Symbol (if any): `curie_ok` (boolean)
+- Purpose: Validate tensorial coupling compliance (scalar↔vector↔tensor) in constitutive/M blocks (no forbidden couplings).
+- Defined by: Policy audit; TODO → add reference note anchor
+- Inputs: Declared variable tensor ranks; coupling terms in M and constitutive laws
+- Computation implemented at: planned (pre-registered) static analyzer/lint
+- Pass band / thresholds: `curie_ok = true`
+- Units / normalization: n/a
+- Typical datasets / experiments: Fluid extensions (viscous M[c], bulk/shear blocks), structural variables
+- Primary figure/artifact (if referenced): Audit JSON; list of flagged couplings if any
+- Notes: Advisory KPI; failures block merge until resolved.
+
+---
+### Fluid Dynamics (Extended Hydrodynamics — Corner Regularization, OQ‑021)
+
+#### Corner Stress Boundedness  <a id="kpi-corner-stress-bound"></a>
+
+- Symbol (if any): $\max_{t}\|D\|$ or $\max_{t}\|\sigma\|$ near apex
+- Purpose: Demonstrate finite stresses as corner radius r→0 under extended hydrodynamics with structural variable c (Öttinger template).
+- Defined by: TODO → add equation anchors for stress definition and corner-invariant; OQ‑021 protocol
+- Inputs: Stress tensor or shear-rate tensor D over wedge domain; radii r/L; control parameters (De_c, Λ, Pe_c)
+- Computation implemented at: planned (pre-registered) OQ‑021 corner runner
+- Pass band / thresholds: Bounded across decreasing r; no monotone blow-up; envelope slope ≤ 0 within 95% CI
+- Units / normalization: solver units; dimensionless when normalized by baseline viscous scale
+- Typical datasets / experiments: L-shaped/corner flow with structural c enabled/disabled
+- Primary figure/artifact (if referenced): Stress vs r/L overlay; CSV/JSON per run; envelope statistics
+- Notes: Compare against baseline Newtonian case; report relative reduction vs (Λ, De_c).
+
+#### Corner Velocity Cap (Scaling Collapse)  <a id="kpi-corner-velocity-cap"></a>
+
+- Symbol (if any): $\max |v|(r)$; collapse envelope $E_{\max}$
+- Purpose: Show saturation of velocity near apex and scaling collapse when plotted vs $\Lambda \mathrm{De}_c$.
+- Defined by: TODO → add equation anchors for dimensionless groups
+- Inputs: Peak velocity vs r/L across parameter grid; computed $\Lambda, \mathrm{De}_c$
+- Computation implemented at: planned (pre-registered) OQ‑021 post‑proc
+- Pass band / thresholds: Collapse envelope $E_{\max} \le 0.05$ across tested (Λ·De_c)
+- Units / normalization: dimensionless
+- Typical datasets / experiments: Same as above
+- Primary figure/artifact (if referenced): Collapse plot with envelope; CSV/JSON
+- Notes: Pair with Curie audit to ensure isotropic compliance.
+
+#### Corner Entropy Nondivergence  <a id="kpi-corner-entropy-nondiv"></a>
+
+- Symbol (if any): $\Delta\Sigma$ near corner
+- Purpose: Ensure total entropy production remains nondivergent in the corner regularization regime.
+- Defined by: TODO → add equation anchor (EQUATIONS.md#vdm-e-14x) for σ(c)-terms and viscous contributions
+- Inputs: Components of σ from viscous (η(c), ζ(c)), relaxation $1/\tau_c$, and mobility $M_c\nabla\mu_c$
+- Computation implemented at: planned (pre-registered) entropy monitor for OQ‑021
+- Pass band / thresholds: Per-step $\dot\Sigma \ge -1\times 10^{-12}$; no superlinear divergence vs $1/r$
+- Units / normalization: entropy units (normalized)
+- Typical datasets / experiments: Same as above
+- Primary figure/artifact (if referenced): σ(t) panel; CSV/JSON
+- Notes: This KPI operationalizes the H-theorem for the extended hydrodynamics with structural variable c.

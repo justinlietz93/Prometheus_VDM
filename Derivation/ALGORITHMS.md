@@ -1,7 +1,6 @@
 <!-- DOC-GUARD: CANONICAL -->
 # VDM Algorithms & Execution Flows (Auto-compiled)
 
-
 **Last updated**: 2025-11-05
 **Last commit**: 60c5156
 **Scope:** Single source of truth for implemented algorithms and control flows in this repository.
@@ -1073,6 +1072,7 @@ RETURN:
 - [VDM-A-022](#vdm-a-022)
 <!-- END AUTOSECTION: ALGO-INDEX -->
 ## Change Log
+
 - 2025-11-05 • algorithms updated • 60c5156
 - 2025-10-08 • add VDM-A-013..021 (metriplectic integrators & QC; FRW residual QC; A6 collapse) • HEAD
 - 2025-10-03 • initial algorithms extracted • 7498744
@@ -1138,3 +1138,260 @@ emit PNG E(R), CSV series, JSON summary
 
 - Spectrum: $\mathrm{cov}_{\rm phys} \ge 0.95$ (PASS in v1: 1.000)
 - Condensation: finite_fraction $\ge 0.80$, interior min, $a>0$ (PASS in v1)
+
+---
+
+## Monte Carlo Samplers and Diagnostics
+
+#### VDM-A-030 - HMC Leapfrog + Metropolis Gate  <a id="vdm-a-030"></a>
+
+> Type: RUNTIME • Binding: PSEUDOCODE • State: writes samples (not physics state) • Dependencies: leapfrog(J‑flow), metrics logger  
+> Notes: Records ΔH histograms and acceptance vs stepsize for QC (see [VDM-E-130](Derivation/EQUATIONS.md#vdm-e-130), [VDM-E-131](Derivation/EQUATIONS.md#vdm-e-131))
+
+Pseudocode:
+
+```text
+INPUT: q0, stepsize ε, n_steps L, mass matrix M (or preconditioner), rng
+1) Sample momentum: p0 ~ N(0, M)
+2) (q*, p*) := LEAPFROG(q0, p0; ε, L)           # time-reversible, volume-preserving
+3) Compute ΔH = H(q*, p*) - H(q0, p0)           # [VDM-E-131]
+4) Accept with α = min(1, exp(-ΔH))             # [VDM-E-130]
+5) If u ~ U(0,1) < α: q1 := q* else q1 := q0
+6) Log per-trajectory: ε, L, ΔH, accepted?, |p|, |∇H| (optional)
+7) (QC) Accumulate:
+   - α(ε) for acceptance-vs-stepsize fit (1 − α) ~ ε^p, target p≈4 (leapfrog)
+   - ΔH histogram moments per ε
+RETURN: q1, α, ΔH
+```
+
+QC hooks:
+
+- Acceptance-vs-stepsize slope and R² gate: [VALIDATION_METRICS.md#kpi-hmc-acceptance-vs-stepsize](Derivation/VALIDATION_METRICS.md#kpi-hmc-acceptance-vs-stepsize)  
+- ΔH histogram diagnostics: [VALIDATION_METRICS.md#kpi-hmc-deltaH-hist](Derivation/VALIDATION_METRICS.md#kpi-hmc-deltaH-hist)
+
+---
+
+#### VDM-A-031 - RHMC Outline (Rational HMC for Fractional Powers)  <a id="vdm-a-031"></a>
+
+> Type: RUNTIME • Binding: PSEUDOCODE • State: writes samples • Dependencies: multishift CG, leapfrog skeleton  
+> Notes: Exactness restored by Metropolis accept/reject; fractional operators via rational approximation
+
+Pseudocode:
+
+```text
+INPUT: action with fractional operator A^{-γ}, γ∈(0,1)
+1) Approximate A^{-γ} ≈ c0 + Σ_{k=1..K} c_k / (A + σ_k I)     # rational approx
+2) Use pseudofermion fields and force terms requiring solves with shifts σ_k
+3) Integrate with leapfrog (Sexton–Weingarten splitting if cheap/expensive parts)
+4) Solve all shifted systems via Multishift CG (VDM-A-035)
+5) Metropolis step with ΔH as in HMC
+RETURN: accepted sample, logs for ΔH/α
+```
+
+---
+
+## Linear Solvers and Preconditioning
+
+#### VDM-A-032 - Conjugate Gradient (CG) Adapter  <a id="vdm-a-032"></a>
+
+> Type: INSTRUMENT • Binding: PSEUDOCODE • State: none • Dependencies: matrix‑vector multiply A·x
+
+Pseudocode:
+
+```text
+INPUT: A (SPD), b, x0, tol, maxiter
+1) r0 = b - A x0; p0 = r0; k = 0
+2) WHILE k < maxiter AND ||rk||/||b|| > tol:
+     αk = (rkᵀ rk) / (pkᵀ A pk)
+     x_{k+1} = x_k + αk pk
+     r_{k+1} = r_k - αk A pk
+     βk = (r_{k+1}ᵀ r_{k+1}) / (r_kᵀ r_k)
+     p_{k+1} = r_{k+1} + βk pk
+     k = k + 1
+RETURN: x_k, k, residual_norm
+```
+
+Logging: iterations, final residual, preconditioner tag (if any), timings.
+
+---
+
+#### VDM-A-033 - BiCGStab Adapter  <a id="vdm-a-033"></a>
+
+> Type: INSTRUMENT • Binding: PSEUDOCODE • State: none • Dependencies: matrix‑vector multiply A·x  
+> Notes: For non‑symmetric systems
+
+Provide standard BiCGStab iteration with residual/orthogonality checks and early‑exit on stagnation; emit JSON metrics (iter, residuals).
+
+---
+
+#### VDM-A-034 - Even–Odd (Red–Black) Preconditioning  <a id="vdm-a-034"></a>
+
+> Type: INSTRUMENT • Binding: PSEUDOCODE • State: none • Dependencies: lattice parity split  
+> Notes: Schur complement reduction; halves effective problem size on bipartite lattices
+
+Pseudocode:
+
+```text
+1) Reorder lattice dofs into even (e) and odd (o) sites → block form:
+   A = [A_ee  A_eo; A_oe  A_oo]
+2) Solve reduced Schur system on (e): (A_ee - A_eo A_oo^{-1} A_oe) x_e = b_e - A_eo A_oo^{-1} b_o
+3) Recover x_o = A_oo^{-1} (b_o - A_oe x_e)
+4) Use inner solver for A_oo^{-1}(·) (cheap local or diagonal‑dominant part)
+```
+
+Emit speedup/conditioning diagnostics (optional).
+
+---
+
+#### VDM-A-035 - Multishift Conjugate Gradient  <a id="vdm-a-035"></a>
+
+> Type: INSTRUMENT • Binding: PSEUDOCODE • State: none • Dependencies: SPD A, set of shifts {σ_k}
+
+Pseudocode:
+
+```text
+Solve (A + σ_k I) x^{(k)} = b for all k using shared Krylov subspace:
+1) Initialize one CG stream on A; maintain per‑shift recurrences for x^{(k)}
+2) Update all shifted solutions each iteration with O(#shifts) extra saxpys
+3) Converge when worst residual across shifts ≤ tol
+RETURN: {x^{(k)}}, iterations, residuals
+```
+
+Logs: shift list, iteration count, residuals per shift.
+
+---
+
+## Scale Program Utilities
+
+#### VDM-A-036 - RG Blocking Operator (Field/Observable)  <a id="vdm-a-036"></a>
+
+> Type: INSTRUMENT • Binding: PSEUDOCODE • State: read-only • Dependencies: kernel B_s  
+> Notes: Pairs with A6 envelope gate ([VDM-E-094](Derivation/EQUATIONS.md#vdm-e-094)) and RG KPI ([VALIDATION_METRICS.md#kpi-rg-collapse](Derivation/VALIDATION_METRICS.md#kpi-rg-collapse))
+
+Pseudocode:
+
+```text
+INPUT: field φ on lattice, scale s, kernel B_s (e.g., uniform average), Δφ
+1) Partition lattice into disjoint s×…×s blocks
+2) For each block, compute (B_s φ)(block_center) by kernel (average or specified)
+3) Rescale: φ^{(s)} = s^{-Δφ} · (B_s φ)
+4) For observables O(φ), define O^{(s)} := O(φ^{(s)}) with appropriate rescaling
+5) Emit collapse artifacts: overlay across s, compute envelope E_max
+RETURN: φ^{(s)}, O^{(s)}, collapse metrics
+```
+
+Artifacts: scaling‑collapse overlay PNG + CSV/JSON (envelope metrics, s, Δφ, kernel tag).
+
+## GENERIC / Metriplectic Adapters and QC
+
+#### VDM-A-037 - VDM-GENERIC Adapter (Constructor + Gates)  <a id="vdm-a-037"></a>
+> Type: INSTRUMENT • Binding: PSEUDOCODE • State: none (validates) • Dependencies: [Derivation/EQUATIONS.md](Derivation/EQUATIONS.md#vdm-e-140), [Derivation/EQUATIONS.md](Derivation/EQUATIONS.md#vdm-e-142), [Derivation/VALIDATION_METRICS.md](Derivation/VALIDATION_METRICS.md#kpi-degeneracy-resid), [Derivation/VALIDATION_METRICS.md](Derivation/VALIDATION_METRICS.md#kpi-entropy-prod-nonneg)
+
+Pseudocode:
+```text
+INPUT: E[q], S[q], L(q), M(q); discretization/context tag; tolerances (eps=1e-12)
+CHECKS:
+  1) Antisymmetry: ||L + Lᵀ||_∞ ≤ eps
+  2) Symmetry & PSD: ||M − Mᵀ||_∞ ≤ eps; xᵀ M x ≥ −eps for random/unit vectors x
+  3) Degeneracy residuals:
+     g1 := ||L ∇S||_∞ ; g2 := ||M ∇E||_∞      # [VDM-E-142]
+     require g1 ≤ eps, g2 ≤ eps                # KPI kpi-degeneracy-resid
+  4) Entropy nonnegativity monitor hook registered (σ ≥ 0 per step)  # [VDM-E-143], KPI kpi-entropy-prod-nonneg
+EMIT: JSON with {antisym_ok, sym_psd_ok, g1, g2, eps, commit, seed}
+RETURN: adapter_handle or raise ValidationError
+```
+
+Notes:
+- Centralizes GENERIC conformance for any state extension; used by metriplectic runners before execution.
+
+
+#### VDM-A-038 - Hydrodynamic Poisson Construction (Cookbook Skeleton)  <a id="vdm-a-038"></a>
+> Type: INSTRUMENT • Binding: PSEUDOCODE • State: none • Dependencies: fluid variable set (ρ, m, ε, …); [Derivation/Complete-Formalisms/CF2_Contact_to_Metriplectic_Evolution.md](Derivation/Complete-Formalisms/CF2_Contact_to_Metriplectic_Evolution.md)
+
+Pseudocode (outline only; math references live in canon):
+```text
+INPUT: variable taxonomy (scalar densities, vector densities, tensors)
+STEPS:
+  1) Start from baseline fluid Poisson structure (mass, momentum, energy sectors)
+  2) Add scalar/tensor blocks per tensor rank with correct index symmetries (Curie)
+  3) Enforce locality and boundary conditions consistent with BC sheet
+  4) Verify antisymmetry & Jacobi via VDM-A-039
+OUTPUT: L(q) blocks; doc anchors to symbols and equations
+```
+
+Notes:
+- Construction details (indices, brackets) are referenced; do not duplicate equations in this file.
+
+
+#### VDM-A-039 - Poisson–Jacobi Identity Tester  <a id="vdm-a-039"></a>
+> Type: INSTRUMENT • Binding: PSEUDOCODE • State: none • Dependencies: [Derivation/EQUATIONS.md](Derivation/EQUATIONS.md#vdm-e-141), [Derivation/VALIDATION_METRICS.md](Derivation/VALIDATION_METRICS.md#kpi-poisson-jacobi-resid)
+
+Pseudocode:
+```text
+INPUT: L(q), basis ℬ of smooth test functionals {F,G,H}
+FOR all triples (F,G,H)⊂ℬ:
+   J := {F,{G,H}_J}_J + {G,{H,F}_J}_J + {H,{F,G}_J}_J     # [VDM-E-141]
+ACCUMULATE: e_Jacobi := max_ℬ ||J||_∞
+GATE: e_Jacobi ≤ 1e-12 (scaled eps)
+EMIT: JSON residuals, histogram optional; figure path if plotted
+RETURN: pass/fail
+```
+
+Notes:
+- Basis ℬ includes linear forms and localized probes to cover product rules.
+
+
+#### VDM-A-040 - Entropy Production Monitor (M-step H‑theorem)  <a id="vdm-a-040"></a>
+> Type: INSTRUMENT • Binding: PSEUDOCODE • State: writes logs • Dependencies: [Derivation/EQUATIONS.md](Derivation/EQUATIONS.md#vdm-e-143), [Derivation/VALIDATION_METRICS.md](Derivation/VALIDATION_METRICS.md#kpi-entropy-prod-nonneg), [Derivation/code/common/io_paths.py](Derivation/code/common/io_paths.py)
+
+Pseudocode:
+```text
+INPUT: ∇S, M, Δt, run_tag
+σ := (∇S)ᵀ M (∇S)                             # [VDM-E-143]
+ΔΣ ← ΔΣ + Δt * σ
+GATE: σ ≥ −1e-12 and ΔΣ ≥ −1e-12
+LOG: CSV row {t, σ, ΔΣ}; JSON summary at end with seeds/commit; PNG σ(t)
+RETURN: pass/fail
+```
+
+Notes:
+- Attach to every M-step and J⊕M composition (JMJ).
+
+
+#### VDM-A-041 - Curie Principle Compliance Linter  <a id="vdm-a-041"></a>
+> Type: POLICY • Binding: PSEUDOCODE • State: none • Dependencies: [Derivation/EQUATIONS.md](Derivation/EQUATIONS.md#vdm-e-146), [Derivation/VALIDATION_METRICS.md](Derivation/VALIDATION_METRICS.md#kpi-curie-compliance)
+
+Pseudocode:
+```text
+INPUT: declared tensor ranks of state variables; constitutive/M terms
+CHECK: all scalarized couplings are rotational invariants (e.g., D:D, tr(D), |∇c|²)
+FLAG: any rank mismatch or forbidden scalarization
+EMIT: curie_ok boolean + list of flagged terms (JSON)
+GATE: curie_ok=true for merge to production runners
+```
+
+Notes:
+- Applied in review and CI for extended hydrodynamics and structural fields.
+
+
+#### VDM-A-042 - OQ‑021 Corner Regularization Runner (Skeleton)  <a id="vdm-a-042"></a>
+> Type: EXPERIMENT • Binding: PSEUDOCODE • State: writes artifacts • Dependencies: [Derivation/VALIDATION_METRICS.md](Derivation/VALIDATION_METRICS.md#kpi-corner-stress-bound), [Derivation/VALIDATION_METRICS.md](Derivation/VALIDATION_METRICS.md#kpi-corner-velocity-cap), [Derivation/VALIDATION_METRICS.md](Derivation/VALIDATION_METRICS.md#kpi-corner-entropy-nondiv), [Derivation/EQUATIONS.md](Derivation/EQUATIONS.md#vdm-e-144), [Derivation/EQUATIONS.md](Derivation/EQUATIONS.md#vdm-e-145)
+
+Pseudocode:
+```text
+SETUP: wedge/corner domain; baseline viscous run; extended run with c-field
+PARAMS: grid over (Λ, De_c, Pe_c); radii r/L ladder → approach apex
+RUN:
+  - Use VDM-GENERIC adapter [VDM-A-037] to validate L,M,E,S
+  - Attach H-theorem monitor [VDM-A-040]
+  - Advance solver; log stress, |v|, σ components
+POST:
+  - KPI: Corner Stress Boundedness (no blow-up vs r→0)
+  - KPI: Corner Velocity Cap + scaling collapse vs Λ·De_c
+  - KPI: Corner Entropy Nondivergence (σ, ΔΣ)
+ARTIFACTS: figures (overlay/envelope), CSV, JSON (seed, commit, gates)
+RETURN: pass/fail per KPI set
+```
+
+Notes:
+- This runner is the instrumentation target for OQ‑021 under GENERIC discipline.
