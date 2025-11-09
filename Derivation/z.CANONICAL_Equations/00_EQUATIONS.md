@@ -2351,3 +2351,101 @@ Context: Scale‑program gate (A6) for GB relaxation under protocol variations. 
 Definition policy: Register names only; definitions are provided by the instrument runner and RESULTS, with references to UNITS_NORMALIZATION.md. The collapse gate links here for provenance.
 
 Used by gates: VALIDATION_METRICS.md#kpi-gb-dimless-collapse. Algorithmic flow: ALGORITHMS.md#vdm-a-050.
+
+#### VDM-E-130 - HMC Accept/Reject and Stepsize Scaling
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-130"></a>
+<!-- markdownlint-enable MD033 -->
+
+**Context:** DeGrand–DeTar-inspired exact sampling discipline; Metropolis filter on a reversible, volume-preserving proposal.  
+**Definition (reference-level):** Given a proposal map Φ<sub>ε,L</sub> defined by L leapfrog steps of size ε on Hamiltonian H(q,p), the Metropolis rule accepts with
+$$
+\alpha = \min\!\big(1,\,e^{-\Delta H}\big),\qquad \Delta H = H\!\big(\Phi_{\varepsilon,L}(q,p)\big) - H(q,p).
+$$
+For small ε under a second-order symplectic integrator, the energy error statistics imply a scaling of the rejection fraction $1-\alpha(\varepsilon)$ that is asymptotically a power law on log–log axes (gate defined in KPIs).  
+**Notes:** Used by KPI [kpi-hmc-acceptance-vs-stepsize](../z.CANONICAL_Validation_Metrics/00_VALIDATION_METRICS.md#kpi-hmc-acceptance-vs-stepsize) and ΔH diagnostics [kpi-hmc-deltaH-hist](../z.CANONICAL_Validation_Metrics/00_VALIDATION_METRICS.md#kpi-hmc-deltah-hist). Links to algorithms: [VDM-A-030](../z.CANONICAL_Algorithms/00_ALGORITHMS.md#vdm-a-030).
+
+---
+
+#### VDM-E-131 - HMC Energy Error ΔH and Histogram Diagnostics
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-131"></a>
+<!-- markdownlint-enable MD033 -->
+
+**Context:** Symplectic/reversible proposals concentrate ΔH near zero; departures flag reversibility or area-preservation defects.  
+**Definition (reference-level):** For each trajectory, record $\Delta H$ as above. Over ensembles at fixed (ε,L), diagnose center (median), spread, skewness, and kurtosis of the ΔH distribution.  
+**Notes:** KPI [kpi-hmc-deltaH-hist](../z.CANONICAL_Validation_Metrics/00_VALIDATION_METRICS.md#kpi-hmc-deltah-hist) defines pass bands on moments and logging requirements.
+
+---
+
+#### VDM-E-132 - Integrated Autocorrelation Time τ_int
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-132"></a>
+<!-- markdownlint-enable MD033 -->
+
+**Context:** Chain correlation scale for honest uncertainty quantification.  
+**Definition:** For a zero-mean stationary observable $O_t$ with normalized autocorrelation $\rho(t)$ and window $W$ chosen by a positive-sequence/initial-convex-sequence rule,
+$$
+\tau_{\text{int}} \;=\; \tfrac{1}{2}\;+\;\sum_{t=1}^{W}\rho(t), 
+\qquad
+\mathrm{ESS}\;=\;\frac{N}{2\,\tau_{\text{int}}}.
+$$
+**Notes:** Referenced by KPIs [kpi-tau-int](../z.CANONICAL_Validation_Metrics/00_VALIDATION_METRICS.md#kpi-tau-int) and [kpi-binning-adequacy](../z.CANONICAL_Validation_Metrics/00_VALIDATION_METRICS.md#kpi-binning-adequacy).
+
+---
+
+#### VDM-E-133 - τ-aware Binning Adequacy and ESS
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-133"></a>
+<!-- markdownlint-enable MD033 -->
+
+**Context:** Decorrelate samples before estimating means/variances and CIs.  
+**Definition (gate reference):** A bin size $B$ is adequate when $B\ge 2\,\tau_{\text{int}}$ and confidence-interval width is stable under $B\mapsto 2B$ within KPI tolerance. ESS is as in [VDM-E-132](#vdm-e-132).  
+**Notes:** KPI [kpi-binning-adequacy](../z.CANONICAL_Validation_Metrics/00_VALIDATION_METRICS.md#kpi-binning-adequacy).
+
+---
+
+#### VDM-E-134 - Correlated χ² with SVD Regularization
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-134"></a>
+<!-- markdownlint-enable MD033 -->
+
+**Context:** Stable correlated fits with nearly singular covariance.  
+**Definition:** With data vector $y$, model $\mu(\theta)$, and covariance $C=U\Sigma U^{\top}$, define the SVD-truncated inverse
+$$
+C^{+}_{\sigma\_{{\rm cut}}} \;=\; U\,\Sigma^{+}_{\sigma\_{{\rm cut}}}\,U^{\top},
+\quad
+\big(\Sigma^{+}_{\sigma\_{{\rm cut}}}\big)_{ii} \;=\;
+\begin{cases}
+1/\sigma_i & \sigma_i \ge \sigma\_{\rm cut}\\
+0 & \text{otherwise}
+\end{cases}
+$$
+and correlated $\chi^2(\theta) = (y-\mu)^{\top} C^{+}_{\sigma\_{{\rm cut}}}(y-\mu)$.  
+**Notes:** KPI [kpi-correlated-chi2-svd](../z.CANONICAL_Validation_Metrics/00_VALIDATION_METRICS.md#kpi-correlated-chi2-svd) requires knee-detected cutoff stability.
+
+---
+
+#### VDM-E-135 - Blocked Jackknife/Bootstrap (τ-aware)
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-135"></a>
+<!-- markdownlint-enable MD033 -->
+
+**Context:** Resampling that respects chain correlation.  
+**Definition (reference-level):** Choose a block length $J\ge \tau_{\text{int}}$; form block-jackknife (leave-one-block-out) or block-bootstrap resamples to estimate parameter CIs.  
+**Notes:** KPI [kpi-resample-ci-stability](../z.CANONICAL_Validation_Metrics/00_VALIDATION_METRICS.md#kpi-resample-ci-stability) enforces CI stability under $J\mapsto 2J$.
+
+---
+
+#### VDM-E-136 - RG Blocking Operator and Scaling Map
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-136"></a>
+<!-- markdownlint-enable MD033 -->
+
+**Context:** Axiom A6 scale-program instrumentation via coarse-graining and collapse.  
+**Definition:** For block factor $s$ in $d$ dimensions, a canonical average-blocking operator on a scalar field $\phi$ is
+$$
+\phi^{(s)}(i) \;=\; \frac{1}{s^d}\sum_{j\in \mathcal{B}_s(i)} \phi(j),
+$$
+with couplings transformed $g\mapsto R_s(g)$ under the induced coarse-graining map. After rescaling to dimensionless axes, scaling collapse across $\{s\}$ is quantified by an envelope $E_{\max}$ (see envelope gate [VDM-E-094] if present) and KPI [kpi-rg-collapse](../z.CANONICAL_Validation_Metrics/00_VALIDATION_METRICS.md#kpi-rg-collapse).  
+**Notes:** Utility implementation at [VDM-A-036](../z.CANONICAL_Algorithms/00_ALGORITHMS.md#vdm-a-036).

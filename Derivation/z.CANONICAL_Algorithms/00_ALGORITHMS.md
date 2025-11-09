@@ -1718,3 +1718,161 @@ Preconditions:
 Postconditions:
 
 - Overlay PNG + CSV/JSON sidecars for RESULTS; gate value reported.
+
+#### VDM-A-030 - HMC Leapfrog + Metropolis (J-flow instrument)  <a id="vdm-a-030"></a>
+
+> Type: INSTRUMENT • Binding: PSEUDOCODE • State: reads state (sampler chain) • Dependencies: integrator (leapfrog), Hamiltonian H, gradient ∇H  
+> Notes: Acceptance/ΔH diagnostics per [VDM-E-130](../z.CANONICAL_Equations/00_EQUATIONS.md#vdm-e-130), [VDM-E-131](../z.CANONICAL_Equations/00_EQUATIONS.md#vdm-e-131); gates [kpi-hmc-acceptance-vs-stepsize](../z.CANONICAL_Validation_Metrics/00_VALIDATION_METRICS.md#kpi-hmc-acceptance-vs-stepsize), [kpi-hmc-deltah-hist](../z.CANONICAL_Validation_Metrics/00_VALIDATION_METRICS.md#kpi-hmc-deltah-hist)
+
+Context: Reversible, volume-preserving proposal Φ_{ε,L} constructed by leapfrog (second-order Strang split) over L substeps of size ε; exactness via Metropolis filter.
+
+Pseudocode (illustrative):
+```text
+INPUT: state q, step size ε, steps L, mass matrix M (SPD), Hamiltonian H(q,p)=U(q)+K(p), RNG
+SAMPLE: p ~ N(0, M)
+q0,p0 := q,p
+# Leapfrog (Verlet):
+p ← p - (ε/2) ∇U(q)
+for l in 1..L:
+  q ← q + ε M^{-1} p
+  if l < L:
+    p ← p - ε ∇U(q)
+p ← p - (ε/2) ∇U(q)
+# Negate momentum for reversibility
+p ← -p
+ΔH := H(q,p) - H(q0,p0)
+α := min(1, exp(-ΔH))
+ACCEPT with prob α: (q_next := q) else (q_next := q0)
+LOG: ε, L, ΔH, α, reversibility_resid := ||Φ^{-1}(Φ(q0,p0)) - (q0,p0)||_∞
+RETURN q_next
+```
+
+Emits/Artifacts (per RESULTS standards): ΔH histogram moments per ε; acceptance vs ε fit slope/R²; reversibility residuals.
+
+---
+
+#### VDM-A-031 - RHMC (Rational HMC) outline  <a id="vdm-a-031"></a>
+
+> Type: INSTRUMENT • Binding: PSEUDOCODE • State: reads sampler chain • Dependencies: multishift CG, rational approximation builder  
+> Notes: Uses same KPIs as HMC acceptance/ΔH; exactness via Metropolis; no framework lock-in.
+
+Context: For fractional-power determinants/metrics, approximate A^{-α} with rational r(A) ≈ ∑ w_k (A + σ_k)^{-1}. Introduce pseudofermions φ with action S_φ = φ† r(A) φ; forces from variation wrt q.
+
+Pseudocode (illustrative):
+```text
+BUILD rational approx r(A) of A^{-α}: {w_k, σ_k} from Zolotarev or Remez on [λ_min, λ_max]
+SAMPLE pseudofermion φ ~ CN(0, I); set pseudo-momentum p ~ N(0,M)
+INTEGRATE using leapfrog on extended H(q,p,φ) with force requiring solves:
+  For each force eval, compute y_k := (A(q) + σ_k I)^{-1} φ via Multishift-CG
+  Accumulate force term from ∂A/∂q : F ← Σ_k w_k y_k† (∂A/∂q) y_k
+METROPOLIS accept on ΔH
+LOG: rational degree K, (λ_min, λ_max), multishift residuals/iters, ΔH, α
+```
+
+---
+
+#### VDM-A-032 - Conjugate Gradient (CG) solver adapter (SPD)  <a id="vdm-a-032"></a>
+
+> Type: RUNTIME • Binding: PSEUDOCODE • State: read-only • Dependencies: linear operator A(·), preconditioner P^{-1} (optional)
+
+Purpose: Solve A x = b (SPD) with optional left preconditioning; report iteration count, residual norms.
+
+Pseudocode:
+```text
+INPUT: A (apply), b, tol, maxit, P_inv (optional)
+x0 := 0; r0 := b - A x0; z0 := P_inv r0 if P_inv else r0; p0 := z0
+for k=0..maxit-1:
+  α := (r_k · z_k) / (p_k · A p_k)
+  x_{k+1} := x_k + α p_k
+  r_{k+1} := r_k - α A p_k
+  if ||r_{k+1}|| ≤ tol: break
+  z_{k+1} := P_inv r_{k+1} if P_inv else r_{k+1}
+  β := (r_{k+1} · z_{k+1}) / (r_k · z_k)
+  p_{k+1} := z_{k+1} + β p_k
+LOG: k, ||r_k||
+RETURN x_k, iters, residual_series
+```
+
+---
+
+#### VDM-A-033 - BiCGStab solver adapter (nonsymmetric)  <a id="vdm-a-033"></a>
+
+> Type: RUNTIME • Binding: PSEUDOCODE • State: read-only • Dependencies: A(·), P^{-1} (optional)
+
+Pseudocode (skeletal):
+```text
+INPUT: A, b, tol, maxit, P_inv (optional)
+x := 0; r := b - A x; r_hat := r (shadow)
+ρ=α=ω=1; v=0; p=0
+for k=1..maxit:
+  ρ_new := r_hat·r; β := (ρ_new/ρ)*(α/ω); p := r + β*(p - ω v)
+  p_tilde := P_inv p if P_inv else p
+  v := A p_tilde; α := ρ_new / (r_hat·v)
+  s := r - α v
+  if ||s|| ≤ tol: x := x + α p_tilde; break
+  s_tilde := P_inv s if P_inv else s
+  t := A s_tilde; ω := (t·s)/(t·t)
+  x := x + α p_tilde + ω s_tilde
+  r := s - ω t
+  if ||r|| ≤ tol or ω≈0: break
+  ρ := ρ_new
+LOG: k, ||r||
+RETURN x, iters, residual_series
+```
+
+---
+
+#### VDM-A-034 - Even–Odd (Red–Black) preconditioning (Schur)  <a id="vdm-a-034"></a>
+
+> Type: RUNTIME • Binding: PSEUDOCODE • State: read-only • Dependencies: lattice parity split
+
+Context: Permute unknowns into even/odd blocks; form Schur complement to precondition reduced system.
+
+Pseudocode (structure):
+```text
+Partition x = (x_e, x_o), A = [[A_ee, A_eo],[A_oe, A_oo]]
+Solve (A_ee) x_e + A_eo x_o = b_e
+     (A_oe) x_e + A_oo x_o = b_o
+Compute S := A_oo - A_oe (A_ee^{-1}) A_eo
+Use inner solver on S y = b_o - A_oe (A_ee^{-1}) b_e
+Recover x_e = A_ee^{-1} (b_e - A_eo y)
+```
+Notes: Halves problem dimension; improves conditioning. Works with CG/BiCGStab adapters.
+
+---
+
+#### VDM-A-035 - Multishift CG (simultaneous shifted solves)  <a id="vdm-a-035"></a>
+
+> Type: RUNTIME • Binding: PSEUDOCODE • State: read-only • Dependencies: SPD base matrix A, shifts {σ_k}
+
+Pseudocode (sketch):
+```text
+INPUT: A, b, shifts {σ_k}, tol
+Initialize single Krylov basis using base system (A+σ_0 I)
+Propagate recurrences for each shift to update x^{(k)} with shared directions
+Stop when all residuals meet tol (per-shift monitoring)
+RETURN {x^{(k)}}, iters, per-shift residuals
+```
+
+---
+
+#### VDM-A-036 - RG block-spin/field utility and collapse envelope  <a id="vdm-a-036"></a>
+
+> Type: INSTRUMENT • Binding: PSEUDOCODE • State: read-only • Dependencies: blocking kernel B_s  
+> Notes: Pairs with [VDM-E-136](../z.CANONICAL_Equations/00_EQUATIONS.md#vdm-e-136) and KPI [kpi-rg-collapse](../z.CANONICAL_Validation_Metrics/00_VALIDATION_METRICS.md#kpi-rg-collapse)
+
+Pseudocode:
+```text
+INPUT: field y (1D/ND), scales S={2,4,...}, kernel kind (average), reference curve (finest)
+for each s in S:
+  y_s := block_average(y, s)      # e.g., reshape-mean or ND strided kernel
+  (t_s, z_s) := rescale_to_unit(y_s)   # dimensionless axes and unit amplitude
+Compute reference (t_ref, z_ref) from y (finest)
+Define envelope E_max := max_{t in [0,1]} max_s | z_ref(t) - interp(z_s; t) |
+LOG: E_max, {s}, kernel kind
+RETURN { (t_s, z_s) }, E_max
+```
+
+Validation: Accept if E_max ≤ threshold per KPI; artifacts: overlay PNG, CSV series, JSON summary.
+
+---
