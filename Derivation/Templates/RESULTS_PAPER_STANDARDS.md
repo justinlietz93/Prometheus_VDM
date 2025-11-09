@@ -196,3 +196,43 @@ Summarize what was learned, referencing mathematical structures and computationa
 * Provenance:
   * Pin one artifact path for each KPI figure; filenames must share basenames with CSV/JSON logs (commit hash and seeds included).
   * If any gate fails, emit a contradiction report JSON and route outputs to failed_runs/ as per repository policy.
+
+## Self-organization audits (if pattern onset/branching is studied)
+
+Declare the self-organization backbone with canon anchors:
+
+* Excess entropy production (EEP): [VDM-E-150](Derivation/EQUATIONS.md#vdm-e-150)
+* Open-system entropy balance (branch diagnostic): [VDM-E-151](Derivation/EQUATIONS.md#vdm-e-151)
+* Leading-eigenvalue classification: [VDM-E-152](Derivation/EQUATIONS.md#vdm-e-152)
+* Local-potential Lyapunov (patterned steady states): [VDM-E-153](Derivation/EQUATIONS.md#vdm-e-153)
+
+Required gates and artifacts (all figures must have CSV/JSON sidecars of the same basename; include commit hash and seeds):
+
+1) Excess-entropy-production trend (EEP)
+   * KPI: [kpi-eep-trend](Derivation/VALIDATION_METRICS.md#kpi-eep-trend)
+   * Artifacts: EEP time series (PNG), CSV (t, eep, de_dt), JSON summary with gates
+   * Gate: worst positive tail slope of d/dt δ_pσ^(e) ≤ tol (default 1e−12); declare window rule and baseline σ⋆
+
+2) Bifurcation card (leading mode + branch classification)
+   * KPIs: [kpi-bifurcation-card](Derivation/VALIDATION_METRICS.md#kpi-bifurcation-card), [kpi-branch-classifier](Derivation/VALIDATION_METRICS.md#kpi-branch-classifier)
+   * Artifacts: per-control JSON card {control, Re(λ₁), Im(λ₁), branch, eigenmode_path?}; if a 2D eigenmode is available, include PNG
+   * Gate: detect sign change of Re(λ₁) across control sweep with min |Re(λ₁)| ≤ 1e−6 within solver’s tolerance; branch label must be consistent with EEP trend and mode presence
+
+3) Localized-structure detector
+   * KPI: [kpi-localized-structure](Derivation/VALIDATION_METRICS.md#kpi-localized-structure)
+   * Artifacts: overlay PNG marking connected components; JSON with per-component {area, equiv_radius, bbox, peak_value}, threshold θ, (dx,dy)
+   * Usage: instrument-level reporting (T2). For any phenomenon claim asserting localization, require count ≥ 1 plus component measures
+
+4) Branch stability overlay (control vs Re(λ₁))
+   * KPI: [kpi-branch-stability-plot](Derivation/VALIDATION_METRICS.md#kpi-branch-stability-plot)
+   * Artifacts: PNG overlay Re(λ₁) vs control with optional d/dt EEP trend and boundary entropy flux; declare units/sign conventions
+   * Recommendation: annotate where branches change stability; mark secondary bifurcation points when detected
+
+Open-system entropy accounting:
+
+* When boundary fluxes are present, decompose dS/dt into production vs boundary entropy flux per [VDM-E-151](Derivation/EQUATIONS.md#vdm-e-151) and include the decomposition either in the branch-stability overlay or in a separate panel. Declare which physical boundary terms are included (heat, matter, electrochemical).
+
+Provenance:
+
+* Pin one artifact path per required instrument (EEP, bifurcation card, localized detector, stability overlay). Filenames must share basenames with CSV/JSON logs (commit hash and seeds included).
+* If any gate fails, emit a contradiction report JSON (gate, threshold, seed, commit, artifact pointer) and route all outputs to failed_runs/ as per repository policy.

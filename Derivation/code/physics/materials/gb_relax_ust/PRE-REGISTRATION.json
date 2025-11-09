@@ -1,0 +1,40 @@
+{
+  "proposal_title": "GB_Oscillating_Load",
+  "tier_grade": "T2",
+  "commit": "8f94aeaa9e44c36ac3920e27e31b294b4e09381d",
+  "salted_provenance": "6d6062235683e542a5b7a46f9ff800c6eee47bd5d08d553c5ebce37d95f8faca",
+  "contact": [
+    "justin@neuroca.ai"
+  ],
+  "hypotheses": [
+    {
+      "id": "H1",
+      "statement": "<testable statement>",
+      "direction": "increase|decrease|no-change"
+    }
+  ],
+  "variables": {
+    "independent": [
+      "<var1>",
+      "<var2>"
+    ],
+    "dependent": [
+      "<response>"
+    ],
+    "controls": [
+      "<control1>"
+    ]
+  },
+  "pass_fail": [
+    {
+      "metric": "<name>",
+      "operator": ">=|<=|==|!=",
+      "threshold": 0,
+      "unit": "<unit>"
+    }
+  ],
+  "spec_refs": [
+    "Derivation/code/physics/materials/gb_relax_ust/specs/gb_oscillating_load.1.0.0.json"
+  ],
+  "registration_timestamp": "2025-11-08T21:48:03Z"
+}

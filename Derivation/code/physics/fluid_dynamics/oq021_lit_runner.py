@@ -27,8 +27,8 @@ from instrument_helpers.lit_tools import (
     IsotropicFluidCoeffs, build_L_isotropic_fluid, curie_mask, gate_report,
     parity_even, BoundaryEntropyFluxMonitor, write_lit_gate_artifacts
 )
-# Prigogine instruments (representation invariance, interference share, KPI writer)
-from instrument_helpers.prigogine_gates import (
+# Prigogine gate helpers (representation invariance, interference share, KPI writer)
+from validation_gate_helpers.nonequilibrium.prigogine_gates import (
     repr_invariance_check,
     interference_share,
     write_prigogine_kpi_artifacts,
@@ -78,6 +78,12 @@ def build_X_field(T, vx, vy, dx, dy, inv_T=True):
     return X
 
 def write_csv(path, sigmas):
+    """Write sigma values to a CSV file.
+
+    Args:
+        path (str): Path to the output CSV file.
+        sigmas (np.ndarray): Sigma values to write.
+    """
     Ny, Nx = sigmas.shape
     with open(path, "w", encoding="utf-8") as f:
         f.write("i,j,sigma\n")

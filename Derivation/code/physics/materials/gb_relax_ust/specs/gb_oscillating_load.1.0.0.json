@@ -1,0 +1,10 @@
+{
+  "run_name": "gb_oscillating_load",
+  "version": "1.0.0",
+  "tag": "gb-osc-v1",
+  "schema_ref": "Derivation/code/physics/materials/gb_relax_ust/schemas/gb-osc-v1.schema.json",
+  "parameters": {},
+  "seeds": [
+    0
+  ]
+}

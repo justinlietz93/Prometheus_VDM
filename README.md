@@ -9,9 +9,10 @@
 > **Author:** Justin K. Lietz  
 > **Contact:** <justin@neuroca.ai>  
 > <a href="https://orcid.org/0009-0008-9028-1366"><img src="https://img.shields.io/badge/ORCID-0009--0008--9028--1366-blue?" alt="ORCID: 0009-0008-9028-1366"></a>  
+> **Zenodo Community:** [Void Dynamics Model](https://zenodo.org/communities/void-dynamics-model/records?q=&l=list&p=1&s=10&sort=newest)
 >
 > **Created:** August 9, 2025  
-> **Last Updated:** November 4, 2025  
+> **Last Updated:** November 8, 2025  
 >
 > This research is protected under a dual-license to foster open academic  
 > research while ensuring commercial applications are aligned with the project's ethical principles.  

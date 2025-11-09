@@ -143,3 +143,162 @@ Authoring in RESULTS or domain READMEs SHALL:
 - de Groot, S. R., & Mazur, P. (1984). Non‑Equilibrium Thermodynamics. Dover.  
 - Öttinger, H. C. (2005). Beyond Equilibrium Thermodynamics. Wiley.  
 - VDM canon anchors: [Derivation/EQUATIONS.md](Derivation/EQUATIONS.md), [Derivation/VALIDATION_METRICS.md](Derivation/VALIDATION_METRICS.md), [Derivation/ALGORITHMS.md](Derivation/ALGORITHMS.md).
+
+## T2 Instrument Certification Framework (Meters-first, no phenomena claims)
+
+This section registers the certification plan for the four non-equilibrium meter stacks referenced in:
+
+- [docs/misc-standards/Oettinger_Upgrade_Map.md](Oettinger_Upgrade_Map.md)
+- [docs/misc-standards/DeGrand-DeTar_Upgrade_Map.md](DeGrand-DeTar_Upgrade_Map.md)
+- [docs/misc-standards/Self-Organization_Upgrade_Map.md](Self-Organization_Upgrade_Map.md)
+
+Scope: certify each meter as a T2 Instrument with falsifiable gates, datasets, runners, and artifact policy. No physics claims are made at T2; failures route to failed_runs/ with contradiction reports.
+
+---
+
+### A) GENERIC Structure Meter (Öttinger)
+
+Canon anchors and KPIs:
+
+- Evolution/structure: [VDM-E-140..146](../Derivation/EQUATIONS.md#vdm-e-140)  
+- KPIs: Poisson–Jacobi residual, degeneracy residuals, entropy nonnegativity, Curie compliance  
+  See [Derivation/VALIDATION_METRICS.md](../Derivation/VALIDATION_METRICS.md)
+
+Instrument definition (what is certified):
+
+- Correctness of the metriplectic scaffolding: bracket identity (restricted basis), degeneracies (L∇S=0, M∇E=0), non-negative entropy production, and Curie scalarization of admissible couplings.
+
+Gates (pass/fail, hard numbers):
+
+- Jacobi residual e_Jacobi ≤ 1e−12 (basis-restricted; histogram QQ-plot recorded)
+- Degeneracy residuals g1=||L∇S||∞ ≤ 1e−12, g2=||M∇E||∞ ≤ 1e−12
+- Entropy production monitor: per-step σ ≥ −1e−12 and cumulative ΔΣ ≥ −1e−12
+- Curie compliance: curie_ok = true and kpi-curie-violations = 0
+
+Datasets/benches:
+
+- Synthetic extended-hydrodynamics blocks with known Casimirs and isotropic constitutive forms; grid-refined ladders (N∈{64,128,256})
+
+Runner and artifacts:
+
+- Planned runner: Derivation/code/physics/metriplectic/generic_instrument_runner.py
+- Artifacts per run: PNG panels (Jacobi hist, σ(t)), CSV time series, JSON gate summary with commit+seeds
+
+Promotion file (proposal path):
+
+- Derivation/Metriplectic/T2_PROPOSAL_GENERIC_Structure_Meter_v1.md
+
+---
+
+### B) HMC Exactness Meter (DeGrand & DeTar)
+
+Canon anchors and KPIs:
+
+- Acceptance vs stepsize (leapfrog): [VDM-E-130](../Derivation/EQUATIONS.md#vdm-e-130), [kpi-hmc-acceptance-vs-stepsize](../Derivation/VALIDATION_METRICS.md#kpi-hmc-acceptance-vs-stepsize)
+- ΔH hist diagnostics: [VDM-E-131](../Derivation/EQUATIONS.md#vdm-e-131), [kpi-hmc-deltaH-hist](../Derivation/VALIDATION_METRICS.md#kpi-hmc-deltaH-hist)
+
+Instrument definition:
+
+- Quality of reversible, volume-preserving proposals plus Metropolis correction, measured via predicted scaling of 1−α(ε) and ΔH statistics.
+
+Gates:
+
+- Acceptance scaling: fit 1−α ≈ k ε^p on log–log; require p ∈ [3.5, 4.5], R² ≥ 0.98
+- ΔH hist: |median(ΔH)| ≤ 5·MAD/√N; |skew(ΔH)| ≤ 0.5 per ε; moments JSON recorded
+
+Datasets/benches:
+
+- Gaussian/quadratic targets; fixed path length L; ε ladder across 5–7 points; ≥ 100 trajectories per ε
+
+Runner and artifacts:
+
+- Planned runner: Derivation/code/physics/hmc/hmc_instrument_runner.py
+- Artifacts: Acceptance-vs-ε plot (PNG) with fit CSV/JSON; ΔH histogram panels + JSON moments per ε; commit+seeds in captions
+
+Promotion file (proposal path):
+
+- Derivation/MonteCarlo/T2_PROPOSAL_HMC_Exactness_Meter_v1.md
+
+---
+
+### C) LIT Core Meter (Near-Equilibrium — Representation/Reciprocity/Curie/Boundary)
+
+Canon anchors and KPIs:
+
+- Entropy production structure: [VDM-E-143](../Derivation/EQUATIONS.md#vdm-e-143)
+- KPIs: representation invariance, Onsager–Casimir residuals, Curie violations, open-system entropy balance, Φ monotonicity, rotation split
+  See [Derivation/VALIDATION_METRICS.md](../Derivation/VALIDATION_METRICS.md) and helper APIs in [Derivation/code/common/instrument_helpers/prigogine_gates.py](../Derivation/code/common/instrument_helpers/prigogine_gates.py)
+
+Instrument definition:
+
+- Coordinate-free correctness and isotropy of the LIT layer plus boundary-entropy accounting on conduction benches.
+
+Gates:
+
+- Repr invariance: max_rel(Δ_repr) ≤ 1e−12 (Haar A); ≤ 1e−10 (cond(A)≤10)
+- Onsager residuals: ||L−EL^T E||_F ≤ tol_F; ||·||_∞ ≤ tol_∞ (runner-declared)
+- Curie: curie_ok = true; kpi-curie-violations = 0
+- Open balance closure: |production − boundary − dS/dt| ≤ ε (declared)
+- Φ(T,T0) monotonic: ΔΦ ≤ 1e−12 per step
+- Rotation split: ||antisym(M)||∞ ≤ 1e−12; min eig(sym(M)) ≥ −1e−12
+
+Datasets/benches:
+
+- 2D conduction with Dirichlet walls; synthetic L blocks for parity tests; controlled transforms for repr-invariance trials
+
+Runner and artifacts:
+
+- Planned runner: Derivation/code/physics/thermodynamics/lit_instrument_runner.py
+- Artifacts: JSON gate summaries, Φ(t) PNG+CSV, boundary-flux JSON, optional bar charts for χ_cross
+
+Promotion file (proposal path):
+
+- Derivation/Thermodynamics/T2_PROPOSAL_LIT_Core_Meter_v1.md
+
+---
+
+### D) Self-Organization Onset Meter (Nicolis–Prigogine)
+
+Canon anchors and KPIs:
+
+- EEP/branch diagnostics: [VDM-E-150..153](../Derivation/EQUATIONS.md#vdm-e-150)
+- KPIs: [kpi-eep-trend](../Derivation/VALIDATION_METRICS.md#kpi-eep-trend), [kpi-bifurcation-card](../Derivation/VALIDATION_METRICS.md#kpi-bifurcation-card), [kpi-localized-structure](../Derivation/VALIDATION_METRICS.md#kpi-localized-structure), [kpi-branch-classifier](../Derivation/VALIDATION_METRICS.md#kpi-branch-classifier), [kpi-branch-stability-plot](../Derivation/VALIDATION_METRICS.md#kpi-branch-stability-plot)
+
+Instrument definition:
+
+- Meters that indicate approach to onset and classify branches without asserting a phenomenon beyond instrument calibration.
+
+Gates:
+
+- EEP trend non-increasing near equilibrium: worst positive tail slope ≤ 1e−12
+- Bifurcation detection: sign change in Re(λ1) with min |Re(λ1)| ≤ 1e−6
+- Branch classifier consistency: thermo/hopf/dissipative label agrees with EEP trend + spectrum + mode presence
+- Localized detector: report-only at T2; when used as phenomenon support later, require ≥1 component + measures
+- Overlay: report-only at T2; consistency annotations recommended
+
+Datasets/benches:
+
+- Linear RD around homogeneous state (analytic dispersion controls); simple Schnakenberg/Turing-like toy at parameters near first bifurcation; conduction benches for Φ
+
+Runner and artifacts:
+
+- Planned runner: Derivation/code/physics/self_org/self_org_instrument_runner.py
+- Artifacts: EEP series (PNG/CSV/JSON), bifurcation cards (JSON + optional eigenmode PNG), localized overlays (PNG/JSON), branch-stability overlay PNG
+
+Promotion file (proposal path):
+
+- Derivation/Nonequilibrium/T2_PROPOSAL_Self_Organization_Meters_v1.md
+
+---
+
+### Certification logistics (common to all)
+
+- Determinism receipts: record seeds, commit hashes, environment summary in JSON sidecars (RESULTS standards)
+- Artifact policy: each figure must have CSV/JSON with same basename; numeric captions include key metrics (slope, R², CI)
+- Failure handling: emit CONTRADICTION_REPORT.json and route to failed_runs/ on any gate failure
+- Approval: proposals require formal approval (see Derivation/code/ARCHITECTURE.md and authorization README)
+- CI hooks: add minimal runners to CI with seed=0 smoke; nightly expanded seeds/grids
+
+Status
+
+- All four instruments: “Planned for T2 certification.” This document registers the certification plan. Individual T2 PROPOSAL_* files will be added in their respective domains with identical gates and artifact requirements, referencing the same canon anchors and KPIs.

@@ -1,4 +1,4 @@
-# Derivation - Index and Hygiene
+# Derivation Canon - Index and Hygiene
 
 Last updated: 2025-10-13 (commit 6be73cf)
 
