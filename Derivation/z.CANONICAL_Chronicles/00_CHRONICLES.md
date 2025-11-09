@@ -412,7 +412,7 @@ Summary: Documentation anchors and cross-links for lattice-QCD-inspired meters a
 
 Paths-Changed:
 
-- docs/misc-standards/DeGrand-DeTar_Upgrade_Map.md
+- docs/misc-standards/standard-upgrades/DeGrand-DeTar_Upgrade_Map.md
 - Derivation/EQUATIONS.md#vdm-e-130
 - Derivation/EQUATIONS.md#vdm-e-131
 - Derivation/EQUATIONS.md#vdm-e-132
@@ -445,7 +445,7 @@ Canon-Docs-Updated:
 - RG blocking/collapse: [VDM-E-136](Derivation/EQUATIONS.md:2055)  
 - KPIs: HMC acceptance/ΔH, τ_int, τ-aware binning, correlated χ² SVD, resample CI stability, RG collapse (see VALIDATION_METRICS anchors above)  
 - Algorithms/pseudocode: HMC, RHMC, CG/BiCGStab, even–odd, multishift, RG utility (see ALGORITHMS anchors above)  
-- RESULTS standards: Chain sampling diagnostics section updated to require ΔH histograms, acceptance-vs-ε fits, τ_int reporting, τ-aware binning, correlated-fit cutoff sweep (see [Derivation/Templates/RESULTS_PAPER_STANDARDS.md:140](Derivation/Templates/RESULTS_PAPER_STANDARDS.md:140))
+- RESULTS standards: Chain sampling diagnostics section updated to require ΔH histograms, acceptance-vs-ε fits, τ_int reporting, τ-aware binning, correlated-fit cutoff sweep (see [Derivation/Writeup_Templates/RESULTS_PAPER_STANDARDS.md:140](Derivation/Writeup_Templates/RESULTS_PAPER_STANDARDS.md:140))
 
 Dependency-Notes:
 
@@ -456,7 +456,7 @@ Dependency-Notes:
 Provenance:
 
 - Source: [Lattice Methods for Quantum Chromodynamics — DeGrand &amp; DeTar](Derivation/References/Lattice-Field-Theory_&amp;_Discrete-Action-Principles/Lattice Methods for Quantum Chromodynamics -- Thomas A Degrand; Carleton Detar.pdf)  
-- Navigator: [docs/misc-standards/DeGrand-DeTar_Upgrade_Map.md](docs/misc-standards/DeGrand-DeTar_Upgrade_Map.md)
+- Navigator: [docs/misc-standards/standard-upgrades/DeGrand-DeTar_Upgrade_Map.md](docs/misc-standards/standard-upgrades/DeGrand-DeTar_Upgrade_Map.md)
 
 Approval/PR:
 
