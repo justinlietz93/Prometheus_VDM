@@ -1754,7 +1754,7 @@ x_\star \;=\; \lambda\,\ln\!\Big(\frac{A}{\delta}\Big)
 $$
 
 $$
-\mathcal{L}_\delta[\phi] \;\equiv\; \int_{x>x_\star}\!\Big(\kappa\,\lvert\nabla \phi\rvert^2 + \tfrac{r}{2}\,\phi^2\Big)\,dx
+\mathcal{L}*\delta[\phi] \;\equiv\; \int*{x>x_\star}\!\Big(\kappa\,\lvert\nabla \phi\rvert^2 + \tfrac{r}{2}\,\phi^2\Big)\,dx
 $$
 
 $$
@@ -1835,7 +1835,7 @@ $$
 **Context:** [RESULTS_Metriplectic_JMJ_RD_v1.md](Derivation/Metriplectic/Metriplectic_JMJ_RD/RESULTS_Metriplectic_JMJ_RD_v1.md:71-75) • Commit: HEAD • Last Updated: 2025-11-05T05:45:01Z
 
 $$
-\Phi^{\mathrm{JMJ}}_{\Delta t} \;=\; \Phi^{\mathrm{J}}_{\Delta t/2} \;\circ\; \Phi^{\mathrm{M}}_{\Delta t} \;\circ\; \Phi^{\mathrm{J}}_{\Delta t/2}, \qquad \text{global error } \mathcal{O}(\Delta t^2)
+\Phi^{\mathrm{JMJ}}*{\Delta t} \;=\; \Phi^{\mathrm{J}}*{\Delta t/2} \;\circ\; \Phi^{\mathrm{M}}*{\Delta t} \;\circ\; \Phi^{\mathrm{J}}*{\Delta t/2}, \qquad \text{global error } \mathcal{O}(\Delta t^2)
 $$
 
 **Notes:** Composition used throughout metriplectic runners; defect scaling and commutator context in [VDM-E-091](#vdm-e-091) and [VDM-E-103](#vdm-e-103).
@@ -1862,7 +1862,7 @@ $$
 **Context:** [PROPOSAL_RD_Discrete_Conservation_vs_Balance.md](Derivation/Conservation_Law/PROPOSAL_RD_Discrete_Conservation_vs_Balance.md:91-101) • Commit: HEAD • Last Updated: 2025-11-05T05:45:01Z
 
 $$
-\mathcal{L}_h[W] \;=\; \sum_{i} \Big[ \tfrac{D}{2}\,\lvert \nabla_h W_i \rvert^2 + \hat V(W_i) \Big] \,\Delta x, \qquad \hat V'(W) = -\,f(W)
+\mathcal{L}*h[W] \;=\; \sum*{i} \Big[ \tfrac{D}{2}\,\lvert \nabla_h W_i \rvert^2 + \hat V(W_i) \Big] \,\Delta x, \qquad \hat V'(W) = -\,f(W)
 $$
 
 Centered finite-difference operators:
@@ -1908,17 +1908,16 @@ $$
 
 **Notes:** Spec-level speed law used by the Telegraph-from-Relaxation instrument to calibrate finite-speed transport; appears across causality meters. TODO: add $c,\,D,\,\tau$ to SYMBOLS.md (see source lines).
 
-
 ---
- 
+
 #### VDM-E-130 - HMC Metropolis Rule and Acceptance–ΔH Relation
- 
+
 <!-- markdownlint-disable MD033 -->
 <a id="vdm-e-130"></a>
 <!-- markdownlint-enable MD033 -->
- 
+
 **Context:** [A4] Conservative J‑flow proposals validated by reversibility/volume‑preservation checks; acceptance used as a correctness gate (HMC).
- 
+
 Given a Hamiltonian $H(q,p)$ and a time‑reversible, volume‑preserving integrator proposal $(q,p)\mapsto(q',p')$, define the energy error
 
 $$
@@ -1932,17 +1931,17 @@ $$
 $$
 
 For a stepsize ladder $\varepsilon$, an acceptance–stepsize diagnostic fits the scaling of $1-\alpha(\varepsilon)$ on log–log axes (see [VALIDATION_METRICS.md#kpi-hmc-acceptance-vs-stepsize](VALIDATION_METRICS.md#kpi-hmc-acceptance-vs-stepsize)); deviations flag loss of reversibility/volume preservation or poor integrator tuning.
- 
+
 ---
- 
+
 #### VDM-E-131 - HMC Energy Error (ΔH) Moments and Histograms
- 
+
 <!-- markdownlint-disable MD033 -->
 <a id="vdm-e-131"></a>
 <!-- markdownlint-enable MD033 -->
- 
+
 **Context:** Acceptance diagnostics for HMC (ΔH distribution).
- 
+
 For samples $\{\Delta H_k\}_{k=1}^N$ at fixed stepsize $\varepsilon$, define sample moments
 
 $$
@@ -1951,17 +1950,17 @@ s^2=\frac{1}{N-1}\sum_k(\Delta H_k-\bar{\Delta H})^2,
 $$
 
 with skewness and kurtosis computed in the usual standardized form. Histogram panels and JSON sidecars record $(\bar{\Delta H}, s^2, \text{skew}, \text{kurt})$ per $\varepsilon$ per RESULTS standards. Gates live in [VALIDATION_METRICS.md#kpi-hmc-deltaH-hist](VALIDATION_METRICS.md#kpi-hmc-deltaH-hist).
- 
+
 ---
- 
+
 #### VDM-E-132 - Integrated Autocorrelation Time (τ_int)
- 
+
 <!-- markdownlint-disable MD033 -->
 <a id="vdm-e-132"></a>
 <!-- markdownlint-enable MD033 -->
- 
+
 **Context:** Chain‑correlation quantification for uncertainty estimates.
- 
+
 For an observable time series $\{O_t\}_{t=1}^{N}$ with empirical mean $\hat\mu$ and autocovariance
 
 $$
@@ -1975,17 +1974,17 @@ $$
 $$
 
 with window $W$ chosen by a positive‑sequence/initial‑convex‑sequence rule. The effective sample size is $\mathrm{ESS}=N/(2\tau_{\text{int}})$. Binning and resampling gates reference this definition (see [VALIDATION_METRICS.md#kpi-binning-adequacy](VALIDATION_METRICS.md#kpi-binning-adequacy)).
- 
+
 ---
- 
+
 #### VDM-E-133 - τ‑Aware Binning (Definitions)
- 
+
 <!-- markdownlint-disable MD033 -->
 <a id="vdm-e-133"></a>
 <!-- markdownlint-enable MD033 -->
- 
+
 **Context:** Honest error bars for correlated chains.
- 
+
 Partition the sequence into $M$ bins of width $B$ (assume $N=MB$) and define binned means
 
 $$
@@ -1996,21 +1995,21 @@ $$
 The variance estimator from bins is
 
 $$
-\widehat{\mathrm{Var}}_{\text{bin}}(\bar O) \;=\; \frac{1}{M(M-1)}\sum_{j=1}^{M}\bigl(\bar O_j-\bar O\bigr)^2.
+\widehat{\mathrm{Var}}*{\text{bin}}(\bar O) \;=\; \frac{1}{M(M-1)}\sum*{j=1}^{M}\bigl(\bar O_j-\bar O\bigr)^2.
 $$
 
 Adequacy requires $B\ge 2\,\tau_{\text{int}}$ and stability of CI width under $B\mapsto 2B$ (gate in [VALIDATION_METRICS.md#kpi-binning-adequacy](VALIDATION_METRICS.md#kpi-binning-adequacy)).
- 
+
 ---
- 
+
 #### VDM-E-134 - Correlated χ² with SVD Truncation
- 
+
 <!-- markdownlint-disable MD033 -->
 <a id="vdm-e-134"></a>
 <!-- markdownlint-enable MD033 -->
- 
+
 **Context:** Fits with full covariance and numerically stable inverse.
- 
+
 For data vector $y\in\mathbb{R}^n$, model $\mu(\theta)$, and covariance $C$, define
 
 $$
@@ -2021,45 +2020,45 @@ with SVD (or eigen) truncation $C=V\Sigma V^\top$, $\Sigma=\mathrm{diag}(\sigma_
 
 $$
 C^{+} \;=\; V\,\Sigma^{+}\,V^\top,\qquad
-\Sigma^{+}_{ii} \;=\; \begin{cases}
-1/\sigma_i, & \sigma_i \ge \sigma_{\mathrm{cut}},\\[4pt]
+\Sigma^{+}*{ii} \;=\; \begin{cases}
+1/\sigma_i, & \sigma_i \ge \sigma*{\mathrm{cut}},\\[4pt]
 0, & \text{otherwise},
 \end{cases}
 $$
 
 where $\sigma_{\mathrm{cut}}$ follows a knee/variance‑capture policy. Stability is assessed by parameter/χ²/dof constancy across a cutoff sweep (gate in [VALIDATION_METRICS.md#kpi-correlated-chi2-svd](VALIDATION_METRICS.md#kpi-correlated-chi2-svd)).
- 
+
 ---
- 
+
 #### VDM-E-135 - Blocked Jackknife and Bootstrap (Definitions)
- 
+
 <!-- markdownlint-disable MD033 -->
 <a id="vdm-e-135"></a>
 <!-- markdownlint-enable MD033 -->
- 
+
 **Context:** Resampling for correlated data.
- 
+
 - Block‑jackknife (delete‑$d$): form $M$ blocks of size $J$ and compute leave‑one‑block‑out estimates $\{\hat\theta_{(j)}\}_{j=1}^M$; the jackknife mean and variance are
 
 $$
 \hat\theta_{\text{JK}}=\frac{1}{M}\sum_{j=1}^{M}\hat\theta_{(j)},\qquad
-\widehat{\mathrm{Var}}_{\text{JK}}=\frac{M-1}{M}\sum_{j=1}^{M}\bigl(\hat\theta_{(j)}-\hat\theta_{\text{JK}}\bigr)^2.
+\widehat{\mathrm{Var}}*{\text{JK}}=\frac{M-1}{M}\sum*{j=1}^{M}\bigl(\hat\theta_{(j)}-\hat\theta_{\text{JK}}\bigr)^2.
 $$
 
 - Moving‑block bootstrap: resample blocks of length $J$ with replacement to synthesize series of length $N$; compute bootstrap CIs from the resample distribution.
- 
+
 Gates require $J\ge \tau_{\text{int}}$ and CI‑width stability (see [VALIDATION_METRICS.md#kpi-resample-ci-stability](VALIDATION_METRICS.md#kpi-resample-ci-stability)).
- 
+
 ---
- 
+
 #### VDM-E-136 - RG Blocking Operator and Scaling Map
- 
+
 <!-- markdownlint-disable MD033 -->
 <a id="vdm-e-136"></a>
 <!-- markdownlint-enable MD033 -->
- 
+
 **Context:** Operationalizing the A6 scale program via blocking and rescaling.
- 
+
 Let $s\in\{2,4,\dots\}$ be the scale factor. Define a block‑field map $B_s$ acting on a lattice field $\phi$ by local averaging (or another admissible kernel) over blocks of linear size $s$, combined with a rescaling exponent $\Delta_\phi$:
 
 $$
@@ -2204,3 +2203,151 @@ Admissible couplings in M and constitutive laws must be scalar under the problem
 - Scalars from vectors/tensors: $D\!:\!D$, $(\nabla c)\!\cdot\!(\nabla c)$, $\mathrm{tr}(D)$.
 - No vector term proportional to a scalar gradient alone; no rank‑mismatch products.
 This equation entry serves as the formal reference for KPI [kpi-curie-compliance](Derivation/VALIDATION_METRICS.md#kpi-curie-compliance).
+
+---
+
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-150"></a>
+<!-- markdownlint-enable MD033 -->
+
+#### VDM-E-150 - Excess Entropy Production (EEP) Near Steady State
+
+**Context:** Self-organization meters near equilibrium (Nicolis–Prigogine, 1977; see Derivation/References/Nonequilibrium_&_Entropy/self-organization.md).
+
+Let $\sigma(x,t)$ be the entropy production density and let $\sigma_\star(x)$ denote the baseline (reference steady state under the same boundary conditions). Define the excess-EP field and its spatially integrated form
+$$
+\sigma^{(e)}(x,t) := \sigma(x,t) - \sigma_\star(x),\qquad
+\delta_p\sigma^{(e)}(t) := \int_\Omega \big(\sigma(x,t)-\sigma_\star(x)\big)\,dV.
+$$
+
+In the linear (near‑equilibrium) regime with fixed boundaries, the evolution criterion reads
+$$
+\frac{d}{dt}\,\delta_p\sigma^{(e)}(t)\;\le\;0,
+$$
+with loss of this monotonicity signalling approach to a bifurcation point for the reference state. Used by KPI gates: trend test and sign‑change detection (see VALIDATION_METRICS.md).
+
+---
+
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-151"></a>
+<!-- markdownlint-enable MD033 -->
+
+#### VDM-E-151 - Open-System Entropy Balance (Branching Diagnostic)
+
+For open systems with heat flux $ \mathbf q $ through the boundary $ \partial\Omega $ and absolute temperature $T$,
+$$
+\frac{dS}{dt}
+\;=\;
+\underbrace{\int_{\Omega}\sigma\,dV}*{\text{production}}
+\;-\;
+\underbrace{\oint*{\partial\Omega}\frac{\mathbf q\!\cdot\!\mathbf n}{T}\,dA}_{\text{boundary entropy flux (outward normal)}},
+$$
+where the sign convention takes $\mathbf n$ as the outward unit normal. Plotting $dS/dt$ and its constituents against the leading eigenvalue (VDM‑E‑152) distinguishes branches and their stability near onset. The boundary term may be computed by constitutive closure (e.g., Fourier heat flux $\mathbf q=-\kappa\nabla T$).
+
+---
+
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-152"></a>
+<!-- markdownlint-enable MD033 -->
+
+#### VDM-E-152 - Leading-Eigenvalue Classification and Critical Control
+
+Let $u_\mathrm{ref}$ be a reference steady state and $ \mathcal L(\beta) $ the linearized operator of the dynamics about $u_\mathrm{ref}$ at control parameter $\beta$ (includes BCs). For perturbations $v$,
+$$
+\partial_t v \;=\; \mathcal L(\beta)\,v,\qquad
+\mathcal L(\beta)\,e_k \;=\; \lambda_k(\beta)\,e_k.
+$$
+Define the leading eigenvalue $ \lambda_1(\beta) $ by maximal real part. Classification:
+- Stable steady branch (thermodynamic branch): $\mathrm{Re}\,\lambda_1(\beta) &lt; 0$.
+- Steady bifurcation: $\mathrm{Re}\,\lambda_1(\beta_c)=0$ with $\mathrm{Im}\,\lambda_1(\beta_c)=0$.
+- Hopf bifurcation: $\mathrm{Re}\,\lambda_1(\beta_c)=0$ with $\mathrm{Im}\,\lambda_1(\beta_c)\neq 0$.
+The corresponding null (critical) eigenfunction $e_1(x;\beta_c)$ provides the mode shape at onset; $\beta_c$ solves $\mathrm{Re}\,\lambda_1(\beta_c)=0$ and depends on domain size and boundary conditions (e.g., Dirichlet vs no‑flux). Artifacts record $\{\beta_c,\mathrm{Re}\lambda_1,\mathrm{Im}\lambda_1,e_1\}$ for branch tracking.
+
+---
+
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-153"></a>
+<!-- markdownlint-enable MD033 -->
+
+#### VDM-E-153 - Local-Potential Lyapunov Functional for Patterned Steady States
+
+In conduction and certain pattern‑forming contexts, a local potential functional decreases monotonically to a (possibly non‑uniform) steady state. For conduction with Dirichlet walls and reference profile $T_0(x)$,
+$$
+\Phi[T;T_0] \;=\; \int_\Omega \big(T(x)-T_0(x)\big)^2\,dV,
+\qquad \frac{d}{dt}\Phi \;\le\; 0,
+$$
+under linear diffusion with fixed $T_0$ (no internal sources). In extended settings (e.g., scalar order parameter $u$ with gradient flow), a generalized local potential $ \Phi[u] = \int_\Omega W(u,x)\,dV $ with convex $W$ in $u$ yields $ d\Phi/dt\le 0 $ up to boundary work terms accounted by VDM‑E‑151. Plateau of $\Phi$ together with $\mathrm{Re}\,\lambda_1\!\lesssim\!0$ indicates convergence to a stable patterned steady. Gates and artifact requirements are defined in VALIDATION_METRICS.md and RESULTS_PAPER_STANDARDS.md.
+
+---
+
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-160"></a>
+<!-- markdownlint-enable MD033 -->
+
+#### VDM-E-160 - Grain-Boundary Excess Energy Quadratic Law (γ²)
+
+Context: Boundaries/GB relaxation meter (Nazarov–Murzaev 2018; lattice relaxation under oscillatory load). This entry registers the canonical anchor for the empirical quadratic relation between excess GB energy and a scalar misfit/strain-like measure (“γ² law”) used operationally in VDM instruments.
+
+Definition policy (no duplication): Do not restate literature formulas or fixed constants here. The operational definition and fit are implemented at
+- Derivation/code/common/instrument_helpers/boundaries/gb_energy_gamma2_fitter.py:1
+
+Used by gates: VALIDATION_METRICS.md#kpi-gb-gamma2-law. See ALGORITHMS.md#vdm-a-047 for the meter flow.
+
+---
+
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-161"></a>
+<!-- markdownlint-enable MD033 -->
+
+#### VDM-E-161 - Asymmetric Emission Threshold (p₀⋆)
+
+Context: Boundaries/GB emission under oscillatory load. Anchor for the minimal control amplitude p₀⋆ at which emission events occur together with a cycle‑wise decrease in excess GB energy (compatibility with relaxation).
+
+Definition policy: Threshold is defined by event logic (≥1 emission AND ΔE_ex<0 over cycle) aggregated across runs. No numeric baseline is canonized here. Implementation at
+- Derivation/code/common/instrument_helpers/boundaries/gb_emission_threshold.py:1
+
+Used by gates: VALIDATION_METRICS.md#kpi-gb-asym-threshold. See ALGORITHMS.md#vdm-a-049.
+
+---
+
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-162"></a>
+<!-- markdownlint-enable MD033 -->
+
+#### VDM-E-162 - Cycle‑Lyapunov Monotonicity for Excess GB Energy
+
+Context: Metric‑limb relaxation under cyclic protocol. Anchor for the per‑cycle Lyapunov‑like descent condition on excess GB energy, used as an instrument gate over cycles.
+
+Definition policy: Register the monotonicity criterion only (no constants). Implementation at
+- Derivation/code/common/instrument_helpers/boundaries/gb_cycle_lyapunov.py:1
+
+Used by gates: VALIDATION_METRICS.md#kpi-gb-lyapunov-cycle. Algorithmic use: ALGORITHMS.md#vdm-a-047.
+
+---
+
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-163"></a>
+<!-- markdownlint-enable MD033 -->
+
+#### VDM-E-163 - Moiré‑Contrast Observable (Spectral Ring Index)
+
+Context: Quantification of long‑range internal stress patterns at GBs. Anchor for a spectral ring contrast observable defined as a ratio of non‑DC ring power to baseline spectral level.
+
+Definition policy: Do not restate a closed‑form formula; the observable is defined operationally by the 2D FFT radial PSD procedure at
+- Derivation/code/common/instrument_helpers/boundaries/gb_moire_contrast.py:1
+
+Used by: ALGORITHMS.md#vdm-a-048; optional KPI usage in meter reports.
+
+---
+
+<!-- markdownlint-disable MD033 -->
+<a id="vdm-e-164"></a>
+<!-- markdownlint-enable MD033 -->
+
+#### VDM-E-164 - Dimensionless Groups for GB Scaling Collapse (ĤE, Π_p, ν̂)
+
+Context: Scale‑program gate (A6) for GB relaxation under protocol variations. Anchor for the dimensionless rescalings used to test scaling collapse across control parameters and timescales.
+
+Definition policy: Register names only; definitions are provided by the instrument runner and RESULTS, with references to UNITS_NORMALIZATION.md. The collapse gate links here for provenance.
+
+Used by gates: VALIDATION_METRICS.md#kpi-gb-dimless-collapse. Algorithmic flow: ALGORITHMS.md#vdm-a-050.

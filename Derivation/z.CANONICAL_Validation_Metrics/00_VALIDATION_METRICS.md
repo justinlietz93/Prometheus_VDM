@@ -3,7 +3,7 @@
 <!-- markdownlint-disable MD033 MD022 MD032 MD001 -->
 # VDM Validation Metrics & KPIs (Auto-compiled)
 
-Last updated: 2025-10-13 (commit a9e1c6c)
+Last updated: 2025-11-08 (commit c187fea979a097fe3940fef40638e5cb848417b4)
 
 **Scope:** Single source of truth for validation metrics used in this repository: names, purposes, thresholds/bands, and references to their definitions and implementations.  
 **Rules:** Reference-only. Link to equations/constants/symbols/scripts; do not restate formulas here.  
@@ -854,6 +854,35 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 - Primary figure/artifact (if referenced): Audit JSON; list of flagged couplings if any
 - Notes: Advisory KPI; failures block merge until resolved.
 
+#### Onsager–Casimir Reciprocity Residuals  <a id="kpi-onsager-resid"></a>
+
+- Symbol (if any): `kpi-onsager-resid-fro`, `kpi-onsager-resid-linf`
+- Purpose: Quantify deviation from Onsager–Casimir reciprocity in the near‑equilibrium LIT layer: L ≈ E L^T E with parity matrix E = diag(ε_j) (ε_j = ±1).
+- Defined by: Reciprocity condition in near‑equilibrium irreversible thermodynamics; see de Groot & Mazur (Dover 1984), Ch. IV–VI. Links to Curie scalarization [VDM-E-146](Derivation/EQUATIONS.md#vdm-e-146).
+- Inputs: Phenomenological matrix L (per basis ordering), parity vector ε (even/odd under time reversal).
+- Computation implemented at: [lit_tools.py](Derivation/code/common/instrument_helpers/lit_tools.py) (gate_report + writer)
+- Definition:
+  - `kpi-onsager-resid-fro = ||L - E L^T E||_F`
+  - `kpi-onsager-resid-linf = ||L - E L^T E||_∞`
+- Pass band / thresholds: Tolerances declared per runner; typical near‑equilibrium target `kpi-onsager-resid-fro ≤ 1e-12` (double-precision screen).
+- Units / normalization: Units of L; residuals are homogeneous with L’s entries.
+- Typical datasets / experiments: OQ‑021 near‑equilibrium audits; steady conduction/viscous baseline checks.
+- Primary figure/artifact (if referenced): JSON log written by gate writer with both residuals and parity tag.
+- Notes: Failing this KPI in LIT regime flags microreversibility/parity assignment issues or unit leaks.
+
+#### Curie Violations Count (Audit)  <a id="kpi-curie-violations"></a>
+
+- Symbol (if any): `kpi-curie-violations` (integer)
+- Purpose: Count nonzero entries in L (or M, constitutive blocks) that violate Curie’s tensor‑rank selection rules under isotropy.
+- Defined by: Curie principle scalarization [VDM-E-146](Derivation/EQUATIONS.md#vdm-e-146).
+- Inputs: Declared tensor ranks per force/flux basis; mask of allowed couplings for isotropic media.
+- Computation implemented at: [lit_tools.py](Derivation/code/common/instrument_helpers/lit_tools.py) (gate_report + writer)
+- Pass band / thresholds: `kpi-curie-violations = 0`
+- Units / normalization: n/a
+- Typical datasets / experiments: Same as Curie compliance audit; isotropic fluid L blocks.
+- Primary figure/artifact (if referenced): JSON log with integer violation count and optional list of indices (domain‑specific).
+- Notes: Complements boolean [kpi-curie-compliance](#kpi-curie-compliance) by providing an integer diagnostic for CI diffs.
+
 ---
 ### Fluid Dynamics (Extended Hydrodynamics — Corner Regularization, OQ‑021)
 
@@ -895,3 +924,218 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 - Typical datasets / experiments: Same as above
 - Primary figure/artifact (if referenced): σ(t) panel; CSV/JSON
 - Notes: This KPI operationalizes the H-theorem for the extended hydrodynamics with structural variable c.
+
+---
+
+### Prigogine Near‑Equilibrium Instruments (LIT Enhancements)
+
+#### Representation Invariance of Entropy Production  <a id="kpi-lit-repr-invariance"></a>
+
+- Symbol (if any): `Δ_repr`
+- Purpose: Certify that the entropy production density is representation‑invariant under admissible linear transforms of forces/fluxes, i.e. with (X′, J′) = (A X, A^{−T} J) one has σ′ = σ. Catches force/flux bookkeeping and units leaks.
+- Defined by: Open‑system near‑equilibrium LIT; invariance property of dS/dt under linear changes of rates and affinities (Prigogine, Ch. IV §1–2). Canonical σ anchor: [VDM‑E‑143](Derivation/EQUATIONS.md#vdm-e-143).
+- Inputs: Phenomenological matrix L (m×m), force field X_field (N×m); transform sampler A with conditioning control.
+- Computation implemented at: [prigogine_gates.py](Derivation/code/common/instrument_helpers/prigogine_gates.py) (`repr_invariance_check`)
+- Definition: For each trial A, compute σ = ⟨X, L X⟩ and σ′ = ⟨X′, J′⟩ with J′ = A^{−T} J, report `Δ_repr = |σ − σ′|` (max and relative vs max|σ|).
+- Pass band / thresholds:
+  - For orthonormal A (“haar”): `max_rel(Δ_repr) ≤ 1e−12`.
+  - For well‑conditioned A (cond(A) ≤ 10): `max_rel(Δ_repr) ≤ 1e−10`. Record cond(A).
+- Units / normalization: Relative error normalized by max(1, max|σ|).
+- Typical datasets / experiments: LIT audits (fluids, heat conduction) and pre‑publish QC.
+- Primary figure/artifact (if referenced): JSON summary with per‑trial `condA`, `max_abs_diff`, `rel_max_diff`.
+- Notes: Runner declares sampler mode and number of trials; orthonormal tests are recommended for gating.
+
+#### Interference (Cross‑Coupling) Share  <a id="kpi-lit-interference-share"></a>
+
+- Symbol (if any): `χ_cross`
+- Purpose: Quantify off‑diagonal (“interference”) contribution to σ and assert PSD of diagonal blocks in the declared tensor‑rank basis; flushes illegal cross‑couplings beyond Curie/Onsager.
+- Defined by: Quadratic form decomposition of σ with block‑positivity conditions (Prigogine, Ch. IV §2–4). Curie scalarization: [VDM‑E‑146](Derivation/EQUATIONS.md#vdm-e-146).
+- Inputs: L (m×m) in the declared isotropic basis; block index sets for diagonal PSD checks; X_field (N×m).
+- Computation implemented at: [prigogine_gates.py](Derivation/code/common/instrument_helpers/prigogine_gates.py) (`interference_share`)
+- Definition: `χ_cross = σ_off / σ_total`, where σ_off is the contribution from L’s off‑diagonal entries; assert each diagonal block (symmetric part) is PSD.
+- Pass band / thresholds:
+  - Isotropic L with Curie mask: `χ_cross = 0` and all diagonal blocks PSD (min eig ≥ −1e−12).
+  - General audits: report `χ_cross`; warn if `χ_cross > 0.05` unless physics dictates coupling.
+- Units / normalization: Dimensionless fraction.
+- Typical datasets / experiments: OQ‑021 near‑equilibrium audits; multi‑channel transport checks.
+- Primary figure/artifact (if referenced): JSON summary; optional bar chart (diag vs cross) in RESULTS.
+- Notes: Basis must be stated; use the same basis employed to construct L and Curie masks.
+
+#### Open‑System Entropy Balance (Volume vs Boundary)  <a id="kpi-entropy-balance-open"></a>
+
+- Symbol (if any): none
+- Purpose: Report decomposition of total entropy change into volume production and boundary entropy flux for non‑isolated domains (walls/corners).
+- Defined by: Open‑system entropy balance (Prigogine, Ch. III §8–10). Canon σ anchor: [VDM‑E‑143](Derivation/EQUATIONS.md#vdm-e-143).
+- Inputs: σ field over Ω; cell volume dV; boundary entropy flux components (e.g., heat term −∮ (q·n)/T dA; matter/electrochemical terms if present); optional dS/dt estimate.
+- Computation implemented at: [prigogine_gates.py](Derivation/code/common/instrument_helpers/prigogine_gates.py) (`compute_boundary_heat_entropy_flux`, `entropy_balance_open`)
+- Pass band / thresholds: Report‑required. If dS/dt is available, closure residual `|production − boundary − dS/dt| ≤ ε` (runner‑declared ε).
+- Units / normalization: Entropy units under normalization; report units in JSON.
+- Typical datasets / experiments: OQ‑021 wall/corner runs; conduction benches.
+- Primary figure/artifact (if referenced): JSON with `production`, `boundary_entropy_flux`, optional `closure_residual`.
+- Notes: Boundary components must specify physical content (heat, matter, etc.).
+
+#### Conduction Lyapunov Potential Monotonicity  <a id="kpi-phi-conduction-monotone"></a>
+
+- Symbol (if any): `Φ`
+- Purpose: Provide an auxiliary Lyapunov functional for heat conduction with fixed boundary values; monitor monotonic decay toward steady state.
+- Defined by: Local potential for conduction (Prigogine, Ch. VII §6). Canon anchors for conduction equations reside in EQUATIONS registry.
+- Inputs: Temperature field T(t), reference steady boundary solution T0 (or proxy), timestep Δt, cell volume dV.
+- Computation implemented at: [prigogine_gates.py](Derivation/code/common/instrument_helpers/prigogine_gates.py) (`PhiConductionMonitor`)
+- Definition: Proxy `Φ(T,T0) = ∫ (T − T0)^2 dV`. Gate: per‑step `ΔΦ ≤ tol` (with tol ≈ 1e−12).
+- Pass band / thresholds: `phi_monotone_ok = true` (tolerance‑guarded).
+- Units / normalization: Quadratic in temperature; normalized per RESULTS description.
+- Typical datasets / experiments: Conduction subproblems with Dirichlet boundaries; wall/corner conduction regimes.
+- Primary figure/artifact (if referenced): Time‑series PNG of Φ(t); JSON/CSV summaries.
+- Notes: Only applicable when boundary‑value conduction assumptions hold; optional KPI.
+
+#### Rotation Split Audit (Near Stationarity)  <a id="kpi-rotation-split"></a>
+
+- Symbol (if any): none
+- Purpose: Ensure antisymmetric couplings near steady state are attributed to the reversible Poisson limb J, not to the metric limb M; catch antisymmetric leakage in M.
+- Defined by: Near‑stationary rotation analysis (Prigogine, Ch. VII §5). GENERIC structure: [VDM‑E‑140..145](Derivation/EQUATIONS.md#vdm-e-140).
+- Inputs: Estimated near‑equilibrium metric block M (or local M proxy); tolerance.
+- Computation implemented at: [prigogine_gates.py](Derivation/code/common/instrument_helpers/prigogine_gates.py) (`rotation_split_audit`)
+- Definition: Report `|| (M − M^T)/2 ||_∞` and min eigenvalue of `sym(M)`; gate antisymmetric leakage.
+- Pass band / thresholds: `||antisym(M)||_∞ ≤ 1e−12` (or ratio ≤ 1e−6 vs `||sym(M)||`), min eig of `sym(M)` ≥ −1e−12.
+- Units / normalization: Units of M; gate expressed in absolute or relative form.
+- Typical datasets / experiments: LIT linearizations near steady; QC in metriplectic runners.
+- Primary figure/artifact (if referenced): JSON summary with norms/eigs, tolerance, and pass/fail.
+- Notes: When linearization is unreliable, treat as advisory.
+
+### Self‑Organization Meters (Nicolis–Prigogine)
+
+#### Excess‑Entropy‑Production Trend (Self‑Organization)  <a id="kpi-eep-trend"></a>
+
+- Symbol (if any): δ_pσ^(e)(t), d/dt δ_pσ^(e)  
+- Purpose: Monitor the excess entropy production around a steady state and enforce the near‑equilibrium evolution criterion d/dt δ_pσ^(e) ≤ 0; loss of monotonicity flags approach to bifurcation.  
+- Defined by: [VDM‑E‑150](Derivation/EQUATIONS.md#vdm-e-150)  
+- Inputs: Entropy production field σ(x,t); baseline σ_⋆(x) at the reference state; cell volume dV; time stamps.  
+- Computation implemented at: [Derivation/code/common/instrument_helpers/prigogine_gates.py](Derivation/code/common/instrument_helpers/prigogine_gates.py)  
+- Pass band / thresholds: Rolling worst positive slope over tail window ≤ tol, with default tol = 1e−12; report JSON+CSV+PNG.  
+- Units / normalization: Entropy units (normalized per code conventions).  
+- Typical datasets / experiments: Near‑equilibrium sweeps of control parameter in RD/conduction/corner regimes.  
+- Primary figure/artifact (if referenced): EEP time‑series panel; CSV time series; JSON summary with gate.  
+- Notes: Baseline σ_⋆ must be computed under the same boundary conditions.
+
+#### Bifurcation Card (Leading‑Mode Audit)  <a id="kpi-bifurcation-card"></a>
+
+- Symbol (if any): Re(λ₁), Im(λ₁)  
+- Purpose: Record the leading eigenvalue/eigenmode and branch classification near onset; detect steady vs Hopf bifurcation and log critical control β_c.  
+- Defined by: [VDM‑E‑152](Derivation/EQUATIONS.md#vdm-e-152)  
+- Inputs: Control parameter β; leading eigenvalue (Re λ₁, Im λ₁); (optional) leading eigenfunction e₁(x).  
+- Computation implemented at: [Derivation/code/common/instrument_helpers/prigogine_gates.py](Derivation/code/common/instrument_helpers/prigogine_gates.py)  
+- Pass band / thresholds: Report‑required. If a sweep crosses a bifurcation, require detection of sign change in Re(λ₁) with min |Re(λ₁)| ≤ 1e−6 within the search tolerance; JSON must include {control, Re, Im, branch, eigenmode_path?}.  
+- Units / normalization: Eigenvalue in 1/time units if dimensionalized; otherwise dimensionless (normalized).  
+- Typical datasets / experiments: RD pattern onsets; conduction instabilities with boundary forcing; corner regularization thresholds.  
+- Primary figure/artifact (if referenced): Leading‑mode PNG (if 2D field); bifurcation card JSON.
+
+#### Localized‑Structure Detector  <a id="kpi-localized-structure"></a>
+
+- Symbol (if any): count; {area, r_eq, peak} per component  
+- Purpose: Detect and quantify localized dissipative structures (connected super‑threshold regions), reporting counts, sizes, and bounding boxes.  
+- Defined by: Context in [VDM‑E‑152](Derivation/EQUATIONS.md#vdm-e-152) (mode shapes near onset) and self‑organization notes.  
+- Inputs: Scalar activity field A(x); threshold θ; grid spacings (dx, dy).  
+- Computation implemented at: [Derivation/code/common/instrument_helpers/prigogine_gates.py](Derivation/code/common/instrument_helpers/prigogine_gates.py)  
+- Pass band / thresholds: Report‑required (T2 instrument). When a phenomenon claim asserts localization, require count ≥ 1 and component measures reported; otherwise advisory.  
+- Units / normalization: Areas in (dx·dy) units; r_eq from area.  
+- Typical datasets / experiments: RD mesas/spikes; conduction hot‑spots; telegraph+RD localized steady solutions.  
+- Primary figure/artifact (if referenced): Field overlay PNG with component boxes; JSON with per‑component metrics.
+
+#### Branch Classifier (Thermodynamic vs Dissipative vs Hopf)  <a id="kpi-branch-classifier"></a>
+
+- Symbol (if any): branch ∈ {thermo, dissipative, hopf}  
+- Purpose: Classify the operating branch using EEP trend, spectral sign, and mode presence.  
+- Defined by: [VDM‑E‑150](Derivation/EQUATIONS.md#vdm-e-150), [VDM‑E‑152](Derivation/EQUATIONS.md#vdm-e-152)  
+- Inputs: EEP trend slope (tail fit), Re(λ₁), Im(λ₁), has_nontrivial_mode (boolean).  
+- Computation implemented at: [Derivation/code/common/instrument_helpers/prigogine_gates.py](Derivation/code/common/instrument_helpers/prigogine_gates.py)  
+- Pass band / thresholds: Consistency gate:
+  - thermo only if Re(λ₁) < 0, EEP trend ≤ 0, and no nontrivial mode;  
+  - hopf only if |Re(λ₁)| ≤ tol_re and Im(λ₁) ≠ 0;  
+  - otherwise dissipative.  
+  JSON must include inputs and the assigned branch; `classification_consistent = true`.  
+- Units / normalization: As per inputs.  
+- Typical datasets / experiments: All near‑onset scans.  
+- Primary figure/artifact (if referenced): Included in bifurcation card JSON.
+
+#### Branch Stability Plot (Overlay)  <a id="kpi-branch-stability-plot"></a>
+
+- Symbol (if any): —  
+- Purpose: Provide a diagnostic overlay of control vs Re(λ₁) with optional EEP trend and boundary entropy flux to visualize branch stability and secondary bifurcations.  
+- Defined by: [VDM‑E‑151](Derivation/EQUATIONS.md#vdm-e-151), [VDM‑E‑152](Derivation/EQUATIONS.md#vdm-e-152)  
+- Inputs: Control array; Re(λ₁) array; optional EEP trend array; optional boundary entropy flux array.  
+- Computation implemented at: [Derivation/code/common/instrument_helpers/prigogine_gates.py](Derivation/code/common/instrument_helpers/prigogine_gates.py)  
+- Pass band / thresholds: Report‑required; PNG figure emitted with matching CSV/JSON sidecars for inputs when available.  
+- Units / normalization: Dimensionless unless otherwise stated.  
+- Typical datasets / experiments: Same scans as bifurcation card.  
+- Primary figure/artifact (if referenced): Overlay PNG; optional CSV/JSON inputs.  
+- Notes: Use the same sign conventions and units as in the eigenvalue computation and EEP meter.
+
+### Boundaries (Grain Boundaries)
+
+#### GB γ²-Law Fit and Gate  <a id="kpi-gb-gamma2-law"></a>
+
+- Symbol (if any): Â (slope), R²  
+- Purpose: Validate the quadratic relation between excess grain-boundary energy and a scalar misfit/strain proxy (“γ² law”) via correlated fit and report gate results.  
+- Defined by: [VDM‑E‑160](Derivation/EQUATIONS.md#vdm-e-160)  
+- Inputs: Arrays {(γ_i, E_ex,i)} built from protocol runs; optional covariance if repeated measures per γ.  
+- Computation implemented at: [gb_energy_gamma2_fitter.py](Derivation/code/common/instrument_helpers/boundaries/gb_energy_gamma2_fitter.py:1)  
+- Pass band / thresholds: R² ≥ 0.98 and |Â/A_ref − 1| ≤ 0.20.  
+  - A_ref is a preregistered baseline per material/system → TODO link to `CONSTANTS.md#const-gb-gamma2-A_ref`  
+- Units / normalization: Energy units normalized per `UNITS_NORMALIZATION.md`; γ proxy dimensionless by construction.  
+- Typical datasets / experiments: Oscillatory-load sweeps at fixed geometry with multiple γ levels.  
+- Primary figure/artifact (if referenced): Overlay PNG of E_ex vs γ with γ² fit ±CI; CSV fit table; JSON gate summary.  
+- Notes: Uses correlated χ² with optional SVD truncation (see [kpi-correlated-chi2-svd](Derivation/VALIDATION_METRICS.md#kpi-correlated-chi2-svd)).
+
+#### Asymmetric Emission Threshold  <a id="kpi-gb-asym-threshold"></a>
+
+- Symbol (if any): p0⋆  
+- Purpose: Estimate the minimal control amplitude p0⋆ at which emission events are observed concurrently with cycle-wise relaxation (ΔE_ex &lt; 0), and gate against preregistered baseline.  
+- Defined by: [VDM‑E‑161](Derivation/EQUATIONS.md#vdm-e-161)  
+- Inputs: Per-amplitude run stats (emission count, ΔE_ex over cycle), event logic.  
+- Computation implemented at: [gb_emission_threshold.py](Derivation/code/common/instrument_helpers/boundaries/gb_emission_threshold.py:1)  
+- Pass band / thresholds: |p0⋆/p0_ref − 1| ≤ 0.25.  
+  - p0_ref is a preregistered baseline per geometry/material → TODO link to `CONSTANTS.md#const-gb-asym-threshold-ref`  
+- Units / normalization: Control amplitude units per experiment.  
+- Typical datasets / experiments: Amplitude sweeps with fixed frequency and geometry.  
+- Primary figure/artifact (if referenced): Threshold curve and detection band PNG; CSV/JSON with {p0⋆, CI, pass}.  
+- Notes: Event definition requires (emission ≥ 1) AND (ΔE_ex &lt; 0) in cycle window.
+
+#### Cycle Lyapunov Descent (Excess GB Energy)  <a id="kpi-gb-lyapunov-cycle"></a>
+
+- Symbol (if any): median ΔE_ex/cycle, drop_10  
+- Purpose: Enforce monotone descent of excess GB energy across cycles and sufficient net relaxation over a prescribed cycle count.  
+- Defined by: [VDM‑E‑162](Derivation/EQUATIONS.md#vdm-e-162)  
+- Inputs: Sequence {E_ex(c)} over cycles c; analysis window length; tolerance.  
+- Computation implemented at: [gb_cycle_lyapunov.py](Derivation/code/common/instrument_helpers/boundaries/gb_cycle_lyapunov.py:1)  
+- Pass band / thresholds: median(ΔE_ex) ≤ 0 per cycle and fractional drop after 10 cycles ≥ 0.15.  
+  - TODO link to `CONSTANTS.md#const-gb-lyapunov-drop10` for tunable fraction  
+- Units / normalization: Energy normalized per experiment.  
+- Typical datasets / experiments: Repeated-cycle protocols at fixed p0, frequency.  
+- Primary figure/artifact (if referenced): E_ex vs cycle PNG; JSON with per-cycle deltas and drop_10.
+
+#### Protocol Insensitivity (Small-Δ Protocols)  <a id="kpi-gb-protocol-insensitivity"></a>
+
+- Symbol (if any): max_rel_spread  
+- Purpose: Verify that modest variations in nuisance protocol parameters (e.g., minor frequency or phase offsets) do not materially change the measured relaxation metrics.  
+- Defined by: Protocol-comparison gate (reference only; links to GB meter algorithms).  
+- Inputs: Set of K matched runs differing only by small Δ protocol knobs; target metric M (e.g., Â, p0⋆, drop_10).  
+- Computation implemented at: instrument runner for GB oscillating load (planned; preregistered).  
+- Pass band / thresholds: max_rel_spread(M) = (max−min)/median ≤ 0.10.  
+  - TODO link to `CONSTANTS.md#const-gb-protocol-insensitivity-thr`  
+- Units / normalization: Dimensionless.  
+- Typical datasets / experiments: K ∈ {3,5} “small-Δ” runs per condition.  
+- Primary figure/artifact (if referenced): Bar/whisker plot of M across protocols; JSON with spread stats.  
+- Notes: Failing gate indicates over-sensitivity to uncontrolled protocol details.
+
+#### GB Dimensionless Scaling Collapse  <a id="kpi-gb-dimless-collapse"></a>
+
+- Symbol (if any): E_max (envelope)  
+- Purpose: Demonstrate scale‑program consistency by collapsing dimensionless GB observables across rescalings per [VDM‑E‑164](Derivation/EQUATIONS.md#vdm-e-164).  
+- Defined by: [VDM‑E‑164](Derivation/EQUATIONS.md#vdm-e-164); envelope per A6 program.  
+- Inputs: Dimensionless series at multiple scale factors; rescaling rules; shared comparison grid.  
+- Computation implemented at: planned (GB meter scale‑program utility; preregistered).  
+- Pass band / thresholds: Adopt A6 envelope gate unless overridden: use [kpi-a6-envelope-max](Derivation/VALIDATION_METRICS.md#kpi-a6-envelope-max) (≤ 0.02) or a preregistered GB-specific envelope (TODO link to `CONSTANTS.md#const-gb-collapse-envelope`).  
+- Units / normalization: Dimensionless.  
+- Typical datasets / experiments: Matched-resolution ladders and protocol scalings for GB relaxation.  
+- Primary figure/artifact (if referenced): Scaling‑collapse overlay PNG; CSV/JSON sidecars with collapse coordinates.  
+- Notes: Pair with [kpi-gb-protocol-insensitivity](Derivation/VALIDATION_METRICS.md#kpi-gb-protocol-insensitivity) for robustness.

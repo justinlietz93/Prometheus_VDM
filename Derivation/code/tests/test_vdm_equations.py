@@ -15,7 +15,7 @@ import pytest
 if not os.getenv("VDM_TEST_VDM_EQUATIONS"):
     pytest.skip("Skipping vdm_equations tests unless VDM_TEST_VDM_EQUATIONS=1", allow_module_level=True)
 
-from Derivation.code.common.vdm_equations import (
+from Derivation.code.common.instrument_helpers.vdm_equations import (
     PotentialParams,
     RDParams,
     Vp,

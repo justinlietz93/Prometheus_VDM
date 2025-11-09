@@ -904,9 +904,3 @@ Central list of active proposals with links to their source documents. See each 
 - Conservation vs Balance (RD): [PROPOSAL_RD_Discrete_Conservation_vs_Balance.md](conservation_law/PROPOSAL_RD_Discrete_Conservation_vs_Balance.md)
 - Dark Photons (Decoherence Portals): [PROPOSAL_Decoherence_Portals.md](dark_photons/PROPOSAL_Decoherence_Portals.md)
 - Quantum Gravity Bridge (Observational): [PROPOSAL_Quantum_Gravity_Bridge_v1.md](speculations/PROPOSAL_Quantum_Gravity_Bridge_v1.md)
-
-## Change Log
-
-- 2024-10-04 • Initial roadmap compiled from repository evidence • 77f055f
-- 2025-10-06 • Added milestones: FRW Continuity Residual (Gravity), Dark Photon Portal program, Quantum Gravity Bridge; backfilled Proposals Index (A6 Collapse, FRW Balance, Metriplectic variants, RD Conservation, Dark Photons)
-- 2025-10-13 • Added milestone entry for KG J-only QC certification and note under Metriplectic proposals; updated header stamp

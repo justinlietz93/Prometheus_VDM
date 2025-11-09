@@ -346,3 +346,125 @@ Approval/PR:
 Provenance Note: Changes prepared 2025-11-06; awaiting final review before commit.
 
 - 2025-10-04 • conventions extracted from repository • 8e27c34
+
+## Change Attestation — 2025-11-08 (GB Meter Canon Anchors, KPIs, Algorithms, Proposal)
+
+Dependency-Chain-Reviewed: true  
+Change-Type: canon-impacting  
+Summary: Registered GB meter canon anchors (VDM-E-160..164), added validation KPIs/gates, extended ALGORITHMS with VDM-A-047..050, and created T2 proposal file for GB oscillating-load instrument. No equations duplicated; all math referenced by anchors.
+
+Paths-Changed:
+
+- [Derivation/EQUATIONS.md](Derivation/EQUATIONS.md)
+- [Derivation/VALIDATION_METRICS.md](Derivation/VALIDATION_METRICS.md)
+- [Derivation/ALGORITHMS.md](Derivation/ALGORITHMS.md)
+- [Derivation/Nonequilibrium/T2_PROPOSAL_GB_Oscillating_Load_v1.md](Derivation/Nonequilibrium/T2_PROPOSAL_GB_Oscillating_Load_v1.md)
+
+Canon-Docs-Updated:
+
+- Equations registry anchors added:
+  - [VDM-E-160](Derivation/EQUATIONS.md#vdm-e-160) — GB excess energy γ² law (anchor only)
+  - [VDM-E-161](Derivation/EQUATIONS.md#vdm-e-161) — Asymmetric emission threshold p0⋆ (anchor only)
+  - [VDM-E-162](Derivation/EQUATIONS.md#vdm-e-162) — Cycle-Lyapunov monotonicity for E_ex (anchor only)
+  - [VDM-E-163](Derivation/EQUATIONS.md#vdm-e-163) — Moiré-contrast observable (anchor only)
+  - [VDM-E-164](Derivation/EQUATIONS.md#vdm-e-164) — Dimensionless groups for GB scaling collapse (anchor only)
+- Validation metrics (KPIs/gates) added:
+  - [kpi-gb-gamma2-law](Derivation/VALIDATION_METRICS.md#kpi-gb-gamma2-law)
+  - [kpi-gb-asym-threshold](Derivation/VALIDATION_METRICS.md#kpi-gb-asym-threshold)
+  - [kpi-gb-lyapunov-cycle](Derivation/VALIDATION_METRICS.md#kpi-gb-lyapunov-cycle)
+  - [kpi-gb-protocol-insensitivity](Derivation/VALIDATION_METRICS.md#kpi-gb-protocol-insensitivity)
+  - [kpi-gb-dimless-collapse](Derivation/VALIDATION_METRICS.md#kpi-gb-dimless-collapse)
+- Algorithms (pseudocode flows) added:
+  - [VDM-A-047](Derivation/ALGORITHMS.md#vdm-a-047) — GB Relaxation Meter
+  - [VDM-A-048](Derivation/ALGORITHMS.md#vdm-a-048) — Moiré Contrast Index
+  - [VDM-A-049](Derivation/ALGORITHMS.md#vdm-a-049) — Emission Detector
+  - [VDM-A-050](Derivation/ALGORITHMS.md#vdm-a-050) — Dimensionless Collapse
+
+Dependency-Notes:
+
+- Instrument helpers referenced (single responsibility; IO via io_paths):
+  - [python.GBExcessEnergyGamma2Fitter()](Derivation/code/common/instrument_helpers/boundaries/gb_energy_gamma2_fitter.py:1)
+  - [python.GBEmissionThresholdEstimator()](Derivation/code/common/instrument_helpers/boundaries/gb_emission_threshold.py:1)
+  - [python.GBLyapunovCycleMonitor()](Derivation/code/common/instrument_helpers/boundaries/gb_cycle_lyapunov.py:1)
+  - [python.GBMoireContrast()](Derivation/code/common/instrument_helpers/boundaries/gb_moire_contrast.py:1)
+- IO routing: [Derivation/code/common/io_paths.py](Derivation/code/common/io_paths.py)
+- Constants placeholders to preregister for gates:
+  - TODO: add [CONSTANTS.md#const-gb-gamma2-A_ref](Derivation/CONSTANTS.md) (slope baseline per material/geometry)
+  - TODO: add [CONSTANTS.md#const-gb-asym-threshold-ref](Derivation/CONSTANTS.md) (p0_ref per geometry/material)
+  - TODO: add [CONSTANTS.md#const-gb-lyapunov-drop10](Derivation/CONSTANTS.md) (drop_10 threshold)
+  - TODO: add [CONSTANTS.md#const-gb-protocol-insensitivity-thr](Derivation/CONSTANTS.md)
+  - TODO: add [CONSTANTS.md#const-gb-collapse-envelope](Derivation/CONSTANTS.md) if overriding A6 default
+
+Approval/PR:
+
+- PR: pending
+- Approval: pending (per [Derivation/code/ARCHITECTURE.md](Derivation/code/ARCHITECTURE.md))
+
+Provenance:
+
+- Proposal created: [Derivation/Nonequilibrium/T2_PROPOSAL_GB_Oscillating_Load_v1.md](Derivation/Nonequilibrium/T2_PROPOSAL_GB_Oscillating_Load_v1.md) (anchors only; no equations duplicated)
+
+## Change Attestation — 2025-11-08 (DeGrand–DeTar Sampling Exactness, UQ, Scale-Program, Solver Practice)
+
+Dependency-Chain-Reviewed: true  
+Change-Type: canon-impacting  
+Summary: Documentation anchors and cross-links for lattice-QCD-inspired meters and KPIs were consolidated from DeGrand &amp; DeTar into VDM canon without duplicating equations or constants. This attests the mapping and landing of: HMC/RHMC exactness gates, ΔH diagnostics, integrated autocorrelation and τ-aware binning, correlated χ² with SVD truncation, blocked jackknife/bootstrap, RG blocking and scaling collapse, and large-sparse solver practice (CG/BiCGStab, even–odd, multishift) as patterns.
+
+Paths-Changed:
+
+- docs/misc-standards/DeGrand-DeTar_Upgrade_Map.md
+- Derivation/EQUATIONS.md#vdm-e-130
+- Derivation/EQUATIONS.md#vdm-e-131
+- Derivation/EQUATIONS.md#vdm-e-132
+- Derivation/EQUATIONS.md#vdm-e-133
+- Derivation/EQUATIONS.md#vdm-e-134
+- Derivation/EQUATIONS.md#vdm-e-135
+- Derivation/EQUATIONS.md#vdm-e-136
+- Derivation/VALIDATION_METRICS.md#kpi-hmc-acceptance-vs-stepsize
+- Derivation/VALIDATION_METRICS.md#kpi-hmc-deltaH-hist
+- Derivation/VALIDATION_METRICS.md#kpi-tau-int
+- Derivation/VALIDATION_METRICS.md#kpi-binning-adequacy
+- Derivation/VALIDATION_METRICS.md#kpi-correlated-chi2-svd
+- Derivation/VALIDATION_METRICS.md#kpi-resample-ci-stability
+- Derivation/VALIDATION_METRICS.md#kpi-rg-collapse
+- Derivation/ALGORITHMS.md#vdm-a-030
+- Derivation/ALGORITHMS.md#vdm-a-031
+- Derivation/ALGORITHMS.md#vdm-a-032
+- Derivation/ALGORITHMS.md#vdm-a-033
+- Derivation/ALGORITHMS.md#vdm-a-034
+- Derivation/ALGORITHMS.md#vdm-a-035
+- Derivation/ALGORITHMS.md#vdm-a-036
+- Derivation/Templates/RESULTS_PAPER_STANDARDS.md:140
+
+Canon-Docs-Updated:
+
+- HMC/RHMC acceptance and ΔH anchors: [VDM-E-130](Derivation/EQUATIONS.md:1914), [VDM-E-131](Derivation/EQUATIONS.md:1938)  
+- Chain UQ anchors: [VDM-E-132](Derivation/EQUATIONS.md:1957), [VDM-E-133](Derivation/EQUATIONS.md:1981)  
+- Correlated χ² + SVD: [VDM-E-134](Derivation/EQUATIONS.md:2006)  
+- Blocked resampling: [VDM-E-135](Derivation/EQUATIONS.md:2034)  
+- RG blocking/collapse: [VDM-E-136](Derivation/EQUATIONS.md:2055)  
+- KPIs: HMC acceptance/ΔH, τ_int, τ-aware binning, correlated χ² SVD, resample CI stability, RG collapse (see VALIDATION_METRICS anchors above)  
+- Algorithms/pseudocode: HMC, RHMC, CG/BiCGStab, even–odd, multishift, RG utility (see ALGORITHMS anchors above)  
+- RESULTS standards: Chain sampling diagnostics section updated to require ΔH histograms, acceptance-vs-ε fits, τ_int reporting, τ-aware binning, correlated-fit cutoff sweep (see [Derivation/Templates/RESULTS_PAPER_STANDARDS.md:140](Derivation/Templates/RESULTS_PAPER_STANDARDS.md:140))
+
+Dependency-Notes:
+
+- Axiom cross-links: A4 notes reference HMC acceptance and ΔH KPIs ([Derivation/AXIOMS.md:73](Derivation/AXIOMS.md:73)); A6 references RG collapse KPI ([Derivation/AXIOMS.md:97](Derivation/AXIOMS.md:97)).  
+- No equations or numeric constants duplicated; book-derived rationale is recorded in navigator file ([docs/misc-standards/DeGrand-DeTar_Upgrade_Map.md](docs/misc-standards/DeGrand-DeTar_Upgrade_Map.md)).  
+- Future work: optional KPI set for solver adapters (residual norms, condition-estimate logs) may be proposed separately.
+
+Provenance:
+
+- Source: [Lattice Methods for Quantum Chromodynamics — DeGrand &amp; DeTar](Derivation/References/Lattice-Field-Theory_&amp;_Discrete-Action-Principles/Lattice Methods for Quantum Chromodynamics -- Thomas A Degrand; Carleton Detar.pdf)  
+- Navigator: [docs/misc-standards/DeGrand-DeTar_Upgrade_Map.md](docs/misc-standards/DeGrand-DeTar_Upgrade_Map.md)
+
+Approval/PR:
+
+- PR: pending
+- Approval: pending
+
+## Change Log - 2025-10 - Roadmap
+
+- 2025-10-04 • Initial roadmap compiled from repository evidence • 77f055f
+- 2025-10-06 • Added milestones: FRW Continuity Residual (Gravity), Dark Photon Portal program, Quantum Gravity Bridge; backfilled Proposals Index (A6 Collapse, FRW Balance, Metriplectic variants, RD Conservation, Dark Photons)
+- 2025-10-13 • Added milestone entry for KG J-only QC certification and note under Metriplectic proposals; updated header stamp

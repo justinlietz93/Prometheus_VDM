@@ -1285,9 +1285,11 @@ Artifacts: scaling‑collapse overlay PNG + CSV/JSON (envelope metrics, s, Δφ,
 ## GENERIC / Metriplectic Adapters and QC
 
 #### VDM-A-037 - VDM-GENERIC Adapter (Constructor + Gates)  <a id="vdm-a-037"></a>
+>
 > Type: INSTRUMENT • Binding: PSEUDOCODE • State: none (validates) • Dependencies: [Derivation/EQUATIONS.md](Derivation/EQUATIONS.md#vdm-e-140), [Derivation/EQUATIONS.md](Derivation/EQUATIONS.md#vdm-e-142), [Derivation/VALIDATION_METRICS.md](Derivation/VALIDATION_METRICS.md#kpi-degeneracy-resid), [Derivation/VALIDATION_METRICS.md](Derivation/VALIDATION_METRICS.md#kpi-entropy-prod-nonneg)
 
 Pseudocode:
+
 ```text
 INPUT: E[q], S[q], L(q), M(q); discretization/context tag; tolerances (eps=1e-12)
 CHECKS:
@@ -1302,13 +1304,15 @@ RETURN: adapter_handle or raise ValidationError
 ```
 
 Notes:
+
 - Centralizes GENERIC conformance for any state extension; used by metriplectic runners before execution.
 
-
 #### VDM-A-038 - Hydrodynamic Poisson Construction (Cookbook Skeleton)  <a id="vdm-a-038"></a>
+>
 > Type: INSTRUMENT • Binding: PSEUDOCODE • State: none • Dependencies: fluid variable set (ρ, m, ε, …); [Derivation/Complete-Formalisms/CF2_Contact_to_Metriplectic_Evolution.md](Derivation/Complete-Formalisms/CF2_Contact_to_Metriplectic_Evolution.md)
 
 Pseudocode (outline only; math references live in canon):
+
 ```text
 INPUT: variable taxonomy (scalar densities, vector densities, tensors)
 STEPS:
@@ -1320,13 +1324,15 @@ OUTPUT: L(q) blocks; doc anchors to symbols and equations
 ```
 
 Notes:
+
 - Construction details (indices, brackets) are referenced; do not duplicate equations in this file.
 
-
 #### VDM-A-039 - Poisson–Jacobi Identity Tester  <a id="vdm-a-039"></a>
+>
 > Type: INSTRUMENT • Binding: PSEUDOCODE • State: none • Dependencies: [Derivation/EQUATIONS.md](Derivation/EQUATIONS.md#vdm-e-141), [Derivation/VALIDATION_METRICS.md](Derivation/VALIDATION_METRICS.md#kpi-poisson-jacobi-resid)
 
 Pseudocode:
+
 ```text
 INPUT: L(q), basis ℬ of smooth test functionals {F,G,H}
 FOR all triples (F,G,H)⊂ℬ:
@@ -1338,13 +1344,15 @@ RETURN: pass/fail
 ```
 
 Notes:
+
 - Basis ℬ includes linear forms and localized probes to cover product rules.
 
-
 #### VDM-A-040 - Entropy Production Monitor (M-step H‑theorem)  <a id="vdm-a-040"></a>
+>
 > Type: INSTRUMENT • Binding: PSEUDOCODE • State: writes logs • Dependencies: [Derivation/EQUATIONS.md](Derivation/EQUATIONS.md#vdm-e-143), [Derivation/VALIDATION_METRICS.md](Derivation/VALIDATION_METRICS.md#kpi-entropy-prod-nonneg), [Derivation/code/common/io_paths.py](Derivation/code/common/io_paths.py)
 
 Pseudocode:
+
 ```text
 INPUT: ∇S, M, Δt, run_tag
 σ := (∇S)ᵀ M (∇S)                             # [VDM-E-143]
@@ -1355,13 +1363,15 @@ RETURN: pass/fail
 ```
 
 Notes:
+
 - Attach to every M-step and J⊕M composition (JMJ).
 
-
 #### VDM-A-041 - Curie Principle Compliance Linter  <a id="vdm-a-041"></a>
+>
 > Type: POLICY • Binding: PSEUDOCODE • State: none • Dependencies: [Derivation/EQUATIONS.md](Derivation/EQUATIONS.md#vdm-e-146), [Derivation/VALIDATION_METRICS.md](Derivation/VALIDATION_METRICS.md#kpi-curie-compliance)
 
 Pseudocode:
+
 ```text
 INPUT: declared tensor ranks of state variables; constitutive/M terms
 CHECK: all scalarized couplings are rotational invariants (e.g., D:D, tr(D), |∇c|²)
@@ -1371,13 +1381,15 @@ GATE: curie_ok=true for merge to production runners
 ```
 
 Notes:
+
 - Applied in review and CI for extended hydrodynamics and structural fields.
 
-
 #### VDM-A-042 - OQ‑021 Corner Regularization Runner (Skeleton)  <a id="vdm-a-042"></a>
+>
 > Type: EXPERIMENT • Binding: PSEUDOCODE • State: writes artifacts • Dependencies: [Derivation/VALIDATION_METRICS.md](Derivation/VALIDATION_METRICS.md#kpi-corner-stress-bound), [Derivation/VALIDATION_METRICS.md](Derivation/VALIDATION_METRICS.md#kpi-corner-velocity-cap), [Derivation/VALIDATION_METRICS.md](Derivation/VALIDATION_METRICS.md#kpi-corner-entropy-nondiv), [Derivation/EQUATIONS.md](Derivation/EQUATIONS.md#vdm-e-144), [Derivation/EQUATIONS.md](Derivation/EQUATIONS.md#vdm-e-145)
 
 Pseudocode:
+
 ```text
 SETUP: wedge/corner domain; baseline viscous run; extended run with c-field
 PARAMS: grid over (Λ, De_c, Pe_c); radii r/L ladder → approach apex
@@ -1394,4 +1406,315 @@ RETURN: pass/fail per KPI set
 ```
 
 Notes:
+
 - This runner is the instrumentation target for OQ‑021 under GENERIC discipline.
+
+---
+
+#### VDM-A-043 - ExcessEntropyMonitor (EEP Gate)  <a id="vdm-a-043"></a>
+>
+> Type: INSTRUMENT • Binding: PSEUDOCODE • State: writes artifacts • Dependencies: `Derivation/code/common/instrument_helpers/prigogine_gates.py`  
+> Notes: Implements [VDM‑E‑150](Derivation/EQUATIONS.md#vdm-e-150); KPI [kpi-eep-trend](Derivation/VALIDATION_METRICS.md#kpi-eep-trend)
+
+Context: Near‑equilibrium scans to flag approach to bifurcation by EEP monotonicity loss.
+
+Pseudocode:
+
+```text
+INIT:
+  mon := ExcessEntropyMonitor(tol = 1e-12)                # prigogine_gates
+  mon.set_baseline(sigma_star)                             # σ_* (field or scalar) at reference steady state
+  tag := run_tag() ; domain := "self_org"
+
+LOOP over time or control sweep:
+  # acquire entropy-production density σ(x,t)
+  sigma := compute_sigma(state)                            # from runner/domain
+  mon.update(sigma_field = sigma, dV = cell_volume, dt = Δt or t := t_now)
+
+AFTER SWEEP (or at checkpoints):
+  g := mon.gates(window = 3)                               # worst positive tail slope ≤ tol
+  artifacts := mon.write_artifacts(domain, "eep_monitor", tag,
+                                   meta = { "baseline_kind": "field|scalar" },
+                                   failed = not g["eep_nonincreasing_ok"],
+                                   write_png = True)
+
+EMIT:
+  - JSON summary with gates/snapshot
+  - CSV time series (t,eep,de_dt)
+  - PNG panel (EEP and d/dt EEP)
+```
+
+Preconditions:
+
+- σ(x,t) instrumented in the runner; σ_* computed under same BCs.
+
+Postconditions:
+
+- Gate decision and artifacts written via io_paths.
+
+---
+
+#### VDM-A-044 - Bifurcation Card (Eigs + Classification)  <a id="vdm-a-044"></a>
+>
+> Type: INSTRUMENT • Binding: PSEUDOCODE • State: writes artifacts • Dependencies: `Derivation/code/common/instrument_helpers/prigogine_gates.py`  
+> Notes: Implements [VDM‑E‑152](Derivation/EQUATIONS.md#vdm-e-152); KPIs [kpi-bifurcation-card](Derivation/VALIDATION_METRICS.md#kpi-bifurcation-card), [kpi-branch-classifier](Derivation/VALIDATION_METRICS.md#kpi-branch-classifier)
+
+Context: Track leading eigenvalue/mode at reference state across control β; tag branch.
+
+Pseudocode:
+
+```text
+INIT:
+  tag := run_tag() ; domain := "self_org"
+
+FOR β in control_sweep:
+  Lβ := linearize_operator(state_ref(β), BCs)              # includes BCs
+  (λ1_re, λ1_im, e1) := leading_eigenpair(Lβ)              # mode shape optional (e1 can be None)
+  eep_trend := tail_slope_from(EEP monitor)                # optional consistency input
+  has_mode := detect_nontrivial_mode(e1)                   # boolean (pattern presence)
+  branch := classify_branch(eep_trend, λ1_re, λ1_im, has_mode, tol_re = 1e-8)  # prigogine_gates
+
+  card := write_bifurcation_card(domain, "bifurcation", tag,
+                                 control = β, re_lambda1 = λ1_re, im_lambda1 = λ1_im,
+                                 eigenmode = e1, classification = branch,
+                                 meta = {"BCs": BCs_tag, "solver": eig_solve_info})
+
+GATE:
+  - Detect sign change of λ1_re across β (|λ1_re|min ≤ 1e-6 within tolerance band)
+EMIT:
+  - One JSON per β with control, λ1, branch, optional eigenmode PNG
+```
+
+Preconditions:
+
+- Linearized operator assembly and eigen solve defined for the domain/BCs.
+
+Postconditions:
+
+- Card JSONs + optional eigenmode PNGs; sign‑change detection recorded.
+
+---
+
+#### VDM-A-045 - Localized Structure Detector  <a id="vdm-a-045"></a>
+>
+> Type: INSTRUMENT • Binding: PSEUDOCODE • State: writes artifacts • Dependencies: `Derivation/code/common/instrument_helpers/prigogine_gates.py`  
+> Notes: Supports [VDM‑E‑152](Derivation/EQUATIONS.md#vdm-e-152); KPI [kpi-localized-structure](Derivation/VALIDATION_METRICS.md#kpi-localized-structure)
+
+Context: Quantify localized dissipative structures near onset (mesas/spikes/hot‑spots).
+
+Pseudocode:
+
+```text
+INPUT:
+  A := activity field (2D scalar) at analysis time/β
+  θ := threshold
+  (dx, dy) := grid spacings
+
+PROCESS:
+  rep := detect_localized_structures(field = A, threshold = θ, dx = dx, dy = dy, connectivity = 4)
+
+ARTIFACTS:
+  paths := write_localized_artifacts(domain = "self_org", name = "localized", tag = run_tag(),
+                                     field = A, report = rep, write_png = True)
+
+GATE (when used to support a phenomenon claim):
+  require rep.count ≥ 1 and record per‑component {area, equiv_radius, bbox, peak_value}
+```
+
+Preconditions:
+
+- A(x) is available (e.g., |u|, |∇u|, energy density, or σ).
+
+Postconditions:
+
+- JSON listing components and measures; PNG overlay with boxes.
+
+---
+
+#### VDM-A-046 - Branch Stability Overlay  <a id="vdm-a-046"></a>
+>
+> Type: INSTRUMENT • Binding: PSEUDOCODE • State: writes artifacts • Dependencies: `Derivation/code/common/instrument_helpers/prigogine_gates.py`  
+> Notes: Implements [VDM‑E‑151](Derivation/EQUATIONS.md#vdm-e-151), [VDM‑E‑152](Derivation/EQUATIONS.md#vdm-e-152); KPI [kpi-branch-stability-plot](Derivation/VALIDATION_METRICS.md#kpi-branch-stability-plot)
+
+Context: Visual diagnostic overlay of control vs Re(λ1) with EEP trend and boundary entropy flux.
+
+Pseudocode:
+
+```text
+INPUT (arrays over β):
+  controls := {β_i}
+  re_lambdas := {Re(λ1(β_i))}
+  eep_trend := {tail_slope_i}                # optional
+  J_boundary := {boundary_entropy_flux_i}    # optional (from open-system balance)
+
+PLOT:
+  paths := branch_stability_plot(domain = "self_org", name = "branch_stability", tag = run_tag(),
+                                 controls = controls, re_lambdas = re_lambdas,
+                                 eep_trend = eep_trend, boundary_entropy_flux = J_boundary)
+
+EMIT:
+  - PNG overlay with Re(λ1), optional d/dt EEP, and boundary entropy flux; CSV/JSON inputs may be emitted by runner for provenance.
+```
+
+Preconditions:
+
+- Arrays collated from VDM‑A‑044 and VDM‑A‑043/VDM‑E‑151 instruments.
+
+Postconditions:
+
+- Overlay PNG for RESULTS; inputs logged alongside per RESULTS policy.
+
+#### VDM-A-047 - GB Relaxation Meter (Oscillating Load)  <a id="vdm-a-047"></a>
+>
+> Type: INSTRUMENT • Binding: PSEUDOCODE • State: writes artifacts • Dependencies: `Derivation/code/common/instrument_helpers/boundaries/gb_energy_gamma2_fitter.py`, `Derivation/code/common/instrument_helpers/boundaries/gb_cycle_lyapunov.py`, `Derivation/code/common/instrument_helpers/boundaries/gb_emission_threshold.py`, `Derivation/code/common/instrument_helpers/boundaries/gb_moire_contrast.py`  
+> Notes: Implements [VDM‑E‑160](Derivation/EQUATIONS.md#vdm-e-160), [VDM‑E‑161](Derivation/EQUATIONS.md#vdm-e-161), [VDM‑E‑162](Derivation/EQUATIONS.md#vdm-e-162), [VDM‑E‑163](Derivation/EQUATIONS.md#vdm-e-163), [VDM‑E‑164](Derivation/EQUATIONS.md#vdm-e-164); KPIs [kpi-gb-gamma2-law](Derivation/VALIDATION_METRICS.md#kpi-gb-gamma2-law), [kpi-gb-asym-threshold](Derivation/VALIDATION_METRICS.md#kpi-gb-asym-threshold), [kpi-gb-lyapunov-cycle](Derivation/VALIDATION_METRICS.md#kpi-gb-lyapunov-cycle), [kpi-gb-protocol-insensitivity](Derivation/VALIDATION_METRICS.md#kpi-gb-protocol-insensitivity), [kpi-gb-dimless-collapse](Derivation/VALIDATION_METRICS.md#kpi-gb-dimless-collapse)
+
+Context: Execute oscillatory-load experiments on a grain boundary (GB) specimen and evaluate relaxation meters and gates.
+
+Pseudocode:
+
+```text
+INPUT:
+  runs := set of experiment runs with parameters {γ_i or proxy, p0 (amplitude), f (frequency), cycles C, geometry tag, material tag}
+  data := per-run series: E_ex(t) or per-cycle E_ex(c), emission counts, microstructure images/fields (optional)
+
+PREP:
+  - Resolve IO roots via io_paths (domain="boundaries", name="gb_osc", tag=run_tag())  # writes figures/logs/json
+  - Normalize units per UNITS_NORMALIZATION.md and record normalization in JSON
+
+STEP 1 (γ² law fit):
+  - Build {(γ_i, E_ex,i)} by protocol-defined sampling window
+  - fit := GBExcessEnergyGamma2Fitter.fit(γ, E_ex, covariance?)  # gb_energy_gamma2_fitter.py
+  - write overlay PNG, CSV fit table, JSON with slope Â, R²
+  - gate_gb_gamma2 := (R² ≥ 0.98) AND (|Â/A_ref − 1| ≤ 0.20)  # threshold A_ref from CONSTANTS (if present)
+
+STEP 2 (cycle Lyapunov descent):
+  - For each fixed (p0, f) condition, build series {E_ex(c)} over cycles
+  - lyap := GBLyapunovCycleMonitor.analyze(E_ex_by_cycle)  # gb_cycle_lyapunov.py
+  - write E_ex vs cycle PNG and JSON (median ΔE_ex, drop_10)
+  - gate_gb_lyapunov := (median ΔE_ex ≤ 0) AND (drop_10 ≥ 0.15)
+
+STEP 3 (emission threshold):
+  - Aggregate runs per amplitude p0 with event logic: (emission ≥ 1) AND (ΔE_ex < 0) in cycle window
+  - thr := GBEmissionThresholdEstimator.estimate(per_amp_stats)  # gb_emission_threshold.py
+  - write threshold figure, CSV, JSON with p0⋆, CI
+  - gate_gb_asym := |p0⋆/p0_ref − 1| ≤ 0.25
+
+STEP 4 (optional Moiré contrast):
+  - For available 2D fields/images at representative cycles, compute moire := GBMoireContrast.from_field(field2D)  # gb_moire_contrast.py
+  - write radial-PSD CSV and PNG; record moire_contrast, ring_energy_frac in JSON
+
+STEP 5 (protocol insensitivity):
+  - Select small-Δ protocol variants {p0,f,phase} near baseline; choose a target metric M ∈ {Â, p0⋆, drop_10}
+  - compute max_rel_spread := (max M − min M) / median M
+  - gate_protocol := max_rel_spread ≤ 0.10
+
+STEP 6 (dimensionless collapse — A6):
+  - Construct dimensionless groups per [VDM‑E‑164]; rescale observables across scales
+  - overlay collapse; compute envelope E_max vs shared grid
+  - gate_collapse := use [kpi-a6-envelope-max] ≤ 0.02, unless GB-specific envelope preregistered
+
+EMIT:
+  - JSON summary with all gates {gate_gb_gamma2, gate_gb_lyapunov, gate_gb_asym, gate_protocol, gate_collapse}
+  - Figures: gamma2 overlay, E_ex vs cycle, threshold curve, (optional) moiré PSD, collapse overlay
+  - CSVs: fit tables, cycle logs, threshold stats, collapse coordinates
+
+ROUTING:
+  - If any mandatory gate fails → route to outputs/failed_runs and emit CONTRADICTION_REPORT JSON (include seeds, commit hash)
+```
+
+Preconditions:
+
+- Double precision; deterministic seeds recorded; approvals in place per `Derivation/code/ARCHITECTURE.md`.
+
+Postconditions:
+
+- Artifacts written via io_paths; gates computed and logged; provenance anchors recorded.
+
+---
+
+#### VDM-A-048 - Moiré Contrast Index  <a id="vdm-a-048"></a>
+>
+> Type: INSTRUMENT • Binding: PSEUDOCODE • State: writes artifacts • Dependencies: `Derivation/code/common/instrument_helpers/boundaries/gb_moire_contrast.py`  
+> Notes: Implements [VDM‑E‑163](Derivation/EQUATIONS.md#vdm-e-163)
+
+Context: Quantify spectral-ring contrast as a proxy for long-range internal stress patterning.
+
+Pseudocode:
+
+```text
+INPUT:
+  field2D := scalar image/field (e.g., projected energy density) at a chosen cycle/time
+
+PROCESS:
+  result := GBMoireContrast.from_field(field2D, annulus_policy="auto_peak", smoothing="hann")
+  # returns {k_peak, moire_contrast, ring_energy_frac, radial_psd}
+
+ARTIFACTS:
+  - write radial PSD CSV and PSD plot PNG
+  - append moire metrics to run JSON
+```
+
+Preconditions:
+
+- Field has sufficient resolution; FFT conventions recorded.
+
+Postconditions:
+
+- Contrast metrics available for correlation with relaxation behavior.
+
+---
+
+#### VDM-A-049 - Emission Detector (Asymmetric Threshold)  <a id="vdm-a-049"></a>
+>
+> Type: INSTRUMENT • Binding: PSEUDOCODE • State: writes artifacts • Dependencies: `Derivation/code/common/instrument_helpers/boundaries/gb_emission_threshold.py`  
+> Notes: Implements [VDM‑E‑161](Derivation/EQUATIONS.md#vdm-e-161); KPI [kpi-gb-asym-threshold](Derivation/VALIDATION_METRICS.md#kpi-gb-asym-threshold)
+
+Context: Estimate p0⋆ where emissions appear concurrently with relaxation.
+
+Pseudocode:
+
+```text
+INPUT:
+  per_amp_runs := {p0_k → list of run stats: emission_count, ΔE_ex_cycle, cycles_window}
+
+PROCESS:
+  stats := [EmissionRunStats.from_run(r) for r in per_amp_runs]
+  thr := GBEmissionThresholdEstimator.estimate(stats, f_req=0.5, window="last_K_cycles")
+  write threshold figure + CSV; JSON includes {p0_star, ci, pass_band}
+
+GATE:
+  |p0_star / p0_ref − 1| ≤ 0.25  # p0_ref from CONSTANTS if present
+```
+
+---
+
+#### VDM-A-050 - Dimensionless Collapse (GB Scale Program)  <a id="vdm-a-050"></a>
+>
+> Type: INSTRUMENT • Binding: PSEUDOCODE • State: writes artifacts • Dependencies: scale utility in GB runner (planned)  
+> Notes: Uses [VDM‑E‑164](Derivation/EQUATIONS.md#vdm-e-164); KPI [kpi-gb-dimless-collapse](Derivation/VALIDATION_METRICS.md#kpi-gb-dimless-collapse); envelope gate [kpi-a6-envelope-max](Derivation/VALIDATION_METRICS.md#kpi-a6-envelope-max)
+
+Context: Test A6-style scaling collapse for GB observables.
+
+Pseudocode:
+
+```text
+INPUT:
+  datasets := {s_j → series of observable O_j in native units with metadata for rescaling}
+
+PROCESS:
+  - Map each dataset to dimensionless form per VDM‑E‑164 definitions
+  - Interpolate onto shared abscissa; compute envelope E_max across curves
+  - Plot overlay; write CSV of (x_shared, O_hat_j), JSON with E_max
+
+GATE:
+  - Accept if E_max ≤ 0.02 (unless GB-specific envelope preregistered)
+```
+
+Preconditions:
+
+- Rescaling rules and units documented; shared grid policy specified.
+
+Postconditions:
+
+- Overlay PNG + CSV/JSON sidecars for RESULTS; gate value reported.

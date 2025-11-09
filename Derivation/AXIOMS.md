@@ -73,6 +73,7 @@ $\partial_t q = J(q)\,\frac{\delta \mathcal I}{\delta q} + M(q)\,\frac{\delta \S
 **Notes:** Canonical split used by metriplectic integrators and QC (two-grid order, Strang-defect, J-only reversibility). Diagnostics: compute $g_1 = \langle J, \, \delta\Sigma, \, \delta\Sigma \rangle$ and $g_2 = \langle M, \, \delta\mathcal I, \, \delta\mathcal I \rangle$ every $K$ steps; both must be $\le 10^{-10}$ (grid-refined). Additionally, J‑flow sampler instrumentation is gated by acceptance–stepsize and ΔH histogram KPIs ([VALIDATION_METRICS.md#kpi-hmc-acceptance-vs-stepsize](Derivation/VALIDATION_METRICS.md#kpi-hmc-acceptance-vs-stepsize), [VALIDATION_METRICS.md#kpi-hmc-deltaH-hist](Derivation/VALIDATION_METRICS.md#kpi-hmc-deltaH-hist)); definitions at [VDM-E-130](Derivation/EQUATIONS.md#vdm-e-130), [VDM-E-131](Derivation/EQUATIONS.md#vdm-e-131).
 
 GENERIC cross-links and gates:
+
 - Evolution and structure: [VDM-E-140](Derivation/EQUATIONS.md#vdm-e-140), Poisson/Jacobi [VDM-E-141](Derivation/EQUATIONS.md#vdm-e-141), degeneracy [VDM-E-142](Derivation/EQUATIONS.md#vdm-e-142), entropy production [VDM-E-143](Derivation/EQUATIONS.md#vdm-e-143), structural c and metric blocks [VDM-E-144](Derivation/EQUATIONS.md#vdm-e-144)–[VDM-E-145](Derivation/EQUATIONS.md#vdm-e-145), Curie compliance [VDM-E-146](Derivation/EQUATIONS.md#vdm-e-146).
 - KPIs: Poisson–Jacobi residual [kpi-poisson-jacobi-resid](Derivation/VALIDATION_METRICS.md#kpi-poisson-jacobi-resid), degeneracy residuals [kpi-degeneracy-resid](Derivation/VALIDATION_METRICS.md#kpi-degeneracy-resid), entropy nonnegativity [kpi-entropy-prod-nonneg](Derivation/VALIDATION_METRICS.md#kpi-entropy-prod-nonneg), Curie audit [kpi-curie-compliance](Derivation/VALIDATION_METRICS.md#kpi-curie-compliance).
 
@@ -189,4 +190,3 @@ In the overdamped limit of the corollary equations: $\partial_t \phi = D\nabla^2
 - 2025-10-08 • initialize axioms (AX-001..004 + corollaries C01..C03) from existing axiomatic_theory_development.md • HEAD
 
 <!-- markdownlint-enable MD033 -->
-
