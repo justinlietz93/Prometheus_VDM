@@ -24,6 +24,10 @@
 
 ## 🔥News
 
+- **November 9, 2025**
+  - Cool little sneak peek, VDM will be getting a dedicated custom physics engine that further enhances and improves scalability of the rigorous gating and discipline of the experiment system. This is being built into a fork of [Void IDE](https://github.com/voideditor/void.git) as a code editor / computational physics lab.
+  <img width="2983" height="1233" alt="image" src="https://github.com/user-attachments/assets/72214f0f-fb86-4398-8c3c-0c379fcf491c" />
+
 - **November 6, 2025**
   - 7 complete [formalisms](/Derivation/Complete-Formalisms) have been derived for VDM and documented as some of the final remaining pieces in the work to T8 Axiom 8 candidate.
 - **November 4, 2025**
