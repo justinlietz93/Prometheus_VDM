@@ -1,5 +1,7 @@
 # VDM Tier-Graded Maturity Ladder v3 (branch‑agnostic, canon‑anchored)
 
+**Commit:** c2d71627c286029ae90267e4051411fa1fb3973e
+
 **Purpose.** Track progress from idea → instrument → preregistered result → external reproduction, without freezing the theory into any single limb. Uses your repo’s A0–A7 axioms and equation anchors as the “constitution.”
 
 > **Branch tags:** RD • KG/EFT • Agency(C‑field) • Memory/Steering • Other (open set). A work item can carry multiple tags.
@@ -11,6 +13,8 @@
 - **H\**\*\_HYPOTHESIS** — Initial logical inquiry  
 
 - **COMPLETE FORMALISM (CF\*_)** — Axiom‑anchored, closed mathematical specification: governing equations with conserved quantities and variational/metriplectic structure; discrete→continuum map with BC/IC; measurable observables and units defined; symbols/constants registered; algorithmic realizations admissible without altering the math (ready to seed T0–T9).  
+
+- **COMPLETE FORMALISM (CFN\*_)** — Jupyter notebook that organizes space for each section in the prior CF* writeup. The notebook must be a 1:1 mapping from theory -> code. It must extend the falsifiabiliy and testability of the formalism with a step by step series of numerical evidence. This is not gated as rigorously as the PROPOSAL documents, but should still be accurate and not show evidence of a flop.  
 
 ## T0 — Concept seed
 

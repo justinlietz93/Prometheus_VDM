@@ -1,0 +1,232 @@
+{
+  "title": "RM-C03 | Electromagnetism, MHD, and Plasmas",
+  "date": "2025-11-09",
+  "commit": "c2d71627c286029ae90267e4051411fa1fb3973e",
+  "vdm_axioms_commit_date": "2025-11-01",
+  "subtasks": {
+    "RM-02 | Electromagnetism & photonics": {
+      "rows": [
+        {
+          "id": "RM02-1",
+          "medium_model": "Port-Hamiltonian Maxwell (PFEM) with Joule loss + impedance boundary",
+          "conserved_currents": "Discrete energy balance with Poynting boundary power; passivity respected",
+          "entropy_energy": "Hamiltonian energy; monotone dissipation from resistive terms",
+          "boundary_treatment": "Structure-preserving ports via PFEM; boundary damping modeled as impedance",
+          "VDM_axioms": ["A3","A4","A5"],
+          "evidence_strength": "Strong",
+          "date": "2025-11-09"
+        },
+        {
+          "id": "RM02-2",
+          "medium_model": "Stokes–Dirac (port-Hamiltonian) formulation of Maxwell on bounded domains",
+          "conserved_currents": "Energy and Poynting flux as power ports; gauge symmetry explicit",
+          "entropy_energy": "Energy-conserving interconnection structure",
+          "boundary_treatment": "Boundary control/observation via Dirac structure",
+          "VDM_axioms": ["A3","A4"],
+          "evidence_strength": "Strong",
+          "date": "2025-11-09"
+        },
+        {
+          "id": "RM02-3",
+          "medium_model": "Structure-preserving discretization of boundary-controlled Maxwell as pH system",
+          "conserved_currents": "Discrete power balance retained",
+          "entropy_energy": "Energy accounting preserved by construction",
+          "boundary_treatment": "Ports + mixed BCs treated explicitly in the pH discretization",
+          "VDM_axioms": ["A3","A4","A5"],
+          "evidence_strength": "Strong",
+          "date": "2025-11-09"
+        },
+        {
+          "id": "RM02-4",
+          "medium_model": "Maxwell FDTD with SBP–SAT subgridding",
+          "conserved_currents": "Discrete energy estimate; stable subgrid coupling",
+          "entropy_energy": "Energy-stable semi-discrete form",
+          "boundary_treatment": "Weak imposition via SAT penalties; compatible interfaces",
+          "VDM_axioms": ["A2","A4","A5"],
+          "evidence_strength": "Strong",
+          "date": "2025-11-09"
+        },
+        {
+          "id": "RM02-5",
+          "medium_model": "DG schemes (Maxwell/MHD) with energy-stability conditions",
+          "conserved_currents": "Conditions ensuring discrete energy non-growth",
+          "entropy_energy": "Skew-symmetric forms yield energy stability",
+          "boundary_treatment": "Flux and space selection criteria for stability",
+          "VDM_axioms": ["A4","A5"],
+          "evidence_strength": "Medium",
+          "date": "2025-11-09"
+        },
+        {
+          "id": "RM02-6",
+          "medium_model": "PML and boundary procedures for Maxwell",
+          "conserved_currents": "Diagnoses/avoids spurious energy growth",
+          "entropy_energy": "Stability via energy method for PML implementations",
+          "boundary_treatment": "Careful SAT/penalty design to prevent global feedback",
+          "VDM_axioms": ["A2","A5"],
+          "evidence_strength": "Medium",
+          "date": "2025-11-09"
+        }
+      ],
+      "Impression": "Port-Hamiltonian Maxwell plus SBP–SAT numerics align with VDM: gauge symmetry (A3) remains explicit, the J/M split (A4) matches pH interconnection + resistive metric terms, and discrete energy/Poynting accounting supports A5. Boundary power ports and SAT penalties keep locality (A2) while avoiding nonlocal closures when designed correctly."
+    },
+    "RM-10 | Astrophysics (accretion, MHD, jets)": {
+      "rows": [
+        {
+          "id": "RM10-1",
+          "flux_form": "Entropy-conservative flux differencing + dissipation (DGSEM-LGL)",
+          "sigma_law": "Discrete entropy inequality for ideal MHD",
+          "locality": "Local SBP elements; interface-only coupling",
+          "scheme_type": "DG (SBP property via LGL)",
+          "VDM_AXIOMS": ["A2","A4","A5"],
+          "evidence_strength": "Strong",
+          "date": "2025-11-09"
+        },
+        {
+          "id": "RM10-2",
+          "flux_form": "Entropy-stable finite-volume with GLM divergence cleaning",
+          "sigma_law": "Entropy stability proven; positivity fixes",
+          "locality": "Riemann flux + local GLM wave",
+          "scheme_type": "FV/AMR",
+          "VDM_AXIOMS": ["A2","A4","A5"],
+          "evidence_strength": "Strong",
+          "date": "2025-11-09"
+        },
+        {
+          "id": "RM10-3",
+          "flux_form": "Entropy-preserving/stable fluxes for ideal MHD",
+          "sigma_law": "Entropy conservation + controlled dissipation",
+          "locality": "Local numerical fluxes only",
+          "scheme_type": "Finite Volume",
+          "VDM_AXIOMS": ["A2","A4","A5"],
+          "evidence_strength": "Strong",
+          "date": "2025-11-09"
+        },
+        {
+          "id": "RM10-4",
+          "flux_form": "Resistive MHD with symmetric resistive terms in entropy variables",
+          "sigma_law": "Discrete entropy stability; GLM cleaning included",
+          "locality": "Element-local with interface fluxes",
+          "scheme_type": "DG (nodal)",
+          "VDM_AXIOMS": ["A2","A4","A5"],
+          "evidence_strength": "Strong",
+          "date": "2025-11-09"
+        },
+        {
+          "id": "RM10-5",
+          "flux_form": "HLLC approximate Riemann solver for MHD",
+          "sigma_law": "No intrinsic entropy proof (requires fixes)",
+          "locality": "Local Riemann fan",
+          "scheme_type": "Riemann solver",
+          "VDM_AXIOMS": ["A2"],
+          "evidence_strength": "Weak",
+          "date": "2025-11-09"
+        },
+        {
+          "id": "RM10-6",
+          "flux_form": "Entropy-stable DG for multi-ion MHD",
+          "sigma_law": "Entropy stability in multi-physics coupling",
+          "locality": "SBP/DG interface coupling",
+          "scheme_type": "DG (nodal)",
+          "VDM_AXIOMS": ["A2","A4","A5"],
+          "evidence_strength": "Strong",
+          "date": "2025-11-09"
+        },
+        {
+          "id": "RM10-7",
+          "flux_form": "Metriplectic brackets for dissipative MHD",
+          "sigma_law": "Entropy production via metric bracket",
+          "locality": "Local functional brackets",
+          "scheme_type": "Analytical framework",
+          "VDM_AXIOMS": ["A4","A5"],
+          "evidence_strength": "Strong",
+          "date": "2025-11-09"
+        }
+      ],
+      "Impression": "Entropy-stable SBP/DG and FV schemes instantiate VDM’s metriplectic split (A4) with discrete entropy laws (A5), while GLM/Powell-type source terms restore symmetrizability and maintain locality (A2). HLLC/HLLD alone are not guarantees for A5 unless paired with entropy fixes and SBP-consistent discretizations."
+    },
+    "RM-12 | Plasma physics (kinetic, gyrokinetics)": {
+      "rows": [
+        {
+          "id": "RM12-1",
+          "collision_M": "Landau metric bracket (finite-element/Galerkin + discrete gradients)",
+          "J_bracket": "Vlasov–Maxwell noncanonical Poisson (Morrison)",
+          "H_theorem": "Discrete H-theorem proven",
+          "discretization": "Metriplectic integrators (semi-discrete + time-discrete)",
+          "VDM_axioms": ["A4","A5"],
+          "evidence_strength": "Strong",
+          "date": "2025-11-09"
+        },
+        {
+          "id": "RM12-2",
+          "collision_M": "Guiding-center/gyrokinetic metriplectic collisions",
+          "J_bracket": "Gyrokinetic/Vlasov Poisson bracket",
+          "H_theorem": "Satisfies First/Second Laws; monotone entropy",
+          "discretization": "PIC-friendly metriplectic closure",
+          "VDM_axioms": ["A4","A5"],
+          "evidence_strength": "Strong",
+          "date": "2025-11-09"
+        },
+        {
+          "id": "RM12-3",
+          "collision_M": "Guiding-center Landau metric bracket (multispecies)",
+          "J_bracket": "Guiding-center Vlasov–Maxwell bracket",
+          "H_theorem": "Guiding-center H-theorem satisfied",
+          "discretization": "Analytical metriplectic formulation",
+          "VDM_axioms": ["A4","A5"],
+          "evidence_strength": "Strong",
+          "date": "2025-11-09"
+        },
+        {
+          "id": "RM12-4",
+          "collision_M": "Multispecies Landau operator (energy, momentum, positivity preserving)",
+          "J_bracket": "Standard Vlasov Poisson structure",
+          "H_theorem": "Entropy non-decrease in particle discretization",
+          "discretization": "Structure-preserving particle method",
+          "VDM_axioms": ["A4","A5"],
+          "evidence_strength": "Strong",
+          "date": "2025-11-09"
+        },
+        {
+          "id": "RM12-5",
+          "collision_M": "Lenard–Bernstein (LB) metriplectic-inspired structure-preserving discretization",
+          "J_bracket": "Vlasov Poisson",
+          "H_theorem": "LB variant with discrete H-theorem properties",
+          "discretization": "Structure-preserving particle scheme",
+          "VDM_axioms": ["A4","A5"],
+          "evidence_strength": "Medium",
+          "date": "2025-11-09"
+        },
+        {
+          "id": "RM12-6",
+          "collision_M": "Variational/particle Landau operator (deterministic)",
+          "J_bracket": "Vlasov Poisson",
+          "H_theorem": "Conserves invariants; H-theorem demonstrated in variants",
+          "discretization": "Variational particle method",
+          "VDM_axioms": ["A4","A5"],
+          "evidence_strength": "Medium",
+          "date": "2025-11-09"
+        }
+      ],
+      "Impression": "Kinetic metriplectic formulations deliver VDM’s A4/A5 natively: the antisymmetric Vlasov bracket (J) preserves invariants, while Landau/LB metric brackets (M) guarantee nonnegative entropy production with exact conservation laws, and several schemes prove a discrete H-theorem."
+    }
+  },
+  "decision_rules": {
+    "Strong": "Peer‑reviewed proof of discrete energy/entropy law (e.g., SBP/DG entropy inequality or metriplectic H‑theorem) and clear locality of operators/interfaces.",
+    "Medium": "Partial proof (linearized/semidiscrete) or strong numerical evidence; locality largely preserved but with caveats (e.g., special boundary treatments).",
+    "Weak": "No entropy/energy proof or relies on ad‑hoc fixes; potential nonlocal closures or undocumented boundary feedback."
+  },
+  "red_flags": {
+    "RM-02": [
+      "Globalized boundary closures (e.g., PML tunings) that violate local power balance or induce energy growth.",
+      "Fluxes/boundaries not derived in a structure‑preserving way (break A4/A5)."
+    ],
+    "RM-10": [
+      "Use of HLLC/HLLD without entropy fixes or SBP‑consistent discretization.",
+      "Divergence control via global projections that break conservation/locality."
+    ],
+    "RM-12": [
+      "Collision operators lacking symmetry/positive semidefiniteness or not conserving invariants.",
+      "Discretizations without a proven discrete H‑theorem when collisions are present."
+    ]
+  }
+}
