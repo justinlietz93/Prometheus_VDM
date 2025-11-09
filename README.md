@@ -20,7 +20,7 @@
 >
 > ![Static Badge](https://img.shields.io/badge/Academic%2FCommercial%20Dual-License?label=LICENSE&color=%23fff200&link=https%3A%2F%2Fgithub.com%2FNeuroca-Inc%2FPrometheus_Void-Dynamics_Model%2Fblob%2Fmain%2FLICENSE.md)  
 >
-> See LICENSE file or click the LICENSE badge above for full terms.  
+> See [LICENSE](/LICENSE) file for full terms.  
 
 ## 🔥News
 
