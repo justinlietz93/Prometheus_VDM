@@ -12,7 +12,7 @@
 > **Zenodo Community:** [Void Dynamics Model](https://zenodo.org/communities/void-dynamics-model/records?q=&l=list&p=1&s=10&sort=newest)
 >
 > **Created:** August 9, 2025  
-> **Last Updated:** November 8, 2025  
+> **Last Updated:** November 9, 2025  
 >
 > This research is protected under a dual-license to foster open academic  
 > research while ensuring commercial applications are aligned with the project's ethical principles.  
