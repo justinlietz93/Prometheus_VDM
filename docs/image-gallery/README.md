@@ -2,7 +2,7 @@
 
 **Updated:** November 9, 2025
 
-## Placeholder 3D reaction diffusion on a generic grid
+## Placeholder (non-VDM) 3D reaction diffusion on a generic grid
 
 <img width="2983" height="1233" alt="image" src="https://github.com/user-attachments/assets/72214f0f-fb86-4398-8c3c-0c379fcf491c" />
   
