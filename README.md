@@ -25,7 +25,7 @@
 ## 🔥News
 
 - **November 9, 2025**
-  - Cool little sneak peek, VDM will be getting a dedicated custom [physics engine](/docs/image-gallery/README.md) that further enhances and improves scalability of the runner gating discipline, reporting, and automated unambiguous rule enforcement. This is being built into a fork of [Void IDE](https://github.com/voideditor/void.git) as a code editor / computational physics lab.
+  - VDM will be upgrading to a dedicated custom [physics engine](/docs/image-gallery/README.md) that further enhances and improves scalability of the runner gating discipline, reporting, and automated unambiguous rule enforcement. This is being built into a fork of [Void IDE](https://github.com/voideditor/void.git) as a code editor / computational physics lab.
 - **November 6, 2025**
   - 7 complete [formalisms](/Derivation/Complete-Formalisms) have been derived for VDM and documented as some of the final remaining pieces in the work to T8 Axiom 8 candidate.
 - **November 4, 2025**
