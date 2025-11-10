@@ -2,6 +2,7 @@
 
 **Date:** 2025-11-05  
 **Status:** Complete Derivation  
+**Commit:** c2d71627c286029ae90267e4051411fa1fb3973e
 **Gap Module:** CF3 (from T0_Unification_Program_Spec_v1.md)  
 **Proposer:** Justin K. Lietz  
 **License:** See [LICENSE](/LICENSE)  
@@ -241,6 +242,35 @@ $$
    $$
    N(L) = K = \Theta(\log L)
    $$
+
+---
+
+#### Clarification — Why *depth* $K$, not raw *count* $\sum_k 2^k$
+
+The dyadic sketch with $2^k$ pieces at scale $k$ enumerates **subsegments of a partition**, not distinct **separating hypersurfaces** that survive energy minimization. In the perimeter functional, any surplus same-scale boundaries either  
+
+- (i) **annihilate under curvature flow** or  
+- (ii) can be **merged without increasing total perimeter** (see Theorem 3.3), so the energy-optimal configuration uses **$O(1)$ interfaces per scale**. The scaling observable is therefore the **hierarchical depth**
+
+$$
+K_{\max}=\left\lfloor \log_2\!\frac{L}{\ell_0}\right\rfloor,
+$$
+
+not the raw combinatorial count of subsegments. Equivalently, with energy per level
+
+$$
+E_k \asymp \left(\frac{L}{2^k}\right)^{d-1},
+$$
+
+the bounded-energy requirement selects at most a constant number of active interfaces per level; counting **levels** yields
+
+$$
+N(L)=K=\Theta(\log L).
+$$
+
+*Takeaway:* $N$ in Theorem 3.2 denotes the **number of active levels** (hierarchical depth), not the total number of dyadic subsegments.
+
+---
 
 ### 3.3 Perimeter Reduction Principle
 
