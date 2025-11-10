@@ -16,7 +16,7 @@
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{siunitx}
-\sisetup{detect-all}
+\sisetup{detect-all, output-exponent-marker = \mathrm{e}, group-minimum-digits = 4}
 \usepackage{microtype}
 \usepackage{subcaption}
 \usepackage{longtable}
@@ -28,6 +28,12 @@
 \usepackage[hidelinks]{hyperref}
 \usepackage{xspace}
 \usepackage{enumitem}
+\usepackage[nameinlink,capitalise,noabbrev]{cleveref}
+
+% Prevent widows/orphans
+\clubpenalty=10000
+\widowpenalty=10000
+\displaywidowpenalty=10000
 
 % ---- OPTIONAL: line numbers (comment out if not needed) ----
 % \usepackage[modulo]{lineno}
@@ -44,6 +50,9 @@
 \newcommand{\orcidicon}[1]{%
   \href{https://orcid.org/#1}{\includegraphics[height=1.6ex]{../../Templates/White-Paper_Publishing_Templates/RESULTS_Template_A_ArXiv/orcid.pdf}}%
 }
+
+% ---- Convenience macros ----
+\newcommand{\CEG}{\mathrm{CEG}}
 
 % ---- Metadata (edit) ----
 \title{Counterfactual Echo Gain (CEG): Future‑Aware Metriplectic Assistance Yields Gate‑Certified Echo Improvement}
@@ -71,7 +80,7 @@ This report documents the preregistered evaluation of a metriplectic-assisted ec
 \section{Introduction}
 The evaluation question is: does a metriplectic, model‑aware assisted echo improve echo recovery error relative to an energy‑matched, model‑blind baseline without violating instrument gates? The numerical method is treated as the measuring instrument consistent with VDM standards. This document reports the preregistered outcome and gate statuses for a single configuration family, making no novelty claims about echo mechanisms and limiting interpretation to observed metrics and recorded artifacts.
 
-As broader context, quantum OTOC‑based echoes can be interpreted as interferometers that leverage reverse‑phase previews to reduce error, as recently demonstrated at scale \citep{GoogleQAIEdgeErgodicity2025,GoogleQAIESM2025}. Our study is a classical, metriplectic, energy‑matched instrument analogue that isolates the contribution of a future‑aware (counterfactual preview) assistance under strict gates; see also echo exemplars in nuclear spin platforms \citep{LiZhang2025SpinEchoGeometry}. Canon and tier standards for claims and gates follow VDM registries \citep{VDMCanonAxioms2025,VDMCanonEquations2025,VDMCanonTierStandards2025}.
+As broader context, quantum OTOC‑based echoes can be interpreted as interferometers that leverage reverse‑phase previews to reduce error, as recently demonstrated at scale \citep{GoogleQAIEdgeErgodicity2025,GoogleQAIESM2025}. Our study is a classical, metriplectic, energy‑matched instrument analogue that isolates the contribution of a future‑aware (counterfactual preview) assistance under strict gates; see also echo exemplars in nuclear spin platforms \citep{LiZhang2025SpinEchoGeometry}. Canon and tier standards for claims and gates follow VDM registries \citep{VDMCanonAxioms2025,VDMCanonEquations2025,VDMCanonTierStandards2025}. Reader map: gate definitions and summary appear in Section~\ref{sec:gates}; the artifact inventory is in Section~\ref{sec:artifacts}.
 
 % =========================================================
 \section{Background}
@@ -81,12 +90,12 @@ The dynamics are framed in a metriplectic split with a Hamiltonian (skew‑symme
 \subsection*{Core equations used later}
 The outcome observable is the dimensionless counterfactual echo gain (CEG)
 \begin{equation}
-  \mathrm{CEG}
+  \CEG
   \;\equiv\;
   \frac{E_{\mathrm{baseline}} - E_{\mathrm{assisted}}}{E_{\mathrm{baseline}}}
   \in [0,1],
 \end{equation}
-computed on the echo overlap by the instrument's $H$‑norm routine. Instrument properties referenced in results:
+computed on the echo overlap by the instrument's $H$‑norm routine\footnote{\href{https://github.com/justinlietz93/Prometheus_VDM/blob/nexus/Derivation/z.CANONICAL_Equations/00_EQUATIONS.md}{VDM canonical equations registry}}. Instrument properties referenced in results:
 \begin{itemize}[leftmargin=*]
   \item $J$‑only reversibility drift (Noether‑style drift).
   \item $M$‑limb entropy monotonicity ($\Delta \Sigma \ge 0$).
@@ -128,12 +137,12 @@ and is quality‑controlled via a two‑grid slope gate and $R^2$ fit to confirm
 
 The outcome observable is the dimensionless counterfactual echo gain
 \begin{equation}
-  \mathrm{CEG} \;\equiv\; \frac{E_{\mathrm{baseline}} - E_{\mathrm{assisted}}}{E_{\mathrm{baseline}}}\in[0,1],
+  \CEG \;\equiv\; \frac{E_{\mathrm{baseline}} - E_{\mathrm{assisted}}}{E_{\mathrm{baseline}}}\in[0,1],
 \end{equation}
 computed on the echo overlap by the instrument's $H$‑norm routine under an \emph{energy‑match} constraint (equal reverse‑phase work budgets).
 
 \paragraph{Lemma (boundedness of CEG).}
-If $E_{\mathrm{baseline}}>0$ and $E_{\mathrm{assisted}}\ge 0$ are measured under identical reverse‑phase work budgets, then $0 \le \mathrm{CEG} \le 1$. \emph{Sketch.} Non‑negativity is immediate. If $E_{\mathrm{assisted}}\le E_{\mathrm{baseline}}$, then $(E_{\mathrm{baseline}}-E_{\mathrm{assisted}})/E_{\mathrm{baseline}}\le 1$. Equality cases occur at $E_{\mathrm{assisted}}=0$ and $E_{\mathrm{assisted}}=E_{\mathrm{baseline}}$.
+If $E_{\mathrm{baseline}}>0$ and $E_{\mathrm{assisted}}\ge 0$ are measured under identical reverse‑phase work budgets, then $0 \le \CEG \le 1$. \emph{Sketch.} Non‑negativity is immediate. If $E_{\mathrm{assisted}}\le E_{\mathrm{baseline}}$, then $(E_{\mathrm{baseline}}-E_{\mathrm{assisted}})/E_{\mathrm{baseline}}\le 1$. Equality cases occur at $E_{\mathrm{assisted}}=0$ and $E_{\mathrm{assisted}}=E_{\mathrm{baseline}}$.
 
 % =========================================================
 \section{Methods}
@@ -196,12 +205,12 @@ This enforces equal effort during reverse phase so that any improvement is attri
 
 \paragraph{Outcome (G5).}
 \begin{equation}
-  \mathrm{CEG} \;=\; \frac{E_{\mathrm{baseline}}-E_{\mathrm{assisted}}}{E_{\mathrm{baseline}}}\in[0,1],
+  \CEG \;=\; \frac{E_{\mathrm{baseline}}-E_{\mathrm{assisted}}}{E_{\mathrm{baseline}}}\in[0,1],
   \qquad
-  \mathrm{median\_max\;CEG} \;=\; \max_{\lambda}\,\mathrm{median}\bigl(\mathrm{CEG}(\lambda)\bigr) \;\ge\; 0.05.
+  \mathrm{median\_max\;\CEG} \;=\; \max_{\lambda}\,\mathrm{median}\bigl(\CEG(\lambda)\bigr) \;\ge\; 0.05.
 \end{equation}
 
-Observed values (this run): $\Delta I_{\max}\sim 3.5\times 10^{-17}$ (G1 PASS); $\min_k \Delta\Sigma_k \gtrsim 4.1\times 10^{-4}$ (G2 PASS); $s\approx 2.94$–$2.95$, $R^2\approx 0.99997$ (G4 PASS); $\mathrm{rel\_diff}_W \le 1.4\times 10^{-16}$ (G3 PASS); $\mathrm{median\_max\;CEG}=0.054552$ at $\lambda=0.5$ (G5 PASS).
+Observed values (this run): $\Delta I_{\max}\sim \num{3.5e-17}$ (G1 PASS); $\min_k \Delta\Sigma_k \gtrsim \num{4.1e-4}$ (G2 PASS); $s\approx 2.94$–$2.95$, $R^2\approx \num{0.99997}$ (G4 PASS); $\mathrm{rel\_diff}_W \le \num{1.4e-16}$ (G3 PASS); $\mathrm{median\_max\;CEG}=\num{0.054552}$ at $\lambda=0.5$ (G5 PASS).
 
 \subsection*{Equipment / Software Stack}
 Linux OS with IEEE‑754 double precision (fp64). Library and environment versions are captured in the run JSON ledger and associated manifests (commit‑pinned). Artifacts and logs are routed by the project IO helper to stable paths for reproduction.
@@ -262,14 +271,14 @@ Uncertainty is summarized by multi‑seed aggregation at each $\lambda$ (medians
 \begin{figure}[t]
   \centering
   \includegraphics[width=0.78\linewidth]{images/20251104_123412_20251104_123412_assisted_echo_phase__assisted-echo-t4-prereg-v1c.png}
-  \caption{A1: Phase portrait panels generated by the instrument runner. Paired artifacts: \texttt{logs/20251104\_123411\_assisted\_echo\_\_assisted-echo-t4-prereg-v1c.json}.}
+  \caption{Phase portrait panels generated by the instrument runner. Paired artifacts: \texttt{logs/20251104\_123411\_assisted\_echo\_\_assisted-echo-t4-prereg-v1c.json}.}
   \label{fig:phase}
 \end{figure}
 
 \begin{figure}[t]
   \centering
   \includegraphics[width=0.78\linewidth]{images/20251104_123413_20251104_123412_assisted_echo_ceg_vs_lambda__assisted-echo-t4-prereg-v1c.png}
-  \caption{A3: CEG vs.\ assistance level $\lambda$ for $N=256$, $\Delta t=0.02$, $n=12$ seeds. Median\_max $=0.054552$ at $\lambda=0.5$. Paired artifacts: \texttt{logs/20251104\_123412\_assisted\_echo\_ceg\_summary\_\_assisted-echo-t4-prereg-v1c.csv}, \texttt{logs/20251104\_123411\_assisted\_echo\_\_assisted-echo-t4-prereg-v1c.json}; commit \texttt{c63d13f}.}
+  \caption{CEG vs.\ assistance level $\lambda$ for $N=256$, $\Delta t=0.02$, $n=12$ seeds. Median\_max $=\num{0.054552}$ at $\lambda=0.5$. Paired artifacts: \texttt{logs/20251104\_123412\_assisted\_echo\_ceg\_summary\_\_assisted-echo-t4-prereg-v1c.csv}, \texttt{logs/20251104\_123411\_assisted\_echo\_\_assisted-echo-t4-prereg-v1c.json}; commit \texttt{c63d13f}.}
   \label{fig:ceg_vs_lambda}
 \end{figure}
 
@@ -362,7 +371,7 @@ Measured pass‑rate $12/12$; typical drift $\sim 3.5\times 10^{-17}$. \textbf{P
 \end{vdmgate}
 
 \begin{vdmgate}{G2 — $M$‑limb monotonicity}{$\Delta \Sigma \ge 0$ per step}
-Measured pass‑rate $12/12$; minimum per‑seed $\Delta \Sigma \gtrsim 4.1\times 10^{-4}$. \textbf{PASS}. Artifacts: \texttt{logs/20251104\_123411\_assisted\_echo\_\_assisted-echo-t4-prereg-v1c.json}.
+Measured pass‑rate $12/12$; minimum per‑seed $\Delta \Sigma \gtrsim \num{4.1e-4}$. \textbf{PASS}. Artifacts: \texttt{logs/20251104\_123411\_assisted\_echo\_\_assisted-echo-t4-prereg-v1c.json}.
 \end{vdmgate}
 
 \begin{vdmgate}{G4 — Strang composition defect}{two‑grid slope $\ge 2.90$, $R^2 \ge 0.999$}
@@ -370,7 +379,7 @@ Measured pass‑rate $12/12$; slopes $\approx 2.94$–$2.95$, $R^2 \approx 0.999
 \end{vdmgate}
 
 \begin{vdmgate}{G3 — Energy match (reverse equal‑work)}{baseline vs.\ assisted work equality}
-Measured pass‑rate $12/12$; relative difference $\le 1.4\times 10^{-16}$. \textbf{PASS}. Artifacts: \texttt{logs/20251104\_123411\_assisted\_echo\_\_assisted-echo-t4-prereg-v1c.json}.
+Measured pass‑rate $12/12$; relative difference $\le \num{1.4e-16}$. \textbf{PASS}. Artifacts: \texttt{logs/20251104\_123411\_assisted\_echo\_\_assisted-echo-t4-prereg-v1c.json}.
 \end{vdmgate}
 
 \begin{vdmgate}{G5 — Outcome: positive CEG}{\emph{median\_max} $\ge 0.05$ at some $\lambda>0$}
@@ -470,7 +479,7 @@ Runtime distribution disclosure (P50/P95/P99 step time, jitter, active‑site fr
   \toprule
   Metric & P50 & P95 & P99 & Notes \\
   \midrule
-  Step time (ms) & — & — & — & to be reported \\
+  Step time (\si{ms}) & — & — & — & to be reported \\
   Active-site fraction & — & — & — & to be reported \\
   Slope $\beta$ (log–log) & — & — & — & CI: [\,\,] \\
   \bottomrule
