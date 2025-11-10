@@ -39,6 +39,7 @@ with explicit physics gates: **J‑Noether drift** bounded, **M‑monotonicity**
 $$
 \dot q = J(q)\,\frac{\delta \mathcal{I}}{\delta q} + M(q)\,\frac{\delta \Sigma}{\delta q},\quad J^\top=-J,\; M^\top = M\succeq 0
 $$
+
 with degeneracies $J,\,\delta\Sigma/\delta q=0$ and $M,\,\delta\mathcal{I}/\delta q=0$. The $J$ limb preserves invariants (e.g., discrete Hamiltonian), while $M$ increases an entropy/Lyapunov functional $\Sigma$ (discrete H‑theorem). VDM’s existing canon documents meters for these properties and composition‑error scaling under Strang splitting.
 
 **Governing equations used later.** The validated KG/RD branches and conservation‑law diagnostics provide the measurement substrate for the echo tests; e.g., the discrete action and Lagrangian/Euler–Lagrange structure (for $J$), and gradient‑flow RD updates (for $M$). These appear in the EQUATIONS registry used as the computational “instrument manual.”
@@ -261,12 +262,9 @@ If any gate fails, emit **CONTRADICTION_REPORT** (gate, threshold, seed, commit,
 **Instrument equations referenced in §5.1** (drawn from the EQUATIONS registry):
 
 * Discrete Lagrangian / Euler–Lagrange for the (J) limb (KG branch):
-  $$
-  \frac{W_i^{n+1}-2W_i^{n}+W_i^{n-1}}{(\Delta t)^2}
-  -\kappa \sum_{\mu=1}^d \big(W_{i+\mu}^{n}+W_{i-\mu}^{n}-2W_i^{n}\big)
-  + V'(W_i^{n}) = 0,\quad
-  \mathcal{L} = \tfrac12 (\partial_t \phi)^2 - \tfrac{\kappa a^2}{2} (\nabla \phi)^2 - V(\phi)
-  $$
+  
+$$\frac{W_i^{n+1}-2W_i^{n}+W_i^{n-1}}{(\Delta t)^2}-\kappa \sum_{\mu=1}^d \big(W_{i+\mu}^{n}+W_{i-\mu}^{n}-2W_i^{n}\big)+ V'(W_i^{n}) = 0,\quad\mathcal{L} = \tfrac12 (\partial_t \phi)^2 - \tfrac{\kappa a^2}{2} (\nabla \phi)^2 - V(\phi)$$
+  
   (Continuum limit and notation as in the registry.)
 
 **Primary reproducibility note.** All runs will log commit, seed, full parameters, and SHA‑256 checksums for CSV/JSON/PNG artifacts, consistent with VDM’s reproducibility policy.
