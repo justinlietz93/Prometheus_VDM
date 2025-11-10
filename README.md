@@ -25,7 +25,7 @@
 ## 🔥News
 
 - **November 9, 2025**
-  - Cool little sneak peek, VDM will be getting a dedicated custom physics engine that further enhances and improves scalability of the rigorous gating and discipline of the experiment system. This is being built into a fork of [Void IDE](https://github.com/voideditor/void.git) as a code editor / computational physics lab.
+  - Cool little sneak peek, VDM will be getting a dedicated custom physics engine that further enhances and improves scalability of the runner gating discipline, reporting, and automated unambiguous rule enforcement. This is being built into a fork of [Void IDE](https://github.com/voideditor/void.git) as a code editor / computational physics lab.
 <img width="2983" height="1233" alt="image" src="https://github.com/user-attachments/assets/72214f0f-fb86-4398-8c3c-0c379fcf491c" />
 <img width="2149" height="1237" alt="Screenshot From 2025-11-09 14-56-46" src="https://github.com/user-attachments/assets/20e5ed91-6bd3-47c6-8cca-db936c058fdc" />
 <img width="2149" height="1237" alt="Screenshot From 2025-11-09 14-57-15" src="https://github.com/user-attachments/assets/80fdc71c-17d9-4cd4-8d7d-b27f1e6e15e1" />
