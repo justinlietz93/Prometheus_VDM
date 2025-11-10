@@ -24,6 +24,8 @@
 
 ## 🔥News
 
+- **November 10, 2025**
+  - Published results from the Counterfactual Echo Gain test to [Zenodo]
 - **November 9, 2025**
   - VDM will be upgrading to a dedicated custom [physics engine](/docs/image-gallery/README.md) that further enhances and improves scalability of the runner gating discipline, reporting, and automated unambiguous rule enforcement. This is being built into a fork of [Void IDE](https://github.com/voideditor/void.git) as a code editor / computational physics lab.
 - **November 6, 2025**
@@ -73,7 +75,7 @@
 ## DOIs
 
 ***T4. Counterfactual Echo Gain (CEG): A Metriplectic Assisted-Echo Experiment Proposal in VDM***
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17525915.svg)](https://doi.org/10.5281/zenodo.17525915)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17567396.svg)](https://doi.org/10.5281/zenodo.17567396)
 
 ***T8. Axiom 8 Candidate: The Lietz Infinity Resolution Conjecture***  
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17503343.svg)](https://doi.org/10.5281/zenodo.17503343)
