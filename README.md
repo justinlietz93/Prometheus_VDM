@@ -8,9 +8,9 @@
 
 > **Author:** Justin K. Lietz  
 > **Contact:** <justin@neuroca.ai>  
+> **Zenodo Community:** [Void Dynamics Model](https://zenodo.org/communities/void-dynamics-model/records?q=&l=list&p=1&s=10&sort=newest)  
 > <a href="https://orcid.org/0009-0008-9028-1366"><img src="https://img.shields.io/badge/ORCID-0009--0008--9028--1366-blue?" alt="ORCID: 0009-0008-9028-1366"></a>  
-> **Zenodo Community:** [Void Dynamics Model](https://zenodo.org/communities/void-dynamics-model/records?q=&l=list&p=1&s=10&sort=newest)
->
+> 
 > **Created:** August 9, 2025  
 > **Last Updated:** November 9, 2025  
 >
@@ -18,14 +18,16 @@
 > research while ensuring commercial applications are aligned with the project's ethical principles.  
 > Commercial use requires written permission from the author.  
 >
-> ![Static Badge](https://img.shields.io/badge/Academic%2FCommercial%20Dual-License?label=LICENSE&color=%23fff200&link=https%3A%2F%2Fgithub.com%2FNeuroca-Inc%2FPrometheus_Void-Dynamics_Model%2Fblob%2Fmain%2FLICENSE.md)  
->
-> See [LICENSE](/LICENSE) file for full terms.  
+
+<h6>See license file for full terms</h6>
+
+> [![Static Badge](https://img.shields.io/badge/Academic%2FCommercial%20Dual-License?label=LICENSE&color=%23fff200&link=https%3A%2F%2Fgithub.com%2FNeuroca-Inc%2FPrometheus_Void-Dynamics_Model%2Fblob%2Fmain%2FLICENSE.md)](/LICENSE)  
+
 
 ## 🔥News
 
 - **November 10, 2025**
-  - Published results from the Counterfactual Echo Gain test to [Zenodo]
+  - Published results from the Counterfactual Echo Gain test to [Zenodo](https://doi.org/10.5281/zenodo.17567396)
 - **November 9, 2025**
   - VDM will be upgrading to a dedicated custom [physics engine](/docs/image-gallery/README.md) that further enhances and improves scalability of the runner gating discipline, reporting, and automated unambiguous rule enforcement. This is being built into a fork of [Void IDE](https://github.com/voideditor/void.git) as a code editor / computational physics lab.
 - **November 6, 2025**
