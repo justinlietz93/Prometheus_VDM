@@ -84,14 +84,36 @@ def _policy_quarantine(default_failed: bool) -> bool:
 
 
 def figure_path(domain: str, slug: str, failed: bool=False) -> Path:
-    """Generate a path for saving a figure.
+    """Generate a path for saving a PNG figure.
     Args:
         domain (str): The domain of the experiment (e.g., "fluid_dynamics").
         slug (str): A short descriptive identifier for the experiment.
-        failed (bool): Whether this is for a failed run."""
+        failed (bool): Whether this is for a failed run.
+    Returns:
+        Path: e.g., Derivation/code/outputs/figures/{domain}/[failed_runs/]YYYYmmdd_HHMMSS_{slug}.png
+    """
     failed = _policy_quarantine(failed)
     base = OUTPUTS / "figures" / domain / ("failed_runs" if failed else "")
     return ensure_dir(base) / f"{_ts()}_{slug}.png"
+
+def figure_path_ext(domain: str, slug: str, ext: str="png", failed: bool=False) -> Path:
+    """Generate a path for saving a figure or media with a custom extension.
+    Args:
+        domain (str): Experiment domain (e.g., "metriplectic").
+        slug (str): Identifier for the artifact.
+        ext (str): File extension without dot (e.g., "png", "gif", "mp4", "svg").
+        failed (bool): Whether this is for a failed run.
+    Returns:
+        Path: e.g., Derivation/code/outputs/figures/{domain}/[failed_runs/]YYYYmmdd_HHMMSS_{slug}.{ext}
+    """
+    failed = _policy_quarantine(failed)
+    base = OUTPUTS / "figures" / domain / ("failed_runs" if failed else "")
+    ext = ext.lstrip(".")
+    return ensure_dir(base) / f"{_ts()}_{slug}.{ext}"
+
+def media_path(domain: str, slug: str, ext: str="gif", failed: bool=False) -> Path:
+    """Alias for figure_path_ext for non-PNG media (animations, videos, etc.)."""
+    return figure_path_ext(domain, slug, ext=ext, failed=failed)
 
 def figure_path_by_tag(domain: str, name: str, tag: str | None, failed: bool=False) -> Path:
     """Figure path using name+optional tag to build the slug centrally."""
@@ -125,3 +147,6 @@ def write_log(path: Path, data: dict):
             writer = csv.DictWriter(f, fieldnames=data.keys())
             writer.writeheader()
             writer.writerow(data)
+        else:
+            # Fallback: if an unsupported suffix is provided, default to JSON
+            json.dump(data, f, indent=2, sort_keys=True)
