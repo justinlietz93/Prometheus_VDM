@@ -19,7 +19,7 @@
 > Commercial use requires written permission from the author.  
 >
 
-<h6>See license file for full terms</h6>
+<h6>Patent pending - See license file for full terms</h6>
 
 > [![Static Badge](https://img.shields.io/badge/Academic%2FCommercial%20Dual-License?label=LICENSE&color=%23fff200&link=https%3A%2F%2Fgithub.com%2FNeuroca-Inc%2FPrometheus_Void-Dynamics_Model%2Fblob%2Fmain%2FLICENSE.md)](/LICENSE)  
 
