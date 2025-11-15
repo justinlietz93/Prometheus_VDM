@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "vdm:black_holes:topo_rdm:1",
+  "title": "Topo-RDM parameters schema",
+  "tag": "dsi-topo-rdm-v1",
+  "description": "Parameters for Topological Ringdown Meter (Topo-RDM) add-on to DSI-RDM. Validates the 'parameters' object of dsi_topo_rdm.v1.json.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "omega0_ref": {
+      "type": "string",
+      "enum": ["qnm220", "qnm330"],
+      "description": "Reference QNM for mass normalization"
+    },
+    "window": {
+      "type": "array",
+      "items": { "type": "number", "minimum": 0 },
+      "minItems": 2,
+      "maxItems": 2,
+      "description": "[t0, t1] in units of theta = omega0 * t; require t1 > t0 (checked in runtime)"
+    },
+    "whitener": {
+      "type": "string",
+      "enum": ["median-psd", "welch", "none"],
+      "description": "PSD whitening method"
+    },
+    "taper": {
+      "type": "string",
+      "enum": ["planck", "tukey", "hann", "none"],
+      "description": "Analysis window taper"
+    },
+    "K_QNM": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 8,
+      "description": "Number of QNM components in subtraction fit"
+    },
+    "ridge": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "k_neighbors": { "type": "integer", "minimum": 1, "maximum": 8 },
+        "max_gap": { "type": "integer", "minimum": 0, "maximum": 8 },
+        "phase_coherence_min": { "type": "number", "minimum": 0.0, "maximum": 1.0 }
+      },
+      "required": ["k_neighbors", "max_gap", "phase_coherence_min"]
+    },
+    "filtration": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "kind": { "type": "string", "enum": ["vrips", "alpha"] },
+        "radius_min": { "type": "number", "exclusiveMinimum": 0.0 },
+        "radius_max": { "type": "number", "exclusiveMinimum": 0.0 },
+        "num_scales": { "type": "integer", "minimum": 4, "maximum": 1024 }
+      },
+      "required": ["kind", "radius_min", "radius_max", "num_scales"],
+      "description": "Require radius_max > radius_min (checked in runtime)"
+    },
+    "nulls": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "kerr_only": { "type": "boolean" },
+        "phase_shuffled": { "type": "boolean" },
+        "num_sim": { "type": "integer", "minimum": 50, "maximum": 10000 },
+        "kerr_only_ridges": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Optional list of CSV file paths for ridges from Kerr-only injections matched to event PSD/SNR"
+        }
+      },
+      "required": ["kerr_only", "phase_shuffled", "num_sim"]
+    },
+    "b1z": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "fdr_q": { "type": "number", "minimum": 0.0, "maximum": 0.2 },
+        "z_gate_primary": { "type": "number", "minimum": 0.0 },
+        "z_gate_null": { "type": "number", "minimum": 0.0 }
+      },
+      "required": ["fdr_q", "z_gate_primary", "z_gate_null"]
+    }
+  },
+  "required": [
+    "omega0_ref",
+    "window",
+    "whitener",
+    "taper",
+    "K_QNM",
+    "ridge",
+    "filtration",
+    "nulls",
+    "b1z"
+  ]
+}

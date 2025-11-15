@@ -1,0 +1,22 @@
+{
+  "preflight_name": "dsi_topo_rdm_preflight",
+  "description": "Approval manifest for Topological Ringdown Meter (Topo-RDM) add-on to DSI-RDM; preflight must pass before artifact-writing runs.",
+  "author": "Justin K. Lietz",
+  "requires_approval": true,
+  "pre_commit_hook": true,
+  "domain": "cosmology",
+  "pre_registered": true,
+  "proposal": "Derivation/Cosmology/Ringdown_Meter/T2_PROPOSAL_Discrete_Scale_Invariance_Ringdown_v1.md",
+  "allowed_tags": [
+    "dsi-topo-rdm-v1"
+  ],
+  "schema_dir": "Derivation/code/physics/cosmology/black_holes/topo_rdm/schemas",
+  "approvals": {
+    "dsi-topo-rdm-v1": {
+      "schema": "Derivation/code/physics/cosmology/black_holes/topo_rdm/schemas/topo_rdm.schema.json",
+      "approved_by": "Justin K. Lietz",
+      "approved_at": "2025-11-15T22:41:32.602673+00:00",
+      "approval_key": "5a2ab7e83822bbaae0d0620a6eddc2bf7951175d7565a393f3488bfdd021535b"
+    }
+  }
+}

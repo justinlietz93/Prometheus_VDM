@@ -1,0 +1,26 @@
+{
+  "proposal_title": "T2 — Topological Ringdown Meter (Topo-RDM) add-on to DSI-RDM",
+  "tier_grade": "T2",
+  "commit": "<git-sha>",
+  "salted_provenance": "<hash>",
+  "contact": ["Justin K. Lietz <justin@neuroca.ai>"],
+  "hypotheses": [
+    {"id":"H1","statement":"Ringdown residuals exhibit nontrivial loop topology in time–frequency skeleton: max standardized first Betti number B1z_max >= 5 after FDR control (q<=0.01).","direction":"increase"},
+    {"id":"H2","statement":"Topological spectrum peak aligns with DSI comb spacing within ±5% when DSI G1 passes.","direction":"decrease"},
+    {"id":"H3","statement":"Null controls (Kerr-only and phase-shuffled residuals) yield B1z_max < 3 in 95% of runs (empirical false-positive rate <= 0.05).","direction":"decrease"}
+  ],
+  "variables": {
+    "independent": ["event_id","omega0_ref","window","whitener","K_QNM"],
+    "dependent": ["B1z_max","align_delta_pct","fp_rate","loop_persistence_width"],
+    "controls": ["taper","psd_method","ridge_link_thresholds","filtration_radius_schedule","seed"]
+  },
+  "pass_fail": [
+    {"metric":"B1z_max","operator":">=","threshold":5.0,"unit":"z"},
+    {"metric":"FDR_q","operator":"<=","threshold":0.01,"unit":""},
+    {"metric":"align_delta_pct","operator":"<=","threshold":5.0,"unit":"%"},
+    {"metric":"fp_rate","operator":"<=","threshold":0.05,"unit":""}
+  ],
+  "nulls": ["kerr_only_injections","phase_shuffled_residuals"],
+  "spec_refs": ["Derivation/code/physics/black_holes/topo_rdm/dsi_topo_rdm.v1.json"],
+  "registration_timestamp": "<ISO-8601>"
+}

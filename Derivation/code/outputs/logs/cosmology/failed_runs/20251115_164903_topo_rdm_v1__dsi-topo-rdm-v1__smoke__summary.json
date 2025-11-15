@@ -1,0 +1,58 @@
+{
+  "artifacts": {
+    "csv_betti": "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/logs/cosmology/failed_runs/20251115_164903_topo_rdm_v1__dsi-topo-rdm-v1__smoke__betti_curve.csv",
+    "figure": "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/figures/cosmology/failed_runs/20251115_164903_topo_rdm_v1__dsi-topo-rdm-v1__smoke.png"
+  },
+  "gates": {
+    "G1_topo_signal": false,
+    "G2_dsi_alignment": false,
+    "G3_null_control": true,
+    "align_tol_pct": null,
+    "overall_pass": false
+  },
+  "git_hash": "9d23318f4beb5ceca0e98dedea13fc88f082864f",
+  "instrument": "Topological Ringdown Meter (Topo-RDM) v1",
+  "metrics": {
+    "align_delta_pct": null,
+    "eps_at_peak": 0.10333333333333332,
+    "eps_target": null,
+    "fp_rate": 0.0,
+    "mu_null_max": 13.0,
+    "p_threshold_bh": 0.0,
+    "sd_null_max": 0.0,
+    "stable_band_len": 0,
+    "z_max": 0.0
+  },
+  "params": {
+    "K_QNM": 3,
+    "b1z": {
+      "fdr_q": 0.01,
+      "z_gate_null": 3.0,
+      "z_gate_primary": 5.0
+    },
+    "filtration": {
+      "kind": "vrips",
+      "num_scales": 64,
+      "radius_max": 0.5,
+      "radius_min": 0.01
+    },
+    "nulls": {
+      "kerr_only": false,
+      "num_sim": 200,
+      "phase_shuffled": true
+    },
+    "omega0_ref": "qnm220",
+    "ridge": {
+      "k_neighbors": 2,
+      "max_gap": 2,
+      "phase_coherence_min": 0.6
+    },
+    "taper": "planck",
+    "whitener": "median-psd",
+    "window": [
+      0.0,
+      8.0
+    ]
+  },
+  "tag": "dsi-topo-rdm-v1__smoke"
+}
