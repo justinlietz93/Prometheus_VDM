@@ -81,6 +81,18 @@
         "z_gate_null": { "type": "number", "minimum": 0.0 }
       },
       "required": ["fdr_q", "z_gate_primary", "z_gate_null"]
+    },
+    "alignment": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "eps_target": { "type": "number", "exclusiveMinimum": 0.0, "description": "Target filtration radius ε for alignment gate" },
+        "tol_pct": { "type": "number", "minimum": 0.0, "maximum": 100.0, "description": "Percent tolerance around eps_target" },
+        "require_dsi_alignment": { "type": "boolean", "default": true, "description": "When true, overall_pass requires G2 if an alignment target is provided; when false, alignment is informative only" },
+        "deltaOmega": { "type": "number", "exclusiveMinimum": 0.0, "description": "DSI comb spacing ΔΩ to be mapped to eps_target via eps_scale" },
+        "eps_scale": { "type": "number", "exclusiveMinimum": 0.0, "description": "Scale factor mapping ΔΩ → ε_target" }
+      },
+      "required": []
     }
   },
   "required": [

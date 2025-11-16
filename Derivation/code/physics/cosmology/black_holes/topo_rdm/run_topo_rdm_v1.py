@@ -48,6 +48,9 @@ from typing import Any, Dict, Iterable, List, Optional, Tuple
 
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib as mpl
+import platform
+from datetime import datetime
 
 # Ensure code root on sys.path (robust to depth)
 _THIS = Path(__file__).resolve()
@@ -70,7 +73,7 @@ if str(CODE_CODE_ROOT) not in sys.path:
 
 from common.io_paths import figure_path, log_path, write_log  # type: ignore
 from common.plotting.topo_rdm_plots import plot_topo_rdm_panel  # type: ignore
-from common.instrument_helpers.topo_rdm_timeseries import read_timeseries_csv, ridge_points_from_timeseries  # type: ignore
+from common.instrument_helpers.topo_rdm_timeseries import read_timeseries_csv, ridge_points_from_timeseries, read_timeseries_gwpy  # type: ignore
 
 
 # ---------- Utilities ----------
@@ -210,6 +213,31 @@ def pairwise_distances(X: np.ndarray) -> np.ndarray:
     D = np.sqrt(sq, dtype=float)
     return D
 
+def mst_connectivity_radius(D: np.ndarray) -> float:
+    """Max edge in a minimum spanning tree (single-linkage connectivity threshold)."""
+    n = int(D.shape[0])
+    if n <= 1:
+        return 0.0
+    # Extract upper-triangular edges
+    iu, ju = np.triu_indices(n, k=1)
+    w = D[iu, ju].astype(float)
+    order = np.argsort(w)
+    uf = UnionFind(n)
+    used = 0
+    r_max = 0.0
+    for idx in order:
+        wij = float(w[idx])
+        a = int(iu[idx]); b = int(ju[idx])
+        ra, rb = uf.find(a), uf.find(b)
+        if ra != rb:
+            uf.union(ra, rb)
+            used += 1
+            if wij > r_max:
+                r_max = wij
+            if used == n - 1:
+                break
+    return float(r_max)
+
 def beta1_curve(points: np.ndarray, eps: np.ndarray) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
     """
     Compute beta1(ε) = E - V + C over a VR-graph filtration on points.
@@ -285,15 +313,22 @@ def bh_fdr(pvals: np.ndarray, alpha: float) -> Tuple[float, np.ndarray]:
 
 def pvals_from_null(obs: np.ndarray, null_curves: np.ndarray) -> np.ndarray:
     """
-    Empirical one-sided p-values per ε: p = 1 - ECDF(B1_null <= B1_obs).
+    Empirical one-sided p-values per ε with mid-p correction for ties:
+    Let F_n(x-) = Pr(null < x), T_n(x) = Pr(null = x); p = 1 - (F_n + 0.5 T_n).
+    Guarantees p ∈ [1/(2K), 1] when all null_j are identical to obs[j] (prevents p=0 artifacts).
     """
-    K = null_curves.shape[0]
+    K = int(null_curves.shape[0])
     p = np.ones_like(obs, dtype=float)
     for j in range(len(obs)):
         null_j = null_curves[:, j]
-        # fraction of null ≤ observed
-        ecdf = np.mean(null_j <= obs[j])
-        p[j] = 1.0 - ecdf
+        less = float(np.mean(null_j < obs[j]))
+        eq = float(np.mean(null_j == obs[j]))
+        pj = 1.0 - (less + 0.5 * eq)
+        if not np.isfinite(pj):
+            pj = 1.0
+        # clip to [1/(2K), 1] for numerical safety
+        lo = 1.0 / (2.0 * max(1, K))
+        p[j] = float(np.clip(pj, lo, 1.0))
     return p
 
 def zscore_of_max(obs: np.ndarray, null_curves: np.ndarray) -> Tuple[float, float, float]:
@@ -373,32 +408,69 @@ def run_topo(points: np.ndarray, spec: TopoSpec, seed: Optional[int] = None) -> 
     params = spec.parameters
     fil = params["filtration"]
     num_scales = int(fil.get("num_scales", 64))
-    # Optionally cap filtration by pairwise-distance quantiles to avoid complete-graph degeneracy
+
+    # Baseline bounds
     rmin = float(fil.get("radius_min", 0.01))
     rmax = float(fil.get("radius_max", 0.5))
-    if bool(fil.get("use_quantile_bounds", False)):
+
+    # Robust per-dimension scaling of [tau, f] into [0,1] to set a dimensionless geometry for ε
+    Praw = _ensure_points_array(points)
+    tau_raw = Praw[:, 0].astype(float)
+    f_raw = Praw[:, 1].astype(float)
+    # Percentile bounds (robust to outliers)
+    try:
+        lo_tau, hi_tau = np.percentile(tau_raw, [1.0, 99.0])
+        lo_f, hi_f = np.percentile(f_raw, [1.0, 99.0])
+    except Exception:
+        lo_tau, hi_tau = float(np.min(tau_raw)), float(np.max(tau_raw))
+        lo_f, hi_f = float(np.min(f_raw)), float(np.max(f_raw))
+    # Avoid zero-width
+    if not np.isfinite(hi_tau - lo_tau) or (hi_tau - lo_tau) <= 1e-9:
+        hi_tau = lo_tau + 1.0
+    if not np.isfinite(hi_f - lo_f) or (hi_f - lo_f) <= 1e-9:
+        hi_f = lo_f + 1.0
+    tau_s = np.clip((tau_raw - lo_tau) / (hi_tau - lo_tau), 0.0, 1.0)
+    f_s = np.clip((f_raw - lo_f) / (hi_f - lo_f), 0.0, 1.0)
+    points_s = np.column_stack([tau_s, f_s])
+
+    # Pairwise distances (once) for adaptive bounds
+    try:
+        D_local = pairwise_distances(points_s)
+        dvec = D_local[np.isfinite(D_local)].ravel()
+        dvec = dvec[dvec > 0]
+    except Exception:
+        D_local = None
+        dvec = np.asarray([], dtype=float)
+
+    # Optional quantile-bounded filtration to avoid complete-graph degeneracy
+    if bool(fil.get("use_quantile_bounds", False)) and dvec.size > 0:
+        qmin = float(fil.get("qmin", 0.05))
+        qmax = float(fil.get("qmax", 0.60))
+        qmin = max(0.0, min(1.0, qmin))
+        qmax = max(qmin + 1e-6, min(1.0, qmax))
+        rmin = float(np.quantile(dvec, qmin))
+        rmax = float(np.quantile(dvec, qmax))
+
+    # Connectivity cap: keep rmax below the single-linkage connectivity threshold
+    if D_local is not None:
         try:
-            D_local = pairwise_distances(points)
-            dvec = D_local[np.isfinite(D_local)].ravel()
-            dvec = dvec[dvec > 0]
-            if dvec.size > 0:
-                qmin = float(fil.get("qmin", 0.05))
-                qmax = float(fil.get("qmax", 0.60))
-                # clamp and ensure qmax > qmin
-                qmin = max(0.0, min(1.0, qmin))
-                qmax = max(qmin + 1e-6, min(1.0, qmax))
-                rmin = float(np.quantile(dvec, qmin))
-                rmax = float(np.quantile(dvec, qmax))
+            r_conn = mst_connectivity_radius(D_local)
         except Exception:
-            # fall back to explicit radii if quantile computation fails
-            pass
-    # safety: ensure sane monotone bounds
+            r_conn = None
+        cap_on = bool(fil.get("connectivity_cap", True))
+        cap_pct = float(fil.get("cap_pct", 0.95))
+        if cap_on and (r_conn is not None) and np.isfinite(r_conn) and (r_conn > 0):
+            rmax = min(rmax, float(cap_pct) * float(r_conn))
+
+    # Safety clamps for monotone bounds
     if not (np.isfinite(rmin) and np.isfinite(rmax)) or (rmin <= 0.0) or (rmax <= rmin):
         rmin = float(fil.get("radius_min", 0.01))
         rmax = float(fil.get("radius_max", 0.5))
+
     eps = _linspace(rmin, rmax, num_scales)
+
     # Observed curve
-    b1_obs, E_obs, C_obs = beta1_curve(points, eps)
+    b1_obs, E_obs, C_obs = beta1_curve(points_s, eps)
 
     # Phase-shuffled nulls
     null_cfg = params.get("nulls", {})
@@ -406,7 +478,7 @@ def run_topo(points: np.ndarray, spec: TopoSpec, seed: Optional[int] = None) -> 
     num_sim = int(null_cfg.get("num_sim", 200))
     null_curves = np.empty((0, len(eps)), dtype=float)
     if do_phase:
-        null_curves = null_phase_shuffled_curves(points, eps, num_sim=num_sim, seed=seed)
+        null_curves = null_phase_shuffled_curves(points_s, eps, num_sim=num_sim, seed=seed)
     # Kerr-only ridges (Null-A) provided as CSVs
     kerr_paths = null_cfg.get("kerr_only_ridges", [])
     if kerr_paths:
@@ -430,12 +502,20 @@ def run_topo(points: np.ndarray, spec: TopoSpec, seed: Optional[int] = None) -> 
         pvals = np.ones_like(b1_obs)
         p_thr, q_mask = 0.0, np.zeros_like(b1_obs, dtype=bool)
 
-    # Z-score of max against null maxima
+    # Z-score of max over ε using per-ε standardization (aligns with G1)
     if null_curves.shape[0] > 0:
-        z_max, mu_null_max, sd_null_max = zscore_of_max(b1_obs, null_curves)
+        mu_per_eps_mx = np.mean(null_curves, axis=0)
+        sd_per_eps_mx = np.std(null_curves, axis=0, ddof=1)
+        z_per_eps_for_max = (b1_obs - mu_per_eps_mx) / (sd_per_eps_mx + 1e-12)
+        z_max = float(np.max(z_per_eps_for_max))
+        # Null maxima distribution in standardized units
+        z_null_mx = (null_curves - mu_per_eps_mx[None, :]) / (sd_per_eps_mx[None, :] + 1e-12)
+        z_null_max = np.max(z_null_mx, axis=1)
+        mu_null_max = float(np.mean(z_null_max))
+        sd_null_max = float(np.std(z_null_max, ddof=1)) if z_null_max.size > 1 else 0.0
     else:
         # No nulls: cannot compute z; set to 0
-        z_max, mu_null_max, sd_null_max = 0.0, float(np.max(b1_obs)), 0.0
+        z_max, mu_null_max, sd_null_max = 0.0, 0.0, 0.0
 
     # Gate G1: B1z_max ≥ z_gate_primary at any ε that survives FDR (require a small stable band: ≥2 consecutive)
     z_gate = float(params["b1z"]["z_gate_primary"])
@@ -450,17 +530,16 @@ def run_topo(points: np.ndarray, spec: TopoSpec, seed: Optional[int] = None) -> 
     stable_band_len = longest_true_run(stable_mask)
     G1 = bool((z_max >= z_gate) and (stable_band_len >= 2))
 
-    # Gate G3: Null control — FP rate ≤ 0.05 based on null maxima exceeding z_gate_null
+    # Gate G3: Null control — FP rate ≤ 0.05 based on null maxima exceeding muN + z_gate_null * sdN
     z_gate_null = float(params["b1z"]["z_gate_null"])
     if null_curves.shape[0] > 0:
-        # Evaluate z vs null maxima distribution (compute null z under leave-one-out? pragmatic: use μ/σ of null maxima once)
+        # Evaluate FP using raw null maxima distribution of beta1(ε)
         null_max = np.max(null_curves, axis=1)
         muN = float(np.mean(null_max))
         sdN = float(np.std(null_max, ddof=1)) if null_max.size > 1 else 0.0
         if sdN <= 0:
             fp_rate = 0.0
         else:
-            # Equivalent FP rate: fraction exceeding muN + z_gate_null * sdN
             thresh = muN + z_gate_null * sdN
             fp_rate = float(np.mean(null_max >= thresh))
     else:
@@ -474,6 +553,7 @@ def run_topo(points: np.ndarray, spec: TopoSpec, seed: Optional[int] = None) -> 
     align_cfg = params.get("alignment", {})
     eps_target = None
     align_tol_pct = float(align_cfg.get("tol_pct", 5.0))
+    require_align = bool(align_cfg.get("require_dsi_alignment", True))
     if "eps_target" in align_cfg:
         try:
             eps_target = float(align_cfg["eps_target"])
@@ -490,6 +570,8 @@ def run_topo(points: np.ndarray, spec: TopoSpec, seed: Optional[int] = None) -> 
     else:
         align_delta_pct = None
         G2 = False
+    # Alignment acceptance for overall pass
+    alignment_ok = (not require_align) or (eps_target is None) or bool(G2)
 
     # Overall decision for artifact routing (fail if G1 or G3 fail)
     failed = not (G1 and G3)
@@ -525,12 +607,38 @@ def run_topo(points: np.ndarray, spec: TopoSpec, seed: Optional[int] = None) -> 
         for e, b, m, s, p, q in zip(eps, b1_obs, mu, sd, (pvals if null_curves.shape[0] > 0 else np.ones_like(b1_obs)), q_mask):
             f.write(f"{e:.10g},{b:.10g},{m:.10g},{s:.10g},{float(p):.10g},{int(bool(q))}\n")
 
-    # JSON: summary + gates
+    # JSON: summary + gates + provenance
+    require_approval = os.getenv("VDM_REQUIRE_APPROVAL", "1") == "1"
+    approved_env = os.getenv("VDM_POLICY_APPROVED")
+    approved = (approved_env == "1") if require_approval else (approved_env != "0")
+    hard_block = os.getenv("VDM_POLICY_HARD_BLOCK", "0") == "1"
+    env_info = {
+        "python": platform.python_version(),
+        "python_impl": platform.python_implementation(),
+        "numpy": np.__version__,
+        "matplotlib": mpl.__version__,
+        "os": platform.system(),
+        "os_release": platform.release(),
+        "machine": platform.machine(),
+        "node": platform.node(),
+    }
+
     summary = {
         "instrument": "Topological Ringdown Meter (Topo-RDM) v1",
+        "timestamp": datetime.now().isoformat(),
         "tag": spec.tag,
         "git_hash": _git_hash(),
         "params": params,
+        "seeds": list(spec.seeds),
+        "seed_used": (None if seed is None else int(seed)),
+        "policy": {
+            "require_approval": bool(require_approval),
+            "approved_env": (None if approved_env is None else str(approved_env)),
+            "approved": bool(approved),
+            "hard_block": bool(hard_block),
+            "routed_failed": bool(failed),
+        },
+        "environment": env_info,
         "metrics": {
             "z_max": float(z_max),
             "mu_null_max": float(mu_null_max),
@@ -547,7 +655,7 @@ def run_topo(points: np.ndarray, spec: TopoSpec, seed: Optional[int] = None) -> 
             "G2_dsi_alignment": bool(G2),
             "G3_null_control": bool(G3),
             "align_tol_pct": (None if eps_target is None else float(align_tol_pct)),
-            "overall_pass": bool(G1 and G3 and (G2 or eps_target is None)),
+            "overall_pass": bool(G1 and G3 and alignment_ok),
         },
         "artifacts": {
             "figure": str(figp),
@@ -588,6 +696,10 @@ def main() -> None:
         default="",
         help="CSV of raw time-series with columns [t,strain] or [time,h] (no external pipeline required)",
     )
+    # Optional GWPy ingestion (network fetch from GWOSC or configured data source)
+    p.add_argument("--gwpy_channel", type=str, default="", help='GWPy channel, e.g. "H1:GWOSC-4KHZ_R1_STRAIN"')
+    p.add_argument("--gwpy_start", type=str, default="", help="GWPy start time (GPS seconds or ISO8601)")
+    p.add_argument("--gwpy_end", type=str, default="", help="GWPy end time (GPS seconds or ISO8601)")
     p.add_argument("--tag", type=str, default="", help="Optional tag suffix for artifact slugs")
     p.add_argument("--seed", type=int, default=1, help="Seed for null generation")
     args = p.parse_args()
@@ -602,11 +714,22 @@ def main() -> None:
     timeseries_path = args.timeseries_csv.strip()
     if not timeseries_path and getattr(spec, "data", None):
         timeseries_path = str(spec.data.get("timeseries_csv", "")).strip() if getattr(spec, "data", None) else ""
- 
+
+    # Optional GWPy parameters (CLI takes precedence; else check spec.data.gwpy)
+    gwpy_channel = args.gwpy_channel.strip()
+    gwpy_start = args.gwpy_start.strip()
+    gwpy_end = args.gwpy_end.strip()
+    if (not ridges_path) and (not timeseries_path) and getattr(spec, "data", None):
+        gw_cfg = spec.data.get("gwpy", {}) if getattr(spec, "data", None) else {}
+        if gw_cfg and not gwpy_channel:
+            gwpy_channel = str(gw_cfg.get("channel", "")).strip()
+            gwpy_start = str(gw_cfg.get("start", "")).strip()
+            gwpy_end = str(gw_cfg.get("end", "")).strip()
+
     if ridges_path:
         points = read_ridges_csv(Path(ridges_path))
     elif timeseries_path:
-        # Build ridge skeleton internally from raw time-series
+        # Build ridge skeleton internally from raw time-series (CSV)
         t_arr, h_arr = read_timeseries_csv(Path(timeseries_path))
         points = ridge_points_from_timeseries(t_arr, h_arr, spec.parameters)
         # Save the derived ridge points for provenance
@@ -617,8 +740,20 @@ def main() -> None:
             f.write("tau,f\n")
             for (tau_i, f_i) in points:
                 f.write(f"{float(tau_i):.10g},{float(f_i):.10g}\n")
+    elif gwpy_channel and gwpy_start and gwpy_end:
+        # Build ridge skeleton by fetching from GWPy
+        t_arr, h_arr = read_timeseries_gwpy(gwpy_channel, gwpy_start, gwpy_end)
+        points = ridge_points_from_timeseries(t_arr, h_arr, spec.parameters)
+        # Save the derived ridge points for provenance
+        domain = "cosmology"
+        slug_base = f"topo_rdm_v1__{spec.tag}"
+        ridges_out = log_path(domain, f"{slug_base}__ridges", failed=False, type="csv")
+        with ridges_out.open("w", encoding="utf-8") as f:
+            f.write("tau,f\n")
+            for (tau_i, f_i) in points:
+                f.write(f"{float(tau_i):.10g},{float(f_i):.10g}\n")
     else:
-        raise SystemExit("Provide --ridges_csv or --timeseries_csv (or spec.data.ridges_csv/spec.data.timeseries_csv)")
+        raise SystemExit("Provide --ridges_csv or --timeseries_csv or --gwpy_channel/--gwpy_start/--gwpy_end (or corresponding spec.data.* entries)")
  
     out = run_topo(points, spec, seed=int(args.seed))
     print(json.dumps(out, indent=2, sort_keys=True))

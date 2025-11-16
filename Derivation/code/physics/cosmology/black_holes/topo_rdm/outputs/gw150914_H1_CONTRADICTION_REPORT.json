@@ -1,0 +1,20 @@
+{
+  "band": [
+    25.0,
+    512.0
+  ],
+  "diagnostics": {
+    "band_ok": true,
+    "f_min_safe": 0.40003906631506986,
+    "f_nyq": 1024.0,
+    "snr_ringdown": 1.0794592917699946,
+    "whiten_ok": false,
+    "whiteness_rho_max": 0.8444087172325495
+  },
+  "gate": "preprocess_hygiene",
+  "out_csv": "Derivation/code/physics/cosmology/black_holes/topo_rdm/outputs/gw150914_H1_pre.csv",
+  "reasons": [
+    "Whiteness check failed: max |ACF(\u03c4)| > 0.10 beyond lag 0 within 1 s."
+  ],
+  "t0": 1126259462.423
+}

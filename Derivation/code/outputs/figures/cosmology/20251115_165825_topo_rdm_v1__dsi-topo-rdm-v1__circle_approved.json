@@ -1,0 +1,29 @@
+{
+  "plot": {
+    "domain": "cosmology",
+    "name": "topo_rdm_v1__dsi-topo-rdm-v1__circle_approved",
+    "tag": null,
+    "title": null,
+    "xlabel": null,
+    "ylabel": null,
+    "cmap": "viridis",
+    "style": "light",
+    "logx": false,
+    "logy": false,
+    "dpi": 160,
+    "size": [
+      7.8,
+      4.2
+    ],
+    "legend": false,
+    "tight": true,
+    "meta": {
+      "z_max": 25.946410247391796,
+      "stable_band_len": 59,
+      "fp_rate": 0.005
+    }
+  },
+  "stats": {
+    "panels": 2
+  }
+}

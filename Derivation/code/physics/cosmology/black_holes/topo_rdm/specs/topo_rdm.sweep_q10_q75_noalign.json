@@ -4,59 +4,45 @@
   "tag": "dsi-topo-rdm-v1",
   "schema_ref": "Derivation/code/physics/black_holes/topo_rdm/schemas/topo_rdm.schema.json",
   "data": {
-    "timeseries_csv": "",
-    "ridges_csv": ""
+    "ridges_csv": "Derivation/code/physics/cosmology/black_holes/topo_rdm/testdata/ridges_circle_pass.csv"
   },
   "parameters": {
     "omega0_ref": "qnm220",
-    "window": [0.1, 1.0],
+    "window": [0.0, 8.0],
     "whitener": "median-psd",
     "taper": "planck",
     "K_QNM": 3,
-
-    "stft": {
-      "nperseg": 512,
-      "noverlap": 384,
-      "freq_max": 1024.0,
-      "top_k": 5,
-      "power_quantile": 0.98
-    },
-
     "ridge": {
       "k_neighbors": 2,
       "max_gap": 2,
       "phase_coherence_min": 0.6
     },
-
     "filtration": {
       "kind": "vrips",
       "radius_min": 0.01,
       "radius_max": 0.5,
       "num_scales": 64,
       "use_quantile_bounds": true,
-      "qmin": 0.25,
+      "qmin": 0.10,
       "qmax": 0.75,
       "connectivity_cap": true,
-      "cap_pct": 0.9
+      "cap_pct": 0.90
     },
-
     "nulls": {
-      "kerr_only": true,
+      "kerr_only": false,
       "phase_shuffled": true,
-      "num_sim": 200,
-      "kerr_only_ridges": []
+      "num_sim": 200
     },
-
     "b1z": {
       "fdr_q": 0.01,
       "z_gate_primary": 5.0,
       "z_gate_null": 3.0
     },
-
     "alignment": {
       "eps_target": 0.12,
-      "tol_pct": 5.0
+      "tol_pct": 5.0,
+      "require_dsi_alignment": false
     }
   },
-  "seeds": [1, 2, 3]
+  "seeds": [1]
 }

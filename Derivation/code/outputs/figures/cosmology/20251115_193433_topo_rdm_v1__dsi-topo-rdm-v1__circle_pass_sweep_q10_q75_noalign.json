@@ -1,0 +1,29 @@
+{
+  "plot": {
+    "domain": "cosmology",
+    "name": "topo_rdm_v1__dsi-topo-rdm-v1__circle_pass_sweep_q10_q75_noalign",
+    "tag": null,
+    "title": null,
+    "xlabel": null,
+    "ylabel": null,
+    "cmap": "viridis",
+    "style": "light",
+    "logx": false,
+    "logy": false,
+    "dpi": 160,
+    "size": [
+      7.8,
+      4.2
+    ],
+    "legend": false,
+    "tight": true,
+    "meta": {
+      "z_max": 34.46024147329193,
+      "stable_band_len": 49,
+      "fp_rate": 0.01
+    }
+  },
+  "stats": {
+    "panels": 2
+  }
+}

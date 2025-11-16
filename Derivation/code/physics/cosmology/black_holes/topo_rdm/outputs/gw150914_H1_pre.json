@@ -1,0 +1,30 @@
+{
+  "band": [
+    25.0,
+    512.0
+  ],
+  "contradictions": [
+    "Whiteness check failed: max |ACF(\u03c4)| > 0.10 beyond lag 0 within 1 s."
+  ],
+  "diagnostics": {
+    "band_ok": true,
+    "f_min_safe": 0.40003906631506986,
+    "f_nyq": 1024.0,
+    "snr_ringdown": 1.0794592917699946,
+    "whiten_ok": false,
+    "whiteness_rho_max": 0.8444087172325495
+  },
+  "fs_in": 4096.0,
+  "fs_out": 2048.0,
+  "notes": "detrend\u2192Welch PSD (pre)\u2192whiten\u2192zero-phase FIR bandpass\u2192downsample",
+  "ok": false,
+  "psd": {
+    "overlap": 0.5,
+    "seg": 1.0
+  },
+  "t0": 1126259462.423,
+  "t_window": [
+    1126259459.9230957,
+    1126259464.9226074
+  ]
+}

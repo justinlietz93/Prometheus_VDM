@@ -1,0 +1,39 @@
+{
+  "tag": "dsi-topo-rdm-v1",
+  "parameters": {
+    "omega0_ref": "qnm220",
+    "window": [0.0, 8.0],
+    "whitener": "median-psd",
+    "taper": "planck",
+    "K_QNM": 3,
+    "ridge": {
+      "k_neighbors": 2,
+      "max_gap": 2,
+      "phase_coherence_min": 0.6
+    },
+    "filtration": {
+      "kind": "vrips",
+      "num_scales": 64,
+      "radius_min": 0.01,
+      "radius_max": 0.5,
+      "use_quantile_bounds": true,
+      "qmin": 0.10,
+      "qmax": 0.75,
+      "connectivity_cap": false
+    },
+    "nulls": {
+      "kerr_only": false,
+      "phase_shuffled": true,
+      "num_sim": 400
+    },
+    "b1z": {
+      "fdr_q": 0.01,
+      "z_gate_primary": 5.0,
+      "z_gate_null": 3.0
+    }
+  },
+  "seeds": [1],
+  "data": {
+    "ridges_csv": "Derivation/code/physics/cosmology/black_holes/topo_rdm/testdata/ridges_smoke.csv"
+  }
+}
