@@ -1,7 +1,7 @@
 # T1 (Proto-model) - Spinor Emergence from the VDM J‑Limb (Dirac Sector from a Scalar Void Lattice)
 
 > Created Date:  2025-11-18  
-> Commit: {git rev-parse HEAD}  
+> Commit: d6f60c4163d5c73ed0661f4a4c7180ee9914d566  
 > Salted provenance: {salted_hash}  
 > Proposer contact(s):  (<justin@neuroca.ai>)  
 > License: See [LICENSE](/LICENSE.md)  
