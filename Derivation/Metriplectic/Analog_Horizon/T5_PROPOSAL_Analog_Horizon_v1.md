@@ -1,7 +1,7 @@
 # T5 (Pilot) - Analog Horizon — Telegraph‑Fisher Causality & Causal Dominance Meter
 
 > Created Date:  2025-11-18  
-> Commit: {git rev-parse HEAD}  
+> Commit: eae2bb4479795aaa5d079a878060eff29cae69e1  
 > Salted provenance: {salted_hash}  
 > Proposer contact(s):  (<justin@neuroca.ai>)  
 > License: See LICENSE  
