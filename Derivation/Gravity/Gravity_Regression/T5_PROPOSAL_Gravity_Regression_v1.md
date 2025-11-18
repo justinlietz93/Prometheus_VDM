@@ -1,7 +1,7 @@
 # T5 (Pilot) - Gravity Regression — Weak‑Field VDM vs SPARC/Lensing Suites
 
 > Created Date:  2025-11-18  
-> Commit: {git rev-parse HEAD}  
+> Commit: 5581b2050f15ea05ac6f81b3905c646c3d4dd239  
 > Salted provenance: {salted_hash}  
 > Proposer contact(s):  (<justin@neuroca.ai>)  
 > License: See LICENSE  
