@@ -1,7 +1,7 @@
 # T3 (Smoke) - A8 Two‑Gate Hierarchy Test (N(L)~log L & E_exc~L^{d-1})
 
 > Created Date:  2025-11-18  
-> Commit: {git rev-parse HEAD}  
+> Commit: 29e314eb8ca662eea3f171631252e05c449cef4b  
 > Salted provenance: {salted_hash}  
 > Proposer contact(s):  (<justin@neuroca.ai>)  
 > License: See LICENSE  
