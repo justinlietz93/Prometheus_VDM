@@ -1,7 +1,7 @@
 # T2 (Instrument) - EBN‑CMB‑ISW+Lens Pipeline (A8→Boltzmann→CMB/LSS)
 
 > Created Date:  2025-11-18  
-> Commit: {git rev-parse HEAD}  
+> Commit: bc12095fea0e0add986fe5469585da0287da5104  
 > Salted provenance: {salted_hash}  
 > Proposer contact(s):  (<justin@neuroca.ai>)  
 > License: See LICENSE  
