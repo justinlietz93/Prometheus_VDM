@@ -1,0 +1,106 @@
+{
+  "csv": "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/logs/metriplectic/failed_runs/20251119_020118_kg_dispersion_fit__KG-dispersion-phase0-test.csv",
+  "figure": "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/figures/metriplectic/failed_runs/20251119_020118_kg_dispersion_fit__KG-dispersion-phase0-test.png",
+  "fit": {
+    "R2": 0.5337313204532308,
+    "intercept": 34292.29620204924,
+    "rel_intercept": 34291.29620204924,
+    "rel_slope": 740.545637484341,
+    "slope": 741.545637484341
+  },
+  "gate": {
+    "R2_min": 0.999,
+    "missing_receipts": [],
+    "passed": false,
+    "physical_passed": false,
+    "provenance_ok": true,
+    "rel_tol": 0.01
+  },
+  "gate_outcomes": {
+    "kg_dispersion_fit": {
+      "R2": 0.5337313204532308,
+      "R2_min": 0.999,
+      "passed": false,
+      "rel_intercept": 34291.29620204924,
+      "rel_slope": 740.545637484341,
+      "rel_tol": 0.01
+    }
+  },
+  "git": {
+    "head_commit": "7f47796b92a2481e9716bfa81e7a946198661efb",
+    "head_short": "7f47796"
+  },
+  "git_commit": "7f47796",
+  "hardware": {
+    "cpu_count": 32,
+    "machine": "x86_64",
+    "node": "prometheus-ai",
+    "processor": "x86_64",
+    "python_version": "3.13.5",
+    "release": "6.14.0-35-generic",
+    "system": "Linux",
+    "version": "#35-Ubuntu SMP PREEMPT_DYNAMIC Sat Oct 11 10:06:31 UTC 2025"
+  },
+  "ieee_754_double_precision": true,
+  "manifest": {
+    "generated_utc": "2025-11-19T07:48:59.096032Z",
+    "git_commit": "7f47796b92a2481e9716bfa81e7a946198661efb",
+    "tree_hash": "bd968ee254f3234c16746da86091aed094e8fd1d56af09bf80e1a50386a7eb2e"
+  },
+  "params": {
+    "A": 1e-06,
+    "L": 6.283185307179586,
+    "N": 512,
+    "c": 1.0,
+    "dt": 0.01,
+    "m": 1.0,
+    "modes": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      8,
+      10
+    ],
+    "steps": 8000
+  },
+  "policy": {
+    "approved": false,
+    "engineering_only": true,
+    "proposal": null,
+    "quarantined": true,
+    "tag": "KG-dispersion-phase0-test"
+  },
+  "repo_root": "/mnt/ironwolf/git/Prometheus_VDM",
+  "salted_hash": "448c9f548565944a435e9c63549472e8f87b9c6c7579f4d50edb5069379eebe2",
+  "salted_provenance": {
+    "salted_hash": "448c9f548565944a435e9c63549472e8f87b9c6c7579f4d50edb5069379eebe2",
+    "salted_tag": "KG-dispersion-phase0-test"
+  },
+  "seeds": [],
+  "table": {
+    "k": [
+      1.0,
+      2.0,
+      3.0,
+      4.0,
+      5.0,
+      6.0,
+      8.0,
+      10.0
+    ],
+    "omega": [
+      140.7838076233588,
+      161.30235894927523,
+      168.67340040639195,
+      254.69039027105956,
+      314.32742327066677,
+      184.51699832237915,
+      306.0476376754642,
+      312.6702041539611
+    ]
+  },
+  "tree_hash": "bd968ee254f3234c16746da86091aed094e8fd1d56af09bf80e1a50386a7eb2e"
+}

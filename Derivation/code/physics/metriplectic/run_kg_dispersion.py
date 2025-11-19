@@ -31,6 +31,7 @@ from common.data.results_db import (
     end_run_failed,
 )
 from common.authorization.approval import check_tag_approval
+from common.provenance.run_receipts import build_run_receipts
 from physics.metriplectic.kg_ops import kg_verlet_step
 
 
@@ -114,10 +115,52 @@ def run_dispersion(spec: DispersionSpec, approved: bool = False, engineering_onl
     ss_tot = float(np.sum((w2 - float(np.mean(w2))) ** 2))
     R2 = 1.0 - (ss_res / ss_tot if ss_tot > 0 else 0.0)
 
-    # Gates
+    # Gates (physics)
     rel_slope = abs(slope - spec.c * spec.c) / max(spec.c * spec.c, 1e-30)
     rel_intercept = abs(intercept - spec.m * spec.m) / max(spec.m * spec.m, 1e-30)
-    passed = bool((R2 >= 0.999) and (rel_slope <= 0.01) and (rel_intercept <= 0.01))
+    passed_physics = bool((R2 >= 0.999) and (rel_slope <= 0.01) and (rel_intercept <= 0.01))
+
+    # Prepare gate outcomes for Phase-0 receipts
+    gate_outcomes = {
+        "kg_dispersion_fit": {
+            "passed": passed_physics,
+            "R2": float(R2),
+            "R2_min": 0.999,
+            "rel_slope": float(rel_slope),
+            "rel_intercept": float(rel_intercept),
+            "rel_tol": 0.01,
+        }
+    }
+
+    # Build Phase-0 run receipts (git/tree_hash/salted_hash/IEEE-754/seeds/hardware/gate_outcomes)
+    receipts = build_run_receipts(
+        tag=spec.tag,
+        seeds=[],
+        gate_outcomes=gate_outcomes,
+        repo_root=CODE_ROOT,
+    )
+
+    # Phase-0 kill-switch: any missing mandatory receipt -> provenance gate failure
+    missing_receipts: List[str] = []
+    git_commit = receipts.get("git_commit")
+    if git_commit in (None, "UNKNOWN"):
+        missing_receipts.append("git_commit")
+    if receipts.get("tree_hash") is None:
+        missing_receipts.append("tree_hash")
+    if receipts.get("salted_hash") is None:
+        missing_receipts.append("salted_hash")
+    if not receipts.get("ieee_754_double_precision", False):
+        missing_receipts.append("ieee_754_double_precision")
+    if "seeds" not in receipts:
+        missing_receipts.append("seeds")
+    if not receipts.get("hardware"):
+        missing_receipts.append("hardware")
+    if not receipts.get("gate_outcomes"):
+        missing_receipts.append("gate_outcomes")
+    provenance_ok = (len(missing_receipts) == 0)
+
+    # Combined gate: physics ∧ provenance
+    passed = bool(passed_physics and provenance_ok)
 
     # Artifacts
     import matplotlib.pyplot as plt
@@ -153,12 +196,51 @@ def run_dispersion(spec: DispersionSpec, approved: bool = False, engineering_onl
             "slope": float(slope), "intercept": float(intercept), "R2": float(R2),
             "rel_slope": float(rel_slope), "rel_intercept": float(rel_intercept)
         },
-        "gate": {"passed": passed, "R2_min": 0.999, "rel_tol": 0.01},
-        "policy": {"approved": bool(approved), "engineering_only": bool(engineering_only), "quarantined": bool(quarantine), "tag": spec.tag, "proposal": proposal},
+        "gate": {
+            "passed": passed,
+            "physical_passed": passed_physics,
+            "provenance_ok": bool(provenance_ok),
+            "missing_receipts": missing_receipts,
+            "R2_min": 0.999,
+            "rel_tol": 0.01,
+        },
+        "policy": {
+            "approved": bool(approved),
+            "engineering_only": bool(engineering_only),
+            "quarantined": bool(quarantine),
+            "tag": spec.tag,
+            "proposal": proposal,
+        },
         "table": {"k": k_arr.tolist(), "omega": w_arr.tolist()},
-        "figure": str(figp), "csv": str(csvp)
+        "figure": str(figp),
+        "csv": str(csvp),
     }
-    write_log(log_path("metriplectic", f"kg_dispersion_fit__{spec.tag}", failed=(not passed) or quarantine), logj)
+    # Merge receipts fields into top-level JSON
+    logj.update(receipts)
+
+    # Emit provenance CONTRADICTION_REPORT on missing receipts
+    if not provenance_ok:
+        write_log(
+            log_path(
+                "metriplectic",
+                f"CONTRADICTION_REPORT_provenance_kg_dispersion__{spec.tag}",
+                failed=True,
+                type="json",
+            ),
+            {
+                "reason": "Missing required Phase-0 provenance receipts",
+                "tag": spec.tag,
+                "missing_receipts": missing_receipts,
+                "git_commit": git_commit,
+                "tree_hash": receipts.get("tree_hash"),
+                "salted_hash": receipts.get("salted_hash"),
+            },
+        )
+
+    write_log(
+        log_path("metriplectic", f"kg_dispersion_fit__{spec.tag}", failed=(not passed) or quarantine),
+        logj,
+    )
 
     # Results DB logging (per-domain DB, per-experiment table, batched by tag)
     try:
@@ -180,6 +262,8 @@ def run_dispersion(spec: DispersionSpec, approved: bool = False, engineering_onl
             "intercept": float(intercept),
             "rel_slope": float(rel_slope),
             "rel_intercept": float(rel_intercept),
+            "passed_physics": bool(passed_physics),
+            "provenance_ok": bool(provenance_ok),
             "passed": bool(passed),
         })
         if passed:

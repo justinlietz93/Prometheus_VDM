@@ -1,0 +1,73 @@
+{
+  "csv": "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/logs/metriplectic/failed_runs/20251119_014405_kg_light_cone__KG-cone-phase0-test.csv",
+  "figure": "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/figures/metriplectic/failed_runs/20251119_014404_kg_light_cone__KG-cone-phase0-test.png",
+  "fit": {
+    "R2": 0.532205561285273,
+    "intercept": 1.767769027813705,
+    "speed": 0.19473363871485788
+  },
+  "gate": {
+    "eps": 0.02,
+    "missing_receipts": [],
+    "passed": true,
+    "physical_passed": true,
+    "provenance_ok": true,
+    "speed_max": 1.02
+  },
+  "gate_outcomes": {
+    "kg_light_cone_speed": {
+      "R2": 0.532205561285273,
+      "eps": 0.02,
+      "passed": true,
+      "speed": 0.19473363871485788,
+      "speed_max": 1.02
+    }
+  },
+  "git": {
+    "head_commit": "7f47796b92a2481e9716bfa81e7a946198661efb",
+    "head_short": "7f47796"
+  },
+  "git_commit": "7f47796",
+  "hardware": {
+    "cpu_count": 32,
+    "machine": "x86_64",
+    "node": "prometheus-ai",
+    "processor": "x86_64",
+    "python_version": "3.13.5",
+    "release": "6.14.0-35-generic",
+    "system": "Linux",
+    "version": "#35-Ubuntu SMP PREEMPT_DYNAMIC Sat Oct 11 10:06:31 UTC 2025"
+  },
+  "ieee_754_double_precision": true,
+  "manifest": {
+    "generated_utc": "2025-11-19T06:49:01.460408Z",
+    "git_commit": "c3d83b990cdb1251e3d6841878625ed17c2cd241",
+    "tree_hash": "aba0fa2a1f25f68a94cb94e87b489128bbe2ba59f38c9368fdfee34089fc82e7"
+  },
+  "params": {
+    "A": 0.0001,
+    "L": 6.283185307179586,
+    "N": 512,
+    "c": 1.0,
+    "dt": 0.0025,
+    "m": 1.0,
+    "sigma_frac": 0.01,
+    "steps": 4000,
+    "threshold_rel": 1e-06
+  },
+  "policy": {
+    "approved": false,
+    "engineering_only": true,
+    "proposal": null,
+    "quarantined": true,
+    "tag": "KG-cone-phase0-test"
+  },
+  "repo_root": "/mnt/ironwolf/git/Prometheus_VDM",
+  "salted_hash": "50719f1068b59ae175045efbe07724005a3554cc2e6c057dfd04876a15380d9f",
+  "salted_provenance": {
+    "salted_hash": "50719f1068b59ae175045efbe07724005a3554cc2e6c057dfd04876a15380d9f",
+    "salted_tag": "KG-cone-phase0-test"
+  },
+  "seeds": [],
+  "tree_hash": "aba0fa2a1f25f68a94cb94e87b489128bbe2ba59f38c9368fdfee34089fc82e7"
+}

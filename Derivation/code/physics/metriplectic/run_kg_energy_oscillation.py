@@ -34,6 +34,7 @@ from common.data.results_db import (
     end_run_success,
     end_run_failed,
 )
+from common.provenance.run_receipts import build_run_receipts
 from physics.metriplectic.kg_ops import kg_energy, kg_verlet_step
 
 
@@ -167,7 +168,56 @@ def run(spec: Spec, approved: bool, engineering_only: bool, proposal: str | None
     ss_tot = float(np.sum((y - float(np.mean(y))) ** 2))
     R2 = 1.0 - (ss_res / ss_tot if ss_tot > 0 else 0.0)
 
+    # Gate checks (physics)
+    rel_min_dt = float(rel_AH_all[-1]) if len(rel_AH_all) > 0 else float("inf")
+    passed_physics = bool((1.95 <= p <= 2.05) and (R2 >= 0.999) and (rel_min_dt <= 1e-4))
+
+    # Prepare gate outcomes for Phase-0 receipts
+    gate_outcomes = {
+        "kg_energy_osc_fit": {
+            "passed": passed_physics,
+            "p": float(p),
+            "p_range": [1.95, 2.05],
+            "R2": float(R2),
+            "R2_min": 0.999,
+            "rel_AH_min_dt": 1e-4,
+            "rel_AH_min_dt_value": rel_min_dt,
+        }
+    }
+
+    # Build Phase-0 run receipts (git/tree_hash/salted_hash/IEEE-754/seeds/hardware/gate_outcomes)
+    receipts = build_run_receipts(
+        tag=spec.tag,
+        seeds=[],
+        gate_outcomes=gate_outcomes,
+        repo_root=CODE_ROOT,
+    )
+
+    # Phase-0 kill-switch: any missing mandatory receipt -> provenance gate failure
+    missing_receipts: List[str] = []
+    git_commit = receipts.get("git_commit")
+    if git_commit in (None, "UNKNOWN"):
+        missing_receipts.append("git_commit")
+    if receipts.get("tree_hash") is None:
+        missing_receipts.append("tree_hash")
+    if receipts.get("salted_hash") is None:
+        missing_receipts.append("salted_hash")
+    if not receipts.get("ieee_754_double_precision", False):
+        missing_receipts.append("ieee_754_double_precision")
+    if "seeds" not in receipts:
+        missing_receipts.append("seeds")
+    if not receipts.get("hardware"):
+        missing_receipts.append("hardware")
+    if not receipts.get("gate_outcomes"):
+        missing_receipts.append("gate_outcomes")
+    provenance_ok = (len(missing_receipts) == 0)
+
+    # Combined gate: physics ∧ provenance
+    passed = bool(passed_physics and provenance_ok)
+
     quarantine = engineering_only or (not approved)
+    failed_flag = (not passed) or quarantine
+
     # Plotting via common.plotting.core
     apply_style("light")
     fig, ax = get_fig_ax(size=(6.2, 4.2))
@@ -177,21 +227,17 @@ def run(spec: Spec, approved: bool, engineering_only: bool, proposal: str | None
     ax.set_xlabel(r"$\log(\Delta t)$"); ax.set_ylabel(r"$\log(A_H)$"); ax.set_title("KG Energy Oscillation Scaling")
     ax.legend(loc="best", fontsize=8)
     slug = build_slug("kg_energy_osc_fit", spec.tag)
-    figp = save_figure("metriplectic", slug, fig, failed=quarantine)
+    figp = save_figure("metriplectic", slug, fig, failed=failed_flag)
     # Store plot metadata under logs/ (not next to figures)
     plot_meta = {"plot": {"kind": "loglog", "x": "log(dt)", "y": "log(A_H)"}, "stats": {"p": float(p), "R2": float(R2)}}
-    plot_meta_path = log_path_by_tag("metriplectic", "kg_energy_osc_fit_plotmeta", spec.tag, failed=quarantine, type="json")
+    plot_meta_path = log_path_by_tag("metriplectic", "kg_energy_osc_fit_plotmeta", spec.tag, failed=failed_flag, type="json")
     write_log(plot_meta_path, plot_meta)
 
-    csvp = log_path_by_tag("metriplectic", "kg_energy_osc_fit", spec.tag, failed=quarantine, type="csv")
+    csvp = log_path_by_tag("metriplectic", "kg_energy_osc_fit", spec.tag, failed=failed_flag, type="csv")
     with csvp.open("w", encoding="utf-8") as fcsv:
         fcsv.write("dt,AH,rel_AH\n")
         for dt, ah, rah in zip(dt_list, AH_all, rel_AH_all):
             fcsv.write(f"{dt},{ah},{rah}\n")
-
-    # Gate checks
-    rel_min_dt = float(rel_AH_all[-1]) if len(rel_AH_all) > 0 else float("inf")
-    passed = bool((1.95 <= p <= 2.05) and (R2 >= 0.999) and (rel_min_dt <= 1e-4))
 
     logj = {
         "tag": spec.tag,
@@ -207,10 +253,43 @@ def run(spec: Spec, approved: bool, engineering_only: bool, proposal: str | None
         "env_audit": env_audit,
         "figure": str(figp),
         "csv": str(csvp),
-        "gate": {"p_range": [1.95, 2.05], "R2_min": 0.999, "rel_AH_min_dt": 1e-4},
-        "passed": bool(passed)
+        "gate": {
+            "p_range": [1.95, 2.05],
+            "R2_min": 0.999,
+            "rel_AH_min_dt": 1e-4,
+            "physical_passed": bool(passed_physics),
+            "provenance_ok": bool(provenance_ok),
+            "missing_receipts": missing_receipts,
+        },
+        "passed": bool(passed),
     }
-    write_log(log_path_by_tag("metriplectic", "kg_energy_osc_fit", spec.tag, failed=quarantine), logj)
+    # Merge receipts fields into top-level JSON
+    logj.update(receipts)
+
+    # Emit provenance CONTRADICTION_REPORT on missing receipts
+    if not provenance_ok:
+        write_log(
+            log_path_by_tag(
+                "metriplectic",
+                "CONTRADICTION_REPORT_provenance_kg_energy_osc",
+                spec.tag,
+                failed=True,
+                type="json",
+            ),
+            {
+                "reason": "Missing required Phase-0 provenance receipts",
+                "tag": spec.tag,
+                "missing_receipts": missing_receipts,
+                "git_commit": git_commit,
+                "tree_hash": receipts.get("tree_hash"),
+                "salted_hash": receipts.get("salted_hash"),
+            },
+        )
+
+    write_log(
+        log_path_by_tag("metriplectic", "kg_energy_osc_fit", spec.tag, failed=failed_flag),
+        logj,
+    )
 
     # Results DB lifecycle
     try:
@@ -228,8 +307,13 @@ def run(spec: Spec, approved: bool, engineering_only: bool, proposal: str | None
         )
         add_artifacts(handle, {"figure": str(figp), "csv": str(csvp)})
         log_metrics(handle, {
-            "p": float(p), "R2": float(R2), "e_rev_max": float(e_rev_max),
-            "rel_AH_min_dt": float(rel_min_dt), "passed": bool(passed)
+            "p": float(p),
+            "R2": float(R2),
+            "e_rev_max": float(e_rev_max),
+            "rel_AH_min_dt": float(rel_min_dt),
+            "passed_physics": bool(passed_physics),
+            "provenance_ok": bool(provenance_ok),
+            "passed": bool(passed),
         })
         if passed:
             end_run_success(handle)
