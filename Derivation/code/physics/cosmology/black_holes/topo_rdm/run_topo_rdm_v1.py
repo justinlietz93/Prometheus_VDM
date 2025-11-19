@@ -51,6 +51,11 @@ import matplotlib.pyplot as plt
 import matplotlib as mpl
 import platform
 from datetime import datetime
+# Optional SciPy for QNM fit in DSI branch (fallbacks if unavailable)
+try:
+    from scipy.optimize import curve_fit  # type: ignore
+except Exception:
+    curve_fit = None  # type: ignore
 
 # Ensure code root on sys.path (robust to depth)
 _THIS = Path(__file__).resolve()
@@ -343,6 +348,204 @@ def zscore_of_max(obs: np.ndarray, null_curves: np.ndarray) -> Tuple[float, floa
     z = (max_obs - mu) / (sd + 1e-12)
     return float(z), mu, (sd if sd > 0 else 0.0)
 
+
+# ---------- DSI-RDM helpers (log-time comb meter) ----------
+def _qnm_model(t: np.ndarray, A: float, alpha: float, f0: float, phi: float, t0: float) -> np.ndarray:
+    tt = np.maximum(0.0, np.asarray(t, dtype=float) - float(t0))
+    return float(A) * np.exp(-float(alpha) * tt) * np.cos(2.0 * np.pi * float(f0) * tt + float(phi))
+
+def _fit_qnm_damped_sinusoid(t: np.ndarray, h: np.ndarray, t0: float) -> Dict[str, float]:
+    # Post-merger window for fit: up to 40% of available span
+    t = np.asarray(t, dtype=float)
+    h = np.asarray(h, dtype=float)
+    span = float(t[-1] - t0)
+    if span <= 0:
+        return {"A": 0.0, "alpha": 0.0, "f0": 0.0, "phi": 0.0}
+    t1 = t0 + 0.4 * span
+    mask = (t >= t0) & (t <= t1)
+    if not np.any(mask):
+        mask = (t >= t0)
+    tt = t[mask]
+    yy = h[mask]
+    if tt.size < 16:
+        return {"A": 0.0, "alpha": 0.0, "f0": 0.0, "phi": 0.0}
+    # Initial guesses
+    A0 = float(np.std(yy)) * 2.0
+    # crude FFT based freq guess
+    dt = float(np.median(np.diff(tt))) if tt.size > 1 else 1e-3
+    if dt <= 0:
+        dt = 1e-3
+    Y = np.fft.rfft(yy * np.hanning(len(yy)))
+    freqs = np.fft.rfftfreq(len(yy), d=dt)
+    if freqs.size > 1:
+        idx = int(np.argmax(np.abs(Y)[1:])) + 1
+        f0_guess = float(freqs[idx])
+    else:
+        f0_guess = 100.0
+    alpha0 = 1.0 / max(1e-3, span)
+    phi0 = 0.0
+    if curve_fit is None:
+        return {"A": 0.0, "alpha": 0.0, "f0": 0.0, "phi": 0.0}
+    # Wrap model for curve_fit with fixed t0
+    def _model_fit(t_in, A, alpha, f0, phi):
+        return _qnm_model(t_in, A, alpha, f0, phi, t0)
+    p0 = [A0, alpha0, max(1.0, min(1024.0, f0_guess)), phi0]
+    bounds = ([0.0, 0.0, 1.0, -np.pi], [10.0 * max(1e-12, np.std(yy)), 200.0, 2048.0, np.pi])
+    try:
+        popt, _ = curve_fit(_model_fit, tt, yy, p0=p0, bounds=bounds, maxfev=20000)
+        A, alpha, f0, phi = [float(x) for x in popt]
+        return {"A": A, "alpha": alpha, "f0": f0, "phi": phi}
+    except Exception:
+        return {"A": 0.0, "alpha": 0.0, "f0": 0.0, "phi": 0.0}
+
+def _residual_after_qnm(t: np.ndarray, h: np.ndarray, t0: float, params: Dict[str, float]) -> np.ndarray:
+    if params.get("f0", 0.0) <= 0.0:
+        return np.asarray(h, dtype=float)
+    return np.asarray(h, dtype=float) - _qnm_model(t, params["A"], params["alpha"], params["f0"], params["phi"], t0)
+
+def _uniform_tau_grid(t: np.ndarray, x: np.ndarray, t0: float, n_grid: int = 4096) -> Tuple[np.ndarray, np.ndarray]:
+    t = np.asarray(t, dtype=float)
+    x = np.asarray(x, dtype=float)
+    dt_ref = float(np.median(np.diff(t))) if t.size > 1 else 1e-3
+    # exclude t ≤ t0
+    mask = t > (t0 + max(1e-12, 0.5 * dt_ref))
+    if not np.any(mask):
+        # fallback to last half
+        idx = max(1, len(t) // 2)
+        mask = np.zeros_like(t, dtype=bool); mask[idx:] = True
+        t0 = float(t[idx])
+    t_post = t[mask]
+    x_post = x[mask]
+    tau = np.log((t_post - t0) / max(1e-12, dt_ref))
+    tau_min = float(np.min(tau))
+    tau_max = float(np.max(tau))
+    if not np.isfinite(tau_min) or not np.isfinite(tau_max) or tau_max - tau_min <= 1e-6:
+        # trivial
+        tau_u = np.linspace(0.0, 1.0, max(16, n_grid))
+        x_u = np.interp(tau_u, tau_u, np.zeros_like(tau_u))
+        return tau_u, x_u
+    tau_u = np.linspace(tau_min, tau_max, int(n_grid))
+    # resample x to uniform tau grid via linear interpolation
+    x_u = np.interp(tau_u, tau, x_post)
+    # apply Hann to reduce leakage
+    win = 0.5 - 0.5 * np.cos(2.0 * np.pi * np.arange(len(x_u)) / max(1, len(x_u) - 1))
+    return tau_u, x_u * win
+
+def _dsi_periodogram(t: np.ndarray, r: np.ndarray, t0: float, n_grid: int = 4096) -> Tuple[np.ndarray, np.ndarray]:
+    tau_u, r_u = _uniform_tau_grid(t, r, t0, n_grid=n_grid)
+    d_tau = float(tau_u[1] - tau_u[0]) if len(tau_u) > 1 else 1.0
+    R = np.fft.rfft(r_u)
+    P = (np.abs(R) ** 2).astype(float)
+    f_tau = np.fft.rfftfreq(len(r_u), d=d_tau)
+    return f_tau, P
+
+def _find_peaks_simple(P: np.ndarray, min_quantile: float = 0.98, k_max: int = 6) -> List[int]:
+    P = np.asarray(P, dtype=float)
+    if P.size < 5:
+        return []
+    thresh = float(np.quantile(P, min_quantile))
+    idxs: List[int] = []
+    for i in range(1, len(P) - 1):
+        if P[i] > P[i - 1] and P[i] > P[i + 1] and P[i] >= thresh and i > 0:
+            idxs.append(i)
+    # sort by power descending, keep top k_max, skip DC (i==0 already excluded)
+    idxs = sorted(idxs, key=lambda i: P[i], reverse=True)[:int(k_max)]
+    return sorted(idxs)
+
+def run_dsi(timeseries_csv_path: str, spec: "TopoSpec", t0_hint: Optional[float] = None) -> Dict[str, Any]:
+    # Load time-series
+    t_arr, h_arr = read_timeseries_csv(Path(timeseries_csv_path))
+    # Try to infer t0 from paired meta JSON if available
+    t0 = float(t_arr[0])
+    if (t0_hint is not None) and np.isfinite(t0_hint):
+        t0 = float(t0_hint)
+    else:
+        # If *_pre.csv, check *_pre.json
+        if timeseries_csv_path.endswith("_pre.csv"):
+            meta_path = timeseries_csv_path[:-8] + "_pre.json"
+            if os.path.exists(meta_path):
+                try:
+                    with open(meta_path, "r", encoding="utf-8") as f:
+                        meta = json.load(f)
+                        if "t0" in meta:
+                            t0 = float(meta["t0"])
+                except Exception:
+                    pass
+        # fallback: peak absolute as proxy
+        try:
+            t0 = float(t_arr[int(np.argmax(np.abs(h_arr)))])
+        except Exception:
+            t0 = float(t_arr[0])
+    # QNM fit and residual
+    qnm = _fit_qnm_damped_sinusoid(t_arr, h_arr, t0=t0)
+    resid = _residual_after_qnm(t_arr, h_arr, t0=t0, params=qnm)
+    # DSI spectrum on log-time
+    f_tau, P = _dsi_periodogram(t_arr, resid, t0=t0, n_grid=4096)
+    # Comb peaks
+    peak_idx = _find_peaks_simple(P, min_quantile=0.98, k_max=6)
+    f_peaks = [float(f_tau[i]) for i in peak_idx]
+    f_peaks_sorted = sorted(f_peaks)
+    deltas = np.diff(f_peaks_sorted) if len(f_peaks_sorted) >= 2 else np.asarray([], dtype=float)
+    deltaOmega = float(np.mean(deltas)) if deltas.size > 0 else float("nan")
+    C = float(1.0 - (np.std(deltas) / (np.mean(deltas) + 1e-12))) if deltas.size >= 1 else 0.0
+    # Gate (within-run comb coherence proxy)
+    G1 = bool((len(f_peaks_sorted) >= 3) and (C >= 0.60))
+    # Artifacts
+    domain = "cosmology"
+    slug_base = f"dsi_rdm_v1__{spec.tag}"
+    # Figure
+    fig, ax = plt.subplots(2, 1, figsize=(8.0, 5.0), dpi=160, constrained_layout=True)
+    # Panel 1: time series with QNM fit
+    ax[0].plot(t_arr, h_arr, lw=0.8, color="#1f77b4", label="whitened+bandpassed")
+    if qnm.get("f0", 0.0) > 0.0:
+        ax[0].plot(t_arr, _qnm_model(t_arr, qnm["A"], qnm["alpha"], qnm["f0"], qnm["phi"], t0), lw=1.0, color="#d62728", label="QNM fit")
+    ax[0].axvline(t0, color="k", ls="--", lw=0.8, alpha=0.7)
+    ax[0].set_title("Ringdown (preprocessed) and QNM baseline")
+    ax[0].set_xlabel("t [s]"); ax[0].set_ylabel("h (arb.)"); ax[0].legend(loc="upper right", fontsize=8)
+    # Panel 2: log-time spectrum
+    ax[1].plot(f_tau, P, lw=0.9, color="#2ca02c", label="P(Ω) in log-time")
+    if f_peaks_sorted:
+        ax[1].scatter(f_peaks_sorted, [P[np.argmin(np.abs(f_tau - fp))] for fp in f_peaks_sorted], color="#ff7f0e", s=14, zorder=5, label="peaks")
+    ax[1].set_xlim(left=0.0)
+    ax[1].set_xlabel("Ω (log-time frequency)"); ax[1].set_ylabel("Power")
+    caption = f"Comb metric: C={C:.3f}; N_peaks={len(f_peaks_sorted)}; ΔΩ≈{(deltaOmega if np.isfinite(deltaOmega) else float('nan')):.4g}"
+    ax[1].set_title(caption)
+    figp = figure_path(domain, slug_base)
+    fig.savefig(figp, dpi=160)
+    plt.close(fig)
+    # CSV spectrum
+    csvp = log_path(domain, f"{slug_base}__spectrum", failed=not G1, type="csv")
+    with csvp.open("w", encoding="utf-8") as f:
+        f.write("f_tau,P\n")
+        for ft, pv in zip(f_tau, P):
+            f.write(f"{float(ft):.10g},{float(pv):.10g}\n")
+    # JSON summary
+    summary = {
+        "instrument": "DSI-RDM v1 (log-time comb meter)",
+        "timestamp": datetime.now().isoformat(),
+        "tag": spec.tag,
+        "git_hash": _git_hash(),
+        "params": spec.parameters,
+        "metrics": {
+            "comb_coherence_C": float(C),
+            "N_peaks": int(len(f_peaks_sorted)),
+            "deltaOmega": (None if not np.isfinite(deltaOmega) else float(deltaOmega)),
+            "f_tau_peaks": f_peaks_sorted,
+            "t0_used": float(t0),
+            "qnm_fit": qnm,
+        },
+        "gates": {
+            "G1_comb_coherence": bool(G1),
+            "overall_pass": bool(G1),
+        },
+        "artifacts": {
+            "figure": str(figp),
+            "csv_spectrum": str(csvp),
+        },
+    }
+    jsonp = log_path(domain, f"{slug_base}__summary", failed=not G1, type="json")
+    write_log(jsonp, summary)
+    return summary
 
 # ---------- Runner core ----------
 
@@ -684,6 +887,7 @@ def run_topo(points: np.ndarray, spec: TopoSpec, seed: Optional[int] = None) -> 
 def main() -> None:
     p = argparse.ArgumentParser(description="Topo-RDM v1: Topological Ringdown Meter")
     p.add_argument("--spec", type=str, default="", help="Path to dsi_topo_rdm.v1.json (optional)")
+    p.add_argument("--mode", type=str, default="topo", choices=["topo", "dsi_only"], help="Analysis branch: 'topo' (β1) or 'dsi_only' (log-time comb)")
     p.add_argument(
         "--ridges_csv",
         type=str,
@@ -696,6 +900,7 @@ def main() -> None:
         default="",
         help="CSV of raw time-series with columns [t,strain] or [time,h] (no external pipeline required)",
     )
+    p.add_argument("--t0", type=float, default=float("nan"), help="Reference time for post-merger (dsi_only mode). If NaN, infer from *_pre.json when available.")
     # Optional GWPy ingestion (network fetch from GWOSC or configured data source)
     p.add_argument("--gwpy_channel", type=str, default="", help='GWPy channel, e.g. "H1:GWOSC-4KHZ_R1_STRAIN"')
     p.add_argument("--gwpy_start", type=str, default="", help="GWPy start time (GPS seconds or ISO8601)")
@@ -755,8 +960,14 @@ def main() -> None:
     else:
         raise SystemExit("Provide --ridges_csv or --timeseries_csv or --gwpy_channel/--gwpy_start/--gwpy_end (or corresponding spec.data.* entries)")
  
-    out = run_topo(points, spec, seed=int(args.seed))
-    print(json.dumps(out, indent=2, sort_keys=True))
+    if args.mode.strip().lower() == "dsi_only":
+        if not timeseries_path:
+            raise SystemExit("dsi_only mode requires --timeseries_csv or spec.data.timeseries_csv (preprocessed CSV with header 't,h').")
+        out = run_dsi(timeseries_path, spec, t0_hint=(None if not np.isfinite(args.t0) else float(args.t0)))
+        print(json.dumps(out, indent=2, sort_keys=True))
+    else:
+        out = run_topo(points, spec, seed=int(args.seed))
+        print(json.dumps(out, indent=2, sort_keys=True))
 
 
 if __name__ == "__main__":
