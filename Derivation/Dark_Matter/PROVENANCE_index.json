@@ -1,0 +1,12 @@
+{
+  "generated_utc": "2025-11-19T06:12:22.498545Z",
+  "items": [
+    {
+      "path": "Derivation/Dark_Matter/T5_PROPOSAL_SkyrmeSIDM_VDM_FirstPrinciples_v1.md",
+      "sha256": "ca30c2e77d49415d51ad70585e5884048a1365390ab306ed1c5f50a1c54a4f8d",
+      "size": 18789
+    }
+  ],
+  "root": "Derivation/Dark_Matter",
+  "schema": "vdm.provenance.index.v1"
+}

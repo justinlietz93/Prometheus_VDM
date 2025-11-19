@@ -504,3 +504,38 @@ Rationale:
 Provenance:
 - Timestamp (UTC): 2025-11-15
 - Commit: pinned at run time in proposal front-matter
+
+## Change Attestation — 2025-11-19 (VDM Validation Phase Preregistration Lock)
+
+Date (UTC): 2025-11-19
+
+Dependency-Chain-Reviewed: true  
+Change-Type: canon-impacting  
+Summary: Lock the preregistered VDM Validation Phase by bringing six proposals to template-complete prereg status (Gap Modules + instruments) and updating canonical indices (PROPOSALS, ROADMAP) to treat them as a linked validation cluster.
+
+Paths-Changed:
+
+- Derivation/Axioms/A8_Hierarchy_Gates/T3_PROPOSAL_A8_Hierarchy_Gates_v1.md
+- Derivation/Metriplectic/Metriplectic_Instruments/T2_PROPOSAL_Metriplectic_Instruments_v1.md
+- Derivation/Metriplectic/Analog_Horizon/T5_PROPOSAL_Analog_Horizon_v1.md
+- Derivation/Gravity/Gravity_Regression/T5_PROPOSAL_Gravity_Regression_v1.md
+- Derivation/Spinor/T1_PROPOSAL_Spinor_Emergence_v1.md
+- Derivation/Cosmology/CMB/T2_PROPOSAL_EBN_CMB_Pipeline_v1.md
+- Derivation/z.CANONICAL_Proposals/00_PROPOSALS.md
+- Derivation/z.CANONICAL_Roadmap/00_ROADMAP.md
+
+Canon-Docs-Updated:
+
+- Derivation/z.CANONICAL_Proposals/00_PROPOSALS.md
+- Derivation/z.CANONICAL_Roadmap/00_ROADMAP.md
+
+Dependency-Notes:
+
+- Reviewed `z.CANONICAL_Validation_Metrics/00_VALIDATION_METRICS.md`, `z.CANONICAL_Schemas/00_SCHEMAS.md`, and domain code under `Derivation/code/physics/{meters,causality,cosmology}` for compatibility with the prereg manifests referenced in §5.1.1 of each proposal.
+- Established cross-links from the Roadmap milestone `#ms-vdm-validation-phase` to the six prereg proposals and from `00_PROPOSALS.md` to the “VDM Validation Phase — Preregistration Lock” cluster note.
+- Confirmed that each of the six proposals carries explicit PRE-REGISTRATION examples, APPPROVAL/SCHEMA/SPEC paths, and artifact standards consistent with `Templates/PROPOSAL_PAPER_TEMPLATE.md` and `Templates/RESULTS_PAPER_STANDARDS.md`.
+
+Approval/PR:
+
+- PR: (to be filled with GitHub URL or change request reference on publication)
+- Approval: (to be recorded via `code/common/authorization/approve_tag.py` when prereg tags are stamped and domain APPROVAL.json manifests are updated)

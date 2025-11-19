@@ -1,0 +1,22 @@
+{
+  "generated_utc": "2025-11-19T06:12:22.498545Z",
+  "items": [
+    {
+      "path": "Derivation/Topology/PROPOSAL_Loop_Quench_Test_Robustness_v2.md",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "Derivation/Topology/PROPOSAL_Loop_Quench_Test_v1.md",
+      "sha256": "9e56e0943186e056aca8f381f2f42a5cf0e136b1395549b5fa416072defd7b45",
+      "size": 2096
+    },
+    {
+      "path": "Derivation/Topology/README.md",
+      "sha256": "570527b6514f1c359aabbc4762d7efb93194eca9258ca8608599db56ddf30c2d",
+      "size": 5847
+    }
+  ],
+  "root": "Derivation/Topology",
+  "schema": "vdm.provenance.index.v1"
+}

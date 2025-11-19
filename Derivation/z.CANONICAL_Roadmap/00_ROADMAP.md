@@ -23,29 +23,67 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 
 ## <a id="ms-frw-balance"></a>FRW Continuity Residual Validation (Gravity)
 
-**Status:** Done • **Priority:** P1  
-**Source:** Derivation/cosmology/PROPOSAL_FRW_Balance_v1.md; Derivation/code/physics/cosmology/run_frw_balance.py  
+**Status:** Done • **Priority:** P1
+**Source:** Derivation/cosmology/PROPOSAL_FRW_Balance_v1.md; Derivation/code/physics/cosmology/run_frw_balance.py
 
 **Goal (verbatim/condensed from source):** Validate FRW energy continuity with source bookkeeping by measuring the RMS residual of the continuity equation under controlled scenarios (e.g., dust) with causal sourcing gates.
 
 **Acceptance criteria (links only, no formulas):**
 
-- Metrics/KPIs: RMS continuity residual ≤ tolerance (double precision scale)  
+- Metrics/KPIs: RMS continuity residual ≤ tolerance (double precision scale)
 - Data products to produce: `DATA_PRODUCTS.md` entry for cosmology/FRW residuals (add upon standardization)
 
-**Dependencies:** Axiomatic bookkeeping and units normalization  
+**Dependencies:** Axiomatic bookkeeping and units normalization
 **Risks/Constraints:**
 
-- Requires causal source kernel consistency across channels  
+- Requires causal source kernel consistency across channels
 - Tight numerical tolerances can mask discretization artifacts if grids are too coarse
 
 **Deliverables:**
 
-- Derivation/cosmology/PROPOSAL_FRW_Balance_v1.md  
-- Derivation/code/physics/cosmology/run_frw_balance.py  
+- Derivation/cosmology/PROPOSAL_FRW_Balance_v1.md
+- Derivation/code/physics/cosmology/run_frw_balance.py
 - Tagged artifacts: `Derivation/code/outputs/{logs,figures}/cosmology/FRW-balance-v1/*`
 
 **Target timeframe (if stated):** ✓ Completed - RMS ≈ O(10⁻¹⁵) in baseline dust sanity test (PASS)
+
+## <a id="ms-vdm-validation-phase"></a>VDM Validation Phase — Gap Modules and Instruments (Preregistration)
+
+**Status:** Preregistered • **Priority:** P1
+**Source:**
+
+- `Axioms/A8_Hierarchy_Gates/T3_PROPOSAL_A8_Hierarchy_Gates_v1.md`
+- `Metriplectic/Metriplectic_Instruments/T2_PROPOSAL_Metriplectic_Instruments_v1.md`
+- `Metriplectic/Analog_Horizon/T5_PROPOSAL_Analog_Horizon_v1.md`
+- `Gravity/Gravity_Regression/T5_PROPOSAL_Gravity_Regression_v1.md`
+- `Spinor/T1_PROPOSAL_Spinor_Emergence_v1.md`
+- `Cosmology/CMB/T2_PROPOSAL_EBN_CMB_Pipeline_v1.md`
+
+**Goal (verbatim/condensed from sources):** Lock the VDM validation phase by preregistering A8 Gap Module hierarchy gates, metriplectic instruments (including analog horizon), gravity regression, spinor emergence, and the EBN–CMB pipeline required to test the model across laboratory and cosmological regimes.
+
+**Acceptance criteria (links only, no formulas):**
+
+- Proposals: `z.CANONICAL_Proposals/00_PROPOSALS.md` (“VDM Validation Phase — Preregistration Lock” cluster entry).
+- Meters and KPIs: `z.CANONICAL_Validation_Metrics/00_VALIDATION_METRICS.md` entries referenced in the six proposals (A8 hierarchy, metriplectic instruments, FRW/CMB, gravity regression, spinor sector).
+- Schemas/specs: domain-local `APPROVAL.json`, `PRE-REGISTRATION.json`, `schemas/*.schema.json`, and `specs/*.json` as listed in each proposal’s §5.1.1.
+
+**Dependencies:**
+
+- Axiomatic foundation milestone (#ms-axiomatic-foundation).
+- Conservative KG instrument certification (J-only) and FRW balance validation (#ms-frw-balance).
+
+**Risks/Constraints:**
+
+- Cross-domain coupling: failure in any meter or Gap Module gate can invalidate higher-tier claims.
+- Requires strict enforcement of preregistration and approval policy (`code/common/authorization/approval.py`).
+
+**Deliverables:**
+
+- Approved and salted PRE-REGISTRATION manifests for all six proposals.
+- Domain-local schemas and specs wired into runners with CI gates.
+- Tagged prereg cluster documented in `z.CANONICAL_Proposals/00_PROPOSALS.md` and referenced from this roadmap.
+
+**Target timeframe (if stated):** Preregistration locked as of 2025-11-19; execution and T5–T8 promotion deferred to RESULTS_* documents per `Templates/RESULTS_PAPER_STANDARDS.md`.
 
 ## <a id="ms-axiomatic-foundation"></a>Axiomatic Foundation Development
 

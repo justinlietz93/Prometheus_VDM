@@ -1,0 +1,52 @@
+{
+  "generated_utc": "2025-11-19T06:12:22.498545Z",
+  "items": [
+    {
+      "path": "Derivation/Collapse/PROPOSAL_A6_Collapse_v1.md",
+      "sha256": "7eb7ba58c65a0964bcb3306002ea3ef7b49b0d2940d212eab79c9824e4773035",
+      "size": 2619
+    },
+    {
+      "path": "Derivation/Collapse/RESULTS_A6_Scaling_Collapse_Junction_Logistic_Universality.md",
+      "sha256": "65b9fdab294d4aee876e6d00599da5539ed9d6777927d60af5b5a2ea60d77681",
+      "size": 5614
+    },
+    {
+      "path": "Derivation/Collapse/code/common/io_paths.py",
+      "sha256": "e5b9f0692cafa443ce3c17c450e20efa4da742a2282583a5a1740a0d3faebccd",
+      "size": 5013
+    },
+    {
+      "path": "Derivation/Collapse/code/memory_steering/memory_steering.py",
+      "sha256": "0f7bcb8c0beb959eebdd45de24026a79595b4c6e06b1a90605093aa104fbea81",
+      "size": 17032
+    },
+    {
+      "path": "Derivation/Collapse/code/memory_steering/memory_steering_experiments.py",
+      "sha256": "24d92c395d125575962e5a8bfbc9a993af79cc6a53b1d8381c6494593e59e6cd",
+      "size": 40351
+    },
+    {
+      "path": "Derivation/Collapse/code/run_a6_collapse.py",
+      "sha256": "04616aeb71750359a64cef95ab8b391a80149833d7157655badb304020d01337",
+      "size": 5447
+    },
+    {
+      "path": "Derivation/Collapse/figures/a6-collapse.png",
+      "sha256": "7ddecbfd2482d7e5d55425cd36425f2c97cf11a59e0a40f6ab8b7a4e93542d88",
+      "size": 60990
+    },
+    {
+      "path": "Derivation/Collapse/logs/20251006_175337_a6_collapse__A6-collapse-v1.json",
+      "sha256": "f712b96fa3cdfbbc217bcc369217be6044ab983cb0243373e10f14adb171afaf",
+      "size": 7571
+    },
+    {
+      "path": "Derivation/Collapse/logs/20251006_175337_a6_collapse_envelope__A6-collapse-v1.csv",
+      "sha256": "d1c440f9dbb6055401f479a92af322e6e29e5f3cd29cd302deae276da408d248",
+      "size": 7958
+    }
+  ],
+  "root": "Derivation/Collapse",
+  "schema": "vdm.provenance.index.v1"
+}

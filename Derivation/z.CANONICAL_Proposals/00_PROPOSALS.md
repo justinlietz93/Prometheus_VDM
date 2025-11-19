@@ -2,11 +2,11 @@
 
 This document provides a comprehensive overview of all research proposals in the Void Dynamics Model (VDM) repository. Each proposal follows the whitepaper-grade template standards and includes explicit gates, MathJax-rendered equations, and full provenance. Proposals are organized by domain and follow the T0-T9 maturity ladder.
 
-**Total Proposals: 66**
+**Total Proposals: 72**
 
-> Last Updated: 2025-11-05  
-> Template: `Templates/PROPOSAL_PAPER_TEMPLATE.md`  
-> Standards: All proposals must be approved before experiments can run  
+> Last Updated: 2025-11-19
+> Template: `Templates/PROPOSAL_PAPER_TEMPLATE.md`
+> Standards: All proposals must be approved before experiments can run
 > Authorization: See `code/common/authorization/README.md`
 
 ---
@@ -555,6 +555,32 @@ This document provides a comprehensive overview of all research proposals in the
 - Higher-tier proposals (T4+) must reference supporting work from lower tiers
 - Experimental setup, diagnostics, variables, methods, and schema documentation must be comprehensive and rigorous
 - All gates must have explicit pass/fail thresholds with units and normalization specified
+
+### VDM Validation Phase — Preregistration Lock (2025-11-19)
+
+The following six proposals define the preregistered **VDM Validation Phase** (Gap Module closure + instrument preregistration). They are treated as a linked cluster for approval, gating, and roadmap tracking:
+
+- **T3_PROPOSAL_A8_Hierarchy_Gates_v1.md**
+  Path: `Axioms/A8_Hierarchy_Gates/T3_PROPOSAL_A8_Hierarchy_Gates_v1.md`
+- **T2_PROPOSAL_Metriplectic_Instruments_v1.md**
+  Path: `Metriplectic/Metriplectic_Instruments/T2_PROPOSAL_Metriplectic_Instruments_v1.md`
+- **T5_PROPOSAL_Analog_Horizon_v1.md**
+  Path: `Metriplectic/Analog_Horizon/T5_PROPOSAL_Analog_Horizon_v1.md`
+- **T5_PROPOSAL_Gravity_Regression_v1.md**
+  Path: `Gravity/Gravity_Regression/T5_PROPOSAL_Gravity_Regression_v1.md`
+- **T1_PROPOSAL_Spinor_Emergence_v1.md**
+  Path: `Spinor/T1_PROPOSAL_Spinor_Emergence_v1.md`
+- **T2_PROPOSAL_EBN_CMB_Pipeline_v1.md**
+  Path: `Cosmology/CMB/T2_PROPOSAL_EBN_CMB_Pipeline_v1.md`
+
+These proposals jointly:
+
+- Lock the **Gap Module** solutions and hierarchy gates for A8 and related structures.
+- Certify the **Metriplectic Instrument Suite** and analog-horizon meters needed to test causal dominance and thermodynamic geometry.
+- Define the **Gravity Regression** and **EBN–CMB pipeline** preregistration needed for cosmological validation.
+- Establish the **Spinor Emergence** proto-model for VDM’s spinor sector.
+
+Their PRE-REGISTRATION manifests, schemas, and specs are domain-local (see proposal §5.1.1 in each file) and enforced via `code/common/authorization/approval.py`.
 
 <!-- BEGIN AUTOSECTION: PROPOSALS-INDEX -->
 <!-- Tool-maintained list of proposals by domain -->

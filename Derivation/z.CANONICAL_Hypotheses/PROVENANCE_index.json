@@ -1,0 +1,17 @@
+{
+  "generated_utc": "2025-11-19T06:12:22.498545Z",
+  "items": [
+    {
+      "path": "Derivation/z.CANONICAL_Hypotheses/00_HYPOTHESES.md",
+      "sha256": "b7823f5d9bf98d1cdec377aec33cc4ec6ea2cec9e7b43b1eef211fd441a87cb9",
+      "size": 11645
+    },
+    {
+      "path": "Derivation/z.CANONICAL_Hypotheses/README.md",
+      "sha256": "944239fc87db6a8407fa56805749c5add31efca0a2a47f6cb81fb9131a9967f3",
+      "size": 978
+    }
+  ],
+  "root": "Derivation/z.CANONICAL_Hypotheses",
+  "schema": "vdm.provenance.index.v1"
+}

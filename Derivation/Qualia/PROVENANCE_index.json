@@ -1,0 +1,17 @@
+{
+  "generated_utc": "2025-11-19T06:12:22.498545Z",
+  "items": [
+    {
+      "path": "Derivation/Qualia/PROPOSAL_vdm_qualia_program.md",
+      "sha256": "34f230012ec6e0e2880a18a2fd3de4849fa42cf0016af3b68aa3d6244e6de686",
+      "size": 12771
+    },
+    {
+      "path": "Derivation/Qualia/T3_PROPOSAL_Calibration_of_Psychophysical_Observables_to_C_Field.md",
+      "sha256": "c46d93209c8f45d72b2d83be7e7a475e0aa4456dedbc418cf640eeea5f7eef8b",
+      "size": 13793
+    }
+  ],
+  "root": "Derivation/Qualia",
+  "schema": "vdm.provenance.index.v1"
+}

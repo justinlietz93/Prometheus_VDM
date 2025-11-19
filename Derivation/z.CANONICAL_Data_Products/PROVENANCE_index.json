@@ -1,0 +1,12 @@
+{
+  "generated_utc": "2025-11-19T06:12:22.498545Z",
+  "items": [
+    {
+      "path": "Derivation/z.CANONICAL_Data_Products/00_DATA_PRODUCTS.md",
+      "sha256": "08e5168488caf90791e7be4c1cbe54ec626c7d0ead71c611c384865bd0c0a432",
+      "size": 67792
+    }
+  ],
+  "root": "Derivation/z.CANONICAL_Data_Products",
+  "schema": "vdm.provenance.index.v1"
+}

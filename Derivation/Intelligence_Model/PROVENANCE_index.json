@@ -1,0 +1,27 @@
+{
+  "generated_utc": "2025-11-19T06:12:22.498545Z",
+  "items": [
+    {
+      "path": "Derivation/Intelligence_Model/PROPOSAL_Physics_Native_Intelligence_v1.md",
+      "sha256": "c8f4d765a4c03e1ae732809f09607d886054fcf78fad03ae25ca28c670e13b2a",
+      "size": 6307
+    },
+    {
+      "path": "Derivation/Intelligence_Model/README.md",
+      "sha256": "076c211c62dcda02d6dff9773c2e9f8237409eb81b91e2bbb96f93f359bf7fc8",
+      "size": 1016
+    },
+    {
+      "path": "Derivation/Intelligence_Model/RESULTS_Physics_Native_Intelligence_Substrate_v1.md",
+      "sha256": "518330cf0d0c121c428374a9bfbf996c188356d05a6410ad8b7695db6148e45a",
+      "size": 521
+    },
+    {
+      "path": "Derivation/Intelligence_Model/T4_PROPOSAL_VDM_Physics_to_AI_Model_v1.md",
+      "sha256": "2f827a6150867647967cde688e7a529eb11b36c1ea5f55b9aba19b7eef556bda",
+      "size": 30443
+    }
+  ],
+  "root": "Derivation/Intelligence_Model",
+  "schema": "vdm.provenance.index.v1"
+}

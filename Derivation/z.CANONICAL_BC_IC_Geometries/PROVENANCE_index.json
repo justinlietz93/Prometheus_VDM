@@ -1,0 +1,17 @@
+{
+  "generated_utc": "2025-11-19T06:12:22.498545Z",
+  "items": [
+    {
+      "path": "Derivation/z.CANONICAL_BC_IC_Geometries/00_BC_IC_GEOMETRY.md",
+      "sha256": "1cc3934024c3fc9577560defca9c82f0d10e7c95a317765c969309dec980dac1",
+      "size": 25700
+    },
+    {
+      "path": "Derivation/z.CANONICAL_BC_IC_Geometries/README.md",
+      "sha256": "944239fc87db6a8407fa56805749c5add31efca0a2a47f6cb81fb9131a9967f3",
+      "size": 978
+    }
+  ],
+  "root": "Derivation/z.CANONICAL_BC_IC_Geometries",
+  "schema": "vdm.provenance.index.v1"
+}

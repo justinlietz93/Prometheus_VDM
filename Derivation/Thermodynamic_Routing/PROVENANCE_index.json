@@ -1,0 +1,57 @@
+{
+  "generated_utc": "2025-11-19T06:12:22.498545Z",
+  "items": [
+    {
+      "path": "Derivation/Thermodynamic_Routing/PROPOSAL_Thermodynamic_Routing_NoSwitch_v1.md",
+      "sha256": "59411fa0ab049c33928ec96384530c74ad84c7e09a7173d3e7df527fbc120509",
+      "size": 13546
+    },
+    {
+      "path": "Derivation/Thermodynamic_Routing/Passive_Thermodynamic_Routing/PROPOSAL_Flux_Through_Memory_Channels_v1.md",
+      "sha256": "4a4c5a38c912a1d98cbdfa2baec57dd7b1d69ab395c576b033eda75338d2f872",
+      "size": 9228
+    },
+    {
+      "path": "Derivation/Thermodynamic_Routing/Passive_Thermodynamic_Routing/PROPOSAL_Passive_Thermodynamic_Routing_v2.md",
+      "sha256": "8005dfb68d16002977ae16a925df32c08e58f23fba5442f886338d80a390cd20",
+      "size": 11069
+    },
+    {
+      "path": "Derivation/Thermodynamic_Routing/Passive_Thermodynamic_Routing/RESULTS_Passive_Thermodynamic_Routing_v2.md",
+      "sha256": "446b8ce6646386e25f7c222f80135697b53ba36e817b3bf2ccdf26cbae9855e6",
+      "size": 6078
+    },
+    {
+      "path": "Derivation/Thermodynamic_Routing/Prereg_Biased_Main/PROPOSAL_Thermodynamic_Routing_v2_Preg_Biased_Main.md",
+      "sha256": "d1ecc2fac82a98ef0e2496aab185a71fcf7b67603964e4b714d4b79c2fbc6ecb",
+      "size": 4378
+    },
+    {
+      "path": "Derivation/Thermodynamic_Routing/Wave_Flux_Meter/PROPOSAL_Wave_Flux_Meter_PhaseC_OpenPorts_v1.md",
+      "sha256": "682a7b3735a742ad023c4b18e3c6efaf237aa718a931e51fb29927a87746c44a",
+      "size": 10940
+    },
+    {
+      "path": "Derivation/Thermodynamic_Routing/Wave_Flux_Meter/PROPOSAL_Wave_Flux_Meter_Phase_B_OpenPorts_v1.md",
+      "sha256": "307aa5e221e1770392161c2772aec7b39602a11f2956dc0c800470b21b799fc6",
+      "size": 4085
+    },
+    {
+      "path": "Derivation/Thermodynamic_Routing/Wave_Flux_Meter/PROPOSAL_Wave_Flux_Meter_v1.md",
+      "sha256": "e8ac0669dba9989a27673198ead619d4f00dbd60d4ca5c3681d27dc8be7010ab",
+      "size": 5365
+    },
+    {
+      "path": "Derivation/Thermodynamic_Routing/Wave_Flux_Meter/RESULTS_Wave_Flux_Meter_A_Phase_v1.md",
+      "sha256": "2c8165ed1c233c035161fe0ff73a85ccf32ac961308b99acec5729472180286b",
+      "size": 6582
+    },
+    {
+      "path": "Derivation/Thermodynamic_Routing/Wave_Flux_Meter/RESULTS_Wave_Flux_Meter_Phase_B_OpenPorts_v1.md",
+      "sha256": "32b3ac918359e3fc11b14092dddf57611b0dfb2886aca16d973d2920d9e1cc78",
+      "size": 4603
+    }
+  ],
+  "root": "Derivation/Thermodynamic_Routing",
+  "schema": "vdm.provenance.index.v1"
+}

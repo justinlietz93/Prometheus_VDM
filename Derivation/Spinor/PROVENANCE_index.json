@@ -1,0 +1,12 @@
+{
+  "generated_utc": "2025-11-19T06:12:22.498545Z",
+  "items": [
+    {
+      "path": "Derivation/Spinor/T1_PROPOSAL_Spinor_Emergence_v1.md",
+      "sha256": "30c16a777001b36f99d4aaf65ad9efa48c3e92f888a46bdb78d3c2cab98d5f9c",
+      "size": 9944
+    }
+  ],
+  "root": "Derivation/Spinor",
+  "schema": "vdm.provenance.index.v1"
+}

@@ -1,0 +1,22 @@
+{
+  "generated_utc": "2025-11-19T06:12:22.498545Z",
+  "items": [
+    {
+      "path": "Derivation/Tachyon_Condensation/PROPOSAL_Tachyonic_Tube_Condensation.md",
+      "sha256": "621cc3e7228cf8ef535476bcccac4dfb276bda34f8f68fc742b931e689611e25",
+      "size": 5817
+    },
+    {
+      "path": "Derivation/Tachyon_Condensation/RESULTS_Tachyonic_Tube_v1.md",
+      "sha256": "49367032814760828fc7017a322026823210ebd847b98e431795d937921bba3a",
+      "size": 9514
+    },
+    {
+      "path": "Derivation/Tachyon_Condensation/finite_tube_mode_analysis.md",
+      "sha256": "557c4e02c4881d69736a116afdd0aa82cc7d3eac01fea6cbe76f8b42340b4f01",
+      "size": 14112
+    }
+  ],
+  "root": "Derivation/Tachyon_Condensation",
+  "schema": "vdm.provenance.index.v1"
+}

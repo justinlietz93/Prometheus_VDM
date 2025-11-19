@@ -1,0 +1,12 @@
+{
+  "generated_utc": "2025-11-19T06:12:22.498545Z",
+  "items": [
+    {
+      "path": "Derivation/Unification/T0_Unification_Program_Spec_v1.md",
+      "sha256": "b0a3190883b02bfe293728e52dac9ac59882dc7f56bb2d2e008f4dc1d0acabff",
+      "size": 50868
+    }
+  ],
+  "root": "Derivation/Unification",
+  "schema": "vdm.provenance.index.v1"
+}

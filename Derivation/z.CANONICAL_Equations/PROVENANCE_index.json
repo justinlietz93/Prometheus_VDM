@@ -1,0 +1,12 @@
+{
+  "generated_utc": "2025-11-19T06:12:22.498545Z",
+  "items": [
+    {
+      "path": "Derivation/z.CANONICAL_Equations/00_EQUATIONS.md",
+      "sha256": "5d363917b7ab49170650f62dcc93997fbb96c50678046948627b5093bc6bf666",
+      "size": 97587
+    }
+  ],
+  "root": "Derivation/z.CANONICAL_Equations",
+  "schema": "vdm.provenance.index.v1"
+}

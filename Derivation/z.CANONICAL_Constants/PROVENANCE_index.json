@@ -1,0 +1,12 @@
+{
+  "generated_utc": "2025-11-19T06:12:22.498545Z",
+  "items": [
+    {
+      "path": "Derivation/z.CANONICAL_Constants/00_CONSTANTS.md",
+      "sha256": "e1e556190cd92e0eebbcbabd5095f867b9f9134288172a44206002271911538b",
+      "size": 43755
+    }
+  ],
+  "root": "Derivation/z.CANONICAL_Constants",
+  "schema": "vdm.provenance.index.v1"
+}

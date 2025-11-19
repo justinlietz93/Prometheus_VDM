@@ -1,0 +1,17 @@
+{
+  "generated_utc": "2025-11-19T06:12:22.498545Z",
+  "items": [
+    {
+      "path": "Derivation/Entropy/Jensen-Shannon_Divergence/T2_JS_echo_Bounded_Echo-Fidelity_Meter_v1.md",
+      "sha256": "753f2d9129eac8bdca5671f2c06c7dd8d8083955e963cae7df92f7d340042053",
+      "size": 17394
+    },
+    {
+      "path": "Derivation/Entropy/Self-Information/T3_PROPOSAL_Agency_Entropy_Echo_Measurement_v1.md",
+      "sha256": "b924d95d3708a51e4d6611049fd6365a4541d8260486e8c74d22398e6365b92e",
+      "size": 19400
+    }
+  ],
+  "root": "Derivation/Entropy",
+  "schema": "vdm.provenance.index.v1"
+}

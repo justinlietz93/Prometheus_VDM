@@ -1,0 +1,27 @@
+{
+  "generated_utc": "2025-11-19T06:12:22.498545Z",
+  "items": [
+    {
+      "path": "Derivation/Causality/Causal_DAG_Audits/T1_PROPOSAL_Causal_DAG_Audits_v1.md",
+      "sha256": "aa297de660c9b96992d05eab14031c8e197d56bf8ef05a904abc922b45a45a59",
+      "size": 11065
+    },
+    {
+      "path": "Derivation/Causality/PROPOSAL_Causal_DAG_Audits_for_Void_Dynamics_Model.md",
+      "sha256": "1c21c7f760ddec8d31108eab1accf091b8bb8cb0cfb5bc145bdc6f717fbc3253",
+      "size": 5932
+    },
+    {
+      "path": "Derivation/Causality/PROPOSAL_Metriplectic_Causal_Dominance_v1.md",
+      "sha256": "999aa3917590dde031bdcc7dd7cd371cb777c2fd638d82c6f437a9c2dc04560f",
+      "size": 9710
+    },
+    {
+      "path": "Derivation/Causality/T1_PROPOSAL_G-TF-1_Telegraph-Fisher_Causality_v1.md",
+      "sha256": "8aebe9ed67bcaaad122c2b8ae8d18903d57680088327ebc47d417d81a0a0d2b5",
+      "size": 1961
+    }
+  ],
+  "root": "Derivation/Causality",
+  "schema": "vdm.provenance.index.v1"
+}

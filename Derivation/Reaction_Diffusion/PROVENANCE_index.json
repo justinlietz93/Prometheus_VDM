@@ -1,0 +1,22 @@
+{
+  "generated_utc": "2025-11-19T06:12:22.498545Z",
+  "items": [
+    {
+      "path": "Derivation/Reaction_Diffusion/rd_dispersion_validation.md",
+      "sha256": "c00622c28b3a2caf2531c48343f2fdeca2a8d2451c1175924195d7ac77744456",
+      "size": 3599
+    },
+    {
+      "path": "Derivation/Reaction_Diffusion/rd_front_speed_validation.md",
+      "sha256": "d3a144bf53ad3fce2cab3ef9c771707afc58d7205dc10bfffa7b3ed50e2781cb",
+      "size": 4815
+    },
+    {
+      "path": "Derivation/Reaction_Diffusion/rd_validation_plan.md",
+      "sha256": "88c0cb456e974013c505fc9c0863199681b93658f743cd7b0139ffd2b6a3b1c9",
+      "size": 5097
+    }
+  ],
+  "root": "Derivation/Reaction_Diffusion",
+  "schema": "vdm.provenance.index.v1"
+}

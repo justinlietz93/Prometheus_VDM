@@ -1,0 +1,67 @@
+{
+  "generated_utc": "2025-11-19T06:12:22.498545Z",
+  "items": [
+    {
+      "path": "Derivation/Quantum/Analog_Quantum/T4_PROPOSAL_Cold_Atom_Causal_Cone_Test_v1.md",
+      "sha256": "097a03424851f16799721028802618b0b9050db4fc52da6facead2dbb3ec8728",
+      "size": 21724
+    },
+    {
+      "path": "Derivation/Quantum/Quantum_Echos/T0_PROPOSAL_SIE_Willow-Convergence_v1.md",
+      "sha256": "72ebfaea73dc5513263b6612965f2dd179740fc861416d6f9f6fa6d160f73f7d",
+      "size": 9716
+    },
+    {
+      "path": "Derivation/Quantum/Quantum_Echos/T1_PROPOSAL_VDM_QIS_Quantum\u2011Echoes_Metriplectic_v1.md",
+      "sha256": "e7d96694eae3a2170c96dfa66035a8e19bc6ebcbc8eb89a622ac34b4812d9246",
+      "size": 11017
+    },
+    {
+      "path": "Derivation/Quantum/Quantum_Echos/T4_PROPOSAL_Echo-Limited-Causality-in-Metriplectic-VDM_T4_v1.md",
+      "sha256": "7ba797f3f826ac915ab1f623fdc3b19a6a482fbc812633dd78206012e88097bf",
+      "size": 13899
+    },
+    {
+      "path": "Derivation/Quantum/Quantum_Echos/T4_PROPOSAL_SMAE_CEG_v1.md",
+      "sha256": "ea29f49c8754d14bdcc4fdbfb24228bb0496e5b41b6b5d27cc4e7c81f901eb83",
+      "size": 9479
+    },
+    {
+      "path": "Derivation/Quantum/Quantum_Echos/T4_PROPOSAL_VDM_QEcho-Convergence_Willow_v1.md",
+      "sha256": "a5152fd049dd2a7e53e572bbbe84c124c04c5ceac27299c6599ddfabcc4ac32c",
+      "size": 9003
+    },
+    {
+      "path": "Derivation/Quantum/Quantum_Engine/T4_PROPOSAL_Quantum-Resource-Engine_v1.md",
+      "sha256": "96696b712800d38682d593c122f376259a1a30fd1df1d9679602a9e1964ce09a",
+      "size": 19692
+    },
+    {
+      "path": "Derivation/Quantum/Quantum_Gradient_Descent/H001_Quantum-Driven_Gradient_Descent.md",
+      "sha256": "a2726ee541090ae3dc47602588a3f675a177fd40ccb5733bc52d74e4460cce90",
+      "size": 2754
+    },
+    {
+      "path": "Derivation/Quantum/T0_PROPOSAL_VDM_J-branch_QFT-Bootstrap_and_Metriplectic-Decoherence_v1.md",
+      "sha256": "8444a3030f2b1afbcc9ac0461d86108f74ec1f126d925300ba26e6217f62a160",
+      "size": 12609
+    },
+    {
+      "path": "Derivation/Quantum/T1_PROPOSAL_VDM_J-branch_Metriplectic_Decoherence__ProtoModel_v1.md",
+      "sha256": "ebd4965138fc6bbffe9375e867ac6df87ec49e35737b113b222a10c647ea67a4",
+      "size": 9116
+    },
+    {
+      "path": "Derivation/Quantum/T2_PROPOSAL_VDM_J-branch_Metriplectic_Decoherence_Instrument_v1.md",
+      "sha256": "b187361c257fa14c9efbe2e25f37241e18afbdc786f19de19f8e561abb273b7a",
+      "size": 30
+    },
+    {
+      "path": "Derivation/Quantum/T4_PROPOSAL_J-to_Dirac_v1.md",
+      "sha256": "0246a2941e840871371f79fad8a186e658415a820d4fb04294638cc9d4bcb66b",
+      "size": 11882
+    }
+  ],
+  "root": "Derivation/Quantum",
+  "schema": "vdm.provenance.index.v1"
+}

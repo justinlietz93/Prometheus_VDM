@@ -1,0 +1,12 @@
+{
+  "generated_utc": "2025-11-19T06:12:22.498545Z",
+  "items": [
+    {
+      "path": "Derivation/Closure/T1_PROPOSAL_G-CL-1_Closure-NoHiddenIntegrals_v1.md",
+      "sha256": "02a29c204352e6139becb28878952c9d26a12ee7ce95f2862bda420743f80944",
+      "size": 2044
+    }
+  ],
+  "root": "Derivation/Closure",
+  "schema": "vdm.provenance.index.v1"
+}

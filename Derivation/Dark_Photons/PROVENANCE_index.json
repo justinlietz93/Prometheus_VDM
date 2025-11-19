@@ -1,0 +1,72 @@
+{
+  "generated_utc": "2025-11-19T06:12:22.498545Z",
+  "items": [
+    {
+      "path": "Derivation/Dark_Photons/Decoherence_Portals.md",
+      "sha256": "be1d029e587cdb4bb3b6d4575365d42d43fb91bdb9e4476753c1832dfa740287",
+      "size": 537
+    },
+    {
+      "path": "Derivation/Dark_Photons/EFT_Ladder.md",
+      "sha256": "be8fa6ce25b3e8d7eb945af2c2424606812594d093f0ac7639aeacc9fd98ccae",
+      "size": 664
+    },
+    {
+      "path": "Derivation/Dark_Photons/Fisher_Epsilon.md",
+      "sha256": "c29382be04837cd3733719735bdf1fd62f93381e1bfd8dd017870597e2c5589f",
+      "size": 598
+    },
+    {
+      "path": "Derivation/Dark_Photons/Noise_Budget.md",
+      "sha256": "3ac0f757f36551c6259515f42623bb97c25a9bf8aa5daf703b0b79c21318a5ea",
+      "size": 614
+    },
+    {
+      "path": "Derivation/Dark_Photons/Observable-Signatures-of-Void-Dynamics-via-Dark-Photon-Portals.md",
+      "sha256": "2c1f5dc6e7dab3baa2f10c68f884cc3bc021eb4f67de50502021871706af9f9e",
+      "size": 22649
+    },
+    {
+      "path": "Derivation/Dark_Photons/PIVOT_TO_DARK_PHOTON.md",
+      "sha256": "e910da4bdbefec090acbe70fad3455dce84b62bfa872d1b7792df028a3b75ad9",
+      "size": 7335
+    },
+    {
+      "path": "Derivation/Dark_Photons/PROPOSAL_Decoherence_Portals.md",
+      "sha256": "acfe803ea3ed20adacceebbbfe0d3fa13d2a81593a6cc56e7fc47bb0c3d09320",
+      "size": 9495
+    },
+    {
+      "path": "Derivation/Dark_Photons/Portal_Lingo.md",
+      "sha256": "98ec408a1d567221b6dd9c9c6964745bf392f58ba8d2502d07bd5ffeeef542ae",
+      "size": 663
+    },
+    {
+      "path": "Derivation/Dark_Photons/README.md",
+      "sha256": "ed5b861e25b79e9d479cd630812bdbe65f932e0b31adc744e177b8b7115d5e69",
+      "size": 575
+    },
+    {
+      "path": "Derivation/Dark_Photons/RESULTS_Decoherence_Portals.md",
+      "sha256": "a092e0ba95d475e2b1f7c65733d443a27e3e88a128fb7504eab2e0813de5bf3b",
+      "size": 2107
+    },
+    {
+      "path": "Derivation/Dark_Photons/VDM_Targets.md",
+      "sha256": "9d4dc00efd0ed62b53f8c659bec1c43334eb3269e1d24287589fda4a77e84c9e",
+      "size": 3278
+    },
+    {
+      "path": "Derivation/Dark_Photons/init_dark_photon_quantum_docs_v2.sh",
+      "sha256": "9ea62ecc77cb5c8bfa8be62b1f37d8c4ecd205177d65c9555d87879d0956e970",
+      "size": 6428
+    },
+    {
+      "path": "Derivation/Dark_Photons/void_mapping.md",
+      "sha256": "1a6ebbe2104d2b69ade53f3540942a3f0586d4fd01d2807f59d3fcfbc366c46d",
+      "size": 9363
+    }
+  ],
+  "root": "Derivation/Dark_Photons",
+  "schema": "vdm.provenance.index.v1"
+}

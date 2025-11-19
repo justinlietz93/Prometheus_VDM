@@ -1,0 +1,22 @@
+{
+  "generated_utc": "2025-11-19T06:12:22.498545Z",
+  "items": [
+    {
+      "path": "Derivation/Effective_Field_Theory/effective_field_theory_approach.md",
+      "sha256": "e59fbca2b1a7acf0711f99900a01cde5f9d6eaab482da66cd323edda5ccd4663",
+      "size": 6471
+    },
+    {
+      "path": "Derivation/Effective_Field_Theory/fum_voxtrium_mapping.md",
+      "sha256": "d3d9636f1e7c9a679f9eb94c4d3f04e2ecf94b8ed2045345f07ecb626f984a85",
+      "size": 13735
+    },
+    {
+      "path": "Derivation/Effective_Field_Theory/kinetic_term_derivation.md",
+      "sha256": "25a8d9a1f248fc3652a67402bb4931364a587a5d7cb4101db81bf7957d3a628d",
+      "size": 7848
+    }
+  ],
+  "root": "Derivation/Effective_Field_Theory",
+  "schema": "vdm.provenance.index.v1"
+}

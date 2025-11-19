@@ -1,0 +1,12 @@
+{
+  "generated_utc": "2025-11-19T06:12:22.498545Z",
+  "items": [
+    {
+      "path": "Derivation/z.CANONICAL_Algorithms/00_ALGORITHMS.md",
+      "sha256": "5aab86feaa8a71bc71343752eeb90a064fda00c17d58e867524f4a63a5f61aa0",
+      "size": 73935
+    }
+  ],
+  "root": "Derivation/z.CANONICAL_Algorithms",
+  "schema": "vdm.provenance.index.v1"
+}
