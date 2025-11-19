@@ -1,0 +1,57 @@
+{
+  "generated_utc": "2025-11-19T06:12:22.498545Z",
+  "items": [
+    {
+      "path": "Derivation/Cosmology/CMB/T2_PROPOSAL_EBN_CMB_Pipeline_v1.md",
+      "sha256": "4366d34dcbabe9131b468f2e2e467c49b1d302f180cb44211e5c493d166580ef",
+      "size": 16391
+    },
+    {
+      "path": "Derivation/Cosmology/CMB/T3_PROPOSAL_CMB_Hemispherical_Asymmetry_Test_v1.md",
+      "sha256": "e1872ebb7e5d67db9fe2dbde383e01252fb2a07ed2d1abb95eb965187d27548b",
+      "size": 19714
+    },
+    {
+      "path": "Derivation/Cosmology/PROPOSAL_FRW_Balance_v1.md",
+      "sha256": "d0a157412082cdea4eba92fb6f08b38c332a03c562c65f6fff74c2560308e0c6",
+      "size": 2263
+    },
+    {
+      "path": "Derivation/Cosmology/PROPOSAL_FRW_Continuity_Predictive_v2.md",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "Derivation/Cosmology/RESULTS_FRW_Continuity_Residual_Quality_Check.md",
+      "sha256": "4f5a05204f981ee5ef2f74c342f82fe979f3bf9d8ccedccdf1b7899cc75a1812",
+      "size": 6594
+    },
+    {
+      "path": "Derivation/Cosmology/Ringdown_Meter/T2_PROPOSAL_Discrete_Scale_Invariance_Ringdown_v1.md",
+      "sha256": "7a2100c6f2f2c64564ddc5cef6f9f87129684661e41b00d309044c4afa0f542d",
+      "size": 13969
+    },
+    {
+      "path": "Derivation/Cosmology/Ringdown_Meter/T2_PROPOSAL_Ringdown_Meter_v1.md",
+      "sha256": "0510dab22961c56415b73387155fc471e5644e4486c11ad98350e6e71ea6bfaa",
+      "size": 15109
+    },
+    {
+      "path": "Derivation/Cosmology/Ringdown_Meter/T2_RESULTS_Topological_Ringdown_Meter_v1.md",
+      "sha256": "5447f3ec516edd824323dc42018f0e3148b0f1e949108ad2b23295b373b59b1b",
+      "size": 15606
+    },
+    {
+      "path": "Derivation/Cosmology/Ringdown_Meter/T3_PROPOSAL_Topological_Ringdown_Attempt_v1.md",
+      "sha256": "8a73a0b50542e097e06bd56ec945df694506ad43cb84da726cff54c9aac1320f",
+      "size": 9388
+    },
+    {
+      "path": "Derivation/Cosmology/T4_PROPOSAL_Single_Axis_Portal_Modulation_Against_CMB_Power_Tensor_v1.md",
+      "sha256": "3dc1b8ef8a0c37b66c0f559fa7096fde536bee67767804631f4b4729626a930b",
+      "size": 26925
+    }
+  ],
+  "root": "Derivation/Cosmology",
+  "schema": "vdm.provenance.index.v1"
+}

@@ -1,0 +1,27 @@
+{
+  "generated_utc": "2025-11-19T06:12:22.498545Z",
+  "items": [
+    {
+      "path": "Derivation/Foundations/continuum_stack.md",
+      "sha256": "8e852efe9012de5c76913e22a3aa51becfe0e1c9f06064071e0d1862fe248381",
+      "size": 6046
+    },
+    {
+      "path": "Derivation/Foundations/discrete_to_continuum.md",
+      "sha256": "7de24483d03dcc7a03f768864d2d4621291abfe6bcf5c2ae156bc0534d6b73f9",
+      "size": 9930
+    },
+    {
+      "path": "Derivation/Foundations/symmetry_analysis.md",
+      "sha256": "05fb5f67262d7b273aa68ca9cc5927b0471ab9cf76950b001acc3f493e30616e",
+      "size": 7547
+    },
+    {
+      "path": "Derivation/Foundations/void_dynamics_theory.md",
+      "sha256": "cbf261fc62cc75a2955acd8d951cffc9bb77e3b0ccf471f4853f6236e9599502",
+      "size": 13268
+    }
+  ],
+  "root": "Derivation/Foundations",
+  "schema": "vdm.provenance.index.v1"
+}

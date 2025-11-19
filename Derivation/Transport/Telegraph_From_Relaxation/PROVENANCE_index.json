@@ -1,0 +1,12 @@
+{
+  "generated_utc": "2025-11-19T06:12:22.498545Z",
+  "items": [
+    {
+      "path": "Derivation/Transport/Telegraph_From_Relaxation/T1_PROPOSAL_Telegraph_From_Relaxation_v1.md",
+      "sha256": "82c780eba76ede83ae9ac405d647bf8639b12c5daac16a910a38d6cf90baee8f",
+      "size": 9894
+    }
+  ],
+  "root": "Derivation/Transport/Telegraph_From_Relaxation",
+  "schema": "vdm.provenance.index.v1"
+}

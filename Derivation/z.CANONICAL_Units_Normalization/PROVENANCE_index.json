@@ -1,0 +1,17 @@
+{
+  "generated_utc": "2025-11-19T06:12:22.498545Z",
+  "items": [
+    {
+      "path": "Derivation/z.CANONICAL_Units_Normalization/00_UNITS_NORMALIZATION.md",
+      "sha256": "b95b6ad437973a8df478627ed077d00496dd0551b9b1bac378210b0013be1451",
+      "size": 18814
+    },
+    {
+      "path": "Derivation/z.CANONICAL_Units_Normalization/README.md",
+      "sha256": "944239fc87db6a8407fa56805749c5add31efca0a2a47f6cb81fb9131a9967f3",
+      "size": 978
+    }
+  ],
+  "root": "Derivation/z.CANONICAL_Units_Normalization",
+  "schema": "vdm.provenance.index.v1"
+}

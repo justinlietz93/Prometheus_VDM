@@ -80,15 +80,89 @@ def _compute_salted(base_hex: str, salt_hex: str) -> str:
     return hashlib.sha256(payload).hexdigest()
 
 
+def _populate_provenance_indexes() -> None:
+    """
+    Populate Derivation/**/PROVENANCE_index.json with plain SHA-256 indexes.
+
+    For each PROVENANCE_index.json under Derivation/, treat its parent directory
+    as a domain root and index all regular files beneath it (excluding the
+    PROVENANCE_index.json itself and any PROVENANCE_manifest.json), writing:
+
+    {
+      "schema": "vdm.provenance.index.v1",
+      "generated_utc": "...Z",
+      "root": "Derivation/Domain",
+      "items": [
+        { "path": "Derivation/Domain/...", "size": 123, "sha256": "..." },
+        ...
+      ]
+    }
+    """
+    repo_root = Path(__file__).resolve().parents[2]
+    deriv_root = repo_root / "Derivation"
+    if not deriv_root.exists():
+        raise SystemExit(f"[error] Derivation directory not found at {deriv_root}")
+
+    index_paths = list(deriv_root.rglob("PROVENANCE_index.json"))
+    if not index_paths:
+        print("[provenance-index] no PROVENANCE_index.json files found under Derivation/")
+        return
+
+    now = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+
+    for idx_path in index_paths:
+        domain_root = idx_path.parent
+        items = []
+        for pth in domain_root.rglob("*"):
+            if not pth.is_file():
+                continue
+            # Avoid self-references and manifest/provenance recursion
+            if pth.name in {"PROVENANCE_index.json", "PROVENANCE_manifest.json"}:
+                continue
+            base_hex, size = _sha256_file(pth)
+            rel = pth.relative_to(repo_root).as_posix()
+            items.append(
+                {
+                    "path": rel,
+                    "size": int(size),
+                    "sha256": base_hex,
+                }
+            )
+
+        items.sort(key=lambda d: d["path"])
+        payload = {
+            "schema": "vdm.provenance.index.v1",
+            "generated_utc": now,
+            "root": domain_root.relative_to(repo_root).as_posix(),
+            "items": items,
+        }
+        idx_path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        print(f"[provenance-index] wrote {len(items)} entries to {idx_path}")
+
+
 def main(argv: Optional[List[str]] = None) -> int:
     p = argparse.ArgumentParser(description="Generate salted provenance hashes for files")
-    p.add_argument("files", nargs="+", help="Files to hash")
+    p.add_argument("files", nargs="*", help="Files to hash")
     p.add_argument("--salt", help="Hex salt to use (applied to all files). If omitted, salt is generated.")
     p.add_argument("--single-salt", action="store_true", help="Use a single random salt for all files (ignored if --salt is provided)")
     p.add_argument("--salt-bytes", type=int, default=16, help="Number of random salt bytes when generating (default: 16)")
     p.add_argument("--text", action="store_true", help="Emit human-readable text instead of JSON")
+    p.add_argument(
+        "--populate-provenance-indexes",
+        action="store_true",
+        help="Populate Derivation/**/PROVENANCE_index.json with SHA-256 indexes for files under each domain root",
+    )
 
     args = p.parse_args(argv)
+
+    if args.populate_provenance_indexes:
+        if args.files:
+            raise SystemExit("[error] --populate-provenance-indexes cannot be combined with explicit file arguments")
+        _populate_provenance_indexes()
+        return 0
+
+    if not args.files:
+        p.error("at least one file path is required unless --populate-provenance-indexes is used")
 
     paths = [Path(x).resolve() for x in args.files]
     for pth in paths:

@@ -144,7 +144,7 @@ All snippets below are verbatim copies from canon anchors and carry no independe
 ### Metriplectic  <a id="dom-metriplectic"></a>
 
 - Summary: “T2 certification of metriplectic operator structure… Composition diagnostics documented” ([Derivation/CHRONICLES.md](Derivation/CHRONICLES.md:219-236))  
-- Key proposals: see domain folder `Derivation/Metriplectic/` and [PROPOSALS.md](Derivation/PROPOSALS.md) (if present)  
+- Key proposals: see domain folder `Derivation/Metriplectic/` and [PROPOSALS.md](Derivation/z.CANONICAL_Proposals/00_PROPOSALS.md) (if present)  
 - Key results: [RESULTS_Metriplectic_JMJ_RD_v1.md](Derivation/Metriplectic/Metriplectic_JMJ_RD/RESULTS_Metriplectic_JMJ_RD_v1.md:1), KG Noether/dispersion/energy-oscillation (see `Derivation/Metriplectic/`)  
 - Canon references: [SYMBOLS](Derivation/SYMBOLS.md), [EQUATIONS](Derivation/EQUATIONS.md), [VALIDATION_METRICS](Derivation/VALIDATION_METRICS.md), [ALGORITHMS](Derivation/ALGORITHMS.md)
 
@@ -198,7 +198,7 @@ All snippets below are verbatim copies from canon anchors and carry no independe
 
 ## Tier Status Snapshot
 
-- Proposals index: [Derivation/PROPOSALS.md](Derivation/PROPOSALS.md) (if present)  
+- Proposals index: [Derivation/z.CANONICAL_Proposals/00_PROPOSALS.md](Derivation/z.CANONICAL_Proposals/00_PROPOSALS.md) (if present)  
 - Results index: [Derivation/RESULTS.md](Derivation/RESULTS.md)  
 - Change history and policy clarifications: [Derivation/CHRONICLES.md](Derivation/CHRONICLES.md)
 

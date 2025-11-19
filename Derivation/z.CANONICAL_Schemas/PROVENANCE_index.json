@@ -1,0 +1,17 @@
+{
+  "generated_utc": "2025-11-19T06:12:22.498545Z",
+  "items": [
+    {
+      "path": "Derivation/z.CANONICAL_Schemas/00_SCHEMAS.md",
+      "sha256": "c2761b01a6e34a0a26ccfc3a8dd8f0b6db089947aa0fb1b3271a68ac2fa05501",
+      "size": 131708
+    },
+    {
+      "path": "Derivation/z.CANONICAL_Schemas/README.md",
+      "sha256": "944239fc87db6a8407fa56805749c5add31efca0a2a47f6cb81fb9131a9967f3",
+      "size": 978
+    }
+  ],
+  "root": "Derivation/z.CANONICAL_Schemas",
+  "schema": "vdm.provenance.index.v1"
+}

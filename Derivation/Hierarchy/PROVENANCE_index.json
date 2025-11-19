@@ -1,0 +1,17 @@
+{
+  "generated_utc": "2025-11-19T06:12:22.498545Z",
+  "items": [
+    {
+      "path": "Derivation/Hierarchy/STIV/T2_PROPOSAL_STIV_Macrostate_&_Gradient-Flow_Meters_v1.md",
+      "sha256": "ad592db00a5dffce21f68eb1747736e0b2e7191b74ab419bc7a05863bcba77b3",
+      "size": 14970
+    },
+    {
+      "path": "Derivation/Hierarchy/T1_PROPOSAL_G-A8-1_A8-Scaling-Theorem_1D_v1.md",
+      "sha256": "beb1c75af5b009b8f8aaf73f9abd4d5074df6a04f3be58a8fcfedc3196cd2911",
+      "size": 2613
+    }
+  ],
+  "root": "Derivation/Hierarchy",
+  "schema": "vdm.provenance.index.v1"
+}

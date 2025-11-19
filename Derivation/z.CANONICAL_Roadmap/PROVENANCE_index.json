@@ -1,0 +1,17 @@
+{
+  "generated_utc": "2025-11-19T06:12:22.498545Z",
+  "items": [
+    {
+      "path": "Derivation/z.CANONICAL_Roadmap/00_ROADMAP.md",
+      "sha256": "d7e8dae814597c5cd3e57ba0024e0b08cac90b1751999314b2813688b7ce0a3c",
+      "size": 44934
+    },
+    {
+      "path": "Derivation/z.CANONICAL_Roadmap/README.md",
+      "sha256": "944239fc87db6a8407fa56805749c5add31efca0a2a47f6cb81fb9131a9967f3",
+      "size": 978
+    }
+  ],
+  "root": "Derivation/z.CANONICAL_Roadmap",
+  "schema": "vdm.provenance.index.v1"
+}

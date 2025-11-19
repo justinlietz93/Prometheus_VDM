@@ -161,6 +161,54 @@ def _git_meta(root: Path) -> Tuple[Optional[str], Optional[bool]]:
     return commit, dirty
 
 
+def _list_files_via_git(root: Path, verbose: bool = False) -> Optional[List[Path]]:
+    """
+    Use git ls-files to enumerate files that should be included in the manifest,
+    automatically respecting .gitignore and other exclude mechanisms.
+
+    Returns a list of absolute Paths rooted at ``root`` on success, or None if
+    git is unavailable or the call fails (in which case the caller should fall
+    back to a filesystem walk).
+    """
+    if subprocess is None:
+        return None
+
+    try:
+        tracked = subprocess.check_output(
+            ["git", "-C", str(root), "ls-files"],
+            stderr=subprocess.DEVNULL,
+            text=True,
+        )
+        # Untracked but not ignored, using standard .gitignore / exclude rules
+        others = subprocess.check_output(
+            ["git", "-C", str(root), "ls-files", "--others", "--exclude-standard"],
+            stderr=subprocess.DEVNULL,
+            text=True,
+        )
+    except Exception:
+        return None
+
+    raw_lines = tracked.splitlines() + others.splitlines()
+    all_paths: List[Path] = []
+    seen: set[str] = set()
+    for line in raw_lines:
+        entry = line.strip()
+        if not entry:
+            continue
+        rel = entry.replace("\\", "/")
+        if rel in seen:
+            continue
+        seen.add(rel)
+        all_paths.append(root / rel)
+
+    if verbose:
+        print(
+            f"[git-ls] using {len(all_paths)} files from git index (respects .gitignore)",
+            file=sys.stderr,
+        )
+    return all_paths
+
+
 def _build_tree_hash(entries: List[FileEntry]) -> str:
     """
     Deterministic tree hash over (sha256, size, path).
@@ -175,6 +223,15 @@ def _build_tree_hash(entries: List[FileEntry]) -> str:
 def _scan_repo(root: Path,
                extra_excludes: Iterable[str],
                verbose: bool = False) -> Tuple[List[FileEntry], int, int]:
+    """
+    Scan the repository for files to include in the manifest.
+
+    Preference order:
+      1. If git is available and the root is inside a repo, use `git ls-files`
+         (tracked + untracked, excluding .gitignore'd files).
+      2. Otherwise, fall back to a filesystem walk via Path.rglob, filtered by
+         the usual DEFAULT_EXCLUDE_* rules and any extra_excludes.
+    """
     files: List[FileEntry] = []
     total_bytes = 0
     count = 0
@@ -183,14 +240,21 @@ def _scan_repo(root: Path,
     # Normalize excludes
     extra_excl = list(extra_excludes)
 
-    for p in root.rglob("*"):
-        if p.is_dir():
-            # Quick directory skip if its name is in exclude set
-            if p.name in DEFAULT_EXCLUDE_DIRS:
-                # prune: skip walking deeper into this directory
-                # rglob cannot be pruned directly; rely on _is_excluded per file
-                pass
+    git_paths: Optional[List[Path]] = _list_files_via_git(root, verbose=verbose)
+    if git_paths is not None:
+        iterable = git_paths
+    else:
+        iterable = root.rglob("*")
+
+    for p in iterable:
+        try:
+            # We only hash regular files
+            if p.is_dir():
+                continue
+        except FileNotFoundError:
+            # File disappeared during walk; skip
             continue
+
         if _is_excluded(
             p,
             root,
@@ -218,7 +282,10 @@ def _scan_repo(root: Path,
         if verbose and count % 250 == 0:
             dt = time.time() - t0
             rate = count / dt if dt > 0 else 0.0
-            print(f"[scan] {count} files ({total_bytes} bytes) @ {rate:.1f} f/s", file=sys.stderr)
+            print(
+                f"[scan] {count} files ({total_bytes} bytes) @ {rate:.1f} f/s",
+                file=sys.stderr,
+            )
 
     return files, total_bytes, count
 

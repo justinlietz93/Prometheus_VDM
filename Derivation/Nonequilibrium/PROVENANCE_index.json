@@ -1,0 +1,17 @@
+{
+  "generated_utc": "2025-11-19T06:12:22.498545Z",
+  "items": [
+    {
+      "path": "Derivation/Nonequilibrium/GB_Oscillating_Load/T2_PROPOSAL_GB_Oscillating_Load_v1.md",
+      "sha256": "26b21c6653821d0e6a080615ec52fc7c744ba5cfc84e7ba6b1e7e5268c94c2fb",
+      "size": 11165
+    },
+    {
+      "path": "Derivation/Nonequilibrium/Self_Organization/T2_PROPOSAL_Self_Organization_Meters_v1.md",
+      "sha256": "a034d855fbb065d1c873785fa5af501d3a52b42eb64f7ca7d5728189f192fed4",
+      "size": 21393
+    }
+  ],
+  "root": "Derivation/Nonequilibrium",
+  "schema": "vdm.provenance.index.v1"
+}

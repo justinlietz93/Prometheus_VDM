@@ -1,0 +1,47 @@
+{
+  "generated_utc": "2025-11-19T06:12:22.498545Z",
+  "items": [
+    {
+      "path": "Derivation/Axioms/A8_Hierarchy_Gates/T3_PROPOSAL_A8_Hierarchy_Gates_v1.md",
+      "sha256": "edb3eeb7098de8c02c271116d6e3a21ef1b3505f81d7977ca7466c2e4b4821b4",
+      "size": 9706
+    },
+    {
+      "path": "Derivation/Axioms/A8_Protein-Packing_Boundary-Law/T2_A8_PROPOSAL_Protein-Packing-Meters_for_Hierarchical_Boundary-Law_v1.md",
+      "sha256": "540ea1427fa4f4c15c7b32ada2da93468f5a49db85d1615815fd4269d9b0c4f1",
+      "size": 14332
+    },
+    {
+      "path": "Derivation/Axioms/A8_Scaling_1D/T1_A8_PROPOSAL_1D_Scaling_v1.md",
+      "sha256": "e4cbb0643c532e519d61a78f5c782b650043b33015f47f464008ab8b4349b293",
+      "size": 11308
+    },
+    {
+      "path": "Derivation/Axioms/A8_Scaling_2D3D/T1_A8_PROPOSAL_AreaLaw_2D3D_v1.md",
+      "sha256": "06fad6fcb0ef2061cd820dab6d5c328b75d7e18d5ee4e8c2739fa1d0c43ea25f",
+      "size": 11657
+    },
+    {
+      "path": "Derivation/Axioms/T8-A8_Gaps.md",
+      "sha256": "9841feb823d3d1a2ec00efbe2be6bea7efc695d694f9afef83a5715a8144a648",
+      "size": 15489
+    },
+    {
+      "path": "Derivation/Axioms/T8-A8_Gates.md",
+      "sha256": "c267f22594f826900da1a84e4c13e6fed198fda4a154197651ffdad5e2035b00",
+      "size": 29144
+    },
+    {
+      "path": "Derivation/Axioms/T8-A8_Milestones.md",
+      "sha256": "34faf17162014908d11af453e7ce4e80367e18776650ef2575c501fb3df6d920",
+      "size": 26795
+    },
+    {
+      "path": "Derivation/Axioms/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md",
+      "sha256": "6e54f45f55f216c8e3f627b70c3ce28423e3cab0cbe9ca8d6662c785973ef685",
+      "size": 20855
+    }
+  ],
+  "root": "Derivation/Axioms",
+  "schema": "vdm.provenance.index.v1"
+}

@@ -468,3 +468,74 @@ Approval/PR:
 - 2025-10-04 • Initial roadmap compiled from repository evidence • 77f055f
 - 2025-10-06 • Added milestones: FRW Continuity Residual (Gravity), Dark Photon Portal program, Quantum Gravity Bridge; backfilled Proposals Index (A6 Collapse, FRW Balance, Metriplectic variants, RD Conservation, Dark Photons)
 - 2025-10-13 • Added milestone entry for KG J-only QC certification and note under Metriplectic proposals; updated header stamp
+
+## 2025-11-15 — Ringdown Meter cleanup (pronoun normalization, instrument consolidation, gates)
+
+Changes applied to ringdown-meter proposals to enforce third-person style, consolidate instruments, and pin acceptance gates.
+
+- Pronoun normalization (second-person → third-person):
+  - [T2_PROPOSAL_Discrete_Scale_Invariance_Ringdown_v1.md](Derivation/Cosmology/Ringdown_Meter/T2_PROPOSAL_Discrete_Scale_Invariance_Ringdown_v1.md)
+  - [T2_PROPOSAL_Ringdown_Meter_v1.md](Derivation/Cosmology/Ringdown_Meter/T2_PROPOSAL_Ringdown_Meter_v1.md)
+  - Removed duplicate after normalization: [T2_PROPOSAL_VDM_Ringdown_Meter_v1.md](Derivation/Cosmology/Ringdown_Meter/T2_PROPOSAL_VDM_Ringdown_Meter_v1.md) (file deleted; see consolidation below)
+
+- Instrument consolidation (per feedback):
+  - Baseline meter retained: [T2_PROPOSAL_Ringdown_Meter_v1.md](Derivation/Cosmology/Ringdown_Meter/T2_PROPOSAL_Ringdown_Meter_v1.md)
+  - DSI meter retained as separate T2: [T2_PROPOSAL_Discrete_Scale_Invariance_Ringdown_v1.md](Derivation/Cosmology/Ringdown_Meter/T2_PROPOSAL_Discrete_Scale_Invariance_Ringdown_v1.md)
+  - Duplicate naming proposal removed to avoid split provenance: [T2_PROPOSAL_VDM_Ringdown_Meter_v1.md](Derivation/Cosmology/Ringdown_Meter/T2_PROPOSAL_VDM_Ringdown_Meter_v1.md) (deleted). The APPROVALS example in baseline now points to the canonical baseline proposal path.
+
+- Acceptance gates added:
+  - Baseline Ringdown/QNM Fit (new section “5.1.2 Operational acceptance gates (baseline)”):
+    - G1 Residual whiteness (FDR-controlled)
+    - G2 Fit stability (±10% window; ≤5% parameter drift)
+    - G3 Meter reproducibility (commit+seeds)
+    - Location: [T2_PROPOSAL_Ringdown_Meter_v1.md](Derivation/Cosmology/Ringdown_Meter/T2_PROPOSAL_Ringdown_Meter_v1.md)
+  - DSI on residuals (new section “4.1 Operational acceptance gates (DSI residuals)”):
+    - D1 Peak detection (SNR≥5, q≤0.05)
+    - D2 t0 robustness (≤5%)
+    - D3 Window robustness (≤5%)
+    - D4 Null controls (Kerr-only/shuffled residuals within 95% band)
+    - D5 Cross-detector consistency (joint 95% CI)
+    - Location: [T2_PROPOSAL_Discrete_Scale_Invariance_Ringdown_v1.md](Derivation/Cosmology/Ringdown_Meter/T2_PROPOSAL_Discrete_Scale_Invariance_Ringdown_v1.md)
+
+Rationale:
+- Maintain a single canonical baseline instrument and a logically distinct DSI follow-on; avoid split provenance.
+- Keep gates explicit with CSV/JSON/PNG artifacts and commit/seed provenance per RESULTS standards.
+
+Provenance:
+- Timestamp (UTC): 2025-11-15
+- Commit: pinned at run time in proposal front-matter
+
+## Change Attestation — 2025-11-19 (VDM Validation Phase Preregistration Lock)
+
+Date (UTC): 2025-11-19
+
+Dependency-Chain-Reviewed: true  
+Change-Type: canon-impacting  
+Summary: Lock the preregistered VDM Validation Phase by bringing six proposals to template-complete prereg status (Gap Modules + instruments) and updating canonical indices (PROPOSALS, ROADMAP) to treat them as a linked validation cluster.
+
+Paths-Changed:
+
+- Derivation/Axioms/A8_Hierarchy_Gates/T3_PROPOSAL_A8_Hierarchy_Gates_v1.md
+- Derivation/Metriplectic/Metriplectic_Instruments/T2_PROPOSAL_Metriplectic_Instruments_v1.md
+- Derivation/Metriplectic/Analog_Horizon/T5_PROPOSAL_Analog_Horizon_v1.md
+- Derivation/Gravity/Gravity_Regression/T5_PROPOSAL_Gravity_Regression_v1.md
+- Derivation/Spinor/T1_PROPOSAL_Spinor_Emergence_v1.md
+- Derivation/Cosmology/CMB/T2_PROPOSAL_EBN_CMB_Pipeline_v1.md
+- Derivation/z.CANONICAL_Proposals/00_PROPOSALS.md
+- Derivation/z.CANONICAL_Roadmap/00_ROADMAP.md
+
+Canon-Docs-Updated:
+
+- Derivation/z.CANONICAL_Proposals/00_PROPOSALS.md
+- Derivation/z.CANONICAL_Roadmap/00_ROADMAP.md
+
+Dependency-Notes:
+
+- Reviewed `z.CANONICAL_Validation_Metrics/00_VALIDATION_METRICS.md`, `z.CANONICAL_Schemas/00_SCHEMAS.md`, and domain code under `Derivation/code/physics/{meters,causality,cosmology}` for compatibility with the prereg manifests referenced in §5.1.1 of each proposal.
+- Established cross-links from the Roadmap milestone `#ms-vdm-validation-phase` to the six prereg proposals and from `00_PROPOSALS.md` to the “VDM Validation Phase — Preregistration Lock” cluster note.
+- Confirmed that each of the six proposals carries explicit PRE-REGISTRATION examples, APPPROVAL/SCHEMA/SPEC paths, and artifact standards consistent with `Templates/PROPOSAL_PAPER_TEMPLATE.md` and `Templates/RESULTS_PAPER_STANDARDS.md`.
+
+Approval/PR:
+
+- PR: (to be filled with GitHub URL or change request reference on publication)
+- Approval: (to be recorded via `code/common/authorization/approve_tag.py` when prereg tags are stamped and domain APPROVAL.json manifests are updated)

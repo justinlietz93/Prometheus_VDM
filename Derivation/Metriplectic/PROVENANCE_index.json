@@ -1,0 +1,267 @@
+{
+  "generated_utc": "2025-11-19T06:12:22.498545Z",
+  "items": [
+    {
+      "path": "Derivation/Metriplectic/Analog_Horizon/T5_PROPOSAL_Analog_Horizon_v1.md",
+      "sha256": "a29f537c5c88bb9eaabd03c2f6b48b09593f4dea5511656009afe1102ed7ed52",
+      "size": 14340
+    },
+    {
+      "path": "Derivation/Metriplectic/CEG_Metric_Definition/T2_PROPOSAL_CEG_Metric_Definition_v1.md",
+      "sha256": "ec2f9b2efd00af94a60e7f4d65a2e936d519cb3a69edccfaf596f7f211aa82a2",
+      "size": 17057
+    },
+    {
+      "path": "Derivation/Metriplectic/CEG_Metriplectic_Assistance.zip",
+      "sha256": "13c9db0af6fbf4e43c4ed5f6065e5f3abd839c264e1fd8bedd72226a2c1a5a33",
+      "size": 6220002
+    },
+    {
+      "path": "Derivation/Metriplectic/CEG_Metriplectic_Assistance/T4_PROPOSAL_CEG_Metriplectic_Assisted-Echo_Experiment.md",
+      "sha256": "ad9a43b3c25fd8c630d4d4e295284f376d1eb8a7001560a6e483dd02216c459f",
+      "size": 16173
+    },
+    {
+      "path": "Derivation/Metriplectic/CEG_Metriplectic_Assistance/T4_RESULTS_CEG_AssistedECHO.pdf",
+      "sha256": "65a2fcda3eb1ad86ece308bb6fc731e85553f69d45cc9bf1e4638df908f3ec0e",
+      "size": 1226563
+    },
+    {
+      "path": "Derivation/Metriplectic/CEG_Metriplectic_Assistance/T4_RESULTS_CEG_Metriplectic_Assisted-Echo_Experiment.md",
+      "sha256": "dff4d13dda4b50d3a0c9d6d4524f410b78fbdef6b7ccb58c66d6123d5f375f82",
+      "size": 9369
+    },
+    {
+      "path": "Derivation/Metriplectic/CEG_Metriplectic_Assistance/T4_RESULTS_CEG_Metriplectic_Assisted-Echo_Experiment.tex",
+      "sha256": "aceead2d7c917a3ab40bcc1da6a4e176de428a9b352de2f842f1fa91d958f670",
+      "size": 34403
+    },
+    {
+      "path": "Derivation/Metriplectic/CEG_Metriplectic_Assistance/images/20251104_123412_20251104_123412_assisted_echo_phase__assisted-echo-t4-prereg-v1c.png",
+      "sha256": "f152ebc6a86d28ded88fbc0e35630eb168bb02c2947569ce221f9d6ece012261",
+      "size": 255564
+    },
+    {
+      "path": "Derivation/Metriplectic/CEG_Metriplectic_Assistance/images/20251104_123413_20251104_123412_assisted_echo_ceg_vs_lambda__assisted-echo-t4-prereg-v1c.png",
+      "sha256": "0eefd4026222d39f6f1d5b8a6842904edbb13deb5da3f9beedb94e57875e7edb",
+      "size": 123510
+    },
+    {
+      "path": "Derivation/Metriplectic/CEG_Metriplectic_Assistance/images/20251104_123413_20251104_123412_assisted_echo_energy_budget__assisted-echo-t4-prereg-v1c.png",
+      "sha256": "acac235686b1a5db1d37a4ce8f0830b65b41df706d6118ad541a02b07452ca7a",
+      "size": 67264
+    },
+    {
+      "path": "Derivation/Metriplectic/CEG_Metriplectic_Assistance/images/20251104_123413_20251104_123412_assisted_echo_error_timeseries__assisted-echo-t4-prereg-v1c.png",
+      "sha256": "d31c24702b176136a95a2fda100c2d407700e0b16eb6b0a22a4606a7430bfdc4",
+      "size": 142761
+    },
+    {
+      "path": "Derivation/Metriplectic/CEG_Metriplectic_Assistance/images/20251104_123414_20251104_123412_assisted_echo_endpoint_distance__assisted-echo-t4-prereg-v1c.png",
+      "sha256": "ee1c64a3db0f47d45af35ef8e7ac22942cfcb6e1e7c8135649bc56718094d3ba",
+      "size": 66808
+    },
+    {
+      "path": "Derivation/Metriplectic/CEG_Metriplectic_Assistance/images/20251104_123414_20251104_123412_assisted_echo_entropy_production__assisted-echo-t4-prereg-v1c.png",
+      "sha256": "35d827f7ad5952cebfb47fe520eb03c9c5b91fc992e3f35827c247cba4c780b7",
+      "size": 70168
+    },
+    {
+      "path": "Derivation/Metriplectic/CEG_Metriplectic_Assistance/images/20251104_123414_20251104_123412_assisted_echo_noether_drift__assisted-echo-t4-prereg-v1c.png",
+      "sha256": "5bf2a188ff86bafe68a9f5a388cde5af093ee626dc097eb894212d37fb5c24e8",
+      "size": 31940
+    },
+    {
+      "path": "Derivation/Metriplectic/CEG_Metriplectic_Assistance/images/20251104_123415_20251104_123412_assisted_echo_assist_alignment__assisted-echo-t4-prereg-v1c.png",
+      "sha256": "3c83b4ae4bd68e68772685aa6937ed6e1b81021744ece509f01633d84546e5b4",
+      "size": 38125
+    },
+    {
+      "path": "Derivation/Metriplectic/CEG_Metriplectic_Assistance/images/20251104_123415_20251104_123412_assisted_echo_seed_stability__assisted-echo-t4-prereg-v1c.png",
+      "sha256": "5dee9e420cf70063ac54eddd3204dd4125348b9309ad6eae8d27dfe219c46f02",
+      "size": 27354
+    },
+    {
+      "path": "Derivation/Metriplectic/CEG_Metriplectic_Assistance/images/20251104_123415_20251104_123412_assisted_echo_telemetry_overlay__assisted-echo-t4-prereg-v1c.png",
+      "sha256": "e294a529895e239e2d146c10cc2ca18ac18f8966069501f7dc162f9ae13c556d",
+      "size": 186507
+    },
+    {
+      "path": "Derivation/Metriplectic/CEG_Metriplectic_Assistance/images/20251104_123415_20251104_123412_assisted_echo_work_partition__assisted-echo-t4-prereg-v1c.png",
+      "sha256": "9b652a31a5953f7322169ea5328b12908fccb7eaf7fe7386cfff45871371dd07",
+      "size": 36444
+    },
+    {
+      "path": "Derivation/Metriplectic/CEG_Metriplectic_Assistance/logs/20251104_123411_assisted_echo__assisted-echo-t4-prereg-v1c.json",
+      "sha256": "9a1917b9035268f0442050b143083b4b180c70567cd3bafa9cc38f82b9c8f1bd",
+      "size": 15939861
+    },
+    {
+      "path": "Derivation/Metriplectic/CEG_Metriplectic_Assistance/logs/20251104_123412_assisted_echo_ceg_summary__assisted-echo-t4-prereg-v1c.csv",
+      "sha256": "8cee74b1a15761f671762476d953f6664e7ee00a691a5353c51a6dbcb2c118d7",
+      "size": 234
+    },
+    {
+      "path": "Derivation/Metriplectic/CEG_Metriplectic_Assistance/logs/20251104_123412_assisted_echo_telemetry__assisted-echo-t4-prereg-v1c.csv",
+      "sha256": "a1066f2fb91495416837e5b0eb76d8c15b8cac35a3998b5ce7ced179c2e16468",
+      "size": 5578586
+    },
+    {
+      "path": "Derivation/Metriplectic/CEG_Metriplectic_Assistance/references.bib",
+      "sha256": "838ca46d5e541d1b130ad1fa71cb63688e57559304eec3cb587ade84204a90fe",
+      "size": 12131
+    },
+    {
+      "path": "Derivation/Metriplectic/Constructive_QGT_to_Metriplectic/T1_PROPOSAL_G-QGT-1_QGT-to-Metriplectic_Mapping_v1.md",
+      "sha256": "399178dba82cdf90d3738f9c4988fcd9ccb866bb24be7e27393a63fee0ba494d",
+      "size": 4602
+    },
+    {
+      "path": "Derivation/Metriplectic/Contact_Geometry_Projection/T1_PROPOSAL_G-CG-1_Contact-to-Metriplectic_v1.md",
+      "sha256": "2210f9bdeb1e47381c07640c225fd08d5c58bf4e750f1b547dc52bd0c5f1d8d6",
+      "size": 2498
+    },
+    {
+      "path": "Derivation/Metriplectic/KG_Energy_Oscillation/20251013_021321_kg_energy_osc_fit_KG-energy-osc-v1.png",
+      "sha256": "b508cd84efe2bfcf0556b3f40238840ba341ed1beab834c6dbbe78aadcee3e72",
+      "size": 45181
+    },
+    {
+      "path": "Derivation/Metriplectic/KG_Energy_Oscillation/RESULTS_KG_Energy_Oscillation_v1.md",
+      "sha256": "124bdc737c293ba6a4a98cebdce0768a369fe214cbd922ea66ee1c7152172df2",
+      "size": 7241
+    },
+    {
+      "path": "Derivation/Metriplectic/KG_Energy_Oscillation/logs/20251013_021322_kg_energy_osc_fit_KG-energy-osc-v1.csv",
+      "sha256": "9aa1937e59cba914af8a07f94ef0667d4655024d51f7b9b5bae39224ad7ca418",
+      "size": 335
+    },
+    {
+      "path": "Derivation/Metriplectic/KG_Energy_Oscillation/logs/20251013_021322_kg_energy_osc_fit_KG-energy-osc-v1.json",
+      "sha256": "34eac5d3abf56b181b52cdc282b2197e0247b9adaab7db680d3d36d57079b233",
+      "size": 5173
+    },
+    {
+      "path": "Derivation/Metriplectic/KG_Energy_Oscillation/logs/20251013_021322_kg_energy_osc_fit_plotmeta_KG-energy-osc-v1.json",
+      "sha256": "abec4e8967dabaee7d62e366f25b6d5d6ff56945a01a8b0e600cf088f1514f2f",
+      "size": 156
+    },
+    {
+      "path": "Derivation/Metriplectic/KG_Jonly_Locality_and_Dispersion/20251008_051026_kg_light_cone__KG-cone-v1.csv",
+      "sha256": "9cc51a416e3e1528499463e49d6e476bba65f843110e9f9db73d568fffe6591c",
+      "size": 10743
+    },
+    {
+      "path": "Derivation/Metriplectic/KG_Jonly_Locality_and_Dispersion/20251008_051057_kg_dispersion_fit__KG-dispersion-v1.csv",
+      "sha256": "31c9411bcf949cc0134b2191dcb02b10931f74dfc0d086a105913156905c511a",
+      "size": 402
+    },
+    {
+      "path": "Derivation/Metriplectic/KG_Jonly_Locality_and_Dispersion/KG_Jonly_Dispersion.png",
+      "sha256": "a2fd5d1630e2d4de137204b62d9074142aa8b5ec0010fa6611692d94c869b6a0",
+      "size": 42883
+    },
+    {
+      "path": "Derivation/Metriplectic/KG_Jonly_Locality_and_Dispersion/KG_Jonly_Locality.png",
+      "sha256": "f5a9b5ee7589d5949650dd7cdde4950c8e7bec953f9f1169d5b2b1aada743c6b",
+      "size": 131803
+    },
+    {
+      "path": "Derivation/Metriplectic/KG_Jonly_Locality_and_Dispersion/RESULTS_KG_Jonly_Locality_and_Dispersion.md",
+      "sha256": "41a3c245f11b0d9c61177a21d7bb476f722baf4b0a19d426c04880d23c779395",
+      "size": 6216
+    },
+    {
+      "path": "Derivation/Metriplectic/KG_RD_Metriplectic/RESULTS_KG_RD_Metriplectic.md",
+      "sha256": "bfd99b8aee2ffe4d3511dba43ac649dc39a5240453d3d3723375f2d3dd16e04c",
+      "size": 13480
+    },
+    {
+      "path": "Derivation/Metriplectic/Metriplectic_Instruments/T2_PROPOSAL_Metriplectic_Instruments_v1.md",
+      "sha256": "69b6daffbff7fe6d11d445fcafbeac8b60db1a96e06c47991da3f1702943ba96",
+      "size": 15807
+    },
+    {
+      "path": "Derivation/Metriplectic/Metriplectic_JMJ_RD/RESULTS_Metriplectic_JMJ_RD_v1.md",
+      "sha256": "e18838ae5f7ac5d2f373ad1327047c50d210f9af06d9e454e313c32cd4315486",
+      "size": 17926
+    },
+    {
+      "path": "Derivation/Metriplectic/PROPOSAL_Metriplectic_Composition_KGplusRD_v2.md",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "Derivation/Metriplectic/PROPOSAL_Metriplectic_Lindblad_T4.md",
+      "sha256": "e66d093ddd283707d1824ced6e6f82f789d53001c0e1b7d5a2eae419a7bdd21a",
+      "size": 20583
+    },
+    {
+      "path": "Derivation/Metriplectic/PROPOSAL_Metriplectic_SymplecticPlusDG.md",
+      "sha256": "c4c643359fba53160856df211c860d94d354abd35505f7cf778cb540882c3fb8",
+      "size": 7469
+    },
+    {
+      "path": "Derivation/Metriplectic/RESULTS_KG_Noether_Invariants_v1.md",
+      "sha256": "5cd1828f90ae58cd7d216e06d7dccba5384b46bcc056120fa059a7cade155fb8",
+      "size": 6489
+    },
+    {
+      "path": "Derivation/Metriplectic/RESULTS_Metriplectic_Structure_Checks.md",
+      "sha256": "9bd2c536e1a2a04257bc38547543a6eb568b27108ae83e1fc197155c5356cf27",
+      "size": 3154
+    },
+    {
+      "path": "Derivation/Metriplectic/Schrodingerization_KvN/T1_PROPOSAL_Schrodingerization_KvN_v1.md",
+      "sha256": "6517b0855b1c1117abc40f65b92fe90c2f75de0c3767bb12cf18722638512f64",
+      "size": 11531
+    },
+    {
+      "path": "Derivation/Metriplectic/Strang_Defect_vs_dt_kg_RD/20251006_145832_strang_defect_vs_dt__kgRD-v1b.png",
+      "sha256": "c5ed23221e62f148e85b5914ad77535167a7f9dbed30e6dd0fea7fd22c56d658",
+      "size": 42152
+    },
+    {
+      "path": "Derivation/Metriplectic/Strang_Defect_vs_dt_kg_RD/20251006_145833_strang_defect_vs_dt__kgRD-v1b.csv",
+      "sha256": "aba53b783b9f993d51f802c785f0be24a383e84e1509bdb5ee7fa5b911608e31",
+      "size": 166
+    },
+    {
+      "path": "Derivation/Metriplectic/Strang_Defect_vs_dt_kg_RD/20251006_145833_strang_defect_vs_dt__kgRD-v1b.json",
+      "sha256": "1d8da3bde461182e63802bf10ff5171d58d7bd63918966e8d6049f449dc1b580",
+      "size": 454
+    },
+    {
+      "path": "Derivation/Metriplectic/Strang_Defect_vs_dt_kg_RD/PROPOSAL_KG_plus_RD_Metriplectic.md",
+      "sha256": "420aa1c5a7b169cfc75eab0b920370e9c3230f3a3163090efe14013b2055c049",
+      "size": 2979
+    },
+    {
+      "path": "Derivation/Metriplectic/Strang_Defect_vs_dt_kg_RD/PROPOSAL_Metriplectic_JMJ_RD_v1.md",
+      "sha256": "ed65982736d337c8b428d506d5b0ed35de9951ca6a97c4f17bed1d1fba45fc6e",
+      "size": 6991
+    },
+    {
+      "path": "Derivation/Metriplectic/T1_PROPOSAL_QGT_to_Metriplectic_Instrument.md",
+      "sha256": "797db122d6c2e9883ccced7e04e9ff24ff0164b90d5619e20cfadfafad8b25c1",
+      "size": 12287
+    },
+    {
+      "path": "Derivation/Metriplectic/T4_PROPOSAL_CEG_Metriplectic_Assisted-Echo_Experiment.md",
+      "sha256": "4b47527d368f52ac6f0ae61e496149a53a9dc27036cfa2fbbda34f1839ab01d7",
+      "size": 1359
+    },
+    {
+      "path": "Derivation/Metriplectic/TF_Causality/T1_PROPOSAL_TF_Causality_v1.md",
+      "sha256": "f10af6e4eee966f2e9788c4d8936a1097eb5275dc5909f6b8cb25c3ddeacd3ca",
+      "size": 10147
+    },
+    {
+      "path": "Derivation/Metriplectic/Void_Debt_Transport_Throttle/T1_PROPOSAL_Void_Debt_Transport_Throttle_v1.md",
+      "sha256": "b1eace154188e641c73ff023cbb184f8b26155c3c12cedc9efda86383eeff743",
+      "size": 11006
+    }
+  ],
+  "root": "Derivation/Metriplectic",
+  "schema": "vdm.provenance.index.v1"
+}

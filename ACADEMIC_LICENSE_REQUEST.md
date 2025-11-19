@@ -3,10 +3,11 @@
 **Use this form if you are unsure whether your planned use qualifies as Academic/Personal (non-commercial), or if you want written
 confirmation for your records.** Free **Personal** use is included under the Academic License.
 
-Email this form to: **justin@neuroca.ai**  
+Email this form to: **<justin@neuroca.ai>**  
 Subject: **Academic/Personal Clarification – VDM / Neuroca**
 
 ## 1) Affiliation (choose one)
+
 - [ ] Individual / Personal (no organization)
 - [ ] Academic institution (university/lab)
 - [ ] Non-profit / NGO

@@ -1,0 +1,17 @@
+{
+  "generated_utc": "2025-11-19T06:12:22.498545Z",
+  "items": [
+    {
+      "path": "Derivation/z.CANONICAL_Complete_Formalisms/00_COMPLETE_FORMALISMS.md",
+      "sha256": "7907094ef701555d9422a141a2108672fdbf85806c9317170b39c2b89dea04c4",
+      "size": 492
+    },
+    {
+      "path": "Derivation/z.CANONICAL_Complete_Formalisms/README.md",
+      "sha256": "944239fc87db6a8407fa56805749c5add31efca0a2a47f6cb81fb9131a9967f3",
+      "size": 978
+    }
+  ],
+  "root": "Derivation/z.CANONICAL_Complete_Formalisms",
+  "schema": "vdm.provenance.index.v1"
+}

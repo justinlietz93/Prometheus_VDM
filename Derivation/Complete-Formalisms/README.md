@@ -29,6 +29,7 @@ This directory contains complete, rigorous derivations for all missing pieces id
 **Summary:** Derives the mapping from Quantum Geometric Tensor (QGT) to metriplectic bracket structures {·,·}_J and (·,·)_M.
 
 **Key Results:**
+
 - Berry curvature Ω_μν → J-bracket (Poisson/symplectic structure)
 - Quantum metric g_μν → M-bracket (Riemannian/metric structure)
 - Constructive algorithm for computing QGT (VDM-A-023)
@@ -48,6 +49,7 @@ This directory contains complete, rigorous derivations for all missing pieces id
 **Summary:** Establishes contact geometric foundations for thermodynamic VDM evolution and GENERIC formalism.
 
 **Key Results:**
+
 - Contact 1-form α and Reeb vector field R (VDM-E-125, VDM-E-126)
 - Contact Hamiltonian decomposition K = E + λS (VDM-E-127, VDM-E-128)
 - GENERIC framework: ẋ = L∇E + M∇S with degeneracy
@@ -67,6 +69,7 @@ This directory contains complete, rigorous derivations for all missing pieces id
 **Summary:** Proves logarithmic scaling of interface hierarchies and boundary energy concentration.
 
 **Key Results:**
+
 - Γ-convergence of phase-field energies to sharp interfaces (VDM-E-129)
 - Proof of N(L) ~ Θ(log L) for interface count vs. domain size
 - Boundary energy scaling E_exc ~ L^(d-1) (VDM-E-113)
@@ -86,6 +89,7 @@ This directory contains complete, rigorous derivations for all missing pieces id
 **Summary:** Derives telegraph equation and finite-speed transport from relaxation dynamics.
 
 **Key Results:**
+
 - Cattaneo-Vernotte equation from delayed flux response (VDM-E-132)
 - Telegraph equation τ∂²_t u + ∂_t u = D∇²u
 - Speed bound c = √(D/τ) with rigorous proof (VDM-E-105)
@@ -106,6 +110,7 @@ This directory contains complete, rigorous derivations for all missing pieces id
 **Summary:** Proves VDM metriplectic system has exactly two independent Casimirs: H (energy) and S (entropy).
 
 **Key Results:**
+
 - Darboux method ruling out polynomial integrals (VDM-E-133)
 - Prelle-Singer algorithm for elementary integrals (VDM-E-134)
 - Kovalevskaya-Painlevé analysis of singularities (VDM-E-135)
@@ -127,6 +132,7 @@ This directory contains complete, rigorous derivations for all missing pieces id
 **Summary:** Establishes information-geometric foundation for VDM M-limb as epistemic projection.
 
 **Key Results:**
+
 - Fisher information metric g_ij = 𝔼[∂ln p/∂θ^i · ∂ln p/∂θ^j] (VDM-E-130)
 - Cramér-Rao bound: Cov(θ̂) ≥ g^{-1}
 - Ruppeiner metric g_μν = -∂²S/∂X^μ∂X^ν (VDM-E-131)
@@ -147,6 +153,7 @@ This directory contains complete, rigorous derivations for all missing pieces id
 **Summary:** Derives decoherence mechanisms and Born rule from symmetry, establishing J→M projection foundations.
 
 **Key Results:**
+
 - Decoherence timescale τ_D ~ ℏ/(k_BT λ²) (VDM-E-136)
 - Einselection of pointer states via environment monitoring
 - Born rule P(i) = |⟨i|ψ⟩|² from symmetry (Masanes-Galley-Müller) (VDM-E-137)
@@ -187,6 +194,7 @@ This directory contains complete, rigorous derivations for all missing pieces id
 **Total New Equations:** 42 (VDM-E-125 through VDM-E-165, plus VDM-E-138-142)
 
 **By Module:**
+
 - S1 (QGT): 5 equations (VDM-E-138 through VDM-E-142)
 - S2 (Contact): 8 equations (VDM-E-125 through VDM-E-128, VDM-E-143 through VDM-E-145)
 - S3 (A8): 7 equations (VDM-E-129, VDM-E-146 through VDM-E-151)
@@ -284,6 +292,7 @@ These will implement numerical instruments based on the complete formalisms.
 ## Change Log
 
 **2025-11-05:** Initial creation
+
 - All 7 complete formalisms added
 - Cross-reference matrix established
 - Integration with VDM canon complete

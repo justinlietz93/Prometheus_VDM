@@ -1,8 +1,8 @@
-**Create/Update `Derivation/PROPOSALS.md` (canonical index of research proposals; references-only for math/values)**
+**Create/Update `Derivation/z.CANONICAL_Proposals/00_PROPOSALS.md` (canonical index of research proposals; references-only for math/values)**
 
 Search the entire repository (all `Derivation/` domain folders and subfolders) and compile **all PROPOSAL_*.md files that actually exist**. **Do not invent or infer content.** Use only what exists in the repo.
 
-**Output file:** `Derivation/PROPOSALS.md`
+**Output file:** `Derivation/z.CANONICAL_Proposals/00_PROPOSALS.md`
 **Canon rule:** This file is the single owner of the *proposals index*. **Do not paste equations, code, or implementation details here.** Link to proposal documents and reference canonical files by anchor. Each proposal entry must document: experimental setup, diagnostics, parameters, gates, methods, maturity tier, and provenance at similar rigor to results.
 
 **MathJax on GitHub:**

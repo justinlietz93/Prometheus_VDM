@@ -1,0 +1,17 @@
+{
+  "generated_utc": "2025-11-19T06:12:22.498545Z",
+  "items": [
+    {
+      "path": "Derivation/z.CANONICAL_Open_Questions/00_OPEN_QUESTIONS.md",
+      "sha256": "92c3f662f3e4eabc166b128c9b745c22e71090ea7b0eb48047e7e45707718cfc",
+      "size": 37380
+    },
+    {
+      "path": "Derivation/z.CANONICAL_Open_Questions/README.md",
+      "sha256": "944239fc87db6a8407fa56805749c5add31efca0a2a47f6cb81fb9131a9967f3",
+      "size": 978
+    }
+  ],
+  "root": "Derivation/z.CANONICAL_Open_Questions",
+  "schema": "vdm.provenance.index.v1"
+}

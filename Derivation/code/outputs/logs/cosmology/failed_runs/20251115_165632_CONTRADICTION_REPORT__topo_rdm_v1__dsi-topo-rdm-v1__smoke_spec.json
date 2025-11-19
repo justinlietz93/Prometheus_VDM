@@ -1,0 +1,23 @@
+{
+  "artifacts": {
+    "csv_betti": "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/logs/cosmology/failed_runs/20251115_165632_topo_rdm_v1__dsi-topo-rdm-v1__smoke_spec__betti_curve.csv",
+    "figure": "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/figures/cosmology/failed_runs/20251115_165632_topo_rdm_v1__dsi-topo-rdm-v1__smoke_spec.png"
+  },
+  "failed": {
+    "G1": true,
+    "G3": false
+  },
+  "gate": "Topo-RDM",
+  "metrics": {
+    "align_delta_pct": null,
+    "eps_at_peak": 0.1534564183804783,
+    "eps_target": null,
+    "fp_rate": 0.0,
+    "mu_null_max": 13.92,
+    "p_threshold_bh": 0.0,
+    "sd_null_max": 0.271632952995181,
+    "stable_band_len": 0,
+    "z_max": 0.2945150767518433
+  },
+  "reason": "Topo gates not satisfied (see failed booleans)."
+}

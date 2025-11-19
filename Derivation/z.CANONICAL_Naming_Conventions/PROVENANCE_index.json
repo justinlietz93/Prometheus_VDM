@@ -1,0 +1,17 @@
+{
+  "generated_utc": "2025-11-19T06:12:22.498545Z",
+  "items": [
+    {
+      "path": "Derivation/z.CANONICAL_Naming_Conventions/00_NAMING_CONVENTIONS.md",
+      "sha256": "4ca11c4ebd3326b917589dbac808a1202ee0fb3be9e5ab306482359b58be58fd",
+      "size": 20286
+    },
+    {
+      "path": "Derivation/z.CANONICAL_Naming_Conventions/README.md",
+      "sha256": "944239fc87db6a8407fa56805749c5add31efca0a2a47f6cb81fb9131a9967f3",
+      "size": 978
+    }
+  ],
+  "root": "Derivation/z.CANONICAL_Naming_Conventions",
+  "schema": "vdm.provenance.index.v1"
+}

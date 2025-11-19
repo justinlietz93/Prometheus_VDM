@@ -1,0 +1,96 @@
+{
+  "artifacts": {
+    "csv_betti": "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/logs/cosmology/failed_runs/20251115_203407_topo_rdm_v1__dsi-topo-rdm-v1__gw150914_H1_ts__betti_curve.csv",
+    "figure": "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/figures/cosmology/failed_runs/20251115_203407_topo_rdm_v1__dsi-topo-rdm-v1__gw150914_H1_ts.png"
+  },
+  "environment": {
+    "machine": "x86_64",
+    "matplotlib": "3.10.6",
+    "node": "prometheus-ai",
+    "numpy": "2.2.6",
+    "os": "Linux",
+    "os_release": "6.14.0-35-generic",
+    "python": "3.13.5",
+    "python_impl": "CPython"
+  },
+  "gates": {
+    "G1_topo_signal": false,
+    "G2_dsi_alignment": false,
+    "G3_null_control": true,
+    "align_tol_pct": null,
+    "overall_pass": false
+  },
+  "git_hash": "0f2e8ef3f0b532cb7a4e0e5573144bb535541bc0",
+  "instrument": "Topological Ringdown Meter (Topo-RDM) v1",
+  "metrics": {
+    "align_delta_pct": null,
+    "eps_at_peak": 0.2162804045996286,
+    "eps_target": null,
+    "fp_rate": 0.005,
+    "mu_null_max": 1.31182329220011,
+    "p_threshold_bh": 0.0,
+    "sd_null_max": 0.9441183925593961,
+    "stable_band_len": 0,
+    "z_max": 1.7394623514748706
+  },
+  "params": {
+    "K_QNM": 3,
+    "alignment": {
+      "require_dsi_alignment": true
+    },
+    "b1z": {
+      "fdr_q": 0.01,
+      "z_gate_null": 3.0,
+      "z_gate_primary": 5.0
+    },
+    "filtration": {
+      "cap_pct": 0.9,
+      "connectivity_cap": true,
+      "kind": "vrips",
+      "num_scales": 64,
+      "qmax": 0.75,
+      "qmin": 0.1,
+      "radius_max": 0.5,
+      "radius_min": 0.01,
+      "use_quantile_bounds": true
+    },
+    "nulls": {
+      "kerr_only": false,
+      "kerr_only_ridges": [],
+      "num_sim": 200,
+      "phase_shuffled": true
+    },
+    "omega0_ref": "qnm220",
+    "ridge": {
+      "k_neighbors": 2,
+      "max_gap": 2,
+      "phase_coherence_min": 0.6
+    },
+    "stft": {
+      "freq_max": 1024.0,
+      "noverlap": 384,
+      "nperseg": 512,
+      "power_quantile": 0.98,
+      "top_k": 5
+    },
+    "taper": "planck",
+    "whitener": "median-psd",
+    "window": [
+      0.0,
+      8.0
+    ]
+  },
+  "policy": {
+    "approved": false,
+    "approved_env": null,
+    "hard_block": false,
+    "require_approval": true,
+    "routed_failed": true
+  },
+  "seed_used": 1,
+  "seeds": [
+    1
+  ],
+  "tag": "dsi-topo-rdm-v1__gw150914_H1_ts",
+  "timestamp": "2025-11-15T20:34:07.245454"
+}

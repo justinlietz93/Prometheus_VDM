@@ -3,10 +3,11 @@
 **Purpose:** Use this form if any part of your intended use could be **Commercial Use** (revenue, for-profit, internal
 corporate R&D, fee-based services, product integration, SaaS/hosted exposure, or patent-directed work).
 
-Email this form to: **justin@neuroca.ai**  
+Email this form to: **<justin@neuroca.ai>**  
 Subject: **Commercial License Request – VDM / Neuroca**
 
 ## 1) Organization
+
 - Legal name:
 - Type (corp/LLC/startup/gov/other):
 - Jurisdiction of formation:

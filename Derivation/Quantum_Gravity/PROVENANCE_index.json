@@ -1,0 +1,27 @@
+{
+  "generated_utc": "2025-11-19T06:12:22.498545Z",
+  "items": [
+    {
+      "path": "Derivation/Quantum_Gravity/Bridging-Quantum-Gravity-and-Astrophysical-Observations.md",
+      "sha256": "2cd60a0153459eea68db9ab54ce9ae7005cc9674d6a5c212ae02618c36533c96",
+      "size": 28396
+    },
+    {
+      "path": "Derivation/Quantum_Gravity/PROPOSAL_Dark_Photon_Bridge.md",
+      "sha256": "f30357178486c394411b19af0bcb4cd6b7925054a8c6fb74b30f8fa7726c6f49",
+      "size": 4472
+    },
+    {
+      "path": "Derivation/Quantum_Gravity/PROPOSAL_Quantum-Gravity-Bridge_Causal-Geometry-and-Holonomy.md",
+      "sha256": "32be8334c4e7e2c9a6ba2b6ac8f69471b0f762c8dc95ed26db9ced670452565a",
+      "size": 10686
+    },
+    {
+      "path": "Derivation/Quantum_Gravity/T2_PROPOSAL_QG_Regge_CDT_v1.md",
+      "sha256": "0d3cc844f3ae1794b1223268c9bd1adae27ab7395930591c4b5dfa47d3b0a2df",
+      "size": 8870
+    }
+  ],
+  "root": "Derivation/Quantum_Gravity",
+  "schema": "vdm.provenance.index.v1"
+}

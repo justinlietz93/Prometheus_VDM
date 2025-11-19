@@ -1,0 +1,17 @@
+{
+  "generated_utc": "2025-11-19T06:12:22.498545Z",
+  "items": [
+    {
+      "path": "Derivation/z.CANONICAL_Proposals/00_PROPOSALS.md",
+      "sha256": "de1fd603acac3d6b3683f5e221888ad1b3175700066065190eb417a65dc12fa9",
+      "size": 65749
+    },
+    {
+      "path": "Derivation/z.CANONICAL_Proposals/README.md",
+      "sha256": "944239fc87db6a8407fa56805749c5add31efca0a2a47f6cb81fb9131a9967f3",
+      "size": 978
+    }
+  ],
+  "root": "Derivation/z.CANONICAL_Proposals",
+  "schema": "vdm.provenance.index.v1"
+}

@@ -171,6 +171,22 @@ def read_file_text(path: str) -> str:
         return ""
 
 
+def _update_provenance_indexes() -> None:
+    """
+    Ensure Derivation/**/PROVENANCE_index.json files are up to date before commit.
+
+    This runs the provenance index generator in index-population mode. If it
+    fails, the commit is blocked so that provenance indexes cannot silently
+    drift from the tracked Derivation state.
+    """
+    try:
+        # Use the same Python interpreter and assume repo root as CWD.
+        run([sys.executable, "tools/provenance/generate_salted_hash.py", "--populate-provenance-indexes"], check=True, capture=False)
+    except subprocess.CalledProcessError:
+        print("[error] provenance index update failed; see output above", file=sys.stderr)
+        raise
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Derivation change guard (pre-commit/CI enforcement)")
     parser.add_argument("--mode", choices=["precommit", "ci"], default="precommit", help="Run mode (default: precommit)")
@@ -183,6 +199,8 @@ def main() -> int:
     exclusions = list(DEFAULT_EXCLUSIONS) + list(args.exclusion)
 
     if args.mode == "precommit":
+        # Keep PROVENANCE_index.json files in sync with the Derivation tree on each commit.
+        _update_provenance_indexes()
         changed = git_changed_files_precommit()
     else:
         changed = git_changed_files_vs_base(args.base)
