@@ -34,6 +34,40 @@ Guidance:
 
 ---
 
+## 2025-11-19 - Canonical PROPOSALS Index Creation
+
+Dependency-Chain-Reviewed: true
+Change-Type: canon-impacting
+Summary: Created comprehensive canonical index of all research proposals in z.CANONICAL_Proposals/00_PROPOSALS.md
+
+Paths-Changed:
+- Derivation/z.CANONICAL_Proposals/00_PROPOSALS.md (created/updated comprehensive index)
+
+Canon-Docs-Updated:
+- Derivation/z.CANONICAL_Proposals/00_PROPOSALS.md (new canonical proposals registry)
+
+Dependency-Notes:
+- Scanned entire Derivation/ tree and extracted structured information from 32 PROPOSAL_*.md files
+- Organized proposals by domain following repository folder structure: Agency_Field (5), Causality (2), Collapse (1), Conservation_Law (1), Cosmology (2), Dark_Photons (1), Information (1), Intelligence_Model (1), Metriplectic (5), Qualia (1), Quantum_Gravity (2), Tachyon_Condensation (1), Thermodynamic_Routing (7), Topology (2)
+- Extracted key information per proposal: tier (T0-T9), research questions, experimental setup, diagnostics, gates with thresholds, variables (independent/dependent/control), methods/protocols, schema/artifacts, equipment, risk assessment, personnel, references, and summary
+- Each entry follows whitepaper-grade documentation standards with explicit gates and provenance
+- Document serves as single source of truth for proposal lineage tracking (proposal → execution → results)
+- Cross-references canonical files where applicable (EQUATIONS, SYMBOLS, CONSTANTS, ALGORITHMS, SCHEMAS, etc.)
+- Includes comprehensive validation checklist and cross-reference guidelines
+- All 32 active proposals documented; template files excluded
+
+Upstream/Downstream Links:
+- Templates/PROPOSAL_PAPER_TEMPLATE.md (canonical template for all proposals)
+- TIER_STANDARDS.md (T0-T9 maturity ladder definitions)
+- code/common/authorization/README.md (approval requirements)
+- Downstream RESULTS_*.md files tracked where they exist for lineage
+
+Approval/PR:
+- PR: justinlietz93/Prometheus_VDM (copilot/update-canonical-proposals-index)
+- Automated extraction and generation process used to ensure completeness and consistency
+
+---
+
 Date (UTC): 2025-08-20
 
 Scope: Tier-0 correctness fixes (numerics, stability narrative) and unification to a single canonical model class (reaction-diffusion, RD). EFT/KG material retained as an active, KPI-gated branch with explicit acceptance criteria and provenance. Unapproved runs remain quarantined by IO policy.
