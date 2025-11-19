@@ -31,7 +31,7 @@
       ".so"
     ]
   },
-  "file_count": 2363,
+  "file_count": 1899,
   "files": [
     {
       "path": ".codacy/cli.sh",
@@ -135,7 +135,7 @@
     },
     {
       "path": ".gitignore",
-      "sha256": "1f1eb0c3d26e9c3b9ac4b37d5c51a5d4d147feaf06b366532e6a904ce144844f",
+      "sha256": "425a9111ded602f1607eb3f9ee56d4c5152520a06e3abd106f32cbe931dcbe00",
       "size": 8753
     },
     {
@@ -150,8 +150,8 @@
     },
     {
       "path": "ACADEMIC_LICENSE_REQUEST.md",
-      "sha256": "3a666f1a8102d954e209311bacfea568089d975fafeac1215e9ff817f9cce434",
-      "size": 1638
+      "sha256": "1a5cf7f49133b75230f6d5ca050b66797007a6949111643a838c7974375388fd",
+      "size": 1631
     },
     {
       "path": "CHANGELOG",
@@ -165,8 +165,8 @@
     },
     {
       "path": "COMMERCIAL_LICENSE_REQUEST.md",
-      "sha256": "40a110654c3575af626064c4e0cdb79e0f86ceebd9ddaf936ce421bfe5ea81ef",
-      "size": 1573
+      "sha256": "a7cdb40dc7c79f31cfde2d258e598dbe870c76377c697500715d6e166a359b75",
+      "size": 1566
     },
     {
       "path": "CONTRIBUTING.md",
@@ -280,7 +280,7 @@
     },
     {
       "path": "Daily-Pulse/2025-11-04/Brainstorming.md",
-      "sha256": "fe48f4ce77416530a3de4db5e25e980d9ca6cc8760dc11be6a13bb6abccfeeaf",
+      "sha256": "089eb6cb95ca54e254319e3a8d1400c7dfbff240c755908b9874d9d91dd12e94",
       "size": 94202
     },
     {
@@ -434,18 +434,23 @@
       "size": 11657
     },
     {
+      "path": "Derivation/Axioms/PROVENANCE_index.json",
+      "sha256": "98fde6aeb98b4ad10cf43cecd87b21371418f814bac9ae80377cbf820f12280f",
+      "size": 1709
+    },
+    {
       "path": "Derivation/Axioms/T8-A8_Gaps.md",
       "sha256": "9841feb823d3d1a2ec00efbe2be6bea7efc695d694f9afef83a5715a8144a648",
       "size": 15489
     },
     {
       "path": "Derivation/Axioms/T8-A8_Gates.md",
-      "sha256": "c267f22594f826900da1a84e4c13e6fed198fda4a154197651ffdad5e2035b00",
+      "sha256": "403a83307b7e5e6fdf5b999961623f574a13fcf21417b99b2dd7674c1abed0f4",
       "size": 29144
     },
     {
       "path": "Derivation/Axioms/T8-A8_Milestones.md",
-      "sha256": "34faf17162014908d11af453e7ce4e80367e18776650ef2575c501fb3df6d920",
+      "sha256": "7df65df7c0c2252cd9ec5beaf3fc8022de1e8ac120a94c498362cd927ede2a5c",
       "size": 26795
     },
     {
@@ -479,9 +484,19 @@
       "size": 9710
     },
     {
+      "path": "Derivation/Causality/PROVENANCE_index.json",
+      "sha256": "faf338f2fcf4a0bfbb3a00ae81c4d4250556f04fa912f48167d0c94999b5d631",
+      "size": 965
+    },
+    {
       "path": "Derivation/Causality/T1_PROPOSAL_G-TF-1_Telegraph-Fisher_Causality_v1.md",
       "sha256": "8aebe9ed67bcaaad122c2b8ae8d18903d57680088327ebc47d417d81a0a0d2b5",
       "size": 1961
+    },
+    {
+      "path": "Derivation/Closure/PROVENANCE_index.json",
+      "sha256": "a8389a0f4119f5714d8d8bc59efe84d127a93354abec45f2d25600941395bb80",
+      "size": 344
     },
     {
       "path": "Derivation/Closure/T1_PROPOSAL_G-CL-1_Closure-NoHiddenIntegrals_v1.md",
@@ -492,6 +507,11 @@
       "path": "Derivation/Collapse/PROPOSAL_A6_Collapse_v1.md",
       "sha256": "7eb7ba58c65a0964bcb3306002ea3ef7b49b0d2940d212eab79c9824e4773035",
       "size": 2619
+    },
+    {
+      "path": "Derivation/Collapse/PROVENANCE_index.json",
+      "sha256": "2e685d592ebb6b47f9ca47b3b646c841cb214508e0fae77f65029e01e2bfe1c9",
+      "size": 1891
     },
     {
       "path": "Derivation/Collapse/RESULTS_A6_Scaling_Collapse_Junction_Logistic_Universality.md",
@@ -505,12 +525,12 @@
     },
     {
       "path": "Derivation/Collapse/code/memory_steering/memory_steering.py",
-      "sha256": "0f7bcb8c0beb959eebdd45de24026a79595b4c6e06b1a90605093aa104fbea81",
+      "sha256": "bdf55c240e533659345ef56a6910bc439b2bb8592f976a951d970b9c46e8cb32",
       "size": 17032
     },
     {
       "path": "Derivation/Collapse/code/memory_steering/memory_steering_experiments.py",
-      "sha256": "24d92c395d125575962e5a8bfbc9a993af79cc6a53b1d8381c6494593e59e6cd",
+      "sha256": "419382cf387cc43a2fdd5c24551341835584bb1e10073be6b7727aae12785340",
       "size": 40351
     },
     {
@@ -545,8 +565,8 @@
     },
     {
       "path": "Derivation/Complete-Formalisms/CF3_A8_Scaling_Hierarchical_Interfaces.md",
-      "sha256": "5491c48ab023704fb6d21b91ab2ee94ad312b6a53963f792b7fa47c9dda8afcb",
-      "size": 23068
+      "sha256": "24f5afafdff45706783352fcec6ae8013ab324c044e66c360c698c41fff48e3a",
+      "size": 23161
     },
     {
       "path": "Derivation/Complete-Formalisms/CF4_Telegraph_Fisher_Causality.md",
@@ -574,6 +594,11 @@
       "size": 2165
     },
     {
+      "path": "Derivation/Complete-Formalisms/PROVENANCE_index.json",
+      "sha256": "ceb35d8f1bdef531b000196bffb48198daeb6116bc4bf610683d7a60aeb90516",
+      "size": 1945
+    },
+    {
       "path": "Derivation/Complete-Formalisms/README.md",
       "sha256": "ad5a23e269da9b7770ff1dc6c5a585c5079452787de88eb8e705472b71593023",
       "size": 11238
@@ -582,6 +607,11 @@
       "path": "Derivation/Conservation_Law/PROPOSAL_RD_Discrete_Conservation_vs_Balance.md",
       "sha256": "7f11a180b4665b8ddc12bb5a531080951e84ad31790187890e42bd625aa1073a",
       "size": 10994
+    },
+    {
+      "path": "Derivation/Conservation_Law/PROVENANCE_index.json",
+      "sha256": "9b3e6d5a10a88edac52ae514370fe6b2229e20a5df3070d4d566a4ce44869460",
+      "size": 931
     },
     {
       "path": "Derivation/Conservation_Law/RESULTS_RD_Discrete_Conservation_vs_Balance.md",
@@ -619,6 +649,11 @@
       "size": 0
     },
     {
+      "path": "Derivation/Cosmology/PROVENANCE_index.json",
+      "sha256": "06805129ba0895776210a2f874693020b95eb238ca8f8831ac2985a0d554e8e1",
+      "size": 2207
+    },
+    {
       "path": "Derivation/Cosmology/RESULTS_FRW_Continuity_Residual_Quality_Check.md",
       "sha256": "4f5a05204f981ee5ef2f74c342f82fe979f3bf9d8ccedccdf1b7899cc75a1812",
       "size": 6594
@@ -647,6 +682,11 @@
       "path": "Derivation/Cosmology/T4_PROPOSAL_Single_Axis_Portal_Modulation_Against_CMB_Power_Tensor_v1.md",
       "sha256": "3dc1b8ef8a0c37b66c0f559fa7096fde536bee67767804631f4b4729626a930b",
       "size": 26925
+    },
+    {
+      "path": "Derivation/Dark_Matter/PROVENANCE_index.json",
+      "sha256": "5cebbf89834a091f5d04ab7b302a2999744c8c7710ac9746406d2aa628aeea8c",
+      "size": 351
     },
     {
       "path": "Derivation/Dark_Matter/T5_PROPOSAL_SkyrmeSIDM_VDM_FirstPrinciples_v1.md",
@@ -680,13 +720,18 @@
     },
     {
       "path": "Derivation/Dark_Photons/PIVOT_TO_DARK_PHOTON.md",
-      "sha256": "e910da4bdbefec090acbe70fad3455dce84b62bfa872d1b7792df028a3b75ad9",
+      "sha256": "0086a8f33c744a18a8aa6610e22b1f591c2e6c73f78606d9cbfab31724ad5c9d",
       "size": 7335
     },
     {
       "path": "Derivation/Dark_Photons/PROPOSAL_Decoherence_Portals.md",
       "sha256": "acfe803ea3ed20adacceebbbfe0d3fa13d2a81593a6cc56e7fc47bb0c3d09320",
       "size": 9495
+    },
+    {
+      "path": "Derivation/Dark_Photons/PROVENANCE_index.json",
+      "sha256": "5a005892a57799bc2585ca9650b31bc2788c676695aee59817fdd94fb0c34060",
+      "size": 2499
     },
     {
       "path": "Derivation/Dark_Photons/Portal_Lingo.md",
@@ -919,6 +964,11 @@
       "size": 13724
     },
     {
+      "path": "Derivation/Effective_Field_Theory/PROVENANCE_index.json",
+      "sha256": "1107d7b01182895a28af33724e38117bb19b2472dda7c74b750b9bdf85862a95",
+      "size": 744
+    },
+    {
       "path": "Derivation/Effective_Field_Theory/effective_field_theory_approach.md",
       "sha256": "e59fbca2b1a7acf0711f99900a01cde5f9d6eaab482da66cd323edda5ccd4663",
       "size": 6471
@@ -939,6 +989,11 @@
       "size": 17394
     },
     {
+      "path": "Derivation/Entropy/PROVENANCE_index.json",
+      "sha256": "5d9efd79212f807497cf50825d336b5b6e924bd5b92ecc283b0d1bde9bb011f0",
+      "size": 585
+    },
+    {
       "path": "Derivation/Entropy/Self-Information/T3_PROPOSAL_Agency_Entropy_Echo_Measurement_v1.md",
       "sha256": "b924d95d3708a51e4d6611049fd6365a4541d8260486e8c74d22398e6365b92e",
       "size": 19400
@@ -954,6 +1009,11 @@
       "size": 11156
     },
     {
+      "path": "Derivation/Fluid_Dynamics/PROVENANCE_index.json",
+      "sha256": "6749094da18cfda7ea0225b64c74e5a039d2490220098aff9cb8410228cd387c",
+      "size": 1120
+    },
+    {
       "path": "Derivation/Fluid_Dynamics/VDM_Corner_Testbed.ipynb",
       "sha256": "6631088b5943badd8039722791ada3977dcf90b085fca64d64213215aca697cb",
       "size": 6128
@@ -967,6 +1027,11 @@
       "path": "Derivation/Fluid_Dynamics/fluids_limit.md",
       "sha256": "00aa7b69a2a6e3c3e1b30fb09269f3235e333620d52e46d4d3017df378a7030b",
       "size": 6235
+    },
+    {
+      "path": "Derivation/Foundations/PROVENANCE_index.json",
+      "sha256": "6b6edc574ffc46ee86d6f1a38993f311aa757a2a8e03ec87f8842c8bd919d42b",
+      "size": 859
     },
     {
       "path": "Derivation/Foundations/continuum_stack.md",
@@ -1004,6 +1069,16 @@
       "size": 9605
     },
     {
+      "path": "Derivation/Gravity/PROVENANCE_index.json",
+      "sha256": "9c08c070f002eb585ceab35d848241237b735c55d8730c6a15f7e9be4ad74b1b",
+      "size": 845
+    },
+    {
+      "path": "Derivation/Hierarchy/PROVENANCE_index.json",
+      "sha256": "1468b0a233fcfdd6212931fcc80bf941d82a0e0707eed6dc65f5218736a123ec",
+      "size": 561
+    },
+    {
       "path": "Derivation/Hierarchy/STIV/T2_PROPOSAL_STIV_Macrostate_&_Gradient-Flow_Meters_v1.md",
       "sha256": "ad592db00a5dffce21f68eb1747736e0b2e7191b74ab419bc7a05863bcba77b3",
       "size": 14970
@@ -1019,6 +1094,11 @@
       "size": 2062
     },
     {
+      "path": "Derivation/Information/PROVENANCE_index.json",
+      "sha256": "f8397f9817831b0d6760913b60e89ce66b7aeba6d9e6fda17ee232c2b5591f68",
+      "size": 508
+    },
+    {
       "path": "Derivation/Information/README.md",
       "sha256": "0743f605f3c94d7d583268dd5d7c309b3462f5fdf2fd9505ab81ac2b77dcd240",
       "size": 5924
@@ -1027,6 +1107,11 @@
       "path": "Derivation/Intelligence_Model/PROPOSAL_Physics_Native_Intelligence_v1.md",
       "sha256": "c8f4d765a4c03e1ae732809f09607d886054fcf78fad03ae25ca28c670e13b2a",
       "size": 6307
+    },
+    {
+      "path": "Derivation/Intelligence_Model/PROVENANCE_index.json",
+      "sha256": "38b0cd8984d7176049193e0413d5663d8859a61ffbde8a80b55b644766f3cc14",
+      "size": 951
     },
     {
       "path": "Derivation/Intelligence_Model/README.md",
@@ -1040,7 +1125,7 @@
     },
     {
       "path": "Derivation/Intelligence_Model/T4_PROPOSAL_VDM_Physics_to_AI_Model_v1.md",
-      "sha256": "2f827a6150867647967cde688e7a529eb11b36c1ea5f55b9aba19b7eef556bda",
+      "sha256": "c4a4e000bfc858e84b91f7bd6eb084bea43dd9f7c49a826bc5212a0a537bd2ba",
       "size": 30443
     },
     {
@@ -1050,7 +1135,7 @@
     },
     {
       "path": "Derivation/Memory_Steering/memory_steering.md",
-      "sha256": "73166e9a049db215f98d72315b42fc49f483dd35d69633adad96170907343312",
+      "sha256": "21f2391158819e0406017d3d008beac60de7e24ea8ea28f39ab8a1ea1f15c997",
       "size": 11214
     },
     {
@@ -1264,6 +1349,11 @@
       "size": 7469
     },
     {
+      "path": "Derivation/Metriplectic/PROVENANCE_index.json",
+      "sha256": "c8adc4105e51df504154c7b3b58f80b51b55a31770f2cf49b056a33ecaf7df93",
+      "size": 12507
+    },
+    {
       "path": "Derivation/Metriplectic/RESULTS_KG_Noether_Invariants_v1.md",
       "sha256": "5cd1828f90ae58cd7d216e06d7dccba5384b46bcc056120fa059a7cade155fb8",
       "size": 6489
@@ -1329,6 +1419,11 @@
       "size": 11165
     },
     {
+      "path": "Derivation/Nonequilibrium/PROVENANCE_index.json",
+      "sha256": "219fb058a1d8643db61f5c951a4ebcfad79a3d85b411b14f48b788f1df887e07",
+      "size": 587
+    },
+    {
       "path": "Derivation/Nonequilibrium/Self_Organization/T2_PROPOSAL_Self_Organization_Meters_v1.md",
       "sha256": "a034d855fbb065d1c873785fa5af501d3a52b42eb64f7ca7d5728189f192fed4",
       "size": 21393
@@ -1369,6 +1464,11 @@
       "size": 1418
     },
     {
+      "path": "Derivation/Notebooks/PROVENANCE_index.json",
+      "sha256": "edca2f005f352c051c056a8a6f418dcc8d217133cbcdf1bcf028a6638243f3c3",
+      "size": 1790
+    },
+    {
       "path": "Derivation/Notebooks/README.md",
       "sha256": "2829f96a228d1f2d301c978d3e4b5eb0489ac0a9d58a61d1c011b8d081567e4c",
       "size": 1308
@@ -1379,6 +1479,11 @@
       "size": 12771
     },
     {
+      "path": "Derivation/Qualia/PROVENANCE_index.json",
+      "sha256": "33e991d97723da54ad4f3c69422a0a6779287f5d01b6bd176df53a7602327f61",
+      "size": 543
+    },
+    {
       "path": "Derivation/Qualia/T3_PROPOSAL_Calibration_of_Psychophysical_Observables_to_C_Field.md",
       "sha256": "c46d93209c8f45d72b2d83be7e7a475e0aa4456dedbc418cf640eeea5f7eef8b",
       "size": 13793
@@ -1387,6 +1492,11 @@
       "path": "Derivation/Quantum/Analog_Quantum/T4_PROPOSAL_Cold_Atom_Causal_Cone_Test_v1.md",
       "sha256": "097a03424851f16799721028802618b0b9050db4fc52da6facead2dbb3ec8728",
       "size": 21724
+    },
+    {
+      "path": "Derivation/Quantum/PROVENANCE_index.json",
+      "sha256": "1808909c2692561306daa5ded22249f48449b8534e0a0fb3af8fb46310ec945a",
+      "size": 2697
     },
     {
       "path": "Derivation/Quantum/Quantum_Echos/T0_PROPOSAL_SIE_Willow-Convergence_v1.md",
@@ -1454,6 +1564,11 @@
       "size": 10686
     },
     {
+      "path": "Derivation/Quantum_Gravity/PROVENANCE_index.json",
+      "sha256": "6d4c9479e97be02953927c64d3b704d6c837254801960e0633e190d73b197122",
+      "size": 976
+    },
+    {
       "path": "Derivation/Quantum_Gravity/T2_PROPOSAL_QG_Regge_CDT_v1.md",
       "sha256": "0d3cc844f3ae1794b1223268c9bd1adae27ab7395930591c4b5dfa47d3b0a2df",
       "size": 8870
@@ -1464,8 +1579,13 @@
       "size": 10883
     },
     {
+      "path": "Derivation/Reaction_Diffusion/PROVENANCE_index.json",
+      "sha256": "8f7600b2290035b3e2225dd62f2f1b50f952c13ed9f0a197ea12e121198d8fd0",
+      "size": 720
+    },
+    {
       "path": "Derivation/Reaction_Diffusion/rd_dispersion_validation.md",
-      "sha256": "c00622c28b3a2caf2531c48343f2fdeca2a8d2451c1175924195d7ac77744456",
+      "sha256": "7bc8794465e64b4c5a5b2f45457b7f36c56d94ef6397bfc56f3298e5316d9776",
       "size": 3599
     },
     {
@@ -1475,7 +1595,7 @@
     },
     {
       "path": "Derivation/Reaction_Diffusion/rd_validation_plan.md",
-      "sha256": "88c0cb456e974013c505fc9c0863199681b93658f743cd7b0139ffd2b6a3b1c9",
+      "sha256": "e1b7e4eec8404a25632f87c261937d3a15948b01a3d3e191525eed07ce099d3c",
       "size": 5097
     },
     {
@@ -1960,57 +2080,57 @@
     },
     {
       "path": "Derivation/References/Observers/core/cortex/scouts.py",
-      "sha256": "84e9bd68a817f3f350c1b365af590c59aab527a826d04a51cc53455d70584a3a",
+      "sha256": "aa350f900bf8c7d68c111a9fdcc92d19e35e4d39d954a49f7aa401539141a654",
       "size": 2975
     },
     {
       "path": "Derivation/References/Observers/core/cortex/void_walkers/base.py",
-      "sha256": "573fa13f3e4224af7978ab10f11ba7a432e303559f6f34081549c7b1b35f4ee2",
+      "sha256": "a6420123527f091dec1903488bad4e0039e3e60c411ccc59ffeb63feaf25198c",
       "size": 8808
     },
     {
       "path": "Derivation/References/Observers/core/cortex/void_walkers/void_cold_scout.py",
-      "sha256": "a2be67e3064817e87451ae964a8b6fc9d40c7bf332f46a90698bc718ea5f8104",
+      "sha256": "7c0711b37839383f3704d543e42c7211c4590788f48f3591bec585e060a9f40e",
       "size": 2020
     },
     {
       "path": "Derivation/References/Observers/core/cortex/void_walkers/void_cycle_scout.py",
-      "sha256": "98b2453c437acf309a894b425745cbda664d69a27ffba071e33e9f5170a0b0f2",
+      "sha256": "97c8fd84c18931820646519290f94221300cf8fce566fd08dae30375553b0f25",
       "size": 5432
     },
     {
       "path": "Derivation/References/Observers/core/cortex/void_walkers/void_excitation_scout.py",
-      "sha256": "671da09e484f62683a010724f17c27732b3195cc29fa358f8a55538bb26062b9",
+      "sha256": "90a8bc67c00e61b64fdd1363f029d526063b0b87cba5a902f9eb315894ed8db0",
       "size": 4534
     },
     {
       "path": "Derivation/References/Observers/core/cortex/void_walkers/void_frontier_scout.py",
-      "sha256": "6b8f0cc5eb02bebddfc4dfec74689f309258f585293ba13524e653ed08e86dec",
+      "sha256": "b8f2ba05cbaca585a35b6fa7f4a5b9864d1e3a553ca588e7b4a37055d2274644",
       "size": 9730
     },
     {
       "path": "Derivation/References/Observers/core/cortex/void_walkers/void_heat_scout.py",
-      "sha256": "7dd493e87e78c30a5ef4c412e27eca5238592d5bdac2c840a09caf86941144dc",
+      "sha256": "f5662d84cdaa96e97f547304c5605e08da4dbcf7b2694ba603fe3118e1fb6d28",
       "size": 9072
     },
     {
       "path": "Derivation/References/Observers/core/cortex/void_walkers/void_inhibition_scout.py",
-      "sha256": "dd9622823d28d6160a578a6595ec255d2bc8275527350440b46191861e2fa5b0",
+      "sha256": "d81beeb8294ff1ac15a4772b8b2ae5d4842e074d8071f69cc871957d6e8c9f86",
       "size": 4505
     },
     {
       "path": "Derivation/References/Observers/core/cortex/void_walkers/void_memory_ray_scout.py",
-      "sha256": "45363c391c37b345930361695433d14091889e1bbe21d9f4723cf673c528148c",
+      "sha256": "f894b31e212fcdfbffce4dd1fb6aaedbe507991a4595a25d2f571d0646dc3bd7",
       "size": 8448
     },
     {
       "path": "Derivation/References/Observers/core/cortex/void_walkers/void_ray_scout.py",
-      "sha256": "e20c282b17eff09a238f6b645f56c12e6fabc930e92abe7f2486f723be144647",
+      "sha256": "0b775e1c59ff8a1783b8d8ac431e07978bd80be1e4af817c688c0ead30936e6a",
       "size": 7980
     },
     {
       "path": "Derivation/References/Observers/core/cortex/void_walkers/void_sentinel_scout.py",
-      "sha256": "522146e2cf8cd2a0b868c2be668a523ea8b301ab8416ba4d4bb51c7882ad1d33",
+      "sha256": "a40af529855f8f5315885bcf2643d16de2bb0bcd42cfdaa76a4feb9a23ae3f2e",
       "size": 5766
     },
     {
@@ -2020,12 +2140,12 @@
     },
     {
       "path": "Derivation/References/Observers/core/engine/core_engine.py",
-      "sha256": "7336809ab016469294f3b15cfa83eeca860c2bf69ff288157895d31ccb1e7787",
+      "sha256": "463f021340c059940adebf0d436b7673327dc003a1854b075f0bee7acc86cccb",
       "size": 21933
     },
     {
       "path": "Derivation/References/Observers/core/global_system.py",
-      "sha256": "2ceed476fe3446ac61e3385670b06489f04d6713a1d49675b57f45a30761c8e7",
+      "sha256": "2c0610bb92e8d0deea5fd247e512bce456dbf5f962f223d24c5c81aa3dba822a",
       "size": 10075
     },
     {
@@ -2035,7 +2155,7 @@
     },
     {
       "path": "Derivation/References/Observers/core/memory/__init__.py",
-      "sha256": "a4b9953360d56f105673368ef0997781f89e3cd7a8cc1ed3076639012a6602a1",
+      "sha256": "30d626f4f02e9215f8eabb4ec7903daf742dd456c41b9043dd9b6021da8f5fc5",
       "size": 855
     },
     {
@@ -2045,7 +2165,7 @@
     },
     {
       "path": "Derivation/References/Observers/core/memory/field.py",
-      "sha256": "ebafc5f02f07034e7b853c48ce99cd5cbd979bb29a07b66d5cbfe1a9715c78ec",
+      "sha256": "6d3bf58cb32c48ecb3819b2a0a039c735ffb931c161d7815aa79da5bac503f84",
       "size": 12522
     },
     {
@@ -2065,17 +2185,17 @@
     },
     {
       "path": "Derivation/References/Observers/nexus.py",
-      "sha256": "27dba7507dffd874c6ee50d460531832e2cee877c39aef7d823029a19e727010",
+      "sha256": "009a698dbebb0816cdf00af9223eb38694b1b3b8b46904e51a00ba63a241998a",
       "size": 18071
     },
     {
       "path": "Derivation/References/Observers/runtime/loop/main.py",
-      "sha256": "0ee7ac7010e066531152e5408b42159e535cfdf633a7ec4a97936925db023bf6",
+      "sha256": "fc37e571403d41940cca001b3ef843064c1daf5ad5190b760d65355524027b30",
       "size": 40997
     },
     {
       "path": "Derivation/References/Observers/runtime/telemetry.py",
-      "sha256": "e89764eb08381363e026e02bf636a58c54b0cd519a098cdf9e5be064bbb71fd2",
+      "sha256": "871e32816f6d87de3aee47a567ea51e7b17d93219874305743b5bc5a31b2c951",
       "size": 26431
     },
     {
@@ -2389,6 +2509,11 @@
       "size": 49690
     },
     {
+      "path": "Derivation/Spinor/PROVENANCE_index.json",
+      "sha256": "397628ae23a3104e847d1fa0c478cf3c8fb80c30d5bd745b847e750411536033",
+      "size": 326
+    },
+    {
       "path": "Derivation/Spinor/T1_PROPOSAL_Spinor_Emergence_v1.md",
       "sha256": "30c16a777001b36f99d4aaf65ad9efa48c3e92f888a46bdb78d3c2cab98d5f9c",
       "size": 9944
@@ -2497,6 +2622,11 @@
       "path": "Derivation/Tachyon_Condensation/PROPOSAL_Tachyonic_Tube_Condensation.md",
       "sha256": "621cc3e7228cf8ef535476bcccac4dfb276bda34f8f68fc742b931e689611e25",
       "size": 5817
+    },
+    {
+      "path": "Derivation/Tachyon_Condensation/PROVENANCE_index.json",
+      "sha256": "50bd3333e3f5fe018a95bcca7de733bc26d9617bb3538e61390775d846456c77",
+      "size": 748
     },
     {
       "path": "Derivation/Tachyon_Condensation/RESULTS_Tachyonic_Tube_v1.md",
@@ -2664,6 +2794,11 @@
       "size": 13546
     },
     {
+      "path": "Derivation/Thermodynamic_Routing/PROVENANCE_index.json",
+      "sha256": "8b1f8bacf6bcd31a245dace72672b9ba972294fa77249e53a8da10abccc64da1",
+      "size": 2454
+    },
+    {
       "path": "Derivation/Thermodynamic_Routing/Passive_Thermodynamic_Routing/PROPOSAL_Flux_Through_Memory_Channels_v1.md",
       "sha256": "4a4c5a38c912a1d98cbdfa2baec57dd7b1d69ab395c576b033eda75338d2f872",
       "size": 9228
@@ -2709,6 +2844,11 @@
       "size": 4603
     },
     {
+      "path": "Derivation/Thermodynamics/Convection/PROVENANCE_index.json",
+      "sha256": "a859de005ab1446d5cc062b0e9e69c983cae6a54ce604d1a0ab6984f0fafaddd",
+      "size": 386
+    },
+    {
       "path": "Derivation/Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md",
       "sha256": "d4626cfc8200e5b2b05d79276a607809dc5c22c5d86f0c3a88d5dae731836141",
       "size": 16553
@@ -2724,9 +2864,19 @@
       "size": 2096
     },
     {
+      "path": "Derivation/Topology/PROVENANCE_index.json",
+      "sha256": "f81e0c99f1a686cc163ab0df5bc1e1cbec3155f4868f068b9590c3d2620f4a05",
+      "size": 683
+    },
+    {
       "path": "Derivation/Topology/README.md",
       "sha256": "570527b6514f1c359aabbc4762d7efb93194eca9258ca8608599db56ddf30c2d",
       "size": 5847
+    },
+    {
+      "path": "Derivation/Transport/Telegraph_From_Relaxation/PROVENANCE_index.json",
+      "sha256": "03ff1d943c207960eb2741cd8b7527e1b06df07deb0a6b05cb0dbfcad7cf2bae",
+      "size": 393
     },
     {
       "path": "Derivation/Transport/Telegraph_From_Relaxation/T1_PROPOSAL_Telegraph_From_Relaxation_v1.md",
@@ -2737,6 +2887,11 @@
       "path": "Derivation/UToE_REQUIREMENTS.md",
       "sha256": "b75fc7c9277a256e32eccce753fb6bc4d2674de440819ee45c4a3a277642284e",
       "size": 16935
+    },
+    {
+      "path": "Derivation/Unification/PROVENANCE_index.json",
+      "sha256": "93296658791f64a4c2026ac5d6bdf3992bc787c0f99000c47f24fd6019874358",
+      "size": 336
     },
     {
       "path": "Derivation/Unification/T0_Unification_Program_Spec_v1.md",
@@ -2785,7 +2940,7 @@
     },
     {
       "path": "Derivation/code/analysis/flux_sweep.py",
-      "sha256": "0549c5fcdc95afcc607202e3874a5e6454d1970fb3d96b4c83d87a0bbce6825f",
+      "sha256": "c7d929ef8d9d343867c0ba9eabca779eb192e2deb342ed039d3553fff9b9e0ef",
       "size": 5144
     },
     {
@@ -6420,7 +6575,7 @@
     },
     {
       "path": "Derivation/code/physics/causality/README.md",
-      "sha256": "e6ae6b7d592bfe45d791a1e5d58ddc98e155fb15282d4958c03e688d6b2e8fbc",
+      "sha256": "e518992699858e1bbfad3bf7a764dafa0fe0492e3dc148d37fca69c668803757",
       "size": 2377
     },
     {
@@ -6585,7 +6740,7 @@
     },
     {
       "path": "Derivation/code/physics/fluid_dynamics/fluids/lbm2d.py",
-      "sha256": "8b4cea2e731057c9dd0c9f417ba0741bebd91ec4fb1a1f8e64126c15666022f2",
+      "sha256": "211bba78d22a4220ffacc1d4dd81c79eff8b034d8b19b28e83a42913b6d9e1de",
       "size": 16344
     },
     {
@@ -6615,7 +6770,7 @@
     },
     {
       "path": "Derivation/code/physics/fluid_dynamics/telemetry/walkers.py",
-      "sha256": "9ee275639a964b17810435b358b00522d62346b5e10ddc764f7fc85f8cff19b7",
+      "sha256": "ac097f5fc6b1f4f948e2cb2ff527308718ae6ae896e859c5248c84754e5d8bcb",
       "size": 10127
     },
     {
@@ -6715,7 +6870,7 @@
     },
     {
       "path": "Derivation/code/physics/memory_steering/memory_steering.py",
-      "sha256": "0f7bcb8c0beb959eebdd45de24026a79595b4c6e06b1a90605093aa104fbea81",
+      "sha256": "bdf55c240e533659345ef56a6910bc439b2bb8592f976a951d970b9c46e8cb32",
       "size": 17032
     },
     {
@@ -6725,12 +6880,12 @@
     },
     {
       "path": "Derivation/code/physics/memory_steering/memory_steering_experiments.py",
-      "sha256": "8683e7e0c1418c7106719f71d8e6499388dc37fe16822e6bd95da00a85eff0ec",
+      "sha256": "4e3b196530ffb6edb72028bdae4ad0d08e48ccff08fbe33e4088c3ef3f2936df",
       "size": 40375
     },
     {
       "path": "Derivation/code/physics/memory_steering/plot_memory_steering.py",
-      "sha256": "15b8692bd7a093ece84a7bfee4b9eb0bafa04ac75e0c7db47f69f6ac1ed3efb4",
+      "sha256": "58014b033e58819cf6152de5932164a686eda2f4fe56c75c2af2c4809cc1b1f5",
       "size": 33929
     },
     {
@@ -7115,13 +7270,13 @@
     },
     {
       "path": "Derivation/code/physics/quantum/APPROVAL.json",
-      "sha256": "90fcce74a69cd7766bab41d9303b8fd27d7832e6d96dac4154a52678a0ceb149",
-      "size": 390
+      "sha256": "56d95dfcc809bb4a717d7c6c5d9e59442dee2a72d325b1219d1ab0f126e36a90",
+      "size": 579
     },
     {
       "path": "Derivation/code/physics/quantum/README.md",
-      "sha256": "db477085e64345df60144d2034bb240511108dc7eb780d5d16ba82925d1482cd",
-      "size": 1095
+      "sha256": "cecee7db1d2ac809620bcc7778fd4c31b5fd63f0cb30f2b30a5231d4acf8cf44",
+      "size": 1516
     },
     {
       "path": "Derivation/code/physics/quantum/__init__.py",
@@ -7130,8 +7285,8 @@
     },
     {
       "path": "Derivation/code/physics/quantum/run_vdm_triad_prereg.py",
-      "sha256": "7382fb79c9350471a3631a3d14afde325bac511f6bc649cc842cd287ca0338c5",
-      "size": 6427
+      "sha256": "0f8d67a0dc4f3e434d772b857fc42bbe65059b96be8845fa2b5ca5f011ab3388",
+      "size": 6555
     },
     {
       "path": "Derivation/code/physics/quantum/schemas/vdm-triad-v1.schema.json",
@@ -7175,17 +7330,17 @@
     },
     {
       "path": "Derivation/code/physics/reaction_diffusion/census_clocks.py",
-      "sha256": "7d0d5cb4e9f60b5004d709f771d76742e66e6b39f17e6a0c19cf2851fd90c9b6",
+      "sha256": "2a28b9839024d520ccb36d1cde5197cd4b53f2573c1df0c4accb1c913332baf7",
       "size": 9551
     },
     {
       "path": "Derivation/code/physics/reaction_diffusion/discrete_gradient.py",
-      "sha256": "baad78fb1234b194ef4b233ed9d79abe109523921ba0496176b4644e6d73f656",
+      "sha256": "6a4ef9961adfc1faef29499143f27af6b120957c339b460eb885a33a14a72d3b",
       "size": 6889
     },
     {
       "path": "Derivation/code/physics/reaction_diffusion/flux_core.py",
-      "sha256": "8d8cc726240d6b15624705534f31964407113927fd884e42fa2d51c2a42d3b0e",
+      "sha256": "5b002b5823fce5aba0a80d892908a5f777fcee89f65bd82d8ab7b6d1a6fd581d",
       "size": 9727
     },
     {
@@ -7215,7 +7370,7 @@
     },
     {
       "path": "Derivation/code/physics/tachyonic_condensation/condense_tube.py",
-      "sha256": "b1a3ce63968a305a73d85d39ba44181bafcac00dc41c0a817ba9a6e07a404c9d",
+      "sha256": "159f113e7574648d05809b75662ebfc72e2ce14f96dc34c356831934c6683ecc",
       "size": 13942
     },
     {
@@ -7480,13 +7635,23 @@
     },
     {
       "path": "Derivation/z.CANONICAL_Algorithms/00_ALGORITHMS.md",
-      "sha256": "5aab86feaa8a71bc71343752eeb90a064fda00c17d58e867524f4a63a5f61aa0",
+      "sha256": "950ef8aa60d8b3bf67d73c3e501237ecbe599f2bfa9b4068deb581b686dd2c71",
       "size": 73935
+    },
+    {
+      "path": "Derivation/z.CANONICAL_Algorithms/PROVENANCE_index.json",
+      "sha256": "57867203822e81409f6ec00ee5e12835e848db408ccb7dced8b84eb6dca4676b",
+      "size": 341
     },
     {
       "path": "Derivation/z.CANONICAL_BC_IC_Geometries/00_BC_IC_GEOMETRY.md",
       "sha256": "1cc3934024c3fc9577560defca9c82f0d10e7c95a317765c969309dec980dac1",
       "size": 25700
+    },
+    {
+      "path": "Derivation/z.CANONICAL_BC_IC_Geometries/PROVENANCE_index.json",
+      "sha256": "d0e37635f55a466f04abcad36f596a1859cd11df53a45ee660a4198224b3734e",
+      "size": 539
     },
     {
       "path": "Derivation/z.CANONICAL_BC_IC_Geometries/README.md",
@@ -7499,6 +7664,11 @@
       "size": 36184
     },
     {
+      "path": "Derivation/z.CANONICAL_Chronicles/PROVENANCE_index.json",
+      "sha256": "ac07c44ce6a3496e92ca43349d29fc7dac60cd01d7c468d9ea8ced78e5409504",
+      "size": 517
+    },
+    {
       "path": "Derivation/z.CANONICAL_Chronicles/README.md",
       "sha256": "944239fc87db6a8407fa56805749c5add31efca0a2a47f6cb81fb9131a9967f3",
       "size": 978
@@ -7509,29 +7679,54 @@
       "size": 492
     },
     {
+      "path": "Derivation/z.CANONICAL_Complete_Formalisms/PROVENANCE_index.json",
+      "sha256": "b1602211765184a7a72260e1ee03e02e88ca62d61745a191a41acf47fbfdc143",
+      "size": 551
+    },
+    {
       "path": "Derivation/z.CANONICAL_Complete_Formalisms/README.md",
       "sha256": "944239fc87db6a8407fa56805749c5add31efca0a2a47f6cb81fb9131a9967f3",
       "size": 978
     },
     {
       "path": "Derivation/z.CANONICAL_Constants/00_CONSTANTS.md",
-      "sha256": "e1e556190cd92e0eebbcbabd5095f867b9f9134288172a44206002271911538b",
+      "sha256": "99c4e879140a1837f592319e443ef024360bad9852a942d726af15072faf106f",
       "size": 43755
     },
     {
+      "path": "Derivation/z.CANONICAL_Constants/PROVENANCE_index.json",
+      "sha256": "725105e1f30144fd15573c664604f722c66b29886601a5da4438486fa98f02fc",
+      "size": 338
+    },
+    {
       "path": "Derivation/z.CANONICAL_Data_Products/00_DATA_PRODUCTS.md",
-      "sha256": "08e5168488caf90791e7be4c1cbe54ec626c7d0ead71c611c384865bd0c0a432",
+      "sha256": "f4fad6935fae160bba29e5e2ab08d19609a6cb3a2a2da4a8dfd2998e71207e98",
       "size": 67792
     },
     {
+      "path": "Derivation/z.CANONICAL_Data_Products/PROVENANCE_index.json",
+      "sha256": "1e3eab4eadc09d0652a17380215c945667bf56001fd28e83a066b17c995f24bc",
+      "size": 350
+    },
+    {
       "path": "Derivation/z.CANONICAL_Equations/00_EQUATIONS.md",
-      "sha256": "5d363917b7ab49170650f62dcc93997fbb96c50678046948627b5093bc6bf666",
+      "sha256": "b5b3552f2cda85f12d832d86dc7acda944ae8637765cbbe36b628cac073d0680",
       "size": 97587
+    },
+    {
+      "path": "Derivation/z.CANONICAL_Equations/PROVENANCE_index.json",
+      "sha256": "b356de19e58e81e9890e0988391b9c4f773538c0fda194effa572a9bcebe9642",
+      "size": 338
     },
     {
       "path": "Derivation/z.CANONICAL_Hypotheses/00_HYPOTHESES.md",
       "sha256": "b7823f5d9bf98d1cdec377aec33cc4ec6ea2cec9e7b43b1eef211fd441a87cb9",
       "size": 11645
+    },
+    {
+      "path": "Derivation/z.CANONICAL_Hypotheses/PROVENANCE_index.json",
+      "sha256": "847317f2c0741150c5e808a087e73cb856a07240d8c1ab89ea8453fbaca25417",
+      "size": 517
     },
     {
       "path": "Derivation/z.CANONICAL_Hypotheses/README.md",
@@ -7544,6 +7739,11 @@
       "size": 20286
     },
     {
+      "path": "Derivation/z.CANONICAL_Naming_Conventions/PROVENANCE_index.json",
+      "sha256": "f5a3122d56fcddd2ae5909cd09f92f05beab5d4c41182cf044f5bee3ec28a7b5",
+      "size": 549
+    },
+    {
       "path": "Derivation/z.CANONICAL_Naming_Conventions/README.md",
       "sha256": "944239fc87db6a8407fa56805749c5add31efca0a2a47f6cb81fb9131a9967f3",
       "size": 978
@@ -7552,6 +7752,11 @@
       "path": "Derivation/z.CANONICAL_Open_Questions/00_OPEN_QUESTIONS.md",
       "sha256": "92c3f662f3e4eabc166b128c9b745c22e71090ea7b0eb48047e7e45707718cfc",
       "size": 37380
+    },
+    {
+      "path": "Derivation/z.CANONICAL_Open_Questions/PROVENANCE_index.json",
+      "sha256": "c971e85cc231e955a4e23b437626396b6c9990f76be69d144dfd67be4f9db348",
+      "size": 533
     },
     {
       "path": "Derivation/z.CANONICAL_Open_Questions/README.md",
@@ -7564,6 +7769,11 @@
       "size": 65749
     },
     {
+      "path": "Derivation/z.CANONICAL_Proposals/PROVENANCE_index.json",
+      "sha256": "c0e572a7061132f49ae6336dae9fac845979434c03c4c3290b1d0837227963b8",
+      "size": 513
+    },
+    {
       "path": "Derivation/z.CANONICAL_Proposals/README.md",
       "sha256": "944239fc87db6a8407fa56805749c5add31efca0a2a47f6cb81fb9131a9967f3",
       "size": 978
@@ -7574,14 +7784,24 @@
       "size": 9354
     },
     {
+      "path": "Derivation/z.CANONICAL_Results/PROVENANCE_index.json",
+      "sha256": "439afe21b324b5b3f7b4234e93cab7192fd7dae6cc886f970f6626a793fa5bcc",
+      "size": 504
+    },
+    {
       "path": "Derivation/z.CANONICAL_Results/README.md",
       "sha256": "944239fc87db6a8407fa56805749c5add31efca0a2a47f6cb81fb9131a9967f3",
       "size": 978
     },
     {
       "path": "Derivation/z.CANONICAL_Roadmap/00_ROADMAP.md",
-      "sha256": "d7e8dae814597c5cd3e57ba0024e0b08cac90b1751999314b2813688b7ce0a3c",
+      "sha256": "0a45d305dd49681825cd693b36647bb0311b3edb1eeae744597da437bf45185d",
       "size": 44934
+    },
+    {
+      "path": "Derivation/z.CANONICAL_Roadmap/PROVENANCE_index.json",
+      "sha256": "0a943d7af7dfddd7a8e21f4b0e5590e91193dc837d02fdaf8fcb5a2ec8d7f547",
+      "size": 505
     },
     {
       "path": "Derivation/z.CANONICAL_Roadmap/README.md",
@@ -7590,8 +7810,13 @@
     },
     {
       "path": "Derivation/z.CANONICAL_Schemas/00_SCHEMAS.md",
-      "sha256": "c2761b01a6e34a0a26ccfc3a8dd8f0b6db089947aa0fb1b3271a68ac2fa05501",
+      "sha256": "be86aa4a53e0702b9cf0b78f4386238a36df83a6ee6ed4dcea5a55d11eeda7e7",
       "size": 131708
+    },
+    {
+      "path": "Derivation/z.CANONICAL_Schemas/PROVENANCE_index.json",
+      "sha256": "47422e6a39413086cb2e1bf3b4e0da0bdd55cb6d2dee442f2ea2799126d0fd0b",
+      "size": 506
     },
     {
       "path": "Derivation/z.CANONICAL_Schemas/README.md",
@@ -7604,6 +7829,11 @@
       "size": 41140
     },
     {
+      "path": "Derivation/z.CANONICAL_Symbols/PROVENANCE_index.json",
+      "sha256": "b40d0cb7abc93e861f0f8d881e68fa57da07276fec50f92acd96c19931f7bace",
+      "size": 505
+    },
+    {
       "path": "Derivation/z.CANONICAL_Symbols/README.md",
       "sha256": "944239fc87db6a8407fa56805749c5add31efca0a2a47f6cb81fb9131a9967f3",
       "size": 978
@@ -7614,14 +7844,24 @@
       "size": 18814
     },
     {
+      "path": "Derivation/z.CANONICAL_Units_Normalization/PROVENANCE_index.json",
+      "sha256": "295090a1637959bfd184eab77ac8f13ece21d73c532f768a3b3c1f9514bca61b",
+      "size": 553
+    },
+    {
       "path": "Derivation/z.CANONICAL_Units_Normalization/README.md",
       "sha256": "944239fc87db6a8407fa56805749c5add31efca0a2a47f6cb81fb9131a9967f3",
       "size": 978
     },
     {
       "path": "Derivation/z.CANONICAL_Validation_Metrics/00_VALIDATION_METRICS.md",
-      "sha256": "75ee690406f99c08fe664e39d3b361bf291ab394c297d3d420bc577ffc912b5a",
+      "sha256": "1e731e813920bcaa94eeb12c7a39e5a6f8641edca015f3a5119b15cf6226806b",
       "size": 82420
+    },
+    {
+      "path": "Derivation/z.CANONICAL_Validation_Metrics/PROVENANCE_index.json",
+      "sha256": "a25f7160154fe8a64308a01c6046617180273b881046b5ded504feef17140f86",
+      "size": 549
     },
     {
       "path": "Derivation/z.CANONICAL_Validation_Metrics/README.md",
@@ -7785,22 +8025,22 @@
     },
     {
       "path": "VDM_Nexus/reports/license_audit.json",
-      "sha256": "464dacb32dc82bfc2d8c17dd750c98e43440352f06714230c7d472ff2366ad94",
+      "sha256": "d4261eca7e41aee34afc7c58e8fa29536780352676c17df87bc92541b8b566bc",
       "size": 134216
     },
     {
       "path": "VDM_Nexus/reports/license_audit.v2.json",
-      "sha256": "7b71f6ce6c056a48102add649564b277f588567ef2479c4768dc795360743ad6",
+      "sha256": "55c7389cb5e164d532d98c7ad9acce9a97bb6fb23f928c79675e8eb6ef0b71c9",
       "size": 100851
     },
     {
       "path": "VDM_Nexus/reports/license_audit.v3.json",
-      "sha256": "1615fb0d1f42fd420156491cbcfa444a7acc86c2cd2c320e261ec24454040de9",
+      "sha256": "6cf909125dafedcacf37a6b0abb4f7fd36a1d17c71fef4f21ba62f3e11aa049e",
       "size": 127420
     },
     {
       "path": "VDM_Nexus/reports/license_audit.v4.json",
-      "sha256": "7991ca0969602aba123d27689de1233cc71312c2173ef9236dfabbcbea7faea6",
+      "sha256": "332b80b388b84283d0f7b32ee629a5c7918bfcd2186540695d62add5925185ba",
       "size": 40552
     },
     {
@@ -7915,7 +8155,7 @@
     },
     {
       "path": "audits/2025-09-28_VDM_Technical_Debt_Ledger.md",
-      "sha256": "d2e5eb96df8eb163830b758e277343106dc8d1b39de558c8c2afebe7c81bbcd5",
+      "sha256": "a22cd8b6857b4b7ad33f0c3c85c2ff3f7fbb517a1c20088161f254f7fed5ba02",
       "size": 16878
     },
     {
@@ -7930,17 +8170,17 @@
     },
     {
       "path": "audits/2025-10-08_FUM_LEGACY_PHYSICS_COMPONENT_MAPPING.md",
-      "sha256": "ecc5f59e160fca81ed4c41d8936a63cb75531f82f0c1e0bd3bf507c90d0f2668",
+      "sha256": "d192bb62091a6b56207752206b3b09059210e07aa63f3cba4fe7ff1ab4e8abbb",
       "size": 17369
     },
     {
       "path": "audits/2025-10-08_FUM_PHYSICS_COMPONENT_MAPPING.md",
-      "sha256": "95f570d1cd82686f80fe6d18702eb4313aac0a7dff2f57f8e01ae96a740c38df",
+      "sha256": "dd59735df10b06204b8b11b2cfab267f4d2cb4a6da2aa4b1cb18f58046d891fb",
       "size": 26594
     },
     {
       "path": "audits/2025-10-09_IMPLEMENTATION_GAPS_ANALYSIS.md",
-      "sha256": "265eb13b9d043ac952173b5b49a7ed03811c6fe3d9c52f4151434d994ce587f0",
+      "sha256": "3f0d0ecb83a3f1ca79bcb9907e467f1f9cedebc15a121d82d50586713db86321",
       "size": 6561
     },
     {
@@ -7975,7 +8215,7 @@
     },
     {
       "path": "conftest.py",
-      "sha256": "cf18cccc68bda1296d9d3aa8c2eac752e901f63a54c36488c6c97545077efed3",
+      "sha256": "c9f4bdddab801669005445f931e3a496220393f4deb7d6c4bacd4f6201ccd832",
       "size": 2480
     },
     {
@@ -8015,7 +8255,7 @@
     },
     {
       "path": "docs/code-crawler-extracts/vdm_canon.xml",
-      "sha256": "3ff88120ce80d32afe3ccb48f41a2520bbe4dabc7b46695225b0b731fd7155ae",
+      "sha256": "844b213abef78503b46a1b3f664c1ad9c23fe9dfc945231d2da873f7c3891ec9",
       "size": 2005799
     },
     {
@@ -8030,7 +8270,7 @@
     },
     {
       "path": "docs/code-crawler-extracts/vdm_core.xml",
-      "sha256": "04b62305d240c78b6d4b7d16dd0c5a40487d8eaf2603d6029d7ee19a4d34b1cb",
+      "sha256": "f27c695d3c37644d8fd108b3750cc0c4779a1e45a043b0a3897593df863d29eb",
       "size": 535610
     },
     {
@@ -8045,7 +8285,7 @@
     },
     {
       "path": "docs/code-crawler-extracts/vdm_memory-graph.xml",
-      "sha256": "1053c4b1854a5500d9c726c29f046de031234015c4e7e335ca0ee0c38cf82b88",
+      "sha256": "1859ef6ebf76f184cff2ef71784277b30e418e5b44e6601c9891dcaf5bcce1a0",
       "size": 134073
     },
     {
@@ -8065,12 +8305,12 @@
     },
     {
       "path": "docs/code-crawler-extracts/vdm_reaction_diffusion.xml",
-      "sha256": "b4ec1326dc0f679b4f7cff2e3defe3beda445c981d212cf1a02dcbbed7f969d3",
+      "sha256": "aa28722aa53735b23c9568a2edf5501aa2e0a58384b3718fa2fe53a80246105e",
       "size": 68682
     },
     {
       "path": "docs/code-crawler-extracts/vdm_reaction_diffusion_writeups.xml",
-      "sha256": "4bf97f028bc170d92d98b2e329f7f30cb82641077f7978fc0f9c953ccfced6e6",
+      "sha256": "48a2d59b6bc82c4c18c1c36970770d6ea9e41ef12a318d89e426f1f523c16b51",
       "size": 14608
     },
     {
@@ -8690,8 +8930,8 @@
     },
     {
       "path": "docs/misc-standards/VDM_Project_Standards_Technical_Summary.md",
-      "sha256": "e2c24f2d43505d26c5181a8b4bae4464dd4815595b1f860d04f1159555d89548",
-      "size": 75211
+      "sha256": "42b653dde6384962a88b5ce51872eda1eb0c5b73c9e671e0dadf64d6cc7fc658",
+      "size": 75808
     },
     {
       "path": "docs/misc-standards/standard-upgrades/Boundaries_Upgrade_Map.md",
@@ -8717,2331 +8957,6 @@
       "path": "docs/misc-standards/standard-upgrades/Self-Organization_Upgrade_Map.md",
       "sha256": "938e46630029602dfa5d3e7513e9be12d32028954aa8eef084030fb47b40b160",
       "size": 5295
-    },
-    {
-      "path": "vdm_live.py",
-      "sha256": "b3f155991f3eb1a5a1cbae992ab837e8f634fe7b9a2358deca6bccfac0d0b2cb",
-      "size": 1544
-    },
-    {
-      "path": "vdm_rt/README.md",
-      "sha256": "e457e1f292dad66c90289fb20a7275f2a2e60c4af81e8593810b92498a5f57a8",
-      "size": 15519
-    },
-    {
-      "path": "vdm_rt/__init__.py",
-      "sha256": "a9b4d0a5571a60c289ca7259fc5801be1fe02e78fceca74f075f3c07c79eee93",
-      "size": 420
-    },
-    {
-      "path": "vdm_rt/api/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/api/llms/__init__.py",
-      "sha256": "fb269e17df81264c430040d1959248dc9ba6856dfc7fbb90fa0fbefea9ccf8f4",
-      "size": 373
-    },
-    {
-      "path": "vdm_rt/api/llms/providers/google/gemini_client.py",
-      "sha256": "fb269e17df81264c430040d1959248dc9ba6856dfc7fbb90fa0fbefea9ccf8f4",
-      "size": 373
-    },
-    {
-      "path": "vdm_rt/api/llms/providers/google/model_loader.py",
-      "sha256": "fb269e17df81264c430040d1959248dc9ba6856dfc7fbb90fa0fbefea9ccf8f4",
-      "size": 373
-    },
-    {
-      "path": "vdm_rt/api/llms/providers/google/models/gemini-2.5-flash.json",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/api/llms/providers/google/models/gemini-2.5-pro.json",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/api/llms/providers/ollama/models/ollama-list.json",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/api/llms/providers/ollama/ollama_client.py",
-      "sha256": "fb269e17df81264c430040d1959248dc9ba6856dfc7fbb90fa0fbefea9ccf8f4",
-      "size": 373
-    },
-    {
-      "path": "vdm_rt/api/llms/providers/openai/models/GPT-5.json",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/api/llms/providers/openai/models/o4-mini.json",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/api/llms/providers/openai/openai_client.py",
-      "sha256": "fb269e17df81264c430040d1959248dc9ba6856dfc7fbb90fa0fbefea9ccf8f4",
-      "size": 373
-    },
-    {
-      "path": "vdm_rt/api/llms/providers/openrouter/model-cross-walk.json",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/api/llms/providers/openrouter/openrouter_client.py",
-      "sha256": "fb269e17df81264c430040d1959248dc9ba6856dfc7fbb90fa0fbefea9ccf8f4",
-      "size": 373
-    },
-    {
-      "path": "vdm_rt/api/llms/providers/xai/models/Grok-3.json",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/api/llms/providers/xai/models/Grok-4.json",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/api/llms/providers/xai/xai_client.py",
-      "sha256": "fb269e17df81264c430040d1959248dc9ba6856dfc7fbb90fa0fbefea9ccf8f4",
-      "size": 373
-    },
-    {
-      "path": "vdm_rt/api/llms/router.py",
-      "sha256": "fb269e17df81264c430040d1959248dc9ba6856dfc7fbb90fa0fbefea9ccf8f4",
-      "size": 373
-    },
-    {
-      "path": "vdm_rt/ck/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/ck/build.sh",
-      "sha256": "bc81239a838844ea3b0bc1fb97236dc1c82b52359262d9d9b9e3bf52b7dad7be",
-      "size": 659
-    },
-    {
-      "path": "vdm_rt/ck/hip_spmv.cpp",
-      "sha256": "62da489ea7ea903d175ed5f790ca7f8ece7b296f6c6404da2836815233d0efc3",
-      "size": 2612
-    },
-    {
-      "path": "vdm_rt/cli/args.py",
-      "sha256": "39d980cd18b1bc0d05eccb39730f40f42e111c918334ec0fecc6192d4ebf5edd",
-      "size": 4580
-    },
-    {
-      "path": "vdm_rt/core/README.md",
-      "sha256": "78b50077a0fd3b2332a0980cbe16ad8a56c8f797007ab054a97aba1f28d8b0fe",
-      "size": 25
-    },
-    {
-      "path": "vdm_rt/core/Void_Debt_Modulation.py",
-      "sha256": "f7af5e9928461ed783583825b66ba55201ff04e2e9242b9c0323794fce7bf4fd",
-      "size": 5957
-    },
-    {
-      "path": "vdm_rt/core/Void_Equations.py",
-      "sha256": "a2b8d0cbac6c4e1b0356b105fd52e0c8075ffc6f82f3ebfe2a5818fa12176bbd",
-      "size": 4013
-    },
-    {
-      "path": "vdm_rt/core/__init__.py",
-      "sha256": "fb269e17df81264c430040d1959248dc9ba6856dfc7fbb90fa0fbefea9ccf8f4",
-      "size": 373
-    },
-    {
-      "path": "vdm_rt/core/adc.py",
-      "sha256": "478f741cae37452adde6a0fa787a913229ce61a26efeb3ae94b0d1a6020f8a94",
-      "size": 8139
-    },
-    {
-      "path": "vdm_rt/core/announce.py",
-      "sha256": "50b136f2cbb4c94edc375251315f810a89d2322fa13d03d555d3415405aba8c7",
-      "size": 3051
-    },
-    {
-      "path": "vdm_rt/core/bus.py",
-      "sha256": "8c5f2aac6ec36539e397627a5a55e046c2ebc81d5468e92af312eb76d8d068d7",
-      "size": 2020
-    },
-    {
-      "path": "vdm_rt/core/connectome.py",
-      "sha256": "a61bf1aef48b1f348e38da432910c84d9310b79de1a93628e187a94ac5429264",
-      "size": 18926
-    },
-    {
-      "path": "vdm_rt/core/control_server.py",
-      "sha256": "4d944d6b0ab223b453a29162450c1457673c1a0fd4aec033eee962a190788a3b",
-      "size": 10651
-    },
-    {
-      "path": "vdm_rt/core/cortex/IMPORTANT_TODO.md",
-      "sha256": "dc48f03aa4216d942e8086c9095d7832593ec81bf5cba92998f438243895b85e",
-      "size": 6131
-    },
-    {
-      "path": "vdm_rt/core/cortex/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/core/cortex/Void-Walker-Rules.md",
-      "sha256": "0eaa7ce3650d36c81e09de928fcc849d219bd3fe6fb54c59ef1428be8da937a7",
-      "size": 33351
-    },
-    {
-      "path": "vdm_rt/core/cortex/Void-Walkers.md",
-      "sha256": "ca785e6c7cc487615b0cfd55dd865f96c0da197387cdbbff667dbbecc20f176a",
-      "size": 15297
-    },
-    {
-      "path": "vdm_rt/core/cortex/__init__.py",
-      "sha256": "fb269e17df81264c430040d1959248dc9ba6856dfc7fbb90fa0fbefea9ccf8f4",
-      "size": 373
-    },
-    {
-      "path": "vdm_rt/core/cortex/maps/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/core/cortex/maps/__init__.py",
-      "sha256": "b2c29f335d693d1151b6a8651909291e4801b419b01177957037bdda6d9dc6e9",
-      "size": 580
-    },
-    {
-      "path": "vdm_rt/core/cortex/maps/base_decay_map.py",
-      "sha256": "e5d3e8f92a7d6aacb632faf94fc8a3e774ab003d4d23e0b7c48312a84c045a84",
-      "size": 5121
-    },
-    {
-      "path": "vdm_rt/core/cortex/maps/coldmap.py",
-      "sha256": "7c4289aec319b34c2ceec6257ac816c0ac537319d466a5eca3b64a915d209510",
-      "size": 6174
-    },
-    {
-      "path": "vdm_rt/core/cortex/maps/excitationmap.py",
-      "sha256": "4e396349919f1773e66ab3b206bf3cf58e9dff4af2ae178844ff240ef0b6512e",
-      "size": 2618
-    },
-    {
-      "path": "vdm_rt/core/cortex/maps/heatmap.py",
-      "sha256": "8348b4c3f1e03d726ba5281ff167a46c37114d7bc4034eeab64587c1c2863ecf",
-      "size": 2950
-    },
-    {
-      "path": "vdm_rt/core/cortex/maps/inhibitionmap.py",
-      "sha256": "018c53a715ce90db59f421b321ba783fbe5d32fd372cf45b723479b87335c315",
-      "size": 2649
-    },
-    {
-      "path": "vdm_rt/core/cortex/maps/memorymap.py",
-      "sha256": "546abf8364d7d286c2bdc88b6e264b3ef0450bbb308dedda9497c387775f532e",
-      "size": 12043
-    },
-    {
-      "path": "vdm_rt/core/cortex/maps/trailmap.py",
-      "sha256": "85c63f97eb5242ea932116103e34626c2b4ce22ccaaa55a651857ee1e6f146a8",
-      "size": 4340
-    },
-    {
-      "path": "vdm_rt/core/cortex/scouts.py",
-      "sha256": "84e9bd68a817f3f350c1b365af590c59aab527a826d04a51cc53455d70584a3a",
-      "size": 2975
-    },
-    {
-      "path": "vdm_rt/core/cortex/void_walkers/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/core/cortex/void_walkers/base.py",
-      "sha256": "573fa13f3e4224af7978ab10f11ba7a432e303559f6f34081549c7b1b35f4ee2",
-      "size": 8808
-    },
-    {
-      "path": "vdm_rt/core/cortex/void_walkers/frontier_scout.py",
-      "sha256": "e3f522e5b08e5bee11fb308f429715b128207e77ad1e9e72b7c97e1d29455c6a",
-      "size": 639
-    },
-    {
-      "path": "vdm_rt/core/cortex/void_walkers/runner.py",
-      "sha256": "6130fc5d2951056c44b7833135ea581d6e9a09c2d5ff14f5609bfca3aa364dcb",
-      "size": 5100
-    },
-    {
-      "path": "vdm_rt/core/cortex/void_walkers/void_cold_scout.py",
-      "sha256": "a2be67e3064817e87451ae964a8b6fc9d40c7bf332f46a90698bc718ea5f8104",
-      "size": 2020
-    },
-    {
-      "path": "vdm_rt/core/cortex/void_walkers/void_cycle_scout.py",
-      "sha256": "98b2453c437acf309a894b425745cbda664d69a27ffba071e33e9f5170a0b0f2",
-      "size": 5432
-    },
-    {
-      "path": "vdm_rt/core/cortex/void_walkers/void_excitation_scout.py",
-      "sha256": "671da09e484f62683a010724f17c27732b3195cc29fa358f8a55538bb26062b9",
-      "size": 4534
-    },
-    {
-      "path": "vdm_rt/core/cortex/void_walkers/void_frontier_scout.py",
-      "sha256": "6b8f0cc5eb02bebddfc4dfec74689f309258f585293ba13524e653ed08e86dec",
-      "size": 9730
-    },
-    {
-      "path": "vdm_rt/core/cortex/void_walkers/void_heat_scout.py",
-      "sha256": "7dd493e87e78c30a5ef4c412e27eca5238592d5bdac2c840a09caf86941144dc",
-      "size": 9072
-    },
-    {
-      "path": "vdm_rt/core/cortex/void_walkers/void_inhibition_scout.py",
-      "sha256": "dd9622823d28d6160a578a6595ec255d2bc8275527350440b46191861e2fa5b0",
-      "size": 4505
-    },
-    {
-      "path": "vdm_rt/core/cortex/void_walkers/void_memory_ray_scout.py",
-      "sha256": "45363c391c37b345930361695433d14091889e1bbe21d9f4723cf673c528148c",
-      "size": 8448
-    },
-    {
-      "path": "vdm_rt/core/cortex/void_walkers/void_ray_scout.py",
-      "sha256": "e20c282b17eff09a238f6b645f56c12e6fabc930e92abe7f2486f723be144647",
-      "size": 7980
-    },
-    {
-      "path": "vdm_rt/core/cortex/void_walkers/void_sentinel_scout.py",
-      "sha256": "522146e2cf8cd2a0b868c2be668a523ea8b301ab8416ba4d4bb51c7882ad1d33",
-      "size": 5766
-    },
-    {
-      "path": "vdm_rt/core/cosmology/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/core/cosmology/__init__.py",
-      "sha256": "60f55ad4fa07af815bf3106a2870235293a67d1fe1be6904e947acdee67c9a95",
-      "size": 1035
-    },
-    {
-      "path": "vdm_rt/core/cosmology/events.py",
-      "sha256": "19fa22553388804dba5e5dd0d639bad5f722fbb65cd2a0171701561ac8a764f3",
-      "size": 4857
-    },
-    {
-      "path": "vdm_rt/core/cosmology/router.py",
-      "sha256": "c62959bdfc93e2c4d59a853a228f805c382ad41bd1f120c8eb488e1f52e7f88d",
-      "size": 16935
-    },
-    {
-      "path": "vdm_rt/core/diagnostics.py",
-      "sha256": "7399e094c6ce3a03b52a72f8a6b1eafd69773be69bdbb188e9bffea503935fd8",
-      "size": 10739
-    },
-    {
-      "path": "vdm_rt/core/engine/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/core/engine/__init__.py",
-      "sha256": "7f3d3bd902b0ee33df2437d2afddbbce6fa2a34d068c79eb1faa69059cbd7ca9",
-      "size": 610
-    },
-    {
-      "path": "vdm_rt/core/engine/core_engine.py",
-      "sha256": "7336809ab016469294f3b15cfa83eeca860c2bf69ff288157895d31ccb1e7787",
-      "size": 21933
-    },
-    {
-      "path": "vdm_rt/core/engine/evt_snapshot.py",
-      "sha256": "66a534491b00f41435eb7ed0a1a4f23d4dac4a82040510e63669960c5cb256ee",
-      "size": 3553
-    },
-    {
-      "path": "vdm_rt/core/engine/maps_frame.py",
-      "sha256": "f35d9093be69fbad4cfc58235edecb705f060d7e0f5bd87d02614420466b5365",
-      "size": 4072
-    },
-    {
-      "path": "vdm_rt/core/fum_growth_arbiter.py",
-      "sha256": "34887a58467bd6cf2fa7e189f4c947b08beb1f4e36597df7d0fbd8e06c302323",
-      "size": 6313
-    },
-    {
-      "path": "vdm_rt/core/fum_sie.py",
-      "sha256": "6d0c64453b76855861413042cfd067b3eab20e0b8f125d1324655315683cc124",
-      "size": 13428
-    },
-    {
-      "path": "vdm_rt/core/fum_structural_homeostasis.py",
-      "sha256": "a2189e3cb804b33da11241a3f877b3663daf90cc2f49a48bc1446fba26bf6165",
-      "size": 6923
-    },
-    {
-      "path": "vdm_rt/core/global_system.py",
-      "sha256": "2ceed476fe3446ac61e3385670b06489f04d6713a1d49675b57f45a30761c8e7",
-      "size": 10075
-    },
-    {
-      "path": "vdm_rt/core/guards/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/core/guards/invariants.py",
-      "sha256": "2f7053c1dd64cc3b64bd5654505f2d696bb5efd3687b9b2d3fb805333934fab9",
-      "size": 9776
-    },
-    {
-      "path": "vdm_rt/core/memory/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/core/memory/__init__.py",
-      "sha256": "a4b9953360d56f105673368ef0997781f89e3cd7a8cc1ed3076639012a6602a1",
-      "size": 855
-    },
-    {
-      "path": "vdm_rt/core/memory/engram_io.py",
-      "sha256": "c1dd05d11e52273e51ce34a3775260d41456c5e01971d2f886d3b794bd89b773",
-      "size": 16713
-    },
-    {
-      "path": "vdm_rt/core/memory/field.py",
-      "sha256": "ebafc5f02f07034e7b853c48ce99cd5cbd979bb29a07b66d5cbfe1a9715c78ec",
-      "size": 12522
-    },
-    {
-      "path": "vdm_rt/core/metrics.py",
-      "sha256": "40ff82ee3d1c80c784a743516dfac3940bffac408b6e29c48ad21299e1ac7093",
-      "size": 4454
-    },
-    {
-      "path": "vdm_rt/core/neuroplasticity/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/core/neuroplasticity/__init__.py",
-      "sha256": "fb269e17df81264c430040d1959248dc9ba6856dfc7fbb90fa0fbefea9ccf8f4",
-      "size": 373
-    },
-    {
-      "path": "vdm_rt/core/neuroplasticity/gdsp.py",
-      "sha256": "1e9390cd8921e757cfc2bf232378273e938337dc376ade9d663dfc988b4cc2b6",
-      "size": 22809
-    },
-    {
-      "path": "vdm_rt/core/neuroplasticity/revgsp.py",
-      "sha256": "1807f07e89ecccfedd9a83158d7ac660f66febcf9f45cf93720da3f7d9e6aa17",
-      "size": 12619
-    },
-    {
-      "path": "vdm_rt/core/primitives/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/core/primitives/dsu.py",
-      "sha256": "d535e1c2b8ee16c07f1981e6ccc672def533731f4652cbe8cbf51f24fb506d4e",
-      "size": 3337
-    },
-    {
-      "path": "vdm_rt/core/proprioception/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/core/proprioception/events.py",
-      "sha256": "30a36a60f9fa2f67c35314927282b85fed5c5bfcb36a4585074426c6ce96a698",
-      "size": 15920
-    },
-    {
-      "path": "vdm_rt/core/proprioception/territory.py",
-      "sha256": "68bb98c147435684d336df4a88d9bc50427b41ddb9a9c87c1e77f025814e7786",
-      "size": 6580
-    },
-    {
-      "path": "vdm_rt/core/sie_v2.py",
-      "sha256": "7214f38b1fb6ab4ba4af231707d01627fb349f6af35453c5cac1ed5ea3bb2811",
-      "size": 4027
-    },
-    {
-      "path": "vdm_rt/core/signals.py",
-      "sha256": "4fff6293af28b406d1a0d9a0a6fb2dde8a04d94f3fa7b82c069bde3fc19cfa56",
-      "size": 10235
-    },
-    {
-      "path": "vdm_rt/core/sparse_connectome.py",
-      "sha256": "5c4f6d89d0007247fd7c78d9e9a41a53796710938505dc9c8a37b9c77a4bb9c2",
-      "size": 29136
-    },
-    {
-      "path": "vdm_rt/core/substrate/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/core/substrate/growth_arbiter.py",
-      "sha256": "a53dc8bef60f99eece0037569bfb2f203418d22012c00d468746a5d2cb6cd6c8",
-      "size": 4660
-    },
-    {
-      "path": "vdm_rt/core/substrate/neurogenesis.py",
-      "sha256": "fad8e1bbb464a4c2591f3957b54a7baf86121069cc67b170bf9a1ecaa2370823",
-      "size": 6151
-    },
-    {
-      "path": "vdm_rt/core/substrate/structural_homeostasis.py",
-      "sha256": "30609944cec2fdd98bde13986de6b87be2af2b0283a99a49c674c77370cebc63",
-      "size": 3998
-    },
-    {
-      "path": "vdm_rt/core/substrate/substrate.py",
-      "sha256": "9cab64e449d44ff0094d53cbbf7d4bfaf5b1821286715619adc26f9070012256",
-      "size": 10631
-    },
-    {
-      "path": "vdm_rt/core/tests/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/core/tests/test_conservation_flux.py",
-      "sha256": "6da60d1db0030c16d4cd071497e176e9287b53c032c122401a8eda804291d17d",
-      "size": 3277
-    },
-    {
-      "path": "vdm_rt/core/text_utils.py",
-      "sha256": "7fe4eada076848f7d5e2e656a8004d62350fa28845e2a76f3e46d1931a1422bb",
-      "size": 4134
-    },
-    {
-      "path": "vdm_rt/core/visualizer.py",
-      "sha256": "db4ff79355c3eea6093903079cf7c2f9f5e4a64894955fcd7251e190779db23c",
-      "size": 3381
-    },
-    {
-      "path": "vdm_rt/core/void_b1.py",
-      "sha256": "20c6591b44e748f32ac858d64fb2faa1a9d4c1ed28077e682c45131c37542b0d",
-      "size": 13264
-    },
-    {
-      "path": "vdm_rt/core/void_dynamics_adapter.py",
-      "sha256": "55e3defa39abfb50acc436ca5b0821fbcd81945a44e35a00493e0531e1842a34",
-      "size": 3207
-    },
-    {
-      "path": "vdm_rt/data/.gitignore",
-      "sha256": "ada13646c47d47525ebdb0d1308c78d2448426a5b5f72d47a077ae080a6642bd",
-      "size": 74
-    },
-    {
-      "path": "vdm_rt/data/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/.trackerignore",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/fiction/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/fiction/adventure/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/fiction/horror/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/fiction/mystery/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/fiction/philosophy/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/fiction/shakespeare/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/fiction/structured-narrative/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/misc/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/misc/riddles/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/misc/symbols/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/00_latticework_synthesis/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/00_latticework_synthesis/decision_making/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/00_latticework_synthesis/decision_making/forecasting_&_prediction/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/00_latticework_synthesis/mental_models/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/00_latticework_synthesis/mental_models/recursion_&_self-reference/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/00_latticework_synthesis/mental_models/systems_thinking/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/00_latticework_synthesis/mental_models/systems_thinking/historical_analysis/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/00_latticework_synthesis/mental_models/systems_thinking/systems_analysis/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/00_latticework_synthesis/notes/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/00_latticework_synthesis/notes/books.json",
-      "sha256": "e0af2f15b2aea405a401cec38fde0bb430df87f363117f1ce49a1e39a02e9c17",
-      "size": 100463
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/00_latticework_synthesis/notes/index.json",
-      "sha256": "2e6f35165dfe4b2c780846e611f746db2bf9241d303bacfdd264dc65e0ccd2d2",
-      "size": 11137
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/00_latticework_synthesis/notes/template.json",
-      "sha256": "a0a5fddcdfa61170bdabf771390a20857b80e1bc86d98ed09541345dc6f22f4c",
-      "size": 466
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/00_latticework_synthesis/notes/vdm_curriculum.csv",
-      "sha256": "b322ee9d63338f9055f89ebb0b24d6b03855b2f1d39a4f86af0f27c3bdc0a562",
-      "size": 32258
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/00_latticework_synthesis/risk_&_uncertainty/epistemology/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/01_natural_sciences/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/01_natural_sciences/astronomy/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/01_natural_sciences/astronomy/astrophysics/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/01_natural_sciences/astronomy/cosmology/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/01_natural_sciences/astronomy/heliocentrism/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/01_natural_sciences/chemistry/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/01_natural_sciences/chemistry/biochemistry/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/01_natural_sciences/chemistry/organic_&_inorganic/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/01_natural_sciences/geology/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/01_natural_sciences/geology/paleontology/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/01_natural_sciences/geology/plate_tectonics/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/01_natural_sciences/geology/uniformitarianism/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/01_natural_sciences/physics/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/01_natural_sciences/physics/chaos_theory/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/01_natural_sciences/physics/classical_mechanics/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/01_natural_sciences/physics/cosmology/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/01_natural_sciences/physics/nuclear_physics/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/01_natural_sciences/physics/quantum_mechanics/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/01_natural_sciences/physics/relativity/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/01_natural_sciences/physics/string_theory/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/01_natural_sciences/physics/thermodynamics/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/01_natural_sciences/physics/void_dynamics/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/02_life_sciences/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/02_life_sciences/biology/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/02_life_sciences/biology/bioenergetics/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/02_life_sciences/biology/biophysics/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/02_life_sciences/biology/evolution_&_genetics/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/02_life_sciences/biology/immunology/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/02_life_sciences/biology/microbiology/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/02_life_sciences/biology/molecular_&_cell_biology/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/02_life_sciences/biology/virology/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/02_life_sciences/ecology/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/02_life_sciences/ecology/ecosystems/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/02_life_sciences/ecology/population_dynamics/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/02_life_sciences/medicine/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/02_life_sciences/medicine/anatomy_&_physiology/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/02_life_sciences/medicine/oncology/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/02_life_sciences/medicine/pathology/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/02_life_sciences/neuroscience/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/02_life_sciences/neuroscience/behavioral_neuroscience/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/02_life_sciences/neuroscience/cognitive_neuroscience/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/03_formal_sciences/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/03_formal_sciences/computer_science/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/03_formal_sciences/computer_science/algorithms_&_data_structures/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/03_formal_sciences/computer_science/computation_theory/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/03_formal_sciences/computer_science/information_theory/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/03_formal_sciences/game_theory/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/03_formal_sciences/logic/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/03_formal_sciences/logic/formal_&_informal_logic/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/03_formal_sciences/logic/set_theory/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/03_formal_sciences/mathematics/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/03_formal_sciences/mathematics/calculus_&_algebra/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/03_formal_sciences/mathematics/geometry/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/03_formal_sciences/mathematics/philosophy_of_mathematics/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/03_formal_sciences/mathematics/statistics_&_probability/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/03_formal_sciences/mathematics/topology/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/03_formal_sciences/reasoning/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/04_human_sciences/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/04_human_sciences/anthropology/cultural_anthropology/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/04_human_sciences/criminology/forensic_science/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/04_human_sciences/economics/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/04_human_sciences/economics/behavioral_economics/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/04_human_sciences/economics/classical_economics/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/04_human_sciences/economics/microeconomics_&_macroeconomics/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/04_human_sciences/human_behavior/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/04_human_sciences/political_science/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/04_human_sciences/political_science/international_relations/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/04_human_sciences/political_science/political_theory/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/04_human_sciences/political_science/statecraft/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/04_human_sciences/psychiatry_&_psychotherapy/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/04_human_sciences/psychiatry_&_psychotherapy/logotherapy/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/04_human_sciences/psychoanalysis/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/04_human_sciences/psychology/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/04_human_sciences/psychology/cognitive_psychology/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/04_human_sciences/psychology/evolutionary_psychology/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/04_human_sciences/psychology/moral_psychology/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/04_human_sciences/psychology/social_psychology/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/04_human_sciences/sociology/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/04_human_sciences/sociology/demography/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/04_human_sciences/sociology/economic_sociology/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/04_human_sciences/sociology/social_networks/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/05_humanities/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/05_humanities/history/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/05_humanities/history/ancient_&_modern_history/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/05_humanities/history/military_history/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/05_humanities/history_&_philosophy_of_science/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/05_humanities/language_and_rhetoric/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/05_humanities/linguistics/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/05_humanities/linguistics/language_acquisition/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/05_humanities/linguistics/semantics/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/05_humanities/literature/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/05_humanities/literature/poetry_&_fiction/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/05_humanities/philosophy/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/05_humanities/philosophy/epistemology/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/05_humanities/philosophy/ethics_&_morality/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/05_humanities/philosophy/game_theory/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/05_humanities/philosophy/metaphysics/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/05_humanities/philosophy/philosophy_of_science/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/05_humanities/philosophy/political_philosophy/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/05_humanities/philosophy/stoicism/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/06_technology_and_computation/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/06_technology_and_computation/artificial_intelligence/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/06_technology_and_computation/code/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/06_technology_and_computation/design/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/06_technology_and_computation/engineering/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/06_technology_and_computation/engineering/civil_&_mechanical_engineering/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/06_technology_and_computation/engineering/electrical_engineering/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/06_technology_and_computation/software_engineering/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/06_technology_and_computation/software_engineering/project_management/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/07_skills_and_applications/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/07_skills_and_applications/business_&_finance/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/07_skills_and_applications/business_&_finance/accounting_&_investing/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/07_skills_and_applications/business_&_finance/leadership_&_ethics/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/07_skills_and_applications/business_&_finance/management_&_strategy/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/07_skills_and_applications/communication/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/07_skills_and_applications/communication/conversation/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/07_skills_and_applications/communication/negotiation/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/07_skills_and_applications/communication/people_skills/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/07_skills_and_applications/communication/rhetoric_&_persuasion/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/07_skills_and_applications/communication/speeches/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/07_skills_and_applications/entrepreneurship/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/07_skills_and_applications/entrepreneurship/innovation/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/07_skills_and_applications/learning/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/07_skills_and_applications/pedagogy/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/07_skills_and_applications/pedagogy/learning_theories/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/07_skills_and_applications/pedagogy/skill_acquisition/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/07_skills_and_applications/productivity/organization/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/07_skills_and_applications/self_improvement/personal_effectiveness/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/08_arts_and_aesthetics/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/08_arts_and_aesthetics/music/theory_&_composition/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/08_arts_and_aesthetics/visual_arts/painting_&_sculpture/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/09_religion_and_theology/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/09_religion_and_theology/comparative_religion/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/09_religion_and_theology/mysticism/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/09_religion_and_theology/secularism_&_atheism/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/09_religion_and_theology/theology/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/09_religion_and_theology/theology/monotheism_&_polytheism/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/10_law_and_jurisprudence/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/10_law_and_jurisprudence/constitutional_law/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/10_law_and_jurisprudence/criminal_law/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/10_law_and_jurisprudence/international_law/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/10_law_and_jurisprudence/legal_philosophy/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/11_environmental_and_earth_sciences/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/11_environmental_and_earth_sciences/atmospheric_science/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/11_environmental_and_earth_sciences/climate_science/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/11_environmental_and_earth_sciences/oceanography/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/11_environmental_and_earth_sciences/sustainability/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/12_applied_technologies/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/12_applied_technologies/biotechnology/CRISPR/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/12_applied_technologies/cybersecurity/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/12_applied_technologies/nanotechnology/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/12_applied_technologies/quantum_computing/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/13_cultural_and_regional_studies/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/13_cultural_and_regional_studies/ethnic_&_racial_studies/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/13_cultural_and_regional_studies/gender_studies/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/14_mythology_and_folklore/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/14_mythology_and_folklore/comparative_mythology/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/14_mythology_and_folklore/folklore_studies/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/15_sports_and_kinesiology/exercise_physiology/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/16_architecture_and__urban_planning/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/16_architecture_and__urban_planning/architectural_theory/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/corpus/nonfiction/16_architecture_and__urban_planning/urban_design/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/data/curriculum/scope-sequence-emerge-g1.pdf",
-      "sha256": "895efb84cecc5c2e045525a9cf34e7967e201b6aa4eabc3e7f44e43a40ffa187",
-      "size": 847397
-    },
-    {
-      "path": "vdm_rt/data/curriculum/scope-sequence-emerge-g2.pdf",
-      "sha256": "1efbdaf6c4206f3183d235134c752c802d933043724848ac1c7d140a2708fb7d",
-      "size": 635416
-    },
-    {
-      "path": "vdm_rt/data/curriculum/scope-sequence-emerge-g3.pdf",
-      "sha256": "f93e71021c36f80d00df946224c5f4721a7ca8722d02bee30ede214df2fafc4d",
-      "size": 538437
-    },
-    {
-      "path": "vdm_rt/data/curriculum/scope-sequence-emerge-g4.pdf",
-      "sha256": "7d9d7a42cf0526b373f5f59de06c1de09696a93265e794bd11882a426780500c",
-      "size": 495381
-    },
-    {
-      "path": "vdm_rt/data/curriculum/scope-sequence-emerge-g5.pdf",
-      "sha256": "7bc499d8bd98702f3eaf87768581972e6c2ad8befe3c62fd24a281da7eee3a25",
-      "size": 482492
-    },
-    {
-      "path": "vdm_rt/data/curriculum/scope-sequence-emerge-gk.pdf",
-      "sha256": "8d05871423f0d78856cfdad0cae38165d78070ce2f86c8151319ff0487ce192b",
-      "size": 646231
-    },
-    {
-      "path": "vdm_rt/data/data_manager.py",
-      "sha256": "fb269e17df81264c430040d1959248dc9ba6856dfc7fbb90fa0fbefea9ccf8f4",
-      "size": 373
-    },
-    {
-      "path": "vdm_rt/data/probes/curiosity_teases.txt",
-      "sha256": "6b7906e94e0e8e64a4a8011f86e0b5333a5046589346ccb415cbb008f74570b9",
-      "size": 7670
-    },
-    {
-      "path": "vdm_rt/frontend/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/frontend/__init__.py",
-      "sha256": "aca8c1172eedc28d1c32f35449839a0ddcf363ca6ee884e77e22371a007dceae",
-      "size": 1138
-    },
-    {
-      "path": "vdm_rt/frontend/__main__.py",
-      "sha256": "eb5eb913c163ef67a144e8976e5b5ee97dfec47290f1a3989aafc192075a1a33",
-      "size": 857
-    },
-    {
-      "path": "vdm_rt/frontend/app.py",
-      "sha256": "d9d1c7c61721a947177ca6cccc1b196e08699bef4fe15b6e041216ac9ecd1b33",
-      "size": 7081
-    },
-    {
-      "path": "vdm_rt/frontend/callbacks/charts.py",
-      "sha256": "ef94554ed6811036997558d286f28bbc3c165d12818067490d9f5f5da00b0eaa",
-      "size": 8275
-    },
-    {
-      "path": "vdm_rt/frontend/callbacks/chat.py",
-      "sha256": "ff7ca2020bb053a836a71d0a00c03ce2d053c0d0381e5314605557110da48f40",
-      "size": 4546
-    },
-    {
-      "path": "vdm_rt/frontend/callbacks/engram.py",
-      "sha256": "f70a77aaa829af24b61213b27bbf72eb6e6cd10c7272c6d65b3bd67942dcc8ff",
-      "size": 3054
-    },
-    {
-      "path": "vdm_rt/frontend/callbacks/feed.py",
-      "sha256": "4e2e64b83ea2d535bd4b833e0d6ebafee2f2dc6315ee67201d2ecc49fff98d81",
-      "size": 2740
-    },
-    {
-      "path": "vdm_rt/frontend/callbacks/file_picker/__init__.py",
-      "sha256": "ffedf0b689fb233adad9e05ce3600479a5d5debc52abd08a8d0be15928c04122",
-      "size": 870
-    },
-    {
-      "path": "vdm_rt/frontend/callbacks/file_picker/common.py",
-      "sha256": "ec29d19dec2b003ad1c39a3725eacc5dbe674dc6048eebe449551519c733670b",
-      "size": 20020
-    },
-    {
-      "path": "vdm_rt/frontend/callbacks/file_picker/registrars.py",
-      "sha256": "ef2dde41b64918e5ce83f85f4ae0d4c86d00650e368226a8bfdc6db48534dbee",
-      "size": 7680
-    },
-    {
-      "path": "vdm_rt/frontend/callbacks/graph_tabs/single_graph.py",
-      "sha256": "4d421bccfd3b968eee7c630994dda09effba31ad13c52b0fa607785abd8775c8",
-      "size": 4880
-    },
-    {
-      "path": "vdm_rt/frontend/callbacks/interval.py",
-      "sha256": "5ee24d29853ce7a6fb418f1dc9c4fc1dcc8e1071f586e1f87b0414e5819c2fdd",
-      "size": 1494
-    },
-    {
-      "path": "vdm_rt/frontend/callbacks/logs.py",
-      "sha256": "c802fa1f8294cbe6f97df6658afdec4b18940836dfb7da667874dfa03656cc05",
-      "size": 2954
-    },
-    {
-      "path": "vdm_rt/frontend/callbacks/perf.py",
-      "sha256": "7305593c9544292c7c04855e1d7be763023d933c6b75fb3520d55e31c1ec7b57",
-      "size": 3097
-    },
-    {
-      "path": "vdm_rt/frontend/callbacks/process.py",
-      "sha256": "058d34b6e63796e56f0265ae06753eab07cb0ba6a165cf56f56fed6dc0190698",
-      "size": 9906
-    },
-    {
-      "path": "vdm_rt/frontend/callbacks/profile.py",
-      "sha256": "82aef681a34541cca4711f8e0aa11e5c41283e0eccd193e479661cde24d1f94c",
-      "size": 8498
-    },
-    {
-      "path": "vdm_rt/frontend/callbacks/runtime.py",
-      "sha256": "5b27e00d195427cc1a7fa6ed8e27751387b8ba25481e54288dd1311123f0dbf4",
-      "size": 4589
-    },
-    {
-      "path": "vdm_rt/frontend/callbacks/workspace.py",
-      "sha256": "f7bb8a13bc456d2c9194c5853e555368563f4d0962e9c0b91963bf2738fd7f3d",
-      "size": 2454
-    },
-    {
-      "path": "vdm_rt/frontend/components/charts.py",
-      "sha256": "8998ae724ecf3d10fbb9af83f085b140fc32ececc069f82503e16eb5fc7f0a37",
-      "size": 3291
-    },
-    {
-      "path": "vdm_rt/frontend/components/chat.py",
-      "sha256": "06de18c7753912f94b741f64519cb67cb966fe0dd3f1732eeb4810eff32b1b25",
-      "size": 2505
-    },
-    {
-      "path": "vdm_rt/frontend/components/config/__init__.py",
-      "sha256": "f2f83c0fe4dec5af2a19ec13c16d1fe45381fee4f6455bc753a1716a259d1435",
-      "size": 2124
-    },
-    {
-      "path": "vdm_rt/frontend/components/config/run_config.py",
-      "sha256": "db5b9d1fe64426ff00173b35ecc43a3f6b6f868cb72b61967502997ce31d5234",
-      "size": 2047
-    },
-    {
-      "path": "vdm_rt/frontend/components/config/sections.py",
-      "sha256": "f37d590862093fea1c8af0938482ef91b3d67364cf8e0321909438d58ff58f25",
-      "size": 9402
-    },
-    {
-      "path": "vdm_rt/frontend/components/feed.py",
-      "sha256": "f2097d0fbc08ab4e1aa8bf4a97e5464ee339fa3d047d214d1e9e371ea681bf3f",
-      "size": 1723
-    },
-    {
-      "path": "vdm_rt/frontend/components/layout.py",
-      "sha256": "9adf88f63aafac4fd07b72f09bd6fb2caf2e367876f2b08be38ced944005b619",
-      "size": 3761
-    },
-    {
-      "path": "vdm_rt/frontend/components/perf.py",
-      "sha256": "f3b3664ace6d8cf4645fe59bbbe1321e26913937c74419c674015d8b26c97fa2",
-      "size": 3846
-    },
-    {
-      "path": "vdm_rt/frontend/components/runtime_controls.py",
-      "sha256": "76d17772436c21528a8cfa0cab7854e7f34061ab9be5c4edff285e5c3915a702",
-      "size": 8421
-    },
-    {
-      "path": "vdm_rt/frontend/components/widgets/blocks.py",
-      "sha256": "5e71948970993bd4c82b65a3279838b7a4b85aa5e175bd0a479ca0b9f2cbb46b",
-      "size": 14395
-    },
-    {
-      "path": "vdm_rt/frontend/components/widgets/file_breadcrumbs.py",
-      "sha256": "a67d9557cff2bcfdc30e10d62b34fec8b8b5f8de9ce8da5aba6382b008d9c0a2",
-      "size": 2183
-    },
-    {
-      "path": "vdm_rt/frontend/components/widgets/file_picker.py",
-      "sha256": "2276ac16b82b79e3ee56f48aae5afb57af174a34b16190e36a9c899822d3b6de",
-      "size": 12407
-    },
-    {
-      "path": "vdm_rt/frontend/components/widgets/file_tree.py",
-      "sha256": "2595f92cef0d9cbae5164b1a8f762347ecc1675196fcc1cb820088ce61cf8e7c",
-      "size": 4302
-    },
-    {
-      "path": "vdm_rt/frontend/components/widgets/graph.py",
-      "sha256": "122f904f4501792184c366b0559a633079c82b5cb0ecd489484ead1ef2b83b63",
-      "size": 690
-    },
-    {
-      "path": "vdm_rt/frontend/components/workspace.py",
-      "sha256": "19af962067d0262815112373e1c942c82dd0d4980ebdd4e9a3bfa1427c0becfb",
-      "size": 2720
-    },
-    {
-      "path": "vdm_rt/frontend/controllers/__init__.py",
-      "sha256": "86b5ec64271c968895f181c896736d746ebdca316f661c2fb15bd5c5b8165a05",
-      "size": 719
-    },
-    {
-      "path": "vdm_rt/frontend/controllers/charts_controller.py",
-      "sha256": "792f50c81ba7d6d1e84f0459ebf61af3f461bd60f4a336d78e8d3c41c0f93156",
-      "size": 11749
-    },
-    {
-      "path": "vdm_rt/frontend/controllers/chat_controller.py",
-      "sha256": "847c747cf896358c7b3cf2df255352ee613c36a1bd6c11a419dc527d28a6757a",
-      "size": 4078
-    },
-    {
-      "path": "vdm_rt/frontend/controllers/file_picker_controller.py",
-      "sha256": "513b25bf4e5a1e55150ebd82b24ec1161016bf4771506c01279d0115474ea182",
-      "size": 5345
-    },
-    {
-      "path": "vdm_rt/frontend/controllers/file_picker_ctx.py",
-      "sha256": "62a3d3254f10042dbd12b8bace0d6d5ed26f9c1d53c392c30e204efad623e229",
-      "size": 1240
-    },
-    {
-      "path": "vdm_rt/frontend/controllers/file_picker_status.py",
-      "sha256": "c57a5202419a6a9a323292655e1b691a678ba2fe7ffacdc7af536174275895ab",
-      "size": 3052
-    },
-    {
-      "path": "vdm_rt/frontend/controllers/runtime_controller.py",
-      "sha256": "e8678061c3615d834185499019086969849a7d8b9c4a029cdb05f0a237ec49b9",
-      "size": 6126
-    },
-    {
-      "path": "vdm_rt/frontend/debug_ui.py",
-      "sha256": "80e9dfe6bd412c588a00608e8a2ec1d9cd19e4405ec910ae11a4596ed2c63d83",
-      "size": 17930
-    },
-    {
-      "path": "vdm_rt/frontend/models/series.py",
-      "sha256": "5691d10d8b63347444d94a1cd04e520ec4ee15c9ef55777096b136b12af22268",
-      "size": 5801
-    },
-    {
-      "path": "vdm_rt/frontend/plugins/fum_visualizer_v1/fum_visualizer.py",
-      "sha256": "ea06041a3bab39efd451648b0f6b75c522406770491aa520ef73b64efa20cc9d",
-      "size": 20366
-    },
-    {
-      "path": "vdm_rt/frontend/services/process_manager.py",
-      "sha256": "1a9debbc439ffdc5b8d63b7d5e1e00dba406254a799b9bce52c9ac8d1ef9b4d3",
-      "size": 13118
-    },
-    {
-      "path": "vdm_rt/frontend/services/status_client.py",
-      "sha256": "ef8a0a6fc76ccb4ddf06855042d8bf997c2434a3c4ccbfcb6f10aa47e2c9fb95",
-      "size": 3313
-    },
-    {
-      "path": "vdm_rt/frontend/styles/README.md",
-      "sha256": "fb6a4b87c00ea5e79977fd9f15b8a9794bd44957bf8442ca50afb6447f7d5807",
-      "size": 4933
-    },
-    {
-      "path": "vdm_rt/frontend/styles/__init__.py",
-      "sha256": "48de5f7fd45a65e08cd7596e7971be5448171a1b2aae96842d87f6331f8eac66",
-      "size": 1832
-    },
-    {
-      "path": "vdm_rt/frontend/styles/base.py",
-      "sha256": "084fb4ad113b325dbecc62bca0a408e0c75a7769b0fa5ba00ce3925bb01e9516",
-      "size": 2522
-    },
-    {
-      "path": "vdm_rt/frontend/styles/components.py",
-      "sha256": "0d679545b3ba09b27f7c0014a389f102ebf2d4e695820efba53681b4d07fb76e",
-      "size": 4237
-    },
-    {
-      "path": "vdm_rt/frontend/styles/layout.py",
-      "sha256": "ecd0c7751c8ad4e16a1273ec7caa4afcdb39d06f122edd27d71d3896fbd0e9ec",
-      "size": 3569
-    },
-    {
-      "path": "vdm_rt/frontend/styles/theme.py",
-      "sha256": "0c0a0329b8fbe7df92b13a1daa89df8ff9998b091c414ea3508994bd06c450fe",
-      "size": 1961
-    },
-    {
-      "path": "vdm_rt/frontend/utilities/fs_utils.py",
-      "sha256": "888dde3b6e53774ee7f4688e93b52d8d385684a4af6bdfb4243cbd88ca62a6c8",
-      "size": 3579
-    },
-    {
-      "path": "vdm_rt/frontend/utilities/pdf_utils.py",
-      "sha256": "2fd8436668df7f475f776390a2835888188be705481b601bf643ce2f9821c8da",
-      "size": 4691
-    },
-    {
-      "path": "vdm_rt/frontend/utilities/profiles.py",
-      "sha256": "d2e6c5beb8f7c3cdc0acad0f10a83419c335f2dec86b9bcd246f94c3d23b44da",
-      "size": 5399
-    },
-    {
-      "path": "vdm_rt/frontend/utilities/tail.py",
-      "sha256": "cea0d4aa99d5ac2d11bca702f0c1ab4b4064ad23f7cdcbf69e5a8922e6bf58b7",
-      "size": 5169
-    },
-    {
-      "path": "vdm_rt/io/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/io/__init__.py",
-      "sha256": "fb269e17df81264c430040d1959248dc9ba6856dfc7fbb90fa0fbefea9ccf8f4",
-      "size": 373
-    },
-    {
-      "path": "vdm_rt/io/actuators/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/io/actuators/__init__.py",
-      "sha256": "fb269e17df81264c430040d1959248dc9ba6856dfc7fbb90fa0fbefea9ccf8f4",
-      "size": 373
-    },
-    {
-      "path": "vdm_rt/io/actuators/macros.py",
-      "sha256": "78ef709e1c90833f724fffaa275dbe9b764455850e8e158440cf9d245efa8206",
-      "size": 5021
-    },
-    {
-      "path": "vdm_rt/io/actuators/motor_control.py",
-      "sha256": "523e4c0125560ec23aa2e25c9faf521df1036a08a6e592dfa4971b6f139a752a",
-      "size": 383
-    },
-    {
-      "path": "vdm_rt/io/actuators/symbols.py",
-      "sha256": "b36b2155eb80466c6ec7e7fa3735589193b4bc72ba708d91f5fc7c5ba3483c6d",
-      "size": 348
-    },
-    {
-      "path": "vdm_rt/io/actuators/thoughts.py",
-      "sha256": "b3550dde00d43982ba1edd2d3a403c4f46c6e9378c348215f4f9dd63f51bdf3f",
-      "size": 3392
-    },
-    {
-      "path": "vdm_rt/io/actuators/visualize.py",
-      "sha256": "b36b2155eb80466c6ec7e7fa3735589193b4bc72ba708d91f5fc7c5ba3483c6d",
-      "size": 348
-    },
-    {
-      "path": "vdm_rt/io/actuators/vocalizer.py",
-      "sha256": "b36b2155eb80466c6ec7e7fa3735589193b4bc72ba708d91f5fc7c5ba3483c6d",
-      "size": 348
-    },
-    {
-      "path": "vdm_rt/io/cognition/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/io/cognition/composer.py",
-      "sha256": "969ca80d47e9fe9f6ea693c9461010b1e9160c59f8ecd23deacdd06287b06d9a",
-      "size": 3289
-    },
-    {
-      "path": "vdm_rt/io/cognition/speaker.py",
-      "sha256": "4d8acc238fed1c8d45ffc0322a7ae50525573bfcb8110dd2a80175ff4f4ce3fc",
-      "size": 2982
-    },
-    {
-      "path": "vdm_rt/io/cognition/stimulus.py",
-      "sha256": "c2dcea1dee55b1ca3f5abbf2cab53bbced1fbd591c8817b2f2d4853062e04864",
-      "size": 2068
-    },
-    {
-      "path": "vdm_rt/io/lexicon/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/io/lexicon/idf.py",
-      "sha256": "ab5c625f06c6d566c6d2b08544c9d7042813e6a1b353d7b40316f696bc8e282f",
-      "size": 3002
-    },
-    {
-      "path": "vdm_rt/io/lexicon/phrase_bank_min.json",
-      "sha256": "976063e0b2b740a0fac2a929f72cf3448afb3ab05d1fd1bd9cbf2b6bddfb4711",
-      "size": 647
-    },
-    {
-      "path": "vdm_rt/io/lexicon/store.py",
-      "sha256": "1d1b8f95a929f28dab1f4f616244f08fc6bd96a1285c712bc3d8f5c7c4d8d908",
-      "size": 5694
-    },
-    {
-      "path": "vdm_rt/io/logging/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/io/logging/rolling_jsonl.py",
-      "sha256": "7ec2eebee07ae69fd98c196750f7c86f9dde8d6eb2ef8571fe381ec368887543",
-      "size": 21463
-    },
-    {
-      "path": "vdm_rt/io/maps_ring.py",
-      "sha256": "60ca36b2151fe2daf208bcfc68f94b58ec466f9a71d0f7169d763cf72f94f2c6",
-      "size": 756
-    },
-    {
-      "path": "vdm_rt/io/sensors/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/io/sensors/__init__.py",
-      "sha256": "fb269e17df81264c430040d1959248dc9ba6856dfc7fbb90fa0fbefea9ccf8f4",
-      "size": 373
-    },
-    {
-      "path": "vdm_rt/io/sensors/auditory.py",
-      "sha256": "b36b2155eb80466c6ec7e7fa3735589193b4bc72ba708d91f5fc7c5ba3483c6d",
-      "size": 348
-    },
-    {
-      "path": "vdm_rt/io/sensors/somatosensory.py",
-      "sha256": "b36b2155eb80466c6ec7e7fa3735589193b4bc72ba708d91f5fc7c5ba3483c6d",
-      "size": 348
-    },
-    {
-      "path": "vdm_rt/io/sensors/symbols.py",
-      "sha256": "b36b2155eb80466c6ec7e7fa3735589193b4bc72ba708d91f5fc7c5ba3483c6d",
-      "size": 348
-    },
-    {
-      "path": "vdm_rt/io/sensors/vision.py",
-      "sha256": "b36b2155eb80466c6ec7e7fa3735589193b4bc72ba708d91f5fc7c5ba3483c6d",
-      "size": 348
-    },
-    {
-      "path": "vdm_rt/io/utd.py",
-      "sha256": "67a6331a1ed09aef677bf7e4af7115b17afbf3232c2d2db7b9ca0477b8c99208",
-      "size": 5028
-    },
-    {
-      "path": "vdm_rt/io/ute.py",
-      "sha256": "2198a85821896c6e69afda9bb35ecafc076b6f8399b98543d8952b65bb663244",
-      "size": 3825
-    },
-    {
-      "path": "vdm_rt/io/visualization/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/io/visualization/__init__.py",
-      "sha256": "5b8234ea0ecd212efc68f4abd177788c7294837866561bd07572d71ab2809157",
-      "size": 664
-    },
-    {
-      "path": "vdm_rt/io/visualization/maps_ring.py",
-      "sha256": "3fec30f183203c8bdeea4635d6919f05366e8fd9f9edbf9f96f737de8ffe7cfa",
-      "size": 4128
-    },
-    {
-      "path": "vdm_rt/io/visualization/websocket_server.py",
-      "sha256": "5c490d53f843e542935d1437b876d5d3f6aeac2872136d1a4a1c53c339336cda",
-      "size": 10978
-    },
-    {
-      "path": "vdm_rt/nexus.py",
-      "sha256": "27dba7507dffd874c6ee50d460531832e2cee877c39aef7d823029a19e727010",
-      "size": 18071
-    },
-    {
-      "path": "vdm_rt/physics/README.md",
-      "sha256": "507bca1f03b91a1e0466633009e820d2c22a78e7d7b8e687bb7d3ced43cf3f33",
-      "size": 361
-    },
-    {
-      "path": "vdm_rt/physics/__init__.py",
-      "sha256": "15b2dcee3e31430722e3d41ee06f22f53648cea0a02ebcb3edd00b20c87d63e5",
-      "size": 2163
-    },
-    {
-      "path": "vdm_rt/physics/ci_gates.py",
-      "sha256": "792fcf4cbf5783ecea4736b7d64ad9b63bc5847caaedd2e01779e6225e74ed42",
-      "size": 2882
-    },
-    {
-      "path": "vdm_rt/physics/harness_logging.py",
-      "sha256": "eed7e63c8545c6a02ee2e00d3c5f1459108abb2989ec72fbacefd123203b2d68",
-      "size": 3981
-    },
-    {
-      "path": "vdm_rt/physics/memory_steering/memory_steering.py",
-      "sha256": "0f7bcb8c0beb959eebdd45de24026a79595b4c6e06b1a90605093aa104fbea81",
-      "size": 17032
-    },
-    {
-      "path": "vdm_rt/physics/memory_steering/memory_steering_experiments.py",
-      "sha256": "09c34b25c4f52f951a2efd0a0c1aae41858a0cca7a4d2c32faf980e53bb8a4c7",
-      "size": 39248
-    },
-    {
-      "path": "vdm_rt/physics/memory_steering/plot_memory_steering.py",
-      "sha256": "c31351dbcfb33edea46c27b6cf251a668295f4923ecda5bc536e446c857920b3",
-      "size": 20858
-    },
-    {
-      "path": "vdm_rt/physics/outputs/figures/rd_dispersion_runner_20250820T114106Z.png",
-      "sha256": "fed2c2062034d8bed7fc43af23173c6b1be6f90fb5d56651b2bfcd924afa2357",
-      "size": 67090
-    },
-    {
-      "path": "vdm_rt/physics/outputs/figures/rd_front_speed_runner_20250820T114104Z.png",
-      "sha256": "5a4c630a2a0d8e24deb5f85c7606043d5eedb0a459e4ba3ad8f0d4192520e4ec",
-      "size": 132271
-    },
-    {
-      "path": "vdm_rt/physics/outputs/logs/rd_dispersion_runner_20250820T114106Z.json",
-      "sha256": "974181e4d377f860a05ac6d87920a7b1bb292ebfa83b37f06673edbdb8f17470",
-      "size": 11904
-    },
-    {
-      "path": "vdm_rt/physics/outputs/logs/rd_front_speed_runner_20250820T114104Z.json",
-      "sha256": "778c2707b1bf53f55654e8d243dfa457a0875e2546c8375efed4d22ee315197d",
-      "size": 980
-    },
-    {
-      "path": "vdm_rt/physics/pta_correlation_harness.py",
-      "sha256": "529d1be80037d70a2b38f70d8227768ba67e9a97b02fa77ea83b9a58b962ec99",
-      "size": 12288
-    },
-    {
-      "path": "vdm_rt/physics/rd_dispersion_runner.py",
-      "sha256": "8859a4a7b854b046832d528e75e44d36ab4f6f27f966e010d08ded6ecff81e04",
-      "size": 6524
-    },
-    {
-      "path": "vdm_rt/physics/rd_front_speed_runner.py",
-      "sha256": "f35e7557a8ad1db57302135f3850ec85456d29c12d91e4c25d6dfecba0161b3e",
-      "size": 6355
-    },
-    {
-      "path": "vdm_rt/physics/router_regression_figures.py",
-      "sha256": "6faac3be0a7a64e1ea70d492ed10b7f60065988cbd7bda932d4535484e97f6b2",
-      "size": 14264
-    },
-    {
-      "path": "vdm_rt/physics/sidm_curve_harness.py",
-      "sha256": "07f38dad1167f3d61dee16e69a577d2373815f57a13330946581e61a1392114f",
-      "size": 12232
-    },
-    {
-      "path": "vdm_rt/physics/vacuum_demographics_harness.py",
-      "sha256": "6c6e0711162b71cbcf2408ea1324de03bb4e70c2992e303fd7d83b1ae0669a09",
-      "size": 16532
-    },
-    {
-      "path": "vdm_rt/requirements.txt",
-      "sha256": "329376d9b870ec1959be6a627fe2dd6cf3be30dbf105d88aee406f7c7beb5515",
-      "size": 201
-    },
-    {
-      "path": "vdm_rt/run_nexus.py",
-      "sha256": "e9824699971576d3d50031b7c4bf98e7201d93aaa38d3f2edc53593cef8eca13",
-      "size": 4635
-    },
-    {
-      "path": "vdm_rt/runtime/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/runtime/__init__.py",
-      "sha256": "b4930c7aff1004aa47d8466e60235e7157ba7ce0edd15be3a1159912b3568a59",
-      "size": 759
-    },
-    {
-      "path": "vdm_rt/runtime/emitters.py",
-      "sha256": "1ddf608f80f3789b1b75ae57db93950a08e92d49ec48371506a7b8397490b585",
-      "size": 2165
-    },
-    {
-      "path": "vdm_rt/runtime/events_adapter.py",
-      "sha256": "b6a91b6c9a6c4cf948a3e43b18e88b1fb7a8eae3ee41f0e2d77dc154ddb816a3",
-      "size": 6761
-    },
-    {
-      "path": "vdm_rt/runtime/helpers/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/runtime/helpers/__init__.py",
-      "sha256": "e0a7ef1b5a6a954a21f4916e85eafd91ca11658ad8500f25fc168d8ca354a19e",
-      "size": 1611
-    },
-    {
-      "path": "vdm_rt/runtime/helpers/checkpointing.py",
-      "sha256": "b927522b9bc8c28fe5bc5dfcbd2d2ba7289c09d839132b449069be3a41bbd54e",
-      "size": 2191
-    },
-    {
-      "path": "vdm_rt/runtime/helpers/emission.py",
-      "sha256": "fe6ea0787d7b767c1840802bc4dfba0e29b730054dd86c2f2c5b78875d828f08",
-      "size": 2416
-    },
-    {
-      "path": "vdm_rt/runtime/helpers/engram.py",
-      "sha256": "fedce96540f9169f1c37180d5680bb80f8ca9fba9178906c188d53009f7a805b",
-      "size": 3005
-    },
-    {
-      "path": "vdm_rt/runtime/helpers/ingest.py",
-      "sha256": "7e2e406180432c7013ebbf706a5fd83ae56cf2d9d2db568bb6b6a782bf8c38a7",
-      "size": 3977
-    },
-    {
-      "path": "vdm_rt/runtime/helpers/macro_board.py",
-      "sha256": "ab7087f398d529b7d3430b17e84a730b93ac695dfc4d42bc6daf5cc243c911bf",
-      "size": 1946
-    },
-    {
-      "path": "vdm_rt/runtime/helpers/maps_ws.py",
-      "sha256": "f51affebd6a6b07b28e75dc06914e7abe04f7c69441ddbfd0874a9c9a1e24f9e",
-      "size": 3394
-    },
-    {
-      "path": "vdm_rt/runtime/helpers/redis_out.py",
-      "sha256": "f09fac9bf12fe318aa52993e191dd29adf5d16c2d23bbf24615f161c2ef193fc",
-      "size": 5822
-    },
-    {
-      "path": "vdm_rt/runtime/helpers/smoke.py",
-      "sha256": "1f0279384da92be43e0aa9ca2a963b139816a4b1770bd30c2b562a4d24e2c507",
-      "size": 2895
-    },
-    {
-      "path": "vdm_rt/runtime/helpers/speak.py",
-      "sha256": "07356dbeaa993ec325f0e44f33cf31cdf9225f12c86c8620c1b5a9b1303ee6f0",
-      "size": 4684
-    },
-    {
-      "path": "vdm_rt/runtime/helpers/status_http.py",
-      "sha256": "396241b3dc78c38ad08f23f993fc8ce8965d128f7413bf0b40f23890c1e18fd5",
-      "size": 7030
-    },
-    {
-      "path": "vdm_rt/runtime/helpers/viz.py",
-      "sha256": "395147dc0ae0287eb568e8a42db169595c358a8aad1d3cf9723990c80a9ee3ce",
-      "size": 1445
-    },
-    {
-      "path": "vdm_rt/runtime/loop/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/runtime/loop/__init__.py",
-      "sha256": "f345bc86202cf3e721c46db0e2a031f8118e424986d0ecc30ff7274623a1d659",
-      "size": 1835
-    },
-    {
-      "path": "vdm_rt/runtime/loop/main.py",
-      "sha256": "0ee7ac7010e066531152e5408b42159e535cfdf633a7ec4a97936925db023bf6",
-      "size": 40997
-    },
-    {
-      "path": "vdm_rt/runtime/orchestrator.py",
-      "sha256": "343b999d7579b39293624e7cba9424f3557f5bbc8293062c882e0be354ddb464",
-      "size": 4063
-    },
-    {
-      "path": "vdm_rt/runtime/phase.py",
-      "sha256": "5e284b162779ebaf8bff9845e7485b717d66b767bd144a61aea6dc4f885425ac",
-      "size": 11140
-    },
-    {
-      "path": "vdm_rt/runtime/retention.py",
-      "sha256": "ba4df62d509362465c8954cdf667c64dc8b6392d245fd5e3fe820701767b16da",
-      "size": 3780
-    },
-    {
-      "path": "vdm_rt/runtime/state.py",
-      "sha256": "99e2a88769b5c81ee2be47699b1ec892ce8d864ac6654862a5edaf8b9fd498f4",
-      "size": 2862
-    },
-    {
-      "path": "vdm_rt/runtime/stepper.py",
-      "sha256": "00c44a0cb5ed230fa262687236537be52e95b7b35aa295c73158e1f82032b4f5",
-      "size": 4205
-    },
-    {
-      "path": "vdm_rt/runtime/telemetry.py",
-      "sha256": "e89764eb08381363e026e02bf636a58c54b0cd519a098cdf9e5be064bbb71fd2",
-      "size": 26431
-    },
-    {
-      "path": "vdm_rt/tests/conftest.py",
-      "sha256": "2c6cc10cec98645b03297b5e4f345afe395ec1de6cbf1d973a441f6026637793",
-      "size": 1212
-    },
-    {
-      "path": "vdm_rt/tests/core/cosmology/test_events.py",
-      "sha256": "f5e8334e114d9cdde76f4b4f0b1a8d159650b553289c99ca0ebf028a17969fb2",
-      "size": 3195
-    },
-    {
-      "path": "vdm_rt/tests/core/cosmology/test_router.py",
-      "sha256": "8701ed291ba9e08bef561a72f746d8f5884e87bd1d4463525937ffc00e8a4f49",
-      "size": 7928
-    },
-    {
-      "path": "vdm_rt/tests/core/test_active_graph_regression.py",
-      "sha256": "a2793809e9346fc3732f6370df1cbf57dd2a5dd46cc7d123fa1218ae1da36b1a",
-      "size": 3673
-    },
-    {
-      "path": "vdm_rt/tests/core/test_core_boundary_guards.py",
-      "sha256": "a37dcd4c7c3ec7a16c38a238282fc7f42ee7fc2ebbc39c4b04e1d2c3ef5ff702",
-      "size": 6255
-    },
-    {
-      "path": "vdm_rt/tests/core/test_maps_frame.py",
-      "sha256": "5b04497e4ad955c168c76891a4e64462d6b32be7f557cd6757d8c7ecbb4d7832",
-      "size": 3463
-    },
-    {
-      "path": "vdm_rt/tests/core/test_runner_budget.py",
-      "sha256": "e1f02cfcd24f0c44d739808860d110106e450e8b27c776aa239f226d73439edb",
-      "size": 3818
-    },
-    {
-      "path": "vdm_rt/tests/core/test_scouts.py",
-      "sha256": "288aa6102cc928f6f042582598afed33719b7ce1afd3908542f89503dac0209f",
-      "size": 2264
-    },
-    {
-      "path": "vdm_rt/tests/core/test_territory_uf.py",
-      "sha256": "45ea0b5f1252104841f9ba3612520cba5318efca12d0ad3b5db0505ce09e24af",
-      "size": 2256
-    },
-    {
-      "path": "vdm_rt/tests/core/test_void_faithful_guards.py",
-      "sha256": "8dd4e56a9fba391596bcc8a45fde78b5569054e7cfcf293800bab52f654dfdc9",
-      "size": 3414
-    },
-    {
-      "path": "vdm_rt/tests/frontend/test_frontend_architecture.py",
-      "sha256": "a7bebb043518dae81578ecf532bc5eab1469c940dcf9f71d03687865b4377f57",
-      "size": 6510
-    },
-    {
-      "path": "vdm_rt/tests/frontend/test_process_manager_runs_root.py",
-      "sha256": "364feeba083eb229a20d96685b5022556c0b252dbeab6bdc4fabb6a7f828f664",
-      "size": 4156
-    },
-    {
-      "path": "vdm_rt/tests/guards/test_no_dense_connectome.py",
-      "sha256": "e5e975e9c23f3e5c26e6af3bf56f46ba7dbc32a22d7b1ee36975bae2a90d32a3",
-      "size": 1399
-    },
-    {
-      "path": "vdm_rt/tests/guards/test_no_scheduler.py",
-      "sha256": "7034c4680751899e7903ec9507109c5353b6bfc1ccaa6f846f44f276bac44652",
-      "size": 3368
-    },
-    {
-      "path": "vdm_rt/tests/physics/test_ci_gates.py",
-      "sha256": "1b0f90852b64f2885e3faebd7b526c78a87fd7dc8badce0d80317db28900f050",
-      "size": 2098
-    },
-    {
-      "path": "vdm_rt/tests/physics/test_harness_logging.py",
-      "sha256": "bc4dc628f4601734ef9ec7aa6e4377a4354cccd74a6b39c1ee4fe74abbc0bdb8",
-      "size": 1661
-    },
-    {
-      "path": "vdm_rt/tests/physics/test_invariants.py",
-      "sha256": "a7ac2ffe57ec4aebc3e4ac6cf060b953627c5e0011d45f351072ce447be37103",
-      "size": 4678
-    },
-    {
-      "path": "vdm_rt/tests/physics/test_memory_kernel_event_local.py",
-      "sha256": "4301889828da672fc257dd2669263ef302825f01911c7ee0b35947adbba57a23",
-      "size": 3045
-    },
-    {
-      "path": "vdm_rt/tests/physics/test_pta_correlation_harness.py",
-      "sha256": "e3e6c430f1198d7732398a7b70a65fbebe088bb624105d6d2e037de02e9936d1",
-      "size": 2219
-    },
-    {
-      "path": "vdm_rt/tests/physics/test_router_regression_figures.py",
-      "sha256": "bb9f364d7297b83a1a5eeda48bad719202acbd017d454a2e31820e75fcc6ec00",
-      "size": 3084
-    },
-    {
-      "path": "vdm_rt/tests/physics/test_sidm_curve_harness.py",
-      "sha256": "24e3a3d5905b1f9e6c4c1528ce227b5a51ce10350a189e5e5d926d5e63565925",
-      "size": 2426
-    },
-    {
-      "path": "vdm_rt/tests/physics/test_steering_ab.py",
-      "sha256": "85987e176e98d8e28ead3f54b40aa7b7a243a0e08b61dff32d432fa86e8b0d42",
-      "size": 3708
-    },
-    {
-      "path": "vdm_rt/tests/physics/test_vacuum_demographics_harness.py",
-      "sha256": "26c6caf3dfb2f51415b97b887d50ade160c4a3e6f99a547fb56cb6ae2f1a2308",
-      "size": 2956
-    },
-    {
-      "path": "vdm_rt/tests/runtime/test_events_adapter_inhibition.py",
-      "sha256": "a16fd0319b807240124fe8472477b097a9d4f3d2de8dee7e57feba81e8011d5b",
-      "size": 5180
-    },
-    {
-      "path": "vdm_rt/tests/runtime/test_phase_legacy_key.py",
-      "sha256": "9d16757108298551870d74c9e8e10aa2674a53091c342387e40dc877d979d1f0",
-      "size": 1628
-    },
-    {
-      "path": "vdm_rt/tests/runtime/test_telemetry_frame_v2.py",
-      "sha256": "ee5a8d8ffff6e720dec9e077eebe6a7fd4b70a0260f3b8f9e7cb039a816fbcde",
-      "size": 3177
-    },
-    {
-      "path": "vdm_rt/utils/README.md",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    {
-      "path": "vdm_rt/utils/logging_setup.py",
-      "sha256": "52f22b50e1bf46960ede2dd1647767e762c0769221a560c41d1ac9617ba3b33a",
-      "size": 1932
     },
     {
       "path": "maintenance-prompts/algorithms_maintenance.md",
@@ -11585,7 +9500,7 @@
     },
     {
       "path": "tools/smoke_emissions.py",
-      "sha256": "9c001d6c856c0ef7d28cabb02362a31cd1411611b6cf653d2f51b54dbee7823b",
+      "sha256": "39ef506e4d68ca816c892cc4cbc2a9d4be0d6993656ffda7454e04c2a3090bdb",
       "size": 5592
     },
     {
@@ -11609,251 +9524,16 @@
       "size": 3840
     },
     {
-      "path": "Derivation/Axioms/PROVENANCE_index.json",
-      "sha256": "f0cf0457b2b70daae0a1efd5087127bff2b98f9a4bb1cedf87f9dfd85cb8b066",
-      "size": 1709
-    },
-    {
-      "path": "Derivation/Causality/PROVENANCE_index.json",
-      "sha256": "050c4744df6dfcf8d6a56fbbab5557e08a92c06733674436c2a4c47c6b4e84db",
-      "size": 965
-    },
-    {
-      "path": "Derivation/Closure/PROVENANCE_index.json",
-      "sha256": "e804e7a001867f9edbcc30b4eb6f1e7870236e494f469989e5186e40b022aa3f",
-      "size": 344
-    },
-    {
-      "path": "Derivation/Collapse/PROVENANCE_index.json",
-      "sha256": "1dcb0c2c472556144fb66a0a22f25575c72dd61b958e26c268424c9aa9307af4",
-      "size": 1891
-    },
-    {
-      "path": "Derivation/Complete-Formalisms/PROVENANCE_index.json",
-      "sha256": "cf5c912c71c128eea1e32df7ece4e26450f815abd6c63884426d9a0ef51420e4",
-      "size": 1945
-    },
-    {
-      "path": "Derivation/Conservation_Law/PROVENANCE_index.json",
-      "sha256": "629b26e7b44b5f85bc6e6f484d7784b8cef96e288ec4170a2196d30f671eca0b",
-      "size": 931
-    },
-    {
-      "path": "Derivation/Cosmology/PROVENANCE_index.json",
-      "sha256": "7f94806fb6dc492df427886d32ff75d52b8d89e5f1ee7df17e2c9b3674e1916a",
-      "size": 2207
-    },
-    {
-      "path": "Derivation/Dark_Matter/PROVENANCE_index.json",
-      "sha256": "54baf4cbe6ad7410756c89689ca0220c8cfab7f4a828b12e4ad6050535a05fce",
-      "size": 351
-    },
-    {
-      "path": "Derivation/Dark_Photons/PROVENANCE_index.json",
-      "sha256": "5bd81cf4e74a65d690f5cb5f4e82d9240de8e0e7ef047953fd8b5446759447dd",
-      "size": 2499
-    },
-    {
-      "path": "Derivation/Effective_Field_Theory/PROVENANCE_index.json",
-      "sha256": "303a48e3cac0f1d6f014be5b8a5ceeba8f3afd684364c50ecf95f6c3b6fb632c",
-      "size": 744
-    },
-    {
-      "path": "Derivation/Entropy/PROVENANCE_index.json",
-      "sha256": "5a25e509d0ba7f126f88e5afb89262db2c90f052a2860a5138ac4d8af8073c7b",
-      "size": 585
-    },
-    {
-      "path": "Derivation/Fluid_Dynamics/PROVENANCE_index.json",
-      "sha256": "a4cd4dfd7fcb262312f3a222ff695c66ca397041eb583de7e6f6dd57026f4696",
-      "size": 1120
-    },
-    {
-      "path": "Derivation/Foundations/PROVENANCE_index.json",
-      "sha256": "c4a5cc572344e5f1d7d6056e4a9fe79fd79b789d5a1040969cfd18c6ff60680f",
-      "size": 859
-    },
-    {
-      "path": "Derivation/Gravity/PROVENANCE_index.json",
-      "sha256": "f7bc352ecb180c05f71dee6083832aaf388dc811184541df21410ecf5fe234f8",
-      "size": 845
-    },
-    {
-      "path": "Derivation/Hierarchy/PROVENANCE_index.json",
-      "sha256": "ff1d3c661683fe6ef10a9f1f66cf4e7cf304e72a2474a96f099b521669756c45",
-      "size": 561
-    },
-    {
-      "path": "Derivation/Information/PROVENANCE_index.json",
-      "sha256": "4f998a3852a78525aea5d5133ba56b6659dd4d4615833cc3ba29f13ababaf829",
-      "size": 508
-    },
-    {
-      "path": "Derivation/Intelligence_Model/PROVENANCE_index.json",
-      "sha256": "b0d5df1be010d579f5aca2d6e6342384b152c6d8edea20d851c138f56fdecb4e",
-      "size": 951
-    },
-    {
-      "path": "Derivation/Metriplectic/PROVENANCE_index.json",
-      "sha256": "6aaa98ebb668b72dddcd82dec33230f3303066b2ccb73a998e5babe2e4822100",
-      "size": 12507
-    },
-    {
-      "path": "Derivation/Nonequilibrium/PROVENANCE_index.json",
-      "sha256": "eb25717da981cb3cf9c5cb5443802a83ccfc8463b4ed611266c438ca827a20f1",
-      "size": 587
-    },
-    {
-      "path": "Derivation/Notebooks/PROVENANCE_index.json",
-      "sha256": "2472db5212193b0f57d58af83534693acb549a709e287188d9493f1b2e8ba614",
-      "size": 1790
-    },
-    {
-      "path": "Derivation/Qualia/PROVENANCE_index.json",
-      "sha256": "76ee57d951b62b46751dbeff13b0fe29549684eea8c7838230d1d430d7ee5c5b",
-      "size": 543
-    },
-    {
-      "path": "Derivation/Quantum/PROVENANCE_index.json",
-      "sha256": "e1f0b1f6f37e798f01c84822a8331fb5c90dbf74d45e8486957c68a955a75937",
-      "size": 2697
-    },
-    {
-      "path": "Derivation/Quantum_Gravity/PROVENANCE_index.json",
-      "sha256": "b49174b3a198120b01619eb719a05774db3a7d99f421f39841563c9c073064c6",
-      "size": 976
-    },
-    {
-      "path": "Derivation/Reaction_Diffusion/PROVENANCE_index.json",
-      "sha256": "b3e9b5019c6b0a4d68b7bc9c9fd3eb835148667fcfe49bb7caba970696c18902",
-      "size": 720
-    },
-    {
-      "path": "Derivation/Spinor/PROVENANCE_index.json",
-      "sha256": "a1cfb80bc6028b81f6c9e2afb5312985dd17d6b2d08b9c1f198689e29d9a9905",
-      "size": 326
-    },
-    {
-      "path": "Derivation/Tachyon_Condensation/PROVENANCE_index.json",
-      "sha256": "438c1f577eebd3f1e3cfb63c5b7299f6450a2c1dcead64bcc28992a64abef1e2",
-      "size": 748
-    },
-    {
-      "path": "Derivation/Thermodynamic_Routing/PROVENANCE_index.json",
-      "sha256": "dd69c37c3ab99f0002a6f5c44b1d3fa7e3f4fc12f4b068abd40fdd197a023442",
-      "size": 2454
-    },
-    {
-      "path": "Derivation/Thermodynamics/Convection/PROVENANCE_index.json",
-      "sha256": "8bb95fdaf85d4e53ee7ca8222aeac2e01c4e870063157283816c53d3972e8d19",
-      "size": 386
-    },
-    {
-      "path": "Derivation/Topology/PROVENANCE_index.json",
-      "sha256": "70b602539bcd3907a12dd8c58c434c2ae895356bf1aeb1973a45e7e87b7e454f",
-      "size": 683
-    },
-    {
-      "path": "Derivation/Transport/Telegraph_From_Relaxation/PROVENANCE_index.json",
-      "sha256": "7233ae69e977926940c33f20d5f8e96c3c4c2d1f0c060a1988ebfce474003c4b",
-      "size": 393
-    },
-    {
-      "path": "Derivation/Unification/PROVENANCE_index.json",
-      "sha256": "2746ecb3dabcc46755fd39b469cdffc676ea62648b9bd9d285fa013ad3ef8bf2",
-      "size": 336
-    },
-    {
-      "path": "Derivation/z.CANONICAL_Algorithms/PROVENANCE_index.json",
-      "sha256": "c579d720d39dcbd594bf17701286c26eeb33c1962e9c82930b16cc3bc403157f",
-      "size": 341
-    },
-    {
-      "path": "Derivation/z.CANONICAL_BC_IC_Geometries/PROVENANCE_index.json",
-      "sha256": "34fe0f957cda4c7b6b25afbaa2750490adc40e6596fbcd2d352fba54845a4510",
-      "size": 539
-    },
-    {
-      "path": "Derivation/z.CANONICAL_Chronicles/PROVENANCE_index.json",
-      "sha256": "1669099b0317ae1f4e6cea104c4d65046a44b66f78da4589be4686254079c7f8",
-      "size": 517
-    },
-    {
-      "path": "Derivation/z.CANONICAL_Complete_Formalisms/PROVENANCE_index.json",
-      "sha256": "bda6a872c24f046fc0725a9516ff19a74e4197ee0bc78395d89c5beffada3153",
-      "size": 551
-    },
-    {
-      "path": "Derivation/z.CANONICAL_Constants/PROVENANCE_index.json",
-      "sha256": "bc15bbb62ec201d4d51602d4261edb03f3371d93536a5e723bfe714ff954d573",
-      "size": 338
-    },
-    {
-      "path": "Derivation/z.CANONICAL_Data_Products/PROVENANCE_index.json",
-      "sha256": "220a0c6748ab6cf7060a125af137edbcd43b40d8e6a1e9433b5be88f1ac388bc",
-      "size": 350
-    },
-    {
-      "path": "Derivation/z.CANONICAL_Equations/PROVENANCE_index.json",
-      "sha256": "7dd870c4a089534e09c5341600c79e8c8bdb4632edee334ccce1425843605a09",
-      "size": 338
-    },
-    {
-      "path": "Derivation/z.CANONICAL_Hypotheses/PROVENANCE_index.json",
-      "sha256": "d445c571e4bd9a6aaf5f1aaae2d372a7f2780155f3a9fc8f5ddcf9281788c446",
-      "size": 517
-    },
-    {
-      "path": "Derivation/z.CANONICAL_Naming_Conventions/PROVENANCE_index.json",
-      "sha256": "a1d6b4cc24e67d230ef5055b8a758288b5a12a78d8d5c109c295868d88bf6bfa",
-      "size": 549
-    },
-    {
-      "path": "Derivation/z.CANONICAL_Open_Questions/PROVENANCE_index.json",
-      "sha256": "d43b9ebb1886bcbe05c26b125629f809f03cfbf18f8916954781632b6f5e7107",
-      "size": 533
-    },
-    {
-      "path": "Derivation/z.CANONICAL_Proposals/PROVENANCE_index.json",
-      "sha256": "d7c6cc43c27868a666fee539a14a0fc4e517d3a8306655209dbde4ea6ca06f2a",
-      "size": 513
-    },
-    {
-      "path": "Derivation/z.CANONICAL_Results/PROVENANCE_index.json",
-      "sha256": "ede5c1f02b2920f409170308fbd554297a55bab2f01da9f82a7fdcbd7b2fcd19",
-      "size": 504
-    },
-    {
-      "path": "Derivation/z.CANONICAL_Roadmap/PROVENANCE_index.json",
-      "sha256": "20303226a975c3ae92835ff73ae202df792ff8bff4edc1e6d3cdf31acd8e6b84",
-      "size": 505
-    },
-    {
-      "path": "Derivation/z.CANONICAL_Schemas/PROVENANCE_index.json",
-      "sha256": "e13bee661ac3909205724c5aed2316d4d9aed5a2f4e8bacc78fc216ea3d69551",
-      "size": 506
-    },
-    {
-      "path": "Derivation/z.CANONICAL_Symbols/PROVENANCE_index.json",
-      "sha256": "6b50266af914284be428575e7d1146896ad0c9540958d492e3af7e8b2bb18293",
-      "size": 505
-    },
-    {
-      "path": "Derivation/z.CANONICAL_Units_Normalization/PROVENANCE_index.json",
-      "sha256": "ca2925f42d6790a5ebf174dd1e484860e8a34ef1ef171a7cf3438016dd676123",
-      "size": 553
-    },
-    {
-      "path": "Derivation/z.CANONICAL_Validation_Metrics/PROVENANCE_index.json",
-      "sha256": "29d71c80cb00143044815bd06d793a65e9f41e3c2fba3146ddd33c1993b5992d",
-      "size": 549
+      "path": "vdm_live.py",
+      "sha256": "22898a4d89bb51e75a4bd7ace356693a149305df314420ec307611cab97082ec",
+      "size": 1544
     }
   ],
-  "generated_utc": "2025-11-19T06:23:43.940715Z",
-  "git_commit": "75b01c3828491c835233186ef22e1ac6aef2bb93",
+  "generated_utc": "2025-11-19T06:49:01.460408Z",
+  "git_commit": "c3d83b990cdb1251e3d6841878625ed17c2cd241",
   "git_dirty": true,
   "repo_root": "/mnt/ironwolf/git/Prometheus_VDM",
   "schema": "vdm.provenance.manifest.v1",
-  "total_bytes": 1047882605,
-  "tree_hash": "d0b385aee28262e31cf29d138829b27a456715cc1e2831567a2aed7ce7ee5801"
+  "total_bytes": 1042535584,
+  "tree_hash": "aba0fa2a1f25f68a94cb94e87b489128bbe2ba59f38c9368fdfee34089fc82e7"
 }

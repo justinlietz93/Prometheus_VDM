@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2025-11-19T06:12:22.498545Z",
+  "generated_utc": "2025-11-19T06:48:58.184332Z",
   "items": [
     {
       "path": "Derivation/Axioms/A8_Hierarchy_Gates/T3_PROPOSAL_A8_Hierarchy_Gates_v1.md",
@@ -28,12 +28,12 @@
     },
     {
       "path": "Derivation/Axioms/T8-A8_Gates.md",
-      "sha256": "c267f22594f826900da1a84e4c13e6fed198fda4a154197651ffdad5e2035b00",
+      "sha256": "403a83307b7e5e6fdf5b999961623f574a13fcf21417b99b2dd7674c1abed0f4",
       "size": 29144
     },
     {
       "path": "Derivation/Axioms/T8-A8_Milestones.md",
-      "sha256": "34faf17162014908d11af453e7ce4e80367e18776650ef2575c501fb3df6d920",
+      "sha256": "7df65df7c0c2252cd9ec5beaf3fc8022de1e8ac120a94c498362cd927ede2a5c",
       "size": 26795
     },
     {
