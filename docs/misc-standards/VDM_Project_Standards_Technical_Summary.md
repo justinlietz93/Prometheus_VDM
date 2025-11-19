@@ -532,3 +532,28 @@ This document synthesizes the overarching technical rules, syntax requirements, 
 * A strict approval system mandates explicit authorization for all scripts and rejects unapproved runs, with tamper-evident auditing using SHA-256 row hashes for all experiment results.
 * Coefficients for Effective Field Theories must be rigorously derived directly from the discrete model rules and demonstrate that higher-derivative terms are zero or suppressed, avoiding external postulates.
 * The project enforces a tiered maturity ladder (T0-T9) with clear promotion gates, and critical development paths, like Memory Steering, are explicitly dependent on prior components such as the RD baseline being proven.
+
+## Implementation Checklist for New Experiment Code
+
+* [ ] **Place new experiment runners under the physics tree.** All new experiment runner code must live under [`Derivation/code/physics/{domain}/{runner_name}`](Derivation/code/physics) with a clear, domain-specific subdirectory name (e.g., `cosmology/cmb_meter_v1`, `metriplectic/instruments_v2`).
+* [ ] **Create or extend a domain setup module.** For each domain, ensure there is a corresponding setup module under [`Derivation/code/common/domain_setup/{domain_name}`](Derivation/code/common/domain_setup) that centralizes grid geometry, BC/IC selection, parameter defaults, and run-profile wiring.
+* [ ] **Use common plotting helpers only.** All plotting code (figure creation, style, layouts, saving) must be implemented as reusable, modular helpers under [`Derivation/code/common/plotting`](Derivation/code/common/plotting). Experiment runners in `Derivation/code/physics` may only call these helpers, not define ad-hoc plotting logic.
+* [ ] **Use common instrument helpers for reusable meters.** Any reusable instrument logic that does not itself require calibration (e.g., generic cone-fit, dispersion-fit, Lyapunov estimators, CMB pseudo-\(C_\ell\) binning scaffolds) must be implemented in [`Derivation/code/common/instrument_helpers`](Derivation/code/common/instrument_helpers/generic_helpers.py) and imported by the domain-specific tools.
+* [ ] **Calibrate tools that wrap helpers.** Domain-specific tools under [`Derivation/code/physics`](Derivation/code/physics) that import plotting or instrument helpers are responsible for calibration against canonical gates (see [`validation_gate_helpers`](Derivation/code/common/validation_gate_helpers)) and must expose clear inputs/outputs and gate verdicts.
+* [ ] **Follow the authorization pipeline explicitly.** All new runners must integrate with the authorization system under [`Derivation/code/common/authorization`](Derivation/code/common/authorization/README.md). Runners must:
+  * [ ] Set `VDM_RUN_SCRIPT` or equivalent identifiers.
+  * [ ] Resolve the appropriate approval DB via the shared helpers.
+  * [ ] Call the approval-check functions before any physics work or artifact writing.
+  * [ ] Fail fast (and route to quarantine) if authorization is not granted.
+* [ ] **Create per-runner APPROVAL manifests when multiple runners share a domain.** If a domain hosts more than one experiment runner, each runner must have its own `APPROVAL.json` colocated with the script, e.g.:
+  * [`Derivation/code/physics/causality/{runner_1_name}/APPROVAL.json`](Derivation/code/physics/causality)
+  * [`Derivation/code/physics/causality/{runner_2_name}/APPROVAL.json`](Derivation/code/physics/causality)
+   These manifests must conform to the approval manifest structure described in this document and in the authorization README.
+* [ ] **Wire runners to common IO paths.** All figures, CSV logs, and JSON logs must be created via [`io_paths.py`](Derivation/code/common/io_paths.py) so that:
+  * [ ] Successful runs are routed into the appropriate `Derivation/code/outputs/{figures,logs}/{domain}` tree.
+  * [ ] Failed or unauthorized runs are automatically routed into `failed_runs/` with contradiction reports.
+* [ ] **Ensure admin approval commands are executed via the authorization tools.** When new runners or tags are introduced, the AI assistant must invoke the appropriate CLI or helper command (e.g., via [`precommit_derivation_guard.py`](VDM_Nexus/scripts/precommit_derivation_guard.py)) so that the user is prompted for the admin password and the approval DB is updated; users must not be expected to run these commands manually.
+* [ ] **Keep domain notebooks and scripts consistent with this layout.** Any new Jupyter notebooks created to implement CF* formalisms must:
+  * [ ] Use the same domain setup and helpers under [`Derivation/code/common`](Derivation/code/common) as the scripted runners.
+  * [ ] Log artifacts via [`io_paths.py`](Derivation/code/common/io_paths.py) with the same tags/APPROVAL entries as their corresponding scripts.
+* [ ] **Document changes in Chronicles after canon updates.** Any new canonical experiment runner, instrument helper, or plotting helper added under these paths must be accompanied by an entry in [`Derivation/z.CANONICAL_Chronicles/00_CHRONICLES.md`](Derivation/z.CANONICAL_Chronicles/00_CHRONICLES.md) describing the change and its intended tier/role.
