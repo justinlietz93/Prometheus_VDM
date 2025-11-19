@@ -10,7 +10,7 @@ See LICENSE file for full terms.
 from __future__ import annotations
 
 """
-fum_rt.core.cortex.void_walkers.base
+vdm_rt.core.cortex.void_walkers.base
 
 Void-faithful, read-only scout base class.
 - No global scans or dense conversions; no direct access to raw weight arrays or external graph libraries.
@@ -40,7 +40,7 @@ This module defines the common, safe scaffolding. Heuristics live in subclasses.
 from typing import Any, Iterable, List, Optional, Sequence, Set, Dict
 import random
 
-from fum_rt.core.proprioception.events import (
+from vdm_rt.core.proprioception.events import (
     BaseEvent,
     VTTouchEvent,
     EdgeOnEvent,

@@ -36,7 +36,7 @@ Outputs (printed to stdout when run)
 - Stability band:               “D_a, Lambda, Gamma, Retention, Fidelity_w, Fidelity_end, Fidelity_shuffle_end, Fidelity_edge_end, AUC_end, SNR_end”
 
 Usage
-- python3 fum_rt/utils/memory_steering_experiments.py  > outputs/memory_steering_results.csv
+- python3 vdm_rt/utils/memory_steering_experiments.py  > outputs/memory_steering_results.csv
 - The plotting helper (separate) converts the combined CSV into figures saved in outputs/.
 """
 

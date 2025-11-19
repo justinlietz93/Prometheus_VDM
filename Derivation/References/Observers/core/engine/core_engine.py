@@ -17,25 +17,25 @@ Phase B goal:
 - These methods either delegate to existing functions or act as explicit stubs.
 
 Separation policy:
-- This module must not import from fum_rt.io.* or fum_rt.runtime.* to keep core isolated.
-- Only depend on fum_rt.core.* and the Nexus-like object passed at construction.
+- This module must not import from vdm_rt.io.* or vdm_rt.runtime.* to keep core isolated.
+- Only depend on vdm_rt.core.* and the Nexus-like object passed at construction.
 """
 
 from typing import Any, Dict, Optional, Tuple
 
-from fum_rt.core.metrics import compute_metrics
-from fum_rt.core.memory import (
+from vdm_rt.core.metrics import compute_metrics
+from vdm_rt.core.memory import (
     load_engram as _load_engram_state,
     save_checkpoint as _save_checkpoint,
 )
-from fum_rt.core.proprioception.events import EventDrivenMetrics as _EvtMetrics
-from fum_rt.core.cortex.scouts import VoidColdScoutWalker as _VoidScout, ColdMap as _ColdMap
-from fum_rt.core.cortex.maps.heatmap import HeatMap as _HeatMap
-from fum_rt.core.cortex.maps.excitationmap import ExcitationMap as _ExcMap
-from fum_rt.core.cortex.maps.inhibitionmap import InhibitionMap as _InhMap
-from fum_rt.core.cortex.maps.trailmap import TrailMap as _TrailMap
-from fum_rt.core.cortex.maps.memorymap import MemoryMap as _MemMap
-from fum_rt.core.signals import (
+from vdm_rt.core.proprioception.events import EventDrivenMetrics as _EvtMetrics
+from vdm_rt.core.cortex.scouts import VoidColdScoutWalker as _VoidScout, ColdMap as _ColdMap
+from vdm_rt.core.cortex.maps.heatmap import HeatMap as _HeatMap
+from vdm_rt.core.cortex.maps.excitationmap import ExcitationMap as _ExcMap
+from vdm_rt.core.cortex.maps.inhibitionmap import InhibitionMap as _InhMap
+from vdm_rt.core.cortex.maps.trailmap import TrailMap as _TrailMap
+from vdm_rt.core.cortex.maps.memorymap import MemoryMap as _MemMap
+from vdm_rt.core.signals import (
     compute_active_edge_density as _sig_density,
     compute_td_signal as _sig_td,
     compute_firing_var as _sig_fvar,

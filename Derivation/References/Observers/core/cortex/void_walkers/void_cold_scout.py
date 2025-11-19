@@ -10,7 +10,7 @@ See LICENSE file for full terms.
 from __future__ import annotations
 
 """
-fum_rt.core.cortex.void_walkers.void_cold_scout
+vdm_rt.core.cortex.void_walkers.void_cold_scout
 
 ColdScout (read-only, void-faithful):
 - Prefers neighbors whose node ids appear in ColdMap snapshot head ("cold_head").
@@ -22,8 +22,8 @@ Compatibility:
 """
 
 from typing import Any, Dict, List, Optional, Sequence, Set
-from fum_rt.core.cortex.void_walkers.base import BaseScout
-from fum_rt.core.proprioception.events import BaseEvent
+from vdm_rt.core.cortex.void_walkers.base import BaseScout
+from vdm_rt.core.proprioception.events import BaseEvent
 
 
 def _extract_head_nodes(maps: Optional[Dict[str, Any]], key: str, cap: int = 512) -> Set[int]:

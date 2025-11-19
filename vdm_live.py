@@ -12,7 +12,7 @@ from __future__ import annotations
 import argparse
 import os
 
-from fum_rt.frontend.app import build_app
+from vdm_rt.frontend.app import build_app
 
 
 def main() -> None:
@@ -29,8 +29,8 @@ def main() -> None:
     os.environ.setdefault("PYTHONUNBUFFERED", "1")
 
     app = build_app(os.environ["RUNS_ROOT"])
-    print(f"[fum_live] runs_root={os.environ['RUNS_ROOT']}")
-    print(f"[fum_live] Starting Dash on http://{args.host}:{args.port}")
+    print(f"[vdm_live] runs_root={os.environ['RUNS_ROOT']}")
+    print(f"[vdm_live] Starting Dash on http://{args.host}:{args.port}")
     # Avoid debug reloader to prevent duplicate callbacks
     app.run(host=args.host, port=args.port, debug=False)
 

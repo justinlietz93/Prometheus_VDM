@@ -9,7 +9,7 @@ Commercial use of proprietary VDM code requires written permission from Justin K
 See LICENSE file for full terms.
 """
 # Read-only, measurement-only walkers + bus + reducer for fluids telemetry.
-# No imports from fum_rt; self-contained.
+# No imports from vdm_rt; self-contained.
 
 from __future__ import annotations
 from dataclasses import dataclass

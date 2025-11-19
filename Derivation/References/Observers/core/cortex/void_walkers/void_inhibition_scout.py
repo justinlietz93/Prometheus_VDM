@@ -10,7 +10,7 @@ See LICENSE file for full terms.
 from __future__ import annotations
 
 """
-fum_rt.core.cortex.void_walkers.void_inhibition_scout
+vdm_rt.core.cortex.void_walkers.void_inhibition_scout
 
 InhibitionScout (read-only, void-faithful):
 - Duty: Map inhibitory ridges, feeding InhibitionMap strictly via events.
@@ -26,8 +26,8 @@ Physics alignment (docs in /derivation):
 
 from typing import Any, Dict, List, Optional, Set
 
-from fum_rt.core.cortex.void_walkers.base import BaseScout
-from fum_rt.core.proprioception.events import BaseEvent, SpikeEvent
+from vdm_rt.core.cortex.void_walkers.base import BaseScout
+from vdm_rt.core.proprioception.events import BaseEvent, SpikeEvent
 
 
 def _head_lookup(maps: Optional[Dict[str, Any]], key: str, cap: int = 512) -> Dict[int, float]:

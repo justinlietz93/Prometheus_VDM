@@ -557,7 +557,7 @@ def tick_fold(
                     ring = getattr(nx, "_maps_ring", None)
                     if ring is None:
                         try:
-                            from fum_rt.io.visualization.maps_ring import MapsRing  # local import to avoid module-policy drift
+                            from vdm_rt.io.visualization.maps_ring import MapsRing  # local import to avoid module-policy drift
                             cap = int(os.getenv("MAPS_RING", "3"))
                             nx._maps_ring = MapsRing(capacity=max(1, cap))
                             ring = nx._maps_ring

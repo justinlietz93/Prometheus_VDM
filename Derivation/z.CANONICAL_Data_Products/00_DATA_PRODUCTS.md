@@ -337,11 +337,11 @@ Last updated: 2025-10-09 (commit 09f871a)
 - Index/primary keys: timestamp in filename
 
 **Update cadence / lifecycle:** `per experiment run`  
-**Provenance (code locations):** `Derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py • 800ceda` ; `fum_rt/physics/rd_dispersion_runner.py • 800ceda`  
+**Provenance (code locations):** `Derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py • 800ceda` ; `vdm_rt/physics/rd_dispersion_runner.py • 800ceda`  
 **Validation hooks / KPIs:** `med_rel_err_max`, `r2_array_min` acceptance criteria  
 **Retention / access constraints:** none  
-**Example artifact (if referenced):** `Derivation/code/outputs/logs/reaction_diffusion/rd_dispersion_experiment_20250823T182316Z.json` ; `fum_rt/physics/outputs/logs/rd_dispersion_runner_20250820T114106Z.json`  
-**Notes:** Includes failed_runs subdirectory; dual locations (Derivation/code and fum_rt/physics)
+**Example artifact (if referenced):** `Derivation/code/outputs/logs/reaction_diffusion/rd_dispersion_experiment_20250823T182316Z.json` ; `vdm_rt/physics/outputs/logs/rd_dispersion_runner_20250820T114106Z.json`  
+**Notes:** Includes failed_runs subdirectory; dual locations (Derivation/code and vdm_rt/physics)
 
 ---
 
@@ -367,11 +367,11 @@ Last updated: 2025-10-09 (commit 09f871a)
 - Index/primary keys: timestamp in filename
 
 **Update cadence / lifecycle:** `per experiment run`  
-**Provenance (code locations):** `Derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py • 800ceda` ; `fum_rt/physics/rd_front_speed_runner.py • 800ceda`  
+**Provenance (code locations):** `Derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py • 800ceda` ; `vdm_rt/physics/rd_front_speed_runner.py • 800ceda`  
 **Validation hooks / KPIs:** front speed accuracy thresholds  
 **Retention / access constraints:** none  
-**Example artifact (if referenced):** `Derivation/code/outputs/logs/reaction_diffusion/rd_front_speed_experiment_20250823T194825Z.json` ; `fum_rt/physics/outputs/logs/rd_front_speed_runner_20250820T114104Z.json`  
-**Notes:** Includes failed_runs subdirectory; dual locations (Derivation/code and fum_rt/physics)
+**Example artifact (if referenced):** `Derivation/code/outputs/logs/reaction_diffusion/rd_front_speed_experiment_20250823T194825Z.json` ; `vdm_rt/physics/outputs/logs/rd_front_speed_runner_20250820T114104Z.json`  
+**Notes:** Includes failed_runs subdirectory; dual locations (Derivation/code and vdm_rt/physics)
 
 ---
 
@@ -498,7 +498,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### vacuum_demographics results  <a id="data-vacuum-demographics"></a>
 **Type:** log  
 **Purpose:** Vacuum demographics harness output for cosmology router vacuum channel validation  
-**Produced by:** TODO: add anchor (see fum_rt/physics/vacuum_demographics_harness.py)  
+**Produced by:** TODO: add anchor (see vdm_rt/physics/vacuum_demographics_harness.py)  
 **Defined by (if math):** TODO: add anchor for w(z) equation of state  
 **Inputs (symbols/constants):** TODO: link eta, epsilon, rho_lambda parameters  
 **Units/Normalization:** TODO: link to UNITS_NORMALIZATION.md (Myr, redshift)
@@ -509,7 +509,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Storage format & path pattern:**
 - Format: `json`
-- Path pattern: `fum_rt/physics/outputs/logs/vacuum_demographics_harness_<YYYYMMDDTHHMMSSZ>.json`
+- Path pattern: `vdm_rt/physics/outputs/logs/vacuum_demographics_harness_<YYYYMMDDTHHMMSSZ>.json`
 - Compression/encoding: none
 
 **Schema / columns (for tables/logs):**
@@ -517,7 +517,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 - Index/primary keys: timestamp in filename
 
 **Update cadence / lifecycle:** `per harness run`  
-**Provenance (code locations):** `fum_rt/physics/vacuum_demographics_harness.py:274-319 • 800ceda`  
+**Provenance (code locations):** `vdm_rt/physics/vacuum_demographics_harness.py:274-319 • 800ceda`  
 **Validation hooks / KPIs:** `lcdm_residual_within_tol` gate  
 **Retention / access constraints:** none  
 **Example artifact (if referenced):** none (pattern identified from code)  
@@ -606,11 +606,11 @@ Last updated: 2025-10-09 (commit 09f871a)
 - N/A (image data)
 
 **Update cadence / lifecycle:** `per experiment run`  
-**Provenance (code locations):** `Derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py • 800ceda` ; `Derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py • 800ceda` ; `fum_rt/physics/rd_dispersion_runner.py • 800ceda` ; `fum_rt/physics/rd_front_speed_runner.py • 800ceda`  
+**Provenance (code locations):** `Derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py • 800ceda` ; `Derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py • 800ceda` ; `vdm_rt/physics/rd_dispersion_runner.py • 800ceda` ; `vdm_rt/physics/rd_front_speed_runner.py • 800ceda`  
 **Validation hooks / KPIs:** visual inspection of fit quality  
 **Retention / access constraints:** none  
 **Example artifact (if referenced):** `Derivation/code/outputs/figures/reaction_diffusion/rd_dispersion_experiment_20250824T053842Z.png`  
-**Notes:** Includes failed_runs subdirectory; dual locations (Derivation/code and fum_rt/physics)
+**Notes:** Includes failed_runs subdirectory; dual locations (Derivation/code and vdm_rt/physics)
 
 ---
 
@@ -854,7 +854,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### vacuum_demographics residual plot  <a id="data-vacuum-figure"></a>
 **Type:** image  
 **Purpose:** w(z)+1 residual plot for vacuum demographics validation  
-**Produced by:** TODO: add anchor (see fum_rt/physics/vacuum_demographics_harness.py)  
+**Produced by:** TODO: add anchor (see vdm_rt/physics/vacuum_demographics_harness.py)  
 **Defined by (if math):** N/A (visualization)  
 **Inputs (symbols/constants):** vacuum demographics timeline data  
 **Units/Normalization:** N/A (redshift vs residual)
@@ -865,14 +865,14 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Storage format & path pattern:**
 - Format: `png`
-- Path pattern: `fum_rt/physics/outputs/figures/vacuum_demographics_harness_<YYYYMMDDTHHMMSSZ>.png`
+- Path pattern: `vdm_rt/physics/outputs/figures/vacuum_demographics_harness_<YYYYMMDDTHHMMSSZ>.png`
 - Compression/encoding: PNG lossless
 
 **Schema / columns (for tables/logs):**
 - N/A (image data)
 
 **Update cadence / lifecycle:** `per harness run`  
-**Provenance (code locations):** `fum_rt/physics/vacuum_demographics_harness.py:245-271 • 800ceda`  
+**Provenance (code locations):** `vdm_rt/physics/vacuum_demographics_harness.py:245-271 • 800ceda`  
 **Validation hooks / KPIs:** residual within tolerance  
 **Retention / access constraints:** none  
 **Example artifact (if referenced):** none (pattern identified from code)  
@@ -1127,7 +1127,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### events.jsonl  <a id="data-events-jsonl"></a>
 **Type:** log  
 **Purpose:** Rolling JSONL log of runtime telemetry events (tick metrics, system state)  
-**Produced by:** TODO: add anchor (see fum_rt/runtime)  
+**Produced by:** TODO: add anchor (see vdm_rt/runtime)  
 **Defined by (if math):** N/A (telemetry)  
 **Inputs (symbols/constants):** runtime state  
 **Units/Normalization:** varies per metric
@@ -1146,7 +1146,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 - Index/primary keys: t (tick)
 
 **Update cadence / lifecycle:** `per tick`  
-**Provenance (code locations):** `fum_rt/io/logging/rolling_jsonl.py • 800ceda` ; `fum_rt/frontend/models/series.py:77-141 • 800ceda`  
+**Provenance (code locations):** `vdm_rt/io/logging/rolling_jsonl.py • 800ceda` ; `vdm_rt/frontend/models/series.py:77-141 • 800ceda`  
 **Validation hooks / KPIs:** dashboard timeseries continuity  
 **Retention / access constraints:** rolling buffer; old events archived to `runs/<timestamp>/archived/<YYYYMMDD_HHMMSS>/events.jsonl`  
 **Example artifact (if referenced):** none (runtime data)  
@@ -1157,7 +1157,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### utd_events.jsonl  <a id="data-utd-events-jsonl"></a>
 **Type:** log  
 **Purpose:** Rolling JSONL log of UTD (Unified Telemetry & Diagnostics) events including macros (say, status, etc.)  
-**Produced by:** TODO: add anchor (see fum_rt/runtime)  
+**Produced by:** TODO: add anchor (see vdm_rt/runtime)  
 **Defined by (if math):** N/A (telemetry)  
 **Inputs (symbols/constants):** macro emissions, diagnostics  
 **Units/Normalization:** N/A
@@ -1176,7 +1176,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 - Index/primary keys: t (tick)
 
 **Update cadence / lifecycle:** `per macro emission`  
-**Provenance (code locations):** `fum_rt/io/logging/rolling_jsonl.py • 800ceda` ; `fum_rt/frontend/models/series.py:144-154 • 800ceda`  
+**Provenance (code locations):** `vdm_rt/io/logging/rolling_jsonl.py • 800ceda` ; `vdm_rt/frontend/models/series.py:144-154 • 800ceda`  
 **Validation hooks / KPIs:** macro presence checks (smoke tests)  
 **Retention / access constraints:** rolling buffer; old events archived to `runs/<timestamp>/archived/<YYYYMMDD_HHMMSS>/utd_events.jsonl`  
 **Example artifact (if referenced):** none (runtime data)  
@@ -1187,7 +1187,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### dashboard timeseries state  <a id="data-dashboard-series"></a>
 **Type:** timeseries  
 **Purpose:** In-memory rolling buffers for dashboard timeseries visualization (not persisted)  
-**Produced by:** TODO: add anchor (see fum_rt/frontend/models/series.py)  
+**Produced by:** TODO: add anchor (see vdm_rt/frontend/models/series.py)  
 **Defined by (if math):** N/A (derived from events)  
 **Inputs (symbols/constants):** events.jsonl, utd_events.jsonl  
 **Units/Normalization:** varies per metric
@@ -1205,7 +1205,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 - N/A (in-memory data structure)
 
 **Update cadence / lifecycle:** `per dashboard refresh`  
-**Provenance (code locations):** `fum_rt/frontend/models/series.py:35-170 • 800ceda`  
+**Provenance (code locations):** `vdm_rt/frontend/models/series.py:35-170 • 800ceda`  
 **Validation hooks / KPIs:** N/A  
 **Retention / access constraints:** ephemeral (reconstructed from logs on dashboard restart)  
 **Example artifact (if referenced):** N/A  
@@ -1218,7 +1218,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### connectome checkpoints  <a id="data-connectome-checkpoints"></a>
 **Type:** checkpoint  
 **Purpose:** Periodic snapshots of connectome state (adjacency, weights, substrate fields)  
-**Produced by:** TODO: add anchor (see fum_rt/core/memory/engram_io.py, fum_rt/runtime/helpers/checkpointing.py)  
+**Produced by:** TODO: add anchor (see vdm_rt/core/memory/engram_io.py, vdm_rt/runtime/helpers/checkpointing.py)  
 **Defined by (if math):** TODO: add anchor for connectome structure  
 **Inputs (symbols/constants):** runtime connectome state  
 **Units/Normalization:** varies per field
@@ -1237,7 +1237,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 - Datasets: CSR arrays, dense arrays, metadata dicts
 
 **Update cadence / lifecycle:** `per checkpoint_every ticks`  
-**Provenance (code locations):** `fum_rt/core/memory/engram_io.py • 800ceda` ; `fum_rt/runtime/helpers/checkpointing.py:16-48 • 800ceda`  
+**Provenance (code locations):** `vdm_rt/core/memory/engram_io.py • 800ceda` ; `vdm_rt/runtime/helpers/checkpointing.py:16-48 • 800ceda`  
 **Validation hooks / KPIs:** checkpoint retention policy (keep last N)  
 **Retention / access constraints:** configurable via checkpoint_keep  
 **Example artifact (if referenced):** none (runtime data)  

@@ -8719,2327 +8719,2327 @@
       "size": 5295
     },
     {
-      "path": "fum_live.py",
+      "path": "vdm_live.py",
       "sha256": "b3f155991f3eb1a5a1cbae992ab837e8f634fe7b9a2358deca6bccfac0d0b2cb",
       "size": 1544
     },
     {
-      "path": "fum_rt/README.md",
+      "path": "vdm_rt/README.md",
       "sha256": "e457e1f292dad66c90289fb20a7275f2a2e60c4af81e8593810b92498a5f57a8",
       "size": 15519
     },
     {
-      "path": "fum_rt/__init__.py",
+      "path": "vdm_rt/__init__.py",
       "sha256": "a9b4d0a5571a60c289ca7259fc5801be1fe02e78fceca74f075f3c07c79eee93",
       "size": 420
     },
     {
-      "path": "fum_rt/api/README.md",
+      "path": "vdm_rt/api/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/api/llms/__init__.py",
+      "path": "vdm_rt/api/llms/__init__.py",
       "sha256": "fb269e17df81264c430040d1959248dc9ba6856dfc7fbb90fa0fbefea9ccf8f4",
       "size": 373
     },
     {
-      "path": "fum_rt/api/llms/providers/google/gemini_client.py",
+      "path": "vdm_rt/api/llms/providers/google/gemini_client.py",
       "sha256": "fb269e17df81264c430040d1959248dc9ba6856dfc7fbb90fa0fbefea9ccf8f4",
       "size": 373
     },
     {
-      "path": "fum_rt/api/llms/providers/google/model_loader.py",
+      "path": "vdm_rt/api/llms/providers/google/model_loader.py",
       "sha256": "fb269e17df81264c430040d1959248dc9ba6856dfc7fbb90fa0fbefea9ccf8f4",
       "size": 373
     },
     {
-      "path": "fum_rt/api/llms/providers/google/models/gemini-2.5-flash.json",
+      "path": "vdm_rt/api/llms/providers/google/models/gemini-2.5-flash.json",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/api/llms/providers/google/models/gemini-2.5-pro.json",
+      "path": "vdm_rt/api/llms/providers/google/models/gemini-2.5-pro.json",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/api/llms/providers/ollama/models/ollama-list.json",
+      "path": "vdm_rt/api/llms/providers/ollama/models/ollama-list.json",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/api/llms/providers/ollama/ollama_client.py",
+      "path": "vdm_rt/api/llms/providers/ollama/ollama_client.py",
       "sha256": "fb269e17df81264c430040d1959248dc9ba6856dfc7fbb90fa0fbefea9ccf8f4",
       "size": 373
     },
     {
-      "path": "fum_rt/api/llms/providers/openai/models/GPT-5.json",
+      "path": "vdm_rt/api/llms/providers/openai/models/GPT-5.json",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/api/llms/providers/openai/models/o4-mini.json",
+      "path": "vdm_rt/api/llms/providers/openai/models/o4-mini.json",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/api/llms/providers/openai/openai_client.py",
+      "path": "vdm_rt/api/llms/providers/openai/openai_client.py",
       "sha256": "fb269e17df81264c430040d1959248dc9ba6856dfc7fbb90fa0fbefea9ccf8f4",
       "size": 373
     },
     {
-      "path": "fum_rt/api/llms/providers/openrouter/model-cross-walk.json",
+      "path": "vdm_rt/api/llms/providers/openrouter/model-cross-walk.json",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/api/llms/providers/openrouter/openrouter_client.py",
+      "path": "vdm_rt/api/llms/providers/openrouter/openrouter_client.py",
       "sha256": "fb269e17df81264c430040d1959248dc9ba6856dfc7fbb90fa0fbefea9ccf8f4",
       "size": 373
     },
     {
-      "path": "fum_rt/api/llms/providers/xai/models/Grok-3.json",
+      "path": "vdm_rt/api/llms/providers/xai/models/Grok-3.json",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/api/llms/providers/xai/models/Grok-4.json",
+      "path": "vdm_rt/api/llms/providers/xai/models/Grok-4.json",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/api/llms/providers/xai/xai_client.py",
+      "path": "vdm_rt/api/llms/providers/xai/xai_client.py",
       "sha256": "fb269e17df81264c430040d1959248dc9ba6856dfc7fbb90fa0fbefea9ccf8f4",
       "size": 373
     },
     {
-      "path": "fum_rt/api/llms/router.py",
+      "path": "vdm_rt/api/llms/router.py",
       "sha256": "fb269e17df81264c430040d1959248dc9ba6856dfc7fbb90fa0fbefea9ccf8f4",
       "size": 373
     },
     {
-      "path": "fum_rt/ck/README.md",
+      "path": "vdm_rt/ck/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/ck/build.sh",
+      "path": "vdm_rt/ck/build.sh",
       "sha256": "bc81239a838844ea3b0bc1fb97236dc1c82b52359262d9d9b9e3bf52b7dad7be",
       "size": 659
     },
     {
-      "path": "fum_rt/ck/hip_spmv.cpp",
+      "path": "vdm_rt/ck/hip_spmv.cpp",
       "sha256": "62da489ea7ea903d175ed5f790ca7f8ece7b296f6c6404da2836815233d0efc3",
       "size": 2612
     },
     {
-      "path": "fum_rt/cli/args.py",
+      "path": "vdm_rt/cli/args.py",
       "sha256": "39d980cd18b1bc0d05eccb39730f40f42e111c918334ec0fecc6192d4ebf5edd",
       "size": 4580
     },
     {
-      "path": "fum_rt/core/README.md",
+      "path": "vdm_rt/core/README.md",
       "sha256": "78b50077a0fd3b2332a0980cbe16ad8a56c8f797007ab054a97aba1f28d8b0fe",
       "size": 25
     },
     {
-      "path": "fum_rt/core/Void_Debt_Modulation.py",
+      "path": "vdm_rt/core/Void_Debt_Modulation.py",
       "sha256": "f7af5e9928461ed783583825b66ba55201ff04e2e9242b9c0323794fce7bf4fd",
       "size": 5957
     },
     {
-      "path": "fum_rt/core/Void_Equations.py",
+      "path": "vdm_rt/core/Void_Equations.py",
       "sha256": "a2b8d0cbac6c4e1b0356b105fd52e0c8075ffc6f82f3ebfe2a5818fa12176bbd",
       "size": 4013
     },
     {
-      "path": "fum_rt/core/__init__.py",
+      "path": "vdm_rt/core/__init__.py",
       "sha256": "fb269e17df81264c430040d1959248dc9ba6856dfc7fbb90fa0fbefea9ccf8f4",
       "size": 373
     },
     {
-      "path": "fum_rt/core/adc.py",
+      "path": "vdm_rt/core/adc.py",
       "sha256": "478f741cae37452adde6a0fa787a913229ce61a26efeb3ae94b0d1a6020f8a94",
       "size": 8139
     },
     {
-      "path": "fum_rt/core/announce.py",
+      "path": "vdm_rt/core/announce.py",
       "sha256": "50b136f2cbb4c94edc375251315f810a89d2322fa13d03d555d3415405aba8c7",
       "size": 3051
     },
     {
-      "path": "fum_rt/core/bus.py",
+      "path": "vdm_rt/core/bus.py",
       "sha256": "8c5f2aac6ec36539e397627a5a55e046c2ebc81d5468e92af312eb76d8d068d7",
       "size": 2020
     },
     {
-      "path": "fum_rt/core/connectome.py",
+      "path": "vdm_rt/core/connectome.py",
       "sha256": "a61bf1aef48b1f348e38da432910c84d9310b79de1a93628e187a94ac5429264",
       "size": 18926
     },
     {
-      "path": "fum_rt/core/control_server.py",
+      "path": "vdm_rt/core/control_server.py",
       "sha256": "4d944d6b0ab223b453a29162450c1457673c1a0fd4aec033eee962a190788a3b",
       "size": 10651
     },
     {
-      "path": "fum_rt/core/cortex/IMPORTANT_TODO.md",
+      "path": "vdm_rt/core/cortex/IMPORTANT_TODO.md",
       "sha256": "dc48f03aa4216d942e8086c9095d7832593ec81bf5cba92998f438243895b85e",
       "size": 6131
     },
     {
-      "path": "fum_rt/core/cortex/README.md",
+      "path": "vdm_rt/core/cortex/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/core/cortex/Void-Walker-Rules.md",
+      "path": "vdm_rt/core/cortex/Void-Walker-Rules.md",
       "sha256": "0eaa7ce3650d36c81e09de928fcc849d219bd3fe6fb54c59ef1428be8da937a7",
       "size": 33351
     },
     {
-      "path": "fum_rt/core/cortex/Void-Walkers.md",
+      "path": "vdm_rt/core/cortex/Void-Walkers.md",
       "sha256": "ca785e6c7cc487615b0cfd55dd865f96c0da197387cdbbff667dbbecc20f176a",
       "size": 15297
     },
     {
-      "path": "fum_rt/core/cortex/__init__.py",
+      "path": "vdm_rt/core/cortex/__init__.py",
       "sha256": "fb269e17df81264c430040d1959248dc9ba6856dfc7fbb90fa0fbefea9ccf8f4",
       "size": 373
     },
     {
-      "path": "fum_rt/core/cortex/maps/README.md",
+      "path": "vdm_rt/core/cortex/maps/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/core/cortex/maps/__init__.py",
+      "path": "vdm_rt/core/cortex/maps/__init__.py",
       "sha256": "b2c29f335d693d1151b6a8651909291e4801b419b01177957037bdda6d9dc6e9",
       "size": 580
     },
     {
-      "path": "fum_rt/core/cortex/maps/base_decay_map.py",
+      "path": "vdm_rt/core/cortex/maps/base_decay_map.py",
       "sha256": "e5d3e8f92a7d6aacb632faf94fc8a3e774ab003d4d23e0b7c48312a84c045a84",
       "size": 5121
     },
     {
-      "path": "fum_rt/core/cortex/maps/coldmap.py",
+      "path": "vdm_rt/core/cortex/maps/coldmap.py",
       "sha256": "7c4289aec319b34c2ceec6257ac816c0ac537319d466a5eca3b64a915d209510",
       "size": 6174
     },
     {
-      "path": "fum_rt/core/cortex/maps/excitationmap.py",
+      "path": "vdm_rt/core/cortex/maps/excitationmap.py",
       "sha256": "4e396349919f1773e66ab3b206bf3cf58e9dff4af2ae178844ff240ef0b6512e",
       "size": 2618
     },
     {
-      "path": "fum_rt/core/cortex/maps/heatmap.py",
+      "path": "vdm_rt/core/cortex/maps/heatmap.py",
       "sha256": "8348b4c3f1e03d726ba5281ff167a46c37114d7bc4034eeab64587c1c2863ecf",
       "size": 2950
     },
     {
-      "path": "fum_rt/core/cortex/maps/inhibitionmap.py",
+      "path": "vdm_rt/core/cortex/maps/inhibitionmap.py",
       "sha256": "018c53a715ce90db59f421b321ba783fbe5d32fd372cf45b723479b87335c315",
       "size": 2649
     },
     {
-      "path": "fum_rt/core/cortex/maps/memorymap.py",
+      "path": "vdm_rt/core/cortex/maps/memorymap.py",
       "sha256": "546abf8364d7d286c2bdc88b6e264b3ef0450bbb308dedda9497c387775f532e",
       "size": 12043
     },
     {
-      "path": "fum_rt/core/cortex/maps/trailmap.py",
+      "path": "vdm_rt/core/cortex/maps/trailmap.py",
       "sha256": "85c63f97eb5242ea932116103e34626c2b4ce22ccaaa55a651857ee1e6f146a8",
       "size": 4340
     },
     {
-      "path": "fum_rt/core/cortex/scouts.py",
+      "path": "vdm_rt/core/cortex/scouts.py",
       "sha256": "84e9bd68a817f3f350c1b365af590c59aab527a826d04a51cc53455d70584a3a",
       "size": 2975
     },
     {
-      "path": "fum_rt/core/cortex/void_walkers/README.md",
+      "path": "vdm_rt/core/cortex/void_walkers/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/core/cortex/void_walkers/base.py",
+      "path": "vdm_rt/core/cortex/void_walkers/base.py",
       "sha256": "573fa13f3e4224af7978ab10f11ba7a432e303559f6f34081549c7b1b35f4ee2",
       "size": 8808
     },
     {
-      "path": "fum_rt/core/cortex/void_walkers/frontier_scout.py",
+      "path": "vdm_rt/core/cortex/void_walkers/frontier_scout.py",
       "sha256": "e3f522e5b08e5bee11fb308f429715b128207e77ad1e9e72b7c97e1d29455c6a",
       "size": 639
     },
     {
-      "path": "fum_rt/core/cortex/void_walkers/runner.py",
+      "path": "vdm_rt/core/cortex/void_walkers/runner.py",
       "sha256": "6130fc5d2951056c44b7833135ea581d6e9a09c2d5ff14f5609bfca3aa364dcb",
       "size": 5100
     },
     {
-      "path": "fum_rt/core/cortex/void_walkers/void_cold_scout.py",
+      "path": "vdm_rt/core/cortex/void_walkers/void_cold_scout.py",
       "sha256": "a2be67e3064817e87451ae964a8b6fc9d40c7bf332f46a90698bc718ea5f8104",
       "size": 2020
     },
     {
-      "path": "fum_rt/core/cortex/void_walkers/void_cycle_scout.py",
+      "path": "vdm_rt/core/cortex/void_walkers/void_cycle_scout.py",
       "sha256": "98b2453c437acf309a894b425745cbda664d69a27ffba071e33e9f5170a0b0f2",
       "size": 5432
     },
     {
-      "path": "fum_rt/core/cortex/void_walkers/void_excitation_scout.py",
+      "path": "vdm_rt/core/cortex/void_walkers/void_excitation_scout.py",
       "sha256": "671da09e484f62683a010724f17c27732b3195cc29fa358f8a55538bb26062b9",
       "size": 4534
     },
     {
-      "path": "fum_rt/core/cortex/void_walkers/void_frontier_scout.py",
+      "path": "vdm_rt/core/cortex/void_walkers/void_frontier_scout.py",
       "sha256": "6b8f0cc5eb02bebddfc4dfec74689f309258f585293ba13524e653ed08e86dec",
       "size": 9730
     },
     {
-      "path": "fum_rt/core/cortex/void_walkers/void_heat_scout.py",
+      "path": "vdm_rt/core/cortex/void_walkers/void_heat_scout.py",
       "sha256": "7dd493e87e78c30a5ef4c412e27eca5238592d5bdac2c840a09caf86941144dc",
       "size": 9072
     },
     {
-      "path": "fum_rt/core/cortex/void_walkers/void_inhibition_scout.py",
+      "path": "vdm_rt/core/cortex/void_walkers/void_inhibition_scout.py",
       "sha256": "dd9622823d28d6160a578a6595ec255d2bc8275527350440b46191861e2fa5b0",
       "size": 4505
     },
     {
-      "path": "fum_rt/core/cortex/void_walkers/void_memory_ray_scout.py",
+      "path": "vdm_rt/core/cortex/void_walkers/void_memory_ray_scout.py",
       "sha256": "45363c391c37b345930361695433d14091889e1bbe21d9f4723cf673c528148c",
       "size": 8448
     },
     {
-      "path": "fum_rt/core/cortex/void_walkers/void_ray_scout.py",
+      "path": "vdm_rt/core/cortex/void_walkers/void_ray_scout.py",
       "sha256": "e20c282b17eff09a238f6b645f56c12e6fabc930e92abe7f2486f723be144647",
       "size": 7980
     },
     {
-      "path": "fum_rt/core/cortex/void_walkers/void_sentinel_scout.py",
+      "path": "vdm_rt/core/cortex/void_walkers/void_sentinel_scout.py",
       "sha256": "522146e2cf8cd2a0b868c2be668a523ea8b301ab8416ba4d4bb51c7882ad1d33",
       "size": 5766
     },
     {
-      "path": "fum_rt/core/cosmology/README.md",
+      "path": "vdm_rt/core/cosmology/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/core/cosmology/__init__.py",
+      "path": "vdm_rt/core/cosmology/__init__.py",
       "sha256": "60f55ad4fa07af815bf3106a2870235293a67d1fe1be6904e947acdee67c9a95",
       "size": 1035
     },
     {
-      "path": "fum_rt/core/cosmology/events.py",
+      "path": "vdm_rt/core/cosmology/events.py",
       "sha256": "19fa22553388804dba5e5dd0d639bad5f722fbb65cd2a0171701561ac8a764f3",
       "size": 4857
     },
     {
-      "path": "fum_rt/core/cosmology/router.py",
+      "path": "vdm_rt/core/cosmology/router.py",
       "sha256": "c62959bdfc93e2c4d59a853a228f805c382ad41bd1f120c8eb488e1f52e7f88d",
       "size": 16935
     },
     {
-      "path": "fum_rt/core/diagnostics.py",
+      "path": "vdm_rt/core/diagnostics.py",
       "sha256": "7399e094c6ce3a03b52a72f8a6b1eafd69773be69bdbb188e9bffea503935fd8",
       "size": 10739
     },
     {
-      "path": "fum_rt/core/engine/README.md",
+      "path": "vdm_rt/core/engine/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/core/engine/__init__.py",
+      "path": "vdm_rt/core/engine/__init__.py",
       "sha256": "7f3d3bd902b0ee33df2437d2afddbbce6fa2a34d068c79eb1faa69059cbd7ca9",
       "size": 610
     },
     {
-      "path": "fum_rt/core/engine/core_engine.py",
+      "path": "vdm_rt/core/engine/core_engine.py",
       "sha256": "7336809ab016469294f3b15cfa83eeca860c2bf69ff288157895d31ccb1e7787",
       "size": 21933
     },
     {
-      "path": "fum_rt/core/engine/evt_snapshot.py",
+      "path": "vdm_rt/core/engine/evt_snapshot.py",
       "sha256": "66a534491b00f41435eb7ed0a1a4f23d4dac4a82040510e63669960c5cb256ee",
       "size": 3553
     },
     {
-      "path": "fum_rt/core/engine/maps_frame.py",
+      "path": "vdm_rt/core/engine/maps_frame.py",
       "sha256": "f35d9093be69fbad4cfc58235edecb705f060d7e0f5bd87d02614420466b5365",
       "size": 4072
     },
     {
-      "path": "fum_rt/core/fum_growth_arbiter.py",
+      "path": "vdm_rt/core/fum_growth_arbiter.py",
       "sha256": "34887a58467bd6cf2fa7e189f4c947b08beb1f4e36597df7d0fbd8e06c302323",
       "size": 6313
     },
     {
-      "path": "fum_rt/core/fum_sie.py",
+      "path": "vdm_rt/core/fum_sie.py",
       "sha256": "6d0c64453b76855861413042cfd067b3eab20e0b8f125d1324655315683cc124",
       "size": 13428
     },
     {
-      "path": "fum_rt/core/fum_structural_homeostasis.py",
+      "path": "vdm_rt/core/fum_structural_homeostasis.py",
       "sha256": "a2189e3cb804b33da11241a3f877b3663daf90cc2f49a48bc1446fba26bf6165",
       "size": 6923
     },
     {
-      "path": "fum_rt/core/global_system.py",
+      "path": "vdm_rt/core/global_system.py",
       "sha256": "2ceed476fe3446ac61e3385670b06489f04d6713a1d49675b57f45a30761c8e7",
       "size": 10075
     },
     {
-      "path": "fum_rt/core/guards/README.md",
+      "path": "vdm_rt/core/guards/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/core/guards/invariants.py",
+      "path": "vdm_rt/core/guards/invariants.py",
       "sha256": "2f7053c1dd64cc3b64bd5654505f2d696bb5efd3687b9b2d3fb805333934fab9",
       "size": 9776
     },
     {
-      "path": "fum_rt/core/memory/README.md",
+      "path": "vdm_rt/core/memory/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/core/memory/__init__.py",
+      "path": "vdm_rt/core/memory/__init__.py",
       "sha256": "a4b9953360d56f105673368ef0997781f89e3cd7a8cc1ed3076639012a6602a1",
       "size": 855
     },
     {
-      "path": "fum_rt/core/memory/engram_io.py",
+      "path": "vdm_rt/core/memory/engram_io.py",
       "sha256": "c1dd05d11e52273e51ce34a3775260d41456c5e01971d2f886d3b794bd89b773",
       "size": 16713
     },
     {
-      "path": "fum_rt/core/memory/field.py",
+      "path": "vdm_rt/core/memory/field.py",
       "sha256": "ebafc5f02f07034e7b853c48ce99cd5cbd979bb29a07b66d5cbfe1a9715c78ec",
       "size": 12522
     },
     {
-      "path": "fum_rt/core/metrics.py",
+      "path": "vdm_rt/core/metrics.py",
       "sha256": "40ff82ee3d1c80c784a743516dfac3940bffac408b6e29c48ad21299e1ac7093",
       "size": 4454
     },
     {
-      "path": "fum_rt/core/neuroplasticity/README.md",
+      "path": "vdm_rt/core/neuroplasticity/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/core/neuroplasticity/__init__.py",
+      "path": "vdm_rt/core/neuroplasticity/__init__.py",
       "sha256": "fb269e17df81264c430040d1959248dc9ba6856dfc7fbb90fa0fbefea9ccf8f4",
       "size": 373
     },
     {
-      "path": "fum_rt/core/neuroplasticity/gdsp.py",
+      "path": "vdm_rt/core/neuroplasticity/gdsp.py",
       "sha256": "1e9390cd8921e757cfc2bf232378273e938337dc376ade9d663dfc988b4cc2b6",
       "size": 22809
     },
     {
-      "path": "fum_rt/core/neuroplasticity/revgsp.py",
+      "path": "vdm_rt/core/neuroplasticity/revgsp.py",
       "sha256": "1807f07e89ecccfedd9a83158d7ac660f66febcf9f45cf93720da3f7d9e6aa17",
       "size": 12619
     },
     {
-      "path": "fum_rt/core/primitives/README.md",
+      "path": "vdm_rt/core/primitives/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/core/primitives/dsu.py",
+      "path": "vdm_rt/core/primitives/dsu.py",
       "sha256": "d535e1c2b8ee16c07f1981e6ccc672def533731f4652cbe8cbf51f24fb506d4e",
       "size": 3337
     },
     {
-      "path": "fum_rt/core/proprioception/README.md",
+      "path": "vdm_rt/core/proprioception/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/core/proprioception/events.py",
+      "path": "vdm_rt/core/proprioception/events.py",
       "sha256": "30a36a60f9fa2f67c35314927282b85fed5c5bfcb36a4585074426c6ce96a698",
       "size": 15920
     },
     {
-      "path": "fum_rt/core/proprioception/territory.py",
+      "path": "vdm_rt/core/proprioception/territory.py",
       "sha256": "68bb98c147435684d336df4a88d9bc50427b41ddb9a9c87c1e77f025814e7786",
       "size": 6580
     },
     {
-      "path": "fum_rt/core/sie_v2.py",
+      "path": "vdm_rt/core/sie_v2.py",
       "sha256": "7214f38b1fb6ab4ba4af231707d01627fb349f6af35453c5cac1ed5ea3bb2811",
       "size": 4027
     },
     {
-      "path": "fum_rt/core/signals.py",
+      "path": "vdm_rt/core/signals.py",
       "sha256": "4fff6293af28b406d1a0d9a0a6fb2dde8a04d94f3fa7b82c069bde3fc19cfa56",
       "size": 10235
     },
     {
-      "path": "fum_rt/core/sparse_connectome.py",
+      "path": "vdm_rt/core/sparse_connectome.py",
       "sha256": "5c4f6d89d0007247fd7c78d9e9a41a53796710938505dc9c8a37b9c77a4bb9c2",
       "size": 29136
     },
     {
-      "path": "fum_rt/core/substrate/README.md",
+      "path": "vdm_rt/core/substrate/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/core/substrate/growth_arbiter.py",
+      "path": "vdm_rt/core/substrate/growth_arbiter.py",
       "sha256": "a53dc8bef60f99eece0037569bfb2f203418d22012c00d468746a5d2cb6cd6c8",
       "size": 4660
     },
     {
-      "path": "fum_rt/core/substrate/neurogenesis.py",
+      "path": "vdm_rt/core/substrate/neurogenesis.py",
       "sha256": "fad8e1bbb464a4c2591f3957b54a7baf86121069cc67b170bf9a1ecaa2370823",
       "size": 6151
     },
     {
-      "path": "fum_rt/core/substrate/structural_homeostasis.py",
+      "path": "vdm_rt/core/substrate/structural_homeostasis.py",
       "sha256": "30609944cec2fdd98bde13986de6b87be2af2b0283a99a49c674c77370cebc63",
       "size": 3998
     },
     {
-      "path": "fum_rt/core/substrate/substrate.py",
+      "path": "vdm_rt/core/substrate/substrate.py",
       "sha256": "9cab64e449d44ff0094d53cbbf7d4bfaf5b1821286715619adc26f9070012256",
       "size": 10631
     },
     {
-      "path": "fum_rt/core/tests/README.md",
+      "path": "vdm_rt/core/tests/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/core/tests/test_conservation_flux.py",
+      "path": "vdm_rt/core/tests/test_conservation_flux.py",
       "sha256": "6da60d1db0030c16d4cd071497e176e9287b53c032c122401a8eda804291d17d",
       "size": 3277
     },
     {
-      "path": "fum_rt/core/text_utils.py",
+      "path": "vdm_rt/core/text_utils.py",
       "sha256": "7fe4eada076848f7d5e2e656a8004d62350fa28845e2a76f3e46d1931a1422bb",
       "size": 4134
     },
     {
-      "path": "fum_rt/core/visualizer.py",
+      "path": "vdm_rt/core/visualizer.py",
       "sha256": "db4ff79355c3eea6093903079cf7c2f9f5e4a64894955fcd7251e190779db23c",
       "size": 3381
     },
     {
-      "path": "fum_rt/core/void_b1.py",
+      "path": "vdm_rt/core/void_b1.py",
       "sha256": "20c6591b44e748f32ac858d64fb2faa1a9d4c1ed28077e682c45131c37542b0d",
       "size": 13264
     },
     {
-      "path": "fum_rt/core/void_dynamics_adapter.py",
+      "path": "vdm_rt/core/void_dynamics_adapter.py",
       "sha256": "55e3defa39abfb50acc436ca5b0821fbcd81945a44e35a00493e0531e1842a34",
       "size": 3207
     },
     {
-      "path": "fum_rt/data/.gitignore",
+      "path": "vdm_rt/data/.gitignore",
       "sha256": "ada13646c47d47525ebdb0d1308c78d2448426a5b5f72d47a077ae080a6642bd",
       "size": 74
     },
     {
-      "path": "fum_rt/data/README.md",
+      "path": "vdm_rt/data/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/.trackerignore",
+      "path": "vdm_rt/data/corpus/.trackerignore",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/fiction/README.md",
+      "path": "vdm_rt/data/corpus/fiction/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/fiction/adventure/README.md",
+      "path": "vdm_rt/data/corpus/fiction/adventure/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/fiction/horror/README.md",
+      "path": "vdm_rt/data/corpus/fiction/horror/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/fiction/mystery/README.md",
+      "path": "vdm_rt/data/corpus/fiction/mystery/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/fiction/philosophy/README.md",
+      "path": "vdm_rt/data/corpus/fiction/philosophy/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/fiction/shakespeare/README.md",
+      "path": "vdm_rt/data/corpus/fiction/shakespeare/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/fiction/structured-narrative/README.md",
+      "path": "vdm_rt/data/corpus/fiction/structured-narrative/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/misc/README.md",
+      "path": "vdm_rt/data/corpus/misc/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/misc/riddles/README.md",
+      "path": "vdm_rt/data/corpus/misc/riddles/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/misc/symbols/README.md",
+      "path": "vdm_rt/data/corpus/misc/symbols/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/00_latticework_synthesis/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/00_latticework_synthesis/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/00_latticework_synthesis/decision_making/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/00_latticework_synthesis/decision_making/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/00_latticework_synthesis/decision_making/forecasting_&_prediction/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/00_latticework_synthesis/decision_making/forecasting_&_prediction/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/00_latticework_synthesis/mental_models/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/00_latticework_synthesis/mental_models/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/00_latticework_synthesis/mental_models/recursion_&_self-reference/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/00_latticework_synthesis/mental_models/recursion_&_self-reference/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/00_latticework_synthesis/mental_models/systems_thinking/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/00_latticework_synthesis/mental_models/systems_thinking/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/00_latticework_synthesis/mental_models/systems_thinking/historical_analysis/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/00_latticework_synthesis/mental_models/systems_thinking/historical_analysis/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/00_latticework_synthesis/mental_models/systems_thinking/systems_analysis/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/00_latticework_synthesis/mental_models/systems_thinking/systems_analysis/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/00_latticework_synthesis/notes/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/00_latticework_synthesis/notes/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/00_latticework_synthesis/notes/books.json",
+      "path": "vdm_rt/data/corpus/nonfiction/00_latticework_synthesis/notes/books.json",
       "sha256": "e0af2f15b2aea405a401cec38fde0bb430df87f363117f1ce49a1e39a02e9c17",
       "size": 100463
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/00_latticework_synthesis/notes/index.json",
+      "path": "vdm_rt/data/corpus/nonfiction/00_latticework_synthesis/notes/index.json",
       "sha256": "2e6f35165dfe4b2c780846e611f746db2bf9241d303bacfdd264dc65e0ccd2d2",
       "size": 11137
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/00_latticework_synthesis/notes/template.json",
+      "path": "vdm_rt/data/corpus/nonfiction/00_latticework_synthesis/notes/template.json",
       "sha256": "a0a5fddcdfa61170bdabf771390a20857b80e1bc86d98ed09541345dc6f22f4c",
       "size": 466
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/00_latticework_synthesis/notes/vdm_curriculum.csv",
+      "path": "vdm_rt/data/corpus/nonfiction/00_latticework_synthesis/notes/vdm_curriculum.csv",
       "sha256": "b322ee9d63338f9055f89ebb0b24d6b03855b2f1d39a4f86af0f27c3bdc0a562",
       "size": 32258
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/00_latticework_synthesis/risk_&_uncertainty/epistemology/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/00_latticework_synthesis/risk_&_uncertainty/epistemology/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/01_natural_sciences/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/01_natural_sciences/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/01_natural_sciences/astronomy/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/01_natural_sciences/astronomy/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/01_natural_sciences/astronomy/astrophysics/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/01_natural_sciences/astronomy/astrophysics/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/01_natural_sciences/astronomy/cosmology/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/01_natural_sciences/astronomy/cosmology/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/01_natural_sciences/astronomy/heliocentrism/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/01_natural_sciences/astronomy/heliocentrism/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/01_natural_sciences/chemistry/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/01_natural_sciences/chemistry/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/01_natural_sciences/chemistry/biochemistry/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/01_natural_sciences/chemistry/biochemistry/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/01_natural_sciences/chemistry/organic_&_inorganic/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/01_natural_sciences/chemistry/organic_&_inorganic/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/01_natural_sciences/geology/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/01_natural_sciences/geology/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/01_natural_sciences/geology/paleontology/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/01_natural_sciences/geology/paleontology/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/01_natural_sciences/geology/plate_tectonics/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/01_natural_sciences/geology/plate_tectonics/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/01_natural_sciences/geology/uniformitarianism/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/01_natural_sciences/geology/uniformitarianism/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/01_natural_sciences/physics/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/01_natural_sciences/physics/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/01_natural_sciences/physics/chaos_theory/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/01_natural_sciences/physics/chaos_theory/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/01_natural_sciences/physics/classical_mechanics/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/01_natural_sciences/physics/classical_mechanics/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/01_natural_sciences/physics/cosmology/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/01_natural_sciences/physics/cosmology/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/01_natural_sciences/physics/nuclear_physics/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/01_natural_sciences/physics/nuclear_physics/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/01_natural_sciences/physics/quantum_mechanics/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/01_natural_sciences/physics/quantum_mechanics/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/01_natural_sciences/physics/relativity/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/01_natural_sciences/physics/relativity/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/01_natural_sciences/physics/string_theory/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/01_natural_sciences/physics/string_theory/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/01_natural_sciences/physics/thermodynamics/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/01_natural_sciences/physics/thermodynamics/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/01_natural_sciences/physics/void_dynamics/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/01_natural_sciences/physics/void_dynamics/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/02_life_sciences/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/02_life_sciences/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/02_life_sciences/biology/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/02_life_sciences/biology/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/02_life_sciences/biology/bioenergetics/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/02_life_sciences/biology/bioenergetics/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/02_life_sciences/biology/biophysics/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/02_life_sciences/biology/biophysics/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/02_life_sciences/biology/evolution_&_genetics/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/02_life_sciences/biology/evolution_&_genetics/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/02_life_sciences/biology/immunology/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/02_life_sciences/biology/immunology/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/02_life_sciences/biology/microbiology/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/02_life_sciences/biology/microbiology/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/02_life_sciences/biology/molecular_&_cell_biology/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/02_life_sciences/biology/molecular_&_cell_biology/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/02_life_sciences/biology/virology/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/02_life_sciences/biology/virology/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/02_life_sciences/ecology/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/02_life_sciences/ecology/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/02_life_sciences/ecology/ecosystems/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/02_life_sciences/ecology/ecosystems/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/02_life_sciences/ecology/population_dynamics/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/02_life_sciences/ecology/population_dynamics/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/02_life_sciences/medicine/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/02_life_sciences/medicine/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/02_life_sciences/medicine/anatomy_&_physiology/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/02_life_sciences/medicine/anatomy_&_physiology/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/02_life_sciences/medicine/oncology/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/02_life_sciences/medicine/oncology/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/02_life_sciences/medicine/pathology/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/02_life_sciences/medicine/pathology/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/02_life_sciences/neuroscience/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/02_life_sciences/neuroscience/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/02_life_sciences/neuroscience/behavioral_neuroscience/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/02_life_sciences/neuroscience/behavioral_neuroscience/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/02_life_sciences/neuroscience/cognitive_neuroscience/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/02_life_sciences/neuroscience/cognitive_neuroscience/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/03_formal_sciences/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/03_formal_sciences/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/03_formal_sciences/computer_science/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/03_formal_sciences/computer_science/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/03_formal_sciences/computer_science/algorithms_&_data_structures/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/03_formal_sciences/computer_science/algorithms_&_data_structures/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/03_formal_sciences/computer_science/computation_theory/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/03_formal_sciences/computer_science/computation_theory/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/03_formal_sciences/computer_science/information_theory/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/03_formal_sciences/computer_science/information_theory/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/03_formal_sciences/game_theory/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/03_formal_sciences/game_theory/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/03_formal_sciences/logic/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/03_formal_sciences/logic/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/03_formal_sciences/logic/formal_&_informal_logic/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/03_formal_sciences/logic/formal_&_informal_logic/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/03_formal_sciences/logic/set_theory/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/03_formal_sciences/logic/set_theory/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/03_formal_sciences/mathematics/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/03_formal_sciences/mathematics/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/03_formal_sciences/mathematics/calculus_&_algebra/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/03_formal_sciences/mathematics/calculus_&_algebra/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/03_formal_sciences/mathematics/geometry/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/03_formal_sciences/mathematics/geometry/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/03_formal_sciences/mathematics/philosophy_of_mathematics/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/03_formal_sciences/mathematics/philosophy_of_mathematics/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/03_formal_sciences/mathematics/statistics_&_probability/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/03_formal_sciences/mathematics/statistics_&_probability/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/03_formal_sciences/mathematics/topology/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/03_formal_sciences/mathematics/topology/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/03_formal_sciences/reasoning/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/03_formal_sciences/reasoning/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/04_human_sciences/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/04_human_sciences/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/04_human_sciences/anthropology/cultural_anthropology/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/04_human_sciences/anthropology/cultural_anthropology/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/04_human_sciences/criminology/forensic_science/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/04_human_sciences/criminology/forensic_science/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/04_human_sciences/economics/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/04_human_sciences/economics/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/04_human_sciences/economics/behavioral_economics/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/04_human_sciences/economics/behavioral_economics/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/04_human_sciences/economics/classical_economics/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/04_human_sciences/economics/classical_economics/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/04_human_sciences/economics/microeconomics_&_macroeconomics/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/04_human_sciences/economics/microeconomics_&_macroeconomics/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/04_human_sciences/human_behavior/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/04_human_sciences/human_behavior/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/04_human_sciences/political_science/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/04_human_sciences/political_science/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/04_human_sciences/political_science/international_relations/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/04_human_sciences/political_science/international_relations/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/04_human_sciences/political_science/political_theory/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/04_human_sciences/political_science/political_theory/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/04_human_sciences/political_science/statecraft/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/04_human_sciences/political_science/statecraft/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/04_human_sciences/psychiatry_&_psychotherapy/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/04_human_sciences/psychiatry_&_psychotherapy/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/04_human_sciences/psychiatry_&_psychotherapy/logotherapy/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/04_human_sciences/psychiatry_&_psychotherapy/logotherapy/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/04_human_sciences/psychoanalysis/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/04_human_sciences/psychoanalysis/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/04_human_sciences/psychology/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/04_human_sciences/psychology/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/04_human_sciences/psychology/cognitive_psychology/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/04_human_sciences/psychology/cognitive_psychology/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/04_human_sciences/psychology/evolutionary_psychology/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/04_human_sciences/psychology/evolutionary_psychology/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/04_human_sciences/psychology/moral_psychology/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/04_human_sciences/psychology/moral_psychology/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/04_human_sciences/psychology/social_psychology/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/04_human_sciences/psychology/social_psychology/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/04_human_sciences/sociology/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/04_human_sciences/sociology/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/04_human_sciences/sociology/demography/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/04_human_sciences/sociology/demography/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/04_human_sciences/sociology/economic_sociology/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/04_human_sciences/sociology/economic_sociology/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/04_human_sciences/sociology/social_networks/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/04_human_sciences/sociology/social_networks/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/05_humanities/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/05_humanities/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/05_humanities/history/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/05_humanities/history/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/05_humanities/history/ancient_&_modern_history/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/05_humanities/history/ancient_&_modern_history/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/05_humanities/history/military_history/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/05_humanities/history/military_history/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/05_humanities/history_&_philosophy_of_science/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/05_humanities/history_&_philosophy_of_science/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/05_humanities/language_and_rhetoric/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/05_humanities/language_and_rhetoric/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/05_humanities/linguistics/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/05_humanities/linguistics/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/05_humanities/linguistics/language_acquisition/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/05_humanities/linguistics/language_acquisition/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/05_humanities/linguistics/semantics/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/05_humanities/linguistics/semantics/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/05_humanities/literature/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/05_humanities/literature/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/05_humanities/literature/poetry_&_fiction/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/05_humanities/literature/poetry_&_fiction/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/05_humanities/philosophy/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/05_humanities/philosophy/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/05_humanities/philosophy/epistemology/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/05_humanities/philosophy/epistemology/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/05_humanities/philosophy/ethics_&_morality/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/05_humanities/philosophy/ethics_&_morality/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/05_humanities/philosophy/game_theory/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/05_humanities/philosophy/game_theory/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/05_humanities/philosophy/metaphysics/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/05_humanities/philosophy/metaphysics/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/05_humanities/philosophy/philosophy_of_science/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/05_humanities/philosophy/philosophy_of_science/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/05_humanities/philosophy/political_philosophy/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/05_humanities/philosophy/political_philosophy/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/05_humanities/philosophy/stoicism/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/05_humanities/philosophy/stoicism/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/06_technology_and_computation/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/06_technology_and_computation/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/06_technology_and_computation/artificial_intelligence/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/06_technology_and_computation/artificial_intelligence/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/06_technology_and_computation/code/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/06_technology_and_computation/code/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/06_technology_and_computation/design/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/06_technology_and_computation/design/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/06_technology_and_computation/engineering/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/06_technology_and_computation/engineering/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/06_technology_and_computation/engineering/civil_&_mechanical_engineering/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/06_technology_and_computation/engineering/civil_&_mechanical_engineering/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/06_technology_and_computation/engineering/electrical_engineering/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/06_technology_and_computation/engineering/electrical_engineering/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/06_technology_and_computation/software_engineering/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/06_technology_and_computation/software_engineering/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/06_technology_and_computation/software_engineering/project_management/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/06_technology_and_computation/software_engineering/project_management/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/07_skills_and_applications/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/07_skills_and_applications/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/07_skills_and_applications/business_&_finance/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/07_skills_and_applications/business_&_finance/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/07_skills_and_applications/business_&_finance/accounting_&_investing/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/07_skills_and_applications/business_&_finance/accounting_&_investing/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/07_skills_and_applications/business_&_finance/leadership_&_ethics/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/07_skills_and_applications/business_&_finance/leadership_&_ethics/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/07_skills_and_applications/business_&_finance/management_&_strategy/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/07_skills_and_applications/business_&_finance/management_&_strategy/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/07_skills_and_applications/communication/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/07_skills_and_applications/communication/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/07_skills_and_applications/communication/conversation/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/07_skills_and_applications/communication/conversation/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/07_skills_and_applications/communication/negotiation/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/07_skills_and_applications/communication/negotiation/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/07_skills_and_applications/communication/people_skills/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/07_skills_and_applications/communication/people_skills/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/07_skills_and_applications/communication/rhetoric_&_persuasion/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/07_skills_and_applications/communication/rhetoric_&_persuasion/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/07_skills_and_applications/communication/speeches/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/07_skills_and_applications/communication/speeches/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/07_skills_and_applications/entrepreneurship/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/07_skills_and_applications/entrepreneurship/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/07_skills_and_applications/entrepreneurship/innovation/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/07_skills_and_applications/entrepreneurship/innovation/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/07_skills_and_applications/learning/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/07_skills_and_applications/learning/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/07_skills_and_applications/pedagogy/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/07_skills_and_applications/pedagogy/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/07_skills_and_applications/pedagogy/learning_theories/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/07_skills_and_applications/pedagogy/learning_theories/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/07_skills_and_applications/pedagogy/skill_acquisition/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/07_skills_and_applications/pedagogy/skill_acquisition/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/07_skills_and_applications/productivity/organization/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/07_skills_and_applications/productivity/organization/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/07_skills_and_applications/self_improvement/personal_effectiveness/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/07_skills_and_applications/self_improvement/personal_effectiveness/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/08_arts_and_aesthetics/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/08_arts_and_aesthetics/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/08_arts_and_aesthetics/music/theory_&_composition/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/08_arts_and_aesthetics/music/theory_&_composition/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/08_arts_and_aesthetics/visual_arts/painting_&_sculpture/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/08_arts_and_aesthetics/visual_arts/painting_&_sculpture/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/09_religion_and_theology/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/09_religion_and_theology/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/09_religion_and_theology/comparative_religion/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/09_religion_and_theology/comparative_religion/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/09_religion_and_theology/mysticism/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/09_religion_and_theology/mysticism/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/09_religion_and_theology/secularism_&_atheism/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/09_religion_and_theology/secularism_&_atheism/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/09_religion_and_theology/theology/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/09_religion_and_theology/theology/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/09_religion_and_theology/theology/monotheism_&_polytheism/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/09_religion_and_theology/theology/monotheism_&_polytheism/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/10_law_and_jurisprudence/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/10_law_and_jurisprudence/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/10_law_and_jurisprudence/constitutional_law/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/10_law_and_jurisprudence/constitutional_law/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/10_law_and_jurisprudence/criminal_law/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/10_law_and_jurisprudence/criminal_law/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/10_law_and_jurisprudence/international_law/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/10_law_and_jurisprudence/international_law/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/10_law_and_jurisprudence/legal_philosophy/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/10_law_and_jurisprudence/legal_philosophy/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/11_environmental_and_earth_sciences/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/11_environmental_and_earth_sciences/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/11_environmental_and_earth_sciences/atmospheric_science/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/11_environmental_and_earth_sciences/atmospheric_science/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/11_environmental_and_earth_sciences/climate_science/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/11_environmental_and_earth_sciences/climate_science/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/11_environmental_and_earth_sciences/oceanography/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/11_environmental_and_earth_sciences/oceanography/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/11_environmental_and_earth_sciences/sustainability/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/11_environmental_and_earth_sciences/sustainability/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/12_applied_technologies/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/12_applied_technologies/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/12_applied_technologies/biotechnology/CRISPR/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/12_applied_technologies/biotechnology/CRISPR/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/12_applied_technologies/cybersecurity/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/12_applied_technologies/cybersecurity/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/12_applied_technologies/nanotechnology/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/12_applied_technologies/nanotechnology/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/12_applied_technologies/quantum_computing/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/12_applied_technologies/quantum_computing/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/13_cultural_and_regional_studies/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/13_cultural_and_regional_studies/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/13_cultural_and_regional_studies/ethnic_&_racial_studies/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/13_cultural_and_regional_studies/ethnic_&_racial_studies/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/13_cultural_and_regional_studies/gender_studies/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/13_cultural_and_regional_studies/gender_studies/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/14_mythology_and_folklore/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/14_mythology_and_folklore/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/14_mythology_and_folklore/comparative_mythology/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/14_mythology_and_folklore/comparative_mythology/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/14_mythology_and_folklore/folklore_studies/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/14_mythology_and_folklore/folklore_studies/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/15_sports_and_kinesiology/exercise_physiology/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/15_sports_and_kinesiology/exercise_physiology/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/16_architecture_and__urban_planning/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/16_architecture_and__urban_planning/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/16_architecture_and__urban_planning/architectural_theory/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/16_architecture_and__urban_planning/architectural_theory/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/corpus/nonfiction/16_architecture_and__urban_planning/urban_design/README.md",
+      "path": "vdm_rt/data/corpus/nonfiction/16_architecture_and__urban_planning/urban_design/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/data/curriculum/scope-sequence-emerge-g1.pdf",
+      "path": "vdm_rt/data/curriculum/scope-sequence-emerge-g1.pdf",
       "sha256": "895efb84cecc5c2e045525a9cf34e7967e201b6aa4eabc3e7f44e43a40ffa187",
       "size": 847397
     },
     {
-      "path": "fum_rt/data/curriculum/scope-sequence-emerge-g2.pdf",
+      "path": "vdm_rt/data/curriculum/scope-sequence-emerge-g2.pdf",
       "sha256": "1efbdaf6c4206f3183d235134c752c802d933043724848ac1c7d140a2708fb7d",
       "size": 635416
     },
     {
-      "path": "fum_rt/data/curriculum/scope-sequence-emerge-g3.pdf",
+      "path": "vdm_rt/data/curriculum/scope-sequence-emerge-g3.pdf",
       "sha256": "f93e71021c36f80d00df946224c5f4721a7ca8722d02bee30ede214df2fafc4d",
       "size": 538437
     },
     {
-      "path": "fum_rt/data/curriculum/scope-sequence-emerge-g4.pdf",
+      "path": "vdm_rt/data/curriculum/scope-sequence-emerge-g4.pdf",
       "sha256": "7d9d7a42cf0526b373f5f59de06c1de09696a93265e794bd11882a426780500c",
       "size": 495381
     },
     {
-      "path": "fum_rt/data/curriculum/scope-sequence-emerge-g5.pdf",
+      "path": "vdm_rt/data/curriculum/scope-sequence-emerge-g5.pdf",
       "sha256": "7bc499d8bd98702f3eaf87768581972e6c2ad8befe3c62fd24a281da7eee3a25",
       "size": 482492
     },
     {
-      "path": "fum_rt/data/curriculum/scope-sequence-emerge-gk.pdf",
+      "path": "vdm_rt/data/curriculum/scope-sequence-emerge-gk.pdf",
       "sha256": "8d05871423f0d78856cfdad0cae38165d78070ce2f86c8151319ff0487ce192b",
       "size": 646231
     },
     {
-      "path": "fum_rt/data/data_manager.py",
+      "path": "vdm_rt/data/data_manager.py",
       "sha256": "fb269e17df81264c430040d1959248dc9ba6856dfc7fbb90fa0fbefea9ccf8f4",
       "size": 373
     },
     {
-      "path": "fum_rt/data/probes/curiosity_teases.txt",
+      "path": "vdm_rt/data/probes/curiosity_teases.txt",
       "sha256": "6b7906e94e0e8e64a4a8011f86e0b5333a5046589346ccb415cbb008f74570b9",
       "size": 7670
     },
     {
-      "path": "fum_rt/frontend/README.md",
+      "path": "vdm_rt/frontend/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/frontend/__init__.py",
+      "path": "vdm_rt/frontend/__init__.py",
       "sha256": "aca8c1172eedc28d1c32f35449839a0ddcf363ca6ee884e77e22371a007dceae",
       "size": 1138
     },
     {
-      "path": "fum_rt/frontend/__main__.py",
+      "path": "vdm_rt/frontend/__main__.py",
       "sha256": "eb5eb913c163ef67a144e8976e5b5ee97dfec47290f1a3989aafc192075a1a33",
       "size": 857
     },
     {
-      "path": "fum_rt/frontend/app.py",
+      "path": "vdm_rt/frontend/app.py",
       "sha256": "d9d1c7c61721a947177ca6cccc1b196e08699bef4fe15b6e041216ac9ecd1b33",
       "size": 7081
     },
     {
-      "path": "fum_rt/frontend/callbacks/charts.py",
+      "path": "vdm_rt/frontend/callbacks/charts.py",
       "sha256": "ef94554ed6811036997558d286f28bbc3c165d12818067490d9f5f5da00b0eaa",
       "size": 8275
     },
     {
-      "path": "fum_rt/frontend/callbacks/chat.py",
+      "path": "vdm_rt/frontend/callbacks/chat.py",
       "sha256": "ff7ca2020bb053a836a71d0a00c03ce2d053c0d0381e5314605557110da48f40",
       "size": 4546
     },
     {
-      "path": "fum_rt/frontend/callbacks/engram.py",
+      "path": "vdm_rt/frontend/callbacks/engram.py",
       "sha256": "f70a77aaa829af24b61213b27bbf72eb6e6cd10c7272c6d65b3bd67942dcc8ff",
       "size": 3054
     },
     {
-      "path": "fum_rt/frontend/callbacks/feed.py",
+      "path": "vdm_rt/frontend/callbacks/feed.py",
       "sha256": "4e2e64b83ea2d535bd4b833e0d6ebafee2f2dc6315ee67201d2ecc49fff98d81",
       "size": 2740
     },
     {
-      "path": "fum_rt/frontend/callbacks/file_picker/__init__.py",
+      "path": "vdm_rt/frontend/callbacks/file_picker/__init__.py",
       "sha256": "ffedf0b689fb233adad9e05ce3600479a5d5debc52abd08a8d0be15928c04122",
       "size": 870
     },
     {
-      "path": "fum_rt/frontend/callbacks/file_picker/common.py",
+      "path": "vdm_rt/frontend/callbacks/file_picker/common.py",
       "sha256": "ec29d19dec2b003ad1c39a3725eacc5dbe674dc6048eebe449551519c733670b",
       "size": 20020
     },
     {
-      "path": "fum_rt/frontend/callbacks/file_picker/registrars.py",
+      "path": "vdm_rt/frontend/callbacks/file_picker/registrars.py",
       "sha256": "ef2dde41b64918e5ce83f85f4ae0d4c86d00650e368226a8bfdc6db48534dbee",
       "size": 7680
     },
     {
-      "path": "fum_rt/frontend/callbacks/graph_tabs/single_graph.py",
+      "path": "vdm_rt/frontend/callbacks/graph_tabs/single_graph.py",
       "sha256": "4d421bccfd3b968eee7c630994dda09effba31ad13c52b0fa607785abd8775c8",
       "size": 4880
     },
     {
-      "path": "fum_rt/frontend/callbacks/interval.py",
+      "path": "vdm_rt/frontend/callbacks/interval.py",
       "sha256": "5ee24d29853ce7a6fb418f1dc9c4fc1dcc8e1071f586e1f87b0414e5819c2fdd",
       "size": 1494
     },
     {
-      "path": "fum_rt/frontend/callbacks/logs.py",
+      "path": "vdm_rt/frontend/callbacks/logs.py",
       "sha256": "c802fa1f8294cbe6f97df6658afdec4b18940836dfb7da667874dfa03656cc05",
       "size": 2954
     },
     {
-      "path": "fum_rt/frontend/callbacks/perf.py",
+      "path": "vdm_rt/frontend/callbacks/perf.py",
       "sha256": "7305593c9544292c7c04855e1d7be763023d933c6b75fb3520d55e31c1ec7b57",
       "size": 3097
     },
     {
-      "path": "fum_rt/frontend/callbacks/process.py",
+      "path": "vdm_rt/frontend/callbacks/process.py",
       "sha256": "058d34b6e63796e56f0265ae06753eab07cb0ba6a165cf56f56fed6dc0190698",
       "size": 9906
     },
     {
-      "path": "fum_rt/frontend/callbacks/profile.py",
+      "path": "vdm_rt/frontend/callbacks/profile.py",
       "sha256": "82aef681a34541cca4711f8e0aa11e5c41283e0eccd193e479661cde24d1f94c",
       "size": 8498
     },
     {
-      "path": "fum_rt/frontend/callbacks/runtime.py",
+      "path": "vdm_rt/frontend/callbacks/runtime.py",
       "sha256": "5b27e00d195427cc1a7fa6ed8e27751387b8ba25481e54288dd1311123f0dbf4",
       "size": 4589
     },
     {
-      "path": "fum_rt/frontend/callbacks/workspace.py",
+      "path": "vdm_rt/frontend/callbacks/workspace.py",
       "sha256": "f7bb8a13bc456d2c9194c5853e555368563f4d0962e9c0b91963bf2738fd7f3d",
       "size": 2454
     },
     {
-      "path": "fum_rt/frontend/components/charts.py",
+      "path": "vdm_rt/frontend/components/charts.py",
       "sha256": "8998ae724ecf3d10fbb9af83f085b140fc32ececc069f82503e16eb5fc7f0a37",
       "size": 3291
     },
     {
-      "path": "fum_rt/frontend/components/chat.py",
+      "path": "vdm_rt/frontend/components/chat.py",
       "sha256": "06de18c7753912f94b741f64519cb67cb966fe0dd3f1732eeb4810eff32b1b25",
       "size": 2505
     },
     {
-      "path": "fum_rt/frontend/components/config/__init__.py",
+      "path": "vdm_rt/frontend/components/config/__init__.py",
       "sha256": "f2f83c0fe4dec5af2a19ec13c16d1fe45381fee4f6455bc753a1716a259d1435",
       "size": 2124
     },
     {
-      "path": "fum_rt/frontend/components/config/run_config.py",
+      "path": "vdm_rt/frontend/components/config/run_config.py",
       "sha256": "db5b9d1fe64426ff00173b35ecc43a3f6b6f868cb72b61967502997ce31d5234",
       "size": 2047
     },
     {
-      "path": "fum_rt/frontend/components/config/sections.py",
+      "path": "vdm_rt/frontend/components/config/sections.py",
       "sha256": "f37d590862093fea1c8af0938482ef91b3d67364cf8e0321909438d58ff58f25",
       "size": 9402
     },
     {
-      "path": "fum_rt/frontend/components/feed.py",
+      "path": "vdm_rt/frontend/components/feed.py",
       "sha256": "f2097d0fbc08ab4e1aa8bf4a97e5464ee339fa3d047d214d1e9e371ea681bf3f",
       "size": 1723
     },
     {
-      "path": "fum_rt/frontend/components/layout.py",
+      "path": "vdm_rt/frontend/components/layout.py",
       "sha256": "9adf88f63aafac4fd07b72f09bd6fb2caf2e367876f2b08be38ced944005b619",
       "size": 3761
     },
     {
-      "path": "fum_rt/frontend/components/perf.py",
+      "path": "vdm_rt/frontend/components/perf.py",
       "sha256": "f3b3664ace6d8cf4645fe59bbbe1321e26913937c74419c674015d8b26c97fa2",
       "size": 3846
     },
     {
-      "path": "fum_rt/frontend/components/runtime_controls.py",
+      "path": "vdm_rt/frontend/components/runtime_controls.py",
       "sha256": "76d17772436c21528a8cfa0cab7854e7f34061ab9be5c4edff285e5c3915a702",
       "size": 8421
     },
     {
-      "path": "fum_rt/frontend/components/widgets/blocks.py",
+      "path": "vdm_rt/frontend/components/widgets/blocks.py",
       "sha256": "5e71948970993bd4c82b65a3279838b7a4b85aa5e175bd0a479ca0b9f2cbb46b",
       "size": 14395
     },
     {
-      "path": "fum_rt/frontend/components/widgets/file_breadcrumbs.py",
+      "path": "vdm_rt/frontend/components/widgets/file_breadcrumbs.py",
       "sha256": "a67d9557cff2bcfdc30e10d62b34fec8b8b5f8de9ce8da5aba6382b008d9c0a2",
       "size": 2183
     },
     {
-      "path": "fum_rt/frontend/components/widgets/file_picker.py",
+      "path": "vdm_rt/frontend/components/widgets/file_picker.py",
       "sha256": "2276ac16b82b79e3ee56f48aae5afb57af174a34b16190e36a9c899822d3b6de",
       "size": 12407
     },
     {
-      "path": "fum_rt/frontend/components/widgets/file_tree.py",
+      "path": "vdm_rt/frontend/components/widgets/file_tree.py",
       "sha256": "2595f92cef0d9cbae5164b1a8f762347ecc1675196fcc1cb820088ce61cf8e7c",
       "size": 4302
     },
     {
-      "path": "fum_rt/frontend/components/widgets/graph.py",
+      "path": "vdm_rt/frontend/components/widgets/graph.py",
       "sha256": "122f904f4501792184c366b0559a633079c82b5cb0ecd489484ead1ef2b83b63",
       "size": 690
     },
     {
-      "path": "fum_rt/frontend/components/workspace.py",
+      "path": "vdm_rt/frontend/components/workspace.py",
       "sha256": "19af962067d0262815112373e1c942c82dd0d4980ebdd4e9a3bfa1427c0becfb",
       "size": 2720
     },
     {
-      "path": "fum_rt/frontend/controllers/__init__.py",
+      "path": "vdm_rt/frontend/controllers/__init__.py",
       "sha256": "86b5ec64271c968895f181c896736d746ebdca316f661c2fb15bd5c5b8165a05",
       "size": 719
     },
     {
-      "path": "fum_rt/frontend/controllers/charts_controller.py",
+      "path": "vdm_rt/frontend/controllers/charts_controller.py",
       "sha256": "792f50c81ba7d6d1e84f0459ebf61af3f461bd60f4a336d78e8d3c41c0f93156",
       "size": 11749
     },
     {
-      "path": "fum_rt/frontend/controllers/chat_controller.py",
+      "path": "vdm_rt/frontend/controllers/chat_controller.py",
       "sha256": "847c747cf896358c7b3cf2df255352ee613c36a1bd6c11a419dc527d28a6757a",
       "size": 4078
     },
     {
-      "path": "fum_rt/frontend/controllers/file_picker_controller.py",
+      "path": "vdm_rt/frontend/controllers/file_picker_controller.py",
       "sha256": "513b25bf4e5a1e55150ebd82b24ec1161016bf4771506c01279d0115474ea182",
       "size": 5345
     },
     {
-      "path": "fum_rt/frontend/controllers/file_picker_ctx.py",
+      "path": "vdm_rt/frontend/controllers/file_picker_ctx.py",
       "sha256": "62a3d3254f10042dbd12b8bace0d6d5ed26f9c1d53c392c30e204efad623e229",
       "size": 1240
     },
     {
-      "path": "fum_rt/frontend/controllers/file_picker_status.py",
+      "path": "vdm_rt/frontend/controllers/file_picker_status.py",
       "sha256": "c57a5202419a6a9a323292655e1b691a678ba2fe7ffacdc7af536174275895ab",
       "size": 3052
     },
     {
-      "path": "fum_rt/frontend/controllers/runtime_controller.py",
+      "path": "vdm_rt/frontend/controllers/runtime_controller.py",
       "sha256": "e8678061c3615d834185499019086969849a7d8b9c4a029cdb05f0a237ec49b9",
       "size": 6126
     },
     {
-      "path": "fum_rt/frontend/debug_ui.py",
+      "path": "vdm_rt/frontend/debug_ui.py",
       "sha256": "80e9dfe6bd412c588a00608e8a2ec1d9cd19e4405ec910ae11a4596ed2c63d83",
       "size": 17930
     },
     {
-      "path": "fum_rt/frontend/models/series.py",
+      "path": "vdm_rt/frontend/models/series.py",
       "sha256": "5691d10d8b63347444d94a1cd04e520ec4ee15c9ef55777096b136b12af22268",
       "size": 5801
     },
     {
-      "path": "fum_rt/frontend/plugins/fum_visualizer_v1/fum_visualizer.py",
+      "path": "vdm_rt/frontend/plugins/fum_visualizer_v1/fum_visualizer.py",
       "sha256": "ea06041a3bab39efd451648b0f6b75c522406770491aa520ef73b64efa20cc9d",
       "size": 20366
     },
     {
-      "path": "fum_rt/frontend/services/process_manager.py",
+      "path": "vdm_rt/frontend/services/process_manager.py",
       "sha256": "1a9debbc439ffdc5b8d63b7d5e1e00dba406254a799b9bce52c9ac8d1ef9b4d3",
       "size": 13118
     },
     {
-      "path": "fum_rt/frontend/services/status_client.py",
+      "path": "vdm_rt/frontend/services/status_client.py",
       "sha256": "ef8a0a6fc76ccb4ddf06855042d8bf997c2434a3c4ccbfcb6f10aa47e2c9fb95",
       "size": 3313
     },
     {
-      "path": "fum_rt/frontend/styles/README.md",
+      "path": "vdm_rt/frontend/styles/README.md",
       "sha256": "fb6a4b87c00ea5e79977fd9f15b8a9794bd44957bf8442ca50afb6447f7d5807",
       "size": 4933
     },
     {
-      "path": "fum_rt/frontend/styles/__init__.py",
+      "path": "vdm_rt/frontend/styles/__init__.py",
       "sha256": "48de5f7fd45a65e08cd7596e7971be5448171a1b2aae96842d87f6331f8eac66",
       "size": 1832
     },
     {
-      "path": "fum_rt/frontend/styles/base.py",
+      "path": "vdm_rt/frontend/styles/base.py",
       "sha256": "084fb4ad113b325dbecc62bca0a408e0c75a7769b0fa5ba00ce3925bb01e9516",
       "size": 2522
     },
     {
-      "path": "fum_rt/frontend/styles/components.py",
+      "path": "vdm_rt/frontend/styles/components.py",
       "sha256": "0d679545b3ba09b27f7c0014a389f102ebf2d4e695820efba53681b4d07fb76e",
       "size": 4237
     },
     {
-      "path": "fum_rt/frontend/styles/layout.py",
+      "path": "vdm_rt/frontend/styles/layout.py",
       "sha256": "ecd0c7751c8ad4e16a1273ec7caa4afcdb39d06f122edd27d71d3896fbd0e9ec",
       "size": 3569
     },
     {
-      "path": "fum_rt/frontend/styles/theme.py",
+      "path": "vdm_rt/frontend/styles/theme.py",
       "sha256": "0c0a0329b8fbe7df92b13a1daa89df8ff9998b091c414ea3508994bd06c450fe",
       "size": 1961
     },
     {
-      "path": "fum_rt/frontend/utilities/fs_utils.py",
+      "path": "vdm_rt/frontend/utilities/fs_utils.py",
       "sha256": "888dde3b6e53774ee7f4688e93b52d8d385684a4af6bdfb4243cbd88ca62a6c8",
       "size": 3579
     },
     {
-      "path": "fum_rt/frontend/utilities/pdf_utils.py",
+      "path": "vdm_rt/frontend/utilities/pdf_utils.py",
       "sha256": "2fd8436668df7f475f776390a2835888188be705481b601bf643ce2f9821c8da",
       "size": 4691
     },
     {
-      "path": "fum_rt/frontend/utilities/profiles.py",
+      "path": "vdm_rt/frontend/utilities/profiles.py",
       "sha256": "d2e6c5beb8f7c3cdc0acad0f10a83419c335f2dec86b9bcd246f94c3d23b44da",
       "size": 5399
     },
     {
-      "path": "fum_rt/frontend/utilities/tail.py",
+      "path": "vdm_rt/frontend/utilities/tail.py",
       "sha256": "cea0d4aa99d5ac2d11bca702f0c1ab4b4064ad23f7cdcbf69e5a8922e6bf58b7",
       "size": 5169
     },
     {
-      "path": "fum_rt/io/README.md",
+      "path": "vdm_rt/io/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/io/__init__.py",
+      "path": "vdm_rt/io/__init__.py",
       "sha256": "fb269e17df81264c430040d1959248dc9ba6856dfc7fbb90fa0fbefea9ccf8f4",
       "size": 373
     },
     {
-      "path": "fum_rt/io/actuators/README.md",
+      "path": "vdm_rt/io/actuators/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/io/actuators/__init__.py",
+      "path": "vdm_rt/io/actuators/__init__.py",
       "sha256": "fb269e17df81264c430040d1959248dc9ba6856dfc7fbb90fa0fbefea9ccf8f4",
       "size": 373
     },
     {
-      "path": "fum_rt/io/actuators/macros.py",
+      "path": "vdm_rt/io/actuators/macros.py",
       "sha256": "78ef709e1c90833f724fffaa275dbe9b764455850e8e158440cf9d245efa8206",
       "size": 5021
     },
     {
-      "path": "fum_rt/io/actuators/motor_control.py",
+      "path": "vdm_rt/io/actuators/motor_control.py",
       "sha256": "523e4c0125560ec23aa2e25c9faf521df1036a08a6e592dfa4971b6f139a752a",
       "size": 383
     },
     {
-      "path": "fum_rt/io/actuators/symbols.py",
+      "path": "vdm_rt/io/actuators/symbols.py",
       "sha256": "b36b2155eb80466c6ec7e7fa3735589193b4bc72ba708d91f5fc7c5ba3483c6d",
       "size": 348
     },
     {
-      "path": "fum_rt/io/actuators/thoughts.py",
+      "path": "vdm_rt/io/actuators/thoughts.py",
       "sha256": "b3550dde00d43982ba1edd2d3a403c4f46c6e9378c348215f4f9dd63f51bdf3f",
       "size": 3392
     },
     {
-      "path": "fum_rt/io/actuators/visualize.py",
+      "path": "vdm_rt/io/actuators/visualize.py",
       "sha256": "b36b2155eb80466c6ec7e7fa3735589193b4bc72ba708d91f5fc7c5ba3483c6d",
       "size": 348
     },
     {
-      "path": "fum_rt/io/actuators/vocalizer.py",
+      "path": "vdm_rt/io/actuators/vocalizer.py",
       "sha256": "b36b2155eb80466c6ec7e7fa3735589193b4bc72ba708d91f5fc7c5ba3483c6d",
       "size": 348
     },
     {
-      "path": "fum_rt/io/cognition/README.md",
+      "path": "vdm_rt/io/cognition/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/io/cognition/composer.py",
+      "path": "vdm_rt/io/cognition/composer.py",
       "sha256": "969ca80d47e9fe9f6ea693c9461010b1e9160c59f8ecd23deacdd06287b06d9a",
       "size": 3289
     },
     {
-      "path": "fum_rt/io/cognition/speaker.py",
+      "path": "vdm_rt/io/cognition/speaker.py",
       "sha256": "4d8acc238fed1c8d45ffc0322a7ae50525573bfcb8110dd2a80175ff4f4ce3fc",
       "size": 2982
     },
     {
-      "path": "fum_rt/io/cognition/stimulus.py",
+      "path": "vdm_rt/io/cognition/stimulus.py",
       "sha256": "c2dcea1dee55b1ca3f5abbf2cab53bbced1fbd591c8817b2f2d4853062e04864",
       "size": 2068
     },
     {
-      "path": "fum_rt/io/lexicon/README.md",
+      "path": "vdm_rt/io/lexicon/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/io/lexicon/idf.py",
+      "path": "vdm_rt/io/lexicon/idf.py",
       "sha256": "ab5c625f06c6d566c6d2b08544c9d7042813e6a1b353d7b40316f696bc8e282f",
       "size": 3002
     },
     {
-      "path": "fum_rt/io/lexicon/phrase_bank_min.json",
+      "path": "vdm_rt/io/lexicon/phrase_bank_min.json",
       "sha256": "976063e0b2b740a0fac2a929f72cf3448afb3ab05d1fd1bd9cbf2b6bddfb4711",
       "size": 647
     },
     {
-      "path": "fum_rt/io/lexicon/store.py",
+      "path": "vdm_rt/io/lexicon/store.py",
       "sha256": "1d1b8f95a929f28dab1f4f616244f08fc6bd96a1285c712bc3d8f5c7c4d8d908",
       "size": 5694
     },
     {
-      "path": "fum_rt/io/logging/README.md",
+      "path": "vdm_rt/io/logging/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/io/logging/rolling_jsonl.py",
+      "path": "vdm_rt/io/logging/rolling_jsonl.py",
       "sha256": "7ec2eebee07ae69fd98c196750f7c86f9dde8d6eb2ef8571fe381ec368887543",
       "size": 21463
     },
     {
-      "path": "fum_rt/io/maps_ring.py",
+      "path": "vdm_rt/io/maps_ring.py",
       "sha256": "60ca36b2151fe2daf208bcfc68f94b58ec466f9a71d0f7169d763cf72f94f2c6",
       "size": 756
     },
     {
-      "path": "fum_rt/io/sensors/README.md",
+      "path": "vdm_rt/io/sensors/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/io/sensors/__init__.py",
+      "path": "vdm_rt/io/sensors/__init__.py",
       "sha256": "fb269e17df81264c430040d1959248dc9ba6856dfc7fbb90fa0fbefea9ccf8f4",
       "size": 373
     },
     {
-      "path": "fum_rt/io/sensors/auditory.py",
+      "path": "vdm_rt/io/sensors/auditory.py",
       "sha256": "b36b2155eb80466c6ec7e7fa3735589193b4bc72ba708d91f5fc7c5ba3483c6d",
       "size": 348
     },
     {
-      "path": "fum_rt/io/sensors/somatosensory.py",
+      "path": "vdm_rt/io/sensors/somatosensory.py",
       "sha256": "b36b2155eb80466c6ec7e7fa3735589193b4bc72ba708d91f5fc7c5ba3483c6d",
       "size": 348
     },
     {
-      "path": "fum_rt/io/sensors/symbols.py",
+      "path": "vdm_rt/io/sensors/symbols.py",
       "sha256": "b36b2155eb80466c6ec7e7fa3735589193b4bc72ba708d91f5fc7c5ba3483c6d",
       "size": 348
     },
     {
-      "path": "fum_rt/io/sensors/vision.py",
+      "path": "vdm_rt/io/sensors/vision.py",
       "sha256": "b36b2155eb80466c6ec7e7fa3735589193b4bc72ba708d91f5fc7c5ba3483c6d",
       "size": 348
     },
     {
-      "path": "fum_rt/io/utd.py",
+      "path": "vdm_rt/io/utd.py",
       "sha256": "67a6331a1ed09aef677bf7e4af7115b17afbf3232c2d2db7b9ca0477b8c99208",
       "size": 5028
     },
     {
-      "path": "fum_rt/io/ute.py",
+      "path": "vdm_rt/io/ute.py",
       "sha256": "2198a85821896c6e69afda9bb35ecafc076b6f8399b98543d8952b65bb663244",
       "size": 3825
     },
     {
-      "path": "fum_rt/io/visualization/README.md",
+      "path": "vdm_rt/io/visualization/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/io/visualization/__init__.py",
+      "path": "vdm_rt/io/visualization/__init__.py",
       "sha256": "5b8234ea0ecd212efc68f4abd177788c7294837866561bd07572d71ab2809157",
       "size": 664
     },
     {
-      "path": "fum_rt/io/visualization/maps_ring.py",
+      "path": "vdm_rt/io/visualization/maps_ring.py",
       "sha256": "3fec30f183203c8bdeea4635d6919f05366e8fd9f9edbf9f96f737de8ffe7cfa",
       "size": 4128
     },
     {
-      "path": "fum_rt/io/visualization/websocket_server.py",
+      "path": "vdm_rt/io/visualization/websocket_server.py",
       "sha256": "5c490d53f843e542935d1437b876d5d3f6aeac2872136d1a4a1c53c339336cda",
       "size": 10978
     },
     {
-      "path": "fum_rt/nexus.py",
+      "path": "vdm_rt/nexus.py",
       "sha256": "27dba7507dffd874c6ee50d460531832e2cee877c39aef7d823029a19e727010",
       "size": 18071
     },
     {
-      "path": "fum_rt/physics/README.md",
+      "path": "vdm_rt/physics/README.md",
       "sha256": "507bca1f03b91a1e0466633009e820d2c22a78e7d7b8e687bb7d3ced43cf3f33",
       "size": 361
     },
     {
-      "path": "fum_rt/physics/__init__.py",
+      "path": "vdm_rt/physics/__init__.py",
       "sha256": "15b2dcee3e31430722e3d41ee06f22f53648cea0a02ebcb3edd00b20c87d63e5",
       "size": 2163
     },
     {
-      "path": "fum_rt/physics/ci_gates.py",
+      "path": "vdm_rt/physics/ci_gates.py",
       "sha256": "792fcf4cbf5783ecea4736b7d64ad9b63bc5847caaedd2e01779e6225e74ed42",
       "size": 2882
     },
     {
-      "path": "fum_rt/physics/harness_logging.py",
+      "path": "vdm_rt/physics/harness_logging.py",
       "sha256": "eed7e63c8545c6a02ee2e00d3c5f1459108abb2989ec72fbacefd123203b2d68",
       "size": 3981
     },
     {
-      "path": "fum_rt/physics/memory_steering/memory_steering.py",
+      "path": "vdm_rt/physics/memory_steering/memory_steering.py",
       "sha256": "0f7bcb8c0beb959eebdd45de24026a79595b4c6e06b1a90605093aa104fbea81",
       "size": 17032
     },
     {
-      "path": "fum_rt/physics/memory_steering/memory_steering_experiments.py",
+      "path": "vdm_rt/physics/memory_steering/memory_steering_experiments.py",
       "sha256": "09c34b25c4f52f951a2efd0a0c1aae41858a0cca7a4d2c32faf980e53bb8a4c7",
       "size": 39248
     },
     {
-      "path": "fum_rt/physics/memory_steering/plot_memory_steering.py",
+      "path": "vdm_rt/physics/memory_steering/plot_memory_steering.py",
       "sha256": "c31351dbcfb33edea46c27b6cf251a668295f4923ecda5bc536e446c857920b3",
       "size": 20858
     },
     {
-      "path": "fum_rt/physics/outputs/figures/rd_dispersion_runner_20250820T114106Z.png",
+      "path": "vdm_rt/physics/outputs/figures/rd_dispersion_runner_20250820T114106Z.png",
       "sha256": "fed2c2062034d8bed7fc43af23173c6b1be6f90fb5d56651b2bfcd924afa2357",
       "size": 67090
     },
     {
-      "path": "fum_rt/physics/outputs/figures/rd_front_speed_runner_20250820T114104Z.png",
+      "path": "vdm_rt/physics/outputs/figures/rd_front_speed_runner_20250820T114104Z.png",
       "sha256": "5a4c630a2a0d8e24deb5f85c7606043d5eedb0a459e4ba3ad8f0d4192520e4ec",
       "size": 132271
     },
     {
-      "path": "fum_rt/physics/outputs/logs/rd_dispersion_runner_20250820T114106Z.json",
+      "path": "vdm_rt/physics/outputs/logs/rd_dispersion_runner_20250820T114106Z.json",
       "sha256": "974181e4d377f860a05ac6d87920a7b1bb292ebfa83b37f06673edbdb8f17470",
       "size": 11904
     },
     {
-      "path": "fum_rt/physics/outputs/logs/rd_front_speed_runner_20250820T114104Z.json",
+      "path": "vdm_rt/physics/outputs/logs/rd_front_speed_runner_20250820T114104Z.json",
       "sha256": "778c2707b1bf53f55654e8d243dfa457a0875e2546c8375efed4d22ee315197d",
       "size": 980
     },
     {
-      "path": "fum_rt/physics/pta_correlation_harness.py",
+      "path": "vdm_rt/physics/pta_correlation_harness.py",
       "sha256": "529d1be80037d70a2b38f70d8227768ba67e9a97b02fa77ea83b9a58b962ec99",
       "size": 12288
     },
     {
-      "path": "fum_rt/physics/rd_dispersion_runner.py",
+      "path": "vdm_rt/physics/rd_dispersion_runner.py",
       "sha256": "8859a4a7b854b046832d528e75e44d36ab4f6f27f966e010d08ded6ecff81e04",
       "size": 6524
     },
     {
-      "path": "fum_rt/physics/rd_front_speed_runner.py",
+      "path": "vdm_rt/physics/rd_front_speed_runner.py",
       "sha256": "f35e7557a8ad1db57302135f3850ec85456d29c12d91e4c25d6dfecba0161b3e",
       "size": 6355
     },
     {
-      "path": "fum_rt/physics/router_regression_figures.py",
+      "path": "vdm_rt/physics/router_regression_figures.py",
       "sha256": "6faac3be0a7a64e1ea70d492ed10b7f60065988cbd7bda932d4535484e97f6b2",
       "size": 14264
     },
     {
-      "path": "fum_rt/physics/sidm_curve_harness.py",
+      "path": "vdm_rt/physics/sidm_curve_harness.py",
       "sha256": "07f38dad1167f3d61dee16e69a577d2373815f57a13330946581e61a1392114f",
       "size": 12232
     },
     {
-      "path": "fum_rt/physics/vacuum_demographics_harness.py",
+      "path": "vdm_rt/physics/vacuum_demographics_harness.py",
       "sha256": "6c6e0711162b71cbcf2408ea1324de03bb4e70c2992e303fd7d83b1ae0669a09",
       "size": 16532
     },
     {
-      "path": "fum_rt/requirements.txt",
+      "path": "vdm_rt/requirements.txt",
       "sha256": "329376d9b870ec1959be6a627fe2dd6cf3be30dbf105d88aee406f7c7beb5515",
       "size": 201
     },
     {
-      "path": "fum_rt/run_nexus.py",
+      "path": "vdm_rt/run_nexus.py",
       "sha256": "e9824699971576d3d50031b7c4bf98e7201d93aaa38d3f2edc53593cef8eca13",
       "size": 4635
     },
     {
-      "path": "fum_rt/runtime/README.md",
+      "path": "vdm_rt/runtime/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/runtime/__init__.py",
+      "path": "vdm_rt/runtime/__init__.py",
       "sha256": "b4930c7aff1004aa47d8466e60235e7157ba7ce0edd15be3a1159912b3568a59",
       "size": 759
     },
     {
-      "path": "fum_rt/runtime/emitters.py",
+      "path": "vdm_rt/runtime/emitters.py",
       "sha256": "1ddf608f80f3789b1b75ae57db93950a08e92d49ec48371506a7b8397490b585",
       "size": 2165
     },
     {
-      "path": "fum_rt/runtime/events_adapter.py",
+      "path": "vdm_rt/runtime/events_adapter.py",
       "sha256": "b6a91b6c9a6c4cf948a3e43b18e88b1fb7a8eae3ee41f0e2d77dc154ddb816a3",
       "size": 6761
     },
     {
-      "path": "fum_rt/runtime/helpers/README.md",
+      "path": "vdm_rt/runtime/helpers/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/runtime/helpers/__init__.py",
+      "path": "vdm_rt/runtime/helpers/__init__.py",
       "sha256": "e0a7ef1b5a6a954a21f4916e85eafd91ca11658ad8500f25fc168d8ca354a19e",
       "size": 1611
     },
     {
-      "path": "fum_rt/runtime/helpers/checkpointing.py",
+      "path": "vdm_rt/runtime/helpers/checkpointing.py",
       "sha256": "b927522b9bc8c28fe5bc5dfcbd2d2ba7289c09d839132b449069be3a41bbd54e",
       "size": 2191
     },
     {
-      "path": "fum_rt/runtime/helpers/emission.py",
+      "path": "vdm_rt/runtime/helpers/emission.py",
       "sha256": "fe6ea0787d7b767c1840802bc4dfba0e29b730054dd86c2f2c5b78875d828f08",
       "size": 2416
     },
     {
-      "path": "fum_rt/runtime/helpers/engram.py",
+      "path": "vdm_rt/runtime/helpers/engram.py",
       "sha256": "fedce96540f9169f1c37180d5680bb80f8ca9fba9178906c188d53009f7a805b",
       "size": 3005
     },
     {
-      "path": "fum_rt/runtime/helpers/ingest.py",
+      "path": "vdm_rt/runtime/helpers/ingest.py",
       "sha256": "7e2e406180432c7013ebbf706a5fd83ae56cf2d9d2db568bb6b6a782bf8c38a7",
       "size": 3977
     },
     {
-      "path": "fum_rt/runtime/helpers/macro_board.py",
+      "path": "vdm_rt/runtime/helpers/macro_board.py",
       "sha256": "ab7087f398d529b7d3430b17e84a730b93ac695dfc4d42bc6daf5cc243c911bf",
       "size": 1946
     },
     {
-      "path": "fum_rt/runtime/helpers/maps_ws.py",
+      "path": "vdm_rt/runtime/helpers/maps_ws.py",
       "sha256": "f51affebd6a6b07b28e75dc06914e7abe04f7c69441ddbfd0874a9c9a1e24f9e",
       "size": 3394
     },
     {
-      "path": "fum_rt/runtime/helpers/redis_out.py",
+      "path": "vdm_rt/runtime/helpers/redis_out.py",
       "sha256": "f09fac9bf12fe318aa52993e191dd29adf5d16c2d23bbf24615f161c2ef193fc",
       "size": 5822
     },
     {
-      "path": "fum_rt/runtime/helpers/smoke.py",
+      "path": "vdm_rt/runtime/helpers/smoke.py",
       "sha256": "1f0279384da92be43e0aa9ca2a963b139816a4b1770bd30c2b562a4d24e2c507",
       "size": 2895
     },
     {
-      "path": "fum_rt/runtime/helpers/speak.py",
+      "path": "vdm_rt/runtime/helpers/speak.py",
       "sha256": "07356dbeaa993ec325f0e44f33cf31cdf9225f12c86c8620c1b5a9b1303ee6f0",
       "size": 4684
     },
     {
-      "path": "fum_rt/runtime/helpers/status_http.py",
+      "path": "vdm_rt/runtime/helpers/status_http.py",
       "sha256": "396241b3dc78c38ad08f23f993fc8ce8965d128f7413bf0b40f23890c1e18fd5",
       "size": 7030
     },
     {
-      "path": "fum_rt/runtime/helpers/viz.py",
+      "path": "vdm_rt/runtime/helpers/viz.py",
       "sha256": "395147dc0ae0287eb568e8a42db169595c358a8aad1d3cf9723990c80a9ee3ce",
       "size": 1445
     },
     {
-      "path": "fum_rt/runtime/loop/README.md",
+      "path": "vdm_rt/runtime/loop/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/runtime/loop/__init__.py",
+      "path": "vdm_rt/runtime/loop/__init__.py",
       "sha256": "f345bc86202cf3e721c46db0e2a031f8118e424986d0ecc30ff7274623a1d659",
       "size": 1835
     },
     {
-      "path": "fum_rt/runtime/loop/main.py",
+      "path": "vdm_rt/runtime/loop/main.py",
       "sha256": "0ee7ac7010e066531152e5408b42159e535cfdf633a7ec4a97936925db023bf6",
       "size": 40997
     },
     {
-      "path": "fum_rt/runtime/orchestrator.py",
+      "path": "vdm_rt/runtime/orchestrator.py",
       "sha256": "343b999d7579b39293624e7cba9424f3557f5bbc8293062c882e0be354ddb464",
       "size": 4063
     },
     {
-      "path": "fum_rt/runtime/phase.py",
+      "path": "vdm_rt/runtime/phase.py",
       "sha256": "5e284b162779ebaf8bff9845e7485b717d66b767bd144a61aea6dc4f885425ac",
       "size": 11140
     },
     {
-      "path": "fum_rt/runtime/retention.py",
+      "path": "vdm_rt/runtime/retention.py",
       "sha256": "ba4df62d509362465c8954cdf667c64dc8b6392d245fd5e3fe820701767b16da",
       "size": 3780
     },
     {
-      "path": "fum_rt/runtime/state.py",
+      "path": "vdm_rt/runtime/state.py",
       "sha256": "99e2a88769b5c81ee2be47699b1ec892ce8d864ac6654862a5edaf8b9fd498f4",
       "size": 2862
     },
     {
-      "path": "fum_rt/runtime/stepper.py",
+      "path": "vdm_rt/runtime/stepper.py",
       "sha256": "00c44a0cb5ed230fa262687236537be52e95b7b35aa295c73158e1f82032b4f5",
       "size": 4205
     },
     {
-      "path": "fum_rt/runtime/telemetry.py",
+      "path": "vdm_rt/runtime/telemetry.py",
       "sha256": "e89764eb08381363e026e02bf636a58c54b0cd519a098cdf9e5be064bbb71fd2",
       "size": 26431
     },
     {
-      "path": "fum_rt/tests/conftest.py",
+      "path": "vdm_rt/tests/conftest.py",
       "sha256": "2c6cc10cec98645b03297b5e4f345afe395ec1de6cbf1d973a441f6026637793",
       "size": 1212
     },
     {
-      "path": "fum_rt/tests/core/cosmology/test_events.py",
+      "path": "vdm_rt/tests/core/cosmology/test_events.py",
       "sha256": "f5e8334e114d9cdde76f4b4f0b1a8d159650b553289c99ca0ebf028a17969fb2",
       "size": 3195
     },
     {
-      "path": "fum_rt/tests/core/cosmology/test_router.py",
+      "path": "vdm_rt/tests/core/cosmology/test_router.py",
       "sha256": "8701ed291ba9e08bef561a72f746d8f5884e87bd1d4463525937ffc00e8a4f49",
       "size": 7928
     },
     {
-      "path": "fum_rt/tests/core/test_active_graph_regression.py",
+      "path": "vdm_rt/tests/core/test_active_graph_regression.py",
       "sha256": "a2793809e9346fc3732f6370df1cbf57dd2a5dd46cc7d123fa1218ae1da36b1a",
       "size": 3673
     },
     {
-      "path": "fum_rt/tests/core/test_core_boundary_guards.py",
+      "path": "vdm_rt/tests/core/test_core_boundary_guards.py",
       "sha256": "a37dcd4c7c3ec7a16c38a238282fc7f42ee7fc2ebbc39c4b04e1d2c3ef5ff702",
       "size": 6255
     },
     {
-      "path": "fum_rt/tests/core/test_maps_frame.py",
+      "path": "vdm_rt/tests/core/test_maps_frame.py",
       "sha256": "5b04497e4ad955c168c76891a4e64462d6b32be7f557cd6757d8c7ecbb4d7832",
       "size": 3463
     },
     {
-      "path": "fum_rt/tests/core/test_runner_budget.py",
+      "path": "vdm_rt/tests/core/test_runner_budget.py",
       "sha256": "e1f02cfcd24f0c44d739808860d110106e450e8b27c776aa239f226d73439edb",
       "size": 3818
     },
     {
-      "path": "fum_rt/tests/core/test_scouts.py",
+      "path": "vdm_rt/tests/core/test_scouts.py",
       "sha256": "288aa6102cc928f6f042582598afed33719b7ce1afd3908542f89503dac0209f",
       "size": 2264
     },
     {
-      "path": "fum_rt/tests/core/test_territory_uf.py",
+      "path": "vdm_rt/tests/core/test_territory_uf.py",
       "sha256": "45ea0b5f1252104841f9ba3612520cba5318efca12d0ad3b5db0505ce09e24af",
       "size": 2256
     },
     {
-      "path": "fum_rt/tests/core/test_void_faithful_guards.py",
+      "path": "vdm_rt/tests/core/test_void_faithful_guards.py",
       "sha256": "8dd4e56a9fba391596bcc8a45fde78b5569054e7cfcf293800bab52f654dfdc9",
       "size": 3414
     },
     {
-      "path": "fum_rt/tests/frontend/test_frontend_architecture.py",
+      "path": "vdm_rt/tests/frontend/test_frontend_architecture.py",
       "sha256": "a7bebb043518dae81578ecf532bc5eab1469c940dcf9f71d03687865b4377f57",
       "size": 6510
     },
     {
-      "path": "fum_rt/tests/frontend/test_process_manager_runs_root.py",
+      "path": "vdm_rt/tests/frontend/test_process_manager_runs_root.py",
       "sha256": "364feeba083eb229a20d96685b5022556c0b252dbeab6bdc4fabb6a7f828f664",
       "size": 4156
     },
     {
-      "path": "fum_rt/tests/guards/test_no_dense_connectome.py",
+      "path": "vdm_rt/tests/guards/test_no_dense_connectome.py",
       "sha256": "e5e975e9c23f3e5c26e6af3bf56f46ba7dbc32a22d7b1ee36975bae2a90d32a3",
       "size": 1399
     },
     {
-      "path": "fum_rt/tests/guards/test_no_scheduler.py",
+      "path": "vdm_rt/tests/guards/test_no_scheduler.py",
       "sha256": "7034c4680751899e7903ec9507109c5353b6bfc1ccaa6f846f44f276bac44652",
       "size": 3368
     },
     {
-      "path": "fum_rt/tests/physics/test_ci_gates.py",
+      "path": "vdm_rt/tests/physics/test_ci_gates.py",
       "sha256": "1b0f90852b64f2885e3faebd7b526c78a87fd7dc8badce0d80317db28900f050",
       "size": 2098
     },
     {
-      "path": "fum_rt/tests/physics/test_harness_logging.py",
+      "path": "vdm_rt/tests/physics/test_harness_logging.py",
       "sha256": "bc4dc628f4601734ef9ec7aa6e4377a4354cccd74a6b39c1ee4fe74abbc0bdb8",
       "size": 1661
     },
     {
-      "path": "fum_rt/tests/physics/test_invariants.py",
+      "path": "vdm_rt/tests/physics/test_invariants.py",
       "sha256": "a7ac2ffe57ec4aebc3e4ac6cf060b953627c5e0011d45f351072ce447be37103",
       "size": 4678
     },
     {
-      "path": "fum_rt/tests/physics/test_memory_kernel_event_local.py",
+      "path": "vdm_rt/tests/physics/test_memory_kernel_event_local.py",
       "sha256": "4301889828da672fc257dd2669263ef302825f01911c7ee0b35947adbba57a23",
       "size": 3045
     },
     {
-      "path": "fum_rt/tests/physics/test_pta_correlation_harness.py",
+      "path": "vdm_rt/tests/physics/test_pta_correlation_harness.py",
       "sha256": "e3e6c430f1198d7732398a7b70a65fbebe088bb624105d6d2e037de02e9936d1",
       "size": 2219
     },
     {
-      "path": "fum_rt/tests/physics/test_router_regression_figures.py",
+      "path": "vdm_rt/tests/physics/test_router_regression_figures.py",
       "sha256": "bb9f364d7297b83a1a5eeda48bad719202acbd017d454a2e31820e75fcc6ec00",
       "size": 3084
     },
     {
-      "path": "fum_rt/tests/physics/test_sidm_curve_harness.py",
+      "path": "vdm_rt/tests/physics/test_sidm_curve_harness.py",
       "sha256": "24e3a3d5905b1f9e6c4c1528ce227b5a51ce10350a189e5e5d926d5e63565925",
       "size": 2426
     },
     {
-      "path": "fum_rt/tests/physics/test_steering_ab.py",
+      "path": "vdm_rt/tests/physics/test_steering_ab.py",
       "sha256": "85987e176e98d8e28ead3f54b40aa7b7a243a0e08b61dff32d432fa86e8b0d42",
       "size": 3708
     },
     {
-      "path": "fum_rt/tests/physics/test_vacuum_demographics_harness.py",
+      "path": "vdm_rt/tests/physics/test_vacuum_demographics_harness.py",
       "sha256": "26c6caf3dfb2f51415b97b887d50ade160c4a3e6f99a547fb56cb6ae2f1a2308",
       "size": 2956
     },
     {
-      "path": "fum_rt/tests/runtime/test_events_adapter_inhibition.py",
+      "path": "vdm_rt/tests/runtime/test_events_adapter_inhibition.py",
       "sha256": "a16fd0319b807240124fe8472477b097a9d4f3d2de8dee7e57feba81e8011d5b",
       "size": 5180
     },
     {
-      "path": "fum_rt/tests/runtime/test_phase_legacy_key.py",
+      "path": "vdm_rt/tests/runtime/test_phase_legacy_key.py",
       "sha256": "9d16757108298551870d74c9e8e10aa2674a53091c342387e40dc877d979d1f0",
       "size": 1628
     },
     {
-      "path": "fum_rt/tests/runtime/test_telemetry_frame_v2.py",
+      "path": "vdm_rt/tests/runtime/test_telemetry_frame_v2.py",
       "sha256": "ee5a8d8ffff6e720dec9e077eebe6a7fd4b70a0260f3b8f9e7cb039a816fbcde",
       "size": 3177
     },
     {
-      "path": "fum_rt/utils/README.md",
+      "path": "vdm_rt/utils/README.md",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     {
-      "path": "fum_rt/utils/logging_setup.py",
+      "path": "vdm_rt/utils/logging_setup.py",
       "sha256": "52f22b50e1bf46960ede2dd1647767e762c0769221a560c41d1ac9617ba3b33a",
       "size": 1932
     },

@@ -31,8 +31,8 @@ This document provides a systematic comparison between "legacy" FUM implementati
 
 #### Implementation Locations
 
-- **Legacy:** `fum_rt/core/fum_sie.py` (class `SelfImprovementEngine`)
-- **New:** `fum_rt/core/sie_v2.py` (function `sie_step`)
+- **Legacy:** `vdm_rt/core/fum_sie.py` (class `SelfImprovementEngine`)
+- **New:** `vdm_rt/core/sie_v2.py` (function `sie_step`)
 
 ---
 
@@ -205,8 +205,8 @@ $$
 
 **Implementation Locations:**
 
-- **Legacy/Canonical:** `fum_rt/core/Void_Equations.py`
-- **Alternative:** `fum_rt/fum_advanced_math/void_dynamics/FUM_Void_Equations.py` (referenced in derivation tests)
+- **Legacy/Canonical:** `vdm_rt/core/Void_Equations.py`
+- **Alternative:** `vdm_rt/fum_advanced_math/void_dynamics/FUM_Void_Equations.py` (referenced in derivation tests)
 
 **Analysis:**
 Both implementations define the fundamental void dynamics parameters:
@@ -238,8 +238,8 @@ Where:
 
 **Files Found:**
 
-- `fum_rt/core/connectome.py` - Dense connectome (dense NumPy arrays)
-- `fum_rt/core/sparse_connectome.py` - Sparse connectome (scipy.sparse)
+- `vdm_rt/core/connectome.py` - Dense connectome (dense NumPy arrays)
+- `vdm_rt/core/sparse_connectome.py` - Sparse connectome (scipy.sparse)
 
 **Status:** These are **not** legacy vs new, but rather **dense vs sparse** implementations for different scales:
 
@@ -256,7 +256,7 @@ Where:
 
 - Only `sie_v2.py` has explicit version suffix
 - No `adc_v2.py`, `gdsp_v2.py`, `revgsp_v2.py`, or similar files found
-- Other components in `fum_rt/core/` appear to be single canonical implementations
+- Other components in `vdm_rt/core/` appear to be single canonical implementations
 
 ---
 
@@ -270,9 +270,9 @@ Where:
 
 **Comparison:**
 
-| Capability | SIE (fum_rt/io/) | Agency Field (Derivation/) | Status |
+| Capability | SIE (vdm_rt/io/) | Agency Field (Derivation/) | Status |
 |------------|-----------------|----------------------------|---------|
-| Text Generation | ✅ Present in `fum_rt/io/` | ❌ Not addressed | SIE sufficient |
+| Text Generation | ✅ Present in `vdm_rt/io/` | ❌ Not addressed | SIE sufficient |
 | Reasoning Correlation | ✅ Validated analyses exist | ❌ Not measured | SIE sufficient |
 | Predictive Power P | ⚠️ Implicit in TD/novelty | ✅ Explicit definition in VDM-E-002 | Theory adds clarity |
 | Integration I_net | ❌ Not computed | ✅ Explicit in VDM-E-002 | **Theory adds capability** |

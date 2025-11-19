@@ -135,7 +135,7 @@ class ADC:
 # -----------------------------------
 
 @dataclass
-class SIE: # TODO: This isnt a canonical SIE, examine this file and determine if this is the canonical: fum_rt/core/fum_sie.py
+class SIE: # TODO: This isnt a canonical SIE, examine this file and determine if this is the canonical: vdm_rt/core/fum_sie.py
     """
     Self‑Improvement Engine (Rule 3)
     total_reward = w_td * TD_error_norm + w_nov * novelty_norm - w_hab * habituation_norm + w_hsi * hsi_norm

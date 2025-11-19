@@ -6,10 +6,7 @@ research while ensuring commercial applications are aligned with the project's e
 
 Commercial use of proprietary VDM code requires written permission from Justin K. Lietz.
 See LICENSE file for full terms.
-"""
-from __future__ import annotations
 
-"""
 VDM Particle–Triad Analogy (prereg v1) runner scaffold
 
 Policy:
@@ -19,7 +16,12 @@ Policy:
 - Produce RESULTS-grade JSON/PNG scaffolds via io_paths; quarantine on unapproved runs.
 
 This script is a thin orchestrator; domain-specific physics suites will be wired later.
+
+THE `Particle–Triad` IS DEPRECATED AND WILL NOT BE RUN.
+IT IS LEFT AS A HISTORICAL ARTIFACT. 
+DO NOT USE AS A TEMPLATE FOR NEW CODE.
 """
+from __future__ import annotations
 
 import argparse
 import hashlib

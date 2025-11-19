@@ -18,9 +18,9 @@ Plotting helper for memory-steering experiments.
   3) Stability band with write→decay protocol (Retention, Fidelity)
 
 Usage:
-- python3 -m fum_rt.utils.plot_memory_steering
+- python3 -m vdm_rt.utils.plot_memory_steering
   or
-- python3 fum_rt/utils/plot_memory_steering.py   (if PYTHONPATH=. is set)
+- python3 vdm_rt/utils/plot_memory_steering.py   (if PYTHONPATH=. is set)
 """
 
 import os
@@ -162,7 +162,7 @@ def pivot_heatmap(SB: np.ndarray, value_index: int = 3):
 def plot_all(src: str = os.path.join("outputs", "memory_steering_results.csv"),
              outdir: str = "outputs"):
     if not os.path.exists(src):
-        raise SystemExit(f"[error] Missing {src}. Generate it first with: python3 -m fum_rt.utils.memory_steering_experiments > {src}")
+        raise SystemExit(f"[error] Missing {src}. Generate it first with: python3 -m vdm_rt.utils.memory_steering_experiments > {src}")
     os.makedirs(outdir, exist_ok=True)
 
     Jx, Jp, Cx, Cy, SB, Sx, Smy, Sse, Sseed, Ssign = parse_results(src)

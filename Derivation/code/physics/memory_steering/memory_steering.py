@@ -56,7 +56,7 @@ What this module provides:
 - y_junction_adjacency(...), collect_junction_choices(...): helpers to generate the logistic junction dataset.
 
 Use with the experiments runner:
-- See [fum_rt/utils/memory_steering_experiments.py](fum_rt/utils/memory_steering_experiments.py:1), which generates three
+- See [vdm_rt/utils/memory_steering_experiments.py](vdm_rt/utils/memory_steering_experiments.py:1), which generates three
   datasets/plots for the predictions above (junction logistic, curvature scaling, stability band).
 
 Author: Justin K. Lietz

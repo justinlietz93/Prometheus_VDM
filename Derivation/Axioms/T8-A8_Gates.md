@@ -76,7 +76,7 @@ Here are the extracted constraints and requirements from the provided document s
 
 ### Bench isolation and metriplectic hygiene (A8 updates 2025-11-03)
 
-- Bench isolation (no runtime coupling): A8 benches must be physics‑bench native; do not import from `fum_rt/`. Place A8 tools under `Derivation/code/physics/hierarchy/...` with meters under `.../meters/`. Any runtime data may be ingested only via read‑only ETL after bench‑native meters exist and must not be a dependency for A8 validation.
+- Bench isolation (no runtime coupling): A8 benches must be physics‑bench native; do not import from `vdm_rt/`. Place A8 tools under `Derivation/code/physics/hierarchy/...` with meters under `.../meters/`. Any runtime data may be ingested only via read‑only ETL after bench‑native meters exist and must not be a dependency for A8 validation.
 
 - Two‑grid order QC (composition meters): Where an instrument claims an order, require two‑grid slope ≥ 2.90 with R² ≥ 0.999 (Strang‑defect gate) and report the fit in artifacts.
 
@@ -156,8 +156,8 @@ Here are the extracted constraints and requirements from the provided document s
   - **OQ-027 Blocker:** A first-principles connection to the Planck scale must be established for lattice scale parameter determination.
 - **Milestone EBN-A8-Def:** Must establish single-source, repository-canonical definitions of E_exc, α, α_I, β_E, N(L), tubular neighborhoods, and diameter/gap conditions, with unit tests on analytic shapes and synthetic segmentations.
   - Dependencies BN-1.1..1.5 basic implementations must be complete.
-- **Milestone EBN-A8-Bridge-AI-Physics:** Must define a translation layer from `fum_rt` boundary artifacts to the physics-side tubular integrals and hierarchy depth N(L).
-  - `fum_rt` metrics must be available.
+- **Milestone EBN-A8-Bridge-AI-Physics:** Must define a translation layer from `vdm_rt` boundary artifacts to the physics-side tubular integrals and hierarchy depth N(L).
+  - `vdm_rt` metrics must be available.
 - **Milestone EBN-A8-UQ:** Must add bootstrap CIs and power analysis for α, α_I, β_E, N(L) slopes; preregister ε-tube and segmentation parameter ladders; and publish sensitivity envelopes.
 - **Milestone EBN-A8-Replicate:** Must replicate A8 metrics across distinct integrators (where applicable) and CPU/GPU + precisions; must record drift bounds as prereg gates.
 - **Milestone EBN-Energy-Cal:** Must harmonize discrete energy density and tubular procedure; validate against analytic perimeters/areas; and eliminate definition drift.

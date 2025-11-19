@@ -19,7 +19,7 @@ solver for φ^{n+1}. For practical use: a few Picard iterations typically suffic
 
 Scope:
 - 1D/2D regular Cartesian grids, periodic or homogeneous Neumann BCs.
-- NumPy implementation (Derivation/validation only). No dense scans in fum_rt/core.
+- NumPy implementation (Derivation/validation only). No dense scans in vdm_rt/core.
 
 Author: Justin K. Lietz
 """

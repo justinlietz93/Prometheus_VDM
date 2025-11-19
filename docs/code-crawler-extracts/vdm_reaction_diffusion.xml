@@ -71,7 +71,7 @@ BCs supported:
 - "periodic": wraparound neighbors on a regular grid (1D/2D)
 - "neumann": homogeneous no-flux (edge faces carry zero flux)
 
-This module is Derivation/validation-side only. No scans in fum_rt/core or maps/.
+This module is Derivation/validation-side only. No scans in vdm_rt/core or maps/.
 
 Author: Justin K. Lietz
 """
@@ -344,7 +344,7 @@ solver for φ^{n+1}. For practical use: a few Picard iterations typically suffic
 
 Scope:
 - 1D/2D regular Cartesian grids, periodic or homogeneous Neumann BCs.
-- NumPy implementation (Derivation/validation only). No dense scans in fum_rt/core.
+- NumPy implementation (Derivation/validation only). No dense scans in vdm_rt/core.
 
 Author: Justin K. Lietz
 """
@@ -531,7 +531,7 @@ Scope:
 
 Runtime policy:
 - Derivation/validation only. Keep observability read-only.
-- No scans in fum_rt/core or maps are introduced here (this is under Derivation/).
+- No scans in vdm_rt/core or maps are introduced here (this is under Derivation/).
 
 Author: Justin K. Lietz
 """

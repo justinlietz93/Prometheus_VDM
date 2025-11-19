@@ -403,7 +403,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Purpose:** Validate vacuum equation-of-state against ΛCDM baseline for cosmology channel <br/>
 **Defined by:** TODO → add equation anchor <br/>
 **Inputs:** Redshift z, horizon activity events, retarded kernel parameters <br/>
-**Computation implemented at:** `fum_rt/physics/vacuum_demographics_harness.py:230-283 • 17a0b72` (_aggregate_metrics) <br/>
+**Computation implemented at:** `vdm_rt/physics/vacuum_demographics_harness.py:230-283 • 17a0b72` (_aggregate_metrics) <br/>
 **Pass band / thresholds:** `≤ 5e-4` (default residual_tol) → vacuum_demographics_harness.py:383 (CLI arg)   • TODO → link to `CONSTANTS.md#const-...` <br/>
 **Units / normalization:** `UNITS_NORMALIZATION.md` <br/>
 **Typical datasets / experiments:** Synthetic horizon activity tape or user-supplied events <br/>
@@ -501,8 +501,8 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Purpose:** Threshold for detecting anomalies in cyclomatic complexity time series <br/>
 **Defined by:** TODO → add equation anchor <br/>
 **Inputs:** Cyclomatic complexity series, [`speak_z`](CONSTANTS.md#const-speak_z_4) threshold <br/>
-**Computation implemented at:** `fum_rt/core/metrics.py:55-116 • 17a0b72` (StreamingZEMA class) <br/>
-`fum_rt/nexus.py • 17a0b72` (b1_detector instantiation) <br/>
+**Computation implemented at:** `vdm_rt/core/metrics.py:55-116 • 17a0b72` (StreamingZEMA class) <br/>
+`vdm_rt/nexus.py • 17a0b72` (b1_detector instantiation) <br/>
 **Pass band / thresholds:** [`speak_z=3.5`](CONSTANTS.md#const-speak_z_4) for phase 4 (problem-solving) → runtime/phase.py:55 <br/>
 **Units / normalization:** `UNITS_NORMALIZATION.md` <br/>
 **Typical datasets / experiments:** Runtime telemetry, void-native signals <br/>
@@ -519,7 +519,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Purpose:** Monitor global connectome activity level <br/>
 **Defined by:** TODO → add equation anchor <br/>
 **Inputs:** Connectome weight matrix W <br/>
-**Computation implemented at:** `fum_rt/core/metrics.py:11-29 • 17a0b72` (compute_metrics) <br/>
+**Computation implemented at:** `vdm_rt/core/metrics.py:11-29 • 17a0b72` (compute_metrics) <br/>
 **Pass band / thresholds:** No explicit threshold; informational metric   • TODO → link to `CONSTANTS.md#const-...` <br/>
 **Units / normalization:** `UNITS_NORMALIZATION.md` <br/>
 **Typical datasets / experiments:** Runtime telemetry at each tick <br/>
@@ -532,7 +532,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Purpose:** Count active edges in connectome graph <br/>
 **Defined by:** TODO → add equation anchor <br/>
 **Inputs:** Connectome E (efficacy) and A (adjacency) matrices, threshold <br/>
-**Computation implemented at:** `fum_rt/core/metrics.py:11-29 • 17a0b72` (compute_metrics → active_edge_count method) <br/>
+**Computation implemented at:** `vdm_rt/core/metrics.py:11-29 • 17a0b72` (compute_metrics → active_edge_count method) <br/>
 **Pass band / thresholds:** No explicit threshold; sparsity/utilization indicator   • TODO → link to `CONSTANTS.md#const-...` <br/>
 **Units / normalization:** `UNITS_NORMALIZATION.md` <br/>
 **Typical datasets / experiments:** Runtime telemetry, golden run parity checks <br/>
@@ -545,8 +545,8 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Purpose:** Detect graph fragmentation and emergent multi-agent behavior <br/>
 **Defined by:** TODO → add equation anchor <br/>
 **Inputs:** Connectome active subgraph (E > threshold & A == 1) <br/>
-**Computation implemented at:** `fum_rt/core/metrics.py:11-29 • 17a0b72` (compute_metrics → connected_components method) <br/>
-**Pass band / thresholds:** `> 1` triggers emergent GDSP activation → fum_rt/runtime/loop/main.py:comp check   • TODO → link to `CONSTANTS.md#const-...` <br/>
+**Computation implemented at:** `vdm_rt/core/metrics.py:11-29 • 17a0b72` (compute_metrics → connected_components method) <br/>
+**Pass band / thresholds:** `> 1` triggers emergent GDSP activation → vdm_rt/runtime/loop/main.py:comp check   • TODO → link to `CONSTANTS.md#const-...` <br/>
 **Units / normalization:** `UNITS_NORMALIZATION.md` <br/>
 **Typical datasets / experiments:** Runtime telemetry, UTD event scans <br/>
 **Primary figure/artifact (if referenced):** Logged in emission records, redis outputs <br/>
@@ -558,12 +558,12 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Purpose:** Proxy for topological complexity; feeds B1 spike detector <br/>
 **Defined by:** TODO → add equation anchor <br/>
 **Inputs:** Connectome active subgraph <br/>
-**Computation implemented at:** `fum_rt/core/metrics.py:11-29 • 17a0b72` (compute_metrics → cyclomatic_complexity method) <br/>
+**Computation implemented at:** `vdm_rt/core/metrics.py:11-29 • 17a0b72` (compute_metrics → cyclomatic_complexity method) <br/>
 **Pass band / thresholds:** No direct threshold; first-difference used by [B1 Spike Detection](#kpi-b1-spike-z)   • TODO → link to `CONSTANTS.md#const-...` <br/>
 **Units / normalization:** `UNITS_NORMALIZATION.md` <br/>
 **Typical datasets / experiments:** Runtime telemetry; augmented by adc_cycle_hits when ADC active <br/>
 **Primary figure/artifact (if referenced):** N/A (streaming input to spike detector) <br/>
-**Notes:** StreamingZEMA monitors `Δ(complexity_cycles)` for anomalies (fum_rt/core/metrics.py:50-52) <br/>
+**Notes:** StreamingZEMA monitors `Δ(complexity_cycles)` for anomalies (vdm_rt/core/metrics.py:50-52) <br/>
 
 #### Connectome Entropy  <a id="kpi-connectome-entropy"></a>
 
@@ -571,7 +571,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Purpose:** Global pathological structure detection via degree distribution entropy <br/>
 **Defined by:** TODO → add equation anchor <br/>
 **Inputs:** Connectome active edges → degree vector → probability distribution <br/>
-**Computation implemented at:** `fum_rt/core/metrics.py:31-47 • 17a0b72` (connectome_entropy function) <br/>
+**Computation implemented at:** `vdm_rt/core/metrics.py:31-47 • 17a0b72` (connectome_entropy function) <br/>
 **Pass band / thresholds:** No explicit threshold; supports Active Domain Cartography scheduling (Blueprint Rule 7)   • TODO → link to `CONSTANTS.md#const-...` <br/>
 **Units / normalization:** `UNITS_NORMALIZATION.md` <br/>
 **Typical datasets / experiments:** Runtime telemetry, golden run parity, UTD scans <br/>
@@ -589,7 +589,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Units / normalization:** `UNITS_NORMALIZATION.md` <br/>
 **Typical datasets / experiments:** Runtime telemetry, tracked over time for temporal difference signals <br/>
 **Primary figure/artifact (if referenced):** Logged in composer, emission, redis outputs <br/>
-**Notes:** Previous value tracked in `_prev_vt_entropy` for TD calculation (fum_rt/nexus.py) <br/>
+**Notes:** Previous value tracked in `_prev_vt_entropy` for TD calculation (vdm_rt/nexus.py) <br/>
 
 #### Void Traveler Coverage  <a id="kpi-vt-coverage"></a>
 
@@ -602,7 +602,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Units / normalization:** `UNITS_NORMALIZATION.md` <br/>
 **Typical datasets / experiments:** Runtime telemetry, golden run parity comparisons <br/>
 **Primary figure/artifact (if referenced):** Logged in emission records <br/>
-**Notes:** Used in smoke tests: `obs:vt_coverage↑` (fum_rt/runtime/helpers/smoke.py) <br/>
+**Notes:** Used in smoke tests: `obs:vt_coverage↑` (vdm_rt/runtime/helpers/smoke.py) <br/>
 
 #### SIE Valence  <a id="kpi-sie-valence"></a>
 
@@ -615,7 +615,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Units / normalization:** `UNITS_NORMALIZATION.md` <br/>
 **Typical datasets / experiments:** Runtime telemetry, golden run parity, emission records <br/>
 **Primary figure/artifact (if referenced):** Logged in telemetry, redis outputs, composer <br/>
-**Notes:** v2 preferred; fallback chain: sie_v2_valence_01 → sie_valence_01 → 0.0 (fum_rt/runtime/helpers/redis_out.py:13-14) <br/>
+**Notes:** v2 preferred; fallback chain: sie_v2_valence_01 → sie_valence_01 → 0.0 (vdm_rt/runtime/helpers/redis_out.py:13-14) <br/>
 
 #### ADC Cycle Hits  <a id="kpi-adc-cycle-hits"></a>
 
@@ -623,12 +623,12 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Purpose:** Active Domain Cartography cycle detection augmentation to complexity_cycles <br/>
 **Defined by:** TODO → add equation anchor <br/>
 **Inputs:** ADC metrics from get_metrics() call <br/>
-**Computation implemented at:** ADC subsystem, aggregated in telemetry: `fum_rt/runtime/telemetry.py:complexity_cycles += adc_cycle_hits • 17a0b72` <br/>
+**Computation implemented at:** ADC subsystem, aggregated in telemetry: `vdm_rt/runtime/telemetry.py:complexity_cycles += adc_cycle_hits • 17a0b72` <br/>
 **Pass band / thresholds:** No explicit threshold; augments [Complexity Cycles](#kpi-complexity-cycles)   • TODO → link to `CONSTANTS.md#const-...` <br/>
 **Units / normalization:** `UNITS_NORMALIZATION.md` <br/>
 **Typical datasets / experiments:** Runtime telemetry when ADC active <br/>
 **Primary figure/artifact (if referenced):** N/A (internal augmentation to complexity_cycles) <br/>
-**Notes:** When ADC inactive, adc_cycle_hits=0 → complexity_cycles unaugmented → b1_z flatlined (fum_rt/runtime/loop/main.py comment) <br/>
+**Notes:** When ADC inactive, adc_cycle_hits=0 → complexity_cycles unaugmented → b1_z flatlined (vdm_rt/runtime/loop/main.py comment) <br/>
 
 ---
 

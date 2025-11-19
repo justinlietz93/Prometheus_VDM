@@ -10,7 +10,7 @@ See LICENSE file for full terms.
 from __future__ import annotations
 
 """
-fum_rt.core.cortex.void_walkers.void_heat_scout
+vdm_rt.core.cortex.void_walkers.void_heat_scout
 
 HeatScout (read-only, void-faithful):
 - Local-only neighbor selection using a softmax over map signals.
@@ -38,8 +38,8 @@ from typing import Any, Dict, Optional, Set, Sequence, List
 import math
 import random
 
-from fum_rt.core.cortex.void_walkers.base import BaseScout
-from fum_rt.core.proprioception.events import BaseEvent, VTTouchEvent, EdgeOnEvent
+from vdm_rt.core.cortex.void_walkers.base import BaseScout
+from vdm_rt.core.proprioception.events import BaseEvent, VTTouchEvent, EdgeOnEvent
 
 
 def _head_to_set(maps: Optional[Dict[str, Any]], key: str, cap: int = 512) -> Set[int]:

@@ -10,7 +10,7 @@ See LICENSE file for full terms.
 from __future__ import annotations
 
 """
-fum_rt.core.cortex.void_walkers.void_sentinel_scout
+vdm_rt.core.cortex.void_walkers.void_sentinel_scout
 
 SentinelScout (read-only, void-faithful):
 - Blue-noise reseeder / de-trample walker.
@@ -27,8 +27,8 @@ Optional inputs (maps):
 """
 
 from typing import Any, Dict, Optional, Sequence, Set, List
-from fum_rt.core.cortex.void_walkers.base import BaseScout
-from fum_rt.core.proprioception.events import BaseEvent, VTTouchEvent, EdgeOnEvent
+from vdm_rt.core.cortex.void_walkers.base import BaseScout
+from vdm_rt.core.proprioception.events import BaseEvent, VTTouchEvent, EdgeOnEvent
 
 
 def _head_to_set(maps: Optional[Dict[str, Any]], keys: Sequence[str], cap: int = 512) -> Set[int]:

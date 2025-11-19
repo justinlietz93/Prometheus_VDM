@@ -141,7 +141,7 @@ Open questions / next refinements
 - Evaluate sensitivity of c_meas to level choice (0.05-0.2) and fit window; document invariance bands.
 - Compare dispersion fit using windowed DFT vs rFFT magnitude; assess bias for near-zero/negative σ.
 - Add unit tests for σ_d formula and Laplacian implementations.
-- Mirror runners under fum_rt/physics for cross-stack parity.
+- Mirror runners under vdm_rt/physics for cross-stack parity.
 
 Appendix: CLI quick refs
 

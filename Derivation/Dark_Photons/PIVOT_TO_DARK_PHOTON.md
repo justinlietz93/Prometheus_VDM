@@ -44,12 +44,12 @@ You already excel at **artifact-first** validations (figures + logs + pass/fail)
 * **Runner A - Parameter cards → observables:**
   Input: (m_{A′}, ε, decay mode tag).
   Output: a **card** that states which channels are open (visible vs invisible), identifies the **search class** (bump, missing-energy, displaced), and lists the **native timescales** (cτ estimates by branch formula placeholder).
-  Deliverable: `fum_rt/portals/dark_photon_cards.py` + JSON summary per card.
+  Deliverable: `vdm_rt/portals/dark_photon_cards.py` + JSON summary per card.
   *(This is qualitative till you plug numbers; the point is rigorous structure.)*
 
 * **Runner B - Constraint harvester (stub now, numbers later):**
   Reads a **CSV of external limits** (ε vs m_{A′} with tags: visible/invisible/displaced). Plots your **benchmark points** over it.
-  Deliverable: `fum_rt/portals/limits_plotter.py` (data-driven; you can fill the CSV after literature pass).
+  Deliverable: `vdm_rt/portals/limits_plotter.py` (data-driven; you can fill the CSV after literature pass).
 
 > Keep the same acceptance style: the script must **produce a figure and a JSON** payload, like your tube/κ scan. 
 

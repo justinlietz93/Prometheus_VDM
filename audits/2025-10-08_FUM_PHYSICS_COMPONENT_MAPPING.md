@@ -2,13 +2,13 @@
 
 **Author:** Generated Analysis  
 **Date:** October 8, 2025  
-**Purpose:** Comprehensive mapping between fum_rt/ AI model components and VDM physics derivations
+**Purpose:** Comprehensive mapping between vdm_rt/ AI model components and VDM physics derivations
 
 ---
 
 ## Executive Summary
 
-This document provides a systematic mapping between the FUM (Functional Unity Model) real-time AI implementation in `fum_rt/` and the theoretical physics derivations in `Derivation/`. The analysis identifies strong 1:1 correspondences for most components, with some areas requiring theoretical development.
+This document provides a systematic mapping between the FUM (Functional Unity Model) real-time AI implementation in `vdm_rt/` and the theoretical physics derivations in `Derivation/`. The analysis identifies strong 1:1 correspondences for most components, with some areas requiring theoretical development.
 
 **Key Findings:**
 
@@ -23,7 +23,7 @@ This document provides a systematic mapping between the FUM (Functional Unity Mo
 
 ### 1. Active Domain Cartography (ADC)
 
-**Implementation:** `fum_rt/core/global_system.py` (ADC class) and `fum_rt/core/adc.py`
+**Implementation:** `vdm_rt/core/global_system.py` (ADC class) and `vdm_rt/core/adc.py`
 
 **Physics Mapping:**
 
@@ -46,7 +46,7 @@ This document provides a systematic mapping between the FUM (Functional Unity Mo
 
 ### 2. Self-Improvement Engine (SIE)
 
-**Implementation:** `fum_rt/core/global_system.py` (SIE class) and `fum_rt/core/fum_sie.py` (canonical version)
+**Implementation:** `vdm_rt/core/global_system.py` (SIE class) and `vdm_rt/core/fum_sie.py` (canonical version)
 
 **Physics Mapping:**
 
@@ -69,7 +69,7 @@ This document provides a systematic mapping between the FUM (Functional Unity Mo
 
 ### 3. Resonance-Enhanced Valence-Gated Synaptic Plasticity (RE-VGSP)
 
-**Implementation:** `fum_rt/core/neuroplasticity/revgsp.py`
+**Implementation:** `vdm_rt/core/neuroplasticity/revgsp.py`
 
 **Physics Mapping:**
 
@@ -93,7 +93,7 @@ This document provides a systematic mapping between the FUM (Functional Unity Mo
 
 ### 4. Goal-Directed Structural Plasticity (GDSP)
 
-**Implementation:** `fum_rt/core/neuroplasticity/gdsp.py` (GDSPActuator class)
+**Implementation:** `vdm_rt/core/neuroplasticity/gdsp.py` (GDSPActuator class)
 
 **Physics Mapping:**
 
@@ -117,7 +117,7 @@ This document provides a systematic mapping between the FUM (Functional Unity Mo
 
 ### 5. Void Walkers & Scouts
 
-**Implementation:** `fum_rt/core/cortex/scouts.py` and void_walkers/
+**Implementation:** `vdm_rt/core/cortex/scouts.py` and void_walkers/
 
 **Physics Mapping:**
 
@@ -142,7 +142,7 @@ This document provides a systematic mapping between the FUM (Functional Unity Mo
 
 ### 6. Void Maps (HeatMap, ColdMap, ExcitationMap, InhibitionMap, TrailMap, MemoryMap)
 
-**Implementation:** `fum_rt/core/cortex/maps/*.py`
+**Implementation:** `vdm_rt/core/cortex/maps/*.py`
 
 **Physics Mapping:**
 
@@ -168,7 +168,7 @@ This document provides a systematic mapping between the FUM (Functional Unity Mo
 
 ### 7. Void Dynamics Adapter & Equations
 
-**Implementation:** `fum_rt/core/void_dynamics_adapter.py`, `fum_rt/core/Void_Equations.py`
+**Implementation:** `vdm_rt/core/void_dynamics_adapter.py`, `vdm_rt/core/Void_Equations.py`
 
 **Physics Mapping:**
 
@@ -193,7 +193,7 @@ This document provides a systematic mapping between the FUM (Functional Unity Mo
 
 ### 8. Sparse Connectome Substrate
 
-**Implementation:** `fum_rt/core/sparse_connectome.py`
+**Implementation:** `vdm_rt/core/sparse_connectome.py`
 
 **Physics Mapping:**
 
@@ -217,7 +217,7 @@ This document provides a systematic mapping between the FUM (Functional Unity Mo
 
 ### 9. Void B1 Topological Invariant
 
-**Implementation:** `fum_rt/core/void_b1.py` (VoidB1Meter class)
+**Implementation:** `vdm_rt/core/void_b1.py` (VoidB1Meter class)
 
 **Physics Mapping:**
 
@@ -241,7 +241,7 @@ This document provides a systematic mapping between the FUM (Functional Unity Mo
 
 ### 10. Text Generation & Cognition (UTD, Composer, Speaker)
 
-**Implementation:** `fum_rt/io/utd.py`, `fum_rt/io/cognition/composer.py`
+**Implementation:** `vdm_rt/io/utd.py`, `vdm_rt/io/cognition/composer.py`
 
 **Physics Mapping:**
 
@@ -265,7 +265,7 @@ This document provides a systematic mapping between the FUM (Functional Unity Mo
 
 ### 11. Core Engine & Event System
 
-**Implementation:** `fum_rt/core/engine/core_engine.py`, event-driven metrics
+**Implementation:** `vdm_rt/core/engine/core_engine.py`, event-driven metrics
 
 **Physics Mapping:**
 
@@ -321,7 +321,7 @@ This document provides a systematic mapping between the FUM (Functional Unity Mo
 
 ⚠️ **Klein-Gordon (KG) / Inertial Regime:**
 
-- **VDM-E-014** defines continuum KG but fum_rt operates in overdamped RD limit
+- **VDM-E-014** defines continuum KG but vdm_rt operates in overdamped RD limit
 - No second-order time derivatives in current implementation
 - **Recommendation:** Add KG branch for wave-propagation phenomena if needed
 
@@ -347,7 +347,7 @@ This document provides a systematic mapping between the FUM (Functional Unity Mo
 
 ## Agency Field Redundancy Assessment
 
-**Question:** Is `Derivation/Agency_Field/Agency_Field.md` redundant given fum_rt/ capabilities?
+**Question:** Is `Derivation/Agency_Field/Agency_Field.md` redundant given vdm_rt/ capabilities?
 
 **Answer:** **Partially redundant but adds critical value.**
 
@@ -370,11 +370,11 @@ This document provides a systematic mapping between the FUM (Functional Unity Mo
 
 **Evidence from repository:**
 
-- `fum_rt/io/cognition/composer.py` generates emergent sentences from n-grams
+- `vdm_rt/io/cognition/composer.py` generates emergent sentences from n-grams
 - `plans/reasoning.md` documents "sandbox protocol" for counterfactual reasoning
 - HISTORICAL-ARCHIVE shows reasoning correlation analyses with temporal structure
 
-**Verdict:** fum_rt **does** demonstrate text generation and reasoning capabilities, but these are **empirically functional** rather than **theoretically derived**. Agency_Field.md provides the missing theoretical bridge by:
+**Verdict:** vdm_rt **does** demonstrate text generation and reasoning capabilities, but these are **empirically functional** rather than **theoretically derived**. Agency_Field.md provides the missing theoretical bridge by:
 
 - Defining prediction P as mutual information I(state_t; input_{t+τ})
 - Specifying integration I_net as transfer entropy sums
@@ -388,7 +388,7 @@ This document provides a systematic mapping between the FUM (Functional Unity Mo
 
 ### 1. Cosmology Event Bus
 
-**Location:** `fum_rt/core/cosmology/events.py`, `fum_rt/core/cosmology/router.py`
+**Location:** `vdm_rt/core/cosmology/events.py`, `vdm_rt/core/cosmology/router.py`
 
 **Status:** Appears to be infrastructure for future dark-sector work
 
@@ -398,7 +398,7 @@ This document provides a systematic mapping between the FUM (Functional Unity Mo
 
 ### 2. Growth Arbiter
 
-**Location:** `fum_rt/core/fum_growth_arbiter.py`
+**Location:** `vdm_rt/core/fum_growth_arbiter.py`
 
 **Status:** Neurogenesis control (not examined in detail)
 
@@ -408,7 +408,7 @@ This document provides a systematic mapping between the FUM (Functional Unity Mo
 
 ### 3. Diagnostics & Pulse Speed
 
-**Location:** `fum_rt/core/diagnostics.py`
+**Location:** `vdm_rt/core/diagnostics.py`
 
 **Status:** PulseSpeedEstimator class
 
@@ -420,7 +420,7 @@ This document provides a systematic mapping between the FUM (Functional Unity Mo
 
 ## Summary Matrix: Component ↔ Equation Mapping
 
-| fum_rt Component | Primary Equation | Secondary Equations | Match Quality |
+| vdm_rt Component | Primary Equation | Secondary Equations | Match Quality |
 |------------------|------------------|---------------------|---------------|
 | ADC | VDM-E-019 (vacua) | VDM-E-015, E-016, E-017 | ✅ Excellent |
 | SIE | VDM-E-002 (source) | VDM-E-009 (control) | ⚠️ Moderate |
@@ -459,7 +459,7 @@ This document provides a systematic mapping between the FUM (Functional Unity Mo
 
 ## Conclusion
 
-The fum_rt/ AI model demonstrates **strong 1:1 correspondence** with VDM physics derivations for:
+The vdm_rt/ AI model demonstrates **strong 1:1 correspondence** with VDM physics derivations for:
 
 - Core substrate dynamics (RD equations)
 - Structural plasticity (GDSP, RE-VGSP)
@@ -476,7 +476,7 @@ The fum_rt/ AI model demonstrates **strong 1:1 correspondence** with VDM physics
 - Text generation - empirical but not theoretically grounded
 - Symbolic reasoning - functional but lacks field theory basis
 
-**Agency_Field.md Assessment:** **Not redundant**. While fum_rt implements many agency field concepts implicitly, the document provides essential theoretical rigor for:
+**Agency_Field.md Assessment:** **Not redundant**. While vdm_rt implements many agency field concepts implicitly, the document provides essential theoretical rigor for:
 
 - Energy-normalized control efficacy (VDM-E-009)
 - Causal propagation formalism (VDM-E-004)
@@ -485,10 +485,10 @@ The fum_rt/ AI model demonstrates **strong 1:1 correspondence** with VDM physics
 
 The model successfully generates text and exhibits reasoning correlations (per HISTORICAL-ARCHIVE analyses), validating that the underlying physics **can** support symbolic cognition, even though the explicit derivation remains incomplete.
 
-**Overall Grade:** ✅ **Strong Implementation** - fum_rt is a rigorous computational realization of VDM RD branch with clear paths for completing theoretical gaps.
+**Overall Grade:** ✅ **Strong Implementation** - vdm_rt is a rigorous computational realization of VDM RD branch with clear paths for completing theoretical gaps.
 
 ---
 
 **Generated:** October 8, 2025  
 **Repository:** justinlietz93/Prometheus_VDM  
-**Scope:** fum_rt/core/*↔ Derivation/*.md (excluding code/ subdirectory)
+**Scope:** vdm_rt/core/*↔ Derivation/*.md (excluding code/ subdirectory)

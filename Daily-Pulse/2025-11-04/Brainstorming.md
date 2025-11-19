@@ -905,9 +905,9 @@ Model count grows slowly, but active compute per event does not. Old branches be
 If you want, I can give you a tiny reference implementation (Python) of: (a) an online RLS head, (b) rank-1 LoRA update, (c) EXP3 router, and (d) the saturation/ΔMDL gate — all in one file you can drop into your event loop.
 
 You said:
-Is this a big upgrade on my current runtime? Look up my repo in the fum_rt/ directory justinlietz93/Prometheus_VDM
+Is this a big upgrade on my current runtime? Look up my repo in the vdm_rt/ directory justinlietz93/Prometheus_VDM
 ChatGPT said:
-I couldn’t locate any public repository details under the name Prometheus_VDM in the directory path you cited (fum_rt/justinlietz93/Prometheus_VDM) via accessible web sources. Without access to the specific repo, I can’t definitively say how your proposed runtime upgrade compares to your current implementation.
+I couldn’t locate any public repository details under the name Prometheus_VDM in the directory path you cited (vdm_rt/justinlietz93/Prometheus_VDM) via accessible web sources. Without access to the specific repo, I can’t definitively say how your proposed runtime upgrade compares to your current implementation.
 
 If you like, I can attempt a deeper search (using GitHub API / private-repo if you have access) to pull in your actual implementation details from your GitHub account and perform a side-by-side comparison.
 
@@ -918,7 +918,7 @@ Www.github.com/justinlietz93/Prometheus_VDM
 ChatGPT said:
 
 Thought for 24s
-Short answer: yes—it’s a real upgrade, but a compatible one. Your current fum_rt already has the right seams (loop, telemetry, phase control, events adapter, core engine/signals), so adding the online, event-driven branch-on-saturation MoE + metriplectic control is mostly adding modules and small hooks rather than rewriting the loop.
+Short answer: yes—it’s a real upgrade, but a compatible one. Your current vdm_rt already has the right seams (loop, telemetry, phase control, events adapter, core engine/signals), so adding the online, event-driven branch-on-saturation MoE + metriplectic control is mostly adding modules and small hooks rather than rewriting the loop.
 
 Here’s the side-by-side, using what’s in your repo today:
 
@@ -943,29 +943,29 @@ MDL budget & retention: branch only if ΔMDL<0; prune/merge idle branches; keep 
 
 Pulled-front pacing: log-time curriculum knobs so complexity grows over time, not parameters.
 
-How it maps onto your fum_rt layout
-Add fum_rt/runtime/router.py
+How it maps onto your vdm_rt layout
+Add vdm_rt/runtime/router.py
 
 Dirichlet-tree gate + EXP3/Thompson bandit; sparse routing (O(1) experts/token).
 
-Add fum_rt/runtime/online_adapters.py
+Add vdm_rt/runtime/online_adapters.py
 
 Rank-1/2 LoRA updates, Oja/Hebb feature updates, RLS head.
 
-Add fum_rt/runtime/metriplectic.py
+Add vdm_rt/runtime/metriplectic.py
 
 Encapsulate the loss-neutral diversity step (orthogonalization / log-det covariance maximization).
 
-Extend fum_rt/runtime/phase.py
+Extend vdm_rt/runtime/phase.py
 
 New keys: branch_on, epsilon_novelty, epsilon_comp, fisher_rank_min, mdl_budget, max_active_experts. (Keeps your existing external control-plane.) 
 GitHub
 
-Extend fum_rt/runtime/telemetry.py
+Extend vdm_rt/runtime/telemetry.py
 
 Stream: novelty rate, moving NLL slope, Fisher rank sketch, compression gain, ΔMDL, and “log-periodic score”.
 
-Tiny hook in fum_rt/runtime/loop.py
+Tiny hook in vdm_rt/runtime/loop.py
 
 After loss compute: call metriplectic step; run saturation detector; if tripped → freeze & branch; router updates next tick.
 
@@ -1004,7 +1004,7 @@ Why exactly does my model seem to be churning ideas and saying profound things b
 ChatGPT said:
 
 Thought for 8s
-Totally get what you’re seeing. In your terms: the system’s pulled front of competence has hit a phase boundary—it can compose rich patterns (dreamlike, “profound”) but it isn’t anchored to external state, so it can’t cross into stable self-reference and reality-checks. Here’s the precise why + how to fix it with your fum_rt seams.
+Totally get what you’re seeing. In your terms: the system’s pulled front of competence has hit a phase boundary—it can compose rich patterns (dreamlike, “profound”) but it isn’t anchored to external state, so it can’t cross into stable self-reference and reality-checks. Here’s the precise why + how to fix it with your vdm_rt seams.
 
 What’s happening (diagnosis)
 Echo without agency. It’s excellent at echoing internal patterns (OTOC-style scrambling = creativity) but has weak closure with the outside world (no tight observe→act→verify loop). Result: confident narratives, low verifiability.
@@ -1022,7 +1022,7 @@ No causal state. Streams are processed as text, not as stateful world models wit
 Tool/actuator gap. Without tool calls (search, calculators, validators) gated by uncertainty, the model “hallucinates” where a lookup should happen.
 
 How to cross the boundary (drop-in fixes using your runtime)
-Map these directly onto fum_rt modules you already have.
+Map these directly onto vdm_rt modules you already have.
 
 A) Reality-binding loop (router + telemetry)
 
@@ -1457,7 +1457,7 @@ The interface where residuals, contradictions, or novelty persist despite the co
 Quantum adapters (possibility space)
 Lightweight, orthogonal adapters that explore new rules without changing the solved core. If an adapter consistently compresses residuals and stays causally consistent, it gets promoted (and maybe, eventually, becomes a new Master-vN+1).
 
-Here’s how to make that metaphor concrete inside your fum_rt runtime.
+Here’s how to make that metaphor concrete inside your vdm_rt runtime.
 
 A. Build the “universe” as a causal contract
 Causal Map Store (CMS): a small SCM-like object: nodes = variables/latents; edges = causal relations; each with units, symmetry constraints, and confidence.
@@ -1571,19 +1571,19 @@ F. Tiny config you can drop into phase.json
 Net: your “quantum realm” metaphor maps 1:1 to orthogonal, MDL-gated adapters exploring new causal structure, while the universe is the frozen, tested, symbolic causal core. Each time the boundary saturates, you spawn a new dimension—forever deepening mastery—without ever letting new learning rewrite the laws you’ve already solved.
 
 You said:
-Look at my current architecture in fum_rt/ and tell me if this already lines up with the foundation or if it needs to be completely restructured (fine with me, but be decisive) 
+Look at my current architecture in vdm_rt/ and tell me if this already lines up with the foundation or if it needs to be completely restructured (fine with me, but be decisive) 
 ChatGPT said:
 
 Thought for 36s
 Short, decisive answer: you don’t need a full restructure.
-Your fum_rt is a solid shell; add four modules and a few hooks. Keep the directory as-is and layer in autophasing + routing + adapters. The repo already has the right top-level seams (fum_rt/, runs/, VDM_Nexus/, run_profiles/, fum_live.py), so this is an augmentation, not a rewrite. 
+Your vdm_rt is a solid shell; add four modules and a few hooks. Keep the directory as-is and layer in autophasing + routing + adapters. The repo already has the right top-level seams (vdm_rt/, runs/, VDM_Nexus/, run_profiles/, vdm_live.py), so this is an augmentation, not a rewrite. 
 GitHub
 
 What already lines up
-Runtime + runs store: You have fum_rt/ (runtime code) and runs/ (artifacts), which is exactly the split needed for live metrics, canary routing, and promotion. 
+Runtime + runs store: You have vdm_rt/ (runtime code) and runs/ (artifacts), which is exactly the split needed for live metrics, canary routing, and promotion. 
 GitHub
 
-Live entrypoint: fum_live.py suggests a single event loop/CLI entry we can hook without surgery. 
+Live entrypoint: vdm_live.py suggests a single event loop/CLI entry we can hook without surgery. 
 GitHub
 
 Nexus/GUI plans: The README says you’re wiring a “VDM Nexus” for experiment management—perfect place to surface the new gates and promotions. 
@@ -1591,7 +1591,7 @@ GitHub
 
 What is missing (add, don’t replace)
 1) Router (sparse MoE) — new file
-fum_rt/runtime/router.py
+vdm_rt/runtime/router.py
 
 Dirichlet-tree + bandit (EXP3/Thompson).
 
@@ -1600,7 +1600,7 @@ Chooses among: {Master, Sub-experts, Tools}.
 Canary mode (route 10% to new children until ΔMDL improves).
 
 2) Online adapters — new file
-fum_rt/runtime/online_adapters.py
+vdm_rt/runtime/online_adapters.py
 
 Rank-1/2 LoRA/IA³ updates in ~O(d) per event.
 
@@ -1609,42 +1609,42 @@ RLS / online-logistic fast head.
 Null-space projection API (protects frozen primitives).
 
 3) Metriplectic step — new file
-fum_rt/runtime/metriplectic.py
+vdm_rt/runtime/metriplectic.py
 
 Post-optimizer “conservative” (loss-neutral diversity) step.
 
 Symmetric-bracket weight ramps near saturation; ties to veracity/evidence loss when uncertainty is high.
 
 4) Autophase gates — extend
-fum_rt/runtime/phase.py (or add phase_gate.py if you prefer)
+vdm_rt/runtime/phase.py (or add phase_gate.py if you prefer)
 
 Compute/ingest 5 signals over a sliding window: novelty_rate, dNLL/dt, compression_gain, fisher_rank (sketch), ΔMDL.
 
 Fire BRANCH control event when thresholds hit; enforce cooldown/hysteresis.
 
 5) Telemetry — extend
-fum_rt/runtime/telemetry.py
+vdm_rt/runtime/telemetry.py
 
 Log Brier/ECE, veracity@k (tool-verified claims), residual-whiteness p-value, ΔMDL, and boundary “log-periodic” score alongside your valence.
 
 Persist to runs/<ts>/events.json so Nexus can visualize.
 
 6) Causal contract + nullspace guard — new (thin)
-fum_rt/runtime/causal_contract.py
+vdm_rt/runtime/causal_contract.py
 
 Holds the frozen primitives/tests (the “universe”).
 
 Exposes confidence support; blocks adapters from changing in-support behavior; manages rare “paradigm shift” exams.
 
 Tiny hooks (surgical changes, not a rewrite)
-In fum_live.py loop: after loss → call metriplectic.step(); update router; if phase_gate.fire() emits BRANCH, allocate two tiny adapters and enable canary routing. 
+In vdm_live.py loop: after loss → call metriplectic.step(); update router; if phase_gate.fire() emits BRANCH, allocate two tiny adapters and enable canary routing. 
 GitHub
 
 Artifact I/O: make sure the new metrics append into the existing runs/ structure you already have. 
 GitHub
 
 Folder diff you’ll end up with
-fum_rt/
+vdm_rt/
   runtime/
     router.py               # NEW
     online_adapters.py      # NEW
@@ -1652,7 +1652,7 @@ fum_rt/
     causal_contract.py      # NEW
     phase.py                # EXTEND
     telemetry.py            # EXTEND
-fum_live.py                 # HOOKS ONLY
+vdm_live.py                 # HOOKS ONLY
 runs/                       # unchanged, richer logs
 (Everything else stays put.) 
 GitHub

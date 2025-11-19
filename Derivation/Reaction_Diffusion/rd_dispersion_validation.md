@@ -26,7 +26,7 @@ References (implementation)
 - Script: [rd_dispersion_experiment.py](code/physics/rd_dispersion_experiment.py:1)
 - Validation plan: [rd_validation_plan.md](rd_validation_plan.md:1)
 - Status log: [CORRECTIONS.md](CORRECTIONS.md:1)
-- fum_rt parity runner: [rd_dispersion_runner.py](Prometheus_VDM/fum_rt/physics/rd_dispersion_runner.py:1)
+- vdm_rt parity runner: [rd_dispersion_runner.py](Prometheus_VDM/vdm_rt/physics/rd_dispersion_runner.py:1)
 
 Method
 
@@ -79,10 +79,10 @@ Troubleshooting
   - Compare to discrete σ_d(m) (primary); continuum σ(k) deviates near Nyquist.
   - Increase N to push Nyquist higher.
 
-fum_rt parity runner
+vdm_rt parity runner
 
 - Independent mirror (same metrics/output schema) for cross-stack parity:
-  - [rd_dispersion_runner.py](Prometheus_VDM/fum_rt/physics/rd_dispersion_runner.py:1)
+  - [rd_dispersion_runner.py](Prometheus_VDM/vdm_rt/physics/rd_dispersion_runner.py:1)
 - Rationale is documented in-file (“CHANGE REASON”): physics proven via derivation; runtime mirror does not alter core dynamics.
 
 Reproduction checklist

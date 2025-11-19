@@ -641,8 +641,8 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 
 **Acceptance criteria (links only, no formulas):**
 
-- Algorithms referenced: TODO: add anchor (see fum_rt/core/neuroplasticity/gdsp.py)
-- Data products to produce: TODO: add anchor (see fum_rt/runtime/)
+- Algorithms referenced: TODO: add anchor (see vdm_rt/core/neuroplasticity/gdsp.py)
+- Data products to produce: TODO: add anchor (see vdm_rt/runtime/)
 - Validation metrics: Firing path tag→actuation latency ≤ 2 ticks
 
 **Dependencies:** Existing infrastructure (bus, metrics, scoreboard)  
@@ -654,10 +654,10 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 
 **Deliverables:**
 
-- fum_rt/core/proprioception/events.py (add TagEvent)
-- fum_rt/core/neuroplasticity/gdsp.py (expose tick wrapper)
-- fum_rt/core/substrate/growth_arbiter.py (derive budgets; call GDSP)
-- fum_rt/runtime/orchestrator.py (bus→metrics→arbiter)
+- vdm_rt/core/proprioception/events.py (add TagEvent)
+- vdm_rt/core/neuroplasticity/gdsp.py (expose tick wrapper)
+- vdm_rt/core/substrate/growth_arbiter.py (derive budgets; call GDSP)
+- vdm_rt/runtime/orchestrator.py (bus→metrics→arbiter)
 
 **Target timeframe (if stated):** Next sprint/phase
 
@@ -677,7 +677,7 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 
 **Source:** PLANNED.md:52 • 77f055f  
 **Description:** Expose tick(scoreboard, budgets, territory) that calls existing sparse edit routines (prune/grow/bridge/cull) under budgets  
-**Linked canon:** algorithms → TODO: add anchor (see fum_rt/core/neuroplasticity/gdsp.py)  
+**Linked canon:** algorithms → TODO: add anchor (see vdm_rt/core/neuroplasticity/gdsp.py)  
 **Exit criteria:** GDSP tick callable; sparse operations working under budget constraints  
 **Owner (if present):** - • **Status:** Planned
 
@@ -687,7 +687,7 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 
 **Source:** PLANNED.md:53 • 77f055f  
 **Description:** Compute emergent budgets per territory from void-debt/SIE, fragmentation (UF components), backlog EWMA  
-**Linked canon:** algorithms → TODO: add anchor (see fum_rt/core/substrate/growth_arbiter.py)  
+**Linked canon:** algorithms → TODO: add anchor (see vdm_rt/core/substrate/growth_arbiter.py)  
 **Exit criteria:** Budgets computed from signals; no static knobs; env knobs debug-only  
 **Owner (if present):** - • **Status:** Planned
 
@@ -702,7 +702,7 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 
 **Acceptance criteria (links only, no formulas):**
 
-- Data products to produce: TODO: add anchor (see fum_rt/core/connectome.py neuron type vectors)
+- Data products to produce: TODO: add anchor (see vdm_rt/core/connectome.py neuron type vectors)
 
 **Dependencies:** None (infrastructure work)  
 **Risks/Constraints:**
@@ -713,9 +713,9 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 
 **Deliverables:**
 
-- fum_rt/core/connectome.py (neuron_types array)
-- fum_rt/core/void_dynamics_adapter.py (type-aware kernels)
-- fum_rt/core/fum_growth_arbiter.py (class-specific decisions)
+- vdm_rt/core/connectome.py (neuron_types array)
+- vdm_rt/core/void_dynamics_adapter.py (type-aware kernels)
+- vdm_rt/core/fum_growth_arbiter.py (class-specific decisions)
 
 **Target timeframe (if stated):** Next implementation phase
 
@@ -735,7 +735,7 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 
 **Source:** plans/reports/AI-Report-rewriter-2025-08-25 (2).md:86 • 77f055f  
 **Description:** Write GPU kernels to operate on subsets of neuron arrays based on type; partition data for MI100 (integrators) and 7900 XTX (messengers)  
-**Linked canon:** algorithms → TODO: add anchor (see fum_rt/core/connectome.py, void_dynamics_adapter.py)  
+**Linked canon:** algorithms → TODO: add anchor (see vdm_rt/core/connectome.py, void_dynamics_adapter.py)  
 **Exit criteria:** Type-specific kernels working; correct device allocation  
 **Owner (if present):** - • **Status:** Planned
 
@@ -750,7 +750,7 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 
 **Acceptance criteria (links only, no formulas):**
 
-- Algorithms referenced: TODO: add anchor (see fum_rt/core/void_dynamics_adapter.py RE-VGSP)
+- Algorithms referenced: TODO: add anchor (see vdm_rt/core/void_dynamics_adapter.py RE-VGSP)
 
 **Dependencies:** #ms-heterogeneous-computing  
 **Risks/Constraints:**
@@ -761,7 +761,7 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 
 **Deliverables:**
 
-- fum_rt/core/void_dynamics_adapter.py (class-specific learning rates)
+- vdm_rt/core/void_dynamics_adapter.py (class-specific learning rates)
 
 **Target timeframe (if stated):** Follows heterogeneous computing implementation
 

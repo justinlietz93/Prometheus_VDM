@@ -10,7 +10,7 @@ See LICENSE file for full terms.
 from __future__ import annotations
 
 """
-fum_rt.core.cortex.scouts (facade)
+vdm_rt.core.cortex.scouts (facade)
 
 This module is now a thin aggregator that re-exports modular scout classes and maps.
 It preserves legacy import paths while enforcing void-faithful, read-only traversal.

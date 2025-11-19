@@ -51,7 +51,7 @@ References (implementation)
 - Script: [rd_dispersion_experiment.py](code/physics/rd_dispersion_experiment.py:1)
 - Validation plan: [rd_validation_plan.md](rd_validation_plan.md:1)
 - Status log: [CORRECTIONS.md](CORRECTIONS.md:1)
-- fum_rt parity runner: [rd_dispersion_runner.py](Prometheus_VDM/fum_rt/physics/rd_dispersion_runner.py:1)
+- vdm_rt parity runner: [rd_dispersion_runner.py](Prometheus_VDM/vdm_rt/physics/rd_dispersion_runner.py:1)
 
 Method
 
@@ -104,10 +104,10 @@ Troubleshooting
   - Compare to discrete σ_d(m) (primary); continuum σ(k) deviates near Nyquist.
   - Increase N to push Nyquist higher.
 
-fum_rt parity runner
+vdm_rt parity runner
 
 - Independent mirror (same metrics/output schema) for cross-stack parity:
-  - [rd_dispersion_runner.py](Prometheus_VDM/fum_rt/physics/rd_dispersion_runner.py:1)
+  - [rd_dispersion_runner.py](Prometheus_VDM/vdm_rt/physics/rd_dispersion_runner.py:1)
 - Rationale is documented in-file (“CHANGE REASON”): physics proven via derivation; runtime mirror does not alter core dynamics.
 
 Reproduction checklist
@@ -384,7 +384,7 @@ Open questions / next refinements
 - Evaluate sensitivity of c_meas to level choice (0.05-0.2) and fit window; document invariance bands.
 - Compare dispersion fit using windowed DFT vs rFFT magnitude; assess bias for near-zero/negative σ.
 - Add unit tests for σ_d formula and Laplacian implementations.
-- Mirror runners under fum_rt/physics for cross-stack parity.
+- Mirror runners under vdm_rt/physics for cross-stack parity.
 
 Appendix: CLI quick refs
 
