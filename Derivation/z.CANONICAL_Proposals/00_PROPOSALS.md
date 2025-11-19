@@ -2,7 +2,7 @@
 
 This document provides a comprehensive overview of all research proposals in the Void Dynamics Model (VDM) repository. Each proposal follows the whitepaper-grade template standards and includes explicit gates, MathJax-rendered equations, and full provenance. Proposals are organized by domain and follow the T0-T9 maturity ladder.
 
-**Total Proposals: 81**
+**Total Proposals: 86**
 
 > Last Updated: 2025-11-19  
 > Template: `Templates/PROPOSAL_PAPER_TEMPLATE.md`  
@@ -76,68 +76,7 @@ This document provides a comprehensive overview of all research proposals in the
   Path: `Axioms/A8_Hierarchy_Gates/T3_PROPOSAL_A8_Hierarchy_Gates_v1.md`
   *T3 (Smoke) - A8 Two‑Gate Hierarchy Test (N(L)~log L & E_exc~L^{d-1})*
   - **Tier**: T3
-  - **Experimental Setup**: - **Detectors:** interface counters and energy aggregators with threshold sweeps; report detector‑sensitivity scans.  
-- **Fits:** (i) depth vs log L (slope near 1), (ii) log E_exc vs log L (slope α ≈ d−1).  
-- **Acceptance (joint):** slope_N within [0.9, 1.1] **and** |α − (d−1)| ≤ 0.1 with R² ≥ 0.98; AIC/BIC prefer boundary‑law over volume‑law nulls.
-
-### PRE-REGISTRATION.json
-
-```json
-{
-  "proposal_title": "A8 Two-Gate Hierarchy Test",
-  "tier_grade": "T3",
-  "commit": "<git-sha>",
-  "salted_provenance": "<hash>",
-  "contact": ["Justin K. Lietz <justin@neuroca.ai>"],
-  "hypotheses": [
-    { "id": "H_N", "statement": "N(L) grows logarithmically with L.", "direction": "increase" },
-    { "id": "H_E", "statement": "E_exc scales as L^{d-1}.", "direction": "increase" }
-  ],
-  "variables": {
-    "independent": ["L", "detector thresholds", "dimension d", "seeds"],
-    "dependent": ["slope_N", "α_energy", "R2", "ΔAIC", "ΔBIC"],
-    "controls": ["masking", "binning", "finite-size correction"]
-  },
-  "pass_fail": [
-    { "metric": "slope_N", "operator": "between", "threshold": [0.9, 1.1], "unit": "" },
-    { "metric": "α_energy", "operator": "between", "threshold": ["d-1-0.1", "d-1+0.1"], "unit": "" },
-    { "metric": "R2", "operator": ">=", "threshold": 0.98, "unit": "" }
-  ],
-  "spec_refs": ["Derivation/code/hierarchy/specs/a8-two-gate.v1.json"],
-  "registration_timestamp": "<ISO-8601>"
-}
-```
-  - **Diagnostics**: - **Detectors:** interface counters and energy aggregators with threshold sweeps; report detector‑sensitivity scans.  
-- **Fits:** (i) depth vs log L (slope near 1), (ii) log E_exc vs log L (slope α ≈ d−1).  
-- **Acceptance (joint):** slope_N within [0.9, 1.1] **and** |α − (d−1)| ≤ 0.1 with R² ≥ 0.98; AIC/BIC prefer boundary‑law over volume‑law nulls.
-
-### PRE-REGISTRATION.json
-
-```json
-{
-  "proposal_title": "A8 Two-Gate Hierarchy Test",
-  "tier_grade": "T3",
-  "commit": "<git-sha>",
-  "salted_provenance": "<hash>",
-  "contact": ["Justin K. Lietz <justin@neuroca.ai>"],
-  "hypotheses": [
-    { "id": "H_N", "statement": "N(L) grows logarithmically with L.", "direction": "increase" },
-    { "id": "H_E", "statement": "E_exc scales as L^{d-1}.", "direction": "increase" }
-  ],
-  "variables": {
-    "independent": ["L", "detector thresholds", "dimension d", "seeds"],
-    "dependent": ["slope_N", "α_energy", "R2", "ΔAIC", "ΔBIC"],
-    "controls": ["masking", "binning", "finite-size correction"]
-  },
-  "pass_fail": [
-    { "metric": "slope_N", "operator": "between", "threshold": [0.9, 1.1], "unit": "" },
-    { "metric": "α_energy", "operator": "between", "threshold": ["d-1-0.1", "d-1+0.1"], "unit": "" },
-    { "metric": "R2", "operator": ">=", "threshold": 0.98, "unit": "" }
-  ],
-  "spec_refs": ["Derivation/code/hierarchy/specs/a8-two-gate.v1.json"],
-  "registration_timestamp": "<ISO-8601>"
-}
-```
+  - **Diagnostics**: interface counters and energy aggregators with threshold sweeps; report detector‑sensitivity scans.
 
 
 ### A8 Protein-Packing Boundary-Law/
@@ -146,280 +85,6 @@ This document provides a comprehensive overview of all research proposals in the
   Path: `Axioms/A8_Protein-Packing_Boundary-Law/T2_A8_PROPOSAL_Protein-Packing-Meters_for_Hierarchical_Boundary-Law_v1.md`
   *T2_A8_PROPOSAL_Protein‑Packing‑Meters_for_Hierarchical_Boundary‑Law_v1.md*
   - **Tier**: T2
-  - **Experimental Setup**: **Meters (and methods).**
-
-1. **(R_g(n))** — average subchain (R_g) over all windows of length (n) (as defined in the papers). Report two‑slope fit ((\nu_1,\nu_2)) and kink (n^*) with CIs.
-2. **(S(q))** — backbone structure factor; overlay vs backbone diameter scale (\sigma_{bb}).
-3. **Core fraction (f_{\text{core}})** — **rSASA thresholding** (Lee–Richards probe, rSASA (<10^{-3})) to tag core residues.
-4. **Core packing (\langle\phi\rangle)** — **radical Voronoi** near the core surface + Monte‑Carlo volume estimation to compute local packing and (\langle\phi\rangle).
-
-**Diagnostics (counts).** (R_g(n)) (1), two‑slope/kink fit (1), (S(q)) (1), rSASA core detector (1), Voronoi/MC packer (1), agreement scores (4).
-
-**Known parameters / defaults.**
-
-| Key           | Meaning                             | Default            |
-| ------------- | ----------------------------------- | ------------------ |
-| (\sigma_{bb}) | backbone bead spacing for scaling   | (3.8,\text{Å})     |
-| probe         | rSASA probe diameter (Lee–Richards) | (0.73,\sigma_{bb}) |
-| rSASA cut     | core threshold                      | (10^{-3})          |
-| seeds         | random seeds                        | ({0..19})          |
-
-(Probe and rSASA follow the referenced method; (\sigma_{bb}) is dimensional context for (S(q)) overlays.)
-
-**Pass/Fail gates (calibration against x‑ray baseline).**
-
-* **G‑Rg‑2Slope.** Detect two distinct exponents with CI‑separation and kink (n^*) in (20!-!40) (unitless (n)); report (\nu_1>1/3), (\nu_2<1/3); normalized MSE of (\langle R_g(n)\rangle) vs x‑ray baseline (\le 0.03).
-* **G‑S(q).** Cross‑correlation with x‑ray ensemble average (\ge 0.95) over prereg (q)‑window; peak positions within prereg tolerances.
-* **G‑CoreFrac.** (f_{\text{core}}=0.09\pm 0.01) under the prereg detector.
-* **G‑PackFrac.** (\langle\phi\rangle) within ([0.55,0.59]) under the prereg Voronoi/MC method; instrument PASS if CI overlaps this band.
-
-**Model ladder sanity (non‑gating, for context figures).** Reproduce the qualitative ladder: CRW/BADA fail core packing; FJSC/InSeq match (R_g(n)) and (S(q)); multi‑bead side‑chains (modMPSC) improve (\langle\phi\rangle) while maintaining (f_{\text{core}}). These are **reference overlays**, not PASS criteria.
-
-### 5.1.1 Pre‑Run Config Requirements (machine‑readable)
-
-Follow the repository’s approvals/prereg discipline exactly (paths may be adjusted to your tree).
-
-```
-Derivation/code/physics/protein_packing/APPROVALS.json
-Derivation/code/physics/protein_packing/schemas/ProteinPackingMeters.schema.json
-Derivation/code/physics/protein_packing/specs/ProteinPackingMeters.v1.json
-Derivation/experiments/prereg/ProteinPackingMeters.v1.json
-```
-
-**APPROVALS.json (template)**
-
-```json
-{
-  "preflight_name": "protein_packing_preflight",
-  "description": "Approval manifest for protein-packing meters; preflight must pass before artifact-writing runs.",
-  "author": "Justin K. Lietz",
-  "requires_approval": true,
-  "pre_commit_hook": true,
-  "notes": "Preflight runs may execute under Derivation/code/tests. Artifact-writing runs require this proposal.",
-  "pre_registered": true,
-  "proposal": "Derivation/Proposals/T2_A8_PROPOSAL_Protein-Packing-Meters_v1.md",
-  "allowed_tags": ["protein-packing-meters-v1"],
-  "schema_dir": "Derivation/code/physics/protein_packing/schemas",
-  "approvals": {
-    "protein-packing-meters-v1": {
-      "schema": "Derivation/code/physics/protein_packing/schemas/ProteinPackingMeters.schema.json",
-      "approved_by": "Justin K. Lietz",
-      "approved_at": "auto",
-      "approval_key": "auto"
-    }
-  }
-}
-```
-
-**PRE‑REGISTRATION.json (minimum)**
-
-```json
-{
-  "proposal_title": "T2 — Protein-Packing Meters for A8 Hierarchical Boundary Law",
-  "tier_grade": "T2",
-  "commit": "HEAD_SHA_HERE",
-  "salted_provenance": "salted_sha256_here",
-  "contact": ["Justin K. Lietz <justin@neuroca.ai>"],
-  "hypotheses": [
-    {"id":"H1","statement":"Two-slope (ν1>1/3, ν2<1/3) structure in ⟨Rg(n)⟩ is detected with CI-separated exponents.","direction":"no-change"},
-    {"id":"H2","statement":"S(q) overlay passes prereg cross-correlation band.","direction":"no-change"},
-    {"id":"H3","statement":"Core fraction f_core matches 0.09±0.01 under prereg method.","direction":"no-change"},
-    {"id":"H4","statement":"Core packing ⟨φ⟩ lies in [0.55,0.59] under prereg method.","direction":"no-change"}
-  ],
-  "variables": {
-    "independent": ["protein_id","seed","q_window","n_window"],
-    "dependent": ["ν1","ν2","n_star","MSE_Rg","xcorr_Sq","f_core","phi"],
-    "controls": ["probe_diam","rSASA_cut","voronoi_boxN","mc_samples"]
-  },
-  "pass_fail": [
-    {"metric":"MSE_Rg","operator":"<=","threshold":0.03,"unit":""},
-    {"metric":"xcorr_Sq","operator":">=","threshold":0.95,"unit":""},
-    {"metric":"|f_core-0.09|","operator":"<=","threshold":0.01,"unit":""},
-    {"metric":"phi_band_violation","operator":"==","threshold":0,"unit":""}
-  ],
-  "spec_refs": ["Derivation/code/physics/protein_packing/specs/ProteinPackingMeters.v1.json"],
-  "registration_timestamp": "AUTO-UTC"
-}
-```
-
-**Specs (runner)**
-
-```json
-{
-  "run_name": "ProteinPackingMeters",
-  "version": "1.0.0",
-  "tag": "protein-packing-meters-v1",
-  "schema_ref": "Derivation/code/physics/protein_packing/schemas/ProteinPackingMeters.schema.json",
-  "parameters": {
-    "probe_diam_over_sigma_bb": 0.73,
-    "rSASA_cut": 1e-3,
-    "voronoi_boxN": 500000,
-    "mc_samples": 500000,
-    "q_window": [0.5, 3.0],
-    "n_window": [2, 512]
-  },
-  "seeds": [0,1,2,3,4,5,6,7,8,9]
-}
-```
-
-**Schema (minimum)**
-
-```json
-{
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "vdm://schemas/ProteinPackingMeters.schema.json",
-  "title": "ProteinPackingMeters v1",
-  "type": "object",
-  "properties": {
-    "probe_diam_over_sigma_bb": {"type":"number","minimum":0},
-    "rSASA_cut": {"type":"number","minimum":0},
-    "voronoi_boxN": {"type":"integer","minimum":10000},
-    "mc_samples": {"type":"integer","minimum":10000},
-    "q_window": {"type":"array","items":{"type":"number"},"minItems":2,"maxItems":2},
-    "n_window": {"type":"array","items":{"type":"integer"},"minItems":2,"maxItems":2}
-  },
-  "required": ["probe_diam_over_sigma_bb","rSASA_cut","voronoi_boxN","mc_samples","q_window","n_window"]
-}
-```
-
-(Conforms to your proposal template’s prereg/schemas discipline.)
-  - **Diagnostics**: **Meters (and methods).**
-
-1. **(R_g(n))** — average subchain (R_g) over all windows of length (n) (as defined in the papers). Report two‑slope fit ((\nu_1,\nu_2)) and kink (n^*) with CIs.
-2. **(S(q))** — backbone structure factor; overlay vs backbone diameter scale (\sigma_{bb}).
-3. **Core fraction (f_{\text{core}})** — **rSASA thresholding** (Lee–Richards probe, rSASA (<10^{-3})) to tag core residues.
-4. **Core packing (\langle\phi\rangle)** — **radical Voronoi** near the core surface + Monte‑Carlo volume estimation to compute local packing and (\langle\phi\rangle).
-
-**Diagnostics (counts).** (R_g(n)) (1), two‑slope/kink fit (1), (S(q)) (1), rSASA core detector (1), Voronoi/MC packer (1), agreement scores (4).
-
-**Known parameters / defaults.**
-
-| Key           | Meaning                             | Default            |
-| ------------- | ----------------------------------- | ------------------ |
-| (\sigma_{bb}) | backbone bead spacing for scaling   | (3.8,\text{Å})     |
-| probe         | rSASA probe diameter (Lee–Richards) | (0.73,\sigma_{bb}) |
-| rSASA cut     | core threshold                      | (10^{-3})          |
-| seeds         | random seeds                        | ({0..19})          |
-
-(Probe and rSASA follow the referenced method; (\sigma_{bb}) is dimensional context for (S(q)) overlays.)
-
-**Pass/Fail gates (calibration against x‑ray baseline).**
-
-* **G‑Rg‑2Slope.** Detect two distinct exponents with CI‑separation and kink (n^*) in (20!-!40) (unitless (n)); report (\nu_1>1/3), (\nu_2<1/3); normalized MSE of (\langle R_g(n)\rangle) vs x‑ray baseline (\le 0.03).
-* **G‑S(q).** Cross‑correlation with x‑ray ensemble average (\ge 0.95) over prereg (q)‑window; peak positions within prereg tolerances.
-* **G‑CoreFrac.** (f_{\text{core}}=0.09\pm 0.01) under the prereg detector.
-* **G‑PackFrac.** (\langle\phi\rangle) within ([0.55,0.59]) under the prereg Voronoi/MC method; instrument PASS if CI overlaps this band.
-
-**Model ladder sanity (non‑gating, for context figures).** Reproduce the qualitative ladder: CRW/BADA fail core packing; FJSC/InSeq match (R_g(n)) and (S(q)); multi‑bead side‑chains (modMPSC) improve (\langle\phi\rangle) while maintaining (f_{\text{core}}). These are **reference overlays**, not PASS criteria.
-
-### 5.1.1 Pre‑Run Config Requirements (machine‑readable)
-
-Follow the repository’s approvals/prereg discipline exactly (paths may be adjusted to your tree).
-
-```
-Derivation/code/physics/protein_packing/APPROVALS.json
-Derivation/code/physics/protein_packing/schemas/ProteinPackingMeters.schema.json
-Derivation/code/physics/protein_packing/specs/ProteinPackingMeters.v1.json
-Derivation/experiments/prereg/ProteinPackingMeters.v1.json
-```
-
-**APPROVALS.json (template)**
-
-```json
-{
-  "preflight_name": "protein_packing_preflight",
-  "description": "Approval manifest for protein-packing meters; preflight must pass before artifact-writing runs.",
-  "author": "Justin K. Lietz",
-  "requires_approval": true,
-  "pre_commit_hook": true,
-  "notes": "Preflight runs may execute under Derivation/code/tests. Artifact-writing runs require this proposal.",
-  "pre_registered": true,
-  "proposal": "Derivation/Proposals/T2_A8_PROPOSAL_Protein-Packing-Meters_v1.md",
-  "allowed_tags": ["protein-packing-meters-v1"],
-  "schema_dir": "Derivation/code/physics/protein_packing/schemas",
-  "approvals": {
-    "protein-packing-meters-v1": {
-      "schema": "Derivation/code/physics/protein_packing/schemas/ProteinPackingMeters.schema.json",
-      "approved_by": "Justin K. Lietz",
-      "approved_at": "auto",
-      "approval_key": "auto"
-    }
-  }
-}
-```
-
-**PRE‑REGISTRATION.json (minimum)**
-
-```json
-{
-  "proposal_title": "T2 — Protein-Packing Meters for A8 Hierarchical Boundary Law",
-  "tier_grade": "T2",
-  "commit": "HEAD_SHA_HERE",
-  "salted_provenance": "salted_sha256_here",
-  "contact": ["Justin K. Lietz <justin@neuroca.ai>"],
-  "hypotheses": [
-    {"id":"H1","statement":"Two-slope (ν1>1/3, ν2<1/3) structure in ⟨Rg(n)⟩ is detected with CI-separated exponents.","direction":"no-change"},
-    {"id":"H2","statement":"S(q) overlay passes prereg cross-correlation band.","direction":"no-change"},
-    {"id":"H3","statement":"Core fraction f_core matches 0.09±0.01 under prereg method.","direction":"no-change"},
-    {"id":"H4","statement":"Core packing ⟨φ⟩ lies in [0.55,0.59] under prereg method.","direction":"no-change"}
-  ],
-  "variables": {
-    "independent": ["protein_id","seed","q_window","n_window"],
-    "dependent": ["ν1","ν2","n_star","MSE_Rg","xcorr_Sq","f_core","phi"],
-    "controls": ["probe_diam","rSASA_cut","voronoi_boxN","mc_samples"]
-  },
-  "pass_fail": [
-    {"metric":"MSE_Rg","operator":"<=","threshold":0.03,"unit":""},
-    {"metric":"xcorr_Sq","operator":">=","threshold":0.95,"unit":""},
-    {"metric":"|f_core-0.09|","operator":"<=","threshold":0.01,"unit":""},
-    {"metric":"phi_band_violation","operator":"==","threshold":0,"unit":""}
-  ],
-  "spec_refs": ["Derivation/code/physics/protein_packing/specs/ProteinPackingMeters.v1.json"],
-  "registration_timestamp": "AUTO-UTC"
-}
-```
-
-**Specs (runner)**
-
-```json
-{
-  "run_name": "ProteinPackingMeters",
-  "version": "1.0.0",
-  "tag": "protein-packing-meters-v1",
-  "schema_ref": "Derivation/code/physics/protein_packing/schemas/ProteinPackingMeters.schema.json",
-  "parameters": {
-    "probe_diam_over_sigma_bb": 0.73,
-    "rSASA_cut": 1e-3,
-    "voronoi_boxN": 500000,
-    "mc_samples": 500000,
-    "q_window": [0.5, 3.0],
-    "n_window": [2, 512]
-  },
-  "seeds": [0,1,2,3,4,5,6,7,8,9]
-}
-```
-
-**Schema (minimum)**
-
-```json
-{
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "vdm://schemas/ProteinPackingMeters.schema.json",
-  "title": "ProteinPackingMeters v1",
-  "type": "object",
-  "properties": {
-    "probe_diam_over_sigma_bb": {"type":"number","minimum":0},
-    "rSASA_cut": {"type":"number","minimum":0},
-    "voronoi_boxN": {"type":"integer","minimum":10000},
-    "mc_samples": {"type":"integer","minimum":10000},
-    "q_window": {"type":"array","items":{"type":"number"},"minItems":2,"maxItems":2},
-    "n_window": {"type":"array","items":{"type":"integer"},"minItems":2,"maxItems":2}
-  },
-  "required": ["probe_diam_over_sigma_bb","rSASA_cut","voronoi_boxN","mc_samples","q_window","n_window"]
-}
-```
-
-(Conforms to your proposal template’s prereg/schemas discipline.)
 
 
 ### A8 Scaling 1D/
@@ -428,246 +93,6 @@ Derivation/experiments/prereg/ProteinPackingMeters.v1.json
   Path: `Axioms/A8_Scaling_1D/T1_A8_PROPOSAL_1D_Scaling_v1.md`
   *T1 (Proto-model) - A8 1D Scaling Instrument: Interface Hierarchy and Area-Law Energy*
   - **Tier**: T1
-  - **Experimental Setup**: Normalization and parameters (per [UNITS_NORMALIZATION.md](Derivation/UNITS_NORMALIZATION.md)):
-
-- Domain length $L$, grid $N$, spacing $\Delta x=L/N$; temporal window $T$ and $\Delta t$ for dynamic relaxation when needed; seeds $S$.  
-- Potential and regime: choose a smooth double‑well tachyonic potential with $V''(0)<0$ (e.g., $V(\phi)=\tfrac{1}{4}(\phi^2-1)^2 - \tfrac{\mu}{2}\phi^2$ with $\mu>0$); or a canonical tachyonic quadratic near $\phi=0$ in the limit that preserves numerics.  
-- Dynamics: Variants allowed for relaxation to near‑steady profiles (e.g., gradient flow or metriplectic M‑limb step); the instrument records the path and does not claim dynamics at T2.
-
-Detectors and energy accounting:
-
-- Interface detector families:  
-  - Threshold crossing (count transitions beyond $\pm \theta$),  
-  - Total variation peaks (TV-based change-point),  
-  - Multiscale structure tensor (1D analog) with scale pyramid $L_s$.  
-- $N(L)$: number of detected interfaces after de‑spurious filtering (minimum spacing $\ge \lambda_{\min}$).  
-- Energy: $E_{\mathrm{exc}}(L)=E[\phi;L]-E_{\min}(L)$ with $E[\phi;L]=\int_0^L \left(\tfrac{\kappa}{2}\lvert\partial_x\phi\rvert^{2}+V(\phi)\right)\,dx$; $E_{\min}(L)$ estimated from best-fit bulk phases without interfaces (instrument defines numerical approximation; constants reported).
-
-Acceptance metrics and gates:
-
-- Count law: Fit $N(L)$ vs $\log L$ using robust regression; slope $\hat s$ within tolerance of a positive constant and $R^2\ge 0.98$; report CI and detector sensitivity bands.  
-- Area law (1D): Fit $E_{\mathrm{exc}}(L)$ vs $L^{\,0}$ (constant w.r.t. $L$) with $R^2\ge 0.98$; equivalently, linear fit of $\log E_{\mathrm{exc}}$ vs $\log L$ with slope $|\hat\alpha|\le 0.1$ (tunable in prereg).  
-- Tachyonic check: Validate $V''(0)<0$ numerically from supplied potential; runs failing this check are invalid.
-
-New tools/scripts (commit before runs):
-
-- Detector implementations: Derivation/code/physics/axioms/a8/detectors.py  
-- Energy calculator: Derivation/code/physics/axioms/a8/energy.py  
-- Runner: Derivation/code/physics/axioms/a8/run_a8_scaling_1d.py  
-- Report/viz: Derivation/code/physics/axioms/a8/report_scaling.py
-
-Required parameters and defaults (example T1 set):
-
-- $L\in\{128,256,512,1024,2048\}$; $N=L$; $\Delta t$ small for relax; seeds $=10$.  
-- Detector threshold $\theta=0.5$ (in normalized units), minimum spacing $\lambda_{\min}=4\Delta x$, $L_s=4$ levels.  
-- Potential coefficients $(\kappa,\mu)$ declared; numeric bounds at prereg.
-
-### 5.1.1 Pre-Run Config Requirements
-
-Approvals/preregistration are mandatory (see [authorization/README.md](Derivation/code/common/authorization/README.md)).
-
-Required config and metadata:
-
-- Approvals: Derivation/code/physics/axioms/APPROVAL.json  
-- Schemas: Derivation/code/physics/axioms/schemas/  
-  - a8-scaling-1d.v1.schema.json  
-- Specs: Derivation/code/physics/axioms/specs/  
-  - a8-scaling-1d-run.v1.json
-
-PRE-REGISTRATION.json (minimum keys; fill at prereg):
-
-```json
-{
-  "proposal_title": "T1 - A8 1D Scaling Instrument (Interfaces and Area Law)",
-  "tier_grade": "T1",
-  "commit": "cbc3dd1",
-  "salted_provenance": "<to-be-filled>",
-  "contact": ["Justin K. Lietz <justin@neuroca.ai>"],
-  "hypotheses": [
-    { "id": "H1", "statement": "Interface count grows like Θ(log L) with R² ≥ 0.98 across detectors.", "direction": "increase" },
-    { "id": "H2", "statement": "Excess energy follows area law with |slope(log E_exc vs log L)| ≤ 0.1 and R² ≥ 0.98.", "direction": "no-change" },
-    { "id": "H3", "statement": "Tachyonic regime validation V''(0) < 0 holds for all runs.", "direction": "decrease" }
-  ],
-  "variables": {
-    "independent": ["L","detector_kind","θ","λ_min","L_s"],
-    "dependent": ["N_slope","N_R2","alpha_energy","R2_energy"],
-    "controls": ["seed","potential_kind","κ","μ"]
-  },
-  "pass_fail": [
-    { "metric": "N_R2", "operator": ">=", "threshold": 0.98, "unit": "-" },
-    { "metric": "R2_energy", "operator": ">=", "threshold": 0.98, "unit": "-" },
-    { "metric": "alpha_energy_abs", "operator": "<=", "threshold": 0.1, "unit": "-" }
-  ],
-  "spec_refs": ["Derivation/code/physics/axioms/specs/a8-scaling-1d-run.v1.json"],
-  "registration_timestamp": "<ISO-8601>"
-}
-```
-
-Specs (example):
-
-```json
-{
-  "run_name": "a8-scaling-1d-baseline",
-  "version": "1.0.0",
-  "tag": "a8-scaling-1d.v1",
-  "schema_ref": "Derivation/code/physics/axioms/schemas/a8-scaling-1d.v1.schema.json",
-  "parameters": {
-    "L_list": [128,256,512,1024,2048],
-    "detector": "threshold",
-    "theta": 0.5,
-    "lambda_min": 4,
-    "levels": 4,
-    "potential": "dw-tachyonic",
-    "kappa": 1.0,
-    "mu": 0.25
-  },
-  "seeds": [0,1,2,3,4,5,6,7,8,9]
-}
-```
-
-Schemas (skeleton):
-
-```json
-{
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "a8-scaling-1d.v1.schema.json",
-  "title": "A8 1D Scaling Instrument - v1",
-  "type": "object",
-  "properties": {
-    "L_list": { "type": "array", "items": { "type": "integer", "minimum": 32 }, "minItems": 3 },
-    "detector": { "type": "string", "enum": ["threshold","tv-peak","multiscale"] },
-    "theta": { "type": "number" },
-    "lambda_min": { "type": "integer", "minimum": 1 },
-    "levels": { "type": "integer", "minimum": 1 },
-    "potential": { "type": "string", "enum": ["dw-tachyonic","custom"] },
-    "kappa": { "type": "number", "exclusiveMinimum": 0 },
-    "mu": { "type": "number", "exclusiveMinimum": 0 }
-  },
-  "required": ["L_list","detector","theta","lambda_min","levels","potential","kappa","mu"]
-}
-```
-
----
-  - **Diagnostics**: Normalization and parameters (per [UNITS_NORMALIZATION.md](Derivation/UNITS_NORMALIZATION.md)):
-
-- Domain length $L$, grid $N$, spacing $\Delta x=L/N$; temporal window $T$ and $\Delta t$ for dynamic relaxation when needed; seeds $S$.  
-- Potential and regime: choose a smooth double‑well tachyonic potential with $V''(0)<0$ (e.g., $V(\phi)=\tfrac{1}{4}(\phi^2-1)^2 - \tfrac{\mu}{2}\phi^2$ with $\mu>0$); or a canonical tachyonic quadratic near $\phi=0$ in the limit that preserves numerics.  
-- Dynamics: Variants allowed for relaxation to near‑steady profiles (e.g., gradient flow or metriplectic M‑limb step); the instrument records the path and does not claim dynamics at T2.
-
-Detectors and energy accounting:
-
-- Interface detector families:  
-  - Threshold crossing (count transitions beyond $\pm \theta$),  
-  - Total variation peaks (TV-based change-point),  
-  - Multiscale structure tensor (1D analog) with scale pyramid $L_s$.  
-- $N(L)$: number of detected interfaces after de‑spurious filtering (minimum spacing $\ge \lambda_{\min}$).  
-- Energy: $E_{\mathrm{exc}}(L)=E[\phi;L]-E_{\min}(L)$ with $E[\phi;L]=\int_0^L \left(\tfrac{\kappa}{2}\lvert\partial_x\phi\rvert^{2}+V(\phi)\right)\,dx$; $E_{\min}(L)$ estimated from best-fit bulk phases without interfaces (instrument defines numerical approximation; constants reported).
-
-Acceptance metrics and gates:
-
-- Count law: Fit $N(L)$ vs $\log L$ using robust regression; slope $\hat s$ within tolerance of a positive constant and $R^2\ge 0.98$; report CI and detector sensitivity bands.  
-- Area law (1D): Fit $E_{\mathrm{exc}}(L)$ vs $L^{\,0}$ (constant w.r.t. $L$) with $R^2\ge 0.98$; equivalently, linear fit of $\log E_{\mathrm{exc}}$ vs $\log L$ with slope $|\hat\alpha|\le 0.1$ (tunable in prereg).  
-- Tachyonic check: Validate $V''(0)<0$ numerically from supplied potential; runs failing this check are invalid.
-
-New tools/scripts (commit before runs):
-
-- Detector implementations: Derivation/code/physics/axioms/a8/detectors.py  
-- Energy calculator: Derivation/code/physics/axioms/a8/energy.py  
-- Runner: Derivation/code/physics/axioms/a8/run_a8_scaling_1d.py  
-- Report/viz: Derivation/code/physics/axioms/a8/report_scaling.py
-
-Required parameters and defaults (example T1 set):
-
-- $L\in\{128,256,512,1024,2048\}$; $N=L$; $\Delta t$ small for relax; seeds $=10$.  
-- Detector threshold $\theta=0.5$ (in normalized units), minimum spacing $\lambda_{\min}=4\Delta x$, $L_s=4$ levels.  
-- Potential coefficients $(\kappa,\mu)$ declared; numeric bounds at prereg.
-
-### 5.1.1 Pre-Run Config Requirements
-
-Approvals/preregistration are mandatory (see [authorization/README.md](Derivation/code/common/authorization/README.md)).
-
-Required config and metadata:
-
-- Approvals: Derivation/code/physics/axioms/APPROVAL.json  
-- Schemas: Derivation/code/physics/axioms/schemas/  
-  - a8-scaling-1d.v1.schema.json  
-- Specs: Derivation/code/physics/axioms/specs/  
-  - a8-scaling-1d-run.v1.json
-
-PRE-REGISTRATION.json (minimum keys; fill at prereg):
-
-```json
-{
-  "proposal_title": "T1 - A8 1D Scaling Instrument (Interfaces and Area Law)",
-  "tier_grade": "T1",
-  "commit": "cbc3dd1",
-  "salted_provenance": "<to-be-filled>",
-  "contact": ["Justin K. Lietz <justin@neuroca.ai>"],
-  "hypotheses": [
-    { "id": "H1", "statement": "Interface count grows like Θ(log L) with R² ≥ 0.98 across detectors.", "direction": "increase" },
-    { "id": "H2", "statement": "Excess energy follows area law with |slope(log E_exc vs log L)| ≤ 0.1 and R² ≥ 0.98.", "direction": "no-change" },
-    { "id": "H3", "statement": "Tachyonic regime validation V''(0) < 0 holds for all runs.", "direction": "decrease" }
-  ],
-  "variables": {
-    "independent": ["L","detector_kind","θ","λ_min","L_s"],
-    "dependent": ["N_slope","N_R2","alpha_energy","R2_energy"],
-    "controls": ["seed","potential_kind","κ","μ"]
-  },
-  "pass_fail": [
-    { "metric": "N_R2", "operator": ">=", "threshold": 0.98, "unit": "-" },
-    { "metric": "R2_energy", "operator": ">=", "threshold": 0.98, "unit": "-" },
-    { "metric": "alpha_energy_abs", "operator": "<=", "threshold": 0.1, "unit": "-" }
-  ],
-  "spec_refs": ["Derivation/code/physics/axioms/specs/a8-scaling-1d-run.v1.json"],
-  "registration_timestamp": "<ISO-8601>"
-}
-```
-
-Specs (example):
-
-```json
-{
-  "run_name": "a8-scaling-1d-baseline",
-  "version": "1.0.0",
-  "tag": "a8-scaling-1d.v1",
-  "schema_ref": "Derivation/code/physics/axioms/schemas/a8-scaling-1d.v1.schema.json",
-  "parameters": {
-    "L_list": [128,256,512,1024,2048],
-    "detector": "threshold",
-    "theta": 0.5,
-    "lambda_min": 4,
-    "levels": 4,
-    "potential": "dw-tachyonic",
-    "kappa": 1.0,
-    "mu": 0.25
-  },
-  "seeds": [0,1,2,3,4,5,6,7,8,9]
-}
-```
-
-Schemas (skeleton):
-
-```json
-{
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "a8-scaling-1d.v1.schema.json",
-  "title": "A8 1D Scaling Instrument - v1",
-  "type": "object",
-  "properties": {
-    "L_list": { "type": "array", "items": { "type": "integer", "minimum": 32 }, "minItems": 3 },
-    "detector": { "type": "string", "enum": ["threshold","tv-peak","multiscale"] },
-    "theta": { "type": "number" },
-    "lambda_min": { "type": "integer", "minimum": 1 },
-    "levels": { "type": "integer", "minimum": 1 },
-    "potential": { "type": "string", "enum": ["dw-tachyonic","custom"] },
-    "kappa": { "type": "number", "exclusiveMinimum": 0 },
-    "mu": { "type": "number", "exclusiveMinimum": 0 }
-  },
-  "required": ["L_list","detector","theta","lambda_min","levels","potential","kappa","mu"]
-}
-```
-
----
 
 
 ### A8 Scaling 2D3D/
@@ -676,45 +101,6 @@ Schemas (skeleton):
   Path: `Axioms/A8_Scaling_2D3D/T1_A8_PROPOSAL_AreaLaw_2D3D_v1.md`
   *T1 (Proto-model) — A8 Area-Law Instrument in 2D/3D Domains*
   - **Tier**: T1
-  - **Gate(s)**: Primary area-law gate (per dimension $d=2$ or $d=3$):
-
-- Fit $\log E_{\mathrm{exc}}(L)$ vs $\log L$; expected slope $\hat\alpha \approx d-1$.  
-- Acceptance band: $|\hat\alpha - (d-1)| \le 0.1$ with $R^2 \ge 0.98$.  
-- Report CI for $\hat\alpha$ via bootstrap across seeds; report detector/threshold sensitivity bands.
-
-Secondary gates (quality controls):
-
-- Detector robustness: for the accepted $\epsilon$-neighborhood, detector kind, and threshold, area-law slope must stay within ±0.1 across at least two detector families (e.g., threshold and TV).  
-- Resolution robustness: two-resolution check (refined grid) must keep $|\Delta \hat\alpha|\le 0.05$ and preserve $R^2 \ge 0.98$ on the subset evaluated.
-
-Regime gate (tachyonic pre-check):
-
-- Numeric validation that $V''(0)<0$ for the supplied potential $V(\cdot)$; runs failing this check are invalid and quarantined.
-
----
-  - **Methods/Protocol**: 5.1 Domain and BCs  
-
-- $d=2$: square domains; $d=3$: cubic domains. Periodic or no-flux BC; record choice in JSON.  
-- $N\in\{256,512\}$ typical for 2D; $N\in\{64,96,128\}$ for 3D baseline (CPU-friendly), with an explicit plan to re-run a subset at finer resolution.
-
-5.2 Detector specifics  
-
-- Threshold detector: count/locate interface voxels where $|\phi|\ge \theta$ (tunable $\theta$), then construct boundary mask $\mathcal{N}_\epsilon(\Gamma)$.  
-- TV detector: locate maxima of the discrete gradient magnitude field smoothed at a scale tied to $\Delta x$.  
-- Structure tensor (2D/3D): eigen-analysis of local gradient covariance with non-maximum suppression for ridge-like features.
-
-5.3 Energy accounting  
-
-- Compute $E[\phi;\Omega_L]$ on grid via central differences and quadrature matching the scheme order.  
-- Estimate $E_{\min}(\Omega_L)$ using uniform bulk phase(s) without interfaces; choose vacuum value(s) from the instrument’s $V(\cdot)$ and parameters and report method (single-phase vs. weighted two-phase) in JSON.  
-- Attribute a fraction of $E_{\mathrm{exc}}$ to $\mathcal{N}_\epsilon(\Gamma)$ for diagnostics (informational); the primary fit uses the total $E_{\mathrm{exc}}(L)$.
-
-5.4 Regression and reporting  
-
-- For each $d$ and each detector, regress $\log E_{\mathrm{exc}}$ vs $\log L$ across $L$; report slope, intercept, $R^2$, CIs.  
-- Aggregate across seeds by medians; report interquartile ranges and bootstrap CIs.
-
----
 
 
 ## Causality (4 proposals)
@@ -805,78 +191,7 @@ Regime gate (tachyonic pre-check):
   Path: `Cosmology/CMB/T2_PROPOSAL_EBN_CMB_Pipeline_v1.md`
   *T2 (Instrument) - EBN‑CMB‑ISW+Lens Pipeline (A8→Boltzmann→CMB/LSS)*
   - **Tier**: T2
-  - **Experimental Setup**: - **Inputs:** A8 generator parameters (interface scale λ, hierarchy depth control, tilt parameters); cosmological background (Ω_b, Ω_c, H0, τ, etc.).  
-- **Diagnostics:** FRW balance (dust) RMS ≤ 1e−6; internal consistency checks; CMB peak positions and heights within preregistered envelopes; lensing amplitude; ISW cross‑checks.  
-- **Acceptance (gates):** (G1) FRW balance gate passes; (G2) fit quality meets preregistered Δχ²/ΔAIC envelope vs ΛCDM on Planck‑class spectra; (G3) null tests (isotropy/lensing consistency) pass.
-
-### 5.1.1 Pre-Run Config Requirements
-
-- Approvals manifest and schemas for spectrum JSON and solver configs.
-
-### PRE-REGISTRATION.json
-
-```json
-{
-  "proposal_title": "EBN-CMB-ISW+Lens Pipeline (A8 to CMB/LSS)",
-  "tier_grade": "T2",
-  "commit": "<git-sha>",
-  "salted_provenance": "<hash>",
-  "contact": ["Justin K. Lietz <justin@neuroca.ai>"],
-  "hypotheses": [
-    { "id": "H_FRW", "statement": "Dust FRW continuity RMS ≤ 1e-6 for generated backgrounds.", "direction": "no-change" },
-    { "id": "H_CMB", "statement": "CMB peak positions/heights fall within preregistered envelopes under A8 spectrum.", "direction": "no-change" },
-    { "id": "H_LENS", "statement": "Lensing/ISW diagnostics match prereg envelopes without ad-hoc components.", "direction": "no-change" }
-  ],
-  "variables": {
-    "independent": ["λ", "hierarchy parameters", "Ω_b", "Ω_c", "H0", "τ", "seeds"],
-    "dependent": ["RMS_FRW", "Δχ²_vs_ΛCDM", "peak_offsets", "lensing_A"],
-    "controls": ["masking", "ℓ_max", "beam/noise models"]
-  },
-  "pass_fail": [
-    { "metric": "RMS_FRW", "operator": "<=", "threshold": 1e-6, "unit": "" },
-    { "metric": "Δχ²_vs_ΛCDM", "operator": "<=", "threshold": 0.0, "unit": "" },
-    { "metric": "peak_offsets", "operator": "<=", "threshold": 0.5, "unit": "σ" }
-  ],
-  "spec_refs": ["Derivation/code/cosmology/specs/ebn-cmb.v1.json"],
-  "registration_timestamp": "<ISO-8601>"
-}
-```
-  - **Diagnostics**: - **Inputs:** A8 generator parameters (interface scale λ, hierarchy depth control, tilt parameters); cosmological background (Ω_b, Ω_c, H0, τ, etc.).  
-- **Diagnostics:** FRW balance (dust) RMS ≤ 1e−6; internal consistency checks; CMB peak positions and heights within preregistered envelopes; lensing amplitude; ISW cross‑checks.  
-- **Acceptance (gates):** (G1) FRW balance gate passes; (G2) fit quality meets preregistered Δχ²/ΔAIC envelope vs ΛCDM on Planck‑class spectra; (G3) null tests (isotropy/lensing consistency) pass.
-
-### 5.1.1 Pre-Run Config Requirements
-
-- Approvals manifest and schemas for spectrum JSON and solver configs.
-
-### PRE-REGISTRATION.json
-
-```json
-{
-  "proposal_title": "EBN-CMB-ISW+Lens Pipeline (A8 to CMB/LSS)",
-  "tier_grade": "T2",
-  "commit": "<git-sha>",
-  "salted_provenance": "<hash>",
-  "contact": ["Justin K. Lietz <justin@neuroca.ai>"],
-  "hypotheses": [
-    { "id": "H_FRW", "statement": "Dust FRW continuity RMS ≤ 1e-6 for generated backgrounds.", "direction": "no-change" },
-    { "id": "H_CMB", "statement": "CMB peak positions/heights fall within preregistered envelopes under A8 spectrum.", "direction": "no-change" },
-    { "id": "H_LENS", "statement": "Lensing/ISW diagnostics match prereg envelopes without ad-hoc components.", "direction": "no-change" }
-  ],
-  "variables": {
-    "independent": ["λ", "hierarchy parameters", "Ω_b", "Ω_c", "H0", "τ", "seeds"],
-    "dependent": ["RMS_FRW", "Δχ²_vs_ΛCDM", "peak_offsets", "lensing_A"],
-    "controls": ["masking", "ℓ_max", "beam/noise models"]
-  },
-  "pass_fail": [
-    { "metric": "RMS_FRW", "operator": "<=", "threshold": 1e-6, "unit": "" },
-    { "metric": "Δχ²_vs_ΛCDM", "operator": "<=", "threshold": 0.0, "unit": "" },
-    { "metric": "peak_offsets", "operator": "<=", "threshold": 0.5, "unit": "σ" }
-  ],
-  "spec_refs": ["Derivation/code/cosmology/specs/ebn-cmb.v1.json"],
-  "registration_timestamp": "<ISO-8601>"
-}
-```
+  - **Diagnostics**: A8 generator parameters (interface scale λ, hierarchy depth control, tilt parameters); cosmological background (Ω_b, Ω_c, H0, τ, etc.
 
 
 ### Ringdown Meter/
@@ -891,227 +206,6 @@ Regime gate (tachyonic pre-check):
   Path: `Cosmology/Ringdown_Meter/T2_PROPOSAL_Ringdown_Meter_v1.md`
   *T2 (Instrument) — VDM Ringdown Meter: Damped Normal Modes on a Metriplectic Scalar Field (First‑Principles, No‑GR)*
   - **Tier**: T2
-  - **Experimental Setup**: **Governing equations (canon, linearized):**
-J‑limb: $ \partial_{tt}\phi - c^2 \nabla^2 \phi + m_{\rm eff}^2 \phi = 0 $.
-M‑limb (DG update): decreases $ \mathcal{L}[\phi] $ monotonically; composition J–M–J (Strang) yields an effective damping of modal amplitudes (small‑dissipation regime). Metrics and flux are computed via $ \mathcal{H}, \mathbf{S} $.
-
-**Geometry & BCs:** 2‑D disk or 3‑D ball of radius $R$ with **absorbing outer shell** (numerical sponge or one‑way DG sink) to emulate radiation loss; optional inner exclusion to test interior flux accounting. (BCs pinned in run specs.)
-
-**Diagnostics (one per run):**
-
-1. **Mode fit** at fixed probe(s): $ y(t)=A e^{-\alpha t}\sin(\omega t+\varphi) $.
-2. **Energy decay** inside region vs **boundary flux** $ \int_{\partial\Omega}\mathbf{S}\cdot n\, dA $ (J‑limb) and DG decrement (M‑limb).
-3. **Locality check:** front arrival times vs $c$ (cone slope).
-4. **Dimensionless scalings:** $ \hat{\omega}=\omega R/c$, $ \hat{\alpha}=\alpha R/c$, $ Q=\omega/(2\alpha) $.
-
-**Required parameters (defaults registered):** $c, m_{\rm eff}, R, \Delta t, N$, sponge strength $ \eta $, DG step size $ \varepsilon_M $, seeds. Canon symbol meanings per registry.
-
----
-
-### 5.1.1 Pre‑Run Config Requirements
-
-**Repository discipline** mirrors the canonical template (approvals, prereg, schemas/specs).
-
-**APPROVALS.json (minimal skeleton)**
-
-```json
-{
-  "preflight_name": "vdm_ringdown_meter_preflight",
-  "description": "Approval manifest: preflight must pass before artifact-writing runs.",
-  "author": "Justin K. Lietz",
-  "requires_approval": true,
-  "pre_commit_hook": true,
-  "pre_registered": true,
-  "proposal": "Derivation/Cosmology/Ringdown_Meter/T2_PROPOSAL_Ringdown_Meter_v1.md",
-  "allowed_tags": ["ringdown-meter-v1"],
-  "schema_dir": "Derivation/code/physics/ringdown_meter/schemas",
-  "approvals": {
-    "ringdown-meter-v1": {
-      "schema": "Derivation/code/physics/ringdown_meter/schemas/ringdown.schema.json",
-      "approved_by": "Justin K. Lietz",
-      "approved_at": "<auto>",
-      "approval_key": "<auto>"
-    }
-  }
-}
-```
-
-**PRE-REGISTRATION.json (minimal)**
-
-```json
-{
-  "proposal_title": "VDM Ringdown Meter (T2)",
-  "tier_grade": "T2",
-  "commit": "<git-sha>",
-  "salted_provenance": "<hash>",
-  "contact": ["Justin K. Lietz <justin@neuroca.ai>"],
-  "hypotheses": [
-    {"id":"H1","statement":"Mode frequency scales ~1/R at fixed c,m_eff (dimensionless collapse of \\hat\\omega).","direction":"decrease"},
-    {"id":"H2","statement":"Decay rate \\alpha scales linearly with DG/sponge strength; Q ~ 1/(2\\zeta).","direction":"increase"},
-    {"id":"H3","statement":"Interior energy loss equals boundary flux + DG decrement (continuity).","direction":"no-change"}
-  ],
-  "variables": {
-    "independent": ["R","c","m_eff","epsilon_M","eta","seed"],
-    "dependent": ["omega","alpha","Q","flux_balance_error"],
-    "controls": ["dt","N","BC_tag"]
-  },
-  "pass_fail": [
-    {"metric":"locality_cone_slope","operator":"<=","threshold":1.02,"unit":"(v/c)"},
-    {"metric":"Lyapunov_step","operator":"<=","threshold":0.0,"unit":"dL"},
-    {"metric":"fit_R2","operator":">=","threshold":0.995,"unit":""},
-    {"metric":"rel_err_omega","operator":"<=","threshold":0.02,"unit":""},
-    {"metric":"rel_err_alpha","operator":"<=","threshold":0.05,"unit":""},
-    {"metric":"flux_balance_rel","operator":"<=","threshold":0.03,"unit":""}
-  ],
-  "spec_refs": ["Derivation/code/physics/ringdown_meter/ringdown.v1.json"],
-  "registration_timestamp": "<ISO-8601>"
-}
-```
-
-**Specs (example)**
-
-```json
-{
-  "run_name": "ringdown_R_sweep",
-  "version": "1.0.0",
-  "tag": "ringdown-meter-v1",
-  "schema_ref": "Derivation/code/physics/ringdown_meter/schemas/ringdown.schema.json",
-  "parameters": {
-    "c": 1.0, "m_eff": 0.5,
-    "R_list": [8, 12, 16, 24],
-    "epsilon_M": 0.01, "eta": 0.02,
-    "dt": 0.01, "steps": 40000, "N": 256,
-    "BC_tag": "absorbing-shell"
-  },
-  "seeds": [1,2,3,4,5]
-}
-```
-
-**Schemas** use standard JSON‑Schema (draft 2020‑12) and enforce positive ranges, CFL guards, and artifact routing.
-
----
-
-### 5.1.2 Operational acceptance gates (baseline)
-
-- G1 — Residual whiteness: post‑fit residuals pass standard whiteness tests; no narrowband lines above FDR‑controlled threshold. Artifacts: residual PSD and whiteness‑test JSON.
-- G2 — Fit stability: fundamental $(f_0, \tau_0)$ vary by $ \le 5\% $ under $ \pm 10\% $ window shifts and detrending choices; overtones are either stable or correctly rejected. Artifacts: per‑window fit table CSV.
-- G3 — Meter reproducibility: identical config reproduces to machine precision (commit + seeds logged). Artifacts: run‑metadata JSON with commit and seeds.
-
----
-  - **Diagnostics**: **Governing equations (canon, linearized):**
-J‑limb: $ \partial_{tt}\phi - c^2 \nabla^2 \phi + m_{\rm eff}^2 \phi = 0 $.
-M‑limb (DG update): decreases $ \mathcal{L}[\phi] $ monotonically; composition J–M–J (Strang) yields an effective damping of modal amplitudes (small‑dissipation regime). Metrics and flux are computed via $ \mathcal{H}, \mathbf{S} $.
-
-**Geometry & BCs:** 2‑D disk or 3‑D ball of radius $R$ with **absorbing outer shell** (numerical sponge or one‑way DG sink) to emulate radiation loss; optional inner exclusion to test interior flux accounting. (BCs pinned in run specs.)
-
-**Diagnostics (one per run):**
-
-1. **Mode fit** at fixed probe(s): $ y(t)=A e^{-\alpha t}\sin(\omega t+\varphi) $.
-2. **Energy decay** inside region vs **boundary flux** $ \int_{\partial\Omega}\mathbf{S}\cdot n\, dA $ (J‑limb) and DG decrement (M‑limb).
-3. **Locality check:** front arrival times vs $c$ (cone slope).
-4. **Dimensionless scalings:** $ \hat{\omega}=\omega R/c$, $ \hat{\alpha}=\alpha R/c$, $ Q=\omega/(2\alpha) $.
-
-**Required parameters (defaults registered):** $c, m_{\rm eff}, R, \Delta t, N$, sponge strength $ \eta $, DG step size $ \varepsilon_M $, seeds. Canon symbol meanings per registry.
-
----
-
-### 5.1.1 Pre‑Run Config Requirements
-
-**Repository discipline** mirrors the canonical template (approvals, prereg, schemas/specs).
-
-**APPROVALS.json (minimal skeleton)**
-
-```json
-{
-  "preflight_name": "vdm_ringdown_meter_preflight",
-  "description": "Approval manifest: preflight must pass before artifact-writing runs.",
-  "author": "Justin K. Lietz",
-  "requires_approval": true,
-  "pre_commit_hook": true,
-  "pre_registered": true,
-  "proposal": "Derivation/Cosmology/Ringdown_Meter/T2_PROPOSAL_Ringdown_Meter_v1.md",
-  "allowed_tags": ["ringdown-meter-v1"],
-  "schema_dir": "Derivation/code/physics/ringdown_meter/schemas",
-  "approvals": {
-    "ringdown-meter-v1": {
-      "schema": "Derivation/code/physics/ringdown_meter/schemas/ringdown.schema.json",
-      "approved_by": "Justin K. Lietz",
-      "approved_at": "<auto>",
-      "approval_key": "<auto>"
-    }
-  }
-}
-```
-
-**PRE-REGISTRATION.json (minimal)**
-
-```json
-{
-  "proposal_title": "VDM Ringdown Meter (T2)",
-  "tier_grade": "T2",
-  "commit": "<git-sha>",
-  "salted_provenance": "<hash>",
-  "contact": ["Justin K. Lietz <justin@neuroca.ai>"],
-  "hypotheses": [
-    {"id":"H1","statement":"Mode frequency scales ~1/R at fixed c,m_eff (dimensionless collapse of \\hat\\omega).","direction":"decrease"},
-    {"id":"H2","statement":"Decay rate \\alpha scales linearly with DG/sponge strength; Q ~ 1/(2\\zeta).","direction":"increase"},
-    {"id":"H3","statement":"Interior energy loss equals boundary flux + DG decrement (continuity).","direction":"no-change"}
-  ],
-  "variables": {
-    "independent": ["R","c","m_eff","epsilon_M","eta","seed"],
-    "dependent": ["omega","alpha","Q","flux_balance_error"],
-    "controls": ["dt","N","BC_tag"]
-  },
-  "pass_fail": [
-    {"metric":"locality_cone_slope","operator":"<=","threshold":1.02,"unit":"(v/c)"},
-    {"metric":"Lyapunov_step","operator":"<=","threshold":0.0,"unit":"dL"},
-    {"metric":"fit_R2","operator":">=","threshold":0.995,"unit":""},
-    {"metric":"rel_err_omega","operator":"<=","threshold":0.02,"unit":""},
-    {"metric":"rel_err_alpha","operator":"<=","threshold":0.05,"unit":""},
-    {"metric":"flux_balance_rel","operator":"<=","threshold":0.03,"unit":""}
-  ],
-  "spec_refs": ["Derivation/code/physics/ringdown_meter/ringdown.v1.json"],
-  "registration_timestamp": "<ISO-8601>"
-}
-```
-
-**Specs (example)**
-
-```json
-{
-  "run_name": "ringdown_R_sweep",
-  "version": "1.0.0",
-  "tag": "ringdown-meter-v1",
-  "schema_ref": "Derivation/code/physics/ringdown_meter/schemas/ringdown.schema.json",
-  "parameters": {
-    "c": 1.0, "m_eff": 0.5,
-    "R_list": [8, 12, 16, 24],
-    "epsilon_M": 0.01, "eta": 0.02,
-    "dt": 0.01, "steps": 40000, "N": 256,
-    "BC_tag": "absorbing-shell"
-  },
-  "seeds": [1,2,3,4,5]
-}
-```
-
-**Schemas** use standard JSON‑Schema (draft 2020‑12) and enforce positive ranges, CFL guards, and artifact routing.
-
----
-
-### 5.1.2 Operational acceptance gates (baseline)
-
-- G1 — Residual whiteness: post‑fit residuals pass standard whiteness tests; no narrowband lines above FDR‑controlled threshold. Artifacts: residual PSD and whiteness‑test JSON.
-- G2 — Fit stability: fundamental $(f_0, \tau_0)$ vary by $ \le 5\% $ under $ \pm 10\% $ window shifts and detrending choices; overtones are either stable or correctly rejected. Artifacts: per‑window fit table CSV.
-- G3 — Meter reproducibility: identical config reproduces to machine precision (commit + seeds logged). Artifacts: run‑metadata JSON with commit and seeds.
-
----
-  - **Methods/Protocol**: - Equations and discretizations: Störmer–Verlet (J), discrete‑gradient (M), Strang J–M–J composition (validated structure checks).
-- ICs: compact Gaussian packet or lowest cavity mode; BCs: absorbing shell.
-- Post‑processing: probe fits, flux integrals, bootstrap error bars; CSV and JSON sidecars emitted per run.
-
-**Risk/Ethics:** No external data; compute‑only. Integrity via seeds/commit logging.
-
----
 
 
 - **T3_PROPOSAL_Topological_Ringdown_Attempt_v1.md**  
@@ -1180,66 +274,7 @@ M‑limb (DG update): decreases $ \mathcal{L}[\phi] $ monotonically; composition
   Path: `Gravity/Gravity_Regression/T5_PROPOSAL_Gravity_Regression_v1.md`
   *T5 (Pilot) - Gravity Regression — Weak‑Field VDM vs SPARC/Lensing Suites*
   - **Tier**: T5
-  - **Experimental Setup**: - **Inputs:** curated SPARC subset; preregistered lensing targets; priors on nuisance parameters.  
-- **Diagnostics:** hold‑out predictive performance; residual structure; ΔAIC/ΔBIC; ΔlnZ; null predictions respected.  
-- **Acceptance (gates):** (G1) ΔAIC ≤ 0 vs ΛCDM on prereg sets (tie/beat); (G2) decisive evidence on at least one lensing case (ΔlnZ ≥ +5); (G3) no locality/LIV gate violations from core meters.
-
-### PRE-REGISTRATION.json
-
-```json
-{
-  "proposal_title": "Gravity Regression — Weak-Field VDM vs Baselines",
-  "tier_grade": "T5",
-  "commit": "<git-sha>",
-  "salted_provenance": "<hash>",
-  "contact": ["Justin K. Lietz <justin@neuroca.ai>"],
-  "hypotheses": [
-    { "id": "H_RC", "statement": "VDM rotation-curve fits meet or beat ΛCDM (ΔAIC ≤ 0).", "direction": "decrease" },
-    { "id": "H_LENS", "statement": "At least one lensing case shows ΔlnZ ≥ +5 for VDM.", "direction": "increase" }
-  ],
-  "variables": {
-    "independent": ["galaxy id", "lensing system id", "fit hyperparameters", "priors"],
-    "dependent": ["ΔAIC", "ΔBIC", "ΔlnZ", "oos_RMSE"],
-    "controls": ["masking", "PSF/beam", "distance priors"]
-  },
-  "pass_fail": [
-    { "metric": "ΔAIC", "operator": "<=", "threshold": 0.0, "unit": "" },
-    { "metric": "ΔlnZ", "operator": ">=", "threshold": 5.0, "unit": "" }
-  ],
-  "spec_refs": ["Derivation/code/gravity/specs/gravity-regression.v1.json"],
-  "registration_timestamp": "<ISO-8601>"
-}
-```
-  - **Diagnostics**: - **Inputs:** curated SPARC subset; preregistered lensing targets; priors on nuisance parameters.  
-- **Diagnostics:** hold‑out predictive performance; residual structure; ΔAIC/ΔBIC; ΔlnZ; null predictions respected.  
-- **Acceptance (gates):** (G1) ΔAIC ≤ 0 vs ΛCDM on prereg sets (tie/beat); (G2) decisive evidence on at least one lensing case (ΔlnZ ≥ +5); (G3) no locality/LIV gate violations from core meters.
-
-### PRE-REGISTRATION.json
-
-```json
-{
-  "proposal_title": "Gravity Regression — Weak-Field VDM vs Baselines",
-  "tier_grade": "T5",
-  "commit": "<git-sha>",
-  "salted_provenance": "<hash>",
-  "contact": ["Justin K. Lietz <justin@neuroca.ai>"],
-  "hypotheses": [
-    { "id": "H_RC", "statement": "VDM rotation-curve fits meet or beat ΛCDM (ΔAIC ≤ 0).", "direction": "decrease" },
-    { "id": "H_LENS", "statement": "At least one lensing case shows ΔlnZ ≥ +5 for VDM.", "direction": "increase" }
-  ],
-  "variables": {
-    "independent": ["galaxy id", "lensing system id", "fit hyperparameters", "priors"],
-    "dependent": ["ΔAIC", "ΔBIC", "ΔlnZ", "oos_RMSE"],
-    "controls": ["masking", "PSF/beam", "distance priors"]
-  },
-  "pass_fail": [
-    { "metric": "ΔAIC", "operator": "<=", "threshold": 0.0, "unit": "" },
-    { "metric": "ΔlnZ", "operator": ">=", "threshold": 5.0, "unit": "" }
-  ],
-  "spec_refs": ["Derivation/code/gravity/specs/gravity-regression.v1.json"],
-  "registration_timestamp": "<ISO-8601>"
-}
-```
+  - **Diagnostics**: curated SPARC subset; preregistered lensing targets; priors on nuisance parameters.
 
 
 ## Hierarchy (2 proposals)
@@ -1385,68 +420,7 @@ M‑limb (DG update): decreases $ \mathcal{L}[\phi] $ monotonically; composition
   Path: `Metriplectic/Analog_Horizon/T5_PROPOSAL_Analog_Horizon_v1.md`
   *T5 (Pilot) - Analog Horizon — Telegraph‑Fisher Causality & Causal Dominance Meter*
   - **Tier**: T5
-  - **Experimental Setup**: - **Platform:** any medium realizing TF dynamics (electrical/acoustic meta‑lattice, BEC phononics).  
-- **Knobs:** D via coupling; τ via relaxation network; J‑limb c from wave branch.  
-- **Diagnostics:** cone slope (front arrival) and slack; TF dispersion; reproducibility across pulses.  
-- **Acceptance (gates):** (G1) |c_TF/c_J − 1| ≤ 0.02; (G2) cone‑slack ≤ 2%; (G3) reproducibility across runs (Jaccard ≥ 0.7 of detected fronts).
-
-### PRE-REGISTRATION.json
-
-```json
-{
-  "proposal_title": "Analog Horizon — Telegraph-Fisher Causality",
-  "tier_grade": "T5",
-  "commit": "<git-sha>",
-  "salted_provenance": "<hash>",
-  "contact": ["Justin K. Lietz <justin@neuroca.ai>"],
-  "hypotheses": [
-    { "id": "H_TF", "statement": "c_TF matches c_J within 2% across calibrated settings.", "direction": "no-change" },
-    { "id": "H_CONE", "statement": "Operational cone slack ≤ 2% under J⊕M coupling.", "direction": "decrease" }
-  ],
-  "variables": {
-    "independent": ["D", "τ", "pulse width", "pulse energy", "lattice size"],
-    "dependent": ["c_TF/c_J", "cone_slack", "arrival_speed"],
-    "controls": ["temperature", "boundary conditions", "sampling rate"]
-  },
-  "pass_fail": [
-    { "metric": "c_TF/c_J", "operator": "between", "threshold": [0.98, 1.02], "unit": "" },
-    { "metric": "cone_slack", "operator": "<=", "threshold": 0.02, "unit": "" }
-  ],
-  "spec_refs": ["Derivation/code/causality/specs/analog-horizon.v1.json"],
-  "registration_timestamp": "<ISO-8601>"
-}
-```
-  - **Diagnostics**: - **Platform:** any medium realizing TF dynamics (electrical/acoustic meta‑lattice, BEC phononics).  
-- **Knobs:** D via coupling; τ via relaxation network; J‑limb c from wave branch.  
-- **Diagnostics:** cone slope (front arrival) and slack; TF dispersion; reproducibility across pulses.  
-- **Acceptance (gates):** (G1) |c_TF/c_J − 1| ≤ 0.02; (G2) cone‑slack ≤ 2%; (G3) reproducibility across runs (Jaccard ≥ 0.7 of detected fronts).
-
-### PRE-REGISTRATION.json
-
-```json
-{
-  "proposal_title": "Analog Horizon — Telegraph-Fisher Causality",
-  "tier_grade": "T5",
-  "commit": "<git-sha>",
-  "salted_provenance": "<hash>",
-  "contact": ["Justin K. Lietz <justin@neuroca.ai>"],
-  "hypotheses": [
-    { "id": "H_TF", "statement": "c_TF matches c_J within 2% across calibrated settings.", "direction": "no-change" },
-    { "id": "H_CONE", "statement": "Operational cone slack ≤ 2% under J⊕M coupling.", "direction": "decrease" }
-  ],
-  "variables": {
-    "independent": ["D", "τ", "pulse width", "pulse energy", "lattice size"],
-    "dependent": ["c_TF/c_J", "cone_slack", "arrival_speed"],
-    "controls": ["temperature", "boundary conditions", "sampling rate"]
-  },
-  "pass_fail": [
-    { "metric": "c_TF/c_J", "operator": "between", "threshold": [0.98, 1.02], "unit": "" },
-    { "metric": "cone_slack", "operator": "<=", "threshold": 0.02, "unit": "" }
-  ],
-  "spec_refs": ["Derivation/code/causality/specs/analog-horizon.v1.json"],
-  "registration_timestamp": "<ISO-8601>"
-}
-```
+  - **Diagnostics**: any medium realizing TF dynamics (electrical/acoustic meta‑lattice, BEC phononics).
 
 
 ### Metriplectic Instruments/
@@ -1455,86 +429,6 @@ M‑limb (DG update): decreases $ \mathcal{L}[\phi] $ monotonically; composition
   Path: `Metriplectic/Metriplectic_Instruments/T2_PROPOSAL_Metriplectic_Instruments_v1.md`
   *T2 (Instrument) - Metriplectic Instruments: Identity, KG, RD, and FRW Meters (EBN series)*
   - **Tier**: T2
-  - **Experimental Setup**: **KG J‑only meter.** Inputs: grid N, Δt, c, m, seeds. Diagnostics: dispersion fit (ω² vs k²), cone slope v. **Gates:** v ≤ c·(1+0.02); dispersion fit R² ≥ 0.999; Noether drifts ≤ 1e−12.  
-**RD meter.** Inputs: D, r, λ (optional); measure c_front and σ(k). **Gates:** |c_obs/(2√(Dr))−1| ≤ 0.05 with R² ≥ 0.98; dispersion median rel‑err ≤ 1e−2.  
-**Identity (metriplectic) meter.** Diagnostics: ΔL_h ≤ 0 per step; identity residuals ≤ 1e−12; two‑grid slope ≥ 2.90.  
-**FRW meter.** Diagnostics: RMS continuity residual ≤ 1e−6 (dust).
-
-### 5.1.1 Pre-Run Config Requirements
-
-- Approvals manifest per domain; schemas & specs per meter tag.
-
-### PRE-REGISTRATION.json
-
-```json
-{
-  "proposal_title": "Metriplectic Instruments: KG, RD, Identity, FRW",
-  "tier_grade": "T2",
-  "commit": "<git-sha>",
-  "salted_provenance": "<hash>",
-  "contact": ["Justin K. Lietz <justin@neuroca.ai>"],
-  "hypotheses": [
-    { "id": "H_KG", "statement": "Light-cone speed v is bounded by c within 2% under J-only dynamics.", "direction": "no-change" },
-    { "id": "H_RD", "statement": "Front speed equals 2*sqrt(D*r) within 5%.", "direction": "no-change" },
-    { "id": "H_ID", "statement": "Discrete Lyapunov decreases monotonically for M-step; degeneracy identities hold to 1e-12.", "direction": "no-change" },
-    { "id": "H_FRW", "statement": "FRW continuity residual RMS ≤ 1e-6.", "direction": "no-change" }
-  ],
-  "variables": {
-    "independent": ["N", "Δt", "c", "m", "D", "r", "λ", "seeds"],
-    "dependent": ["v/c", "R2_disp", "rel_err_front", "ΔL_h", "RMS_FRW"],
-    "controls": ["CFL", "BCs", "precision"]
-  },
-  "pass_fail": [
-    { "metric": "v/c", "operator": "<=", "threshold": 1.02, "unit": "" },
-    { "metric": "R2_disp", "operator": ">=", "threshold": 0.999, "unit": "" },
-    { "metric": "rel_err_front", "operator": "<=", "threshold": 0.05, "unit": "" },
-    { "metric": "ΔL_h", "operator": "<=", "threshold": 0.0, "unit": "" },
-    { "metric": "RMS_FRW", "operator": "<=", "threshold": 1e-6, "unit": "" }
-  ],
-  "spec_refs": ["Derivation/code/physics/meters/specs/meters-ebn.v1.json"],
-  "registration_timestamp": "<ISO-8601>"
-}
-```
-  - **Diagnostics**: **KG J‑only meter.** Inputs: grid N, Δt, c, m, seeds. Diagnostics: dispersion fit (ω² vs k²), cone slope v. **Gates:** v ≤ c·(1+0.02); dispersion fit R² ≥ 0.999; Noether drifts ≤ 1e−12.  
-**RD meter.** Inputs: D, r, λ (optional); measure c_front and σ(k). **Gates:** |c_obs/(2√(Dr))−1| ≤ 0.05 with R² ≥ 0.98; dispersion median rel‑err ≤ 1e−2.  
-**Identity (metriplectic) meter.** Diagnostics: ΔL_h ≤ 0 per step; identity residuals ≤ 1e−12; two‑grid slope ≥ 2.90.  
-**FRW meter.** Diagnostics: RMS continuity residual ≤ 1e−6 (dust).
-
-### 5.1.1 Pre-Run Config Requirements
-
-- Approvals manifest per domain; schemas & specs per meter tag.
-
-### PRE-REGISTRATION.json
-
-```json
-{
-  "proposal_title": "Metriplectic Instruments: KG, RD, Identity, FRW",
-  "tier_grade": "T2",
-  "commit": "<git-sha>",
-  "salted_provenance": "<hash>",
-  "contact": ["Justin K. Lietz <justin@neuroca.ai>"],
-  "hypotheses": [
-    { "id": "H_KG", "statement": "Light-cone speed v is bounded by c within 2% under J-only dynamics.", "direction": "no-change" },
-    { "id": "H_RD", "statement": "Front speed equals 2*sqrt(D*r) within 5%.", "direction": "no-change" },
-    { "id": "H_ID", "statement": "Discrete Lyapunov decreases monotonically for M-step; degeneracy identities hold to 1e-12.", "direction": "no-change" },
-    { "id": "H_FRW", "statement": "FRW continuity residual RMS ≤ 1e-6.", "direction": "no-change" }
-  ],
-  "variables": {
-    "independent": ["N", "Δt", "c", "m", "D", "r", "λ", "seeds"],
-    "dependent": ["v/c", "R2_disp", "rel_err_front", "ΔL_h", "RMS_FRW"],
-    "controls": ["CFL", "BCs", "precision"]
-  },
-  "pass_fail": [
-    { "metric": "v/c", "operator": "<=", "threshold": 1.02, "unit": "" },
-    { "metric": "R2_disp", "operator": ">=", "threshold": 0.999, "unit": "" },
-    { "metric": "rel_err_front", "operator": "<=", "threshold": 0.05, "unit": "" },
-    { "metric": "ΔL_h", "operator": "<=", "threshold": 0.0, "unit": "" },
-    { "metric": "RMS_FRW", "operator": "<=", "threshold": 1e-6, "unit": "" }
-  ],
-  "spec_refs": ["Derivation/code/physics/meters/specs/meters-ebn.v1.json"],
-  "registration_timestamp": "<ISO-8601>"
-}
-```
 
 
 ## Qualia (2 proposals)
@@ -1753,3 +647,60 @@ M‑limb (DG update): decreases $ \mathcal{L}[\phi] $ monotonically; composition
 <!-- BEGIN AUTOSECTION: PROPOSALS-INDEX -->
 <!-- Tool-maintained list of proposals by domain -->
 <!-- END AUTOSECTION: PROPOSALS-INDEX -->
+## Fluid Dynamics (1 proposal)
+
+### Fluids Corner Regularization/
+
+- **T2_PROPOSAL_OQ-021_VDM-Fluids_Corner_Regularization_v1.md**  
+  Path: `Fluid_Dynamics/Fluids_Corner_Regularization/T2_PROPOSAL_OQ-021_VDM-Fluids_Corner_Regularization_v1.md`
+  *T2 — PROPOSAL_OQ‑021_VDM‑Fluids_Corner_Regularization_v1*
+  - **Tier**: T2
+  - **Gate(s)**: ; step counts and sampling; plus the **VDM fluids knob** `void_gain` to activate void‑debt regularization.
+
+---
+
+## Nonequilibrium (2 proposals)
+
+### GB Oscillating Load/
+
+- **T2_PROPOSAL_GB_Oscillating_Load_v1.md**  
+  Path: `Nonequilibrium/GB_Oscillating_Load/T2_PROPOSAL_GB_Oscillating_Load_v1.md`
+  *1. T2 — GB Relaxation Meter under Oscillating Load (v1)*
+  - **Tier**: T2
+  - **Diagnostics**: into anchor‑referenced, gate‑enforced, and artifact‑audited routines.
+  - **Gate(s)**: defined in VALIDATION_METRICS.
+
+### Self Organization/
+
+- **T2_PROPOSAL_Self_Organization_Meters_v1.md**  
+  Path: `Nonequilibrium/Self_Organization/T2_PROPOSAL_Self_Organization_Meters_v1.md`
+  *T2 (Instrument) — Self-Organization Onset Meters (Nicolis–Prigogine)*
+  - **Tier**: T2
+  - **Diagnostics**: , localized structure detection, and branch-stability overlays.
+  - **Gate(s)**: diagnostics, and statistically sound error bars with autocorrelation awareness.
+
+---
+
+## Spinor (1 proposal)
+
+- **T1_PROPOSAL_Spinor_Emergence_v1.md**  
+  Path: `Spinor/T1_PROPOSAL_Spinor_Emergence_v1.md`
+  *T1 (Proto-model) - Spinor Emergence from the VDM J‑Limb (Dirac Sector from a Scalar Void Lattice)*
+  - **Tier**: T1
+  - **Gate(s)**: (below) pass with rigorous proofs and audit logs.
+
+---
+
+## Thermodynamics (1 proposal)
+
+### Convection/
+
+- **T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md**  
+  Path: `Thermodynamics/Convection/T2_PROPOSAL_Rayleigh-Benard_Onset_Gate_for_Deep-M_v1.md`
+  *T2 — A Rayleigh–Bénard Onset Gate (“RB‑Gate”) for Deep‑M Limb Convection Solvers*
+  - **Tier**: T2
+  - **Diagnostics**: ** cross‑check: wavenumber spectrum, Nusselt number, and velocity RMS.
+  - **Gate(s)**: is **Prandtl‑robust near onset** and detects **boundary‑condition mismatches** (rigid vs stress‑free) via $\mathrm{Ra}_c$ and $k_c$.
+
+---
+
