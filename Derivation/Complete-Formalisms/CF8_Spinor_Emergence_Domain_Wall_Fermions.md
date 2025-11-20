@@ -1,4 +1,4 @@
-# CF001: Complete Formalism — Spinor Emergence via Domain-Wall Fermions in VDM
+# CF8: Complete Formalism — Spinor Emergence via Domain-Wall Fermions in VDM
 
 Date: 2025-11-20  
 Status: ACTIVE — Nielsen-Ninomiya Red Team Defense  
@@ -22,7 +22,7 @@ License: See LICENSE
 - **Lorentz invariance at low energy:** Metriplectic M-limb RG flow smooths lattice anisotropies (Theorem 6.1).
 - **Validation gates:** Five decisive metrics P1-P5 mapped to [00_VALIDATION_METRICS.md](../z.CANONICAL_Validation_Metrics/00_VALIDATION_METRICS.md) anchors.
 
-**Scope:** This formalism owns the derivation. The companion notebook `CF001_Spinor_Emergence_Domain_Wall_Fermions.ipynb` provides executable code recreation with 1:1 mapping to sections.
+**Scope:** This formalism owns the derivation. The companion notebook `CF8_Spinor_Emergence_Domain_Wall_Fermions.ipynb` provides executable code recreation with 1:1 mapping to sections.
 
 ---
 
@@ -34,7 +34,7 @@ License: See LICENSE
 - Symbols and units: [00_SYMBOLS.md](../z.CANONICAL_Symbols/00_SYMBOLS.md), [00_UNITS_NORMALIZATION.md](../z.CANONICAL_Units_Normalization/00_UNITS_NORMALIZATION.md)
 - Axioms: [AXIOMS.md](../AXIOMS.md) (VDM-AX-004, A2, A3, A4)
 - I/O helper: [io_paths.py](../code/common/io_paths.py)
-- Hypothesis: [H001_HYPOTHESIS_Spinor_Emergence_Nielsen_Ninomiya_Defense.md](H001_HYPOTHESIS_Spinor_Emergence_Nielsen_Ninomiya_Defense.md)
+- Hypothesis: [H005_HYPOTHESIS_Spinor_Emergence_Nielsen_Ninomiya_Defense.md](H005_HYPOTHESIS_Spinor_Emergence_Nielsen_Ninomiya_Defense.md)
 
 **Policy:**
 
@@ -47,7 +47,7 @@ License: See LICENSE
 
 ## Read Me First (Formalism Rules)
 
-- **1:1 mapping:** Companion notebook `CF001_Spinor_Emergence_Domain_Wall_Fermions.ipynb` mirrors this document section-by-section.
+- **1:1 mapping:** Companion notebook `CF8_Spinor_Emergence_Domain_Wall_Fermions.ipynb` mirrors this document section-by-section.
 - **Nielsen-Ninomiya context:** This derivation addresses the Red Team Assessment's three attack vectors:
   1. Non-locality of Jordan-Wigner string (§5)
   2. Chiral symmetry leak via residual mass (§4.2)
@@ -123,7 +123,7 @@ $$|\phi_{\text{bg}}(z) - \phi_+| \sim 2 \phi_+ e^{-|z|/\xi} \quad \text{for } |z
 **Decay rate:**
 $$\lambda_{\text{decay}} = \frac{1}{\xi} = \frac{\mu}{c}$$
 
-**Validation gate:** [P1 from H001](H001_HYPOTHESIS_Spinor_Emergence_Nielsen_Ninomiya_Defense.md#predictions-decisive-metrics--passfail) requires $\lambda_{\text{decay}} \geq 0.1/a$ for sufficient localization.
+**Validation gate:** [P1 from H005](H005_HYPOTHESIS_Spinor_Emergence_Nielsen_Ninomiya_Defense.md#predictions-decisive-metrics--passfail) requires $\lambda_{\text{decay}} \geq 0.1/a$ for sufficient localization.
 
 ### 2.2 Discrete Kink on Bulk Lattice
 
@@ -181,7 +181,7 @@ $$v_F = c$$
 **Theorem 3.1 (Linear Dispersion):**  
 The domain-wall zero mode exhibits linear dispersion $E(\vec{p}) = v_F |\vec{p}|$ for $|\vec{p}| \ll \pi/a$, with $v_F = c + O(a^2)$.
 
-**Validation gate:** [P3 from H001](H001_HYPOTHESIS_Spinor_Emergence_Nielsen_Ninomiya_Defense.md#predictions-decisive-metrics--passfail) requires $R^2 \geq 0.9999$ for linear fit in the range $|\vec{p}| < 0.1\pi/a$.
+**Validation gate:** [P3 from H005](H005_HYPOTHESIS_Spinor_Emergence_Nielsen_Ninomiya_Defense.md#predictions-decisive-metrics--passfail) requires $R^2 \geq 0.9999$ for linear fit in the range $|\vec{p}| < 0.1\pi/a$.
 
 **Artifact:** `dispersion_linear.png`, `dispersion_linear.csv`.
 
@@ -221,7 +221,7 @@ for some constant $C$ determined by the coarse-graining scale $\ell$.
 4. The overlap construction projects onto the zero-mode subspace, yielding the Ginsparg-Wilson form.
 5. Corrections are suppressed by $e^{-\lambda L_5}$ (tunneling) and $a^2$ (lattice discretization).
 
-**Validation gate:** [P1 from H001](H001_HYPOTHESIS_Spinor_Emergence_Nielsen_Ninomiya_Defense.md#predictions-decisive-metrics--passfail) requires $\| \{D, \gamma_5\} - a D \gamma_5 D \|_{\infty} \leq 10^{-12}$ on coarse cells $\ell = 4a$.
+**Validation gate:** [P1 from H005](H005_HYPOTHESIS_Spinor_Emergence_Nielsen_Ninomiya_Defense.md#predictions-decisive-metrics--passfail) requires $\| \{D, \gamma_5\} - a D \gamma_5 D \|_{\infty} \leq 10^{-12}$ on coarse cells $\ell = 4a$.
 
 **Artifact:** `ginsparg_wilson_check.png`, `ginsparg_wilson_check.json`.
 
@@ -240,7 +240,7 @@ where $\lambda = 1/\xi = \mu/c$ is the zero-mode decay rate and $A$ is a prefact
 2. This tunneling amplitude acts as an effective mass term in the 4D theory.
 3. For $L_5 \gg \xi$, $m_{\text{res}} \to 0$ exponentially.
 
-**Validation gate:** [P2 from H001](H001_HYPOTHESIS_Spinor_Emergence_Nielsen_Ninomiya_Defense.md#predictions-decisive-metrics--passfail) requires $m_{\text{res}}(L_5) / m_{\text{res}}(L_5/2) \leq e^{-\lambda L_5/2}$ with $\lambda \geq 0.1/a$.
+**Validation gate:** [P2 from H005](H005_HYPOTHESIS_Spinor_Emergence_Nielsen_Ninomiya_Defense.md#predictions-decisive-metrics--passfail) requires $m_{\text{res}}(L_5) / m_{\text{res}}(L_5/2) \leq e^{-\lambda L_5/2}$ with $\lambda \geq 0.1/a$.
 
 **Artifact:** `residual_mass_scaling.png`, `residual_mass_scaling.csv`.
 
@@ -271,7 +271,7 @@ This string operator $\prod \sigma^z$ is fine in 1D with natural ordering, but i
 **Theorem 5.1 (Locality of Bravyi-Kitaev):**  
 The fermion creation operator $c_i^\dagger$ has support on at most $O(\log^2 N)$ qubits (or scalar lattice sites) in 3D.
 
-**Validation gate:** [P5 from H001](H001_HYPOTHESIS_Spinor_Emergence_Nielsen_Ninomiya_Defense.md#predictions-decisive-metrics--passfail) requires operator support $\leq C \log^2 N$ with $C \sim 1$ for $N \in \{32^3, 64^3, 128^3\}$.
+**Validation gate:** [P5 from H005](H005_HYPOTHESIS_Spinor_Emergence_Nielsen_Ninomiya_Defense.md#predictions-decisive-metrics--passfail) requires operator support $\leq C \log^2 N$ with $C \sim 1$ for $N \in \{32^3, 64^3, 128^3\}$.
 
 **Artifact:** `bk_locality_scaling.png`, `bk_locality_scaling.csv`.
 
@@ -316,7 +316,7 @@ Under RG blocking with scale factor $s \in \{2, 4\}$, the dispersion relation $E
 $$\frac{\Delta E(\vec{p})}{\bar{E}(\vec{p})} \big|_{|\vec{p}|=\text{const}} \to 0 \quad \text{as } |\vec{p}| / (\pi/a) \to 0$$
 at a rate controlled by the M-limb dissipation coefficient.
 
-**Validation gate:** [P4 from H001](H001_HYPOTHESIS_Spinor_Emergence_Nielsen_Ninomiya_Defense.md#predictions-decisive-metrics--passfail) requires angular variation $\Delta E / \bar{E} \leq 10^{-3}$ at fixed $|\vec{p}| = 0.1\pi/a$.
+**Validation gate:** [P4 from H005](H005_HYPOTHESIS_Spinor_Emergence_Nielsen_Ninomiya_Defense.md#predictions-decisive-metrics--passfail) requires angular variation $\Delta E / \bar{E} \leq 10^{-3}$ at fixed $|\vec{p}| = 0.1\pi/a$.
 
 **Artifact:** `lorentz_isotropy_polar.png`, `lorentz_isotropy.json`.
 
@@ -371,11 +371,11 @@ The VDM J-limb derivation produces a **Ginsparg-Wilson operator** (§4.1), **not
 
 | Gate | Metric | Operator | Threshold | Unit | Canon Ref |
 |------|--------|----------|-----------|------|-----------|
-| P1 | $\|\| \{D, \gamma_5\} - a D \gamma_5 D \|\|_{\infty}$ | $\leq$ | $10^{-12}$ | dimensionless | [H001-P1](H001_HYPOTHESIS_Spinor_Emergence_Nielsen_Ninomiya_Defense.md#predictions-decisive-metrics--passfail) |
-| P2 | $m_{\text{res}}(L_5) / m_{\text{res}}(L_5/2)$ | $\leq$ | $e^{-\lambda L_5/2}$ | dimensionless | [H001-P2](H001_HYPOTHESIS_Spinor_Emergence_Nielsen_Ninomiya_Defense.md#predictions-decisive-metrics--passfail) |
-| P3 | $R^2$ (linear fit of $E(p)$) | $\geq$ | $0.9999$ | dimensionless | [H001-P3](H001_HYPOTHESIS_Spinor_Emergence_Nielsen_Ninomiya_Defense.md#predictions-decisive-metrics--passfail) |
-| P4 | $\Delta E / \bar{E}$ (angular variation) | $\leq$ | $10^{-3}$ | dimensionless | [H001-P4](H001_HYPOTHESIS_Spinor_Emergence_Nielsen_Ninomiya_Defense.md#predictions-decisive-metrics--passfail) |
-| P5 | BK operator support | $\leq$ | $C \log^2 N$ | number of sites | [H001-P5](H001_HYPOTHESIS_Spinor_Emergence_Nielsen_Ninomiya_Defense.md#predictions-decisive-metrics--passfail) |
+| P1 | $\|\| \{D, \gamma_5\} - a D \gamma_5 D \|\|_{\infty}$ | $\leq$ | $10^{-12}$ | dimensionless | [H005-P1](H005_HYPOTHESIS_Spinor_Emergence_Nielsen_Ninomiya_Defense.md#predictions-decisive-metrics--passfail) |
+| P2 | $m_{\text{res}}(L_5) / m_{\text{res}}(L_5/2)$ | $\leq$ | $e^{-\lambda L_5/2}$ | dimensionless | [H005-P2](H005_HYPOTHESIS_Spinor_Emergence_Nielsen_Ninomiya_Defense.md#predictions-decisive-metrics--passfail) |
+| P3 | $R^2$ (linear fit of $E(p)$) | $\geq$ | $0.9999$ | dimensionless | [H005-P3](H005_HYPOTHESIS_Spinor_Emergence_Nielsen_Ninomiya_Defense.md#predictions-decisive-metrics--passfail) |
+| P4 | $\Delta E / \bar{E}$ (angular variation) | $\leq$ | $10^{-3}$ | dimensionless | [H005-P4](H005_HYPOTHESIS_Spinor_Emergence_Nielsen_Ninomiya_Defense.md#predictions-decisive-metrics--passfail) |
+| P5 | BK operator support | $\leq$ | $C \log^2 N$ | number of sites | [H005-P5](H005_HYPOTHESIS_Spinor_Emergence_Nielsen_Ninomiya_Defense.md#predictions-decisive-metrics--passfail) |
 
 All gates must **PASS** for T1-tier certification.
 
@@ -383,7 +383,7 @@ All gates must **PASS** for T1-tier certification.
 
 ## 9. Next Steps and Experiment Plan
 
-1. **Implement E1-E6** from [H001 Experiment Plan](H001_HYPOTHESIS_Spinor_Emergence_Nielsen_Ninomiya_Defense.md#experiment-plan-e1-e2-):
+1. **Implement E1-E6** from [H005 Experiment Plan](H005_HYPOTHESIS_Spinor_Emergence_Nielsen_Ninomiya_Defense.md#experiment-plan-e1-e2-):
    - E1: Domain-wall profile
    - E2: Bound-state spectrum
    - E3: Ginsparg-Wilson verification
@@ -391,7 +391,7 @@ All gates must **PASS** for T1-tier certification.
    - E5: Lorentz invariance check
    - E6: BK locality scaling
 
-2. **Create companion notebook:** `CF001_Spinor_Emergence_Domain_Wall_Fermions.ipynb` with 1:1 section mapping.
+2. **Create companion notebook:** `CF8_Spinor_Emergence_Domain_Wall_Fermions.ipynb` with 1:1 section mapping.
 
 3. **Update T1_PROPOSAL:** Incorporate Nielsen-Ninomiya defenses into `T1_PROPOSAL_Spinor_Emergence_v2.md`.
 
@@ -427,4 +427,4 @@ All gates must **PASS** for T1-tier certification.
 
 ---
 
-**End of CF001: Spinor Emergence via Domain-Wall Fermions**
+**End of CF8: Spinor Emergence via Domain-Wall Fermions**

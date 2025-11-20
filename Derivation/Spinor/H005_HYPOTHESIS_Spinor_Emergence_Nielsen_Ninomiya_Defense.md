@@ -2,7 +2,7 @@
 
 ---
 
-## H001 — Spinor Emergence Nielsen-Ninomiya Defense
+## H005 — Spinor Emergence Nielsen-Ninomiya Defense
 
 **Classification:** Axiom-core  
 **Owner:** Justin K. Lietz  

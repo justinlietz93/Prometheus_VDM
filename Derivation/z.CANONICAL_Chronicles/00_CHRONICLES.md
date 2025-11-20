@@ -539,3 +539,43 @@ Approval/PR:
 
 - PR: (to be filled with GitHub URL or change request reference on publication)
 - Approval: (to be recorded via `code/common/authorization/approve_tag.py` when prereg tags are stamped and domain APPROVAL.json manifests are updated)
+
+---
+
+## 2025-11-20 - Nielsen-Ninomiya Defense for Spinor Emergence
+
+Dependency-Chain-Reviewed: true
+Change-Type: canon-impacting
+Summary: Added H005 hypothesis, CF8 complete formalism, and updated T1_PROPOSAL_Spinor_Emergence to defend against Nielsen-Ninomiya No-Go Theorem using domain-wall fermions, Ginsparg-Wilson operator, and Bravyi-Kitaev fermionization.
+
+Paths-Changed:
+
+- Derivation/Spinor/H005_HYPOTHESIS_Spinor_Emergence_Nielsen_Ninomiya_Defense.md (new)
+- Derivation/Complete-Formalisms/CF8_Spinor_Emergence_Domain_Wall_Fermions.md (new)
+- Derivation/Spinor/T1_PROPOSAL_Spinor_Emergence_v1.md (updated with Nielsen-Ninomiya defense section)
+- Derivation/z.CANONICAL_Hypotheses/00_HYPOTHESES.md (added H005 entry)
+- Derivation/z.CANONICAL_Complete_Formalisms/00_COMPLETE_FORMALISMS.md (added CF8 entry)
+
+Canon-Docs-Updated:
+
+- Derivation/z.CANONICAL_Hypotheses/00_HYPOTHESES.md#h005
+- Derivation/z.CANONICAL_Complete_Formalisms/00_COMPLETE_FORMALISMS.md (added CF8)
+
+Dependency-Notes:
+
+- Reviewed [AXIOMS.md](../AXIOMS.md) (VDM-AX-004, A2, A3, A4) for J-limb scalar lattice foundation
+- Reviewed [00_EQUATIONS.md](../z.CANONICAL_Equations/00_EQUATIONS.md) for metriplectic structure equations
+- Reviewed [00_VALIDATION_METRICS.md](../z.CANONICAL_Validation_Metrics/00_VALIDATION_METRICS.md) for gate definitions
+- CF8 provides full derivation from first principles: domain-wall kink profile, bound-state zero modes, Ginsparg-Wilson operator construction, Bravyi-Kitaev locality proof, and Lorentz invariance via RG flow
+- H005 defines 5 decisive predictions (P1-P5) with quantitative pass/fail gates addressing the three Red Team attack vectors:
+  1. P1: Ginsparg-Wilson relation verification (exact chiral symmetry)
+  2. P2: Residual mass exponential suppression (finite-size effects)
+  3. P3: Linear Dirac dispersion (emergent relativistic fermions)
+  4. P4: Lorentz isotropy at low energy (rotational symmetry restoration)
+  5. P5: Bravyi-Kitaev locality scaling (causality preservation in 3D)
+- T1_PROPOSAL updated to reference H005 and CF8, demonstrating that VDM produces **Ginsparg-Wilson operators** (not naive Wilson fermions), evading Nielsen-Ninomiya via topology
+
+Approval/PR:
+
+- PR: copilot/evaluate-ninomiya-theorem
+- Approval: (pending T1 experiment execution and gate validation)

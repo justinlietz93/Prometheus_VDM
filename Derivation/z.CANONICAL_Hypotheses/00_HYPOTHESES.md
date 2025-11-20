@@ -236,6 +236,69 @@ Metric estimation noise → block‑diagonal/diagonal approximations; report sen
 
 ---
 
+## H005 — Spinor Emergence Nielsen-Ninomiya Defense
+
+**Classification:** Axiom-core  
+**Owner:** Justin K. Lietz  
+**Status:** ACTIVE  
+**One-line objective:** The VDM J-limb scalar lattice produces emergent Dirac spinors via domain-wall fermions that satisfy the Ginsparg-Wilson relation, evading Nielsen-Ninomiya doubling through topological separation and preserving exact chiral symmetry at the lattice scale.
+
+### H005 — Formal statement
+
+On a cubic lattice with scalar field $W_i$ governed by [VDM-AX-004](../AXIOMS.md#vdm-ax-004), there exists a construction of effective fermion operators through:
+1. Domain-wall mechanism creating chiral bound states at topological defects.
+2. Ginsparg-Wilson operator satisfying $\{D, \gamma_5\} = a D \gamma_5 D + O(a^2)$.
+3. Bravyi-Kitaev transformation preserving locality with $O(\log^2 N)$ support.
+4. Residual mass suppression $m_{\text{res}} \sim e^{-\lambda L_5}$.
+5. Lorentz invariance at low energy via metriplectic M-limb RG smoothing.
+
+### H005 — Predictions (decisive metrics)
+
+- **P1:** Ginsparg-Wilson relation $\| \{D, \gamma_5\} - a D \gamma_5 D \|_{\infty} \leq 10^{-12}$ on coarse cells $\ell = 4a$.
+- **P2:** Residual mass scaling $m_{\text{res}}(L_5) / m_{\text{res}}(L_5/2) \leq e^{-\lambda L_5/2}$ with $\lambda \geq 0.1/a$.
+- **P3:** Dispersion linearity $R^2 \geq 0.9999$ for $E(p) = v_F |p|$ fit in range $|p| < 0.1\pi/a$.
+- **P4:** Angular isotropy $\Delta E / \bar{E} \leq 10^{-3}$ at fixed $|p| = 0.1\pi/a$.
+- **P5:** BK locality $O(\log^2 N)$ operator support.
+
+### H005 — Rationale (bounded)
+
+Domain-wall fermions (Kaplan, 1992) evade Nielsen-Ninomiya by breaking translation symmetry in a fictitious bulk dimension. Physical fermions localize to the wall at $z=0$; doublers are exponentially suppressed in the bulk. The Ginsparg-Wilson operator provides exact chiral symmetry on the lattice. Bravyi-Kitaev reduces JW string from $O(N)$ to $O(\log N)$ in 3D.
+
+### H005 — Preconditions & scope
+
+- Cubic lattice with tachyonic potential $V(\phi) = -\frac{1}{2}\mu^2 \phi^2 + \frac{1}{4}\lambda \phi^4$.
+- Fictitious 5th dimension with bulk depth $L_5 \in [5, 50]$ sites.
+- Low-energy regime $E < 0.1\pi/a$ (continuum limit).
+
+### H005 — Experiment plan
+
+- **E1:** Domain-wall profile construction; verify exponential decay $\lambda \geq 0.1/a$.
+- **E2:** Bound-state spectrum; verify linear dispersion $R^2 \geq 0.9999$.
+- **E3:** Ginsparg-Wilson verification; residual $\leq 10^{-12}$.
+- **E4:** Residual mass scaling; exponential fit $R^2 \geq 0.99$.
+- **E5:** Lorentz isotropy check; $\Delta E / \bar{E} \leq 10^{-3}$.
+- **E6:** BK locality scaling; support $\leq C \log^2 N$.
+
+### H005 — Risks & kill‑methods
+
+- If P1 fails (GW violation): chiral symmetry explicitly broken → flag Standard Model incompatibility.
+- If P2 fails (residual mass not exponential): domain-wall mechanism invalid → try alternative constructions.
+- If P4 fails (Lorentz violation): lattice artifacts persist → quantify violation and assess phenomenology.
+- Kill criterion: Any two of P1-P5 fail with residuals $>10\times$ threshold.
+
+### H005 — Links
+
+- **H*_**: [H005_HYPOTHESIS_Spinor_Emergence_Nielsen_Ninomiya_Defense.md](../Spinor/H005_HYPOTHESIS_Spinor_Emergence_Nielsen_Ninomiya_Defense.md)
+- **CF*_**: [CF8_Spinor_Emergence_Domain_Wall_Fermions.md](../Complete-Formalisms/CF8_Spinor_Emergence_Domain_Wall_Fermions.md)
+- **T1\_**: [T1_PROPOSAL_Spinor_Emergence_v1.md](../Spinor/T1_PROPOSAL_Spinor_Emergence_v1.md)
+- **Results:** (pending E1-E6 execution)
+
+### H005 — Version history
+
+- v0.1 — 2025-11-20 — created in response to Nielsen-Ninomiya Red Team Assessment
+
+---
+
 ## Notes on sources in this file
 
 - **Quantum Natural Gradient / QGT basics** — Re(QGT)=Fubini–Study; classical embedding → ¼·FIM; see main text and Appendix A equations for Re/Im split and Berry connection. :contentReference[oaicite:4]{index=4}  

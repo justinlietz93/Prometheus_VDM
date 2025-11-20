@@ -35,9 +35,9 @@ This proposal evades Nielsen-Ninomiya through the **domain-wall fermion mechanis
 5. **Lorentz invariance at low energy:** Metriplectic M-limb dissipation smooths lattice anisotropies via RG flow.
 
 **Red Team Attack Vectors Addressed:**
-- **Attack 1 (JW string non-locality):** Defended in [CF001 §5](CF001_Spinor_Emergence_Domain_Wall_Fermions.md#5-locality-and-bravyi-kitaev-fermionization).
-- **Attack 2 (Chiral symmetry leak):** Defended in [CF001 §4.2](CF001_Spinor_Emergence_Domain_Wall_Fermions.md#42-residual-mass-and-exponential-suppression).
-- **Attack 3 (Lorentz violation):** Defended in [CF001 §6](CF001_Spinor_Emergence_Domain_Wall_Fermions.md#6-lorentz-invariance-at-low-energy).
+- **Attack 1 (JW string non-locality):** Defended in [CF8 §5](CF8_Spinor_Emergence_Domain_Wall_Fermions.md#5-locality-and-bravyi-kitaev-fermionization).
+- **Attack 2 (Chiral symmetry leak):** Defended in [CF8 §4.2](CF8_Spinor_Emergence_Domain_Wall_Fermions.md#42-residual-mass-and-exponential-suppression).
+- **Attack 3 (Lorentz violation):** Defended in [CF8 §6](CF8_Spinor_Emergence_Domain_Wall_Fermions.md#6-lorentz-invariance-at-low-energy).
 
 **Key Result:** The VDM construction produces a **Ginsparg-Wilson operator**, not a naive Wilson fermion. This preserves exact chiral symmetry and evades Nielsen-Ninomiya via topology.
 
@@ -46,8 +46,8 @@ This proposal evades Nielsen-Ninomiya through the **domain-wall fermion mechanis
 - Axioms and metriplectic structure: [AXIOMS.md](../AXIOMS.md), [CANON_STANDARDS.md](../CANON_STANDARDS.md), [VDM_OVERVIEW.md](../VDM_OVERVIEW.md)
 - Equations and symbols registries: [00_EQUATIONS.md](../z.CANONICAL_Equations/00_EQUATIONS.md), [00_SYMBOLS.md](../z.CANONICAL_Symbols/00_SYMBOLS.md), [00_UNITS_NORMALIZATION.md](../z.CANONICAL_Units_Normalization/00_UNITS_NORMALIZATION.md)
 - Complete formalism backstops: [CF1_QGT_to_Metriplectic_Brackets.md](../Complete-Formalisms/CF1_QGT_to_Metriplectic_Brackets.md) for J‑limb structure and [CF5_Integrability_Closure.md](../Complete-Formalisms/CF5_Integrability_Closure.md) for conserved‑quantity discipline
-- **Spinor emergence formalism:** [CF001_Spinor_Emergence_Domain_Wall_Fermions.md](CF001_Spinor_Emergence_Domain_Wall_Fermions.md) (domain-wall construction, Ginsparg-Wilson operator, Bravyi-Kitaev fermionization)
-- **Hypothesis and validation:** [H001_HYPOTHESIS_Spinor_Emergence_Nielsen_Ninomiya_Defense.md](H001_HYPOTHESIS_Spinor_Emergence_Nielsen_Ninomiya_Defense.md) (5 decisive predictions P1-P5)
+- **Spinor emergence formalism:** [CF8_Spinor_Emergence_Domain_Wall_Fermions.md](CF8_Spinor_Emergence_Domain_Wall_Fermions.md) (domain-wall construction, Ginsparg-Wilson operator, Bravyi-Kitaev fermionization)
+- **Hypothesis and validation:** [H005_HYPOTHESIS_Spinor_Emergence_Nielsen_Ninomiya_Defense.md](H005_HYPOTHESIS_Spinor_Emergence_Nielsen_Ninomiya_Defense.md) (5 decisive predictions P1-P5)
 - J‑branch bootstrap context: [T0_PROPOSAL_VDM_J-branch_QFT-Bootstrap_and_Metriplectic-Decoherence_v1.md](../Quantum/T0_PROPOSAL_VDM_J-branch_QFT-Bootstrap_and_Metriplectic-Decoherence_v1.md)
 
 All Dirac/spinor equations and constants are owned by these canon files; this proposal only references them and adds *derivation‑level* lemmas and gates specific to the spinor‑emergence construction.
@@ -61,7 +61,7 @@ All Dirac/spinor equations and constants are owned by these canon files; this pr
 
 ## 5.1 Experimental Setup and Diagnostics (theoretical meters)
 
-### Nielsen-Ninomiya Defense Gates (from H001)
+### Nielsen-Ninomiya Defense Gates (from H005)
 
 These gates directly address the Red Team Assessment and must **all PASS** for T1 certification:
 
@@ -71,7 +71,7 @@ These gates directly address the Red Team Assessment and must **all PASS** for T
 - **P4 (Lorentz isotropy):** Angular variation $\Delta E / \bar{E} \leq 10^{-3}$ at fixed $|p| = 0.1\pi/a$. *Proves rotational symmetry restoration at low energy.*
 - **P5 (BK locality):** Fermion operator support $\leq C \log^2 N$ sites with $C \sim 1$. *Proves locality preservation in 3D fermionization.*
 
-See [H001 §Predictions](H001_HYPOTHESIS_Spinor_Emergence_Nielsen_Ninomiya_Defense.md#predictions-decisive-metrics--passfail) for full definitions and [CF001 §8](CF001_Spinor_Emergence_Domain_Wall_Fermions.md#8-validation-gates-summary) for validation protocol.
+See [H005 §Predictions](H005_HYPOTHESIS_Spinor_Emergence_Nielsen_Ninomiya_Defense.md#predictions-decisive-metrics--passfail) for full definitions and [CF8 §8](CF8_Spinor_Emergence_Domain_Wall_Fermions.md#8-validation-gates-summary) for validation protocol.
 
 ### Original Construction Gates (complementary)
 
