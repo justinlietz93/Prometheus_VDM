@@ -6,3 +6,4 @@ Derivation/Complete-Formalisms/CF5_Integrability_Closure.md
 Derivation/Complete-Formalisms/CF6_Info_Geom_Fisher_Ruppeiner_Foundations.md
 Derivation/Complete-Formalisms/CF7_Measurement_Theory_Decoherence_Born_Rule.md
 Derivation/Complete-Formalisms/CF8_Spinor_Emergence_Domain_Wall_Fermions.md
+Derivation/Complete-Formalisms/CF9_Gauge_Emergence_Berry_Connection.md

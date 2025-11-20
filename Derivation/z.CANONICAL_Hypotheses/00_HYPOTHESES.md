@@ -299,6 +299,71 @@ Domain-wall fermions (Kaplan, 1992) evade Nielsen-Ninomiya by breaking translati
 
 ---
 
+## H006 — Gauge Field Emergence Weinberg-Witten Defense
+
+**Classification:** Axiom-core  
+**Owner:** Justin K. Lietz  
+**Status:** ACTIVE  
+**One-line objective:** The VDM J-limb scalar lattice produces emergent U(1) gauge fields (photons) via Berry connection from domain-wall spinor states, evading the Weinberg-Witten No-Go Theorem through geometric construction and preserving exact masslessness via gauge invariance.
+
+### H006 — Formal statement
+
+On the VDM scalar lattice ([VDM-AX-004](../AXIOMS.md#vdm-ax-004)) with emergent spinor wavefunctions $|\psi(x)\rangle$ from domain-wall construction (CF8), there exists an effective U(1) gauge field $A_\mu(x)$ satisfying:
+1. Berry connection construction $A_\mu = i\langle\psi|\partial_\mu\psi\rangle$ (CF1 §2.1).
+2. Maxwell action $S = -\frac{1}{4g^2}\int d^4x\, F_{\mu\nu}F^{\mu\nu}$ where $F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu$.
+3. Transverse polarization: physical photon modes satisfy $\vec{k} \cdot \vec{\epsilon} = 0$ (not longitudinal scalar).
+4. Exact masslessness: gauge invariance $A_\mu \to A_\mu + \partial_\mu \Lambda$ forbids mass term; $m_\gamma = 0$ to all orders.
+5. Weinberg-Witten evasion: gauge field is geometric (connection on bundle), not a particle state in fermion Hilbert space.
+6. Long-range Coulomb force: static potential $V(r) = \alpha/r$ with fine-structure constant $\alpha \approx 1/137$.
+
+### H006 — Predictions (decisive metrics)
+
+- **P1:** Photon masslessness $m_\gamma < 10^{-18}$ eV (PDG bound); numerically $m_\gamma < 10^{-12}$ in lattice units.
+- **P2:** Transversality $f_\perp = \int |\vec{A}_\perp|^2 / \int |\vec{A}|^2 \geq 0.999$ in Coulomb gauge.
+- **P3:** Coulomb law $\left| V(r)/V(r_0) - r_0/r \right| < 0.01$ for $r \in [2a, 10a]$ with $r_0 = 2a$.
+- **P4:** Charge universality $\sigma(g_i)/\bar{g} < 10^{-3}$ across fermion species.
+
+### H006 — Rationale (bounded)
+
+The Weinberg-Witten theorem forbids massless composite particles with spin $j > 1/2$ if they live in the same Hilbert space as a Lorentz-covariant conserved current. VDM evades this via geometric construction: photon $A_\mu$ is the Berry connection (connection on spinor bundle), not a particle state in the Hilbert space. This follows standard gauge theory formalism where gauge fields are connections, not sections.
+
+### H006 — Preconditions & scope
+
+- CF8 spinor emergence (domain-wall zero modes $|\psi\rangle$).
+- CF1 Berry connection formalism ($A_\mu = i\langle\psi|\partial_\mu\psi\rangle$).
+- Lorentz invariance in J-limb ([VDM-AX-C02](../AXIOMS.md#vdm-ax-c02)).
+- **Scope:** U(1) electromagnetism only; non-abelian gauge groups (SU(2), SU(3)) are future work.
+
+### H006 — Experiment plan
+
+- **E1:** Berry connection construction from CF8 spinor eigenstates.
+- **E2:** Field strength tensor and Maxwell action verification.
+- **E3:** Transversality check via Fourier decomposition.
+- **E4:** Coulomb potential from point charge; $1/r$ scaling fit.
+- **E5:** Photon dispersion and mass bound extraction.
+- **E6:** Charge universality scan across fermion flavors.
+
+### H006 — Risks & kill‑methods
+
+- If P2 fails (transversality $f_\perp < 0.9$): electromagnetic force does not emerge from Berry connection → kill hypothesis.
+- If P1 fails (massive photon $m_\gamma > 10^{-6}$): gauge symmetry broken at lattice scale → investigate as "dark photon" or require finer lattice.
+- If P3 fails (Yukawa instead of Coulomb): short-range modification to electromagnetism → investigate higher-order corrections.
+- Kill criterion: Any two of P1-P4 fail with residuals $>10\times$ threshold.
+
+### H006 — Links
+
+- **H*_**: [H006_HYPOTHESIS_Gauge_Emergence_Weinberg_Witten_Defense.md](../Gauge/H006_HYPOTHESIS_Gauge_Emergence_Weinberg_Witten_Defense.md)
+- **CF*_**: [CF9_Gauge_Emergence_Berry_Connection.md](../Complete-Formalisms/CF9_Gauge_Emergence_Berry_Connection.md)
+- **CF1**: [CF1_QGT_to_Metriplectic_Brackets.md](../Complete-Formalisms/CF1_QGT_to_Metriplectic_Brackets.md)
+- **CF8**: [CF8_Spinor_Emergence_Domain_Wall_Fermions.md](../Complete-Formalisms/CF8_Spinor_Emergence_Domain_Wall_Fermions.md)
+- **Results:** (pending E1-E6 execution)
+
+### H006 — Version history
+
+- v0.1 — 2025-11-20 — created in response to Weinberg-Witten Red Team Assessment
+
+---
+
 ## Notes on sources in this file
 
 - **Quantum Natural Gradient / QGT basics** — Re(QGT)=Fubini–Study; classical embedding → ¼·FIM; see main text and Appendix A equations for Re/Im split and Berry connection. :contentReference[oaicite:4]{index=4}  
