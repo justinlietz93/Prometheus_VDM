@@ -33,7 +33,7 @@ License: See LICENSE
 - Validation metrics: [00_VALIDATION_METRICS.md](../z.CANONICAL_Validation_Metrics/00_VALIDATION_METRICS.md)
 - Symbols and units: [00_SYMBOLS.md](../z.CANONICAL_Symbols/00_SYMBOLS.md), [00_UNITS_NORMALIZATION.md](../z.CANONICAL_Units_Normalization/00_UNITS_NORMALIZATION.md)
 - Axioms: [AXIOMS.md](../AXIOMS.md) (VDM-AX-004, A2, A3, A4)
-- Hypothesis: [H006_HYPOTHESIS_Gauge_Emergence_Weinberg_Witten_Defense.md](H006_HYPOTHESIS_Gauge_Emergence_Weinberg_Witten_Defense.md)
+- Hypothesis: [H006_HYPOTHESIS_Gauge_Emergence_Weinberg_Witten_Defense.md](../Gauge/H006_HYPOTHESIS_Gauge_Emergence_Weinberg_Witten_Defense.md)
 - Prerequisite formalisms: [CF1_QGT_to_Metriplectic_Brackets.md](CF1_QGT_to_Metriplectic_Brackets.md), [CF8_Spinor_Emergence_Domain_Wall_Fermions.md](CF8_Spinor_Emergence_Domain_Wall_Fermions.md)
 
 **Policy:**
@@ -224,7 +224,7 @@ where $g$ is the emergent gauge coupling.
    $$\frac{1}{g^2} \sim \frac{1}{a^2} \int dz\, |\chi_0(z)|^4$$
    (from domain-wall zero-mode normalization)
 
-**Validation gate:** [P1 from H006](H006_HYPOTHESIS_Gauge_Emergence_Weinberg_Witten_Defense.md).
+**Validation gate:** [P1 from H006](../Gauge/H006_HYPOTHESIS_Gauge_Emergence_Weinberg_Witten_Defense.md).
 
 ### 4.2 Transversality: Curl vs Gradient
 
@@ -251,7 +251,7 @@ Physical photon modes are purely transverse.
 
 **Smoking Gun:** The existence of $\vec{B} = \nabla \times \vec{A} \neq 0$ proves $\vec{A}$ is not a gradient. □
 
-**Validation gate:** [P2 from H006](H006_HYPOTHESIS_Gauge_Emergence_Weinberg_Witten_Defense.md).
+**Validation gate:** [P2 from H006](../Gauge/H006_HYPOTHESIS_Gauge_Emergence_Weinberg_Witten_Defense.md).
 
 ---
 
@@ -349,7 +349,7 @@ The electromagnetic gauge symmetry $A_\mu \to A_\mu + \partial_\mu \Lambda$ forb
 
 **Experimental bound:** $m_\gamma < 10^{-18}$ eV (Particle Data Group).
 
-**Validation gate:** [P1 from H006](H006_HYPOTHESIS_Gauge_Emergence_Weinberg_Witten_Defense.md).
+**Validation gate:** [P1 from H006](../Gauge/H006_HYPOTHESIS_Gauge_Emergence_Weinberg_Witten_Defense.md).
 
 ### 6.2 Coulomb Potential from Massless Photon
 
@@ -368,7 +368,7 @@ The $1/r$ potential implies:
 - **Universal coupling** (same $q$ for all charged particles).
 - **Gauss's law** $\oint \vec{E} \cdot d\vec{A} = 4\pi Q_{\text{enc}}$.
 
-**Validation gate:** [P3 from H006](H006_HYPOTHESIS_Gauge_Emergence_Weinberg_Witten_Defense.md).
+**Validation gate:** [P3 from H006](../Gauge/H006_HYPOTHESIS_Gauge_Emergence_Weinberg_Witten_Defense.md).
 
 ---
 
@@ -412,7 +412,7 @@ This formalism establishes:
 
 - [CF1_QGT_to_Metriplectic_Brackets.md](CF1_QGT_to_Metriplectic_Brackets.md) - Berry connection foundation
 - [CF8_Spinor_Emergence_Domain_Wall_Fermions.md](CF8_Spinor_Emergence_Domain_Wall_Fermions.md) - Emergent spinor wavefunctions
-- [H006_HYPOTHESIS_Gauge_Emergence_Weinberg_Witten_Defense.md](H006_HYPOTHESIS_Gauge_Emergence_Weinberg_Witten_Defense.md) - Predictions and gates
+- [H006_HYPOTHESIS_Gauge_Emergence_Weinberg_Witten_Defense.md](../Gauge/H006_HYPOTHESIS_Gauge_Emergence_Weinberg_Witten_Defense.md) - Predictions and gates
 - [00_AXIOMS.md](../AXIOMS.md) - VDM-AX-004, A2, A3, A4
 - [00_EQUATIONS.md](../z.CANONICAL_Equations/00_EQUATIONS.md) - Equation registry
 - [00_VALIDATION_METRICS.md](../z.CANONICAL_Validation_Metrics/00_VALIDATION_METRICS.md) - Gate definitions
