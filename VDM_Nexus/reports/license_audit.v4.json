@@ -37,7 +37,7 @@
       "matched_pct": 99.09,
       "missing": 2,
       "missing_pct": 0.91,
-      "root": "fum_rt",
+      "root": "vdm_rt",
       "scanned": 220
     },
     {
@@ -471,288 +471,288 @@
       "insert_index_after_opening_quotes": 3,
       "inserted_bytes": 367,
       "inserted_lines": 9,
-      "path": "fum_rt/io/maps_ring.py",
-      "root": "fum_rt"
+      "path": "vdm_rt/io/maps_ring.py",
+      "root": "vdm_rt"
     },
     {
       "action": "inserted_license_into_docstring",
       "insert_index_after_opening_quotes": 3,
       "inserted_bytes": 367,
       "inserted_lines": 9,
-      "path": "fum_rt/physics/sidm_curve_harness.py",
-      "root": "fum_rt"
+      "path": "vdm_rt/physics/sidm_curve_harness.py",
+      "root": "vdm_rt"
     },
     {
       "action": "inserted_license_into_docstring",
       "insert_index_after_opening_quotes": 3,
       "inserted_bytes": 367,
       "inserted_lines": 9,
-      "path": "fum_rt/physics/rd_dispersion_runner.py",
-      "root": "fum_rt"
+      "path": "vdm_rt/physics/rd_dispersion_runner.py",
+      "root": "vdm_rt"
     },
     {
       "action": "inserted_license_into_docstring",
       "insert_index_after_opening_quotes": 3,
       "inserted_bytes": 367,
       "inserted_lines": 9,
-      "path": "fum_rt/physics/pta_correlation_harness.py",
-      "root": "fum_rt"
+      "path": "vdm_rt/physics/pta_correlation_harness.py",
+      "root": "vdm_rt"
     },
     {
       "action": "inserted_license_into_docstring",
       "insert_index_after_opening_quotes": 3,
       "inserted_bytes": 367,
       "inserted_lines": 9,
-      "path": "fum_rt/physics/vacuum_demographics_harness.py",
-      "root": "fum_rt"
+      "path": "vdm_rt/physics/vacuum_demographics_harness.py",
+      "root": "vdm_rt"
     },
     {
       "action": "inserted_license_into_docstring",
       "insert_index_after_opening_quotes": 3,
       "inserted_bytes": 367,
       "inserted_lines": 9,
-      "path": "fum_rt/physics/harness_logging.py",
-      "root": "fum_rt"
+      "path": "vdm_rt/physics/harness_logging.py",
+      "root": "vdm_rt"
     },
     {
       "action": "inserted_license_into_docstring",
       "insert_index_after_opening_quotes": 3,
       "inserted_bytes": 367,
       "inserted_lines": 9,
-      "path": "fum_rt/physics/ci_gates.py",
-      "root": "fum_rt"
+      "path": "vdm_rt/physics/ci_gates.py",
+      "root": "vdm_rt"
     },
     {
       "action": "inserted_license_into_docstring",
       "insert_index_after_opening_quotes": 3,
       "inserted_bytes": 367,
       "inserted_lines": 9,
-      "path": "fum_rt/physics/router_regression_figures.py",
-      "root": "fum_rt"
+      "path": "vdm_rt/physics/router_regression_figures.py",
+      "root": "vdm_rt"
     },
     {
       "action": "inserted_license_into_docstring",
       "insert_index_after_opening_quotes": 3,
       "inserted_bytes": 367,
       "inserted_lines": 9,
-      "path": "fum_rt/physics/__init__.py",
-      "root": "fum_rt"
+      "path": "vdm_rt/physics/__init__.py",
+      "root": "vdm_rt"
     },
     {
       "action": "inserted_license_into_docstring",
       "insert_index_after_opening_quotes": 3,
       "inserted_bytes": 367,
       "inserted_lines": 9,
-      "path": "fum_rt/physics/rd_front_speed_runner.py",
-      "root": "fum_rt"
+      "path": "vdm_rt/physics/rd_front_speed_runner.py",
+      "root": "vdm_rt"
     },
     {
       "action": "inserted_license_into_docstring",
       "insert_index_after_opening_quotes": 3,
       "inserted_bytes": 367,
       "inserted_lines": 9,
-      "path": "fum_rt/frontend/__init__.py",
-      "root": "fum_rt"
+      "path": "vdm_rt/frontend/__init__.py",
+      "root": "vdm_rt"
     },
     {
       "action": "inserted_license_into_docstring",
       "insert_index_after_opening_quotes": 3,
       "inserted_bytes": 367,
       "inserted_lines": 9,
-      "path": "fum_rt/runtime/helpers/viz.py",
-      "root": "fum_rt"
+      "path": "vdm_rt/runtime/helpers/viz.py",
+      "root": "vdm_rt"
     },
     {
       "action": "inserted_license_into_docstring",
       "insert_index_after_opening_quotes": 3,
       "inserted_bytes": 367,
       "inserted_lines": 9,
-      "path": "fum_rt/runtime/helpers/speak.py",
-      "root": "fum_rt"
+      "path": "vdm_rt/runtime/helpers/speak.py",
+      "root": "vdm_rt"
     },
     {
       "action": "inserted_license_into_docstring",
       "insert_index_after_opening_quotes": 3,
       "inserted_bytes": 367,
       "inserted_lines": 9,
-      "path": "fum_rt/runtime/helpers/ingest.py",
-      "root": "fum_rt"
+      "path": "vdm_rt/runtime/helpers/ingest.py",
+      "root": "vdm_rt"
     },
     {
       "action": "inserted_license_into_docstring",
       "insert_index_after_opening_quotes": 3,
       "inserted_bytes": 367,
       "inserted_lines": 9,
-      "path": "fum_rt/runtime/helpers/checkpointing.py",
-      "root": "fum_rt"
+      "path": "vdm_rt/runtime/helpers/checkpointing.py",
+      "root": "vdm_rt"
     },
     {
       "action": "inserted_license_into_docstring",
       "insert_index_after_opening_quotes": 3,
       "inserted_bytes": 367,
       "inserted_lines": 9,
-      "path": "fum_rt/runtime/helpers/macro_board.py",
-      "root": "fum_rt"
+      "path": "vdm_rt/runtime/helpers/macro_board.py",
+      "root": "vdm_rt"
     },
     {
       "action": "inserted_license_into_docstring",
       "insert_index_after_opening_quotes": 3,
       "inserted_bytes": 367,
       "inserted_lines": 9,
-      "path": "fum_rt/runtime/helpers/maps_ws.py",
-      "root": "fum_rt"
+      "path": "vdm_rt/runtime/helpers/maps_ws.py",
+      "root": "vdm_rt"
     },
     {
       "action": "inserted_license_into_docstring",
       "insert_index_after_opening_quotes": 3,
       "inserted_bytes": 367,
       "inserted_lines": 9,
-      "path": "fum_rt/runtime/helpers/redis_out.py",
-      "root": "fum_rt"
+      "path": "vdm_rt/runtime/helpers/redis_out.py",
+      "root": "vdm_rt"
     },
     {
       "action": "inserted_license_into_docstring",
       "insert_index_after_opening_quotes": 3,
       "inserted_bytes": 367,
       "inserted_lines": 9,
-      "path": "fum_rt/runtime/helpers/smoke.py",
-      "root": "fum_rt"
+      "path": "vdm_rt/runtime/helpers/smoke.py",
+      "root": "vdm_rt"
     },
     {
       "action": "inserted_license_into_docstring",
       "insert_index_after_opening_quotes": 3,
       "inserted_bytes": 367,
       "inserted_lines": 9,
-      "path": "fum_rt/runtime/helpers/engram.py",
-      "root": "fum_rt"
+      "path": "vdm_rt/runtime/helpers/engram.py",
+      "root": "vdm_rt"
     },
     {
       "action": "inserted_license_into_docstring",
       "insert_index_after_opening_quotes": 3,
       "inserted_bytes": 367,
       "inserted_lines": 9,
-      "path": "fum_rt/runtime/helpers/emission.py",
-      "root": "fum_rt"
+      "path": "vdm_rt/runtime/helpers/emission.py",
+      "root": "vdm_rt"
     },
     {
       "action": "inserted_license_into_docstring",
       "insert_index_after_opening_quotes": 3,
       "inserted_bytes": 367,
       "inserted_lines": 9,
-      "path": "fum_rt/runtime/helpers/__init__.py",
-      "root": "fum_rt"
+      "path": "vdm_rt/runtime/helpers/__init__.py",
+      "root": "vdm_rt"
     },
     {
       "action": "inserted_license_into_docstring",
       "insert_index_after_opening_quotes": 3,
       "inserted_bytes": 367,
       "inserted_lines": 9,
-      "path": "fum_rt/frontend/styles/theme.py",
-      "root": "fum_rt"
+      "path": "vdm_rt/frontend/styles/theme.py",
+      "root": "vdm_rt"
     },
     {
       "action": "inserted_license_into_docstring",
       "insert_index_after_opening_quotes": 3,
       "inserted_bytes": 367,
       "inserted_lines": 9,
-      "path": "fum_rt/frontend/controllers/__init__.py",
-      "root": "fum_rt"
+      "path": "vdm_rt/frontend/controllers/__init__.py",
+      "root": "vdm_rt"
     },
     {
       "action": "inserted_license_into_docstring",
       "insert_index_after_opening_quotes": 3,
       "inserted_bytes": 367,
       "inserted_lines": 9,
-      "path": "fum_rt/frontend/utilities/profiles.py",
-      "root": "fum_rt"
+      "path": "vdm_rt/frontend/utilities/profiles.py",
+      "root": "vdm_rt"
     },
     {
       "action": "inserted_license_into_docstring",
       "insert_index_after_opening_quotes": 3,
       "inserted_bytes": 367,
       "inserted_lines": 9,
-      "path": "fum_rt/core/cosmology/router.py",
-      "root": "fum_rt"
+      "path": "vdm_rt/core/cosmology/router.py",
+      "root": "vdm_rt"
     },
     {
       "action": "inserted_license_into_docstring",
       "insert_index_after_opening_quotes": 3,
       "inserted_bytes": 367,
       "inserted_lines": 9,
-      "path": "fum_rt/core/cosmology/events.py",
-      "root": "fum_rt"
+      "path": "vdm_rt/core/cosmology/events.py",
+      "root": "vdm_rt"
     },
     {
       "action": "inserted_license_into_docstring",
       "insert_index_after_opening_quotes": 3,
       "inserted_bytes": 367,
       "inserted_lines": 9,
-      "path": "fum_rt/core/cosmology/__init__.py",
-      "root": "fum_rt"
+      "path": "vdm_rt/core/cosmology/__init__.py",
+      "root": "vdm_rt"
     },
     {
       "action": "inserted_license_into_docstring",
       "insert_index_after_opening_quotes": 3,
       "inserted_bytes": 367,
       "inserted_lines": 9,
-      "path": "fum_rt/core/engine/__init__.py",
-      "root": "fum_rt"
+      "path": "vdm_rt/core/engine/__init__.py",
+      "root": "vdm_rt"
     },
     {
       "action": "inserted_license_into_docstring",
       "insert_index_after_opening_quotes": 3,
       "inserted_bytes": 367,
       "inserted_lines": 9,
-      "path": "fum_rt/tests/physics/test_ci_gates.py",
-      "root": "fum_rt"
+      "path": "vdm_rt/tests/physics/test_ci_gates.py",
+      "root": "vdm_rt"
     },
     {
       "action": "inserted_license_into_docstring",
       "insert_index_after_opening_quotes": 3,
       "inserted_bytes": 367,
       "inserted_lines": 9,
-      "path": "fum_rt/tests/physics/test_vacuum_demographics_harness.py",
-      "root": "fum_rt"
+      "path": "vdm_rt/tests/physics/test_vacuum_demographics_harness.py",
+      "root": "vdm_rt"
     },
     {
       "action": "inserted_license_into_docstring",
       "insert_index_after_opening_quotes": 3,
       "inserted_bytes": 367,
       "inserted_lines": 9,
-      "path": "fum_rt/physics/memory_steering/plot_memory_steering.py",
-      "root": "fum_rt"
+      "path": "vdm_rt/physics/memory_steering/plot_memory_steering.py",
+      "root": "vdm_rt"
     },
     {
       "action": "inserted_license_into_docstring",
       "insert_index_after_opening_quotes": 3,
       "inserted_bytes": 367,
       "inserted_lines": 9,
-      "path": "fum_rt/io/visualization/maps_ring.py",
-      "root": "fum_rt"
+      "path": "vdm_rt/io/visualization/maps_ring.py",
+      "root": "vdm_rt"
     },
     {
       "action": "inserted_license_into_docstring",
       "insert_index_after_opening_quotes": 3,
       "inserted_bytes": 367,
       "inserted_lines": 9,
-      "path": "fum_rt/io/visualization/websocket_server.py",
-      "root": "fum_rt"
+      "path": "vdm_rt/io/visualization/websocket_server.py",
+      "root": "vdm_rt"
     },
     {
       "action": "inserted_license_into_docstring",
       "insert_index_after_opening_quotes": 3,
       "inserted_bytes": 367,
       "inserted_lines": 9,
-      "path": "fum_rt/io/visualization/__init__.py",
-      "root": "fum_rt"
+      "path": "vdm_rt/io/visualization/__init__.py",
+      "root": "vdm_rt"
     },
     {
       "action": "inserted_license_into_docstring",
       "insert_index_after_opening_quotes": 3,
       "inserted_bytes": 367,
       "inserted_lines": 9,
-      "path": "fum_rt/io/logging/rolling_jsonl.py",
-      "root": "fum_rt"
+      "path": "vdm_rt/io/logging/rolling_jsonl.py",
+      "root": "vdm_rt"
     },
     {
       "action": "inserted_license_into_docstring",
@@ -795,7 +795,7 @@
     },
     {
       "inserted": 36,
-      "root": "fum_rt"
+      "root": "vdm_rt"
     },
     {
       "inserted": 6,
@@ -902,12 +902,12 @@
       "reason": "no keywords found"
     },
     {
-      "path": "fum_rt/ck/hip_spmv.cpp",
+      "path": "vdm_rt/ck/hip_spmv.cpp",
       "preview": "\n// Minimal HIP CSR SpMV placeholder (A*y = x) with pybind11 bindings.\n// Replace with tuned Composable Kernel kernels as you iterate.\n#include <hip/hip_runtime.h>\n#include <pybind11/pybind11.h>\n#include <pybind11/numpy.h>\nnamespace py = pybind11;\n\n__global__ void spmv_csr_kernel(\n    const int N,\n",
       "reason": "no keywords found"
     },
     {
-      "path": "fum_rt/ck/build.sh",
+      "path": "vdm_rt/ck/build.sh",
       "preview": "\n    #!/usr/bin/env bash\n    set -euo pipefail\n    python3 - <<'PY'\nimport sys, os, subprocess, textwrap\nfrom pathlib import Path\ncode = r\"\"\"\nfrom setuptools import setup, Extension\nfrom setuptools.command.build_ext import build_ext\nimport os\n",
       "reason": "no keywords found"
     },

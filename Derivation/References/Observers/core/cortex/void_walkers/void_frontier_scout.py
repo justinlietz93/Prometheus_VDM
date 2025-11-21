@@ -10,7 +10,7 @@ See LICENSE file for full terms.
 from __future__ import annotations
 
 """
-fum_rt.core.cortex.void_walkers.void_frontier_scout
+vdm_rt.core.cortex.void_walkers.void_frontier_scout
 
 FrontierScout (read-only, void-faithful):
 - Skims component boundaries and likely bridge frontiers to refresh cohesion/cycle estimators.
@@ -34,8 +34,8 @@ Guardrails:
 from typing import Any, Dict, Optional, Set, Sequence, List
 import math
 
-from fum_rt.core.cortex.void_walkers.base import BaseScout
-from fum_rt.core.proprioception.events import BaseEvent, VTTouchEvent, EdgeOnEvent
+from vdm_rt.core.cortex.void_walkers.base import BaseScout
+from vdm_rt.core.proprioception.events import BaseEvent, VTTouchEvent, EdgeOnEvent
 
 
 def _head_to_dict(maps: Optional[Dict[str, Any]], key: str, cap: int = 1024) -> Dict[int, float]:

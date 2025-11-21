@@ -17,7 +17,7 @@
   * **Estimated Effort:** 1–2 weeks
 
 * **Milestone ID:** EBN-A8-Bridge-AI-Physics
-* **Objective:** Define a read-only ETL comparator from `fum_rt` boundary artifacts (e.g., stable boundary sets, `cut_strength` EWMAs, churn, B1 cycle hits) to physics-bench tubular integrals and hierarchy depth N(L) after bench-native meters exist; not a dependency for A8 validation PASS.
+* **Objective:** Define a read-only ETL comparator from `vdm_rt` boundary artifacts (e.g., stable boundary sets, `cut_strength` EWMAs, churn, B1 cycle hits) to physics-bench tubular integrals and hierarchy depth N(L) after bench-native meters exist; not a dependency for A8 validation PASS.
 * **Due Date:** 11-04-2025
 * **Owner:** Justin K. Lietz
 * **Status:** In progress
@@ -406,7 +406,7 @@ Cone & hygiene clauses (reiterated for scheduling)
 ## Key Highlights
 
 * Establishing single-source, repository-canonical definitions for core physics parameters (E_exc, α, α_I, β_E, N(L)) is a foundational step, supported by unit tests on analytic shapes and synthetic segmentations.
-* A critical objective is to define a translation layer that bridges AI `fum_rt` boundary artifacts to physics-side tubular integrals and hierarchy depth, effectively wiring AI detectors to A8 meters.
+* A critical objective is to define a translation layer that bridges AI `vdm_rt` boundary artifacts to physics-side tubular integrals and hierarchy depth, effectively wiring AI detectors to A8 meters.
 * Ensuring scientific rigor involves adding bootstrap confidence intervals and power analysis for key parameters, and replicating metrics across distinct integrators, CPU/GPU, and precisions to record drift bounds.
 * A major conceptual goal is to operationalize "Measurement = Boundary Formation" by defining a metriplectic-consistent information functional and establishing falsifiable gates within a controlled experimental protocol.
 * The project aims to operationalize "Horizon as Hierarchical Boundary" through weak-field General Relativity calculations and the creation of an effective horizon in analogue-horizon experiments.
@@ -420,4 +420,4 @@ Cone & hygiene clauses (reiterated for scheduling)
 * Conduct a detailed dependency analysis across all 'Not started' milestones to establish a clear critical path and sequencing plan, ensuring efficient resource allocation.
 * Initiate early-stage reproducibility and preregistration efforts (EBN-PreReg, EBN-Repro) to embed scientific rigor and provide immediate, low-effort wins.
 * Concurrently begin planning for computational scaling (EBN-HPC-3D) given the expected complexity of 3D experiments for A8/TF/cosmology, to avoid performance bottlenecks later.
-* Develop a strategy and assign ownership for integrating real-time boundary artifacts from `fum_rt` into the physics-side tubular integrals (EBN-A8-Bridge-AI-Physics) for early empirical validation.
+* Develop a strategy and assign ownership for integrating real-time boundary artifacts from `vdm_rt` into the physics-side tubular integrals (EBN-A8-Bridge-AI-Physics) for early empirical validation.

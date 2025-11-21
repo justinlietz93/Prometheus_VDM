@@ -10,7 +10,7 @@ See LICENSE file for full terms.
 from __future__ import annotations
 
 """
-fum_rt.core.cortex.void_walkers.void_cycle_scout
+vdm_rt.core.cortex.void_walkers.void_cycle_scout
 
 CycleHunterScout (read-only, void-faithful):
 - Seeks short cycles (3-6 hops) using a TTL-limited walk with a tiny path window.
@@ -32,8 +32,8 @@ from typing import Any, Dict, Optional, Sequence, Set, List, Deque
 from collections import deque
 import random
 
-from fum_rt.core.cortex.void_walkers.base import BaseScout
-from fum_rt.core.proprioception.events import BaseEvent, VTTouchEvent, EdgeOnEvent
+from vdm_rt.core.cortex.void_walkers.base import BaseScout
+from vdm_rt.core.proprioception.events import BaseEvent, VTTouchEvent, EdgeOnEvent
 
 
 class CycleHunterScout(BaseScout):

@@ -36,7 +36,7 @@ Outputs (printed to stdout when run)
 - Stability band:               “D_a, Lambda, Gamma, Retention, Fidelity_w, Fidelity_end, Fidelity_shuffle_end, Fidelity_edge_end, AUC_end, SNR_end”
 
 Usage
-- python3 fum_rt/utils/memory_steering_experiments.py  > outputs/memory_steering_results.csv
+- python3 vdm_rt/utils/memory_steering_experiments.py  > outputs/memory_steering_results.csv
 - The plotting helper (separate) converts the combined CSV into figures saved in outputs/.
 """
 
@@ -53,7 +53,7 @@ import numpy as np
 
 # Steering primitives (robust import: module or script)
 try:
-    from fum_rt.core.memory_steering import (
+    from vdm_rt.core.memory_steering import (
         build_graph_laplacian,
         update_memory,
         transition_probs,
@@ -69,7 +69,7 @@ except Exception as e1:
         _repo_root = _os.path.abspath(_os.path.join(_os.path.dirname(__file__), _os.pardir, _os.pardir))
         if _repo_root not in _sys.path:
             _sys.path.insert(0, _repo_root)
-        from fum_rt.core.memory_steering import (
+        from vdm_rt.core.memory_steering import (
             build_graph_laplacian,
             update_memory,
             transition_probs,

@@ -191,7 +191,7 @@
   <files>
     <file>
       <path>README.md</path>
-      <content><![CDATA[### fum_rt/core/README.md]]></content>
+      <content><![CDATA[### vdm_rt/core/README.md]]></content>
     </file>
     <file>
       <path>Void_Debt_Modulation.py</path>
@@ -830,7 +830,7 @@ from .void_dynamics_adapter import universal_void_dynamics, delta_re_vgsp, delta
 from .fum_structural_homeostasis import perform_structural_homeostasis
 from .announce import Observation  # event schema for ADC bus
 
-# TODO THIS ENTIRE FILE IS DEPRECATED AND WILL NEED TO BE REMOVED. USE /mnt/ironwolf/git/Void_Unity_Proofs/fum_rt/core/sparse_connectome.py
+# TODO THIS ENTIRE FILE IS DEPRECATED AND WILL NEED TO BE REMOVED. USE /mnt/ironwolf/git/Void_Unity_Proofs/vdm_rt/core/sparse_connectome.py
 class Connectome:
     def __init__(self, N: int, k: int, seed: int = 0, threshold: float = 0.15, lambda_omega: float = 0.1, candidates: int = 64, structural_mode: str = "alias", traversal_walkers: int = 256, traversal_hops: int = 3, bundle_size: int = 3, prune_factor: float = 0.10):
         self.N = N
@@ -1651,11 +1651,11 @@ This respects your design (walkers announce findings) and keeps spikes tied to m
 *   The `bus` parameter must not be used for writes by read-only scouts.
 *   Do not perform I/O operations in `BaseDecayMap`.
 *   Do not perform logging in `BaseDecayMap`.
-*   The `fum_rt.core.cortex.void_walkers.base_decay_map` module must perform event-driven folding only.
-*   The `fum_rt.core.cortex.void_walkers.base_decay_map` module must maintain a bounded working set via `keep_max`.
-*   The `fum_rt.core.cortex.void_walkers.base_decay_map` module must implement sample-based pruning for the working set.
-*   The `fum_rt.core.cortex.void_walkers.base_decay_map` module must ensure snapshot operations are cheap and bounded by `head_k`/`keep_max`.
-*   The `fum_rt.core.cortex.void_walkers.base_decay_map` module must ensure `fold` operations are O(#events) time per tick.
+*   The `vdm_rt.core.cortex.void_walkers.base_decay_map` module must perform event-driven folding only.
+*   The `vdm_rt.core.cortex.void_walkers.base_decay_map` module must maintain a bounded working set via `keep_max`.
+*   The `vdm_rt.core.cortex.void_walkers.base_decay_map` module must implement sample-based pruning for the working set.
+*   The `vdm_rt.core.cortex.void_walkers.base_decay_map` module must ensure snapshot operations are cheap and bounded by `head_k`/`keep_max`.
+*   The `vdm_rt.core.cortex.void_walkers.base_decay_map` module must ensure `fold` operations are O(#events) time per tick.
 *   The `frontier_scout.py` module must serve as a shim for naming conventions.
 *   Use the `void_frontier_scout.py` module for the actual class implementation of `FrontierScout`.
 *   `HeatMap` must fold events only.
@@ -2121,7 +2121,7 @@ This respects your design (walkers announce findings) and keeps spikes tied to m
 *   **`VoidRayScout` (Class):** A `BaseScout` subclass that routes based on local gradients of an external `phi` field (if provided by `connectome`) combined with memory values.
 *   **`SentinelScout` (Class):** A `BaseScout` subclass designed for blue-noise reseeding and de-trampling, performing minimal-TTL (typically 1 hop) walks to ensure broad coverage, potentially biased by "visit" or "cold" maps.
 *   **`run_scouts_once` (Function):** A utility function responsible for executing a given sequence of scout objects within a time budget for a single tick.
-*   **`fum_rt.core.proprioception.events` (Module/Events):** Contains `BaseEvent`, `VTTouchEvent` (node visit), `EdgeOnEvent` (edge traversal), `SpikeEvent` (node activity with sign/amplitude), and `DeltaWEvent` (weight change event). These are the primary data units emitted by scouts and processed by maps.
+*   **`vdm_rt.core.proprioception.events` (Module/Events):** Contains `BaseEvent`, `VTTouchEvent` (node visit), `EdgeOnEvent` (edge traversal), `SpikeEvent` (node activity with sign/amplitude), and `DeltaWEvent` (weight change event). These are the primary data units emitted by scouts and processed by maps.
 *   **`connectome` (Implicit Interface):** An object passed to scouts, exposing methods/attributes like `N` (number of nodes), `neighbors(u)` or `get_neighbors(u)` (list of neighbors for node `u`), `adj` (adjacency mapping), and potentially `phi` (scalar field).
 *   **`bus` (Implicit Interface):** An optional object passed to `run_scouts_once` that, if present, is used to publish collected events (e.g., via `publish_many`).
 *   **`scouts.py` (Facade Module):** A module that re-exports various scout and map classes, providing a centralized import path and preserving legacy compatibility.
@@ -2190,7 +2190,7 @@ This respects your design (walkers announce findings) and keeps spikes tied to m
 
 6.  **Real-time Performance and Fairness:**
     *   `run_scouts_once` includes a microsecond time budget (`max_us`) and round-robin scout scheduling.
-    *   **Rationale:** Essential for a real-time system (`fum_rt`) to ensure predictable execution times and prevent any single scout from monopolizing resources or starving others.
+    *   **Rationale:** Essential for a real-time system (`vdm_rt`) to ensure predictable execution times and prevent any single scout from monopolizing resources or starving others.
 
 7.  **Robustness (Extensive Error Handling):**
     *   Numerous `try-except` blocks around type conversions, dictionary accesses, and attribute lookups.
@@ -2200,20 +2200,20 @@ This respects your design (walkers announce findings) and keeps spikes tied to m
 
 1.  **Initializing a scout:**
     ```python
-    from fum_rt.core.cortex.void_walkers.void_heat_scout import HeatScout
+    from vdm_rt.core.cortex.void_walkers.void_heat_scout import HeatScout
     scout = HeatScout(budget_visits=32, half_life_ticks=100, seed=42)
     ```
 
 2.  **Initializing a map:**
     ```python
-    from fum_rt.core.cortex.maps.heatmap import HeatMap
+    from vdm_rt.core.cortex.maps.heatmap import HeatMap
     heatmap = HeatMap(half_life_ticks=200, vt_touch_gain=0.25)
     ```
 
 3.  **Executing scouts for a tick:**
     ```python
-    from fum_rt.core.cortex.void_walkers.runner import run_scouts_once
-    from fum_rt.core.proprioception.events import BaseEvent
+    from vdm_rt.core.cortex.void_walkers.runner import run_scouts_once
+    from vdm_rt.core.proprioception.events import BaseEvent
     # Assume 'my_connectome', 'my_scouts_list', 'current_maps_snapshot', 'my_bus_instance' are defined
     # and 'current_tick' is an integer
     
@@ -2318,7 +2318,7 @@ This research is protected under a dual-license to foster open academic
 research while ensuring commercial applications are aligned with the project's ethical principles. Commercial use requires written permission from Justin K. Lietz.
 See LICENSE file for full terms.
 
-Module: fum_rt.core.cortex.maps.base_decay_map
+Module: vdm_rt.core.cortex.maps.base_decay_map
 Purpose: Shared bounded, exponential-decay event-driven map base for Heat/Exc/Inh reducers.
 
 Void-faithful constraints:
@@ -2460,7 +2460,7 @@ This research is protected under a dual-license to foster open academic
 research while ensuring commercial applications are aligned with the project's ethical principles. Commercial use requires written permission from Justin K. Lietz.
 See LICENSE file for full terms.
 
-Module: fum_rt.core.cortex.maps.coldmap
+Module: vdm_rt.core.cortex.maps.coldmap
 Purpose: Persistent, bounded coldness tracker keyed by node id (telemetry-only, read-only).
 Design: Pure core module; no IO/logging; compatible with existing CoreEngine usage.
 """
@@ -2638,13 +2638,13 @@ This research is protected under a dual-license to foster open academic
 research while ensuring commercial applications are aligned with the project's ethical principles. Commercial use requires written permission from Justin K. Lietz.
 See LICENSE file for full terms.
 
-Module: fum_rt.core.cortex.maps.excitationmap
+Module: vdm_rt.core.cortex.maps.excitationmap
 Purpose: Excitatory-only activity map (short half-life), event-driven only (no scans).
 """
 
 from typing import Iterable
 from .base_decay_map import BaseDecayMap
-from fum_rt.core.proprioception.events import SpikeEvent, DeltaWEvent
+from vdm_rt.core.proprioception.events import SpikeEvent, DeltaWEvent
 
 
 class ExcitationMap(BaseDecayMap):
@@ -2716,13 +2716,13 @@ This research is protected under a dual-license to foster open academic
 research while ensuring commercial applications are aligned with the project's ethical principles. Commercial use requires written permission from Justin K. Lietz.
 See LICENSE file for full terms.
 
-Module: fum_rt.core.cortex.maps.heatmap
+Module: vdm_rt.core.cortex.maps.heatmap
 Purpose: Recency-weighted activity map (short half-life), event-driven only (no scans).
 """
 
 from typing import Iterable
 from .base_decay_map import BaseDecayMap
-from fum_rt.core.proprioception.events import VTTouchEvent, SpikeEvent, DeltaWEvent
+from vdm_rt.core.proprioception.events import VTTouchEvent, SpikeEvent, DeltaWEvent
 
 
 class HeatMap(BaseDecayMap):
@@ -2799,13 +2799,13 @@ This research is protected under a dual-license to foster open academic
 research while ensuring commercial applications are aligned with the project's ethical principles. Commercial use requires written permission from Justin K. Lietz.
 See LICENSE file for full terms.
 
-Module: fum_rt.core.cortex.maps.inhibitionmap
+Module: vdm_rt.core.cortex.maps.inhibitionmap
 Purpose: Inhibitory-only activity map (short half-life), event-driven only (no scans).
 """
 
 from typing import Iterable
 from .base_decay_map import BaseDecayMap
-from fum_rt.core.proprioception.events import SpikeEvent, DeltaWEvent
+from vdm_rt.core.proprioception.events import SpikeEvent, DeltaWEvent
 
 
 class InhibitionMap(BaseDecayMap):
@@ -2877,7 +2877,7 @@ This research is protected under a dual-license to foster open academic
 research while ensuring commercial applications are aligned with the project's ethical principles. Commercial use requires written permission from Justin K. Lietz.
 See LICENSE file for full terms.
 
-Module: fum_rt.core.cortex.maps.memorymap
+Module: vdm_rt.core.cortex.maps.memorymap
 Purpose: Memory map view for scouts/UI with bounded head/dict (void-faithful, no scans).
 
 Design
@@ -2906,7 +2906,7 @@ from typing import Any, Dict, Iterable, List
 import math
 import random
 
-from fum_rt.core.proprioception.events import VTTouchEvent, EdgeOnEvent, SpikeEvent, DeltaWEvent
+from vdm_rt.core.proprioception.events import VTTouchEvent, EdgeOnEvent, SpikeEvent, DeltaWEvent
 
 
 class MemoryMap:
@@ -3213,7 +3213,7 @@ This research is protected under a dual-license to foster open academic
 research while ensuring commercial applications are aligned with the project's ethical principles. Commercial use requires written permission from Justin K. Lietz.
 See LICENSE file for full terms.
 
-Module: fum_rt.core.cortex.maps.trailmap
+Module: vdm_rt.core.cortex.maps.trailmap
 Purpose: Short half-life trail/repulsion map updated only by events (void-faithful, no scans).
 
 Design:
@@ -3229,7 +3229,7 @@ Snapshot keys:
 from typing import Iterable, Dict
 
 from .base_decay_map import BaseDecayMap
-from fum_rt.core.proprioception.events import VTTouchEvent, EdgeOnEvent, SpikeEvent, DeltaWEvent
+from vdm_rt.core.proprioception.events import VTTouchEvent, EdgeOnEvent, SpikeEvent, DeltaWEvent
 
 
 class TrailMap(BaseDecayMap):
@@ -3321,7 +3321,7 @@ See LICENSE file for full terms.
 from __future__ import annotations
 
 """
-fum_rt.core.cortex.scouts (facade)
+vdm_rt.core.cortex.scouts (facade)
 
 This module is now a thin aggregator that re-exports modular scout classes and maps.
 It preserves legacy import paths while enforcing void-faithful, read-only traversal.
@@ -3415,7 +3415,7 @@ See LICENSE file for full terms.
 from __future__ import annotations
 
 """
-fum_rt.core.cortex.void_walkers.base
+vdm_rt.core.cortex.void_walkers.base
 
 Void-faithful, read-only scout base class.
 - No global scans or dense conversions; no direct access to raw weight arrays or external graph libraries.
@@ -3445,7 +3445,7 @@ This module defines the common, safe scaffolding. Heuristics live in subclasses.
 from typing import Any, Iterable, List, Optional, Sequence, Set, Dict
 import random
 
-from fum_rt.core.proprioception.events import (
+from vdm_rt.core.proprioception.events import (
     BaseEvent,
     VTTouchEvent,
     EdgeOnEvent,
@@ -3669,7 +3669,7 @@ from __future__ import annotations
 
 """
 Shim module for naming convention.
-Use void-prefixed class from [void_frontier_scout.py](fum_rt/core/cortex/void_walkers/void_frontier_scout.py).
+Use void-prefixed class from [void_frontier_scout.py](vdm_rt/core/cortex/void_walkers/void_frontier_scout.py).
 """
 
 from .void_frontier_scout import FrontierScout
@@ -3690,7 +3690,7 @@ See LICENSE file for full terms.
 from __future__ import annotations
 
 """
-fum_rt.core.cortex.void_walkers.runner
+vdm_rt.core.cortex.void_walkers.runner
 
 Stateless, per-tick scout executor (void-faithful, no schedulers).
 - Runs a bounded list of read-only scouts exactly once per tick.
@@ -3699,7 +3699,7 @@ Stateless, per-tick scout executor (void-faithful, no schedulers).
 - Emits only foldable events (vt_touch, edge_on, optional spike/delta_w); no writes.
 
 Usage (in runtime loop per tick):
-    from fum_rt.core.cortex.void_walkers.runner import run_scouts_once as _run_scouts_once
+    from vdm_rt.core.cortex.void_walkers.runner import run_scouts_once as _run_scouts_once
     evs = _run_scouts_once(connectome, scouts, maps, budget, bus, max_us)
 
 Notes:
@@ -3711,7 +3711,7 @@ from typing import Any, Dict, Iterable, List, Optional, Sequence
 from time import perf_counter_ns
 import os as _os
 
-from fum_rt.core.proprioception.events import BaseEvent
+from vdm_rt.core.proprioception.events import BaseEvent
 
 
 def _truthy(x: Any) -> bool:
@@ -3841,7 +3841,7 @@ See LICENSE file for full terms.
 from __future__ import annotations
 
 """
-fum_rt.core.cortex.void_walkers.void_cold_scout
+vdm_rt.core.cortex.void_walkers.void_cold_scout
 
 ColdScout (read-only, void-faithful):
 - Prefers neighbors whose node ids appear in ColdMap snapshot head ("cold_head").
@@ -3853,8 +3853,8 @@ Compatibility:
 """
 
 from typing import Any, Dict, List, Optional, Sequence, Set
-from fum_rt.core.cortex.void_walkers.base import BaseScout
-from fum_rt.core.proprioception.events import BaseEvent
+from vdm_rt.core.cortex.void_walkers.base import BaseScout
+from vdm_rt.core.proprioception.events import BaseEvent
 
 
 def _extract_head_nodes(maps: Optional[Dict[str, Any]], key: str, cap: int = 512) -> Set[int]:
@@ -3909,7 +3909,7 @@ See LICENSE file for full terms.
 from __future__ import annotations
 
 """
-fum_rt.core.cortex.void_walkers.void_cycle_scout
+vdm_rt.core.cortex.void_walkers.void_cycle_scout
 
 CycleHunterScout (read-only, void-faithful):
 - Seeks short cycles (3-6 hops) using a TTL-limited walk with a tiny path window.
@@ -3931,8 +3931,8 @@ from typing import Any, Dict, Optional, Sequence, Set, List, Deque
 from collections import deque
 import random
 
-from fum_rt.core.cortex.void_walkers.base import BaseScout
-from fum_rt.core.proprioception.events import BaseEvent, VTTouchEvent, EdgeOnEvent
+from vdm_rt.core.cortex.void_walkers.base import BaseScout
+from vdm_rt.core.proprioception.events import BaseEvent, VTTouchEvent, EdgeOnEvent
 
 
 class CycleHunterScout(BaseScout):
@@ -4082,7 +4082,7 @@ See LICENSE file for full terms.
 from __future__ import annotations
 
 """
-fum_rt.core.cortex.void_walkers.void_excitation_scout
+vdm_rt.core.cortex.void_walkers.void_excitation_scout
 
 ExcitationScout (read-only, void-faithful):
 - Duty: Map excitatory corridors, feeding ExcitationMap strictly via events.
@@ -4098,8 +4098,8 @@ Physics alignment (docs in /derivation):
 
 from typing import Any, Dict, List, Optional, Set
 
-from fum_rt.core.cortex.void_walkers.base import BaseScout
-from fum_rt.core.proprioception.events import BaseEvent, SpikeEvent
+from vdm_rt.core.cortex.void_walkers.base import BaseScout
+from vdm_rt.core.proprioception.events import BaseEvent, SpikeEvent
 
 
 def _head_lookup(maps: Optional[Dict[str, Any]], key: str, cap: int = 512) -> Dict[int, float]:
@@ -4208,7 +4208,7 @@ See LICENSE file for full terms.
 from __future__ import annotations
 
 """
-fum_rt.core.cortex.void_walkers.void_frontier_scout
+vdm_rt.core.cortex.void_walkers.void_frontier_scout
 
 FrontierScout (read-only, void-faithful):
 - Skims component boundaries and likely bridge frontiers to refresh cohesion/cycle estimators.
@@ -4232,8 +4232,8 @@ Guardrails:
 from typing import Any, Dict, Optional, Set, Sequence, List
 import math
 
-from fum_rt.core.cortex.void_walkers.base import BaseScout
-from fum_rt.core.proprioception.events import BaseEvent, VTTouchEvent, EdgeOnEvent
+from vdm_rt.core.cortex.void_walkers.base import BaseScout
+from vdm_rt.core.proprioception.events import BaseEvent, VTTouchEvent, EdgeOnEvent
 
 
 def _head_to_dict(maps: Optional[Dict[str, Any]], key: str, cap: int = 1024) -> Dict[int, float]:
@@ -4513,7 +4513,7 @@ See LICENSE file for full terms.
 from __future__ import annotations
 
 """
-fum_rt.core.cortex.void_walkers.void_heat_scout
+vdm_rt.core.cortex.void_walkers.void_heat_scout
 
 HeatScout (read-only, void-faithful):
 - Local-only neighbor selection using a softmax over map signals.
@@ -4541,8 +4541,8 @@ from typing import Any, Dict, Optional, Set, Sequence, List
 import math
 import random
 
-from fum_rt.core.cortex.void_walkers.base import BaseScout
-from fum_rt.core.proprioception.events import BaseEvent, VTTouchEvent, EdgeOnEvent
+from vdm_rt.core.cortex.void_walkers.base import BaseScout
+from vdm_rt.core.proprioception.events import BaseEvent, VTTouchEvent, EdgeOnEvent
 
 
 def _head_to_set(maps: Optional[Dict[str, Any]], key: str, cap: int = 512) -> Set[int]:
@@ -4793,7 +4793,7 @@ See LICENSE file for full terms.
 from __future__ import annotations
 
 """
-fum_rt.core.cortex.void_walkers.void_inhibition_scout
+vdm_rt.core.cortex.void_walkers.void_inhibition_scout
 
 InhibitionScout (read-only, void-faithful):
 - Duty: Map inhibitory ridges, feeding InhibitionMap strictly via events.
@@ -4809,8 +4809,8 @@ Physics alignment (docs in /derivation):
 
 from typing import Any, Dict, List, Optional, Set
 
-from fum_rt.core.cortex.void_walkers.base import BaseScout
-from fum_rt.core.proprioception.events import BaseEvent, SpikeEvent
+from vdm_rt.core.cortex.void_walkers.base import BaseScout
+from vdm_rt.core.proprioception.events import BaseEvent, SpikeEvent
 
 
 def _head_lookup(maps: Optional[Dict[str, Any]], key: str, cap: int = 512) -> Dict[int, float]:
@@ -4919,7 +4919,7 @@ See LICENSE file for full terms.
 from __future__ import annotations
 
 """
-fum_rt.core.cortex.void_walkers.void_memory_ray_scout
+vdm_rt.core.cortex.void_walkers.void_memory_ray_scout
 
 MemoryRayScout (read-only, void-faithful):
 - Implements refractive-index steering using a slow memory field m.
@@ -4945,8 +4945,8 @@ from typing import Any, Dict, Optional, Set, Sequence, List
 import math
 import random
 
-from fum_rt.core.cortex.void_walkers.base import BaseScout
-from fum_rt.core.proprioception.events import BaseEvent, VTTouchEvent, EdgeOnEvent
+from vdm_rt.core.cortex.void_walkers.base import BaseScout
+from vdm_rt.core.proprioception.events import BaseEvent, VTTouchEvent, EdgeOnEvent
 
 
 def _head_to_set(maps: Optional[Dict[str, Any]], keys: Sequence[str], cap: int = 512) -> Set[int]:
@@ -5182,7 +5182,7 @@ See LICENSE file for full terms.
 from __future__ import annotations
 
 """
-fum_rt.core.cortex.void_walkers.void_ray_scout
+vdm_rt.core.cortex.void_walkers.void_ray_scout
 
 VoidRayScout (read-only, void-faithful):
 - Physics-aware routing that prefers neighbors with favorable local change in a fast field φ.
@@ -5206,8 +5206,8 @@ References:
 from typing import Any, Dict, Optional, Set, Sequence, List
 import math
 
-from fum_rt.core.cortex.void_walkers.base import BaseScout
-from fum_rt.core.proprioception.events import BaseEvent, VTTouchEvent, EdgeOnEvent
+from vdm_rt.core.cortex.void_walkers.base import BaseScout
+from vdm_rt.core.proprioception.events import BaseEvent, VTTouchEvent, EdgeOnEvent
 
 
 def _head_to_set(maps: Optional[Dict[str, Any]], key: str, cap: int = 512) -> Set[int]:
@@ -5432,7 +5432,7 @@ See LICENSE file for full terms.
 from __future__ import annotations
 
 """
-fum_rt.core.cortex.void_walkers.void_sentinel_scout
+vdm_rt.core.cortex.void_walkers.void_sentinel_scout
 
 SentinelScout (read-only, void-faithful):
 - Blue-noise reseeder / de-trample walker.
@@ -5449,8 +5449,8 @@ Optional inputs (maps):
 """
 
 from typing import Any, Dict, Optional, Sequence, Set, List
-from fum_rt.core.cortex.void_walkers.base import BaseScout
-from fum_rt.core.proprioception.events import BaseEvent, VTTouchEvent, EdgeOnEvent
+from vdm_rt.core.cortex.void_walkers.base import BaseScout
+from vdm_rt.core.proprioception.events import BaseEvent, VTTouchEvent, EdgeOnEvent
 
 
 def _head_to_set(maps: Optional[Dict[str, Any]], keys: Sequence[str], cap: int = 512) -> Set[int]:
@@ -5662,7 +5662,7 @@ from dataclasses import dataclass, field
 import math
 from typing import Iterable, Tuple
 
-from fum_rt.core.proprioception.events import BaseEvent
+from vdm_rt.core.proprioception.events import BaseEvent
 
 
 class BudgetExceededError(RuntimeError):
@@ -6338,7 +6338,7 @@ def _ensure_adjacency(connectome) -> np.ndarray:
     """
     Extract a dense binary adjacency matrix A (int8) from the runtime connectome.
 
-    Expected connectome interface (from fum_rt.core.*):
+    Expected connectome interface (from vdm_rt.core.*):
       - connectome.A : np.ndarray (N x N), int8, 0/1
       - connectome.N : int, number of nodes
 
@@ -6634,25 +6634,25 @@ Phase B goal:
 - These methods either delegate to existing functions or act as explicit stubs.
 
 Separation policy:
-- This module must not import from fum_rt.io.* or fum_rt.runtime.* to keep core isolated.
-- Only depend on fum_rt.core.* and the Nexus-like object passed at construction.
+- This module must not import from vdm_rt.io.* or vdm_rt.runtime.* to keep core isolated.
+- Only depend on vdm_rt.core.* and the Nexus-like object passed at construction.
 """
 
 from typing import Any, Dict, Optional, Tuple
 
-from fum_rt.core.metrics import compute_metrics
-from fum_rt.core.memory import (
+from vdm_rt.core.metrics import compute_metrics
+from vdm_rt.core.memory import (
     load_engram as _load_engram_state,
     save_checkpoint as _save_checkpoint,
 )
-from fum_rt.core.proprioception.events import EventDrivenMetrics as _EvtMetrics
-from fum_rt.core.cortex.scouts import VoidColdScoutWalker as _VoidScout, ColdMap as _ColdMap
-from fum_rt.core.cortex.maps.heatmap import HeatMap as _HeatMap
-from fum_rt.core.cortex.maps.excitationmap import ExcitationMap as _ExcMap
-from fum_rt.core.cortex.maps.inhibitionmap import InhibitionMap as _InhMap
-from fum_rt.core.cortex.maps.trailmap import TrailMap as _TrailMap
-from fum_rt.core.cortex.maps.memorymap import MemoryMap as _MemMap
-from fum_rt.core.signals import (
+from vdm_rt.core.proprioception.events import EventDrivenMetrics as _EvtMetrics
+from vdm_rt.core.cortex.scouts import VoidColdScoutWalker as _VoidScout, ColdMap as _ColdMap
+from vdm_rt.core.cortex.maps.heatmap import HeatMap as _HeatMap
+from vdm_rt.core.cortex.maps.excitationmap import ExcitationMap as _ExcMap
+from vdm_rt.core.cortex.maps.inhibitionmap import InhibitionMap as _InhMap
+from vdm_rt.core.cortex.maps.trailmap import TrailMap as _TrailMap
+from vdm_rt.core.cortex.maps.memorymap import MemoryMap as _MemMap
+from vdm_rt.core.signals import (
     compute_active_edge_density as _sig_density,
     compute_td_signal as _sig_td,
     compute_firing_var as _sig_fvar,
@@ -7572,7 +7572,7 @@ import numpy as np
 from scipy.sparse import csc_matrix
 
 # --- FUM Modules (optional external helpers) ---
-# Keep copyright and your original API intact; add robust fallbacks so fum_rt
+# Keep copyright and your original API intact; add robust fallbacks so vdm_rt
 # does not depend on external paths being on PYTHONPATH.
 try:
     from fum_validated_math import (
@@ -7967,7 +7967,7 @@ def perform_structural_homeostasis(connectome,
     Perform cohesion healing (bridging) and light pruning on the runtime connectome.
 
     Args:
-        connectome: fum_rt.core.connectome.Connectome instance (current runtime).
+        connectome: vdm_rt.core.connectome.Connectome instance (current runtime).
         labels: np.ndarray of component labels per node for the ACTIVE subgraph.
         d_alpha: np.ndarray Δalpha (delta_re_vgsp) for current tick.
         d_omega: np.ndarray Δomega (delta_gdsp) for current tick.
@@ -8167,7 +8167,7 @@ class ADC:
 # -----------------------------------
 
 @dataclass
-class SIE: # TODO: This isnt a canonical SIE, examine this file and determine if this is the canonical: fum_rt/core/fum_sie.py
+class SIE: # TODO: This isnt a canonical SIE, examine this file and determine if this is the canonical: vdm_rt/core/fum_sie.py
     """
     Self‑Improvement Engine (Rule 3)
     total_reward = w_td * TD_error_norm + w_nov * novelty_norm - w_hab * habituation_norm + w_hsi * hsi_norm
@@ -8300,7 +8300,7 @@ See LICENSE file for full terms.
 from __future__ import annotations
 
 """
-fum_rt.core.guards.invariants
+vdm_rt.core.guards.invariants
 
 Physics ↔ code guard helpers (CI/runtime-safe, no IO, no scans).
 
@@ -8612,14 +8612,14 @@ See LICENSE file for full terms.
 from __future__ import annotations
 
 """
-fum_rt.core.memory package
+vdm_rt.core.memory package
 
 Exports:
 - MemoryField: event-driven memory field owner (from .field)
 - load_engram, save_checkpoint: engram IO (from .engram_io)
 
 This resolves the prior module/package name conflict by making
-fum_rt.core.memory a proper package namespace with explicit re-exports.
+vdm_rt.core.memory a proper package namespace with explicit re-exports.
 """
 
 from .field import MemoryField
@@ -9091,7 +9091,7 @@ This research is protected under a dual-license to foster open academic
 research while ensuring commercial applications are aligned with the project's ethical principles. Commercial use requires written permission from Justin K. Lietz.
 See LICENSE file for full terms.
 
-Module: fum_rt.core.memory.field
+Module: vdm_rt.core.memory.field
 Purpose: Event-driven memory field with write-decay-spread dynamics (void-faithful).
 
 Design constraints
@@ -9131,7 +9131,7 @@ from typing import Dict, Iterable, List, Tuple
 import math
 import random
 
-from fum_rt.core.proprioception.events import VTTouchEvent, EdgeOnEvent, SpikeEvent, DeltaWEvent
+from vdm_rt.core.proprioception.events import VTTouchEvent, EdgeOnEvent, SpikeEvent, DeltaWEvent
 
 
 class MemoryField:
@@ -9592,7 +9592,7 @@ This research is protected under a dual-license to foster open academic
 research while ensuring commercial applications are aligned with the project's ethical principles. Commercial use requires written permission from Justin K. Lietz.
 See LICENSE file for full terms.
 
-Module: fum_rt.core.neuroplasticity.gdsp
+Module: vdm_rt.core.neuroplasticity.gdsp
 Purpose: Organism-native GDSP structural actuator with budgeted, territory-scoped, sparse-masked operations.
 
 Design constraints
@@ -10127,7 +10127,7 @@ This research is protected under a dual-license to foster open academic
 research while ensuring commercial applications are aligned with the project's ethical principles. Commercial use requires written permission from Justin K. Lietz.
 See LICENSE file for full terms.
 
-Module: fum_rt.core.neuroplasticity.revgsp
+Module: vdm_rt.core.neuroplasticity.revgsp
 Purpose: Resonance‑Enhanced Valence‑Gated Synaptic Plasticity (REV‑GSP), organism‑native.
 
 Design constraints
@@ -10564,7 +10564,7 @@ See LICENSE file for full terms.
 Event schema and incremental reducers for event-driven metrics (Phase C scaffolding).
 
 Design:
-- Pure core module. No imports from fum_rt.io.* or fum_rt.runtime.*.
+- Pure core module. No imports from vdm_rt.io.* or vdm_rt.runtime.*.
 - Does not perform any I/O or logging. Export numbers only.
 - Safe-by-default: Can be instantiated but not wired unless feature flags enable event-driven path.
 - O(1) per-event update; no scans over W in the hot path.
@@ -10595,7 +10595,7 @@ import math
 import random
 
 # Allowed core import
-from fum_rt.core.metrics import StreamingZEMA  # existing Z detector in core
+from vdm_rt.core.metrics import StreamingZEMA  # existing Z detector in core
 
 
 # ----------------------------- Event Types -----------------------------------
@@ -11342,7 +11342,7 @@ Intent:
 - Safe defaults return 0.0/0 for unavailable signals to preserve behavior.
 
 Rules:
-- May import only fum_rt.core.* and numeric libs. Never import fum_rt.io.* or fum_rt.runtime.*.
+- May import only vdm_rt.core.* and numeric libs. Never import vdm_rt.io.* or vdm_rt.runtime.*.
 - These helpers do not mutate external state; they read and derive scalars/dicts.
 
 Migration path:
@@ -11351,7 +11351,7 @@ Migration path:
 """
 
 from typing import Any, Dict, Tuple
-from fum_rt.core.metrics import compute_metrics
+from vdm_rt.core.metrics import compute_metrics
 
 
 def _safe_getattr(obj: Any, name: str, default: float = 0.0) -> float:
@@ -12364,7 +12364,7 @@ class SparseConnectome:
     </file>
     <file>
       <path>substrate/growth_arbiter.py</path>
-      <content><![CDATA[# fum_rt/core/substrate/growth_arbiter.py
+      <content><![CDATA[# vdm_rt/core/substrate/growth_arbiter.py
 """
 Copyright © 2025 Justin K. Lietz, Neuroca, Inc. All Rights Reserved.
 
@@ -12475,7 +12475,7 @@ class GrowthArbiter:
     </file>
     <file>
       <path>substrate/neurogenesis.py</path>
-      <content><![CDATA[# fum_rt/core/substrate/neurogenesis.py
+      <content><![CDATA[# vdm_rt/core/substrate/neurogenesis.py
 """
 Copyright © 2025 Justin K. Lietz, Neuroca, Inc. All Rights Reserved.
 
@@ -12590,7 +12590,7 @@ class Neurogenesis:
     </file>
     <file>
       <path>substrate/structural_homeostasis.py</path>
-      <content><![CDATA[# fum_rt/core/substrate/structural_homeostasis.py
+      <content><![CDATA[# vdm_rt/core/substrate/structural_homeostasis.py
 """
 Copyright © 2025 Justin K. Lietz, Neuroca, Inc. All Rights Reserved.
 
@@ -12685,7 +12685,7 @@ def perform_structural_homeostasis(W: csc_matrix, ccc_metrics: dict) -> csc_matr
     </file>
     <file>
       <path>substrate/substrate.py</path>
-      <content><![CDATA[# fum_rt/core/substrate/substrate.py
+      <content><![CDATA[# vdm_rt/core/substrate/substrate.py
 """
 Copyright © 2025 Justin K. Lietz, Neuroca, Inc. All Rights Reserved.
 
@@ -12952,7 +12952,7 @@ os.environ["FORCE_DENSE"] = "1"
 import numpy as np
 
 # Import the real Connectome implementation (dense/validation mode)
-from fum_rt.core.connectome import Connectome
+from vdm_rt.core.connectome import Connectome
 
 
 def Q_invariant(r: float, u: float, W: np.ndarray, t: float) -> np.ndarray:

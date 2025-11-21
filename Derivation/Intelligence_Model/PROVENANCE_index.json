@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2025-11-19T06:12:22.498545Z",
+  "generated_utc": "2025-11-19T08:06:41.463526Z",
   "items": [
     {
       "path": "Derivation/Intelligence_Model/PROPOSAL_Physics_Native_Intelligence_v1.md",
@@ -18,7 +18,7 @@
     },
     {
       "path": "Derivation/Intelligence_Model/T4_PROPOSAL_VDM_Physics_to_AI_Model_v1.md",
-      "sha256": "2f827a6150867647967cde688e7a529eb11b36c1ea5f55b9aba19b7eef556bda",
+      "sha256": "c4a4e000bfc858e84b91f7bd6eb084bea43dd9f7c49a826bc5212a0a537bd2ba",
       "size": 30443
     }
   ],

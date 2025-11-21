@@ -14,7 +14,7 @@
 This document provides a complete, rigorous derivation of the A8 scaling theorem for hierarchical tachyonic interfaces in the VDM framework. The derivation establishes:
 
 1. **Γ-convergence** of phase-field energies to sharp interface perimeter functionals
-2. **Logarithmic scaling** $N(L) \sim \Theta(\log L)$ for interface count vs. domain size
+2. **Logarithmic scaling of hierarchical depth** $K(L) \sim \Theta(\log L)$, where $K(L)$ is the number of active interface levels (hierarchy depth), not a power-law count of objects
 3. **Boundary energy concentration** $E_{\text{exc}} \sim L^{d-1}$ for $d$-dimensional systems
 4. **Perimeter reduction theorem** applied to VDM energy functionals
 5. **Hierarchical necessity** proof from energy minimization principles

@@ -30,46 +30,46 @@ from typing import Any, Dict, Set, Tuple, Optional
 import time
 import os
 
-from fum_rt.runtime.stepper import compute_step_and_metrics as _compute_step_and_metrics
-from fum_rt.runtime.telemetry import tick_fold as _tick_fold
-from fum_rt.runtime.events_adapter import (
+from vdm_rt.runtime.stepper import compute_step_and_metrics as _compute_step_and_metrics
+from vdm_rt.runtime.telemetry import tick_fold as _tick_fold
+from vdm_rt.runtime.events_adapter import (
     observations_to_events as _obs_to_events,
     adc_metrics_to_event as _adc_event,
 )
-from fum_rt.core.engine import CoreEngine as _CoreEngine
-from fum_rt.core.proprioception.events import EventDrivenMetrics as _EvtMetrics, BiasHintEvent as _BiasHintEvent
-from fum_rt.core.cortex.scouts import VoidColdScoutWalker as _VoidScout
-from fum_rt.core.signals import apply_b1_detector as _apply_b1d
-from fum_rt.runtime.helpers.ingest import process_messages as _process_messages
-from fum_rt.runtime.helpers.smoke import maybe_smoke_tests as _maybe_smoke_tests
-from fum_rt.runtime.helpers.emission import emit_status_and_macro as _emit_status_and_macro
-from fum_rt.runtime.helpers.viz import maybe_visualize as _maybe_visualize
-from fum_rt.runtime.helpers.checkpointing import save_tick_checkpoint as _save_tick_checkpoint
-from fum_rt.runtime.helpers import maybe_start_maps_ws as _maybe_start_maps_ws
-from fum_rt.runtime.helpers.status_http import (
+from vdm_rt.core.engine import CoreEngine as _CoreEngine
+from vdm_rt.core.proprioception.events import EventDrivenMetrics as _EvtMetrics, BiasHintEvent as _BiasHintEvent
+from vdm_rt.core.cortex.scouts import VoidColdScoutWalker as _VoidScout
+from vdm_rt.core.signals import apply_b1_detector as _apply_b1d
+from vdm_rt.runtime.helpers.ingest import process_messages as _process_messages
+from vdm_rt.runtime.helpers.smoke import maybe_smoke_tests as _maybe_smoke_tests
+from vdm_rt.runtime.helpers.emission import emit_status_and_macro as _emit_status_and_macro
+from vdm_rt.runtime.helpers.viz import maybe_visualize as _maybe_visualize
+from vdm_rt.runtime.helpers.checkpointing import save_tick_checkpoint as _save_tick_checkpoint
+from vdm_rt.runtime.helpers import maybe_start_maps_ws as _maybe_start_maps_ws
+from vdm_rt.runtime.helpers.status_http import (
     maybe_start_status_http as _maybe_start_status_http,
 )
-from fum_rt.runtime.helpers.redis_out import (
+from vdm_rt.runtime.helpers.redis_out import (
     maybe_publish_status_redis as _maybe_publish_status_redis,
     maybe_publish_maps_redis as _maybe_publish_maps_redis,
 )
 
 # Void-faithful scout runner (stateless, per-tick; no schedulers)
-from fum_rt.core.cortex.void_walkers.runner import run_scouts_once as _run_scouts_once
-from fum_rt.core.cortex.void_walkers.void_heat_scout import HeatScout
-from fum_rt.core.cortex.void_walkers.void_ray_scout import VoidRayScout
-from fum_rt.core.cortex.void_walkers.void_memory_ray_scout import MemoryRayScout
-from fum_rt.core.cortex.void_walkers.void_frontier_scout import FrontierScout
-from fum_rt.core.cortex.void_walkers.void_cycle_scout import CycleHunterScout
-from fum_rt.core.cortex.void_walkers.void_sentinel_scout import SentinelScout
+from vdm_rt.core.cortex.void_walkers.runner import run_scouts_once as _run_scouts_once
+from vdm_rt.core.cortex.void_walkers.void_heat_scout import HeatScout
+from vdm_rt.core.cortex.void_walkers.void_ray_scout import VoidRayScout
+from vdm_rt.core.cortex.void_walkers.void_memory_ray_scout import MemoryRayScout
+from vdm_rt.core.cortex.void_walkers.void_frontier_scout import FrontierScout
+from vdm_rt.core.cortex.void_walkers.void_cycle_scout import CycleHunterScout
+from vdm_rt.core.cortex.void_walkers.void_sentinel_scout import SentinelScout
 # Also expose the remaining scouts for full coverage (9 walkers)
-from fum_rt.core.cortex.void_walkers.void_cold_scout import ColdScout
-from fum_rt.core.cortex.void_walkers.void_excitation_scout import ExcitationScout
-from fum_rt.core.cortex.void_walkers.void_inhibition_scout import InhibitionScout
+from vdm_rt.core.cortex.void_walkers.void_cold_scout import ColdScout
+from vdm_rt.core.cortex.void_walkers.void_excitation_scout import ExcitationScout
+from vdm_rt.core.cortex.void_walkers.void_inhibition_scout import InhibitionScout
 # Memory/trail steering fields (owner + adapter view)
-from fum_rt.core.cortex.maps.memorymap import MemoryMap
-from fum_rt.core.cortex.maps.trailmap import TrailMap
-from fum_rt.core.memory import MemoryField
+from vdm_rt.core.cortex.maps.memorymap import MemoryMap
+from vdm_rt.core.cortex.maps.trailmap import TrailMap
+from vdm_rt.core.memory import MemoryField
 
 # ---------- Optional Learning/Actuator Adapters (default-off, safe) ----------
 def _truthy(x) -> bool:
@@ -99,7 +99,7 @@ def _maybe_run_revgsp(nx: Any, metrics: Dict[str, Any], step: int) -> None:
 
     # Use current in-repo implementation only (void-faithful, budgeted)
     try:
-        from fum_rt.core.neuroplasticity.revgsp import RevGSP as _RevGSP  # type: ignore
+        from vdm_rt.core.neuroplasticity.revgsp import RevGSP as _RevGSP  # type: ignore
         _adapt = _RevGSP().adapt_connectome  # method-compatible wrapper
     except Exception:
         return
@@ -189,7 +189,7 @@ def _maybe_run_gdsp(nx: Any, metrics: Dict[str, Any], step: int) -> None:
 
     # Use current in-repo implementation only (void-faithful, budgeted/territory-scoped)
     try:
-        from fum_rt.core.neuroplasticity.gdsp import GDSPActuator as _GDSP  # type: ignore
+        from vdm_rt.core.neuroplasticity.gdsp import GDSPActuator as _GDSP  # type: ignore
         _gdsp = _GDSP()
         _run_gdsp = _gdsp.run
     except Exception:
@@ -431,7 +431,7 @@ def run_loop(nx: Any, t0: float, step: int, duration_s: Optional[int] = None) ->
                 terr = getattr(nx, "_territories", None)
                 if terr is None:
                     try:
-                        from fum_rt.core.proprioception.territory import TerritoryUF as _TerrUF  # lazy import
+                        from vdm_rt.core.proprioception.territory import TerritoryUF as _TerrUF  # lazy import
                         head_k = 512
                         try:
                             import os as _os
@@ -840,7 +840,7 @@ def run_loop(nx: Any, t0: float, step: int, duration_s: Optional[int] = None) ->
             try:
                 _maybe_auto_speak = None
                 # lazy import to avoid cycle (modularized helpers)
-                from fum_rt.runtime.helpers import maybe_auto_speak as _maybe_auto_speak
+                from vdm_rt.runtime.helpers import maybe_auto_speak as _maybe_auto_speak
                 if _maybe_auto_speak is not None:
                     _maybe_auto_speak(nx, m, int(step), tick_tokens, void_topic_symbols)
             except Exception:

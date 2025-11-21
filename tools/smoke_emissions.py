@@ -97,7 +97,7 @@ def verify_ticks(run_dir: str) -> tuple[bool, str]:
     ticks = 0
 
     def _get_msg(rec: Dict[str, Any]) -> str:
-        # Accept common JSON logger keys. Our runtime uses 'msg' in [get_logger](fum_rt/utils/logging_setup.py:22).
+        # Accept common JSON logger keys. Our runtime uses 'msg' in [get_logger](vdm_rt/utils/logging_setup.py:22).
         return str(
             rec.get("message")
             or rec.get("event")

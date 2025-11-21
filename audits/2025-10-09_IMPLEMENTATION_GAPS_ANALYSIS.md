@@ -4,7 +4,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 ## Overview
 
-This document systematically analyzes the gaps between the theoretical physics foundations in the `derivation` directory and the current code implementation in `fum_rt/core`. The analysis reveals critical missing components that prevent the realization of the full Void Dynamics Model.
+This document systematically analyzes the gaps between the theoretical physics foundations in the `derivation` directory and the current code implementation in `vdm_rt/core`. The analysis reveals critical missing components that prevent the realization of the full Void Dynamics Model.
 
 ## Major Implementation Gaps
 
@@ -16,7 +16,7 @@ This document systematically analyzes the gaps between the theoretical physics f
 - Dimensionless groups: $\Pi_1 = \frac{rL^2}{D}$, $\Pi_2 = \frac{u\phi_0 L^2}{D}$
 - Turing pattern formation capabilities
 
-**Code Gap**: No implementation in [`substrate.py`](fum_rt/core/substrate/substrate.py:1)
+**Code Gap**: No implementation in [`substrate.py`](vdm_rt/core/substrate/substrate.py:1)
 
 - Pure neural dynamics (ELIF neurons) without physical field coupling
 - No pattern formation or emergent structures
@@ -30,7 +30,7 @@ This document systematically analyzes the gaps between the theoretical physics f
 - Refractive index: $n(m) = n_0 + \alpha m$
 - Information steering via graded index
 
-**Code Gap**: Isolated implementation in [`memory_steering.py`](fum_rt/physics/memory_steering/memory_steering.py:97)
+**Code Gap**: Isolated implementation in [`memory_steering.py`](vdm_rt/physics/memory_steering/memory_steering.py:97)
 
 - Memory field exists but doesn't couple to neural dynamics
 - No refractive index modulation of signal propagation
@@ -72,7 +72,7 @@ This document systematically analyzes the gaps between the theoretical physics f
 - Symplectic structure preservation
 - Energy-momentum conservation
 
-**Code Gap**: Non-conservative integration in [`substrate.py`](fum_rt/core/substrate/substrate.py:108)
+**Code Gap**: Non-conservative integration in [`substrate.py`](vdm_rt/core/substrate/substrate.py:108)
 
 - Explicit Euler integration without conservation
 - No energy or momentum preservation
@@ -86,7 +86,7 @@ This document systematically analyzes the gaps between the theoretical physics f
 - Scale invariance principles
 - Universal scaling laws
 
-**Code Gap**: Hard-coded parameters in [`void_dynamics_adapter.py`](fum_rt/core/void_dynamics_adapter.py:20)
+**Code Gap**: Hard-coded parameters in [`void_dynamics_adapter.py`](vdm_rt/core/void_dynamics_adapter.py:20)
 
 - ALPHA=0.25, BETA=0.1 instead of $\Pi$ groups
 - No scale invariance maintenance

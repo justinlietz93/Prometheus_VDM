@@ -28,8 +28,8 @@ sys.path.append(str(Path(__file__).resolve().parents[3]))
 import importlib.util
 from pathlib import Path as _P
 
-# load Void_Equations module directly to avoid fum_rt package init side-effects
-fve_path = _P(__file__).resolve().parents[3] / 'fum_rt' / 'fum_advanced_math' / 'void_dynamics' / 'Void_Equations.py'
+# load Void_Equations module directly to avoid vdm_rt package init side-effects
+fve_path = _P(__file__).resolve().parents[3] / 'vdm_rt' / 'fum_advanced_math' / 'void_dynamics' / 'Void_Equations.py'
 spec = importlib.util.spec_from_file_location('Void_Equations', str(fve_path))
 FVE = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(FVE)
@@ -83,14 +83,14 @@ def main():
         # Monkeypatch the universal_void_dynamics to remove noise and time-phase
         import importlib
         try:
-            vda = importlib.import_module('fum_rt.core.void_dynamics_adapter')
+            vda = importlib.import_module('vdm_rt.core.void_dynamics_adapter')
         except Exception:
             vda = None
 
         def universal_deterministic(W, t, domain_modulation=1.0, sie_drive=None, use_time_dynamics=False):
             # deterministic skeleton: re = ALPHA * W * (1 - W); gdsp = -BETA * W
             try:
-                from fum_rt.fum_advanced_math.void_dynamics import Void_Equations as FVE
+                from vdm_rt.fum_advanced_math.void_dynamics import Void_Equations as FVE
                 ALPHA = getattr(FVE, 'ALPHA', 0.25)
                 BETA = getattr(FVE, 'BETA', 0.1)
             except Exception:

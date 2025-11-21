@@ -65,13 +65,13 @@ except Exception:
                 VOID_SOURCE = "file:Derivation/code/Void_Debt_Modulation.py"
     except Exception:
         pass
-    # 3) fum_rt adapter
+    # 3) vdm_rt adapter
     if universal_void_dynamics is None:
         try:
-            from fum_rt.core.void_dynamics_adapter import universal_void_dynamics as _u
-            from fum_rt.fum_advanced_math.void_dynamics.Void_Debt_Modulation import VoidDebtModulation as _V
+            from vdm_rt.core.void_dynamics_adapter import universal_void_dynamics as _u
+            from vdm_rt.fum_advanced_math.void_dynamics.Void_Debt_Modulation import VoidDebtModulation as _V
             universal_void_dynamics, VoidDebtModulation = _u, _V
-            VOID_SOURCE = "fum_rt"
+            VOID_SOURCE = "vdm_rt"
         except Exception:
             # 4) demo fallback
             try:
@@ -168,7 +168,7 @@ class LBM2D:
 
         # Fail-fast if user requested void but module not available
         if getattr(self.cfg, "void_enabled", False) and universal_void_dynamics is None:
-            raise RuntimeError("void_enabled=True but universal_void_dynamics not available; ensure Prometheus_VDM/Derivation/code/Void_Equations.py is present or install fum_rt/FUM_Demo_original.")
+            raise RuntimeError("void_enabled=True but universal_void_dynamics not available; ensure Prometheus_VDM/Derivation/code/Void_Equations.py is present or install vdm_rt/FUM_Demo_original.")
 
         self._set_equilibrium()
 

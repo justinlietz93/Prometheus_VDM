@@ -530,7 +530,7 @@ Last updated: 2025-10-13 (commit 09f871a)
 >
 > Type: RUNTIME • Binding: PSEUDOCODE • State: writes state • Dependencies: none • Notes: agency layer optional; consumes signals only
 
-**Context:** fum_rt/runtime/loop/main.py:283-679 • Commit: 7498744 • Module: runtime/loop
+**Context:** vdm_rt/runtime/loop/main.py:283-679 • Commit: 7498744 • Module: runtime/loop
 
 **Role:** Execute the main simulation tick loop on the Nexus-like object, orchestrating all subsystems per tick.
 
@@ -559,26 +559,26 @@ INIT:
     CycleHunterScout, SentinelScout, ColdScout, ExcitationScout, InhibitionScout)
 
 LOOP (per tick):
-  1. Check duration_s termination condition if provided       # fum_rt/runtime/loop/main.py:539
-  2. Poll control plane (external phase.json updates)         # fum_rt/runtime/loop/main.py:550
+  1. Check duration_s termination condition if provided       # vdm_rt/runtime/loop/main.py:539
+  2. Poll control plane (external phase.json updates)         # vdm_rt/runtime/loop/main.py:550
   3. Compute SIE drive and step connectome                    # via compute_step_and_metrics
-     # uses [VDM-E-xxx] for density, TD signal, firing_var   # fum_rt/runtime/stepper.py:29
-  4. Run optional RE-VGSP learner (if ENABLE_REVGSP=1)        # fum_rt/runtime/loop/main.py:565
-  5. Run optional GDSP structural actuator (if ENABLE_GDSP=1) # fum_rt/runtime/loop/main.py:571
-  6. Apply B1 detector on connectome observations             # fum_rt/runtime/loop/main.py:578
-  7. Process inbound message queue (UTE stimulation)          # fum_rt/runtime/loop/main.py:587
-  8. Run void scouts (bounded micro time budget)              # fum_rt/runtime/loop/main.py:593
+     # uses [VDM-E-xxx] for density, TD signal, firing_var   # vdm_rt/runtime/stepper.py:29
+  4. Run optional RE-VGSP learner (if ENABLE_REVGSP=1)        # vdm_rt/runtime/loop/main.py:565
+  5. Run optional GDSP structural actuator (if ENABLE_GDSP=1) # vdm_rt/runtime/loop/main.py:571
+  6. Apply B1 detector on connectome observations             # vdm_rt/runtime/loop/main.py:578
+  7. Process inbound message queue (UTE stimulation)          # vdm_rt/runtime/loop/main.py:587
+  8. Run void scouts (bounded micro time budget)              # vdm_rt/runtime/loop/main.py:593
      # via run_scouts_once → returns events
-  9. Fold events into metrics (tick_fold)                     # fum_rt/runtime/loop/main.py:611
- 10. Maybe emit "why" (say text composition) every N ticks    # fum_rt/runtime/loop/main.py:619
- 11. Maybe run smoke tests (boundary checks)                  # fum_rt/runtime/loop/main.py:623
- 12. Emit status and macro observations (logging, Redis)      # fum_rt/runtime/loop/main.py:627
- 13. Save checkpoint if checkpoint_every divides step         # fum_rt/runtime/loop/main.py:631
- 14. Maybe visualize (plots, maps publish)                    # fum_rt/runtime/loop/main.py:635
- 15. Sleep to match target hz (throttle loop)                 # fum_rt/runtime/loop/main.py:639
+  9. Fold events into metrics (tick_fold)                     # vdm_rt/runtime/loop/main.py:611
+ 10. Maybe emit "why" (say text composition) every N ticks    # vdm_rt/runtime/loop/main.py:619
+ 11. Maybe run smoke tests (boundary checks)                  # vdm_rt/runtime/loop/main.py:623
+ 12. Emit status and macro observations (logging, Redis)      # vdm_rt/runtime/loop/main.py:627
+ 13. Save checkpoint if checkpoint_every divides step         # vdm_rt/runtime/loop/main.py:631
+ 14. Maybe visualize (plots, maps publish)                    # vdm_rt/runtime/loop/main.py:635
+ 15. Sleep to match target hz (throttle loop)                 # vdm_rt/runtime/loop/main.py:639
 
 TERMINATION:
-  - duration_s wall-clock expired OR KeyboardInterrupt        # fum_rt/runtime/loop/main.py:539
+  - duration_s wall-clock expired OR KeyboardInterrupt        # vdm_rt/runtime/loop/main.py:539
 ```
 
 **Preconditions:**
@@ -611,7 +611,7 @@ TERMINATION:
 
 **Also implemented at:**
 
-- fum_rt/nexus.py:362 (thin wrapper; delegates to run_loop)
+- vdm_rt/nexus.py:362 (thin wrapper; delegates to run_loop)
 
 > DEBT: GDSP can fail without logs when STRICT gate disabled; add fail-fast/telemetry path, remove any ability to use dense backend even with env. Sparse only, fail fast.  
 > DEBT: Overlapping scout flags; defaults conflict-unify or validate toggles.
@@ -624,7 +624,7 @@ TERMINATION:
 > Type: RUNTIME • Binding: PSEUDOCODE • State: writes state • Dependencies: `delta_re_vgsp`, `delta_gdsp` (EQUATIONS TODO)
 > **STATUS:** **BROKEN / WRONG** - docs claim “no dense path,” but the code includes and can execute a **dense scan** branch.
 
-**Context:** `fum_rt/core/connectome.py:272-313` • Commit: `7498744` • Module: `core/connectome`
+**Context:** `vdm_rt/core/connectome.py:272-313` • Commit: `7498744` • Module: `core/connectome`
 
 **Role:** Apply one update tick driven by Void Equations: structural growth/rewiring via alias sampling and node field updates.
 
@@ -702,7 +702,7 @@ FINALIZE:
 
 **Also implemented at:**
 
-- `fum_rt/core/sparse_connectome.py` (sparse variant; similar logic)
+- `vdm_rt/core/sparse_connectome.py` (sparse variant; similar logic)
 
 > **DEBT:** Dense rebuild / dense top-k path exists; violates “no dense path” policy for large `N`.
 > **DEBT:** Structural rewiring RNG not plumbed from run seed; wire deterministic RNG.
@@ -716,7 +716,7 @@ FINALIZE:
 >
 > Type: INSTRUMENT • Binding: PSEUDOCODE • State: read-only • Publishes: bus events; tags on neurons/edges • Notes: traversal metrics only
 
-**Context:** fum_rt/core/cortex/void_walkers/runner.py:38-136 • Commit: 7498744 • Module: core/cortex/void_walkers
+**Context:** vdm_rt/core/cortex/void_walkers/runner.py:38-136 • Commit: 7498744 • Module: core/cortex/void_walkers
 
 **Role:** Execute a bounded batch of read-only scouts exactly once per tick, enforcing micro time budget across all scouts.
 
@@ -791,7 +791,7 @@ RETURN:
 >
 > Type: INSTRUMENT • Binding: PSEUDOCODE • State: read-only (publishes explore events only) • Priors: minimal/flat • Notes: baseline cartography; complements goal-driven flows
 
-**Context:** fum_rt/core/cortex/void_walkers/void_cold_scout.py:41-55 • Commit: 7498744 • Module: core/cortex/void_walkers
+**Context:** vdm_rt/core/cortex/void_walkers/void_cold_scout.py:41-55 • Commit: 7498744 • Module: core/cortex/void_walkers
 
 **Role:** Read-only walker that prefers neighbors whose node IDs appear in ColdMap snapshot head (least recently visited nodes).
 
@@ -852,7 +852,7 @@ RETURN:
 >
 > Type: RUNTIME • Binding: PSEUDOCODE • State: none • Dependencies: none • Notes: O(N) build, O(1) draw
 
-**Context:** fum_rt/core/connectome.py:96-127 • Commit: 7498744 • Module: core/connectome
+**Context:** vdm_rt/core/connectome.py:96-127 • Commit: 7498744 • Module: core/connectome
 
 **Role:** Build O(N) alias table for sampling from discrete distribution; O(1) per draw.
 
@@ -1020,7 +1020,7 @@ OUTPUT: updated CSR W (same sparsity), optional diagnostics (dm, α, β, norms)
 >
 > Type: POLICY • Binding: PSEUDOCODE • State: internal state only • Dependencies: none • Notes: heuristic adaptation; bounds enforced
 
-**Context:** fum_rt/core/neuroplasticity/gdsp.py:38-100 • Commit: 7498744 • Module: core/neuroplasticity
+**Context:** vdm_rt/core/neuroplasticity/gdsp.py:38-100 • Commit: 7498744 • Module: core/neuroplasticity
 
 **Role:** Adaptive threshold manager for GDSP structural plasticity triggers (repair, growth, pruning).
 
@@ -3665,62 +3665,62 @@ Last updated: 2025-10-09 (commit 09f871a)
 | <a id="const-MS_STAB_AUC_ROB_MIN"></a>`MS_STAB_AUC_ROB_MIN` | Stability AUC robust gate | 0.65 |  | nondimensional | Derivation/code/physics/memory_steering/plot_memory_steering.py:491 • 0922758 | Robust AUC threshold |
 | <a id="const-MS_STAB_SNR_ROB_MIN"></a>`MS_STAB_SNR_ROB_MIN` | Stability SNR robust gate | 0.50 |  | nondimensional | Derivation/code/physics/memory_steering/plot_memory_steering.py:492 • 0922758 | Robust SNR threshold |
 | <a id="const-MS_STAB_GAMMA_SLICE_DFID_MIN"></a>`MS_STAB_GAMMA_SLICE_DFID_MIN` | Gamma slice fidelity delta gate | 0.10 |  | nondimensional | Derivation/code/physics/memory_steering/plot_memory_steering.py:493 • 0922758 | Per-gamma fidelity min |
-| <a id="const-FUM_UI_TAIL_CAP_BYTES"></a>`FUM_UI_TAIL_CAP_BYTES` | UI tail initial cap | 1048576 |  | bytes | fum_rt/frontend/utilities/tail.py:50 • 0922758 | 1 MB default window |
-| <a id="const-FUM_UI_TAIL_MAX_DELTA_BYTES"></a>`FUM_UI_TAIL_MAX_DELTA_BYTES` | UI tail max delta | 131072 |  | bytes | fum_rt/frontend/utilities/tail.py:51 • 0922758 | 128 KB max per tick |
-| <a id="const-FUM_UI_TAIL_MAX_LINES"></a>`FUM_UI_TAIL_MAX_LINES` | UI tail max lines | 600 |  | lines | fum_rt/frontend/utilities/tail.py:52 • 0922758 | Max JSONL parsed/tick |
-| <a id="const-neurons"></a>`neurons` [dashboard] | Network size | 1000 |  | integer | fum_rt/frontend/utilities/profiles.py:44 • 0922758 | Default neuron count |
-| <a id="const-k-dash"></a>`k` [dashboard] | Connectome degree | 12 |  | integer | fum_rt/frontend/utilities/profiles.py:45 • 0922758 | Average connections per node |
-| <a id="const-hz"></a>`hz` [dashboard] | Tick rate | 10 |  | Hz | fum_rt/frontend/utilities/profiles.py:46 • 0922758 | Simulation frequency |
-| <a id="const-threshold"></a>`threshold` [dashboard] | Active edge threshold | 0.15 |  | nondimensional | fum_rt/frontend/utilities/profiles.py:50 • 0922758 | Connectome pruning |
-| <a id="const-lambda_omega"></a>`lambda_omega` [dashboard] | Void penalty | 0.10 |  | nondimensional | fum_rt/frontend/utilities/profiles.py:51 • 0922758 | Exploration cost |
-| <a id="const-candidates"></a>`candidates` [dashboard] | Candidate budget | 64 |  | integer | fum_rt/frontend/utilities/profiles.py:52 • 0922758 | Growth candidates |
-| <a id="const-walkers"></a>`walkers` [dashboard] | Walker count | 256 |  | integer | fum_rt/frontend/utilities/profiles.py:53 • 0922758 | Connectome traversal walkers |
-| <a id="const-hops"></a>`hops` [dashboard] | Walker hops | 3 |  | integer | fum_rt/frontend/utilities/profiles.py:54 • 0922758 | Traversal depth |
-| <a id="const-bundle_size"></a>`bundle_size` [dashboard] | Bundle size | 3 |  | integer | fum_rt/frontend/utilities/profiles.py:55 • 0922758 | Edge bundling |
-| <a id="const-prune_factor"></a>`prune_factor` [dashboard] | Prune factor | 0.10 |  | nondimensional | fum_rt/frontend/utilities/profiles.py:56 • 0922758 | Homeostasis pruning |
-| <a id="const-speak_z"></a>`speak_z` [dashboard] | Speak Z-score | 3.0 |  | nondimensional | fum_rt/frontend/utilities/profiles.py:61 • 0922758 | B1 detector threshold |
-| <a id="const-speak_hysteresis"></a>`speak_hysteresis` [dashboard] | Speak hysteresis | 0.5 |  | nondimensional | fum_rt/frontend/utilities/profiles.py:62 • 0922758 | B1 hysteresis band |
-| <a id="const-speak_cooldown_ticks"></a>`speak_cooldown_ticks` [dashboard] | Speak cooldown | 10 |  | ticks | fum_rt/frontend/utilities/profiles.py:63 • 0922758 | Minimum interval |
-| <a id="const-speak_valence_thresh"></a>`speak_valence_thresh` [dashboard] | Speak valence threshold | 0.55 |  | nondimensional | fum_rt/frontend/utilities/profiles.py:64 • 0922758 | Valence gate |
-| <a id="const-b1_half_life_ticks"></a>`b1_half_life_ticks` [dashboard] | B1 half-life | 50 |  | ticks | fum_rt/frontend/utilities/profiles.py:65 • 0922758 | B1 signal decay |
-| <a id="const-stim_group_size"></a>`stim_group_size` [dashboard] | Stimulus group size | 8 |  | integer | fum_rt/frontend/utilities/profiles.py:66 • 0922758 | Neurons per stimulus |
-| <a id="const-stim_amp"></a>`stim_amp` [dashboard] | Stimulus amplitude | 0.08 |  | nondimensional | fum_rt/frontend/utilities/profiles.py:67 • 0922758 | Stimulus strength |
-| <a id="const-stim_decay"></a>`stim_decay` [dashboard] | Stimulus decay | 0.92 |  | nondimensional | fum_rt/frontend/utilities/profiles.py:68 • 0922758 | Per-tick decay factor |
-| <a id="const-stim_max_symbols"></a>`stim_max_symbols` [dashboard] | Max stimulus symbols | 128 |  | integer | fum_rt/frontend/utilities/profiles.py:69 • 0922758 | Symbol vocabulary cap |
-| <a id="const-checkpoint_every"></a>`checkpoint_every` [dashboard] | Checkpoint interval | 60 |  | seconds | fum_rt/frontend/utilities/profiles.py:70 • 0922758 | Engram save frequency |
-| <a id="const-checkpoint_keep"></a>`checkpoint_keep` [dashboard] | Checkpoint retention | 5 |  | integer | fum_rt/frontend/utilities/profiles.py:71 • 0922758 | Max checkpoints kept |
-| <a id="const-speak_z_0"></a>`speak_z` [phase 0] | Speak Z-score (primitives) | 2.0 |  | nondimensional | fum_rt/runtime/phase.py:34 • 0922758 | Phase 0 gate |
-| <a id="const-speak_hysteresis_0"></a>`speak_hysteresis` [phase 0] | Speak hysteresis (primitives) | 0.5 |  | nondimensional | fum_rt/runtime/phase.py:34 • 0922758 | Phase 0 band |
-| <a id="const-speak_cooldown_ticks_0"></a>`speak_cooldown_ticks` [phase 0] | Speak cooldown (primitives) | 8 |  | ticks | fum_rt/runtime/phase.py:34 • 0922758 | Phase 0 interval |
-| <a id="const-speak_valence_thresh_0"></a>`speak_valence_thresh` [phase 0] | Speak valence (primitives) | 0.10 |  | nondimensional | fum_rt/runtime/phase.py:34 • 0922758 | Phase 0 valence |
-| <a id="const-walkers_0"></a>`walkers` [phase 0] | Walkers (primitives) | 128 |  | integer | fum_rt/runtime/phase.py:35 • 0922758 | Phase 0 walkers |
-| <a id="const-hops_0"></a>`hops` [phase 0] | Hops (primitives) | 3 |  | integer | fum_rt/runtime/phase.py:35 • 0922758 | Phase 0 depth |
-| <a id="const-bundle_size_0"></a>`bundle_size` [phase 0] | Bundle size (primitives) | 3 |  | integer | fum_rt/runtime/phase.py:35 • 0922758 | Phase 0 bundling |
-| <a id="const-prune_factor_0"></a>`prune_factor` [phase 0] | Prune factor (primitives) | 0.10 |  | nondimensional | fum_rt/runtime/phase.py:35 • 0922758 | Phase 0 pruning |
-| <a id="const-speak_z_1"></a>`speak_z` [phase 1] | Speak Z-score (blocks) | 2.5 |  | nondimensional | fum_rt/runtime/phase.py:40 • 0922758 | Phase 1 gate |
-| <a id="const-speak_hysteresis_1"></a>`speak_hysteresis` [phase 1] | Speak hysteresis (blocks) | 0.8 |  | nondimensional | fum_rt/runtime/phase.py:40 • 0922758 | Phase 1 band |
-| <a id="const-speak_cooldown_ticks_1"></a>`speak_cooldown_ticks` [phase 1] | Speak cooldown (blocks) | 10 |  | ticks | fum_rt/runtime/phase.py:40 • 0922758 | Phase 1 interval |
-| <a id="const-speak_valence_thresh_1"></a>`speak_valence_thresh` [phase 1] | Speak valence (blocks) | 0.20 |  | nondimensional | fum_rt/runtime/phase.py:40 • 0922758 | Phase 1 valence |
-| <a id="const-walkers_1"></a>`walkers` [phase 1] | Walkers (blocks) | 256 |  | integer | fum_rt/runtime/phase.py:41 • 0922758 | Phase 1 walkers |
-| <a id="const-speak_z_2"></a>`speak_z` [phase 2] | Speak Z-score (structures) | 3.0 |  | nondimensional | fum_rt/runtime/phase.py:45 • 0922758 | Phase 2 gate |
-| <a id="const-speak_hysteresis_2"></a>`speak_hysteresis` [phase 2] | Speak hysteresis (structures) | 1.0 |  | nondimensional | fum_rt/runtime/phase.py:45 • 0922758 | Phase 2 band |
-| <a id="const-speak_cooldown_ticks_2"></a>`speak_cooldown_ticks` [phase 2] | Speak cooldown (structures) | 10 |  | ticks | fum_rt/runtime/phase.py:45 • 0922758 | Phase 2 interval |
-| <a id="const-speak_valence_thresh_2"></a>`speak_valence_thresh` [phase 2] | Speak valence (structures) | 0.35 |  | nondimensional | fum_rt/runtime/phase.py:45 • 0922758 | Phase 2 valence |
-| <a id="const-walkers_2"></a>`walkers` [phase 2] | Walkers (structures) | 384 |  | integer | fum_rt/runtime/phase.py:46 • 0922758 | Phase 2 walkers |
-| <a id="const-hops_2"></a>`hops` [phase 2] | Hops (structures) | 4 |  | integer | fum_rt/runtime/phase.py:46 • 0922758 | Phase 2 depth |
-| <a id="const-speak_z_3"></a>`speak_z` [phase 3] | Speak Z-score (questions) | 3.0 |  | nondimensional | fum_rt/runtime/phase.py:50 • 0922758 | Phase 3 gate |
-| <a id="const-speak_hysteresis_3"></a>`speak_hysteresis` [phase 3] | Speak hysteresis (questions) | 1.0 |  | nondimensional | fum_rt/runtime/phase.py:50 • 0922758 | Phase 3 band |
-| <a id="const-speak_cooldown_ticks_3"></a>`speak_cooldown_ticks` [phase 3] | Speak cooldown (questions) | 10 |  | ticks | fum_rt/runtime/phase.py:50 • 0922758 | Phase 3 interval |
-| <a id="const-speak_valence_thresh_3"></a>`speak_valence_thresh` [phase 3] | Speak valence (questions) | 0.55 |  | nondimensional | fum_rt/runtime/phase.py:50 • 0922758 | Phase 3 valence |
-| <a id="const-walkers_3"></a>`walkers` [phase 3] | Walkers (questions) | 512 |  | integer | fum_rt/runtime/phase.py:51 • 0922758 | Phase 3 walkers |
-| <a id="const-hops_3"></a>`hops` [phase 3] | Hops (questions) | 4 |  | integer | fum_rt/runtime/phase.py:51 • 0922758 | Phase 3 depth |
-| <a id="const-speak_z_4"></a>`speak_z` [phase 4] | Speak Z-score (problem-solving) | 3.5 |  | nondimensional | fum_rt/runtime/phase.py:55 • 0922758 | Phase 4 gate |
-| <a id="const-speak_hysteresis_4"></a>`speak_hysteresis` [phase 4] | Speak hysteresis (problem-solving) | 1.2 |  | nondimensional | fum_rt/runtime/phase.py:55 • 0922758 | Phase 4 band |
-| <a id="const-speak_cooldown_ticks_4"></a>`speak_cooldown_ticks` [phase 4] | Speak cooldown (problem-solving) | 12 |  | ticks | fum_rt/runtime/phase.py:55 • 0922758 | Phase 4 interval |
-| <a id="const-speak_valence_thresh_4"></a>`speak_valence_thresh` [phase 4] | Speak valence (problem-solving) | 0.60 |  | nondimensional | fum_rt/runtime/phase.py:55 • 0922758 | Phase 4 valence |
-| <a id="const-walkers_4"></a>`walkers` [phase 4] | Walkers (problem-solving) | 768 |  | integer | fum_rt/runtime/phase.py:56 • 0922758 | Phase 4 walkers |
-| <a id="const-hops_4"></a>`hops` [phase 4] | Hops (problem-solving) | 5 |  | integer | fum_rt/runtime/phase.py:56 • 0922758 | Phase 4 depth |
-| <a id="const-composer_idf_k"></a>`composer_idf_k` [all phases] | Composer IDF novelty gain | 0.0 |  | nondimensional | fum_rt/runtime/phase.py:37,42,47,52,57 • 0922758 | Discovery weight (safe default 0) |
+| <a id="const-FUM_UI_TAIL_CAP_BYTES"></a>`FUM_UI_TAIL_CAP_BYTES` | UI tail initial cap | 1048576 |  | bytes | vdm_rt/frontend/utilities/tail.py:50 • 0922758 | 1 MB default window |
+| <a id="const-FUM_UI_TAIL_MAX_DELTA_BYTES"></a>`FUM_UI_TAIL_MAX_DELTA_BYTES` | UI tail max delta | 131072 |  | bytes | vdm_rt/frontend/utilities/tail.py:51 • 0922758 | 128 KB max per tick |
+| <a id="const-FUM_UI_TAIL_MAX_LINES"></a>`FUM_UI_TAIL_MAX_LINES` | UI tail max lines | 600 |  | lines | vdm_rt/frontend/utilities/tail.py:52 • 0922758 | Max JSONL parsed/tick |
+| <a id="const-neurons"></a>`neurons` [dashboard] | Network size | 1000 |  | integer | vdm_rt/frontend/utilities/profiles.py:44 • 0922758 | Default neuron count |
+| <a id="const-k-dash"></a>`k` [dashboard] | Connectome degree | 12 |  | integer | vdm_rt/frontend/utilities/profiles.py:45 • 0922758 | Average connections per node |
+| <a id="const-hz"></a>`hz` [dashboard] | Tick rate | 10 |  | Hz | vdm_rt/frontend/utilities/profiles.py:46 • 0922758 | Simulation frequency |
+| <a id="const-threshold"></a>`threshold` [dashboard] | Active edge threshold | 0.15 |  | nondimensional | vdm_rt/frontend/utilities/profiles.py:50 • 0922758 | Connectome pruning |
+| <a id="const-lambda_omega"></a>`lambda_omega` [dashboard] | Void penalty | 0.10 |  | nondimensional | vdm_rt/frontend/utilities/profiles.py:51 • 0922758 | Exploration cost |
+| <a id="const-candidates"></a>`candidates` [dashboard] | Candidate budget | 64 |  | integer | vdm_rt/frontend/utilities/profiles.py:52 • 0922758 | Growth candidates |
+| <a id="const-walkers"></a>`walkers` [dashboard] | Walker count | 256 |  | integer | vdm_rt/frontend/utilities/profiles.py:53 • 0922758 | Connectome traversal walkers |
+| <a id="const-hops"></a>`hops` [dashboard] | Walker hops | 3 |  | integer | vdm_rt/frontend/utilities/profiles.py:54 • 0922758 | Traversal depth |
+| <a id="const-bundle_size"></a>`bundle_size` [dashboard] | Bundle size | 3 |  | integer | vdm_rt/frontend/utilities/profiles.py:55 • 0922758 | Edge bundling |
+| <a id="const-prune_factor"></a>`prune_factor` [dashboard] | Prune factor | 0.10 |  | nondimensional | vdm_rt/frontend/utilities/profiles.py:56 • 0922758 | Homeostasis pruning |
+| <a id="const-speak_z"></a>`speak_z` [dashboard] | Speak Z-score | 3.0 |  | nondimensional | vdm_rt/frontend/utilities/profiles.py:61 • 0922758 | B1 detector threshold |
+| <a id="const-speak_hysteresis"></a>`speak_hysteresis` [dashboard] | Speak hysteresis | 0.5 |  | nondimensional | vdm_rt/frontend/utilities/profiles.py:62 • 0922758 | B1 hysteresis band |
+| <a id="const-speak_cooldown_ticks"></a>`speak_cooldown_ticks` [dashboard] | Speak cooldown | 10 |  | ticks | vdm_rt/frontend/utilities/profiles.py:63 • 0922758 | Minimum interval |
+| <a id="const-speak_valence_thresh"></a>`speak_valence_thresh` [dashboard] | Speak valence threshold | 0.55 |  | nondimensional | vdm_rt/frontend/utilities/profiles.py:64 • 0922758 | Valence gate |
+| <a id="const-b1_half_life_ticks"></a>`b1_half_life_ticks` [dashboard] | B1 half-life | 50 |  | ticks | vdm_rt/frontend/utilities/profiles.py:65 • 0922758 | B1 signal decay |
+| <a id="const-stim_group_size"></a>`stim_group_size` [dashboard] | Stimulus group size | 8 |  | integer | vdm_rt/frontend/utilities/profiles.py:66 • 0922758 | Neurons per stimulus |
+| <a id="const-stim_amp"></a>`stim_amp` [dashboard] | Stimulus amplitude | 0.08 |  | nondimensional | vdm_rt/frontend/utilities/profiles.py:67 • 0922758 | Stimulus strength |
+| <a id="const-stim_decay"></a>`stim_decay` [dashboard] | Stimulus decay | 0.92 |  | nondimensional | vdm_rt/frontend/utilities/profiles.py:68 • 0922758 | Per-tick decay factor |
+| <a id="const-stim_max_symbols"></a>`stim_max_symbols` [dashboard] | Max stimulus symbols | 128 |  | integer | vdm_rt/frontend/utilities/profiles.py:69 • 0922758 | Symbol vocabulary cap |
+| <a id="const-checkpoint_every"></a>`checkpoint_every` [dashboard] | Checkpoint interval | 60 |  | seconds | vdm_rt/frontend/utilities/profiles.py:70 • 0922758 | Engram save frequency |
+| <a id="const-checkpoint_keep"></a>`checkpoint_keep` [dashboard] | Checkpoint retention | 5 |  | integer | vdm_rt/frontend/utilities/profiles.py:71 • 0922758 | Max checkpoints kept |
+| <a id="const-speak_z_0"></a>`speak_z` [phase 0] | Speak Z-score (primitives) | 2.0 |  | nondimensional | vdm_rt/runtime/phase.py:34 • 0922758 | Phase 0 gate |
+| <a id="const-speak_hysteresis_0"></a>`speak_hysteresis` [phase 0] | Speak hysteresis (primitives) | 0.5 |  | nondimensional | vdm_rt/runtime/phase.py:34 • 0922758 | Phase 0 band |
+| <a id="const-speak_cooldown_ticks_0"></a>`speak_cooldown_ticks` [phase 0] | Speak cooldown (primitives) | 8 |  | ticks | vdm_rt/runtime/phase.py:34 • 0922758 | Phase 0 interval |
+| <a id="const-speak_valence_thresh_0"></a>`speak_valence_thresh` [phase 0] | Speak valence (primitives) | 0.10 |  | nondimensional | vdm_rt/runtime/phase.py:34 • 0922758 | Phase 0 valence |
+| <a id="const-walkers_0"></a>`walkers` [phase 0] | Walkers (primitives) | 128 |  | integer | vdm_rt/runtime/phase.py:35 • 0922758 | Phase 0 walkers |
+| <a id="const-hops_0"></a>`hops` [phase 0] | Hops (primitives) | 3 |  | integer | vdm_rt/runtime/phase.py:35 • 0922758 | Phase 0 depth |
+| <a id="const-bundle_size_0"></a>`bundle_size` [phase 0] | Bundle size (primitives) | 3 |  | integer | vdm_rt/runtime/phase.py:35 • 0922758 | Phase 0 bundling |
+| <a id="const-prune_factor_0"></a>`prune_factor` [phase 0] | Prune factor (primitives) | 0.10 |  | nondimensional | vdm_rt/runtime/phase.py:35 • 0922758 | Phase 0 pruning |
+| <a id="const-speak_z_1"></a>`speak_z` [phase 1] | Speak Z-score (blocks) | 2.5 |  | nondimensional | vdm_rt/runtime/phase.py:40 • 0922758 | Phase 1 gate |
+| <a id="const-speak_hysteresis_1"></a>`speak_hysteresis` [phase 1] | Speak hysteresis (blocks) | 0.8 |  | nondimensional | vdm_rt/runtime/phase.py:40 • 0922758 | Phase 1 band |
+| <a id="const-speak_cooldown_ticks_1"></a>`speak_cooldown_ticks` [phase 1] | Speak cooldown (blocks) | 10 |  | ticks | vdm_rt/runtime/phase.py:40 • 0922758 | Phase 1 interval |
+| <a id="const-speak_valence_thresh_1"></a>`speak_valence_thresh` [phase 1] | Speak valence (blocks) | 0.20 |  | nondimensional | vdm_rt/runtime/phase.py:40 • 0922758 | Phase 1 valence |
+| <a id="const-walkers_1"></a>`walkers` [phase 1] | Walkers (blocks) | 256 |  | integer | vdm_rt/runtime/phase.py:41 • 0922758 | Phase 1 walkers |
+| <a id="const-speak_z_2"></a>`speak_z` [phase 2] | Speak Z-score (structures) | 3.0 |  | nondimensional | vdm_rt/runtime/phase.py:45 • 0922758 | Phase 2 gate |
+| <a id="const-speak_hysteresis_2"></a>`speak_hysteresis` [phase 2] | Speak hysteresis (structures) | 1.0 |  | nondimensional | vdm_rt/runtime/phase.py:45 • 0922758 | Phase 2 band |
+| <a id="const-speak_cooldown_ticks_2"></a>`speak_cooldown_ticks` [phase 2] | Speak cooldown (structures) | 10 |  | ticks | vdm_rt/runtime/phase.py:45 • 0922758 | Phase 2 interval |
+| <a id="const-speak_valence_thresh_2"></a>`speak_valence_thresh` [phase 2] | Speak valence (structures) | 0.35 |  | nondimensional | vdm_rt/runtime/phase.py:45 • 0922758 | Phase 2 valence |
+| <a id="const-walkers_2"></a>`walkers` [phase 2] | Walkers (structures) | 384 |  | integer | vdm_rt/runtime/phase.py:46 • 0922758 | Phase 2 walkers |
+| <a id="const-hops_2"></a>`hops` [phase 2] | Hops (structures) | 4 |  | integer | vdm_rt/runtime/phase.py:46 • 0922758 | Phase 2 depth |
+| <a id="const-speak_z_3"></a>`speak_z` [phase 3] | Speak Z-score (questions) | 3.0 |  | nondimensional | vdm_rt/runtime/phase.py:50 • 0922758 | Phase 3 gate |
+| <a id="const-speak_hysteresis_3"></a>`speak_hysteresis` [phase 3] | Speak hysteresis (questions) | 1.0 |  | nondimensional | vdm_rt/runtime/phase.py:50 • 0922758 | Phase 3 band |
+| <a id="const-speak_cooldown_ticks_3"></a>`speak_cooldown_ticks` [phase 3] | Speak cooldown (questions) | 10 |  | ticks | vdm_rt/runtime/phase.py:50 • 0922758 | Phase 3 interval |
+| <a id="const-speak_valence_thresh_3"></a>`speak_valence_thresh` [phase 3] | Speak valence (questions) | 0.55 |  | nondimensional | vdm_rt/runtime/phase.py:50 • 0922758 | Phase 3 valence |
+| <a id="const-walkers_3"></a>`walkers` [phase 3] | Walkers (questions) | 512 |  | integer | vdm_rt/runtime/phase.py:51 • 0922758 | Phase 3 walkers |
+| <a id="const-hops_3"></a>`hops` [phase 3] | Hops (questions) | 4 |  | integer | vdm_rt/runtime/phase.py:51 • 0922758 | Phase 3 depth |
+| <a id="const-speak_z_4"></a>`speak_z` [phase 4] | Speak Z-score (problem-solving) | 3.5 |  | nondimensional | vdm_rt/runtime/phase.py:55 • 0922758 | Phase 4 gate |
+| <a id="const-speak_hysteresis_4"></a>`speak_hysteresis` [phase 4] | Speak hysteresis (problem-solving) | 1.2 |  | nondimensional | vdm_rt/runtime/phase.py:55 • 0922758 | Phase 4 band |
+| <a id="const-speak_cooldown_ticks_4"></a>`speak_cooldown_ticks` [phase 4] | Speak cooldown (problem-solving) | 12 |  | ticks | vdm_rt/runtime/phase.py:55 • 0922758 | Phase 4 interval |
+| <a id="const-speak_valence_thresh_4"></a>`speak_valence_thresh` [phase 4] | Speak valence (problem-solving) | 0.60 |  | nondimensional | vdm_rt/runtime/phase.py:55 • 0922758 | Phase 4 valence |
+| <a id="const-walkers_4"></a>`walkers` [phase 4] | Walkers (problem-solving) | 768 |  | integer | vdm_rt/runtime/phase.py:56 • 0922758 | Phase 4 walkers |
+| <a id="const-hops_4"></a>`hops` [phase 4] | Hops (problem-solving) | 5 |  | integer | vdm_rt/runtime/phase.py:56 • 0922758 | Phase 4 depth |
+| <a id="const-composer_idf_k"></a>`composer_idf_k` [all phases] | Composer IDF novelty gain | 0.0 |  | nondimensional | vdm_rt/runtime/phase.py:37,42,47,52,57 • 0922758 | Discovery weight (safe default 0) |
 | <a id="const-nu-typical"></a> $\nu$ [LBM typical] | Kinematic viscosity | 0.1333 |  | LBM units | Derivation/DIMENSIONLESS_CONSTANTS.md:16; VDM_Overview.md:81 • 0922758 | $\nu = \frac{1}{3}(\tau - \frac{1}{2})$ for $\tau=0.9$ |
 | <a id="const-Re-64"></a>$\mathrm{Re}$ [LBM 64²] | Reynolds number (64²) | 9.6 |  | nondimensional | Derivation/DIMENSIONLESS_CONSTANTS.md:17; VDM_Overview.md:82 • 0922758 | $\mathrm{Re} = UL/\nu$ |
 | <a id="const-Re-128"></a>$\mathrm{Re}$ [LBM 128²] | Reynolds number (128²) | 19.2 |  | nondimensional | Derivation/DIMENSIONLESS_CONSTANTS.md:17; VDM_Overview.md:82 • 0922758 | $\mathrm{Re} = UL/\nu$ |
@@ -4472,7 +4472,7 @@ What this module provides:
 - y_junction_adjacency(...), collect_junction_choices(...): helpers to generate the logistic junction dataset.
 
 Use with the experiments runner:
-- See [fum_rt/utils/memory_steering_experiments.py](fum_rt/utils/memory_steering_experiments.py:1), which generates three
+- See [vdm_rt/utils/memory_steering_experiments.py](vdm_rt/utils/memory_steering_experiments.py:1), which generates three
   datasets/plots for the predictions above (junction logistic, curvature scaling, stability band).
 
 Author: Justin K. Lietz
@@ -4916,7 +4916,7 @@ Outputs (printed to stdout when run)
 - Stability band:               “D_a, Lambda, Gamma, Retention, Fidelity_w, Fidelity_end, Fidelity_shuffle_end, Fidelity_edge_end, AUC_end, SNR_end”
 
 Usage
-- python3 fum_rt/utils/memory_steering_experiments.py  > outputs/memory_steering_results.csv
+- python3 vdm_rt/utils/memory_steering_experiments.py  > outputs/memory_steering_results.csv
 - The plotting helper (separate) converts the combined CSV into figures saved in outputs/.
 """
 
@@ -7825,11 +7825,11 @@ Last updated: 2025-10-09 (commit 09f871a)
 - Index/primary keys: timestamp in filename
 
 **Update cadence / lifecycle:** `per experiment run`  
-**Provenance (code locations):** `Derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py • 800ceda` ; `fum_rt/physics/rd_dispersion_runner.py • 800ceda`  
+**Provenance (code locations):** `Derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py • 800ceda` ; `vdm_rt/physics/rd_dispersion_runner.py • 800ceda`  
 **Validation hooks / KPIs:** `med_rel_err_max`, `r2_array_min` acceptance criteria  
 **Retention / access constraints:** none  
-**Example artifact (if referenced):** `Derivation/code/outputs/logs/reaction_diffusion/rd_dispersion_experiment_20250823T182316Z.json` ; `fum_rt/physics/outputs/logs/rd_dispersion_runner_20250820T114106Z.json`  
-**Notes:** Includes failed_runs subdirectory; dual locations (Derivation/code and fum_rt/physics)
+**Example artifact (if referenced):** `Derivation/code/outputs/logs/reaction_diffusion/rd_dispersion_experiment_20250823T182316Z.json` ; `vdm_rt/physics/outputs/logs/rd_dispersion_runner_20250820T114106Z.json`  
+**Notes:** Includes failed_runs subdirectory; dual locations (Derivation/code and vdm_rt/physics)
 
 ---
 
@@ -7855,11 +7855,11 @@ Last updated: 2025-10-09 (commit 09f871a)
 - Index/primary keys: timestamp in filename
 
 **Update cadence / lifecycle:** `per experiment run`  
-**Provenance (code locations):** `Derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py • 800ceda` ; `fum_rt/physics/rd_front_speed_runner.py • 800ceda`  
+**Provenance (code locations):** `Derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py • 800ceda` ; `vdm_rt/physics/rd_front_speed_runner.py • 800ceda`  
 **Validation hooks / KPIs:** front speed accuracy thresholds  
 **Retention / access constraints:** none  
-**Example artifact (if referenced):** `Derivation/code/outputs/logs/reaction_diffusion/rd_front_speed_experiment_20250823T194825Z.json` ; `fum_rt/physics/outputs/logs/rd_front_speed_runner_20250820T114104Z.json`  
-**Notes:** Includes failed_runs subdirectory; dual locations (Derivation/code and fum_rt/physics)
+**Example artifact (if referenced):** `Derivation/code/outputs/logs/reaction_diffusion/rd_front_speed_experiment_20250823T194825Z.json` ; `vdm_rt/physics/outputs/logs/rd_front_speed_runner_20250820T114104Z.json`  
+**Notes:** Includes failed_runs subdirectory; dual locations (Derivation/code and vdm_rt/physics)
 
 ---
 
@@ -7986,7 +7986,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### vacuum_demographics results  <a id="data-vacuum-demographics"></a>
 **Type:** log  
 **Purpose:** Vacuum demographics harness output for cosmology router vacuum channel validation  
-**Produced by:** TODO: add anchor (see fum_rt/physics/vacuum_demographics_harness.py)  
+**Produced by:** TODO: add anchor (see vdm_rt/physics/vacuum_demographics_harness.py)  
 **Defined by (if math):** TODO: add anchor for w(z) equation of state  
 **Inputs (symbols/constants):** TODO: link eta, epsilon, rho_lambda parameters  
 **Units/Normalization:** TODO: link to UNITS_NORMALIZATION.md (Myr, redshift)
@@ -7997,7 +7997,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Storage format & path pattern:**
 - Format: `json`
-- Path pattern: `fum_rt/physics/outputs/logs/vacuum_demographics_harness_<YYYYMMDDTHHMMSSZ>.json`
+- Path pattern: `vdm_rt/physics/outputs/logs/vacuum_demographics_harness_<YYYYMMDDTHHMMSSZ>.json`
 - Compression/encoding: none
 
 **Schema / columns (for tables/logs):**
@@ -8005,7 +8005,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 - Index/primary keys: timestamp in filename
 
 **Update cadence / lifecycle:** `per harness run`  
-**Provenance (code locations):** `fum_rt/physics/vacuum_demographics_harness.py:274-319 • 800ceda`  
+**Provenance (code locations):** `vdm_rt/physics/vacuum_demographics_harness.py:274-319 • 800ceda`  
 **Validation hooks / KPIs:** `lcdm_residual_within_tol` gate  
 **Retention / access constraints:** none  
 **Example artifact (if referenced):** none (pattern identified from code)  
@@ -8094,11 +8094,11 @@ Last updated: 2025-10-09 (commit 09f871a)
 - N/A (image data)
 
 **Update cadence / lifecycle:** `per experiment run`  
-**Provenance (code locations):** `Derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py • 800ceda` ; `Derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py • 800ceda` ; `fum_rt/physics/rd_dispersion_runner.py • 800ceda` ; `fum_rt/physics/rd_front_speed_runner.py • 800ceda`  
+**Provenance (code locations):** `Derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py • 800ceda` ; `Derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py • 800ceda` ; `vdm_rt/physics/rd_dispersion_runner.py • 800ceda` ; `vdm_rt/physics/rd_front_speed_runner.py • 800ceda`  
 **Validation hooks / KPIs:** visual inspection of fit quality  
 **Retention / access constraints:** none  
 **Example artifact (if referenced):** `Derivation/code/outputs/figures/reaction_diffusion/rd_dispersion_experiment_20250824T053842Z.png`  
-**Notes:** Includes failed_runs subdirectory; dual locations (Derivation/code and fum_rt/physics)
+**Notes:** Includes failed_runs subdirectory; dual locations (Derivation/code and vdm_rt/physics)
 
 ---
 
@@ -8342,7 +8342,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### vacuum_demographics residual plot  <a id="data-vacuum-figure"></a>
 **Type:** image  
 **Purpose:** w(z)+1 residual plot for vacuum demographics validation  
-**Produced by:** TODO: add anchor (see fum_rt/physics/vacuum_demographics_harness.py)  
+**Produced by:** TODO: add anchor (see vdm_rt/physics/vacuum_demographics_harness.py)  
 **Defined by (if math):** N/A (visualization)  
 **Inputs (symbols/constants):** vacuum demographics timeline data  
 **Units/Normalization:** N/A (redshift vs residual)
@@ -8353,14 +8353,14 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 **Storage format & path pattern:**
 - Format: `png`
-- Path pattern: `fum_rt/physics/outputs/figures/vacuum_demographics_harness_<YYYYMMDDTHHMMSSZ>.png`
+- Path pattern: `vdm_rt/physics/outputs/figures/vacuum_demographics_harness_<YYYYMMDDTHHMMSSZ>.png`
 - Compression/encoding: PNG lossless
 
 **Schema / columns (for tables/logs):**
 - N/A (image data)
 
 **Update cadence / lifecycle:** `per harness run`  
-**Provenance (code locations):** `fum_rt/physics/vacuum_demographics_harness.py:245-271 • 800ceda`  
+**Provenance (code locations):** `vdm_rt/physics/vacuum_demographics_harness.py:245-271 • 800ceda`  
 **Validation hooks / KPIs:** residual within tolerance  
 **Retention / access constraints:** none  
 **Example artifact (if referenced):** none (pattern identified from code)  
@@ -8615,7 +8615,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### events.jsonl  <a id="data-events-jsonl"></a>
 **Type:** log  
 **Purpose:** Rolling JSONL log of runtime telemetry events (tick metrics, system state)  
-**Produced by:** TODO: add anchor (see fum_rt/runtime)  
+**Produced by:** TODO: add anchor (see vdm_rt/runtime)  
 **Defined by (if math):** N/A (telemetry)  
 **Inputs (symbols/constants):** runtime state  
 **Units/Normalization:** varies per metric
@@ -8634,7 +8634,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 - Index/primary keys: t (tick)
 
 **Update cadence / lifecycle:** `per tick`  
-**Provenance (code locations):** `fum_rt/io/logging/rolling_jsonl.py • 800ceda` ; `fum_rt/frontend/models/series.py:77-141 • 800ceda`  
+**Provenance (code locations):** `vdm_rt/io/logging/rolling_jsonl.py • 800ceda` ; `vdm_rt/frontend/models/series.py:77-141 • 800ceda`  
 **Validation hooks / KPIs:** dashboard timeseries continuity  
 **Retention / access constraints:** rolling buffer; old events archived to `runs/<timestamp>/archived/<YYYYMMDD_HHMMSS>/events.jsonl`  
 **Example artifact (if referenced):** none (runtime data)  
@@ -8645,7 +8645,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### utd_events.jsonl  <a id="data-utd-events-jsonl"></a>
 **Type:** log  
 **Purpose:** Rolling JSONL log of UTD (Unified Telemetry & Diagnostics) events including macros (say, status, etc.)  
-**Produced by:** TODO: add anchor (see fum_rt/runtime)  
+**Produced by:** TODO: add anchor (see vdm_rt/runtime)  
 **Defined by (if math):** N/A (telemetry)  
 **Inputs (symbols/constants):** macro emissions, diagnostics  
 **Units/Normalization:** N/A
@@ -8664,7 +8664,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 - Index/primary keys: t (tick)
 
 **Update cadence / lifecycle:** `per macro emission`  
-**Provenance (code locations):** `fum_rt/io/logging/rolling_jsonl.py • 800ceda` ; `fum_rt/frontend/models/series.py:144-154 • 800ceda`  
+**Provenance (code locations):** `vdm_rt/io/logging/rolling_jsonl.py • 800ceda` ; `vdm_rt/frontend/models/series.py:144-154 • 800ceda`  
 **Validation hooks / KPIs:** macro presence checks (smoke tests)  
 **Retention / access constraints:** rolling buffer; old events archived to `runs/<timestamp>/archived/<YYYYMMDD_HHMMSS>/utd_events.jsonl`  
 **Example artifact (if referenced):** none (runtime data)  
@@ -8675,7 +8675,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### dashboard timeseries state  <a id="data-dashboard-series"></a>
 **Type:** timeseries  
 **Purpose:** In-memory rolling buffers for dashboard timeseries visualization (not persisted)  
-**Produced by:** TODO: add anchor (see fum_rt/frontend/models/series.py)  
+**Produced by:** TODO: add anchor (see vdm_rt/frontend/models/series.py)  
 **Defined by (if math):** N/A (derived from events)  
 **Inputs (symbols/constants):** events.jsonl, utd_events.jsonl  
 **Units/Normalization:** varies per metric
@@ -8693,7 +8693,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 - N/A (in-memory data structure)
 
 **Update cadence / lifecycle:** `per dashboard refresh`  
-**Provenance (code locations):** `fum_rt/frontend/models/series.py:35-170 • 800ceda`  
+**Provenance (code locations):** `vdm_rt/frontend/models/series.py:35-170 • 800ceda`  
 **Validation hooks / KPIs:** N/A  
 **Retention / access constraints:** ephemeral (reconstructed from logs on dashboard restart)  
 **Example artifact (if referenced):** N/A  
@@ -8706,7 +8706,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 #### connectome checkpoints  <a id="data-connectome-checkpoints"></a>
 **Type:** checkpoint  
 **Purpose:** Periodic snapshots of connectome state (adjacency, weights, substrate fields)  
-**Produced by:** TODO: add anchor (see fum_rt/core/memory/engram_io.py, fum_rt/runtime/helpers/checkpointing.py)  
+**Produced by:** TODO: add anchor (see vdm_rt/core/memory/engram_io.py, vdm_rt/runtime/helpers/checkpointing.py)  
 **Defined by (if math):** TODO: add anchor for connectome structure  
 **Inputs (symbols/constants):** runtime connectome state  
 **Units/Normalization:** varies per field
@@ -8725,7 +8725,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 - Datasets: CSR arrays, dense arrays, metadata dicts
 
 **Update cadence / lifecycle:** `per checkpoint_every ticks`  
-**Provenance (code locations):** `fum_rt/core/memory/engram_io.py • 800ceda` ; `fum_rt/runtime/helpers/checkpointing.py:16-48 • 800ceda`  
+**Provenance (code locations):** `vdm_rt/core/memory/engram_io.py • 800ceda` ; `vdm_rt/runtime/helpers/checkpointing.py:16-48 • 800ceda`  
 **Validation hooks / KPIs:** checkpoint retention policy (keep last N)  
 **Retention / access constraints:** configurable via checkpoint_keep  
 **Example artifact (if referenced):** none (runtime data)  
@@ -9337,12 +9337,12 @@ You already excel at **artifact-first** validations (figures + logs + pass/fail)
 * **Runner A - Parameter cards → observables:**
   Input: (m_{A′}, ε, decay mode tag).
   Output: a **card** that states which channels are open (visible vs invisible), identifies the **search class** (bump, missing-energy, displaced), and lists the **native timescales** (cτ estimates by branch formula placeholder).
-  Deliverable: `fum_rt/portals/dark_photon_cards.py` + JSON summary per card.
+  Deliverable: `vdm_rt/portals/dark_photon_cards.py` + JSON summary per card.
   *(This is qualitative till you plug numbers; the point is rigorous structure.)*
 
 * **Runner B - Constraint harvester (stub now, numbers later):**
   Reads a **CSV of external limits** (ε vs m_{A′} with tags: visible/invisible/displaced). Plots your **benchmark points** over it.
-  Deliverable: `fum_rt/portals/limits_plotter.py` (data-driven; you can fill the CSV after literature pass).
+  Deliverable: `vdm_rt/portals/limits_plotter.py` (data-driven; you can fill the CSV after literature pass).
 
 > Keep the same acceptance style: the script must **produce a figure and a JSON** payload, like your tube/κ scan. 
 
@@ -15516,7 +15516,7 @@ $$V(E,p+\Delta p)\le V(E,p).$$
 
 <a id="vdm-e-085"></a>
 
-**Context:** [RUNTIME-ONLY] Derivation of the synaptic weight update in the Self-Improvement Engine (SIE), integrating time-dependent gain modulation with void-driven plasticity dynamics (RE-VGSP for resonance-enhanced growth and GDSP for goal-directed decay), anti-saturation regularization to prevent over-specialization, and a projection onto a budget-constrained simplex for resource allocation. This rule unifies cognitive adaptation principles with physical void debt mechanisms, supporting emergent intelligence in the Void Dynamics Model. • Source: fum_rt/core/fum_sie.py • Commit: [pending update, e.g., post-6885588].
+**Context:** [RUNTIME-ONLY] Derivation of the synaptic weight update in the Self-Improvement Engine (SIE), integrating time-dependent gain modulation with void-driven plasticity dynamics (RE-VGSP for resonance-enhanced growth and GDSP for goal-directed decay), anti-saturation regularization to prevent over-specialization, and a projection onto a budget-constrained simplex for resource allocation. This rule unifies cognitive adaptation principles with physical void debt mechanisms, supporting emergent intelligence in the Void Dynamics Model. • Source: vdm_rt/core/fum_sie.py • Commit: [pending update, e.g., post-6885588].
 
 **Equation:**
 $$
@@ -18438,7 +18438,7 @@ Last updated: 2025-10-09 (commit 09f871a)
 
 ## Overview
 
-This document systematically analyzes the gaps between the theoretical physics foundations in the `derivation` directory and the current code implementation in `fum_rt/core`. The analysis reveals critical missing components that prevent the realization of the full Void Dynamics Model.
+This document systematically analyzes the gaps between the theoretical physics foundations in the `derivation` directory and the current code implementation in `vdm_rt/core`. The analysis reveals critical missing components that prevent the realization of the full Void Dynamics Model.
 
 ## Major Implementation Gaps
 
@@ -18450,7 +18450,7 @@ This document systematically analyzes the gaps between the theoretical physics f
 - Dimensionless groups: $\Pi_1 = \frac{rL^2}{D}$, $\Pi_2 = \frac{u\phi_0 L^2}{D}$
 - Turing pattern formation capabilities
 
-**Code Gap**: No implementation in [`substrate.py`](fum_rt/core/substrate/substrate.py:1)
+**Code Gap**: No implementation in [`substrate.py`](vdm_rt/core/substrate/substrate.py:1)
 
 - Pure neural dynamics (ELIF neurons) without physical field coupling
 - No pattern formation or emergent structures
@@ -18464,7 +18464,7 @@ This document systematically analyzes the gaps between the theoretical physics f
 - Refractive index: $n(m) = n_0 + \alpha m$
 - Information steering via graded index
 
-**Code Gap**: Isolated implementation in [`memory_steering.py`](fum_rt/physics/memory_steering/memory_steering.py:97)
+**Code Gap**: Isolated implementation in [`memory_steering.py`](vdm_rt/physics/memory_steering/memory_steering.py:97)
 
 - Memory field exists but doesn't couple to neural dynamics
 - No refractive index modulation of signal propagation
@@ -18506,7 +18506,7 @@ This document systematically analyzes the gaps between the theoretical physics f
 - Symplectic structure preservation
 - Energy-momentum conservation
 
-**Code Gap**: Non-conservative integration in [`substrate.py`](fum_rt/core/substrate/substrate.py:108)
+**Code Gap**: Non-conservative integration in [`substrate.py`](vdm_rt/core/substrate/substrate.py:108)
 
 - Explicit Euler integration without conservation
 - No energy or momentum preservation
@@ -18520,7 +18520,7 @@ This document systematically analyzes the gaps between the theoretical physics f
 - Scale invariance principles
 - Universal scaling laws
 
-**Code Gap**: Hard-coded parameters in [`void_dynamics_adapter.py`](fum_rt/core/void_dynamics_adapter.py:20)
+**Code Gap**: Hard-coded parameters in [`void_dynamics_adapter.py`](vdm_rt/core/void_dynamics_adapter.py:20)
 
 - ALPHA=0.25, BETA=0.1 instead of $\Pi$ groups
 - No scale invariance maintenance
@@ -19093,12 +19093,12 @@ To test the theory properly:
 
 To support immediate testing, we provide separate modules (so the main φ loop remains unchanged):
 
-- Memory PDE and steering API: [fum_rt/core/memory_steering.py](fum_rt/core/memory_steering.py:1)
+- Memory PDE and steering API: [vdm_rt/core/memory_steering.py](vdm_rt/core/memory_steering.py:1)
   - `update_memory(m, r, L, gamma, delta, kappa, dt)` - Euler step for \( \dot m=\gamma r-\delta m-\kappa L m \).
   - `transition_probs(i, neighbors, m, theta)` - softmax steering \( P(i\to j)\propto e^{\Theta m_j} \).
   - Utilities to collect junction/curvature datasets for the acceptance tests.
 
-- Diagnostics (already present): [fum_rt/core/diagnostics.py](fum_rt/core/diagnostics.py:1)
+- Diagnostics (already present): [vdm_rt/core/diagnostics.py](vdm_rt/core/diagnostics.py:1)
   - Mass gap via two‑point (\( m_{\rm eff}=1/\xi \)), pulse speed ( \( v_g \) ) for \( c^2\approx 2Ja^2 \).
 
 ---
@@ -23609,8 +23609,8 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 
 **Acceptance criteria (links only, no formulas):**
 
-- Algorithms referenced: TODO: add anchor (see fum_rt/core/neuroplasticity/gdsp.py)
-- Data products to produce: TODO: add anchor (see fum_rt/runtime/)
+- Algorithms referenced: TODO: add anchor (see vdm_rt/core/neuroplasticity/gdsp.py)
+- Data products to produce: TODO: add anchor (see vdm_rt/runtime/)
 - Validation metrics: Firing path tag→actuation latency ≤ 2 ticks
 
 **Dependencies:** Existing infrastructure (bus, metrics, scoreboard)  
@@ -23622,10 +23622,10 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 
 **Deliverables:**
 
-- fum_rt/core/proprioception/events.py (add TagEvent)
-- fum_rt/core/neuroplasticity/gdsp.py (expose tick wrapper)
-- fum_rt/core/substrate/growth_arbiter.py (derive budgets; call GDSP)
-- fum_rt/runtime/orchestrator.py (bus→metrics→arbiter)
+- vdm_rt/core/proprioception/events.py (add TagEvent)
+- vdm_rt/core/neuroplasticity/gdsp.py (expose tick wrapper)
+- vdm_rt/core/substrate/growth_arbiter.py (derive budgets; call GDSP)
+- vdm_rt/runtime/orchestrator.py (bus→metrics→arbiter)
 
 **Target timeframe (if stated):** Next sprint/phase
 
@@ -23645,7 +23645,7 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 
 **Source:** PLANNED.md:52 • 77f055f  
 **Description:** Expose tick(scoreboard, budgets, territory) that calls existing sparse edit routines (prune/grow/bridge/cull) under budgets  
-**Linked canon:** algorithms → TODO: add anchor (see fum_rt/core/neuroplasticity/gdsp.py)  
+**Linked canon:** algorithms → TODO: add anchor (see vdm_rt/core/neuroplasticity/gdsp.py)  
 **Exit criteria:** GDSP tick callable; sparse operations working under budget constraints  
 **Owner (if present):** - • **Status:** Planned
 
@@ -23655,7 +23655,7 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 
 **Source:** PLANNED.md:53 • 77f055f  
 **Description:** Compute emergent budgets per territory from void-debt/SIE, fragmentation (UF components), backlog EWMA  
-**Linked canon:** algorithms → TODO: add anchor (see fum_rt/core/substrate/growth_arbiter.py)  
+**Linked canon:** algorithms → TODO: add anchor (see vdm_rt/core/substrate/growth_arbiter.py)  
 **Exit criteria:** Budgets computed from signals; no static knobs; env knobs debug-only  
 **Owner (if present):** - • **Status:** Planned
 
@@ -23670,7 +23670,7 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 
 **Acceptance criteria (links only, no formulas):**
 
-- Data products to produce: TODO: add anchor (see fum_rt/core/connectome.py neuron type vectors)
+- Data products to produce: TODO: add anchor (see vdm_rt/core/connectome.py neuron type vectors)
 
 **Dependencies:** None (infrastructure work)  
 **Risks/Constraints:**
@@ -23681,9 +23681,9 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 
 **Deliverables:**
 
-- fum_rt/core/connectome.py (neuron_types array)
-- fum_rt/core/void_dynamics_adapter.py (type-aware kernels)
-- fum_rt/core/fum_growth_arbiter.py (class-specific decisions)
+- vdm_rt/core/connectome.py (neuron_types array)
+- vdm_rt/core/void_dynamics_adapter.py (type-aware kernels)
+- vdm_rt/core/fum_growth_arbiter.py (class-specific decisions)
 
 **Target timeframe (if stated):** Next implementation phase
 
@@ -23703,7 +23703,7 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 
 **Source:** plans/reports/AI-Report-rewriter-2025-08-25 (2).md:86 • 77f055f  
 **Description:** Write GPU kernels to operate on subsets of neuron arrays based on type; partition data for MI100 (integrators) and 7900 XTX (messengers)  
-**Linked canon:** algorithms → TODO: add anchor (see fum_rt/core/connectome.py, void_dynamics_adapter.py)  
+**Linked canon:** algorithms → TODO: add anchor (see vdm_rt/core/connectome.py, void_dynamics_adapter.py)  
 **Exit criteria:** Type-specific kernels working; correct device allocation  
 **Owner (if present):** - • **Status:** Planned
 
@@ -23718,7 +23718,7 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 
 **Acceptance criteria (links only, no formulas):**
 
-- Algorithms referenced: TODO: add anchor (see fum_rt/core/void_dynamics_adapter.py RE-VGSP)
+- Algorithms referenced: TODO: add anchor (see vdm_rt/core/void_dynamics_adapter.py RE-VGSP)
 
 **Dependencies:** #ms-heterogeneous-computing  
 **Risks/Constraints:**
@@ -23729,7 +23729,7 @@ Gate receipts: slope p≈2.000 (fit p=1.999885), R²≈1.0 (0.99999999937), reve
 
 **Deliverables:**
 
-- fum_rt/core/void_dynamics_adapter.py (class-specific learning rates)
+- vdm_rt/core/void_dynamics_adapter.py (class-specific learning rates)
 
 **Target timeframe (if stated):** Follows heterogeneous computing implementation
 
@@ -23948,7 +23948,7 @@ References (implementation)
 - Script: [rd_dispersion_experiment.py](code/physics/rd_dispersion_experiment.py:1)
 - Validation plan: [rd_validation_plan.md](rd_validation_plan.md:1)
 - Status log: [CORRECTIONS.md](CORRECTIONS.md:1)
-- fum_rt parity runner: [rd_dispersion_runner.py](Prometheus_VDM/fum_rt/physics/rd_dispersion_runner.py:1)
+- vdm_rt parity runner: [rd_dispersion_runner.py](Prometheus_VDM/vdm_rt/physics/rd_dispersion_runner.py:1)
 
 Method
 
@@ -24001,10 +24001,10 @@ Troubleshooting
   - Compare to discrete σ_d(m) (primary); continuum σ(k) deviates near Nyquist.
   - Increase N to push Nyquist higher.
 
-fum_rt parity runner
+vdm_rt parity runner
 
 - Independent mirror (same metrics/output schema) for cross-stack parity:
-  - [rd_dispersion_runner.py](Prometheus_VDM/fum_rt/physics/rd_dispersion_runner.py:1)
+  - [rd_dispersion_runner.py](Prometheus_VDM/vdm_rt/physics/rd_dispersion_runner.py:1)
 - Rationale is documented in-file (“CHANGE REASON”): physics proven via derivation; runtime mirror does not alter core dynamics.
 
 Reproduction checklist
@@ -24281,7 +24281,7 @@ Open questions / next refinements
 - Evaluate sensitivity of c_meas to level choice (0.05-0.2) and fit window; document invariance bands.
 - Compare dispersion fit using windowed DFT vs rFFT magnitude; assess bias for near-zero/negative σ.
 - Add unit tests for σ_d formula and Laplacian implementations.
-- Mirror runners under fum_rt/physics for cross-stack parity.
+- Mirror runners under vdm_rt/physics for cross-stack parity.
 
 Appendix: CLI quick refs
 
@@ -24778,7 +24778,7 @@ class PolicyBounds:
 
 **Kind:** event  
 **Versioning (if present):** none  
-**Defined at:** `fum_rt/core/announce.py:33-62` • `6b63a5e`
+**Defined at:** `vdm_rt/core/announce.py:33-62` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
 
@@ -24804,24 +24804,24 @@ class Observation:
 
 | Field          | Type                                 | Required | Default | Units/Normalization | Description (lifted)                                          | Source                         |
 | -------------- | ------------------------------------ | :------: | ------- | ------------------- | ------------------------------------------------------------- | ------------------------------ |
-| `tick`         | `int`                                |    Y     | n/a     | timestep            | Simulation tick when observation was made                     | `fum_rt/core/announce.py:35`   |
-| `kind`         | `str`                                |    Y     | n/a     | n/a                 | One of: "region_stat", "boundary_probe", "cycle_hit", "novel_frontier" | `fum_rt/core/announce.py:36` |
-| `nodes`        | `List[int]`                          |    N     | `[]`    | node IDs            | Small representative subset of visited node IDs               | `fum_rt/core/announce.py:38`   |
-| `centroid`     | `Optional[Tuple[float, float, float]]` |  N     | `None`  | embedding space     | Optional centroid in embedding space                          | `fum_rt/core/announce.py:41`   |
-| `w_mean`       | `float`                              |    N     | `0.0`   | state variable      | Mean $W$ over visited set                                     | `fum_rt/core/announce.py:44`   |
-| `w_var`        | `float`                              |    N     | `0.0`   | state variable      | Variance of $W$ over visited set                              | `fum_rt/core/announce.py:45`   |
-| `s_mean`       | `float`                              |    N     | `0.0`   | coupling strength   | Mean positive coupling during walk                            | `fum_rt/core/announce.py:46`   |
-| `cut_strength` | `float`                              |    N     | `0.0`   | normalized          | Strength of cut across boundary sample                        | `fum_rt/core/announce.py:49`   |
-| `loop_len`     | `int`                                |    N     | `0`     | count               | Length of detected loop (for cycle_hit)                       | `fum_rt/core/announce.py:52`   |
-| `loop_gain`    | `float`                              |    N     | `0.0`   | accumulated weight  | Accumulated positive transition weights along loop            | `fum_rt/core/announce.py:53`   |
-| `coverage_id`  | `int`                                |    N     | `0`     | bin ID              | Coverage bin for ADC scheduling                               | `fum_rt/core/announce.py:56`   |
-| `domain_hint`  | `str`                                |    N     | `""`    | n/a                 | Optional domain hint from cartographer                        | `fum_rt/core/announce.py:59`   |
-| `meta`         | `Dict[str, Any]`                     |    N     | `{}`    | n/a                 | Extra metadata (JSON-serializable only)                       | `fum_rt/core/announce.py:62`   |
+| `tick`         | `int`                                |    Y     | n/a     | timestep            | Simulation tick when observation was made                     | `vdm_rt/core/announce.py:35`   |
+| `kind`         | `str`                                |    Y     | n/a     | n/a                 | One of: "region_stat", "boundary_probe", "cycle_hit", "novel_frontier" | `vdm_rt/core/announce.py:36` |
+| `nodes`        | `List[int]`                          |    N     | `[]`    | node IDs            | Small representative subset of visited node IDs               | `vdm_rt/core/announce.py:38`   |
+| `centroid`     | `Optional[Tuple[float, float, float]]` |  N     | `None`  | embedding space     | Optional centroid in embedding space                          | `vdm_rt/core/announce.py:41`   |
+| `w_mean`       | `float`                              |    N     | `0.0`   | state variable      | Mean $W$ over visited set                                     | `vdm_rt/core/announce.py:44`   |
+| `w_var`        | `float`                              |    N     | `0.0`   | state variable      | Variance of $W$ over visited set                              | `vdm_rt/core/announce.py:45`   |
+| `s_mean`       | `float`                              |    N     | `0.0`   | coupling strength   | Mean positive coupling during walk                            | `vdm_rt/core/announce.py:46`   |
+| `cut_strength` | `float`                              |    N     | `0.0`   | normalized          | Strength of cut across boundary sample                        | `vdm_rt/core/announce.py:49`   |
+| `loop_len`     | `int`                                |    N     | `0`     | count               | Length of detected loop (for cycle_hit)                       | `vdm_rt/core/announce.py:52`   |
+| `loop_gain`    | `float`                              |    N     | `0.0`   | accumulated weight  | Accumulated positive transition weights along loop            | `vdm_rt/core/announce.py:53`   |
+| `coverage_id`  | `int`                                |    N     | `0`     | bin ID              | Coverage bin for ADC scheduling                               | `vdm_rt/core/announce.py:56`   |
+| `domain_hint`  | `str`                                |    N     | `""`    | n/a                 | Optional domain hint from cartographer                        | `vdm_rt/core/announce.py:59`   |
+| `meta`         | `Dict[str, Any]`                     |    N     | `{}`    | n/a                 | Extra metadata (JSON-serializable only)                       | `vdm_rt/core/announce.py:62`   |
 
 **Producers/Consumers:** Produced by void-walker agents; published to announcement bus; consumed by Active Domain Cartography (ADC)  
 **Related equations (anchors only):** TODO: missing anchor for RE-VGSP/GDSP deltas (see `Derivation/EQUATIONS.md`)  
 **Related symbols/constants:** TODO: missing anchor for $W$, $S_{ij}$ (see `Derivation/SYMBOLS.md`)  
-**Examples (if present):** Validated by `fum_rt/core/announce.py:65-75`  
+**Examples (if present):** Validated by `vdm_rt/core/announce.py:65-75`  
 **Invariants/Validation rules:** `tick >= 0`; `kind` must be one of the four allowed values; `len(nodes) <= 256`; `loop_len >= 0`  
 **Notes:** Event schema for void-walker announcement bus; kept compact for efficient ADC processing
 
@@ -24831,7 +24831,7 @@ class Observation:
 
 **Kind:** event  
 **Versioning (if present):** none  
-**Defined at:** `fum_rt/core/proprioception/events.py:49-52` • `6b63a5e`
+**Defined at:** `vdm_rt/core/proprioception/events.py:49-52` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
 
@@ -24846,8 +24846,8 @@ class BaseEvent:
 
 | Field  | Type           | Required | Default | Units/Normalization | Description (lifted)      | Source                                         |
 | ------ | -------------- | :------: | ------- | ------------------- | ------------------------- | ---------------------------------------------- |
-| `kind` | `str`          |    Y     | n/a     | n/a                 | Event kind identifier     | `fum_rt/core/proprioception/events.py:51`      |
-| `t`    | `Optional[int]`|    N     | `None`  | timestep            | Optional simulation tick  | `fum_rt/core/proprioception/events.py:52`      |
+| `kind` | `str`          |    Y     | n/a     | n/a                 | Event kind identifier     | `vdm_rt/core/proprioception/events.py:51`      |
+| `t`    | `Optional[int]`|    N     | `None`  | timestep            | Optional simulation tick  | `vdm_rt/core/proprioception/events.py:52`      |
 
 **Producers/Consumers:** Base class for all event-driven metrics events  
 **Related equations (anchors only):** n/a  
@@ -24862,7 +24862,7 @@ class BaseEvent:
 
 **Kind:** event  
 **Versioning (if present):** none  
-**Defined at:** `fum_rt/core/proprioception/events.py:55-71` • `6b63a5e`
+**Defined at:** `vdm_rt/core/proprioception/events.py:55-71` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
 
@@ -24889,11 +24889,11 @@ class DeltaEvent(BaseEvent):
 
 | Field     | Type    | Required | Default | Units/Normalization | Description (lifted)                                  | Source                                         |
 | --------- | ------- | :------: | ------- | ------------------- | ----------------------------------------------------- | ---------------------------------------------- |
-| `b1`      | `float` |    N     | `0.0`   | normalized          | Contribution to B1-like topology signal               | `fum_rt/core/proprioception/events.py:66`      |
-| `novelty` | `float` |    N     | `0.0`   | $[0, +\infty)$      | Novelty component                                     | `fum_rt/core/proprioception/events.py:67`      |
-| `hab`     | `float` |    N     | `0.0`   | $[0, +\infty)$      | Habituation component                                 | `fum_rt/core/proprioception/events.py:68`      |
-| `td`      | `float` |    N     | `0.0`   | normalized          | Temporal-difference-like component                    | `fum_rt/core/proprioception/events.py:69`      |
-| `hsi`     | `float` |    N     | `0.0`   | normalized          | Homeostatic stability/instability component           | `fum_rt/core/proprioception/events.py:70`      |
+| `b1`      | `float` |    N     | `0.0`   | normalized          | Contribution to B1-like topology signal               | `vdm_rt/core/proprioception/events.py:66`      |
+| `novelty` | `float` |    N     | `0.0`   | $[0, +\infty)$      | Novelty component                                     | `vdm_rt/core/proprioception/events.py:67`      |
+| `hab`     | `float` |    N     | `0.0`   | $[0, +\infty)$      | Habituation component                                 | `vdm_rt/core/proprioception/events.py:68`      |
+| `td`      | `float` |    N     | `0.0`   | normalized          | Temporal-difference-like component                    | `vdm_rt/core/proprioception/events.py:69`      |
+| `hsi`     | `float` |    N     | `0.0`   | normalized          | Homeostatic stability/instability component           | `vdm_rt/core/proprioception/events.py:70`      |
 
 **Producers/Consumers:** Produced by connectome/walker learning updates; consumed by EventDrivenMetrics  
 **Related equations (anchors only):** TODO: missing anchor for B1 topology, TD learning (see `Derivation/EQUATIONS.md`)  
@@ -24908,7 +24908,7 @@ class DeltaEvent(BaseEvent):
 
 **Kind:** event  
 **Versioning (if present):** none  
-**Defined at:** `fum_rt/core/proprioception/events.py:73-83` • `6b63a5e`
+**Defined at:** `vdm_rt/core/proprioception/events.py:73-83` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
 
@@ -24929,8 +24929,8 @@ class VTTouchEvent(BaseEvent):
 
 | Field   | Type    | Required | Default | Units/Normalization | Description (lifted)                          | Source                                         |
 | ------- | ------- | :------: | ------- | ------------------- | --------------------------------------------- | ---------------------------------------------- |
-| `token` | `Any`   |    N     | `""`    | n/a                 | Hashable token ID or string                   | `fum_rt/core/proprioception/events.py:81`      |
-| `w`     | `float` |    N     | `1.0`   | weight              | Optional weight                               | `fum_rt/core/proprioception/events.py:82`      |
+| `token` | `Any`   |    N     | `""`    | n/a                 | Hashable token ID or string                   | `vdm_rt/core/proprioception/events.py:81`      |
+| `w`     | `float` |    N     | `1.0`   | weight              | Optional weight                               | `vdm_rt/core/proprioception/events.py:82`      |
 
 **Producers/Consumers:** Produced on vocabulary/feature access; consumed by EventDrivenMetrics for coverage/entropy approximation  
 **Related equations (anchors only):** TODO: missing anchor for vocabulary coverage and entropy (see `Derivation/EQUATIONS.md`)  
@@ -24945,7 +24945,7 @@ class VTTouchEvent(BaseEvent):
 
 **Kind:** event  
 **Versioning (if present):** none  
-**Defined at:** `fum_rt/core/proprioception/events.py:85-94` • `6b63a5e`
+**Defined at:** `vdm_rt/core/proprioception/events.py:85-94` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
 
@@ -24965,8 +24965,8 @@ class EdgeOffEvent(BaseEvent):
 
 | Field | Type  | Required | Default | Units/Normalization | Description (lifted)  | Source                                         |
 | ----- | ----- | :------: | ------- | ------------------- | --------------------- | ---------------------------------------------- |
-| `u`   | `int` |    N     | `0`     | node ID             | Source node ID        | `fum_rt/core/proprioception/events.py:87,92`   |
-| `v`   | `int` |    N     | `0`     | node ID             | Target node ID        | `fum_rt/core/proprioception/events.py:88,93`   |
+| `u`   | `int` |    N     | `0`     | node ID             | Source node ID        | `vdm_rt/core/proprioception/events.py:87,92`   |
+| `v`   | `int` |    N     | `0`     | node ID             | Target node ID        | `vdm_rt/core/proprioception/events.py:88,93`   |
 
 **Producers/Consumers:** Produced by structural plasticity; EdgeOn consumed by UnionFindCohesion; EdgeOff marks dirty for reconciliation  
 **Related equations (anchors only):** TODO: missing anchor for cohesion metric (see `Derivation/EQUATIONS.md`)  
@@ -24981,7 +24981,7 @@ class EdgeOffEvent(BaseEvent):
 
 **Kind:** event  
 **Versioning (if present):** none  
-**Defined at:** `fum_rt/core/proprioception/events.py:97-103` • `6b63a5e`
+**Defined at:** `vdm_rt/core/proprioception/events.py:97-103` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
 
@@ -24997,9 +24997,9 @@ class SpikeEvent(BaseEvent):
 
 | Field  | Type    | Required | Default | Units/Normalization | Description (lifted)                               | Source                                         |
 | ------ | ------- | :------: | ------- | ------------------- | -------------------------------------------------- | ---------------------------------------------- |
-| `node` | `int`   |    N     | `0`     | neuron ID           | Neuron ID                                          | `fum_rt/core/proprioception/events.py:100`     |
-| `amp`  | `float` |    N     | `1.0`   | activity magnitude  | Activity magnitude or $\|\Delta W\|$ proxy         | `fum_rt/core/proprioception/events.py:101`     |
-| `sign` | `int`   |    N     | `+1`    | polarity            | +1 excitatory, -1 inhibitory, 0 unknown            | `fum_rt/core/proprioception/events.py:102`     |
+| `node` | `int`   |    N     | `0`     | neuron ID           | Neuron ID                                          | `vdm_rt/core/proprioception/events.py:100`     |
+| `amp`  | `float` |    N     | `1.0`   | activity magnitude  | Activity magnitude or $\|\Delta W\|$ proxy         | `vdm_rt/core/proprioception/events.py:101`     |
+| `sign` | `int`   |    N     | `+1`    | polarity            | +1 excitatory, -1 inhibitory, 0 unknown            | `vdm_rt/core/proprioception/events.py:102`     |
 
 **Producers/Consumers:** Produced by neurons during activity; consumed by EventDrivenMetrics  
 **Related equations (anchors only):** TODO: missing anchor for void-faithful polarity (see `Derivation/EQUATIONS.md`)  
@@ -25014,7 +25014,7 @@ class SpikeEvent(BaseEvent):
 
 **Kind:** event  
 **Versioning (if present):** none  
-**Defined at:** `fum_rt/core/proprioception/events.py:106-110` • `6b63a5e`
+**Defined at:** `vdm_rt/core/proprioception/events.py:106-110` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
 
@@ -25029,8 +25029,8 @@ class DeltaWEvent(BaseEvent):
 
 | Field  | Type    | Required | Default | Units/Normalization | Description (lifted)           | Source                                         |
 | ------ | ------- | :------: | ------- | ------------------- | ------------------------------ | ---------------------------------------------- |
-| `node` | `int`   |    N     | `0`     | neuron ID           | Node ID for weight update      | `fum_rt/core/proprioception/events.py:108`     |
-| `dw`   | `float` |    N     | `0.0`   | weight delta        | Signed weight delta $\Delta W$ | `fum_rt/core/proprioception/events.py:109`     |
+| `node` | `int`   |    N     | `0`     | neuron ID           | Node ID for weight update      | `vdm_rt/core/proprioception/events.py:108`     |
+| `dw`   | `float` |    N     | `0.0`   | weight delta        | Signed weight delta $\Delta W$ | `vdm_rt/core/proprioception/events.py:109`     |
 
 **Producers/Consumers:** Produced by local learning updates; consumed by EventDrivenMetrics  
 **Related equations (anchors only):** TODO: missing anchor for weight update rules (see `Derivation/EQUATIONS.md`)  
@@ -25045,7 +25045,7 @@ class DeltaWEvent(BaseEvent):
 
 **Kind:** event  
 **Versioning (if present):** none  
-**Defined at:** `fum_rt/core/proprioception/events.py:112-120` • `6b63a5e`
+**Defined at:** `vdm_rt/core/proprioception/events.py:112-120` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
 
@@ -25063,7 +25063,7 @@ class MotifExitEvent(BaseEvent):
 
 | Field      | Type  | Required | Default | Units/Normalization | Description (lifted)    | Source                                              |
 | ---------- | ----- | :------: | ------- | ------------------- | ----------------------- | --------------------------------------------------- |
-| `motif_id` | `int` |    N     | `0`     | motif identifier    | Motif identifier        | `fum_rt/core/proprioception/events.py:114,119`      |
+| `motif_id` | `int` |    N     | `0`     | motif identifier    | Motif identifier        | `vdm_rt/core/proprioception/events.py:114,119`      |
 
 **Producers/Consumers:** Produced by motif detection; consumed by EventDrivenMetrics  
 **Related equations (anchors only):** n/a  
@@ -25078,7 +25078,7 @@ class MotifExitEvent(BaseEvent):
 
 **Kind:** event  
 **Versioning (if present):** none  
-**Defined at:** `fum_rt/core/proprioception/events.py:122-134` • `6b63a5e`
+**Defined at:** `vdm_rt/core/proprioception/events.py:122-134` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
 
@@ -25101,9 +25101,9 @@ class ADCEvent(BaseEvent):
 
 | Field             | Type             | Required | Default | Units/Normalization | Description (lifted)           | Source                                         |
 | ----------------- | ---------------- | :------: | ------- | ------------------- | ------------------------------ | ---------------------------------------------- |
-| `adc_territories` | `Optional[int]`  |    N     | `None`  | count               | Number of ADC territories      | `fum_rt/core/proprioception/events.py:131`     |
-| `adc_boundaries`  | `Optional[int]`  |    N     | `None`  | count               | Number of ADC boundaries       | `fum_rt/core/proprioception/events.py:132`     |
-| `adc_cycle_hits`  | `Optional[float]`|    N     | `None`  | count/rate          | ADC cycle hits metric          | `fum_rt/core/proprioception/events.py:133`     |
+| `adc_territories` | `Optional[int]`  |    N     | `None`  | count               | Number of ADC territories      | `vdm_rt/core/proprioception/events.py:131`     |
+| `adc_boundaries`  | `Optional[int]`  |    N     | `None`  | count               | Number of ADC boundaries       | `vdm_rt/core/proprioception/events.py:132`     |
+| `adc_cycle_hits`  | `Optional[float]`|    N     | `None`  | count/rate          | ADC cycle hits metric          | `vdm_rt/core/proprioception/events.py:133`     |
 
 **Producers/Consumers:** Produced by Active Domain Cartography (ADC) estimator; consumed by telemetry  
 **Related equations (anchors only):** TODO: missing anchor for ADC algorithm (see `Derivation/ALGORITHMS.md`)  
@@ -25118,7 +25118,7 @@ class ADCEvent(BaseEvent):
 
 **Kind:** event  
 **Versioning (if present):** none  
-**Defined at:** `fum_rt/core/proprioception/events.py:137-149` • `6b63a5e`
+**Defined at:** `vdm_rt/core/proprioception/events.py:137-149` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
 
@@ -25141,9 +25141,9 @@ class BiasHintEvent(BaseEvent):
 
 | Field    | Type              | Required | Default     | Units/Normalization | Description (lifted)                                  | Source                                         |
 | -------- | ----------------- | :------: | ----------- | ------------------- | ----------------------------------------------------- | ---------------------------------------------- |
-| `region` | `str`             |    N     | `"unknown"` | n/a                 | Free-form label (e.g., "unknown", "tile:3,4")         | `fum_rt/core/proprioception/events.py:146`     |
-| `nodes`  | `Tuple[int, ...]` |    N     | `tuple()`   | node IDs            | Bounded set of node indices to hint (immutable tuple) | `fum_rt/core/proprioception/events.py:147`     |
-| `ttl`    | `int`             |    N     | `2`         | ticks               | Time-to-live in ticks (downstream consumer-managed)   | `fum_rt/core/proprioception/events.py:148`     |
+| `region` | `str`             |    N     | `"unknown"` | n/a                 | Free-form label (e.g., "unknown", "tile:3,4")         | `vdm_rt/core/proprioception/events.py:146`     |
+| `nodes`  | `Tuple[int, ...]` |    N     | `tuple()`   | node IDs            | Bounded set of node indices to hint (immutable tuple) | `vdm_rt/core/proprioception/events.py:147`     |
+| `ttl`    | `int`             |    N     | `2`         | ticks               | Time-to-live in ticks (downstream consumer-managed)   | `vdm_rt/core/proprioception/events.py:148`     |
 
 **Producers/Consumers:** Produced by exploration heuristics; travels on bus for optional consumers (EventDrivenMetrics ignores)  
 **Related equations (anchors only):** n/a  
@@ -25158,7 +25158,7 @@ class BiasHintEvent(BaseEvent):
 
 **Kind:** event  
 **Versioning (if present):** none  
-**Defined at:** `fum_rt/core/cosmology/events.py:26-62` • `6b63a5e`
+**Defined at:** `vdm_rt/core/cosmology/events.py:26-62` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
 
@@ -25179,12 +25179,12 @@ class HorizonActivityEvent(BaseEvent):
 
 | Field        | Type               | Required | Default              | Units/Normalization | Description (lifted)                           | Source                                    |
 | ------------ | ------------------ | :------: | -------------------- | ------------------- | ---------------------------------------------- | ----------------------------------------- |
-| `kind`       | `str`              |    N     | `"horizon_activity"` | n/a                 | Event kind identifier                          | `fum_rt/core/cosmology/events.py:30`      |
-| `t`          | `int`              |    N     | `0`                  | timestep            | Simulation tick                                | `fum_rt/core/cosmology/events.py:31`      |
-| `x`          | `Tuple[float, ...]`|    N     | `tuple()`            | local coordinates   | Local coordinates (≤4 dimensions)              | `fum_rt/core/cosmology/events.py:32`      |
-| `dotA`       | `float`            |    N     | `0.0`                | rate                | Observable production rate $\dot{A}$           | `fum_rt/core/cosmology/events.py:33`      |
-| `horizon_id` | `str`              |    N     | `""`                 | n/a                 | Non-empty horizon identifier                   | `fum_rt/core/cosmology/events.py:34`      |
-| `dt_ret`     | `float`            |    N     | `0.0`                | time units          | Strictly retarded window duration              | `fum_rt/core/cosmology/events.py:35`      |
+| `kind`       | `str`              |    N     | `"horizon_activity"` | n/a                 | Event kind identifier                          | `vdm_rt/core/cosmology/events.py:30`      |
+| `t`          | `int`              |    N     | `0`                  | timestep            | Simulation tick                                | `vdm_rt/core/cosmology/events.py:31`      |
+| `x`          | `Tuple[float, ...]`|    N     | `tuple()`            | local coordinates   | Local coordinates (≤4 dimensions)              | `vdm_rt/core/cosmology/events.py:32`      |
+| `dotA`       | `float`            |    N     | `0.0`                | rate                | Observable production rate $\dot{A}$           | `vdm_rt/core/cosmology/events.py:33`      |
+| `horizon_id` | `str`              |    N     | `""`                 | n/a                 | Non-empty horizon identifier                   | `vdm_rt/core/cosmology/events.py:34`      |
+| `dt_ret`     | `float`            |    N     | `0.0`                | time units          | Strictly retarded window duration              | `vdm_rt/core/cosmology/events.py:35`      |
 
 **Producers/Consumers:** Produced by horizon activity detection; routed through cosmology event bus  
 **Related equations (anchors only):** TODO: missing anchor for retarded kernel and horizon activity (see `Derivation/EQUATIONS.md`)  
@@ -25199,7 +25199,7 @@ class HorizonActivityEvent(BaseEvent):
 
 **Kind:** event  
 **Versioning (if present):** none  
-**Defined at:** `fum_rt/core/cosmology/events.py:64-94` • `6b63a5e`
+**Defined at:** `vdm_rt/core/cosmology/events.py:64-94` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
 
@@ -25219,11 +25219,11 @@ class RouterSplitEvent(BaseEvent):
 
 | Field           | Type    | Required | Default          | Units/Normalization | Description (lifted)                  | Source                                    |
 | --------------- | ------- | :------: | ---------------- | ------------------- | ------------------------------------- | ----------------------------------------- |
-| `kind`          | `str`   |    N     | `"router_split"` | n/a                 | Event kind identifier                 | `fum_rt/core/cosmology/events.py:68`      |
-| `energy_budget` | `float` |    N     | `0.0`            | energy units        | Total energy budget                   | `fum_rt/core/cosmology/events.py:69`      |
-| `f_vac`         | `float` |    N     | `0.0`            | fraction $[0,1]$    | Fraction for vacuum channel           | `fum_rt/core/cosmology/events.py:70`      |
-| `f_grain`       | `float` |    N     | `0.0`            | fraction $[0,1]$    | Fraction for grain channel            | `fum_rt/core/cosmology/events.py:71`      |
-| `f_gw`          | `float` |    N     | `0.0`            | fraction $[0,1]$    | Fraction for gravitational wave channel | `fum_rt/core/cosmology/events.py:72`    |
+| `kind`          | `str`   |    N     | `"router_split"` | n/a                 | Event kind identifier                 | `vdm_rt/core/cosmology/events.py:68`      |
+| `energy_budget` | `float` |    N     | `0.0`            | energy units        | Total energy budget                   | `vdm_rt/core/cosmology/events.py:69`      |
+| `f_vac`         | `float` |    N     | `0.0`            | fraction $[0,1]$    | Fraction for vacuum channel           | `vdm_rt/core/cosmology/events.py:70`      |
+| `f_grain`       | `float` |    N     | `0.0`            | fraction $[0,1]$    | Fraction for grain channel            | `vdm_rt/core/cosmology/events.py:71`      |
+| `f_gw`          | `float` |    N     | `0.0`            | fraction $[0,1]$    | Fraction for gravitational wave channel | `vdm_rt/core/cosmology/events.py:72`    |
 
 **Producers/Consumers:** Produced by cosmology router; consumed by energy partition subsystem  
 **Related equations (anchors only):** TODO: missing anchor for energy routing (see `Derivation/EQUATIONS.md`)  
@@ -25238,7 +25238,7 @@ class RouterSplitEvent(BaseEvent):
 
 **Kind:** event  
 **Versioning (if present):** none  
-**Defined at:** `fum_rt/core/cosmology/events.py:96-127` • `6b63a5e`
+**Defined at:** `vdm_rt/core/cosmology/events.py:96-127` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
 
@@ -25258,11 +25258,11 @@ class BudgetTick(BaseEvent):
 
 | Field       | Type  | Required | Default         | Units/Normalization | Description (lifted)              | Source                                    |
 | ----------- | ----- | :------: | --------------- | ------------------- | --------------------------------- | ----------------------------------------- |
-| `kind`      | `str` |    N     | `"budget_tick"` | n/a                 | Event kind identifier             | `fum_rt/core/cosmology/events.py:100`     |
-| `tick`      | `int` |    N     | `0`             | timestep            | Current tick                      | `fum_rt/core/cosmology/events.py:101`     |
-| `max_ops`   | `int` |    N     | `0`             | count               | Maximum operations allowed        | `fum_rt/core/cosmology/events.py:102`     |
-| `max_emits` | `int` |    N     | `0`             | count               | Maximum emissions allowed         | `fum_rt/core/cosmology/events.py:103`     |
-| `ttl`       | `int` |    N     | `1`             | ticks               | Time-to-live (must be >= 1)       | `fum_rt/core/cosmology/events.py:104`     |
+| `kind`      | `str` |    N     | `"budget_tick"` | n/a                 | Event kind identifier             | `vdm_rt/core/cosmology/events.py:100`     |
+| `tick`      | `int` |    N     | `0`             | timestep            | Current tick                      | `vdm_rt/core/cosmology/events.py:101`     |
+| `max_ops`   | `int` |    N     | `0`             | count               | Maximum operations allowed        | `vdm_rt/core/cosmology/events.py:102`     |
+| `max_emits` | `int` |    N     | `0`             | count               | Maximum emissions allowed         | `vdm_rt/core/cosmology/events.py:103`     |
+| `ttl`       | `int` |    N     | `1`             | ticks               | Time-to-live (must be >= 1)       | `vdm_rt/core/cosmology/events.py:104`     |
 
 **Producers/Consumers:** Produced by budget system; guard method raises `BudgetExceededError` when limits exceeded  
 **Related equations (anchors only):** n/a  
@@ -33638,7 +33638,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Purpose:** Validate vacuum equation-of-state against ΛCDM baseline for cosmology channel <br/>
 **Defined by:** TODO → add equation anchor <br/>
 **Inputs:** Redshift z, horizon activity events, retarded kernel parameters <br/>
-**Computation implemented at:** `fum_rt/physics/vacuum_demographics_harness.py:230-283 • 17a0b72` (_aggregate_metrics) <br/>
+**Computation implemented at:** `vdm_rt/physics/vacuum_demographics_harness.py:230-283 • 17a0b72` (_aggregate_metrics) <br/>
 **Pass band / thresholds:** `≤ 5e-4` (default residual_tol) → vacuum_demographics_harness.py:383 (CLI arg)   • TODO → link to `CONSTANTS.md#const-...` <br/>
 **Units / normalization:** `UNITS_NORMALIZATION.md` <br/>
 **Typical datasets / experiments:** Synthetic horizon activity tape or user-supplied events <br/>
@@ -33736,8 +33736,8 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Purpose:** Threshold for detecting anomalies in cyclomatic complexity time series <br/>
 **Defined by:** TODO → add equation anchor <br/>
 **Inputs:** Cyclomatic complexity series, [`speak_z`](CONSTANTS.md#const-speak_z_4) threshold <br/>
-**Computation implemented at:** `fum_rt/core/metrics.py:55-116 • 17a0b72` (StreamingZEMA class) <br/>
-`fum_rt/nexus.py • 17a0b72` (b1_detector instantiation) <br/>
+**Computation implemented at:** `vdm_rt/core/metrics.py:55-116 • 17a0b72` (StreamingZEMA class) <br/>
+`vdm_rt/nexus.py • 17a0b72` (b1_detector instantiation) <br/>
 **Pass band / thresholds:** [`speak_z=3.5`](CONSTANTS.md#const-speak_z_4) for phase 4 (problem-solving) → runtime/phase.py:55 <br/>
 **Units / normalization:** `UNITS_NORMALIZATION.md` <br/>
 **Typical datasets / experiments:** Runtime telemetry, void-native signals <br/>
@@ -33754,7 +33754,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Purpose:** Monitor global connectome activity level <br/>
 **Defined by:** TODO → add equation anchor <br/>
 **Inputs:** Connectome weight matrix W <br/>
-**Computation implemented at:** `fum_rt/core/metrics.py:11-29 • 17a0b72` (compute_metrics) <br/>
+**Computation implemented at:** `vdm_rt/core/metrics.py:11-29 • 17a0b72` (compute_metrics) <br/>
 **Pass band / thresholds:** No explicit threshold; informational metric   • TODO → link to `CONSTANTS.md#const-...` <br/>
 **Units / normalization:** `UNITS_NORMALIZATION.md` <br/>
 **Typical datasets / experiments:** Runtime telemetry at each tick <br/>
@@ -33767,7 +33767,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Purpose:** Count active edges in connectome graph <br/>
 **Defined by:** TODO → add equation anchor <br/>
 **Inputs:** Connectome E (efficacy) and A (adjacency) matrices, threshold <br/>
-**Computation implemented at:** `fum_rt/core/metrics.py:11-29 • 17a0b72` (compute_metrics → active_edge_count method) <br/>
+**Computation implemented at:** `vdm_rt/core/metrics.py:11-29 • 17a0b72` (compute_metrics → active_edge_count method) <br/>
 **Pass band / thresholds:** No explicit threshold; sparsity/utilization indicator   • TODO → link to `CONSTANTS.md#const-...` <br/>
 **Units / normalization:** `UNITS_NORMALIZATION.md` <br/>
 **Typical datasets / experiments:** Runtime telemetry, golden run parity checks <br/>
@@ -33780,8 +33780,8 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Purpose:** Detect graph fragmentation and emergent multi-agent behavior <br/>
 **Defined by:** TODO → add equation anchor <br/>
 **Inputs:** Connectome active subgraph (E > threshold & A == 1) <br/>
-**Computation implemented at:** `fum_rt/core/metrics.py:11-29 • 17a0b72` (compute_metrics → connected_components method) <br/>
-**Pass band / thresholds:** `> 1` triggers emergent GDSP activation → fum_rt/runtime/loop/main.py:comp check   • TODO → link to `CONSTANTS.md#const-...` <br/>
+**Computation implemented at:** `vdm_rt/core/metrics.py:11-29 • 17a0b72` (compute_metrics → connected_components method) <br/>
+**Pass band / thresholds:** `> 1` triggers emergent GDSP activation → vdm_rt/runtime/loop/main.py:comp check   • TODO → link to `CONSTANTS.md#const-...` <br/>
 **Units / normalization:** `UNITS_NORMALIZATION.md` <br/>
 **Typical datasets / experiments:** Runtime telemetry, UTD event scans <br/>
 **Primary figure/artifact (if referenced):** Logged in emission records, redis outputs <br/>
@@ -33793,12 +33793,12 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Purpose:** Proxy for topological complexity; feeds B1 spike detector <br/>
 **Defined by:** TODO → add equation anchor <br/>
 **Inputs:** Connectome active subgraph <br/>
-**Computation implemented at:** `fum_rt/core/metrics.py:11-29 • 17a0b72` (compute_metrics → cyclomatic_complexity method) <br/>
+**Computation implemented at:** `vdm_rt/core/metrics.py:11-29 • 17a0b72` (compute_metrics → cyclomatic_complexity method) <br/>
 **Pass band / thresholds:** No direct threshold; first-difference used by [B1 Spike Detection](#kpi-b1-spike-z)   • TODO → link to `CONSTANTS.md#const-...` <br/>
 **Units / normalization:** `UNITS_NORMALIZATION.md` <br/>
 **Typical datasets / experiments:** Runtime telemetry; augmented by adc_cycle_hits when ADC active <br/>
 **Primary figure/artifact (if referenced):** N/A (streaming input to spike detector) <br/>
-**Notes:** StreamingZEMA monitors `Δ(complexity_cycles)` for anomalies (fum_rt/core/metrics.py:50-52) <br/>
+**Notes:** StreamingZEMA monitors `Δ(complexity_cycles)` for anomalies (vdm_rt/core/metrics.py:50-52) <br/>
 
 #### Connectome Entropy  <a id="kpi-connectome-entropy"></a>
 
@@ -33806,7 +33806,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Purpose:** Global pathological structure detection via degree distribution entropy <br/>
 **Defined by:** TODO → add equation anchor <br/>
 **Inputs:** Connectome active edges → degree vector → probability distribution <br/>
-**Computation implemented at:** `fum_rt/core/metrics.py:31-47 • 17a0b72` (connectome_entropy function) <br/>
+**Computation implemented at:** `vdm_rt/core/metrics.py:31-47 • 17a0b72` (connectome_entropy function) <br/>
 **Pass band / thresholds:** No explicit threshold; supports Active Domain Cartography scheduling (Blueprint Rule 7)   • TODO → link to `CONSTANTS.md#const-...` <br/>
 **Units / normalization:** `UNITS_NORMALIZATION.md` <br/>
 **Typical datasets / experiments:** Runtime telemetry, golden run parity, UTD scans <br/>
@@ -33824,7 +33824,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Units / normalization:** `UNITS_NORMALIZATION.md` <br/>
 **Typical datasets / experiments:** Runtime telemetry, tracked over time for temporal difference signals <br/>
 **Primary figure/artifact (if referenced):** Logged in composer, emission, redis outputs <br/>
-**Notes:** Previous value tracked in `_prev_vt_entropy` for TD calculation (fum_rt/nexus.py) <br/>
+**Notes:** Previous value tracked in `_prev_vt_entropy` for TD calculation (vdm_rt/nexus.py) <br/>
 
 #### Void Traveler Coverage  <a id="kpi-vt-coverage"></a>
 
@@ -33837,7 +33837,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Units / normalization:** `UNITS_NORMALIZATION.md` <br/>
 **Typical datasets / experiments:** Runtime telemetry, golden run parity comparisons <br/>
 **Primary figure/artifact (if referenced):** Logged in emission records <br/>
-**Notes:** Used in smoke tests: `obs:vt_coverage↑` (fum_rt/runtime/helpers/smoke.py) <br/>
+**Notes:** Used in smoke tests: `obs:vt_coverage↑` (vdm_rt/runtime/helpers/smoke.py) <br/>
 
 #### SIE Valence  <a id="kpi-sie-valence"></a>
 
@@ -33850,7 +33850,7 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Units / normalization:** `UNITS_NORMALIZATION.md` <br/>
 **Typical datasets / experiments:** Runtime telemetry, golden run parity, emission records <br/>
 **Primary figure/artifact (if referenced):** Logged in telemetry, redis outputs, composer <br/>
-**Notes:** v2 preferred; fallback chain: sie_v2_valence_01 → sie_valence_01 → 0.0 (fum_rt/runtime/helpers/redis_out.py:13-14) <br/>
+**Notes:** v2 preferred; fallback chain: sie_v2_valence_01 → sie_valence_01 → 0.0 (vdm_rt/runtime/helpers/redis_out.py:13-14) <br/>
 
 #### ADC Cycle Hits  <a id="kpi-adc-cycle-hits"></a>
 
@@ -33858,12 +33858,12 @@ Key validation metrics explicitly referenced as acceptance gates across the repo
 **Purpose:** Active Domain Cartography cycle detection augmentation to complexity_cycles <br/>
 **Defined by:** TODO → add equation anchor <br/>
 **Inputs:** ADC metrics from get_metrics() call <br/>
-**Computation implemented at:** ADC subsystem, aggregated in telemetry: `fum_rt/runtime/telemetry.py:complexity_cycles += adc_cycle_hits • 17a0b72` <br/>
+**Computation implemented at:** ADC subsystem, aggregated in telemetry: `vdm_rt/runtime/telemetry.py:complexity_cycles += adc_cycle_hits • 17a0b72` <br/>
 **Pass band / thresholds:** No explicit threshold; augments [Complexity Cycles](#kpi-complexity-cycles)   • TODO → link to `CONSTANTS.md#const-...` <br/>
 **Units / normalization:** `UNITS_NORMALIZATION.md` <br/>
 **Typical datasets / experiments:** Runtime telemetry when ADC active <br/>
 **Primary figure/artifact (if referenced):** N/A (internal augmentation to complexity_cycles) <br/>
-**Notes:** When ADC inactive, adc_cycle_hits=0 → complexity_cycles unaugmented → b1_z flatlined (fum_rt/runtime/loop/main.py comment) <br/>
+**Notes:** When ADC inactive, adc_cycle_hits=0 → complexity_cycles unaugmented → b1_z flatlined (vdm_rt/runtime/loop/main.py comment) <br/>
 
 ---
 

@@ -1148,7 +1148,7 @@ $$V(E,p+\Delta p)\le V(E,p).$$
 
 <a id="vdm-e-085"></a>
 
-**Context:** [RUNTIME-ONLY] Derivation of the synaptic weight update in the Self-Improvement Engine (SIE), integrating time-dependent gain modulation with void-driven plasticity dynamics (RE-VGSP for resonance-enhanced growth and GDSP for goal-directed decay), anti-saturation regularization to prevent over-specialization, and a projection onto a budget-constrained simplex for resource allocation. This rule unifies cognitive adaptation principles with physical void debt mechanisms, supporting emergent intelligence in the Void Dynamics Model. • Source: fum_rt/core/fum_sie.py:1-260 • Commit: a48f2d2 • Last Updated: 2025-11-05T04:23:39Z
+**Context:** [RUNTIME-ONLY] Derivation of the synaptic weight update in the Self-Improvement Engine (SIE), integrating time-dependent gain modulation with void-driven plasticity dynamics (RE-VGSP for resonance-enhanced growth and GDSP for goal-directed decay), anti-saturation regularization to prevent over-specialization, and a projection onto a budget-constrained simplex for resource allocation. This rule unifies cognitive adaptation principles with physical void debt mechanisms, supporting emergent intelligence in the Void Dynamics Model. • Source: vdm_rt/core/fum_sie.py:1-260 • Commit: a48f2d2 • Last Updated: 2025-11-05T04:23:39Z
 
 **Equation:**
 $$
@@ -1170,7 +1170,7 @@ $$
 
 <a id="vdm-e-086"></a>
 
-**Context:** [RUNTIME-ONLY] Universal function for Resonance-Enhanced Valence-Gated Synaptic Plasticity within the void dynamics framework, modeling fractal energy drain and growth in void states. This component synchronizes with GDSP to drive adaptive evolution, serving as the growth-promoting term in void debt mechanisms for both cognitive stability in the Self-Improvement Engine (SIE) and physical pattern formation in the Void Dynamics Model (VDM). • Source: fum_rt/core/Void_Equations.py:22-55 • Commit: a48f2d2 • Last Updated: 2025-11-05T04:23:39Z
+**Context:** [RUNTIME-ONLY] Universal function for Resonance-Enhanced Valence-Gated Synaptic Plasticity within the void dynamics framework, modeling fractal energy drain and growth in void states. This component synchronizes with GDSP to drive adaptive evolution, serving as the growth-promoting term in void debt mechanisms for both cognitive stability in the Self-Improvement Engine (SIE) and physical pattern formation in the Void Dynamics Model (VDM). • Source: vdm_rt/core/Void_Equations.py:22-55 • Commit: a48f2d2 • Last Updated: 2025-11-05T04:23:39Z
 
 **Equation:**
 $$
@@ -1196,7 +1196,7 @@ with optional time modulation: $(\Delta_{\text{RE-VGSP}} \cdot (1 + \phi \sin(2\
 
 <a id="vdm-e-087"></a>
 
-**Context:** [RUNTIME-ONLY] Universal function for Goal-Directed Structural Plasticity within the void dynamics framework, modeling weak closure and dissipation in void states. This component synchronizes with RE-VGSP to enforce stability, serving as the decay term in void debt mechanisms for balancing growth in cognitive adaptation via the Self-Improvement Engine (SIE) and physical relaxation in the Void Dynamics Model (VDM). • Source: fum_rt/core/Void_Equations.py:56-88 • Commit: a48f2d2 • Last Updated: 2025-11-05T04:23:39Z
+**Context:** [RUNTIME-ONLY] Universal function for Goal-Directed Structural Plasticity within the void dynamics framework, modeling weak closure and dissipation in void states. This component synchronizes with RE-VGSP to enforce stability, serving as the decay term in void debt mechanisms for balancing growth in cognitive adaptation via the Self-Improvement Engine (SIE) and physical relaxation in the Void Dynamics Model (VDM). • Source: vdm_rt/core/Void_Equations.py:56-88 • Commit: a48f2d2 • Last Updated: 2025-11-05T04:23:39Z
 
 **Equation:**
 $$
@@ -1221,7 +1221,7 @@ with optional time modulation: $(\Delta_{\text{GDSP}} \cdot (1 + \phi \sin(2\pi 
 
 <a id="vdm-e-088"></a>
 
-**Context:** [RUNTIME-ONLY] Simplified interface for combined void dynamics, applying both RE-VGSP and GDSP with universal constants to compute a single-step evolution of void states. This function encapsulates the synergistic growth-dissipation balance central to void debt, enabling unified application in cognitive self-optimization via the Self-Improvement Engine (SIE) and physical emergence in the Void Dynamics Model (VDM). • Source: fum_rt/core/Void_Equations.py:91-99 • Commit: a48f2d2 • Last Updated: 2025-11-05T04:23:39Z
+**Context:** [RUNTIME-ONLY] Simplified interface for combined void dynamics, applying both RE-VGSP and GDSP with universal constants to compute a single-step evolution of void states. This function encapsulates the synergistic growth-dissipation balance central to void debt, enabling unified application in cognitive self-optimization via the Self-Improvement Engine (SIE) and physical emergence in the Void Dynamics Model (VDM). • Source: vdm_rt/core/Void_Equations.py:91-99 • Commit: a48f2d2 • Last Updated: 2025-11-05T04:23:39Z
 
 **Equation:**
 $$
@@ -1244,7 +1244,7 @@ with optional time modulation on each term and domain scaling applied to $(\alph
 
 <a id="vdm-e-089"></a>
 
-**Context:** [PLAUSIBLE] [RUNTIME-ONLY] Derivation of domain-specific modulation factors from void debt principles, scaling universal constants like $(\alpha)$ and $(\beta)$ based on target sparsity for different physics regimes. This function ensures cognitive stability constants generate realistic physics, unifying adaptation in the Self-Improvement Engine (SIE) with emergent behaviors in the Void Dynamics Model (VDM) across domains like quantum or cosmogenesis. • Source: fum_rt/core/Void_Debt_Modulation.py:49-55 • Commit: a48f2d2 • Last Updated: 2025-11-05T04:23:39Z
+**Context:** [PLAUSIBLE] [RUNTIME-ONLY] Derivation of domain-specific modulation factors from void debt principles, scaling universal constants like $(\alpha)$ and $(\beta)$ based on target sparsity for different physics regimes. This function ensures cognitive stability constants generate realistic physics, unifying adaptation in the Self-Improvement Engine (SIE) with emergent behaviors in the Void Dynamics Model (VDM) across domains like quantum or cosmogenesis. • Source: vdm_rt/core/Void_Debt_Modulation.py:49-55 • Commit: a48f2d2 • Last Updated: 2025-11-05T04:23:39Z
 
 **Equation:**
 $$

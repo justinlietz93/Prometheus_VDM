@@ -10,7 +10,7 @@ See LICENSE file for full terms.
 Pytest configuration shim to normalize imports.
 
 - Ensures the repository root is present on sys.path so imports like
-  `Prometheus_VDM.*` and `fum_rt.*` resolve reliably during test collection.
+  `Prometheus_VDM.*` and `vdm_rt.*` resolve reliably during test collection.
 """
 import os
 import sys

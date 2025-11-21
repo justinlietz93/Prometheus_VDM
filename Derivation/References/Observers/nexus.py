@@ -7,7 +7,7 @@ See LICENSE file for full terms.
 """
 
 # NOTE: This module acts as a thin façade over the runtime and core layers.
-# Behavior is preserved; external imports remain stable. Core loop has moved to [loop.run_loop()](fum_rt/runtime/loop.py:40).
+# Behavior is preserved; external imports remain stable. Core loop has moved to [loop.run_loop()](vdm_rt/runtime/loop.py:40).
 import time, os, sys
 
 # Deprecation notice (documentation-only):
@@ -137,12 +137,12 @@ class Nexus:
         # Select implementation with dynamic import to avoid accidental dense usage
         try:
             if use_dense: # TODO REMOVE DENSE SCANS
-                from fum_rt.core.connectome import Connectome as _Conn  # validation-only
+                from vdm_rt.core.connectome import Connectome as _Conn  # validation-only
             else:
-                from fum_rt.core.sparse_connectome import SparseConnectome as _Conn
+                from vdm_rt.core.sparse_connectome import SparseConnectome as _Conn
         except Exception:
             # Fallback to sparse on any import failure
-            from fum_rt.core.sparse_connectome import SparseConnectome as _Conn
+            from vdm_rt.core.sparse_connectome import SparseConnectome as _Conn
 
         # Instantiate connectome (both backends accept the same constructor args here)
         try: # TODO REMOVE DENSE SCANS
@@ -159,7 +159,7 @@ class Nexus:
                     pass
         except Exception:
             # Ensure we have a working sparse connectome if constructor failed
-            from fum_rt.core.sparse_connectome import SparseConnectome as _SConn
+            from vdm_rt.core.sparse_connectome import SparseConnectome as _SConn
             self.connectome = _SConn(
                 N=self.N, k=self.k, seed=self.seed,
                 threshold=threshold, lambda_omega=lambda_omega,

@@ -36,11 +36,22 @@ from matplotlib.figure import Figure
 from matplotlib.axes import Axes
 
 # Canonical IO helpers
-from Derivation.code.common.io_paths import (
-    figure_path_ext,
-    media_path,
-    log_path,
-)
+# Prefer the runtime "common" package path; fall back to local io_paths for direct execution.
+try:
+    from common.io_paths import (
+        figure_path_ext,
+        media_path,
+        log_path,
+    )
+except Exception:  # pragma: no cover - notebook / ad-hoc fallback
+    import sys as _sys
+    from pathlib import Path as _Path
+    _sys.path.append(str(_Path(__file__).resolve().parents[1]))
+    from io_paths import (  # type: ignore
+        figure_path_ext,
+        media_path,
+        log_path,
+    )
 
 def setup_style(context: str = "paper") -> None:
     """

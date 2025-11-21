@@ -10,7 +10,7 @@ Order-only audit over event logs to estimate local causal dimension and interval
 
 Notes:
 
-- For runtime logs written by `fum_rt`:
+- For runtime logs written by `vdm_rt`:
   - `events.jsonl` rows look like `{ ts, level, msg, ... }` with per-tick metrics nested under `extra`. The audit treats `t` (tick index) as a valid event ID and accepts `ts` as time when provided via `--time-key ts --time-scale 1`.
   - `utd_events.jsonl` rows look like `{ type, payload:{ t, ... }, score }`. The audit falls back to nested `payload.t` and related time aliases automatically.
 - If rows lack an explicit `id`, you can synthesize IDs by using `--id-key t` (tick as ID) or rely on the default that includes `t` as an accepted alias.

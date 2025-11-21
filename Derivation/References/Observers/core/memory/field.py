@@ -16,7 +16,7 @@ This research is protected under a dual-license to foster open academic
 research while ensuring commercial applications are aligned with the project's ethical principles. Commercial use requires written permission from Justin K. Lietz.
 See LICENSE file for full terms.
 
-Module: fum_rt.core.memory.field
+Module: vdm_rt.core.memory.field
 Purpose: Event-driven memory field with write-decay-spread dynamics (void-faithful).
 
 Design constraints
@@ -56,7 +56,7 @@ from typing import Dict, Iterable, List, Tuple
 import math
 import random
 
-from fum_rt.core.proprioception.events import VTTouchEvent, EdgeOnEvent, SpikeEvent, DeltaWEvent
+from vdm_rt.core.proprioception.events import VTTouchEvent, EdgeOnEvent, SpikeEvent, DeltaWEvent
 
 
 class MemoryField:

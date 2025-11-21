@@ -451,15 +451,15 @@ Source: [PRIVATE/Daily-Pulse/2025-11-04/Brainstorming.md](PRIVATE/Daily-Pulse/20
 
 ### Appendix C — Minimal runtime module plan (surgical augmentation; no rewrite)
 
-- New files under fum_rt/ (naming per brainstorming decisions):
-  - [fum_rt/runtime/router.py](fum_rt/runtime/router.py): Dirichlet-Tree + bandit router; sparse routing; canary mode.
-  - [fum_rt/runtime/online_adapters.py](fum_rt/runtime/online_adapters.py): rank-1/2 LoRA/IA³ updates; Oja/Hebb; RLS/online-logistic head.
-  - [fum_rt/runtime/metriplectic.py](fum_rt/runtime/metriplectic.py): conservative (loss-neutral diversity) step; symmetric-bracket ramp near saturation; ties to veracity.
-  - [fum_rt/runtime/causal_contract.py](fum_rt/runtime/causal_contract.py): frozen primitives contract (units, symmetries, conservation), support masks, consistency tests.
+- New files under vdm_rt/ (naming per brainstorming decisions):
+  - [vdm_rt/runtime/router.py](vdm_rt/runtime/router.py): Dirichlet-Tree + bandit router; sparse routing; canary mode.
+  - [vdm_rt/runtime/online_adapters.py](vdm_rt/runtime/online_adapters.py): rank-1/2 LoRA/IA³ updates; Oja/Hebb; RLS/online-logistic head.
+  - [vdm_rt/runtime/metriplectic.py](vdm_rt/runtime/metriplectic.py): conservative (loss-neutral diversity) step; symmetric-bracket ramp near saturation; ties to veracity.
+  - [vdm_rt/runtime/causal_contract.py](vdm_rt/runtime/causal_contract.py): frozen primitives contract (units, symmetries, conservation), support masks, consistency tests.
 - Extensions:
-  - [fum_rt/runtime/phase.py](fum_rt/runtime/phase.py): autophase gate; cooldown/hysteresis; ΔMDL budgets.
-  - [fum_rt/runtime/telemetry.py](fum_rt/runtime/telemetry.py): novelty_rate, dNLL_dt, compression_gain, fisher_rank, ΔMDL, veracity@k, ECE/Brier, residual-whiteness, log-periodic score.
-  - [fum_live.py](fum_live.py): hook points — after loss compute: metriplectic.step(); phase gate check; BRANCH emission; router update.
+  - [vdm_rt/runtime/phase.py](vdm_rt/runtime/phase.py): autophase gate; cooldown/hysteresis; ΔMDL budgets.
+  - [vdm_rt/runtime/telemetry.py](vdm_rt/runtime/telemetry.py): novelty_rate, dNLL_dt, compression_gain, fisher_rank, ΔMDL, veracity@k, ECE/Brier, residual-whiteness, log-periodic score.
+  - [vdm_live.py](vdm_live.py): hook points — after loss compute: metriplectic.step(); phase gate check; BRANCH emission; router update.
 
 ---
 

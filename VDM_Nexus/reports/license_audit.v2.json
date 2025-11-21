@@ -37,7 +37,7 @@
       "matched_pct": 27.73,
       "missing": 159,
       "missing_pct": 72.27,
-      "root": "fum_rt",
+      "root": "vdm_rt",
       "scanned": 220
     },
     {
@@ -69,13 +69,13 @@
   ],
   "items": [
     {
-      "docstring": "Pytest configuration shim to normalize imports.\n\n- Ensures the repository root is present on sys.path so imports like\n  `Prometheus_VDM.*` and `fum_rt.*` resolve reliably during test collection.\n",
+      "docstring": "Pytest configuration shim to normalize imports.\n\n- Ensures the repository root is present on sys.path so imports like\n  `Prometheus_VDM.*` and `vdm_rt.*` resolve reliably during test collection.\n",
       "path": "conftest.py",
       "reason": "no keywords found"
     },
     {
       "docstring": null,
-      "path": "fum_live.py",
+      "path": "vdm_live.py",
       "reason": "no docstring header found at all"
     },
     {
@@ -105,7 +105,7 @@
     },
     {
       "docstring": null,
-      "path": "fum_rt/__init__.py",
+      "path": "vdm_rt/__init__.py",
       "reason": "no docstring header found at all"
     },
     {
@@ -419,7 +419,7 @@
       "reason": "no keywords found"
     },
     {
-      "docstring": "\nPlotting helper for memory-steering experiments.\n\n- Parses outputs/memory_steering_results.csv (supports 4- or 5-column stability).\n- Produces figures in outputs/.\n- Prints a concise metrics summary that directly tests the three predictions:\n  1) Junction logistic collapse\n  2) Curvature scaling in the ray limit\n  3) Stability band with write\u2192decay protocol (Retention, Fidelity)\n\nUsage:\n- python3 -m fum_rt.utils.plot_memory_steering\n  or\n- python3 fum_rt/utils/plot_memory_steering.py   (if PYTHONPATH=. is set)\n",
+      "docstring": "\nPlotting helper for memory-steering experiments.\n\n- Parses outputs/memory_steering_results.csv (supports 4- or 5-column stability).\n- Produces figures in outputs/.\n- Prints a concise metrics summary that directly tests the three predictions:\n  1) Junction logistic collapse\n  2) Curvature scaling in the ray limit\n  3) Stability band with write\u2192decay protocol (Retention, Fidelity)\n\nUsage:\n- python3 -m vdm_rt.utils.plot_memory_steering\n  or\n- python3 vdm_rt/utils/plot_memory_steering.py   (if PYTHONPATH=. is set)\n",
       "path": "Derivation/code/physics/memory_steering/plot_memory_steering.py",
       "reason": "no keywords found"
     },
@@ -729,793 +729,793 @@
       "reason": "no keywords found"
     },
     {
-      "docstring": "\nCompatibility shim for visualization ring buffer.\n\nDeprecated: import from 'fum_rt.io.visualization.maps_ring' instead.\n\nKept for transitional period to avoid breaking existing imports:\n    from fum_rt.io.maps_ring import MapsRing, MapsFrame\n",
-      "path": "fum_rt/io/maps_ring.py",
+      "docstring": "\nCompatibility shim for visualization ring buffer.\n\nDeprecated: import from 'vdm_rt.io.visualization.maps_ring' instead.\n\nKept for transitional period to avoid breaking existing imports:\n    from vdm_rt.io.maps_ring import MapsRing, MapsFrame\n",
+      "path": "vdm_rt/io/maps_ring.py",
       "reason": "no keywords found"
     },
     {
       "docstring": null,
-      "path": "fum_rt/io/ute.py",
+      "path": "vdm_rt/io/ute.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/io/utd.py",
+      "path": "vdm_rt/io/utd.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/io/__init__.py",
+      "path": "vdm_rt/io/__init__.py",
       "reason": "no docstring header found at all"
     },
     {
-      "docstring": "SIDM cross-section harness for the cosmology router grain shim.\n\nThis runner mirrors the FUM reproducibility pattern: it takes a velocity grid,\nqueries :class:`~fum_rt.core.cosmology.GrainScatteringShim`, evaluates the\nmonotonicity/acceptance gates, emits JSON logs, and produces a plot with the\npre-registered dwarf\u2192cluster acceptance bands.\n\nUsage (example)::\n\n    python fum_rt/physics/sidm_curve_harness.py         --grid \"10,20,30,50,80,120,200,350,600,900\"         --outdir /tmp/fum_sidm\n\nThe JSON payload mirrors other physics runners: config snapshot, acceptance\nsummary, artifact paths, and timestamp. The acceptance status flips to\n``NEEDS_RECAL`` if any velocity point leaves its band or if the curve ceases to\nbe monotone decreasing.\n",
-      "path": "fum_rt/physics/sidm_curve_harness.py",
+      "docstring": "SIDM cross-section harness for the cosmology router grain shim.\n\nThis runner mirrors the FUM reproducibility pattern: it takes a velocity grid,\nqueries :class:`~vdm_rt.core.cosmology.GrainScatteringShim`, evaluates the\nmonotonicity/acceptance gates, emits JSON logs, and produces a plot with the\npre-registered dwarf\u2192cluster acceptance bands.\n\nUsage (example)::\n\n    python vdm_rt/physics/sidm_curve_harness.py         --grid \"10,20,30,50,80,120,200,350,600,900\"         --outdir /tmp/fum_sidm\n\nThe JSON payload mirrors other physics runners: config snapshot, acceptance\nsummary, artifact paths, and timestamp. The acceptance status flips to\n``NEEDS_RECAL`` if any velocity point leaves its band or if the curve ceases to\nbe monotone decreasing.\n",
+      "path": "vdm_rt/physics/sidm_curve_harness.py",
       "reason": "no keywords found"
     },
     {
-      "docstring": "\nRD dispersion validation runner (linear regime) for fum_rt.\n\nCHANGE REASON:\n- This file mirrors the validated physics from derivation scripts to the runtime stack.\n- We have PROVEN the RD linear dispersion \u03c3(k) = r - D k^2 via reproducible scripts and derivations:\n  [rd_dispersion_experiment.py](Prometheus_VDM/Derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py),\n  [rd_validation_plan.md](Prometheus_VDM/Derivation/rd_validation_plan.md),\n  [CORRECTIONS.md](Prometheus_VDM/Derivation/computational_proofs/CORRECTIONS.md).\n- This runner provides an independent, apples-to-apples check inside fum_rt with identical metrics/output schema.\n- It DOES NOT alter runtime dynamics; it is a validation wrapper only.\n",
-      "path": "fum_rt/physics/rd_dispersion_runner.py",
+      "docstring": "\nRD dispersion validation runner (linear regime) for vdm_rt.\n\nCHANGE REASON:\n- This file mirrors the validated physics from derivation scripts to the runtime stack.\n- We have PROVEN the RD linear dispersion \u03c3(k) = r - D k^2 via reproducible scripts and derivations:\n  [rd_dispersion_experiment.py](Prometheus_VDM/Derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py),\n  [rd_validation_plan.md](Prometheus_VDM/Derivation/rd_validation_plan.md),\n  [CORRECTIONS.md](Prometheus_VDM/Derivation/computational_proofs/CORRECTIONS.md).\n- This runner provides an independent, apples-to-apples check inside vdm_rt with identical metrics/output schema.\n- It DOES NOT alter runtime dynamics; it is a validation wrapper only.\n",
+      "path": "vdm_rt/physics/rd_dispersion_runner.py",
       "reason": "no keywords found"
     },
     {
       "docstring": "PTA-band correlation proxy harness for the cosmology router.",
-      "path": "fum_rt/physics/pta_correlation_harness.py",
+      "path": "vdm_rt/physics/pta_correlation_harness.py",
       "reason": "no keywords found"
     },
     {
-      "docstring": "Vacuum demographics harness for the cosmology router vacuum channel.\n\nThis script mirrors the reproducibility pattern used by the other physics\nrunners.  It ingests a synthetic (or user-supplied) horizon activity tape,\npropagates it through :class:`~fum_rt.core.cosmology.VacuumAccumulator`, and\ncompares the resulting equation-of-state residuals against the \u039bCDM baseline.\n\nThe emitted JSON payload follows the RD runner schema: configuration snapshot,\nmetrics, per-sample timeline table, and artifact paths.  The figure plots the\nw(z)+1 residual to make deviations from -1 immediately visible.\n\nUsage example::\n\n    python fum_rt/physics/vacuum_demographics_harness.py         --outdir /tmp/fum_vacuum         --eta 0.02         --tape synthetic\n\nThe harness exits with status ``NEEDS_RECAL`` when the residual tolerance is\nexceeded.\n",
-      "path": "fum_rt/physics/vacuum_demographics_harness.py",
+      "docstring": "Vacuum demographics harness for the cosmology router vacuum channel.\n\nThis script mirrors the reproducibility pattern used by the other physics\nrunners.  It ingests a synthetic (or user-supplied) horizon activity tape,\npropagates it through :class:`~vdm_rt.core.cosmology.VacuumAccumulator`, and\ncompares the resulting equation-of-state residuals against the \u039bCDM baseline.\n\nThe emitted JSON payload follows the RD runner schema: configuration snapshot,\nmetrics, per-sample timeline table, and artifact paths.  The figure plots the\nw(z)+1 residual to make deviations from -1 immediately visible.\n\nUsage example::\n\n    python vdm_rt/physics/vacuum_demographics_harness.py         --outdir /tmp/fum_vacuum         --eta 0.02         --tape synthetic\n\nThe harness exits with status ``NEEDS_RECAL`` when the residual tolerance is\nexceeded.\n",
+      "path": "vdm_rt/physics/vacuum_demographics_harness.py",
       "reason": "no keywords found"
     },
     {
       "docstring": "Reusable helpers for cosmology/physics harness logging payloads.",
-      "path": "fum_rt/physics/harness_logging.py",
+      "path": "vdm_rt/physics/harness_logging.py",
       "reason": "no keywords found"
     },
     {
       "docstring": "CI gate validators for cosmology router harness payloads.",
-      "path": "fum_rt/physics/ci_gates.py",
+      "path": "vdm_rt/physics/ci_gates.py",
       "reason": "no keywords found"
     },
     {
       "docstring": "Generate router-on/off comparison figures for cosmology regressions.",
-      "path": "fum_rt/physics/router_regression_figures.py",
+      "path": "vdm_rt/physics/router_regression_figures.py",
       "reason": "no keywords found"
     },
     {
       "docstring": "Physics solvers and harnesses for the FUM scalar EFT stack.",
-      "path": "fum_rt/physics/__init__.py",
+      "path": "vdm_rt/physics/__init__.py",
       "reason": "no keywords found"
     },
     {
-      "docstring": "\nRD front-speed validation runner (Fisher-KPP) for fum_rt.\n\nCHANGE REASON:\n- This file mirrors the validated physics from derivation scripts to the runtime stack.\n- We have PROVEN the Fisher-KPP front speed c = 2\u221a(D r) via reproducible scripts and derivations:\n  [rd_front_speed_experiment.py](Prometheus_VDM/Derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py:1),\n  [rd_front_speed_validation.md](Prometheus_VDM/Derivation/rd_front_speed_validation.md:1),\n  [CORRECTIONS.md](Prometheus_VDM/Derivation/computational_proofs/CORRECTIONS.md:1).\n- This runner provides an independent, apples-to-apples check inside fum_rt with identical metrics/output schema.\n- It DOES NOT alter runtime dynamics; it is a validation wrapper only.\n",
-      "path": "fum_rt/physics/rd_front_speed_runner.py",
+      "docstring": "\nRD front-speed validation runner (Fisher-KPP) for vdm_rt.\n\nCHANGE REASON:\n- This file mirrors the validated physics from derivation scripts to the runtime stack.\n- We have PROVEN the Fisher-KPP front speed c = 2\u221a(D r) via reproducible scripts and derivations:\n  [rd_front_speed_experiment.py](Prometheus_VDM/Derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py:1),\n  [rd_front_speed_validation.md](Prometheus_VDM/Derivation/rd_front_speed_validation.md:1),\n  [CORRECTIONS.md](Prometheus_VDM/Derivation/computational_proofs/CORRECTIONS.md:1).\n- This runner provides an independent, apples-to-apples check inside vdm_rt with identical metrics/output schema.\n- It DOES NOT alter runtime dynamics; it is a validation wrapper only.\n",
+      "path": "vdm_rt/physics/rd_front_speed_runner.py",
       "reason": "no keywords found"
     },
     {
       "docstring": null,
-      "path": "fum_rt/data/data_manager.py",
+      "path": "vdm_rt/data/data_manager.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/tests/conftest.py",
+      "path": "vdm_rt/tests/conftest.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/cli/args.py",
+      "path": "vdm_rt/cli/args.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/core/signals.py",
+      "path": "vdm_rt/core/signals.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/core/__init__.py",
+      "path": "vdm_rt/core/__init__.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/frontend/debug_ui.py",
+      "path": "vdm_rt/frontend/debug_ui.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/frontend/__main__.py",
+      "path": "vdm_rt/frontend/__main__.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": "\nFUM Runtime Frontend (modularized)\n\nModules:\n- fs_utils: filesystem helpers (runs listing, JSON IO) - re-exported from utilities.fs_utils\n- tail: tailing JSONL with byte offsets - re-exported from utilities.tail\n- series: streaming metrics buffers and helpers - re-exported from models.series\n- process_manager: launch/stop runtime process from the UI - re-exported from services.process_manager\n- app: Dash app entrypoint (build_app, main)\n",
-      "path": "fum_rt/frontend/__init__.py",
+      "path": "vdm_rt/frontend/__init__.py",
       "reason": "no keywords found"
     },
     {
       "docstring": null,
-      "path": "fum_rt/runtime/__init__.py",
+      "path": "vdm_rt/runtime/__init__.py",
       "reason": "no docstring header found at all"
     },
     {
-      "path": "fum_rt/ck/hip_spmv.cpp",
+      "path": "vdm_rt/ck/hip_spmv.cpp",
       "preview": "\n// Minimal HIP CSR SpMV placeholder (A*y = x) with pybind11 bindings.\n// Replace with tuned Composable Kernel kernels as you iterate.\n#include <hip/hip_runtime.h>\n#include <pybind11/pybind11.h>\n#include <pybind11/numpy.h>\nnamespace py = pybind11;\n\n__global__ void spmv_csr_kernel(\n    const int N,\n",
       "reason": "no keywords found"
     },
     {
-      "path": "fum_rt/ck/build.sh",
+      "path": "vdm_rt/ck/build.sh",
       "preview": "\n    #!/usr/bin/env bash\n    set -euo pipefail\n    python3 - <<'PY'\nimport sys, os, subprocess, textwrap\nfrom pathlib import Path\ncode = r\"\"\"\nfrom setuptools import setup, Extension\nfrom setuptools.command.build_ext import build_ext\nimport os\n",
       "reason": "no keywords found"
     },
     {
       "docstring": null,
-      "path": "fum_rt/runtime/loop/__init__.py",
+      "path": "vdm_rt/runtime/loop/__init__.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": "\nRuntime helper: periodic visualization hooks (dashboard and connectome snapshot).\n\nBehavior:\n- Mirrors legacy Nexus logic and the original runtime_helpers.maybe_visualize()\n- Fail-soft and fully optional; never disrupts runtime\n",
-      "path": "fum_rt/runtime/helpers/viz.py",
+      "path": "vdm_rt/runtime/helpers/viz.py",
       "reason": "no keywords found"
     },
     {
       "docstring": "\nRuntime helper: autonomous speaking (composer + speaker gate + novelty IDF).\n\nBehavior:\n- Mirrors legacy Nexus logic for maybe_auto_speak() exactly.\n- Pure runtime helper; safe fail-soft; no side-effects beyond UTD emissions and learned lexicon updates.\n",
-      "path": "fum_rt/runtime/helpers/speak.py",
+      "path": "vdm_rt/runtime/helpers/speak.py",
       "reason": "no keywords found"
     },
     {
-      "docstring": "\nRuntime helper: message ingestion and per-tick symbol/index extraction.\n\nProvides:\n- process_messages(): Mirrors legacy Nexus/runtime behavior while keeping the runtime layer modular.\n\nPolicy:\n- Runtime helpers may import fum_rt.io.* and fum_rt.core.*.\n",
-      "path": "fum_rt/runtime/helpers/ingest.py",
+      "docstring": "\nRuntime helper: message ingestion and per-tick symbol/index extraction.\n\nProvides:\n- process_messages(): Mirrors legacy Nexus/runtime behavior while keeping the runtime layer modular.\n\nPolicy:\n- Runtime helpers may import vdm_rt.io.* and vdm_rt.core.*.\n",
+      "path": "vdm_rt/runtime/helpers/ingest.py",
       "reason": "no keywords found"
     },
     {
       "docstring": "\nRuntime helper: checkpointing and retention.\n\nProvides:\n- save_tick_checkpoint(): periodic snapshot with retention, behavior-preserving.\n",
-      "path": "fum_rt/runtime/helpers/checkpointing.py",
+      "path": "vdm_rt/runtime/helpers/checkpointing.py",
       "reason": "no keywords found"
     },
     {
       "docstring": "\nRuntime helper: macro board registration on UTD emitter.\n\nBehavior:\n- Registers default macros ('status', 'say')\n- Loads per-run macro_board.json entries only (no external fallbacks)\n",
-      "path": "fum_rt/runtime/helpers/macro_board.py",
+      "path": "vdm_rt/runtime/helpers/macro_board.py",
       "reason": "no keywords found"
     },
     {
-      "docstring": "\nRuntime helper: maps/frame WebSocket bootstrap (bounded, drop-oldest).\n\n- Safe no-op when ENABLE_MAPS_WS is not truthy or when 'websockets' package is missing.\n- Ensures a bounded MapsRing exists on nx._maps_ring (capacity=MAPS_RING, default 3).\n- Starts MapsWebSocketServer once and stores it on nx._maps_ws_server.\n\nThis file is part of the runtime helpers modularization under fum_rt.runtime.helpers.\n",
-      "path": "fum_rt/runtime/helpers/maps_ws.py",
+      "docstring": "\nRuntime helper: maps/frame WebSocket bootstrap (bounded, drop-oldest).\n\n- Safe no-op when ENABLE_MAPS_WS is not truthy or when 'websockets' package is missing.\n- Ensures a bounded MapsRing exists on nx._maps_ring (capacity=MAPS_RING, default 3).\n- Starts MapsWebSocketServer once and stores it on nx._maps_ws_server.\n\nThis file is part of the runtime helpers modularization under vdm_rt.runtime.helpers.\n",
+      "path": "vdm_rt/runtime/helpers/maps_ws.py",
       "reason": "no keywords found"
     },
     {
       "docstring": "\nRedis publishing helpers (optional, bounded, void-faithful).\n\n- Publishes status metrics and/or latest maps/frame from the in-process ring to Redis Streams.\n- No schedulers or background threads here; caller invokes once per tick from the runtime loop.\n- Uses MAXLEN trimming to keep Redis bounded (drop-oldest), mirroring in-memory ring semantics.\n\nEnable via env:\n  REDIS_URL=redis://127.0.0.1:6379/0\n  ENABLE_REDIS_STATUS=1\n  ENABLE_REDIS_MAPS=1\n  REDIS_STREAM_STATUS=fum:status         (optional; default shown)\n  REDIS_STREAM_MAPS=fum:maps             (optional; default shown)\n  REDIS_STATUS_MAXLEN=2000               (approximate trim)\n  REDIS_MAPS_MAXLEN=3                    (approximate trim)\n",
-      "path": "fum_rt/runtime/helpers/redis_out.py",
+      "path": "vdm_rt/runtime/helpers/redis_out.py",
       "reason": "no keywords found"
     },
     {
       "docstring": "\nRuntime helper: optional one-shot smoke tests (macros and thought ledger).\n\n- Controlled by env flags:\n  - ENABLE_MACROS_TEST\n  - ENABLE_THOUGHTS_TEST\n\nBehavior:\n- Mirrors legacy Nexus logic exactly; guarded and fail-soft.\n",
-      "path": "fum_rt/runtime/helpers/smoke.py",
+      "path": "vdm_rt/runtime/helpers/smoke.py",
       "reason": "no keywords found"
     },
     {
       "docstring": "\nRuntime helper: engram load and start-step derivation.\n\nBehavior:\n- maybe_load_engram(nx, path): loads engram state into connectome (and ADC if present), logs outcome.\n- derive_start_step(nx, path): derives starting tick index based on provided path or existing state_* files.\n\nThis module provides the real implementations migrated from the legacy runtime_helpers monolith.\n",
-      "path": "fum_rt/runtime/helpers/engram.py",
+      "path": "vdm_rt/runtime/helpers/engram.py",
       "reason": "no keywords found"
     },
     {
       "docstring": null,
-      "path": "fum_rt/runtime/helpers/status_http.py",
+      "path": "vdm_rt/runtime/helpers/status_http.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": "\nRuntime helper: status emission and macro board status.\n\n- Emits open UTD status payload every status_every ticks.\n- Emits a 'status' macro when valence is high (mirrors legacy behavior).\n\nImports typing + telemetry builder only; no IO side effects besides UTD emits.\n",
-      "path": "fum_rt/runtime/helpers/emission.py",
+      "path": "vdm_rt/runtime/helpers/emission.py",
       "reason": "no keywords found"
     },
     {
-      "docstring": "\nRuntime helpers package (modularized).\n\nTransitional re-exports:\n- During migration away from the monolith [runtime_helpers.py](../runtime_helpers.py), we re-export\n  its functions here to provide a stable import path:\n    from fum_rt.runtime.helpers import process_messages, emit_status_and_macro, ...\n- New helpers live as separate modules under this package (e.g., maps_ws.py).\n",
-      "path": "fum_rt/runtime/helpers/__init__.py",
+      "docstring": "\nRuntime helpers package (modularized).\n\nTransitional re-exports:\n- During migration away from the monolith [runtime_helpers.py](../runtime_helpers.py), we re-export\n  its functions here to provide a stable import path:\n    from vdm_rt.runtime.helpers import process_messages, emit_status_and_macro, ...\n- New helpers live as separate modules under this package (e.g., maps_ws.py).\n",
+      "path": "vdm_rt/runtime/helpers/__init__.py",
       "reason": "no keywords found"
     },
     {
-      "docstring": "\nDeprecated shim for FUM Frontend Styles.\n\nOld path (legacy):\n  from fum_rt.frontend.styles.theme import get_global_css\n\nNew canonical path:\n  from fum_rt.frontend.styles import get_global_css\n\nThis module delegates to the modular styles package to preserve backward compatibility.\n",
-      "path": "fum_rt/frontend/styles/theme.py",
+      "docstring": "\nDeprecated shim for FUM Frontend Styles.\n\nOld path (legacy):\n  from vdm_rt.frontend.styles.theme import get_global_css\n\nNew canonical path:\n  from vdm_rt.frontend.styles import get_global_css\n\nThis module delegates to the modular styles package to preserve backward compatibility.\n",
+      "path": "vdm_rt/frontend/styles/theme.py",
       "reason": "no keywords found"
     },
     {
       "docstring": null,
-      "path": "fum_rt/frontend/services/process_manager.py",
+      "path": "vdm_rt/frontend/services/process_manager.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/frontend/services/status_client.py",
+      "path": "vdm_rt/frontend/services/status_client.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/frontend/components/workspace.py",
+      "path": "vdm_rt/frontend/components/workspace.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/frontend/components/perf.py",
+      "path": "vdm_rt/frontend/components/perf.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/frontend/components/layout.py",
+      "path": "vdm_rt/frontend/components/layout.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/frontend/components/feed.py",
+      "path": "vdm_rt/frontend/components/feed.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/frontend/components/charts.py",
+      "path": "vdm_rt/frontend/components/charts.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/frontend/components/runtime_controls.py",
+      "path": "vdm_rt/frontend/components/runtime_controls.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/frontend/components/chat.py",
+      "path": "vdm_rt/frontend/components/chat.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/frontend/models/series.py",
+      "path": "vdm_rt/frontend/models/series.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/frontend/controllers/file_picker_ctx.py",
+      "path": "vdm_rt/frontend/controllers/file_picker_ctx.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/frontend/controllers/charts_controller.py",
+      "path": "vdm_rt/frontend/controllers/charts_controller.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/frontend/controllers/file_picker_controller.py",
+      "path": "vdm_rt/frontend/controllers/file_picker_controller.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/frontend/controllers/chat_controller.py",
+      "path": "vdm_rt/frontend/controllers/chat_controller.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/frontend/controllers/runtime_controller.py",
+      "path": "vdm_rt/frontend/controllers/runtime_controller.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": "\nControllers for reusable business logic extracted from Dash callbacks.\n",
-      "path": "fum_rt/frontend/controllers/__init__.py",
+      "path": "vdm_rt/frontend/controllers/__init__.py",
       "reason": "no keywords found"
     },
     {
       "docstring": null,
-      "path": "fum_rt/frontend/controllers/file_picker_status.py",
+      "path": "vdm_rt/frontend/controllers/file_picker_status.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/frontend/callbacks/workspace.py",
+      "path": "vdm_rt/frontend/callbacks/workspace.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/frontend/callbacks/perf.py",
+      "path": "vdm_rt/frontend/callbacks/perf.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/frontend/callbacks/interval.py",
+      "path": "vdm_rt/frontend/callbacks/interval.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/frontend/callbacks/process.py",
+      "path": "vdm_rt/frontend/callbacks/process.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/frontend/callbacks/engram.py",
+      "path": "vdm_rt/frontend/callbacks/engram.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/frontend/callbacks/logs.py",
+      "path": "vdm_rt/frontend/callbacks/logs.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/frontend/callbacks/feed.py",
+      "path": "vdm_rt/frontend/callbacks/feed.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/frontend/callbacks/runtime.py",
+      "path": "vdm_rt/frontend/callbacks/runtime.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/frontend/callbacks/profile.py",
+      "path": "vdm_rt/frontend/callbacks/profile.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/frontend/callbacks/charts.py",
+      "path": "vdm_rt/frontend/callbacks/charts.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/frontend/callbacks/chat.py",
+      "path": "vdm_rt/frontend/callbacks/chat.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/frontend/utilities/tail.py",
+      "path": "vdm_rt/frontend/utilities/tail.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": "\nProfile utilities for FUM Live Dashboard.\nCentralizes default profile defaults and assembly helpers to avoid duplication.\n",
-      "path": "fum_rt/frontend/utilities/profiles.py",
+      "path": "vdm_rt/frontend/utilities/profiles.py",
       "reason": "no keywords found"
     },
     {
       "docstring": null,
-      "path": "fum_rt/frontend/utilities/pdf_utils.py",
+      "path": "vdm_rt/frontend/utilities/pdf_utils.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/frontend/utilities/fs_utils.py",
+      "path": "vdm_rt/frontend/utilities/fs_utils.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/frontend/callbacks/graph_tabs/single_graph.py",
+      "path": "vdm_rt/frontend/callbacks/graph_tabs/single_graph.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/frontend/callbacks/file_picker/registrars.py",
+      "path": "vdm_rt/frontend/callbacks/file_picker/registrars.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/frontend/callbacks/file_picker/common.py",
+      "path": "vdm_rt/frontend/callbacks/file_picker/common.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/frontend/callbacks/file_picker/__init__.py",
+      "path": "vdm_rt/frontend/callbacks/file_picker/__init__.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/frontend/components/config/run_config.py",
+      "path": "vdm_rt/frontend/components/config/run_config.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/frontend/components/config/sections.py",
+      "path": "vdm_rt/frontend/components/config/sections.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/frontend/components/config/__init__.py",
+      "path": "vdm_rt/frontend/components/config/__init__.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/frontend/components/widgets/file_breadcrumbs.py",
+      "path": "vdm_rt/frontend/components/widgets/file_breadcrumbs.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/frontend/components/widgets/file_picker.py",
+      "path": "vdm_rt/frontend/components/widgets/file_picker.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/frontend/components/widgets/blocks.py",
+      "path": "vdm_rt/frontend/components/widgets/blocks.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/frontend/components/widgets/file_tree.py",
+      "path": "vdm_rt/frontend/components/widgets/file_tree.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/frontend/components/widgets/graph.py",
+      "path": "vdm_rt/frontend/components/widgets/graph.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/core/tests/test_conservation_flux.py",
+      "path": "vdm_rt/core/tests/test_conservation_flux.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/core/cortex/scouts.py",
+      "path": "vdm_rt/core/cortex/scouts.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/core/cortex/__init__.py",
+      "path": "vdm_rt/core/cortex/__init__.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/core/memory/field.py",
+      "path": "vdm_rt/core/memory/field.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/core/memory/__init__.py",
+      "path": "vdm_rt/core/memory/__init__.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/core/guards/invariants.py",
+      "path": "vdm_rt/core/guards/invariants.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": "Retarded sourcing kernel and router channel utilities for the cosmology module.",
-      "path": "fum_rt/core/cosmology/router.py",
+      "path": "vdm_rt/core/cosmology/router.py",
       "reason": "no keywords found"
     },
     {
       "docstring": "Event schema and guards for the cosmology router feature.",
-      "path": "fum_rt/core/cosmology/events.py",
+      "path": "vdm_rt/core/cosmology/events.py",
       "reason": "no keywords found"
     },
     {
       "docstring": "Cosmology router core primitives.",
-      "path": "fum_rt/core/cosmology/__init__.py",
+      "path": "vdm_rt/core/cosmology/__init__.py",
       "reason": "no keywords found"
     },
     {
       "docstring": null,
-      "path": "fum_rt/core/proprioception/events.py",
+      "path": "vdm_rt/core/proprioception/events.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": "\nCore Engine package initializer.\n\nExports CoreEngine from the in-package implementation module to avoid any\ncross-file redirects. Implementation resides under this package.\n",
-      "path": "fum_rt/core/engine/__init__.py",
+      "path": "vdm_rt/core/engine/__init__.py",
       "reason": "no keywords found"
     },
     {
       "docstring": null,
-      "path": "fum_rt/core/neuroplasticity/revgsp.py",
+      "path": "vdm_rt/core/neuroplasticity/revgsp.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/core/neuroplasticity/__init__.py",
+      "path": "vdm_rt/core/neuroplasticity/__init__.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/core/neuroplasticity/gdsp.py",
+      "path": "vdm_rt/core/neuroplasticity/gdsp.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/core/cortex/void_walkers/void_cycle_scout.py",
+      "path": "vdm_rt/core/cortex/void_walkers/void_cycle_scout.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/core/cortex/void_walkers/void_inhibition_scout.py",
+      "path": "vdm_rt/core/cortex/void_walkers/void_inhibition_scout.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/core/cortex/void_walkers/void_cold_scout.py",
+      "path": "vdm_rt/core/cortex/void_walkers/void_cold_scout.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/core/cortex/void_walkers/runner.py",
+      "path": "vdm_rt/core/cortex/void_walkers/runner.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/core/cortex/void_walkers/void_ray_scout.py",
+      "path": "vdm_rt/core/cortex/void_walkers/void_ray_scout.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/core/cortex/void_walkers/frontier_scout.py",
+      "path": "vdm_rt/core/cortex/void_walkers/frontier_scout.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/core/cortex/void_walkers/base.py",
+      "path": "vdm_rt/core/cortex/void_walkers/base.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/core/cortex/void_walkers/void_heat_scout.py",
+      "path": "vdm_rt/core/cortex/void_walkers/void_heat_scout.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/core/cortex/void_walkers/void_memory_ray_scout.py",
+      "path": "vdm_rt/core/cortex/void_walkers/void_memory_ray_scout.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/core/cortex/void_walkers/void_excitation_scout.py",
+      "path": "vdm_rt/core/cortex/void_walkers/void_excitation_scout.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/core/cortex/void_walkers/void_frontier_scout.py",
+      "path": "vdm_rt/core/cortex/void_walkers/void_frontier_scout.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/core/cortex/void_walkers/void_sentinel_scout.py",
+      "path": "vdm_rt/core/cortex/void_walkers/void_sentinel_scout.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/core/cortex/maps/trailmap.py",
+      "path": "vdm_rt/core/cortex/maps/trailmap.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/core/cortex/maps/base_decay_map.py",
+      "path": "vdm_rt/core/cortex/maps/base_decay_map.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/core/cortex/maps/excitationmap.py",
+      "path": "vdm_rt/core/cortex/maps/excitationmap.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/core/cortex/maps/coldmap.py",
+      "path": "vdm_rt/core/cortex/maps/coldmap.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/core/cortex/maps/heatmap.py",
+      "path": "vdm_rt/core/cortex/maps/heatmap.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/core/cortex/maps/memorymap.py",
+      "path": "vdm_rt/core/cortex/maps/memorymap.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/core/cortex/maps/inhibitionmap.py",
+      "path": "vdm_rt/core/cortex/maps/inhibitionmap.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/core/cortex/maps/__init__.py",
+      "path": "vdm_rt/core/cortex/maps/__init__.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/api/llms/router.py",
+      "path": "vdm_rt/api/llms/router.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/api/llms/__init__.py",
+      "path": "vdm_rt/api/llms/__init__.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/api/llms/providers/openrouter/openrouter_client.py",
+      "path": "vdm_rt/api/llms/providers/openrouter/openrouter_client.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/api/llms/providers/openai/openai_client.py",
+      "path": "vdm_rt/api/llms/providers/openai/openai_client.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/api/llms/providers/xai/xai_client.py",
+      "path": "vdm_rt/api/llms/providers/xai/xai_client.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/api/llms/providers/ollama/ollama_client.py",
+      "path": "vdm_rt/api/llms/providers/ollama/ollama_client.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/api/llms/providers/google/model_loader.py",
+      "path": "vdm_rt/api/llms/providers/google/model_loader.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/api/llms/providers/google/gemini_client.py",
+      "path": "vdm_rt/api/llms/providers/google/gemini_client.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/tests/physics/test_invariants.py",
+      "path": "vdm_rt/tests/physics/test_invariants.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/tests/physics/test_pta_correlation_harness.py",
+      "path": "vdm_rt/tests/physics/test_pta_correlation_harness.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/tests/physics/test_harness_logging.py",
+      "path": "vdm_rt/tests/physics/test_harness_logging.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/tests/physics/test_steering_ab.py",
+      "path": "vdm_rt/tests/physics/test_steering_ab.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/tests/physics/test_router_regression_figures.py",
+      "path": "vdm_rt/tests/physics/test_router_regression_figures.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": "Tests for cosmology router CI gate validators.",
-      "path": "fum_rt/tests/physics/test_ci_gates.py",
+      "path": "vdm_rt/tests/physics/test_ci_gates.py",
       "reason": "no keywords found"
     },
     {
       "docstring": null,
-      "path": "fum_rt/tests/physics/test_sidm_curve_harness.py",
+      "path": "vdm_rt/tests/physics/test_sidm_curve_harness.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": "Tests for the vacuum demographics harness.",
-      "path": "fum_rt/tests/physics/test_vacuum_demographics_harness.py",
+      "path": "vdm_rt/tests/physics/test_vacuum_demographics_harness.py",
       "reason": "no keywords found"
     },
     {
       "docstring": null,
-      "path": "fum_rt/tests/physics/test_memory_kernel_event_local.py",
+      "path": "vdm_rt/tests/physics/test_memory_kernel_event_local.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/tests/core/test_maps_frame.py",
+      "path": "vdm_rt/tests/core/test_maps_frame.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/tests/core/test_active_graph_regression.py",
+      "path": "vdm_rt/tests/core/test_active_graph_regression.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/tests/core/test_core_boundary_guards.py",
+      "path": "vdm_rt/tests/core/test_core_boundary_guards.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/tests/core/test_runner_budget.py",
+      "path": "vdm_rt/tests/core/test_runner_budget.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/tests/core/test_void_faithful_guards.py",
+      "path": "vdm_rt/tests/core/test_void_faithful_guards.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/tests/core/test_territory_uf.py",
+      "path": "vdm_rt/tests/core/test_territory_uf.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/tests/core/test_scouts.py",
+      "path": "vdm_rt/tests/core/test_scouts.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/tests/guards/test_no_scheduler.py",
+      "path": "vdm_rt/tests/guards/test_no_scheduler.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/tests/frontend/test_frontend_architecture.py",
+      "path": "vdm_rt/tests/frontend/test_frontend_architecture.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/tests/frontend/test_process_manager_runs_root.py",
+      "path": "vdm_rt/tests/frontend/test_process_manager_runs_root.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/tests/runtime/test_phase_legacy_key.py",
+      "path": "vdm_rt/tests/runtime/test_phase_legacy_key.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/tests/runtime/test_events_adapter_inhibition.py",
+      "path": "vdm_rt/tests/runtime/test_events_adapter_inhibition.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/tests/runtime/test_telemetry_frame_v2.py",
+      "path": "vdm_rt/tests/runtime/test_telemetry_frame_v2.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/tests/core/cosmology/test_events.py",
+      "path": "vdm_rt/tests/core/cosmology/test_events.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/tests/core/cosmology/test_router.py",
+      "path": "vdm_rt/tests/core/cosmology/test_router.py",
       "reason": "no docstring header found at all"
     },
     {
-      "docstring": "\nPlotting helper for memory-steering experiments.\n\n- Parses outputs/memory_steering_results.csv (supports 4- or 5-column stability).\n- Produces figures in outputs/.\n- Prints a concise metrics summary that directly tests the three predictions:\n  1) Junction logistic collapse\n  2) Curvature scaling in the ray limit\n  3) Stability band with write\u2192decay protocol (Retention, Fidelity)\n\nUsage:\n- python3 -m fum_rt.utils.plot_memory_steering\n  or\n- python3 fum_rt/utils/plot_memory_steering.py   (if PYTHONPATH=. is set)\n",
-      "path": "fum_rt/physics/memory_steering/plot_memory_steering.py",
+      "docstring": "\nPlotting helper for memory-steering experiments.\n\n- Parses outputs/memory_steering_results.csv (supports 4- or 5-column stability).\n- Produces figures in outputs/.\n- Prints a concise metrics summary that directly tests the three predictions:\n  1) Junction logistic collapse\n  2) Curvature scaling in the ray limit\n  3) Stability band with write\u2192decay protocol (Retention, Fidelity)\n\nUsage:\n- python3 -m vdm_rt.utils.plot_memory_steering\n  or\n- python3 vdm_rt/utils/plot_memory_steering.py   (if PYTHONPATH=. is set)\n",
+      "path": "vdm_rt/physics/memory_steering/plot_memory_steering.py",
       "reason": "no keywords found"
     },
     {
       "docstring": null,
-      "path": "fum_rt/io/actuators/__init__.py",
+      "path": "vdm_rt/io/actuators/__init__.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/io/sensors/__init__.py",
+      "path": "vdm_rt/io/sensors/__init__.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/io/cognition/stimulus.py",
+      "path": "vdm_rt/io/cognition/stimulus.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/io/cognition/composer.py",
+      "path": "vdm_rt/io/cognition/composer.py",
       "reason": "no docstring header found at all"
     },
     {
       "docstring": null,
-      "path": "fum_rt/io/cognition/speaker.py",
+      "path": "vdm_rt/io/cognition/speaker.py",
       "reason": "no docstring header found at all"
     },
     {
-      "docstring": "\nMaps frames ring buffer (drop-oldest, thread-safe, void-faithful).\n\nCanonical location: fum_rt.io.visualization.maps_ring\n\nPurpose\n- Provide a tiny, bounded ring for maps frames (header+payload) with drop-oldest semantics.\n- Decouples producers (telemetry/core engine) from consumers (UI/websocket) without scans.\n- O(1) amortized operations; no full-buffer copies; copies only payload bytes as provided.\n\nContract\n- Frame header schema is producer-defined; commonly:\n  {topic, ver?, tick, n, shape, channels, dtype, endianness, stats, ...}\n- Payload is a bytes-like buffer; typically planar blocks (e.g., Float32 LE: heat|exc|inh).\n\nUsage\n- nx._maps_ring = MapsRing(capacity=int(os.getenv(\"MAPS_RING\", 3)))\n- Producer: nx._maps_ring.push(tick, header, payload)\n- Consumer: ring.latest(), ring.drain(max_items)\n\nSecurity / Backpressure\n- Always drops the oldest on overflow.\n- Readers can choose to read only latest() to avoid client backlog.\n",
-      "path": "fum_rt/io/visualization/maps_ring.py",
+      "docstring": "\nMaps frames ring buffer (drop-oldest, thread-safe, void-faithful).\n\nCanonical location: vdm_rt.io.visualization.maps_ring\n\nPurpose\n- Provide a tiny, bounded ring for maps frames (header+payload) with drop-oldest semantics.\n- Decouples producers (telemetry/core engine) from consumers (UI/websocket) without scans.\n- O(1) amortized operations; no full-buffer copies; copies only payload bytes as provided.\n\nContract\n- Frame header schema is producer-defined; commonly:\n  {topic, ver?, tick, n, shape, channels, dtype, endianness, stats, ...}\n- Payload is a bytes-like buffer; typically planar blocks (e.g., Float32 LE: heat|exc|inh).\n\nUsage\n- nx._maps_ring = MapsRing(capacity=int(os.getenv(\"MAPS_RING\", 3)))\n- Producer: nx._maps_ring.push(tick, header, payload)\n- Consumer: ring.latest(), ring.drain(max_items)\n\nSecurity / Backpressure\n- Always drops the oldest on overflow.\n- Readers can choose to read only latest() to avoid client backlog.\n",
+      "path": "vdm_rt/io/visualization/maps_ring.py",
       "reason": "no keywords found"
     },
     {
-      "docstring": "\nMaps frames WebSocket forwarder (bounded, drop-oldest, void-faithful).\n\nCanonical location: fum_rt.io.visualization.websocket_server\n\nPurpose\n- Serve UI consumers with the latest maps/frame payload from a bounded ring.\n- Backpressure-safe: each client receives only the newest frame; old frames are dropped.\n- Local-first: defaults to 127.0.0.1 binding; configurable via args/env.\n\nDependencies\n- Optional: 'websockets' Python package (asyncio-based). If unavailable, this module is inert.\n\nEnv (defaults shown)\n- MAPS_FPS=10                # >0 = limit; 0 = off; <0 = unlimited (tests/bench); sends at most this many frames per second when >0\n- WS_MAX_CONN=2              # maximum concurrent WebSocket clients\n- WS_ALLOW_ORIGIN=           # comma-separated origins; if empty, all origins allowed\n\nTransport format\n- Two-message sequence per frame:\n  1) Text frame: JSON dump of header dict (augmented with dtype/ver/quant/etc. by producer)\n  2) Binary frame: raw payload bytes (u8 or f32 LE as dictated by header['dtype'])\n\nNotes\n- This module does not mutate frames; it forwards exactly what producers pushed to the ring.\n- For RGB visualization, typical mapping is RGB = [exc, heat, inh] client-side.\n",
-      "path": "fum_rt/io/visualization/websocket_server.py",
+      "docstring": "\nMaps frames WebSocket forwarder (bounded, drop-oldest, void-faithful).\n\nCanonical location: vdm_rt.io.visualization.websocket_server\n\nPurpose\n- Serve UI consumers with the latest maps/frame payload from a bounded ring.\n- Backpressure-safe: each client receives only the newest frame; old frames are dropped.\n- Local-first: defaults to 127.0.0.1 binding; configurable via args/env.\n\nDependencies\n- Optional: 'websockets' Python package (asyncio-based). If unavailable, this module is inert.\n\nEnv (defaults shown)\n- MAPS_FPS=10                # >0 = limit; 0 = off; <0 = unlimited (tests/bench); sends at most this many frames per second when >0\n- WS_MAX_CONN=2              # maximum concurrent WebSocket clients\n- WS_ALLOW_ORIGIN=           # comma-separated origins; if empty, all origins allowed\n\nTransport format\n- Two-message sequence per frame:\n  1) Text frame: JSON dump of header dict (augmented with dtype/ver/quant/etc. by producer)\n  2) Binary frame: raw payload bytes (u8 or f32 LE as dictated by header['dtype'])\n\nNotes\n- This module does not mutate frames; it forwards exactly what producers pushed to the ring.\n- For RGB visualization, typical mapping is RGB = [exc, heat, inh] client-side.\n",
+      "path": "vdm_rt/io/visualization/websocket_server.py",
       "reason": "no keywords found"
     },
     {
       "docstring": "\nVisualization transport primitives.\n\n- maps_ring: bounded, drop-oldest ring buffer for maps/frame payloads\n- websocket_server: bounded WebSocket forwarder for maps frames\n",
-      "path": "fum_rt/io/visualization/__init__.py",
+      "path": "vdm_rt/io/visualization/__init__.py",
       "reason": "no keywords found"
     },
     {
       "docstring": "\nRolling JSONL writer with bounded main file and archival segments.\n\n- Maintains a capped \"active\" JSONL file (e.g., events.jsonl, utd_events.jsonl).\n- When the active file exceeds the configured size or line cap, the oldest lines\n  are streamed into an archive segment and the active file is rewritten to keep\n  only the newest tail (rolling buffer).\n- Archive segments live under: <run_dir>/archived/<YYYYMMDD_HHMMSS>/<base_name>\n  Example: runs/<ts>/archived/20250815_120828/events.jsonl\n- When the current archive segment exceeds its cap, a new timestamped segment\n  directory is created and subsequent archival lines are appended there.\n\nConfiguration (env):\n- For events.jsonl (category=\"EVENTS\"):\n    FUM_EVENTS_MAX_MB                  (default: 256)\n    FUM_EVENTS_MAX_LINES               (default: unset; bytes cap used)\n    FUM_EVENTS_ARCHIVE_SEGMENT_MB      (default: 512)\n    FUM_EVENTS_ARCHIVE_SEGMENT_LINES   (default: unset; bytes cap used)\n- For utd_events.jsonl (category=\"UTD\"):\n    FUM_UTD_MAX_MB                     (default: 256)\n    FUM_UTD_MAX_LINES                  (default: unset; bytes cap used)\n    FUM_UTD_ARCHIVE_SEGMENT_MB         (default: 512)\n    FUM_UTD_ARCHIVE_SEGMENT_LINES      (default: unset; bytes cap used)\n- Global:\n    FUM_LOG_ROLL_CHECK_EVERY           (default: 200)  # enforce cadence (per write)\n\nNotes:\n- Uses a cross-process advisory lock via <base_path>.lock to serialize trimming with writers.\n- Writers should not hold persistent file handles; always append per call (MacroEmitter, UTD updated).\n",
-      "path": "fum_rt/io/logging/rolling_jsonl.py",
+      "path": "vdm_rt/io/logging/rolling_jsonl.py",
       "reason": "no keywords found"
     },
     {

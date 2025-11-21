@@ -20,12 +20,12 @@
   "items": [
     {
       "path": "conftest.py",
-      "preview": "\"\"\"Pytest configuration shim to normalize imports.\n\n- Ensures the repository root is present on sys.path so imports like\n  `Prometheus_VDM.*` and `fum_rt.*` resolve reliably during test collection.\n\"\"\"\nimport os\nimport sys\n\nREPO_ROOT = os.path.abspath(os.path.dirname(__file__))\nif REPO_ROOT not in sys.path:\n",
+      "preview": "\"\"\"Pytest configuration shim to normalize imports.\n\n- Ensures the repository root is present on sys.path so imports like\n  `Prometheus_VDM.*` and `vdm_rt.*` resolve reliably during test collection.\n\"\"\"\nimport os\nimport sys\n\nREPO_ROOT = os.path.abspath(os.path.dirname(__file__))\nif REPO_ROOT not in sys.path:\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_live.py",
-      "preview": "from __future__ import annotations\n\nimport argparse\nimport os\n\nfrom fum_rt.frontend.app import build_app\n\n\ndef main() -> None:\n    ap = argparse.ArgumentParser(description=\"VDM Live Dashboard launcher (compat shim).\")\n",
+      "path": "vdm_live.py",
+      "preview": "from __future__ import annotations\n\nimport argparse\nimport os\n\nfrom vdm_rt.frontend.app import build_app\n\n\ndef main() -> None:\n    ap = argparse.ArgumentParser(description=\"VDM Live Dashboard launcher (compat shim).\")\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
@@ -54,7 +54,7 @@
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/__init__.py",
+      "path": "vdm_rt/__init__.py",
       "preview": "",
       "reason": "no recognizable license header in first 120 lines"
     },
@@ -515,7 +515,7 @@
     },
     {
       "path": "Derivation/code/physics/fluid_dynamics/telemetry/walkers.py",
-      "preview": "#!/usr/bin/env python3\n# Read-only, measurement-only walkers + bus + reducer for fluids telemetry.\n# No imports from fum_rt; self-contained.\n\nfrom __future__ import annotations\nfrom dataclasses import dataclass\nfrom typing import List, Dict, Tuple, Iterable, Optional\nimport numpy as np\n\n\n",
+      "preview": "#!/usr/bin/env python3\n# Read-only, measurement-only walkers + bus + reducer for fluids telemetry.\n# No imports from vdm_rt; self-contained.\n\nfrom __future__ import annotations\nfrom dataclasses import dataclass\nfrom typing import List, Dict, Tuple, Iterable, Optional\nimport numpy as np\n\n\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
@@ -679,722 +679,722 @@
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/io/maps_ring.py",
-      "preview": "\"\"\"\nCompatibility shim for visualization ring buffer.\n\nDeprecated: import from 'fum_rt.io.visualization.maps_ring' instead.\n\nKept for transitional period to avoid breaking existing imports:\n    from fum_rt.io.maps_ring import MapsRing, MapsFrame\n\"\"\"\n\nfrom __future__ import annotations\n",
+      "path": "vdm_rt/io/maps_ring.py",
+      "preview": "\"\"\"\nCompatibility shim for visualization ring buffer.\n\nDeprecated: import from 'vdm_rt.io.visualization.maps_ring' instead.\n\nKept for transitional period to avoid breaking existing imports:\n    from vdm_rt.io.maps_ring import MapsRing, MapsFrame\n\"\"\"\n\nfrom __future__ import annotations\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/io/ute.py",
+      "path": "vdm_rt/io/ute.py",
       "preview": "\nimport sys, time, queue, threading, os, json\n\nclass UTE:\n    \"\"\"Universal Temporal Encoder.\n    Feeds inbound messages into a queue the Nexus can poll every tick.\n    Sources implemented: stdin (lines) and synthetic 'tick' generator.\n    \"\"\"\n    def __init__(self, use_stdin=True, inbox_path=None):\n        self.q = queue.Queue(maxsize=1024)\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/io/utd.py",
-      "preview": "import sys, json, os\nfrom fum_rt.io.logging.rolling_jsonl import RollingJsonlWriter\ntry:\n    # Prefer zip spooler when available\n    from fum_rt.io.logging.rolling_jsonl import RollingZipJsonlWriter  # type: ignore\nexcept Exception:\n    RollingZipJsonlWriter = None  # type: ignore\n\nclass UTD:\n    \"\"\"Universal Transduction Decoder.\n",
+      "path": "vdm_rt/io/utd.py",
+      "preview": "import sys, json, os\nfrom vdm_rt.io.logging.rolling_jsonl import RollingJsonlWriter\ntry:\n    # Prefer zip spooler when available\n    from vdm_rt.io.logging.rolling_jsonl import RollingZipJsonlWriter  # type: ignore\nexcept Exception:\n    RollingZipJsonlWriter = None  # type: ignore\n\nclass UTD:\n    \"\"\"Universal Transduction Decoder.\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/io/__init__.py",
+      "path": "vdm_rt/io/__init__.py",
       "preview": "",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/physics/sidm_curve_harness.py",
-      "preview": "#!/usr/bin/env python3\n\"\"\"SIDM cross-section harness for the cosmology router grain shim.\n\nThis runner mirrors the FUM reproducibility pattern: it takes a velocity grid,\nqueries :class:`~fum_rt.core.cosmology.GrainScatteringShim`, evaluates the\nmonotonicity/acceptance gates, emits JSON logs, and produces a plot with the\npre-registered dwarf\u2192cluster acceptance bands.\n\nUsage (example)::\n\n",
+      "path": "vdm_rt/physics/sidm_curve_harness.py",
+      "preview": "#!/usr/bin/env python3\n\"\"\"SIDM cross-section harness for the cosmology router grain shim.\n\nThis runner mirrors the FUM reproducibility pattern: it takes a velocity grid,\nqueries :class:`~vdm_rt.core.cosmology.GrainScatteringShim`, evaluates the\nmonotonicity/acceptance gates, emits JSON logs, and produces a plot with the\npre-registered dwarf\u2192cluster acceptance bands.\n\nUsage (example)::\n\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/physics/rd_dispersion_runner.py",
-      "preview": "#!/usr/bin/env python3\n\"\"\"\nRD dispersion validation runner (linear regime) for fum_rt.\n\nCHANGE REASON:\n- This file mirrors the validated physics from derivation scripts to the runtime stack.\n- We have PROVEN the RD linear dispersion \u03c3(k) = r - D k^2 via reproducible scripts and derivations:\n  [rd_dispersion_experiment.py](Prometheus_VDM/Derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py),\n  [rd_validation_plan.md](Prometheus_VDM/Derivation/rd_validation_plan.md),\n  [CORRECTIONS.md](Prometheus_VDM/Derivation/computational_proofs/CORRECTIONS.md).\n",
+      "path": "vdm_rt/physics/rd_dispersion_runner.py",
+      "preview": "#!/usr/bin/env python3\n\"\"\"\nRD dispersion validation runner (linear regime) for vdm_rt.\n\nCHANGE REASON:\n- This file mirrors the validated physics from derivation scripts to the runtime stack.\n- We have PROVEN the RD linear dispersion \u03c3(k) = r - D k^2 via reproducible scripts and derivations:\n  [rd_dispersion_experiment.py](Prometheus_VDM/Derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py),\n  [rd_validation_plan.md](Prometheus_VDM/Derivation/rd_validation_plan.md),\n  [CORRECTIONS.md](Prometheus_VDM/Derivation/computational_proofs/CORRECTIONS.md).\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/physics/pta_correlation_harness.py",
+      "path": "vdm_rt/physics/pta_correlation_harness.py",
       "preview": "#!/usr/bin/env python3\n\"\"\"PTA-band correlation proxy harness for the cosmology router.\"\"\"\n\nfrom __future__ import annotations\n\nimport argparse\nimport json\nimport math\nimport os\nimport sys\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/physics/vacuum_demographics_harness.py",
-      "preview": "#!/usr/bin/env python3\n\"\"\"Vacuum demographics harness for the cosmology router vacuum channel.\n\nThis script mirrors the reproducibility pattern used by the other physics\nrunners.  It ingests a synthetic (or user-supplied) horizon activity tape,\npropagates it through :class:`~fum_rt.core.cosmology.VacuumAccumulator`, and\ncompares the resulting equation-of-state residuals against the \u039bCDM baseline.\n\nThe emitted JSON payload follows the RD runner schema: configuration snapshot,\nmetrics, per-sample timeline table, and artifact paths.  The figure plots the\n",
+      "path": "vdm_rt/physics/vacuum_demographics_harness.py",
+      "preview": "#!/usr/bin/env python3\n\"\"\"Vacuum demographics harness for the cosmology router vacuum channel.\n\nThis script mirrors the reproducibility pattern used by the other physics\nrunners.  It ingests a synthetic (or user-supplied) horizon activity tape,\npropagates it through :class:`~vdm_rt.core.cosmology.VacuumAccumulator`, and\ncompares the resulting equation-of-state residuals against the \u039bCDM baseline.\n\nThe emitted JSON payload follows the RD runner schema: configuration snapshot,\nmetrics, per-sample timeline table, and artifact paths.  The figure plots the\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/physics/harness_logging.py",
+      "path": "vdm_rt/physics/harness_logging.py",
       "preview": "\"\"\"Reusable helpers for cosmology/physics harness logging payloads.\"\"\"\n\nfrom __future__ import annotations\n\nimport hashlib\nimport json\nimport subprocess\nimport time\nfrom typing import Any, Mapping, MutableMapping\n\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/physics/ci_gates.py",
+      "path": "vdm_rt/physics/ci_gates.py",
       "preview": "\"\"\"CI gate validators for cosmology router harness payloads.\"\"\"\n\nfrom __future__ import annotations\n\nimport json\nfrom typing import Any, Iterable, Mapping, Sequence\n\n\nclass GateViolationError(RuntimeError):\n    \"\"\"Raised when a payload fails a required CI gate.\"\"\"\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/physics/router_regression_figures.py",
+      "path": "vdm_rt/physics/router_regression_figures.py",
       "preview": "#!/usr/bin/env python3\n\"\"\"Generate router-on/off comparison figures for cosmology regressions.\"\"\"\n\nfrom __future__ import annotations\n\nimport argparse\nimport json\nimport os\nimport sys\nimport time\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/physics/__init__.py",
+      "path": "vdm_rt/physics/__init__.py",
       "preview": "\"\"\"Physics solvers and harnesses for the FUM scalar EFT stack.\"\"\"\n\nfrom __future__ import annotations\n\nfrom importlib import import_module\nfrom typing import TYPE_CHECKING, Any\n\n__all__ = [\n    \"compute_kappas\",\n    \"mode_functions\",\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/physics/rd_front_speed_runner.py",
-      "preview": "#!/usr/bin/env python3\n\"\"\"\nRD front-speed validation runner (Fisher-KPP) for fum_rt.\n\nCHANGE REASON:\n- This file mirrors the validated physics from derivation scripts to the runtime stack.\n- We have PROVEN the Fisher-KPP front speed c = 2\u221a(D r) via reproducible scripts and derivations:\n  [rd_front_speed_experiment.py](Prometheus_VDM/Derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py:1),\n  [rd_front_speed_validation.md](Prometheus_VDM/Derivation/rd_front_speed_validation.md:1),\n  [CORRECTIONS.md](Prometheus_VDM/Derivation/computational_proofs/CORRECTIONS.md:1).\n",
+      "path": "vdm_rt/physics/rd_front_speed_runner.py",
+      "preview": "#!/usr/bin/env python3\n\"\"\"\nRD front-speed validation runner (Fisher-KPP) for vdm_rt.\n\nCHANGE REASON:\n- This file mirrors the validated physics from derivation scripts to the runtime stack.\n- We have PROVEN the Fisher-KPP front speed c = 2\u221a(D r) via reproducible scripts and derivations:\n  [rd_front_speed_experiment.py](Prometheus_VDM/Derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py:1),\n  [rd_front_speed_validation.md](Prometheus_VDM/Derivation/rd_front_speed_validation.md:1),\n  [CORRECTIONS.md](Prometheus_VDM/Derivation/computational_proofs/CORRECTIONS.md:1).\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/data/data_manager.py",
+      "path": "vdm_rt/data/data_manager.py",
       "preview": "",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/tests/conftest.py",
-      "preview": "from __future__ import annotations\n\n\"\"\"\nPytest configuration: ensure repo root on sys.path so 'import fum_rt' works when running tests directly.\nNo heavy imports; minimal stdlib only.\n\"\"\"\n\nimport os as _os\nimport sys as _sys\nfrom pathlib import Path as _Path\n",
+      "path": "vdm_rt/tests/conftest.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nPytest configuration: ensure repo root on sys.path so 'import vdm_rt' works when running tests directly.\nNo heavy imports; minimal stdlib only.\n\"\"\"\n\nimport os as _os\nimport sys as _sys\nfrom pathlib import Path as _Path\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/cli/args.py",
-      "preview": "from __future__ import annotations\n\n\"\"\"\nCLI argument parser for the FUM runtime.\n\nBehavior:\n- Mirrors the legacy make_parser() previously defined in fum_rt/nexus.py exactly.\n- Kept here to reduce nexus.py size and improve separation of concerns.\n\"\"\"\n\n",
+      "path": "vdm_rt/cli/args.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nCLI argument parser for the FUM runtime.\n\nBehavior:\n- Mirrors the legacy make_parser() previously defined in vdm_rt/nexus.py exactly.\n- Kept here to reduce nexus.py size and improve separation of concerns.\n\"\"\"\n\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/core/signals.py",
+      "path": "vdm_rt/core/signals.py",
       "preview": "from __future__ import annotations\n\n\"\"\"\nCore signals seam (Phase B): stable function-level API for core numeric signals.\n\nIntent:\n- Define pure, numeric helpers that outside layers can depend on immediately.\n- Initially forward to existing math/state (move-only). No logging/IO/emitters here.\n- Safe defaults return 0.0/0 for unavailable signals to preserve behavior.\n\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/core/__init__.py",
+      "path": "vdm_rt/core/__init__.py",
       "preview": "",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/frontend/debug_ui.py",
+      "path": "vdm_rt/frontend/debug_ui.py",
       "preview": "from __future__ import annotations\n\nimport os\nimport time\nfrom typing import List, Dict, Any\n\nfrom dash import Dash, html, dcc\nfrom dash.dependencies import Input, Output, State  # type: ignore\nimport plotly.graph_objects as go\n\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/frontend/__main__.py",
+      "path": "vdm_rt/frontend/__main__.py",
       "preview": "from __future__ import annotations\n\nimport os\n\nfrom .app import build_app\n\n\ndef main() -> None:\n    rr = os.getenv(\"RUNS_ROOT\", \"\").strip() or os.path.abspath(\"runs\")\n    app = build_app(rr)\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/frontend/__init__.py",
+      "path": "vdm_rt/frontend/__init__.py",
       "preview": "\"\"\"\nFUM Runtime Frontend (modularized)\n\nModules:\n- fs_utils: filesystem helpers (runs listing, JSON IO) - re-exported from utilities.fs_utils\n- tail: tailing JSONL with byte offsets - re-exported from utilities.tail\n- series: streaming metrics buffers and helpers - re-exported from models.series\n- process_manager: launch/stop runtime process from the UI - re-exported from services.process_manager\n- app: Dash app entrypoint (build_app, main)\n\"\"\"\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/runtime/__init__.py",
+      "path": "vdm_rt/runtime/__init__.py",
       "preview": "# Runtime package initializer for modularized orchestrator components.\n# Exposes submodules for clarity; keep lightweight to avoid side effects.\n# Note: Nexus remains the external fa\u00e7ade; internals live under runtime/*\n__all__ = [\n    \"phase\",\n    \"loop\",\n    \"telemetry\",\n    \"retention\",\n    \"events_adapter\",\n    \"runtime_helpers\",\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/ck/hip_spmv.cpp",
+      "path": "vdm_rt/ck/hip_spmv.cpp",
       "preview": "\n// Minimal HIP CSR SpMV placeholder (A*y = x) with pybind11 bindings.\n// Replace with tuned Composable Kernel kernels as you iterate.\n#include <hip/hip_runtime.h>\n#include <pybind11/pybind11.h>\n#include <pybind11/numpy.h>\nnamespace py = pybind11;\n\n__global__ void spmv_csr_kernel(\n    const int N,\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/ck/build.sh",
+      "path": "vdm_rt/ck/build.sh",
       "preview": "\n    #!/usr/bin/env bash\n    set -euo pipefail\n    python3 - <<'PY'\nimport sys, os, subprocess, textwrap\nfrom pathlib import Path\ncode = r\"\"\"\nfrom setuptools import setup, Extension\nfrom setuptools.command.build_ext import build_ext\nimport os\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/runtime/loop/__init__.py",
-      "preview": "from __future__ import annotations\n\n\"\"\"\nfum_rt.runtime.loop package facade\n\nEnsures import seam compliance for boundary tests:\n- Imports runtime.telemetry.tick_fold seam.\n- References core.signals seam.\n- Re-exports run_loop from .main.\n\n",
+      "path": "vdm_rt/runtime/loop/__init__.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nvdm_rt.runtime.loop package facade\n\nEnsures import seam compliance for boundary tests:\n- Imports runtime.telemetry.tick_fold seam.\n- References core.signals seam.\n- Re-exports run_loop from .main.\n\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/runtime/helpers/viz.py",
+      "path": "vdm_rt/runtime/helpers/viz.py",
       "preview": "\"\"\"\nRuntime helper: periodic visualization hooks (dashboard and connectome snapshot).\n\nBehavior:\n- Mirrors legacy Nexus logic and the original runtime_helpers.maybe_visualize()\n- Fail-soft and fully optional; never disrupts runtime\n\"\"\"\n\nfrom __future__ import annotations\n\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/runtime/helpers/speak.py",
+      "path": "vdm_rt/runtime/helpers/speak.py",
       "preview": "\"\"\"\nRuntime helper: autonomous speaking (composer + speaker gate + novelty IDF).\n\nBehavior:\n- Mirrors legacy Nexus logic for maybe_auto_speak() exactly.\n- Pure runtime helper; safe fail-soft; no side-effects beyond UTD emissions and learned lexicon updates.\n\"\"\"\n\nfrom __future__ import annotations\n\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/runtime/helpers/ingest.py",
-      "preview": "\"\"\"\nRuntime helper: message ingestion and per-tick symbol/index extraction.\n\nProvides:\n- process_messages(): Mirrors legacy Nexus/runtime behavior while keeping the runtime layer modular.\n\nPolicy:\n- Runtime helpers may import fum_rt.io.* and fum_rt.core.*.\n\"\"\"\n\n",
+      "path": "vdm_rt/runtime/helpers/ingest.py",
+      "preview": "\"\"\"\nRuntime helper: message ingestion and per-tick symbol/index extraction.\n\nProvides:\n- process_messages(): Mirrors legacy Nexus/runtime behavior while keeping the runtime layer modular.\n\nPolicy:\n- Runtime helpers may import vdm_rt.io.* and vdm_rt.core.*.\n\"\"\"\n\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/runtime/helpers/checkpointing.py",
+      "path": "vdm_rt/runtime/helpers/checkpointing.py",
       "preview": "\"\"\"\nRuntime helper: checkpointing and retention.\n\nProvides:\n- save_tick_checkpoint(): periodic snapshot with retention, behavior-preserving.\n\"\"\"\n\nfrom __future__ import annotations\n\nfrom typing import Any\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/runtime/helpers/macro_board.py",
+      "path": "vdm_rt/runtime/helpers/macro_board.py",
       "preview": "\"\"\"\nRuntime helper: macro board registration on UTD emitter.\n\nBehavior:\n- Registers default macros ('status', 'say')\n- Loads per-run macro_board.json entries only (no external fallbacks)\n\"\"\"\n\nfrom __future__ import annotations\n\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/runtime/helpers/maps_ws.py",
-      "preview": "\"\"\"\nRuntime helper: maps/frame WebSocket bootstrap (bounded, drop-oldest).\n\n- Safe no-op when ENABLE_MAPS_WS is not truthy or when 'websockets' package is missing.\n- Ensures a bounded MapsRing exists on nx._maps_ring (capacity=MAPS_RING, default 3).\n- Starts MapsWebSocketServer once and stores it on nx._maps_ws_server.\n\nThis file is part of the runtime helpers modularization under fum_rt.runtime.helpers.\n\"\"\"\n\n",
+      "path": "vdm_rt/runtime/helpers/maps_ws.py",
+      "preview": "\"\"\"\nRuntime helper: maps/frame WebSocket bootstrap (bounded, drop-oldest).\n\n- Safe no-op when ENABLE_MAPS_WS is not truthy or when 'websockets' package is missing.\n- Ensures a bounded MapsRing exists on nx._maps_ring (capacity=MAPS_RING, default 3).\n- Starts MapsWebSocketServer once and stores it on nx._maps_ws_server.\n\nThis file is part of the runtime helpers modularization under vdm_rt.runtime.helpers.\n\"\"\"\n\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/runtime/helpers/redis_out.py",
+      "path": "vdm_rt/runtime/helpers/redis_out.py",
       "preview": "\"\"\"\nRedis publishing helpers (optional, bounded, void-faithful).\n\n- Publishes status metrics and/or latest maps/frame from the in-process ring to Redis Streams.\n- No schedulers or background threads here; caller invokes once per tick from the runtime loop.\n- Uses MAXLEN trimming to keep Redis bounded (drop-oldest), mirroring in-memory ring semantics.\n\nEnable via env:\n  REDIS_URL=redis://127.0.0.1:6379/0\n  ENABLE_REDIS_STATUS=1\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/runtime/helpers/smoke.py",
+      "path": "vdm_rt/runtime/helpers/smoke.py",
       "preview": "\"\"\"\nRuntime helper: optional one-shot smoke tests (macros and thought ledger).\n\n- Controlled by env flags:\n  - ENABLE_MACROS_TEST\n  - ENABLE_THOUGHTS_TEST\n\nBehavior:\n- Mirrors legacy Nexus logic exactly; guarded and fail-soft.\n\"\"\"\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/runtime/helpers/engram.py",
+      "path": "vdm_rt/runtime/helpers/engram.py",
       "preview": "\"\"\"\nRuntime helper: engram load and start-step derivation.\n\nBehavior:\n- maybe_load_engram(nx, path): loads engram state into connectome (and ADC if present), logs outcome.\n- derive_start_step(nx, path): derives starting tick index based on provided path or existing state_* files.\n\nThis module provides the real implementations migrated from the legacy runtime_helpers monolith.\n\"\"\"\n\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/runtime/helpers/status_http.py",
+      "path": "vdm_rt/runtime/helpers/status_http.py",
       "preview": "from __future__ import annotations\n\n\"\"\"\nOptional in-process HTTP status endpoint (void-faithful; no schedulers).\n\n- Purpose: serve the latest status payload to UI without any file reads.\n- Behavior: starts a tiny HTTP server in a background thread (event-driven, no timers).\n- Endpoint:\n    GET /status  -> 200 JSON of nx._emit_last_metrics (latest per-tick status) or 204 if not yet available\n    GET /health  -> 200 {\"ok\": true}\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/runtime/helpers/emission.py",
+      "path": "vdm_rt/runtime/helpers/emission.py",
       "preview": "\"\"\"\nRuntime helper: status emission and macro board status.\n\n- Emits open UTD status payload every status_every ticks.\n- Emits a 'status' macro when valence is high (mirrors legacy behavior).\n\nImports typing + telemetry builder only; no IO side effects besides UTD emits.\n\"\"\"\n\nfrom __future__ import annotations\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/runtime/helpers/__init__.py",
-      "preview": "\"\"\"\nRuntime helpers package (modularized).\n\nTransitional re-exports:\n- During migration away from the monolith [runtime_helpers.py](../runtime_helpers.py), we re-export\n  its functions here to provide a stable import path:\n    from fum_rt.runtime.helpers import process_messages, emit_status_and_macro, ...\n- New helpers live as separate modules under this package (e.g., maps_ws.py).\n\"\"\"\n\n",
+      "path": "vdm_rt/runtime/helpers/__init__.py",
+      "preview": "\"\"\"\nRuntime helpers package (modularized).\n\nTransitional re-exports:\n- During migration away from the monolith [runtime_helpers.py](../runtime_helpers.py), we re-export\n  its functions here to provide a stable import path:\n    from vdm_rt.runtime.helpers import process_messages, emit_status_and_macro, ...\n- New helpers live as separate modules under this package (e.g., maps_ws.py).\n\"\"\"\n\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/frontend/styles/theme.py",
-      "preview": "\"\"\"\nDeprecated shim for FUM Frontend Styles.\n\nOld path (legacy):\n  from fum_rt.frontend.styles.theme import get_global_css\n\nNew canonical path:\n  from fum_rt.frontend.styles import get_global_css\n\nThis module delegates to the modular styles package to preserve backward compatibility.\n",
+      "path": "vdm_rt/frontend/styles/theme.py",
+      "preview": "\"\"\"\nDeprecated shim for FUM Frontend Styles.\n\nOld path (legacy):\n  from vdm_rt.frontend.styles.theme import get_global_css\n\nNew canonical path:\n  from vdm_rt.frontend.styles import get_global_css\n\nThis module delegates to the modular styles package to preserve backward compatibility.\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/frontend/services/process_manager.py",
+      "path": "vdm_rt/frontend/services/process_manager.py",
       "preview": "import os\nimport sys\nimport time\nimport threading\nimport subprocess\nfrom typing import Any, Dict, List, Tuple\n\n\nclass ProcessManager:\n    \"\"\"\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/frontend/services/status_client.py",
+      "path": "vdm_rt/frontend/services/status_client.py",
       "preview": "from __future__ import annotations\n\n\"\"\"\nLightweight HTTP status client (frontend-only; zero file IO).\n\n- Purpose: fetch the latest runtime status snapshot from the in-process HTTP endpoint\n  to drive live dashboard charts without scanning or tailing JSONL files.\n- Endpoint (served by runtime.helpers.status_http.maybe_start_status_http):\n  GET /status  -> 200 JSON (latest nx._emit_last_metrics) or 204 when not ready\n  GET /health  -> 200 {\"ok\": true}\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/frontend/components/workspace.py",
+      "path": "vdm_rt/frontend/components/workspace.py",
       "preview": "from __future__ import annotations\n\nimport os\nfrom typing import List\nfrom dash import html, dcc\n\n\ndef _runs_root_options(runs_root: str):\n    \"\"\"\n    Build candidate runs-root dropdown options:\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/frontend/components/perf.py",
+      "path": "vdm_rt/frontend/components/perf.py",
       "preview": "from __future__ import annotations\n\nfrom dash import html, dcc\n\n\ndef perf_card():\n    \"\"\"\n    UI Performance card (no environment variables required).\n    Publishes settings into dcc.Store(id=\"ui-state\") via callbacks/perf.register_perf_callbacks.\n    \"\"\"\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/frontend/components/layout.py",
-      "preview": "from __future__ import annotations\n\nimport os\nfrom typing import Any, Dict, List\n\nfrom dash import html, dcc\nfrom fum_rt.frontend.components.widgets.file_picker import file_picker_overlay\n\nfrom fum_rt.frontend.components.workspace import workspace_card\nfrom fum_rt.frontend.components.runtime_controls import runtime_controls_card\n",
+      "path": "vdm_rt/frontend/components/layout.py",
+      "preview": "from __future__ import annotations\n\nimport os\nfrom typing import Any, Dict, List\n\nfrom dash import html, dcc\nfrom vdm_rt.frontend.components.widgets.file_picker import file_picker_overlay\n\nfrom vdm_rt.frontend.components.workspace import workspace_card\nfrom vdm_rt.frontend.components.runtime_controls import runtime_controls_card\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/frontend/components/feed.py",
-      "preview": "from __future__ import annotations\n\nfrom typing import List, Dict\nfrom dash import html, dcc\nfrom fum_rt.frontend.components.widgets.file_picker import file_picker\n\n\ndef feed_card(data_files_options: List[Dict[str, str]]):\n    \"\"\"\n    Feed stdin (optional) card.\n",
+      "path": "vdm_rt/frontend/components/feed.py",
+      "preview": "from __future__ import annotations\n\nfrom typing import List, Dict\nfrom dash import html, dcc\nfrom vdm_rt.frontend.components.widgets.file_picker import file_picker\n\n\ndef feed_card(data_files_options: List[Dict[str, str]]):\n    \"\"\"\n    Feed stdin (optional) card.\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/frontend/components/charts.py",
+      "path": "vdm_rt/frontend/components/charts.py",
       "preview": "from __future__ import annotations\n\nfrom dash import html, dcc\nimport plotly.graph_objects as go\nimport os\n\n\ndef charts_card():\n    \"\"\"\n    Charts card - two graphs placed into tabs to preserve existing callbacks and IDs.\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/frontend/components/runtime_controls.py",
-      "preview": "from __future__ import annotations\n\nfrom typing import Dict, Any\nfrom dash import html, dcc\nfrom fum_rt.frontend.components.widgets.file_picker import file_picker\n\n\ndef runtime_controls_card(default_profile: Dict[str, Any]):\n    \"\"\"\n    Runtime tuning + load-engram controls.\n",
+      "path": "vdm_rt/frontend/components/runtime_controls.py",
+      "preview": "from __future__ import annotations\n\nfrom typing import Dict, Any\nfrom dash import html, dcc\nfrom vdm_rt.frontend.components.widgets.file_picker import file_picker\n\n\ndef runtime_controls_card(default_profile: Dict[str, Any]):\n    \"\"\"\n    Runtime tuning + load-engram controls.\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/frontend/components/chat.py",
-      "preview": "from __future__ import annotations\n\nfrom dash import html, dcc\n\n\ndef chat_card():\n    \"\"\"\n    Chat panel with log view, filter, input, and send button.\n    IDs preserved to match existing callbacks in fum_live.py.\n    \"\"\"\n",
+      "path": "vdm_rt/frontend/components/chat.py",
+      "preview": "from __future__ import annotations\n\nfrom dash import html, dcc\n\n\ndef chat_card():\n    \"\"\"\n    Chat panel with log view, filter, input, and send button.\n    IDs preserved to match existing callbacks in vdm_live.py.\n    \"\"\"\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/frontend/models/series.py",
+      "path": "vdm_rt/frontend/models/series.py",
       "preview": "from __future__ import annotations\n\nimport os\nimport math\nfrom typing import Any, Dict, List\nfrom dataclasses import dataclass\n\n\nclass StreamingZEMA:\n    \"\"\"\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/frontend/controllers/file_picker_ctx.py",
+      "path": "vdm_rt/frontend/controllers/file_picker_ctx.py",
       "preview": "from __future__ import annotations\n\n\"\"\"\nFile Picker Dash Context Helpers\n\nAtomic helper(s) to robustly parse Dash callback_context for pattern-matched components.\n\"\"\"\n\nfrom typing import Optional, Dict, Any\n\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/frontend/controllers/charts_controller.py",
-      "preview": "from __future__ import annotations\n\nimport os\nimport math\nfrom typing import Tuple, Optional\nimport plotly.graph_objs as go\n\nfrom fum_rt.frontend.utilities.tail import tail_jsonl_bytes\nfrom fum_rt.frontend.models.series import SeriesState, append_event, append_say, ffill, extract_tick\nfrom fum_rt.frontend.services.status_client import get_status_snapshot as _get_status\n",
+      "path": "vdm_rt/frontend/controllers/charts_controller.py",
+      "preview": "from __future__ import annotations\n\nimport os\nimport math\nfrom typing import Tuple, Optional\nimport plotly.graph_objs as go\n\nfrom vdm_rt.frontend.utilities.tail import tail_jsonl_bytes\nfrom vdm_rt.frontend.models.series import SeriesState, append_event, append_say, ffill, extract_tick\nfrom vdm_rt.frontend.services.status_client import get_status_snapshot as _get_status\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/frontend/controllers/file_picker_controller.py",
+      "path": "vdm_rt/frontend/controllers/file_picker_controller.py",
       "preview": "from __future__ import annotations\n\n\"\"\"\nFile Picker Controller Utilities\n\nPurpose:\n- Provide bounded, reusable filesystem helpers for the Dash file-picker\n- Centralize path clamping, directory listing, and initial tree construction\n- Ensure safety (no traversal beyond root), performance (scandir), and filtering (exts, dotfiles)\n\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/frontend/controllers/chat_controller.py",
+      "path": "vdm_rt/frontend/controllers/chat_controller.py",
       "preview": "from __future__ import annotations\n\nfrom typing import Any, Dict, Iterable, List, Optional\n\n\ndef parse_utd_macro_record(rec: Dict[str, Any]) -> Optional[Dict[str, Any]]:\n    \"\"\"\n    Convert a single UTD macro record into a standardized chat item dict.\n    Expected rec schema (best-effort):\n      { \"type\": \"macro\", \"macro\": \"...\", \"args\": {...}, \"why\": {...} }\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/frontend/controllers/runtime_controller.py",
-      "preview": "from __future__ import annotations\n\nimport os\nfrom typing import Any, Dict, Iterable, Optional\n\nfrom fum_rt.frontend.utilities.profiles import safe_int as _safe_int, safe_float as _safe_float\nfrom fum_rt.frontend.utilities.fs_utils import read_json_file, write_json_file, latest_checkpoint\n\n\ndef build_phase_update(\n",
+      "path": "vdm_rt/frontend/controllers/runtime_controller.py",
+      "preview": "from __future__ import annotations\n\nimport os\nfrom typing import Any, Dict, Iterable, Optional\n\nfrom vdm_rt.frontend.utilities.profiles import safe_int as _safe_int, safe_float as _safe_float\nfrom vdm_rt.frontend.utilities.fs_utils import read_json_file, write_json_file, latest_checkpoint\n\n\ndef build_phase_update(\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/frontend/controllers/__init__.py",
+      "path": "vdm_rt/frontend/controllers/__init__.py",
       "preview": "\"\"\"\nControllers for reusable business logic extracted from Dash callbacks.\n\"\"\"\n\nfrom .runtime_controller import (\n    build_phase_update,\n    update_phase_json,\n    queue_load_engram,\n    parse_engram_events_for_message,\n)\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/frontend/controllers/file_picker_status.py",
+      "path": "vdm_rt/frontend/controllers/file_picker_status.py",
       "preview": "from __future__ import annotations\n\n\"\"\"\nFile Picker Status/Formatting Controller (atomic helpers)\n\nPurpose:\n- Pure helpers used by Dash callbacks and widgets to compute status strings and sizes\n- Keep IO bounded and consistent with global guards via controller.list_dir()\n\nContracts:\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/frontend/callbacks/workspace.py",
-      "preview": "from __future__ import annotations\n\nfrom typing import List\nfrom dash import Input, Output, State, no_update  # noqa: F401 (bound by Dash at runtime)\nfrom fum_rt.frontend.utilities.fs_utils import list_runs\n\n\ndef register_workspace_callbacks(app, runs_root: str, manager):\n    \"\"\"\n    Workspace-level callbacks:\n",
+      "path": "vdm_rt/frontend/callbacks/workspace.py",
+      "preview": "from __future__ import annotations\n\nfrom typing import List\nfrom dash import Input, Output, State, no_update  # noqa: F401 (bound by Dash at runtime)\nfrom vdm_rt.frontend.utilities.fs_utils import list_runs\n\n\ndef register_workspace_callbacks(app, runs_root: str, manager):\n    \"\"\"\n    Workspace-level callbacks:\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/frontend/callbacks/perf.py",
+      "path": "vdm_rt/frontend/callbacks/perf.py",
       "preview": "from __future__ import annotations\n\nfrom typing import Any, Dict, List\nfrom dash import Input, Output  # noqa: F401\n\n\ndef _is_on(v: Any) -> bool:\n    try:\n        return isinstance(v, list) and (\"on\" in v)\n    except Exception:\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/frontend/callbacks/interval.py",
+      "path": "vdm_rt/frontend/callbacks/interval.py",
       "preview": "from __future__ import annotations\n\nfrom typing import Any\nfrom dash import Input, Output  # noqa: F401\n\n\ndef _int_or(v: Any, dv: int) -> int:\n    try:\n        return int(v)\n    except Exception:\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/frontend/callbacks/process.py",
-      "preview": "from __future__ import annotations\n\nimport os\nimport dash\nfrom typing import Any, Dict, Tuple\nfrom dash import Input, Output, State, no_update  # noqa: F401 (bound at runtime)\n\nfrom fum_rt.frontend.utilities.profiles import assemble_profile as _assemble_profile, safe_int as _safe_int, safe_float as _safe_float\nfrom fum_rt.frontend.utilities.fs_utils import latest_checkpoint\n\n",
+      "path": "vdm_rt/frontend/callbacks/process.py",
+      "preview": "from __future__ import annotations\n\nimport os\nimport dash\nfrom typing import Any, Dict, Tuple\nfrom dash import Input, Output, State, no_update  # noqa: F401 (bound at runtime)\n\nfrom vdm_rt.frontend.utilities.profiles import assemble_profile as _assemble_profile, safe_int as _safe_int, safe_float as _safe_float\nfrom vdm_rt.frontend.utilities.fs_utils import latest_checkpoint\n\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/frontend/callbacks/engram.py",
-      "preview": "from __future__ import annotations\n\nimport os\nfrom dash import Input, Output, State  # noqa: F401\nfrom fum_rt.frontend.utilities.fs_utils import _list_files\n\n\ndef register_engram_callbacks(app):\n    \"\"\"\n    Engram path helpers:\n",
+      "path": "vdm_rt/frontend/callbacks/engram.py",
+      "preview": "from __future__ import annotations\n\nimport os\nfrom dash import Input, Output, State  # noqa: F401\nfrom vdm_rt.frontend.utilities.fs_utils import _list_files\n\n\ndef register_engram_callbacks(app):\n    \"\"\"\n    Engram path helpers:\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/frontend/callbacks/logs.py",
+      "path": "vdm_rt/frontend/callbacks/logs.py",
       "preview": "from __future__ import annotations\n\nimport os\nfrom dash import Input, Output  # noqa: F401\n\n\ndef register_logs_callbacks(app, manager):\n    \"\"\"\n    Launcher log viewer:\n      - Streams the tail of the last launcher log written by ProcessManager.\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/frontend/callbacks/feed.py",
-      "preview": "from __future__ import annotations\n\nimport os\nfrom dash import Input, Output, State, no_update  # noqa: F401\nfrom fum_rt.frontend.utilities.pdf_utils import convert_pdf_to_text_file\n\n\ndef register_feed_callbacks(app, manager, repo_root: str):\n    \"\"\"\n    Feed controls:\n",
+      "path": "vdm_rt/frontend/callbacks/feed.py",
+      "preview": "from __future__ import annotations\n\nimport os\nfrom dash import Input, Output, State, no_update  # noqa: F401\nfrom vdm_rt.frontend.utilities.pdf_utils import convert_pdf_to_text_file\n\n\ndef register_feed_callbacks(app, manager, repo_root: str):\n    \"\"\"\n    Feed controls:\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/frontend/callbacks/runtime.py",
-      "preview": "from __future__ import annotations\n\nimport os\nfrom dash import Input, Output, State, no_update  # noqa: F401\nfrom fum_rt.frontend.controllers.runtime_controller import (\n    build_phase_update,\n    update_phase_json,\n    queue_load_engram,\n    parse_engram_events_for_message,\n)\n",
+      "path": "vdm_rt/frontend/callbacks/runtime.py",
+      "preview": "from __future__ import annotations\n\nimport os\nfrom dash import Input, Output, State, no_update  # noqa: F401\nfrom vdm_rt.frontend.controllers.runtime_controller import (\n    build_phase_update,\n    update_phase_json,\n    queue_load_engram,\n    parse_engram_events_for_message,\n)\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/frontend/callbacks/profile.py",
-      "preview": "from __future__ import annotations\n\nimport os\nimport dash\nfrom typing import Any, Dict, List\nfrom dash import Input, Output, State  # noqa: F401\n\nfrom fum_rt.frontend.utilities.fs_utils import read_json_file, write_json_file\nfrom fum_rt.frontend.utilities.profiles import (\n    assemble_profile as _assemble_profile,\n",
+      "path": "vdm_rt/frontend/callbacks/profile.py",
+      "preview": "from __future__ import annotations\n\nimport os\nimport dash\nfrom typing import Any, Dict, List\nfrom dash import Input, Output, State  # noqa: F401\n\nfrom vdm_rt.frontend.utilities.fs_utils import read_json_file, write_json_file\nfrom vdm_rt.frontend.utilities.profiles import (\n    assemble_profile as _assemble_profile,\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/frontend/callbacks/charts.py",
-      "preview": "from __future__ import annotations\n\nimport plotly.graph_objs as go\nfrom dash import Input, Output, State, no_update, dcc  # noqa: F401 (Dash binds these at runtime)\nfrom fum_rt.frontend.controllers.charts_controller import compute_dashboard_figures\nfrom fum_rt.frontend.models.series import SeriesState  # for type awareness in compute\n\n\ndef register_chart_callbacks(app):\n    \"\"\"\n",
+      "path": "vdm_rt/frontend/callbacks/charts.py",
+      "preview": "from __future__ import annotations\n\nimport plotly.graph_objs as go\nfrom dash import Input, Output, State, no_update, dcc  # noqa: F401 (Dash binds these at runtime)\nfrom vdm_rt.frontend.controllers.charts_controller import compute_dashboard_figures\nfrom vdm_rt.frontend.models.series import SeriesState  # for type awareness in compute\n\n\ndef register_chart_callbacks(app):\n    \"\"\"\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/frontend/callbacks/chat.py",
-      "preview": "from __future__ import annotations\n\nimport os\nimport json\nfrom dash import Input, Output, State, no_update  # noqa: F401\n\nfrom fum_rt.frontend.utilities.tail import tail_jsonl_bytes\nfrom fum_rt.frontend.controllers.chat_controller import (\n    items_from_utd_records,\n    items_from_inbox_records,\n",
+      "path": "vdm_rt/frontend/callbacks/chat.py",
+      "preview": "from __future__ import annotations\n\nimport os\nimport json\nfrom dash import Input, Output, State, no_update  # noqa: F401\n\nfrom vdm_rt.frontend.utilities.tail import tail_jsonl_bytes\nfrom vdm_rt.frontend.controllers.chat_controller import (\n    items_from_utd_records,\n    items_from_inbox_records,\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/frontend/utilities/tail.py",
+      "path": "vdm_rt/frontend/utilities/tail.py",
       "preview": "import os\nimport json\nfrom typing import Any, Tuple, List\n\n\ndef _parse_jsonl_line(line: str) -> Any:\n    try:\n        return json.loads(line)\n    except Exception:\n        return None\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/frontend/utilities/profiles.py",
+      "path": "vdm_rt/frontend/utilities/profiles.py",
       "preview": "\"\"\"\nProfile utilities for FUM Live Dashboard.\nCentralizes default profile defaults and assembly helpers to avoid duplication.\n\"\"\"\n\nfrom typing import Any, Dict, List\n\n\ndef safe_int(x, default=None):\n    try:\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/frontend/utilities/pdf_utils.py",
+      "path": "vdm_rt/frontend/utilities/pdf_utils.py",
       "preview": "from __future__ import annotations\n\n\"\"\"\nPDF -> Text utilities (bounded, best-effort, dependency-optional)\n\nDesign:\n- Try light, pure extraction first (no OCR) using available libs in this order:\n  1) PyMuPDF (fitz)\n  2) pdfminer.six\n  3) PyPDF2\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/frontend/utilities/fs_utils.py",
+      "path": "vdm_rt/frontend/utilities/fs_utils.py",
       "preview": "import os\nimport json\nfrom typing import Any, List\n\n\ndef list_runs(root: str) -> List[str]:\n    \"\"\"\n    List run directories under root, sorted by mtime desc.\n    Mirrors logic from the legacy dashboard for identical behavior.\n    \"\"\"\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/frontend/callbacks/graph_tabs/single_graph.py",
+      "path": "vdm_rt/frontend/callbacks/graph_tabs/single_graph.py",
       "preview": "from __future__ import annotations\n\n\"\"\"\nRegistrar for single-graph tabbed panels.\n\nWires up a single dcc.Graph to a tab-strip (dcc.Tabs) produced by\ngraph_tabs_single_graph_panel(prefix, ...).\n\nContract:\n- The panel creates:\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/frontend/callbacks/file_picker/registrars.py",
+      "path": "vdm_rt/frontend/callbacks/file_picker/registrars.py",
       "preview": "from __future__ import annotations\n\n\"\"\"\nFile Picker Registrars (package-scoped)\n\n- Static root registrar\n- Dynamic (engram) root registrar\n\nBoth delegate common behavior to .common.register_file_picker_common\n\"\"\"\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/frontend/callbacks/file_picker/common.py",
+      "path": "vdm_rt/frontend/callbacks/file_picker/common.py",
       "preview": "from __future__ import annotations\n\n\"\"\"\nFile Picker Common Callback Registrar (package-scoped)\n\nShared callback logic:\n- Navigation (root/up/open-dir)\n- Tree render (bounded IO; no recursion)\n- Breadcrumbs\n- Status computation (dir vs file)\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/frontend/callbacks/file_picker/__init__.py",
+      "path": "vdm_rt/frontend/callbacks/file_picker/__init__.py",
       "preview": "from __future__ import annotations\n\n\"\"\"\nFile Picker callbacks package.\n\nExports:\n- register_file_picker_static\n- register_file_picker_engram\n\nImplementation files:\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/frontend/components/widgets/file_breadcrumbs.py",
+      "path": "vdm_rt/frontend/components/widgets/file_breadcrumbs.py",
       "preview": "from __future__ import annotations\n\n\"\"\"\nBreadcrumbs widget for the File Picker component.\n\nPure UI builder. No IO, no state. Pattern-matching friendly IDs.\n\"\"\"\n\nfrom dash import html\n\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/frontend/components/widgets/file_picker.py",
+      "path": "vdm_rt/frontend/components/widgets/file_picker.py",
       "preview": "from __future__ import annotations\n\n\"\"\"\nReusable, themed file-picker component for Dash (no heavy scans, lazy-only).\n- Compact display: shows selected basename + a \"Choose file\" button\n- Modal overlay: navigable file tree rooted at a configured directory\n- Bounded IO: lists one directory at a time; no recursive scans\n- Integrates with existing callbacks via a target component id to receive the chosen path\n\nUsage:\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/frontend/components/widgets/blocks.py",
+      "path": "vdm_rt/frontend/components/widgets/blocks.py",
       "preview": "from __future__ import annotations\n\n\"\"\"\nSnap-block infrastructure for modular, IDE-like layout.\n\nProvides:\n- block_container: grid-based snapping container with consistent gaps and collision-safe isolation/containment.\n- block_panel: base panel with a compact header and collision borders; body clips content and enforces minWidth: 0.\n- block_panel_tabs: panel variant with an internal tab-strip (dcc.Tabs) for tabbed views.\n- file_picker_block: convenience wrapper to render the existing file_picker inside a block_panel (non-invasive).\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/frontend/components/widgets/file_tree.py",
+      "path": "vdm_rt/frontend/components/widgets/file_tree.py",
       "preview": "from __future__ import annotations\n\n\"\"\"\nFile tree row widgets for the File Picker component.\n\nPure UI builders (no IO, no state). IDs are pattern-matching friendly.\n\"\"\"\n\nfrom dash import html\n\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/frontend/components/widgets/graph.py",
+      "path": "vdm_rt/frontend/components/widgets/graph.py",
       "preview": "from __future__ import annotations\n\nfrom dash import dcc\n\n\ndef graph(id: str, height: int = 420, width: str = \"100%\"):\n    \"\"\"\n    Primitive graph widget (lego block).\n    Used by higher-level components to compose chart cards.\n    \"\"\"\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/core/tests/test_conservation_flux.py",
+      "path": "vdm_rt/core/tests/test_conservation_flux.py",
       "preview": "import os\nimport time\nimport json\nfrom pathlib import Path\n\n# Enable dense connectome for validation-only import (won't modify runtime files)\nos.environ[\"FORCE_DENSE\"] = \"1\"\n\nimport numpy as np\n\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/core/cortex/scouts.py",
-      "preview": "from __future__ import annotations\n\n\"\"\"\nfum_rt.core.cortex.scouts (facade)\n\nThis module is now a thin aggregator that re-exports modular scout classes and maps.\nIt preserves legacy import paths while enforcing void-faithful, read-only traversal.\n\nKey points:\n- No global scans; scouts only use local neighbor reads and bounded TTL/budgets.\n",
+      "path": "vdm_rt/core/cortex/scouts.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nvdm_rt.core.cortex.scouts (facade)\n\nThis module is now a thin aggregator that re-exports modular scout classes and maps.\nIt preserves legacy import paths while enforcing void-faithful, read-only traversal.\n\nKey points:\n- No global scans; scouts only use local neighbor reads and bounded TTL/budgets.\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/core/cortex/__init__.py",
+      "path": "vdm_rt/core/cortex/__init__.py",
       "preview": "",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/core/memory/__init__.py",
-      "preview": "from __future__ import annotations\n\n\"\"\"\nfum_rt.core.memory package\n\nExports:\n- MemoryField: event-driven memory field owner (from .field)\n- load_engram, save_checkpoint: engram IO (from .engram_io)\n\nThis resolves the prior module/package name conflict by making\n",
+      "path": "vdm_rt/core/memory/__init__.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nvdm_rt.core.memory package\n\nExports:\n- MemoryField: event-driven memory field owner (from .field)\n- load_engram, save_checkpoint: engram IO (from .engram_io)\n\nThis resolves the prior module/package name conflict by making\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/core/guards/invariants.py",
-      "preview": "from __future__ import annotations\n\n\"\"\"\nfum_rt.core.guards.invariants\n\nPhysics \u2194 code guard helpers (CI/runtime-safe, no IO, no scans).\n\nPurpose\n- Provide minimal, deterministic checks that connect implementation to physics notes.\n- Intended for CI tests and optional runtime warnings (callers decide policy).\n",
+      "path": "vdm_rt/core/guards/invariants.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nvdm_rt.core.guards.invariants\n\nPhysics \u2194 code guard helpers (CI/runtime-safe, no IO, no scans).\n\nPurpose\n- Provide minimal, deterministic checks that connect implementation to physics notes.\n- Intended for CI tests and optional runtime warnings (callers decide policy).\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/core/cosmology/router.py",
+      "path": "vdm_rt/core/cosmology/router.py",
       "preview": "\"\"\"Retarded sourcing kernel and router channel utilities for the cosmology module.\"\"\"\n\nfrom __future__ import annotations\n\nimport json\nfrom dataclasses import dataclass\nimport math\nfrom typing import Dict, Iterable, List, Sequence, Set, Tuple\n\nfrom .events import BudgetExceededError, BudgetTick, HorizonActivityEvent, RouterSplitEvent\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/core/cosmology/events.py",
-      "preview": "\"\"\"Event schema and guards for the cosmology router feature.\"\"\"\n\nfrom __future__ import annotations\n\nfrom dataclasses import dataclass, field\nimport math\nfrom typing import Iterable, Tuple\n\nfrom fum_rt.core.proprioception.events import BaseEvent\n\n",
+      "path": "vdm_rt/core/cosmology/events.py",
+      "preview": "\"\"\"Event schema and guards for the cosmology router feature.\"\"\"\n\nfrom __future__ import annotations\n\nfrom dataclasses import dataclass, field\nimport math\nfrom typing import Iterable, Tuple\n\nfrom vdm_rt.core.proprioception.events import BaseEvent\n\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/core/cosmology/__init__.py",
+      "path": "vdm_rt/core/cosmology/__init__.py",
       "preview": "\"\"\"Cosmology router core primitives.\"\"\"\n\nfrom .events import (\n    BudgetExceededError,\n    BudgetTick,\n    HorizonActivityEvent,\n    RouterSplitEvent,\n)\nfrom .router import (\n    DenseAccessError,\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/core/engine/__init__.py",
+      "path": "vdm_rt/core/engine/__init__.py",
       "preview": "\"\"\"\nCore Engine package initializer.\n\nExports CoreEngine from the in-package implementation module to avoid any\ncross-file redirects. Implementation resides under this package.\n\"\"\"\n\nfrom .core_engine import CoreEngine\n\n__all__ = [\"CoreEngine\"]",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/core/neuroplasticity/__init__.py",
+      "path": "vdm_rt/core/neuroplasticity/__init__.py",
       "preview": "",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/core/cortex/void_walkers/void_cycle_scout.py",
-      "preview": "from __future__ import annotations\n\n\"\"\"\nfum_rt.core.cortex.void_walkers.void_cycle_scout\n\nCycleHunterScout (read-only, void-faithful):\n- Seeks short cycles (3-6 hops) using a TTL-limited walk with a tiny path window.\n- Purely local: only neighbor lists are read; no global scans or dense conversions.\n- Emits vt_touch and edge_on events; reducers can infer cycle hits from returned edge traces.\n\n",
+      "path": "vdm_rt/core/cortex/void_walkers/void_cycle_scout.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nvdm_rt.core.cortex.void_walkers.void_cycle_scout\n\nCycleHunterScout (read-only, void-faithful):\n- Seeks short cycles (3-6 hops) using a TTL-limited walk with a tiny path window.\n- Purely local: only neighbor lists are read; no global scans or dense conversions.\n- Emits vt_touch and edge_on events; reducers can infer cycle hits from returned edge traces.\n\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/core/cortex/void_walkers/void_inhibition_scout.py",
-      "preview": "from __future__ import annotations\n\n\"\"\"\nfum_rt.core.cortex.void_walkers.void_inhibition_scout\n\nInhibitionScout (read-only, void-faithful):\n- Duty: Map inhibitory ridges, feeding InhibitionMap strictly via events.\n- Strategy: Seed from InhibitionMap.inh_head; during walk, emit VTTouchEvent per visit and\n            synthesize SpikeEvent(node, amp\u2248local_inh, sign=-1) with bounded amplitude in [0,1].\n            Occasional EdgeOnEvent samples are produced by BaseScout's bounded walk; no global scans.\n",
+      "path": "vdm_rt/core/cortex/void_walkers/void_inhibition_scout.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nvdm_rt.core.cortex.void_walkers.void_inhibition_scout\n\nInhibitionScout (read-only, void-faithful):\n- Duty: Map inhibitory ridges, feeding InhibitionMap strictly via events.\n- Strategy: Seed from InhibitionMap.inh_head; during walk, emit VTTouchEvent per visit and\n            synthesize SpikeEvent(node, amp\u2248local_inh, sign=-1) with bounded amplitude in [0,1].\n            Occasional EdgeOnEvent samples are produced by BaseScout's bounded walk; no global scans.\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/core/cortex/void_walkers/void_cold_scout.py",
-      "preview": "from __future__ import annotations\n\n\"\"\"\nfum_rt.core.cortex.void_walkers.void_cold_scout\n\nColdScout (read-only, void-faithful):\n- Prefers neighbors whose node ids appear in ColdMap snapshot head (\"cold_head\").\n- Emits only vt_touch and edge_on events.\n- No scans of global structures; uses local neighbor reads and bounded TTL/budgets.\n\n",
+      "path": "vdm_rt/core/cortex/void_walkers/void_cold_scout.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nvdm_rt.core.cortex.void_walkers.void_cold_scout\n\nColdScout (read-only, void-faithful):\n- Prefers neighbors whose node ids appear in ColdMap snapshot head (\"cold_head\").\n- Emits only vt_touch and edge_on events.\n- No scans of global structures; uses local neighbor reads and bounded TTL/budgets.\n\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/core/cortex/void_walkers/runner.py",
-      "preview": "from __future__ import annotations\n\n\"\"\"\nfum_rt.core.cortex.void_walkers.runner\n\nStateless, per-tick scout executor (void-faithful, no schedulers).\n- Runs a bounded list of read-only scouts exactly once per tick.\n- Enforces a micro time budget (microseconds) across all scouts.\n- Accepts optional seeds (e.g., recent UTE indices) and map heads (heat/exc/inh/cold).\n- Emits only foldable events (vt_touch, edge_on, optional spike/delta_w); no writes.\n",
+      "path": "vdm_rt/core/cortex/void_walkers/runner.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nvdm_rt.core.cortex.void_walkers.runner\n\nStateless, per-tick scout executor (void-faithful, no schedulers).\n- Runs a bounded list of read-only scouts exactly once per tick.\n- Enforces a micro time budget (microseconds) across all scouts.\n- Accepts optional seeds (e.g., recent UTE indices) and map heads (heat/exc/inh/cold).\n- Emits only foldable events (vt_touch, edge_on, optional spike/delta_w); no writes.\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/core/cortex/void_walkers/void_ray_scout.py",
-      "preview": "from __future__ import annotations\n\n\"\"\"\nfum_rt.core.cortex.void_walkers.void_ray_scout\n\nVoidRayScout (read-only, void-faithful):\n- Physics-aware routing that prefers neighbors with favorable local change in a fast field \u03c6.\n- Local scoring (no scans): for hop i\u2192j, s_j = lambda_phi * (\u03c6[j] - \u03c6[i]) + theta_mem * m[j]\n- Temperatured choice via softmax over neighbors; strictly local reads.\n- Emits vt_touch and edge_on events; optional spike can be added by subclasses if needed.\n",
+      "path": "vdm_rt/core/cortex/void_walkers/void_ray_scout.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nvdm_rt.core.cortex.void_walkers.void_ray_scout\n\nVoidRayScout (read-only, void-faithful):\n- Physics-aware routing that prefers neighbors with favorable local change in a fast field \u03c6.\n- Local scoring (no scans): for hop i\u2192j, s_j = lambda_phi * (\u03c6[j] - \u03c6[i]) + theta_mem * m[j]\n- Temperatured choice via softmax over neighbors; strictly local reads.\n- Emits vt_touch and edge_on events; optional spike can be added by subclasses if needed.\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/core/cortex/void_walkers/frontier_scout.py",
-      "preview": "from __future__ import annotations\n\n\"\"\"\nShim module for naming convention.\nUse void-prefixed class from [void_frontier_scout.py](fum_rt/core/cortex/void_walkers/void_frontier_scout.py).\n\"\"\"\n\nfrom .void_frontier_scout import FrontierScout\n\n__all__ = [\"FrontierScout\"]",
+      "path": "vdm_rt/core/cortex/void_walkers/frontier_scout.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nShim module for naming convention.\nUse void-prefixed class from [void_frontier_scout.py](vdm_rt/core/cortex/void_walkers/void_frontier_scout.py).\n\"\"\"\n\nfrom .void_frontier_scout import FrontierScout\n\n__all__ = [\"FrontierScout\"]",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/core/cortex/void_walkers/base.py",
-      "preview": "from __future__ import annotations\n\n\"\"\"\nfum_rt.core.cortex.void_walkers.base\n\nVoid-faithful, read-only scout base class.\n- No global scans or dense conversions; no direct access to raw weight arrays or external graph libraries.\n- Operates only on local neighbor reads provided by the active graph.\n- Emits only small, foldable events for reducers and telemetry.\n\n",
+      "path": "vdm_rt/core/cortex/void_walkers/base.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nvdm_rt.core.cortex.void_walkers.base\n\nVoid-faithful, read-only scout base class.\n- No global scans or dense conversions; no direct access to raw weight arrays or external graph libraries.\n- Operates only on local neighbor reads provided by the active graph.\n- Emits only small, foldable events for reducers and telemetry.\n\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/core/cortex/void_walkers/void_heat_scout.py",
-      "preview": "from __future__ import annotations\n\n\"\"\"\nfum_rt.core.cortex.void_walkers.void_heat_scout\n\nHeatScout (read-only, void-faithful):\n- Local-only neighbor selection using a softmax over map signals.\n- Supports trail repulsion (short-term) and optional memory steering (long-term).\n- Emits vt_touch and edge_on events; no writes; no scans.\n\n",
+      "path": "vdm_rt/core/cortex/void_walkers/void_heat_scout.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nvdm_rt.core.cortex.void_walkers.void_heat_scout\n\nHeatScout (read-only, void-faithful):\n- Local-only neighbor selection using a softmax over map signals.\n- Supports trail repulsion (short-term) and optional memory steering (long-term).\n- Emits vt_touch and edge_on events; no writes; no scans.\n\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/core/cortex/void_walkers/void_memory_ray_scout.py",
-      "preview": "from __future__ import annotations\n\n\"\"\"\nfum_rt.core.cortex.void_walkers.void_memory_ray_scout\n\nMemoryRayScout (read-only, void-faithful):\n- Implements refractive-index steering using a slow memory field m.\n- Local selection: P(i\u2192j) \u221d exp(Theta * m[j]) with temperature tau (Boltzmann choice).\n- Falls back to HeatMap head/dict when memory is absent to keep behavior useful OOTB.\n- Emits vt_touch and edge_on events; no writes; no scans.\n",
+      "path": "vdm_rt/core/cortex/void_walkers/void_memory_ray_scout.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nvdm_rt.core.cortex.void_walkers.void_memory_ray_scout\n\nMemoryRayScout (read-only, void-faithful):\n- Implements refractive-index steering using a slow memory field m.\n- Local selection: P(i\u2192j) \u221d exp(Theta * m[j]) with temperature tau (Boltzmann choice).\n- Falls back to HeatMap head/dict when memory is absent to keep behavior useful OOTB.\n- Emits vt_touch and edge_on events; no writes; no scans.\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/core/cortex/void_walkers/void_excitation_scout.py",
-      "preview": "from __future__ import annotations\n\n\"\"\"\nfum_rt.core.cortex.void_walkers.void_excitation_scout\n\nExcitationScout (read-only, void-faithful):\n- Duty: Map excitatory corridors, feeding ExcitationMap strictly via events.\n- Strategy: Seed from ExcitationMap.exc_head; during walk, emit VTTouchEvent per visit and\n            synthesize SpikeEvent(node, amp\u2248local_exc, sign=+1) with bounded amplitude in [0,1].\n            Occasional EdgeOnEvent samples are produced by BaseScout's bounded walk; no global scans.\n",
+      "path": "vdm_rt/core/cortex/void_walkers/void_excitation_scout.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nvdm_rt.core.cortex.void_walkers.void_excitation_scout\n\nExcitationScout (read-only, void-faithful):\n- Duty: Map excitatory corridors, feeding ExcitationMap strictly via events.\n- Strategy: Seed from ExcitationMap.exc_head; during walk, emit VTTouchEvent per visit and\n            synthesize SpikeEvent(node, amp\u2248local_exc, sign=+1) with bounded amplitude in [0,1].\n            Occasional EdgeOnEvent samples are produced by BaseScout's bounded walk; no global scans.\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/core/cortex/void_walkers/void_frontier_scout.py",
-      "preview": "from __future__ import annotations\n\n\"\"\"\nfum_rt.core.cortex.void_walkers.void_frontier_scout\n\nFrontierScout (read-only, void-faithful):\n- Skims component boundaries and likely bridge frontiers to refresh cohesion/cycle estimators.\n- Purely local heuristics; no scans. Emits vt_touch and edge_on only.\n\nLocal neighbor score for hop u\u2192j (bounded, read-only):\n",
+      "path": "vdm_rt/core/cortex/void_walkers/void_frontier_scout.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nvdm_rt.core.cortex.void_walkers.void_frontier_scout\n\nFrontierScout (read-only, void-faithful):\n- Skims component boundaries and likely bridge frontiers to refresh cohesion/cycle estimators.\n- Purely local heuristics; no scans. Emits vt_touch and edge_on only.\n\nLocal neighbor score for hop u\u2192j (bounded, read-only):\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/core/cortex/void_walkers/void_sentinel_scout.py",
-      "preview": "from __future__ import annotations\n\n\"\"\"\nfum_rt.core.cortex.void_walkers.void_sentinel_scout\n\nSentinelScout (read-only, void-faithful):\n- Blue-noise reseeder / de-trample walker.\n- Purpose: prevent path lock-in by sampling uniformly across space and announcing coverage.\n- Emits vt_touch for coverage and opportunistic edge_on (one hop) when neighbors exist.\n\n",
+      "path": "vdm_rt/core/cortex/void_walkers/void_sentinel_scout.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nvdm_rt.core.cortex.void_walkers.void_sentinel_scout\n\nSentinelScout (read-only, void-faithful):\n- Blue-noise reseeder / de-trample walker.\n- Purpose: prevent path lock-in by sampling uniformly across space and announcing coverage.\n- Emits vt_touch for coverage and opportunistic edge_on (one hop) when neighbors exist.\n\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/core/cortex/maps/__init__.py",
+      "path": "vdm_rt/core/cortex/maps/__init__.py",
       "preview": "",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/api/llms/router.py",
+      "path": "vdm_rt/api/llms/router.py",
       "preview": "",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/api/llms/__init__.py",
+      "path": "vdm_rt/api/llms/__init__.py",
       "preview": "",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/api/llms/providers/openrouter/openrouter_client.py",
+      "path": "vdm_rt/api/llms/providers/openrouter/openrouter_client.py",
       "preview": "",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/api/llms/providers/openai/openai_client.py",
+      "path": "vdm_rt/api/llms/providers/openai/openai_client.py",
       "preview": "",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/api/llms/providers/xai/xai_client.py",
+      "path": "vdm_rt/api/llms/providers/xai/xai_client.py",
       "preview": "",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/api/llms/providers/ollama/ollama_client.py",
+      "path": "vdm_rt/api/llms/providers/ollama/ollama_client.py",
       "preview": "",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/api/llms/providers/google/model_loader.py",
+      "path": "vdm_rt/api/llms/providers/google/model_loader.py",
       "preview": "",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/api/llms/providers/google/gemini_client.py",
+      "path": "vdm_rt/api/llms/providers/google/gemini_client.py",
       "preview": "",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/tests/physics/test_invariants.py",
-      "preview": "from __future__ import annotations\n\n\"\"\"\nfum_rt.tests.physics.test_invariants\n\nCI tests for physics \u2194 code guard helpers:\n- Q_FUM (logistic on-site constant of motion) spot-check\n- Kinetic normalization equivalence (c^2 from \u03ba vs 2J)\n- Memory steering dimensionless groups extraction\n\n",
+      "path": "vdm_rt/tests/physics/test_invariants.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nvdm_rt.tests.physics.test_invariants\n\nCI tests for physics \u2194 code guard helpers:\n- Q_FUM (logistic on-site constant of motion) spot-check\n- Kinetic normalization equivalence (c^2 from \u03ba vs 2J)\n- Memory steering dimensionless groups extraction\n\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/tests/physics/test_pta_correlation_harness.py",
-      "preview": "from __future__ import annotations\n\nimport math\nfrom typing import List\n\nfrom fum_rt.physics.pta_correlation_harness import (\n    CorrelationConfig,\n    compute_correlation_series,\n    evaluate_pta_correlation,\n)\n",
+      "path": "vdm_rt/tests/physics/test_pta_correlation_harness.py",
+      "preview": "from __future__ import annotations\n\nimport math\nfrom typing import List\n\nfrom vdm_rt.physics.pta_correlation_harness import (\n    CorrelationConfig,\n    compute_correlation_series,\n    evaluate_pta_correlation,\n)\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/tests/physics/test_harness_logging.py",
-      "preview": "from __future__ import annotations\n\nfrom fum_rt.physics.harness_logging import enrich_payload, hash_jsonable\n\n\ndef test_enrich_payload_populates_gate_summary() -> None:\n    base = {\n        \"timestamp\": \"2025-01-01T00:00:00Z\",\n        \"metrics\": {\"status\": \"PASS\"},\n    }\n",
+      "path": "vdm_rt/tests/physics/test_harness_logging.py",
+      "preview": "from __future__ import annotations\n\nfrom vdm_rt.physics.harness_logging import enrich_payload, hash_jsonable\n\n\ndef test_enrich_payload_populates_gate_summary() -> None:\n    base = {\n        \"timestamp\": \"2025-01-01T00:00:00Z\",\n        \"metrics\": {\"status\": \"PASS\"},\n    }\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/tests/physics/test_steering_ab.py",
-      "preview": "from __future__ import annotations\n\n\"\"\"\nfum_rt.tests.physics.test_steering_ab\n\nCI: Steering A/B acceptance tests (void-faithful, pure numeric; no scans).\n\nScope:\n- Softmax steering law P(i\u2192j) \u221d exp(\u0398 m_j)\n- Junction A/B identity: log(P_B / P_A) == \u0398 * (m_B - m_A)\n",
+      "path": "vdm_rt/tests/physics/test_steering_ab.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nvdm_rt.tests.physics.test_steering_ab\n\nCI: Steering A/B acceptance tests (void-faithful, pure numeric; no scans).\n\nScope:\n- Softmax steering law P(i\u2192j) \u221d exp(\u0398 m_j)\n- Junction A/B identity: log(P_B / P_A) == \u0398 * (m_B - m_A)\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/tests/physics/test_router_regression_figures.py",
-      "preview": "import json\nfrom pathlib import Path\n\nimport numpy as np\nimport pytest\n\nimport fum_rt.physics.router_regression_figures as rfig\n\n\npytestmark = pytest.mark.filterwarnings(\"ignore:All-NaN slice encountered\")\n",
+      "path": "vdm_rt/tests/physics/test_router_regression_figures.py",
+      "preview": "import json\nfrom pathlib import Path\n\nimport numpy as np\nimport pytest\n\nimport vdm_rt.physics.router_regression_figures as rfig\n\n\npytestmark = pytest.mark.filterwarnings(\"ignore:All-NaN slice encountered\")\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/tests/physics/test_ci_gates.py",
-      "preview": "\"\"\"Tests for cosmology router CI gate validators.\"\"\"\n\nfrom __future__ import annotations\n\nimport pytest\n\nfrom fum_rt.physics.ci_gates import (\n    GateViolationError,\n    validate_payload,\n    validate_required_gates,\n",
+      "path": "vdm_rt/tests/physics/test_ci_gates.py",
+      "preview": "\"\"\"Tests for cosmology router CI gate validators.\"\"\"\n\nfrom __future__ import annotations\n\nimport pytest\n\nfrom vdm_rt.physics.ci_gates import (\n    GateViolationError,\n    validate_payload,\n    validate_required_gates,\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/tests/physics/test_sidm_curve_harness.py",
-      "preview": "from __future__ import annotations\n\nimport json\n\nfrom fum_rt.core.cosmology import GrainScatteringShim\nfrom fum_rt.physics.sidm_curve_harness import (\n    ACCEPTANCE_BANDS,\n    DEFAULT_GRID,\n    build_payload,\n    evaluate_curve,\n",
+      "path": "vdm_rt/tests/physics/test_sidm_curve_harness.py",
+      "preview": "from __future__ import annotations\n\nimport json\n\nfrom vdm_rt.core.cosmology import GrainScatteringShim\nfrom vdm_rt.physics.sidm_curve_harness import (\n    ACCEPTANCE_BANDS,\n    DEFAULT_GRID,\n    build_payload,\n    evaluate_curve,\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/tests/physics/test_vacuum_demographics_harness.py",
+      "path": "vdm_rt/tests/physics/test_vacuum_demographics_harness.py",
       "preview": "\"\"\"Tests for the vacuum demographics harness.\"\"\"\n\nfrom __future__ import annotations\n\nimport json\nimport math\nfrom pathlib import Path\n\nimport pytest\n\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/tests/physics/test_memory_kernel_event_local.py",
+      "path": "vdm_rt/tests/physics/test_memory_kernel_event_local.py",
       "preview": "from __future__ import annotations\n\n\"\"\"\nEvent-local memory kernel tests (void-faithful lock-in)\n\nConfirms:\n- Writes occur only at touched nodes (vt_touch, spike, delta_w).\n- Smoothing occurs only along visited edges (edge_on events) and only affects the two endpoints.\n- Determinism under fixed seed and identical event sequences.\n\"\"\"\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/tests/core/test_maps_frame.py",
-      "preview": "import numpy as np\n\nfrom fum_rt.core.engine import CoreEngine\nfrom fum_rt.core.proprioception.events import VTTouchEvent, SpikeEvent, DeltaWEvent\n\n\nclass _StubNx:\n    \"\"\"\n    Minimal nexus-like stub for CoreEngine:\n    - Provides only the attributes CoreEngine.step() actually touches in this test\n",
+      "path": "vdm_rt/tests/core/test_maps_frame.py",
+      "preview": "import numpy as np\n\nfrom vdm_rt.core.engine import CoreEngine\nfrom vdm_rt.core.proprioception.events import VTTouchEvent, SpikeEvent, DeltaWEvent\n\n\nclass _StubNx:\n    \"\"\"\n    Minimal nexus-like stub for CoreEngine:\n    - Provides only the attributes CoreEngine.step() actually touches in this test\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/tests/core/test_active_graph_regression.py",
-      "preview": "from __future__ import annotations\n\n\"\"\"\nfum_rt.tests.core.test_active_graph_regression\n\nRegression tests for active-graph lower-bound component counting and dirty-flag/audit behavior\nin SparseConnectome._maybe_audit_frag (void-faithful, streaming over ACTIVE edges only).\n\nCovers:\n- components_lb reflects the number of components in the ACTIVE subgraph\n",
+      "path": "vdm_rt/tests/core/test_active_graph_regression.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nvdm_rt.tests.core.test_active_graph_regression\n\nRegression tests for active-graph lower-bound component counting and dirty-flag/audit behavior\nin SparseConnectome._maybe_audit_frag (void-faithful, streaming over ACTIVE edges only).\n\nCovers:\n- components_lb reflects the number of components in the ACTIVE subgraph\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/tests/core/test_core_boundary_guards.py",
-      "preview": "from __future__ import annotations\n\n\"\"\"\nBoundary and policy guard tests.\n\nScope:\n- Enforce core/ isolation: no imports from fum_rt.io, fum_rt.runtime, or fum_rt.nexus\n- Enforce runtime/ is NumPy-free: runtime contains no 'import numpy' or 'from numpy ...'\n- Enforce IDF/lexicon coupling remains outside core/: core must not import IO IDF or reference compute_idf_scale\n\n",
+      "path": "vdm_rt/tests/core/test_core_boundary_guards.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nBoundary and policy guard tests.\n\nScope:\n- Enforce core/ isolation: no imports from vdm_rt.io, vdm_rt.runtime, or vdm_rt.nexus\n- Enforce runtime/ is NumPy-free: runtime contains no 'import numpy' or 'from numpy ...'\n- Enforce IDF/lexicon coupling remains outside core/: core must not import IO IDF or reference compute_idf_scale\n\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/tests/core/test_runner_budget.py",
-      "preview": "from __future__ import annotations\n\n\"\"\"\nfum_rt.tests.core.test_runner_budget\n\nCI: Verify the void-walker runner is one-shot per tick and enforces microsecond budgets.\n\n- No schedulers, no timers: pure function invoked once per tick by runtime loop.\n- Global time guard must drop remaining scouts upon exceeding max_us.\n- Rotation by budget[\"tick\"] provides fairness (round-robin start index).\n",
+      "path": "vdm_rt/tests/core/test_runner_budget.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nvdm_rt.tests.core.test_runner_budget\n\nCI: Verify the void-walker runner is one-shot per tick and enforces microsecond budgets.\n\n- No schedulers, no timers: pure function invoked once per tick by runtime loop.\n- Global time guard must drop remaining scouts upon exceeding max_us.\n- Rotation by budget[\"tick\"] provides fairness (round-robin start index).\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/tests/core/test_void_faithful_guards.py",
+      "path": "vdm_rt/tests/core/test_void_faithful_guards.py",
       "preview": "import io\nimport os\nimport re\n\n# CI guard: Ensure void-faithful reducers do not peek global structures\n# and CoreEngine wiring does not scan W/CSR/adjacency for maps.\n\nREPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), \"..\", \"..\"))\n\n\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/tests/core/test_territory_uf.py",
-      "preview": "import pytest\n\nfrom fum_rt.core.proprioception.territory import TerritoryUF\n\n\nclass Obs:\n    \"\"\"Minimal Observation-like stub with kind and fields used by TerritoryUF.fold().\"\"\"\n    def __init__(self, kind: str, **kwargs):\n        self.kind = kind\n        for k, v in (kwargs or {}).items():\n",
+      "path": "vdm_rt/tests/core/test_territory_uf.py",
+      "preview": "import pytest\n\nfrom vdm_rt.core.proprioception.territory import TerritoryUF\n\n\nclass Obs:\n    \"\"\"Minimal Observation-like stub with kind and fields used by TerritoryUF.fold().\"\"\"\n    def __init__(self, kind: str, **kwargs):\n        self.kind = kind\n        for k, v in (kwargs or {}).items():\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/tests/core/test_scouts.py",
+      "path": "vdm_rt/tests/core/test_scouts.py",
       "preview": "from __future__ import annotations\n\nimport os\nimport re\nfrom glob import glob\n\n# CI guard: scouts must remain void-faithful (no scans, no dense ops)\n# Scope: core/cortex/void_walkers/*.py\n\nHERE = os.path.abspath(os.path.dirname(__file__))\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/tests/guards/test_no_scheduler.py",
+      "path": "vdm_rt/tests/guards/test_no_scheduler.py",
       "preview": "from __future__ import annotations\n\nimport os\nimport re\nfrom typing import Iterable, Tuple\n\n\"\"\"\nGuard: deny any scheduler/cadence constructs in core/ and runtime/.\n\nPolicy (void-faithful, emergent-only):\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/tests/frontend/test_frontend_architecture.py",
-      "preview": "import os\nfrom typing import Any, List, Optional\n\nimport pytest\nfrom dash import Dash, html, dcc\n\nfrom fum_rt.frontend.components.layout import build_layout\nfrom fum_rt.frontend.components.widgets.file_picker import file_picker_overlay\nfrom fum_rt.frontend.components.widgets.blocks import (\n    block_container,\n",
+      "path": "vdm_rt/tests/frontend/test_frontend_architecture.py",
+      "preview": "import os\nfrom typing import Any, List, Optional\n\nimport pytest\nfrom dash import Dash, html, dcc\n\nfrom vdm_rt.frontend.components.layout import build_layout\nfrom vdm_rt.frontend.components.widgets.file_picker import file_picker_overlay\nfrom vdm_rt.frontend.components.widgets.blocks import (\n    block_container,\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/tests/frontend/test_process_manager_runs_root.py",
-      "preview": "from __future__ import annotations\n\nimport os\nimport re\nimport sys\n\nfrom fum_rt.frontend.services.process_manager import ProcessManager\n\n\ndef _stub_popen(monkeypatch):\n",
+      "path": "vdm_rt/tests/frontend/test_process_manager_runs_root.py",
+      "preview": "from __future__ import annotations\n\nimport os\nimport re\nimport sys\n\nfrom vdm_rt.frontend.services.process_manager import ProcessManager\n\n\ndef _stub_popen(monkeypatch):\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/tests/runtime/test_phase_legacy_key.py",
-      "preview": "from __future__ import annotations\n\n\"\"\"\nRuntime micro-test: token-clean legacy key alias in apply_phase_profile\n- Verifies that profiles using a legacy 'schedule' key (constructed without embedding\n  the banned token in source) are correctly aliased to 'cadence' and applied.\n- Guards only scan fum_rt/core and fum_rt/runtime; tests may reference legacy tokens.\n\"\"\"\n\nfrom typing import Any, Dict\n",
+      "path": "vdm_rt/tests/runtime/test_phase_legacy_key.py",
+      "preview": "from __future__ import annotations\n\n\"\"\"\nRuntime micro-test: token-clean legacy key alias in apply_phase_profile\n- Verifies that profiles using a legacy 'schedule' key (constructed without embedding\n  the banned token in source) are correctly aliased to 'cadence' and applied.\n- Guards only scan vdm_rt/core and vdm_rt/runtime; tests may reference legacy tokens.\n\"\"\"\n\nfrom typing import Any, Dict\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/tests/runtime/test_events_adapter_inhibition.py",
-      "preview": "import math\nimport pytest\n\nfrom fum_rt.runtime.events_adapter import observations_to_events\nfrom fum_rt.core.proprioception.events import (\n    BaseEvent,\n    DeltaWEvent,\n    SpikeEvent,\n    VTTouchEvent,\n    EdgeOnEvent,\n",
+      "path": "vdm_rt/tests/runtime/test_events_adapter_inhibition.py",
+      "preview": "import math\nimport pytest\n\nfrom vdm_rt.runtime.events_adapter import observations_to_events\nfrom vdm_rt.core.proprioception.events import (\n    BaseEvent,\n    DeltaWEvent,\n    SpikeEvent,\n    VTTouchEvent,\n    EdgeOnEvent,\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/tests/runtime/test_telemetry_frame_v2.py",
-      "preview": "import os\nfrom typing import Dict, Any\n\nimport numpy as np\n\nfrom fum_rt.core.engine.maps_frame import stage_maps_frame\nfrom fum_rt.runtime.telemetry import tick_fold\n\n\nclass _DummyMap:\n",
+      "path": "vdm_rt/tests/runtime/test_telemetry_frame_v2.py",
+      "preview": "import os\nfrom typing import Dict, Any\n\nimport numpy as np\n\nfrom vdm_rt.core.engine.maps_frame import stage_maps_frame\nfrom vdm_rt.runtime.telemetry import tick_fold\n\n\nclass _DummyMap:\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/tests/core/cosmology/test_events.py",
-      "preview": "from __future__ import annotations\n\nfrom dataclasses import FrozenInstanceError\n\nimport pytest\n\nfrom fum_rt.core.cosmology import (\n    BudgetExceededError,\n    BudgetTick,\n    HorizonActivityEvent,\n",
+      "path": "vdm_rt/tests/core/cosmology/test_events.py",
+      "preview": "from __future__ import annotations\n\nfrom dataclasses import FrozenInstanceError\n\nimport pytest\n\nfrom vdm_rt.core.cosmology import (\n    BudgetExceededError,\n    BudgetTick,\n    HorizonActivityEvent,\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/tests/core/cosmology/test_router.py",
-      "preview": "from __future__ import annotations\n\nimport math\n\nimport pytest\n\nfrom fum_rt.core.cosmology import (\n    BudgetExceededError,\n    BudgetTick,\n    DenseAccessError,\n",
+      "path": "vdm_rt/tests/core/cosmology/test_router.py",
+      "preview": "from __future__ import annotations\n\nimport math\n\nimport pytest\n\nfrom vdm_rt.core.cosmology import (\n    BudgetExceededError,\n    BudgetTick,\n    DenseAccessError,\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/physics/memory_steering/plot_memory_steering.py",
+      "path": "vdm_rt/physics/memory_steering/plot_memory_steering.py",
       "preview": "\"\"\"\nPlotting helper for memory-steering experiments.\n\n- Parses outputs/memory_steering_results.csv (supports 4- or 5-column stability).\n- Produces figures in outputs/.\n- Prints a concise metrics summary that directly tests the three predictions:\n  1) Junction logistic collapse\n  2) Curvature scaling in the ray limit\n  3) Stability band with write\u2192decay protocol (Retention, Fidelity)\n\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/io/actuators/__init__.py",
+      "path": "vdm_rt/io/actuators/__init__.py",
       "preview": "",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/io/sensors/__init__.py",
+      "path": "vdm_rt/io/sensors/__init__.py",
       "preview": "",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/io/cognition/stimulus.py",
+      "path": "vdm_rt/io/cognition/stimulus.py",
       "preview": "from __future__ import annotations\n\n\"\"\"\nCognition - stimulus mapping (Phase 3 move-only).\n\nDeterministic, stateless symbol\u2192group mapping used by Nexus ingestion.\nBehavior preserved: identical arithmetic hash and iteration order.\n\"\"\"\n\nfrom typing import Dict, List, Optional\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/io/cognition/composer.py",
+      "path": "vdm_rt/io/cognition/composer.py",
       "preview": "from __future__ import annotations\n\n\"\"\"\nCognition - speech composer (Phase 3 move-only).\n\nBehavior-preserving extraction of Nexus._compose_say_text:\n- Prefer emergent sentence generation from streaming n-grams.\n- Fallback to phrase templates with context formatting.\n- Final fallback to keyword summary.\n\"\"\"\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/io/cognition/speaker.py",
+      "path": "vdm_rt/io/cognition/speaker.py",
       "preview": "from __future__ import annotations\n\n\"\"\"\nCognition - speaker gating and scoring (Phase 3 move-only).\n\nBehavior-preserving helpers extracted from Nexus.run():\n- Gating decision based on B1 spike and valence threshold.\n- Novelty-IDF computation and emission score calculation.\n\nNo logging or IO; pure functions only.\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/io/visualization/maps_ring.py",
-      "preview": "\"\"\"\nMaps frames ring buffer (drop-oldest, thread-safe, void-faithful).\n\nCanonical location: fum_rt.io.visualization.maps_ring\n\nPurpose\n- Provide a tiny, bounded ring for maps frames (header+payload) with drop-oldest semantics.\n- Decouples producers (telemetry/core engine) from consumers (UI/websocket) without scans.\n- O(1) amortized operations; no full-buffer copies; copies only payload bytes as provided.\n\n",
+      "path": "vdm_rt/io/visualization/maps_ring.py",
+      "preview": "\"\"\"\nMaps frames ring buffer (drop-oldest, thread-safe, void-faithful).\n\nCanonical location: vdm_rt.io.visualization.maps_ring\n\nPurpose\n- Provide a tiny, bounded ring for maps frames (header+payload) with drop-oldest semantics.\n- Decouples producers (telemetry/core engine) from consumers (UI/websocket) without scans.\n- O(1) amortized operations; no full-buffer copies; copies only payload bytes as provided.\n\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/io/visualization/websocket_server.py",
-      "preview": "\"\"\"\nMaps frames WebSocket forwarder (bounded, drop-oldest, void-faithful).\n\nCanonical location: fum_rt.io.visualization.websocket_server\n\nPurpose\n- Serve UI consumers with the latest maps/frame payload from a bounded ring.\n- Backpressure-safe: each client receives only the newest frame; old frames are dropped.\n- Local-first: defaults to 127.0.0.1 binding; configurable via args/env.\n\n",
+      "path": "vdm_rt/io/visualization/websocket_server.py",
+      "preview": "\"\"\"\nMaps frames WebSocket forwarder (bounded, drop-oldest, void-faithful).\n\nCanonical location: vdm_rt.io.visualization.websocket_server\n\nPurpose\n- Serve UI consumers with the latest maps/frame payload from a bounded ring.\n- Backpressure-safe: each client receives only the newest frame; old frames are dropped.\n- Local-first: defaults to 127.0.0.1 binding; configurable via args/env.\n\n",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/io/visualization/__init__.py",
+      "path": "vdm_rt/io/visualization/__init__.py",
       "preview": "",
       "reason": "no recognizable license header in first 120 lines"
     },
     {
-      "path": "fum_rt/io/logging/rolling_jsonl.py",
+      "path": "vdm_rt/io/logging/rolling_jsonl.py",
       "preview": "\"\"\"\nRolling JSONL writer with bounded main file and archival segments.\n\n- Maintains a capped \"active\" JSONL file (e.g., events.jsonl, utd_events.jsonl).\n- When the active file exceeds the configured size or line cap, the oldest lines\n  are streamed into an archive segment and the active file is rewritten to keep\n  only the newest tail (rolling buffer).\n- Archive segments live under: <run_dir>/archived/<YYYYMMDD_HHMMSS>/<base_name>\n  Example: runs/<ts>/archived/20250815_120828/events.jsonl\n- When the current archive segment exceeds its cap, a new timestamped segment\n",
       "reason": "no recognizable license header in first 120 lines"
     },

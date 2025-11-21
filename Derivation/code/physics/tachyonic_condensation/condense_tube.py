@@ -18,7 +18,7 @@ Caveats:
 - This is the "diagonal-λ" baseline: N4 couplings are approximated as diagonal in mode index.
   Off-diagonal overlap terms N4(ℓ_i) are set to zero for simplicity/robustness.
 - The integral for N4_ℓ uses u_ℓ(r) normalized with u_ℓ(R) = 1 from
-  [fum_rt/physics/cylinder_modes.py](fum_rt/physics/cylinder_modes.py:1).
+  [vdm_rt/physics/cylinder_modes.py](vdm_rt/physics/cylinder_modes.py:1).
 
 Equations:
 - Radial mode spectrum (κ-roots) and u_ℓ(r) are from the cylinder solver; masses:

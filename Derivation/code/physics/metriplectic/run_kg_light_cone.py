@@ -31,6 +31,7 @@ from common.data.results_db import (
     end_run_failed,
 )
 from common.authorization.approval import check_tag_approval
+from common.provenance.run_receipts import build_run_receipts
 from physics.metriplectic.kg_ops import kg_verlet_step
 
 
@@ -112,7 +113,49 @@ def run_cone(spec: ConeSpec, approved: bool = False, engineering_only: bool = Fa
 
     # Gate: speed <= c*(1+eps)
     eps = 0.02
-    passed = bool(v <= spec.c * (1.0 + eps))
+    speed_max = spec.c * (1.0 + eps)
+    passed_physics = bool(v <= speed_max)
+
+    # Prepare gate outcomes for receipts (physics gate only; provenance handled below)
+    gate_outcomes = {
+        "kg_light_cone_speed": {
+            "passed": passed_physics,
+            "speed": v,
+            "speed_max": speed_max,
+            "eps": eps,
+            "R2": R2,
+        }
+    }
+
+    # Build Phase-0 run receipts (git/tree_hash/salted_hash/IEEE-754/seeds/hardware/gate_outcomes)
+    receipts = build_run_receipts(
+        tag=spec.tag,
+        seeds=[],
+        gate_outcomes=gate_outcomes,
+        repo_root=CODE_ROOT,
+    )
+
+    # Phase-0 kill-switch: any missing mandatory receipt -> provenance gate failure
+    missing_receipts: List[str] = []
+    git_commit = receipts.get("git_commit")
+    if git_commit in (None, "UNKNOWN"):
+        missing_receipts.append("git_commit")
+    if receipts.get("tree_hash") is None:
+        missing_receipts.append("tree_hash")
+    if receipts.get("salted_hash") is None:
+        missing_receipts.append("salted_hash")
+    if not receipts.get("ieee_754_double_precision", False):
+        missing_receipts.append("ieee_754_double_precision")
+    if "seeds" not in receipts:
+        missing_receipts.append("seeds")
+    if not receipts.get("hardware"):
+        missing_receipts.append("hardware")
+    if not receipts.get("gate_outcomes"):
+        missing_receipts.append("gate_outcomes")
+    provenance_ok = (len(missing_receipts) == 0)
+
+    # Combined gate: physics ∧ provenance
+    passed = bool(passed_physics and provenance_ok)
 
     # Artifacts
     import matplotlib.pyplot as plt
@@ -163,12 +206,50 @@ def run_cone(spec: ConeSpec, approved: bool = False, engineering_only: bool = Fa
             "sigma_frac": spec.sigma_frac, "threshold_rel": spec.threshold_rel
         },
         "fit": {"speed": v, "intercept": b, "R2": R2},
-        "gate": {"passed": passed, "speed_max": spec.c * (1.0 + eps), "eps": eps},
-        "policy": {"approved": bool(approved), "engineering_only": bool(engineering_only), "quarantined": bool(quarantine), "tag": spec.tag, "proposal": proposal},
+        "gate": {
+            "passed": passed,
+            "physical_passed": passed_physics,
+            "provenance_ok": bool(provenance_ok),
+            "missing_receipts": missing_receipts,
+            "speed_max": speed_max,
+            "eps": eps,
+        },
+        "policy": {
+            "approved": bool(approved),
+            "engineering_only": bool(engineering_only),
+            "quarantined": bool(quarantine),
+            "tag": spec.tag,
+            "proposal": proposal,
+        },
         "figure": str(figp),
         "csv": str(csvp),
     }
-    write_log(log_path("metriplectic", f"kg_light_cone__{spec.tag}", failed=(not passed) or quarantine), logj)
+    # Merge receipts fields into top-level JSON
+    logj.update(receipts)
+
+    # Emit provenance CONTRADICTION_REPORT on missing receipts
+    if not provenance_ok:
+        write_log(
+            log_path(
+                "metriplectic",
+                f"CONTRADICTION_REPORT_provenance_kg_light_cone__{spec.tag}",
+                failed=True,
+                type="json",
+            ),
+            {
+                "reason": "Missing required Phase-0 provenance receipts",
+                "tag": spec.tag,
+                "missing_receipts": missing_receipts,
+                "git_commit": git_commit,
+                "tree_hash": receipts.get("tree_hash"),
+                "salted_hash": receipts.get("salted_hash"),
+            },
+        )
+
+    write_log(
+        log_path("metriplectic", f"kg_light_cone__{spec.tag}", failed=(not passed) or quarantine),
+        logj,
+    )
 
     # Results DB logging
     try:
@@ -184,11 +265,21 @@ def run_cone(spec: ConeSpec, approved: bool = False, engineering_only: bool = Fa
             engineering_only=bool(quarantine),
         )
         add_artifacts(handle, {"figure": str(figp), "csv": str(csvp)})
-        log_metrics(handle, {"speed": float(v), "intercept": float(b), "R2": float(R2), "passed": bool(passed)})
+        log_metrics(
+            handle,
+            {
+                "speed": float(v),
+                "intercept": float(b),
+                "R2": float(R2),
+                "passed": bool(passed),
+                "passed_physics": bool(passed_physics),
+                "provenance_ok": bool(provenance_ok),
+            },
+        )
         if passed:
             end_run_success(handle)
         else:
-            end_run_failed(handle, metrics={"passed": False})
+            end_run_failed(handle, metrics={"passed": False, "provenance_ok": bool(provenance_ok)})
     except Exception as _e:
         _ = _e
 

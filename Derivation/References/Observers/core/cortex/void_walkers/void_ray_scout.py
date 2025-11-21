@@ -10,7 +10,7 @@ See LICENSE file for full terms.
 from __future__ import annotations
 
 """
-fum_rt.core.cortex.void_walkers.void_ray_scout
+vdm_rt.core.cortex.void_walkers.void_ray_scout
 
 VoidRayScout (read-only, void-faithful):
 - Physics-aware routing that prefers neighbors with favorable local change in a fast field φ.
@@ -34,8 +34,8 @@ References:
 from typing import Any, Dict, Optional, Set, Sequence, List
 import math
 
-from fum_rt.core.cortex.void_walkers.base import BaseScout
-from fum_rt.core.proprioception.events import BaseEvent, VTTouchEvent, EdgeOnEvent
+from vdm_rt.core.cortex.void_walkers.base import BaseScout
+from vdm_rt.core.proprioception.events import BaseEvent, VTTouchEvent, EdgeOnEvent
 
 
 def _head_to_set(maps: Optional[Dict[str, Any]], key: str, cap: int = 512) -> Set[int]:

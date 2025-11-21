@@ -13,7 +13,13 @@ Justin K. Lietz (PI, theory & numerics), Neuroca (infrastructure).
 
 ## 3. Abstract
 
-Proposed in this document is a constructive derivation of effective Dirac spinors from the conservative (J‑limb) of the Void Dynamics Model’s discrete action. The objective is to replace deprecated particle–triad analogies with a falsifiable spinor sector built from the lattice micro‑dynamics, using three complementary constructions: (i) **domain‑wall (Jackiw–Rebbi‑style) modes** of the tachyonic potential yielding chiral bound states and an effective low‑energy Dirac operator along interfaces; (ii) **staggered‑spinor (doubling‑controlled) field redefinitions** that map the second‑order lattice wave operator to a first‑order Dirac form at long wavelengths; and (iii) a **local Jordan–Wigner/Majorana pair factorization** on bipartite sublattices, establishing emergent Clifford algebra and spin‑statistics via band geometry. Success is declared only if algebraic and symmetry gates (below) pass with rigorous proofs and audit logs.
+This proto-model proposal serves as the **umbrella document** for emergent spinor constructions from the VDM J-limb scalar lattice. Line (i) **domain-wall fermions** is fully implemented and owned by [CF8_Spinor_Emergence_Domain_Wall_Fermions.md](../Complete-Formalisms/CF8_Spinor_Emergence_Domain_Wall_Fermions.md), which provides a complete derivation including Ginsparg-Wilson operators, Nielsen-Ninomiya defense, and validation gates P1-P5 (see [H005](H005_HYPOTHESIS_Spinor_Emergence_Nielsen_Ninomiya_Defense.md)). **CF8 satisfies the T1 gates** for the domain-wall construction.
+
+This T1 document now serves as:
+- **Proto-model index** pointing to CF8 for the realized domain-wall branch
+- **Staging area** for future spinor constructions: (ii) **staggered-spinor (doubling-controlled)** field redefinitions (marked **T1.1 future expansion**), and (iii) **Jordan-Wigner/Majorana factorization** on bipartite sublattices (marked **T1.2 future expansion**). Lines (ii) and (iii) are aspirational sub-tracks, not yet implemented.
+
+Success is declared when the domain-wall construction (CF8) passes all gates P1-P5, with rigorous proofs and audit logs.
 
 ## 4. Background & Scientific Rationale
 
@@ -21,11 +27,33 @@ Proposed in this document is a constructive derivation of effective Dirac spinor
 - Motivation: closes the S5 gap by providing a sector where baryon‑like charges become Noether charges under J‑limb symmetries; violations are then confined to cosmogenesis regimes.
 - Prior meters (Noether, locality/dispersion) already pass on the J‑limb substrate; this proposal stays theory‑first (proofs + toy numerics for visualization only).
 
+### Nielsen-Ninomiya No-Go Theorem and Red Team Defense
+
+**Challenge:** The Nielsen-Ninomiya theorem states that on a discrete lattice, any local, hermitian, translationally invariant action for chiral fermions necessarily produces **fermion doublers** (ghost particles) that cancel physical degrees of freedom.
+
+**VDM Defense Strategy (Domain-Wall Fermions):**
+
+This proposal evades Nielsen-Ninomiya through the **domain-wall fermion mechanism** (Kaplan, 1992):
+1. **Breaking translation symmetry:** Introduce a fictitious 5th bulk dimension with a domain wall (kink) at $z=0$. Physical fermions localize to the wall; doublers are pushed to $z \to \pm\infty$.
+2. **Ginsparg-Wilson operator:** The effective Dirac operator $D$ satisfies $\{D, \gamma_5\} = a D \gamma_5 D$, preserving exact chiral symmetry on the lattice.
+3. **Locality via Bravyi-Kitaev:** Replace the 1D Jordan-Wigner string (non-local in 3D) with Bravyi-Kitaev tree encoding, reducing operator support from $O(N)$ to $O(\log^2 N)$.
+4. **Residual mass suppression:** Finite domain-wall separation creates $m_{\text{res}} \sim e^{-\lambda L_5}$, exponentially small for $L_5 \geq 20$ sites.
+5. **Lorentz invariance at low energy:** Metriplectic M-limb dissipation smooths lattice anisotropies via RG flow.
+
+**Red Team Attack Vectors Addressed:**
+- **Attack 1 (JW string non-locality):** Defended in [CF8 §5](CF8_Spinor_Emergence_Domain_Wall_Fermions.md#5-locality-and-bravyi-kitaev-fermionization).
+- **Attack 2 (Chiral symmetry leak):** Defended in [CF8 §4.2](CF8_Spinor_Emergence_Domain_Wall_Fermions.md#42-residual-mass-and-exponential-suppression).
+- **Attack 3 (Lorentz violation):** Defended in [CF8 §6](CF8_Spinor_Emergence_Domain_Wall_Fermions.md#6-lorentz-invariance-at-low-energy).
+
+**Key Result:** The VDM construction produces a **Ginsparg-Wilson operator**, not a naive Wilson fermion. This preserves exact chiral symmetry and evades Nielsen-Ninomiya via topology.
+
 ### Canon anchors (reference only; do not duplicate canon)
 
 - Axioms and metriplectic structure: [AXIOMS.md](../AXIOMS.md), [CANON_STANDARDS.md](../CANON_STANDARDS.md), [VDM_OVERVIEW.md](../VDM_OVERVIEW.md)
 - Equations and symbols registries: [00_EQUATIONS.md](../z.CANONICAL_Equations/00_EQUATIONS.md), [00_SYMBOLS.md](../z.CANONICAL_Symbols/00_SYMBOLS.md), [00_UNITS_NORMALIZATION.md](../z.CANONICAL_Units_Normalization/00_UNITS_NORMALIZATION.md)
 - Complete formalism backstops: [CF1_QGT_to_Metriplectic_Brackets.md](../Complete-Formalisms/CF1_QGT_to_Metriplectic_Brackets.md) for J‑limb structure and [CF5_Integrability_Closure.md](../Complete-Formalisms/CF5_Integrability_Closure.md) for conserved‑quantity discipline
+- **Spinor emergence formalism:** [CF8_Spinor_Emergence_Domain_Wall_Fermions.md](CF8_Spinor_Emergence_Domain_Wall_Fermions.md) (domain-wall construction, Ginsparg-Wilson operator, Bravyi-Kitaev fermionization)
+- **Hypothesis and validation:** [H005_HYPOTHESIS_Spinor_Emergence_Nielsen_Ninomiya_Defense.md](H005_HYPOTHESIS_Spinor_Emergence_Nielsen_Ninomiya_Defense.md) (5 decisive predictions P1-P5)
 - J‑branch bootstrap context: [T0_PROPOSAL_VDM_J-branch_QFT-Bootstrap_and_Metriplectic-Decoherence_v1.md](../Quantum/T0_PROPOSAL_VDM_J-branch_QFT-Bootstrap_and_Metriplectic-Decoherence_v1.md)
 
 All Dirac/spinor equations and constants are owned by these canon files; this proposal only references them and adds *derivation‑level* lemmas and gates specific to the spinor‑emergence construction.
@@ -39,10 +67,24 @@ All Dirac/spinor equations and constants are owned by these canon files; this pr
 
 ## 5.1 Experimental Setup and Diagnostics (theoretical meters)
 
+### Nielsen-Ninomiya Defense Gates (from H005)
+
+These gates directly address the Red Team Assessment and must **all PASS** for T1 certification:
+
+- **P1 (Ginsparg-Wilson relation):** $\| \{D, \gamma_5\} - a D \gamma_5 D \|_{\infty} \leq 10^{-12}$ on coarse cells $\ell = 4a$. *Proves exact chiral symmetry on the lattice.*
+- **P2 (Residual mass scaling):** $m_{\text{res}}(L_5) / m_{\text{res}}(L_5/2) \leq e^{-\lambda L_5/2}$ with $\lambda \geq 0.1/a$. *Proves exponential suppression of chiral symmetry breaking.*
+- **P3 (Dispersion linearity):** $R^2 \geq 0.9999$ for linear fit $E(p) = v_F |p| + O(p^3)$ in range $|p| < 0.1\pi/a$. *Proves Dirac dispersion emerges from domain-wall zero mode.*
+- **P4 (Lorentz isotropy):** Angular variation $\Delta E / \bar{E} \leq 10^{-3}$ at fixed $|p| = 0.1\pi/a$. *Proves rotational symmetry restoration at low energy.*
+- **P5 (BK locality):** Fermion operator support $\leq C \log^2 N$ sites with $C \sim 1$. *Proves locality preservation in 3D fermionization.*
+
+See [H005 §Predictions](H005_HYPOTHESIS_Spinor_Emergence_Nielsen_Ninomiya_Defense.md#predictions-decisive-metrics--passfail) for full definitions and [CF8 §8](CF8_Spinor_Emergence_Domain_Wall_Fermions.md#8-validation-gates-summary) for validation protocol.
+
+### Original Construction Gates (complementary)
+
 - **C1 — Clifford algebra gate:** Construct local γ^μ on coarse cells with ${γ^μ, γ^ν}=2η^{μν}$ to $O(a^2)$.  
-- **C2 — Dirac reduction gate:** Linearization of the discrete Euler–Lagrange equation around an interface produces a first‑order Dirac operator for the bound mode manifold up to controlled remainders; dispersion linear near k=0.  
+- **C2 — Dirac reduction gate:** Linearization of the discrete Euler–Lagrange equation around an interface produces a first‑order Dirac operator for the bound mode manifold up to controlled remainders; dispersion linear near k=0. *(Overlap with P3.)*
 - **C3 — Spin‑statistics/Berry gate:** Two‑state bundle over Brillouin torus exhibits spin‑½ monodromy; Berry curvature integrates to the required topological invariant; 2π rotation acquires a sign.  
-- **C4 — Anomaly accounting:** Lattice doubling accounted; chiral charge nonconservation localized to defects; consistency with discrete Noether currents.
+- **C4 — Anomaly accounting:** Lattice doubling accounted; chiral charge nonconservation localized to defects; consistency with discrete Noether currents. *(Overlap with P1-P2.)*
 - **Deliverables:** proof PDFs + minimal visual numerics (mode profiles, band sketches); JSON proof registry.
 
 ### 5.1.1 Pre-Run Config Requirements (registries)

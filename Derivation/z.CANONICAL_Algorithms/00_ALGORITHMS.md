@@ -28,7 +28,7 @@
 >
 > Type: RUNTIME • Binding: PSEUDOCODE • State: writes state • Dependencies: none • Notes: agency layer optional; consumes signals only
 
-**Context:** fum_rt/runtime/loop/main.py:283-679 • Commit: 7498744 • Module: runtime/loop
+**Context:** vdm_rt/runtime/loop/main.py:283-679 • Commit: 7498744 • Module: runtime/loop
 
 **Role:** Execute the main simulation tick loop on the Nexus-like object, orchestrating all subsystems per tick.
 
@@ -57,26 +57,26 @@ INIT:
     CycleHunterScout, SentinelScout, ColdScout, ExcitationScout, InhibitionScout)
 
 LOOP (per tick):
-  1. Check duration_s termination condition if provided       # fum_rt/runtime/loop/main.py:539
-  2. Poll control plane (external phase.json updates)         # fum_rt/runtime/loop/main.py:550
+  1. Check duration_s termination condition if provided       # vdm_rt/runtime/loop/main.py:539
+  2. Poll control plane (external phase.json updates)         # vdm_rt/runtime/loop/main.py:550
   3. Compute SIE drive and step connectome                    # via compute_step_and_metrics
-     # uses [VDM-E-xxx] for density, TD signal, firing_var   # fum_rt/runtime/stepper.py:29
-  4. Run optional RE-VGSP learner (if ENABLE_REVGSP=1)        # fum_rt/runtime/loop/main.py:565
-  5. Run optional GDSP structural actuator (if ENABLE_GDSP=1) # fum_rt/runtime/loop/main.py:571
-  6. Apply B1 detector on connectome observations             # fum_rt/runtime/loop/main.py:578
-  7. Process inbound message queue (UTE stimulation)          # fum_rt/runtime/loop/main.py:587
-  8. Run void scouts (bounded micro time budget)              # fum_rt/runtime/loop/main.py:593
+     # uses [VDM-E-xxx] for density, TD signal, firing_var   # vdm_rt/runtime/stepper.py:29
+  4. Run optional RE-VGSP learner (if ENABLE_REVGSP=1)        # vdm_rt/runtime/loop/main.py:565
+  5. Run optional GDSP structural actuator (if ENABLE_GDSP=1) # vdm_rt/runtime/loop/main.py:571
+  6. Apply B1 detector on connectome observations             # vdm_rt/runtime/loop/main.py:578
+  7. Process inbound message queue (UTE stimulation)          # vdm_rt/runtime/loop/main.py:587
+  8. Run void scouts (bounded micro time budget)              # vdm_rt/runtime/loop/main.py:593
      # via run_scouts_once → returns events
-  9. Fold events into metrics (tick_fold)                     # fum_rt/runtime/loop/main.py:611
- 10. Maybe emit "why" (say text composition) every N ticks    # fum_rt/runtime/loop/main.py:619
- 11. Maybe run smoke tests (boundary checks)                  # fum_rt/runtime/loop/main.py:623
- 12. Emit status and macro observations (logging, Redis)      # fum_rt/runtime/loop/main.py:627
- 13. Save checkpoint if checkpoint_every divides step         # fum_rt/runtime/loop/main.py:631
- 14. Maybe visualize (plots, maps publish)                    # fum_rt/runtime/loop/main.py:635
- 15. Sleep to match target hz (throttle loop)                 # fum_rt/runtime/loop/main.py:639
+  9. Fold events into metrics (tick_fold)                     # vdm_rt/runtime/loop/main.py:611
+ 10. Maybe emit "why" (say text composition) every N ticks    # vdm_rt/runtime/loop/main.py:619
+ 11. Maybe run smoke tests (boundary checks)                  # vdm_rt/runtime/loop/main.py:623
+ 12. Emit status and macro observations (logging, Redis)      # vdm_rt/runtime/loop/main.py:627
+ 13. Save checkpoint if checkpoint_every divides step         # vdm_rt/runtime/loop/main.py:631
+ 14. Maybe visualize (plots, maps publish)                    # vdm_rt/runtime/loop/main.py:635
+ 15. Sleep to match target hz (throttle loop)                 # vdm_rt/runtime/loop/main.py:639
 
 TERMINATION:
-  - duration_s wall-clock expired OR KeyboardInterrupt        # fum_rt/runtime/loop/main.py:539
+  - duration_s wall-clock expired OR KeyboardInterrupt        # vdm_rt/runtime/loop/main.py:539
 ```
 
 **Preconditions:**
@@ -109,7 +109,7 @@ TERMINATION:
 
 **Also implemented at:**
 
-- fum_rt/nexus.py:362 (thin wrapper; delegates to run_loop)
+- vdm_rt/nexus.py:362 (thin wrapper; delegates to run_loop)
 
 > DEBT: GDSP can fail without logs when STRICT gate disabled; add fail-fast/telemetry path, remove any ability to use dense backend even with env. Sparse only, fail fast.  
 > DEBT: Overlapping scout flags; defaults conflict-unify or validate toggles.
@@ -122,7 +122,7 @@ TERMINATION:
 > Type: RUNTIME • Binding: PSEUDOCODE • State: writes state • Dependencies: `delta_re_vgsp`, `delta_gdsp` (EQUATIONS TODO)
 > **STATUS:** **BROKEN / WRONG** - docs claim “no dense path,” but the code includes and can execute a **dense scan** branch.
 
-**Context:** `fum_rt/core/connectome.py:272-313` • Commit: `7498744` • Module: `core/connectome`
+**Context:** `vdm_rt/core/connectome.py:272-313` • Commit: `7498744` • Module: `core/connectome`
 
 **Role:** Apply one update tick driven by Void Equations: structural growth/rewiring via alias sampling and node field updates.
 
@@ -200,7 +200,7 @@ FINALIZE:
 
 **Also implemented at:**
 
-- `fum_rt/core/sparse_connectome.py` (sparse variant; similar logic)
+- `vdm_rt/core/sparse_connectome.py` (sparse variant; similar logic)
 
 > **DEBT:** Dense rebuild / dense top-k path exists; violates “no dense path” policy for large `N`.
 > **DEBT:** Structural rewiring RNG not plumbed from run seed; wire deterministic RNG.
@@ -217,13 +217,13 @@ FINALIZE:
 • Dependencies: core.signals, core.metrics
 • Notes: Mirrors Nexus inline logic (move-only extraction)
 
-**Context:** fum_rt/runtime/stepper.py:29-133 • Commit: 60c5156 • Module: runtime/stepper
+**Context:** vdm_rt/runtime/stepper.py:29-133 • Commit: 60c5156 • Module: runtime/stepper
 
 **Role:** Compute density/TD/firing_var, derive SIE drive, advance connectome, and build per-tick metrics.
 
 **Inputs:** link symbols/constants (anchors only)
 
-- Symbols: TODO: add `t`, `step` anchors in `SYMBOLS.md` (see fum_rt/runtime/stepper.py:29)
+- Symbols: TODO: add `t`, `step` anchors in `SYMBOLS.md` (see vdm_rt/runtime/stepper.py:29)
 - Constants/params: domain_modulation (nx.dom_mod), use_time_dynamics (nx.use_time_dynamics)
 
 **Depends on equations:** link anchors only (no math here)
@@ -308,7 +308,7 @@ RETURN:
 • Dependencies: bus, ADC, optional EventDrivenMetrics
 • Notes: Behavior-preserving seam
 
-**Context:** fum_rt/runtime/telemetry.py:337-650 • Commit: 60c5156 • Module: runtime/telemetry
+**Context:** vdm_rt/runtime/telemetry.py:337-650 • Commit: 60c5156 • Module: runtime/telemetry
 
 **Role:** Fold per-tick telemetry: publish neutral delta, drain bus, derive void-topic symbols, update ADC, fold event-driven metrics, and compute complexity proxy with B1 detector.
 
@@ -383,7 +383,7 @@ RETURN:
 • Dependencies: EventDrivenMetrics, VOID scout, map reducers
 • Notes: Core seam; no IO/logging
 
-**Context:** fum_rt/core/engine/core_engine.py:82-262 • Commit: 60c5156 • Module: core/engine
+**Context:** vdm_rt/core/engine/core_engine.py:82-262 • Commit: 60c5156 • Module: core/engine
 
 **Role:** Fold external events and internal VOID-scout events into event-driven reducers; fold map heads; stage maps_frame payload; refresh cached snapshot.
 
@@ -436,10 +436,10 @@ REFRESH SNAPSHOT:
 • Type: POLICY
 • Binding: PSEUDOCODE
 • State: writes state (adapter-controlled)
-• Dependencies: fum_rt.core.neuroplasticity.revgsp.RevGSP
+• Dependencies: vdm_rt.core.neuroplasticity.revgsp.RevGSP
 • Notes: Enabled via ENABLE_REVGSP=1 (default off)
 
-**Context:** fum_rt/runtime/loop/main.py:88-157 • Commit: 60c5156 • Module: runtime/loop
+**Context:** vdm_rt/runtime/loop/main.py:88-157 • Commit: 60c5156 • Module: runtime/loop
 
 **Role:** Best-effort call into RevGSP.adapt_connectome with kwargs filtered by signature; silent on error.
 
@@ -470,10 +470,10 @@ try _adapt(**kwargs) except: return
 • Type: POLICY
 • Binding: PSEUDOCODE
 • State: writes state (adapter-controlled)
-• Dependencies: fum_rt.core.neuroplasticity.gdsp.GDSPActuator
+• Dependencies: vdm_rt.core.neuroplasticity.gdsp.GDSPActuator
 • Notes: Enabled via ENABLE_GDSP=1 (default off); emergent triggers only
 
-**Context:** fum_rt/runtime/loop/main.py:160-280 • Commit: 60c5156 • Module: runtime/loop
+**Context:** vdm_rt/runtime/loop/main.py:160-280 • Commit: 60c5156 • Module: runtime/loop
 
 **Role:** Gate structural repairs/growth/pruning based on b1 spike, TD magnitude, and cohesion components; operate on sparse CSR-only substrate.
 
@@ -511,7 +511,7 @@ try _run_gdsp(substrate=s, introspection_report, sie_report, territory_indices, 
 • Dependencies: runtime.telemetry.tick_fold
 • Notes: Import seam compliance for boundary tests
 
-**Context:** fum_rt/runtime/loop/**init**.py:35-55 • Commit: 60c5156 • Module: runtime/loop
+**Context:** vdm_rt/runtime/loop/**init**.py:35-55 • Commit: 60c5156 • Module: runtime/loop
 
 **Role:** Delegate optional engine.step(events) and always stage telemetry via tick_fold for one tick.
 
@@ -531,7 +531,7 @@ tick_fold(nx, step, engine)
 >
 > Type: INSTRUMENT • Binding: PSEUDOCODE • State: read-only • Publishes: bus events; tags on neurons/edges • Notes: traversal metrics only
 
-**Context:** fum_rt/core/cortex/void_walkers/runner.py:38-136 • Commit: 7498744 • Module: core/cortex/void_walkers
+**Context:** vdm_rt/core/cortex/void_walkers/runner.py:38-136 • Commit: 7498744 • Module: core/cortex/void_walkers
 
 **Role:** Execute a bounded batch of read-only scouts exactly once per tick, enforcing micro time budget across all scouts.
 
@@ -606,7 +606,7 @@ RETURN:
 >
 > Type: INSTRUMENT • Binding: PSEUDOCODE • State: read-only (publishes explore events only) • Priors: minimal/flat • Notes: baseline cartography; complements goal-driven flows
 
-**Context:** fum_rt/core/cortex/void_walkers/void_cold_scout.py:41-55 • Commit: 7498744 • Module: core/cortex/void_walkers
+**Context:** vdm_rt/core/cortex/void_walkers/void_cold_scout.py:41-55 • Commit: 7498744 • Module: core/cortex/void_walkers
 
 **Role:** Read-only walker that prefers neighbors whose node IDs appear in ColdMap snapshot head (least recently visited nodes).
 
@@ -667,7 +667,7 @@ RETURN:
 >
 > Type: RUNTIME • Binding: PSEUDOCODE • State: none • Dependencies: none • Notes: O(N) build, O(1) draw
 
-**Context:** fum_rt/core/connectome.py:96-127 • Commit: 7498744 • Module: core/connectome
+**Context:** vdm_rt/core/connectome.py:96-127 • Commit: 7498744 • Module: core/connectome
 
 **Role:** Build O(N) alias table for sampling from discrete distribution; O(1) per draw.
 
@@ -835,7 +835,7 @@ OUTPUT: updated CSR W (same sparsity), optional diagnostics (dm, α, β, norms)
 >
 > Type: POLICY • Binding: PSEUDOCODE • State: internal state only • Dependencies: none • Notes: heuristic adaptation; bounds enforced
 
-**Context:** fum_rt/core/neuroplasticity/gdsp.py:38-100 • Commit: 7498744 • Module: core/neuroplasticity
+**Context:** vdm_rt/core/neuroplasticity/gdsp.py:38-100 • Commit: 7498744 • Module: core/neuroplasticity
 
 **Role:** Adaptive threshold manager for GDSP structural plasticity triggers (repair, growth, pruning).
 

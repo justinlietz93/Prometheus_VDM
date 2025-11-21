@@ -481,7 +481,7 @@ class PolicyBounds:
 
 **Kind:** event  
 **Versioning (if present):** none  
-**Defined at:** `fum_rt/core/announce.py:33-62` • `6b63a5e`
+**Defined at:** `vdm_rt/core/announce.py:33-62` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
 
@@ -507,24 +507,24 @@ class Observation:
 
 | Field          | Type                                 | Required | Default | Units/Normalization | Description (lifted)                                          | Source                         |
 | -------------- | ------------------------------------ | :------: | ------- | ------------------- | ------------------------------------------------------------- | ------------------------------ |
-| `tick`         | `int`                                |    Y     | n/a     | timestep            | Simulation tick when observation was made                     | `fum_rt/core/announce.py:35`   |
-| `kind`         | `str`                                |    Y     | n/a     | n/a                 | One of: "region_stat", "boundary_probe", "cycle_hit", "novel_frontier" | `fum_rt/core/announce.py:36` |
-| `nodes`        | `List[int]`                          |    N     | `[]`    | node IDs            | Small representative subset of visited node IDs               | `fum_rt/core/announce.py:38`   |
-| `centroid`     | `Optional[Tuple[float, float, float]]` |  N     | `None`  | embedding space     | Optional centroid in embedding space                          | `fum_rt/core/announce.py:41`   |
-| `w_mean`       | `float`                              |    N     | `0.0`   | state variable      | Mean $W$ over visited set                                     | `fum_rt/core/announce.py:44`   |
-| `w_var`        | `float`                              |    N     | `0.0`   | state variable      | Variance of $W$ over visited set                              | `fum_rt/core/announce.py:45`   |
-| `s_mean`       | `float`                              |    N     | `0.0`   | coupling strength   | Mean positive coupling during walk                            | `fum_rt/core/announce.py:46`   |
-| `cut_strength` | `float`                              |    N     | `0.0`   | normalized          | Strength of cut across boundary sample                        | `fum_rt/core/announce.py:49`   |
-| `loop_len`     | `int`                                |    N     | `0`     | count               | Length of detected loop (for cycle_hit)                       | `fum_rt/core/announce.py:52`   |
-| `loop_gain`    | `float`                              |    N     | `0.0`   | accumulated weight  | Accumulated positive transition weights along loop            | `fum_rt/core/announce.py:53`   |
-| `coverage_id`  | `int`                                |    N     | `0`     | bin ID              | Coverage bin for ADC scheduling                               | `fum_rt/core/announce.py:56`   |
-| `domain_hint`  | `str`                                |    N     | `""`    | n/a                 | Optional domain hint from cartographer                        | `fum_rt/core/announce.py:59`   |
-| `meta`         | `Dict[str, Any]`                     |    N     | `{}`    | n/a                 | Extra metadata (JSON-serializable only)                       | `fum_rt/core/announce.py:62`   |
+| `tick`         | `int`                                |    Y     | n/a     | timestep            | Simulation tick when observation was made                     | `vdm_rt/core/announce.py:35`   |
+| `kind`         | `str`                                |    Y     | n/a     | n/a                 | One of: "region_stat", "boundary_probe", "cycle_hit", "novel_frontier" | `vdm_rt/core/announce.py:36` |
+| `nodes`        | `List[int]`                          |    N     | `[]`    | node IDs            | Small representative subset of visited node IDs               | `vdm_rt/core/announce.py:38`   |
+| `centroid`     | `Optional[Tuple[float, float, float]]` |  N     | `None`  | embedding space     | Optional centroid in embedding space                          | `vdm_rt/core/announce.py:41`   |
+| `w_mean`       | `float`                              |    N     | `0.0`   | state variable      | Mean $W$ over visited set                                     | `vdm_rt/core/announce.py:44`   |
+| `w_var`        | `float`                              |    N     | `0.0`   | state variable      | Variance of $W$ over visited set                              | `vdm_rt/core/announce.py:45`   |
+| `s_mean`       | `float`                              |    N     | `0.0`   | coupling strength   | Mean positive coupling during walk                            | `vdm_rt/core/announce.py:46`   |
+| `cut_strength` | `float`                              |    N     | `0.0`   | normalized          | Strength of cut across boundary sample                        | `vdm_rt/core/announce.py:49`   |
+| `loop_len`     | `int`                                |    N     | `0`     | count               | Length of detected loop (for cycle_hit)                       | `vdm_rt/core/announce.py:52`   |
+| `loop_gain`    | `float`                              |    N     | `0.0`   | accumulated weight  | Accumulated positive transition weights along loop            | `vdm_rt/core/announce.py:53`   |
+| `coverage_id`  | `int`                                |    N     | `0`     | bin ID              | Coverage bin for ADC scheduling                               | `vdm_rt/core/announce.py:56`   |
+| `domain_hint`  | `str`                                |    N     | `""`    | n/a                 | Optional domain hint from cartographer                        | `vdm_rt/core/announce.py:59`   |
+| `meta`         | `Dict[str, Any]`                     |    N     | `{}`    | n/a                 | Extra metadata (JSON-serializable only)                       | `vdm_rt/core/announce.py:62`   |
 
 **Producers/Consumers:** Produced by void-walker agents; published to announcement bus; consumed by Active Domain Cartography (ADC)  
 **Related equations (anchors only):** TODO: missing anchor for RE-VGSP/GDSP deltas (see `Derivation/EQUATIONS.md`)  
 **Related symbols/constants:** TODO: missing anchor for $W$, $S_{ij}$ (see `Derivation/SYMBOLS.md`)  
-**Examples (if present):** Validated by `fum_rt/core/announce.py:65-75`  
+**Examples (if present):** Validated by `vdm_rt/core/announce.py:65-75`  
 **Invariants/Validation rules:** `tick >= 0`; `kind` must be one of the four allowed values; `len(nodes) <= 256`; `loop_len >= 0`  
 **Notes:** Event schema for void-walker announcement bus; kept compact for efficient ADC processing
 
@@ -534,7 +534,7 @@ class Observation:
 
 **Kind:** event  
 **Versioning (if present):** none  
-**Defined at:** `fum_rt/core/proprioception/events.py:49-52` • `6b63a5e`
+**Defined at:** `vdm_rt/core/proprioception/events.py:49-52` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
 
@@ -549,8 +549,8 @@ class BaseEvent:
 
 | Field  | Type           | Required | Default | Units/Normalization | Description (lifted)      | Source                                         |
 | ------ | -------------- | :------: | ------- | ------------------- | ------------------------- | ---------------------------------------------- |
-| `kind` | `str`          |    Y     | n/a     | n/a                 | Event kind identifier     | `fum_rt/core/proprioception/events.py:51`      |
-| `t`    | `Optional[int]`|    N     | `None`  | timestep            | Optional simulation tick  | `fum_rt/core/proprioception/events.py:52`      |
+| `kind` | `str`          |    Y     | n/a     | n/a                 | Event kind identifier     | `vdm_rt/core/proprioception/events.py:51`      |
+| `t`    | `Optional[int]`|    N     | `None`  | timestep            | Optional simulation tick  | `vdm_rt/core/proprioception/events.py:52`      |
 
 **Producers/Consumers:** Base class for all event-driven metrics events  
 **Related equations (anchors only):** n/a  
@@ -565,7 +565,7 @@ class BaseEvent:
 
 **Kind:** event  
 **Versioning (if present):** none  
-**Defined at:** `fum_rt/core/proprioception/events.py:55-71` • `6b63a5e`
+**Defined at:** `vdm_rt/core/proprioception/events.py:55-71` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
 
@@ -592,11 +592,11 @@ class DeltaEvent(BaseEvent):
 
 | Field     | Type    | Required | Default | Units/Normalization | Description (lifted)                                  | Source                                         |
 | --------- | ------- | :------: | ------- | ------------------- | ----------------------------------------------------- | ---------------------------------------------- |
-| `b1`      | `float` |    N     | `0.0`   | normalized          | Contribution to B1-like topology signal               | `fum_rt/core/proprioception/events.py:66`      |
-| `novelty` | `float` |    N     | `0.0`   | $[0, +\infty)$      | Novelty component                                     | `fum_rt/core/proprioception/events.py:67`      |
-| `hab`     | `float` |    N     | `0.0`   | $[0, +\infty)$      | Habituation component                                 | `fum_rt/core/proprioception/events.py:68`      |
-| `td`      | `float` |    N     | `0.0`   | normalized          | Temporal-difference-like component                    | `fum_rt/core/proprioception/events.py:69`      |
-| `hsi`     | `float` |    N     | `0.0`   | normalized          | Homeostatic stability/instability component           | `fum_rt/core/proprioception/events.py:70`      |
+| `b1`      | `float` |    N     | `0.0`   | normalized          | Contribution to B1-like topology signal               | `vdm_rt/core/proprioception/events.py:66`      |
+| `novelty` | `float` |    N     | `0.0`   | $[0, +\infty)$      | Novelty component                                     | `vdm_rt/core/proprioception/events.py:67`      |
+| `hab`     | `float` |    N     | `0.0`   | $[0, +\infty)$      | Habituation component                                 | `vdm_rt/core/proprioception/events.py:68`      |
+| `td`      | `float` |    N     | `0.0`   | normalized          | Temporal-difference-like component                    | `vdm_rt/core/proprioception/events.py:69`      |
+| `hsi`     | `float` |    N     | `0.0`   | normalized          | Homeostatic stability/instability component           | `vdm_rt/core/proprioception/events.py:70`      |
 
 **Producers/Consumers:** Produced by connectome/walker learning updates; consumed by EventDrivenMetrics  
 **Related equations (anchors only):** TODO: missing anchor for B1 topology, TD learning (see `Derivation/EQUATIONS.md`)  
@@ -611,7 +611,7 @@ class DeltaEvent(BaseEvent):
 
 **Kind:** event  
 **Versioning (if present):** none  
-**Defined at:** `fum_rt/core/proprioception/events.py:73-83` • `6b63a5e`
+**Defined at:** `vdm_rt/core/proprioception/events.py:73-83` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
 
@@ -632,8 +632,8 @@ class VTTouchEvent(BaseEvent):
 
 | Field   | Type    | Required | Default | Units/Normalization | Description (lifted)                          | Source                                         |
 | ------- | ------- | :------: | ------- | ------------------- | --------------------------------------------- | ---------------------------------------------- |
-| `token` | `Any`   |    N     | `""`    | n/a                 | Hashable token ID or string                   | `fum_rt/core/proprioception/events.py:81`      |
-| `w`     | `float` |    N     | `1.0`   | weight              | Optional weight                               | `fum_rt/core/proprioception/events.py:82`      |
+| `token` | `Any`   |    N     | `""`    | n/a                 | Hashable token ID or string                   | `vdm_rt/core/proprioception/events.py:81`      |
+| `w`     | `float` |    N     | `1.0`   | weight              | Optional weight                               | `vdm_rt/core/proprioception/events.py:82`      |
 
 **Producers/Consumers:** Produced on vocabulary/feature access; consumed by EventDrivenMetrics for coverage/entropy approximation  
 **Related equations (anchors only):** TODO: missing anchor for vocabulary coverage and entropy (see `Derivation/EQUATIONS.md`)  
@@ -648,7 +648,7 @@ class VTTouchEvent(BaseEvent):
 
 **Kind:** event  
 **Versioning (if present):** none  
-**Defined at:** `fum_rt/core/proprioception/events.py:85-94` • `6b63a5e`
+**Defined at:** `vdm_rt/core/proprioception/events.py:85-94` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
 
@@ -668,8 +668,8 @@ class EdgeOffEvent(BaseEvent):
 
 | Field | Type  | Required | Default | Units/Normalization | Description (lifted)  | Source                                         |
 | ----- | ----- | :------: | ------- | ------------------- | --------------------- | ---------------------------------------------- |
-| `u`   | `int` |    N     | `0`     | node ID             | Source node ID        | `fum_rt/core/proprioception/events.py:87,92`   |
-| `v`   | `int` |    N     | `0`     | node ID             | Target node ID        | `fum_rt/core/proprioception/events.py:88,93`   |
+| `u`   | `int` |    N     | `0`     | node ID             | Source node ID        | `vdm_rt/core/proprioception/events.py:87,92`   |
+| `v`   | `int` |    N     | `0`     | node ID             | Target node ID        | `vdm_rt/core/proprioception/events.py:88,93`   |
 
 **Producers/Consumers:** Produced by structural plasticity; EdgeOn consumed by UnionFindCohesion; EdgeOff marks dirty for reconciliation  
 **Related equations (anchors only):** TODO: missing anchor for cohesion metric (see `Derivation/EQUATIONS.md`)  
@@ -684,7 +684,7 @@ class EdgeOffEvent(BaseEvent):
 
 **Kind:** event  
 **Versioning (if present):** none  
-**Defined at:** `fum_rt/core/proprioception/events.py:97-103` • `6b63a5e`
+**Defined at:** `vdm_rt/core/proprioception/events.py:97-103` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
 
@@ -700,9 +700,9 @@ class SpikeEvent(BaseEvent):
 
 | Field  | Type    | Required | Default | Units/Normalization | Description (lifted)                               | Source                                         |
 | ------ | ------- | :------: | ------- | ------------------- | -------------------------------------------------- | ---------------------------------------------- |
-| `node` | `int`   |    N     | `0`     | neuron ID           | Neuron ID                                          | `fum_rt/core/proprioception/events.py:100`     |
-| `amp`  | `float` |    N     | `1.0`   | activity magnitude  | Activity magnitude or $\|\Delta W\|$ proxy         | `fum_rt/core/proprioception/events.py:101`     |
-| `sign` | `int`   |    N     | `+1`    | polarity            | +1 excitatory, -1 inhibitory, 0 unknown            | `fum_rt/core/proprioception/events.py:102`     |
+| `node` | `int`   |    N     | `0`     | neuron ID           | Neuron ID                                          | `vdm_rt/core/proprioception/events.py:100`     |
+| `amp`  | `float` |    N     | `1.0`   | activity magnitude  | Activity magnitude or $\|\Delta W\|$ proxy         | `vdm_rt/core/proprioception/events.py:101`     |
+| `sign` | `int`   |    N     | `+1`    | polarity            | +1 excitatory, -1 inhibitory, 0 unknown            | `vdm_rt/core/proprioception/events.py:102`     |
 
 **Producers/Consumers:** Produced by neurons during activity; consumed by EventDrivenMetrics  
 **Related equations (anchors only):** TODO: missing anchor for void-faithful polarity (see `Derivation/EQUATIONS.md`)  
@@ -717,7 +717,7 @@ class SpikeEvent(BaseEvent):
 
 **Kind:** event  
 **Versioning (if present):** none  
-**Defined at:** `fum_rt/core/proprioception/events.py:106-110` • `6b63a5e`
+**Defined at:** `vdm_rt/core/proprioception/events.py:106-110` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
 
@@ -732,8 +732,8 @@ class DeltaWEvent(BaseEvent):
 
 | Field  | Type    | Required | Default | Units/Normalization | Description (lifted)           | Source                                         |
 | ------ | ------- | :------: | ------- | ------------------- | ------------------------------ | ---------------------------------------------- |
-| `node` | `int`   |    N     | `0`     | neuron ID           | Node ID for weight update      | `fum_rt/core/proprioception/events.py:108`     |
-| `dw`   | `float` |    N     | `0.0`   | weight delta        | Signed weight delta $\Delta W$ | `fum_rt/core/proprioception/events.py:109`     |
+| `node` | `int`   |    N     | `0`     | neuron ID           | Node ID for weight update      | `vdm_rt/core/proprioception/events.py:108`     |
+| `dw`   | `float` |    N     | `0.0`   | weight delta        | Signed weight delta $\Delta W$ | `vdm_rt/core/proprioception/events.py:109`     |
 
 **Producers/Consumers:** Produced by local learning updates; consumed by EventDrivenMetrics  
 **Related equations (anchors only):** TODO: missing anchor for weight update rules (see `Derivation/EQUATIONS.md`)  
@@ -748,7 +748,7 @@ class DeltaWEvent(BaseEvent):
 
 **Kind:** event  
 **Versioning (if present):** none  
-**Defined at:** `fum_rt/core/proprioception/events.py:112-120` • `6b63a5e`
+**Defined at:** `vdm_rt/core/proprioception/events.py:112-120` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
 
@@ -766,7 +766,7 @@ class MotifExitEvent(BaseEvent):
 
 | Field      | Type  | Required | Default | Units/Normalization | Description (lifted)    | Source                                              |
 | ---------- | ----- | :------: | ------- | ------------------- | ----------------------- | --------------------------------------------------- |
-| `motif_id` | `int` |    N     | `0`     | motif identifier    | Motif identifier        | `fum_rt/core/proprioception/events.py:114,119`      |
+| `motif_id` | `int` |    N     | `0`     | motif identifier    | Motif identifier        | `vdm_rt/core/proprioception/events.py:114,119`      |
 
 **Producers/Consumers:** Produced by motif detection; consumed by EventDrivenMetrics  
 **Related equations (anchors only):** n/a  
@@ -781,7 +781,7 @@ class MotifExitEvent(BaseEvent):
 
 **Kind:** event  
 **Versioning (if present):** none  
-**Defined at:** `fum_rt/core/proprioception/events.py:122-134` • `6b63a5e`
+**Defined at:** `vdm_rt/core/proprioception/events.py:122-134` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
 
@@ -804,9 +804,9 @@ class ADCEvent(BaseEvent):
 
 | Field             | Type             | Required | Default | Units/Normalization | Description (lifted)           | Source                                         |
 | ----------------- | ---------------- | :------: | ------- | ------------------- | ------------------------------ | ---------------------------------------------- |
-| `adc_territories` | `Optional[int]`  |    N     | `None`  | count               | Number of ADC territories      | `fum_rt/core/proprioception/events.py:131`     |
-| `adc_boundaries`  | `Optional[int]`  |    N     | `None`  | count               | Number of ADC boundaries       | `fum_rt/core/proprioception/events.py:132`     |
-| `adc_cycle_hits`  | `Optional[float]`|    N     | `None`  | count/rate          | ADC cycle hits metric          | `fum_rt/core/proprioception/events.py:133`     |
+| `adc_territories` | `Optional[int]`  |    N     | `None`  | count               | Number of ADC territories      | `vdm_rt/core/proprioception/events.py:131`     |
+| `adc_boundaries`  | `Optional[int]`  |    N     | `None`  | count               | Number of ADC boundaries       | `vdm_rt/core/proprioception/events.py:132`     |
+| `adc_cycle_hits`  | `Optional[float]`|    N     | `None`  | count/rate          | ADC cycle hits metric          | `vdm_rt/core/proprioception/events.py:133`     |
 
 **Producers/Consumers:** Produced by Active Domain Cartography (ADC) estimator; consumed by telemetry  
 **Related equations (anchors only):** TODO: missing anchor for ADC algorithm (see `Derivation/ALGORITHMS.md`)  
@@ -821,7 +821,7 @@ class ADCEvent(BaseEvent):
 
 **Kind:** event  
 **Versioning (if present):** none  
-**Defined at:** `fum_rt/core/proprioception/events.py:137-149` • `6b63a5e`
+**Defined at:** `vdm_rt/core/proprioception/events.py:137-149` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
 
@@ -844,9 +844,9 @@ class BiasHintEvent(BaseEvent):
 
 | Field    | Type              | Required | Default     | Units/Normalization | Description (lifted)                                  | Source                                         |
 | -------- | ----------------- | :------: | ----------- | ------------------- | ----------------------------------------------------- | ---------------------------------------------- |
-| `region` | `str`             |    N     | `"unknown"` | n/a                 | Free-form label (e.g., "unknown", "tile:3,4")         | `fum_rt/core/proprioception/events.py:146`     |
-| `nodes`  | `Tuple[int, ...]` |    N     | `tuple()`   | node IDs            | Bounded set of node indices to hint (immutable tuple) | `fum_rt/core/proprioception/events.py:147`     |
-| `ttl`    | `int`             |    N     | `2`         | ticks               | Time-to-live in ticks (downstream consumer-managed)   | `fum_rt/core/proprioception/events.py:148`     |
+| `region` | `str`             |    N     | `"unknown"` | n/a                 | Free-form label (e.g., "unknown", "tile:3,4")         | `vdm_rt/core/proprioception/events.py:146`     |
+| `nodes`  | `Tuple[int, ...]` |    N     | `tuple()`   | node IDs            | Bounded set of node indices to hint (immutable tuple) | `vdm_rt/core/proprioception/events.py:147`     |
+| `ttl`    | `int`             |    N     | `2`         | ticks               | Time-to-live in ticks (downstream consumer-managed)   | `vdm_rt/core/proprioception/events.py:148`     |
 
 **Producers/Consumers:** Produced by exploration heuristics; travels on bus for optional consumers (EventDrivenMetrics ignores)  
 **Related equations (anchors only):** n/a  
@@ -861,7 +861,7 @@ class BiasHintEvent(BaseEvent):
 
 **Kind:** event  
 **Versioning (if present):** none  
-**Defined at:** `fum_rt/core/cosmology/events.py:26-62` • `6b63a5e`
+**Defined at:** `vdm_rt/core/cosmology/events.py:26-62` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
 
@@ -882,12 +882,12 @@ class HorizonActivityEvent(BaseEvent):
 
 | Field        | Type               | Required | Default              | Units/Normalization | Description (lifted)                           | Source                                    |
 | ------------ | ------------------ | :------: | -------------------- | ------------------- | ---------------------------------------------- | ----------------------------------------- |
-| `kind`       | `str`              |    N     | `"horizon_activity"` | n/a                 | Event kind identifier                          | `fum_rt/core/cosmology/events.py:30`      |
-| `t`          | `int`              |    N     | `0`                  | timestep            | Simulation tick                                | `fum_rt/core/cosmology/events.py:31`      |
-| `x`          | `Tuple[float, ...]`|    N     | `tuple()`            | local coordinates   | Local coordinates (≤4 dimensions)              | `fum_rt/core/cosmology/events.py:32`      |
-| `dotA`       | `float`            |    N     | `0.0`                | rate                | Observable production rate $\dot{A}$           | `fum_rt/core/cosmology/events.py:33`      |
-| `horizon_id` | `str`              |    N     | `""`                 | n/a                 | Non-empty horizon identifier                   | `fum_rt/core/cosmology/events.py:34`      |
-| `dt_ret`     | `float`            |    N     | `0.0`                | time units          | Strictly retarded window duration              | `fum_rt/core/cosmology/events.py:35`      |
+| `kind`       | `str`              |    N     | `"horizon_activity"` | n/a                 | Event kind identifier                          | `vdm_rt/core/cosmology/events.py:30`      |
+| `t`          | `int`              |    N     | `0`                  | timestep            | Simulation tick                                | `vdm_rt/core/cosmology/events.py:31`      |
+| `x`          | `Tuple[float, ...]`|    N     | `tuple()`            | local coordinates   | Local coordinates (≤4 dimensions)              | `vdm_rt/core/cosmology/events.py:32`      |
+| `dotA`       | `float`            |    N     | `0.0`                | rate                | Observable production rate $\dot{A}$           | `vdm_rt/core/cosmology/events.py:33`      |
+| `horizon_id` | `str`              |    N     | `""`                 | n/a                 | Non-empty horizon identifier                   | `vdm_rt/core/cosmology/events.py:34`      |
+| `dt_ret`     | `float`            |    N     | `0.0`                | time units          | Strictly retarded window duration              | `vdm_rt/core/cosmology/events.py:35`      |
 
 **Producers/Consumers:** Produced by horizon activity detection; routed through cosmology event bus  
 **Related equations (anchors only):** TODO: missing anchor for retarded kernel and horizon activity (see `Derivation/EQUATIONS.md`)  
@@ -902,7 +902,7 @@ class HorizonActivityEvent(BaseEvent):
 
 **Kind:** event  
 **Versioning (if present):** none  
-**Defined at:** `fum_rt/core/cosmology/events.py:64-94` • `6b63a5e`
+**Defined at:** `vdm_rt/core/cosmology/events.py:64-94` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
 
@@ -922,11 +922,11 @@ class RouterSplitEvent(BaseEvent):
 
 | Field           | Type    | Required | Default          | Units/Normalization | Description (lifted)                  | Source                                    |
 | --------------- | ------- | :------: | ---------------- | ------------------- | ------------------------------------- | ----------------------------------------- |
-| `kind`          | `str`   |    N     | `"router_split"` | n/a                 | Event kind identifier                 | `fum_rt/core/cosmology/events.py:68`      |
-| `energy_budget` | `float` |    N     | `0.0`            | energy units        | Total energy budget                   | `fum_rt/core/cosmology/events.py:69`      |
-| `f_vac`         | `float` |    N     | `0.0`            | fraction $[0,1]$    | Fraction for vacuum channel           | `fum_rt/core/cosmology/events.py:70`      |
-| `f_grain`       | `float` |    N     | `0.0`            | fraction $[0,1]$    | Fraction for grain channel            | `fum_rt/core/cosmology/events.py:71`      |
-| `f_gw`          | `float` |    N     | `0.0`            | fraction $[0,1]$    | Fraction for gravitational wave channel | `fum_rt/core/cosmology/events.py:72`    |
+| `kind`          | `str`   |    N     | `"router_split"` | n/a                 | Event kind identifier                 | `vdm_rt/core/cosmology/events.py:68`      |
+| `energy_budget` | `float` |    N     | `0.0`            | energy units        | Total energy budget                   | `vdm_rt/core/cosmology/events.py:69`      |
+| `f_vac`         | `float` |    N     | `0.0`            | fraction $[0,1]$    | Fraction for vacuum channel           | `vdm_rt/core/cosmology/events.py:70`      |
+| `f_grain`       | `float` |    N     | `0.0`            | fraction $[0,1]$    | Fraction for grain channel            | `vdm_rt/core/cosmology/events.py:71`      |
+| `f_gw`          | `float` |    N     | `0.0`            | fraction $[0,1]$    | Fraction for gravitational wave channel | `vdm_rt/core/cosmology/events.py:72`    |
 
 **Producers/Consumers:** Produced by cosmology router; consumed by energy partition subsystem  
 **Related equations (anchors only):** TODO: missing anchor for energy routing (see `Derivation/EQUATIONS.md`)  
@@ -941,7 +941,7 @@ class RouterSplitEvent(BaseEvent):
 
 **Kind:** event  
 **Versioning (if present):** none  
-**Defined at:** `fum_rt/core/cosmology/events.py:96-127` • `6b63a5e`
+**Defined at:** `vdm_rt/core/cosmology/events.py:96-127` • `6b63a5e`
 
 **Definition (verbatim snippet from source):**
 
@@ -961,11 +961,11 @@ class BudgetTick(BaseEvent):
 
 | Field       | Type  | Required | Default         | Units/Normalization | Description (lifted)              | Source                                    |
 | ----------- | ----- | :------: | --------------- | ------------------- | --------------------------------- | ----------------------------------------- |
-| `kind`      | `str` |    N     | `"budget_tick"` | n/a                 | Event kind identifier             | `fum_rt/core/cosmology/events.py:100`     |
-| `tick`      | `int` |    N     | `0`             | timestep            | Current tick                      | `fum_rt/core/cosmology/events.py:101`     |
-| `max_ops`   | `int` |    N     | `0`             | count               | Maximum operations allowed        | `fum_rt/core/cosmology/events.py:102`     |
-| `max_emits` | `int` |    N     | `0`             | count               | Maximum emissions allowed         | `fum_rt/core/cosmology/events.py:103`     |
-| `ttl`       | `int` |    N     | `1`             | ticks               | Time-to-live (must be >= 1)       | `fum_rt/core/cosmology/events.py:104`     |
+| `kind`      | `str` |    N     | `"budget_tick"` | n/a                 | Event kind identifier             | `vdm_rt/core/cosmology/events.py:100`     |
+| `tick`      | `int` |    N     | `0`             | timestep            | Current tick                      | `vdm_rt/core/cosmology/events.py:101`     |
+| `max_ops`   | `int` |    N     | `0`             | count               | Maximum operations allowed        | `vdm_rt/core/cosmology/events.py:102`     |
+| `max_emits` | `int` |    N     | `0`             | count               | Maximum emissions allowed         | `vdm_rt/core/cosmology/events.py:103`     |
+| `ttl`       | `int` |    N     | `1`             | ticks               | Time-to-live (must be >= 1)       | `vdm_rt/core/cosmology/events.py:104`     |
 
 **Producers/Consumers:** Produced by budget system; guard method raises `BudgetExceededError` when limits exceeded  
 **Related equations (anchors only):** n/a  

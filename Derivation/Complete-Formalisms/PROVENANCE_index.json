@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2025-11-19T06:12:22.498545Z",
+  "generated_utc": "2025-11-19T08:06:41.463526Z",
   "items": [
     {
       "path": "Derivation/Complete-Formalisms/CF1_QGT_to_Metriplectic_Brackets.md",
@@ -13,8 +13,8 @@
     },
     {
       "path": "Derivation/Complete-Formalisms/CF3_A8_Scaling_Hierarchical_Interfaces.md",
-      "sha256": "5491c48ab023704fb6d21b91ab2ee94ad312b6a53963f792b7fa47c9dda8afcb",
-      "size": 23068
+      "sha256": "24f5afafdff45706783352fcec6ae8013ab324c044e66c360c698c41fff48e3a",
+      "size": 23161
     },
     {
       "path": "Derivation/Complete-Formalisms/CF4_Telegraph_Fisher_Causality.md",
