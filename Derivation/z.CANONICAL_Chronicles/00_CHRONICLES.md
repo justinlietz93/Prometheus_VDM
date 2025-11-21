@@ -13,6 +13,9 @@ Summary: Created CF9 complete formalism deriving U(1) electromagnetic gauge fiel
 Paths-Changed:
 - Derivation/Complete-Formalisms/CF9_Gauge_Emergence_Berry_Connection.md (NEW)
 - Derivation/Gauge/H006_HYPOTHESIS_Gauge_Emergence_Weinberg_Witten_Defense.md (NEW)
+- Derivation/Gauge/T6_PROPOSAL_Gauge_Emergence_v1.md (NEW)
+- Derivation/Gauge/RED_TEAM_RESPONSE_Gauge_Emergence.md (NEW)
+- Derivation/Gauge/T1_PROPOSAL_Gauge_Emergence.md (UPDATED)
 - Derivation/z.CANONICAL_Hypotheses/00_HYPOTHESES.md (H006 entry added)
 - Derivation/z.CANONICAL_Complete_Formalisms/00_COMPLETE_FORMALISMS.md (CF9 entry added)
 - Derivation/z.CANONICAL_Chronicles/00_CHRONICLES.md (this entry)
