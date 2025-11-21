@@ -14,7 +14,7 @@
 
 On a cubic lattice with scalar field $W_i$ governed by the discrete action [VDM-AX-004](../AXIOMS.md#vdm-ax-004), there exists a construction of effective fermion operators $\psi(x)$ through:
 
-1. **Domain-wall mechanism** ([Kaplan, 1992](https://doi.org/10.1016/0370-2693(92)91112-M)): A kink profile in the scalar background creates a $(d-1)$-dimensional interface supporting chiral bound states, with physical fermions localized to the domain wall and doublers exponentially suppressed in a fictitious bulk dimension.
+1. **Domain-wall mechanism** ([Kaplan, 1992](https://doi.org/10.1016/0370-2693(92)91112-M)): A kink profile in the scalar background creates a $(d-1)$-dimensional interface supporting chiral bound states, with physical fermions localized to the domain wall and doublers exponentially suppressed in an auxiliary lattice coordinate $z$ used to construct domain-wall zero-modes.
 
 2. **Ginsparg-Wilson operator**: The effective Dirac operator $D$ satisfies
    $$\{D, \gamma_5\} = a D \gamma_5 D + O(a^2)$$
@@ -66,7 +66,7 @@ The No-Go theorem requires **locality**, **translation invariance**, and **hermi
 **Domain:**  
 - Cubic lattice $\mathbb{Z}^3 \times \mathbb{Z}$ (space-time) with spacing $a$.
 - Scalar field $W_i$ with tachyonic potential $V(W) = -\frac{1}{2}\mu^2 W^2 + \frac{1}{4}\lambda W^4$.
-- Fictitious 5th dimension $z \in [0, L_5]$ with domain wall at $z=0$.
+- Auxiliary lattice coordinate $z \in [0, L_5]$ used to construct domain-wall zero-modes with domain wall at $z=0$.
 
 **Parameters:**  
 - Lattice spacing: $a \in [0.01, 0.1]$ (dimensionless units with $\hbar = c = 1$).

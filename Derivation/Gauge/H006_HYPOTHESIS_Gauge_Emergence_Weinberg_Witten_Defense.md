@@ -18,6 +18,10 @@ On the VDM scalar lattice ([VDM-AX-004](../AXIOMS.md#vdm-ax-004)) with emergent 
 5. **Weinberg-Witten evasion:** Gauge field is geometric (connection on bundle), not a particle state in fermion Hilbert space.
 6. **Long-range Coulomb force:** Static potential $V(r) = \alpha/r$ with fine-structure constant $\alpha \approx 1/137$.
 
+Only the 4D zero-mode localized at the domain wall is treated as a physical degree of freedom; the 5D bulk and heavy modes serve as a construction device and are checked to decouple below the EFT cutoff.
+
+The $z$ extension lives entirely in the J-limb construction space; all M-limb predictions are framed in 3+1D observables.
+
 ---
 
 ## Predictions (Decisive Metrics)

@@ -85,6 +85,10 @@ $$\psi(\vec{x}, z, t) = \chi_0(z) \psi_\sigma(\vec{x}, t) + \sum_{n\geq 1} \chi_
 
 where $\chi_0(z) \sim e^{-\lambda |z|}$ is the massless chiral zero mode.
 
+Only the 4D zero-mode localized at the domain wall is treated as a physical degree of freedom; the 5D bulk and heavy modes serve as a construction device and are checked to decouple below the EFT cutoff.
+
+The $z$ extension lives entirely in the J-limb construction space; all M-limb predictions are framed in 3+1D observables.
+
 **Parameter space identification:**
 - $R^\mu = x^\mu$ (spacetime coordinates)
 - $|\psi(x)\rangle \equiv |\psi_\sigma(\vec{x}, t)\rangle$ (low-energy spinor states)

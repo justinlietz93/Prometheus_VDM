@@ -14,7 +14,7 @@ License: See LICENSE
 
 **Contributions:**
 
-- **Formal construction of domain-wall background:** Kink profile $W_{\text{bg}}(z)$ in fictitious 5th dimension with exponential decay rates (Definition 2.1).
+- **Formal construction of domain-wall background:** Kink profile $W_{\text{bg}}(z)$ in auxiliary lattice coordinate $z$ used to construct domain-wall zero-modes with exponential decay rates (Definition 2.1).
 - **Bound-state derivation:** Chiral zero modes localized to the domain wall with linear dispersion $E(p) = v_F |p| + O(p^3)$ (Theorem 3.1).
 - **Ginsparg-Wilson operator:** Effective Dirac operator $D$ satisfying $\{D, \gamma_5\} = a D \gamma_5 D$ to $O(a^2)$ (Theorem 4.1).
 - **Bravyi-Kitaev fermionization:** Generalized Jordan-Wigner with $O(\log^2 N)$ locality in 3D (Algorithm 5.1, links to [VDM-A-###](../z.CANONICAL_Algorithms/00_ALGORITHMS.md)).
@@ -73,9 +73,13 @@ admits kink solutions interpolating between vacua $\phi_{\pm} = \pm \mu / \sqrt{
 
 ### 1.2 Domain-Wall Geometry (Kaplan Construction)
 
-**Fictitious 5th dimension:** Introduce $z \in \mathbb{R}$ (or discretized $z_k = k a_5$ with $k \in [0, L_5]$) as a "bulk" dimension.
+**Auxiliary lattice coordinate:** Introduce $z \in \mathbb{R}$ (or discretized $z_k = k a_5$ with $k \in [0, L_5]$) as a "bulk" dimension used to construct domain-wall zero-modes.
 
 **Physical universe:** Identified with the domain wall at $z = 0$.
+
+Only the 4D zero-mode localized at the domain wall is treated as a physical degree of freedom; the 5D bulk and heavy modes serve as a construction device and are checked to decouple below the EFT cutoff.
+
+The $z$ extension lives entirely in the J-limb construction space; all M-limb predictions are framed in 3+1D observables.
 
 **Bulk action:**
 $$S_{\text{bulk}} = \int dt \, d^3x \, dz \left[ \frac{1}{2} (\partial_t \phi)^2 - \frac{c^2}{2} (|\nabla \phi|^2 + |\partial_z \phi|^2) - V(\phi, z) \right]$$

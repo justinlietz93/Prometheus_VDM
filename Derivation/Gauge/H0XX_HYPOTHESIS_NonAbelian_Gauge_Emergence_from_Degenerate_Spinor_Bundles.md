@@ -29,6 +29,10 @@ $$
 2. The associated field strength $F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu + i[A_\mu, A_\nu]$ reproduces a Yang-Mills-type action at low energy (no claim that this is proven; only a hypothesis target).
 3. In the $N=1$ limit, the construction reduces exactly to CF9's U(1) Berry connection.
 
+Only the 4D zero-mode localized at the domain wall is treated as a physical degree of freedom; the 5D bulk and heavy modes serve as a construction device and are checked to decouple below the EFT cutoff.
+
+The $z$ extension lives entirely in the J-limb construction space; all M-limb predictions are framed in 3+1D observables.
+
 ### Predictions (decisive metrics)
 
 These are **targets** the theory must meet, not assumed facts:
