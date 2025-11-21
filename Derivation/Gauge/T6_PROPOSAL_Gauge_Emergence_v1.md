@@ -17,6 +17,13 @@ This proposal presents a rigorous derivation of the electromagnetic gauge field 
 
 Success is declared only if all validation gates (P1-P4 from [H006](H006_HYPOTHESIS_Gauge_Emergence_Weinberg_Witten_Defense.md)) pass: (1) photon masslessness $m_\gamma < 10^{-18}$ eV, (2) transverse polarization $f_\perp \geq 0.999$, (3) Coulomb law $|V(r)/V(r_0) - r_0/r| < 0.01$, and (4) charge universality $\sigma(g)/\bar{g} < 10^{-3}$. All experiments are pre-registered with artifact paths routed via `io_paths.py` to `Derivation/code/outputs/{figures,logs}/gauge/`.
 
+
+### **Dependency Killswitch**
+
+**This proposal may not be executed until CF8 spinor gates (P1-P5) and T2 metriplectic meters are passing at their minimal thresholds.** Gauge emergence requires validated spinor states $|\psi\rangle$ from the domain-wall construction. Attempting to run E1-E6 without certified CF8 instruments will result in automatic quarantine and rejection.
+
+For early validation and tractability, **E1-E3 (Berry connection, Maxwell action, transversality) may be executed in reduced dimensionality (1+1D or 2+1D) as a T5-style pilot mode** within this T6 plan. This allows early information about numerical pipeline health without full 3D computational cost. Full 3+1D execution required for final T6 certification.
+
 ## 4. Background & Scientific Rationale
 
 ### 4.1 Tier Ladder Progression and Prerequisite Work

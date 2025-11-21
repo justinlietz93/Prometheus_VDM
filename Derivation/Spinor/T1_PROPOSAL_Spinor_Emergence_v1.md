@@ -13,7 +13,13 @@ Justin K. Lietz (PI, theory & numerics), Neuroca (infrastructure).
 
 ## 3. Abstract
 
-Proposed in this document is a constructive derivation of effective Dirac spinors from the conservative (J‑limb) of the Void Dynamics Model’s discrete action. The objective is to replace deprecated particle–triad analogies with a falsifiable spinor sector built from the lattice micro‑dynamics, using three complementary constructions: (i) **domain‑wall (Jackiw–Rebbi‑style) modes** of the tachyonic potential yielding chiral bound states and an effective low‑energy Dirac operator along interfaces; (ii) **staggered‑spinor (doubling‑controlled) field redefinitions** that map the second‑order lattice wave operator to a first‑order Dirac form at long wavelengths; and (iii) a **local Jordan–Wigner/Majorana pair factorization** on bipartite sublattices, establishing emergent Clifford algebra and spin‑statistics via band geometry. Success is declared only if algebraic and symmetry gates (below) pass with rigorous proofs and audit logs.
+This proto-model proposal serves as the **umbrella document** for emergent spinor constructions from the VDM J-limb scalar lattice. Line (i) **domain-wall fermions** is fully implemented and owned by [CF8_Spinor_Emergence_Domain_Wall_Fermions.md](../Complete-Formalisms/CF8_Spinor_Emergence_Domain_Wall_Fermions.md), which provides a complete derivation including Ginsparg-Wilson operators, Nielsen-Ninomiya defense, and validation gates P1-P5 (see [H005](H005_HYPOTHESIS_Spinor_Emergence_Nielsen_Ninomiya_Defense.md)). **CF8 satisfies the T1 gates** for the domain-wall construction.
+
+This T1 document now serves as:
+- **Proto-model index** pointing to CF8 for the realized domain-wall branch
+- **Staging area** for future spinor constructions: (ii) **staggered-spinor (doubling-controlled)** field redefinitions (marked **T1.1 future expansion**), and (iii) **Jordan-Wigner/Majorana factorization** on bipartite sublattices (marked **T1.2 future expansion**). Lines (ii) and (iii) are aspirational sub-tracks, not yet implemented.
+
+Success is declared when the domain-wall construction (CF8) passes all gates P1-P5, with rigorous proofs and audit logs.
 
 ## 4. Background & Scientific Rationale
 
