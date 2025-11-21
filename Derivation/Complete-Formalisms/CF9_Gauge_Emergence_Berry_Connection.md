@@ -17,7 +17,7 @@ License: See LICENSE
 - **Berry connection as gauge potential:** $A_\mu(R) = i\langle \psi(R) | \partial_\mu \psi(R) \rangle$ from parameter space (Definition 2.1).
 - **Field strength tensor derivation:** $F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu$ from Berry curvature (Theorem 3.1).
 - **Maxwell action from QGT:** Effective action $S_{\text{eff}} \sim \int F_{\mu\nu}F^{\mu\nu}$ via gradient expansion (Theorem 4.1).
-- **Transversality proof:** $\nabla \cdot \vec{A} \= 0$ in Coulomb gauge; physical modes are transverse (Theorem 4.2).
+- **Transversality proof:** $\nabla \cdot \vec{A} = 0$ in Coulomb gauge; physical modes are transverse (Theorem 4.2).
 - **Compatibility with Weinberg-Witten via geometric gauge fields (connection, not state):** Emergent gauge field not a "fundamental" Lorentz vector in same Hilbert space as conserved current (§5).
 - **Masslessness and long-range force:** $m_\gamma < 10^{-18}$ eV via topological protection (Theorem 6.1).
 - **Validation gates:** Four decisive metrics P1-P4 mapped to [00_VALIDATION_METRICS.md](../z.CANONICAL_Validation_Metrics/00_VALIDATION_METRICS.md).
