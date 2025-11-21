@@ -22,7 +22,9 @@ $$
 \partial_t C(x,t) = D\,\nabla^2 C(x,t) - \gamma\, C(x,t) + S(x,t)
 $$
 
-**Notes:** Core field equation for agency/consciousness order parameter; $C$ spreads via diffusion $D$, decays at rate $\gamma$, driven by source $S$ from organized information processing.
+**Notes:** Core field equation for agency order parameter; $C$ spreads via diffusion $D$, decays at rate $\gamma$, driven by source $S$ from organized information processing.
+
+**Interpretation note:** Throughout the canon, the agency field is an order parameter for model-aware control (e.g. positive CEG under gates), not a new fundamental substance. Any language about 'consciousness' is interpretive and plays no role in axioms A0–A7.
 
 ---
 
@@ -112,7 +114,7 @@ $$
 \varepsilon_{\text{eff}}(x,t)=\varepsilon_0\big(1+\alpha\,C(x,t)\big),\quad |\alpha|\ll 1
 $$
 
-**Notes:** Optional dark-sector portal coupling; portal signal leans toward high-$C$ regions without becoming new force.
+**Notes:** Optional phenomenological coupling to an external sector (portal-style models), implemented as a small modulation of permittivity $\varepsilon$. Not part of baseline VDM; treated purely as a test knob.
 
 ---
 

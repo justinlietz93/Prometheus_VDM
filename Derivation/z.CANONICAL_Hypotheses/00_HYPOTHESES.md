@@ -304,7 +304,7 @@ Domain-wall fermions (Kaplan, 1992) evade Nielsen-Ninomiya by breaking translati
 **Classification:** Axiom-core  
 **Owner:** Justin K. Lietz  
 **Status:** ACTIVE  
-**One-line objective:** The VDM J-limb scalar lattice produces emergent U(1) gauge fields (photons) via Berry connection from domain-wall spinor states, evading the Weinberg-Witten No-Go Theorem through geometric construction and preserving exact masslessness via gauge invariance.
+**One-line objective:** The VDM J-limb scalar lattice produces emergent U(1) gauge fields (photons) via Berry connection from domain-wall spinor states, remaining compatible with the Weinberg-Witten No-Go Theorem via geometric (connection-level) construction and preserving exact masslessness via gauge invariance.
 
 ### H006 — Formal statement
 
@@ -313,7 +313,7 @@ On the VDM scalar lattice ([VDM-AX-004](../AXIOMS.md#vdm-ax-004)) with emergent 
 2. Maxwell action $S = -\frac{1}{4g^2}\int d^4x\, F_{\mu\nu}F^{\mu\nu}$ where $F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu$.
 3. Transverse polarization: physical photon modes satisfy $\vec{k} \cdot \vec{\epsilon} = 0$ (not longitudinal scalar).
 4. Exact masslessness: gauge invariance $A_\mu \to A_\mu + \partial_\mu \Lambda$ forbids mass term; $m_\gamma = 0$ to all orders.
-5. Weinberg-Witten evasion: gauge field is geometric (connection on bundle), not a particle state in fermion Hilbert space.
+5. Compatibility with Weinberg-Witten via geometric gauge fields (connection, not state): gauge field is geometric (connection on bundle), not a particle state in fermion Hilbert space.
 6. Long-range Coulomb force: static potential $V(r) = \alpha/r$ with fine-structure constant $\alpha \approx 1/137$.
 
 ### H006 — Predictions (decisive metrics)
@@ -325,7 +325,7 @@ On the VDM scalar lattice ([VDM-AX-004](../AXIOMS.md#vdm-ax-004)) with emergent 
 
 ### H006 — Rationale (bounded)
 
-The Weinberg-Witten theorem forbids massless composite particles with spin $j > 1/2$ if they live in the same Hilbert space as a Lorentz-covariant conserved current. VDM evades this via geometric construction: photon $A_\mu$ is the Berry connection (connection on spinor bundle), not a particle state in the Hilbert space. This follows standard gauge theory formalism where gauge fields are connections, not sections.
+The Weinberg-Witten theorem forbids massless composite particles with spin $j > 1/2$ if they live in the same Hilbert space as a Lorentz-covariant conserved current. VDM remains compatible with this via geometric construction: photon $A_\mu$ is the Berry connection (connection on spinor bundle), not a particle state in the Hilbert space. This follows standard gauge theory formalism where gauge fields are connections, not sections.
 
 ### H006 — Preconditions & scope
 

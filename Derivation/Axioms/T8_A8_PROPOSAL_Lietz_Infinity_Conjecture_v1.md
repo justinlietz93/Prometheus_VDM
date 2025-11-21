@@ -1,12 +1,14 @@
-# T8 - A8 (Axiom Candidate) — Lietz Infinity Resolution Conjecture
+# T8 - A8 (Axiom Candidate) — Lietz A8 Hierarchy / Infinity Resolution Conjecture (scaling law for hierarchical interfaces)
 
-> **Title:** A8 (Candidate) — Lietz Infinity Resolution Conjecture  
+> **Title:** A8 (Candidate) — Lietz A8 Hierarchy / Infinity Resolution Conjecture (scaling law for hierarchical interfaces)  
 > **DOI:** [https://doi.org/10.5281/zenodo.17503344](https://doi.org/10.5281/zenodo.17503344)  
 > **Tier:** T8 — Axiomization Candidate (requires both theorem-level result and cross-domain empirical gates)  
 > **Author:** Justin K. Lietz  
 > **Date:** 2025-10-31  
 > **Domains:** Axioms & Foundations (primary), Cosmology (spinodal), Variational PDEs, Information/Agency  
 > **VDM Canon Note:** On PASS, this becomes A8 in Canon/AXIOMS.md with the exact statement below. Until then, treat as CANDIDATE and cite this PROPOSAL.  
+
+**Scope note:** This is a mathematical scaling conjecture about hierarchical interfaces (A8), proposed as an Axiom candidate. It is not used anywhere in the current canon; all dependence is explicitly gated at T8.
 
 ---
 

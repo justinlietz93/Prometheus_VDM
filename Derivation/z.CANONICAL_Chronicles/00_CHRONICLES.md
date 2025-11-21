@@ -31,7 +31,7 @@ Dependency-Notes:
   - CF8 provides emergent spinor states $|\psi\rangle$ from domain walls
   - CF9 derives Maxwell action $S = -\frac{1}{4g^2}\int F_{\mu\nu}F^{\mu\nu}$ from Berry curvature
   - H006 defines 4 predictions (P1-P4) with experiments E1-E6
-- Risk mitigation: Weinberg-Witten evasion via geometric construction (gauge field as connection, not particle state)
+- Risk mitigation: Compatibility with Weinberg-Witten via geometric gauge fields (connection, not state)
 
 Approval/PR:
 - PR: copilot/evaluate-ninomiya-theorem (extends Nielsen-Ninomiya defense to gauge sector)

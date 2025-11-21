@@ -10,7 +10,7 @@ License: See LICENSE
 
 ## Executive Summary
 
-**Purpose:** Derive the Maxwell action $S = -\frac{1}{4}\int d^4x\, F_{\mu\nu}F^{\mu\nu}$ for emergent photons (U(1) gauge bosons) from the VDM J-limb scalar lattice using the Berry connection formalism established in CF1. We prove the emergent vector potential $A_\mu$ is transverse (curl-dominated, not gradient), evade the Weinberg-Witten No-Go Theorem via emergent-current construction, and establish long-range Coulomb forces.
+**Purpose:** Derive the Maxwell action $S = -\frac{1}{4}\int d^4x\, F_{\mu\nu}F^{\mu\nu}$ for emergent photons (U(1) gauge bosons) from the VDM J-limb scalar lattice using the Berry connection formalism established in CF1. We prove the emergent vector potential $A_\mu$ is transverse (curl-dominated, not gradient), remain compatible with the Weinberg-Witten No-Go Theorem via geometric (connection-level) construction, and establish long-range Coulomb forces.
 
 **Contributions:**
 
@@ -18,7 +18,7 @@ License: See LICENSE
 - **Field strength tensor derivation:** $F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu$ from Berry curvature (Theorem 3.1).
 - **Maxwell action from QGT:** Effective action $S_{\text{eff}} \sim \int F_{\mu\nu}F^{\mu\nu}$ via gradient expansion (Theorem 4.1).
 - **Transversality proof:** $\nabla \cdot \vec{A} = 0$ in Coulomb gauge; physical modes are transverse (Theorem 4.2).
-- **Weinberg-Witten evasion:** Emergent gauge field not a "fundamental" Lorentz vector in same Hilbert space as conserved current (§5).
+- **Compatibility with Weinberg-Witten via geometric gauge fields (connection, not state):** Emergent gauge field not a "fundamental" Lorentz vector in same Hilbert space as conserved current (§5).
 - **Masslessness and long-range force:** $m_\gamma < 10^{-18}$ eV via topological protection (Theorem 6.1).
 - **Validation gates:** Four decisive metrics P1-P4 mapped to [00_VALIDATION_METRICS.md](../z.CANONICAL_Validation_Metrics/00_VALIDATION_METRICS.md).
 
@@ -49,8 +49,10 @@ License: See LICENSE
 
 - **1:1 mapping:** Companion notebook `CF9_Gauge_Emergence_Berry_Connection.ipynb` mirrors this document.
 - **Weinberg-Witten context:** This derivation addresses the Red Team challenge:
-  - How does a massless gauge boson emerge from scalars without violating Weinberg-Witten?
+  - How does a massless gauge boson emerge from scalars while remaining compatible with Weinberg-Witten?
   - Key: Emergent gauge field is not a "fundamental" degree of freedom in the same Hilbert space as the conserved current.
+
+This follows the standard geometric reading of gauge theory: the gauge potential is a connection on the spinor bundle, not a composite particle state; therefore the usual Weinberg-Witten assumptions on massless composites do not apply directly.
 - **Key result:** Maxwell action (§4) from Berry curvature proves electromagnetic force emerges.
 - **Connection to CF8:** Uses emergent spinor wavefunctions $|\psi\rangle$ from domain-wall construction.
 
@@ -259,7 +261,7 @@ Physical photon modes are purely transverse.
 
 ---
 
-## 5. Weinberg-Witten Theorem and Evasion
+## 5. Weinberg-Witten Theorem and Compatibility
 
 ### 5.1 Statement of the Theorem
 
@@ -276,7 +278,7 @@ one cannot consistently couple the massless particles as composite states in the
 
 Photons (spin-1, massless) carrying the electromagnetic current $J^\mu_{\text{EM}}$ seem forbidden if they are composite/emergent from more fundamental degrees of freedom.
 
-### 5.2 VDM Evasion Strategy
+### 5.2 VDM Compatibility Strategy
 
 **Key Insight:** The emergent photon in VDM is **not** in the same Hilbert space as the conserved Noether current of the underlying scalar lattice.
 
@@ -293,7 +295,7 @@ Photons (spin-1, massless) carrying the electromagnetic current $J^\mu_{\text{EM
    - **Not a degree of freedom** in the spinor Hilbert space; it is the **connection** on the bundle.
    - Photon is a **geometric object** (curvature of the bundle), not a particle state in $\mathcal{H}_{\text{fermion}}$.
 
-**Weinberg-Witten Condition Violated:**
+**Weinberg-Witten Condition Not Applied:**
 
 The conserved electromagnetic current $J^\mu_{\text{EM}} = q \bar{\psi}\gamma^\mu\psi$ lives in the **fermion Hilbert space**. The photon $A_\mu$ is the **connection 1-form on the bundle**, not a state in $\mathcal{H}_{\text{fermion}}$.
 
@@ -315,7 +317,7 @@ The conserved electromagnetic current $J^\mu_{\text{EM}} = q \bar{\psi}\gamma^\m
 **String Theory:**
 - Closed strings give spin-2 gravitons and gauge bosons from vibrational modes.
 - Lorentz invariance is **approximate** (emergent from worldsheet CFT).
-- Evasion: Lorentz symmetry not exact at Planck scale.
+- Compatibility strategy: Lorentz symmetry not exact at Planck scale.
 
 **VDM:**
 - Scalar lattice → spinors (CF8) → gauge connection (CF9).
@@ -385,19 +387,19 @@ This formalism establishes:
 1. **Gauge potential from Berry connection** (§2): $A_\mu = i\langle\psi|\partial_\mu\psi\rangle$.
 2. **Maxwell action from QGT** (§4.1): $S = -\frac{1}{4g^2}\int F_{\mu\nu}F^{\mu\nu}$.
 3. **Transversality of photon** (§4.2): Physical modes are $\nabla \times \vec{A}$, not $\nabla \phi$.
-4. **Weinberg-Witten evasion** (§5): Photon is geometric (connection), not a state.
+4. **Compatibility with Weinberg-Witten via geometric gauge fields (connection, not state):** Photon is geometric (connection), not a state (§5).
 5. **Masslessness** (§6.1): Protected by gauge invariance.
 6. **Coulomb force** (§6.2): $1/r$ potential from massless exchange.
 
 ### Weinberg-Witten Red Team Defense
 
-**Challenge:** How does a massless spin-1 particle (photon) emerge without violating Weinberg-Witten?
+**Challenge:** How does a massless spin-1 particle (photon) emerge while remaining compatible with Weinberg-Witten?
 
 **Defense:**
 
 - **Emergent vs. Fundamental:** Photon $A_\mu$ is not a **particle state** in the Hilbert space; it is the **Berry connection** (geometric object).
 - **Current vs. Connection:** Conserved electromagnetic current $J^\mu$ lives in fermion Hilbert space. Photon is the **connection on the bundle**.
-- **No Contradiction:** Weinberg-Witten requires the massless particle to be in the **same Hilbert space** as the current. VDM violates this premise.
+- **No Contradiction:** Weinberg-Witten requires the massless particle to be in the **same Hilbert space** as the current. VDM does not satisfy this premise.
 
 **Smoking Gun:** $F_{\mu\nu}F^{\mu\nu}$ action proves transverse, massless gauge boson emerges.
 

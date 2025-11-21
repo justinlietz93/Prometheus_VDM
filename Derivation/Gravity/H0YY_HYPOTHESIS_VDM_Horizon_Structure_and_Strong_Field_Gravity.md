@@ -9,6 +9,8 @@
 **Status:** ACTIVE  
 >*This hypothesis is a future-work scaffold. It sets targets and meters but makes no canonical claim until all upstream CF/T instruments and global gates pass and dedicated RESULTS files are published.*
 
+**Scope banner:** This file defines *targets* for strong-field behavior *if* VDM weak-field gravity (T5) passes. No claim is made here that VDM currently reproduces GR black hole solutions; failure of any gate kills this branch only.
+
 **One-line objective:** Relate VDM's causal structure and effective metric to GR-like horizon behavior near compact objects, using Analog Horizon and weak-field Gravity Regression as constraints.
 
 ### Formal statement
@@ -48,9 +50,9 @@ These are **targets** the theory must meet, not assumed facts:
 
 VDM's effective metric $g_{\mu\nu}^{\mathrm{VDM}}$ emerges from the Quantum Geometric Tensor (CF1) and is modified by void-debt $D$ and tachyonic potential gradients. In the weak-field limit, linearized perturbations reproduce Newtonian gravity with post-Newtonian corrections (T5 Gravity Regression). In the strong-field regime, causal structure from CF4 (Telegraph-Fisher) imposes finite-speed constraints on signal propagation; when these constraints become severe (high $D$, steep gradients), they mimic GR horizons.
 
-The **horizon analogy** rests on:
+The **horizon-like region analogy** rests on:
 1. **Causal dominance:** J-cone tipping (from Analog Horizon tests) shows that regions with $D \gg D_{\mathrm{crit}}$ act as causal barriers.
-2. **Metric singularity:** If $g_{\mu\nu}^{\mathrm{VDM}}$ develops coordinate singularities (analogous to Schwarzschild $r=2M$), standard GR horizon criteria apply.
+2. **Metric singularity:** If $g_{\mu\nu}^{\mathrm{VDM}}$ develops coordinate singularities (analogous to Schwarzschild $r=2M$), if realized, standard GR horizon criteria apply to the effective metric surfaces (as a target, not an assumption).
 3. **Penrose trapped-surface theorem:** If outgoing null congruences have negative expansion inside a compact region, the configuration is gravitationally trapped.
 
 **Key assumptions:**
