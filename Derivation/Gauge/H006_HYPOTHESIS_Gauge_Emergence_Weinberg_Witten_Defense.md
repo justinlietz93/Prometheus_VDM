@@ -3,7 +3,7 @@
 **Classification:** Axiom-core  
 **Owner:** Justin K. Lietz  
 **Status:** ACTIVE  
-**One-line objective:** The VDM J-limb scalar lattice produces emergent U(1) gauge fields (photons) via Berry connection from domain-wall spinor states, evading the Weinberg-Witten No-Go Theorem through geometric construction and preserving exact masslessness via gauge invariance.
+**One-line objective:** The VDM J-limb scalar lattice produces emergent U(1) gauge fields (photons) via Berry connection from domain-wall spinor states, remaining compatible with the Weinberg-Witten No-Go Theorem via geometric (connection-level) construction and preserving exact masslessness via gauge invariance.
 
 ---
 
@@ -15,7 +15,7 @@ On the VDM scalar lattice ([VDM-AX-004](../AXIOMS.md#vdm-ax-004)) with emergent 
 2. **Maxwell action:** Effective action $S = -\frac{1}{4g^2}\int d^4x\, F_{\mu\nu}F^{\mu\nu}$ where $F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu$.
 3. **Transverse polarization:** Physical photon modes satisfy $\vec{k} \cdot \vec{\epsilon} = 0$ (not longitudinal scalar).
 4. **Exact masslessness:** Gauge invariance $A_\mu \to A_\mu + \partial_\mu \Lambda$ forbids mass term; $m_\gamma = 0$ to all orders.
-5. **Weinberg-Witten evasion:** Gauge field is geometric (connection on bundle), not a particle state in fermion Hilbert space.
+5. **Compatibility with Weinberg-Witten via geometric gauge fields (connection, not state):** Gauge field is geometric (connection on bundle), not a particle state in fermion Hilbert space.
 6. **Long-range Coulomb force:** Static potential $V(r) = \alpha/r$ with fine-structure constant $\alpha \approx 1/137$.
 
 Only the 4D zero-mode localized at the domain wall is treated as a physical degree of freedom; the 5D bulk and heavy modes serve as a construction device and are checked to decouple below the EFT cutoff.
@@ -97,9 +97,11 @@ $$\left| \frac{g_{\text{electron}} - g_{\text{quark}}}{g_{\text{avg}}} \right| <
 
 ## Rationale (Bounded)
 
-**Why Weinberg-Witten is evaded:**
+**Why Weinberg-Witten is compatible with VDM:**
 
-The Weinberg-Witten theorem forbids massless composite particles with spin $j > 1/2$ if they live in the same Hilbert space as a Lorentz-covariant conserved current. VDM evades this via:
+The Weinberg-Witten theorem forbids massless composite particles with spin $j > 1/2$ if they live in the same Hilbert space as a Lorentz-covariant conserved current. VDM remains compatible with this via:
+
+This follows the standard geometric reading of gauge theory: the gauge potential is a connection on the spinor bundle, not a composite particle state; therefore the usual Weinberg-Witten assumptions on massless composites do not apply directly.
 
 1. **Geometric vs. Particle:** Photon $A_\mu$ is the **Berry connection** (geometric object on the spinor bundle), not a particle **state** $|A\rangle$ in the Hilbert space.
 

@@ -9,6 +9,8 @@
 **Status:** ACTIVE  
 >*This hypothesis is a future-work scaffold. It sets targets and meters but makes no canonical claim until all upstream CF/T instruments and global gates pass and dedicated RESULTS files are published.*
 
+**Stress-test note:** This is a stress-test branch of A8; it is explicitly allowed to die without harming the rest of the program.
+
 **One-line objective:** Translate the A8 interface hierarchy plus EBN-CMB backgrounds into a predictive BH seed and merger population, testable against BH demographics and GW catalogs via existing and future meters.
 
 ### Formal statement
@@ -38,7 +40,7 @@ These are **targets** the theory must meet, not assumed facts:
   - **SMBH:** $n(M, z)$ for $M > 10^6 \, M_\odot$ reproduces quasar luminosity functions and AGN demographics within $\Delta \log(n) \leq 0.5$ dex.
 
 - **P2 (Merger/GW ladder):** There exists at least one parameter region where synthetic GW catalog statistics are not worse than $\Lambda$CDM + standard stellar channels under a common likelihood:
-  - **Event rate:** $R_{\mathrm{VDM}}(z)$ within factor of 2 of observed LIGO/Virgo/KAGRA rate.
+  - **Event rate:** $R_{\mathrm{VDM}}(z)$ within factor of 2 of observed LIGO/Virgo/KAGRA rate. These are target tolerances for a viable parameter region, not assumed matches.
   - **Mass distribution:** Chirp mass distribution $p(\mathcal{M}_c)$ has KS-test $p$-value $\geq 0.05$ against observed samples.
   - **Spin alignment:** Effective spin parameter $\chi_{\mathrm{eff}}$ distribution consistent with observed (median $|\Delta \chi_{\mathrm{eff}}| \leq 0.2$).
 
