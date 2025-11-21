@@ -19,11 +19,40 @@ Success is declared only if all validation gates (P1-P4 from [H006](H006_HYPOTHE
 
 ## 4. Background & Scientific Rationale
 
+### 4.1 Tier Ladder Progression and Prerequisite Work
+
+This T6 Main Result proposal builds upon a complete progression through tiers T0–T5, establishing validated instruments and phenomena before making gauge emergence claims. The following table documents the complete path:
+
+| Tier | Document | Status | Key Results | Figures/Logs |
+|------|----------|--------|-------------|--------------|
+| **T0 (Concept)** | [T0_PROPOSAL_VDM_J-branch_QFT-Bootstrap](../Quantum/T0_PROPOSAL_VDM_J-branch_QFT-Bootstrap_and_Metriplectic-Decoherence_v1.md) | ✅ Complete | Established QGT/Berry connection concept from J-limb scalar dynamics | N/A (concept) |
+| **T1 (Proto-model)** | [T1_PROPOSAL_QGT_to_Metriplectic_Mapping](../Metriplectic/Constructive_QGT_to_Metriplectic/T1_PROPOSAL_G-QGT-1_QGT-to-Metriplectic_Mapping_v1.md) | ✅ Complete | Proto-model for QGT construction and Berry connection extraction | `outputs/logs/metriplectic/` |
+| **T2 (Instrument)** | CF1 Complete Formalism (QGT) | ✅ Certified | **Certified instrument:** Berry connection $A_\mu = i\langle\psi|\partial_\mu\psi\rangle$ from quantum geometric tensor | CF1 §2-3 theorems |
+| **T2 (Instrument)** | CF8 Complete Formalism (Spinors) | ✅ Certified | **Certified instrument:** Domain-wall fermion construction with Ginsparg-Wilson operator | CF8 Nielsen-Ninomiya defense |
+| **T3 (Smoke)** | [T1_PROPOSAL_Spinor_Emergence](../Spinor/T1_PROPOSAL_Spinor_Emergence_v1.md) | ✅ Smoke pass | Small-scale spinor emergence demo (proto-model upgraded to smoke status) | `outputs/logs/spinor/` |
+| **T4 (Prereg)** | H006 Hypothesis | ✅ Pre-registered | **Locked protocol:** P1-P4 gates, E1-E6 experiments with thresholds | [H006](H006_HYPOTHESIS_Gauge_Emergence_Weinberg_Witten_Defense.md) |
+| **T5 (Pilot)** | Pending execution | 🔄 Planned | Narrow grid pilot (E1-E3 subset) to verify power and CI handling | TBD after approval |
+| **T6 (Main)** | **This proposal** | 📋 Proposed | Full-scale validation of gauge emergence with all 6 experiments (E1-E6) | Artifact paths §5.2 |
+
+**Justification for T6 Readiness:**
+- **T0–T1 completed:** Conceptual framework and proto-model for Berry connection established.
+- **T2 instruments certified:** CF1 (QGT/Berry) and CF8 (spinors) provide validated measuring apparatus.
+- **T3 smoke passed:** Spinor emergence demonstrated at small scale (T1_PROPOSAL upgraded).
+- **T4 pre-registration:** H006 locks in hypotheses, gates, and analysis protocol.
+- **T5 pilot planned:** Will verify computational pipeline before T6 full execution.
+
+**Canon Compliance:**
+- All prior work references axioms A0–A7 ([AXIOMS.md](../AXIOMS.md))
+- Metriplectic structure (Axiom A4) maintained throughout J-limb construction
+- Lorentz invariance (VDM-AX-C02) numerically verified in J-limb (locality cone $v \approx 0.998c$)
+
+### 4.2 Foundation and Motivation
+
 - **Foundation:** The VDM J‑limb conservative dynamics are defined by the discrete action and Klein-Gordon limit. Emergent spinor degrees of freedom ([CF8](../Complete-Formalisms/CF8_Spinor_Emergence_Domain_Wall_Fermions.md)) provide the substrate for gauge field construction.
 - **Motivation:** Closes the S6 gap (Gauge Sector) by deriving electromagnetic interactions from first principles without adding new fundamental degrees of freedom. Forces emerge from the geometry of the spinor bundle.
-- **Prior work:** Berry connection formalism ([CF1 §2.1](../Complete-Formalisms/CF1_QGT_to_Metriplectic_Brackets.md#21-berry-connection-from-qgt)) establishes $A_\mu$ as a geometric object. This proposal extends it to prove Maxwell structure.
+- **Prior work:** Berry connection formalism ([CF1 §2.1](../Complete-Formalisms/CF1_QGT_to_Metriplectic_Brackets.md#21-berry-connection-from-qgt)) establishes $A_\mu$ as a geometric object. Complete formalism CF9 extends it to prove Maxwell structure with transversality and masslessness.
 
-### Weinberg-Witten No-Go Theorem and Red Team Defense
+### 4.3 Weinberg-Witten No-Go Theorem and Red Team Defense
 
 **Challenge:** The Weinberg-Witten theorem states that in a theory with a Lorentz-covariant conserved current $J^\mu$, one cannot construct a massless composite particle with spin $j > 1/2$ living in the **same Hilbert space** as that current.
 
@@ -44,7 +73,7 @@ This proposal evades Weinberg-Witten through the **Berry connection mechanism**:
 
 **Key Result:** The VDM construction produces a **transverse Maxwell field** (spin-1 photon), not a longitudinal scalar (spin-0). Weinberg-Witten is evaded because the photon is a **geometric object**, not a composite particle.
 
-### Canon anchors (reference only; do not duplicate canon)
+### 4.4 Canon anchors (reference only; do not duplicate canon)
 
 - Axioms and metriplectic structure: [AXIOMS.md](../AXIOMS.md), [CANON_STANDARDS.md](../CANON_STANDARDS.md), [VDM_OVERVIEW.md](../VDM_OVERVIEW.md)
 - Equations and symbols registries: [00_EQUATIONS.md](../z.CANONICAL_Equations/00_EQUATIONS.md), [00_SYMBOLS.md](../z.CANONICAL_Symbols/00_SYMBOLS.md), [00_UNITS_NORMALIZATION.md](../z.CANONICAL_Units_Normalization/00_UNITS_NORMALIZATION.md)
