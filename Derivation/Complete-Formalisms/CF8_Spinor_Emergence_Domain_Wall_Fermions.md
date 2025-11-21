@@ -34,7 +34,7 @@ License: See LICENSE
 - Symbols and units: [00_SYMBOLS.md](../z.CANONICAL_Symbols/00_SYMBOLS.md), [00_UNITS_NORMALIZATION.md](../z.CANONICAL_Units_Normalization/00_UNITS_NORMALIZATION.md)
 - Axioms: [AXIOMS.md](../AXIOMS.md) (VDM-AX-004, A2, A3, A4)
 - I/O helper: [io_paths.py](../code/common/io_paths.py)
-- Hypothesis: [H005_HYPOTHESIS_Spinor_Emergence_Nielsen_Ninomiya_Defense.md](H005_HYPOTHESIS_Spinor_Emergence_Nielsen_Ninomiya_Defense.md)
+- Hypothesis: [H005_HYPOTHESIS_Spinor_Emergence_Nielsen_Ninomiya_Defense.md](../Spinor/H005_HYPOTHESIS_Spinor_Emergence_Nielsen_Ninomiya_Defense.md)
 
 **Policy:**
 
