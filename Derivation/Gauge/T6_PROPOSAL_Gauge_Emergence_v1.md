@@ -87,7 +87,7 @@ This proposal remains compatible with Weinberg-Witten through the **Berry connec
 - Complete formalism backstops: 
   - [CF1_QGT_to_Metriplectic_Brackets.md](../Complete-Formalisms/CF1_QGT_to_Metriplectic_Brackets.md) for Berry connection and quantum geometric tensor
   - [CF8_Spinor_Emergence_Domain_Wall_Fermions.md](../Complete-Formalisms/CF8_Spinor_Emergence_Domain_Wall_Fermions.md) for emergent spinor wavefunctions $|\psi\rangle$
-- **Gauge emergence formalism:** [CF9_Gauge_Emergence_Berry_Connection.md](../Complete-Formalisms/CF9_Gauge_Emergence_Berry_Connection.md) (Berry connection construction, Maxwell action derivation, Weinberg-Witten evasion, transversality proof)
+- **Gauge emergence formalism:** [CF9_Gauge_Emergence_Berry_Connection.md](../Complete-Formalisms/CF9_Gauge_Emergence_Berry_Connection.md) (Berry connection construction, Maxwell action derivation, Weinberg-Witten compatibility, transversality proof)
 - **Hypothesis and validation:** [H006_HYPOTHESIS_Gauge_Emergence_Weinberg_Witten_Defense.md](H006_HYPOTHESIS_Gauge_Emergence_Weinberg_Witten_Defense.md) (4 decisive predictions P1-P4, 6 experiments E1-E6)
 - J‑branch bootstrap context: [T0_PROPOSAL_VDM_J-branch_QFT-Bootstrap_and_Metriplectic-Decoherence_v1.md](../Quantum/T0_PROPOSAL_VDM_J-branch_QFT-Bootstrap_and_Metriplectic-Decoherence_v1.md)
 

@@ -35,7 +35,7 @@ Here is the synthesized session handoff document:
     -   `options.csv`: Output data from the options probe.
     -   `options_heatmap.png`: Heatmap for useful reachable entropy (options probe).
 -   **Technical Terms:**
-    -   `C(x,t)`: Agency/consciousness field; an emergent order parameter for organized, predictive information processing.
+    -   `C(x,t)`: Agency field (interpretive: 'consciousness' field); an emergent order parameter for organized, predictive information processing.
     -   `D`: "Smearing"/diffusive coupling constant, representing local spread of `C`.
     -   `gamma` (γ): Decay rate of `C` without a source, defining its time constant `tau = 1/gamma`. Also, `gamma` (decay constant) in the energy clamp PDE.
     -   `S(x,t)`: Source density, derived from operational measures of information processing.
@@ -127,7 +127,7 @@ Here is the synthesized session handoff document:
         5.  Demonstrate out-of-sample prediction using derived parameters.
 
 ### Technical Context & Assumptions ###
--   The "consciousness field" (`C(x,t)`) is framed as an *emergent, effective field/order parameter*, not a new fundamental force.
+-   The agency field (`C(x,t)`), interpretive name 'consciousness' field (non-canonical, interpretive only), is framed as an *emergent, effective field/order parameter*, not a new fundamental force.
 -   The field's dynamics are governed by a reaction-diffusion-decay type Partial Differential Equation (PDE).
 -   The field is assumed to be locally sourced by organized, predictive information processing (`S(x,t)`), dissipative (decaying at rate `gamma` without sources), causal (using a retarded kernel `G_ret`), and budgeted (its maintenance costs are accounted for in VDM's energy/information ledger).
 -   The source term `S(x,t)` is a composite of measurable proxies (Predictive Power `P`, Integration/Coherence `I_net`, Control Efficacy `U`), optionally modulated by substrate susceptibility `sigma(x)` and saturating functions of option capacity `V` and balance `B`.
