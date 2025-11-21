@@ -267,7 +267,7 @@ Domain-wall fermions (Kaplan, 1992) evade Nielsen-Ninomiya by breaking translati
 ### H005 — Preconditions & scope
 
 - Cubic lattice with tachyonic potential $V(\phi) = -\frac{1}{2}\mu^2 \phi^2 + \frac{1}{4}\lambda \phi^4$.
-- Fictitious 5th dimension with bulk depth $L_5 \in [5, 50]$ sites.
+- Auxiliary lattice coordinate $z$ used to construct domain-wall zero-modes with bulk depth $L_5 \in [5, 50]$ sites.
 - Low-energy regime $E < 0.1\pi/a$ (continuum limit).
 
 ### H005 — Experiment plan

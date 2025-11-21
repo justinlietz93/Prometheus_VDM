@@ -137,7 +137,7 @@ The Nielsen-Ninomiya theorem requires **all four** conditions:
 
 Domain-wall fermions evade the theorem by **breaking condition 3**:
 
-- **Bulk dimension added:** Introduce a fictitious 5th dimension $z$.
+- **Bulk dimension added:** Introduce an auxiliary lattice coordinate $z$ used to construct domain-wall zero-modes.
 - **Translation symmetry broken:** Domain wall at $z=0$ breaks uniformity.
 - **Physical universe = defect:** The 3+1D Standard Model lives on the domain wall.
 - **Doublers exiled:** Extra fermion species are pushed to $z \to \pm\infty$.
