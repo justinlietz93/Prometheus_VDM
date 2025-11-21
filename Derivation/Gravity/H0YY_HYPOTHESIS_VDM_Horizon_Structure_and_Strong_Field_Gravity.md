@@ -62,7 +62,7 @@ The **horizon analogy** rests on:
 
 **This hypothesis is a future-work scaffold.** It makes **no canonical claim** until:
 
-1. **T2 Metriplectic Instruments** pass all global gates (G-J/M, G-Echo, G-H-theorem, G-Locality).
+1. **T2 Metriplectic Instruments** pass all global gates (G-J/M, G-Echo, G-H-theorem, G-Locality, G-Artifacts) from [00_HYPOTHESES.md](../z.CANONICAL_Hypotheses/00_HYPOTHESES.md).
 2. **CF1** (QGT/metric) is validated with passing gates in RESULTS.
 3. **CF3 / CF4** (A8 + Telegraph-Fisher) pass their respective gates, confirming causal structure.
 4. **T5 Analog Horizon** (causal dominance tests) is at least partially validated, showing J-cone tipping.
@@ -79,6 +79,7 @@ The **horizon analogy** rests on:
 - Schwarzschild-like (spherically symmetric) configurations initially.
 - Rotating (Kerr-like) configurations are **out of scope** until spherical case passes.
 - Cosmological horizons (de Sitter, FRW) are **out of scope** (see H_BHPop for cosmological applications).
+- **Note:** All GR quantities (horizon radius, photon sphere, QNM frequencies) are used as comparison baselines; this hypothesis does not assert exact metric equivalence with GR.
 
 ### Experiment plan
 

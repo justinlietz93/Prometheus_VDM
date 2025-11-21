@@ -25,7 +25,7 @@ $$
 
 **Hypothesize** that:
 
-1. $A_\mu^{ab}$ transforms as an $\mathrm{SU}(N)$ gauge potential under local unitary rotations of the multiplet: $A_\mu \to U A_\mu U^\dagger + i U \partial_\mu U^\dagger$.
+1. $A_\mu^{ab}$ transforms as a $\mathrm{U}(N)$ gauge potential under local unitary rotations of the multiplet: $A_\mu \to U A_\mu U^\dagger + i U \partial_\mu U^\dagger$. With an additional tracelessness constraint ($\mathrm{Tr}(A_\mu) = 0$), it yields $\mathrm{SU}(N)$ gauge structure.
 2. The associated field strength $F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu + i[A_\mu, A_\nu]$ reproduces a Yang-Mills-type action at low energy (no claim that this is proven; only a hypothesis target).
 3. In the $N=1$ limit, the construction reduces exactly to CF9's U(1) Berry connection.
 
@@ -33,7 +33,7 @@ $$
 
 These are **targets** the theory must meet, not assumed facts:
 
-- **P1 (Non-commutativity):** Wilson loops $W_C = \mathcal{P} \exp\left(i\oint_C A_\mu dx^\mu\right)$ induced by $A_\mu$ around non-trivial loops fail to commute: $\|[W_1, W_2]\| \geq 10^{-6}$ for distinct closed paths with non-zero linking number.
+- **P1 (Non-commutativity):** Wilson loops $W_C = \mathcal{P} \exp\left(i\oint_C A_\mu dx^\mu\right)$ induced by $A_\mu$ around non-trivial loops fail to commute: $\|[W_1, W_2]\| \geq 10^{-6}$ for distinct closed paths with non-zero linking number. (This threshold will be set based on numerical noise floor once CF9 is running.)
 
 - **P2 (Universality within multiplets):** Couplings for states $|\psi_a\rangle$ within a multiplet have variance $\sigma(g_a)/\bar{g} \leq 10^{-3}$, analogous to [H006](./H006_HYPOTHESIS_Gauge_Emergence_Weinberg_Witten_Defense.md) P4.
 

@@ -49,7 +49,7 @@ These are **targets** the theory must meet, not assumed facts:
 
 - **P4 (Ringdown QNM compatibility, placeholder):** Ringdown spectra from BH mergers pass existing ringdown meters (if available): $|\omega_{\mathrm{VDM}} / \omega_{\mathrm{GR}} - 1| \leq 0.1$ for dominant $\ell=2$ QNM modes.
 
-**Note:** Actual numerical thresholds for P1-P2 will be specified in future T5/T6 BH regression proposal documents. These are qualitative targets. P4 is a placeholder pending ringdown instrument specifications.
+**Note:** All numeric thresholds in P1–P2 are provisional and will be re-registered in the BH/GW regression proposal once catalogs and meters are fixed. Actual numerical thresholds for P1-P2 will be specified in future T5/T6 BH regression proposal documents. P4 is a placeholder pending ringdown instrument specifications.
 
 ### Rationale (bounded)
 
@@ -74,7 +74,7 @@ The A8 interface hierarchy provides a natural mechanism for generating compact s
 
 1. **T3 A8 Two-Gate** passes with artifacts: logarithmic depth and boundary-law excess energy verified.
 2. **T2 EBN-CMB pipeline** passes: CMB power spectra and acoustic peaks match observations within prereg gates.
-3. **T2 Metriplectic Instruments** pass all global gates (G-J/M, G-Echo, G-H-theorem, G-Locality).
+3. **T2 Metriplectic Instruments** pass all global gates (G-J/M, G-Echo, G-H-theorem, G-Locality, G-Artifacts) from [00_HYPOTHESES.md](../z.CANONICAL_Hypotheses/00_HYPOTHESES.md).
 4. **T5_BH_GW_Regression** (future BH demographics regression pack) is executed and passes minimal thresholds.
 
 **Domain:**
