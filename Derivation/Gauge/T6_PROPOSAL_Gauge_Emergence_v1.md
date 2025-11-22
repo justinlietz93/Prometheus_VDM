@@ -5,7 +5,7 @@
 > Salted provenance: {salted_hash}  
 > Proposer contact(s): (<justin@neuroca.ai>)  
 > License: See [LICENSE](/LICENSE.md)  
-> Short summary (one sentence TL;DR): Derive, on the VDM J‑limb scalar lattice, an emergent U(1) electromagnetic gauge field via Berry connection from domain-wall spinor states, proving transverse polarization, exact masslessness via gauge invariance, and Coulomb $1/r$ potential, evading the Weinberg-Witten No-Go Theorem through geometric construction.
+> Short summary (one sentence TL;DR): Derive, on the VDM J‑limb scalar lattice, an emergent U(1) electromagnetic gauge field via Berry connection from domain-wall spinor states, proving transverse polarization, exact masslessness via gauge invariance, and Coulomb $1/r$ potential, remaining compatible with the Weinberg-Witten No-Go Theorem via geometric (connection-level) construction.
 
 ## 2. List of proposers and associated institutions/companies
 
@@ -65,7 +65,7 @@ This T6 Main Result proposal builds upon a complete progression through tiers T0
 
 **VDM Defense Strategy (Geometric Construction):**
 
-This proposal evades Weinberg-Witten through the **Berry connection mechanism**:
+This proposal remains compatible with Weinberg-Witten through the **Berry connection mechanism**:
 
 1. **Geometric vs. Particle:** The photon $A_\mu$ is the **Berry connection** (a connection 1-form on the spinor bundle), not a particle **state** $|A\rangle$ in the fermion Hilbert space.
 2. **Hilbert space separation:**
@@ -78,7 +78,7 @@ This proposal evades Weinberg-Witten through the **Berry connection mechanism**:
 **Red Team Attack Vector Addressed:**
 - **Attack (Transversality):** Defended in [CF9 §4.2](../Complete-Formalisms/CF9_Gauge_Emergence_Berry_Connection.md#42-transversality-curl-vs-gradient). Berry connection has intrinsic curl structure from the Berry curvature $F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu \neq 0$.
 
-**Key Result:** The VDM construction produces a **transverse Maxwell field** (spin-1 photon), not a longitudinal scalar (spin-0). Weinberg-Witten is evaded because the photon is a **geometric object**, not a composite particle.
+**Key Result:** The VDM construction produces a **transverse Maxwell field** (spin-1 photon), not a longitudinal scalar (spin-0). Weinberg-Witten compatibility is achieved because the photon is a **geometric object**, not a composite particle.
 
 ### 4.4 Canon anchors (reference only; do not duplicate canon)
 
@@ -87,7 +87,7 @@ This proposal evades Weinberg-Witten through the **Berry connection mechanism**:
 - Complete formalism backstops: 
   - [CF1_QGT_to_Metriplectic_Brackets.md](../Complete-Formalisms/CF1_QGT_to_Metriplectic_Brackets.md) for Berry connection and quantum geometric tensor
   - [CF8_Spinor_Emergence_Domain_Wall_Fermions.md](../Complete-Formalisms/CF8_Spinor_Emergence_Domain_Wall_Fermions.md) for emergent spinor wavefunctions $|\psi\rangle$
-- **Gauge emergence formalism:** [CF9_Gauge_Emergence_Berry_Connection.md](../Complete-Formalisms/CF9_Gauge_Emergence_Berry_Connection.md) (Berry connection construction, Maxwell action derivation, Weinberg-Witten evasion, transversality proof)
+- **Gauge emergence formalism:** [CF9_Gauge_Emergence_Berry_Connection.md](../Complete-Formalisms/CF9_Gauge_Emergence_Berry_Connection.md) (Berry connection construction, Maxwell action derivation, Weinberg-Witten compatibility, transversality proof)
 - **Hypothesis and validation:** [H006_HYPOTHESIS_Gauge_Emergence_Weinberg_Witten_Defense.md](H006_HYPOTHESIS_Gauge_Emergence_Weinberg_Witten_Defense.md) (4 decisive predictions P1-P4, 6 experiments E1-E6)
 - J‑branch bootstrap context: [T0_PROPOSAL_VDM_J-branch_QFT-Bootstrap_and_Metriplectic-Decoherence_v1.md](../Quantum/T0_PROPOSAL_VDM_J-branch_QFT-Bootstrap_and_Metriplectic-Decoherence_v1.md)
 

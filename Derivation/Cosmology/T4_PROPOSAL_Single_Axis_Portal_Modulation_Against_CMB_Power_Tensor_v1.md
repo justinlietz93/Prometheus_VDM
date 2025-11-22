@@ -27,6 +27,9 @@ Persistent **low‑multipole alignments and power‑entropy deficits** appear in
 **Observed anomaly (meter‑side):** Using the **power tensor** (A_{ij}(\ell)) built from (a_{\ell m}), Patel et al. compute the **power entropy** (S(\ell)=-\sum_{\alpha=1}^3 \lambda_\alpha\ln\lambda_\alpha) and the **alignment tensor** over ranges of ℓ; across WMAP and Planck releases, **entropy deficits** and **axis alignments** recur, with collective deviations at ≳2σ even after multiple‑testing‑aware statistics and Kuiper tests. Their **log‑likelihood‑style global statistic** over (2\le\ell\le61) shows the ensemble is **not as random** as the cosmological principle predicts; ℓ = 13, 17, 30 stand out across all releases. Figures and methods (Nside=512, 1° smoothing; unified Kp8∪Planck mask with (f_{\rm sky}\approx0.929); ISAP inpainting; Planck FFP simulations) are explicit.  
 
 **VDM hypothesis (theory‑side):** VDM posits a slow background field influencing matter/fields via **weak portal modulation**. In minimal form, the effective permittivity is
+
+Here 'portal' is used in the standard BSM sense: a small mixing term between otherwise decoupled sectors (no exotic spacetime tunnels).
+
 [
 \varepsilon_{\rm eff}(\mathbf{x},t)=\varepsilon_0\bigl(1+\alpha,C(\mathbf{x},t)\bigr),\quad |\alpha|\ll1,
 ]
