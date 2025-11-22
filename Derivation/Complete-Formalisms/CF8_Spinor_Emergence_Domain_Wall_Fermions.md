@@ -10,7 +10,7 @@ License: See LICENSE
 
 ## Executive Summary
 
-**Purpose:** Derive effective Dirac spinors from the VDM J-limb scalar lattice ([VDM-AX-004](../AXIOMS.md#vdm-ax-004)) using domain-wall fermions, evading the Nielsen-Ninomiya No-Go Theorem through topological separation in a fictitious bulk dimension. We construct the Ginsparg-Wilson operator, prove exact chiral symmetry at lattice scale, and establish locality via Bravyi-Kitaev fermionization in 3D.
+**Purpose:** Derive effective Dirac spinors from the VDM J-limb scalar lattice ([VDM-AX-004](../AXIOMS.md#vdm-ax-004)) using domain-wall fermions, evading the Nielsen-Ninomiya No-Go Theorem through topological separation in an auxiliary lattice coordinate $z$ used to construct domain-wall zero-modes. We construct the Ginsparg-Wilson operator, prove exact chiral symmetry at lattice scale, and establish locality via Bravyi-Kitaev fermionization in 3D.
 
 **Contributions:**
 

@@ -34,7 +34,7 @@ Success is declared when the domain-wall construction (CF8) passes all gates P1-
 **VDM Defense Strategy (Domain-Wall Fermions):**
 
 This proposal evades Nielsen-Ninomiya through the **domain-wall fermion mechanism** (Kaplan, 1992):
-1. **Breaking translation symmetry:** Introduce a fictitious 5th bulk dimension with a domain wall (kink) at $z=0$. Physical fermions localize to the wall; doublers are pushed to $z \to \pm\infty$.
+1. **Breaking translation symmetry:** Introduce an auxiliary lattice coordinate $z$ used to construct domain-wall zero-modes with a domain wall (kink) at $z=0$. Physical fermions localize to the wall; doublers are pushed to $z \to \pm\infty$.
 2. **Ginsparg-Wilson operator:** The effective Dirac operator $D$ satisfies $\{D, \gamma_5\} = a D \gamma_5 D$, preserving exact chiral symmetry on the lattice.
 3. **Locality via Bravyi-Kitaev:** Replace the 1D Jordan-Wigner string (non-local in 3D) with Bravyi-Kitaev tree encoding, reducing operator support from $O(N)$ to $O(\log^2 N)$.
 4. **Residual mass suppression:** Finite domain-wall separation creates $m_{\text{res}} \sim e^{-\lambda L_5}$, exponentially small for $L_5 \geq 20$ sites.
