@@ -54,7 +54,7 @@ Each prediction must pass in dedicated T1-tier numerical tests with deterministi
    - Topological defects (kinks, domain walls) from tachyonic potential
 
 **Dimensional argument:**  
-A domain wall in a $(d+1)$-dimensional scalar theory naturally supports $(d-1)$-dimensional chiral fermions. The VDM scalar lattice in 3+1D with a tachyonic kink in a fictitious 5th bulk dimension hosts 2+1D chiral modes at the wall. Doubling is avoided by exponential localization: physical fermions at $z=0$, doublers at $z=\pm\infty$.
+A domain wall in a $(d+1)$-dimensional scalar theory naturally supports $(d-1)$-dimensional chiral fermions. The VDM scalar lattice in 3+1D with a tachyonic kink in an auxiliary lattice coordinate $z$ used to construct domain-wall zero-modes hosts 2+1D chiral modes at the wall. Doubling is avoided by exponential localization: physical fermions at $z=0$, doublers at $z=\pm\infty$.
 
 **Nielsen-Ninomiya evasion:**  
 The No-Go theorem requires **locality**, **translation invariance**, and **hermiticity** for the **same lattice**. Domain-wall fermions break the assumption by:

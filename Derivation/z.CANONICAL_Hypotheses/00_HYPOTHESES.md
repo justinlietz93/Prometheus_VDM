@@ -262,7 +262,7 @@ On a cubic lattice with scalar field $W_i$ governed by [VDM-AX-004](../AXIOMS.md
 
 ### H005 — Rationale (bounded)
 
-Domain-wall fermions (Kaplan, 1992) evade Nielsen-Ninomiya by breaking translation symmetry in a fictitious bulk dimension. Physical fermions localize to the wall at $z=0$; doublers are exponentially suppressed in the bulk. The Ginsparg-Wilson operator provides exact chiral symmetry on the lattice. Bravyi-Kitaev reduces JW string from $O(N)$ to $O(\log N)$ in 3D.
+Domain-wall fermions (Kaplan, 1992) evade Nielsen-Ninomiya by breaking translation symmetry in an auxiliary lattice coordinate $z$ used to construct domain-wall zero-modes. Physical fermions localize to the wall at $z=0$; doublers are exponentially suppressed in the bulk. The Ginsparg-Wilson operator provides exact chiral symmetry on the lattice. Bravyi-Kitaev reduces JW string from $O(N)$ to $O(\log N)$ in 3D.
 
 ### H005 — Preconditions & scope
 
