@@ -1,6 +1,6 @@
 <!-- RULES for maintaining this file are here: /mnt/ironwolf/git/Prometheus_VDM/prompts/equations_maintenance.md -->
 <!-- markdownlint-disable MD033 -->
-# VDM Canonical Equations & Procedural Math (Auto-compiled)
+# VDM Canonical Equations & Procedural Math
 
 Note on scope: This document reflects the latest accepted canonical equations only. Historical notes and timeline are maintained in Derivation/CORRECTIONS.md and memory-bank/decisionLog.md.
 
