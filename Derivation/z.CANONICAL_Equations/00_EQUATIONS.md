@@ -1058,10 +1058,11 @@ $$
 **Equation:**
 
 On grid $(E_i,p_j)$,
+
 $$
 \widehat{\partial_E V}(E_i,p_j)=
 \begin{cases}
-\dfrac{V(E_{i+1},p_j)-V(E_i,p_j)}{E_{i+1}-E_i}, & \text{forward}\\[6pt]
+\dfrac{V(E_{i+1},p_j)-V(E_i,p_j)}{E_{i+1}-E_i}, & \text{forward}\[6pt]
 \dfrac{V(E_i,p_j)-V(E_{i-1},p_j)}{E_i-E_{i-1}}, & \text{backward}
 \end{cases}
 $$
@@ -1069,7 +1070,7 @@ $$
 $$
 \widehat{\partial_{p} V}(E_i,p_j)=
 \begin{cases}
-\dfrac{V(E_i,p_{j+1})-V(E_i,p_j)}{p_{j+1}-p_j}, & \text{forward}\\[6pt]
+\dfrac{V(E_i,p_{j+1})-V(E_i,p_j)}{p_{j+1}-p_j}, & \text{forward}\[6pt]
 \dfrac{V(E_i,p_j)-V(E_i,p_{j-1})}{p_j-p_{j-1}}, & \text{backward}
 \end{cases}
 $$
@@ -1093,6 +1094,7 @@ Define $\widehat{\nabla V}=[\widehat{\partial_E V},\widehat{\partial_p V}]$ and 
 
 **Equation:**
 For $V>0$,
+
 $$
 \epsilon_E=\frac{E}{V}\,\partial_E V,\qquad
 \epsilon_p=\frac{p_{\text{slip}}}{V}\,\partial_{p_{\text{slip}}} V.
@@ -1114,6 +1116,7 @@ $$
 
 **Equation:**
 For target $v_0$ (bits),
+
 $$
 E_{\min}^{(v_0)}(p):=\arg\min_{E\in\mathbb{N}}\{\,V(E,p)\ge v_0\,\}.
 $$
@@ -1134,8 +1137,11 @@ $$
 
 **Equation:**
 For all $p$,
+
 $$V(E+\Delta E,p)\ge V(E,p),$$
+
 and for all $E$,
+
 $$V(E,p+\Delta p)\le V(E,p).$$
 
 **Notes:**
@@ -1153,13 +1159,14 @@ $$V(E,p+\Delta p)\le V(E,p).$$
 **Context:** [RUNTIME-ONLY] Derivation of the synaptic weight update in the Self-Improvement Engine (SIE), integrating time-dependent gain modulation with void-driven plasticity dynamics (RE-VGSP for resonance-enhanced growth and GDSP for goal-directed decay), anti-saturation regularization to prevent over-specialization, and a projection onto a budget-constrained simplex for resource allocation. This rule unifies cognitive adaptation principles with physical void debt mechanisms, supporting emergent intelligence in the Void Dynamics Model. • Source: vdm_rt/core/fum_sie.py:1-260 • Commit: a48f2d2 • Last Updated: 2025-11-05T04:23:39Z
 
 **Equation:**
+
 $$
-\Delta W_{ij} = g_i(t) \times \underbrace{\Delta W_{ij}^{\text{void}}}_{\text{RE-VGSP + GDSP}} - \zeta \frac{\partial \Phi_{\text{sat}}(W_{ij})}{\partial W_{ij}} \xrightarrow{\text{project}} \text{simplex}(\text{budget} = B_i).
+\Delta W_{ij} = g_i(t) \times \underbrace{\Delta W\_{ij}^{\text{void}}}_{\text{RE-VGSP + GDSP}} - \zeta \frac{\partial \Phi\_{\text{sat}}(W_{ij})}{\partial W_{ij}} \xrightarrow{\text{project}} \text{simplex}(\text{budget} = B_i).
 $$
 
 **Notes:**
 
-- $(g_i(t))$\: SIE gain factor, typically $(\eta (1 + \text{mod\_factor}) R\_{\text{total}})$\, where $(\text{mod\_factor} = 2\sigma(R\_{\text{total}}) - 1)$ modulates updates based on aggregated rewards (TD error, novelty, habituation, self-benefit); enables adaptive self-optimization.
+- $(g_i(t))$\: SIE gain factor, typically $(\eta (1 + mod\_factor) R\_{\text{total}})$\, where $(mod\_factor = 2\sigma(R\_{\text{total}}) - 1)$ modulates updates based on aggregated rewards (TD error, novelty, habituation, self-benefit); enables adaptive self-optimization.
 - $(\Delta W\_{ij}^{\text{void}})$\: Combined RE-VGSP $((\alpha W\_{ij} (1 - W\_{ij}) + \text{noise}))$ and GDSP $((-\beta W\_{ij}))$ terms, yielding $((\alpha - \beta) W\_{ij} - \alpha W\_{ij}^2 + \text{noise})$\; models void debt-driven growth and dissipation, with optional time modulation $(\sin(2\pi f t))$ and domain scaling (e.g., via $(\beta / \alpha = 0.4)$\).
 - Anti-saturation: $(\zeta > 0)$ scales the gradient of potential $(\Phi\_{\text{sat}})$ (e.g., quadratic $(\frac{1}{2} W\_{ij}^2)$\); prevents weight extrema, promoting dynamic responsiveness.
 - Projection: Enforces non-negative weights summing to budget $(B\_i)$ via Euclidean projection; ensures sparsity and feasibility in resource-limited systems.
@@ -1175,6 +1182,7 @@ $$
 **Context:** [RUNTIME-ONLY] Universal function for Resonance-Enhanced Valence-Gated Synaptic Plasticity within the void dynamics framework, modeling fractal energy drain and growth in void states. This component synchronizes with GDSP to drive adaptive evolution, serving as the growth-promoting term in void debt mechanisms for both cognitive stability in the Self-Improvement Engine (SIE) and physical pattern formation in the Void Dynamics Model (VDM). • Source: vdm_rt/core/Void_Equations.py:22-55 • Commit: a48f2d2 • Last Updated: 2025-11-05T04:23:39Z
 
 **Equation:**
+
 $$
 \Delta_{\text{RE-VGSP}} = \alpha W (1 - W) + \text{noise},
 $$
@@ -1201,6 +1209,7 @@ with optional time modulation: $(\Delta_{\text{RE-VGSP}} \cdot (1 + \phi \sin(2\
 **Context:** [RUNTIME-ONLY] Universal function for Goal-Directed Structural Plasticity within the void dynamics framework, modeling weak closure and dissipation in void states. This component synchronizes with RE-VGSP to enforce stability, serving as the decay term in void debt mechanisms for balancing growth in cognitive adaptation via the Self-Improvement Engine (SIE) and physical relaxation in the Void Dynamics Model (VDM). • Source: vdm_rt/core/Void_Equations.py:56-88 • Commit: a48f2d2 • Last Updated: 2025-11-05T04:23:39Z
 
 **Equation:**
+
 $$
 \Delta_{\text{GDSP}} = -\beta W,
 $$
@@ -1226,6 +1235,7 @@ with optional time modulation: $(\Delta_{\text{GDSP}} \cdot (1 + \phi \sin(2\pi 
 **Context:** [RUNTIME-ONLY] Simplified interface for combined void dynamics, applying both RE-VGSP and GDSP with universal constants to compute a single-step evolution of void states. This function encapsulates the synergistic growth-dissipation balance central to void debt, enabling unified application in cognitive self-optimization via the Self-Improvement Engine (SIE) and physical emergence in the Void Dynamics Model (VDM). • Source: vdm_rt/core/Void_Equations.py:91-99 • Commit: a48f2d2 • Last Updated: 2025-11-05T04:23:39Z
 
 **Equation:**
+
 $$
 \Delta W = \Delta_{\text{RE-VGSP}} + \Delta_{\text{GDSP}} = (\alpha - \beta) W - \alpha W^2 + \text{noise},
 $$
@@ -1249,15 +1259,16 @@ with optional time modulation on each term and domain scaling applied to $(\alph
 **Context:** [PLAUSIBLE] [RUNTIME-ONLY] Derivation of domain-specific modulation factors from void debt principles, scaling universal constants like $(\alpha)$ and $(\beta)$ based on target sparsity for different physics regimes. This function ensures cognitive stability constants generate realistic physics, unifying adaptation in the Self-Improvement Engine (SIE) with emergent behaviors in the Void Dynamics Model (VDM) across domains like quantum or cosmogenesis. • Source: vdm_rt/core/Void_Debt_Modulation.py:49-55 • Commit: a48f2d2 • Last Updated: 2025-11-05T04:23:39Z
 
 **Equation:**
+
 $$
-\text{domain\_modulation} = 1.0 + \frac{(\text{sparsity\_fraction}^2)}{(\beta / \alpha)}
+domain\_modulation = 1.0 + \frac{(sparsity\_fraction^2)}{(\beta / \alpha)}
 $$
 
-where $(\text{sparsity\_fraction} = \text{target\_sparsity\_pct} / 100)$, and $(\beta / \alpha = 0.4)$\.
+where $(sparsity\_fraction = target\_sparsity\_pct / 100)$, and $(\beta / \alpha = 0.4)$\.
 
 **Notes:**
 
-- $(\text{target\_sparsity\_pct})$\: Domain-specific sparsity (e.g., 15.0 for quantum, 84.0 for cosmogenesis), defaulting to 25.0 if unspecified.
+- $(target\_sparsity\_pct)$\: Domain-specific sparsity (e.g., 15.0 for quantum, 84.0 for cosmogenesis), defaulting to 25.0 if unspecified.
 - Void debt ratio: Fixed at $(\beta / \alpha = 0.4)$\, derived from universal constants for learning stability.
 - Application: Multiplies effective $(\alpha)$ or $(\beta)$ in void equations (e.g., VDM-E-086, -087), tuning for physical consistency without arbitrary adjustments.
 - Links to prior entries: Modulates terms in VDM-E-085 (SIE weights) and VDM-E-027 (RD rates); validates against physics ranges (1.0-2.0) as in change log notes.
@@ -1282,11 +1293,11 @@ e_{\infty}(\Delta t)
 \; \Phi_{\Delta t/2}\big(\, \Phi_{\Delta t/2}(W_0) \,\big) \,\right\|_{\infty}.
 $$
 
-For a sweep of step sizes $\{\Delta t_i\}$, aggregate across seeds via the median $m_i=\operatorname{median}\, e_{\infty}(\Delta t_i)$, then perform an ordinary least-squares fit on log–log axes:
+For a sweep of step sizes $\{\Delta t_i\}$, aggregate across seeds via the median $m_i=\mathrm{median}\, e_{\infty}(\Delta t_i)$, then perform an ordinary least-squares fit on log–log axes:
 
 $$
 x_i = \log \Delta t_i,\qquad y_i = \log m_i,\qquad
-p = \frac{\operatorname{cov}(x,y)}{\operatorname{var}(x)},\quad b = \bar y - p\,\bar x,
+p = \frac{\mathrm{cov}(x,y)}{\mathrm{var}(x)},\quad b = \bar y - p\,\bar x,
 $$
 
 with coefficient of determination
@@ -1363,7 +1374,7 @@ $$
 In the dust control case $w=0$, this reduces to $r(t)=\tfrac{d}{dt}(\rho a^3)$. The discrete root-mean-square used in QC is
 
 $$
-\operatorname{RMS}(r) = \sqrt{\frac{1}{N} \sum_{n=1}^{N} r(t_n)^2 }.
+\mathrm{RMS}(r) = \sqrt{\frac{1}{N} \sum_{n=1}^{N} r(t_n)^2 }.
 $$
 
 **Notes:** Identity test under synthetic inputs; machine-precision RMS indicates correct finite-difference implementation. Used by [VDM-A-020](ALGORITHMS.md#vdm-a-020).
@@ -1415,13 +1426,13 @@ $$
 Primary KPI (gate):
 
 $$
-\mathrm{cov}_{\rm phys} = \frac{\#\,\text{roots found}}{\#\,\text{(}R,\ell\text{) with root-potential}},\quad \text{root-potential via sign change of } f_\ell(\kappa).
+\mathrm{cov}_{\rm phys} = \frac{\\#\,\text{roots found}}{\\#\,\text{(}R,\ell\text{) with root-potential}},\quad \text{root-potential via sign change of } f_\ell(\kappa).
 $$
 
 Secondary (transparency):
 
 $$
-\mathrm{cov}_{\rm raw} = \frac{\#\,\text{roots found}}{\#\,(R,\ell)\,\text{in sweep}}.
+\mathrm{cov}_{\rm raw} = \frac{\\#\,\text{roots found}}{\\#\,(R,\ell)\,\text{in sweep}}.
 $$
 
 **Notes:** $\mathrm{cov}_{\rm phys}$ used for gating; $\mathrm{cov}_{\rm raw}$ reported for sweep comparability. Residual quality $\max|f_\ell(\kappa)|$ reported (v1 informational).
@@ -1736,7 +1747,7 @@ $$
 **Context:** Derivation/Axioms/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md:97-105 • Commit: a48f2d2 • Last Updated: 2025-11-05T04:32:39Z
 
 $$\begin{aligned}
-\mathcal{I}_1(x) &= \log\!\Big(1 + \frac{\lvert\nabla \phi(x)\rvert^2}{\sigma^2}\Big),\\[4pt]
+\mathcal{I}_1(x) &= \log\!\Big(1 + \frac{\lvert\nabla \phi(x)\rvert^2}{\sigma^2}\Big),\[4pt]
 \mathcal{I}_2(x) &= \tfrac{1}{2}\,\log\!\det\!\Big(I + \tau\,\nabla u(x)\,\nabla u(x)^\top\Big)
 \end{aligned}$$
 
@@ -2023,7 +2034,7 @@ with SVD (or eigen) truncation $C=V\Sigma V^\top$, $\Sigma=\mathrm{diag}(\sigma_
 $$
 C^{+} \;=\; V\,\Sigma^{+}\,V^\top,\qquad
 \Sigma^{+}*{ii} \;=\; \begin{cases}
-1/\sigma_i, & \sigma_i \ge \sigma*{\mathrm{cut}},\\[4pt]
+1/\sigma_i, & \sigma_i \ge \sigma*{\mathrm{cut}},\[4pt]
 0, & \text{otherwise},
 \end{cases}
 $$
@@ -2078,6 +2089,7 @@ Couplings transform as $g\;\mapsto\; R_s(g)$ under the induced coarse‑graining
 **Context:** ALGO utility [VDM-A-036](Derivation/ALGORITHMS.md#vdm-a-036)
 
 Let a lattice field φ live on blocks of scale s. Define the block operator B_s and rescaling exponent Δ_φ:
+
 $$
 (B_s \phi)(x_b) \;=\; \frac{1}{|B_s(x_b)|}\sum_{x\in B_s(x_b)} \phi(x), \qquad \phi^{(s)} \;=\; s^{-\Delta_\phi}\,(B_s \phi).
 $$
@@ -2094,9 +2106,11 @@ For an observable O(φ), set $O^{(s)} := O\big(\phi^{(s)}\big)$ with appropriate
 **Context:** Axiom A4/A5; Öttinger GENERIC
 
 For state $x$, energy $E(x)$, and entropy $S(x)$:
+
 $$
 \dot{x} \;=\; L(x)\,\nabla E(x) \;+\; M(x)\,\nabla S(x),
 $$
+
 with $L^\top=-L$ (Poisson/antisymmetric) and $M^\top=M\succeq 0$ (friction/metric).
 
 ---
@@ -2107,14 +2121,19 @@ with $L^\top=-L$ (Poisson/antisymmetric) and $M^\top=M\succeq 0$ (friction/metri
 
 #### VDM-E-141 - Poisson Bracket and Jacobi Identity (Residual Definition)
 Define the J‑bracket by
+
 $$
 \{F,G\}_J \;=\; \nabla F^\top L \,\nabla G.
 $$
+
 Jacobi identity (must hold for all F,G,H):
+
 $$
 \{F,\{G,H\}_J\}_J + \{G,\{H,F\}_J\}_J + \{H,\{F,G\}_J\}_J \;=\; 0.
 $$
+
 Unit‑test residual (basis‑restricted) for KPI [kpi-poisson-jacobi-resid](Derivation/VALIDATION_METRICS.md#kpi-poisson-jacobi-resid):
+
 $$
 e_{\mathrm{Jacobi}} \;:=\; \max_{F,G,H\in\mathcal B}\;
 \big\|\,\{F,\{G,H\}\}+\{G,\{H,F\}\}+\{H,\{F,G\}\}\,\big\|_\infty.
@@ -2128,9 +2147,11 @@ $$
 
 #### VDM-E-142 - GENERIC Degeneracy Conditions
 Entropy is a Casimir of J; energy is a Casimir of M:
+
 $$
 L\,\nabla S \;=\; 0, \qquad M\,\nabla E \;=\; 0.
 $$
+
 Unit‑test sup‑norm residuals feed KPI [kpi-degeneracy-resid](Derivation/VALIDATION_METRICS.md#kpi-degeneracy-resid).
 
 ---
@@ -2141,13 +2162,17 @@ Unit‑test sup‑norm residuals feed KPI [kpi-degeneracy-resid](Derivation/VALI
 
 #### VDM-E-143 - Entropy Production (H‑Theorem; Continuous and Discrete)
 GENERIC implies non‑negative entropy production:
+
 $$
 \frac{dS}{dt} \;=\; \nabla S^\top M \,\nabla S \;\ge\; 0.
 $$
+
 Discrete step (Δt) monitor:
+
 $$
 \Delta \Sigma \;=\; \Sigma^{n+1}-\Sigma^n \;\approx\; \Delta t\,\big(\nabla S^\top M \nabla S\big)^n \;\ge\; 0,
 $$
+
 with tolerance and logging per KPI [kpi-entropy-prod-nonneg](Derivation/VALIDATION_METRICS.md#kpi-entropy-prod-nonneg).
 
 ---
@@ -2160,10 +2185,13 @@ with tolerance and logging per KPI [kpi-entropy-prod-nonneg](Derivation/VALIDATI
 **Context:** Extended hydrodynamics template (Öttinger); OQ‑021 corner regularization
 
 Augment entropy functional by a convex part in structural stock $c$:
+
 $$
 \Sigma[q] \;=\; \int_\Omega \Big(s(\rho,\varepsilon)\;+\;\psi(c)\;+\;\tfrac{\kappa_c}{2}\,|\nabla c|^2\Big)\,dx.
 $$
+
 The thermodynamic force (chemical potential) is
+
 $$
 \mu_c \;=\; \frac{\delta \Sigma}{\delta c} \;=\; \psi'(c)\;-\;\kappa_c\,\nabla^2 c.
 $$
@@ -2217,15 +2245,18 @@ This equation entry serves as the formal reference for KPI [kpi-curie-compliance
 **Context:** Self-organization meters near equilibrium (Nicolis–Prigogine, 1977; see Derivation/References/Nonequilibrium_&_Entropy/self-organization.md).
 
 Let $\sigma(x,t)$ be the entropy production density and let $\sigma_\star(x)$ denote the baseline (reference steady state under the same boundary conditions). Define the excess-EP field and its spatially integrated form
+
 $$
 \sigma^{(e)}(x,t) := \sigma(x,t) - \sigma_\star(x),\qquad
 \delta_p\sigma^{(e)}(t) := \int_\Omega \big(\sigma(x,t)-\sigma_\star(x)\big)\,dV.
 $$
 
 In the linear (near‑equilibrium) regime with fixed boundaries, the evolution criterion reads
+
 $$
 \frac{d}{dt}\,\delta_p\sigma^{(e)}(t)\;\le\;0,
 $$
+
 with loss of this monotonicity signalling approach to a bifurcation point for the reference state. Used by KPI gates: trend test and sign‑change detection (see VALIDATION_METRICS.md).
 
 ---
@@ -2237,6 +2268,7 @@ with loss of this monotonicity signalling approach to a bifurcation point for th
 #### VDM-E-151 - Open-System Entropy Balance (Branching Diagnostic)
 
 For open systems with heat flux $ \mathbf q $ through the boundary $ \partial\Omega $ and absolute temperature $T$,
+
 $$
 \frac{dS}{dt}
 \;=\;
@@ -2244,6 +2276,7 @@ $$
 \;-\;
 \underbrace{\oint*{\partial\Omega}\frac{\mathbf q\!\cdot\!\mathbf n}{T}\,dA}_{\text{boundary entropy flux (outward normal)}},
 $$
+
 where the sign convention takes $\mathbf n$ as the outward unit normal. Plotting $dS/dt$ and its constituents against the leading eigenvalue (VDM‑E‑152) distinguishes branches and their stability near onset. The boundary term may be computed by constitutive closure (e.g., Fourier heat flux $\mathbf q=-\kappa\nabla T$).
 
 ---
@@ -2255,10 +2288,12 @@ where the sign convention takes $\mathbf n$ as the outward unit normal. Plotting
 #### VDM-E-152 - Leading-Eigenvalue Classification and Critical Control
 
 Let $u_\mathrm{ref}$ be a reference steady state and $ \mathcal L(\beta) $ the linearized operator of the dynamics about $u_\mathrm{ref}$ at control parameter $\beta$ (includes BCs). For perturbations $v$,
+
 $$
 \partial_t v \;=\; \mathcal L(\beta)\,v,\qquad
 \mathcal L(\beta)\,e_k \;=\; \lambda_k(\beta)\,e_k.
 $$
+
 Define the leading eigenvalue $ \lambda_1(\beta) $ by maximal real part. Classification:
 - Stable steady branch (thermodynamic branch): $\mathrm{Re}\,\lambda_1(\beta) &lt; 0$.
 - Steady bifurcation: $\mathrm{Re}\,\lambda_1(\beta_c)=0$ with $\mathrm{Im}\,\lambda_1(\beta_c)=0$.
@@ -2274,10 +2309,12 @@ The corresponding null (critical) eigenfunction $e_1(x;\beta_c)$ provides the mo
 #### VDM-E-153 - Local-Potential Lyapunov Functional for Patterned Steady States
 
 In conduction and certain pattern‑forming contexts, a local potential functional decreases monotonically to a (possibly non‑uniform) steady state. For conduction with Dirichlet walls and reference profile $T_0(x)$,
+
 $$
 \Phi[T;T_0] \;=\; \int_\Omega \big(T(x)-T_0(x)\big)^2\,dV,
 \qquad \frac{d}{dt}\Phi \;\le\; 0,
 $$
+
 under linear diffusion with fixed $T_0$ (no internal sources). In extended settings (e.g., scalar order parameter $u$ with gradient flow), a generalized local potential $ \Phi[u] = \int_\Omega W(u,x)\,dV $ with convex $W$ in $u$ yields $ d\Phi/dt\le 0 $ up to boundary work terms accounted by VDM‑E‑151. Plateau of $\Phi$ together with $\mathrm{Re}\,\lambda_1\!\lesssim\!0$ indicates convergence to a stable patterned steady. Gates and artifact requirements are defined in VALIDATION_METRICS.md and RESULTS_PAPER_STANDARDS.md.
 
 ---
@@ -2361,9 +2398,11 @@ Used by gates: VALIDATION_METRICS.md#kpi-gb-dimless-collapse. Algorithmic flow: 
 
 **Context:** DeGrand–DeTar-inspired exact sampling discipline; Metropolis filter on a reversible, volume-preserving proposal.  
 **Definition (reference-level):** Given a proposal map Φ<sub>ε,L</sub> defined by L leapfrog steps of size ε on Hamiltonian H(q,p), the Metropolis rule accepts with
+
 $$
 \alpha = \min\!\big(1,\,e^{-\Delta H}\big),\qquad \Delta H = H\!\big(\Phi_{\varepsilon,L}(q,p)\big) - H(q,p).
 $$
+
 For small ε under a second-order symplectic integrator, the energy error statistics imply a scaling of the rejection fraction $1-\alpha(\varepsilon)$ that is asymptotically a power law on log–log axes (gate defined in KPIs).  
 **Notes:** Used by KPI [kpi-hmc-acceptance-vs-stepsize](../z.CANONICAL_Validation_Metrics/00_VALIDATION_METRICS.md#kpi-hmc-acceptance-vs-stepsize) and ΔH diagnostics [kpi-hmc-deltaH-hist](../z.CANONICAL_Validation_Metrics/00_VALIDATION_METRICS.md#kpi-hmc-deltah-hist). Links to algorithms: [VDM-A-030](../z.CANONICAL_Algorithms/00_ALGORITHMS.md#vdm-a-030).
 
@@ -2387,11 +2426,13 @@ For small ε under a second-order symplectic integrator, the energy error statis
 
 **Context:** Chain correlation scale for honest uncertainty quantification.  
 **Definition:** For a zero-mean stationary observable $O_t$ with normalized autocorrelation $\rho(t)$ and window $W$ chosen by a positive-sequence/initial-convex-sequence rule,
+
 $$
 \tau_{\text{int}} \;=\; \tfrac{1}{2}\;+\;\sum_{t=1}^{W}\rho(t), 
 \qquad
 \mathrm{ESS}\;=\;\frac{N}{2\,\tau_{\text{int}}}.
 $$
+
 **Notes:** Referenced by KPIs [kpi-tau-int](../z.CANONICAL_Validation_Metrics/00_VALIDATION_METRICS.md#kpi-tau-int) and [kpi-binning-adequacy](../z.CANONICAL_Validation_Metrics/00_VALIDATION_METRICS.md#kpi-binning-adequacy).
 
 ---
@@ -2414,6 +2455,7 @@ $$
 
 **Context:** Stable correlated fits with nearly singular covariance.  
 **Definition:** With data vector $y$, model $\mu(\theta)$, and covariance $C=U\Sigma U^{\top}$, define the SVD-truncated inverse
+
 $$
 C^{+}_{\sigma\_{{\rm cut}}} \;=\; U\,\Sigma^{+}_{\sigma\_{{\rm cut}}}\,U^{\top},
 \quad
@@ -2423,6 +2465,7 @@ C^{+}_{\sigma\_{{\rm cut}}} \;=\; U\,\Sigma^{+}_{\sigma\_{{\rm cut}}}\,U^{\top},
 0 & \text{otherwise}
 \end{cases}
 $$
+
 and correlated $\chi^2(\theta) = (y-\mu)^{\top} C^{+}_{\sigma\_{{\rm cut}}}(y-\mu)$.  
 **Notes:** KPI [kpi-correlated-chi2-svd](../z.CANONICAL_Validation_Metrics/00_VALIDATION_METRICS.md#kpi-correlated-chi2-svd) requires knee-detected cutoff stability.
 
@@ -2446,8 +2489,10 @@ and correlated $\chi^2(\theta) = (y-\mu)^{\top} C^{+}_{\sigma\_{{\rm cut}}}(y-\m
 
 **Context:** Axiom A6 scale-program instrumentation via coarse-graining and collapse.  
 **Definition:** For block factor $s$ in $d$ dimensions, a canonical average-blocking operator on a scalar field $\phi$ is
+
 $$
 \phi^{(s)}(i) \;=\; \frac{1}{s^d}\sum_{j\in \mathcal{B}_s(i)} \phi(j),
 $$
+
 with couplings transformed $g\mapsto R_s(g)$ under the induced coarse-graining map. After rescaling to dimensionless axes, scaling collapse across $\{s\}$ is quantified by an envelope $E_{\max}$ (see envelope gate [VDM-E-094] if present) and KPI [kpi-rg-collapse](../z.CANONICAL_Validation_Metrics/00_VALIDATION_METRICS.md#kpi-rg-collapse).  
 **Notes:** Utility implementation at [VDM-A-036](../z.CANONICAL_Algorithms/00_ALGORITHMS.md#vdm-a-036).
