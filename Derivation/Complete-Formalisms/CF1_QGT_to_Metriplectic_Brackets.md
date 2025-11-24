@@ -55,11 +55,13 @@ $$
 where:
 
 **Quantum Metric** (symmetric, real):
+
 $$
 g_{\mu\nu} = \text{Re}(Q_{\mu\nu}) = \frac{1}{2}(Q_{\mu\nu} + Q_{\nu\mu}^*)
 $$
 
 **Berry Curvature** (antisymmetric, imaginary):
+
 $$
 \Omega_{\mu\nu} = -2\,\text{Im}(Q_{\mu\nu}) = i(Q_{\mu\nu} - Q_{\nu\mu}^*)
 $$
@@ -133,17 +135,22 @@ $$
 
 > **Remark 2.1a (domain and Jacobi for $\{\cdot,\cdot\}_J$).**  
 > Work on the open set $U=\{R\mid \det \Omega(R)\neq 0\}$ where the Berry 2-form is non-degenerate. Define the Poisson tensor $J^{\mu\nu}=(\Omega^{-1})^{\mu\nu}$ on $U$; then $\{f,g\}_J=J^{\mu\nu}\,\partial_\mu f\,\partial_\nu g$ is well-defined and satisfies the Jacobi identity. A coordinate proof follows from differentiating $\Omega_{\mu\nu}J^{\nu\lambda}=\delta_\mu^{\ \lambda}$:
+
 > $$
 > \partial_\alpha \Omega_{\mu\nu}\,J^{\nu\lambda}
 > \;+\;
 > \Omega_{\mu\nu}\,\partial_\alpha J^{\nu\lambda}
 > \;=\;0.
 > $$
+
 > Antisymmetrizing cyclically in $(\alpha,\mu,\nu)$ and using the Bianchi identity
+
 > $$
-> \partial_\alpha\Omega_{\mu\nu}+\partial_\mu\Omega_{\nu\alpha}+\partial_\nu\Omega_{\alpha\mu}=0
+\partial_\alpha\Omega_{\mu\nu}+\partial_\mu\Omega_{\nu\alpha}+\partial_\nu\Omega_{\alpha\mu}=0
 > $$
+> 
 > yields
+> 
 > $$
 > J^{\alpha\mu}\partial_\alpha J^{\nu\lambda}
 > \;+\;
@@ -152,6 +159,7 @@ $$
 > J^{\alpha\lambda}\partial_\alpha J^{\mu\nu}
 > \;=\;0,
 > $$
+> 
 > which is the Jacobi condition $[J,J]_{\text{Schouten}}=0$.  
 > At singular strata where $\det\Omega=0$, $J$ is not defined; one restricts to the symplectic leaves (or adopts a Dirac-type reduction). Throughout CF1 we work on $U$ and treat singular sets separately (cf. the closure/integrability notes).
 
