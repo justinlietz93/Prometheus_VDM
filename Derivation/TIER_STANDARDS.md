@@ -2,7 +2,7 @@
 
 **Commit:** c2d71627c286029ae90267e4051411fa1fb3973e
 
-**Purpose.** Track progress from idea → instrument → preregistered result → external reproduction, without freezing the theory into any single limb. Uses your repo’s A0–A7 axioms and equation anchors as the “constitution.”
+**Purpose.** Track progress from idea → instrument → preregistered result → external reproduction, without freezing the theory into any single limb. Uses this repo’s A0–A7 axioms and equation anchors as the “constitution.”
 
 > **Branch tags:** RD • KG/EFT • Agency(C‑field) • Memory/Steering • Other (open set). A work item can carry multiple tags.
 
