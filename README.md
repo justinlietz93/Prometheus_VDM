@@ -101,19 +101,13 @@
 
 ---
 
+## 🧭What this is
+
 This repository includes provides a public view of the Void Dynamics Model.
 It includes the theory, write-ups, code, notebooks, figures, logs, and validations for review by physicists,
 applied mathematicians, learners, students, and scientifically minded engineers.  
 Reproducible code released for the public is now available.
 Remaining proprietary work must be requested directly.
-
-> **Classified notice**
->
-> I reserve the right to certain executable simulations and modules.
->
-> Contact the maintainer for access or questions.
-
-## 🧭What this is
 
 - A set of derivation papers that establish a clean baseline physics slice starting from a discrete lattice, to a metriplectic split and cosmology.
 - Additional documents that explore future work (proposals).
