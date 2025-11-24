@@ -22,7 +22,7 @@ License: See LICENSE
 - **Lorentz invariance at low energy:** Metriplectic M-limb RG flow smooths lattice anisotropies (Theorem 6.1).
 - **Validation gates:** Five decisive metrics P1-P5 mapped to [00_VALIDATION_METRICS.md](../z.CANONICAL_Validation_Metrics/00_VALIDATION_METRICS.md) anchors.
 
-**Scope:** This formalism owns the derivation. The companion notebook `CF8_Spinor_Emergence_Domain_Wall_Fermions.ipynb` provides executable code recreation with 1:1 mapping to sections.
+**Scope:** This formalism owns the derivation. The companion notebook (pending) `CFN8_Spinor_Emergence_Domain_Wall_Fermions.ipynb` provides executable code recreation with 1:1 mapping to sections.
 
 ---
 
