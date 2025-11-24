@@ -47,7 +47,7 @@ License: See LICENSE
 
 ## Read Me First (Formalism Rules)
 
-- **1:1 mapping:** Companion notebook `CF8_Spinor_Emergence_Domain_Wall_Fermions.ipynb` mirrors this document section-by-section.
+- **1:1 mapping:** Companion notebook (pending) `CFN8_Spinor_Emergence_Domain_Wall_Fermions.ipynb` mirrors this document section-by-section.
 - **Nielsen-Ninomiya context:** This derivation addresses the Red Team Assessment's three attack vectors:
   1. Non-locality of Jordan-Wigner string (§5)
   2. Chiral symmetry leak via residual mass (§4.2)
