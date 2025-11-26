@@ -9,18 +9,22 @@
 
 ### Formal statement
 
-In the VDM scalar lattice with metriplectic dynamics (KG ⊕ RD) and Berry‑connection gauge construction (CF8–CF9), there exists a parameter regime in which:
+In the VDM scalar lattice with metriplectic dynamics $(KG ⊕ RD)$ and Berry‑connection gauge construction (CF8–CF9), there exists a parameter regime in which:
 
-1. A **J‑dominant sector** produces an emergent U(1) gauge interaction whose static potential between like “charges” (domain‑wall kinks with Berry charge) is approximately Coulombic,
-   [
-   V_{JJ}(r) \propto \frac{1}{r}
-   ]
+1. A **J‑dominant sector** produces an emergent $U(1)$ gauge interaction whose static potential between like “charges” (domain‑wall kinks with Berry charge) is approximately Coulombic,
+
+$$
+V_{JJ}(r) \propto \frac{1}{r}
+$$
+
    with energy conserved to numerical tolerance and entropy production bounded by a small fraction of the interaction energy per scattering event.
 
-2. A **J+M confining sector** (same microscopic lattice, but with tuned M‑limb friction and plasticity) produces multi‑kink bound states with an effective inter‑kink potential
-   [
-   V_{JM}(r) \approx \sigma, r \quad\text{for } r\in[r_{\min}, r_{\max}]
-   ]
+1. A **J+M confining sector** (same microscopic lattice, but with tuned M‑limb friction and plasticity) produces multi‑kink bound states with an effective inter‑kink potential
+   
+$$
+V_{JM}(r) \approx \sigma, r \quad\text{for } r\in[r_{\min}, r_{\max}]
+$$
+
    (string‑like confinement), where the bound states disappear or lose their linear potential character if the M‑limb is disabled while keeping the J‑limb parameters fixed.
 
 If both of these conditions hold in a shared region of lattice parameter space (same underlying scalar field, same discretization, different J/M balance), then “electromagnetic” (Coulomb) and “strong” (confining) forces are realized as distinct J/M‑sector behaviors of one metriplectic gauge field, rather than as unrelated fundamental interactions.
@@ -29,26 +33,30 @@ If both of these conditions hold in a shared region of lattice parameter space (
 
 * **P1 (Coulomb/J‑sector):**
   In a two‑body scattering meter built on the CF9 gauge emergence pipeline, the effective static potential between like Berry‑charged kinks in the **J‑dominant regime** fits
-  [
-  V_{\text{eff}}(r) = \frac{k}{r}
-  ]
-  with relative deviation (|\Delta V/V| \le 0.1) over at least one decade in (r), energy drift (|\Delta E / E_0| \le 10^{-5}) over the run, and entropy production rate (\dot\Sigma/E_0 \le 10^{-3}) per interaction time.
+
+$$
+V_{\text{eff}}(r) = \frac{k}{r}
+$$
+  
+  with relative deviation $(|\Delta V/V| \le 0.1)$ over at least one decade in $(r)$, energy drift $(|\Delta E / E_0| \le 10^{-5})$ over the run, and entropy production rate $(\dot\Sigma/E_0 \le 10^{-3})$ per interaction time.
 
 * **P2 (Confinement/J+M sector):**
-  In a three‑kink “string” configuration in the **J+M regime**, the measured potential (V_{\text{eff}}(r)) between outer kinks (with the middle kink acting as a mediator) satisfies a linear fit
-  [
-  V_{\text{eff}}(r) = \sigma r + V_0
-  ]
-  with (R^2 \ge 0.98) over a window ([r_{\min}, r_{\max}]), and dissolves into either (i) a sub‑linear tail or (ii) unbound scattering when the same simulation is rerun with the M‑limb friction/plasticity parameters set to zero (keeping J‑side parameters and initial data fixed).
+  In a three‑kink “string” configuration in the **J+M regime**, the measured potential $(V_{\text{eff}}(r))$ between outer kinks (with the middle kink acting as a mediator) satisfies a linear fit
+
+$$
+V_{\text{eff}}(r) = \sigma r + V_0
+$$
+  
+  with $(R^2 \ge 0.98)$ over a window $([r_{\min}, r_{\max}])$, and dissolves into either (i) a sub‑linear tail or (ii) unbound scattering when the same simulation is rerun with the M‑limb friction/plasticity parameters set to zero (keeping J‑side parameters and initial data fixed).
 
 * **P3 (Sector separation):**
-  There exists a parameter slice in ((\lambda_{\text{J}}, \lambda_{\text{M}})) space where **both** P1 and P2 hold in adjacent regimes (e.g. varying only (\lambda_{\text{M}})) without changing the lattice potential or Berry‑connection construction; i.e. turning “up” M moves the system from Coulombic to confining behavior continuously, rather than requiring a different microscopic theory.
+  There exists a parameter slice in $((\lambda_{\text{J}}, \lambda_{\text{M}}))$ space where **both** P1 and P2 hold in adjacent regimes (e.g. varying only $(\lambda_{\text{M}}))$ without changing the lattice potential or Berry‑connection construction; i.e. turning “up” M moves the system from Coulombic to confining behavior continuously, rather than requiring a different microscopic theory.
 
 ### Rationale (bounded)
 
 * CF8 shows how domain‑wall fermions and Berry charges emerge from a scalar lattice; CF9 shows how Berry connections on this lattice generate an emergent U(1) gauge field.
 
-* In standard QFT, electromagnetic and strong forces are described by different gauge groups (U(1) vs SU(3)), but both ultimately arise from gauge curvature interacting with matter. In VDM, the same scalar substrate plus Berry curvature can, in principle, support both a long‑range 1/r interaction and a short‑range confining interaction, depending on how the M‑limb selects and stabilizes topology.
+* In standard QFT, electromagnetic and strong forces are described by different gauge groups ($U(1)$ vs $SU(3)$), but both ultimately arise from gauge curvature interacting with matter. In VDM, the same scalar substrate plus Berry curvature can, in principle, support both a long‑range $1/r$ interaction and a short‑range confining interaction, depending on how the M‑limb selects and stabilizes topology.
 
 * The metriplectic split suggests a natural interpretation:
 
@@ -80,24 +88,24 @@ If both of these conditions hold in a shared region of lattice parameter space (
   * **Outputs:** Time‑averaged force vs separation (F(r)), integrated potential (V_{\text{eff}}(r)), total energy drift, entropy production (\dot\Sigma).
   * **Gates for E1:**
 
-    * G‑E1.1: 1/r fit with (|\Delta V/V| \le 0.1) and (R^2 \ge 0.98) over ≥1 decade in (r).
-    * G‑E1.2: (|\Delta E/E_0| \le 10^{-5}) over the simulation.
-    * G‑E1.3: (\dot\Sigma/E_0 \le 10^{-3}) per interaction time.
+    * G‑E1.1: $1/r$ fit with $(|\Delta V/V| \le 0.1)$ and $(R^2 \ge 0.98)$ over $≥1$ decade in $(r)$.
+    * G‑E1.2: $(|\Delta E/E_0| \le 10^{-5})$ over the simulation.
+    * G‑E1.3: $(\dot\Sigma/E_0 \le 10^{-3})$ per interaction time.
 
 * **E2: Three‑kink string / confinement meter (J+M)**
 
   * **What:** Initialize three kinks forming a “string” (two outer, one inner) with Berry curvature lines forming a flux tube. Activate M‑limb with tuned friction/plasticity (using metriplectic parameters that passed earlier structure/causality meters).
   * **Inputs:** Same lattice and J‑parameters as E1; M‑parameters scanned along a 1D slice.
-  * **Outputs:** Effective potential between outer kinks (V_{\text{eff}}(r)); string tension estimate (\sigma); curvature and entropy maps; bound‑state lifetimes.
+  * **Outputs:** Effective potential between outer kinks $(V_{\text{eff}}(r))$; string tension estimate $(\sigma)$; curvature and entropy maps; bound‑state lifetimes.
   * **Gates for E2:**
 
-    * G‑E2.1: Linear potential region with (R^2 \ge 0.98) for (V_{\text{eff}}(r)) vs (r) over a nontrivial interval.
+    * G‑E2.1: Linear potential region with $(R^2 \ge 0.98)$ for $(V_{\text{eff}}(r))$ vs $(r)$ over a nontrivial interval.
     * G‑E2.2: Turning M‑limb off (same initial data, same J‑params) removes the linear region or destabilizes the bound state.
     * G‑E2.3: Bound states are long‑lived relative to microscopic timescales (lifetime ≥ 50–100 oscillation periods).
 
 * **E3: Sector‑transition scan**
 
-  * **What:** Systematically scan a 2D grid in ((\lambda_{\text{J}}, \lambda_{\text{M}})) or, more simply, a 1D path in (\lambda_{\text{M}}) at fixed J, recording whether E1‑type (Coulomb) or E2‑type (confining) behavior dominates.
+  * **What:** Systematically scan a 2D grid in $((\lambda_{\text{J}}, \lambda_{\text{M}}))$ or, more simply, a 1D path in $(\lambda_{\text{M}})$ at fixed J, recording whether E1‑type (Coulomb) or E2‑type (confining) behavior dominates.
   * **Gates for E3:**
 
     * G‑E3.1: Identify a contiguous parameter interval where E1 gates pass and E2 gates fail (Coulomb sector).
