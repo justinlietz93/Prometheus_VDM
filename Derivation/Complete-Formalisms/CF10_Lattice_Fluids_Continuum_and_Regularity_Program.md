@@ -40,7 +40,7 @@ $$
 
 ### 1.2 Update Rule (Metriplectic Form)
 
-Write the LBM update (or your `lbm2d.py` kernel) as:
+Write the LBM update (or the `lbm2d.py` kernel) as:
 
 $$
 f_i^{n+1}(x+c_i\Delta t) = f_i^n(x) + \Delta t \left( J_i[f] + M_i[f] \right),
@@ -150,7 +150,7 @@ $$
 
 **Gate F1.2 (Hydrodynamic Limit Derivation)**  
 
-- Recast your `fluids_limit.md` and existing LBM derivation into a fully explicit Chapman–Enskog derivation, *for the exact kernels used*.
+- Recast the `fluids_limit.md` and existing LBM derivation into a fully explicit Chapman–Enskog derivation, *for the exact kernels used*.
 - Check there are **no hidden tunings** beyond:
   - choice of equilibrium,
   - choice of relaxation times.
@@ -255,7 +255,7 @@ Together, these imply:
 
 **Interpretation:**  
 
-This is the NS‑side translation of your A8 principle:
+This is the NS‑side translation of the A8 principle:
 
 - each cascade step creates additional “interface area” (higher $k$ ⇒ higher $2^k$ weight),
 - the M‑limb (viscosity) taxes interface area, not volume,
