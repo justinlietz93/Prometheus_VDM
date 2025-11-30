@@ -225,6 +225,7 @@ $$
 **Walker routing correspondence:**
 
 The void walker softmax routing:
+
 $$
 \text{logit}_j = \theta_{\text{mem}} \cdot m[j] - \rho_{\text{trail}} \cdot h_{\text{trail}}[j] + \gamma_{\text{heat}} \cdot h[j], \quad P(i \to j) \propto \exp(\text{logit}_j / \tau)
 $$
@@ -316,6 +317,7 @@ $$
 **Implementation:** [`vdm_rt/core/fum_sie.py`](vdm_rt/core/fum_sie.py) (298 LOC)
 
 **Valence computation:**
+
 $$
 \text{valence} = w_{\text{TD}} \cdot \delta_{\text{TD}} + w_{\text{nov}} \cdot N(s) + w_{\text{self}} \cdot (1 - \rho)
 $$
