@@ -37,6 +37,7 @@ __pycache__
 *.idea
 *.sublime-project
 *.sublime-workspace
+Derivation/References/*.pdf
 
 # Ignore vscode AI rules
 .github/copilot-instructions.md

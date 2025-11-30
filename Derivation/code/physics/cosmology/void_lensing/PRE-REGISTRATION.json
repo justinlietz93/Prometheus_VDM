@@ -1,0 +1,44 @@
+{
+  "proposal_title": "T2 (Instrument) – Void Lensing Cross-Correlation Meter v1",
+  "tier_grade": "T2",
+  "commit": "<git-sha>",
+  "salted_provenance": "<salted hash of prereg + proposal manifest>",
+  "contact": ["Justin K. Lietz <justin@neuroca.ai>"],
+
+  "hypotheses": [
+    {
+      "id": "H1",
+      "statement": "On mocks with known wall profiles, the meter recovers stacked wall slopes with coefficient of determination R^2_wall >= 0.98 in the designated wall region.",
+      "direction": "increase"
+    },
+    {
+      "id": "H2",
+      "statement": "On mocks with and without compensation shoulders, the shoulder-detection classifier achieves AUROC_sh >= 0.90.",
+      "direction": "increase"
+    },
+    {
+      "id": "H3",
+      "statement": "On mock suites with known interface-count scaling exponents β, the meter’s estimate of β is unbiased within |β_est - β_true| <= 0.1 over the targeted radial range.",
+      "direction": "no-change"
+    }
+  ],
+
+  "variables": {
+    "independent": ["backend", "z_bin", "R_v_bin"],
+    "dependent": ["R2_wall", "AUROC_sh", "beta_interface"],
+    "controls": ["n_radial_bins", "eb_purification", "mask_strategy", "n_z_model"]
+  },
+
+  "pass_fail": [
+    { "metric": "R2_wall", "operator": ">=", "threshold": 0.98, "unit": "dimensionless" },
+    { "metric": "AUROC_sh", "operator": ">=", "threshold": 0.90, "unit": "dimensionless" },
+    { "metric": "beta_bias", "operator": "<=", "threshold": 0.10, "unit": "dimensionless" }
+  ],
+
+  "spec_refs": [
+    "Derivation/code/physics/cosmology/void_lensing/specs/void_lensing_meter-mocks-v1.json",
+    "Derivation/code/physics/cosmology/void_lensing/specs/void_lensing_meter-data-v1.json"
+  ],
+
+  "registration_timestamp": "<ISO-8601>"
+}

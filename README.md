@@ -66,6 +66,7 @@
 - **October, 2024**  
   - Initial realization of the idea.
 
+
 ### 🗺️ Roadmap (Oct~Dec 2025)
 - TLDR:
   1. Finishing a few algebraic proofs (CF1/QGT, Schrödingerization, T^μν_void).

@@ -10,6 +10,22 @@ from __future__ import annotations
 
 from typing import Any, Optional
 import sys
+from pathlib import Path
+
+# Ensure Derivation/code is on sys.path so 'common' imports resolve when tests
+# are invoked from the repository root without PYTHONPATH adjustments.
+_THIS_FILE = Path(__file__).resolve()
+_DERIVATION_ROOT = None
+for parent in _THIS_FILE.parents:
+    if parent.name == "Derivation":
+        _DERIVATION_ROOT = parent
+        break
+
+if _DERIVATION_ROOT is not None:
+    _CODE_ROOT = _DERIVATION_ROOT / "code"
+    _code_str = str(_CODE_ROOT)
+    if _code_str not in sys.path:
+        sys.path.insert(0, _code_str)
 
 # Import the DB helper
 from common.data import results_db as _rdb  # type: ignore
