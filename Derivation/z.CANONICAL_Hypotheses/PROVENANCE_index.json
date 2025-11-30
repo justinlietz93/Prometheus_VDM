@@ -1,10 +1,10 @@
 {
-  "generated_utc": "2025-11-19T09:19:11.853821Z",
+  "generated_utc": "2025-11-30T17:26:19.718847Z",
   "items": [
     {
       "path": "Derivation/z.CANONICAL_Hypotheses/00_HYPOTHESES.md",
-      "sha256": "b7823f5d9bf98d1cdec377aec33cc4ec6ea2cec9e7b43b1eef211fd441a87cb9",
-      "size": 11645
+      "sha256": "f1d1b9b3519f498dac2e58eedc0580f492bc77504ac0400782ce3681cc44c729",
+      "size": 19793
     },
     {
       "path": "Derivation/z.CANONICAL_Hypotheses/README.md",

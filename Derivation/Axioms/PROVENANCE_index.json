@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2025-11-19T09:19:11.853821Z",
+  "generated_utc": "2025-11-30T17:26:19.718847Z",
   "items": [
     {
       "path": "Derivation/Axioms/A8_Hierarchy_Gates/T3_PROPOSAL_A8_Hierarchy_Gates_v1.md",
@@ -38,8 +38,8 @@
     },
     {
       "path": "Derivation/Axioms/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md",
-      "sha256": "6e54f45f55f216c8e3f627b70c3ce28423e3cab0cbe9ca8d6662c785973ef685",
-      "size": 20855
+      "sha256": "325e6c0291645b8f456bb5d9dae160784a3399da7ff256d0140d959b1b5830e7",
+      "size": 21184
     }
   ],
   "root": "Derivation/Axioms",

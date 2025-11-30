@@ -1,10 +1,15 @@
 {
-  "generated_utc": "2025-11-19T09:19:11.853821Z",
+  "generated_utc": "2025-11-30T17:26:19.718847Z",
   "items": [
     {
       "path": "Derivation/z.CANONICAL_Roadmap/00_ROADMAP.md",
       "sha256": "0a45d305dd49681825cd693b36647bb0311b3edb1eeae744597da437bf45185d",
       "size": 44934
+    },
+    {
+      "path": "Derivation/z.CANONICAL_Roadmap/Current_TODO.md",
+      "sha256": "4f97c9d1e8f575ae83add324c0b3a4b8df709795efa08d1f1cbc06621d1dcab4",
+      "size": 8526
     },
     {
       "path": "Derivation/z.CANONICAL_Roadmap/README.md",

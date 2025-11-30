@@ -1,6 +1,21 @@
 {
-  "generated_utc": "2025-11-19T09:19:11.853821Z",
+  "generated_utc": "2025-11-30T17:26:19.718847Z",
   "items": [
+    {
+      "path": "Derivation/Reaction_Diffusion/Chemoenzymatic/T2_PROPOSAL_Chemoenzymatic_RD_Local-Inhib_Distal-Act_v1.md",
+      "sha256": "3d10063d0e01cbf809c8b3403921cafcc055898014cab5c638e6ad25873b02ca",
+      "size": 6433
+    },
+    {
+      "path": "Derivation/Reaction_Diffusion/Fingerprint_Schnakenberg/T2_PROPOSAL_Fingerprint_RD_Pattern-Meter_v1.md",
+      "sha256": "f5f199e818c42ff7ee753d59e0634e736811cc80b24b61254ac949843f1cfce1",
+      "size": 4748
+    },
+    {
+      "path": "Derivation/Reaction_Diffusion/Stochastic_Nonlocal/T2_PROPOSAL_Stochastic_Nonlocal_RD_LongTerm_v1.md",
+      "sha256": "74216814dea89e79443df7e688408e697d110dd66ed0d03285544d206f3a48c3",
+      "size": 4631
+    },
     {
       "path": "Derivation/Reaction_Diffusion/rd_dispersion_validation.md",
       "sha256": "7bc8794465e64b4c5a5b2f45457b7f36c56d94ef6397bfc56f3298e5316d9776",
