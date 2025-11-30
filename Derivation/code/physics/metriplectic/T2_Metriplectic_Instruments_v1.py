@@ -43,6 +43,9 @@ from common.data.results_db import (
     end_run_failed,
 )
 from common.validation_gate_helpers import metriplectic_core as vgm
+from physics.metriplectic.run_kg_light_cone import ConeSpec, run_cone
+from physics.metriplectic.run_kg_dispersion import DispersionSpec, run_dispersion
+from physics.metriplectic.run_kg_energy_oscillation import Spec as EnergyOscSpec, run as run_energy_osc
 
 
 @dataclass
@@ -153,17 +156,77 @@ def _build_provenance_receipts(tag: str, seeds: List[int], gate_outcomes: Dict[s
     return receipts
 
 
-def _run_single_meter(cfg: MeterRunConfig, approved: bool, engineering_only: bool, proposal: str | None) -> Dict[str, Any]:
-    """Execute a single metriplectic meter using gate helpers + skeleton artifacts.
+def _to_cone_spec(cfg: MeterRunConfig, params: ds_metriplectic.MetriplecticParams) -> ConeSpec:
+    """Map a meters-EBN entry to the KG light-cone ConeSpec."""
+    import numpy as np
 
-    Notes
-    -----
-    - This is still Phase-1.1: we do **not** yet run the full KG/RD/FRW solvers here.
-      Instead, we exercise the **gate helpers** with canonical passing values so that
-      the meters-ebn approval + provenance pipeline is fully wired.
-    - Physics runners (KG cone/dispersion/energy osc, identity meter) remain the
-      single-source implementations of the actual PDE diagnostics; this runner
-      focuses on EBN tagging, approvals, receipts, and gate-helper integration.
+    N = params.N or int(cfg.params.get("N", 512))
+    L = float(cfg.params.get("L", 2.0 * np.pi))
+    return ConeSpec(
+        N=N,
+        L=L,
+        c=params.c or float(cfg.params.get("c", 1.0)),
+        m=params.m or float(cfg.params.get("m", 1.0)),
+        A=float(cfg.params.get("A", 1e-4)),
+        dt=params.dt or float(cfg.params.get("dt", 0.0025)),
+        steps=int(cfg.params.get("steps", 4000)),
+        sigma_frac=float(cfg.params.get("sigma_frac", 0.01)),
+        threshold_rel=float(cfg.params.get("threshold_rel", 1e-6)),
+        tag=cfg.tag,
+    )
+
+
+def _to_dispersion_spec(cfg: MeterRunConfig, params: ds_metriplectic.MetriplecticParams) -> DispersionSpec:
+    """Map a meters-EBN entry to the KG dispersion DispersionSpec."""
+    import numpy as np
+
+    N = params.N or int(cfg.params.get("N", 512))
+    L = float(cfg.params.get("L", 2.0 * np.pi))
+    return DispersionSpec(
+        N=N,
+        L=L,
+        c=params.c or float(cfg.params.get("c", 1.0)),
+        m=params.m or float(cfg.params.get("m", 1.0)),
+        A=float(cfg.params.get("A", 1e-6)),
+        dt=params.dt or float(cfg.params.get("dt", 0.01)),
+        steps=int(cfg.params.get("steps", 8000)),
+        modes=tuple(cfg.params.get("modes", (1, 2, 3, 4, 5, 6, 8, 10))),
+        tag=cfg.tag,
+    )
+
+
+def _to_energy_osc_spec(cfg: MeterRunConfig, params: ds_metriplectic.MetriplecticParams) -> EnergyOscSpec:
+    """Map a meters-EBN entry to the KG energy-oscillation Spec."""
+    import numpy as np
+
+    N = params.N or int(cfg.params.get("N", 512))
+    dx_default = (2.0 * np.pi) / float(N)
+    dx = float(cfg.params.get("dx", dx_default))
+    c = params.c or float(cfg.params.get("c", 1.0))
+    m = params.m or float(cfg.params.get("m", 0.0))
+    return EnergyOscSpec(
+        N=N,
+        dx=dx,
+        c=c,
+        m=m,
+        seed_scale=float(cfg.params.get("seed_scale", 1e-3)),
+        bands=cfg.params.get("bands", [(1, 3), (4, 8)]),
+        seeds_per_band=int(cfg.params.get("seeds_per_band", 2)),
+        checkpoints=cfg.params.get("checkpoints", [10, 20, 40]),
+        tag=cfg.tag,
+        steps=int(cfg.params.get("steps", 400)),
+        dt_strategy=str(cfg.params.get("dt_strategy", "discrete_omega_max_geometric")),
+        dt_ladder_count=int(cfg.params.get("dt_ladder_count", 5)),
+    )
+
+
+def _run_single_meter(cfg: MeterRunConfig, approved: bool, engineering_only: bool, proposal: str | None) -> Dict[str, Any]:
+    """Execute a single metriplectic meter.
+
+    For KG meters we delegate to the dedicated physics runners and treat this
+    file as an aggregator over their gate verdicts and provenance. For meters
+    that do not yet have a dedicated runner (e.g. identity) we fall back to
+    gate helpers + skeleton artifacts.
     """
     quarantine = engineering_only or (not approved)
 
@@ -172,98 +235,110 @@ def _run_single_meter(cfg: MeterRunConfig, approved: bool, engineering_only: boo
     resolved_params_dict = ds_metriplectic.params_as_dict(resolved_params)
     seeds = cfg.seeds or (resolved_params.seeds or [])
 
-    # ------------------------------------------------------------------
-    # Gate helper calls per meter name (synthetic but canon-consistent).
-    # ------------------------------------------------------------------
     meter_gate_outcomes: Dict[str, Any] = {}
     passed_physics = False
+    figp = None
+    csvp = None
+    use_skeleton = False
 
-    if cfg.name == "kg_cone":
-        # Use canonical KG cone gate: v <= c (1 + eps), R2 >= R2_min
-        c = float(resolved_params.c)
-        eps = float(cfg.params.get("eps", 0.02))
-        R2_min = float(cfg.params.get("R2_min", 0.999))
-        # Phase-1.1: use idealized passing values; underlying KG cone runner
-        # provides the actual physics implementation.
-        v = c  # v/c = 1
-        R2 = 1.0
-        passed_local, metrics = vgm.gate_kg_cone_speed(
-            v=v,
-            c=c,
-            eps=eps,
-            R2=R2,
-            R2_min=R2_min,
-        )
-        passed_physics = bool(passed_local)
-        meter_gate_outcomes["kg_cone_speed"] = metrics
+    try:
+        if cfg.name == "kg_cone":
+            spec_cone = _to_cone_spec(cfg, resolved_params)
+            cone_log = run_cone(spec_cone, approved=approved, engineering_only=engineering_only, proposal=proposal)
+            gate_block = (cone_log.get("gate") or {})
+            fit_block = (cone_log.get("fit") or {})
+            passed_physics = bool(gate_block.get("physical_passed", gate_block.get("passed", False)))
+            meter_gate_outcomes["kg_light_cone_speed"] = {
+                "passed": bool(gate_block.get("passed", passed_physics)),
+                "physical_passed": bool(gate_block.get("physical_passed", passed_physics)),
+                "provenance_ok": bool(gate_block.get("provenance_ok", True)),
+                "speed": fit_block.get("speed"),
+                "intercept": fit_block.get("intercept"),
+                "R2": fit_block.get("R2"),
+            }
+            figp = cone_log.get("figure")
+            csvp = cone_log.get("csv")
 
-    elif cfg.name == "kg_energy_osc":
-        # Use KG energy oscillation scaling gate:
-        # p in [p_min, p_max], R2 >= R2_min, rel_AH_min_dt <= rel_AH_max
-        p = 2.0
-        p_min = float(cfg.params.get("p_min", 1.95))
-        p_max = float(cfg.params.get("p_max", 2.05))
-        R2 = 1.0
-        R2_min = float(cfg.params.get("R2_min", 0.999))
-        rel_AH_min_dt = 1e-5
-        rel_AH_max = float(cfg.params.get("rel_AH_max", 1e-4))
-        passed_local, metrics = vgm.gate_kg_energy_osc_scaling(
-            p=p,
-            p_min=p_min,
-            p_max=p_max,
-            R2=R2,
-            R2_min=R2_min,
-            rel_AH_min_dt=rel_AH_min_dt,
-            rel_AH_max=rel_AH_max,
-        )
-        passed_physics = bool(passed_local)
-        meter_gate_outcomes["kg_energy_osc_scaling"] = metrics
+        elif cfg.name == "kg_dispersion":
+            spec_disp = _to_dispersion_spec(cfg, resolved_params)
+            disp_log = run_dispersion(spec_disp, approved=approved, engineering_only=engineering_only, proposal=proposal)
+            gate_block = (disp_log.get("gate") or {})
+            fit_block = (disp_log.get("fit") or {})
+            passed_physics = bool(gate_block.get("physical_passed", gate_block.get("passed", False)))
+            meter_gate_outcomes["kg_dispersion_fit"] = {
+                "passed": bool(gate_block.get("passed", passed_physics)),
+                "physical_passed": bool(gate_block.get("physical_passed", passed_physics)),
+                "provenance_ok": bool(gate_block.get("provenance_ok", True)),
+                "R2": fit_block.get("R2"),
+                "rel_slope": fit_block.get("rel_slope"),
+                "rel_intercept": fit_block.get("rel_intercept"),
+            }
+            figp = disp_log.get("figure")
+            csvp = disp_log.get("csv")
 
-    elif cfg.name == "identity":
-        # Metriplectic identity meter: Lyapunov + degeneracy gates.
-        delta_Lh_max = -1e-8
-        delta_Lh_max_allowed = float(cfg.params.get("delta_Lh_max_allowed", 0.0))
-        slope = 3.0
-        slope_min = float(cfg.params.get("slope_min", 2.9))
-        R2 = 1.0
-        R2_min = float(cfg.params.get("R2_min", 0.999))
-        lyap_pass, lyap_metrics = vgm.gate_metriplectic_lyapunov(
-            delta_Lh_max=delta_Lh_max,
-            delta_Lh_max_allowed=delta_Lh_max_allowed,
-            slope=slope,
-            slope_min=slope_min,
-            R2=R2,
-            R2_min=R2_min,
-        )
-        g1 = 1e-13
-        g2 = 1e-13
-        eps = float(cfg.params.get("deg_eps", 1e-12))
-        deg_pass, deg_metrics = vgm.gate_metriplectic_degeneracy(
-            g1=g1,
-            g2=g2,
-            eps=eps,
-        )
-        meter_gate_outcomes["metriplectic_lyapunov"] = lyap_metrics
-        meter_gate_outcomes["metriplectic_degeneracy"] = deg_metrics
-        passed_physics = bool(lyap_pass and deg_pass)
+        elif cfg.name == "kg_energy_osc":
+            spec_energy = _to_energy_osc_spec(cfg, resolved_params)
+            eosc_log = run_energy_osc(spec_energy, approved=approved, engineering_only=engineering_only, proposal=proposal)
+            gate_block = (eosc_log.get("gate") or {})
+            fit_block = (eosc_log.get("fit") or {})
+            passed_physics = bool(gate_block.get("physical_passed", gate_block.get("passed", False)))
+            meter_gate_outcomes["kg_energy_osc_fit"] = {
+                "passed": bool(gate_block.get("passed", passed_physics)),
+                "physical_passed": bool(gate_block.get("physical_passed", passed_physics)),
+                "provenance_ok": bool(gate_block.get("provenance_ok", True)),
+                "p": fit_block.get("p"),
+                "R2": fit_block.get("R2"),
+                "rel_AH_min_dt": gate_block.get("rel_AH_min_dt"),
+                "rel_AH_min_dt_value": gate_block.get("rel_AH_min_dt_value"),
+            }
+            figp = eosc_log.get("figure")
+            csvp = eosc_log.get("csv")
 
-    elif cfg.name == "kg_dispersion":
-        # Dispersion meters are implemented and gated in their dedicated runner.
-        # Here we simply record that the dispersion gate is conceptually in PASS
-        # regime for the baseline EBN spec.
-        passed_physics = True
-        meter_gate_outcomes["kg_dispersion_placeholder"] = {
-            "passed": True,
-            "note": "Phase-1.1 stub; KG dispersion gate exercised in dedicated runner.",
-        }
+        elif cfg.name == "identity":
+            # Metriplectic identity meter: Lyapunov + degeneracy gates (still Phase-1.1 stub).
+            delta_Lh_max = -1e-8
+            delta_Lh_max_allowed = float(cfg.params.get("delta_Lh_max_allowed", 0.0))
+            slope = 3.0
+            slope_min = float(cfg.params.get("slope_min", 2.9))
+            R2 = 1.0
+            R2_min = float(cfg.params.get("R2_min", 0.999))
+            lyap_pass, lyap_metrics = vgm.gate_metriplectic_lyapunov(
+                delta_Lh_max=delta_Lh_max,
+                delta_Lh_max_allowed=delta_Lh_max_allowed,
+                slope=slope,
+                slope_min=slope_min,
+                R2=R2,
+                R2_min=R2_min,
+            )
+            g1 = 1e-13
+            g2 = 1e-13
+            eps = float(cfg.params.get("deg_eps", 1e-12))
+            deg_pass, deg_metrics = vgm.gate_metriplectic_degeneracy(
+                g1=g1,
+                g2=g2,
+                eps=eps,
+            )
+            meter_gate_outcomes["metriplectic_lyapunov"] = lyap_metrics
+            meter_gate_outcomes["metriplectic_degeneracy"] = deg_metrics
+            passed_physics = bool(lyap_pass and deg_pass)
+            use_skeleton = True
 
-    else:
-        # Unknown meter name -> explicit failure.
+        else:
+            # Unknown meter name -> explicit failure and skeleton artifacts.
+            passed_physics = False
+            meter_gate_outcomes["unrecognized_meter"] = {
+                "passed": False,
+                "reason": f"Unknown meter name {cfg.name!r} in T2_Metriplectic_Instruments_v1.",
+            }
+            use_skeleton = True
+    except Exception as exc:  # pragma: no cover - defensive
         passed_physics = False
-        meter_gate_outcomes["unrecognized_meter"] = {
+        meter_gate_outcomes["exception"] = {
             "passed": False,
-            "reason": f"Unknown meter name {cfg.name!r} in T2_Metriplectic_Instruments_v1.",
+            "reason": str(exc),
+            "meter": cfg.name,
         }
+        use_skeleton = True
 
     # Build Phase-0 receipts including gate_outcomes
     receipts = _build_provenance_receipts(cfg.tag, seeds, meter_gate_outcomes)
@@ -273,16 +348,17 @@ def _run_single_meter(cfg: MeterRunConfig, approved: bool, engineering_only: boo
     passed = bool(passed_physics and provenance_ok)
     failed_flag = (not passed) or quarantine
 
-    # Artifacts: delegate to common.instrument_helpers so the runner
-    # does not embed plotting / CSV logic directly.
-    artifacts = skeleton_metriplectic_meter_artifacts(
-        cfg.name,
-        cfg.tag,
-        cfg.params,
-        failed_flag,
-    )
-    figp = artifacts.get("figure")
-    csvp = artifacts.get("csv")
+    # Artifacts: for meters without a dedicated runner (or on failure), fall back
+    # to the skeleton helper so IO routing remains consistent.
+    if use_skeleton or figp is None or csvp is None:
+        artifacts = skeleton_metriplectic_meter_artifacts(
+            cfg.name,
+            cfg.tag,
+            cfg.params,
+            failed_flag,
+        )
+        figp = artifacts.get("figure")
+        csvp = artifacts.get("csv")
 
     # JSON log
     logj: Dict[str, Any] = {
@@ -304,8 +380,8 @@ def _run_single_meter(cfg: MeterRunConfig, approved: bool, engineering_only: boo
             "quarantined": bool(quarantine),
             "proposal": proposal,
         },
-        "figure": str(figp),
-        "csv": str(csvp),
+        "figure": str(figp) if figp is not None else None,
+        "csv": str(csvp) if csvp is not None else None,
     }
     logj.update(receipts)
 
@@ -366,7 +442,7 @@ def _run_single_meter(cfg: MeterRunConfig, approved: bool, engineering_only: boo
                 end_run_failed(handle, metrics={"passed": True})
         else:
             end_run_failed(handle, metrics={"passed": False})
-    except Exception as _e:
+    except Exception as _e:  # pragma: no cover - defensive
         _ = _e
 
     return logj
