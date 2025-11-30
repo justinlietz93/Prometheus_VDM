@@ -12,7 +12,7 @@
 > <a href="https://orcid.org/0009-0008-9028-1366"><img src="https://img.shields.io/badge/ORCID-0009--0008--9028--1366-blue?" alt="ORCID: 0009-0008-9028-1366"></a>  
 > 
 > **Created:** August 9, 2025  
-> **Last Updated:** November 9, 2025  
+> **Last Updated:** November 30, 2025  
 >
 > This research is protected under a dual-license to foster open academic  
 > research while ensuring commercial applications are aligned with the project's ethical principles.  
@@ -26,6 +26,8 @@
 
 ## 🔥News
 
+- **November 30, 2025**
+  - Building a Void Lensing Cross Correlation Meter to predict the geometry of cosmological void interfaces as a part of the VDM unification roadmap.
 - **November 10, 2025**
   - Published results from the Counterfactual Echo Gain test to [Zenodo](https://doi.org/10.5281/zenodo.17567396)
 - **November 9, 2025**
