@@ -1,10 +1,10 @@
 {
-  "generated_utc": "2025-11-19T08:06:41.463526Z",
+  "generated_utc": "2025-11-30T17:26:19.718847Z",
   "items": [
     {
       "path": "Derivation/z.CANONICAL_Equations/00_EQUATIONS.md",
-      "sha256": "b5b3552f2cda85f12d832d86dc7acda944ae8637765cbbe36b628cac073d0680",
-      "size": 97587
+      "sha256": "1809452188566e8426e2e8a1a0c49f720c903430ed87bba99aa6f8377f37b247",
+      "size": 97888
     }
   ],
   "root": "Derivation/z.CANONICAL_Equations",

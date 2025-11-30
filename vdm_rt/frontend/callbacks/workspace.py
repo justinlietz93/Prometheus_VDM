@@ -1,0 +1,71 @@
+"""
+Copyright © 2025 Justin K. Lietz, Neuroca, Inc. All Rights Reserved.
+
+This research is protected under a dual-license to foster open academic
+research while ensuring commercial applications are aligned with the project's ethical principles.
+
+Commercial use of proprietary VDM code requires written permission from Justin K. Lietz.
+See LICENSE file for full terms.
+"""
+from __future__ import annotations
+
+from typing import List
+from dash import Input, Output, State, no_update  # noqa: F401 (bound by Dash at runtime)
+from vdm_rt.frontend.utilities.fs_utils import list_runs
+
+
+def register_workspace_callbacks(app, runs_root: str, manager):
+    """
+    Workspace-level callbacks:
+      - Refresh run list (options + default selection)
+      - Use current managed run
+      - Use latest run under a root
+    """
+
+    @app.callback(
+        Output("run-dir", "options", allow_duplicate=True),
+        Output("run-dir", "value", allow_duplicate=True),
+        Input("refresh-runs", "n_clicks"),
+        State("runs-root", "value"),
+        prevent_initial_call=True,
+    )
+    def on_refresh_runs(_n, root):
+        root = root or runs_root
+        opts = [{"label": p, "value": p} for p in list_runs(root)]
+        val = opts[0]["value"] if opts else ""
+        return opts, val
+
+    @app.callback(
+        Output("run-dir", "value", allow_duplicate=True),
+        Input("use-current-run", "n_clicks"),
+        prevent_initial_call=True,
+    )
+    def on_use_current(_n):
+        return manager.current_run_dir or no_update
+
+    @app.callback(
+        Output("run-dir", "value", allow_duplicate=True),
+        Input("use-latest-run", "n_clicks"),
+        State("runs-root", "value"),
+        prevent_initial_call=True,
+    )
+    def on_use_latest(_n, root):
+        r = root or runs_root
+        rs = list_runs(r)
+        return rs[0] if rs else no_update
+
+    # Sync runs-root dropdown -> text input and refresh run list
+    @app.callback(
+        Output("runs-root", "value"),
+        Output("run-dir", "options", allow_duplicate=True),
+        Output("run-dir", "value", allow_duplicate=True),
+        Input("runs-root-select", "value"),
+        prevent_initial_call=True,
+    )
+    def on_runs_root_select(val):
+        r = (val or "").strip()
+        if not r:
+            return no_update, no_update, no_update
+        opts = [{"label": p, "value": p} for p in list_runs(r)]
+        v = opts[0]["value"] if opts else ""
+        return r, opts, v

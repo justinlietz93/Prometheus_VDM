@@ -1,0 +1,508 @@
+{
+  "index": [
+    {
+      "category": "00_latticework_synthesis",
+      "domains": [
+        {
+          "domain": "Mental Models",
+          "sub_domains": [
+            "Recursion & Self-Reference"
+          ]
+        },
+        {
+          "domain": "Systems Thinking",
+          "sub_domains": [
+            "Systems Analysis"
+          ]
+        },
+        {
+          "domain": "Decision Making",
+          "sub_domains": [
+            "Forecasting & Prediction"
+          ]
+        },
+        {
+          "domain": "Risk & Uncertainty",
+          "sub_domains": [
+            "Epistemology"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "01_natural_sciences",
+      "domains": [
+        {
+          "domain": "Physics",
+          "sub_domains": [
+            "Classical Mechanics",
+            "Thermodynamics",
+            "Electromagnetism",
+            "Quantum Mechanics",
+            "String Theory",
+            "Chaos Theory",
+            "Relativity",
+            "Materials Science",
+            "Nuclear Physics"
+          ]
+        },
+        {
+          "domain": "Chemistry",
+          "sub_domains": [
+            "Organic & Inorganic",
+            "Biochemistry"
+          ]
+        },
+        {
+          "domain": "Geology",
+          "sub_domains": [
+            "Plate Tectonics",
+            "Paleontology",
+            "Uniformitarianism"
+          ]
+        },
+        {
+          "domain": "Astronomy",
+          "sub_domains": [
+            "Cosmology",
+            "Astrophysics",
+            "Heliocentrism"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "02_life_sciences",
+      "domains": [
+        {
+          "domain": "Biology",
+          "sub_domains": [
+            "Evolution & Genetics",
+            "Molecular & Cell Biology",
+            "Bioenergetics",
+            "Biophysics",
+            "Microbiology",
+            "Immunology",
+            "Virology"
+          ]
+        },
+        {
+          "domain": "Ecology",
+          "sub_domains": [
+            "Ecosystems",
+            "Population Dynamics"
+          ]
+        },
+        {
+          "domain": "Neuroscience",
+          "sub_domains": [
+            "Cognitive Neuroscience",
+            "Behavioral Neuroscience"
+          ]
+        },
+        {
+          "domain": "Medicine",
+          "sub_domains": [
+            "Anatomy & Physiology",
+            "Pathology",
+            "Oncology"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "03_formal_sciences",
+      "domains": [
+        {
+          "domain": "Mathematics",
+          "sub_domains": [
+            "Statistics & Probability",
+            "Calculus & Algebra",
+            "Geometry",
+            "Philosophy of Mathematics",
+            "Topology"
+          ]
+        },
+        {
+          "domain": "Logic",
+          "sub_domains": [
+            "Formal & Informal Logic",
+            "Set Theory"
+          ]
+        },
+        {
+          "domain": "Computer Science",
+          "sub_domains": [
+            "Algorithms & Data Structures",
+            "Information Theory",
+            "Computation Theory",
+            "Data Science",
+            "Blockchain"
+          ]
+        },
+        {
+          "domain": "Game Theory",
+          "sub_domains": []
+        }
+      ]
+    },
+    {
+      "category": "04_human_sciences",
+      "domains": [
+        {
+          "domain": "Psychology",
+          "sub_domains": [
+            "Cognitive Psychology",
+            "Social Psychology",
+            "Evolutionary Psychology",
+            "Moral Psychology"
+          ]
+        },
+        {
+          "domain": "Psychiatry & Psychotherapy",
+          "sub_domains": [
+            "Logotherapy"
+          ]
+        },
+        {
+          "domain": "Psychoanalysis",
+          "sub_domains": []
+        },
+        {
+          "domain": "Sociology",
+          "sub_domains": [
+            "Social Networks",
+            "Criminology",
+            "Economic Sociology",
+            "Demography"
+          ]
+        },
+        {
+          "domain": "Criminology",
+          "sub_domains": [
+            "Forensic Science"
+          ]
+        },
+        {
+          "domain": "Anthropology",
+          "sub_domains": [
+            "Cultural Anthropology"
+          ]
+        },
+        {
+          "domain": "Economics",
+          "sub_domains": [
+            "Microeconomics & Macroeconomics",
+            "Behavioral Economics",
+            "Classical Economics"
+          ]
+        },
+        {
+          "domain": "Political Science",
+          "sub_domains": [
+            "Political Theory",
+            "International Relations",
+            "Statecraft"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "05_humanities",
+      "domains": [
+        {
+          "domain": "Philosophy",
+          "sub_domains": [
+            "Ethics & Morality",
+            "Epistemology (Theory of Knowledge)",
+            "Metaphysics",
+            "Philosophy of Science",
+            "Aesthetics",
+            "Political Philosophy",
+            "Stoicism"
+          ]
+        },
+        {
+          "domain": "History",
+          "sub_domains": [
+            "Ancient & Modern History",
+            "Military History"
+          ]
+        },
+        {
+          "domain": "History & Philosophy of Science",
+          "sub_domains": [
+            "Paradigm Shifts"
+          ]
+        },
+        {
+          "domain": "Linguistics",
+          "sub_domains": [
+            "Language Acquisition",
+            "Semantics"
+          ]
+        },
+        {
+          "domain": "Literature",
+          "sub_domains": [
+            "Poetry & Fiction"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "06_technology_and_computation",
+      "domains": [
+        {
+          "domain": "Engineering",
+          "sub_domains": [
+            "Civil & Mechanical Engineering",
+            "Electrical Engineering"
+          ]
+        },
+        {
+          "domain": "Software Engineering",
+          "sub_domains": [
+            "Project Management"
+          ]
+        },
+        {
+          "domain": "Artificial Intelligence",
+          "sub_domains": [
+            "Machine Learning",
+            "Robotics",
+            "Future Studies"
+          ]
+        },
+        {
+          "domain": "Design",
+          "sub_domains": [
+            "Systems Design",
+            "User Experience (UX)"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "07_skills_and_applications",
+      "domains": [
+        {
+          "domain": "Communication",
+          "sub_domains": [
+            "Rhetoric & Persuasion",
+            "Negotiation",
+            "People Skills"
+          ]
+        },
+        {
+          "domain": "Pedagogy",
+          "sub_domains": [
+            "Learning Theories",
+            "Skill Acquisition"
+          ]
+        },
+        {
+          "domain": "Business & Finance",
+          "sub_domains": [
+            "Management & Strategy",
+            "Accounting & Investing",
+            "Leadership & Ethics"
+          ]
+        },
+        {
+          "domain": "Self-Improvement",
+          "sub_domains": [
+            "Personal Effectiveness"
+          ]
+        },
+        {
+          "domain": "Productivity",
+          "sub_domains": [
+            "Organization"
+          ]
+        },
+        {
+          "domain": "Entrepreneurship",
+          "sub_domains": [
+            "Innovation"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "08_arts_and_aesthetics",
+      "domains": [
+        {
+          "domain": "Visual Arts",
+          "sub_domains": [
+            "Painting & Sculpture"
+          ]
+        },
+        {
+          "domain": "Performing Arts",
+          "sub_domains": [
+            "Theater & Dance"
+          ]
+        },
+        {
+          "domain": "Music",
+          "sub_domains": [
+            "Theory & Composition"
+          ]
+        },
+        {
+          "domain": "Film & Media",
+          "sub_domains": []
+        }
+      ]
+    },
+    {
+      "category": "09_religion_and_theology",
+      "domains": [
+        {
+          "domain": "Comparative Religion",
+          "sub_domains": []
+        },
+        {
+          "domain": "Theology",
+          "sub_domains": [
+            "Monotheism & Polytheism"
+          ]
+        },
+        {
+          "domain": "Mysticism",
+          "sub_domains": []
+        },
+        {
+          "domain": "Secularism & Atheism",
+          "sub_domains": []
+        }
+      ]
+    },
+    {
+      "category": "10_law_and_jurisprudence",
+      "domains": [
+        {
+          "domain": "Constitutional Law",
+          "sub_domains": []
+        },
+        {
+          "domain": "International Law",
+          "sub_domains": []
+        },
+        {
+          "domain": "Criminal Law",
+          "sub_domains": []
+        },
+        {
+          "domain": "Legal Philosophy",
+          "sub_domains": []
+        }
+      ]
+    },
+    {
+      "category": "11_environmental_and_earth_sciences",
+      "domains": [
+        {
+          "domain": "Climate Science",
+          "sub_domains": []
+        },
+        {
+          "domain": "Environmental Policy",
+          "sub_domains": []
+        },
+        {
+          "domain": "Oceanography",
+          "sub_domains": []
+        },
+        {
+          "domain": "Atmospheric Science",
+          "sub_domains": []
+        },
+        {
+          "domain": "Sustainability",
+          "sub_domains": []
+        }
+      ]
+    },
+    {
+      "category": "12_applied_technologies",
+      "domains": [
+        {
+          "domain": "Nanotechnology",
+          "sub_domains": []
+        },
+        {
+          "domain": "Biotechnology",
+          "sub_domains": [
+            "CRISPR"
+          ]
+        },
+        {
+          "domain": "Quantum Computing",
+          "sub_domains": []
+        },
+        {
+          "domain": "Cybersecurity",
+          "sub_domains": []
+        }
+      ]
+    },
+    {
+      "category": "13_cultural_and_regional_studies",
+      "domains": [
+        {
+          "domain": "Area Studies",
+          "sub_domains": []
+        },
+        {
+          "domain": "Gender Studies",
+          "sub_domains": []
+        },
+        {
+          "domain": "Ethnic & Racial Studies",
+          "sub_domains": []
+        }
+      ]
+    },
+    {
+      "category": "14_mythology_and_folklore",
+      "domains": [
+        {
+          "domain": "Comparative Mythology",
+          "sub_domains": []
+        },
+        {
+          "domain": "Folklore Studies",
+          "sub_domains": []
+        }
+      ]
+    },
+    {
+      "category": "15_sports_and_kinesiology",
+      "domains": [
+        {
+          "domain": "Sports Science",
+          "sub_domains": []
+        },
+        {
+          "domain": "Exercise Physiology",
+          "sub_domains": []
+        }
+      ]
+    },
+    {
+      "category": "16_architecture_and_urban_planning",
+      "domains": [
+        {
+          "domain": "Architectural Theory",
+          "sub_domains": []
+        },
+        {
+          "domain": "Urban Design",
+          "sub_domains": []
+        }
+      ]
+    }
+  ]
+}

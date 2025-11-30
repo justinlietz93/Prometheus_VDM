@@ -1,0 +1,34 @@
+name: Provenance Index and Salted Hashes (push)
+
+on:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  provenance:
+    name: Populate provenance indexes and salted hashes
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Populate PROVENANCE_index.json files
+        run: |
+          python tools/provenance/generate_salted_hash.py --populate-provenance-indexes
+
+      # Optional: extend here with any scripted salted-hash updates that operate
+      # over the populated PROVENANCE_index.json entries (for example, stamping
+      # specific preregistration or manifest files). At present, salted hashes
+      # are generated explicitly via targeted calls to generate_salted_hash.py.

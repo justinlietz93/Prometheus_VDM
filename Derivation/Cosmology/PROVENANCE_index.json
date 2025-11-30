@@ -1,15 +1,30 @@
 {
-  "generated_utc": "2025-11-19T08:06:41.463526Z",
+  "generated_utc": "2025-11-30T17:26:19.718847Z",
   "items": [
     {
+      "path": "Derivation/Cosmology/CMB/CMB_proposal_updates.md",
+      "sha256": "a7f4af3a82aef8ee44764c476aa62e1df77dedc8a82989957ee84d6a1edf9223",
+      "size": 11238
+    },
+    {
       "path": "Derivation/Cosmology/CMB/T2_PROPOSAL_EBN_CMB_Pipeline_v1.md",
-      "sha256": "4366d34dcbabe9131b468f2e2e467c49b1d302f180cb44211e5c493d166580ef",
-      "size": 16391
+      "sha256": "397f8a63782bae4fd8f6a31e261188ea250cbba65e23fd7622b96a4843bc1bd6",
+      "size": 18048
     },
     {
       "path": "Derivation/Cosmology/CMB/T3_PROPOSAL_CMB_Hemispherical_Asymmetry_Test_v1.md",
-      "sha256": "e1872ebb7e5d67db9fe2dbde383e01252fb2a07ed2d1abb95eb965187d27548b",
-      "size": 19714
+      "sha256": "5dbe1d2b4112b27e32407daa3871da460cb4936ca45e5f4cd33d0d85e6b6bfc9",
+      "size": 20009
+    },
+    {
+      "path": "Derivation/Cosmology/CMB/T4_PROPOSAL_CMB_Cold_Spot_VDM_Origin_v1.md",
+      "sha256": "78fb9ab3293dd3b1356c730881592f7f7544e2570ae665905569014b2946fca3",
+      "size": 16930
+    },
+    {
+      "path": "Derivation/Cosmology/H0ZZ_HYPOTHESIS_A8_Interface_Seeds_BH_Populations_and_GW_Ladder.md",
+      "sha256": "4570c4a4b2dda4343afc6efa36c7f9a1ab541e8ad5753e5130087bf4a1ce44ff",
+      "size": 12862
     },
     {
       "path": "Derivation/Cosmology/PROPOSAL_FRW_Balance_v1.md",
@@ -48,8 +63,13 @@
     },
     {
       "path": "Derivation/Cosmology/T4_PROPOSAL_Single_Axis_Portal_Modulation_Against_CMB_Power_Tensor_v1.md",
-      "sha256": "3dc1b8ef8a0c37b66c0f559fa7096fde536bee67767804631f4b4729626a930b",
-      "size": 26925
+      "sha256": "ab01cbbd93f92dd8608090ccd2a1bb9ae10cdee66ebb91b0e8412c91ab5eba09",
+      "size": 27063
+    },
+    {
+      "path": "Derivation/Cosmology/Void_Lensing/T2_PROPOSAL_Void_Lensing_CrossCorrelation_Meter_v1.md",
+      "sha256": "151921416ce7cceecab4012e03f53d34ff404e88952e34c0b652c0c8a8bbef37",
+      "size": 33307
     }
   ],
   "root": "Derivation/Cosmology",

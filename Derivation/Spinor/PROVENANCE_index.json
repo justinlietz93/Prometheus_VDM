@@ -1,10 +1,20 @@
 {
-  "generated_utc": "2025-11-19T08:06:41.463526Z",
+  "generated_utc": "2025-11-30T17:26:19.718847Z",
   "items": [
     {
+      "path": "Derivation/Spinor/H005_HYPOTHESIS_Spinor_Emergence_Nielsen_Ninomiya_Defense.md",
+      "sha256": "2b695be59684697ae38cd692a4ff35b1d9ed8775dcd199a5cc1be377ba48a9ee",
+      "size": 15155
+    },
+    {
+      "path": "Derivation/Spinor/RED_TEAM_RESPONSE_Nielsen_Ninomiya.md",
+      "sha256": "d1c220a1c060e8a687cbb5eab8bd6e3acf73f7dfcbaedd7a917dee4311f06fe1",
+      "size": 10864
+    },
+    {
       "path": "Derivation/Spinor/T1_PROPOSAL_Spinor_Emergence_v1.md",
-      "sha256": "30c16a777001b36f99d4aaf65ad9efa48c3e92f888a46bdb78d3c2cab98d5f9c",
-      "size": 9944
+      "sha256": "e3116ff8f53cac48dae25820f708c444dbc07e1230071f074012975e31f11b06",
+      "size": 13881
     }
   ],
   "root": "Derivation/Spinor",

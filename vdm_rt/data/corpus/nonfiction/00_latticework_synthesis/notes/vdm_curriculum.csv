@@ -1,0 +1,250 @@
+overall_rank,phase,phase_name,order_in_phase,index,title,author,category,domain,sub_domain
+1,1,Core: Latticework & Meta-learning,1,20,Thinking in Systems: A Primer,Donella H. Meadows,00_latticework_synthesis,Systems Thinking,Systems Analysis
+2,1,Core: Latticework & Meta-learning,2,43,I Am a Strange Loop,Douglas Hofstadter,00_latticework_synthesis,Mental Models,Recursion & Self-Reference
+3,1,Core: Latticework & Meta-learning,3,105,The Fifth Discipline,Peter Senge,00_latticework_synthesis,Systems Thinking,Systems Analysis
+4,1,Core: Latticework & Meta-learning,4,232,The Limits to Growth,Donella Meadows,00_latticework_synthesis,Systems Thinking,Systems Analysis
+5,1,Core: Latticework & Meta-learning,5,216,Surfaces and Essences,Douglas Hofstadter,00_latticework_synthesis,Mental Models,Recursion & Self-Reference
+6,1,Core: Latticework & Meta-learning,6,9,"Guns, Germs, and Steel",Jared Diamond,00_latticework_synthesis,Systems Thinking,Historical Analysis
+7,1,Core: Latticework & Meta-learning,7,0,Poor Charlie's Almanack,Peter D. Kaufman,00_latticework_synthesis,Mental Models,Decision Making
+8,1,Core: Latticework & Meta-learning,8,1,The Great Mental Models Series,Shane Parrish,00_latticework_synthesis,Mental Models,Systems Thinking
+9,1,Core: Latticework & Meta-learning,9,10,Antifragile: Things That Gain from Disorder,Nassim Nicholas Taleb,00_latticework_synthesis,Systems Thinking,Decision Making
+10,1,Core: Latticework & Meta-learning,10,24,"Gödel, Escher, Bach: An Eternal Golden Braid",Douglas R. Hofstadter,00_latticework_synthesis,Mental Models,Recursion & Self-Reference
+11,1,Core: Latticework & Meta-learning,11,19,Superforecasting: The Art and Science of Prediction,Philip E. Tetlock and Dan Gardner,00_latticework_synthesis,Decision Making,Forecasting & Prediction
+12,1,Core: Latticework & Meta-learning,12,77,The Black Swan: The Impact of the Highly Improbable,Nassim Nicholas Taleb,00_latticework_synthesis,Risk & Uncertainty,Epistemology
+13,2,Formal Sciences (Math/Logic/Stats),1,55,Introduction to Algorithms,Thomas Cormen et al.,03_formal_sciences,Computer Science,Algorithms & Data Structures
+14,2,Formal Sciences (Math/Logic/Stats),2,84,Elements,Euclid,03_formal_sciences,Mathematics,Geometry
+15,2,Formal Sciences (Math/Logic/Stats),3,53,Calculus,Michael Spivak,03_formal_sciences,Mathematics,Calculus & Algebra
+16,2,Formal Sciences (Math/Logic/Stats),4,175,How to Think Straight About Psychology,Keith E. Stanovich,03_formal_sciences,Logic,Formal & Informal Logic
+17,2,Formal Sciences (Math/Logic/Stats),5,116,Being Logical,D.Q. McInerny,03_formal_sciences,Logic,Formal & Informal Logic
+18,2,Formal Sciences (Math/Logic/Stats),6,235,Naked Statistics,Charles Wheelan,03_formal_sciences,Mathematics,Statistics & Probability
+19,2,Formal Sciences (Math/Logic/Stats),7,118,Prisoner's Dilemma,William Poundstone,03_formal_sciences,Game Theory,
+20,2,Formal Sciences (Math/Logic/Stats),8,115,The Shape of Space,Jeffrey Weeks,03_formal_sciences,Mathematics,Topology
+21,2,Formal Sciences (Math/Logic/Stats),9,170,The Bitcoin Standard,Saifedean Ammous,03_formal_sciences,Computer Science,Blockchain
+22,2,Formal Sciences (Math/Logic/Stats),10,54,Principia Mathematica,Bertrand Russell & Alfred North Whitehead,03_formal_sciences,Logic,Set Theory
+23,2,Formal Sciences (Math/Logic/Stats),11,203,"Rock, Paper, Scissors",Len Fisher,03_formal_sciences,Game Theory,
+24,2,Formal Sciences (Math/Logic/Stats),12,87,A Mathematician's Apology,G. H. Hardy,03_formal_sciences,Mathematics,Philosophy of Mathematics
+25,2,Formal Sciences (Math/Logic/Stats),13,117,The Singularity Is Nearer,Ray Kurzweil,03_formal_sciences,Computer Science,Computation Theory
+26,2,Formal Sciences (Math/Logic/Stats),14,219,Weapons of Math Destruction,Cathy O'Neil,03_formal_sciences,Computer Science,Data Science
+27,2,Formal Sciences (Math/Logic/Stats),15,189,The Fractal Geometry of Nature,Benoit Mandelbrot,03_formal_sciences,Mathematics,Geometry
+28,2,Formal Sciences (Math/Logic/Stats),16,86,The Art of Computer Programming,Donald E. Knuth,03_formal_sciences,Computer Science,Algorithms & Data Structures
+29,2,Formal Sciences (Math/Logic/Stats),17,85,Theory of Games and Economic Behavior,John von Neumann & Oskar Morgenstern,03_formal_sciences,Game Theory,
+30,2,Formal Sciences (Math/Logic/Stats),18,39,"The Information: A History, a Theory, a Flood",James Gleick,03_formal_sciences,Computer Science,Information Theory
+31,2,Formal Sciences (Math/Logic/Stats),19,8,The Drunkard's Walk: How Randomness Rules Our Lives,Leonard Mlodinow,03_formal_sciences,Mathematics,Statistics & Probability
+32,2,Formal Sciences (Math/Logic/Stats),20,97,Code: The Hidden Language of Computer Hardware and Software,Charles Petzold,03_formal_sciences,Computer Science,Computation Theory
+33,3,Natural Sciences (Physics/Chemistry),1,81,Principles of Geology,Charles Lyell,01_natural_sciences,Geology,Uniformitarianism
+34,3,Natural Sciences (Physics/Chemistry),2,46,Principles of Chemistry,Linus Pauling,01_natural_sciences,Chemistry,Organic & Inorganic
+35,3,Natural Sciences (Physics/Chemistry),3,7,A Short History of Nearly Everything,Bill Bryson,01_natural_sciences,Physics,Cosmology
+36,3,Natural Sciences (Physics/Chemistry),4,30,Cosmos,Carl Sagan,01_natural_sciences,Astronomy,Cosmology
+37,3,Natural Sciences (Physics/Chemistry),5,109,Wonderful Life,Stephen Jay Gould,01_natural_sciences,Geology,Paleontology
+38,3,Natural Sciences (Physics/Chemistry),6,106,Quantum Supremacy,Michio Kaku,01_natural_sciences,Physics,Quantum Mechanics
+39,3,Natural Sciences (Physics/Chemistry),7,108,The Periodic Table,Primo Levi,01_natural_sciences,Chemistry,Biochemistry
+40,3,Natural Sciences (Physics/Chemistry),8,47,The Story of Earth,Robert Hazen,01_natural_sciences,Geology,Plate Tectonics
+41,3,Natural Sciences (Physics/Chemistry),9,173,Command and Control,Eric Schlosser,01_natural_sciences,Physics,Nuclear Physics
+42,3,Natural Sciences (Physics/Chemistry),10,187,The Disappearing Spoon,Sam Kean,01_natural_sciences,Chemistry,Organic & Inorganic
+43,3,Natural Sciences (Physics/Chemistry),11,31,A Brief History of Time,Stephen Hawking,01_natural_sciences,Astronomy,Cosmology
+44,3,Natural Sciences (Physics/Chemistry),12,217,The Copernican Revolution,Thomas S. Kuhn,01_natural_sciences,Astronomy,Heliocentrism
+45,3,Natural Sciences (Physics/Chemistry),13,233,The Electromagnetic Field,Albert Shadowitz,01_natural_sciences,Physics,Electromagnetism
+46,3,Natural Sciences (Physics/Chemistry),14,6,Chaos: Making a New Science,James Gleick,01_natural_sciences,Physics,Chaos Theory
+47,3,Natural Sciences (Physics/Chemistry),15,107,The Making of the Atomic Bomb,Richard Rhodes,01_natural_sciences,Physics,Nuclear Physics
+48,3,Natural Sciences (Physics/Chemistry),16,201,The Rise and Reign of the Mammals,Steve Brusatte,01_natural_sciences,Geology,Paleontology
+49,3,Natural Sciences (Physics/Chemistry),17,48,Astrophysics for People in a Hurry,Neil deGrasse Tyson,01_natural_sciences,Astronomy,Astrophysics
+50,3,Natural Sciences (Physics/Chemistry),18,80,De Revolutionibus Orbium Coelestium,Nicolaus Copernicus,01_natural_sciences,Astronomy,Heliocentrism
+51,3,Natural Sciences (Physics/Chemistry),19,45,"The Feynman Lectures on Physics, Vol. 1",Richard Feynman,01_natural_sciences,Physics,Thermodynamics
+52,3,Natural Sciences (Physics/Chemistry),20,44,Relativity: The Special and General Theory,Albert Einstein,01_natural_sciences,Physics,Relativity
+53,3,Natural Sciences (Physics/Chemistry),21,33,QED: The Strange Theory of Light and Matter,Richard P. Feynman,01_natural_sciences,Physics,Quantum Mechanics
+54,3,Natural Sciences (Physics/Chemistry),22,78,Philosophiae Naturalis Principia Mathematica,Isaac Newton,01_natural_sciences,Physics,Classical Mechanics
+55,3,Natural Sciences (Physics/Chemistry),23,79,Dialogue Concerning the Two Chief World Systems,Galileo Galilei,01_natural_sciences,Astronomy,Heliocentrism
+56,3,Natural Sciences (Physics/Chemistry),24,32,"The Fabric of the Cosmos: Space, Time, and the Texture of Reality",Brian Greene,01_natural_sciences,Physics,String Theory
+57,4,Life Sciences (Bio/Neuro),1,28,What Is Life?,Erwin Schrödinger,02_life_sciences,Biology,Biophysics
+58,4,Life Sciences (Bio/Neuro),2,111,Immune,Philipp Dettmer,02_life_sciences,Biology,Immunology
+59,4,Life Sciences (Bio/Neuro),3,188,Incognito,David Eagleman,02_life_sciences,Neuroscience,Behavioral Neuroscience
+60,4,Life Sciences (Bio/Neuro),4,174,Half-Earth,E.O. Wilson,02_life_sciences,Ecology,Ecosystems
+61,4,Life Sciences (Bio/Neuro),5,114,Being Mortal,Atul Gawande,02_life_sciences,Medicine,Pathology
+62,4,Life Sciences (Bio/Neuro),6,50,Silent Spring,Rachel Carson,02_life_sciences,Ecology,Population Dynamics
+63,4,Life Sciences (Bio/Neuro),7,52,Gray's Anatomy,Henry Gray,02_life_sciences,Medicine,Anatomy & Physiology
+64,4,Life Sciences (Bio/Neuro),8,218,Missing Microbes,Martin J. Blaser,02_life_sciences,Biology,Microbiology
+65,4,Life Sciences (Bio/Neuro),9,83,The Double Helix,James D. Watson,02_life_sciences,Biology,Molecular & Cell Biology
+66,4,Life Sciences (Bio/Neuro),10,5,The Selfish Gene,Richard Dawkins,02_life_sciences,Biology,Evolution & Genetics
+67,4,Life Sciences (Bio/Neuro),11,153,The Coming Plague,Laurie Garrett,02_life_sciences,Biology,Virology
+68,4,Life Sciences (Bio/Neuro),12,154,An Elegant Defense,Matt Richtel,02_life_sciences,Biology,Immunology
+69,4,Life Sciences (Bio/Neuro),13,113,The Tell-Tale Brain,V.S. Ramachandran,02_life_sciences,Neuroscience,Cognitive Neuroscience
+70,4,Life Sciences (Bio/Neuro),14,112,The Diversity of Life,E.O. Wilson,02_life_sciences,Ecology,Ecosystems
+71,4,Life Sciences (Bio/Neuro),15,234,Consciousness Explained,Daniel C. Dennett,02_life_sciences,Neuroscience,Cognitive Neuroscience
+72,4,Life Sciences (Bio/Neuro),16,82,On the Origin of Species,Charles Darwin,02_life_sciences,Biology,Evolution & Genetics
+73,4,Life Sciences (Bio/Neuro),17,110,The Genetic Book of the Dead,Richard Dawkins,02_life_sciences,Biology,Evolution & Genetics
+74,4,Life Sciences (Bio/Neuro),18,51,The Brain that Changes Itself,Norman Doidge,02_life_sciences,Neuroscience,Cognitive Neuroscience
+75,4,Life Sciences (Bio/Neuro),19,49,The Gene: An Intimate History,Siddhartha Mukherjee,02_life_sciences,Biology,Molecular & Cell Biology
+76,4,Life Sciences (Bio/Neuro),20,202,The Man Who Mistook His Wife for a Hat,Oliver Sacks,02_life_sciences,Medicine,Pathology
+77,4,Life Sciences (Bio/Neuro),21,34,The Emperor of All Maladies: A Biography of Cancer,Siddhartha Mukherjee,02_life_sciences,Medicine,Oncology
+78,4,Life Sciences (Bio/Neuro),22,25,Behave: The Biology of Humans at Our Best and Worst,Robert M. Sapolsky,02_life_sciences,Neuroscience,Behavioral Neuroscience
+79,4,Life Sciences (Bio/Neuro),23,21,"The Vital Question: Energy, Evolution, and the Origins of Complex Life",Nick Lane,02_life_sciences,Biology,Bioenergetics
+80,4,Life Sciences (Bio/Neuro),24,35,I Contain Multitudes: The Microbes Within Us and a Grander View of Life,Ed Yong,02_life_sciences,Biology,Microbiology
+81,5,Technology & Computation,1,131,Hooked,Nir Eyal,06_technology_and_computation,Design,User Experience (UX)
+82,5,Technology & Computation,2,222,Life 3.0,Max Tegmark,06_technology_and_computation,Artificial Intelligence,Future Studies
+83,5,Technology & Computation,3,178,The Grid,Gretchen Bakke,06_technology_and_computation,Engineering,Electrical Engineering
+84,5,Technology & Computation,4,192,Clean Code,Robert C. Martin,06_technology_and_computation,Software Engineering,Project Management
+85,5,Technology & Computation,5,129,The Innovators,Walter Isaacson,06_technology_and_computation,Engineering,Electrical Engineering
+86,5,Technology & Computation,6,238,To Engineer Is Human,Henry Petroski,06_technology_and_computation,Engineering,Civil & Mechanical Engineering
+87,5,Technology & Computation,7,206,The Laws of Simplicity,John Maeda,06_technology_and_computation,Design,Systems Design
+88,5,Technology & Computation,8,96,The Mythical Man-Month,Frederick P. Brooks Jr.,06_technology_and_computation,Software Engineering,Project Management
+89,5,Technology & Computation,9,15,The Design of Everyday Things,Don Norman,06_technology_and_computation,Design,User Experience (UX)
+90,5,Technology & Computation,10,130,Designing Machine Learning Systems,Chip Huyen,06_technology_and_computation,Artificial Intelligence,Machine Learning
+91,5,Technology & Computation,11,16,Structures: Or Why Things Don't Fall Down,J.E. Gordon,06_technology_and_computation,Engineering,Civil & Mechanical Engineering
+92,5,Technology & Computation,12,64,Artificial Intelligence: A Modern Approach,Stuart Russell & Peter Norvig,06_technology_and_computation,Artificial Intelligence,Machine Learning
+93,5,Technology & Computation,13,65,The Psychology of Human-Computer Interaction,Stuart Card et al.,06_technology_and_computation,Design,Systems Design
+94,5,Technology & Computation,14,98,"Superintelligence: Paths, Dangers, Strategies",Nick Bostrom,06_technology_and_computation,Artificial Intelligence,Future Studies
+95,5,Technology & Computation,15,155,Vehicles: Experiments in Synthetic Psychology,Valentino Braitenberg,06_technology_and_computation,Artificial Intelligence,Robotics
+96,6,Applied Tech & AI,1,145,Sandworm,Andy Greenberg,12_applied_technologies,Cybersecurity,
+97,6,Applied Tech & AI,2,244,Nanosystems,K. Eric Drexler,12_applied_technologies,Nanotechnology,
+98,6,Applied Tech & AI,3,184,The Code Breaker,Walter Isaacson,12_applied_technologies,Biotechnology,CRISPR
+99,6,Applied Tech & AI,4,168,Radical Abundance,K. Eric Drexler,12_applied_technologies,Nanotechnology,
+100,6,Applied Tech & AI,5,143,A Crack in Creation,Jennifer Doudna,12_applied_technologies,Biotechnology,CRISPR
+101,6,Applied Tech & AI,6,142,Engines of Creation,K. Eric Drexler,12_applied_technologies,Nanotechnology,
+102,6,Applied Tech & AI,7,198,Countdown to Zero Day,Kim Zetter,12_applied_technologies,Cybersecurity,
+103,6,Applied Tech & AI,8,144,Programming the Universe,Seth Lloyd,12_applied_technologies,Quantum Computing,
+104,6,Applied Tech & AI,9,74,Quantum Computing for Everyone,Chris Bernhardt,12_applied_technologies,Quantum Computing,
+105,6,Applied Tech & AI,10,212,Quantum Computing for Everyone,Chris Bernhardt,12_applied_technologies,Quantum Computing,
+106,6,Applied Tech & AI,11,228,The Immortal Life of Henrietta Lacks,Rebecca Skloot,12_applied_technologies,Biotechnology,
+107,7,Human Sciences (Econ/Anthro/Soc),1,204,The Dictator's Handbook,Bruce Bueno de Mesquita,04_human_sciences,Political Science,Statecraft
+108,7,Human Sciences (Econ/Anthro/Soc),2,119,Noise,Daniel Kahneman et al.,04_human_sciences,Psychology,Cognitive Psychology
+109,7,Human Sciences (Econ/Anthro/Soc),3,58,Nudge,Richard Thaler & Cass Sunstein,04_human_sciences,Economics,Behavioral Economics
+110,7,Human Sciences (Econ/Anthro/Soc),4,57,Connected,Nicholas Christakis & James Fowler,04_human_sciences,Sociology,Social Networks
+111,7,Human Sciences (Econ/Anthro/Soc),5,92,The Prince,Niccolò Machiavelli,04_human_sciences,Political Science,Statecraft
+112,7,Human Sciences (Econ/Anthro/Soc),6,236,Six Degrees,Duncan J. Watts,04_human_sciences,Sociology,Social Networks
+113,7,Human Sciences (Econ/Anthro/Soc),7,12,Freakonomics,Steven D. Levitt and Stephen J. Dubner,04_human_sciences,Economics,Behavioral Economics
+114,7,Human Sciences (Econ/Anthro/Soc),8,121,Bowling Alone,Robert Putnam,04_human_sciences,Sociology,Demography
+115,7,Human Sciences (Econ/Anthro/Soc),9,156,The Bone Lady,Mary H. Manhein,04_human_sciences,Criminology,Forensic Science
+116,7,Human Sciences (Econ/Anthro/Soc),10,11,Basic Economics,Thomas Sowell,04_human_sciences,Economics,Microeconomics & Macroeconomics
+117,7,Human Sciences (Econ/Anthro/Soc),11,56,The Blank Slate,Steven Pinker,04_human_sciences,Psychology,Evolutionary Psychology
+118,7,Human Sciences (Econ/Anthro/Soc),12,176,The Moral Animal,Robert Wright,04_human_sciences,Psychology,Moral Psychology
+119,7,Human Sciences (Econ/Anthro/Soc),13,171,The New Jim Crow,Michelle Alexander,04_human_sciences,Sociology,Criminology
+120,7,Human Sciences (Econ/Anthro/Soc),14,190,Patterns of Culture,Ruth Benedict,04_human_sciences,Anthropology,Cultural Anthropology
+121,7,Human Sciences (Econ/Anthro/Soc),15,29,The Road to Serfdom,F.A. Hayek,04_human_sciences,Political Science,Political Theory
+122,7,Human Sciences (Econ/Anthro/Soc),16,14,The Federalist Papers,"Alexander Hamilton, James Madison, and John Jay",04_human_sciences,Political Science,Political Theory
+123,7,Human Sciences (Econ/Anthro/Soc),17,90,The Wealth of Nations,Adam Smith,04_human_sciences,Economics,Classical Economics
+124,7,Human Sciences (Econ/Anthro/Soc),18,220,Capitalism and Freedom,Milton Friedman,04_human_sciences,Economics,Classical Economics
+125,7,Human Sciences (Econ/Anthro/Soc),19,122,The Dawn of Everything,David Graeber & David Wengrow,04_human_sciences,Anthropology,Cultural Anthropology
+126,7,Human Sciences (Econ/Anthro/Soc),20,91,The Communist Manifesto,Karl Marx & Friedrich Engels,04_human_sciences,Political Science,Political Theory
+127,7,Human Sciences (Econ/Anthro/Soc),21,2,"Thinking, Fast and Slow",Daniel Kahneman,04_human_sciences,Psychology,Cognitive Psychology
+128,7,Human Sciences (Econ/Anthro/Soc),22,40,Man's Search for Meaning,Viktor E. Frankl,04_human_sciences,Psychiatry & Psychotherapy,Logotherapy
+129,7,Human Sciences (Econ/Anthro/Soc),23,120,The Body Keeps the Score,Bessel van der Kolk,04_human_sciences,Psychiatry & Psychotherapy,
+130,7,Human Sciences (Econ/Anthro/Soc),24,124,The Clash of Civilizations,Samuel Huntington,04_human_sciences,Political Science,International Relations
+131,7,Human Sciences (Econ/Anthro/Soc),25,88,The Interpretation of Dreams,Sigmund Freud,04_human_sciences,Psychoanalysis,
+132,7,Human Sciences (Econ/Anthro/Soc),26,59,The Interpretation of Cultures,Clifford Geertz,04_human_sciences,Anthropology,Cultural Anthropology
+133,7,Human Sciences (Econ/Anthro/Soc),27,41,The Theory of the Leisure Class,Thorstein Veblen,04_human_sciences,Sociology,Economic Sociology
+134,7,Human Sciences (Econ/Anthro/Soc),28,123,Capital in the Twenty-First Century,Thomas Piketty,04_human_sciences,Economics,Microeconomics & Macroeconomics
+135,7,Human Sciences (Econ/Anthro/Soc),29,3,Influence: The Psychology of Persuasion,Robert Cialdini,04_human_sciences,Psychology,Social Psychology
+136,7,Human Sciences (Econ/Anthro/Soc),30,89,The Protestant Ethic and the Spirit of Capitalism,Max Weber,04_human_sciences,Sociology,Economic Sociology
+137,7,Human Sciences (Econ/Anthro/Soc),31,18,The Righteous Mind: Why Good People Are Divided by Politics and Religion,Jonathan Haidt,04_human_sciences,Psychology,Moral Psychology
+138,8,Humanities & Philosophy,1,27,On War,Carl von Clausewitz,05_humanities,History,Military History
+139,8,Humanities & Philosophy,2,17,The Law,Frédéric Bastiat,05_humanities,Philosophy,Ethics & Morality
+140,8,Humanities & Philosophy,3,63,How to Read Literature Like a Professor,Thomas Foster,05_humanities,Literature,Poetry & Fiction
+141,8,Humanities & Philosophy,4,205,Leviathan,Thomas Hobbes,05_humanities,Philosophy,Political Philosophy
+142,8,Humanities & Philosophy,5,94,Meditations,Marcus Aurelius,05_humanities,Philosophy,Stoicism
+143,8,Humanities & Philosophy,6,93,The Republic,Plato,05_humanities,Philosophy,Political Philosophy
+144,8,Humanities & Philosophy,7,125,Being and Time,Martin Heidegger,05_humanities,Philosophy,Metaphysics
+145,8,Humanities & Philosophy,8,76,The Art of War,Sun Tzu,05_humanities,History,Military History
+146,8,Humanities & Philosophy,9,177,The Art of War,Sun Tzu,05_humanities,History,Military History
+147,8,Humanities & Philosophy,10,126,The Guns of August,Barbara Tuchman,05_humanities,History,Ancient & Modern History
+148,8,Humanities & Philosophy,11,42,The Tao of Physics,Fritjof Capra,05_humanities,Philosophy,Philosophy of Science
+149,8,Humanities & Philosophy,12,95,Beyond Good and Evil,Friedrich Nietzsche,05_humanities,Philosophy,Ethics & Morality
+150,8,Humanities & Philosophy,13,62,Metaphors We Live By,George Lakoff & Mark Johnson,05_humanities,Linguistics,Semantics
+151,8,Humanities & Philosophy,14,172,The Birth of Tragedy,Friedrich Nietzsche,05_humanities,Philosophy,Aesthetics
+152,8,Humanities & Philosophy,15,13,The Lessons of History,Will and Ariel Durant,05_humanities,History,Ancient & Modern History
+153,8,Humanities & Philosophy,16,237,The Demon-Haunted World,Carl Sagan,05_humanities,Philosophy,Epistemology (Theory of Knowledge)
+154,8,Humanities & Philosophy,17,23,Finite and Infinite Games,James P. Carse,05_humanities,Philosophy,Game Theory
+155,8,Humanities & Philosophy,18,127,Through the Language Glass,Guy Deutscher,05_humanities,Linguistics,Language Acquisition
+156,8,Humanities & Philosophy,19,221,The Making of the Modern Mind,John Herman Randall,05_humanities,History,Ancient & Modern History
+157,8,Humanities & Philosophy,20,128,The Hero with a Thousand Faces,Joseph Campbell,05_humanities,Literature,Poetry & Fiction
+158,8,Humanities & Philosophy,21,60,Meditations on First Philosophy,René Descartes,05_humanities,Philosophy,Epistemology (Theory of Knowledge)
+159,8,Humanities & Philosophy,22,191,"Women, Fire, and Dangerous Things",George Lakoff,05_humanities,Linguistics,Semantics
+160,8,Humanities & Philosophy,23,61,The Rise and Fall of the Third Reich,William Shirer,05_humanities,History,Ancient & Modern History
+161,8,Humanities & Philosophy,24,4,Sapiens: A Brief History of Humankind,Yuval Noah Harari,05_humanities,History,Ancient & Modern History
+162,8,Humanities & Philosophy,25,26,The Structure of Scientific Revolutions,Thomas S. Kuhn,05_humanities,History & Philosophy of Science,Paradigm Shifts
+163,8,Humanities & Philosophy,26,38,The Language Instinct: How the Mind Creates Language,Steven Pinker,05_humanities,Linguistics,Language Acquisition
+164,9,Earth & Environmental,1,243,Ocean,Robert Dinwiddie,11_environmental_and_earth_sciences,Oceanography,
+165,9,Earth & Environmental,2,211,Collapse,Jared Diamond,11_environmental_and_earth_sciences,Environmental Policy,
+166,9,Earth & Environmental,3,159,Drawdown,Paul Hawken,11_environmental_and_earth_sciences,Sustainability,
+167,9,Earth & Environmental,4,227,Losing Earth,Nathaniel Rich,11_environmental_and_earth_sciences,Climate Science,
+168,9,Earth & Environmental,5,140,Fevered Planet,John Vidal,11_environmental_and_earth_sciences,Climate Science,
+169,9,Earth & Environmental,6,141,Cradle to Cradle,William McDonough & Michael Braungart,11_environmental_and_earth_sciences,Sustainability,
+170,9,Earth & Environmental,7,158,The Weather Machine,Andrew Blum,11_environmental_and_earth_sciences,Atmospheric Science,
+171,9,Earth & Environmental,8,73,The Sixth Extinction,Elizabeth Kolbert,11_environmental_and_earth_sciences,Climate Science,
+172,9,Earth & Environmental,9,183,The Sixth Extinction,Elizabeth Kolbert,11_environmental_and_earth_sciences,Environmental Policy,
+173,9,Earth & Environmental,10,197,This Changes Everything,Naomi Klein,11_environmental_and_earth_sciences,Climate Science,
+174,9,Earth & Environmental,11,157,"The Wave: In Pursuit of the Rogues, Freaks and Giants of the Ocean",Susan Casey,11_environmental_and_earth_sciences,Oceanography,
+175,10,Law & Governance,1,138,Just Mercy,Bryan Stevenson,10_law_and_jurisprudence,Criminal Law,
+176,10,Law & Governance,2,210,The Law of War,William H. Boothby,10_law_and_jurisprudence,International Law,
+177,10,Law & Governance,3,72,The Concept of Law,H.L.A. Hart,10_law_and_jurisprudence,Legal Philosophy,
+178,10,Law & Governance,4,242,The Concept of Law,H.L.A. Hart,10_law_and_jurisprudence,Legal Philosophy,
+179,10,Law & Governance,5,226,The Sun Does Shine,Anthony Ray Hinton,10_law_and_jurisprudence,Criminal Law,
+180,10,Law & Governance,6,167,The Second Founding,Eric Foner,10_law_and_jurisprudence,Constitutional Law,
+181,10,Law & Governance,7,196,Discipline and Punish,Michel Foucault,10_law_and_jurisprudence,Criminal Law,
+182,10,Law & Governance,8,139,The Internationalists,Oona Hathaway & Scott Shapiro,10_law_and_jurisprudence,International Law,
+183,10,Law & Governance,9,182,Justice: What's the Right Thing to Do?,Michael J. Sandel,10_law_and_jurisprudence,Legal Philosophy,
+184,11,Skills & Applications,1,37,Mastery,Robert Greene,07_skills_and_applications,Pedagogy,Skill Acquisition
+185,11,Skills & Applications,2,66,Rhetoric,Aristotle,07_skills_and_applications,Communication,Rhetoric & Persuasion
+186,11,Skills & Applications,3,99,How to Win Friends and Influence People,Dale Carnegie,07_skills_and_applications,Communication,People Skills
+187,11,Skills & Applications,4,223,Atomic Habits,James Clear,07_skills_and_applications,Productivity,Organization
+188,11,Skills & Applications,5,134,Good to Great,Jim Collins,07_skills_and_applications,Business & Finance,Leadership & Ethics
+189,11,Skills & Applications,6,132,Made to Stick,Chip & Dan Heath,07_skills_and_applications,Communication,Rhetoric & Persuasion
+190,11,Skills & Applications,7,103,The Lean Startup,Eric Ries,07_skills_and_applications,Entrepreneurship,Innovation
+191,11,Skills & Applications,8,193,Thank You for Arguing,Jay Heinrichs,07_skills_and_applications,Communication,Rhetoric & Persuasion
+192,11,Skills & Applications,9,22,The Innovator's Dilemma,Clayton M. Christensen,07_skills_and_applications,Business & Finance,Management & Strategy
+193,11,Skills & Applications,10,239,Man's Search for Himself,Rollo May,07_skills_and_applications,Self-Improvement,Personal Effectiveness
+194,11,Skills & Applications,11,67,The Intelligent Investor,Benjamin Graham,07_skills_and_applications,Business & Finance,Accounting & Investing
+195,11,Skills & Applications,12,179,The Intelligent Investor,Benjamin Graham,07_skills_and_applications,Business & Finance,Accounting & Investing
+196,11,Skills & Applications,13,102,Never Split the Difference,Chris Voss,07_skills_and_applications,Communication,Negotiation
+197,11,Skills & Applications,14,104,"Zero to One: Notes on Startups, or How to Build the Future",Peter Thiel and Blake Masters,07_skills_and_applications,Entrepreneurship,Innovation
+198,11,Skills & Applications,15,133,Why Don't Students Like School?,Daniel Willingham,07_skills_and_applications,Pedagogy,Learning Theories
+199,11,Skills & Applications,16,207,The Hard Thing About Hard Things,Ben Horowitz,07_skills_and_applications,Entrepreneurship,Innovation
+200,11,Skills & Applications,17,100,The 7 Habits of Highly Effective People,Stephen R. Covey,07_skills_and_applications,Self-Improvement,Personal Effectiveness
+201,11,Skills & Applications,18,36,Make It Stick: The Science of Successful Learning,"Peter C. Brown, Henry L. Roediger III, Mark A. McDaniel",07_skills_and_applications,Pedagogy,Learning Theories
+202,11,Skills & Applications,19,101,Getting Things Done: The Art of Stress-Free Productivity,David Allen,07_skills_and_applications,Productivity,Organization
+203,12,Arts & Aesthetics,1,224,Gödel's Proof,Ernest Nagel,08_arts_and_aesthetics,Music,Theory & Composition
+204,12,Arts & Aesthetics,2,68,Ways of Seeing,John Berger,08_arts_and_aesthetics,Visual Arts,Painting & Sculpture
+205,12,Arts & Aesthetics,3,208,Ways of Seeing,John Berger,08_arts_and_aesthetics,Visual Arts,Painting & Sculpture
+206,12,Arts & Aesthetics,4,180,The Empty Space,Peter Brook,08_arts_and_aesthetics,Performing Arts,Theater & Dance
+207,12,Arts & Aesthetics,5,135,The Story of Art,E.H. Gombrich,08_arts_and_aesthetics,Visual Arts,Painting & Sculpture
+208,12,Arts & Aesthetics,6,240,Respect for Acting,Uta Hagen,08_arts_and_aesthetics,Performing Arts,Theater & Dance
+209,12,Arts & Aesthetics,7,194,Understanding Comics,Scott McCloud,08_arts_and_aesthetics,Film & Media,
+210,12,Arts & Aesthetics,8,69,This Is Your Brain on Music,Daniel Levitin,08_arts_and_aesthetics,Music,Theory & Composition
+211,12,Arts & Aesthetics,9,165,This Is Your Brain on Music,Daniel J. Levitin,08_arts_and_aesthetics,Music,Theory & Composition
+212,13,Religion & Theology,1,241,Mysticism,Evelyn Underhill,09_religion_and_theology,Mysticism,
+213,13,Religion & Theology,2,225,God Is Not One,Stephen Prothero,09_religion_and_theology,Theology,Monotheism & Polytheism
+214,13,Religion & Theology,3,137,The God Delusion,Richard Dawkins,09_religion_and_theology,Secularism & Atheism,
+215,13,Religion & Theology,4,136,God: A Human History,Reza Aslan,09_religion_and_theology,Comparative Religion,
+216,13,Religion & Theology,5,166,The Evolution of God,Robert Wright,09_religion_and_theology,Theology,Monotheism & Polytheism
+217,13,Religion & Theology,6,70,The World's Religions,Huston Smith,09_religion_and_theology,Comparative Religion,
+218,13,Religion & Theology,7,209,The World's Religions,Huston Smith,09_religion_and_theology,Comparative Religion,
+219,13,Religion & Theology,8,195,Letter to a Christian Nation,Sam Harris,09_religion_and_theology,Secularism & Atheism,
+220,13,Religion & Theology,9,71,The Varieties of Religious Experience,William James,09_religion_and_theology,Mysticism,
+221,13,Religion & Theology,10,181,The Varieties of Religious Experience,William James,09_religion_and_theology,Mysticism,
+222,14,Cultural & Regional,1,229,How to Be an Antiracist,Ibram X. Kendi,13_cultural_and_regional_studies,Ethnic & Racial Studies,
+223,14,Cultural & Regional,2,146,Caste,Isabel Wilkerson,13_cultural_and_regional_studies,Ethnic & Racial Studies,
+224,14,Cultural & Regional,3,245,Orientalism,Edward W. Said,13_cultural_and_regional_studies,Area Studies,
+225,14,Cultural & Regional,4,75,Gender Trouble,Judith Butler,13_cultural_and_regional_studies,Gender Studies,
+226,14,Cultural & Regional,5,213,Gender Trouble,Judith Butler,13_cultural_and_regional_studies,Gender Studies,
+227,14,Cultural & Regional,6,160,Invisible Women,Caroline Criado Perez,13_cultural_and_regional_studies,Gender Studies,
+228,14,Cultural & Regional,7,199,White Fragility,Robin DiAngelo,13_cultural_and_regional_studies,Ethnic & Racial Studies,
+229,14,Cultural & Regional,8,185,The Clash of Civilizations and the Remaking of World Order,Samuel P. Huntington,13_cultural_and_regional_studies,Area Studies,
+230,15,Mythology & Folklore,1,147,Mythology,Edith Hamilton,14_mythology_and_folklore,Comparative Mythology,
+231,15,Mythology & Folklore,2,246,Parallel Myths,J.F. Bierlein,14_mythology_and_folklore,Comparative Mythology,
+232,15,Mythology & Folklore,3,148,The Golden Bough,James Frazer,14_mythology_and_folklore,Folklore Studies,
+233,15,Mythology & Folklore,4,200,The Masks of God,Joseph Campbell,14_mythology_and_folklore,Comparative Mythology,
+234,15,Mythology & Folklore,5,161,The Power of Myth,Joseph Campbell,14_mythology_and_folklore,Comparative Mythology,
+235,15,Mythology & Folklore,6,230,The Uses of Enchantment,Bruno Bettelheim,14_mythology_and_folklore,Folklore Studies,
+236,15,Mythology & Folklore,7,169,Women Who Run with the Wolves,Clarissa Pinkola Estés,14_mythology_and_folklore,Folklore Studies,
+237,16,Sports & Kinesiology,1,214,Peak,Anders Ericsson,15_sports_and_kinesiology,Sports Science,
+238,16,Sports & Kinesiology,2,150,Spark,John Ratey,15_sports_and_kinesiology,Exercise Physiology,
+239,16,Sports & Kinesiology,3,149,Endure,Alex Hutchinson,15_sports_and_kinesiology,Sports Science,
+240,16,Sports & Kinesiology,4,231,Why We Run,Bernd Heinrich,15_sports_and_kinesiology,Exercise Physiology,
+241,16,Sports & Kinesiology,5,186,Born to Run,Christopher McDougall,15_sports_and_kinesiology,Sports Science,
+242,16,Sports & Kinesiology,6,162,The Sports Gene,David Epstein,15_sports_and_kinesiology,Exercise Physiology,
+243,16,Sports & Kinesiology,7,247,The Talent Code,Daniel Coyle,15_sports_and_kinesiology,Sports Science,
+244,17,Architecture & Urban Planning,1,164,Happy City,Charles Montgomery,16_architecture_and_urban_planning,Urban Design,
+245,17,Architecture & Urban Planning,2,163,A Pattern Language,Christopher Alexander,16_architecture_and_urban_planning,Architectural Theory,
+246,17,Architecture & Urban Planning,3,152,Delirious New York,Rem Koolhaas,16_architecture_and_urban_planning,Urban Design,
+247,17,Architecture & Urban Planning,4,215,The Geography of Nowhere,James Howard Kunstler,16_architecture_and_urban_planning,Urban Design,
+248,17,Architecture & Urban Planning,5,248,Towards a New Architecture,Le Corbusier,16_architecture_and_urban_planning,Architectural Theory,
+249,17,Architecture & Urban Planning,6,151,The Death and Life of Great American Cities,Jane Jacobs,16_architecture_and_urban_planning,Architectural Theory,

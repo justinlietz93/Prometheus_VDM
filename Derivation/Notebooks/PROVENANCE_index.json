@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2025-11-19T08:06:41.463526Z",
+  "generated_utc": "2025-11-30T17:26:19.718847Z",
   "items": [
     {
       "path": "Derivation/Notebooks/00_Metriplectic/CF1_QGT_to_Metriplectic_Brackets.ipynb",
@@ -18,8 +18,8 @@
     },
     {
       "path": "Derivation/Notebooks/02_Reaction-Diffusion/CF4_Telegraph_Fisher_Causality.ipynb",
-      "sha256": "63bf406962175041f3edacdbc55c76c6664dfdf004b1e17fc1d393256e75c6ee",
-      "size": 526274
+      "sha256": "becace9fedbedfc3133d77a682acba98beb27c97329b5c9a75981e1c9a8482ee",
+      "size": 526451
     },
     {
       "path": "Derivation/Notebooks/03_Closure/CF5_Integrability_Closure.ipynb",

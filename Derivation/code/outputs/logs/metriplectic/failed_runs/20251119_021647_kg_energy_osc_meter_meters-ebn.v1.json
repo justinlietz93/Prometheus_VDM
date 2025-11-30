@@ -1,0 +1,59 @@
+{
+  "csv": "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/logs/metriplectic/failed_runs/20251119_021647_kg_energy_osc_meter_meters-ebn.v1.csv",
+  "figure": "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/figures/metriplectic/failed_runs/20251119_021647_kg_energy_osc_meter_meters-ebn.v1.png",
+  "gate": {
+    "missing_receipts": [],
+    "passed": false,
+    "physical_passed": false,
+    "provenance_ok": true
+  },
+  "gate_outcomes": {
+    "kg_energy_osc_meter": {
+      "implemented": false,
+      "passed": false,
+      "reason": "Phase-1.1 skeleton; meter physics not implemented."
+    }
+  },
+  "git": {
+    "head_commit": "93e059f020db54a09eea56f451d27445828ea2f8",
+    "head_short": "93e059f"
+  },
+  "git_commit": "93e059f",
+  "hardware": {
+    "cpu_count": 32,
+    "machine": "x86_64",
+    "node": "prometheus-ai",
+    "processor": "x86_64",
+    "python_version": "3.13.5",
+    "release": "6.14.0-35-generic",
+    "system": "Linux",
+    "version": "#35-Ubuntu SMP PREEMPT_DYNAMIC Sat Oct 11 10:06:31 UTC 2025"
+  },
+  "ieee_754_double_precision": true,
+  "manifest": {
+    "generated_utc": "2025-11-19T08:06:44.060641Z",
+    "git_commit": "7f47796b92a2481e9716bfa81e7a946198661efb",
+    "tree_hash": "20f2b59d2e25988dbf2f8d839fd0f58eb1d9cc06383818bf17a66a18e79ea531"
+  },
+  "meter": "kg_energy_osc",
+  "missing_receipts": [],
+  "params": {},
+  "policy": {
+    "approved": false,
+    "engineering_only": true,
+    "proposal": null,
+    "quarantined": true
+  },
+  "provenance_ok": true,
+  "repo_root": "/mnt/ironwolf/git/Prometheus_VDM",
+  "salted_hash": "290603c436003f9791374a55d767226de41c9a83879a834336fa3b9f2a654194",
+  "salted_provenance": {
+    "salted_hash": "290603c436003f9791374a55d767226de41c9a83879a834336fa3b9f2a654194",
+    "salted_tag": "meters-ebn.v1"
+  },
+  "seeds": [
+    0
+  ],
+  "tag": "meters-ebn.v1",
+  "tree_hash": "20f2b59d2e25988dbf2f8d839fd0f58eb1d9cc06383818bf17a66a18e79ea531"
+}

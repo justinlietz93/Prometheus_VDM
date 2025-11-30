@@ -1,0 +1,2248 @@
+{
+    "_template": "Nonfiction book listing",
+    "_version": "1.1.0",
+    "_notes": "Duplicate objects in books array for each book. Keep description to one sentence. Includes category and sub_domain.",
+    "books": [
+        {
+            "category": "00_latticework_synthesis",
+            "domain": "Mental Models",
+            "sub_domain": "Decision Making",
+            "title": "Poor Charlie's Almanack",
+            "author": "Peter D. Kaufman",
+            "date": "2005-01-01",
+            "description": "A collection of speeches and writings from Charlie Munger, showcasing the application of multidisciplinary models in business and life."
+        },
+        {
+            "category": "00_latticework_synthesis",
+            "domain": "Mental Models",
+            "sub_domain": "Systems Thinking",
+            "title": "The Great Mental Models Series",
+            "author": "Shane Parrish",
+            "date": "2019-10-01",
+            "description": "A practical guide that explains core thinking concepts from various sciences and how to apply them."
+        },
+        {
+            "category": "04_human_sciences",
+            "domain": "Psychology",
+            "sub_domain": "Cognitive Psychology",
+            "title": "Thinking, Fast and Slow",
+            "author": "Daniel Kahneman",
+            "date": "2011-10-25",
+            "description": "This book introduces the foundational model of System 1 (fast, intuitive) and System 2 (slow, deliberate) thinking to explain cognitive biases."
+        },
+        {
+            "category": "04_human_sciences",
+            "domain": "Psychology",
+            "sub_domain": "Social Psychology",
+            "title": "Influence: The Psychology of Persuasion",
+            "author": "Robert Cialdini",
+            "date": "1984-12-01",
+            "description": "A masterclass in understanding the six universal psychological levers that guide human behavior and persuasion."
+        },
+        {
+            "category": "05_humanities",
+            "domain": "History",
+            "sub_domain": "Ancient & Modern History",
+            "title": "Sapiens: A Brief History of Humankind",
+            "author": "Yuval Noah Harari",
+            "date": "2015-02-10",
+            "description": "A big-picture history connecting biology, sociology, and economics to explain the rise of Homo sapiens."
+        },
+        {
+            "category": "02_life_sciences",
+            "domain": "Biology",
+            "sub_domain": "Evolution & Genetics",
+            "title": "The Selfish Gene",
+            "author": "Richard Dawkins",
+            "date": "1976-01-01",
+            "description": "This book provides the powerful mental model of viewing evolution from the gene's perspective as a replicator."
+        },
+        {
+            "category": "01_natural_sciences",
+            "domain": "Physics",
+            "sub_domain": "Chaos Theory",
+            "title": "Chaos: Making a New Science",
+            "author": "James Gleick",
+            "date": "1987-10-29",
+            "description": "An accessible introduction to Chaos Theory, explaining how simple systems can produce complex and unpredictable behavior."
+        },
+        {
+            "category": "01_natural_sciences",
+            "domain": "Physics",
+            "sub_domain": "Cosmology",
+            "title": "A Short History of Nearly Everything",
+            "author": "Bill Bryson",
+            "date": "2003-05-06",
+            "description": "An accessible overview of the big ideas in physics, chemistry, and geology without getting bogged down in equations."
+        },
+        {
+            "category": "03_formal_sciences",
+            "domain": "Mathematics",
+            "sub_domain": "Statistics & Probability",
+            "title": "The Drunkard's Walk: How Randomness Rules Our Lives",
+            "author": "Leonard Mlodinow",
+            "date": "2008-05-13",
+            "description": "A clear and intuitive explanation of probability and statistics that will change how you view success and failure."
+        },
+        {
+            "category": "00_latticework_synthesis",
+            "domain": "Systems Thinking",
+            "sub_domain": "Historical Analysis",
+            "title": "Guns, Germs, and Steel",
+            "author": "Jared Diamond",
+            "date": "1997-03-01",
+            "description": "This book combines geography, ecology, biology, and history to explain why different societies developed at different paces."
+        },
+        {
+            "category": "00_latticework_synthesis",
+            "domain": "Systems Thinking",
+            "sub_domain": "Decision Making",
+            "title": "Antifragile: Things That Gain from Disorder",
+            "author": "Nassim Nicholas Taleb",
+            "date": "2012-11-27",
+            "description": "Introduces the powerful mental model of antifragility, where systems gain strength from shocks and disorder."
+        },
+        {
+            "category": "04_human_sciences",
+            "domain": "Economics",
+            "sub_domain": "Microeconomics & Macroeconomics",
+            "title": "Basic Economics",
+            "author": "Thomas Sowell",
+            "date": "2000-01-01",
+            "description": "A jargon-free explanation of the core principles of economics, from prices to international trade."
+        },
+        {
+            "category": "04_human_sciences",
+            "domain": "Economics",
+            "sub_domain": "Behavioral Economics",
+            "title": "Freakonomics",
+            "author": "Steven D. Levitt and Stephen J. Dubner",
+            "date": "2005-04-12",
+            "description": "This book teaches you to think like an economist by applying economic principles to unconventional problems."
+        },
+        {
+            "category": "05_humanities",
+            "domain": "History",
+            "sub_domain": "Ancient & Modern History",
+            "title": "The Lessons of History",
+            "author": "Will and Ariel Durant",
+            "date": "1968-01-01",
+            "description": "A concise distillation of a lifetime of historical study that identifies the recurring themes and cycles in civilization."
+        },
+        {
+            "category": "04_human_sciences",
+            "domain": "Political Science",
+            "sub_domain": "Political Theory",
+            "title": "The Federalist Papers",
+            "author": "Alexander Hamilton, James Madison, and John Jay",
+            "date": "1788-01-01",
+            "description": "A masterclass in political theory that explores the trade-offs between freedom, power, and human nature."
+        },
+        {
+            "category": "06_technology_and_computation",
+            "domain": "Design",
+            "sub_domain": "User Experience (UX)",
+            "title": "The Design of Everyday Things",
+            "author": "Don Norman",
+            "date": "1988-01-01",
+            "description": "This book provides a foundational understanding of user-centered design that will change how you see the man-made world."
+        },
+        {
+            "category": "06_technology_and_computation",
+            "domain": "Engineering",
+            "sub_domain": "Civil & Mechanical Engineering",
+            "title": "Structures: Or Why Things Don't Fall Down",
+            "author": "J.E. Gordon",
+            "date": "1978-01-01",
+            "description": "An accessible look at the engineering principles of stress, strain, and structural integrity that govern everything from bridges to bones."
+        },
+        {
+            "category": "05_humanities",
+            "domain": "Philosophy",
+            "sub_domain": "Ethics & Morality",
+            "title": "The Law",
+            "author": "Frédéric Bastiat",
+            "date": "1850-01-01",
+            "description": "A concise and powerful argument for the proper role of law in a free society, providing a first-principles framework for justice and liberty."
+        },
+        {
+            "category": "04_human_sciences",
+            "domain": "Psychology",
+            "sub_domain": "Moral Psychology",
+            "title": "The Righteous Mind: Why Good People Are Divided by Politics and Religion",
+            "author": "Jonathan Haidt",
+            "date": "2012-03-13",
+            "description": "Introduces Moral Foundations Theory to explain the intuitive moral pillars that divide political and religious groups."
+        },
+        {
+            "category": "00_latticework_synthesis",
+            "domain": "Decision Making",
+            "sub_domain": "Forecasting & Prediction",
+            "title": "Superforecasting: The Art and Science of Prediction",
+            "author": "Philip E. Tetlock and Dan Gardner",
+            "date": "2015-09-29",
+            "description": "Distills the habits of mind of elite forecasters to provide a practical framework for probabilistic thinking and improving judgment."
+        },
+        {
+            "category": "00_latticework_synthesis",
+            "domain": "Systems Thinking",
+            "sub_domain": "Systems Analysis",
+            "title": "Thinking in Systems: A Primer",
+            "author": "Donella H. Meadows",
+            "date": "2008-12-03",
+            "description": "A foundational primer on systems thinking that provides a framework for understanding stocks, flows, and feedback loops."
+        },
+        {
+            "category": "02_life_sciences",
+            "domain": "Biology",
+            "sub_domain": "Bioenergetics",
+            "title": "The Vital Question: Energy, Evolution, and the Origins of Complex Life",
+            "author": "Nick Lane",
+            "date": "2015-07-21",
+            "description": "Explores the role of cellular energy production in the evolution of all complex life, from its origin to aging and death."
+        },
+        {
+            "category": "07_skills_and_applications",
+            "domain": "Business & Finance",
+            "sub_domain": "Management & Strategy",
+            "title": "The Innovator's Dilemma",
+            "author": "Clayton M. Christensen",
+            "date": "1997-05-01",
+            "description": "Introduces the powerful business model of disruptive innovation to explain why successful, well-managed companies often fail."
+        },
+        {
+            "category": "05_humanities",
+            "domain": "Philosophy",
+            "sub_domain": "Game Theory",
+            "title": "Finite and Infinite Games",
+            "author": "James P. Carse",
+            "date": "1986-03-12",
+            "description": "A philosophical model that distinguishes between finite games (played to win) and infinite games (played to continue the play)."
+        },
+        {
+            "category": "00_latticework_synthesis",
+            "domain": "Mental Models",
+            "sub_domain": "Recursion & Self-Reference",
+            "title": "Gödel, Escher, Bach: An Eternal Golden Braid",
+            "author": "Douglas R. Hofstadter",
+            "date": "1979-01-01",
+            "description": "A Pulitzer-winning exploration of how consciousness and intelligence emerge from hidden formal systems through self-reference and 'strange loops'."
+        },
+        {
+            "category": "02_life_sciences",
+            "domain": "Neuroscience",
+            "sub_domain": "Behavioral Neuroscience",
+            "title": "Behave: The Biology of Humans at Our Best and Worst",
+            "author": "Robert M. Sapolsky",
+            "date": "2017-05-02",
+            "description": "A monumental synthesis of neuroscience, genetics, and endocrinology that explains the biological causes of human behavior, from moments before an act to deep evolutionary history."
+        },
+        {
+            "category": "05_humanities",
+            "domain": "History & Philosophy of Science",
+            "sub_domain": "Paradigm Shifts",
+            "title": "The Structure of Scientific Revolutions",
+            "author": "Thomas S. Kuhn",
+            "date": "1962-01-01",
+            "description": "Introduces the foundational model of the 'paradigm shift' to explain how scientific knowledge progresses through periods of crisis and revolution, not linear accumulation."
+        },
+        {
+            "category": "05_humanities",
+            "domain": "History",
+            "sub_domain": "Military History",
+            "title": "On War",
+            "author": "Carl von Clausewitz",
+            "date": "1832-01-01",
+            "description": "The foundational text of modern strategic thought, providing timeless models like 'fog of war,' 'friction,' and the relationship between violence and policy."
+        },
+        {
+            "category": "02_life_sciences",
+            "domain": "Biology",
+            "sub_domain": "Biophysics",
+            "title": "What Is Life?",
+            "author": "Erwin Schrödinger",
+            "date": "1944-01-01",
+            "description": "A landmark inquiry by a Nobel-winning physicist into the physical and chemical basis of life that inspired the discovery of the DNA molecule."
+        },
+        {
+            "category": "04_human_sciences",
+            "domain": "Political Science",
+            "sub_domain": "Political Theory",
+            "title": "The Road to Serfdom",
+            "author": "F.A. Hayek",
+            "date": "1944-03-10",
+            "description": "A classic work that provides powerful models for understanding spontaneous order, distributed knowledge, and the limitations of central planning."
+        },
+        {
+            "category": "01_natural_sciences",
+            "domain": "Astronomy",
+            "sub_domain": "Cosmology",
+            "title": "Cosmos",
+            "author": "Carl Sagan",
+            "date": "1980-01-01",
+            "description": "A classic exploration of the universe that connects cosmological principles to the history of science and human civilization."
+        },
+        {
+            "category": "01_natural_sciences",
+            "domain": "Astronomy",
+            "sub_domain": "Cosmology",
+            "title": "A Brief History of Time",
+            "author": "Stephen Hawking",
+            "date": "1988-04-01",
+            "description": "A landmark book that introduces the fundamental concepts of modern cosmology, including the Big Bang, black holes, and the nature of time."
+        },
+        {
+            "category": "01_natural_sciences",
+            "domain": "Physics",
+            "sub_domain": "String Theory",
+            "title": "The Fabric of the Cosmos: Space, Time, and the Texture of Reality",
+            "author": "Brian Greene",
+            "date": "2004-02-08",
+            "description": "A deep dive into the modern physics of reality, explaining spacetime, string theory, and the potential for multiple universes."
+        },
+        {
+            "category": "01_natural_sciences",
+            "domain": "Physics",
+            "sub_domain": "Quantum Mechanics",
+            "title": "QED: The Strange Theory of Light and Matter",
+            "author": "Richard P. Feynman",
+            "date": "1985-01-01",
+            "description": "A master physicist's surprisingly accessible explanation of quantum electrodynamics, the fundamental theory of how light and matter interact."
+        },
+        {
+            "category": "02_life_sciences",
+            "domain": "Medicine",
+            "sub_domain": "Oncology",
+            "title": "The Emperor of All Maladies: A Biography of Cancer",
+            "author": "Siddhartha Mukherjee",
+            "date": "2010-11-16",
+            "description": "A Pulitzer-winning history of cancer, human ingenuity, and scientific discovery that reframes our understanding of the disease."
+        },
+        {
+            "category": "02_life_sciences",
+            "domain": "Biology",
+            "sub_domain": "Microbiology",
+            "title": "I Contain Multitudes: The Microbes Within Us and a Grander View of Life",
+            "author": "Ed Yong",
+            "date": "2016-08-09",
+            "description": "A revolutionary look at the microbiome that provides the powerful model of life as a complex ecosystem of partnerships."
+        },
+        {
+            "category": "07_skills_and_applications",
+            "domain": "Pedagogy",
+            "sub_domain": "Learning Theories",
+            "title": "Make It Stick: The Science of Successful Learning",
+            "author": "Peter C. Brown, Henry L. Roediger III, Mark A. McDaniel",
+            "date": "2014-03-01",
+            "description": "A research-backed guide that debunks popular learning myths and provides evidence-based models for effective knowledge retention."
+        },
+        {
+            "category": "07_skills_and_applications",
+            "domain": "Pedagogy",
+            "sub_domain": "Skill Acquisition",
+            "title": "Mastery",
+            "author": "Robert Greene",
+            "date": "2012-11-13",
+            "description": "A historical analysis that provides a model for achieving the highest level of mastery in any field through apprenticeship and deliberate practice."
+        },
+        {
+            "category": "05_humanities",
+            "domain": "Linguistics",
+            "sub_domain": "Language Acquisition",
+            "title": "The Language Instinct: How the Mind Creates Language",
+            "author": "Steven Pinker",
+            "date": "1994-01-01",
+            "description": "A foundational text arguing that language is not a cultural artifact but an innate human instinct, providing a model for how the mind works."
+        },
+        {
+            "category": "03_formal_sciences",
+            "domain": "Computer Science",
+            "sub_domain": "Information Theory",
+            "title": "The Information: A History, a Theory, a Flood",
+            "author": "James Gleick",
+            "date": "2011-03-01",
+            "description": "A masterful history of information theory, providing the essential model of the 'bit' as the fundamental unit of reality."
+        },
+        {
+            "category": "04_human_sciences",
+            "domain": "Psychiatry & Psychotherapy",
+            "sub_domain": "Logotherapy",
+            "title": "Man's Search for Meaning",
+            "author": "Viktor E. Frankl",
+            "date": "1946-01-01",
+            "description": "A profound work of psychology and philosophy that introduces logotherapy, the model that a search for meaning is the primary human motivation."
+        },
+        {
+            "category": "04_human_sciences",
+            "domain": "Sociology",
+            "sub_domain": "Economic Sociology",
+            "title": "The Theory of the Leisure Class",
+            "author": "Thorstein Veblen",
+            "date": "1899-01-01",
+            "description": "A foundational text of sociology that introduces the powerful models of 'conspicuous consumption' and 'conspicuous leisure' to explain economic behavior."
+        },
+        {
+            "category": "05_humanities",
+            "domain": "Philosophy",
+            "sub_domain": "Philosophy of Science",
+            "title": "The Tao of Physics",
+            "author": "Fritjof Capra",
+            "date": "1975-01-01",
+            "description": "A classic deep cut that explores the parallels between the models of quantum mechanics and the tenets of Eastern mysticism."
+        },
+        {
+            "category": "00_latticework_synthesis",
+            "domain": "Mental Models",
+            "sub_domain": "Recursion & Self-Reference",
+            "title": "I Am a Strange Loop",
+            "author": "Douglas Hofstadter",
+            "date": "2007-01-01",
+            "description": "Builds on GEB with a model of consciousness as self-referential loops, enabling recursive thinking across sciences."
+        },
+        {
+            "category": "01_natural_sciences",
+            "domain": "Physics",
+            "sub_domain": "Relativity",
+            "title": "Relativity: The Special and General Theory",
+            "author": "Albert Einstein",
+            "date": "1916-01-01",
+            "description": "First-principles derivation of spacetime, yielding insights into gravity and cosmology."
+        },
+        {
+            "category": "01_natural_sciences",
+            "domain": "Physics",
+            "sub_domain": "Thermodynamics",
+            "title": "The Feynman Lectures on Physics, Vol. 1",
+            "author": "Richard Feynman",
+            "date": "1963-01-01",
+            "description": "Comprehensive mechanics and thermodynamics introduction, with intuitive models for energy and entropy."
+        },
+        {
+            "category": "01_natural_sciences",
+            "domain": "Chemistry",
+            "sub_domain": "Organic & Inorganic",
+            "title": "Principles of Chemistry",
+            "author": "Linus Pauling",
+            "date": "1947-01-01",
+            "description": "Explains the quantum basis of chemical bonds, providing a foundational link between physics and molecular biology."
+        },
+        {
+            "category": "01_natural_sciences",
+            "domain": "Geology",
+            "sub_domain": "Plate Tectonics",
+            "title": "The Story of Earth",
+            "author": "Robert Hazen",
+            "date": "2012-01-01",
+            "description": "An evolutionary model of geology that connects the dynamics of plate tectonics to the origins of life."
+        },
+        {
+            "category": "01_natural_sciences",
+            "domain": "Astronomy",
+            "sub_domain": "Astrophysics",
+            "title": "Astrophysics for People in a Hurry",
+            "author": "Neil deGrasse Tyson",
+            "date": "2017-05-02",
+            "description": "Provides concise and accessible models for understanding stellar evolution and cosmological principles."
+        },
+        {
+            "category": "02_life_sciences",
+            "domain": "Biology",
+            "sub_domain": "Molecular & Cell Biology",
+            "title": "The Gene: An Intimate History",
+            "author": "Siddhartha Mukherjee",
+            "date": "2016-05-17",
+            "description": "Traces the history of genetic mechanisms from Mendel to CRISPR, offering recursive depth into the model of heredity."
+        },
+        {
+            "category": "02_life_sciences",
+            "domain": "Ecology",
+            "sub_domain": "Population Dynamics",
+            "title": "Silent Spring",
+            "author": "Rachel Carson",
+            "date": "1962-09-27",
+            "description": "The foundational text on the impact of chemicals on ecosystems, yielding a powerful model for environmental awareness."
+        },
+        {
+            "category": "02_life_sciences",
+            "domain": "Neuroscience",
+            "sub_domain": "Cognitive Neuroscience",
+            "title": "The Brain that Changes Itself",
+            "author": "Norman Doidge",
+            "date": "2007-03-15",
+            "description": "Introduces the model of neuroplasticity, transforming views on learning, brain injury, and recovery."
+        },
+        {
+            "category": "02_life_sciences",
+            "domain": "Medicine",
+            "sub_domain": "Anatomy & Physiology",
+            "title": "Gray's Anatomy",
+            "author": "Henry Gray",
+            "date": "1858-01-01",
+            "description": "The definitive reference for human structure, providing the essential base model for all physiological understanding."
+        },
+        {
+            "category": "03_formal_sciences",
+            "domain": "Mathematics",
+            "sub_domain": "Calculus & Algebra",
+            "title": "Calculus",
+            "author": "Michael Spivak",
+            "date": "1967-01-01",
+            "description": "A rigorous, proof-based approach to calculus, yielding the fundamental tools for derivations in physics and engineering."
+        },
+        {
+            "category": "03_formal_sciences",
+            "domain": "Logic",
+            "sub_domain": "Set Theory",
+            "title": "Principia Mathematica",
+            "author": "Bertrand Russell & Alfred North Whitehead",
+            "date": "1910-01-01",
+            "description": "A landmark work that attempts to derive all mathematical truths from a set of logical axioms, providing a recursive basis for formal systems."
+        },
+        {
+            "category": "03_formal_sciences",
+            "domain": "Computer Science",
+            "sub_domain": "Algorithms & Data Structures",
+            "title": "Introduction to Algorithms",
+            "author": "Thomas Cormen et al.",
+            "date": "1990-01-01",
+            "description": "The authoritative text on core computational models, essential for understanding AI, optimization, and complexity."
+        },
+        {
+            "category": "04_human_sciences",
+            "domain": "Psychology",
+            "sub_domain": "Evolutionary Psychology",
+            "title": "The Blank Slate",
+            "author": "Steven Pinker",
+            "date": "2002-10-01",
+            "description": "A powerful synthesis of nature and nurture that provides a high-yield model for predicting human behavior."
+        },
+        {
+            "category": "04_human_sciences",
+            "domain": "Sociology",
+            "sub_domain": "Social Networks",
+            "title": "Connected",
+            "author": "Nicholas Christakis & James Fowler",
+            "date": "2009-10-08",
+            "description": "Provides network contagion models that explain how behaviors and ideas spread, linking to epidemiology and economics."
+        },
+        {
+            "category": "04_human_sciences",
+            "domain": "Economics",
+            "sub_domain": "Behavioral Economics",
+            "title": "Nudge",
+            "author": "Richard Thaler & Cass Sunstein",
+            "date": "2008-04-08",
+            "description": "Introduces the model of 'choice architecture,' with high practical yield for influencing policy and personal decisions."
+        },
+        {
+            "category": "04_human_sciences",
+            "domain": "Anthropology",
+            "sub_domain": "Cultural Anthropology",
+            "title": "The Interpretation of Cultures",
+            "author": "Clifford Geertz",
+            "date": "1973-01-01",
+            "description": "The foundational text for the 'thick description' model of analysis, essential for deep cultural understanding."
+        },
+        {
+            "category": "05_humanities",
+            "domain": "Philosophy",
+            "sub_domain": "Epistemology (Theory of Knowledge)",
+            "title": "Meditations on First Philosophy",
+            "author": "René Descartes",
+            "date": "1641-01-01",
+            "description": "Provides a foundational framework for certainty and doubt, serving as a recursive tool for skepticism."
+        },
+        {
+            "category": "05_humanities",
+            "domain": "History",
+            "sub_domain": "Ancient & Modern History",
+            "title": "The Rise and Fall of the Third Reich",
+            "author": "William Shirer",
+            "date": "1960-10-17",
+            "description": "A detailed historical model of the rise of fascism, yielding profound lessons in power dynamics and societal collapse."
+        },
+        {
+            "category": "05_humanities",
+            "domain": "Linguistics",
+            "sub_domain": "Semantics",
+            "title": "Metaphors We Live By",
+            "author": "George Lakoff & Mark Johnson",
+            "date": "1980-01-01",
+            "description": "Introduces conceptual metaphor theory, transforming the understanding of the link between language and cognition."
+        },
+        {
+            "category": "05_humanities",
+            "domain": "Literature",
+            "sub_domain": "Poetry & Fiction",
+            "title": "How to Read Literature Like a Professor",
+            "author": "Thomas Foster",
+            "date": "2003-01-01",
+            "description": "Provides high-yield models for symbolic analysis, enabling the deconstruction of narrative and theme."
+        },
+        {
+            "category": "06_technology_and_computation",
+            "domain": "Artificial Intelligence",
+            "sub_domain": "Machine Learning",
+            "title": "Artificial Intelligence: A Modern Approach",
+            "author": "Stuart Russell & Peter Norvig",
+            "date": "1995-01-01",
+            "description": "The comprehensive text on AI frameworks, providing recursive models from basic search to advanced machine learning."
+        },
+        {
+            "category": "06_technology_and_computation",
+            "domain": "Design",
+            "sub_domain": "Systems Design",
+            "title": "The Psychology of Human-Computer Interaction",
+            "author": "Stuart Card et al.",
+            "date": "1983-01-01",
+            "description": "Presents foundational cognitive models for designing interfaces, yielding core principles of modern UX."
+        },
+        {
+            "category": "07_skills_and_applications",
+            "domain": "Communication",
+            "sub_domain": "Rhetoric & Persuasion",
+            "title": "Rhetoric",
+            "author": "Aristotle",
+            "date": "-350-01-01",
+            "description": "The timeless text on persuasion models (ethos, pathos, logos), providing the base for all modern negotiation and communication."
+        },
+        {
+            "category": "07_skills_and_applications",
+            "domain": "Business & Finance",
+            "sub_domain": "Accounting & Investing",
+            "title": "The Intelligent Investor",
+            "author": "Benjamin Graham",
+            "date": "1949-01-01",
+            "description": "The foundational work on value investing, providing high-yield principles for risk management and market analysis."
+        },
+        {
+            "category": "08_arts_and_aesthetics",
+            "domain": "Visual Arts",
+            "sub_domain": "Painting & Sculpture",
+            "title": "Ways of Seeing",
+            "author": "John Berger",
+            "date": "1972-01-01",
+            "description": "A seminal work that provides models for understanding the relationship between perception, culture, and art."
+        },
+        {
+            "category": "08_arts_and_aesthetics",
+            "domain": "Music",
+            "sub_domain": "Theory & Composition",
+            "title": "This Is Your Brain on Music",
+            "author": "Daniel Levitin",
+            "date": "2006-08-01",
+            "description": "Connects the neuroscience of sound to cognitive principles, providing a model for the human response to music."
+        },
+        {
+            "category": "09_religion_and_theology",
+            "domain": "Comparative Religion",
+            "sub_domain": null,
+            "title": "The World's Religions",
+            "author": "Huston Smith",
+            "date": "1958-01-01",
+            "description": "A classic text that models universal belief patterns, yielding a framework for ethical and cultural synthesis."
+        },
+        {
+            "category": "09_religion_and_theology",
+            "domain": "Mysticism",
+            "sub_domain": null,
+            "title": "The Varieties of Religious Experience",
+            "author": "William James",
+            "date": "1902-01-01",
+            "description": "Provides psychological models of faith and transcendental experience, enabling recursive inquiry into neuroscience."
+        },
+        {
+            "category": "10_law_and_jurisprudence",
+            "domain": "Legal Philosophy",
+            "sub_domain": null,
+            "title": "The Concept of Law",
+            "author": "H.L.A. Hart",
+            "date": "1961-01-01",
+            "description": "A foundational analysis of rule systems that provides a model for law paralleling formal logic."
+        },
+        {
+            "category": "11_environmental_and_earth_sciences",
+            "domain": "Climate Science",
+            "sub_domain": null,
+            "title": "The Sixth Extinction",
+            "author": "Elizabeth Kolbert",
+            "date": "2014-02-11",
+            "description": "Provides models of anthropogenic impact, yielding a high-impact framework for sustainability and climate change."
+        },
+        {
+            "category": "12_applied_technologies",
+            "domain": "Quantum Computing",
+            "sub_domain": null,
+            "title": "Quantum Computing for Everyone",
+            "author": "Chris Bernhardt",
+            "date": "2019-08-06",
+            "description": "An accessible introduction to the basics of qubits and superposition, a revolutionary model for computation."
+        },
+        {
+            "category": "13_cultural_and_regional_studies",
+            "domain": "Gender Studies",
+            "sub_domain": null,
+            "title": "Gender Trouble",
+            "author": "Judith Butler",
+            "date": "1990-01-01",
+            "description": "Introduces the theory of gender performativity, yielding a powerful model for understanding social constructs."
+        },
+        {
+            "category": "05_humanities",
+            "domain": "History",
+            "sub_domain": "Military History",
+            "title": "The Art of War",
+            "author": "Sun Tzu",
+            "date": "-475-01-01",
+            "description": "An ancient treatise on strategy and human conflict that provides enduring insights into competitive thinking and leadership."
+        },
+        {
+            "category": "00_latticework_synthesis",
+            "domain": "Risk & Uncertainty",
+            "sub_domain": "Epistemology",
+            "title": "The Black Swan: The Impact of the Highly Improbable",
+            "author": "Nassim Nicholas Taleb",
+            "date": "2007-04-17",
+            "description": "Introduces the 'Black Swan' model of rare, unpredictable events with massive impact, challenging conventional forecasting."
+        },
+        {
+            "category": "01_natural_sciences",
+            "domain": "Physics",
+            "sub_domain": "Classical Mechanics",
+            "title": "Philosophiae Naturalis Principia Mathematica",
+            "author": "Isaac Newton",
+            "date": "1687-07-05",
+            "description": "Lays the mathematical and conceptual foundations of classical mechanics and universal gravitation, marking the dawn of modern physics."
+        },
+        {
+            "category": "01_natural_sciences",
+            "domain": "Astronomy",
+            "sub_domain": "Heliocentrism",
+            "title": "Dialogue Concerning the Two Chief World Systems",
+            "author": "Galileo Galilei",
+            "date": "1632-02-22",
+            "description": "A masterfully argued dialogue supporting Copernican heliocentrism that helped spark modern science."
+        },
+        {
+            "category": "01_natural_sciences",
+            "domain": "Astronomy",
+            "sub_domain": "Heliocentrism",
+            "title": "De Revolutionibus Orbium Coelestium",
+            "author": "Nicolaus Copernicus",
+            "date": "1543-01-01",
+            "description": "The landmark work that first placed the Sun at the center of the solar system, sparking a revolution in scientific thought."
+        },
+        {
+            "category": "01_natural_sciences",
+            "domain": "Geology",
+            "sub_domain": "Uniformitarianism",
+            "title": "Principles of Geology",
+            "author": "Charles Lyell",
+            "date": "1830-01-01",
+            "description": "Introduces the model of 'uniformitarianism,' the idea that slow, ongoing processes over deep time shaped Earth's features."
+        },
+        {
+            "category": "02_life_sciences",
+            "domain": "Biology",
+            "sub_domain": "Evolution & Genetics",
+            "title": "On the Origin of Species",
+            "author": "Charles Darwin",
+            "date": "1859-11-24",
+            "description": "Introduces the theory of evolution by natural selection with overwhelming evidence, revolutionizing our understanding of life."
+        },
+        {
+            "category": "02_life_sciences",
+            "domain": "Biology",
+            "sub_domain": "Molecular & Cell Biology",
+            "title": "The Double Helix",
+            "author": "James D. Watson",
+            "date": "1968-01-01",
+            "description": "A first-person account of the dramatic race to discover DNA's structure, illuminating the molecular basis of genetics."
+        },
+        {
+            "category": "03_formal_sciences",
+            "domain": "Mathematics",
+            "sub_domain": "Geometry",
+            "title": "Elements",
+            "author": "Euclid",
+            "date": "-300-01-01",
+            "description": "An ancient but enduring text that axiomatically develops geometry, establishing the model of rigorous proof that underpins all of mathematics."
+        },
+        {
+            "category": "03_formal_sciences",
+            "domain": "Game Theory",
+            "sub_domain": null,
+            "title": "Theory of Games and Economic Behavior",
+            "author": "John von Neumann & Oskar Morgenstern",
+            "date": "1944-01-01",
+            "description": "The foundational work of game theory, introducing mathematical models of strategic decision-making."
+        },
+        {
+            "category": "03_formal_sciences",
+            "domain": "Computer Science",
+            "sub_domain": "Algorithms & Data Structures",
+            "title": "The Art of Computer Programming",
+            "author": "Donald E. Knuth",
+            "date": "1968-01-01",
+            "description": "A magnum opus on algorithms and computation, setting the gold standard for rigor in computer science."
+        },
+        {
+            "category": "03_formal_sciences",
+            "domain": "Mathematics",
+            "sub_domain": "Philosophy of Mathematics",
+            "title": "A Mathematician's Apology",
+            "author": "G. H. Hardy",
+            "date": "1940-11-01",
+            "description": "A reflective essay on the aesthetics and purpose of mathematics, articulating why pure math is pursued for beauty and intellectual fulfillment."
+        },
+        {
+            "category": "04_human_sciences",
+            "domain": "Psychoanalysis",
+            "sub_domain": null,
+            "title": "The Interpretation of Dreams",
+            "author": "Sigmund Freud",
+            "date": "1900-01-01",
+            "description": "Freud's groundbreaking work proposing that dreams reveal unconscious desires and conflicts, profoundly influencing psychology and culture."
+        },
+        {
+            "category": "04_human_sciences",
+            "domain": "Sociology",
+            "sub_domain": "Economic Sociology",
+            "title": "The Protestant Ethic and the Spirit of Capitalism",
+            "author": "Max Weber",
+            "date": "1905-01-01",
+            "description": "A classic analysis arguing that Protestant religious values helped give rise to modern capitalism."
+        },
+        {
+            "category": "04_human_sciences",
+            "domain": "Economics",
+            "sub_domain": "Classical Economics",
+            "title": "The Wealth of Nations",
+            "author": "Adam Smith",
+            "date": "1776-03-09",
+            "description": "The first comprehensive treatment of political economy, explaining how free markets and division of labor can lead to prosperity."
+        },
+        {
+            "category": "04_human_sciences",
+            "domain": "Political Science",
+            "sub_domain": "Political Theory",
+            "title": "The Communist Manifesto",
+            "author": "Karl Marx & Friedrich Engels",
+            "date": "1848-02-21",
+            "description": "One of the world's most influential political documents, presenting the class-struggle model of history."
+        },
+        {
+            "category": "04_human_sciences",
+            "domain": "Political Science",
+            "sub_domain": "Statecraft",
+            "title": "The Prince",
+            "author": "Niccolò Machiavelli",
+            "date": "1532-01-01",
+            "description": "A slim, notorious manual on power and pragmatism in governance, advocating realistic and sometimes ruthless strategies for rulers."
+        },
+        {
+            "category": "05_humanities",
+            "domain": "Philosophy",
+            "sub_domain": "Political Philosophy",
+            "title": "The Republic",
+            "author": "Plato",
+            "date": "-375-01-01",
+            "description": "Plato's best-known dialogue, examining justice and the ideal state, which stands as one of the world's most influential works of philosophy."
+        },
+        {
+            "category": "05_humanities",
+            "domain": "Philosophy",
+            "sub_domain": "Stoicism",
+            "title": "Meditations",
+            "author": "Marcus Aurelius",
+            "date": "180-01-01",
+            "description": "A series of personal writings by a Roman emperor reflecting on Stoic philosophy, offering timeless insights on virtue and resilience."
+        },
+        {
+            "category": "05_humanities",
+            "domain": "Philosophy",
+            "sub_domain": "Ethics & Morality",
+            "title": "Beyond Good and Evil",
+            "author": "Friedrich Nietzsche",
+            "date": "1886-01-01",
+            "description": "A provocative critique of traditional morality and religion that challenges readers to reevaluate the origins of their values."
+        },
+        {
+            "category": "06_technology_and_computation",
+            "domain": "Software Engineering",
+            "sub_domain": "Project Management",
+            "title": "The Mythical Man-Month",
+            "author": "Frederick P. Brooks Jr.",
+            "date": "1975-01-01",
+            "description": "A seminal collection of essays on software project management, famous for the model that adding manpower to a late project can make it later."
+        },
+        {
+            "category": "03_formal_sciences",
+            "domain": "Computer Science",
+            "sub_domain": "Computation Theory",
+            "title": "Code: The Hidden Language of Computer Hardware and Software",
+            "author": "Charles Petzold",
+            "date": "1999-01-01",
+            "description": "An accessible journey through the building blocks of computers, showing how human logic is translated into the digital world."
+        },
+        {
+            "category": "06_technology_and_computation",
+            "domain": "Artificial Intelligence",
+            "sub_domain": "Future Studies",
+            "title": "Superintelligence: Paths, Dangers, Strategies",
+            "author": "Nick Bostrom",
+            "date": "2014-07-03",
+            "description": "A far-reaching analysis of how a superhuman AI could emerge and why its control poses a critical challenge for humanity."
+        },
+        {
+            "category": "07_skills_and_applications",
+            "domain": "Communication",
+            "sub_domain": "People Skills",
+            "title": "How to Win Friends and Influence People",
+            "author": "Dale Carnegie",
+            "date": "1936-10-01",
+            "description": "The classic guide to interpersonal skills and persuasion, distilling fundamental principles for handling people and winning trust."
+        },
+        {
+            "category": "07_skills_and_applications",
+            "domain": "Self-Improvement",
+            "sub_domain": "Personal Effectiveness",
+            "title": "The 7 Habits of Highly Effective People",
+            "author": "Stephen R. Covey",
+            "date": "1989-08-15",
+            "description": "A hugely influential framework for personal leadership that helps individuals align their actions with principles and goals."
+        },
+        {
+            "category": "07_skills_and_applications",
+            "domain": "Productivity",
+            "sub_domain": "Organization",
+            "title": "Getting Things Done: The Art of Stress-Free Productivity",
+            "author": "David Allen",
+            "date": "2001-01-01",
+            "description": "A modern classic that provides a comprehensive system for reducing stress while staying on top of commitments and workflows."
+        },
+        {
+            "category": "07_skills_and_applications",
+            "domain": "Communication",
+            "sub_domain": "Negotiation",
+            "title": "Never Split the Difference",
+            "author": "Chris Voss",
+            "date": "2016-05-17",
+            "description": "A sharp, experience-based handbook on negotiation by a former FBI hostage negotiator, introducing powerful psychological models."
+        },
+        {
+            "category": "07_skills_and_applications",
+            "domain": "Entrepreneurship",
+            "sub_domain": "Innovation",
+            "title": "The Lean Startup",
+            "author": "Eric Ries",
+            "date": "2011-09-13",
+            "description": "Applies models of scientific experimentation to startups, advocating rapid iteration and validated learning to innovate efficiently."
+        },
+        {
+            "category": "07_skills_and_applications",
+            "domain": "Entrepreneurship",
+            "sub_domain": "Innovation",
+            "title": "Zero to One: Notes on Startups, or How to Build the Future",
+            "author": "Peter Thiel and Blake Masters",
+            "date": "2014-09-16",
+            "description": "Presents a contrarian framework for building the future, arguing that true innovation comes from creating new things (zero to one) rather than copying existing models."
+        },
+        {
+            "category": "00_latticework_synthesis",
+            "domain": "Systems Thinking",
+            "sub_domain": "Systems Analysis",
+            "title": "The Fifth Discipline",
+            "author": "Peter Senge",
+            "date": "1990-01-01",
+            "description": "Provides the core models for creating 'learning organizations' through systems thinking and feedback loops."
+        },
+        {
+            "category": "01_natural_sciences",
+            "domain": "Physics",
+            "sub_domain": "Quantum Mechanics",
+            "title": "Quantum Supremacy",
+            "author": "Michio Kaku",
+            "date": "2023-01-01",
+            "description": "Explains the revolutionary impact of quantum computing on technology and science from a physicist's perspective."
+        },
+        {
+            "category": "01_natural_sciences",
+            "domain": "Physics",
+            "sub_domain": "Nuclear Physics",
+            "title": "The Making of the Atomic Bomb",
+            "author": "Richard Rhodes",
+            "date": "1986-01-01",
+            "description": "A historical model of the Manhattan Project that yields profound insights into large-scale science and ethics."
+        },
+        {
+            "category": "01_natural_sciences",
+            "domain": "Chemistry",
+            "sub_domain": "Biochemistry",
+            "title": "The Periodic Table",
+            "author": "Primo Levi",
+            "date": "1975-01-01",
+            "description": "A collection of elemental narratives that powerfully links the principles of chemistry to the human experience."
+        },
+        {
+            "category": "01_natural_sciences",
+            "domain": "Geology",
+            "sub_domain": "Paleontology",
+            "title": "Wonderful Life",
+            "author": "Stephen Jay Gould",
+            "date": "1989-01-01",
+            "description": "Introduces the model of contingency in evolution through its analysis of the bizarre fossils of the Burgess Shale."
+        },
+        {
+            "category": "02_life_sciences",
+            "domain": "Biology",
+            "sub_domain": "Evolution & Genetics",
+            "title": "The Genetic Book of the Dead",
+            "author": "Richard Dawkins",
+            "date": "2024-01-01",
+            "description": "A modern synthesis of the gene-centered view of evolution, updating the core models of heredity."
+        },
+        {
+            "category": "02_life_sciences",
+            "domain": "Biology",
+            "sub_domain": "Immunology",
+            "title": "Immune",
+            "author": "Philipp Dettmer",
+            "date": "2021-01-01",
+            "description": "An accessible and visually intuitive model of the human immune system as a complex adaptive network."
+        },
+        {
+            "category": "02_life_sciences",
+            "domain": "Ecology",
+            "sub_domain": "Ecosystems",
+            "title": "The Diversity of Life",
+            "author": "E.O. Wilson",
+            "date": "1992-01-01",
+            "description": "Provides the foundational frameworks for understanding the biodiversity crisis and its ecological consequences."
+        },
+        {
+            "category": "02_life_sciences",
+            "domain": "Neuroscience",
+            "sub_domain": "Cognitive Neuroscience",
+            "title": "The Tell-Tale Brain",
+            "author": "V.S. Ramachandran",
+            "date": "2011-01-01",
+            "description": "Explores the neural basis of self, creativity, and consciousness through ingenious neurological case studies."
+        },
+        {
+            "category": "02_life_sciences",
+            "domain": "Medicine",
+            "sub_domain": "Pathology",
+            "title": "Being Mortal",
+            "author": "Atul Gawande",
+            "date": "2014-01-01",
+            "description": "A critical examination of end-of-life care that provides new models for medicine and aging."
+        },
+        {
+            "category": "03_formal_sciences",
+            "domain": "Mathematics",
+            "sub_domain": "Topology",
+            "title": "The Shape of Space",
+            "author": "Jeffrey Weeks",
+            "date": "1985-01-01",
+            "description": "Introduces models of spatial geometries for developing multidimensional and abstract thinking."
+        },
+        {
+            "category": "03_formal_sciences",
+            "domain": "Logic",
+            "sub_domain": "Formal & Informal Logic",
+            "title": "Being Logical",
+            "author": "D.Q. McInerny",
+            "date": "2004-01-01",
+            "description": "A practical guide that provides the essential tools for deductive and inductive reasoning."
+        },
+        {
+            "category": "03_formal_sciences",
+            "domain": "Computer Science",
+            "sub_domain": "Computation Theory",
+            "title": "The Singularity Is Nearer",
+            "author": "Ray Kurzweil",
+            "date": "2024-01-01",
+            "description": "Provides predictive models for the evolution of AI and its integration with human biology."
+        },
+        {
+            "category": "03_formal_sciences",
+            "domain": "Game Theory",
+            "sub_domain": null,
+            "title": "Prisoner's Dilemma",
+            "author": "William Poundstone",
+            "date": "1992-01-01",
+            "description": "A classic exploration of the strategic models of cooperation and conflict pioneered by John von Neumann."
+        },
+        {
+            "category": "04_human_sciences",
+            "domain": "Psychology",
+            "sub_domain": "Cognitive Psychology",
+            "title": "Noise",
+            "author": "Daniel Kahneman et al.",
+            "date": "2021-01-01",
+            "description": "Provides a framework for understanding and reducing random error ('noise') in human judgment."
+        },
+        {
+            "category": "04_human_sciences",
+            "domain": "Psychiatry & Psychotherapy",
+            "sub_domain": null,
+            "title": "The Body Keeps the Score",
+            "author": "Bessel van der Kolk",
+            "date": "2014-01-01",
+            "description": "Introduces a model of trauma's biological and neurological impact on the body and mind."
+        },
+        {
+            "category": "04_human_sciences",
+            "domain": "Sociology",
+            "sub_domain": "Demography",
+            "title": "Bowling Alone",
+            "author": "Robert Putnam",
+            "date": "2000-01-01",
+            "description": "A foundational analysis of the decline of social capital in modern America."
+        },
+        {
+            "category": "04_human_sciences",
+            "domain": "Anthropology",
+            "sub_domain": "Cultural Anthropology",
+            "title": "The Dawn of Everything",
+            "author": "David Graeber & David Wengrow",
+            "date": "2021-01-01",
+            "description": "A paradigm-shifting work that rethinks the origins and possibilities of human societies."
+        },
+        {
+            "category": "04_human_sciences",
+            "domain": "Economics",
+            "sub_domain": "Microeconomics & Macroeconomics",
+            "title": "Capital in the Twenty-First Century",
+            "author": "Thomas Piketty",
+            "date": "2013-01-01",
+            "description": "A data-driven model explaining the dynamics of wealth inequality in modern capitalism."
+        },
+        {
+            "category": "04_human_sciences",
+            "domain": "Political Science",
+            "sub_domain": "International Relations",
+            "title": "The Clash of Civilizations",
+            "author": "Samuel Huntington",
+            "date": "1996-01-01",
+            "description": "A controversial but highly influential model for understanding post-Cold War global conflicts."
+        },
+        {
+            "category": "05_humanities",
+            "domain": "Philosophy",
+            "sub_domain": "Metaphysics",
+            "title": "Being and Time",
+            "author": "Martin Heidegger",
+            "date": "1927-01-01",
+            "description": "A foundational text of existentialism that provides a new ontology for understanding 'being' itself."
+        },
+        {
+            "category": "05_humanities",
+            "domain": "History",
+            "sub_domain": "Ancient & Modern History",
+            "title": "The Guns of August",
+            "author": "Barbara Tuchman",
+            "date": "1962-01-01",
+            "description": "A classic historical model of the miscalculations and causal chains that led to World War I."
+        },
+        {
+            "category": "05_humanities",
+            "domain": "Linguistics",
+            "sub_domain": "Language Acquisition",
+            "title": "Through the Language Glass",
+            "author": "Guy Deutscher",
+            "date": "2010-01-01",
+            "description": "Explores the models linking language structure to thought and cultural perception."
+        },
+        {
+            "category": "05_humanities",
+            "domain": "Literature",
+            "sub_domain": "Poetry & Fiction",
+            "title": "The Hero with a Thousand Faces",
+            "author": "Joseph Campbell",
+            "date": "1949-01-01",
+            "description": "Introduces the 'monomyth,' a universal archetypal model found in world mythology."
+        },
+        {
+            "category": "06_technology_and_computation",
+            "domain": "Engineering",
+            "sub_domain": "Electrical Engineering",
+            "title": "The Innovators",
+            "author": "Walter Isaacson",
+            "date": "2014-01-01",
+            "description": "A historical model of the collaborative innovation that created the digital revolution."
+        },
+        {
+            "category": "06_technology_and_computation",
+            "domain": "Artificial Intelligence",
+            "sub_domain": "Machine Learning",
+            "title": "Designing Machine Learning Systems",
+            "author": "Chip Huyen",
+            "date": "2022-01-01",
+            "description": "Provides practical models and frameworks for the real-world deployment of AI systems."
+        },
+        {
+            "category": "06_technology_and_computation",
+            "domain": "Design",
+            "sub_domain": "User Experience (UX)",
+            "title": "Hooked",
+            "author": "Nir Eyal",
+            "date": "2014-01-01",
+            "description": "Introduces the 'Hook Model,' a behavioral design framework for building habit-forming products."
+        },
+        {
+            "category": "07_skills_and_applications",
+            "domain": "Communication",
+            "sub_domain": "Rhetoric & Persuasion",
+            "title": "Made to Stick",
+            "author": "Chip & Dan Heath",
+            "date": "2007-01-01",
+            "description": "Provides principles and models for making ideas memorable and viral."
+        },
+        {
+            "category": "07_skills_and_applications",
+            "domain": "Pedagogy",
+            "sub_domain": "Learning Theories",
+            "title": "Why Don't Students Like School?",
+            "author": "Daniel Willingham",
+            "date": "2009-01-01",
+            "description": "Provides cognitive models for how the brain learns, with practical applications for teaching and studying."
+        },
+        {
+            "category": "07_skills_and_applications",
+            "domain": "Business & Finance",
+            "sub_domain": "Leadership & Ethics",
+            "title": "Good to Great",
+            "author": "Jim Collins",
+            "date": "2001-01-01",
+            "description": "A research-based framework of models that explain how companies transform from good to great."
+        },
+        {
+            "category": "08_arts_and_aesthetics",
+            "domain": "Visual Arts",
+            "sub_domain": "Painting & Sculpture",
+            "title": "The Story of Art",
+            "author": "E.H. Gombrich",
+            "date": "1950-01-01",
+            "description": "A classic narrative model explaining the historical evolution of art from ancient times to the modern era."
+        },
+        {
+            "category": "09_religion_and_theology",
+            "domain": "Comparative Religion",
+            "sub_domain": null,
+            "title": "God: A Human History",
+            "author": "Reza Aslan",
+            "date": "2017-01-01",
+            "description": "Provides a model for understanding the anthropomorphism of belief systems across history."
+        },
+        {
+            "category": "09_religion_and_theology",
+            "domain": "Secularism & Atheism",
+            "sub_domain": null,
+            "title": "The God Delusion",
+            "author": "Richard Dawkins",
+            "date": "2006-01-01",
+            "description": "A foundational text providing rational and scientific arguments for atheism."
+        },
+        {
+            "category": "10_law_and_jurisprudence",
+            "domain": "Criminal Law",
+            "sub_domain": null,
+            "title": "Just Mercy",
+            "author": "Bryan Stevenson",
+            "date": "2014-01-01",
+            "description": "A powerful narrative model exposing the flaws and biases within the American justice system."
+        },
+        {
+            "category": "10_law_and_jurisprudence",
+            "domain": "International Law",
+            "sub_domain": null,
+            "title": "The Internationalists",
+            "author": "Oona Hathaway & Scott Shapiro",
+            "date": "2017-01-01",
+            "description": "Provides historical models for the outlawing of war and the shift in international legal norms."
+        },
+        {
+            "category": "11_environmental_and_earth_sciences",
+            "domain": "Climate Science",
+            "sub_domain": null,
+            "title": "Fevered Planet",
+            "author": "John Vidal",
+            "date": "2023-01-01",
+            "description": "A modern synthesis of the cascading impacts of climate change on global systems."
+        },
+        {
+            "category": "11_environmental_and_earth_sciences",
+            "domain": "Sustainability",
+            "sub_domain": null,
+            "title": "Cradle to Cradle",
+            "author": "William McDonough & Michael Braungart",
+            "date": "2002-01-01",
+            "description": "Introduces the influential circular economy model for sustainable design."
+        },
+        {
+            "category": "12_applied_technologies",
+            "domain": "Nanotechnology",
+            "sub_domain": null,
+            "title": "Engines of Creation",
+            "author": "K. Eric Drexler",
+            "date": "1986-01-01",
+            "description": "A visionary text that provides the foundational models for molecular assembly and its future potential."
+        },
+        {
+            "category": "12_applied_technologies",
+            "domain": "Biotechnology",
+            "sub_domain": "CRISPR",
+            "title": "A Crack in Creation",
+            "author": "Jennifer Doudna",
+            "date": "2017-01-01",
+            "description": "A first-hand account of the gene-editing revolution and its ethical implications."
+        },
+        {
+            "category": "12_applied_technologies",
+            "domain": "Quantum Computing",
+            "sub_domain": null,
+            "title": "Programming the Universe",
+            "author": "Seth Lloyd",
+            "date": "2006-01-01",
+            "description": "A mind-bending model that reframes the universe itself as a quantum computer."
+        },
+        {
+            "category": "12_applied_technologies",
+            "domain": "Cybersecurity",
+            "sub_domain": null,
+            "title": "Sandworm",
+            "author": "Andy Greenberg",
+            "date": "2019-01-01",
+            "description": "A historical model and case study of modern state-sponsored cyber warfare."
+        },
+        {
+            "category": "13_cultural_and_regional_studies",
+            "domain": "Ethnic & Racial Studies",
+            "sub_domain": null,
+            "title": "Caste",
+            "author": "Isabel Wilkerson",
+            "date": "2020-01-01",
+            "description": "Provides a powerful model for understanding hidden social hierarchies and their consequences."
+        },
+        {
+            "category": "14_mythology_and_folklore",
+            "domain": "Comparative Mythology",
+            "sub_domain": null,
+            "title": "Mythology",
+            "author": "Edith Hamilton",
+            "date": "1942-01-01",
+            "description": "A classic compilation of Greek and Roman archetypal myths and their meanings."
+        },
+        {
+            "category": "14_mythology_and_folklore",
+            "domain": "Folklore Studies",
+            "sub_domain": null,
+            "title": "The Golden Bough",
+            "author": "James Frazer",
+            "date": "1890-01-01",
+            "description": "A monumental work that provides models for understanding the origins of ritual, magic, and religion."
+        },
+        {
+            "category": "15_sports_and_kinesiology",
+            "domain": "Sports Science",
+            "sub_domain": null,
+            "title": "Endure",
+            "author": "Alex Hutchinson",
+            "date": "2018-01-01",
+            "description": "Provides models for the psychological and physiological limits of human performance."
+        },
+        {
+            "category": "15_sports_and_kinesiology",
+            "domain": "Exercise Physiology",
+            "sub_domain": null,
+            "title": "Spark",
+            "author": "John Ratey",
+            "date": "2008-01-01",
+            "description": "A foundational text on the link between physical exercise and brain function."
+        },
+        {
+            "category": "16_architecture_and_urban_planning",
+            "domain": "Architectural Theory",
+            "sub_domain": null,
+            "title": "The Death and Life of Great American Cities",
+            "author": "Jane Jacobs",
+            "date": "1961-01-01",
+            "description": "A classic text that provides principles and models for understanding urban vitality and decay."
+        },
+        {
+            "category": "16_architecture_and_urban_planning",
+            "domain": "Urban Design",
+            "sub_domain": null,
+            "title": "Delirious New York",
+            "author": "Rem Koolhaas",
+            "date": "1978-01-01",
+            "description": "A retroactive manifesto that provides a model for understanding the culture of congestion in Manhattan."
+        },
+        {
+            "category": "02_life_sciences",
+            "domain": "Biology",
+            "sub_domain": "Virology",
+            "title": "The Coming Plague",
+            "author": "Laurie Garrett",
+            "date": "1994-01-01",
+            "description": "Models emerging infectious diseases as intersections of human behavior, ecology, and globalization."
+        },
+        {
+            "category": "02_life_sciences",
+            "domain": "Biology",
+            "sub_domain": "Immunology",
+            "title": "An Elegant Defense",
+            "author": "Matt Richtel",
+            "date": "2019-03-12",
+            "description": "Frames the immune system as a balanced network managing self and non-self recognition."
+        },
+        {
+            "category": "06_technology_and_computation",
+            "domain": "Artificial Intelligence",
+            "sub_domain": "Robotics",
+            "title": "Vehicles: Experiments in Synthetic Psychology",
+            "author": "Valentino Braitenberg",
+            "date": "1984-01-01",
+            "description": "Uses simple robotic models to explain complex behaviors through sensor-motor connections."
+        },
+        {
+            "category": "04_human_sciences",
+            "domain": "Criminology",
+            "sub_domain": "Forensic Science",
+            "title": "The Bone Lady",
+            "author": "Mary H. Manhein",
+            "date": "1999-01-01",
+            "description": "Demonstrates forensic anthropology as a tool for reconstructing human stories from skeletal remains."
+        },
+        {
+            "category": "11_environmental_and_earth_sciences",
+            "domain": "Oceanography",
+            "sub_domain": null,
+            "title": "The Wave: In Pursuit of the Rogues, Freaks and Giants of the Ocean",
+            "author": "Susan Casey",
+            "date": "2010-09-14",
+            "description": "Portrays ocean waves as dynamic systems governed by physics and climate patterns."
+        },
+        {
+            "category": "11_environmental_and_earth_sciences",
+            "domain": "Atmospheric Science",
+            "sub_domain": null,
+            "title": "The Weather Machine",
+            "author": "Andrew Blum",
+            "date": "2019-06-25",
+            "description": "Explains weather forecasting as a data-driven model integrating chaos theory and computation."
+        },
+        {
+            "category": "11_environmental_and_earth_sciences",
+            "domain": "Sustainability",
+            "sub_domain": null,
+            "title": "Drawdown",
+            "author": "Paul Hawken",
+            "date": "2017-04-18",
+            "description": "Presents sustainability as a portfolio of solutions ranked by carbon reduction potential."
+        },
+        {
+            "category": "13_cultural_and_regional_studies",
+            "domain": "Gender Studies",
+            "sub_domain": null,
+            "title": "Invisible Women",
+            "author": "Caroline Criado Perez",
+            "date": "2019-03-07",
+            "description": "Highlights data bias as a model for understanding gender inequalities in design and policy."
+        },
+        {
+            "category": "14_mythology_and_folklore",
+            "domain": "Comparative Mythology",
+            "sub_domain": null,
+            "title": "The Power of Myth",
+            "author": "Joseph Campbell",
+            "date": "1988-06-01",
+            "description": "Views myths as universal patterns reflecting human psychological and social needs."
+        },
+        {
+            "category": "15_sports_and_kinesiology",
+            "domain": "Exercise Physiology",
+            "sub_domain": null,
+            "title": "The Sports Gene",
+            "author": "David Epstein",
+            "date": "2013-08-01",
+            "description": "Explores athletic performance as an interaction between genetics and training environments."
+        },
+        {
+            "category": "16_architecture_and_urban_planning",
+            "domain": "Architectural Theory",
+            "sub_domain": null,
+            "title": "A Pattern Language",
+            "author": "Christopher Alexander",
+            "date": "1977-01-01",
+            "description": "Defines architecture as reusable patterns for creating livable spaces."
+        },
+        {
+            "category": "16_architecture_and_urban_planning",
+            "domain": "Urban Design",
+            "sub_domain": null,
+            "title": "Happy City",
+            "author": "Charles Montgomery",
+            "date": "2013-11-12",
+            "description": "Models urban planning around human happiness and social connections."
+        },
+        {
+            "category": "08_arts_and_aesthetics",
+            "domain": "Music",
+            "sub_domain": "Theory & Composition",
+            "title": "This Is Your Brain on Music",
+            "author": "Daniel J. Levitin",
+            "date": "2006-08-03",
+            "description": "Describes music perception as cognitive processes linking sound to emotion and memory."
+        },
+        {
+            "category": "09_religion_and_theology",
+            "domain": "Theology",
+            "sub_domain": "Monotheism & Polytheism",
+            "title": "The Evolution of God",
+            "author": "Robert Wright",
+            "date": "2009-06-08",
+            "description": "Traces religious beliefs as evolving adaptations to social and moral needs."
+        },
+        {
+            "category": "10_law_and_jurisprudence",
+            "domain": "Constitutional Law",
+            "sub_domain": null,
+            "title": "The Second Founding",
+            "author": "Eric Foner",
+            "date": "2019-09-17",
+            "description": "Reframes U.S. Reconstruction amendments as a model for expanding civil rights."
+        },
+        {
+            "category": "12_applied_technologies",
+            "domain": "Nanotechnology",
+            "sub_domain": null,
+            "title": "Radical Abundance",
+            "author": "K. Eric Drexler",
+            "date": "2013-05-07",
+            "description": "Envisions nanotechnology as enabling atomically precise manufacturing for abundance."
+        },
+        {
+            "category": "14_mythology_and_folklore",
+            "domain": "Folklore Studies",
+            "sub_domain": null,
+            "title": "Women Who Run with the Wolves",
+            "author": "Clarissa Pinkola Estés",
+            "date": "1992-01-01",
+            "description": "Interprets folklore as archetypes for female psychological empowerment."
+        },
+        {
+            "category": "03_formal_sciences",
+            "domain": "Computer Science",
+            "sub_domain": "Blockchain",
+            "title": "The Bitcoin Standard",
+            "author": "Saifedean Ammous",
+            "date": "2018-04-24",
+            "description": "Positions blockchain as a model for sound money and decentralized finance."
+        },
+        {
+            "category": "04_human_sciences",
+            "domain": "Sociology",
+            "sub_domain": "Criminology",
+            "title": "The New Jim Crow",
+            "author": "Michelle Alexander",
+            "date": "2010-01-05",
+            "description": "Models mass incarceration as a system of racial control in modern America."
+        },
+        {
+            "category": "05_humanities",
+            "domain": "Philosophy",
+            "sub_domain": "Aesthetics",
+            "title": "The Birth of Tragedy",
+            "author": "Friedrich Nietzsche",
+            "date": "1872-01-01",
+            "description": "Contrasts Apollonian and Dionysian forces as models for artistic creation."
+        },
+        {
+            "category": "01_natural_sciences",
+            "domain": "Physics",
+            "sub_domain": "Nuclear Physics",
+            "title": "Command and Control",
+            "author": "Eric Schlosser",
+            "date": "2013-09-17",
+            "description": "Examines nuclear weapons as systems prone to accidents through human error and complexity."
+        },
+        {
+            "category": "02_life_sciences",
+            "domain": "Ecology",
+            "sub_domain": "Ecosystems",
+            "title": "Half-Earth",
+            "author": "E.O. Wilson",
+            "date": "2016-03-07",
+            "description": "Proposes reserving half the planet for nature as a model for biodiversity preservation."
+        },
+        {
+            "category": "03_formal_sciences",
+            "domain": "Logic",
+            "sub_domain": "Formal & Informal Logic",
+            "title": "How to Think Straight About Psychology",
+            "author": "Keith E. Stanovich",
+            "date": "1986-01-01",
+            "description": "Applies critical thinking models to distinguish science from pseudoscience in psychology."
+        },
+        {
+            "category": "04_human_sciences",
+            "domain": "Psychology",
+            "sub_domain": "Moral Psychology",
+            "title": "The Moral Animal",
+            "author": "Robert Wright",
+            "date": "1994-01-01",
+            "description": "Uses evolutionary psychology to model moral behavior as adaptive strategies."
+        },
+        {
+            "category": "05_humanities",
+            "domain": "History",
+            "sub_domain": "Military History",
+            "title": "The Art of War",
+            "author": "Sun Tzu",
+            "date": "-500-01-01",
+            "description": "Presents warfare as a model of strategy, deception, and adaptability."
+        },
+        {
+            "category": "06_technology_and_computation",
+            "domain": "Engineering",
+            "sub_domain": "Electrical Engineering",
+            "title": "The Grid",
+            "author": "Gretchen Bakke",
+            "date": "2016-07-26",
+            "description": "Describes the electrical grid as a fragile system balancing supply and demand."
+        },
+        {
+            "category": "07_skills_and_applications",
+            "domain": "Business & Finance",
+            "sub_domain": "Accounting & Investing",
+            "title": "The Intelligent Investor",
+            "author": "Benjamin Graham",
+            "date": "1949-01-01",
+            "description": "Advocates value investing as a model for rational, long-term financial decision-making."
+        },
+        {
+            "category": "08_arts_and_aesthetics",
+            "domain": "Performing Arts",
+            "sub_domain": "Theater & Dance",
+            "title": "The Empty Space",
+            "author": "Peter Brook",
+            "date": "1968-01-01",
+            "description": "Classifies theater into deadly, holy, rough, and immediate forms as models for performance."
+        },
+        {
+            "category": "09_religion_and_theology",
+            "domain": "Mysticism",
+            "sub_domain": null,
+            "title": "The Varieties of Religious Experience",
+            "author": "William James",
+            "date": "1902-01-01",
+            "description": "Analyzes mysticism as psychological states yielding personal transformation."
+        },
+        {
+            "category": "10_law_and_jurisprudence",
+            "domain": "Legal Philosophy",
+            "sub_domain": null,
+            "title": "Justice: What's the Right Thing to Do?",
+            "author": "Michael J. Sandel",
+            "date": "2009-09-15",
+            "description": "Explores justice through utilitarian, libertarian, and communitarian models."
+        },
+        {
+            "category": "11_environmental_and_earth_sciences",
+            "domain": "Environmental Policy",
+            "sub_domain": null,
+            "title": "The Sixth Extinction",
+            "author": "Elizabeth Kolbert",
+            "date": "2014-02-11",
+            "description": "Frames current biodiversity loss as a human-driven mass extinction event."
+        },
+        {
+            "category": "12_applied_technologies",
+            "domain": "Biotechnology",
+            "sub_domain": "CRISPR",
+            "title": "The Code Breaker",
+            "author": "Walter Isaacson",
+            "date": "2021-03-09",
+            "description": "Chronicles CRISPR as a model for gene editing revolutionizing medicine."
+        },
+        {
+            "category": "13_cultural_and_regional_studies",
+            "domain": "Area Studies",
+            "sub_domain": null,
+            "title": "The Clash of Civilizations and the Remaking of World Order",
+            "author": "Samuel P. Huntington",
+            "date": "1996-01-01",
+            "description": "Models post-Cold War conflicts as cultural and civilizational clashes."
+        },
+        {
+            "category": "15_sports_and_kinesiology",
+            "domain": "Sports Science",
+            "sub_domain": null,
+            "title": "Born to Run",
+            "author": "Christopher McDougall",
+            "date": "2009-05-05",
+            "description": "Views human endurance as an evolutionary adaptation for persistence hunting."
+        },
+        {
+            "category": "01_natural_sciences",
+            "domain": "Chemistry",
+            "sub_domain": "Organic & Inorganic",
+            "title": "The Disappearing Spoon",
+            "author": "Sam Kean",
+            "date": "2010-07-12",
+            "description": "Uses the periodic table as a model for understanding element properties and history."
+        },
+        {
+            "category": "02_life_sciences",
+            "domain": "Neuroscience",
+            "sub_domain": "Behavioral Neuroscience",
+            "title": "Incognito",
+            "author": "David Eagleman",
+            "date": "2011-05-31",
+            "description": "Portrays the brain as mostly unconscious processes shaping conscious experience."
+        },
+        {
+            "category": "03_formal_sciences",
+            "domain": "Mathematics",
+            "sub_domain": "Geometry",
+            "title": "The Fractal Geometry of Nature",
+            "author": "Benoit Mandelbrot",
+            "date": "1982-01-01",
+            "description": "Introduces fractals as models for irregular natural patterns and self-similarity."
+        },
+        {
+            "category": "04_human_sciences",
+            "domain": "Anthropology",
+            "sub_domain": "Cultural Anthropology",
+            "title": "Patterns of Culture",
+            "author": "Ruth Benedict",
+            "date": "1934-01-01",
+            "description": "Compares cultures as integrated patterns influencing individual behavior."
+        },
+        {
+            "category": "05_humanities",
+            "domain": "Linguistics",
+            "sub_domain": "Semantics",
+            "title": "Women, Fire, and Dangerous Things",
+            "author": "George Lakoff",
+            "date": "1987-01-01",
+            "description": "Argues categorization as embodied and metaphorical cognitive models."
+        },
+        {
+            "category": "06_technology_and_computation",
+            "domain": "Software Engineering",
+            "sub_domain": "Project Management",
+            "title": "Clean Code",
+            "author": "Robert C. Martin",
+            "date": "2008-08-01",
+            "description": "Advocates code as readable, maintainable models for software development."
+        },
+        {
+            "category": "07_skills_and_applications",
+            "domain": "Communication",
+            "sub_domain": "Rhetoric & Persuasion",
+            "title": "Thank You for Arguing",
+            "author": "Jay Heinrichs",
+            "date": "2007-02-27",
+            "description": "Teaches rhetoric as tools for persuasion in everyday arguments."
+        },
+        {
+            "category": "08_arts_and_aesthetics",
+            "domain": "Film & Media",
+            "sub_domain": null,
+            "title": "Understanding Comics",
+            "author": "Scott McCloud",
+            "date": "1993-01-01",
+            "description": "Uses comics to model visual communication and sequential art."
+        },
+        {
+            "category": "09_religion_and_theology",
+            "domain": "Secularism & Atheism",
+            "sub_domain": null,
+            "title": "Letter to a Christian Nation",
+            "author": "Sam Harris",
+            "date": "2006-09-19",
+            "description": "Critiques religious faith as incompatible with reason and evidence."
+        },
+        {
+            "category": "10_law_and_jurisprudence",
+            "domain": "Criminal Law",
+            "sub_domain": null,
+            "title": "Discipline and Punish",
+            "author": "Michel Foucault",
+            "date": "1975-01-01",
+            "description": "Traces punishment as evolving models of power and social control."
+        },
+        {
+            "category": "11_environmental_and_earth_sciences",
+            "domain": "Climate Science",
+            "sub_domain": null,
+            "title": "This Changes Everything",
+            "author": "Naomi Klein",
+            "date": "2014-09-16",
+            "description": "Frames climate change as a capitalist crisis requiring systemic change."
+        },
+        {
+            "category": "12_applied_technologies",
+            "domain": "Cybersecurity",
+            "sub_domain": null,
+            "title": "Countdown to Zero Day",
+            "author": "Kim Zetter",
+            "date": "2014-11-11",
+            "description": "Details cyber warfare as asymmetric threats exploiting software vulnerabilities."
+        },
+        {
+            "category": "13_cultural_and_regional_studies",
+            "domain": "Ethnic & Racial Studies",
+            "sub_domain": null,
+            "title": "White Fragility",
+            "author": "Robin DiAngelo",
+            "date": "2018-06-26",
+            "description": "Models white defensiveness as a barrier to addressing racism."
+        },
+        {
+            "category": "14_mythology_and_folklore",
+            "domain": "Comparative Mythology",
+            "sub_domain": null,
+            "title": "The Masks of God",
+            "author": "Joseph Campbell",
+            "date": "1959-01-01",
+            "description": "Explores myths as symbolic expressions of human experience across cultures."
+        },
+        {
+            "category": "01_natural_sciences",
+            "domain": "Geology",
+            "sub_domain": "Paleontology",
+            "title": "The Rise and Reign of the Mammals",
+            "author": "Steve Brusatte",
+            "date": "2022-06-07",
+            "description": "Models mammalian evolution as adaptive radiation after dinosaur extinction."
+        },
+        {
+            "category": "02_life_sciences",
+            "domain": "Medicine",
+            "sub_domain": "Pathology",
+            "title": "The Man Who Mistook His Wife for a Hat",
+            "author": "Oliver Sacks",
+            "date": "1985-01-01",
+            "description": "Illustrates neurological disorders as windows into brain function."
+        },
+        {
+            "category": "03_formal_sciences",
+            "domain": "Game Theory",
+            "sub_domain": null,
+            "title": "Rock, Paper, Scissors",
+            "author": "Len Fisher",
+            "date": "2008-11-04",
+            "description": "Applies game theory to everyday social dilemmas and cooperation."
+        },
+        {
+            "category": "04_human_sciences",
+            "domain": "Political Science",
+            "sub_domain": "Statecraft",
+            "title": "The Dictator's Handbook",
+            "author": "Bruce Bueno de Mesquita",
+            "date": "2011-09-27",
+            "description": "Models politics as self-interested selectors choosing leaders."
+        },
+        {
+            "category": "05_humanities",
+            "domain": "Philosophy",
+            "sub_domain": "Political Philosophy",
+            "title": "Leviathan",
+            "author": "Thomas Hobbes",
+            "date": "1651-01-01",
+            "description": "Depicts the state as a social contract to avoid war of all against all."
+        },
+        {
+            "category": "06_technology_and_computation",
+            "domain": "Design",
+            "sub_domain": "Systems Design",
+            "title": "The Laws of Simplicity",
+            "author": "John Maeda",
+            "date": "2006-07-07",
+            "description": "Proposes simplicity as a model for effective design in technology."
+        },
+        {
+            "category": "07_skills_and_applications",
+            "domain": "Entrepreneurship",
+            "sub_domain": "Innovation",
+            "title": "The Hard Thing About Hard Things",
+            "author": "Ben Horowitz",
+            "date": "2014-03-04",
+            "description": "Views startup leadership as navigating chaos with no easy answers."
+        },
+        {
+            "category": "08_arts_and_aesthetics",
+            "domain": "Visual Arts",
+            "sub_domain": "Painting & Sculpture",
+            "title": "Ways of Seeing",
+            "author": "John Berger",
+            "date": "1972-01-01",
+            "description": "Critiques art viewing as influenced by social and economic contexts."
+        },
+        {
+            "category": "09_religion_and_theology",
+            "domain": "Comparative Religion",
+            "sub_domain": null,
+            "title": "The World's Religions",
+            "author": "Huston Smith",
+            "date": "1958-01-01",
+            "description": "Compares religions as diverse paths to the divine."
+        },
+        {
+            "category": "10_law_and_jurisprudence",
+            "domain": "International Law",
+            "sub_domain": null,
+            "title": "The Law of War",
+            "author": "William H. Boothby",
+            "date": "2018-03-29",
+            "description": "Defines war laws as models for humane conduct in conflict."
+        },
+        {
+            "category": "11_environmental_and_earth_sciences",
+            "domain": "Environmental Policy",
+            "sub_domain": null,
+            "title": "Collapse",
+            "author": "Jared Diamond",
+            "date": "2005-01-01",
+            "description": "Analyzes societal collapse as failure to adapt to environmental challenges."
+        },
+        {
+            "category": "12_applied_technologies",
+            "domain": "Quantum Computing",
+            "sub_domain": null,
+            "title": "Quantum Computing for Everyone",
+            "author": "Chris Bernhardt",
+            "date": "2019-03-19",
+            "description": "Explains quantum bits as superpositions enabling parallel computation."
+        },
+        {
+            "category": "13_cultural_and_regional_studies",
+            "domain": "Gender Studies",
+            "sub_domain": null,
+            "title": "Gender Trouble",
+            "author": "Judith Butler",
+            "date": "1990-01-01",
+            "description": "Theorizes gender as performative acts rather than innate."
+        },
+        {
+            "category": "15_sports_and_kinesiology",
+            "domain": "Sports Science",
+            "sub_domain": null,
+            "title": "Peak",
+            "author": "Anders Ericsson",
+            "date": "2016-04-05",
+            "description": "Models expertise as deliberate practice over innate talent."
+        },
+        {
+            "category": "16_architecture_and_urban_planning",
+            "domain": "Urban Design",
+            "sub_domain": null,
+            "title": "The Geography of Nowhere",
+            "author": "James Howard Kunstler",
+            "date": "1993-01-01",
+            "description": "Critiques suburban sprawl as unsustainable urban form."
+        },
+        {
+            "category": "00_latticework_synthesis",
+            "domain": "Mental Models",
+            "sub_domain": "Recursion & Self-Reference",
+            "title": "Surfaces and Essences",
+            "author": "Douglas Hofstadter",
+            "date": "2013-04-30",
+            "description": "Posits analogy as the core of cognition through recursive mapping."
+        },
+        {
+            "category": "01_natural_sciences",
+            "domain": "Astronomy",
+            "sub_domain": "Heliocentrism",
+            "title": "The Copernican Revolution",
+            "author": "Thomas S. Kuhn",
+            "date": "1957-01-01",
+            "description": "Describes paradigm shift from geocentric to heliocentric models."
+        },
+        {
+            "category": "02_life_sciences",
+            "domain": "Biology",
+            "sub_domain": "Microbiology",
+            "title": "Missing Microbes",
+            "author": "Martin J. Blaser",
+            "date": "2014-04-08",
+            "description": "Warns of antibiotic overuse disrupting microbial ecosystems."
+        },
+        {
+            "category": "03_formal_sciences",
+            "domain": "Computer Science",
+            "sub_domain": "Data Science",
+            "title": "Weapons of Math Destruction",
+            "author": "Cathy O'Neil",
+            "date": "2016-09-06",
+            "description": "Exposes algorithms as models amplifying social biases."
+        },
+        {
+            "category": "04_human_sciences",
+            "domain": "Economics",
+            "sub_domain": "Classical Economics",
+            "title": "Capitalism and Freedom",
+            "author": "Milton Friedman",
+            "date": "1962-01-01",
+            "description": "Advocates free markets as models for political freedom."
+        },
+        {
+            "category": "05_humanities",
+            "domain": "History",
+            "sub_domain": "Ancient & Modern History",
+            "title": "The Making of the Modern Mind",
+            "author": "John Herman Randall",
+            "date": "1926-01-01",
+            "description": "Traces intellectual history as evolving worldviews."
+        },
+        {
+            "category": "06_technology_and_computation",
+            "domain": "Artificial Intelligence",
+            "sub_domain": "Future Studies",
+            "title": "Life 3.0",
+            "author": "Max Tegmark",
+            "date": "2017-08-29",
+            "description": "Explores AI as reshaping human existence and values."
+        },
+        {
+            "category": "07_skills_and_applications",
+            "domain": "Productivity",
+            "sub_domain": "Organization",
+            "title": "Atomic Habits",
+            "author": "James Clear",
+            "date": "2018-10-16",
+            "description": "Builds habits as compound processes for personal change."
+        },
+        {
+            "category": "08_arts_and_aesthetics",
+            "domain": "Music",
+            "sub_domain": "Theory & Composition",
+            "title": "Gödel's Proof",
+            "author": "Ernest Nagel",
+            "date": "1958-01-01",
+            "description": "Explains incompleteness theorems as limits of formal systems."
+        },
+        {
+            "category": "09_religion_and_theology",
+            "domain": "Theology",
+            "sub_domain": "Monotheism & Polytheism",
+            "title": "God Is Not One",
+            "author": "Stephen Prothero",
+            "date": "2010-04-20",
+            "description": "Contrasts religions as unique problem-solving traditions."
+        },
+        {
+            "category": "10_law_and_jurisprudence",
+            "domain": "Criminal Law",
+            "sub_domain": null,
+            "title": "The Sun Does Shine",
+            "author": "Anthony Ray Hinton",
+            "date": "2018-03-27",
+            "description": "Illustrates wrongful conviction as systemic justice failure."
+        },
+        {
+            "category": "11_environmental_and_earth_sciences",
+            "domain": "Climate Science",
+            "sub_domain": null,
+            "title": "Losing Earth",
+            "author": "Nathaniel Rich",
+            "date": "2019-04-09",
+            "description": "Chronicles climate policy as missed opportunities for action."
+        },
+        {
+            "category": "12_applied_technologies",
+            "domain": "Biotechnology",
+            "sub_domain": null,
+            "title": "The Immortal Life of Henrietta Lacks",
+            "author": "Rebecca Skloot",
+            "date": "2010-02-02",
+            "description": "Examines bioethics as balancing scientific progress and human rights."
+        },
+        {
+            "category": "13_cultural_and_regional_studies",
+            "domain": "Ethnic & Racial Studies",
+            "sub_domain": null,
+            "title": "How to Be an Antiracist",
+            "author": "Ibram X. Kendi",
+            "date": "2019-08-13",
+            "description": "Defines antiracism as active policy change against inequity."
+        },
+        {
+            "category": "14_mythology_and_folklore",
+            "domain": "Folklore Studies",
+            "sub_domain": null,
+            "title": "The Uses of Enchantment",
+            "author": "Bruno Bettelheim",
+            "date": "1976-01-01",
+            "description": "Interprets fairy tales as psychological tools for child development."
+        },
+        {
+            "category": "15_sports_and_kinesiology",
+            "domain": "Exercise Physiology",
+            "sub_domain": null,
+            "title": "Why We Run",
+            "author": "Bernd Heinrich",
+            "date": "2001-01-01",
+            "description": "Views running as an evolutionary survival mechanism."
+        },
+        {
+            "category": "00_latticework_synthesis",
+            "domain": "Systems Thinking",
+            "sub_domain": "Systems Analysis",
+            "title": "The Limits to Growth",
+            "author": "Donella Meadows",
+            "date": "1972-01-01",
+            "description": "Models global resources as finite systems with exponential growth risks."
+        },
+        {
+            "category": "01_natural_sciences",
+            "domain": "Physics",
+            "sub_domain": "Electromagnetism",
+            "title": "The Electromagnetic Field",
+            "author": "Albert Shadowitz",
+            "date": "1975-01-01",
+            "description": "Derives electromagnetic theory from Maxwell's equations as unified forces."
+        },
+        {
+            "category": "02_life_sciences",
+            "domain": "Neuroscience",
+            "sub_domain": "Cognitive Neuroscience",
+            "title": "Consciousness Explained",
+            "author": "Daniel C. Dennett",
+            "date": "1991-01-01",
+            "description": "Proposes consciousness as distributed brain processes without central theater."
+        },
+        {
+            "category": "03_formal_sciences",
+            "domain": "Mathematics",
+            "sub_domain": "Statistics & Probability",
+            "title": "Naked Statistics",
+            "author": "Charles Wheelan",
+            "date": "2013-01-07",
+            "description": "Simplifies statistics as tools for interpreting data in daily life."
+        },
+        {
+            "category": "04_human_sciences",
+            "domain": "Sociology",
+            "sub_domain": "Social Networks",
+            "title": "Six Degrees",
+            "author": "Duncan J. Watts",
+            "date": "2003-01-01",
+            "description": "Introduces small-world networks as models for connectivity."
+        },
+        {
+            "category": "05_humanities",
+            "domain": "Philosophy",
+            "sub_domain": "Epistemology (Theory of Knowledge)",
+            "title": "The Demon-Haunted World",
+            "author": "Carl Sagan",
+            "date": "1995-01-01",
+            "description": "Promotes science as a candle in the dark against pseudoscience."
+        },
+        {
+            "category": "06_technology_and_computation",
+            "domain": "Engineering",
+            "sub_domain": "Civil & Mechanical Engineering",
+            "title": "To Engineer Is Human",
+            "author": "Henry Petroski",
+            "date": "1985-01-01",
+            "description": "Views engineering failures as learning models for design improvement."
+        },
+        {
+            "category": "07_skills_and_applications",
+            "domain": "Self-Improvement",
+            "sub_domain": "Personal Effectiveness",
+            "title": "Man's Search for Himself",
+            "author": "Rollo May",
+            "date": "1953-01-01",
+            "description": "Explores self-actualization as confronting anxiety and freedom."
+        },
+        {
+            "category": "08_arts_and_aesthetics",
+            "domain": "Performing Arts",
+            "sub_domain": "Theater & Dance",
+            "title": "Respect for Acting",
+            "author": "Uta Hagen",
+            "date": "1973-01-01",
+            "description": "Teaches acting as truthful behavior under imaginary circumstances."
+        },
+        {
+            "category": "09_religion_and_theology",
+            "domain": "Mysticism",
+            "sub_domain": null,
+            "title": "Mysticism",
+            "author": "Evelyn Underhill",
+            "date": "1911-01-01",
+            "description": "Defines mysticism as direct experience of ultimate reality."
+        },
+        {
+            "category": "10_law_and_jurisprudence",
+            "domain": "Legal Philosophy",
+            "sub_domain": null,
+            "title": "The Concept of Law",
+            "author": "H.L.A. Hart",
+            "date": "1961-01-01",
+            "description": "Distinguishes law as primary rules and secondary rules of recognition."
+        },
+        {
+            "category": "11_environmental_and_earth_sciences",
+            "domain": "Oceanography",
+            "sub_domain": null,
+            "title": "Ocean",
+            "author": "Robert Dinwiddie",
+            "date": "2006-01-01",
+            "description": "Models oceans as interconnected systems regulating climate."
+        },
+        {
+            "category": "12_applied_technologies",
+            "domain": "Nanotechnology",
+            "sub_domain": null,
+            "title": "Nanosystems",
+            "author": "K. Eric Drexler",
+            "date": "1992-01-01",
+            "description": "Details molecular machinery as programmable assemblers."
+        },
+        {
+            "category": "13_cultural_and_regional_studies",
+            "domain": "Area Studies",
+            "sub_domain": null,
+            "title": "Orientalism",
+            "author": "Edward W. Said",
+            "date": "1978-01-01",
+            "description": "Critiques Western representations of the East as power dynamics."
+        },
+        {
+            "category": "14_mythology_and_folklore",
+            "domain": "Comparative Mythology",
+            "sub_domain": null,
+            "title": "Parallel Myths",
+            "author": "J.F. Bierlein",
+            "date": "1994-01-01",
+            "description": "Compares global myths as shared human narratives."
+        },
+        {
+            "category": "15_sports_and_kinesiology",
+            "domain": "Sports Science",
+            "sub_domain": null,
+            "title": "The Talent Code",
+            "author": "Daniel Coyle",
+            "date": "2009-04-28",
+            "description": "Describes talent as myelin-built skill circuits through deep practice."
+        },
+        {
+            "category": "16_architecture_and_urban_planning",
+            "domain": "Architectural Theory",
+            "sub_domain": null,
+            "title": "Towards a New Architecture",
+            "author": "Le Corbusier",
+            "date": "1923-01-01",
+            "description": "Advocates modern architecture as machines for living."
+        }
+    ]
+}

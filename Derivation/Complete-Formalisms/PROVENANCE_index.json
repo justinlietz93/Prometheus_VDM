@@ -1,45 +1,55 @@
 {
-  "generated_utc": "2025-11-19T08:06:41.463526Z",
+  "generated_utc": "2025-11-30T17:26:19.718847Z",
   "items": [
     {
-      "path": "Derivation/Complete-Formalisms/CF1_QGT_to_Metriplectic_Brackets.md",
-      "sha256": "8970a6ca5bb58f76fe2a190df0aa0f5da8aa3aee25682834bfefe6d7530e7633",
-      "size": 20595
+      "path": "Derivation/Complete-Formalisms/CF01_QGT_to_Metriplectic_Brackets.md",
+      "sha256": "d5d66f8ca95e69ab95714ad43b822bb7fd2108555a79fc639b4c40f1893e6cff",
+      "size": 20607
     },
     {
-      "path": "Derivation/Complete-Formalisms/CF2_Contact_to_Metriplectic_Evolution.md",
+      "path": "Derivation/Complete-Formalisms/CF02_Contact_to_Metriplectic_Evolution.md",
       "sha256": "632301e624c10d61d3ee8bea14e94c528a482d02ce2b5be0a7435eb607d89433",
       "size": 18939
     },
     {
-      "path": "Derivation/Complete-Formalisms/CF3_A8_Scaling_Hierarchical_Interfaces.md",
+      "path": "Derivation/Complete-Formalisms/CF03_A8_Scaling_Hierarchical_Interfaces.md",
       "sha256": "24f5afafdff45706783352fcec6ae8013ab324c044e66c360c698c41fff48e3a",
       "size": 23161
     },
     {
-      "path": "Derivation/Complete-Formalisms/CF4_Telegraph_Fisher_Causality.md",
+      "path": "Derivation/Complete-Formalisms/CF04_Telegraph_Fisher_Causality.md",
       "sha256": "1143ac8ec061a389a5f072933379858f473e2559abc6f6bc430c15fcf6149c90",
       "size": 17558
     },
     {
-      "path": "Derivation/Complete-Formalisms/CF5_Integrability_Closure.md",
+      "path": "Derivation/Complete-Formalisms/CF05_Integrability_Closure.md",
       "sha256": "673803e1d8b93429429e64e40aec376e16656a328d81c4cf4d4de9b8b5e8af58",
       "size": 16464
     },
     {
-      "path": "Derivation/Complete-Formalisms/CF6_Info_Geom_Fisher_Ruppeiner_Foundations.md",
+      "path": "Derivation/Complete-Formalisms/CF06_Info_Geom_Fisher_Ruppeiner_Foundations.md",
       "sha256": "efdbd1a36b63703dc265f7abc2c9dd808cd713d0f1e11a3b868e857e194c3ef4",
       "size": 16810
     },
     {
-      "path": "Derivation/Complete-Formalisms/CF7_Measurement_Theory_Decoherence_Born_Rule.md",
+      "path": "Derivation/Complete-Formalisms/CF07_Measurement_Theory_Decoherence_Born_Rule.md",
       "sha256": "03cc5ba3aea2c3bdd8ddd99d1c7b5cdc2ad1a6c9382e4f23c61ef3a5602facca",
       "size": 16842
     },
     {
-      "path": "Derivation/Complete-Formalisms/COMPLETION_SUMMARY.md",
-      "sha256": "c7504e621b83ccdb97a546636a02dbb1362ce966f4053bff9bdbe4bdb5de4eee",
-      "size": 2165
+      "path": "Derivation/Complete-Formalisms/CF08_Spinor_Emergence_Domain_Wall_Fermions.md",
+      "sha256": "88030de6310c8f876d96c35b85afdecf6c142ea2a1579efafff56f09827200ee",
+      "size": 25158
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/CF09_Gauge_Emergence_Berry_Connection.md",
+      "sha256": "a59b0634badd7e419e13eff56f6fc9c03fc4b6e7733a9b0171080f0f58d67ac4",
+      "size": 21500
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/CF10_Lattice_Fluids_Continuum_and_Regularity_Program.md",
+      "sha256": "932dfc5eb0873c99bcd753a565f356d1443bf1822f515ce6ac17b8472785ae0b",
+      "size": 8601
     },
     {
       "path": "Derivation/Complete-Formalisms/README.md",

@@ -1,0 +1,88 @@
+{
+  "csv": "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/logs/metriplectic/20251119_061735_identity_meter_meters-ebn.v1.csv",
+  "figure": "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/figures/metriplectic/20251119_061735_identity_meter__meters-ebn.v1.png",
+  "gate": {
+    "missing_receipts": [],
+    "passed": true,
+    "physical_passed": true,
+    "provenance_ok": true
+  },
+  "gate_outcomes": {
+    "metriplectic_degeneracy": {
+      "eps": 1e-12,
+      "g1": 1e-13,
+      "g2": 1e-13,
+      "passed": true,
+      "passed_g1": true,
+      "passed_g2": true
+    },
+    "metriplectic_lyapunov": {
+      "R2": 1.0,
+      "R2_min": 0.999,
+      "delta_Lh_max": -1e-08,
+      "delta_Lh_max_allowed": 0.0,
+      "passed": true,
+      "passed_Lh": true,
+      "passed_R2": true,
+      "passed_slope": true,
+      "slope": 3.0,
+      "slope_min": 2.9
+    }
+  },
+  "git": {
+    "head_commit": "93e059f020db54a09eea56f451d27445828ea2f8",
+    "head_short": "93e059f"
+  },
+  "git_commit": "93e059f",
+  "hardware": {
+    "cpu_count": 32,
+    "machine": "x86_64",
+    "node": "prometheus-ai",
+    "processor": "x86_64",
+    "python_version": "3.13.5",
+    "release": "6.14.0-35-generic",
+    "system": "Linux",
+    "version": "#35-Ubuntu SMP PREEMPT_DYNAMIC Sat Oct 11 10:06:31 UTC 2025"
+  },
+  "ieee_754_double_precision": true,
+  "manifest": {
+    "generated_utc": "2025-11-19T09:19:15.303396Z",
+    "git_commit": "93e059f020db54a09eea56f451d27445828ea2f8",
+    "tree_hash": "58454ac98fe261c504ca67c4aba176e2f1015d83b8de4dc2e863c3fe49a8f106"
+  },
+  "meter": "identity",
+  "missing_receipts": [],
+  "params": {},
+  "policy": {
+    "approved": true,
+    "engineering_only": false,
+    "proposal": "Derivation/Cosmology/CMB/T2_PROPOSAL_EBN_CMB_Pipeline_v1.md",
+    "quarantined": false
+  },
+  "provenance_ok": true,
+  "repo_root": "/mnt/ironwolf/git/Prometheus_VDM",
+  "resolved_params": {
+    "BCs": null,
+    "CFL": null,
+    "D": null,
+    "N": null,
+    "c": 1.0,
+    "dt": null,
+    "extra": null,
+    "lambda": null,
+    "m": null,
+    "precision": null,
+    "r": null,
+    "seeds": null
+  },
+  "salted_hash": "290603c436003f9791374a55d767226de41c9a83879a834336fa3b9f2a654194",
+  "salted_provenance": {
+    "salted_hash": "290603c436003f9791374a55d767226de41c9a83879a834336fa3b9f2a654194",
+    "salted_tag": "meters-ebn.v1"
+  },
+  "seeds": [
+    0
+  ],
+  "tag": "meters-ebn.v1",
+  "tree_hash": "58454ac98fe261c504ca67c4aba176e2f1015d83b8de4dc2e863c3fe49a8f106"
+}

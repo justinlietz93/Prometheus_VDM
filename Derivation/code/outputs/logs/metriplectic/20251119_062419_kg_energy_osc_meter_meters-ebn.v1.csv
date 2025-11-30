@@ -1,0 +1,2 @@
+name,tag,implemented,passed,params_normalized_json
+kg_energy_osc,meters-ebn.v1,False,False,{"BCs": null, "CFL": null, "D": null, "N": null, "c": 1.0, "dt": null, "extra": null, "lambda": null, "m": null, "precision": null, "r": null, "seeds": null}

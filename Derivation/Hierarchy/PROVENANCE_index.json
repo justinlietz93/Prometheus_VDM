@@ -1,6 +1,21 @@
 {
-  "generated_utc": "2025-11-19T08:06:41.463526Z",
+  "generated_utc": "2025-11-30T17:26:19.718847Z",
   "items": [
+    {
+      "path": "Derivation/Hierarchy/A2_A6_Surface_Condensates/T2_PROPOSAL_Surface_Exchange_Coarsening_Meters_v1.md",
+      "sha256": "6afd816487060b3f2f11826f801c73d9271fdcf587be1ee55986e6929e50ce6b",
+      "size": 11186
+    },
+    {
+      "path": "Derivation/Hierarchy/A8_Nonlocal_Coursening/T2_PROPOSAL_Nonlocal_Kernel_Coarsening_Meters_v1.md",
+      "sha256": "58598da226eb567f35a189257f1a8ebfd3589dee48ce9ac80c6ba0932c6c47b0",
+      "size": 11874
+    },
+    {
+      "path": "Derivation/Hierarchy/A8_Water/T2_A8_PROPOSAL_Water-Displacement-Meters_v1.md",
+      "sha256": "5517767daea279ac17655983949510143744e80f5576f20554da190517776d50",
+      "size": 18270
+    },
     {
       "path": "Derivation/Hierarchy/STIV/T2_PROPOSAL_STIV_Macrostate_&_Gradient-Flow_Meters_v1.md",
       "sha256": "ad592db00a5dffce21f68eb1747736e0b2e7191b74ab419bc7a05863bcba77b3",

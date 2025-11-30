@@ -2,7 +2,7 @@
 
 > Created Date:  2025-11-18
 > Commit: bc12095fea0e0add986fe5469585da0287da5104
-> Salted provenance: {salted_hash}
+> Salted Provenance: spec salted_sha256=66939ea81a25ff4133c7bbf254a903fdb2858a07231a962c781b9c7921ad5122; salt_hex=95e890b3e8e152486ed82b270f306ec9; prereg_manifest_sha256=8ee11ba5a28eedb4a93ab1733986ddaed366ace29a554d25458637c8542ad851
 > Proposer contact(s):  (<justin@neuroca.ai>)
 > License: See LICENSE
 > Short summary (one sentence TL;DR):  T2 instrument wiring A8 hierarchy outputs into a reproducible Boltzmann pipeline that produces CMB/LSS observables under FRW balance gates and $\Delta\chi^2$ fit‑quality envelopes against $\Lambda$CDM.
@@ -16,6 +16,10 @@ Justin K. Lietz (PI), Neuroca (infrastructure).
 Proposed in this document is a T2 instrument that maps **A8 tachyonic‑genesis predictions** into a cosmology pipeline: generate a primordial spectrum from the hierarchical interface model, pass it through a Boltzmann solver (CLASS/CAMB compatible), and produce CMB TT/TE/EE spectra, lensing, and ISW observables. Acceptance gates focus on balance meters (FRW), internal consistency, and a preregistered goodness‑of‑fit envelope relative to ΛCDM, without ad‑hoc components.
 
 ## 4. Background & Scientific Rationale
+
+**“Spectrum Adapter (A8→CLASS)”**:
+
+> The A8 hierarchy predicts a modified matter power (P(k)). The pipeline writes (k)–(P(k)) tables to **`outputs/spectrum/A8_pk_table.dat`** in CLASS format, then invokes CLASS with `P_k_ini type = external_Pk` and `P_k_ini file = ...`. Pseudo‑(C_\ell) recovery then proceeds with the standard mask/beam path. Gate reporting and pass/fail JSON follow the RESULTS standards. 
 
 A8 predicts logarithmic hierarchy depth and boundary‑law energy; this instrument operationalizes the translation to cosmological observables. It refines the cosmology program thread by providing a reusable, measurable bridge between A8 outputs and CMB/LSS datasets.
 
@@ -270,3 +274,11 @@ Justin K. Lietz will design the A8→CMB/LSS pipeline, implement and review the 
 - `Derivation/Cosmology/RESULTS_FRW_Continuity_Residual_Quality_Check.md` — FRW Residual T4 results.
 - `Derivation/Cosmology/CMB/T3_PROPOSAL_CMB_Hemispherical_Asymmetry_Test_v1.md` and `Derivation/Cosmology/T4_PROPOSAL_Single_Axis_Portal_Modulation_Against_CMB_Power_Tensor_v1.md` — prior CMB proposals that share cosmology meters, masks, and anomaly posture with this pipeline.
 - `Derivation/z.CANONICAL_Validation_Metrics/00_VALIDATION_METRICS.md` — FRW continuity RMS residual, ΛCDM residual, and other KPIs referenced as acceptance gates in this proposal.
+
+## Appendix A
+
+> **Preregistered VDM Hypothesis (Cold Spot = Origin Void)**
+> **Scope.** When run with the `--hypothesis origin-void` flag, the EBN meter executes three preregistered tests relative to the **CMB Cold Spot** direction: (i) **low‑ℓ power‑tensor** axis co‑alignment (Gate G1), (ii) **ISW matched‑filter** amplitude for the Eridanus supervoid (Gate G2), and (iii) **local‑variance dipole** pointing test in T and E (Gate G3).
+> **Gates.** G1: global (p\le 0.01) and (\theta_{\rm align}\le 20^\circ). G2: (A_{\rm ISW}\ge 3.0), 99% CI excludes 1. G3: (p_{\rm joint}\le 0.05) and (\theta_{\rm dip}\le 30^\circ). **Decision:** PASS if (G1 ∧ G2) or any two gates with Fisher‑combined (p\le 0.01).
+> **Hygiene.** Mask/beam robustness; half‑mission splits; foreground‑template subtraction; rotation/off‑target controls. Fail any hygiene → **CONTRADICTION_REPORT**.
+> **Artifacts.** One PNG + one CSV + one JSON (receipts with seeds, commit, manifest hash) per run, per repository **RESULTS** standards. 
