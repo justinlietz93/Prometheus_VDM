@@ -27,7 +27,7 @@
 ## 🔥News
 
 - **November 30, 2025**
-  - Building a Void Lensing Cross Correlation Meter to predict the geometry of cosmological void interfaces as a part of the VDM unification roadmap.
+  - Building a Void Lensing Cross Correlation Meter to predict the geometry of cosmological void interfaces as a part of the VDM unification roadmap, as I already have all the pieces in place.
 - **November 10, 2025**
   - Published results from the Counterfactual Echo Gain test to [Zenodo](https://doi.org/10.5281/zenodo.17567396)
 - **November 9, 2025**
