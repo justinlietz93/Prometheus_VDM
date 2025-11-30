@@ -1,0 +1,22 @@
+{
+  "csv": "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/logs/metriplectic/20251119_061735_kg_dispersion_meter_meters-ebn.v1.csv",
+  "figure": "/mnt/ironwolf/git/Prometheus_VDM/Derivation/code/outputs/figures/metriplectic/20251119_061735_kg_dispersion_meter__meters-ebn.v1.png",
+  "implemented": false,
+  "meter": "kg_dispersion",
+  "passed": false,
+  "resolved_params": {
+    "BCs": null,
+    "CFL": null,
+    "D": null,
+    "N": null,
+    "c": 1.0,
+    "dt": null,
+    "extra": null,
+    "lambda": null,
+    "m": null,
+    "precision": null,
+    "r": null,
+    "seeds": null
+  },
+  "tag": "meters-ebn.v1"
+}

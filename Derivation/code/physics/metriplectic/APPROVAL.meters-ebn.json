@@ -1,0 +1,17 @@
+{
+  "pre_registered": true,
+  "proposal": "Derivation/Cosmology/CMB/T2_PROPOSAL_EBN_CMB_Pipeline_v1.md",
+  "require_provenance": true,
+  "allowed_tags": [
+    "meters-ebn.v1"
+  ],
+  "schema_dir": "Derivation/code/physics/metriplectic/schemas",
+  "approvals": {
+    "meters-ebn.v1": {
+      "schema": "Derivation/code/physics/metriplectic/schemas/meters-ebn.schema.json",
+      "approved_by": "Justin K. Lietz",
+      "approved_at": "2025-11-19T10:11:32.821940+00:00",
+      "approval_key": "0374e5ba5aef8af1cbcbd879d3ef2cf5da0d1bc7eac87dc924c87c6d179fc623"
+    }
+  }
+}

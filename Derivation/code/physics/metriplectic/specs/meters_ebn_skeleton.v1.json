@@ -1,0 +1,31 @@
+{
+  "run_name": "meters-ebn-baseline-skeleton",
+  "version": "0.0.1",
+  "tag": "meters-ebn.v1",
+  "schema_ref": "Derivation/code/physics/metriplectic/schemas/meters-ebn.schema.json",
+  "parameters": {
+  },
+  "seeds": [0],
+  "meters": [
+    {
+      "name": "kg_cone",
+      "parameters": {},
+      "seeds": [0]
+    },
+    {
+      "name": "kg_dispersion",
+      "parameters": {},
+      "seeds": [0]
+    },
+    {
+      "name": "kg_energy_osc",
+      "parameters": {},
+      "seeds": [0]
+    },
+    {
+      "name": "identity",
+      "parameters": {},
+      "seeds": [0]
+    }
+  ]
+}

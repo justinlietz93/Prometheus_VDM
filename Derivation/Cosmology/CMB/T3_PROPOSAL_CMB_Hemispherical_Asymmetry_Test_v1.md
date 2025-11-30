@@ -103,6 +103,8 @@ Establishing the hemispherical asymmetry as a VDM-consistent feature (or ruling 
 
 ### 5.1 Experimental Setup and Diagnostics
 
+> Interfaces are detected with preregistered operators (Canny, watershed on smoothed (\delta)) with fixed thresholds. Detector choice and thresholds are part of preregistration to avoid boundary cherry‑picking. Scaling is fit on log–log and checked against area‑law slope (d-1) with CI. 
+
 **Data:**
 
 - **Planck PR4 FULLSKY** component-separated maps (SMICA, Commander)

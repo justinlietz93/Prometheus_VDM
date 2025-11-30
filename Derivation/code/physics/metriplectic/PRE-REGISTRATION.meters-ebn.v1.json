@@ -1,0 +1,59 @@
+{
+  "commit": "bc12095fea0e0add986fe5469585da0287da5104",
+  "contact": [
+    "Justin K. Lietz <justin@neuroca.ai>"
+  ],
+  "hypotheses": [
+    {
+      "direction": "no-change",
+      "id": "H_METER_EBN",
+      "statement": "Meters-EBN aggregator faithfully replays metriplectic KG meters (cone speed, dispersion, energy oscillation, identity) into the EBN-CMB pipeline, preserving their gate verdicts and provenance."
+    }
+  ],
+  "pass_fail": [
+    {
+      "metric": "all_gates_pass",
+      "operator": "==",
+      "threshold": 1,
+      "unit": "bool"
+    }
+  ],
+  "proposal_title": "EBN-CMB-ISW+Lens Pipeline (A8 to CMB/LSS)",
+  "registration_timestamp": "2025-11-19T05:36:55-0600",
+  "salted_provenance": {
+    "items": [
+      {
+        "base_sha256": "9285ab73630386a753acf31ccea1c255a269f28f44954d8f001056494fd9be57",
+        "path": "Derivation/code/physics/metriplectic/specs/meters_ebn_skeleton.v1.json",
+        "salt_hex": "95e890b3e8e152486ed82b270f306ec9",
+        "salted_sha256": "66939ea81a25ff4133c7bbf254a903fdb2858a07231a962c781b9c7921ad5122"
+      }
+    ],
+    "schema": "vdm.provenance.salted_hash.v1"
+  },
+  "spec_refs": [
+    "Derivation/code/physics/metriplectic/specs/meters_ebn_skeleton.v1.json"
+  ],
+  "tier_grade": "T2",
+  "variables": {
+    "controls": [
+      "CFL",
+      "boundary_conditions",
+      "precision"
+    ],
+    "dependent": [
+      "v_cone",
+      "dispersion_error",
+      "energy_osc_p",
+      "Lyapunov_slope",
+      "degeneracy_g1",
+      "degeneracy_g2"
+    ],
+    "independent": [
+      "seed",
+      "geometry",
+      "N",
+      "dt"
+    ]
+  }
+}

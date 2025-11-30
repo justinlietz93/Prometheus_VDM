@@ -1,15 +1,20 @@
 {
-  "generated_utc": "2025-11-19T08:06:41.463526Z",
+  "generated_utc": "2025-11-19T09:19:11.853821Z",
   "items": [
     {
       "path": "Derivation/Cosmology/CMB/T2_PROPOSAL_EBN_CMB_Pipeline_v1.md",
-      "sha256": "4366d34dcbabe9131b468f2e2e467c49b1d302f180cb44211e5c493d166580ef",
-      "size": 16391
+      "sha256": "6725f3db4ac274ca6b31fcee9d75ec7c50c43028ca64b67f4c469b1fdc1a6425",
+      "size": 17425
     },
     {
       "path": "Derivation/Cosmology/CMB/T3_PROPOSAL_CMB_Hemispherical_Asymmetry_Test_v1.md",
       "sha256": "e1872ebb7e5d67db9fe2dbde383e01252fb2a07ed2d1abb95eb965187d27548b",
       "size": 19714
+    },
+    {
+      "path": "Derivation/Cosmology/CMB/T4_PROPOSAL_CMB_Cold_Spot_VDM_Origin_v1.md",
+      "sha256": "2ba1279de748bbb0aa86590120758f21c0a308e194fd9c21c12183717041f079",
+      "size": 21895
     },
     {
       "path": "Derivation/Cosmology/PROPOSAL_FRW_Balance_v1.md",
