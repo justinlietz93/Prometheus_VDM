@@ -1,6 +1,16 @@
 # Unifying Existing Work
 
-## 0. Foundations / Meta‑spec
+## Update:
+
+New urgent items moved to the front.  
+
+- Finish metriplectic KG+RD core
+- Stabilize CF ladder prerequisites
+- Void-lensing interface program (highest priority)
+- Lattice fields & continuum limits (CF10)
+- CMB polarization birefringence gate
+
+## 0. Foundations / Meta‑spec (existing TODO, on hold)
 
 **Goal:** Define the objects and rules everything else must obey.
 
