@@ -1,0 +1,5 @@
+numpy # For numerical operations
+networkx # For graph operations
+matplotlib # For graph operations and visualization
+scipy # For graph operations and visualization
+h5py # Engram, saves the models brain
