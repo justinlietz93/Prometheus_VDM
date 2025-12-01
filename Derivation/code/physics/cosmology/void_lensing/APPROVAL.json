@@ -1,5 +1,5 @@
-[
-  {
+{
+  "preflight": {
     "preflight_name": "void_lensing_meter_preflight",
     "description": "Preflight runner ensuring configs, mocks, and diagnostics are wired before full Void Lensing Cross-Correlation Meter v1 experiments.",
     "author": "Justin K. Lietz",
@@ -7,20 +7,18 @@
     "pre_commit_hook": true,
     "notes": "Preflight runs (Derivation/code/tests) are allowed without approval. Full experiments that write artifacts require this T2 PROPOSAL to be approved."
   },
-  {
-    "pre_registered": true,
-    "proposal": "Derivation/Cosmology/Void_Lensing/T2_PROPOSAL_Void_Lensing_CrossCorrelation_Meter_v1.md",
-    "allowed_tags": [
-      "void_lensing_meter-v1"
-    ],
-    "schema_dir": "Derivation/code/physics/cosmology/void_lensing/schemas",
-    "approvals": {
-      "void_lensing_meter-v1": {
-        "schema": "Derivation/code/physics/cosmology/void_lensing/schemas/void_lensing_meter-v1.schema.json",
-        "approved_by": "Justin K. Lietz",
-        "approved_at": "<auto generated timestamp>",
-        "approval_key": "<auto generated hashed key>"
-      }
+  "pre_registered": true,
+  "proposal": "Derivation/Cosmology/Void_Lensing/T2_PROPOSAL_Void_Lensing_CrossCorrelation_Meter_v1.md",
+  "allowed_tags": [
+    "void_lensing_meter-v1"
+  ],
+  "schema_dir": "Derivation/code/physics/cosmology/void_lensing/schemas",
+  "approvals": {
+    "void_lensing_meter-v1": {
+      "schema": "Derivation/code/physics/cosmology/void_lensing/schemas/void_lensing_meter-v1.schema.json",
+      "approved_by": "Justin K. Lietz",
+      "approved_at": "2025-12-01T10:06:19.167516+00:00",
+      "approval_key": "14ec9338b76ec2b147aa136e0e1137fe571072533fa199c396579c302f5cbbd4"
     }
   }
-]
+}

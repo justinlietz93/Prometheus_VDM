@@ -1,14 +1,12 @@
-% PREFLIGHT SMOKE TEST TEMPLATE
+# PREFLIGHT SMOKE TEST TEMPLATE
 
-Purpose
--------
+## Purpose
 
 This template documents the recommended pattern for writing fast, deterministic "preflight" smoke
 tests for experiments and runners in this repository. Preflight tests are intended to be run in CI
 on every commit/PR: they must be quick, deterministic, and side-effect free (no artifact writes).
 
-Guidelines
-----------
+## Guidelines
 
 - Use very small sizes: N <= 32, steps <= 2.
 - Fix RNG seeds (explicit seeds array) for determinism.
@@ -63,8 +61,7 @@ def test_preflight_example_minimal():
 
 ```
 
-How to run locally
--------------------
+## How to run locally
 
 From the repo root run:
 
@@ -72,8 +69,7 @@ From the repo root run:
 PYTHONPATH=Derivation/code pytest -q Derivation/code/tests/<your_test_file>.py
 ```
 
-When to upgrade a preflight to a main-run smoke test
----------------------------------------------------
+## When to upgrade a preflight to a main-run smoke test
 
 If you need to validate artifact contents, schema compliance, or gate pass/fail under realistic conditions,
 promote the test to a gated main-run smoke test (run under approval or on a schedule). Main-run smoke tests
