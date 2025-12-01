@@ -17,8 +17,8 @@
     "void_lensing_meter-v1": {
       "schema": "Derivation/code/physics/cosmology/void_lensing/schemas/void_lensing_meter-v1.schema.json",
       "approved_by": "Justin K. Lietz",
-      "approved_at": "2025-12-01T10:06:19.167516+00:00",
-      "approval_key": "14ec9338b76ec2b147aa136e0e1137fe571072533fa199c396579c302f5cbbd4"
+      "approved_at": "2025-12-01T14:56:04.654655+00:00",
+      "approval_key": "adcd9b2ee7bb2fd8082abc5a28fd875399bb6ccbf580148679b8ef72bd03d258"
     }
   }
 }
