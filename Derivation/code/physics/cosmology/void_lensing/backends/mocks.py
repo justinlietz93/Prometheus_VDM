@@ -194,6 +194,14 @@ def generate_synthetic_profile_with_wall_and_shoulder(
     x_wall_range = parameters.get("x_wall_range", [0.8, 1.2])
     x_bg_range = parameters.get("x_bg_range", [2.5, 4.0])
     lambda_ref = float(parameters.get("lambda_ref", 1.0))
+    # Define a canonical interface-count region aligned with the meter's
+    # interface-scaling domain. By default we use the same outer region as the
+    # background band so that:
+    #   - shoulders live at x < x_bg_min, and
+    #   - interfaces are counted only in x ∈ [x_interface_min, x_interface_max]
+    #     well outside the shoulder search window.
+    x_interface_min = float(parameters.get("x_interface_min", x_bg_range[0]))
+    x_interface_max = float(parameters.get("x_interface_max", x_bg_range[1]))
  
     x_min, x_max = 0.2, 4.0
     x = np.linspace(x_min, x_max, n_radial_bins, dtype=float)
@@ -282,8 +290,9 @@ def generate_synthetic_profile_with_wall_and_shoulder(
     kappa_err = np.full_like(kappa, 0.02, dtype=float)
 
     # Define beta_true in a way that is closely matched to the meter's own
-    # interface-count estimator, using the **interface-only** base profile so
-    # that shoulder structure does not bias the truth for G3 tests.
+    # interface-count estimator, using the **interface-only** base profile and
+    # the same radial domain that run_meter will later use for beta_interface.
+    # This keeps the synthetic "truth" and the meter's estimator aligned for H3.
     if R_interfaces:
         try:
             # Local import to avoid hard coupling at module import time.
@@ -295,6 +304,7 @@ def generate_synthetic_profile_with_wall_and_shoulder(
                 x=np.asarray(x, dtype=float),
                 kappa=np.asarray(kappa_base, dtype=float),
                 lambda_ref=float(lambda_ref),
+                x_interface_range=[float(x_interface_min), float(x_interface_max)],
             )
             beta_true = float(iface_truth.get("beta_interface", 0.0))
         except Exception:
