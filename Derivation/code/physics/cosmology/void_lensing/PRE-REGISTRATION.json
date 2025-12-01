@@ -1,8 +1,8 @@
 {
   "proposal_title": "T2 (Instrument) – Void Lensing Cross-Correlation Meter v1",
   "tier_grade": "T2",
-  "commit": "<git-sha>",
-  "salted_provenance": "<salted hash of prereg + proposal manifest>",
+  "commit": "f82da5e4aa9f0106f303a3c454eb27600ce11c3c",
+  "salted_provenance": "eb33996b3b23a9e7f4d7097f5a1ba08e5d53cefc2bd658049ffdefdee5040441",
   "contact": ["Justin K. Lietz <justin@neuroca.ai>"],
 
   "hypotheses": [
@@ -40,5 +40,5 @@
     "Derivation/code/physics/cosmology/void_lensing/specs/void_lensing_meter-data-v1.json"
   ],
 
-  "registration_timestamp": "<ISO-8601>"
+  "registration_timestamp": "2025-12-01T03:13:11Z"
 }

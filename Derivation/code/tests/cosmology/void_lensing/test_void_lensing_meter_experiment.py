@@ -74,8 +74,20 @@ def test_synthetic_mocks_experiment_writes_artifacts(tmp_path: Path, monkeypatch
         path = Path(artifacts[key])
         assert path.is_file(), f"Artifact path for '{key}' does not exist: {path}"
 
-    # Gate JSON must contain a status field inside gate_results.
+    # Gate JSON must contain a status field inside gate_results and a run_receipts block.
     gates_json_path = Path(artifacts["gates_json"])
     gate_payload = _load_json(gates_json_path)
     gate_results = gate_payload.get("gate_results", {})
     assert "status" in gate_results, "Gate results JSON missing 'status' field"
+
+    receipts = gate_payload.get("run_receipts", {})
+    assert isinstance(receipts, dict) and receipts, "Gate results JSON missing 'run_receipts' block"
+    # Minimal structural checks on the receipts payload: commit alias and seeds list.
+    assert "git_commit" in receipts, "run_receipts missing 'git_commit' alias"
+    assert "seeds" in receipts and isinstance(receipts["seeds"], list), "run_receipts missing 'seeds' list"
+
+    # Runs JSON should mirror the same run_receipts block for consistency.
+    runs_json_path = Path(artifacts["runs_json"])
+    runs_payload = _load_json(runs_json_path)
+    runs_receipts = runs_payload.get("run_receipts", {})
+    assert isinstance(runs_receipts, dict) and runs_receipts, "Runs JSON missing 'run_receipts' block"

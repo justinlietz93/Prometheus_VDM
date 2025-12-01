@@ -1,0 +1,229 @@
+{
+  "gate_metrics": {
+    "AUROC_sh": 1.0,
+    "A_sh": 3.6509327130752864,
+    "R2_wall": 0.9999999999999998,
+    "beta_bias": 0.0
+  },
+  "gate_results": {
+    "failed_gates": [],
+    "gates": {
+      "AUROC_sh": {
+        "metric": "AUROC_sh",
+        "operator": ">=",
+        "passed": true,
+        "threshold": 0.9,
+        "unit": "dimensionless",
+        "value": 1.0
+      },
+      "A_sh": {
+        "metric": "A_sh",
+        "operator": null,
+        "passed": null,
+        "threshold": null,
+        "unit": null,
+        "value": 3.6509327130752864
+      },
+      "B_mode_residual": {
+        "metric": "B_mode_residual",
+        "operator": null,
+        "passed": null,
+        "threshold": null,
+        "unit": null,
+        "value": null
+      },
+      "R2_wall": {
+        "metric": "R2_wall",
+        "operator": ">=",
+        "passed": true,
+        "threshold": 0.98,
+        "unit": "dimensionless",
+        "value": 0.9999999999999998
+      },
+      "SNR": {
+        "metric": "SNR",
+        "operator": null,
+        "passed": null,
+        "threshold": null,
+        "unit": null,
+        "value": null
+      },
+      "beta_bias": {
+        "metric": "beta_bias",
+        "operator": "<=",
+        "passed": true,
+        "threshold": 0.1,
+        "unit": "dimensionless",
+        "value": 0.0
+      },
+      "beta_interface": {
+        "metric": "beta_interface",
+        "operator": null,
+        "passed": null,
+        "threshold": null,
+        "unit": null,
+        "value": null
+      },
+      "beta_uncertainty": {
+        "metric": "beta_uncertainty",
+        "operator": null,
+        "passed": null,
+        "threshold": null,
+        "unit": null,
+        "value": null
+      },
+      "n_voids": {
+        "metric": "n_voids",
+        "operator": null,
+        "passed": null,
+        "threshold": null,
+        "unit": null,
+        "value": null
+      }
+    },
+    "missing_keys": [
+      "beta_interface",
+      "beta_uncertainty",
+      "SNR",
+      "B_mode_residual",
+      "n_voids"
+    ],
+    "status": "PASSED"
+  },
+  "run_receipts": {
+    "gate_outcomes": {
+      "gate_metrics": {
+        "AUROC_sh": 1.0,
+        "A_sh": 3.6509327130752864,
+        "R2_wall": 0.9999999999999998,
+        "beta_bias": 0.0
+      },
+      "gate_results": {
+        "failed_gates": [],
+        "gates": {
+          "AUROC_sh": {
+            "metric": "AUROC_sh",
+            "operator": ">=",
+            "passed": true,
+            "threshold": 0.9,
+            "unit": "dimensionless",
+            "value": 1.0
+          },
+          "A_sh": {
+            "metric": "A_sh",
+            "operator": null,
+            "passed": null,
+            "threshold": null,
+            "unit": null,
+            "value": 3.6509327130752864
+          },
+          "B_mode_residual": {
+            "metric": "B_mode_residual",
+            "operator": null,
+            "passed": null,
+            "threshold": null,
+            "unit": null,
+            "value": null
+          },
+          "R2_wall": {
+            "metric": "R2_wall",
+            "operator": ">=",
+            "passed": true,
+            "threshold": 0.98,
+            "unit": "dimensionless",
+            "value": 0.9999999999999998
+          },
+          "SNR": {
+            "metric": "SNR",
+            "operator": null,
+            "passed": null,
+            "threshold": null,
+            "unit": null,
+            "value": null
+          },
+          "beta_bias": {
+            "metric": "beta_bias",
+            "operator": "<=",
+            "passed": true,
+            "threshold": 0.1,
+            "unit": "dimensionless",
+            "value": 0.0
+          },
+          "beta_interface": {
+            "metric": "beta_interface",
+            "operator": null,
+            "passed": null,
+            "threshold": null,
+            "unit": null,
+            "value": null
+          },
+          "beta_uncertainty": {
+            "metric": "beta_uncertainty",
+            "operator": null,
+            "passed": null,
+            "threshold": null,
+            "unit": null,
+            "value": null
+          },
+          "n_voids": {
+            "metric": "n_voids",
+            "operator": null,
+            "passed": null,
+            "threshold": null,
+            "unit": null,
+            "value": null
+          }
+        },
+        "missing_keys": [
+          "beta_interface",
+          "beta_uncertainty",
+          "SNR",
+          "B_mode_residual",
+          "n_voids"
+        ],
+        "status": "PASSED"
+      },
+      "status": "PASSED"
+    },
+    "git": {
+      "head_commit": "f82da5e4aa9f0106f303a3c454eb27600ce11c3c",
+      "head_short": "f82da5e"
+    },
+    "git_commit": "f82da5e",
+    "hardware": {
+      "cpu_count": 32,
+      "machine": "x86_64",
+      "node": "prometheus-ai",
+      "processor": "x86_64",
+      "python_version": "3.13.5",
+      "release": "6.14.0-36-generic",
+      "system": "Linux",
+      "version": "#36-Ubuntu SMP PREEMPT_DYNAMIC Sat Oct 11 02:18:29 UTC 2025"
+    },
+    "ieee_754_double_precision": true,
+    "manifest": {
+      "generated_utc": "2025-11-19T09:19:15.303396Z",
+      "git_commit": "93e059f020db54a09eea56f451d27445828ea2f8",
+      "tree_hash": "58454ac98fe261c504ca67c4aba176e2f1015d83b8de4dc2e863c3fe49a8f106"
+    },
+    "repo_root": "/mnt/ironwolf/git/Prometheus_VDM",
+    "salted_hash": "eb33996b3b23a9e7f4d7097f5a1ba08e5d53cefc2bd658049ffdefdee5040441",
+    "salted_provenance": {
+      "salted_hash": "eb33996b3b23a9e7f4d7097f5a1ba08e5d53cefc2bd658049ffdefdee5040441",
+      "salted_tag": "void_lensing_meter-v1"
+    },
+    "seeds": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "tree_hash": "58454ac98fe261c504ca67c4aba176e2f1015d83b8de4dc2e863c3fe49a8f106"
+  },
+  "spec": {
+    "run_name": "void_lensing_meter-mocks",
+    "schema_ref": "Derivation/code/physics/cosmology/void_lensing/schemas/void_lensing_meter-v1.schema.json",
+    "tag": "void_lensing_meter-v1",
+    "version": "1.0.0"
+  }
+}

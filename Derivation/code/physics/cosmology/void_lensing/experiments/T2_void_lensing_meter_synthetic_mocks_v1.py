@@ -22,6 +22,7 @@ and PRE-REGISTRATION.json; this module only orchestrates synthetic runs.
 
 from pathlib import Path
 from typing import Any, Dict, List, Mapping, Optional, Sequence
+import os
 
 import argparse
 import json
@@ -29,6 +30,8 @@ import json
 import numpy as np
 
 from Derivation.code.common import io_paths
+from Derivation.code.common.provenance import run_receipts
+from Derivation.code.common.authorization import approval
 from Derivation.code.physics.cosmology.void_lensing import meter, void_lensing_meter_gates as vl_gates
 from Derivation.code.physics.cosmology.void_lensing.backends import mocks
 
@@ -293,10 +296,29 @@ def _write_artifacts(
         "schema_ref": spec.get("schema_ref"),
     }
 
+    # Aggregate seeds used in this experiment for provenance receipts.
+    seed_values = sorted({int(run.get("seed", 0)) for run in all_runs}) if all_runs else []
+
+    # Package gate outcomes for provenance. This nests both scalar gate metrics and the
+    # structured gate_results ledger so that downstream tooling can reconstruct the
+    # exact H1–H3 verdicts.
+    gate_outcomes: Dict[str, Any] = {
+        "status": status,
+        "gate_metrics": dict(gate_metrics),
+        "gate_results": dict(gate_results),
+    }
+
+    receipts = run_receipts.build_run_receipts(
+        tag=tag,
+        seeds=seed_values,
+        gate_outcomes=gate_outcomes,
+    )
+
     runs_payload: Dict[str, Any] = {
         "spec": spec_header,
         "gate_metrics": dict(gate_metrics),
         "gate_results": dict(gate_results),
+        "run_receipts": receipts,
         "runs": list(all_runs),
     }
     io_paths.write_log(runs_json_path, runs_payload)
@@ -305,8 +327,51 @@ def _write_artifacts(
         "spec": spec_header,
         "gate_metrics": dict(gate_metrics),
         "gate_results": dict(gate_results),
+        "run_receipts": receipts,
     }
     io_paths.write_log(gates_json_path, gates_payload)
+
+    # If any prereg gate fails, emit an explicit CONTRADICTION report JSON routed
+    # through the failed_runs/ tree. This is a lightweight, JSON-only summary that
+    # records observed metrics versus thresholds and the full gate ledger.
+    contradiction_path = None
+    if failed:
+        contradiction_slug = f"{base_slug}_contradiction"
+        contradiction_path = io_paths.log_path(
+            DOMAIN,
+            contradiction_slug,
+            failed=True,
+            type="json",
+        )
+        contradiction_payload: Dict[str, Any] = {
+            "spec": spec_header,
+            "gate_metrics": dict(gate_metrics),
+            "pass_fail_thresholds": {
+                "R2_wall": {
+                    "operator": ">=",
+                    "threshold": 0.98,
+                    "unit": "dimensionless",
+                },
+                "AUROC_sh": {
+                    "operator": ">=",
+                    "threshold": 0.90,
+                    "unit": "dimensionless",
+                },
+                "beta_bias": {
+                    "operator": "<=",
+                    "threshold": 0.10,
+                    "unit": "dimensionless",
+                },
+            },
+            "gate_results": dict(gate_results),
+            "run_receipts": receipts,
+            "message": (
+                "T2 Void Lensing Cross-Correlation Meter v1 synthetic-mocks "
+                "calibration failed at least one prereg gate (H1–H3); see "
+                "gate_results.failed_gates for details."
+            ),
+        }
+        io_paths.write_log(contradiction_path, contradiction_payload)
 
     # CSV table: one row per run.
     import csv
@@ -324,12 +389,16 @@ def _write_artifacts(
     if all_runs:
         _plot_example_profile(all_runs[0], spec.get("parameters", {}) or {}, fig_path)
 
-    return {
+    artifacts: Dict[str, str] = {
         "runs_json": str(runs_json_path),
         "gates_json": str(gates_json_path),
         "runs_csv": str(runs_csv_path),
         "figure": str(fig_path),
     }
+    if contradiction_path is not None:
+        artifacts["contradiction_json"] = str(contradiction_path)
+
+    return artifacts
 
 
 def run_experiment(spec: Mapping[str, Any], dry_run: bool = False) -> Dict[str, Any]:
@@ -406,6 +475,21 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         return 2
 
     spec = _load_spec(spec_path)
+
+    # Enforce approval policy for artifact-writing runs before configuring IO paths.
+    # This bridges the authorization DB to the IO quarantine policy by setting
+    # VDM_POLICY_APPROVED=1 when the (domain, tag, script) tuple is approved.
+    if not args.dry_run:
+        approval.check_tag_approval(
+            domain="cosmology/void_lensing",
+            tag="void_lensing_meter-v1",
+            allow_unapproved=False,
+            code_root=io_paths.DERIVATION_ROOT,
+        )
+        # Signal to common.io_paths._policy_quarantine that this run is approved so
+        # that artifacts for PASSED gates are written outside failed_runs/.
+        os.environ["VDM_POLICY_APPROVED"] = "1"
+
     _ = run_experiment(spec, dry_run=bool(args.dry_run))
     return 0
 
