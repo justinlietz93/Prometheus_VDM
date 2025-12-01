@@ -86,8 +86,114 @@ def test_synthetic_mocks_experiment_writes_artifacts(tmp_path: Path, monkeypatch
     assert "git_commit" in receipts, "run_receipts missing 'git_commit' alias"
     assert "seeds" in receipts and isinstance(receipts["seeds"], list), "run_receipts missing 'seeds' list"
 
+    # Gate metrics must include the preregistered H1–H3 metrics.
+    gate_metrics = gate_payload.get("gate_metrics", {})
+    assert isinstance(gate_metrics, dict) and gate_metrics, "Gate results JSON missing 'gate_metrics' block"
+    for metric in ("R2_wall", "AUROC_sh", "beta_bias"):
+        assert metric in gate_metrics, f"gate_metrics missing '{metric}'"
+        assert isinstance(
+            gate_metrics[metric],
+            (int, float),
+        ), f"gate_metrics['{metric}'] must be numeric"
+
     # Runs JSON should mirror the same run_receipts block for consistency.
     runs_json_path = Path(artifacts["runs_json"])
     runs_payload = _load_json(runs_json_path)
     runs_receipts = runs_payload.get("run_receipts", {})
     assert isinstance(runs_receipts, dict) and runs_receipts, "Runs JSON missing 'run_receipts' block"
+
+    # Per-run metrics should satisfy the output schema's required keys.
+    schema_path = _PHYSICS_ROOT / "schemas" / "void_lensing_meter-v1.schema.json"
+    schema = _load_json(schema_path)
+    required = schema.get("required", [])
+    assert isinstance(required, list) and required, "Schema required[] must be a non-empty list"
+
+    runs = runs_payload.get("runs", [])
+    assert isinstance(runs, list) and runs, "Runs JSON missing 'runs' list"
+    for run in runs:
+        metrics = run.get("metrics", {})
+        assert isinstance(metrics, dict) and metrics, "Each run must contain a non-empty 'metrics' dict"
+        for key in required:
+            assert key in metrics, f"Run metrics missing required key from schema: {key}"
+
+def test_synthetic_mocks_grid_experiment_dry_run() -> None:
+    """CLI dry-run should succeed on the extended mocks-grid spec."""
+    from Derivation.code.physics.cosmology.void_lensing.experiments import (  # type: ignore[import]
+        T2_void_lensing_meter_synthetic_mocks_v1 as exp,
+    )
+
+    spec_path = _PHYSICS_ROOT / "specs" / "void_lensing_meter-mocks-grid-v1.json"
+    assert spec_path.is_file(), f"Grid spec file not found: {spec_path}"
+
+    exit_code = exp.main(["--spec", str(spec_path), "--dry-run"])
+    assert exit_code == 0
+
+
+def test_synthetic_mocks_grid_experiment_writes_artifacts(tmp_path: Path, monkeypatch: Any) -> None:
+    """
+    Running the extended grid experiment (non-dry-run) should produce JSON, CSV,
+    and PNG artifacts under the dedicated grid domain.
+    """
+    from Derivation.code.physics.cosmology.void_lensing.experiments import (  # type: ignore[import]
+        T2_void_lensing_meter_synthetic_mocks_v1 as exp,
+    )
+    from Derivation.code.common import io_paths as io_paths_mod  # type: ignore[import]
+
+    # Redirect all artifact paths used by io_paths into a tmp directory.
+    monkeypatch.setattr(io_paths_mod, "OUTPUTS", tmp_path, raising=True)
+
+    spec_path = _PHYSICS_ROOT / "specs" / "void_lensing_meter-mocks-grid-v1.json"
+    assert spec_path.is_file(), f"Grid spec file not found: {spec_path}"
+
+    spec = _load_json(spec_path)
+    summary = exp.run_experiment_grid(spec, dry_run=False)
+
+    artifacts = summary.get("artifacts", {})
+    # We expect at least runs JSON, gates JSON, CSV, and one PNG figure.
+    for key in ("runs_json", "gates_json", "runs_csv", "figure"):
+        assert key in artifacts, f"Artifact key '{key}' missing from summary.artifacts"
+        path = Path(artifacts[key])
+        assert path.is_file(), f"Artifact path for '{key}' does not exist: {path}"
+
+    # Gate JSON must contain a status field inside gate_results and a run_receipts block.
+    gates_json_path = Path(artifacts["gates_json"])
+    gate_payload = _load_json(gates_json_path)
+    gate_results = gate_payload.get("gate_results", {})
+    assert "status" in gate_results, "Grid gate results JSON missing 'status' field"
+
+    receipts = gate_payload.get("run_receipts", {})
+    assert isinstance(receipts, dict) and receipts, "Grid gate results JSON missing 'run_receipts' block"
+    assert "git_commit" in receipts, "Grid run_receipts missing 'git_commit' alias"
+    assert "seeds" in receipts and isinstance(
+        receipts["seeds"], list
+    ), "Grid run_receipts missing 'seeds' list"
+
+    # Gate metrics must include the preregistered H1–H3 metrics.
+    gate_metrics = gate_payload.get("gate_metrics", {})
+    assert isinstance(gate_metrics, dict) and gate_metrics, "Grid gate results JSON missing 'gate_metrics' block"
+    for metric in ("R2_wall", "AUROC_sh", "beta_bias"):
+        assert metric in gate_metrics, f"grid gate_metrics missing '{metric}'"
+        assert isinstance(
+            gate_metrics[metric],
+            (int, float),
+        ), f"grid gate_metrics['{metric}'] must be numeric"
+
+    # Runs JSON should mirror the same run_receipts block for consistency.
+    runs_json_path = Path(artifacts["runs_json"])
+    runs_payload = _load_json(runs_json_path)
+    runs_receipts = runs_payload.get("run_receipts", {})
+    assert isinstance(runs_receipts, dict) and runs_receipts, "Grid runs JSON missing 'run_receipts' block"
+
+    # Per-run metrics should satisfy the output schema's required keys.
+    schema_path = _PHYSICS_ROOT / "schemas" / "void_lensing_meter-v1.schema.json"
+    schema = _load_json(schema_path)
+    required = schema.get("required", [])
+    assert isinstance(required, list) and required, "Schema required[] must be a non-empty list"
+
+    runs = runs_payload.get("runs", [])
+    assert isinstance(runs, list) and runs, "Grid runs JSON missing 'runs' list"
+    for run in runs:
+        metrics = run.get("metrics", {})
+        assert isinstance(metrics, dict) and metrics, "Each grid run must contain a non-empty 'metrics' dict"
+        for key in required:
+            assert key in metrics, f"Grid run metrics missing required key from schema: {key}"

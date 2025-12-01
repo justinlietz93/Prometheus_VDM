@@ -194,22 +194,53 @@ def generate_synthetic_profile_with_wall_and_shoulder(
     x_wall_range = parameters.get("x_wall_range", [0.8, 1.2])
     x_bg_range = parameters.get("x_bg_range", [2.5, 4.0])
     lambda_ref = float(parameters.get("lambda_ref", 1.0))
-
+ 
     x_min, x_max = 0.2, 4.0
     x = np.linspace(x_min, x_max, n_radial_bins, dtype=float)
-
-    # True wall slope; chosen to be comfortably nonzero.
-    S_wall_true = -0.5
+ 
+    # Select a morphology family. By default we treat the "backend" parameter
+    # as the family label so that specs with backend="PyTwinPeaks" preserve the
+    # original behaviour, while alternative families (e.g. "FlagshipLike") can
+    # tweak wall, shoulder, and interface structure in controlled ways.
+    family = str(parameters.get("mocks_family", parameters.get("backend", "PyTwinPeaks")))
+ 
+    # Family-dependent defaults. These are chosen so that:
+    # - the wall fit in x ∈ x_wall_range remains nearly perfect (R2_wall ≈ 1),
+    # - the shoulder lives well outside the wall window but within the meter's
+    #   shoulder-search region,
+    # - interface radii remain in the outer region and do not contaminate the
+    #   shoulder detection task.
+    if family == "FlagshipLike":
+        # Slightly different wall slope and more extended outer structure to
+        # mimic a deeper, broader compensation pattern.
+        S_wall_true = -0.35
+        default_shoulder_center = max(float(x_wall_range[1]) + 0.8, 2.0)
+        shoulder_width_default = 0.15
+        shoulder_amp_default = 0.25
+ 
+        R_min_int = max(float(x_bg_range[0]), 2.3)
+        R_max_int = min(float(x_bg_range[1]) + 0.7, 3.8)
+        interface_slope_amp = 0.25
+    else:
+        # Canonical PyTwinPeaks-like morphology (original defaults).
+        S_wall_true = -0.5
+        default_shoulder_center = max(float(x_wall_range[1]) + 0.4, 1.6)
+        shoulder_width_default = 0.08
+        shoulder_amp_default = 0.3
+ 
+        R_min_int = max(float(x_bg_range[0]), 2.0)
+        R_max_int = min(float(x_bg_range[1]) + 0.5, 3.5)
+        interface_slope_amp = 0.3
+ 
     kappa_wall = _linear_wall_profile(x, S_wall_true)
-
+ 
     # Shoulder: a localized Gaussian bump well outside the wall-fit region.
     # The defaults are chosen so that the contribution in x ∈ x_wall_range is
     # negligible, keeping R2_wall extremely close to 1 on mocks.
-    default_shoulder_center = max(float(x_wall_range[1]) + 0.4, 1.6)
     shoulder_center = float(parameters.get("shoulder_center", default_shoulder_center))
-    shoulder_width = float(parameters.get("shoulder_width", 0.08))
-    shoulder_amp = float(parameters.get("shoulder_amp", 0.3))
-
+    shoulder_width = float(parameters.get("shoulder_width", shoulder_width_default))
+    shoulder_amp = float(parameters.get("shoulder_amp", shoulder_amp_default))
+ 
     # Interface structure: choose a small set of interface radii in the outer region
     # to avoid disturbing the wall fit.
     R_interfaces: List[float] = []
@@ -217,13 +248,11 @@ def generate_synthetic_profile_with_wall_and_shoulder(
     # interfaces live at x >= x_bg_min, while the shoulder search ends at
     # x < x_bg_min. This prevents the interface structure from masquerading
     # as a "shoulder" in the AUROC tests.
-    R_min_int = max(float(x_bg_range[0]), 2.0)
-    R_max_int = min(float(x_bg_range[1]) + 0.5, 3.5)
     if R_max_int > R_min_int:
         R_interfaces = np.linspace(R_min_int, R_max_int, 4).tolist()
-
+ 
     interface_component = (
-        _construct_interface_component(x, R_interfaces, slope_amp=0.3) if R_interfaces else np.zeros_like(x)
+        _construct_interface_component(x, R_interfaces, slope_amp=interface_slope_amp) if R_interfaces else np.zeros_like(x)
     )
 
     # Base profile WITHOUT the shoulder:
@@ -288,6 +317,7 @@ def generate_synthetic_profile_with_wall_and_shoulder(
             "lambda_ref": float(lambda_ref),
             "R_interfaces": R_interfaces,
             "has_shoulder": has_shoulder,
+            "mocks_family": family,
         },
     }
     return profile

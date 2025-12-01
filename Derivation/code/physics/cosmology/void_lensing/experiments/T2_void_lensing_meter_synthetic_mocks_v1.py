@@ -38,6 +38,9 @@ from Derivation.code.physics.cosmology.void_lensing.backends import mocks
 
 # Domain subfolder for artifacts; routed via common.io_paths.
 DOMAIN = "cosmology/void_lensing/T2_synthetic_mocks"
+# Dedicated domain for Cartesian-grid synthetic-mocks runs used in the
+# extended calibration over (backend, z_bin, R_v_bin, seed).
+GRID_DOMAIN = "cosmology/void_lensing/T2_synthetic_mocks_grid"
 
 
 def _load_spec(path: Path) -> Dict[str, Any]:
@@ -48,11 +51,12 @@ def _load_spec(path: Path) -> Dict[str, Any]:
 
 def build_grid_from_spec(spec: Mapping[str, Any]) -> List[Dict[str, Any]]:
     """
-    Build a small Cartesian grid of (backend, z_bin, R_v_bin, seed) values.
-
+    Build a small Cartesian grid of (backend, z_bin, R_v_bin, seed) values
+    for the original single-backend mocks spec.
+ 
     In this synthetic-mocks phase we keep the grid minimal, following the
     example in the T2 proposal:
-
+ 
         backend ∈ {"PyTwinPeaks"}
         z_bin   ∈ {[0.2, 0.8]}
         R_v_bin ∈ {[10.0, 60.0]}
@@ -63,7 +67,7 @@ def build_grid_from_spec(spec: Mapping[str, Any]) -> List[Dict[str, Any]]:
     z_bin = list(parameters.get("z_bin", [0.0, 0.0]))
     R_v_bin = list(parameters.get("R_v_bin", [0.0, 0.0]))
     seeds = spec.get("seeds", []) or [0]
-
+ 
     grid: List[Dict[str, Any]] = []
     for seed in seeds:
         cell: Dict[str, Any] = {
@@ -74,6 +78,67 @@ def build_grid_from_spec(spec: Mapping[str, Any]) -> List[Dict[str, Any]]:
             "seed": int(seed),
         }
         grid.append(cell)
+    return grid
+ 
+ 
+def build_grid_from_spec_grid_v1(spec: Mapping[str, Any]) -> List[Dict[str, Any]]:
+    """
+    Build a Cartesian grid for the extended mocks-grid spec over
+    (backend, z_bin, R_v_bin, seed).
+ 
+    Expected spec shape (see specs/void_lensing_meter-mocks-grid-v1.json):
+ 
+        {
+          "parameters": {
+            "backends": [...],
+            "z_bins": [[z_min, z_max], ...],
+            "R_v_bins": [[R_v_min, R_v_max], ...],
+            ... scalar parameters ...
+          },
+          "seeds": [...]
+        }
+    """
+    parameters = spec.get("parameters", {}) or {}
+    backends = list(parameters.get("backends", []))
+    z_bins = list(parameters.get("z_bins", []))
+    R_v_bins = list(parameters.get("R_v_bins", []))
+    seeds = spec.get("seeds", []) or [0]
+ 
+    if not backends or not z_bins or not R_v_bins:
+        raise ValueError(
+            "Grid spec is missing one of 'backends', 'z_bins', or 'R_v_bins' axes "
+            "required for building the mocks grid."
+        )
+ 
+    # Base parameter map shared across all grid cells; axis-specific keys are
+    # applied per cell so that each config sees scalar backend/z_bin/R_v_bin
+    # entries consistent with meter and mocks expectations.
+    base_parameters: Dict[str, Any] = dict(parameters)
+    for axis_key in ("backends", "z_bins", "R_v_bins"):
+        base_parameters.pop(axis_key, None)
+ 
+    grid: List[Dict[str, Any]] = []
+    for backend in backends:
+        for z_bin in z_bins:
+            for R_v_bin in R_v_bins:
+                for seed in seeds:
+                    cell_params: Dict[str, Any] = dict(base_parameters)
+                    cell_params["backend"] = backend
+                    cell_params["z_bin"] = list(z_bin)
+                    cell_params["R_v_bin"] = list(R_v_bin)
+                    # Align the synthetic morphology family with the chosen backend
+                    # label so that "PyTwinPeaks" and "FlagshipLike" map cleanly
+                    # onto distinct profile families in mocks.generate_*.
+                    cell_params.setdefault("mocks_family", backend)
+ 
+                    cell: Dict[str, Any] = {
+                        "backend": str(backend),
+                        "z_bin": list(z_bin),
+                        "R_v_bin": list(R_v_bin),
+                        "parameters": cell_params,
+                        "seed": int(seed),
+                    }
+                    grid.append(cell)
     return grid
 
 
@@ -261,6 +326,73 @@ def _plot_example_profile(
     plt.close()
 
 
+def _plot_grid_profiles(
+    all_runs: Sequence[Mapping[str, Any]],
+    parameters: Mapping[str, Any],
+    fig_path: Path,
+) -> None:
+    """
+    Overlay representative profiles from a small Cartesian grid over (backend, z_bin).
+
+    This is intended for the mocks-grid spec, where we want a single PNG that
+    shows at least one profile for each (backend, z_bin) combination.
+    """
+    import matplotlib.pyplot as plt
+
+    # Group by (backend, z_bin_min, z_bin_max) using either metrics or config as a fallback.
+    groups: Dict[Tuple[str, Tuple[float, float]], Mapping[str, Any]] = {}
+    for run in all_runs:
+        config = run.get("config", {})
+        metrics = run.get("metrics", {})
+
+        backend = str(metrics.get("backend", config.get("backend", "UNKNOWN")))
+        z_bin = metrics.get("z_bin", config.get("z_bin", [0.0, 0.0]))
+        z_list = list(z_bin)
+        if len(z_list) < 2:
+            z_list = (z_list + [0.0, 0.0])[:2]
+        z_min, z_max = float(z_list[0]), float(z_list[1])
+
+        key = (backend, (z_min, z_max))
+        # Keep the first representative run per (backend, z_bin) cell.
+        if key not in groups:
+            groups[key] = run
+
+    if not groups:
+        return
+
+    x_wall_range = parameters.get("x_wall_range", [0.8, 1.2])
+    x_bg_range = parameters.get("x_bg_range", [2.5, 4.0])
+
+    fig_path.parent.mkdir(parents=True, exist_ok=True)
+    plt.figure(figsize=(6.4, 4.0))
+
+    # Deterministic ordering by backend then z_min.
+    for (backend, (z_min, z_max)), run in sorted(groups.items(), key=lambda kv: (kv[0][0], kv[0][1][0])):
+        metrics = run.get("metrics", {})
+        profile = metrics.get("profile", {})
+
+        x = np.asarray(profile.get("x", []), dtype=float)
+        kappa = np.asarray(profile.get("kappa", []), dtype=float)
+        kappa_err = np.asarray(profile.get("kappa_err", []), dtype=float)
+        if x.size == 0 or kappa.size == 0:
+            continue
+
+        label = f"{backend}, z=[{z_min:.2f},{z_max:.2f}]"
+        plt.errorbar(x, kappa, yerr=kappa_err, fmt="o", ms=3, alpha=0.7, label=label)
+
+    # Highlight wall and background regions once.
+    plt.axvspan(x_wall_range[0], x_wall_range[1], color="#cccccc", alpha=0.2, label="wall fit region")
+    plt.axvspan(x_bg_range[0], x_bg_range[1], color="#eeeeee", alpha=0.2, label="background region")
+
+    plt.xlabel("x = r / R_v")
+    plt.ylabel("κ(x)")
+    plt.title("Synthetic void-lensing profiles across backend/z-bin grid")
+    plt.legend(loc="best", fontsize=7)
+    plt.tight_layout()
+    plt.savefig(fig_path, dpi=150)
+    plt.close()
+
+
 def _write_artifacts(
     spec: Mapping[str, Any],
     all_runs: Sequence[Mapping[str, Any]],
@@ -276,18 +408,26 @@ def _write_artifacts(
     tag = str(spec.get("tag", "void_lensing_meter-v1"))
     status = str(gate_results.get("status", "PENDING_IMPLEMENTATION"))
     failed = status != "PASSED"
-
+ 
     base_slug = io_paths.build_slug("T2_void_lensing_meter_synthetic_mocks_v1", run_name)
     base_slug = io_paths.build_slug(base_slug, tag)
-
+ 
     runs_slug = f"{base_slug}_runs"
     gates_slug = f"{base_slug}_gates"
     fig_slug = f"{base_slug}_profile"
-
-    runs_json_path = io_paths.log_path(DOMAIN, runs_slug, failed=failed, type="json")
-    gates_json_path = io_paths.log_path(DOMAIN, gates_slug, failed=failed, type="json")
-    runs_csv_path = io_paths.log_path(DOMAIN, runs_slug, failed=failed, type="csv")
-    fig_path = io_paths.figure_path(DOMAIN, fig_slug, failed=failed)
+ 
+    # Route artifacts for the extended Cartesian grid under a dedicated domain
+    # subfolder so that they are clearly distinguishable from the original
+    # single-cell PyTwinPeaks calibration.
+    if run_name.endswith("-mocks-grid"):
+        domain = GRID_DOMAIN
+    else:
+        domain = DOMAIN
+ 
+    runs_json_path = io_paths.log_path(domain, runs_slug, failed=failed, type="json")
+    gates_json_path = io_paths.log_path(domain, gates_slug, failed=failed, type="json")
+    runs_csv_path = io_paths.log_path(domain, runs_slug, failed=failed, type="csv")
+    fig_path = io_paths.figure_path(domain, fig_slug, failed=failed)
 
     spec_header = {
         "run_name": spec.get("run_name"),
@@ -385,9 +525,16 @@ def _write_artifacts(
             for row in rows:
                 writer.writerow(row)
 
-    # Diagnostic PNG using the first run.
+    # Diagnostic PNG:
+    #   - For the original single-cell mocks spec, plot one representative profile.
+    #   - For the mocks-grid spec, overlay representative profiles across (backend, z_bin).
     if all_runs:
-        _plot_example_profile(all_runs[0], spec.get("parameters", {}) or {}, fig_path)
+        parameters_for_plot = spec.get("parameters", {}) or {}
+        run_name = str(spec.get("run_name", ""))
+        if run_name.endswith("-mocks-grid"):
+            _plot_grid_profiles(all_runs, parameters_for_plot, fig_path)
+        else:
+            _plot_example_profile(all_runs[0], parameters_for_plot, fig_path)
 
     artifacts: Dict[str, str] = {
         "runs_json": str(runs_json_path),
@@ -403,22 +550,22 @@ def _write_artifacts(
 
 def run_experiment(spec: Mapping[str, Any], dry_run: bool = False) -> Dict[str, Any]:
     """
-    Run the synthetic-mocks grid experiment.
-
+    Run the synthetic-mocks experiment for the original single-cell mocks spec.
+ 
     When dry_run=True, metrics and gates are computed in memory but no
     artifacts are written.
     """
     grid = build_grid_from_spec(spec)
     parameters = spec.get("parameters", {}) or {}
-
+ 
     all_runs: List[Dict[str, Any]] = []
     for cfg in grid:
         run_record = run_single(cfg)
         all_runs.append(run_record)
-
+ 
     gate_metrics = aggregate_metrics_for_gates(all_runs, parameters)
     gate_results = vl_gates.evaluate_gates(gate_metrics)
-
+ 
     summary: Dict[str, Any] = {
         "spec": dict(spec),
         "grid_size": len(all_runs),
@@ -426,11 +573,45 @@ def run_experiment(spec: Mapping[str, Any], dry_run: bool = False) -> Dict[str, 
         "gate_metrics": gate_metrics,
         "gate_results": gate_results,
     }
-
+ 
     if not dry_run and all_runs:
         artifacts = _write_artifacts(spec, all_runs, gate_metrics, gate_results)
         summary["artifacts"] = artifacts
-
+ 
+    return summary
+ 
+ 
+def run_experiment_grid(spec: Mapping[str, Any], dry_run: bool = False) -> Dict[str, Any]:
+    """
+    Run the extended synthetic-mocks experiment over a small Cartesian grid
+    in (backend, z_bin, R_v_bin, seed) as defined by the mocks-grid spec.
+ 
+    When dry_run=True, metrics and gates are computed in memory but no
+    artifacts are written.
+    """
+    grid = build_grid_from_spec_grid_v1(spec)
+    parameters = spec.get("parameters", {}) or {}
+ 
+    all_runs: List[Dict[str, Any]] = []
+    for cfg in grid:
+        run_record = run_single(cfg)
+        all_runs.append(run_record)
+ 
+    gate_metrics = aggregate_metrics_for_gates(all_runs, parameters)
+    gate_results = vl_gates.evaluate_gates(gate_metrics)
+ 
+    summary: Dict[str, Any] = {
+        "spec": dict(spec),
+        "grid_size": len(all_runs),
+        "runs": all_runs,
+        "gate_metrics": gate_metrics,
+        "gate_results": gate_results,
+    }
+ 
+    if not dry_run and all_runs:
+        artifacts = _write_artifacts(spec, all_runs, gate_metrics, gate_results)
+        summary["artifacts"] = artifacts
+ 
     return summary
 
 
@@ -475,11 +656,28 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         return 2
 
     spec = _load_spec(spec_path)
+    parameters = spec.get("parameters", {}) or {}
 
     # Enforce approval policy for artifact-writing runs before configuring IO paths.
     # This bridges the authorization DB to the IO quarantine policy by setting
     # VDM_POLICY_APPROVED=1 when the (domain, tag, script) tuple is approved.
+    #
+    # IMPORTANT: Approval keys are derived using the policy message
+    #   f"{domain}:{script}:{tag}"
+    # via [compute_expected_key](Derivation/code/common/authorization/approval.py:317).
+    # For this runner, the canonical script identifier was stamped into the DB
+    # using:
+    #
+    #   --script Derivation/code/physics/cosmology/void_lensing/experiments/T2_void_lensing_meter_synthetic_mocks_v1.py
+    #
+    # in approve_tag. To ensure check_tag_approval() recomputes the same key, we
+    # surface this exact string through VDM_RUN_SCRIPT so that the policy sees a
+    # consistent (domain, script, tag) triple.
     if not args.dry_run:
+        os.environ.setdefault(
+            "VDM_RUN_SCRIPT",
+            "Derivation/code/physics/cosmology/void_lensing/experiments/T2_void_lensing_meter_synthetic_mocks_v1.py",
+        )
         approval.check_tag_approval(
             domain="cosmology/void_lensing",
             tag="void_lensing_meter-v1",
@@ -489,8 +687,21 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         # Signal to common.io_paths._policy_quarantine that this run is approved so
         # that artifacts for PASSED gates are written outside failed_runs/.
         os.environ["VDM_POLICY_APPROVED"] = "1"
-
-    _ = run_experiment(spec, dry_run=bool(args.dry_run))
+ 
+    # Dispatch between the original single-cell mocks spec and the extended
+    # Cartesian mocks-grid spec based on the presence of grid-axis parameters
+    # or the run_name suffix.
+    is_grid_spec = bool(
+        "backends" in parameters
+        or "z_bins" in parameters
+        or "R_v_bins" in parameters
+        or str(spec.get("run_name", "")).endswith("-mocks-grid")
+    )
+ 
+    if is_grid_spec:
+        _ = run_experiment_grid(spec, dry_run=bool(args.dry_run))
+    else:
+        _ = run_experiment(spec, dry_run=bool(args.dry_run))
     return 0
 
 
