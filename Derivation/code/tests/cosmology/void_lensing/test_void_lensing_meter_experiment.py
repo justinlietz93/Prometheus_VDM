@@ -197,3 +197,59 @@ def test_synthetic_mocks_grid_experiment_writes_artifacts(tmp_path: Path, monkey
         assert isinstance(metrics, dict) and metrics, "Each grid run must contain a non-empty 'metrics' dict"
         for key in required:
             assert key in metrics, f"Grid run metrics missing required key from schema: {key}"
+
+
+def test_synthetic_mocks_grid_v3_has_three_families() -> None:
+    """
+    The v3 mocks-grid spec should enumerate exactly three distinct mocks families
+    via its backends list.
+    """
+    spec_path = _PHYSICS_ROOT / "specs" / "void_lensing_meter-mocks-grid-v3.json"
+    assert spec_path.is_file(), f"Grid v3 spec file not found: {spec_path}"
+
+    spec = _load_json(spec_path)
+    parameters = spec.get("parameters", {}) or {}
+    backends = parameters.get("backends", [])
+    assert isinstance(backends, list) and backends, "Grid v3 spec must define a non-empty 'backends' list"
+
+    families = sorted(set(str(b) for b in backends))
+    assert len(families) == 3, f"Expected exactly 3 distinct mocks families in v3 spec, found {len(families)}"
+    assert set(families) == {"PyTwinPeaks", "FlagshipLike", "stress_test"}
+
+
+def test_synthetic_mocks_grid_v3_dry_run_covers_all_families() -> None:
+    """
+    CLI dry-run on the v3 mocks-grid spec should succeed, and the constructed grid
+    should contain runs from all declared mocks families.
+    """
+    from Derivation.code.physics.cosmology.void_lensing.experiments import (  # type: ignore[import]
+        T2_void_lensing_meter_synthetic_mocks_v1 as exp,
+    )
+
+    spec_path = _PHYSICS_ROOT / "specs" / "void_lensing_meter-mocks-grid-v3.json"
+    assert spec_path.is_file(), f"Grid v3 spec file not found: {spec_path}"
+
+    # Dry-run the CLI path to ensure the harness accepts the v3 spec without
+    # writing artifacts or requiring approval.
+    exit_code = exp.main(["--spec", str(spec_path), "--dry-run"])
+    assert exit_code == 0
+
+    spec = _load_json(spec_path)
+    parameters = spec.get("parameters", {}) or {}
+    backend_list = parameters.get("backends", [])
+    families_from_spec = {str(b) for b in backend_list}
+    assert families_from_spec, "Grid v3 spec backends list must not be empty"
+
+    # Build the grid directly and check that each declared family appears in at
+    # least one grid cell.
+    grid = exp.build_grid_from_spec_grid_v1(spec)
+    assert len(grid) >= len(families_from_spec), "Grid size must be at least the number of mocks families"
+
+    families_in_grid = {
+        str(cell.get("parameters", {}).get("mocks_family", cell.get("backend", "")))
+        for cell in grid
+    }
+    assert families_in_grid == families_from_spec, (
+        f"Grid v3 must contain runs from all mocks families; "
+        f"expected {families_from_spec}, got {families_in_grid}"
+    )

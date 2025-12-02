@@ -34,6 +34,9 @@ from Derivation.code.common.provenance import run_receipts
 from Derivation.code.common.authorization import approval
 from Derivation.code.physics.cosmology.void_lensing import meter, void_lensing_meter_gates as vl_gates
 from Derivation.code.physics.cosmology.void_lensing.backends import mocks
+from Derivation.code.common.plotting.void_lensing_plots import (
+    plot_void_lensing_mocks_grid_profiles,
+)
 
 
 # Domain subfolder for artifacts; routed via common.io_paths.
@@ -336,61 +339,11 @@ def _plot_grid_profiles(
 
     This is intended for the mocks-grid spec, where we want a single PNG that
     shows at least one profile for each (backend, z_bin) combination.
+
+    The actual plotting implementation lives in `Derivation/code/common/plotting`,
+    to keep Matplotlib logic out of the experiment runner.
     """
-    import matplotlib.pyplot as plt
-
-    # Group by (backend, z_bin_min, z_bin_max) using either metrics or config as a fallback.
-    groups: Dict[Tuple[str, Tuple[float, float]], Mapping[str, Any]] = {}
-    for run in all_runs:
-        config = run.get("config", {})
-        metrics = run.get("metrics", {})
-
-        backend = str(metrics.get("backend", config.get("backend", "UNKNOWN")))
-        z_bin = metrics.get("z_bin", config.get("z_bin", [0.0, 0.0]))
-        z_list = list(z_bin)
-        if len(z_list) < 2:
-            z_list = (z_list + [0.0, 0.0])[:2]
-        z_min, z_max = float(z_list[0]), float(z_list[1])
-
-        key = (backend, (z_min, z_max))
-        # Keep the first representative run per (backend, z_bin) cell.
-        if key not in groups:
-            groups[key] = run
-
-    if not groups:
-        return
-
-    x_wall_range = parameters.get("x_wall_range", [0.8, 1.2])
-    x_bg_range = parameters.get("x_bg_range", [2.5, 4.0])
-
-    fig_path.parent.mkdir(parents=True, exist_ok=True)
-    plt.figure(figsize=(6.4, 4.0))
-
-    # Deterministic ordering by backend then z_min.
-    for (backend, (z_min, z_max)), run in sorted(groups.items(), key=lambda kv: (kv[0][0], kv[0][1][0])):
-        metrics = run.get("metrics", {})
-        profile = metrics.get("profile", {})
-
-        x = np.asarray(profile.get("x", []), dtype=float)
-        kappa = np.asarray(profile.get("kappa", []), dtype=float)
-        kappa_err = np.asarray(profile.get("kappa_err", []), dtype=float)
-        if x.size == 0 or kappa.size == 0:
-            continue
-
-        label = f"{backend}, z=[{z_min:.2f},{z_max:.2f}]"
-        plt.errorbar(x, kappa, yerr=kappa_err, fmt="o", ms=3, alpha=0.7, label=label)
-
-    # Highlight wall and background regions once.
-    plt.axvspan(x_wall_range[0], x_wall_range[1], color="#cccccc", alpha=0.2, label="wall fit region")
-    plt.axvspan(x_bg_range[0], x_bg_range[1], color="#eeeeee", alpha=0.2, label="background region")
-
-    plt.xlabel("x = r / R_v")
-    plt.ylabel("κ(x)")
-    plt.title("Synthetic void-lensing profiles across backend/z-bin grid")
-    plt.legend(loc="best", fontsize=7)
-    plt.tight_layout()
-    plt.savefig(fig_path, dpi=150)
-    plt.close()
+    plot_void_lensing_mocks_grid_profiles(all_runs, parameters, fig_path)
 
 
 def _write_artifacts(

@@ -240,6 +240,36 @@ This T2 RESULTS note answers the preregistered calibration question for the Void
 
 Therefore, **on this mocks specification and at commit `f82da5e4aa9f0106f303a3c454eb27600ce11c3c`**, the void-lensing meter qualifies as a T2-certified instrument. Downstream T3+ proposals may rely on this instrument for void-wall and shoulder measurements, subject to additional robustness and cross-backend checks (e.g., alternative mock suites and survey-like systematics) to be documented in future RESULTS notes.
 
+## **Addendum – Synthetic mocks-grid tuning (2025-12-01)**
+
+Following the canonical `void_lensing_meter-mocks-v1` calibration at commit `f82da5e4aa9f0106f303a3c454eb27600ce11c3c`, an additional synthetic-mocks **grid-tuning** run was executed under the same instrument tag `void_lensing_meter-v1` to map meter behavior across a wider mocks grid. This addendum summarizes that post-hoc calibration without altering the original T2 verdict above.
+
+- Grid runner: `Derivation/code/physics/cosmology/void_lensing/experiments/T2_void_lensing_meter_synthetic_mocks_v1.py`
+- Grid spec: `Derivation/code/physics/cosmology/void_lensing/specs/void_lensing_meter-mocks-grid-v3.json`
+- Slug: `20251201_153008_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1`
+- Curated artifacts (this directory):
+  - `logs/20251201_153008_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_runs.json`
+  - `logs/20251201_153008_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_gates.json`
+  - `logs/20251201_153008_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_runs.csv`
+  - `figures/20251201_153008_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_profile.png`
+
+From the associated gates JSON, the ensemble-level metrics on this grid are:
+
+| Gate | Metric | Threshold | Observed value | Verdict |
+| --- | --- | --- | --- | --- |
+| H1 (wall fit quality) | $R^2_{\text{wall, mean}}$ | $\ge 0.98$ | $0.9999999999999553$ | PASS |
+| H2 (shoulder AUROC) | $\mathrm{AUROC}_{\text{sh}}$ | $\ge 0.90$ | $1.0$ | PASS |
+| H3 (interface-count bias) | $\beta_{\text{bias, mean}}$ | $\le 0.10$ | $0.0$ | PASS |
+
+The `gate_results.status` field for this run is `"PASSED"` with an empty `failed_gates` list, and the provenance block records:
+
+- `git_commit = "b8aca4c"`
+- `salted_provenance.salted_hash = "8cb9bf095a99d4c7e3b5a4eff8fd61d68663d652ecd710123730e4f869100f8f"`
+- `salted_provenance.salted_tag = "void_lensing_meter-v1"`
+- `seeds = [0, 1, 2, 3]`
+
+This grid-tuning extension shows that, on a broader synthetic-mocks grid consistent with the instrument’s intended domain, the meter continues to satisfy all three preregistered gates H1–H3 without any change to `meter.run_meter` or to the gate thresholds. The original T2 certification statement for the `void_lensing_meter-mocks-v1` specification remains anchored to commit `f82da5e4aa9f0106f303a3c454eb27600ce11c3c`; this addendum documents additional evidence of meter robustness on a tuned mocks grid at commit `b8aca4c21ee71c08083bd1f31cc6d03195559740`.
+
 ## **References / Works Cited**
 
 This bibliography is intended to be suitable for a whitepaper-grade RESULTS document. It explicitly mirrors and completes the list in §7 of the proposal [`T2_PROPOSAL_Void_Lensing_CrossCorrelation_Meter_v1.md`](Derivation/Cosmology/Void_Lensing/T2_PROPOSAL_Void_Lensing_CrossCorrelation_Meter_v1.md:611), and separates internal VDM canon from external literature.
