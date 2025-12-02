@@ -1,0 +1,22 @@
+{
+  "run_name": "void_lensing_meter-mocks-grid",
+  "version": "1.0.0",
+  "tag": "void_lensing_meter-v1",
+  "schema_ref": "Derivation/code/physics/cosmology/void_lensing/schemas/void_lensing_meter-v1.schema.json",
+  "parameters": {
+    "backends": ["PyTwinPeaks", "FlagshipLike"],
+    "z_bins": [[0.2, 0.6], [0.6, 1.0]],
+    "R_v_bins": [[10.0, 30.0]],
+    "n_radial_bins": 30,
+    "x_wall_range": [0.8, 1.2],
+    "x_bg_range": [2.5, 4.0],
+    "x_interface_min": 2.5,
+    "x_interface_max": 4.0,
+    "lambda_ref": 1.0,
+    "min_voids_per_bin": 300,
+    "eb_purification": true,
+    "mask_strategy": "exclude",
+    "auroc_n_samples": 40
+  },
+  "seeds": [0, 1, 2, 3]
+}

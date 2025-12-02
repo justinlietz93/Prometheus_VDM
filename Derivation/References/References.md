@@ -1,5 +1,17 @@
 # References
 
+## AI Solvers
+
+Ax-Prover: a deep reasoning agentic framework for theorem proving in mathematics and quantum physics. <https://arxiv.org/html/2510.12787v1>
+
+Lin Y, Tang S, Lyu B, et al. Goedel-Prover-V2: Scaling Formal Theorem Proving with Scaffolded Data Synthesis and Self-Correction. arXiv.org. Published August 5, 2025. <https://arxiv.org/abs/2508.03613?utm_source=chatgpt.com>
+
+Ospanov A, Farnia F, Yousefzadeh R. APOLLO: Automated LLM and lean collaboration for advanced formal reasoning. arXiv.org. Published May 9, 2025. <https://arxiv.org/abs/2505.05758?utm_source=chatgpt.com>
+
+Hu J, Zhang J, Zhao Y, Ringer T. HybridProver: Augmenting Theorem Proving with LLM-Driven Proof Synthesis and Refinement. arXiv.org. Published May 21, 2025. <https://arxiv.org/abs/2505.15740?utm_source=chatgpt.com>
+
+Zheng T, Deng Z, Tsang HT, et al. From Automation to Autonomy: A survey on large language models in Scientific Discovery. arXiv.org. Published May 19, 2025. <https://arxiv.org/abs/2505.13259>
+
 ## causal set continuum limit
 
 10 results

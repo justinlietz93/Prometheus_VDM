@@ -1,3 +1,4 @@
 *.fits
 s16a-shape-catalog/pdr1_hscwl/Shirasaki_mocks/urls.txt
 s16a-shape-catalog/pdr1_hscwl/Shirasaki_mocks/sha256sum.txt
+s16a-shape-catalog/pdr1_hscwl/Shirasaki_mocks/wget-log

@@ -239,6 +239,31 @@ def generate_synthetic_profile_with_wall_and_shoulder(
         R_min_int = max(float(x_bg_range[0]), 2.0)
         R_max_int = min(float(x_bg_range[1]) + 0.5, 3.5)
         interface_slope_amp = 0.3
+
+    # Optional third stress-test family overriding the default PyTwinPeaks-like
+    # parameters. This preserves the canonical wall behaviour while introducing
+    # a broader, lower-amplitude shoulder and a slightly stronger, more extended
+    # interface structure within the same interface-count domain used by the
+    # meter.
+    if family == "stress_test":
+        # Keep the wall strictly linear with the canonical slope so that
+        # R2_wall remains saturating in the wall-fit region.
+        S_wall_true = -0.5
+
+        # Place the shoulder closer to the background edge and broaden it, but
+        # keep it fully below x_bg_min so that shoulder detection remains
+        # cleanly separated from the interface-count region.
+        default_shoulder_center = max(float(x_wall_range[1]) + 0.9, 2.2)
+        shoulder_width_default = 0.20
+        shoulder_amp_default = 0.20
+
+        # Choose interface radii that live entirely inside the interface-count
+        # window [x_interface_min, x_interface_max] and in the outer region,
+        # but with a slightly stronger slope amplitude to stress-test the
+        # beta estimator across families.
+        R_min_int = max(float(x_interface_min), float(x_bg_range[0]))
+        R_max_int = min(float(x_interface_max), float(x_bg_range[1]) + 0.5)
+        interface_slope_amp = 0.35
  
     kappa_wall = _linear_wall_profile(x, S_wall_true)
  
