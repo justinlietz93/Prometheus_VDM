@@ -4,11 +4,13 @@
 
 New urgent items moved to the front.  
 
+> Note: OpenAI's "Pulse" feature is utilized to source new external research, of which is added to the [references catalog](/Derivation/References/References.md).
+
 1. Finish metriplectic KG+RD core  
   a. [Discrete-metriplectic-compatibility-rules.md](/Derivation/z.CANONICAL_Roadmap/Backlog/Q1/Discrete-metriplectic-compatibility-rules.md)  
     - “All my void, cosmology, and agency simulations sit on a discrete engine that provably respects my own axioms for energy, entropy, and causality.”  
   b. [Finalize-CF1-and-Lean4-proof-integration.md](/Derivation/z.CANONICAL_Roadmap/Backlog/Q1/2025-12-02/Finalize-CF1-and-Lean4-proof-integration.md)
-    - This is the “hello world” that proves your J⊕M axioms aren’t just a pretty classical toy — they recover standard open quantum system physics from geometry. Once that’s true in a clean SU(2) case, every subsequent claim that “the universe is a metriplectic cognitive engine” stops sounding mystical and starts sounding like extrapolating a pattern you’ve actually verified in the one place the community already trusts: Lindblad dynamics.
+    - This is the “hello world” that proves your J⊕M axioms aren’t just a pretty classical toy — they recover standard open quantum system physics from geometry. Once that’s true in a clean SU(2) case, every subsequent claim that “the universe is a metriplectic cognitive engine” stops sounding mystical and starts sounding like extrapolating a pattern you’ve actually verified in the one place the community already trusts: Lindblad dynamics.  
   c. [Deriving-Linblad-from-Lie-geometry.md](/Derivation/z.CANONICAL_Roadmap/Backlog/Q1/2025-12-02/Deriving-Linblad-from-Lie-geometry.md)
     - This SU(2) ACSP→Lindblad project is your bridge example. Once it’s done, all later claims that “VDM’s J⊕M split is the right language for both quantum systems and cosmology” will rest on a concrete, checkable, boring-in-a-good-way piece of math and code that anyone can audit and extend.
 2. Stabilize CF ladder prerequisites  
