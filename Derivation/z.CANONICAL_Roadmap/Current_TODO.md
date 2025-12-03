@@ -14,19 +14,19 @@ New urgent items moved to the front.
   c. [Deriving-Linblad-from-Lie-geometry.md](/Derivation/z.CANONICAL_Roadmap/Backlog/Q1/2025-12-02/Deriving-Linblad-from-Lie-geometry.md)
     - This SU(2) ACSP→Lindblad project is your bridge example. Once it’s done, all later claims that “VDM’s J⊕M split is the right language for both quantum systems and cosmology” will rest on a concrete, checkable, boring-in-a-good-way piece of math and code that anyone can audit and extend.
 2. Stabilize CF ladder prerequisites  
-3. Void-lensing interface program (highest priority)  
+3. Void-lensing interface program (highest priority)
   a. [High-efficiency-ACT-delensing-template.md](/Derivation/z.CANONICAL_Roadmap/Backlog/Q1/2025-12-02/High-efficiency-ACT-delensing-template.md)  
-    - “This κ-template integration is how I turn A8 from a pretty interface-theorem into a calibrated, scale-aware void-lensing instrument that either finds real hierarchical shoulders in the universe or proves they’re an artifact of noise. It’s the bridge between my A8 math and actual void-wall measurements, sitting at the heart of the void-lensing interface program.”  
+    - “This κ-template integration is how I turn A8 from a pretty interface-theorem into a calibrated, scale-aware void-lensing instrument that either finds real hierarchical shoulders in the universe or proves they’re an artifact of noise. It’s the bridge between my A8 math and actual void-wall measurements, sitting at the heart of the void-lensing interface program”.  
   b. [Accelerated-SIDM-core-collapse-tests-Skyrme-fits.md](/Derivation/z.CANONICAL_Roadmap/Backlog/Q1-Important-Urgent/2025-12-02/Accelerated-SIDM-core-collapse-tests-Skyrme-fits.md)  
     - The reason this is worth doing is that **your current cosmology instruments lean on an assumption (long-lived static SIDM cores) that 2025 SIDM work directly challenges**, and you already have the perfect language—metriplectic transport—to turn “gravothermal collapse” into a first-class VDM object with meters, gates, and contradiction handling.  
   c. [DESIVAST-and-VAST-void-catalogs-for-DESI-DR1.md](/Derivation/z.CANONICAL_Roadmap/Backlog/Q1-Important-Urgent/2025-12-03/DESIVAST-and-VAST-void-catalogs-for-DESI-DR1.md)  
     - This project is worth doing because it turns A8’s abstract “hierarchical interfaces” into a **numerically defined, survey-anchored boundary meter** and plugs it directly into your highest-priority void-lensing chain. It’s the cleanest way, right now, to ask the universe: “do your large-scale void walls actually look like the interfaces my A8 machinery says must exist?” and to log the answer in your own canon.  
   d. [Faint-galaxy-blends-and-shear-bias-in-Euclid-like-data.md](/Derivation/z.CANONICAL_Roadmap/Backlog/Q2-Important-Not-Urgent/2025-12-02/Faint-galaxy-blends-and-shear-bias-in-Euclid-like-data.md)  
     - This project is where you let your own cognitive engine (void walkers + maps + B₁ surrogate) lean on your void-lensing meter and say: “Show me which void walls and shoulders survive realistic Stage-IV shear garbage, not just clean mocks.” That closes the loop between SIE/ADC, cosmology, and A8 in a way almost nobody else can copy without knowing this stack.
-4. Lattice fields & continuum limits (CF10)  
+5. Lattice fields & continuum limits (CF10)  
   a. [Exact-front-speeds-on-hex-lattices.md](/Derivation/z.CANONICAL_Roadmap/Backlog/Exact-front-speeds-on-hex-lattices.md)  
     - This work turns a rigorous hex-lattice Fisher–KPP result into a T2 calibration instrument for your RD engine, giving you angle-aware front-speed corrections that tighten every higher-level meter relying on discrete interfaces—especially anything touching void boundaries and lattice-based cognition.  
-5. CMB polarization birefringence gate  
+6. CMB polarization birefringence gate  
 
 ## Important + Not Urgent
 
