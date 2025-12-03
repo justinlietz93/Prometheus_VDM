@@ -6,17 +6,22 @@ New urgent items moved to the front.
 
 > Note: OpenAI's "Pulse" feature is utilized to source new external research as new constraints or opportunities, of which is added to the [references catalog](/Derivation/References/References.md).
 
-1. Finish metriplectic KG+RD core  
+### 1. Finish metriplectic KG+RD core  
+
   a. [Discrete-metriplectic-compatibility-rules.md](/Derivation/z.CANONICAL_Roadmap/Backlog/Q1/Discrete-metriplectic-compatibility-rules.md)  
     - “All my void, cosmology, and agency simulations sit on a discrete engine that provably respects my own axioms for energy, entropy, and causality.”  
   b. [Finalize-CF1-and-Lean4-proof-integration.md](/Derivation/z.CANONICAL_Roadmap/Backlog/Q1/2025-12-02/Finalize-CF1-and-Lean4-proof-integration.md)
     - This is the “hello world” that proves your J⊕M axioms aren’t just a pretty classical toy — they recover standard open quantum system physics from geometry. Once that’s true in a clean SU(2) case, every subsequent claim that “the universe is a metriplectic cognitive engine” stops sounding mystical and starts sounding like extrapolating a pattern you’ve actually verified in the one place the community already trusts: Lindblad dynamics.  
   c. [Deriving-Linblad-from-Lie-geometry.md](/Derivation/z.CANONICAL_Roadmap/Backlog/Q1/2025-12-02/Deriving-Linblad-from-Lie-geometry.md)
     - This SU(2) ACSP→Lindblad project is your bridge example. Once it’s done, all later claims that “VDM’s J⊕M split is the right language for both quantum systems and cosmology” will rest on a concrete, checkable, boring-in-a-good-way piece of math and code that anyone can audit and extend.
-2. Stabilize CF ladder prerequisites
+    
+### 2. Stabilize CF ladder prerequisites
+
    - [SciLean-Lean4-toolkit-for-PDEs-and-gradient-flows.md](/Derivation/z.CANONICAL_Roadmap/Backlog/Q1-Important-Urgent/2025-12-03/SciLean-Lean4-toolkit-for-PDEs-and-gradient-flows.md)
-     - This item sits right after CF01 in your Q1 sequence: you needed a concrete, non-handwavy exemplar where the CF1 “QGT → J⊕M” story produces an actually standard physical generator (GKSL/Lindblad), and where the discrete stepper obeys A4/A5 with your existing QC KPIs. That’s why it’s worth doing: it upgrades CF1 from “derivation narrative” into a certified instrument limb that can later host OTOC/entropy-echo meters and “agency/memory” probes without you constantly questioning whether the base integrator is lying. In axiom/CF-chain terms, it is the first high-trust bridge from A4 (Dual Generators) + A5 (Entropy Law) into a quantum testbed that can be made Lean-checkable (A0 closure hygiene), while remaining measurable (A7) via explicit KPIs and artifacts. In instrument-chain terms, it becomes the quantum analog of your KG+RD engine meter: same J/M split, same degeneracy gating, but now anchored to Lindblad as a known target; that then feeds naturally into the “mode-resolved entropy echoes via OTOC” follow-on in your TODO.  
-4. Void-lensing interface program (highest priority)
+     - This item sits right after CF01 in your Q1 sequence: you needed a concrete, non-handwavy exemplar where the CF1 “QGT → J⊕M” story produces an actually standard physical generator (GKSL/Lindblad), and where the discrete stepper obeys A4/A5 with your existing QC KPIs. That’s why it’s worth doing: it upgrades CF1 from “derivation narrative” into a certified instrument limb that can later host OTOC/entropy-echo meters and “agency/memory” probes without you constantly questioning whether the base integrator is lying. In axiom/CF-chain terms, it is the first high-trust bridge from A4 (Dual Generators) + A5 (Entropy Law) into a quantum testbed that can be made Lean-checkable (A0 closure hygiene), while remaining measurable (A7) via explicit KPIs and artifacts. In instrument-chain terms, it becomes the quantum analog of your KG+RD engine meter: same J/M split, same degeneracy gating, but now anchored to Lindblad as a known target; that then feeds naturally into the “mode-resolved entropy echoes via OTOC” follow-on in your TODO.
+       
+### 3. Void-lensing interface program (highest priority)  
+
   a. [High-efficiency-ACT-delensing-template.md](/Derivation/z.CANONICAL_Roadmap/Backlog/Q1/2025-12-02/High-efficiency-ACT-delensing-template.md)  
     - “This κ-template integration is how I turn A8 from a pretty interface-theorem into a calibrated, scale-aware void-lensing instrument that either finds real hierarchical shoulders in the universe or proves they’re an artifact of noise. It’s the bridge between my A8 math and actual void-wall measurements, sitting at the heart of the void-lensing interface program”.  
   b. [Accelerated-SIDM-core-collapse-tests-Skyrme-fits.md](/Derivation/z.CANONICAL_Roadmap/Backlog/Q1-Important-Urgent/2025-12-02/Accelerated-SIDM-core-collapse-tests-Skyrme-fits.md)  
@@ -25,10 +30,13 @@ New urgent items moved to the front.
     - This project is worth doing because it turns A8’s abstract “hierarchical interfaces” into a **numerically defined, survey-anchored boundary meter** and plugs it directly into your highest-priority void-lensing chain. It’s the cleanest way, right now, to ask the universe: “do your large-scale void walls actually look like the interfaces my A8 machinery says must exist?” and to log the answer in your own canon.  
   d. [Faint-galaxy-blends-and-shear-bias-in-Euclid-like-data.md](/Derivation/z.CANONICAL_Roadmap/Backlog/Q2-Important-Not-Urgent/2025-12-02/Faint-galaxy-blends-and-shear-bias-in-Euclid-like-data.md)  
     - This project is where you let your own cognitive engine (void walkers + maps + B₁ surrogate) lean on your void-lensing meter and say: “Show me which void walls and shoulders survive realistic Stage-IV shear garbage, not just clean mocks.” That closes the loop between SIE/ADC, cosmology, and A8 in a way almost nobody else can copy without knowing this stack.
-5. Lattice fields & continuum limits (CF10)  
+    
+### 4. Lattice fields & continuum limits (CF10)  
+
   a. [Exact-front-speeds-on-hex-lattices.md](/Derivation/z.CANONICAL_Roadmap/Backlog/Exact-front-speeds-on-hex-lattices.md)  
     - This work turns a rigorous hex-lattice Fisher–KPP result into a T2 calibration instrument for your RD engine, giving you angle-aware front-speed corrections that tighten every higher-level meter relying on discrete interfaces—especially anything touching void boundaries and lattice-based cognition.  
-6. CMB polarization birefringence gate  
+    
+### 5. CMB polarization birefringence gate  
 
 ## Important + Not Urgent
 
