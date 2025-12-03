@@ -4,7 +4,7 @@
 
 New urgent items moved to the front.  
 
-> Note: OpenAI's "Pulse" feature is utilized to source new external research, of which is added to the [references catalog](/Derivation/References/References.md).
+> Note: OpenAI's "Pulse" feature is utilized to source new external research as new constraints or opportunities, of which is added to the [references catalog](/Derivation/References/References.md).
 
 1. Finish metriplectic KG+RD core  
   a. [Discrete-metriplectic-compatibility-rules.md](/Derivation/z.CANONICAL_Roadmap/Backlog/Q1/Discrete-metriplectic-compatibility-rules.md)  
