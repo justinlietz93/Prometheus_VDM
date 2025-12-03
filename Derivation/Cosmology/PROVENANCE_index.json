@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2025-11-30T17:26:19.718847Z",
+  "generated_utc": "2025-12-02T18:37:47.853261Z",
   "items": [
     {
       "path": "Derivation/Cosmology/CMB/CMB_proposal_updates.md",
@@ -70,6 +70,181 @@
       "path": "Derivation/Cosmology/Void_Lensing/T2_PROPOSAL_Void_Lensing_CrossCorrelation_Meter_v1.md",
       "sha256": "151921416ce7cceecab4012e03f53d34ff404e88952e34c0b652c0c8a8bbef37",
       "size": 33307
+    },
+    {
+      "path": "Derivation/Cosmology/Void_Lensing/T2_RESULTS_Void_Lensing_CrossCorrelation_Meter_v1.md",
+      "sha256": "2daf1222df50f27b451dd9a4fdfc157c5ca69336ea6de757ce5d08b210b141be",
+      "size": 28042
+    },
+    {
+      "path": "Derivation/Cosmology/Void_Lensing/T2_Void_Lensing_CrossCorrelation_Meter_v1_RESULTS_ArXiv_v1/arxiv.sty",
+      "sha256": "1687decd1564d6d0cd9280f9a1a7e785e0efc4e4fcdf3d4a35bc5eb092e1a351",
+      "size": 7641
+    },
+    {
+      "path": "Derivation/Cosmology/Void_Lensing/T2_Void_Lensing_CrossCorrelation_Meter_v1_RESULTS_ArXiv_v1/code/T2_void_lensing_meter_synthetic_mocks_v1.py",
+      "sha256": "f35d92523ba7896e454f6e31ee8333b459ce78591473b5e8159ad09fb33a0118",
+      "size": 24620
+    },
+    {
+      "path": "Derivation/Cosmology/Void_Lensing/T2_Void_Lensing_CrossCorrelation_Meter_v1_RESULTS_ArXiv_v1/code/__pycache__/io_paths.cpython-313.pyc",
+      "sha256": "83cdc55e121806e443db6cf9c1474d6bd366a1702543fa2f93ece9b49b10d998",
+      "size": 3363
+    },
+    {
+      "path": "Derivation/Cosmology/Void_Lensing/T2_Void_Lensing_CrossCorrelation_Meter_v1_RESULTS_ArXiv_v1/code/__pycache__/meter.cpython-313.pyc",
+      "sha256": "ffdca6a37a9ccf6d7ec44eb63566028a823f3684ace7d776e38662d281a5a9b9",
+      "size": 16176
+    },
+    {
+      "path": "Derivation/Cosmology/Void_Lensing/T2_Void_Lensing_CrossCorrelation_Meter_v1_RESULTS_ArXiv_v1/code/__pycache__/mocks.cpython-313.pyc",
+      "sha256": "7c21e5a6eab97289d5ddd121f003efde3fcab7eec68fd748e212a4c65cd1ef1e",
+      "size": 15465
+    },
+    {
+      "path": "Derivation/Cosmology/Void_Lensing/T2_Void_Lensing_CrossCorrelation_Meter_v1_RESULTS_ArXiv_v1/code/__pycache__/void_lensing_meter_gates.cpython-313.pyc",
+      "sha256": "7a39dbb6b580a3104d05dd048ed048ccec0eba1f0391f18ae9ca0473fa99e0b4",
+      "size": 6141
+    },
+    {
+      "path": "Derivation/Cosmology/Void_Lensing/T2_Void_Lensing_CrossCorrelation_Meter_v1_RESULTS_ArXiv_v1/code/io_paths.py",
+      "sha256": "b0cae6f80c56c28a66066272dd9d0dc401a67c5eeacfcf0769180eae68e8107a",
+      "size": 2970
+    },
+    {
+      "path": "Derivation/Cosmology/Void_Lensing/T2_Void_Lensing_CrossCorrelation_Meter_v1_RESULTS_ArXiv_v1/code/meter.py",
+      "sha256": "fd0b15e2a85f71d816de96599373fbc793cda1f8cb6b386cb46ca4ae91eeff11",
+      "size": 17333
+    },
+    {
+      "path": "Derivation/Cosmology/Void_Lensing/T2_Void_Lensing_CrossCorrelation_Meter_v1_RESULTS_ArXiv_v1/code/mocks.py",
+      "sha256": "a302cfcffb01c1f5417a078dcc8d9e2b174f700ab0fa38af7d497ae5e07ef291",
+      "size": 18457
+    },
+    {
+      "path": "Derivation/Cosmology/Void_Lensing/T2_Void_Lensing_CrossCorrelation_Meter_v1_RESULTS_ArXiv_v1/code/run_void_lensing_meter_synthetic_mocks.py",
+      "sha256": "22cad8b64a279e2dcfd6cc2f8f6fc7a2768cf3edc1b45824cec58f0371e0cbe6",
+      "size": 15603
+    },
+    {
+      "path": "Derivation/Cosmology/Void_Lensing/T2_Void_Lensing_CrossCorrelation_Meter_v1_RESULTS_ArXiv_v1/code/void_lensing_meter_gates.py",
+      "sha256": "b5f185c93200f6200295997c6e2baf7b1c8abee49903f7f0924da78b5c073306",
+      "size": 7504
+    },
+    {
+      "path": "Derivation/Cosmology/Void_Lensing/T2_Void_Lensing_CrossCorrelation_Meter_v1_RESULTS_ArXiv_v1/figures/20251201_040626_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks_void_lensing_meter-v1_profile.png",
+      "sha256": "0fb6b53bc1655e5285f60e85834d74c555848c35d2ecfa7fdebc788b69b6d9f3",
+      "size": 43220
+    },
+    {
+      "path": "Derivation/Cosmology/Void_Lensing/T2_Void_Lensing_CrossCorrelation_Meter_v1_RESULTS_ArXiv_v1/figures/20251201_153008_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_profile.png",
+      "sha256": "42daedd5d42bede44122290dc16149fa4ffeecbb93e683e4b73dc94e8b5714ce",
+      "size": 75410
+    },
+    {
+      "path": "Derivation/Cosmology/Void_Lensing/T2_Void_Lensing_CrossCorrelation_Meter_v1_RESULTS_ArXiv_v1/logs/20251201_040626_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks_void_lensing_meter-v1_gates.json",
+      "sha256": "cd7876c0e62cf76bea6821d0f0464147d3223a33131c6c80b8b2616921e79f7d",
+      "size": 5965
+    },
+    {
+      "path": "Derivation/Cosmology/Void_Lensing/T2_Void_Lensing_CrossCorrelation_Meter_v1_RESULTS_ArXiv_v1/logs/20251201_040626_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks_void_lensing_meter-v1_runs.csv",
+      "sha256": "69bd338578d12d97b607aa4475ec4f8fd0d9784e0b4aecb1c5b65a2349f80083",
+      "size": 719
+    },
+    {
+      "path": "Derivation/Cosmology/Void_Lensing/T2_Void_Lensing_CrossCorrelation_Meter_v1_RESULTS_ArXiv_v1/logs/20251201_040626_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks_void_lensing_meter-v1_runs.json",
+      "sha256": "888647286e14ea51b52b59f4202ad1611b092604e95db5ab2dd92e065ad68173",
+      "size": 22041
+    },
+    {
+      "path": "Derivation/Cosmology/Void_Lensing/T2_Void_Lensing_CrossCorrelation_Meter_v1_RESULTS_ArXiv_v1/logs/20251201_153008_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_gates.json",
+      "sha256": "568437e80c0d1d10944318bf97fe5e187a15ee0e3a4845ad3bdc4f7c6fc9491a",
+      "size": 5970
+    },
+    {
+      "path": "Derivation/Cosmology/Void_Lensing/T2_Void_Lensing_CrossCorrelation_Meter_v1_RESULTS_ArXiv_v1/logs/20251201_153008_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_runs.csv",
+      "sha256": "0826849ba646edf298a7bf88b5ec86b0db2746e014534a78b1a742bfdf6df27c",
+      "size": 3471
+    },
+    {
+      "path": "Derivation/Cosmology/Void_Lensing/T2_Void_Lensing_CrossCorrelation_Meter_v1_RESULTS_ArXiv_v1/logs/20251201_153008_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_runs.json",
+      "sha256": "d8ba0bbe47d0b48df1021f66b0326ba5b58d86ed203e6590739bf9bc55eb76c6",
+      "size": 105994
+    },
+    {
+      "path": "Derivation/Cosmology/Void_Lensing/T2_Void_Lensing_CrossCorrelation_Meter_v1_RESULTS_ArXiv_v1/main.tex",
+      "sha256": "be8c7e06e1e8343b59d7fcdd955d41e3d74e1500610a9b39d2e16bb1c6c1e7ec",
+      "size": 21634
+    },
+    {
+      "path": "Derivation/Cosmology/Void_Lensing/T2_Void_Lensing_CrossCorrelation_Meter_v1_RESULTS_ArXiv_v1/orcid.pdf",
+      "sha256": "06e283aedd17de29af9549f052c87f6f56b3d3405bafc930059c39febca0854b",
+      "size": 12397
+    },
+    {
+      "path": "Derivation/Cosmology/Void_Lensing/T2_Void_Lensing_CrossCorrelation_Meter_v1_RESULTS_ArXiv_v1/quickstart.md",
+      "sha256": "9843052dcdb97d402c715a2e91dfcf6f4d2de99fd66c690e6a719c6197f21446",
+      "size": 7705
+    },
+    {
+      "path": "Derivation/Cosmology/Void_Lensing/T2_Void_Lensing_CrossCorrelation_Meter_v1_RESULTS_ArXiv_v1/references.bib",
+      "sha256": "f38ccba09c2a63213da109ec4fc66b269695a0af8e14a3c0692a963d9442963d",
+      "size": 4687
+    },
+    {
+      "path": "Derivation/Cosmology/Void_Lensing/T2_Void_Lensing_CrossCorrelation_Meter_v1_RESULTS_ArXiv_v1/schemas/void_lensing_meter-v1.schema.json",
+      "sha256": "11955c9da99ae490edfdf5290a2da3a45e64a030b715939b761b7f28e293108b",
+      "size": 1690
+    },
+    {
+      "path": "Derivation/Cosmology/Void_Lensing/T2_Void_Lensing_CrossCorrelation_Meter_v1_RESULTS_ArXiv_v1/specs/void_lensing_meter-mocks-grid-v3.json",
+      "sha256": "52fecb34785b8251d87f2520a7a5973d30cb6a4f5bc724c8ceaeadbcebd1cb87",
+      "size": 680
+    },
+    {
+      "path": "Derivation/Cosmology/Void_Lensing/T2_Void_Lensing_CrossCorrelation_Meter_v1_RESULTS_ArXiv_v1/specs/void_lensing_meter-mocks-v1.json",
+      "sha256": "6bffa1e2d3d4b005194b78d985a55aa0670ef3fa3d582a5de6521fbaa3d64082",
+      "size": 540
+    },
+    {
+      "path": "Derivation/Cosmology/Void_Lensing/figures/20251201_040626_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks_void_lensing_meter-v1_profile.png",
+      "sha256": "0fb6b53bc1655e5285f60e85834d74c555848c35d2ecfa7fdebc788b69b6d9f3",
+      "size": 43220
+    },
+    {
+      "path": "Derivation/Cosmology/Void_Lensing/figures/20251201_153008_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_profile.png",
+      "sha256": "42daedd5d42bede44122290dc16149fa4ffeecbb93e683e4b73dc94e8b5714ce",
+      "size": 75410
+    },
+    {
+      "path": "Derivation/Cosmology/Void_Lensing/logs/20251201_040626_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks_void_lensing_meter-v1_gates.json",
+      "sha256": "cd7876c0e62cf76bea6821d0f0464147d3223a33131c6c80b8b2616921e79f7d",
+      "size": 5965
+    },
+    {
+      "path": "Derivation/Cosmology/Void_Lensing/logs/20251201_040626_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks_void_lensing_meter-v1_runs.csv",
+      "sha256": "69bd338578d12d97b607aa4475ec4f8fd0d9784e0b4aecb1c5b65a2349f80083",
+      "size": 719
+    },
+    {
+      "path": "Derivation/Cosmology/Void_Lensing/logs/20251201_040626_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks_void_lensing_meter-v1_runs.json",
+      "sha256": "888647286e14ea51b52b59f4202ad1611b092604e95db5ab2dd92e065ad68173",
+      "size": 22041
+    },
+    {
+      "path": "Derivation/Cosmology/Void_Lensing/logs/20251201_153008_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_gates.json",
+      "sha256": "568437e80c0d1d10944318bf97fe5e187a15ee0e3a4845ad3bdc4f7c6fc9491a",
+      "size": 5970
+    },
+    {
+      "path": "Derivation/Cosmology/Void_Lensing/logs/20251201_153008_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_runs.csv",
+      "sha256": "0826849ba646edf298a7bf88b5ec86b0db2746e014534a78b1a742bfdf6df27c",
+      "size": 3471
+    },
+    {
+      "path": "Derivation/Cosmology/Void_Lensing/logs/20251201_153008_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_runs.json",
+      "sha256": "d8ba0bbe47d0b48df1021f66b0326ba5b58d86ed203e6590739bf9bc55eb76c6",
+      "size": 105994
     }
   ],
   "root": "Derivation/Cosmology",

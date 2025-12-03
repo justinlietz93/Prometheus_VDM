@@ -1,0 +1,233 @@
+{
+  "gate_metrics": {
+    "AUROC_sh": 1.0,
+    "A_sh": 4.1989458020368815,
+    "R2_wall": 0.9999999999999988,
+    "beta_bias": 9.260908404691769
+  },
+  "gate_results": {
+    "failed_gates": [
+      "beta_bias"
+    ],
+    "gates": {
+      "AUROC_sh": {
+        "metric": "AUROC_sh",
+        "operator": ">=",
+        "passed": true,
+        "threshold": 0.9,
+        "unit": "dimensionless",
+        "value": 1.0
+      },
+      "A_sh": {
+        "metric": "A_sh",
+        "operator": null,
+        "passed": null,
+        "threshold": null,
+        "unit": null,
+        "value": 4.1989458020368815
+      },
+      "B_mode_residual": {
+        "metric": "B_mode_residual",
+        "operator": null,
+        "passed": null,
+        "threshold": null,
+        "unit": null,
+        "value": null
+      },
+      "R2_wall": {
+        "metric": "R2_wall",
+        "operator": ">=",
+        "passed": true,
+        "threshold": 0.98,
+        "unit": "dimensionless",
+        "value": 0.9999999999999988
+      },
+      "SNR": {
+        "metric": "SNR",
+        "operator": null,
+        "passed": null,
+        "threshold": null,
+        "unit": null,
+        "value": null
+      },
+      "beta_bias": {
+        "metric": "beta_bias",
+        "operator": "<=",
+        "passed": false,
+        "threshold": 0.1,
+        "unit": "dimensionless",
+        "value": 9.260908404691769
+      },
+      "beta_interface": {
+        "metric": "beta_interface",
+        "operator": null,
+        "passed": null,
+        "threshold": null,
+        "unit": null,
+        "value": null
+      },
+      "beta_uncertainty": {
+        "metric": "beta_uncertainty",
+        "operator": null,
+        "passed": null,
+        "threshold": null,
+        "unit": null,
+        "value": null
+      },
+      "n_voids": {
+        "metric": "n_voids",
+        "operator": null,
+        "passed": null,
+        "threshold": null,
+        "unit": null,
+        "value": null
+      }
+    },
+    "missing_keys": [
+      "beta_interface",
+      "beta_uncertainty",
+      "SNR",
+      "B_mode_residual",
+      "n_voids"
+    ],
+    "status": "FAILED"
+  },
+  "run_receipts": {
+    "gate_outcomes": {
+      "gate_metrics": {
+        "AUROC_sh": 1.0,
+        "A_sh": 4.1989458020368815,
+        "R2_wall": 0.9999999999999988,
+        "beta_bias": 9.260908404691769
+      },
+      "gate_results": {
+        "failed_gates": [
+          "beta_bias"
+        ],
+        "gates": {
+          "AUROC_sh": {
+            "metric": "AUROC_sh",
+            "operator": ">=",
+            "passed": true,
+            "threshold": 0.9,
+            "unit": "dimensionless",
+            "value": 1.0
+          },
+          "A_sh": {
+            "metric": "A_sh",
+            "operator": null,
+            "passed": null,
+            "threshold": null,
+            "unit": null,
+            "value": 4.1989458020368815
+          },
+          "B_mode_residual": {
+            "metric": "B_mode_residual",
+            "operator": null,
+            "passed": null,
+            "threshold": null,
+            "unit": null,
+            "value": null
+          },
+          "R2_wall": {
+            "metric": "R2_wall",
+            "operator": ">=",
+            "passed": true,
+            "threshold": 0.98,
+            "unit": "dimensionless",
+            "value": 0.9999999999999988
+          },
+          "SNR": {
+            "metric": "SNR",
+            "operator": null,
+            "passed": null,
+            "threshold": null,
+            "unit": null,
+            "value": null
+          },
+          "beta_bias": {
+            "metric": "beta_bias",
+            "operator": "<=",
+            "passed": false,
+            "threshold": 0.1,
+            "unit": "dimensionless",
+            "value": 9.260908404691769
+          },
+          "beta_interface": {
+            "metric": "beta_interface",
+            "operator": null,
+            "passed": null,
+            "threshold": null,
+            "unit": null,
+            "value": null
+          },
+          "beta_uncertainty": {
+            "metric": "beta_uncertainty",
+            "operator": null,
+            "passed": null,
+            "threshold": null,
+            "unit": null,
+            "value": null
+          },
+          "n_voids": {
+            "metric": "n_voids",
+            "operator": null,
+            "passed": null,
+            "threshold": null,
+            "unit": null,
+            "value": null
+          }
+        },
+        "missing_keys": [
+          "beta_interface",
+          "beta_uncertainty",
+          "SNR",
+          "B_mode_residual",
+          "n_voids"
+        ],
+        "status": "FAILED"
+      },
+      "status": "FAILED"
+    },
+    "git": {
+      "head_commit": "d7014900c3358f1ca70a8b7fea32dae87ec54329",
+      "head_short": "d701490"
+    },
+    "git_commit": "d701490",
+    "hardware": {
+      "cpu_count": 32,
+      "machine": "x86_64",
+      "node": "prometheus-ai",
+      "processor": "x86_64",
+      "python_version": "3.13.5",
+      "release": "6.14.0-36-generic",
+      "system": "Linux",
+      "version": "#36-Ubuntu SMP PREEMPT_DYNAMIC Sat Oct 11 02:18:29 UTC 2025"
+    },
+    "ieee_754_double_precision": true,
+    "manifest": {
+      "generated_utc": "2025-12-02T18:14:07.013255Z",
+      "git_commit": "d7014900c3358f1ca70a8b7fea32dae87ec54329",
+      "tree_hash": "d7a51a0e298a82aaf028b7fa04a960a7e3f76f42ddbb9a2ba4df860959c4ef7f"
+    },
+    "repo_root": "/mnt/ironwolf/git/Prometheus_VDM",
+    "salted_hash": "3b39b960cb5c592d5c1c5358aaa238e3dc42e9dab91f7928b4e6817b5a18741f",
+    "salted_provenance": {
+      "salted_hash": "3b39b960cb5c592d5c1c5358aaa238e3dc42e9dab91f7928b4e6817b5a18741f",
+      "salted_tag": "void_lensing_meter-v1"
+    },
+    "seeds": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "tree_hash": "d7a51a0e298a82aaf028b7fa04a960a7e3f76f42ddbb9a2ba4df860959c4ef7f"
+  },
+  "spec": {
+    "run_name": "void_lensing_meter-mocks-grid",
+    "schema_ref": "Derivation/code/physics/cosmology/void_lensing/schemas/void_lensing_meter-v1.schema.json",
+    "tag": "void_lensing_meter-v1",
+    "version": "1.0.0"
+  }
+}

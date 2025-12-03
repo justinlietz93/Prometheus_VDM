@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "void_lensing_meter-v1",
+  "title": "Void Lensing Cross-Correlation Meter v1 Output",
+  "type": "object",
+  "metadata": {
+    "tag": "void_lensing_meter-v1"
+  },
+  "properties": {
+    "backend": { "type": "string" },
+    "z_bin": {
+      "type": "array",
+      "items": { "type": "number" },
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "R_v_bin": {
+      "type": "array",
+      "items": { "type": "number" },
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "R2_wall": { "type": "number" },
+    "S_wall": { "type": "number" },
+    "A_sh": { "type": "number" },
+    "AUROC_sh": { "type": "number" },
+    "beta_interface": { "type": "number" },
+    "beta_uncertainty": { "type": "number" },
+    "beta_bias": { "type": "number" },
+    "SNR": { "type": "number" },
+    "B_mode_residual": { "type": "number" },
+    "n_voids": { "type": "integer" },
+    "quality_flags": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "profile": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "type": "array",
+          "items": { "type": "number" }
+        },
+        "kappa": {
+          "type": "array",
+          "items": { "type": "number" }
+        },
+        "kappa_err": {
+          "type": "array",
+          "items": { "type": "number" }
+        }
+      },
+      "required": ["x", "kappa"]
+    }
+  },
+  "required": [
+    "backend",
+    "z_bin",
+    "R_v_bin",
+    "R2_wall",
+    "S_wall",
+    "A_sh",
+    "AUROC_sh",
+    "beta_interface",
+    "beta_uncertainty",
+    "beta_bias",
+    "SNR",
+    "B_mode_residual",
+    "n_voids",
+    "quality_flags",
+    "profile"
+  ]
+}
