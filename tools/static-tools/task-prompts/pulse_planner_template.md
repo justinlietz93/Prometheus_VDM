@@ -55,6 +55,9 @@ I want the answer structured in the following sections:
      - Read the `Current_TODO.md` document you should have been provided and determine where in the sequence this belongs. If you did not receive one, DO NOT respond with anything. FIRST ask Justin for it so time isn't wasted.
    - The goal is: if I only read this paragraph, I remember *why this is worth doing*.
 
+Important Note:
+  - You must include any important details, if any, that were discussed in the Pulse chat. If decisions were made about addressing this topic through a brainstorming session with the user, those need to be integrated in your response in addition to everything else.
+
 Constraints and style:
 
 - Assume I want to go from **zero memory to implementation** as fast as possible.
