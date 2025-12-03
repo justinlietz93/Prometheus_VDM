@@ -190,9 +190,17 @@ the effective grid is:
 \end{itemize}
 
 The mocks-grid tuning run uses a later specification
-\texttt{void\_lensing\_meter-mocks-grid-v3.json} that spans multiple
-mocks families across redshift and void-radius bins, but retains the
-same meter core and gate thresholds.
+\texttt{void\_lensing\_meter-mocks-grid-v3.json} that spans three mocks
+families --- \texttt{PyTwinPeaks}, \texttt{FlagshipLike}, and
+\texttt{stress\_test} --- over two tomographic bins
+$z\in[0.2,0.6]$ and $z\in[0.6,1.0]$ and a void-radius range
+$R_v\in[10,30]~\mathrm{Mpc}$ (comoving), while retaining the
+same meter core and gate thresholds and reusing the control parameters
+($n_{\text{radial bins}} = 30$,
+$x_{\text{wall range}} = [0.8, 1.2]$,
+$x_{\text{bg range}} = [2.5, 4.0]$,
+$\lambda_{\text{ref}} = 1.0$,
+$\texttt{min\_voids\_per\_bin} = 300$).
 
 \subsection*{Pipeline and configuration}
 For each grid cell, the pipeline:
@@ -217,13 +225,14 @@ Artifacts (JSON, CSV, PNG) are written via the project
 
 \subsection*{Provenance}
 For the canonical calibration run, the curated artifacts share the slug
-\texttt{20251201\_040626\_T2\_void\_lensing\_meter\_synthetic\_mocks\_v1\_void\_lensing\_meter-mocks\_void\_lensing\_meter-v1}
+\texttt{20251201\_040626\_T2\_void\_lensing\_meter\_synthetic\_mocks\_v1}\\
+\texttt{\_void\_lensing\_meter-mocks\_void\_lensing\_meter-v1}
 and live here as:
 \begin{itemize}
-  \item \texttt{logs/20251201\_040626\_...\_runs.json}
-  \item \texttt{logs/20251201\_040626\_...\_gates.json}
-  \item \texttt{logs/20251201\_040626\_...\_runs.csv}
-  \item \texttt{figures/20251201\_040626\_...\_profile.png}
+  \item \path{logs/20251201_040626_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks_void_lensing_meter-v1_runs.json}
+  \item \path{logs/20251201_040626_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks_void_lensing_meter-v1_gates.json}
+  \item \path{logs/20251201_040626_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks_void_lensing_meter-v1_runs.csv}
+  \item \path{figures/20251201_040626_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks_void_lensing_meter-v1_profile.png}
 \end{itemize}
 The gates JSON encodes:
 \begin{itemize}
@@ -233,13 +242,14 @@ The gates JSON encodes:
 \end{itemize}
 
 For the mocks-grid tuning run, the curated slug is
-\texttt{20251201\_153008\_T2\_void\_lensing\_meter\_synthetic\_mocks\_v1\_void\_lensing\_meter-mocks-grid\_void\_lensing\_meter-v1}
+\texttt{20251201\_153008\_T2\_void\_lensing\_meter\_synthetic\_mocks\_v1}\\
+\texttt{\_void\_lensing\_meter-mocks-grid\_void\_lensing\_meter-v1}
 with artifacts:
 \begin{itemize}
-  \item \texttt{logs/20251201\_153008\_...\_runs.json}
-  \item \texttt{logs/20251201\_153008\_...\_gates.json}
-  \item \texttt{logs/20251201\_153008\_...\_runs.csv}
-  \item \texttt{figures/20251201\_153008\_...\_profile.png}
+  \item \path{logs/20251201_153008_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_runs.json}
+  \item \path{logs/20251201_153008_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_gates.json}
+  \item \path{logs/20251201_153008_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_runs.csv}
+  \item \path{figures/20251201_153008_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_profile.png}
 \end{itemize}
 and gate receipt:
 \begin{itemize}
@@ -307,8 +317,9 @@ the curated gates file reports:
     an empty \texttt{failed\_gates} list.
 \end{itemize}
 This confirms that the meter satisfies all three preregistered gates
-H1--H3 on the tuned grid without any change to the meter core or
-gate thresholds.
+H1--H3 on the tuned v3 synthetic-mocks grid, without any change to the
+meter core or gate thresholds, and thus completes the T2
+instrument-calibration objectives stated in the proposal.
 
 \begin{figure}[t]
   \centering
@@ -428,51 +439,42 @@ mocks-grid:
     to the meter core or thresholds.
 \end{itemize}
 
-Therefore, within the synthetic-mocks regimes tested here, the
+Therefore, on the tuned v3 synthetic-mocks grid described above (with
+the canonical PyTwinPeaks calibration as a limiting case), the
 void-lensing meter qualifies as a T2-certified instrument for
 void-wall and shoulder measurements and for interface-count scaling
-with negligible bias.
-Future T3+ work may rely on this meter for void-lensing morphology,
-subject to additional robustness checks on alternative mocks and
-survey-like systematics, which should be documented in separate
-RESULTS notes.
+with negligible bias. This statement is strictly limited to the
+synthetic-mocks domain; no real-data performance or cosmological
+inference is claimed here.
+
+\subsection*{Instrument status and domain}
+As of 2025-12-01 we regard \texttt{void\_lensing\_meter-v1} as
+T2-certified only on the tuned v3 synthetic-mocks grid with
+\texttt{backend}~$\in\{\texttt{PyTwinPeaks},\texttt{FlagshipLike},\texttt{stress\_test}\}$,
+$z\in[0.2,0.6]\cup[0.6,1.0]$, and
+$R_v\in[10,30]~\mathrm{Mpc}$ (comoving), under the control parameters
+documented in the Methods section. The meter has not yet been certified
+on any real convergence maps (e.g., HSC S16, ACT, DES) or survey-specific
+systematics, and no T3+ cosmological inferences are drawn in this paper.
+Instead, the v1 instrument, calibrated on this v3 grid, is intended to
+serve as the baseline against which any future
+\texttt{void\_lensing\_meter-v2} extensions and real-data pipelines will
+be measured.
 
 % =========================================================
-\section{Runtime and Scaling}
-The calibration and grid-tuning runs are computationally modest,
-executed on a single multi-core CPU node in the project environment.
-A more detailed runtime and scaling study is not central to the present
-instrument-fidelity question, but the table below provides a placeholder
-for recording typical wall-clock statistics if desired.
-
-\begin{table}[t]
-  \centering
-  \caption{Runtime and scaling disclosure (to be populated if runtime
-  measurements are taken).}
-  \label{tab:runtime}
-  \begin{tabular}{@{}lrrrr@{}}
-  \toprule
-  Metric & P50 & P95 & P99 & Notes \\
-  \midrule
-  Step time (ms) &  &  &  & \\
-  Active-site fraction &  &  &  & \\
-  Slope $\beta$ (log--log) &  &  &  & CI: [\,\,] \\
-  \bottomrule
-  \end{tabular}
-\end{table}
-
 % =========================================================
 % Ensure external cosmology and method references render even if not
 % directly cited in-text.
 \nocite{
-  akra_massmap_hscy1_2511_12488,
-  desy3_diffusion_massmap_2511_14667,
-  mapbased_eb_separation_2411_11440,
-  pytwinpeaks_tunnel_voids_2504_02041,
-  morph_weighted_sbi_void_shear_2511_03636,
-  cosmological_constraints_void_lensing_2504_15149,
-  desi_hsc_nz_calibration_2511_18133,
-  act_desi_ksz_flamingo_inprep
+  Lietz_VDM_Instruments_and_2025,
+  shi2025akramassmapreconstruction,
+  boruah2025highresolutionweaklensingmass,
+  zhou2025mapbasedebseparationfiltered,
+  Maggiore_2025,
+  kanafi2025quantifyingweightedmorphologicalcontent,
+  Su_2025,
+  dejanvry2025calibrationtomographicredshiftdistribution,
+  mccarthy2025atacamacosmologytelescopecrosscorrelation
 }
 \bibliographystyle{unsrtnat}
 \bibliography{references}

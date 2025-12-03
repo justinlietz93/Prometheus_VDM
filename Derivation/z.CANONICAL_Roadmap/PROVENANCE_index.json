@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2025-11-30T17:26:19.718847Z",
+  "generated_utc": "2025-12-02T18:37:47.853261Z",
   "items": [
     {
       "path": "Derivation/z.CANONICAL_Roadmap/00_ROADMAP.md",
@@ -7,9 +7,59 @@
       "size": 44934
     },
     {
+      "path": "Derivation/z.CANONICAL_Roadmap/Backlog/Q1-Important-Urgent/2025-12-02/Accelerated-SIDM-core-collapse-tests-Skyrme-fits.md",
+      "sha256": "93bb71a11c96a7df2404e22aee0e2f15922bcbfbef748b783dc3b0865e75d081",
+      "size": 20890
+    },
+    {
+      "path": "Derivation/z.CANONICAL_Roadmap/Backlog/Q1-Important-Urgent/2025-12-02/Deriving-Linblad-from-Lie-geometry.md",
+      "sha256": "dbcff488820e755cda34b41af30e72846ffc598ddce819161ec04120e73f2f7b",
+      "size": 16252
+    },
+    {
+      "path": "Derivation/z.CANONICAL_Roadmap/Backlog/Q1-Important-Urgent/2025-12-02/Discrete-metriplectic-compatibility-rules.md",
+      "sha256": "08305f683e6fa17448f3f8ccc2bf35f0a45d988888710be9345fdc73938e78dc",
+      "size": 18404
+    },
+    {
+      "path": "Derivation/z.CANONICAL_Roadmap/Backlog/Q1-Important-Urgent/2025-12-02/Exact-front-speeds-on-hex-lattices.md",
+      "sha256": "2d051d545832b7b13f37e29aaa39b65dae018ed4c25126faecdba66ce2503096",
+      "size": 16639
+    },
+    {
+      "path": "Derivation/z.CANONICAL_Roadmap/Backlog/Q1-Important-Urgent/2025-12-02/Finalize-CF1-and-Lean4-proof-integration.md",
+      "sha256": "caaf2640f886292dc5605a32a7c4959d57e741dc78f64e2ea47cf647aafb2d86",
+      "size": 14956
+    },
+    {
+      "path": "Derivation/z.CANONICAL_Roadmap/Backlog/Q1-Important-Urgent/2025-12-02/High-efficiency-ACT-delensing-template.md",
+      "sha256": "70eb5fbc9de40e846ad4d2472dc3d6fc0d50c03953911be21c58247a7ead41f6",
+      "size": 19667
+    },
+    {
+      "path": "Derivation/z.CANONICAL_Roadmap/Backlog/Q2-Important-Not-Urgent/2025-12-02/AC-driven-ferrofluid-labyrinths-at-home-scale.md",
+      "sha256": "29b64e9ce16d5e54ee5d874fd0cd8a2b5b01a7a57ee6bd5d9256fe721dc20158",
+      "size": 17239
+    },
+    {
+      "path": "Derivation/z.CANONICAL_Roadmap/Backlog/Q2-Important-Not-Urgent/2025-12-02/Light-controlled-BZ-waves-in-hydrogel.md",
+      "sha256": "41701ad1315095ee93ce51745111ec9afa41a7a6c01c836b08e8fbb7d5ef63fd",
+      "size": 16913
+    },
+    {
+      "path": "Derivation/z.CANONICAL_Roadmap/Backlog/Q2-Important-Not-Urgent/2025-12-02/Mode-resolved-entropy-echoes-via-OTOC.md",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "Derivation/z.CANONICAL_Roadmap/Backlog/Q2-Important-Not-Urgent/2025-12-02/Polarization-leakage-and-false-shoulders.md",
+      "sha256": "105fc901702a265d9c007d3b51844b218de3c58591f377ee19bd4eb0747150b4",
+      "size": 16857
+    },
+    {
       "path": "Derivation/z.CANONICAL_Roadmap/Current_TODO.md",
-      "sha256": "4f97c9d1e8f575ae83add324c0b3a4b8df709795efa08d1f1cbc06621d1dcab4",
-      "size": 8526
+      "sha256": "474dab679487a472570cba4533b3797f3f803cc143ac9953d953b4d91bbaae1e",
+      "size": 15968
     },
     {
       "path": "Derivation/z.CANONICAL_Roadmap/README.md",

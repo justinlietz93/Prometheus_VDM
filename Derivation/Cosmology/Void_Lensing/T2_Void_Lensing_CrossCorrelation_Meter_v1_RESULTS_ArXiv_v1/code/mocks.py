@@ -1,0 +1,488 @@
+from __future__ import annotations
+
+"""
+Copyright © 2025 Justin K. Lietz, Neuroca, Inc. All Rights Reserved.
+
+This research is protected under a dual-license to foster open academic
+research while ensuring commercial applications are aligned with the project's ethical principles. Commercial use requires written permission from Justin K. Lietz.
+See LICENSE file for full terms.
+
+Mock backends for void-lensing κ maps and void catalogues.
+
+This module provides **pure in-memory synthetic generators** for stacked
+void-lensing profiles used to test the T2 Void Lensing Cross-Correlation
+Meter v1, alongside minimal, import-safe loader stubs.
+
+Scope in this phase:
+
+- No real disk or network I/O.
+- No dependence on external simulation or map-making codes.
+- Synthetic profiles are generated from simple analytic forms with known
+  wall slopes and interface-count structure, suitable for validating the
+  meter's core metrics and gates on mocks.
+
+Upstream mock suites (e.g. PyTwinPeaks tunnel-void catalogues,
+morphology-weighted SBI, DESI n(z) calibrations) remain black boxes at T2;
+this module only documents and implements expected interfaces for the
+synthetic preflight stage.
+"""
+
+from typing import Any, Dict, Mapping, Sequence, Tuple, List
+
+import numpy as np
+
+
+def load_mock_suite(suite_name: str = "void_lensing_meter-mocks-v1") -> Tuple[None, Dict[str, Any]]:
+    """
+    Placeholder loader for a suite of synthetic void-lensing mocks.
+
+    For the Phase-2 preflight core, tests are expected to call the explicit
+    generators below (e.g. generate_synthetic_profile_with_wall_and_shoulder)
+    rather than this stub. The interface is kept for compatibility with the
+    scaffold tests.
+
+    Parameters
+    ----------
+    suite_name:
+        Identifier for the mock suite configuration (e.g. matches the
+        spec file name under `specs/void_lensing_meter-mocks-v1.json`).
+
+    Returns
+    -------
+    mock_bundle, metadata:
+        Currently, `mock_bundle` is always None and `metadata` is a small
+        dictionary describing the backend and implementation status.
+    """
+    metadata: Dict[str, Any] = {
+        "backend": "mocks",
+        "suite_name": suite_name,
+        "status": "PENDING_IMPLEMENTATION",
+        "description": "Void-lensing mock suite loader stub (use explicit generators for tests).",
+    }
+    return None, metadata
+
+
+def load_kappa_map(mock_id: str = "mock_000") -> Tuple[None, Dict[str, Any]]:
+    """
+    Placeholder loader for an individual synthetic convergence (κ) map.
+
+    Parameters
+    ----------
+    mock_id:
+        Identifier of the mock realisation within a suite.
+
+    Returns
+    -------
+    kappa_map, metadata:
+        Currently, `kappa_map` is always None and `metadata` is a small
+        dictionary describing the backend and implementation status.
+    """
+    metadata: Dict[str, Any] = {
+        "backend": "mocks",
+        "mock_id": mock_id,
+        "status": "PENDING_IMPLEMENTATION",
+        "description": "Void-lensing mock κ-map loader stub (no I/O performed).",
+    }
+    return None, metadata
+
+
+# ---------------------------------------------------------------------------
+# Synthetic profile generators (pure in-memory; no I/O)
+# ---------------------------------------------------------------------------
+
+
+def _linear_wall_profile(
+    x: np.ndarray,
+    S_wall_true: float,
+) -> np.ndarray:
+    """
+    Construct a purely linear wall profile over all x.
+
+    The wall fit is evaluated only on a restricted range [0.8, 1.2] in tests,
+    so this simple linear form is sufficient to attain high R^2 there.
+    """
+    return S_wall_true * x
+
+
+def _construct_interface_component(
+    x: np.ndarray,
+    R_interfaces: Sequence[float],
+    slope_amp: float,
+) -> np.ndarray:
+    """
+    Build a 1D profile component whose derivative changes sign at each
+    radius in R_interfaces.
+
+    The construction uses a piecewise-constant derivative that flips sign
+    at each interface radius; integrating this derivative yields a profile
+    with the desired interface structure.
+    """
+    x = np.asarray(x, dtype=float)
+    R = np.asarray(R_interfaces, dtype=float)
+    n = x.size
+    if n < 2 or R.size == 0:
+        return np.zeros_like(x)
+
+    # Sort interfaces in ascending radius.
+    R_sorted = np.sort(R)
+    n_if = R_sorted.size
+
+    dkdx = np.zeros(n - 1, dtype=float)
+    s = 1.0
+    i_if = 0
+    for j in range(n - 1):
+        x_mid = 0.5 * (x[j] + x[j + 1])
+        # Flip sign whenever we cross the next interface radius.
+        while i_if < n_if and x_mid >= R_sorted[i_if]:
+            s *= -1.0
+            i_if += 1
+        dkdx[j] = s * slope_amp
+
+    k = np.zeros_like(x)
+    for j in range(n - 1):
+        dx = x[j + 1] - x[j]
+        k[j + 1] = k[j] + dkdx[j] * dx
+
+    return k
+
+
+def _compute_beta_true_from_interfaces(
+    R_interfaces: Sequence[float],
+    lambda_ref: float,
+) -> float:
+    """
+    Compute a reference beta_true from a set of interface radii.
+
+    This mirrors the linear fit used in the meter for beta_interface, but is
+    applied directly to the interface positions and their index counts.
+    """
+    R = np.asarray(R_interfaces, dtype=float)
+    lam = float(lambda_ref) if lambda_ref > 0.0 else float(np.median(R))
+    logR = np.log(R / lam)
+    y = np.arange(1, R.size + 1, dtype=float)
+
+    X = np.vstack([np.ones_like(logR), logR]).T
+    coeffs, *_ = np.linalg.lstsq(X, y, rcond=None)
+    _, beta_true = coeffs
+    return float(beta_true)
+
+
+def generate_synthetic_profile_with_wall_and_shoulder(
+    parameters: Mapping[str, Any],
+) -> Dict[str, Any]:
+    """
+    Generate a synthetic stacked κ(x) profile with:
+
+    - a clean linear wall in the range x_wall_range (default [0.8, 1.2]),
+    - a compensation-like shoulder at x_sh > 1,
+    - a controlled set of interface radii R_interfaces for testing beta_interface.
+
+    Parameters
+    ----------
+    parameters:
+        Mapping of configuration parameters, typically the "parameters" dict
+        from the void_lensing_meter-mocks-v1 spec. Expected keys include:
+        - "n_radial_bins" (int)
+        - "x_wall_range" (2-element sequence)
+        - "x_bg_range" (2-element sequence)
+        - "lambda_ref" (float)
+        - (optional) "shoulder_center", "shoulder_width", "shoulder_amp"
+
+    Returns
+    -------
+    profile:
+        Dictionary with keys:
+        - "x", "kappa", "kappa_err": numpy arrays defining the profile;
+        - "metadata": dict containing S_wall_true, beta_true, and other
+          construction details.
+    """
+    n_radial_bins = int(parameters.get("n_radial_bins", 30))
+    x_wall_range = parameters.get("x_wall_range", [0.8, 1.2])
+    x_bg_range = parameters.get("x_bg_range", [2.5, 4.0])
+    lambda_ref = float(parameters.get("lambda_ref", 1.0))
+    # Define a canonical interface-count region aligned with the meter's
+    # interface-scaling domain. By default we use the same outer region as the
+    # background band so that:
+    #   - shoulders live at x < x_bg_min, and
+    #   - interfaces are counted only in x ∈ [x_interface_min, x_interface_max]
+    #     well outside the shoulder search window.
+    x_interface_min = float(parameters.get("x_interface_min", x_bg_range[0]))
+    x_interface_max = float(parameters.get("x_interface_max", x_bg_range[1]))
+ 
+    x_min, x_max = 0.2, 4.0
+    x = np.linspace(x_min, x_max, n_radial_bins, dtype=float)
+ 
+    # Select a morphology family. By default we treat the "backend" parameter
+    # as the family label so that specs with backend="PyTwinPeaks" preserve the
+    # original behaviour, while alternative families (e.g. "FlagshipLike") can
+    # tweak wall, shoulder, and interface structure in controlled ways.
+    family = str(parameters.get("mocks_family", parameters.get("backend", "PyTwinPeaks")))
+ 
+    # Family-dependent defaults. These are chosen so that:
+    # - the wall fit in x ∈ x_wall_range remains nearly perfect (R2_wall ≈ 1),
+    # - the shoulder lives well outside the wall window but within the meter's
+    #   shoulder-search region,
+    # - interface radii remain in the outer region and do not contaminate the
+    #   shoulder detection task.
+    if family == "FlagshipLike":
+        # Slightly different wall slope and more extended outer structure to
+        # mimic a deeper, broader compensation pattern.
+        S_wall_true = -0.35
+        default_shoulder_center = max(float(x_wall_range[1]) + 0.8, 2.0)
+        shoulder_width_default = 0.15
+        shoulder_amp_default = 0.25
+ 
+        R_min_int = max(float(x_bg_range[0]), 2.3)
+        R_max_int = min(float(x_bg_range[1]) + 0.7, 3.8)
+        interface_slope_amp = 0.25
+    else:
+        # Canonical PyTwinPeaks-like morphology (original defaults).
+        S_wall_true = -0.5
+        default_shoulder_center = max(float(x_wall_range[1]) + 0.4, 1.6)
+        shoulder_width_default = 0.08
+        shoulder_amp_default = 0.3
+ 
+        R_min_int = max(float(x_bg_range[0]), 2.0)
+        R_max_int = min(float(x_bg_range[1]) + 0.5, 3.5)
+        interface_slope_amp = 0.3
+
+    # Optional third stress-test family overriding the default PyTwinPeaks-like
+    # parameters. This preserves the canonical wall behaviour while introducing
+    # a broader, lower-amplitude shoulder and a slightly stronger, more extended
+    # interface structure within the same interface-count domain used by the
+    # meter.
+    if family == "stress_test":
+        # Keep the wall strictly linear with the canonical slope so that
+        # R2_wall remains saturating in the wall-fit region.
+        S_wall_true = -0.5
+
+        # Place the shoulder closer to the background edge and broaden it, but
+        # keep it fully below x_bg_min so that shoulder detection remains
+        # cleanly separated from the interface-count region.
+        default_shoulder_center = max(float(x_wall_range[1]) + 0.9, 2.2)
+        shoulder_width_default = 0.20
+        shoulder_amp_default = 0.20
+
+        # Choose interface radii that live entirely inside the interface-count
+        # window [x_interface_min, x_interface_max] and in the outer region,
+        # but with a slightly stronger slope amplitude to stress-test the
+        # beta estimator across families.
+        R_min_int = max(float(x_interface_min), float(x_bg_range[0]))
+        R_max_int = min(float(x_interface_max), float(x_bg_range[1]) + 0.5)
+        interface_slope_amp = 0.35
+ 
+    kappa_wall = _linear_wall_profile(x, S_wall_true)
+ 
+    # Shoulder: a localized Gaussian bump well outside the wall-fit region.
+    # The defaults are chosen so that the contribution in x ∈ x_wall_range is
+    # negligible, keeping R2_wall extremely close to 1 on mocks.
+    shoulder_center = float(parameters.get("shoulder_center", default_shoulder_center))
+    shoulder_width = float(parameters.get("shoulder_width", shoulder_width_default))
+    shoulder_amp = float(parameters.get("shoulder_amp", shoulder_amp_default))
+ 
+    # Interface structure: choose a small set of interface radii in the outer region
+    # to avoid disturbing the wall fit.
+    R_interfaces: List[float] = []
+    # Place the interface radii fully outside the shoulder search region:
+    # interfaces live at x >= x_bg_min, while the shoulder search ends at
+    # x < x_bg_min. This prevents the interface structure from masquerading
+    # as a "shoulder" in the AUROC tests.
+    if R_max_int > R_min_int:
+        R_interfaces = np.linspace(R_min_int, R_max_int, 4).tolist()
+ 
+    interface_component = (
+        _construct_interface_component(x, R_interfaces, slope_amp=interface_slope_amp) if R_interfaces else np.zeros_like(x)
+    )
+
+    # Base profile WITHOUT the shoulder:
+    # - For x <= x_wall_max: pure linear wall.
+    # - For x > x_wall_max: interface component shifted for continuity at x_wall_max.
+    x_wall_max = float(x_wall_range[1])
+    wall_mask = x <= x_wall_max
+    kappa_base = np.empty_like(kappa_wall)
+
+    kappa_base[wall_mask] = kappa_wall[wall_mask]
+    if R_interfaces:
+        idx_wall_end = int(np.max(np.where(wall_mask)))
+        offset = kappa_wall[idx_wall_end] - interface_component[idx_wall_end]
+        kappa_base[~wall_mask] = interface_component[~wall_mask] + offset
+    else:
+        kappa_base[~wall_mask] = kappa_wall[~wall_mask]
+
+    # Shoulder bump added on top of the base profile.
+    if shoulder_amp != 0.0:
+        shoulder_bump = shoulder_amp * np.exp(-0.5 * ((x - shoulder_center) / shoulder_width) ** 2)
+    else:
+        shoulder_bump = np.zeros_like(x)
+
+    kappa = kappa_base + shoulder_bump
+
+    # Small, roughly constant error bars to enable weighted fits and SNR.
+    kappa_err = np.full_like(kappa, 0.02, dtype=float)
+
+    # Define beta_true in a way that is closely matched to the meter's own
+    # interface-count estimator, using the **interface-only** base profile and
+    # the same radial domain that run_meter will later use for beta_interface.
+    # This keeps the synthetic "truth" and the meter's estimator aligned for H3.
+    if R_interfaces:
+        try:
+            # Import the local meter module bundled with this arXiv snapshot,
+            # avoiding any dependency on the full VDM repository layout.
+            import meter as _vl_meter
+
+            iface_truth = _vl_meter.compute_interface_metrics(
+                x=np.asarray(x, dtype=float),
+                kappa=np.asarray(kappa_base, dtype=float),
+                lambda_ref=float(lambda_ref),
+                x_interface_range=[float(x_interface_min), float(x_interface_max)],
+            )
+            beta_true = float(iface_truth.get("beta_interface", 0.0))
+        except Exception:
+            # Fallback to the analytic construction from the interface radii.
+            beta_true = _compute_beta_true_from_interfaces(R_interfaces, lambda_ref)
+    else:
+        beta_true = 0.0
+
+    has_shoulder = bool(shoulder_amp != 0.0)
+
+    profile: Dict[str, Any] = {
+        "x": x,
+        "kappa": kappa,
+        "kappa_err": kappa_err,
+        "metadata": {
+            "S_wall_true": float(S_wall_true),
+            "beta_true": float(beta_true),
+            "x_wall_range": list(map(float, x_wall_range)),
+            "x_bg_range": list(map(float, x_bg_range)),
+            "lambda_ref": float(lambda_ref),
+            "R_interfaces": R_interfaces,
+            "has_shoulder": has_shoulder,
+            "mocks_family": family,
+        },
+    }
+    return profile
+
+
+def generate_synthetic_profile_without_shoulder(
+    parameters: Mapping[str, Any],
+) -> Dict[str, Any]:
+    """
+    Generate a synthetic stacked κ(x) profile with a clean wall and interface
+    structure but **no compensation shoulder**.
+
+    This is intended for use in shoulder/no-shoulder classification tests
+    for AUROC_sh.
+    """
+    # Copy parameters and force the shoulder amplitude to zero so that the
+    # generated profile is identical to the wall+interface base profile.
+    base_params: Dict[str, Any] = dict(parameters)
+    base_params["shoulder_amp"] = 0.0
+
+    profile = generate_synthetic_profile_with_wall_and_shoulder(base_params)
+    profile["metadata"]["has_shoulder"] = False
+    return profile
+
+
+def generate_shoulder_classification_dataset(
+    n_samples: int,
+    parameters: Mapping[str, Any],
+) -> Tuple[List[Dict[str, Any]], np.ndarray]:
+    """
+    Generate a small dataset of profiles with and without shoulders for
+    AUROC_sh tests.
+
+    Parameters
+    ----------
+    n_samples:
+        Total number of profiles to generate. Half will have shoulders and
+        half will not (rounded down for odd numbers).
+    parameters:
+        Parameter mapping passed through to the profile generators.
+
+    Returns
+    -------
+    profiles, labels:
+        - profiles: list of profile dicts suitable for meter.run_meter()
+          (each contains "x", "kappa", "kappa_err").
+        - labels: numpy array of shape (n_effective,) with 1 for "has shoulder"
+          and 0 for "no shoulder".
+    """
+    n_pos = n_samples // 2
+    n_neg = n_samples - n_pos
+
+    profiles: List[Dict[str, Any]] = []
+    labels: List[int] = []
+
+    # Positive class: enforce a reasonably strong shoulder amplitude so that
+    # A_sh is clearly separated from the no-shoulder class after detrending.
+    for _ in range(n_pos):
+        pos_params: Dict[str, Any] = dict(parameters)
+        pos_params.setdefault("shoulder_amp", 0.6)
+        prof = generate_synthetic_profile_with_wall_and_shoulder(pos_params)
+        profiles.append(prof)
+        labels.append(1)
+
+    # Negative class: reuse the deterministic "no shoulder" generator (which
+    # internally forces shoulder_amp = 0.0).
+    for _ in range(n_neg):
+        prof = generate_synthetic_profile_without_shoulder(parameters)
+        profiles.append(prof)
+        labels.append(0)
+
+    return profiles, np.asarray(labels, dtype=int)
+
+
+def compute_auroc_from_scores(scores: Sequence[float], labels: Sequence[int]) -> float:
+    """
+    Compute AUROC from a set of scores and binary labels using numpy only.
+
+    Parameters
+    ----------
+    scores:
+        Iterable of real-valued scores (higher should indicate stronger
+        evidence for the positive class).
+    labels:
+        Iterable of 0/1 labels (1 = positive / has_shoulder).
+
+    Returns
+    -------
+    auroc:
+        Area under the ROC curve in [0, 1].
+    """
+    scores_arr = np.asarray(scores, dtype=float)
+    labels_arr = np.asarray(labels, dtype=int)
+
+    if scores_arr.size == 0 or labels_arr.size != scores_arr.size:
+        return 0.5
+
+    # Sort by descending score so that thresholds sweep from high → low.
+    order = np.argsort(-scores_arr)
+    scores_sorted = scores_arr[order]
+    labels_sorted = labels_arr[order]
+
+    P = float(np.sum(labels_sorted == 1))
+    N = float(np.sum(labels_sorted == 0))
+    if P == 0.0 or N == 0.0:
+        # Degenerate case: only one class present.
+        return 0.5
+
+    # Unique score thresholds in descending order.
+    unique_scores = np.unique(scores_sorted)[::-1]
+
+    tprs: List[float] = []
+    fprs: List[float] = []
+
+    for thr in unique_scores:
+        pred_pos = scores_sorted >= thr
+        tp = float(np.sum((labels_sorted == 1) & pred_pos))
+        fp = float(np.sum((labels_sorted == 0) & pred_pos))
+        tprs.append(tp / P)
+        fprs.append(fp / N)
+
+    # Ensure curve starts at (0,0) and ends at (1,1).
+    tprs = [0.0] + tprs + [1.0]
+    fprs = [0.0] + fprs + [1.0]
+
+    tprs_arr = np.asarray(tprs, dtype=float)
+    fprs_arr = np.asarray(fprs, dtype=float)
+    return float(np.trapezoid(tprs_arr, fprs_arr))

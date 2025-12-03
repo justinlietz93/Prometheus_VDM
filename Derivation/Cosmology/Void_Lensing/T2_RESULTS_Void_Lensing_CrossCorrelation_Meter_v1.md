@@ -9,7 +9,7 @@
 > Commercial use requires citation and written permission from Justin K. Lietz.
 > See LICENSE file for full terms.
 
-### Experiment identifiers
+## Experiment identifiers
 
 - Proposal: `Derivation/Cosmology/Void_Lensing/T2_PROPOSAL_Void_Lensing_CrossCorrelation_Meter_v1.md`
 - Domain: `cosmology/void_lensing`
@@ -232,13 +232,40 @@ Within these limitations, the calibration supports treating the meter as a **tru
 
 ## **Conclusions**
 
-This T2 RESULTS note answers the preregistered calibration question for the Void Lensing Cross-Correlation Meter v1 on the `void_lensing_meter-mocks-v1` specification:
+This T2 RESULTS note answers the preregistered calibration question for the Void Lensing Cross-Correlation Meter v1 on the canonical PyTwinPeaks `void_lensing_meter-mocks-v1` specification and on the tuned three-family v3 synthetic-mocks grid:
 
 - All three instrument gates H1–H3 pass on the canonical synthetic-mocks run with comfortable margins.
-- The calibration artifacts are bound to a specific git commit and salted provenance hash, and the preregistration manifest has been populated accordingly.
+- On the v3 grid, the ensemble-averaged metrics continue to meet all preregistered thresholds (see § “Calibration on synthetic mocks v3 grid” below).
+- The calibration artifacts for both runs are bound to specific git commits and salted provenance hashes, and the preregistration manifest has been populated accordingly.
 - The approval manifest for `void_lensing_meter-v1` records a live approval stamped by the principal investigator, enabling future experiments under this tag to pass the authorization gate.
 
-Therefore, **on this mocks specification and at commit `f82da5e4aa9f0106f303a3c454eb27600ce11c3c`**, the void-lensing meter qualifies as a T2-certified instrument. Downstream T3+ proposals may rely on this instrument for void-wall and shoulder measurements, subject to additional robustness and cross-backend checks (e.g., alternative mock suites and survey-like systematics) to be documented in future RESULTS notes.
+Therefore, based on these synthetic-mocks calibrations, the void-lensing meter qualifies as a T2-certified instrument on the tuned v3 synthetic-mocks domain summarized in § “Calibration on synthetic mocks v3 grid”. Downstream T3+ proposals may rely on this instrument for void-wall and shoulder measurements, subject to additional robustness and cross-backend checks (e.g., alternative mock suites and survey-like systematics) to be documented in future RESULTS notes.
+
+## Calibration on synthetic mocks v3 grid
+
+A second calibration campaign was carried out on a tuned three-family synthetic-mocks grid, using the same meter implementation and gate thresholds but a broader specification than the single-profile `void_lensing_meter-mocks-v1` run. The successful grid run has slug
+
+- `20251201_153008_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1`
+
+and achieves ensemble-averaged gate metrics
+
+- $R^2_{\text{wall, mean}} \approx 1.0$,
+- $\mathrm{AUROC}_{\text{sh}} = 1.0$,
+- $\beta_{\text{bias, mean}} = 0.0$,
+
+so all three preregistered gates H1–H3 are simultaneously satisfied on the v3 grid.
+
+The v3 mocks spec `Derivation/code/physics/cosmology/void_lensing/specs/void_lensing_meter-mocks-grid-v3.json` spans three mocks families
+
+- `backend \in \{\text{"PyTwinPeaks"}, \text{"FlagshipLike"}, \text{"stress_test"}\}`
+
+over two tomographic bins
+
+- $z \in [0.2, 0.6]$ and $z \in [0.6, 1.0]$,
+
+with void-radius range $R_v \in [10, 30]\,\mathrm{Mpc}$ and shared control parameters (`n_radial_bins = 30`, `x_wall_range = [0.8, 1.2]`, `x_bg_range = [2.5, 4.0]`, `min_voids_per_bin = 300`). The canonical single-profile PyTwinPeaks calibration described above is consistent with, and now treated as a limiting case within, this tuned v3 grid. See the addendum below for the full gate table and provenance for this run.
+
+**Instrument status & domain.** As of 2025‑12‑01 we regard `void_lensing_meter-v1` as T2‑certified only on this tuned v3 synthetic-mocks grid (PyTwinPeaks / FlagshipLike / stress_test, $0.2 \le z \le 1.0$, $10\,\mathrm{Mpc} \le R_v \le 30\,\mathrm{Mpc}$). The meter has **not yet** been certified on any real $\kappa$ maps (e.g., HSC S16, ACT, DES) or survey-specific systematics, and no T3+ cosmological inferences are claimed in this note. This v1 instrument, calibrated on the v3 grid, is intended to serve as the baseline against which any future `void_lensing_meter-v2` extensions and real-data pipelines will be measured.
 
 ## **Addendum – Synthetic mocks-grid tuning (2025-12-01)**
 
