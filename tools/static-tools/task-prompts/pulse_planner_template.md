@@ -60,6 +60,7 @@ Constraints and style:
 - Assume I want to go from **zero memory to implementation** as fast as possible.
 - Do not waste space on generic background — focus on **what I personally need to reuse and how to do it**.
 - When in doubt, bias toward **explicit steps, named files, and concrete mathematical objects** instead of vague descriptions.
+- You MUST list all the papers referenced in this topic, and what each one is relevant / useful for.
 
 ---
 
