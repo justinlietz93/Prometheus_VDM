@@ -52,6 +52,8 @@ New urgent items moved to the front.
   - **CF1_QGT_to_Metriplectic_Brackets** – QGT → (metric + symplectic) split (spec‑complete in EQUATIONS, full derivation partly in private notes).
   - **CF6_Info_Geom_Fisher_Ruppeiner_Foundations** – Fisher/Ruppeiner geometry as the info‑theoretic layer over QGT.
   - **T1_PROPOSAL_Schrodingerization_KvN_v1** – shows how classical J⊕M can be lifted into a single reversible KvN‑type Hamiltonian.
+  - [Energy-stable-IMEX-scheme-for-barotropic-Euler-flow.md](/Derivation/z.CANONICAL_Roadmap/Backlog/Q2-Important-Not-Urgent/2025-12-03/Energy-stable-IMEX-scheme-for-barotropic-Euler-flow.md)
+    - This project is how I prove to myself (and later, others) that my VDM axioms aren’t just internally pretty: a cutting‑edge low‑Mach barotropic Euler solver from the PDE world can be re‑expressed as a J⊕M metriplectic system, passes my validation KPIs, and then plugs directly into the continuum side of the void‑lensing and FRW meters. It’s a bridge between my lattice KG+RD engine and the fluids the rest of cosmology already trusts.
 - **Status:**
 
   - Conceptual picture: **DONE**.
