@@ -1,0 +1,18 @@
+{
+  "overlap_ticks": 15040,
+  "psd_slopes_loglog_midband": {
+    "firing_var": -1.3765455056715188,
+    "complexity_cycles": -0.6234619059547469,
+    "connectome_entropy": -2.0199086278912026
+  },
+  "degree_gini": {
+    "in": 0.40895628827921804,
+    "out": 0.40895628827921804
+  },
+  "degree_quantiles_out": {
+    "p50": 12.0,
+    "p90": 70.10000000000002,
+    "p99": 94.00999999999999,
+    "max": 114
+  }
+}
