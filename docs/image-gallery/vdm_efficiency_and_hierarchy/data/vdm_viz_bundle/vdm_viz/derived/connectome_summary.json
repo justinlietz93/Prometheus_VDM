@@ -1,0 +1,10 @@
+{
+  "N_nodes": 1000,
+  "N_edges": 23838,
+  "out_degree_mean": 23.838,
+  "out_degree_median": 12.0,
+  "out_degree_max": 114,
+  "in_degree_mean": 23.838,
+  "in_degree_median": 12.0,
+  "in_degree_max": 114
+}
