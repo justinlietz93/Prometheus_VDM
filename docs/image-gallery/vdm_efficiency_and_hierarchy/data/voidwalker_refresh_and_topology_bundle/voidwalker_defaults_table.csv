@@ -1,0 +1,10 @@
+class,budget_visits,budget_edges,ttl,file
+ColdScout,16,8,64,void_cold_scout.py
+CycleHunterScout,16,8,64,void_cycle_scout.py
+ExcitationScout,16,8,64,void_excitation_scout.py
+FrontierScout,16,8,64,void_frontier_scout.py
+HeatScout,16,8,64,void_heat_scout.py
+InhibitionScout,16,8,64,void_inhibition_scout.py
+MemoryRayScout,16,8,64,void_memory_ray_scout.py
+SentinelScout,16,8,1,void_sentinel_scout.py
+VoidRayScout,16,8,64,void_ray_scout.py

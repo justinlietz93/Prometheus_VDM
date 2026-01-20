@@ -1,0 +1,7 @@
+file,classes,event_kinds_consumed,snapshot_keys_found
+coldmap.py,ColdMap,,"cold_head, cold_max, cold_p95, cold_p99, keep_max"
+excitationmap.py,ExcitationMap,"delta_w, spike","exc_head, exc_max, exc_p95, exc_p99"
+heatmap.py,HeatMap,"delta_w, spike, vt_touch","heat_head, heat_max, heat_p95, heat_p99"
+inhibitionmap.py,InhibitionMap,"delta_w, spike","inh_head, inh_max, inh_p95, inh_p99"
+memorymap.py,MemoryMap,"delta_w, edge_on, spike, vt_touch","keep_max, memory_dict, memory_head, memory_max, memory_p95, memory_p99"
+trailmap.py,TrailMap,"delta_w, edge_on, spike, vt_touch","trail_dict, trail_head, trail_max, trail_p95, trail_p99"
