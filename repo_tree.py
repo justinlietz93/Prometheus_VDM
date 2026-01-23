@@ -18,14 +18,13 @@ def should_ignore(name: str) -> bool:
     return name.startswith('.')
 
 
-def get_tree_structure(directory: Path, prefix: str = "", is_last: bool = True) -> list[str]:
+def get_tree_structure(directory: Path, prefix: str = "") -> list[str]:
     """
     Recursively generate ASCII tree structure for a directory.
     
     Args:
         directory: Path object representing the directory to traverse
         prefix: String prefix for proper indentation
-        is_last: Boolean indicating if this is the last item in current level
         
     Returns:
         List of strings representing the tree structure
@@ -34,7 +33,7 @@ def get_tree_structure(directory: Path, prefix: str = "", is_last: bool = True) 
     
     try:
         # Get all entries in the directory (both files and subdirectories)
-        entries = sorted([e for e in directory.iterdir() if not should_ignore(e.name)])
+        entries = sorted(e for e in directory.iterdir() if not should_ignore(e.name))
     except PermissionError:
         # Skip directories we don't have permission to read
         return lines
@@ -62,7 +61,7 @@ def get_tree_structure(directory: Path, prefix: str = "", is_last: bool = True) 
         if entry.is_dir():
             # Update prefix for children
             extension = "    " if is_last_entry else "│   "
-            lines.extend(get_tree_structure(entry, prefix + extension, is_last_entry))
+            lines.extend(get_tree_structure(entry, prefix + extension))
     
     return lines
 
