@@ -1,0 +1,21 @@
+{
+  "experiment": "example-experiment-fail-v1",
+  "version": "1.0.0",
+  "generated_utc": "2025-01-23T00:00:00Z",
+  "salted_hash": "7516e226b6fbdd40dd882316df6c972c32322c189bfecb1443b7248dea8a5c3f",
+  "salted_tag": "example-experiment-fail-v1",
+  "gates": {
+    "R2_wall": {
+      "metric": "R2_wall",
+      "operator": ">=",
+      "threshold": 0.98,
+      "unit": "dimensionless"
+    },
+    "beta_bias": {
+      "metric": "beta_bias",
+      "operator": "<=",
+      "threshold": 0.1,
+      "unit": "dimensionless"
+    }
+  }
+}

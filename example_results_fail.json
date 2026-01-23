@@ -1,0 +1,36 @@
+{
+  "experiment": "example-experiment-fail-v1",
+  "gate_metrics": {
+    "R2_wall": 0.95,
+    "beta_bias": 0.15
+  },
+  "gate_results": {
+    "status": "FAILED",
+    "gates": {
+      "R2_wall": {
+        "metric": "R2_wall",
+        "value": 0.95,
+        "operator": ">=",
+        "threshold": 0.98,
+        "unit": "dimensionless",
+        "passed": false
+      },
+      "beta_bias": {
+        "metric": "beta_bias",
+        "value": 0.15,
+        "operator": "<=",
+        "threshold": 0.1,
+        "unit": "dimensionless",
+        "passed": false
+      }
+    },
+    "failed_gates": [
+      "R2_wall",
+      "beta_bias"
+    ]
+  },
+  "git_commit": "abc123def456",
+  "salted_hash": "7516e226b6fbdd40dd882316df6c972c32322c189bfecb1443b7248dea8a5c3f",
+  "tree_hash": "tree_abc123",
+  "provenance_ok": true
+}

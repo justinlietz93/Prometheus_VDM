@@ -1,0 +1,2040 @@
+{
+  "memory_steering": {
+    "summary": {
+      "total_runs": 0,
+      "passed_runs": 0,
+      "failed_runs": 0,
+      "status_breakdown": {},
+      "provenance_breakdown": {},
+      "metric_statistics": {}
+    },
+    "passed_runs": [],
+    "failed_runs": []
+  },
+  "tachyonic_condensation": {
+    "summary": {
+      "total_runs": 21,
+      "passed_runs": 5,
+      "failed_runs": 16,
+      "status_breakdown": {
+        "INCOMPLETE": 21
+      },
+      "provenance_breakdown": {
+        "MISSING": 21
+      },
+      "metric_statistics": {}
+    },
+    "passed_runs": [
+      {
+        "file": "20251009_060744_tube_spectrum_summary__tube-spectrum-v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251009_084703_tube_spectrum_summary__tube-spectrum-v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251009_060917_tube_spectrum_summary__tube-spectrum-v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251009_062600_tube_condensation_summary__tube-condensation-v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251009_061836_tube_spectrum_summary__tube-spectrum-v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      }
+    ],
+    "failed_runs": [
+      {
+        "file": "20251009_060258_tube_spectrum_summary__tube-spectrum-v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251009_062533_tube_condensation_summary__tube-condensation-v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251009_052916_tube_spectrum_summary__tube-spectrum-v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251009_055056_tube_spectrum_summary__tube-spectrum-v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251009_055456_tube_spectrum_summary__tube-spectrum-v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251009_055137_tube_spectrum_summary__tube-spectrum-v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251009_062508_tube_condensation_summary__tube-condensation-v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251009_053002_tube_condensation_summary__tube-condensation-v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251009_055033_tube_spectrum_summary__tube-spectrum-v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251009_052922_tube_condensation_summary__tube-condensation-v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251009_055001_tube_spectrum_summary__tube-spectrum-v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251008_192116_tube_condensation_summary__tube-condensation-v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251008_192112_tube_spectrum_summary__tube-spectrum-v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251009_055231_tube_spectrum_summary__tube-spectrum-v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251009_060520_tube_spectrum_summary__tube-spectrum-v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251009_055218_tube_spectrum_summary__tube-spectrum-v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      }
+    ]
+  },
+  "rd_conservation": {
+    "summary": {
+      "total_runs": 19,
+      "passed_runs": 11,
+      "failed_runs": 8,
+      "status_breakdown": {
+        "INCOMPLETE": 19
+      },
+      "provenance_breakdown": {
+        "MISSING": 19
+      },
+      "metric_statistics": {}
+    },
+    "passed_runs": [
+      {
+        "file": "20251006_072249_step_spec_snapshot.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251006_072249_reaction_two_grid_convergence.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251006_072250_sweep_dt.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251006_072249_controls_reaction.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251006_072249_controls_diffusion.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251006_072251_fixed_dt_deltaS_compare.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251006_072250_objA_cas_linear_balance.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251006_072250_lyapunov_series.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251006_072250_residual_vs_dt.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251006_072250_sweep_exact.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251006_072250_objAB_gate.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      }
+    ],
+    "failed_runs": [
+      {
+        "file": "20251006_071237_CONTRADICTION_REPORT.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251006_071432_CONTRADICTION_REPORT.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251006_072251_euler_deltaS_vs_dt.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251006_072251_CONTRADICTION_REPORT.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251006_064711_CONTRADICTION_REPORT.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251006_070254_CONTRADICTION_REPORT.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251006_071345_CONTRADICTION_REPORT.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251006_072251_objA_fixed_dt_summary.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      }
+    ]
+  },
+  "cosmology": {
+    "summary": {
+      "total_runs": 31,
+      "passed_runs": 8,
+      "failed_runs": 23,
+      "status_breakdown": {
+        "INCOMPLETE": 31
+      },
+      "provenance_breakdown": {
+        "MISSING": 31
+      },
+      "metric_statistics": {}
+    },
+    "passed_runs": [
+      {
+        "file": "20251115_165826_topo_rdm_v1__dsi-topo-rdm-v1__circle_approved__summary.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251115_202216_topo_rdm_v1__dsi-topo-rdm-v1__smoke_pre__summary.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251115_192720_topo_rdm_v1__dsi-topo-rdm-v1__circle_pass_det1_rerun_g3fix__summary.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251115_192837_topo_rdm_v1__dsi-topo-rdm-v1__circle_pass_det1_determinism_rerun__summary.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251006_175034_frw_balance__FRW-balance-v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251006_175329_frw_balance__FRW-balance-v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251115_193433_topo_rdm_v1__dsi-topo-rdm-v1__circle_pass_sweep_q10_q75_noalign__summary.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251115_193246_topo_rdm_v1__dsi-topo-rdm-v1__circle_pass_sweep_default__summary.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      }
+    ],
+    "failed_runs": [
+      {
+        "file": "20251115_192328_topo_rdm_v1__dsi-topo-rdm-v1__circle_pass_det1__summary.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251115_174256_CONTRADICTION_REPORT__topo_rdm_v1__dsi-topo-rdm-v1__gw150914_H1.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251115_192506_CONTRADICTION_REPORT__topo_rdm_v1__dsi-topo-rdm-v1__circle_pass_det1_rerun.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251115_165523_topo_rdm_v1__dsi-topo-rdm-v1__smoke_retest__summary.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251115_164903_topo_rdm_v1__dsi-topo-rdm-v1__smoke__summary.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251115_203509_CONTRADICTION_REPORT__topo_rdm_v1__dsi-topo-rdm-v1__gw150914_L1_ts.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251115_192328_CONTRADICTION_REPORT__topo_rdm_v1__dsi-topo-rdm-v1__circle_pass_det1.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251115_173310_topo_rdm_v1__dsi-topo-rdm-v1__gw150914_H1__summary.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251115_165632_topo_rdm_v1__dsi-topo-rdm-v1__smoke_spec__summary.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251115_191930_CONTRADICTION_REPORT__topo_rdm_v1__dsi-topo-rdm-v1__smoke_det1.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251115_164903_CONTRADICTION_REPORT__topo_rdm_v1__dsi-topo-rdm-v1__smoke.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251115_203407_CONTRADICTION_REPORT__topo_rdm_v1__dsi-topo-rdm-v1__gw150914_H1_ts.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251115_165745_topo_rdm_v1__dsi-topo-rdm-v1__circle__summary.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251115_165523_CONTRADICTION_REPORT__topo_rdm_v1__dsi-topo-rdm-v1__smoke_retest.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251115_164817_CONTRADICTION_REPORT__topo_rdm_v1__dsi-topo-rdm-v1__smoke.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251115_191930_topo_rdm_v1__dsi-topo-rdm-v1__smoke_det1__summary.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251115_174256_topo_rdm_v1__dsi-topo-rdm-v1__gw150914_H1__summary.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251115_165632_CONTRADICTION_REPORT__topo_rdm_v1__dsi-topo-rdm-v1__smoke_spec.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251115_203509_topo_rdm_v1__dsi-topo-rdm-v1__gw150914_L1_ts__summary.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251115_164817_topo_rdm_v1__dsi-topo-rdm-v1__smoke__summary.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251115_192506_topo_rdm_v1__dsi-topo-rdm-v1__circle_pass_det1_rerun__summary.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251115_203407_topo_rdm_v1__dsi-topo-rdm-v1__gw150914_H1_ts__summary.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251115_173310_CONTRADICTION_REPORT__topo_rdm_v1__dsi-topo-rdm-v1__gw150914_H1.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      }
+    ]
+  },
+  "metriplectic": {
+    "summary": {
+      "total_runs": 26,
+      "passed_runs": 17,
+      "failed_runs": 9,
+      "status_breakdown": {
+        "INCOMPLETE": 26
+      },
+      "provenance_breakdown": {
+        "MISSING": 11,
+        "VERIFIED": 15
+      },
+      "metric_statistics": {}
+    },
+    "passed_runs": [
+      {
+        "file": "20251119_062419_kg_dispersion_meter_skeleton_meters-ebn.v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251119_061735_kg_cone_meter_meters-ebn.v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "VERIFIED",
+        "git_commit": "93e059f",
+        "metric_audits": []
+      },
+      {
+        "file": "20251119_062419_kg_dispersion_meter_meters-ebn.v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "VERIFIED",
+        "git_commit": "93e059f",
+        "metric_audits": []
+      },
+      {
+        "file": "20251119_061735_kg_energy_osc_meter_meters-ebn.v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "VERIFIED",
+        "git_commit": "93e059f",
+        "metric_audits": []
+      },
+      {
+        "file": "20251119_062419_kg_energy_osc_meter_meters-ebn.v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "VERIFIED",
+        "git_commit": "93e059f",
+        "metric_audits": []
+      },
+      {
+        "file": "20251119_062419_identity_meter_skeleton_meters-ebn.v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251104_131832_assisted_echo__assisted-echo-t4-prereg-v1c.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251119_061735_kg_energy_osc_meter_skeleton_meters-ebn.v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251119_062419_kg_cone_meter_skeleton_meters-ebn.v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251119_061735_kg_dispersion_meter_meters-ebn.v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "VERIFIED",
+        "git_commit": "93e059f",
+        "metric_audits": []
+      },
+      {
+        "file": "20251119_061735_identity_meter_skeleton_meters-ebn.v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251119_061735_identity_meter_meters-ebn.v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "VERIFIED",
+        "git_commit": "93e059f",
+        "metric_audits": []
+      },
+      {
+        "file": "20251119_061735_kg_dispersion_meter_skeleton_meters-ebn.v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251119_061735_kg_cone_meter_skeleton_meters-ebn.v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251119_062419_kg_energy_osc_meter_skeleton_meters-ebn.v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251119_062419_kg_cone_meter_meters-ebn.v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "VERIFIED",
+        "git_commit": "93e059f",
+        "metric_audits": []
+      },
+      {
+        "file": "20251119_062419_identity_meter_meters-ebn.v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "VERIFIED",
+        "git_commit": "93e059f",
+        "metric_audits": []
+      }
+    ],
+    "failed_runs": [
+      {
+        "file": "20251119_020311_kg_energy_osc_fit_KG-energy-osc-v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "VERIFIED",
+        "git_commit": "7f47796",
+        "errors": [],
+        "metric_audits": []
+      },
+      {
+        "file": "20251119_020311_kg_energy_osc_fit_plotmeta_KG-energy-osc-v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251119_021647_kg_energy_osc_meter_meters-ebn.v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "VERIFIED",
+        "git_commit": "93e059f",
+        "errors": [],
+        "metric_audits": []
+      },
+      {
+        "file": "20251119_021647_kg_cone_meter_meters-ebn.v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "VERIFIED",
+        "git_commit": "93e059f",
+        "errors": [],
+        "metric_audits": []
+      },
+      {
+        "file": "20251119_021647_identity_meter_meters-ebn.v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "VERIFIED",
+        "git_commit": "93e059f",
+        "errors": [],
+        "metric_audits": []
+      },
+      {
+        "file": "20251104_131857_assisted_echo__assisted-echo-t4-prereg-v1c.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251119_020118_kg_dispersion_fit__KG-dispersion-phase0-test.json",
+        "status": "INCOMPLETE",
+        "provenance": "VERIFIED",
+        "git_commit": "7f47796",
+        "errors": [],
+        "metric_audits": []
+      },
+      {
+        "file": "20251119_014405_kg_light_cone__KG-cone-phase0-test.json",
+        "status": "INCOMPLETE",
+        "provenance": "VERIFIED",
+        "git_commit": "7f47796",
+        "errors": [],
+        "metric_audits": []
+      },
+      {
+        "file": "20251119_021647_kg_dispersion_meter_meters-ebn.v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "VERIFIED",
+        "git_commit": "93e059f",
+        "errors": [],
+        "metric_audits": []
+      }
+    ]
+  },
+  "conservation_law": {
+    "summary": {
+      "total_runs": 15,
+      "passed_runs": 9,
+      "failed_runs": 6,
+      "status_breakdown": {
+        "INCOMPLETE": 15
+      },
+      "provenance_breakdown": {
+        "MISSING": 15
+      },
+      "metric_statistics": {}
+    },
+    "passed_runs": [
+      {
+        "file": "flux_sweep_1756475408.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "H_candidate_test_1756476845.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "opt_H_params_1756477394.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "flux_sweep_1756475709.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "fit_H_edge_1756476036.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "fit_H_edge_1756476188.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "flux_sweep_1756476135.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20250826_110546_qfum_metrics.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "grid_tau0_report.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      }
+    ],
+    "failed_runs": [
+      {
+        "file": "20250826_092500_qfum_metrics.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20250826_100939_qfum_metrics.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20250826_100250_qfum_metrics.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20250826_110431_qfum_metrics.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20250826_110242_qfum_metrics.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20250826_092422_qfum_metrics.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      }
+    ]
+  },
+  "fluid_dynamics": {
+    "summary": {
+      "total_runs": 2,
+      "passed_runs": 0,
+      "failed_runs": 2,
+      "status_breakdown": {
+        "INCOMPLETE": 2
+      },
+      "provenance_breakdown": {
+        "MISSING": 2
+      },
+      "metric_statistics": {}
+    },
+    "passed_runs": [],
+    "failed_runs": [
+      {
+        "file": "lid_cavity_benchmark_20250821T074952Z.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "lid_cavity_benchmark_20250821T082158Z.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      }
+    ]
+  },
+  "dark_photons": {
+    "summary": {
+      "total_runs": 3,
+      "passed_runs": 3,
+      "failed_runs": 0,
+      "status_breakdown": {
+        "INCOMPLETE": 3
+      },
+      "provenance_breakdown": {
+        "MISSING": 3
+      },
+      "metric_statistics": {}
+    },
+    "passed_runs": [
+      {
+        "file": "20251006_180648_noise_budget__DP-noise-smoke.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251006_180709_noise_budget__DP-noise-smoke.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251006_180711_fisher_check__DP-fisher-smoke.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      }
+    ],
+    "failed_runs": []
+  },
+  "reaction_diffusion": {
+    "summary": {
+      "total_runs": 8,
+      "passed_runs": 6,
+      "failed_runs": 2,
+      "status_breakdown": {
+        "INCOMPLETE": 8
+      },
+      "provenance_breakdown": {
+        "MISSING": 8
+      },
+      "metric_statistics": {}
+    },
+    "passed_runs": [
+      {
+        "file": "rd_dispersion_experiment_20250823T182316Z.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "rd_dispersion_experiment_20250824T053842Z.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "rd_dispersion_experiment_20250823T194826Z.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "rd_dispersion_experiment_20250823T182112Z.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "rd_front_speed_experiment_20250824T053748Z.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "rd_front_speed_experiment_20250823T194825Z.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      }
+    ],
+    "failed_runs": [
+      {
+        "file": "rd_dispersion_experiment_20250823T182426Z.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "rd_front_speed_experiment_20250823T182315Z.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      }
+    ]
+  },
+  "thermo_routing": {
+    "summary": {
+      "total_runs": 74,
+      "passed_runs": 32,
+      "failed_runs": 42,
+      "status_breakdown": {
+        "INCOMPLETE": 74
+      },
+      "provenance_breakdown": {
+        "MISSING": 74
+      },
+      "metric_statistics": {}
+    },
+    "passed_runs": [
+      {
+        "file": "20251013_152603_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_123503_ftmc_v1_summary_thermo-routing-v2-ftmc.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_140356_wave_flux_meter_v1_summary_thermo-routing-v2-wave-meter.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_064351_tr_v2_prereg_biased_main_aggregate_thermo-routing-v2-prereg-biased-main.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_042914_tr_v2_smoke_symm_thermo-routing-v2.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_181432_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_063527_tr_v2_prereg_biased_main_thermo-routing-v2-prereg-biased-main.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_044112_tr_v2_smoke_symm_thermo-routing-v2.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_181106_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_150603_ftmc_v1_summary_thermo-routing-v2-ftmc.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_040322_tr_v2_smoke_symm_thermo-routing-v2.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_061713_tr_v2_smoke_symm_thermo-routing-v2.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_142050_wave_flux_meter_v1_summary_thermo-routing-v2-wave-meter.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_130513_ftmc_v1_summary_thermo-routing-v2-ftmc.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_123646_ftmc_v1_summary_thermo-routing-v2-ftmc.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_140138_wave_flux_meter_v1_summary_thermo-routing-v2-wave-meter.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_063617_tr_v2_prereg_biased_main_thermo-routing-v2-prereg-biased-main.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_064821_tr_v2_prereg_biased_main_aggregate_thermo-routing-v2-prereg-biased-main.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_132140_ftmc_v1_summary_thermo-routing-v2-ftmc.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_121620_ftmc_v1_summary_thermo-routing-v2-ftmc.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_184253_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_045539_tr_v2_smoke_symm_thermo-routing-v2.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_045131_tr_v2_smoke_symm_thermo-routing-v2.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_132103_ftmc_v1_summary_thermo-routing-v2-ftmc.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_150232_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_124027_ftmc_v1_summary_thermo-routing-v2-ftmc.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_040720_tr_v2_smoke_symm_thermo-routing-v2.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_172706_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_152405_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_040020_tr_v2_smoke_symm_thermo-routing-v2.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_184458_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_145206_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      }
+    ],
+    "failed_runs": [
+      {
+        "file": "20251013_144730_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_033213_tr_v2_smoke_symm_thermo-routing-v2.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_063252_tr_v2_smoke_biased_thermo-routing-v2-prereg-biased-main.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_151513_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports-channelmap.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_175715_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_070534_tr_v2_prereg_biased_main_aggregate_thermo-routing-v2-prereg-biased-main.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_180324_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_175439_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_144850_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_180600_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_071432_tr_v2_prereg_biased_main_aggregate_thermo-routing-v2-prereg-biased-main.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_141919_wave_flux_meter_v1_summary_thermo-routing-v2-wave-meter.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_073755_tr_v2_prereg_biased_main_aggregate_thermo-routing-v2-prereg-biased-main.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_152144_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports-channelmap.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_065135_tr_v2_prereg_biased_main_aggregate_thermo-routing-v2-prereg-biased-main.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_150746_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports-channelmap.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_151603_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports-channelmap.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_041406_tr_v2_smoke_symm_thermo-routing-v2.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_072324_tr_v2_prereg_biased_main_aggregate_thermo-routing-v2-prereg-biased-main.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_151649_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports-channelmap.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_152225_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports-channelmap.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_063059_tr_v2_smoke_biased_thermo-routing-v2-prereg-biased-main.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_151404_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports-channelmap.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_151100_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports-channelmap.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_175555_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_115326_ftmc_v1_summary_thermo-routing-v2-ftmc.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_180500_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_073205_tr_v2_prereg_biased_main_aggregate_thermo-routing-v2-prereg-biased-main.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_063144_tr_v2_smoke_biased_thermo-routing-v2-prereg-biased-main.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_151324_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports-channelmap.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_070711_tr_v2_prereg_biased_main_aggregate_thermo-routing-v2-prereg-biased-main.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_042146_tr_v2_smoke_symm_thermo-routing-v2.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_041806_tr_v2_smoke_symm_thermo-routing-v2.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_180135_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_140810_wave_flux_meter_v1_summary_thermo-routing-v2-wave-meter.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_061415_tr_v2_smoke_biased_thermo-routing-v2.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_042058_tr_v2_smoke_symm_thermo-routing-v2.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_074003_tr_v2_prereg_biased_main_aggregate_thermo-routing-v2-prereg-biased-main.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_070819_tr_v2_prereg_biased_main_aggregate_thermo-routing-v2-prereg-biased-main.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_061240_tr_v2_smoke_biased_thermo-routing-v2.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_074108_tr_v2_prereg_biased_main_aggregate_thermo-routing-v2-prereg-biased-main.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251013_150848_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports-channelmap.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      }
+    ]
+  },
+  "collapse": {
+    "summary": {
+      "total_runs": 3,
+      "passed_runs": 1,
+      "failed_runs": 2,
+      "status_breakdown": {
+        "INCOMPLETE": 3
+      },
+      "provenance_breakdown": {
+        "MISSING": 3
+      },
+      "metric_statistics": {}
+    },
+    "passed_runs": [
+      {
+        "file": "20251006_175337_a6_collapse__A6-collapse-v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      }
+    ],
+    "failed_runs": [
+      {
+        "file": "20251006_175257_CONTRADICTION_REPORT_a6_collapse__A6-collapse-v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      },
+      {
+        "file": "20251006_175257_a6_collapse__A6-collapse-v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      }
+    ]
+  },
+  "causality": {
+    "summary": {
+      "total_runs": 12,
+      "passed_runs": 11,
+      "failed_runs": 1,
+      "status_breakdown": {
+        "INCOMPLETE": 12
+      },
+      "provenance_breakdown": {
+        "MISSING": 12
+      },
+      "metric_statistics": {}
+    },
+    "passed_runs": [
+      {
+        "file": "20251008_094322_dag_audit_trail_v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251008_094927_dag_audit_macro_v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251008_091755_dag_audit_v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251008_095111_dag_audit_macro_slim_v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251008_082840_dag_audit_v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251008_094531_dag_audit_trail_v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251008_074211_dag_audit_v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251008_074231_dag_audit_v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251008_092015_dag_audit_v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251008_074402_dag_audit_v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      },
+      {
+        "file": "20251008_075037_dag_audit_v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "metric_audits": []
+      }
+    ],
+    "failed_runs": [
+      {
+        "file": "20251008_083944_dag_audit_v1.json",
+        "status": "INCOMPLETE",
+        "provenance": "MISSING",
+        "git_commit": null,
+        "errors": [
+          "Missing git_commit hash"
+        ],
+        "metric_audits": []
+      }
+    ]
+  },
+  "agency": {
+    "summary": {
+      "total_runs": 0,
+      "passed_runs": 0,
+      "failed_runs": 0,
+      "status_breakdown": {},
+      "provenance_breakdown": {},
+      "metric_statistics": {}
+    },
+    "passed_runs": [],
+    "failed_runs": []
+  }
+}

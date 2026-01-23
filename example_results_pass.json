@@ -1,0 +1,33 @@
+{
+  "experiment": "example-experiment-v1",
+  "gate_metrics": {
+    "R2_wall": 0.99,
+    "beta_bias": 0.05
+  },
+  "gate_results": {
+    "status": "PASSED",
+    "gates": {
+      "R2_wall": {
+        "metric": "R2_wall",
+        "value": 0.99,
+        "operator": ">=",
+        "threshold": 0.98,
+        "unit": "dimensionless",
+        "passed": true
+      },
+      "beta_bias": {
+        "metric": "beta_bias",
+        "value": 0.05,
+        "operator": "<=",
+        "threshold": 0.1,
+        "unit": "dimensionless",
+        "passed": true
+      }
+    },
+    "failed_gates": []
+  },
+  "git_commit": "abc123def456",
+  "salted_hash": "b35d6d888dc7adfe6fecf11dbe1e72361cbff964a3fad1d380803cdd6ee13029",
+  "tree_hash": "tree_abc123",
+  "provenance_ok": true
+}
