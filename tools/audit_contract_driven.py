@@ -23,15 +23,24 @@ from __future__ import annotations
 import argparse
 import json
 import hashlib
+import math
 import sys
 from collections import defaultdict
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple, TypedDict
 
-# Type aliases
-GateMetrics = Dict[str, Any]
-GateSpec = Dict[str, Any]
+# Type definitions for better type safety
+class GateSpec(TypedDict, total=False):
+    """Gate specification from pre-registration."""
+    metric: str
+    value: Any
+    operator: Optional[str]
+    threshold: Any
+    unit: Optional[str]
+    passed: Optional[bool]
+
+GateMetrics = Dict[str, Any]  # Measured values - structure varies by domain
 
 
 @dataclass
@@ -132,8 +141,11 @@ class ContractDrivenAuditor:
         try:
             with open(run_file, 'r', encoding='utf-8') as f:
                 data = json.load(f)
-        except (json.JSONDecodeError, IOError) as e:
-            self.log(f"Failed to load {run_file}: {e}", "ERROR")
+        except json.JSONDecodeError as e:
+            self.log(f"Failed to parse JSON in {run_file}: {e}", "ERROR")
+            return None
+        except OSError as e:
+            self.log(f"Failed to read file {run_file}: {e}", "ERROR")
             return None
         
         run_audit = RunAudit(
@@ -311,8 +323,9 @@ class ContractDrivenAuditor:
             elif operator == "<=":
                 passed = value <= thresh
             elif operator == "==":
-                # For equality, use machine epsilon tolerance
-                passed = abs(value - thresh) < 1e-15
+                # For equality, use math.isclose with tight tolerances
+                # rel_tol=1e-14 for relative, abs_tol=1e-15 for absolute
+                passed = math.isclose(value, thresh, rel_tol=1e-14, abs_tol=1e-15)
             elif operator == ">":
                 passed = value > thresh
             elif operator == "<":
@@ -562,11 +575,19 @@ def main():
         type=str,
         help="Write report to file instead of stdout"
     )
+    parser.add_argument(
+        "--repo-root",
+        type=str,
+        help="Repository root path (default: auto-detect from script location)"
+    )
     
     args = parser.parse_args()
     
     # Determine repository root
-    repo_root = Path(__file__).resolve().parents[1]
+    if args.repo_root:
+        repo_root = Path(args.repo_root).resolve()
+    else:
+        repo_root = Path(__file__).resolve().parents[1]
     
     # Create auditor
     auditor = ContractDrivenAuditor(repo_root, verbose=args.verbose)

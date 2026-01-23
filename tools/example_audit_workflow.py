@@ -13,6 +13,7 @@ Copyright © 2025 Justin K. Lietz, Neuroca, Inc. All Rights Reserved.
 
 import json
 import hashlib
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Dict, Any
 
@@ -47,7 +48,7 @@ def create_preregistration_manifest(
     manifest = {
         "experiment": experiment_name,
         "version": "1.0.0",
-        "generated_utc": "2025-01-23T00:00:00Z",
+        "generated_utc": datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z'),
         "salted_hash": salted_hash,
         "salted_tag": experiment_name,
         "gates": gates
