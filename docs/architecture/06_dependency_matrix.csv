@@ -1,0 +1,9 @@
+,vdm_rt.core,vdm_rt.frontend,vdm_rt.io,vdm_rt.nexus,vdm_rt.physics,vdm_rt.runtime,vdm_rt.tests,vdm_rt.utils
+vdm_rt.core,0,0,0,0,0,0,0,0
+vdm_rt.frontend,0,0,0,0,0,0,0,0
+vdm_rt.io,1,0,0,0,0,0,0,0
+vdm_rt.nexus,1,0,0,0,0,0,0,0
+vdm_rt.physics,1,0,0,0,0,0,0,0
+vdm_rt.runtime,1,0,1,0,0,0,0,0
+vdm_rt.tests,1,1,0,0,1,1,0,0
+vdm_rt.utils,0,0,1,0,0,0,0,0

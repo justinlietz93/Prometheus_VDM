@@ -1,0 +1,41 @@
+```mermaid
+sequenceDiagram
+    autonumber
+    actor User
+    participant CLI as vdm_live.py
+    participant Dash as Dash App
+    participant Frontend as Frontend Service
+    participant FS as Filesystem<br/>(runs/)
+    
+    User->>CLI: python vdm_live.py --runs-root runs/
+    CLI->>CLI: Parse args (runs_root, host, port)
+    CLI->>CLI: Set env vars (RUNS_ROOT, DASH_HOST, DASH_PORT)
+    CLI->>Frontend: build_app(runs_root)
+    Frontend->>Frontend: Initialize Dash app
+    Frontend->>Frontend: Register callbacks
+    Frontend->>Frontend: Build layout (workspace, charts, feed)
+    Frontend-->>CLI: Return app instance
+    CLI->>Dash: app.run(host=127.0.0.1, port=8060, debug=False)
+    Dash->>Dash: Start HTTP server
+    Dash-->>User: Dashboard ready at http://127.0.0.1:8060
+    
+    User->>Dash: Open browser → http://127.0.0.1:8060
+    Dash->>Frontend: Render layout
+    Frontend->>FS: List run directories
+    FS-->>Frontend: [run1, run2, ...]
+    Frontend-->>Dash: Dropdown options
+    Dash-->>User: Show UI (select run)
+    
+    loop Polling Interval (1s)
+        User->>Dash: Dashboard open
+        Dash->>Frontend: Interval callback
+        Frontend->>FS: Tail events.jsonl
+        FS-->>Frontend: New events
+        Frontend->>Frontend: Parse JSONL
+        Frontend->>Frontend: Update Series model
+        Frontend->>Dash: Update charts (Plotly)
+        Dash-->>User: Refresh charts
+    end
+    
+    Note over User,FS: Read-Only Monitoring<br/>No control loop back to runtime
+```

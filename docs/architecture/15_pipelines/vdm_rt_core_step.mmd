@@ -1,0 +1,64 @@
+```mermaid
+sequenceDiagram
+    autonumber
+    participant Stepper as runtime.stepper
+    participant Engine as CoreEngine
+    participant Walkers as VoidWalkerRunner
+    participant Scouts as Scouts (Heat, Ray, Memory, ...)
+    participant Maps as CorticalMaps
+    participant Connectome as SparseConnectome
+    participant Plasticity as Neuroplasticity
+    participant Events as ProprioceptionEvents
+    
+    Note over Stepper,Events: Hot Path: Single Simulation Tick (O(E) complexity)
+    
+    Stepper->>Engine: engine.step()
+    
+    Engine->>Walkers: run_void_walkers(connectome, maps, config)
+    
+    loop For each scout type
+        Walkers->>Scouts: scout.run()
+        
+        Scouts->>Connectome: Get adjacency (neighbors)
+        Connectome-->>Scouts: Edge list
+        
+        Scouts->>Scouts: Random walk / gradient ascent
+        Scouts->>Scouts: Compute deposition values
+        
+        Scouts->>Maps: map.deposit(idx, value)
+        Maps->>Maps: Update field[idx] += value
+        
+        Scouts->>Events: Emit VTTouchEvent(scout_id, idx, depth)
+        Events->>Events: Append to event list
+        
+        Scouts-->>Walkers: Events emitted
+    end
+    
+    Walkers-->>Engine: Aggregated events
+    
+    Engine->>Maps: Apply diffusion & decay
+    Maps->>Maps: field *= decay_factor
+    Maps->>Maps: field = convolve(field, diffusion_kernel)
+    
+    Engine->>Connectome: Get activation state
+    Connectome-->>Engine: a (N-vector)
+    
+    Engine->>Plasticity: apply_gdsp(connectome, activation, events)
+    Plasticity->>Plasticity: Compute Δw = η * gradient
+    Plasticity->>Connectome: Update weights: w += Δw
+    Plasticity->>Events: Emit DeltaWEvent(edge, Δw)
+    
+    Engine->>Connectome: Update activations
+    Connectome->>Connectome: a' = activation_fn(neighbors, weights, bias)
+    Connectome->>Events: Emit SpikeEvent(neuron_idx, activation)
+    
+    Engine->>Events: Emit BiasHintEvent (if B1 detector fired)
+    
+    Engine-->>Stepper: Observation dict {events, maps, activation}
+    
+    Stepper->>Stepper: Compute metrics (ZEMA, clustering, ...)
+    Stepper->>Stepper: Apply B1 detector (bias signal processing)
+    Stepper-->>Runtime: {observation, metrics}
+    
+    Note over Stepper,Events: Performance: ~10-100ms for N=1k, ~1-10s for N=100k (sparse)
+```

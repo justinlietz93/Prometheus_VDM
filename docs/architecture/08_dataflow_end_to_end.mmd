@@ -1,0 +1,142 @@
+```mermaid
+flowchart LR
+    subgraph Input
+        A[User Text Entry<br/>stdin / inbox.jsonl]
+        B[Run Profile JSON<br/>run_profiles/*.json]
+        C[Engram Checkpoint<br/>state_*.h5 / state_*.npz]
+    end
+    
+    subgraph Processing
+        D[UTE Parser]
+        E[Config Loader]
+        F[Engram Loader]
+        
+        G[Stimulus Mapper<br/>symbols_to_indices]
+        H[Connectome Initialization<br/>SparseConnectome N,k]
+        
+        I[Core Compute Loop<br/>CoreEngine.step]
+        
+        J[Void Walkers<br/>Scouts Execution]
+        K[Cortical Maps<br/>Heat, Trail, Memory]
+        L[Neuroplasticity<br/>GDSP, RevGSP]
+        
+        M[Proprioception Events<br/>VTTouch, Spike, DeltaW]
+        N[Metrics Computation<br/>ZEMA, clustering]
+        O[Signal Processing<br/>B1 detector]
+    end
+    
+    subgraph Output
+        P[events.jsonl<br/>Structured events]
+        Q[macros.jsonl<br/>Emergent text]
+        R[thoughts.jsonl<br/>Internal thoughts]
+        S[state_N.h5<br/>Checkpoint]
+        T[viz_N.png<br/>Graph visualization]
+        U[status.json<br/>HTTP endpoint]
+        V[Redis pub/sub<br/>Telemetry stream]
+    end
+    
+    subgraph Storage
+        W[(Filesystem<br/>runs/{timestamp}/)]
+        X[(Redis Cache<br/>Optional)]
+        Y[(PROVENANCE_manifest.json<br/>File tracking)]
+    end
+    
+    A --> D
+    B --> E
+    C --> F
+    
+    D --> G
+    E --> H
+    F --> H
+    
+    G --> I
+    H --> I
+    
+    I --> J
+    J --> K
+    J --> M
+    K --> L
+    L --> M
+    
+    M --> N
+    M --> O
+    N --> P
+    O --> P
+    
+    I --> Q
+    I --> R
+    I --> S
+    I --> T
+    I --> U
+    
+    P --> W
+    Q --> W
+    R --> W
+    S --> W
+    T --> W
+    U --> W
+    
+    U --> X
+    V --> X
+    
+    W --> Y
+    
+    style I fill:#ff9,stroke:#990,stroke-width:3px
+    style M fill:#9f9,stroke:#090,stroke-width:2px
+    style W fill:#99f,stroke:#009,stroke-width:2px
+```
+
+---
+
+## Data Flow Summary
+
+### Input Sources
+1. **User Text**: `stdin` or `inbox.jsonl` → UTE → stimulus → connectome activation
+2. **Run Profile**: JSON config → argparse → Nexus initialization
+3. **Engram**: HDF5/NPZ checkpoint → restore state (weights, bias, step)
+
+### Processing Stages
+1. **Text Stimulus** (optional):
+   - Parse symbols → map to neuron indices → apply activation pulse
+2. **Connectome Initialization**:
+   - Create SparseConnectome(N, k, seed)
+   - Load engram if provided
+3. **Core Step** (hot path):
+   - Execute void walkers (scouts traverse graph)
+   - Update cortical maps (deposit, diffuse, decay)
+   - Apply neuroplasticity (weight updates)
+   - Emit proprioception events
+4. **Metrics & Signals**:
+   - Compute network metrics (ZEMA, clustering, path lengths)
+   - Process bias signals (B1 detector)
+5. **Telemetry Aggregation**:
+   - Fold events into tick summary
+   - Compose macros (if speak gate passes)
+   - Emit thoughts
+
+### Output Destinations
+1. **Filesystem** (`runs/{timestamp}/`):
+   - `events.jsonl` - all proprioception events + metrics
+   - `macros.jsonl` - emergent text outputs
+   - `thoughts.jsonl` - internal thoughts (optional)
+   - `state_N.h5` or `state_N.npz` - checkpoints (every N ticks)
+   - `viz_N.png` - graph visualizations (every N ticks)
+   - `status.json` - current runtime status (for HTTP endpoint)
+2. **Redis** (optional):
+   - Pub/sub channel for real-time telemetry streaming
+3. **PROVENANCE_manifest.json**:
+   - SHA256 hashes of all files (2,206 tracked)
+   - Commit linkage
+
+### Data Stores
+
+| Store | Type | Usage | Format |
+|-------|------|-------|--------|
+| Filesystem | Persistent | Run artifacts | HDF5, JSONL, NPZ, PNG, JSON |
+| Redis | Volatile | Real-time pub/sub | Key-value |
+| Memory | Ephemeral | Connectome state | NumPy arrays, SciPy sparse |
+
+### Caching Strategy
+- **No explicit cache layer** (in-memory only during run)
+- Redis used for pub/sub, not caching
+- Checkpoints serve as recovery/resume cache

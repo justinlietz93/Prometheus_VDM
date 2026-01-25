@@ -1,0 +1,39 @@
+```mermaid
+C4Component
+    title Component Diagram - Frontend Dashboard (vdm_rt.frontend)
+    
+    Container_Boundary(frontend_boundary, "Frontend Dashboard (Dash/Plotly)") {
+        Component(dash_app, "Dash App Builder", "frontend.app", "build_app()<br/>Callback registration<br/>Layout assembly")
+        
+        Component(layout, "Layout Components", "frontend.components", "Workspace, runtime controls<br/>Feed, charts, chat<br/>Config, perf, widgets")
+        
+        Component(callbacks, "Callback Handlers", "frontend.callbacks", "Process control, charts update<br/>File picker, graph tabs<br/>Runtime control, logs tail")
+        
+        Component(controllers, "Controllers", "frontend.controllers", "RuntimeController<br/>ChartsController<br/>FilePickerController, ChatController")
+        
+        Component(services, "Services", "frontend.services", "ProcessManager (subprocess lifecycle)<br/>StatusClient (HTTP polling)")
+        
+        Component(models, "Models", "frontend.models", "Series (time-series state)<br/>Metrics, says, events aggregation")
+        
+        Component(utilities, "Utilities", "frontend.utilities", "fs_utils (file operations)<br/>profiles (run configs)<br/>tail (JSONL streaming)<br/>pdf_utils")
+        
+        Component(plugins, "Plugins", "frontend.plugins", "fum_visualizer_v1<br/>Extensible graph visualizations")
+    }
+    
+    Component_Ext(dash_framework, "Dash Framework", "dash, plotly")
+    Component_Ext(filesystem, "Filesystem", "runs/*/events.jsonl")
+    Component_Ext(nexus_process, "Nexus Process", "Subprocess")
+    
+    Rel(dash_app, layout, "Assembles", "UI structure")
+    Rel(dash_app, callbacks, "Registers", "Interactivity")
+    Rel(callbacks, controllers, "Delegates", "Business logic")
+    Rel(controllers, services, "Uses", "Process, status mgmt")
+    Rel(controllers, models, "Updates", "Time-series state")
+    Rel(controllers, utilities, "Uses", "File ops, tailing")
+    Rel(services, nexus_process, "Manages", "Subprocess lifecycle")
+    Rel(utilities, filesystem, "Reads", "JSONL logs, profiles")
+    Rel(plugins, layout, "Extends", "Custom visualizations")
+    Rel(dash_app, dash_framework, "Built on", "Dash/Plotly")
+    
+    UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
+```

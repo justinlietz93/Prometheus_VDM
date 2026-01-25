@@ -1,0 +1,516 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "system": "Prometheus_VDM",
+  "commit": "ae49a391acf2183242e4d96bda49e066beec7680",
+  "languages": ["Python", "Jupyter", "TeX/LaTeX", "C++/HIP", "Shell", "Makefile"],
+  "containers": [
+    {
+      "name": "Nexus Runner",
+      "tech": "Python (run_nexus.py)",
+      "responsibilities": [
+        "CLI entrypoint for headless VDM execution",
+        "Parse configuration (argparse + JSON profiles)",
+        "Initialize and execute Nexus orchestrator",
+        "Coordinate main simulation loop"
+      ],
+      "deps": ["VDM Core Runtime", "Runtime Orchestrator", "I/O Layer"]
+    },
+    {
+      "name": "VDM Live Dashboard",
+      "tech": "Python/Dash (vdm_live.py, frontend/)",
+      "responsibilities": [
+        "Real-time monitoring web UI (port 8060)",
+        "Visualize telemetry (charts, graphs, logs)",
+        "File browser for run artifacts",
+        "Subprocess management (start/stop runs)"
+      ],
+      "deps": ["Filesystem Storage"]
+    },
+    {
+      "name": "VDM Core Runtime",
+      "tech": "Python (vdm_rt.core)",
+      "responsibilities": [
+        "Neural dynamics engine (CoreEngine)",
+        "Sparse connectome (SparseConnectome)",
+        "Void walkers and scouts (exploration)",
+        "Cortical maps (heat, trail, memory, excitation, inhibition)",
+        "Neuroplasticity (GDSP, RevGSP)",
+        "Proprioception events (VTTouch, Spike, DeltaW)",
+        "Metrics computation (ZEMA, clustering, TDA)",
+        "Checkpoint persistence (h5, npz)"
+      ],
+      "deps": ["NumPy", "SciPy", "NetworkX", "H5Py", "PyTorch (optional)"]
+    },
+    {
+      "name": "Runtime Orchestrator",
+      "tech": "Python (vdm_rt.runtime)",
+      "responsibilities": [
+        "Main execution loop (run_loop)",
+        "Single-tick computation (stepper)",
+        "Telemetry aggregation (tick_fold)",
+        "Phase control (dynamic parameter modulation)",
+        "Checkpoint management (save, retention, resume)",
+        "Event emission (macros, thoughts)",
+        "Helper services (viz, speak, smoke tests, status HTTP, Redis pub)"
+      ],
+      "deps": ["VDM Core Runtime", "I/O Layer", "Filesystem Storage"]
+    },
+    {
+      "name": "I/O Layer",
+      "tech": "Python (vdm_rt.io)",
+      "responsibilities": [
+        "User text entry (UTE: stdin, inbox.jsonl)",
+        "Telemetry display (UTD: events.jsonl)",
+        "Cognition (stimulus, composer, speaker)",
+        "Lexicon management (phrase templates, IDF)",
+        "Actuators (macros, thoughts, vocalizer)",
+        "Sensors (vision, auditory, somatosensory)",
+        "Visualization services (maps ring, WebSocket)"
+      ],
+      "deps": ["VDM Core Runtime", "Filesystem Storage"]
+    },
+    {
+      "name": "Physics Harnesses",
+      "tech": "Python (vdm_rt.physics)",
+      "responsibilities": [
+        "Experimental simulations (PTA, SIDM, memory steering)",
+        "Research validation harnesses",
+        "Reaction-diffusion front speed, dispersion",
+        "CI smoke tests (ci_gates.py)"
+      ],
+      "deps": ["VDM Core Runtime", "Data Manager"]
+    },
+    {
+      "name": "Data Manager",
+      "tech": "Python (vdm_rt.data)",
+      "responsibilities": [
+        "Corpus storage (text data)",
+        "File management utilities"
+      ],
+      "deps": []
+    },
+    {
+      "name": "CLI",
+      "tech": "Python (vdm_rt.cli)",
+      "responsibilities": [
+        "Argparse CLI definition (~50 flags)",
+        "make_parser() factory"
+      ],
+      "deps": []
+    }
+  ],
+  "components": [
+    {
+      "container": "VDM Core Runtime",
+      "name": "CoreEngine",
+      "path": "vdm_rt/core/engine/core_engine.py",
+      "layer": "domain",
+      "deps": ["SparseConnectome", "VoidWalkers", "CorticalMaps", "Neuroplasticity", "ProprioceptionEvents"]
+    },
+    {
+      "container": "VDM Core Runtime",
+      "name": "SparseConnectome",
+      "path": "vdm_rt/core/sparse_connectome.py",
+      "layer": "domain",
+      "deps": ["NumPy", "SciPy.sparse", "NetworkX"]
+    },
+    {
+      "container": "VDM Core Runtime",
+      "name": "VoidWalkers",
+      "path": "vdm_rt/core/cortex/void_walkers/",
+      "layer": "domain",
+      "deps": ["CorticalMaps", "ProprioceptionEvents"]
+    },
+    {
+      "container": "VDM Core Runtime",
+      "name": "CorticalMaps",
+      "path": "vdm_rt/core/cortex/maps/",
+      "layer": "domain",
+      "deps": ["NumPy"]
+    },
+    {
+      "container": "VDM Core Runtime",
+      "name": "Neuroplasticity",
+      "path": "vdm_rt/core/neuroplasticity/",
+      "layer": "domain",
+      "deps": ["SparseConnectome"]
+    },
+    {
+      "container": "VDM Core Runtime",
+      "name": "ProprioceptionEvents",
+      "path": "vdm_rt/core/proprioception/events.py",
+      "layer": "domain",
+      "deps": []
+    },
+    {
+      "container": "VDM Core Runtime",
+      "name": "Metrics",
+      "path": "vdm_rt/core/metrics.py",
+      "layer": "domain",
+      "deps": ["NetworkX", "Ripser", "NumPy"]
+    },
+    {
+      "container": "VDM Core Runtime",
+      "name": "MemoryField",
+      "path": "vdm_rt/core/memory/",
+      "layer": "domain",
+      "deps": ["H5Py", "NumPy"]
+    },
+    {
+      "container": "Runtime Orchestrator",
+      "name": "RunLoop",
+      "path": "vdm_rt/runtime/loop/",
+      "layer": "application",
+      "deps": ["Stepper", "PhaseControl", "Telemetry", "Helpers"]
+    },
+    {
+      "container": "Runtime Orchestrator",
+      "name": "Stepper",
+      "path": "vdm_rt/runtime/stepper.py",
+      "layer": "application",
+      "deps": ["CoreEngine", "Metrics", "Signals"]
+    },
+    {
+      "container": "Runtime Orchestrator",
+      "name": "Telemetry",
+      "path": "vdm_rt/runtime/telemetry.py",
+      "layer": "application",
+      "deps": []
+    },
+    {
+      "container": "Runtime Orchestrator",
+      "name": "Emitters",
+      "path": "vdm_rt/runtime/emitters.py",
+      "layer": "application",
+      "deps": ["I/O Layer"]
+    },
+    {
+      "container": "I/O Layer",
+      "name": "UTE",
+      "path": "vdm_rt/io/ute.py",
+      "layer": "infrastructure",
+      "deps": []
+    },
+    {
+      "container": "I/O Layer",
+      "name": "UTD",
+      "path": "vdm_rt/io/utd.py",
+      "layer": "infrastructure",
+      "deps": ["RollingJsonlWriter"]
+    },
+    {
+      "container": "I/O Layer",
+      "name": "Cognition",
+      "path": "vdm_rt/io/cognition/",
+      "layer": "infrastructure",
+      "deps": ["Lexicon", "CoreEngine"]
+    },
+    {
+      "container": "VDM Live Dashboard",
+      "name": "DashApp",
+      "path": "vdm_rt/frontend/app.py",
+      "layer": "presentation",
+      "deps": ["Layout", "Callbacks", "Services"]
+    },
+    {
+      "container": "VDM Live Dashboard",
+      "name": "Layout",
+      "path": "vdm_rt/frontend/components/layout.py",
+      "layer": "presentation",
+      "deps": ["Dash", "Plotly"]
+    },
+    {
+      "container": "VDM Live Dashboard",
+      "name": "Callbacks",
+      "path": "vdm_rt/frontend/callbacks/",
+      "layer": "presentation",
+      "deps": ["Controllers", "Models"]
+    },
+    {
+      "container": "VDM Live Dashboard",
+      "name": "Services",
+      "path": "vdm_rt/frontend/services/",
+      "layer": "presentation",
+      "deps": ["ProcessManager", "StatusClient"]
+    }
+  ],
+  "pipelines": [
+    {
+      "name": "VDM Live Runtime",
+      "stages": [
+        {
+          "id": "launch",
+          "title": "Launch Dashboard",
+          "files": ["vdm_live.py"],
+          "inputs": ["--runs-root", "--host", "--port"],
+          "outputs": ["HTTP server on port 8060"]
+        },
+        {
+          "id": "render",
+          "title": "Render UI",
+          "files": ["vdm_rt/frontend/app.py", "vdm_rt/frontend/components/layout.py"],
+          "inputs": ["runs_root"],
+          "outputs": ["Dash layout"]
+        },
+        {
+          "id": "poll",
+          "title": "Poll Telemetry",
+          "files": ["vdm_rt/frontend/callbacks/charts.py", "vdm_rt/frontend/utilities/tail.py"],
+          "inputs": ["events.jsonl"],
+          "outputs": ["Updated charts"]
+        }
+      ],
+      "entrypoints": ["vdm_live.py"]
+    },
+    {
+      "name": "Run Execution",
+      "stages": [
+        {
+          "id": "init",
+          "title": "Initialize Nexus",
+          "files": ["vdm_rt/run_nexus.py", "vdm_rt/nexus.py"],
+          "inputs": ["CLI args", "run_profiles/*.json", ".env"],
+          "outputs": ["Nexus instance", "run_dir/"]
+        },
+        {
+          "id": "loop",
+          "title": "Main Loop",
+          "files": ["vdm_rt/runtime/loop/main.py"],
+          "inputs": ["Nexus state"],
+          "outputs": ["events.jsonl", "macros.jsonl", "thoughts.jsonl"]
+        },
+        {
+          "id": "checkpoint",
+          "title": "Checkpoint",
+          "files": ["vdm_rt/runtime/helpers/checkpointing.py", "vdm_rt/core/memory/engram_io.py"],
+          "inputs": ["Connectome state"],
+          "outputs": ["state_N.h5 or state_N.npz"]
+        }
+      ],
+      "entrypoints": ["vdm_rt/run_nexus.py"]
+    },
+    {
+      "name": "Core Compute Step",
+      "stages": [
+        {
+          "id": "step",
+          "title": "Execute CoreEngine.step()",
+          "files": ["vdm_rt/runtime/stepper.py", "vdm_rt/core/engine/core_engine.py"],
+          "inputs": ["Connectome", "Maps", "Config"],
+          "outputs": ["Observation dict"]
+        },
+        {
+          "id": "walkers",
+          "title": "Run Void Walkers",
+          "files": ["vdm_rt/core/cortex/void_walkers/runner.py"],
+          "inputs": ["Connectome", "Maps"],
+          "outputs": ["Proprioception events"]
+        },
+        {
+          "id": "plasticity",
+          "title": "Apply Neuroplasticity",
+          "files": ["vdm_rt/core/neuroplasticity/"],
+          "inputs": ["Connectome", "Activation"],
+          "outputs": ["Updated weights"]
+        },
+        {
+          "id": "metrics",
+          "title": "Compute Metrics",
+          "files": ["vdm_rt/core/metrics.py"],
+          "inputs": ["Connectome"],
+          "outputs": ["ZEMA, clustering, path length"]
+        }
+      ],
+      "entrypoints": ["vdm_rt/runtime/stepper.py"]
+    },
+    {
+      "name": "Derivation Traceability",
+      "stages": [
+        {
+          "id": "derivation",
+          "title": "Mathematical Derivation",
+          "files": ["Derivation/*.tex", "Derivation/*.ipynb"],
+          "inputs": ["Theoretical models"],
+          "outputs": ["LaTeX equations", "Notebook experiments"]
+        },
+        {
+          "id": "implementation",
+          "title": "Runtime Implementation",
+          "files": ["vdm_rt/core/Void_Equations.py", "vdm_rt/core/engine/"],
+          "inputs": ["TeX equations"],
+          "outputs": ["Python code"]
+        },
+        {
+          "id": "validation",
+          "title": "Experimental Validation",
+          "files": ["vdm_rt/physics/"],
+          "inputs": ["Runtime output"],
+          "outputs": ["Comparison plots", "CI gates"]
+        }
+      ],
+      "entrypoints": ["Derivation/", "vdm_rt/physics/ci_gates.py"]
+    }
+  ],
+  "stores": [
+    {
+      "type": "Filesystem",
+      "usage": "Run artifacts, checkpoints, logs",
+      "collections": ["runs/{timestamp}/"],
+      "tables": ["events.jsonl", "macros.jsonl", "thoughts.jsonl", "state_N.h5", "status.json"]
+    },
+    {
+      "type": "Redis",
+      "usage": "Optional telemetry pub/sub",
+      "collections": ["telemetry_channel"],
+      "tables": []
+    },
+    {
+      "type": "In-Memory",
+      "usage": "Connectome state (NumPy arrays, SciPy sparse)",
+      "collections": [],
+      "tables": []
+    }
+  ],
+  "integrations": [
+    {
+      "name": "PyTorch",
+      "paths": ["vdm_rt/core/substrate/"]
+    },
+    {
+      "name": "Dash/Plotly",
+      "paths": ["vdm_rt/frontend/", "vdm_live.py"]
+    },
+    {
+      "name": "Redis",
+      "paths": ["vdm_rt/runtime/helpers/redis_out.py"]
+    },
+    {
+      "name": "NetworkX",
+      "paths": ["vdm_rt/core/metrics.py", "vdm_rt/core/sparse_connectome.py"]
+    },
+    {
+      "name": "H5Py",
+      "paths": ["vdm_rt/core/memory/engram_io.py"]
+    }
+  ],
+  "apis": [
+    {
+      "name": "CLI",
+      "type": "cli",
+      "endpoints": [
+        "python vdm_rt/run_nexus.py --neurons 1000 --hz 10 --duration 60",
+        "python vdm_live.py --runs-root runs/ --host 127.0.0.1 --port 8060"
+      ],
+      "spec": {}
+    },
+    {
+      "name": "HTTP Dashboard",
+      "type": "rest",
+      "endpoints": [
+        "GET http://127.0.0.1:8060/ (Dash UI)",
+        "GET /assets/* (static assets)",
+        "POST /_dash-update-component (Dash callbacks)"
+      ],
+      "spec": {}
+    },
+    {
+      "name": "HTTP Status",
+      "type": "rest",
+      "endpoints": [
+        "GET /status (runtime status JSON)"
+      ],
+      "spec": {}
+    }
+  ],
+  "metrics": {
+    "cycles": [],
+    "hotspots": [
+      "vdm_rt/nexus.py",
+      "vdm_rt/core/engine/core_engine.py",
+      "vdm_rt/core/sparse_connectome.py",
+      "vdm_rt/runtime/loop/main.py"
+    ],
+    "test_coverage": {
+      "overall": 15,
+      "by_module": {
+        "core": 5,
+        "runtime": 7,
+        "io": 5,
+        "frontend": 25,
+        "physics": 30
+      }
+    }
+  },
+  "risks": [
+    {
+      "id": "R1",
+      "title": "Secrets committed to .env files",
+      "severity": "H",
+      "where": ".env, .env.local",
+      "rationale": "Public repository exposure; credential leakage"
+    },
+    {
+      "id": "R2",
+      "title": "Test coverage <15%",
+      "severity": "H",
+      "where": "vdm_rt/tests/",
+      "rationale": "High regression risk; production blocker"
+    },
+    {
+      "id": "R3",
+      "title": "No derivation→code validation",
+      "severity": "M",
+      "where": "Derivation/ → vdm_rt/core/",
+      "rationale": "Research integrity risk; no automated parity checks"
+    },
+    {
+      "id": "R4",
+      "title": "Config fragmentation (argparse+JSON+.env)",
+      "severity": "M",
+      "where": "vdm_rt/cli/args.py, run_profiles/, .env",
+      "rationale": "No single source of truth; validation gaps"
+    },
+    {
+      "id": "R5",
+      "title": "Unpinned dependencies",
+      "severity": "M",
+      "where": "requirements.txt",
+      "rationale": "Build reproducibility risk; supply chain attack vector"
+    },
+    {
+      "id": "R6",
+      "title": "Missing correlation IDs in logs",
+      "severity": "M",
+      "where": "vdm_rt/io/utd.py, vdm_rt/utils/logging_setup.py",
+      "rationale": "Cannot correlate events across runs; debugging difficulty"
+    },
+    {
+      "id": "R7",
+      "title": "No checkpoint content-addressability",
+      "severity": "M",
+      "where": "vdm_rt/core/memory/engram_io.py",
+      "rationale": "No tamper detection; provenance integrity risk"
+    },
+    {
+      "id": "R8",
+      "title": "Single-threaded scout execution",
+      "severity": "M",
+      "where": "vdm_rt/core/cortex/void_walkers/runner.py",
+      "rationale": "3-5x performance opportunity; wastes multi-core CPUs"
+    },
+    {
+      "id": "R9",
+      "title": "No containerization",
+      "severity": "M",
+      "where": "Repository root (no Dockerfile)",
+      "rationale": "Manual setup friction; deployment complexity"
+    },
+    {
+      "id": "R10",
+      "title": "License ambiguity (dual academic/commercial)",
+      "severity": "M",
+      "where": "LICENSE.md, ACADEMIC_LICENSE_REQUEST.md, COMMERCIAL_LICENSE_REQUEST.md",
+      "rationale": "Unclear terms; usage friction"
+    }
+  ]
+}

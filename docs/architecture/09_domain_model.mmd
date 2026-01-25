@@ -1,0 +1,167 @@
+```mermaid
+classDiagram
+    class VoidField {
+        <<Value Object>>
+        +ndarray heat
+        +ndarray trail
+        +ndarray memory
+        +ndarray excitation
+        +ndarray inhibition
+        +deposit(idx, value)
+        +diffuse(alpha)
+        +decay(beta)
+    }
+    
+    class Connectome {
+        <<Aggregate Root>>
+        +int N
+        +int k
+        +ndarray weights
+        +ndarray bias
+        +sparse_matrix adjacency
+        +ndarray activation
+        +add_edge(i, j, w)
+        +remove_edge(i, j)
+        +step_activations()
+        +save_state()
+        +load_state()
+        #Invariants
+        #edges >= N*k (min connectivity)
+        #weights in [-1, 1]
+        #bias in [-1, 1]
+    }
+    
+    class VoidWalker {
+        <<Entity>>
+        +UUID walker_id
+        +int position
+        +int depth
+        +VoidField fields
+        +run()
+        +deposit(map, value)
+    }
+    
+    class Scout {
+        <<Entity>>
+        +str scout_type
+        +int candidates
+        +int walkers
+        +run()
+        #Subclasses
+        #HeatScout, RayScout
+        #MemoryScout, FrontierScout
+        #CycleHunterScout, etc.
+    }
+    
+    class ProprioceptionEvent {
+        <<Value Object>>
+        +str event_type
+        +int tick
+        +dict payload
+        +to_json()
+        #Types
+        #VTTouch, Spike
+        #DeltaW, EdgeOn
+        #BiasHint
+    }
+    
+    class Engram {
+        <<Aggregate>>
+        +Connectome state
+        +int step
+        +int seed
+        +str domain
+        +datetime timestamp
+        +save(path, format)
+        +load(path)
+        #Invariants
+        #SHA256 hash for provenance
+        #Metadata includes derivation version
+    }
+    
+    class NeuroplasticityRule {
+        <<Service>>
+        +apply_gdsp(connectome, activation)
+        +apply_revgsp(connectome, activation)
+        +compute_gradient()
+        #Stateless operation
+    }
+    
+    class MetricsSnapshot {
+        <<Value Object>>
+        +int tick
+        +float clustering_coeff
+        +float avg_path_length
+        +ndarray degree_dist
+        +float zema_score
+        +dict topology_features
+    }
+    
+    class RunConfiguration {
+        <<Value Object>>
+        +int N
+        +int k
+        +int hz
+        +str domain
+        +int seed
+        +int checkpoint_every
+        +dict phase_profile
+        #Immutable after init
+    }
+    
+    class Stimulus {
+        <<Value Object>>
+        +str text
+        +list~int~ symbol_indices
+        +float amplitude
+        +float decay
+        +apply(connectome)
+    }
+    
+    class MacroOutput {
+        <<Value Object>>
+        +int tick
+        +str text
+        +float novelty_score
+        +float valence
+        +list~str~ symbols
+    }
+    
+    class TelemetryPayload {
+        <<Value Object>>
+        +int tick
+        +MetricsSnapshot metrics
+        +list~ProprioceptionEvent~ events
+        +list~MacroOutput~ macros
+        +dict status
+        +to_jsonl()
+    }
+    
+    class PhaseProfile {
+        <<Value Object>>
+        +str name
+        +list~PhaseSegment~ segments
+        +apply(tick, config)
+        #Dynamic parameter modulation
+    }
+    
+    VoidWalker "1..*" --> "1" VoidField : reads/writes
+    Scout "1..*" --> "1" VoidWalker : coordinates
+    Scout --> "1" Connectome : traverses
+    Scout --> "*" ProprioceptionEvent : emits
+    
+    Connectome "1" *-- "1..*" Engram : persists as
+    Connectome --> "1" NeuroplasticityRule : applies
+    Connectome <-- "1" Stimulus : activates
+    
+    MetricsSnapshot --> "1" Connectome : computed from
+    TelemetryPayload *-- "1" MetricsSnapshot
+    TelemetryPayload *-- "*" ProprioceptionEvent
+    TelemetryPayload *-- "*" MacroOutput
+    
+    RunConfiguration --> "1" PhaseProfile : uses
+    
+    note for Connectome "Aggregate Root: Enforces invariants\nmin_connectivity: k edges/node\nweight bounds: [-1, 1]"
+    note for Engram "Checkpoint provenance:\nSHA256 content hash\nProvenance manifest linkage"
+    note for VoidField "Sparse representation:\nOnly non-zero elements stored\nDiffusion uses convolution"
+```

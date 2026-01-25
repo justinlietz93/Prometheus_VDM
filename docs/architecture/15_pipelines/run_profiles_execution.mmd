@@ -1,0 +1,81 @@
+```mermaid
+sequenceDiagram
+    autonumber
+    actor User
+    participant CLI as run_nexus.py
+    participant Nexus as Nexus Class
+    participant Runtime as runtime.loop
+    participant Stepper as runtime.stepper
+    participant Core as CoreEngine
+    participant FS as Filesystem
+    
+    User->>CLI: python vdm_rt/run_nexus.py --neurons 1000 --hz 10 --duration 60
+    CLI->>CLI: Parse args via make_parser()
+    CLI->>CLI: Resolve --load-engram (if provided)
+    CLI->>CLI: Set run_dir = runs/{timestamp} or engram parent
+    CLI->>Nexus: Nexus(run_dir, N, k, hz, domain, seed, ...)
+    
+    Nexus->>Nexus: Create run_dir/
+    Nexus->>Nexus: Initialize logger → events.jsonl
+    Nexus->>Nexus: Initialize UTE (user text entry)
+    Nexus->>Nexus: Initialize UTD (telemetry display)
+    Nexus->>Nexus: Initialize emitters (Macro, Thought)
+    Nexus->>Nexus: Load lexicon, phrase templates
+    Nexus->>Nexus: Initialize SparseConnectome(N, k, seed)
+    Nexus->>Core: Create CoreEngine(connectome, maps, scouts)
+    
+    alt Load Engram
+        Nexus->>FS: load_engram(path)
+        FS-->>Nexus: State loaded (w, b, step)
+        Nexus->>Nexus: Set start_step from checkpoint
+    end
+    
+    Nexus-->>CLI: Nexus instance ready
+    CLI->>Nexus: nexus.run(duration_s=60)
+    Nexus->>Runtime: run_loop(state, config, ...)
+    
+    Runtime->>Runtime: Calculate total_ticks = duration_s * hz
+    
+    loop tick = start_step to total_ticks
+        Runtime->>Runtime: Apply phase profile (if any)
+        Runtime->>Runtime: Poll UTE for user messages
+        
+        alt User sent text
+            Runtime->>Runtime: symbols_to_indices(text)
+            Runtime->>Core: Stimulate connectome
+        end
+        
+        Runtime->>Stepper: compute_step_and_metrics(engine, ...)
+        Stepper->>Core: engine.step()
+        Core->>Core: Execute void walkers (scouts)
+        Core->>Core: Update cortical maps
+        Core->>Core: Apply neuroplasticity (GDSP)
+        Core->>Core: Emit proprioception events
+        Core-->>Stepper: Observation dict
+        Stepper->>Stepper: Compute metrics (ZEMA, graph stats)
+        Stepper->>Stepper: Apply B1 detector
+        Stepper-->>Runtime: Observation + metrics
+        
+        Runtime->>Runtime: Aggregate telemetry (tick_fold)
+        Runtime->>Runtime: Emit macros (if speak gate passes)
+        Runtime->>Runtime: Emit thoughts (if enabled)
+        Runtime->>FS: Log events.jsonl
+        
+        alt tick % checkpoint_every == 0
+            Runtime->>FS: save_tick_checkpoint(state, format=h5)
+            Runtime->>Runtime: Prune old checkpoints (keep N)
+        end
+        
+        alt tick % viz_every == 0
+            Runtime->>FS: Save visualization (graph PNG)
+        end
+        
+        Runtime->>FS: Write status.json (HTTP endpoint)
+    end
+    
+    Runtime-->>Nexus: Loop complete
+    Nexus->>FS: Final checkpoint
+    Nexus->>FS: Close logs
+    Nexus-->>CLI: Run finished
+    CLI-->>User: Exit
+```

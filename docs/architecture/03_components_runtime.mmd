@@ -1,0 +1,41 @@
+```mermaid
+C4Component
+    title Component Diagram - Runtime Orchestrator (vdm_rt.runtime)
+    
+    Container_Boundary(runtime_boundary, "Runtime Orchestrator") {
+        Component(run_loop, "Run Loop", "runtime.loop", "Main execution loop<br/>Tick iteration (0..duration*hz)<br/>Coordinates all phases")
+        
+        Component(stepper, "Stepper", "runtime.stepper", "compute_step_and_metrics()<br/>Single tick executor<br/>Calls CoreEngine.step()")
+        
+        Component(telemetry, "Telemetry", "runtime.telemetry", "tick_fold() - metrics aggregation<br/>macro_why_base() - provenance<br/>Status payload generation")
+        
+        Component(emitters, "Emitters", "runtime.emitters", "MacroEmitter (macro output)<br/>ThoughtEmitter (internal thoughts)<br/>initialize_emitters()")
+        
+        Component(phase_control, "Phase Control", "runtime.phase", "Phase profiles<br/>apply_phase_profile()<br/>poll_control() - runtime adjustment")
+        
+        Component(events_adapter, "Events Adapter", "runtime.events_adapter", "Observation → Event conversion<br/>Core events → runtime signals")
+        
+        Component(retention, "Checkpoint Retention", "runtime.retention", "Checkpoint pruning (keep N)<br/>Disk space management<br/>Format migration")
+        
+        Component(state_tracker, "State Tracker", "runtime.state", "Runtime state persistence<br/>Tick counter, metrics history")
+        
+        Component(helpers, "Runtime Helpers", "runtime.helpers", "Checkpointing, emission<br/>Engram loader, speak logic<br/>Ingest, viz, smoke tests<br/>Status HTTP, Redis pub, macro board")
+    }
+    
+    Component_Ext(core_engine, "CoreEngine", "vdm_rt.core.engine")
+    Component_Ext(io_layer, "I/O Layer", "vdm_rt.io")
+    Component_Ext(filesystem, "Filesystem", "h5py, json")
+    
+    Rel(run_loop, stepper, "Calls each tick", "compute_step_and_metrics()")
+    Rel(stepper, core_engine, "Executes", "CoreEngine.step()")
+    Rel(stepper, telemetry, "Aggregates", "Metrics fold")
+    Rel(run_loop, phase_control, "Applies", "Phase profile")
+    Rel(run_loop, emitters, "Emits", "Macros, thoughts")
+    Rel(run_loop, helpers, "Uses", "Checkpointing, viz, speak")
+    Rel(events_adapter, core_engine, "Reads", "Proprioception events")
+    Rel(retention, filesystem, "Prunes", "Old checkpoints")
+    Rel(helpers, io_layer, "Delegates", "UTE, UTD, cognition")
+    Rel(helpers, filesystem, "Persists", "State, logs")
+    
+    UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
+```

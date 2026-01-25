@@ -1,0 +1,29 @@
+```mermaid
+C4Context
+    title System Context - Prometheus VDM (Void Debt Modulation)
+    
+    Person(researcher, "Researcher/Physicist", "Runs VDM simulations, analyzes results, validates derivations")
+    Person(developer, "Developer", "Extends VDM runtime, adds physics modules, debugs")
+    Person(operator, "System Operator", "Monitors live runs, manages checkpoints, deploys")
+    
+    System(vdm_system, "Prometheus VDM", "Void Debt Modulation neural dynamics engine<br/>Sparse graph simulation with metriplectic structure<br/>Python 3 runtime + Dash UI")
+    
+    System_Ext(derivation_corpus, "Derivation Corpus", "TeX/LaTeX mathematical derivations<br/>Jupyter notebooks<br/>Experimental validation")
+    System_Ext(hpc_cluster, "HPC/GPU Cluster", "Optional PyTorch GPU acceleration<br/>ROCm or CUDA compute")
+    System_Ext(redis_cache, "Redis (Optional)", "Telemetry pub/sub<br/>Real-time metrics streaming")
+    System_Ext(fs_storage, "Filesystem", "Run artifacts (HDF5, JSONL)<br/>Checkpoints, profiles, logs")
+    System_Ext(github, "GitHub Repository", "Version control<br/>CI/CD workflows<br/>Provenance manifest")
+    
+    Rel(researcher, vdm_system, "Runs simulations, configures profiles", "CLI: run_nexus.py")
+    Rel(researcher, vdm_system, "Monitors live runs", "HTTP: vdm_live.py:8060")
+    Rel(developer, vdm_system, "Develops, tests, extends", "Git, pytest")
+    Rel(operator, vdm_system, "Deploys, monitors health", "CLI, HTTP status endpoint")
+    
+    Rel(vdm_system, derivation_corpus, "Implements equations from", "Symbolic math (TeX → Python)")
+    Rel(vdm_system, hpc_cluster, "Offloads GPU compute", "PyTorch CUDA/ROCm")
+    Rel(vdm_system, redis_cache, "Publishes telemetry", "Redis pub/sub (optional)")
+    Rel(vdm_system, fs_storage, "Persists state, logs", "H5Py, JSONL, npz")
+    Rel(vdm_system, github, "Tracked in", "Git version control")
+    
+    UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="2")
+```

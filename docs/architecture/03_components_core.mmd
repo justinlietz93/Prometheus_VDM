@@ -1,0 +1,58 @@
+```mermaid
+C4Component
+    title Component Diagram - VDM Core Runtime (vdm_rt.core)
+    
+    Container_Boundary(core_boundary, "VDM Core Runtime") {
+        Component(core_engine, "CoreEngine", "core.engine", "Main compute step executor<br/>Orchestrates void walkers<br/>Emits proprioception events")
+        
+        Component(sparse_connectome, "SparseConnectome", "core.sparse_connectome", "Sparse adjacency matrix (CSR)<br/>Edge weights, bias vectors<br/>Efficient O(E) operations")
+        
+        Component(void_walkers, "Void Walker System", "core.cortex.void_walkers", "Scout coordination<br/>HeatScout, RayScout, MemoryScout<br/>FrontierScout, CycleHunter, Cold scouts")
+        
+        Component(proprioception, "Proprioception", "core.proprioception", "Event system (VTTouch, Spike, DeltaW, EdgeOn)<br/>EventDrivenMetrics<br/>Territory tracking")
+        
+        Component(maps, "Cortical Maps", "core.cortex.maps", "HeatMap, TrailMap, MemoryMap<br/>ExcitationMap, InhibitionMap<br/>Spatial field dynamics")
+        
+        Component(neuroplasticity, "Neuroplasticity", "core.neuroplasticity", "GDSP (gradient-based)<br/>RevGSP (reverse gradient)<br/>Weight updates")
+        
+        Component(memory_field, "MemoryField", "core.memory", "Persistent memory substrate<br/>Engram save/load (h5, npz)<br/>Checkpoint provenance")
+        
+        Component(substrate, "Substrate Dynamics", "core.substrate", "Neurogenesis<br/>Structural homeostasis<br/>Growth arbiter")
+        
+        Component(metrics_engine, "Metrics Engine", "core.metrics", "StreamingZEMA (topology Z-score)<br/>Persistent homology<br/>Network statistics")
+        
+        Component(signals, "Signal Processing", "core.signals", "B1 detector (bias spikes)<br/>Hysteresis, half-life decay<br/>Correlation tracking")
+        
+        Component(sie, "Self-Improvement Engine", "core.fum_sie, core.sie_v2", "Meta-learning coordinator<br/>ADC (Announcement-Driven Conceptualization)<br/>Adaptive topology")
+        
+        Component(cosmology, "Cosmology Modules", "core.cosmology", "Horizon activity events<br/>Grain scattering<br/>Router logic")
+        
+        Component(void_math, "Void Mathematics", "core.Void_Equations, Void_Debt_Modulation", "Debt modulation formulas<br/>Field equations<br/>Metriplectic operators")
+    }
+    
+    Component_Ext(numpy, "NumPy", "Numerical arrays")
+    Component_Ext(scipy, "SciPy", "Sparse matrices")
+    Component_Ext(torch, "PyTorch", "GPU tensors (optional)")
+    Component_Ext(networkx, "NetworkX", "Graph algorithms")
+    
+    Rel(core_engine, sparse_connectome, "Reads/updates", "Edge traversal")
+    Rel(core_engine, void_walkers, "Executes", "Scout.run()")
+    Rel(void_walkers, maps, "Updates spatial fields", "Map.deposit()")
+    Rel(void_walkers, proprioception, "Emits", "Event instances")
+    Rel(proprioception, metrics_engine, "Feeds", "Topology metrics")
+    Rel(core_engine, neuroplasticity, "Applies", "Weight updates")
+    Rel(neuroplasticity, sparse_connectome, "Modifies", "Δw updates")
+    Rel(memory_field, sparse_connectome, "Persists", "Save/load state")
+    Rel(substrate, sparse_connectome, "Grows", "Add/prune edges")
+    Rel(signals, proprioception, "Processes", "Bias signals")
+    Rel(sie, metrics_engine, "Reads", "Meta-learning signals")
+    Rel(cosmology, void_walkers, "Configures", "Domain modulation")
+    Rel(void_math, core_engine, "Defines", "Numerical methods")
+    
+    Rel(sparse_connectome, numpy, "Uses", "Array ops")
+    Rel(sparse_connectome, scipy, "Uses", "Sparse CSR")
+    Rel(substrate, torch, "Uses", "GPU kernels (optional)")
+    Rel(metrics_engine, networkx, "Uses", "Graph metrics")
+    
+    UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
+```
