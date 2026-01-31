@@ -1,0 +1,44 @@
+{
+  "connectome_summary": {
+    "N_nodes": 1000,
+    "N_edges": 23838,
+    "out_degree_mean": 23.838,
+    "out_degree_median": 12.0,
+    "out_degree_max": 114,
+    "in_degree_mean": 23.838,
+    "in_degree_median": 12.0,
+    "in_degree_max": 114
+  },
+  "vdm_viz2_summary": {
+    "overlap_ticks": 15040,
+    "psd_slopes_loglog_midband": {
+      "firing_var": -1.3765455056715188,
+      "complexity_cycles": -0.6234619059547469,
+      "connectome_entropy": -2.0199086278912026
+    },
+    "degree_gini": {
+      "in": 0.40895628827921804,
+      "out": 0.40895628827921804
+    },
+    "degree_quantiles_out": {
+      "p50": 12.0,
+      "p90": 70.10000000000002,
+      "p99": 94.00999999999999,
+      "max": 114
+    }
+  },
+  "snapshot_degree_stats": {
+    "deg_mean": 23.868,
+    "deg_p50": 12.0,
+    "deg_p90": 74.0,
+    "deg_p99": 100.0,
+    "deg_max": 119,
+    "deg_gini": 0.41303745600804426,
+    "tail_fit_best": {
+      "kmin": 13,
+      "alpha": 1.8457067762670736,
+      "ks": 0.1899177394447895,
+      "n_tail": 304
+    }
+  }
+}
