@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2025-12-02T18:37:47.853261Z",
+  "generated_utc": "2026-02-01T18:04:36.753132Z",
   "items": [
     {
       "path": "Derivation/z.CANONICAL_Roadmap/00_ROADMAP.md",
@@ -37,6 +37,16 @@
       "size": 19667
     },
     {
+      "path": "Derivation/z.CANONICAL_Roadmap/Backlog/Q1-Important-Urgent/2025-12-03/DESIVAST-and-VAST-void-catalogs-for-DESI-DR1.md",
+      "sha256": "9a3ff8db5b5a36e1fc85e120a55d67ed669cd8cc80cf38cec4f0e423db4db389",
+      "size": 20086
+    },
+    {
+      "path": "Derivation/z.CANONICAL_Roadmap/Backlog/Q1-Important-Urgent/2025-12-03/SciLean-Lean4-toolkit-for-PDEs-and-gradient-flows.md",
+      "sha256": "0967cfafdc709e7dad5ad8526812f6d551d3c968110a8d77b5d515f7c39ac007",
+      "size": 16991
+    },
+    {
       "path": "Derivation/z.CANONICAL_Roadmap/Backlog/Q2-Important-Not-Urgent/2025-12-02/AC-driven-ferrofluid-labyrinths-at-home-scale.md",
       "sha256": "29b64e9ce16d5e54ee5d874fd0cd8a2b5b01a7a57ee6bd5d9256fe721dc20158",
       "size": 17239
@@ -57,9 +67,34 @@
       "size": 16857
     },
     {
+      "path": "Derivation/z.CANONICAL_Roadmap/Backlog/Q2-Important-Not-Urgent/2025-12-03/Automated-Zenodo-Deposition-from-CITATION-metadata.md",
+      "sha256": "b75d42514a7290b3f537b731c82a16bd49767fe588180421b9352c73972f79e5",
+      "size": 12930
+    },
+    {
+      "path": "Derivation/z.CANONICAL_Roadmap/Backlog/Q2-Important-Not-Urgent/2025-12-03/Energy-stable-IMEX-scheme-for-barotropic-Euler-flow.md",
+      "sha256": "b55ce3eaf6d6f1a87cfdbe3c59b184d18855105a938b4bbc39f9b1aa3e582360",
+      "size": 33787
+    },
+    {
+      "path": "Derivation/z.CANONICAL_Roadmap/Backlog/Q2-Important-Not-Urgent/2025-12-03/Faint-galaxy-blends-and-shear-bias-in-Euclid-like-data.md",
+      "sha256": "cfa6c51db54216a09dc3b371233a1ffce4b8d8ec47910db375cf84c16473b0bf",
+      "size": 17630
+    },
+    {
+      "path": "Derivation/z.CANONICAL_Roadmap/Backlog/Q2-Important-Not-Urgent/2025-12-03/Spin-s-skew-spectra-new-higher-order-shear-statistic.md",
+      "sha256": "0659a63332ca677e5aecd335ac8f29516c1d34c57d8b3e8f7f9992eab11497bf",
+      "size": 22936
+    },
+    {
+      "path": "Derivation/z.CANONICAL_Roadmap/Backlog/Q2-Important-Not-Urgent/2025-12-03/gGENERIC-and-the-Entropy-Variational-Law-framework.md",
+      "sha256": "6c9a14d6e607970547da60494d8afe7d480ff3fb6034403056c3a58802b871c7",
+      "size": 21787
+    },
+    {
       "path": "Derivation/z.CANONICAL_Roadmap/Current_TODO.md",
-      "sha256": "474dab679487a472570cba4533b3797f3f803cc143ac9953d953b4d91bbaae1e",
-      "size": 15968
+      "sha256": "8a8b7c6a162fbed923e0b75495c24bd768fe25a03e29a09de6ade0e268fc7bda",
+      "size": 20351
     },
     {
       "path": "Derivation/z.CANONICAL_Roadmap/README.md",
