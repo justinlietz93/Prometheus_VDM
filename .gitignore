@@ -74,6 +74,7 @@ utd_events.jsonl
 !runs/original_1kN_20250811_234347/
 !runs/new_10kN_20250816_072533/*.zip
 !runs/original_1kN_20250811_234347/*.zip
+!data_analysis/**/*.zip
 
 # Plans and LLM Context
 ## On the Prometheus workstation

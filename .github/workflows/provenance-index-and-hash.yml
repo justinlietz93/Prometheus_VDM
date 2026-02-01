@@ -5,14 +5,20 @@ on:
     branches:
       - '**'
 
+permissions:
+  contents: write
+
 jobs:
   provenance:
     name: Populate provenance indexes and salted hashes
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Python
         uses: actions/setup-python@v4
@@ -27,6 +33,47 @@ jobs:
       - name: Populate PROVENANCE_index.json files
         run: |
           python tools/provenance/generate_salted_hash.py --populate-provenance-indexes
+
+      - name: Generate full-repo PROVENANCE manifest
+        run: |
+          python tools/provenance/generate_manifest.py --root . --output PROVENANCE_manifest.json
+
+      - name: Generate data_analysis provenance index
+        run: |
+          python data_analysis/build_provenance_index.py --root data_analysis --output PROVENANCE_index.json
+
+      - name: Upload provenance artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: provenance-${{ github.sha }}
+          if-no-files-found: error
+          path: |
+            PROVENANCE_manifest.json
+            data_analysis/PROVENANCE_index.json
+            Derivation/**/PROVENANCE_index.json
+
+      - name: Commit provenance artifacts (if changed)
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          # Configure identity for the workflow bot
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # Stage only provenance artifacts we generate here
+          git add PROVENANCE_manifest.json data_analysis/PROVENANCE_index.json Derivation/**/PROVENANCE_index.json || true
+
+          if git diff --cached --quiet; then
+            echo "No provenance changes to commit."
+            exit 0
+          fi
+
+          # Use skip-ci to avoid triggering the rest of the workflow suite on the bot commit
+          git commit -m "chore(provenance): update provenance artifacts [skip ci]"
+
+          # Push back to the same branch that triggered this workflow
+          git push origin "HEAD:${GITHUB_REF_NAME}"
 
       # Optional: extend here with any scripted salted-hash updates that operate
       # over the populated PROVENANCE_index.json entries (for example, stamping
