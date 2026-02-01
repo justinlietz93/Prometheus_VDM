@@ -1,5 +1,7 @@
 <h1 align="center">Void Dynamics Model (VDM)</h1>
-<h4 align="center">A background‑independent, metriplectic field theory unifying matter and forces from the Quantum Geometric Tensor, with an emergent causal cone and an epistemological J→M projection.</h4>
+<h4 align="center">A two part framework:</h4>
+<h4 align="left">1. A background‑independent, metriplectic field theory unifying matter and forces from the Quantum Geometric Tensor, with an emergent causal cone and an epistemological J→M projection.</h4>
+<h4 align="left">2. A real time, zero training, emergent run-time with scale‑free/heavy‑tail sparse neural graphs, locally interacting neuron‑particles (void walkers), Hebbian working memory/online plasticity, sparse activations, and attention‑like state routing driven by physical dynamics.</h4>
 <h6 align="center">Lineage: AMN-->FUM-->VDM</h6>
 
 ---
@@ -12,7 +14,7 @@
 > <a href="https://orcid.org/0009-0008-9028-1366"><img src="https://img.shields.io/badge/ORCID-0009--0008--9028--1366-blue?" alt="ORCID: 0009-0008-9028-1366"></a>  
 >
 > **Created:** August 9, 2025  
-> **Last Updated:** November 30, 2025  
+> **Last Updated:** February 1, 2025  
 >
 > This research is protected under a dual-license to foster open academic  
 > research while ensuring commercial applications are aligned with the project's ethical principles.  

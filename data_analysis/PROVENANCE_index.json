@@ -1,0 +1,874 @@
+﻿{
+    "schema_version":  "1.0",
+    "root":  "data_analysis",
+    "generated_at_utc":  "2026-02-01T16:46:04.8274326Z",
+    "hash_algorithm":  "SHA256",
+    "total_files":  144,
+    "total_bytes":  68814762,
+    "files":  [
+                  {
+                      "path":  "bundles/decoder_intent_analysis_bundle.zip",
+                      "sha256":  "c02cf4703895c6952d687556db5548ec38b138ab0a2bf4ebce140aaf1176007f",
+                      "size_bytes":  413660,
+                      "mtime_utc":  "2026-02-01T06:53:54.9516407Z"
+                  },
+                  {
+                      "path":  "bundles/vdm_abstraction_columns_resultsets.zip",
+                      "sha256":  "4d7d8faf4e008fadb7c561868757c771017bea1f684bfae89d735aeca81e9257",
+                      "size_bytes":  245004,
+                      "mtime_utc":  "2026-02-01T06:53:55.3418648Z"
+                  },
+                  {
+                      "path":  "bundles/vdm_bus_faithful_consciousness_results 2.zip",
+                      "sha256":  "c3a5e27f2e856062a680234d8c629a4f166cce0757405348b4edb64c10e33b7b",
+                      "size_bytes":  401207,
+                      "mtime_utc":  "2026-02-01T06:53:55.3448657Z"
+                  },
+                  {
+                      "path":  "bundles/vdm_bus_faithful_consciousness_results.zip",
+                      "sha256":  "c3a5e27f2e856062a680234d8c629a4f166cce0757405348b4edb64c10e33b7b",
+                      "size_bytes":  401207,
+                      "mtime_utc":  "2026-02-01T06:53:55.3478672Z"
+                  },
+                  {
+                      "path":  "bundles/vdm_bus_sie_adc_analysis_1768218856.zip",
+                      "sha256":  "4f675935c64f512828d06015c34e480e0b3b7648e404aba4100497860ef61b78",
+                      "size_bytes":  1120018,
+                      "mtime_utc":  "2026-02-01T06:53:55.3598691Z"
+                  },
+                  {
+                      "path":  "bundles/vdm_crossdomain_patterns_analysis.zip",
+                      "sha256":  "53488f4bcb7f440040d5ace14b85eaa108daca74a6de7eba222d92f9a2f52e93",
+                      "size_bytes":  331873,
+                      "mtime_utc":  "2026-02-01T06:53:55.3678718Z"
+                  },
+                  {
+                      "path":  "bundles/vdm_new_consciousness_results 2.zip",
+                      "sha256":  "222e09690de88c0ada3991364908cd75397516bfca005b8940e76094d0b880a5",
+                      "size_bytes":  465972,
+                      "mtime_utc":  "2026-02-01T06:53:55.3708690Z"
+                  },
+                  {
+                      "path":  "bundles/vdm_new_consciousness_results.zip",
+                      "sha256":  "10f3146bbdc5e057ce56db9bef7b7790967abe656f85e4d2845acdcc60ee3f7f",
+                      "size_bytes":  404002,
+                      "mtime_utc":  "2026-02-01T06:53:55.3738677Z"
+                  },
+                  {
+                      "path":  "bundles/vdm_predictive_metacontrol_analysis.zip",
+                      "sha256":  "aaa5d45264d5c5e7ead10a5b8a5ff78c8d7d4ba2a1312743063e9ea3bf69ac97",
+                      "size_bytes":  1323563,
+                      "mtime_utc":  "2026-02-01T06:53:55.3818696Z"
+                  },
+                  {
+                      "path":  "bundles/vdm_reading_attention_analysis.zip",
+                      "sha256":  "dd79ef143e02da6fdf45365c07741a0c181a9471651395709ca7dfe0728e1435",
+                      "size_bytes":  2287607,
+                      "mtime_utc":  "2026-02-01T06:53:55.4048704Z"
+                  },
+                  {
+                      "path":  "bundles/vdm_reading_attention_analysis_v2.zip",
+                      "sha256":  "edbb3d7669c15477a9df9c93235bf5e7990a8e5abc7ebaab0124a6102a70d06c",
+                      "size_bytes":  1806342,
+                      "mtime_utc":  "2026-02-01T06:53:55.4178719Z"
+                  },
+                  {
+                      "path":  "bundles/vdm_reading_window10600_11400.zip",
+                      "sha256":  "e1345a0149e0f093fc2befcdb61fc9472a51941f55dc3c2c94bad79230d2593c",
+                      "size_bytes":  2789936,
+                      "mtime_utc":  "2026-02-01T06:53:55.4458717Z"
+                  },
+                  {
+                      "path":  "bundles/vdm_refresh_horizon_bundle.zip",
+                      "sha256":  "6084fc8ea11447c417f7e7420c4e4c300677e89a4dffcccf555bcb7439228a43",
+                      "size_bytes":  376247,
+                      "mtime_utc":  "2026-02-01T06:53:55.4528645Z"
+                  },
+                  {
+                      "path":  "bundles/vdm_te_directed_info_analysis 2.zip",
+                      "sha256":  "9beedd7a3af0ca0d8a00ed1dd69419d7aa8e5e96281ee8c8f22ba854e9b98be2",
+                      "size_bytes":  1438167,
+                      "mtime_utc":  "2026-02-01T06:53:55.5727566Z"
+                  },
+                  {
+                      "path":  "bundles/vdm_te_directed_info_analysis.zip",
+                      "sha256":  "9beedd7a3af0ca0d8a00ed1dd69419d7aa8e5e96281ee8c8f22ba854e9b98be2",
+                      "size_bytes":  1438167,
+                      "mtime_utc":  "2026-02-01T06:53:55.5787583Z"
+                  },
+                  {
+                      "path":  "consciousness_metrics/bundles/consciousness_effective_connectivity_atlas.zip",
+                      "sha256":  "ffa032eb91d0c8f0f4112f032bf2285c42f0fffd51f3bb17cc99c0cf0e204100",
+                      "size_bytes":  2119260,
+                      "mtime_utc":  "2026-02-01T06:53:54.8816499Z"
+                  },
+                  {
+                      "path":  "consciousness_metrics/bundles/consciousness_metrics_suite.zip",
+                      "sha256":  "a721fce4ca3b6e584bc10b9fdce303039ea1cf4fd2776b91acac0b4a22a03e36",
+                      "size_bytes":  2640060,
+                      "mtime_utc":  "2026-02-01T06:53:54.9036527Z"
+                  },
+                  {
+                      "path":  "consciousness_metrics/bundles/consciousness_new_insights_bundle.zip",
+                      "sha256":  "7fb36effe6c780deadbc6f7d7def4463ac089de61400782ea05a509d154f1111",
+                      "size_bytes":  931214,
+                      "mtime_utc":  "2026-02-01T06:53:54.9096541Z"
+                  },
+                  {
+                      "path":  "consciousness_metrics/bundles/consciousness_phase_lock_315_bundle.zip",
+                      "sha256":  "2db2411bfffdbfec58f3c9623c564f4b86dc7d2b6b31395667592d7988875e36",
+                      "size_bytes":  1268387,
+                      "mtime_utc":  "2026-02-01T06:53:54.9166494Z"
+                  },
+                  {
+                      "path":  "consciousness_metrics/bundles/consciousness_regime_atlas_bundle.zip",
+                      "sha256":  "1c4ff1333c042a8643f5323654f8c67e23751423ce75e8b0474b19233d81293d",
+                      "size_bytes":  1008289,
+                      "mtime_utc":  "2026-02-01T06:53:54.9406421Z"
+                  },
+                  {
+                      "path":  "consciousness_metrics/bundles/consciousness_regime3_speech_vs_315_directionality_bundle.zip",
+                      "sha256":  "2fde8babfb53e0b0ed7bab273b52bf603be0c5a2173ef42dbb440e7807a4de83",
+                      "size_bytes":  2445337,
+                      "mtime_utc":  "2026-02-01T06:53:54.9306395Z"
+                  },
+                  {
+                      "path":  "consciousness_metrics/figures/consciousness_metrics_dashboard_heatmap.png",
+                      "sha256":  "89ebce07ac662d6181da3f1948db7b66064c1782ee34e61bd6deb9d1568a32dc",
+                      "size_bytes":  103392,
+                      "mtime_utc":  "2026-02-01T06:53:54.8876386Z"
+                  },
+                  {
+                      "path":  "consciousness_metrics/figures/consciousness_metrics_dashboard_heatmap_v2.png",
+                      "sha256":  "d5684a51218e8004eed42e11edc61e5a4578a58197355cd21a51716fa17ab76d",
+                      "size_bytes":  117202,
+                      "mtime_utc":  "2026-02-01T06:53:54.8896378Z"
+                  },
+                  {
+                      "path":  "consciousness_metrics/README.md",
+                      "sha256":  "451d472b583008711e6b4a6ceb83588fb0bf75b0cb7ef0a6de04ddd6bc59ed79",
+                      "size_bytes":  667,
+                      "mtime_utc":  "2026-02-01T16:45:50.2433169Z"
+                  },
+                  {
+                      "path":  "consciousness_metrics/tables/consciousness_metrics_dashboard_by_epoch.csv",
+                      "sha256":  "d34be7272aa8b2e0bef05375483213a903ba3b9940e5c5f0d77e7ad652331ccf",
+                      "size_bytes":  1029,
+                      "mtime_utc":  "2026-02-01T06:53:54.8846430Z"
+                  },
+                  {
+                      "path":  "consciousness_metrics/tables/consciousness_metrics_dashboard_by_epoch_v2.csv",
+                      "sha256":  "f68aaccdc626419f3c6ee4d892d3be7a4127cb400088a61c6e3d6e5f3f5d89dc",
+                      "size_bytes":  1081,
+                      "mtime_utc":  "2026-02-01T06:53:54.8856503Z"
+                  },
+                  {
+                      "path":  "figures/crosscorr/crosscorr_pca_speed_vs_has_text.png",
+                      "sha256":  "a55cd037be438366e7be5ad8ff404bcca41fc043488ff8e6acb6fc64c6b183f2",
+                      "size_bytes":  102676,
+                      "mtime_utc":  "2026-02-01T06:53:54.9446494Z"
+                  },
+                  {
+                      "path":  "figures/crosscorr/crosscorr_pca_speed_vs_log_text_words.png",
+                      "sha256":  "1b5232b3f6ed2a90abba3ad7c5d701b1b1d87df12e6f027e58d3341765fb6045",
+                      "size_bytes":  102410,
+                      "mtime_utc":  "2026-02-01T06:53:54.9486394Z"
+                  },
+                  {
+                      "path":  "figures/events/event_triggered_has_text.png",
+                      "sha256":  "2b40d3b83db1aa049d0f15941fdcfbb1a074c67f9c09ff090aa2b04069302a93",
+                      "size_bytes":  184198,
+                      "mtime_utc":  "2026-02-01T06:53:54.9586411Z"
+                  },
+                  {
+                      "path":  "figures/events/event_triggered_log_text_words.png",
+                      "sha256":  "b9fb8c2e0b767a5f50581bb377e5273635a71670007b9e7558b91eb0580264ca",
+                      "size_bytes":  223767,
+                      "mtime_utc":  "2026-02-01T06:53:54.9616435Z"
+                  },
+                  {
+                      "path":  "figures/granger/granger_fast_causal_density_bar.png",
+                      "sha256":  "761007b53d3cbd7ced8b0f5fd00fe4c227a2978fcab6d1ed10f57a04e547da76",
+                      "size_bytes":  61380,
+                      "mtime_utc":  "2026-02-01T06:53:54.9636431Z"
+                  },
+                  {
+                      "path":  "figures/granger/granger_fast_sig_heatmap_E1_low_entropy_baseline_1.png",
+                      "sha256":  "bb1898a2808f950e14e6006d657c23cc4d04561ea8f0a7f192144f6e8b4c0213",
+                      "size_bytes":  75670,
+                      "mtime_utc":  "2026-02-01T06:53:54.9726421Z"
+                  },
+                  {
+                      "path":  "figures/granger/granger_fast_sig_heatmap_E2_high_entropy_plateau.png",
+                      "sha256":  "2f97e686a56c92d77294a845c655277a551962e97d0cdfec614da1c39084e5ab",
+                      "size_bytes":  74067,
+                      "mtime_utc":  "2026-02-01T06:53:54.9736463Z"
+                  },
+                  {
+                      "path":  "figures/granger/granger_fast_sig_heatmap_E3_low_entropy_baseline_2.png",
+                      "sha256":  "4d80b537e686b5eb66d0de13e830da5705d249b77800b0153b16b848cb9ac873",
+                      "size_bytes":  76331,
+                      "mtime_utc":  "2026-02-01T06:53:54.9776484Z"
+                  },
+                  {
+                      "path":  "figures/granger/granger_sig_heatmap_E1_low_entropy_baseline_1.png",
+                      "sha256":  "0ff97afb35566b259dce5da4361c86893c62565a34abd50f420aa0c671914b42",
+                      "size_bytes":  78538,
+                      "mtime_utc":  "2026-02-01T06:53:54.9846474Z"
+                  },
+                  {
+                      "path":  "figures/granger/granger_sig_heatmap_E2_high_entropy_plateau.png",
+                      "sha256":  "c9b401ef5503887e8f19d9a799e94ed85547aa34e80af4934cb259b1399e9212",
+                      "size_bytes":  78370,
+                      "mtime_utc":  "2026-02-01T06:53:54.9916417Z"
+                  },
+                  {
+                      "path":  "figures/macro_state/macro_state_stationary_E1_low_entropy_baseline_1.png",
+                      "sha256":  "c17c90e1bc4b5e33de7b55fae6e52029f4b0c405d9f5a76e7088d5c929cbcde3",
+                      "size_bytes":  51503,
+                      "mtime_utc":  "2026-02-01T06:53:55.0046416Z"
+                  },
+                  {
+                      "path":  "figures/macro_state/macro_state_stationary_E2_high_entropy_plateau.png",
+                      "sha256":  "92d4e394247c8bfe28c29b39f8041ecb04b14fb1981184848a2ec381b1b72de3",
+                      "size_bytes":  49129,
+                      "mtime_utc":  "2026-02-01T06:53:55.0076510Z"
+                  },
+                  {
+                      "path":  "figures/macro_state/macro_state_stationary_E3_low_entropy_baseline_2.png",
+                      "sha256":  "db8e021e6a3a512448cd6d533288718e44447733e6c528df3f1f3c599bda4144",
+                      "size_bytes":  48396,
+                      "mtime_utc":  "2026-02-01T06:53:55.0146484Z"
+                  },
+                  {
+                      "path":  "figures/mip/mip_integration_timeseries_linear.png",
+                      "sha256":  "c050fdfe2575fbec504c76ed8bbcbb3c328d8e8b8aa3b45c348241091207faba",
+                      "size_bytes":  50203,
+                      "mtime_utc":  "2026-02-01T06:53:55.0206485Z"
+                  },
+                  {
+                      "path":  "figures/mip/mip_integration_timeseries_log.png",
+                      "sha256":  "196b571a3adc989f2552236d243a5158a9a7cf51599b0db663aa082c122ec4e2",
+                      "size_bytes":  82610,
+                      "mtime_utc":  "2026-02-01T06:53:55.0236447Z"
+                  },
+                  {
+                      "path":  "figures/mip/mip_singleton_variable_counts.png",
+                      "sha256":  "609a67f5ca07efd1010a8866a5152b955d56c247611f45c0a7561ad67f61c346",
+                      "size_bytes":  48664,
+                      "mtime_utc":  "2026-02-01T06:53:55.0266487Z"
+                  },
+                  {
+                      "path":  "figures/network/14_jaccard_prev_tick.png",
+                      "sha256":  "152ae5f6caa3f05a89775d43686ac554f7df91a0e8e242901cf863d45159792a",
+                      "size_bytes":  77355,
+                      "mtime_utc":  "2026-02-01T06:53:54.8616476Z"
+                  },
+                  {
+                      "path":  "figures/network/ccdf_in_degree.png",
+                      "sha256":  "36ae654fdbbddd1b83b49195653d2c9ba6fdf27d2df1c2ace005419751f10f9f",
+                      "size_bytes":  28606,
+                      "mtime_utc":  "2026-02-01T06:53:54.8686400Z"
+                  },
+                  {
+                      "path":  "figures/network/ccdf_out_degree.png",
+                      "sha256":  "26afe3c22b3a9457e337cff8d1a4458366b4146a68c0700e85e25cf8d933fd86",
+                      "size_bytes":  29006,
+                      "mtime_utc":  "2026-02-01T06:53:54.8696454Z"
+                  },
+                  {
+                      "path":  "figures/network/in_vs_out_scatter.png",
+                      "sha256":  "0dc28d9be5b4c81176cca510687e82591355886908ad26004d2b23e362106692",
+                      "size_bytes":  38162,
+                      "mtime_utc":  "2026-02-01T06:53:54.9946411Z"
+                  },
+                  {
+                      "path":  "figures/network/lz_complexity_pca_sign_timeseries.png",
+                      "sha256":  "3d7fc787ca6d4bdaec3b6bd8b594d855371f3a976facb9e28b316e0c8e8b1fd8",
+                      "size_bytes":  86067,
+                      "mtime_utc":  "2026-02-01T06:53:54.9996425Z"
+                  },
+                  {
+                      "path":  "figures/network/plot_1k_phase_portrait.png",
+                      "sha256":  "22cd3865a902a9864632e41290e777ddf23720b1a8f458334c6ec9fe8ac64915",
+                      "size_bytes":  131340,
+                      "mtime_utc":  "2026-02-01T06:53:55.0856421Z"
+                  },
+                  {
+                      "path":  "figures/network/pmf_in_degree.png",
+                      "sha256":  "76df61370ac670501f0a13370de087bb5c1e9f7dae29a4cddf144c925de82819",
+                      "size_bytes":  24489,
+                      "mtime_utc":  "2026-02-01T06:53:55.0876467Z"
+                  },
+                  {
+                      "path":  "figures/network/pmf_out_degree.png",
+                      "sha256":  "7bc762d6ffb74666185efa3fa7feb42bb1cd583c1c7250a389eb866f99644d24",
+                      "size_bytes":  25311,
+                      "mtime_utc":  "2026-02-01T06:53:55.0886570Z"
+                  },
+                  {
+                      "path":  "figures/network/sie_memory_vs_N.png",
+                      "sha256":  "6364bdd133c42b7cfc8db74e0684e9e0050cf4f6fddfce5ee99b8631b0f9df17",
+                      "size_bytes":  74210,
+                      "mtime_utc":  "2026-02-01T06:53:55.1176423Z"
+                  },
+                  {
+                      "path":  "figures/pci_like/pci_components_scatter.png",
+                      "sha256":  "021ffa1567c56938ab3a9628e16d3d6e68cc57c1e4d88a120a5b6ad2dd4cbefd",
+                      "size_bytes":  57707,
+                      "mtime_utc":  "2026-02-01T06:53:55.0766440Z"
+                  },
+                  {
+                      "path":  "figures/pci_like/pci_like_by_epoch_box.png",
+                      "sha256":  "db30d03110cb15d124aeced97e2b14ce3a03572ec84928ec04a36bdf2bfa9efe",
+                      "size_bytes":  71271,
+                      "mtime_utc":  "2026-02-01T06:53:55.0776474Z"
+                  },
+                  {
+                      "path":  "figures/pci_like/pci_like_events_vs_controls_box.png",
+                      "sha256":  "802df8450c293a1d86c674cbbfce603785ecc769a1dac782e0bd89b54989f167",
+                      "size_bytes":  40467,
+                      "mtime_utc":  "2026-02-01T06:53:55.0826418Z"
+                  },
+                  {
+                      "path":  "figures/predictive_mi/predictive_MI_vs_lag_PCA_epochs.png",
+                      "sha256":  "a5c21f9bed8455f96a2c97d3af51305da51ead50967e74e4bbfefafc8207ddb4",
+                      "size_bytes":  172618,
+                      "mtime_utc":  "2026-02-01T06:53:55.0956382Z"
+                  },
+                  {
+                      "path":  "figures/rolling/rolling_autocorr_entropy_lag1.png",
+                      "sha256":  "cbffa3c208eb96f41fa9ffab5fc8a60827609abccc7cb8376c1b9d57d7f1d9c6",
+                      "size_bytes":  66148,
+                      "mtime_utc":  "2026-02-01T06:53:55.1046441Z"
+                  },
+                  {
+                      "path":  "figures/rolling/rolling_autocorr_pca_speed_lag1.png",
+                      "sha256":  "703982833f2f5ebf103034f667cb6e5247095bcbf5d8e4670d9bf2884cdc7cec",
+                      "size_bytes":  94969,
+                      "mtime_utc":  "2026-02-01T06:53:55.1066393Z"
+                  },
+                  {
+                      "path":  "figures/rolling/rolling_variance_entropy.png",
+                      "sha256":  "fdd9c812e2274ddf3042609774e4e756bb5980b191eb646b6780799de5051299",
+                      "size_bytes":  61909,
+                      "mtime_utc":  "2026-02-01T06:53:55.1116483Z"
+                  },
+                  {
+                      "path":  "figures/rolling/rolling_variance_pca_speed.png",
+                      "sha256":  "275ecda7a35d67d2d0faf1d8c7c053cc4305ea03b54b861a9d208c8be362d8aa",
+                      "size_bytes":  80615,
+                      "mtime_utc":  "2026-02-01T06:53:55.1136435Z"
+                  },
+                  {
+                      "path":  "figures/spectral/spectral_slope_entropy.png",
+                      "sha256":  "1265b4368674f05db760b1576cf9948f5d8384ed62bf0dd82686a9e22a86679f",
+                      "size_bytes":  57429,
+                      "mtime_utc":  "2026-02-01T06:53:55.1226444Z"
+                  },
+                  {
+                      "path":  "figures/spectral/spectral_slope_firing_var_log.png",
+                      "sha256":  "63c24e8ecf78043767e988d5b112183c4dd09ebb3e2fa3cfc3a6011f69407be0",
+                      "size_bytes":  58525,
+                      "mtime_utc":  "2026-02-01T06:53:55.1246462Z"
+                  },
+                  {
+                      "path":  "figures/spectral/spectral_slope_fit_scatter.png",
+                      "sha256":  "ed634b202246dff2510b20b704f56f66ac131a0cefc216457ee63147b07d6b7c",
+                      "size_bytes":  38951,
+                      "mtime_utc":  "2026-02-01T06:53:55.1266479Z"
+                  },
+                  {
+                      "path":  "figures/spectral/spectral_slope_PC1.png",
+                      "sha256":  "ab2ee5a8b6ac486b4e969503f5fdac9bac47857fca32020a660c986d011edad3",
+                      "size_bytes":  55994,
+                      "mtime_utc":  "2026-02-01T06:53:55.1206460Z"
+                  },
+                  {
+                      "path":  "figures/tc_dtc_o/O_information_timeseries.png",
+                      "sha256":  "cc044b9fbb59eb4f22431397a0d13e37bb307bf7a88abf9ce65650b232561e3d",
+                      "size_bytes":  83771,
+                      "mtime_utc":  "2026-02-01T06:53:54.8656496Z"
+                  },
+                  {
+                      "path":  "figures/tc_dtc_o/TC_timeseries.png",
+                      "sha256":  "6db2ac7747ce983828bb1e12f80a031fec0bd26761bec718557075348b832d9a",
+                      "size_bytes":  85305,
+                      "mtime_utc":  "2026-02-01T06:53:54.8676461Z"
+                  },
+                  {
+                      "path":  "interactive/pca/pca_state_trajectory_interactive.html",
+                      "sha256":  "f43d8bcf93d3d2b0218297a6700c6b3f749dfceddf7d68024304fb6cb531522d",
+                      "size_bytes":  4988792,
+                      "mtime_utc":  "2026-02-01T06:53:55.0746401Z"
+                  },
+                  {
+                      "path":  "metadata/json/degree_tail_numeric.json",
+                      "sha256":  "08a701922be7bb700262675060b3134ffc3385894052f176bf3829700b237824",
+                      "size_bytes":  1072,
+                      "mtime_utc":  "2026-02-01T06:53:54.9526445Z"
+                  },
+                  {
+                      "path":  "README.md",
+                      "sha256":  "c3d0d87c4e169fdacad7f1ebd9006caa2eced8c89f08a75c57af3716644887d5",
+                      "size_bytes":  2380,
+                      "mtime_utc":  "2026-02-01T16:45:53.4729702Z"
+                  },
+                  {
+                      "path":  "regime_analysis/bundles/vdm_regime_decision_resultsets.zip",
+                      "sha256":  "514f040853627c2f5cf6145b9f457a2171e024cdb2f9613b02270a5699ed881f",
+                      "size_bytes":  7132329,
+                      "mtime_utc":  "2026-02-01T06:53:55.5238710Z"
+                  },
+                  {
+                      "path":  "regime_analysis/bundles/vdm_regime3_say_coherence_results.zip",
+                      "sha256":  "5d80e07693279abb8e68cb7d6ea0d4e1e7e95747d9707dca14a79d4e0c79a353",
+                      "size_bytes":  169185,
+                      "mtime_utc":  "2026-02-01T06:53:55.4548661Z"
+                  },
+                  {
+                      "path":  "regime_analysis/bundles/vdm_regime3_text_analysis.zip",
+                      "sha256":  "e1f0172e56fbbca5ec963628660ad6b51df5a6e28a3e90fd687317c9d8a1c684",
+                      "size_bytes":  869988,
+                      "mtime_utc":  "2026-02-01T06:53:55.4608666Z"
+                  },
+                  {
+                      "path":  "regime_analysis/bundles/vdm_regime3_text_analysis_v2.zip",
+                      "sha256":  "70d600c674101b0982aa92979027105cb0cfa7b8128d03a2d799d158b66ad5f5",
+                      "size_bytes":  1034678,
+                      "mtime_utc":  "2026-02-01T06:53:55.4778701Z"
+                  },
+                  {
+                      "path":  "regime_analysis/bundles/vdm_regime3_text_analysis_v3.zip",
+                      "sha256":  "5678f394ed93334ab63de2ca58b7cd5573ce5565aa7c771b674e607b77b089bb",
+                      "size_bytes":  724872,
+                      "mtime_utc":  "2026-02-01T06:53:55.4828696Z"
+                  },
+                  {
+                      "path":  "regime_analysis/bundles/vdm_text_regime_mapping_results 2.zip",
+                      "sha256":  "47ca0d87adf840e49706404a4f9f37984da68135cf6072ba3e390eb38db6c3f6",
+                      "size_bytes":  723106,
+                      "mtime_utc":  "2026-02-01T06:53:55.5837555Z"
+                  },
+                  {
+                      "path":  "regime_analysis/bundles/vdm_text_regime_mapping_results.zip",
+                      "sha256":  "47ca0d87adf840e49706404a4f9f37984da68135cf6072ba3e390eb38db6c3f6",
+                      "size_bytes":  723106,
+                      "mtime_utc":  "2026-02-01T06:53:55.5877514Z"
+                  },
+                  {
+                      "path":  "regime_analysis/README.md",
+                      "sha256":  "e619e0c67e6591a2fcaa7289df0a46e6d29dca5b2c15935be69a8badb15a2a8a",
+                      "size_bytes":  558,
+                      "mtime_utc":  "2026-02-01T16:45:50.3389532Z"
+                  },
+                  {
+                      "path":  "regime_analysis/tables/regime_emission_microstructure_on_text_ticks.csv",
+                      "sha256":  "ae790071c46fb7f6429a1f871995f5888c746a8700c056159119f72a841916a0",
+                      "size_bytes":  793,
+                      "mtime_utc":  "2026-02-01T06:53:55.1026483Z"
+                  },
+                  {
+                      "path":  "regime_analysis/tables/regime3_all_ticks.csv",
+                      "sha256":  "f95b8af611bc488119bf38f772e46b605c4b67a599536c798f97902bc43bc126",
+                      "size_bytes":  664289,
+                      "mtime_utc":  "2026-02-01T06:53:55.1016421Z"
+                  },
+                  {
+                      "path":  "tables/crosscorr/crosscorr_pca_speed_vs_has_text.csv",
+                      "sha256":  "6e07a515dc4b85bbf6a8b77289ff1faeddf6548da572850c0fcf87ea6253394c",
+                      "size_bytes":  10682,
+                      "mtime_utc":  "2026-02-01T06:53:54.9416447Z"
+                  },
+                  {
+                      "path":  "tables/crosscorr/crosscorr_pca_speed_vs_log_text_words.csv",
+                      "sha256":  "3c9eb8bf8bf3eee749e6871bd841e3b83c0d435877800a02a360941febe89877",
+                      "size_bytes":  10805,
+                      "mtime_utc":  "2026-02-01T06:53:54.9466401Z"
+                  },
+                  {
+                      "path":  "tables/granger/granger_fast_causal_density_by_epoch.csv",
+                      "sha256":  "e149e0f4ada0463fde6ddc534daf7eda060ba04e99f9cf13292cfb40a37a13a2",
+                      "size_bytes":  150,
+                      "mtime_utc":  "2026-02-01T06:53:54.9636431Z"
+                  },
+                  {
+                      "path":  "tables/granger/granger_fast_pvals_E1_low_entropy_baseline_1.csv",
+                      "sha256":  "0ac3142337a3376456f87086971943c7683975645b0330a9e6f9d2076ccdd800",
+                      "size_bytes":  798,
+                      "mtime_utc":  "2026-02-01T06:53:54.9646456Z"
+                  },
+                  {
+                      "path":  "tables/granger/granger_fast_pvals_E2_high_entropy_plateau.csv",
+                      "sha256":  "414666c64a8d356bb9bdb4c8d36703f9f5b16891f93b4f070b6e5405f8e62eb0",
+                      "size_bytes":  757,
+                      "mtime_utc":  "2026-02-01T06:53:54.9656546Z"
+                  },
+                  {
+                      "path":  "tables/granger/granger_fast_pvals_E3_low_entropy_baseline_2.csv",
+                      "sha256":  "619ea65e63ad8e999115ae98c99cb3bf8e6198d63546c41f83379cc10db57a7a",
+                      "size_bytes":  768,
+                      "mtime_utc":  "2026-02-01T06:53:54.9666489Z"
+                  },
+                  {
+                      "path":  "tables/granger/granger_fast_sig_E1_low_entropy_baseline_1.csv",
+                      "sha256":  "a50b279e2ee46e3a36e459a450cc617ef10d8a894e0a9a4de0c6640fb9398ae3",
+                      "size_bytes":  206,
+                      "mtime_utc":  "2026-02-01T06:53:54.9676541Z"
+                  },
+                  {
+                      "path":  "tables/granger/granger_fast_sig_E2_high_entropy_plateau.csv",
+                      "sha256":  "8f9f8ebbb0dd2401441a6aff7f7b3619889219b7aa9c7ccb7f92c96e21276ba5",
+                      "size_bytes":  206,
+                      "mtime_utc":  "2026-02-01T06:53:54.9686473Z"
+                  },
+                  {
+                      "path":  "tables/granger/granger_fast_sig_E3_low_entropy_baseline_2.csv",
+                      "sha256":  "3bb469129211a3bcea403618075899a9f32e246b57df2d9a91d3a1f48ea487db",
+                      "size_bytes":  206,
+                      "mtime_utc":  "2026-02-01T06:53:54.9696455Z"
+                  },
+                  {
+                      "path":  "tables/granger/granger_pvals_E1_low_entropy_baseline_1.csv",
+                      "sha256":  "d7ad2fb924692a8563b13286bdf51edb3af084ed5c4b1337b91b06e7a50666b1",
+                      "size_bytes":  768,
+                      "mtime_utc":  "2026-02-01T06:53:54.9786510Z"
+                  },
+                  {
+                      "path":  "tables/granger/granger_pvals_E2_high_entropy_plateau.csv",
+                      "sha256":  "7bce8060c6b6a453e306933fadb15e152cced673c0ab5a9fe88220bf2d79181d",
+                      "size_bytes":  730,
+                      "mtime_utc":  "2026-02-01T06:53:54.9796504Z"
+                  },
+                  {
+                      "path":  "tables/granger/granger_sig_E1_low_entropy_baseline_1.csv",
+                      "sha256":  "ad35b3902a5f5de80e228f1f465ef48878b15cc505677d1c696d95b612b28f2d",
+                      "size_bytes":  206,
+                      "mtime_utc":  "2026-02-01T06:53:54.9816465Z"
+                  },
+                  {
+                      "path":  "tables/granger/granger_sig_E2_high_entropy_plateau.csv",
+                      "sha256":  "8f9f8ebbb0dd2401441a6aff7f7b3619889219b7aa9c7ccb7f92c96e21276ba5",
+                      "size_bytes":  206,
+                      "mtime_utc":  "2026-02-01T06:53:54.9826442Z"
+                  },
+                  {
+                      "path":  "tables/lz_complexity/lz_complexity_pca_sign_timeseries.csv",
+                      "sha256":  "cbbd760ca03f33fde713a74028ecaee951f86bf0ffea3bcb47f3e0d5eaf813e0",
+                      "size_bytes":  16037,
+                      "mtime_utc":  "2026-02-01T06:53:54.9966405Z"
+                  },
+                  {
+                      "path":  "tables/macro_state/macro_state_markov_entropy_metrics.csv",
+                      "sha256":  "08422d0a36b63f64ffee8e7b02306ff53121bff1c42891efcef2758b2b3298ba",
+                      "size_bytes":  313,
+                      "mtime_utc":  "2026-02-01T06:53:55.0006433Z"
+                  },
+                  {
+                      "path":  "tables/macro_state/macro_state_stationary_E1_low_entropy_baseline_1.csv",
+                      "sha256":  "0b3cf9201b13828ce6142996646ccb2eefe68a109636041064b61423e202e933",
+                      "size_bytes":  169,
+                      "mtime_utc":  "2026-02-01T06:53:55.0026392Z"
+                  },
+                  {
+                      "path":  "tables/macro_state/macro_state_stationary_E2_high_entropy_plateau.csv",
+                      "sha256":  "0b5a2db0378697e746d2f6a9fbcab2761feb29be5df7f047bdf7919c2e14dd96",
+                      "size_bytes":  111,
+                      "mtime_utc":  "2026-02-01T06:53:55.0066454Z"
+                  },
+                  {
+                      "path":  "tables/macro_state/macro_state_stationary_E3_low_entropy_baseline_2.csv",
+                      "sha256":  "d3a513ae6df4397a8aa97b269d39e9121e0bf844b3e5cffae3ce5d1844b409ef",
+                      "size_bytes":  107,
+                      "mtime_utc":  "2026-02-01T06:53:55.0126515Z"
+                  },
+                  {
+                      "path":  "tables/metrics/MI_internal_state_vs_text_metrics.csv",
+                      "sha256":  "df21c7a2ef06c8374d478a4602bc26c7215d40caff06c67dca7be1e00a91f050",
+                      "size_bytes":  480,
+                      "mtime_utc":  "2026-02-01T06:53:54.8626375Z"
+                  },
+                  {
+                      "path":  "tables/mip/mip_integration_timeseries.csv",
+                      "sha256":  "dc77da7c56dc7b7e820cf9b364c2831d4605c4caba67c618c91650ee82826d49",
+                      "size_bytes":  17162,
+                      "mtime_utc":  "2026-02-01T06:53:55.0176460Z"
+                  },
+                  {
+                      "path":  "tables/mip/mip_singleton_counts_by_epoch.csv",
+                      "sha256":  "f7b6f1156ef92c066497473c452f5fcf422704c2d76d262c4367e3a57358708d",
+                      "size_bytes":  185,
+                      "mtime_utc":  "2026-02-01T06:53:55.0246434Z"
+                  },
+                  {
+                      "path":  "tables/pci_like/pci_like_by_epoch_summary.csv",
+                      "sha256":  "3a9645668f69c252f9b17b37c27fdd88333f20d926ad40e8195e4c3947bb8485",
+                      "size_bytes":  412,
+                      "mtime_utc":  "2026-02-01T06:53:55.0796403Z"
+                  },
+                  {
+                      "path":  "tables/pci_like/pci_like_controls.csv",
+                      "sha256":  "d487edd3a91c999c1b4d412313623a517ecdaccc6b883ae63911d0db817f31e5",
+                      "size_bytes":  2496,
+                      "mtime_utc":  "2026-02-01T06:53:55.0796403Z"
+                  },
+                  {
+                      "path":  "tables/pci_like/pci_like_events.csv",
+                      "sha256":  "be85be89ffeb95ef8f3d69c651e9508d4beb5d4522c80825dfc60fc7995a6f17",
+                      "size_bytes":  2589,
+                      "mtime_utc":  "2026-02-01T06:53:55.0816422Z"
+                  },
+                  {
+                      "path":  "tables/predictive_mi/predictive_MI_auc_summary.csv",
+                      "sha256":  "26d0df64fac9b303c050f85480c171b78c23f297b74cac584eac7bf1a6675c46",
+                      "size_bytes":  283,
+                      "mtime_utc":  "2026-02-01T06:53:55.0896422Z"
+                  },
+                  {
+                      "path":  "tables/predictive_mi/predictive_MI_top_peaks_PCA_by_epoch.csv",
+                      "sha256":  "726ebbf2653b60fa7c06b8514e154c25159b2a8858a9e4dfc4520a3989fa26d1",
+                      "size_bytes":  1040,
+                      "mtime_utc":  "2026-02-01T06:53:55.0916496Z"
+                  },
+                  {
+                      "path":  "tables/predictive_mi/predictive_MI_vs_lag_PCA.csv",
+                      "sha256":  "5e9002a5869ee83d3aaad8cc014300d72f4e21f21009a14d9daeed3eab7dcfea",
+                      "size_bytes":  148708,
+                      "mtime_utc":  "2026-02-01T06:53:55.0936448Z"
+                  },
+                  {
+                      "path":  "tables/rolling/rolling_var_autocorr_entropy.csv",
+                      "sha256":  "45ef017144b3bb56a7595d201b6fadc23ce048fde2c4dd2438e4db845bf9e134",
+                      "size_bytes":  21188,
+                      "mtime_utc":  "2026-02-01T06:53:55.1076481Z"
+                  },
+                  {
+                      "path":  "tables/rolling/rolling_var_autocorr_pca_speed.csv",
+                      "sha256":  "482565b410d80ab82c812af4e1847804a42b76a8cc0d15d71d2237d84b8bf108",
+                      "size_bytes":  20692,
+                      "mtime_utc":  "2026-02-01T06:53:55.1106400Z"
+                  },
+                  {
+                      "path":  "tables/spectral/spectral_exponent_slopes.csv",
+                      "sha256":  "197af6d4f2897075f76aa8ac335856836eb44ae6e20d00fdd1f5edac4f2aa946",
+                      "size_bytes":  1382,
+                      "mtime_utc":  "2026-02-01T06:53:55.1196414Z"
+                  },
+                  {
+                      "path":  "tables/tc_dtc_o/window_TC_DTC_O.csv",
+                      "sha256":  "08b3116d4b18ed9b2f66a7aec10c1b3359c7b1a9a8968b5e4353341088c9d0d8",
+                      "size_bytes":  25363,
+                      "mtime_utc":  "2026-02-01T06:53:55.5887567Z"
+                  },
+                  {
+                      "path":  "tables/ticks/text_tick_aggregates.csv",
+                      "sha256":  "444542f12c0a7f31242bb8a388724da5dcf7ad970a67a0861de6aa2ad9f0017c",
+                      "size_bytes":  225210,
+                      "mtime_utc":  "2026-02-01T06:53:55.1296459Z"
+                  },
+                  {
+                      "path":  "tables/ticks/tick_table_with_regime_and_change_score.csv",
+                      "sha256":  "86075af2ca04508081b79ee9030b21d2dba4a1056eda79fe6b2542393362d7b3",
+                      "size_bytes":  10987286,
+                      "mtime_utc":  "2026-02-01T06:53:55.2398736Z"
+                  },
+                  {
+                      "path":  "tables/ticks/unified_tick_table.csv",
+                      "sha256":  "e51830a771e0c2c92c428e41530e22be13e5b5657973e45a88acf8d85070a3c8",
+                      "size_bytes":  10837296,
+                      "mtime_utc":  "2026-02-01T06:53:55.3358695Z"
+                  },
+                  {
+                      "path":  "vdm_scale_free_1k_analysis/figures/in_degree_ccdf_loglog.png",
+                      "sha256":  "afa3ba0153decf4c79d3795802520605407ac0c4bd54ad9d1cbd34fa43c97daa",
+                      "size_bytes":  35527,
+                      "mtime_utc":  "2026-02-01T06:53:55.5348684Z"
+                  },
+                  {
+                      "path":  "vdm_scale_free_1k_analysis/figures/in_degree_lorenz.png",
+                      "sha256":  "1a19732f4741f088b6708c3a5af3a174eea3b21d7e9bfbdca5cc137b9f93d627",
+                      "size_bytes":  68304,
+                      "mtime_utc":  "2026-02-01T06:53:55.5368686Z"
+                  },
+                  {
+                      "path":  "vdm_scale_free_1k_analysis/figures/in_degree_rank_loglog.png",
+                      "sha256":  "357ce60bad434d5bf0cb870746757a017389b1e02b29667ce51a3a1b85c7da54",
+                      "size_bytes":  37575,
+                      "mtime_utc":  "2026-02-01T06:53:55.5378666Z"
+                  },
+                  {
+                      "path":  "vdm_scale_free_1k_analysis/figures/out_degree_ccdf_loglog.png",
+                      "sha256":  "5f519a5ba60d30cf67e16a6b82635ffff5fcc8a502ebd7b0354daf37827d62df",
+                      "size_bytes":  36349,
+                      "mtime_utc":  "2026-02-01T06:53:55.5398712Z"
+                  },
+                  {
+                      "path":  "vdm_scale_free_1k_analysis/figures/out_degree_ccdf_with_tail_fit.png",
+                      "sha256":  "bd05356872ef322c614243b0714b6ecd7be1f17e3dbb189a512b6756d87f6c1d",
+                      "size_bytes":  53924,
+                      "mtime_utc":  "2026-02-01T06:53:55.5408684Z"
+                  },
+                  {
+                      "path":  "vdm_scale_free_1k_analysis/figures/out_degree_lorenz.png",
+                      "sha256":  "a64946b2c95eda04b6da8b223da591a4bcb78f7b349d1ebded6b3c5af2bcfd89",
+                      "size_bytes":  69029,
+                      "mtime_utc":  "2026-02-01T06:53:55.5418662Z"
+                  },
+                  {
+                      "path":  "vdm_scale_free_1k_analysis/figures/out_degree_rank_loglog.png",
+                      "sha256":  "de4439a312ae772af73b5222ba17d8d467059e3d384dbf771ce7296e5c26fcef",
+                      "size_bytes":  38393,
+                      "mtime_utc":  "2026-02-01T06:53:55.5438713Z"
+                  },
+                  {
+                      "path":  "vdm_scale_free_1k_analysis/figures/total_degree_ccdf_loglog.png",
+                      "sha256":  "33397e2a2bcf1a0f9a5547fd8b0843d0582d8958a11fb1ef63394d37e6964445",
+                      "size_bytes":  37120,
+                      "mtime_utc":  "2026-02-01T06:53:55.5558687Z"
+                  },
+                  {
+                      "path":  "vdm_scale_free_1k_analysis/figures/total_degree_lorenz.png",
+                      "sha256":  "91d03244567773be3872772e5bc435e7b3cdb93f43a75d1200d55b66b8e2cb3c",
+                      "size_bytes":  69505,
+                      "mtime_utc":  "2026-02-01T06:53:55.5568730Z"
+                  },
+                  {
+                      "path":  "vdm_scale_free_1k_analysis/figures/total_degree_rank_loglog.png",
+                      "sha256":  "b43a4ae13010d01e8ad86f5a346a618e21ad1f3a383e652b4d5ba96a0660c16c",
+                      "size_bytes":  38515,
+                      "mtime_utc":  "2026-02-01T06:53:55.5578703Z"
+                  },
+                  {
+                      "path":  "vdm_scale_free_1k_analysis/metadata/provenance_and_degree_summary.json",
+                      "sha256":  "38abe0052a40d6606a3e6a578e65904158a5fd33dd749b7cb631caa787bc61bc",
+                      "size_bytes":  1669,
+                      "mtime_utc":  "2026-02-01T06:53:55.5448688Z"
+                  },
+                  {
+                      "path":  "vdm_scale_free_1k_analysis/README.md",
+                      "sha256":  "fe2beae9ff8f858ec5479637b43877a5af576cf7986f7f70409f6032dc0c9c39",
+                      "size_bytes":  1548,
+                      "mtime_utc":  "2026-02-01T16:45:49.9517508Z"
+                  },
+                  {
+                      "path":  "vdm_scale_free_1k_analysis/RESULTS_scale_free_heavytail_gini_1k.md",
+                      "sha256":  "69d5fde6fed3d0822685c47a9efcff24dbc4bde3e365525cd02d02ac11046d43",
+                      "size_bytes":  1529,
+                      "mtime_utc":  "2026-02-01T06:53:55.5278682Z"
+                  },
+                  {
+                      "path":  "vdm_scale_free_1k_analysis/scripts/generate_heavytail_scale_free_gini_pack_1k.py",
+                      "sha256":  "a12c8052689366c24c30ff68e86b6395e8073a6198cf37b2d17de86b17535346",
+                      "size_bytes":  17135,
+                      "mtime_utc":  "2026-02-01T06:53:55.5328697Z"
+                  },
+                  {
+                      "path":  "vdm_scale_free_1k_analysis/scripts/run_scale_free_analysis_1k.py",
+                      "sha256":  "819426cef95113940559ab4d1c543518809032579e82c76dc12c46356d73725a",
+                      "size_bytes":  10896,
+                      "mtime_utc":  "2026-02-01T06:53:55.5448688Z"
+                  },
+                  {
+                      "path":  "vdm_scale_free_1k_analysis/tables/connectome_node_degrees_strengths.csv",
+                      "sha256":  "24c52d547709b22643ecba101f9a2b847b7e3e7cc2b41ccac7f8bf168f883081",
+                      "size_bytes":  87894,
+                      "mtime_utc":  "2026-02-01T06:53:55.5318656Z"
+                  },
+                  {
+                      "path":  "vdm_scale_free_1k_analysis/tables/gini_metrics.csv",
+                      "sha256":  "ec71afb75a854d31efcb4f09ead452c99d477127650414cf422e8dadd547849b",
+                      "size_bytes":  212,
+                      "mtime_utc":  "2026-02-01T06:53:55.5328697Z"
+                  },
+                  {
+                      "path":  "vdm_scale_free_1k_analysis/tables/in_degree_ccdf.csv",
+                      "sha256":  "be59c2ca5f7f96fe025a937e70b3d340c1f6ee354c5c2ab3afb092ff3cef6105",
+                      "size_bytes":  1124,
+                      "mtime_utc":  "2026-02-01T06:53:55.5338694Z"
+                  },
+                  {
+                      "path":  "vdm_scale_free_1k_analysis/tables/out_degree_ccdf.csv",
+                      "sha256":  "be59c2ca5f7f96fe025a937e70b3d340c1f6ee354c5c2ab3afb092ff3cef6105",
+                      "size_bytes":  1124,
+                      "mtime_utc":  "2026-02-01T06:53:55.5388715Z"
+                  },
+                  {
+                      "path":  "vdm_scale_free_1k_analysis/tables/tail_fit_detailed_selected.csv",
+                      "sha256":  "0505b380c5ddecf8dc5fe93cb5f8a9075791e4aef88fe24e214ec36759e2d705",
+                      "size_bytes":  1253,
+                      "mtime_utc":  "2026-02-01T06:53:55.5458711Z"
+                  },
+                  {
+                      "path":  "vdm_scale_free_1k_analysis/tables/tail_fit_grid_in_degree.csv",
+                      "sha256":  "d6e22d8d5bca3dbecdca477a4490f4e8b67e973a5e6b248649d46cada73cdb41",
+                      "size_bytes":  4773,
+                      "mtime_utc":  "2026-02-01T06:53:55.5468669Z"
+                  },
+                  {
+                      "path":  "vdm_scale_free_1k_analysis/tables/tail_fit_grid_in_strength.csv",
+                      "sha256":  "08c44b226c9bf399f2dca2f73f18bab7292135f027f4a6de5937b635573ae615",
+                      "size_bytes":  3333,
+                      "mtime_utc":  "2026-02-01T06:53:55.5478681Z"
+                  },
+                  {
+                      "path":  "vdm_scale_free_1k_analysis/tables/tail_fit_grid_out_degree.csv",
+                      "sha256":  "0d681880db03e2da7bf03bab4a9eaf3fb3a3602caf723946f6cfc6923be622f9",
+                      "size_bytes":  4771,
+                      "mtime_utc":  "2026-02-01T06:53:55.5488668Z"
+                  },
+                  {
+                      "path":  "vdm_scale_free_1k_analysis/tables/tail_fit_grid_out_strength.csv",
+                      "sha256":  "4d1703a631f451adc63f795ad1c2468ae7449aa63622de3b4c31987496958fff",
+                      "size_bytes":  3335,
+                      "mtime_utc":  "2026-02-01T06:53:55.5488668Z"
+                  },
+                  {
+                      "path":  "vdm_scale_free_1k_analysis/tables/tail_fit_grid_total_degree.csv",
+                      "sha256":  "c492491ece5451a4353b28a8a2a8adfa73882380e7a55f7ce3f6b2a9b4192d91",
+                      "size_bytes":  4840,
+                      "mtime_utc":  "2026-02-01T06:53:55.5498704Z"
+                  },
+                  {
+                      "path":  "vdm_scale_free_1k_analysis/tables/tail_fit_grid_total_strength.csv",
+                      "sha256":  "2c93f07704336a255468b43e209e1afb1571cce7f6a2dff3537a6aae04fcc4ec",
+                      "size_bytes":  3342,
+                      "mtime_utc":  "2026-02-01T06:53:55.5508690Z"
+                  },
+                  {
+                      "path":  "vdm_scale_free_1k_analysis/tables/tail_fit_summary_degrees.csv",
+                      "sha256":  "09541057b73ec23328abb016d0a7c437c04d414f87fec681d24b06c9721e55e7",
+                      "size_bytes":  1062,
+                      "mtime_utc":  "2026-02-01T06:53:55.5518748Z"
+                  },
+                  {
+                      "path":  "vdm_scale_free_1k_analysis/tables/tail_fit_summary_degrees_global_min_ks.csv",
+                      "sha256":  "147af6055b7dbd4d2aa3fdda817b4ab81075c1357d70eaa5c58dbe611fb8e641",
+                      "size_bytes":  275,
+                      "mtime_utc":  "2026-02-01T06:53:55.5518748Z"
+                  },
+                  {
+                      "path":  "vdm_scale_free_1k_analysis/tables/tail_fit_summary_degrees_min_decades_0.80.csv",
+                      "sha256":  "adc0757bd29aae362e82ef7a2d6ed8d08c14373b918024bc0c640e4535fa638f",
+                      "size_bytes":  276,
+                      "mtime_utc":  "2026-02-01T06:53:55.5528696Z"
+                  },
+                  {
+                      "path":  "vdm_scale_free_1k_analysis/tables/tail_fit_summary_degrees_min_tailfrac_0.30.csv",
+                      "sha256":  "bddbd3f296e6ca74ed5885bc1882849d0e04f487e8d98eb5ac28e95de9813255",
+                      "size_bytes":  276,
+                      "mtime_utc":  "2026-02-01T06:53:55.5538731Z"
+                  },
+                  {
+                      "path":  "vdm_scale_free_1k_analysis/tables/tail_fit_summary_strengths.csv",
+                      "sha256":  "5f36fc4b84a26f2bb74214cfc480cc253c5c8e65c8209743c7def5788e3778c3",
+                      "size_bytes":  341,
+                      "mtime_utc":  "2026-02-01T06:53:55.5538731Z"
+                  },
+                  {
+                      "path":  "vdm_scale_free_1k_analysis/tables/total_degree_ccdf.csv",
+                      "sha256":  "a021f2af369af6a140bfb95b4b16a4ec623db24db0f8c953bc40a1195fd93fbc",
+                      "size_bytes":  2341,
+                      "mtime_utc":  "2026-02-01T06:53:55.5548725Z"
+                  }
+              ]
+}

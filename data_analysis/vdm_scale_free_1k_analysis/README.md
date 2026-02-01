@@ -13,10 +13,22 @@ Hashes (anti-tamper anchors):
 - utd_events.jsonl sha256: `a7043249bced1a0be35bb90293f0ceead30b9c5d41263356ef26de3589c740cf`
 
 ## Outputs
-- `tail_fit_summary_degrees.csv`: best tail fit for out/in/total degree
-- `tail_fit_grid_*.csv`: scan over xmin (for transparency)
-- `*_ccdf_loglog.png`, `*_rank_loglog.png`, `*_lorenz.png`
-- `out_degree_ccdf_with_tail_fit.png`: CCDF with fitted tail overlay
+
+This folder is intentionally kept **separate** because it contains key results (Gini + heavy-tail fingerprints).
+
+Organized layout:
+
+- `scripts/` — runnable analysis scripts
+- `tables/` — CSV outputs (CCDFs, tail-fit grids/summaries, Gini metrics)
+- `figures/` — PNG plots (CCDF/rank/Lorenz, fit diagnostics)
+- `metadata/` — JSON provenance/summaries
+
+Key outputs (now located under `tables/` / `figures/`):
+
+- `tables/tail_fit_summary_degrees.csv`: best tail fit for out/in/total degree
+- `tables/tail_fit_grid_*.csv`: scan over xmin (for transparency)
+- `figures/*_ccdf_loglog.png`, `figures/*_rank_loglog.png`, `figures/*_lorenz.png`
+- `figures/out_degree_ccdf_with_tail_fit.png`: CCDF with fitted tail overlay
 
 ## Reproduce
 ```bash
