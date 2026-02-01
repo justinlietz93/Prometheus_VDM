@@ -31,7 +31,7 @@
       ".so"
     ]
   },
-  "file_count": 2486,
+  "file_count": 2487,
   "files": [
     {
       "path": ".codacy/cli.sh",
@@ -270,7 +270,7 @@
     },
     {
       "path": "Derivation/Axioms/PROVENANCE_index.json",
-      "sha256": "35b71ec4700ddfb568a42e2dcc0ff7027d8ef416676d44989832ef62cbb5773d",
+      "sha256": "a7fcdd1d0d8f82d4061041f14ac6f36c1adf0506a0bb38837222c0e4d9cb29b9",
       "size": 1709
     },
     {
@@ -320,7 +320,7 @@
     },
     {
       "path": "Derivation/Causality/PROVENANCE_index.json",
-      "sha256": "52e5bd8b6cf1ae6f573d5f85aa45192d2b63ca8de932b95441d433a531570a2a",
+      "sha256": "dd7f0b04906691f96d0582b7a861e13d0e7d47cd7ec64cfb669e91c0e8cf6e11",
       "size": 965
     },
     {
@@ -330,7 +330,7 @@
     },
     {
       "path": "Derivation/Closure/PROVENANCE_index.json",
-      "sha256": "053bfc663b37c6ee6cc82b66e555e9d02df7e0332fee3d94bf905561eeb97d4f",
+      "sha256": "9f64c54a60550cf6020ca8ee40679c50df4fab2ead1ffc43aac2bf8697e62b7b",
       "size": 344
     },
     {
@@ -345,7 +345,7 @@
     },
     {
       "path": "Derivation/Collapse/PROVENANCE_index.json",
-      "sha256": "78163e0db8c4f61ccef6419e61289cd5cd9dd31659cda8e16b95a6b9e94b17b8",
+      "sha256": "74da8f9231db6cdb465164280656b5122307b92d51354a16c90f7ca3e5338166",
       "size": 1891
     },
     {
@@ -440,7 +440,7 @@
     },
     {
       "path": "Derivation/Complete-Formalisms/PROVENANCE_index.json",
-      "sha256": "cf5889958da7c3492c6bbfc075a1f2e2673d4c74b262588d82ec25509b535fca",
+      "sha256": "43345e7cd44f0cfef7e3ffb9461afb1ccacb97c7b836f27d1b1d53c9ec9ce62d",
       "size": 2403
     },
     {
@@ -455,7 +455,7 @@
     },
     {
       "path": "Derivation/Conservation_Law/PROVENANCE_index.json",
-      "sha256": "ed541416befeaf602c1e49d243e34b3daec301e5975a0bf4b2cd95f2c5c8231b",
+      "sha256": "a3c8c0da56a1a0890059d1c486c503c31c47cd8e197d645411258227fd73c199",
       "size": 931
     },
     {
@@ -510,7 +510,7 @@
     },
     {
       "path": "Derivation/Cosmology/PROVENANCE_index.json",
-      "sha256": "10e34bd013b5d142ab74660cb15b4be6bc70a545c817abc1949deacef8bd58f8",
+      "sha256": "e43c804ac2c39b7bd7dac22f7c7f49312482fcd46cec5c99959f8c0db5950818",
       "size": 11898
     },
     {
@@ -705,7 +705,7 @@
     },
     {
       "path": "Derivation/Dark_Matter/PROVENANCE_index.json",
-      "sha256": "ccf6fb5cbfc9ff4ad3afb4657553b55f2b73c488d42a3168dad533c495331fa3",
+      "sha256": "3dbbada58dc660934fa57d9b3604585ca05ce09d748ae6952720cf9ac9b54010",
       "size": 351
     },
     {
@@ -750,7 +750,7 @@
     },
     {
       "path": "Derivation/Dark_Photons/PROVENANCE_index.json",
-      "sha256": "d7f6ee30c7dcc6cfa7e485ce5dcf3e48f4d969216d9d4f303996a4b49a453666",
+      "sha256": "30b335a4bb4bd56092e553561316ea193ea2c03ea82ba44f180961416fabcb92",
       "size": 2499
     },
     {
@@ -985,7 +985,7 @@
     },
     {
       "path": "Derivation/Effective_Field_Theory/PROVENANCE_index.json",
-      "sha256": "7e057274a74172037971d340d87dbd8c73f82964e27a301f60d0dc004a73361c",
+      "sha256": "576f62b90550afafd3e16b105c858b6cafc8b75cadca1f1521f15f631f547a52",
       "size": 744
     },
     {
@@ -1010,7 +1010,7 @@
     },
     {
       "path": "Derivation/Entropy/PROVENANCE_index.json",
-      "sha256": "cdab0f9a27f2a4980623441b3990b4531f5b3a40d95d1d3c85d61356cae79034",
+      "sha256": "3eb255f2572e6d3b4e18481da4c598fe4c4a16727c16685a8020fe45625bd2ab",
       "size": 585
     },
     {
@@ -1030,7 +1030,7 @@
     },
     {
       "path": "Derivation/Fluid_Dynamics/PROVENANCE_index.json",
-      "sha256": "8c6b53bf48e85c128f595425eb0fc166e97085647f06f0574674bed59baa1caa",
+      "sha256": "e22abba700dee254bed29b78fe329ecaf8e09e0efa17b761d22ae5ef9fc3874f",
       "size": 1341
     },
     {
@@ -1055,7 +1055,7 @@
     },
     {
       "path": "Derivation/Foundations/PROVENANCE_index.json",
-      "sha256": "8d3449df66a76c73238f89dace90c6cbf4af083bb95f1807b87472ed4b5a9248",
+      "sha256": "978b36f75044146daaa6e220acc955d2577c3fbf45d3abd9137f04f5292ae2d3",
       "size": 859
     },
     {
@@ -1120,7 +1120,7 @@
     },
     {
       "path": "Derivation/Gravity/PROVENANCE_index.json",
-      "sha256": "4e5aaa7ef1f747ba5e01cd48018c4dc883ec6738d693fb66548385c63add63e6",
+      "sha256": "076097faf78a43d4fef5096659fd962de936e932d7dd06b48874b92dbb0c0fd2",
       "size": 1064
     },
     {
@@ -1140,7 +1140,7 @@
     },
     {
       "path": "Derivation/Hierarchy/PROVENANCE_index.json",
-      "sha256": "3ecbac5a7c79e8bd04521a857ea28c5f6a74564495a9aad795fdebcbfde5eec5",
+      "sha256": "0fc1b6abefa432f4dd8c10a88033d0b81a39adc429a48f2ddfacd35fcc601d84",
       "size": 1236
     },
     {
@@ -1160,7 +1160,7 @@
     },
     {
       "path": "Derivation/Information/PROVENANCE_index.json",
-      "sha256": "557caa164f3f34cc429976dc9830c529be723e6ea06cfc7e0a8f120d7429977d",
+      "sha256": "d5394096004c5353137896a4367284bc1ad3882b7574e70c2b384fd129dcd095",
       "size": 508
     },
     {
@@ -1175,7 +1175,7 @@
     },
     {
       "path": "Derivation/Intelligence_Model/PROVENANCE_index.json",
-      "sha256": "5a28926d669ff8441be04d24e030cd90bf4851cd3b124afac5eb736637c9e3f4",
+      "sha256": "3d6a452762364887362af5323206ae4446e870d32a6eaec4d682215d68f9b384",
       "size": 951
     },
     {
@@ -1415,7 +1415,7 @@
     },
     {
       "path": "Derivation/Metriplectic/PROVENANCE_index.json",
-      "sha256": "12a7531358f8b20b21ae9753f5e7fc08dbd73dfeb954b93a0da27d07cd9ee48e",
+      "sha256": "c9d21d1bfba4cd16e7e023d38e7ec8ab2cd4581af52261a442af7b14e2a72867",
       "size": 12507
     },
     {
@@ -1485,7 +1485,7 @@
     },
     {
       "path": "Derivation/Nonequilibrium/PROVENANCE_index.json",
-      "sha256": "8059a7a7de06e35a20112dcc6522a5c2420ea5ff87967b71fcc146bce9da3e96",
+      "sha256": "0c6eb5db483692f0d338c3586854b3b2309ad9ae13c7658a336661d5f48313b9",
       "size": 587
     },
     {
@@ -1530,7 +1530,7 @@
     },
     {
       "path": "Derivation/Notebooks/PROVENANCE_index.json",
-      "sha256": "e18c532bad44ec8010efc12128d12aa48eebf22d60d03f53f4f81aa45bf61884",
+      "sha256": "07b59e0aae7ada73fdea4d186c79d42573409c615b3a9f8d5cfa7fbcbdfb4317",
       "size": 1790
     },
     {
@@ -1545,7 +1545,7 @@
     },
     {
       "path": "Derivation/Qualia/PROVENANCE_index.json",
-      "sha256": "c2e282cb776b894510601ec682bacdcd4c3109938293395702394c918f20c675",
+      "sha256": "51604725402a604571bea1b074250e9463c85cf989427c8958110f005952c009",
       "size": 543
     },
     {
@@ -1560,7 +1560,7 @@
     },
     {
       "path": "Derivation/Quantum/PROVENANCE_index.json",
-      "sha256": "3a88453095983c85123bd981e2157a4f69130f01fcd60caf1f7a4056aacc2620",
+      "sha256": "8ecfffa48a17714ad1b43748703c21b2ed69c02424fa2f56658bbd4c4165ab34",
       "size": 2697
     },
     {
@@ -1630,7 +1630,7 @@
     },
     {
       "path": "Derivation/Quantum_Gravity/PROVENANCE_index.json",
-      "sha256": "404185be4c93be64b6542f009e07d07e8302c85b4b0d8306476a562b17a1c01f",
+      "sha256": "0f10dfe2acac3d0dbe900009d0c062b67827194e97be097de2d2cfe136371141",
       "size": 976
     },
     {
@@ -1655,7 +1655,7 @@
     },
     {
       "path": "Derivation/Reaction_Diffusion/PROVENANCE_index.json",
-      "sha256": "9880473a5218b3a49dffbd278d0438792331248504c0cda612e5440b3104da64",
+      "sha256": "c1f2416153b781b75bf59dc41c47112c0e10922171bcd57ae5639323333f9944",
       "size": 1425
     },
     {
@@ -1700,7 +1700,7 @@
     },
     {
       "path": "Derivation/Spinor/PROVENANCE_index.json",
-      "sha256": "2ad9a32915817a6ef261e30d4ae5cd8baa19239a0f03900a793226e04bad2008",
+      "sha256": "3a6e0f7ca8c556abf00b23b238aa107376d26b72a0106dd99084610f2ebb2a3d",
       "size": 730
     },
     {
@@ -1725,7 +1725,7 @@
     },
     {
       "path": "Derivation/Tachyon_Condensation/PROVENANCE_index.json",
-      "sha256": "4d02d614fdf59034e18dc9aa4040c5fd56700afb094b4c5ea09c8d1a989e7c3a",
+      "sha256": "5b1d4d9a1893cf247e5cf231339fb5146f5c7ec7e99f3815eddc9b7458f5847b",
       "size": 748
     },
     {
@@ -1895,7 +1895,7 @@
     },
     {
       "path": "Derivation/Thermodynamic_Routing/PROVENANCE_index.json",
-      "sha256": "c1e30ccfb0177ecaf34aa41166fce8ba98ebf4c91b871642a95ae144dbf389b8",
+      "sha256": "e3413bf6c9794da41073ad327f4cbf3eacfa6d01047d0d65770fe0ccd3f8d476",
       "size": 2454
     },
     {
@@ -1945,7 +1945,7 @@
     },
     {
       "path": "Derivation/Thermodynamics/Convection/PROVENANCE_index.json",
-      "sha256": "26c6d0dd8ef75aed2f8c2ce709ec53c6b24e624c77c25346ebf4af616b8627a6",
+      "sha256": "90af2d09e10c25f270b2a8db7d836dc38183b8291021ef277ead5b6d109aeed3",
       "size": 386
     },
     {
@@ -1965,7 +1965,7 @@
     },
     {
       "path": "Derivation/Topology/PROVENANCE_index.json",
-      "sha256": "6c9055a8476aa20a8559a38667191dcdf1d65d885df52fc34fa225a869d94200",
+      "sha256": "9c02a3d8124200e9bb76c1513ec4ed5934a59bec3376b79312e8ad6a7f0eb47c",
       "size": 683
     },
     {
@@ -1975,7 +1975,7 @@
     },
     {
       "path": "Derivation/Transport/Telegraph_From_Relaxation/PROVENANCE_index.json",
-      "sha256": "cbcfc9e35ab36bedc6a2c0d7f4b48a739e945a6fea2e075bba6b3a785461c19b",
+      "sha256": "606a53f8c21d0334e59d8870678b2a09517b4a80bd797dc5a346327372229fa2",
       "size": 393
     },
     {
@@ -1990,7 +1990,7 @@
     },
     {
       "path": "Derivation/Unification/PROVENANCE_index.json",
-      "sha256": "2ddd1c8a4fa37523fdd89a017fe108a1d6ec71741182868104893cafe50b9179",
+      "sha256": "69a45a6deab896731f1218dc4ccefce07b8ed9f8c7cf47bbf09f24096ca5fca5",
       "size": 336
     },
     {
@@ -7280,7 +7280,7 @@
     },
     {
       "path": "Derivation/z.CANONICAL_Algorithms/PROVENANCE_index.json",
-      "sha256": "cdbf4d562a524e65e6df73f2d57a06f56f968bf96ab57a4b01a245f94a08eb60",
+      "sha256": "07f60ab91acf31cefdb4668600b1668a6a00db1e7a7b277e06facdd2b7ae512b",
       "size": 341
     },
     {
@@ -7290,7 +7290,7 @@
     },
     {
       "path": "Derivation/z.CANONICAL_BC_IC_Geometries/PROVENANCE_index.json",
-      "sha256": "2ffc4725b5c65357562830a76899d57bb9abd7f12821a81985d151a90723020a",
+      "sha256": "40a041d55846cffab55f2e448ff09a3cd5b96bf542e5ea8a0f3ecef5e880d988",
       "size": 539
     },
     {
@@ -7305,7 +7305,7 @@
     },
     {
       "path": "Derivation/z.CANONICAL_Chronicles/PROVENANCE_index.json",
-      "sha256": "2a67233be46afffa44d9965f0f987197eadccb613eef04e6c003a6bdaef0f49c",
+      "sha256": "14cb3104f9bc918464ea4e61045236a98d8350edf14b5126de1defe87fcd5e77",
       "size": 517
     },
     {
@@ -7320,7 +7320,7 @@
     },
     {
       "path": "Derivation/z.CANONICAL_Complete_Formalisms/PROVENANCE_index.json",
-      "sha256": "fb796746371a1aa0dd29c870d0f61a7154ed08cde89f34b790e911b34a7b40d8",
+      "sha256": "a2d611f568b2ebe0532983dae8f8fa8c5d0d52a7f4c530e5ba0104cbd487a5a1",
       "size": 551
     },
     {
@@ -7335,7 +7335,7 @@
     },
     {
       "path": "Derivation/z.CANONICAL_Constants/PROVENANCE_index.json",
-      "sha256": "fbeea2180f2b74828f53d4a6d0cb4bc0f37254c74af8ff66146892454d39f935",
+      "sha256": "be0eefa5f6c5e99a53ba8f799e714e935e203a8e69221d8dfdbcb47178f23f51",
       "size": 338
     },
     {
@@ -7345,7 +7345,7 @@
     },
     {
       "path": "Derivation/z.CANONICAL_Data_Products/PROVENANCE_index.json",
-      "sha256": "ab652b8a8b7777d8ebbe6ce5b592c95a82b36d924e3b780f073e12b4069a9acf",
+      "sha256": "af25e339e1b6c801f101fa1f818b0a6ff751b274ce4f0d0de4aaceec7965d9c1",
       "size": 350
     },
     {
@@ -7355,7 +7355,7 @@
     },
     {
       "path": "Derivation/z.CANONICAL_Equations/PROVENANCE_index.json",
-      "sha256": "eb609f48610e83385adb9f4518c73fcb2c54a650e148b6e4dfc882b9ade0a7c3",
+      "sha256": "62b6024836bd8cf4fc2ca320ff5ec5042dc37c0bf6c11f9fba40562527f15c38",
       "size": 338
     },
     {
@@ -7365,7 +7365,7 @@
     },
     {
       "path": "Derivation/z.CANONICAL_Hypotheses/PROVENANCE_index.json",
-      "sha256": "924a8ee9506a8b9733c0e549e6b24ecb656db22903d59f788369646a3469ed27",
+      "sha256": "f473e41898c53ec37df409e3cdda4b34baca5db38680e58815b04870d0081c84",
       "size": 517
     },
     {
@@ -7380,7 +7380,7 @@
     },
     {
       "path": "Derivation/z.CANONICAL_Naming_Conventions/PROVENANCE_index.json",
-      "sha256": "80e8052849eddd89317ee5f8146f4d32df89c84cb953ac25ca72ba02f8dc1303",
+      "sha256": "79bbb99bbdc2cb859b4032f7199226e58272f67215c364f2e98e3502aabcfc40",
       "size": 549
     },
     {
@@ -7395,7 +7395,7 @@
     },
     {
       "path": "Derivation/z.CANONICAL_Open_Questions/PROVENANCE_index.json",
-      "sha256": "b8bee8e58186334f4c7ed363d47fb6c53be11630ceceb17a8b2509a8dc89049e",
+      "sha256": "1a1d0d127fbb6048ff27305c98b1990dfd7fbff0697a866acc57eef3fd7816fa",
       "size": 533
     },
     {
@@ -7410,7 +7410,7 @@
     },
     {
       "path": "Derivation/z.CANONICAL_Proposals/PROVENANCE_index.json",
-      "sha256": "8f92e99656ebe77426186f7cc6208e3848457a265c1a78851e16af3910ec4139",
+      "sha256": "4f1197e13c4c10ae8d9180cb2107cbe7ec741fe48215b947df0a406666201599",
       "size": 513
     },
     {
@@ -7425,7 +7425,7 @@
     },
     {
       "path": "Derivation/z.CANONICAL_Results/PROVENANCE_index.json",
-      "sha256": "0c3836015f61e3c4e14349a929ee10934151d82d3da014bd98811cd764c30739",
+      "sha256": "1b228b31620cdeb0621d01e0f861f94be074ad90fd5227824f314d580e7771ff",
       "size": 504
     },
     {
@@ -7530,7 +7530,7 @@
     },
     {
       "path": "Derivation/z.CANONICAL_Roadmap/PROVENANCE_index.json",
-      "sha256": "c248be03826d0e0adab69cf4bf6f9425d0a4994b07e072fc618e6fb01fa0a4fa",
+      "sha256": "ad31a0ac44bbb1c21e3954208157db9b666cea08bbeb191e539ca27a3c0d964a",
       "size": 4998
     },
     {
@@ -7545,7 +7545,7 @@
     },
     {
       "path": "Derivation/z.CANONICAL_Schemas/PROVENANCE_index.json",
-      "sha256": "c9a6249dbcc26635e32bcc0a32b6a5b757df680907320cb657ea565873b9fbdd",
+      "sha256": "b4580d8a526cc0c45d8f29cc3bb266f53df179666e7a4dce87212048d809d8f3",
       "size": 506
     },
     {
@@ -7560,7 +7560,7 @@
     },
     {
       "path": "Derivation/z.CANONICAL_Symbols/PROVENANCE_index.json",
-      "sha256": "98f12c7d91b9c7139eb79a78c250677cacc7ae3d12a736ad973e0bedb5ed065d",
+      "sha256": "e70d1622d0a60ef87140a1b4d0b84e3cb909ef222784948b8d317bb32d66b646",
       "size": 505
     },
     {
@@ -7575,7 +7575,7 @@
     },
     {
       "path": "Derivation/z.CANONICAL_Units_Normalization/PROVENANCE_index.json",
-      "sha256": "4f82830a369bfaa1e0845afc4483ffaa9393c723c94f4548c538e02085d5ca94",
+      "sha256": "a9236c8ae066b87c1288179ce79f70f1723a2be5235e7f1abd9784824a0ea98f",
       "size": 553
     },
     {
@@ -7590,7 +7590,7 @@
     },
     {
       "path": "Derivation/z.CANONICAL_Validation_Metrics/PROVENANCE_index.json",
-      "sha256": "cdfa09c6ed6af8cd0e3e9f5849cead7f945e37452bad1d7cb45d71967df3c7de",
+      "sha256": "0db9eb80728ed05b2fed6a4441272a1fa6573f96e4b31a593a584cee151e8ea5",
       "size": 549
     },
     {
@@ -7630,8 +7630,8 @@
     },
     {
       "path": "data_analysis/PROVENANCE_index.json",
-      "sha256": "3c778c2d30ad2bf6ddfe702da519b67b89c605c894f00a9011edc7b38a19bb26",
-      "size": 49504
+      "sha256": "823475932b849e6c3448d5cc88bb8e5137e2fd9f099ba198dece25e45d0e5362",
+      "size": 36216
     },
     {
       "path": "data_analysis/README.md",
@@ -7682,6 +7682,11 @@
       "path": "data_analysis/bundles/vdm_deep_transduction_regimes_pca_1k_pack_v2.zip",
       "sha256": "ec0a2a9d8afe4a3b56d8721ae64dd0d3109ed46bab10c74b72bcee6033fe00e4",
       "size": 2240185
+    },
+    {
+      "path": "data_analysis/bundles/vdm_high_impact_scalar_analysis_v1.zip",
+      "sha256": "b0668cfec96ab1d91c0665db925ec74c253b5480e2bbb6bac81c13299083121d",
+      "size": 16751918
     },
     {
       "path": "data_analysis/bundles/vdm_new_consciousness_results 2.zip",
@@ -12464,11 +12469,11 @@
       "size": 1932
     }
   ],
-  "generated_utc": "2026-02-01T18:04:38.440001Z",
-  "git_commit": "f0e696a3a521ef587f3f6b412a656441a56a6733",
+  "generated_utc": "2026-02-01T23:51:49.809002Z",
+  "git_commit": "eea39793f591db1003b00d072b012ca2a9fce738",
   "git_dirty": true,
   "repo_root": "/home/runner/work/Prometheus_VDM/Prometheus_VDM",
   "schema": "vdm.provenance.manifest.v1",
-  "total_bytes": 568180827,
-  "tree_hash": "e208974615dbf8416f09329f086b394ed140e497e4b1140e84bf1b71834a14d6"
+  "total_bytes": 584919457,
+  "tree_hash": "784ced6a4541566cd5b4e42edba5ac712895431a464e562b39832ec42ea9177a"
 }
