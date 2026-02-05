@@ -1,0 +1,9 @@
+tick,prev_state,state_label,has_input_at_snapshot,type
+1260,Dream/Integration-like,Reading-like,1.0,D->R
+6060,Reading-like,Dream/Integration-like,0.0,R->D
+7020,Dream/Integration-like,Reading-like,1.0,D->R
+8880,Reading-like,Dream/Integration-like,0.0,R->D
+9180,Dream/Integration-like,Reading-like,1.0,D->R
+22560,Reading-like,Dream/Integration-like,,R->D
+22980,Dream/Integration-like,Reading-like,,D->R
+25500,Reading-like,Dream/Integration-like,0.0,R->D

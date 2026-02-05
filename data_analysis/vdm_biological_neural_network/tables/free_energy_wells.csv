@@ -1,0 +1,3 @@
+cluster,nnz_center,gini_center,note
+0,14877.957333333334,0.540327014428388,sparse/high-gini (reading-like)
+1,21035.563636363637,0.4403829597363048,dense/low-gini (dream/integration-like)
