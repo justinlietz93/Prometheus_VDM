@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+repo_root="$(git rev-parse --show-toplevel)"
+cd "$repo_root"
+
+# Update sha256/bytes for entries that have local_path (bounded by max bytes)
+python ./tools/runs/build_remote_artifacts_index.py --update-json --write
+
+# Always ensure the markdown index matches the JSON
+python ./tools/runs/build_remote_artifacts_index.py --write
+
+# Stage the updated index files if present
+git add runs/REMOTE_ARTIFACTS.json runs/REMOTE_ARTIFACTS.md 2>/dev/null || true

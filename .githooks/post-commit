@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Optional auto-push (OFF by default). Enable by exporting:
+#   VDM_AUTO_PUSH=1
+if [[ "${VDM_AUTO_PUSH:-}" == "1" ]]; then
+  git push
+fi
