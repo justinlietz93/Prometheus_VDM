@@ -8,6 +8,10 @@
 
 ***Current Status:*** Active development.
 
+<div style="text-align: center;">
+<img width="800" height="800" alt="logo" src="https://github.com/user-attachments/assets/b22adc5d-f126-4865-9e47-71af5fa4f7f7" />
+</div>
+
 > **Author:** Justin K. Lietz  
 > **Contact:** <justin@neuroca.ai>  
 > **Data Access:** [Google Drive](https://drive.google.com/drive/folders/1KSgZE4Y9mFmFiChhEphWbb1EuLzgv3AW?usp=sharing)  
@@ -26,6 +30,18 @@
 
 > [![Static Badge](https://img.shields.io/badge/Academic%2FCommercial%20Dual-License?label=LICENSE&color=%23fff200&link=https%3A%2F%2Fgithub.com%2FNeuroca-Inc%2FPrometheus_Void-Dynamics_Model%2Fblob%2Fmain%2FLICENSE.md)](/LICENSE.md)  
 
+## DOIs
+
+***T4. Counterfactual Echo Gain (CEG): A Metriplectic Assisted-Echo Experiment Proposal in VDM***  
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17567396.svg)](https://doi.org/10.5281/zenodo.17567396)
+
+***T8. Axiom 8 Candidate: The Lietz Infinity Resolution Conjecture***  
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17503343.svg)](https://doi.org/10.5281/zenodo.17503343)
+
+***A Logarithmic First Integral for the Logistic On Site Law in Void Dynamics***  
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17220869.svg)](https://doi.org/10.5281/zenodo.17220869)
+
+
 ## 🔥News
 
 - **January 31, 2026**
@@ -38,41 +54,7 @@ I am not alleging copying — I’m requesting correct attribution and citation 
   - Published results from the Counterfactual Echo Gain test to [Zenodo](https://doi.org/10.5281/zenodo.17567396)
 - **November 9, 2025**
   - VDM will be upgrading to a dedicated custom [physics engine](/docs/image-gallery/README.md) that further enhances and improves scalability of the runner gating discipline, reporting, and automated unambiguous rule enforcement. This is being built into a fork of [Void IDE](https://github.com/voideditor/void.git) as a code editor / computational physics lab.
-- **November 6, 2025**
-  - 7 complete [formalisms](/Derivation/Complete-Formalisms) have been derived for VDM and documented as some of the final remaining pieces in the work to T8 Axiom 8 candidate.
-- **November 4, 2025**
-  - [Assisted‑Echo T4 (prereg v1c)](/Derivation/Metriplectic/T4_PROPOSAL_CEG_Metriplectic_Assisted-Echo_Experiment.md) rerun with instrument + plotting fixes:
-    - Per‑seed plotting for A2/A5/B11 removes cross‑seed “seed‑chord” artifacts in overlays (error, ΔΣ, λ‑telemetry).
-    - Noether (G1) tolerance scaled to instrument level: tol = max(1e-12, 10·eps·√N·max(h0,1)); routing remains governed by G1–G4 aggregation.
-    - Reruns launched for N∈{512,1024}, dt∈{0.01,0.02,0.04}. Early results: N=512 dt=0.01 and N=512 walker dt=0.02 routed to main outputs with G1–G4 **PASS**; dt=0.04 routed to failed_runs pending CFL tightening.
-    - Artifacts (PNG/CSV/JSON + figure packs) under Derivation/code/outputs/{figures,logs}/metriplectic, tag: assisted-echo-t4-prereg-v1c.
-  - **Next:** upgrade G4 measurement to a multi‑point Δt fit (same thresholds) to harden RP‑1 decisions.
-- **November 1, 2025**
-  - Published early draft of the proposed A8 Axiom candidate to [Zenodo](https://zenodo.org/records/17503344) for provenance.
-- **October 31, 2025**
-  - Added a T8 grade proposal for a new Axiom candidate as [A8 - Lietz Infinity Conjecture](/Derivation/Axioms/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md) which provides an elegant explanation for hierarchy and structure.
-- **October 30, 2025**  
-  - Added a [historical/](/docs/historical) folder including early original work like:
-    - A self healing knowledge graph using [Topological Data Analysis](/docs/historical/Emergent_TDA/20250402_TDA_KG_Metrics_ProtocolOutput.md)
-    - As well as a [Self Improvement Engine](/docs/historical/SIE/20250402_SIE_Stability_Analysis_ProtocolOutput.md) that integrates multiple reward components like novelty, self benefit, habituation, and TD error into a single "total reward" signal used to modulate its own neural plasticity for stable self-improvement that avoids weight saturation.
-  - Validated the Counterfactual Echo Gain [hypothesis](/Derivation/Metriplectic/T4_PROPOSAL_CEG_Metriplectic_Assisted-Echo_Experiment.md) by proving the trustworthiness and accuracy of the instrument, and showing that echo assist does modulate and improve the performance of a self aware system with 0 difference in cost compared to baseline.
-- **October 28, 2025**  
-  - Published an [article](https://medium.com/p/2b4f5c7d23c9/edit) on Medium about upcoming work.
-    - Published a ["The Physics of Choice"](https://youtu.be/tR3G9Z2ScAc?si=ZFdQVBaqBck06YSW) video, along with a couple other videos on YouTube.
-- **October 23, 2025:**  
-  - Created a sparsely populated [CANON_PROGRESS.md](/CANON_PROGRESS.md) document to post updates on private work to prevent this public repo from going stale.
-- **September 29, 2025:**  
-  - First public code release + creation of private Void Dynamics package which can now be imported and run in this repository using workflows and repository secrets.
-- **September 28, 2025:**  
-  - Posted two pre-prints to [Zenodo](https://doi.org/10.5281/zenodo.17220869). If you've published similar or relevant work on Reaction-Diffusion in the past 3 years on arXiv and want to support this work by endorsing me in a related category, submit an issue, post in the discussion board, or send me an email with `Subject: RD Endorsement` to get my attention. It would be much appreciated!
-- **August 21, 2025:** Launched public repo
-- ...
-- **March, 2025**  
-  - Released first falsifiable, reproducible simulations that validated initial claims.
-- **February, 2025**  
-  - SIE and Emergent KG + Real-Time TDA show very strong statistically significant findings, making feasible the entire model
-- **October, 2024**  
-  - Initial realization of the idea.
+- ... Full news at [NEWS.md](/NEWS.md)
 
 ### 🗺️ Roadmap (Oct~Dec 2025)
 
@@ -81,69 +63,7 @@ I am not alleging copying — I’m requesting correct attribution and citation 
   2. Converting more of the cosmology/gauge scaffolds into **RESULTS** documents tied to real or mock data.
   3. Packaging some of the chains (e.g., “metriplectic engine”, “A8 hierarchy → FRW”, “spinor+gauge emergence”) into stand‑alone papers.
 
-- Unifying the VDM foundation
-  - Stabilize **Complete Formalism** (CF*) ladder prerequisites ☑️
-  - Void-lensing interface program (highest priority) ☑️
-  - Lattice fields & continuum limits (CF10) ☑️
-  - CMB polarization birefringence gate ☑️
-  - Quantum Geometric Tensor to Metriplectic Brackets formalism ✅
-  - Contact Geometry to Metripliplectic Evolution formalism ✅
-  - Axiom 8 - Lietz Infinity Resolution Conjecture (Hierarchical Tachyonic Interfaces) ✅
-  - Telegraph-Fisher Causality formalism (Finite-Speed Transport) ✅
-  - Integrability Closure formalism (No hidden conserved quantities) ✅
-  - Information Geometry Foundations — Fisher and Ruppeiner Metrics for VDM M-Limb ✅
-  - Measurement Theory Foundations — Decoherence and Born Rule for VDM ✅
-  - Spinor Emergence via Domain-Wall Fermions in VDM formalism ✅
-  - Gauge Field Emergence via Berry Connection in VDM formalism ✅
-  - VDM Lattice Hydrodynamics, Continuum Limit, and Regularity Program formalism ✅
-  - Define the objects and rules everything else must obey. ✅
-  - Start from quantum geometry and show why a J⊕M evolution is forced ✅
-    - Finish CF1: explicit formulae for `𝓘[Ψ]` and `Σ[Ψ]` from QGT; prove metriplectic brackets satisfy A4. ☑️
-    - Close Schrödingerization proof to show “J⊕M is a shadow of pure J” in extended space. ☑️
-  - Prove that a scalar lattice with J⊕M really behaves like the void field ✅
-    - Package this into one “VDM metriplectic engine” paper (KG + RD + structure + Strang). I already have all the results; this is mostly editorial. ☑️
-  - Explain why nothing outruns c, starting from RD‑like flows. ✅
-    - Finish a RESULTS doc for Causal‑DAG audit on the KG / RD sims to empirically show: inferred cone ≈ analytic cone ☑️
-  - Go from smooth void to structured interfaces (proto‑“lumps” / material features). ✅
-    - One clean A8→FRW bridge paper: “tachyonic interfaces → effective ρ(a), p(a), H(a)” with explicit EOS fits ☑️
-  - Turn the scalar lattice into fermionic matter degrees of freedom. ✅
-    - Companion CF8 notebook with an explicit domain‑wall spectrum plot and residual mass scaling ~ e^{-λL₅} ☑️
-  - Get Maxwell/Yang–Mills fields as geometry, not extra particles. ✅
-    - Compute Berry curvatures from an explicit CF8 lattice model, show emergent U(1) field satisfies the Maxwell‑like equations in the long‑wavelength limit ☑️
-    - Extend the formalism in H0XX into at least one concrete SU(2) toy example ☑️
-  - Treat the plastic lattice + A8 hierarchy as the “dark sector” ✅
-    - Define an explicit “lattice stress–energy tensor” T^μν_void[Φ] and show: ☑️
-      - homogeneous part → dark‑energy‑like EOS ☑️
-      - hierarchical clumping → halo‑like effective DM (at least in 1D/2D) ☑️
-    - Frame a pilot SkyrmeSIDM × VDM test using the T5 proposal ☑️
-  - From lattice stress–energy to something GR‑like in weak field, then test ringdown / horizons. ✅
-    - Weak‑field: derive an effective Poisson equation for small lattice perturbations; fit to rotation curves / lensing in at least one toy halo ☑️
-    - Strong‑field: show that certain tachyonic interface configurations behave like horizon‑like regions (redshift, QNM spectrum) and compare to GR ringdown data via the ringdown meter ☑️
-  - Connect A8 + metriplectic dynamics to the 0.55 packing motif (proteins, random close packing, etc.). ✅
-    - A small CF‑level derivation: show a simple metriplectic packing model tends toward ϕ≈0.55 in 2D/3D random packing (e.g., via Monte Carlo or granular‑like sim) ☑️
-    - Explicit link from A8 interfaces + reaction‑diffusion morphogenesis → “prebiotic” cluster statistics ☑️
-  - Use the same machinery to hit the standard checklist: SM fields, BH population, CMB, etc. ✅
-    - For each H*/T* cosmology doc: at least one concrete meter/RESULTS file that touches real data (CMB, LSS, ringdown, BH mass function, etc.) even in toy form ☑️
-- Notebook mirrors of each test ☑️
-- 100% Reproducible, falsifiable claims ✅
-- Currently working real time, zero training, self driven model ☑️
-- Online causality based learning ✅
-- Physics driven intelligence ✅
-
-## DOIs
-
-***T4. Counterfactual Echo Gain (CEG): A Metriplectic Assisted-Echo Experiment Proposal in VDM***
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17567396.svg)](https://doi.org/10.5281/zenodo.17567396)
-
-***T8. Axiom 8 Candidate: The Lietz Infinity Resolution Conjecture***  
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17503343.svg)](https://doi.org/10.5281/zenodo.17503343)
-
-***A Logarithmic First Integral for the Logistic On Site Law in Void Dynamics***  
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17220869.svg)](https://doi.org/10.5281/zenodo.17220869)
-
-<div style="text-align: center;">
-<img width="800" height="800" alt="logo" src="https://github.com/user-attachments/assets/b22adc5d-f126-4865-9e47-71af5fa4f7f7" />
-</div>
+- Unifying the VDM foundation (Full Roadmap [here](/Derivation/z.CANONICAL_Roadmap/ROADMAP_REDIRECT.md))
 
 ---
 
