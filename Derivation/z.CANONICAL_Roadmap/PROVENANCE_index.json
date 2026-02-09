@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-02-08T20:12:17.051363Z",
+  "generated_utc": "2026-02-09T03:12:18.422195Z",
   "items": [
     {
       "path": "Derivation/z.CANONICAL_Roadmap/00_ROADMAP.md",
@@ -93,13 +93,18 @@
     },
     {
       "path": "Derivation/z.CANONICAL_Roadmap/Current_TODO.md",
-      "sha256": "8a8b7c6a162fbed923e0b75495c24bd768fe25a03e29a09de6ade0e268fc7bda",
-      "size": 20351
+      "sha256": "1f80c6ce930a216b6d0c7e340b6afe10ac8de1734d395ec4911e5c9aaa49ab86",
+      "size": 20326
     },
     {
       "path": "Derivation/z.CANONICAL_Roadmap/README.md",
       "sha256": "944239fc87db6a8407fa56805749c5add31efca0a2a47f6cb81fb9131a9967f3",
       "size": 978
+    },
+    {
+      "path": "Derivation/z.CANONICAL_Roadmap/ROADMAP_REDIRECT.md",
+      "sha256": "794e2ce6d638cb7aa58d0b77dee6a74cba4edf5a74825f91d74e7bc74b6f140b",
+      "size": 4732
     }
   ],
   "root": "Derivation/z.CANONICAL_Roadmap",
