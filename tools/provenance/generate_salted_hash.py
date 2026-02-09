@@ -103,21 +103,67 @@ def _populate_provenance_indexes() -> None:
     if not deriv_root.exists():
         raise SystemExit(f"[error] Derivation directory not found at {deriv_root}")
 
-    index_paths = list(deriv_root.rglob("PROVENANCE_index.json"))
-    if not index_paths:
-        print("[provenance-index] no PROVENANCE_index.json files found under Derivation/")
+    SKIP_DIR_NAMES = {
+        ".git",
+        "__pycache__",
+        ".ipynb_checkpoints",
+        ".pytest_cache",
+        ".mypy_cache",
+        ".ruff_cache",
+    }
+    SKIP_FILE_NAMES = {
+        ".DS_Store",
+        "Thumbs.db",
+    }
+
+    def _should_skip_file(path: Path, *, root: Path, exclude_top_level: set[str]) -> bool:
+        if any(part in SKIP_DIR_NAMES for part in path.parts):
+            return True
+        if path.name in SKIP_FILE_NAMES:
+            return True
+        try:
+            rel = path.relative_to(root)
+        except ValueError:
+            return False
+        if rel.parts and rel.parts[0] in exclude_top_level:
+            return True
+        return False
+
+    # Existing derivation provenance indexes (domain-owned roots)
+    targets: List[Tuple[Path, Path, set[str]]] = []
+    for idx_path in deriv_root.rglob("PROVENANCE_index.json"):
+        targets.append((idx_path, idx_path.parent, set()))
+
+    # Ensure provenance coverage for code + outputs trees.
+    # Note: exclude outputs from the code-root index so code changes don't
+    # churn whenever run artifacts change.
+    code_root = deriv_root / "code"
+    if code_root.exists():
+        targets.append((code_root / "PROVENANCE_index.json", code_root, {"outputs"}))
+        outputs_root = code_root / "outputs"
+        if outputs_root.exists():
+            targets.append((outputs_root / "PROVENANCE_index.json", outputs_root, set()))
+
+    # Dedupe targets by index path (prefer explicit targets if duplicates exist)
+    dedup: dict[Path, Tuple[Path, Path, set[str]]] = {}
+    for idx_path, root, exclude_top_level in targets:
+        dedup[idx_path.resolve()] = (idx_path, root, exclude_top_level)
+    targets = list(dedup.values())
+    if not targets:
+        print("[provenance-index] no provenance index targets found under Derivation/")
         return
 
     now = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
 
-    for idx_path in index_paths:
-        domain_root = idx_path.parent
+    for idx_path, domain_root, exclude_top_level in targets:
         items = []
         for pth in domain_root.rglob("*"):
             if not pth.is_file():
                 continue
             # Avoid self-references and manifest/provenance recursion
             if pth.name in {"PROVENANCE_index.json", "PROVENANCE_manifest.json"}:
+                continue
+            if _should_skip_file(pth, root=domain_root, exclude_top_level=exclude_top_level):
                 continue
             base_hex, size = _sha256_file(pth)
             rel = pth.relative_to(repo_root).as_posix()

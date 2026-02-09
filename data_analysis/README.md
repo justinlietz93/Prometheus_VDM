@@ -1,6 +1,6 @@
 # Data analysis results (organized)
 
-This folder contains analysis outputs intended to be easy to browse and cite.
+This folder contains analysis outputs intended to be easy to browse and cite. The entire file is also kept on [Google Drive](https://drive.google.com/drive/folders/1-Ek9CIl2I53W0q1AKdf3f6p9nJ80MK2c?usp=drive_link).
 
 ## Top-level layout
 

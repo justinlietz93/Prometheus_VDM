@@ -10,6 +10,7 @@
 
 > **Author:** Justin K. Lietz  
 > **Contact:** <justin@neuroca.ai>  
+> **Data Access:** [Google Drive](https://drive.google.com/drive/folders/1KSgZE4Y9mFmFiChhEphWbb1EuLzgv3AW?usp=sharing)  
 > **Zenodo Community:** [Void Dynamics Model](https://zenodo.org/communities/void-dynamics-model/records?q=&l=list&p=1&s=10&sort=newest)  
 > <a href="https://orcid.org/0009-0008-9028-1366"><img src="https://img.shields.io/badge/ORCID-0009--0008--9028--1366-blue?" alt="ORCID: 0009-0008-9028-1366"></a>  
 >

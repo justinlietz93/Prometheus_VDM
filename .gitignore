@@ -63,6 +63,12 @@ secrets/*
 # Outputs
 *.zip
 runs/*
+
+# Runs are hosted off-repo (e.g., Google Drive). Keep these local zips out of git.
+runs/20260204_130222.zip
+runs/20260204_141359.zip
+runs/archived.zip
+
 code_crawler_results/*
 *.db
 events.jsonl

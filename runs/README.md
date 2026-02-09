@@ -16,7 +16,7 @@ This folder is intentionally **not** treated like a normal source-controlled dir
   - `runs/REMOTE_ARTIFACTS.md` (human-friendly index)
   - `runs/REMOTE_ARTIFACTS.json` (machine-friendly source of truth)
 - Off-repo: large artifacts (zips, logs, state files)
-  - Google Drive folder(s) / other artifact store
+  - [Google Drive folder(s)](https://drive.google.com/drive/folders/135R6JmoYdFRsVnyCQUqEMDtdLNl-tm0t?usp=sharing) / other artifact store
 
 ## Recommended workflow
 

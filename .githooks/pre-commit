@@ -4,11 +4,107 @@ set -euo pipefail
 repo_root="$(git rev-parse --show-toplevel)"
 cd "$repo_root"
 
-# Update sha256/bytes for entries that have local_path (bounded by max bytes)
-python ./tools/runs/build_remote_artifacts_index.py --update-json --write
+py_bin="python"
+if ! command -v "$py_bin" >/dev/null 2>&1; then
+	py_bin="python3"
+fi
 
-# Always ensure the markdown index matches the JSON
-python ./tools/runs/build_remote_artifacts_index.py --write
+# Remote artifacts index (runs/REMOTE_ARTIFACTS.*)
+# Only touch these files when needed (so commits stay fast).
+remote_artifacts_needs_update=0
+remote_artifacts_json="runs/REMOTE_ARTIFACTS.json"
+remote_artifacts_md="runs/REMOTE_ARTIFACTS.md"
+remote_artifacts_tool="tools/runs/build_remote_artifacts_index.py"
+
+if [[ -f "$remote_artifacts_json" ]]; then
+	# If JSON or tool changed (staged or unstaged), we should regenerate.
+	if git diff --name-only --cached --diff-filter=ACMRTUXB -- "$remote_artifacts_json" "$remote_artifacts_tool" | grep -q . 2>/dev/null; then
+		remote_artifacts_needs_update=1
+	fi
+	if git diff --name-only --diff-filter=ACMRTUXB -- "$remote_artifacts_json" "$remote_artifacts_tool" | grep -q . 2>/dev/null; then
+		remote_artifacts_needs_update=1
+	fi
+
+	# If JSON contains entries with local_path but missing sha256/bytes, update.
+	if [[ "$remote_artifacts_needs_update" == "0" ]]; then
+		"$py_bin" - <<'PY' || remote_artifacts_needs_update=1
+import json
+from pathlib import Path
+
+root = Path('.').resolve()
+pth = root / 'runs' / 'REMOTE_ARTIFACTS.json'
+
+try:
+		data = json.loads(pth.read_text(encoding='utf-8'))
+except Exception:
+		raise SystemExit(0)
+
+arts = data.get('artifacts', [])
+if not isinstance(arts, list):
+		raise SystemExit(0)
+
+for a in arts:
+		if not isinstance(a, dict):
+				continue
+		lp = a.get('local_path')
+		if not isinstance(lp, str) or not lp.strip():
+				continue
+		# Only consider if file exists locally.
+		f = (root / lp).resolve() if not Path(lp).is_absolute() else Path(lp)
+		if not f.exists() or not f.is_file():
+				continue
+		sha = a.get('sha256')
+		b = a.get('bytes')
+		sha_missing = (sha is None) or (isinstance(sha, str) and sha.strip() == '')
+		bytes_missing = (b is None) or (b == '')
+		if sha_missing or bytes_missing:
+				raise SystemExit(1)
+
+raise SystemExit(0)
+PY
+	fi
+
+	# If md missing, regenerate.
+	if [[ ! -f "$remote_artifacts_md" ]]; then
+		remote_artifacts_needs_update=1
+	fi
+
+	if [[ "$remote_artifacts_needs_update" == "1" ]]; then
+		# Populate sha256/bytes for entries that have local_path (bounded by max bytes)
+		"$py_bin" ./$remote_artifacts_tool --update-json --write
+	fi
+fi
+
+# Keep data_analysis provenance index current (local, deterministic)
+# Only rebuild when something under data_analysis/ has changed (excluding the index itself).
+data_analysis_needs_index=0
+
+if [[ -d "data_analysis" ]]; then
+	changed_data_analysis="$({
+		git diff --name-only --cached --diff-filter=ACMRTUXB -- data_analysis 2>/dev/null || true
+		git diff --name-only --diff-filter=ACMRTUXB -- data_analysis 2>/dev/null || true
+	} | sed 's#\\#/#g' | sort -u)"
+
+	if [[ -n "$changed_data_analysis" ]]; then
+		# Ignore changes that are only the index file itself.
+		filtered="$(echo "$changed_data_analysis" | grep -v '^data_analysis/PROVENANCE_index\.json$' || true)"
+		if [[ -n "$filtered" ]]; then
+			data_analysis_needs_index=1
+		fi
+	fi
+
+	# If the indexer script changes, rebuild.
+	if git diff --name-only --cached --diff-filter=ACMRTUXB -- data_analysis/build_provenance_index.py | grep -q . 2>/dev/null; then
+		data_analysis_needs_index=1
+	fi
+	if git diff --name-only --diff-filter=ACMRTUXB -- data_analysis/build_provenance_index.py | grep -q . 2>/dev/null; then
+		data_analysis_needs_index=1
+	fi
+
+	if [[ "$data_analysis_needs_index" == "1" ]]; then
+		"$py_bin" ./data_analysis/build_provenance_index.py --root data_analysis --output PROVENANCE_index.json
+	fi
+fi
 
 # Stage the updated index files if present
-git add runs/REMOTE_ARTIFACTS.json runs/REMOTE_ARTIFACTS.md 2>/dev/null || true
+git add runs/REMOTE_ARTIFACTS.json runs/REMOTE_ARTIFACTS.md data_analysis/PROVENANCE_index.json 2>/dev/null || true

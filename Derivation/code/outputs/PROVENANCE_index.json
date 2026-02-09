@@ -1,0 +1,3657 @@
+{
+  "generated_utc": "2026-02-09T03:00:52.358902Z",
+  "items": [
+    {
+      "path": "Derivation/code/outputs/README.md",
+      "sha256": "d6cf126c0fcbae1d07b24fcb642927b458f9ec414d76a938438a0ab85bdd3ac5",
+      "size": 2727
+    },
+    {
+      "path": "Derivation/code/outputs/databases/causality.sqlite3",
+      "sha256": "7f0747782446f3c7181e47431cf61e94b09b5f04402dc61922de9d6933f00e8a",
+      "size": 28672
+    },
+    {
+      "path": "Derivation/code/outputs/databases/ci_preflight_guard.sqlite3-shm",
+      "sha256": "c4ba068dc9eafcce5441f1cd84e5c7d11ff64c8035d01d9be85b2690aa741209",
+      "size": 32768
+    },
+    {
+      "path": "Derivation/code/outputs/databases/ci_preflight_guard.sqlite3-wal",
+      "sha256": "14f6eb3cbe4f9849451d87c0f08cb0a363f60f44c3c996d6199f11518fa6bf38",
+      "size": 37112
+    },
+    {
+      "path": "Derivation/code/outputs/databases/metriplectic.sqlite3",
+      "sha256": "e5a55f811e5ffe4d196825a38c85714bc384c9014c0e57f5cc8a91005c7dabbe",
+      "size": 32768
+    },
+    {
+      "path": "Derivation/code/outputs/databases/metriplectic.sqlite3-shm",
+      "sha256": "cb1573a843a9fd25f076a1fdc9c9444064c222eda4c0c3a65c30bd4662814a35",
+      "size": 32768
+    },
+    {
+      "path": "Derivation/code/outputs/databases/metriplectic.sqlite3-wal",
+      "sha256": "634f765a5a0715a84fbdaad2f588d0efb937e0abd4f295f9b0c9f89864c912ce",
+      "size": 168952
+    },
+    {
+      "path": "Derivation/code/outputs/figures/agency/options_heatmap.png",
+      "sha256": "e6450c7942c045610811d0bb7fae038d791ce74600927936527be1495c4dc7e9",
+      "size": 76945
+    },
+    {
+      "path": "Derivation/code/outputs/figures/causality/20251008_075037_dag_audit_v1.json",
+      "sha256": "72f17c9a729163c24f5f43be573659a3bc920d00a06e1cb67de6e1c8753ad9ae",
+      "size": 556
+    },
+    {
+      "path": "Derivation/code/outputs/figures/causality/20251008_075037_dag_audit_v1.png",
+      "sha256": "99f4c2183564a26573769ec69c17b93e3729af1aa7ed64bcd86cb3b7654e93d5",
+      "size": 33858
+    },
+    {
+      "path": "Derivation/code/outputs/figures/causality/20251008_082840_dag_audit_v1.png",
+      "sha256": "fcc98c105ec8a459366c138831401e52e320d8b9d2864a8487495c4d783351f9",
+      "size": 9396
+    },
+    {
+      "path": "Derivation/code/outputs/figures/causality/20251008_091755_dag_audit_v1.png",
+      "sha256": "8ccbd28143e76e02f7b0721097202459ccd8368a2e8f528391852717243f772a",
+      "size": 47110
+    },
+    {
+      "path": "Derivation/code/outputs/figures/causality/20251008_091755_dag_audit_v1_scaling.png",
+      "sha256": "d87410b47614c8f565b6029c934a9e488ba6aeaae8bffa56e98e0e53c9698c4e",
+      "size": 44397
+    },
+    {
+      "path": "Derivation/code/outputs/figures/causality/20251008_092015_dag_audit_v1.png",
+      "sha256": "03228b543bf51d7d1b3f266b280c350e8c7fe1e2c54a5373c0c5aa58f65a6cd3",
+      "size": 56445
+    },
+    {
+      "path": "Derivation/code/outputs/figures/causality/20251008_092015_dag_audit_v1_scaling.png",
+      "sha256": "dc2266d3a2bb6d06fdd336a396752df6b279bb5d8587bf15d11af6b8d945cdf2",
+      "size": 61717
+    },
+    {
+      "path": "Derivation/code/outputs/figures/causality/20251008_094322_dag_audit_trail_v1.png",
+      "sha256": "0df4fb88ed211634f2aea58b86d8a65d1327edb0a2276313886ef4f0c5207eb2",
+      "size": 57379
+    },
+    {
+      "path": "Derivation/code/outputs/figures/causality/20251008_094322_dag_audit_trail_v1_scaling.png",
+      "sha256": "5b75eedf358d4425d115ef0adf965f03c3c142aaf75366402d53057a4262353c",
+      "size": 61828
+    },
+    {
+      "path": "Derivation/code/outputs/figures/causality/20251008_094531_dag_audit_trail_v1.png",
+      "sha256": "0df4fb88ed211634f2aea58b86d8a65d1327edb0a2276313886ef4f0c5207eb2",
+      "size": 57379
+    },
+    {
+      "path": "Derivation/code/outputs/figures/causality/20251008_094531_dag_audit_trail_v1_scaling.png",
+      "sha256": "5b75eedf358d4425d115ef0adf965f03c3c142aaf75366402d53057a4262353c",
+      "size": 61828
+    },
+    {
+      "path": "Derivation/code/outputs/figures/causality/20251008_094924_dag_audit_macro_v1.png",
+      "sha256": "95cc7cb7b8684c5090cd0063f9dca0d731408728964bb48f8d716fde6ea94d0b",
+      "size": 57017
+    },
+    {
+      "path": "Derivation/code/outputs/figures/causality/20251008_094925_dag_audit_macro_v1_scaling.png",
+      "sha256": "18f4f0d0c573eeedd26bf2351c1e38c199d920eae59de9f69e20c18310865a66",
+      "size": 64564
+    },
+    {
+      "path": "Derivation/code/outputs/figures/causality/20251008_094927_dag_audit_macro_v1_macro.png",
+      "sha256": "37e716fd37081e716dd372935253125577720030d0cb020432699edfbd060b8c",
+      "size": 244973
+    },
+    {
+      "path": "Derivation/code/outputs/figures/causality/20251008_095109_dag_audit_macro_slim_v1.png",
+      "sha256": "95cc7cb7b8684c5090cd0063f9dca0d731408728964bb48f8d716fde6ea94d0b",
+      "size": 57017
+    },
+    {
+      "path": "Derivation/code/outputs/figures/causality/20251008_095109_dag_audit_macro_slim_v1_scaling.png",
+      "sha256": "18f4f0d0c573eeedd26bf2351c1e38c199d920eae59de9f69e20c18310865a66",
+      "size": 64564
+    },
+    {
+      "path": "Derivation/code/outputs/figures/causality/20251008_095111_dag_audit_macro_slim_v1_macro.png",
+      "sha256": "79820e0129dd80463e26c0b5f2c9f1688aa9b8e8999de86810d32a676cc3c32f",
+      "size": 242682
+    },
+    {
+      "path": "Derivation/code/outputs/figures/causality/failed_runs/20251008_083944_dag_audit_v1.png",
+      "sha256": "fcc98c105ec8a459366c138831401e52e320d8b9d2864a8487495c4d783351f9",
+      "size": 9396
+    },
+    {
+      "path": "Derivation/code/outputs/figures/collapse/20251006_164721_a6_collapse_overlay__A6-collapse-v1.png",
+      "sha256": "144c092fae9467ca695ae2eb3c2bd8392a25e92529c4dfd20d057b0b0cc36877",
+      "size": 57945
+    },
+    {
+      "path": "Derivation/code/outputs/figures/collapse/20251006_175337_a6_collapse_overlay__A6-collapse-v1.png",
+      "sha256": "144c092fae9467ca695ae2eb3c2bd8392a25e92529c4dfd20d057b0b0cc36877",
+      "size": 57945
+    },
+    {
+      "path": "Derivation/code/outputs/figures/collapse/failed_runs/20251006_175257_a6_collapse_overlay__A6-collapse-v1.png",
+      "sha256": "a8135406ef3cf31f0e72f791adc2176916795ea9297f0e66d6331609fc0f0a47",
+      "size": 52106
+    },
+    {
+      "path": "Derivation/code/outputs/figures/conservation_law/20250826_110546_qfum_Q_drift.png",
+      "sha256": "4757b70873dfd48ac5e856197057c1af076ba020ad08665c5977656c8c93587d",
+      "size": 33097
+    },
+    {
+      "path": "Derivation/code/outputs/figures/conservation_law/20250826_110546_qfum_convergence.png",
+      "sha256": "55797e138d53af416374629e5d4ea5576042acaba2fe948529bc25bea7a7bd82",
+      "size": 35079
+    },
+    {
+      "path": "Derivation/code/outputs/figures/conservation_law/20250826_110546_qfum_solution_overlay.png",
+      "sha256": "91bf804bb59139d756021e0891f67908bb71dcc0452f8e0f0a0c64300d54d018",
+      "size": 48637
+    },
+    {
+      "path": "Derivation/code/outputs/figures/conservation_law/failed_runs/20250826_092421_qfum_Q_drift.png",
+      "sha256": "3f1ab8dfd68bd864b904aaf946e0635474a3f1a12930f8b585a4a630f06be479",
+      "size": 44878
+    },
+    {
+      "path": "Derivation/code/outputs/figures/conservation_law/failed_runs/20250826_092421_qfum_solution_overlay.png",
+      "sha256": "7d70ada24867309db66dc9b5c451bd37f96a30c70da4695088539b88a1cadc51",
+      "size": 45986
+    },
+    {
+      "path": "Derivation/code/outputs/figures/conservation_law/failed_runs/20250826_092422_qfum_convergence.png",
+      "sha256": "59ee29abc9d2bda8707e0e8b14094861f4dccab6138fad8d9c9ebc51cd4c3624",
+      "size": 42883
+    },
+    {
+      "path": "Derivation/code/outputs/figures/conservation_law/failed_runs/20250826_092459_qfum_Q_drift.png",
+      "sha256": "3f1ab8dfd68bd864b904aaf946e0635474a3f1a12930f8b585a4a630f06be479",
+      "size": 44878
+    },
+    {
+      "path": "Derivation/code/outputs/figures/conservation_law/failed_runs/20250826_092459_qfum_solution_overlay.png",
+      "sha256": "7d70ada24867309db66dc9b5c451bd37f96a30c70da4695088539b88a1cadc51",
+      "size": 45986
+    },
+    {
+      "path": "Derivation/code/outputs/figures/conservation_law/failed_runs/20250826_092500_qfum_convergence.png",
+      "sha256": "59ee29abc9d2bda8707e0e8b14094861f4dccab6138fad8d9c9ebc51cd4c3624",
+      "size": 42883
+    },
+    {
+      "path": "Derivation/code/outputs/figures/conservation_law/failed_runs/20250826_100249_qfum_Q_drift.png",
+      "sha256": "3f1ab8dfd68bd864b904aaf946e0635474a3f1a12930f8b585a4a630f06be479",
+      "size": 44878
+    },
+    {
+      "path": "Derivation/code/outputs/figures/conservation_law/failed_runs/20250826_100249_qfum_convergence.png",
+      "sha256": "59ee29abc9d2bda8707e0e8b14094861f4dccab6138fad8d9c9ebc51cd4c3624",
+      "size": 42883
+    },
+    {
+      "path": "Derivation/code/outputs/figures/conservation_law/failed_runs/20250826_100249_qfum_solution_overlay.png",
+      "sha256": "7d70ada24867309db66dc9b5c451bd37f96a30c70da4695088539b88a1cadc51",
+      "size": 45986
+    },
+    {
+      "path": "Derivation/code/outputs/figures/conservation_law/failed_runs/20250826_100939_qfum_Q_drift.png",
+      "sha256": "3f1ab8dfd68bd864b904aaf946e0635474a3f1a12930f8b585a4a630f06be479",
+      "size": 44878
+    },
+    {
+      "path": "Derivation/code/outputs/figures/conservation_law/failed_runs/20250826_100939_qfum_convergence.png",
+      "sha256": "59ee29abc9d2bda8707e0e8b14094861f4dccab6138fad8d9c9ebc51cd4c3624",
+      "size": 42883
+    },
+    {
+      "path": "Derivation/code/outputs/figures/conservation_law/failed_runs/20250826_100939_qfum_solution_overlay.png",
+      "sha256": "7d70ada24867309db66dc9b5c451bd37f96a30c70da4695088539b88a1cadc51",
+      "size": 45986
+    },
+    {
+      "path": "Derivation/code/outputs/figures/conservation_law/failed_runs/20250826_110241_qfum_Q_drift.png",
+      "sha256": "ea21475848ea7dd00d99cf82e27f92ec209dd2043f5f2649a93bfe1c19d12d4e",
+      "size": 50100
+    },
+    {
+      "path": "Derivation/code/outputs/figures/conservation_law/failed_runs/20250826_110241_qfum_solution_overlay.png",
+      "sha256": "e2ebc0be2e49d5faa56fd3d43ead21a39efdaa4ef53e2eb6c9c68fa0804217b4",
+      "size": 41564
+    },
+    {
+      "path": "Derivation/code/outputs/figures/conservation_law/failed_runs/20250826_110242_qfum_convergence.png",
+      "sha256": "5e2989bcdd2b4f7918c66750f85aff158616713337ce90692abb79a8a1bf7094",
+      "size": 33630
+    },
+    {
+      "path": "Derivation/code/outputs/figures/conservation_law/failed_runs/20250826_110431_qfum_Q_drift.png",
+      "sha256": "d3955328b00e2389a6e5e1e90d5285d099460dc3ae0a2a273c8ad6352d5b8887",
+      "size": 46169
+    },
+    {
+      "path": "Derivation/code/outputs/figures/conservation_law/failed_runs/20250826_110431_qfum_convergence.png",
+      "sha256": "a67e7d63d6f7a6d7031241fda1157a407f3d6d7ba130f25b7694cea766eaa086",
+      "size": 35888
+    },
+    {
+      "path": "Derivation/code/outputs/figures/conservation_law/failed_runs/20250826_110431_qfum_solution_overlay.png",
+      "sha256": "47a923e4669641f796da7c804b081e00f28f22f19fe51d2e8ddfaffb14f0b8c6",
+      "size": 48601
+    },
+    {
+      "path": "Derivation/code/outputs/figures/conservation_law/frw_conservation_residual.png",
+      "sha256": "7ae1e54044ccc80ba45fecfeac029f4096352c844c9c2ce94eb36959b5ef34b5",
+      "size": 416353
+    },
+    {
+      "path": "Derivation/code/outputs/figures/cosmology/20251006_164726_frw_continuity_residual__FRW-balance-v1.png",
+      "sha256": "bb4573e56a4d6a599c86e12c5b275e18806a5f0b5a3905142abd1434d550e2ad",
+      "size": 68831
+    },
+    {
+      "path": "Derivation/code/outputs/figures/cosmology/20251006_175034_frw_continuity_residual__FRW-balance-v1.png",
+      "sha256": "bb4573e56a4d6a599c86e12c5b275e18806a5f0b5a3905142abd1434d550e2ad",
+      "size": 68831
+    },
+    {
+      "path": "Derivation/code/outputs/figures/cosmology/20251006_175329_frw_continuity_residual__FRW-balance-v1.png",
+      "sha256": "bb4573e56a4d6a599c86e12c5b275e18806a5f0b5a3905142abd1434d550e2ad",
+      "size": 68831
+    },
+    {
+      "path": "Derivation/code/outputs/figures/cosmology/20251115_165825_topo_rdm_v1__dsi-topo-rdm-v1__circle_approved.json",
+      "sha256": "5bfc2eddcd0ffba88a1effd695fc1bd556f576580a5bf9823b74705824363a15",
+      "size": 505
+    },
+    {
+      "path": "Derivation/code/outputs/figures/cosmology/20251115_165825_topo_rdm_v1__dsi-topo-rdm-v1__circle_approved.png",
+      "sha256": "ca23d68e788c949e0a382581b85ee37e10b5e801a7f79c26d2b809e86b9d852f",
+      "size": 128810
+    },
+    {
+      "path": "Derivation/code/outputs/figures/cosmology/20251115_192720_topo_rdm_v1__dsi-topo-rdm-v1__circle_pass_det1_rerun_g3fix.json",
+      "sha256": "ac3af6f969c8655aaa1a06945f4972bafcead26f19bb740d22cb8980307b5661",
+      "size": 516
+    },
+    {
+      "path": "Derivation/code/outputs/figures/cosmology/20251115_192720_topo_rdm_v1__dsi-topo-rdm-v1__circle_pass_det1_rerun_g3fix.png",
+      "sha256": "ee50c22a7e34b2220525dcb9c8ed96677afe1b004c55288e30e45ff6fcf87c19",
+      "size": 127834
+    },
+    {
+      "path": "Derivation/code/outputs/figures/cosmology/20251115_192837_topo_rdm_v1__dsi-topo-rdm-v1__circle_pass_det1_determinism_rerun.json",
+      "sha256": "0e235a0d51bb62489cfd2f1e1be13804f275075d3e0427171aea89e4219a5246",
+      "size": 522
+    },
+    {
+      "path": "Derivation/code/outputs/figures/cosmology/20251115_192837_topo_rdm_v1__dsi-topo-rdm-v1__circle_pass_det1_determinism_rerun.png",
+      "sha256": "ee50c22a7e34b2220525dcb9c8ed96677afe1b004c55288e30e45ff6fcf87c19",
+      "size": 127834
+    },
+    {
+      "path": "Derivation/code/outputs/figures/cosmology/20251115_193246_topo_rdm_v1__dsi-topo-rdm-v1__circle_pass_sweep_default.json",
+      "sha256": "9974f8f7b6106af98b96b9d531db83979e63c1264afed150a4513bd791a257b6",
+      "size": 513
+    },
+    {
+      "path": "Derivation/code/outputs/figures/cosmology/20251115_193246_topo_rdm_v1__dsi-topo-rdm-v1__circle_pass_sweep_default.png",
+      "sha256": "ee50c22a7e34b2220525dcb9c8ed96677afe1b004c55288e30e45ff6fcf87c19",
+      "size": 127834
+    },
+    {
+      "path": "Derivation/code/outputs/figures/cosmology/20251115_193433_topo_rdm_v1__dsi-topo-rdm-v1__circle_pass_sweep_q10_q75_noalign.json",
+      "sha256": "f36f2ddd5effb0c383de135f011141fe52d8f0e192e7c029e8a7ac9503d32f9c",
+      "size": 521
+    },
+    {
+      "path": "Derivation/code/outputs/figures/cosmology/20251115_193433_topo_rdm_v1__dsi-topo-rdm-v1__circle_pass_sweep_q10_q75_noalign.png",
+      "sha256": "ee50c22a7e34b2220525dcb9c8ed96677afe1b004c55288e30e45ff6fcf87c19",
+      "size": 127834
+    },
+    {
+      "path": "Derivation/code/outputs/figures/cosmology/20251115_202216_topo_rdm_v1__dsi-topo-rdm-v1__smoke_pre.json",
+      "sha256": "c33afc5c7b8800dbcc79635a0ce58a9aff70bd985b7c28924e9f963065fc74fb",
+      "size": 497
+    },
+    {
+      "path": "Derivation/code/outputs/figures/cosmology/20251115_202216_topo_rdm_v1__dsi-topo-rdm-v1__smoke_pre.png",
+      "sha256": "ee50c22a7e34b2220525dcb9c8ed96677afe1b004c55288e30e45ff6fcf87c19",
+      "size": 127834
+    },
+    {
+      "path": "Derivation/code/outputs/figures/cosmology/failed_runs/20251115_164817_topo_rdm_v1__dsi-topo-rdm-v1__smoke.json",
+      "sha256": "c50f372c44c8340e7fa9d1a655d0bac0a0ff23fcd4885106ece71f37491da9d8",
+      "size": 477
+    },
+    {
+      "path": "Derivation/code/outputs/figures/cosmology/failed_runs/20251115_164817_topo_rdm_v1__dsi-topo-rdm-v1__smoke.png",
+      "sha256": "73a7d89be2d325a94f57bfe2164ec25a2f612ae0bfd7d37afdc2bf0d923c727c",
+      "size": 95621
+    },
+    {
+      "path": "Derivation/code/outputs/figures/cosmology/failed_runs/20251115_164903_topo_rdm_v1__dsi-topo-rdm-v1__smoke.json",
+      "sha256": "c50f372c44c8340e7fa9d1a655d0bac0a0ff23fcd4885106ece71f37491da9d8",
+      "size": 477
+    },
+    {
+      "path": "Derivation/code/outputs/figures/cosmology/failed_runs/20251115_164903_topo_rdm_v1__dsi-topo-rdm-v1__smoke.png",
+      "sha256": "73a7d89be2d325a94f57bfe2164ec25a2f612ae0bfd7d37afdc2bf0d923c727c",
+      "size": 95621
+    },
+    {
+      "path": "Derivation/code/outputs/figures/cosmology/failed_runs/20251115_165523_topo_rdm_v1__dsi-topo-rdm-v1__smoke_retest.json",
+      "sha256": "a400ca9077e2fc24ce7c6853e2df400ed1537c02217640702d7c12a85f62ee52",
+      "size": 499
+    },
+    {
+      "path": "Derivation/code/outputs/figures/cosmology/failed_runs/20251115_165523_topo_rdm_v1__dsi-topo-rdm-v1__smoke_retest.png",
+      "sha256": "d41062af04662651411894388650616120e72f2fd3b52da56de59eca17d15683",
+      "size": 83927
+    },
+    {
+      "path": "Derivation/code/outputs/figures/cosmology/failed_runs/20251115_165632_topo_rdm_v1__dsi-topo-rdm-v1__smoke_spec.json",
+      "sha256": "e54a572494a1cdb37d9ad0d44ec2c267c0bf720098a6b1121e5a62737c2abaa7",
+      "size": 497
+    },
+    {
+      "path": "Derivation/code/outputs/figures/cosmology/failed_runs/20251115_165632_topo_rdm_v1__dsi-topo-rdm-v1__smoke_spec.png",
+      "sha256": "335a33bceaa1be02796195a18581de17509675bea54da837ebd5280d62408fe1",
+      "size": 94688
+    },
+    {
+      "path": "Derivation/code/outputs/figures/cosmology/failed_runs/20251115_165745_topo_rdm_v1__dsi-topo-rdm-v1__circle.json",
+      "sha256": "ca609529b45b085438e0e507cf23b46b6275895d492fc5eb872a1398d0987c39",
+      "size": 496
+    },
+    {
+      "path": "Derivation/code/outputs/figures/cosmology/failed_runs/20251115_165745_topo_rdm_v1__dsi-topo-rdm-v1__circle.png",
+      "sha256": "ca23d68e788c949e0a382581b85ee37e10b5e801a7f79c26d2b809e86b9d852f",
+      "size": 128810
+    },
+    {
+      "path": "Derivation/code/outputs/figures/cosmology/failed_runs/20251115_173310_topo_rdm_v1__dsi-topo-rdm-v1__gw150914_H1.json",
+      "sha256": "fc0717a866d82b0d84cd4db6b80d96556f19682f84e7f7a43aee9ffb876cdbdd",
+      "size": 499
+    },
+    {
+      "path": "Derivation/code/outputs/figures/cosmology/failed_runs/20251115_173310_topo_rdm_v1__dsi-topo-rdm-v1__gw150914_H1.png",
+      "sha256": "54f27167df3e31102d0eed8caaa608f3c81e2404306634d3638a3bcec7da840d",
+      "size": 107676
+    },
+    {
+      "path": "Derivation/code/outputs/figures/cosmology/failed_runs/20251115_174256_topo_rdm_v1__dsi-topo-rdm-v1__gw150914_H1.json",
+      "sha256": "2f5320181beaa09a30f61445c7e2c211eff6e705841c93ea36b98e4bc735c8b2",
+      "size": 499
+    },
+    {
+      "path": "Derivation/code/outputs/figures/cosmology/failed_runs/20251115_174256_topo_rdm_v1__dsi-topo-rdm-v1__gw150914_H1.png",
+      "sha256": "0bbb80633527945b9a69fbbd65860e36eff7a46b0885a8c33cf7dfbf9fcda0e5",
+      "size": 94004
+    },
+    {
+      "path": "Derivation/code/outputs/figures/cosmology/failed_runs/20251115_191930_topo_rdm_v1__dsi-topo-rdm-v1__smoke_det1.json",
+      "sha256": "619c1f00bc7d4e7fe415a131e7405c6f00830e82e87f082d69dc923169a51069",
+      "size": 499
+    },
+    {
+      "path": "Derivation/code/outputs/figures/cosmology/failed_runs/20251115_191930_topo_rdm_v1__dsi-topo-rdm-v1__smoke_det1.png",
+      "sha256": "7e87d04499a818d9ea72bc3b581b3ccf6e80a80e613355132f0a4d67550cfa42",
+      "size": 75624
+    },
+    {
+      "path": "Derivation/code/outputs/figures/cosmology/failed_runs/20251115_192328_topo_rdm_v1__dsi-topo-rdm-v1__circle_pass_det1.json",
+      "sha256": "0d41c6313cddd729a68f5bf7e701bf7cc69d0e00714344b7a30e40d321d1fe74",
+      "size": 505
+    },
+    {
+      "path": "Derivation/code/outputs/figures/cosmology/failed_runs/20251115_192328_topo_rdm_v1__dsi-topo-rdm-v1__circle_pass_det1.png",
+      "sha256": "5f711a1293d79263e809fd1556304e053db1c808e2411093b5b903eab1e59bdc",
+      "size": 128183
+    },
+    {
+      "path": "Derivation/code/outputs/figures/cosmology/failed_runs/20251115_192506_topo_rdm_v1__dsi-topo-rdm-v1__circle_pass_det1_rerun.json",
+      "sha256": "5ce29b6989ae57913d1e17d0a9138eed18633e9e48dd2c6e73973340f5ca4bf0",
+      "size": 511
+    },
+    {
+      "path": "Derivation/code/outputs/figures/cosmology/failed_runs/20251115_192506_topo_rdm_v1__dsi-topo-rdm-v1__circle_pass_det1_rerun.png",
+      "sha256": "d2e0b5c50b228af271431318128bc25d49d1d5e9d6de931eca6e0e2b9a599689",
+      "size": 127663
+    },
+    {
+      "path": "Derivation/code/outputs/figures/cosmology/failed_runs/20251115_203407_topo_rdm_v1__dsi-topo-rdm-v1__gw150914_H1_ts.json",
+      "sha256": "83f337856baff021de98a2696cc414ecd38f8c84ff7abccfdc1267f8ef7af099",
+      "size": 503
+    },
+    {
+      "path": "Derivation/code/outputs/figures/cosmology/failed_runs/20251115_203407_topo_rdm_v1__dsi-topo-rdm-v1__gw150914_H1_ts.png",
+      "sha256": "eff283b303cc53a3eec7d0710182d65044ecf15b5927f29142597104bde6f742",
+      "size": 88342
+    },
+    {
+      "path": "Derivation/code/outputs/figures/cosmology/failed_runs/20251115_203509_topo_rdm_v1__dsi-topo-rdm-v1__gw150914_L1_ts.json",
+      "sha256": "7a791701e53039d303d2b1ca839d503dbefcfc0f8f960f088c9ba5d1f7e5a6d2",
+      "size": 504
+    },
+    {
+      "path": "Derivation/code/outputs/figures/cosmology/failed_runs/20251115_203509_topo_rdm_v1__dsi-topo-rdm-v1__gw150914_L1_ts.png",
+      "sha256": "a2c6a4b08436e959efee93e4ab69f5af52ac48a441b6fac8455fb0576a3bd93e",
+      "size": 96008
+    },
+    {
+      "path": "Derivation/code/outputs/figures/cosmology/void_lensing/T2_synthetic_mocks/20251201_040626_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks_void_lensing_meter-v1_profile.png",
+      "sha256": "0fb6b53bc1655e5285f60e85834d74c555848c35d2ecfa7fdebc788b69b6d9f3",
+      "size": 43220
+    },
+    {
+      "path": "Derivation/code/outputs/figures/cosmology/void_lensing/T2_synthetic_mocks/failed_runs/20251201_031311_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks_void_lensing_meter-v1_profile.png",
+      "sha256": "0fb6b53bc1655e5285f60e85834d74c555848c35d2ecfa7fdebc788b69b6d9f3",
+      "size": 43220
+    },
+    {
+      "path": "Derivation/code/outputs/figures/cosmology/void_lensing/T2_synthetic_mocks/failed_runs/20251201_034757_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks_void_lensing_meter-v1_profile.png",
+      "sha256": "0fb6b53bc1655e5285f60e85834d74c555848c35d2ecfa7fdebc788b69b6d9f3",
+      "size": 43220
+    },
+    {
+      "path": "Derivation/code/outputs/figures/cosmology/void_lensing/T2_synthetic_mocks_grid/20251201_133349_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_profile.png",
+      "sha256": "327c0b61c59904c660a5cdaf5903e25db22a5776e81a3a35805ec492035e427d",
+      "size": 64302
+    },
+    {
+      "path": "Derivation/code/outputs/figures/cosmology/void_lensing/T2_synthetic_mocks_grid/20251201_151137_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_profile.png",
+      "sha256": "5620d39688393383934ca8b256d2946bf84b625e1e572910b6bdb39df5646783",
+      "size": 77518
+    },
+    {
+      "path": "Derivation/code/outputs/figures/cosmology/void_lensing/T2_synthetic_mocks_grid/20251201_153008_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_profile.png",
+      "sha256": "42daedd5d42bede44122290dc16149fa4ffeecbb93e683e4b73dc94e8b5714ce",
+      "size": 75410
+    },
+    {
+      "path": "Derivation/code/outputs/figures/cosmology/void_lensing/T2_synthetic_mocks_grid/20251202_123106_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_profile.png",
+      "sha256": "42daedd5d42bede44122290dc16149fa4ffeecbb93e683e4b73dc94e8b5714ce",
+      "size": 75410
+    },
+    {
+      "path": "Derivation/code/outputs/figures/cosmology/void_lensing/T2_synthetic_mocks_grid/failed_runs/20251201_090044_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_profile.png",
+      "sha256": "0fb6b53bc1655e5285f60e85834d74c555848c35d2ecfa7fdebc788b69b6d9f3",
+      "size": 43220
+    },
+    {
+      "path": "Derivation/code/outputs/figures/cosmology/void_lensing/T2_synthetic_mocks_grid/failed_runs/20251201_092605_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_profile.png",
+      "sha256": "327c0b61c59904c660a5cdaf5903e25db22a5776e81a3a35805ec492035e427d",
+      "size": 64302
+    },
+    {
+      "path": "Derivation/code/outputs/figures/cosmology/void_lensing/T2_synthetic_mocks_grid/failed_runs/20251201_131910_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_profile.png",
+      "sha256": "327c0b61c59904c660a5cdaf5903e25db22a5776e81a3a35805ec492035e427d",
+      "size": 64302
+    },
+    {
+      "path": "Derivation/code/outputs/figures/cosmology/void_lensing/T2_synthetic_mocks_grid/failed_runs/20251201_132515_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_profile.png",
+      "sha256": "327c0b61c59904c660a5cdaf5903e25db22a5776e81a3a35805ec492035e427d",
+      "size": 64302
+    },
+    {
+      "path": "Derivation/code/outputs/figures/cosmology/void_lensing/T2_synthetic_mocks_grid/failed_runs/20251202_122107_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_profile.png",
+      "sha256": "085f57a9addd6d2a41ff23dc9b214b03117e5df754d8fc65710bd8f7f49e6946",
+      "size": 61952
+    },
+    {
+      "path": "Derivation/code/outputs/figures/dark_photons/20251006_180648_noise_budget__DP-noise-smoke.png",
+      "sha256": "001b32861bbfca74e65567713e4502ec59420046a271bbc5a64a71356bd77627",
+      "size": 44076
+    },
+    {
+      "path": "Derivation/code/outputs/figures/dark_photons/20251006_180709_noise_budget__DP-noise-smoke.png",
+      "sha256": "001b32861bbfca74e65567713e4502ec59420046a271bbc5a64a71356bd77627",
+      "size": 44076
+    },
+    {
+      "path": "Derivation/code/outputs/figures/dark_photons/README.md",
+      "sha256": "607b3de920e9ddb38734fdb6bc1649a398300c5be73d0260127a0c1045a99c34",
+      "size": 464
+    },
+    {
+      "path": "Derivation/code/outputs/figures/fluid_dynamics/failed_runs/failed_lid_cavity_benchmarks.zip",
+      "sha256": "8626df9f319758309b79ccf115477244f23352a42393340cf14824be6e2847b8",
+      "size": 1958418
+    },
+    {
+      "path": "Derivation/code/outputs/figures/fluid_dynamics/failed_runs/lid_cavity_benchmark_20250821T074952Z.png",
+      "sha256": "da5b752904a1f9f741b2e745799db1b17c5cdf24ba4572cd199b13d28191debe",
+      "size": 341948
+    },
+    {
+      "path": "Derivation/code/outputs/figures/fluid_dynamics/failed_runs/lid_cavity_benchmark_20250821T082158Z.png",
+      "sha256": "a6095c5847719a58d5e6f9decbeec9cfad738ef912648fa981d04a69ca8a2c40",
+      "size": 555407
+    },
+    {
+      "path": "Derivation/code/outputs/figures/fluid_dynamics/lid_cavity_benchmark_20250821T051811Z.zip",
+      "sha256": "207c358ececba884651531714a258fc0e73a5855b544de9c04b008b45358d95c",
+      "size": 1424280
+    },
+    {
+      "path": "Derivation/code/outputs/figures/fluid_dynamics/lid_cavity_benchmark_20250821T072638Z.png",
+      "sha256": "c07fbefa9993a5421b25a3af5f59e373c02b5c73044963fa28313ccc6c0caf3a",
+      "size": 180565
+    },
+    {
+      "path": "Derivation/code/outputs/figures/fluid_dynamics/lid_cavity_benchmark_20250821T072638Z_vorticity.png",
+      "sha256": "cc6bdd52e4a71cb448c14c89223d70a2472ad4e98dd6f84951c7dc3c91998288",
+      "size": 36595
+    },
+    {
+      "path": "Derivation/code/outputs/figures/fluid_dynamics/taylor_green_benchmark_20250820T145556Z.png",
+      "sha256": "6f83638ea0e870471629811b720b9d90472c1748ec9404db7ad867c2d96815b5",
+      "size": 44073
+    },
+    {
+      "path": "Derivation/code/outputs/figures/memory_steering/curvature_calibration.png",
+      "sha256": "361f3e879f772090f2a7977ef993a7716fd6f05decb8f9fe7689ae7a757f8a44",
+      "size": 51598
+    },
+    {
+      "path": "Derivation/code/outputs/figures/memory_steering/curvature_scaling.png",
+      "sha256": "fa1f5ca8aeced645eb27b82088b02c727ca03e396661ab7c8ac944c22e04816c",
+      "size": 48295
+    },
+    {
+      "path": "Derivation/code/outputs/figures/memory_steering/curvature_scaling_signed.png",
+      "sha256": "3c00381dc2b61ac701ad8584d78131cabb4b734b9a3d2cabac6445015cc5aa1a",
+      "size": 37772
+    },
+    {
+      "path": "Derivation/code/outputs/figures/memory_steering/junction_logistic.png",
+      "sha256": "516be30d46de20d73127d880df77fe86600e68348cfa291b8fb23bfb2306abc3",
+      "size": 43389
+    },
+    {
+      "path": "Derivation/code/outputs/figures/memory_steering/memory_steering_summary.png",
+      "sha256": "07b2f4440e75c9e12d4eb8533b6850ab513d33bcbc617ad88581d29f41b01cb9",
+      "size": 86061
+    },
+    {
+      "path": "Derivation/code/outputs/figures/memory_steering/stability_auc_by_gamma.png",
+      "sha256": "1365034cef41f7317945689d0ac40dfcb54f698914d07dd9482c45937b62d131",
+      "size": 50940
+    },
+    {
+      "path": "Derivation/code/outputs/figures/memory_steering/stability_band.png",
+      "sha256": "7089a7ed335800775944e03a32e5eec5787188e8e3b7f702b0d5bccfd184ae7d",
+      "size": 56208
+    },
+    {
+      "path": "Derivation/code/outputs/figures/memory_steering/stability_fidelity_by_gamma.png",
+      "sha256": "63a6230601862f963e6414fbb3ea0a4a86198341aaba00707429a9458be4f068",
+      "size": 45860
+    },
+    {
+      "path": "Derivation/code/outputs/figures/memory_steering/stability_retention_by_gamma.png",
+      "sha256": "f39bb32d1eb6917831aceb84d25a2ae36e9ef469c50598c71e25fd8d88849735",
+      "size": 43318
+    },
+    {
+      "path": "Derivation/code/outputs/figures/memory_steering/stability_snr_by_gamma.png",
+      "sha256": "42882f7a3eb269ba79d1bb674f7d8e7d433ac6d9bbcf68676297635470f8873b",
+      "size": 42418
+    },
+    {
+      "path": "Derivation/code/outputs/figures/metriplectic/20251104_PASSED_Compressed_Figures.zip",
+      "sha256": "bdd9c23917abd4ed6c1f4d66e772ce8d263003eb5c5f6990f01d52fe8a55ff70",
+      "size": 16935993
+    },
+    {
+      "path": "Derivation/code/outputs/figures/metriplectic/failed_runs/20251104_Metriplectic_Figures_Failed.zip",
+      "sha256": "dca53a4aff5f762adb9ce2108af3a009b5c5b25ad3fb7f8706216a9271948fc3",
+      "size": 7122107
+    },
+    {
+      "path": "Derivation/code/outputs/figures/rd_conservation/20251006_072249_reaction_two_grid_convergence.png",
+      "sha256": "a5d15899d2622282db2542eddc35396eee86600f2f2c8f68d9228a9866797bdc",
+      "size": 43496
+    },
+    {
+      "path": "Derivation/code/outputs/figures/rd_conservation/20251006_072250_lyapunov_delta_per_step.png",
+      "sha256": "0b3e97bfdfda748d32eaccb55a35d032bb4ece29aaf2faf9d0e696b726e58d86",
+      "size": 37144
+    },
+    {
+      "path": "Derivation/code/outputs/figures/rd_conservation/20251006_072250_residual_vs_dt.png",
+      "sha256": "8dcba8e7b760d1367de09f2e840d2afb5ce914361bc2478eb057917729d26539",
+      "size": 46024
+    },
+    {
+      "path": "Derivation/code/outputs/figures/rd_conservation/20251006_072251_fixed_dt_deltaS_compare.png",
+      "sha256": "39b49efcee10f013797b15e7dd6880028ab72db87a70d73a74fc7304374ee15c",
+      "size": 26323
+    },
+    {
+      "path": "Derivation/code/outputs/figures/rd_conservation/20251006_0_rd_conservation_figures_passed.zip",
+      "sha256": "06e2ca92e5b00477ced1b19ee4b0ca04fd13b05a0f7ef0a6a5d04a12a8a1cb1a",
+      "size": 435583
+    },
+    {
+      "path": "Derivation/code/outputs/figures/rd_conservation/20251006_0_strang_rd_conservation_figures_passed.zip",
+      "sha256": "8f9c9f79f720e540e800085d3f5fd9678b8814a228495db511dd65c87b5b887c",
+      "size": 562194
+    },
+    {
+      "path": "Derivation/code/outputs/figures/rd_conservation/failed_runs/20251006_06_rd_conservation_figures_failed.zip",
+      "sha256": "4d59f5460c0b781147f82af3066eaf8f278e949eb76ffa21ad915f11b4c81671",
+      "size": 155899
+    },
+    {
+      "path": "Derivation/code/outputs/figures/rd_conservation/failed_runs/20251006_072251_euler_deltaS_vs_dt.png",
+      "sha256": "05b4e717ef744ea1f02736d4d2b5f9fe05cb17fbbd94d60f4112825e00b8427b",
+      "size": 39279
+    },
+    {
+      "path": "Derivation/code/outputs/figures/rd_conservation/failed_runs/20251006_072251_objA_fixed_dt_abs_deltaS_hist.png",
+      "sha256": "3d0827602f1a356b48e47be54ca410d805cb9cd8ae7679e4078656766deffb21",
+      "size": 21963
+    },
+    {
+      "path": "Derivation/code/outputs/figures/rd_conservation/failed_runs/20251006_0_strang_rd_conservation_figures_failed.zip",
+      "sha256": "bb7cb09e2c405347ca980291955d49a83f8c76473f77753a49b4f2dd24db55bf",
+      "size": 220400
+    },
+    {
+      "path": "Derivation/code/outputs/figures/reaction_diffusion/failed_runs/failed_rd_front_speed_experiments.zip",
+      "sha256": "1c89b4aa9afffa6916ee9a0c1d924ef371b8a06f79349c08bc4dd7ab64869096",
+      "size": 222776
+    },
+    {
+      "path": "Derivation/code/outputs/figures/reaction_diffusion/failed_runs/rd_dispersion_experiment_20250823T182426Z.png",
+      "sha256": "c99ada7fc2c08cccaf4a9646f86f7ba96d85139409c9a1136089b1d81f7c14ae",
+      "size": 65707
+    },
+    {
+      "path": "Derivation/code/outputs/figures/reaction_diffusion/failed_runs/rd_front_speed_experiment_20250823T182315Z.png",
+      "sha256": "db304a8ee7afec86813e6b938da1bfc27d79e2ed6a21ca361875f03fcd34a83f",
+      "size": 94409
+    },
+    {
+      "path": "Derivation/code/outputs/figures/reaction_diffusion/rd_dispersion_experiment_20250823T174503Z.zip",
+      "sha256": "3daace9b94c05d84a5594e7650060cf9134ef6dc74ad06f0743df35527b0b941",
+      "size": 623517
+    },
+    {
+      "path": "Derivation/code/outputs/figures/reaction_diffusion/rd_dispersion_experiment_20250823T180201Z.png",
+      "sha256": "fed2c2062034d8bed7fc43af23173c6b1be6f90fb5d56651b2bfcd924afa2357",
+      "size": 67090
+    },
+    {
+      "path": "Derivation/code/outputs/figures/reaction_diffusion/rd_dispersion_experiment_20250823T182112Z.png",
+      "sha256": "f7aca00a46d3ec752ded950307df6bd967891b7402772c94928a544ef3745cf2",
+      "size": 77176
+    },
+    {
+      "path": "Derivation/code/outputs/figures/reaction_diffusion/rd_dispersion_experiment_20250823T182316Z.png",
+      "sha256": "04e77d18b3579dbed3904aaf93f9e0396979b84b1e88a4e9bed18a0defb3a79a",
+      "size": 66601
+    },
+    {
+      "path": "Derivation/code/outputs/figures/reaction_diffusion/rd_dispersion_experiment_20250823T194826Z.png",
+      "sha256": "fed2c2062034d8bed7fc43af23173c6b1be6f90fb5d56651b2bfcd924afa2357",
+      "size": 67090
+    },
+    {
+      "path": "Derivation/code/outputs/figures/reaction_diffusion/rd_dispersion_experiment_20250824T053842Z.png",
+      "sha256": "fed2c2062034d8bed7fc43af23173c6b1be6f90fb5d56651b2bfcd924afa2357",
+      "size": 67090
+    },
+    {
+      "path": "Derivation/code/outputs/figures/reaction_diffusion/rd_front_speed_experiment_20250823T180200Z.png",
+      "sha256": "5a4c630a2a0d8e24deb5f85c7606043d5eedb0a459e4ba3ad8f0d4192520e4ec",
+      "size": 132271
+    },
+    {
+      "path": "Derivation/code/outputs/figures/reaction_diffusion/rd_front_speed_experiment_20250823T194825Z.png",
+      "sha256": "5a4c630a2a0d8e24deb5f85c7606043d5eedb0a459e4ba3ad8f0d4192520e4ec",
+      "size": 132271
+    },
+    {
+      "path": "Derivation/code/outputs/figures/reaction_diffusion/rd_front_speed_experiment_20250824T053748Z.png",
+      "sha256": "5a4c630a2a0d8e24deb5f85c7606043d5eedb0a459e4ba3ad8f0d4192520e4ec",
+      "size": 132271
+    },
+    {
+      "path": "Derivation/code/outputs/figures/tachyonic_condensation/20251009_060743_tube_spectrum_overview__tube-spectrum-v1.png",
+      "sha256": "cf1dec1fe1ac8eadd35467568166b0eb90e4966233ab34ca2ea94fe27e86531e",
+      "size": 70485
+    },
+    {
+      "path": "Derivation/code/outputs/figures/tachyonic_condensation/20251009_060744_tube_spectrum_heatmap__tube-spectrum-v1.png",
+      "sha256": "8e028abd91add345774be12cb049a16d3a6b311dd43c088ce35a559e1b887bdf",
+      "size": 35085
+    },
+    {
+      "path": "Derivation/code/outputs/figures/tachyonic_condensation/20251009_060916_tube_spectrum_heatmap__tube-spectrum-v1.png",
+      "sha256": "8e028abd91add345774be12cb049a16d3a6b311dd43c088ce35a559e1b887bdf",
+      "size": 35085
+    },
+    {
+      "path": "Derivation/code/outputs/figures/tachyonic_condensation/20251009_060916_tube_spectrum_overview__tube-spectrum-v1.png",
+      "sha256": "e9d885288f816f21e553f1c1650b8942ed64844e707c8df89168aec69986abba",
+      "size": 70540
+    },
+    {
+      "path": "Derivation/code/outputs/figures/tachyonic_condensation/20251009_061836_tube_spectrum_heatmap__tube-spectrum-v1.png",
+      "sha256": "8e028abd91add345774be12cb049a16d3a6b311dd43c088ce35a559e1b887bdf",
+      "size": 35085
+    },
+    {
+      "path": "Derivation/code/outputs/figures/tachyonic_condensation/20251009_061836_tube_spectrum_overview__tube-spectrum-v1.png",
+      "sha256": "55eb4f7cd28b432d72ff655d025e482e6eed47a433aa76117e15a71f92c6c068",
+      "size": 79344
+    },
+    {
+      "path": "Derivation/code/outputs/figures/tachyonic_condensation/20251009_062600_tube_energy_scan__tube-condensation-v1.png",
+      "sha256": "2bfb42bd04d68a1b4eba3addb14008c116b5b13a3cc9017504f0927af54faf5c",
+      "size": 41338
+    },
+    {
+      "path": "Derivation/code/outputs/figures/tachyonic_condensation/20251009_084702_tube_spectrum_overview__tube-spectrum-v1.png",
+      "sha256": "55eb4f7cd28b432d72ff655d025e482e6eed47a433aa76117e15a71f92c6c068",
+      "size": 79344
+    },
+    {
+      "path": "Derivation/code/outputs/figures/tachyonic_condensation/20251009_084703_tube_spectrum_heatmap__tube-spectrum-v1.png",
+      "sha256": "8e028abd91add345774be12cb049a16d3a6b311dd43c088ce35a559e1b887bdf",
+      "size": 35085
+    },
+    {
+      "path": "Derivation/code/outputs/figures/tachyonic_condensation/failed_runs/20251008_192116_tube_energy_scan__tube-condensation-v1.png",
+      "sha256": "f77ecd054587ad6a26a6cd6f43b0ccacac29f2a645c11bcf0e29047072e4ebd0",
+      "size": 41105
+    },
+    {
+      "path": "Derivation/code/outputs/figures/tachyonic_condensation/failed_runs/20251009_052922_tube_energy_scan__tube-condensation-v1.png",
+      "sha256": "71c6bbbba17605f3d50e6bf13537069397a629772a1f80319b8e0b48d341c1c2",
+      "size": 40587
+    },
+    {
+      "path": "Derivation/code/outputs/figures/tachyonic_condensation/failed_runs/20251009_053002_tube_energy_scan__tube-condensation-v1.png",
+      "sha256": "38b94e0bdd8fdde975a1b12cba892fad848c929cec2b4eefdfafd31945b4129b",
+      "size": 37391
+    },
+    {
+      "path": "Derivation/code/outputs/figures/tachyonic_condensation/failed_runs/20251009_060258_tube_spectrum_overview__tube-spectrum-v1.png",
+      "sha256": "ebd6b99166caea92b76ce35a5553db5cf96e830d7e27910a42f408d1a9af2dc1",
+      "size": 69419
+    },
+    {
+      "path": "Derivation/code/outputs/figures/tachyonic_condensation/failed_runs/20251009_060519_tube_spectrum_overview__tube-spectrum-v1.png",
+      "sha256": "676d1568cb74a5872e493764bddbfece7fe701b093b248ffca0679f96a9e203d",
+      "size": 70194
+    },
+    {
+      "path": "Derivation/code/outputs/figures/tachyonic_condensation/failed_runs/20251009_062507_tube_energy_scan__tube-condensation-v1.png",
+      "sha256": "1016fe341acf764433d524baac99ab998bf5d595e96126d2a00b67a49b05e3c8",
+      "size": 38134
+    },
+    {
+      "path": "Derivation/code/outputs/figures/tachyonic_condensation/failed_runs/20251009_062533_tube_energy_scan__tube-condensation-v1.png",
+      "sha256": "a4d7afe55a1bd924112e113c9c6e13dc595f90e790b63ecd9fc5d8ea204d1d58",
+      "size": 38113
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_040020_energy_vs_time_thermo-routing-v2.png",
+      "sha256": "0944655990f6cfab796fcff0b4f7b711136b9123b83a07f03ef23110e6640fa5",
+      "size": 42537
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_040322_energy_vs_time_thermo-routing-v2.png",
+      "sha256": "d684b5ae8571d7c0be30318fc9253d24cb054cb6345ed6b7fa7ae0dca48b7d84",
+      "size": 28277
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_040720_energy_vs_time_thermo-routing-v2.png",
+      "sha256": "d684b5ae8571d7c0be30318fc9253d24cb054cb6345ed6b7fa7ae0dca48b7d84",
+      "size": 28277
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_042914_energy_vs_time_thermo-routing-v2.png",
+      "sha256": "e918ea653897bdae547b993238d089775f0b158c0125e36f58a03654cc709d1d",
+      "size": 24329
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_044111_lyapunov_h_theorem_thermo-routing-v2.png",
+      "sha256": "e7494b4c1734c22ae9853ec1e6bb5fa23a98a5c511edcdb2232e861e82be1378",
+      "size": 64512
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_044112_kpi_dashboard_thermo-routing-v2.png",
+      "sha256": "ba5a9f5427f99a9474a14b9e6d9ac7a7e4300b74666b8d25e6aabdd193c1e32d",
+      "size": 128812
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_045130_kpi_dashboard_thermo-routing-v2.png",
+      "sha256": "7821ef3f10f1eaa357f8d16ec93e87c15421fcf8289c5030d0b28c489f5300d3",
+      "size": 171435
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_045130_lyapunov_h_theorem_thermo-routing-v2.png",
+      "sha256": "e7494b4c1734c22ae9853ec1e6bb5fa23a98a5c511edcdb2232e861e82be1378",
+      "size": 64512
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_045131_geometry_masks_thermo-routing-v2.png",
+      "sha256": "e2f6ea7cae3139541616ec637e097383c5bdd6114192935982a6595bf5aca712",
+      "size": 67400
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_045538_kpi_dashboard_thermo-routing-v2.png",
+      "sha256": "685c6aff4e4fb9e83dc630a889a8672a1ecfb1f3fc525265604720cc3320a3ab",
+      "size": 165419
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_045538_lyapunov_h_theorem_thermo-routing-v2.png",
+      "sha256": "e7494b4c1734c22ae9853ec1e6bb5fa23a98a5c511edcdb2232e861e82be1378",
+      "size": 64512
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_045539_geometry_masks_thermo-routing-v2.png",
+      "sha256": "2b0d4bfe37628534906be49f9edf814dca206d318429f1ab77a3dbaccd5a06d9",
+      "size": 64405
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_061712_geometry_masks_thermo-routing-v2.png",
+      "sha256": "b2a646d787266855f505ea07e0a2d37498a9e38f1c8a181b33d610a19f49275c",
+      "size": 65854
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_061712_kpi_dashboard_thermo-routing-v2.png",
+      "sha256": "685c6aff4e4fb9e83dc630a889a8672a1ecfb1f3fc525265604720cc3320a3ab",
+      "size": 165419
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_061712_lyapunov_h_theorem_thermo-routing-v2.png",
+      "sha256": "e7494b4c1734c22ae9853ec1e6bb5fa23a98a5c511edcdb2232e861e82be1378",
+      "size": 64512
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_063527_kpi_dashboard_prereg_thermo-routing-v2-prereg-biased-main.png",
+      "sha256": "b2b45790c7876fd2154137439699b7780efa102cab6502a6985dd21a014ac089",
+      "size": 112766
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_063527_lyapunov_h_theorem_prereg_thermo-routing-v2-prereg-biased-main.png",
+      "sha256": "28280088fbd7ba492a455ab448e9e1551598250b74ac1902f6a47f89eef5adfd",
+      "size": 71635
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_063616_kpi_dashboard_prereg_thermo-routing-v2-prereg-biased-main.png",
+      "sha256": "bc87988c58428a873e4498d98583c8a1d4fa0eabdb81acdf0470539b888d1fe2",
+      "size": 113337
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_063616_lyapunov_h_theorem_prereg_thermo-routing-v2-prereg-biased-main.png",
+      "sha256": "9606c2f99fe91a8863f69d121398710713cdd8fa678650d866b757f7a9869999",
+      "size": 79186
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_064351_prereg_aggregate_dashboard_thermo-routing-v2-prereg-biased-main.png",
+      "sha256": "bb2c0e3765ecd639766b2e1c24ae8460acfe187ecde31712014b5e4e15d6ac4a",
+      "size": 101977
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_064820_prereg_aggregate_dashboard_thermo-routing-v2-prereg-biased-main.png",
+      "sha256": "d441b70ce4380ae53bffac88e4f7ece0aa54165210be07122e909400266e3f35",
+      "size": 101815
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_121620_ftmc_channel_map_thermo-routing-v2-ftmc.png",
+      "sha256": "cf9f53043ec449dbb4703360c6c6036c338391bd5be4057fa282829965551f38",
+      "size": 32153
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_123502_ftmc_map_paths_thermo-routing-v2-ftmc.png",
+      "sha256": "64ac611f50e470f449ff632e44be362455473ffa70dfadd1dd4a9c2f14252146",
+      "size": 74365
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_123503_ftmc_flux_vs_hops_thermo-routing-v2-ftmc.png",
+      "sha256": "c5a94a298cacb7a86fa3c27327de5ad9b24109e777e3310c1c5d55b0ed622066",
+      "size": 34520
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_123646_ftmc_flux_vs_hops_thermo-routing-v2-ftmc.png",
+      "sha256": "c5a94a298cacb7a86fa3c27327de5ad9b24109e777e3310c1c5d55b0ed622066",
+      "size": 34520
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_123646_ftmc_map_paths_thermo-routing-v2-ftmc.png",
+      "sha256": "64ac611f50e470f449ff632e44be362455473ffa70dfadd1dd4a9c2f14252146",
+      "size": 74365
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_124027_ftmc_flux_vs_hops_thermo-routing-v2-ftmc.png",
+      "sha256": "c5a94a298cacb7a86fa3c27327de5ad9b24109e777e3310c1c5d55b0ed622066",
+      "size": 34520
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_124027_ftmc_map_paths_thermo-routing-v2-ftmc.png",
+      "sha256": "64ac611f50e470f449ff632e44be362455473ffa70dfadd1dd4a9c2f14252146",
+      "size": 74365
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_130513_ftmc_flux_vs_hops_thermo-routing-v2-ftmc.png",
+      "sha256": "c5a94a298cacb7a86fa3c27327de5ad9b24109e777e3310c1c5d55b0ed622066",
+      "size": 34520
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_130513_ftmc_map_paths_thermo-routing-v2-ftmc.png",
+      "sha256": "64ac611f50e470f449ff632e44be362455473ffa70dfadd1dd4a9c2f14252146",
+      "size": 74365
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_132103_ftmc_flux_vs_hops_thermo-routing-v2-ftmc.png",
+      "sha256": "c2770bbd9677f6e5570a5dab03ad84fd5874cd36d2eaf614d7ed8c813c42f65f",
+      "size": 34731
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_132103_ftmc_map_paths_thermo-routing-v2-ftmc.png",
+      "sha256": "47eed73f2a60c15f284dcdf666c1d1954edad1e620945fe8c5a56e3643cfb85f",
+      "size": 99456
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_132140_ftmc_flux_vs_hops_thermo-routing-v2-ftmc.png",
+      "sha256": "c2770bbd9677f6e5570a5dab03ad84fd5874cd36d2eaf614d7ed8c813c42f65f",
+      "size": 34731
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_132140_ftmc_map_paths_thermo-routing-v2-ftmc.png",
+      "sha256": "47eed73f2a60c15f284dcdf666c1d1954edad1e620945fe8c5a56e3643cfb85f",
+      "size": 99456
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_140138_wave_flux_meter_energy_thermo-routing-v2-wave-meter.png",
+      "sha256": "d7c6aa75a8ae746353dd0c9262e027482a0b55d79c5d844ac96dc01ded1bbf7e",
+      "size": 36403
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_140356_wave_flux_meter_energy_thermo-routing-v2-wave-meter.png",
+      "sha256": "d7c6aa75a8ae746353dd0c9262e027482a0b55d79c5d844ac96dc01ded1bbf7e",
+      "size": 36403
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_142050_wave_flux_meter_energy_thermo-routing-v2-wave-meter.png",
+      "sha256": "c4ac1d79790503faf521c1462a6bc7a828d53fbc81ee8ee2b7bd45dfe95f4ade",
+      "size": 37564
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_145206_wave_flux_meter_openports_timeseries_thermo-routing-v2-wave-meter-openports.png",
+      "sha256": "54fafcbbec00962e9c8462a5d8eed8c2ae96bed37e2fffb3aac54fced27ad5d6",
+      "size": 57064
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_150232_wave_flux_meter_openports_timeseries_thermo-routing-v2-wave-meter-openports.png",
+      "sha256": "0d8614cfb407f51a3f7ff5edc6278d73e2ab5181a6a5de3e9fd512144c384ffc",
+      "size": 98324
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_150602_ftmc_flux_vs_hops_thermo-routing-v2-ftmc.png",
+      "sha256": "c2770bbd9677f6e5570a5dab03ad84fd5874cd36d2eaf614d7ed8c813c42f65f",
+      "size": 34731
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_150602_ftmc_map_paths_thermo-routing-v2-ftmc.png",
+      "sha256": "47eed73f2a60c15f284dcdf666c1d1954edad1e620945fe8c5a56e3643cfb85f",
+      "size": 99456
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_152405_wave_flux_meter_channel_map_thermo-routing-v2-wave-meter-openports.png",
+      "sha256": "a8b82d7fbbbd575e1341a6dec553259f5ec87c133e8c5fe49ca2e36df10e8a91",
+      "size": 125954
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_152405_wave_flux_meter_openports_timeseries_thermo-routing-v2-wave-meter-openports.png",
+      "sha256": "3350ea01f2fe14adcb4fa2c78aefecd64bc2f48ea58a5e116f1402cefa73d578",
+      "size": 94622
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_152603_wave_flux_meter_channel_map_thermo-routing-v2-wave-meter-openports.png",
+      "sha256": "a8b82d7fbbbd575e1341a6dec553259f5ec87c133e8c5fe49ca2e36df10e8a91",
+      "size": 125954
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_152603_wave_flux_meter_openports_timeseries_thermo-routing-v2-wave-meter-openports.png",
+      "sha256": "b91565c98879c86837ca31ae2f71aa6f12d2ed710bd61f513b66ca5b173bd8ba",
+      "size": 111562
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_172546_wave_flux_meter_openports_timeseries_thermo-routing-v2-wave-meter-openports.png",
+      "sha256": "5d472e99e1c6f37a4c08626dad2c9f7f323001de5eceb9987046b94943a6d25a",
+      "size": 121242
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_172547_wave_flux_meter_channel_map_thermo-routing-v2-wave-meter-openports.png",
+      "sha256": "a8b82d7fbbbd575e1341a6dec553259f5ec87c133e8c5fe49ca2e36df10e8a91",
+      "size": 125954
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_172547_wave_flux_meter_openports_dashboard_thermo-routing-v2-wave-meter-openports.png",
+      "sha256": "b379b307b06c3bbbc7003828c3cc02973e25aa7021ab68933a8e997c478642de",
+      "size": 245638
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_172705_wave_flux_meter_openports_timeseries_thermo-routing-v2-wave-meter-openports.png",
+      "sha256": "5d472e99e1c6f37a4c08626dad2c9f7f323001de5eceb9987046b94943a6d25a",
+      "size": 121242
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_172706_wave_flux_meter_channel_map_thermo-routing-v2-wave-meter-openports.png",
+      "sha256": "a8b82d7fbbbd575e1341a6dec553259f5ec87c133e8c5fe49ca2e36df10e8a91",
+      "size": 125954
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_172706_wave_flux_meter_openports_dashboard_thermo-routing-v2-wave-meter-openports.png",
+      "sha256": "b379b307b06c3bbbc7003828c3cc02973e25aa7021ab68933a8e997c478642de",
+      "size": 245638
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_181105_wave_flux_meter_openports_timeseries_thermo-routing-v2-wave-meter-openports.png",
+      "sha256": "37db09e4b223a7857fc971a27d8ab1940b2301bf03eaa96f0665ad64e8a1a8d6",
+      "size": 132828
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_181106_wave_flux_meter_channel_map_thermo-routing-v2-wave-meter-openports.png",
+      "sha256": "a8b82d7fbbbd575e1341a6dec553259f5ec87c133e8c5fe49ca2e36df10e8a91",
+      "size": 125954
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_181106_wave_flux_meter_openports_dashboard_thermo-routing-v2-wave-meter-openports.png",
+      "sha256": "19b0d1c8e7fe8b47ecaf1fcd74d5e0e28019966aeeb0a0d734654a6aa1078582",
+      "size": 249313
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_181431_wave_flux_meter_channel_map_thermo-routing-v2-wave-meter-openports.png",
+      "sha256": "a8b82d7fbbbd575e1341a6dec553259f5ec87c133e8c5fe49ca2e36df10e8a91",
+      "size": 125954
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_181431_wave_flux_meter_openports_timeseries_thermo-routing-v2-wave-meter-openports.png",
+      "sha256": "6e6e00a1689b6def07ef23f8631c3c8059e5df6c235873e1525ab582d7bc3835",
+      "size": 134922
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_181432_wave_flux_meter_openports_dashboard_thermo-routing-v2-wave-meter-openports.png",
+      "sha256": "94c70327be00289bd5528f9bf6426301b67223e1f889598a6102f42af714294c",
+      "size": 250456
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_184252_wave_flux_meter_channel_map_thermo-routing-v2-wave-meter-openports.png",
+      "sha256": "a8b82d7fbbbd575e1341a6dec553259f5ec87c133e8c5fe49ca2e36df10e8a91",
+      "size": 125954
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_184252_wave_flux_meter_openports_dashboard_thermo-routing-v2-wave-meter-openports.png",
+      "sha256": "cb89a94fa6531d938ea1e41b6c64e579ee4c21577b8d127b08d2b33a43986d25",
+      "size": 264200
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_184252_wave_flux_meter_openports_timeseries_thermo-routing-v2-wave-meter-openports.png",
+      "sha256": "6e6e00a1689b6def07ef23f8631c3c8059e5df6c235873e1525ab582d7bc3835",
+      "size": 134922
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_184457_wave_flux_meter_openports_timeseries_thermo-routing-v2-wave-meter-openports.png",
+      "sha256": "6e6e00a1689b6def07ef23f8631c3c8059e5df6c235873e1525ab582d7bc3835",
+      "size": 134922
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_184458_wave_flux_meter_channel_map_thermo-routing-v2-wave-meter-openports.png",
+      "sha256": "a8b82d7fbbbd575e1341a6dec553259f5ec87c133e8c5fe49ca2e36df10e8a91",
+      "size": 125954
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/20251013_184458_wave_flux_meter_openports_dashboard_thermo-routing-v2-wave-meter-openports.png",
+      "sha256": "02eebc83831c8a9df35977dcd04c75687fd31d44fcabf607849a3ce37a16359d",
+      "size": 277396
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_041406_energy_vs_time_thermo-routing-v2.png",
+      "sha256": "d684b5ae8571d7c0be30318fc9253d24cb054cb6345ed6b7fa7ae0dca48b7d84",
+      "size": 28277
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_041806_energy_vs_time_thermo-routing-v2.png",
+      "sha256": "e918ea653897bdae547b993238d089775f0b158c0125e36f58a03654cc709d1d",
+      "size": 24329
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_042057_energy_vs_time_thermo-routing-v2.png",
+      "sha256": "e918ea653897bdae547b993238d089775f0b158c0125e36f58a03654cc709d1d",
+      "size": 24329
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_042146_energy_vs_time_thermo-routing-v2.png",
+      "sha256": "e918ea653897bdae547b993238d089775f0b158c0125e36f58a03654cc709d1d",
+      "size": 24329
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_061239_lyapunov_h_theorem_thermo-routing-v2.png",
+      "sha256": "a2ae997499b374d3c9039e6c64363d76fbe6524a57e7f6393f5a5392ed37506c",
+      "size": 65464
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_061240_geometry_masks_thermo-routing-v2.png",
+      "sha256": "3302fe5bce7750875eedea8dfa16b4a1128d55a757c1cdeb582beafe7e571b0b",
+      "size": 47922
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_061240_kpi_dashboard_thermo-routing-v2.png",
+      "sha256": "bc737ca3448c1cabae4844c4fdeaf001373ffa3eff40a128c6e99b3445ae3868",
+      "size": 135663
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_061414_geometry_masks_thermo-routing-v2.png",
+      "sha256": "3302fe5bce7750875eedea8dfa16b4a1128d55a757c1cdeb582beafe7e571b0b",
+      "size": 47922
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_061414_kpi_dashboard_thermo-routing-v2.png",
+      "sha256": "bc737ca3448c1cabae4844c4fdeaf001373ffa3eff40a128c6e99b3445ae3868",
+      "size": 135663
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_061414_lyapunov_h_theorem_thermo-routing-v2.png",
+      "sha256": "a2ae997499b374d3c9039e6c64363d76fbe6524a57e7f6393f5a5392ed37506c",
+      "size": 65464
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_063058_lyapunov_h_theorem_thermo-routing-v2-prereg-biased-main.png",
+      "sha256": "11473cc3effb2e7440c2f527a7989108974b4e9c7bdc8944c9c93f66fc01962d",
+      "size": 65657
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_063059_geometry_masks_thermo-routing-v2-prereg-biased-main.png",
+      "sha256": "3302fe5bce7750875eedea8dfa16b4a1128d55a757c1cdeb582beafe7e571b0b",
+      "size": 47922
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_063059_kpi_dashboard_thermo-routing-v2-prereg-biased-main.png",
+      "sha256": "6ed9e68de16e14ab15ed1b199ed084424e1faeacefe7cd7aab5525ffba63f6d5",
+      "size": 135462
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_063143_kpi_dashboard_thermo-routing-v2-prereg-biased-main.png",
+      "sha256": "83c155c403296d7e78b6060c7899c8f9d4d1688f3dfffb4d7ae7adb0681e2543",
+      "size": 138348
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_063143_lyapunov_h_theorem_thermo-routing-v2-prereg-biased-main.png",
+      "sha256": "7096bf9c9adb36fa34fc7466c9fed6ea65503eb084d0f9216cb08c31aa8d4dbb",
+      "size": 66552
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_063144_geometry_masks_thermo-routing-v2-prereg-biased-main.png",
+      "sha256": "3302fe5bce7750875eedea8dfa16b4a1128d55a757c1cdeb582beafe7e571b0b",
+      "size": 47922
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_063251_kpi_dashboard_thermo-routing-v2-prereg-biased-main.png",
+      "sha256": "c361de9110bf6c00332108be2a518f68efc3a8c5377197ed5abd3a4a4d9768cf",
+      "size": 181927
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_063251_lyapunov_h_theorem_thermo-routing-v2-prereg-biased-main.png",
+      "sha256": "6f00d114a3dd49ef4cf4569c627606d28f8673b484663e1920a94dba30b91ccf",
+      "size": 63472
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_063252_geometry_masks_thermo-routing-v2-prereg-biased-main.png",
+      "sha256": "577f2076cc12efd77bff43934ab4b2b18f9e864d580b3b64c5c35f9589b5f72f",
+      "size": 54837
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_065135_prereg_aggregate_dashboard_thermo-routing-v2-prereg-biased-main.png",
+      "sha256": "d441b70ce4380ae53bffac88e4f7ece0aa54165210be07122e909400266e3f35",
+      "size": 101815
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_070533_prereg_aggregate_dashboard_thermo-routing-v2-prereg-biased-main.png",
+      "sha256": "5694a86484cd17ee81de28fd4fc8708bb1430a84ecf2a30ad7ba7b2524573aa8",
+      "size": 111494
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_070711_prereg_aggregate_dashboard_thermo-routing-v2-prereg-biased-main.png",
+      "sha256": "e2eaafe032e300cdd5b31deaa2f9350ae51188e183b7dca9db717cfad34e95ba",
+      "size": 112849
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_070818_prereg_aggregate_dashboard_thermo-routing-v2-prereg-biased-main.png",
+      "sha256": "09e313ddc4abea59802226f04c340ced704123144ea08db860efbf0eb87d676e",
+      "size": 115617
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_071432_prereg_aggregate_dashboard_thermo-routing-v2-prereg-biased-main.png",
+      "sha256": "31792372eebbb7f102d1f96c328016770968daf85e737ee8aaa49feda68802b8",
+      "size": 115801
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_072324_prereg_aggregate_dashboard_thermo-routing-v2-prereg-biased-main.png",
+      "sha256": "71eaddc076b34ad3dd1d28093251e3950ddfff8d2636e6e96646f2ab772dec32",
+      "size": 110207
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_073205_prereg_aggregate_dashboard_thermo-routing-v2-prereg-biased-main.png",
+      "sha256": "6de09f2e9f40016273af36cbcaf94b3688690d57acf9dfa6aace3ef7c921f1f7",
+      "size": 111022
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_073755_prereg_aggregate_dashboard_thermo-routing-v2-prereg-biased-main.png",
+      "sha256": "ee495842e35c5aa28f48b56ab27df39cc120b09c4a5910aed23500f74eaf06e5",
+      "size": 113473
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_074003_prereg_aggregate_dashboard_thermo-routing-v2-prereg-biased-main.png",
+      "sha256": "6feccf8aa518ec5733095f26557c0253ba7c82cf2ad6389e947491ffc4993395",
+      "size": 112163
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_074108_prereg_aggregate_dashboard_thermo-routing-v2-prereg-biased-main.png",
+      "sha256": "3616f1221d6196a4f3c7731de2af363fb02cb8b39114f7b0f5764bbafa6c28c3",
+      "size": 113226
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_115326_ftmc_channel_map_thermo-routing-v2-ftmc.png",
+      "sha256": "d654bc31c3e74f85e5c40c6e6b9c8d1125f6e20c1b1b80ea429bc3b021f57d88",
+      "size": 8899
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_140810_wave_flux_meter_energy_thermo-routing-v2-wave-meter.png",
+      "sha256": "d7c6aa75a8ae746353dd0c9262e027482a0b55d79c5d844ac96dc01ded1bbf7e",
+      "size": 36403
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_141919_wave_flux_meter_energy_thermo-routing-v2-wave-meter.png",
+      "sha256": "414dd2871edb6566fa734744292b5495c005cd969eb5d1d957d7596259adb14d",
+      "size": 37073
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_144730_wave_flux_meter_openports_timeseries_thermo-routing-v2-wave-meter-openports.png",
+      "sha256": "5572bd3777fe6657faa4183e1b905db8ac4003332b532a37e5f06c6f5ca41135",
+      "size": 64388
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_144850_wave_flux_meter_openports_timeseries_thermo-routing-v2-wave-meter-openports.png",
+      "sha256": "0fadb27c8861a76b24c6c5a2baee765545bb4376def9276d10f58ee64b10c20c",
+      "size": 61441
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_150746_wave_flux_meter_openports_timeseries_thermo-routing-v2-wave-meter-openports-channelmap.png",
+      "sha256": "23a78f6b9659b171ea298ec5b7ae1407bb2a8223e616339dc7055af6057ee7b5",
+      "size": 101734
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_150847_wave_flux_meter_channel_map_thermo-routing-v2-wave-meter-openports-channelmap.png",
+      "sha256": "802e5190d70f04478425da060a7a6cc5cfdceb0254c6fee2ff7f244f74f08e7c",
+      "size": 47226
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_150847_wave_flux_meter_openports_timeseries_thermo-routing-v2-wave-meter-openports-channelmap.png",
+      "sha256": "23a78f6b9659b171ea298ec5b7ae1407bb2a8223e616339dc7055af6057ee7b5",
+      "size": 101734
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_151100_wave_flux_meter_channel_map_thermo-routing-v2-wave-meter-openports-channelmap.png",
+      "sha256": "09b3275a77356eb3f5c8f0403f465928bf811dd2d7c99a5087112284aa4e462b",
+      "size": 125799
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_151100_wave_flux_meter_openports_timeseries_thermo-routing-v2-wave-meter-openports-channelmap.png",
+      "sha256": "c5004fdf4bffb1540dad28fba36ba5f0ec28e44f355984e20c020b75463de2b8",
+      "size": 106932
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_151324_wave_flux_meter_channel_map_thermo-routing-v2-wave-meter-openports-channelmap.png",
+      "sha256": "dd77d593ad793b3ea015e1e0929dffe9c1b9bf35a7c8e2b818d16ebddc7a4939",
+      "size": 125846
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_151324_wave_flux_meter_openports_timeseries_thermo-routing-v2-wave-meter-openports-channelmap.png",
+      "sha256": "09e6fc82886103a0c5a6cd6a78839c795fcff2e24242f8d7b5335652b9828fec",
+      "size": 97556
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_151404_wave_flux_meter_channel_map_thermo-routing-v2-wave-meter-openports-channelmap.png",
+      "sha256": "e4a597dcf28bada2af926677a236971c0ba441b1dd72622695f3d6661ef9ff3a",
+      "size": 125946
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_151404_wave_flux_meter_openports_timeseries_thermo-routing-v2-wave-meter-openports-channelmap.png",
+      "sha256": "5fc7964dec59dfb1efbf28553f590e8efee0c49fc46f2f5ada45a4dfca04b920",
+      "size": 96966
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_151513_wave_flux_meter_channel_map_thermo-routing-v2-wave-meter-openports-channelmap.png",
+      "sha256": "960901f194d862fbb4788e6dd0ce32c7a346b19745fbb8f9dc5b509365315908",
+      "size": 125841
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_151513_wave_flux_meter_openports_timeseries_thermo-routing-v2-wave-meter-openports-channelmap.png",
+      "sha256": "1b91e7d4b23e3ae7d9c5643f37c4f88ee7222e0da3d72a384e45fcc71d616eb0",
+      "size": 102584
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_151603_wave_flux_meter_channel_map_thermo-routing-v2-wave-meter-openports-channelmap.png",
+      "sha256": "91adf528ad813c02ada6041878b65ea7a8bfed18e031d68549b7aafda8236c15",
+      "size": 125946
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_151603_wave_flux_meter_openports_timeseries_thermo-routing-v2-wave-meter-openports-channelmap.png",
+      "sha256": "55baafe34a3ab8a28d61f8b39ce44f93e2f7230b129cb7ef9310bf591f15c119",
+      "size": 93450
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_151649_wave_flux_meter_channel_map_thermo-routing-v2-wave-meter-openports-channelmap.png",
+      "sha256": "a8b82d7fbbbd575e1341a6dec553259f5ec87c133e8c5fe49ca2e36df10e8a91",
+      "size": 125954
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_151649_wave_flux_meter_openports_timeseries_thermo-routing-v2-wave-meter-openports-channelmap.png",
+      "sha256": "3350ea01f2fe14adcb4fa2c78aefecd64bc2f48ea58a5e116f1402cefa73d578",
+      "size": 94622
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_152144_wave_flux_meter_channel_map_thermo-routing-v2-wave-meter-openports-channelmap.png",
+      "sha256": "a8b82d7fbbbd575e1341a6dec553259f5ec87c133e8c5fe49ca2e36df10e8a91",
+      "size": 125954
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_152144_wave_flux_meter_openports_timeseries_thermo-routing-v2-wave-meter-openports-channelmap.png",
+      "sha256": "3350ea01f2fe14adcb4fa2c78aefecd64bc2f48ea58a5e116f1402cefa73d578",
+      "size": 94622
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_152225_wave_flux_meter_channel_map_thermo-routing-v2-wave-meter-openports-channelmap.png",
+      "sha256": "a8b82d7fbbbd575e1341a6dec553259f5ec87c133e8c5fe49ca2e36df10e8a91",
+      "size": 125954
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_152225_wave_flux_meter_openports_timeseries_thermo-routing-v2-wave-meter-openports-channelmap.png",
+      "sha256": "3350ea01f2fe14adcb4fa2c78aefecd64bc2f48ea58a5e116f1402cefa73d578",
+      "size": 94622
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_175438_wave_flux_meter_channel_map_thermo-routing-v2-wave-meter-openports.png",
+      "sha256": "a8b82d7fbbbd575e1341a6dec553259f5ec87c133e8c5fe49ca2e36df10e8a91",
+      "size": 125954
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_175438_wave_flux_meter_openports_dashboard_thermo-routing-v2-wave-meter-openports.png",
+      "sha256": "76e9aeb2ea5bed6234eb17bac70b02e1f2f7a5293e6a9c52df86b5de2a9ae93b",
+      "size": 246057
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_175438_wave_flux_meter_openports_timeseries_thermo-routing-v2-wave-meter-openports.png",
+      "sha256": "d72cb800e06e3585410ae17768b75c5c5bb29d1e3fc15f3c380739769f5ef6e8",
+      "size": 129551
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_175554_wave_flux_meter_channel_map_thermo-routing-v2-wave-meter-openports.png",
+      "sha256": "a8b82d7fbbbd575e1341a6dec553259f5ec87c133e8c5fe49ca2e36df10e8a91",
+      "size": 125954
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_175554_wave_flux_meter_openports_dashboard_thermo-routing-v2-wave-meter-openports.png",
+      "sha256": "641ba8ddb2209bb595764132803d4c4952089512c420d934bbe895926c543ffc",
+      "size": 242889
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_175554_wave_flux_meter_openports_timeseries_thermo-routing-v2-wave-meter-openports.png",
+      "sha256": "92943d98b821a3820ee3694061dd634e49a7d57b8c344f52963cdd9f1263c35c",
+      "size": 122257
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_175714_wave_flux_meter_channel_map_thermo-routing-v2-wave-meter-openports.png",
+      "sha256": "a8b82d7fbbbd575e1341a6dec553259f5ec87c133e8c5fe49ca2e36df10e8a91",
+      "size": 125954
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_175714_wave_flux_meter_openports_timeseries_thermo-routing-v2-wave-meter-openports.png",
+      "sha256": "697aac070bbd6865a4f923be9d660737cee00bfcb54c832be8a8c09ffa8b1384",
+      "size": 122695
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_175715_wave_flux_meter_openports_dashboard_thermo-routing-v2-wave-meter-openports.png",
+      "sha256": "cdd51016db1cd8288b2d7da66e6e35ebf0d1bd8d253adb9f9bdc22cdbd54849d",
+      "size": 242972
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_180134_wave_flux_meter_channel_map_thermo-routing-v2-wave-meter-openports.png",
+      "sha256": "a8b82d7fbbbd575e1341a6dec553259f5ec87c133e8c5fe49ca2e36df10e8a91",
+      "size": 125954
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_180134_wave_flux_meter_openports_dashboard_thermo-routing-v2-wave-meter-openports.png",
+      "sha256": "a8f20a4d579a94012074319346840da55eb7bc9b35e6cd6701e0ce315c48e352",
+      "size": 242140
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_180134_wave_flux_meter_openports_timeseries_thermo-routing-v2-wave-meter-openports.png",
+      "sha256": "561de49004328ae01f82cf5408972d8aafe3b9edeee55f3c951119ec56bc0bc5",
+      "size": 121217
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_180323_wave_flux_meter_channel_map_thermo-routing-v2-wave-meter-openports.png",
+      "sha256": "a8b82d7fbbbd575e1341a6dec553259f5ec87c133e8c5fe49ca2e36df10e8a91",
+      "size": 125954
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_180323_wave_flux_meter_openports_dashboard_thermo-routing-v2-wave-meter-openports.png",
+      "sha256": "cdd51016db1cd8288b2d7da66e6e35ebf0d1bd8d253adb9f9bdc22cdbd54849d",
+      "size": 242972
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_180323_wave_flux_meter_openports_timeseries_thermo-routing-v2-wave-meter-openports.png",
+      "sha256": "697aac070bbd6865a4f923be9d660737cee00bfcb54c832be8a8c09ffa8b1384",
+      "size": 122695
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_180459_wave_flux_meter_channel_map_thermo-routing-v2-wave-meter-openports.png",
+      "sha256": "a8b82d7fbbbd575e1341a6dec553259f5ec87c133e8c5fe49ca2e36df10e8a91",
+      "size": 125954
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_180459_wave_flux_meter_openports_dashboard_thermo-routing-v2-wave-meter-openports.png",
+      "sha256": "cdd51016db1cd8288b2d7da66e6e35ebf0d1bd8d253adb9f9bdc22cdbd54849d",
+      "size": 242972
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_180459_wave_flux_meter_openports_timeseries_thermo-routing-v2-wave-meter-openports.png",
+      "sha256": "697aac070bbd6865a4f923be9d660737cee00bfcb54c832be8a8c09ffa8b1384",
+      "size": 122695
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_180600_wave_flux_meter_channel_map_thermo-routing-v2-wave-meter-openports.png",
+      "sha256": "a8b82d7fbbbd575e1341a6dec553259f5ec87c133e8c5fe49ca2e36df10e8a91",
+      "size": 125954
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_180600_wave_flux_meter_openports_dashboard_thermo-routing-v2-wave-meter-openports.png",
+      "sha256": "16a1bc7df9a77787c9dd5703408b8b4b4c193c6a093011ea74be4cafdfaa5ac4",
+      "size": 243255
+    },
+    {
+      "path": "Derivation/code/outputs/figures/thermo_routing/failed_runs/20251013_180600_wave_flux_meter_openports_timeseries_thermo-routing-v2-wave-meter-openports.png",
+      "sha256": "c8a00141402a2670b55ff824a5d568525153623166baaae1ce1f6d83690c7f52",
+      "size": 122967
+    },
+    {
+      "path": "Derivation/code/outputs/logs/agency/options.csv",
+      "sha256": "d11d27a7f851295554042fcff06ab8485e265ec8dcddd4126d7a8da20bcae96f",
+      "size": 3286
+    },
+    {
+      "path": "Derivation/code/outputs/logs/causality/20251008_074211_dag_audit_v1.json",
+      "sha256": "6d19772fd45bd2598b3a03d302dec4e7f0b0138b7547f74bc5a25d255be69fe5",
+      "size": 1666
+    },
+    {
+      "path": "Derivation/code/outputs/logs/causality/20251008_074231_dag_audit_v1.json",
+      "sha256": "f16488075aaa12ce64886c2340c92eb09d5bd2304aa45cb015f21adcff303f87",
+      "size": 1665
+    },
+    {
+      "path": "Derivation/code/outputs/logs/causality/20251008_074402_dag_audit_v1.json",
+      "sha256": "d05ebd5d74e6e478daf57cbf2472e6a50a7fd75c656410ebace048516676c617",
+      "size": 1648
+    },
+    {
+      "path": "Derivation/code/outputs/logs/causality/20251008_075037_dag_audit_v1.json",
+      "sha256": "a68703280451d78ec98eca7e47b814ab624f7d1f26341297559b0698d45a788c",
+      "size": 1734
+    },
+    {
+      "path": "Derivation/code/outputs/logs/causality/20251008_082840_dag_audit_v1.json",
+      "sha256": "26241cc7ce85679fb4b2536c8f2dcc8249685662d99b736ec6cc8914aa9a50f4",
+      "size": 1726
+    },
+    {
+      "path": "Derivation/code/outputs/logs/causality/20251008_091755_dag_audit_v1.json",
+      "sha256": "4f3b9c9c4cf6ed862154d8517ecd3f0eea523a2184faf41b58e90223278853a1",
+      "size": 1757
+    },
+    {
+      "path": "Derivation/code/outputs/logs/causality/20251008_092015_dag_audit_v1.json",
+      "sha256": "dd489a68b91c713b485e0a326ed1838c17dbdbcd9fca3732cad9b6bdc9abde3f",
+      "size": 1773
+    },
+    {
+      "path": "Derivation/code/outputs/logs/causality/20251008_094322_dag_audit_trail_v1.json",
+      "sha256": "534ada17118eeef5d903c7937d9761cd44b6bf2c27c2853c040e084016cd8946",
+      "size": 1789
+    },
+    {
+      "path": "Derivation/code/outputs/logs/causality/20251008_094531_dag_audit_trail_v1.json",
+      "sha256": "cd5aa1ac9f8d405dbf7878e3b500a3daccf07c237796af4f67598f6e185cc8bc",
+      "size": 1944
+    },
+    {
+      "path": "Derivation/code/outputs/logs/causality/20251008_094927_dag_audit_macro_v1.json",
+      "sha256": "43a213e787b8f063ae237de09190a74474ab0525b31b74233a2d6dfc183e0bee",
+      "size": 9331
+    },
+    {
+      "path": "Derivation/code/outputs/logs/causality/20251008_095111_dag_audit_macro_slim_v1.json",
+      "sha256": "a62053c4ecfdd37244bf1705f2756e45815b827db2e9f8b012e61e3723ace09d",
+      "size": 9541
+    },
+    {
+      "path": "Derivation/code/outputs/logs/causality/failed_runs/20251008_083944_dag_audit_v1.json",
+      "sha256": "589b7c784521624967e9b71eb088c07a9e66d62b5b25272200f65ded55cb208c",
+      "size": 1943
+    },
+    {
+      "path": "Derivation/code/outputs/logs/collapse/20251006_175337_a6_collapse__A6-collapse-v1.json",
+      "sha256": "f712b96fa3cdfbbc217bcc369217be6044ab983cb0243373e10f14adb171afaf",
+      "size": 7571
+    },
+    {
+      "path": "Derivation/code/outputs/logs/collapse/20251006_175337_a6_collapse_envelope__A6-collapse-v1.csv",
+      "sha256": "d1c440f9dbb6055401f479a92af322e6e29e5f3cd29cd302deae276da408d248",
+      "size": 7958
+    },
+    {
+      "path": "Derivation/code/outputs/logs/collapse/failed_runs/20251006_175257_CONTRADICTION_REPORT_a6_collapse__A6-collapse-v1.json",
+      "sha256": "08230468a124b67389a83d9752cd0faa11753bbf9b0929c45dd16788cb09f957",
+      "size": 485
+    },
+    {
+      "path": "Derivation/code/outputs/logs/collapse/failed_runs/20251006_175257_a6_collapse__A6-collapse-v1.json",
+      "sha256": "f5ad0898ba0958a104ce790d9f44e89e6a9223449d0aab768186f1d09328731b",
+      "size": 1428
+    },
+    {
+      "path": "Derivation/code/outputs/logs/collapse/failed_runs/20251006_175257_a6_collapse_envelope__A6-collapse-v1.csv",
+      "sha256": "af5bc8dc0d2ae227c1da4a2ad82a32759c970e5595050ba5f505a3bb31014b45",
+      "size": 7642
+    },
+    {
+      "path": "Derivation/code/outputs/logs/conservation_law/20250826_110546_qfum_metrics.json",
+      "sha256": "b8d76fba15a03f3c835cea31fab019442fb6e4923b8bb158dc3badb594e5182f",
+      "size": 2894
+    },
+    {
+      "path": "Derivation/code/outputs/logs/conservation_law/H_candidate_test_1756476845.json",
+      "sha256": "e27792b1e25ea7c04dc6efe528cf2676417556f2c3ef4e286a2ec95095ee0e0b",
+      "size": 200
+    },
+    {
+      "path": "Derivation/code/outputs/logs/conservation_law/failed_runs/20250826_092422_qfum_metrics.json",
+      "sha256": "cdab5ca5ee53327463f1e5bb56455fbd78f2adc52ce9705424e79a103619b052",
+      "size": 2497
+    },
+    {
+      "path": "Derivation/code/outputs/logs/conservation_law/failed_runs/20250826_092500_qfum_metrics.json",
+      "sha256": "ab2856ac985639a5f472cb0d9c2dff6abe293005a5ac943d00371a0edcdf1373",
+      "size": 2497
+    },
+    {
+      "path": "Derivation/code/outputs/logs/conservation_law/failed_runs/20250826_100250_qfum_metrics.json",
+      "sha256": "3559c2bc08506271beec6d3c8c4e6bbe1c698762bfa3f0cb05d6c1595beb0ea6",
+      "size": 2497
+    },
+    {
+      "path": "Derivation/code/outputs/logs/conservation_law/failed_runs/20250826_100939_qfum_metrics.json",
+      "sha256": "28f9f7975ae64199205e3f113e9e8eb3d82a47acf8a9344b20d549a3eb4aaf4b",
+      "size": 2497
+    },
+    {
+      "path": "Derivation/code/outputs/logs/conservation_law/failed_runs/20250826_110242_qfum_metrics.json",
+      "sha256": "34c0284b488f9f4f778a515fa5a262d6b0c96aae12de5e632aa1b70d7da34e7e",
+      "size": 2499
+    },
+    {
+      "path": "Derivation/code/outputs/logs/conservation_law/failed_runs/20250826_110431_qfum_metrics.json",
+      "sha256": "63bd9c4c8c17edffbda160cef9880df695424f4c3d91fbde8389898cd55a4937",
+      "size": 2775
+    },
+    {
+      "path": "Derivation/code/outputs/logs/conservation_law/fit_H_edge_1756476036.json",
+      "sha256": "3d24726b4ec533a726d3cdf697d300a901d874973ec2ee1c7e00dd7e27f808e1",
+      "size": 282
+    },
+    {
+      "path": "Derivation/code/outputs/logs/conservation_law/fit_H_edge_1756476188.json",
+      "sha256": "b1f822f836eb6c2d79eda8ac945bb981688a89ebd0ad54fcd852c91ed97de49a",
+      "size": 320
+    },
+    {
+      "path": "Derivation/code/outputs/logs/conservation_law/flux_sweep_1756475408.json",
+      "sha256": "ce67b3e75137f9a695e42fef4c030903ed53b2357fb656f4dc5d7cb984ba1629",
+      "size": 4711
+    },
+    {
+      "path": "Derivation/code/outputs/logs/conservation_law/flux_sweep_1756475709.json",
+      "sha256": "6c28bf1ddf514c6b0dcfbc3abef0c3003c2f38c6c66714fc9722df7cc3f29a76",
+      "size": 26919
+    },
+    {
+      "path": "Derivation/code/outputs/logs/conservation_law/flux_sweep_1756476135.json",
+      "sha256": "4536238da3ce71dcab278b872b3859a1b38fac38f7625ae87c7ddce453c4d359",
+      "size": 27026
+    },
+    {
+      "path": "Derivation/code/outputs/logs/conservation_law/frw_conservation_check.csv",
+      "sha256": "9216727273090afdc4a377882060f31e016b9ca3bc6575dc1d6e5b68665af409",
+      "size": 173802
+    },
+    {
+      "path": "Derivation/code/outputs/logs/conservation_law/grid_tau0_report.json",
+      "sha256": "fa6b2a29e0b4952f2b745c63703638814413773ec95a57133abdaf4861fd6556",
+      "size": 3527
+    },
+    {
+      "path": "Derivation/code/outputs/logs/conservation_law/opt_H_params_1756477394.json",
+      "sha256": "65ad4ef8c4441993a1f33b6589ab6944e0045790f69e5eeff5cc5b7b1423c3c5",
+      "size": 428
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/20251006_175034_frw_balance__FRW-balance-v1.json",
+      "sha256": "c827f573740d93f7011a9aa02e5ee20f42d5f7cb244b4c8981922525a2cc8dee",
+      "size": 372
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/20251006_175034_frw_continuity_residual__FRW-balance-v1.csv",
+      "sha256": "112b6546904e2fb326b1c584aa161fd6bf735f2859650876bba14447bc971775",
+      "size": 9233
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/20251006_175329_frw_balance__FRW-balance-v1.json",
+      "sha256": "7391ca3248d2b45d8390b167fc36db31fb4dbfc09678bb92613435963623c11e",
+      "size": 372
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/20251006_175329_frw_continuity_residual__FRW-balance-v1.csv",
+      "sha256": "112b6546904e2fb326b1c584aa161fd6bf735f2859650876bba14447bc971775",
+      "size": 9233
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/20251115_165826_topo_rdm_v1__dsi-topo-rdm-v1__circle_approved__betti_curve.csv",
+      "sha256": "ce2c810958c43043b18d1e01a27d062e43e874889e9c3b53cee5e734e888e87a",
+      "size": 2947
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/20251115_165826_topo_rdm_v1__dsi-topo-rdm-v1__circle_approved__summary.json",
+      "sha256": "c194fb8d7bb4c3485b059035ecb16026216d08e8d0c206d920a026c55ea99280",
+      "size": 1613
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/20251115_173139_topo_rdm_v1__dsi-topo-rdm-v1__gw150914_H1__ridges.csv",
+      "sha256": "6c4c80cd92801706e146c60cd6a337e61b5161ca341899a0946a65f89e4a376b",
+      "size": 13748
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/20251115_174020_topo_rdm_v1__dsi-topo-rdm-v1__gw150914_H1__ridges.csv",
+      "sha256": "6c6f7abdabf51df7b5fe495c7d9bc8e1ba59e847a01b201fc2b63ef1d977f434",
+      "size": 9196
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/20251115_192720_topo_rdm_v1__dsi-topo-rdm-v1__circle_pass_det1_rerun_g3fix__betti_curve.csv",
+      "sha256": "5494b67516acde9930006e120a0bff8f1c258830e52a861870e38157f327c029",
+      "size": 2955
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/20251115_192720_topo_rdm_v1__dsi-topo-rdm-v1__circle_pass_det1_rerun_g3fix__summary.json",
+      "sha256": "a961e561f3d601528ea3244f46578ca7cd26b906477cdc60842a8f34a40c3306",
+      "size": 2474
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/20251115_192837_topo_rdm_v1__dsi-topo-rdm-v1__circle_pass_det1_determinism_rerun__betti_curve.csv",
+      "sha256": "5494b67516acde9930006e120a0bff8f1c258830e52a861870e38157f327c029",
+      "size": 2955
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/20251115_192837_topo_rdm_v1__dsi-topo-rdm-v1__circle_pass_det1_determinism_rerun__summary.json",
+      "sha256": "cb791cfc7836b394c76129456d5a0720e98c661d89dbfd355a78ed22678852a7",
+      "size": 2492
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/20251115_193246_topo_rdm_v1__dsi-topo-rdm-v1__circle_pass_sweep_default__betti_curve.csv",
+      "sha256": "5494b67516acde9930006e120a0bff8f1c258830e52a861870e38157f327c029",
+      "size": 2955
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/20251115_193246_topo_rdm_v1__dsi-topo-rdm-v1__circle_pass_sweep_default__summary.json",
+      "sha256": "2facf7189277ccb8e1f135e031dcbdd0ac0029d44563d50f17b667b71b6fe3ec",
+      "size": 2142
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/20251115_193433_topo_rdm_v1__dsi-topo-rdm-v1__circle_pass_sweep_q10_q75_noalign__betti_curve.csv",
+      "sha256": "5494b67516acde9930006e120a0bff8f1c258830e52a861870e38157f327c029",
+      "size": 2955
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/20251115_193433_topo_rdm_v1__dsi-topo-rdm-v1__circle_pass_sweep_q10_q75_noalign__summary.json",
+      "sha256": "36359461278ce17a15e0d10ec4da6a95e979e2b08fcd759b30e2d431b6bd6f6e",
+      "size": 2343
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/20251115_202216_topo_rdm_v1__dsi-topo-rdm-v1__smoke_pre__betti_curve.csv",
+      "sha256": "5494b67516acde9930006e120a0bff8f1c258830e52a861870e38157f327c029",
+      "size": 2955
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/20251115_202216_topo_rdm_v1__dsi-topo-rdm-v1__smoke_pre__summary.json",
+      "sha256": "4f57c0a5e6ffbadb26523c1abebb2eac2536c2dde9ecf9f2ddf70e54a77795c2",
+      "size": 2094
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/failed_runs/20251115_164817_CONTRADICTION_REPORT__topo_rdm_v1__dsi-topo-rdm-v1__smoke.json",
+      "sha256": "f03cfc17a07d7b8333ea50b8da3adaff05831aa66a0a22f996d44eb7e8c84010",
+      "size": 744
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/failed_runs/20251115_164817_topo_rdm_v1__dsi-topo-rdm-v1__smoke__betti_curve.csv",
+      "sha256": "80918388bcaa5ca0765555129ba0eef6806186b54642c36fe796abbc357d0c42",
+      "size": 2268
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/failed_runs/20251115_164817_topo_rdm_v1__dsi-topo-rdm-v1__smoke__summary.json",
+      "sha256": "8c82c5d70805a68affd6ffd1a29a409e45abfdcff69736710db44dae787b59e7",
+      "size": 1497
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/failed_runs/20251115_164903_CONTRADICTION_REPORT__topo_rdm_v1__dsi-topo-rdm-v1__smoke.json",
+      "sha256": "5e1a2ce523d50042587598c78cf0afe5f29600824452091ed3f5e915f12d30aa",
+      "size": 744
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/failed_runs/20251115_164903_topo_rdm_v1__dsi-topo-rdm-v1__smoke__betti_curve.csv",
+      "sha256": "80918388bcaa5ca0765555129ba0eef6806186b54642c36fe796abbc357d0c42",
+      "size": 2268
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/failed_runs/20251115_164903_topo_rdm_v1__dsi-topo-rdm-v1__smoke__summary.json",
+      "sha256": "6058ff8abb5440567f4ce9b50701e7bde5231a734ace9f7f4a432d33fbdde8c6",
+      "size": 1497
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/failed_runs/20251115_165523_CONTRADICTION_REPORT__topo_rdm_v1__dsi-topo-rdm-v1__smoke_retest.json",
+      "sha256": "6693af1c6874ec6c1f197d4949a7b86151a409b3cd9a7bb317c87841d14db11e",
+      "size": 788
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/failed_runs/20251115_165523_topo_rdm_v1__dsi-topo-rdm-v1__smoke_retest__betti_curve.csv",
+      "sha256": "91d45a38794f2b1e49cb16b67a8082a041c073cc9d79d92326ccc50ad8701c8a",
+      "size": 2474
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/failed_runs/20251115_165523_topo_rdm_v1__dsi-topo-rdm-v1__smoke_retest__summary.json",
+      "sha256": "a01531456353b1cf723ecc5c0d0efe17515060f61be2749ef87db6b45418b891",
+      "size": 1622
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/failed_runs/20251115_165632_CONTRADICTION_REPORT__topo_rdm_v1__dsi-topo-rdm-v1__smoke_spec.json",
+      "sha256": "496c29401da8cb4061d62165b14f67131d8d048bdfc9bccd6a320a62b1ffb398",
+      "size": 783
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/failed_runs/20251115_165632_topo_rdm_v1__dsi-topo-rdm-v1__smoke_spec__betti_curve.csv",
+      "sha256": "9cff3de9c46b781b3a292a949d699ac8805c39aeb4fc13189f41457984273e58",
+      "size": 2768
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/failed_runs/20251115_165632_topo_rdm_v1__dsi-topo-rdm-v1__smoke_spec__summary.json",
+      "sha256": "4821e8678072e2e9812604277e0e124b849e5a7187411d5ea71b3dd2e2b5648e",
+      "size": 1648
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/failed_runs/20251115_165745_topo_rdm_v1__dsi-topo-rdm-v1__circle__betti_curve.csv",
+      "sha256": "ce2c810958c43043b18d1e01a27d062e43e874889e9c3b53cee5e734e888e87a",
+      "size": 2947
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/failed_runs/20251115_165745_topo_rdm_v1__dsi-topo-rdm-v1__circle__summary.json",
+      "sha256": "04f049baa0a12fc75c766d6754287707add80a0e109935e8a7464114cd300dda",
+      "size": 1610
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/failed_runs/20251115_173310_CONTRADICTION_REPORT__topo_rdm_v1__dsi-topo-rdm-v1__gw150914_H1.json",
+      "sha256": "4784411840757a98ca0b212f629272ec935d3121220b3bb97c924cb21e91c18f",
+      "size": 805
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/failed_runs/20251115_173310_topo_rdm_v1__dsi-topo-rdm-v1__gw150914_H1__betti_curve.csv",
+      "sha256": "69c95575bbb93e0e87a5aebdabc8e1dcf1a6d2f5c28e40f0599cdc9bf9ea3cad",
+      "size": 3036
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/failed_runs/20251115_173310_topo_rdm_v1__dsi-topo-rdm-v1__gw150914_H1__summary.json",
+      "sha256": "9c508476752f24c6c9f80b3151106ced53c82434c2382b4938e808e4d050863d",
+      "size": 2291
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/failed_runs/20251115_174256_CONTRADICTION_REPORT__topo_rdm_v1__dsi-topo-rdm-v1__gw150914_H1.json",
+      "sha256": "2e1f9d429c514c84f34ff851c9546d7ad489dc04d76bf64069ca57db3429dfe1",
+      "size": 803
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/failed_runs/20251115_174256_topo_rdm_v1__dsi-topo-rdm-v1__gw150914_H1__betti_curve.csv",
+      "sha256": "3292f9814ffac97e8515d4c86a8530df15f7c84d351eb0d328e4915c80f5510b",
+      "size": 3057
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/failed_runs/20251115_174256_topo_rdm_v1__dsi-topo-rdm-v1__gw150914_H1__summary.json",
+      "sha256": "2d6b3e7bb17509449680822525822bdc6cb69c12e6110bbba92afc96d084957d",
+      "size": 2289
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/failed_runs/20251115_191930_CONTRADICTION_REPORT__topo_rdm_v1__dsi-topo-rdm-v1__smoke_det1.json",
+      "sha256": "cced9fbb4f89ac364c7a2f0234f9633fe8c4ddfa1f6a702f6e9f9735dd31dec8",
+      "size": 801
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/failed_runs/20251115_191930_topo_rdm_v1__dsi-topo-rdm-v1__smoke_det1__betti_curve.csv",
+      "sha256": "113a9e2d280b52433b0477df9d6d1a30af28ac8c220fc9fddfe36d982207f51b",
+      "size": 2740
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/failed_runs/20251115_191930_topo_rdm_v1__dsi-topo-rdm-v1__smoke_det1__summary.json",
+      "sha256": "d459667ade6c18fbfdb5f39c4673347b1ae4f64ac63a1fe4378616a111205118",
+      "size": 2415
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/failed_runs/20251115_192328_CONTRADICTION_REPORT__topo_rdm_v1__dsi-topo-rdm-v1__circle_pass_det1.json",
+      "sha256": "2179396eed4101ad57730d93dec1798a87c5dde82396714e94e3df10261e8bb1",
+      "size": 832
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/failed_runs/20251115_192328_topo_rdm_v1__dsi-topo-rdm-v1__circle_pass_det1__betti_curve.csv",
+      "sha256": "5494b67516acde9930006e120a0bff8f1c258830e52a861870e38157f327c029",
+      "size": 2955
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/failed_runs/20251115_192328_topo_rdm_v1__dsi-topo-rdm-v1__circle_pass_det1__summary.json",
+      "sha256": "f4e88be2481072d14482c54fe53e3e5bc4b95a68b2b1fd150f360ba1526f42f8",
+      "size": 2452
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/failed_runs/20251115_192506_CONTRADICTION_REPORT__topo_rdm_v1__dsi-topo-rdm-v1__circle_pass_det1_rerun.json",
+      "sha256": "2ac459b6447e54e6de30cf92c1b7c181b2f57cd961587eff124a867af6364503",
+      "size": 855
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/failed_runs/20251115_192506_topo_rdm_v1__dsi-topo-rdm-v1__circle_pass_det1_rerun__betti_curve.csv",
+      "sha256": "5494b67516acde9930006e120a0bff8f1c258830e52a861870e38157f327c029",
+      "size": 2955
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/failed_runs/20251115_192506_topo_rdm_v1__dsi-topo-rdm-v1__circle_pass_det1_rerun__summary.json",
+      "sha256": "067db4087a46a1d85923d33fc5ddebea04626e8a231e865c9146f144bcff5a04",
+      "size": 2481
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/failed_runs/20251115_203352_topo_rdm_v1__dsi-topo-rdm-v1__gw150914_H1_ts__ridges.csv",
+      "sha256": "f7ce6285c912ae91e7035b87b358259459b6ba5e94123963e908ab8aac53a483",
+      "size": 2619
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/failed_runs/20251115_203407_CONTRADICTION_REPORT__topo_rdm_v1__dsi-topo-rdm-v1__gw150914_H1_ts.json",
+      "sha256": "da1a1a7d8b7e1d987496b9e10ac16affac9d0ae35ba646629ef2880dbccbf026",
+      "size": 805
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/failed_runs/20251115_203407_topo_rdm_v1__dsi-topo-rdm-v1__gw150914_H1_ts__betti_curve.csv",
+      "sha256": "dc0d4f751c1b65f0eabeb3d01be9a52464116c151054a6588153068866ef1727",
+      "size": 3034
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/failed_runs/20251115_203407_topo_rdm_v1__dsi-topo-rdm-v1__gw150914_H1_ts__summary.json",
+      "sha256": "d3ca913a266b6744a1b7782881bd086105b9dde22768e8e1ecac2976907868e1",
+      "size": 2401
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/failed_runs/20251115_203453_topo_rdm_v1__dsi-topo-rdm-v1__gw150914_L1_ts__ridges.csv",
+      "sha256": "5ca35d18e07eabc387362cea6000b0b66127bf1aa621693a16f9d790de05facc",
+      "size": 2562
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/failed_runs/20251115_203509_CONTRADICTION_REPORT__topo_rdm_v1__dsi-topo-rdm-v1__gw150914_L1_ts.json",
+      "sha256": "579a8139f71f25f4dfab1ff1ece7340e54742503e785ab1d126dbc1568d1862d",
+      "size": 807
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/failed_runs/20251115_203509_topo_rdm_v1__dsi-topo-rdm-v1__gw150914_L1_ts__betti_curve.csv",
+      "sha256": "9ff1c784f10c33b9d5de4ff02bc54cbd0709a87af03a8afea027413834601cac",
+      "size": 3033
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/failed_runs/20251115_203509_topo_rdm_v1__dsi-topo-rdm-v1__gw150914_L1_ts__summary.json",
+      "sha256": "c8040597e14322378c8774b1bfe6eb4b6c85181a4b221882684f8a6672687ef7",
+      "size": 2403
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/void_lensing/T2_synthetic_mocks/20251201_040626_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks_void_lensing_meter-v1_gates.json",
+      "sha256": "cd7876c0e62cf76bea6821d0f0464147d3223a33131c6c80b8b2616921e79f7d",
+      "size": 5965
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/void_lensing/T2_synthetic_mocks/20251201_040626_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks_void_lensing_meter-v1_runs.csv",
+      "sha256": "bde3f8ceb1bd230a9924c14826b52d11bf96ea77aeda8522ffa65261abe3689b",
+      "size": 714
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/void_lensing/T2_synthetic_mocks/20251201_040626_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks_void_lensing_meter-v1_runs.json",
+      "sha256": "888647286e14ea51b52b59f4202ad1611b092604e95db5ab2dd92e065ad68173",
+      "size": 22041
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/void_lensing/T2_synthetic_mocks/failed_runs/20251201_031311_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks_void_lensing_meter-v1_gates.json",
+      "sha256": "cd7876c0e62cf76bea6821d0f0464147d3223a33131c6c80b8b2616921e79f7d",
+      "size": 5965
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/void_lensing/T2_synthetic_mocks/failed_runs/20251201_031311_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks_void_lensing_meter-v1_runs.csv",
+      "sha256": "bde3f8ceb1bd230a9924c14826b52d11bf96ea77aeda8522ffa65261abe3689b",
+      "size": 714
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/void_lensing/T2_synthetic_mocks/failed_runs/20251201_031311_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks_void_lensing_meter-v1_runs.json",
+      "sha256": "888647286e14ea51b52b59f4202ad1611b092604e95db5ab2dd92e065ad68173",
+      "size": 22041
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/void_lensing/T2_synthetic_mocks/failed_runs/20251201_034757_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks_void_lensing_meter-v1_gates.json",
+      "sha256": "cd7876c0e62cf76bea6821d0f0464147d3223a33131c6c80b8b2616921e79f7d",
+      "size": 5965
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/void_lensing/T2_synthetic_mocks/failed_runs/20251201_034757_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks_void_lensing_meter-v1_runs.csv",
+      "sha256": "bde3f8ceb1bd230a9924c14826b52d11bf96ea77aeda8522ffa65261abe3689b",
+      "size": 714
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/void_lensing/T2_synthetic_mocks/failed_runs/20251201_034757_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks_void_lensing_meter-v1_runs.json",
+      "sha256": "888647286e14ea51b52b59f4202ad1611b092604e95db5ab2dd92e065ad68173",
+      "size": 22041
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/void_lensing/T2_synthetic_mocks/failed_runs/20251201_090044_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_contradiction.json",
+      "sha256": "121f8c73cbd364de7c006cb3fd734eb01c9c10c521e6ab8c968b9f6a56d0985f",
+      "size": 6600
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/void_lensing/T2_synthetic_mocks/failed_runs/20251201_092605_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_contradiction.json",
+      "sha256": "121f8c73cbd364de7c006cb3fd734eb01c9c10c521e6ab8c968b9f6a56d0985f",
+      "size": 6600
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/void_lensing/T2_synthetic_mocks/failed_runs/20251201_131910_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_contradiction.json",
+      "sha256": "121f8c73cbd364de7c006cb3fd734eb01c9c10c521e6ab8c968b9f6a56d0985f",
+      "size": 6600
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/void_lensing/T2_synthetic_mocks/failed_runs/20251201_132515_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_contradiction.json",
+      "sha256": "10b498b3ac94698947243ad5bf1d368ebabaf1a0e33cf959846664a56859f6d2",
+      "size": 6600
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/void_lensing/T2_synthetic_mocks/failed_runs/20251202_122108_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_contradiction.json",
+      "sha256": "9869cb32a8b4b39a3d6d3ba7273d27bed8263a7b66805d4591378a2cc1753ac9",
+      "size": 6600
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/void_lensing/T2_synthetic_mocks_grid/20251201_133349_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_gates.json",
+      "sha256": "5b1926ddbb47272befaa313d8f1897c64b87adcd3a5612402afd29da8ea7f0a9",
+      "size": 5970
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/void_lensing/T2_synthetic_mocks_grid/20251201_133349_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_runs.csv",
+      "sha256": "54d6f184e1daf602df34d38a1c87e3f8b3b15cb82bfa32b82317aa16a977158c",
+      "size": 2358
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/void_lensing/T2_synthetic_mocks_grid/20251201_133349_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_runs.json",
+      "sha256": "2ba26da29e2d95f299725e008b9baf7666cfa171ad90cbe85815df6353bc5672",
+      "size": 72714
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/void_lensing/T2_synthetic_mocks_grid/20251201_151137_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_gates.json",
+      "sha256": "568437e80c0d1d10944318bf97fe5e187a15ee0e3a4845ad3bdc4f7c6fc9491a",
+      "size": 5970
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/void_lensing/T2_synthetic_mocks_grid/20251201_151137_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_runs.csv",
+      "sha256": "fe1126c1729268e2f1bdc27bfd9d4ee1d3ae4137fc30840e6d60f146d31ff154",
+      "size": 3446
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/void_lensing/T2_synthetic_mocks_grid/20251201_151137_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_runs.json",
+      "sha256": "d8ba0bbe47d0b48df1021f66b0326ba5b58d86ed203e6590739bf9bc55eb76c6",
+      "size": 105994
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/void_lensing/T2_synthetic_mocks_grid/20251201_153008_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_gates.json",
+      "sha256": "568437e80c0d1d10944318bf97fe5e187a15ee0e3a4845ad3bdc4f7c6fc9491a",
+      "size": 5970
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/void_lensing/T2_synthetic_mocks_grid/20251201_153008_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_runs.csv",
+      "sha256": "fe1126c1729268e2f1bdc27bfd9d4ee1d3ae4137fc30840e6d60f146d31ff154",
+      "size": 3446
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/void_lensing/T2_synthetic_mocks_grid/20251201_153008_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_runs.json",
+      "sha256": "d8ba0bbe47d0b48df1021f66b0326ba5b58d86ed203e6590739bf9bc55eb76c6",
+      "size": 105994
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/void_lensing/T2_synthetic_mocks_grid/20251202_123106_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_gates.json",
+      "sha256": "5e21f3770ae503e8122a3be8faa6e08614897682754145606889007f87ccd8cb",
+      "size": 5970
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/void_lensing/T2_synthetic_mocks_grid/20251202_123106_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_runs.csv",
+      "sha256": "fe1126c1729268e2f1bdc27bfd9d4ee1d3ae4137fc30840e6d60f146d31ff154",
+      "size": 3446
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/void_lensing/T2_synthetic_mocks_grid/20251202_123106_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_runs.json",
+      "sha256": "5c6a91b06e603b6cb455a49d9afdcbc5f8df45f4ef65590fd9cb6e5817f7ea33",
+      "size": 105994
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/void_lensing/T2_synthetic_mocks_grid/failed_runs/20251201_090044_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_gates.json",
+      "sha256": "25dafb1623bed213f553c2c4b2c650897a0a03f6b5eb2413f6385ad887f3cd23",
+      "size": 6082
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/void_lensing/T2_synthetic_mocks_grid/failed_runs/20251201_090044_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_runs.csv",
+      "sha256": "6b08a02f8312f42d9f5ce61644d95c93a46a8beb0a0d4af8a88d8ce019d26dfa",
+      "size": 2598
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/void_lensing/T2_synthetic_mocks_grid/failed_runs/20251201_090044_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_runs.json",
+      "sha256": "880b0df560df8f4ce230683d9b2b636685bd2ac9fae246b8ecf30c993cbec764",
+      "size": 71978
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/void_lensing/T2_synthetic_mocks_grid/failed_runs/20251201_092605_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_gates.json",
+      "sha256": "25dafb1623bed213f553c2c4b2c650897a0a03f6b5eb2413f6385ad887f3cd23",
+      "size": 6082
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/void_lensing/T2_synthetic_mocks_grid/failed_runs/20251201_092605_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_runs.csv",
+      "sha256": "6b08a02f8312f42d9f5ce61644d95c93a46a8beb0a0d4af8a88d8ce019d26dfa",
+      "size": 2598
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/void_lensing/T2_synthetic_mocks_grid/failed_runs/20251201_092605_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_runs.json",
+      "sha256": "880b0df560df8f4ce230683d9b2b636685bd2ac9fae246b8ecf30c993cbec764",
+      "size": 71978
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/void_lensing/T2_synthetic_mocks_grid/failed_runs/20251201_131910_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_gates.json",
+      "sha256": "25dafb1623bed213f553c2c4b2c650897a0a03f6b5eb2413f6385ad887f3cd23",
+      "size": 6082
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/void_lensing/T2_synthetic_mocks_grid/failed_runs/20251201_131910_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_runs.csv",
+      "sha256": "6b08a02f8312f42d9f5ce61644d95c93a46a8beb0a0d4af8a88d8ce019d26dfa",
+      "size": 2598
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/void_lensing/T2_synthetic_mocks_grid/failed_runs/20251201_131910_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_runs.json",
+      "sha256": "880b0df560df8f4ce230683d9b2b636685bd2ac9fae246b8ecf30c993cbec764",
+      "size": 71978
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/void_lensing/T2_synthetic_mocks_grid/failed_runs/20251201_132515_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_gates.json",
+      "sha256": "2465df961eb4cbe7df1039fa3b023633da8f70c4030188aa2a96ebd4aa737681",
+      "size": 6082
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/void_lensing/T2_synthetic_mocks_grid/failed_runs/20251201_132515_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_runs.csv",
+      "sha256": "6b08a02f8312f42d9f5ce61644d95c93a46a8beb0a0d4af8a88d8ce019d26dfa",
+      "size": 2598
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/void_lensing/T2_synthetic_mocks_grid/failed_runs/20251201_132515_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_runs.json",
+      "sha256": "f11faf858318cc5cc3a6912bf6ea97b54a6940825a6a0fb10ae4b7fbb88b490f",
+      "size": 71978
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/void_lensing/T2_synthetic_mocks_grid/failed_runs/20251202_122107_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_gates.json",
+      "sha256": "79ef5f50cd14c357458816d8bc0561303e65f44a39aa6bb837ae0356eaa17161",
+      "size": 6082
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/void_lensing/T2_synthetic_mocks_grid/failed_runs/20251202_122107_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_runs.csv",
+      "sha256": "6b08a02f8312f42d9f5ce61644d95c93a46a8beb0a0d4af8a88d8ce019d26dfa",
+      "size": 2598
+    },
+    {
+      "path": "Derivation/code/outputs/logs/cosmology/void_lensing/T2_synthetic_mocks_grid/failed_runs/20251202_122107_T2_void_lensing_meter_synthetic_mocks_v1_void_lensing_meter-mocks-grid_void_lensing_meter-v1_runs.json",
+      "sha256": "ee5b2f38d1a83c7553e262c44647dcd42ade67564f9a1f485e495eaedeea068e",
+      "size": 71978
+    },
+    {
+      "path": "Derivation/code/outputs/logs/dark_photons/20251006_180648_noise_budget__DP-noise-smoke.csv",
+      "sha256": "64a01080d7d101adec6ed56ddb63962c91fafb7aba21ac0ea5e3138934e667ca",
+      "size": 5490
+    },
+    {
+      "path": "Derivation/code/outputs/logs/dark_photons/20251006_180648_noise_budget__DP-noise-smoke.json",
+      "sha256": "93f4035025a3207a2d1fa09e88a410afc7c295fd197e440c39972cae20bd0152",
+      "size": 872
+    },
+    {
+      "path": "Derivation/code/outputs/logs/dark_photons/20251006_180709_noise_budget__DP-noise-smoke.csv",
+      "sha256": "64a01080d7d101adec6ed56ddb63962c91fafb7aba21ac0ea5e3138934e667ca",
+      "size": 5490
+    },
+    {
+      "path": "Derivation/code/outputs/logs/dark_photons/20251006_180709_noise_budget__DP-noise-smoke.json",
+      "sha256": "05101ae304b7d94d77ec30f4ef98f48717d27791763b4b5ee0b3a4cd510e1bcd",
+      "size": 2511
+    },
+    {
+      "path": "Derivation/code/outputs/logs/dark_photons/20251006_180711_fisher_check__DP-fisher-smoke.csv",
+      "sha256": "5e89ffc2aea7c176bbc134ab617526453d5342b7e01a0a4de191af8c8e8e0402",
+      "size": 137
+    },
+    {
+      "path": "Derivation/code/outputs/logs/dark_photons/20251006_180711_fisher_check__DP-fisher-smoke.json",
+      "sha256": "82df7f7966f98cdac78d8688d9656a9038e5e3b33cc7763fd75e08da11b1f558",
+      "size": 548
+    },
+    {
+      "path": "Derivation/code/outputs/logs/dark_photons/README.md",
+      "sha256": "a32af6c9c146e1b1dbf6a65d7154f7af5697d4aa9ee083cd883dc842a3982983",
+      "size": 593
+    },
+    {
+      "path": "Derivation/code/outputs/logs/fluid_dynamics/failed_runs/failed_lid_cavity_benchmarks.zip",
+      "sha256": "bfb8c4c8c547a18d6cb761ab29380945163f3efd8aab2dca6b4476b700b806c6",
+      "size": 20154
+    },
+    {
+      "path": "Derivation/code/outputs/logs/fluid_dynamics/failed_runs/lid_cavity_benchmark_20250821T074952Z.json",
+      "sha256": "470bd7527cc99f210468abc77a6c57789696f2371c81fadc4e2bbb1cfc417fbc",
+      "size": 1450
+    },
+    {
+      "path": "Derivation/code/outputs/logs/fluid_dynamics/failed_runs/lid_cavity_benchmark_20250821T082158Z.json",
+      "sha256": "d60c170b9b1f68d40d0036b68761f837b9bee61ecd4d8c358dc221a66e944642",
+      "size": 1396
+    },
+    {
+      "path": "Derivation/code/outputs/logs/fluid_dynamics/lid_cavity_benchmark_20250821T040800Z.zip",
+      "sha256": "a75a6715a18380efa22d4dfb111b07158c22af52e8ea51c3ac55be3c78be72d0",
+      "size": 9720
+    },
+    {
+      "path": "Derivation/code/outputs/logs/fluid_dynamics/lid_cavity_benchmark_20250821T040800Z/lid_cavity_benchmark_20250820T181037Z.json",
+      "sha256": "dbc2f5ce8b712beb98a6f3b3d4dc7b2784621c0dca7d1435ad9c020a1ee946cd",
+      "size": 541
+    },
+    {
+      "path": "Derivation/code/outputs/logs/fluid_dynamics/lid_cavity_benchmark_20250821T040800Z/lid_cavity_benchmark_20250820T181257Z.json",
+      "sha256": "4b46ee7e82c3125ea1db20ffde429c193bb3f4e427ef50836f7b06c36beab32c",
+      "size": 542
+    },
+    {
+      "path": "Derivation/code/outputs/logs/fluid_dynamics/lid_cavity_benchmark_20250821T040800Z/lid_cavity_benchmark_20250821T040800Z.json",
+      "sha256": "f89a523f8c8584ef72eee33678e5fb2290d0c71fd48e83d6bda9ac5da2092353",
+      "size": 1027
+    },
+    {
+      "path": "Derivation/code/outputs/logs/fluid_dynamics/lid_cavity_benchmark_20250821T040800Z/lid_cavity_benchmark_20250821T044043Z.json",
+      "sha256": "75a3bb000a2f2a3facfac1a0482925b7a2e6259198bc7108f31febc442339f4d",
+      "size": 1027
+    },
+    {
+      "path": "Derivation/code/outputs/logs/fluid_dynamics/lid_cavity_benchmark_20250821T040800Z/lid_cavity_benchmark_20250821T044507Z.json",
+      "sha256": "b0bcf135998eb35bd3570485ffcab5ba01657ddb38e29a9335d18ca3067d317c",
+      "size": 1028
+    },
+    {
+      "path": "Derivation/code/outputs/logs/fluid_dynamics/lid_cavity_benchmark_20250821T040800Z/lid_cavity_benchmark_20250821T051811Z.json",
+      "sha256": "258bf0cb94ded9c727db0d8220199525e083e5f87731dda0f3ef1a7e3b9ac552",
+      "size": 1025
+    },
+    {
+      "path": "Derivation/code/outputs/logs/fluid_dynamics/lid_cavity_benchmark_20250821T040800Z/lid_cavity_benchmark_20250821T060917Z.json",
+      "sha256": "a884720729529b80dd5767317d1b1d5fb43f1a9106cc288284e7492c9c612797",
+      "size": 1317
+    },
+    {
+      "path": "Derivation/code/outputs/logs/fluid_dynamics/lid_cavity_benchmark_20250821T040800Z/lid_cavity_benchmark_20250821T065029Z.json",
+      "sha256": "8433bd2ba6e092e54e0de091b65bd122292361bf2c9ba10221f5deb1439a0c09",
+      "size": 1366
+    },
+    {
+      "path": "Derivation/code/outputs/logs/fluid_dynamics/lid_cavity_benchmark_20250821T040800Z/lid_cavity_benchmark_20250821T072046Z.json",
+      "sha256": "b97beb6d1f7a12a0c106b8d7afe815037f3b548543c041905935a1f67f8ac768",
+      "size": 1471
+    },
+    {
+      "path": "Derivation/code/outputs/logs/fluid_dynamics/lid_cavity_benchmark_20250821T040800Z/lid_cavity_benchmark_20250821T072638Z.json",
+      "sha256": "e26bb9e407ed56afd28b1515b0cd1d108671912475f0749a3982911ffdadd446",
+      "size": 1477
+    },
+    {
+      "path": "Derivation/code/outputs/logs/fluid_dynamics/lid_cavity_benchmark_20250821T040800Z/stream_bounce_unit_20250820T221328Z.json",
+      "sha256": "892d5f4a220684169827738524a1f5d0d7fe9753a4c96aad59814625aa9bdf14",
+      "size": 325
+    },
+    {
+      "path": "Derivation/code/outputs/logs/fluid_dynamics/lid_cavity_benchmark_20250821T040800Z/taylor_green_benchmark_20250820T145556Z.json",
+      "sha256": "73d805fe179e7dd31cf2fad873d60da6000e0f36ce7bc3e23ceea8e18d0735ce",
+      "size": 667
+    },
+    {
+      "path": "Derivation/code/outputs/logs/fluid_dynamics/lid_cavity_benchmark_20250821T040800Z/taylor_green_benchmark_20250820T172714Z.json",
+      "sha256": "ce23dd52627865c21c9a3a6d495079e1b9f820c49d61017aba99b2668f5d3511",
+      "size": 667
+    },
+    {
+      "path": "Derivation/code/outputs/logs/memory_steering/curvature_scaling.zip",
+      "sha256": "38aeb131aa05af66a39beaca271693f8fc6b9ebd280e5214c86cae4aeb4f1709",
+      "size": 4881
+    },
+    {
+      "path": "Derivation/code/outputs/logs/metriplectic/20251104_131832_assisted_echo__assisted-echo-t4-prereg-v1c.json",
+      "sha256": "78b3d29501565ffd10ca01cd326d88b59daaa32701eb9dab1b7473031ab9d7d0",
+      "size": 15950731
+    },
+    {
+      "path": "Derivation/code/outputs/logs/metriplectic/20251104_131832_assisted_echo_ceg_summary__assisted-echo-t4-prereg-v1c.csv",
+      "sha256": "06d45fa741dbf46ce987cf9b0deca0763e787d1ef7a55d1d7aae888c2376ef0a",
+      "size": 237
+    },
+    {
+      "path": "Derivation/code/outputs/logs/metriplectic/20251104_131832_assisted_echo_telemetry__assisted-echo-t4-prereg-v1c.csv",
+      "sha256": "3267cfbc64ff152c104e556c2c87d549479215250699dae552d0634ecc70ddff",
+      "size": 5585787
+    },
+    {
+      "path": "Derivation/code/outputs/logs/metriplectic/20251119_061735_identity_meter_meters-ebn.v1.csv",
+      "sha256": "1a37d45248374c3a43833fe19f949450e5e604ad92029fee50e517118674a09d",
+      "size": 244
+    },
+    {
+      "path": "Derivation/code/outputs/logs/metriplectic/20251119_061735_identity_meter_meters-ebn.v1.json",
+      "sha256": "1541265eeb28210bd79db302066d94266506630936e9bd6115368259d6d5b24d",
+      "size": 2480
+    },
+    {
+      "path": "Derivation/code/outputs/logs/metriplectic/20251119_061735_identity_meter_skeleton_meters-ebn.v1.json",
+      "sha256": "3de72e74250d4b62a136f828f3ad157538efa54f6ed21a2f1f39f5abd91e7083",
+      "size": 605
+    },
+    {
+      "path": "Derivation/code/outputs/logs/metriplectic/20251119_061735_kg_cone_meter_meters-ebn.v1.csv",
+      "sha256": "5d9b87606aab589f5a8251e2ce6103ba7550b0030146a83b34065291accfe0cd",
+      "size": 243
+    },
+    {
+      "path": "Derivation/code/outputs/logs/metriplectic/20251119_061735_kg_cone_meter_meters-ebn.v1.json",
+      "sha256": "1cad5928cb19caa54fce69a26569da6635b5c0eb1a0a44c9010da0d9ab979bd8",
+      "size": 2226
+    },
+    {
+      "path": "Derivation/code/outputs/logs/metriplectic/20251119_061735_kg_cone_meter_skeleton_meters-ebn.v1.json",
+      "sha256": "26fdc0eae69a3543f5ba86dbb15fdbda3fc8e93dc5e459c0a7efd85d9c3227ee",
+      "size": 602
+    },
+    {
+      "path": "Derivation/code/outputs/logs/metriplectic/20251119_061735_kg_dispersion_meter_meters-ebn.v1.csv",
+      "sha256": "b4a377523cace59a39098b22d64640a06b4d6dff33221077ccd03a0b03c80390",
+      "size": 249
+    },
+    {
+      "path": "Derivation/code/outputs/logs/metriplectic/20251119_061735_kg_dispersion_meter_meters-ebn.v1.json",
+      "sha256": "63287836ce37aefd6f28e076c25ca26e3b4aae23d700f1b93da09ad675a10891",
+      "size": 2186
+    },
+    {
+      "path": "Derivation/code/outputs/logs/metriplectic/20251119_061735_kg_dispersion_meter_skeleton_meters-ebn.v1.json",
+      "sha256": "1337e6e59038215011b6319da6bedcc77cf6fef167deb78fa7c5ea66600ebdb6",
+      "size": 620
+    },
+    {
+      "path": "Derivation/code/outputs/logs/metriplectic/20251119_061735_kg_energy_osc_meter_meters-ebn.v1.csv",
+      "sha256": "1c7181984488d8c19e3a9578a71518938011115d52e7a088ea399b69d8ace87d",
+      "size": 249
+    },
+    {
+      "path": "Derivation/code/outputs/logs/metriplectic/20251119_061735_kg_energy_osc_meter_meters-ebn.v1.json",
+      "sha256": "5bb39f4430394da2bb87fac1501688d6ca0efdd8d719c4616faceccac90b747a",
+      "size": 2333
+    },
+    {
+      "path": "Derivation/code/outputs/logs/metriplectic/20251119_061735_kg_energy_osc_meter_skeleton_meters-ebn.v1.json",
+      "sha256": "24e0af77505ee7a8a24e9332fecfee4d63f59df9cd543727297639cf224f31fa",
+      "size": 620
+    },
+    {
+      "path": "Derivation/code/outputs/logs/metriplectic/20251119_062419_identity_meter_meters-ebn.v1.csv",
+      "sha256": "1a37d45248374c3a43833fe19f949450e5e604ad92029fee50e517118674a09d",
+      "size": 244
+    },
+    {
+      "path": "Derivation/code/outputs/logs/metriplectic/20251119_062419_identity_meter_meters-ebn.v1.json",
+      "sha256": "6c5dfb6ee2cdf6981b32732f5d9638f6553254c3d30b55cccb2a1d6f3ce83f56",
+      "size": 2480
+    },
+    {
+      "path": "Derivation/code/outputs/logs/metriplectic/20251119_062419_identity_meter_skeleton_meters-ebn.v1.json",
+      "sha256": "652e83b57ebdfbc5f676bc620bf1c1274f0f44cf9337be9bb405eed2ea5cbd02",
+      "size": 605
+    },
+    {
+      "path": "Derivation/code/outputs/logs/metriplectic/20251119_062419_kg_cone_meter_meters-ebn.v1.csv",
+      "sha256": "5d9b87606aab589f5a8251e2ce6103ba7550b0030146a83b34065291accfe0cd",
+      "size": 243
+    },
+    {
+      "path": "Derivation/code/outputs/logs/metriplectic/20251119_062419_kg_cone_meter_meters-ebn.v1.json",
+      "sha256": "aca7b171806e8c547324a6f4037699998f301b428728ddba6f935dd9c678a961",
+      "size": 2226
+    },
+    {
+      "path": "Derivation/code/outputs/logs/metriplectic/20251119_062419_kg_cone_meter_skeleton_meters-ebn.v1.json",
+      "sha256": "a6bc7eca72d57c3a14c93395c02fc5091dcb2384e57fbcd6b5feef7ea9742e07",
+      "size": 602
+    },
+    {
+      "path": "Derivation/code/outputs/logs/metriplectic/20251119_062419_kg_dispersion_meter_meters-ebn.v1.csv",
+      "sha256": "b4a377523cace59a39098b22d64640a06b4d6dff33221077ccd03a0b03c80390",
+      "size": 249
+    },
+    {
+      "path": "Derivation/code/outputs/logs/metriplectic/20251119_062419_kg_dispersion_meter_meters-ebn.v1.json",
+      "sha256": "00bc65e54ba7ce3925629165f6c2602a6bf6432d588ec4c0c7f5e453a2b88950",
+      "size": 2186
+    },
+    {
+      "path": "Derivation/code/outputs/logs/metriplectic/20251119_062419_kg_dispersion_meter_skeleton_meters-ebn.v1.json",
+      "sha256": "b0e80ce2e82a1b9959b9974e8723de9700a97dbdaa3415bded48be28d2cf9ffa",
+      "size": 620
+    },
+    {
+      "path": "Derivation/code/outputs/logs/metriplectic/20251119_062419_kg_energy_osc_meter_meters-ebn.v1.csv",
+      "sha256": "1c7181984488d8c19e3a9578a71518938011115d52e7a088ea399b69d8ace87d",
+      "size": 249
+    },
+    {
+      "path": "Derivation/code/outputs/logs/metriplectic/20251119_062419_kg_energy_osc_meter_meters-ebn.v1.json",
+      "sha256": "683e92d47a5c346b74cb743a36f63a05c04324060864f230fe88bf60648ad47c",
+      "size": 2333
+    },
+    {
+      "path": "Derivation/code/outputs/logs/metriplectic/20251119_062419_kg_energy_osc_meter_skeleton_meters-ebn.v1.json",
+      "sha256": "c57f381aacc29d7c00d0583aa8b7fda004561ec3d8d9782622b159664bf32326",
+      "size": 620
+    },
+    {
+      "path": "Derivation/code/outputs/logs/metriplectic/PASSED_LOGS_T4_Metriplectic_Assisted-Echo.zip",
+      "sha256": "9c3c5aeb61aba78e28e72667bac7728933d3c0099f6287233e16321d248a6c5e",
+      "size": 71738001
+    },
+    {
+      "path": "Derivation/code/outputs/logs/metriplectic/failed_runs/20251104_131857_assisted_echo__assisted-echo-t4-prereg-v1c.json",
+      "sha256": "113040023f782e4a40497ccb06cf9169b1bf0f41e3a08b182fdd5051d7671e21",
+      "size": 1294995
+    },
+    {
+      "path": "Derivation/code/outputs/logs/metriplectic/failed_runs/20251104_131857_assisted_echo_ceg_summary__assisted-echo-t4-prereg-v1c.csv",
+      "sha256": "ecb655efb42c77134d14f563d319f056709e016ef6d06dfbc0dd569462c2fa6c",
+      "size": 97
+    },
+    {
+      "path": "Derivation/code/outputs/logs/metriplectic/failed_runs/20251104_131857_assisted_echo_telemetry__assisted-echo-t4-prereg-v1c.csv",
+      "sha256": "c1a72d6593c5b7201741c2105c4ce09aed2743e1cf0c8129414acf015f4be4aa",
+      "size": 412222
+    },
+    {
+      "path": "Derivation/code/outputs/logs/metriplectic/failed_runs/20251119_014405_kg_light_cone__KG-cone-phase0-test.csv",
+      "sha256": "cd66964886f149b8defd896adcd73155cbd7fdea73d1a019c05e7f2e8a3fe2b0",
+      "size": 104408
+    },
+    {
+      "path": "Derivation/code/outputs/logs/metriplectic/failed_runs/20251119_014405_kg_light_cone__KG-cone-phase0-test.json",
+      "sha256": "41084412e9f6ce200b31bfff46d7a41d497e98445a708c7f2111f6101ce167d1",
+      "size": 2201
+    },
+    {
+      "path": "Derivation/code/outputs/logs/metriplectic/failed_runs/20251119_020118_kg_dispersion_fit__KG-dispersion-phase0-test.csv",
+      "sha256": "99fdd381ca8d4d24d1f0704a0eca65af85b202cfc8f519999442c09a06996b45",
+      "size": 404
+    },
+    {
+      "path": "Derivation/code/outputs/logs/metriplectic/failed_runs/20251119_020118_kg_dispersion_fit__KG-dispersion-phase0-test.json",
+      "sha256": "7b6b162e4283c57515e02c8b717dca771df508c57aada4d27523af906aea1e2c",
+      "size": 2743
+    },
+    {
+      "path": "Derivation/code/outputs/logs/metriplectic/failed_runs/20251119_020311_kg_energy_osc_fit_KG-energy-osc-v1.csv",
+      "sha256": "9aa1937e59cba914af8a07f94ef0667d4655024d51f7b9b5bae39224ad7ca418",
+      "size": 335
+    },
+    {
+      "path": "Derivation/code/outputs/logs/metriplectic/failed_runs/20251119_020311_kg_energy_osc_fit_KG-energy-osc-v1.json",
+      "sha256": "1e8abce3b689ac4b6c8b699c83f633a4ace387e766e01906f8e1b23ffdb41244",
+      "size": 6654
+    },
+    {
+      "path": "Derivation/code/outputs/logs/metriplectic/failed_runs/20251119_020311_kg_energy_osc_fit_plotmeta_KG-energy-osc-v1.json",
+      "sha256": "abec4e8967dabaee7d62e366f25b6d5d6ff56945a01a8b0e600cf088f1514f2f",
+      "size": 156
+    },
+    {
+      "path": "Derivation/code/outputs/logs/metriplectic/failed_runs/20251119_021647_identity_meter_meters-ebn.v1.csv",
+      "sha256": "e61d10046185383c6e5c493fc9808a585e14f5c66053a85a22be270076543309",
+      "size": 63
+    },
+    {
+      "path": "Derivation/code/outputs/logs/metriplectic/failed_runs/20251119_021647_identity_meter_meters-ebn.v1.json",
+      "sha256": "5a6a6d6db6d2a82969eb11baafd29cd0216183d7e8f14dc72e7c60e8e403662e",
+      "size": 1911
+    },
+    {
+      "path": "Derivation/code/outputs/logs/metriplectic/failed_runs/20251119_021647_kg_cone_meter_meters-ebn.v1.csv",
+      "sha256": "650f4528cb7f9d369f215ee75e6d55de6da4d3af7cc82bf75f55a20e6ee6f103",
+      "size": 62
+    },
+    {
+      "path": "Derivation/code/outputs/logs/metriplectic/failed_runs/20251119_021647_kg_cone_meter_meters-ebn.v1.json",
+      "sha256": "05729f6109a580f48b79aba48eb9ddae6a49eb7ddddd2bc2cfef4ccc98d86220",
+      "size": 1907
+    },
+    {
+      "path": "Derivation/code/outputs/logs/metriplectic/failed_runs/20251119_021647_kg_dispersion_meter_meters-ebn.v1.csv",
+      "sha256": "02e37e81c4f7147e054e51c3f852932d732d3de4c915d99b89257e077e0bc4cd",
+      "size": 68
+    },
+    {
+      "path": "Derivation/code/outputs/logs/metriplectic/failed_runs/20251119_021647_kg_dispersion_meter_meters-ebn.v1.json",
+      "sha256": "cfc2d536627fe9b9dc57b40ec5d888418ddf1f277587405acbeb3f4e536fc3cf",
+      "size": 1931
+    },
+    {
+      "path": "Derivation/code/outputs/logs/metriplectic/failed_runs/20251119_021647_kg_energy_osc_meter_meters-ebn.v1.csv",
+      "sha256": "e506a2920f87743e4ba7164cb23887a2c2dbe08cdf8e77bfcca3fd7d0d3a492b",
+      "size": 68
+    },
+    {
+      "path": "Derivation/code/outputs/logs/metriplectic/failed_runs/20251119_021647_kg_energy_osc_meter_meters-ebn.v1.json",
+      "sha256": "e75c36bcdb6bcdd5e855fbf272c7caa5443b9260246fe00e726e3209768d60c6",
+      "size": 1931
+    },
+    {
+      "path": "Derivation/code/outputs/logs/metriplectic/failed_runs/FAILED_LOGS_T4_Metriplectic_Assisted-Echo.zip",
+      "sha256": "b42d5fd3b32229efd1702f6fa56d944ed514f5fd40851b90c2ad43b90f52e3e3",
+      "size": 21250452
+    },
+    {
+      "path": "Derivation/code/outputs/logs/rd_conservation/20251006_072249_controls_diffusion.json",
+      "sha256": "b69ab3ec93bfadb7ab8ea9e2dca5b7742286aeb8f302a9bf6a5cf3e4ac33f231",
+      "size": 431
+    },
+    {
+      "path": "Derivation/code/outputs/logs/rd_conservation/20251006_072249_controls_reaction.json",
+      "sha256": "ed0e2ea768e364df3c5f99241b346d5009e19258638fb08bfe19602e1cd1a9b4",
+      "size": 809
+    },
+    {
+      "path": "Derivation/code/outputs/logs/rd_conservation/20251006_072249_reaction_two_grid_convergence.csv",
+      "sha256": "b41fe477a77cfb210b534c6c8a5f436ff4a772ea7ddcb7cbde0cc22848082904",
+      "size": 134
+    },
+    {
+      "path": "Derivation/code/outputs/logs/rd_conservation/20251006_072249_reaction_two_grid_convergence.json",
+      "sha256": "17979d9c42e5647ee6d59fe5a4050970a482a927c5613bad8ddeb42126db9ccb",
+      "size": 493
+    },
+    {
+      "path": "Derivation/code/outputs/logs/rd_conservation/20251006_072249_step_spec_snapshot.json",
+      "sha256": "50d971d9d5bc7b5e57cf6408fa028c553bc0fefde6e2ad856fc873252fa2af61",
+      "size": 516
+    },
+    {
+      "path": "Derivation/code/outputs/logs/rd_conservation/20251006_072250_lyapunov_delta_per_step.csv",
+      "sha256": "e755e2c267bbea4c615aba1d3ac99331983434f8c06a9575e85cbff908232e7d",
+      "size": 2568
+    },
+    {
+      "path": "Derivation/code/outputs/logs/rd_conservation/20251006_072250_lyapunov_series.json",
+      "sha256": "e47150c93dc5e0b55002640c9176f98bd58f7f4707fdfe0b711730946195c5e3",
+      "size": 5415
+    },
+    {
+      "path": "Derivation/code/outputs/logs/rd_conservation/20251006_072250_objAB_gate.json",
+      "sha256": "25fd5c97583940a7ca18bca9fb4be7e05e5b894332d86de2a4fb39d7afa9f8e7",
+      "size": 189
+    },
+    {
+      "path": "Derivation/code/outputs/logs/rd_conservation/20251006_072250_objA_cas_linear_balance.json",
+      "sha256": "2ccfb4fcd10f80d0dd21402f6314cd6449584450b6341ad2a366a0a997a277ed",
+      "size": 569
+    },
+    {
+      "path": "Derivation/code/outputs/logs/rd_conservation/20251006_072250_residual_vs_dt.csv",
+      "sha256": "975928f4fde01926e3b5b05d91c9d68316ca9104a4f199e165ddc08555dfa124",
+      "size": 138
+    },
+    {
+      "path": "Derivation/code/outputs/logs/rd_conservation/20251006_072250_residual_vs_dt.json",
+      "sha256": "1d5aaaac2ab57e1ddbdd4b1b9d6f637f468e39a86cc44db924bb2ffac18c925c",
+      "size": 474
+    },
+    {
+      "path": "Derivation/code/outputs/logs/rd_conservation/20251006_072250_sweep_dt.json",
+      "sha256": "6661b8250fb0eb974e9f4dc161b2fad8664a78a4a2b576a0bffa3e27ac778ce2",
+      "size": 342
+    },
+    {
+      "path": "Derivation/code/outputs/logs/rd_conservation/20251006_072250_sweep_exact.json",
+      "sha256": "24014941a48e4bf29cf7330e5ab44e416b86e2adff2e7fdcef1ded92fc677b78",
+      "size": 16081
+    },
+    {
+      "path": "Derivation/code/outputs/logs/rd_conservation/20251006_072251_fixed_dt_deltaS_compare.csv",
+      "sha256": "287d4509b636e2b87c87071ba2ecfa9e4898ebe3dbcfca4718495b21603b43e4",
+      "size": 3778
+    },
+    {
+      "path": "Derivation/code/outputs/logs/rd_conservation/20251006_072251_fixed_dt_deltaS_compare.json",
+      "sha256": "557b392db3f1764f6e44ffdee4fe1cf248c1efe65d60bc09cd1daf13066bf666",
+      "size": 993
+    },
+    {
+      "path": "Derivation/code/outputs/logs/rd_conservation/20251006_0_rd_conservation_passed.zip",
+      "sha256": "2ee7437f77e5d69343ccbaea43d7b27f491b7520acaf3b509e1f6887c6a6f9c4",
+      "size": 46868
+    },
+    {
+      "path": "Derivation/code/outputs/logs/rd_conservation/20251006_0_strang_rd_conservation_logs_passed.zip",
+      "sha256": "18161abc220f9211b8d76fffffee914bba44671c81004fdcf114b736f5e96e4d",
+      "size": 51639
+    },
+    {
+      "path": "Derivation/code/outputs/logs/rd_conservation/failed_runs/20251006_064711_CONTRADICTION_REPORT.json",
+      "sha256": "e66afd49a857cd442738c501a3758fe889239559c15f0638bbc2ab796048ffa7",
+      "size": 5481
+    },
+    {
+      "path": "Derivation/code/outputs/logs/rd_conservation/failed_runs/20251006_070254_CONTRADICTION_REPORT.json",
+      "sha256": "b77299ae585b62ea41b8f35b39d12dd268aaa2cb8f20331c4873e1e003504469",
+      "size": 5481
+    },
+    {
+      "path": "Derivation/code/outputs/logs/rd_conservation/failed_runs/20251006_071237_CONTRADICTION_REPORT.json",
+      "sha256": "cd7afacffafca1ce1669ad374cb47e8fa2fea64f537752e44ff8be29adc0d24a",
+      "size": 5484
+    },
+    {
+      "path": "Derivation/code/outputs/logs/rd_conservation/failed_runs/20251006_071345_CONTRADICTION_REPORT.json",
+      "sha256": "390a15defed6c21ce07989ec51e0941b68929722bf9d5f115ccb709852f1c061",
+      "size": 5482
+    },
+    {
+      "path": "Derivation/code/outputs/logs/rd_conservation/failed_runs/20251006_071432_CONTRADICTION_REPORT.json",
+      "sha256": "f48b35e34051045b90f1e9338d3b0d1c5fa6240c65fe7151fbd402f700174b49",
+      "size": 5509
+    },
+    {
+      "path": "Derivation/code/outputs/logs/rd_conservation/failed_runs/20251006_072251_CONTRADICTION_REPORT.json",
+      "sha256": "ab35b12e1a7c0f2fa29da9b3d8b80b83814eba08106581b5290425dd24707bf3",
+      "size": 5502
+    },
+    {
+      "path": "Derivation/code/outputs/logs/rd_conservation/failed_runs/20251006_072251_euler_deltaS_vs_dt.csv",
+      "sha256": "e805241f414d3ba6bfd950db9466d7cc78c58536a0c3842eb50269cf31741037",
+      "size": 131
+    },
+    {
+      "path": "Derivation/code/outputs/logs/rd_conservation/failed_runs/20251006_072251_euler_deltaS_vs_dt.json",
+      "sha256": "1443ba0a63be526de50d8b961d26bd5be329e1009befa441b1654c98406ab85b",
+      "size": 466
+    },
+    {
+      "path": "Derivation/code/outputs/logs/rd_conservation/failed_runs/20251006_072251_objA_fixed_dt_abs_deltaS.csv",
+      "sha256": "3bd24d132cf8d0470df272156e5731e50664db93eff35f943753cd9f516a055e",
+      "size": 1015
+    },
+    {
+      "path": "Derivation/code/outputs/logs/rd_conservation/failed_runs/20251006_072251_objA_fixed_dt_summary.json",
+      "sha256": "83abce873ec10d4726f3e419b014db57a1255fe75c2f132b8de88a016d26120d",
+      "size": 3305
+    },
+    {
+      "path": "Derivation/code/outputs/logs/rd_conservation/failed_runs/20251006_0_rd_conservation_failed.zip",
+      "sha256": "ffb7ec2f1ac1b0eef004ea7d06ccdb0480e4be82f181c7ba241c7d46cc189a53",
+      "size": 17376
+    },
+    {
+      "path": "Derivation/code/outputs/logs/rd_conservation/failed_runs/20251006_0_strang_rd_conservation_logs_failed.zip",
+      "sha256": "afd9cb1be4a2a1552e8a467be7dac401e3a79375dab8641988a032710f94b6ff",
+      "size": 12284
+    },
+    {
+      "path": "Derivation/code/outputs/logs/reaction_diffusion/README.csv_provenance.md",
+      "sha256": "924813e8ded620dd4d2e926d87525a5ed44e8fac80d91c638398a695c1cc7450",
+      "size": 918
+    },
+    {
+      "path": "Derivation/code/outputs/logs/reaction_diffusion/failed_runs/failed_rd_front_speed_experiment.zip",
+      "sha256": "01137e8f301d8e50016bb6c852e91b0aedcfeb79e99f711364b1417ab0035e64",
+      "size": 1438
+    },
+    {
+      "path": "Derivation/code/outputs/logs/reaction_diffusion/failed_runs/rd_dispersion_experiment_20250823T182426Z.json",
+      "sha256": "3ce8e015091cb627c7f3de81ea86ecb6de734084d7249c3dd206892bddeccc5a",
+      "size": 5459
+    },
+    {
+      "path": "Derivation/code/outputs/logs/reaction_diffusion/failed_runs/rd_front_speed_experiment_20250823T182315Z.json",
+      "sha256": "76a9e4faba6deb8c9c162d2097eaceb2a7c52c2293d7cca60ceb15474d1b3908",
+      "size": 1021
+    },
+    {
+      "path": "Derivation/code/outputs/logs/reaction_diffusion/rd_dispersion_experiment_20250823T180201Z.zip",
+      "sha256": "ffd95167cf90fa2d81ac6de64c0ad2d07bb021044746f762dd50cb026bd773e1",
+      "size": 24696
+    },
+    {
+      "path": "Derivation/code/outputs/logs/reaction_diffusion/rd_dispersion_experiment_20250823T182112Z.json",
+      "sha256": "308012dbcb61d574df1357d8a255265e0e47c5071de23adf1b042a9d4dcee086",
+      "size": 11836
+    },
+    {
+      "path": "Derivation/code/outputs/logs/reaction_diffusion/rd_dispersion_experiment_20250823T182316Z.json",
+      "sha256": "9d9ec25b42f5b8e5e70dfe42e12b8911fb377f3d23a0d3276c1c28a35fe47744",
+      "size": 6524
+    },
+    {
+      "path": "Derivation/code/outputs/logs/reaction_diffusion/rd_dispersion_experiment_20250823T194826Z.json",
+      "sha256": "604a037e2e490583b74ab60729d1e9d1aa5a88e20922ac6cf20cc4fbb97532b3",
+      "size": 11930
+    },
+    {
+      "path": "Derivation/code/outputs/logs/reaction_diffusion/rd_dispersion_experiment_20250824T053842Z.csv",
+      "sha256": "07efa7d1018d2756dfceb7a55fc984d07f5403113db37011afe426e8a77763ce",
+      "size": 231
+    },
+    {
+      "path": "Derivation/code/outputs/logs/reaction_diffusion/rd_dispersion_experiment_20250824T053842Z.json",
+      "sha256": "628cd1a165d6d8d4c58647c193f9bc40cef73c308d98cb8ea4ec6016a8d4c01d",
+      "size": 11930
+    },
+    {
+      "path": "Derivation/code/outputs/logs/reaction_diffusion/rd_front_speed_experiment_20250823T194825Z.json",
+      "sha256": "1cabee5478dc87149d42a1c9b865c8239cb406a5f9dae1d2246d0f27851c8659",
+      "size": 1004
+    },
+    {
+      "path": "Derivation/code/outputs/logs/reaction_diffusion/rd_front_speed_experiment_20250824T053748Z.csv",
+      "sha256": "3591e96f0a9c591e92444a6a6e2d59df7b53d5f94fdfb6633edf3a2feed2fafb",
+      "size": 434
+    },
+    {
+      "path": "Derivation/code/outputs/logs/reaction_diffusion/rd_front_speed_experiment_20250824T053748Z.json",
+      "sha256": "460b61c56bd9e5ddf4b792f9cbc447c7ded0d36ead96bc19b87b1124f62abfb5",
+      "size": 1004
+    },
+    {
+      "path": "Derivation/code/outputs/logs/tachyonic_condensation/20251009_060743_tube_spectrum_roots__tube-spectrum-v1.csv",
+      "sha256": "b27321835c5d457a717f192bc237bda99b15a9272a26214d208c6d1b213bc846",
+      "size": 5347
+    },
+    {
+      "path": "Derivation/code/outputs/logs/tachyonic_condensation/20251009_060744_tube_spectrum_summary__tube-spectrum-v1.json",
+      "sha256": "a2bfc46176862346621e3c0c2046eb329b5291d000d557424ea13501844bae4c",
+      "size": 424
+    },
+    {
+      "path": "Derivation/code/outputs/logs/tachyonic_condensation/20251009_060916_tube_spectrum_roots__tube-spectrum-v1.csv",
+      "sha256": "b27321835c5d457a717f192bc237bda99b15a9272a26214d208c6d1b213bc846",
+      "size": 5347
+    },
+    {
+      "path": "Derivation/code/outputs/logs/tachyonic_condensation/20251009_060917_tube_spectrum_summary__tube-spectrum-v1.json",
+      "sha256": "2273f51f483dceaf15c79e1a673b0938bcbb9c9ee9a57aa90882f17d36b03c87",
+      "size": 588
+    },
+    {
+      "path": "Derivation/code/outputs/logs/tachyonic_condensation/20251009_061836_tube_spectrum_roots__tube-spectrum-v1.csv",
+      "sha256": "cc2005b3335344739042e4138c38c7c43ed8251d159e9687e3245a947f1569b9",
+      "size": 4936
+    },
+    {
+      "path": "Derivation/code/outputs/logs/tachyonic_condensation/20251009_061836_tube_spectrum_summary__tube-spectrum-v1.json",
+      "sha256": "1c7e3e7d6827d8cee50e9afc10b47e7aa2bd71613b528b4604b8cafa711f920e",
+      "size": 734
+    },
+    {
+      "path": "Derivation/code/outputs/logs/tachyonic_condensation/20251009_062600_tube_condensation_summary__tube-condensation-v1.json",
+      "sha256": "dad3a1e0114f82aedee453973c249546202b39d517c8b2d8db9af654e8233293",
+      "size": 563
+    },
+    {
+      "path": "Derivation/code/outputs/logs/tachyonic_condensation/20251009_062600_tube_energy_scan__tube-condensation-v1.csv",
+      "sha256": "ad4161328bd8dc569faac41a5f70fe5dbb4f9ed65062603bdaba336b05465185",
+      "size": 444
+    },
+    {
+      "path": "Derivation/code/outputs/logs/tachyonic_condensation/20251009_084702_tube_spectrum_roots__tube-spectrum-v1.csv",
+      "sha256": "5245961ab2f1f20ba3a5d13e481aac4196a6d34c5c9cb05d559f04e906407e93",
+      "size": 6376
+    },
+    {
+      "path": "Derivation/code/outputs/logs/tachyonic_condensation/20251009_084703_tube_spectrum_summary__tube-spectrum-v1.json",
+      "sha256": "f6b327a554e8a4d3e16674a0dc286f343f4ce73017c1410fca66bf00187d45c5",
+      "size": 772
+    },
+    {
+      "path": "Derivation/code/outputs/logs/tachyonic_condensation/failed_runs/20251008_192112_tube_spectrum_roots__tube-spectrum-v1.csv",
+      "sha256": "57f63f1161f6a7ac4a387147444d8994d6da11327ef5c0ca57a08aa696b45627",
+      "size": 416
+    },
+    {
+      "path": "Derivation/code/outputs/logs/tachyonic_condensation/failed_runs/20251008_192112_tube_spectrum_summary__tube-spectrum-v1.json",
+      "sha256": "65a505c4cad90912370c92874ef1767c0dfaaf9a570249ae1b8fb2bf87d378d0",
+      "size": 288
+    },
+    {
+      "path": "Derivation/code/outputs/logs/tachyonic_condensation/failed_runs/20251008_192116_tube_condensation_summary__tube-condensation-v1.json",
+      "sha256": "ca795a7350172b9f53b9681824ba0e2add075ad2404631397ff1be57fb0fb4a1",
+      "size": 517
+    },
+    {
+      "path": "Derivation/code/outputs/logs/tachyonic_condensation/failed_runs/20251008_192116_tube_energy_scan__tube-condensation-v1.csv",
+      "sha256": "7923127d58eb270e9bb2b3725a42b5b532376602b91ad9c1218c304c56da2042",
+      "size": 169
+    },
+    {
+      "path": "Derivation/code/outputs/logs/tachyonic_condensation/failed_runs/20251009_052916_tube_spectrum_roots__tube-spectrum-v1.csv",
+      "sha256": "9b6996e4d84b7aa3ffac3cc0c00c54b60faff37b4fa66ae31f9fd47c205957b0",
+      "size": 943
+    },
+    {
+      "path": "Derivation/code/outputs/logs/tachyonic_condensation/failed_runs/20251009_052916_tube_spectrum_summary__tube-spectrum-v1.json",
+      "sha256": "21c995ea9508a15310d79986bfc0e3cbd825d3f664ef8cdf51f668557de20ede",
+      "size": 288
+    },
+    {
+      "path": "Derivation/code/outputs/logs/tachyonic_condensation/failed_runs/20251009_052922_tube_condensation_summary__tube-condensation-v1.json",
+      "sha256": "26f10bc35524497aacefacd2b0319eea92e388d9318939e67cba9eca10cfb801",
+      "size": 516
+    },
+    {
+      "path": "Derivation/code/outputs/logs/tachyonic_condensation/failed_runs/20251009_052922_tube_energy_scan__tube-condensation-v1.csv",
+      "sha256": "e3b8637ea5a48e95051503ad355e12959cce77cd71590796c0935aec37bc1e2d",
+      "size": 261
+    },
+    {
+      "path": "Derivation/code/outputs/logs/tachyonic_condensation/failed_runs/20251009_053002_tube_condensation_summary__tube-condensation-v1.json",
+      "sha256": "6cd42f2b548e014aceedf4379235c43e2b30ab9e3457051c05b02ee881466a8a",
+      "size": 517
+    },
+    {
+      "path": "Derivation/code/outputs/logs/tachyonic_condensation/failed_runs/20251009_053002_tube_energy_scan__tube-condensation-v1.csv",
+      "sha256": "ea54ff71d43f15836117e826967b4d9ed961c42313fc1ed6fbfc21091b26d171",
+      "size": 255
+    },
+    {
+      "path": "Derivation/code/outputs/logs/tachyonic_condensation/failed_runs/20251009_055001_tube_spectrum_roots__tube-spectrum-v1.csv",
+      "sha256": "f39f4805ce67e750df36d236213a3f1a3c2cd3954f2c46314337de2e4699a315",
+      "size": 2070
+    },
+    {
+      "path": "Derivation/code/outputs/logs/tachyonic_condensation/failed_runs/20251009_055001_tube_spectrum_summary__tube-spectrum-v1.json",
+      "sha256": "a4f1028869a07173faa8f95b62167e6ec387ace8f2950c68df71d50ffe8a74df",
+      "size": 289
+    },
+    {
+      "path": "Derivation/code/outputs/logs/tachyonic_condensation/failed_runs/20251009_055033_tube_spectrum_roots__tube-spectrum-v1.csv",
+      "sha256": "f39f4805ce67e750df36d236213a3f1a3c2cd3954f2c46314337de2e4699a315",
+      "size": 2070
+    },
+    {
+      "path": "Derivation/code/outputs/logs/tachyonic_condensation/failed_runs/20251009_055033_tube_spectrum_summary__tube-spectrum-v1.json",
+      "sha256": "c0b68402d0c77a154458679a180f8fbb51760ee7c13e8730446ce92d0f2c1ff9",
+      "size": 289
+    },
+    {
+      "path": "Derivation/code/outputs/logs/tachyonic_condensation/failed_runs/20251009_055056_tube_spectrum_roots__tube-spectrum-v1.csv",
+      "sha256": "bab4d90df7d2a625c0e9d849a0c7d37a3aaa3b2b562db51fe471afb34a9516d3",
+      "size": 2341
+    },
+    {
+      "path": "Derivation/code/outputs/logs/tachyonic_condensation/failed_runs/20251009_055056_tube_spectrum_summary__tube-spectrum-v1.json",
+      "sha256": "6528f521b2a28665de13552e18b875e95dbed1692971b0f5ac6b4b1d818d47e6",
+      "size": 288
+    },
+    {
+      "path": "Derivation/code/outputs/logs/tachyonic_condensation/failed_runs/20251009_055137_tube_spectrum_roots__tube-spectrum-v1.csv",
+      "sha256": "1447956a5eb26889ca4a101eff1dfdf0775719a55dae313454956753347baa51",
+      "size": 2330
+    },
+    {
+      "path": "Derivation/code/outputs/logs/tachyonic_condensation/failed_runs/20251009_055137_tube_spectrum_summary__tube-spectrum-v1.json",
+      "sha256": "4ab7521f92ab2e9938baf9d5f92b4e0cb328fc733a93f81d7799cf2f4f50f57c",
+      "size": 288
+    },
+    {
+      "path": "Derivation/code/outputs/logs/tachyonic_condensation/failed_runs/20251009_055218_tube_spectrum_roots__tube-spectrum-v1.csv",
+      "sha256": "0055fcc8c091088d83265ceeb5b7ca236d11ba291ba6e17bae7985774bd0367e",
+      "size": 2813
+    },
+    {
+      "path": "Derivation/code/outputs/logs/tachyonic_condensation/failed_runs/20251009_055218_tube_spectrum_summary__tube-spectrum-v1.json",
+      "sha256": "f427624f3f2c695f1f8d6e1b36c3bdf61dba9e9cc669d4e2bd50c3c459331a40",
+      "size": 288
+    },
+    {
+      "path": "Derivation/code/outputs/logs/tachyonic_condensation/failed_runs/20251009_055231_tube_spectrum_roots__tube-spectrum-v1.csv",
+      "sha256": "0055fcc8c091088d83265ceeb5b7ca236d11ba291ba6e17bae7985774bd0367e",
+      "size": 2813
+    },
+    {
+      "path": "Derivation/code/outputs/logs/tachyonic_condensation/failed_runs/20251009_055231_tube_spectrum_summary__tube-spectrum-v1.json",
+      "sha256": "dcdf16c56802a32ecf856a87ec7458613d95c2f8df66e8300ff24c5db2963116",
+      "size": 288
+    },
+    {
+      "path": "Derivation/code/outputs/logs/tachyonic_condensation/failed_runs/20251009_055456_tube_spectrum_roots__tube-spectrum-v1.csv",
+      "sha256": "13aa4345cd46bb0bca48a4cabac09b698314708c84330a56a8b1a522d90c255c",
+      "size": 2673
+    },
+    {
+      "path": "Derivation/code/outputs/logs/tachyonic_condensation/failed_runs/20251009_055456_tube_spectrum_summary__tube-spectrum-v1.json",
+      "sha256": "9fefef63b45aef14b4558953a4f50c44231be9e86f98f56183d1bf8f967dbf3e",
+      "size": 288
+    },
+    {
+      "path": "Derivation/code/outputs/logs/tachyonic_condensation/failed_runs/20251009_060257_tube_spectrum_roots__tube-spectrum-v1.csv",
+      "sha256": "13aa4345cd46bb0bca48a4cabac09b698314708c84330a56a8b1a522d90c255c",
+      "size": 2673
+    },
+    {
+      "path": "Derivation/code/outputs/logs/tachyonic_condensation/failed_runs/20251009_060258_tube_spectrum_summary__tube-spectrum-v1.json",
+      "sha256": "f1e7c506bd54e952f1593813b629325436a0170a49b02a79b5bbf122979614b0",
+      "size": 464
+    },
+    {
+      "path": "Derivation/code/outputs/logs/tachyonic_condensation/failed_runs/20251009_060519_tube_spectrum_roots__tube-spectrum-v1.csv",
+      "sha256": "01a7dda0af7402da8962681d7bebf5befc3a05bf78ac6cf8b506a3f6f894848f",
+      "size": 5558
+    },
+    {
+      "path": "Derivation/code/outputs/logs/tachyonic_condensation/failed_runs/20251009_060520_tube_spectrum_summary__tube-spectrum-v1.json",
+      "sha256": "1deb65dc22fddb951b7758c82ecc7ea9a9b3c088fda3d046a8dc1dfc34a7c3e0",
+      "size": 465
+    },
+    {
+      "path": "Derivation/code/outputs/logs/tachyonic_condensation/failed_runs/20251009_062508_tube_condensation_summary__tube-condensation-v1.json",
+      "sha256": "7ec62fb0db4ab9ed8e5995c5eccb986490d2484817e788c8d68b0b7ac376aefb",
+      "size": 517
+    },
+    {
+      "path": "Derivation/code/outputs/logs/tachyonic_condensation/failed_runs/20251009_062508_tube_energy_scan__tube-condensation-v1.csv",
+      "sha256": "adef54e9037072700828b752652651d511c60a7945eae6e3e8a4e7511ad67fc9",
+      "size": 261
+    },
+    {
+      "path": "Derivation/code/outputs/logs/tachyonic_condensation/failed_runs/20251009_062533_tube_condensation_summary__tube-condensation-v1.json",
+      "sha256": "74ade6b8ac4a67ac57d5491661e20735e67f691a761424b0890d115fe8b5c965",
+      "size": 516
+    },
+    {
+      "path": "Derivation/code/outputs/logs/tachyonic_condensation/failed_runs/20251009_062533_tube_energy_scan__tube-condensation-v1.csv",
+      "sha256": "8a3f63ddab38dee58374f6e44cc327b74fb9b671cbaac66f82a20be85f7a6e6a",
+      "size": 357
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_040020_tr_v2_smoke_symm__lyapunov_series_thermo-routing-v2.csv",
+      "sha256": "7b511dfa95066581538b6808d78f61e87acef96f11a73bee9f6cef2b6de929a3",
+      "size": 2998
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_040020_tr_v2_smoke_symm_thermo-routing-v2.json",
+      "sha256": "fd175dc641a28c017bbe9608b492fd1ac17143dba7600eddea2c243952e33151",
+      "size": 1814
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_040322_tr_v2_smoke_symm__lyapunov_series_thermo-routing-v2.csv",
+      "sha256": "b148c65169def53788eef1d0704cb1fbbc1497b1ffbf7b20191f5e36d7b4fcdd",
+      "size": 2971
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_040322_tr_v2_smoke_symm_thermo-routing-v2.json",
+      "sha256": "126a652e7503cf7ebf5adae620c8a01a9ad165415d727cb2194e4a230b24e9c3",
+      "size": 1875
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_040720_tr_v2_smoke_symm__lyapunov_series_thermo-routing-v2.csv",
+      "sha256": "b148c65169def53788eef1d0704cb1fbbc1497b1ffbf7b20191f5e36d7b4fcdd",
+      "size": 2971
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_040720_tr_v2_smoke_symm_thermo-routing-v2.json",
+      "sha256": "cb518a3e6e3ba51b991c39373eafe439be727f8e6807e4c0857890e83cc78c37",
+      "size": 1875
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_042914_tr_v2_smoke_symm__lyapunov_series_thermo-routing-v2.csv",
+      "sha256": "7b403a381b748ab42258b59de7a4c939d2182d33d56965d4528de25cffd6b887",
+      "size": 108582
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_042914_tr_v2_smoke_symm_thermo-routing-v2.json",
+      "sha256": "02d392811010a90f9402c51d197cf51044ce2e95e5e458a0d74b3af3109c84d7",
+      "size": 4499
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_044112_tr_v2_smoke_symm__lyapunov_series_thermo-routing-v2.csv",
+      "sha256": "7b403a381b748ab42258b59de7a4c939d2182d33d56965d4528de25cffd6b887",
+      "size": 108582
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_044112_tr_v2_smoke_symm_thermo-routing-v2.json",
+      "sha256": "8b248166bf3dcc2d763d392b56f2d6b4d09f73a7650c161828482576aee2bfc2",
+      "size": 4644
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_045131_tr_v2_smoke_symm__lyapunov_series_thermo-routing-v2.csv",
+      "sha256": "7b403a381b748ab42258b59de7a4c939d2182d33d56965d4528de25cffd6b887",
+      "size": 108582
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_045131_tr_v2_smoke_symm_thermo-routing-v2.json",
+      "sha256": "99039f71889d327ddf704b86545da2046cf06c82d9f2591ca512306e0202a49b",
+      "size": 5230
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_045539_tr_v2_smoke_symm__lyapunov_series_thermo-routing-v2.csv",
+      "sha256": "7b403a381b748ab42258b59de7a4c939d2182d33d56965d4528de25cffd6b887",
+      "size": 108582
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_045539_tr_v2_smoke_symm_thermo-routing-v2.json",
+      "sha256": "b93f8cd7e3b287ce1d905a1c45942ae74c51c6319d87f72b9c9cb44582b8bf7c",
+      "size": 5130
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_061713_tr_v2_smoke_symm__lyapunov_series_thermo-routing-v2.csv",
+      "sha256": "7b403a381b748ab42258b59de7a4c939d2182d33d56965d4528de25cffd6b887",
+      "size": 108582
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_061713_tr_v2_smoke_symm_thermo-routing-v2.json",
+      "sha256": "f5fcb396b693f8f5484ff84c3edf9c9972dd8b9443e375e16a9c23683bf0bec1",
+      "size": 9013
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_063527_tr_v2_prereg_biased_main__lyapunov_series_thermo-routing-v2-prereg-biased-main.csv",
+      "sha256": "a51d27e2f526c292f5eb939c7b4551cb6f15baf7055f1c13e22bca119beeda78",
+      "size": 129510
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_063527_tr_v2_prereg_biased_main_thermo-routing-v2-prereg-biased-main.json",
+      "sha256": "6cf44863e3899d8904d11549e16d052c70a1d7fdf7ff4abfe75e2aa17611f752",
+      "size": 8786
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_063617_tr_v2_prereg_biased_main__lyapunov_series_thermo-routing-v2-prereg-biased-main.csv",
+      "sha256": "3b6d5a8709d8b979e212724b969b870d81043873b062371302ead2a2a5a7a916",
+      "size": 160222
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_063617_tr_v2_prereg_biased_main_thermo-routing-v2-prereg-biased-main.json",
+      "sha256": "ccf38e4c48a443409bf5a84ab66119f8631214ba266de8e9011e8218c2515349",
+      "size": 10566
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_064351_tr_v2_prereg_biased_main_aggregate_seeds_thermo-routing-v2-prereg-biased-main.csv",
+      "sha256": "117588d9f5ebcef75085d3a368e761429cfaaf96f2ac252ced4d295041b8ed00",
+      "size": 321
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_064351_tr_v2_prereg_biased_main_aggregate_thermo-routing-v2-prereg-biased-main.json",
+      "sha256": "1e74b0b5092511767d58ca876811ca4da25942b10757f0184b276e43cb975ace",
+      "size": 1871
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_064821_tr_v2_prereg_biased_main_aggregate_seeds_thermo-routing-v2-prereg-biased-main.csv",
+      "sha256": "75eb884ee1dc0c735367792a25488b22924f370d2bd0abe198ed7b29b17300cc",
+      "size": 311
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_064821_tr_v2_prereg_biased_main_aggregate_thermo-routing-v2-prereg-biased-main.json",
+      "sha256": "4218689a255df0788a9306a653eb07a8168702209d0c51896b6702ce93ec5313",
+      "size": 1869
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_121620_ftmc_v1_summary_thermo-routing-v2-ftmc.json",
+      "sha256": "012206102a03039bcc0054585833f7b1a3e7bd079f997cb6f778c60f19d02c7a",
+      "size": 1717
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_123503_ftmc_v1_summary_thermo-routing-v2-ftmc.json",
+      "sha256": "37b067a1c7c035125685003074e36bc1f04241be62962d6b75f49e8eaea80f50",
+      "size": 1910
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_123646_ftmc_v1_summary_thermo-routing-v2-ftmc.json",
+      "sha256": "1eb1dd890f1c07f08fb0e632dd3a72efeae6fb3017dda0c32da1c8c8bf4450fe",
+      "size": 2106
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_124027_ftmc_v1_metrics_thermo-routing-v2-ftmc.csv",
+      "sha256": "fac064c2f8e6b89a76497da7a3a199957ea6884e0878e4af2f864c9744babcb6",
+      "size": 444
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_124027_ftmc_v1_summary_thermo-routing-v2-ftmc.json",
+      "sha256": "edadd6cb232fff98d39671e37c0dff27e749c06ce843570a6196d9bad075b6e5",
+      "size": 2401
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_130513_ftmc_v1_metrics_thermo-routing-v2-ftmc.csv",
+      "sha256": "d7e6d6ca01b2288291d4fbdd26dbf7235e95d2a9d2d144d3e99abbaf973e3cf5",
+      "size": 698
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_130513_ftmc_v1_summary_thermo-routing-v2-ftmc.json",
+      "sha256": "261a77010c0e068205c097b465d5c25b83f29a9e311ba991da249913199f6ed4",
+      "size": 2705
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_132103_ftmc_v1_metrics_thermo-routing-v2-ftmc.csv",
+      "sha256": "787bde231b465fd0ca5905f0fcfb34e4948fa77916541f575cf86a285cf5d400",
+      "size": 694
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_132103_ftmc_v1_summary_thermo-routing-v2-ftmc.json",
+      "sha256": "327b193fe98c138d276a1992adcde1d29b45dfa64cfc81cd590f93fb1c74ad85",
+      "size": 2874
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_132140_ftmc_v1_metrics_thermo-routing-v2-ftmc.csv",
+      "sha256": "b460f1355795256e24d352b79f2ea2b7f69abe18a3827d542531192998012a9e",
+      "size": 694
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_132140_ftmc_v1_summary_thermo-routing-v2-ftmc.json",
+      "sha256": "2a5d12a2c715677d0bba6dc099c0afaae5ff440bc870274aff584983e1907501",
+      "size": 2874
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_140138_wave_flux_meter_v1_metrics_thermo-routing-v2-wave-meter.csv",
+      "sha256": "68a5f92d03aa837570e2fb65a621819a4b646ae045bb6e713323fc0a285cdf76",
+      "size": 316
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_140138_wave_flux_meter_v1_summary_thermo-routing-v2-wave-meter.json",
+      "sha256": "d9e806d13f4b35a2bfb26d6a1167484f5d54c2b67a11af2bbc5518bdfcd48c99",
+      "size": 1504
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_140356_wave_flux_meter_v1_metrics_thermo-routing-v2-wave-meter.csv",
+      "sha256": "2f1a7910a08339f9701774a98f79fd45edf27433420a67d232c92ac4698c2e91",
+      "size": 316
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_140356_wave_flux_meter_v1_summary_thermo-routing-v2-wave-meter.json",
+      "sha256": "e7eca423f18bd1369d72219d546ec15a96c164c7fee38fb34bd2aa7506b5aaee",
+      "size": 1605
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_142050_wave_flux_meter_v1_metrics_thermo-routing-v2-wave-meter.csv",
+      "sha256": "a195615eea8aa0b2fea6de7c560b8ab698819f6d9fde63a01daf6eb6c4520edd",
+      "size": 297
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_142050_wave_flux_meter_v1_summary_thermo-routing-v2-wave-meter.json",
+      "sha256": "46e6ec69f4eda4bf9b9e2b75d81725237ae2de1a85935bbf0d9788f25b8e88f5",
+      "size": 1613
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_145206_wave_flux_meter_openports_v1_metrics_thermo-routing-v2-wave-meter-openports.csv",
+      "sha256": "5d631dce60e96b4ed96f3aebfa0b2c52ed9983bba676eac1ac74994292f20435",
+      "size": 352
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_145206_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports.json",
+      "sha256": "1497840fe036625030c707bfb0e1aa5d1dee1359a82bdfad07ad153608760805",
+      "size": 1652
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_150232_wave_flux_meter_openports_v1_metrics_thermo-routing-v2-wave-meter-openports.csv",
+      "sha256": "76ab8dd48a931afab742c47d8ef85c566f874f834772f219d013c1d1a4385e04",
+      "size": 352
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_150232_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports.json",
+      "sha256": "a204a15ee8ee1235e5146a2f98376316c486d4640535f5b4f86ef3b21b528f40",
+      "size": 1652
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_150603_ftmc_v1_metrics_thermo-routing-v2-ftmc.csv",
+      "sha256": "f75e5b0e4c48e554b2a6945fcab6b0d3ef2bc24f5091037450d4116d439b8a9f",
+      "size": 694
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_150603_ftmc_v1_summary_thermo-routing-v2-ftmc.json",
+      "sha256": "291c1123fe1f5d694fb6cb5b67a0fdde92c5fc1affa33989823a2694e8fb555e",
+      "size": 2874
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_152405_wave_flux_meter_openports_v1_metrics_thermo-routing-v2-wave-meter-openports.csv",
+      "sha256": "8af4b0bc0899f0a9447e8843404f0b7bb05e5026bcb0289198bca8f0be274c4f",
+      "size": 349
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_152405_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports.json",
+      "sha256": "ef3966a584b041488b35917a0cfa34ed2059fb400cf3b28b46a7d6c6006651fd",
+      "size": 1883
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_152603_wave_flux_meter_openports_v1_metrics_thermo-routing-v2-wave-meter-openports.csv",
+      "sha256": "707a91e9b92092bdf8f55097b4d2507d47dfb1a1262d718367e5b4168491169c",
+      "size": 409
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_152603_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports.json",
+      "sha256": "0a77236b653f23fc77342dd9a590d192ec4355b8eeb7f3cf223b2d473a6c1bc6",
+      "size": 1883
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_172547_wave_flux_meter_openports_v1_metrics_thermo-routing-v2-wave-meter-openports.csv",
+      "sha256": "3ec088f3c13c73a3efd547f28830a768023cbdd265e7eac3f3024891a2dcc893",
+      "size": 409
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_172547_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports.json",
+      "sha256": "c992cd510ce2eb200afae8438d90561b143e38f1aaa4d181980a017004752fae",
+      "size": 42
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_172706_wave_flux_meter_openports_v1_metrics_thermo-routing-v2-wave-meter-openports.csv",
+      "sha256": "51ea7e54eb814d5707fb56794db0abe1265f06958e621b7cd041d137af4ea0f2",
+      "size": 409
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_172706_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports.json",
+      "sha256": "6032180cf2fc510df8f515a3b2d2bb67455517f68e58cd429bf11e9d675990a6",
+      "size": 2243
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_181106_wave_flux_meter_openports_v1_metrics_thermo-routing-v2-wave-meter-openports.csv",
+      "sha256": "ff4317bb76cd19099dfc2f0e72587b23dc915964b8709195160cfcaf8ddd3ca1",
+      "size": 410
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_181106_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports.json",
+      "sha256": "12b7e670840c11a79650f40cea1e35cd5b412f78701a5d0553debea4bc0852b7",
+      "size": 2582
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_181432_wave_flux_meter_openports_v1_metrics_thermo-routing-v2-wave-meter-openports.csv",
+      "sha256": "1532267e3ba539372983b5359932d3b5eb62e10454a4c825d9aa86ed74c38dde",
+      "size": 410
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_181432_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports.json",
+      "sha256": "934725391184724d2390be27e381b4f325d90d0ca80d9a6a7395e6089af518d6",
+      "size": 2582
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_184253_wave_flux_meter_openports_v1_metrics_thermo-routing-v2-wave-meter-openports.csv",
+      "sha256": "872a9f06a1292aa8c5ce8240ef1de7281cff1ff55bead77d4fe23c307525ea01",
+      "size": 410
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_184253_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports.json",
+      "sha256": "eb99f46b57c315ec1931f9e5e494e326cfeb8aa9c03547c407abc06e1557954a",
+      "size": 2582
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_184458_wave_flux_meter_openports_v1_metrics_thermo-routing-v2-wave-meter-openports.csv",
+      "sha256": "4beb793328c6e123be3fa65b1cb76b5f5fe13a4a3e093943fb1f905b15b4211b",
+      "size": 410
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/20251013_184458_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports.json",
+      "sha256": "c657b8bb4233fdf30a7d546b2a9be410e434c649b8f04ad5a277d5b961dda908",
+      "size": 2582
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_033213_tr_v2_smoke_symm_thermo-routing-v2.json",
+      "sha256": "ebd8f767a6aae6c5e2961cc6e2fdb3af5a7133f10392040baea9b25dbd352472",
+      "size": 1293
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_041406_tr_v2_smoke_symm__lyapunov_series_thermo-routing-v2.csv",
+      "sha256": "b148c65169def53788eef1d0704cb1fbbc1497b1ffbf7b20191f5e36d7b4fcdd",
+      "size": 2971
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_041406_tr_v2_smoke_symm_thermo-routing-v2.json",
+      "sha256": "9e5386125744533dfeb2bec8e1458e5091193c4452f2f3d6e7108398ba678562",
+      "size": 2167
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_041806_tr_v2_smoke_symm__lyapunov_series_thermo-routing-v2.csv",
+      "sha256": "7b403a381b748ab42258b59de7a4c939d2182d33d56965d4528de25cffd6b887",
+      "size": 108582
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_041806_tr_v2_smoke_symm_thermo-routing-v2.json",
+      "sha256": "f66fd37ba903d7fc5ae33a9f6b8f2ae8e236bbcdf753fd2611f4d9a37c5dd81e",
+      "size": 4469
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_042058_tr_v2_smoke_symm__lyapunov_series_thermo-routing-v2.csv",
+      "sha256": "7b403a381b748ab42258b59de7a4c939d2182d33d56965d4528de25cffd6b887",
+      "size": 108582
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_042058_tr_v2_smoke_symm_thermo-routing-v2.json",
+      "sha256": "37446c696a21e15adf2debc30e22b52a08ee5d78f530b8d191dfe69f5bffb0c0",
+      "size": 4469
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_042146_tr_v2_smoke_symm__lyapunov_series_thermo-routing-v2.csv",
+      "sha256": "7b403a381b748ab42258b59de7a4c939d2182d33d56965d4528de25cffd6b887",
+      "size": 108582
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_042146_tr_v2_smoke_symm_thermo-routing-v2.json",
+      "sha256": "2ed9d6a81c4d6f59a3b9ba4badac79213ce7955f86ef542a6e626b96df4a0ef8",
+      "size": 4469
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_061240_tr_v2_smoke_biased__lyapunov_series_thermo-routing-v2.csv",
+      "sha256": "7c9c306d94aa4d296377d49914a86277d5b9ff89f06588642555d7b4c673083d",
+      "size": 2213
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_061240_tr_v2_smoke_biased_thermo-routing-v2.json",
+      "sha256": "8fd02325d7cb56c892408ea3499be1121600b604f469aa4d7668cbee5820c876",
+      "size": 3805
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_061415_tr_v2_smoke_biased__lyapunov_series_thermo-routing-v2.csv",
+      "sha256": "7c9c306d94aa4d296377d49914a86277d5b9ff89f06588642555d7b4c673083d",
+      "size": 2213
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_061415_tr_v2_smoke_biased_thermo-routing-v2.json",
+      "sha256": "a66cbca3d3774c655ae6802e12a9f05c9af94a745cd63e2d45b5d3c277dd767c",
+      "size": 3805
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_063059_tr_v2_smoke_biased__lyapunov_series_thermo-routing-v2-prereg-biased-main.csv",
+      "sha256": "0729b09a9a2d289da7065ef5e0a19b4c54b983a5a6ae3313a355034bc3cab868",
+      "size": 4567
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_063059_tr_v2_smoke_biased_thermo-routing-v2-prereg-biased-main.json",
+      "sha256": "88b93c0c8736fea5728d8702718bc42a9de08b99135dfd4cde4e3987bbb8803c",
+      "size": 4829
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_063144_tr_v2_smoke_biased__lyapunov_series_thermo-routing-v2-prereg-biased-main.csv",
+      "sha256": "1861bf377fcc58fb7e0caceb58686aa6f15ea7eccab2bfbe97a59086189ecc0e",
+      "size": 7653
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_063144_tr_v2_smoke_biased_thermo-routing-v2-prereg-biased-main.json",
+      "sha256": "81b664d35497e678dfe32fd55533b6fd7bdea8f5453df20bf189816f34ab3526",
+      "size": 5887
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_063252_tr_v2_smoke_biased__lyapunov_series_thermo-routing-v2-prereg-biased-main.csv",
+      "sha256": "9e1906edfb67f8bd096b931f6c3d5ca15fec73cc49aebf2a519b84e9b071c88e",
+      "size": 129029
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_063252_tr_v2_smoke_biased_thermo-routing-v2-prereg-biased-main.json",
+      "sha256": "786f1533a9da5d9b5aa6cda42c04b62e46beee150908124f3d5051b9e5de10d5",
+      "size": 17498
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_065135_tr_v2_prereg_biased_main_aggregate_seeds_thermo-routing-v2-prereg-biased-main.csv",
+      "sha256": "75eb884ee1dc0c735367792a25488b22924f370d2bd0abe198ed7b29b17300cc",
+      "size": 311
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_065135_tr_v2_prereg_biased_main_aggregate_thermo-routing-v2-prereg-biased-main.json",
+      "sha256": "6cdece0ee25260d43f8d588e3f3680fec918fc92d2bc551103a19188af621fa2",
+      "size": 1905
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_070534_tr_v2_prereg_biased_main_aggregate_seeds_thermo-routing-v2-prereg-biased-main.csv",
+      "sha256": "c64784b3ef46a8dfd8f354118744ec1baa141931b764ed00eb1b7de3d3271b54",
+      "size": 704
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_070534_tr_v2_prereg_biased_main_aggregate_thermo-routing-v2-prereg-biased-main.json",
+      "sha256": "f06e238b94e8cf6db8fac820cdc1361bb69a5fb31204690f92d53b71c3175f06",
+      "size": 2311
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_070711_tr_v2_prereg_biased_main_aggregate_seeds_thermo-routing-v2-prereg-biased-main.csv",
+      "sha256": "95ecbf9e6ba0b4144639fa06bf38a14608f6fe541dea34bd26e537bfdea2c825",
+      "size": 704
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_070711_tr_v2_prereg_biased_main_aggregate_thermo-routing-v2-prereg-biased-main.json",
+      "sha256": "59bf4fb09c02a063fdb5d13ea3c32f43ecfb974abfff82d5191891f98dfd36d9",
+      "size": 2309
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_070819_tr_v2_prereg_biased_main_aggregate_seeds_thermo-routing-v2-prereg-biased-main.csv",
+      "sha256": "1f1fd0a08e88920f3d779838f6125868cc7ac0c824db0abb023cb163bd31bc8c",
+      "size": 689
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_070819_tr_v2_prereg_biased_main_aggregate_thermo-routing-v2-prereg-biased-main.json",
+      "sha256": "8912c601b8a1092cbe611d563b745f254e16a0e03f0bc0bc1f209dfe6974070c",
+      "size": 2299
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_071432_tr_v2_prereg_biased_main_aggregate_seeds_thermo-routing-v2-prereg-biased-main.csv",
+      "sha256": "4bf0877f4600901e0e6e2d15d04adcb194f032a862e4ccfb770f092b2cd91db8",
+      "size": 689
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_071432_tr_v2_prereg_biased_main_aggregate_thermo-routing-v2-prereg-biased-main.json",
+      "sha256": "7d513606e17f5a65e4f0e55071a2978c8b91e86ef82d7d844b5eff0025299f42",
+      "size": 2299
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_072324_tr_v2_prereg_biased_main_aggregate_seeds_thermo-routing-v2-prereg-biased-main.csv",
+      "sha256": "2170c1a75a0fc0478cd54dc41be5b79cc154e360889735a16493451463ec7d93",
+      "size": 602
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_072324_tr_v2_prereg_biased_main_aggregate_thermo-routing-v2-prereg-biased-main.json",
+      "sha256": "ce88a6146d810789fef5e7c61de5f499186d26fd95e3d0037746bc9b067b8473",
+      "size": 2347
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_073205_tr_v2_prereg_biased_main_aggregate_seeds_thermo-routing-v2-prereg-biased-main.csv",
+      "sha256": "6913c972d2227cd2fa0d91d7d9fc222d28041d8632f913d4b47dd7f84eb518ae",
+      "size": 804
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_073205_tr_v2_prereg_biased_main_aggregate_thermo-routing-v2-prereg-biased-main.json",
+      "sha256": "6a4d59c8cd313966e9d115f9d4c1fc5fc7163978ea9a31417ea6d3e963eb8390",
+      "size": 2398
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_073755_tr_v2_prereg_biased_main_aggregate_seeds_thermo-routing-v2-prereg-biased-main.csv",
+      "sha256": "0533c0527ed79b936ebe744058a4971b85ff3856c95435e898f4f7c40458d16d",
+      "size": 797
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_073755_tr_v2_prereg_biased_main_aggregate_thermo-routing-v2-prereg-biased-main.json",
+      "sha256": "fb8b5ed4b041945cd0fbe2499d05e786ca0b32d7f31a18c73468bef466fb045a",
+      "size": 2393
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_074003_tr_v2_prereg_biased_main_aggregate_seeds_thermo-routing-v2-prereg-biased-main.csv",
+      "sha256": "7ac6866c18e13ad2759b20276e9792377529e194d269bdce04e0a8f1887a43c8",
+      "size": 797
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_074003_tr_v2_prereg_biased_main_aggregate_thermo-routing-v2-prereg-biased-main.json",
+      "sha256": "a08f3c7fcad763c72f9761e125c4bc2247916a73a4e2de35d0360721ff86d648",
+      "size": 2393
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_074108_tr_v2_prereg_biased_main_aggregate_seeds_thermo-routing-v2-prereg-biased-main.csv",
+      "sha256": "f72fe16e816dbcf6e18c2031b3bff36e519ad3ef81f9c5cbcf145a5f9feafc59",
+      "size": 804
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_074108_tr_v2_prereg_biased_main_aggregate_thermo-routing-v2-prereg-biased-main.json",
+      "sha256": "943a63720ade578be371a8e32c8a7eb9b232e632b03e946abbf0a339d10efa85",
+      "size": 2398
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_115326_ftmc_v1_summary_thermo-routing-v2-ftmc.json",
+      "sha256": "06fba32a60fbc01746bf85a160a69fdb8a21c172704707810741e3c865dc2fc3",
+      "size": 1560
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_140810_wave_flux_meter_v1_metrics_thermo-routing-v2-wave-meter.csv",
+      "sha256": "2ce4133ef35d6527f8baa2589038469de1ab106116e9f7af22f81e5fd77401b2",
+      "size": 329
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_140810_wave_flux_meter_v1_summary_thermo-routing-v2-wave-meter.json",
+      "sha256": "996b84a86b8dc53d1baab83ae0a0718386387b01d5f78c5d4458a2bd48fe3e9e",
+      "size": 1641
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_141919_wave_flux_meter_v1_metrics_thermo-routing-v2-wave-meter.csv",
+      "sha256": "b892c6424275b29ab56104f6c4d61731618174b75bf04b5bf74ef92536fa7a82",
+      "size": 332
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_141919_wave_flux_meter_v1_summary_thermo-routing-v2-wave-meter.json",
+      "sha256": "9274f8067a12135b125c48d784b44986993434165ad041cac1009a0ea7f222a7",
+      "size": 1662
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_144730_wave_flux_meter_openports_v1_metrics_thermo-routing-v2-wave-meter-openports.csv",
+      "sha256": "da601a699032d12945ce14a1656a446e265b639b2ed2f8484c463a2c8e5373f6",
+      "size": 350
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_144730_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports.json",
+      "sha256": "dd75297729b569663603487b8b5139922351cd6112214ed6d1e56dee6adec510",
+      "size": 1687
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_144850_wave_flux_meter_openports_v1_metrics_thermo-routing-v2-wave-meter-openports.csv",
+      "sha256": "a573d435918ec0e40bbe3f7528496f59d50466db9d482c486d0b9823d49fe098",
+      "size": 349
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_144850_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports.json",
+      "sha256": "24a7fa9f99da597694100fee83e8dfb284b26433d24a195c62730efd7d8d93ed",
+      "size": 1686
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_150746_wave_flux_meter_openports_v1_metrics_thermo-routing-v2-wave-meter-openports-channelmap.csv",
+      "sha256": "1c80e50650489fe5bf201a9b0312fea738c3ef5dd8a400896ab69d1546bdcfa6",
+      "size": 361
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_150746_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports-channelmap.json",
+      "sha256": "86b8be5ed353bcd534f1a1c12b838798bdba3ca96e62be1199b58547e4b48c7a",
+      "size": 1730
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_150848_wave_flux_meter_openports_v1_metrics_thermo-routing-v2-wave-meter-openports-channelmap.csv",
+      "sha256": "fce9984f73eab7a3746cc02a5a90b6aafa0bcc90fbdd5e8b91121bc34ca9618e",
+      "size": 361
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_150848_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports-channelmap.json",
+      "sha256": "22b92ab60a425fc791650223a485187cec9fc712320b490f31e891078ed35b3b",
+      "size": 1730
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_151100_wave_flux_meter_openports_v1_metrics_thermo-routing-v2-wave-meter-openports-channelmap.csv",
+      "sha256": "336c33852c31ee8c04065331c61cab43f3ece19935941b6e72d8d8dd920f0c94",
+      "size": 361
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_151100_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports-channelmap.json",
+      "sha256": "75040a7c32ca28f10bb2b0c75b0e4b94ce63626e3b00293941465331341d3e6a",
+      "size": 1731
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_151324_wave_flux_meter_openports_v1_metrics_thermo-routing-v2-wave-meter-openports-channelmap.csv",
+      "sha256": "ed202349a493d377a0670b230154fd863d8c0dc4d7d59764f1676bde5d70b580",
+      "size": 360
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_151324_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports-channelmap.json",
+      "sha256": "7e96ab1e4215bf6c5149c907a715e3f0ce58d5b21b436152ce8ce197d58ff3aa",
+      "size": 2033
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_151404_wave_flux_meter_openports_v1_metrics_thermo-routing-v2-wave-meter-openports-channelmap.csv",
+      "sha256": "e9c97f4349ef6909e0ace01149adbc82167a19b02ab38b6172ac795118cfe670",
+      "size": 361
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_151404_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports-channelmap.json",
+      "sha256": "5e2fd5a6d4d5a04143835e08cba6e162aed40b1aaab2bd1f2dc4431a4ac1057b",
+      "size": 2033
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_151513_wave_flux_meter_openports_v1_metrics_thermo-routing-v2-wave-meter-openports-channelmap.csv",
+      "sha256": "7d7843cfbc381d0fb96cfa254ae150e83585b8413c2e66d381b537c73bf0300a",
+      "size": 360
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_151513_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports-channelmap.json",
+      "sha256": "856b27edef584b1f9f87a4da0df19d409ab530d16643bf321504c5f8a7674e22",
+      "size": 1936
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_151603_wave_flux_meter_openports_v1_metrics_thermo-routing-v2-wave-meter-openports-channelmap.csv",
+      "sha256": "383e4916f6f087fbaf97d2ed2b7be3705aeab24764aa41818208198850a35d9c",
+      "size": 359
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_151603_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports-channelmap.json",
+      "sha256": "6f26499a8703e552a6dbd46d9c69ff086a421de5f58f7aa7ff7a37a70730d6c5",
+      "size": 1935
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_151649_wave_flux_meter_openports_v1_metrics_thermo-routing-v2-wave-meter-openports-channelmap.csv",
+      "sha256": "d1050dc245b46d3da3ebcd874838d8fc9ba0c03aaf976732dbd92280357ff00d",
+      "size": 361
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_151649_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports-channelmap.json",
+      "sha256": "8ab41b4e1b53a5bb506b9cd943eb544d495bba9d5376b980d522cb77c89186a7",
+      "size": 1937
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_152144_wave_flux_meter_openports_v1_metrics_thermo-routing-v2-wave-meter-openports-channelmap.csv",
+      "sha256": "70260c4223f4a3d01d14de4553c7ee2bf9424156e6983906b0fec4f9890c91a2",
+      "size": 361
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_152144_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports-channelmap.json",
+      "sha256": "1bf50d27766541753f6870fafee97fd0da800c40636bb76118722872c808d1fb",
+      "size": 1937
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_152225_wave_flux_meter_openports_v1_metrics_thermo-routing-v2-wave-meter-openports-channelmap.csv",
+      "sha256": "ece75915d4bd8cd6d7819008ca7e26294c6d83f7a13f605a926ac0bf872c0c1d",
+      "size": 360
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_152225_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports-channelmap.json",
+      "sha256": "6cac4468e9f0ef1e89c8344a90879e2952d1acf265d618343eaca527a4ee49fd",
+      "size": 1962
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_175439_wave_flux_meter_openports_v1_metrics_thermo-routing-v2-wave-meter-openports.csv",
+      "sha256": "7738e563cc2b2644cac07094c36c1970028300452a4e903586f111ab1d45e2de",
+      "size": 408
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_175439_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports.json",
+      "sha256": "56611c197eae52aa1d6d604480c972749a5f25a46f5eb27eaac7f241016538b9",
+      "size": 2427
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_175555_wave_flux_meter_openports_v1_metrics_thermo-routing-v2-wave-meter-openports.csv",
+      "sha256": "eb9081c7158d1ea1edaa27c58ec74f1008a90bf0991664f862d7eefda9c731be",
+      "size": 408
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_175555_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports.json",
+      "sha256": "0a4ce55b982ba7edadc9e184b015f64cd3eea3d772218e44e7f46fa640eadbe4",
+      "size": 2427
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_175715_wave_flux_meter_openports_v1_metrics_thermo-routing-v2-wave-meter-openports.csv",
+      "sha256": "bd031805b0cbb1ffcf70177c69661f11cc1cce58e42e24772aa5f46847ed2f9c",
+      "size": 409
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_175715_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports.json",
+      "sha256": "57479e9a2b3fa5855a3c44fee299dc869a16d2066d2b67605268fb6a28d245d3",
+      "size": 2428
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_180135_wave_flux_meter_openports_v1_metrics_thermo-routing-v2-wave-meter-openports.csv",
+      "sha256": "e07758f717d0abb77c8eed2e5ad76d45514c5d0274dd69d7809025061b3f8ee7",
+      "size": 407
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_180135_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports.json",
+      "sha256": "622d3ad4580fecdc77c6b74ff0a5dc2ee454d58882a72508fbcc40f28dce6ef7",
+      "size": 2426
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_180324_wave_flux_meter_openports_v1_metrics_thermo-routing-v2-wave-meter-openports.csv",
+      "sha256": "e0334228e273f59f786908dbba5ec99fef794aedc22e1bfa016d25150d000a3f",
+      "size": 409
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_180324_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports.json",
+      "sha256": "b5a8ff301d3645dfdacff7df4ce4507e8d2865710b6aebe584ddee0190a408d5",
+      "size": 2428
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_180500_wave_flux_meter_openports_v1_metrics_thermo-routing-v2-wave-meter-openports.csv",
+      "sha256": "59ea744d0f855e0dea27b6f1646ffcbd838cb0b31b768ee35d9e0bec1990d255",
+      "size": 409
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_180500_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports.json",
+      "sha256": "52ce2a5c61f129011b60f7de3f4261f21ce5a0197da51b5b3214e997ea6e6481",
+      "size": 2550
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_180600_wave_flux_meter_openports_v1_metrics_thermo-routing-v2-wave-meter-openports.csv",
+      "sha256": "501ce18e1a6918357719b5ad6bbc7ac3fbbcd10af99611bacdba430022428abb",
+      "size": 409
+    },
+    {
+      "path": "Derivation/code/outputs/logs/thermo_routing/failed_runs/20251013_180600_wave_flux_meter_openports_v1_summary_thermo-routing-v2-wave-meter-openports.json",
+      "sha256": "282aea7eb43639392abffa33704fb049f28c8387f96609270bc9d93628d06f51",
+      "size": 2550
+    }
+  ],
+  "root": "Derivation/code/outputs",
+  "schema": "vdm.provenance.index.v1"
+}

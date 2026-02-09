@@ -1,0 +1,1627 @@
+{
+  "generated_utc": "2026-02-09T03:00:52.358902Z",
+  "items": [
+    {
+      "path": "Derivation/code/ARCHITECTURE.md",
+      "sha256": "05eb0fc9838e5b6bfc8f8b64ce5088954514af901fe16bcb2e66f097a7c0e11e",
+      "size": 180
+    },
+    {
+      "path": "Derivation/code/__init__.py",
+      "sha256": "b1543467c20cb51f42bf972a6bb4b4a8848586bc0e69b0c18be9fc76344260d3",
+      "size": 415
+    },
+    {
+      "path": "Derivation/code/analysis/README.md",
+      "sha256": "6502398a0517e37409d69a084567d9bf3f80d948284b24cfc6c9dc0dc0d275ba",
+      "size": 1104
+    },
+    {
+      "path": "Derivation/code/analysis/build_and_test_H_candidate.py",
+      "sha256": "23be6161b0eb315edcf4446c5be8a799d85b5d7dea76e4beb1fb676744001391",
+      "size": 6001
+    },
+    {
+      "path": "Derivation/code/analysis/edge_ansatz_fit.py",
+      "sha256": "82e0698346e8da3d62cedc9fee89134f773ace125fefa2230f17b292b21d337c",
+      "size": 927
+    },
+    {
+      "path": "Derivation/code/analysis/fit_H_edge.py",
+      "sha256": "85301f5b05cd6995bb07ad995e9bc34b247fb5cf2231ad0cfede8529d023c9bd",
+      "size": 3751
+    },
+    {
+      "path": "Derivation/code/analysis/flux_sweep.py",
+      "sha256": "c7d929ef8d9d343867c0ba9eabca779eb192e2deb342ed039d3553fff9b9e0ef",
+      "size": 5144
+    },
+    {
+      "path": "Derivation/code/analysis/flux_symbolic.py",
+      "sha256": "b90c297e2e13937735a7766dd2b0ca3edd9b8b3551035d8d736415582fbc3071",
+      "size": 827
+    },
+    {
+      "path": "Derivation/code/analysis/flux_symbolic_full.py",
+      "sha256": "b76b051edff325b3eb8c5881c00bc0a1f0cc996ae071e8efc4ce4a9af5b47131",
+      "size": 4225
+    },
+    {
+      "path": "Derivation/code/analysis/grid_tau0.py",
+      "sha256": "259b8acd97eb407f9b749c1884cc2efea351ad066bbf8f0a4a5968d2b366848a",
+      "size": 4609
+    },
+    {
+      "path": "Derivation/code/analysis/optimize_H_params.py",
+      "sha256": "4d7e26c499c00b527930f1413e58b5f1a2c7a8cf78d195fb86c5b408532c076d",
+      "size": 7010
+    },
+    {
+      "path": "Derivation/code/common/__init__.py",
+      "sha256": "9e8a57cac659b4decad43809194e85087b1ecadf6a64aa5e54db64f25f16b861",
+      "size": 422
+    },
+    {
+      "path": "Derivation/code/common/authorization/EXAMPLES.md",
+      "sha256": "246ef3bf9e84ea3f01e23681bbff7b35a359246638fed9114b3fdbd9a7d1fd5d",
+      "size": 2576
+    },
+    {
+      "path": "Derivation/code/common/authorization/README.md",
+      "sha256": "001847f3df05efbfdb8e3ee2c813242c6b8280bc40de750ea59275cc6ba8fc86",
+      "size": 5043
+    },
+    {
+      "path": "Derivation/code/common/authorization/__init__.py",
+      "sha256": "66c56ff0e1cf5e30e9bf00cfe8c7ed4b1bf1db415a67d05f5c397d35271f931f",
+      "size": 580
+    },
+    {
+      "path": "Derivation/code/common/authorization/approval.py",
+      "sha256": "4631eb810cd8426fe50805af27a11ae54f3635d5db6c5790bf76fdb52041f43b",
+      "size": 41761
+    },
+    {
+      "path": "Derivation/code/common/authorization/approve_tag.py",
+      "sha256": "6185bc8dbfa5304e5640a439f6c623a96fa409b06bb845355f2465c1dcf18f4a",
+      "size": 17085
+    },
+    {
+      "path": "Derivation/code/common/authorization/tests/test_approval_provenance.py",
+      "sha256": "0cc0099a91c12910474d2e3028bf4e4a9a3c1d33ef71a9bc444c3bcc0591fe98",
+      "size": 7257
+    },
+    {
+      "path": "Derivation/code/common/causality/__init__.py",
+      "sha256": "7e0598b23235ec880a88d582cfb20a7fcffc4e45e2edc146d773564d8c3b194b",
+      "size": 1667
+    },
+    {
+      "path": "Derivation/code/common/causality/diagnostics.py",
+      "sha256": "63458006778b83c40189d617cccefcbe89b37c9005778ce738ec3ae4006c6678",
+      "size": 3900
+    },
+    {
+      "path": "Derivation/code/common/causality/event_dag.py",
+      "sha256": "1bd3b465e31aba1a9c9d4c09081e633f8be954fd7ae24a1d963be9f9a69473f5",
+      "size": 7474
+    },
+    {
+      "path": "Derivation/code/common/causality/intervals.py",
+      "sha256": "f0409e1438bbcbbfa00362921c017e045cf1d0aae709fbb0899face234806a55",
+      "size": 6825
+    },
+    {
+      "path": "Derivation/code/common/certified_instruments/README.md",
+      "sha256": "89e36a35a2dcaf6aee109f0e03b5dca85010a9c1d6766935ae5a34374f3acc82",
+      "size": 124
+    },
+    {
+      "path": "Derivation/code/common/certified_instruments/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "Derivation/code/common/constants.py",
+      "sha256": "267624fd71f4ac605570b5a18dfff23b1c670bdd925c402870462a00c0bc096a",
+      "size": 5929
+    },
+    {
+      "path": "Derivation/code/common/data/__init__.py",
+      "sha256": "fb269e17df81264c430040d1959248dc9ba6856dfc7fbb90fa0fbefea9ccf8f4",
+      "size": 373
+    },
+    {
+      "path": "Derivation/code/common/data/preflight_db.py",
+      "sha256": "5e4c48b966997e49b4d906a36d1aea14ccfc8ca5850ebcf09e0052256b9bd864",
+      "size": 6320
+    },
+    {
+      "path": "Derivation/code/common/data/results_db.py",
+      "sha256": "292ee0eb57261e587aa843ecaf0e997b1b7923a2d531b1248953688dadba9b9b",
+      "size": 27729
+    },
+    {
+      "path": "Derivation/code/common/domain_setup/README.md",
+      "sha256": "589be681655859f96987ec0ff875e58d7340c8cd26afab6b9553609462b060fc",
+      "size": 4514
+    },
+    {
+      "path": "Derivation/code/common/domain_setup/__init__.py",
+      "sha256": "fb269e17df81264c430040d1959248dc9ba6856dfc7fbb90fa0fbefea9ccf8f4",
+      "size": 373
+    },
+    {
+      "path": "Derivation/code/common/domain_setup/domain-name/APPROVAL.json",
+      "sha256": "748599fe6eaf949a0bb53579cf04d164e2319c3eb88215350e4b45c6559db290",
+      "size": 983
+    },
+    {
+      "path": "Derivation/code/common/domain_setup/domain-name/PRE-REGISTRATION.json",
+      "sha256": "fe0abef7c40286c9fea7ee9dbd4018ff437a7d9467eaca755da3f210d4c477e6",
+      "size": 624
+    },
+    {
+      "path": "Derivation/code/common/domain_setup/domain-name/README.md",
+      "sha256": "09b4ebd08ffe6d16494d401e5320f7208713621140fa9b277a73863e2dbf3389",
+      "size": 1264
+    },
+    {
+      "path": "Derivation/code/common/domain_setup/domain-name/run_experiment_name.py",
+      "sha256": "85fca0d409b964d3aa47f872983f7d280bae3bb2582335a231f714754548d7bf",
+      "size": 1049
+    },
+    {
+      "path": "Derivation/code/common/domain_setup/domain-name/schemas/tag-name.schema.json",
+      "sha256": "ccd7194a28d6cab2f2c456a797968c2f64989e6b6b9afa73d03eaa22326b5873",
+      "size": 174
+    },
+    {
+      "path": "Derivation/code/common/domain_setup/domain-name/specs/run-name.version.json",
+      "sha256": "6030fd8d7807ac0777f0e1c778323d9e02a35b84ec1d40e32b4945fe27455def",
+      "size": 161
+    },
+    {
+      "path": "Derivation/code/common/domain_setup/metriplectic.py",
+      "sha256": "d72c722fba602f2dec7cb6f4c735ea348ee31944f41af281687f5733cbb889f3",
+      "size": 4861
+    },
+    {
+      "path": "Derivation/code/common/domain_setup/scaffold_cli.py",
+      "sha256": "9abe960bcce74a7a745d915400709827771fa73c11030b964b163bfa7ccab2ab",
+      "size": 14592
+    },
+    {
+      "path": "Derivation/code/common/instrument_helpers/README.md",
+      "sha256": "55379468db6ae74a7aff18954816e73b11306dd7480ff3a33549eabc68baa9e8",
+      "size": 826
+    },
+    {
+      "path": "Derivation/code/common/instrument_helpers/__init__.py",
+      "sha256": "80ca4f2fdaa0d5541175f3e6bdeeab10852ad6c3a719747918a0b1b1d181ddee",
+      "size": 4070
+    },
+    {
+      "path": "Derivation/code/common/instrument_helpers/boundaries/gb_cycle_lyapunov.py",
+      "sha256": "457f0be05d1e9baedb1ed572c92b7f21d219566fe6f246d58bce31af9b97b431",
+      "size": 8119
+    },
+    {
+      "path": "Derivation/code/common/instrument_helpers/boundaries/gb_emission_threshold.py",
+      "sha256": "87eff668cc97dea3486058a4ac71faae665b63fd97ce859c6d759530e4788c87",
+      "size": 11196
+    },
+    {
+      "path": "Derivation/code/common/instrument_helpers/boundaries/gb_energy_gamma2_fitter.py",
+      "sha256": "e50e57a88c7044eb03e3f7e9fda934061f9a2048ae5ff6e7b31a3cdc48f66c59",
+      "size": 11095
+    },
+    {
+      "path": "Derivation/code/common/instrument_helpers/boundaries/gb_moire_contrast.py",
+      "sha256": "bcf012ad5e2d067a18cf72005c5836a49b0b0770eada7f1bba8f1c945aa2e4ca",
+      "size": 10223
+    },
+    {
+      "path": "Derivation/code/common/instrument_helpers/generic_helpers.py",
+      "sha256": "42e3bbbbd2fc7b4e9c9d8a6a01f515da888fcc73606b768f79987e7369569dda",
+      "size": 13806
+    },
+    {
+      "path": "Derivation/code/common/instrument_helpers/lit_tools.py",
+      "sha256": "d104555482a86dffa6f5b1c4d9e935822eea315d714088f66fd7c9e6045981cf",
+      "size": 14149
+    },
+    {
+      "path": "Derivation/code/common/instrument_helpers/prigogine_gates.py",
+      "sha256": "d5f9362ff91683a59644574d7118d5704b9af89f264e6cad55126a801934c451",
+      "size": 953
+    },
+    {
+      "path": "Derivation/code/common/instrument_helpers/topo_rdm_timeseries.py",
+      "sha256": "92cdb5ff1fce89a5f213c8b3148e9d60f5e8b0ba267493bb56b3d1aa205a590f",
+      "size": 12828
+    },
+    {
+      "path": "Derivation/code/common/instrument_helpers/vdm_equations.py",
+      "sha256": "3cce4e7ac54e585932944a6af78b1e23180e1215123fd5ca10a0961598d788bc",
+      "size": 9228
+    },
+    {
+      "path": "Derivation/code/common/io_paths.py",
+      "sha256": "90502bbf80b3075148935054b4490aa4b1662f8760c90f40004246a1f15d23c7",
+      "size": 6268
+    },
+    {
+      "path": "Derivation/code/common/plotting/README.md",
+      "sha256": "847abbbe97eba3257e6f469318a8e3ee4566941a09c9b9cbd6ec7ed20d3b4ae7",
+      "size": 1049
+    },
+    {
+      "path": "Derivation/code/common/plotting/__init__.py",
+      "sha256": "92d9df6600260e0b25b5094cf532d49f96efb09a914baa55244031388995f1ab",
+      "size": 7579
+    },
+    {
+      "path": "Derivation/code/common/plotting/assisted_echo_plots.py",
+      "sha256": "17b5904832303e83a46424ace0ab60ff65b0b3703d8a17001c15acb75acb4665",
+      "size": 36514
+    },
+    {
+      "path": "Derivation/code/common/plotting/core.py",
+      "sha256": "30f99aec8d75879e7dccc2c84e31a9666aceb11f4294851ca3e9cddbe0f83fea",
+      "size": 1663
+    },
+    {
+      "path": "Derivation/code/common/plotting/helpers.py",
+      "sha256": "5a196974d00cf1a86732967108f1bb97784edbc43ca500af8b97e175fd5cf956",
+      "size": 5005
+    },
+    {
+      "path": "Derivation/code/common/plotting/primitives.py",
+      "sha256": "dfb3fce4f64441f39ce4a4e75aa294b703e29284c832273bc0bcd2f77ad4fdc0",
+      "size": 5791
+    },
+    {
+      "path": "Derivation/code/common/plotting/topo_rdm_plots.py",
+      "sha256": "865cfecb90ae90900db352b91a8b2e391eea8f1eab78e744ca044fcf4baabe0b",
+      "size": 3834
+    },
+    {
+      "path": "Derivation/code/common/plotting/types.py",
+      "sha256": "c808d72cb94ab29915f09cb27ea3cec764eab4247e1543ddd241ae6880e7f686",
+      "size": 1002
+    },
+    {
+      "path": "Derivation/code/common/plotting/void_lensing_plots.py",
+      "sha256": "45b78281b565f997e7fd239f5c04e0f1422931bb77821f69c8613791a74b1291",
+      "size": 3955
+    },
+    {
+      "path": "Derivation/code/common/provenance/README.md",
+      "sha256": "a160a97622cd1f1be09ad5aa5a8b9a4df226ec0c39b3283461260ab39ab2eafe",
+      "size": 1653
+    },
+    {
+      "path": "Derivation/code/common/provenance/run_receipts.py",
+      "sha256": "f72de9278bec95b8bfdb3babdbf890f78d47c4f03632e3812dc002568a1bc929",
+      "size": 8985
+    },
+    {
+      "path": "Derivation/code/common/provenance/stamp_proposal.py",
+      "sha256": "207bf83413e9d6d3faa9e2a717738479498d18cf77a155db02f1d4a2189d6900",
+      "size": 6311
+    },
+    {
+      "path": "Derivation/code/common/provenance/tests/test_stamp_proposal.py",
+      "sha256": "50802656eaa440a381f06f01100f3cc752d67dc3d09ddf1486610eb42b351b3f",
+      "size": 1714
+    },
+    {
+      "path": "Derivation/code/common/validation_gate_helpers/README.md",
+      "sha256": "50cf562d85b7f6c2a5cd0226524cecd373a8579dc25f9141c4f62e122c0524ee",
+      "size": 4868
+    },
+    {
+      "path": "Derivation/code/common/validation_gate_helpers/__init__.py",
+      "sha256": "544f41878ff82e15228d3eeea908b0bf9cbebd5ab4756fb2b6b16d51c8777408",
+      "size": 348
+    },
+    {
+      "path": "Derivation/code/common/validation_gate_helpers/metriplectic_core.py",
+      "sha256": "761f63354d87d31507e4237cc138d2931e846cd96aa58c43394f4be079a77f61",
+      "size": 6313
+    },
+    {
+      "path": "Derivation/code/common/validation_gate_helpers/nonequilibrium/__init__.py",
+      "sha256": "975c2a004c74cc50b321c68991821cac7f1afbb9c05411b4e84ab7b23ea2e139",
+      "size": 109
+    },
+    {
+      "path": "Derivation/code/common/validation_gate_helpers/nonequilibrium/prigogine_gates.py",
+      "sha256": "1336098867f7b73b29529a23395364cc50ec89fa442d94a5db3fc517670f73b7",
+      "size": 30625
+    },
+    {
+      "path": "Derivation/code/common/vdm/stats.py",
+      "sha256": "9b0fddda41b53cd2a818331daed23662baadf75267f32e6848f896a357dd1d53",
+      "size": 10074
+    },
+    {
+      "path": "Derivation/code/instruments/fetch_gwpy_to_csv.py",
+      "sha256": "d47618436ea1a035f518c51efe0983501f28adda979ea5e1b168c1f64435d81b",
+      "size": 2515
+    },
+    {
+      "path": "Derivation/code/instruments/preprocess_ringdown.py",
+      "sha256": "5ef439cd0cff6464446f7ed817dd5b8a22905b75d0f8782ca91d81183cffa308",
+      "size": 11971
+    },
+    {
+      "path": "Derivation/code/obs/README.md",
+      "sha256": "5de04efa6dd78d1baee0932ff7afdca39725bccdb37870f1145d00202ab1651f",
+      "size": 855
+    },
+    {
+      "path": "Derivation/code/obs/walker_glow.py",
+      "sha256": "3393ccb4e46ddc9b8a5f6618c45c445784bce9b35276dcc57520bef0dc03e6fe",
+      "size": 4804
+    },
+    {
+      "path": "Derivation/code/physics/Experiment-Queue.md",
+      "sha256": "7211b718d5f60410d3588b9255f65427f605fd95414a87a5d9dfc0374382852d",
+      "size": 6
+    },
+    {
+      "path": "Derivation/code/physics/README.md",
+      "sha256": "dc8a3143fa549861fc395cf9e5322944d2d21136c14de127a39e9ea994b1c755",
+      "size": 3955
+    },
+    {
+      "path": "Derivation/code/physics/agency/APPROVAL.json",
+      "sha256": "dfe1db6b261d1cb16a7bd46459e8b33a9430957d93c776148b5c19abdb84358c",
+      "size": 929
+    },
+    {
+      "path": "Derivation/code/physics/agency/PRE-REGISTRATION.cfield-calib-t3-v1.json",
+      "sha256": "9164111e8046065948873864b506b5e3758f3c0df0ec4b9fd6928b1983d47520",
+      "size": 2583
+    },
+    {
+      "path": "Derivation/code/physics/agency/schemas/cfield-calib-t3-v1.schema.json",
+      "sha256": "4908920398c4132de886a4fbd61ec6c5fa114a6feb84ddcd131b5ac11af3a4d8",
+      "size": 501
+    },
+    {
+      "path": "Derivation/code/physics/agency/simulate_options_probe.py",
+      "sha256": "59e02f797d7bce397c9171f29cad5ba71676c9e854eb4e5d9c9cc3c5fa8b10d7",
+      "size": 3807
+    },
+    {
+      "path": "Derivation/code/physics/agency/specs/t3_cfield_calibration.v1.json",
+      "sha256": "ea9a978c32dbfb9e39f9eb57abc644fd366a510218140f70754a92e4502050d7",
+      "size": 329
+    },
+    {
+      "path": "Derivation/code/physics/axioms/verify_discrete_EL.py",
+      "sha256": "be442e681b161bf3fae8fdf8c2351b72df0cbb2e9ed297aaa99330f67ead0419",
+      "size": 3892
+    },
+    {
+      "path": "Derivation/code/physics/causality/APPROVAL.json",
+      "sha256": "902710bfa88793e36525155b9a5b9ec28920732d4af1562a01604892ff0252ee",
+      "size": 532
+    },
+    {
+      "path": "Derivation/code/physics/causality/README.md",
+      "sha256": "e518992699858e1bbfad3bf7a764dafa0fe0492e3dc148d37fca69c668803757",
+      "size": 2377
+    },
+    {
+      "path": "Derivation/code/physics/causality/data/10k_Neurons_B/state_16860.h5",
+      "sha256": "2abd337ec3d3c66b37888c0295a74d5fb05c47d20ae6835dbf29a3a394d27832",
+      "size": 535007
+    },
+    {
+      "path": "Derivation/code/physics/causality/run_causality_dag_audit.py",
+      "sha256": "e3c6bdd8e2de5e2b2e3fa34e481e35ff0a1aa9fecfeb7a4a57962098c73fe977",
+      "size": 39904
+    },
+    {
+      "path": "Derivation/code/physics/causality/schemas/causal_dag_audit.schema.json",
+      "sha256": "9dadfacafab59b3baf69b4ca7583c61221b952443c1e0dd1ab3a4f62b03510a6",
+      "size": 1084
+    },
+    {
+      "path": "Derivation/code/physics/causality/specs/causal_dag_audit.v1.json",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "Derivation/code/physics/collapse/APPROVAL.json",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "Derivation/code/physics/collapse/run_a6_collapse.py",
+      "sha256": "6a526165c8a19b70f60cb7a5e984b52ee58e26eaaedd20c6adfd4dbf9bf492bd",
+      "size": 5455
+    },
+    {
+      "path": "Derivation/code/physics/conservation_law/APPROVAL.json",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "Derivation/code/physics/conservation_law/qfum_validate.py",
+      "sha256": "b2626d040d3c1321d0659cfc368ae26ea53a83bc69dff7d7287300190f90b395",
+      "size": 15832
+    },
+    {
+      "path": "Derivation/code/physics/cosmology/APPROVAL.json",
+      "sha256": "e1681a8944f992e664f820192ea1f312091ae965ec20004b0419bbc8652d5274",
+      "size": 913
+    },
+    {
+      "path": "Derivation/code/physics/cosmology/black_holes/topo_rdm/PRE-REGISTRATION.json",
+      "sha256": "dffc057ff8fd3a42e0ca1aa8e40a2512af8839824f2ee05571213810501891ac",
+      "size": 1555
+    },
+    {
+      "path": "Derivation/code/physics/cosmology/black_holes/topo_rdm/README.md",
+      "sha256": "59d508435036862f4cb2847759db24bf7d2fd47a3e30cdf3afeec01f54a10bdd",
+      "size": 13480
+    },
+    {
+      "path": "Derivation/code/physics/cosmology/black_holes/topo_rdm/dsi_topo_rdm.v1.json",
+      "sha256": "7de12bc31812b7b68bda746f0dfd46a36f65fc2ecacb8127c17d435ed210f23b",
+      "size": 826
+    },
+    {
+      "path": "Derivation/code/physics/cosmology/black_holes/topo_rdm/outputs/gw150914_H1_CONTRADICTION_REPORT.json",
+      "sha256": "037a51b604dd98ad5e8e33fff768c9644e45448973483208a243b4efa202e14f",
+      "size": 507
+    },
+    {
+      "path": "Derivation/code/physics/cosmology/black_holes/topo_rdm/outputs/gw150914_H1_pre.csv",
+      "sha256": "439c68211dc915634619ecee929320cecf5bd9fada08dd974e43963dd6d0a414",
+      "size": 517111
+    },
+    {
+      "path": "Derivation/code/physics/cosmology/black_holes/topo_rdm/outputs/gw150914_H1_pre.json",
+      "sha256": "93057d9389fe9dc7c458e5039906733cf898a36b2fd2aa6ed730e68b5de94c17",
+      "size": 656
+    },
+    {
+      "path": "Derivation/code/physics/cosmology/black_holes/topo_rdm/outputs/gw150914_H1_ridges.csv",
+      "sha256": "65542c46cf9d96f3c45393d0c84019356847b1f0cb3d3e73f36c1cece6e2717d",
+      "size": 14633
+    },
+    {
+      "path": "Derivation/code/physics/cosmology/black_holes/topo_rdm/run_topo_rdm_v1.py",
+      "sha256": "c286e0023e7f1b3365cd1d11bc6505771a21c25fec92858c0b62f75dc475a6c1",
+      "size": 40189
+    },
+    {
+      "path": "Derivation/code/physics/cosmology/black_holes/topo_rdm/schemas/topo_rdm.schema.json",
+      "sha256": "0f3adec04c0aa35c435445cb064722fd7158b9c827469c53d3b886d666336b33",
+      "size": 4145
+    },
+    {
+      "path": "Derivation/code/physics/cosmology/black_holes/topo_rdm/specs/topo_rdm.from_timeseries.template.json",
+      "sha256": "c0a9ce8b2fec23580644826d6fead9c220294aabab86179612be4e4a8e207210",
+      "size": 1186
+    },
+    {
+      "path": "Derivation/code/physics/cosmology/black_holes/topo_rdm/specs/topo_rdm.gw150914_H1.from_timeseries.json",
+      "sha256": "8f47118f3a4384d025ad5f576c97c16d7de92bf15e51b64c518a188c9924c7ea",
+      "size": 1247
+    },
+    {
+      "path": "Derivation/code/physics/cosmology/black_holes/topo_rdm/specs/topo_rdm.smoke.json",
+      "sha256": "f14f8b33ffc4748d8865b7b760bac80aae33856586da0e3ed4bf8080a613acac",
+      "size": 834
+    },
+    {
+      "path": "Derivation/code/physics/cosmology/black_holes/topo_rdm/specs/topo_rdm.sweep_q10_q75_noalign.json",
+      "sha256": "981865733998876b17473e24a39e5fb86d9c8964412cdab326acbf6f7c73a7ac",
+      "size": 1114
+    },
+    {
+      "path": "Derivation/code/physics/cosmology/black_holes/topo_rdm/specs/topo_rdm.v1.json",
+      "sha256": "992077d81a9289fea590a181bffca24ec6c837e9ee3bbe3c942b1dbe73f093b5",
+      "size": 1195
+    },
+    {
+      "path": "Derivation/code/physics/cosmology/black_holes/topo_rdm/testdata/gw150914_H1.csv",
+      "sha256": "82ab50cf36dacb55c830714b41b6ecd8629c4ceccb0b3e3915a2051ed59b93fd",
+      "size": 951577
+    },
+    {
+      "path": "Derivation/code/physics/cosmology/black_holes/topo_rdm/testdata/gw150914_L1.csv",
+      "sha256": "0f1675ca9d0b13c7add97af57b87392fc68b9498e4e94b86bbfc28291b792e2f",
+      "size": 962564
+    },
+    {
+      "path": "Derivation/code/physics/cosmology/black_holes/topo_rdm/testdata/ridges_circle_pass.csv",
+      "sha256": "3e9ebc655760b0e7d6893c7d6025ee609fa04bf9125be9d044037e16a1a20b92",
+      "size": 4566
+    },
+    {
+      "path": "Derivation/code/physics/cosmology/black_holes/topo_rdm/testdata/ridges_smoke.csv",
+      "sha256": "5c38fe90790b9a2c87900e4226001717f04dde3f5c0f98ce7b99e057bba69792",
+      "size": 85
+    },
+    {
+      "path": "Derivation/code/physics/cosmology/run_frw_balance.py",
+      "sha256": "fb3a35ccdeff75a92f1c3d11ae9858a70c1c0f4d1226d9cf12c77c1cf25f8caa",
+      "size": 4380
+    },
+    {
+      "path": "Derivation/code/physics/cosmology/void_lensing/APPROVAL.json",
+      "sha256": "c8caeae29e838db452575742304319d667f03cbea45f38fdef38c483de4393ab",
+      "size": 1101
+    },
+    {
+      "path": "Derivation/code/physics/cosmology/void_lensing/PRE-REGISTRATION.json",
+      "sha256": "06f229d08790a7a3dd14f98bac7197c709d9b80de21e39e9e3bce63c16e209b3",
+      "size": 1794
+    },
+    {
+      "path": "Derivation/code/physics/cosmology/void_lensing/README.md",
+      "sha256": "fe48dad20aa9cb4a5d498915313fa66b76b53a678b09b3ef0f618c2429b69945",
+      "size": 8418
+    },
+    {
+      "path": "Derivation/code/physics/cosmology/void_lensing/T2_void_lensing_meter_v1.py",
+      "sha256": "7c04aa58f727aa5f844620f79b086e41053fe82e328d0261e788242b48636e2d",
+      "size": 8223
+    },
+    {
+      "path": "Derivation/code/physics/cosmology/void_lensing/TODO_CHECKLIST_void_lensing_meter_T2.md",
+      "sha256": "64cfa4d7035ba457460f391456e564579f73dbbeb83637c86d1cde6d90052586",
+      "size": 3775
+    },
+    {
+      "path": "Derivation/code/physics/cosmology/void_lensing/backends/akra_hsc_y1.py",
+      "sha256": "39cce7f758645bd7efaf4d7980996a723895ec402111ef7c673a8aa89e0f0f70",
+      "size": 1543
+    },
+    {
+      "path": "Derivation/code/physics/cosmology/void_lensing/backends/desy3_dps.py",
+      "sha256": "02a9452102bc89f4f98485baeac2169f84ef6a8d776d26e5a29b47b668cf9b83",
+      "size": 1564
+    },
+    {
+      "path": "Derivation/code/physics/cosmology/void_lensing/backends/mocks.py",
+      "sha256": "bbd1838e7c6623df4987556cf90a57f56104679f92b3cd7ce9fb05d73bc94d1f",
+      "size": 18147
+    },
+    {
+      "path": "Derivation/code/physics/cosmology/void_lensing/data/.gitignore",
+      "sha256": "41871ee95491ad6d17213d5cca86424fe8d192243cdd26867aac18bfc83755f1",
+      "size": 176
+    },
+    {
+      "path": "Derivation/code/physics/cosmology/void_lensing/data/s16a-shape-catalog/pdr1_hscwl/Oguri/download_oguri.sh",
+      "sha256": "a80227d4bf869db97ff16f4484fde9d779f746454cb105082eb983cf33d9b9be",
+      "size": 92
+    },
+    {
+      "path": "Derivation/code/physics/cosmology/void_lensing/data/s16a-shape-catalog/pdr1_hscwl/Shirasaki_mocks/download_all_from_hsc-release.sh",
+      "sha256": "22e03650ec28bcd453a0bd30a142d3a7bf8b92c215efb72207adf61b01bc11c4",
+      "size": 2991
+    },
+    {
+      "path": "Derivation/code/physics/cosmology/void_lensing/experiments/T2_void_lensing_meter_synthetic_mocks_v1.py",
+      "sha256": "a712e856e74eff2f00525f39476089667e99fea57a76f090f0cdc22795cc2a3b",
+      "size": 24279
+    },
+    {
+      "path": "Derivation/code/physics/cosmology/void_lensing/experiments/__init__.py",
+      "sha256": "a5c00d118da76b41ff8d52eb42b7ecde0c2d127a0532d6da9f06c2f4b24ef930",
+      "size": 105
+    },
+    {
+      "path": "Derivation/code/physics/cosmology/void_lensing/meter.py",
+      "sha256": "dc2be751a616bcc946fa5e2951b0a86be120e83b50489cd265702b0b006b66ea",
+      "size": 16992
+    },
+    {
+      "path": "Derivation/code/physics/cosmology/void_lensing/schemas/void_lensing_meter-v1.schema.json",
+      "sha256": "11955c9da99ae490edfdf5290a2da3a45e64a030b715939b761b7f28e293108b",
+      "size": 1690
+    },
+    {
+      "path": "Derivation/code/physics/cosmology/void_lensing/specs/void_lensing_meter-data-v1.json",
+      "sha256": "0e9a3f0f703e3d90433f3ae5ce3ed4e844df1a5a32c59154c6792e6b82b0bf28",
+      "size": 530
+    },
+    {
+      "path": "Derivation/code/physics/cosmology/void_lensing/specs/void_lensing_meter-mocks-grid-v1.json",
+      "sha256": "a757135f36a58546cb21609559d7b309916dea69284f040daa8cc97cc055e011",
+      "size": 609
+    },
+    {
+      "path": "Derivation/code/physics/cosmology/void_lensing/specs/void_lensing_meter-mocks-grid-v2.json",
+      "sha256": "9ac26a734921e0b1d99a77a37d25d117138798d149e35800dd3f1bdde3135e0b",
+      "size": 665
+    },
+    {
+      "path": "Derivation/code/physics/cosmology/void_lensing/specs/void_lensing_meter-mocks-grid-v3.json",
+      "sha256": "52fecb34785b8251d87f2520a7a5973d30cb6a4f5bc724c8ceaeadbcebd1cb87",
+      "size": 680
+    },
+    {
+      "path": "Derivation/code/physics/cosmology/void_lensing/specs/void_lensing_meter-mocks-v1.json",
+      "sha256": "6bffa1e2d3d4b005194b78d985a55aa0670ef3fa3d582a5de6521fbaa3d64082",
+      "size": 540
+    },
+    {
+      "path": "Derivation/code/physics/cosmology/void_lensing/void_lensing_meter_gates.py",
+      "sha256": "6e32ba2f59d0f0d80dd0861796304c0a9e0a3e5a78d359a54e2c3d7e550fb475",
+      "size": 7163
+    },
+    {
+      "path": "Derivation/code/physics/dark_photons/APPROVAL.json",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "Derivation/code/physics/dark_photons/run_dp_fisher_check.py",
+      "sha256": "f28191b4ea3b2901428991e3ccbc96b2048d5c7efce5be2fc77aa4861c4c5232",
+      "size": 4680
+    },
+    {
+      "path": "Derivation/code/physics/dark_photons/run_dp_noise_budget.py",
+      "sha256": "e55c594c17dedb40405eb74dd24646187b6f5ad1519a05ab5cfb3ce849383311",
+      "size": 5800
+    },
+    {
+      "path": "Derivation/code/physics/fluid_dynamics/APPROVAL.json",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "Derivation/code/physics/fluid_dynamics/fluids/lbm2d.py",
+      "sha256": "211bba78d22a4220ffacc1d4dd81c79eff8b034d8b19b28e83a42913b6d9e1de",
+      "size": 16344
+    },
+    {
+      "path": "Derivation/code/physics/fluid_dynamics/lid_cavity_benchmark.py",
+      "sha256": "33156ddd219c50bd02ea3269b3133551a4d389dfb1037145d93dcf9c2ce2283c",
+      "size": 38465
+    },
+    {
+      "path": "Derivation/code/physics/fluid_dynamics/oq021_README.md",
+      "sha256": "7c7d4df2eea49f00c55d5bd992a6a94a98e7db15ff62872f22cc91c240766962",
+      "size": 4893
+    },
+    {
+      "path": "Derivation/code/physics/fluid_dynamics/oq021_lit_runner.py",
+      "sha256": "9e678df81c3fd885e6b162ea62190a2de4fc68257fbfbf4c804365b528546c6c",
+      "size": 11184
+    },
+    {
+      "path": "Derivation/code/physics/fluid_dynamics/schemas/oq021_lit_gates.schema.json",
+      "sha256": "9f007b91ec7158cea5d571abde5b771555651b1e561999951a23ce806a313799",
+      "size": 1356
+    },
+    {
+      "path": "Derivation/code/physics/fluid_dynamics/taylor_green_benchmark.py",
+      "sha256": "4eb5e2697d05a6859975a7813dc702b403c40099ffecbddaa311f2ad4de1ddda",
+      "size": 7153
+    },
+    {
+      "path": "Derivation/code/physics/fluid_dynamics/telemetry/walkers.py",
+      "sha256": "ac097f5fc6b1f4f948e2cb2ff527308718ae6ae896e859c5248c84754e5d8bcb",
+      "size": 10127
+    },
+    {
+      "path": "Derivation/code/physics/intelligence_model/APPROVAL.json",
+      "sha256": "052a2b65eeff242b900eefaea3cf4debcfdb4952bedeb4e0d148e4ca6792e5ba",
+      "size": 368
+    },
+    {
+      "path": "Derivation/code/physics/intelligence_model/README.md",
+      "sha256": "6b48a210a2c0696810bd1c6a81dfd58cece7e89cb868596a0ba8c55bc9639565",
+      "size": 1430
+    },
+    {
+      "path": "Derivation/code/physics/intelligence_model/__init__.py",
+      "sha256": "75cad39bc3bec04c374840005b76e0cd27f870e2e9095bfce99ded1f86d7d0f7",
+      "size": 632
+    },
+    {
+      "path": "Derivation/code/physics/intelligence_model/docs/README.md",
+      "sha256": "d104f3255560b3a6e50b6b95d30f7a4561d5fe7db1b150859fc69a04e3827596",
+      "size": 187
+    },
+    {
+      "path": "Derivation/code/physics/intelligence_model/modules/__init__.py",
+      "sha256": "98dc4efc19335e3b01263226c44d591824b3de2468857c72504408daedb7668e",
+      "size": 439
+    },
+    {
+      "path": "Derivation/code/physics/intelligence_model/notebooks/README.md",
+      "sha256": "338cfc882a01307df2ec20de8eef1ff495d366dc75b7106f2295e58fe163ae8a",
+      "size": 200
+    },
+    {
+      "path": "Derivation/code/physics/intelligence_model/runners/__init__.py",
+      "sha256": "ed393d09c37f8dde0f7d4c095096b897d0d55655f28b04bdb5343f5fa19701e4",
+      "size": 434
+    },
+    {
+      "path": "Derivation/code/physics/intelligence_model/schemas/README.md",
+      "sha256": "6ad8f08c06270f7c18d4756858b242acfbd6cac885d29daf56e2de539a742f93",
+      "size": 216
+    },
+    {
+      "path": "Derivation/code/physics/intelligence_model/schemas/im-substrate-v1.schema.json",
+      "sha256": "30b7277f86444535f26e26293bde8e84516b8e47c32419e3df9fb69c7f5c69ac",
+      "size": 2490
+    },
+    {
+      "path": "Derivation/code/physics/intelligence_model/specs/README.md",
+      "sha256": "bfc70d12b41cb1d162db6dd11925cc0c6fd1a0dca37996355dc5f4008b87494d",
+      "size": 169
+    },
+    {
+      "path": "Derivation/code/physics/intelligence_model/specs/im-substrate-v1.spec.json",
+      "sha256": "e92aa6d7fd67ddd52690f17549b363ace230162ee25849089babdd3e6724efc4",
+      "size": 250
+    },
+    {
+      "path": "Derivation/code/physics/intelligence_model/tests/__init__.py",
+      "sha256": "f61349cafc255af9ea9eee0196082cb04a54cb2fb264e2ba52eb6c535ad2d46e",
+      "size": 424
+    },
+    {
+      "path": "Derivation/code/physics/materials/gb_relax_ust/APPROVAL.json",
+      "sha256": "35b94f380e717cc9a996ab8a66b59af30d761f6332a2c3118e60133c9290e312",
+      "size": 1035
+    },
+    {
+      "path": "Derivation/code/physics/materials/gb_relax_ust/PRE-REGISTRATION.json",
+      "sha256": "e880a071687e5b90173d548974cb6ba6e8745ba4ccd6415bcc97a6a065f1a292",
+      "size": 875
+    },
+    {
+      "path": "Derivation/code/physics/materials/gb_relax_ust/README.md",
+      "sha256": "df23428d3ef18cf74f5a81b6129de5cf14a971237af2916004e00cede33fc48c",
+      "size": 1273
+    },
+    {
+      "path": "Derivation/code/physics/materials/gb_relax_ust/run_GB_Oscillating_Load.py",
+      "sha256": "e1086508f0b5dcf399f637a2ba46075d6a83561e3e17fe5858115283a5c715fa",
+      "size": 3150
+    },
+    {
+      "path": "Derivation/code/physics/materials/gb_relax_ust/schemas/gb-osc-v1.schema.json",
+      "sha256": "7bf22a806eabfa157090a63fc4b1e82af420beb7c46edf16ffb59ff07ddd16a5",
+      "size": 202
+    },
+    {
+      "path": "Derivation/code/physics/materials/gb_relax_ust/specs/gb_oscillating_load.1.0.0.json",
+      "sha256": "59323ee332daa0426d09dd66218ec717aedd39499e0f0c1b078b7f1c4dc786da",
+      "size": 224
+    },
+    {
+      "path": "Derivation/code/physics/memory_steering/APPROVAL.json",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "Derivation/code/physics/memory_steering/memory_steering.py",
+      "sha256": "bdf55c240e533659345ef56a6910bc439b2bb8592f976a951d970b9c46e8cb32",
+      "size": 17032
+    },
+    {
+      "path": "Derivation/code/physics/memory_steering/memory_steering_acceptance.py",
+      "sha256": "f5f24640a9af3e396de0dc190b096818d21bf76cad9df890948aa8dfdb25325f",
+      "size": 12765
+    },
+    {
+      "path": "Derivation/code/physics/memory_steering/memory_steering_experiments.py",
+      "sha256": "4e3b196530ffb6edb72028bdae4ad0d08e48ccff08fbe33e4088c3ef3f2936df",
+      "size": 40375
+    },
+    {
+      "path": "Derivation/code/physics/memory_steering/plot_memory_steering.py",
+      "sha256": "58014b033e58819cf6152de5932164a686eda2f4fe56c75c2af2c4809cc1b1f5",
+      "size": 33929
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/APPROVAL.CEG.json",
+      "sha256": "4d114d23eb391945c3eea2bb07fdde18256ac7aa06975c1e6c0ed3755be8416c",
+      "size": 1613
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/APPROVAL.json",
+      "sha256": "4e3400c6b692019c588ac9afb11b52c6958d85bf68837400051ea6fd413beb93",
+      "size": 1955
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/APPROVAL.meters-ebn.json",
+      "sha256": "72fb61f8084d883d49af8e5b43c4c0d112457e94a400042d75ec45df07830403",
+      "size": 569
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/PRE-REGISTRATION.assisted-echo-t4-prereg-v1c.json",
+      "sha256": "b09d7feb9ec05e135807e644deb5dd5608d2a839b433c56c425a460f087ba4d0",
+      "size": 697
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/PRE-REGISTRATION.echo_spec-v1.json",
+      "sha256": "c75c279d04ae0ca9376fa9ba4df7456e7fb8fc50c09c951dff079552f0c539f1",
+      "size": 1375
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/PRE-REGISTRATION.echo_spec-v1b.json",
+      "sha256": "08f4b3b7829bdd67cdc54d17a706952b046c33b7d560fc71dcb31780f9772c93",
+      "size": 1465
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/PRE-REGISTRATION.echo_spec-v1c.json",
+      "sha256": "f146b545818abaf63d04b9debc1381718b33b3185747787249f07c984b83f809",
+      "size": 1465
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/PRE-REGISTRATION.meters-ebn.v1.json",
+      "sha256": "8ee11ba5a28eedb4a93ab1733986ddaed366ace29a554d25458637c8542ad851",
+      "size": 1596
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/PRE-REGISTRATION.meters-ebn.v1.sha256.txt",
+      "sha256": "acbc265477061e7d026437fc69824223588df0b6a5714b7a16ee3b5bf95ef6de",
+      "size": 65
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/T2_Metriplectic_Instruments_v1.py",
+      "sha256": "de3884f52c3691b40e13c918140764f48c0219381227d268b346575bc788fa07",
+      "size": 19818
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/assisted_echo.py",
+      "sha256": "1e1c739e9463e709b1c7fb377bd95de58ef71f8e243004e5e63aad9e0c1ffaaf",
+      "size": 48167
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/compose.py",
+      "sha256": "45a01fd4b190bcd4e9aa6d094333b82bdb10c35aee04f0f1f47d24e7e427a33c",
+      "size": 4581
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/echo_gates.py",
+      "sha256": "c8649a84796c7058889b3c1730b04eb23dd3e745c971b373b3d1925efe73c27f",
+      "size": 1048
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/echo_metrics.py",
+      "sha256": "ea79cf21002f3a5f411588c32d65cf6f08d78567bb3627c4d0284b1e96f8c768",
+      "size": 750
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/j_step.py",
+      "sha256": "42f029e50b8a6da1946e6f30a8f17ee57dfcecba8c499e7481efb5b24cd96b22",
+      "size": 1889
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/kg_noether.py",
+      "sha256": "8be6a6987c3cac257aac47cbc5b0c59b4f1682a571cc82f45f5e4ffe6d8fb543",
+      "size": 11549
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/kg_ops.py",
+      "sha256": "f81dbabbf8e34ff44c434b148f000668731eb892693f2808c969144e7b9f21ef",
+      "size": 1733
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/metriplectic_structure_checks.py",
+      "sha256": "3d29ed55153a8be883a406a6ea35ca60d3c8d949d38f3100bb912e8fbbf3bbf5",
+      "size": 7569
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/plot_echo_landscape_v2.py",
+      "sha256": "ddcd9658dd454cf424d5a6b285652c9358b627603b121e19c81188f66d35146c",
+      "size": 4396
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/plot_echo_routes_concept_v2.py",
+      "sha256": "5dc9b1ca9f0769a6b2bb5bc110a34b1b357e50bdae3ccebbf7c2687f5780b414",
+      "size": 7669
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/plot_echo_routes_data_v2.py",
+      "sha256": "326a6ac29a01f2c7b98c457d37502b4b165a7687a0f46751c15cdac3c204f0fd",
+      "size": 10283
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/run_kg_dispersion.py",
+      "sha256": "9b4fb3235a31f39cff80ad1abb8cb8d84fd98afa2b7395f6f98ff5eec1c7ac11",
+      "size": 11264
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/run_kg_energy_oscillation.py",
+      "sha256": "3e9ee5b155108f2ca577c4a23252a0cdeba2ee994ce7c9641e10f364bb36382d",
+      "size": 13722
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/run_kg_light_cone.py",
+      "sha256": "df4fff9d9a417d8fc0164d12f9d779b4258eff2ef7975ecf1f044dc2b0e3ed3e",
+      "size": 11473
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/run_kg_rd_metriplectic.py",
+      "sha256": "e7a4cbb707e9d4c9e9720c3479c47528e38cdab3342be8f0ae2f5625f70b6187",
+      "size": 19207
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/run_metriplectic.py",
+      "sha256": "853accbc6dceeb6a2538d2a5c9ff00d50d66d6e8af72f10718f4beeef19ea044",
+      "size": 26098
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/schemas/KG-cone-v1.schema.json",
+      "sha256": "7355fa33690c635a5593d872ed0565295578aeae8649cda1dc40b00e91d35958",
+      "size": 352
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/schemas/KG-dispersion-v1.schema.json",
+      "sha256": "057d7e4312d85fefd00ff97c81da00d213c00d55dc82593c0e259c8793b2892e",
+      "size": 358
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/schemas/KG-energy-osc-v1.schema.json",
+      "sha256": "363a22dfa8cb4792b134081e014911861f35d1ee11b27c1ec1fb6346d339cf5d",
+      "size": 1812
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/schemas/KG-noether-v1.schema.json",
+      "sha256": "8822a52dae0a1981a2cb898638a17a086907698ad4848467351f4a47a29fbbbd",
+      "size": 1104
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/schemas/assisted-echo-t4-prereg-v1c.schema.json",
+      "sha256": "2ed63fbcc1ceff5f470a900fbe1fcc4802b9c957e1ec66b00ce65cda99c3cbfa",
+      "size": 280
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/schemas/echo_artifacts-v1.schema.json",
+      "sha256": "1cfaf242067c34878944afd650b43c14008c2ed34b84fd60cf0402dcea5972d3",
+      "size": 944
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/schemas/echo_spec-v1.schema.json",
+      "sha256": "ff42a9519cba77f5ba1b0ad6a8517a0fe574b0af8644320017f106e8ad54c18a",
+      "size": 1254
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/schemas/echo_spec-v1b.schema.json",
+      "sha256": "6d4651dcafa7cd1ec18c6b726514bd47708b2d6a7e262f2762e5f78447b5fe5e",
+      "size": 1256
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/schemas/echo_spec-v1c.schema.json",
+      "sha256": "1c280db674de5a9d4917c8df1ef39e2c3e523d10a6a2c80e54494b87cb858bb5",
+      "size": 1256
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/schemas/meters-ebn.schema.json",
+      "sha256": "f8fa84e14bd3594d4a6fbc61293c47886dcfcf039a471b592c9ce84b6070e177",
+      "size": 1501
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/schemas/struct-v1.schema.json",
+      "sha256": "89366483f49bdc5093e64359d81f35b50a234a20d21cd20ba99f168fb1e2589d",
+      "size": 2079
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/specs/assisted_echo.v1.json",
+      "sha256": "fbfef1f2262cc458c71b719e2a9213bccbd2518054464cb10e8989c0691a4766",
+      "size": 294
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/specs/assisted_echo.v1b.json",
+      "sha256": "4e6eb37ebf4e71bb05b54944e8d7ea2e4f0d0fb490084a040f399446f8175e88",
+      "size": 297
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/specs/assisted_echo.v1c.json",
+      "sha256": "1fb6bae4bcbac192ec464c017cc4896a5a573805c6a685b555b4034fc011feb2",
+      "size": 303
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/specs/assisted_echo.v1c_N1024_dt0p01.json",
+      "sha256": "f68ab05ce31c9c0f825c75ac5dbdc9a8c7e92cd201e6895be02e41740c1b4def",
+      "size": 304
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/specs/assisted_echo.v1c_N1024_dt0p02.json",
+      "sha256": "850e1ab326abaed440c29c7777df39fa56583c6985aebc99ac687bdb57ba927f",
+      "size": 304
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/specs/assisted_echo.v1c_N1024_dt0p04.json",
+      "sha256": "4ee661c8840e709781573d35f6e2c21bb71ed45b39b35f53ce715a462f257e72",
+      "size": 304
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/specs/assisted_echo.v1c_N1024_walker_dt0p02.json",
+      "sha256": "e337a7f60cdffea801a8acd48d2af93b19c1bae180b3bab9541674103f93fc3e",
+      "size": 377
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/specs/assisted_echo.v1c_N512_dt0p01.json",
+      "sha256": "3172df4bd958ce4a0a289ec539894041ff51ca9ccd652c1617b1dc414058609d",
+      "size": 303
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/specs/assisted_echo.v1c_N512_dt0p02.json",
+      "sha256": "fef969e1c8dbeb9885cc9f6f7929f377f7d3eced66012fdef34143603c864597",
+      "size": 303
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/specs/assisted_echo.v1c_N512_dt0p04.json",
+      "sha256": "f03a12bc9713761962c5a1ec8b2c7d2bb2e8bfef530afe937f7e506c2ae15a94",
+      "size": 303
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/specs/assisted_echo.v1c_N512_walker_dt0p02.json",
+      "sha256": "fdb4cd53737d760475f48263f676b58059e4faa4d87a469926e1aef694b95c5d",
+      "size": 376
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/specs/assisted_echo.v1c_budget0p02_N1024_dt0p01.json",
+      "sha256": "44ea5c6d6bbdfc83bcaf2cbbf826ec3acb4bb1a8151439dc37789401486c490b",
+      "size": 304
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/specs/assisted_echo.v1c_budget0p02_N1024_dt0p02.json",
+      "sha256": "de01902629069b993c6281c43e29a163a4e2eda2960aad8207d0868260e1e6c7",
+      "size": 304
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/specs/assisted_echo.v1c_budget0p02_N1024_dt0p04.json",
+      "sha256": "589d3e11a4a2e01fd10c6e9ce89a7f7d0fe51bd56897451cba917fa9fb4cb58d",
+      "size": 304
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/specs/assisted_echo.v1c_budget0p02_N1024_walker_dt0p02.json",
+      "sha256": "e9c4d6f67730b12124c8f0f44e16b230e0ba387a77d0d801ecc6040ea8edb480",
+      "size": 381
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/specs/assisted_echo.v1c_budget0p02_N512_dt0p01.json",
+      "sha256": "0d30536633bb567fcfe91fcee6663acbad6f0f3b8e263eae98abbaf4c653daf1",
+      "size": 303
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/specs/assisted_echo.v1c_budget0p02_N512_dt0p02.json",
+      "sha256": "3a55e2b911ce29d72e0c8ece400f2033eaa0c1305f45b6d1a8b74453c04a81d7",
+      "size": 303
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/specs/assisted_echo.v1c_budget0p02_N512_dt0p04.json",
+      "sha256": "6b13a395d9877453659e12ab780f7f9e3ac0a4af0f364e8e4a5569709b646d93",
+      "size": 303
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/specs/assisted_echo.v1c_budget0p02_N512_walker_dt0p02.json",
+      "sha256": "892484ab57f7ff59f85202aa04677ab69d84a2792daabb58be0774cebcbb0294",
+      "size": 380
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/specs/assisted_echo.v1c_budget0p03_N1024_dt0p01.json",
+      "sha256": "ec4a850f7323f24797dd5fed0261be070982207c66ee82fb1349076888a406a4",
+      "size": 304
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/specs/assisted_echo.v1c_budget0p03_N1024_dt0p02.json",
+      "sha256": "e25596d6094dbd5728a870bbdd0a4d40fa4cd075fdafc83992c84c414287c6a3",
+      "size": 304
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/specs/assisted_echo.v1c_budget0p03_N1024_dt0p04.json",
+      "sha256": "95872340a3adea49f6e36080f5ded39664545ecd8215767b63c766b6b4423e6d",
+      "size": 304
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/specs/assisted_echo.v1c_budget0p03_N1024_walker_dt0p02.json",
+      "sha256": "e773215d8a35815971e02d745e6c96cd960b84dbe9dd62a476fbb5ae201fae7c",
+      "size": 381
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/specs/assisted_echo.v1c_budget0p03_N512_dt0p01.json",
+      "sha256": "0a5b83334a44d12647830400f9da008710babebdfd5f21dda0e0341ce06ddede",
+      "size": 303
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/specs/assisted_echo.v1c_budget0p03_N512_dt0p02.json",
+      "sha256": "c43d02ec0b0904a9b99870eb1c2ee9f701786287109f18d32e7e6bf37329a8a6",
+      "size": 303
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/specs/assisted_echo.v1c_budget0p03_N512_dt0p04.json",
+      "sha256": "5ddb3e8f381a8823d0de052953d36cfef64c260310ecb51fdeccb2528a48c2df",
+      "size": 303
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/specs/assisted_echo.v1c_budget0p03_N512_walker_dt0p02.json",
+      "sha256": "ab9395865d306fbc5e7c15ec396ea5f3aba770033921a8885f18ba2eb12e8d82",
+      "size": 380
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/specs/assisted_echo.v1c_j_scramble.json",
+      "sha256": "a9d6b222c1b4b2e55ff6e2fc04d8d1b899c137e16cc4e93e17eef4d0304262af",
+      "size": 358
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/specs/assisted_echo.v1c_m_scramble.json",
+      "sha256": "d3cbfeb0848f6851064024db728612aaaa5deedb995fbbf4711869ee496170dd",
+      "size": 358
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/specs/assisted_echo.v1c_mjm.json",
+      "sha256": "96837ea6cdf8c035168b858a7ad3c0bc6f903c5f2506615558ee259463796258",
+      "size": 356
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/specs/assisted_echo.v1c_model_blind.json",
+      "sha256": "e486d10db70d4d7ff79efc383ca4b93759d08fbdd43ddb7a63a9182695c6ce5a",
+      "size": 362
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/specs/assisted_echo.v1c_walker.json",
+      "sha256": "bb7cd625070a1cd95d525059834494a07398587709431e27b4d20bfc78cb2a1d",
+      "size": 403
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/specs/kg_energy_osc.v1.json",
+      "sha256": "a238df4930fb056b789be589d5110f93f59d68832d391f6ba09855d8a7761cf1",
+      "size": 514
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/specs/kg_noether.v1.json",
+      "sha256": "7004df13f3a3816d4dc9f751f6f535e75d043850a07c30fc3c015a20d3f0189f",
+      "size": 311
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/specs/meters_ebn_skeleton.v1.json",
+      "sha256": "9285ab73630386a753acf31ccea1c255a269f28f44954d8f001056494fd9be57",
+      "size": 577
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/specs/struct_checks.v1.json",
+      "sha256": "f888bec2227814e8de2a33774a7ff53a25f99db3af0597233c272b446bf5de2d",
+      "size": 301
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/step_spec.kg_rd.v1.json",
+      "sha256": "bcd311e2d5fbd8de1ecaf1f241b201c978fd7131d9f1aaa5983fee5825679777",
+      "size": 500
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/step_spec.kg_rd.v1b.json",
+      "sha256": "f30002df9dbfbe63bea6dc05ec59ed10cd4baa65ebdeaec52331e220ba603ea1",
+      "size": 551
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/step_spec.kg_rd.v1c.json",
+      "sha256": "7d9342cf177612ecc67568d1fd04bd47ab5fc142d32ca5b6dfe05fc14399fddc",
+      "size": 561
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/step_spec.metriplectic.N512.json",
+      "sha256": "79ce8b064e6abfee7fa53080cd17033db3ac4fc1dd71dcb4dd51108d106e3d0d",
+      "size": 681
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/step_spec.metriplectic.asymptotics.json",
+      "sha256": "d2d3e640f119703f85848d76f339ac5f42fde636a49d3cbea60b4cf691d4769b",
+      "size": 487
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/step_spec.metriplectic.example.json",
+      "sha256": "71571a172ff85dac7868fcb375145a9e171a15168d8dc5e95d1c25c0ccaace0c",
+      "size": 776
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/step_spec.metriplectic.smoke.json",
+      "sha256": "ec9c9050e1bfe68c6b7dcfa0fe4eab9c41a67244bbdd0f2ed4093452c92cc738",
+      "size": 470
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/step_spec.metriplectic.spectralDG.json",
+      "sha256": "0dc5d0f52ac73dd6be828f55f592ea6c99c3a0f0afa1c52c9d18e8ee7e70148e",
+      "size": 529
+    },
+    {
+      "path": "Derivation/code/physics/metriplectic/step_spec.metriplectic.tagged.example.json",
+      "sha256": "97260312d1a91104a6dc4e302559a58c2953e983737a3a0c44fd1789179aff06",
+      "size": 730
+    },
+    {
+      "path": "Derivation/code/physics/quantum/APPROVAL.json",
+      "sha256": "56d95dfcc809bb4a717d7c6c5d9e59442dee2a72d325b1219d1ab0f126e36a90",
+      "size": 579
+    },
+    {
+      "path": "Derivation/code/physics/quantum/README.md",
+      "sha256": "cecee7db1d2ac809620bcc7778fd4c31b5fd63f0cb30f2b30a5231d4acf8cf44",
+      "size": 1516
+    },
+    {
+      "path": "Derivation/code/physics/quantum/__init__.py",
+      "sha256": "fb269e17df81264c430040d1959248dc9ba6856dfc7fbb90fa0fbefea9ccf8f4",
+      "size": 373
+    },
+    {
+      "path": "Derivation/code/physics/quantum/run_vdm_triad_prereg.py",
+      "sha256": "0f8d67a0dc4f3e434d772b857fc42bbe65059b96be8845fa2b5ca5f011ab3388",
+      "size": 6555
+    },
+    {
+      "path": "Derivation/code/physics/quantum/schemas/vdm-triad-v1.schema.json",
+      "sha256": "b2fbcf5f5079f561b39defa061aed06941243a6cdf50c84d7c6a0e5ebe6e2480",
+      "size": 866
+    },
+    {
+      "path": "Derivation/code/physics/quantum/specs/vdm-triad-v1.spec.json",
+      "sha256": "fc5e332df3c2529f8545dfc00eb8acf8d14f587aa1ffafd12ea57bfd44bd0a69",
+      "size": 592
+    },
+    {
+      "path": "Derivation/code/physics/rd_conservation/APPROVAL.json",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "Derivation/code/physics/rd_conservation/README.md",
+      "sha256": "293ef0c66c393ddfbfa53248ca50924a753b4d907e5f6bc8f77a47fbcaaada9c",
+      "size": 2012
+    },
+    {
+      "path": "Derivation/code/physics/rd_conservation/run_rd_conservation.py",
+      "sha256": "4dd2d1f2bd03b78a00e8c0eda408c4ce6727372ee30a853355e6bc1161bb1935",
+      "size": 39545
+    },
+    {
+      "path": "Derivation/code/physics/rd_conservation/step_spec.example.json",
+      "sha256": "091887c0e412d4cb637e86fa54e10058bd110fcd6eeccd4ce625d39dd0f2b030",
+      "size": 425
+    },
+    {
+      "path": "Derivation/code/physics/rd_conservation/step_spec.schema.json",
+      "sha256": "59abee20d9e78132a9ae7a39b31973d581a922436edf4b7dc52bcbd364d97b00",
+      "size": 3165
+    },
+    {
+      "path": "Derivation/code/physics/reaction_diffusion/APPROVAL.json",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "Derivation/code/physics/reaction_diffusion/census_clocks.py",
+      "sha256": "2a28b9839024d520ccb36d1cde5197cd4b53f2573c1df0c4accb1c913332baf7",
+      "size": 9551
+    },
+    {
+      "path": "Derivation/code/physics/reaction_diffusion/discrete_gradient.py",
+      "sha256": "6a4ef9961adfc1faef29499143f27af6b120957c339b460eb885a33a14a72d3b",
+      "size": 6889
+    },
+    {
+      "path": "Derivation/code/physics/reaction_diffusion/flux_core.py",
+      "sha256": "5b002b5823fce5aba0a80d892908a5f777fcee89f65bd82d8ab7b6d1a6fd581d",
+      "size": 9727
+    },
+    {
+      "path": "Derivation/code/physics/reaction_diffusion/rd_dispersion_experiment.py",
+      "sha256": "a9978810098d6327905ca77b1239342358a0f1e35c6ae3ee30703b457c72cb46",
+      "size": 13694
+    },
+    {
+      "path": "Derivation/code/physics/reaction_diffusion/rd_front_speed_experiment.py",
+      "sha256": "ee8c56b6b122697c9f55ac7385c2dd9b18aef947624b544487a8872615e5c8dc",
+      "size": 17230
+    },
+    {
+      "path": "Derivation/code/physics/reaction_diffusion/rd_front_speed_sweep.py",
+      "sha256": "9e47f1fd14cef919c275a8631d437e02ca3637085e164bebddff050123a419a4",
+      "size": 5274
+    },
+    {
+      "path": "Derivation/code/physics/reaction_diffusion/reaction_exact.py",
+      "sha256": "0c8d93c2ee24d0884b855651b8bceb557c46b8d2d1accaae4187c866e3a4483b",
+      "size": 4392
+    },
+    {
+      "path": "Derivation/code/physics/tachyonic_condensation/APPROVAL.json",
+      "sha256": "4b41a9119c3769154ed80afcdd8df3943c114c487b571a4d12a9a67136cf3f5f",
+      "size": 1007
+    },
+    {
+      "path": "Derivation/code/physics/tachyonic_condensation/condense_tube.py",
+      "sha256": "159f113e7574648d05809b75662ebfc72e2ce14f96dc34c356831934c6683ecc",
+      "size": 13942
+    },
+    {
+      "path": "Derivation/code/physics/tachyonic_condensation/cylinder_modes.py",
+      "sha256": "ea05c1291e0f925da4594c226c3f0e801656991765a513097e09c762cb031e9b",
+      "size": 22526
+    },
+    {
+      "path": "Derivation/code/physics/tachyonic_condensation/run_tachyon_tube.py",
+      "sha256": "a2082d0311a41f470c92782ca66e29d8146550993568b1e41b5ceafa4d2df227",
+      "size": 13255
+    },
+    {
+      "path": "Derivation/code/physics/tachyonic_condensation/schemas/tube-condensation-summary-v1.schema.json",
+      "sha256": "bf3902b0ba5f541ac08918397212d1038773f4c117dc578d89b1bc9aa56224f9",
+      "size": 1428
+    },
+    {
+      "path": "Derivation/code/physics/tachyonic_condensation/schemas/tube-condensation-v1.schema.json",
+      "sha256": "bdb54e6217e2d3801284cff376f54a419f9dbb753aeb334d955bd7f8d8ed55c8",
+      "size": 766
+    },
+    {
+      "path": "Derivation/code/physics/tachyonic_condensation/schemas/tube-spectrum-summary-v1.schema.json",
+      "sha256": "257bd1c091dfd802317ad8969bea2df62d4293b9661485ace89326034053bb3b",
+      "size": 2027
+    },
+    {
+      "path": "Derivation/code/physics/tachyonic_condensation/schemas/tube-spectrum-v1.schema.json",
+      "sha256": "a7c8a7ed45c11129b1aabc7dc9f8c2c853f84ba87e8c50a7c2277657cf7d8f64",
+      "size": 689
+    },
+    {
+      "path": "Derivation/code/physics/tachyonic_condensation/specs/tube-condensation.v1.json",
+      "sha256": "2b2d8d0eafdfae790a13b7307889a224d424d20f8622873837a2b85864c051be",
+      "size": 262
+    },
+    {
+      "path": "Derivation/code/physics/tachyonic_condensation/specs/tube-spectrum.v1.json",
+      "sha256": "ad5ff078157d524e7a4efbf8c64381f1dd1792f47d153552f1128bbbf92c080d",
+      "size": 221
+    },
+    {
+      "path": "Derivation/code/physics/thermo_routing/APPROVAL.json",
+      "sha256": "fd5797f070d0cfff360ec6c463580b2509b47d4e78a65498a06c4dbbf272436b",
+      "size": 2077
+    },
+    {
+      "path": "Derivation/code/physics/thermo_routing/passive_thermo_routing/maps/demo_mu.npy",
+      "sha256": "6f73b976ab5d93edd6adfa75b4dca2c1e84f9316f50c6a9a80b816548dc7e34f",
+      "size": 65664
+    },
+    {
+      "path": "Derivation/code/physics/thermo_routing/passive_thermo_routing/run_ftmc_v1.py",
+      "sha256": "89af98daf8ea3d33629d249837dfd73afe04582991eb895b16aab061e1f97fcf",
+      "size": 28474
+    },
+    {
+      "path": "Derivation/code/physics/thermo_routing/run_thermo_routing.py",
+      "sha256": "e0d140515c5dec51edf2a625d29cacad5b503ced418135f1e37528a747e57c81",
+      "size": 28381
+    },
+    {
+      "path": "Derivation/code/physics/thermo_routing/run_tr_v2_prereg_biased.py",
+      "sha256": "f83b46d662bbacb9b6a627fadff452c9436c125f97ed78a2cd871c8ccb5d7388",
+      "size": 1761
+    },
+    {
+      "path": "Derivation/code/physics/thermo_routing/run_tr_v2_prereg_biased_main.py",
+      "sha256": "fea5476165cca7aaf84173a0186062df30525bc14aeb6542f38eeb9d662b1f01",
+      "size": 1505
+    },
+    {
+      "path": "Derivation/code/physics/thermo_routing/run_tr_v2_prereg_biased_main_aggregate.py",
+      "sha256": "91aa131f8c690e3c639cee9f0e32951827b08c1eb115a9e74eafc9c3722b43ba",
+      "size": 20908
+    },
+    {
+      "path": "Derivation/code/physics/thermo_routing/run_tr_v2_prereg_biased_main_full.py",
+      "sha256": "8cd53d7df307628ae04a9651b2247b2fbe34b374378014abb40f67ce16401716",
+      "size": 15259
+    },
+    {
+      "path": "Derivation/code/physics/thermo_routing/schemas/flux-through-memory-channels-v1.schema.json",
+      "sha256": "feb0892a211705fcd49381e5ab4a205f3ddacf54933dca502815ea7fe59e26eb",
+      "size": 3486
+    },
+    {
+      "path": "Derivation/code/physics/thermo_routing/schemas/thermo-routing-v2-prereg-biased-main.schema.json",
+      "sha256": "3ea1d76f53bc2be098dbe9a16d40197dfab1d0a7636818243c125354d25b4b55",
+      "size": 2305
+    },
+    {
+      "path": "Derivation/code/physics/thermo_routing/schemas/thermo-routing-v2.schema.json",
+      "sha256": "cfe320f504e31d0015969b65d49de165b72759b047f531b1705c56501a024282",
+      "size": 2033
+    },
+    {
+      "path": "Derivation/code/physics/thermo_routing/schemas/wave-flux-meter-openports-summary-v1.schema.json",
+      "sha256": "89e013f847294ceca51f8831ce3d1b849bd2c240a2bdf07ae5696bca1375c3d3",
+      "size": 1808
+    },
+    {
+      "path": "Derivation/code/physics/thermo_routing/schemas/wave-flux-meter-summary-v1.schema.json",
+      "sha256": "d4e3d64d5bc1519f605bdcf03a79114069782c244f34d59b3b5cbdfbd9d503b5",
+      "size": 1709
+    },
+    {
+      "path": "Derivation/code/physics/thermo_routing/specs/ftmc.v1.pilot.json",
+      "sha256": "ac58bdefc37d7f96707a87c6b9c35f8da6e200a763a1cb1b37d84ca9d5ff8c7d",
+      "size": 718
+    },
+    {
+      "path": "Derivation/code/physics/thermo_routing/specs/tr_v2.prereg_biased.json",
+      "sha256": "9d5fb642390ac1b9cf737e25c126dda21015e4cf9ec6dbccee2574bb1d27face",
+      "size": 831
+    },
+    {
+      "path": "Derivation/code/physics/thermo_routing/specs/tr_v2.prereg_biased_main.json",
+      "sha256": "d214b586c7e9ffaf536c896836d20724f4b1c0365105ac96cf2613fb854f27e3",
+      "size": 912
+    },
+    {
+      "path": "Derivation/code/physics/thermo_routing/specs/tr_v2.symmetric.json",
+      "sha256": "28dc304232e4b77aae5398f49705b1182877d55ab0550e99f03345d7a9c872a2",
+      "size": 748
+    },
+    {
+      "path": "Derivation/code/physics/thermo_routing/wave_flux_meter/run_wave_flux_meter_openports_v1.py",
+      "sha256": "eb38811b9a09084983584b37aaaabc3bda7ae53016c2d425a6dd9113d63aa84c",
+      "size": 40902
+    },
+    {
+      "path": "Derivation/code/physics/thermo_routing/wave_flux_meter/run_wave_flux_meter_v1.py",
+      "sha256": "9ba8f62113a8ea1011c45d19a09e6b091724dbc89b5cfd5a141c6167f64203b4",
+      "size": 14089
+    },
+    {
+      "path": "Derivation/code/physics/thermo_routing/wave_flux_meter/specs/wfm.openports.v1.channelmap.mu.pilot.json",
+      "sha256": "249ae91e5d2316eb29a634d57f729a51a8af5025e3bb47aa9cbcac6720d5cd42",
+      "size": 695
+    },
+    {
+      "path": "Derivation/code/physics/thermo_routing/wave_flux_meter/specs/wfm.openports.v1.channelmap.pilot.json",
+      "sha256": "f6ae796457d7b23a85b7a72a4bb79de235eaab1cc115c35a74213c4a0a50d512",
+      "size": 505
+    },
+    {
+      "path": "Derivation/code/physics/thermo_routing/wave_flux_meter/specs/wfm.openports.v1.pilot.json",
+      "sha256": "f3fb0b1c1fbe0381ad480654129029032b5aecb68867813d6679dea471a85f09",
+      "size": 425
+    },
+    {
+      "path": "Derivation/code/physics/thermo_routing/wave_flux_meter/specs/wfm.v1.pilot.json",
+      "sha256": "5cec59b64a2b4642c4d74ba0e635e6fd62e1f46216cd43cc17d57d7b16d48b3b",
+      "size": 276
+    },
+    {
+      "path": "Derivation/code/physics/thermo_routing/wave_flux_meter/wave-flux-meter-summary-v1.schema.json",
+      "sha256": "8f38b21f9c8159ba16dd7cf71c00e078968f5ecb5635bf69592ff6c284b14367",
+      "size": 1451
+    },
+    {
+      "path": "Derivation/code/physics/topology/APPROVAL.json",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "Derivation/code/tests/PREFLIGHT_SMOKE_TEST_TEMPLATE.md",
+      "sha256": "5ed2872b76405ec0cb1febe904b36a2cf60c24dcd47fc8b81d4aff8257184829",
+      "size": 2793
+    },
+    {
+      "path": "Derivation/code/tests/README.md",
+      "sha256": "8e9ac241e65227a0409438a71439d5dc596864f1b5239a293e27bd48a086acb0",
+      "size": 2676
+    },
+    {
+      "path": "Derivation/code/tests/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "Derivation/code/tests/ci/test_preflight_guard.py",
+      "sha256": "92503bd0aa5a7e46233ea9f0b0462c6aa8919697656c7eb6a255d6f9ae99f010",
+      "size": 3243
+    },
+    {
+      "path": "Derivation/code/tests/conftest.py",
+      "sha256": "586d7881d9203c468f477ede0e1a91c24487be7071fa1be7fa6568e330fb503e",
+      "size": 2419
+    },
+    {
+      "path": "Derivation/code/tests/cosmology/void_lensing/test_void_lensing_meter_core.py",
+      "sha256": "a4e77620504b7d889b88b43b21868392ed6662c94a93c847a91a7b0837ad5c19",
+      "size": 7973
+    },
+    {
+      "path": "Derivation/code/tests/cosmology/void_lensing/test_void_lensing_meter_experiment.py",
+      "sha256": "7e0122afc36b2ce3749d6c885f13bd0faa377edd20e07e4fd8bbb987ac09975d",
+      "size": 11897
+    },
+    {
+      "path": "Derivation/code/tests/cosmology/void_lensing/test_void_lensing_meter_scaffold.py",
+      "sha256": "535d7a0429544afe83495bbb67b2692442c34097573f0d734ce95cc1eae033d3",
+      "size": 3777
+    },
+    {
+      "path": "Derivation/code/tests/fluid_dynamics/cavity_smoke.py",
+      "sha256": "019fcf2f4a186a09ae2788f5baad42053753d6fed0c06fdc8d4068f20874913a",
+      "size": 3708
+    },
+    {
+      "path": "Derivation/code/tests/fluid_dynamics/test_stream_bounce_unit.py",
+      "sha256": "cacbf4f43416e11edaa36c31aff0eb9c573bb9374e503b082e32d50c16118fce",
+      "size": 2067
+    },
+    {
+      "path": "Derivation/code/tests/fluid_dynamics/test_taylor_green_decay.py",
+      "sha256": "4168ad7c2bb40e8850e1d7ce00b4cd702108a89f2f6099ad44b520d567d78522",
+      "size": 2985
+    },
+    {
+      "path": "Derivation/code/tests/fluid_dynamics/test_walkers_noninterference.py",
+      "sha256": "156ab7c735618d6668278b20c774a183fc2bb02b585f1dbf4a02b017cdaeb177",
+      "size": 2759
+    },
+    {
+      "path": "Derivation/code/tests/memory_steering/test_memory_steering.py",
+      "sha256": "c859d658972e6899d374cdaac5dfb1d9c05794a2abb9241bf0d4c98759f4639c",
+      "size": 2111
+    },
+    {
+      "path": "Derivation/code/tests/metriplectic/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "Derivation/code/tests/metriplectic/test_assisted_echo_preflight.py",
+      "sha256": "1281e22f9c53576cf78f560063889b9e603e7ab4c01c9504e4f41cb30f737455",
+      "size": 1607
+    },
+    {
+      "path": "Derivation/code/tests/metriplectic/test_ceg_harness_preflight.py",
+      "sha256": "448aa00ce6e6cc131ca9df1d63c3efb0a4b02681bb099afbfda859be28e55f25",
+      "size": 1091
+    },
+    {
+      "path": "Derivation/code/tests/metriplectic/test_instrumented_ceg.py",
+      "sha256": "5ab4af8730d6a37a1d466fd733e6a5efdc372ef28dd6eb8d9e8aab02e80511ee",
+      "size": 5804
+    },
+    {
+      "path": "Derivation/code/tests/metriplectic/test_metriplectic_preflight.py",
+      "sha256": "e407c97e9f1000d75862d5b88f928c577e68492c4c709775793836340a5bf25a",
+      "size": 8713
+    },
+    {
+      "path": "Derivation/code/tests/reaction_diffusion/test_rd_acceptance.py",
+      "sha256": "800f37ed63124fed26ab3eacda948bc348d4fbce7e046a48ecabc65f24277104",
+      "size": 2653
+    },
+    {
+      "path": "Derivation/code/tests/reaction_diffusion/test_rd_dispersion.py",
+      "sha256": "ddbf55f5ed4e464b0799f202c77d62c98289433ad4a5d1e4b5bc6e3a78c3ba4f",
+      "size": 2260
+    },
+    {
+      "path": "Derivation/code/tests/test_policy_enforcement.py",
+      "sha256": "3facf5f11d37bce5e972927a46de379be05413c0778a916c138cef1d88c9905a",
+      "size": 1271
+    },
+    {
+      "path": "Derivation/code/tests/test_vdm_equations.py",
+      "sha256": "e7e98bef5478ee6bd70472084229d97b9ce0ac5932ea9d916ba018e884b88f4c",
+      "size": 2292
+    }
+  ],
+  "root": "Derivation/code",
+  "schema": "vdm.provenance.index.v1"
+}
