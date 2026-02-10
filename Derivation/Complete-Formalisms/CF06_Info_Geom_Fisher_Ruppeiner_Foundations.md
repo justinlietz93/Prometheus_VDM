@@ -1,6 +1,8 @@
-# CF6: Information Geometry Foundations — Fisher and Ruppeiner Metrics for VDM M-Limb
+# CF06: Information Geometry Foundations — Fisher and Ruppeiner Metrics for VDM M-Limb
 
 **Date:** 2025-11-05
+
+**Revision:** 2026-02-07 — tightened for CFN readiness
 **Status:** Complete Derivation
 **Foundation Module:** Information Geometry for M-Bracket Construction
 **Proposer:** Justin K. Lietz
@@ -20,6 +22,39 @@ This document provides complete, rigorous derivations of the Fisher information 
 6. **Dissipation and entropy production** from gradient flow on Fisher/Ruppeiner manifolds
 
 This completes the geometric foundation for understanding the M-limb as epistemic projection.
+
+
+## Read me first: claim inventory and decisive falsifiers (tightened)
+
+### Scope classification
+
+- **Classification:** Derived-limit geometry module that becomes axiom-relevant only when it is explicitly tied to `M(q)` (metric bracket) and to measurable response functions.
+- **Purpose:** Eliminate hand-wavy “information geometry vibes” by giving (i) exact definitions, (ii) explicit bridges to VDM objects, and (iii) concrete gates.
+
+### Primary claims
+
+- **C1 (Fisher metric is canonical):** The Fisher information metric is the unique local quadratic form controlling distinguishability of distributions under regularity assumptions.
+- **C2 (Ruppeiner metric as entropy Hessian):** For equilibrium thermodynamics, the Ruppeiner metric is (minus) the Hessian of entropy in extensive variables (or Legendre-related forms).
+- **C3 (Bridge):** In canonical ensembles, Fisher geometry in parameter space is equivalent (up to factors/coordinates) to Ruppeiner geometry in state space, tying statistical inference to thermodynamic curvature.
+- **C4 (VDM relevance):** When `M` is identified with a Fisher/Ruppeiner-type metric (CF01/CF02 context), curvature diagnostics become falsifiable predictors of response/transport.
+
+### Assumption ledger
+
+- **A1:** Regular statistical model (interchange of differentiation/integration is valid).
+- **A2:** Equilibrium ensemble is well-defined for the considered coarse variables (otherwise treat as nonequilibrium extension with explicit corrections).
+- **A3:** “Critical exponents” are *not* assumed; they are fit parameters or external benchmarks.
+
+### Decisive falsifiers / gates
+
+- **G1 (Coordinate invariance):** Curvature scalar computed in two coordinate charts agrees within ε.
+- **G2 (MaxEnt bridge):** For canonical test systems, Fisher and Ruppeiner metrics match (up to stated factors) within ε.
+- **G3 (Curvature-response link):** Predicted scaling of curvature with correlation length (or an inferred proxy) is observed or the scaling claim is false.
+
+### CFN outputs
+
+- Symbolic derivations for toy models + numeric evaluation of curvature invariants.
+- Parameter sweeps producing curvature vs response curves and model-comparison scores.
+
 
 ---
 
@@ -235,7 +270,7 @@ $$
 g_{\rho\rho}^{\text{Rup}} \sim \xi^2
 $$
 
-where ξ is the correlation length: ξ ~ |T - T_c|^{-ν} with ν $\approx$ 0.63 (3D Ising).
+where ξ is the correlation length: ξ ~ |T - T_c|^{-ν} with exponent ν set by the universality class (e.g., ν≈0.63 for 3D Ising as an external benchmark; in VDM fits, ν is treated as an inferred parameter).
 
 **Curvature Scalar:**
 
@@ -527,7 +562,8 @@ def ruppeiner_curvature_vdw(T, V, N, a, b):
     v = V / V_c - 1  # Reduced volume
     
     # Correlation length (mean-field exponent ν = 0.5)
-    xi = 1.0 / np.sqrt(np.abs(t)**0.63 + 0.01)  # Regularized
+    nu = 0.63  # example value; treat as fit parameter
+    xi = 1.0 / np.sqrt(np.abs(t)**nu + 0.01)  # Regularized
     
     # Curvature
     R = -1.0 / xi**2

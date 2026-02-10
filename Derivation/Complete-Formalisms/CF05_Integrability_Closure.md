@@ -1,6 +1,8 @@
-# CF5: Complete Formalism — Integrability Closure (No Hidden Conserved Quantities)
+# CF05: Complete Formalism — Integrability Closure (No Hidden Conserved Quantities)
 
 **Date:** 2025-11-05
+
+**Revision:** 2026-02-07 — tightened for CFN readiness
 **Status:** Complete Derivation
 **Gap Module:** S5 (from T0_Unification_Program_Spec_v1.md)
 **Proposer:** Justin K. Lietz
@@ -19,6 +21,41 @@ This document provides a complete, rigorous derivation of the integrability clos
 5. **No hidden conserved quantities** theorem
 
 This resolves Gap S5 and ensures the metriplectic structure is minimal and complete.
+
+
+## Read me first: claim inventory and decisive falsifiers (tightened)
+
+### Scope classification
+
+- **Classification:** Axiom-core closure test for “no hidden integrals” in *specified* truncations/models of the metriplectic evolution.
+- **Important honesty constraint:** A metriplectic *form* alone does **not** uniquely determine `H` and `S`; therefore one cannot prove “no hidden integrals” for *all possible* choices. What CF05 provides is:
+  1) the **structural statement**: `H` and `S` are the only invariants forced by the degeneracy conditions; and  
+  2) an **algorithmic falsifier**: if any additional independent first integral exists for the concrete model under study, these methods should find it (subject to explicit search class limits).
+
+### Primary claims
+
+- **C1 (Structural):** In metriplectic dynamics `ẋ = J∇H + M∇S` with degeneracy, `H` is conserved by the `M`-flow and `S` is conserved by the `J`-flow; these are *unavoidable*.
+- **C2 (Nongenericity of extras):** Any additional independent first integrals require extra symmetries / tuning and are not implied by the metriplectic axioms.
+- **C3 (Search-based closure):** For a *given* reduced finite-dimensional model (or polynomial ansatz class), Darboux/Prelle–Singer/Painlevé analyses provide a computable “integrability closure gate.”
+
+### Assumption ledger
+
+- **A1:** The system under test is specified (finite-dimensional truncation or discretized PDE with fixed `H,S,J,M`).
+- **A2:** Search classes are declared (polynomial degree bound, elementary function class, singularity ansatz class).
+- **A3:** If the system has exact symmetries (e.g. translation/rotation), they are either (i) quotiented out or (ii) explicitly listed as expected integrals.
+
+### Decisive falsifiers / gates
+
+- **G1 (Discovery gate):** If any additional independent first integral is found by the declared searches, the “no hidden integrals” claim for that model is false.
+- **G2 (Numerical invariance gate):** Candidate integrals must remain constant along trajectories to within ε over long integrations (reject numerical mirages).
+- **G3 (Painlevé obstruction):** Failure of the Painlevé test in generic initial conditions is treated as evidence against complete integrability.
+
+### CFN outputs
+
+- Search reports (degree bounds, found invariants, residuals).
+- Trajectory checks of candidate invariants.
+- A machine-readable “closure certificate” specifying *what classes were searched* and with what null result.
+
 
 ---
 

@@ -1,6 +1,8 @@
-# CF7: Measurement Theory Foundations — Decoherence and Born Rule for VDM
+# CF07: Measurement Theory Foundations — Decoherence and Born Rule for VDM
 
 **Date:** 2025-11-05
+
+**Revision:** 2026-02-07 — tightened for CFN readiness
 **Status:** Complete Derivation
 **Foundation Module:** Quantum Measurement Theory for J→M Projection
 **Proposer:** Justin K. Lietz
@@ -20,6 +22,39 @@ This document provides complete, rigorous derivations of decoherence mechanisms 
 6. **Target M6 validation** for Born frequencies in VDM meters
 
 This completes the epistemic foundation for understanding measurement as the M-limb projection of J-limb reality.
+
+
+## Read me first: claim inventory and decisive falsifiers (tightened)
+
+### Scope classification
+
+- **Classification:** Derived-limit measurement module tied to A7 (measurability). Uses standard decoherence machinery *only insofar as* it is translated into VDM observables and numerical gates.
+- **Goal:** Make “Born rule emergence” a falsifiable claim with concrete error bars, not a philosophy essay.
+
+### Primary claims
+
+- **C1 (Einselection condition):** Pointer projectors `Π_i` approximately commute with the interaction Hamiltonian: `||[H_SE, Π_i]|| ≤ ε_ein`. This defines the pointer basis operationally.
+- **C2 (Decoherence):** Off-diagonal density-matrix terms in the pointer basis decay below ε_dec on timescale `τ_dec`.
+- **C3 (Born weights):** Under repeated sampling / typicality assumptions stated explicitly, observed frequencies converge to `p_i = Tr(Π_i ρ)` with finite-sample bounds.
+- **C4 (Information-theoretic bound):** KL divergence between empirical frequencies and Born weights obeys a computable expectation bound scaling like `O(d/N)` for `d` outcomes and `N` samples (with stated approximation regime).
+
+### Assumption ledger
+
+- **A1:** System–environment split is well-defined for the coarse observables being measured.
+- **A2:** Environment has sufficient degrees of freedom to act as a decohering bath (otherwise gates fail).
+- **A3:** Approximation symbols (`≈`) are always backed by a quantitative tolerance (operator norm, trace norm, or explicit residual).
+
+### Decisive falsifiers / gates
+
+- **G1 (Einselection):** `||[H_SE, Π_i]||` does not get small for any stable pointer basis → the einselection sub-claim fails.
+- **G2 (Decoherence):** Off-diagonals do not decay below ε_dec on expected timescales → measurement channel not realized.
+- **G3 (Born frequency):** Empirical frequencies systematically deviate from Born weights beyond finite-sample bounds across repeated trials → Born mapping is false for the tested mechanism.
+- **G4 (Noncontextuality / robustness):** Pointer basis and probabilities are stable under small perturbations of the environment coupling; instability is a falsifier.
+
+### CFN outputs
+
+- Operator norm residuals, trace-distance time series, frequency-vs-probability plots with confidence intervals, and gate outcomes with provenance.
+
 
 ---
 
@@ -149,7 +184,7 @@ where λ is the system-environment coupling strength.
 The **pointer basis** $\{|i\rangle\}$ that remains stable under decoherence is determined by:
 
 $$
-[H_{SE}, |i\rangle\langle i|] \approx 0
+\|[H_{SE}, \Pi_i]\| \le \varepsilon_{\text{ein}} \quad \text{with}\; \Pi_i\equiv |i\rangle\langle i|
 $$
 
 These are eigenstates of the interaction Hamiltonian.
@@ -375,7 +410,7 @@ where d is the Hilbert space dimension.
 4. Variance: Var(f_i) = p_i(1 - p_i)/N
 5. KL divergence expansion:
    $$
-   \text{KL}(f \| p) = \sum_i f_i\ln\frac{f_i}{p_i} \approx \frac{1}{2}\sum_i \frac{(f_i - p_i)^2}{p_i}
+   \text{KL}(f \| p) = \sum_i f_i\ln\frac{f_i}{p_i} = \frac{1}{2}\sum_i \frac{(f_i - p_i)^2}{p_i} + O(\|f-p\|_1^3)
    $$
 6. Expected KL:
    $$

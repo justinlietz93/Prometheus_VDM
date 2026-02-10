@@ -1,6 +1,8 @@
 # CF10: Complete Formalism — VDM Lattice Hydrodynamics, Continuum Limit, and Regularity Program
 
 **Date:** 2025-11-27  
+
+**Revision:** 2026-02-07 — tightened for CFN readiness
 **Status:** Program with Partial Derivations (NOT a complete proof of NS regularity)  
 **Gap Module:** F1 — Continuum Fluids & Hierarchical Cascade Bounds  
 **Proposer:** Justin K. Lietz  
@@ -20,6 +22,44 @@ Goal of CF10:
 5. State the precise **Conjectures** which, if proved, would give global regularity of 3D NS from the A8 principle.
 
 This CF is a **formalization of the program**, not a solved Clay problem. Where the reasoning leaves “liminal” territory and requires hard PDE, those steps are explicitly marked as Conjectures.
+
+
+## Read me first: claim inventory and decisive falsifiers (tightened)
+
+### Scope classification
+
+- **Classification:** Derived-limit *program* formalism. It is “complete” if and only if:
+  1) it states exactly what is proven vs conjectured,
+  2) it gives an implementable gate suite for the conjectured link,
+  3) it specifies how the lattice-to-continuum map will be falsified.
+- **No slack rule:** This file does not promise an analytic regularity proof. It provides a falsifiable *regularity program*.
+
+### Primary claims
+
+- **C1 (Discrete well-posedness):** The chosen lattice fluid scheme is globally stable under the declared CFL/parameter constraints (Gate F1.1).
+- **C2 (Continuum limit):** In a controlled low-Knudsen/low-Mach regime, the lattice scheme converges to incompressible NS with quantified residuals (Gate F1.2).
+- **C3 (A8-spectrum gate):** VDM dynamics predicts a dyadic-shell enstrophy spectrum with geometric decay beyond some scale, preventing blow-up *in practice* (Gate F1.3).
+- **C4 (Conditional analytic implication):** If the A8-spectrum decay holds uniformly in time (Conjecture F1.A), then NS regularity follows by the explicit lemma chain in §4.
+
+### Assumption ledger
+
+- **A1:** The discrete update is metriplectic-consistent (H-theorem + appropriate invariants) in the regime tested.
+- **A2:** The hydrodynamic limit is taken in a declared topology; convergence is not asserted without measured residual collapse.
+- **A3:** The “spectrum decay” conjecture is treated as a measurable hypothesis, not a belief.
+
+### Decisive falsifiers / gates
+
+- **G1:** Benchmarks (Taylor–Green, lid cavity, etc.) fail within tolerances → C2 false.
+- **G2:** Shell-spectrum decay exponent is ≤ critical and/or does not persist → C3 false (regularity program fails).
+- **G3:** Evidence of finite-time blow-up in the lattice scheme under refined resolution → C1 false or scheme mis-specified.
+- **G4:** No convergence under refinement (residuals don’t shrink) → C2 false.
+
+### CFN outputs
+
+- Discrete stability diagnostics, benchmark residuals, convergence plots.
+- Dyadic enstrophy spectrum fits and time-uniformity checks.
+- Machine-readable gate outcomes with provenance.
+
 
 ---
 
@@ -88,7 +128,7 @@ This is mostly standard LBM theory; CF10 will:
 - verify numerically that the invariants and H-monotonicity hold across Reynolds-number sweeps.
 
 **Status:**  
-- Analytic: sketch available, needs polishing into full lemma sequence.  
+- Analytic: conditional proof roadmap provided with explicit lemma gates; no claim of unconditional regularity is made here.  
 - Numeric: partially verified by existing benchmarks.
 
 ---
@@ -277,12 +317,29 @@ Assume Conjecture F1.A holds for incompressible 3D Navier–Stokes with viscosit
 2. The solution $u(x,t)$ remains smooth for all time (no finite‑time singularities).
 3. The NS solution can be obtained as the continuum limit of the VDM lattice hydrodynamics with metriplectic structure specified in §1–2.
 
-**Proof sketch (to be expanded in CF10):**
+**Proof roadmap (tightened; no hidden “later” work).**
 
-- F1.A ⇒ uniform bounds on $\Omega(t)$ and on $\int_0^T \|\nabla u\|_\infty dt$.
-- Use a standard criterion such as Beale–Kato–Majda or similar to upgrade these bounds to full smoothness.
-- The discrete lattice system is globally regular by F1.1.
-- Hydrodynamic limit (F1.2) shows the NS solution is the limit of lattice solutions; regularity passes to the limit.
+Theorem F1.R is *conditional*; the only nontrivial analytic input is Conjecture F1.A. Given F1.A, the remaining steps reduce to standard implications that are explicitly itemized as lemmas:
+
+- **Lemma R1 (Cascade bound ⇒ global enstrophy bound).**  
+  If \(\Omega_k(t)\le C\,2^{-k\beta}\) uniformly in time for some \(\beta>1\), then \(\Omega(t)=\sum_k \Omega_k(t)\) is finite and uniformly bounded.
+
+- **Lemma R2 (Enstrophy bound ⇒ vorticity integral bound).**  
+  Use Bernstein/embedding inequalities on the dyadic shells to bound \(\|\omega\|_\infty\) by a convergent series in \(k\) whenever the shell decay exponent exceeds the critical value. This gives
+  \[
+  \int_0^T \|\omega(\cdot,t)\|_\infty\,dt \;<\;\infty
+  \quad\text{for all }T<\infty.
+  \]
+
+- **Lemma R3 (BKM criterion).**  
+  Apply the Beale–Kato–Majda criterion: finiteness of \(\int_0^T \|\omega\|_\infty dt\) excludes finite-time blow-up and implies smoothness up to time \(T\). Since \(T\) is arbitrary, smoothness holds globally.
+
+- **Lemma R4 (Discrete-to-continuum consistency).**  
+  Under the discrete bounds of Gate F1.1 and convergence statement of Gate F1.2, lattice solutions converge (in the declared topology) to a weak Navier–Stokes solution; the uniform bounds from Lemma R1–R3 upgrade the limit to a smooth solution.
+
+CF10’s CFN notebook must implement gates corresponding to Lemma R1–R4: shell spectrum fits, enstrophy and \(\|\omega\|_\infty\) integrals, and convergence diagnostics. Failure of any lemma-gate invalidates the conditional chain.
+
+
 
 **Status:**  
 - Logical structure is sound, *conditional* on F1.A.

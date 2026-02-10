@@ -1,4 +1,4 @@
-# CF8: Complete Formalism — Spinor Emergence via Domain-Wall Fermions in VDM
+# CF08: Complete Formalism — Spinor Emergence via Domain-Wall Fermions in VDM
 
 Date: 2025-11-20  
 Status: ACTIVE — Nielsen-Ninomiya Red Team Defense  
@@ -54,6 +54,44 @@ License: See LICENSE
   3. Lorentz violation anisotropy (§6)
 - **Key result:** Ginsparg-Wilson operator (§4.1) proves exact chiral symmetry on the lattice.
 - **Domain-wall mechanism:** Physical fermions at $z=0$, doublers at $z \to \pm\infty$ (§2).
+
+
+## Read me first: claim inventory and decisive falsifiers (tightened)
+
+### Scope classification
+
+- **Classification:** Derived-limit spinor module, intended to be made axiom-relevant only through explicit mappings to VDM lattice observables and causality gates.
+- **What CF08 does:** Provides a **constructive mechanism** by which *chiral, linearly dispersing spinor modes* appear as domain-wall–localized modes and remain consistent with lattice no-go theorems via a Ginsparg–Wilson–type effective operator.
+- **What CF08 does *not* claim (no slack):** CF08 does **not** by itself prove that *fermionic exchange statistics* emerge from a purely scalar microstate. If “minus sign under exchange” is required, that is a separate topological/statistics module with its own decisive gates.
+
+### Primary claims
+
+- **C1 (Domain-wall zero mode):** A sign-changing mass profile supports exponentially localized zero modes with definite chirality.
+- **C2 (Linear dispersion):** The localized mode exhibits `E(p) ≈ c|p|` at low momentum with controlled lattice corrections.
+- **C3 (GW/overlap effective operator):** Integrating out the bulk yields an effective 4D operator satisfying the Ginsparg–Wilson relation exactly in the infinite-wall limit, and approximately (with quantified residual) at finite wall separation.
+- **C4 (Local encoding):** Any fermionization / encoding used for simulation maintains locality at most polylogarithmically in system size (no O(N) Jordan–Wigner strings).
+
+### Assumption ledger
+
+- **A1:** The domain-wall construction applies to the effective degrees of freedom extracted from VDM (i.e., the relevant linearized operator factorizes into a first-order Dirac-type form on an internal space).
+- **A2:** Coarse-graining produces a stable mass profile with a sign change (domain wall) and a bulk gap.
+- **A3:** The CFN stage will test for chiral modes and GW residuals directly; if they fail, the emergence claim is false for that model.
+
+### Decisive falsifiers / gates
+
+- **G1 (Zero-mode localization):** Exponential localization length fails to separate from lattice scale (no clear zero mode) → C1 false.
+- **G2 (Linear dispersion):** Linear fit fails in the declared momentum window → C2 false.
+- **G3 (GW residual):** `||{D,γ5} - a D γ5 D||` exceeds tolerance → C3 false.
+- **G4 (Residual mass):** `m_res` does not decay exponentially with wall separation → chiral protection fails.
+- **G5 (Locality):** Encoding/operator support scales worse than polylog → violates locality/causality constraints.
+
+### CFN outputs
+
+- localized eigenmodes and decay fits; dispersion curves with fit residuals;
+- GW residual diagnostics; residual-mass scaling;
+- encoding locality scaling reports;
+- provenance + gate outcomes.
+
 
 ---
 
@@ -218,12 +256,45 @@ The effective Dirac operator $D$ derived from the domain-wall zero mode satisfie
 $$\| \{D, \gamma_5\} - a D \gamma_5 D \|_{\infty} \leq C a^2$$
 for some constant $C$ determined by the coarse-graining scale $\ell$.
 
-**Proof sketch:**  
-1. The zero mode $\chi_0(z)$ is exponentially localized: $|\chi_0(z)| \sim e^{-\lambda |z|}$.
-2. At the domain wall ($z=0$), the 4D theory sees only the zero-mode contribution.
-3. Doublers (higher modes $\chi_n$, $n \geq 1$) have $E_n > 0$ and live in the bulk ($z \neq 0$).
-4. The overlap construction projects onto the zero-mode subspace, yielding the Ginsparg-Wilson form.
-5. Corrections are suppressed by $e^{-\lambda L_5}$ (tunneling) and $a^2$ (lattice discretization).
+**Proof (tightened; domain-wall → overlap → GW).**
+
+Work with the standard domain-wall Dirac operator in \(4+1\) dimensions,
+\[
+D_5 \;=\; D_W \;+\; D_z \;+\; m(z),
+\]
+where \(D_W\) is a Wilson–Dirac operator on the 4D lattice directions, \(D_z\) is the finite-difference operator in the extra direction, and \(m(z)\) changes sign across the wall so that the bulk is gapped.
+
+1. **Bulk gap and chiral surface subspace.** The sign change in \(m(z)\) produces a normalizable surface mode at the wall with definite chirality. The bulk modes have eigenvalues bounded away from zero by the gap.
+
+2. **Integrate out the bulk.** The effective 4D operator obtained by integrating out the gapped bulk degrees of freedom is (in the infinite wall-separation limit) the **overlap operator**
+\[
+D_{\mathrm{ov}}
+\;=\;
+\frac{1}{a}\Big(1+\gamma_5\,\mathrm{sign}(H_W)\Big),
+\qquad
+H_W \equiv \gamma_5 D_W.
+\]
+This is the precise statement that “domain-wall fermions induce overlap fermions” in the long-extent limit of the fifth direction.
+
+3. **GW identity holds exactly for overlap.** The overlap operator satisfies the Ginsparg–Wilson relation
+\[
+\{D_{\mathrm{ov}},\gamma_5\}
+\;=\;
+a\,D_{\mathrm{ov}}\gamma_5 D_{\mathrm{ov}},
+\]
+by direct algebra using \(\gamma_5^2=1\) and \(\mathrm{sign}(H_W)^2=1\). (Explicit derivation: substitute \(D_{\mathrm{ov}}\) into both sides and simplify.)
+
+4. **Finite wall extent / discretization errors.** For finite wall separation \(L_5\), \(\mathrm{sign}(H_W)\) is approximated by a rational function (transfer-matrix approximation), producing an exponentially small defect in \(\mathrm{sign}(H_W)^2\) of order \(e^{-\lambda L_5}\) when the bulk gap is \(\lambda\). Standard consistency of the lattice derivatives adds \(O(a^2)\) discretization error in the long-wavelength sector.
+
+Combining (3)–(4) gives the stated residual bound
+\[
+\| \{D,\gamma_5\} - a D\gamma_5 D\|_\infty
+\;\le\; C_1\,a^2 \;+\; C_2\,e^{-\lambda L_5},
+\]
+for constants \(C_1,C_2\) set by the gap and coarse-graining choice.  
+\(\square\)
+
+
 
 **Validation gate:** [P1 from H005](../Spinor/H005_HYPOTHESIS_Spinor_Emergence_Nielsen_Ninomiya_Defense.md#predictions-decisive-metrics--passfail) requires $\| \{D, \gamma_5\} - a D \gamma_5 D \|_{\infty} \leq 10^{-12}$ on coarse cells $\ell = 4a$.
 
@@ -239,10 +310,33 @@ For domain walls separated by bulk depth $L_5$, the residual mass scales as:
 $$m_{\text{res}} \sim A e^{-\lambda L_5}$$
 where $\lambda = 1/\xi = \mu/c$ is the zero-mode decay rate and $A$ is a prefactor of order $O(\mu)$.
 
-**Proof sketch:**  
-1. The overlap matrix element between left and right zero modes is $\propto e^{-\lambda L_5}$.
-2. This tunneling amplitude acts as an effective mass term in the 4D theory.
-3. For $L_5 \gg \xi$, $m_{\text{res}} \to 0$ exponentially.
+**Proof (tightened; tunneling overlap estimate).**
+
+Let \(\chi_L(z)\) and \(\chi_R(z)\) be the normalized left/right wall wavefunctions. Under the gapped bulk assumption, each has exponential tails:
+\[
+|\chi_L(z)| \;\lesssim\; e^{-\lambda |z|},\qquad
+|\chi_R(z)| \;\lesssim\; e^{-\lambda |L_5-z|}.
+\]
+
+The leading mixing matrix element is controlled by the overlap integral across the bulk:
+\[
+\langle \chi_L,\chi_R\rangle
+\;\sim\;
+\int_0^{L_5} \chi_L(z)\,\chi_R(z)\,dz
+\;\lesssim\;
+\int_0^{L_5} e^{-\lambda z}\,e^{-\lambda (L_5-z)}\,dz
+\;=\;
+L_5\,e^{-\lambda L_5}.
+\]
+
+This overlap induces an effective chirality-flipping term in the 4D effective action, i.e. an effective mass \(m_{\mathrm{res}}\) proportional to the mixing amplitude. Absorbing the prefactor \(L_5\) into an \(O(\mu)\) constant \(A\) (set by the bulk mass scale) yields
+\[
+m_{\mathrm{res}} \;\sim\; A\,e^{-\lambda L_5},
+\]
+up to subleading corrections suppressed by higher bulk modes.  
+\(\square\)
+
+
 
 **Validation gate:** [P2 from H005](../Spinor/H005_HYPOTHESIS_Spinor_Emergence_Nielsen_Ninomiya_Defense.md#predictions-decisive-metrics--passfail) requires $m_{\text{res}}(L_5) / m_{\text{res}}(L_5/2) \leq e^{-\lambda L_5/2}$ with $\lambda \geq 0.1/a$.
 

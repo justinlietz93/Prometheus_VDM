@@ -1,6 +1,8 @@
-# CF1: Complete Formalism — Quantum Geometric Tensor to Metriplectic Brackets
+# CF01: Complete Formalism — Quantum Geometric Tensor to Metriplectic Brackets
 
 **Date:** 2025-11-05
+
+**Revision:** 2026-02-07 — tightened for CFN readiness
 **Status:** Complete Derivation
 **Commit:** c2d71627c286029ae90267e4051411fa1fb3973e
 **Gap Module:** S1 (from T0_Unification_Program_Spec_v1.md)
@@ -17,6 +19,50 @@ This document provides a complete, rigorous derivation of the mapping from the Q
 2. **Quantum metric** $g_{\mu\nu}$ (symmetric part of QGT) $\to$ **M-bracket** (Riemannian/metric structure)
 3. **Constructive algorithm** for computing QGT from parameter-dependent eigenstates
 4. **Classical limit** $\hbar \to 0$ showing emergence of continuous metriplectic flow
+
+
+## Read me first: claim inventory and decisive falsifiers (tightened)
+
+This section is intentionally front-loaded. A CF document is *not* allowed to be “interesting but vague” by the time it reaches CFN.
+
+### Scope classification
+
+- **Classification:** Axiom-core mapping (A3–A5 compatible), with derived-limit checks.
+- **Domain of validity:** Open set(s) of parameter space where the Berry 2-form is well-defined; Poisson bracket is defined on non-degenerate leaves (or via leafwise restriction if degenerate).
+
+### Primary claims (what this CF is asserting)
+
+- **C1 (QGT split):** The Quantum Geometric Tensor admits a unique split into a symmetric quantum metric `g` and antisymmetric Berry curvature `Ω`.
+- **C2 (Poisson from Ω):** On any region/leaf where `Ω` is non-degenerate, `Ω^{-1}` defines a Poisson tensor and the associated bracket satisfies Jacobi.
+- **C3 (Metric bracket from g):** The quantum metric induces a symmetric, positive-semidefinite metric bracket.
+- **C4 (Metriplectic compatibility):** With suitable identification of conserved functional `I` and entropy `Σ`, the induced `J` and `M` satisfy the metriplectic degeneracy constraints (no cross-driving).
+
+### Assumption ledger (must be *explicit* at CF stage)
+
+- **A1 (Smooth eigenbundle):** `|ψ(R)⟩` depends smoothly on parameters on the domain of interest.
+- **A2 (Gauge choice):** All computed quantities are reduced to gauge-invariant forms (QGT, curvature, metric).
+- **A3 (Leaf restriction):** If `det Ω = 0` on a locus, we either (i) restrict to symplectic leaves or (ii) perform a Dirac-type reduction; we do **not** pretend `Ω^{-1}` exists there.
+
+### Decisive falsifiers / gates (kill switches)
+
+These are binary at CFN time.
+
+- **G1 (QGT gauge invariance):** QGT computed in two different gauges produces identical `g` and `Ω` to tolerance.
+- **G2 (Jacobi residual):** Jacobi identity residual for `J` is ≤ ε_J on the tested manifold patch / discretization.
+- **G3 (PSD metric):** `g` (or its discretized representative) is PSD with smallest eigenvalue ≥ −ε_g.
+- **G4 (Degeneracy checks):** `J·δΣ ≈ 0` and `M·δI ≈ 0` under the chosen `I, Σ` identification (numeric residual ≤ ε_deg).
+- **G5 (Classical limit sanity):** In the appropriate semiclassical limit, the induced `J` reproduces Hamiltonian flow to within ε_cl.
+
+### CFN outputs (what code must emit)
+
+A CFN notebook implementing CF01 must, at minimum, log:
+
+- the discretized `Q_{μν}`, `g_{μν}`, `Ω_{μν}` on the test manifold;
+- Jacobi residual statistics;
+- eigen-spectrum of `g` with PSD check;
+- degeneracy residuals for the chosen `I, Σ`;
+- provenance: seed, grid, step sizes, commit hash.
+
 
 ---
 

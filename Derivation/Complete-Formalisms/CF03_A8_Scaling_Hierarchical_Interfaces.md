@@ -1,6 +1,8 @@
-# CF3: Complete Formalism — A8 Scaling Theorem (Hierarchical Tachyonic Interfaces)
+# CF03: Complete Formalism — A8 Scaling Theorem (Hierarchical Tachyonic Interfaces)
 
 **Date:** 2025-11-05  
+
+**Revision:** 2026-02-07 — tightened for CFN readiness
 **Status:** Complete Derivation  
 **Commit:** c2d71627c286029ae90267e4051411fa1fb3973e
 **Gap Module:** CF3 (from T0_Unification_Program_Spec_v1.md)  
@@ -20,6 +22,42 @@ This document provides a complete, rigorous derivation of the A8 scaling theorem
 5. **Hierarchical necessity** proof from energy minimization principles
 
 This resolves Gap S3 and provides the mathematical foundation for universal hierarchies in VDM.
+
+
+## Read me first: claim inventory and decisive falsifiers (tightened)
+
+### Scope classification
+
+- **Classification:** Axiom-core (A8 hierarchy law formalization) + derived-limit checks (Γ-limit / curvature flow).
+- **What this CF is and is not:** It does **not** assume “hierarchy” as a vibe. It defines exactly what is counted, why energy minimization suppresses combinatorial blow-ups, and what would falsify the log-scaling claim on actual lattice runs.
+
+### Primary claims
+
+- **C1 (Γ-limit bridge):** The VDM scalar-lattice interface energy admits a sharp-interface limit proportional to a perimeter functional (Modica–Mortola-type structure, made explicit here).
+- **C2 (Perimeter reduction):** Under mean-curvature-type relaxation, same-scale excess boundaries annihilate/merge without increasing perimeter cost; this enforces **O(1) active interfaces per resolved scale**.
+- **C3 (Logarithmic hierarchy bound, VDM-E-107):** With ultraviolet cutoff `ℓ₀` (interface width / lattice spacing), the **maximum feasible active hierarchy depth** satisfies  
+  `N(L) = Θ(log(L/ℓ₀))`.  
+  (Precise definition of `N(L)` is given in §3.1; this is *depth*, not “number of dyadic subsegments.”)
+
+### Assumption ledger
+
+- **A1 (Sharp-interface regime):** We work in the regime where interface width `ε` is separated from the macroscopic scale `L` so that Γ-limit reasoning applies (or we treat `ε` explicitly).
+- **A2 (Local relaxation):** The interface dynamics includes a curvature-driven (or perimeter-reducing) component; if not, claim C2 is not applicable and must be replaced by the actual microscopic rule.
+- **A3 (UV cutoff exists):** There is a smallest meaningful length `ℓ₀` below which “new levels” are not physically distinct.
+
+### Decisive falsifiers / gates
+
+- **G1 (Perimeter proxy):** Measured interface energy scales with an interface-area proxy (perimeter in 2D / area in 3D) with residual ≤ ε_fit.
+- **G2 (No combinatorial blow-up):** At fixed `L/ℓ₀`, the number of *active* interfaces per dyadic scale remains O(1); if it scales like `2^k`, C2 fails.
+- **G3 (Depth scaling):** Across runs with varying `L`, inferred depth `N(L)` fits `a log(L/ℓ₀)+b` with `R² ≥ R²_min`, and rejects power-law alternatives by AIC/BIC.
+- **G4 (Scale collapse):** When plotting against the dimensionless ratio `L/ℓ₀`, data collapse across `ε` (interface width) within tolerance.
+
+### CFN outputs
+
+- extraction of interface sets and a scale-by-scale “active boundary census”;
+- fitted `N(L)` vs `log(L/ℓ₀)` and model-comparison scores;
+- artifacts: plots + CSV/JSON with gate outcomes and provenance.
+
 
 ---
 
@@ -168,109 +206,112 @@ where $Φ_0 = √(-m²/λ)$ is the stable vacuum.
 
 ## 3. Logarithmic Scaling of Interface Hierarchy
 
-### 3.1 Energy Scaling Analysis
+### 3.1 What is being counted (depth vs combinatorics)
 
-**Theorem 3.1** (Interface Count Scaling):
+The spec-level claim **VDM‑E‑107** is:
 
-For a domain $Ω$ of size $L$ with $N(L)$ interfaces, the total energy scales as:
+\[
+N(L)\sim \Theta(\log L).
+\]
 
-$$
-E_{\text{total}} \sim N(L) \cdot L^{d-1} \cdot \sigma
-$$
+To remove ambiguity, we fix **what \(N(L)\)** means in this document.
 
-where $σ$ is the interface energy per unit area.
+**Definition 3.1 (Active hierarchy depth \(N(L)\)).**  
+Let \(L\) be a macroscopic domain scale and let \(\ell_0>0\) be the ultraviolet cutoff (lattice spacing / minimal interface width). Define dyadic scales
 
-**Energy Budget Constraint:**
+\[
+\ell_k \;=\; \frac{L}{2^k},\qquad k=0,1,2,\dots
+\]
 
-If total available energy is finite: $E_{\text{total}} < E_{\max}$, then:
+and define an **active interface at scale \(k\)** to be a connected component of the phase boundary whose characteristic radius of curvature (or feature size) is \(O(\ell_k)\) and whose contribution to the perimeter functional is non-negligible at that resolution (formalized via thresholding the perimeter measure at that scale in CFN).
 
-$$
-N(L) < \frac{E_{\max}}{\sigma\,L^{d-1}} = O(L^{1-d})
-$$
+Define the **active depth**:
 
-But this would give $N \to 0$ for large $L$, which is wrong.
+\[
+N(L)\;\equiv\;\#\{k\in\mathbb{N}: \text{there exists at least one active interface at scale }k\}.
+\]
 
-**Resolution: Hierarchical Structure**
+This is a *depth* (how many distinct resolved scales are occupied), not a raw count of partition pieces.
 
-Interfaces are not uniformly distributed but organized hierarchically with:
+**Key point:** A naïve dyadic partition has \(2^k\) subcells at level \(k\), but those are *not* \(2^k\) distinct separating hypersurfaces that survive perimeter minimization. Perimeter energy penalizes boundary length/area, so the energy-optimal (or perimeter-reducing) evolution merges/annihilates redundant same-scale boundaries. The bounded object is therefore the **number of occupied levels**, not the combinatorial number of subcells.
 
-- Scale $k$ interfaces at separation $~ L/2^k$
-- Number of scale-$k$ interfaces $~ 2^k$
-- Total depth $K ~ log₂(L/ℓ₀)$ where $ℓ₀$ is minimal scale
+### 3.2 Logarithmic depth bound from the UV cutoff
 
-### 3.2 Hierarchical Energy Decomposition
+**Theorem 3.2 (Hierarchical depth scaling; VDM‑E‑107, tightened).**  
+Assume:
 
-**Theorem 3.2** (VDM-E-107, Hierarchical Scaling):
+1. (**UV cutoff**) interfaces cannot resolve scales below \(\ell_0\);
+2. (**Active-per-level bound**) the dynamics/relaxation enforces an \(O(1)\) bound on the number of *active* interfaces per scale level (made precise by the perimeter-reduction principle in §3.3).
 
-For a hierarchical interface structure with depth $K$:
+Then the maximum feasible active hierarchy depth satisfies
 
-$$
-N(L) = \sum_{k=1}^{K} N_k \sim \sum_{k=1}^{\log_2(L/\ell_0)} 2^k = 2^{\log_2(L/\ell_0)+1} - 2 \sim L/\ell_0
-$$
+\[
+N(L)\;=\;\Theta\!\Big(\log_2\frac{L}{\ell_0}\Big).
+\]
 
-Well, this gives $N ~ L$, not log $L$. Let me reconsider...
+**Proof (upper bound, unconditional given the definition).**  
+By definition, distinct active levels require distinct scales \(\ell_k\ge \ell_0\). The inequality \(\ell_k=L/2^k\ge \ell_0\) implies
 
-**Correct Hierarchical Argument:**
+\[
+k \;\le\; \log_2\!\frac{L}{\ell_0}.
+\]
 
-At each level $k$, there are $O(1)$ interfaces (not $2^k$), each of size $L/2^k$:
+Hence the number of admissible levels is at most
 
-$$
-N(L) = K \sim \log_2(L/\ell_0) = \Theta(\log L)
-$$
+\[
+N(L)\;\le\;1+\Big\lfloor \log_2\!\frac{L}{\ell_0}\Big\rfloor \;=\;O(\log(L/\ell_0)).
+\]
+\(\square\)
 
-**Proof:**
+**Proof (lower bound as a realizability statement).**  
+Construct a nested, perimeter-reducing hierarchy that occupies each dyadic scale from \(L\) down to \(\ell_0\) with a constant number of interfaces per level (e.g., one separating interface at each level embedded inside the previous). This realizes
 
-1. **Level structure:** Domain size L contains interfaces at scales:
-   - Level $0$: Size $~ L$ (1 interface)
-   - Level $1$: Size ~ L/2$ (few interfaces)
-   - Level $k$: Size $~ L/2^k$ ($O(1)$ interfaces per level)
+\[
+N(L)\;\ge\;c_1 + c_2\Big\lfloor \log_2\!\frac{L}{\ell_0}\Big\rfloor
+\]
 
-2. **Depth bound:** Smallest scale $ℓ₀$ limits hierarchy:
+for constants \(c_1,c_2>0\) independent of \(L\). \(\square\)
 
-   $$
-   K_{\max} = \log_2(L/\ell_0)
-   $$
+> **Interpretation:** CF03 does **not** claim *every* configuration attains the maximum depth; it claims the *feasible* depth grows only logarithmically with scale separation. CFN notebooks test whether VDM dynamics **actually populates** this depth across datasets/initializations (Gate G3).
 
-3. **Energy per level:** Each level contributes $E_k ~ (L/2^k)^(d-1)$:
+### 3.2.1 Energy per level and why “\(2^k\) interfaces” is not stable
 
-   $$
-   E_{\text{total}} = \sum_{k=0}^{K} E_k \sim L^{d-1} \sum_{k=0}^{K} 2^{-k(d-1)} \sim L^{d-1}
-   $$
+In the sharp-interface regime (Modica–Mortola / perimeter functional), the energy is approximately
 
-4. **Interface count:** Number of levels (not total interfaces):
+\[
+E \;\approx\; c_0\,\mathrm{Per}(A),
+\]
 
-   $$
-   N(L) = K = \Theta(\log L)
-   $$
+where \(\mathrm{Per}(A)\) is the perimeter/area of the phase boundary and \(c_0\) is the surface tension constant (derived in §2).
 
----
+If the hierarchy has \(O(1)\) active interfaces at each scale \(k\), with characteristic size \(\ell_k\), then the perimeter contribution at level \(k\) scales like
 
-#### Clarification — Why *depth* $K$, not raw *count* $\sum_k 2^k$
+\[
+\mathrm{Per}_k \;\asymp\; \ell_k^{\,d-1} \;=\; L^{d-1}\,2^{-k(d-1)}.
+\]
 
-The dyadic sketch with $2^k$ pieces at scale $k$ enumerates **subsegments of a partition**, not distinct **separating hypersurfaces** that survive energy minimization. In the perimeter functional, any surplus same-scale boundaries either  
+Summing over levels \(k\le K\) gives
 
-- (i) **annihilate under curvature flow** or  
-- (ii) can be **merged without increasing total perimeter** (see Theorem 3.3), so the energy-optimal configuration uses **$O(1)$ interfaces per scale**. The scaling observable is therefore the **hierarchical depth**
+\[
+\mathrm{Per}(A) \;\sim\; \sum_{k=0}^{K} L^{d-1}2^{-k(d-1)}
+\;\le\; L^{d-1}\sum_{k=0}^{\infty}2^{-k(d-1)}
+\;=\; O(L^{d-1})\qquad(d>1).
+\]
 
-$$
-K_{\max}=\left\lfloor \log_2\!\frac{L}{\ell_0}\right\rfloor,
-$$
+So adding logarithmically many levels **does not** blow up energy in \(d\ge 2\) provided the per-level active interface count stays \(O(1)\).
 
-not the raw combinatorial count of subsegments. Equivalently, with energy per level
+By contrast, if one attempted to maintain \(2^k\) disjoint active interfaces at level \(k\), the perimeter contribution would scale as
 
-$$
-E_k \asymp \left(\frac{L}{2^k}\right)^{d-1},
-$$
+\[
+\mathrm{Per}_k^{\text{(combinatorial)}} \;\asymp\; 2^k\,\ell_k^{\,d-1}
+\;=\; 2^k\Big(\frac{L}{2^k}\Big)^{d-1}
+\;=\; L^{d-1}\,2^{-k(d-2)}.
+\]
 
-the bounded-energy requirement selects at most a constant number of active interfaces per level; counting **levels** yields
+- In \(d=2\), this becomes \(L\,2^{0}=L\), so the sum over \(k\) would scale like \(K\,L\sim L\log(L/\ell_0)\): an explicit logarithmic penalty that perimeter-reduction will try to eliminate.
+- In \(d=3\), \(\mathrm{Per}_k^{\text{(combinatorial)}}\sim L^2\,2^{-k}\), still summable, but it implies **many** redundant interfaces per level—exactly what curvature flow/perimeter reduction removes unless forced by constraints.
 
-$$
-N(L)=K=\Theta(\log L).
-$$
-
-*Takeaway:* $N$ in Theorem 3.2 denotes the **number of active levels** (hierarchical depth), not the total number of dyadic subsegments.
-
----
+This is the mathematical reason the observable in VDM‑E‑107 is the **depth**, not the raw dyadic count.
 
 ### 3.3 Perimeter Reduction Principle
 

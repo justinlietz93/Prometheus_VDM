@@ -1,6 +1,8 @@
-# CF4: Complete Formalism — Telegraph-Fisher Causality (Finite-Speed Transport)
+# CF04: Complete Formalism — Telegraph-Fisher Causality (Finite-Speed Transport)
 
 **Date:** 2025-11-05
+
+**Revision:** 2026-02-07 — tightened for CFN readiness
 **Status:** Complete Derivation
 **Gap Module:** S4 (from T0_Unification_Program_Spec_v1.md)
 **Proposer:** Justin K. Lietz
@@ -19,6 +21,41 @@ This document provides a complete, rigorous derivation of the telegraph equation
 5. **Fisher-information connection** to measurement bounds
 
 This resolves Gap S4 and provides the foundation for causal VDM dynamics.
+
+
+## Read me first: claim inventory and decisive falsifiers (tightened)
+
+### Scope classification
+
+- **Classification:** Axiom-core transport/causality module (A2 locality + finite-speed enforcement) with derived-limit links to kinetic theory and Fisher information.
+- **Domain:** Telegraph-type transport with relaxation time `τ > 0` and diffusivity `D > 0` (possibly field-dependent but treated locally).
+
+### Primary claims
+
+- **C1 (Parabolic paradox is real):** Pure diffusion has instantaneous tails and is acausal as a fundamental micro-law.
+- **C2 (Cattaneo → Telegraph):** Introducing a finite relaxation time yields the telegraph equation and restores finite domain of dependence.
+- **C3 (Speed bound):** The characteristic speed is `c = sqrt(D/τ)` (local in space-time if `D, τ` vary slowly).
+- **C4 (Cone gateability):** “Finite-speed” is not philosophical; it is a measurable cone property with a binary gate.
+
+### Assumption ledger
+
+- **A1:** `τ` is strictly positive on the domain (no singular τ→0 limit except as a controlled diffusive limit).
+- **A2:** Initial data are compactly supported (or sufficiently localized) for support-based cone statements to be meaningful.
+- **A3:** For variable-coefficient systems, coefficients are Lipschitz and vary on scales larger than the support size during the test interval.
+
+### Decisive falsifiers / gates
+
+- **G1 (Cone support):** For compact initial data, solution support does not propagate outside `|x-x0| > c t` up to tolerance (numerically: “outside cone mass” ≤ ε_out).
+- **G2 (Dispersion):** High-k dispersion approaches `ω ≈ ± c k` with residual ≤ ε_disp.
+- **G3 (Entropy/Fisher monotonicity where claimed):** If a Fisher-information monotonicity is asserted for the chosen flow, it must be observed (`ΔI_F ≥ -ε`), else that sub-claim is false.
+- **G4 (Diffusive limit sanity):** As `τ→0` with `D` fixed, telegraph solutions converge to diffusion solutions in the appropriate weak sense (measurable by CFN).
+
+### CFN outputs
+
+- Cone plots (support radius vs time), dispersion fits, out-of-cone mass integrals.
+- Parameter sweep over `D, τ` with scaling collapse against `x/√(Dτ)` and `t/τ`.
+- All gate outcomes with provenance.
+
 
 ---
 
