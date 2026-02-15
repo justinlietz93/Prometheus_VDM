@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-02-15T05:35:37.138486Z",
+  "generated_utc": "2026-02-15T06:21:27.578876Z",
   "items": [
     {
       "path": "Derivation/Dark_Photons/Decoherence_Portals.md",
@@ -27,19 +27,9 @@
       "size": 22649
     },
     {
-      "path": "Derivation/Dark_Photons/PIVOT_TO_DARK_PHOTON.md",
-      "sha256": "0086a8f33c744a18a8aa6610e22b1f591c2e6c73f78606d9cbfab31724ad5c9d",
-      "size": 7335
-    },
-    {
       "path": "Derivation/Dark_Photons/PROPOSAL_Decoherence_Portals.md",
       "sha256": "acfe803ea3ed20adacceebbbfe0d3fa13d2a81593a6cc56e7fc47bb0c3d09320",
       "size": 9495
-    },
-    {
-      "path": "Derivation/Dark_Photons/Portal_Lingo.md",
-      "sha256": "98ec408a1d567221b6dd9c9c6964745bf392f58ba8d2502d07bd5ffeeef542ae",
-      "size": 663
     },
     {
       "path": "Derivation/Dark_Photons/README.md",
@@ -52,19 +42,9 @@
       "size": 2107
     },
     {
-      "path": "Derivation/Dark_Photons/VDM_Targets.md",
-      "sha256": "9d4dc00efd0ed62b53f8c659bec1c43334eb3269e1d24287589fda4a77e84c9e",
-      "size": 3278
-    },
-    {
       "path": "Derivation/Dark_Photons/init_dark_photon_quantum_docs_v2.sh",
       "sha256": "9ea62ecc77cb5c8bfa8be62b1f37d8c4ecd205177d65c9555d87879d0956e970",
       "size": 6428
-    },
-    {
-      "path": "Derivation/Dark_Photons/void_mapping.md",
-      "sha256": "1a6ebbe2104d2b69ade53f3540942a3f0586d4fd01d2807f59d3fcfbc366c46d",
-      "size": 9363
     }
   ],
   "root": "Derivation/Dark_Photons",
