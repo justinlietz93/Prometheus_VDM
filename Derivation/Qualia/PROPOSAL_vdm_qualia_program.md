@@ -1,19 +1,8 @@
----
-
-title: VDM–Qualia Program (MathJax)
-math: true
-mathjax: true
--------------
-
-> **MathJax:** GitHub-compatible. Inline: $...$ ; display: $$...$$.
-
 # VDM–Qualia Program: Coupled‑Field Explanations of Psychedelic Phenomenology (Sober Proxies)
 
 **Classification:** Axiom‑core (A0–A7), metriplectic split (conservative **J** + dissipative **M**).
 **Placement in repo:** `Derivation/Agency-Field/proposals/VDM_Qualia_Program.md`
 **Related files to cross‑link:** `AXIOMS.md`, `EQUATIONS.md`, `VALIDATION_METRICS.md`, `RESULTS_PAPER_STANDARDS.md`.
-
----
 
 ## 1. Abstract
 
