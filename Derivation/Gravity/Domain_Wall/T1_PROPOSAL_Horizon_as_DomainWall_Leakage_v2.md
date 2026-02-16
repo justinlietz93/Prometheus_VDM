@@ -7,7 +7,7 @@ This file is authored to follow the repository template as closely as possible w
 # 1. T1 - Horizon-as-Domain-Wall Leakage Meter (Proto-model) — v2
 
 > **Created Date:** 2026-02-15  
-> **Commit:** UNKNOWN (not available in this sandbox)  
+> **Commit:** 910d211  
 > **Salted hash:** TBD (generated at commit time; store salt + hashes in prereg JSON)  
 > **Proposer contact(s):** (justin@neuroca.ai)  
 > **License:** See LICENSE in repository  
