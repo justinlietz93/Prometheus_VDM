@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-02-15T06:23:21.483634Z",
+  "generated_utc": "2026-02-16T08:24:48.231011Z",
   "items": [
     {
       "path": "Derivation/Gravity/B1938+666_Pinch_Visibility-Plane_Lensing/T4_PROPOSAL_NFW_for_the_B1938+666_Pinch_v1.md",
@@ -7,9 +7,9 @@
       "size": 18858
     },
     {
-      "path": "Derivation/Gravity/Domain_Wall/T1_PROPOSAL_Horizon_as_DomainWall_Leakage_v1.md",
-      "sha256": "449178a5a713f1d0c74791b196f82221d561e078dfd00e6c0e6a8fa226371765",
-      "size": 10758
+      "path": "Derivation/Gravity/Domain_Wall/T1_PROPOSAL_Horizon_as_DomainWall_Leakage_v2.md",
+      "sha256": "019e2e8fa99e3a9b3540e89e3a9c17733120ebb843672baf04689ed3740b1aa5",
+      "size": 15313
     },
     {
       "path": "Derivation/Gravity/Emergent_Gravity_for_Strong-Lensing/T3_PROPOSAL_Emergent_Gravity_for_Strong-Lensing_Substructure_v1.md",
