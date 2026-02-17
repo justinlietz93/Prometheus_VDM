@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-02-16T08:24:48.231011Z",
+  "generated_utc": "2026-02-17T17:27:45.435994Z",
   "items": [
     {
       "path": "Derivation/Metriplectic/Analog_Horizon/T5_PROPOSAL_Analog_Horizon_v1.md",
@@ -200,6 +200,11 @@
       "path": "Derivation/Metriplectic/PROPOSAL_Metriplectic_SymplecticPlusDG.md",
       "sha256": "c4c643359fba53160856df211c860d94d354abd35505f7cf778cb540882c3fb8",
       "size": 7469
+    },
+    {
+      "path": "Derivation/Metriplectic/QGT_Metriplectic_Meter/T2_PROPOSAL_OQ-028_MQRing_QGT_Metriplectic_Meter_v1.md",
+      "sha256": "5be42f4cdf61032f3574f149c37fd5e627bd3e39b5329f62712c939e132c29ea",
+      "size": 18900
     },
     {
       "path": "Derivation/Metriplectic/RESULTS_KG_Noether_Invariants_v1.md",

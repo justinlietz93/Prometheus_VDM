@@ -1,1093 +1,1093 @@
 {
   "files": [
     {
-      "mtime_utc": "2026-02-16T08:24:04.507194Z",
+      "mtime_utc": "2026-02-17T17:27:02.332256Z",
       "path": "README.md",
       "sha256": "e83815158d3d8e23f9c50068d48a10143e5501d618480d40d8e2c74df319c022",
       "size_bytes": 2579
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.507194Z",
+      "mtime_utc": "2026-02-17T17:27:02.332256Z",
       "path": "build_provenance_index.py",
       "sha256": "a7267dc047901800794536b3c89a51acab9eab274ace87f8af5351bb9cd6a41b",
       "size_bytes": 4022
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.507455Z",
+      "mtime_utc": "2026-02-17T17:27:02.332256Z",
       "path": "bundles/decoder_intent_analysis_bundle.zip",
       "sha256": "c02cf4703895c6952d687556db5548ec38b138ab0a2bf4ebce140aaf1176007f",
       "size_bytes": 413660
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.507455Z",
+      "mtime_utc": "2026-02-17T17:27:02.333018Z",
       "path": "bundles/vdm_10k_h5_snapshot_struct_validation_v1.zip",
       "sha256": "c2202b68dc19d88bdba77707e1f94d1eed7543afc385c12750839cd0a622a3e8",
       "size_bytes": 585582
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.512455Z",
+      "mtime_utc": "2026-02-17T17:27:02.335735Z",
       "path": "bundles/vdm_10k_log_scalar_struct_analysis_v1.zip",
       "sha256": "b6004ea0b1409748511a83e1a9a12c6398aef88637119b4e2281def1d9f89d63",
       "size_bytes": 2379637
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.512455Z",
+      "mtime_utc": "2026-02-17T17:27:02.336735Z",
       "path": "bundles/vdm_abstraction_columns_resultsets.zip",
       "sha256": "4d7d8faf4e008fadb7c561868757c771017bea1f684bfae89d735aeca81e9257",
       "size_bytes": 245004
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.514455Z",
+      "mtime_utc": "2026-02-17T17:27:02.338735Z",
       "path": "bundles/vdm_blood_meridian_alignment_v1.zip",
       "sha256": "3bcb13cb325a8c1dbc7e943b8e2d41e5d9c7026034bcdd4749eeea9ab95aa520",
       "size_bytes": 1334746
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.515455Z",
+      "mtime_utc": "2026-02-17T17:27:02.338735Z",
       "path": "bundles/vdm_bus_faithful_consciousness_results 2.zip",
       "sha256": "c3a5e27f2e856062a680234d8c629a4f166cce0757405348b4edb64c10e33b7b",
       "size_bytes": 401207
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.516455Z",
+      "mtime_utc": "2026-02-17T17:27:02.339735Z",
       "path": "bundles/vdm_bus_faithful_consciousness_results.zip",
       "sha256": "c3a5e27f2e856062a680234d8c629a4f166cce0757405348b4edb64c10e33b7b",
       "size_bytes": 401207
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.517455Z",
+      "mtime_utc": "2026-02-17T17:27:02.340735Z",
       "path": "bundles/vdm_bus_sie_adc_analysis_1768218856.zip",
       "sha256": "4f675935c64f512828d06015c34e480e0b3b7648e404aba4100497860ef61b78",
       "size_bytes": 1120018
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.520455Z",
+      "mtime_utc": "2026-02-17T17:27:02.344735Z",
       "path": "bundles/vdm_connectome_geometry_projectionmap_1k_pack_v1.zip",
       "sha256": "d90a5c1c9fd77c920b0fa84acf8eb0f1bd6162d0a23dac906c6148e6d13c96c5",
       "size_bytes": 2657545
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.521455Z",
+      "mtime_utc": "2026-02-17T17:27:02.345736Z",
       "path": "bundles/vdm_crossdomain_patterns_analysis.zip",
       "sha256": "53488f4bcb7f440040d5ace14b85eaa108daca74a6de7eba222d92f9a2f52e93",
       "size_bytes": 331873
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.524455Z",
+      "mtime_utc": "2026-02-17T17:27:02.347735Z",
       "path": "bundles/vdm_deep_transduction_regimes_pca_1k_pack_v2.zip",
       "sha256": "ec0a2a9d8afe4a3b56d8721ae64dd0d3109ed46bab10c74b72bcee6033fe00e4",
       "size_bytes": 2240185
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.527455Z",
+      "mtime_utc": "2026-02-17T17:27:02.351736Z",
       "path": "bundles/vdm_four_proofs_fullrun_from_snapshots_v1.zip",
       "sha256": "2783b29cd49acb96c4d831b2b5d22d2ad013c539d7b55a908e28aab59400c6d6",
       "size_bytes": 2723512
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.544456Z",
+      "mtime_utc": "2026-02-17T17:27:02.368736Z",
       "path": "bundles/vdm_four_proofs_fullrun_pack_v2.zip",
       "sha256": "080cb6fb136389343f21bb4fa1fd75017fd860440686ef62c95831245bc475af",
       "size_bytes": 13431161
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.546456Z",
+      "mtime_utc": "2026-02-17T17:27:02.370736Z",
       "path": "bundles/vdm_four_proofs_offline_analysis_pack_v1.zip",
       "sha256": "324ad52a0e2e72a098a9ee3986ba47e1b3b438db62181daffc52b0f6e735a821",
       "size_bytes": 2091132
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.566456Z",
+      "mtime_utc": "2026-02-17T17:27:02.390736Z",
       "path": "bundles/vdm_high_impact_scalar_analysis_v1.zip",
       "sha256": "b0668cfec96ab1d91c0665db925ec74c253b5480e2bbb6bac81c13299083121d",
       "size_bytes": 16751918
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.567456Z",
+      "mtime_utc": "2026-02-17T17:27:02.391736Z",
       "path": "bundles/vdm_intent_content_composer_audit_20260204_v1.zip",
       "sha256": "f07d4686243d48d983e20932fc6273b729bf8e23d2c81d53d774f877c7056cd9",
       "size_bytes": 194841
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.577456Z",
+      "mtime_utc": "2026-02-17T17:27:02.401736Z",
       "path": "bundles/vdm_leadtime_macrogoal_te_v1.zip",
       "sha256": "a9d0ca9eef72fe16b7dadab84fab6de1d89ee14d978c09f4c7edab638e0f400c",
       "size_bytes": 8573108
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.595457Z",
+      "mtime_utc": "2026-02-17T17:27:02.419737Z",
       "path": "bundles/vdm_macrostate_conditioned_highimpact_v1.zip",
       "sha256": "c7ed9479cf827136bb546a6a20ceda3a210ea6d0b7d7f4ab79abc9d912731f52",
       "size_bytes": 10180460
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.596457Z",
+      "mtime_utc": "2026-02-17T17:27:02.419737Z",
       "path": "bundles/vdm_new_consciousness_results 2.zip",
       "sha256": "222e09690de88c0ada3991364908cd75397516bfca005b8940e76094d0b880a5",
       "size_bytes": 465972
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.597457Z",
+      "mtime_utc": "2026-02-17T17:27:02.420737Z",
       "path": "bundles/vdm_new_consciousness_results.zip",
       "sha256": "10f3146bbdc5e057ce56db9bef7b7790967abe656f85e4d2845acdcc60ee3f7f",
       "size_bytes": 404002
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.597457Z",
+      "mtime_utc": "2026-02-17T17:27:02.421737Z",
       "path": "bundles/vdm_node_correspondence_matching_v1.zip",
       "sha256": "40bf3b093db54fbf61b448b2f9ce2319acd05c3d571fb785f7185b5d2403165f",
       "size_bytes": 410872
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.599457Z",
+      "mtime_utc": "2026-02-17T17:27:02.422737Z",
       "path": "bundles/vdm_predictive_metacontrol_analysis.zip",
       "sha256": "aaa5d45264d5c5e7ead10a5b8a5ff78c8d7d4ba2a1312743063e9ea3bf69ac97",
       "size_bytes": 1323563
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.602457Z",
+      "mtime_utc": "2026-02-17T17:27:02.425737Z",
       "path": "bundles/vdm_reading_attention_analysis.zip",
       "sha256": "dd79ef143e02da6fdf45365c07741a0c181a9471651395709ca7dfe0728e1435",
       "size_bytes": 2287607
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.604457Z",
+      "mtime_utc": "2026-02-17T17:27:02.428737Z",
       "path": "bundles/vdm_reading_attention_analysis_v2.zip",
       "sha256": "edbb3d7669c15477a9df9c93235bf5e7990a8e5abc7ebaab0124a6102a70d06c",
       "size_bytes": 1806342
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.607457Z",
+      "mtime_utc": "2026-02-17T17:27:02.431737Z",
       "path": "bundles/vdm_reading_window10600_11400.zip",
       "sha256": "e1345a0149e0f093fc2befcdb61fc9472a51941f55dc3c2c94bad79230d2593c",
       "size_bytes": 2789936
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.608457Z",
+      "mtime_utc": "2026-02-17T17:27:02.431737Z",
       "path": "bundles/vdm_refresh_horizon_bundle.zip",
       "sha256": "6084fc8ea11447c417f7e7420c4e4c300677e89a4dffcccf555bcb7439228a43",
       "size_bytes": 376247
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.610457Z",
+      "mtime_utc": "2026-02-17T17:27:02.433737Z",
       "path": "bundles/vdm_te_directed_info_analysis 2.zip",
       "sha256": "9beedd7a3af0ca0d8a00ed1dd69419d7aa8e5e96281ee8c8f22ba854e9b98be2",
       "size_bytes": 1438167
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.611457Z",
+      "mtime_utc": "2026-02-17T17:27:02.435737Z",
       "path": "bundles/vdm_te_directed_info_analysis.zip",
       "sha256": "9beedd7a3af0ca0d8a00ed1dd69419d7aa8e5e96281ee8c8f22ba854e9b98be2",
       "size_bytes": 1438167
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.629457Z",
+      "mtime_utc": "2026-02-17T17:27:02.452737Z",
       "path": "bundles/vdm_transition_comm_detector_eta_v1.zip",
       "sha256": "75d9d0941223557db76e55b5a95e16503a0c6d6890cf75c2e169b61a261532c7",
       "size_bytes": 12541661
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.629457Z",
+      "mtime_utc": "2026-02-17T17:27:02.453737Z",
       "path": "consciousness_metrics/README.md",
       "sha256": "767339726a21569b18cc3699a9e853583e0b6bf64eb5261f7f9671f8290e43ba",
       "size_bytes": 652
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.632457Z",
+      "mtime_utc": "2026-02-17T17:27:02.456737Z",
       "path": "consciousness_metrics/bundles/consciousness_effective_connectivity_atlas.zip",
       "sha256": "ffa032eb91d0c8f0f4112f032bf2285c42f0fffd51f3bb17cc99c0cf0e204100",
       "size_bytes": 2119260
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.636596Z",
+      "mtime_utc": "2026-02-17T17:27:02.459737Z",
       "path": "consciousness_metrics/bundles/consciousness_metrics_suite.zip",
       "sha256": "a721fce4ca3b6e584bc10b9fdce303039ea1cf4fd2776b91acac0b4a22a03e36",
       "size_bytes": 2640060
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.638458Z",
+      "mtime_utc": "2026-02-17T17:27:02.461737Z",
       "path": "consciousness_metrics/bundles/consciousness_new_insights_bundle.zip",
       "sha256": "7fb36effe6c780deadbc6f7d7def4463ac089de61400782ea05a509d154f1111",
       "size_bytes": 931214
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.639457Z",
+      "mtime_utc": "2026-02-17T17:27:02.462737Z",
       "path": "consciousness_metrics/bundles/consciousness_phase_lock_315_bundle.zip",
       "sha256": "2db2411bfffdbfec58f3c9623c564f4b86dc7d2b6b31395667592d7988875e36",
       "size_bytes": 1268387
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.643458Z",
+      "mtime_utc": "2026-02-17T17:27:02.466738Z",
       "path": "consciousness_metrics/bundles/consciousness_regime3_speech_vs_315_directionality_bundle.zip",
       "sha256": "2fde8babfb53e0b0ed7bab273b52bf603be0c5a2173ef42dbb440e7807a4de83",
       "size_bytes": 2445337
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.644458Z",
+      "mtime_utc": "2026-02-17T17:27:02.467737Z",
       "path": "consciousness_metrics/bundles/consciousness_regime_atlas_bundle.zip",
       "sha256": "1c4ff1333c042a8643f5323654f8c67e23751423ce75e8b0474b19233d81293d",
       "size_bytes": 1008289
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.645458Z",
+      "mtime_utc": "2026-02-17T17:27:02.468738Z",
       "path": "consciousness_metrics/figures/consciousness_metrics_dashboard_heatmap.png",
       "sha256": "89ebce07ac662d6181da3f1948db7b66064c1782ee34e61bd6deb9d1568a32dc",
       "size_bytes": 103392
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.645458Z",
+      "mtime_utc": "2026-02-17T17:27:02.468738Z",
       "path": "consciousness_metrics/figures/consciousness_metrics_dashboard_heatmap_v2.png",
       "sha256": "d5684a51218e8004eed42e11edc61e5a4578a58197355cd21a51716fa17ab76d",
       "size_bytes": 117202
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.646458Z",
+      "mtime_utc": "2026-02-17T17:27:02.468738Z",
       "path": "consciousness_metrics/tables/consciousness_metrics_dashboard_by_epoch.csv",
       "sha256": "abacaea64ab025f5e26166613c8c4436a9a9802810c164534aecfb474c940b01",
       "size_bytes": 1025
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.646458Z",
+      "mtime_utc": "2026-02-17T17:27:02.470503Z",
       "path": "consciousness_metrics/tables/consciousness_metrics_dashboard_by_epoch_v2.csv",
       "sha256": "c40447e709408087d7766218799e755858c6099956c2078f1c24417b73ffd205",
       "size_bytes": 1077
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.647013Z",
+      "mtime_utc": "2026-02-17T17:27:02.470584Z",
       "path": "figures/crosscorr/crosscorr_pca_speed_vs_has_text.png",
       "sha256": "a55cd037be438366e7be5ad8ff404bcca41fc043488ff8e6acb6fc64c6b183f2",
       "size_bytes": 102676
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.647536Z",
+      "mtime_utc": "2026-02-17T17:27:02.471108Z",
       "path": "figures/crosscorr/crosscorr_pca_speed_vs_log_text_words.png",
       "sha256": "1b5232b3f6ed2a90abba3ad7c5d701b1b1d87df12e6f027e58d3341765fb6045",
       "size_bytes": 102410
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.647536Z",
+      "mtime_utc": "2026-02-17T17:27:02.471108Z",
       "path": "figures/events/event_triggered_has_text.png",
       "sha256": "2b40d3b83db1aa049d0f15941fdcfbb1a074c67f9c09ff090aa2b04069302a93",
       "size_bytes": 184198
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.648771Z",
+      "mtime_utc": "2026-02-17T17:27:02.472343Z",
       "path": "figures/events/event_triggered_log_text_words.png",
       "sha256": "b9fb8c2e0b767a5f50581bb377e5273635a71670007b9e7558b91eb0580264ca",
       "size_bytes": 223767
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.649458Z",
+      "mtime_utc": "2026-02-17T17:27:02.472343Z",
       "path": "figures/granger/granger_fast_causal_density_bar.png",
       "sha256": "761007b53d3cbd7ced8b0f5fd00fe4c227a2978fcab6d1ed10f57a04e547da76",
       "size_bytes": 61380
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.649458Z",
+      "mtime_utc": "2026-02-17T17:27:02.473484Z",
       "path": "figures/granger/granger_fast_sig_heatmap_E1_low_entropy_baseline_1.png",
       "sha256": "bb1898a2808f950e14e6006d657c23cc4d04561ea8f0a7f192144f6e8b4c0213",
       "size_bytes": 75670
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.649458Z",
+      "mtime_utc": "2026-02-17T17:27:02.473484Z",
       "path": "figures/granger/granger_fast_sig_heatmap_E2_high_entropy_plateau.png",
       "sha256": "2f97e686a56c92d77294a845c655277a551962e97d0cdfec614da1c39084e5ab",
       "size_bytes": 74067
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.650458Z",
+      "mtime_utc": "2026-02-17T17:27:02.473738Z",
       "path": "figures/granger/granger_fast_sig_heatmap_E3_low_entropy_baseline_2.png",
       "sha256": "4d80b537e686b5eb66d0de13e830da5705d249b77800b0153b16b848cb9ac873",
       "size_bytes": 76331
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.650458Z",
+      "mtime_utc": "2026-02-17T17:27:02.473738Z",
       "path": "figures/granger/granger_sig_heatmap_E1_low_entropy_baseline_1.png",
       "sha256": "0ff97afb35566b259dce5da4361c86893c62565a34abd50f420aa0c671914b42",
       "size_bytes": 78538
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.651458Z",
+      "mtime_utc": "2026-02-17T17:27:02.474738Z",
       "path": "figures/granger/granger_sig_heatmap_E2_high_entropy_plateau.png",
       "sha256": "c9b401ef5503887e8f19d9a799e94ed85547aa34e80af4934cb259b1399e9212",
       "size_bytes": 78370
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.651458Z",
+      "mtime_utc": "2026-02-17T17:27:02.474738Z",
       "path": "figures/macro_state/macro_state_stationary_E1_low_entropy_baseline_1.png",
       "sha256": "c17c90e1bc4b5e33de7b55fae6e52029f4b0c405d9f5a76e7088d5c929cbcde3",
       "size_bytes": 51503
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.652363Z",
+      "mtime_utc": "2026-02-17T17:27:02.475930Z",
       "path": "figures/macro_state/macro_state_stationary_E2_high_entropy_plateau.png",
       "sha256": "92d4e394247c8bfe28c29b39f8041ecb04b14fb1981184848a2ec381b1b72de3",
       "size_bytes": 49129
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.652363Z",
+      "mtime_utc": "2026-02-17T17:27:02.475930Z",
       "path": "figures/macro_state/macro_state_stationary_E3_low_entropy_baseline_2.png",
       "sha256": "db8e021e6a3a512448cd6d533288718e44447733e6c528df3f1f3c599bda4144",
       "size_bytes": 48396
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.652458Z",
+      "mtime_utc": "2026-02-17T17:27:02.475930Z",
       "path": "figures/mip/mip_integration_timeseries_linear.png",
       "sha256": "c050fdfe2575fbec504c76ed8bbcbb3c328d8e8b8aa3b45c348241091207faba",
       "size_bytes": 50203
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.653227Z",
+      "mtime_utc": "2026-02-17T17:27:02.476793Z",
       "path": "figures/mip/mip_integration_timeseries_log.png",
       "sha256": "196b571a3adc989f2552236d243a5158a9a7cf51599b0db663aa082c122ec4e2",
       "size_bytes": 82610
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.653227Z",
+      "mtime_utc": "2026-02-17T17:27:02.476793Z",
       "path": "figures/mip/mip_singleton_variable_counts.png",
       "sha256": "609a67f5ca07efd1010a8866a5152b955d56c247611f45c0a7561ad67f61c346",
       "size_bytes": 48664
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.653458Z",
+      "mtime_utc": "2026-02-17T17:27:02.476793Z",
       "path": "figures/network/14_jaccard_prev_tick.png",
       "sha256": "152ae5f6caa3f05a89775d43686ac554f7df91a0e8e242901cf863d45159792a",
       "size_bytes": 77355
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.654331Z",
+      "mtime_utc": "2026-02-17T17:27:02.477909Z",
       "path": "figures/network/ccdf_in_degree.png",
       "sha256": "36ae654fdbbddd1b83b49195653d2c9ba6fdf27d2df1c2ace005419751f10f9f",
       "size_bytes": 28606
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.654331Z",
+      "mtime_utc": "2026-02-17T17:27:02.477909Z",
       "path": "figures/network/ccdf_out_degree.png",
       "sha256": "26afe3c22b3a9457e337cff8d1a4458366b4146a68c0700e85e25cf8d933fd86",
       "size_bytes": 29006
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.654331Z",
+      "mtime_utc": "2026-02-17T17:27:02.477909Z",
       "path": "figures/network/in_vs_out_scatter.png",
       "sha256": "0dc28d9be5b4c81176cca510687e82591355886908ad26004d2b23e362106692",
       "size_bytes": 38162
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.654458Z",
+      "mtime_utc": "2026-02-17T17:27:02.477909Z",
       "path": "figures/network/lz_complexity_pca_sign_timeseries.png",
       "sha256": "3d7fc787ca6d4bdaec3b6bd8b594d855371f3a976facb9e28b316e0c8e8b1fd8",
       "size_bytes": 86067
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.655458Z",
+      "mtime_utc": "2026-02-17T17:27:02.477909Z",
       "path": "figures/network/plot_1k_phase_portrait.png",
       "sha256": "22cd3865a902a9864632e41290e777ddf23720b1a8f458334c6ec9fe8ac64915",
       "size_bytes": 131340
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.655458Z",
+      "mtime_utc": "2026-02-17T17:27:02.478738Z",
       "path": "figures/network/pmf_in_degree.png",
       "sha256": "76df61370ac670501f0a13370de087bb5c1e9f7dae29a4cddf144c925de82819",
       "size_bytes": 24489
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.655458Z",
+      "mtime_utc": "2026-02-17T17:27:02.478738Z",
       "path": "figures/network/pmf_out_degree.png",
       "sha256": "7bc762d6ffb74666185efa3fa7feb42bb1cd583c1c7250a389eb866f99644d24",
       "size_bytes": 25311
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.655458Z",
+      "mtime_utc": "2026-02-17T17:27:02.478738Z",
       "path": "figures/network/sie_memory_vs_N.png",
       "sha256": "6364bdd133c42b7cfc8db74e0684e9e0050cf4f6fddfce5ee99b8631b0f9df17",
       "size_bytes": 74210
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.656458Z",
+      "mtime_utc": "2026-02-17T17:27:02.478738Z",
       "path": "figures/pci_like/pci_components_scatter.png",
       "sha256": "021ffa1567c56938ab3a9628e16d3d6e68cc57c1e4d88a120a5b6ad2dd4cbefd",
       "size_bytes": 57707
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.656458Z",
+      "mtime_utc": "2026-02-17T17:27:02.480529Z",
       "path": "figures/pci_like/pci_like_by_epoch_box.png",
       "sha256": "db30d03110cb15d124aeced97e2b14ce3a03572ec84928ec04a36bdf2bfa9efe",
       "size_bytes": 71271
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.656458Z",
+      "mtime_utc": "2026-02-17T17:27:02.480529Z",
       "path": "figures/pci_like/pci_like_events_vs_controls_box.png",
       "sha256": "802df8450c293a1d86c674cbbfce603785ecc769a1dac782e0bd89b54989f167",
       "size_bytes": 40467
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.657458Z",
+      "mtime_utc": "2026-02-17T17:27:02.480738Z",
       "path": "figures/predictive_mi/predictive_MI_vs_lag_PCA_epochs.png",
       "sha256": "a5c21f9bed8455f96a2c97d3af51305da51ead50967e74e4bbfefafc8207ddb4",
       "size_bytes": 172618
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.657458Z",
+      "mtime_utc": "2026-02-17T17:27:02.480738Z",
       "path": "figures/rolling/rolling_autocorr_entropy_lag1.png",
       "sha256": "cbffa3c208eb96f41fa9ffab5fc8a60827609abccc7cb8376c1b9d57d7f1d9c6",
       "size_bytes": 66148
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.658792Z",
+      "mtime_utc": "2026-02-17T17:27:02.482367Z",
       "path": "figures/rolling/rolling_autocorr_pca_speed_lag1.png",
       "sha256": "703982833f2f5ebf103034f667cb6e5247095bcbf5d8e4670d9bf2884cdc7cec",
       "size_bytes": 94969
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.658792Z",
+      "mtime_utc": "2026-02-17T17:27:02.482367Z",
       "path": "figures/rolling/rolling_variance_entropy.png",
       "sha256": "fdd9c812e2274ddf3042609774e4e756bb5980b191eb646b6780799de5051299",
       "size_bytes": 61909
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.659458Z",
+      "mtime_utc": "2026-02-17T17:27:02.482738Z",
       "path": "figures/rolling/rolling_variance_pca_speed.png",
       "sha256": "275ecda7a35d67d2d0faf1d8c7c053cc4305ea03b54b861a9d208c8be362d8aa",
       "size_bytes": 80615
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.659458Z",
+      "mtime_utc": "2026-02-17T17:27:02.482738Z",
       "path": "figures/spectral/spectral_slope_PC1.png",
       "sha256": "ab2ee5a8b6ac486b4e969503f5fdac9bac47857fca32020a660c986d011edad3",
       "size_bytes": 55994
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.660351Z",
+      "mtime_utc": "2026-02-17T17:27:02.483931Z",
       "path": "figures/spectral/spectral_slope_entropy.png",
       "sha256": "1265b4368674f05db760b1576cf9948f5d8384ed62bf0dd82686a9e22a86679f",
       "size_bytes": 57429
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.660458Z",
+      "mtime_utc": "2026-02-17T17:27:02.483931Z",
       "path": "figures/spectral/spectral_slope_firing_var_log.png",
       "sha256": "63c24e8ecf78043767e988d5b112183c4dd09ebb3e2fa3cfc3a6011f69407be0",
       "size_bytes": 58525
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.660458Z",
+      "mtime_utc": "2026-02-17T17:27:02.483931Z",
       "path": "figures/spectral/spectral_slope_fit_scatter.png",
       "sha256": "ed634b202246dff2510b20b704f56f66ac131a0cefc216457ee63147b07d6b7c",
       "size_bytes": 38951
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.660458Z",
+      "mtime_utc": "2026-02-17T17:27:02.483931Z",
       "path": "figures/tc_dtc_o/O_information_timeseries.png",
       "sha256": "cc044b9fbb59eb4f22431397a0d13e37bb307bf7a88abf9ce65650b232561e3d",
       "size_bytes": 83771
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.661668Z",
+      "mtime_utc": "2026-02-17T17:27:02.485255Z",
       "path": "figures/tc_dtc_o/TC_timeseries.png",
       "sha256": "6db2ac7747ce983828bb1e12f80a031fec0bd26761bec718557075348b832d9a",
       "size_bytes": 85305
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.680458Z",
+      "mtime_utc": "2026-02-17T17:27:02.503738Z",
       "path": "interactive/pca/pca_state_trajectory_interactive.html",
       "sha256": "73452e25da46c5fcbe7fb37932fdf492ffca9eb75e1825eaad526ae501cc7dab",
       "size_bytes": 4988652
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.681523Z",
+      "mtime_utc": "2026-02-17T17:27:02.505129Z",
       "path": "metadata/json/degree_tail_numeric.json",
       "sha256": "ad13265d4c1ee597fbe87058d2e45f31d707abccf4c917a7e25b6730af14a530",
       "size_bytes": 1029
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.681523Z",
+      "mtime_utc": "2026-02-17T17:27:02.505129Z",
       "path": "regime_analysis/README.md",
       "sha256": "3d364e547cf3b595051706a0f92c63656650846f96cb44421d464ce509924396",
       "size_bytes": 544
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.681664Z",
+      "mtime_utc": "2026-02-17T17:27:02.505270Z",
       "path": "regime_analysis/bundles/vdm_regime3_say_coherence_results.zip",
       "sha256": "5d80e07693279abb8e68cb7d6ea0d4e1e7e95747d9707dca14a79d4e0c79a353",
       "size_bytes": 169185
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.682458Z",
+      "mtime_utc": "2026-02-17T17:27:02.505738Z",
       "path": "regime_analysis/bundles/vdm_regime3_text_analysis.zip",
       "sha256": "e1f0172e56fbbca5ec963628660ad6b51df5a6e28a3e90fd687317c9d8a1c684",
       "size_bytes": 869988
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.684458Z",
+      "mtime_utc": "2026-02-17T17:27:02.507738Z",
       "path": "regime_analysis/bundles/vdm_regime3_text_analysis_v2.zip",
       "sha256": "70d600c674101b0982aa92979027105cb0cfa7b8128d03a2d799d158b66ad5f5",
       "size_bytes": 1034678
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.685458Z",
+      "mtime_utc": "2026-02-17T17:27:02.508738Z",
       "path": "regime_analysis/bundles/vdm_regime3_text_analysis_v3.zip",
       "sha256": "5678f394ed93334ab63de2ca58b7cd5573ce5565aa7c771b674e607b77b089bb",
       "size_bytes": 724872
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.694458Z",
+      "mtime_utc": "2026-02-17T17:27:02.517738Z",
       "path": "regime_analysis/bundles/vdm_regime_decision_resultsets.zip",
       "sha256": "514f040853627c2f5cf6145b9f457a2171e024cdb2f9613b02270a5699ed881f",
       "size_bytes": 7132329
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.696459Z",
+      "mtime_utc": "2026-02-17T17:27:02.519738Z",
       "path": "regime_analysis/bundles/vdm_text_regime_mapping_results 2.zip",
       "sha256": "47ca0d87adf840e49706404a4f9f37984da68135cf6072ba3e390eb38db6c3f6",
       "size_bytes": 723106
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.697459Z",
+      "mtime_utc": "2026-02-17T17:27:02.520738Z",
       "path": "regime_analysis/bundles/vdm_text_regime_mapping_results.zip",
       "sha256": "47ca0d87adf840e49706404a4f9f37984da68135cf6072ba3e390eb38db6c3f6",
       "size_bytes": 723106
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.700459Z",
+      "mtime_utc": "2026-02-17T17:27:02.522738Z",
       "path": "regime_analysis/tables/regime3_all_ticks.csv",
       "sha256": "c4a89b25cb78e8c7ed7ea936fa83d0a6e6f5965956838a75c66e625c5be3c330",
       "size_bytes": 661840
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.700459Z",
+      "mtime_utc": "2026-02-17T17:27:02.522738Z",
       "path": "regime_analysis/tables/regime_emission_microstructure_on_text_ticks.csv",
       "sha256": "36943a039af806d3301eeb55acb9e4dcbef5dd472efcfd42fe79500e0ad0f959",
       "size_bytes": 788
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.701010Z",
+      "mtime_utc": "2026-02-17T17:27:02.524527Z",
       "path": "tables/crosscorr/crosscorr_pca_speed_vs_has_text.csv",
       "sha256": "d3ee4b995fc09963009de98ebe0b15f8f0ad10913be082de4bfe441f813dbde5",
       "size_bytes": 10280
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.701121Z",
+      "mtime_utc": "2026-02-17T17:27:02.524648Z",
       "path": "tables/crosscorr/crosscorr_pca_speed_vs_log_text_words.csv",
       "sha256": "81f7c1a6dac3886e082f4729a0d6f16cac969f09a4aefda893afcd2661052f3f",
       "size_bytes": 10403
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.701121Z",
+      "mtime_utc": "2026-02-17T17:27:02.524648Z",
       "path": "tables/granger/granger_fast_causal_density_by_epoch.csv",
       "sha256": "ffa9e9b8e1a27ca08a6aa4c1a658558592304f32c43628f7dfe37cd567a2a6bf",
       "size_bytes": 146
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.701261Z",
+      "mtime_utc": "2026-02-17T17:27:02.524788Z",
       "path": "tables/granger/granger_fast_pvals_E1_low_entropy_baseline_1.csv",
       "sha256": "525ad210d40c69d5038d1d49949e89810ba05da1ebf92b110bd833ab15478c68",
       "size_bytes": 791
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.701261Z",
+      "mtime_utc": "2026-02-17T17:27:02.524788Z",
       "path": "tables/granger/granger_fast_pvals_E2_high_entropy_plateau.csv",
       "sha256": "87c21051443ed098b4853ddb8b31613a14b0202d481ff050f4aaf3622670f9e6",
       "size_bytes": 750
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.701261Z",
+      "mtime_utc": "2026-02-17T17:27:02.524788Z",
       "path": "tables/granger/granger_fast_pvals_E3_low_entropy_baseline_2.csv",
       "sha256": "72c474068d8cbb825047a3dcc6be1eed17faa4141d14c4a50cd020388ecad1f1",
       "size_bytes": 761
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.701261Z",
+      "mtime_utc": "2026-02-17T17:27:02.524788Z",
       "path": "tables/granger/granger_fast_sig_E1_low_entropy_baseline_1.csv",
       "sha256": "34ed45aa90e725d806c118f2ad36be187514ed901cf2315982b3805e8bec8579",
       "size_bytes": 199
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.701261Z",
+      "mtime_utc": "2026-02-17T17:27:02.524788Z",
       "path": "tables/granger/granger_fast_sig_E2_high_entropy_plateau.csv",
       "sha256": "1cd1899f94540e97236ed8af8d897bfa31922d17f0e14a289943543751ab8d7d",
       "size_bytes": 199
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.701261Z",
+      "mtime_utc": "2026-02-17T17:27:02.524788Z",
       "path": "tables/granger/granger_fast_sig_E3_low_entropy_baseline_2.csv",
       "sha256": "e84675106f757e5ffbe7a6e88922886e379ac48ee294c28824503147651e570d",
       "size_bytes": 199
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.701261Z",
+      "mtime_utc": "2026-02-17T17:27:02.524788Z",
       "path": "tables/granger/granger_pvals_E1_low_entropy_baseline_1.csv",
       "sha256": "58d8fb5deb57806a71b9352531f08bd078f28c9820bd616351f840a54ca0838a",
       "size_bytes": 761
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.701261Z",
+      "mtime_utc": "2026-02-17T17:27:02.524788Z",
       "path": "tables/granger/granger_pvals_E2_high_entropy_plateau.csv",
       "sha256": "13566a3e0725913cb1dbe7a8913cea63a3023a8230761cd228dcd04097b24929",
       "size_bytes": 723
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.701261Z",
+      "mtime_utc": "2026-02-17T17:27:02.524788Z",
       "path": "tables/granger/granger_sig_E1_low_entropy_baseline_1.csv",
       "sha256": "371238f3abf99d0705f495a18e768e4eaa7b63d93c99f89d91e4170a3026e70c",
       "size_bytes": 199
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.701261Z",
+      "mtime_utc": "2026-02-17T17:27:02.524788Z",
       "path": "tables/granger/granger_sig_E2_high_entropy_plateau.csv",
       "sha256": "1cd1899f94540e97236ed8af8d897bfa31922d17f0e14a289943543751ab8d7d",
       "size_bytes": 199
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.701261Z",
+      "mtime_utc": "2026-02-17T17:27:02.524788Z",
       "path": "tables/lz_complexity/lz_complexity_pca_sign_timeseries.csv",
       "sha256": "8b9519385437bcfd61aef78b7c351b7bb031812dcfd5955dde8c698447279225",
       "size_bytes": 15745
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.701261Z",
+      "mtime_utc": "2026-02-17T17:27:02.524788Z",
       "path": "tables/macro_state/macro_state_markov_entropy_metrics.csv",
       "sha256": "f516560ed5121d16b6dd3a3139f412d3b595cf2feab788501988a7cc93b5fb62",
       "size_bytes": 309
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.701726Z",
+      "mtime_utc": "2026-02-17T17:27:02.525260Z",
       "path": "tables/macro_state/macro_state_stationary_E1_low_entropy_baseline_1.csv",
       "sha256": "c5d8046c180372af6e099713bdaf5d115d205e6967cb170674c471efb9059398",
       "size_bytes": 163
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.701726Z",
+      "mtime_utc": "2026-02-17T17:27:02.525260Z",
       "path": "tables/macro_state/macro_state_stationary_E2_high_entropy_plateau.csv",
       "sha256": "cc234f969803a6006f5c9ae007f16ba63dbcfafb556245acbb6b2e3101b1da1f",
       "size_bytes": 107
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.701726Z",
+      "mtime_utc": "2026-02-17T17:27:02.525260Z",
       "path": "tables/macro_state/macro_state_stationary_E3_low_entropy_baseline_2.csv",
       "sha256": "4c9af723d913caab3748336bb2af6d9b073c742ac155a739e6bf34642317b0f0",
       "size_bytes": 103
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.701726Z",
+      "mtime_utc": "2026-02-17T17:27:02.525260Z",
       "path": "tables/metrics/MI_internal_state_vs_text_metrics.csv",
       "sha256": "a8ba8be239095785958cbf22180daf99a0ffd7dc531c0dffa442f90bd6ec0618",
       "size_bytes": 476
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.701726Z",
+      "mtime_utc": "2026-02-17T17:27:02.525260Z",
       "path": "tables/mip/mip_integration_timeseries.csv",
       "sha256": "a4bec322e83113139225fc4514036730bd59f09c73fa2d82a1e372c3a2ff8d24",
       "size_bytes": 17015
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.702031Z",
+      "mtime_utc": "2026-02-17T17:27:02.525530Z",
       "path": "tables/mip/mip_singleton_counts_by_epoch.csv",
       "sha256": "6c4ef88af6f1290436ae27902800d6beff2de4307340915b58ed8bf9e6429a99",
       "size_bytes": 180
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.702031Z",
+      "mtime_utc": "2026-02-17T17:27:02.525530Z",
       "path": "tables/pci_like/pci_like_by_epoch_summary.csv",
       "sha256": "1f51725a9aec18186b3888689e2b2315df8166ffdd8480c4effe081829153501",
       "size_bytes": 408
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.702132Z",
+      "mtime_utc": "2026-02-17T17:27:02.525647Z",
       "path": "tables/pci_like/pci_like_controls.csv",
       "sha256": "fa3c0e34951908f8e9ccb3d22ce3049a3d353c5a2fdc928d575110df383fd5c4",
       "size_bytes": 2466
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.702132Z",
+      "mtime_utc": "2026-02-17T17:27:02.525647Z",
       "path": "tables/pci_like/pci_like_events.csv",
       "sha256": "7f3ffda9215d15ab2611314cc2ede4e23eca81acdfaf80f852ea8d1a4a4a13c3",
       "size_bytes": 2559
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.702132Z",
+      "mtime_utc": "2026-02-17T17:27:02.525647Z",
       "path": "tables/predictive_mi/predictive_MI_auc_summary.csv",
       "sha256": "21e9a043ae6ec0ff36f49ad1ba89c20156445b5b5050719d121535cddb8b90ea",
       "size_bytes": 279
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.702273Z",
+      "mtime_utc": "2026-02-17T17:27:02.525792Z",
       "path": "tables/predictive_mi/predictive_MI_top_peaks_PCA_by_epoch.csv",
       "sha256": "7307c2d15914a896b23db151a1f3f78ee454e02a6deba0df370d89b1ff2afb0b",
       "size_bytes": 1018
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.702273Z",
+      "mtime_utc": "2026-02-17T17:27:02.525792Z",
       "path": "tables/predictive_mi/predictive_MI_vs_lag_PCA.csv",
       "sha256": "24d3a1dd89e7037126ce6996f84dedc60bf7ac2881214f96e9722fb66ee4074c",
       "size_bytes": 145707
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.702459Z",
+      "mtime_utc": "2026-02-17T17:27:02.525792Z",
       "path": "tables/rolling/rolling_var_autocorr_entropy.csv",
       "sha256": "a0708a300d4c5241d6cba8e348d98a33673fb1a83d6ee5f997a880075e32e50d",
       "size_bytes": 20896
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.702459Z",
+      "mtime_utc": "2026-02-17T17:27:02.526439Z",
       "path": "tables/rolling/rolling_var_autocorr_pca_speed.csv",
       "sha256": "cd43605c3b154f7dd1918373b9c8521bb0d0e3572edfb459993e8def4c0fa890",
       "size_bytes": 20400
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.702459Z",
+      "mtime_utc": "2026-02-17T17:27:02.526439Z",
       "path": "tables/spectral/spectral_exponent_slopes.csv",
       "sha256": "5d41013cb7c0da750a80fba329e0ee5c2239bfe3ca675d74b9e5fd48eb04ef99",
       "size_bytes": 1363
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.702459Z",
+      "mtime_utc": "2026-02-17T17:27:02.526439Z",
       "path": "tables/tc_dtc_o/window_TC_DTC_O.csv",
       "sha256": "c2241c38596c5e4bf12f292dba11b29b4a67ec03822258e91b447227c729076e",
       "size_bytes": 25071
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.703459Z",
+      "mtime_utc": "2026-02-17T17:27:02.526738Z",
       "path": "tables/ticks/text_tick_aggregates.csv",
       "sha256": "0ac4e9c44d38006bcd283fdc24ff226cf43084ef3a10f902816c8a28e63c47b5",
       "size_bytes": 215358
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.747460Z",
+      "mtime_utc": "2026-02-17T17:27:02.570739Z",
       "path": "tables/ticks/tick_table_with_regime_and_change_score.csv",
       "sha256": "55de3ed941ff073d1be94037aa6cb573bd0addc7da1f45b4967045cd4795c463",
       "size_bytes": 10972245
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.803461Z",
+      "mtime_utc": "2026-02-17T17:27:02.622740Z",
       "path": "tables/ticks/unified_tick_table.csv",
       "sha256": "eda74fa2e87e3bde28a2c319d6411886b866b3a649c414d4ec0bb6e717aeb863",
       "size_bytes": 10822255
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.803461Z",
+      "mtime_utc": "2026-02-17T17:27:02.622740Z",
       "path": "vdm_biological_neural_network/README.md",
       "sha256": "6d4bb20ef996334235415b097a4d39a64c86d539c919d4dec74493851032f4c4",
       "size_bytes": 3916
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.804149Z",
+      "mtime_utc": "2026-02-17T17:27:02.624518Z",
       "path": "vdm_biological_neural_network/SHA256SUMS.csv",
       "sha256": "f43248cd6424e501a82b7ba39f93272a911695eedb6bb8e407b44d3e872be7ed",
       "size_bytes": 2118
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.805461Z",
+      "mtime_utc": "2026-02-17T17:27:02.624740Z",
       "path": "vdm_biological_neural_network/figures/fig1a_hub_recursion_jaccard_heatmap.png",
       "sha256": "f9df364f575d3e69ca3f262a61e5f85c1d4f0f29a003ba86ece28b103e2c1f56",
       "size_bytes": 947964
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.806461Z",
+      "mtime_utc": "2026-02-17T17:27:02.626740Z",
       "path": "vdm_biological_neural_network/figures/fig1b_hub_recursion_binary_theta0p2.png",
       "sha256": "f16e6cd46554be9e57a5acb5c5e9325234762ac78be288cfc9543e611f2a37ec",
       "size_bytes": 482789
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.807461Z",
+      "mtime_utc": "2026-02-17T17:27:02.626740Z",
       "path": "vdm_biological_neural_network/figures/fig1c_hub_recursion_vs_lag.png",
       "sha256": "abb935625b85c37e21437564824a1505b4d20a7e39ad0dfb2b3a5318c19374a5",
       "size_bytes": 83783
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.807461Z",
+      "mtime_utc": "2026-02-17T17:27:02.627740Z",
       "path": "vdm_biological_neural_network/figures/fig2_psd_firing_var_mid.png",
       "sha256": "94d95d381bcf5e83b952923e702e3dcb33469e3edc3c2a55ac822b4523aa816d",
       "size_bytes": 82281
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.807461Z",
+      "mtime_utc": "2026-02-17T17:27:02.627740Z",
       "path": "vdm_biological_neural_network/figures/fig2b_avalanche_size_ccdf_mid.png",
       "sha256": "3fa316a1b6effd9dbb198939e9e340b283c8a48adcbea7eda58e3419e7a417dd",
       "size_bytes": 54876
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.808461Z",
+      "mtime_utc": "2026-02-17T17:27:02.628740Z",
       "path": "vdm_biological_neural_network/figures/fig3_free_energy_landscape.png",
       "sha256": "b97f0418d781904be72e15dba611524e0a3665d388adcf19ca55aaa4e9db59b3",
       "size_bytes": 130760
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.809461Z",
+      "mtime_utc": "2026-02-17T17:27:02.629740Z",
       "path": "vdm_biological_neural_network/figures/fig3b_order_params_timeseries.png",
       "sha256": "29b325abe65e03d9a26e76d63dcf6d30711c5edc2d92e53d27546b22ef60fe38",
       "size_bytes": 176700
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.809461Z",
+      "mtime_utc": "2026-02-17T17:27:02.629740Z",
       "path": "vdm_biological_neural_network/figures/fig4_fisher_speed_adc_mass.png",
       "sha256": "e53cee3dec8a8c252aed8fcdfb5d54e10a747e93c15edfaa6a48a74388794fd8",
       "size_bytes": 61261
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.809461Z",
+      "mtime_utc": "2026-02-17T17:27:02.629740Z",
       "path": "vdm_biological_neural_network/figures/fig4b_speed_by_epoch.png",
       "sha256": "aaedcd2338da6c39b4593745dddd503ff0c2042b5f9f67fd1ec75778ce1d1180",
       "size_bytes": 44468
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.810461Z",
+      "mtime_utc": "2026-02-17T17:27:02.629740Z",
       "path": "vdm_biological_neural_network/scripts/run_four_proofs.py",
       "sha256": "512819b3ae2aee2c82b36fc6b5c52bb8e49e5e2708fd5b0062bbdd4819e0f49a",
       "size_bytes": 15758
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.810461Z",
+      "mtime_utc": "2026-02-17T17:27:02.629740Z",
       "path": "vdm_biological_neural_network/tables/avalanche_scaling.csv",
       "sha256": "1ca44e6c7fd1646ec7072b5e82e563ef429aba3d1738ab246a96952016b9446b",
       "size_bytes": 845
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.811040Z",
+      "mtime_utc": "2026-02-17T17:27:02.631430Z",
       "path": "vdm_biological_neural_network/tables/fisher_speed_epoch_summary.csv",
       "sha256": "c5df294d4e9aa8dd187b06d916c93ee55c1ab599ab3a027b19d5773f990db4cb",
       "size_bytes": 427
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.811040Z",
+      "mtime_utc": "2026-02-17T17:27:02.631430Z",
       "path": "vdm_biological_neural_network/tables/free_energy_barrier_summary.json",
       "sha256": "c570c6221e8a6aa3903406f6e9891f9db80ab35273043c1854e8d78facb9ca35",
       "size_bytes": 125
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.811040Z",
+      "mtime_utc": "2026-02-17T17:27:02.631430Z",
       "path": "vdm_biological_neural_network/tables/free_energy_wells.csv",
       "sha256": "61a3291c65849f299c974624e18f8c63901450103f4347cf99c83faa1b669349",
       "size_bytes": 187
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.811040Z",
+      "mtime_utc": "2026-02-17T17:27:02.631430Z",
       "path": "vdm_biological_neural_network/tables/order_params_conditioned_on_input.csv",
       "sha256": "a7a9457016cd70df8991d92e9c92da637c9103ae8108d56b27e3b07afc144ef0",
       "size_bytes": 182
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.811040Z",
+      "mtime_utc": "2026-02-17T17:27:02.631430Z",
       "path": "vdm_biological_neural_network/tables/phase_transition_events.csv",
       "sha256": "8311aeca07265d8247988f3ffed396dd3dc928d7039287a11ed013ccf0299538",
       "size_bytes": 452
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.811040Z",
+      "mtime_utc": "2026-02-17T17:27:02.631430Z",
       "path": "vdm_biological_neural_network/tables/phase_transition_summary.csv",
       "sha256": "e67ea564ed389e896e9226f62bb1b1e5f0ce707ec0f08d917d34a3e05b941dd3",
       "size_bytes": 40
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.811040Z",
+      "mtime_utc": "2026-02-17T17:27:02.631430Z",
       "path": "vdm_biological_neural_network/tables/psd_slopes.csv",
       "sha256": "61538c205e5c63009945da208a2410b28528ea1599857c4936c6db7a47f6b910",
       "size_bytes": 1116
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.811040Z",
+      "mtime_utc": "2026-02-17T17:27:02.631430Z",
       "path": "vdm_biological_neural_network/tables/rqa_metrics_by_threshold.csv",
       "sha256": "bc44f5c15aa8455a6dfedcf23bbf7b20b960d5e6ecc4bb1d27a9bbcad8834677",
       "size_bytes": 574
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.811461Z",
+      "mtime_utc": "2026-02-17T17:27:02.631430Z",
       "path": "vdm_biological_neural_network/tables/snapshot_metrics.csv",
       "sha256": "d9e785a8d2a88cd49bfa3c347b8f2bf6f2165cd37506a97f8fd77b44aafb6639",
       "size_bytes": 150408
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.811461Z",
+      "mtime_utc": "2026-02-17T17:27:02.631430Z",
       "path": "vdm_scale_free_1k_analysis/README.md",
       "sha256": "38e3b7d2678aaa922a3d0c2cb75082baa6837b799a656d8183291da30f88399a",
       "size_bytes": 1512
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.812062Z",
+      "mtime_utc": "2026-02-17T17:27:02.632429Z",
       "path": "vdm_scale_free_1k_analysis/RESULTS_scale_free_heavytail_gini_1k.md",
       "sha256": "d9189a7f44ff9fe3318fdf0da76ece02f7249a57ac123aaad89e7d7715a7a21d",
       "size_bytes": 1501
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.812062Z",
+      "mtime_utc": "2026-02-17T17:27:02.632429Z",
       "path": "vdm_scale_free_1k_analysis/figures/in_degree_ccdf_loglog.png",
       "sha256": "afa3ba0153decf4c79d3795802520605407ac0c4bd54ad9d1cbd34fa43c97daa",
       "size_bytes": 35527
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.812356Z",
+      "mtime_utc": "2026-02-17T17:27:02.632717Z",
       "path": "vdm_scale_free_1k_analysis/figures/in_degree_lorenz.png",
       "sha256": "1a19732f4741f088b6708c3a5af3a174eea3b21d7e9bfbdca5cc137b9f93d627",
       "size_bytes": 68304
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.812461Z",
+      "mtime_utc": "2026-02-17T17:27:02.632717Z",
       "path": "vdm_scale_free_1k_analysis/figures/in_degree_rank_loglog.png",
       "sha256": "357ce60bad434d5bf0cb870746757a017389b1e02b29667ce51a3a1b85c7da54",
       "size_bytes": 37575
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.812461Z",
+      "mtime_utc": "2026-02-17T17:27:02.632717Z",
       "path": "vdm_scale_free_1k_analysis/figures/out_degree_ccdf_loglog.png",
       "sha256": "5f519a5ba60d30cf67e16a6b82635ffff5fcc8a502ebd7b0354daf37827d62df",
       "size_bytes": 36349
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.812461Z",
+      "mtime_utc": "2026-02-17T17:27:02.632740Z",
       "path": "vdm_scale_free_1k_analysis/figures/out_degree_ccdf_with_tail_fit.png",
       "sha256": "bd05356872ef322c614243b0714b6ecd7be1f17e3dbb189a512b6756d87f6c1d",
       "size_bytes": 53924
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.812461Z",
+      "mtime_utc": "2026-02-17T17:27:02.632740Z",
       "path": "vdm_scale_free_1k_analysis/figures/out_degree_lorenz.png",
       "sha256": "a64946b2c95eda04b6da8b223da591a4bcb78f7b349d1ebded6b3c5af2bcfd89",
       "size_bytes": 69029
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.813461Z",
+      "mtime_utc": "2026-02-17T17:27:02.632740Z",
       "path": "vdm_scale_free_1k_analysis/figures/out_degree_rank_loglog.png",
       "sha256": "de4439a312ae772af73b5222ba17d8d467059e3d384dbf771ce7296e5c26fcef",
       "size_bytes": 38393
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.813461Z",
+      "mtime_utc": "2026-02-17T17:27:02.632740Z",
       "path": "vdm_scale_free_1k_analysis/figures/total_degree_ccdf_loglog.png",
       "sha256": "33397e2a2bcf1a0f9a5547fd8b0843d0582d8958a11fb1ef63394d37e6964445",
       "size_bytes": 37120
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.813461Z",
+      "mtime_utc": "2026-02-17T17:27:02.633740Z",
       "path": "vdm_scale_free_1k_analysis/figures/total_degree_lorenz.png",
       "sha256": "91d03244567773be3872772e5bc435e7b3cdb93f43a75d1200d55b66b8e2cb3c",
       "size_bytes": 69505
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.813461Z",
+      "mtime_utc": "2026-02-17T17:27:02.633740Z",
       "path": "vdm_scale_free_1k_analysis/figures/total_degree_rank_loglog.png",
       "sha256": "b43a4ae13010d01e8ad86f5a346a618e21ad1f3a383e652b4d5ba96a0660c16c",
       "size_bytes": 38515
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.813461Z",
+      "mtime_utc": "2026-02-17T17:27:02.633740Z",
       "path": "vdm_scale_free_1k_analysis/metadata/provenance_and_degree_summary.json",
       "sha256": "a239d4ea8b6414d41b546706ef17a0a1f2290872077fdbfd8ffabefa4bbac05d",
       "size_bytes": 1612
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.814461Z",
+      "mtime_utc": "2026-02-17T17:27:02.633740Z",
       "path": "vdm_scale_free_1k_analysis/scripts/generate_heavytail_scale_free_gini_pack_1k.py",
       "sha256": "9c6c07324ae1a435fa7e9876b166dd4a51a77d74640ad294880d541ea91fe36d",
       "size_bytes": 16687
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.815023Z",
+      "mtime_utc": "2026-02-17T17:27:02.635322Z",
       "path": "vdm_scale_free_1k_analysis/scripts/run_scale_free_analysis_1k.py",
       "sha256": "28de4085e51a606e5c06d5cdf9685d7307e0b4d4cbd1cc8751c48b09d78dc71d",
       "size_bytes": 10579
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.815023Z",
+      "mtime_utc": "2026-02-17T17:27:02.635322Z",
       "path": "vdm_scale_free_1k_analysis/tables/connectome_node_degrees_strengths.csv",
       "sha256": "42eec653cc2eb0cdd32f643b40576e751dcca4bb9ad50727d8b593afa074fef7",
       "size_bytes": 86893
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.815553Z",
+      "mtime_utc": "2026-02-17T17:27:02.635867Z",
       "path": "vdm_scale_free_1k_analysis/tables/gini_metrics.csv",
       "sha256": "c63a332f620a78fa6e1e51048dd3d05a245d1e2649e768d9d847bd588fd2f221",
       "size_bytes": 205
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.815553Z",
+      "mtime_utc": "2026-02-17T17:27:02.635867Z",
       "path": "vdm_scale_free_1k_analysis/tables/in_degree_ccdf.csv",
       "sha256": "c86a435546a19f44fc30b657d84c06bb2caa4d2546fda525a63265cc3c739e52",
       "size_bytes": 1008
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.815553Z",
+      "mtime_utc": "2026-02-17T17:27:02.635867Z",
       "path": "vdm_scale_free_1k_analysis/tables/out_degree_ccdf.csv",
       "sha256": "c86a435546a19f44fc30b657d84c06bb2caa4d2546fda525a63265cc3c739e52",
       "size_bytes": 1008
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.815553Z",
+      "mtime_utc": "2026-02-17T17:27:02.635867Z",
       "path": "vdm_scale_free_1k_analysis/tables/tail_fit_detailed_selected.csv",
       "sha256": "ca8bf5d0c1853dee8c233cf84bb5887868138c16ea4c57b7f2d4a850e1b6b142",
       "size_bytes": 1249
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.815553Z",
+      "mtime_utc": "2026-02-17T17:27:02.635867Z",
       "path": "vdm_scale_free_1k_analysis/tables/tail_fit_grid_in_degree.csv",
       "sha256": "71f5c3dad9b97223b1ab7aea428870a6d72e486f9da067ec00047fe7c03db7df",
       "size_bytes": 4699
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.815553Z",
+      "mtime_utc": "2026-02-17T17:27:02.635867Z",
       "path": "vdm_scale_free_1k_analysis/tables/tail_fit_grid_in_strength.csv",
       "sha256": "b4719eeb68ded76a0c69b7a995a3d86481f5e485df258c043bdf8acce2f3de44",
       "size_bytes": 3291
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.815553Z",
+      "mtime_utc": "2026-02-17T17:27:02.635867Z",
       "path": "vdm_scale_free_1k_analysis/tables/tail_fit_grid_out_degree.csv",
       "sha256": "cf734716d4038498ade37f2ef68da0301d0c6eb140e8cbc18a544960919be87f",
       "size_bytes": 4697
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.815553Z",
+      "mtime_utc": "2026-02-17T17:27:02.635867Z",
       "path": "vdm_scale_free_1k_analysis/tables/tail_fit_grid_out_strength.csv",
       "sha256": "b0c5e7154b7446d7c39629d56f28a7009ae741ce3e308cbaf6539f370d047966",
       "size_bytes": 3293
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.815553Z",
+      "mtime_utc": "2026-02-17T17:27:02.635867Z",
       "path": "vdm_scale_free_1k_analysis/tables/tail_fit_grid_total_degree.csv",
       "sha256": "98d32b17782e467dbc45981b706291497becf18f18af95a6ec4d1a35de71b586",
       "size_bytes": 4766
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.815553Z",
+      "mtime_utc": "2026-02-17T17:27:02.635867Z",
       "path": "vdm_scale_free_1k_analysis/tables/tail_fit_grid_total_strength.csv",
       "sha256": "af159e47354ccf3b51b220183768a6c58a2997fc7e6f838a8b4f3cee9b4eb09d",
       "size_bytes": 3300
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.815553Z",
+      "mtime_utc": "2026-02-17T17:27:02.635867Z",
       "path": "vdm_scale_free_1k_analysis/tables/tail_fit_summary_degrees.csv",
       "sha256": "5e0f18a413b9c69b9487acfcda07dc050133ca18bbcab58e716ce2e6a535ddc1",
       "size_bytes": 1058
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.815553Z",
+      "mtime_utc": "2026-02-17T17:27:02.635867Z",
       "path": "vdm_scale_free_1k_analysis/tables/tail_fit_summary_degrees_global_min_ks.csv",
       "sha256": "28f227ce7b287271001817d25420a03120a3dec5d78527ab640672379574ddb9",
       "size_bytes": 271
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.815553Z",
+      "mtime_utc": "2026-02-17T17:27:02.635867Z",
       "path": "vdm_scale_free_1k_analysis/tables/tail_fit_summary_degrees_min_decades_0.80.csv",
       "sha256": "3488dd78e105d5afd787be2efd5588376dc782c581212cda41844f3bcf7c8053",
       "size_bytes": 272
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.815553Z",
+      "mtime_utc": "2026-02-17T17:27:02.635867Z",
       "path": "vdm_scale_free_1k_analysis/tables/tail_fit_summary_degrees_min_tailfrac_0.30.csv",
       "sha256": "3782ba9264f63b8101a4639b73724081c0e1c72dc955c2e4ed79249d8929da48",
       "size_bytes": 272
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.815553Z",
+      "mtime_utc": "2026-02-17T17:27:02.635867Z",
       "path": "vdm_scale_free_1k_analysis/tables/tail_fit_summary_strengths.csv",
       "sha256": "b82e8016da1d160ffb0912279de2fa0efbf122c644e67e8c4c1463cee5474d87",
       "size_bytes": 337
     },
     {
-      "mtime_utc": "2026-02-16T08:24:04.815553Z",
+      "mtime_utc": "2026-02-17T17:27:02.635867Z",
       "path": "vdm_scale_free_1k_analysis/tables/total_degree_ccdf.csv",
       "sha256": "81d687cd64f3a4e36f1c1d2f7d5a69e116bdf41689245ef8c2a753cda7379b46",
       "size_bytes": 2111
     }
   ],
-  "generated_at_utc": "2026-02-16T08:24:50.135767Z",
+  "generated_at_utc": "2026-02-17T17:27:47.109194Z",
   "hash_algorithm": "SHA256",
   "root": "data_analysis",
   "schema_version": "1.0",
