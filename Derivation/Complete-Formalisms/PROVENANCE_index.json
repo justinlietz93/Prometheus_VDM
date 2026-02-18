@@ -1,10 +1,10 @@
 {
-  "generated_utc": "2026-02-17T23:30:47.846930Z",
+  "generated_utc": "2026-02-18T05:50:37.591469Z",
   "items": [
     {
       "path": "Derivation/Complete-Formalisms/CF01_QGT_to_Metriplectic_Brackets.md",
-      "sha256": "a72bde9ed6087f0ae20a7eaa6b6b99cf1f387d599a450e8a9b45b1569ba26ec1",
-      "size": 23356
+      "sha256": "68eea832b9e748510e3fdbda5a8fecf52a623d68e4f831cebc673847c86bf230",
+      "size": 25987
     },
     {
       "path": "Derivation/Complete-Formalisms/CF02_Contact_to_Metriplectic_Evolution.md",
@@ -55,6 +55,61 @@
       "path": "Derivation/Complete-Formalisms/CF11_Dark_Sector_Metriplectic_Complete.md",
       "sha256": "a19d9e49c708dd2e36b71e53d170199ca113252759afa08452b055182e36c925",
       "size": 23976
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/CF_bundles/CF01_QGT_to_Metriplectic_Brackets_Package_2026-02-18.zip",
+      "sha256": "2d21429dd221b231763ab80bbeac8caf35164bcccceeb65705bdea7cb0b858ea",
+      "size": 396901
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/CF_bundles/CF02_Contact_to_Metriplectic_Evolution_Package.zip",
+      "sha256": "e83179cb85cd8b496315dc9ee9d08c311eb40c440a2536632d43cbcd15faa85c",
+      "size": 350847
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/CF_bundles/CF03_A8_Scaling_Hierarchical_Interfaces_Package.zip",
+      "sha256": "268b715dc17e8c2fafa06568974077f4d8390fc1487196e07098e9e876868fd3",
+      "size": 391495
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/CF_bundles/CF04_Telegraph_Fisher_Causality_Package.zip",
+      "sha256": "251ab573bf6a415ac67e4199774dba531f964dcb050108c53cefbb97fd847d57",
+      "size": 392146
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/CF_bundles/CF05_Integrability_Closure_Package.zip",
+      "sha256": "bc4751b50eaaf419eb2e2d60fbf0ecbae0d81a3a25c514e5b0a2a5e2148005be",
+      "size": 351735
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/CF_bundles/CF06_Info_Geom_Fisher_Ruppeiner_Foundations_Package.zip",
+      "sha256": "acc83f3f838277e5bc9b7fbd4cfbfc66cd9995c2a4480ad67012f91e3c9c7d16",
+      "size": 363094
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/CF_bundles/CF07_Measurement_Theory_Decoherence_Born_Rule_Package.zip",
+      "sha256": "b3853befcd7a77f6e69cc172a9480ec0d6702bb74c46b91b397f5da8bc4d01f1",
+      "size": 373086
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/CF_bundles/CF08_Spinor_Emergence_Domain_Wall_Fermions_Package.zip",
+      "sha256": "bf8ff414eb2efb0ac616efd7d606e227c620939e76ca9f716aaa72570ee7fbc9",
+      "size": 379038
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/CF_bundles/CF09_Gauge_Emergence_Berry_Connection_Package.zip",
+      "sha256": "dead2e22b996a0779336104e281cec0438397c51f7cabd523c13dafc8bf0862a",
+      "size": 365427
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/CF_bundles/CF10_Lattice_Fluids_Continuum_and_Regularity_Program_Package.zip",
+      "sha256": "573ebb1e3f636d32486fe37fa17316a91e696ac77110965a5c3c962f4952a334",
+      "size": 374318
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/CF_bundles/CF11_Dark_Sector_Metriplectic_Complete_Package.zip",
+      "sha256": "636d72b57dedf11ba03bc205dab43d35a76dc3dd1c045b920f1c87e5751cf5df",
+      "size": 388524
     },
     {
       "path": "Derivation/Complete-Formalisms/README.md",

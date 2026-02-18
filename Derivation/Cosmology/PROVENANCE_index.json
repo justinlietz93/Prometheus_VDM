@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-02-17T23:30:47.846930Z",
+  "generated_utc": "2026-02-18T05:50:37.591469Z",
   "items": [
     {
       "path": "Derivation/Cosmology/CMB/CMB_proposal_updates.md",
@@ -20,11 +20,6 @@
       "path": "Derivation/Cosmology/CMB/T4_PROPOSAL_CMB_Cold_Spot_VDM_Origin_v1.md",
       "sha256": "78fb9ab3293dd3b1356c730881592f7f7544e2570ae665905569014b2946fca3",
       "size": 16930
-    },
-    {
-      "path": "Derivation/Cosmology/H0ZZ_HYPOTHESIS_A8_Interface_Seeds_BH_Populations_and_GW_Ladder.md",
-      "sha256": "4570c4a4b2dda4343afc6efa36c7f9a1ab541e8ad5753e5130087bf4a1ce44ff",
-      "size": 12862
     },
     {
       "path": "Derivation/Cosmology/PROPOSAL_FRW_Balance_v1.md",
