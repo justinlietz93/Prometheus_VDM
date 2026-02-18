@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-02-17T23:30:47.846930Z",
+  "generated_utc": "2026-02-18T06:26:47.421644Z",
   "items": [
     {
       "path": "Derivation/Quantum/Analog_Quantum/T4_PROPOSAL_Cold_Atom_Causal_Cone_Test_v1.md",
@@ -35,11 +35,6 @@
       "path": "Derivation/Quantum/Quantum_Engine/T4_PROPOSAL_Quantum-Resource-Engine_v1.md",
       "sha256": "96696b712800d38682d593c122f376259a1a30fd1df1d9679602a9e1964ce09a",
       "size": 19692
-    },
-    {
-      "path": "Derivation/Quantum/Quantum_Gradient_Descent/H001_Quantum-Driven_Gradient_Descent.md",
-      "sha256": "a2726ee541090ae3dc47602588a3f675a177fd40ccb5733bc52d74e4460cce90",
-      "size": 2754
     },
     {
       "path": "Derivation/Quantum/T0_PROPOSAL_VDM_J-branch_QFT-Bootstrap_and_Metriplectic-Decoherence_v1.md",
