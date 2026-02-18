@@ -192,6 +192,31 @@ The following ports define hexagonal seams and must be consumed through interfac
 - **ContradictionReporterPort**: emit contradiction artifacts and publish index updates.
 - **CanonResolverPort**: resolve thresholds/constants/equations by canonical anchor IDs.
 
+## 5.1) Existing VDM helper-library integration rules (mandatory)
+
+All production runners MUST use the common helper stack and must not inline these responsibilities:
+
+1. **Instrument certification + meters**
+   - Use dedicated instrument helper modules (`Derivation/code/common/instrument_helpers/*` and certified instrument surfaces).
+2. **Validation gates**
+   - Gate decision logic must live in validation helper modules (`Derivation/code/common/validation_gate_helpers/*`).
+   - Runners import gate helpers; runners do not define production gate formulas inline.
+3. **Artifact/log path policy**
+   - All output routing must use `Derivation/code/common/io_paths.py`.
+4. **Plotting generation**
+   - Plot/figure composition should be helperized via `Derivation/code/common/plotting/*` or domain helper modules, then imported by runners.
+5. **Approval backend**
+   - Approval authority is SQLite-backed (`VDM_APPROVAL_DB`) and enforced via `common.authorization.approval`.
+
+## 5.2) Parameter and test-input authority rule (mandatory)
+
+- Authoritative numerical parameters and test inputs come from prereg/spec artifacts only (`PRE-REGISTRATION*.json`, `specs/*.json`, declared schemas).
+- CLI flags may select a registered spec, but must not silently override preregistered values unless an approved policy exception is explicitly recorded in the run receipt and approval scope.
+- Any extension of parameter surface requires:
+  1) prereg/spec schema update,
+  2) approval update,
+  3) provenance hash-chain update.
+
 ## 6) Workflow Specification (Mandatory Sequence)
 
 | # | Stage | Input | Output | Enforcements |
@@ -221,6 +246,7 @@ The following ports define hexagonal seams and must be consumed through interfac
 
 - Gates must be registered and traceable to canon anchor refs.
 - Inline ad-hoc thresholds outside gate contracts are disallowed in production.
+- Validation gates must be implemented as helper tools/modules and imported by runners.
 
 ## 7.4 Contradiction and quarantine enforcement
 
@@ -232,6 +258,7 @@ The following ports define hexagonal seams and must be consumed through interfac
 - Every stage writes hash-bearing artifacts.
 - ArtifactManifest must include all artifacts and parent hash pointer.
 - Chain break = governance failure.
+- Approval method and SQLite approval DB source must be recorded in run receipts for auditability.
 
 ## 8) Governance and Quality Requirements
 
@@ -246,6 +273,7 @@ The following ports define hexagonal seams and must be consumed through interfac
 
 4. **Schema and contract validation**
    - All artifacts must validate against declared schemas.
+   - Parameters/test inputs must map one-to-one to prereg/spec schemas; undeclared runtime parameters are policy violations.
 
 5. **Canon linkage policy**
    - Code/docs must cite canonical anchors for all equations/thresholds/KPIs.
@@ -272,7 +300,7 @@ The following ports define hexagonal seams and must be consumed through interfac
 ## 9.2 Add a new validator/gate
 
 1. Register gate-id + canon anchors + expected fields.
-2. Implement in `ValidationGatePort` adapter.
+2. Implement in `ValidationGatePort` adapter and dedicated helper module (not runner inline).
 3. Ensure contradiction emission on failure.
 4. Add CI tests verifying schema and registration consistency.
 

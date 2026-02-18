@@ -64,6 +64,28 @@ However, implementation is uneven across domains and not yet fully expressed as 
 - `Derivation/code/tests/*`: preflight and domain test suites.
 - `.github/workflows/*`: CI governance automation.
 
+
+## 2.6 Instrument certification + helper-library integration (explicit inventory)
+
+Observed in current repository:
+
+- Instrument certification scaffolding and policy exist in `Derivation/code/common/certified_instruments/`, domain `APPROVAL*.json`, and proposal/prereg artifacts, but enforcement depth is domain-dependent.
+- Shared helper libraries already define separations:
+  - computation/meters: `Derivation/code/common/instrument_helpers/*`
+  - validation decisions: `Derivation/code/common/validation_gate_helpers/*`
+  - artifact routing: `Derivation/code/common/io_paths.py`
+  - plotting helpers: `Derivation/code/common/plotting/*`
+- Several runners still perform mixed responsibilities inline (compute + gate + artifact generation inside one script) rather than importing each responsibility from dedicated helper modules.
+- Approval runtime enforcement is SQLite-backed (`VDM_APPROVAL_DB`) through `Derivation/code/common/authorization/approval.py`, with CLI administration in `approve_tag.py`.
+
+## 2.7 Parameter authority + test input source of truth (explicit inventory)
+
+Observed policy and behavior:
+
+- Pre-registration/spec manifests are intended to carry run parameters and test inputs (`PRE-REGISTRATION*.json`, `specs/*.json`, schema refs).
+- In practice, many runners still accept CLI flags that can alter numerical parameters directly, which weakens strict prereg authority unless wrapper policy forbids overrides.
+- Current tests include preflight smoke tests and domain tests, but not all pipelines enforce "parameters/test inputs only from prereg/spec" as a hard gate.
+
 ## 3) Gap Analysis vs Target Requirements
 
 ## 3.1 Enforced domain-native clean architecture
@@ -71,11 +93,13 @@ However, implementation is uneven across domains and not yet fully expressed as 
 **Strengths now**
 - Practical separation exists (common helpers vs domain runners).
 - Many gate helpers are pure and side-effect free.
+- Existing helper families already indicate intended separation (instrument helpers, validation-gate helpers, plotting, IO path routing).
 
 **Gaps**
 - No hard architectural boundary checker for presentation/application/domain/infrastructure layer imports.
 - Domain model contracts (ProposalDocument, ApprovalArtifact, PredictionEnvelope, etc.) are implicit JSON conventions, not strongly typed ports/contracts enforced repo-wide.
-- Several scripts are monolithic and mix orchestration, physics, validation, and persistence concerns.
+- Several scripts are monolithic and mix orchestration, physics, validation, artifact generation, and persistence concerns.
+- Rule "validation gates and artifact generation must be separate helper tools imported by runners" is not universally enforced.
 
 ## 3.2 Provenance and hash-chain completeness
 
@@ -93,11 +117,13 @@ However, implementation is uneven across domains and not yet fully expressed as 
 **Strengths now**
 - Approval DB + script-scoped HMAC check are robust.
 - Contradiction artifacts exist in multiple domains.
+- Approval enforcement is SQLite-backed and integrated with runtime policy checks.
 
 **Gaps**
 - Contradiction report schema and publication routing are not standardized across all domains.
 - Approval/prereg requirements still partially optional or bypassable per runner/policy flags.
 - Prediction envelope as a required pre-run artifact is not uniformly explicit.
+- "Parameters and test inputs must come only from prereg/spec" is not yet universally hard-enforced.
 
 ## 3.4 Reference-only canon (anchor-only values/math) in code
 
@@ -142,10 +168,12 @@ Target architecture (SGHFA) for VDM falsification package:
 3. **Standardize pre-run pipeline orchestration**
    - Single orchestration flow: proposal → prereg → approval → prediction envelope → run.
    - Enforce universal use via a shared execution pipeline adapter.
+   - Forbid direct parameter overrides except those explicitly declared in prereg/spec contracts.
 
 4. **Unify validation gate registry**
    - Register every gate with gate-id, canon anchors, schema, and pass criteria.
    - Require runner gate calls through registry-backed interfaces only.
+   - Require gate implementation in helper modules, not inline in runners.
 
 5. **Implement artifact hash manifest + hash-chain**
    - Per-run artifact manifest including SHA-256 for all inputs/outputs.
@@ -154,6 +182,7 @@ Target architecture (SGHFA) for VDM falsification package:
 6. **Normalize contradiction reporting**
    - Single contradiction JSON schema + required publication location/index.
    - Mandatory contradiction artifact on any gate/provenance failure.
+   - Artifact rendering/serialization logic must be helper-driven and imported by runner entrypoints.
 
 7. **Strengthen CI governance**
    - Add architecture import-lint.
