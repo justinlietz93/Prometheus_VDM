@@ -1,6 +1,6 @@
 <h1 align="center">Void Dynamics Model (VDM)</h1>
-<h4 align="center">A two part framework:</h4>
-<h4 align="left">1. A background‑independent, metriplectic field theory unifying matter and forces from the Quantum Geometric Tensor, with an emergent causal cone and an epistemological J→M projection. VDM is built to be attacked. This is science, not philosophy.</h4>
+<h4 align="center">A two part framework built to be attacked:</h4>
+<h4 align="left">1. A background‑independent, metriplectic field theory unifying matter and forces from the Quantum Geometric Tensor, with an emergent causal cone and an epistemological J→M projection.</h4>
 <h4 align="left">2. A real time, zero training, emergent run-time with scale‑free/heavy‑tail sparse neural graphs, locally interacting neuron‑particles (void walkers), Hebbian working memory/online plasticity, sparse activations, and attention‑like state routing driven by physical dynamics.</h4>
 <h6 align="center">Lineage: AMN-->FUM-->VDM</h6>
 
