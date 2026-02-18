@@ -42,6 +42,17 @@ This section is intentionally front-loaded. A CF document is *not* allowed to be
 - **A1 (Smooth eigenbundle):** `|ψ(R)⟩` depends smoothly on parameters on the domain of interest.
 - **A2 (Gauge choice):** All computed quantities are reduced to gauge-invariant forms (QGT, curvature, metric).
 - **A3 (Leaf restriction):** If `det Ω = 0` on a locus, we either (i) restrict to symplectic leaves or (ii) perform a Dirac-type reduction; we do **not** pretend `Ω^{-1}` exists there.
+- **A4 (No hidden boundary anomaly / controlled noncompactness):**  
+  Any step that relies on “dropping boundary terms” (explicitly or implicitly via integration-by-parts, Stokes’ theorem,
+  patching arguments, or taking an infinite-volume / infinite-domain limit) must be justified by either:
+  (i) a demonstrated decay/compactness condition that makes the boundary term negligible at the target tolerance, or
+  (ii) an explicit *boundary/completion contribution* that is carried as part of the physical observable.
+  
+  Motivation: In rigorous duality examples, a naive “holomorphic/invariant kernel” can fail precisely because the
+  relevant configuration space is noncompact; the correct invariant quantity includes nonholomorphic boundary
+  contributions (“completion”) sourced at infinity. This is a *diagnostic pattern*, not an imported theory claim.
+  See Dabholkar–Putrov–Witten (arXiv:2004.14387) for a canonical worked case.
+
 
 ### Decisive falsifiers / gates (kill switches)
 
@@ -52,6 +63,25 @@ These are binary at CFN time.
 - **G3 (PSD metric):** `g` (or its discretized representative) is PSD with smallest eigenvalue ≥ −ε_g.
 - **G4 (Degeneracy checks):** `J·δΣ ≈ 0` and `M·δI ≈ 0` under the chosen `I, Σ` identification (numeric residual ≤ ε_deg).
 - **G5 (Classical limit sanity):** In the appropriate semiclassical limit, the induced `J` reproduces Hamiltonian flow to within ε_cl.
+- **G6 (Boundary/completion anomaly residual):**  
+  If the tested parameter/configuration domain is noncompact or “effectively noncompact” (requires truncation, cutoffs,
+  or patch boundaries), then *any claimed symmetry/duality invariance* of the CF01-derived structures (or downstream
+  observables built from them) must be stable under cutoff/patch refinement.
+
+  Operational check (CFN):
+  1) Introduce a family of truncations/cutoffs (L1 < L2 < L3) or patch refinements.
+  2) Recompute the target invariant(s) or symmetry-residual(s) at each cutoff/refinement.
+  3) FAIL if the residual does not converge (or converges to a nonzero plateau) as L increases / patches refine.
+  4) PASS only if either:
+     (i) convergence occurs without extra terms (true “no boundary anomaly”), or
+     (ii) convergence occurs only after adding an explicit boundary/completion contribution, which is then *required*
+         for that model class going forward.
+
+  Notes:
+  - This gate is intentionally “kill-switch” style: persistent cutoff sensitivity means the formal local construction
+    is insufficient to claim global invariance on that domain.
+  - The completion term is treated as an explicit interface/boundary contribution (VDM-style), not as an ad hoc fudge.
+
 
 ### CFN outputs (what code must emit)
 
@@ -664,6 +694,7 @@ This derivation **resolves Gap S1** by providing:
 2. **Higher Chern numbers:** Classify topological phases via integrated curvature
 3. **Non-Hermitian systems:** QGT for open quantum systems and PT symmetry
 4. **Many-body QGT:** Extend to field theories and quantum many-body systems
+5. **Noncompact domains and “boundary at infinity” anomalies:** The QGT→(J,M) construction is local/leafwise. When global invariance claims rely on noncompact limits or patching, a boundary/completion contribution may be physically required. CFN must enforce G6 (cutoff/patch stability) in such cases.
 
 ### 10.2 Next Steps (T1 Instruments)
 
@@ -687,6 +718,7 @@ This derivation **resolves Gap S1** by providing:
 2. Xiao, Chang & Niu (2010), "Berry phase effects on electronic properties", Rev. Mod. Phys. 82, 1959
 3. Zhang et al. (2019), "Direct measurement of the quantum geometric tensor in a topological Bloch band", Science 10.1126/science.aaz8721
 4. Yu et al. (2023), "Extracting the quantum geometric tensor from dynamical response", Phys. Rev. Research 5, L032003
+5. Dabholkar, A., Putrov, P., Witten, E. “Duality and Mock Modularity.” arXiv:2004.14387.
 
 **VDM Canon:**
 
