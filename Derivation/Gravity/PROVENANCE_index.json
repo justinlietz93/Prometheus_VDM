@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-02-17T23:30:47.846930Z",
+  "generated_utc": "2026-02-18T06:29:17.815322Z",
   "items": [
     {
       "path": "Derivation/Gravity/B1938+666_Pinch_Visibility-Plane_Lensing/T4_PROPOSAL_NFW_for_the_B1938+666_Pinch_v1.md",
@@ -20,11 +20,6 @@
       "path": "Derivation/Gravity/Gravity_Regression/T5_PROPOSAL_Gravity_Regression_v1.md",
       "sha256": "c738ed636472b8af5cc2bf2612780d1420bd388d997aa51e9c410842759e6038",
       "size": 9605
-    },
-    {
-      "path": "Derivation/Gravity/H0YY_HYPOTHESIS_VDM_Horizon_Structure_and_Strong_Field_Gravity.md",
-      "sha256": "a6de7b60d5f1eaa7328ec0db4fdac5c7ce3a2a36450bbbaf4f9b5af74de7b764",
-      "size": 11164
     }
   ],
   "root": "Derivation/Gravity",

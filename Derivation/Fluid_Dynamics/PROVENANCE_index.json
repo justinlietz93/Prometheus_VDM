@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-02-17T23:30:47.846930Z",
+  "generated_utc": "2026-02-18T06:29:17.815322Z",
   "items": [
     {
       "path": "Derivation/Fluid_Dynamics/BENCHMARKS_FLUIDS.md",
@@ -10,11 +10,6 @@
       "path": "Derivation/Fluid_Dynamics/Fluids_Corner_Regularization/T2_PROPOSAL_OQ-021_VDM-Fluids_Corner_Regularization_v1.md",
       "sha256": "7ed9019b6f0c5dde81b0394dc6c3013f370ff0581897164e2935877f21eeec32",
       "size": 11156
-    },
-    {
-      "path": "Derivation/Fluid_Dynamics/Plasma_MHD/H0PP_HYPOTHESIS_Plasma_MHD_from_Scalar_Lattice.md",
-      "sha256": "392d5cff6a4440e199c0339eae1169681a353a96375b204484668d21c42017af",
-      "size": 10909
     },
     {
       "path": "Derivation/Fluid_Dynamics/VDM_Corner_Testbed.ipynb",
