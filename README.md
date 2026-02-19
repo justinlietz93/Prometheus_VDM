@@ -29,7 +29,7 @@
 
 ---
 
-<p align="center"><img width="2048" height="2048" alt="unnamed (1)" src="https://github.com/user-attachments/assets/7d684c53-b9b1-49ac-99c8-6fd4d81a1ea2" /></p>
+<p align="center"><img width="2048" height="2016" alt="vdm_brain" src="https://github.com/user-attachments/assets/8bf1a5bf-8cb3-43a2-9b61-d25c3d9c6edf" /></p>
 
 ---
 
