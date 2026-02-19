@@ -29,7 +29,7 @@
 
 ---
 
-<p align="center"><img width="800" height="800" alt="image" src="https://github.com/user-attachments/assets/7ee95b3a-75a3-48bd-a003-a13c7e5ed845" /></p>
+<p align="center"><img width="2048" height="2048" alt="unnamed (1)" src="https://github.com/user-attachments/assets/7d684c53-b9b1-49ac-99c8-6fd4d81a1ea2" /></p>
 
 ---
 
