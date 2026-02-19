@@ -35,7 +35,7 @@
 
 ### DOIs
 
-- Navigate to the DOIs index to view 14 current [papers](/DOIS.md).
+- Navigate to the DOIs index to view 14 current [papers](/DOIs.md).
 
 ## 🔥News
 
