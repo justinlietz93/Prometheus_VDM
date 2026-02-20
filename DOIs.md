@@ -2,7 +2,9 @@
 
 ***VDM Runtime Results: Four Offline Proofs From A Structurally-Plastic Connectome Run***
 > A self-rewiring network that flips modes when input appears.  
->[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18702788.svg)](https://doi.org/10.5281/zenodo.18702788)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18702788.svg)](https://doi.org/10.5281/zenodo.18702788)
+
+---
 
 ***T4. Counterfactual Echo Gain (CEG): A Metriplectic Assisted-Echo Experiment Proposal in VDM***  
 > A classical echo experiment where every result must pass four gates.  
@@ -11,7 +13,7 @@
 ---
 
 ***T8. Axiom 8 Candidate: The Lietz Infinity Resolution Conjecture***  
-> When a system has to remain stable over large scales, it may be forced to organize into layered, scale-separated structure.
+> When a system has to remain stable over large scales, it may be forced to organize into layered, scale-separated structure.  
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17503343.svg)](https://doi.org/10.5281/zenodo.17503343)
 
 ---
