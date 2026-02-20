@@ -2,7 +2,7 @@
 
 ***VDM Runtime Results: Four Offline Proofs From A Structurally-Plastic Connectome Run***
 > A self-rewiring network that flips modes when input appears.  
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18702788.svg)](https://doi.org/10.5281/zenodo.18702788)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18706821.svg)](https://doi.org/10.5281/zenodo.18706821)
 
 ---
 
