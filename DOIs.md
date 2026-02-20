@@ -57,19 +57,19 @@
 
 **CF06: Information Geometry Foundations — Fisher and Ruppeiner Metrics for VDM M-Limb**
 > Dissipation is not magic; it can follow information geometry.  
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18675786.svg)](https://doi.org/10.5281/zenodo.18675786)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18675861.svg)](https://doi.org/10.5281/zenodo.18675861)
 
 ---
 
 **CF07: Measurement Theory Foundations — Decoherence and Born Rule for VDM**
 > Measurement is where clean theory meets messy reality—so we gate it.  
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18675861.svg)](https://doi.org/10.5281/zenodo.18675861)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18676091.svg)](https://doi.org/10.5281/zenodo.18676091)
 
 ---
 
 **CF08: Complete Formalism — Spinor Emergence via Domain-Wall Fermions in VDM**
 > How do you get one-handed fermions on a lattice, cleanly?  
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18676091.svg)](https://doi.org/10.5281/zenodo.18676091)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18676137.svg)](https://doi.org/10.5281/zenodo.18676137)
 
 ---
 
