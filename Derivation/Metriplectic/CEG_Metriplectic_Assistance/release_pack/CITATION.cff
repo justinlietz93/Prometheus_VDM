@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you use this instrument, please cite it as below."
+title: "Counterfactual Echo Gain (CEG): Metriplectic Assisted-Echo Instrument"
+authors:
+  - family-names: Lietz
+    given-names: Justin K.
+    orcid: "https://orcid.org/0009-0008-9028-1366"
+    affiliation: "Neuroca, Inc."
+version: 1.0.0
+date-released: 2025-11-04
+repository-code: "https://github.com/justinlietz93/Prometheus_VDM"
+keywords:
+  - metriplectic
+  - assisted echo
+  - preregistration
+  - gates
+  - reproducibility
+  - VDM
+license: MIT
+abstract: >
+  CEG (Counterfactual Echo Gain) is a gate-certified instrument that measures
+  whether a model-aware time-reversal (assisted echo) improves recovery error
+  vs a model-blind baseline, under strict physics gates. The metriplectic
+  split combines a conservative J-limb (Hamiltonian/symplectic) with a
+  dissipative M-limb (entropy-producing), composed via Strang splitting. A
+  five-gate certification system (G1–G5) ensures physical validity before the
+  CEG observable is reported.
