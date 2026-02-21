@@ -1,4 +1,15 @@
 # Current Published DOIs
+<!--
+*** ***
+>
+[![DOI](https://zenodo.org/badge/DOI/REPLACEME.svg)](https://doi.org/REPLACEME
+-->
+
+***Dynamic Phase-Space Signatures and Principal-Component Shifts Across Cognitive Regimes in a Zero-Training Runtime***
+> One liner coming soon  
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18723892.svg)](https://doi.org/10.5281/zenodo.18723892)
+
+---
 
 ***VDM Runtime Results: Four Offline Proofs From A Structurally-Plastic Connectome Run***
 > A self-rewiring network that flips modes when input appears.  
