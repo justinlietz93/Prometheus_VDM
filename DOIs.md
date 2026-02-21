@@ -2,12 +2,18 @@
 <!--
 *** ***
 >
-[![DOI](https://zenodo.org/badge/DOI/REPLACEME.svg)](https://doi.org/REPLACEME
+[![DOI](https://zenodo.org/badge/DOI/REPLACEME.svg)](https://doi.org/REPLACEME)
 -->
 
 ***Dynamic Phase-Space Signatures and Principal-Component Shifts Across Cognitive Regimes in a Zero-Training Runtime***
 > One liner coming soon  
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18723892.svg)](https://doi.org/10.5281/zenodo.18723892)
+
+---
+
+***Predictive Feature Architectures for Self-Supervised Say-Events***
+> An empirical readout for when a zero-training cognitive runtime actuates (emits a say-event), independent of the emitted semantic content.  
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18707220.svg)](https://doi.org/10.5281/zenodo.18707220)
 
 ---
 
