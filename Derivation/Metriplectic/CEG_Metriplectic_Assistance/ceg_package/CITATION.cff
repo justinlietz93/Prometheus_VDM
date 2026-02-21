@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use this instrument in your research, please cite it as below."
+authors:
+  - family-names: Lietz
+    given-names: Justin K.
+    orcid: "https://orcid.org/0009-0008-9028-1366"
+    affiliation: "Neuroca, Inc."
+title: "CEG Metriplectic Instrument Package"
+version: "1.0.0"
+date-released: "2025-11-04"
+url: "https://github.com/justinlietz93/Prometheus_VDM"
+repository-code: "https://github.com/justinlietz93/Prometheus_VDM"
+license: "See LICENSE at repository root"
+abstract: >
+  A self-contained instrument for measuring Counterfactual Echo Gain (CEG) —
+  a gate-certified observable that quantifies whether a model-aware time-reversal
+  improves state recovery versus a model-blind baseline in a metriplectic
+  Klein-Gordon + reaction-diffusion system.
+keywords:
+  - metriplectic
+  - counterfactual echo gain
+  - CEG
+  - Strang splitting
+  - Klein-Gordon
+  - reaction-diffusion
+  - time-reversal
+  - agency
+  - VDM

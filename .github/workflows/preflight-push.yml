@@ -28,4 +28,4 @@ jobs:
         env:
           PYTHONPATH: Derivation/code
         run: |
-          pytest -q "Derivation/code/tests/**/test_*preflight*.py" -q || (echo "Preflight tests failed" && exit 1)
+          python -m pytest -q $(find Derivation/code/tests -name "test_*preflight*.py" | sort | tr '\n' ' ') || (echo "Preflight tests failed" && exit 1)
