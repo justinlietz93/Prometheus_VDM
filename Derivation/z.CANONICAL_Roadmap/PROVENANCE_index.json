@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-02-21T14:15:19.413663Z",
+  "generated_utc": "2026-02-21T17:43:38.027451Z",
   "items": [
     {
       "path": "Derivation/z.CANONICAL_Roadmap/00_ROADMAP.md",
@@ -95,6 +95,11 @@
       "path": "Derivation/z.CANONICAL_Roadmap/Current_TODO.md",
       "sha256": "8a8b7c6a162fbed923e0b75495c24bd768fe25a03e29a09de6ade0e268fc7bda",
       "size": 20351
+    },
+    {
+      "path": "Derivation/z.CANONICAL_Roadmap/DIRECTIVE_Runtime_Physics_Migration_v1.md",
+      "sha256": "0a4d43a3e58f5ff3cd77448781b78a4ca044d03ffc8b1c62443c4fce01d3e102",
+      "size": 14062
     },
     {
       "path": "Derivation/z.CANONICAL_Roadmap/README.md",
