@@ -48,6 +48,7 @@ def run_ceg_harness(spec: EchoSpec, *, write_artifacts: bool = True) -> Dict[str
         # Temporarily disable file I/O by monkey-patching the logging helpers.
         # This keeps the harness self-contained without requiring changes to the
         # upstream runner.
+        # behavior: when write_artifacts=False, all artifact writes are suppressed.
         import physics.metriplectic.assisted_echo as _ae_mod
         import common.io_paths as _io_mod
 
@@ -63,7 +64,15 @@ def run_ceg_harness(spec: EchoSpec, *, write_artifacts: bool = True) -> Dict[str
 
             def open(self, *_a, **_kw):
                 import io
-                return io.StringIO()
+
+                class _NullCtx:
+                    def __enter__(self_):
+                        return io.StringIO()
+
+                    def __exit__(self_, *_exc):
+                        return False
+
+                return _NullCtx()
 
             def __str__(self):
                 return "/dev/null"
