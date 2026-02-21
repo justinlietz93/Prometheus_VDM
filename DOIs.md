@@ -5,37 +5,37 @@
 [![DOI](https://zenodo.org/badge/DOI/REPLACEME.svg)](https://doi.org/REPLACEME)
 -->
 
-***Dynamic Phase-Space Signatures and Principal-Component Shifts Across Cognitive Regimes in a Zero-Training Runtime***
+**Dynamic Phase-Space Signatures and Principal-Component Shifts Across Cognitive Regimes in a Zero-Training Runtime**
 > One liner coming soon  
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18723892.svg)](https://doi.org/10.5281/zenodo.18723892)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18723892.svg)](https://doi.org/10.5281/zenodo.18723892)  
 
 ---
 
-***Predictive Feature Architectures for Self-Supervised Say-Events***
+**Predictive Feature Architectures for Self-Supervised Say-Events**
 > An empirical readout for when a zero-training cognitive runtime actuates (emits a say-event), independent of the emitted semantic content.  
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18707220.svg)](https://doi.org/10.5281/zenodo.18707220)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18707220.svg)](https://doi.org/10.5281/zenodo.18707220)  
 
 ---
 
-***VDM Runtime Results: Four Offline Proofs From A Structurally-Plastic Connectome Run***
+**VDM Runtime Results: Four Offline Proofs From A Structurally-Plastic Connectome Run**
 > A self-rewiring network that flips modes when input appears.  
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18706821.svg)](https://doi.org/10.5281/zenodo.18706821)
 
 ---
 
-***T4. Counterfactual Echo Gain (CEG): A Metriplectic Assisted-Echo Experiment Proposal in VDM***  
+**T4. Counterfactual Echo Gain (CEG): A Metriplectic Assisted-Echo Experiment Proposal in VDM**  
 > A classical echo experiment where every result must pass four gates.  
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17567396.svg)](https://doi.org/10.5281/zenodo.17567396)
 
 ---
 
-***T8. Axiom 8 Candidate: The Lietz Infinity Resolution Conjecture***  
+**T8. Axiom 8 Candidate: The Lietz Infinity Resolution Conjecture**  
 > When a system has to remain stable over large scales, it may be forced to organize into layered, scale-separated structure.  
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17503343.svg)](https://doi.org/10.5281/zenodo.17503343)
 
 ---
 
-***A Logarithmic First Integral for the Logistic On Site Law in Void Dynamics***  
+**A Logarithmic First Integral for the Logistic On Site Law in Void Dynamics**  
 > Isolates a simple, exact invariant for a common growth law (the logistic on-site update).
 > Provides a “known-good” baseline for reaction–diffusion simulations, built specifically to prevent subtle bugs from masquerading as discoveries.  
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17220869.svg)](https://doi.org/10.5281/zenodo.17220869)
