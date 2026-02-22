@@ -24,7 +24,6 @@ from .io.utd import UTD
 from .core import text_utils
 from .core.metrics import StreamingZEMA
 from .core.visualizer import Visualizer
-from .core.void_dynamics_adapter import get_domain_modulation
 from .core.fum_sie import SelfImprovementEngine
 from .core.bus import AnnounceBus
 from .core.adc import ADC
@@ -50,7 +49,7 @@ except Exception:
     ControlServer = None
 class Nexus:
     def __init__(self, run_dir: str, N:int=1000, k:int=12, hz:int=10,
-                 domain:str='biology_consciousness', use_time_dynamics:bool=True,
+                 domain:str='biology_consciousness',
                  viz_every:int=10, log_every:int=1, checkpoint_every:int=0, seed:int=0,
                  sparse_mode:bool=False, threshold:float=0.15, lambda_omega:float=0.1,
                  candidates:int=64, walkers:int=256, hops:int=3, status_interval:int=1,
@@ -69,7 +68,6 @@ class Nexus:
         self.hz = hz
         self.dt = 1.0 / max(1, hz)
         self.domain = domain
-        self.use_time_dynamics = use_time_dynamics
         self.viz_every = viz_every
         self.log_every = log_every
         self.checkpoint_every = checkpoint_every
@@ -123,50 +121,26 @@ class Nexus:
         self._ng2 = {}  # bigram: w1 -> {w2: count}
         self._ng3 = {}  # trigram: (w1,w2) -> {w3: count}
 
-        # Sparse-first backend policy (void-faithful, no scans):
-        # Runtime uses SparseConnectome by default. Dense is validation-only via FORCE_DENSE=1.
-        use_dense = str(os.getenv("FORCE_DENSE", "0")).strip().lower() in ("1", "true", "yes", "on", "y", "t")
+        # Sparse-only backend policy (directive v7): runtime always uses sparse connectome.
+        from vdm_rt.core.sparse_connectome import Connectome as _Conn
 
-        # Keep 'sparse_mode' arg for compatibility but ignore it; log once.
-        if sparse_mode:
-            try:
-                self.logger.info("deprecated_arg_sparse_mode_ignored", extra={"extra": {"arg": bool(sparse_mode)}})
-            except Exception:
-                pass
-
-        # Select implementation with dynamic import to avoid accidental dense usage
+        # Instantiate connectome
         try:
-            if use_dense: # TODO REMOVE DENSE SCANS
-                from vdm_rt.core.connectome import Connectome as _Conn  # validation-only
-            else:
-                from vdm_rt.core.sparse_connectome import SparseConnectome as _Conn
-        except Exception:
-            # Fallback to sparse on any import failure
-            from vdm_rt.core.sparse_connectome import SparseConnectome as _Conn
-
-        # Instantiate connectome (both backends accept the same constructor args here)
-        try: # TODO REMOVE DENSE SCANS
             self.connectome = _Conn(
                 N=self.N, k=self.k, seed=self.seed,
                 threshold=threshold, lambda_omega=lambda_omega,
                 candidates=candidates, traversal_walkers=walkers, traversal_hops=hops,
-                bundle_size=bundle_size, prune_factor=prune_factor
+                bundle_size=bundle_size, prune_factor=prune_factor,
             )
-            if use_dense:
-                try:
-                    self.logger.info("backend_dense_forced", extra={"extra": {"reason": "FORCE_DENSE"}})
-                except Exception:
-                    pass
         except Exception:
-            # Ensure we have a working sparse connectome if constructor failed
-            from vdm_rt.core.sparse_connectome import SparseConnectome as _SConn
+            from vdm_rt.core.sparse_connectome import Connectome as _SConn
             self.connectome = _SConn(
                 N=self.N, k=self.k, seed=self.seed,
                 threshold=threshold, lambda_omega=lambda_omega,
                 candidates=candidates, traversal_walkers=walkers, traversal_hops=hops,
-                bundle_size=bundle_size, prune_factor=prune_factor
+                bundle_size=bundle_size, prune_factor=prune_factor,
             )
-        # Load engram if provided (after backend selection)
+# Load engram if provided (after backend selection)
         # Defer engram loading until after ADC is initialized to avoid spurious errors/logs.
         # The actual load (with logging) happens below after ADC is constructed.
         self.vis = Visualizer(run_dir=self.run_dir)
@@ -257,7 +231,6 @@ class Nexus:
                 pass
         except Exception:
             self.start_step = 0
-        self.dom_mod = float(get_domain_modulation(self.domain))
         self.history = []
         # Emitter context (read-only snapshot for why providers)
         self._emit_step = 0
@@ -353,7 +326,7 @@ class Nexus:
     
     def run(self, duration_s:int=None):
         self.ute.start()
-        self.logger.info("nexus_started", extra={"extra": {"N": self.N, "k": self.k, "hz": self.hz, "domain": self.domain, "dom_mod": self.dom_mod}})
+        self.logger.info("nexus_started", extra={"extra": {"N": self.N, "k": self.k, "hz": self.hz, "domain": self.domain}})
         try:
             self.logger.info("checkpoint_config", extra={"extra": {"every": int(getattr(self, "checkpoint_every", 0)), "keep": int(getattr(self, "checkpoint_keep", 0)), "format": str(getattr(self, "checkpoint_format", ""))}})
         except Exception:

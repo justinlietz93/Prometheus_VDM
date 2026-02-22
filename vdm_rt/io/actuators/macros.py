@@ -8,7 +8,7 @@ See LICENSE file for full terms.
 
 
 from __future__ import annotations
-import json, os, threading, time
+import json, os, threading
 from typing import Any, Dict, Iterable, Optional
 from vdm_rt.io.logging.rolling_jsonl import RollingJsonlWriter
 try:
@@ -37,7 +37,7 @@ class MacroEmitter:
         self.path = path or ""
         self.lock = threading.Lock()
         # why_provider: callable returning a dict with context (t, phase, etc.)
-        self.why_provider = why_provider or (lambda: {"t": int(time.time() * 1000), "phase": 0})
+        self.why_provider = why_provider or (lambda: {"tick": 0, "phase": 0})
         # ensure directory exists
         os.makedirs(os.path.dirname(os.path.abspath(self.path)), exist_ok=True)
         # Prefer zip-spooled writer (bounded disk pressure); fallback to rolling JSONL

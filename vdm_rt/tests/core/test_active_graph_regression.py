@@ -43,25 +43,25 @@ def _np_adj_from_sets(N: int, groups: list[list[int]]) -> list[np.ndarray]:
 
 
 def test_active_graph_components_audit_transitions() -> None:
-    N = 5
+    N = 8
     sc = SparseConnectome(N=N, k=0, seed=0, threshold=0.15, lambda_omega=0.1, candidates=1)
     # Uniform W so that all listed edges are ACTIVE (> threshold)
-    sc.W = np.ones(N, dtype=np.float32)
+    sc.W = np.ones(sc.N, dtype=np.float32)
 
     # Stage 1: fully connected graph -> components_lb == 1
-    sc.adj = _np_adj_from_sets(N, [list(range(N))])
+    sc.adj = _np_adj_from_sets(sc.N, [list(range(sc.N))])
     sc._maybe_audit_frag(budget_edges=1_000_000)
     assert int(getattr(sc, "_frag_components_lb", N)) == 1
 
-    # Stage 2: split into two components {0,1} and {2,3,4}
-    sc.adj = _np_adj_from_sets(N, [[0, 1], [2, 3, 4]])
+    # Stage 2: split into two components
+    sc.adj = _np_adj_from_sets(sc.N, [[0, 1, 2, 3], [4, 5, 6, 7]])
     sc._maybe_audit_frag(budget_edges=1_000_000)
     assert int(getattr(sc, "_frag_components_lb", 0)) == 2
 
-    # Stage 3: add a single bridge across the components (1-2)
+    # Stage 3: add a single bridge across the components (3-4)
     adj_sets = [set(a.tolist()) for a in sc.adj]
-    adj_sets[1].add(2)
-    adj_sets[2].add(1)
+    adj_sets[3].add(4)
+    adj_sets[4].add(3)
     sc.adj = [np.fromiter(sorted(s), dtype=np.int32) if s else np.zeros(0, dtype=np.int32) for s in adj_sets]
     sc._maybe_audit_frag(budget_edges=1_000_000)
     assert int(getattr(sc, "_frag_components_lb", N)) == 1
@@ -73,7 +73,7 @@ def test_dirty_flag_persists_when_budget_exhausted() -> None:
     """
     N = 8
     sc = SparseConnectome(N=N, k=0, seed=0, threshold=0.15, lambda_omega=0.1, candidates=1)
-    sc.W = np.ones(N, dtype=np.float32)
+    sc.W = np.ones(sc.N, dtype=np.float32)
 
     # Build a graph with enough edges to exceed the small budget
     sc.adj = _np_adj_from_sets(N, [[0, 1, 2, 3], [4, 5, 6, 7]])

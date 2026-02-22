@@ -133,7 +133,6 @@ def test_core_files_exist_expected_brain_modules():
     root = _project_root()
     core_dir = root / "vdm_rt" / "core"
     expected = [
-        "connectome.py",
         "sparse_connectome.py",
         "adc.py",
         "metrics.py",

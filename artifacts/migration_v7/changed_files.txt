@@ -1,0 +1,11 @@
+ M artifacts/migration_v7/changed_files.txt
+ M artifacts/migration_v7/compileall.txt
+ M artifacts/migration_v7/pytest.txt
+ M artifacts/migration_v7/smoke_run.txt
+ D vdm_rt/core/connectome.py
+ M vdm_rt/core/sparse_connectome.py
+ M vdm_rt/core/tests/test_conservation_flux.py
+ M vdm_rt/nexus.py
+ M vdm_rt/tests/core/test_active_graph_regression.py
+ M vdm_rt/tests/core/test_core_boundary_guards.py
+ M vdm_rt/tests/guards/test_no_dense_connectome.py

@@ -62,7 +62,6 @@ def main():
 
     nx = Nexus(run_dir=run_dir,
                N=args.neurons, k=args.k, hz=args.hz, domain=args.domain,
-               use_time_dynamics=args.use_time_dynamics,
                viz_every=args.viz_every, log_every=args.log_every,
                checkpoint_every=args.checkpoint_every, seed=args.seed,
                sparse_mode=(args.sparse_mode if args.sparse_mode is not None else (args.neurons >= 20000)),

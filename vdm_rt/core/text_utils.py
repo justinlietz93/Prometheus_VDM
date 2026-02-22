@@ -6,7 +6,8 @@ research while ensuring commercial applications are aligned with the project's e
 See LICENSE file for full terms.
 """
 
-import re, random, time
+import hashlib
+import re, random
 from collections import Counter
 
 # Minimal stopword list; purely for compact summaries at the I/O boundary.
@@ -69,7 +70,11 @@ def generate_emergent_sentence(lexicon: dict, ng2: dict, ng3: dict, seed=None, s
     if not items:
         return ""
     
-    rnd = random.Random(seed if seed is not None else int(time.time() * 1000))
+    if seed is None:
+        seed_material = repr(sorted((str(k), int(v)) for k, v in lexicon.items()))
+        seed_material += "|" + repr(sorted(seed_tokens or []))
+        seed = int(hashlib.sha256(seed_material.encode("utf-8")).hexdigest()[:16], 16)
+    rnd = random.Random(int(seed))
     
     # 2. Weighted start token draw from the candidate pool
     weights = [max(1, int(cnt)) for _, cnt in items]

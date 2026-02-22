@@ -384,14 +384,13 @@ def run_loop(nx: Any, t0: float, step: int, duration_s: Optional[int] = None) ->
 
             # 2) SIE drive + update connectome
             # use wall-clock seconds since start as t
-            t = time.time() - t0
+            t_wall = time.time() - t0  # wall clock for diagnostics only
             _t1 = _pc()
 
             # IDF novelty is composer/telemetry-only; keep dynamics neutral per safe pattern
-            idf_scale = 1.0
-
+            
             # Compute step and scan-based metrics (parity-preserving)
-            m, drive = _compute_step_and_metrics(nx, t, step, idf_scale=idf_scale)
+            m, drive = _compute_step_and_metrics(nx, step)
 
             # Optional: Online learner (RE-VGSP) and structural actuator (GDSP) - default OFF
             try:
