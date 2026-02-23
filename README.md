@@ -6,6 +6,11 @@
 
 ---
 
+<img width="1337" height="423" alt="Screenshot 2026-02-22 185955" src="https://github.com/user-attachments/assets/008221a4-cc34-4d61-bd0b-2f8943d588e3" />
+
+<img width="1119" height="360" alt="newplot (3)" src="https://github.com/user-attachments/assets/3d64d18d-a359-4481-9a55-94b12e6673f8" />
+
+
 ***Current Status:*** Active development.
 
 > **Author:** Justin K. Lietz  
@@ -26,10 +31,6 @@
 <h6>Patent pending on specific AI technology - See license file for full terms</h6>
 
 > [![Static Badge](https://img.shields.io/badge/Academic%2FCommercial%20Dual-License?label=LICENSE&color=%23fff200&link=https%3A%2F%2Fgithub.com%2FNeuroca-Inc%2FPrometheus_Void-Dynamics_Model%2Fblob%2Fmain%2FLICENSE.md)](/LICENSE.md)  
-
----
-
-<p align="center"><img width="2048" height="2016" alt="vdm_brain" src="https://github.com/user-attachments/assets/8bf1a5bf-8cb3-43a2-9b61-d25c3d9c6edf" /></p>
 
 ---
 
