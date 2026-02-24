@@ -6,6 +6,8 @@
 
 ---
 
+### Emergent Phase-Phase-Locked Multi-Periodicity
+
 <img width="1337" height="423" alt="Screenshot 2026-02-22 185955" src="https://github.com/user-attachments/assets/008221a4-cc34-4d61-bd0b-2f8943d588e3" />
 
 <img width="1119" height="360" alt="newplot (3)" src="https://github.com/user-attachments/assets/3d64d18d-a359-4481-9a55-94b12e6673f8" />
