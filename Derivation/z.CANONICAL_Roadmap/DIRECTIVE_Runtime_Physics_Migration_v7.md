@@ -306,11 +306,11 @@ def bond_weighted_laplacian(
     """
     Bond-weighted discrete Laplacian: (L_ψ φ)_i = Σ_{j ∈ adj(i)} ψ_ij · (φ_j − φ_i)
 
-    On the cubic spatial lattice (§0.5), this is the standard finite-difference
-    stencil weighted by bond strength.
+    Defined on the connectome graph topology. No spatial embedding assumed.
+    Works on any adjacency structure — cubic, scale-free, or self-modifying.
 
     Source: CF11 §2.3, CF03 §1.1.
-    Complexity: O(N·k).
+    Complexity: O(N·k̄) where k̄ is mean degree.
     """
     N = phi.shape[0]
     out = np.zeros(N, dtype=np.float64)
@@ -433,22 +433,17 @@ self.phi_prev = self.W.copy()
 # --- Debt (no ceiling — self-limits via exp(β·debt) asymptotic freeze) ---
 self.debt = np.zeros(self.N, dtype=np.float64)
 
-# --- Spatial positions (immutable, cubic lattice) ---
-side = round(self.N ** (1/3))
-assert side ** 3 == self.N, f"N={self.N} is not a perfect cube"
-self._side = side
-self.pos = np.zeros((self.N, 3), dtype=np.float32)
-for i in range(self.N):
-    iz = i // (side * side)
-    iy = (i // side) % side
-    ix = i % side
-    self.pos[i] = (ix, iy, iz)
+# --- Causal horizon (per-node, in graph hops, accumulated while active) ---
+self.h_causal = np.zeros(self.N, dtype=np.int32)
 
-# --- Causal radius (per-node, accumulated while active) ---
-self.r_causal = np.zeros(self.N, dtype=np.float32)
-
-# --- Initial adjacency: 6 face-adjacent neighbors on cubic lattice ---
-self._build_cubic_adjacency()
+# --- Initial adjacency: from existing runtime graph initialization ---
+# Uses k_init (constructor parameter) to build k-regular random graph
+# or preferential attachment. This is an initial condition, not a
+# lattice constraint. The topology will self-modify via bond dynamics.
+# NOTE: self.adj must already be populated by the existing runtime
+# initialization code (e.g., _build_initial_graph, or loaded from
+# checkpoint). This directive does not change graph initialization —
+# it changes graph EVOLUTION (bond field replaces global rebuild).
 
 # --- Bond field state (parallel to adj, initial bonds fully formed) ---
 self.psi_curr: list[np.ndarray] = [
@@ -463,26 +458,21 @@ self.psi_prev: list[np.ndarray] = [
 self._tick = 0
 ```
 
-### 4.2 `_build_cubic_adjacency()` — New method
+### 4.2 Graph initialization — No change from existing runtime
 
-```python
-def _build_cubic_adjacency(self):
-    """Build 6-connected face-adjacent cubic lattice. No periodic boundary."""
-    side = self._side
-    self.adj = [np.zeros(0, dtype=np.int32) for _ in range(self.N)]
-    for i in range(self.N):
-        iz = i // (side * side)
-        iy = (i // side) % side
-        ix = i % side
-        nbrs = []
-        if ix > 0:        nbrs.append(i - 1)
-        if ix < side - 1: nbrs.append(i + 1)
-        if iy > 0:        nbrs.append(i - side)
-        if iy < side - 1: nbrs.append(i + side)
-        if iz > 0:        nbrs.append(i - side * side)
-        if iz < side - 1: nbrs.append(i + side * side)
-        self.adj[i] = np.array(sorted(nbrs), dtype=np.int32)
-```
+The existing runtime's graph initialization (k-regular random, preferential attachment,
+or checkpoint load) is RETAINED. The migration does not change how the initial graph
+is built — it changes how the graph EVOLVES after initialization.
+
+The `_build_cubic_adjacency()` method from v7 is **deleted**. It must not exist in the
+migrated codebase. If a cubic lattice is desired for controlled experiments, it can be
+loaded as a checkpoint, not hardcoded as the only initialization path.
+
+**Required invariant after initialization:**
+- `self.adj` is a list of N numpy int32 arrays (variable length per node).
+- `self.psi_curr[i].shape == self.adj[i].shape` for all i.
+- `self.psi_prev[i].shape == self.adj[i].shape` for all i.
+- All initial bonds have ψ = 1.0 (fully formed).
 
 ### 4.3 `step()` — New signature
 
@@ -557,7 +547,9 @@ def step(self, tick: int):
     # --- Step 4: Edge death (ψ < η_bond floor) ---
     self._remove_dead_edges()
 
-    # --- Step 5: Edge birth (causal cone + co-activity) ---
+    # --- Step 5: Edge birth (graph-distance causal cone + co-activity) ---
+    # Candidate edges drawn from walker trails or h_causal BFS.
+    # See §0.1 and §0.5 for proposal constraints.
     self._propose_new_edges(phi_dot_abs)
 
     # --- Step 6: Update node field history ---
@@ -569,10 +561,14 @@ def step(self, tick: int):
     # --- Step 7: Debt (no ceiling — self-limits via exp) ---
     self.debt = (1.0 - self.beta) * self.debt + np.abs(dphi).astype(np.float64)
 
-    # --- Step 8: Causal radius (only for active nodes) ---
+    # --- Step 8: Causal horizon in hops (only for active nodes) ---
     c_eff = np.sqrt(self.D / tau_eff).astype(np.float32)
     active = phi_dot_abs > self.kT
-    self.r_causal[active] += c_eff[active]
+    # Accumulate fractional hops, convert to integer horizon
+    if not hasattr(self, '_h_causal_frac'):
+        self._h_causal_frac = np.zeros(self.N, dtype=np.float32)
+    self._h_causal_frac[active] += c_eff[active]
+    self.h_causal = self._h_causal_frac.astype(np.int32)
 
     # --- Step 9: External stimulation decay ---
     try:
@@ -620,71 +616,72 @@ def _remove_dead_edges(self):
 ```python
 def _propose_new_edges(self, phi_dot_abs: np.ndarray):
     """
-    Propose new edges based on causal cone and co-activity.
-    Source: CF04 §4.2 (causal cone), CF06 §4.1 (co-activity).
+    Propose new edges between co-active nodes within each other's causal
+    horizon, measured in graph hops along existing edges.
+
+    There is no spatial embedding. There is no Euclidean distance check.
+    Candidates are discovered by BFS expansion on the current graph topology.
+
+    When the walker/gauge transport sector is implemented, this BFS will be
+    replaced by walker trail lookup (O(N_active · w) instead of O(N_active · k̄^h)).
+
+    Source: CF04 §4.2 (causal cone), CF06 §4.1 (co-activity nucleation).
+    Nucleation at ψ = 0.0: CF07 §4.1 (no artificial seeding).
 
     SCALING RULE: This method MUST NOT scan all nodes (no `for j in range(self.N)`).
-    Candidates must be enumerated locally from the cubic lattice coordinates inside the
-    causal radius r_causal(i).
+    Candidates are enumerated by local BFS expansion, bounded by h_causal.
     """
     kT = self.kT
-    side = self._side
-    side2 = side * side
 
     for i in range(self.N):
         if phi_dot_abs[i] <= kT:
             continue
 
-        r = float(self.r_causal[i])
-        if r < 1.5:
+        h = int(self.h_causal[i])
+        if h < 2:
             continue
 
-        R = int(min(r, side // 2))
-        if R < 2:
-            continue
-
+        # --- BFS expansion to depth h from node i ---
         existing = set(self.adj[i].tolist())
-        ix, iy, iz = map(int, self.pos[i])
+        existing.add(i)
+        visited = {i}
+        frontier = set(self.adj[i].tolist())
+        candidates = set()
 
-        # Enumerate lattice sites in the local cube [-R, R]^3, then filter by Euclidean radius.
-        for dz in range(-R, R + 1):
-            z = iz + dz
-            if z < 0 or z >= side:
+        for depth in range(1, h):
+            next_frontier = set()
+            for node in frontier:
+                for j in self.adj[node]:
+                    j_int = int(j)
+                    if j_int not in visited:
+                        next_frontier.add(j_int)
+                visited.update(frontier)
+            frontier = next_frontier
+            if not frontier:
+                break
+            # Nodes at depth >= 2 are candidates (depth 1 = already adjacent)
+            if depth >= 1:
+                candidates.update(frontier)
+
+        # --- Filter and nucleate ---
+        for j in candidates:
+            if j in existing:
                 continue
-            for dy in range(-R, R + 1):
-                y = iy + dy
-                if y < 0 or y >= side:
-                    continue
-                for dx in range(-R, R + 1):
-                    x = ix + dx
-                    if x < 0 or x >= side:
-                        continue
+            if phi_dot_abs[j] <= kT:
+                continue
+            if phi_dot_abs[i] * phi_dot_abs[j] <= kT:
+                continue
 
-                    # skip self
-                    if dx == 0 and dy == 0 and dz == 0:
-                        continue
+            # Nucleate strictly at ψ = 0.0 (CF07: no artificial seeding)
+            self.adj[i] = np.append(self.adj[i], np.int32(j))
+            self.psi_curr[i] = np.append(self.psi_curr[i], np.float32(0.0))
+            self.psi_prev[i] = np.append(self.psi_prev[i], np.float32(0.0))
 
-                    # Euclidean filter (causal cone)
-                    dist = float(np.sqrt(dx * dx + dy * dy + dz * dz))
-                    if dist > r or dist < 1.5:
-                        continue
+            self.adj[j] = np.append(self.adj[j], np.int32(i))
+            self.psi_curr[j] = np.append(self.psi_curr[j], np.float32(0.0))
+            self.psi_prev[j] = np.append(self.psi_prev[j], np.float32(0.0))
 
-                    j = x + y * side + z * side2
-                    if j in existing:
-                        continue
-                    if phi_dot_abs[j] <= kT:
-                        continue
-
-                    # Nucleate strictly at psi = 0.0 (no PSI_SEED)
-                    self.adj[i] = np.append(self.adj[i], np.int32(j))
-                    self.psi_curr[i] = np.append(self.psi_curr[i], np.float32(0.0))
-                    self.psi_prev[i] = np.append(self.psi_prev[i], np.float32(0.0))
-
-                    self.adj[j] = np.append(self.adj[j], np.int32(i))
-                    self.psi_curr[j] = np.append(self.psi_curr[j], np.float32(0.0))
-                    self.psi_prev[j] = np.append(self.psi_prev[j], np.float32(0.0))
-
-                    existing.add(j)
+            existing.add(j)
 ```
 
 ### 4.7 `_compute_physics_reward()` — New method (replaces SIE v2)
@@ -1036,21 +1033,28 @@ After migration, `grep -rn` for each of these in `vdm_rt/` must return ZERO hits
 - [ ] `_compute_eligibility` as a method definition
 - [ ] `eligibility` as a stored array (field velocity `|φ̇|` computed inline is allowed)
 - [ ] `last_activation_tick` as a stored array
+- [ ] `pos` as a stored state array (no spatial embedding exists)
+- [ ] `self.pos` in any file under `vdm_rt/core/`
+- [ ] `self._side` or `side` as a grid dimension attribute
+- [ ] `_build_cubic_adjacency` as a method definition
+- [ ] `||pos[i]` or `np.linalg.norm(self.pos` (Euclidean distance on node positions)
+- [ ] `r_causal` as a float Euclidean radius (replaced by `h_causal` integer hops)
+- [ ] `side * side` or `side2` as cubic index arithmetic
 
 ---
 
-## 12. Validation Gates (run 50,000 ticks, N=216 (6³), k_init=6)
+## 12. Validation Gates (run 50,000 ticks, N=1000, k_init=12)
 
 All must pass or the migration is rejected:
 
 1. **No NaN:** `np.any(np.isnan(phi_curr))` is never True at any tick.
 2. **Field bounded:** `phi_curr ∈ [0.0, 1.0]` every tick.
 3. **Bimodal distribution:** At tick 50000, histogram of `phi_curr` has two peaks: `count(φ < 0.2) > 0.2·N` AND `count(φ > 0.8) > 0.2·N`.
-4. **Causal propagation:** Inject stimulus at node i at tick T. Measure first activation tick at node j (graph distance d). Delay ≥ `d / c` where `c = √(γ/τ)`. Test 10 random pairs with d ∈ [3, 10].
+4. **Causal propagation:** Inject stimulus at node i at tick T. Measure first activation tick at node j (graph distance d hops). Delay ≥ `d / c` where `c = √(D/τ)` in hops per tick. Test 10 random pairs with graph distance d ∈ [3, 10].
 5. **Energy non-increase:** Compute H every 100 ticks. Over any 1000-tick window, H must not increase by more than 5% of its starting value.
 6. **Gini coefficient:** At tick 50000, Gini of `phi_curr` ≥ 0.45.
 7. **Bond persistence:** Mean bond lifetime (ticks a bond persists with ψ > 0.5 before dropping below the bond noise floor $\sqrt{2 \cdot \varepsilon_{topo} \cdot kT}$) > 500 ticks. The telegraph inertia τ_bond = τ/ε_topo = 200 provides this naturally.
-8. **Bond locality:** No bond is ever created between nodes with `||pos[i] − pos[j]|| > max(r_causal[i], r_causal[j])`.
+8. **Bond locality:** No bond is ever created between nodes with `graph_distance(i, j) > max(h_causal[i], h_causal[j])`.
 9. **Eliminated proxies:** grep check (Section 11) passes with zero hits.
 10. **Bond field non-trivial:** At tick 50000, `count(ψ > 0.5) > 0.5 · total_edges` AND `count(ψ < 0.1) > 0`.
 11. **Per-tick cost:** Mean wall-clock time per tick ≤ 3x the time for a single `klein_gordon_rhs()` call (bond update overhead is bounded).
@@ -1082,7 +1086,7 @@ Each step must pass `python -m pytest` before proceeding. If existing tests refe
 | `TOPO_THRESHOLD = 0.01` (eligibility gate) | Bond energy vs kT (thermal activation) | CF06 §4.3: fluctuation-dissipation gives natural threshold |
 | `TOPO_PATIENCE = 100` (debounce counter) | Telegraph inertia τ_bond (bonds resist sudden change) | CF04 §2.1: relaxation time = memory of previous state |
 | `tau_e = 250` (eligibility trace) | `|φ̇|` = field velocity (no separate trace) | CF11 §2.3: velocity is a state variable of the telegraph eq |
-| `R_NUCLEATION = 4.0` (fixed spatial cutoff) | Causal cone r_causal(i) grows from dynamics | CF04 §4.2: finite propagation speed → causal cone structure |
+| `R_NUCLEATION = 4.0` (fixed spatial cutoff) | Causal horizon h_causal(i) grows from dynamics in graph hops | CF04 §4.2: finite propagation speed → causal cone on graph topology |
 | `debt_max = 10.0` (ceiling clamp) | Self-limiting via exp(β·debt) asymptotic freeze | CF03 §7.2: throttling is exponential, not clamped |
 | `dt_physics_us = 6324555` (pre-computed integer) | `√(τ/D)` computed symbolically at I/O boundary | CF04 §7.1: dimensional analysis, not magic numbers |
 | **`PSI_DEATH = 1e-6`** (arbitrary float threshold) | Dynamic thermal noise floor **$\eta_{bond} = \sqrt{2 \cdot \varepsilon_{topo} \cdot kT}$** | **CF07 §4.1 & §4.2**: Epistemic projection; classical reality is bounded by finite resolution limits. |
