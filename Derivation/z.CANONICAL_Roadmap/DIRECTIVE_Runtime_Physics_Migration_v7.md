@@ -1,9 +1,9 @@
-# Runtime Physics Migration Directive v6
+# Runtime Physics Migration Directive v7
 
-**Author:** Justin K. Lietz
-**Date:** 2026-02-21
-**Status:** DRAFT — supersedes v3
-**Scope:** Complete migration from proxy heuristics to physics-derived runtime.
+**Author:** Justin K. Lietz  
+**Date:** 2026-02-21  
+**Status:** DRAFT — supersedes v6  
+**Scope:** Complete migration from proxy heuristics to physics-derived runtime.  
 
 **Rule:** No lookup tables. No artificial toggles. No wall-clock timestamps in the physics path. No hardcoded timescales, thresholds, patience counters, or spatial cutoffs. Every parameter is either a material constant of the lattice (τ, λ, D, kT, β, ε_topo) or emerges from the dynamics of those constants. Every instruction in this document is literal. If it says "delete," delete it. If it says "replace," replace every instance. If a function signature is specified, that is the exact signature. Codex must not invent parameters, add toggles, or introduce fallback paths.
 
