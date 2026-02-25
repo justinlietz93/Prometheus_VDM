@@ -5,11 +5,11 @@
 
 ---
 
-**Author:** Justin K. Lietz, Neuroca, Inc.
-**Date of Declaration:** February 25, 2026
-**Repository:** https://github.com/justinlietz93/Prometheus_VDM
-**License:** Neuroca Proprietary Dual License v2.1
-**Contact:** justin@neuroca.ai
+**Author:** Justin K. Lietz, Neuroca, Inc.  
+**Date of Declaration:** February 25, 2026  
+**Repository:** https://github.com/justinlietz93/Prometheus_VDM  
+**License:** Neuroca Proprietary Dual License v2.1  
+**Contact:** justin@neuroca.ai  
 
 ---
 
