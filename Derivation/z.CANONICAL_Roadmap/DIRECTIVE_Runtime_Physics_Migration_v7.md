@@ -194,25 +194,23 @@ T_tick = a · N · k
 
 Linear in N for fixed k. k does not grow with N (cubic lattice: k = 6 regardless of N).
 
-### 0.5 Spatial Lattice and Physical Embedding
+### 0.5 Topology and Manifold Structure
 
-Every node occupies a fixed site on a 3D cubic grid with spacing a = 1.
+The discrete manifold is the connectome graph itself. Nodes have no fixed spatial embedding. There is no coordinate grid. The adjacency structure IS the geometry.
+
+**Initial connectivity:** k-regular random graph or preferential attachment, matching the existing runtime initialization parameter `k`. The initial degree distribution and graph structure are initial conditions, analogous to the initial field configuration φ(t=0).
+
+**Edge proposal constraint:** Candidate edges require graph distance (hop count) between nodes i and j ≤ `h_causal(i)`, where `h_causal` accumulates from local dynamics:
 
 ```
-side = round(N^(1/3))
-iz = i // (side * side)
-iy = (i // side) % side
-ix = i % side
-pos[i] = (ix, iy, iz)
+h_causal[i] += 1  each tick while |φ̇_i| > kT
 ```
 
-N MUST be a perfect cube. If the caller requests a non-cube N, round to the nearest perfect cube.
+This replaces the Euclidean `r_causal`. Co-activity condition `|φ̇_i|·|φ̇_j| > kT` is unchanged.
 
-Initial adjacency connects each node to its 6 face-adjacent neighbors (±x, ±y, ±z). Boundary nodes have fewer than 6 neighbors (no periodic wrapping).
+**N is unconstrained.** Any positive integer. No cube requirement.
 
-Node positions are immutable. `pos[i]` is written once at initialization, never modified.
-
-The spatial constraint on edge nucleation is the causal cone `r_causal(i)` (§0.1), not a fixed radius.
+**No pos array.** Node positions are not defined, not stored, not used in physics. If a spatial embedding is needed for visualization, it is computed from the graph spectrum (Fiedler layout) at render time, not stored as state.
 
 ---
 
