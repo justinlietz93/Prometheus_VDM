@@ -35,7 +35,7 @@ Where:
 - `τ_eff(i) = τ · exp(β · debt_i)` — debt-throttled relaxation time (per-node).
 - `dt = 1.0` — one tick = one physics timestep (dimensionless).
 - `D` — diffusion coefficient (= γ, since lattice spacing a = 1).
-- `(L_ψ φ)_i = Σ_{j ∈ adj(i)} ψ_ij · (φ_j − φ_i)` — bond-weighted graph Laplacian. This is the finite-difference discretization of `∇²φ` on the spatial lattice defined in §0.5, weighted by bond strength. A fully formed bond (ψ=1) contributes full coupling. A dissolving bond (ψ→0) contributes decreasing coupling. This replaces the binary adjacency of v3.
+- `(L_ψ φ)_i = Σ_{j ∈ adj(i)} ψ_ij · (φ_j − φ_i)` — bond-weighted graph Laplacian on the connectome topology. A fully formed bond (ψ=1) contributes full coupling. A dissolving bond (ψ→0) contributes decreasing coupling. This replaces the binary adjacency of v3. The Laplacian is defined on whatever adjacency structure the graph currently has — it does not require or assume a spatial embedding.
 - `V(φ) = λ · φ²(1 − φ)²` — Ginzburg-Landau double-well on [0, 1].
 - `V'(φ) = 2λ · φ(1 − φ)(1 − 2φ)` — potential derivative.
 - `η_i = √(2 · D · kT) · ξ_i` — fluctuation-dissipation noise, ξ ~ N(0,1).
@@ -95,13 +95,17 @@ rhs_bond(i,j) = −∂U_bond/∂ψ_ij + η_bond_ij
 
 #### Candidate edge proposal (replaces TOPO_PERIOD + 2-hop scan)
 
-New edges can only be proposed between nodes within each other's causal cone:
+New edges can only be proposed between nodes within each other's causal cone, measured in graph distance (hops):
 
 ```
-r_causal(i) accumulates: r_causal[i] += c_eff(i) · dt  each tick while |φ̇_i| > kT
+h_causal[i] += floor(c_eff(i))  each tick while |φ̇_i| > kT
 ```
 
-where `c_eff(i) = √(D / τ_eff(i))` is the local propagation speed. Candidate edges require `||pos[i] − pos[j]||₂ ≤ r_causal[i]` AND `|φ̇_i| · |φ̇_j| > kT` AND (i,j) not already in adjacency.
+where `c_eff(i) = √(D / τ_eff(i))` is the local propagation speed in hops per tick. Candidate edges require `graph_distance(i, j) ≤ h_causal[i]` AND `|φ̇_i| · |φ̇_j| > kT` AND (i,j) not already in adjacency.
+
+There is no spatial embedding. The causal cone is defined on the graph topology itself. Graph distance is hop count along existing edges.
+
+**Walker-assisted proposal (preferred implementation):** Rather than computing graph distance via BFS (which is O(k̄^h) per active node), candidate edges are drawn from the walker trail map. Nodes that walkers from node i have recently visited are natural bond candidates — they are within the causal cone by construction, since the walker traversed the path. This reduces proposal cost from O(N_active · k̄^h) to O(N_active · w) where w is the mean walker trail length per node.
 
 ### 0.2 Constants — Material Properties Only
 
@@ -117,7 +121,7 @@ where `c_eff(i) = √(D / τ_eff(i))` is the local propagation speed. Candidate 
 
 ### 0.3 Eliminated Constants (must not appear anywhere after migration)
 
-`F_REF`, `PHASE_SENS`, `ALPHA` (as reaction rate), `BETA` (as separate decay rate in GDSP), `domain_modulation`, `use_time_dynamics`, `kappa` (as separate from D), `TOPO_PERIOD`, `TOPO_THRESHOLD`, `TOPO_PATIENCE`, `R_NUCLEATION`, `tau_e`, `debt_max`, `dt_physics_us`, `DEBT_MAX`, `PSI_DEATH`, `PSI_SEED`.
+`F_REF`, `PHASE_SENS`, `ALPHA` (as reaction rate), `BETA` (as separate decay rate in GDSP), `domain_modulation`, `use_time_dynamics`, `kappa` (as separate from D), `TOPO_PERIOD`, `TOPO_THRESHOLD`, `TOPO_PATIENCE`, `R_NUCLEATION`, `tau_e`, `debt_max`, `dt_physics_us`, `DEBT_MAX`, `PSI_DEATH`, `PSI_SEED`, `pos` (spatial embedding array), `r_causal` (Euclidean causal radius — replaced by `h_causal` in graph hops), `side` (cubic grid dimension), `_build_cubic_adjacency` (cubic lattice initialization — replaced by graph initialization).
 
 ### 0.4 Compute, Memory, and Scaling
 
@@ -129,7 +133,7 @@ Specifically:
 
 1. The bond-weighted Laplacian, the pointwise node solve, the bond solve, and the debt update are independent operations on the same tick's data. They MUST NOT be fused into a single function that requires all to execute on the same device.
 
-2. All state arrays (phi_curr, phi_prev, debt, adj, psi_curr, psi_prev, pos, r_causal) MUST be stored in standard contiguous array formats (numpy ndarray, or equivalent) that can be copied to any device buffer without reshaping or reinterpretation.
+2. All state arrays (phi_curr, phi_prev, debt, adj, psi_curr, psi_prev, h_causal) MUST be stored in standard contiguous array formats (numpy ndarray, or equivalent) that can be copied to any device buffer without reshaping or reinterpretation.
 
 3. The step() function MUST NOT call time.time(), time.time_ns(), threading primitives, or device-specific APIs. It operates on arrays and returns arrays. Device dispatch is the caller's responsibility.
 
@@ -157,60 +161,59 @@ The physics-derived architecture has ONE cost regime — everything runs every t
 | Debt update | O(N) | Pointwise |
 | Edge birth/death bookkeeping | O(N_events) | Sparse: only edges crossing the emergent noise floor or new candidates |
 
-**Total: O(N · k) per tick.** For k = 6 and N = 1,000,000 this is ~12M operations per tick (Laplacian + bond update are each O(N·k)). For k = 6 and N = 100,000,000 this is ~1.2B — still tractable with vectorized numpy.
+**Total: O(N · k̄) per tick** where k̄ is the emergent mean degree of the connectome. For k̄ = 20 and N = 1,000,000 this is ~40M operations per tick (Laplacian + bond update are each O(N·k̄)). For k̄ = 20 and N = 100,000,000 this is ~4B — still tractable with vectorized numpy or GPU dispatch.
 
-**Candidate edge proposal: O(N_active · s²)** where s = floor(r_causal). Evaluated every tick but only for active nodes (|φ̇| > kT), and s grows as O(√t · c_eff). For early ticks s ≈ 1 and cost is negligible. Bounded by causal cone finiteness.
+**Candidate edge proposal: O(N_active · w)** where w is the mean walker trail length per node. Walker trails provide a natural candidate list of reachable nodes within the causal cone, eliminating the need for BFS graph-distance computation. Evaluated every tick but only for active nodes (|φ̇| > kT). Bounded by walker budget.
 
 **Comparison to current architecture:**
 
 | Architecture | Per-tick cost | Topology persistence | Causal structure |
 |---|---|---|---|
 | Current (global rebuild) | O(N · 64) | None — rebuilt from scratch | Violated |
-| Physics-derived (bond field) | O(N · k) ≈ O(N · 6) | Persistent — bonds carry forward | Preserved — causal cone |
+| Physics-derived (bond field) | O(N · k̄), k̄ emergent | Persistent — bonds carry forward | Preserved — causal cone (graph distance) |
 
 **The physics-derived architecture is ~10x cheaper per tick AND physically correct.**
 
 #### Memory cost
 
-| Array | Size | Dtype | Bytes (N=1M, k=6) |
+| Array | Size | Dtype | Bytes (N=1M, k̄=20) |
 |-------|------|-------|-------------------|
 | `phi_curr` | N | float32 | 4 MB |
 | `phi_prev` | N | float32 | 4 MB |
 | `debt` | N | float64 | 8 MB |
-| `r_causal` | N | float32 | 4 MB |
-| `pos` | N × 3 | float32 | 12 MB |
-| `psi_curr` | N · k | float32 | 24 MB |
-| `psi_prev` | N · k | float32 | 24 MB |
-| `adj` | N · k | int32 | 24 MB |
+| `h_causal` | N | int32 | 4 MB |
+| `psi_curr` | N · k̄ | float32 | 80 MB |
+| `psi_prev` | N · k̄ | float32 | 80 MB |
+| `adj` | N · k̄ | int32 | 80 MB |
 | `W` (alias to phi_curr) | 0 | — | 0 |
 
-**Total: ~104 MB for N = 1,000,000 with k = 6.**
+**Total: ~260 MB for N = 1,000,000 with k̄ = 20.**
+
+Note: `pos` array is eliminated. There is no spatial embedding. Adjacency is defined by graph topology, not Euclidean coordinates.
 
 #### Scaling law
 
 ```
-T_tick = a · N · k
+T_tick = a · N · k̄
 ```
 
-Linear in N for fixed k. k does not grow with N (cubic lattice: k = 6 regardless of N).
+Linear in N for fixed k̄. The mean degree k̄ is determined by the dynamics, not fixed by geometry. In practice, mean degree has been observed to stabilize in the range 15–25 for runs from N=1,000 to N=10,000. Whether k̄ scales with N is an empirical question — if k̄ = O(1), scaling is linear; if k̄ = O(log N), scaling is O(N log N), still tractable.
 
 ### 0.5 Topology and Manifold Structure
 
-The discrete manifold is the connectome graph itself. Nodes have no fixed spatial embedding. There is no coordinate grid. The adjacency structure IS the geometry.
+The discrete manifold is the connectome graph itself. Nodes have no fixed spatial embedding. There is no coordinate grid, no position array, and no Euclidean distance metric. The adjacency structure IS the geometry. All notions of "distance," "locality," and "neighborhood" are defined in terms of graph hops along existing edges.
 
-**Initial connectivity:** k-regular random graph or preferential attachment, matching the existing runtime initialization parameter `k`. The initial degree distribution and graph structure are initial conditions, analogous to the initial field configuration φ(t=0).
+**Initial connectivity:** k-regular random graph or preferential attachment, matching the existing runtime initialization parameter `k_init`. The initial degree distribution and graph structure are initial conditions, analogous to the initial field configuration φ(t=0). The value of `k_init` is a free parameter (initial condition), not a material constant.
 
-**Edge proposal constraint:** Candidate edges require graph distance (hop count) between nodes i and j ≤ `h_causal(i)`, where `h_causal` accumulates from local dynamics:
+**N is unconstrained.** Any positive integer. No cube requirement, no grid constraint.
 
-```
-h_causal[i] += 1  each tick while |φ̇_i| > kT
-```
+**No pos array.** Node spatial positions are not defined, not stored, and not referenced by any physics equation. The bond-weighted Laplacian, the Klein-Gordon solver, the bond field equation, the decoherence threshold, and the causal cone constraint are all defined on the graph topology and do not require spatial coordinates. If a spatial embedding is needed for visualization, it is computed from the graph Laplacian spectrum (Fiedler layout) at render time and is NOT stored as simulation state.
 
-This replaces the Euclidean `r_causal`. Co-activity condition `|φ̇_i|·|φ̇_j| > kT` is unchanged.
+**Topology evolution.** The graph self-modifies through two mechanisms:
+1. **Bond death (decoherence):** When ψ_ij drops below the thermal noise floor √(2 · ε_topo · kT), the edge is removed from the adjacency list (CF07).
+2. **Bond birth (nucleation):** Candidate edges are proposed between co-active nodes within each other's causal cone (measured in graph hops via `h_causal`). New bonds are nucleated at ψ_ij = 0.0 and must be lifted by the metriplectic dynamics (CF07).
 
-**N is unconstrained.** Any positive integer. No cube requirement.
-
-**No pos array.** Node positions are not defined, not stored, not used in physics. If a spatial embedding is needed for visualization, it is computed from the graph spectrum (Fiedler layout) at render time, not stored as state.
+This produces a self-modifying scale-free topology with emergent degree heterogeneity, hub formation, hierarchical modularity, and territory structure — the phenomena documented in the Four Signatures paper and the Aura developmental run.
 
 ---
 
