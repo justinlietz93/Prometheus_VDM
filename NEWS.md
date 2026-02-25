@@ -59,8 +59,15 @@ I am not alleging copying — I’m requesting correct attribution and citation 
 - **August 21, 2025:** Launched public repo
 - ...
 - **March, 2025**  
-  - Released first falsifiable, reproducible simulations that validated initial claims.
+  - Validated the [Self Improvement Engine](https://github.com/justinlietz93/early_FUM_tests/tree/main/SIE_Analysis) initially designed in AMN:
+    - Validates that the Self-Improvement Engine (SIE) can integrate multiple reward signals (TD error, novelty, habituation, self-benefit) without causing unstable learning or weight explosion.
+  - Validated the [Real-Time Model Aware Knowledge Graph Topological Data Analysis](https://github.com/justinlietz93/early_FUM_tests/tree/main/Knowledge_Graph_Analysis) initially designed in AMN:
+    - Analyzes neural network "shape" to discover mathematical relationships about network health. Uses topology (the study of shape) to predict when networks will work well or break down.
+    - This was a critical step towards my [Void Walker](https://github.com/justinlietz93/Prometheus_VDM/blob/main/vdm_rt/core/cortex/Void-Walkers.md) ecology.
 - **February, 2025**  
-  - SIE and Emergent KG + Real-Time TDA show very strong statistically significant findings, making feasible the entire model
+  - Began development on the [Adaptive Modular Network](https://github.com/Modern-Prometheus-AI/AdaptiveModularNetwork), a brain-inspired AI system that processes information like a living neural network rather than a static computational system. It employs:
+    - Spiking neurons: Energy-efficient temporal signaling
+    - Self-tuning learning mechanisms: Spike-Timing-Dependent Plasticity (STDP)
+    - Dynamic coordination: Adaptive connection management between modules
 - **October, 2024**  
   - Initial realization of the idea.
