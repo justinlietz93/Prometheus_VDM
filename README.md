@@ -64,12 +64,6 @@ Robust through substantial perturbations, mmaintains synchronicity locking SIE v
   - I’m asserting temporal priority and reduction‑to‑practice for the core architectural principles now popularized by BDH: scale‑free/heavy‑tail sparse neural graphs, locally interacting neuron‑particles, Hebbian working memory/online plasticity, sparse activations, and attention‑like state routing.
 My work (AMN→FUM→VDM) was published and open‑sourced months earlier with auditable timestamps, quantitative measurements (e.g., heavy‑tail fits, Gini inequality), and cryptographic provenance manifests.
 I am not alleging copying — I’m requesting correct attribution and citation of prior art, and I’m making the evidence easy to verify.
-- **November 30, 2025**
-  - Building a Void Lensing Cross Correlation Meter to predict the geometry of cosmological void interfaces as a part of the VDM unification roadmap.
-- **November 10, 2025**
-  - Published results from the Counterfactual Echo Gain test to [Zenodo](https://doi.org/10.5281/zenodo.17567396)
-- **November 9, 2025**
-  - VDM will be upgrading to a dedicated custom [physics engine](/docs/image-gallery/README.md) that further enhances and improves scalability of the runner gating discipline, reporting, and automated unambiguous rule enforcement. This is being built into a fork of [Void IDE](https://github.com/voideditor/void.git) as a code editor / computational physics lab.
 - ... Full news at [NEWS.md](/NEWS.md)
 
 ### DOIs
