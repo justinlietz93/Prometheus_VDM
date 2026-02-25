@@ -1,10 +1,10 @@
 # VDM Documentation Index (rapidly evolving)
 
-**Author:** Justin K. Lietz
-**Contact:** <justin@neuroca.ai>
-**Zenodo Community:** [Void Dynamics Model](https://zenodo.org/communities/void-dynamics-model/records?q=&l=list&p=1&s=10&sort=newest)
-**ORCID:** [0009-0008-9028-1366](https://orcid.org/0009-0008-9028-1366)
-**Created:** Saturday, November 8, 2025
+**Author:** Justin K. Lietz  
+**Contact:** <justin@neuroca.ai>  
+**Zenodo Community:** [Void Dynamics Model](https://zenodo.org/communities/void-dynamics-model/records?q=&l=list&p=1&s=10&sort=newest)  
+**ORCID:** [0009-0008-9028-1366](https://orcid.org/0009-0008-9028-1366)  
+**Created:** Saturday, November 8, 2025  
 
 > NOTE — repository velocity:
 > This repository is growing and evolving rapidly. If this page’s “last updated” timestamp (or the file’s Git commit date) is older than a few days, the content here may be incomplete or stale. For the authoritative, current state, use the single‑source‑of‑truth pointers below.
