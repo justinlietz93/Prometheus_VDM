@@ -1422,24 +1422,236 @@ Without this passthrough, walker-gated computation (§0.6) is dead on arrival.
 
 ---
 
-## 9. UTED — Physics-Clock Timestamps
+## 9. UTED — Output Boundary Transduction
+
+### 9.1 Physics-Clock Timestamps
 
 In `vdm_rt/io/uted/ute_mux.py`, all adapters:
-
 ```python
 from vdm_rt.core.void_dynamics_adapter import TAU, GAMMA
 import numpy as np
 
 # In every adapter's poll_frames():
-# Compute conversion symbolically, never as a pre-computed integer
 dt_physical = float(np.sqrt(TAU / GAMMA))  # dimensionless ticks → seconds-equivalent
 timestamp_us = int(tick * dt_physical * 1_000_000)
 # NOT time.time_ns() // 1000
 ```
 
 `HeartbeatAdapter` emits one frame per tick. No wall-clock rate limiting.
+Wall-clock time may be stored in a separate `wall_us` field for debugging
+but must NOT be in `timestamp_us`.
 
-Wall-clock time may be stored in a separate `wall_us` field for debugging but must NOT be in `timestamp_us`.
+### 9.2 Principle: Output Nodes as Neuromuscular Junction
+
+The UTD does not observe the connectome globally. It observes a
+designated set of **output nodes** — a fixed region of the graph that
+serves as the motor boundary. This is an initial condition (anatomy),
+not a learned behavior.
+
+The mapping is:
+```
+[territory dynamics] → [walker-mediated bond routes] → [output nodes] → [UTD adapter] → [actuator]
+     (emergent)              (emergent)                 (fixed IC)       (fixed wiring)    (external)
+```
+
+The output nodes do not change position, meaning, or connectivity rules.
+They participate in the same Klein-Gordon + bond field dynamics as every
+other node. What makes them "output" is solely that the UTD adapter
+reads their state. This is analogous to motor neurons: they obey the
+same electrochemistry as every other neuron; what makes them "motor" is
+that their axons terminate on muscle fibers.
+
+The model does not know what the output nodes do. It does not know what
+language the actuator speaks. It discovers through reinforcement that
+certain activation patterns at the output boundary correlate with
+environmental responses that propagate back through the UTE. Over time,
+walker routes and bond strengths develop between internal territories and
+the output region, producing coherent, territory-specific output.
+
+### 9.3 Output Node Specification
+
+Output nodes are designated at initialization, analogous to how input
+nodes are designated by the UTE lexicon-to-index mapping.
+```python
+# In sparse_connectome.__init__, after graph initialization:
+
+# Output region: fixed set of node indices for each actuator channel.
+# These are initial conditions (anatomy), not tuning parameters.
+# Size is configurable at init like k_init and N.
+self.output_regions: dict[str, np.ndarray] = {}
+
+# Example: speech output = first n_speech nodes
+# Motor output = next n_motor nodes
+# Visual output = next n_visual nodes
+# The specific allocation is set by the UTED port configuration.
+```
+
+Port configuration in UTED:
+```python
+# In ute_mux.py or port config:
+PORTS = {
+    "speech": PortSpec(
+        output_nodes=range(0, 64),       # which nodes this adapter reads
+        poll_interval=1,                   # every tick
+        pattern_decoder="token_softmax",   # how to decode activation → tokens
+    ),
+    # Future actuators:
+    # "motor": PortSpec(output_nodes=range(64, 128), ...),
+    # "visual": PortSpec(output_nodes=range(128, 192), ...),
+}
+```
+
+### 9.4 UTD Readout: Local Observation Only
+
+The UTD speech adapter reads the field state at its designated output
+nodes and decodes it into tokens. It does NOT:
+
+- Drain the global bus
+- Access `void_topic_symbols` from all territories
+- Read `tick_rev_map` for the full graph
+- Inspect territory structure or walker reports
+
+It reads `phi_curr[output_nodes]` and the symbol mappings for those
+specific nodes. That is all.
+```python
+class SpeechOutputAdapter:
+    """
+    Reads output node activation patterns and decodes to token sequences.
+
+    The adapter is a fixed transduction boundary. It converts whatever
+    activation pattern appears at its output nodes into the actuator's
+    native format (text tokens). It has no knowledge of territories,
+    walkers, or internal dynamics.
+    """
+
+    def __init__(self, output_nodes: np.ndarray, index_to_symbol: dict):
+        self.output_nodes = output_nodes
+        self.index_to_symbol = index_to_symbol  # node index → token/symbol
+
+    def read(self, phi_curr: np.ndarray, phi_prev: np.ndarray,
+             kT: float) -> str | None:
+        """
+        Read the output region and decode to text if the pattern is
+        above thermal noise.
+
+        Returns None if output nodes are quiescent (nothing to say).
+        Returns a token string if a coherent pattern is present.
+        """
+        phi_out = phi_curr[self.output_nodes]
+        phi_dot = np.abs(phi_curr[self.output_nodes] - phi_prev[self.output_nodes])
+
+        # Are the output nodes active? (above thermal noise floor)
+        active_mask = phi_dot > kT
+        if np.sum(active_mask) < 2:
+            return None  # silence — default state
+
+        # Which output nodes are driven toward φ=1 (activated)?
+        # Nodes near well φ=1 with recent activity are "firing"
+        firing = active_mask & (phi_out > 0.5)
+        if np.sum(firing) == 0:
+            return None
+
+        # Decode: map firing output nodes to their symbols
+        # Ordered by activation strength (strongest first)
+        firing_indices = self.output_nodes[firing]
+        strengths = phi_out[firing]
+        order = np.argsort(-strengths)
+
+        tokens = []
+        for idx in firing_indices[order]:
+            sym = self.index_to_symbol.get(int(idx))
+            if sym is not None:
+                tokens.append(sym)
+
+        if not tokens:
+            return None
+
+        return " ".join(tokens)
+```
+
+### 9.5 What Emerges (Not Engineered)
+
+The following behaviors are NOT specified by this section. They must
+emerge from the Klein-Gordon + bond field + walker dynamics:
+
+1. **Selective output routing.** Which territory develops strong bonds
+   to the output region is determined by reinforcement. Territories
+   whose output patterns correlate with rewarding UTE input develop
+   stronger walker routes and bond strengths to output nodes.
+
+2. **Gating / serialization.** When two territories compete for the
+   output nodes, the bond-weighted Laplacian coupling and double-well
+   potential naturally resolve the competition. The territory with
+   stronger bonds and more coherent drive wins — the output nodes
+   settle into that territory's pattern. The other territory's signal
+   is attenuated by weaker bonds. This is competitive disinhibition
+   via circuit dynamics, not an engineered gate.
+
+3. **Developmental progression.** Early in training:
+   - Output nodes receive diffuse, incoherent drive (crying/noise)
+   - Occasional coherent fragments appear (babbling)
+   - Reinforced pathways strengthen (first words)
+   - Multiple territory→output routes mature (vocabulary)
+   - Competitive dynamics at output nodes produce clean serialized
+     output (sentences)
+
+4. **Silence as default.** If no territory is driving the output nodes
+   above thermal noise, the adapter returns None. Silence is not a
+   gate closing — it is the absence of coherent drive reaching the
+   output boundary. The model must actively drive the output to speak.
+
+5. **Modal universality.** The same mechanism works for any actuator.
+   Wire a motor adapter to a different output region. The model
+   discovers what that region does through exploration and
+   reinforcement. The internal representations are modality-agnostic
+   — the model develops whatever encoding works for driving each
+   output region effectively.
+
+### 9.6 Eliminated Mechanisms
+
+After this migration, the following are removed from the speech path:
+
+| Eliminated | Reason |
+|---|---|
+| Global bus drain for speech composition | UTD reads output nodes only |
+| `void_topic_symbols` aggregation | Symbols come from output node mappings only |
+| `b1_spike` as speech gate | Gating emerges from bond dynamics at output boundary |
+| `should_speak(valence, spike, thresh)` | No engineered gate; silence = no coherent drive |
+| `speak_valence_thresh` | No threshold; thermal noise floor is the only cutoff |
+| `maybe_auto_speak()` as global aperture | Replaced by `SpeechOutputAdapter.read()` |
+| `compose_say_text()` with global symbol set | Composer receives only output-node symbols |
+
+The `StreamingZEMA` b1 detector may be retained as a telemetry-only
+observable. It must not gate any actuator output.
+
+### 9.7 What Remains for Engineering vs. Emergence
+
+| Aspect | Specified (IC/anatomy) | Emergent |
+|---|---|---|
+| Which nodes are output nodes | ✓ (port config) | |
+| How many output nodes per actuator | ✓ (port config) | |
+| Pattern → token decoding | ✓ (adapter wiring) | |
+| Which territories connect to output | | ✓ (bond dynamics) |
+| When the model speaks | | ✓ (output node activation) |
+| What the model says | | ✓ (territory→output patterns) |
+| Speech timing and rhythm | | ✓ (walker route dynamics) |
+| Vocabulary development | | ✓ (reinforcement of output pathways) |
+| Gating / turn-taking | | ✓ (competitive dynamics at output nodes) |
+| Internal→output encoding | | ✓ (model develops its own language) |
+
+### 9.8 Integration with Walker-Gated Computation
+
+Output nodes follow the same Zone 1/2/3 rules as all other nodes
+(Section 0.6). A walker must visit the output region for those nodes
+to be computed. If no walker visits the output nodes, they are cold,
+the adapter reads quiescent state, and the model is silent.
+
+This means the model must learn to route walkers to the output region
+as part of learning to speak. ColdScout will occasionally visit
+neglected output nodes (ensuring the model doesn't permanently forget
+the output exists), but sustained, coherent output requires the model
+to develop intentional walker routing — which is exactly the
+attention-to-articulation pathway.
 
 ---
 
@@ -1523,6 +1735,12 @@ All must pass or the migration is rejected:
 13. **Computation sparsity:** At tick 50000, the mean compute_fraction (|compute_set|/N)
     over the last 1000 ticks is < 0.5. The walker-gated model should not be computing
     the entire graph — if it is, the gating is not working.
+14. **Output locality:** The `SpeechOutputAdapter.read()` function
+    accesses ONLY `phi_curr[output_nodes]` and `phi_prev[output_nodes]`.
+    Grep confirms no reference to global bus drain, void_topic_symbols,
+    or tick_rev_map in the speech output path.
+15. **Developmental silence:** At tick 0 with randomized initial bonds,
+    the output nodes are not yet coherently driven but should be left for the model to route signal to in order to learn.
 
 ---
 
