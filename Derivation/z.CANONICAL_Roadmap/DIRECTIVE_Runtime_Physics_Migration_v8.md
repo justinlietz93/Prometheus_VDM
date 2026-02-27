@@ -937,27 +937,37 @@ def _remove_dead_edges(self, compute_nodes: np.ndarray = None):
 ### 4.6 — `_propose_from_trails()` — Walker-trail edge proposal
 
 This replaces `_propose_new_edges()` entirely. No BFS. No h_causal.
-
 ```python
 def _propose_from_trails(self, walker_events: list, phi_dot_abs: np.ndarray):
     """
-    Propose new edges between co-active nodes connected by walker traversal.
+    Propose new edges between co-active nodes observed by the same walker.
 
-    When a walker traverses edge (u, v) via an edge_on event, and both u and v
-    are active (|φ̇| > kT), and they are NOT already adjacent, propose a new
-    bond between them.
+    Two mechanisms, both bounded by what the walker can directly see:
 
-    This is the gauge-boson-mediated interaction: the walker carried information
-    from u to v (or v to u), so they are within each other's causal cone by
-    construction. No graph distance computation needed.
+    1. edge_on: Walker traverses existing edge (u, v). If u and v are both
+       active and NOT already adjacent, propose u ↔ v. This is the only
+       legitimate 2-hop mechanism — the walker physically traversed the
+       path, so u and v are within each other's causal cone by construction.
+       Cost: O(1) per edge_on event.
 
-    Additionally: when a walker touches a node that is active and adjacent to
-    another active node it is NOT connected to (2-hop co-activity), propose
-    that bond. This extends the proposal to "nodes the walker can see from
-    where it is" — one hop of local visibility.
+    2. vt_touch: Walker is at node i. It observes i and all of adj(i) —
+       the 1-hop ego-network. Among those visible nodes, any co-active pair
+       (j, k) that are neighbors of i but not neighbors of each other is a
+       triangle-completion candidate. The walker revealed that j and k are
+       both coupled to i and both active — a shortcut j ↔ k may be
+       thermodynamically favored.
+       Cost: O(k̄) per vt_touch event (one scan of i's neighbors).
+
+    The walker does NOT see around corners. A node 2 hops away that the
+    walker has not visited is outside its observation cone. Proposing bonds
+    to unvisited nodes would violate CF09 (gauge boson mediates interaction).
 
     Source: CF09 (gauge boson mediates interaction), CF04 (causal cone from
     traversal), CF07 (nucleation at ψ = 0.0).
+
+    Scaling: With W walkers × h hops = ~768 touches/tick and ~768 edge_on
+    events/tick, total proposal cost is O(W·h·k̄) ≈ 768 × 20 = ~15,000
+    pair checks per tick. Linear in k̄, not quadratic.
     """
     if not walker_events:
         return
@@ -969,7 +979,7 @@ def _propose_from_trails(self, walker_events: list, phi_dot_abs: np.ndarray):
         kind = getattr(ev, "kind", None)
 
         if kind == "edge_on":
-            # Walker traversed from u to v — both visible to each other
+            # Walker traversed from u to v — both in causal cone
             u = int(getattr(ev, "u", -1))
             v = int(getattr(ev, "v", -1))
             if u < 0 or v < 0 or u >= self.N or v >= self.N:
@@ -977,22 +987,15 @@ def _propose_from_trails(self, walker_events: list, phi_dot_abs: np.ndarray):
             if phi_dot_abs[u] <= kT or phi_dot_abs[v] <= kT:
                 continue
 
-            # Check all pairs of neighbors of u with neighbors of v
-            # that are co-active but not connected (2-hop proposals)
-            # This is bounded by k̄² per edge_on event, which is small.
-            u_nbrs = set(self.adj[u].tolist())
-            v_nbrs = set(self.adj[v].tolist())
-
             # Direct: u—v not connected?
-            if v not in u_nbrs:
+            if v not in set(self.adj[u].tolist()):
                 pair = (min(u, v), max(u, v))
                 if pair not in proposed:
                     self._nucleate_bond(u, v)
                     proposed.add(pair)
 
         elif kind == "vt_touch":
-            # Walker is at node i — check its neighborhood for co-active
-            # non-adjacent pairs (local visibility)
+            # Walker is at node i — can see i and adj(i), nothing further
             i = int(getattr(ev, "token", -1))
             if i < 0 or i >= self.N:
                 continue
@@ -1000,54 +1003,53 @@ def _propose_from_trails(self, walker_events: list, phi_dot_abs: np.ndarray):
                 continue
 
             nbrs = self.adj[i]
-            existing = set(nbrs.tolist())
-            existing.add(i)
+            if nbrs.size < 2:
+                continue
 
-            # For each neighbor j of i, check if j's neighbors include
-            # any active non-adjacent node of i (2-hop from i through j)
+            # Triangle completion: find co-active neighbor pairs (j, k)
+            # that are both neighbors of i but not neighbors of each other.
+            # The walker can see both j and k from where it stands.
+            active_nbrs = []
             for j in nbrs:
                 j_int = int(j)
-                if phi_dot_abs[j_int] <= kT:
-                    continue
-                for k in self.adj[j_int]:
-                    k_int = int(k)
-                    if k_int in existing:
-                        continue
-                    if phi_dot_abs[k_int] <= kT:
-                        continue
-                    pair = (min(i, k_int), max(i, k_int))
-                    if pair not in proposed:
-                        self._nucleate_bond(i, k_int)
-                        proposed.add(pair)
+                if phi_dot_abs[j_int] > kT:
+                    active_nbrs.append(j_int)
 
+            if len(active_nbrs) < 2:
+                continue
 
-def _nucleate_bond(self, i: int, j: int):
-    """
-    Create a new bond between nodes i and j at ψ = 0.0.
-    CF07: no artificial seeding. The metriplectic dynamics will
-    lift the bond out of the vacuum if thermodynamically favored.
-    """
-    self.adj[i] = np.append(self.adj[i], np.int32(j))
-    self.psi_curr[i] = np.append(self.psi_curr[i], np.float32(0.0))
-    self.psi_prev[i] = np.append(self.psi_prev[i], np.float32(0.0))
-
-    self.adj[j] = np.append(self.adj[j], np.int32(i))
-    self.psi_curr[j] = np.append(self.psi_curr[j], np.float32(0.0))
-    self.psi_prev[j] = np.append(self.psi_prev[j], np.float32(0.0))
+            # For each active neighbor j, check if other active neighbors
+            # of i are in j's adjacency. If not → propose.
+            # Build neighbor sets once per touch for the active subset.
+            for idx_a in range(len(active_nbrs)):
+                j = active_nbrs[idx_a]
+                j_set = set(self.adj[j].tolist())
+                for idx_b in range(idx_a + 1, len(active_nbrs)):
+                    k = active_nbrs[idx_b]
+                    if k not in j_set:
+                        pair = (min(j, k), max(j, k))
+                        if pair not in proposed:
+                            self._nucleate_bond(j, k)
+                            proposed.add(pair)
 ```
 
-### Why 2-hop proposals via walker touch are correct:
+### Why 1-hop ego-network, not 2-hop scan:
 
-When a walker is at node i, node i is being observed. Its neighbors are the
-nodes it's coupled to. Each neighbor j has ITS neighbors visible from j. If
-node i is active and node k (2 hops away through j) is also active, the
-information pathway i → j → k exists. A new bond i ↔ k is a shortcut that
-the dynamics may support — the walker revealed the pathway.
+The walker is the gauge boson (CF09). Its observation cone is the set of nodes
+it has physically visited or can directly see from its current position. At node
+i, the walker sees i and adj(i). It does NOT see adj(adj(i)) — those nodes are
+behind a corner the walker hasn't turned.
 
-The cost is bounded: for each vt_touch event, we check O(k̄) neighbors, and
-for each neighbor O(k̄) of its neighbors = O(k̄²) per touch. With k̄ ≈ 20
-that's ~400 checks. With ~256 walkers × 3 hops = ~768 touches per tick,
-total is ~300,000 pair checks per tick — fast.
+The previous 2-hop scan (for each neighbor j, scan j's neighbors k) had the
+walker proposing bonds to nodes it hadn't observed. This violated the causal
+cone principle: if the walker didn't go to k, k is not in the walker's light
+cone. The `edge_on` handler already covers the legitimate case where a walker
+traverses a path and discovers unconnected endpoints.
+
+Triangle completion within the 1-hop ego-network is the correct operation: the
+walker observes that j and k are both active and both coupled to i, but not to
+each other. The shortcut j ↔ k is a candidate that the dynamics will accept or
+reject via the bond potential. Cost: O(k̄) per touch, linear in mean degree.
 
 ### 4.7 — `_compute_physics_reward()` — Active-set scoped
 
@@ -1403,12 +1405,20 @@ def step_connectome(self, t: float, domain_modulation: float = 1.0, sie_gate: fl
 
 NEW:
 ```python
-def step_connectome(self, tick: int) -> None:
+def step_connectome(self, tick: int, walker_events: list = None, trail_scores: dict = None) -> None:
     try:
-        self._nx.connectome.step(tick=int(tick))
+        self._nx.connectome.step(
+            tick=int(tick),
+            walker_events=walker_events or [],
+            trail_scores=trail_scores or {},
+        )
     except Exception:
         pass
 ```
+
+This must match the integration point in §4.9: the engine extracts walker events
+and trail scores from the cortex system and passes them through to the connectome.
+Without this passthrough, walker-gated computation (§0.6) is dead on arrival.
 
 ---
 
@@ -1548,4 +1558,4 @@ Each step must pass `python -m pytest` before proceeding. If existing tests refe
 
 ---
 
-**END OF DIRECTIVE v4**
+**END OF DIRECTIVE v8**
