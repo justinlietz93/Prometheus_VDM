@@ -117,11 +117,18 @@ There is no spatial embedding. The causal cone is defined on the graph topology 
 | `D` (= γ) | `0.05` | Diffusion coefficient | CF04 §6.1 | Material |
 | `kT` | `0.001` | Effective temperature | CF06 §4.3 | Material |
 | `ε_topo` | `0.01` | Structural coupling constant | CF02 §4.1 | Material |
+| `WARM_THRESHOLD` | `0.05` | Trail heat below which a node is Zone 3 (cold) | TrailMap half-life + operational | Tuning |
 
+Note: WARM_THRESHOLD is a tuning parameter, not a material constant. It
+controls the boundary between "still evolving from last interaction" and
+"effectively frozen." It can be adjusted without changing the physics.
 
 ### 0.3 Eliminated Constants (must not appear anywhere after migration)
 
 `F_REF`, `PHASE_SENS`, `ALPHA` (as reaction rate), `BETA` (as separate decay rate in GDSP), `domain_modulation`, `use_time_dynamics`, `kappa` (as separate from D), `TOPO_PERIOD`, `TOPO_THRESHOLD`, `TOPO_PATIENCE`, `R_NUCLEATION`, `tau_e`, `debt_max`, `dt_physics_us`, `DEBT_MAX`, `PSI_DEATH`, `PSI_SEED`, `pos` (spatial embedding array), `r_causal` (Euclidean causal radius — replaced by `h_causal` in graph hops), `side` (cubic grid dimension), `_build_cubic_adjacency` (cubic lattice initialization — replaced by graph initialization).
+`h_causal` (per-node causal horizon — replaced by walker trail reachability),
+`_h_causal_frac` (fractional hop accumulator — eliminated with h_causal),
+`MAX_BFS_DEPTH` (never needed — walkers replace BFS).
 
 ### 0.4 Compute, Memory, and Scaling
 
@@ -194,8 +201,21 @@ Note: `pos` array is eliminated. There is no spatial embedding. Adjacency is def
 #### Scaling law
 
 ```
-T_tick = a · N · k̄
+T_tick = a · W · k̄
 ```
+
+Where W is the size of the active + warm set, not N. Linear in the number of
+nodes receiving attention this tick. The physics per node is unchanged — same
+Klein-Gordon, same bond update. Only the count of nodes computed changes.
+
+Replace the memory table — add:
+
+| Array | Size | Dtype | Bytes (N=1M, k̄=20) |
+|-------|------|-------|---------------------|
+| `last_visit` | N | int32 | 4 MB |
+| `frozen_phi` | N | float32 | 4 MB |
+
+These are bookkeeping for the catch-up computation. Small overhead.
 
 Linear in N for fixed k̄. The mean degree k̄ is determined by the dynamics, not fixed by geometry. In practice, mean degree has been observed to stabilize in the range 15–25 for runs from N=1,000 to N=10,000. Whether k̄ scales with N is an empirical question — if k̄ = O(1), scaling is linear; if k̄ = O(log N), scaling is O(N log N), still tractable.
 
@@ -214,6 +234,183 @@ The discrete manifold is the connectome graph itself. Nodes have no fixed spatia
 2. **Bond birth (nucleation):** Candidate edges are proposed between co-active nodes within each other's causal cone (measured in graph hops via `h_causal`). New bonds are nucleated at ψ_ij = 0.0 and must be lifted by the metriplectic dynamics (CF07).
 
 This produces a self-modifying scale-free topology with emergent degree heterogeneity, hub formation, hierarchical modularity, and territory structure — the phenomena documented in the Four Signatures paper and the Aura developmental run.
+
+---
+
+### 0.6 — Walker-Gated Computation
+
+### The principlef
+
+The field φ exists at every node. But the field only **evolves** at nodes where
+gauge bosons (walkers) are present or have recently been present. A node with no
+recent walker visit is in an analytically predictable state: exponential
+relaxation toward whichever potential well it occupies. Computing this relaxation
+tick-by-tick wastes arithmetic on a known answer.
+
+This is not an optimization. It is what gauge theory says. Interactions between
+nodes are mediated by gauge bosons (CF09). No boson → no interaction → no state
+change beyond autonomous relaxation. The walkers are the carriers of interaction.
+Where they go, the universe computes itself. Where they don't, nothing happens.
+
+### Physical justification
+
+1. **Telegraph finite speed (CF04):** Information propagates at c = √(D/τ)
+   hops per tick. Walkers traverse the graph at bounded speed. A region not yet
+   reached by any walker is causally disconnected from any stimulus.
+
+2. **Thermal fluctuations are negligible (CF06):** With kT = 0.001 and barrier
+   height λ = 1.0, the probability of a thermal kick moving a node from one
+   well to another is ∝ exp(−ΔV/kT) = exp(−250) ≈ 0. Cold nodes don't
+   spontaneously change state.
+
+3. **Epistemic projection (CF07):** A fluctuation without an observer is not an
+   event. A neuron spiking without a walker present to carry the signal cannot
+   affect the global system. When a walker arrives and catches the node up, the
+   spike becomes real — it enters the M-limb as a classical observable.
+
+4. **Gauge boson mediation (CF09):** The berry connection's excitations (walkers)
+   mediate the coupling between nodes. The bond-weighted Laplacian
+   (L_ψ φ)_i = Σ ψ_ij(φ_j − φ_i) computes the interaction. But between two
+   cold nodes deep in the same well, φ_j ≈ φ_i, so the Laplacian is ≈ 0.
+   The interaction is zero without activity, and activity requires a walker
+   to have brought or observed a signal.
+
+### The three zones
+
+Every node exists in one of three thermal zones, determined by walker trail
+heat (from the existing TrailMap/HeatMap infrastructure):
+
+**ZONE 1 — HOT (walker present this tick)**
+Full metriplectic Klein-Gordon step: Laplacian coupling, bond potential,
+fluctuation-dissipation noise, telegraph solve. Bond field ψ for all edges
+of this node and its neighbors are updated. Edge proposals evaluated. Events
+emitted to bus. This is where reality is being actively constructed.
+
+Cost: O(k̄) per hot node (Laplacian + bond update for local neighborhood).
+
+**ZONE 2 — WARM (walker trail decaying, above threshold)**
+Reduced-frequency update. The node was recently visited; its state is still
+evolving from the last interaction. Bond fields continue their telegraph
+relaxation. Node field continues toward equilibrium. Update frequency scales
+with trail heat: every tick while heat > WARM_HIGH, every Nth tick as heat
+decays toward WARM_LOW.
+
+Cost: O(k̄) per warm node, but executed less frequently.
+
+**ZONE 3 — COLD (below threshold, no recent walker)**
+No tick-by-tick computation. State is frozen at last computed value plus a
+timestamp. When a walker arrives (cold → hot transition), the node is caught
+up analytically before the full physics step runs.
+
+Cost: O(1) at time of catch-up (exponential relaxation formula).
+
+### Catch-up computation (cold → hot transition)
+
+When a walker arrives at a cold node i at tick t_now, with last visit at
+t_last:
+
+```
+Δt = t_now − t_last
+
+# Node field: exponential relaxation toward nearest well
+φ_well = round(φ_i(t_last))  # 0.0 or 1.0
+φ_i(t_now) = φ_well + (φ_i(t_last) − φ_well) · exp(−Δt / τ_eff_i)
+
+# φ_prev for telegraph history
+φ_prev_i(t_now) = φ_well + (φ_prev_i(t_last) − φ_well) · exp(−(Δt−1) / τ_eff_i)
+
+# Bond fields: each bond relaxes toward its own nearest well
+for each edge (i, j):
+    ψ_well = round(ψ_ij(t_last))  # 0.0 or 1.0
+    ψ_ij(t_now) = ψ_well + (ψ_ij(t_last) − ψ_well) · exp(−Δt / τ_bond)
+    # If ψ decayed below noise floor during gap → edge died
+    if ψ_ij(t_now) < ETA_BOND_FLOOR:
+        remove edge (i, j)
+
+# Debt: exponential decay toward zero (no activity during gap)
+debt_i(t_now) = debt_i(t_last) · (1 − β)^Δt
+```
+
+This is exact for isolated nodes (no external drive during gap). It is
+approximate for nodes that had active neighbors during the gap — but those
+neighbors would have been in Zones 1-2 (they had walkers), and the Laplacian
+coupling from their direction was being computed on the neighbor's side
+already. The cold node's contribution to that coupling was its frozen φ value,
+which is correct because it wasn't changing.
+
+### Walker trail as computation schedule
+
+The existing `cortex/` walker system already provides the infrastructure:
+
+| Component | Role in computation scheduling |
+|-----------|-------------------------------|
+| `TrailMap` (half-life 50 ticks) | Defines Zone 2 boundary. Nodes with trail score > WARM_THRESHOLD are in Zone 2. |
+| `HeatMap` (half-life 200 ticks) | Provides longer-term activity memory for walker routing. |
+| `ColdMap` | Tracks least-visited nodes. ColdScout routes walkers there, ensuring eventual coverage. |
+| `VoidRayScout` | Routes along φ gradients — steers walkers toward active boundaries where computation matters most. |
+| `run_scouts_once()` | Per-tick walker dispatch. Already bounded by time budget. |
+
+The walker system is NOT new infrastructure to build. It exists and runs every
+tick through `CoreEngine.step()`. The migration wires its output (trail heat
+scores) into the connectome's computation scheduler.
+
+### Active set construction
+
+Each tick, the active set is built from walker events + trail decay:
+
+```python
+# After walker dispatch (existing cortex/ path):
+active_set = set()     # Zone 1: full physics this tick
+warm_set = set()       # Zone 2: reduced-frequency physics
+
+# All nodes touched by walkers this tick → Zone 1
+for event in walker_events:
+    if event.kind == "vt_touch":
+        active_set.add(event.token)
+    elif event.kind == "edge_on":
+        active_set.add(event.u)
+        active_set.add(event.v)
+
+# Include immediate neighbors of hot nodes (Laplacian coupling)
+for i in list(active_set):
+    for j in adj[i]:
+        if j not in active_set:
+            warm_set.add(j)
+
+# Trail-warm nodes not already active → Zone 2
+for node, score in trail_map.working_set():
+    if score > WARM_THRESHOLD and node not in active_set:
+        warm_set.add(node)
+```
+
+### Scaling
+
+| Architecture | Per-tick cost | What drives it |
+|---|---|---|
+| v3 (global rebuild) | O(N · 64) | Every node, every tick, 64 candidates |
+| v8 (full field update) | O(N · k̄) | Every node, every tick, k̄ neighbors |
+| **v8.1 (walker-gated)** | **O(W · k̄)** | **W walker-visited nodes, k̄ neighbors** |
+
+Where W = |active_set| + |warm_set|. For Aura at N=5000 with 256 walkers
+doing 3 hops: W ≈ 768 hot + ~2000 warm neighbors ≈ 2800 nodes = 56% of N.
+At N=100,000 with the same walker budget: W ≈ 3% of N.
+At N=1,000,000: W ≈ 0.3% of N.
+
+The walker budget is a tuning parameter (initial condition, not material
+constant). More walkers → more of the graph is "conscious" per tick. Fewer
+walkers → tighter attention, deeper focus on active regions.
+
+### What this replaces
+
+- **h_causal (causal horizon in hops):** Eliminated. The walkers ARE the causal
+  cone. If a walker can reach node j from node i, j is within i's causal cone
+  by construction — the walker traversed the path.
+
+- **_propose_new_edges via BFS:** Eliminated. Walker trails provide the
+  candidate set directly. No graph-distance computation needed.
+
+- **O(N) per-tick loops in step():** Replaced by O(W) loops over active/warm
+  sets.
 
 ---
 
@@ -433,8 +630,12 @@ self.phi_prev = self.W.copy()
 # --- Debt (no ceiling — self-limits via exp(β·debt) asymptotic freeze) ---
 self.debt = np.zeros(self.N, dtype=np.float64)
 
-# --- Causal horizon (per-node, in graph hops, accumulated while active) ---
-self.h_causal = np.zeros(self.N, dtype=np.int32)
+# --- Walker-gated computation state ---
+self.last_visit = np.zeros(self.N, dtype=np.int32)   # tick of last Zone 1 visit
+self.last_visit[:] = -1  # mark all as never-visited (forces catch-up on first touch)
+
+# Warm threshold for trail-heat gating (TODO NO HARDCODING, LET THE DYNAMICS MANAGE THIS)
+self.WARM_THRESHOLD = 0.05
 
 # --- Initial adjacency: from existing runtime graph initialization ---
 # Uses k_init (constructor parameter) to build k-regular random graph
@@ -486,44 +687,144 @@ NEW:
 def step(self, tick: int):
 ```
 
-### 4.4 `step()` — Complete tick sequence
-
-**Delete the entire current body of step().** Replace with:
+### **Delete the entire v8 step() body.** Replace with:
 
 ```python
-def step(self, tick: int):
+def step(self, tick: int, walker_events: list = None, trail_scores: dict = None):
     """
-    One tick of coupled metriplectic Klein-Gordon (node field + bond field).
-    Both fields evolve every tick. There is no topology update period.
+    One tick of walker-gated metriplectic Klein-Gordon.
 
-    Source: CF01 §4.1 (dF/dt = {F,H}_J + (F,S)_M — both terms, every tick).
+    Only nodes in the active set (walker-visited) and warm set (recently visited
+    neighbors) receive the full physics step. Cold nodes are analytically frozen.
+
+    The walker system runs BEFORE this method. Walker events and trail scores
+    are passed in from the engine layer.
+
+    Source: CF01 §4.1 (dF/dt = {F,H}_J + (F,S)_M — both terms, every tick,
+    for every OBSERVED degree of freedom).
     """
     self._tick = tick
     N = self.N
     from .void_dynamics_adapter import klein_gordon_rhs, bond_potential_derivative
 
-    # --- Per-node derived quantities ---
-    tau_eff = self.tau * np.exp(self.beta * self.debt)  # no clamp
-    phi_dot = self.phi_curr - self.phi_prev              # field velocity
+    # --- Step 0: Build active and warm sets from walker data ---
+    active_set = set()   # Zone 1: full physics
+    warm_set = set()     # Zone 2: neighbor coupling
 
-    # --- Step 1: Node field Klein-Gordon RHS ---
-    rhs = klein_gordon_rhs(
-        self.phi_curr, self.adj, self.psi_curr,
-        lam=self.lam, D=self.D, kT=self.kT,
-    )
+    if walker_events:
+        for ev in walker_events:
+            kind = getattr(ev, "kind", None)
+            if kind == "vt_touch":
+                node = int(getattr(ev, "token", -1))
+                if 0 <= node < N:
+                    active_set.add(node)
+            elif kind == "edge_on":
+                u = int(getattr(ev, "u", -1))
+                v = int(getattr(ev, "v", -1))
+                if 0 <= u < N:
+                    active_set.add(u)
+                if 0 <= v < N:
+                    active_set.add(v)
 
-    # --- Step 2: Node field telegraph solve ---
-    a_inertia = tau_eff.astype(np.float32)
-    a_friction = np.float32(1.0)
-    numerator = rhs + (2.0 * a_inertia + a_friction) * self.phi_curr - a_inertia * self.phi_prev
-    denominator = a_inertia + a_friction
-    phi_new = np.clip(numerator / denominator, 0.0, 1.0).astype(np.float32)
+    # Add external stimulation targets to active set
+    if hasattr(self, '_stim'):
+        stim_active = np.where(self._stim > 0.01)[0]
+        for idx in stim_active:
+            active_set.add(int(idx))
 
-    # --- Step 3: Bond field update (every tick, heavier mass τ/ε_topo) ---
+    # Neighbors of active nodes → warm set (Laplacian coupling boundary)
+    for i in list(active_set):
+        for j in self.adj[i]:
+            j_int = int(j)
+            if j_int not in active_set:
+                warm_set.add(j_int)
+
+    # Trail-warm nodes not already categorized
+    if trail_scores:
+        for node_str, score in trail_scores.items():
+            node = int(node_str)
+            if score > self.WARM_THRESHOLD and node not in active_set:
+                warm_set.add(node)
+
+    # Combined set for physics computation
+    compute_set = active_set | warm_set
+
+    if not compute_set:
+        # Nothing to compute — all nodes cold. Just tick housekeeping.
+        try:
+            self._stim *= getattr(self, "_stim_decay", 0.90)
+        except Exception:
+            pass
+        return
+
+    # --- Step 1: Catch-up cold → hot/warm transitions ---
+    for i in compute_set:
+        t_last = int(self.last_visit[i])
+        if t_last < 0:
+            # Never visited — initial state is fine, just mark
+            self.last_visit[i] = tick
+            continue
+        dt = tick - t_last
+        if dt <= 1:
+            continue  # visited last tick, no gap to close
+
+        # Analytical relaxation during the gap
+        tau_eff_i = float(self.tau * np.exp(self.beta * self.debt[i]))
+        phi_well = round(float(self.phi_curr[i]))  # 0.0 or 1.0
+
+        decay_phi = np.exp(-dt / tau_eff_i)
+        self.phi_curr[i] = phi_well + (self.phi_curr[i] - phi_well) * decay_phi
+        self.phi_prev[i] = phi_well + (self.phi_prev[i] - phi_well) * np.exp(-(dt - 1) / tau_eff_i)
+
+        # Bond relaxation
+        tau_bond = self.tau / self.eps_topo
+        decay_psi = np.exp(-dt / tau_bond)
+        for ki in range(self.adj[i].size):
+            psi_well = round(float(self.psi_curr[i][ki]))
+            self.psi_curr[i][ki] = psi_well + (self.psi_curr[i][ki] - psi_well) * decay_psi
+            self.psi_prev[i][ki] = psi_well + (self.psi_prev[i][ki] - psi_well) * np.exp(-(dt - 1) / tau_bond)
+
+        # Debt decay during gap (no activity)
+        self.debt[i] *= (1.0 - self.beta) ** dt
+
+    # Update visit timestamps for computed nodes
+    for i in active_set:
+        self.last_visit[i] = tick
+
+    # --- Step 2: Node field computation (active + warm only) ---
+    compute_list = np.array(sorted(compute_set), dtype=np.int32)
+    tau_eff = self.tau * np.exp(self.beta * self.debt)
+    phi_dot = self.phi_curr - self.phi_prev
+
+    # Laplacian for computed nodes only
+    rhs = np.zeros(N, dtype=np.float32)
+    from .void_dynamics_adapter import LAMBDA as lam_val, GAMMA as D_val, KT_EFF as kT_val
+    for i in compute_list:
+        nbrs = self.adj[i]
+        if nbrs.size == 0:
+            continue
+        # Bond-weighted Laplacian: Σ ψ_ij (φ_j − φ_i)
+        lap = np.sum(self.psi_curr[i] * (self.phi_curr[nbrs] - self.phi_curr[i]))
+        # Potential derivative: 2λ φ(1−φ)(1−2φ)
+        phi_i = self.phi_curr[i]
+        dV = 2.0 * self.lam * phi_i * (1.0 - phi_i) * (1.0 - 2.0 * phi_i)
+        # Noise
+        eta = np.sqrt(2.0 * self.D * self.kT) * self.rng.standard_normal()
+        rhs[i] = self.D * lap - dV + eta
+
+    # Telegraph solve for computed nodes
+    phi_new = self.phi_curr.copy()
+    for i in compute_list:
+        a_inertia = float(tau_eff[i])
+        numerator = rhs[i] + (2.0 * a_inertia + 1.0) * self.phi_curr[i] - a_inertia * self.phi_prev[i]
+        denominator = a_inertia + 1.0
+        phi_new[i] = np.clip(numerator / denominator, 0.0, 1.0)
+
+    # --- Step 3: Bond field update (computed nodes only) ---
     tau_bond = np.float32(self.tau / self.eps_topo)
     phi_dot_abs = np.abs(phi_dot).astype(np.float32)
 
-    for i in range(N):
+    for i in compute_list:
         nbrs = self.adj[i]
         if nbrs.size == 0:
             continue
@@ -544,57 +845,79 @@ def step(self, tick: int):
         self.psi_prev[i] = psi_c.copy()
         self.psi_curr[i] = np.clip(psi_new, 0.0, 1.0).astype(np.float32)
 
-    # --- Step 4: Edge death (ψ < η_bond floor) ---
-    self._remove_dead_edges()
+    # --- Step 4: Edge death (computed nodes only) ---
+    self._remove_dead_edges(compute_list)
 
-    # --- Step 5: Edge birth (graph-distance causal cone + co-activity) ---
-    # Candidate edges drawn from walker trails or h_causal BFS.
-    # See §0.1 and §0.5 for proposal constraints.
-    self._propose_new_edges(phi_dot_abs)
+    # --- Step 5: Edge birth from walker trails ---
+    self._propose_from_trails(walker_events, phi_dot_abs)
 
     # --- Step 6: Update node field history ---
-    dphi = (phi_new - self.phi_curr).astype(np.float32)
-    self.phi_prev = self.phi_curr.copy()
-    self.phi_curr = phi_new
+    dphi = np.zeros(N, dtype=np.float32)
+    for i in compute_list:
+        dphi[i] = phi_new[i] - self.phi_curr[i]
+    self.phi_prev[compute_list] = self.phi_curr[compute_list].copy()
+    self.phi_curr[compute_list] = phi_new[compute_list]
     self.W = self.phi_curr  # backward compat alias
 
-    # --- Step 7: Debt (no ceiling — self-limits via exp) ---
-    self.debt = (1.0 - self.beta) * self.debt + np.abs(dphi).astype(np.float64)
+    # --- Step 7: Debt (computed nodes only) ---
+    self.debt[compute_list] = (
+        (1.0 - self.beta) * self.debt[compute_list]
+        + np.abs(dphi[compute_list]).astype(np.float64)
+    )
 
-    # --- Step 8: Causal horizon in hops (only for active nodes) ---
-    c_eff = np.sqrt(self.D / tau_eff).astype(np.float32)
-    active = phi_dot_abs > self.kT
-    # Accumulate fractional hops, convert to integer horizon
-    if not hasattr(self, '_h_causal_frac'):
-        self._h_causal_frac = np.zeros(self.N, dtype=np.float32)
-    self._h_causal_frac[active] += c_eff[active]
-    self.h_causal = self._h_causal_frac.astype(np.int32)
-
-    # --- Step 9: External stimulation decay ---
+    # --- Step 8: External stimulation decay ---
     try:
         self._stim *= getattr(self, "_stim_decay", 0.90)
     except Exception:
         pass
 
-    # --- Step 10: Physics-derived reward ---
-    self._compute_physics_reward(dphi)
+    # --- Step 9: Physics-derived reward (active set only) ---
+    self._compute_physics_reward(dphi, compute_list)
 
-    # --- Step 11: Traversal for telemetry ---
-    a = np.abs(dphi).astype(np.float32)
-    om = (-self.beta * self.phi_curr).astype(np.float32)
-    try:
-        self._void_traverse(a, om)
-    except Exception:
-        pass
+    # --- Step 10: Findings for telemetry ---
+    self.findings.update({
+        "active_count": len(active_set),
+        "warm_count": len(warm_set),
+        "cold_count": N - len(compute_set),
+        "compute_fraction": len(compute_set) / max(1, N),
+    })
 ```
 
-### 4.5 `_remove_dead_edges()` — New method
+### Notes on the new step():
+
+1. **walker_events and trail_scores are passed in.** The walker system runs in
+   CoreEngine.step() BEFORE connectome.step(). The engine passes walker output
+   to the connectome. This preserves the existing separation of concerns —
+   walkers are read-only against the connectome, connectome receives their
+   reports.
+
+2. **The catch-up in Step 1 uses analytical formulas.** For a node in a
+   double-well with no external drive, exponential relaxation toward the
+   nearest well is exact. For bonds, same. The `round()` to find the nearest
+   well works because φ and ψ are both in double-wells on [0,1] with minima
+   at 0 and 1.
+
+3. **The node field computation in Step 2 uses per-node RNG calls** instead of
+   the vectorized numpy call in v8. This is necessary because we're only
+   computing a subset of nodes. Could be optimized with masked operations for
+   the numpy path.
+
+4. **The old _void_traverse (Step 11 in v8) is removed.** The walker system
+   replaces it entirely. _void_traverse was a simplified walker embedded
+   directly in the connectome. The cortex/ walker system is its replacement.
+
+### 4.5 — `_remove_dead_edges()` — Modified for active set
 
 ```python
-def _remove_dead_edges(self):
-    """Remove edges whose bond field ψ has fallen below the emergent bond noise floor."""
+def _remove_dead_edges(self, compute_nodes: np.ndarray = None):
+    """
+    Remove edges whose bond field ψ has fallen below the emergent bond
+    noise floor. Only checks nodes in compute_nodes (or all if None).
+    """
     from .void_dynamics_adapter import ETA_BOND_FLOOR
-    for i in range(self.N):
+    nodes = range(self.N) if compute_nodes is None else compute_nodes
+    for i in nodes:
+        i = int(i)
         if self.adj[i].size == 0:
             continue
         alive = self.psi_curr[i] >= ETA_BOND_FLOOR
@@ -611,87 +934,128 @@ def _remove_dead_edges(self):
                 self.psi_prev[j] = self.psi_prev[j][mask]
 ```
 
-### 4.6 `_propose_new_edges()` — New method
+### 4.6 — `_propose_from_trails()` — Walker-trail edge proposal
+
+This replaces `_propose_new_edges()` entirely. No BFS. No h_causal.
 
 ```python
-def _propose_new_edges(self, phi_dot_abs: np.ndarray):
+def _propose_from_trails(self, walker_events: list, phi_dot_abs: np.ndarray):
     """
-    Propose new edges between co-active nodes within each other's causal
-    horizon, measured in graph hops along existing edges.
+    Propose new edges between co-active nodes connected by walker traversal.
 
-    There is no spatial embedding. There is no Euclidean distance check.
-    Candidates are discovered by BFS expansion on the current graph topology.
+    When a walker traverses edge (u, v) via an edge_on event, and both u and v
+    are active (|φ̇| > kT), and they are NOT already adjacent, propose a new
+    bond between them.
 
-    When the walker/gauge transport sector is implemented, this BFS will be
-    replaced by walker trail lookup (O(N_active · w) instead of O(N_active · k̄^h)).
+    This is the gauge-boson-mediated interaction: the walker carried information
+    from u to v (or v to u), so they are within each other's causal cone by
+    construction. No graph distance computation needed.
 
-    Source: CF04 §4.2 (causal cone), CF06 §4.1 (co-activity nucleation).
-    Nucleation at ψ = 0.0: CF07 §4.1 (no artificial seeding).
+    Additionally: when a walker touches a node that is active and adjacent to
+    another active node it is NOT connected to (2-hop co-activity), propose
+    that bond. This extends the proposal to "nodes the walker can see from
+    where it is" — one hop of local visibility.
 
-    SCALING RULE: This method MUST NOT scan all nodes (no `for j in range(self.N)`).
-    Candidates are enumerated by local BFS expansion, bounded by h_causal.
+    Source: CF09 (gauge boson mediates interaction), CF04 (causal cone from
+    traversal), CF07 (nucleation at ψ = 0.0).
     """
+    if not walker_events:
+        return
+
     kT = self.kT
+    proposed = set()
 
-    for i in range(self.N):
-        if phi_dot_abs[i] <= kT:
-            continue
+    for ev in walker_events:
+        kind = getattr(ev, "kind", None)
 
-        h = int(self.h_causal[i])
-        if h < 2:
-            continue
-
-        # --- BFS expansion to depth h from node i ---
-        existing = set(self.adj[i].tolist())
-        existing.add(i)
-        visited = {i}
-        frontier = set(self.adj[i].tolist())
-        candidates = set()
-
-        for depth in range(1, h):
-            next_frontier = set()
-            for node in frontier:
-                for j in self.adj[node]:
-                    j_int = int(j)
-                    if j_int not in visited:
-                        next_frontier.add(j_int)
-                visited.update(frontier)
-            frontier = next_frontier
-            if not frontier:
-                break
-            # Nodes at depth >= 2 are candidates (depth 1 = already adjacent)
-            if depth >= 1:
-                candidates.update(frontier)
-
-        # --- Filter and nucleate ---
-        for j in candidates:
-            if j in existing:
+        if kind == "edge_on":
+            # Walker traversed from u to v — both visible to each other
+            u = int(getattr(ev, "u", -1))
+            v = int(getattr(ev, "v", -1))
+            if u < 0 or v < 0 or u >= self.N or v >= self.N:
                 continue
-            if phi_dot_abs[j] <= kT:
-                continue
-            if phi_dot_abs[i] * phi_dot_abs[j] <= kT:
+            if phi_dot_abs[u] <= kT or phi_dot_abs[v] <= kT:
                 continue
 
-            # Nucleate strictly at ψ = 0.0 (CF07: no artificial seeding)
-            self.adj[i] = np.append(self.adj[i], np.int32(j))
-            self.psi_curr[i] = np.append(self.psi_curr[i], np.float32(0.0))
-            self.psi_prev[i] = np.append(self.psi_prev[i], np.float32(0.0))
+            # Check all pairs of neighbors of u with neighbors of v
+            # that are co-active but not connected (2-hop proposals)
+            # This is bounded by k̄² per edge_on event, which is small.
+            u_nbrs = set(self.adj[u].tolist())
+            v_nbrs = set(self.adj[v].tolist())
 
-            self.adj[j] = np.append(self.adj[j], np.int32(i))
-            self.psi_curr[j] = np.append(self.psi_curr[j], np.float32(0.0))
-            self.psi_prev[j] = np.append(self.psi_prev[j], np.float32(0.0))
+            # Direct: u—v not connected?
+            if v not in u_nbrs:
+                pair = (min(u, v), max(u, v))
+                if pair not in proposed:
+                    self._nucleate_bond(u, v)
+                    proposed.add(pair)
 
-            existing.add(j)
+        elif kind == "vt_touch":
+            # Walker is at node i — check its neighborhood for co-active
+            # non-adjacent pairs (local visibility)
+            i = int(getattr(ev, "token", -1))
+            if i < 0 or i >= self.N:
+                continue
+            if phi_dot_abs[i] <= kT:
+                continue
+
+            nbrs = self.adj[i]
+            existing = set(nbrs.tolist())
+            existing.add(i)
+
+            # For each neighbor j of i, check if j's neighbors include
+            # any active non-adjacent node of i (2-hop from i through j)
+            for j in nbrs:
+                j_int = int(j)
+                if phi_dot_abs[j_int] <= kT:
+                    continue
+                for k in self.adj[j_int]:
+                    k_int = int(k)
+                    if k_int in existing:
+                        continue
+                    if phi_dot_abs[k_int] <= kT:
+                        continue
+                    pair = (min(i, k_int), max(i, k_int))
+                    if pair not in proposed:
+                        self._nucleate_bond(i, k_int)
+                        proposed.add(pair)
+
+
+def _nucleate_bond(self, i: int, j: int):
+    """
+    Create a new bond between nodes i and j at ψ = 0.0.
+    CF07: no artificial seeding. The metriplectic dynamics will
+    lift the bond out of the vacuum if thermodynamically favored.
+    """
+    self.adj[i] = np.append(self.adj[i], np.int32(j))
+    self.psi_curr[i] = np.append(self.psi_curr[i], np.float32(0.0))
+    self.psi_prev[i] = np.append(self.psi_prev[i], np.float32(0.0))
+
+    self.adj[j] = np.append(self.adj[j], np.int32(i))
+    self.psi_curr[j] = np.append(self.psi_curr[j], np.float32(0.0))
+    self.psi_prev[j] = np.append(self.psi_prev[j], np.float32(0.0))
 ```
 
-### 4.7 `_compute_physics_reward()` — New method (replaces SIE v2)
+### Why 2-hop proposals via walker touch are correct:
+
+When a walker is at node i, node i is being observed. Its neighbors are the
+nodes it's coupled to. Each neighbor j has ITS neighbors visible from j. If
+node i is active and node k (2 hops away through j) is also active, the
+information pathway i → j → k exists. A new bond i ↔ k is a shortcut that
+the dynamics may support — the walker revealed the pathway.
+
+The cost is bounded: for each vt_touch event, we check O(k̄) neighbors, and
+for each neighbor O(k̄) of its neighbors = O(k̄²) per touch. With k̄ ≈ 20
+that's ~400 checks. With ~256 walkers × 3 hops = ~768 touches per tick,
+total is ~300,000 pair checks per tick — fast.
+
+### 4.7 — `_compute_physics_reward()` — Active-set scoped
 
 ```python
-def _compute_physics_reward(self, dphi: np.ndarray):
+def _compute_physics_reward(self, dphi: np.ndarray, compute_nodes: np.ndarray):
     """
-    Physics-derived reward observables. Replaces heuristic SIE.
-    All quantities from φ, ψ, adj, energy/entropy functionals.
-    No lookup tables. No weights.
+    Physics-derived reward observables computed over the active set only.
+    Cold nodes contribute nothing (their dphi = 0, their bonds are frozen).
 
     Source:
       Energy dissipation rate (−dH/dt): CF01 §4.2, CF02 §4.2
@@ -699,32 +1063,44 @@ def _compute_physics_reward(self, dphi: np.ndarray):
       Entropy production rate: CF02 §4.2
     """
     # Energy: H[φ] = Σ_edges D·ψ_ij·(φ_i−φ_j)² + Σ_nodes V(φ_i)
+    # Computed over active edges only (at least one endpoint in compute_set)
+    compute_set = set(int(x) for x in compute_nodes)
     E_gradient = 0.0
-    for i, nbrs in enumerate(self.adj):
+    for i in compute_nodes:
+        i = int(i)
+        nbrs = self.adj[i]
         for ki, j in enumerate(nbrs):
-            if int(j) > i:
-                E_gradient += self.D * float(self.psi_curr[i][ki]) * (self.phi_curr[i] - self.phi_curr[int(j)]) ** 2
-    E_potential = float(np.sum(self.lam * self.phi_curr**2 * (1.0 - self.phi_curr)**2))
+            j = int(j)
+            if j > i and j in compute_set:
+                E_gradient += self.D * float(self.psi_curr[i][ki]) * \
+                    (self.phi_curr[i] - self.phi_curr[j]) ** 2
+
+    E_potential = float(np.sum(
+        self.lam * self.phi_curr[compute_nodes]**2 *
+        (1.0 - self.phi_curr[compute_nodes])**2
+    ))
     H = E_gradient + E_potential
 
-    # dH/dt ≈ H_curr − H_prev
     H_prev = getattr(self, '_last_H', H)
     dH_dt = H - H_prev
     self._last_H = H
 
-    # Fisher speed: v_F = √(Σ (1/max(φ,ε)) · dφ²)
+    # Fisher speed over active set
     eps = 1e-6
-    fisher_speed = float(np.sqrt(np.sum(dphi**2 / np.maximum(self.phi_curr, eps))))
+    active_dphi = dphi[compute_nodes]
+    active_phi = self.phi_curr[compute_nodes]
+    fisher_speed = float(np.sqrt(np.sum(
+        active_dphi**2 / np.maximum(active_phi, eps)
+    )))
 
-    # Entropy: S = −Σ [φ·log(φ) + (1−φ)·log(1−φ)]
-    phi_c = np.clip(self.phi_curr, eps, 1.0 - eps)
+    # Entropy over active set
+    phi_c = np.clip(active_phi, eps, 1.0 - eps)
     S = float(-np.sum(phi_c * np.log(phi_c) + (1.0 - phi_c) * np.log(1.0 - phi_c)))
     S_prev = getattr(self, '_last_S', S)
     dS_dt = S - S_prev
     self._last_S = S
 
-    # Boundary flux (for speak gating)
-    boundary_flux = float(np.sum(np.abs(dphi)))
+    boundary_flux = float(np.sum(np.abs(active_dphi)))
 
     # Store for telemetry
     self._reward_H = float(H)
@@ -734,7 +1110,6 @@ def _compute_physics_reward(self, dphi: np.ndarray):
     self._reward_dS_dt = float(dS_dt)
     self._reward_boundary_flux = float(boundary_flux)
 
-    # Composite valence (physics-derived, backward compat for speak gating)
     raw = float(-dH_dt) + 0.1 * float(fisher_speed)
     self._last_sie2_valence = float(max(0.0, min(1.0, 0.5 + 0.5 * np.tanh(raw))))
     self._last_sie2_reward = float(raw)
@@ -756,6 +1131,75 @@ def stimulate_indices(self, idxs, amp: float = 0.05):
     except Exception:
         pass
 ```
+
+4.9 — Walker System Integration
+
+### Existing infrastructure (preserved unchanged)
+
+The `cortex/` directory contains a complete walker system that runs through
+`CoreEngine.step()`. This system is NOT modified by the migration. It
+continues to:
+
+1. Dispatch scouts via `run_scouts_once()` with per-tick time budgets
+2. Scouts traverse the connectome read-only, emitting vt_touch and edge_on events
+3. Events fold into maps (HeatMap, ColdMap, TrailMap, ExcitationMap, etc.)
+4. Map snapshots inform the global system and next tick's walker routing
+
+### New integration point
+
+The migration adds ONE new connection: walker events and trail scores are
+passed from `CoreEngine.step()` into `connectome.step()`:
+
+```
+CoreEngine.step(dt_ms, ext_events):
+    # 1. Run scouts (existing, unchanged)
+    walker_events = run_scouts_once(connectome, scouts, maps, budget)
+
+    # 2. Fold events into maps (existing, unchanged)
+    for map in [heat_map, cold_map, trail_map, ...]:
+        map.fold(walker_events, tick)
+
+    # 3. Extract trail scores for computation gating (NEW)
+    trail_snapshot = trail_map.snapshot()
+    trail_scores = {node: score for node, score in trail_snapshot.get("trail_dict", {}).items()}
+
+    # 4. Connectome step with walker data (MODIFIED call)
+    connectome.step(tick=tick, walker_events=walker_events, trail_scores=trail_scores)
+```
+
+### What walkers observe
+
+When a walker visits a node, it reads φ_curr (the node field) and reports what
+it finds. If the node was cold and just got caught up, the walker observes the
+post-catch-up state. If the node's φ changed significantly during the gap
+(rare for cold nodes, but possible at boundaries), the walker's vt_touch
+event carries that information to the bus.
+
+The **global system** sees the shape of activity through the bus — which regions
+are active, where boundaries are forming, what the territory structure looks
+like. It derives meaning from the spatial pattern of walker reports, NOT from
+direct inspection of the field. This is correct: the global system's knowledge
+of the connectome is exactly what the walkers have reported. Unvisited regions
+are invisible.
+
+### Walker types and their roles post-migration
+
+| Scout | Pre-migration role | Post-migration role |
+|-------|-------------------|---------------------|
+| VoidRayScout | Route along φ gradients | Same — φ gradients now include bond-weighted dynamics |
+| HeatScout | Route toward recent activity | Same — now also drives computation allocation |
+| ColdScout | Route toward unvisited regions | **Critical:** ensures eventual coverage of cold nodes |
+| CycleHunterScout | Detect topological loops | Same — loops in persistent topology are more meaningful |
+| FrontierScout | Explore graph boundary | Same — persistent topology has more stable boundaries |
+| SentinelScout | Monitor structural integrity | Same — bond death/birth provides richer structural signal |
+| MemoryRayScout | Route using slow memory field | Same |
+
+**ColdScout is especially important post-migration.** With walker-gated
+computation, cold regions are truly uncomputed. ColdScout ensures walkers
+periodically visit neglected regions, preventing permanent blindspots. This is
+the "what if something interesting happened there?" mechanism — biologically
+analogous to spontaneous attention shifts, default-mode network activation, or
+the mind wandering to check on unattended concerns.
 
 ---
 
@@ -792,19 +1236,13 @@ DELETE all code that computes or uses `sie_drive`, `sie_gate`, `dom_mod`, `domai
 
 ### 5.3 Connectome step call
 
-OLD:
 ```python
+# walker_events and trail_scores populated from engine's cortex step
 nx.connectome.step(
-    t,
-    domain_modulation=float(getattr(nx, "dom_mod", 1.0)),
-    sie_drive=sie_gate,
-    use_time_dynamics=bool(getattr(nx, "use_time_dynamics", True)),
+    tick=step,
+    walker_events=walker_events,
+    trail_scores=trail_scores,
 )
-```
-
-NEW:
-```python
-nx.connectome.step(tick=step)
 ```
 
 ### 5.4 Metrics: physics-native signature logging (append-only)
@@ -879,14 +1317,16 @@ Notes:
 
 ### 6.1 Time variable
 
-OLD:
 ```python
-t = time.time() - t0
-```
-
-NEW:
-```python
-t_wall = time.time() - t0  # wall clock for diagnostics only
+def step_connectome(self, tick: int, walker_events: list = None, trail_scores: dict = None) -> None:
+    try:
+        self._nx.connectome.step(
+            tick=int(tick),
+            walker_events=walker_events or [],
+            trail_scores=trail_scores or {},
+        )
+    except Exception:
+        pass
 ```
 
 The integer `step` passed to the stepper IS the physics time.
@@ -1040,6 +1480,10 @@ After migration, `grep -rn` for each of these in `vdm_rt/` must return ZERO hits
 - [ ] `||pos[i]` or `np.linalg.norm(self.pos` (Euclidean distance on node positions)
 - [ ] `r_causal` as a float Euclidean radius (replaced by `h_causal` integer hops)
 - [ ] `side * side` or `side2` as cubic index arithmetic
+- [ ] - [ ] `h_causal` as a stored state array
+- [ ] `_h_causal_frac` as a stored accumulator
+- [ ] `_void_traverse` as a method in sparse_connectome (replaced by cortex/ walkers)
+- [ ] `_build_alias` called from within `step()` (alias sampling was for _void_traverse and global topology rebuild)
 
 ---
 
@@ -1050,15 +1494,25 @@ All must pass or the migration is rejected:
 1. **No NaN:** `np.any(np.isnan(phi_curr))` is never True at any tick.
 2. **Field bounded:** `phi_curr ∈ [0.0, 1.0]` every tick.
 3. **Bimodal distribution:** At tick 50000, histogram of `phi_curr` has two peaks: `count(φ < 0.2) > 0.2·N` AND `count(φ > 0.8) > 0.2·N`.
-4. **Causal propagation:** Inject stimulus at node i at tick T. Measure first activation tick at node j (graph distance d hops). Delay ≥ `d / c` where `c = √(D/τ)` in hops per tick. Test 10 random pairs with graph distance d ∈ [3, 10].
+4. **Causal propagation:** Inject stimulus at node i at tick T. Measure first tick at which
+   a walker reports φ_j > threshold at node j (graph distance d hops from i). Delay ≥
+   `d / max_walker_speed` where max_walker_speed is bounded by the walker hop budget per
+   tick. Test 10 random pairs with graph distance d ∈ [3, 10]. Note: information cannot
+   propagate faster than walkers can carry it.
 5. **Energy non-increase:** Compute H every 100 ticks. Over any 1000-tick window, H must not increase by more than 5% of its starting value.
 6. **Gini coefficient:** At tick 50000, Gini of `phi_curr` ≥ 0.45.
 7. **Bond persistence:** Mean bond lifetime (ticks a bond persists with ψ > 0.5 before dropping below the bond noise floor $\sqrt{2 \cdot \varepsilon_{topo} \cdot kT}$) > 500 ticks. The telegraph inertia τ_bond = τ/ε_topo = 200 provides this naturally.
-8. **Bond locality:** No bond is ever created between nodes with `graph_distance(i, j) > max(h_causal[i], h_causal[j])`.
+8. **Bond locality:** Every bond created during the run was proposed by a walker event
+   (edge_on or 2-hop from vt_touch). No bond exists between nodes that no walker has
+   connected via traversal. Verify by logging all bond creation events with their
+   originating walker event.
 9. **Eliminated proxies:** grep check (Section 11) passes with zero hits.
 10. **Bond field non-trivial:** At tick 50000, `count(ψ > 0.5) > 0.5 · total_edges` AND `count(ψ < 0.1) > 0`.
 11. **Per-tick cost:** Mean wall-clock time per tick ≤ 3x the time for a single `klein_gordon_rhs()` call (bond update overhead is bounded).
 12. **No debt overflow:** `np.any(np.isinf(self.debt))` is never True. `np.max(self.debt) < 500` at tick 50000 (self-limiting via exponential friction).
+13. **Computation sparsity:** At tick 50000, the mean compute_fraction (|compute_set|/N)
+    over the last 1000 ticks is < 0.5. The walker-gated model should not be computing
+    the entire graph — if it is, the gating is not working.
 
 ---
 
