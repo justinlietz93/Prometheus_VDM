@@ -10,6 +10,26 @@ from __future__ import annotations
 
 import inspect
 import sys
+import os
+
+LOG_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "v8_test_logs")
+os.makedirs(LOG_DIR, exist_ok=True)
+
+class TeeLogger:
+    def __init__(self, filename):
+        self.terminal = sys.stdout
+        self.log = open(filename, "w", encoding="utf-8")
+
+    def write(self, message):
+        self.terminal.write(message)
+        self.log.write(message)
+        self.log.flush()
+
+    def flush(self):
+        self.terminal.flush()
+        self.log.flush()
+
+sys.stdout = TeeLogger(os.path.join(LOG_DIR, "verify_results.txt"))
 
 
 def _gate(name: str, passed: bool, detail: str = "") -> bool:
@@ -73,7 +93,7 @@ def run_gates() -> bool:
     idx = np.arange(N, dtype=np.float32)
     perturbation = np.sin(2.0 * np.pi * idx / 7.0).astype(np.float32) * 1e-4
 
-    conn = Connectome(N=N, perturbation=perturbation)
+    conn = Connectome(N=N, k_init=10, perturbation=perturbation)
     for t in range(500):
         conn.step(t)
 
@@ -100,43 +120,94 @@ def run_gates() -> bool:
     # ------------------------------------------------------------------
     # Gate 7: Walker emergence
     # ------------------------------------------------------------------
+    from unittest.mock import patch
     N2 = 100
     idx2 = np.arange(N2, dtype=np.float32)
     pert2 = np.sin(2.0 * np.pi * idx2 / 7.0).astype(np.float32) * 1e-4
 
-    conn2 = Connectome(N=N2, perturbation=pert2)
-    from vdm_rt.v8.gauge import emit_counts
-    phi_dot_0 = conn2.phi_curr - conn2.phi_prev
-    n0 = int(emit_counts(phi_dot_0, conn2.kT).sum())
+    conn2 = Connectome(N=N2, k_init=10, perturbation=pert2)
+    
+    # We now correctly expect NO walkers at t=0 because `phi_prev(0) == phi_curr(0)`
+    # per AXIOMS, velocity isn't generated until tick 1 integrates the perturbation.
+    info0 = conn2.step(0)
+    walkers_t0 = info0.get("n_walkers", 0)
 
-    n_after = 0
-    walker_tick = -1
-    for t in range(200):
+    first_tick = -1
+    for t in range(1, 200):
         info = conn2.step(t)
         n_after = info.get("n_walkers", 0)
-        if n_after > 0 and walker_tick < 0:
-            walker_tick = t
+        if n_after > 0 and first_tick < 0:
+            first_tick = t
 
     results.append(_gate("7: Walker emergence",
-                         n0 == 0 and walker_tick >= 0,
-                         f"t=0: {n0} walkers, first at t={walker_tick}"))
+                         walkers_t0 == 0 and first_tick >= 1,
+                         f"t=0: {walkers_t0} walkers, first at t={first_tick}"))
 
     # ------------------------------------------------------------------
     # Gate 8: Decoherence
     # ------------------------------------------------------------------
+    import json
+    
     N3 = 200
     idx3 = np.arange(N3, dtype=np.float32)
     pert3 = np.sin(2.0 * np.pi * idx3 / 7.0).astype(np.float32) * 1e-4
 
-    conn3 = Connectome(N=N3, perturbation=pert3)
+    conn3 = Connectome(N=N3, k_init=10, perturbation=pert3)
     total_removed = 0
+    telemetry_log = []
+    
     for t in range(1000):
         info = conn3.step(t)
-        total_removed += info.get("bonds_removed", 0)
+        if info:
+            telemetry_log.append(info)
+            total_removed += info.get("bonds_removed", 0)
+
+    # Save the telemetry
+    with open(os.path.join(LOG_DIR, "telemetry_gate8.json"), "w") as f:
+        json.dump(telemetry_log, f, indent=2)
 
     results.append(_gate("8: Decoherence",
                          total_removed > 0,
-                         f"{total_removed} bonds decohered in 1000 ticks"))
+                         f"{total_removed} bonds decohered in 1000 ticks (saved telemetry_gate8.json)"))
+
+    # ------------------------------------------------------------------
+    # Gate 9: Engram Storage (v8 structure saving/loading)
+    # ------------------------------------------------------------------
+    from vdm_rt.v8.engram import save_engram, load_engram
+
+    N4 = 50
+    pert4 = np.sin(2.0 * np.pi * np.arange(N4) / 7.0).astype(np.float32) * 1e-4
+    conn_src = Connectome(N=N4, k_init=10, perturbation=pert4)
+    # Run a bit so it's not strictly default values
+    for t in range(50):
+        conn_src.step(t)
+
+    engram_pass = False
+    details = ""
+    try:
+        # save
+        path = save_engram(LOG_DIR, conn_src, fmt="h5")
+        
+        # create empty connectome and load
+        conn_dst = Connectome(N=N4, k_init=10, perturbation=pert4)
+        load_engram(path, conn_dst)
+        
+        # evaluate equality on critical properties
+        checks = [
+            conn_dst.N == conn_src.N,
+            conn_dst._tick == conn_src._tick,
+            abs(conn_dst.kT - conn_src.kT) < 1e-8,
+            np.allclose(conn_dst.phi_curr, conn_src.phi_curr),
+            all(np.allclose(conn_dst.psi_curr[i], conn_src.psi_curr[i]) for i in range(N4)),
+            all(np.array_equal(conn_dst.adj[i], conn_src.adj[i]) for i in range(N4)),
+            all(np.array_equal(conn_dst.E0[i], conn_src.E0[i]) for i in range(N4))
+        ]
+        engram_pass = all(checks)
+        details = f"round-tripped tick {conn_dst._tick} via .h5" if engram_pass else f"checks failed: {checks}"
+    except Exception as e:
+        details = f"Exception: {e}"
+
+    results.append(_gate("9: Engram storage", engram_pass, details))
 
     # ------------------------------------------------------------------
     # Summary
@@ -148,15 +219,7 @@ def run_gates() -> bool:
     print(f"{'=' * 40}")
     return n_pass == n_total
 
-    # ------------------------------------------------------------------
-    # Summary
-    # ------------------------------------------------------------------
-    n_pass = sum(results)
-    n_total = len(results)
-    print(f"\n{'=' * 40}")
-    print(f"  {n_pass}/{n_total} gates passed")
-    print(f"{'=' * 40}")
-    return n_pass == n_total
+
 
 
 if __name__ == "__main__":

@@ -7,5 +7,12 @@ Everything derived from the discrete action via QGT decomposition.
 """
 from .connectome import Connectome
 from .void_equations import get_constants
+from .connectome import Connectome
+from .engram import save_engram, load_engram
 
-__all__ = ["Connectome", "get_constants"]
+__all__ = [
+    "Connectome",
+    "get_constants",
+    "save_engram",
+    "load_engram",
+]

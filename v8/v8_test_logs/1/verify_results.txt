@@ -1,0 +1,15 @@
+VDM v8 Physics Core — Validation Gates
+========================================
+  [PASS] Gate 1: Import
+  [PASS] Gate 2: CF constraints — D=0.050000, C2=0.025000, tau=2.000000
+  [PASS] Gate 3: No RNG in physics — 0 violations
+  [PASS] Gate 4: Tachyonic condensation — Var(phi) = 0.2151 after 500 ticks
+  [PASS] Gate 5: Bond formation — 2000 bond DOFs after 500 ticks
+  [PASS] Gate 6: kT measured — kT = 4.987157e-05
+  [PASS] Gate 7: Walker emergence — t=0: 0 walkers, first at t=1
+  [PASS] Gate 8: Decoherence — 187370 bonds decohered in 1000 ticks (saved telemetry_gate8.json)
+  [PASS] Gate 9: Engram storage — round-tripped tick 49 via .h5
+
+========================================
+  9/9 gates passed
+========================================

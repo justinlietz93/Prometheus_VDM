@@ -29,7 +29,7 @@ from .void_equations import (
     bond_weighted_laplacian,
     node_potential_derivative,
 )
-from .gauge import run_gauge_step, WalkerEvent
+from .gauge import run_gauge_step, WalkerEvent, emit_counts
 
 
 class Connectome:
@@ -54,39 +54,42 @@ class Connectome:
         self,
         N: int,
         perturbation: np.ndarray,
+        k_init: int = 10,
     ):
         """
-        Initialize connectome with N nodes at unstable vacuum.
+        Initialize connectome with N nodes at unstable vacuum on substrate E0.
 
         Args:
             N: number of nodes
-            perturbation: user-provided symmetry-breaking perturbation
-                          for φ. Must be shape (N,). This is the ONLY
-                          input that breaks the symmetry of the initial
-                          unstable vacuum. Everything else emerges.
+            perturbation: user-provided symmetry-breaking perturbation for φ
+            k_init: initial computational substrate degree (ring lattice E0)
         """
         self.N = N
 
         # --- Node field: unstable vacuum φ = 0.5 + perturbation ---
-        # V(φ) = λ·φ²(1-φ)² has V''(0.5) < 0 → tachyonic instability.
-        # The perturbation is the ONLY thing that seeds the dynamics.
         self.phi_curr = np.full(N, 0.5, dtype=np.float32) + perturbation.astype(np.float32)
-        # phi_prev = 0.5 exactly → φ̇(0) = perturbation.
-        # The tachyonic instability amplifies this initial velocity.
         self.phi_prev = np.full(N, 0.5, dtype=np.float32)
 
-        # --- ZERO initial bonds ---
-        # The graph starts empty. Bonds are instantiated by walker
-        # observation when (φ_j − φ_i)² > 0 at domain walls.
-        # The topology IS the memory — it emerges from the dynamics.
-        self.adj: List[np.ndarray] = [
-            np.array([], dtype=np.int32) for _ in range(N)
-        ]
+        # --- Fixed computational substrate E0 ---
+        # The true initial topology is the lattice. Physics (condensed bonds)
+        # emerges on top of this.
+        self.adj: List[np.ndarray] = []
+        self.E0: List[np.ndarray] = []
+        for i in range(N):
+            nbrs = set()
+            for dx in range(1, k_init // 2 + 1):
+                nbrs.add((i + dx) % N)
+                nbrs.add((i - dx) % N)
+            arr = np.array(sorted(list(nbrs)), dtype=np.int32)
+            self.adj.append(arr)
+            self.E0.append(arr)
+
+        # Bonds start at strict vacuum ψ = 0 on E0
         self.psi_curr: List[np.ndarray] = [
-            np.array([], dtype=np.float32) for _ in range(N)
+            np.zeros(len(self.adj[i]), dtype=np.float32) for i in range(N)
         ]
         self.psi_prev: List[np.ndarray] = [
-            np.array([], dtype=np.float32) for _ in range(N)
+            np.zeros(len(self.adj[i]), dtype=np.float32) for i in range(N)
         ]
 
         # --- Debt (self-limiting via exp(β·debt)) ---
@@ -94,8 +97,8 @@ class Connectome:
 
         # --- Walker-gated state ---
         self.last_visit = np.full(N, -1, dtype=np.int32)
-        # kT measured from ½·Var(φ̇) at every tick. At t=0 this equals
-        # ½·Var(perturbation). No hardcoded bootstrap value.
+        
+        # kT measured from ½·Var(φ̇) at every tick.
         phi_dot_init = perturbation.astype(np.float32)
         self.kT: float = max(0.5 * float(np.var(phi_dot_init)), 1e-30)
         self._tick: int = 0
@@ -131,9 +134,16 @@ class Connectome:
         phi_dot = (self.phi_curr - self.phi_prev).astype(np.float32)
 
         # ---------------------------------------------------------------
-        # Step 2: Gauge emission + propagation
-        # ---------------------------------------------------------------
-        events, active_set, warm_set, bond_pairs = run_gauge_step(
+        # Step 2: Gauge (Observer logic)
+        emit_counts_arr = emit_counts(phi_dot, self.kT)
+        
+        # We process the gauge propagation in pure Python
+        (
+            all_events,
+            active_set,
+            warm_set,
+            bond_pairs,
+        ) = run_gauge_step(
             phi_dot=phi_dot,
             adj=self.adj,
             psi=self.psi_curr,
@@ -155,7 +165,7 @@ class Connectome:
         # independently under V'(φ). The tachyonic instability amplifies
         # the perturbation. Once φ̇ > v_th, walkers emit and begin
         # observing node pairs, creating the first bonds.
-        has_walkers = len(events) > 0
+        has_walkers = all_events > 0
         if not has_walkers and sum(a.size for a in self.adj) == 0:
             # No walkers AND no bonds: bootstrap — compute all nodes
             active_set = set(range(N))
@@ -270,7 +280,7 @@ class Connectome:
 
         return {
             "tick": tick,
-            "n_walkers": len(events),
+            "n_walkers": all_events,
             "n_active": len(active_set),
             "n_warm": len(warm_set),
             "n_computed": len(compute_list),
@@ -304,42 +314,42 @@ class Connectome:
         self.adj[u] = np.append(self.adj[u], np.int32(v))
         self.psi_curr[u] = np.append(self.psi_curr[u], np.float32(0.0))
         self.psi_prev[u] = np.append(self.psi_prev[u], np.float32(0.0))
-
         self.adj[v] = np.append(self.adj[v], np.int32(u))
         self.psi_curr[v] = np.append(self.psi_curr[v], np.float32(0.0))
         self.psi_prev[v] = np.append(self.psi_prev[v], np.float32(0.0))
 
-    def _decohere_bonds(self, compute_nodes: list) -> int:
+    def _decohere_bonds(self, compute_nodes: List[int]) -> int:
         """
         Remove bonds below the dynamic decoherence floor (CF07).
         """
         eta_floor = bond_decoherence_floor(self.kT)
-        removed = 0
+        bonds_removed = 0
 
         for i in compute_nodes:
             i = int(i)
             if self.adj[i].size == 0:
                 continue
 
-            alive = self.psi_curr[i] >= eta_floor
-            if alive.all():
-                continue
+            # E0 substrate edges are fixed; they can drop to psi=0 but never
+            # leave the adjacency list. Ephemeral edges are removed if below floor.
+            in_e0 = np.isin(self.adj[i], self.E0[i])
+            keep = (self.psi_curr[i] >= eta_floor) | in_e0
+            if not np.all(keep):
+                dead_nbrs = self.adj[i][~keep]
+                bonds_removed += int((~keep).sum())
+                
+                self.adj[i] = self.adj[i][keep]
+                self.psi_curr[i] = self.psi_curr[i][keep]
+                self.psi_prev[i] = self.psi_prev[i][keep]
 
-            dead_nbrs = self.adj[i][~alive]
-            removed += int((~alive).sum())
+                for j in dead_nbrs:
+                    j = int(j)
+                    mask = self.adj[j] != i
+                    self.adj[j] = self.adj[j][mask]
+                    self.psi_curr[j] = self.psi_curr[j][mask]
+                    self.psi_prev[j] = self.psi_prev[j][mask]
 
-            self.adj[i] = self.adj[i][alive]
-            self.psi_curr[i] = self.psi_curr[i][alive]
-            self.psi_prev[i] = self.psi_prev[i][alive]
-
-            for j in dead_nbrs:
-                j = int(j)
-                mask = self.adj[j] != i
-                self.adj[j] = self.adj[j][mask]
-                self.psi_curr[j] = self.psi_curr[j][mask]
-                self.psi_prev[j] = self.psi_prev[j][mask]
-
-        return removed
+        return bonds_removed
 
     def _measure_cold_node(self, node: int, tick_now: int) -> None:
         """
