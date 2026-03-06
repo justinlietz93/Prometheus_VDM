@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a complete reimplementation of the VDM (Void Dynamics Model) runtime with **full alignment** to the CF (Causality Framework) documents. All parameters are now derived from quantum geometric structure rather than engineering proxies.
+This is a complete reimplementation of the VDM (Void Dynamics Model) runtime with **full alignment** to the CF (Complete Formalism) documents. All parameters are now derived from quantum geometric structure rather than engineering proxies.
 
 ## Key Changes from v8
 
