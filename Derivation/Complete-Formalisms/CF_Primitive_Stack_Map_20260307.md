@@ -4,6 +4,8 @@
 
 * What deeper primitive gives rise to a state-family in which trivial self-identity is quotiented out, so that physically meaningful difference becomes geometric and the QGT appears as the first stable tensorial shadow?
 
+* Attempt: The deepest primitive in VDM is best conceived not as a graph, bond field, or already-formed geometry, but as a local state-generating substrate governed by an intrinsic evolution law. Its first ontological act is the production of admissible local state-families together with a distinction between trivial self-preservation and physically meaningful variation. Only after redundant or self-equivalent directions are removed does a true local geometry appear. The symmetric content of that surviving variation becomes distinguishability/metric structure, the antisymmetric content becomes Berry-curvature/symplectic structure, and their unification is the QGT. On this reading, the QGT is the first induced geometric object of the substrate rather than the substrate itself: it is the tensorial signature left by a deeper law that generates local states and selects which infinitesimal differences count as physically real.
+
 ## Map
 
 | Layer                                                               | Current status                       | What it is                                                                                               | Why it sits there                                                                                                            | Main canon anchors                            | Main falsifier                                                                                              |
