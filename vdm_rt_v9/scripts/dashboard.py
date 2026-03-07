@@ -15,10 +15,11 @@ from __future__ import annotations
 import sys
 import os
 import glob
+import json
 import numpy as np
 import h5py
 
-from scipy.sparse import csr_matrix
+from scipy.sparse import csr_matrix, identity
 from scipy.sparse.linalg import eigsh
 
 import plotly.graph_objects as go
@@ -70,6 +71,7 @@ class EngramReader:
 
         # Cache
         self._embed_cache = {}
+        self._physical_cache = {}
         self._summary = None
 
         # Map snapshot index → actual tick number (from key name)
@@ -127,6 +129,8 @@ class EngramReader:
         row_ptr = grp["adj_csr_row_ptr"][:]
         col_idx = grp["adj_csr_col_idx"][:]
         psi_flat = grp["psi_csr_data"][:] if "psi_csr_data" in grp else np.array([])
+        last_visit = grp["last_visit"][:] if "last_visit" in grp else np.full(N, -1, dtype=np.int32)
+        debt = grp["debt"][:] if "debt" in grp else np.zeros(N, dtype=np.float32)
 
         # Build CSR
         nnz = col_idx.shape[0]
@@ -150,7 +154,67 @@ class EngramReader:
             "N": N,
             "kT": kT,
             "tick": tick_num,
+            "last_visit": last_visit,
+            "debt": debt,
         }
+
+    def get_physical_state(self, tick_idx: int):
+        """Cached physical-space diagnostics for lattice rendering."""
+        if tick_idx in self._physical_cache:
+            return self._physical_cache[tick_idx]
+
+        data = self.load_tick(tick_idx)
+        phi = data["phi"]
+        phi_dot = data["phi_dot"]
+        row_ptr = data["row_ptr"]
+        col_idx = data["col_idx"]
+        psi_flat = data["psi_flat"]
+        last_visit = data["last_visit"]
+        N = data["N"]
+
+        order = 2.0 * phi - 1.0
+        observed = last_visit >= 0
+        occupied = observed & (np.abs(order) > 0.3)
+        active = observed & (np.abs(phi_dot) > np.sqrt(2.0 * max(data["kT"], 1e-15)))
+
+        degrees = np.diff(row_ptr).astype(np.int32)
+        row_ids = np.repeat(np.arange(N, dtype=np.int32), degrees)
+        psi_vals = psi_flat if psi_flat.size == row_ids.size else np.ones(row_ids.size, dtype=np.float32)
+        dphi = phi[col_idx] - phi[row_ids] if row_ids.size > 0 else np.array([], dtype=np.float32)
+
+        grad_energy = np.zeros(N, dtype=np.float32)
+        if row_ids.size > 0:
+            np.add.at(grad_energy, row_ids, 0.5 * psi_vals * (dphi ** 2))
+
+        cross_mask = order[row_ids] * order[col_idx] < 0 if row_ids.size > 0 else np.array([], dtype=bool)
+        interface_nodes = np.zeros(N, dtype=bool)
+        if row_ids.size > 0 and np.any(cross_mask):
+            interface_nodes[row_ids[cross_mask]] = True
+
+        shell_mask = observed & interface_nodes
+        if np.any(shell_mask):
+            shell_energy = grad_energy[shell_mask]
+            threshold = max(1e-6, 0.1 * float(shell_energy.max()))
+            shell_mask = shell_mask & (grad_energy >= threshold)
+        else:
+            shell_mask = observed & (grad_energy > 1e-6)
+
+        condensed_bonds = int(np.sum(psi_vals > 0.8) // 2) if row_ids.size > 0 else 0
+        result = {
+            "order": order,
+            "observed": observed,
+            "occupied": occupied,
+            "active": active,
+            "grad_energy": grad_energy,
+            "interface_nodes": interface_nodes,
+            "shell_mask": shell_mask,
+            "row_ids": row_ids,
+            "psi_vals": psi_vals,
+            "cross_mask": cross_mask,
+            "condensed_bonds": condensed_bonds,
+        }
+        self._physical_cache[tick_idx] = result
+        return result
 
     def get_embedding(self, tick_idx: int):
         """Spectral embedding using ψ-weighted normalized Laplacian.
@@ -198,13 +262,13 @@ class EngramReader:
         degrees = np.array(A.sum(axis=1)).ravel()
 
         # Normalized Laplacian: L_norm = I - D^{-1/2} A D^{-1/2}
-        d_inv_sqrt = np.zeros(N)
+        d_inv_sqrt = np.zeros(N, dtype=np.float32)
         mask = degrees > 0
         d_inv_sqrt[mask] = 1.0 / np.sqrt(degrees[mask])
-        D_inv_sqrt = csr_matrix(
-            (d_inv_sqrt, (np.arange(N), np.arange(N))), shape=(N, N)
-        )
-        L_norm = csr_matrix(np.eye(N)) - D_inv_sqrt @ A @ D_inv_sqrt
+
+        # Keep the normalized Laplacian sparse for large graphs.
+        A_norm = A.multiply(d_inv_sqrt[:, None]).multiply(d_inv_sqrt[None, :]).tocsr()
+        L_norm = identity(N, dtype=np.float32, format="csr") - A_norm
 
         n_components = min(7, N - 2)
         try:
@@ -457,12 +521,305 @@ def build_telemetry_figure(reader: EngramReader, current_tick_idx: int):
     return fig
 
 
+def load_run_config(h5_path: str):
+    """Load sibling config.json when available."""
+    config_path = os.path.join(os.path.dirname(os.path.abspath(h5_path)), "config.json")
+    if not os.path.exists(config_path):
+        return {}
+    try:
+        with open(config_path, "r", encoding="utf-8") as fh:
+            return json.load(fh)
+    except Exception:
+        return {}
+
+
+def infer_lattice_shape(config: dict, n_nodes: int):
+    """Infer lattice dimensions for physical-space rendering."""
+    if config.get("lattice") == "cubic":
+        lx = int(config.get("Lx", 0))
+        ly = int(config.get("Ly", 0))
+        lz = int(config.get("Lz", 0))
+        if lx > 0 and ly > 0 and lz > 0 and lx * ly * lz == n_nodes:
+            return lx, ly, lz
+    if config.get("lattice") == "ring":
+        return n_nodes, 1, 1
+
+    root = int(round(n_nodes ** (1.0 / 3.0)))
+    if root > 0 and root ** 3 == n_nodes:
+        return root, root, root
+    return n_nodes, 1, 1
+
+
+def build_lattice_coords(shape):
+    """Map node index i = x + y*Lx + z*Lx*Ly into coordinates."""
+    lx, ly, lz = shape
+    idx = np.arange(lx * ly * lz, dtype=np.int32)
+    x = idx % lx
+    y = (idx // lx) % ly
+    z = idx // (lx * ly)
+    return np.column_stack([x, y, z]).astype(np.float32)
+
+
+def pulse_seed_bounds(config: dict):
+    """Describe the default pulse geometry in lattice coordinates."""
+    if config.get("stimulus") != "pulse":
+        return None
+
+    n_nodes = int(config.get("N", 0))
+    lx = int(config.get("Lx", 0))
+    ly = int(config.get("Ly", 0))
+    lz = int(config.get("Lz", 0))
+    if n_nodes <= 0 or lx <= 0 or ly <= 0 or lz <= 0:
+        return None
+
+    coords = build_lattice_coords((lx, ly, lz))
+    n_stim = max(5, n_nodes // 50)
+    if config.get("pulse_geometry") == "compact_blob":
+        radius = max(1, int(round(((3.0 * n_stim) / (4.0 * np.pi)) ** (1.0 / 3.0))))
+
+        def sphere(center):
+            cx, cy, cz = center
+            idxs = []
+            for dz in range(-radius, radius + 1):
+                for dy in range(-radius, radius + 1):
+                    for dx in range(-radius, radius + 1):
+                        if dx * dx + dy * dy + dz * dz > radius * radius:
+                            continue
+                        x = (cx + dx) % lx
+                        y = (cy + dy) % ly
+                        z = (cz + dz) % lz
+                        idxs.append(x + y * lx + z * lx * ly)
+            return coords[np.array(sorted(set(idxs)), dtype=np.int32)]
+
+        region_a = sphere((lx // 4, ly // 2, lz // 2))
+        region_b = sphere((3 * lx // 4, ly // 2, lz // 2))
+    else:
+        region_a = coords[:n_stim]
+        start_b = n_nodes // 3
+        region_b = coords[start_b:start_b + n_stim]
+
+    def bounds(points):
+        if points.size == 0:
+            return None
+        return {
+            "min": points.min(axis=0).astype(int).tolist(),
+            "max": points.max(axis=0).astype(int).tolist(),
+            "unique_z": np.unique(points[:, 2]).astype(int).tolist(),
+        }
+
+    return {
+        "n_stim": n_stim,
+        "region_a": bounds(region_a),
+        "region_b": bounds(region_b),
+    }
+
+
+def sample_condensed_edges(coords, row_ids, col_idx, psi_vals, threshold=0.8, max_edges=1800):
+    """Sample non-wrap condensed edges for physical-space display."""
+    if row_ids.size == 0:
+        return [], [], []
+
+    mask = (psi_vals > threshold) & (col_idx > row_ids)
+    if not np.any(mask):
+        return [], [], []
+
+    src = row_ids[mask]
+    dst = col_idx[mask]
+    delta = np.abs(coords[dst] - coords[src])
+    non_wrap = np.all(delta <= 1.0, axis=1)
+    if not np.any(non_wrap):
+        return [], [], []
+
+    src = src[non_wrap]
+    dst = dst[non_wrap]
+    if src.size > max_edges:
+        keep = np.linspace(0, src.size - 1, max_edges, dtype=np.int32)
+        src = src[keep]
+        dst = dst[keep]
+
+    edge_x, edge_y, edge_z = [], [], []
+    for i, j in zip(src, dst):
+        p0 = coords[int(i)]
+        p1 = coords[int(j)]
+        edge_x.extend([float(p0[0]), float(p1[0]), None])
+        edge_y.extend([float(p0[1]), float(p1[1]), None])
+        edge_z.extend([float(p0[2]), float(p1[2]), None])
+
+    return edge_x, edge_y, edge_z
+
+
+def build_physical_figure(reader: EngramReader, tick_idx: int, coords, lattice_shape):
+    """Render realized topology in physical lattice coordinates."""
+    data = reader.load_tick(tick_idx)
+    physical = reader.get_physical_state(tick_idx)
+
+    phi = data["phi"]
+    order = physical["order"]
+    shell_mask = physical["shell_mask"]
+    observed = physical["observed"]
+    row_ids = physical["row_ids"]
+    psi_vals = physical["psi_vals"]
+
+    positive_phase = observed & (phi > 0.9)
+    negative_phase = observed & (phi < 0.1)
+    positive_idx = np.where(positive_phase)[0]
+    negative_idx = np.where(negative_phase)[0]
+    occupied_idx = positive_idx
+    shell_idx = np.where(shell_mask)[0]
+
+    fig = go.Figure()
+    lx, ly, lz = lattice_shape
+
+    if lx > 1 and ly > 1 and lz > 1:
+        fig.add_trace(go.Isosurface(
+            x=coords[:, 0],
+            y=coords[:, 1],
+            z=coords[:, 2],
+            value=phi,
+            isomin=0.48,
+            isomax=0.52,
+            surface_count=1,
+            opacity=0.32,
+            colorscale=[[0.0, "#f0883e"], [1.0, "#79c0ff"]],
+            showscale=False,
+            caps=dict(x_show=False, y_show=False, z_show=False),
+            hovertemplate="x=%{x}<br>y=%{y}<br>z=%{z}<br>phi=%{value:.3f}<extra>Domain Wall</extra>",
+            name="Domain Wall (phi ~= 0.5)",
+        ))
+
+    edge_x, edge_y, edge_z = sample_condensed_edges(
+        coords, row_ids, data["col_idx"], psi_vals, threshold=0.8, max_edges=2200
+    )
+    if edge_x:
+        fig.add_trace(go.Scatter3d(
+            x=edge_x, y=edge_y, z=edge_z,
+            mode="lines",
+            line=dict(color=GREEN, width=3),
+            opacity=0.22,
+            hoverinfo="skip",
+            name="Condensed Bonds (psi > 0.8)",
+        ))
+
+    if positive_idx.size > 0:
+        fig.add_trace(go.Scatter3d(
+            x=coords[positive_idx, 0],
+            y=coords[positive_idx, 1],
+            z=coords[positive_idx, 2],
+            mode="markers",
+            marker=dict(
+                size=2.1,
+                color=ORANGE,
+                opacity=0.09,
+            ),
+            hoverinfo="skip",
+            name="Positive Phase (phi > 0.9)",
+        ))
+
+    if shell_idx.size > 0:
+        grad_vals = physical["grad_energy"][shell_idx]
+        fig.add_trace(go.Scatter3d(
+            x=coords[shell_idx, 0],
+            y=coords[shell_idx, 1],
+            z=coords[shell_idx, 2],
+            mode="markers",
+            marker=dict(
+                size=3.6,
+                color=grad_vals,
+                colorscale="Turbo",
+                opacity=0.95,
+                colorbar=dict(title="Interface G"),
+            ),
+            text=[
+                f"Node {i}<br>m={order[i]:.3f}<br>G={physical['grad_energy'][i]:.4e}"
+                for i in shell_idx
+            ],
+            hoverinfo="text",
+            name="Interface Energy Shell",
+        ))
+
+    lx, ly, lz = lattice_shape
+    fig.update_layout(
+        title=dict(
+            text=(
+                f"Physical Topology  ·  t={data['tick']}  ·  "
+                f"observed={int(np.sum(observed))}  ·  phi>0.9={positive_idx.size}  ·  "
+                f"phi<0.1={negative_idx.size}  ·  shell={shell_idx.size}  ·  condensed={physical['condensed_bonds']}"
+            ),
+            font=dict(color=ACCENT, size=14),
+        ),
+        scene=dict(
+            xaxis=dict(title=f"x / {lx}", showbackground=False, color=TEXT_FG, gridcolor=BORDER),
+            yaxis=dict(title=f"y / {ly}", showbackground=False, color=TEXT_FG, gridcolor=BORDER),
+            zaxis=dict(title=f"z / {lz}", showbackground=False, color=TEXT_FG, gridcolor=BORDER),
+            bgcolor=DARK_BG,
+            aspectmode="cube",
+        ),
+        paper_bgcolor=DARK_BG,
+        plot_bgcolor=DARK_BG,
+        font=dict(color=TEXT_FG),
+        margin=dict(l=0, r=0, t=40, b=0),
+        legend=dict(bgcolor="rgba(0,0,0,0)"),
+        height=600,
+    )
+    return fig
+
+
+def build_tick_info(reader: EngramReader, tick_idx: int, config: dict):
+    """Render tick diagnostics shared by both views."""
+    data = reader.load_tick(tick_idx)
+    physical = reader.get_physical_state(tick_idx)
+    degrees = np.diff(data["row_ptr"])
+    psi = data["psi_flat"]
+    nonzero_psi = psi[psi > 0] if psi.size > 0 else np.array([])
+    seed = pulse_seed_bounds(config)
+
+    details = [
+        html.Strong(f"Tick {data['tick']}", style={"color": ACCENT}),
+        html.Br(),
+        f"kT = {data['kT']:.2e}",
+        html.Br(),
+        f"phi_mean = {float(np.mean(data['phi'])):.4f},  phi_var = {float(np.var(data['phi'])):.4f}",
+        html.Br(),
+        f"mean_degree = {float(degrees.mean()):.1f},  max_degree = {int(degrees.max())}",
+        html.Br(),
+        f"psi_mean = {float(nonzero_psi.mean()):.4f}" if nonzero_psi.size > 0 else "No active bonds",
+        html.Br(),
+        (
+            f"observed = {int(np.sum(physical['observed']))},  "
+            f"phi > 0.9 = {int(np.sum(physical['observed'] & (data['phi'] > 0.9)))},  "
+            f"phi < 0.1 = {int(np.sum(physical['observed'] & (data['phi'] < 0.1)))},  "
+            f"shell = {int(np.sum(physical['shell_mask']))}"
+        ),
+        html.Br(),
+        f"condensed bonds (psi > 0.8) = {physical['condensed_bonds']}",
+        html.Br(),
+        f"active nodes = {int(np.sum(physical['active']))}",
+    ]
+
+    if seed is not None:
+        details.extend([
+            html.Br(),
+            html.Span(
+                (
+                    f"Pulse seed spans z={seed['region_a']['unique_z']} and "
+                    f"z={seed['region_b']['unique_z']}."
+                ),
+                style={"color": ORANGE},
+            ),
+        ])
+
+    return html.Div(details)
+
+
 # ── Dash App ─────────────────────────────────────────────────────────
 
 def build_dashboard(h5_path: str):
     """Build and return the Dash app."""
 
     reader = EngramReader(h5_path)
+    run_config = load_run_config(h5_path)
+    lattice_shape = infer_lattice_shape(run_config, reader.N)
+    lattice_coords = build_lattice_coords(lattice_shape)
     print(f"Loaded: {h5_path}")
     print(f"  Ticks: {reader.n_ticks}, N: {reader.N}")
     print("  Loading summaries...")
@@ -554,9 +911,26 @@ def build_dashboard(h5_path: str):
         html.Div([
             # Left: 3D topology
             html.Div([
+                html.Div([
+                    html.Span("3D View:", style={"color": TEXT_FG, "fontSize": "12px"}),
+                    dcc.RadioItems(
+                        id="view-select",
+                        options=[
+                            {"label": "Physical Lattice", "value": "physical"},
+                            {"label": "Spectral Modes", "value": "spectral"},
+                        ],
+                        value="physical",
+                        labelStyle={"display": "inline-block", "marginRight": "14px"},
+                        inputStyle={"marginRight": "6px"},
+                        style={"color": TEXT_FG, "fontSize": "12px"},
+                    ),
+                ], style={
+                    "display": "flex", "alignItems": "center", "gap": "12px",
+                    "padding": "0 0 8px 4px",
+                }),
                 dcc.Graph(
                     id="graph-3d",
-                    figure=build_3d_figure(reader, 0),
+                    figure=build_physical_figure(reader, 0, lattice_coords, lattice_shape),
                     style={"height": "600px"},
                     config={"displayModeBar": True, "scrollZoom": True},
                 ),
@@ -574,7 +948,7 @@ def build_dashboard(h5_path: str):
                     "padding": "10px", "fontSize": "12px", "color": TEXT_FG,
                     "background": CARD_BG, "borderRadius": "6px",
                     "border": f"1px solid {BORDER}", "marginTop": "8px",
-                }),
+                }, children=build_tick_info(reader, 0, run_config)),
             ], style={"flex": "1", "minWidth": "350px"}),
         ], style={
             "display": "flex", "gap": "12px", "padding": "12px 20px",
@@ -666,36 +1040,24 @@ def build_dashboard(h5_path: str):
             Output("graph-telemetry", "figure"),
             Output("tick-info", "children"),
         ],
-        Input("tick-slider", "value"),
+        [
+            Input("tick-slider", "value"),
+            Input("view-select", "value"),
+        ],
         prevent_initial_call=True,
     )
-    def update_visuals(tick_idx):
+    def update_visuals(tick_idx, view_mode):
         if tick_idx is None:
             return no_update, no_update, no_update
 
         tick_idx = int(tick_idx)
-        fig_3d = build_3d_figure(reader, tick_idx)
+        if view_mode == "spectral":
+            fig_3d = build_3d_figure(reader, tick_idx)
+        else:
+            fig_3d = build_physical_figure(reader, tick_idx, lattice_coords, lattice_shape)
         fig_telem = build_telemetry_figure(reader, tick_idx)
 
-        data = reader.load_tick(tick_idx)
-        degrees = np.diff(data["row_ptr"])
-        psi = data["psi_flat"]
-        nonzero_psi = psi[psi > 0] if psi.size > 0 else np.array([])
-
-        info = html.Div([
-            html.Strong(f"Tick {data['tick']}", style={"color": ACCENT}),
-            html.Br(),
-            f"kT = {data['kT']:.2e}",
-            html.Br(),
-            f"φ̄ = {float(np.mean(data['phi'])):.4f},  Var(φ) = {float(np.var(data['phi'])):.4f}",
-            html.Br(),
-            f"k̄ = {float(degrees.mean()):.1f},  max(k) = {int(degrees.max())}",
-            html.Br(),
-            f"ψ̄ = {float(nonzero_psi.mean()):.4f}" if nonzero_psi.size > 0 else "No active bonds",
-            html.Br(),
-            f"Active: {int(np.sum(np.abs(data['phi_dot']) > np.sqrt(2 * max(data['kT'], 1e-15))))} nodes",
-        ])
-
+        info = build_tick_info(reader, tick_idx, run_config)
         return fig_3d, fig_telem, info
 
     return app
@@ -723,3 +1085,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
