@@ -7,3 +7,4 @@ This is the pure physics migration from the existing vdm_rt/ runtime. The existi
 ## Note on Lattice Claim
 
 VDM requires a real local discrete substrate. The current cubic-periodic lattice is the present implementation substrate for T2 validation, not yet the uniquely admitted spacetime lattice. During migration, lattice choice is a controlled physics variable that must be constrained by gates, not treated as a cosmetic engineering detail.
+The lattice is the discretized geometry and measuring grid through which the theory is realized. It should not change the underlying physics if chosen well, but a bad lattice can bend, smear, or fake the observed phenomena.
