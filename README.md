@@ -26,7 +26,7 @@ Robust through substantial perturbations, mmaintains synchronicity locking SIE v
 > <a href="https://orcid.org/0009-0008-9028-1366"><img src="https://img.shields.io/badge/ORCID-0009--0008--9028--1366-blue?" alt="ORCID: 0009-0008-9028-1366"></a>  
 >
 > **Created:** August 9, 2025  
-> **Last Updated:** February 25, 2026  
+> **Last Updated:** March 5, 2026  
 >
 > This research is protected under a dual-license to foster open academic  
 > research while ensuring commercial applications are aligned with the project's ethical principles.  
