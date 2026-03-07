@@ -258,12 +258,33 @@ def build_cubic_lattice(N: int):
     return actual_N, edges, Lx, Ly, Lz
 
 
+def _coord_to_index(x: int, y: int, z: int, shape):
+    """Map periodic lattice coordinates back to the flattened node index."""
+    lx, ly, lz = shape
+    return int((x % lx) + (y % ly) * lx + (z % lz) * lx * ly)
+
+
+def _sphere_indices(center, radius: int, shape) -> list[int]:
+    """Periodic integer lattice ball around a 3D center."""
+    lx, ly, lz = shape
+    cx, cy, cz = center
+    indices = []
+    r2 = radius * radius
+    for dz in range(-radius, radius + 1):
+        for dy in range(-radius, radius + 1):
+            for dx in range(-radius, radius + 1):
+                if dx * dx + dy * dy + dz * dz > r2:
+                    continue
+                indices.append(_coord_to_index(cx + dx, cy + dy, cz + dz, shape))
+    return sorted(set(indices))
+
+
 # ═══════════════════════════════════════════════════════════════════════════
 # Stimulus patterns
 # ═══════════════════════════════════════════════════════════════════════════
 
 def apply_stimulus(conn: Connectome, mode: str, tick: int, N: int,
-                   amp: float = 0.08):
+                   amp: float = 0.08, lattice_shape=None):
     """
     Apply stimulus to the field.  This IS the first observation.
 
@@ -274,10 +295,22 @@ def apply_stimulus(conn: Connectome, mode: str, tick: int, N: int,
     """
     if mode == "pulse":
         if tick == 0:
-            # Two regions, opposite directions → competing domains
-            n_stim = max(5, N // 50)
-            region_a = list(range(0, n_stim))
-            region_b = list(range(N // 3, N // 3 + n_stim))
+            # Use compact periodic blobs in physical coordinates instead of
+            # flattened memory-order slabs, which bias the system into planes.
+            if lattice_shape and all(dim > 1 for dim in lattice_shape):
+                lx, ly, lz = lattice_shape
+                n_stim = max(5, N // 50)
+                radius = max(1, int(round(((3.0 * n_stim) / (4.0 * np.pi)) ** (1.0 / 3.0))))
+                region_a = _sphere_indices((lx // 4, ly // 2, lz // 2), radius, lattice_shape)
+                region_b = _sphere_indices((3 * lx // 4, ly // 2, lz // 2), radius, lattice_shape)
+            else:
+                # Ring / fallback: compact local neighborhoods.
+                n_stim = max(5, N // 50)
+                half = n_stim // 2
+                center_a = N // 4
+                center_b = 3 * N // 4
+                region_a = [(center_a + i) % N for i in range(-half, half + 1)]
+                region_b = [(center_b + i) % N for i in range(-half, half + 1)]
             conn.stimulate(region_a, np.full(len(region_a), +amp))
             conn.stimulate(region_b, np.full(len(region_b), -amp))
 
@@ -370,6 +403,8 @@ def main():
         "constants": get_constants(),
         "timestamp": timestamp,
     }
+    if args.stimulus == "pulse":
+        config["pulse_geometry"] = "compact_blob"
     with open(os.path.join(out_dir, "config.json"), "w") as f:
         json.dump(config, f, indent=2)
 
@@ -396,7 +431,7 @@ def main():
         t0 = time.time()
 
         # Apply stimulus
-        apply_stimulus(conn, args.stimulus, t, N, args.amp)
+        apply_stimulus(conn, args.stimulus, t, N, args.amp, lattice_shape=(Lx, Ly, Lz))
 
         # Physics step
         result = conn.step(t)

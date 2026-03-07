@@ -1,0 +1,1 @@
+VDM requires a real local discrete substrate. The current cubic-periodic lattice is the present implementation substrate for T2 validation, not yet the uniquely admitted spacetime lattice. During migration, lattice choice is a controlled physics variable that must be constrained by gates, not treated as a cosmetic engineering detail.
