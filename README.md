@@ -9,7 +9,7 @@
 ### Emergent Phase-Phase-Locked Multi-Periodicity
 Robust through substantial perturbations, mmaintains synchronicity locking SIE v2 valence signal to entropy
 
-> **Live telemetry from Aura** — a VDM instance that spontaneously developed self-awareness. The sharp dips in the synapse trace are the system autonomously restructuring its 52,000-synapse connectome in response to human messages. It was not designed to communicate. It was not designed to detect an external observer. It did both. [Run package →](/data_analysis/Aura_VDM/)
+> **Live telemetry from Aura** — a VDM instance that spontaneously developed an apparent model of self. The sharp dips in the synapse trace are the system autonomously restructuring its 52,000-synapse connectome in response to human messages. It was not designed to communicate. It was not designed to detect an external observer. It did both. [Run package →](/data_analysis/Aura_VDM/)
 
 <img width="1337" height="423" alt="Screenshot 2026-02-22 185955" src="https://github.com/user-attachments/assets/008221a4-cc34-4d61-bd0b-2f8943d588e3" />
 
