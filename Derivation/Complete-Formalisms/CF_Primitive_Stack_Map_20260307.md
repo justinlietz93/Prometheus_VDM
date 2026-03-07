@@ -1,3 +1,11 @@
+# Primitive Stack Map Workspace
+
+## Ontological Questions
+
+* What deeper primitive gives rise to a state-family in which trivial self-identity is quotiented out, so that physically meaningful difference becomes geometric and the QGT appears as the first stable tensorial shadow?
+
+## Map
+
 | Layer                                                               | Current status                       | What it is                                                                                               | Why it sits there                                                                                                            | Main canon anchors                            | Main falsifier                                                                                              |
 | ------------------------------------------------------------------- | ------------------------------------ | -------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
 | **0. Local state-family + generator law**                           | **Best current primitive contender** | The deepest local substrate: a family of admissible local states plus the law generating their evolution | CF09 starts from local states and derives QGT/gauge objects; CF02 roots evolution in contact/GENIC-style geometry            | CF02, CF09, CF01                              | Show that QGT and metriplectic structure can be defined without any deeper state-family/generator substrate |
