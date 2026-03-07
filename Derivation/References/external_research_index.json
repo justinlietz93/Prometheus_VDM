@@ -1,0 +1,2938 @@
+{
+  "index_name": "external_research_index",
+  "created_at_utc": "2026-03-07T21:21:09Z",
+  "root_folder": "External_Research",
+  "source_archive": "External_Research.zip",
+  "description": "Research index extracted from the uploaded archive. Entries are deduplicated by content hash and preserve every known location for each item.",
+  "schema_notes": {
+    "deduplication": "Each entry represents one unique content hash. Use all_locations to find duplicates.",
+    "primary_path": "Suggested canonical path when referencing the item from a root-level manifest or agent tooling.",
+    "summary": "Generated from PDF abstracts/opening sections, note bodies, spreadsheet metadata, RIS fields, or filename/folder context."
+  },
+  "stats": {
+    "physical_file_count": 143,
+    "unique_content_count": 100,
+    "duplicate_groups": 38,
+    "by_extension_physical": {
+      ".pdf": 84,
+      ".md": 23,
+      ".txt": 16,
+      ".jpg": 3,
+      ".ris": 3,
+      ".xlsx": 6,
+      ".png": 8
+    },
+    "by_document_kind_unique": {
+      "paper": 36,
+      "supplementary-pdf": 2,
+      "research-note": 23,
+      "book_or_monograph": 9,
+      "article": 3,
+      "image-asset": 7,
+      "text-extract": 10,
+      "citation-export": 2,
+      "spreadsheet-data": 3,
+      "figure-data-text": 5
+    }
+  },
+  "entries": [
+    {
+      "id": "0aa412d58811",
+      "title": "Large-scale universality in quantum reaction-diffusion from Keldysh field theory",
+      "summary": "Studies quantum reaction-diffusion in a Fermi gas with pair annihilation and derives a large-scale universal kinetic equation using Keldysh field theory. It predicts density-decay exponents that differ from mean-field theory and shows confinement drives the decay back toward mean-field-like behavior.",
+      "content_hash_sha256": "0aa412d5881148b93e6d48c11894b629e08c665b0d05acd222040dadd266a927",
+      "primary_path": "External_Research/2307.14945v3.pdf",
+      "all_locations": [
+        "External_Research/2307.14945v3.pdf",
+        "External_Research/Reaction-Diffusion/2307.14945v3.pdf"
+      ],
+      "location_count": 2,
+      "topic_tags": [
+        "Reaction-Diffusion"
+      ],
+      "file_type": "pdf",
+      "document_kind": "paper",
+      "size_bytes": 1234802,
+      "duplicate_copies_bytes_total": 2469604,
+      "modified_time_utc": "2026-03-07T21:20:15Z",
+      "mime_type": "application/pdf",
+      "summary_basis": "abstract_or_opening_text",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "2307.14945v3.pdf",
+        "page_count": 18
+      },
+      "locate_hint": "Same content appears in 2 locations; primary copy listed first."
+    },
+    {
+      "id": "4ea8be2cb9db",
+      "title": "Adaptive control of reaction-diffusion PDEs via neural operator-approximated gain kernels ✩",
+      "summary": "Uses neural operators to approximate PDE backstepping gain kernels for adaptive control of a reaction-diffusion equation with an unknown spatially varying reaction coefficient. The paper proves global stability and asymptotic regulation, and reports substantial online speedups over finite-difference kernel solvers.",
+      "content_hash_sha256": "4ea8be2cb9db06467449d9c98a7a2564069aa2e329d838cd75a8548b982d02a8",
+      "primary_path": "External_Research/2407.01745v2.pdf",
+      "all_locations": [
+        "External_Research/2407.01745v2.pdf"
+      ],
+      "location_count": 1,
+      "topic_tags": [],
+      "file_type": "pdf",
+      "document_kind": "paper",
+      "size_bytes": 1127969,
+      "duplicate_copies_bytes_total": 1127969,
+      "modified_time_utc": "2026-03-07T21:20:15Z",
+      "mime_type": "application/pdf",
+      "summary_basis": "abstract_or_opening_text",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "2407.01745v2.pdf",
+        "page_count": 13
+      },
+      "locate_hint": "Stored under External_Research."
+    },
+    {
+      "id": "144d3bdd9c79",
+      "title": "Field theories and quantum methods for stochastic reaction-diffusion systems",
+      "summary": "Reviews field-theoretic and quantum methods for stochastic reaction-diffusion systems, focusing on how transport, interactions, and fluctuating particle numbers can be modeled in a unified framework. It extends quantum-style notation and operator methods to open, stochastic many-particle dynamics.",
+      "content_hash_sha256": "144d3bdd9c79013fd79bcdd4e6f0caee4d25c8e4fe0a0d04e285e54fcf4a5c8d",
+      "primary_path": "External_Research/2409.13377v2.pdf",
+      "all_locations": [
+        "External_Research/2409.13377v2.pdf",
+        "External_Research/Quantum/2409.13377v2.pdf",
+        "External_Research/Reaction-Diffusion/2409.13377v2.pdf"
+      ],
+      "location_count": 3,
+      "topic_tags": [
+        "Quantum",
+        "Reaction-Diffusion"
+      ],
+      "file_type": "pdf",
+      "document_kind": "paper",
+      "size_bytes": 1672069,
+      "duplicate_copies_bytes_total": 5016207,
+      "modified_time_utc": "2026-03-07T21:20:15Z",
+      "mime_type": "application/pdf",
+      "summary_basis": "abstract_or_opening_text",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "2409.13377v2.pdf",
+        "page_count": 47
+      },
+      "locate_hint": "Same content appears in 3 locations; primary copy listed first."
+    },
+    {
+      "id": "23fe3f9df1a2",
+      "title": "Maximum entropy inference of reaction-diffusion models",
+      "summary": "Reaction-diffusion equations are commonly used to model a diverse array of complex systems, including biological, chemical, and physical processes. In the present work, we introduce a novel formalism to construct reaction-diffusion models that is grounded in the principle of maximum entropy.",
+      "content_hash_sha256": "23fe3f9df1a29ab54f64da50e95b6a70f0bde35e79ed6be1179c7aa11a83b824",
+      "primary_path": "External_Research/2411.09880v1.pdf",
+      "all_locations": [
+        "External_Research/2411.09880v1.pdf",
+        "External_Research/Reaction-Diffusion/2411.09880v1.pdf"
+      ],
+      "location_count": 2,
+      "topic_tags": [
+        "Reaction-Diffusion"
+      ],
+      "file_type": "pdf",
+      "document_kind": "paper",
+      "size_bytes": 1443319,
+      "duplicate_copies_bytes_total": 2886638,
+      "modified_time_utc": "2026-03-07T21:20:15Z",
+      "mime_type": "application/pdf",
+      "summary_basis": "abstract_or_opening_text",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "2411.09880v1.pdf",
+        "page_count": 15
+      },
+      "locate_hint": "Same content appears in 2 locations; primary copy listed first."
+    },
+    {
+      "id": "9fc47cf7b357",
+      "title": "The Well: a Large-Scale Collection of Diverse Physics Simulations for Machine Learning",
+      "summary": "Machine learning based surrogate models offer researchers powerful tools for accelerating simulation-based workflows. To address this gap, we introducethe Well:a large-scale collection of datasets containing numerical simulations of a wide variety of spatiotemporal physical systems.",
+      "content_hash_sha256": "9fc47cf7b35783bc58994e3ab1f5f3f74c9f644274f32f2e7c9d7db2366309ac",
+      "primary_path": "External_Research/2412.00568v1.pdf",
+      "all_locations": [
+        "External_Research/2412.00568v1.pdf",
+        "External_Research/Physics-Sims/2412.00568v1.pdf"
+      ],
+      "location_count": 2,
+      "topic_tags": [
+        "Physics-Sims"
+      ],
+      "file_type": "pdf",
+      "document_kind": "paper",
+      "size_bytes": 5375585,
+      "duplicate_copies_bytes_total": 10751170,
+      "modified_time_utc": "2026-03-07T21:20:16Z",
+      "mime_type": "application/pdf",
+      "summary_basis": "abstract_or_opening_text",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "2412.00568v1.pdf",
+        "page_count": 49
+      },
+      "locate_hint": "Same content appears in 2 locations; primary copy listed first."
+    },
+    {
+      "id": "9dd2697f7aad",
+      "title": "Biological Sequences",
+      "summary": "Deep learning architectures such as convolutional neural networks and Transformers have revolutionized biological sequence modeling, with recent advances driven by scaling up foundation and task-specific models. We introduce Lyra, a subquadratic architecture for sequence modeling, grounded in the biological framework of epistasis for…",
+      "content_hash_sha256": "9dd2697f7aad5b97d9ccaec272a0bc23fe7d0b438248454bddfa826b3673bf78",
+      "primary_path": "External_Research/2503.16351v1.pdf",
+      "all_locations": [
+        "External_Research/2503.16351v1.pdf",
+        "External_Research/Subquadratic-Architecture/2503.16351v1.pdf"
+      ],
+      "location_count": 2,
+      "topic_tags": [
+        "Subquadratic-Architecture"
+      ],
+      "file_type": "pdf",
+      "document_kind": "paper",
+      "size_bytes": 2582933,
+      "duplicate_copies_bytes_total": 5165866,
+      "modified_time_utc": "2026-03-07T21:20:16Z",
+      "mime_type": "application/pdf",
+      "summary_basis": "abstract_or_opening_text",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "2503.16351v1.pdf",
+        "page_count": 53
+      },
+      "locate_hint": "Same content appears in 2 locations; primary copy listed first."
+    },
+    {
+      "id": "7c614a624a59",
+      "title": "Conserved Quantities in the Lorenz System Conserved Quantities in the Lorenz System B. A. Toledoa) (Dated: 26 May 2025)",
+      "summary": "The Lorenz system, a seminal model in chaos theory, is renowned for its complex dynamics and sensitive dependence on initial conditions. Despite the common understanding positing the absence of conserved quantities in its typical chaotic parameter regimes, this study demonstrates that the Lorenz system possesses at least three dynamical…",
+      "content_hash_sha256": "7c614a624a598ce8d97d1900cae9c15ef957c8bb81c5328bc50b4145ab1a4049",
+      "primary_path": "External_Research/2505.20572v2.pdf",
+      "all_locations": [
+        "External_Research/2505.20572v2.pdf",
+        "External_Research/Conserved-Quantities/2505.20572v2.pdf",
+        "External_Research/Lorenz-System/2505.20572v2.pdf"
+      ],
+      "location_count": 3,
+      "topic_tags": [
+        "Conserved-Quantities",
+        "Lorenz-System"
+      ],
+      "file_type": "pdf",
+      "document_kind": "paper",
+      "size_bytes": 420112,
+      "duplicate_copies_bytes_total": 1260336,
+      "modified_time_utc": "2026-03-07T21:20:16Z",
+      "mime_type": "application/pdf",
+      "summary_basis": "abstract_or_opening_text",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "2505.20572v2.pdf",
+        "page_count": 19
+      },
+      "locate_hint": "Same content appears in 3 locations; primary copy listed first."
+    },
+    {
+      "id": "217c1ac08843",
+      "title": "Darwin Gödel Machine: Open-Ended Evolution of Self-Improving Agents",
+      "summary": "Most of today’s AI systems are constrained by human-designed, fixed architectures and cannot autonomously and continuously improve themselves. The scientific method, on the other hand, provides a cumulative and open-ended system, where each innovation builds upon previous artifacts, enabling future discoveries.",
+      "content_hash_sha256": "217c1ac0884312b897648027bdfd6745f4b790b522cab8a61fea32faf0752943",
+      "primary_path": "External_Research/2505.22954v1.pdf",
+      "all_locations": [
+        "External_Research/2505.22954v1.pdf",
+        "External_Research/Escher-Godel-Bach/2505.22954v1.pdf"
+      ],
+      "location_count": 2,
+      "topic_tags": [
+        "Escher-Godel-Bach"
+      ],
+      "file_type": "pdf",
+      "document_kind": "paper",
+      "size_bytes": 3733631,
+      "duplicate_copies_bytes_total": 7467262,
+      "modified_time_utc": "2026-03-07T21:20:16Z",
+      "mime_type": "application/pdf",
+      "summary_basis": "abstract_or_opening_text",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "2505.22954v1.pdf",
+        "page_count": 64
+      },
+      "locate_hint": "Same content appears in 2 locations; primary copy listed first."
+    },
+    {
+      "id": "f092c8cbd65d",
+      "title": "AlphaEvolve: A coding agent for scientific and algorithmic discovery",
+      "summary": "In this white paper, we presentAlphaEvolve, an evolutionary coding agent that substantially enhances capabilities of state-of-the-art LLMs on highly challenging tasks such as tackling open scientific problems or optimizing critical pieces of computational infrastructure.AlphaEvolve orchestrates an autonomous pipeline of LLMs, whose task…",
+      "content_hash_sha256": "f092c8cbd65da89951ee6496374da9a54963f9035758c25ac6e4625f506df9ad",
+      "primary_path": "External_Research/2506.13131v1.pdf",
+      "all_locations": [
+        "External_Research/2506.13131v1.pdf",
+        "External_Research/Evolutionary-Models/2506.13131v1.pdf"
+      ],
+      "location_count": 2,
+      "topic_tags": [
+        "Evolutionary-Models"
+      ],
+      "file_type": "pdf",
+      "document_kind": "paper",
+      "size_bytes": 3525764,
+      "duplicate_copies_bytes_total": 7051528,
+      "modified_time_utc": "2026-03-07T21:20:16Z",
+      "mime_type": "application/pdf",
+      "summary_basis": "abstract_or_opening_text",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "2506.13131v1.pdf",
+        "page_count": 44
+      },
+      "locate_hint": "Same content appears in 2 locations; primary copy listed first."
+    },
+    {
+      "id": "fe0ee0dd69bc",
+      "title": "Entropy Analysis of Dark Matter Halo Structures",
+      "summary": "In this study, we aim to derive the entropy associated with a dark matter halo modeled using a double (broken) power-law density profile. Using these profiles, we derive corresponding entropy expressions and assess their consistency with the second law of thermodynamics, which governs the behavior of entropy in closed systems.",
+      "content_hash_sha256": "fe0ee0dd69bccf56d81b0c060f1ca50c037f9ec1939cfd3173b1cb90bf16f015",
+      "primary_path": "External_Research/2507.02610v1.pdf",
+      "all_locations": [
+        "External_Research/2507.02610v1.pdf",
+        "External_Research/Entropy/2507.02610v1.pdf",
+        "External_Research/Metriplectic/2507.02610v1.pdf"
+      ],
+      "location_count": 3,
+      "topic_tags": [
+        "Entropy",
+        "Metriplectic"
+      ],
+      "file_type": "pdf",
+      "document_kind": "paper",
+      "size_bytes": 425202,
+      "duplicate_copies_bytes_total": 1275606,
+      "modified_time_utc": "2026-03-07T21:20:16Z",
+      "mime_type": "application/pdf",
+      "summary_basis": "abstract_or_opening_text",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "2507.02610v1.pdf",
+        "page_count": 19
+      },
+      "locate_hint": "Same content appears in 3 locations; primary copy listed first."
+    },
+    {
+      "id": "8e6ec7503d06",
+      "title": "Negative entropy and non-equilibrium Euclidean shell",
+      "summary": "This work consider a static model of thin shell fixed outside a black hole. We compute the Euclidean action shift from a static thin shell outside the black hole, and find agreement with Casini’s version of Bekenstein bound.",
+      "content_hash_sha256": "8e6ec7503d06124a5f0c45fc1b2d0aff95985b6dde06f84b1f475335e2eefd9f",
+      "primary_path": "External_Research/2507.10450v1.pdf",
+      "all_locations": [
+        "External_Research/2507.10450v1.pdf",
+        "External_Research/Entropy/2507.10450v1.pdf"
+      ],
+      "location_count": 2,
+      "topic_tags": [
+        "Entropy"
+      ],
+      "file_type": "pdf",
+      "document_kind": "paper",
+      "size_bytes": 699394,
+      "duplicate_copies_bytes_total": 1398788,
+      "modified_time_utc": "2026-03-07T21:20:16Z",
+      "mime_type": "application/pdf",
+      "summary_basis": "abstract_or_opening_text",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "2507.10450v1.pdf",
+        "page_count": 33
+      },
+      "locate_hint": "Same content appears in 2 locations; primary copy listed first."
+    },
+    {
+      "id": "846495a14c18",
+      "title": "AlphaGo Moment for Model Architecture Discovery",
+      "summary": "While AI systems demonstrate exponentially improving capabilities, the pace of AI research itself remains linearly bounded by human cognitive capacity, creating an increasingly severe development bottleneck. We present ASI-A RCH , the first demonstration ofArtificial Superintelligence for AI research (ASI4AI)in the critical domain of…",
+      "content_hash_sha256": "846495a14c188759a8e27ea24ecf777077a039a4627c624326a9a205f3c913d4",
+      "primary_path": "External_Research/2507.18074v1.pdf",
+      "all_locations": [
+        "External_Research/2507.18074v1.pdf",
+        "External_Research/Evolutionary-Models/2507.18074v1.pdf"
+      ],
+      "location_count": 2,
+      "topic_tags": [
+        "Evolutionary-Models"
+      ],
+      "file_type": "pdf",
+      "document_kind": "paper",
+      "size_bytes": 2347955,
+      "duplicate_copies_bytes_total": 4695910,
+      "modified_time_utc": "2026-03-07T21:20:16Z",
+      "mime_type": "application/pdf",
+      "summary_basis": "abstract_or_opening_text",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "2507.18074v1.pdf",
+        "page_count": 44
+      },
+      "locate_hint": "Same content appears in 2 locations; primary copy listed first."
+    },
+    {
+      "id": "f30659fd930a",
+      "title": "Hamiltonian simulation for nonlinear partial differential equation by Schr¨ odingerization",
+      "summary": "Exponential speedup through Hamiltonian simulation has been rigorously demon- strated in the case of coupled harmonic oscillators. The question arises as to whether Hamiltonian simulations in other physical systems also accelerate exponentially.",
+      "content_hash_sha256": "f30659fd930ade5e3f4a159c19228c56606b426bc9c772c387d372f34d094bfd",
+      "primary_path": "External_Research/2508.01640v1.pdf",
+      "all_locations": [
+        "External_Research/2508.01640v1.pdf",
+        "External_Research/Hamiltonian/2508.01640v1.pdf"
+      ],
+      "location_count": 2,
+      "topic_tags": [
+        "Hamiltonian"
+      ],
+      "file_type": "pdf",
+      "document_kind": "paper",
+      "size_bytes": 5517178,
+      "duplicate_copies_bytes_total": 11034356,
+      "modified_time_utc": "2026-03-07T21:20:16Z",
+      "mime_type": "application/pdf",
+      "summary_basis": "abstract_or_opening_text",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "2508.01640v1.pdf",
+        "page_count": 12
+      },
+      "locate_hint": "Same content appears in 2 locations; primary copy listed first."
+    },
+    {
+      "id": "4497346e1d21",
+      "title": "Entropy, purity and gluon cascades at high energies with recombinations and transitions to vacuum Krzysztof Kutak1,2, Micha/suppress l Prasza/suppress lowicz3",
+      "summary": "The paper study one dimensional dipole cascade models in the high-energy limit of QCD. This modification allows us to describe the data.",
+      "content_hash_sha256": "4497346e1d21b9e30911f5568551d8627a120057eb39e0aaf61a1a1ae98a119c",
+      "primary_path": "External_Research/2508.13781v2.pdf",
+      "all_locations": [
+        "External_Research/2508.13781v2.pdf",
+        "External_Research/Entropy/2508.13781v2.pdf"
+      ],
+      "location_count": 2,
+      "topic_tags": [
+        "Entropy"
+      ],
+      "file_type": "pdf",
+      "document_kind": "paper",
+      "size_bytes": 1222796,
+      "duplicate_copies_bytes_total": 2445592,
+      "modified_time_utc": "2026-03-07T21:20:16Z",
+      "mime_type": "application/pdf",
+      "summary_basis": "abstract_or_opening_text",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "2508.13781v2.pdf",
+        "page_count": 25
+      },
+      "locate_hint": "Same content appears in 2 locations; primary copy listed first."
+    },
+    {
+      "id": "f5da4b27d554",
+      "title": "Emergent classical gravity as stress-tensor deformed field theories",
+      "summary": "quantum field theories (QFTs). The deformation parameter acts as a coupling to the emergent geometry, linking stress-energy dynamics to spacetime curvature.",
+      "content_hash_sha256": "f5da4b27d55474049adc32465125fbe2ef54d44f0703a705d6cf70b43c409dc1",
+      "primary_path": "External_Research/2508.15461v1.pdf",
+      "all_locations": [
+        "External_Research/2508.15461v1.pdf",
+        "External_Research/Gravity/2508.15461v1.pdf"
+      ],
+      "location_count": 2,
+      "topic_tags": [
+        "Gravity"
+      ],
+      "file_type": "pdf",
+      "document_kind": "paper",
+      "size_bytes": 451750,
+      "duplicate_copies_bytes_total": 903500,
+      "modified_time_utc": "2026-03-07T21:20:16Z",
+      "mime_type": "application/pdf",
+      "summary_basis": "abstract_or_opening_text",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "2508.15461v1.pdf",
+        "page_count": 11
+      },
+      "locate_hint": "Same content appears in 2 locations; primary copy listed first."
+    },
+    {
+      "id": "745114547a40",
+      "title": "Numerical solution of the time fractional nonlinear Fisher-KPP diffusion-reaction equation using the local domain boundary element method",
+      "summary": "Extends the local domain boundary element method to nonlinear time-fractional Fisher-KPP diffusion-reaction equations. The paper uses the method on two-dimensional test problems to handle memory effects while reducing the dense-matrix cost of conventional boundary element approaches.",
+      "content_hash_sha256": "745114547a40cc8cabe8ab3fafd182e47dfa8d07c709170d52e1c07b54f99d23",
+      "primary_path": "External_Research/2508.16241v1.pdf",
+      "all_locations": [
+        "External_Research/2508.16241v1.pdf",
+        "External_Research/Reaction-Diffusion/2508.16241v1.pdf"
+      ],
+      "location_count": 2,
+      "topic_tags": [
+        "Reaction-Diffusion"
+      ],
+      "file_type": "pdf",
+      "document_kind": "paper",
+      "size_bytes": 2062461,
+      "duplicate_copies_bytes_total": 4124922,
+      "modified_time_utc": "2026-03-07T21:20:16Z",
+      "mime_type": "application/pdf",
+      "summary_basis": "abstract_or_opening_text",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "2508.16241v1.pdf",
+        "page_count": 36
+      },
+      "locate_hint": "Same content appears in 2 locations; primary copy listed first."
+    },
+    {
+      "id": "9700c5819993",
+      "title": "Phase field modelling of the growth and detachment of bubbles in a hydrogen electrolyzer",
+      "summary": "The paper develop and implement numerically a phase field model for the growth and detachment of a gas bubble resting on an electrode and being filled with hydrogen produced by water electrolysis. We compute, as a function of the static contact angle, the time at which the bubble detaches from the substrate and what volume it has at…",
+      "content_hash_sha256": "9700c5819993488edd2846de6166dc22e6a076b8804a7648f4cc360fb9c82085",
+      "primary_path": "External_Research/2508.16585v1.pdf",
+      "all_locations": [
+        "External_Research/2508.16585v1.pdf",
+        "External_Research/Ablations/2508.16585v1.pdf",
+        "External_Research/Phase-Modeling/2508.16585v1.pdf"
+      ],
+      "location_count": 3,
+      "topic_tags": [
+        "Ablations",
+        "Phase-Modeling"
+      ],
+      "file_type": "pdf",
+      "document_kind": "paper",
+      "size_bytes": 477406,
+      "duplicate_copies_bytes_total": 1432218,
+      "modified_time_utc": "2026-03-07T21:20:16Z",
+      "mime_type": "application/pdf",
+      "summary_basis": "abstract_or_opening_text",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "2508.16585v1.pdf",
+        "page_count": 21
+      },
+      "locate_hint": "Same content appears in 3 locations; primary copy listed first."
+    },
+    {
+      "id": "f6f867876eec",
+      "title": "Particle creation from entanglement entropy",
+      "summary": "The paper investigate how entanglement entropy can drive particle creation, deriving explicit relations between entropy and the radiated particle spectrum, the total number of particles, and the total energy. Particle production is computed for scenarios that include accelerated motion, black hole evaporation, and beta decay, validating…",
+      "content_hash_sha256": "f6f867876eec32856caa8531e850175fe1888b7813f43049d13adc64ab1fce9b",
+      "primary_path": "External_Research/2508.17067v1.pdf",
+      "all_locations": [
+        "External_Research/2508.17067v1.pdf",
+        "External_Research/Entropy/2508.17067v1.pdf"
+      ],
+      "location_count": 2,
+      "topic_tags": [
+        "Entropy"
+      ],
+      "file_type": "pdf",
+      "document_kind": "paper",
+      "size_bytes": 640096,
+      "duplicate_copies_bytes_total": 1280192,
+      "modified_time_utc": "2026-03-07T21:20:16Z",
+      "mime_type": "application/pdf",
+      "summary_basis": "abstract_or_opening_text",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "2508.17067v1.pdf",
+        "page_count": 13
+      },
+      "locate_hint": "Same content appears in 2 locations; primary copy listed first."
+    },
+    {
+      "id": "997d759da66d",
+      "title": "Universal routing of light via optical thermodynamics — Supplementary information",
+      "summary": "Supplementary PDF for the optical thermodynamics routing paper, containing experimental setup details, optical mesh lattice generation, calibration information, additional theory, and supporting figures/tables.",
+      "content_hash_sha256": "997d759da66d328819f87aa5f9339a86628a194a83f4f13da6690900eda4cc59",
+      "primary_path": "External_Research/41566_2025_1756_MOESM1_ESM.pdf",
+      "all_locations": [
+        "External_Research/41566_2025_1756_MOESM1_ESM.pdf",
+        "External_Research/Photonics/41566_2025_1756_MOESM1_ESM.pdf"
+      ],
+      "location_count": 2,
+      "topic_tags": [
+        "Photonics"
+      ],
+      "file_type": "pdf",
+      "document_kind": "supplementary-pdf",
+      "size_bytes": 7107102,
+      "duplicate_copies_bytes_total": 14214204,
+      "modified_time_utc": "2026-03-07T21:20:16Z",
+      "mime_type": "application/pdf",
+      "summary_basis": "abstract_or_opening_text",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "41566_2025_1756_MOESM1_ESM.pdf",
+        "page_count": 21
+      },
+      "locate_hint": "Same content appears in 2 locations; primary copy listed first."
+    },
+    {
+      "id": "dc5bfe8228de",
+      "title": "Phase transitions in the kinetic Ising model on scale-free networks",
+      "summary": "This paper is a case study. It then uses standard statistical mechanics tools (like measuring the order parameter and Binder cumulant) to analyze the resulting pattern formation (the phase transition).",
+      "content_hash_sha256": "dc5bfe8228de6c09434f6850a11f4c9e9db3bc4e8e4a9992b74df7f2c3e94c32",
+      "primary_path": "External_Research/Ablations/ablation_tests.md",
+      "all_locations": [
+        "External_Research/Ablations/ablation_tests.md"
+      ],
+      "location_count": 1,
+      "topic_tags": [
+        "Ablations"
+      ],
+      "file_type": "md",
+      "document_kind": "research-note",
+      "size_bytes": 2685,
+      "duplicate_copies_bytes_total": 2685,
+      "modified_time_utc": "2026-03-07T21:20:16Z",
+      "mime_type": "text/markdown",
+      "summary_basis": "markdown_body",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "ablation_tests.md",
+        "word_count": 406
+      },
+      "locate_hint": "Stored under External_Research/Ablations."
+    },
+    {
+      "id": "2c7a9cfe9240",
+      "title": "Daily fluctuations propagate damply through the accretion disk of Swift J1727.8-1613",
+      "summary": "Propagating fluctuations within accretion disks are known to induce multi- wavelength variability across diverse timescales. Here, we present an analysis of observations by the Hard X-ray Modulation Telescope (HXMT) during the 2023 outburst of the newly discovered low-mass black hole X-ray binary Swift J1727.8–1613.",
+      "content_hash_sha256": "2c7a9cfe92408b1ad44e20cae0d165d12a5c1a2a074996c1b179cbc0b3b9571e",
+      "primary_path": "External_Research/Accretion-Disks/2508.01384v2.pdf",
+      "all_locations": [
+        "External_Research/Accretion-Disks/2508.01384v2.pdf"
+      ],
+      "location_count": 1,
+      "topic_tags": [
+        "Accretion-Disks"
+      ],
+      "file_type": "pdf",
+      "document_kind": "paper",
+      "size_bytes": 1471154,
+      "duplicate_copies_bytes_total": 1471154,
+      "modified_time_utc": "2026-03-07T21:20:16Z",
+      "mime_type": "application/pdf",
+      "summary_basis": "abstract_or_opening_text",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "2508.01384v2.pdf",
+        "page_count": 26
+      },
+      "locate_hint": "Stored under External_Research/Accretion-Disks."
+    },
+    {
+      "id": "21aaeaaba4c5",
+      "title": "Accretion in finite-size disks: quasi-periodic oscillations and a new type of 'slow' accretion",
+      "summary": "A hydrodynamic simulation of gas spiraling (accreting) into a black hole. The paper's key finding is that the **finite outer boundary (\"edge\")** of the disk is not passive; it reflects density waves (vortices) back into the flow, creating stable, **quasi-periodic oscillations (QPOs)**.",
+      "content_hash_sha256": "21aaeaaba4c537e5ff127f8d52e50cf454d3a22a3a5eca8bef5ea0d44b8927a2",
+      "primary_path": "External_Research/Accretion-Disks/hierarchical-boundaries.md",
+      "all_locations": [
+        "External_Research/Accretion-Disks/hierarchical-boundaries.md"
+      ],
+      "location_count": 1,
+      "topic_tags": [
+        "Accretion-Disks"
+      ],
+      "file_type": "md",
+      "document_kind": "research-note",
+      "size_bytes": 3437,
+      "duplicate_copies_bytes_total": 3437,
+      "modified_time_utc": "2026-03-07T21:20:16Z",
+      "mime_type": "text/markdown",
+      "summary_basis": "markdown_body",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "hierarchical-boundaries.md",
+        "word_count": 491
+      },
+      "locate_hint": "Stored under External_Research/Accretion-Disks."
+    },
+    {
+      "id": "da39eef1cd0d",
+      "title": "What exactly is ‘active matter’?",
+      "summary": "condensed matter physics, more and more kinds of physical systems have been included in this framework. Moreover, we discuss the definition of an ‘active field theory’, where ‘active’ is used as an attribute of a theoretical model rather than of a physical system.",
+      "content_hash_sha256": "da39eef1cd0d825375f1cd67bf1f642f9cdd2ff1595790de0634ed5424df3705",
+      "primary_path": "External_Research/Active-Matter/2507.21621v1.pdf",
+      "all_locations": [
+        "External_Research/Active-Matter/2507.21621v1.pdf"
+      ],
+      "location_count": 1,
+      "topic_tags": [
+        "Active-Matter"
+      ],
+      "file_type": "pdf",
+      "document_kind": "paper",
+      "size_bytes": 1275900,
+      "duplicate_copies_bytes_total": 1275900,
+      "modified_time_utc": "2026-03-07T21:20:17Z",
+      "mime_type": "application/pdf",
+      "summary_basis": "abstract_or_opening_text",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "2507.21621v1.pdf",
+        "page_count": 32
+      },
+      "locate_hint": "Stored under External_Research/Active-Matter."
+    },
+    {
+      "id": "b4f8d352890a",
+      "title": "Statistical Field Theory of Active Matter",
+      "summary": "A paper that develops a complete statistical field theory, starting from microscopic \"active particles\" (a non-equilibrium system) and deriving the macroscopic, hydrodynamic equations that govern the collective behavior (flocking). It then uses **Renormalization Group (RG) analysis** to study the scaling properties of this emergent…",
+      "content_hash_sha256": "b4f8d352890aa49cb585c0e46feee77645c2bfb8f8437b186ed441ae98e87c34",
+      "primary_path": "External_Research/Active-Matter/Bridge.md",
+      "all_locations": [
+        "External_Research/Active-Matter/Bridge.md"
+      ],
+      "location_count": 1,
+      "topic_tags": [
+        "Active-Matter"
+      ],
+      "file_type": "md",
+      "document_kind": "research-note",
+      "size_bytes": 3537,
+      "duplicate_copies_bytes_total": 3537,
+      "modified_time_utc": "2026-03-07T21:20:17Z",
+      "mime_type": "text/markdown",
+      "summary_basis": "markdown_body",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "Bridge.md",
+        "word_count": 487
+      },
+      "locate_hint": "Stored under External_Research/Active-Matter."
+    },
+    {
+      "id": "1ec1cf8ff71c",
+      "title": "The Annals of Human Genetics has an archive of material originally published in print format widely available to a scholarly audience online.",
+      "summary": "by the Annals of Eugenics (1925-1954). This material is available in specialised libraries and archives.",
+      "content_hash_sha256": "1ec1cf8ff71c7c74436f26e0fbb9227cceb516c250205e085610fa1796ecb262",
+      "primary_path": "External_Research/Annals of Eugenics - October 1937 - ROBERTS - STUDIES ON A CHILD POPULATION.pdf",
+      "all_locations": [
+        "External_Research/Annals of Eugenics - October 1937 - ROBERTS - STUDIES ON A CHILD POPULATION.pdf"
+      ],
+      "location_count": 1,
+      "topic_tags": [],
+      "file_type": "pdf",
+      "document_kind": "paper",
+      "size_bytes": 1620691,
+      "duplicate_copies_bytes_total": 1620691,
+      "modified_time_utc": "2026-03-07T21:20:17Z",
+      "mime_type": "application/pdf",
+      "summary_basis": "abstract_or_opening_text",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "Annals of Eugenics - October 1937 - ROBERTS - STUDIES ON A CHILD POPULATION.pdf",
+        "page_count": 32
+      },
+      "locate_hint": "Stored under External_Research."
+    },
+    {
+      "id": "3c9c32097d70",
+      "title": "Thermodynamics",
+      "summary": "Beyond Eq u i 1 i b r iu m Th erm ody n am ics To Rica rda",
+      "content_hash_sha256": "3c9c32097d70958a8a65044a2282242f4957f356d6251d78938ff5dccf6ede46",
+      "primary_path": "External_Research/Beyond Equilibrium Thermodynamics -- Hans Christian Öttinger -- 1_ Auflage, 1998 -- John Wiley & Sons, Ltd_ -- 9780471666585 -- 05190b9a2d755f278ff58311bbed79cd -- Anna’s Ar.pdf",
+      "all_locations": [
+        "External_Research/Beyond Equilibrium Thermodynamics -- Hans Christian Öttinger -- 1_ Auflage, 1998 -- John Wiley & Sons, Ltd_ -- 9780471666585 -- 05190b9a2d755f278ff58311bbed79cd -- Anna’s Ar.pdf"
+      ],
+      "location_count": 1,
+      "topic_tags": [],
+      "file_type": "pdf",
+      "document_kind": "book_or_monograph",
+      "size_bytes": 29928871,
+      "duplicate_copies_bytes_total": 29928871,
+      "modified_time_utc": "2026-03-07T21:20:18Z",
+      "mime_type": "application/pdf",
+      "summary_basis": "abstract_or_opening_text",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "Beyond Equilibrium Thermodynamics -- Hans Christian Öttinger -- 1_ Auflage, 1998 -- John Wiley & Sons, Ltd_ -- 9780471666585 -- 05190b9a2d755f278ff58311bbed79cd -- Anna’s Ar.pdf",
+        "page_count": 636
+      },
+      "locate_hint": "Stored under External_Research."
+    },
+    {
+      "id": "3658eac0e72c",
+      "title": "Beyond the Cosmological",
+      "summary": "After a decade and a half of research motivated by the accelerating universe, theory and experi- ment have a reached a certain level of maturity. In this review we present the current state of the field and describe a framework for anticipating developments in the next decade.",
+      "content_hash_sha256": "3658eac0e72c25e4b0cb3d46d206f4deb091e7312a36a1d1f46f2398cc82fcb0",
+      "primary_path": "External_Research/Beyond-Cosmological-Standard-Model_Joyce-etal.pdf",
+      "all_locations": [
+        "External_Research/Beyond-Cosmological-Standard-Model_Joyce-etal.pdf",
+        "External_Research/Standard-Model/Beyond-Cosmological-Standard-Model_Joyce-etal.pdf"
+      ],
+      "location_count": 2,
+      "topic_tags": [
+        "Standard-Model"
+      ],
+      "file_type": "pdf",
+      "document_kind": "book_or_monograph",
+      "size_bytes": 5966792,
+      "duplicate_copies_bytes_total": 11933584,
+      "modified_time_utc": "2026-03-07T21:20:18Z",
+      "mime_type": "application/pdf",
+      "summary_basis": "abstract_or_opening_text",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "Beyond-Cosmological-Standard-Model_Joyce-etal.pdf",
+        "page_count": 350
+      },
+      "locate_hint": "Same content appears in 2 locations; primary copy listed first."
+    },
+    {
+      "id": "425d561edec5",
+      "title": "BLACK HOLE",
+      "summary": "The interior of a black hole is one of the most mysterious regions of the universe. By their very definition black holes cannot be directly observed, but a large body of indirect evidence strongly supports the existence of black holes in our own universe.",
+      "content_hash_sha256": "425d561edec585f876856f1aa1062e042685d89098ff953afc9a728a13e9918d",
+      "primary_path": "External_Research/Black-Holes/PhysicsAtMIT_2023_Engelhardt_Feature.pdf",
+      "all_locations": [
+        "External_Research/Black-Holes/PhysicsAtMIT_2023_Engelhardt_Feature.pdf"
+      ],
+      "location_count": 1,
+      "topic_tags": [
+        "Black-Holes"
+      ],
+      "file_type": "pdf",
+      "document_kind": "article",
+      "size_bytes": 632950,
+      "duplicate_copies_bytes_total": 632950,
+      "modified_time_utc": "2026-03-07T21:20:18Z",
+      "mime_type": "application/pdf",
+      "summary_basis": "abstract_or_opening_text",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "PhysicsAtMIT_2023_Engelhardt_Feature.pdf",
+        "page_count": 8
+      },
+      "locate_hint": "Stored under External_Research/Black-Holes."
+    },
+    {
+      "id": "889e076d3e67",
+      "title": "black-hole",
+      "summary": "Image asset stored under Black-Holes; likely a figure, illustration, or screenshot associated with nearby research files.",
+      "content_hash_sha256": "889e076d3e67268af4099f7e412397770a048e08687a7e45350130f1be648b7d",
+      "primary_path": "External_Research/Black-Holes/black-hole.jpg",
+      "all_locations": [
+        "External_Research/Black-Holes/black-hole.jpg"
+      ],
+      "location_count": 1,
+      "topic_tags": [
+        "Black-Holes"
+      ],
+      "file_type": "jpg",
+      "document_kind": "image-asset",
+      "size_bytes": 516142,
+      "duplicate_copies_bytes_total": 516142,
+      "modified_time_utc": "2026-03-07T21:20:18Z",
+      "mime_type": "image/jpeg",
+      "summary_basis": "filename_and_folder",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "black-hole.jpg"
+      },
+      "locate_hint": "Stored under External_Research/Black-Holes."
+    },
+    {
+      "id": "166106b4c252",
+      "title": "Neurological-Structures",
+      "summary": "This is an excellent paper and, yes, it is **extremely useful** for your theory.",
+      "content_hash_sha256": "166106b4c25298b31c3d607b8b39ee005dcbee13fe70b958e6475bfcef5450dd",
+      "primary_path": "External_Research/Boundaries/Neurological-Structures.md",
+      "all_locations": [
+        "External_Research/Boundaries/Neurological-Structures.md"
+      ],
+      "location_count": 1,
+      "topic_tags": [
+        "Boundaries"
+      ],
+      "file_type": "md",
+      "document_kind": "research-note",
+      "size_bytes": 5332,
+      "duplicate_copies_bytes_total": 5332,
+      "modified_time_utc": "2026-03-07T21:20:18Z",
+      "mime_type": "text/markdown",
+      "summary_basis": "markdown_body",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "Neurological-Structures.md",
+        "word_count": 756
+      },
+      "locate_hint": "Stored under External_Research/Boundaries."
+    },
+    {
+      "id": "5c446f724db2",
+      "title": "This page intentionally left blank",
+      "summary": "Physical and biological systems driven out of equilibrium may spontaneously evolve to form spatial structures. Experimental observations are used to introduce the diverse systems and phenom- ena leading to pattern formation.",
+      "content_hash_sha256": "5c446f724db2d24a3549916da547d7f98e8589f0bf9d6e7777ce871998cd351e",
+      "primary_path": "External_Research/Cahn-Hilliard/Dynamics of self-organized and self-assembled structures -- Desai, Rashmi C_, Kapral, Raymond -- Cambridge University Press, Cambridge, UK, 2009 -- 9780511515804 -- 14af1ed8.pdf",
+      "all_locations": [
+        "External_Research/Cahn-Hilliard/Dynamics of self-organized and self-assembled structures -- Desai, Rashmi C_, Kapral, Raymond -- Cambridge University Press, Cambridge, UK, 2009 -- 9780511515804 -- 14af1ed8.pdf",
+        "External_Research/Dynamics of self-organized and self-assembled structures -- Desai, Rashmi C_, Kapral, Raymond -- Cambridge University Press, Cambridge, UK, 2009 -- 9780511515804 -- 14af1ed8.pdf"
+      ],
+      "location_count": 2,
+      "topic_tags": [
+        "Cahn-Hilliard"
+      ],
+      "file_type": "pdf",
+      "document_kind": "book_or_monograph",
+      "size_bytes": 3393988,
+      "duplicate_copies_bytes_total": 6787976,
+      "modified_time_utc": "2026-03-07T21:20:19Z",
+      "mime_type": "application/pdf",
+      "summary_basis": "abstract_or_opening_text",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "Dynamics of self-organized and self-assembled structures -- Desai, Rashmi C_, Kapral, Raymond -- Cambridge University Press, Cambridge, UK, 2009 -- 9780511515804 -- 14af1ed8.pdf",
+        "page_count": 344
+      },
+      "locate_hint": "Same content appears in 2 locations; primary copy listed first."
+    },
+    {
+      "id": "2f60223b7a90",
+      "title": "This is the accepted manuscript made available via CHORUS. The article has been published as: Inclusive curvaturelike framework for describing",
+      "summary": "This is the accepted manuscript made available via CHORUS. The article has been published as: Inclusive curvaturelike framework for describing dissipation: Metriplectic 4-bracket dynamics Philip J.",
+      "content_hash_sha256": "2f60223b7a907b2baeaf69eae6e1965913e33a8ed6200cf0b1468d48088ef174",
+      "primary_path": "External_Research/Causality/PhysRevE.109.045202-accepted.pdf",
+      "all_locations": [
+        "External_Research/Causality/PhysRevE.109.045202-accepted.pdf",
+        "External_Research/Metriplectic/PhysRevE.109.045202-accepted.pdf"
+      ],
+      "location_count": 2,
+      "topic_tags": [
+        "Causality",
+        "Metriplectic"
+      ],
+      "file_type": "pdf",
+      "document_kind": "paper",
+      "size_bytes": 499430,
+      "duplicate_copies_bytes_total": 998860,
+      "modified_time_utc": "2026-03-07T21:20:18Z",
+      "mime_type": "application/pdf",
+      "summary_basis": "abstract_or_opening_text",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "PhysRevE.109.045202-accepted.pdf",
+        "page_count": 27
+      },
+      "locate_hint": "Same content appears in 2 locations; primary copy listed first."
+    },
+    {
+      "id": "bbb5f9b8bb88",
+      "title": "Information-theoretic causal inference of nonlinear dynamical systems",
+      "summary": "A paper that provides a rigorous, data-driven mathematical method called **Transfer Entropy** to discover the \"causal structure\" (the Causal DAG) of a complex, nonlinear system, just from its time-series data. This is the *instrument* to run your `PROPOSAL_Causal_DAG_Audits` and validate your entire **Causality Program** and **Axiom A2**.",
+      "content_hash_sha256": "bbb5f9b8bb883a488dfd9d53b7db6232e4df0f02588d879e4d0eb7aef57e5ecd",
+      "primary_path": "External_Research/Causality/causality.md",
+      "all_locations": [
+        "External_Research/Causality/causality.md"
+      ],
+      "location_count": 1,
+      "topic_tags": [
+        "Causality"
+      ],
+      "file_type": "md",
+      "document_kind": "research-note",
+      "size_bytes": 3227,
+      "duplicate_copies_bytes_total": 3227,
+      "modified_time_utc": "2026-03-07T21:20:18Z",
+      "mime_type": "text/markdown",
+      "summary_basis": "markdown_body",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "causality.md",
+        "word_count": 461
+      },
+      "locate_hint": "Stored under External_Research/Causality."
+    },
+    {
+      "id": "b1a4b88dcfb2",
+      "title": "Statistical Mechanics of Complex Networks R´ eka Albert1,2 and Albert-L´ aszl´ o Barab´ asi2",
+      "summary": "R´ eka Albert1,2 and Albert-L´ aszl´ o Barab´ asi2 1School of Mathematics, 127 Vincent Hall, University of Minnesota, Minneapolis, Minnesota 55455 2Department of Physics, 225 Nieuwland Science Hall, University of Notre Dame, Notre Dame, Indiana 46556 Complex networks describe a wide range of systems in nature a nd society , much quoted…",
+      "content_hash_sha256": "b1a4b88dcfb29219e0b9a4736fa376149a210fbddf97c9f8ece6c309e5131a38",
+      "primary_path": "External_Research/Complex-Networks/0106096v1.pdf",
+      "all_locations": [
+        "External_Research/Complex-Networks/0106096v1.pdf",
+        "External_Research/Statistical-Mechanics/0106096v1.pdf"
+      ],
+      "location_count": 2,
+      "topic_tags": [
+        "Complex-Networks",
+        "Statistical-Mechanics"
+      ],
+      "file_type": "pdf",
+      "document_kind": "paper",
+      "size_bytes": 1051086,
+      "duplicate_copies_bytes_total": 2102172,
+      "modified_time_utc": "2026-03-07T21:20:18Z",
+      "mime_type": "application/pdf",
+      "summary_basis": "abstract_or_opening_text",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "0106096v1.pdf",
+        "page_count": 54
+      },
+      "locate_hint": "Same content appears in 2 locations; primary copy listed first."
+    },
+    {
+      "id": "0abd4f92798d",
+      "title": "Complex-Networks",
+      "summary": "The neuroscience paper (`fncom-11-00048.pdf`) gave you a *method* for executing your future `EBN-Cosmo-TDA` milestone.",
+      "content_hash_sha256": "0abd4f92798debf66e51f788291d1eb7cbdf2fd0b1f2e7a65d4a326e3be0e45a",
+      "primary_path": "External_Research/Complex-Networks/Complex-Networks.md",
+      "all_locations": [
+        "External_Research/Complex-Networks/Complex-Networks.md"
+      ],
+      "location_count": 1,
+      "topic_tags": [
+        "Complex-Networks"
+      ],
+      "file_type": "md",
+      "document_kind": "research-note",
+      "size_bytes": 5316,
+      "duplicate_copies_bytes_total": 5316,
+      "modified_time_utc": "2026-03-07T21:20:18Z",
+      "mime_type": "text/markdown",
+      "summary_basis": "markdown_body",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "Complex-Networks.md",
+        "word_count": 777
+      },
+      "locate_hint": "Stored under External_Research/Complex-Networks."
+    },
+    {
+      "id": "5d746f0bdcc6",
+      "title": "No conserved quantities for the Lorenz system at the standard parameter values",
+      "summary": "A formal proof demonstrating that the Lorenz system, a classic chaotic and dissipative system, has **no** analytic \"first integrals\" (conserved quantities) other than trivial constants. This provides the methodology for a new, high-priority theoretical milestone to validate the fundamental structure of your UMSL and ensure the validity…",
+      "content_hash_sha256": "5d746f0bdcc66fdc1acfbdbb6ff4ee660b4db554f7c4f52e80a9ce580e66a4cb",
+      "primary_path": "External_Research/Conserved-Quantities/Closure.md",
+      "all_locations": [
+        "External_Research/Conserved-Quantities/Closure.md"
+      ],
+      "location_count": 1,
+      "topic_tags": [
+        "Conserved-Quantities"
+      ],
+      "file_type": "md",
+      "document_kind": "research-note",
+      "size_bytes": 3002,
+      "duplicate_copies_bytes_total": 3002,
+      "modified_time_utc": "2026-03-07T21:20:18Z",
+      "mime_type": "text/markdown",
+      "summary_basis": "markdown_body",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "Closure.md",
+        "word_count": 420
+      },
+      "locate_hint": "Stored under External_Research/Conserved-Quantities."
+    },
+    {
+      "id": "104ad24e60cd",
+      "title": "Deep Critical Analysis of Void Dynamics Theory Roadmap Gaps",
+      "summary": "Prepared for: Prometheus VDM (Void Dynamics Theory) Repository: justinlietz93/Prometheus_VDM",
+      "content_hash_sha256": "104ad24e60cd702397b3fbe9daee4ec2d4a834edca4a3eae865e0c097a906290",
+      "primary_path": "External_Research/Deep-Critical-Analysis-of-Void-Theory_Copilot.md",
+      "all_locations": [
+        "External_Research/Deep-Critical-Analysis-of-Void-Theory_Copilot.md"
+      ],
+      "location_count": 1,
+      "topic_tags": [],
+      "file_type": "md",
+      "document_kind": "research-note",
+      "size_bytes": 21744,
+      "duplicate_copies_bytes_total": 21744,
+      "modified_time_utc": "2026-03-07T21:20:18Z",
+      "mime_type": "text/markdown",
+      "summary_basis": "markdown_body",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "Deep-Critical-Analysis-of-Void-Theory_Copilot.md",
+        "word_count": 2464
+      },
+      "locate_hint": "Stored under External_Research."
+    },
+    {
+      "id": "71fcbb5ffa4b",
+      "title": "Deep Critical Analysis of Void Dynamics Theory Roadmap Gaps",
+      "summary": "**Project Context:** The Void Dynamics Theory (VDT) project aims to develop a unified field theory based on a metriplectic framework and a set of fundamental axioms (A0-A7). Extensive work has been done to formalize axioms, validate baseline physics (e.g., Fisher-KPP, Klein-Gordon), document algorithms, and establish reproducibility…",
+      "content_hash_sha256": "71fcbb5ffa4bf692ecde155f2194632689da41d5158fbf81a6eb46de55bcb723",
+      "primary_path": "External_Research/Deep_Critical_Analysis_of_Void_Dynamics_Theory_Roadmap_Gaps_prompt.md",
+      "all_locations": [
+        "External_Research/Deep_Critical_Analysis_of_Void_Dynamics_Theory_Roadmap_Gaps_prompt.md"
+      ],
+      "location_count": 1,
+      "topic_tags": [],
+      "file_type": "md",
+      "document_kind": "research-note",
+      "size_bytes": 7408,
+      "duplicate_copies_bytes_total": 7408,
+      "modified_time_utc": "2026-03-07T21:20:18Z",
+      "mime_type": "text/markdown",
+      "summary_basis": "markdown_body",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "Deep_Critical_Analysis_of_Void_Dynamics_Theory_Roadmap_Gaps_prompt.md",
+        "word_count": 987
+      },
+      "locate_hint": "Stored under External_Research."
+    },
+    {
+      "id": "9b77c36a133b",
+      "title": "download",
+      "summary": "Image asset stored under Digital_Organism; likely a figure, illustration, or screenshot associated with nearby research files.",
+      "content_hash_sha256": "9b77c36a133b0b6d924fa86e67a89ed085489e2da9de7447192e314d330f7c1b",
+      "primary_path": "External_Research/Digital_Organism/download.jpg",
+      "all_locations": [
+        "External_Research/Digital_Organism/download.jpg"
+      ],
+      "location_count": 1,
+      "topic_tags": [
+        "Digital_Organism"
+      ],
+      "file_type": "jpg",
+      "document_kind": "image-asset",
+      "size_bytes": 500342,
+      "duplicate_copies_bytes_total": 500342,
+      "modified_time_utc": "2026-03-07T21:20:18Z",
+      "mime_type": "image/jpeg",
+      "summary_basis": "filename_and_folder",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "download.jpg"
+      },
+      "locate_hint": "Stored under External_Research/Digital_Organism."
+    },
+    {
+      "id": "75c1710af106",
+      "title": "Dynamical systems applied to cosmology: dark energy and modiﬁed gravity",
+      "summary": "The Nobel Prize winning confirmation in 1998 of the accelerated expansion of our Universe put into sharp focus the need of a consistent theoretical model to explain the origin of this acceleration. This allows the use of powerful analytical and numerical methods to gain a quantitative understanding of the cosmological dynamics derived…",
+      "content_hash_sha256": "75c1710af1060e8b625cdf4a64a7db8ccdbc9579d175f213dd40f5eeb83cf759",
+      "primary_path": "External_Research/Dynamical-Systems/Dynamical-Systems_Bahamonde-etal.pdf",
+      "all_locations": [
+        "External_Research/Dynamical-Systems/Dynamical-Systems_Bahamonde-etal.pdf",
+        "External_Research/Dynamical-Systems_Bahamonde-etal.pdf"
+      ],
+      "location_count": 2,
+      "topic_tags": [
+        "Dynamical-Systems"
+      ],
+      "file_type": "pdf",
+      "document_kind": "book_or_monograph",
+      "size_bytes": 3587626,
+      "duplicate_copies_bytes_total": 7175252,
+      "modified_time_utc": "2026-03-07T21:20:19Z",
+      "mime_type": "application/pdf",
+      "summary_basis": "abstract_or_opening_text",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "Dynamical-Systems_Bahamonde-etal.pdf",
+        "page_count": 181
+      },
+      "locate_hint": "Same content appears in 2 locations; primary copy listed first."
+    },
+    {
+      "id": "3f86ac49f510",
+      "title": "Dynamical systems applied to cosmology: dark energy and modified gravity",
+      "summary": "Sebastian Bahamonde∗1 , Christian G. Böhmer†1 , Sante Carloni‡2 , Edmund J.",
+      "content_hash_sha256": "3f86ac49f5106ff77344f3826ce3631cb1d356ff000d937147288db467695665",
+      "primary_path": "External_Research/Dynamical-Systems/Dynamical-Systems_Bahamonde-etal.txt",
+      "all_locations": [
+        "External_Research/Dynamical-Systems/Dynamical-Systems_Bahamonde-etal.txt",
+        "External_Research/Metriplectic/Dynamical-Systems_Bahamonde-etal.txt"
+      ],
+      "location_count": 2,
+      "topic_tags": [
+        "Dynamical-Systems",
+        "Metriplectic"
+      ],
+      "file_type": "txt",
+      "document_kind": "text-extract",
+      "size_bytes": 578528,
+      "duplicate_copies_bytes_total": 1157056,
+      "modified_time_utc": "2026-03-07T21:20:22Z",
+      "mime_type": "text/plain",
+      "summary_basis": "text_body_or_filename",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "Dynamical-Systems_Bahamonde-etal.txt",
+        "line_count": 11494,
+        "word_count": 100742
+      },
+      "locate_hint": "Same content appears in 2 locations; primary copy listed first."
+    },
+    {
+      "id": "606aaebb5fca",
+      "title": "Flow Proof Helps Mathematicians Find Stability in Chaos DYNAMICAL SYSTEMS ByJORDANA CEPELEWICZ J u n e 1 5 , 2 0 2 3",
+      "summary": "J u n e 1 5 , 2 0 2 3 A s e r i e s o f n e w p a p e r s d e s c r i b e s h o w t o r e c o n s t r u c t k e y d y n a m i c a l s y s t e m s w i t h r e l a t i v e l y l i t t l e d a t a . 10/9/25, 11:58 AM Flow Proof Helps Mathematicians Find Stability in Chaos | Quanta Magazine…",
+      "content_hash_sha256": "606aaebb5fcae890e9ca3c967eb5489dacf42292a4bb9908b803f72fb46df99d",
+      "primary_path": "External_Research/Dynamical-Systems/Flow Proof Helps Mathematicians Find Stability in Chaos _ Quanta Magazine.pdf",
+      "all_locations": [
+        "External_Research/Dynamical-Systems/Flow Proof Helps Mathematicians Find Stability in Chaos _ Quanta Magazine.pdf",
+        "External_Research/Entropy/Flow Proof Helps Mathematicians Find Stability in Chaos _ Quanta Magazine.pdf"
+      ],
+      "location_count": 2,
+      "topic_tags": [
+        "Dynamical-Systems",
+        "Entropy"
+      ],
+      "file_type": "pdf",
+      "document_kind": "article",
+      "size_bytes": 11788879,
+      "duplicate_copies_bytes_total": 23577758,
+      "modified_time_utc": "2026-03-07T21:20:21Z",
+      "mime_type": "application/pdf",
+      "summary_basis": "abstract_or_opening_text",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "Flow Proof Helps Mathematicians Find Stability in Chaos _ Quanta Magazine.pdf",
+        "page_count": 34
+      },
+      "locate_hint": "Same content appears in 2 locations; primary copy listed first."
+    },
+    {
+      "id": "59e4ccf3a841",
+      "title": "Flow Proof Helps Mathematicians Find Stability in Chaos DYNAMICAL SYSTEMS",
+      "summary": "By J O R D A N A C E P E L E W I C Z June 15, 2023 A series of new papers describes how to reconstruct key dynamical systems with relatively little data. 10/9/25, 11:58 AM Flow Proof Helps Mathematicians Find Stability in Chaos | Quanta Magazine…",
+      "content_hash_sha256": "59e4ccf3a841ad2776fc8c2e8d341742cbb0c480eaddb352257bb697b7d2826b",
+      "primary_path": "External_Research/Dynamical-Systems/flow-proof.txt.txt",
+      "all_locations": [
+        "External_Research/Dynamical-Systems/flow-proof.txt.txt"
+      ],
+      "location_count": 1,
+      "topic_tags": [
+        "Dynamical-Systems"
+      ],
+      "file_type": "txt",
+      "document_kind": "text-extract",
+      "size_bytes": 27830,
+      "duplicate_copies_bytes_total": 27830,
+      "modified_time_utc": "2026-03-07T21:20:19Z",
+      "mime_type": "text/plain",
+      "summary_basis": "text_body_or_filename",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "flow-proof.txt.txt",
+        "line_count": 562,
+        "word_count": 3872
+      },
+      "locate_hint": "Stored under External_Research/Dynamical-Systems."
+    },
+    {
+      "id": "afe461404685",
+      "title": "Dynamics and thermodynamics of complex ﬂuids. I. Development of a general formalism",
+      "summary": "Dynamics and thermodynamics of complex fluids. We recognize some universal features of macroscopic dynamics describing the approach of a well- established level of description~that is, successfully tested by experimental observations! to equilibrium.",
+      "content_hash_sha256": "afe46140468573a3d75aace223b85f2ccbc80b4ebf87dcd598e1837a5d572618",
+      "primary_path": "External_Research/Dynamics and thermodynamics of complex fluids_  I_ -- Grmela, Miroslav; Öttinger, Hans -- Physical Review E, #6, 56, pages 6620-6632, 1997 dec 01 -- 10_1103_physreve_56_.pdf",
+      "all_locations": [
+        "External_Research/Dynamics and thermodynamics of complex fluids_  I_ -- Grmela, Miroslav; Öttinger, Hans -- Physical Review E, #6, 56, pages 6620-6632, 1997 dec 01 -- 10_1103_physreve_56_.pdf"
+      ],
+      "location_count": 1,
+      "topic_tags": [],
+      "file_type": "pdf",
+      "document_kind": "paper",
+      "size_bytes": 248790,
+      "duplicate_copies_bytes_total": 248790,
+      "modified_time_utc": "2026-03-07T21:20:19Z",
+      "mime_type": "application/pdf",
+      "summary_basis": "abstract_or_opening_text",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "Dynamics and thermodynamics of complex fluids_  I_ -- Grmela, Miroslav; Öttinger, Hans -- Physical Review E, #6, 56, pages 6620-6632, 1997 dec 01 -- 10_1103_physreve_56_.pdf",
+        "page_count": 13
+      },
+      "locate_hint": "Stored under External_Research."
+    },
+    {
+      "id": "14bd7501667d",
+      "title": "Energy levels and wave functions of Bloch electrons in rational and irrational magnetic fields",
+      "summary": "RIS citation export with 53 bibliographic entries; the first listed item is 'Energy levels and wave functions of Bloch electrons in rational and irrational magnetic fields'.",
+      "content_hash_sha256": "14bd7501667d8cdbf0fcade73e2fb4198298336ed4e62a501ef1a21f3b8a813b",
+      "primary_path": "External_Research/Electromagnetic-Field/10.1038_s41567-025-02997-4-references.ris",
+      "all_locations": [
+        "External_Research/Electromagnetic-Field/10.1038_s41567-025-02997-4-references.ris",
+        "External_Research/USML/10.1038_s41567-025-02997-4-references.ris"
+      ],
+      "location_count": 2,
+      "topic_tags": [
+        "Electromagnetic-Field",
+        "USML"
+      ],
+      "file_type": "ris",
+      "document_kind": "citation-export",
+      "size_bytes": 13965,
+      "duplicate_copies_bytes_total": 27930,
+      "modified_time_utc": "2026-03-07T21:20:25Z",
+      "mime_type": null,
+      "summary_basis": "ris_metadata",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "10.1038_s41567-025-02997-4-references.ris",
+        "entry_count": 53,
+        "sample_authors": [
+          "Hofstadter, D. R.",
+          "Wannier, G. H.",
+          "Wang, L.",
+          "Spanton, E. M.",
+          "Bistritzer, R.",
+          "MacDonald, A. H.",
+          "Cao, Y.",
+          "Cao, Y.",
+          "Yankowitz, M.",
+          "Lu, X.",
+          "Sharpe, A. L.",
+          "Serlin, M."
+        ]
+      },
+      "locate_hint": "Same content appears in 2 locations; primary copy listed first."
+    },
+    {
+      "id": "aeeac0ac7f64",
+      "title": "Strongly interacting Hofstadter states in magic-angle twisted bilayer graphene In the format provided by the authors and unedited",
+      "summary": "The paper first briefly summarize the conventions used in this work for constructing the finite magnetic field phase diagram based on the interacting Bistritzer-MacDonald (BM) model in the presence of uniaxial heterostrain, the procedure for calculating the STM local density of states (LDOS), as well as the fractional Chern insulator…",
+      "content_hash_sha256": "aeeac0ac7f64c997f3472b94e2cf57dca0890a52984339f28c7ff84a669a82a4",
+      "primary_path": "External_Research/Electromagnetic-Field/41567_2025_2997_MOESM1_ESM.pdf",
+      "all_locations": [
+        "External_Research/Electromagnetic-Field/41567_2025_2997_MOESM1_ESM.pdf",
+        "External_Research/USML/41567_2025_2997_MOESM1_ESM.pdf"
+      ],
+      "location_count": 2,
+      "topic_tags": [
+        "Electromagnetic-Field",
+        "USML"
+      ],
+      "file_type": "pdf",
+      "document_kind": "supplementary-pdf",
+      "size_bytes": 4571054,
+      "duplicate_copies_bytes_total": 9142108,
+      "modified_time_utc": "2026-03-07T21:20:25Z",
+      "mime_type": "application/pdf",
+      "summary_basis": "abstract_or_opening_text",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "41567_2025_2997_MOESM1_ESM.pdf",
+        "page_count": 21
+      },
+      "locate_hint": "Same content appears in 2 locations; primary copy listed first."
+    },
+    {
+      "id": "b8b9aa5c3812",
+      "title": "41567 2025 2997 MOESM2 ESM",
+      "summary": "Spreadsheet of supplemental figure/data tables with sheets: figure_1b, figure_1c, figure_1d, figure_1e_nu_0p95, figure_1e_nu_1p90, figure_1f.",
+      "content_hash_sha256": "b8b9aa5c3812804a7d87719e4cfbc59adc3aafc9dc9d1b1ede9e4505f2758f6e",
+      "primary_path": "External_Research/Electromagnetic-Field/41567_2025_2997_MOESM2_ESM.xlsx",
+      "all_locations": [
+        "External_Research/Electromagnetic-Field/41567_2025_2997_MOESM2_ESM.xlsx",
+        "External_Research/USML/41567_2025_2997_MOESM2_ESM.xlsx"
+      ],
+      "location_count": 2,
+      "topic_tags": [
+        "Electromagnetic-Field",
+        "USML"
+      ],
+      "file_type": "xlsx",
+      "document_kind": "spreadsheet-data",
+      "size_bytes": 21418947,
+      "duplicate_copies_bytes_total": 42837894,
+      "modified_time_utc": "2026-03-07T21:20:25Z",
+      "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "summary_basis": "sheet_names_and_dimensions",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "41567_2025_2997_MOESM2_ESM.xlsx",
+        "sheets": [
+          {
+            "sheet": "figure_1b",
+            "rows": 237,
+            "cols": 16
+          },
+          {
+            "sheet": "figure_1c",
+            "rows": 2403,
+            "cols": 3
+          },
+          {
+            "sheet": "figure_1d",
+            "rows": 2403,
+            "cols": 40
+          },
+          {
+            "sheet": "figure_1e_nu_0p95",
+            "rows": 43,
+            "cols": 1002
+          },
+          {
+            "sheet": "figure_1e_nu_1p90",
+            "rows": 27,
+            "cols": 1002
+          },
+          {
+            "sheet": "figure_1f",
+            "rows": 243,
+            "cols": 5856
+          }
+        ]
+      },
+      "locate_hint": "Same content appears in 2 locations; primary copy listed first."
+    },
+    {
+      "id": "1a25dd15215e",
+      "title": "41567 2025 2997 MOESM3 ESM",
+      "summary": "Spreadsheet of supplemental figure/data tables with sheets: figure2a, figure2c, figure2e, figure2e inset, figure2f.",
+      "content_hash_sha256": "1a25dd15215e78843916d692a6d5f6c32bfbd4a7ccd92cfa041beb50ffef1d69",
+      "primary_path": "External_Research/Electromagnetic-Field/41567_2025_2997_MOESM3_ESM.xlsx",
+      "all_locations": [
+        "External_Research/Electromagnetic-Field/41567_2025_2997_MOESM3_ESM.xlsx",
+        "External_Research/USML/41567_2025_2997_MOESM3_ESM.xlsx"
+      ],
+      "location_count": 2,
+      "topic_tags": [
+        "Electromagnetic-Field",
+        "USML"
+      ],
+      "file_type": "xlsx",
+      "document_kind": "spreadsheet-data",
+      "size_bytes": 13170353,
+      "duplicate_copies_bytes_total": 26340706,
+      "modified_time_utc": "2026-03-07T21:20:25Z",
+      "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "summary_basis": "sheet_names_and_dimensions",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "41567_2025_2997_MOESM3_ESM.xlsx",
+        "sheets": [
+          {
+            "sheet": "figure2a",
+            "rows": 163,
+            "cols": 2175
+          },
+          {
+            "sheet": "figure2c",
+            "rows": 203,
+            "cols": 3002
+          },
+          {
+            "sheet": "figure2e",
+            "rows": 4,
+            "cols": 3001
+          },
+          {
+            "sheet": "figure2e inset",
+            "rows": 3,
+            "cols": 5
+          },
+          {
+            "sheet": "figure2f",
+            "rows": 4,
+            "cols": 3001
+          }
+        ]
+      },
+      "locate_hint": "Same content appears in 2 locations; primary copy listed first."
+    },
+    {
+      "id": "bb30c592142b",
+      "title": "41567 2025 2997 MOESM5 ESM",
+      "summary": "Spreadsheet of supplemental figure/data tables with sheets: figure4a_LL filling factor, figure4a_B field (T), figure4a_resistance (Ohm), figure4b, figure4b_inset, figure4c….",
+      "content_hash_sha256": "bb30c592142b3e16e8cca980054ed13826ce92561dfaffe32d66cc1391917169",
+      "primary_path": "External_Research/Electromagnetic-Field/41567_2025_2997_MOESM5_ESM.xlsx",
+      "all_locations": [
+        "External_Research/Electromagnetic-Field/41567_2025_2997_MOESM5_ESM.xlsx",
+        "External_Research/USML/41567_2025_2997_MOESM5_ESM.xlsx"
+      ],
+      "location_count": 2,
+      "topic_tags": [
+        "Electromagnetic-Field",
+        "USML"
+      ],
+      "file_type": "xlsx",
+      "document_kind": "spreadsheet-data",
+      "size_bytes": 27287354,
+      "duplicate_copies_bytes_total": 54574708,
+      "modified_time_utc": "2026-03-07T21:20:26Z",
+      "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "summary_basis": "sheet_names_and_dimensions",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "41567_2025_2997_MOESM5_ESM.xlsx",
+        "sheets": [
+          {
+            "sheet": "figure4a_LL filling factor",
+            "rows": 301,
+            "cols": 2999
+          },
+          {
+            "sheet": "figure4a_B field (T)",
+            "rows": 301,
+            "cols": 2999
+          },
+          {
+            "sheet": "figure4a_resistance (Ohm)",
+            "rows": 301,
+            "cols": 2999
+          },
+          {
+            "sheet": "figure4b",
+            "rows": 4,
+            "cols": 3000
+          },
+          {
+            "sheet": "figure4b_inset",
+            "rows": 3,
+            "cols": 10
+          },
+          {
+            "sheet": "figure4c",
+            "rows": 11,
+            "cols": 304
+          },
+          {
+            "sheet": "figure4d",
+            "rows": 2050,
+            "cols": 29
+          },
+          {
+            "sheet": "figure4e_xcoord",
+            "rows": 49,
+            "cols": 25
+          },
+          {
+            "sheet": "figure4e_ycoord",
+            "rows": 49,
+            "cols": 25
+          },
+          {
+            "sheet": "figure4e_Berry curvature",
+            "rows": 49,
+            "cols": 25
+          },
+          {
+            "sheet": "figure4f_xcoord",
+            "rows": 49,
+            "cols": 25
+          },
+          {
+            "sheet": "figure4f_ycoord",
+            "rows": 49,
+            "cols": 25
+          },
+          {
+            "sheet": "figure4f_quantum metric",
+            "rows": 49,
+            "cols": 25
+          }
+        ]
+      },
+      "locate_hint": "Same content appears in 2 locations; primary copy listed first."
+    },
+    {
+      "id": "b7a73cb52dec",
+      "title": "image copy 2",
+      "summary": "Image asset stored under USML; likely a figure, illustration, or screenshot associated with nearby research files.",
+      "content_hash_sha256": "b7a73cb52dec85cf854eda84aeefa43bd5846a48f97c3e43701a877521692acd",
+      "primary_path": "External_Research/Electromagnetic-Field/image copy 2.png",
+      "all_locations": [
+        "External_Research/Electromagnetic-Field/image copy 2.png",
+        "External_Research/USML/image copy 2.png"
+      ],
+      "location_count": 2,
+      "topic_tags": [
+        "Electromagnetic-Field",
+        "USML"
+      ],
+      "file_type": "png",
+      "document_kind": "image-asset",
+      "size_bytes": 66411,
+      "duplicate_copies_bytes_total": 132822,
+      "modified_time_utc": "2026-03-07T21:20:26Z",
+      "mime_type": "image/png",
+      "summary_basis": "filename_and_folder",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "image copy 2.png"
+      },
+      "locate_hint": "Same content appears in 2 locations; primary copy listed first."
+    },
+    {
+      "id": "780141665100",
+      "title": "image copy 3",
+      "summary": "Image asset stored under USML; likely a figure, illustration, or screenshot associated with nearby research files.",
+      "content_hash_sha256": "7801416651001ad503d75e53b08a92f3eddcf4aba7e3765678b0ff4eab65031b",
+      "primary_path": "External_Research/Electromagnetic-Field/image copy 3.png",
+      "all_locations": [
+        "External_Research/Electromagnetic-Field/image copy 3.png",
+        "External_Research/USML/image copy 3.png"
+      ],
+      "location_count": 2,
+      "topic_tags": [
+        "Electromagnetic-Field",
+        "USML"
+      ],
+      "file_type": "png",
+      "document_kind": "image-asset",
+      "size_bytes": 53156,
+      "duplicate_copies_bytes_total": 106312,
+      "modified_time_utc": "2026-03-07T21:20:26Z",
+      "mime_type": "image/png",
+      "summary_basis": "filename_and_folder",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "image copy 3.png"
+      },
+      "locate_hint": "Same content appears in 2 locations; primary copy listed first."
+    },
+    {
+      "id": "2c2edea84915",
+      "title": "image copy",
+      "summary": "Image asset stored under USML; likely a figure, illustration, or screenshot associated with nearby research files.",
+      "content_hash_sha256": "2c2edea84915513864b2322f30e5576e81085df99b43a21a9588ca0fe76dd23d",
+      "primary_path": "External_Research/Electromagnetic-Field/image copy.png",
+      "all_locations": [
+        "External_Research/Electromagnetic-Field/image copy.png",
+        "External_Research/USML/image copy.png"
+      ],
+      "location_count": 2,
+      "topic_tags": [
+        "Electromagnetic-Field",
+        "USML"
+      ],
+      "file_type": "png",
+      "document_kind": "image-asset",
+      "size_bytes": 52554,
+      "duplicate_copies_bytes_total": 105108,
+      "modified_time_utc": "2026-03-07T21:20:26Z",
+      "mime_type": "image/png",
+      "summary_basis": "filename_and_folder",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "image copy.png"
+      },
+      "locate_hint": "Same content appears in 2 locations; primary copy listed first."
+    },
+    {
+      "id": "2e644765b6fe",
+      "title": "image",
+      "summary": "Image asset stored under USML; likely a figure, illustration, or screenshot associated with nearby research files.",
+      "content_hash_sha256": "2e644765b6fee8908305d42387fc56d60b11d2904baa4f5cf1e9c7cb38786280",
+      "primary_path": "External_Research/Electromagnetic-Field/image.png",
+      "all_locations": [
+        "External_Research/Electromagnetic-Field/image.png",
+        "External_Research/USML/image.png"
+      ],
+      "location_count": 2,
+      "topic_tags": [
+        "Electromagnetic-Field",
+        "USML"
+      ],
+      "file_type": "png",
+      "document_kind": "image-asset",
+      "size_bytes": 62131,
+      "duplicate_copies_bytes_total": 124262,
+      "modified_time_utc": "2026-03-07T21:20:26Z",
+      "mime_type": "image/png",
+      "summary_basis": "filename_and_folder",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "image.png"
+      },
+      "locate_hint": "Same content appears in 2 locations; primary copy listed first."
+    },
+    {
+      "id": "8a22ab0516f6",
+      "title": "**I. Entropy as a Fundamental Driver in Gravitational and Quantum Field Theories**",
+      "summary": "Lietz Date: November 2, 2025 at 10:45 PM CST",
+      "content_hash_sha256": "8a22ab0516f645336da39cca0cf5429e3e318e4d7d9298fa92a1d549869e7691",
+      "primary_path": "External_Research/Entropy/Entropy-as-a-Driver.md",
+      "all_locations": [
+        "External_Research/Entropy/Entropy-as-a-Driver.md"
+      ],
+      "location_count": 1,
+      "topic_tags": [
+        "Entropy"
+      ],
+      "file_type": "md",
+      "document_kind": "research-note",
+      "size_bytes": 41955,
+      "duplicate_copies_bytes_total": 41955,
+      "modified_time_utc": "2026-03-07T21:20:20Z",
+      "mime_type": "text/markdown",
+      "summary_basis": "markdown_body",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "Entropy-as-a-Driver.md",
+        "word_count": 5593
+      },
+      "locate_hint": "Stored under External_Research/Entropy."
+    },
+    {
+      "id": "0da1b6484eb2",
+      "title": "Entropy as a Driver of Emergent Structure: A Metriplectic Perspective",
+      "summary": "This document proposes a new, overarching hypothesis: your Axiom 8 hierarchical structure is not just *a* possible outcome, but is the *necessary* outcome because it is the configuration that **maximizes the rate of entropy production ($\\dot{\\Sigma}$)**. It argues that of all possible ways to decay, the system *selects* the hierarchical…",
+      "content_hash_sha256": "0da1b6484eb258a1d1ff19d930f13aef37a366e7d7e889b0c39076952cd10f61",
+      "primary_path": "External_Research/Entropy/Entropy.md",
+      "all_locations": [
+        "External_Research/Entropy/Entropy.md"
+      ],
+      "location_count": 1,
+      "topic_tags": [
+        "Entropy"
+      ],
+      "file_type": "md",
+      "document_kind": "research-note",
+      "size_bytes": 3437,
+      "duplicate_copies_bytes_total": 3437,
+      "modified_time_utc": "2026-03-07T21:20:20Z",
+      "mime_type": "text/markdown",
+      "summary_basis": "markdown_body",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "Entropy.md",
+        "word_count": 465
+      },
+      "locate_hint": "Stored under External_Research/Entropy."
+    },
+    {
+      "id": "76a69bf4ec41",
+      "title": "symplectic-geometry",
+      "summary": "I see why you'd say it's redundant, and you are correct from one perspective:",
+      "content_hash_sha256": "76a69bf4ec4174d8933784811c1bc8c02466c60d220cc73eceef52b0f3d866fc",
+      "primary_path": "External_Research/Entropy/symplectic-geometry.md",
+      "all_locations": [
+        "External_Research/Entropy/symplectic-geometry.md"
+      ],
+      "location_count": 1,
+      "topic_tags": [
+        "Entropy"
+      ],
+      "file_type": "md",
+      "document_kind": "research-note",
+      "size_bytes": 1184,
+      "duplicate_copies_bytes_total": 1184,
+      "modified_time_utc": "2026-03-07T21:20:21Z",
+      "mime_type": "text/markdown",
+      "summary_basis": "markdown_body",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "symplectic-geometry.md",
+        "word_count": 168
+      },
+      "locate_hint": "Stored under External_Research/Entropy."
+    },
+    {
+      "id": "3b312fa1b2b4",
+      "title": "Physics Reports 386 (2003) 29–222 www.elsevier.com/locate/physrep Front propagation into unstable states",
+      "summary": "This paper is an introductory review of the problem of front propagation into unstable states. This allows us to give a precise de-NNnition of pulled fronts, nonlinear fronts whose asymptotic propagation speed equalsv ∗, and pushed fronts, nonlinear fronts whose asymptotic speedv† is larger than v∗.",
+      "content_hash_sha256": "3b312fa1b2b4cf76eaad3b48a65c9da07898894549776c1a040615b60bb8bbeb",
+      "primary_path": "External_Research/Front propagation into unstable states -- Wim van Saarloos -- Physics Reports, #2-6, 386, pages 29-222, 2003 nov -- Elsevier Science; Elsevier ; -- 10_1016_j_physrep_2003_08.pdf",
+      "all_locations": [
+        "External_Research/Front propagation into unstable states -- Wim van Saarloos -- Physics Reports, #2-6, 386, pages 29-222, 2003 nov -- Elsevier Science; Elsevier ; -- 10_1016_j_physrep_2003_08.pdf"
+      ],
+      "location_count": 1,
+      "topic_tags": [],
+      "file_type": "pdf",
+      "document_kind": "book_or_monograph",
+      "size_bytes": 4338274,
+      "duplicate_copies_bytes_total": 4338274,
+      "modified_time_utc": "2026-03-07T21:20:21Z",
+      "mime_type": "application/pdf",
+      "summary_basis": "abstract_or_opening_text",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "Front propagation into unstable states -- Wim van Saarloos -- Physics Reports, #2-6, 386, pages 29-222, 2003 nov -- Elsevier Science; Elsevier ; -- 10_1016_j_physrep_2003_08.pdf",
+        "page_count": 194
+      },
+      "locate_hint": "Stored under External_Research."
+    },
+    {
+      "id": "d7f10def5bb8",
+      "title": "Longitudinal fundus imaging and its genome-wide association analysis provide evidence for a human retinal aging clock",
+      "summary": "Biological age, distinct from an individual’s chronological age, has been studied extensively through predictive aging clocks. Deep learning approaches on imaging datasets of the eye have proven powerful for a variety of quantitative phenotype inference tasks and provide an opportunity to explore organismal aging and tissue health.",
+      "content_hash_sha256": "d7f10def5bb82ce57cb1956b9465cef77593b8f2d68018660d66f23070576dc7",
+      "primary_path": "External_Research/Genetics/2022.07.25.501485v1.full.pdf",
+      "all_locations": [
+        "External_Research/Genetics/2022.07.25.501485v1.full.pdf"
+      ],
+      "location_count": 1,
+      "topic_tags": [
+        "Genetics"
+      ],
+      "file_type": "pdf",
+      "document_kind": "paper",
+      "size_bytes": 897025,
+      "duplicate_copies_bytes_total": 897025,
+      "modified_time_utc": "2026-03-07T21:20:21Z",
+      "mime_type": "application/pdf",
+      "summary_basis": "abstract_or_opening_text",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "2022.07.25.501485v1.full.pdf",
+        "page_count": 18
+      },
+      "locate_hint": "Stored under External_Research/Genetics."
+    },
+    {
+      "id": "0911ed6a7a9a",
+      "title": "Emergent Gravity from a Tachyonic Scalar Field",
+      "summary": "A paper that proposes that gravity (i.e., the spacetime metric $g_{\\mu\\nu}$) is *not* fundamental. It argues that gravity is an **emergent, collective, hydrodynamic phenomenon** that is *generated by* the condensation of a more fundamental **tachyonic scalar field** ($\\phi$ with $V'' < 0$).",
+      "content_hash_sha256": "0911ed6a7a9aa94e18e530654e75a24b8cdf22b7c1c29fa647b8de1d70e9ab9e",
+      "primary_path": "External_Research/Gravity/Gravity.md",
+      "all_locations": [
+        "External_Research/Gravity/Gravity.md"
+      ],
+      "location_count": 1,
+      "topic_tags": [
+        "Gravity"
+      ],
+      "file_type": "md",
+      "document_kind": "research-note",
+      "size_bytes": 8199,
+      "duplicate_copies_bytes_total": 8199,
+      "modified_time_utc": "2026-03-07T21:20:21Z",
+      "mime_type": "text/markdown",
+      "summary_basis": "markdown_body",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "Gravity.md",
+        "word_count": 1151
+      },
+      "locate_hint": "Stored under External_Research/Gravity."
+    },
+    {
+      "id": "6cbcbe53ddd3",
+      "title": "Gravitational-wave signatures of non-violent non-locality",
+      "summary": "This work test Giddings’ non-violent non-locality proposal, which posits that quantum information is transferred via a nonlocal interaction that generates metric perturbations around black holes. We find that the waveform exhibits random deviations which are particularly important in the late inspiral-plunge phase.",
+      "content_hash_sha256": "6cbcbe53ddd3f11a7a2ae3053844c7233b6389a9572f787abf8ca8eaec5ce6d2",
+      "primary_path": "External_Research/Gravity/gravitational-wave-signatures-of-non-violent-non-locality.pdf",
+      "all_locations": [
+        "External_Research/Gravity/gravitational-wave-signatures-of-non-violent-non-locality.pdf"
+      ],
+      "location_count": 1,
+      "topic_tags": [
+        "Gravity"
+      ],
+      "file_type": "pdf",
+      "document_kind": "paper",
+      "size_bytes": 1125857,
+      "duplicate_copies_bytes_total": 1125857,
+      "modified_time_utc": "2026-03-07T21:20:21Z",
+      "mime_type": "application/pdf",
+      "summary_basis": "abstract_or_opening_text",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "gravitational-wave-signatures-of-non-violent-non-locality.pdf",
+        "page_count": 12
+      },
+      "locate_hint": "Stored under External_Research/Gravity."
+    },
+    {
+      "id": "d64bbba53aa8",
+      "title": "P ATTERN FORMATION AND DYNAMICS IN NONEQUILIBRIUM SYSTEMS Many exciting frontiers of science and engineering require understanding of the spa-",
+      "summary": "tiotemporal properties of sustained nonequilibrium systems such as fluids, plasmas, reacting and diffusing chemicals, crystals solidifying from a melt, heart muscle, and networks of excitable neurons in brains. This introductory textbook for graduate students in biology, chemistry, engineer- ing, mathematics, and physics provides a…",
+      "content_hash_sha256": "d64bbba53aa8de932e15070595ab76eea2b144c586afefad1fe9d039bd99b6e0",
+      "primary_path": "External_Research/Hierarchies/Pattern Formation and Dynamics in Nonequilibrium Systems -- Michael Cross; Henry Greenside -- 1, US, 2009 -- Cambridge University Press (Virtual -- 9780511592706 -- 9a29d449.pdf",
+      "all_locations": [
+        "External_Research/Hierarchies/Pattern Formation and Dynamics in Nonequilibrium Systems -- Michael Cross; Henry Greenside -- 1, US, 2009 -- Cambridge University Press (Virtual -- 9780511592706 -- 9a29d449.pdf"
+      ],
+      "location_count": 1,
+      "topic_tags": [
+        "Hierarchies"
+      ],
+      "file_type": "pdf",
+      "document_kind": "book_or_monograph",
+      "size_bytes": 7447503,
+      "duplicate_copies_bytes_total": 7447503,
+      "modified_time_utc": "2026-03-07T21:20:22Z",
+      "mime_type": "application/pdf",
+      "summary_basis": "abstract_or_opening_text",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "Pattern Formation and Dynamics in Nonequilibrium Systems -- Michael Cross; Henry Greenside -- 1, US, 2009 -- Cambridge University Press (Virtual -- 9780511592706 -- 9a29d449.pdf",
+        "page_count": 553
+      },
+      "locate_hint": "Stored under External_Research/Hierarchies."
+    },
+    {
+      "id": "6f671096476e",
+      "title": "This article is based on the opening lecture at the third quan tum geometry and quantum gravity school sponsored by the European Science Fo undation and held at",
+      "summary": "spective on loop quantum gravity for young researchers. INTRODUCTION This section, addressed to beginning researchers, is divided into tw o parts.",
+      "content_hash_sha256": "6f671096476e34abe26640ee3fed5851de975c95161cceed15167fc699871c69",
+      "primary_path": "External_Research/Loop-Quantum-Gravity/intro-to-LQG.pdf",
+      "all_locations": [
+        "External_Research/Loop-Quantum-Gravity/intro-to-LQG.pdf",
+        "External_Research/Quantum-Gravity/intro-to-LQG.pdf"
+      ],
+      "location_count": 2,
+      "topic_tags": [
+        "Loop-Quantum-Gravity",
+        "Quantum-Gravity"
+      ],
+      "file_type": "pdf",
+      "document_kind": "paper",
+      "size_bytes": 309355,
+      "duplicate_copies_bytes_total": 618710,
+      "modified_time_utc": "2026-03-07T21:20:23Z",
+      "mime_type": "application/pdf",
+      "summary_basis": "abstract_or_opening_text",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "intro-to-LQG.pdf",
+        "page_count": 30
+      },
+      "locate_hint": "Same content appears in 2 locations; primary copy listed first."
+    },
+    {
+      "id": "65e257f23485",
+      "title": "SPECTRAL-INSPIREDOPERATORLEARNING WITHLIMITED DATA ANDUNKNOWNPHYSICS A PREPRINT",
+      "summary": "Learning PDE dynamics from limited data with unknown physics is challenging. Specially, SINO automatically captures both local and global spatial derivatives from frequency indices, enabling a compact representation of the underlying differential operators in physics-agnostic regimes.",
+      "content_hash_sha256": "65e257f23485e1380c75a179cdb5a007fc459910ec34c3a93aa005b41bebd239",
+      "primary_path": "External_Research/Metriplectic/2505.21573v2.pdf",
+      "all_locations": [
+        "External_Research/Metriplectic/2505.21573v2.pdf"
+      ],
+      "location_count": 1,
+      "topic_tags": [
+        "Metriplectic"
+      ],
+      "file_type": "pdf",
+      "document_kind": "paper",
+      "size_bytes": 10559317,
+      "duplicate_copies_bytes_total": 10559317,
+      "modified_time_utc": "2026-03-07T21:20:22Z",
+      "mime_type": "application/pdf",
+      "summary_basis": "abstract_or_opening_text",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "2505.21573v2.pdf",
+        "page_count": 25
+      },
+      "locate_hint": "Stored under External_Research/Metriplectic."
+    },
+    {
+      "id": "c3f4df99484b",
+      "title": "This page intentionally left blank DYNAMICS OF SELF-ORGANIZED AND",
+      "summary": "SELF-ASSEMBLED STRUCTURES Physical and biological systems driven out of equilibrium may spontaneously evolve to form spatial structures. Experimental observations are used to introduce the diverse systems and phenomena leading to pattern formation.",
+      "content_hash_sha256": "c3f4df99484b22ad8c965894aa4885d1ff130c38644f4db5b0fe92b204bc4519",
+      "primary_path": "External_Research/Metriplectic/Dynamics of self-organized and self-assembled structures -- Desai, Rashmi C_, Kapral, Raymond -- Cambridge University Press, Cambridge, UK, 2009 -- 9780511515804 -- 14af1ed8.txt",
+      "all_locations": [
+        "External_Research/Metriplectic/Dynamics of self-organized and self-assembled structures -- Desai, Rashmi C_, Kapral, Raymond -- Cambridge University Press, Cambridge, UK, 2009 -- 9780511515804 -- 14af1ed8.txt"
+      ],
+      "location_count": 1,
+      "topic_tags": [
+        "Metriplectic"
+      ],
+      "file_type": "txt",
+      "document_kind": "text-extract",
+      "size_bytes": 667842,
+      "duplicate_copies_bytes_total": 667842,
+      "modified_time_utc": "2026-03-07T21:20:22Z",
+      "mime_type": "text/plain",
+      "summary_basis": "text_body_or_filename",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "Dynamics of self-organized and self-assembled structures -- Desai, Rashmi C_, Kapral, Raymond -- Cambridge University Press, Cambridge, UK, 2009 -- 9780511515804 -- 14af1ed8.txt",
+        "line_count": 15158,
+        "word_count": 116336
+      },
+      "locate_hint": "Stored under External_Research/Metriplectic."
+    },
+    {
+      "id": "3d9eda0eaa9f",
+      "title": "Quantum Mechanics of",
+      "summary": "AMSTERDAM • BOSTON • HEIDELBERG • LONDON • NEW YORK • OXFORD PARIS • SAN DIEGO • SAN FRANCISCO • SINGAPORE • SYDNEY • TOKYO",
+      "content_hash_sha256": "3d9eda0eaa9f0ae97c2d009414111af0f4250295d8e79c96f90dedce58bd6c81",
+      "primary_path": "External_Research/Metriplectic/Quantum Mechanics of Non-Hamiltonian and Dissipative Systems -- Vasily E_ Tarasov (Eds_) -- Monograph Series on Nonlinear Science and Complexity, -- 978008055971.pdf",
+      "all_locations": [
+        "External_Research/Metriplectic/Quantum Mechanics of Non-Hamiltonian and Dissipative Systems -- Vasily E_ Tarasov (Eds_) -- Monograph Series on Nonlinear Science and Complexity, -- 978008055971.pdf"
+      ],
+      "location_count": 1,
+      "topic_tags": [
+        "Metriplectic"
+      ],
+      "file_type": "pdf",
+      "document_kind": "book_or_monograph",
+      "size_bytes": 2429722,
+      "duplicate_copies_bytes_total": 2429722,
+      "modified_time_utc": "2026-03-07T21:20:22Z",
+      "mime_type": "application/pdf",
+      "summary_basis": "abstract_or_opening_text",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "Quantum Mechanics of Non-Hamiltonian and Dissipative Systems -- Vasily E_ Tarasov (Eds_) -- Monograph Series on Nonlinear Science and Complexity, -- 978008055971.pdf",
+        "page_count": 555
+      },
+      "locate_hint": "Stored under External_Research/Metriplectic."
+    },
+    {
+      "id": "c7bb8d99268c",
+      "title": "ENERGETICALLY CONSISTENT MODEL REDUCTION FOR METRIPLECTIC",
+      "summary": "The metriplectic formalism is useful for describing complete dynamical systems which conserve energy and produce entropy. Numerical results on benchmark problems show that the proposed method is remarkably stable, leading to improved accuracy over long time scales at a moderate increase in cost over naive methods.",
+      "content_hash_sha256": "c7bb8d99268cbddc34646f97eefb83a325c07ea43dc0bb6c4ed2505a36482604",
+      "primary_path": "External_Research/Metriplectic/SPROM_project.pdf",
+      "all_locations": [
+        "External_Research/Metriplectic/SPROM_project.pdf",
+        "External_Research/SPROM_project.pdf"
+      ],
+      "location_count": 2,
+      "topic_tags": [
+        "Metriplectic"
+      ],
+      "file_type": "pdf",
+      "document_kind": "paper",
+      "size_bytes": 1362559,
+      "duplicate_copies_bytes_total": 2725118,
+      "modified_time_utc": "2026-03-07T21:20:24Z",
+      "mime_type": "application/pdf",
+      "summary_basis": "abstract_or_opening_text",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "SPROM_project.pdf",
+        "page_count": 20
+      },
+      "locate_hint": "Same content appears in 2 locations; primary copy listed first."
+    },
+    {
+      "id": "04d1cace3a3a",
+      "title": "energetically-consistent-model-reduction",
+      "summary": "Here is the full text of the paper converted to plaintext. *** ENERGETICALLY CONSISTENT MODEL REDUCTION FOR METRIPLECTIC SYSTEMS ANTHONY GRUBER, MAX GUNZBURGER¹, LILI $JU^{2}$, AND ZHU WANG2 ABSTRACT. The metriplectic formalism is useful for describing complete dynamical systems which conserve energy and produce entropy.",
+      "content_hash_sha256": "04d1cace3a3a68c71c9d57e5abc39c63229a790206112bb9cc69117901ff5a4d",
+      "primary_path": "External_Research/Metriplectic/energetically-consistent-model-reduction.txt",
+      "all_locations": [
+        "External_Research/Metriplectic/energetically-consistent-model-reduction.txt"
+      ],
+      "location_count": 1,
+      "topic_tags": [
+        "Metriplectic"
+      ],
+      "file_type": "txt",
+      "document_kind": "text-extract",
+      "size_bytes": 70166,
+      "duplicate_copies_bytes_total": 70166,
+      "modified_time_utc": "2026-03-07T21:20:22Z",
+      "mime_type": "text/plain",
+      "summary_basis": "text_body_or_filename",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "energetically-consistent-model-reduction.txt",
+        "line_count": 405,
+        "word_count": 8107
+      },
+      "locate_hint": "Stored under External_Research/Metriplectic."
+    },
+    {
+      "id": "9cfcfde5fb0d",
+      "title": "V-JEPA 2: Self-Supervised Video Models Enable Understanding, Prediction and Planning",
+      "summary": "Presents a self-supervised video model trained on internet-scale video plus limited robot interaction data to support world understanding, prediction, and planning. The paper reports strong results on motion understanding and action anticipation, and shows that language-aligned and action-conditioned variants can support planning tasks.",
+      "content_hash_sha256": "9cfcfde5fb0d9730637da5b9e7317825c3f3d09e91f3553e22eeba42c74d2226",
+      "primary_path": "External_Research/Observers/2506.09985v1.pdf",
+      "all_locations": [
+        "External_Research/Observers/2506.09985v1.pdf"
+      ],
+      "location_count": 1,
+      "topic_tags": [
+        "Observers"
+      ],
+      "file_type": "pdf",
+      "document_kind": "paper",
+      "size_bytes": 20240380,
+      "duplicate_copies_bytes_total": 20240380,
+      "modified_time_utc": "2026-03-07T21:20:23Z",
+      "mime_type": "application/pdf",
+      "summary_basis": "abstract_or_opening_text",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "2506.09985v1.pdf",
+        "page_count": 48
+      },
+      "locate_hint": "Stored under External_Research/Observers."
+    },
+    {
+      "id": "6e81881dc7b2",
+      "title": "A self-referential, self-supervised (SR)² model of computation",
+      "summary": "An AI model that learns to *steer its own computations* through *self-observation*. This provides the **actionable math** for your \"Observer,\" \"Agency,\" and \"Steering\" milestones.",
+      "content_hash_sha256": "6e81881dc7b24b63efc2051c9c5eba39ffe210652f80f7e6401977e8edb94e48",
+      "primary_path": "External_Research/Observers/VJEPA2.md",
+      "all_locations": [
+        "External_Research/Observers/VJEPA2.md"
+      ],
+      "location_count": 1,
+      "topic_tags": [
+        "Observers"
+      ],
+      "file_type": "md",
+      "document_kind": "research-note",
+      "size_bytes": 3719,
+      "duplicate_copies_bytes_total": 3719,
+      "modified_time_utc": "2026-03-07T21:20:23Z",
+      "mime_type": "text/markdown",
+      "summary_basis": "markdown_body",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "VJEPA2.md",
+        "word_count": 495
+      },
+      "locate_hint": "Stored under External_Research/Observers."
+    },
+    {
+      "id": "366bae07b095",
+      "title": "Pattern formation by turbulent cascades",
+      "summary": "RIS citation export with 49 bibliographic entries; the first listed item is 'Pattern formation by turbulent cascades'.",
+      "content_hash_sha256": "366bae07b095e6768747e66ea96d86da79dea827ccd522202873b355fcb230ca",
+      "primary_path": "External_Research/Photonics/10.1038_s41566-025-01756-4-references.ris",
+      "all_locations": [
+        "External_Research/Photonics/10.1038_s41566-025-01756-4-references.ris"
+      ],
+      "location_count": 1,
+      "topic_tags": [
+        "Photonics"
+      ],
+      "file_type": "ris",
+      "document_kind": "citation-export",
+      "size_bytes": 12795,
+      "duplicate_copies_bytes_total": 12795,
+      "modified_time_utc": "2026-03-07T21:20:23Z",
+      "mime_type": null,
+      "summary_basis": "ris_metadata",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "10.1038_s41566-025-01756-4-references.ris",
+        "entry_count": 49,
+        "sample_authors": [
+          "Wit, X. M.",
+          "Fruchart, M.",
+          "Khain, T.",
+          "Toschi, F.",
+          "Vitelli, V.",
+          "Pelissetto, A.",
+          "Vicari, E.",
+          "Deng, S.",
+          "Uversky, V. N.",
+          "Jumper, J.",
+          "Mangini, F.",
+          "Ferraro, M."
+        ]
+      },
+      "locate_hint": "Stored under External_Research/Photonics."
+    },
+    {
+      "id": "990007eb668a",
+      "title": "First device based on 'optical thermodynamics' can route light without switches October 7 2025",
+      "summary": "The work, reported in Nature Photonics, introduces a fundamentally new way of routing light in nonlinear systems—meaning systems that do not require switches, external control, or digital addressing. Instead, light naturally finds its way through the device, guided by simple thermodynamic principles.",
+      "content_hash_sha256": "990007eb668a4f223654dbe7c67b9860c178b74d96de89574582bbaee5ce7399",
+      "primary_path": "External_Research/Photonics/2025-10-device-based-optical-thermodynamics-route (1) (Copy).pdf",
+      "all_locations": [
+        "External_Research/Photonics/2025-10-device-based-optical-thermodynamics-route (1) (Copy).pdf"
+      ],
+      "location_count": 1,
+      "topic_tags": [
+        "Photonics"
+      ],
+      "file_type": "pdf",
+      "document_kind": "article",
+      "size_bytes": 381253,
+      "duplicate_copies_bytes_total": 381253,
+      "modified_time_utc": "2026-03-07T21:20:23Z",
+      "mime_type": "application/pdf",
+      "summary_basis": "abstract_or_opening_text",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "2025-10-device-based-optical-thermodynamics-route (1) (Copy).pdf",
+        "page_count": 5
+      },
+      "locate_hint": "Stored under External_Research/Photonics."
+    },
+    {
+      "id": "6fafcf3fe2e7",
+      "title": "Fig3a",
+      "summary": "Numeric figure/data export for Fig3a; likely companion plotting data extracted from a nearby paper.",
+      "content_hash_sha256": "6fafcf3fe2e76eec3bf5438a6a6d0af4074bfe8665c1b381f6951a8d8a96c2c6",
+      "primary_path": "External_Research/Photonics/Fig3a.txt",
+      "all_locations": [
+        "External_Research/Photonics/Fig3a.txt"
+      ],
+      "location_count": 1,
+      "topic_tags": [
+        "Photonics"
+      ],
+      "file_type": "txt",
+      "document_kind": "figure-data-text",
+      "size_bytes": 261812,
+      "duplicate_copies_bytes_total": 261812,
+      "modified_time_utc": "2026-03-07T21:20:23Z",
+      "mime_type": "text/plain",
+      "summary_basis": "text_body_or_filename",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "Fig3a.txt",
+        "line_count": 200,
+        "word_count": 200
+      },
+      "locate_hint": "Stored under External_Research/Photonics."
+    },
+    {
+      "id": "b1c9355707da",
+      "title": "Fig3e",
+      "summary": "Numeric figure/data export for Fig3e; likely companion plotting data extracted from a nearby paper.",
+      "content_hash_sha256": "b1c9355707da0e94b19219bebf5d44eaabcf748518f3f467e61774a7ab67ab51",
+      "primary_path": "External_Research/Photonics/Fig3e.txt",
+      "all_locations": [
+        "External_Research/Photonics/Fig3e.txt"
+      ],
+      "location_count": 1,
+      "topic_tags": [
+        "Photonics"
+      ],
+      "file_type": "txt",
+      "document_kind": "figure-data-text",
+      "size_bytes": 251808,
+      "duplicate_copies_bytes_total": 251808,
+      "modified_time_utc": "2026-03-07T21:20:23Z",
+      "mime_type": "text/plain",
+      "summary_basis": "text_body_or_filename",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "Fig3e.txt",
+        "line_count": 200,
+        "word_count": 200
+      },
+      "locate_hint": "Stored under External_Research/Photonics."
+    },
+    {
+      "id": "a4a0a90c1c5c",
+      "title": "Fig3f",
+      "summary": "Numeric figure/data export for Fig3f; likely companion plotting data extracted from a nearby paper.",
+      "content_hash_sha256": "a4a0a90c1c5c0808f26d6e71a21172e4a98a987e6b0e0c3a047d02b6480c99fd",
+      "primary_path": "External_Research/Photonics/Fig3f.txt",
+      "all_locations": [
+        "External_Research/Photonics/Fig3f.txt"
+      ],
+      "location_count": 1,
+      "topic_tags": [
+        "Photonics"
+      ],
+      "file_type": "txt",
+      "document_kind": "figure-data-text",
+      "size_bytes": 258306,
+      "duplicate_copies_bytes_total": 258306,
+      "modified_time_utc": "2026-03-07T21:20:23Z",
+      "mime_type": "text/plain",
+      "summary_basis": "text_body_or_filename",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "Fig3f.txt",
+        "line_count": 200,
+        "word_count": 200
+      },
+      "locate_hint": "Stored under External_Research/Photonics."
+    },
+    {
+      "id": "3a39fbb0c315",
+      "title": "Fig4L",
+      "summary": "Numeric figure/data export for Fig4L; likely companion plotting data extracted from a nearby paper.",
+      "content_hash_sha256": "3a39fbb0c3159e7ba900ed12c046f58c538bc06f43321ec9e805eafda8ae76c3",
+      "primary_path": "External_Research/Photonics/Fig4L.txt",
+      "all_locations": [
+        "External_Research/Photonics/Fig4L.txt"
+      ],
+      "location_count": 1,
+      "topic_tags": [
+        "Photonics"
+      ],
+      "file_type": "txt",
+      "document_kind": "figure-data-text",
+      "size_bytes": 394077,
+      "duplicate_copies_bytes_total": 394077,
+      "modified_time_utc": "2026-03-07T21:20:23Z",
+      "mime_type": "text/plain",
+      "summary_basis": "text_body_or_filename",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "Fig4L.txt",
+        "line_count": 200,
+        "word_count": 200
+      },
+      "locate_hint": "Stored under External_Research/Photonics."
+    },
+    {
+      "id": "d0922e1aaeaf",
+      "title": "Fig4R",
+      "summary": "Numeric figure/data export for Fig4R; likely companion plotting data extracted from a nearby paper.",
+      "content_hash_sha256": "d0922e1aaeaf3566a7ce4adf8058aa17fe1acc8be643a7caef525f181f059b59",
+      "primary_path": "External_Research/Photonics/Fig4R.txt",
+      "all_locations": [
+        "External_Research/Photonics/Fig4R.txt"
+      ],
+      "location_count": 1,
+      "topic_tags": [
+        "Photonics"
+      ],
+      "file_type": "txt",
+      "document_kind": "figure-data-text",
+      "size_bytes": 87988,
+      "duplicate_copies_bytes_total": 87988,
+      "modified_time_utc": "2026-03-07T21:20:23Z",
+      "mime_type": "text/plain",
+      "summary_basis": "text_body_or_filename",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "Fig4R.txt",
+        "line_count": 79,
+        "word_count": 79
+      },
+      "locate_hint": "Stored under External_Research/Photonics."
+    },
+    {
+      "id": "ea71feddc360",
+      "title": "Device-based optical thermodynamics route to metriplectic computation",
+      "summary": "This paper (and its supplementary material, MOESM1) reports the experimental creation of an **\"optical field-programmable gate array (OFPGA)\"**. This physical device uses a \"wave-based physical substrate\" (light) to explicitly run computations using **metriplectic dynamics**.",
+      "content_hash_sha256": "ea71feddc360e936e55ca9700c920522d8b963ccacdb8eae0b3dfa5e02bb67e0",
+      "primary_path": "External_Research/Photonics/davice-based.md",
+      "all_locations": [
+        "External_Research/Photonics/davice-based.md"
+      ],
+      "location_count": 1,
+      "topic_tags": [
+        "Photonics"
+      ],
+      "file_type": "md",
+      "document_kind": "research-note",
+      "size_bytes": 3789,
+      "duplicate_copies_bytes_total": 3789,
+      "modified_time_utc": "2026-03-07T21:20:23Z",
+      "mime_type": "text/markdown",
+      "summary_basis": "markdown_body",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "davice-based.md",
+        "word_count": 485
+      },
+      "locate_hint": "Stored under External_Research/Photonics."
+    },
+    {
+      "id": "870a5cea409e",
+      "title": "Probing Many-Body Bell Correlation Depth with Superconducting Qubits",
+      "summary": "Feitong Jin,1 Xuhao Zhu,1 Yu Gao,1 Ziqi Tan,1 Zhengyi Cui,1 Aosai Zhang,1 Ning Wang,1 Yiren Zou,1 Tingting Li,1 Fanhao Shen,1 Jiarun Zhong,1 Zehang Bao,1 Zitian Zhu,1 Zixuan Song,1 Jinfeng Deng,1 Hang Dong,1 Xu Zhang,1 Pengfei Zhang,1 Wenjie Jiang,2 Zhide Lu ,2,5 Zheng-Zhi Sun ,2 Hekang Li,1 Qiujiang Guo,1,6 Zhen Wang,1,6 Patrick Emonts…",
+      "content_hash_sha256": "870a5cea409efbd59e4b7a1cfb7e98bdfadeaeb5ed26bf5d4987e70a8ad07343",
+      "primary_path": "External_Research/PhysRevX.15.021024.pdf",
+      "all_locations": [
+        "External_Research/PhysRevX.15.021024.pdf",
+        "External_Research/Quantum-Many-Body/PhysRevX.15.021024.pdf",
+        "External_Research/Unified-Metriplectic/PhysRevX.15.021024.pdf"
+      ],
+      "location_count": 3,
+      "topic_tags": [
+        "Quantum-Many-Body",
+        "Unified-Metriplectic"
+      ],
+      "file_type": "pdf",
+      "document_kind": "paper",
+      "size_bytes": 2094468,
+      "duplicate_copies_bytes_total": 6283404,
+      "modified_time_utc": "2026-03-07T21:20:23Z",
+      "mime_type": "application/pdf",
+      "summary_basis": "abstract_or_opening_text",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "PhysRevX.15.021024.pdf",
+        "page_count": 21
+      },
+      "locate_hint": "Same content appears in 3 locations; primary copy listed first."
+    },
+    {
+      "id": "22ff34a5bf74",
+      "title": "Loop-Quantum-Gravity",
+      "summary": "A theory of quantum gravity. Its \"Swampland\" program (which you've seen in `swampland-revisited.pdf` and `swampland-introduction.pdf`) is a set of conjectures that define which *Effective Field Theories (EFTs)* (like your continuum model) are physically consistent with a quantum gravity foundation. * **`T8_A8_PROPOSAL` Justification:**…",
+      "content_hash_sha256": "22ff34a5bf7409652218b4952438f56fceace80597b4fbef98fd060802023a0f",
+      "primary_path": "External_Research/Quantum-Gravity/Loop-Quantum-Gravity.md",
+      "all_locations": [
+        "External_Research/Quantum-Gravity/Loop-Quantum-Gravity.md"
+      ],
+      "location_count": 1,
+      "topic_tags": [
+        "Quantum-Gravity"
+      ],
+      "file_type": "md",
+      "document_kind": "research-note",
+      "size_bytes": 5100,
+      "duplicate_copies_bytes_total": 5100,
+      "modified_time_utc": "2026-03-07T21:20:23Z",
+      "mime_type": "text/markdown",
+      "summary_basis": "markdown_body",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "Loop-Quantum-Gravity.md",
+        "word_count": 730
+      },
+      "locate_hint": "Stored under External_Research/Quantum-Gravity."
+    },
+    {
+      "id": "ed900021c5ba",
+      "title": "Quantum computation of molecular geometry via many-body nuclear spin echoes",
+      "summary": "Quantum computation of molecular geometry via many-body nuclear spin echoes C. Vollgraff Heidweiller,2 M.",
+      "content_hash_sha256": "ed900021c5ba55b240716f38359383963e9308d23098625dacf80774da6edbe5",
+      "primary_path": "External_Research/Quantum-Many-Body/quantum-computation-molecular-geometry-via-nuclear-spin-echoes (1).pdf",
+      "all_locations": [
+        "External_Research/Quantum-Many-Body/quantum-computation-molecular-geometry-via-nuclear-spin-echoes (1).pdf"
+      ],
+      "location_count": 1,
+      "topic_tags": [
+        "Quantum-Many-Body"
+      ],
+      "file_type": "pdf",
+      "document_kind": "paper",
+      "size_bytes": 3349971,
+      "duplicate_copies_bytes_total": 3349971,
+      "modified_time_utc": "2026-03-07T21:20:23Z",
+      "mime_type": "application/pdf",
+      "summary_basis": "abstract_or_opening_text",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "quantum-computation-molecular-geometry-via-nuclear-spin-echoes (1).pdf",
+        "page_count": 15
+      },
+      "locate_hint": "Stored under External_Research/Quantum-Many-Body."
+    },
+    {
+      "id": "e3b0c44298fc",
+      "title": "quantum rd",
+      "summary": "",
+      "content_hash_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "primary_path": "External_Research/Quantum/quantum_rd.md",
+      "all_locations": [
+        "External_Research/Quantum/quantum_rd.md"
+      ],
+      "location_count": 1,
+      "topic_tags": [
+        "Quantum"
+      ],
+      "file_type": "md",
+      "document_kind": "research-note",
+      "size_bytes": 0,
+      "duplicate_copies_bytes_total": 0,
+      "modified_time_utc": "2026-03-07T21:20:23Z",
+      "mime_type": "text/markdown",
+      "summary_basis": "markdown_body",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "quantum_rd.md",
+        "word_count": 0
+      },
+      "locate_hint": "Stored under External_Research/Quantum."
+    },
+    {
+      "id": "c1c2cdf05fa1",
+      "title": "Front propagation into unstable states Wim van Saarloos",
+      "summary": "This paper is an introductory review of the problem of front p ropagation into un- stable states. Our presentation is centered around the conc ept of the asymptotic linear spreading velocity v∗, the asymptotic rate with which initially localized per- turbations spread into an unstable state according to the li near dynamical equa- tions…",
+      "content_hash_sha256": "c1c2cdf05fa1db60feab2173fa889ee46e077b6b9eb8cace18e65c8348ff4a5f",
+      "primary_path": "External_Research/RD/0308540v2.pdf",
+      "all_locations": [
+        "External_Research/RD/0308540v2.pdf"
+      ],
+      "location_count": 1,
+      "topic_tags": [
+        "RD"
+      ],
+      "file_type": "pdf",
+      "document_kind": "book_or_monograph",
+      "size_bytes": 3163067,
+      "duplicate_copies_bytes_total": 3163067,
+      "modified_time_utc": "2026-03-07T21:20:24Z",
+      "mime_type": "application/pdf",
+      "summary_basis": "abstract_or_opening_text",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "0308540v2.pdf",
+        "page_count": 254
+      },
+      "locate_hint": "Stored under External_Research/RD."
+    },
+    {
+      "id": "5066f6ad9677",
+      "title": "Large-scale universality in quantum reaction-diffusion from Keldysh field theory",
+      "summary": "These systems display collective nonequilibrium long-time behavior, which is signalled by an algebraic decay of the particle density. Combining a perturbative expansion of the dissipative interaction with Euler-hydrodynamic scaling limit, we derive a description in terms of a large-scale universal kinetic equation.",
+      "content_hash_sha256": "5066f6ad967755fff494f6f222d0065d7b2062b7ab6d3371927c08766ffbb7f2",
+      "primary_path": "External_Research/RD/2307.14945v3.txt",
+      "all_locations": [
+        "External_Research/RD/2307.14945v3.txt"
+      ],
+      "location_count": 1,
+      "topic_tags": [
+        "RD"
+      ],
+      "file_type": "txt",
+      "document_kind": "text-extract",
+      "size_bytes": 77179,
+      "duplicate_copies_bytes_total": 77179,
+      "modified_time_utc": "2026-03-07T21:20:24Z",
+      "mime_type": "text/plain",
+      "summary_basis": "text_body_or_filename",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "2307.14945v3.txt",
+        "line_count": 1645,
+        "word_count": 13132
+      },
+      "locate_hint": "Stored under External_Research/RD."
+    },
+    {
+      "id": "821e49ca311c",
+      "title": "Field theories and quantum methods for stochastic reaction-diffusion systems",
+      "summary": "In most real-world applications, these systems involve a varying number of particles/agents that change due to interactions with the environment or their internal dynamics. We demonstrate how various field theory representations, which have evolved historically, can all be unified under a single basis-independent representation.",
+      "content_hash_sha256": "821e49ca311c3a06d7bf9d0e1f4270669ef4b9f524586342af6659ccc10e2703",
+      "primary_path": "External_Research/RD/2409.13377v2.txt",
+      "all_locations": [
+        "External_Research/RD/2409.13377v2.txt"
+      ],
+      "location_count": 1,
+      "topic_tags": [
+        "RD"
+      ],
+      "file_type": "txt",
+      "document_kind": "text-extract",
+      "size_bytes": 234216,
+      "duplicate_copies_bytes_total": 234216,
+      "modified_time_utc": "2026-03-07T21:20:24Z",
+      "mime_type": "text/plain",
+      "summary_basis": "text_body_or_filename",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "2409.13377v2.txt",
+        "line_count": 4964,
+        "word_count": 37456
+      },
+      "locate_hint": "Stored under External_Research/RD."
+    },
+    {
+      "id": "ed23a847f5c4",
+      "title": "Maximum entropy inference of reaction-diffusion models",
+      "summary": "Typically, these models are phenomenological, requiring the fitting of parameters to experimental data. In the present work, we introduce a novel formalism to construct reaction-diffusion models that is grounded in the principle of maximum entropy.",
+      "content_hash_sha256": "ed23a847f5c46d00dfa4346edc5ee868d34e796641e547b2957f72e8237467c4",
+      "primary_path": "External_Research/RD/2411.09880v1.txt",
+      "all_locations": [
+        "External_Research/RD/2411.09880v1.txt"
+      ],
+      "location_count": 1,
+      "topic_tags": [
+        "RD"
+      ],
+      "file_type": "txt",
+      "document_kind": "text-extract",
+      "size_bytes": 52412,
+      "duplicate_copies_bytes_total": 52412,
+      "modified_time_utc": "2026-03-07T21:20:24Z",
+      "mime_type": "text/plain",
+      "summary_basis": "text_body_or_filename",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "2411.09880v1.txt",
+        "line_count": 1502,
+        "word_count": 9658
+      },
+      "locate_hint": "Stored under External_Research/RD."
+    },
+    {
+      "id": "53573e88dbac",
+      "title": "Numerical solution of the time fractional nonlinear Fisher-KPP diffusion-reaction equation using the local domain boundary element method",
+      "summary": "Gortsas Department of Mechanical Engineering and Aeronautics, University of Patras, Patras, Greece ABSTRACT The Fisher-KPP partial differential equation has been employed in science to model various biological, chemical, and thermal phenomena. In the present work an extension of the recently proposed Local Domain Boundary Element Method…",
+      "content_hash_sha256": "53573e88dbac662e1d3e3e63760382684d36d4465c2b2cc0fd7a027c17308040",
+      "primary_path": "External_Research/RD/2508.16241v1.txt",
+      "all_locations": [
+        "External_Research/RD/2508.16241v1.txt"
+      ],
+      "location_count": 1,
+      "topic_tags": [
+        "RD"
+      ],
+      "file_type": "txt",
+      "document_kind": "text-extract",
+      "size_bytes": 55917,
+      "duplicate_copies_bytes_total": 55917,
+      "modified_time_utc": "2026-03-07T21:20:24Z",
+      "mime_type": "text/plain",
+      "summary_basis": "text_body_or_filename",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "2508.16241v1.txt",
+        "line_count": 1532,
+        "word_count": 10391
+      },
+      "locate_hint": "Stored under External_Research/RD."
+    },
+    {
+      "id": "a188e2674443",
+      "title": "wave-front",
+      "summary": "Image asset stored under RD; likely a figure, illustration, or screenshot associated with nearby research files.",
+      "content_hash_sha256": "a188e2674443009202cfb604fdc530d7fcac9762dc0b728b13417163a2b80063",
+      "primary_path": "External_Research/RD/wave-front.jpg",
+      "all_locations": [
+        "External_Research/RD/wave-front.jpg"
+      ],
+      "location_count": 1,
+      "topic_tags": [
+        "RD"
+      ],
+      "file_type": "jpg",
+      "document_kind": "image-asset",
+      "size_bytes": 474963,
+      "duplicate_copies_bytes_total": 474963,
+      "modified_time_utc": "2026-03-07T21:20:24Z",
+      "mime_type": "image/jpeg",
+      "summary_basis": "filename_and_folder",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "wave-front.jpg"
+      },
+      "locate_hint": "Stored under External_Research/RD."
+    },
+    {
+      "id": "997e8c12c09b",
+      "title": "References",
+      "summary": "Ax-Prover: a deep reasoning agentic framework for theorem proving in mathematics and quantum physics. <https://arxiv.org/html/2510.12787v1>",
+      "content_hash_sha256": "997e8c12c09bd4e2b23e4612c47b89482de0168d3589089f772f14b7860d7f0f",
+      "primary_path": "External_Research/References.md",
+      "all_locations": [
+        "External_Research/References.md"
+      ],
+      "location_count": 1,
+      "topic_tags": [],
+      "file_type": "md",
+      "document_kind": "research-note",
+      "size_bytes": 105829,
+      "duplicate_copies_bytes_total": 105829,
+      "modified_time_utc": "2026-03-07T21:20:24Z",
+      "mime_type": "text/markdown",
+      "summary_basis": "markdown_body",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "References.md",
+        "word_count": 13441
+      },
+      "locate_hint": "Stored under External_Research."
+    },
+    {
+      "id": "23acaba2d586",
+      "title": "2506.09985v1",
+      "summary": "2506.09985v1 in PDF form; summary extraction was limited.",
+      "content_hash_sha256": "23acaba2d586213cea706a49f3d49b5128693891a8feed396c01f2e64fbfac28",
+      "primary_path": "External_Research/Self-Supervision/2506.09985v1.pdf",
+      "all_locations": [
+        "External_Research/Self-Supervision/2506.09985v1.pdf"
+      ],
+      "location_count": 1,
+      "topic_tags": [
+        "Self-Supervision"
+      ],
+      "file_type": "pdf",
+      "document_kind": "paper",
+      "size_bytes": 5505024,
+      "duplicate_copies_bytes_total": 5505024,
+      "modified_time_utc": "2026-03-07T21:20:24Z",
+      "mime_type": "application/pdf",
+      "summary_basis": "abstract_or_opening_text",
+      "extraction_status": "limited",
+      "metadata": {
+        "representative_filename": "2506.09985v1.pdf"
+      },
+      "locate_hint": "Stored under External_Research/Self-Supervision."
+    },
+    {
+      "id": "b476093f7761",
+      "title": "The Navier–Stokes equations For the next example, we will solve the incompressible Navier–Stokes equations. This problem combines many of the challenges from our previously studied",
+      "summary": "For the next example, we will solve the incompressible Navier–Stokes equations. The difference is in the two additional terms and the different expression for the stress tensor.",
+      "content_hash_sha256": "b476093f77614f7ecfbf82fcc5b42fb72f3e451c783911c698ab49b3fae951f4",
+      "primary_path": "External_Research/Solving PDEs in Python - _br_ The FEniCS Tutorial Volume I.pdf",
+      "all_locations": [
+        "External_Research/Solving PDEs in Python - _br_ The FEniCS Tutorial Volume I.pdf"
+      ],
+      "location_count": 1,
+      "topic_tags": [],
+      "file_type": "pdf",
+      "document_kind": "paper",
+      "size_bytes": 427518,
+      "duplicate_copies_bytes_total": 427518,
+      "modified_time_utc": "2026-03-07T21:20:24Z",
+      "mime_type": "application/pdf",
+      "summary_basis": "abstract_or_opening_text",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "Solving PDEs in Python - _br_ The FEniCS Tutorial Volume I.pdf",
+        "page_count": 19
+      },
+      "locate_hint": "Stored under External_Research."
+    },
+    {
+      "id": "8e905d4988f7",
+      "title": "The Navier–Stokes equations For the next example, we will solve the incompressible Navier–Stokes equations.",
+      "summary": "This problem combines many of the challenges from our previously studied problems: time-dependence, nonlinearity, and vector-valued variables. The difference is in the two additional terms ϱ(∂u/∂t + u ⋅ ∇u) and the different expression for the stress tensor.",
+      "content_hash_sha256": "8e905d4988f7f15da98f1d1c4eff58fe193bde067a7b72150ed9230edc644292",
+      "primary_path": "External_Research/Solving PDEs in Python - _br_ The FEniCS Tutorial Volume I.txt",
+      "all_locations": [
+        "External_Research/Solving PDEs in Python - _br_ The FEniCS Tutorial Volume I.txt"
+      ],
+      "location_count": 1,
+      "topic_tags": [],
+      "file_type": "txt",
+      "document_kind": "text-extract",
+      "size_bytes": 35507,
+      "duplicate_copies_bytes_total": 35507,
+      "modified_time_utc": "2026-03-07T21:20:24Z",
+      "mime_type": "text/plain",
+      "summary_basis": "text_body_or_filename",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "Solving PDEs in Python - _br_ The FEniCS Tutorial Volume I.txt",
+        "line_count": 826,
+        "word_count": 5917
+      },
+      "locate_hint": "Stored under External_Research."
+    },
+    {
+      "id": "1d359ea33de6",
+      "title": "Beyond the Cosmological Standard Model",
+      "summary": "A 400-page comprehensive review of modified gravity and dark energy theories. This paper provides the standard, relativistic weak-field equations to do this. * **`EBN-Lattice-Scale`:** This \"Not Started\" milestone requires you to \"Calibrate lattice 'a' via astrophysical anchors\".",
+      "content_hash_sha256": "1d359ea33de63e4f83667bd7962e713643adc27a4b74146012de3b28cc5b4b97",
+      "primary_path": "External_Research/Standard-Model/Cosmology.md",
+      "all_locations": [
+        "External_Research/Standard-Model/Cosmology.md"
+      ],
+      "location_count": 1,
+      "topic_tags": [
+        "Standard-Model"
+      ],
+      "file_type": "md",
+      "document_kind": "research-note",
+      "size_bytes": 3859,
+      "duplicate_copies_bytes_total": 3859,
+      "modified_time_utc": "2026-03-07T21:20:24Z",
+      "mime_type": "text/markdown",
+      "summary_basis": "markdown_body",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "Cosmology.md",
+        "word_count": 552
+      },
+      "locate_hint": "Stored under External_Research/Standard-Model."
+    },
+    {
+      "id": "537c19268752",
+      "title": "Max-Planck-Institut f¨ ur Physik (Werner-Heisenberg-Institut),",
+      "summary": "The Swampland program aims to distinguish eﬀective theories which can be completed into quantum gravity in the ultraviolet from those which cannot.",
+      "content_hash_sha256": "537c19268752f24ceb13db5e2f9169fe757db435e51447d3700a81f289702617",
+      "primary_path": "External_Research/String-Theory/swampland-introduction.pdf",
+      "all_locations": [
+        "External_Research/String-Theory/swampland-introduction.pdf"
+      ],
+      "location_count": 1,
+      "topic_tags": [
+        "String-Theory"
+      ],
+      "file_type": "pdf",
+      "document_kind": "book_or_monograph",
+      "size_bytes": 4897208,
+      "duplicate_copies_bytes_total": 4897208,
+      "modified_time_utc": "2026-03-07T21:20:24Z",
+      "mime_type": "application/pdf",
+      "summary_basis": "abstract_or_opening_text",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "swampland-introduction.pdf",
+        "page_count": 201
+      },
+      "locate_hint": "Stored under External_Research/String-Theory."
+    },
+    {
+      "id": "fe36ce896dde",
+      "title": "SWAMPLAND REVISITED Michel Cass´ e",
+      "summary": "the fundamental forces, particle spectra and masses, toget her with cou- pling constants, is uniquely determined by mathematical an d logical con- sistency, non-empirically, that is by pure reason. However pluralism tri- umphed with the explosive emergence of the multiverse.",
+      "content_hash_sha256": "fe36ce896dde2dea08f2e0bf26040167eecec0c358a95827c1393e4610dc2e4b",
+      "primary_path": "External_Research/String-Theory/swampland-revisited.pdf",
+      "all_locations": [
+        "External_Research/String-Theory/swampland-revisited.pdf"
+      ],
+      "location_count": 1,
+      "topic_tags": [
+        "String-Theory"
+      ],
+      "file_type": "pdf",
+      "document_kind": "paper",
+      "size_bytes": 143405,
+      "duplicate_copies_bytes_total": 143405,
+      "modified_time_utc": "2026-03-07T21:20:24Z",
+      "mime_type": "application/pdf",
+      "summary_basis": "abstract_or_opening_text",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "swampland-revisited.pdf",
+        "page_count": 13
+      },
+      "locate_hint": "Stored under External_Research/String-Theory."
+    },
+    {
+      "id": "5e127c7ce6a3",
+      "title": "Condensation in a Chromomagnetic",
+      "summary": "The chromomagnetic vacuum of SU(2) gluodynamics is considered in the background of a finite radius flux tube (center vortex) with a homogeneous field inside and a zero field outside. In this background, there are tachyonic modes.",
+      "content_hash_sha256": "5e127c7ce6a3a8b2cfaba7ab08dd3e052439466df3b06bd5c8e89404897eaa69",
+      "primary_path": "External_Research/Tachyon-Condensation/Tachyon-Condensation_Michael-Bordag.pdf",
+      "all_locations": [
+        "External_Research/Tachyon-Condensation/Tachyon-Condensation_Michael-Bordag.pdf",
+        "External_Research/Tachyon-Condensation_Michael-Bordag.pdf"
+      ],
+      "location_count": 2,
+      "topic_tags": [
+        "Tachyon-Condensation"
+      ],
+      "file_type": "pdf",
+      "document_kind": "paper",
+      "size_bytes": 528104,
+      "duplicate_copies_bytes_total": 1056208,
+      "modified_time_utc": "2026-03-07T21:20:25Z",
+      "mime_type": "application/pdf",
+      "summary_basis": "abstract_or_opening_text",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "Tachyon-Condensation_Michael-Bordag.pdf",
+        "page_count": 15
+      },
+      "locate_hint": "Same content appears in 2 locations; primary copy listed first."
+    },
+    {
+      "id": "eab779ce8cd5",
+      "title": "Tachyon Condensation",
+      "summary": "A review of the tachyon condensation mechanism, primarily in the context of **String Field Theory**. This paper provides the **mainstream null hypothesis** that your T8-A8 gates are set up to falsify.",
+      "content_hash_sha256": "eab779ce8cd533d39d921bc5e770c63e87f456617cccbe9035f9f39ecb8dd88f",
+      "primary_path": "External_Research/Tachyonic-Condensation/complete-formalism.md",
+      "all_locations": [
+        "External_Research/Tachyonic-Condensation/complete-formalism.md"
+      ],
+      "location_count": 1,
+      "topic_tags": [
+        "Tachyonic-Condensation"
+      ],
+      "file_type": "md",
+      "document_kind": "research-note",
+      "size_bytes": 11358,
+      "duplicate_copies_bytes_total": 11358,
+      "modified_time_utc": "2026-03-07T21:20:25Z",
+      "mime_type": "text/markdown",
+      "summary_basis": "markdown_body",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "complete-formalism.md",
+        "word_count": 1641
+      },
+      "locate_hint": "Stored under External_Research/Tachyonic-Condensation."
+    },
+    {
+      "id": "c5a46755850e",
+      "title": "Quantum geometry of a flat band (from Supplementary Info of a *Nature Physics* paper)",
+      "summary": "This is the supplementary information and raw figure data for a paper on chiral excitonic insulators. Its useful part is \"Supplementary Note 4: Quantum geometry of the flat band,\" which provides the complete mathematical definition for the **Quantum Geometric Tensor (QGT)**.",
+      "content_hash_sha256": "c5a46755850e7c3b5131ac1540a418a4dbc505bc840b770c108728cdef343974",
+      "primary_path": "External_Research/USML/quantum-geometry.md",
+      "all_locations": [
+        "External_Research/USML/quantum-geometry.md"
+      ],
+      "location_count": 1,
+      "topic_tags": [
+        "USML"
+      ],
+      "file_type": "md",
+      "document_kind": "research-note",
+      "size_bytes": 4166,
+      "duplicate_copies_bytes_total": 4166,
+      "modified_time_utc": "2026-03-07T21:20:26Z",
+      "mime_type": "text/markdown",
+      "summary_basis": "markdown_body",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "quantum-geometry.md",
+        "word_count": 574
+      },
+      "locate_hint": "Stored under External_Research/USML."
+    },
+    {
+      "id": "930e79cdc5be",
+      "title": "Hamiltonian simulation for nonlinear partial differential equation by Schrödingerization",
+      "summary": "A mathematical technique called \"Schrödingerization\" that transforms any general nonlinear PDE, *even a dissipative one* (like your M-limb), into a *purely Hamiltonian* (reversible) system. This provides a concrete, first-principles quantum formalism for your most important \"Not Started\" theoretical milestones:",
+      "content_hash_sha256": "930e79cdc5be8dadffc46d13b6c587f5aed34fb4ca33375ef72bea4c095268ac",
+      "primary_path": "External_Research/USML/schrodingerization.md",
+      "all_locations": [
+        "External_Research/USML/schrodingerization.md"
+      ],
+      "location_count": 1,
+      "topic_tags": [
+        "USML"
+      ],
+      "file_type": "md",
+      "document_kind": "research-note",
+      "size_bytes": 7234,
+      "duplicate_copies_bytes_total": 7234,
+      "modified_time_utc": "2026-03-07T21:20:26Z",
+      "mime_type": "text/markdown",
+      "summary_basis": "markdown_body",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "schrodingerization.md",
+        "word_count": 968
+      },
+      "locate_hint": "Stored under External_Research/USML."
+    },
+    {
+      "id": "6fff45405dd6",
+      "title": "Emergent Quantum Metriplectic Dynamics from Reversible Quantum Mechanics",
+      "summary": "This paper provides a rigorous mathematical derivation showing how a classical **metriplectic equation (your UMSL)** *emerges* from a fully reversible, underlying quantum system coupled to an environment. It provides the exact, first-principles methodology to: 1. **Solve `EBN-Info-Functional`:** Instead of *guessing* information proxies…",
+      "content_hash_sha256": "6fff45405dd63601602ec58544e14a089006c39b36765255e9d541b9788f3cb9",
+      "primary_path": "External_Research/Unified-Metriplectic/complete-formalism.md",
+      "all_locations": [
+        "External_Research/Unified-Metriplectic/complete-formalism.md"
+      ],
+      "location_count": 1,
+      "topic_tags": [
+        "Unified-Metriplectic"
+      ],
+      "file_type": "md",
+      "document_kind": "research-note",
+      "size_bytes": 4365,
+      "duplicate_copies_bytes_total": 4365,
+      "modified_time_utc": "2026-03-07T21:20:25Z",
+      "mime_type": "text/markdown",
+      "summary_basis": "markdown_body",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "complete-formalism.md",
+        "word_count": 546
+      },
+      "locate_hint": "Stored under External_Research/Unified-Metriplectic."
+    },
+    {
+      "id": "2b1ccc9fe7af",
+      "title": "*",
+      "summary": "Hamiltonian simulation for nonlinear partial differential equation by Schrödingerization** Hamiltonian simulation is a fundamental algorithm in quantum computing that has attracted considerable interest owing to its potential to efficiently solve the governing equations of large-scale classical systems. Exponential speedup through…",
+      "content_hash_sha256": "2b1ccc9fe7afabfac1b637fe62d75566941675808045bfc09c961c7b597afd62",
+      "primary_path": "External_Research/hamiltonian-simulation.txt",
+      "all_locations": [
+        "External_Research/hamiltonian-simulation.txt"
+      ],
+      "location_count": 1,
+      "topic_tags": [],
+      "file_type": "txt",
+      "document_kind": "text-extract",
+      "size_bytes": 27386,
+      "duplicate_copies_bytes_total": 27386,
+      "modified_time_utc": "2026-03-07T21:20:21Z",
+      "mime_type": "text/plain",
+      "summary_basis": "text_body_or_filename",
+      "extraction_status": "ok",
+      "metadata": {
+        "representative_filename": "hamiltonian-simulation.txt",
+        "line_count": 45,
+        "word_count": 4014
+      },
+      "locate_hint": "Stored under External_Research."
+    }
+  ]
+}
