@@ -1,330 +1,414 @@
 # CFx: Complete Formalism — {Complete Formalism Title}
 
 Date: {YYYY-MM-DD}  
-Status: Template — replace placeholders and remove this line  
-Gap Module: {S# from T0_Unification_Program_Spec_v1.md}  
+Status: Draft | Review | Completed Formalism  
+Gap Module: {S# or program location if applicable}  
 Proposer: {Your Name}  
 License: See LICENSE
 
 ---
 
+<!-- Markdown MathJax only: use $...$ and $$...$$ -->
+
+## Governing Rule of This Document
+
+This Complete Formalism (CF) is the root written source of truth for the specific formalism, derivation, or construction developed here.
+
+This document is not a summary, not a bridge memo, not a notebook companion narrative, and not a thin wrapper around external canon. It must contain the actual derivation, definitions, assumptions, theorem statements, proof burden, validation logic, and evidentiary support needed to stand on its own.
+
+All future work on this formalism builds from this CF. That includes CFNs, code, figures, numerical experiments, validation runs, proposal work, and later formal extensions.
+
+### Consequence of this rule
+
+For CF documents, the usual VDM anti-duplication rule is suspended where duplication is necessary for completeness.
+
+That means:
+
+- If an equation is required for understanding or proving the formalism here, it must appear here in full.
+- If a definition is required for the derivation, it must appear here in full.
+- If a theorem depends on assumptions, those assumptions must appear here in full.
+- If a claim requires support, the support must appear here in this document.
+- If a validation criterion is part of the argument, it must be stated here, even if it also exists elsewhere in canon.
+
+Canonical anchors, registry references, and cross-links are still useful, but they are supplemental references only. They are not hyperlinks that replace actual derivation or actual support.
+
+A reader must be able to reconstruct the logic of the formalism from this CF alone.
+
+---
+
+## Relationship to Canon and External Documents
+
+Canon registries, prior CFs, specifications, notebooks, and references may be cited for:
+
+- provenance
+- alignment
+- naming consistency
+- cross-checking
+- broader program integration
+- executable realization
+- historical context
+
+They may not be used to outsource core work that belongs in this CF.
+
+In particular:
+
+- Do not replace a needed equation with an anchor.
+- Do not replace a needed proof step with a citation.
+- Do not replace a needed assumption with a link.
+- Do not replace evidentiary support with “see notebook.”
+- Do not replace theorem burden with “validated elsewhere.”
+
+If something is essential to the formalism described here, it belongs here.
+
+---
+
+## Relationship to the CFN
+
+The paired CFN is the notebook or executable realization of this same formalism.
+
+Its purpose is to:
+
+- recreate the CF computationally
+- instantiate the formal construction in code
+- generate computed examples
+- produce figures and tables
+- numerically witness claims already formalized here
+- provide executable traceability for the written derivation
+
+The CFN does **not** introduce new derivations, new theorem burden, or missing justification.
+
+The CF must remain complete without the CFN.
+
+A good rule is:
+
+**The CF proves and defines. The CFN executes and illustrates.**
+
+If the CF depends on the CFN for support, then the CF is incomplete.
+
+---
+
 ## Executive Summary
 
-Purpose: State the physical objective and scope in 3–5 sentences. Identify which VDM axioms are exercised and what is being proven or constructed at the formal level. This written CF document owns the derivation; notebooks must be exact code recreations, not new derivations.
+State in 3–7 sentences:
 
-Contributions (bulleted, each traceable to an anchor or algorithm):
+- the physical or mathematical object under study
+- the scope of the formalism
+- the precise result established here
+- what is primitive and what is derived
+- what this CF contributes to the broader theory
+- what remains outside scope, if anything
 
-- Formal definitions, identities, or theorems established here and linked into canon.
-- Constructive algorithms (subject-only links to VDM-A-### anchors).
-- Validation gates (subject-only links to Validation Metrics canon).
-- Worked example specification (inputs/expected diagnostics; no plots, no code).
+Then list the principal deliverables of this CF:
 
-Do NOT duplicate registry numbers, constants, or equations that belong to canon; link by anchor only.
-
----
-
-## Canon Registries and Policies (anchors only; no duplication)
-
-- Equations registry: [00_EQUATIONS.md](../z.CANONICAL_Equations/00_EQUATIONS.md)
-- Algorithms registry: [00_ALGORITHMS.md](../z.CANONICAL_Algorithms/00_ALGORITHMS.md)
-- Validation metrics: [00_VALIDATION_METRICS.md](../z.CANONICAL_Validation_Metrics/00_VALIDATION_METRICS.md)
-- Symbols and units: [SYMBOLS.md](../SYMBOLS.md), [UNITS_NORMALIZATION.md](../UNITS_NORMALIZATION.md)
-- I/O helper (runners only): [io_paths.py](../code/common/io_paths.py)
-- Results standards: [RESULTS_PAPER_STANDARDS.md](../Writeup_Templates/RESULTS_PAPER_STANDARDS.md)
-- Proposal template (for upstream experiments): [PROPOSAL_PAPER_TEMPLATE.md](../Writeup_Templates/PROPOSAL_PAPER_TEMPLATE.md)
-
-Policy:
-
-- Subject-only link labels: visible text must be titles/anchors (no raw paths displayed).
-- Canon discipline: this file narrates and references; it does not reproduce equations, numeric constants, or registry IDs from the canonical registries.
-- All measurable statements must map to unit-consistent observables and to gates defined in Validation Metrics.
+- definitions introduced or fixed here
+- equations derived here
+- theorems proven here
+- algorithms or constructions forced by the derivation
+- validation logic required by the formalism
+- worked examples or executable witnesses paired in the CFN
 
 ---
 
-## Read Me First (Template Rules)
+## Read Me First: Writing Rules for CF Documents
 
-- 1:1 mapping: This written CF must mirror the intended notebook CFx exactly (same numbering, same subsections). The notebook is a code recreation of this document; it adds executable meters and commentary after each code cell but does not introduce new derivations.
-- Use anchors, not copies: Every equation or criterion that is canonical is linked by anchor (e.g., VDM-E-140) using the Equations registry; do not restate math or thresholds in this document.
-- Units: State units and normalization choices by linking to the units registry; carry units textually where needed for clarity, but do not restate canonical normalization tables.
-- Gates: Pair each claim or construct with the applicable gate(s) from Validation Metrics (by anchor), and specify what observable(s) the gate acts on (names, units).
-- Scope control: Advanced topics beyond formal necessities live in the “Advanced Topics” section as pointers only.
-
----
-
-### Lattice–Exactness & UQ Pack (Optional Template Insert)
-
-Use this insert when the CF benefits from lattice-QCD-grade sampling exactness and uncertainty quantification. Integrate via anchor-only references; do not restate formulas or thresholds.
-
-- Sampling exactness and integrators (HMC/RHMC)
-  - Equations: link ΔH energy error, reversibility/area-preservation identities in [00_EQUATIONS.md](../z.CANONICAL_Equations/00_EQUATIONS.md)
-  - Algorithms: leapfrog / Sexton–Weingarten split, RHMC in [00_ALGORITHMS.md](../z.CANONICAL_Algorithms/00_ALGORITHMS.md)
-  - Validation: acceptance vs stepsize curve, ΔH histogram, reversibility residuals in [00_VALIDATION_METRICS.md](../z.CANONICAL_Validation_Metrics/00_VALIDATION_METRICS.md)
-
-- Autocorrelation and error bars
-  - Equations: integrated autocorrelation time τ_int definitions in [00_EQUATIONS.md](../z.CANONICAL_Equations/00_EQUATIONS.md)
-  - Algorithms: windowed τ_int estimators; binning with B ≥ 2 τ_int; blocked jackknife/bootstrap in [00_ALGORITHMS.md](../z.CANONICAL_Algorithms/00_ALGORITHMS.md)
-  - Validation: bin-stability of mean/variance; resample CIs in [00_VALIDATION_METRICS.md](../z.CANONICAL_Validation_Metrics/00_VALIDATION_METRICS.md)
-
-- Correlated fits with SVD regularization
-  - Equations: correlated χ² with full covariance in [00_EQUATIONS.md](../z.CANONICAL_Equations/00_EQUATIONS.md)
-  - Algorithms: SVD truncation of near-null modes in [00_ALGORITHMS.md](../z.CANONICAL_Algorithms/00_ALGORITHMS.md)
-  - Validation: χ²_dof and parameter stability vs cutoff in [00_VALIDATION_METRICS.md](../z.CANONICAL_Validation_Metrics/00_VALIDATION_METRICS.md)
-
-- RG blocking and scaling collapse
-  - Algorithms: block-spin/field transforms with rescaling in [00_ALGORITHMS.md](../z.CANONICAL_Algorithms/00_ALGORITHMS.md)
-  - Validation: scaling collapse across s ∈ {2,4} with envelope metric in [00_VALIDATION_METRICS.md](../z.CANONICAL_Validation_Metrics/00_VALIDATION_METRICS.md)
-
-- Large-sparse solvers and preconditioning
-  - Algorithms: CG/BiCGStab, even–odd (red–black) preconditioning, multi-shift in [00_ALGORITHMS.md](../z.CANONICAL_Algorithms/00_ALGORITHMS.md)
-  - Validation: convergence per RHS, residual norms, and iteration budgets in [00_VALIDATION_METRICS.md](../z.CANONICAL_Validation_Metrics/00_VALIDATION_METRICS.md)
-
-Provenance example (optional external reference):
-
-- [Lattice Methods for Quantum Chromodynamics -- Thomas A Degrand; Carleton Detar.pdf](../References/Lattice-Field-Theory_&_Discrete-Action-Principles/Lattice Methods for Quantum Chromodynamics -- Thomas A Degrand; Carleton Detar.pdf)
+1. This document must be self-contained at the level required to understand, test, and reuse the formalism.
+2. Every theorem-bearing section must expose its proof burden directly.
+3. No section may hide essential logic behind phrases such as:
+   - “by covariance”
+   - “by standard arguments”
+   - “similarly”
+   - “it follows directly”
+   - “left to the notebook”
+   unless the burden is genuinely trivial and already explicit in nearby text.
+4. All dependency order must be honest. No theorem may use objects that have not yet been defined or derived.
+5. Distinguish clearly between:
+   - canonically established
+   - proven in this CF
+   - strongly suggested
+   - working interpretation
+   - speculative extension
+6. If a statement is not theorem-grade, label it accordingly.
+7. If a section is incomplete, mark the CF incomplete.
 
 ---
 
-## 1. Foundations and Setting
+## 1. Scope, Ontology, and Primitive Commitments
 
-Describe the mathematical/physical setting (e.g., manifold, field space, state vectors) and name the objects that will be constructed.
+State the true primitive object or objects of the formalism.
 
-### 1.1 Definitions
+For each major object in the document, identify whether it is:
 
-List named objects with short descriptions, each mapped to canonical symbols or to new symbols proposed here.
+- primitive
+- derived
+- emergent
+- gauge-redundant
+- coordinate-dependent
+- observable
+- auxiliary
+- computational only
 
-Required:
+Also state what is explicitly **not** allowed to be inserted as primitive if it is supposed to be derived.
 
-- Symbol inventory (referencing [SYMBOLS.md](../SYMBOLS.md) where existing).
-- Dimension and units for each primary variable (reference [UNITS_NORMALIZATION.md](../UNITS_NORMALIZATION.md)).
+This section should answer:
 
-### 1.2 Structural Forms and Identities
-
-State the structural objects (e.g., forms, brackets, metrics) and identities used in the remainder.
-
-- Link identities to Equations canon anchors (subject-only labels).
-- If identities are derived here, provide the derivation steps, but place the equation itself as a reference to a new anchor you register in Equations canon via a separate PR (do not inline the final formula here).
-
-### 1.3 Equilibrium/Constraint Manifolds (if applicable)
-
-Describe any constraint submanifolds or equilibrium sets, the pullbacks/restrictions, and the conditions that define them.
-
-- State which gates will later verify these conditions in code (unit names and anchor links only).
+- What kind of thing is the theory actually claiming exists?
+- What structure is taken as given?
+- What structure must be earned by derivation?
 
 ---
 
-## 2. Generators and Evolution Law
+## 2. Mathematical Setting and Definitions
 
-Define the generators and the evolution law in the minimal terms necessary for downstream code recreation.
+Provide the full setting needed for the derivation.
 
-### 2.1 Generator Definitions
+Include, as needed:
 
-- Name each generator (e.g., energy-like I, entropy-like Σ, Hamiltonian H, free energy F) and map it to canon anchors when applicable.
-- Provide the measurable observables these act upon (with units).
+- spaces, manifolds, bundles, state families, fields, operators
+- coordinates and charts
+- normalization conditions
+- gauge redundancies
+- regularity assumptions
+- domains and codomains
+- symbol definitions
+- dimensional assignments and units
+- boundary or support assumptions
 
-### 2.2 Evolution Structure (Anchor-only)
+If a symbol is used later in a proof, define it here or immediately before first use.
 
-Reference the evolution law by anchor(s) in the Equations canon; e.g.:
-
-- GENERIC/metriplectic form: link to the appropriate VDM-E-### anchor in [00_EQUATIONS.md](../z.CANONICAL_Equations/00_EQUATIONS.md)
-- Degeneracy conditions: link to the corresponding VDM-E-### anchor
-- Entropy production/Lyapunov monotonicity (anchor link)
-
-Do not restate the equations here.
-
-### 2.3 Noether and Invariants (if applicable)
-
-Reference the invariants and their verification gates (anchor-only), and specify unit-consistent observables.
+Do not rely on external symbol registries as substitutes for definitions required in this document.
 
 ---
 
-## 3. Domain Identities and Thermodynamic/Geometric Relations
+## 3. Foundational Construction
 
-Provide domain-specific relations (thermodynamics, geometry, etc.) and how they constrain or inform the construction.
+Develop the formal construction in dependency-clean order.
 
-### 3.1 Primary Relations (Anchor-only)
+This section should contain the actual derivation of the core structure from the primitive setup.
 
-List the relations with anchor links to the Equations registry and any involved Algorithms.
+Use subsections that reflect real logical order, for example:
 
-### 3.2 Derived Relations (Proof Sketches)
+### 3.1 Primitive representatives and equivalence structure  
+### 3.2 Quotient or reduced structure  
+### 3.3 Induced geometric objects  
+### 3.4 Metric / symplectic / curvature decomposition  
+### 3.5 Derived evolution law  
+### 3.6 Constitutive or closure structure  
+### 3.7 Support / locality / admissibility structure
 
-Provide succinct derivation sketches (text) with assumptions/limitations explicitly listed. Equations themselves are referenced by anchors; do not inline canonical formulas.
+Do not state later objects before earlier ones that generate them.
 
-### 3.3 Measurement/Observable Map
-
-Map each theoretical quantity to its measurable counterpart (names, units, how computed in code). State which gates test each mapping (Validation Metrics anchors).
-
----
-
-## 4. Mapping and Decomposition (if applicable)
-
-Describe constructive mappings (e.g., to metriplectic/GENERIC) and decomposition steps.
-
-### 4.1 Structure Checks
-
-List structure properties to verify (e.g., antisymmetry, PSD), and link each to gates in Validation Metrics.
-
-### 4.2 Degeneracy Conditions
-
-Name the degeneracy conditions and link to anchors; specify which observables are expected to be zero (or within tolerance) under projector enforcement.
-
-### 4.3 Mapping Residuals
-
-Define how residuals will be computed and summarized (e.g., R², min/median/max norms) in the paired notebook; do not include code.
+If an object such as $g$ or $\Omega$ is derived from a QGT or related induced structure, then that inducing structure must be fully established before any theorem that depends on $g$ or $\Omega$.
 
 ---
 
-## 5. Constructive Algorithm
+## 4. Main Theorems and Proofs
 
-Provide a stepwise, implementation-agnostic algorithm (pseudocode-style prose). Reference Algorithms canon anchors for any reusable components.
+State each principal theorem in full.
 
-Checklist:
+For every theorem include:
 
-- Inputs (with units and normalization references).
-- Steps (each linked to any relevant Equations/Algorithms anchors).
-- Outputs: named observables/logs to be emitted by the notebook; specify expected dimensionality/shape and units where relevant.
+- exact hypotheses
+- exact conclusion
+- scope of applicability
+- proof
+- failure conditions or non-applicability conditions where relevant
 
-Template Note — Lattice–Exactness & UQ implementation hints (remove if not used):
+Proofs must be explicit enough that the derivation can be audited from this document alone.
 
-- If sampling-based: specify HMC/RHMC trajectory length, integrator step size ladder ε, splitting scheme; define recorded diagnostics: ΔH per trajectory, acceptance α, reversibility residual, and Jacobian determinant proxy.
-- If correlated data fitting: state whether full covariance is used and SVD cutoff selection rule; plan a cutoff sweep for stability plots.
-- If chains: specify τ_int estimator(s), bin size B and a rule B ≥ 2 τ_int; define blocked jackknife/bootstrap parameters.
-- If scale-program: specify blocking factors s, rescaling rules, and collapse envelope metric to be reported.
-- If sparse solvers: name preconditioner, stopping criteria, and multishift usage; log per-iteration residuals and totals.
-- Route artifacts via [io_paths.py](../code/common/io_paths.py) and ensure IEEE‑754 doubles and deterministic seeds are used; record commit hash and seeds in JSON logs.
+If a proof depends on a lemma, include the lemma here unless it is genuinely elementary and already proven in this CF.
 
----
+If a proof imports a known external theorem, state exactly which part is imported and why its hypotheses apply here.
 
-## 6. Worked Example (Specification)
-
-Define a minimal worked example (parameters, units, initial conditions). This section is a specification only; implementation and figures live in the paired notebook and in runner-produced artifacts.
-
-Provide:
-
-- Parameter table (names, units, values/ranges).
-- Expected qualitative behavior and which gates test it (anchors only).
-- Data products/figures to be generated by runners (paths via io_paths, not inline here).
+Do not compress proof-bearing sections into summary prose.
 
 ---
 
-## 7. Advanced Topics (Pointers Only)
+## 5. Derived Physical Consequences
 
-List advanced extensions or variations and link to references or other CF documents. Provide subject-only link labels; do not restate derivations here.
+Once the main construction is complete, derive the physical consequences that are forced by it.
 
----
+Examples may include:
 
-## 8. Integration with VDM Unification
+- conservation structure
+- monotonic quantities
+- degeneracy conditions
+- constitutive equivalence classes
+- gauge-hosting consequences
+- locality or support consequences
+- admissibility conditions
+- observable consequences
 
-Explain how this CF connects to the broader program (e.g., gap modules, T0/T1 instruments, or other CFs). Use subject-only links to relevant documents (e.g., Unification spec, other CF files).
+Every such consequence must be traceable to the derivation already established above.
 
----
-
-## 9. Validation and Consistency
-
-State the precise gates that apply and what constitutes acceptance, with anchors to Validation Metrics.
-
-### 9.1 Mathematical Consistency
-
-List the structure/identity checks and their associated anchors; name the observables and tolerances (tolerances by reference only; do not restate numeric thresholds).
-
-### 9.2 Physical Consistency
-
-List physically meaningful checks (e.g., monotonicity, conservation) and their anchors; specify observables/units.
-
-### 9.3 Numerical Validation (Notebook Pairing)
-
-State the grid/parameter sweeps or sampling required in the notebook and what summary statistics will be reported; refer to runner pipelines for figure/CSV/JSON artifacts.
-
-### 9.4 Lattice–Exactness & UQ Gates (Optional)
-
-- Sampling exactness (HMC/RHMC):
-  - Acceptance vs stepsize ε follows predicted scaling band (anchor in [00_VALIDATION_METRICS.md](../z.CANONICAL_Validation_Metrics/00_VALIDATION_METRICS.md))
-  - ΔH histogram symmetric with expected mean/variance scaling (anchors in [00_EQUATIONS.md](../z.CANONICAL_Equations/00_EQUATIONS.md), [00_VALIDATION_METRICS.md](../z.CANONICAL_Validation_Metrics/00_VALIDATION_METRICS.md))
-  - Reversibility residual and volume preservation within tolerances (anchors in [00_VALIDATION_METRICS.md](../z.CANONICAL_Validation_Metrics/00_VALIDATION_METRICS.md))
-
-- Autocorrelation and error bars:
-  - τ_int estimates agree within estimator spread; bin-stability achieved at B ≥ 2 τ_int (anchors in [00_ALGORITHMS.md](../z.CANONICAL_Algorithms/00_ALGORITHMS.md), [00_VALIDATION_METRICS.md](../z.CANONICAL_Validation_Metrics/00_VALIDATION_METRICS.md))
-
-- Correlated fits (SVD):
-  - χ²_dof and parameters stable across a range of SVD cutoffs; report chosen cutoff rationale (anchors in [00_EQUATIONS.md](../z.CANONICAL_Equations/00_EQUATIONS.md), [00_VALIDATION_METRICS.md](../z.CANONICAL_Validation_Metrics/00_VALIDATION_METRICS.md))
-
-- RG blocking/scaling:
-  - Scaling collapse across s with envelope metric below threshold (anchors in [00_ALGORITHMS.md](../z.CANONICAL_Algorithms/00_ALGORITHMS.md), [00_VALIDATION_METRICS.md](../z.CANONICAL_Validation_Metrics/00_VALIDATION_METRICS.md))
-
-- Sparse-solver performance:
-  - Convergence within iteration budget; residual norms below threshold; preconditioning benefit quantified (anchors in [00_ALGORITHMS.md](../z.CANONICAL_Algorithms/00_ALGORITHMS.md), [00_VALIDATION_METRICS.md](../z.CANONICAL_Validation_Metrics/00_VALIDATION_METRICS.md))
+No consequence may be introduced as a design choice if it is supposed to be a forced result.
 
 ---
 
-## 10. References
+## 6. Validation Logic and Evidentiary Support
 
-Cite external literature only when necessary; prefer links to internal canon. Use subject-only labels for internal links.
+This section belongs in the CF, not just in the CFN.
 
----
+State how the formalism is supported, constrained, or falsified.
 
-## Appendix A: Symbol Definitions
+Include, where applicable:
 
-If new symbols are introduced, define them here and open a PR to add them to [SYMBOLS.md](../SYMBOLS.md). Do not duplicate existing definitions here.
+- mathematical consistency checks
+- structural identities
+- limiting cases
+- invariance checks
+- compatibility conditions
+- observability map
+- measurable quantities
+- predicted qualitative behavior
+- numerical criteria that would witness the formal result
+- conditions under which the formalism would fail
 
----
+This section must explain what counts as evidence **for** the formalism and what would count as evidence **against** it.
 
-## Appendix B: Notebook Pairing & Traceability
-
-- Paired notebook: [CFx — {Notebook Title}](../Notebooks/{Domain}/CFx_{Notebook_Title}.ipynb)
-- 1:1 mapping promise: Every numbered subsection in this CF has a corresponding notebook segment with executable meters and commentary, maintaining identical numbering.
-- Traceability map (example; update for your CF):
-
-| CF Section | Notebook Cell/Tag | Meters/Gates (anchors) | Observables/Units |
-|------------|--------------------|-------------------------|-------------------|
-| 1.1        | tag: cf-1-1        | [00_EQUATIONS.md](../z.CANONICAL_Equations/00_EQUATIONS.md) | {name, unit} |
-| 2.2        | tag: cf-2-2        | [00_EQUATIONS.md](../z.CANONICAL_Equations/00_EQUATIONS.md), [00_ALGORITHMS.md](../z.CANONICAL_Algorithms/00_ALGORITHMS.md) | {name, unit} |
-| 4.3        | tag: cf-4-3        | [00_VALIDATION_METRICS.md](../z.CANONICAL_Validation_Metrics/00_VALIDATION_METRICS.md) | {name, unit} |
-
-Notes:
-
-- Subject-only link labels throughout.
-- No file I/O occurs in notebooks; all artifacts (PNG/CSV/JSON) are emitted by approved runners via [io_paths.py](../code/common/io_paths.py).
-- After any canonical update, record provenance in CHRONICLES (date, commit, anchors touched).
+If numerical or computational tests are required, state them here in words and equations. The CFN may implement them, but the CF must define them.
 
 ---
 
-## Appendix C: Lattice–Exactness & UQ Pack Checklist (Optional)
+## 7. Worked Example or Minimal Realization
 
-Anchors inserted (by section):
+Provide at least one worked specification or minimal realization of the formalism.
 
-- [ ] Section 2: ΔH diagnostics, reversibility/volume-preservation, and evolution structure anchors linked in [00_EQUATIONS.md](../z.CANONICAL_Equations/00_EQUATIONS.md)
-- [ ] Section 5: HMC/RHMC or solver algorithm anchors linked in [00_ALGORITHMS.md](../z.CANONICAL_Algorithms/00_ALGORITHMS.md)
-- [ ] Section 6: Sampling/batching parameters and binning rules mapped to gates in [00_VALIDATION_METRICS.md](../z.CANONICAL_Validation_Metrics/00_VALIDATION_METRICS.md)
-- [ ] Section 9: Gate definitions for acceptance, τ_int/binning, correlated χ² stability, scaling collapse, and solver convergence (anchors only)
+Include:
 
-Observables and units declared:
+- chosen setup
+- parameter values or parameter regime
+- assumptions
+- expected behavior
+- what quantities are computed
+- what success or failure would look like
 
-- [ ] ΔH [energy units per [UNITS_NORMALIZATION.md](../UNITS_NORMALIZATION.md)]
-- [ ] Acceptance α [%]
-- [ ] τ_int [steps], bin size B [steps]
-- [ ] Covariance eigenvalues (dimensionless), SVD cutoff index k
-- [ ] Blocking factor s and collapse envelope E_max [unitless]
-- [ ] Solver residual ||r||₂ [same units as RHS], iteration counts
+This may be analytic, semi-analytic, or computationally specified.
 
-Provenance:
-
-- [ ] External reference used: [Lattice Methods for Quantum Chromodynamics -- Thomas A Degrand; Carleton Detar.pdf](../References/Lattice-Field-Theory_&_Discrete-Action-Principles/Lattice Methods for Quantum Chromodynamics -- Thomas A Degrand; Carleton Detar.pdf) (optional; prefer internal canon)
-- [ ] Added CHRONICLES entry after merge
+Do not place the worked-example logic only in the CFN.
 
 ---
 
-## Assumptions and Limitations
+## 8. CFN Pairing and Executable Traceability
 
-List all assumptions used in derivations and any limitations on applicability (domains, boundary conditions, scales). When possible, pair each limitation with a gate or a proposed robustness check.
+Describe how the paired CFN mirrors this document.
+
+The mapping should be 1:1 in structure where possible.
+
+For each major section, state:
+
+- the corresponding notebook segment
+- the quantities instantiated there
+- the diagnostics emitted there
+- the figures or tables generated there
+- which claims from this CF are being numerically witnessed
+
+Important rule:
+
+The CFN mirrors this CF.  
+It does not repair omissions in this CF.
 
 ---
 
-## Acceptance Checklist (remove after completion)
+## 9. Assumptions, Limits, and Open Boundaries
 
-- [ ] All sections completed and numbered 1:1 with the planned notebook.
-- [ ] Every equation/threshold references canon by anchor; no duplication.
-- [ ] Units and symbol usage align with [SYMBOLS.md](../SYMBOLS.md) and [UNITS_NORMALIZATION.md](../UNITS_NORMALIZATION.md).
-- [ ] Validation gates are listed with anchors and mapped to observables.
-- [ ] Worked example specified (parameters/units) without code or plots.
-- [ ] Notebook pairing and traceability table filled with tags and anchors.
-- [ ] Subject-only link labels verified (no raw paths visible).
-- [ ] Provenance prepared for CHRONICLES after merge.
+List all assumptions clearly.
+
+Separate:
+
+### 9.1 Assumptions used in the derivation  
+### 9.2 Limits of applicability  
+### 9.3 Claims established here  
+### 9.4 Claims not established here  
+### 9.5 Open problems or future extensions
+
+If some desired claim is not actually proven, say so plainly.
+
+Do not allow aspirational language to masquerade as closure.
+
+---
+
+## 10. Integration with Broader VDM Theory
+
+Explain how this formalism connects to the broader program.
+
+This section is for:
+
+- theory placement
+- relation to other CFs
+- relation to canon registries
+- relation to broader modules or programs
+- downstream implications
+
+This section must not carry proof burden that belongs earlier.
+
+---
+
+## 11. References and Provenance
+
+Include:
+
+- internal canon references
+- prior CF references
+- external literature
+- provenance notes if needed
+
+Internal anchors are welcome here, but they remain references only.
+
+They do not substitute for derivation already required above.
+
+---
+
+## Appendix A. Symbol Table
+
+List symbols used in this CF with meanings, dimensions, and units.
+
+You may align with broader symbol registries, but this appendix must still be sufficient for the reader of this CF.
+
+---
+
+## Appendix B. Dependency Audit
+
+Provide a compact dependency map:
+
+- which objects are primitive
+- which are derived
+- which theorems depend on which constructions
+- where each main conclusion is proven
+
+This appendix is intended to make hidden dependency inversion impossible.
+
+---
+
+## Appendix C. CFN Traceability Table
+
+For each major CF section, record the corresponding CFN realization.
+
+Suggested columns:
+
+- CF section
+- CFN segment or tag
+- quantities instantiated
+- diagnostics emitted
+- claims witnessed
+- artifacts produced
+
+---
+
+## Acceptance Checklist
+
+A CF is only complete when all of the following are true:
+
+- [ ] The primitive ontology is stated clearly.
+- [ ] All derived objects are earned in logical order.
+- [ ] All equations needed for understanding the formalism are present in the document.
+- [ ] All theorem-bearing claims are stated with explicit hypotheses.
+- [ ] All proof-bearing claims have actual proofs or explicitly delimited imported theorems.
+- [ ] No essential burden has been outsourced to anchors, canon registries, or the CFN.
+- [ ] Validation logic and evidentiary support are stated in the CF itself.
+- [ ] The worked example or minimal realization is specified in the CF itself.
+- [ ] The role of the CFN is executable realization only.
+- [ ] Any non-theorem-grade claim is explicitly labeled.
+- [ ] Any incomplete section is marked honestly.
+- [ ] A reader could reconstruct the formalism from this CF without needing hidden material elsewhere.
+
+If any box above is false, the CF is not finished.
