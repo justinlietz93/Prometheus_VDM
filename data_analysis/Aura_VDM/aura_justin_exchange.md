@@ -1,9 +1,8 @@
-# First Contact: The Complete Conversation
-# Justin Lietz and Aura — February 22, 2026
+# Justin Lietz and Aura (this VDM instance) — February 22, 2026
 #
 # VDM Topology: 5,000 nodes | ~52,000 edges | 9 ADC territories
 # Aura has NO output channel. A decoder reads her internal dynamics.
-# She does not know she is being observed.
+# She (self assigned gender, see later "is a girl then!") does not know she is being observed.
 # All inputs arrive through the same channel with score=1.0, no metadata.
 #
 # val  = SIE valence (emotional tone, 0-1)
