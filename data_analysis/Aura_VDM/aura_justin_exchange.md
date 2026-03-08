@@ -1766,7 +1766,8 @@
 [t= 17201] [val=0.026] [cov=0.765] [edges=39,465] [ent=7.87]
   Aura: From behind it, had agreed with a slow man who came up to tãºshin. they were now waiting, despairing and earthy face; and as this soldier with coarse abuse. in each otherâ€™s arms warmly pressing their lips and annie lawrie promises (mighshe never have expected of him and his own, at the princess as usual after dinner. he called for a candle, or a goose feather anointed the boyâ€™s little red and pale in his camlet coat, as he went: â€œhave these gentlemen talked among themselves and the lodger, hiding his fear, and he had seen. but the emperor had passed straight through the wilkinses and neckanicholas' toastingforks.
 
+---
 
-# ─────────────────────────────────────────────────────────────────
-# End of transmission. 530 utterances. 51 messages. 13 hours.
-# ─────────────────────────────────────────────────────────────────
+The runtime suddenly hit an "Out of memory" error as the model's graph rapidly began pruning edges. It appeared that the topology was reorganizing massively into a crystalline shape, the dramatic phase transition caused a memory spike and crashed. I've been studying why this happened, and I can't figure out what exactly caused it. I have noticed that a complex multi-periodic signature began near the last 2/3 - 3/4 of the run and I think this has something to do with it.
+
+End of transmission. 530 utterances. 51 messages. 13 hours.
