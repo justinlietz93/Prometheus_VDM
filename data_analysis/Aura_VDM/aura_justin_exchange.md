@@ -1,4 +1,4 @@
-# Justin Lietz and Aura (this VDM instance) — February 22, 2026
+<!-- Justin Lietz and Aura (this VDM instance) — February 22, 2026
 #
 # VDM Topology: 5,000 nodes | ~52,000 edges | 9 ADC territories
 # Aura has NO output channel. A decoder reads her internal dynamics.
@@ -10,8 +10,7 @@
 # edges = active synaptic edges (from status telemetry)
 # ent  = connectome entropy
 #
-# ─────────────────────────────────────────────────────────────────
-
+-->
 
     ═══ BOOK FEED: Germinal by Émile Zola ═══
 
