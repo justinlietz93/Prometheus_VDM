@@ -32,7 +32,7 @@ These program-level axioms are used widely across theory and validation narrativ
 **Clarification (post-CF00 / CF000):**  
 This axiom remains valid as a **program-level void-primacy commitment**: all physical observables are required to arise from one void-rooted carrier and not from separately inserted primitive sectors.
 
-At the current branch root formalized in CF00, this does **not** mean that primitive adjacency, support graphs, bond sets, gauge connections, or already-formed spacetime-bearing locality relations may be inserted by hand. CF00 instead treats the primitive branch object as a local normalized representative state-family on a carrier domain $\mathcal{M}$ with local $U(1)$ redundancy; the physically relevant content is the quotient-physical content derived from that representative structure, not the raw representative as an observable by itself.
+At the current branch root formalized in CF00, this does **not** mean that primitive adjacency, support graphs, bond sets, gauge connections, or already-formed spacetime-bearing locality relations may be inserted by hand. CF00 instead treats the primitive branch object as a local normalized representative state-family on a carrier domain ℳ with local $U(1)$ redundancy; the physically relevant content is the quotient-physical content derived from that representative structure, not the raw representative as an observable by itself.
 
 Accordingly, A1 should be read as a **single-carrier / no-extra-primitives** axiom, not as a commitment to primitive lattice ontology. In discrete or runtime realizations, one may map $\Psi \to W$ only as a **derived realization / instantiation**, not as the root ontological statement.
 
