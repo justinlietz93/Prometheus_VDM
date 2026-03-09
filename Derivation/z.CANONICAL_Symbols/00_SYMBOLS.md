@@ -27,6 +27,10 @@ Last updated: 2025-11-05 (commit a48f2d2)
 | $\mathcal{W}$                                      | set of walkers                 | local samplers/processors                           | $w\in\mathcal{W}$ carries state $s_w$                                                                  |
 | $s_w$                                              | walker state tuple             | $(\mathbf{x}_w,\mathbf{v}_w,\theta_w,q_w,\kappa_w)$ | position, motion, phase, tag, channel key                                                              |
 | $\mathbf{u}(t)$                                    | external input stream          | drives the substrate / sensors                      | inject to bus $\mathcal{B}_0$                                                                          |
+| ℳ (also written $\mathcal{M}$ in formulas) | carrier domain | primitive branch arena in CF00; distinct from metriplectic $M$ | $\psi:\,\mathrm{ℳ}\to \mathbb{S}(\mathcal{H})$ |
+
+**Notation note:**  
+For visual clarity in GitHub-rendered prose, the carrier domain may be written as the Unicode symbol **ℳ**. In displayed mathematics or when TeX consistency is preferred, write the same object as $\mathcal{M}$. These denote the same carrier-domain object and are intentionally distinct from the metriplectic operator $M$.
 
 ## Discrete Lattice → Continuum (RD) Mapping
 
