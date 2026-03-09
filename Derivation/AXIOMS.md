@@ -113,7 +113,7 @@ GENERIC cross-links and gates:
 
 ### A8 (Candidate) — Lietz Infinity Resolution
 
-**Status:** CANDIDATE (awaiting [T8](Derivation/Axioms/PROPOSAL_T8_A8_Lietz_Infinity_Resolution_v1.md) PASS)  
+**Status:** CANDIDATE (awaiting [T8](/Derivation/Axioms/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md) PASS)  
 **Pointer:** [T8_A8_PROPOSAL_Lietz_Infinity_Resolution_v1.md](/Derivation/Axioms/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md)
 
 **Statement (exact):**
