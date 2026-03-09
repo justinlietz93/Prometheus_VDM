@@ -1,10 +1,10 @@
 <!-- DOC-GUARD: CANONICAL -->
 # VDM Symbols (Auto-compiled)
 
-**Last updated**: 2025-11-05
-**Last commit**: a48f2d2
+**Last updated**: 2026-03-08
+**Last commit**: 712a553
 **Scope:** Single source of truth for meanings and roles of all mathematical symbols present in this repository.
-**Rules:** Other docs must link here; do not duplicate definitions elsewhere.
+**Rules:** Other docs must link here except for CF docs; do not duplicate definitions elsewhere.
 **MathJax:** GitHub-safe `$...$` / `$$...$$` only.
 
 <!-- RULES for maintaining this file are here: /mnt/ironwolf/git/Prometheus_VDM/prompts/symbols_maintenance.md -->
@@ -12,7 +12,7 @@
 
 Note on scope: This sheet is canonical and latest-only. For historical naming and timelines, refer to Derivation/CORRECTIONS.md.
 
-Last updated: 2025-11-05 (commit a48f2d2)
+Last updated: 2026-03-08 (commit 712a553)
 
 > *Canonical symbols for the Void Dynamics Model physics theory*
 
