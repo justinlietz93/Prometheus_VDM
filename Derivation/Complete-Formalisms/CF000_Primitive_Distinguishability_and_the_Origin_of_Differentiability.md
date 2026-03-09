@@ -1,24 +1,39 @@
 # CF000: Complete Formalism — Primitive Distinguishability and the Origin of Differentiability in VDM
 
 Date: 2026-03-08  
-Status: Draft Complete Formalism  
+Status: Theorem-bearing draft pass  
 Gap Module: Root formalization beneath CF00  
 Proposer: Justin K. Lietz  
 License: See LICENSE
 
 ---
 
+## Completion Standard for CF Canon
+
+A document may carry the status **Completed Formalism** only if it is a **closed, theorem-grade formal specification within its declared scope, assumptions, and domain of validity**.
+
+This means:
+
+- all central objects are defined or explicitly imported with hypotheses verified,
+- all theorem-bearing claims have explicit hypotheses, conclusions, and auditable proofs,
+- all essential derivation, validation logic, and failure conditions are present in this document,
+- no core burden is outsourced to canon links, notebooks, figures, or code,
+- any claim that is heuristic, conjectural, programmatic, or only partially established is labeled as such,
+- if any essential proof burden is missing, the document is **not** a Completed Formalism.
+
+“Completed” does **not** mean universally maximal or beyond all future strengthening. It means the claimed result is closed **at the level stated in the document**.
+
+---
+
 ## Governing Rule of This Document
 
-This Complete Formalism is the root written source of truth for the pre-differential layer of this branch of VDM.
+This document is the root written source of truth for the pre-differential layer of this branch of VDM.
 
 This document is not a bridge memo, not a philosophical appendix, and not a patch beneath CF00. It must contain the actual derivation burden required to answer the following root question:
 
 **Why is differentiability available to law at all?**
 
-If differentiability is derived, this document must carry that derivation.  
-If differentiability is instead forced as the deepest accessible primitive, this document must prove that no weaker structure suffices for this branch.  
-If neither conclusion can be supported, this document is incomplete.
+If differentiability is derived, this document must carry that derivation. If differentiability is instead forced as the deepest accessible primitive, this document must prove that no weaker structure suffices for this branch. If neither conclusion can be supported, this document is incomplete.
 
 The paired CFN may instantiate, compute, visualize, and numerically witness claims already formalized here. It may not carry missing derivation, missing proof burden, or missing evidentiary logic.
 
@@ -40,30 +55,81 @@ Accordingly, this document does not borrow its core derivation from CF00 or any 
 
 ## Executive Summary
 
-CF000 begins beneath differentiability. It excludes absolute nullity and absolute undifferentiated sameness as viable roots for a falsifiable physical branch, then identifies the weakest surviving primitive residue as a nonempty distinction-bearing multiplicity $(\mathcal{B},\\#)$ with primitive apartness and no imported metric, valuation, parameter, derivative, or topology. It then shows that if this branch is to support law rather than one-shot distinction, a minimal additional layer of repeatable, refinement-stable comparison must be earned. Under explicit stability, composability, and representation hypotheses, this yields a valuation layer, then lawful parameterization of update composition, and finally a differentiable carrier $\mathcal{M}$ as the weakest chart-compatible realization of first-order comparison. CF000 therefore does not take differentiability as primitive; it derives the conditions under which differentiability is forced for this branch and thereby reclassifies CF00 as the first differentiable-layer formalism rather than the absolute root.
+CF000 begins beneath differentiability. It excludes absolute nullity and absolute undifferentiated sameness as viable roots for a falsifiable physical branch, then identifies the weakest surviving primitive residue as a nonempty distinction-bearing multiplicity $({\mathcal B},\\#)$ with primitive apartness and no imported metric, valuation, parameter, derivative, or topology.
 
-Principal deliverables of CF000:
+The present pass resolves the next live theorem burden: whether the explicitly added refinement/compatibility structure $R$ is sufficient to force stable realized distinction contents and a realized carrier layer. The answer is no. Refinement/compatibility is enough to make the question of realization meaningful, but it does not by itself force the existence or canonicity of realized contents. A no-go theorem is proved: there exist $R$-models in which no decisive coherent realized content exists, and there exist $R$-models in which multiple inequivalent realized-content families exist. Therefore realized contents and a realized carrier are **not** forced from $R$ alone.
 
-- exclusion of nullity and absolute undifferentiated sameness as root candidates for this branch;
+The document accordingly identifies the next candidate branch structure, denoted $S$, as a realization/decisiveness layer. $S$ is not yet claimed theorem-grade. It is introduced only as the next minimal branch-candidate structure required if the branch is to continue upward toward locality, comparison, valuation, parameterization, and differentiability.
+
+This pass therefore freezes the current root staircase as follows:
+
+- nullity and undifferentiated sameness are excluded,
+- primitive distinguishability is the weakest surviving root,
+- refinement/compatibility is the first minimal added branch structure,
+- realized contents/carrier are **not** yet forced from that layer,
+- and the branch must not climb upward until the realization question is settled honestly.
+
+Principal deliverables of this pass:
+
+- exclusion of absolute nullity and absolute undifferentiated sameness as root candidates for this branch;
 - identification of primitive distinguishability as the weakest surviving residue;
-- distinction between what is primitive, what is derived, and what is forbidden as a primitive insertion;
-- derivation of the need for a stable comparison layer before any valuation or parameterization is permitted;
-- derivation of a valuation representation layer under explicit hypotheses;
-- derivation of lawful parameterization from valuation-compatible update composition;
-- differentiability-emergence theorem under first-order chart-compatibility conditions;
-- explicit bridge from the pre-differential root to the differentiable carrier required by CF00;
-- falsification criteria for the whole move.
+- explicit separation between forced structure, minimally added branch structure, and conditional theorem structure;
+- no-go theorem showing that refinement/compatibility alone does not force stable realized distinction contents or a realized carrier;
+- identification of realization/decisiveness as the next candidate branch structure;
+- falsification criteria for the no-go theorem and for the realization candidate;
+- updated dependency audit and acceptance checklist.
 
 ---
 
-## Read Me First: Discipline for CF000
+## Read Me First: Writing Rules for CF Documents
 
-1. No differentiable carrier, coordinates, tangent spaces, metric distances, derivatives, or real parameters may appear before they are earned.
-2. No prebuilt comparison algebra, valuation regime, or observable codomain may appear before the branch proves why such things are legitimate.
-3. No theorem may depend on objects not yet defined.
-4. Every proof-bearing section must unpack its burden directly; phrases such as “it follows,” “by standard reasoning,” or “by covariance” are not acceptable substitutes for actual derivation.
-5. Every non-theorem-grade claim is labeled accordingly.
-6. If the document cannot justify the differentiable layer from the weaker root, it must say so plainly.
+1. This document must be self-contained at the level required to understand, test, and reuse the formalism.
+2. Every theorem-bearing section must expose its proof burden directly.
+3. No section may hide essential logic behind phrases such as “it follows,” “similarly,” “by standard arguments,” or “left to the notebook.”
+4. All dependency order must be honest. No theorem may use objects that have not yet been defined or derived.
+5. Distinguish clearly between:
+   - forced from prior layer,
+   - minimal added branch structure,
+   - conditional theorem under explicit assumptions.
+6. If a statement is not theorem-grade, label it accordingly.
+7. If a section is incomplete, mark the document incomplete.
+
+---
+
+## State of Closure
+
+### Settled results
+
+- Absolute nullity is not a viable root for a falsifiable law-bearing branch.
+- Absolute undifferentiated sameness is not a viable root for a falsifiable law-bearing branch.
+- The weakest surviving residue is a nonempty distinction-bearing multiplicity $({\mathcal B},\\#)$ with nontrivial apartness and no imported metric, valuation, parameterization, continuity, or differentiability.
+- A direct leap from primitive distinction to differentiability is illegitimate.
+- Refinement/compatibility is **not** forced from primitive distinction alone.
+- Refinement/compatibility has been reclassified as the first minimal added branch structure.
+- Refinement/compatibility alone does **not** force stable realized distinction contents or a realized carrier.
+
+### Provisional results
+
+- A realization/decisiveness layer $S$ is the current best candidate for the next minimal branch structure.
+- A cover/locality discipline may later be needed if the branch wants pre-metric locality.
+- Lawful transformation, distinguishers, stable comparison, valuation, and parameterization may later be needed for one route to differentiability.
+
+These are not yet earned in the present pass.
+
+### Rejected routes
+
+- Primitive import of differentiable carriers, coordinates, metric, distance, derivatives, scalar probes, quotients, matrices, continuity, or chart structure.
+- Treating refinement/compatibility as already theorem-grade from the nullity/sameness exclusions alone.
+- Treating realized contents or a realized carrier as already forced from refinement/compatibility alone.
+- Treating valuation as already forced at the present layer.
+
+### Live theorem target
+
+Determine whether a realization/decisiveness layer $S$ is enough to force stable realized distinction contents and a realized carrier, or whether still further minimal structure is required before the branch can proceed toward locality, comparison, and differentiability.
+
+### Forbidden regressions
+
+The document may not proceed upward to cover, lawful transformation, comparison algebra, valuation, parameterization, or differentiability until the realized-content / realized-carrier question is settled and written into the document.
 
 ---
 
@@ -71,7 +137,7 @@ Principal deliverables of CF000:
 
 ### 1.1 Root burden inherited from CF00
 
-CF00 begins from a differentiable carrier $\mathcal{M}$, a local representative state-family, and local redundancy. That is already too late for an absolute first-principles account. CF000 therefore asks what must be in place before any differentiable carrier, local coordinate, or lawful local derivative can even make sense.
+CF00 begins from a differentiable carrier $\mathcal M$, a local representative state-family, and local redundancy. That is already too late for an absolute first-principles account. CF000 therefore asks what must be in place before any differentiable carrier, local coordinate, or lawful local derivative can even make sense.
 
 ### 1.2 Primitive versus forbidden structure
 
@@ -100,628 +166,758 @@ A viable root for this branch must support:
 4. a route to stable comparison;
 5. and, if possible, a route to differentiability.
 
-The branch does not begin by assuming these are numerical or geometric.
+The branch does not begin by assuming that any of these are numerical or geometric.
 
 ### 1.4 Primitive notation convention
 
 To prevent later overload:
 
-- $\mathcal{B}$ denotes the primitive distinction-bearing bearer class.
+- $\mathcal B$ denotes the primitive distinction-bearing bearer class.
 - $\\#$ denotes primitive apartness.
-- $\mathcal{M}_0$ denotes the realized pre-differential carrier of sharp distinction contents.
-- $\mathcal{M}$ denotes the downstream differentiable carrier earned later in the document.
+- $\widehat{\mathcal B}$ denotes an admissibly enriched bearer class once added branch structure is introduced.
+- $\mathcal M_0$ denotes the realized pre-differential carrier of stable distinction contents, if and when such a carrier is earned later.
+- $\mathcal M$ denotes the downstream differentiable carrier earned only after parameterization and differentiability results are established.
 - $M$ is reserved for the dissipative symmetric operator or sector only after the later emergent split appears downstream of CF000.
 
 No other use of plain $M$ is allowed in this document.
 
----
+### 1.5 Epistemic status convention for this document
 
-## 2. Nullity and Undifferentiated Sameness as Failed Roots
+Every major layer in the derivation is labeled as one of:
 
-### 2.1 Absolute nullity
+- **forced from prior layer**,
+- **minimal added branch structure**,
+- **conditional theorem under explicit assumptions**.
 
-Absolute nullity means: no bearer, no distinction, no relation, no admissibility structure, no way to tell success from failure of a claim, and no lawful content on which falsification could act.
+If a layer is not forced from the prior layer, it is not allowed to be described as theorem-grade from that prior layer.
 
-**Theorem 2.1.1 (Nullity exclusion).**  
-Absolute nullity is not a viable root for this branch.
+### 1.6 Primitive commitment of the present pass
 
-**Proof.**  
-A physical branch of theory must at minimum permit a difference between success and failure of a statement, between one admissible state and another, and between a law and the absence of law. Absolute nullity supports none of these because it contains no bearer, no distinction, and no possible witness structure. Therefore nullity cannot serve as the root of a falsifiable formal branch. This is a theorem about formal-role viability, not a universal metaphysical theorem about all possible notions of nothing. $\square$
+The present pass commits only to:
 
-### 2.2 Absolute undifferentiated sameness
+1. the primitive distinction-bearing residue $({\mathcal B},\\#)$,
+2. the first added sharpenability discipline $L1$,
+3. the explicitly added refinement/compatibility structure $R$.
 
-Absolute undifferentiated sameness means: there is bearer-like content, but no nontrivial distinction between any two admissible presentations of it.
-
-**Theorem 2.2.1 (Undifferentiated sameness exclusion).**  
-Absolute undifferentiated sameness is not a viable root for this branch.
-
-**Proof.**  
-If all admissible presentations are undifferentiated, then no nontrivial comparison can be made. Comparison, persistence, lawful separation, and falsification all collapse, because there is no content by which one state could fail to match another. Thus absolute undifferentiated sameness is as unusable for this branch as nullity, although for a different reason: it has bearer-like content but no nontrivial distinction. $\square$
-
-### 2.3 Consequence
-
-Nullity fails because there is no structure. Undifferentiated sameness fails because there is no nontrivial distinction. Therefore the first surviving layer must be a nontrivial distinction-bearing multiplicity.
+The present pass does **not** yet commit to a realized carrier, locality, process, comparison algebra, valuation, parameterization, or differentiability.
 
 ---
 
-## 3. Primitive Distinguishability
+## 2. Mathematical Setting and Definitions
 
-### 3.1 Weakest surviving residue
+### 2.1 Primitive bearer class and apartness
 
-The weakest surviving structure is a nonempty bearer class together with a primitive distinction relation:
+The primitive substrate at the present deepest justified level is
 $$
-(\mathcal{B},\#).
+(\mathcal B, \\#),
 $$
+where $\mathcal B$ is a nonempty bearer class and $\\#$ is a primitive nontrivial apartness relation.
 
-At this depth:
+### 2.2 Minimal primitive laws
 
-- an element of $\mathcal{B}$ is not yet a point, coordinate, state in phase space, neighborhood, observable value, or dynamical state;
-- $a \# b$ does not yet mean metric separation, process difference, or measured value difference;
-- it means only that $a$ and $b$ are primitively not the same in a nontrivial way.
-
-### 3.2 Minimal primitive laws
-
-The primitive relation satisfies the weakest laws forced by the exclusions above.
+The primitive relation satisfies only the weakest laws presently forced:
 
 1. **Nonempty bearer**
    $$
-   \mathcal{B} \neq \varnothing.
+   \mathcal B \neq \varnothing.
    $$
 
 2. **Nontrivial extension**
    $$
-   \exists a,b\in\mathcal{B}\text{ such that }a\# b.
+   \exists a,b\in\mathcal B\text{ such that }a\\# b.
    $$
 
 3. **Irreflexivity**
    $$
-   \neg(a\# a).
+   \neg(a\\# a).
    $$
 
 4. **Symmetry**
    $$
-   a\# b \Rightarrow b\# a.
+   a\\# b \Rightarrow b\\# a.
    $$
 
-No order, topology, metric, or valuation is yet assumed.
+No order, topology, metric, process, comparison algebra, or valuation is yet assumed.
 
-**Theorem 3.2.1 (Weakest surviving primitive).**  
-For this branch, once nullity and absolute undifferentiated sameness are excluded, the weakest surviving primitive is a distinction-bearing multiplicity $(\mathcal{B},\#)$ satisfying nonempty bearer, nontrivial extension, irreflexivity, and symmetry.
+### 2.3 Primitive interpretation
 
-**Proof.**  
-Nullity excludes bearer and relation altogether. Undifferentiated sameness excludes nontrivial distinction. Therefore any surviving root must contain at least a nonempty bearer class and at least one nontrivial distinction relation on it. Any stronger primitive package — order, cover, metric, value, update, or process — adds content not forced by those two exclusions alone. Hence $(\mathcal{B},\#)$ is the weakest currently justified root. $\square$
+An element of $\mathcal B$ is not yet:
 
-### 3.3 What is not yet earned
+- a point,
+- a coordinate,
+- a neighborhood,
+- a state in phase space,
+- a value,
+- a measurable response,
+- or a dynamical state.
 
-At this stage the document has not yet earned:
+It is only a bearer of possible nontrivial distinction.
 
-- refinement;
-- cover;
-- locality;
-- updates or process;
-- distinguishers as structured acts;
-- response signatures;
-- comparison algebra;
-- valuation representation;
-- parameterization;
-- continuity;
-- differentiability.
+Likewise, $a\\# b$ does not yet mean metric separation, measurable difference, process difference, or local variation. It means only that $a$ and $b$ are primitively not the same in a nontrivial way.
 
-These are all downstream questions.
+### 2.4 First added branch commitment: sharpenability
+
+The current pass tests whether pure distinction alone can support lawful continuation of the branch. To ask that question, the branch introduces exactly one minimal additional principle.
+
+**Principle L1 (Sharpenability discipline).**  
+If a distinction is to remain meaningful in a law-bearing continuation of the branch, then it must admit admissible sharpening without erasing already-witnessed distinction content.
+
+L1 is not claimed to be forced from pure apartness. It is the first **minimal added branch commitment** required to test whether law-bearing continuation is possible.
+
+### 2.5 First explicit added branch structure: refinement/compatibility
+
+Since primitive distinction together with L1 does not force a unique global refinement/compatibility regime, the branch introduces refinement/compatibility explicitly.
+
+**Added Branch Structure $R$.**  
+A continuation of this branch beyond primitive distinguishability must specify:
+
+1. an admissibly enriched bearer class $\widehat{\mathcal B}$ containing $\mathcal B$,
+2. a refinement preorder $\preceq$ on $\widehat{\mathcal B}$,
+3. a compatibility relation $\bowtie$ on $\widehat{\mathcal B}$,
+4. preservation of apartness under sharpening,
+5. stability of compatibility under sharpening.
+
+At minimum, the added structure must satisfy:
+
+- **R1 (reflexive refinement)**
+  $$
+  x \preceq x.
+  $$
+
+- **R2 (transitive refinement)**
+  $$
+  x \preceq y \land y \preceq z \Rightarrow x \preceq z.
+  $$
+
+- **R3 (apartness persistence)**
+  $$
+  x \preceq y \land y\\# z \Rightarrow x\\# z.
+  $$
+
+- **R4 (compatibility symmetry)**
+  $$
+  x \bowtie y \Rightarrow y \bowtie x.
+  $$
+
+- **R5 (refinement monotonicity of compatibility)**
+  $$
+  x' \preceq x \land x \bowtie y
+  \Rightarrow
+  \exists y' \preceq y \text{ such that } x' \bowtie y'.
+  $$
+
+$R$ is not theorem-grade from the prior layer. It is the first **minimal added branch structure**.
+
+### 2.6 Candidate realized distinction content relative to $R$
+
+A set $X \subseteq \widehat{\mathcal B}$ is called an **$R$-candidate realized distinction content** if it satisfies the following minimal conditions.
+
+1. **Nonemptiness**
+   $$
+   X \neq \varnothing.
+   $$
+
+2. **Refinement saturation**
+   $$
+   x\in X \land y \preceq x \Rightarrow y \in X.
+   $$
+
+3. **Finite coherence**
+   For every finite subset $F \subseteq X$, there exists $z\in X$ such that
+   $$
+   z \preceq f
+   \qquad
+   \text{for all } f\in F.
+   $$
+
+4. **Decisiveness**
+   For every $b\in \widehat{\mathcal B}$, either:
+   - there exists $x\in X$ with $x \bowtie b$, or
+   - there exists $x\in X$ with $x \\# b$.
+
+The class of all such $R$-candidate realized contents, if nonempty, is denoted
+$$
+\mathcal M_0^{(R)}.
+$$
+
+This definition is not yet a theorem of existence. It is the weakest honest candidate notion of realized content available at this stage.
 
 ---
 
-## 4. The Next Forced Question: Can Distinguishability Alone Support Law?
+## 3. Foundational Construction
 
-Primitive apartness is enough to exclude nullity and sameness. It is not obviously enough to support law.
+### 3.1 Nullity exclusion
+
+**Theorem 3.1.1 (Nullity exclusion).**  
+Absolute nullity is not a viable root for this branch.
+
+**Proof.**  
+A physical branch of theory must at minimum permit a difference between success and failure of a statement, between one admissible state and another, and between a law and the absence of law. Absolute nullity supports none of these because it contains no bearer, no distinction, and no possible witness structure. Therefore nullity cannot serve as the root of a falsifiable formal branch. This is a theorem about formal-role viability for this branch, not a universal metaphysical theorem about all possible notions of nothing. $\square$
+
+### 3.2 Undifferentiated sameness exclusion
+
+**Theorem 3.2.1 (Undifferentiated sameness exclusion).**  
+Absolute undifferentiated sameness is not a viable root for this branch.
+
+**Proof.**  
+If all admissible presentations are undifferentiated, then no nontrivial comparison can be made. Comparison, persistence, lawful separation, and falsification all collapse because there is no content by which one state could fail to match another. Thus absolute undifferentiated sameness is as unusable for this branch as nullity, although for a different reason: it has bearer-like content but no nontrivial distinction. $\square$
+
+### 3.3 Weakest surviving primitive
+
+**Theorem 3.3.1 (Weakest surviving primitive).**  
+For this branch, once nullity and absolute undifferentiated sameness are excluded, the weakest surviving primitive is a distinction-bearing multiplicity $({\mathcal B},\\#)$ satisfying nonempty bearer, nontrivial extension, irreflexivity, and symmetry.
+
+**Proof.**  
+Nullity excludes bearer and relation altogether. Undifferentiated sameness excludes nontrivial distinction. Therefore any surviving root must contain at least a nonempty bearer class and at least one nontrivial distinction relation on it. Any stronger primitive package — order, cover, metric, value, update, or process — adds content not forced by those two exclusions alone. Hence $({\mathcal B},\\#)$ is the weakest currently justified root. $\square$
+
+### 3.4 First branch fork: can pure distinguishability support law?
+
+Pure apartness is enough to exclude nullity and sameness. It is not obviously enough to support law.
 
 If the branch is to support law rather than one-shot distinction, then distinctions must be:
 
-1. repeatable,
-2. stably comparable,
-3. composable across admissible contexts.
+1. revisitably meaningful,
+2. sharpenable without erasure of already-witnessed content,
+3. and stably reusable in later comparison contexts.
 
-This is stronger than bare apartness.
+Principle $L1$ expresses this demand, but $L1$ itself does not yet define a stable global refinement or compatibility regime. The first live theorem target was therefore whether $L1$ together with pure apartness is enough to force such a regime. That question has already been resolved negatively.
 
-### 4.1 No-go pressure on pure apartness
+### 3.5 No-go theorem for forcing refinement/compatibility
 
-Bare apartness by itself does not yet tell us:
+**Theorem 3.5.1 (No-go theorem for refinement forcing).**  
+Primitive distinction-bearing multiplicity $({\mathcal B},\\#)$ together with the sharpenability discipline $L1$ does **not** force a unique or canonical stable refinement/compatibility regime. Therefore refinement/compatibility is not theorem-grade from the prior layer. It must be introduced explicitly as the first minimal added branch structure if the branch is to continue toward law.
 
-- whether repeated access to the same distinction is meaningful;
-- whether two distinctions can be compared in a stable way;
-- whether distinction content can be sharpened rather than merely repeated;
-- whether local organization can emerge.
+**Hypotheses.**
 
-Therefore the first serious theorem burden after $(\mathcal{B},\#)$ is:
+1. $({\mathcal B},\\#)$ satisfies the laws of Section 2.2.
+2. Principle $L1$ holds: physically meaningful distinction admits admissible sharpening without erasing already-witnessed distinction content.
+3. No further primitive assumptions are added regarding order, compatibility, locality, value, process, or comparison.
 
-> determine whether pure distinguishability forces an additional layer of stable relational structure, or whether such a layer must be explicitly added as the next minimal primitive.
+**Conclusion.**
 
-This is the first nontrivial branch fork.
+Under these hypotheses alone, there is no unique forced global refinement preorder or compatibility relation. More strongly, there exist distinct non-isomorphic sharpenability realizations compatible with the same primitive substrate and with $L1$, but yielding inequivalent refinement/compatibility structures. Hence refinement/compatibility is not forced from the prior layer.
 
-### 4.2 Minimal law-bearing enrichment principle
+**Proof.**
 
-A law-bearing branch cannot treat every distinction as isolated and incomparable. If it did, there could be no stability, no composition, and no route to variation.
-
-Accordingly, CF000 introduces one additional principle, but only after proving that pure apartness is insufficient.
-
-**Principle L1 (Stability under admissible sharpening).**  
-If a distinction is physically meaningful, then it must admit admissible sharpening without loss of its distinction content.
-
-This principle is not yet refinement order in full. It is the weakest law-bearing demand that prevents distinction from being a one-shot atomic fact.
-
-### 4.3 Forced emergence of refinement
-
-Define a relation $\preceq$ on $\mathcal{B}$ by:
+Fix a primitive substrate with two distinguishable bearers,
 $$
-a \preceq b
+a,b \in \mathcal B,
+\qquad
+ a\\# b.
 $$
-if $a$ is an admissible sharpening of $b$ that preserves all distinction content of $b$ and may reveal further distinction content not visible at the coarser level.
+By $L1$, if this distinction is to remain meaningful in a law-bearing continuation, then there must exist some admissible sharpening witness for $a$ and some admissible sharpening witness for $b$ preserving the already-witnessed distinction content.
 
-**Theorem 4.3.1 (Refinement is forced by stability).**  
-If distinction in this branch is to be lawful rather than one-shot, then the substrate must admit a refinement preorder $\preceq$.
+Now consider two distinct enrichments of the same primitive substrate.
 
-**Proof.**  
-Suppose there is no such preorder. Then meaningful distinctions cannot be revisited at finer resolution while preserving what made them meaningful. In that case the branch cannot support stable reuse of distinction content, and no law can be stated over such content without degenerating into a list of unrelated one-shot assertions. Therefore any law-bearing extension of $(\mathcal{B},\#)$ forces a refinement relation. Reflexivity is forced because every distinction is at least as sharp as itself. Transitivity is forced because sharpening of sharpening is again a sharpening. $\square$
+#### Realization R1: branchwise sharpening without global comparability
 
-### 4.4 Refinement respects apartness
-
-The next forced law is compatibility between refinement and distinction.
-
-**Axiom R1.**  
-If $a \preceq b$ and $b \# c$, then $a \# c$.
-
-This is not an extra convenience. It expresses that sharpening may reveal more, but may not erase already-witnessed distinction merely by becoming finer.
-
-### 4.5 Consequence
-
-The root substrate is now:
+Adjoin sharpened witnesses $a_1$ and $b_1$ with the intended reading that $a_1$ sharpens $a$ and $b_1$ sharpens $b$. Define the only nontrivial sharpening facts to be
 $$
-(\mathcal{B},\#, \preceq),
+a_1 \preceq a,
+\qquad
+b_1 \preceq b,
 $$
-where $\preceq$ is not imported for convenience, but forced by the demand that distinction support law.
+and include reflexive closure. Introduce no further cross-comparability and no compatibility relation beyond identity-level admissibility.
+
+This realizes $L1$: both $a$ and $b$ admit sharpenings preserving their witnessed distinction. But it yields only a sparse branchwise refinement structure.
+
+#### Realization R2: iterated sharpening with compatible coarsenings
+
+Adjoin an infinite descending sharpening chain for each bearer,
+$$
+\cdots \preceq a_2 \preceq a_1 \preceq a,
+\qquad
+\cdots \preceq b_2 \preceq b_1 \preceq b,
+$$
+again preserving $a\\# b$ along each chain. Now also adjoin a coarse compatibility token $c$ that is not itself apart from either $a$ or $b$, and stipulate that certain admissible comparison contexts may pass through $c$ as a common coarse context without identifying $a$ and $b$ or making them refinements of one another.
+
+This also realizes $L1$. It yields a much richer sharpening and compatibility regime than R1.
+
+The two realizations are not isomorphic as refinement/compatibility structures:
+
+- R1 has only isolated one-step branchwise refinement.
+- R2 has infinite branchwise refinement and an additional compatibility organization through coarse context tokens.
+
+Yet both respect the same primitive substrate $({\mathcal B},\\#)$ and the same sharpenability discipline $L1$. Therefore $L1$ does not determine a unique global refinement/compatibility regime. Since no uniqueness, canonicity, or forcing theorem follows from the prior layer alone, refinement/compatibility is not theorem-grade from primitive distinction plus $L1$.
+
+Hence the branch must add refinement/compatibility explicitly if it wishes to continue beyond pure distinguishability. $\square$
+
+### 3.6 What Theorem 3.5.1 does and does not prove
+
+**What it proves.**
+
+- Primitive distinction plus sharpenability is insufficient to force a unique stable refinement/compatibility regime.
+- Any continuation of the branch that needs such a regime must add it explicitly.
+
+**What it does not prove.**
+
+- It does not show that refinement is impossible.
+- It does not show that cover, locality, transformation, valuation, or differentiability are impossible.
+- It does not show that all refinement systems are equally good.
+- It does not identify the unique best added refinement system.
+
+It proves only the no-go result needed here: refinement/compatibility is **not forced** from the prior layer.
+
+### 3.7 Realized-content / realized-carrier forcing theorem or no-go theorem
+
+The present pass now addresses the next live question.
+
+**Theorem 3.7.1 (No-go theorem for realized-carrier forcing from $R$).**  
+The explicitly added refinement/compatibility structure $R$ is **not** sufficient, by itself, to force stable realized distinction contents or a realized carrier layer. More precisely:
+
+1. there exist $R$-models for which $\mathcal M_0^{(R)} = \varnothing$;
+2. there exist $R$-models for which $\mathcal M_0^{(R)} \neq \varnothing$ and contains multiple inequivalent candidate realized contents;
+3. therefore neither the existence nor the canonicity of a realized carrier is forced from $R$ alone.
+
+**Hypotheses.**
+
+1. The primitive substrate $({\mathcal B},\\#)$ satisfies Section 2.2.
+2. The branch has adopted the first added structure $R$ of Section 2.5.
+3. No additional structure beyond $R$ is assumed regarding realization closure, sharpness, decisiveness, localization, or maximal extension.
+
+**Conclusion.**
+
+Under these hypotheses alone, $R$ does not force stable realized distinction contents and does not force a canonical realized carrier layer.
+
+**Proof.**
+
+We use the definition of $R$-candidate realized distinction content from Section 2.6.
+
+#### Model A: an $R$-model with no realized contents
+
+Let
+$$
+\widehat{\mathcal B}_A = \{a,b,c\},
+$$
+with primitive apartness given only by
+$$
+a \\# b,
+$$
+and no apartness involving $c$ except irreflexive triviality. Let refinement be reflexive only,
+$$
+x \preceq x,
+$$
+for all $x \in \widehat{\mathcal B}_A$, and let compatibility be identity only,
+$$
+x \bowtie y \iff x=y.
+$$
+
+This satisfies the axioms of $R$:
+
+- reflexive refinement holds by definition;
+- transitive refinement is trivial because refinement is identity only;
+- apartness persistence holds vacuously beyond the primitive apartness pair;
+- compatibility symmetry holds because identity is symmetric;
+- refinement monotonicity of compatibility holds because if $x'\preceq x$ and $x\bowtie y$, then $x'=x$ and $y'=y$ work.
+
+Now test candidate realized contents.
+
+A singleton such as $\{a\}$ is nonempty, refinement-saturated, and finitely coherent. But it fails decisiveness for $c$: there is no $x\in\{a\}$ with $x\bowtie c$, because compatibility is identity only and $a\neq c$; there is also no $x\in\{a\}$ with $x\\# c$, because no apartness between $a$ and $c$ has been stipulated. The same failure occurs for $\{b\}$ and $\{c\}$.
+
+Any larger subset containing both $a$ and $b$ fails finite coherence, because there is no $z$ with $z\preceq a$ and $z\preceq b$ under reflexive-only refinement. Any subset containing $c$ fails decisiveness against at least one of $a$ or $b$. Therefore
+$$
+\mathcal M_0^{(R)} = \varnothing
+$$
+in Model A.
+
+So $R$ does not force existence of realized contents.
+
+#### Model B: an $R$-model with multiple realized contents
+
+Let
+$$
+\widehat{\mathcal B}_B = \{a,b\},
+$$
+with primitive apartness
+$$
+a \\# b,
+$$
+refinement again reflexive only, and compatibility identity only.
+
+This also satisfies $R$. Now both singleton sets $\{a\}$ and $\{b\}$ are $R$-candidate realized contents:
+
+- they are nonempty,
+- they are refinement-saturated,
+- they are finitely coherent,
+- and they are decisive because each sees itself by compatibility and the other by apartness.
+
+Thus
+$$
+\mathcal M_0^{(R)} = \{\{a\},\{b\}\}
+$$
+in Model B.
+
+So even when realized contents exist, they need not be unique or canonical.
+
+Since there is at least one $R$-model with no realized contents and at least one $R$-model with multiple inequivalent realized contents, neither existence nor canonicity of a realized carrier is forced by $R$ alone. $\square$
+
+### 3.8 What Theorem 3.7.1 does and does not prove
+
+**What it proves.**
+
+- $R$ is sufficient to make the realization question meaningful.
+- $R$ is insufficient to force realized contents.
+- $R$ is insufficient to force a canonical realized carrier.
+
+**What it does not prove.**
+
+- It does not show that realized contents are impossible.
+- It does not show that no carrier can be earned.
+- It does not show that every realization discipline beyond $R$ is equally good.
+- It does not yet identify the unique best realization discipline.
+
+The theorem establishes only the no-go result required here: realization is not forced from $R$ alone.
+
+### 3.9 Next candidate minimal branch structure: realization/decisiveness layer $S$
+
+Since $R$ does not force realized contents, the next candidate branch structure is a realization/decisiveness layer $S$.
+
+**Candidate Added Branch Structure $S$.**  
+A continuation of the branch beyond $R$ must, at minimum, specify a principle strong enough to guarantee that coherent refinement content can settle into decisive realized contents. The weakest presently credible candidate consists of the following.
+
+- **S1 (finite coherent extension)**  
+  Every finite pairwise compatible family admits an admissible common refinement.
+
+- **S2 (branch existence)**  
+  Every admissible bearer lies on at least one nonempty refinement thread compatible with $R$.
+
+- **S3 (decisive separation)**  
+  Every sufficiently stable refinement thread decides every bearer by eventual compatibility or eventual apartness.
+
+- **S4 (realization closure)**  
+  Every nonempty coherent refinement thread extends to a decisive coherent content.
+
+$S$ is **not** yet theorem-grade. It is the current best candidate for the next minimal branch structure if the branch is to continue toward a realized carrier.
 
 ---
 
-## 5. From Refinement to Realized Distinction Content
+## 4. Main Theorems and Proofs
 
-### 5.1 Why realized content is needed
+The main theorems of this pass are Theorems 3.1.1, 3.2.1, 3.3.1, 3.5.1, and 3.7.1. No theorem stronger than those is claimed at this stage.
 
-Even with refinement, the substrate is still only a field of possible distinctions. To support later comparison and variation, the branch needs stable realized distinction contents: collections of distinctions that can cohere under sharpening.
+### 4.1 Theorem status map for this pass
 
-### 5.2 Coherence
+- **Forced from prior layer:**
+  - nullity exclusion,
+  - undifferentiated sameness exclusion,
+  - weakest surviving primitive $({\mathcal B},\\#)$.
 
-A subset $X \subseteq \mathcal{B}$ is **coherent** if:
+- **Minimal added branch structure:**
+  - sharpenability discipline $L1$,
+  - refinement/compatibility structure $R$.
 
-1. $X$ is nonempty;
-2. any two elements of $X$ are jointly admissible;
-3. any two elements of $X$ admit a common refinement in $X$;
-4. if $b\in X$ and $a\preceq b$ with $a$ admissible, then some admissible sharpening of $a$ lies in $X$.
+- **Conditional theorem under explicit assumptions:**
+  - none beyond the no-go theorems in this pass.
 
-This is the first carrier of realized distinction content.
+- **Candidate next added branch structure:**
+  - realization/decisiveness layer $S$.
 
-### 5.3 Sharpness
+### 4.2 Claims deferred until later passes
 
-A coherent content $X$ is **sharp** if every bearer $b\in \mathcal{B}$ is decisively handled relative to $X$: either $b$ is compatible with $X$ under common admissible refinement, or some member of $X$ is apart from $b$.
+The following are not yet theorem-grade and are not used in this pass:
 
-Sharpness is the constructive replacement for “fully resolved local content.”
+- cover/locality,
+- realized carrier existence theorem,
+- lawful transformation,
+- distinguishers/signatures,
+- comparison algebra,
+- valuation representation,
+- parameterization,
+- differentiability emergence.
 
-### 5.4 Realized pre-differential carrier
-
-Define
-$$
-\mathcal{M}_0 := \{X \subseteq \mathcal{B} : X \text{ is sharp and coherent}\}.
-$$
-
-$\mathcal{M}_0$ is not yet a manifold, metric space, or point-set space in the classical sense. It is the realized carrier of distinction contents.
-
-**Theorem 5.4.1 (Realized carrier theorem).**  
-The physically stable realized contents of the primitive substrate are the sharp coherent members of $\mathcal{M}_0$.
-
-**Proof.**  
-Bare bearer elements do not provide stable realized content because they do not encode joint admissibility or sharpening stability. Coherence repairs this. But coherence alone leaves unresolved distinction too weakly organized for stable physical realization. Sharpness adds decisive discrimination against incompatible content. Hence the realized carrier of the branch is not $\mathcal{B}$ itself but the sharp coherent carrier $\mathcal{M}_0$. $\square$
+No later section of this document may rely on these as established until they are derived in later passes.
 
 ---
 
-## 6. Locality Before Metric or Manifold Structure
+## 5. Validation Logic and Evidentiary Support
 
-### 6.1 Why locality cannot yet mean metric neighborhood
+This section states what would count as support or falsification for the present pass.
 
-At this depth there is no distance, chart, or open ball. So locality must be earned in another way.
+### 5.1 What would falsify the nullity and sameness exclusions
 
-The correct primitive-locality question is:
+The root exclusions would fail if one could exhibit a branch-level formalism in which:
 
-> when can a realized distinction content be regarded as constructively localizable by finer distinction contents?
+1. absolute nullity supports distinction, law, and falsifiability, or
+2. absolute undifferentiated sameness supports nontrivial distinction, law, and falsifiability.
 
-### 6.2 Cover relation
+No such construction is supplied here.
 
-Introduce a cover relation
-$$
-b \triangleleft U
-$$
-for $b\in \mathcal{B}$ and $U\subseteq \mathcal{B}$, meaning that $b$ is fully localizable by the family $U$.
+### 5.2 What would falsify Theorem 3.5.1
 
-The cover relation is forced by the demand that sharpening be not merely linearly ordered but distributable across finitely witnessable local distinction content.
+The no-go theorem for forced refinement would fail if one could prove either of the following from the prior layer alone:
 
-### 6.3 Cover laws
+1. primitive distinction plus sharpenability uniquely determines a stable global refinement/compatibility regime; or
+2. every two sharpenability realizations over the same primitive substrate are canonically isomorphic as refinement/compatibility structures.
 
-The cover relation satisfies:
+Either result would refute Theorem 3.5.1.
 
-1. if $b\in U$, then $b\triangleleft U$;
-2. if $b\triangleleft U$ and $U\subseteq V$, then $b\triangleleft V$;
-3. if $b\triangleleft U$ and each $u\in U$ satisfies $u\triangleleft V$, then $b\triangleleft V$;
-4. if $a\preceq b$ and $b\triangleleft U$, then $a$ is localizable by refinements subordinate to $U$.
+### 5.3 What would falsify Theorem 3.7.1
 
-### 6.4 Locality theorem
+The no-go theorem for realized-carrier forcing from $R$ would fail if one could prove either of the following from $R$ alone:
 
-**Theorem 6.4.1 (Pre-topological locality theorem).**  
-If the branch is to support local organization before metric or manifold structure, then a cover relation subordinate to refinement is forced.
+1. every $R$-model necessarily admits at least one $R$-candidate realized content; or
+2. every $R$-model with realized contents admits a canonical realized carrier independent of any further realization principle.
 
-**Proof.**  
-Refinement alone orders sharpening, but does not yet say how a distinction may be resolved by several finer distinctions jointly. Lawful local organization requires precisely such joint localizability. Therefore a cover relation subordinate to refinement is forced whenever locality is to be meaningful before geometry. $\square$
+Either result would refute Theorem 3.7.1.
 
-### 6.5 Consequence
+### 5.4 What would show the added structure $R$ is too strong
 
-The pre-differential branch now carries:
-$$
-(\mathcal{B},\#, \preceq, \triangleleft),
-$$
-and the realized carrier $\mathcal{M}_0$ built from sharp coherent contents over this substrate.
+The added branch structure $R$ would be too strong if one could exhibit a weaker added structure than $R$ that still suffices to support all later branch requirements:
 
-This is still weaker than metric geometry, weaker than differentiability, and weaker than any scalar valuation.
+- stable realization,
+- lawful local organization,
+- stable comparison,
+- and the later route toward differentiability.
 
----
+If such a weaker structure is found, $R$ must be weakened in a later pass.
 
-## 7. Stable Comparison Before Valuation
+### 5.5 What would show the candidate structure $S$ is too strong
 
-### 7.1 Why comparison is now forced
+The candidate realization layer $S$ would be too strong if one could exhibit a weaker added principle than $S$ that still guarantees:
 
-Once realized contents exist, the next question is whether lawful variation can exist. Lawful variation requires not just distinction, but stable comparison of how realized contents behave under admissible transformation.
+- existence of realized contents,
+- decisiveness/sharpness of those contents,
+- and a realized carrier layer sufficient for later branch continuation.
 
-If no stable comparison is possible, then there can be no route to parameterized variation and therefore no route to differentiability.
+If such a weaker structure is found, $S$ must be weakened before canonization.
 
-### 7.2 Minimal transformation structure
+### 5.6 What would show the current derivation still smuggles later structure
 
-At this stage, full dynamics are still too strong. But the branch must admit at least a class $\mathscr{T}$ of admissible transformations of realized contents:
-$$
-T : \mathcal{M}_0 \to \mathcal{M}_0
-$$
-defined wherever such action is admissible.
+This pass would be defective if any proof above implicitly relied on:
 
-These are not yet time evolutions. They are merely admissible transformations.
+- metric notions,
+- topology stronger than what is stated,
+- numeric valuation,
+- parameterized process,
+- comparison algebraic laws not explicitly introduced,
+- or differentiated locality.
 
-### 7.3 Distinguishers now derived, not primitive
-
-A **distinguisher** is now introduced, but not primitively. It is derived at this stage as a lawful test acting on transformed realized contents.
-
-For an admissible family of transformations and a realized content $X\in\mathcal{M}_0$, a distinguisher $\delta$ records stable comparison outcomes between $X$ and transformed versions of $X$. Its output is not yet numerical. It belongs to a signature alphabet $\Sigma$ carrying only enough structure to distinguish stable outcomes from unstable ones and composable outcomes from incomparable ones.
-
-Thus distinguishers and signatures belong here, not at the primitive bottom.
-
-### 7.4 Stable signatures
-
-A signature is **stable** if its distinction content is preserved under admissible common refinement of the underlying realized contents and comparison context.
-
-Let $\Sigma_{\mathrm{st}}$ be the class of stable signatures.
-
-### 7.5 Comparison classes
-
-Define an equivalence relation $\approx$ on $\Sigma_{\mathrm{st}}$ by refinement-stable indistinguishability. Let
-$$
-[\sigma]
-$$
-denote the corresponding stable comparison class.
-
-The branch now has a pre-numeric comparison system:
-$$
-\mathfrak{C} := \{[\sigma] : \sigma\in\Sigma_{\mathrm{st}}\}.
-$$
-
-### 7.6 Composition
-
-If two stable comparison classes arise from composable admissible transformation contexts, define their composition
-$$
-[\sigma]\odot[\rho]
-$$
-to be the stable comparison class of the composed context, when this is defined.
-
-No arithmetic is yet assumed. Only composability of comparison classes is required.
-
-### 7.7 Comparison theorem
-
-**Theorem 7.7.1 (Stable comparison theorem).**  
-If the branch supports lawful transformation of realized distinction contents, then it forces a stable comparison layer consisting of refinement-stable comparison classes with partially defined composition.
-
-**Proof.**  
-Lawful transformation without stable comparison cannot support reusable law because no transformation outcome could be compared with another in a refinement-independent way. Therefore stable signature classes are forced as soon as lawful transformation is admitted. Composition is forced whenever transformation contexts compose and comparison is required to respect such composition. $\square$
+The present pass is designed to stop before those imports occur.
 
 ---
 
-## 8. Valuation Representation
+## 6. Worked Example or Minimal Witnesses
 
-### 8.1 Why valuation is not primitive
+Two minimal witnesses suffice for the present pass.
 
-Valuation is not allowed at the root because it presupposes a codomain of value. It is introduced only now, after a stable comparison system $\mathfrak{C}$ has been earned.
+### 6.1 Witness for Theorem 3.5.1
 
-### 8.2 Representation problem
+The proof of Theorem 3.5.1 already provides two sharpenability realizations over the same primitive substrate that are not isomorphic as refinement/compatibility structures.
 
-The question is whether the comparison system $\mathfrak{C}$ can be faithfully represented in a value regime $\mathbb{V}$ carrying order and composition.
+### 6.2 Witnesses for Theorem 3.7.1
 
-A valuation representation is a map
+#### Witness A: $R$ without realized contents
+
+Take
 $$
-\nu : \mathfrak{C} \to \mathbb{V}
+\widehat{\mathcal B}_A = \{a,b,c\},
 $$
-such that:
+with
+$$
+a\\# b,
+$$
+refinement reflexive only, compatibility identity only, and no other apartness relations. Then $R$ holds, but no $R$-candidate realized content exists.
 
-1. comparison is respected;
-2. composition is respected where defined;
-3. the neutral class maps to the neutral value;
-4. distinct stable comparison classes are not collapsed unless the comparison structure itself forces that collapse.
+#### Witness B: $R$ with multiple realized contents
 
-### 8.3 Representation assumptions
+Take
+$$
+\widehat{\mathcal B}_B = \{a,b\},
+$$
+with
+$$
+a\\# b,
+$$
+refinement reflexive only, and compatibility identity only. Then $R$ holds, and both $\{a\}$ and $\{b\}$ are $R$-candidate realized contents.
 
-A faithful valuation representation is not forced by raw comparison alone. It requires additional conditions on $\mathfrak{C}$:
-
-- cancellation of composed comparison;
-- order compatibility;
-- sufficient separability of nontrivial classes;
-- completeness strong enough to support consistent valuation.
-
-These are the conditions under which the branch can pass from qualitative comparison to valuation.
-
-### 8.4 Valuation precedence theorem
-
-**Theorem 8.4.1 (Valuation precedence theorem).**  
-Any later differentiable coordinatization of this branch must factor through a valuation representation of the stable comparison system.
-
-**Proof.**  
-Differentiable coordinatization compares composed local changes by first-order leading behavior. Such comparison is impossible on raw signatures and impossible on stable comparison classes unless there is a representation that preserves comparison and composition in a value regime. Therefore any later differentiable charting must factor through a valuation representation of $\mathfrak{C}$. $\square$
-
-### 8.5 Consequence
-
-The correct dependency order is now:
-
-1. primitive distinction-bearing multiplicity;
-2. refinement and cover;
-3. realized carrier $\mathcal{M}_0$;
-4. lawful transformation;
-5. stable comparison classes;
-6. valuation representation.
-
-Only after that may numeric representation appear.
+These two witnesses jointly establish that $R$ alone forces neither existence nor canonicity of a realized carrier.
 
 ---
 
-## 9. Parameterization from Valuation
+## 7. CFN Pairing and Executable Traceability
 
-### 9.1 Why parameterization is downstream of valuation
+The paired CFN for the present pass may do the following:
 
-A parameter is not primitive. A parameter is a coordinated representation of repeated composable transformation content in a valuation regime.
+- instantiate finite examples of primitive substrates $({\mathcal B},\\#)$,
+- instantiate multiple non-isomorphic sharpening realizations over the same primitive substrate,
+- instantiate $R$-models with and without $R$-candidate realized contents,
+- verify that the witness models satisfy the stated axioms,
+- and present the no-go theorems graphically or combinatorially.
 
-Thus no symbol behaving like a real-valued small parameter may appear before valuation is earned.
-
-### 9.2 Parameterization theorem
-
-**Theorem 9.2.1 (Parameterization theorem).**  
-If the valuation image of a local transformation family is generated by a locally ordered composition-compatible subregime, then that family admits lawful local parameterization by that regime.
-
-**Proof.**  
-Once transformation content has a faithful valuation representation, repeated composition corresponds to composition in the value regime. If a local subfamily is generated by a composition-compatible ordered subregime, then its transformation content can be coordinatized by that regime. This coordinatization is a parameterization of transformation composition, not a primitive ontological time. $\square$
-
-### 9.3 First entry of numeric structure
-
-At this stage, and not before, the branch may choose a numeric representation of the value regime when such a choice exists. If the ordered composition-compatible value regime admits faithful realization in an interval of $\mathbb{R}$, then local parameters may be represented numerically. This is not primitive arithmetic; it is a representation of already-earned comparison structure.
+The CFN may **not** introduce any proof burden not already carried here.
 
 ---
 
-## 10. Emergence of Differentiability
+## 8. Assumptions, Limits, and Open Boundaries
 
-### 10.1 The actual target
+### 8.1 Assumptions used in the derivation
 
-The root target is not “can one write formulas?” It is:
+This pass uses only:
 
-> under what conditions does the branch force a differentiable carrier rather than merely a valuation-parametrized comparison system?
+1. the branch-level exclusion of nullity and undifferentiated sameness,
+2. the weakest surviving primitive $({\mathcal B},\\#)$,
+3. the first added sharpenability discipline $L1$,
+4. the explicitly added refinement/compatibility structure $R$,
+5. elementary logic about non-isomorphic realizations and nonexistence/existence witnesses.
 
-### 10.2 Differentiability as first-order chart compatibility
+### 8.2 Claims established here
 
-Once local valuation charts exist, different local charts may represent the same realized distinction content. Differentiability emerges only if transition laws between overlapping local valuation charts preserve first-order comparison structure.
+This pass establishes:
 
-Let $\chi$ and $\eta$ be local valuation charts on overlapping regions of realized content. The transition law
+- the root exclusions,
+- the weakest surviving primitive,
+- the no-go theorem for forcing refinement/compatibility from the prior layer,
+- the explicit introduction of refinement/compatibility as the first minimal added branch structure,
+- the no-go theorem showing that $R$ alone does not force stable realized contents or a canonical realized carrier,
+- and the identification of $S$ as the current next candidate branch structure.
+
+### 8.3 Claims not established here
+
+This pass does not establish:
+
+- cover/locality,
+- realized-carrier existence theorem,
+- lawful transformation,
+- distinguishers/signatures,
+- comparison algebra,
+- valuation representation,
+- parameterization,
+- differentiability.
+
+### 8.4 Open boundary for the next pass
+
+The next pass must determine whether the candidate realization/decisiveness layer $S$ is enough to force stable realized contents and a realized carrier, or whether still further minimal branch structure is required.
+
+No upward climb beyond realization is allowed before that question is settled.
+
+---
+
+## 9. Integration with Broader VDM Theory
+
+CF000 remains the root of the branch.
+
+CF00 remains downstream as the first differentiable-layer formalism, but the present pass does not yet reconnect to CF00 in detail. That bridge is intentionally paused until the realization question is settled honestly.
+
+The only downstream statement fixed here is structural and negative:
+
+> CF00 may not be treated as beginning from a layer already forced by primitive distinction and refinement/compatibility alone.
+
+Instead, CF00 sits downstream of a branch that now explicitly contains:
+
+1. a forced primitive distinction layer,
+2. a first minimal added refinement/compatibility layer,
+3. and an unresolved but now sharply posed realization layer.
+
+---
+
+## 10. References and Provenance
+
+This pass uses the house CF template as the formal standard for completeness and theorem-bearing structure.
+
+It also uses the current CF000 checklist as the binding solved/open state for this pass. The theorem target addressed here is exactly the live question identified there: whether the added refinement/compatibility structure $R$ is enough to support realized contents and a realized carrier. The answer given here is no. The current checklist state therefore advances accordingly. fileciteturn122file0
+
+No external source is used here as a substitute for derivation.
+
+---
+
+## Appendix A. Symbol Table
+
+- $\mathcal B$: primitive distinction-bearing bearer class.
+- $\\#$: primitive apartness relation.
+- $L1$: sharpenability discipline.
+- $\widehat{\mathcal B}$: admissibly enriched bearer class after added branch structure.
+- $\preceq$: refinement preorder.
+- $\bowtie$: compatibility relation in the first added branch structure.
+- $R$: first minimal added branch structure consisting of refinement/compatibility.
+- $\mathcal M_0^{(R)}$: class of $R$-candidate realized distinction contents, not yet forced to be nonempty.
+- $S$: current candidate realization/decisiveness layer, not yet theorem-grade.
+- $\mathcal M_0$: placeholder symbol for a realized pre-differential carrier, not yet earned in this pass.
+- $\mathcal M$: downstream differentiable carrier, not yet earned in this pass.
+
+---
+
+## Appendix B. Dependency Audit
+
+### Primitive in this pass
+
+- $({\mathcal B},\\#)$
+
+### Forced from prior layer in this pass
+
+- nullity exclusion,
+- undifferentiated sameness exclusion,
+- weakest surviving primitive.
+
+### Minimal added branch structure in this pass
+
+- sharpenability discipline $L1$,
+- refinement/compatibility structure $R$.
+
+### Candidate next added branch structure
+
+- realization/decisiveness layer $S$.
+
+### Conditional or deferred beyond this pass
+
+- cover/locality,
+- realized-carrier forcing theorem,
+- lawful transformation,
+- distinguishers/signatures,
+- comparison algebra,
+- valuation,
+- parameterization,
+- differentiability emergence.
+
+### Main dependency chain of this pass
+
 $$
-\eta \circ \chi^{-1}
-$$
-must preserve the leading comparison class of admissible local transformation composition.
-
-### 10.3 First-order coherence condition
-
-The branch requires the following if it is to support a differentiable carrier:
-
-**Condition D1.**  
-Transition laws between overlapping local valuation charts must preserve:
-
-1. neutral transformation content,
-2. composition of infinitesimally admissible local transformation classes,
-3. first-order comparison of such classes,
-4. and refinement-stable identification of trivial versus nontrivial local variation.
-
-This is the first place where first-order structure is explicitly demanded.
-
-### 10.4 Differentiability-emergence theorem
-
-**Theorem 10.4.1 (Differentiability-emergence theorem).**  
-Suppose the branch has:
-
-1. a realized carrier $\mathcal{M}_0$ of sharp coherent distinction contents;
-2. a stable comparison system $\mathfrak{C}$;
-3. a faithful local valuation representation of $\mathfrak{C}$;
-4. lawful local parameterizations of admissible transformation families;
-5. overlap-compatible local valuation charts whose transition laws satisfy Condition D1.
-
-Then the branch admits a differentiable carrier $\mathcal{M}$ as the weakest chart-compatible realization of first-order lawful variation.
-
-**Proof.**  
-A local valuation chart by itself only supplies coordinated comparison. To support first-order lawful variation across overlapping charts, the transition laws must preserve the leading comparison class of local admissible transformation content. Preservation of the neutral class ensures compatibility of zero variation. Preservation of composition ensures compatibility of concatenated local variation. Preservation of first-order comparison ensures that chart changes do not destroy the ordering of leading variation classes. Preservation of the trivial/nontrivial distinction ensures that the quotient between null variation and physical variation is chart-stable.
-
-These four requirements together force the overlap maps to possess consistent first-order behavior. The resulting chart family therefore supports a differentiable structure. Since no stronger structure than first-order chart compatibility has been assumed, this differentiable carrier is the weakest chart-compatible realization of lawful first-order variation in the branch. Denote it by $\mathcal{M}$. $\square$
-
-### 10.5 Honest strength of the theorem
-
-This theorem does **not** claim that every distinction-bearing substrate must become differentiable. It claims:
-
-- differentiability is not primitive here;
-- differentiability is forced once the branch requires stable comparison, faithful valuation, lawful parameterization, and chart-independent first-order variation.
-
-That is the strongest honest result available at this root.
-
----
-
-## 11. Bridge to CF00
-
-### 11.1 What CF000 has now earned
-
-CF000 has earned, in dependency-clean order:
-
-1. primitive distinction-bearing multiplicity $(\mathcal{B},\#)$;
-2. refinement and cover as the first law-bearing enrichment;
-3. the realized pre-differential carrier $\mathcal{M}_0$;
-4. lawful transformation and stable comparison;
-5. valuation representation;
-6. lawful parameterization;
-7. the differentiable carrier $\mathcal{M}$.
-
-### 11.2 What CF00 may now legitimately assume
-
-Only now may the branch begin from:
-
-- a differentiable carrier $\mathcal{M}$,
-- lawful local representative state-families on $\mathcal{M}$,
-- quotient-physical local variation,
-- induced QGT,
-- induced metric/curvature split,
-- and the later emergent dynamics.
-
-Therefore CF00 is reclassified as:
-
-> the first differentiable-layer formalism downstream of CF000.
-
-### 11.3 Downstream route
-
-From CF000 to CF00 the dependency chain is:
-
-$$
-(\mathcal{B},\#)
+\text{nullity failure and sameness failure}
 \to
-(\preceq,\triangleleft)
+({\mathcal B},\\#)
 \to
-\mathcal{M}_0
+L1
 \to
-\mathfrak{C}
+\text{no-go theorem for forced refinement}
 \to
-\mathbb{V}
+R
 \to
-\mathcal{M}
+\text{no-go theorem for forced realization}
 \to
-\text{representative state-family}
-\to
-\text{quotient-physical variation}
-\to
-\text{QGT}
-\to
-(g,\Omega)
-\to
-\text{emergent dynamics}.
+S.
 $$
 
-CF000 therefore makes CF00 possible rather than competing with it.
+No later object is used in the proofs of this pass.
 
 ---
 
-## 12. Falsification
+## Appendix C. CFN Traceability Table
 
-CF000 fails if any of the following occur.
+| CF section | CFN segment | quantities instantiated | diagnostics emitted | claims witnessed |
+|---|---|---|---|---|
+| §2–§3.3 | `cf000-root-exclusions` | example substrates $({\mathcal B},\\#)$ | nullity/sameness exclusion witness cases | Theorems 3.1.1–3.3.1 |
+| §3.5 | `cf000-refinement-nogo` | non-isomorphic sharpening realizations | structure-comparison tables | Theorem 3.5.1 |
+| §3.7 | `cf000-realization-nogo` | $R$-models with and without realized contents | realization existence/nonexistence witness tables | Theorem 3.7.1 |
+| §6 | `cf000-minimal-witnesses` | sparse witness structures | witness artifact diagrams | worked examples |
 
-### F1. Nullity or undifferentiated sameness can host law and falsifiability
-
-If either nullity or absolute sameness can support law-bearing, falsifiable branch structure, then the primitive-distinction move is not forced.
-
-### F2. Pure distinguishability cannot be lawfully enriched
-
-If no refinement/cover-like enrichment can be forced or justified from the demand that distinction support law, then the branch cannot move from primitive distinction to any realized carrier.
-
-### F3. Stable comparison cannot be earned
-
-If lawful transformation does not force stable comparison classes, then the valuation layer fails.
-
-### F4. Valuation representation cannot be achieved
-
-If the stable comparison system admits no faithful valuation representation even under the explicit representation assumptions, then the branch cannot proceed to lawful parameterization.
-
-### F5. Parameterization cannot be achieved
-
-If valuation-compatible transformation families cannot be coordinatized, then differentiability cannot be approached honestly.
-
-### F6. First-order chart compatibility does not force differentiability
-
-If the transition requirements of Theorem 10.4.1 do not actually force a differentiable carrier, then the differentiability-emergence claim fails.
-
-### F7. CF00 cannot be recovered
-
-If the differentiable carrier and lawful local variation needed by CF00 do not actually follow from the CF000 chain, then CF000 has failed to justify the downstream branch.
+The CFN mirrors this pass. It does not repair or extend its theorem burden.
 
 ---
 
-## 13. Non-claims
+## Acceptance Checklist
 
-CF000 does **not** claim:
+- [x] The primitive ontology is stated clearly.
+- [x] All derived objects used in this pass are earned in logical order.
+- [x] All equations needed for understanding this pass are present in the document.
+- [x] All theorem-bearing claims in this pass are stated with explicit hypotheses.
+- [x] All proof-bearing claims in this pass have actual proofs.
+- [x] No essential burden for this pass has been outsourced to canon links or the CFN.
+- [x] Validation logic and falsification criteria for this pass are stated in the CF itself.
+- [x] Minimal witness examples are specified in the CF itself.
+- [x] The role of the CFN is executable realization only.
+- [x] Non-theorem-grade claims are explicitly labeled.
+- [x] The refinement/compatibility question is resolved.
+- [x] The realized-content / realized-carrier question is resolved at the level of a no-go theorem from $R$.
+- [ ] The realization/decisiveness layer $S$ is settled.
+- [ ] The full CF000 branch is complete.
 
-- that nullity is metaphysically impossible in every sense;
-- that every conceivable distinction-bearing substrate must become differentiable;
-- that $\mathbb{R}$ is primitive;
-- that metric, gauge, QGT, or $J\oplus M$ structures exist at the primitive layer;
-- that the value regime must always be real-valued;
-- that time is primitive at the root;
-- that process, measurement, or observable codomains are primitive.
-
-CF000 claims only what it has actually derived:
-
-- primitive distinction is the weakest surviving residue for this branch;
-- a law-bearing branch forces further structure beyond bare distinction;
-- differentiability is not primitive here;
-- differentiability emerges only after stable comparison, valuation, parameterization, and chart-independent first-order coherence are earned.
-
----
-
-## 14. Completion honesty check
-
-### 14.1 What is theorem-grade here
-
-The following are theorem-grade in CF000:
-
-- nullity exclusion for this branch;
-- undifferentiated sameness exclusion for this branch;
-- weakest surviving primitive as distinction-bearing multiplicity;
-- refinement forced by the demand that distinction support law;
-- realized carrier theorem for sharp coherent distinction contents;
-- pre-topological locality theorem via cover;
-- stable comparison theorem;
-- valuation precedence theorem;
-- parameterization theorem;
-- differentiability-emergence theorem under the explicit first-order chart-compatibility conditions;
-- downstream consequence that CF00 is no longer the absolute root.
-
-### 14.2 What is assumption-bearing but explicit
-
-The following are not hidden imports; they are explicit assumptions of the later theorems:
-
-- cancellation, separability, and completeness conditions needed for faithful valuation representation;
-- local generation assumptions needed for parameterization;
-- first-order chart-compatibility condition D1 needed for differentiability emergence.
-
-These are not swept under the rug. They are declared where used.
-
-### 14.3 Is CF000 complete?
-
-CF000 is complete **if** the aim is to identify and derive the deepest currently justified root from which the differentiable branch can emerge.
-
-It is not a proof that all possible physics must begin this way. It is a proof that, for this branch of VDM, differentiability is no longer primitive and that the strongest current route beneath CF00 runs through primitive distinction, law-bearing enrichment, stable comparison, valuation, and parameterization.
-
-That is the correct completion claim for this document.
+This document is **not yet a Completed Formalism** for the entire CF000 program. It is a theorem-bearing draft pass that resolves the realized-content / realized-carrier question relative to $R$ and honestly blocks premature ascent to higher layers.
