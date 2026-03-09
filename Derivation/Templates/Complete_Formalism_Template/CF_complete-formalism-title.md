@@ -8,6 +8,23 @@ License: See LICENSE
 
 ---
 
+### Completion Standard for CF Canon
+
+A document may carry the status **Completed Formalism** only if it is a **closed, theorem-grade formal specification within its declared scope, assumptions, and domain of validity**.
+
+This means:
+
+* all central objects are defined or explicitly imported with hypotheses verified,
+* all theorem-bearing claims have explicit hypotheses, conclusions, and auditable proofs,
+* all essential derivation, validation logic, and failure conditions are present in this document,
+* no core burden is outsourced to canon links, notebooks, figures, or code,
+* any claim that is heuristic, conjectural, programmatic, or only partially established is labeled as such,
+* if any essential proof burden is missing, the document is **not** a Completed Formalism.
+
+“Completed” does **not** mean universally maximal or beyond all future strengthening. It means the claimed result is closed **at the level stated in the document**.
+
+---
+
 <!-- Markdown MathJax only: use $...$ and $$...$$ -->
 
 ## Governing Rule of This Document
