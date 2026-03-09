@@ -1,7 +1,7 @@
 # T8 - A8 (Axiom Candidate) — Lietz A8 Hierarchy / Infinity Resolution Conjecture (scaling law for hierarchical interfaces)
 
 > **Title:** A8 (Candidate) — Lietz A8 Hierarchy / Infinity Resolution Conjecture (scaling law for hierarchical interfaces)  
-> **DOI:** [https://doi.org/10.5281/zenodo.17503344](https://doi.org/10.5281/zenodo.17503344)  
+> **DOI:** [https://doi.org/10.5281/zenodo.17508502](https://doi.org/10.5281/zenodo.17508502)  
 > **Tier:** T8 — Axiomization Candidate (requires both theorem-level result and cross-domain empirical gates)  
 > **Author:** Justin K. Lietz  
 > **Date:** 2025-10-31  
