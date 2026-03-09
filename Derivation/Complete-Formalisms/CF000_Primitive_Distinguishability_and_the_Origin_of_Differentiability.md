@@ -40,7 +40,7 @@ Accordingly, this document does not borrow its core derivation from CF00 or any 
 
 ## Executive Summary
 
-CF000 begins beneath differentiability. It excludes absolute nullity and absolute undifferentiated sameness as viable roots for a falsifiable physical branch, then identifies the weakest surviving primitive residue as a nonempty distinction-bearing multiplicity $(\mathcal{B},\#)$ with primitive apartness and no imported metric, valuation, parameter, derivative, or topology. It then shows that if this branch is to support law rather than one-shot distinction, a minimal additional layer of repeatable, refinement-stable comparison must be earned. Under explicit stability, composability, and representation hypotheses, this yields a valuation layer, then lawful parameterization of update composition, and finally a differentiable carrier $\mathcal{M}$ as the weakest chart-compatible realization of first-order comparison. CF000 therefore does not take differentiability as primitive; it derives the conditions under which differentiability is forced for this branch and thereby reclassifies CF00 as the first differentiable-layer formalism rather than the absolute root.
+CF000 begins beneath differentiability. It excludes absolute nullity and absolute undifferentiated sameness as viable roots for a falsifiable physical branch, then identifies the weakest surviving primitive residue as a nonempty distinction-bearing multiplicity $(\mathcal{B},\\#)$ with primitive apartness and no imported metric, valuation, parameter, derivative, or topology. It then shows that if this branch is to support law rather than one-shot distinction, a minimal additional layer of repeatable, refinement-stable comparison must be earned. Under explicit stability, composability, and representation hypotheses, this yields a valuation layer, then lawful parameterization of update composition, and finally a differentiable carrier $\mathcal{M}$ as the weakest chart-compatible realization of first-order comparison. CF000 therefore does not take differentiability as primitive; it derives the conditions under which differentiability is forced for this branch and thereby reclassifies CF00 as the first differentiable-layer formalism rather than the absolute root.
 
 Principal deliverables of CF000:
 
@@ -107,7 +107,7 @@ The branch does not begin by assuming these are numerical or geometric.
 To prevent later overload:
 
 - $\mathcal{B}$ denotes the primitive distinction-bearing bearer class.
-- $\#$ denotes primitive apartness.
+- $\\#$ denotes primitive apartness.
 - $\mathcal{M}_0$ denotes the realized pre-differential carrier of sharp distinction contents.
 - $\mathcal{M}$ denotes the downstream differentiable carrier earned later in the document.
 - $M$ is reserved for the dissipative symmetric operator or sector only after the later emergent split appears downstream of CF000.
