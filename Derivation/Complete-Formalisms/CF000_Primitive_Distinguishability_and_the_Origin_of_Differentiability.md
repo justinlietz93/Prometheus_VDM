@@ -63,7 +63,7 @@ A second no-go theorem shows that $R$ alone does **not** force stable realized d
 
 A third no-go theorem shows that locality/cover is **not** forced from the solved $R+S$ layer. Locality/cover is therefore introduced explicitly as the next minimal added branch structure $C$.
 
-The present pass addresses the next live theorem burden: whether the solved layer $R+S+C$, together with conditional and non-canonical realized-carrier existence and explicit cover discipline, forces a lawful transformation layer. The answer is no. A no-go theorem shows that branch-usable lawful transformation is not forced from the solved pre-transformation layer. It must be introduced explicitly as the next minimal added branch structure $T$.
+The present pass addresses the next live theorem burden: whether the solved layer $R+S+C+T+D+A$, together with conditional and non-canonical realized-carrier existence, explicit cover discipline, explicitly added lawful transformation, explicit readout discipline, and explicit stable-comparison discipline, forces a valuation representation. The answer is no. A no-go theorem shows that branch-usable valuation representation is not forced from the solved pre-valuation layer. It must be introduced explicitly as the next minimal added branch structure $V$.
 
 Principal deliverables of this pass:
 
@@ -75,7 +75,13 @@ Principal deliverables of this pass:
 - no-go theorem that locality/cover is not forced from the solved $R+S$ layer;
 - explicit introduction of locality/cover as the next minimal added branch structure $C$;
 - no-go theorem that lawful transformation is not forced from the solved $R+S+C$ layer;
-- explicit introduction of lawful transformation as the next minimal added branch structure $T$.
+- explicit introduction of lawful transformation as the next minimal added branch structure $T$;
+- no-go theorem that distinguishers/signatures are not forced from the solved $R+S+C+T$ layer;
+- explicit introduction of distinguishers/signatures as the next minimal added branch structure $D$;
+- no-go theorem that stable comparison algebra is not forced from the solved $R+S+C+T+D$ layer;
+- explicit introduction of stable comparison algebra as the next minimal added branch structure $A$;
+- no-go theorem that valuation representation is not forced from the solved $R+S+C+T+D+A$ layer;
+- explicit introduction of valuation representation as the next minimal added branch structure $V$.
 
 ---
 
@@ -100,7 +106,7 @@ Principal deliverables of this pass:
 
 - Absolute nullity is not a viable root for a falsifiable law-bearing branch.
 - Absolute undifferentiated sameness is not a viable root for a falsifiable law-bearing branch.
-- The weakest surviving residue is a nonempty distinction-bearing multiplicity $({\mathcal B},\#)$ with nontrivial apartness and no imported metric, valuation, parameterization, continuity, locality, transformation, or differentiability.
+- The weakest surviving residue is a nonempty distinction-bearing multiplicity $({\mathcal B},\#)$ with nontrivial apartness and no imported metric, valuation, parameterization, continuity, locality, transformation, readout, or differentiability.
 - A direct leap from primitive distinction to differentiability is illegitimate.
 - Refinement/compatibility is **not** forced from primitive distinction alone.
 - Refinement/compatibility has been reclassified as the first minimal added branch structure $R$.
@@ -112,13 +118,22 @@ Principal deliverables of this pass:
 - Locality/cover has been reclassified as the next minimal added branch structure $C$.
 - Lawful transformation is **not** forced from the solved $R+S+C$ layer.
 - Lawful transformation has been reclassified as the next minimal added branch structure $T$.
+- Distinguishers/signatures are **not** forced from the solved $R+S+C+T$ layer.
+- Distinguishers/signatures have been reclassified as the next minimal added branch structure $D$.
+- Stable comparison algebra is **not** forced from the solved $R+S+C+T+D$ layer.
+- Stable comparison algebra has been reclassified as the next minimal added branch structure $A$.
+- Valuation representation is **not** forced from the solved $R+S+C+T+D+A$ layer.
+- Valuation representation has been reclassified as the next minimal added branch structure $V$.
 
 ### Provisional results
 
 - It remains open whether a weaker added structure than $S$ would already suffice for realized contents/carrier.
 - It remains open whether a weaker added structure than $C$ would already suffice for branch-usable locality.
 - It remains open whether a weaker added structure than $T$ would already suffice for branch-usable lawful transformation.
-- Distinguishers, stable comparison, valuation, and parameterization may later be needed for one route to differentiability.
+- It remains open whether a weaker added structure than $D$ would already suffice for branch-usable readout/discrimination.
+- It remains open whether a weaker added structure than $A$ would already suffice for branch-usable stable comparison.
+- It remains open whether a weaker added structure than $V$ would already suffice for branch-usable valuation.
+- Parameterization and differentiability may later be needed for one route to a differentiable branch.
 
 These are not yet earned in the present pass.
 
@@ -129,16 +144,18 @@ These are not yet earned in the present pass.
 - Treating realized contents or a realized carrier as already forced from refinement/compatibility alone.
 - Treating locality/cover as already theorem-grade from the solved $R+S$ layer.
 - Treating lawful transformation as already theorem-grade from the solved $R+S+C$ layer.
-- Treating valuation as already forced at the present layer.
+- Treating distinguishers/signatures as already theorem-grade from the solved $R+S+C+T$ layer.
+- Treating stable comparison algebra as already theorem-grade from the solved $R+S+C+T+D$ layer.
+- Treating valuation as already theorem-grade from the solved $R+S+C+T+D+A$ layer.
 - Treating the carrier regime produced under $R+S$ as already unique or canonical.
 
 ### Live theorem target
 
-Determine whether distinguishers/signatures are forced from the solved $R+S+C+T$ layer, or whether they must themselves be introduced explicitly as the next minimal branch structure.
+Determine whether a parameterization layer is forced from the solved $R+S+C+T+D+A+V$ layer, or whether parameterization must itself be introduced explicitly as the next minimal branch structure.
 
 ### Forbidden regressions
 
-The document may not proceed upward to distinguishers/signatures, comparison algebra, valuation, parameterization, or differentiability until the distinguisher/signature question is settled and written into the document.
+The document may not proceed upward to parameterization or differentiability until the valuation question is settled and written into the document.
 
 ---
 
@@ -211,9 +228,12 @@ The present pass commits only to:
 3. the explicitly added refinement/compatibility structure $R$,
 4. the explicitly added realization/decisiveness layer $S$,
 5. the explicitly added locality/cover structure $C$,
-6. the explicitly added lawful-transformation structure $T$.
+6. the explicitly added lawful-transformation structure $T$,
+7. the explicitly added distinguisher/signature structure $D$,
+8. the explicitly added stable-comparison structure $A$,
+9. the explicitly added valuation-representation structure $V$.
 
-The present pass does **not** yet commit to distinguishers/signatures, comparison algebra, valuation, parameterization, or differentiability.
+The present pass does **not** yet commit to parameterization or differentiability.
 
 ---
 
@@ -443,11 +463,167 @@ This structure is weaker than distinguishers/signatures, comparison algebra, val
 
 ### 2.12 Status of lawful transformation
 
-At this stage, lawful transformation is not assumed primitive. Nor is it forced by the prior layer unless proved below. The theorem target of the present pass is therefore:
+At this stage, lawful transformation is not assumed primitive. The previous pass established a no-go theorem: branch-usable lawful transformation is not forced from the solved $R+S+C$ layer and must be introduced explicitly as the next minimal added branch structure $T$.
 
-> determine whether the solved layer $R+S+C$ forces a branch-usable lawful-transformation discipline, or whether such a discipline must be introduced explicitly as the next minimal added branch structure.
+### 2.13 Candidate distinguisher/signature discipline relative to $R+S+C+T$
 
----
+At the present stage the branch has:
+
+- primitive distinguishability,
+- explicit refinement/compatibility,
+- conditional and non-canonical realized contents,
+- an explicit cover/locality discipline,
+- and an explicitly added lawful-transformation discipline.
+
+It still does not yet have a theorem-grade notion of readout, discrimination, or signature-bearing outcome.
+
+A **distinguisher/signature discipline** on a realized-carrier regime $\mathcal M_0^{(R+S)}$ equipped with cover $C$ and lawful transformations $T$ consists of:
+
+1. a nonempty signature class $\mathfrak{Sig}$;
+2. an event domain
+   $$
+   \mathcal E_T := \{(X,\tau) : X\in \operatorname{Dom}(\tau),\; \tau\in \mathfrak T\};
+   $$
+3. a nonempty class $\mathfrak D$ of partial readout acts
+   $$
+   \delta : \operatorname{Dom}(\delta) \to \mathfrak{Sig},
+   \qquad
+   \operatorname{Dom}(\delta) \subseteq \mathcal E_T,
+   $$
+   satisfying the following minimal clauses.
+
+- **D1 (event admissibility)** Each distinguisher is defined only on admissible transformation-events in $\mathcal E_T$.
+- **D2 (extensional event identity)** If two admissible event descriptions coincide in the solved layer, then every distinguisher defined on both assigns the same signature to them.
+- **D3 (repeatable readout)** Whenever the same admissible event is presented again to the same distinguisher, the same signature is returned.
+- **D4 (branch-usable nontriviality)** At least one distinguisher separates at least one pair of admissible events not already identified by solved-layer equality.
+
+This structure is weaker than comparison algebra, valuation, parameterization, or differentiability. It supplies only readout-level discrimination and outcome identity. It does not yet order signatures, compose signatures, or assign numerical value.
+
+### 2.14 Status of distinguishers/signatures
+
+At this stage, distinguishers/signatures are not assumed primitive. Nor are they forced by the prior layer unless proved below. The theorem target solved by the previous pass was:
+
+> determine whether the solved layer $R+S+C+T$ forces a branch-usable distinguisher/signature discipline, or whether such a discipline must be introduced explicitly as the next minimal added branch structure.
+
+The answer was negative, and the branch now proceeds to the comparison-algebra question.
+
+
+### 2.15 Candidate stable-comparison algebra relative to $R+S+C+T+D$
+
+At the present stage the branch has:
+
+- primitive distinguishability,
+- explicit refinement/compatibility,
+- conditional and non-canonical realized contents,
+- an explicit cover/locality discipline,
+- an explicitly added lawful-transformation discipline,
+- and an explicitly added distinguisher/signature discipline.
+
+It still does not yet have a theorem-grade notion of stable comparison.
+
+A **stable comparison algebra** on a solved layer $(R+S+C+T+D)$ consists of:
+
+1. a nonempty class $\mathfrak C$ of comparison classes,
+2. a surjective class-forming map
+   $$
+   q : \mathfrak{Sig} \to \mathfrak C,
+   $$
+3. a preorder
+   $$
+   \sqsubseteq\; \subseteq \mathfrak C \times \mathfrak C,
+   $$
+4. a partial binary operation
+   $$
+   \odot : \operatorname{Dom}(\odot) \subseteq \mathfrak C \times \mathfrak C \to \mathfrak C,
+   $$
+   satisfying the following minimal clauses.
+
+- **A1 (signature class identity)** If two signatures are identified by the solved readout layer as the same signature, then they determine the same comparison class.
+- **A2 (preorder discipline)** $\sqsubseteq$ is reflexive and transitive on $\mathfrak C$.
+- **A3 (branch-usable nontriviality)** At least one pair of comparison classes is not identified by mutual preorder collapse.
+- **A4 (comparison stability under admissible readout reuse)** If the same admissible event is presented again to the same distinguisher and yields the same signature, then its comparison class is preserved.
+- **A5 (partial composition respect)** Whenever comparison composition is declared on a pair $(c_1,c_2)$, the class $c_1 \odot c_2$ depends only on the comparison classes and not on hidden presentation choices of the underlying signatures.
+
+This structure is weaker than valuation, parameterization, or differentiability. It does not yet assign numbers, select coordinates, or impose first-order smooth structure. It supplies only stable comparison-class identity, a comparison relation, and optional class-level composition.
+
+### 2.16 Status of stable comparison algebra
+
+At this stage, stable comparison algebra is not assumed primitive. The previous pass established by no-go theorem that it is not forced by the prior layer and must therefore be introduced explicitly as the next minimal added branch structure $A$ if the branch is to continue toward valuation, parameterization, or differentiability.
+
+
+### 2.17 Candidate valuation representation relative to $R+S+C+T+D+A$
+
+At the present stage the branch has:
+
+- primitive distinguishability,
+- explicit refinement/compatibility,
+- conditional and non-canonical realized contents,
+- an explicit cover/locality discipline,
+- an explicitly added lawful-transformation discipline,
+- an explicitly added distinguisher/signature discipline,
+- and an explicitly added stable-comparison algebra.
+
+It still does not yet have a theorem-grade notion of valuation.
+
+A **valuation representation** on a solved layer $(R+S+C+T+D+A)$ consists of:
+
+1. an ordered composition regime
+   $$
+   (\mathbb V, \leq_{\mathbb V}, \oplus, 0_{\mathbb V}),
+   $$
+   where $\leq_{\mathbb V}$ is a preorder on $\mathbb V$, $\oplus$ is an associative binary operation on $\mathbb V$ with neutral element $0_{\mathbb V}$, and $\oplus$ is monotone in each argument with respect to $\leq_{\mathbb V}$;
+2. a map
+   $$
+   
+u : \mathfrak C 	o \mathbb V,
+   $$
+   satisfying the following minimal clauses.
+
+- **V1 (class identity respect)** If $c_1=c_2$ in $\mathfrak C$, then $
+u(c_1)=
+u(c_2)$.
+- **V2 (order preservation)** If $c_1 \sqsubseteq c_2$, then
+  $$
+  
+u(c_1) \leq_{\mathbb V} 
+u(c_2).
+  $$
+- **V3 (strict noncollapse of strict comparison)** If
+  $$
+  c_1 \sqsubseteq c_2
+  \qquad	ext{and}\qquad
+  
+eg(c_2 \sqsubseteq c_1),
+  $$
+  then
+  $$
+  
+u(c_1) <_{\mathbb V} 
+u(c_2),
+  $$
+  where $x <_{\mathbb V} y$ abbreviates $x \leq_{\mathbb V} y$ and $
+eg(y \leq_{\mathbb V} x)$.
+- **V4 (comparison-composition respect)** Whenever $c_1 \odot c_2$ is defined,
+  $$
+  
+u(c_1 \odot c_2) = 
+u(c_1) \oplus 
+u(c_2).
+  $$
+- **V5 (neutral normalization when available)** If $\mathfrak C$ contains a comparison class $e_{\mathfrak C}$ acting as a neutral element for all comparison compositions on which it is defined, then
+  $$
+  
+u(e_{\mathfrak C}) = 0_{\mathbb V}.
+  $$
+
+This structure is weaker than parameterization or differentiability. It assigns order-compatible values to stable comparison classes, but it does not yet supply coordinates, update parameters, chart transitions, or derivatives.
+
+### 2.18 Status of valuation representation
+
+At this stage, valuation representation is not assumed primitive. The theorem target of the present pass is therefore:
+
+> determine whether the solved layer $R+S+C+T+D+A$ forces a branch-usable valuation representation, or whether such a representation must be introduced explicitly as the next minimal added branch structure.
+
 
 ## 3. Foundational Construction
 
@@ -972,11 +1148,566 @@ So the correct status is:
 - lawful transformation is the next **minimal added branch structure** $T$,
 - no upward climb beyond transformation is licensed until later passes settle the next staircase question.
 
----
+### 3.18 No-go theorem for forcing distinguishers/signatures from $R+S+C+T$
+
+**Theorem 3.18.1 (No-go theorem for forcing distinguishers/signatures from $R+S+C+T$).**  
+The solved layer consisting of primitive distinguishability, the added refinement/compatibility structure $R$, the added realization/decisiveness layer $S$, the explicitly added locality/cover structure $C$, and the explicitly added lawful-transformation structure $T$ is **not** sufficient to force a unique or canonical branch-usable distinguisher/signature discipline on the event domain $\mathcal E_T$. More strongly:
+
+1. there exist $R+S+C+T$-models with the same realized-carrier regime, the same cover discipline, and the same lawful-transformation discipline that admit inequivalent distinguisher/signature layers satisfying D1--D4;
+2. there exist $R+S+C+T$-models in which no branch-usable nontrivial distinguisher/signature layer is determined unless further readout data are stipulated;
+3. therefore distinguishers/signatures are not theorem-grade from the solved $R+S+C+T$ layer and must be introduced explicitly as the next minimal added branch structure if the branch is to proceed toward stable comparison, valuation, parameterization, and differentiability.
+
+**Hypotheses.**
+
+1. The primitive substrate $({\mathcal B},\#)$ satisfies Section 2.2.
+2. The added branch structures $R$, $S$, $C$, and $T$ satisfy Sections 2.5, 2.7, 2.9, and 2.11.
+3. The conditional existence and non-canonicity results of Theorems 3.9.1 and 3.10.1 hold.
+4. The no-go results for forced locality and forced lawful transformation, together with the explicit additions of $C$ and $T$, hold as in Theorems 3.12.1 and 3.15.1 and Sections 3.13 and 3.16.
+5. No additional observability axioms, outcome-identity axioms, signature-composition axioms, or readout-selection principles are assumed beyond $R+S+C+T$.
+
+**Conclusion.**
+
+Under these hypotheses alone, no unique or canonical branch-usable distinguisher/signature discipline is forced on $\mathcal E_T$. If the branch wishes to continue toward stable comparison, valuation, parameterization, or differentiability, it must add distinguishers/signatures explicitly.
+
+**Proof.**
+
+Fix any $R+S+C+T$-model with realized-carrier regime
+$$
+\mathcal M_0^{(R+S)} = \{X_a, X_b\},
+$$
+a fixed cover discipline $\triangleleft$, and a fixed lawful-transformation discipline
+$$
+\mathfrak T = \{\mathrm{id}, \sigma\},
+$$
+where
+$$
+\sigma(X_a)=X_b,
+\qquad
+\sigma(X_b)=X_a.
+$$
+Then the associated event domain is
+$$
+\mathcal E_T = \{(X_a,\mathrm{id}), (X_b,\mathrm{id}), (X_a,\sigma), (X_b,\sigma)\}.
+$$
+We now define three distinct readout realizations on the same solved pre-distinguisher layer.
+
+#### Realization D-void: no branch-usable distinguisher/signature discipline determined
+
+Take no signature class and no nontrivial readout acts. The solved layer $R+S+C+T$ does not by itself specify any codomain of outcomes, any event-to-outcome assignment, or any criterion by which two outcomes count as the same or different. Therefore nothing in the solved layer alone forces a nonempty branch-usable distinguisher/signature discipline.
+
+This already proves that existence of a branch-usable nontrivial readout layer is not forced.
+
+#### Realization D-trivial: constant readout discipline
+
+Let
+$$
+\mathfrak{Sig}_{\mathrm{triv}} = \{\mathtt{const}\}
+$$
+be a singleton signature class, and let
+$$
+\mathfrak D_{\mathrm{triv}} = \{\delta_{\mathrm{triv}}\}
+$$
+with
+$$
+\delta_{\mathrm{triv}}(e)=\mathtt{const}
+\qquad
+\text{for all } e\in \mathcal E_T.
+$$
+Then D1, D2, and D3 hold automatically. D4 fails, because no pair of events is separated by the readout. So this realization gives a readout discipline in the weak sense of event-to-outcome assignment, but not a branch-usable nontrivial distinguisher/signature layer.
+
+#### Realization D-separating: nontrivial readout discipline
+
+Let
+$$
+\mathfrak{Sig}_{\mathrm{sep}} = \{\mathtt{stay}, \mathtt{swap}\}
+$$
+and let
+$$
+\mathfrak D_{\mathrm{sep}} = \{\delta_{\mathrm{sep}}\}
+$$
+with
+$$
+\delta_{\mathrm{sep}}(X,\mathrm{id}) = \mathtt{stay},
+\qquad
+\delta_{\mathrm{sep}}(X,\sigma) = \mathtt{swap}
+$$
+for every admissible $X$.
+
+Then D1 holds because the distinguisher is defined on admissible events. D2 holds because equal events receive equal signatures. D3 holds because the same event always returns the same signature. D4 holds because
+$$
+(X_a,\mathrm{id})
+\quad\text{and}\quad
+(X_a,\sigma)
+$$
+are not identified by solved-layer equality and are assigned distinct signatures.
+
+Thus the same solved layer admits both a trivial and a nontrivial readout regime, and even admits the complete absence of a branch-usable nontrivial readout layer unless additional readout data are stipulated.
+
+These realizations are inequivalent:
+
+- D-void does not determine a branch-usable distinguisher/signature layer at all;
+- D-trivial determines only a constant outcome assignment;
+- D-separating determines a nontrivial event-separating readout.
+
+Yet all three are compatible with the same solved $R+S+C+T$ layer. Therefore the solved layer does not force a unique or canonical distinguisher/signature discipline. More strongly, it does not force existence of a branch-usable nontrivial distinguisher/signature layer. Distinguishers/signatures must therefore be added explicitly if the branch is to proceed upward. $\square$
+
+### 3.19 Explicit introduction of distinguishers/signatures as the next added branch structure
+
+Since distinguishers/signatures are not forced from the solved layer, the branch now introduces them explicitly.
+
+**Added Branch Structure $D$.**  
+A continuation of the branch beyond realized-carrier existence, explicit locality, and explicit lawful transformation must specify a distinguisher/signature discipline $(\mathfrak D, \mathfrak{Sig})$ on the event domain $\mathcal E_T$ satisfying D1--D4 together with any extra outcome-identity, readout-repeatability, or branch-adequacy principles required for the intended continuation.
+
+$D$ is not forced from the prior layer. It is the next **minimal added branch structure** required if the branch wishes to continue toward stable comparison, valuation, parameterization, or differentiability.
+
+### 3.20 What Theorem 3.18.1 does and does not prove
+
+**What it proves.**
+
+- The solved $R+S+C+T$ layer does not force a unique or canonical distinguisher/signature discipline.
+- The branch cannot treat readout or signature identity as theorem-grade from realized-carrier existence, locality, and lawful transformation alone.
+- Any continuation toward stable comparison, valuation, parameterization, or differentiability must add distinguishers/signatures explicitly.
+
+**What it does not prove.**
+
+- It does not show that distinguishers/signatures are impossible.
+- It does not show that every readout discipline is equally good.
+- It does not show that D1--D4 are uniquely minimal in all imaginable branches.
+- It does not derive stable comparison, valuation, parameterization, or differentiability.
+
+So the correct status is:
+
+- distinguishers/signatures are **not forced from $R+S+C+T$**,
+- distinguishers/signatures are the next **minimal added branch structure** $D$,
+- no upward climb beyond readout is licensed until later passes settle the comparison-algebra question.
+
+
+### 3.21 No-go theorem for forcing stable comparison algebra from $R+S+C+T+D$
+
+**Theorem 3.21.1 (No-go theorem for forcing stable comparison algebra from $R+S+C+T+D$).**  
+The solved layer consisting of primitive distinguishability, the added refinement/compatibility structure $R$, the added realization/decisiveness layer $S$, the explicitly added locality/cover structure $C$, the explicitly added lawful-transformation structure $T$, and the explicitly added distinguisher/signature structure $D$ is **not** sufficient to force a unique or canonical branch-usable stable comparison algebra. More strongly:
+
+1. there exist $R+S+C+T+D$-models with the same realized-carrier regime, the same cover discipline, the same lawful-transformation discipline, and the same distinguisher/signature discipline that admit inequivalent stable comparison algebras satisfying A1--A5;
+2. there exist $R+S+C+T+D$-models in which no branch-usable nontrivial comparison algebra is determined unless further comparison data are stipulated;
+3. therefore stable comparison algebra is not theorem-grade from the solved $R+S+C+T+D$ layer and must be introduced explicitly as the next minimal added branch structure if the branch is to proceed toward valuation, parameterization, and differentiability.
+
+**Hypotheses.**
+
+1. The primitive substrate $({\mathcal B},\#)$ satisfies Section 2.2.
+2. The added branch structures $R$, $S$, $C$, $T$, and $D$ satisfy Sections 2.5, 2.7, 2.9, 2.11, and 2.13.
+3. The conditional existence and non-canonicity results of Theorems 3.9.1 and 3.10.1 hold.
+4. The no-go results for forced locality, forced lawful transformation, and forced distinguishers/signatures, together with the explicit additions of $C$, $T$, and $D$, hold as in Theorems 3.12.1, 3.15.1, and 3.18.1 and Sections 3.13, 3.16, and 3.19.
+5. No additional order axioms, signature-comparison axioms, class-composition axioms, or context-invariant comparison-selection principles are assumed beyond $R+S+C+T+D$.
+
+**Conclusion.**
+
+Under these hypotheses alone, no unique or canonical branch-usable stable comparison algebra is forced on the solved pre-comparison layer. If the branch wishes to continue toward valuation, parameterization, or differentiability, it must add stable comparison algebra explicitly.
+
+**Proof.**
+
+Fix any $R+S+C+T+D$-model with realized-carrier regime
+$$
+\mathcal M_0^{(R+S)} = \{X_a, X_b\},
+$$
+a fixed cover discipline $\triangleleft$, a fixed lawful-transformation discipline
+$$
+\mathfrak T = \{\mathrm{id}, \sigma\},
+$$
+with
+$$
+\sigma(X_a)=X_b,
+\qquad
+\sigma(X_b)=X_a,
+$$
+and a fixed nontrivial distinguisher/signature discipline
+$$
+\mathfrak{Sig} = \{\mathtt{stay}, \mathtt{swap}\},
+\qquad
+\mathfrak D = \{\delta_{\mathrm{sep}}\},
+$$
+where
+$$
+\delta_{\mathrm{sep}}(X,\mathrm{id}) = \mathtt{stay},
+\qquad
+\delta_{\mathrm{sep}}(X,\sigma) = \mathtt{swap}
+$$
+for each admissible $X$.
+
+The solved pre-comparison layer is therefore fixed: same carrier, same cover, same transformations, same readout, same signatures.
+
+We now define three inequivalent comparison realizations on that same solved layer.
+
+#### Realization A-void: no branch-usable comparison algebra determined
+
+Take no comparison-class quotient beyond raw signature identity, no comparison preorder, and no class-level composition law. The solved $R+S+C+T+D$ layer by itself does not specify:
+
+- whether signatures are comparable,
+- whether any one signature is greater, smaller, or equivalent in comparison strength to another,
+- whether signatures should be grouped into coarser comparison classes,
+- or whether there is any meaningful class-level composition of comparisons.
+
+Therefore nothing in the solved layer alone forces a nonempty branch-usable stable comparison algebra.
+
+This already proves that existence of a nontrivial comparison algebra is not forced.
+
+#### Realization A-discrete: equality-only comparison
+
+Let
+$$
+\mathfrak C_{\mathrm{disc}} = \{[\mathtt{stay}], [\mathtt{swap}]\},
+$$
+where each signature forms its own comparison class. Define
+$$
+c \sqsubseteq_{\mathrm{disc}} d
+\quad\text{iff}\quad
+c=d.
+$$
+Define partial composition only on identical pairs by
+$$
+[\mathtt{stay}] \odot_{\mathrm{disc}} [\mathtt{stay}] = [\mathtt{stay}],
+\qquad
+[\mathtt{swap}] \odot_{\mathrm{disc}} [\mathtt{swap}] = [\mathtt{swap}],
+$$
+and leave mixed pairs undefined.
+
+Then A1--A5 hold:
+
+- A1 holds because the quotient is by signature identity.
+- A2 holds because equality is a reflexive and transitive preorder.
+- A3 holds because the two classes are not mutually collapsed.
+- A4 holds because repeated readout returns the same signature and hence the same comparison class.
+- A5 holds because the declared partial composition depends only on comparison classes.
+
+So $\mathfrak C_{\mathrm{disc}}$ is a branch-usable stable comparison algebra.
+
+#### Realization A-flat: total comparison collapse without class collapse
+
+Keep the same two classes
+$$
+\mathfrak C_{\mathrm{flat}} = \{[\mathtt{stay}], [\mathtt{swap}]\},
+$$
+but now define a total preorder
+$$
+c \sqsubseteq_{\mathrm{flat}} d
+\quad\text{for all } c,d \in \mathfrak C_{\mathrm{flat}}.
+$$
+Define a total class composition by choosing
+$$
+c \odot_{\mathrm{flat}} d = [\mathtt{swap}]
+\quad\text{for all } c,d \in \mathfrak C_{\mathrm{flat}}.
+$$
+Then A1, A2, A4, and A5 hold immediately. A3 still holds because the classes remain distinct as comparison classes even though the preorder collapses them comparison-wise.
+
+This is a stable comparison algebra inequivalent to $\mathfrak C_{\mathrm{disc}}$.
+
+#### Realization A-ordered: noncollapsed directional comparison
+
+Keep the same comparison classes but define
+$$
+[\mathtt{stay}] \sqsubseteq_{\mathrm{ord}} [\mathtt{swap}],
+$$
+with reflexive closure and no converse strict relation except reflexivity. Define a partial composition by
+$$
+[\mathtt{stay}] \odot_{\mathrm{ord}} [\mathtt{stay}] = [\mathtt{stay}],
+$$
+$$
+[\mathtt{stay}] \odot_{\mathrm{ord}} [\mathtt{swap}] = [\mathtt{swap}],
+$$
+$$
+[\mathtt{swap}] \odot_{\mathrm{ord}} [\mathtt{stay}] = [\mathtt{swap}],
+$$
+and leave $[\mathtt{swap}] \odot_{\mathrm{ord}} [\mathtt{swap}]$ defined as either $[\mathtt{swap}]$ or undefined; either option satisfies A5 if chosen consistently.
+
+Again A1--A5 hold, and this realization is inequivalent to both the discrete and flat comparison realizations.
+
+These three realizations all live on the same solved $R+S+C+T+D$ layer. They share:
+
+- the same realized contents,
+- the same locality/cover,
+- the same lawful transformations,
+- the same event domain,
+- the same signatures,
+- and the same readout discipline.
+
+Yet they yield inequivalent comparison algebras. Moreover, the A-void realization shows that no branch-usable nontrivial comparison algebra is forced unless additional comparison data are stipulated.
+
+Therefore the solved $R+S+C+T+D$ layer does not force a unique or canonical stable comparison algebra. More strongly, it does not force existence of a branch-usable nontrivial comparison algebra. Stable comparison must therefore be added explicitly if the branch is to proceed upward. $\square$
+
+### 3.22 Explicit introduction of stable comparison algebra as the next added branch structure
+
+Since stable comparison algebra is not forced from the solved layer, the branch now introduces it explicitly.
+
+**Added Branch Structure $A$.**  
+A continuation of the branch beyond realized-carrier existence, explicit locality, explicit lawful transformation, and explicit distinguisher/signature discipline must specify a stable comparison algebra $(\mathfrak C, \sqsubseteq, \odot)$ satisfying A1--A5 together with any extra order, composition, or comparison-adequacy principles required for the intended continuation.
+
+$A$ is not forced from the prior layer. It is the next **minimal added branch structure** required if the branch wishes to continue toward valuation, parameterization, or differentiability.
+
+### 3.23 What Theorem 3.21.1 does and does not prove
+
+**What it proves.**
+
+- The solved $R+S+C+T+D$ layer does not force a unique or canonical stable comparison algebra.
+- The branch cannot treat comparison as theorem-grade from realized-carrier existence, locality, lawful transformation, and readout alone.
+- Any continuation toward valuation, parameterization, or differentiability must add stable comparison algebra explicitly.
+
+**What it does not prove.**
+
+- It does not show that stable comparison algebra is impossible.
+- It does not show that every comparison algebra is equally good.
+- It does not show that A1--A5 are uniquely minimal in all imaginable branches.
+- It does not derive valuation, parameterization, or differentiability.
+
+So the correct status is:
+
+- stable comparison algebra is **not forced from $R+S+C+T+D$**,
+- stable comparison algebra is the next **minimal added branch structure** $A$,
+- no upward climb beyond comparison is licensed until later passes settle the valuation question.
+
+
+### 3.24 No-go theorem for forcing valuation representation from $R+S+C+T+D+A$
+
+**Theorem 3.24.1 (No-go theorem for forcing valuation representation from $R+S+C+T+D+A$).**  
+The solved layer consisting of primitive distinguishability, the added refinement/compatibility structure $R$, the added realization/decisiveness layer $S$, the explicitly added locality/cover structure $C$, the explicitly added lawful-transformation structure $T$, the explicitly added distinguisher/signature structure $D$, and the explicitly added stable-comparison algebra structure $A$ is **not** sufficient to force a unique or canonical branch-usable valuation representation. More strongly:
+
+1. there exist solved $R+S+C+T+D+A$ layers with the same comparison algebra that admit inequivalent valuation representations satisfying V1--V5;
+2. there exist solved $R+S+C+T+D+A$ layers whose comparison algebra admits no branch-usable valuation representation satisfying V1--V5;
+3. therefore valuation representation is not theorem-grade from the solved $R+S+C+T+D+A$ layer and must be introduced explicitly as the next minimal added branch structure if the branch is to proceed toward parameterization and differentiability.
+
+**Hypotheses.**
+
+1. The primitive substrate $({\mathcal B},\#)$ satisfies Section 2.2.
+2. The added branch structures $R$, $S$, $C$, $T$, $D$, and $A$ satisfy Sections 2.5, 2.7, 2.9, 2.11, 2.13, and 2.15.
+3. The conditional existence and non-canonicity results of Theorems 3.9.1 and 3.10.1 hold.
+4. The no-go results for forced locality, forced lawful transformation, forced distinguishers/signatures, and forced stable comparison, together with the explicit additions of $C$, $T$, $D$, and $A$, hold as in Theorems 3.12.1, 3.15.1, 3.18.1, and 3.21.1 and Sections 3.13, 3.16, 3.19, and 3.22.
+5. No additional valuation axioms, normalization axioms, representation-selection principles, or codomain-selection principles are assumed beyond $R+S+C+T+D+A$.
+
+**Conclusion.**
+
+Under these hypotheses alone, no unique or canonical branch-usable valuation representation is forced on the solved pre-valuation layer. More strongly, branch-usable valuation need not exist for every admissible stable-comparison algebra. If the branch wishes to continue toward parameterization or differentiability, it must add valuation explicitly.
+
+**Proof.**
+
+We prove non-uniqueness and non-forcing separately.
+
+#### Part I: same comparison algebra, inequivalent valuation representations
+
+Fix a solved $R+S+C+T+D+A$ layer whose stable comparison algebra is the sparse ordered comparison algebra
+$$
+\mathfrak C_{\mathrm{sp}} = \{c_0,c_1\},
+$$
+with preorder
+$$
+c_0 \sqsubseteq c_0,\qquad c_1 \sqsubseteq c_1,\qquad c_0 \sqsubseteq c_1,
+$$
+and no converse relation $c_1 \sqsubseteq c_0$. Let the only defined comparison compositions be
+$$
+c_0 \odot c_0 = c_0,\qquad
+c_0 \odot c_1 = c_1,\qquad
+c_1 \odot c_0 = c_1,
+$$
+with $c_1 \odot c_1$ left undefined.
+
+This satisfies A1--A5.
+
+Now define two valuation realizations on the same comparison algebra.
+
+**Valuation realization $V_{\max}$.**  
+Let
+$$
+\mathbb V_{\max} = \{0,1\}
+$$
+with the usual order $0 \leq 1$, operation
+$$
+x \oplus_{\max} y := \max\{x,y\},
+$$
+and neutral element $0$. Define
+$$
+
+u_{\max}(c_0)=0,\qquad 
+u_{\max}(c_1)=1.
+$$
+Then:
+
+- V1 holds by definition.
+- V2 holds because $c_0 \sqsubseteq c_1$ and $0 \leq 1$.
+- V3 holds because $c_0 \sqsubseteq c_1$ and not conversely, while $0<1$.
+- V4 holds on every defined comparison composition:
+  $$
+  
+u_{\max}(c_0 \odot c_0)=
+u_{\max}(c_0)=0=0\oplus_{\max}0,
+  $$
+  $$
+  
+u_{\max}(c_0 \odot c_1)=
+u_{\max}(c_1)=1=0\oplus_{\max}1,
+  $$
+  $$
+  
+u_{\max}(c_1 \odot c_0)=
+u_{\max}(c_1)=1=1\oplus_{\max}0.
+  $$
+- V5 holds with $c_0$ as neutral class.
+
+So $(\mathbb V_{\max},
+u_{\max})$ is a branch-usable valuation representation.
+
+**Valuation realization $V_{+}$.**  
+Let
+$$
+\mathbb V_{+} = \mathbb N
+$$
+with the usual order, usual addition, and neutral element $0$. Define
+$$
+
+u_{+}(c_0)=0,\qquad 
+u_{+}(c_1)=1.
+$$
+Then:
+
+- V1 holds by definition.
+- V2 holds because $0 \leq 1$.
+- V3 holds because $0<1$.
+- V4 holds on every defined comparison composition:
+  $$
+  
+u_{+}(c_0 \odot c_0)=0=0+0,
+  $$
+  $$
+  
+u_{+}(c_0 \odot c_1)=1=0+1,
+  $$
+  $$
+  
+u_{+}(c_1 \odot c_0)=1=1+0.
+  $$
+- V5 holds with $c_0$ as neutral class.
+
+So $(\mathbb V_{+},
+u_{+})$ is also a branch-usable valuation representation.
+
+The two valuation realizations are inequivalent as valuation regimes. One has an idempotent bounded target with operation $\max$; the other has an unbounded additive target with non-idempotent operation $+$. The solved layer and the comparison algebra are the same, yet the valuation codomain and valuation composition law are not uniquely determined. Therefore valuation representation is not uniquely or canonically forced even when existence is available.
+
+#### Part II: some stable comparison algebras admit no branch-usable valuation representation
+
+Now fix a solved $R+S+C+T+D+A$ layer whose stable comparison algebra is
+$$
+\mathfrak C_{\mathrm{bad}} = \{x,y,z\},
+$$
+with preorder generated by
+$$
+x \sqsubseteq y,
+$$
+and no converse relation $y \sqsubseteq x$. Let comparison composition be defined by
+$$
+x \odot z = y,\qquad
+y \odot z = x,
+$$
+with all other compositions either undefined or chosen so as not to affect the argument.
+
+This still satisfies A1--A5:
+
+- A1 is irrelevant to the present abstract comparison layer once the classes are fixed.
+- A2 holds because the preorder generated by $x \sqsubseteq y$ is reflexive and transitive.
+- A3 holds because $x$ and $y$ are not mutually collapsed by the preorder.
+- A4 and A5 hold because the class-level composition is well defined on the declared domain.
+
+Assume, for contradiction, that there exists a branch-usable valuation representation
+$$
+
+u : \mathfrak C_{\mathrm{bad}} 	o \mathbb V
+$$
+satisfying V1--V5 into some ordered composition regime $(\mathbb V,\leq_{\mathbb V},\oplus,0_{\mathbb V})$.
+
+From $x \sqsubseteq y$ and V2,
+$$
+
+u(x) \leq_{\mathbb V} 
+u(y).
+$$
+Because $\oplus$ is monotone in each argument,
+$$
+
+u(x)\oplus 
+u(z) \leq_{\mathbb V} 
+u(y)\oplus 
+u(z).
+$$
+By V4 and the declared comparison compositions,
+$$
+
+u(x\odot z) \leq_{\mathbb V} 
+u(y\odot z),
+$$
+hence
+$$
+
+u(y) \leq_{\mathbb V} 
+u(x).
+$$
+So $
+u(x)$ and $
+u(y)$ are mutually comparable both ways. But V3 requires strict noncollapse whenever
+$$
+x \sqsubseteq y
+\qquad	ext{and}\qquad
+
+eg(y \sqsubseteq x),
+$$
+which is exactly the present case. Therefore V3 requires
+$$
+
+u(x) <_{\mathbb V} 
+u(y),
+$$
+contradicting $
+u(y) \leq_{\mathbb V} 
+u(x)$.
+
+Hence no branch-usable valuation representation satisfying V1--V5 exists for this stable comparison algebra.
+
+So valuation is not merely non-canonical; existence itself is not forced for all admissible solved layers. Therefore valuation representation is not theorem-grade from $R+S+C+T+D+A$ and must be added explicitly if the branch is to proceed upward. $\square$
+
+### 3.25 Explicit introduction of valuation representation as the next added branch structure
+
+Since valuation representation is not forced from the solved layer, the branch now introduces it explicitly.
+
+**Added Branch Structure $V$.**  
+A continuation of the branch beyond realized-carrier existence, explicit locality, explicit lawful transformation, explicit distinguisher/signature discipline, and explicit stable-comparison algebra must specify a valuation representation
+$$
+(\mathbb V,\leq_{\mathbb V},\oplus,0_{\mathbb V},
+u)
+$$
+satisfying V1--V5 together with any extra completeness, normalization, comparability, or representation-adequacy principles required for the intended continuation.
+
+$V$ is not forced from the prior layer. It is the next **minimal added branch structure** required if the branch wishes to continue toward parameterization or differentiability.
+
+### 3.26 What Theorem 3.24.1 does and does not prove
+
+**What it proves.**
+
+- The solved $R+S+C+T+D+A$ layer does not force a unique or canonical valuation representation.
+- The branch cannot treat valuation as theorem-grade from realized-carrier existence, locality, transformation, readout, and stable comparison alone.
+- Some stable comparison algebras admit no branch-usable valuation representation satisfying V1--V5.
+- Any continuation toward parameterization or differentiability must add valuation explicitly.
+
+**What it does not prove.**
+
+- It does not show that valuation is impossible.
+- It does not show that every valuation regime is equally good.
+- It does not show that V1--V5 are uniquely minimal in all imaginable branches.
+- It does not derive parameterization or differentiability.
+
+So the correct status is:
+
+- valuation representation is **not forced from $R+S+C+T+D+A$**,
+- valuation representation is the next **minimal added branch structure** $V$,
+- no upward climb beyond valuation is licensed until later passes settle the parameterization question.
+
 
 ## 4. Main Theorems and Proofs
 
-The main theorems of this pass are Theorems 3.1.1, 3.2.1, 3.3.1, 3.5.1, 3.7.1, 3.9.1, 3.10.1, 3.12.1, and 3.15.1.
+The main theorems of this pass are Theorems 3.1.1, 3.2.1, 3.3.1, 3.5.1, 3.7.1, 3.9.1, 3.10.1, 3.12.1, 3.15.1, 3.18.1, 3.21.1, and 3.24.1.
 
 ### 4.1 Theorem status map for this pass
 
@@ -990,7 +1721,10 @@ The main theorems of this pass are Theorems 3.1.1, 3.2.1, 3.3.1, 3.5.1, 3.7.1, 3
   - refinement/compatibility structure $R$,
   - realization/decisiveness layer $S$,
   - locality/cover structure $C$,
-  - lawful-transformation structure $T$.
+  - lawful-transformation structure $T$,
+  - distinguisher/signature structure $D$,
+  - stable comparison algebra structure $A$,
+  - valuation-representation structure $V$.
 
 - **Conditional theorem under explicit assumptions in this pass:**
   - existence of realized contents under $R+S$,
@@ -1001,13 +1735,8 @@ The main theorems of this pass are Theorems 3.1.1, 3.2.1, 3.3.1, 3.5.1, 3.7.1, 3
 
 The following are not yet theorem-grade and are not used in this pass:
 
-- distinguishers/signatures,
-- comparison algebra,
-- valuation representation,
 - parameterization,
 - differentiability emergence.
-
----
 
 ## 5. Validation Logic and Evidentiary Support
 
@@ -1146,7 +1875,111 @@ This pass would be defective if the proof of Theorem 3.15.1 or the definition of
 
 The present pass avoids those imports by treating transformation only as admissible composition on realized contents with cover respect.
 
+### 5.20 What would falsify Theorem 3.18.1
+
+The no-go theorem for forcing distinguishers/signatures from $R+S+C+T$ would fail if one could prove either of the following from the solved layer alone:
+
+1. every $R+S+C+T$-model admits a unique canonical branch-usable distinguisher/signature discipline satisfying D1--D4; or
+2. any two distinguisher/signature disciplines on the same realized-carrier regime, the same cover discipline, and the same lawful-transformation discipline that satisfy D1--D4 are canonically isomorphic and physically equivalent for branch continuation.
+
+Either result would refute Theorem 3.18.1.
+
+### 5.21 What would show the added structure $D$ is too strong
+
+The distinguisher/signature layer $D$ would be too strong if one could exhibit a weaker added structure than D1--D4 that still suffices for every later branch requirement that genuinely depends on readout, event discrimination, or outcome identity. If such a weaker layer is found, $D$ must be weakened in a later pass.
+
+### 5.22 What would show a weaker solved package is sufficient for distinguishers/signatures
+
+If one could derive a branch-usable distinguisher/signature discipline directly from the solved $R+S+C+T$ layer, without explicit addition of $D$, then Theorem 3.18.1 would fail and the current staircase would be one layer too heavy.
+
+### 5.23 What would show that distinguishers/signatures do not improve on the solved layer
+
+If every later theorem that appears to depend on $D$ could already be proved from $R+S+C+T$ alone, then $D$ would be redundant and its introduction would be illegitimate. The role of later passes is to test that explicitly.
+
+### 5.24 What would show the derivation still smuggles later structure through readout
+
+This pass would be defective if the proof of Theorem 3.18.1 or the definition of $D$ implicitly relied on:
+
+- ordered comparison of outcomes,
+- algebra on signatures,
+- valuation or scalar codomains,
+- parameterized readout families,
+- metric or differentiable structure,
+- or any downstream comparison law not explicitly introduced.
+
+The present pass avoids those imports by treating readout only as event-to-signature assignment with extensional identity, repeatability, and minimal nontriviality.
+
 ---
+
+
+### 5.25 What would falsify Theorem 3.21.1
+
+The no-go theorem for forcing stable comparison algebra from $R+S+C+T+D$ would fail if one could prove either of the following from the solved layer alone:
+
+1. every $R+S+C+T+D$-model admits a unique canonical stable comparison algebra satisfying A1--A5; or
+2. any two stable comparison algebras on the same realized-carrier regime, the same cover discipline, the same lawful-transformation discipline, and the same distinguisher/signature discipline that satisfy A1--A5 are canonically isomorphic and physically equivalent for branch continuation.
+
+Either result would refute Theorem 3.21.1.
+
+### 5.26 What would show the added structure $A$ is too strong
+
+The stable-comparison layer $A$ would be too strong if one could exhibit a weaker added structure than A1--A5 that still suffices for every later branch requirement that genuinely depends on stable comparison. If such a weaker layer is found, $A$ must be weakened in a later pass.
+
+### 5.27 What would show a weaker solved package is sufficient for comparison
+
+If one could derive a branch-usable stable comparison algebra directly from the solved $R+S+C+T+D$ layer, without explicit addition of $A$, then Theorem 3.21.1 would fail and the current staircase would be one layer too heavy.
+
+### 5.28 What would show that stable comparison algebra does not improve on the solved layer
+
+If every later theorem that appears to depend on $A$ could already be proved from $R+S+C+T+D$ alone, then $A$ would be redundant and its introduction would be illegitimate. The role of later passes is to test that explicitly.
+
+### 5.29 What would show the derivation still smuggles later structure through comparison
+
+This pass would be defective if the proof of Theorem 3.21.1 or the definition of $A$ implicitly relied on:
+
+- numeric valuation,
+- parameterized process,
+- metric or differentiable structure,
+- order or algebraic laws stronger than A1--A5 without stating them,
+- or any downstream valuation law not explicitly introduced.
+
+The present pass avoids those imports by treating stable comparison only as class identity, preorder, and optional class-level composition on the solved pre-valuation layer.
+
+
+
+### 5.30 What would falsify Theorem 3.24.1
+
+The no-go theorem for forcing valuation representation from $R+S+C+T+D+A$ would fail if one could prove either of the following from the solved layer alone:
+
+1. every $R+S+C+T+D+A$-model admits a unique canonical branch-usable valuation representation satisfying V1--V5; or
+2. every stable comparison algebra allowed by the solved layer necessarily admits at least one branch-usable valuation representation satisfying V1--V5.
+
+Either result would refute Theorem 3.24.1.
+
+### 5.31 What would show the added structure $V$ is too strong
+
+The valuation layer $V$ would be too strong if one could exhibit a weaker added structure than V1--V5 that still suffices for every later branch requirement that genuinely depends on value-bearing representation. If such a weaker layer is found, $V$ must be weakened in a later pass.
+
+### 5.32 What would show a weaker solved package is sufficient for valuation
+
+If one could derive a branch-usable valuation representation directly from the solved $R+S+C+T+D+A$ layer, without explicit addition of $V$, then Theorem 3.24.1 would fail and the current staircase would be one layer too heavy.
+
+### 5.33 What would show that valuation does not improve on the solved layer
+
+If every later theorem that appears to depend on $V$ could already be proved from $R+S+C+T+D+A$ alone, then $V$ would be redundant and its introduction would be illegitimate. The role of later passes is to test that explicitly.
+
+### 5.34 What would show the derivation still smuggles later structure through valuation
+
+This pass would be defective if the proof of Theorem 3.24.1 or the definition of $V$ implicitly relied on:
+
+- parameterized processes,
+- coordinate charts,
+- metric distance,
+- local derivatives,
+- or differentiable structure.
+
+The present pass avoids those imports by treating valuation only as order-compatible representation of stable comparison classes into an ordered composition regime.
+
 
 ## 6. Worked Example or Minimal Witnesses
 
@@ -1215,6 +2048,94 @@ These two transformation disciplines live on the same solved pre-transformation 
 
 ---
 
+
+### 6.7 Witness for Theorem 3.18.1
+
+Take any $R+S+C+T$-model with realized-carrier regime
+$$
+\mathcal M_0^{(R+S)} = \{X_a, X_b\},
+$$
+a fixed cover discipline $\triangleleft$, and a fixed lawful-transformation discipline
+$$
+\mathfrak T = \{\mathrm{id}, \sigma\}
+$$
+with
+$$
+\sigma(X_a)=X_b,
+\qquad
+\sigma(X_b)=X_a.
+$$
+On the same event domain $\mathcal E_T$, equip the solved layer in three different ways:
+
+- with no branch-usable readout layer at all;
+- with the constant readout discipline $(\mathfrak D_{\mathrm{triv}}, \mathfrak{Sig}_{\mathrm{triv}})$;
+- with the separating readout discipline $(\mathfrak D_{\mathrm{sep}}, \mathfrak{Sig}_{\mathrm{sep}})$.
+
+These three readout realizations live on the same solved pre-distinguisher layer but are inequivalent. This witnesses that distinguishers/signatures are not forced from $R+S+C+T$.
+
+
+### 6.8 Witness for Theorem 3.21.1
+
+Take any $R+S+C+T+D$-model with realized-carrier regime
+$$
+\mathcal M_0^{(R+S)} = \{X_a, X_b\},
+$$
+a fixed cover discipline $\triangleleft$, a fixed lawful-transformation discipline
+$$
+\mathfrak T = \{\mathrm{id}, \sigma\},
+$$
+and a fixed nontrivial readout discipline
+$$
+\mathfrak D = \{\delta_{\mathrm{sep}}\},
+\qquad
+\mathfrak{Sig} = \{\mathtt{stay}, \mathtt{swap}\}.
+$$
+On this same solved layer, equip the branch in three different ways:
+
+- with no branch-usable comparison layer at all;
+- with the equality-only comparison algebra $\mathfrak C_{\mathrm{disc}}$;
+- with the flat comparison algebra $\mathfrak C_{\mathrm{flat}}$;
+- with the ordered comparison algebra $\mathfrak C_{\mathrm{ord}}$.
+
+These realizations share the same realized contents, locality, transformations, signatures, and readout acts, yet yield inequivalent comparison regimes. This witnesses that stable comparison algebra is not forced from $R+S+C+T+D$.
+
+
+
+### 6.9 Witness for Theorem 3.24.1
+
+Take any $R+S+C+T+D+A$-model with a solved pre-valuation layer whose stable comparison algebra is either:
+
+1. the sparse ordered algebra
+   $$
+   \mathfrak C_{\mathrm{sp}} = \{c_0,c_1\}
+   $$
+   with
+   $$
+   c_0 \sqsubseteq c_1
+   $$
+   and defined compositions
+   $$
+   c_0 \odot c_0 = c_0,\qquad
+   c_0 \odot c_1 = c_1,\qquad
+   c_1 \odot c_0 = c_1,
+   $$
+   for which both the max-valued representation $(\mathbb V_{\max},
+u_{\max})$ and the additive representation $(\mathbb V_{+},
+u_{+})$ are valid; or
+
+2. the bad comparison algebra
+   $$
+   \mathfrak C_{\mathrm{bad}} = \{x,y,z\}
+   $$
+   with
+   $$
+   x \sqsubseteq y,\qquad x\odot z = y,\qquad y\odot z = x,
+   $$
+   for which no valuation satisfying V1--V5 exists.
+
+These witnesses jointly show that valuation is neither uniquely determined nor guaranteed to exist from the solved pre-valuation layer alone.
+
+
 ## 7. CFN Pairing and Executable Traceability
 
 The paired CFN for the present pass may do the following:
@@ -1225,8 +2146,9 @@ The paired CFN for the present pass may do the following:
 - instantiate $R+S$-models with nonempty realized-carrier regimes,
 - instantiate inequivalent cover disciplines on the same realized-carrier regime,
 - instantiate inequivalent lawful-transformation disciplines on the same realized-carrier regime and same cover discipline,
+- instantiate inequivalent readout disciplines on the same realized-carrier regime, same cover discipline, and same lawful-transformation discipline,
 - verify that the witness models satisfy the stated axioms,
-- and present the no-go, existence/non-canonicity, locality-underdetermination, and transformation-underdetermination theorems graphically or combinatorially.
+- and present the no-go, existence/non-canonicity, locality-underdetermination, transformation-underdetermination, and readout-underdetermination theorems graphically or combinatorially.
 
 The CFN may **not** introduce any proof burden not already carried here.
 
@@ -1245,7 +2167,10 @@ This pass uses only:
 5. the explicitly added realization/decisiveness structure $S$,
 6. the explicitly added locality/cover structure $C$,
 7. the explicitly added lawful-transformation structure $T$ in the sense of candidate definition and no-go target,
-8. elementary logic about non-isomorphic realizations, existence/nonexistence witnesses, non-unique branch extension, inequivalent cover disciplines, and inequivalent transformation disciplines on the same solved layer.
+8. the explicitly added candidate distinguisher/signature structure $D$ in the sense of candidate definition and no-go target,
+9. the explicitly added candidate stable-comparison structure $A$ in the sense of candidate definition and no-go target,
+10. the explicitly added candidate valuation structure $V$ in the sense of candidate definition and no-go target,
+11. elementary logic about non-isomorphic realizations, existence/nonexistence witnesses, non-unique branch extension, inequivalent cover disciplines, inequivalent transformation disciplines, inequivalent readout disciplines, inequivalent comparison algebras, and inequivalent or absent valuation regimes on the same solved layer.
 
 ### 8.2 Claims established here
 
@@ -1261,25 +2186,26 @@ This pass establishes:
 - the no-go theorem showing that locality/cover is not forced from the solved $R+S$ layer,
 - the explicit introduction of locality/cover as the next minimal added branch structure $C$,
 - the no-go theorem showing that lawful transformation is not forced from the solved $R+S+C$ layer,
-- the explicit introduction of lawful transformation as the next minimal added branch structure $T$.
+- the explicit introduction of lawful transformation as the next minimal added branch structure $T$,
+- the no-go theorem showing that distinguishers/signatures are not forced from the solved $R+S+C+T$ layer,
+- the explicit introduction of distinguishers/signatures as the next minimal added branch structure $D$,
+- the no-go theorem showing that stable comparison algebra is not forced from the solved $R+S+C+T+D$ layer,
+- the explicit introduction of stable comparison algebra as the next minimal added branch structure $A$,
+- the no-go theorem showing that valuation representation is not forced from the solved $R+S+C+T+D+A$ layer,
+- the explicit introduction of valuation representation as the next minimal added branch structure $V$.
 
 ### 8.3 Claims not established here
 
 This pass does not establish:
 
-- distinguishers/signatures,
-- comparison algebra,
-- valuation representation,
 - parameterization,
 - differentiability.
 
 ### 8.4 Open boundary for the next pass
 
-The next pass must determine whether distinguishers/signatures are forced from the solved $R+S+C+T$ layer, or whether they must themselves be introduced explicitly as the next minimal branch structure.
+The next pass must determine whether a parameterization layer is forced from the solved $R+S+C+T+D+A+V$ layer, or whether it must itself be introduced explicitly as the next minimal branch structure.
 
-No upward climb beyond distinguishers/signatures is allowed before that question is settled.
-
----
+No upward climb beyond parameterization is allowed before that question is settled.
 
 ## 9. Integration with Broader VDM Theory
 
@@ -1289,7 +2215,7 @@ CF00 remains downstream as the first differentiable-layer formalism, but the pre
 
 The only downstream statement fixed here is structural and now stronger than in the previous pass:
 
-> CF00 may not be treated as beginning from a layer already forced by primitive distinction, refinement/compatibility, realization/decisiveness, locality/cover, and lawful transformation alone.
+> CF00 may not be treated as beginning from a layer already forced by primitive distinction, refinement/compatibility, realization/decisiveness, locality/cover, lawful transformation, and readout/comparison alone.
 
 Instead, CF00 sits downstream of a branch that now explicitly contains:
 
@@ -1298,7 +2224,10 @@ Instead, CF00 sits downstream of a branch that now explicitly contains:
 3. a second minimal added realization/decisiveness layer,
 4. a conditional and non-canonical realized-carrier regime under $R+S$,
 5. an explicitly added locality/cover layer $C$ not forced from that solved regime,
-6. and an explicitly added lawful-transformation layer $T$ not forced from the solved $R+S+C$ layer.
+6. an explicitly added lawful-transformation layer $T$ not forced from the solved $R+S+C$ layer,
+7. an explicitly added distinguisher/signature layer $D$ not forced from the solved $R+S+C+T$ layer,
+8. an explicitly added stable-comparison layer $A$ not forced from the solved $R+S+C+T+D$ layer,
+9. and an explicitly added valuation layer $V$ not forced from the solved $R+S+C+T+D+A$ layer.
 
 ---
 
@@ -1306,7 +2235,7 @@ Instead, CF00 sits downstream of a branch that now explicitly contains:
 
 This pass uses the house CF template as the formal standard for completeness and theorem-bearing structure.
 
-It also uses the current CF000 checklist as the binding solved/open state for this pass. The theorem target addressed here is exactly the live question identified there: whether the solved $R+S+C$ layer is sufficient to force lawful transformation. The answer given here is no. Lawful transformation is therefore reclassified as the next minimal added branch structure $T$.
+It also uses the current CF000 checklist as the binding solved/open state for this pass. The theorem target addressed here is exactly the live question identified there: whether the solved $R+S+C+T+D+A$ layer is sufficient to force a valuation representation. The answer given here is no. Valuation representation is therefore reclassified as the next minimal added branch structure $V$.
 
 No external source is used here as a substitute for derivation.
 
@@ -1328,6 +2257,21 @@ No external source is used here as a substitute for derivation.
 - $\triangleleft$: pre-metric cover/locality relation on the realized-carrier regime.
 - $T$: lawful-transformation layer, introduced as the fourth minimal added branch structure.
 - $\mathfrak T$: class of lawful transformations on the realized-carrier regime.
+- $\mathcal E_T$: event domain of admissible realized-content / transformation pairs.
+- $D$: distinguisher/signature layer, introduced as the fifth minimal added branch structure.
+- $\mathfrak D$: class of distinguishers on the event domain.
+- $\mathfrak{Sig}$: signature class for readout outcomes.
+- $A$: stable-comparison layer, introduced as the sixth minimal added branch structure.
+- $\mathfrak C$: class of comparison classes.
+- $q$: class-forming map from signatures to comparison classes.
+- $\sqsubseteq$: comparison preorder on $\mathfrak C$.
+- $\odot$: partial comparison composition law on $\mathfrak C$.
+- $V$: valuation-representation layer, introduced as the seventh minimal added branch structure.
+- $\mathbb V$: valuation carrier.
+- $\leq_{\mathbb V}$: preorder on the valuation carrier.
+- $\oplus$: valuation-composition law on $\mathbb V$.
+- $0_{\mathbb V}$: neutral valuation element.
+- $\nu$: valuation map from comparison classes to the valuation carrier.
 - $\mathcal M_0$: generic placeholder for a realized pre-differential carrier, not yet canonical.
 - $\mathcal M$: downstream differentiable carrier, not yet earned in this pass.
 
@@ -1351,7 +2295,10 @@ No external source is used here as a substitute for derivation.
 - refinement/compatibility structure $R$,
 - realization/decisiveness layer $S$,
 - locality/cover structure $C$,
-- lawful-transformation structure $T$.
+- lawful-transformation structure $T$,
+- distinguisher/signature structure $D$,
+- stable comparison algebra structure $A$,
+- valuation-representation structure $V$.
 
 ### Conditional theorem under explicit assumptions in this pass
 
@@ -1361,9 +2308,6 @@ No external source is used here as a substitute for derivation.
 
 ### Conditional or deferred beyond this pass
 
-- distinguishers/signatures,
-- comparison algebra,
-- valuation,
 - parameterization,
 - differentiability emergence.
 
@@ -1392,7 +2336,19 @@ C
 \to
 \text{no-go theorem for forced lawful transformation from the solved layer}
 \to
-T.
+T
+\to
+\text{no-go theorem for forced distinguishers/signatures}
+\to
+D
+\to
+\text{no-go theorem for forced stable comparison}
+\to
+A
+\to
+\text{no-go theorem for forced valuation}
+\to
+V.
 $$
 
 No later object is used in the proofs of this pass.
@@ -1409,6 +2365,9 @@ No later object is used in the proofs of this pass.
 | §3.9–§3.10 | `cf000-realization-S` | $R+S$-models with nonempty realized-carrier regimes and multiple branches | existence / non-canonicity witness tables | Theorems 3.9.1–3.10.1 |
 | §3.12 | `cf000-locality-nogo` | same realized-carrier regime with inequivalent cover disciplines | locality underdetermination diagnostics | Theorem 3.12.1 |
 | §3.15 | `cf000-transformation-nogo` | same realized-carrier regime and same cover discipline with inequivalent transformation families | transformation underdetermination diagnostics | Theorem 3.15.1 |
+| §3.18 | `cf000-distinguisher-nogo` | same realized-carrier regime, same cover discipline, same transformation layer, with inequivalent readout disciplines | readout underdetermination diagnostics | Theorem 3.18.1 |
+| §3.21 | `cf000-comparison-nogo` | same realized-carrier regime, same cover discipline, same transformation layer, same readout layer, with inequivalent comparison algebras | comparison underdetermination diagnostics | Theorem 3.21.1 |
+| §3.24 | `cf000-valuation-nogo` | same solved pre-valuation layer with inequivalent valuation representations and with non-representable comparison algebras | valuation underdetermination diagnostics | Theorem 3.24.1 |
 | §6 | `cf000-minimal-witnesses` | sparse witness structures | witness artifact diagrams | worked examples |
 
 The CFN mirrors this pass. It does not repair or extend its theorem burden.
@@ -1434,7 +2393,13 @@ The CFN mirrors this pass. It does not repair or extend its theorem burden.
 - [x] The locality/cover layer $C$ is explicitly introduced as the next minimal added branch structure.
 - [x] The lawful-transformation question is settled at the level of a no-go theorem from the solved $R+S+C$ layer.
 - [x] The lawful-transformation layer $T$ is explicitly introduced as the next minimal added branch structure.
-- [ ] The distinguisher/signature question is settled.
+- [x] The distinguisher/signature question is settled at the level of a no-go theorem from the solved $R+S+C+T$ layer.
+- [x] The distinguisher/signature layer $D$ is explicitly introduced as the next minimal added branch structure.
+- [x] The stable-comparison question is settled at the level of a no-go theorem from the solved $R+S+C+T+D$ layer.
+- [x] The stable-comparison layer $A$ is explicitly introduced as the next minimal added branch structure.
+- [x] The valuation question is settled at the level of a no-go theorem from the solved $R+S+C+T+D+A$ layer.
+- [x] The valuation layer $V$ is explicitly introduced as the next minimal added branch structure.
+- [ ] The parameterization question is settled.
 - [ ] The full CF000 branch is complete.
 
-This document is **not yet a Completed Formalism** for the entire CF000 program. It is a theorem-bearing draft pass that resolves the lawful-transformation question relative to the solved $R+S+C$ layer and honestly blocks premature ascent to higher layers.
+This document is **not yet a Completed Formalism** for the entire CF000 program. It is a theorem-bearing draft pass that resolves the stable-comparison question relative to the solved $R+S+C+T+D$ layer and honestly blocks premature ascent to higher layers.
