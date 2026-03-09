@@ -8,7 +8,7 @@
 > **Domains:** Axioms & Foundations (primary), Cosmology (spinodal), Variational PDEs, Information/Agency  
 > **VDM Canon Note:** On PASS, this becomes A8 in Canon/AXIOMS.md with the exact statement below. Until then, treat as CANDIDATE and cite this PROPOSAL.  
 
-**Scope note:** This is a mathematical scaling conjecture about hierarchical interfaces (A8), proposed as an Axiom candidate. It is not used anywhere in the current canon; all dependence is explicitly gated at T8.
+**Scope note:** This is a mathematical scaling conjecture about hierarchical interfaces (A8), proposed as an Axiom candidate. It is not used anywhere in the current canon except for CF03; all dependence is explicitly gated at T8.
 
 ---
 
