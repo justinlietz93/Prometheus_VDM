@@ -63,7 +63,7 @@ A second no-go theorem shows that $R$ alone does **not** force stable realized d
 
 A third no-go theorem shows that locality/cover is **not** forced from the solved $R+S$ layer. Locality/cover is therefore introduced explicitly as the next minimal added branch structure $C$.
 
-The present pass addresses the next live theorem burden: whether the solved layer $R+S+C+T+D+A$, together with conditional and non-canonical realized-carrier existence, explicit cover discipline, explicitly added lawful transformation, explicit readout discipline, and explicit stable-comparison discipline, forces a valuation representation. The answer is no. A no-go theorem shows that branch-usable valuation representation is not forced from the solved pre-valuation layer. It must be introduced explicitly as the next minimal added branch structure $V$.
+The present pass addresses the next live theorem burden: whether the solved layer $R+S+C+T+D+A+V$, together with conditional and non-canonical realized-carrier existence, explicit cover discipline, explicitly added lawful transformation, explicit readout discipline, explicit stable-comparison discipline, and explicitly added valuation discipline, forces a lawful parameterization layer. The answer is no. A no-go theorem shows that branch-usable parameterization is not forced from the solved pre-parameterization layer. It must be introduced explicitly as the next minimal added branch structure $P$.
 
 Principal deliverables of this pass:
 
@@ -81,7 +81,9 @@ Principal deliverables of this pass:
 - no-go theorem that stable comparison algebra is not forced from the solved $R+S+C+T+D$ layer;
 - explicit introduction of stable comparison algebra as the next minimal added branch structure $A$;
 - no-go theorem that valuation representation is not forced from the solved $R+S+C+T+D+A$ layer;
-- explicit introduction of valuation representation as the next minimal added branch structure $V$.
+- explicit introduction of valuation representation as the next minimal added branch structure $V$;
+- no-go theorem that lawful parameterization is not forced from the solved $R+S+C+T+D+A+V$ layer;
+- explicit introduction of lawful parameterization as the next minimal added branch structure $P$.
 
 ---
 
@@ -124,6 +126,8 @@ Principal deliverables of this pass:
 - Stable comparison algebra has been reclassified as the next minimal added branch structure $A$.
 - Valuation representation is **not** forced from the solved $R+S+C+T+D+A$ layer.
 - Valuation representation has been reclassified as the next minimal added branch structure $V$.
+- Lawful parameterization is **not** forced from the solved $R+S+C+T+D+A+V$ layer.
+- Lawful parameterization has been reclassified as the next minimal added branch structure $P$.
 
 ### Provisional results
 
@@ -133,7 +137,8 @@ Principal deliverables of this pass:
 - It remains open whether a weaker added structure than $D$ would already suffice for branch-usable readout/discrimination.
 - It remains open whether a weaker added structure than $A$ would already suffice for branch-usable stable comparison.
 - It remains open whether a weaker added structure than $V$ would already suffice for branch-usable valuation.
-- Parameterization and differentiability may later be needed for one route to a differentiable branch.
+- It remains open whether a weaker added structure than $P$ would already suffice for branch-usable parameterization.
+- Differentiability may later require additional overlap-regularity structure beyond mere parameterization.
 
 These are not yet earned in the present pass.
 
@@ -147,18 +152,18 @@ These are not yet earned in the present pass.
 - Treating distinguishers/signatures as already theorem-grade from the solved $R+S+C+T$ layer.
 - Treating stable comparison algebra as already theorem-grade from the solved $R+S+C+T+D$ layer.
 - Treating valuation as already theorem-grade from the solved $R+S+C+T+D+A$ layer.
+- Treating parameterization as already theorem-grade from the solved $R+S+C+T+D+A+V$ layer.
 - Treating the carrier regime produced under $R+S$ as already unique or canonical.
 
 ### Live theorem target
 
-Determine whether a parameterization layer is forced from the solved $R+S+C+T+D+A+V$ layer, or whether parameterization must itself be introduced explicitly as the next minimal branch structure.
+Determine whether differentiability emergence is forced from the solved $R+S+C+T+D+A+V+P$ layer, or whether differentiability exists only conditionally under explicit additional overlap-regularity assumptions.
 
 ### Forbidden regressions
 
-The document may not proceed upward to parameterization or differentiability until the valuation question is settled and written into the document.
+The document may not proceed upward to differentiability emergence until the differentiability question is settled and written into the document.
 
----
-
+## 1. Scope, Ontology, and Primitive Commitments
 ## 1. Scope, Ontology, and Primitive Commitments
 
 ### 1.1 Root burden inherited from CF00
@@ -579,7 +584,7 @@ u : \mathfrak C 	o \mathbb V,
    $$
    satisfying the following minimal clauses.
 
-- **V1 (class identity respect)** If $c_1=c_2$ in $\mathfrak C$, then $
+- **V1 (class identity respect)** If $c_1 = c_2$ in $\mathfrak C$, then $
 u(c_1)=
 u(c_2)$.
 - **V2 (order preservation)** If $c_1 \sqsubseteq c_2$, then
@@ -592,7 +597,6 @@ u(c_2).
   $$
   c_1 \sqsubseteq c_2
   \qquad	ext{and}\qquad
-  
 eg(c_2 \sqsubseteq c_1),
   $$
   then
@@ -620,11 +624,86 @@ This structure is weaker than parameterization or differentiability. It assigns 
 
 ### 2.18 Status of valuation representation
 
-At this stage, valuation representation is not assumed primitive. The theorem target of the present pass is therefore:
+At this stage, valuation representation is not assumed primitive. The previous pass established a no-go theorem: valuation representation is not forced from the solved $R+S+C+T+D+A$ layer and must therefore be introduced explicitly as the next minimal added branch structure $V$.
 
-> determine whether the solved layer $R+S+C+T+D+A$ forces a branch-usable valuation representation, or whether such a representation must be introduced explicitly as the next minimal added branch structure.
+### 2.19 Candidate lawful-parameterization layer relative to $R+S+C+T+D+A+V$
 
+At the present stage the branch has:
 
+- primitive distinguishability,
+- explicit refinement/compatibility,
+- conditional and non-canonical realized contents,
+- an explicit cover/locality discipline,
+- an explicitly added lawful-transformation discipline,
+- an explicitly added distinguisher/signature discipline,
+- an explicitly added stable-comparison algebra,
+- and an explicitly added valuation representation.
+
+It still does not yet have a theorem-grade notion of parameterization.
+
+A **lawful-parameterization layer** on a solved layer $(R+S+C+T+D+A+V)$ consists of:
+
+1. a parameter carrier
+   $$
+   (\mathbb P, \leq_{\mathbb P}, oxplus, 0_{\mathbb P}),
+   $$
+   where $\leq_{\mathbb P}$ is a preorder on $\mathbb P$, $oxplus$ is a partially defined associative operation with neutral element $0_{\mathbb P}$, and there is a distinguished positive sector $\mathbb P_{>0} \subseteq \mathbb P$ such that $0_{\mathbb P} 
+otin \mathbb P_{>0}$ and whenever $p,q\in\mathbb P_{>0}$ with $poxplus q$ defined, one has $poxplus q \in \mathbb P_{>0}$;
+2. a branch-usable transformation subfamily
+   $$
+   \mathfrak T_{\mathbb P} \subseteq \mathfrak T
+   $$
+   containing $\mathrm{id}$ and closed under every composition on which the parameter law is declared;
+3. a map
+   $$
+   \pi : \mathfrak T_{\mathbb P} 	o \mathbb P,
+   $$
+   satisfying the following minimal clauses.
+
+To state valuation compatibility, define the **valuation profile** of $	au \in \mathfrak T$ to be the partial assignment
+$$
+\mathrm{Prof}_V(	au)(X,\delta) := 
+uigl(q(\delta(X,	au))igr),
+$$
+whenever $X \in \operatorname{Dom}(	au)$, $\delta \in \mathfrak D$, and the event $(X,	au)$ lies in the domain of $\delta$. Write
+$$
+	au \sim_V \sigma
+$$
+when $\mathrm{Prof}_V(	au)$ and $\mathrm{Prof}_V(\sigma)$ agree on every common admissible evaluation context.
+
+The parameterization clauses are:
+
+- **P1 (identity normalization)**
+  $$
+  \pi(\mathrm{id}) = 0_{\mathbb P}.
+  $$
+- **P2 (composition respect)** Whenever $	au,\sigma,	au\circ\sigma \in \mathfrak T_{\mathbb P}$ and $\pi(	au) oxplus \pi(\sigma)$ is defined,
+  $$
+  \pi(	au\circ\sigma) = \pi(	au) oxplus \pi(\sigma).
+  $$
+- **P3 (valuation-profile identification)** If $	au \sim_V \sigma$, then
+  $$
+  \pi(	au)=\pi(\sigma).
+  $$
+- **P4 (branch-usable nontriviality)** There exists at least one $	au\in \mathfrak T_{\mathbb P}$ such that $	au 
+ot\sim_V \mathrm{id}$ and
+  $$
+  \pi(	au) \in \mathbb P_{>0}.
+  $$
+- **P5 (positive-progress closure)** If $	au,\sigma,	au\circ\sigma \in \mathfrak T_{\mathbb P}$, $\pi(	au),\pi(\sigma)\in \mathbb P_{>0}$, and $\pi(	au)oxplus \pi(\sigma)$ is defined, then
+  $$
+  \pi(	au\circ\sigma) = \pi(	au)oxplus \pi(\sigma) \in \mathbb P_{>0}.
+  $$
+
+This structure is weaker than differentiability. It indexes admissible transformation composition by a pre-differential progress carrier, but it does not yet impose charts, continuity, overlap regularity, derivatives, or first-order smoothness.
+
+### 2.20 Status of parameterization
+
+At this stage, parameterization is not assumed primitive. The theorem target of the present pass is therefore:
+
+> determine whether the solved layer $R+S+C+T+D+A+V$ forces a branch-usable lawful-parameterization layer, or whether such a layer must be introduced explicitly as the next minimal added branch structure.
+
+## 3. Foundational Construction
 ## 3. Foundational Construction
 
 ### 3.1 Nullity exclusion
@@ -1493,7 +1572,7 @@ We prove non-uniqueness and non-forcing separately.
 
 Fix a solved $R+S+C+T+D+A$ layer whose stable comparison algebra is the sparse ordered comparison algebra
 $$
-\mathfrak C_{\mathrm{sp}} = \{c_0,c_1\},
+\mathfrak C_{\mathrm{sp}} = \{c_0,c_1\}
 $$
 with preorder
 $$
@@ -1501,9 +1580,7 @@ c_0 \sqsubseteq c_0,\qquad c_1 \sqsubseteq c_1,\qquad c_0 \sqsubseteq c_1,
 $$
 and no converse relation $c_1 \sqsubseteq c_0$. Let the only defined comparison compositions be
 $$
-c_0 \odot c_0 = c_0,\qquad
-c_0 \odot c_1 = c_1,\qquad
-c_1 \odot c_0 = c_1,
+c_0 \odot c_0 = c_0,\qquad c_0 \odot c_1 = c_1,\qquad c_1 \odot c_0 = c_1,
 $$
 with $c_1 \odot c_1$ left undefined.
 
@@ -1526,30 +1603,7 @@ $$
 u_{\max}(c_0)=0,\qquad 
 u_{\max}(c_1)=1.
 $$
-Then:
-
-- V1 holds by definition.
-- V2 holds because $c_0 \sqsubseteq c_1$ and $0 \leq 1$.
-- V3 holds because $c_0 \sqsubseteq c_1$ and not conversely, while $0<1$.
-- V4 holds on every defined comparison composition:
-  $$
-  
-u_{\max}(c_0 \odot c_0)=
-u_{\max}(c_0)=0=0\oplus_{\max}0,
-  $$
-  $$
-  
-u_{\max}(c_0 \odot c_1)=
-u_{\max}(c_1)=1=0\oplus_{\max}1,
-  $$
-  $$
-  
-u_{\max}(c_1 \odot c_0)=
-u_{\max}(c_1)=1=1\oplus_{\max}0.
-  $$
-- V5 holds with $c_0$ as neutral class.
-
-So $(\mathbb V_{\max},
+Then V1--V5 hold exactly as in the previous pass. So $(\mathbb V_{\max},
 u_{\max})$ is a branch-usable valuation representation.
 
 **Valuation realization $V_{+}$.**  
@@ -1563,36 +1617,16 @@ $$
 u_{+}(c_0)=0,\qquad 
 u_{+}(c_1)=1.
 $$
-Then:
+Then V1--V5 also hold. So $(\mathbb V_{+},
+u_{+})$ is a second branch-usable valuation representation on the same comparison algebra.
 
-- V1 holds by definition.
-- V2 holds because $0 \leq 1$.
-- V3 holds because $0<1$.
-- V4 holds on every defined comparison composition:
-  $$
-  
-u_{+}(c_0 \odot c_0)=0=0+0,
-  $$
-  $$
-  
-u_{+}(c_0 \odot c_1)=1=0+1,
-  $$
-  $$
-  
-u_{+}(c_1 \odot c_0)=1=1+0.
-  $$
-- V5 holds with $c_0$ as neutral class.
-
-So $(\mathbb V_{+},
-u_{+})$ is also a branch-usable valuation representation.
-
-The two valuation realizations are inequivalent as valuation regimes. One has an idempotent bounded target with operation $\max$; the other has an unbounded additive target with non-idempotent operation $+$. The solved layer and the comparison algebra are the same, yet the valuation codomain and valuation composition law are not uniquely determined. Therefore valuation representation is not uniquely or canonically forced even when existence is available.
+These two valuation realizations are inequivalent as valuation regimes. One is bounded and idempotent under composition; the other is unbounded and non-idempotent. Hence valuation is not uniquely or canonically forced even when existence is available.
 
 #### Part II: some stable comparison algebras admit no branch-usable valuation representation
 
 Now fix a solved $R+S+C+T+D+A$ layer whose stable comparison algebra is
 $$
-\mathfrak C_{\mathrm{bad}} = \{x,y,z\},
+\mathfrak C_{\mathrm{bad}} = \{x,y,z\}
 $$
 with preorder generated by
 $$
@@ -1600,17 +1634,9 @@ x \sqsubseteq y,
 $$
 and no converse relation $y \sqsubseteq x$. Let comparison composition be defined by
 $$
-x \odot z = y,\qquad
-y \odot z = x,
+x \odot z = y,\qquad y \odot z = x,
 $$
-with all other compositions either undefined or chosen so as not to affect the argument.
-
-This still satisfies A1--A5:
-
-- A1 is irrelevant to the present abstract comparison layer once the classes are fixed.
-- A2 holds because the preorder generated by $x \sqsubseteq y$ is reflexive and transitive.
-- A3 holds because $x$ and $y$ are not mutually collapsed by the preorder.
-- A4 and A5 hold because the class-level composition is well defined on the declared domain.
+with all other compositions either undefined or chosen so as not to affect the argument. This still satisfies A1--A5.
 
 Assume, for contradiction, that there exists a branch-usable valuation representation
 $$
@@ -1651,7 +1677,6 @@ u(y)$ are mutually comparable both ways. But V3 requires strict noncollapse when
 $$
 x \sqsubseteq y
 \qquad	ext{and}\qquad
-
 eg(y \sqsubseteq x),
 $$
 which is exactly the present case. Therefore V3 requires
@@ -1664,9 +1689,7 @@ contradicting $
 u(y) \leq_{\mathbb V} 
 u(x)$.
 
-Hence no branch-usable valuation representation satisfying V1--V5 exists for this stable comparison algebra.
-
-So valuation is not merely non-canonical; existence itself is not forced for all admissible solved layers. Therefore valuation representation is not theorem-grade from $R+S+C+T+D+A$ and must be added explicitly if the branch is to proceed upward. $\square$
+Hence no branch-usable valuation representation satisfying V1--V5 exists for this stable comparison algebra. So valuation is not merely non-canonical; existence itself is not forced for all admissible solved layers. Therefore valuation representation is not theorem-grade from $R+S+C+T+D+A$ and must be added explicitly if the branch is to proceed upward. $\square$
 
 ### 3.25 Explicit introduction of valuation representation as the next added branch structure
 
@@ -1704,7 +1727,160 @@ So the correct status is:
 - valuation representation is the next **minimal added branch structure** $V$,
 - no upward climb beyond valuation is licensed until later passes settle the parameterization question.
 
+### 3.27 No-go theorem for forcing lawful parameterization from $R+S+C+T+D+A+V$
 
+**Theorem 3.27.1 (No-go theorem for forcing lawful parameterization from $R+S+C+T+D+A+V$).**  
+The solved layer consisting of primitive distinguishability, the added refinement/compatibility structure $R$, the added realization/decisiveness layer $S$, the explicitly added locality/cover structure $C$, the explicitly added lawful-transformation structure $T$, the explicitly added distinguisher/signature structure $D$, the explicitly added stable-comparison algebra structure $A$, and the explicitly added valuation-representation structure $V$ is **not** sufficient to force a unique or canonical branch-usable lawful-parameterization layer. More strongly:
+
+1. there exist solved $R+S+C+T+D+A+V$ layers with the same valuation discipline that admit inequivalent lawful parameterizations satisfying P1--P5;
+2. there exist solved $R+S+C+T+D+A+V$ layers for which no branch-usable lawful parameterization satisfying P1--P5 exists;
+3. therefore lawful parameterization is not theorem-grade from the solved $R+S+C+T+D+A+V$ layer and must be introduced explicitly as the next minimal added branch structure if the branch is to proceed toward differentiability.
+
+**Hypotheses.**
+
+1. The primitive substrate $({\mathcal B},\#)$ satisfies Section 2.2.
+2. The added branch structures $R$, $S$, $C$, $T$, $D$, $A$, and $V$ satisfy Sections 2.5, 2.7, 2.9, 2.11, 2.13, 2.15, 2.17, and 2.19.
+3. The conditional existence and non-canonicity results of Theorems 3.9.1 and 3.10.1 hold.
+4. The no-go results for forced locality, forced lawful transformation, forced distinguishers/signatures, forced stable comparison, and forced valuation, together with the explicit additions of $C$, $T$, $D$, $A$, and $V$, hold as in Theorems 3.12.1, 3.15.1, 3.18.1, 3.21.1, and 3.24.1 and Sections 3.13, 3.16, 3.19, 3.22, and 3.25.
+5. No additional directedness axioms, cancellativity axioms, composition-totality axioms, or parameter-carrier selection principles are assumed beyond $R+S+C+T+D+A+V$.
+
+**Conclusion.**
+
+Under these hypotheses alone, no unique or canonical branch-usable lawful parameterization is forced on the solved pre-parameterization layer. More strongly, branch-usable parameterization need not exist for every admissible solved layer. If the branch wishes to continue toward differentiability, it must add parameterization explicitly.
+
+**Proof.**
+
+We prove non-uniqueness and non-forcing separately.
+
+#### Part I: same solved layer, inequivalent parameterizations
+
+Fix a solved $R+S+C+T+D+A+V$ layer with realized-carrier regime
+$$
+\mathcal M_0^{(R+S)} = \{X_a,X_b\},
+$$
+a lawful-transformation family
+$$
+\mathfrak T = \{\mathrm{id},	au_1,	au_2\},
+$$
+and a valuation discipline such that $	au_1$ and $	au_2$ are both nontrivial relative to the identity but are composable only with $\mathrm{id}$; that is, the only defined compositions inside the chosen branch-usable subfamily are
+$$
+\mathrm{id}\circ\mathrm{id}=\mathrm{id},\qquad 	au_i\circ\mathrm{id}=	au_i,\qquad \mathrm{id}\circ	au_i=	au_i\quad (i=1,2).
+$$
+Assume also that $	au_1$ and $	au_2$ are valuation-distinct from the identity, but no further composition law between them is fixed.
+
+Now define two lawful parameterizations on the same solved layer.
+
+**Parameterization realization $P_{\mathrm{lin}}$.**  
+Let
+$$
+\mathbb P_{\mathrm{lin}} = \{0,1,2\}
+$$
+with preorder $0 \leq 1 \leq 2$, positive sector $\mathbb P_{>0}=\{1,2\}$, and partial composition defined only with the neutral element:
+$$
+0 oxplus p = p = p oxplus 0
+\qquad	ext{for all } p\in\mathbb P_{\mathrm{lin}}.
+$$
+Define
+$$
+\pi_{\mathrm{lin}}(\mathrm{id})=0,\qquad \pi_{\mathrm{lin}}(	au_1)=1,\qquad \pi_{\mathrm{lin}}(	au_2)=2.
+$$
+Then P1--P5 hold. P2 is immediate because the only required compositions involve the neutral element. P3 holds because any valuation-profile identification would only force equality when profiles agree; here the only stipulated identification is self-identity. P4 holds because both nontrivial transformations map into the positive sector. P5 is vacuous for positive-positive composition because no such compositions are defined.
+
+**Parameterization realization $P_{\mathrm{br}}$.**  
+Let
+$$
+\mathbb P_{\mathrm{br}} = \{0,lpha,eta\}
+$$
+with preorder generated only by reflexivity and the neutral comparisons
+$$
+0 \leq lpha,\qquad 0 \leq eta,
+$$
+so that $lpha$ and $eta$ are incomparable. Let the positive sector be
+$$
+\mathbb P_{>0}=\{lpha,eta\},
+$$
+and again define partial composition only with the neutral element. Define
+$$
+\pi_{\mathrm{br}}(\mathrm{id})=0,\qquad \pi_{\mathrm{br}}(	au_1)=lpha,\qquad \pi_{\mathrm{br}}(	au_2)=eta.
+$$
+Then P1--P5 also hold.
+
+The two parameterizations are inequivalent: one linearly orders the nontrivial transformations, the other branches them without order. They live on the same solved pre-parameterization layer and satisfy the same axioms P1--P5. Therefore the solved layer does not force a unique or canonical parameterization.
+
+#### Part II: some solved layers admit no branch-usable lawful parameterization
+
+Now fix a solved $R+S+C+T+D+A+V$ layer whose lawful-transformation family contains a nontrivial involution
+$$
+\sigma 
+eq \mathrm{id},\qquad \sigma\circ\sigma = \mathrm{id},
+$$
+and assume $\sigma 
+ot\sim_V \mathrm{id}$, so that valuation distinguishes $\sigma$ from the identity. Such solved layers are admissible because valuation does not forbid involutive nontrivial transformations.
+
+Assume, for contradiction, that there exists a lawful parameterization
+$$
+\pi : \mathfrak T_{\mathbb P} 	o \mathbb P
+$$
+satisfying P1--P5 with $\sigma \in \mathfrak T_{\mathbb P}$.
+
+By P4, since $\sigma 
+ot\sim_V \mathrm{id}$, one has
+$$
+\pi(\sigma) \in \mathbb P_{>0}.
+$$
+Because $\sigma\circ\sigma = \mathrm{id}$ lies in the transformation family, P2 gives
+$$
+\pi(\sigma\circ\sigma)=\pi(\sigma)oxplus \pi(\sigma)=\pi(\mathrm{id})=0_{\mathbb P}.
+$$
+But by P5, whenever two positive parameters compose, their composite must again lie in $\mathbb P_{>0}$. Since $\pi(\sigma)\in \mathbb P_{>0}$, it follows that
+$$
+\pi(\sigma)oxplus \pi(\sigma) \in \mathbb P_{>0}.
+$$
+This contradicts
+$$
+\pi(\sigma)oxplus \pi(\sigma)=0_{\mathbb P},
+$$
+because $0_{\mathbb P}
+otin \mathbb P_{>0}$.
+
+Therefore no lawful parameterization satisfying P1--P5 exists for this solved layer. So parameterization is not merely non-canonical; existence itself is not forced for all admissible solved layers. Hence lawful parameterization is not theorem-grade from $R+S+C+T+D+A+V$ and must be added explicitly if the branch is to proceed upward. $\square$
+
+### 3.28 Explicit introduction of lawful parameterization as the next added branch structure
+
+Since lawful parameterization is not forced from the solved layer, the branch now introduces it explicitly.
+
+**Added Branch Structure $P$.**  
+A continuation of the branch beyond realized-carrier existence, explicit locality, explicit lawful transformation, explicit distinguisher/signature discipline, explicit stable comparison, and explicit valuation must specify a lawful-parameterization layer
+$$
+(\mathbb P,\leq_{\mathbb P},oxplus,0_{\mathbb P},\mathbb P_{>0},\mathfrak T_{\mathbb P},\pi)
+$$
+satisfying P1--P5 together with any extra directedness, cancellativity, totality, normalization, or adequacy principles required for the intended continuation.
+
+$P$ is not forced from the prior layer. It is the next **minimal added branch structure** required if the branch wishes to continue toward differentiability.
+
+### 3.29 What Theorem 3.27.1 does and does not prove
+
+**What it proves.**
+
+- The solved $R+S+C+T+D+A+V$ layer does not force a unique or canonical lawful parameterization.
+- The branch cannot treat parameterization as theorem-grade from realized-carrier existence, locality, transformation, readout, stable comparison, and valuation alone.
+- Some solved layers admit no branch-usable lawful parameterization satisfying P1--P5.
+- Any continuation toward differentiability must add parameterization explicitly.
+
+**What it does not prove.**
+
+- It does not show that parameterization is impossible.
+- It does not show that every parameterization regime is equally good.
+- It does not show that P1--P5 are uniquely minimal in all imaginable branches.
+- It does not yet derive overlap regularity, chart structure, first-order smoothness, or differentiability.
+
+So the correct status is:
+
+- lawful parameterization is **not forced from $R+S+C+T+D+A+V$**,
+- lawful parameterization is the next **minimal added branch structure** $P$,
+- no upward climb beyond parameterization is licensed until later passes settle the differentiability question.
+
+## 4. Main Theorems and Proofs
 ## 4. Main Theorems and Proofs
 
 The main theorems of this pass are Theorems 3.1.1, 3.2.1, 3.3.1, 3.5.1, 3.7.1, 3.9.1, 3.10.1, 3.12.1, 3.15.1, 3.18.1, 3.21.1, and 3.24.1.
@@ -1981,6 +2157,41 @@ This pass would be defective if the proof of Theorem 3.24.1 or the definition of
 The present pass avoids those imports by treating valuation only as order-compatible representation of stable comparison classes into an ordered composition regime.
 
 
+### 5.35 What would falsify Theorem 3.27.1
+
+The no-go theorem for forcing lawful parameterization from $R+S+C+T+D+A+V$ would fail if one could prove either of the following from the solved layer alone:
+
+1. every solved $R+S+C+T+D+A+V$ layer admits a unique canonical branch-usable lawful parameterization satisfying P1--P5; or
+2. every solved $R+S+C+T+D+A+V$ layer admits at least one branch-usable lawful parameterization satisfying P1--P5.
+
+Either result would refute Theorem 3.27.1.
+
+### 5.36 What would show the added structure $P$ is too strong
+
+The parameterization layer $P$ would be too strong if one could exhibit a weaker added structure than P1--P5 that still suffices for every later branch requirement that genuinely depends on parameter-bearing lawful update composition. If such a weaker layer is found, $P$ must be weakened in a later pass.
+
+### 5.37 What would show a weaker solved package is sufficient for parameterization
+
+If one could derive a branch-usable lawful parameterization directly from the solved $R+S+C+T+D+A+V$ layer, without explicit addition of $P$, then Theorem 3.27.1 would fail and the current staircase would be one layer too heavy.
+
+### 5.38 What would show that parameterization does not improve on the solved layer
+
+If every later theorem that appears to depend on $P$ could already be proved from $R+S+C+T+D+A+V$ alone, then $P$ would be redundant and its introduction would be illegitimate. The role of later passes is to test that explicitly.
+
+### 5.39 What would show the derivation still smuggles later structure through parameterization
+
+This pass would be defective if the proof of Theorem 3.27.1 or the definition of $P$ implicitly relied on:
+
+- differentiable charts,
+- continuity or limit structure,
+- metric distance,
+- local derivatives,
+- overlap regularity stronger than a raw parameter carrier,
+- or first-order smoothness in disguise.
+
+The present pass avoids those imports by treating parameterization only as a pre-differential progress carrier for lawful transformation composition, valuation-profile identification, and positive nontrivial progression.
+
+## 6. Worked Example or Minimal Witnesses
 ## 6. Worked Example or Minimal Witnesses
 
 Minimal witnesses suffice for the present pass.
@@ -2136,6 +2347,16 @@ u_{+})$ are valid; or
 These witnesses jointly show that valuation is neither uniquely determined nor guaranteed to exist from the solved pre-valuation layer alone.
 
 
+### 6.10 Witness for Theorem 3.27.1
+
+Take any solved $R+S+C+T+D+A+V$ layer with a branch-usable transformation family containing either:
+
+1. two nontrivial transformations $	au_1,	au_2$ that compose only with the identity, which yields inequivalent lawful parameterizations such as a linear ordered carrier and a branching incomparable carrier on the same solved layer; or
+2. a nontrivial involution $\sigma$ with $\sigma\circ\sigma=\mathrm{id}$ and $\sigma 
+ot\sim_V \mathrm{id}$, which admits no lawful parameterization satisfying P1--P5.
+
+These witnesses jointly show that parameterization is neither uniquely determined nor guaranteed to exist from the solved pre-parameterization layer alone.
+
 ## 7. CFN Pairing and Executable Traceability
 
 The paired CFN for the present pass may do the following:
@@ -2170,7 +2391,8 @@ This pass uses only:
 8. the explicitly added candidate distinguisher/signature structure $D$ in the sense of candidate definition and no-go target,
 9. the explicitly added candidate stable-comparison structure $A$ in the sense of candidate definition and no-go target,
 10. the explicitly added candidate valuation structure $V$ in the sense of candidate definition and no-go target,
-11. elementary logic about non-isomorphic realizations, existence/nonexistence witnesses, non-unique branch extension, inequivalent cover disciplines, inequivalent transformation disciplines, inequivalent readout disciplines, inequivalent comparison algebras, and inequivalent or absent valuation regimes on the same solved layer.
+11. the explicitly added candidate parameterization structure $P$ in the sense of candidate definition and no-go target,
+12. elementary logic about non-isomorphic realizations, existence/nonexistence witnesses, non-unique branch extension, inequivalent cover disciplines, inequivalent transformation disciplines, inequivalent readout disciplines, inequivalent comparison algebras, inequivalent or absent valuation regimes, and inequivalent or absent parameterization regimes on the same solved layer.
 
 ### 8.2 Claims established here
 
@@ -2192,20 +2414,21 @@ This pass establishes:
 - the no-go theorem showing that stable comparison algebra is not forced from the solved $R+S+C+T+D$ layer,
 - the explicit introduction of stable comparison algebra as the next minimal added branch structure $A$,
 - the no-go theorem showing that valuation representation is not forced from the solved $R+S+C+T+D+A$ layer,
-- the explicit introduction of valuation representation as the next minimal added branch structure $V$.
+- the explicit introduction of valuation representation as the next minimal added branch structure $V$,
+- the no-go theorem showing that lawful parameterization is not forced from the solved $R+S+C+T+D+A+V$ layer,
+- the explicit introduction of lawful parameterization as the next minimal added branch structure $P$.
 
 ### 8.3 Claims not established here
 
 This pass does not establish:
 
-- parameterization,
 - differentiability.
 
 ### 8.4 Open boundary for the next pass
 
-The next pass must determine whether a parameterization layer is forced from the solved $R+S+C+T+D+A+V$ layer, or whether it must itself be introduced explicitly as the next minimal branch structure.
+The next pass must determine whether differentiability emergence is forced from the solved $R+S+C+T+D+A+V+P$ layer, or whether differentiability exists only conditionally under explicit additional overlap-regularity assumptions.
 
-No upward climb beyond parameterization is allowed before that question is settled.
+No upward climb beyond differentiability is allowed before that question is settled honestly.
 
 ## 9. Integration with Broader VDM Theory
 
@@ -2227,7 +2450,8 @@ Instead, CF00 sits downstream of a branch that now explicitly contains:
 6. an explicitly added lawful-transformation layer $T$ not forced from the solved $R+S+C$ layer,
 7. an explicitly added distinguisher/signature layer $D$ not forced from the solved $R+S+C+T$ layer,
 8. an explicitly added stable-comparison layer $A$ not forced from the solved $R+S+C+T+D$ layer,
-9. and an explicitly added valuation layer $V$ not forced from the solved $R+S+C+T+D+A$ layer.
+9. an explicitly added valuation layer $V$ not forced from the solved $R+S+C+T+D+A$ layer,
+10. and an explicitly added parameterization layer $P$ not forced from the solved $R+S+C+T+D+A+V$ layer.
 
 ---
 
@@ -2235,7 +2459,7 @@ Instead, CF00 sits downstream of a branch that now explicitly contains:
 
 This pass uses the house CF template as the formal standard for completeness and theorem-bearing structure.
 
-It also uses the current CF000 checklist as the binding solved/open state for this pass. The theorem target addressed here is exactly the live question identified there: whether the solved $R+S+C+T+D+A$ layer is sufficient to force a valuation representation. The answer given here is no. Valuation representation is therefore reclassified as the next minimal added branch structure $V$.
+It also uses the current CF000 checklist as the binding solved/open state for this pass. The theorem target addressed here is exactly the live question identified there: whether the solved $R+S+C+T+D+A+V$ layer is sufficient to force a lawful parameterization layer. The answer given here is no. Lawful parameterization is therefore reclassified as the next minimal added branch structure $P$.
 
 No external source is used here as a substitute for derivation.
 
@@ -2298,7 +2522,8 @@ No external source is used here as a substitute for derivation.
 - lawful-transformation structure $T$,
 - distinguisher/signature structure $D$,
 - stable comparison algebra structure $A$,
-- valuation-representation structure $V$.
+- valuation-representation structure $V$,
+- lawful-parameterization structure $P$.
 
 ### Conditional theorem under explicit assumptions in this pass
 
@@ -2308,7 +2533,6 @@ No external source is used here as a substitute for derivation.
 
 ### Conditional or deferred beyond this pass
 
-- parameterization,
 - differentiability emergence.
 
 ### Main dependency chain of this pass
@@ -2368,6 +2592,7 @@ No later object is used in the proofs of this pass.
 | §3.18 | `cf000-distinguisher-nogo` | same realized-carrier regime, same cover discipline, same transformation layer, with inequivalent readout disciplines | readout underdetermination diagnostics | Theorem 3.18.1 |
 | §3.21 | `cf000-comparison-nogo` | same realized-carrier regime, same cover discipline, same transformation layer, same readout layer, with inequivalent comparison algebras | comparison underdetermination diagnostics | Theorem 3.21.1 |
 | §3.24 | `cf000-valuation-nogo` | same solved pre-valuation layer with inequivalent valuation representations and with non-representable comparison algebras | valuation underdetermination diagnostics | Theorem 3.24.1 |
+| §3.27 | `cf000-parameterization-nogo` | same solved pre-parameterization layer with inequivalent lawful parameterizations and with non-parameterizable involutive solved layers | parameterization underdetermination diagnostics | Theorem 3.27.1 |
 | §6 | `cf000-minimal-witnesses` | sparse witness structures | witness artifact diagrams | worked examples |
 
 The CFN mirrors this pass. It does not repair or extend its theorem burden.
@@ -2399,7 +2624,9 @@ The CFN mirrors this pass. It does not repair or extend its theorem burden.
 - [x] The stable-comparison layer $A$ is explicitly introduced as the next minimal added branch structure.
 - [x] The valuation question is settled at the level of a no-go theorem from the solved $R+S+C+T+D+A$ layer.
 - [x] The valuation layer $V$ is explicitly introduced as the next minimal added branch structure.
-- [ ] The parameterization question is settled.
+- [x] The parameterization question is settled at the level of a no-go theorem from the solved $R+S+C+T+D+A+V$ layer.
+- [x] The parameterization layer $P$ is explicitly introduced as the next minimal added branch structure.
+- [ ] The differentiability question is settled.
 - [ ] The full CF000 branch is complete.
 
-This document is **not yet a Completed Formalism** for the entire CF000 program. It is a theorem-bearing draft pass that resolves the stable-comparison question relative to the solved $R+S+C+T+D$ layer and honestly blocks premature ascent to higher layers.
+This document is **not yet a Completed Formalism** for the entire CF000 program. It is a theorem-bearing draft pass that resolves the parameterization question relative to the solved $R+S+C+T+D+A+V$ layer and honestly blocks premature ascent to differentiability.
