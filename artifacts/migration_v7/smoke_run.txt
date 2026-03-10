@@ -1,0 +1,5 @@
+event_log /tmp/migv7_sparseonly_uhjmbo5g/event_log.jsonl True
+tick_scalar_log /tmp/migv7_sparseonly_uhjmbo5g/tick_scalars.jsonl True
+checkpoint /tmp/migv7_sparseonly_uhjmbo5g/state_10.h5 True
+resume_ok 15 0.5142402052879333
+run_dir /tmp/migv7_sparseonly_uhjmbo5g

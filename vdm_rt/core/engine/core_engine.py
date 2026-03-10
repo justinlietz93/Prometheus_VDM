@@ -389,20 +389,9 @@ class CoreEngine:
         except Exception:
             pass
 
-    def step_connectome(
-        self,
-        t: float,
-        domain_modulation: float = 1.0,
-        sie_gate: float = 0.0,
-        use_time_dynamics: bool = True,
-    ) -> None:
+    def step_connectome(self, tick: int) -> None:
         try:
-            self._nx.connectome.step(
-                t,
-                domain_modulation=float(domain_modulation),
-                sie_drive=float(sie_gate),
-                use_time_dynamics=bool(use_time_dynamics),
-            )
+            self._nx.connectome.step(tick=int(tick))
         except Exception:
             pass
 

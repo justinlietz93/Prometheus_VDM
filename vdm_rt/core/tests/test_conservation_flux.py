@@ -7,18 +7,13 @@ research while ensuring commercial applications are aligned with the project's e
 Commercial use of proprietary VDM code requires written permission from Justin K. Lietz.
 See LICENSE file for full terms.
 """
-import os
-import time
 import json
 from pathlib import Path
-
-# Enable dense connectome for validation-only import (won't modify runtime files)
-os.environ["FORCE_DENSE"] = "1"
 
 import numpy as np
 
 # Import the real Connectome implementation (dense/validation mode)
-from vdm_rt.core.connectome import Connectome
+from vdm_rt.core.sparse_connectome import Connectome
 
 
 def Q_invariant(r: float, u: float, W: np.ndarray, t: float) -> np.ndarray:
@@ -34,10 +29,9 @@ def Q_invariant(r: float, u: float, W: np.ndarray, t: float) -> np.ndarray:
 
 
 def test_sum_Q_delta_records(tmp_path: Path) -> None:
-    """Run one dense Connectome.step on a small network, compute Δ(sum_i Q_i), and log results.
+    """Run one sparse Connectome.step on a small network, compute Δ(sum_i Q_i), and log results.
 
-    This test is non-invasive: it sets FORCE_DENSE to allow importing the validation-only
-    Connectome and does not modify any existing project source files.
+    This test is non-invasive: it uses the sparse-only runtime Connectome and does not modify any existing project source files.
     """
     # Small network for fast validation
     N = 32
@@ -49,7 +43,7 @@ def test_sum_Q_delta_records(tmp_path: Path) -> None:
     u = 0.25
     t = 0.0
 
-    # Construct connectome in dense/validation mode
+    # Construct connectome in sparse-only runtime mode
     conn = Connectome(N=N, k=k, seed=seed)
 
     # Snapshot initial node states
@@ -57,7 +51,7 @@ def test_sum_Q_delta_records(tmp_path: Path) -> None:
     Q0 = Q_invariant(r, u, W0, t)
 
     # Execute one update tick using the real runtime mapping
-    conn.step(t=t, domain_modulation=1.0, sie_drive=1.0, use_time_dynamics=True)
+    conn.step(tick=int(t))
 
     # Snapshot after-step node states
     W1 = conn.W.astype(np.float64).copy()
@@ -68,7 +62,7 @@ def test_sum_Q_delta_records(tmp_path: Path) -> None:
     delta_sum = float(np.sum(delta_vec))
 
     payload = {
-        "timestamp": int(time.time()),
+        "timestamp": int(t),
         "N": int(N),
         "k": int(k),
         "seed": int(seed),
@@ -88,7 +82,7 @@ def test_sum_Q_delta_records(tmp_path: Path) -> None:
     repo_root = Path(__file__).resolve().parents[4]
     out_dir = repo_root / "derivation" / "code" / "outputs" / "logs" / "conservation_law"
     out_dir.mkdir(parents=True, exist_ok=True)
-    fname = out_dir / f"flux_test_{int(time.time())}.json"
+    fname = out_dir / f"flux_test_{int(t)}.json"
     with open(fname, "w", encoding="utf-8") as f:
         json.dump(payload, f, indent=2)
 

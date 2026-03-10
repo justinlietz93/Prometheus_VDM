@@ -1,0 +1,38 @@
+
+==================================== ERRORS ====================================
+_ ERROR collecting Derivation/code/tests/metriplectic/test_ceg_harness_preflight.py _
+ImportError while importing test module '/workspace/Prometheus_VDM/Derivation/code/tests/metriplectic/test_ceg_harness_preflight.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/root/.pyenv/versions/3.12.12/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Derivation/code/tests/metriplectic/test_ceg_harness_preflight.py:11: in <module>
+    from Derivation.code.physics.metriplectic.instrumented_ceg import run_ceg_harness
+E   ModuleNotFoundError: No module named 'Derivation.code.physics.metriplectic.instrumented_ceg'
+_ ERROR collecting Derivation/code/tests/reaction_diffusion/test_rd_dispersion.py _
+ImportError while importing test module '/workspace/Prometheus_VDM/Derivation/code/tests/reaction_diffusion/test_rd_dispersion.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/root/.pyenv/versions/3.12.12/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Derivation/code/tests/reaction_diffusion/test_rd_dispersion.py:25: in <module>
+    from Prometheus_VDM.derivation.code.physics.rd_dispersion_experiment import laplacian_periodic
+E   ModuleNotFoundError: No module named 'Prometheus_VDM.derivation.code.physics.rd_dispersion_experiment'
+______ ERROR collecting Derivation/code/tests/test_policy_enforcement.py _______
+ImportError while importing test module '/workspace/Prometheus_VDM/Derivation/code/tests/test_policy_enforcement.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/root/.pyenv/versions/3.12.12/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Derivation/code/tests/test_policy_enforcement.py:18: in <module>
+    from common.policy_enforcer import scan_physics_roots
+E   ModuleNotFoundError: No module named 'common.policy_enforcer'
+=========================== short test summary info ============================
+ERROR Derivation/code/tests/metriplectic/test_ceg_harness_preflight.py
+ERROR Derivation/code/tests/reaction_diffusion/test_rd_dispersion.py
+ERROR Derivation/code/tests/test_policy_enforcement.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 3 errors during collection !!!!!!!!!!!!!!!!!!!!
+1 skipped, 3 errors in 0.94s

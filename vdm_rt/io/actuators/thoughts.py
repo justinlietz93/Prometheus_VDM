@@ -36,7 +36,7 @@ class ThoughtEmitter:
             why:  Callable returning a dict of read-only context (t, phase, b1_z, etc.)
         """
         self.path = path
-        self._why = why or (lambda: {"t": int(time.time() * 1000), "phase": 0})
+        self._why = why or (lambda: {"tick": 0, "phase": 0})
         self._lock = threading.Lock()
         # Ensure parent directory exists
         os.makedirs(os.path.dirname(os.path.abspath(path)), exist_ok=True)

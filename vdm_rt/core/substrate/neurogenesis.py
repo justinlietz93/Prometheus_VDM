@@ -10,7 +10,7 @@ import numpy as np
 import torch
 from scipy.sparse import csc_matrix
 
-from Void_Equations import universal_void_dynamics
+from vdm_rt.core.void_dynamics_adapter import node_potential_derivative
 
 class Neurogenesis:
     """
@@ -61,7 +61,7 @@ class Neurogenesis:
         # 1. Create a potential connection matrix for new neurons (outgoing)
         potential_connections_out = self.rng.random((num_new_neurons, old_n)) * 0.05 
         # 2. Evolve it with void dynamics
-        delta_out = universal_void_dynamics(potential_connections_out, substrate.time_step)
+        delta_out = -node_potential_derivative(potential_connections_out.astype(np.float32)).astype(np.float64)
         evolved_connections_out = potential_connections_out + delta_out
         # 3. Threshold to form actual connections
         new_connections_out = np.where(evolved_connections_out > 0.01, evolved_connections_out, 0)
@@ -69,7 +69,7 @@ class Neurogenesis:
         # 1. Create a potential connection matrix for new neurons (incoming)
         potential_connections_in = self.rng.random((old_n, num_new_neurons)) * 0.05
         # 2. Evolve it
-        delta_in = universal_void_dynamics(potential_connections_in, substrate.time_step)
+        delta_in = -node_potential_derivative(potential_connections_in.astype(np.float32)).astype(np.float64)
         evolved_connections_in = potential_connections_in + delta_in
         # 3. Threshold
         new_connections_in = np.where(evolved_connections_in > 0.01, evolved_connections_in, 0)

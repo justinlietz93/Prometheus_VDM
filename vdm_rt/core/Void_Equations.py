@@ -1,107 +1,79 @@
 """
-FUM Void Dynamics Library
+VDM Metriplectic Klein-Gordon Field Equations
 Copyright © 2025 Justin K. Lietz, Neuroca, Inc. All Rights Reserved.
 
-This library contains the main functions governing the Void Dynamics Model.
-These functions represent the unchanging laws of the system.
+Two coupled equations of motion derived from:
+  CF01 (QGT → metriplectic brackets)
+  CF02 (GENERIC two-generator structure — J and M simultaneous)
+  CF03 (double-well potential, Ginzburg-Landau, for both φ and ψ)
+  CF04 (telegraph-Fisher finite-speed transport, causal cone)
+  CF06 (fluctuation-dissipation from information geometry)
+  CF11 (metriplectic damped Klein-Gordon)
 
-These functions demonstrate the two opposing, yet synergistic forces that
-drive void dynamics across all scales of the model. Void dynamics are inherently 
-stochastic and generative. 
+There are no separate "RE-VGSP" and "GDSP" functions.
+There are no topology timers, thresholds, or patience counters.
+There are two coupled Klein-Gordon fields (node + bond) with different masses.
 """
+
+from __future__ import annotations
 import numpy as np
 
-# ===== UNIVERSAL PHYSICAL CONSTANTS =====
-# These are NOT arbitrary - they come from VDM learning stability
-# requirements
-ALPHA = 0.25      # Universal learning rate for RE-VGSP (Resonance-Enhanced dynamics)
-BETA = 0.1        # Universal plasticity rate for GDSP (Goal-Directed dynamics)
-F_REF = 0.02      # Universal reference frequency for time modulation
-PHASE_SENS = 0.5  # Universal phase sensitivity for time modulation
+TAU = 2.0
+BETA = 0.1
+LAMBDA = 1.0
+GAMMA = 0.05
+KT_EFF = 0.001
+EPS_TOPO = 0.01
+ETA_BOND_FLOOR = float(np.sqrt(2.0 * EPS_TOPO * KT_EFF))
 
-def delta_re_vgsp(W, t, alpha=None, f_ref=None, phase_sens=None, use_time_dynamics=True, domain_modulation=1.0):
-    """
-    Void Alpha Function: Synchronizes with Void Omega
-    Universal function for Resonance-Enhanced Valence-Gated Synaptic Plasticity.
-    Models the fractal energy drain/pull (learning rule).
-    
-    Args:
-        W: Current void state
-        t: Time step
-        alpha: Learning rate (defaults to universal constant)
-        f_ref: Reference frequency (defaults to universal constant)
-        phase_sens: Phase sensitivity (defaults to universal constant)
-        use_time_dynamics: Enable time modulation
-        domain_modulation: Domain-specific scaling factor
-    """
-    # Use universal constants as defaults
-    if alpha is None:
-        alpha = ALPHA
-    if f_ref is None:
-        f_ref = F_REF
-    if phase_sens is None:
-        phase_sens = PHASE_SENS
-    
-    # Apply domain modulation to alpha
-    effective_alpha = alpha * domain_modulation
-    
-    noise = np.random.uniform(-0.02, 0.02)
-    base_delta = effective_alpha * W * (1 - W) + noise
-    
-    if use_time_dynamics:
-        phase = np.sin(2 * np.pi * f_ref * t)
-        return base_delta * (1 + phase_sens * phase)
-    return base_delta
 
-def delta_gdsp(W, t, beta=None, f_ref=None, phase_sens=None, use_time_dynamics=True, domain_modulation=1.0):
-    """
-    Void Omega Function: Synchronizes with Void Alpha
-    Universal function for Goal-Directed Structural Plasticity.
-    Models the weak closure for persistent voids (structural rule).
-    
-    Args:
-        W: Current void state
-        t: Time step
-        beta: Plasticity rate (defaults to universal constant)
-        f_ref: Reference frequency (defaults to universal constant)
-        phase_sens: Phase sensitivity (defaults to universal constant)
-        use_time_dynamics: Enable time modulation
-        domain_modulation: Domain-specific scaling factor
-    """
-    # Use universal constants as defaults
-    if beta is None:
-        beta = BETA
-    if f_ref is None:
-        f_ref = F_REF
-    if phase_sens is None:
-        phase_sens = PHASE_SENS
-    
-    # Apply domain modulation to beta
-    effective_beta = beta * domain_modulation
-    
-    base_delta = -effective_beta * W
-    
-    if use_time_dynamics:
-        phase = np.sin(2 * np.pi * f_ref * t)
-        return base_delta * (1 + phase_sens * phase)
-    return base_delta
+def bond_weighted_laplacian(phi: np.ndarray, adj_lists: list[np.ndarray], psi: list[np.ndarray]) -> np.ndarray:
+    N = phi.shape[0]
+    out = np.zeros(N, dtype=np.float64)
+    for i in range(N):
+        nbrs = adj_lists[i]
+        if nbrs.size == 0:
+            continue
+        out[i] = np.sum(psi[i] * (phi[nbrs] - phi[i]))
+    return out.astype(np.float32)
 
-# ===== SIMPLIFIED INTERFACES FOR COMMON USE CASES =====
 
-def universal_void_dynamics(W, t, domain_modulation=1.0, use_time_dynamics=True):
-    """
-    Simplified interface that applies both RE-VGSP and GDSP with universal constants.
-    Returns combined delta for single-step evolution.
-    """
-    dw_re = delta_re_vgsp(W, t, domain_modulation=domain_modulation, use_time_dynamics=use_time_dynamics)
-    dw_gdsp = delta_gdsp(W, t, domain_modulation=domain_modulation, use_time_dynamics=use_time_dynamics)
-    return dw_re + dw_gdsp
+def node_potential_derivative(phi: np.ndarray, lam: float = LAMBDA) -> np.ndarray:
+    return (2.0 * lam * phi * (1.0 - phi) * (1.0 - 2.0 * phi)).astype(np.float32)
 
-def get_universal_constants():
-    """Returns the universal constants as a dictionary."""
+
+def bond_potential_derivative(
+    psi_ij: np.ndarray,
+    phi_dot_i: float,
+    phi_dot_j: np.ndarray,
+    lam: float = LAMBDA,
+    eps: float = EPS_TOPO,
+) -> np.ndarray:
+    dwell = 2.0 * lam * psi_ij * (1.0 - psi_ij) * (1.0 - 2.0 * psi_ij)
+    activity = eps * np.abs(phi_dot_i) * np.abs(phi_dot_j)
+    return (dwell - activity).astype(np.float32)
+
+
+def klein_gordon_rhs(
+    phi: np.ndarray,
+    adj_lists: list[np.ndarray],
+    psi: list[np.ndarray],
+    lam: float = LAMBDA,
+    D: float = GAMMA,
+    kT: float = KT_EFF,
+) -> np.ndarray:
+    transport = D * bond_weighted_laplacian(phi, adj_lists, psi)
+    dV = node_potential_derivative(phi, lam)
+    noise = np.sqrt(2.0 * D * kT) * np.random.standard_normal(phi.shape).astype(np.float32)
+    return transport - dV + noise
+
+
+def get_constants() -> dict:
     return {
-        'ALPHA': ALPHA,
-        'BETA': BETA,
-        'F_REF': F_REF,
-        'PHASE_SENS': PHASE_SENS
+        "TAU": TAU,
+        "BETA": BETA,
+        "LAMBDA": LAMBDA,
+        "GAMMA": GAMMA,
+        "KT_EFF": KT_EFF,
+        "EPS_TOPO": EPS_TOPO,
     }
