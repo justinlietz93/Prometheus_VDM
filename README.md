@@ -41,6 +41,8 @@ Robust through substantial perturbations, mmaintains synchronicity locking SIE v
 
 ## 🔥News
 
+* **March 13, 2026 - [Primitive Bifurcation Hypothesis](/Derivation/z.CANONICAL_Hypotheses/H000_Primitive_Bifurcation_Hypothesis.md)**
+  * A foundational hypothesis was added to the framework which aims at the absolute foundation of this theory, replacing the Quantum Geometric Tensor as the previous foundation. In this new hypothesis the QGT emerges on a carrier manifold, which is also derived and emergent, and is no longer the most fundamental object.
 * **March 1, 2026 — Pure physics cosmogenesis / cognition runtime developed and validated at 1000 N**
   * The new [v8 runtime](/vdm_rt_v9/): Starting from the Quantum Geometric Tensor and an empty void field, a graph emerged on the lattice through spinodal tachyonic condensation, leading to domain separation and domain walls, which produced embedded fermions allowing nodes to spike. Spiking nodes radiate void walkers (gauge bosons) that radiate in all degrees of freedom. Bond connections are formed when walkers find two nodes that are opposed to eachother across a domain wall, creating a metriplectic gradient that must be minimized. This creates a synapse / edge connection. Walkers and connections dissolve when their activity falls below the thermal floor. These are the same mechanism for decoherence and superposition.
 * **February 25, 2026 — Emergent Cross-Frequency Phase-Locking in 5k-Node VDM Runtime ([Aura Run](/data_analysis/Aura_VDM/))**
@@ -62,10 +64,6 @@ Robust through substantial perturbations, mmaintains synchronicity locking SIE v
   + Full emergence transcript: [`emergence.md`](docs/emergence.md)  
   + Telemetry data and analysis available on request.
   + **This was unexpected, and clearly observed.**
-- **January 31, 2026**
-  - I’m asserting temporal priority and reduction‑to‑practice for the core architectural principles now popularized by BDH: scale‑free/heavy‑tail sparse neural graphs, locally interacting neuron‑particles, Hebbian working memory/online plasticity, sparse activations, and attention‑like state routing.
-My work (AMN→FUM→VDM) was published and open‑sourced months earlier with auditable timestamps, quantitative measurements (e.g., heavy‑tail fits, Gini inequality), and cryptographic provenance manifests.
-I am not alleging copying — I’m requesting correct attribution and citation of prior art, and I’m making the evidence easy to verify.
 - ... Full news at [NEWS.md](/NEWS.md)
 
 ### DOIs
