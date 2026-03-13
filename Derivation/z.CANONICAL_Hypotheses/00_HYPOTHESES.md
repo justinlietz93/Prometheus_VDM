@@ -2,8 +2,9 @@
 
 > **Author:** Justin K. Lietz
 > **Created Date:** 2025‑10‑30
+> **Creation Commit:** 80ee5476e4f887fed3c34534a99daa878f55382f  
 > **Updated:** 2026-03-13
-> **Commit:** 501b29ef20b2b4b120744e0957539d6af5570441  
+> **New Pre-Commit Hash:** 699c445ba6d9a52127646aa94075ae048d61e576
 > **Salted hash:** *located in PROVENANCE_manfiest.json and z.CANONICAL_Hypotheses/PROVENANCE_index.json*  
 > **Contact(s):** ([justin@neuroca.ai](mailto:justin@neuroca.ai))  
 > **License:** See LICENSE in repository  
