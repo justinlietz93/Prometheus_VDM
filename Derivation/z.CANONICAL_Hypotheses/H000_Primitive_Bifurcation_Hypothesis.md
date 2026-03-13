@@ -98,11 +98,12 @@ This section is intentionally lean. It is a proposal-stage symbolic scaffold, no
 
 Let \(\mathcal{C}\) denote a logical domain of candidate realization conditions. This is not a primitive ontology of objects in the world. It is the minimal variable range needed to state realizability burdens.
 
-Introduce distinguished pole symbols:
+Introduce distinguished pole symbols 
+> (NOTE - 0,1 are not numerical. They represent opposition):
 
-\[
+$$
 \mathbf{0}, \mathbf{1} \in \mathcal{C}
-\]
+$$
 
 with intended meanings:
 
@@ -111,9 +112,9 @@ with intended meanings:
 
 Introduce primitive predicates:
 
-\[
+$$
 \mathrm{Ster}(x), \qquad \mathrm{Real}(x), \qquad \mathrm{Flat}(x)
-\]
+$$
 
 with intended meanings:
 
@@ -123,46 +124,51 @@ with intended meanings:
 
 Introduce primitive opposition:
 
-\[
+$$
 \mathrm{Opp}(x,y)
-\]
+$$
 
 meaning \(x\) and \(y\) are complementary non-identical poles.
 
 ### Proposed root laws
 
 **PB1. Pole non-identity**
-\[
+
+$$
 \mathbf{0} \neq \mathbf{1}
-\]
+$$
 
 **PB2. Pole sterility**
-\[
+
+$$
 \mathrm{Ster}(\mathbf{0}) \wedge \mathrm{Ster}(\mathbf{1})
-\]
+$$
 
 **PB3. Pole opposition**
-\[
+
+$$
 \mathrm{Opp}(\mathbf{0},\mathbf{1})
-\]
+$$
 
 **PB4. Realizability exclusion**
-\[
+
+$$
 \forall x \in \mathcal{C}, \quad \mathrm{Real}(x) \Rightarrow (x \neq \mathbf{0} \wedge x \neq \mathbf{1})
-\]
+$$
 
 **PB5. Forced non-flatness under opposed sterile poles**
-\[
+
+$$
 \forall x \in \mathcal{C}, \quad \big(\mathrm{Real}(x) \wedge \mathrm{Opp}(\mathbf{0},\mathbf{1})\big) \Rightarrow \neg \mathrm{Flat}(x)
-\]
+$$
 
 ### First derived notion
 
 Define the first derived gain:
 
-\[
+$$
 \mathrm{Diff}(x) := \mathrm{Real}(x) \wedge \neg \mathrm{Flat}(x)
-\]
+$$
 
 This is the proposal-stage formal expression of primitive distinguishability.
 
