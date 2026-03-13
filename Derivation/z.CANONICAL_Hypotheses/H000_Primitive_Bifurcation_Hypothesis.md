@@ -99,7 +99,7 @@ This section is intentionally lean. It is a proposal-stage symbolic scaffold, no
 Let \(\mathcal{C}\) denote a logical domain of candidate realization conditions. This is not a primitive ontology of objects in the world. It is the minimal variable range needed to state realizability burdens.
 
 Introduce distinguished pole symbols 
-> (NOTE - 0,1 are not numerical. They represent opposition):
+> **NOTE** - $0,1$ are **not numerical objects** and do **not** denote arithmetic values, Boolean states, or binary digits. They are only symbolic markers for complementary opposition at the proposal stage.
 
 $$
 \mathbf{0}, \mathbf{1} \in \mathcal{C}
