@@ -8,6 +8,17 @@
 > **License:** See LICENSE in repository  
 > **TL;DR:** This document summarizes and indexes current state of hypothesis files in the repository. It can be seen as the sole source of truth for VDM hypotheses. Review the [Tier Grade Maturity Ladder](/Derivation/TIER_STANDARDS.md) for more information on what constitutes a hypothesis in this codebase.
 
+---
+
+> **Root-layer note (2026-03 pivot):**  
+> The current hypothesis stack now distinguishes between **primitive-origin hypotheses** and **later derived-regime hypotheses**.  
+> **H000** is the current earliest active root hypothesis and sits beneath the later hypothesis stack.  
+> QGT/FIM-based geometry, Born-meter constructions, coherence-meter constructions, and spinor/gauge emergence should be read as **downstream hypotheses**, not primitive floors.  
+> Related migration documents:
+> - `H000_Primitive_Bifurcation_Hypothesis.md`
+> - `H000_A8_Integration_Note.md`
+> - `CF000_Migration_Note.md`
+
 ## **Status legend:**  
 
 - Note on prefixes: Hypotheses and their files are identified by an H prefix following it's unique 3 digit ID.  
