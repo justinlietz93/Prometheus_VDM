@@ -3,7 +3,7 @@
 
 **Classification:** Axiom-core  
 **Owner:** Justin K. Lietz  
-**Status:** T1_PROPOSAL  
+**Status:** Hypothesis for Completed Formalism CF000  
 > **Status rule:** This document is a production-grade hypothesis artifact, not a theorem-grade CF closure. It proposes a root architecture and decisive burden map for later CF000 closure work.
 
 **One-line objective:** Test whether a self-generating universe requires a primitive unresolved bifurcation between complementary non-identical sterile poles, rather than a single flat primitive such as absolute nullity or absolute undifferentiated totality.
