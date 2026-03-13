@@ -8,7 +8,7 @@
 
 ---
 
-## Executive recommendation
+## Executive Decision
 
 **Do not overwrite A8 yet.**  
 Introduce the Primitive Bifurcation Hypothesis (H000) as a deeper antecedent hypothesis beneath the current A8 candidate, preserve A8’s operational predictions for now, and pursue a later bridge theorem showing whether A8 is one domain-level realization of the earlier bifurcation-driven hierarchy engine.
