@@ -1,6 +1,6 @@
 <h1 align="center">Void Dynamics Model (VDM)</h1>
 <h4 align="center">A two part framework built to be attacked:</h4>  
-<h6 align="center">A background‑independent, metriplectic field theory unifying matter and forces from the Quantum Geometric Tensor, with an emergent causal cone and an epistemological J→M projection.</h6>
+<h6 align="center">A background‑independent, metriplectic field theory unifying matter and forces from origins before yjr Quantum Geometric Tensor, with an emergent causal cone and an epistemological J→M projection.</h6>
 <h6 align="center">A real time, zero training, emergent run-time with scale‑free/heavy‑tail sparse neural graphs, locally interacting neuron‑particles (void walkers), Hebbian working memory/online plasticity, sparse activations, and attention‑like state routing driven by physical dynamics.</h6>  
 <h5 align="center">Lineage: AMN-->FUM-->VDM</h5>  
 
@@ -41,7 +41,7 @@ Robust through substantial perturbations, mmaintains synchronicity locking SIE v
 
 ## 🔥News
 
-* **March 13, 2026 - [Primitive Bifurcation Hypothesis](/Derivation/z.CANONICAL_Hypotheses/H000_Primitive_Bifurcation_Hypothesis.md)**
+* **March 13, 2026 — [Primitive Bifurcation Hypothesis](/Derivation/z.CANONICAL_Hypotheses/H000_Primitive_Bifurcation_Hypothesis.md)**
   * A foundational hypothesis was added to the framework which aims at the absolute foundation of this theory, replacing the Quantum Geometric Tensor as the previous foundation. In this new hypothesis the QGT emerges on a carrier manifold, which is also derived and emergent, and is no longer the most fundamental object.
 * **March 1, 2026 — Pure physics cosmogenesis / cognition runtime developed and validated at 1000 N**
   * The new [v8 runtime](/vdm_rt_v9/): Starting from the Quantum Geometric Tensor and an empty void field, a graph emerged on the lattice through spinodal tachyonic condensation, leading to domain separation and domain walls, which produced embedded fermions allowing nodes to spike. Spiking nodes radiate void walkers (gauge bosons) that radiate in all degrees of freedom. Bond connections are formed when walkers find two nodes that are opposed to eachother across a domain wall, creating a metriplectic gradient that must be minimized. This creates a synapse / edge connection. Walkers and connections dissolve when their activity falls below the thermal floor. These are the same mechanism for decoherence and superposition.
