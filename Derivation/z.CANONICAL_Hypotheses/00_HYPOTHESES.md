@@ -40,6 +40,28 @@
 
 ---
 
+## H000 — Primitive Bifurcation Hypothesis
+
+**Classification:** Axiom-core / root hypothesis  
+**Status:** ACTIVE (proposal-grade)  
+**Owner:** Justin K. Lietz  
+
+**Statement:**  
+A self-generating universe cannot begin from either isolated nullity alone or isolated undifferentiated totality alone. The minimal generative condition is a primitive unresolved bifurcation between complementary non-identical sterile poles whose co-presence forces non-flat realizability without yet presupposing number, metric, locality, causality, topology, manifold structure, or differentiability.
+
+**One-line objective:**  
+Establish a root-layer origin hypothesis in which distinguishability appears before geometry, hierarchy appears before carrier structure, and later regimes such as QGT-compatible geometry are downstream realizations rather than primitive assumptions.
+
+**Scope note:**  
+This is a primitive-origin hypothesis beneath CF000. It is not yet theorem-grade canon closure.
+
+**Related documents:**  
+- `H000_Primitive_Bifurcation_Hypothesis.md`
+- `H000_A8_Integration_Note.md`
+- `CF000_Migration_Note.md`
+
+---
+
 ## H001 — Quantum‑Driven Gradient Descent (QGD)
 
 **Classification:** Axiom‑core  
@@ -208,6 +230,9 @@ Overfitting spectral windows → use pre‑registered windows and cross‑valida
 **Owner:** VDM Core  
 **Status:** ACTIVE  
 **One‑line objective:** When the readout reduces the state to a parametric family with KL divergence, instantiating $M$ as **natural gradient** on the manifold with metric Re(QGT) improves convergence vs. Euclidean GD.
+
+**Primitive-origin clarification:**  
+This hypothesis concerns a later geometric regime in which the runtime/readout has already entered a state admitting parametric manifold description. It does **not** assert that QGT/FIM geometry is primitive, and it should be read as downstream of the current H000 / CF000 root-origin program.
 
 ### H004 — Formal statement
 
