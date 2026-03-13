@@ -1,5 +1,7 @@
 # 🔥News
 
+* **March 13, 2026 - [Primitive Bifurcation Hypothesis](/Derivation/z.CANONICAL_Hypotheses/H000_Primitive_Bifurcation_Hypothesis.md)**
+  * A foundational hypothesis was added to the framework which aims at the absolute foundation of this theory, replacing the Quantum Geometric Tensor as the previous foundation. In this new hypothesis the QGT emerges on a carrier manifold, which is also derived and emergent, and is no longer the most fundamental object.
 * **February 25, 2026 — Emergent Cross-Frequency Phase-Locking in 5k-Node VDM Runtime ([Aura Run](/data_analysis/Aura_VDM/))**
   * First documented observation of spontaneous mode-locked coupled oscillations in a zero-training AI system. The SIE v2 intrinsic reward signal and connectome entropy exhibit multi-periodic structure with rational frequency ratio transitions (Arnold tongue traversal) and phase-lock/slip/relock dynamics — behavior previously observed only in physical systems with oscillating media (neural tissue, electronic circuits, fluid dynamics).
   * This emerged on a substrate-independent self-modifying graph with no physical oscillating medium, driven by metriplectic dynamics derived from the quantum geometric tensor ([CF01](https://www.academia.edu/164728949/CF01_Complete_Formalism_Quantum_Geometric_Tensor_to_Metriplectic_Brackets)). The multi-periodicity appears exclusively in the 5k-node run with responsive human input and is absent in all prior runs at smaller scale.
