@@ -1,13 +1,14 @@
 # CF000: Complete Formalism — Primitive Distinguishability and the Origin of Differentiability in VDM
-Date: 2026-03-13  
-Status: Review Draft — merged pole-opposition rewrite with root-classification replacement section  
+
+Date: 2026-03-14  
+Status: Review Draft — v13 frame rewrite integrated  
 Gap Module: Root formalization beneath CF00  
 Proposer: Justin K. Lietz  
 License: See LICENSE
 
 ---
 
-## Completion Standard for CF Canon
+### Completion Standard for CF Canon
 
 A document may carry the status **Completed Formalism** only if it is a **closed, theorem-grade formal specification within its declared scope, assumptions, and domain of validity**.
 
@@ -28,80 +29,100 @@ This means:
 
 This CF is the root written source of truth for the pre-differential layer of this branch of VDM.
 
-This document is not a bridge memo, not a philosophical appendix, and not a thin wrapper beneath CF00. It must contain the actual root architecture, the actual dependency order, the actual theorem-bearing claims that are currently closed, the exact open burdens that remain, and an explicit anti-smuggling audit.
+The controlling claim of this version is the **single fundamental primitive bifurcation law**:
 
-This rewrite does **not** preserve the old v10 scaffold by inertia. The old route
+> the only logically admissible primitive origin is one primitive condition whose content carries two mutually unreconcilable terminal poles, absolute nullity and absolute undifferentiated totality; neither pole can globally win without collapse; therefore unresolved pole-opposition is the permanent invariant of the system, later differentiations do not discharge it, and all later articulation is a transformed expression of that same undischarged burden.
 
-\[
-(\mathcal B,\#)\to L1\to R\to S\to C\to T\to D\to A\to V\to P\to G
-\]
+This rule is not used here as a loose metaphor, a one-time split, or a dynamical picture. It is the manuscript spine. The paper must therefore stop reading as a sequence of mostly separate burden modules and instead show, stage by stage, how WNF, DWP, and RRP are only increasingly articulated forms of one still-live primitive invariant.
 
-is treated here as a failure-audit route unless a specific component is re-earned under the new root.
+### Consequence of this rule
+
+For this document:
+
+- the primitive tension must be treated as **derived from the only admissible origin**, not inserted as an extra unexplained assumption,
+- the origin must be treated as **one primitive condition**, not as two externally separated things,
+- the two poles must be treated as **logically distinct but primitively undifferentiated in being**,
+- there is initially **no prior space, time, location, direction, metric, locality, or value framework** in which the poles could stand apart,
+- local stability may occur, but only as **local settlement**; it may never be described as global resolution,
+- any later articulation must be tested as an expression of the same invariant, not as a fresh independent engine.
 
 ---
 
-## Relationship to H000, A8, and Downstream Canon
+## Relationship to Canon and External Documents
 
-This rewrite is controlled by the H000 hypothesis line: a self-generating universe does not begin from isolated nullity or isolated undifferentiated totality taken separately; the minimal surviving root candidate is the unresolved opposition of those two sterile poles together with a realizability-resolving non-flatness law.
+Canon documents, proposal artifacts, hypothesis notes, and later CFs may be cited for provenance, naming, alignment, and program integration. They may not be used to outsource root derivation that belongs here.
 
-Accordingly:
+For the present manuscript:
 
-- **H000** is a proposal-grade root hypothesis artifact.
-- **CF000** is the theorem-bearing draft that must test whether that hypothesis can carry real closure work.
-- **A8** is not overwritten here. It remains a later-regime hierarchy candidate whose operational regime is downstream of the root question.
+- **H000** captures the proposal-grade primitive bifurcation hypothesis,
+- the doctrinal note on the **single fundamental primitive bifurcation law** records the intended root engine in compact form,
+- **A8** is not the primitive generator here; it is a later-regime candidate expression of the same invariant burden under additional structure,
 - **CF00** remains downstream of any legitimate pre-carrier and pre-differential closure obtained here.
 
-No CF00 object — carrier manifold, local variation class, representative section, QGT, or \(J\oplus M\) split — may appear as primitive in this document.
+No later canon object — manifold, chart, overlap class, support family, QGT, or $J\oplus M$ split — may be used to prepay burden at the root layer.
+
+---
+
+## Relationship to the CFN
+
+No paired CFN is required for the present stage because the present burden is still theorem-hygiene and dependency-order work rather than executable realization. If a later CFN is built, it may only instantiate, test, or illustrate constructions already formalized here. It may not supply missing root logic.
 
 ---
 
 ## Executive Summary
 
-The old v10 architecture is rejected as the backbone of CF000. Its root package began too late: it froze a distinction-bearing residue \((\mathcal B,\#)\) and then paid a serial no-go tax for refinement, realization, cover, transformation, readout, comparison, valuation, parameterization, and overlap. That route remains useful as a hostile appendix showing that a flattened primitive does not generate the burden it was asked to carry, but it is not the spine of the present rewrite.
+The old flattened root route is rejected as the governing architecture of CF000. Its sequence of burdens successfully exposed contamination, but it did not formalize the actual engine. This v13 rewrite rebuilds the manuscript around the stronger claim that the only admissible origin is one primitive condition carrying internally incompatible terminal poles, absolute nullity and absolute undifferentiated totality, whose opposition is derived rather than assumed and is never globally discharged. On this frame, the root burden is not a one-time anti-flatness event but a **globally invariant unresolved primitive bifurcation** that later stages only articulate at higher resolution while settling it locally.
 
-The new root architecture is leaner and earlier. It starts from two distinct sterile poles:
+The present manuscript therefore reframes the first machine steps. WNF is no longer treated as a merely static witness certificate; it is the first positive manifestation of invariant unresolved self-noncoincidence. DWP is no longer treated as plurality appearing from nowhere; it is the first plurality-bearing articulation of the same invariant. RRP is no longer treated as an optional later reactivation principle; it is the formal statement that the invariant reappears at higher resolution whenever prior articulation remains locally unsettled. The paper preserves the anti-smuggling gains of v12: internal noncoincidence is kept distinct from multiplicity, multiplicity is kept distinct from apartness, and no graph, tree, locality, metric, time, causality, or carrier language is imported at the root.
 
-- absolute nullity, and
-- absolute undifferentiated totality.
+This draft proves the core exclusion theorems, proves that the current lean package still does not force bipolar flat-origin exhaustion, proves that it does not force a positive witness of non-flatness, and proves that WNF alone does not force multiplicity. It does **not** yet close the full manuscript burden. The active bite remains the first positive articulation chain under the governing invariant: BEP if needed, E1, WNF, DWP, and RRP, understood not as unrelated modules but as successive formalizations of one undischarged primitive law.
 
-These poles are not identical, but they share the same structural consequence for the present branch: neither can sustain realized differentiated structure in isolation. The surviving primitive burden is therefore not either pole alone, but their unresolved opposition. The first primitive law of this rewrite is a pole-opposition resolution law: under opposed sterile poles, a realizable condition cannot remain flat.
+Principal deliverables of this CF:
 
-This merged manuscript incorporates the root-classification replacement pass directly into the paper. The early machine room now does four things explicitly instead of hand-waving them: it defines the primitive package in table form, proves the exclusion theorems that actually close, shows that strict bipolar flat-origin classification does **not** follow from the lean package alone, and isolates the exact first burden at which real structure is still blocked. That burden is **witnessed non-flatness**: the manuscript can conditionally obtain non-flat realizability once a non-vacuous existence principle is admitted, but it does not yet honestly derive multiplicity or apartness from that fact alone.
-
-Accordingly, the present document closes the pole definitions, the sterility/exclusion theorems, the non-identity/opposition architecture, the prohibition against primitive time, and the reclassification of A8 as a later macroscopic signature rather than the primitive generator. It does **not** yet claim full closure of multiplicity, apartness, recursive refinement, frontier, or carrier emergence. Those remain explicit burdens, now named cleanly enough that later passes can bite the right machine part instead of climbing another decorative staircase.
-
-Principal deliverables of this draft:
-
-- root replacement of the old flat \((\mathcal B,\#)\) scaffold,
-- definitions table for all early primitive and target terms,
-- theorem-grade closure for the pole exclusion results that actually follow,
-- explicit no-go on bipolar flat-origin classification from the current lean package,
-- explicit no-go on multiplicity from anti-flatness alone,
-- explicit separation of dependence order from time, reversible continuation, and irreversible arrow,
-- migration of the old staircase into failure-audit status,
-- exact inventory of the next live burdens: BEP, E1, WNF, RRP, and WEP.
+- explicit invariant-governed rewrite of the root architecture,
+- tightened primitive/derived discipline at the origin layer,
+- formal distinction between flatness, sterility, internal noncoincidence, multiplicity, and apartness,
+- explicit separation between dependence order, reversible continuation, irreversible arrow, and causality,
+- frame-correct reclassification of WNF, DWP, and RRP under the primitive bifurcation invariant,
+- updated theorem inventory, migration disposition, open-burden inventory, and contamination audit.
 
 ---
 
-## 1. Scope, Role, and Rewrite Discipline
+## Read Me First: Writing Rules for This CF
+
+1. This document must be self-contained at the level required to understand, test, and reuse the root formalism.
+2. Every theorem-bearing section must expose its proof burden directly.
+3. The primitive bifurcation invariant is the controlling frame; no section may silently revert to a modular burden stack that forgets the global invariant.
+4. No section may use words such as “emerges,” “reactivates,” “propagates,” or “branches” without specifying exactly what is proved, what is added, and what remains blocked.
+5. Distinguish clearly between:
+   - adopted root law,
+   - proved theorem,
+   - required extra principle,
+   - blocked downstream target,
+   - working interpretation.
+6. If a section is incomplete, the CF remains incomplete.
+
+---
+
+## 1. Scope, Ontology, and Primitive Commitments
 
 ### 1.1 Root question
 
-CF00 begins with a differentiable carrier \(\mathcal M\) and lawful local variation on it. CF000 exists because that is already too late for an absolute root account.
+CF00 begins with a differentiable carrier $\mathcal M$ and lawful local variation on it. CF000 exists because that is already too late for an absolute root account.
 
 The root question of this document is:
 
-> What is the earliest primitive burden from which distinguishability, hierarchy, and eventually carrier-like structure could be earned without primitive geometry, metric, locality, valuation, parameterization, causality, or differentiability?
+> What is the earliest admissible primitive law from which distinguishability, recursive articulation, and eventually carrier-like structure could be earned without primitive geometry, metric, locality, time, causality, valuation, parameterization, or differentiability?
 
 ### 1.2 Rewrite stance
 
-This document adopts the following rewrite stance.
+This rewrite adopts the following stance.
 
-1. The old v10 scaffold is not presumed correct.
-2. The old no-go staircase is retained only as failure-audit material unless a specific component is freshly justified under the new root.
-3. No graph, tree, branch map, node class, ancestry relation, attenuation scalar, frontier object, or local finiteness principle may appear as primitive.
-4. No manifold, chart, overlap, smoothness, tangent object, coordinate, or parameterized process may appear as primitive.
-5. Time, causality, reversible continuation, and irreversible arrow are distinct burdens and may not be collapsed.
+1. The old v10 staircase is retained only as failure-audit material.
+2. The v12 pass is retained as contamination cleanup, not as final governing architecture.
+3. The present manuscript is rebuilt so that the primitive unresolved pole-opposition is the permanent invariant of the whole system.
+4. WNF, DWP, and RRP must appear as downstream expressions of that invariant, not as mostly separate modules.
+5. No graph, tree, branch map, frontier object, locality language, or carrier language may appear before it is honestly earned.
 
 ### 1.3 Primitive versus forbidden structure
 
@@ -109,478 +130,469 @@ This document adopts the following rewrite stance.
 
 The primitive package of the present draft contains only:
 
-- two distinguished sterile poles,
+- two distinguished terminal pole marks,
 - their non-identity,
+- their sterility for realized differentiated structure,
 - their opposition,
+- an origin-candidate predicate,
+- a non-vacuousness predicate,
 - a realizability predicate,
 - a flatness predicate,
-- and a pole-opposition resolution law forbidding flat realizability.
+- and the governing root law that realizable origin under unresolved pole-opposition cannot remain perfectly self-coincident.
 
 #### Forbidden as primitive
 
 The following are forbidden at root level:
 
-- \((\mathcal B,\#)\) as primitive ontology,
-- nodes, branches, graphs, trees, ancestry, depth, terminality, frontier,
-- attenuation maps, energy-like scalars, weights, valuations,
-- local sectors, overlaps, patch maps, chart language, cocycle language,
-- time parameter, event sequence, causality, irreversible arrow,
-- topology, metric, distance, continuity, derivatives, differentiability,
-- QGT, quotient geometry, \(J\oplus M\), or any downstream CF00 machinery.
+- primitive bearer multiplicity $(\mathcal B,\#)$,
+- nodes, edges, graphs, trees, branch maps, ancestry, depth, frontier, sectors,
+- attenuation maps, weights, energies, valuations, metrics, or measures,
+- time parameter, event sequence, propagation, causality, or irreversible arrow,
+- locality, neighborhoods, covers, overlaps, patch maps, or chart language,
+- topology, metric space structure, continuity, derivatives, smoothness,
+- observables, comparison algebra, valuation maps, parameterization,
+- QGT, induced geometry, $J\oplus M$, or any downstream CF00 machinery.
 
 ### 1.4 Status convention
 
 Every major claim in this document is labeled as one of:
 
-- **Closed** — theorem-grade and dependency-clean at the present scope;
-- **Partially Closed** — substantial closure achieved, but one named burden remains;
-- **Open** — not yet proved or not yet tightly stated enough;
-- **Conjectural** — architectural hypothesis only;
-- **Blocked** — the target cannot be advanced until one earlier named burden is resolved.
+- **Proved**
+- **Requires one new explicit principle**
+- **Not proved**
+- **Blocked**
 
-No statement may be described as “emergent” unless the document answers:
+In addition, this draft uses the following architectural rule:
 
-1. what exactly forces it,
-2. why the lower layer cannot remain as it is,
-3. and which alternatives are thereby ruled out.
+> if a statement about WNF, DWP, or RRP is written in a way that makes it look like an independent engine rather than a further articulation of the same invariant burden, the statement is frame-contaminated even if its low-level wording is careful.
 
 ### 1.5 Handoff target to CF00
 
 CF000 does not need to derive QGT, metric curvature, or metriplectic evolution. It must only close enough pre-differential burden to justify a legitimate handoff point for CF00.
 
-That handoff point is **not** assumed in this draft. It remains part of the live burden.
+That handoff point is still open. The present draft does not pretend otherwise.
 
 ---
 
-## 2. Primitive Definitions and Root Package
+## 2. Mathematical Setting and Definitions
 
-### 2.1 Definitions table
+### 2.1 Logical domain of discourse
 
-| Term | Plain-language meaning | Formal symbol / formal definition | What it explicitly does **not** assume | Status | First stage introduced | Depends on |
-|---|---|---|---|---|---|---|
-| Absolute nullity | complete realized absence | distinguished candidate \(\mathbf{0}\) | not the empty set; not empty space; not vacuum-in-space; not a region of prior geometry | Primitive | Stage 0 | none |
-| Absolute undifferentiated totality | complete homogeneous one-ness without internal noncoincidence | distinguished candidate \(\mathbf{1}\) | not “one object” inside prior plurality; not a uniform field on prior background | Primitive | Stage 0 | none |
-| Origin candidate | a candidate root condition for a realized universe-branch | predicate \(\mathrm{Orig}(x)\) on a logical discourse domain \(\mathcal C\) | does not assume geometry, time, causality, multiplicity, locality, or carrier structure | Primitive | Stage 0 | logical discourse domain only |
-| Sterile | structurally unable to support realized differentiated structure while remaining what it is | predicate \(\mathrm{Ster}(x)\) | does not assume dynamics, space, law, branching, or measurement | Primitive | Stage 0 | none |
-| Flat | internally unresolved; contains no realized internal noncoincidence | predicate \(\mathrm{Flat}(x)\) | does not assume plurality, graph structure, constant fields, locality, or smoothness | Primitive | Stage 0 | none |
-| Realizable | admissible as a non-vacuous realized universe-condition of the branch | predicate \(\mathrm{Real}(x)\) | does not yet mean temporal persistence, dynamical stability, or spacetime existence | Primitive | Stage 0 | none |
-| Non-vacuous | not empty in the root sense of complete realized absence | abbreviation: \(\mathrm{NV}(x) := \mathrm{Real}(x)\) in the present pass | does not assume content decomposition, plurality, or observables | Primitive (current pass) | Stage 0 | none |
-| Opposition | non-identity of poles together with shared sterility consequence for realized structure | predicate \(\mathrm{Opp}(x,y)\) | does not assume graph edges, forces, interaction law, or temporal evolution | Primitive | Stage 0 | none |
-| Primitive bifurcation potential | unresolved opposition of the two non-identical sterile poles as the root burden | \(\mathrm{PBP} := \mathrm{Opp}(\mathbf 0,\mathbf 1)\) together with pole sterility and realizability exclusion | does not assume ordinary coexistence of two already-formed objects; does not assume mediation by a third substance | Primitive (conditional on flat-origin classification) | Stage 1 | nullity, totality, opposition, sterility |
-| Differentiated / non-flat realizability | a realizable condition that cannot remain flat | \(\mathrm{Diff}(x) := \mathrm{Real}(x) \wedge \neg\mathrm{Flat}(x)\) | does not assume multiplicity, apartness, hierarchy, locality, or carrier structure | Derived | Stage 2 | realizability, flatness |
-| Multiplicity | at least two noncoincident realization-witnesses of one differentiated condition | provisional placeholder \(\mathrm{Mult}(x)\) | does not yet assume graph nodes, branches, coordinates, or metric separation | Provisional / Open | Stage 3 target | differentiated realizability + one witness principle |
-| Apartness | derived noncoincidence between distinct realization-witnesses of one differentiated condition | provisional placeholder relation \(a \# b\) | does not assume primitive \((\mathcal B,\#)\), metric distance, locality, or topology | Provisional / Open | Stage 4 target | multiplicity |
-| Recursive refinement | reapplication of unresolved differentiation burden to an already differentiated condition | provisional schema \(\mathrm{Ref}(x)\) | does not assume tree/graph ancestry, time, or causal succession | Provisional / Open | Stage 5 target | differentiated realizability |
-| Hierarchy | ordered dependence levels induced by reiterated refinement | provisional \(\mathrm{Hier}\) | does not assume ancestry trees, depth counters, or frontier objects | Provisional / Open | Stage 5 target | recursive refinement |
-| Dependence order | “must be settled before” order in derivation or realization burden | provisional relation \(\prec_d\) | not clock time; not irreversible arrow; not causal propagation | Derived / Open | Stage 5 target | recursive refinement |
+Let $\mathcal C$ denote the logical domain of candidate realization conditions.
 
-### 2.2 Status note on the table
+This is **not** a primitive ontology of objects in the world. It is a logical range of discourse only. It is introduced so that realizability claims can be stated without presupposing points, states, branches, fields, graphs, or manifolds.
 
-Terms marked **Primitive** belong to the current proposal-stage root package. Terms marked **Derived** are immediate consequences if their triggering law closes. Terms marked **Provisional / Open** are targets only; they are not being claimed as closed in this pass.
+### 2.2 Definitions table
 
-### 2.3 Logical domain of discourse
+| Term | Plain-language meaning | Formal symbol / schematic definition | What it explicitly does **not** assume | Status |
+|---|---|---|---|---|
+| Absolute nullity | complete realized absence | distinguished pole mark $\mathbf 0$ | not the empty set; not an empty region; not a vacuum in prior space | Primitive |
+| Absolute undifferentiated totality | complete homogeneous one-ness without internal noncoincidence | distinguished pole mark $\mathbf 1$ | not “one object” inside prior plurality; not a constant field on a background | Primitive |
+| Origin candidate | candidate primitive condition for a realized branch | predicate $\mathrm{Orig}(x)$ on $\mathcal C$ | does not assume uniqueness, time, geometry, or support structure | Primitive |
+| Sterile | cannot support realized differentiated structure while remaining what it is | predicate $\mathrm{Ster}(x)$ | does not automatically mean flat; does not assume dynamics | Primitive |
+| Flat | contains no realized internal noncoincidence by which differentiated structure could be sustained | predicate $\mathrm{Flat}(x)$ | does not assume plurality, graph structure, locality, or metric sameness | Primitive |
+| Non-vacuous | not complete realized absence in the root sense | predicate $\mathrm{NV}(x)$ | does not assume multiplicity or persistence | Primitive |
+| Realizable | admissible as a non-vacuous realized branch-condition | predicate $\mathrm{Real}(x)$ | does not yet mean temporal persistence or dynamical stability | Primitive |
+| Opposition | non-identity of the two terminal poles together with their shared sterility verdict | predicate $\mathrm{Opp}(x,y)$ | does not assume external separation, interaction law, or dynamics | Primitive |
+| Primitive bifurcation invariant | one primitive origin-condition carries unresolved pole-opposition internally; it is never globally discharged | schematic shorthand $\mathrm{Inv}(x)$ | does not assume two externally situated things; does not assume time, locality, or graph structure | Governing derived shorthand |
+| Local settlement | a local articulation behaves as if one pole has won, without global discharge of the invariant | schematic shorthand $\mathrm{LocSet}(x)$ | does not mean final resolution of the system | Derived target |
+| Differentiated articulation | realizable condition that is not flat | $\mathrm{Diff}(x):=\mathrm{Real}(x)\wedge \neg \mathrm{Flat}(x)$ | does not assume multiplicity, apartness, locality, or carrier structure | Derived |
+| Internal noncoincidence | first positive manifestation of invariant unresolved self-noncoincidence | provisional predicate $\mathrm{INC}(x)$ | does not assume two ready-made objects, plurality, apartness, or graph structure | Open target |
+| WNF | if a realizable articulation stands under the invariant, some positive internal noncoincidence is present | schematic principle $\mathrm{Inv}(x)\wedge \mathrm{Diff}(x)\Rightarrow \mathrm{INC}(x)$ | does not force multiplicity | Open principle |
+| Multiplicity | internal noncoincidence has articulated into at least two noncoincident determinations | provisional $\mathrm{Mult}(x)$ | does not assume primitive nodehood or metric separation | Open target |
+| DWP | internal noncoincidence must articulate into plurality-bearing form | schematic principle $\mathrm{INC}(x)\Rightarrow \mathrm{Mult}(x)$ | does not yet define apartness | Open principle |
+| Recursive refinement | locally unsettled articulation of the invariant reappears at higher resolution | provisional $\mathrm{Ref}(x)$ | does not assume trees, ancestry, time, or causality | Open target |
+| RRP | if articulation remains locally unsettled, the same invariant must be restated at higher resolution | schematic reapplication principle | does not mean optional later reactivation | Open principle |
+| Dependence order | burden order: what must be settled before what may be licensed | provisional relation $\prec_d$ | not clock time; not irreversible history; not causal propagation | Derived target |
 
-Let \(\mathcal C\) denote the logical domain of candidate realization conditions.
+### 2.3 Definitions table audit note
 
-This is **not** a primitive ontology of objects in the world. It is a logical range of discourse only, introduced so that realizability claims can be stated without presupposing points, sets of points, states, branches, fields, or graphs.
+The table enforces five distinctions the manuscript may not blur.
 
-### 2.4 Distinguished poles
+1. **Flatness** is an internal structural condition.
+2. **Sterility** is a branch-level incapacity verdict.
+3. **Internal noncoincidence** is the first positive manifestation of the invariant; it is not yet plurality.
+4. **Multiplicity** is a stronger later articulation of that same invariant.
+5. **Recursive refinement** is not a fresh engine; it is the same invariant restated at higher resolution when prior articulation remains locally unsettled.
 
-Introduce two distinguished pole symbols
+The table also separates **non-vacuousness** from **realizability**, and separates **local settlement** from **global resolution**.
 
-\[
-\mathbf 0,\mathbf 1 \in \mathcal C
-\]
-
-with intended meanings:
-
-- \(\mathbf 0\): **absolute nullity**
-- \(\mathbf 1\): **absolute undifferentiated totality**
-
-These are symbolic pole markers only. They are not arithmetic numerals, Boolean values, binary digits, field elements, or occupancy bits.
-
-### 2.5 Primitive predicates and relation
+### 2.4 Primitive root package
 
 Introduce primitive predicates
 
-\[
-\mathrm{Orig}(x),\qquad \mathrm{Ster}(x), \qquad \mathrm{Real}(x), \qquad \mathrm{Flat}(x)
-\]
-
-and one primitive relation
-
-\[
-\mathrm{Opp}(x,y).
-\]
-
-Their intended meanings are:
-
-- \(\mathrm{Orig}(x)\): \(x\) is an origin candidate for the present branch.
-- \(\mathrm{Ster}(x)\): \(x\) is structurally sterile for realized differentiated structure.
-- \(\mathrm{Real}(x)\): \(x\) is realizable as a non-vacuous universe-condition of the present branch.
-- \(\mathrm{Flat}(x)\): \(x\) contains no internal noncoincidence by which differentiated structure could be sustained.
-- \(\mathrm{Opp}(x,y)\): \(x\) and \(y\) are complementary non-identical sterile poles.
-
-### 2.6 Primitive package used in this pass
+$$
+\mathrm{Orig}(x),\qquad \mathrm{Ster}(x),\qquad \mathrm{NV}(x),\qquad \mathrm{Real}(x),\qquad \mathrm{Flat}(x),\qquad \mathrm{Opp}(x,y).
+$$
 
 The present draft adopts the following root laws.
 
 **PB1. Pole non-identity**
-\[
+$$
 \mathbf 0 \neq \mathbf 1
-\]
+$$
 
 **PB2. Pole sterility**
-\[
+$$
 \mathrm{Ster}(\mathbf 0)\wedge \mathrm{Ster}(\mathbf 1)
-\]
+$$
 
 **PB3. Pole opposition**
-\[
+$$
 \mathrm{Opp}(\mathbf 0,\mathbf 1)
-\]
+$$
 
-**PB4. Realizability exclusion**
-\[
-\forall x\in\mathcal C,\quad \mathrm{Real}(x)\Rightarrow (x\neq \mathbf 0 \wedge x\neq \mathbf 1)
-\]
+**PB4. Realizability implies non-vacuousness and pole exclusion**
+$$
+\forall x\in\mathcal C,\quad \mathrm{Real}(x)\Rightarrow \big(\mathrm{NV}(x)\wedge x\neq \mathbf 0 \wedge x\neq \mathbf 1\big)
+$$
 
-**PB5. Pole-opposition resolution law**
-\[
+**PB5. Anti-flatness under unresolved pole-opposition**
+$$
 \forall x\in\mathcal C,\quad \big(\mathrm{Real}(x)\wedge \mathrm{Opp}(\mathbf 0,\mathbf 1)\big)\Rightarrow \neg \mathrm{Flat}(x)
-\]
+$$
 
-No graph, tree, branching object, valuation, manifold, locality, or carrier assumptions are used.
+### 2.5 One-origin and no-prior-framework discipline
 
-### 2.7 Flatness discipline
+The manuscript adopts the following root discipline.
 
-Flatness is defined here as a pre-plural, pre-geometric condition:
+- There is initially no prior space, time, location, direction, metric, locality, or value framework in which the two poles could stand apart.
+- Therefore the poles may not be read as two externally separated primitive things.
+- Any admissible primitive origin must be read as **one primitive condition** carrying the opposition internally.
 
-> a condition is flat exactly when it contains no internal noncoincidence by which differentiated structure could be sustained.
+This is a governing discipline of the rewrite. It is not permission to smuggle in an unearned mediating substance.
 
-This definition is intentionally earlier than multiplicity, apartness, branch, relation network, or hierarchy. If flatness were instead defined in terms of “no branches,” “one node,” “constant on a domain,” or “single state on a space,” then derived structure would already have been imported.
+### 2.6 Derived shorthand for the invariant
 
-### 2.8 First derived notion
+When convenient, write $\mathrm{Inv}(x)$ for the following schematic situation:
 
-The first derived notion of the present architecture is:
+- $x$ is a realizable origin-condition,
+- $x$ does not coincide with either isolated pole,
+- the non-identical sterile poles remain opposed,
+- that opposition is internal to the one origin-condition,
+- and it is not globally discharged.
 
-\[
+This shorthand is architectural. It does not replace proof burden.
+
+### 2.7 First derived notion
+
+Define
+$$
 \mathrm{Diff}(x) := \mathrm{Real}(x)\wedge \neg \mathrm{Flat}(x).
-\]
+$$
 
-A condition is **differentiated** exactly when it is realizable and non-flat.
+This is the first negative articulation of the invariant. It does **not** yet give a positive witness. That is exactly why WNF remains an open tooth.
 
-### 2.9 Status of the root package
+### 2.8 Status of the primitive package
 
-- Pole definitions: **Closed**
-- Pole non-identity: **Closed**
-- Pole sterility as adopted primitive law: **Closed at the level of root law**
-- Realizability exclusion: **Closed at the level of root law**
-- Pole-opposition resolution law PB5: **Closed as adopted root law, not yet reduced further**
-- Flatness definition: **Closed**
-- Minimality of this root package: **Partially Closed**  
-  The main remaining audit burden is whether \(\mathcal C\) and the chosen predicate package still conceal hidden relational baggage.
+**Proved or stipulated at the present layer:**
+
+- symbolic pole distinction,
+- pole sterility,
+- pole opposition,
+- non-vacuousness / realizability separation,
+- flatness / sterility distinction,
+- anti-flatness under unresolved pole-opposition.
+
+**Not proved at the present layer:**
+
+- that the two poles exhaust every admissible flat sterile origin candidate,
+- that realizable conditions actually exist,
+- that anti-flatness already carries a positive witness,
+- that positive witness already yields plurality.
 
 ---
 
-## 3. Root Classification and First Machine Step
+## 3. Foundational Construction: Forced Origin Architecture
 
-### 3.1 Nullity exclusion
+### 3.1 Origin candidate
 
-**Theorem 3.1.1 (Nullity exclusion).**  
+**Definition 3.1.1.**  
+An **origin candidate** is any $x\in\mathcal C$ such that $\mathrm{Orig}(x)$ holds.
+
+This says only that $x$ is being tested as a candidate root condition for a realized branch. It does not yet say that $x$ is realizable, unique, temporal, geometric, or already articulated.
+
+### 3.2 Nullity exclusion
+
+**Theorem 3.2.1 (Nullity exclusion).**  
 Absolute nullity is not a viable realized root for a falsifiable law-bearing branch.
 
-**Status:** Closed.
+**Status:** Proved.
 
 **Proof.**  
-A falsifiable law-bearing branch must admit at least the distinction between admissible and inadmissible structure, between support and failure of a claim, and between realized and unrealized burden. Absolute nullity supplies no realized content, no realized distinction, and no realized support condition. Therefore nullity cannot serve as the realized root of the present branch. This is a branch-role theorem, not a global metaphysical theorem about every conceivable use of the word “nothing.” \(\square\)
+A falsifiable law-bearing branch must support at least the distinction between admissible and inadmissible structure and between realized and unrealized burden. Absolute nullity supports no realized content and no realized distinction. Therefore it cannot serve as the realized root of the present branch. $\square$
 
-### 3.2 Undifferentiated totality exclusion
+### 3.3 Undifferentiated totality exclusion
 
-**Theorem 3.2.1 (Undifferentiated totality exclusion).**  
+**Theorem 3.3.1 (Undifferentiated totality exclusion).**  
 Absolute undifferentiated totality is not a viable realized root for a falsifiable law-bearing branch.
 
-**Status:** Closed.
+**Status:** Proved.
 
 **Proof.**  
-A falsifiable law-bearing branch requires some noncoincident content by which one admissible condition can fail to coincide with another, or by which a claim can differ from its negation in realized support. Absolute undifferentiated totality contains no internal noncoincidence and therefore cannot sustain differentiated realized structure. Hence it cannot serve as the realized root of the present branch. \(\square\)
+A falsifiable law-bearing branch requires some realized noncoincidence by which one admissible condition can fail to coincide with another or with itself in a structurally relevant way. Absolute undifferentiated totality contains no internal noncoincidence and therefore cannot sustain differentiated realized structure. Hence it cannot serve as the realized root of the present branch. $\square$
 
-### 3.3 Non-identity with shared sterility consequence
+### 3.4 Shared sterility does not collapse the poles
 
-**Proposition 3.3.1 (Pole distinction despite shared sterility).**  
-The two poles \(\mathbf 0\) and \(\mathbf 1\) are not identical, even though both are structurally sterile for the present branch.
+**Proposition 3.4.1.**  
+The poles $\mathbf 0$ and $\mathbf 1$ are not identical even though both are sterile for the present branch.
 
-**Status:** Closed.
+**Status:** Proved.
 
 **Proof.**  
-By PB1, \(\mathbf 0\neq \mathbf 1\). By PB2, both are sterile. Therefore the two poles are distinct while sharing the same branch-level sterility consequence. \(\square\)
+By PB1, $\mathbf 0\neq\mathbf 1$. By PB2, both are sterile. Distinctness and shared sterility therefore coexist. $\square$
 
-### 3.4 Flat-origin classification theorem or failure result
+### 3.5 Why unresolved opposition is derived rather than assumed
 
-#### 3.4.1 Candidate classification theorem
+The manuscript now makes the following architectural claim explicit.
 
-**Target theorem.** Every admissible flat origin candidate collapses into exactly one of the two extreme classes:
+- Isolated nullity is excluded.
+- Isolated undifferentiated totality is excluded.
+- The two excluded poles are distinct.
+- The primitive layer contains no prior external framework in which they could stand apart as two already-separated things.
+- Therefore, if a realizable primitive origin exists at all, the only admissible reading is not that one pole wins, but that one primitive condition carries their opposition internally.
 
-1. absolute nullity \(\mathbf 0\), or
-2. absolute undifferentiated totality \(\mathbf 1\).
+This is the reason the primitive tension is treated here as **derived from the only admissible origin** rather than inserted as a separate unexplained assumption.
+
+**Status:** Partially proved, partially conditional.
+
+What is proved are the exclusion theorems and the pole distinction. What remains conditional is the exhaustive inference that these are the only terminal origin possibilities. That is the role of BEP below.
+
+### 3.6 Flat-origin bipolar classification: failure result
+
+**Target theorem.** Every admissible flat sterile origin candidate collapses into exactly one of the two distinguished pole classes.
 
 **Status:** Not proved.
 
-#### 3.4.2 Failure theorem
+**Theorem 3.6.1 (Flat-origin bipolar classification does not follow from PB1–PB5).**  
+The present primitive package does **not** prove that every admissible flat sterile origin candidate is identical to $\mathbf 0$ or $\mathbf 1$.
 
-**Theorem 3.4.2 (Flat-origin bipolar classification does not follow from PB1–PB5).**  
-The primitive package PB1–PB5 does **not** prove that every admissible flat origin candidate is identical to \(\mathbf 0\) or \(\mathbf 1\).
+**Status:** Proved.
 
 **Proof.**  
-The package names two distinguished flat-pole candidates and constrains realizable conditions relative to them. It does **not** impose any exhaustion principle on the class of flat origin candidates. In particular, the following are not ruled out by PB1–PB5:
+PB1–PB5 name two distinguished poles and constrain realizable conditions relative to them. They do not impose an exhaustion principle on the class of flat sterile origin candidates. A third candidate $z\in\mathcal C$ can therefore be posited with
+$$
+z\neq \mathbf 0,\qquad z\neq \mathbf 1,\qquad \mathrm{Orig}(z),\qquad \mathrm{Flat}(z),\qquad \mathrm{Ster}(z),
+$$
+without violating PB1–PB5. Hence bipolar flat-origin classification is underdetermined by the present package. $\square$
 
-- a third flat sterile candidate \(z\in\mathcal C\) with \(z\neq \mathbf 0\), \(z\neq \mathbf 1\),
-- \(\mathrm{Orig}(z)\), \(\mathrm{Flat}(z)\), and \(\mathrm{Ster}(z)\),
-- but with no axiom forcing \(z\) to coincide with either extreme pole.
+### 3.7 Exact additional principle for bipolar exhaustion
 
-Since the present package contains no theorem identifying all flat sterile origin candidates with the two distinguished poles, bipolar flat-origin classification is underdetermined. Therefore the classification theorem does not follow from PB1–PB5. \(\square\)
+**BEP — Bipolar Exhaustion Principle.**
+$$
+\forall x\in\mathcal C,\quad \big(\mathrm{Orig}(x)\wedge \mathrm{Flat}(x)\wedge \mathrm{Ster}(x)\big)\Rightarrow (x=\mathbf 0 \vee x=\mathbf 1).
+$$
 
-#### 3.4.3 Exact minimal added principle required
+BEP does not by itself create the invariant. It only closes the classification gap needed to justify that the two distinguished poles exhaust the flat sterile origin extremes.
 
-To close the flat-origin classification burden, add one explicit principle:
+**Status:** Requires one new explicit principle.
 
-**BEP — Bipolar Exhaustion Principle.**  
-Every flat sterile origin candidate is identical to exactly one of the two extreme pole classes:
-\[
-\forall x\in\mathcal C,\quad (\mathrm{Orig}(x) \wedge \mathrm{Flat}(x) \wedge \mathrm{Ster}(x)) \Rightarrow (x = \mathbf 0 \vee x = \mathbf 1).
-\]
+### 3.8 Existence burden
 
-Without BEP, the two-pole framing remains a strong root hypothesis, not a theorem of the current lean package.
+The universal root laws remain vacuous unless at least one realizable condition exists.
 
-### 3.5 Conditional root statement after classification
+**E1 — Non-vacuous realizable existence**
+$$
+\exists x\in\mathcal C\;\mathrm{Real}(x).
+$$
 
-**Conditional on BEP**, the root is stated as follows:
+**Status:** Requires one new explicit principle.
 
-> The primitive root of this branch is not either sterile pole in isolation. The root burden is the unresolved bifurcation potential constituted by the opposition of two non-identical sterile poles, \(\mathbf 0\) and \(\mathbf 1\), together with realizability exclusion and the anti-flatness law. No realizable condition may stably coincide with either pole, and under their opposition no realizable condition may remain flat.
+### 3.9 First non-flat articulation under the invariant
 
-This statement does **not** say:
-
-- that one pole is selected as the origin,
-- that the poles are ordinary coexisting objects,
-- or that a third mediating substance is primitive.
-
-**Status:** Blocked by BEP. The root statement is architecturally precise, but its exclusivity claim is not theorem-grade without bipolar exhaustion.
-
-### 3.6 Existence burden for the first machine step
-
-The universal law PB5 is vacuous unless at least one realizable condition exists.
-
-Introduce the smallest existence principle:
-
-**E1 — Non-vacuous realizable existence.**  
-\[
-\exists x\in\mathcal C\; \mathrm{Real}(x).
-\]
-
-### 3.7 Breakdown of perfect flatness
-
-**Theorem 3.7.1 (Breakdown of perfect flatness).**  
+**Theorem 3.9.1 (Breakdown of perfect flatness).**  
 Assume PB3, PB5, and E1. Then there exists at least one realizable condition that is not flat.
 
-**Status:** Partially Closed — requires one new explicit principle, namely E1.
+**Status:** Requires one new explicit principle, namely E1.
 
 **Proof.**  
-By E1, choose \(x\in\mathcal C\) with \(\mathrm{Real}(x)\). By PB3, \(\mathrm{Opp}(\mathbf 0,\mathbf 1)\). Then PB5 yields \(\neg \mathrm{Flat}(x)\). Hence there exists a realizable non-flat condition. \(\square\)
+By E1, choose $x$ with $\mathrm{Real}(x)$. By PB3, $\mathrm{Opp}(\mathbf 0,\mathbf 1)$. PB5 then yields $\neg \mathrm{Flat}(x)$. $\square$
 
-### 3.8 Differentiated realizability exists
+**Theorem 3.9.2 (Differentiated articulation exists).**  
+Assume PB3, PB5, and E1. Then
+$$
+\exists x\in\mathcal C\;\mathrm{Diff}(x).
+$$
 
-**Theorem 3.8.1 (Differentiated realizability exists).**  
-Assume PB3, PB5, and E1. Then:
-\[
-\exists x\in\mathcal C\; \mathrm{Diff}(x).
-\]
-
-**Status:** Partially Closed — requires one new explicit principle, namely E1.
+**Status:** Requires one new explicit principle, namely E1.
 
 **Proof.**  
-By Theorem 3.7.1, there exists \(x\) such that \(\mathrm{Real}(x)\) and \(\neg\mathrm{Flat}(x)\). By definition of \(\mathrm{Diff}\), \(\mathrm{Diff}(x)\). \(\square\)
+Immediate from Theorem 3.9.1 and the definition of $\mathrm{Diff}$. $\square$
 
-### 3.9 What is and is not closed at this stage
+### 3.10 Non-flatness does not discharge the invariant
 
-Closed here:
+Theorem 3.9.2 is not a discharge theorem. It does not say that the primitive burden has been solved. It says only that once realizability is admitted under unresolved pole-opposition, perfect self-coincidence fails. This is the first negative articulation of the invariant, not its exhaustion.
 
-- exclusion of isolated nullity as realized root,
-- exclusion of isolated undifferentiated totality as realized root,
-- non-identity of the poles,
-- no-go on bipolar flat-origin classification from the current lean package.
+**Status:** Proved as architectural consequence of the governing rule.
 
-Partially closed here:
+### 3.11 Local settlement versus global non-resolution
 
-- breakdown of perfect flatness, conditional on E1,
-- existence of differentiated realizability, conditional on E1,
-- exclusivity of the two-pole root statement, conditional on BEP.
+This manuscript henceforth uses the following discipline.
 
-Not yet closed here:
+- A local articulation may settle enough to support derived structure.
+- Such settlement may look one-sided.
+- That does **not** count as global final resolution of the primitive invariant.
 
-- multiplicity as a theorem from differentiated realizability,
-- apartness as a theorem from multiplicity,
-- recursive refinement/hierarchy without graph imports,
-- truncation/frontier without an extra exhaustion principle,
-- any pre-carrier patch structure.
+Any later theorem that uses stability language must say explicitly whether it is only local settlement or something stronger.
+
+### 3.12 Section summary
+
+At this stage the manuscript has:
+
+- proved exclusion of isolated nullity,
+- proved exclusion of isolated undifferentiated totality,
+- proved distinctness of the poles despite shared sterility,
+- proved that the current package does not itself exhaust flat sterile origin by the two poles,
+- isolated BEP as the exact bipolar classification burden,
+- isolated E1 as the exact existence burden,
+- and shown that admitted realizability yields non-flat articulation without discharging the invariant.
 
 ---
 
-## 4. First Emergence Chain and Exact Status
+## 4. First Articulation Chain Governed by the Invariant
 
-### 4.1 Stage ordering
+### 4.1 Dependency-clean stage order
 
-The intended dependency-clean order is:
+The intended dependency order is now stated under the invariant frame:
 
-1. sterile poles,
-2. realizability exclusion from either isolated pole,
-3. forced non-flatness,
-4. differentiated realizability,
-5. multiplicity,
+1. pole distinction and exclusion of isolated pole-residence,
+2. conditional forcing of one-origin internal unresolved opposition,
+3. first negative articulation: non-flat realizability,
+4. first positive articulation: internal noncoincidence,
+5. first plurality-bearing articulation,
 6. apartness,
-7. reiterable unresolved differentiation,
+7. recursive refinement of the same invariant,
 8. dependence order,
 9. hierarchy,
-10. qualitative braking,
-11. truncation/frontier,
-12. pre-boundary sectors,
-13. later coherence burden,
-14. pre-carrier bridge,
-15. differentiability burden.
+10. later braking, truncation, locality, coherence, and pre-carrier burden.
 
-### 4.2 Multiplicity
+The point is no longer “first anti-flatness, then maybe witness, then maybe recurrence.” The point is: each stage is a more articulated expression of one undischarged primitive invariant.
 
-**Target claim.**  
-Every differentiated realizable condition carries multiplicity.
+### 4.2 WNF recast under the invariant
 
-**Status:** Open.
+WNF is not treated here as a static witness certificate attached to a one-time anti-flatness result.
 
-**Theorem 4.2.1 (Multiplicity does not follow from PB1–PB5 and E1 alone).**  
-The current primitive package plus E1 does not prove multiplicity.
+It is the first positive manifestation of the still-live invariant:
+
+> once one realizable articulation fails perfect self-coincidence under the primitive bifurcation invariant, that failure must become positively witnessable as internal noncoincidence.
+
+**Provisional definition 4.2.1 (Internal noncoincidence).**  
+$\mathrm{INC}(x)$ means that $x$ carries a structurally relevant failure of total self-coincidence that is interpretable as the first positive manifestation of the invariant.
+
+This definition is deliberately weaker than multiplicity.
+
+### 4.3 No-go on positive witness from the current package
+
+**Theorem 4.3.1 (No witness theorem from PB1–PB5 and E1).**  
+The present primitive package, together with E1, does **not** prove a positive witness of non-flatness.
+
+**Status:** Proved.
 
 **Proof.**  
-The definition of \(\mathrm{Diff}(x)\) gives only \(\mathrm{Real}(x) \wedge \neg\mathrm{Flat}(x)\). The present formal system contains no theorem stating that non-flatness must be witnessed by at least two noncoincident determinations. Therefore plurality is not yet forced. Any attempt to read multiplicity directly out of \(\neg\mathrm{Flat}(x)\) would covertly strengthen the meaning of flatness and would risk hiding plurality in a primitive definition. Hence multiplicity is underdetermined by the current package. \(\square\)
+PB1–PB5 and E1 can be satisfied by an interpretation in which some $r\in\mathcal C$ is realizable and non-flat, yet no positive witness predicate is linked to that fact. Then $\mathrm{Real}(r)$ and $\neg\mathrm{Flat}(r)$ hold, but $\mathrm{INC}(r)$ is not forced by the interpretation. Therefore the current package proves only negative breakdown of flatness, not positive witness. $\square$
 
-**Exact minimal additional principle required:**
+### 4.4 Exact added principle for first positive articulation
 
-**WNF — Witnessed Non-Flatness Principle.**  
-For every differentiated realizable condition, non-flatness must be witnessed by at least two noncoincident determinations internal to that condition.
+**WNF — Witnessed Non-Flatness Principle**
+$$
+\forall x\in\mathcal C,\quad \big(\mathrm{Inv}(x)\wedge \mathrm{Diff}(x)\big)\Rightarrow \mathrm{INC}(x).
+$$
 
-In schematic form:
-\[
-\forall x\in\mathcal C,\quad \mathrm{Diff}(x) \Rightarrow \exists a,b\; \big(a \neq b \wedge \mathrm{Det}(a,x) \wedge \mathrm{Det}(b,x) \wedge \neg\mathrm{Coinc}(a,b)\big).
-\]
+WNF is not a new engine. It is the first positive formalization of the same invariant already governing the root. It says that once the invariant has articulated beyond perfect flatness in a realizable condition, that articulation must be positively witnessable as self-noncoincidence.
 
-This principle is the minimal clean bridge from non-flatness to plurality. It must be stated explicitly because it is not contained in the present package.
+**Status:** Requires one new explicit principle.
 
-### 4.3 Apartness
+### 4.5 DWP recast under the invariant
 
-**Target claim.**  
-Once noncoincident multiplicity is closed, apartness should appear as derived residue rather than primitive relation.
+DWP is not “plurality from nowhere.” It is the claim that internal noncoincidence cannot remain permanently witness-like and undecomposed if the invariant is to become more structured. It is the first plurality-bearing articulation of the same primitive burden.
+
+**Theorem 4.5.1 (WNF alone does not force multiplicity).**  
+Even after WNF is admitted, the manuscript does **not** yet prove multiplicity.
+
+**Status:** Proved.
+
+**Proof.**  
+WNF yields only $\mathrm{INC}(x)$ for appropriate $x$. It does not yet assert that this internal noncoincidence decomposes into at least two noncoincident internal determinations. A model can therefore satisfy PB1–PB5, E1, and WNF while still treating witness structure as irreducible. Hence multiplicity does not follow. $\square$
+
+**DWP — Determination-Witness Decomposability Principle**
+$$
+\forall x\in\mathcal C,\quad \mathrm{INC}(x)\Rightarrow \mathrm{Mult}(x).
+$$
+
+DWP is stronger than WNF. It is the first explicit bridge from positive self-noncoincidence to plurality-bearing form.
+
+**Status:** Requires one new explicit principle.
+
+### 4.6 Apartness remains blocked behind multiplicity
+
+**Theorem 4.6.1.**  
+Apartness is blocked until multiplicity closes.
+
+**Status:** Proved.
+
+**Proof.**  
+Apartness requires at least two distinct internal determinations between which noncoincidence can be stated. Before multiplicity closes, the manuscript has no theorem yielding such a pair. Therefore apartness is blocked. $\square$
+
+If DWP later closes multiplicity, apartness may be defined contextually rather than primitively.
+
+### 4.7 RRP recast under the invariant
+
+RRP is not a later optional reactivation principle. It is the claim that if a local articulation still leaves the invariant locally unsettled, the same invariant must be restated at higher resolution.
+
+**Theorem 4.7.1 (Recursive refinement does not yet follow).**  
+The current manuscript does **not** prove recursive refinement from PB1–PB5, E1, and WNF.
+
+**Status:** Proved as a no-go.
+
+**Proof.**  
+PB1–PB5, E1, and WNF yield non-flat realizability together with positive internal noncoincidence, but they do not yet specify when that articulation remains locally unsettled in a way that requires the invariant to be restated at higher resolution. Therefore recursive refinement does not follow. $\square$
+
+**RRP — Recursive Reapplication Principle**  
+If a realizable articulation carries internal noncoincidence that remains locally unsettled relative to the same primitive invariant, then a further articulated condition is required that again stands under that invariant.
+
+RRP is thus not a fresh engine. It is the higher-resolution restatement of the same one.
+
+**Status:** Requires one new explicit principle.
+
+### 4.8 Dependence order, not time
+
+**Proposition 4.8.1.**  
+Any earliest order obtained from repeated articulation of the invariant is an order of dependence, not yet an order of physical time.
+
+**Status:** Proved.
+
+**Proof.**  
+The present root package contains no time parameter, no dynamics, no event sequence, no continuation law, and no dissipation law. Therefore any earliest order here can only mean that one burden must be settled before another later structure is licensed. $\square$
+
+### 4.9 Hierarchy
+
+Hierarchy is not primitive ancestry in this rewrite. It is repeated dependence/refinement under the same invariant.
 
 **Status:** Blocked.
 
-**Block analysis.**  
-Apartness requires at least two noncoincident realization-witnesses. Since multiplicity is not yet proved, apartness is blocked behind Theorem 4.2.1.
+What is proved is only the frame discipline: hierarchy must, if later closed, be derived from repeated articulation of one invariant burden rather than from primitive tree language.
 
-**Minimal additional principle required:** If WNF is admitted, apartness can be introduced as a **derived** relation on noncoincident determination-witnesses:
-\[
- a \# b \, :\!\iff \, \neg\mathrm{Coinc}(a,b)
-\]
-for witnesses \(a,b\) of one differentiated realizable condition.
+### 4.10 Exact active bite under the correct frame
 
-This makes apartness derivative, not primitive. But it still depends on WNF or an equivalent witness principle.
+The active bite is no longer best described as “find the next isolated module.”
 
-### 4.4 Reiterability and recursive refinement
+The active bite is:
 
-**Target claim.**  
-If a differentiated determination remains internally unresolved under the same root burden, the pole-opposition law re-applies, yielding repeated differentiation.
+1. close the first positive articulation of the invariant via WNF,
+2. decide whether that articulation must become plurality-bearing via DWP,
+3. decide when locally unsettled articulation forces higher-resolution restatement via RRP.
 
-**Status:** Open.
+That is the first honest engine chain of the manuscript.
 
-**Theorem 4.4.1 (Reiterability does not follow from the current package).**  
-The primitive package PB1–PB5, together with E1, does not prove that unresolved differentiation re-presents the same burden at a subordinate level.
+### 4.11 Contamination self-check for the articulation chain
 
-**Proof.**  
-The current package gives no criterion for when a differentiated condition remains internally unresolved in a way that reactivates the anti-flatness burden. It therefore contains no closure rule of the form “if differentiated but still unresolved, then a further differentiated resolution is required.” Without such a rule, recursive refinement is not forced. \(\square\)
+At the present stage, the three top risks are:
 
-**Exact minimal additional principle required:**
+1. **externalizing the poles** so the origin is misread as two primitive things;
+2. **treating WNF as static** rather than as the first positive articulation of a still-live invariant;
+3. **treating RRP as optional reactivation** rather than as higher-resolution restatement of the same invariant.
 
-**RRP — Recursive Reapplication Principle.**  
-Any differentiated realizable condition that remains internally unresolved with respect to the same pole-opposition burden must admit a further non-flat resolving step.
-
-This principle must be stated without time, graph, or branching smuggling. Until then, hierarchy and dependence order remain open as constructive results.
-
-### 4.5 Dependence order versus time
-
-**Proposition 4.5.1 (Dependence order precedes time in the present architecture).**  
-Any order first obtained from reiterated root burden is an order of dependence, not yet an order of physical time.
-
-**Status:** Closed.
-
-**Proof.**  
-The present root package contains no time parameter, no dynamics, no event sequence, no continuation law, and no dissipation law. Therefore any order first obtained here can only mean “this burden must be resolved before that derived structure is licensed.” That is dependence order, not clock time, not reversible continuation, and not irreversible arrow. \(\square\)
-
-### 4.6 Hierarchy
-
-**Target claim.**  
-Hierarchy is repeated dependence/refinement, not primitive ancestry.
-
-**Status:** Partially Closed.
-
-**What is closed.**  
-Hierarchy has been stripped of primitive graph language. Any future hierarchy theorem must be stated in terms of repeated dependence burden rather than prebuilt branch objects.
-
-**What remains open.**  
-The theorem that repeated dependence actually yields a hierarchy-worthy structure rather than mere iterability still needs a clean formal statement and, at minimum, some substitute for RRP.
-
-### 4.7 Qualitative braking
-
-**Target claim.**  
-Repeated resolution reduces residual unresolved indifference and therefore introduces a qualitative braking tendency before any numerical attenuation law appears.
-
-**Status:** Conjectural.
-
-**Reason.**  
-The intuition is strong and aligns with H000/A8 integration, but the present draft does not yet carry a theorem-grade formalization of “residual unresolved indifference.” A numerical attenuation map is explicitly forbidden at this stage.
-
-### 4.8 Truncation / frontier
-
-**Target claim.**  
-Repeated differentiated resolution does not continue in a neutral endless regress; a frontier of maximal resolved sectors eventually appears.
-
-**Status:** Open.
-
-**Live burden.**  
-Either truncation must be proved from the present root alone, or one further principle must be stated:
-
-> **WEP — Well-founded Exhaustion Principle**  
-> Genuine resolution strictly reduces residual unresolved indifference in a way that cannot continue forever without exhaustion.
-
-This principle is not yet adopted as theorem-grade law. Until that is settled, frontier language remains provisional.
-
-### 4.9 Boundary / domain-wall-type structure
-
-**Target claim.**  
-Once maximal incompatible resolution sectors exist, a genuine pre-geometric separation should appear between them.
-
-**Status:** Blocked.
-
-**Reason.**  
-This cannot close until truncation/frontier closes at least partially.
-
-### 4.10 Exact first remaining burden
-
-After the current primitive package and the minimal existence principle E1, the **first remaining burden** is:
-
-> **WNF — Witnessed Non-Flatness Principle**
-
-Why this is first:
-
-1. classification exclusivity is earlier as a root-cleanliness burden, but it is not needed to state the first non-flat realizability theorem;
-2. multiplicity is the first place where hidden plurality is likely to be smuggled;
-3. apartness and recursive refinement both stall behind that point.
-
-So the next machine bite is not carrier, locality, overlap, or differentiability. It is whether non-flatness can be made positively witnessable without covertly importing plurality.
+These are now the main frame-level failure modes, not just low-level notation accidents.
 
 ---
 
@@ -588,115 +600,91 @@ So the next machine bite is not carrier, locality, overlap, or differentiability
 
 ### 5.1 Dependence order
 
-Dependence order is the earliest allowable ordering notion in CF000. It means only:
+Dependence order is the earliest allowable order notion in CF000. It means only:
 
-- this structure is required before that later structure may be licensed.
+- this burden must be settled before that later structure may be licensed.
 
-It does **not** mean:
+It does **not** mean elapsed time, reversible update, irreversible history, or causal propagation.
 
-- elapsed time,
-- dynamic update,
-- propagation,
-- irreversible history,
-- or causal influence.
-
-**Status:** Closed.
+**Status:** Proved.
 
 ### 5.2 Reversible continuation
 
 A lawful reversible continuation regime cannot honestly appear until a later support or pre-carrier layer exists. Before that, there is nothing yet on which a lawful continuation could act.
 
-**Status:** Partially Closed.  
-The staging is clear; the actual emergence burden remains open.
+**Status:** Proved as staging discipline.
 
 ### 5.3 Irreversible arrow
 
-An irreversible arrow belongs later than mere dependence order and later than reversible continuation. It should enter only with a genuine dissipative or entropy-producing burden, not with root asymmetry alone.
+An irreversible arrow belongs later than dependence order and later than reversible continuation. It should enter only with a genuine dissipation or entropy-producing burden, not with root asymmetry alone.
 
-**Status:** Closed as staging discipline.
+**Status:** Proved as staging discipline.
 
 ### 5.4 Causality
 
-Causality is later than dependence order and likely later than mere continuation. It requires at minimum some admissible locality or propagation discipline. Therefore causality is forbidden from the root layer.
+Causality is later than dependence order and likely later than mere continuation. It requires at minimum some admissible locality or propagation discipline. Therefore causality is forbidden from the primitive layer.
 
-**Status:** Closed as staging discipline; Open as constructive burden.
-
----
-
-## 6. A8, QGT, and Later Canon Reclassification
-
-### 6.1 A8
-
-A8 is **not** the primitive generator in this rewrite.
-
-A8 is a later-regime hierarchy candidate involving tachyonic onset, field structure, fronts, decay tails, and interface concentration. Those are late-regime physical ingredients, not root ontology.
-
-**Status of this reclassification:** Closed.
-
-### 6.2 H000 ↔ A8 placement
-
-The present recommended relationship is:
-
-\[
-\text{H000 / CF000 root burden}
-\;\Longrightarrow\;
-\text{reiterated distinguishability / hierarchy engine}
-\;\Longrightarrow\;
-\text{A8-like late-regime realization}
-\]
-
-This is an **architecture hypothesis**, not yet a theorem.
-
-**Status:** Conjectural but correctly staged.
-
-### 6.3 QGT / metriplectic dual split
-
-The root architecture suggests a plausible deep ancestor of the later conservative/dissipative split:
-
-- opening tendency: forced differentiation, proliferation of non-flatness,
-- closing tendency: braking, exhaustion, selection, truncation.
-
-That is structurally suggestive, but it is **not** a derivation of QGT or \(J\oplus M\).
-
-**Status:** Conjectural only.
+**Status:** Proved as staging discipline.
 
 ---
 
-## 7. v10 Migration and Disposition
+## 6. Relationship to H000, A8, CF00, and Later Canon
 
-### 7.1 Global verdict on v10
+### 6.1 H000
 
-The old v10 document is not the scaffold for forward closure. It is too late, too flat, and too eager to turn every missing burden into a new explicit layer. That makes it a useful contamination map, but a bad root.
+H000 remains the proposal-grade hypothesis line that first stated the primitive bifurcation architecture in compact form.
 
-### 7.2 Section-level disposition
+**Status:** Alignment only.
 
-| v10 component | Disposition | Reason |
-|---|---|---|
-| Executive Summary | Rewrite from scratch | old summary preserves staircase spine |
-| State of Closure | Rewrite from scratch | old status ledger assumes wrong backbone |
-| Primitive \((\mathcal B,\#)\) root | Failure Audit Only | now treated as derived residue candidate, not primitive |
-| L1 sharpenability | Failure Audit Only / possible later warning | too late for root spine |
-| R refinement/compatibility | Failure Audit Only or later derived target | may reappear only after multiplicity/apartness close |
-| S realized-carrier layer | Delete from root spine | carrier burden has been moved much later |
-| C locality/cover | Delete from root spine | locality belongs later than frontier/sector closure |
-| T lawful transformation | Delete from root spine | far downstream of present root |
-| D readout/signature | Delete from root spine | not load-bearing at root |
-| A comparison algebra | Delete from root spine | not load-bearing at root |
-| V valuation | Delete from root spine | not load-bearing at root |
-| P parameterization | Delete from root spine | not load-bearing at root |
-| G overlap/germ compatibility | Retain as later bridge burden only | may reappear much later, after frontier and sector closure |
-| Existing no-go theorems | Move to failure-audit appendix | useful evidence against flat-origin route |
-| Existing anti-smuggling warnings | Retain | still valuable |
-| Existing differentiability bridge language | Rewrite under new dependency order | old placement too late and too smoothness-adjacent |
+### 6.2 A8
 
-### 7.3 Main salvage from v10
+A8 is not the primitive generator in this rewrite. It is a later-regime candidate expression of the same invariant burden under additional structure: repeated articulation, braking, truncation, and interface concentration.
 
-What survives from v10 in substance is not the layer stack itself, but the diagnosis:
+**Status:** Proved as reclassification discipline.
 
-- a flat primitive does not generate enough pressure,
-- overlap/coherence language is a smoothness-smuggling risk,
-- carrier language arrives too early in the old route,
-- and the old no-go ladder is evidence that the root was mispackaged.
+### 6.3 CF00
+
+CF00 remains downstream of any legitimate pre-carrier and pre-differential closure achieved here. The present draft still does not license the carrier bridge.
+
+### 6.4 Later dual split
+
+The present root architecture suggests a plausible deep ancestor of the later conservative/dissipative split:
+
+- one aspect opens articulation under unresolved opposition,
+- another aspect closes or stabilizes locally without global discharge.
+
+This is structurally suggestive, but it is **not** a derivation of QGT or $J\oplus M$.
+
+**Status:** Not proved.
+
+---
+
+## 7. v12 to v13 Migration and Disposition
+
+### 7.1 Global verdict on v12
+
+v12 was a good contamination-cleanup pass and a bad governing frame. It correctly isolated WNF from multiplicity and kept apartness blocked behind it. But it still read too much like a sequence of burden modules rather than as one permanently live primitive invariant unfolding through increasingly articulated stages.
+
+### 7.2 What v13 changed
+
+v13 changes the frame rather than merely tightening local wording.
+
+- The primitive unresolved pole-opposition is now the permanent invariant of the manuscript.
+- The origin is explicitly one primitive condition, not two externally separated things.
+- The primitive tension is explicitly treated as derived from the only admissible origin.
+- Local stability is explicitly treated as local settlement rather than final resolution.
+- WNF, DWP, and RRP are explicitly rewritten as successive articulations of one invariant burden.
+
+### 7.3 What still survives from v10 and v12
+
+What survives from prior versions is not the old layer stack itself but the lessons it taught:
+
+- flatness does not by itself generate enough structure,
+- witness is not multiplicity,
+- multiplicity is not apartness,
+- graph/tree/locality language is easy to smuggle in too early,
+- overlap/coherence language remains a later-stage risk,
+- the old no-go ladder is valuable as failure-audit evidence against the flattened route.
 
 ---
 
@@ -705,80 +693,82 @@ What survives from v10 in substance is not the layer stack itself, but the diagn
 To move this draft toward real CF closure, the next burdens are:
 
 1. **BEP verdict**  
-   Decide whether bipolar flat-origin exhaustion is provable or must remain an explicit added principle.
+   Decide whether bipolar exhaustion is provable or must remain an explicit added principle.
 
-2. **E1 admission or derivation**  
-   Decide whether non-vacuous realizable existence is primitive, derivable, or must remain an explicit added principle.
+2. **E1 verdict**  
+   Decide whether realizable existence is derivable or must remain explicit.
 
-3. **WNF — Witnessed Non-Flatness Principle**  
-   Close the passage from differentiated realizability to genuine plurality without hiding plurality in the definition of \(\mathcal C\) or flatness.
+3. **WNF — first positive articulation of the invariant**  
+   Prove or admit that differentiated articulation under the invariant carries internal noncoincidence.
 
-4. **Apartness theorem**  
-   Derive apartness from noncoincident multiplicity without resurrecting \((\mathcal B,\#)\) as primitive.
+4. **DWP — first plurality-bearing articulation**  
+   Decide whether internal noncoincidence must articulate into plurality-bearing form.
 
-5. **RRP — Recursive Reapplication Principle**  
-   State repeated unresolved differentiation cleanly enough to derive recursive refinement without graph/tree contamination.
+5. **Apartness after multiplicity**  
+   Once multiplicity closes, define apartness contextually rather than primitively.
 
-6. **WEP — Well-founded Exhaustion Principle**  
-   Decide whether truncation/frontier follows from the root alone or requires one explicit extra law.
+6. **RRP — higher-resolution restatement of the same invariant**  
+   Prove or admit when local unsettledness forces further articulation.
 
-7. **First honest locality stage**  
-   Identify exactly when “local” first becomes honest rather than intuitive leakage.
+7. **WEP — well-founded exhaustion / truncation burden**  
+   Decide whether repeated articulation yields frontier-like closure or requires one additional principle.
 
-8. **Later coherence principle**  
-   If frontier sectors close, isolate one minimal post-frontier coherence principle for any pre-carrier bridge.
+8. **First honest locality stage**  
+   Identify exactly when “local” first becomes earned rather than intuitive leakage.
 
-9. **Differentiability status**  
-   Do not blur this. Either it remains open, or the exact remaining burden must be named.
+9. **Later coherence principle**  
+   If locality/frontier ever closes, isolate one minimal coherence principle for any pre-carrier bridge.
+
+10. **Differentiability status**  
+    Keep this honest: either open, or named exact burden.
 
 ---
 
 ## 9. Theorem Inventory (compact)
 
-### Closed
+### Proved
 - Nullity exclusion
 - Undifferentiated totality exclusion
-- Pole non-identity with shared sterility consequence
+- Pole non-identity with shared sterility verdict
 - No-go on bipolar flat-origin classification from the current lean package
+- Breakdown of perfect flatness from PB3, PB5, and E1
+- Existence of differentiated articulation from PB3, PB5, and E1
+- Non-flatness does not discharge the invariant
+- No-go on positive witness from PB1–PB5 and E1
+- WNF alone does not force multiplicity
+- Apartness is blocked until multiplicity closes
+- Recursive refinement does not follow from PB1–PB5, E1, and WNF
 - Dependence order is earlier than time
-- Irreversible arrow must be staged later than root asymmetry
+- Reversible continuation is staged later than dependence order
+- Irreversible arrow is staged later than root asymmetry
 - Causality is forbidden at the primitive layer
-- A8 reclassified as late-regime signature, not primitive generator
+- A8 is reclassified as late-regime expression, not primitive generator
 
-### Partially Closed
-- Pole-opposition root statement, conditional on BEP
-- Breakdown of perfect flatness, conditional on E1
-- Existence of differentiated realizability, conditional on E1
-- Reiterability of unresolved differentiation as a staging target stripped of graph imports
-- Hierarchy as repeated dependence/refinement stripped of graph imports
-- Reversible continuation staged later than dependence order
-- Root minimality audit of the predicate package
+### Requires one new explicit principle
+- Root exhaustion via BEP
+- Realizable existence via E1
+- Positive internal noncoincidence via WNF
+- Plurality-bearing articulation via DWP
+- Recursive higher-resolution restatement via RRP
+- Truncation/frontier via WEP
 
-### Conjectural
-- Qualitative braking from repeated reduction of unresolved indifference
-- Deep ancestor relation to the later conservative/dissipative split
-- H000-to-A8 architecture chain
-
-### Open
-- BEP as theorem or admitted principle
-- E1 as theorem or admitted principle
-- WNF as theorem or admitted principle
-- Multiplicity theorem
-- Apartness theorem
-- RRP as theorem or admitted principle
-- Truncation/frontier theorem
-- WEP as theorem or admitted principle
-- Sector notion
-- Overlap/coherence burden
-- Pre-carrier patchability
-- Differentiability bridge
+### Not proved
+- That BEP is derivable rather than added
+- That E1 is derivable rather than added
+- That WNF is derivable rather than added
+- That DWP is derivable rather than added
+- That RRP is derivable rather than added
+- Any constructive locality stage
+- Any pre-carrier bridge
+- Any differentiability result
+- Any derivation of the later conservative/dissipative split
 
 ### Blocked
-- Root exclusivity claim (blocked by BEP)
-- Apartness as constructive result (blocked on WNF / multiplicity)
-- Boundary/domain-wall-type structure (blocked on frontier)
-- First honest locality stage (blocked on frontier/sector closure)
-- Pre-carrier patchability (blocked on locality/coherence stage)
+- Apartness as constructive result before multiplicity closes
+- Hierarchy as constructive result before RRP closes
+- Boundary/domain-wall-type structure before truncation closes
+- First honest locality stage before later burdens close
+- Pre-carrier patchability before locality/coherence closure
 
 ---
 
@@ -786,81 +776,97 @@ To move this draft toward real CF closure, the next burdens are:
 
 Top contamination risks in the present rewrite:
 
-1. **Hidden plurality through \(\mathcal C\)**  
-   If the logical domain of candidate realization conditions is allowed to do ontological work, multiplicity may be smuggled instead of derived.
+1. **Externalizing the poles**  
+   If the two poles are written as two ready-made things standing apart, the one-origin root is lost.
 
-2. **Flatness secretly doing all the work**  
-   If flatness is defined too strongly, then multiplicity and apartness will merely be encoded inside the negation of flatness.
+2. **Using $\mathcal C$ as hidden ontology**  
+   The logical discourse domain must not secretly do the work of plurality.
 
-3. **Realizability already containing persistence or structure**  
-   If \(\mathrm{Real}(x)\) silently means “contentful stable state,” then E1, WNF, and later burdens will have been partially prepaid by definition.
+3. **Treating flatness as already structured negation**  
+   If $\neg\mathrm{Flat}(x)$ is silently read as “many internal units,” multiplicity is smuggled.
 
-4. **Orig already acting like a hidden root classifier**  
-   If \(\mathrm{Orig}(x)\) is silently strengthened beyond “origin candidate,” then BEP will be smuggled rather than earned.
+4. **Treating WNF as static**  
+   WNF is not just a certificate attached to a dead theorem. It is the first positive articulation of the same still-live invariant.
 
-5. **Frontier/sector language arriving before closure**  
-   The mind loves to picture branches, fronts, and boundaries. The document must not start drawing mathematical moustaches on intuitions that have not yet earned a formal face.
+5. **Treating DWP as arbitrary extra plurality rule**  
+   DWP must read as articulation of the same invariant into plurality-bearing form, not as plurality from nowhere.
+
+6. **Treating RRP as optional reactivation**  
+   RRP must read as the higher-resolution restatement of the same invariant when local articulation remains unsettled.
+
+7. **Letting local settlement sound final**  
+   Stability language must never imply global discharge of the invariant unless that stronger claim is separately proved.
 
 ---
 
 ## Appendix A. Primitive Block
 
-Primitive symbols and laws of this draft:
+Primitive marks and predicates of this draft:
 
-\[
-\mathbf 0,\mathbf 1 \in \mathcal C
-\]
+$$
+\mathbf 0,\mathbf 1\in \mathcal C
+$$
 
-\[
-\mathrm{Orig}(x),\qquad \mathrm{Ster}(x), \qquad \mathrm{Real}(x), \qquad \mathrm{Flat}(x), \qquad \mathrm{Opp}(x,y)
-\]
+$$
+\mathrm{Orig}(x),\qquad \mathrm{Ster}(x),\qquad \mathrm{NV}(x),\qquad \mathrm{Real}(x),\qquad \mathrm{Flat}(x),\qquad \mathrm{Opp}(x,y)
+$$
 
-\[
+Adopted root laws:
+
+$$
 \mathbf 0\neq \mathbf 1
-\]
+$$
 
-\[
+$$
 \mathrm{Ster}(\mathbf 0)\wedge \mathrm{Ster}(\mathbf 1)
-\]
+$$
 
-\[
+$$
 \mathrm{Opp}(\mathbf 0,\mathbf 1)
-\]
+$$
 
-\[
-\forall x\in\mathcal C,\quad \mathrm{Real}(x)\Rightarrow (x\neq \mathbf 0 \wedge x\neq \mathbf 1)
-\]
+$$
+\forall x\in\mathcal C,\quad \mathrm{Real}(x)\Rightarrow \big(\mathrm{NV}(x)\wedge x\neq \mathbf 0 \wedge x\neq \mathbf 1\big)
+$$
 
-\[
+$$
 \forall x\in\mathcal C,\quad \big(\mathrm{Real}(x)\wedge \mathrm{Opp}(\mathbf 0,\mathbf 1)\big)\Rightarrow \neg \mathrm{Flat}(x)
-\]
+$$
 
-Non-adopted but named added principles introduced by this draft:
+Named added principles introduced by this draft:
 
 - **BEP** — Bipolar Exhaustion Principle
 - **E1** — Non-vacuous realizable existence
 - **WNF** — Witnessed Non-Flatness Principle
+- **DWP** — Determination-Witness Decomposability Principle
 - **RRP** — Recursive Reapplication Principle
 - **WEP** — Well-founded Exhaustion Principle
 
 ---
 
-## Appendix B. First Derived Notions Block
+## Appendix B. Articulation Block
 
-\[
-\mathrm{Diff}(x) := \mathrm{Real}(x)\wedge \neg \mathrm{Flat}(x)
-\]
+First derived shorthand:
+$$
+\mathrm{Diff}(x):=\mathrm{Real}(x)\wedge \neg \mathrm{Flat}(x)
+$$
+
+Architectural shorthand:
+- $\mathrm{Inv}(x)$ — one realizable origin-condition stands under globally undischarged internal pole-opposition.
+- $\mathrm{LocSet}(x)$ — one local articulation settles without globally discharging the invariant.
 
 Target later notions, not yet closed:
 
+- internal noncoincidence,
 - multiplicity,
 - apartness,
 - recursive refinement,
 - dependence hierarchy,
 - qualitative braking,
 - truncation/frontier,
-- pre-boundary sectors,
-- later coherence,
+- boundary-type structure,
+- locality,
+- coherence,
 - pre-carrier support,
 - differentiability bridge.
 
@@ -870,12 +876,13 @@ Target later notions, not yet closed:
 
 This document is **not** yet a Completed Formalism for the full CF000 burden.
 
-It is a merged root rewrite draft that:
+It is a v13 frame rewrite that:
 
-- rejects the old v10 staircase as spine,
-- installs the pole-opposition architecture as the controlling root,
-- incorporates the root-classification replacement section directly into the manuscript,
-- closes the earliest exclusion and staging theorems that actually follow,
-- and isolates the true next burdens instead of climbing another decorative ladder.
+- treats the single primitive bifurcation law as the governing spine,
+- explicitly states that the primitive tension is derived rather than assumed,
+- explicitly states that the origin is one primitive condition rather than two externally separated things,
+- preserves the anti-smuggling cleanup achieved by v12,
+- reframes WNF, DWP, and RRP as increasingly articulated forms of one undischarged invariant,
+- and names the remaining exact burdens without pretending closure.
 
-The next serious pass must attack WNF and, in parallel, decide whether BEP and E1 are to be proved, admitted, or explicitly left as named assumptions.
+The next serious pass should attack WNF under this corrected frame, then DWP, then RRP, while refusing to let any of them turn back into disconnected modules.
