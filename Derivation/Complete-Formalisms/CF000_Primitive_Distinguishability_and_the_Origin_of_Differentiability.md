@@ -1,7 +1,6 @@
 # CF000: Complete Formalism — Primitive Distinguishability and the Origin of Differentiability in VDM
-
-Date: 2026-03-08  
-Status: Theorem-bearing draft pass  
+Date: 2026-03-13  
+Status: Review Draft — merged pole-opposition rewrite with root-classification replacement section  
 Gap Module: Root formalization beneath CF00  
 Proposer: Justin K. Lietz  
 License: See LICENSE
@@ -14,12 +13,12 @@ A document may carry the status **Completed Formalism** only if it is a **closed
 
 This means:
 
-- all central objects are defined or explicitly imported with hypotheses verified;
-- all theorem-bearing claims have explicit hypotheses, conclusions, and auditable proofs;
-- all essential derivation, validation logic, and failure conditions are present in this document;
-- no core burden is outsourced to canon links, notebooks, figures, or code;
-- any claim that is heuristic, conjectural, programmatic, or only partially established is labeled as such;
-- if any essential proof burden is missing, the document is **not** a Completed Formalism.
+- all central objects are defined or explicitly imported with hypotheses verified,
+- all theorem-bearing claims have explicit hypotheses, conclusions, and auditable proofs,
+- all essential derivation, validation logic, and failure conditions are present in this document,
+- no core burden is outsourced to canon links, notebooks, figures, or code,
+- any claim that is heuristic, conjectural, programmatic, or only partially established is labeled as such,
+- if any essential proof burden is missing, this document is **not** a Completed Formalism.
 
 “Completed” does **not** mean universally maximal or beyond all future strengthening. It means the claimed result is closed **at the level stated in the document**.
 
@@ -27,2606 +26,856 @@ This means:
 
 ## Governing Rule of This Document
 
-This document is the root written source of truth for the pre-differential layer of this branch of VDM.
+This CF is the root written source of truth for the pre-differential layer of this branch of VDM.
 
-This document is not a bridge memo, not a philosophical appendix, and not a patch beneath CF00. It must contain the actual derivation burden required to answer the following root question:
+This document is not a bridge memo, not a philosophical appendix, and not a thin wrapper beneath CF00. It must contain the actual root architecture, the actual dependency order, the actual theorem-bearing claims that are currently closed, the exact open burdens that remain, and an explicit anti-smuggling audit.
 
-**Why is differentiability available to law at all?**
+This rewrite does **not** preserve the old v10 scaffold by inertia. The old route
 
-If differentiability is derived, this document must carry that derivation. If differentiability is instead forced as the deepest accessible primitive, this document must prove that no weaker structure suffices for this branch. If neither conclusion can be supported, this document is incomplete.
+\[
+(\mathcal B,\#)\to L1\to R\to S\to C\to T\to D\to A\to V\to P\to G
+\]
 
-The paired CFN may instantiate, compute, visualize, and numerically witness claims already formalized here. It may not carry missing derivation, missing proof burden, or missing evidentiary logic.
+is treated here as a failure-audit route unless a specific component is re-earned under the new root.
 
 ---
 
-## Relationship to Downstream Canon
+## Relationship to H000, A8, and Downstream Canon
 
-CF000 sits beneath CF00.
+This rewrite is controlled by the H000 hypothesis line: a self-generating universe does not begin from isolated nullity or isolated undifferentiated totality taken separately; the minimal surviving root candidate is the unresolved opposition of those two sterile poles together with a realizability-resolving non-flatness law.
 
-- CF000 addresses the pre-differential question.
-- CF00 begins only after a differentiable carrier, lawful local variation, and the representational geometry built on that carrier are available.
-- CF01 remains a downstream effective engine formalism.
-- CF11 remains a downstream derived-limit module.
-- Later CFs remain downstream of the differentiable layer made possible by CF000.
+Accordingly:
 
-Accordingly, this document does not borrow its core derivation from CF00 or any later CF. It may mention downstream consequences, but it must earn the layer on which they depend.
+- **H000** is a proposal-grade root hypothesis artifact.
+- **CF000** is the theorem-bearing draft that must test whether that hypothesis can carry real closure work.
+- **A8** is not overwritten here. It remains a later-regime hierarchy candidate whose operational regime is downstream of the root question.
+- **CF00** remains downstream of any legitimate pre-carrier and pre-differential closure obtained here.
+
+No CF00 object — carrier manifold, local variation class, representative section, QGT, or \(J\oplus M\) split — may appear as primitive in this document.
 
 ---
 
 ## Executive Summary
 
-CF000 begins beneath differentiability. It excludes absolute nullity and absolute undifferentiated sameness as viable roots for a falsifiable physical branch, then identifies the weakest surviving primitive residue as a nonempty distinction-bearing multiplicity $({\mathcal B},\#)$ with primitive apartness and no imported metric, valuation, parameter, derivative, topology, locality, transformation, or comparison.
+The old v10 architecture is rejected as the backbone of CF000. Its root package began too late: it froze a distinction-bearing residue \((\mathcal B,\#)\) and then paid a serial no-go tax for refinement, realization, cover, transformation, readout, comparison, valuation, parameterization, and overlap. That route remains useful as a hostile appendix showing that a flattened primitive does not generate the burden it was asked to carry, but it is not the spine of the present rewrite.
 
-The branch then asks what additional structure is needed if primitive distinction is to support law rather than one-shot separation. A no-go theorem shows that primitive distinction together with sharpenability does **not** force a unique or canonical refinement/compatibility regime. Refinement/compatibility is therefore introduced explicitly as the first minimal added branch structure $R$.
+The new root architecture is leaner and earlier. It starts from two distinct sterile poles:
 
-A second no-go theorem shows that $R$ alone does **not** force stable realized distinction contents or a realized carrier. The realization/decisiveness layer $S$ is then introduced as the next minimal added branch structure. Under $R+S$, realized contents and a realized carrier regime exist, but that regime is not forced to be unique or canonical.
+- absolute nullity, and
+- absolute undifferentiated totality.
 
-A third no-go theorem shows that locality/cover is **not** forced from the solved $R+S$ layer. Locality/cover is therefore introduced explicitly as the next minimal added branch structure $C$.
+These poles are not identical, but they share the same structural consequence for the present branch: neither can sustain realized differentiated structure in isolation. The surviving primitive burden is therefore not either pole alone, but their unresolved opposition. The first primitive law of this rewrite is a pole-opposition resolution law: under opposed sterile poles, a realizable condition cannot remain flat.
 
-The present pass addresses the next live theorem burden: whether the solved layer $R+S+C+T+D+A+V$, together with conditional and non-canonical realized-carrier existence, explicit cover discipline, explicitly added lawful transformation, explicit readout discipline, explicit stable-comparison discipline, and explicitly added valuation discipline, forces a lawful parameterization layer. The answer is no. A no-go theorem shows that branch-usable parameterization is not forced from the solved pre-parameterization layer. It must be introduced explicitly as the next minimal added branch structure $P$.
+This merged manuscript incorporates the root-classification replacement pass directly into the paper. The early machine room now does four things explicitly instead of hand-waving them: it defines the primitive package in table form, proves the exclusion theorems that actually close, shows that strict bipolar flat-origin classification does **not** follow from the lean package alone, and isolates the exact first burden at which real structure is still blocked. That burden is **witnessed non-flatness**: the manuscript can conditionally obtain non-flat realizability once a non-vacuous existence principle is admitted, but it does not yet honestly derive multiplicity or apartness from that fact alone.
 
-Principal deliverables of this pass:
+Accordingly, the present document closes the pole definitions, the sterility/exclusion theorems, the non-identity/opposition architecture, the prohibition against primitive time, and the reclassification of A8 as a later macroscopic signature rather than the primitive generator. It does **not** yet claim full closure of multiplicity, apartness, recursive refinement, frontier, or carrier emergence. Those remain explicit burdens, now named cleanly enough that later passes can bite the right machine part instead of climbing another decorative staircase.
 
-- theorem-grade separation between forced structure, minimal added branch structure, and conditional theorem under explicit assumptions;
-- no-go theorem that refinement/compatibility is not forced from primitive distinction plus sharpenability;
-- no-go theorem that realized contents/carrier are not forced from $R$ alone;
-- conditional theorem that $R+S$ yields a nonempty realized-carrier regime;
-- theorem that the resulting realized-carrier regime is not canonical;
-- no-go theorem that locality/cover is not forced from the solved $R+S$ layer;
-- explicit introduction of locality/cover as the next minimal added branch structure $C$;
-- no-go theorem that lawful transformation is not forced from the solved $R+S+C$ layer;
-- explicit introduction of lawful transformation as the next minimal added branch structure $T$;
-- no-go theorem that distinguishers/signatures are not forced from the solved $R+S+C+T$ layer;
-- explicit introduction of distinguishers/signatures as the next minimal added branch structure $D$;
-- no-go theorem that stable comparison algebra is not forced from the solved $R+S+C+T+D$ layer;
-- explicit introduction of stable comparison algebra as the next minimal added branch structure $A$;
-- no-go theorem that valuation representation is not forced from the solved $R+S+C+T+D+A$ layer;
-- explicit introduction of valuation representation as the next minimal added branch structure $V$;
-- no-go theorem that lawful parameterization is not forced from the solved $R+S+C+T+D+A+V$ layer;
-- explicit introduction of lawful parameterization as the next minimal added branch structure $P$.
+Principal deliverables of this draft:
+
+- root replacement of the old flat \((\mathcal B,\#)\) scaffold,
+- definitions table for all early primitive and target terms,
+- theorem-grade closure for the pole exclusion results that actually follow,
+- explicit no-go on bipolar flat-origin classification from the current lean package,
+- explicit no-go on multiplicity from anti-flatness alone,
+- explicit separation of dependence order from time, reversible continuation, and irreversible arrow,
+- migration of the old staircase into failure-audit status,
+- exact inventory of the next live burdens: BEP, E1, WNF, RRP, and WEP.
 
 ---
 
-## Read Me First: Writing Rules for CF Documents
+## 1. Scope, Role, and Rewrite Discipline
 
-1. This document must be self-contained at the level required to understand, test, and reuse the formalism.
-2. Every theorem-bearing section must expose its proof burden directly.
-3. No section may hide essential logic behind phrases such as “it follows,” “similarly,” “by standard arguments,” or “left to the notebook.”
-4. All dependency order must be honest. No theorem may use objects that have not yet been defined or derived.
-5. Distinguish clearly between:
-   - forced from prior layer,
-   - minimal added branch structure,
-   - conditional theorem under explicit assumptions.
-6. If a statement is not theorem-grade, label it accordingly.
-7. If a section is incomplete, mark the document incomplete.
+### 1.1 Root question
 
----
+CF00 begins with a differentiable carrier \(\mathcal M\) and lawful local variation on it. CF000 exists because that is already too late for an absolute root account.
 
-## State of Closure
+The root question of this document is:
 
-### Settled results
+> What is the earliest primitive burden from which distinguishability, hierarchy, and eventually carrier-like structure could be earned without primitive geometry, metric, locality, valuation, parameterization, causality, or differentiability?
 
-- Absolute nullity is not a viable root for a falsifiable law-bearing branch.
-- Absolute undifferentiated sameness is not a viable root for a falsifiable law-bearing branch.
-- The weakest surviving residue is a nonempty distinction-bearing multiplicity $({\mathcal B},\#)$ with nontrivial apartness and no imported metric, valuation, parameterization, continuity, locality, transformation, readout, or differentiability.
-- A direct leap from primitive distinction to differentiability is illegitimate.
-- Refinement/compatibility is **not** forced from primitive distinction alone.
-- Refinement/compatibility has been reclassified as the first minimal added branch structure $R$.
-- Refinement/compatibility alone does **not** force stable realized distinction contents or a realized carrier.
-- Under the explicitly added realization/decisiveness layer $S$, stable realized distinction contents do exist.
-- Under $R+S$, a realized carrier regime exists.
-- Under $R+S$, the realized carrier regime is **not** forced to be unique or canonical.
-- Locality/cover is **not** forced from the solved $R+S$ layer.
-- Locality/cover has been reclassified as the next minimal added branch structure $C$.
-- Lawful transformation is **not** forced from the solved $R+S+C$ layer.
-- Lawful transformation has been reclassified as the next minimal added branch structure $T$.
-- Distinguishers/signatures are **not** forced from the solved $R+S+C+T$ layer.
-- Distinguishers/signatures have been reclassified as the next minimal added branch structure $D$.
-- Stable comparison algebra is **not** forced from the solved $R+S+C+T+D$ layer.
-- Stable comparison algebra has been reclassified as the next minimal added branch structure $A$.
-- Valuation representation is **not** forced from the solved $R+S+C+T+D+A$ layer.
-- Valuation representation has been reclassified as the next minimal added branch structure $V$.
-- Lawful parameterization is **not** forced from the solved $R+S+C+T+D+A+V$ layer.
-- Lawful parameterization has been reclassified as the next minimal added branch structure $P$.
+### 1.2 Rewrite stance
 
-### Provisional results
+This document adopts the following rewrite stance.
 
-- It remains open whether a weaker added structure than $S$ would already suffice for realized contents/carrier.
-- It remains open whether a weaker added structure than $C$ would already suffice for branch-usable locality.
-- It remains open whether a weaker added structure than $T$ would already suffice for branch-usable lawful transformation.
-- It remains open whether a weaker added structure than $D$ would already suffice for branch-usable readout/discrimination.
-- It remains open whether a weaker added structure than $A$ would already suffice for branch-usable stable comparison.
-- It remains open whether a weaker added structure than $V$ would already suffice for branch-usable valuation.
-- It remains open whether a weaker added structure than $P$ would already suffice for branch-usable parameterization.
-- Differentiability may later require additional overlap-regularity structure beyond mere parameterization.
+1. The old v10 scaffold is not presumed correct.
+2. The old no-go staircase is retained only as failure-audit material unless a specific component is freshly justified under the new root.
+3. No graph, tree, branch map, node class, ancestry relation, attenuation scalar, frontier object, or local finiteness principle may appear as primitive.
+4. No manifold, chart, overlap, smoothness, tangent object, coordinate, or parameterized process may appear as primitive.
+5. Time, causality, reversible continuation, and irreversible arrow are distinct burdens and may not be collapsed.
 
-These are not yet earned in the present pass.
+### 1.3 Primitive versus forbidden structure
 
-### Rejected routes
+#### Primitive in this rewrite
 
-- Primitive import of differentiable carriers, coordinates, metric, distance, derivatives, scalar probes, quotients, matrices, continuity, or chart structure.
-- Treating refinement/compatibility as already theorem-grade from the nullity/sameness exclusions alone.
-- Treating realized contents or a realized carrier as already forced from refinement/compatibility alone.
-- Treating locality/cover as already theorem-grade from the solved $R+S$ layer.
-- Treating lawful transformation as already theorem-grade from the solved $R+S+C$ layer.
-- Treating distinguishers/signatures as already theorem-grade from the solved $R+S+C+T$ layer.
-- Treating stable comparison algebra as already theorem-grade from the solved $R+S+C+T+D$ layer.
-- Treating valuation as already theorem-grade from the solved $R+S+C+T+D+A$ layer.
-- Treating parameterization as already theorem-grade from the solved $R+S+C+T+D+A+V$ layer.
-- Treating the carrier regime produced under $R+S$ as already unique or canonical.
+The primitive package of the present draft contains only:
 
-### Live theorem target
+- two distinguished sterile poles,
+- their non-identity,
+- their opposition,
+- a realizability predicate,
+- a flatness predicate,
+- and a pole-opposition resolution law forbidding flat realizability.
 
-Determine whether differentiability emergence is forced from the solved $R+S+C+T+D+A+V+P$ layer, or whether differentiability exists only conditionally under explicit additional overlap-regularity assumptions.
+#### Forbidden as primitive
 
-### Forbidden regressions
+The following are forbidden at root level:
 
-The document may not proceed upward to differentiability emergence until the differentiability question is settled and written into the document.
+- \((\mathcal B,\#)\) as primitive ontology,
+- nodes, branches, graphs, trees, ancestry, depth, terminality, frontier,
+- attenuation maps, energy-like scalars, weights, valuations,
+- local sectors, overlaps, patch maps, chart language, cocycle language,
+- time parameter, event sequence, causality, irreversible arrow,
+- topology, metric, distance, continuity, derivatives, differentiability,
+- QGT, quotient geometry, \(J\oplus M\), or any downstream CF00 machinery.
 
-## 1. Scope, Ontology, and Primitive Commitments
-## 1. Scope, Ontology, and Primitive Commitments
+### 1.4 Status convention
 
-### 1.1 Root burden inherited from CF00
+Every major claim in this document is labeled as one of:
 
-CF00 begins from a differentiable carrier $\mathcal M$, a local representative state-family, and local redundancy. That is already too late for an absolute first-principles account. CF000 therefore asks what must be in place before any differentiable carrier, local coordinate, or lawful local derivative can even make sense.
+- **Closed** — theorem-grade and dependency-clean at the present scope;
+- **Partially Closed** — substantial closure achieved, but one named burden remains;
+- **Open** — not yet proved or not yet tightly stated enough;
+- **Conjectural** — architectural hypothesis only;
+- **Blocked** — the target cannot be advanced until one earlier named burden is resolved.
 
-### 1.2 Primitive versus forbidden structure
+No statement may be described as “emergent” unless the document answers:
 
-At CF000 depth, the following are forbidden as primitive:
+1. what exactly forces it,
+2. why the lower layer cannot remain as it is,
+3. and which alternatives are thereby ruled out.
 
-- differentiable manifold structure;
-- local coordinates;
-- tangent spaces or cotangent spaces;
-- metric distance;
-- point-set neighborhoods in the geometric sense;
-- local derivatives, limits, or difference quotients;
-- scalar-valued probes or observables;
-- real parameters or small-parameter update families;
-- support graphs or adjacency graphs;
-- gauge connection, QGT, metric/curvature split, $J \oplus M$, constitutive fields.
+### 1.5 Handoff target to CF00
 
-If any of these appear before they are earned, the root has not moved beneath CF00.
+CF000 does not need to derive QGT, metric curvature, or metriplectic evolution. It must only close enough pre-differential burden to justify a legitimate handoff point for CF00.
 
-### 1.3 What counts as a viable root for this branch
-
-A viable root for this branch must support:
-
-1. nontrivial distinction;
-2. law rather than vacuity;
-3. the possibility of falsification;
-4. a route to stable comparison;
-5. and, if possible, a route to differentiability.
-
-The branch does not begin by assuming these are numerical or geometric.
-
-### 1.4 Primitive notation convention
-
-To prevent later overload:
-
-- $\mathcal B$ denotes the primitive distinction-bearing bearer class.
-- $\#$ denotes primitive apartness.
-- $\widehat{\mathcal B}$ denotes an admissibly enriched bearer class once added branch structure is introduced.
-- $\mathcal M_0^{(R)}$ denotes the candidate realized-carrier regime relative to $R$.
-- $\mathcal M_0^{(R+S)}$ denotes the realized-carrier regime obtained conditionally under $R+S$.
-- $\mathcal M_0$ denotes a generic realized pre-differential carrier placeholder.
-- $\mathcal M$ denotes the downstream differentiable carrier earned only after later passes.
-- $M$ is reserved for the dissipative symmetric operator or sector only after the later emergent split appears downstream of CF000.
-
-No other use of plain $M$ is allowed in this document.
-
-### 1.5 Epistemic status convention for this document
-
-Every major layer in the derivation is labeled as one of:
-
-- **forced from prior layer**,
-- **minimal added branch structure**,
-- **conditional theorem under explicit assumptions**.
-
-If a layer is not forced from the prior layer, it is not allowed to be described as theorem-grade from that prior layer.
-
-### 1.6 Primitive commitment of the present pass
-
-The present pass commits only to:
-
-1. the primitive distinction-bearing residue $({\mathcal B},\#)$,
-2. the first added sharpenability discipline $L1$,
-3. the explicitly added refinement/compatibility structure $R$,
-4. the explicitly added realization/decisiveness layer $S$,
-5. the explicitly added locality/cover structure $C$,
-6. the explicitly added lawful-transformation structure $T$,
-7. the explicitly added distinguisher/signature structure $D$,
-8. the explicitly added stable-comparison structure $A$,
-9. the explicitly added valuation-representation structure $V$.
-
-The present pass does **not** yet commit to parameterization or differentiability.
+That handoff point is **not** assumed in this draft. It remains part of the live burden.
 
 ---
 
-## 2. Mathematical Setting and Definitions
+## 2. Primitive Definitions and Root Package
 
-### 2.1 Primitive bearer class and apartness
+### 2.1 Definitions table
 
-The primitive substrate at the present deepest justified level is
-$$
-(\mathcal B, \#),
-$$
-where $\mathcal B$ is a nonempty bearer class and $\#$ is a primitive nontrivial apartness relation.
+| Term | Plain-language meaning | Formal symbol / formal definition | What it explicitly does **not** assume | Status | First stage introduced | Depends on |
+|---|---|---|---|---|---|---|
+| Absolute nullity | complete realized absence | distinguished candidate \(\mathbf{0}\) | not the empty set; not empty space; not vacuum-in-space; not a region of prior geometry | Primitive | Stage 0 | none |
+| Absolute undifferentiated totality | complete homogeneous one-ness without internal noncoincidence | distinguished candidate \(\mathbf{1}\) | not “one object” inside prior plurality; not a uniform field on prior background | Primitive | Stage 0 | none |
+| Origin candidate | a candidate root condition for a realized universe-branch | predicate \(\mathrm{Orig}(x)\) on a logical discourse domain \(\mathcal C\) | does not assume geometry, time, causality, multiplicity, locality, or carrier structure | Primitive | Stage 0 | logical discourse domain only |
+| Sterile | structurally unable to support realized differentiated structure while remaining what it is | predicate \(\mathrm{Ster}(x)\) | does not assume dynamics, space, law, branching, or measurement | Primitive | Stage 0 | none |
+| Flat | internally unresolved; contains no realized internal noncoincidence | predicate \(\mathrm{Flat}(x)\) | does not assume plurality, graph structure, constant fields, locality, or smoothness | Primitive | Stage 0 | none |
+| Realizable | admissible as a non-vacuous realized universe-condition of the branch | predicate \(\mathrm{Real}(x)\) | does not yet mean temporal persistence, dynamical stability, or spacetime existence | Primitive | Stage 0 | none |
+| Non-vacuous | not empty in the root sense of complete realized absence | abbreviation: \(\mathrm{NV}(x) := \mathrm{Real}(x)\) in the present pass | does not assume content decomposition, plurality, or observables | Primitive (current pass) | Stage 0 | none |
+| Opposition | non-identity of poles together with shared sterility consequence for realized structure | predicate \(\mathrm{Opp}(x,y)\) | does not assume graph edges, forces, interaction law, or temporal evolution | Primitive | Stage 0 | none |
+| Primitive bifurcation potential | unresolved opposition of the two non-identical sterile poles as the root burden | \(\mathrm{PBP} := \mathrm{Opp}(\mathbf 0,\mathbf 1)\) together with pole sterility and realizability exclusion | does not assume ordinary coexistence of two already-formed objects; does not assume mediation by a third substance | Primitive (conditional on flat-origin classification) | Stage 1 | nullity, totality, opposition, sterility |
+| Differentiated / non-flat realizability | a realizable condition that cannot remain flat | \(\mathrm{Diff}(x) := \mathrm{Real}(x) \wedge \neg\mathrm{Flat}(x)\) | does not assume multiplicity, apartness, hierarchy, locality, or carrier structure | Derived | Stage 2 | realizability, flatness |
+| Multiplicity | at least two noncoincident realization-witnesses of one differentiated condition | provisional placeholder \(\mathrm{Mult}(x)\) | does not yet assume graph nodes, branches, coordinates, or metric separation | Provisional / Open | Stage 3 target | differentiated realizability + one witness principle |
+| Apartness | derived noncoincidence between distinct realization-witnesses of one differentiated condition | provisional placeholder relation \(a \# b\) | does not assume primitive \((\mathcal B,\#)\), metric distance, locality, or topology | Provisional / Open | Stage 4 target | multiplicity |
+| Recursive refinement | reapplication of unresolved differentiation burden to an already differentiated condition | provisional schema \(\mathrm{Ref}(x)\) | does not assume tree/graph ancestry, time, or causal succession | Provisional / Open | Stage 5 target | differentiated realizability |
+| Hierarchy | ordered dependence levels induced by reiterated refinement | provisional \(\mathrm{Hier}\) | does not assume ancestry trees, depth counters, or frontier objects | Provisional / Open | Stage 5 target | recursive refinement |
+| Dependence order | “must be settled before” order in derivation or realization burden | provisional relation \(\prec_d\) | not clock time; not irreversible arrow; not causal propagation | Derived / Open | Stage 5 target | recursive refinement |
 
-### 2.2 Minimal primitive laws
+### 2.2 Status note on the table
 
-The primitive relation satisfies only the weakest laws presently forced:
+Terms marked **Primitive** belong to the current proposal-stage root package. Terms marked **Derived** are immediate consequences if their triggering law closes. Terms marked **Provisional / Open** are targets only; they are not being claimed as closed in this pass.
 
-1. **Nonempty bearer**
-   $$
-   \mathcal B \neq \varnothing.
-   $$
+### 2.3 Logical domain of discourse
 
-2. **Nontrivial extension**
-   $$
-   \exists a,b\in\mathcal B\text{ such that }a\# b.
-   $$
+Let \(\mathcal C\) denote the logical domain of candidate realization conditions.
 
-3. **Irreflexivity**
-   $$
-   \neg(a\# a).
-   $$
+This is **not** a primitive ontology of objects in the world. It is a logical range of discourse only, introduced so that realizability claims can be stated without presupposing points, sets of points, states, branches, fields, or graphs.
 
-4. **Symmetry**
-   $$
-   a\# b \Rightarrow b\# a.
-   $$
+### 2.4 Distinguished poles
 
-No order, topology, metric, process, comparison algebra, or valuation is yet assumed.
+Introduce two distinguished pole symbols
 
-### 2.3 Primitive interpretation
+\[
+\mathbf 0,\mathbf 1 \in \mathcal C
+\]
 
-An element of $\mathcal B$ is not yet:
+with intended meanings:
 
-- a point,
-- a coordinate,
-- a neighborhood,
-- a state in phase space,
-- a value,
-- a measurable response,
-- or a dynamical state.
+- \(\mathbf 0\): **absolute nullity**
+- \(\mathbf 1\): **absolute undifferentiated totality**
 
-It is only a bearer of possible nontrivial distinction.
+These are symbolic pole markers only. They are not arithmetic numerals, Boolean values, binary digits, field elements, or occupancy bits.
 
-Likewise, $a\# b$ does not yet mean metric separation, measurable difference, process difference, or local variation. It means only that $a$ and $b$ are primitively not the same in a nontrivial way.
+### 2.5 Primitive predicates and relation
 
-### 2.4 First added branch commitment: sharpenability
+Introduce primitive predicates
 
-The current pass tests whether pure distinction alone can support lawful continuation of the branch. To ask that question, the branch introduces exactly one minimal additional principle.
+\[
+\mathrm{Orig}(x),\qquad \mathrm{Ster}(x), \qquad \mathrm{Real}(x), \qquad \mathrm{Flat}(x)
+\]
 
-**Principle $L1$ (Sharpenability discipline).**  
-If a distinction is to remain meaningful in a law-bearing continuation of the branch, then it must admit admissible sharpening without erasing already-witnessed distinction content.
+and one primitive relation
 
-$L1$ is not claimed to be forced from pure apartness. It is the first **minimal added branch commitment** required to test whether law-bearing continuation is possible.
+\[
+\mathrm{Opp}(x,y).
+\]
 
-### 2.5 First explicit added branch structure: refinement/compatibility
+Their intended meanings are:
 
-Since primitive distinction together with $L1$ does not force a unique global refinement/compatibility regime, the branch introduces refinement/compatibility explicitly.
+- \(\mathrm{Orig}(x)\): \(x\) is an origin candidate for the present branch.
+- \(\mathrm{Ster}(x)\): \(x\) is structurally sterile for realized differentiated structure.
+- \(\mathrm{Real}(x)\): \(x\) is realizable as a non-vacuous universe-condition of the present branch.
+- \(\mathrm{Flat}(x)\): \(x\) contains no internal noncoincidence by which differentiated structure could be sustained.
+- \(\mathrm{Opp}(x,y)\): \(x\) and \(y\) are complementary non-identical sterile poles.
 
-**Added Branch Structure $R$.**  
-A continuation of this branch beyond primitive distinguishability must specify:
+### 2.6 Primitive package used in this pass
 
-1. an admissibly enriched bearer class $\widehat{\mathcal B}$ containing $\mathcal B$,
-2. a refinement preorder $\preceq$ on $\widehat{\mathcal B}$,
-3. a compatibility relation $\bowtie$ on $\widehat{\mathcal B}$,
-4. preservation of apartness under sharpening,
-5. stability of compatibility under sharpening.
+The present draft adopts the following root laws.
 
-At minimum, the added structure must satisfy:
+**PB1. Pole non-identity**
+\[
+\mathbf 0 \neq \mathbf 1
+\]
 
-- **R1 (reflexive refinement)**
-  $$
-  x \preceq x.
-  $$
+**PB2. Pole sterility**
+\[
+\mathrm{Ster}(\mathbf 0)\wedge \mathrm{Ster}(\mathbf 1)
+\]
 
-- **R2 (transitive refinement)**
-  $$
-  x \preceq y \land y \preceq z \Rightarrow x \preceq z.
-  $$
+**PB3. Pole opposition**
+\[
+\mathrm{Opp}(\mathbf 0,\mathbf 1)
+\]
 
-- **R3 (apartness persistence)**
-  $$
-  x \preceq y \land y\# z \Rightarrow x\# z.
-  $$
+**PB4. Realizability exclusion**
+\[
+\forall x\in\mathcal C,\quad \mathrm{Real}(x)\Rightarrow (x\neq \mathbf 0 \wedge x\neq \mathbf 1)
+\]
 
-- **R4 (compatibility symmetry)**
-  $$
-  x \bowtie y \Rightarrow y \bowtie x.
-  $$
+**PB5. Pole-opposition resolution law**
+\[
+\forall x\in\mathcal C,\quad \big(\mathrm{Real}(x)\wedge \mathrm{Opp}(\mathbf 0,\mathbf 1)\big)\Rightarrow \neg \mathrm{Flat}(x)
+\]
 
-- **R5 (refinement monotonicity of compatibility)**
-  $$
-  x' \preceq x \land x \bowtie y
-  \Rightarrow
-  \exists y' \preceq y \text{ such that } x' \bowtie y'.
-  $$
+No graph, tree, branching object, valuation, manifold, locality, or carrier assumptions are used.
 
-$R$ is not theorem-grade from the prior layer. It is the first **minimal added branch structure**.
+### 2.7 Flatness discipline
 
-### 2.6 Candidate realized distinction content relative to $R$
+Flatness is defined here as a pre-plural, pre-geometric condition:
 
-A set $X \subseteq \widehat{\mathcal B}$ is called an **$R$-candidate realized distinction content** if it satisfies the following minimal conditions.
+> a condition is flat exactly when it contains no internal noncoincidence by which differentiated structure could be sustained.
 
-1. **Nonemptiness**
-   $$
-   X \neq \varnothing.
-   $$
+This definition is intentionally earlier than multiplicity, apartness, branch, relation network, or hierarchy. If flatness were instead defined in terms of “no branches,” “one node,” “constant on a domain,” or “single state on a space,” then derived structure would already have been imported.
 
-2. **Refinement saturation**
-   $$
-   x\in X \land y \preceq x \Rightarrow y \in X.
-   $$
+### 2.8 First derived notion
 
-3. **Finite coherence**
-   For every finite subset $F \subseteq X$, there exists $z\in X$ such that
-   $$
-   z \preceq f
-   \qquad
-   \text{for all } f\in F.
-   $$
+The first derived notion of the present architecture is:
 
-4. **Decisiveness**
-   For every $b\in \widehat{\mathcal B}$, either:
-   - there exists $x\in X$ with $x \bowtie b$, or
-   - there exists $x\in X$ with $x \# b$.
+\[
+\mathrm{Diff}(x) := \mathrm{Real}(x)\wedge \neg \mathrm{Flat}(x).
+\]
 
-The class of all such $R$-candidate realized contents, if nonempty, is denoted
-$$
-\mathcal M_0^{(R)}.
-$$
+A condition is **differentiated** exactly when it is realizable and non-flat.
 
-This definition is not yet a theorem of existence. It is the weakest honest candidate notion of realized content available at this stage.
+### 2.9 Status of the root package
 
-### 2.7 Candidate added branch structure: realization/decisiveness layer $S$
+- Pole definitions: **Closed**
+- Pole non-identity: **Closed**
+- Pole sterility as adopted primitive law: **Closed at the level of root law**
+- Realizability exclusion: **Closed at the level of root law**
+- Pole-opposition resolution law PB5: **Closed as adopted root law, not yet reduced further**
+- Flatness definition: **Closed**
+- Minimality of this root package: **Partially Closed**  
+  The main remaining audit burden is whether \(\mathcal C\) and the chosen predicate package still conceal hidden relational baggage.
 
-Since $R$ alone does not force realized contents, the branch introduces the next candidate added structure.
+---
 
-**Candidate Added Branch Structure $S$.**  
-A continuation of the branch beyond $R$ must, at minimum, specify a principle strong enough to guarantee that coherent refinement content can settle into decisive realized contents. The weakest presently credible candidate consists of the following.
-
-- **S1 (finite coherent extension)**  
-  Every finite pairwise compatible family admits an admissible common refinement.
-
-- **S2 (branch existence)**  
-  Every admissible bearer lies on at least one nonempty refinement thread compatible with $R$.
-
-- **S3 (decisive separation)**  
-  Every sufficiently stable refinement thread decides every bearer by eventual compatibility or eventual apartness.
-
-- **S4 (realization closure)**  
-  Every nonempty coherent refinement thread extends to a decisive coherent content.
-
-$S$ is **not** forced from $R$. It is introduced only as the current best **minimal added branch structure** candidate if the branch is to continue toward realization.
-
-### 2.8 Candidate realized distinction content relative to $R+S$
-
-Given $R+S$, a set $X\subseteq \widehat{\mathcal B}$ is called an **$(R+S)$-realized distinction content** if:
-
-1. $X$ is nonempty,
-2. $X$ is refinement-saturated,
-3. $X$ is finitely coherent,
-4. $X$ is decisive,
-5. $X$ contains at least one refinement thread guaranteed by S2,
-6. $X$ is admitted by S4 as a realization closure of some coherent thread.
-
-The class of all such contents is denoted
-$$
-\mathcal M_0^{(R+S)}.
-$$
-
-At this stage $\mathcal M_0^{(R+S)}$ is a candidate realized-carrier regime. Its existence and non-canonicity have been established by the previous pass.
-
-### 2.9 Candidate locality/cover discipline relative to $R+S$
-
-At the present stage the branch has realized contents and a realized-carrier regime, but it does not yet have a theorem-grade notion of locality. The next candidate layer is a pre-metric cover discipline.
-
-A **cover/locality discipline** on a realized-carrier regime $\mathcal M_0^{(R+S)}$ is a relation
-$$
-X \triangleleft \mathcal U,
-$$
-where $X \in \mathcal M_0^{(R+S)}$ and $\mathcal U \subseteq \mathcal M_0^{(R+S)}$, satisfying the following minimal clauses.
-
-- **C1 (self-coverage)** If $X \in \mathcal U$, then $X \triangleleft \mathcal U$.
-- **C2 (upward stability)** If $X \triangleleft \mathcal U$ and $\mathcal U \subseteq \mathcal V$, then $X \triangleleft \mathcal V$.
-- **C3 (refinement compatibility)** If $Y$ is a realized-content sharpening of $X$ and $X \triangleleft \mathcal U$, then $Y$ is covered by a sharpening-compatible family subordinate to $\mathcal U$.
-- **C4 (patch compatibility)** If $X \triangleleft \mathcal U$ and each $U \in \mathcal U$ is itself covered by a family $\mathcal V_U$, then $X$ is covered by the union of the $\mathcal V_U$ whenever the patching relations are coherent.
-
-This cover relation is weaker than metric distance, coordinate neighborhoods, valuation, parameterization, or differentiability. It is only a pre-metric discipline of localizability and patchability on realized contents.
-
-### 2.10 Status of locality/cover
-
-At this stage, locality/cover is not assumed primitive. Nor is it forced by the prior layer unless proved below. The previous pass established a no-go theorem: locality/cover is not forced from the solved $R+S$ layer and must be introduced explicitly as the next minimal added branch structure $C$.
-
-### 2.11 Candidate lawful-transformation discipline relative to $R+S+C$
-
-At the present stage the branch has:
-
-- primitive distinguishability,
-- explicit refinement/compatibility,
-- conditional and non-canonical realized contents,
-- and an explicit cover/locality discipline.
-
-It still does not yet have a theorem-grade notion of transformation.
-
-A **lawful-transformation discipline** on a realized-carrier regime $\mathcal M_0^{(R+S)}$ equipped with cover $C$ is a class $\mathfrak T$ of partial endomorphisms
-$$
-\tau : \operatorname{Dom}(\tau) \to \mathcal M_0^{(R+S)}
-$$
-with $\operatorname{Dom}(\tau) \subseteq \mathcal M_0^{(R+S)}$, satisfying the following minimal clauses.
-
-- **T1 (identity act)** There exists an identity transformation $\mathrm{id}$ on $\mathcal M_0^{(R+S)}$.
-- **T2 (admissible composability)** If $\tau,\sigma \in \mathfrak T$ and the image of $\sigma$ lies in the domain of $\tau$, then the composite $\tau\circ\sigma$ is again in $\mathfrak T$.
-- **T3 (realized-content preservation)** If $X \in \operatorname{Dom}(\tau)$, then $\tau(X)$ is again a realized distinction content.
-- **T4 (cover respect)** If $X \triangleleft \mathcal U$, then whenever $\tau$ is defined on all members of $\mathcal U$, the image $\tau(X)$ is covered by the image family $\tau[\mathcal U]$ or by a cover-refinement subordinate to it.
-- **T5 (nontriviality)** At least one $\tau \in \mathfrak T$ is not equal to the identity on its full domain.
-
-This structure is weaker than distinguishers/signatures, comparison algebra, valuation, parameterization, or differentiability. It supplies only admissible process-like movement on realized contents with composition and cover respect.
-
-### 2.12 Status of lawful transformation
-
-At this stage, lawful transformation is not assumed primitive. The previous pass established a no-go theorem: branch-usable lawful transformation is not forced from the solved $R+S+C$ layer and must be introduced explicitly as the next minimal added branch structure $T$.
-
-### 2.13 Candidate distinguisher/signature discipline relative to $R+S+C+T$
-
-At the present stage the branch has:
-
-- primitive distinguishability,
-- explicit refinement/compatibility,
-- conditional and non-canonical realized contents,
-- an explicit cover/locality discipline,
-- and an explicitly added lawful-transformation discipline.
-
-It still does not yet have a theorem-grade notion of readout, discrimination, or signature-bearing outcome.
-
-A **distinguisher/signature discipline** on a realized-carrier regime $\mathcal M_0^{(R+S)}$ equipped with cover $C$ and lawful transformations $T$ consists of:
-
-1. a nonempty signature class $\mathfrak{Sig}$;
-2. an event domain
-   $$
-   \mathcal E_T := \{(X,\tau) : X\in \operatorname{Dom}(\tau),\; \tau\in \mathfrak T\};
-   $$
-3. a nonempty class $\mathfrak D$ of partial readout acts
-   $$
-   \delta : \operatorname{Dom}(\delta) \to \mathfrak{Sig},
-   \qquad
-   \operatorname{Dom}(\delta) \subseteq \mathcal E_T,
-   $$
-   satisfying the following minimal clauses.
-
-- **D1 (event admissibility)** Each distinguisher is defined only on admissible transformation-events in $\mathcal E_T$.
-- **D2 (extensional event identity)** If two admissible event descriptions coincide in the solved layer, then every distinguisher defined on both assigns the same signature to them.
-- **D3 (repeatable readout)** Whenever the same admissible event is presented again to the same distinguisher, the same signature is returned.
-- **D4 (branch-usable nontriviality)** At least one distinguisher separates at least one pair of admissible events not already identified by solved-layer equality.
-
-This structure is weaker than comparison algebra, valuation, parameterization, or differentiability. It supplies only readout-level discrimination and outcome identity. It does not yet order signatures, compose signatures, or assign numerical value.
-
-### 2.14 Status of distinguishers/signatures
-
-At this stage, distinguishers/signatures are not assumed primitive. Nor are they forced by the prior layer unless proved below. The theorem target solved by the previous pass was:
-
-> determine whether the solved layer $R+S+C+T$ forces a branch-usable distinguisher/signature discipline, or whether such a discipline must be introduced explicitly as the next minimal added branch structure.
-
-The answer was negative, and the branch now proceeds to the comparison-algebra question.
-
-
-### 2.15 Candidate stable-comparison algebra relative to $R+S+C+T+D$
-
-At the present stage the branch has:
-
-- primitive distinguishability,
-- explicit refinement/compatibility,
-- conditional and non-canonical realized contents,
-- an explicit cover/locality discipline,
-- an explicitly added lawful-transformation discipline,
-- and an explicitly added distinguisher/signature discipline.
-
-It still does not yet have a theorem-grade notion of stable comparison.
-
-A **stable comparison algebra** on a solved layer $(R+S+C+T+D)$ consists of:
-
-1. a nonempty class $\mathfrak C$ of comparison classes,
-2. a surjective class-forming map
-   $$
-   q : \mathfrak{Sig} \to \mathfrak C,
-   $$
-3. a preorder
-   $$
-   \sqsubseteq\; \subseteq \mathfrak C \times \mathfrak C,
-   $$
-4. a partial binary operation
-   $$
-   \odot : \operatorname{Dom}(\odot) \subseteq \mathfrak C \times \mathfrak C \to \mathfrak C,
-   $$
-   satisfying the following minimal clauses.
-
-- **A1 (signature class identity)** If two signatures are identified by the solved readout layer as the same signature, then they determine the same comparison class.
-- **A2 (preorder discipline)** $\sqsubseteq$ is reflexive and transitive on $\mathfrak C$.
-- **A3 (branch-usable nontriviality)** At least one pair of comparison classes is not identified by mutual preorder collapse.
-- **A4 (comparison stability under admissible readout reuse)** If the same admissible event is presented again to the same distinguisher and yields the same signature, then its comparison class is preserved.
-- **A5 (partial composition respect)** Whenever comparison composition is declared on a pair $(c_1,c_2)$, the class $c_1 \odot c_2$ depends only on the comparison classes and not on hidden presentation choices of the underlying signatures.
-
-This structure is weaker than valuation, parameterization, or differentiability. It does not yet assign numbers, select coordinates, or impose first-order smooth structure. It supplies only stable comparison-class identity, a comparison relation, and optional class-level composition.
-
-### 2.16 Status of stable comparison algebra
-
-At this stage, stable comparison algebra is not assumed primitive. The previous pass established by no-go theorem that it is not forced by the prior layer and must therefore be introduced explicitly as the next minimal added branch structure $A$ if the branch is to continue toward valuation, parameterization, or differentiability.
-
-
-### 2.17 Candidate valuation representation relative to $R+S+C+T+D+A$
-
-At the present stage the branch has:
-
-- primitive distinguishability,
-- explicit refinement/compatibility,
-- conditional and non-canonical realized contents,
-- an explicit cover/locality discipline,
-- an explicitly added lawful-transformation discipline,
-- an explicitly added distinguisher/signature discipline,
-- and an explicitly added stable-comparison algebra.
-
-It still does not yet have a theorem-grade notion of valuation.
-
-A **valuation representation** on a solved layer $(R+S+C+T+D+A)$ consists of:
-
-1. an ordered composition regime
-   $$
-   (\mathbb V, \leq_{\mathbb V}, \oplus, 0_{\mathbb V}),
-   $$
-   where $\leq_{\mathbb V}$ is a preorder on $\mathbb V$, $\oplus$ is an associative binary operation on $\mathbb V$ with neutral element $0_{\mathbb V}$, and $\oplus$ is monotone in each argument with respect to $\leq_{\mathbb V}$;
-2. a map
-   $$
-   
-u : \mathfrak C 	o \mathbb V,
-   $$
-   satisfying the following minimal clauses.
-
-- **V1 (class identity respect)** If $c_1 = c_2$ in $\mathfrak C$, then $
-u(c_1)=
-u(c_2)$.
-- **V2 (order preservation)** If $c_1 \sqsubseteq c_2$, then
-  $$
-  
-u(c_1) \leq_{\mathbb V} 
-u(c_2).
-  $$
-- **V3 (strict noncollapse of strict comparison)** If
-  $$
-  c_1 \sqsubseteq c_2
-  \qquad	ext{and}\qquad
-eg(c_2 \sqsubseteq c_1),
-  $$
-  then
-  $$
-  
-u(c_1) <_{\mathbb V} 
-u(c_2),
-  $$
-  where $x <_{\mathbb V} y$ abbreviates $x \leq_{\mathbb V} y$ and $
-eg(y \leq_{\mathbb V} x)$.
-- **V4 (comparison-composition respect)** Whenever $c_1 \odot c_2$ is defined,
-  $$
-  
-u(c_1 \odot c_2) = 
-u(c_1) \oplus 
-u(c_2).
-  $$
-- **V5 (neutral normalization when available)** If $\mathfrak C$ contains a comparison class $e_{\mathfrak C}$ acting as a neutral element for all comparison compositions on which it is defined, then
-  $$
-  
-u(e_{\mathfrak C}) = 0_{\mathbb V}.
-  $$
-
-This structure is weaker than parameterization or differentiability. It assigns order-compatible values to stable comparison classes, but it does not yet supply coordinates, update parameters, chart transitions, or derivatives.
-
-### 2.18 Status of valuation representation
-
-At this stage, valuation representation is not assumed primitive. The previous pass established a no-go theorem: valuation representation is not forced from the solved $R+S+C+T+D+A$ layer and must therefore be introduced explicitly as the next minimal added branch structure $V$.
-
-### 2.19 Candidate lawful-parameterization layer relative to $R+S+C+T+D+A+V$
-
-At the present stage the branch has:
-
-- primitive distinguishability,
-- explicit refinement/compatibility,
-- conditional and non-canonical realized contents,
-- an explicit cover/locality discipline,
-- an explicitly added lawful-transformation discipline,
-- an explicitly added distinguisher/signature discipline,
-- an explicitly added stable-comparison algebra,
-- and an explicitly added valuation representation.
-
-It still does not yet have a theorem-grade notion of parameterization.
-
-A **lawful-parameterization layer** on a solved layer $(R+S+C+T+D+A+V)$ consists of:
-
-1. a parameter carrier
-   $$
-   (\mathbb P, \leq_{\mathbb P}, oxplus, 0_{\mathbb P}),
-   $$
-   where $\leq_{\mathbb P}$ is a preorder on $\mathbb P$, $oxplus$ is a partially defined associative operation with neutral element $0_{\mathbb P}$, and there is a distinguished positive sector $\mathbb P_{>0} \subseteq \mathbb P$ such that $0_{\mathbb P} 
-otin \mathbb P_{>0}$ and whenever $p,q\in\mathbb P_{>0}$ with $poxplus q$ defined, one has $poxplus q \in \mathbb P_{>0}$;
-2. a branch-usable transformation subfamily
-   $$
-   \mathfrak T_{\mathbb P} \subseteq \mathfrak T
-   $$
-   containing $\mathrm{id}$ and closed under every composition on which the parameter law is declared;
-3. a map
-   $$
-   \pi : \mathfrak T_{\mathbb P} 	o \mathbb P,
-   $$
-   satisfying the following minimal clauses.
-
-To state valuation compatibility, define the **valuation profile** of $	au \in \mathfrak T$ to be the partial assignment
-$$
-\mathrm{Prof}_V(	au)(X,\delta) := 
-uigl(q(\delta(X,	au))igr),
-$$
-whenever $X \in \operatorname{Dom}(	au)$, $\delta \in \mathfrak D$, and the event $(X,	au)$ lies in the domain of $\delta$. Write
-$$
-	au \sim_V \sigma
-$$
-when $\mathrm{Prof}_V(	au)$ and $\mathrm{Prof}_V(\sigma)$ agree on every common admissible evaluation context.
-
-The parameterization clauses are:
-
-- **P1 (identity normalization)**
-  $$
-  \pi(\mathrm{id}) = 0_{\mathbb P}.
-  $$
-- **P2 (composition respect)** Whenever $	au,\sigma,	au\circ\sigma \in \mathfrak T_{\mathbb P}$ and $\pi(	au) oxplus \pi(\sigma)$ is defined,
-  $$
-  \pi(	au\circ\sigma) = \pi(	au) oxplus \pi(\sigma).
-  $$
-- **P3 (valuation-profile identification)** If $	au \sim_V \sigma$, then
-  $$
-  \pi(	au)=\pi(\sigma).
-  $$
-- **P4 (branch-usable nontriviality)** There exists at least one $	au\in \mathfrak T_{\mathbb P}$ such that $	au 
-ot\sim_V \mathrm{id}$ and
-  $$
-  \pi(	au) \in \mathbb P_{>0}.
-  $$
-- **P5 (positive-progress closure)** If $	au,\sigma,	au\circ\sigma \in \mathfrak T_{\mathbb P}$, $\pi(	au),\pi(\sigma)\in \mathbb P_{>0}$, and $\pi(	au)oxplus \pi(\sigma)$ is defined, then
-  $$
-  \pi(	au\circ\sigma) = \pi(	au)oxplus \pi(\sigma) \in \mathbb P_{>0}.
-  $$
-
-This structure is weaker than differentiability. It indexes admissible transformation composition by a pre-differential progress carrier, but it does not yet impose charts, continuity, overlap regularity, derivatives, or first-order smoothness.
-
-### 2.20 Status of parameterization
-
-At this stage, parameterization is not assumed primitive. The theorem target of the present pass is therefore:
-
-> determine whether the solved layer $R+S+C+T+D+A+V$ forces a branch-usable lawful-parameterization layer, or whether such a layer must be introduced explicitly as the next minimal added branch structure.
-
-## 3. Foundational Construction
-## 3. Foundational Construction
+## 3. Root Classification and First Machine Step
 
 ### 3.1 Nullity exclusion
 
 **Theorem 3.1.1 (Nullity exclusion).**  
-Absolute nullity is not a viable root for this branch.
+Absolute nullity is not a viable realized root for a falsifiable law-bearing branch.
+
+**Status:** Closed.
 
 **Proof.**  
-A physical branch of theory must at minimum permit a difference between success and failure of a statement, between one admissible state and another, and between a law and the absence of law. Absolute nullity supports none of these because it contains no bearer, no distinction, and no possible witness structure. Therefore nullity cannot serve as the root of a falsifiable formal branch. This is a theorem about formal-role viability, not a universal metaphysical theorem about all possible notions of nothing. $\square$
+A falsifiable law-bearing branch must admit at least the distinction between admissible and inadmissible structure, between support and failure of a claim, and between realized and unrealized burden. Absolute nullity supplies no realized content, no realized distinction, and no realized support condition. Therefore nullity cannot serve as the realized root of the present branch. This is a branch-role theorem, not a global metaphysical theorem about every conceivable use of the word “nothing.” \(\square\)
 
-### 3.2 Undifferentiated sameness exclusion
+### 3.2 Undifferentiated totality exclusion
 
-**Theorem 3.2.1 (Undifferentiated sameness exclusion).**  
-Absolute undifferentiated sameness is not a viable root for this branch.
+**Theorem 3.2.1 (Undifferentiated totality exclusion).**  
+Absolute undifferentiated totality is not a viable realized root for a falsifiable law-bearing branch.
 
-**Proof.**  
-If all admissible presentations are undifferentiated, then no nontrivial comparison can be made. Comparison, persistence, lawful separation, and falsification all collapse, because there is no content by which one state could fail to match another. Thus absolute undifferentiated sameness is as unusable for this branch as nullity, although for a different reason: it has bearer-like content but no nontrivial distinction. $\square$
-
-### 3.3 Weakest surviving primitive
-
-**Theorem 3.3.1 (Weakest surviving primitive).**  
-For this branch, once nullity and absolute undifferentiated sameness are excluded, the weakest surviving primitive is a distinction-bearing multiplicity $({\mathcal B},\#)$ satisfying nonempty bearer, nontrivial extension, irreflexivity, and symmetry.
+**Status:** Closed.
 
 **Proof.**  
-Nullity excludes bearer and relation altogether. Undifferentiated sameness excludes nontrivial distinction. Therefore any surviving root must contain at least a nonempty bearer class and at least one nontrivial distinction relation on it. Any stronger primitive package — order, cover, metric, value, update, or process — adds content not forced by those two exclusions alone. Hence $({\mathcal B},\#)$ is the weakest currently justified root. $\square$
+A falsifiable law-bearing branch requires some noncoincident content by which one admissible condition can fail to coincide with another, or by which a claim can differ from its negation in realized support. Absolute undifferentiated totality contains no internal noncoincidence and therefore cannot sustain differentiated realized structure. Hence it cannot serve as the realized root of the present branch. \(\square\)
 
-### 3.4 First branch fork: can pure distinguishability support law?
+### 3.3 Non-identity with shared sterility consequence
 
-Pure apartness is enough to exclude nullity and sameness. It is not enough by itself to support law.
+**Proposition 3.3.1 (Pole distinction despite shared sterility).**  
+The two poles \(\mathbf 0\) and \(\mathbf 1\) are not identical, even though both are structurally sterile for the present branch.
 
-If the branch is to support law rather than one-shot distinction, then distinctions must be:
+**Status:** Closed.
 
-1. revisitably meaningful,
-2. sharpenable without erasure of already-witnessed content,
-3. and stably reusable in later comparison contexts.
+**Proof.**  
+By PB1, \(\mathbf 0\neq \mathbf 1\). By PB2, both are sterile. Therefore the two poles are distinct while sharing the same branch-level sterility consequence. \(\square\)
 
-Principle $L1$ expresses this demand, but $L1$ itself does not yet define a stable global refinement or compatibility regime. The first live theorem target was therefore whether $L1$ together with pure apartness is enough to force such a regime. That question has already been resolved negatively.
+### 3.4 Flat-origin classification theorem or failure result
 
-### 3.5 No-go theorem for forcing refinement/compatibility
+#### 3.4.1 Candidate classification theorem
 
-**Theorem 3.5.1 (No-go theorem for refinement forcing).**  
-Primitive distinction-bearing multiplicity $({\mathcal B},\#)$ together with the sharpenability discipline $L1$ does **not** force a unique or canonical stable refinement/compatibility regime. Therefore refinement/compatibility is not theorem-grade from the prior layer. It must be introduced explicitly as the first minimal added branch structure if the branch is to continue toward law.
+**Target theorem.** Every admissible flat origin candidate collapses into exactly one of the two extreme classes:
 
-**Hypotheses.**
+1. absolute nullity \(\mathbf 0\), or
+2. absolute undifferentiated totality \(\mathbf 1\).
 
-1. $({\mathcal B},\#)$ satisfies the laws of Section 2.2.
-2. Principle $L1$ holds: physically meaningful distinction admits admissible sharpening without erasing already-witnessed distinction content.
-3. No further primitive assumptions are added regarding order, compatibility, locality, value, process, or comparison.
+**Status:** Not proved.
 
-**Conclusion.**
+#### 3.4.2 Failure theorem
 
-Under these hypotheses alone, there is no unique forced global refinement preorder or compatibility relation. More strongly, there exist distinct non-isomorphic sharpenability realizations compatible with the same primitive substrate and with $L1$, but yielding inequivalent refinement/compatibility structures. Hence refinement/compatibility is not forced from the prior layer.
+**Theorem 3.4.2 (Flat-origin bipolar classification does not follow from PB1–PB5).**  
+The primitive package PB1–PB5 does **not** prove that every admissible flat origin candidate is identical to \(\mathbf 0\) or \(\mathbf 1\).
 
-**Proof.**
+**Proof.**  
+The package names two distinguished flat-pole candidates and constrains realizable conditions relative to them. It does **not** impose any exhaustion principle on the class of flat origin candidates. In particular, the following are not ruled out by PB1–PB5:
 
-Fix a primitive substrate with two distinguishable bearers,
-$$
-a,b \in \mathcal B,
-\qquad
- a\# b.
-$$
-By $L1$, if this distinction is to remain meaningful in a law-bearing continuation, then there must exist some admissible sharpening witness for $a$ and some admissible sharpening witness for $b$ preserving the already-witnessed distinction content.
+- a third flat sterile candidate \(z\in\mathcal C\) with \(z\neq \mathbf 0\), \(z\neq \mathbf 1\),
+- \(\mathrm{Orig}(z)\), \(\mathrm{Flat}(z)\), and \(\mathrm{Ster}(z)\),
+- but with no axiom forcing \(z\) to coincide with either extreme pole.
 
-Now consider two distinct enrichments of the same primitive substrate.
+Since the present package contains no theorem identifying all flat sterile origin candidates with the two distinguished poles, bipolar flat-origin classification is underdetermined. Therefore the classification theorem does not follow from PB1–PB5. \(\square\)
 
-#### Realization R1: branchwise sharpening without global comparability
+#### 3.4.3 Exact minimal added principle required
 
-Adjoin sharpened witnesses $a_1$ and $b_1$ with the intended reading that $a_1$ sharpens $a$ and $b_1$ sharpens $b$. Define the only nontrivial sharpening facts to be
-$$
-a_1 \preceq a,
-\qquad
-b_1 \preceq b,
-$$
-and include reflexive closure. Introduce no further cross-comparability and no compatibility relation beyond identity-level admissibility.
+To close the flat-origin classification burden, add one explicit principle:
 
-This realizes $L1$: both $a$ and $b$ admit sharpenings preserving their witnessed distinction. But it yields only a sparse branchwise refinement structure.
+**BEP — Bipolar Exhaustion Principle.**  
+Every flat sterile origin candidate is identical to exactly one of the two extreme pole classes:
+\[
+\forall x\in\mathcal C,\quad (\mathrm{Orig}(x) \wedge \mathrm{Flat}(x) \wedge \mathrm{Ster}(x)) \Rightarrow (x = \mathbf 0 \vee x = \mathbf 1).
+\]
 
-#### Realization R2: iterated sharpening with compatible coarsenings
+Without BEP, the two-pole framing remains a strong root hypothesis, not a theorem of the current lean package.
 
-Adjoin an infinite descending sharpening chain for each bearer,
-$$
-\cdots \preceq a_2 \preceq a_1 \preceq a,
-\qquad
-\cdots \preceq b_2 \preceq b_1 \preceq b,
-$$
-again preserving $a\# b$ along each chain. Now also adjoin a coarse compatibility token $c$ that is not itself apart from either $a$ or $b$, and stipulate that certain admissible comparison contexts may pass through $c$ as a common coarse context without identifying $a$ and $b$ or making them refinements of one another.
+### 3.5 Conditional root statement after classification
 
-This also realizes $L1$. It yields a much richer sharpening and compatibility regime than R1.
+**Conditional on BEP**, the root is stated as follows:
 
-The two realizations are not isomorphic as refinement/compatibility structures:
+> The primitive root of this branch is not either sterile pole in isolation. The root burden is the unresolved bifurcation potential constituted by the opposition of two non-identical sterile poles, \(\mathbf 0\) and \(\mathbf 1\), together with realizability exclusion and the anti-flatness law. No realizable condition may stably coincide with either pole, and under their opposition no realizable condition may remain flat.
 
-- R1 has only isolated one-step branchwise refinement.
-- R2 has infinite branchwise refinement and an additional compatibility organization through coarse context tokens.
+This statement does **not** say:
 
-Yet both respect the same primitive substrate $({\mathcal B},\#)$ and the same sharpenability discipline $L1$. Therefore $L1$ does not determine a unique global refinement/compatibility regime. Since no uniqueness, canonicity, or forcing theorem follows from the prior layer alone, refinement/compatibility is not theorem-grade from primitive distinction plus $L1$.
+- that one pole is selected as the origin,
+- that the poles are ordinary coexisting objects,
+- or that a third mediating substance is primitive.
 
-Hence the branch must add refinement/compatibility explicitly if it wishes to continue beyond pure distinguishability. $\square$
+**Status:** Blocked by BEP. The root statement is architecturally precise, but its exclusivity claim is not theorem-grade without bipolar exhaustion.
 
-### 3.6 What Theorem 3.5.1 does and does not prove
+### 3.6 Existence burden for the first machine step
 
-**What it proves.**
+The universal law PB5 is vacuous unless at least one realizable condition exists.
 
-- Primitive distinction plus sharpenability is insufficient to force a unique stable refinement/compatibility regime.
-- Any continuation of the branch that needs such a regime must add it explicitly.
+Introduce the smallest existence principle:
 
-**What it does not prove.**
+**E1 — Non-vacuous realizable existence.**  
+\[
+\exists x\in\mathcal C\; \mathrm{Real}(x).
+\]
 
-- It does not show that refinement is impossible.
-- It does not show that cover, locality, lawful transformation, valuation, or differentiability are impossible.
-- It does not show that all refinement systems are equally good.
-- It does not identify the unique best added refinement system.
+### 3.7 Breakdown of perfect flatness
 
-It proves only the no-go result needed here: refinement/compatibility is **not forced** from the prior layer.
+**Theorem 3.7.1 (Breakdown of perfect flatness).**  
+Assume PB3, PB5, and E1. Then there exists at least one realizable condition that is not flat.
 
-### 3.7 No-go theorem for realized-carrier forcing from $R$
+**Status:** Partially Closed — requires one new explicit principle, namely E1.
 
-**Theorem 3.7.1 (No-go theorem for realized-carrier forcing from $R$).**  
-The explicitly added refinement/compatibility structure $R$ is **not** sufficient, by itself, to force stable realized distinction contents or a realized carrier layer. More precisely:
+**Proof.**  
+By E1, choose \(x\in\mathcal C\) with \(\mathrm{Real}(x)\). By PB3, \(\mathrm{Opp}(\mathbf 0,\mathbf 1)\). Then PB5 yields \(\neg \mathrm{Flat}(x)\). Hence there exists a realizable non-flat condition. \(\square\)
 
-1. there exist $R$-models for which $\mathcal M_0^{(R)} = \varnothing$;
-2. there exist $R$-models for which $\mathcal M_0^{(R)} \neq \varnothing$ and contains multiple inequivalent candidate realized contents;
-3. therefore neither the existence nor the canonicity of a realized carrier is forced from $R$ alone.
+### 3.8 Differentiated realizability exists
 
-**Hypotheses.**
+**Theorem 3.8.1 (Differentiated realizability exists).**  
+Assume PB3, PB5, and E1. Then:
+\[
+\exists x\in\mathcal C\; \mathrm{Diff}(x).
+\]
 
-1. The primitive substrate $({\mathcal B},\#)$ satisfies Section 2.2.
-2. The branch has adopted the first added structure $R$ of Section 2.5.
-3. No additional structure beyond $R$ is assumed regarding realization closure, sharpness, decisiveness, localization, or maximal extension.
+**Status:** Partially Closed — requires one new explicit principle, namely E1.
 
-**Conclusion.**
+**Proof.**  
+By Theorem 3.7.1, there exists \(x\) such that \(\mathrm{Real}(x)\) and \(\neg\mathrm{Flat}(x)\). By definition of \(\mathrm{Diff}\), \(\mathrm{Diff}(x)\). \(\square\)
 
-Under these hypotheses alone, $R$ does not force stable realized distinction contents and does not force a canonical realized carrier layer.
+### 3.9 What is and is not closed at this stage
 
-**Proof.**
+Closed here:
 
-We use the definition of $R$-candidate realized distinction content from Section 2.6.
+- exclusion of isolated nullity as realized root,
+- exclusion of isolated undifferentiated totality as realized root,
+- non-identity of the poles,
+- no-go on bipolar flat-origin classification from the current lean package.
 
-#### Model A: an $R$-model with no realized contents
+Partially closed here:
 
-Let
-$$
-\widehat{\mathcal B}_A = \{a,b,c\},
-$$
-with primitive apartness given only by
-$$
-a \# b,
-$$
-and no apartness involving $c$ except irreflexive triviality. Let refinement be reflexive only,
-$$
-x \preceq x,
-$$
-for all $x \in \widehat{\mathcal B}_A$, and let compatibility be identity only,
-$$
-x \bowtie y \iff x=y.
-$$
+- breakdown of perfect flatness, conditional on E1,
+- existence of differentiated realizability, conditional on E1,
+- exclusivity of the two-pole root statement, conditional on BEP.
 
-This satisfies the axioms of $R$.
+Not yet closed here:
 
-Now test candidate realized contents.
-
-A singleton such as $\{a\}$ is nonempty, refinement-saturated, and finitely coherent. But it fails decisiveness for $c$: there is no $x\in\{a\}$ with $x \bowtie c$, because compatibility is identity only and $a\neq c$; there is also no $x\in\{a\}$ with $x\# c$, because no apartness between $a$ and $c$ has been stipulated. The same failure occurs for $\{b\}$ and $\{c\}$.
-
-Any larger subset containing both $a$ and $b$ fails finite coherence, because there is no $z$ with $z\preceq a$ and $z\preceq b$ under reflexive-only refinement. Any subset containing $c$ fails decisiveness against at least one of $a$ or $b$. Therefore
-$$
-\mathcal M_0^{(R)} = \varnothing
-$$
-in Model A.
-
-So $R$ does not force existence of realized contents.
-
-#### Model B: an $R$-model with multiple realized contents
-
-Let
-$$
-\widehat{\mathcal B}_B = \{a,b\},
-$$
-with primitive apartness
-$$
-a \# b,
-$$
-refinement again reflexive only, and compatibility identity only.
-
-This also satisfies $R$. Now both singleton sets $\{a\}$ and $\{b\}$ are $R$-candidate realized contents, so
-$$
-\mathcal M_0^{(R)} = \{\{a\},\{b\}\}.
-$$
-Thus even when realized contents exist, they need not be unique or canonical.
-
-Since there is at least one $R$-model with no realized contents and at least one $R$-model with multiple inequivalent realized contents, neither existence nor canonicity of a realized carrier is forced by $R$ alone. $\square$
-
-### 3.8 What Theorem 3.7.1 does and does not prove
-
-**What it proves.**
-
-- $R$ is sufficient to make the realization question meaningful.
-- $R$ is insufficient to force realized contents.
-- $R$ is insufficient to force a canonical realized carrier.
-
-**What it does not prove.**
-
-- It does not show that realized contents are impossible.
-- It does not show that no carrier can be earned.
-- It does not show that every realization discipline beyond $R$ is equally good.
-- It does not yet identify the unique best realization discipline.
-
-The theorem establishes only the no-go result required here: realization is not forced from $R$ alone.
-
-### 3.9 Conditional realization theorem from $R+S$
-
-**Theorem 3.9.1 (Conditional existence of realized contents under $R+S$).**  
-Assume the primitive substrate $({\mathcal B},\#)$ of Section 2.2, the minimal added structure $R$ of Section 2.5, and the realization layer $S$ of Section 2.7. Then:
-
-1. for every admissible bearer $b\in \widehat{\mathcal B}$, there exists at least one $(R+S)$-realized distinction content $X$ with some element of $X$ refining $b$;
-2. therefore $\mathcal M_0^{(R+S)} \neq \varnothing$;
-3. hence a realized carrier regime exists under the explicit assumptions $R+S$.
-
-**Epistemic status.**  
-This theorem is **conditional under explicit assumptions**. It is not forced from primitive distinction alone and not forced from $R$ alone. The role of $S$ is exactly to supply the missing realization/decisiveness content.
-
-**Proof.**
-
-Fix any admissible bearer $b\in\widehat{\mathcal B}$.
-
-By S2, there exists a nonempty refinement thread $T_b$ compatible with $R$ and lying beneath or through $b$. By the meaning of a refinement thread, every finite subset of $T_b$ is pairwise compatible and ordered by refinement.
-
-By S1, every finite pairwise compatible subset of $T_b$ admits an admissible common refinement. Therefore $T_b$ is finitely coherent in the sense required for realization.
-
-By S3, the thread $T_b$ is decisive with respect to every bearer in $\widehat{\mathcal B}$: for each $c\in\widehat{\mathcal B}$, the thread eventually produces a refinement stage that is either compatible with $c$ or apart from $c$.
-
-By S4, every nonempty coherent refinement thread extends to a decisive coherent content. Apply S4 to $T_b$. Then there exists a decisive coherent content $X_b$ extending $T_b$.
-
-Because $T_b$ is nonempty, $X_b$ is nonempty. Because $X_b$ extends a refinement thread and is required by S4 to be coherent, it is refinement-saturated and finitely coherent. Because S4 yields a decisive coherent content, $X_b$ is decisive. Therefore $X_b$ satisfies the definition of an $(R+S)$-realized distinction content.
-
-Since $b$ was arbitrary, every admissible bearer lies on at least one realized distinction content. Hence $\mathcal M_0^{(R+S)}$ is nonempty. Therefore a realized carrier regime exists under $R+S$. $\square$
-
-### 3.10 Non-canonicity theorem for the realized carrier under $R+S$
-
-**Theorem 3.10.1 (Non-canonicity under $R+S$).**  
-The assumptions $R+S$ are sufficient to force existence of a realized carrier regime, but they do **not** force that regime to be unique or canonical.
-
-**Hypotheses.**
-
-1. $({\mathcal B},\#)$ satisfies Section 2.2.
-2. $R$ and $S$ hold.
-3. No additional structure is assumed concerning maximality, uniqueness of decisive closures, localization, or choice principles that would select one realized extension over all others.
-
-**Conclusion.**
-
-Under these hypotheses, realized contents exist, but there may be multiple inequivalent realized contents and multiple inequivalent carrier regimes. Therefore the realized carrier under $R+S$ is generally non-canonical.
-
-**Proof.**
-
-We construct an explicit model satisfying $R+S$ with more than one realized distinction content.
-
-Let
-$$
-\widehat{\mathcal B}_C = \{a_0,a_1,b_0,b_1\},
-$$
-with apartness relations
-$$
-a_0 \# b_0,
-\qquad
- a_1 \# b_1,
-$$
-and no cross apartness between the $a$-chain and the $b$-chain beyond those stated. Let refinement be generated by
-$$
-a_1 \preceq a_0,
-\qquad
-b_1 \preceq b_0,
-$$
-with reflexive and transitive closure. Let compatibility be identity together with compatibility along each chain.
-
-Now choose refinement threads
-$$
-T_a = \{a_1,a_0\},
-\qquad
-T_b = \{b_1,b_0\}.
-$$
-These are nonempty, coherent refinement threads. By S3, assume each thread decisively separates itself from the opposite branch. By S4, each extends to a decisive coherent content, say
-$$
-X_a \supseteq T_a,
-\qquad
-X_b \supseteq T_b.
-$$
-Then both $X_a$ and $X_b$ are realized distinction contents. They are inequivalent because one is anchored on the $a$-branch and the other on the $b$-branch, and the primitive apartness relations forbid their identification.
-
-Thus the realized carrier regime contains at least two inequivalent realized contents. Therefore existence does not imply uniqueness, and $R+S$ does not force a canonical realized carrier. $\square$
-
-### 3.11 What Theorems 3.9.1 and 3.10.1 do and do not prove
-
-**What they prove.**
-
-- $S$ improves on $R$ in a theorem-bearing way: under $R+S$, realized contents exist.
-- Under $R+S$, a realized carrier regime exists.
-- Under $R+S$, that regime is generally non-canonical.
-
-**What they do not prove.**
-
-- They do not show that $S$ is forced from $R$.
-- They do not show that $S$ is the unique weakest realization principle.
-- They do not show that a weaker structure than $S$ could not suffice.
-- They do not yet derive locality, lawful transformation, stable comparison, valuation, parameterization, or differentiability.
-
-So the correct status is:
-
-- $S$ is a **minimal added branch structure candidate**,
-- existence of realized contents/carrier is a **conditional theorem under $R+S$**,
-- canonicity is **not** obtained.
-
-### 3.12 No-go theorem for forcing locality/cover from $R+S$
-
-**Theorem 3.12.1 (No-go theorem for forcing locality/cover from $R+S$).**  
-The solved layer consisting of primitive distinguishability, the added refinement/compatibility structure $R$, and the added realization/decisiveness layer $S$ is **not** sufficient to force a unique or canonical cover/locality discipline on the realized-carrier regime $\mathcal M_0^{(R+S)}$. More strongly:
-
-1. there exist $R+S$-models with the same realized-carrier regime that admit inequivalent cover/locality structures satisfying C1--C4;
-2. there exist $R+S$-models in which no branch-usable cover discipline is determined unless further locality data are stipulated;
-3. therefore locality/cover is not theorem-grade from the solved $R+S$ layer and must be introduced explicitly as the next minimal added branch structure if the branch is to proceed toward law-bearing locality.
-
-**Hypotheses.**
-
-1. The primitive substrate $({\mathcal B},\#)$ satisfies Section 2.2.
-2. The added branch structures $R$ and $S$ satisfy Sections 2.5 and 2.7.
-3. The conditional existence and non-canonicity results of Theorems 3.9.1 and 3.10.1 hold.
-4. No additional locality axioms, gluing rules, or cover-selection principles are assumed beyond $R+S$.
-
-**Conclusion.**
-
-Under these hypotheses alone, no unique or canonical cover/locality discipline is forced on $\mathcal M_0^{(R+S)}$. If the branch wishes to continue toward locality before metric geometry, it must add locality/cover explicitly.
-
-**Proof.**
-
-Fix any $R+S$-model with a non-canonical realized-carrier regime, as provided by Theorem 3.10.1. Let
-$$
-\mathcal M_0^{(R+S)} = \{X_a, X_b\}
-$$
-be a realized-carrier regime with two inequivalent realized contents.
-
-We now define two distinct cover disciplines on the same realized-carrier regime.
-
-#### Locality realization C-discrete
-
-Define a cover relation $\triangleleft_d$ by
-$$
-X \triangleleft_d \mathcal U
-\quad\text{if and only if}\quad
-X \in \mathcal U.
-$$
-This is the discrete cover discipline. It satisfies:
-
-- C1, because membership implies self-coverage;
-- C2, because if $X\in\mathcal U$ and $\mathcal U\subseteq\mathcal V$, then $X\in\mathcal V$;
-- C3, because any realized-content sharpening of $X$ is covered only by families containing that sharpening;
-- C4, because patching is trivial: every cover is already by explicit membership.
-
-So $\triangleleft_d$ is a valid cover/locality discipline.
-
-#### Locality realization C-indiscrete
-
-Define a cover relation $\triangleleft_i$ by
-$$
-X \triangleleft_i \mathcal U
-\quad\text{if and only if}\quad
-\mathcal U \neq \varnothing.
-$$
-This is the indiscrete cover discipline. It also satisfies:
-
-- C1, trivially, if $X\in\mathcal U$ then $\mathcal U\neq\varnothing$;
-- C2, because any superset of a nonempty family is nonempty;
-- C3, because every realized-content sharpening is covered by every nonempty family;
-- C4, because unions of nonempty patch families remain nonempty whenever patching is coherent.
-
-So $\triangleleft_i$ is also a valid cover/locality discipline.
-
-But $\triangleleft_d$ and $\triangleleft_i$ are inequivalent. In the discrete discipline, a realized content is covered only by families that explicitly contain it. In the indiscrete discipline, every realized content is covered by every nonempty family. These yield different locality behavior on the same realized-carrier regime. Therefore the solved layer $R+S$ does not force a unique or canonical cover relation.
-
-To prove the stronger claim that some $R+S$-models do not determine a branch-usable cover discipline without further data, note that $R+S$ by itself specifies realized contents and decisiveness but says nothing about which families should count as localizing, how patching should respect branch intent, or which coverings are too coarse to be physically usable. Hence branch-usable locality is underdetermined until further cover data are added.
-
-Therefore locality/cover is not theorem-grade from $R+S$ and must be introduced explicitly as the next minimal added branch structure. $\square$
-
-### 3.13 Explicit introduction of locality/cover as the next added branch structure
-
-Since locality/cover is not forced from the solved layer, the branch now introduces it explicitly.
-
-**Added Branch Structure $C$.**  
-A continuation of the branch beyond realized-carrier existence must specify a pre-metric cover/locality discipline on $\mathcal M_0^{(R+S)}$ satisfying C1--C4 together with any extra gluing or locality-selection principles needed for the intended branch continuation.
-
-$C$ is not forced from the prior layer. It is the next **minimal added branch structure** required if the branch wishes to continue toward pre-metric locality.
-
-### 3.14 What Theorem 3.12.1 does and does not prove
-
-**What it proves.**
-
-- The solved $R+S$ layer does not force a unique or canonical locality/cover discipline.
-- The branch cannot treat locality as theorem-grade from realized-carrier existence alone.
-- Any continuation toward locality must add locality/cover explicitly.
-
-**What it does not prove.**
-
-- It does not show that locality is impossible.
-- It does not show that every cover discipline is equally good.
-- It does not show that C1--C4 are uniquely minimal in all imaginable branches.
-- It does not derive lawful transformation, comparison, valuation, parameterization, or differentiability.
-
-So the correct status is:
-
-- locality/cover is **not forced from $R+S$**,
-- locality/cover is the next **minimal added branch structure** $C$,
-- no upward climb beyond locality is licensed until later passes settle the next staircase question.
-
-### 3.15 No-go theorem for forcing lawful transformation from $R+S+C$
-
-The present pass addresses the next live question: whether the solved layer $R+S+C$, together with conditional and non-canonical realized-carrier existence and explicit cover discipline, forces a branch-usable lawful-transformation layer.
-
-**Theorem 3.15.1 (No-go theorem for forcing lawful transformation from $R+S+C$).**  
-The solved layer consisting of primitive distinguishability, the added refinement/compatibility structure $R$, the added realization/decisiveness layer $S$, and the explicitly added locality/cover structure $C$ is **not** sufficient to force a unique or canonical branch-usable lawful-transformation discipline on the realized-carrier regime $\mathcal M_0^{(R+S)}$. More strongly:
-
-1. there exist $R+S+C$-models with the same realized-carrier regime and the same cover discipline that admit inequivalent lawful-transformation disciplines satisfying T1--T5;
-2. there exist $R+S+C$-models in which no nontrivial branch-usable transformation layer is determined unless further process data are stipulated;
-3. therefore lawful transformation is not theorem-grade from the solved $R+S+C$ layer and must be introduced explicitly as the next minimal added branch structure if the branch is to proceed toward comparison, valuation, and differentiability.
-
-**Hypotheses.**
-
-1. The primitive substrate $({\mathcal B},\#)$ satisfies Section 2.2.
-2. The added branch structures $R$, $S$, and $C$ satisfy Sections 2.5, 2.7, and 2.9.
-3. The conditional existence and non-canonicity results of Theorems 3.9.1 and 3.10.1 hold.
-4. The no-go result for forced locality from $R+S$ and the explicit addition of $C$ hold as in Theorem 3.12.1 and Section 3.13.
-5. No additional process axioms, sequential-order axioms, composition-selection principles, or persistence principles are assumed beyond $R+S+C$.
-
-**Conclusion.**
-
-Under these hypotheses alone, no unique or canonical branch-usable lawful-transformation discipline is forced on $\mathcal M_0^{(R+S)}$. If the branch wishes to continue toward distinguishers, comparison, valuation, and differentiability, it must add lawful transformation explicitly.
-
-**Proof.**
-
-Fix any $R+S+C$-model with realized-carrier regime
-$$
-\mathcal M_0^{(R+S)} = \{X_a, X_b\}
-$$
-and a fixed cover discipline $\triangleleft$ satisfying C1--C4. The existence of such a model is guaranteed by the previous pass.
-
-We define two distinct lawful-transformation disciplines on the same solved pre-transformation layer.
-
-#### Transformation realization T-id
-
-Let
-$$
-\mathfrak T_{\mathrm{id}} = \{\mathrm{id}\},
-$$
-where $\mathrm{id}$ is the identity transformation on $\mathcal M_0^{(R+S)}$.
-
-This satisfies T1. It satisfies T2 because $\mathrm{id}\circ\mathrm{id}=\mathrm{id}$. It satisfies T3 because the identity preserves realized contents. It satisfies T4 because if $X \triangleleft \mathcal U$, then $\mathrm{id}(X)=X$ is covered by $\mathrm{id}[\mathcal U]=\mathcal U$ under the same cover. However, it fails T5, the nontriviality clause. Therefore $\mathfrak T_{\mathrm{id}}$ is not yet branch-usable in the sense required by Section 2.11.
-
-This shows that the solved pre-transformation layer does not itself guarantee nontrivial process content.
-
-#### Transformation realization T-swap
-
-Now define a nontrivial involution $\sigma$ on the same carrier regime by
-$$
-\sigma(X_a)=X_b,
-\qquad
-\sigma(X_b)=X_a.
-$$
-Let
-$$
-\mathfrak T_{\mathrm{swap}} = \{\mathrm{id},\sigma\}.
-$$
-Then:
-
-- T1 holds because $\mathrm{id}\in\mathfrak T_{\mathrm{swap}}$.
-- T2 holds because $\sigma\circ\sigma=\mathrm{id}$ and compositions with identity stay in $\mathfrak T_{\mathrm{swap}}$.
-- T3 holds because $\sigma$ maps realized contents to realized contents.
-- T4 holds provided the chosen cover discipline treats $X_a$ and $X_b$ symmetrically or admits image covers subordinate to the original cover families.
-- T5 holds because $\sigma$ is non-identity.
-
-Thus $\mathfrak T_{\mathrm{swap}}$ is a branch-usable lawful-transformation discipline on the same realized carrier and same cover discipline.
-
-The two disciplines are inequivalent:
-
-- $\mathfrak T_{\mathrm{id}}$ contains no nontrivial transformation,
-- $\mathfrak T_{\mathrm{swap}}$ contains a nontrivial involution.
-
-Therefore the solved layer $R+S+C$ does not force a unique transformation discipline. More strongly, it does not even force existence of a nontrivial branch-usable transformation discipline, because the identity-only realization is still compatible with the prior solved layer until one explicitly demands nontrivial process content.
-
-To prove the stronger claim that some $R+S+C$-models do not determine a branch-usable transformation layer without further data, observe that $R+S+C$ specifies distinction, refinement, realization, and local cover, but says nothing about:
-
-- which realized contents may act on which others,
-- whether non-identity acts exist,
-- whether acts compose sequentially,
-- whether transformation should preserve or permute cover families,
-- or what counts as admissible process rather than arbitrary correspondence.
-
-Hence branch-usable transformation is underdetermined until further process data are added. Therefore lawful transformation is not theorem-grade from the solved $R+S+C$ layer and must be introduced explicitly as the next minimal added branch structure. $\square$
-
-### 3.16 Explicit introduction of lawful transformation as the next added branch structure
-
-Since lawful transformation is not forced from the solved layer, the branch now introduces it explicitly.
-
-**Added Branch Structure $T$.**  
-A continuation of the branch beyond realized-carrier existence and explicit locality must specify a lawful-transformation discipline $\mathfrak T$ on $\mathcal M_0^{(R+S)}$ satisfying T1--T5 together with any extra compositional, persistence, or admissibility principles required for the intended branch continuation.
-
-$T$ is not forced from the prior layer. It is the next **minimal added branch structure** required if the branch wishes to continue toward distinguishers, stable comparison, valuation, parameterization, or differentiability.
-
-### 3.17 What Theorem 3.15.1 does and does not prove
-
-**What it proves.**
-
-- The solved $R+S+C$ layer does not force a unique or canonical lawful-transformation discipline.
-- The branch cannot treat transformation as theorem-grade from realized-carrier existence plus cover alone.
-- Any continuation toward comparison, valuation, or differentiability must add lawful transformation explicitly.
-
-**What it does not prove.**
-
-- It does not show that lawful transformation is impossible.
-- It does not show that every transformation discipline is equally good.
-- It does not show that T1--T5 are uniquely minimal in all imaginable branches.
-- It does not derive distinguishers/signatures, stable comparison, valuation, parameterization, or differentiability.
-
-So the correct status is:
-
-- lawful transformation is **not forced from $R+S+C$**,
-- lawful transformation is the next **minimal added branch structure** $T$,
-- no upward climb beyond transformation is licensed until later passes settle the next staircase question.
-
-### 3.18 No-go theorem for forcing distinguishers/signatures from $R+S+C+T$
-
-**Theorem 3.18.1 (No-go theorem for forcing distinguishers/signatures from $R+S+C+T$).**  
-The solved layer consisting of primitive distinguishability, the added refinement/compatibility structure $R$, the added realization/decisiveness layer $S$, the explicitly added locality/cover structure $C$, and the explicitly added lawful-transformation structure $T$ is **not** sufficient to force a unique or canonical branch-usable distinguisher/signature discipline on the event domain $\mathcal E_T$. More strongly:
-
-1. there exist $R+S+C+T$-models with the same realized-carrier regime, the same cover discipline, and the same lawful-transformation discipline that admit inequivalent distinguisher/signature layers satisfying D1--D4;
-2. there exist $R+S+C+T$-models in which no branch-usable nontrivial distinguisher/signature layer is determined unless further readout data are stipulated;
-3. therefore distinguishers/signatures are not theorem-grade from the solved $R+S+C+T$ layer and must be introduced explicitly as the next minimal added branch structure if the branch is to proceed toward stable comparison, valuation, parameterization, and differentiability.
-
-**Hypotheses.**
-
-1. The primitive substrate $({\mathcal B},\#)$ satisfies Section 2.2.
-2. The added branch structures $R$, $S$, $C$, and $T$ satisfy Sections 2.5, 2.7, 2.9, and 2.11.
-3. The conditional existence and non-canonicity results of Theorems 3.9.1 and 3.10.1 hold.
-4. The no-go results for forced locality and forced lawful transformation, together with the explicit additions of $C$ and $T$, hold as in Theorems 3.12.1 and 3.15.1 and Sections 3.13 and 3.16.
-5. No additional observability axioms, outcome-identity axioms, signature-composition axioms, or readout-selection principles are assumed beyond $R+S+C+T$.
-
-**Conclusion.**
-
-Under these hypotheses alone, no unique or canonical branch-usable distinguisher/signature discipline is forced on $\mathcal E_T$. If the branch wishes to continue toward stable comparison, valuation, parameterization, or differentiability, it must add distinguishers/signatures explicitly.
-
-**Proof.**
-
-Fix any $R+S+C+T$-model with realized-carrier regime
-$$
-\mathcal M_0^{(R+S)} = \{X_a, X_b\},
-$$
-a fixed cover discipline $\triangleleft$, and a fixed lawful-transformation discipline
-$$
-\mathfrak T = \{\mathrm{id}, \sigma\},
-$$
-where
-$$
-\sigma(X_a)=X_b,
-\qquad
-\sigma(X_b)=X_a.
-$$
-Then the associated event domain is
-$$
-\mathcal E_T = \{(X_a,\mathrm{id}), (X_b,\mathrm{id}), (X_a,\sigma), (X_b,\sigma)\}.
-$$
-We now define three distinct readout realizations on the same solved pre-distinguisher layer.
-
-#### Realization D-void: no branch-usable distinguisher/signature discipline determined
-
-Take no signature class and no nontrivial readout acts. The solved layer $R+S+C+T$ does not by itself specify any codomain of outcomes, any event-to-outcome assignment, or any criterion by which two outcomes count as the same or different. Therefore nothing in the solved layer alone forces a nonempty branch-usable distinguisher/signature discipline.
-
-This already proves that existence of a branch-usable nontrivial readout layer is not forced.
-
-#### Realization D-trivial: constant readout discipline
-
-Let
-$$
-\mathfrak{Sig}_{\mathrm{triv}} = \{\mathtt{const}\}
-$$
-be a singleton signature class, and let
-$$
-\mathfrak D_{\mathrm{triv}} = \{\delta_{\mathrm{triv}}\}
-$$
-with
-$$
-\delta_{\mathrm{triv}}(e)=\mathtt{const}
-\qquad
-\text{for all } e\in \mathcal E_T.
-$$
-Then D1, D2, and D3 hold automatically. D4 fails, because no pair of events is separated by the readout. So this realization gives a readout discipline in the weak sense of event-to-outcome assignment, but not a branch-usable nontrivial distinguisher/signature layer.
-
-#### Realization D-separating: nontrivial readout discipline
-
-Let
-$$
-\mathfrak{Sig}_{\mathrm{sep}} = \{\mathtt{stay}, \mathtt{swap}\}
-$$
-and let
-$$
-\mathfrak D_{\mathrm{sep}} = \{\delta_{\mathrm{sep}}\}
-$$
-with
-$$
-\delta_{\mathrm{sep}}(X,\mathrm{id}) = \mathtt{stay},
-\qquad
-\delta_{\mathrm{sep}}(X,\sigma) = \mathtt{swap}
-$$
-for every admissible $X$.
-
-Then D1 holds because the distinguisher is defined on admissible events. D2 holds because equal events receive equal signatures. D3 holds because the same event always returns the same signature. D4 holds because
-$$
-(X_a,\mathrm{id})
-\quad\text{and}\quad
-(X_a,\sigma)
-$$
-are not identified by solved-layer equality and are assigned distinct signatures.
-
-Thus the same solved layer admits both a trivial and a nontrivial readout regime, and even admits the complete absence of a branch-usable nontrivial readout layer unless additional readout data are stipulated.
-
-These realizations are inequivalent:
-
-- D-void does not determine a branch-usable distinguisher/signature layer at all;
-- D-trivial determines only a constant outcome assignment;
-- D-separating determines a nontrivial event-separating readout.
-
-Yet all three are compatible with the same solved $R+S+C+T$ layer. Therefore the solved layer does not force a unique or canonical distinguisher/signature discipline. More strongly, it does not force existence of a branch-usable nontrivial distinguisher/signature layer. Distinguishers/signatures must therefore be added explicitly if the branch is to proceed upward. $\square$
-
-### 3.19 Explicit introduction of distinguishers/signatures as the next added branch structure
-
-Since distinguishers/signatures are not forced from the solved layer, the branch now introduces them explicitly.
-
-**Added Branch Structure $D$.**  
-A continuation of the branch beyond realized-carrier existence, explicit locality, and explicit lawful transformation must specify a distinguisher/signature discipline $(\mathfrak D, \mathfrak{Sig})$ on the event domain $\mathcal E_T$ satisfying D1--D4 together with any extra outcome-identity, readout-repeatability, or branch-adequacy principles required for the intended continuation.
-
-$D$ is not forced from the prior layer. It is the next **minimal added branch structure** required if the branch wishes to continue toward stable comparison, valuation, parameterization, or differentiability.
-
-### 3.20 What Theorem 3.18.1 does and does not prove
-
-**What it proves.**
-
-- The solved $R+S+C+T$ layer does not force a unique or canonical distinguisher/signature discipline.
-- The branch cannot treat readout or signature identity as theorem-grade from realized-carrier existence, locality, and lawful transformation alone.
-- Any continuation toward stable comparison, valuation, parameterization, or differentiability must add distinguishers/signatures explicitly.
-
-**What it does not prove.**
-
-- It does not show that distinguishers/signatures are impossible.
-- It does not show that every readout discipline is equally good.
-- It does not show that D1--D4 are uniquely minimal in all imaginable branches.
-- It does not derive stable comparison, valuation, parameterization, or differentiability.
-
-So the correct status is:
-
-- distinguishers/signatures are **not forced from $R+S+C+T$**,
-- distinguishers/signatures are the next **minimal added branch structure** $D$,
-- no upward climb beyond readout is licensed until later passes settle the comparison-algebra question.
-
-
-### 3.21 No-go theorem for forcing stable comparison algebra from $R+S+C+T+D$
-
-**Theorem 3.21.1 (No-go theorem for forcing stable comparison algebra from $R+S+C+T+D$).**  
-The solved layer consisting of primitive distinguishability, the added refinement/compatibility structure $R$, the added realization/decisiveness layer $S$, the explicitly added locality/cover structure $C$, the explicitly added lawful-transformation structure $T$, and the explicitly added distinguisher/signature structure $D$ is **not** sufficient to force a unique or canonical branch-usable stable comparison algebra. More strongly:
-
-1. there exist $R+S+C+T+D$-models with the same realized-carrier regime, the same cover discipline, the same lawful-transformation discipline, and the same distinguisher/signature discipline that admit inequivalent stable comparison algebras satisfying A1--A5;
-2. there exist $R+S+C+T+D$-models in which no branch-usable nontrivial comparison algebra is determined unless further comparison data are stipulated;
-3. therefore stable comparison algebra is not theorem-grade from the solved $R+S+C+T+D$ layer and must be introduced explicitly as the next minimal added branch structure if the branch is to proceed toward valuation, parameterization, and differentiability.
-
-**Hypotheses.**
-
-1. The primitive substrate $({\mathcal B},\#)$ satisfies Section 2.2.
-2. The added branch structures $R$, $S$, $C$, $T$, and $D$ satisfy Sections 2.5, 2.7, 2.9, 2.11, and 2.13.
-3. The conditional existence and non-canonicity results of Theorems 3.9.1 and 3.10.1 hold.
-4. The no-go results for forced locality, forced lawful transformation, and forced distinguishers/signatures, together with the explicit additions of $C$, $T$, and $D$, hold as in Theorems 3.12.1, 3.15.1, and 3.18.1 and Sections 3.13, 3.16, and 3.19.
-5. No additional order axioms, signature-comparison axioms, class-composition axioms, or context-invariant comparison-selection principles are assumed beyond $R+S+C+T+D$.
-
-**Conclusion.**
-
-Under these hypotheses alone, no unique or canonical branch-usable stable comparison algebra is forced on the solved pre-comparison layer. If the branch wishes to continue toward valuation, parameterization, or differentiability, it must add stable comparison algebra explicitly.
-
-**Proof.**
-
-Fix any $R+S+C+T+D$-model with realized-carrier regime
-$$
-\mathcal M_0^{(R+S)} = \{X_a, X_b\},
-$$
-a fixed cover discipline $\triangleleft$, a fixed lawful-transformation discipline
-$$
-\mathfrak T = \{\mathrm{id}, \sigma\},
-$$
-with
-$$
-\sigma(X_a)=X_b,
-\qquad
-\sigma(X_b)=X_a,
-$$
-and a fixed nontrivial distinguisher/signature discipline
-$$
-\mathfrak{Sig} = \{\mathtt{stay}, \mathtt{swap}\},
-\qquad
-\mathfrak D = \{\delta_{\mathrm{sep}}\},
-$$
-where
-$$
-\delta_{\mathrm{sep}}(X,\mathrm{id}) = \mathtt{stay},
-\qquad
-\delta_{\mathrm{sep}}(X,\sigma) = \mathtt{swap}
-$$
-for each admissible $X$.
-
-The solved pre-comparison layer is therefore fixed: same carrier, same cover, same transformations, same readout, same signatures.
-
-We now define three inequivalent comparison realizations on that same solved layer.
-
-#### Realization A-void: no branch-usable comparison algebra determined
-
-Take no comparison-class quotient beyond raw signature identity, no comparison preorder, and no class-level composition law. The solved $R+S+C+T+D$ layer by itself does not specify:
-
-- whether signatures are comparable,
-- whether any one signature is greater, smaller, or equivalent in comparison strength to another,
-- whether signatures should be grouped into coarser comparison classes,
-- or whether there is any meaningful class-level composition of comparisons.
-
-Therefore nothing in the solved layer alone forces a nonempty branch-usable stable comparison algebra.
-
-This already proves that existence of a nontrivial comparison algebra is not forced.
-
-#### Realization A-discrete: equality-only comparison
-
-Let
-$$
-\mathfrak C_{\mathrm{disc}} = \{[\mathtt{stay}], [\mathtt{swap}]\},
-$$
-where each signature forms its own comparison class. Define
-$$
-c \sqsubseteq_{\mathrm{disc}} d
-\quad\text{iff}\quad
-c=d.
-$$
-Define partial composition only on identical pairs by
-$$
-[\mathtt{stay}] \odot_{\mathrm{disc}} [\mathtt{stay}] = [\mathtt{stay}],
-\qquad
-[\mathtt{swap}] \odot_{\mathrm{disc}} [\mathtt{swap}] = [\mathtt{swap}],
-$$
-and leave mixed pairs undefined.
-
-Then A1--A5 hold:
-
-- A1 holds because the quotient is by signature identity.
-- A2 holds because equality is a reflexive and transitive preorder.
-- A3 holds because the two classes are not mutually collapsed.
-- A4 holds because repeated readout returns the same signature and hence the same comparison class.
-- A5 holds because the declared partial composition depends only on comparison classes.
-
-So $\mathfrak C_{\mathrm{disc}}$ is a branch-usable stable comparison algebra.
-
-#### Realization A-flat: total comparison collapse without class collapse
-
-Keep the same two classes
-$$
-\mathfrak C_{\mathrm{flat}} = \{[\mathtt{stay}], [\mathtt{swap}]\},
-$$
-but now define a total preorder
-$$
-c \sqsubseteq_{\mathrm{flat}} d
-\quad\text{for all } c,d \in \mathfrak C_{\mathrm{flat}}.
-$$
-Define a total class composition by choosing
-$$
-c \odot_{\mathrm{flat}} d = [\mathtt{swap}]
-\quad\text{for all } c,d \in \mathfrak C_{\mathrm{flat}}.
-$$
-Then A1, A2, A4, and A5 hold immediately. A3 still holds because the classes remain distinct as comparison classes even though the preorder collapses them comparison-wise.
-
-This is a stable comparison algebra inequivalent to $\mathfrak C_{\mathrm{disc}}$.
-
-#### Realization A-ordered: noncollapsed directional comparison
-
-Keep the same comparison classes but define
-$$
-[\mathtt{stay}] \sqsubseteq_{\mathrm{ord}} [\mathtt{swap}],
-$$
-with reflexive closure and no converse strict relation except reflexivity. Define a partial composition by
-$$
-[\mathtt{stay}] \odot_{\mathrm{ord}} [\mathtt{stay}] = [\mathtt{stay}],
-$$
-$$
-[\mathtt{stay}] \odot_{\mathrm{ord}} [\mathtt{swap}] = [\mathtt{swap}],
-$$
-$$
-[\mathtt{swap}] \odot_{\mathrm{ord}} [\mathtt{stay}] = [\mathtt{swap}],
-$$
-and leave $[\mathtt{swap}] \odot_{\mathrm{ord}} [\mathtt{swap}]$ defined as either $[\mathtt{swap}]$ or undefined; either option satisfies A5 if chosen consistently.
-
-Again A1--A5 hold, and this realization is inequivalent to both the discrete and flat comparison realizations.
-
-These three realizations all live on the same solved $R+S+C+T+D$ layer. They share:
-
-- the same realized contents,
-- the same locality/cover,
-- the same lawful transformations,
-- the same event domain,
-- the same signatures,
-- and the same readout discipline.
-
-Yet they yield inequivalent comparison algebras. Moreover, the A-void realization shows that no branch-usable nontrivial comparison algebra is forced unless additional comparison data are stipulated.
-
-Therefore the solved $R+S+C+T+D$ layer does not force a unique or canonical stable comparison algebra. More strongly, it does not force existence of a branch-usable nontrivial comparison algebra. Stable comparison must therefore be added explicitly if the branch is to proceed upward. $\square$
-
-### 3.22 Explicit introduction of stable comparison algebra as the next added branch structure
-
-Since stable comparison algebra is not forced from the solved layer, the branch now introduces it explicitly.
-
-**Added Branch Structure $A$.**  
-A continuation of the branch beyond realized-carrier existence, explicit locality, explicit lawful transformation, and explicit distinguisher/signature discipline must specify a stable comparison algebra $(\mathfrak C, \sqsubseteq, \odot)$ satisfying A1--A5 together with any extra order, composition, or comparison-adequacy principles required for the intended continuation.
-
-$A$ is not forced from the prior layer. It is the next **minimal added branch structure** required if the branch wishes to continue toward valuation, parameterization, or differentiability.
-
-### 3.23 What Theorem 3.21.1 does and does not prove
-
-**What it proves.**
-
-- The solved $R+S+C+T+D$ layer does not force a unique or canonical stable comparison algebra.
-- The branch cannot treat comparison as theorem-grade from realized-carrier existence, locality, lawful transformation, and readout alone.
-- Any continuation toward valuation, parameterization, or differentiability must add stable comparison algebra explicitly.
-
-**What it does not prove.**
-
-- It does not show that stable comparison algebra is impossible.
-- It does not show that every comparison algebra is equally good.
-- It does not show that A1--A5 are uniquely minimal in all imaginable branches.
-- It does not derive valuation, parameterization, or differentiability.
-
-So the correct status is:
-
-- stable comparison algebra is **not forced from $R+S+C+T+D$**,
-- stable comparison algebra is the next **minimal added branch structure** $A$,
-- no upward climb beyond comparison is licensed until later passes settle the valuation question.
-
-
-### 3.24 No-go theorem for forcing valuation representation from $R+S+C+T+D+A$
-
-**Theorem 3.24.1 (No-go theorem for forcing valuation representation from $R+S+C+T+D+A$).**  
-The solved layer consisting of primitive distinguishability, the added refinement/compatibility structure $R$, the added realization/decisiveness layer $S$, the explicitly added locality/cover structure $C$, the explicitly added lawful-transformation structure $T$, the explicitly added distinguisher/signature structure $D$, and the explicitly added stable-comparison algebra structure $A$ is **not** sufficient to force a unique or canonical branch-usable valuation representation. More strongly:
-
-1. there exist solved $R+S+C+T+D+A$ layers with the same comparison algebra that admit inequivalent valuation representations satisfying V1--V5;
-2. there exist solved $R+S+C+T+D+A$ layers whose comparison algebra admits no branch-usable valuation representation satisfying V1--V5;
-3. therefore valuation representation is not theorem-grade from the solved $R+S+C+T+D+A$ layer and must be introduced explicitly as the next minimal added branch structure if the branch is to proceed toward parameterization and differentiability.
-
-**Hypotheses.**
-
-1. The primitive substrate $({\mathcal B},\#)$ satisfies Section 2.2.
-2. The added branch structures $R$, $S$, $C$, $T$, $D$, and $A$ satisfy Sections 2.5, 2.7, 2.9, 2.11, 2.13, and 2.15.
-3. The conditional existence and non-canonicity results of Theorems 3.9.1 and 3.10.1 hold.
-4. The no-go results for forced locality, forced lawful transformation, forced distinguishers/signatures, and forced stable comparison, together with the explicit additions of $C$, $T$, $D$, and $A$, hold as in Theorems 3.12.1, 3.15.1, 3.18.1, and 3.21.1 and Sections 3.13, 3.16, 3.19, and 3.22.
-5. No additional valuation axioms, normalization axioms, representation-selection principles, or codomain-selection principles are assumed beyond $R+S+C+T+D+A$.
-
-**Conclusion.**
-
-Under these hypotheses alone, no unique or canonical branch-usable valuation representation is forced on the solved pre-valuation layer. More strongly, branch-usable valuation need not exist for every admissible stable-comparison algebra. If the branch wishes to continue toward parameterization or differentiability, it must add valuation explicitly.
-
-**Proof.**
-
-We prove non-uniqueness and non-forcing separately.
-
-#### Part I: same comparison algebra, inequivalent valuation representations
-
-Fix a solved $R+S+C+T+D+A$ layer whose stable comparison algebra is the sparse ordered comparison algebra
-$$
-\mathfrak C_{\mathrm{sp}} = \{c_0,c_1\}
-$$
-with preorder
-$$
-c_0 \sqsubseteq c_0,\qquad c_1 \sqsubseteq c_1,\qquad c_0 \sqsubseteq c_1,
-$$
-and no converse relation $c_1 \sqsubseteq c_0$. Let the only defined comparison compositions be
-$$
-c_0 \odot c_0 = c_0,\qquad c_0 \odot c_1 = c_1,\qquad c_1 \odot c_0 = c_1,
-$$
-with $c_1 \odot c_1$ left undefined.
-
-This satisfies A1--A5.
-
-Now define two valuation realizations on the same comparison algebra.
-
-**Valuation realization $V_{\max}$.**  
-Let
-$$
-\mathbb V_{\max} = \{0,1\}
-$$
-with the usual order $0 \leq 1$, operation
-$$
-x \oplus_{\max} y := \max\{x,y\},
-$$
-and neutral element $0$. Define
-$$
-
-u_{\max}(c_0)=0,\qquad 
-u_{\max}(c_1)=1.
-$$
-Then V1--V5 hold exactly as in the previous pass. So $(\mathbb V_{\max},
-u_{\max})$ is a branch-usable valuation representation.
-
-**Valuation realization $V_{+}$.**  
-Let
-$$
-\mathbb V_{+} = \mathbb N
-$$
-with the usual order, usual addition, and neutral element $0$. Define
-$$
-
-u_{+}(c_0)=0,\qquad 
-u_{+}(c_1)=1.
-$$
-Then V1--V5 also hold. So $(\mathbb V_{+},
-u_{+})$ is a second branch-usable valuation representation on the same comparison algebra.
-
-These two valuation realizations are inequivalent as valuation regimes. One is bounded and idempotent under composition; the other is unbounded and non-idempotent. Hence valuation is not uniquely or canonically forced even when existence is available.
-
-#### Part II: some stable comparison algebras admit no branch-usable valuation representation
-
-Now fix a solved $R+S+C+T+D+A$ layer whose stable comparison algebra is
-$$
-\mathfrak C_{\mathrm{bad}} = \{x,y,z\}
-$$
-with preorder generated by
-$$
-x \sqsubseteq y,
-$$
-and no converse relation $y \sqsubseteq x$. Let comparison composition be defined by
-$$
-x \odot z = y,\qquad y \odot z = x,
-$$
-with all other compositions either undefined or chosen so as not to affect the argument. This still satisfies A1--A5.
-
-Assume, for contradiction, that there exists a branch-usable valuation representation
-$$
-
-u : \mathfrak C_{\mathrm{bad}} 	o \mathbb V
-$$
-satisfying V1--V5 into some ordered composition regime $(\mathbb V,\leq_{\mathbb V},\oplus,0_{\mathbb V})$.
-
-From $x \sqsubseteq y$ and V2,
-$$
-
-u(x) \leq_{\mathbb V} 
-u(y).
-$$
-Because $\oplus$ is monotone in each argument,
-$$
-
-u(x)\oplus 
-u(z) \leq_{\mathbb V} 
-u(y)\oplus 
-u(z).
-$$
-By V4 and the declared comparison compositions,
-$$
-
-u(x\odot z) \leq_{\mathbb V} 
-u(y\odot z),
-$$
-hence
-$$
-
-u(y) \leq_{\mathbb V} 
-u(x).
-$$
-So $
-u(x)$ and $
-u(y)$ are mutually comparable both ways. But V3 requires strict noncollapse whenever
-$$
-x \sqsubseteq y
-\qquad	ext{and}\qquad
-eg(y \sqsubseteq x),
-$$
-which is exactly the present case. Therefore V3 requires
-$$
-
-u(x) <_{\mathbb V} 
-u(y),
-$$
-contradicting $
-u(y) \leq_{\mathbb V} 
-u(x)$.
-
-Hence no branch-usable valuation representation satisfying V1--V5 exists for this stable comparison algebra. So valuation is not merely non-canonical; existence itself is not forced for all admissible solved layers. Therefore valuation representation is not theorem-grade from $R+S+C+T+D+A$ and must be added explicitly if the branch is to proceed upward. $\square$
-
-### 3.25 Explicit introduction of valuation representation as the next added branch structure
-
-Since valuation representation is not forced from the solved layer, the branch now introduces it explicitly.
-
-**Added Branch Structure $V$.**  
-A continuation of the branch beyond realized-carrier existence, explicit locality, explicit lawful transformation, explicit distinguisher/signature discipline, and explicit stable-comparison algebra must specify a valuation representation
-$$
-(\mathbb V,\leq_{\mathbb V},\oplus,0_{\mathbb V},
-u)
-$$
-satisfying V1--V5 together with any extra completeness, normalization, comparability, or representation-adequacy principles required for the intended continuation.
-
-$V$ is not forced from the prior layer. It is the next **minimal added branch structure** required if the branch wishes to continue toward parameterization or differentiability.
-
-### 3.26 What Theorem 3.24.1 does and does not prove
-
-**What it proves.**
-
-- The solved $R+S+C+T+D+A$ layer does not force a unique or canonical valuation representation.
-- The branch cannot treat valuation as theorem-grade from realized-carrier existence, locality, transformation, readout, and stable comparison alone.
-- Some stable comparison algebras admit no branch-usable valuation representation satisfying V1--V5.
-- Any continuation toward parameterization or differentiability must add valuation explicitly.
-
-**What it does not prove.**
-
-- It does not show that valuation is impossible.
-- It does not show that every valuation regime is equally good.
-- It does not show that V1--V5 are uniquely minimal in all imaginable branches.
-- It does not derive parameterization or differentiability.
-
-So the correct status is:
-
-- valuation representation is **not forced from $R+S+C+T+D+A$**,
-- valuation representation is the next **minimal added branch structure** $V$,
-- no upward climb beyond valuation is licensed until later passes settle the parameterization question.
-
-### 3.27 No-go theorem for forcing lawful parameterization from $R+S+C+T+D+A+V$
-
-**Theorem 3.27.1 (No-go theorem for forcing lawful parameterization from $R+S+C+T+D+A+V$).**  
-The solved layer consisting of primitive distinguishability, the added refinement/compatibility structure $R$, the added realization/decisiveness layer $S$, the explicitly added locality/cover structure $C$, the explicitly added lawful-transformation structure $T$, the explicitly added distinguisher/signature structure $D$, the explicitly added stable-comparison algebra structure $A$, and the explicitly added valuation-representation structure $V$ is **not** sufficient to force a unique or canonical branch-usable lawful-parameterization layer. More strongly:
-
-1. there exist solved $R+S+C+T+D+A+V$ layers with the same valuation discipline that admit inequivalent lawful parameterizations satisfying P1--P5;
-2. there exist solved $R+S+C+T+D+A+V$ layers for which no branch-usable lawful parameterization satisfying P1--P5 exists;
-3. therefore lawful parameterization is not theorem-grade from the solved $R+S+C+T+D+A+V$ layer and must be introduced explicitly as the next minimal added branch structure if the branch is to proceed toward differentiability.
-
-**Hypotheses.**
-
-1. The primitive substrate $({\mathcal B},\#)$ satisfies Section 2.2.
-2. The added branch structures $R$, $S$, $C$, $T$, $D$, $A$, and $V$ satisfy Sections 2.5, 2.7, 2.9, 2.11, 2.13, 2.15, 2.17, and 2.19.
-3. The conditional existence and non-canonicity results of Theorems 3.9.1 and 3.10.1 hold.
-4. The no-go results for forced locality, forced lawful transformation, forced distinguishers/signatures, forced stable comparison, and forced valuation, together with the explicit additions of $C$, $T$, $D$, $A$, and $V$, hold as in Theorems 3.12.1, 3.15.1, 3.18.1, 3.21.1, and 3.24.1 and Sections 3.13, 3.16, 3.19, 3.22, and 3.25.
-5. No additional directedness axioms, cancellativity axioms, composition-totality axioms, or parameter-carrier selection principles are assumed beyond $R+S+C+T+D+A+V$.
-
-**Conclusion.**
-
-Under these hypotheses alone, no unique or canonical branch-usable lawful parameterization is forced on the solved pre-parameterization layer. More strongly, branch-usable parameterization need not exist for every admissible solved layer. If the branch wishes to continue toward differentiability, it must add parameterization explicitly.
-
-**Proof.**
-
-We prove non-uniqueness and non-forcing separately.
-
-#### Part I: same solved layer, inequivalent parameterizations
-
-Fix a solved $R+S+C+T+D+A+V$ layer with realized-carrier regime
-$$
-\mathcal M_0^{(R+S)} = \{X_a,X_b\},
-$$
-a lawful-transformation family
-$$
-\mathfrak T = \{\mathrm{id},	au_1,	au_2\},
-$$
-and a valuation discipline such that $	au_1$ and $	au_2$ are both nontrivial relative to the identity but are composable only with $\mathrm{id}$; that is, the only defined compositions inside the chosen branch-usable subfamily are
-$$
-\mathrm{id}\circ\mathrm{id}=\mathrm{id},\qquad 	au_i\circ\mathrm{id}=	au_i,\qquad \mathrm{id}\circ	au_i=	au_i\quad (i=1,2).
-$$
-Assume also that $	au_1$ and $	au_2$ are valuation-distinct from the identity, but no further composition law between them is fixed.
-
-Now define two lawful parameterizations on the same solved layer.
-
-**Parameterization realization $P_{\mathrm{lin}}$.**  
-Let
-$$
-\mathbb P_{\mathrm{lin}} = \{0,1,2\}
-$$
-with preorder $0 \leq 1 \leq 2$, positive sector $\mathbb P_{>0}=\{1,2\}$, and partial composition defined only with the neutral element:
-$$
-0 oxplus p = p = p oxplus 0
-\qquad	ext{for all } p\in\mathbb P_{\mathrm{lin}}.
-$$
-Define
-$$
-\pi_{\mathrm{lin}}(\mathrm{id})=0,\qquad \pi_{\mathrm{lin}}(	au_1)=1,\qquad \pi_{\mathrm{lin}}(	au_2)=2.
-$$
-Then P1--P5 hold. P2 is immediate because the only required compositions involve the neutral element. P3 holds because any valuation-profile identification would only force equality when profiles agree; here the only stipulated identification is self-identity. P4 holds because both nontrivial transformations map into the positive sector. P5 is vacuous for positive-positive composition because no such compositions are defined.
-
-**Parameterization realization $P_{\mathrm{br}}$.**  
-Let
-$$
-\mathbb P_{\mathrm{br}} = \{0,lpha,eta\}
-$$
-with preorder generated only by reflexivity and the neutral comparisons
-$$
-0 \leq lpha,\qquad 0 \leq eta,
-$$
-so that $lpha$ and $eta$ are incomparable. Let the positive sector be
-$$
-\mathbb P_{>0}=\{lpha,eta\},
-$$
-and again define partial composition only with the neutral element. Define
-$$
-\pi_{\mathrm{br}}(\mathrm{id})=0,\qquad \pi_{\mathrm{br}}(	au_1)=lpha,\qquad \pi_{\mathrm{br}}(	au_2)=eta.
-$$
-Then P1--P5 also hold.
-
-The two parameterizations are inequivalent: one linearly orders the nontrivial transformations, the other branches them without order. They live on the same solved pre-parameterization layer and satisfy the same axioms P1--P5. Therefore the solved layer does not force a unique or canonical parameterization.
-
-#### Part II: some solved layers admit no branch-usable lawful parameterization
-
-Now fix a solved $R+S+C+T+D+A+V$ layer whose lawful-transformation family contains a nontrivial involution
-$$
-\sigma 
-eq \mathrm{id},\qquad \sigma\circ\sigma = \mathrm{id},
-$$
-and assume $\sigma 
-ot\sim_V \mathrm{id}$, so that valuation distinguishes $\sigma$ from the identity. Such solved layers are admissible because valuation does not forbid involutive nontrivial transformations.
-
-Assume, for contradiction, that there exists a lawful parameterization
-$$
-\pi : \mathfrak T_{\mathbb P} 	o \mathbb P
-$$
-satisfying P1--P5 with $\sigma \in \mathfrak T_{\mathbb P}$.
-
-By P4, since $\sigma 
-ot\sim_V \mathrm{id}$, one has
-$$
-\pi(\sigma) \in \mathbb P_{>0}.
-$$
-Because $\sigma\circ\sigma = \mathrm{id}$ lies in the transformation family, P2 gives
-$$
-\pi(\sigma\circ\sigma)=\pi(\sigma)oxplus \pi(\sigma)=\pi(\mathrm{id})=0_{\mathbb P}.
-$$
-But by P5, whenever two positive parameters compose, their composite must again lie in $\mathbb P_{>0}$. Since $\pi(\sigma)\in \mathbb P_{>0}$, it follows that
-$$
-\pi(\sigma)oxplus \pi(\sigma) \in \mathbb P_{>0}.
-$$
-This contradicts
-$$
-\pi(\sigma)oxplus \pi(\sigma)=0_{\mathbb P},
-$$
-because $0_{\mathbb P}
-otin \mathbb P_{>0}$.
-
-Therefore no lawful parameterization satisfying P1--P5 exists for this solved layer. So parameterization is not merely non-canonical; existence itself is not forced for all admissible solved layers. Hence lawful parameterization is not theorem-grade from $R+S+C+T+D+A+V$ and must be added explicitly if the branch is to proceed upward. $\square$
-
-### 3.28 Explicit introduction of lawful parameterization as the next added branch structure
-
-Since lawful parameterization is not forced from the solved layer, the branch now introduces it explicitly.
-
-**Added Branch Structure $P$.**  
-A continuation of the branch beyond realized-carrier existence, explicit locality, explicit lawful transformation, explicit distinguisher/signature discipline, explicit stable comparison, and explicit valuation must specify a lawful-parameterization layer
-$$
-(\mathbb P,\leq_{\mathbb P},oxplus,0_{\mathbb P},\mathbb P_{>0},\mathfrak T_{\mathbb P},\pi)
-$$
-satisfying P1--P5 together with any extra directedness, cancellativity, totality, normalization, or adequacy principles required for the intended continuation.
-
-$P$ is not forced from the prior layer. It is the next **minimal added branch structure** required if the branch wishes to continue toward differentiability.
-
-### 3.29 What Theorem 3.27.1 does and does not prove
-
-**What it proves.**
-
-- The solved $R+S+C+T+D+A+V$ layer does not force a unique or canonical lawful parameterization.
-- The branch cannot treat parameterization as theorem-grade from realized-carrier existence, locality, transformation, readout, stable comparison, and valuation alone.
-- Some solved layers admit no branch-usable lawful parameterization satisfying P1--P5.
-- Any continuation toward differentiability must add parameterization explicitly.
-
-**What it does not prove.**
-
-- It does not show that parameterization is impossible.
-- It does not show that every parameterization regime is equally good.
-- It does not show that P1--P5 are uniquely minimal in all imaginable branches.
-- It does not yet derive overlap regularity, chart structure, first-order smoothness, or differentiability.
-
-So the correct status is:
-
-- lawful parameterization is **not forced from $R+S+C+T+D+A+V$**,
-- lawful parameterization is the next **minimal added branch structure** $P$,
-- no upward climb beyond parameterization is licensed until later passes settle the differentiability question.
-
-## 4. Main Theorems and Proofs
-## 4. Main Theorems and Proofs
-
-The main theorems of this pass are Theorems 3.1.1, 3.2.1, 3.3.1, 3.5.1, 3.7.1, 3.9.1, 3.10.1, 3.12.1, 3.15.1, 3.18.1, 3.21.1, and 3.24.1.
-
-### 4.1 Theorem status map for this pass
-
-- **Forced from prior layer:**
-  - nullity exclusion,
-  - undifferentiated sameness exclusion,
-  - weakest surviving primitive.
-
-- **Minimal added branch structure:**
-  - sharpenability discipline $L1$,
-  - refinement/compatibility structure $R$,
-  - realization/decisiveness layer $S$,
-  - locality/cover structure $C$,
-  - lawful-transformation structure $T$,
-  - distinguisher/signature structure $D$,
-  - stable comparison algebra structure $A$,
-  - valuation-representation structure $V$.
-
-- **Conditional theorem under explicit assumptions in this pass:**
-  - existence of realized contents under $R+S$,
-  - existence of a realized carrier regime under $R+S$,
-  - non-canonicity of that regime under $R+S$.
-
-### 4.2 Claims deferred until later passes
-
-The following are not yet theorem-grade and are not used in this pass:
-
-- parameterization,
-- differentiability emergence.
-
-## 5. Validation Logic and Evidentiary Support
-
-This section states what would count as support or falsification for the present pass.
-
-### 5.1 What would falsify the nullity and sameness exclusions
-
-The root exclusions would fail if one could exhibit a branch-level formalism in which:
-
-1. absolute nullity supports distinction, law, and falsifiability, or
-2. absolute undifferentiated sameness supports nontrivial distinction, law, and falsifiability.
-
-No such construction is supplied here.
-
-### 5.2 What would falsify Theorem 3.5.1
-
-The no-go theorem for forced refinement would fail if one could prove either of the following from the prior layer alone:
-
-1. primitive distinction plus sharpenability uniquely determines a stable global refinement/compatibility regime; or
-2. every two sharpenability realizations over the same primitive substrate are canonically isomorphic as refinement/compatibility structures.
-
-Either result would refute Theorem 3.5.1.
-
-### 5.3 What would falsify Theorem 3.7.1
-
-The no-go theorem for realized-carrier forcing from $R$ would fail if one could prove either of the following from $R$ alone:
-
-1. every $R$-model necessarily admits at least one $R$-candidate realized content; or
-2. every $R$-model with realized contents admits a canonical realized carrier independent of any further realization principle.
-
-Either result would refute Theorem 3.7.1.
-
-### 5.4 What would falsify Theorem 3.9.1
-
-The conditional realization theorem under $R+S$ would fail if one could exhibit an $R+S$-model in which at least one admissible bearer lies on no realized distinction content, or equivalently if $\mathcal M_0^{(R+S)}$ were empty in some model satisfying all clauses of $S$.
-
-### 5.5 What would falsify Theorem 3.10.1
-
-The non-canonicity theorem under $R+S$ would fail if one could prove from $R+S$ alone that every realized-content extension is unique up to canonical isomorphism. Absent such a proof, the explicit countermodel in Theorem 3.10.1 stands.
-
-### 5.6 What would show the added structure $R$ is too strong
-
-The added branch structure $R$ would be too strong if one could exhibit a weaker added structure than $R$ that still suffices to support all later branch requirements:
-
-- stable realization,
-- lawful local organization,
-- stable comparison,
-- and the later route toward differentiability.
-
-If such a weaker structure is found, $R$ must be weakened in a later pass.
-
-### 5.7 What would show the candidate structure $S$ is too strong
-
-The candidate realization layer $S$ would be too strong if one could exhibit a weaker added principle than $S$ that still guarantees:
-
-- existence of realized contents,
-- decisiveness/sharpness of those contents,
-- and a realized carrier regime sufficient for later branch continuation.
-
-If such a weaker structure is found, $S$ must be weakened before canonization.
-
-### 5.8 What would show a weaker primitive package is sufficient
-
-If one could derive realized contents or a realized carrier directly from primitive distinction plus sharpenability, without explicit introduction of $R$ or $S$, then both Theorems 3.5.1 and 3.7.1 would have to be revised downward and the current branch staircase would be too heavy.
-
-### 5.9 What would show the current derivation still smuggles later structure
-
-This pass would be defective if any proof above implicitly relied on:
-
-- metric notions,
-- topology stronger than what is stated,
-- numeric valuation,
-- parameterized process,
-- comparison algebraic laws not explicitly introduced,
-- locality stronger than the refinement/compatibility/realization/cover layer,
-- or differentiated structure.
-
-The present pass is designed to stop before those imports occur.
-
-### 5.10 What would show that $S$ does not actually improve on $R$
-
-If every theorem obtained under $R+S$ could already be obtained under $R$ alone, then $S$ would be redundant and its introduction would be illegitimate. The existence theorem 3.9.1 is exactly what prevents that: it gives a result not obtainable from $R$ alone.
-
-### 5.11 What would falsify Theorem 3.12.1
-
-The no-go theorem for forcing locality/cover from $R+S$ would fail if one could prove either of the following from the solved layer alone:
-
-1. every $R+S$-model admits a unique canonical cover/locality discipline satisfying C1--C4; or
-2. any two cover disciplines on the same realized-carrier regime that satisfy C1--C4 are canonically isomorphic and physically equivalent for branch continuation.
-
-Either result would refute Theorem 3.12.1.
-
-### 5.12 What would show the added structure $C$ is too strong
-
-The locality/cover layer $C$ would be too strong if one could exhibit a weaker added structure than C1--C4 that still suffices for every later branch requirement that genuinely depends on pre-metric locality. If such a weaker layer is found, $C$ must be weakened in a later pass.
-
-### 5.13 What would show a weaker solved package is sufficient for locality
-
-If one could derive a branch-usable locality/cover discipline directly from the solved $R+S$ layer, without explicit addition of $C$, then Theorem 3.12.1 would fail and the current staircase would be one layer too heavy.
-
-### 5.14 What would show that locality/cover does not improve on the solved layer
-
-If every later theorem that appears to depend on $C$ could in fact already be proved from $R+S$ alone, then $C$ would be redundant and its introduction would be illegitimate. The role of later passes is to test that explicitly.
-
-### 5.15 What would falsify Theorem 3.15.1
-
-The no-go theorem for forcing lawful transformation from $R+S+C$ would fail if one could prove either of the following from the solved layer alone:
-
-1. every $R+S+C$-model admits a unique canonical branch-usable lawful-transformation discipline satisfying T1--T5; or
-2. any two lawful-transformation disciplines on the same realized-carrier regime and the same cover discipline that satisfy T1--T5 are canonically isomorphic and physically equivalent for branch continuation.
-
-Either result would refute Theorem 3.15.1.
-
-### 5.16 What would show the added structure $T$ is too strong
-
-The lawful-transformation layer $T$ would be too strong if one could exhibit a weaker added structure than T1--T5 that still suffices for every later branch requirement that genuinely depends on process-like admissible action on realized contents. If such a weaker layer is found, $T$ must be weakened in a later pass.
-
-### 5.17 What would show a weaker solved package is sufficient for transformation
-
-If one could derive a branch-usable lawful-transformation discipline directly from the solved $R+S+C$ layer, without explicit addition of $T$, then Theorem 3.15.1 would fail and the current staircase would be one layer too heavy.
-
-### 5.18 What would show that lawful transformation does not improve on the solved layer
-
-If every later theorem that appears to depend on $T$ could already be proved from $R+S+C$ alone, then $T$ would be redundant and its introduction would be illegitimate. The role of later passes is to test that explicitly.
-
-### 5.19 What would show the derivation still smuggles later structure through transformation
-
-This pass would be defective if the proof of Theorem 3.15.1 or the definition of $T$ implicitly relied on:
-
-- numeric parameters,
-- valuation,
-- scalar signatures,
-- comparison algebra,
-- metric continuity,
-- or any differentiated notion of motion.
-
-The present pass avoids those imports by treating transformation only as admissible composition on realized contents with cover respect.
-
-### 5.20 What would falsify Theorem 3.18.1
-
-The no-go theorem for forcing distinguishers/signatures from $R+S+C+T$ would fail if one could prove either of the following from the solved layer alone:
-
-1. every $R+S+C+T$-model admits a unique canonical branch-usable distinguisher/signature discipline satisfying D1--D4; or
-2. any two distinguisher/signature disciplines on the same realized-carrier regime, the same cover discipline, and the same lawful-transformation discipline that satisfy D1--D4 are canonically isomorphic and physically equivalent for branch continuation.
-
-Either result would refute Theorem 3.18.1.
-
-### 5.21 What would show the added structure $D$ is too strong
-
-The distinguisher/signature layer $D$ would be too strong if one could exhibit a weaker added structure than D1--D4 that still suffices for every later branch requirement that genuinely depends on readout, event discrimination, or outcome identity. If such a weaker layer is found, $D$ must be weakened in a later pass.
-
-### 5.22 What would show a weaker solved package is sufficient for distinguishers/signatures
-
-If one could derive a branch-usable distinguisher/signature discipline directly from the solved $R+S+C+T$ layer, without explicit addition of $D$, then Theorem 3.18.1 would fail and the current staircase would be one layer too heavy.
-
-### 5.23 What would show that distinguishers/signatures do not improve on the solved layer
-
-If every later theorem that appears to depend on $D$ could already be proved from $R+S+C+T$ alone, then $D$ would be redundant and its introduction would be illegitimate. The role of later passes is to test that explicitly.
-
-### 5.24 What would show the derivation still smuggles later structure through readout
-
-This pass would be defective if the proof of Theorem 3.18.1 or the definition of $D$ implicitly relied on:
-
-- ordered comparison of outcomes,
-- algebra on signatures,
-- valuation or scalar codomains,
-- parameterized readout families,
-- metric or differentiable structure,
-- or any downstream comparison law not explicitly introduced.
-
-The present pass avoids those imports by treating readout only as event-to-signature assignment with extensional identity, repeatability, and minimal nontriviality.
+- multiplicity as a theorem from differentiated realizability,
+- apartness as a theorem from multiplicity,
+- recursive refinement/hierarchy without graph imports,
+- truncation/frontier without an extra exhaustion principle,
+- any pre-carrier patch structure.
 
 ---
 
+## 4. First Emergence Chain and Exact Status
 
-### 5.25 What would falsify Theorem 3.21.1
+### 4.1 Stage ordering
 
-The no-go theorem for forcing stable comparison algebra from $R+S+C+T+D$ would fail if one could prove either of the following from the solved layer alone:
+The intended dependency-clean order is:
 
-1. every $R+S+C+T+D$-model admits a unique canonical stable comparison algebra satisfying A1--A5; or
-2. any two stable comparison algebras on the same realized-carrier regime, the same cover discipline, the same lawful-transformation discipline, and the same distinguisher/signature discipline that satisfy A1--A5 are canonically isomorphic and physically equivalent for branch continuation.
+1. sterile poles,
+2. realizability exclusion from either isolated pole,
+3. forced non-flatness,
+4. differentiated realizability,
+5. multiplicity,
+6. apartness,
+7. reiterable unresolved differentiation,
+8. dependence order,
+9. hierarchy,
+10. qualitative braking,
+11. truncation/frontier,
+12. pre-boundary sectors,
+13. later coherence burden,
+14. pre-carrier bridge,
+15. differentiability burden.
 
-Either result would refute Theorem 3.21.1.
+### 4.2 Multiplicity
 
-### 5.26 What would show the added structure $A$ is too strong
+**Target claim.**  
+Every differentiated realizable condition carries multiplicity.
 
-The stable-comparison layer $A$ would be too strong if one could exhibit a weaker added structure than A1--A5 that still suffices for every later branch requirement that genuinely depends on stable comparison. If such a weaker layer is found, $A$ must be weakened in a later pass.
+**Status:** Open.
 
-### 5.27 What would show a weaker solved package is sufficient for comparison
+**Theorem 4.2.1 (Multiplicity does not follow from PB1–PB5 and E1 alone).**  
+The current primitive package plus E1 does not prove multiplicity.
 
-If one could derive a branch-usable stable comparison algebra directly from the solved $R+S+C+T+D$ layer, without explicit addition of $A$, then Theorem 3.21.1 would fail and the current staircase would be one layer too heavy.
+**Proof.**  
+The definition of \(\mathrm{Diff}(x)\) gives only \(\mathrm{Real}(x) \wedge \neg\mathrm{Flat}(x)\). The present formal system contains no theorem stating that non-flatness must be witnessed by at least two noncoincident determinations. Therefore plurality is not yet forced. Any attempt to read multiplicity directly out of \(\neg\mathrm{Flat}(x)\) would covertly strengthen the meaning of flatness and would risk hiding plurality in a primitive definition. Hence multiplicity is underdetermined by the current package. \(\square\)
 
-### 5.28 What would show that stable comparison algebra does not improve on the solved layer
+**Exact minimal additional principle required:**
 
-If every later theorem that appears to depend on $A$ could already be proved from $R+S+C+T+D$ alone, then $A$ would be redundant and its introduction would be illegitimate. The role of later passes is to test that explicitly.
+**WNF — Witnessed Non-Flatness Principle.**  
+For every differentiated realizable condition, non-flatness must be witnessed by at least two noncoincident determinations internal to that condition.
 
-### 5.29 What would show the derivation still smuggles later structure through comparison
+In schematic form:
+\[
+\forall x\in\mathcal C,\quad \mathrm{Diff}(x) \Rightarrow \exists a,b\; \big(a \neq b \wedge \mathrm{Det}(a,x) \wedge \mathrm{Det}(b,x) \wedge \neg\mathrm{Coinc}(a,b)\big).
+\]
 
-This pass would be defective if the proof of Theorem 3.21.1 or the definition of $A$ implicitly relied on:
+This principle is the minimal clean bridge from non-flatness to plurality. It must be stated explicitly because it is not contained in the present package.
 
-- numeric valuation,
-- parameterized process,
-- metric or differentiable structure,
-- order or algebraic laws stronger than A1--A5 without stating them,
-- or any downstream valuation law not explicitly introduced.
+### 4.3 Apartness
 
-The present pass avoids those imports by treating stable comparison only as class identity, preorder, and optional class-level composition on the solved pre-valuation layer.
+**Target claim.**  
+Once noncoincident multiplicity is closed, apartness should appear as derived residue rather than primitive relation.
 
+**Status:** Blocked.
 
+**Block analysis.**  
+Apartness requires at least two noncoincident realization-witnesses. Since multiplicity is not yet proved, apartness is blocked behind Theorem 4.2.1.
 
-### 5.30 What would falsify Theorem 3.24.1
+**Minimal additional principle required:** If WNF is admitted, apartness can be introduced as a **derived** relation on noncoincident determination-witnesses:
+\[
+ a \# b \, :\!\iff \, \neg\mathrm{Coinc}(a,b)
+\]
+for witnesses \(a,b\) of one differentiated realizable condition.
 
-The no-go theorem for forcing valuation representation from $R+S+C+T+D+A$ would fail if one could prove either of the following from the solved layer alone:
+This makes apartness derivative, not primitive. But it still depends on WNF or an equivalent witness principle.
 
-1. every $R+S+C+T+D+A$-model admits a unique canonical branch-usable valuation representation satisfying V1--V5; or
-2. every stable comparison algebra allowed by the solved layer necessarily admits at least one branch-usable valuation representation satisfying V1--V5.
+### 4.4 Reiterability and recursive refinement
 
-Either result would refute Theorem 3.24.1.
+**Target claim.**  
+If a differentiated determination remains internally unresolved under the same root burden, the pole-opposition law re-applies, yielding repeated differentiation.
 
-### 5.31 What would show the added structure $V$ is too strong
+**Status:** Open.
 
-The valuation layer $V$ would be too strong if one could exhibit a weaker added structure than V1--V5 that still suffices for every later branch requirement that genuinely depends on value-bearing representation. If such a weaker layer is found, $V$ must be weakened in a later pass.
+**Theorem 4.4.1 (Reiterability does not follow from the current package).**  
+The primitive package PB1–PB5, together with E1, does not prove that unresolved differentiation re-presents the same burden at a subordinate level.
 
-### 5.32 What would show a weaker solved package is sufficient for valuation
+**Proof.**  
+The current package gives no criterion for when a differentiated condition remains internally unresolved in a way that reactivates the anti-flatness burden. It therefore contains no closure rule of the form “if differentiated but still unresolved, then a further differentiated resolution is required.” Without such a rule, recursive refinement is not forced. \(\square\)
 
-If one could derive a branch-usable valuation representation directly from the solved $R+S+C+T+D+A$ layer, without explicit addition of $V$, then Theorem 3.24.1 would fail and the current staircase would be one layer too heavy.
+**Exact minimal additional principle required:**
 
-### 5.33 What would show that valuation does not improve on the solved layer
+**RRP — Recursive Reapplication Principle.**  
+Any differentiated realizable condition that remains internally unresolved with respect to the same pole-opposition burden must admit a further non-flat resolving step.
 
-If every later theorem that appears to depend on $V$ could already be proved from $R+S+C+T+D+A$ alone, then $V$ would be redundant and its introduction would be illegitimate. The role of later passes is to test that explicitly.
+This principle must be stated without time, graph, or branching smuggling. Until then, hierarchy and dependence order remain open as constructive results.
 
-### 5.34 What would show the derivation still smuggles later structure through valuation
+### 4.5 Dependence order versus time
 
-This pass would be defective if the proof of Theorem 3.24.1 or the definition of $V$ implicitly relied on:
+**Proposition 4.5.1 (Dependence order precedes time in the present architecture).**  
+Any order first obtained from reiterated root burden is an order of dependence, not yet an order of physical time.
 
-- parameterized processes,
-- coordinate charts,
-- metric distance,
-- local derivatives,
-- or differentiable structure.
+**Status:** Closed.
 
-The present pass avoids those imports by treating valuation only as order-compatible representation of stable comparison classes into an ordered composition regime.
+**Proof.**  
+The present root package contains no time parameter, no dynamics, no event sequence, no continuation law, and no dissipation law. Therefore any order first obtained here can only mean “this burden must be resolved before that derived structure is licensed.” That is dependence order, not clock time, not reversible continuation, and not irreversible arrow. \(\square\)
 
+### 4.6 Hierarchy
 
-### 5.35 What would falsify Theorem 3.27.1
+**Target claim.**  
+Hierarchy is repeated dependence/refinement, not primitive ancestry.
 
-The no-go theorem for forcing lawful parameterization from $R+S+C+T+D+A+V$ would fail if one could prove either of the following from the solved layer alone:
+**Status:** Partially Closed.
 
-1. every solved $R+S+C+T+D+A+V$ layer admits a unique canonical branch-usable lawful parameterization satisfying P1--P5; or
-2. every solved $R+S+C+T+D+A+V$ layer admits at least one branch-usable lawful parameterization satisfying P1--P5.
+**What is closed.**  
+Hierarchy has been stripped of primitive graph language. Any future hierarchy theorem must be stated in terms of repeated dependence burden rather than prebuilt branch objects.
 
-Either result would refute Theorem 3.27.1.
+**What remains open.**  
+The theorem that repeated dependence actually yields a hierarchy-worthy structure rather than mere iterability still needs a clean formal statement and, at minimum, some substitute for RRP.
 
-### 5.36 What would show the added structure $P$ is too strong
+### 4.7 Qualitative braking
 
-The parameterization layer $P$ would be too strong if one could exhibit a weaker added structure than P1--P5 that still suffices for every later branch requirement that genuinely depends on parameter-bearing lawful update composition. If such a weaker layer is found, $P$ must be weakened in a later pass.
+**Target claim.**  
+Repeated resolution reduces residual unresolved indifference and therefore introduces a qualitative braking tendency before any numerical attenuation law appears.
 
-### 5.37 What would show a weaker solved package is sufficient for parameterization
+**Status:** Conjectural.
 
-If one could derive a branch-usable lawful parameterization directly from the solved $R+S+C+T+D+A+V$ layer, without explicit addition of $P$, then Theorem 3.27.1 would fail and the current staircase would be one layer too heavy.
+**Reason.**  
+The intuition is strong and aligns with H000/A8 integration, but the present draft does not yet carry a theorem-grade formalization of “residual unresolved indifference.” A numerical attenuation map is explicitly forbidden at this stage.
 
-### 5.38 What would show that parameterization does not improve on the solved layer
+### 4.8 Truncation / frontier
 
-If every later theorem that appears to depend on $P$ could already be proved from $R+S+C+T+D+A+V$ alone, then $P$ would be redundant and its introduction would be illegitimate. The role of later passes is to test that explicitly.
+**Target claim.**  
+Repeated differentiated resolution does not continue in a neutral endless regress; a frontier of maximal resolved sectors eventually appears.
 
-### 5.39 What would show the derivation still smuggles later structure through parameterization
+**Status:** Open.
 
-This pass would be defective if the proof of Theorem 3.27.1 or the definition of $P$ implicitly relied on:
+**Live burden.**  
+Either truncation must be proved from the present root alone, or one further principle must be stated:
 
-- differentiable charts,
-- continuity or limit structure,
-- metric distance,
-- local derivatives,
-- overlap regularity stronger than a raw parameter carrier,
-- or first-order smoothness in disguise.
+> **WEP — Well-founded Exhaustion Principle**  
+> Genuine resolution strictly reduces residual unresolved indifference in a way that cannot continue forever without exhaustion.
 
-The present pass avoids those imports by treating parameterization only as a pre-differential progress carrier for lawful transformation composition, valuation-profile identification, and positive nontrivial progression.
+This principle is not yet adopted as theorem-grade law. Until that is settled, frontier language remains provisional.
 
-## 6. Worked Example or Minimal Witnesses
-## 6. Worked Example or Minimal Witnesses
+### 4.9 Boundary / domain-wall-type structure
 
-Minimal witnesses suffice for the present pass.
+**Target claim.**  
+Once maximal incompatible resolution sectors exist, a genuine pre-geometric separation should appear between them.
 
-### 6.1 Witness for Theorem 3.5.1
+**Status:** Blocked.
 
-The proof of Theorem 3.5.1 already provides two sharpenability realizations over the same primitive substrate that are not isomorphic as refinement/compatibility structures.
+**Reason.**  
+This cannot close until truncation/frontier closes at least partially.
 
-### 6.2 Witnesses for Theorem 3.7.1
+### 4.10 Exact first remaining burden
 
-#### Witness A: $R$ without realized contents
+After the current primitive package and the minimal existence principle E1, the **first remaining burden** is:
 
-Take
-$$
-\widehat{\mathcal B}_A = \{a,b,c\},
-$$
-with
-$$
-a\# b,
-$$
-refinement reflexive only, compatibility identity only, and no other apartness relations. Then $R$ holds, but no $R$-candidate realized content exists.
+> **WNF — Witnessed Non-Flatness Principle**
 
-#### Witness B: $R$ with multiple realized contents
+Why this is first:
 
-Take
-$$
-\widehat{\mathcal B}_B = \{a,b\},
-$$
-with
-$$
-a\# b,
-$$
-refinement reflexive only, and compatibility identity only. Then $R$ holds, and both $\{a\}$ and $\{b\}$ are $R$-candidate realized contents.
+1. classification exclusivity is earlier as a root-cleanliness burden, but it is not needed to state the first non-flat realizability theorem;
+2. multiplicity is the first place where hidden plurality is likely to be smuggled;
+3. apartness and recursive refinement both stall behind that point.
 
-These two witnesses jointly establish that $R$ alone forces neither existence nor canonicity of a realized carrier.
-
-### 6.3 Witness for Theorem 3.9.1
-
-Take any $R$-model for which a refinement thread exists through each admissible bearer and augment it with $S1$ through $S4$. Then each such thread extends to a decisive coherent content. This witnesses existence of at least one realized content.
-
-### 6.4 Witness for Theorem 3.10.1
-
-Take the model used in the proof of Theorem 3.10.1 with two disjoint refinement branches. By S4, each branch extends to a decisive coherent content. The resulting realized carrier regime has at least two inequivalent members and is therefore non-canonical.
-
-### 6.5 Witness for Theorem 3.12.1
-
-Take any $R+S$-model with realized-carrier regime
-$$
-\mathcal M_0^{(R+S)} = \{X_a, X_b\}.
-$$
-Equip it once with the discrete cover discipline $\triangleleft_d$ and once with the indiscrete cover discipline $\triangleleft_i$ from the proof of Theorem 3.12.1. Both satisfy C1--C4, but they are inequivalent. This witnesses that locality/cover is not forced from $R+S$.
-
-### 6.6 Witness for Theorem 3.15.1
-
-Take any $R+S+C$-model with realized-carrier regime
-$$
-\mathcal M_0^{(R+S)} = \{X_a, X_b\}
-$$
-and a fixed cover discipline $\triangleleft$.
-
-- Equip it once with the identity-only transformation family $\mathfrak T_{\mathrm{id}}$.
-- Equip it again with the nontrivial involutive family $\mathfrak T_{\mathrm{swap}} = \{\mathrm{id},\sigma\}$.
-
-These two transformation disciplines live on the same solved pre-transformation layer but are inequivalent. This witnesses that lawful transformation is not forced from $R+S+C$.
+So the next machine bite is not carrier, locality, overlap, or differentiability. It is whether non-flatness can be made positively witnessable without covertly importing plurality.
 
 ---
 
+## 5. Time, Continuation, Arrow, and Causality
 
-### 6.7 Witness for Theorem 3.18.1
+### 5.1 Dependence order
 
-Take any $R+S+C+T$-model with realized-carrier regime
-$$
-\mathcal M_0^{(R+S)} = \{X_a, X_b\},
-$$
-a fixed cover discipline $\triangleleft$, and a fixed lawful-transformation discipline
-$$
-\mathfrak T = \{\mathrm{id}, \sigma\}
-$$
-with
-$$
-\sigma(X_a)=X_b,
-\qquad
-\sigma(X_b)=X_a.
-$$
-On the same event domain $\mathcal E_T$, equip the solved layer in three different ways:
+Dependence order is the earliest allowable ordering notion in CF000. It means only:
 
-- with no branch-usable readout layer at all;
-- with the constant readout discipline $(\mathfrak D_{\mathrm{triv}}, \mathfrak{Sig}_{\mathrm{triv}})$;
-- with the separating readout discipline $(\mathfrak D_{\mathrm{sep}}, \mathfrak{Sig}_{\mathrm{sep}})$.
+- this structure is required before that later structure may be licensed.
 
-These three readout realizations live on the same solved pre-distinguisher layer but are inequivalent. This witnesses that distinguishers/signatures are not forced from $R+S+C+T$.
+It does **not** mean:
 
+- elapsed time,
+- dynamic update,
+- propagation,
+- irreversible history,
+- or causal influence.
 
-### 6.8 Witness for Theorem 3.21.1
+**Status:** Closed.
 
-Take any $R+S+C+T+D$-model with realized-carrier regime
-$$
-\mathcal M_0^{(R+S)} = \{X_a, X_b\},
-$$
-a fixed cover discipline $\triangleleft$, a fixed lawful-transformation discipline
-$$
-\mathfrak T = \{\mathrm{id}, \sigma\},
-$$
-and a fixed nontrivial readout discipline
-$$
-\mathfrak D = \{\delta_{\mathrm{sep}}\},
-\qquad
-\mathfrak{Sig} = \{\mathtt{stay}, \mathtt{swap}\}.
-$$
-On this same solved layer, equip the branch in three different ways:
+### 5.2 Reversible continuation
 
-- with no branch-usable comparison layer at all;
-- with the equality-only comparison algebra $\mathfrak C_{\mathrm{disc}}$;
-- with the flat comparison algebra $\mathfrak C_{\mathrm{flat}}$;
-- with the ordered comparison algebra $\mathfrak C_{\mathrm{ord}}$.
+A lawful reversible continuation regime cannot honestly appear until a later support or pre-carrier layer exists. Before that, there is nothing yet on which a lawful continuation could act.
 
-These realizations share the same realized contents, locality, transformations, signatures, and readout acts, yet yield inequivalent comparison regimes. This witnesses that stable comparison algebra is not forced from $R+S+C+T+D$.
+**Status:** Partially Closed.  
+The staging is clear; the actual emergence burden remains open.
 
+### 5.3 Irreversible arrow
 
+An irreversible arrow belongs later than mere dependence order and later than reversible continuation. It should enter only with a genuine dissipative or entropy-producing burden, not with root asymmetry alone.
 
-### 6.9 Witness for Theorem 3.24.1
+**Status:** Closed as staging discipline.
 
-Take any $R+S+C+T+D+A$-model with a solved pre-valuation layer whose stable comparison algebra is either:
+### 5.4 Causality
 
-1. the sparse ordered algebra
-   $$
-   \mathfrak C_{\mathrm{sp}} = \{c_0,c_1\}
-   $$
-   with
-   $$
-   c_0 \sqsubseteq c_1
-   $$
-   and defined compositions
-   $$
-   c_0 \odot c_0 = c_0,\qquad
-   c_0 \odot c_1 = c_1,\qquad
-   c_1 \odot c_0 = c_1,
-   $$
-   for which both the max-valued representation $(\mathbb V_{\max},
-u_{\max})$ and the additive representation $(\mathbb V_{+},
-u_{+})$ are valid; or
+Causality is later than dependence order and likely later than mere continuation. It requires at minimum some admissible locality or propagation discipline. Therefore causality is forbidden from the root layer.
 
-2. the bad comparison algebra
-   $$
-   \mathfrak C_{\mathrm{bad}} = \{x,y,z\}
-   $$
-   with
-   $$
-   x \sqsubseteq y,\qquad x\odot z = y,\qquad y\odot z = x,
-   $$
-   for which no valuation satisfying V1--V5 exists.
-
-These witnesses jointly show that valuation is neither uniquely determined nor guaranteed to exist from the solved pre-valuation layer alone.
-
-
-### 6.10 Witness for Theorem 3.27.1
-
-Take any solved $R+S+C+T+D+A+V$ layer with a branch-usable transformation family containing either:
-
-1. two nontrivial transformations $	au_1,	au_2$ that compose only with the identity, which yields inequivalent lawful parameterizations such as a linear ordered carrier and a branching incomparable carrier on the same solved layer; or
-2. a nontrivial involution $\sigma$ with $\sigma\circ\sigma=\mathrm{id}$ and $\sigma 
-ot\sim_V \mathrm{id}$, which admits no lawful parameterization satisfying P1--P5.
-
-These witnesses jointly show that parameterization is neither uniquely determined nor guaranteed to exist from the solved pre-parameterization layer alone.
-
-## 7. CFN Pairing and Executable Traceability
-
-The paired CFN for the present pass may do the following:
-
-- instantiate finite examples of primitive substrates $({\mathcal B},\#)$,
-- instantiate multiple non-isomorphic sharpening realizations over the same primitive substrate,
-- instantiate $R$-models with and without $R$-candidate realized contents,
-- instantiate $R+S$-models with nonempty realized-carrier regimes,
-- instantiate inequivalent cover disciplines on the same realized-carrier regime,
-- instantiate inequivalent lawful-transformation disciplines on the same realized-carrier regime and same cover discipline,
-- instantiate inequivalent readout disciplines on the same realized-carrier regime, same cover discipline, and same lawful-transformation discipline,
-- verify that the witness models satisfy the stated axioms,
-- and present the no-go, existence/non-canonicity, locality-underdetermination, transformation-underdetermination, and readout-underdetermination theorems graphically or combinatorially.
-
-The CFN may **not** introduce any proof burden not already carried here.
+**Status:** Closed as staging discipline; Open as constructive burden.
 
 ---
 
-## 8. Assumptions, Limits, and Open Boundaries
+## 6. A8, QGT, and Later Canon Reclassification
 
-### 8.1 Assumptions used in the derivation
+### 6.1 A8
 
-This pass uses only:
+A8 is **not** the primitive generator in this rewrite.
 
-1. the branch-level exclusion of nullity and undifferentiated sameness,
-2. the weakest surviving primitive $({\mathcal B},\#)$,
-3. the first added sharpenability discipline $L1$,
-4. the explicitly added refinement/compatibility structure $R$,
-5. the explicitly added realization/decisiveness structure $S$,
-6. the explicitly added locality/cover structure $C$,
-7. the explicitly added lawful-transformation structure $T$ in the sense of candidate definition and no-go target,
-8. the explicitly added candidate distinguisher/signature structure $D$ in the sense of candidate definition and no-go target,
-9. the explicitly added candidate stable-comparison structure $A$ in the sense of candidate definition and no-go target,
-10. the explicitly added candidate valuation structure $V$ in the sense of candidate definition and no-go target,
-11. the explicitly added candidate parameterization structure $P$ in the sense of candidate definition and no-go target,
-12. elementary logic about non-isomorphic realizations, existence/nonexistence witnesses, non-unique branch extension, inequivalent cover disciplines, inequivalent transformation disciplines, inequivalent readout disciplines, inequivalent comparison algebras, inequivalent or absent valuation regimes, and inequivalent or absent parameterization regimes on the same solved layer.
+A8 is a later-regime hierarchy candidate involving tachyonic onset, field structure, fronts, decay tails, and interface concentration. Those are late-regime physical ingredients, not root ontology.
 
-### 8.2 Claims established here
+**Status of this reclassification:** Closed.
 
-This pass establishes:
+### 6.2 H000 ↔ A8 placement
 
-- the root exclusions,
-- the weakest surviving primitive,
-- the no-go theorem for forcing refinement/compatibility from the prior layer,
-- the explicit introduction of refinement/compatibility as the first minimal added branch structure,
-- the no-go theorem showing that $R$ alone does not force stable realized contents or a canonical realized carrier,
-- the conditional theorem that $R+S$ yields realized contents and a realized carrier regime,
-- the theorem that the resulting carrier regime is generally non-canonical,
-- the no-go theorem showing that locality/cover is not forced from the solved $R+S$ layer,
-- the explicit introduction of locality/cover as the next minimal added branch structure $C$,
-- the no-go theorem showing that lawful transformation is not forced from the solved $R+S+C$ layer,
-- the explicit introduction of lawful transformation as the next minimal added branch structure $T$,
-- the no-go theorem showing that distinguishers/signatures are not forced from the solved $R+S+C+T$ layer,
-- the explicit introduction of distinguishers/signatures as the next minimal added branch structure $D$,
-- the no-go theorem showing that stable comparison algebra is not forced from the solved $R+S+C+T+D$ layer,
-- the explicit introduction of stable comparison algebra as the next minimal added branch structure $A$,
-- the no-go theorem showing that valuation representation is not forced from the solved $R+S+C+T+D+A$ layer,
-- the explicit introduction of valuation representation as the next minimal added branch structure $V$,
-- the no-go theorem showing that lawful parameterization is not forced from the solved $R+S+C+T+D+A+V$ layer,
-- the explicit introduction of lawful parameterization as the next minimal added branch structure $P$.
+The present recommended relationship is:
 
-### 8.3 Claims not established here
+\[
+\text{H000 / CF000 root burden}
+\;\Longrightarrow\;
+\text{reiterated distinguishability / hierarchy engine}
+\;\Longrightarrow\;
+\text{A8-like late-regime realization}
+\]
 
-This pass does not establish:
+This is an **architecture hypothesis**, not yet a theorem.
 
-- differentiability.
+**Status:** Conjectural but correctly staged.
 
-### 8.4 Open boundary for the next pass
+### 6.3 QGT / metriplectic dual split
 
-The next pass must determine whether differentiability emergence is forced from the solved $R+S+C+T+D+A+V+P$ layer, or whether differentiability exists only conditionally under explicit additional overlap-regularity assumptions.
+The root architecture suggests a plausible deep ancestor of the later conservative/dissipative split:
 
-No upward climb beyond differentiability is allowed before that question is settled honestly.
+- opening tendency: forced differentiation, proliferation of non-flatness,
+- closing tendency: braking, exhaustion, selection, truncation.
 
-## 9. Integration with Broader VDM Theory
+That is structurally suggestive, but it is **not** a derivation of QGT or \(J\oplus M\).
 
-CF000 remains the root of the branch.
-
-CF00 remains downstream as the first differentiable-layer formalism, but the present pass does not yet reconnect to CF00 in detail. That bridge is intentionally paused until later comparison structure and the differentiability route are settled honestly.
-
-The only downstream statement fixed here is structural and now stronger than in the previous pass:
-
-> CF00 may not be treated as beginning from a layer already forced by primitive distinction, refinement/compatibility, realization/decisiveness, locality/cover, lawful transformation, and readout/comparison alone.
-
-Instead, CF00 sits downstream of a branch that now explicitly contains:
-
-1. a forced primitive distinction layer,
-2. a first minimal added refinement/compatibility layer,
-3. a second minimal added realization/decisiveness layer,
-4. a conditional and non-canonical realized-carrier regime under $R+S$,
-5. an explicitly added locality/cover layer $C$ not forced from that solved regime,
-6. an explicitly added lawful-transformation layer $T$ not forced from the solved $R+S+C$ layer,
-7. an explicitly added distinguisher/signature layer $D$ not forced from the solved $R+S+C+T$ layer,
-8. an explicitly added stable-comparison layer $A$ not forced from the solved $R+S+C+T+D$ layer,
-9. an explicitly added valuation layer $V$ not forced from the solved $R+S+C+T+D+A$ layer,
-10. and an explicitly added parameterization layer $P$ not forced from the solved $R+S+C+T+D+A+V$ layer.
+**Status:** Conjectural only.
 
 ---
 
-## 10. References and Provenance
+## 7. v10 Migration and Disposition
 
-This pass uses the house CF template as the formal standard for completeness and theorem-bearing structure.
+### 7.1 Global verdict on v10
 
-It also uses the current CF000 checklist as the binding solved/open state for this pass. The theorem target addressed here is exactly the live question identified there: whether the solved $R+S+C+T+D+A+V$ layer is sufficient to force a lawful parameterization layer. The answer given here is no. Lawful parameterization is therefore reclassified as the next minimal added branch structure $P$.
+The old v10 document is not the scaffold for forward closure. It is too late, too flat, and too eager to turn every missing burden into a new explicit layer. That makes it a useful contamination map, but a bad root.
 
-No external source is used here as a substitute for derivation.
+### 7.2 Section-level disposition
 
----
+| v10 component | Disposition | Reason |
+|---|---|---|
+| Executive Summary | Rewrite from scratch | old summary preserves staircase spine |
+| State of Closure | Rewrite from scratch | old status ledger assumes wrong backbone |
+| Primitive \((\mathcal B,\#)\) root | Failure Audit Only | now treated as derived residue candidate, not primitive |
+| L1 sharpenability | Failure Audit Only / possible later warning | too late for root spine |
+| R refinement/compatibility | Failure Audit Only or later derived target | may reappear only after multiplicity/apartness close |
+| S realized-carrier layer | Delete from root spine | carrier burden has been moved much later |
+| C locality/cover | Delete from root spine | locality belongs later than frontier/sector closure |
+| T lawful transformation | Delete from root spine | far downstream of present root |
+| D readout/signature | Delete from root spine | not load-bearing at root |
+| A comparison algebra | Delete from root spine | not load-bearing at root |
+| V valuation | Delete from root spine | not load-bearing at root |
+| P parameterization | Delete from root spine | not load-bearing at root |
+| G overlap/germ compatibility | Retain as later bridge burden only | may reappear much later, after frontier and sector closure |
+| Existing no-go theorems | Move to failure-audit appendix | useful evidence against flat-origin route |
+| Existing anti-smuggling warnings | Retain | still valuable |
+| Existing differentiability bridge language | Rewrite under new dependency order | old placement too late and too smoothness-adjacent |
 
-## Appendix A. Symbol Table
+### 7.3 Main salvage from v10
 
-- $\mathcal B$: primitive distinction-bearing bearer class.
-- $\#$: primitive apartness relation.
-- $L1$: sharpenability discipline.
-- $\widehat{\mathcal B}$: admissibly enriched bearer class after added branch structure.
-- $\preceq$: refinement preorder.
-- $\bowtie$: compatibility relation in the first added branch structure.
-- $R$: first minimal added branch structure consisting of refinement/compatibility.
-- $\mathcal M_0^{(R)}$: class of $R$-candidate realized distinction contents, not forced to be nonempty.
-- $S$: realization/decisiveness layer, introduced as the second minimal added branch structure.
-- $\mathcal M_0^{(R+S)}$: realized-carrier regime obtained conditionally under $R+S$.
-- $C$: locality/cover layer, introduced as the third minimal added branch structure.
-- $\triangleleft$: pre-metric cover/locality relation on the realized-carrier regime.
-- $T$: lawful-transformation layer, introduced as the fourth minimal added branch structure.
-- $\mathfrak T$: class of lawful transformations on the realized-carrier regime.
-- $\mathcal E_T$: event domain of admissible realized-content / transformation pairs.
-- $D$: distinguisher/signature layer, introduced as the fifth minimal added branch structure.
-- $\mathfrak D$: class of distinguishers on the event domain.
-- $\mathfrak{Sig}$: signature class for readout outcomes.
-- $A$: stable-comparison layer, introduced as the sixth minimal added branch structure.
-- $\mathfrak C$: class of comparison classes.
-- $q$: class-forming map from signatures to comparison classes.
-- $\sqsubseteq$: comparison preorder on $\mathfrak C$.
-- $\odot$: partial comparison composition law on $\mathfrak C$.
-- $V$: valuation-representation layer, introduced as the seventh minimal added branch structure.
-- $\mathbb V$: valuation carrier.
-- $\leq_{\mathbb V}$: preorder on the valuation carrier.
-- $\oplus$: valuation-composition law on $\mathbb V$.
-- $0_{\mathbb V}$: neutral valuation element.
-- $\nu$: valuation map from comparison classes to the valuation carrier.
-- $\mathcal M_0$: generic placeholder for a realized pre-differential carrier, not yet canonical.
-- $\mathcal M$: downstream differentiable carrier, not yet earned in this pass.
+What survives from v10 in substance is not the layer stack itself, but the diagnosis:
+
+- a flat primitive does not generate enough pressure,
+- overlap/coherence language is a smoothness-smuggling risk,
+- carrier language arrives too early in the old route,
+- and the old no-go ladder is evidence that the root was mispackaged.
 
 ---
 
-## Appendix B. Dependency Audit
+## 8. Remaining Burdens Required for Actual Closure
 
-### Primitive in this pass
+To move this draft toward real CF closure, the next burdens are:
 
-- $({\mathcal B},\#)$
+1. **BEP verdict**  
+   Decide whether bipolar flat-origin exhaustion is provable or must remain an explicit added principle.
 
-### Forced from prior layer in this pass
+2. **E1 admission or derivation**  
+   Decide whether non-vacuous realizable existence is primitive, derivable, or must remain an explicit added principle.
 
-- nullity exclusion,
-- undifferentiated sameness exclusion,
-- weakest surviving primitive.
+3. **WNF — Witnessed Non-Flatness Principle**  
+   Close the passage from differentiated realizability to genuine plurality without hiding plurality in the definition of \(\mathcal C\) or flatness.
 
-### Minimal added branch structure in this pass
+4. **Apartness theorem**  
+   Derive apartness from noncoincident multiplicity without resurrecting \((\mathcal B,\#)\) as primitive.
 
-- sharpenability discipline $L1$,
-- refinement/compatibility structure $R$,
-- realization/decisiveness layer $S$,
-- locality/cover structure $C$,
-- lawful-transformation structure $T$,
-- distinguisher/signature structure $D$,
-- stable comparison algebra structure $A$,
-- valuation-representation structure $V$,
-- lawful-parameterization structure $P$.
+5. **RRP — Recursive Reapplication Principle**  
+   State repeated unresolved differentiation cleanly enough to derive recursive refinement without graph/tree contamination.
 
-### Conditional theorem under explicit assumptions in this pass
+6. **WEP — Well-founded Exhaustion Principle**  
+   Decide whether truncation/frontier follows from the root alone or requires one explicit extra law.
 
-- existence of realized contents under $R+S$,
-- existence of a realized carrier regime under $R+S$,
-- non-canonicity of that regime under $R+S$.
+7. **First honest locality stage**  
+   Identify exactly when “local” first becomes honest rather than intuitive leakage.
 
-### Conditional or deferred beyond this pass
+8. **Later coherence principle**  
+   If frontier sectors close, isolate one minimal post-frontier coherence principle for any pre-carrier bridge.
 
-- differentiability emergence.
-
-### Main dependency chain of this pass
-
-$$
-\text{nullity failure and sameness failure}
-\to
-({\mathcal B},\#)
-\to
-L1
-\to
-\text{no-go theorem for forced refinement}
-\to
-R
-\to
-\text{no-go theorem for forced realization from }R
-\to
-S
-\to
-\text{conditional existence of non-canonical realized carrier regime}
-\to
-\text{no-go theorem for forced locality from the solved layer}
-\to
-C
-\to
-\text{no-go theorem for forced lawful transformation from the solved layer}
-\to
-T
-\to
-\text{no-go theorem for forced distinguishers/signatures}
-\to
-D
-\to
-\text{no-go theorem for forced stable comparison}
-\to
-A
-\to
-\text{no-go theorem for forced valuation}
-\to
-V.
-$$
-
-No later object is used in the proofs of this pass.
+9. **Differentiability status**  
+   Do not blur this. Either it remains open, or the exact remaining burden must be named.
 
 ---
 
-## Appendix C. CFN Traceability Table
+## 9. Theorem Inventory (compact)
 
-| CF section | CFN segment | quantities instantiated | diagnostics emitted | claims witnessed |
-|---|---|---|---|---|
-| §2–§3.3 | `cf000-root-exclusions` | example substrates $({\mathcal B},\#)$ | nullity/sameness exclusion witness cases | Theorems 3.1.1–3.3.1 |
-| §3.5 | `cf000-refinement-nogo` | non-isomorphic sharpening realizations | structure-comparison tables | Theorem 3.5.1 |
-| §3.7 | `cf000-realization-nogo` | $R$-models with and without realized contents | realization existence/nonexistence witness tables | Theorem 3.7.1 |
-| §3.9–§3.10 | `cf000-realization-S` | $R+S$-models with nonempty realized-carrier regimes and multiple branches | existence / non-canonicity witness tables | Theorems 3.9.1–3.10.1 |
-| §3.12 | `cf000-locality-nogo` | same realized-carrier regime with inequivalent cover disciplines | locality underdetermination diagnostics | Theorem 3.12.1 |
-| §3.15 | `cf000-transformation-nogo` | same realized-carrier regime and same cover discipline with inequivalent transformation families | transformation underdetermination diagnostics | Theorem 3.15.1 |
-| §3.18 | `cf000-distinguisher-nogo` | same realized-carrier regime, same cover discipline, same transformation layer, with inequivalent readout disciplines | readout underdetermination diagnostics | Theorem 3.18.1 |
-| §3.21 | `cf000-comparison-nogo` | same realized-carrier regime, same cover discipline, same transformation layer, same readout layer, with inequivalent comparison algebras | comparison underdetermination diagnostics | Theorem 3.21.1 |
-| §3.24 | `cf000-valuation-nogo` | same solved pre-valuation layer with inequivalent valuation representations and with non-representable comparison algebras | valuation underdetermination diagnostics | Theorem 3.24.1 |
-| §3.27 | `cf000-parameterization-nogo` | same solved pre-parameterization layer with inequivalent lawful parameterizations and with non-parameterizable involutive solved layers | parameterization underdetermination diagnostics | Theorem 3.27.1 |
-| §6 | `cf000-minimal-witnesses` | sparse witness structures | witness artifact diagrams | worked examples |
+### Closed
+- Nullity exclusion
+- Undifferentiated totality exclusion
+- Pole non-identity with shared sterility consequence
+- No-go on bipolar flat-origin classification from the current lean package
+- Dependence order is earlier than time
+- Irreversible arrow must be staged later than root asymmetry
+- Causality is forbidden at the primitive layer
+- A8 reclassified as late-regime signature, not primitive generator
 
-The CFN mirrors this pass. It does not repair or extend its theorem burden.
+### Partially Closed
+- Pole-opposition root statement, conditional on BEP
+- Breakdown of perfect flatness, conditional on E1
+- Existence of differentiated realizability, conditional on E1
+- Reiterability of unresolved differentiation as a staging target stripped of graph imports
+- Hierarchy as repeated dependence/refinement stripped of graph imports
+- Reversible continuation staged later than dependence order
+- Root minimality audit of the predicate package
+
+### Conjectural
+- Qualitative braking from repeated reduction of unresolved indifference
+- Deep ancestor relation to the later conservative/dissipative split
+- H000-to-A8 architecture chain
+
+### Open
+- BEP as theorem or admitted principle
+- E1 as theorem or admitted principle
+- WNF as theorem or admitted principle
+- Multiplicity theorem
+- Apartness theorem
+- RRP as theorem or admitted principle
+- Truncation/frontier theorem
+- WEP as theorem or admitted principle
+- Sector notion
+- Overlap/coherence burden
+- Pre-carrier patchability
+- Differentiability bridge
+
+### Blocked
+- Root exclusivity claim (blocked by BEP)
+- Apartness as constructive result (blocked on WNF / multiplicity)
+- Boundary/domain-wall-type structure (blocked on frontier)
+- First honest locality stage (blocked on frontier/sector closure)
+- Pre-carrier patchability (blocked on locality/coherence stage)
 
 ---
 
-## Acceptance Checklist
+## 10. Anti-Smuggling Note
 
-- [x] The primitive ontology is stated clearly.
-- [x] All derived objects used in this pass are earned in logical order.
-- [x] All equations needed for understanding this pass are present in the document.
-- [x] All theorem-bearing claims in this pass are stated with explicit hypotheses.
-- [x] All proof-bearing claims in this pass have actual proofs.
-- [x] No essential burden for this pass has been outsourced to canon links or the CFN.
-- [x] Validation logic and falsification criteria for this pass are stated in the CF itself.
-- [x] Minimal witness examples are specified in the CF itself.
-- [x] The role of the CFN is executable realization only.
-- [x] Non-theorem-grade claims are explicitly labeled.
-- [x] The refinement/compatibility question is settled.
-- [x] The realized-content / realized-carrier question is resolved at the level of a no-go theorem from $R$.
-- [x] The realization/decisiveness layer $S$ is settled at the level of a conditional existence theorem and a non-canonicity theorem.
-- [x] The locality/cover question is settled at the level of a no-go theorem from the solved $R+S$ layer.
-- [x] The locality/cover layer $C$ is explicitly introduced as the next minimal added branch structure.
-- [x] The lawful-transformation question is settled at the level of a no-go theorem from the solved $R+S+C$ layer.
-- [x] The lawful-transformation layer $T$ is explicitly introduced as the next minimal added branch structure.
-- [x] The distinguisher/signature question is settled at the level of a no-go theorem from the solved $R+S+C+T$ layer.
-- [x] The distinguisher/signature layer $D$ is explicitly introduced as the next minimal added branch structure.
-- [x] The stable-comparison question is settled at the level of a no-go theorem from the solved $R+S+C+T+D$ layer.
-- [x] The stable-comparison layer $A$ is explicitly introduced as the next minimal added branch structure.
-- [x] The valuation question is settled at the level of a no-go theorem from the solved $R+S+C+T+D+A$ layer.
-- [x] The valuation layer $V$ is explicitly introduced as the next minimal added branch structure.
-- [x] The parameterization question is settled at the level of a no-go theorem from the solved $R+S+C+T+D+A+V$ layer.
-- [x] The parameterization layer $P$ is explicitly introduced as the next minimal added branch structure.
-- [ ] The differentiability question is settled.
-- [ ] The full CF000 branch is complete.
+Top contamination risks in the present rewrite:
 
-This document is **not yet a Completed Formalism** for the entire CF000 program. It is a theorem-bearing draft pass that resolves the parameterization question relative to the solved $R+S+C+T+D+A+V$ layer and honestly blocks premature ascent to differentiability.
+1. **Hidden plurality through \(\mathcal C\)**  
+   If the logical domain of candidate realization conditions is allowed to do ontological work, multiplicity may be smuggled instead of derived.
+
+2. **Flatness secretly doing all the work**  
+   If flatness is defined too strongly, then multiplicity and apartness will merely be encoded inside the negation of flatness.
+
+3. **Realizability already containing persistence or structure**  
+   If \(\mathrm{Real}(x)\) silently means “contentful stable state,” then E1, WNF, and later burdens will have been partially prepaid by definition.
+
+4. **Orig already acting like a hidden root classifier**  
+   If \(\mathrm{Orig}(x)\) is silently strengthened beyond “origin candidate,” then BEP will be smuggled rather than earned.
+
+5. **Frontier/sector language arriving before closure**  
+   The mind loves to picture branches, fronts, and boundaries. The document must not start drawing mathematical moustaches on intuitions that have not yet earned a formal face.
+
+---
+
+## Appendix A. Primitive Block
+
+Primitive symbols and laws of this draft:
+
+\[
+\mathbf 0,\mathbf 1 \in \mathcal C
+\]
+
+\[
+\mathrm{Orig}(x),\qquad \mathrm{Ster}(x), \qquad \mathrm{Real}(x), \qquad \mathrm{Flat}(x), \qquad \mathrm{Opp}(x,y)
+\]
+
+\[
+\mathbf 0\neq \mathbf 1
+\]
+
+\[
+\mathrm{Ster}(\mathbf 0)\wedge \mathrm{Ster}(\mathbf 1)
+\]
+
+\[
+\mathrm{Opp}(\mathbf 0,\mathbf 1)
+\]
+
+\[
+\forall x\in\mathcal C,\quad \mathrm{Real}(x)\Rightarrow (x\neq \mathbf 0 \wedge x\neq \mathbf 1)
+\]
+
+\[
+\forall x\in\mathcal C,\quad \big(\mathrm{Real}(x)\wedge \mathrm{Opp}(\mathbf 0,\mathbf 1)\big)\Rightarrow \neg \mathrm{Flat}(x)
+\]
+
+Non-adopted but named added principles introduced by this draft:
+
+- **BEP** — Bipolar Exhaustion Principle
+- **E1** — Non-vacuous realizable existence
+- **WNF** — Witnessed Non-Flatness Principle
+- **RRP** — Recursive Reapplication Principle
+- **WEP** — Well-founded Exhaustion Principle
+
+---
+
+## Appendix B. First Derived Notions Block
+
+\[
+\mathrm{Diff}(x) := \mathrm{Real}(x)\wedge \neg \mathrm{Flat}(x)
+\]
+
+Target later notions, not yet closed:
+
+- multiplicity,
+- apartness,
+- recursive refinement,
+- dependence hierarchy,
+- qualitative braking,
+- truncation/frontier,
+- pre-boundary sectors,
+- later coherence,
+- pre-carrier support,
+- differentiability bridge.
+
+---
+
+## Appendix C. Acceptance Status
+
+This document is **not** yet a Completed Formalism for the full CF000 burden.
+
+It is a merged root rewrite draft that:
+
+- rejects the old v10 staircase as spine,
+- installs the pole-opposition architecture as the controlling root,
+- incorporates the root-classification replacement section directly into the manuscript,
+- closes the earliest exclusion and staging theorems that actually follow,
+- and isolates the true next burdens instead of climbing another decorative ladder.
+
+The next serious pass must attack WNF and, in parallel, decide whether BEP and E1 are to be proved, admitted, or explicitly left as named assumptions.
