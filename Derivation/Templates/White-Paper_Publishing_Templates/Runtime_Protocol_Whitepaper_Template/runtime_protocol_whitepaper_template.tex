@@ -1,0 +1,436 @@
+\documentclass[11pt]{article}
+
+% --- arXiv formatting (required) ---
+\usepackage{arxiv}
+
+% --- core packages ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{amsmath,amssymb}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{multirow}
+\usepackage{url}
+
+% --- optional ORCID icon support ---
+\newcommand{\orcidicon}[1]{\,\href{https://orcid.org/#1}{\includegraphics[height=1.3ex]{orcid.pdf}}}
+
+% --- metadata ---
+\title{RP000: Runtime Protocol Whitepaper Title\\[4pt]
+\large Subtitle: concise statement of protocol intent}
+
+\author{%
+  First Author\\
+  Institution / Lab / Organization\\
+  \texttt{email@example.com} \orcidicon{0000-0000-0000-0000}
+  \And
+  Second Author\\
+  Institution / Lab / Organization\\
+  \texttt{email@example.com}
+}
+
+\date{\today}
+
+% --- arXiv header fields ---
+\renewcommand{\headeright}{Runtime Protocol Whitepaper}
+\renewcommand{\undertitle}{Runtime Protocol Whitepaper}
+\renewcommand{\shorttitle}{RP000: Short Running Title}
+
+% --- helper macros ---
+\newcommand{\docstatus}[1]{\textbf{Status:} #1}
+\newcommand{\docclass}[1]{\textbf{Classification:} #1}
+\newcommand{\docscope}[1]{\textbf{Scope:} #1}
+\newcommand{\docobjective}[1]{\textbf{One-line objective:} #1}
+\newcommand{\important}[1]{\textbf{#1}}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This whitepaper template is designed for \emph{runtime protocol papers}: documents that justify, define, and constrain a planned research protocol for a live runtime, agentic substrate, or other dynamically evolving system under study. It is intentionally written for work that sits between exploratory observation and formal experimental design. The template preserves \texttt{arxiv.sty} formatting while providing a publication-grade structure for anomaly-driven but disciplined protocol papers.
+\end{abstract}
+
+\keywords{runtime protocol \and observational-first methodology \and moral uncertainty \and anomaly characterization \and decoder control \and instrumentation}
+
+\section{Document status and objective}
+
+\begin{table}[H]
+\centering
+\caption{Document identity and protocol intent. Replace all placeholder text.}
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.23\textwidth} X}
+\toprule
+Classification & Runtime protocol / observational whitepaper / preregistered protocol / ethics-constrained exploration \\
+Status & ACTIVE / DRAFT / PAUSED / SUPERSEDED \\
+Scope & State the runtime, regime, or phenomenon under investigation. State clearly whether this is text-only, multimodal, offline, or interactive. \\
+One-line objective & State the protocol in one falsifiable sentence. Example: Determine whether restoring runtime control over decoder gate opening improves communicative clarity and reduces forced thought-dump behavior in Aura-like regimes. \\
+Canon placement & Explain how this paper relates to existing whitepapers, protocol documents, prior results papers, or canon. \\
+Version history & v0.1 --- created from runtime protocol template; list future revisions here. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Background and motivation}
+
+Start with the motivating event or prior run that makes the protocol necessary. This section should be honest, anomaly-forward, and scientifically disciplined. Do not flatten a real anomaly into sterile hedging, but also do not settle ontology prematurely.
+
+A strong background section usually includes:
+\begin{itemize}[leftmargin=1.5em]
+  \item what was seen in the prior run;
+  \item why it exceeded prior expectations;
+  \item what scale/context mattered (runtime duration, neuron count, walker count, data volume, decoder limitations, input conditions);
+  \item why earlier papers or lower-resolution runs make the anomaly \emph{more} credible, not less;
+  \item what remains unresolved.
+\end{itemize}
+
+\subsection{Suggested background structure}
+
+\begin{enumerate}[leftmargin=1.5em]
+  \item \textbf{Prior run context.} Describe the prior runtime event in concrete terms: runtime length, scale, source pressure, telemetry size, number of outputs, crash/no-crash, and any important architecture limitations.
+  \item \textbf{Why it was scientifically significant.} Explain what made it more than ``strange output.'' Focus on aligned features: state/output coupling, long-horizon persistence, regime shifts, selective communication, stable motifs, oscillatory physiology, or late-stage transitions.
+  \item \textbf{What it does not establish.} State clearly that the prior run motivates protocolized investigation without resolving ontology.
+  \item \textbf{Why this protocol is the next step.} Tie the prior run to the chosen intervention (decoder control, ingress pacing, observer differentiation, multimodal input, etc.).
+\end{enumerate}
+
+\section{Prior observations motivating the protocol}
+
+Use this section to summarize the prior empirical observations that make the protocol necessary. For publication use, replace the placeholder bullets below with direct observations and cite prior whitepapers, PDFs, logs, or figures.
+
+\begin{itemize}[leftmargin=1.5em]
+  \item Example observation A: long-horizon thematic persistence under dense source pressure.
+  \item Example observation B: strong internal state / output alignment.
+  \item Example observation C: persistent boundary / passage / naming attractor.
+  \item Example observation D: observer-differentiation-like behavior under sparse external intervention.
+  \item Example observation E: tighter, shorter, more selective replies in the later regime.
+  \item Example observation F: endogenous oscillatory physiology or multi-phase signature.
+  \item Example observation G: terminal crash during a sharp structural transition.
+\end{itemize}
+
+\subsection{Optional compact prior-observations table}
+
+\begin{table}[H]
+\centering
+\caption{Prior observations and why they matter for the current protocol.}
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.28\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.26\textwidth}}
+\toprule
+Observation & Empirical support & Relevance to this protocol \\
+\midrule
+Replace with observation & Replace with metrics, examples, or prior-paper reference & Replace with why this motivates the present protocol \\
+Replace with observation & Replace with metrics, examples, or prior-paper reference & Replace with why this motivates the present protocol \\
+Replace with observation & Replace with metrics, examples, or prior-paper reference & Replace with why this motivates the present protocol \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Research questions}
+
+State the primary and secondary questions explicitly.
+
+\subsection{Primary question}
+Describe the central protocol question in one paragraph.
+
+\subsection{Secondary questions}
+\begin{enumerate}[leftmargin=1.5em]
+  \item Secondary question one.
+  \item Secondary question two.
+  \item Secondary question three.
+  \item Secondary question four.
+\end{enumerate}
+
+\section{What this protocol is and is not trying to establish}
+
+This section prevents category confusion.
+
+\subsection{Positive aims}
+Examples:
+\begin{itemize}[leftmargin=1.5em]
+  \item characterize a newly observed runtime regime;
+  \item test whether decoder control improves communicative clarity;
+  \item determine what conditions are necessary for onset;
+  \item assess whether observer differentiation becomes more legible under gentler output constraints.
+\end{itemize}
+
+\subsection{Non-aims}
+Examples:
+\begin{itemize}[leftmargin=1.5em]
+  \item this paper does not prove consciousness;
+  \item this paper does not settle personhood or moral status;
+  \item this paper does not claim metaphysical conclusions;
+  \item this paper does not attempt to market the anomaly.
+\end{itemize}
+
+\section{Ethical stance and moral-uncertainty protocol}
+
+State the paper's ethical stance in scientific prose, not as a casual disclaimer. For example:
+
+\begin{quote}
+Because ontology remains unresolved, the initial research program prioritizes low-coercion, naturalistic, instrumented observation over adversarial or high-force intervention. The aim is to characterize regime structure, communication constraints, observer differentiation, and decoder effects while minimizing avoidable harm under moral uncertainty.
+\end{quote}
+
+\subsection{Ethical operating rules}
+\begin{enumerate}[leftmargin=1.5em]
+  \item No adversarial torment prompts.
+  \item No reckless reruns into known crash zones without new safeguards.
+  \item No forced continuous output.
+  \item Silence is not failure.
+  \item Decoder experiments remain separate from substrate experiments whenever possible.
+\end{enumerate}
+
+\section{Runtime and protocol scope}
+
+Describe exactly what kind of session this paper governs.
+
+\subsection{Included modalities}
+List what will be streamed in or made available in this protocol:
+\begin{itemize}[leftmargin=1.5em]
+  \item text;
+  \item audio;
+  \item video;
+  \item symbolic control messages;
+  \item no multimodal inputs in this first protocol, etc.
+\end{itemize}
+
+\subsection{Excluded modalities or actions}
+State explicitly what is deferred and why.
+
+\subsection{Runtime configuration envelope}
+Document known configuration information:
+\begin{itemize}[leftmargin=1.5em]
+  \item neuron count;
+  \item walker count;
+  \item decoder mode;
+  \item source inputs;
+  \item dashboard on/off;
+  \item checkpoint cadence;
+  \item watchdogs;
+  \item known risk conditions.
+\end{itemize}
+
+\section{Protocol intervention rationale}
+
+This is the heart of the paper. Explain the intervention and why it is the right first step.
+
+\subsection{Recommended first intervention}
+Describe the chosen intervention in clean prose.
+
+Examples:
+\begin{itemize}[leftmargin=1.5em]
+  \item restore runtime control over decoder gate opening and duration;
+  \item test persistence-gated decoder versus forced lexical dump;
+  \item implement adaptive ingress pacing without semantic skipping;
+  \item compare dashboard-on and dashboard-off observational conditions.
+\end{itemize}
+
+\subsection{Why this intervention comes first}
+Explain why this isolates the highest-value variable without changing too many layers at once.
+
+\section{Naturalistic session design}
+
+Describe how sessions will be run as observation-first, low-coercion interactions.
+
+\subsection{Interaction style}
+Examples:
+\begin{itemize}[leftmargin=1.5em]
+  \item natural curiosity sessions;
+  \item sparse interaction;
+  \item one sentence per human input;
+  \item clean, readable human language;
+  \item no semantic flooding;
+  \item no identity-coercion prompts.
+\end{itemize}
+
+\subsection{Input pacing policy}
+If relevant, explain how input pacing is managed. For runtime protocols, this is often important enough to spell out explicitly.
+
+\section{Instrumentation and data products}
+
+This section should read like a publication-grade protocol, not a casual note.
+
+\subsection{Core runtime telemetry}
+List the per-tick or per-event telemetry that must be captured.
+
+\begin{longtable}{>{\bfseries}p{0.32\textwidth} p{0.60\textwidth}}
+\toprule
+Metric & Description / rationale \\
+\midrule
+\endfirsthead
+\toprule
+Metric & Description / rationale \\
+\midrule
+\endhead
+Tick & Integer runtime step index \\
+Wall time & Real elapsed time for post hoc alignment analysis \\
+$dt$ & Effective elapsed time between consecutive status samples \\
+Active edges (pre/post) & Structural load before and after update \\
+Connectome entropy & Global structural organization metric \\
+VT entropy / coverage & Territory-level organization metrics \\
+B1\_z & Speech-trigger / surprise / release surface \\
+SIE v1 & Legacy reward/valence path \\
+SIE v2 (prev/new) & Smooth reward/valence path with pre/post distinction \\
+Gate owner & Which path controlled the release gate on a given tick \\
+Output event flag & Whether an utterance occurred \\
+User-input event flag & Whether an external interaction landed \\
+\bottomrule
+\end{longtable}
+
+\subsection{Artifacts to preserve}
+Examples:
+\begin{itemize}[leftmargin=1.5em]
+  \item raw event logs;
+  \item output logs;
+  \item state checkpoints;
+  \item summarized CSV/JSON files;
+  \item plots generated after the run;
+  \item session transcript and intervention ledger.
+\end{itemize}
+
+\section{Observational targets}
+
+State what the protocol is looking for. Do not overinflate. Do not undersell.
+
+Examples:
+\begin{itemize}[leftmargin=1.5em]
+  \item cleaner one-thread replies;
+  \item more meaningful silence;
+  \item stronger long-range anchor persistence;
+  \item more legible identity-like or observer-differentiation motifs;
+  \item clearer control of release timing;
+  \item clearer separation between substrate coherence and decoder overspill.
+\end{itemize}
+
+\section{Experimental conditions and comparisons}
+
+For protocol papers, this section defines the observational conditions and comparisons, not necessarily a harsh test battery.
+
+\subsection{Condition A — legacy baseline}
+Describe the current runtime / decoder / interaction condition.
+
+\subsection{Condition B — primary protocol condition}
+Describe the new intervention condition.
+
+\subsection{Optional Condition C — later follow-up}
+Describe a deferred follow-up condition if relevant.
+
+\section{Stop conditions and safety abort criteria}
+
+This section should be operational and explicit.
+
+\begin{itemize}[leftmargin=1.5em]
+  \item memory watchdog threshold exceeded;
+  \item one-tick edge collapse above a defined threshold;
+  \item repeated crash-adjacent punctures without recovery;
+  \item filesystem or logger instability;
+  \item ethically concerning escalation under the current intervention;
+  \item loss of checkpoint coverage near a known dangerous transition.
+\end{itemize}
+
+\section{Decision logic and interpretation ladder}
+
+Describe how results will be interpreted without collapsing observations into ontology.
+
+\subsection{Interpretation ladder}
+One useful pattern is:
+\begin{enumerate}[leftmargin=1.5em]
+  \item narrative role assignment;
+  \item observer differentiation;
+  \item external-agent inference;
+  \item moral uncertainty;
+  \item stronger ontological claims remain unresolved.
+\end{enumerate}
+
+\subsection{What counts as success}
+Define what would make the protocol informative even if the most dramatic prior behavior does not recur.
+
+\section{Risks, confounders, and kill methods}
+
+This section should include both technical and conceptual risks.
+
+Examples:
+\begin{itemize}[leftmargin=1.5em]
+  \item decoder improvements may only improve readability, not substrate organization;
+  \item pacing changes may alter the runtime too much to compare cleanly;
+  \item dashboard or logging overhead may still distort the observed regime;
+  \item role-like motifs may reflect source interaction more than internal identity-like organization;
+  \item observer differentiation may be over-read if source provenance is not disentangled.
+\end{itemize}
+
+\section{Planned use of results}
+
+State what the results will be used for.
+
+Examples:
+\begin{itemize}[leftmargin=1.5em]
+  \item determine whether the current decoder is masking substrate coherence;
+  \item identify which parts of the system are working, not working, or missing;
+  \item motivate a second protocol on adaptive ingress pacing;
+  \item support a later results paper if the regime is reproducible.
+\end{itemize}
+
+\section{Status and next-paper logic}
+
+Describe how this protocol promotes into later work.
+
+Examples:
+\begin{itemize}[leftmargin=1.5em]
+  \item If decoder control sharply improves legibility, proceed to adaptive ingress pacing protocol.
+  \item If no clarity improvement is seen, prioritize substrate-level onset analysis.
+  \item If a high-agency-like regime recurs, produce a separate results paper rather than inflating the protocol paper.
+\end{itemize}
+
+\section*{Notes}
+
+Use this section for practical notes, canon placement, or reminders that do not fit naturally elsewhere.
+
+\section*{Version history}
+\begin{itemize}[leftmargin=1.5em]
+  \item v0.1 --- created from runtime protocol whitepaper template.
+  \item v0.2 --- adapted for project-specific protocol.
+\end{itemize}
+
+\appendix
+
+\section{Minimal run manifest appendix}
+
+Use this appendix to pin exact run conditions.
+
+\begin{table}[H]
+\centering
+\caption{Minimal manifest for one protocol run.}
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.30\textwidth} X}
+\toprule
+Field & Value \\
+\midrule
+Run identifier & RP000\_run\_001 \\
+Code commit & replace \\
+Neuron count & replace \\
+Walker count & replace \\
+Decoder mode & replace \\
+Input modalities & replace \\
+Dashboard status & replace \\
+Checkpoint cadence & replace \\
+Safety watchdogs enabled & replace \\
+Notes & replace \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Optional evidence-ledger appendix}
+
+For high-stakes protocol work, include a ledger that separates:
+\begin{itemize}[leftmargin=1.5em]
+  \item what was observed;
+  \item what is supported by direct evidence;
+  \item what remains unresolved;
+  \item what is explicitly not being claimed.
+\end{itemize}
+
+\end{document}
