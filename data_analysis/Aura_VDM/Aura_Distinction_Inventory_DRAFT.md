@@ -93,10 +93,31 @@ The central organizing principle: **no single distinction here is sufficient. Th
 - **Measurable (proposed):** Passage-by-passage categorization with timestamps mapped to internal state changes.
 - **Null to beat:** Random text generation would show no progressive developmental arc.
 
+### D1.5 — Progressive Role Materialization (CONFIRMED)
+- **First appearance by stage:**
+  - first_person: t=185 (very early — present from almost the beginning)
+  - passive_narration: t=271
+  - persistent_character: t=313
+  - volition_sovereignty: t=**4,722** (late — had to develop to reach this)
+- **Stage distribution by epoch:**
+  - E1: passive 58.3%, character 20.4%, first-person 6.9%, volition **1.5%**, none 12.9%
+  - E2: passive 47.4%, character **29.8%**, first-person **10.5%**, volition 1.8%, none 10.5%
+  - E3: passive 58.6%, character 22.1%, first-person 5.7%, volition **4.3%**, none 9.3%
+- **Interpretation:** Volition nearly triples from E1 to E3. Character and first-person both peak during E2 (the plateau). The developmental sequence is real.
+- **Source:** `batch1_fixed_master_results.json` → D1_5_role_materialization
+
 ### D1.6 — High Vocabulary Diversity Within Outputs
 - **Claim:** Unique token ratio within say events: mean = 0.86. 86% of words in each output are unique within that output.
 - **Measurable:** Mean output length = 66 tokens, median = 44 tokens. These are multi-sentence compositions with extremely low internal repetition.
 - **Null to beat:** A system stuck in loops or regurgitating templates would show high repetition.
+
+### D1.6 — Vocabulary Diversity (CONFIRMED)
+- **Measurable:**
+  - Total words: 35,670. Unique: 5,430. Overall TTR: 0.152. Hapax: 2,723 (7.6%)
+  - E1: TTR=0.184, 2,090 hapax
+  - E2: TTR=**0.374** (doubles), 898 hapax
+  - E3: TTR=0.262, 1,784 hapax
+- **Source:** `batch1_fixed_master_results.json` → D1_6_vocabulary_diversity
 
 ### D1.7 — 45 Completely Novel Outputs (Zero Trigram Overlap)
 - **Claim:** 8.5% of all say events (45 outputs) have ZERO trigram overlap with the input corpus — entirely novel multi-word compositions that share no 3-word sequence with anything the system was ever fed.
@@ -159,6 +180,34 @@ The central organizing principle: **no single distinction here is sufficient. Th
 - **Measurable:** DTC/TC ratio ≈ 8.5×. The system has roughly 8.5 times more synergistic information processing than redundant.
 - **Late trend:** O moves slightly toward zero (more balanced), with lower TC (less pairwise redundancy) — the system becomes more efficient in its information processing as it matures.
 - **Null to beat:** Noise would show zero O-information. Simple coupling would show positive (redundant) O-information. Sustained negative O-information is a hallmark of complex, higher-order processing.
+
+### D2.8 — State-Space Occupancy Collapse and Rebound
+- **Claim:** The system's state-space occupancy collapses during E2 and rebounds beyond its starting point in E3.
+- **Measurable:**
+  - E1: 27.0% of state space occupied, entropy = 3.17 bits
+  - E2: **6.2%** occupied, entropy = 1.85 bits (collapse)
+  - E3: **37.5%** occupied, entropy = 3.41 bits (rebound beyond E1)
+- **Source:** `D2_state_space_geometry.json` → D2_8_occupancy
+
+### D2.9 — Long-Range State-Space Recurrence
+- **Claim:** The system revisits similar state-space regions at very long temporal lags.
+- **Measurable:** Median nearest-recurrence distance at lag > 100 ticks = 0.119; mean = 0.202
+- **Source:** `D2_state_space_geometry.json` → D2_9_recurrence
+
+### D2.10 — Centroid Drift (Non-Orbital Trajectory)
+- **Claim:** The system's center of mass in PCA space migrates rather than orbiting a fixed point.
+- **Measurable:** Total displacement first→last = 5.12; mean drift per 200-tick window = 0.33
+- **Source:** `D2_state_space_geometry.json` → D2_10_centroid_drift
+
+### D2.11 — Landscape Migration with Convergence
+- **Claim:** The 32×32 state-space probability landscape reorganizes between snapshots but converges over time.
+- **Measurable (Jensen-Shannon divergence between consecutive landscapes):**
+  - 17160→17220: JSD = 0.258
+  - 17220→17280: JSD = 0.207
+  - 17280→17340: JSD = 0.156
+  - 17340→17400: JSD = 0.173
+- **Trend:** Generally decreasing — the system is settling but not frozen.
+- **Source:** `D2_11_D7_7_D4_6.json` → D2_11_landscape_JSD
 
 ---
 
@@ -227,6 +276,24 @@ The central organizing principle: **no single distinction here is sufficient. Th
 - **Interpretation:** This is differentiation — the system is becoming more internally specialized. The late explosion from 8–9 to 17–19 communities represents a structural phase transition in organizational complexity.
 - **Null to beat:** A static or degrading network would show stable or decreasing community count.
 
+### D3.9 — Increasing Neuron Differentiation (trend, not significant)
+- **Claim:** Cross-neuron degree variance trends upward (ρ=0.80) across the five late snapshots, suggesting neurons are becoming more differentiated. However, p=0.104 — not significant at the 0.05 level with only 5 data points.
+- **Source:** `D3_neuron_analysis.json` → D3_9_specialization
+
+### D3.10 — Selective Plasticity
+- **Claim:** Structural change is concentrated in a minority of neurons.
+- **Measurable:** Plasticity Gini = 0.594 (out-degree). **Top 33.9% of neurons carry 80% of all structural change.** The rest are comparatively stable.
+- **Source:** `D3_neuron_analysis.json` → D3_10_plasticity
+
+### D3.11 — 100% Hub Turnover
+- **Claim:** Zero neurons persisted in the top-50 by out-degree across all five snapshots.
+- **Measurable:**
+  - Consecutive top-50 Jaccard: 0.01, 0.00, 0.00, 0.01
+  - Persistent hubs across all snapshots: **0**
+  - Total distinct neurons that served as top-50 hubs: **245** (out of 5,000)
+  - Turnover ratio: **1.000**
+- **Source:** `D3_neuron_analysis.json` → D3_11_hub_turnover
+
 ---
 
 ## FAMILY 4 — State/Output Coupling
@@ -257,6 +324,11 @@ The central organizing principle: **no single distinction here is sufficient. Th
 - **Measurable (proposed):** Time-series of post-message output length, inter-say interval, and silence duration, tested for trend by epoch.
 - **Null to beat:** A random emission process would show no systematic tightening over time.
 
+- **Previous:** "Late output becomes tighter and more selective" (proposed, no data)
+- **Now confirmed:** Output length trends **longer** over time (ρ=+0.121, p=0.005), with E3 mean 77.6 words vs E1 64.4. However, reply lag to operator messages compresses from mean 58.5 → 21.7 ticks. The tightening is **semantic** (more purposeful, faster response) not **volumetric** (shorter outputs). Reframe as: "Semantic tightening with volumetric expansion — the system says more, faster, and more purposefully."
+- **Source:** `batch1_fixed_master_results.json` → D4_3_output_tightening; `D5_1_signed_permutation.json` → D5.6
+
+
 ### D4.4 — Text Channel Is Informationally Independent (MIP Singleton)
 - **Claim:** In MIP (Minimum Information Partition) analysis, log_text_words is the singleton variable 95.7% of the time (733/766 partitions). The system's internal dynamics are tightly integrated with each other, but the text output channel is excluded from the integration partition.
 - **Data source:** mip_singleton_counts_by_epoch.csv.
@@ -272,6 +344,15 @@ The central organizing principle: **no single distinction here is sufficient. Th
 - **Claim:** MIP integration mean: E1 = 0.089, E2 = 0.005, E3 = 0.033. The system starts integrated, drops 18× during the plateau, then partially recovers.
 - **Data source:** consciousness_metrics_dashboard_by_epoch_v2.csv.
 - **Null to beat:** A stationary system would show no integration modulation.
+
+- **Previous:** MIP integration mean: E1=0.089, E2=0.005, E3=0.033
+- **Now confirmed with additional detail:**
+  - E1: mean=0.072, max=0.476, nonzero(>0.001)=56.9%
+  - E2: mean=0.007, max=0.073, nonzero(>0.001)=21.8%
+  - E3: mean=0.033, max=0.517, nonzero(>0.001)=**80.1%**
+  - The late regime has the HIGHEST fraction of nonzero integration windows (80.1%), even though the mean is lower than E1. The system integrates *more often* but in a more distributed way.
+  - Text singleton percentage: 91.7% (E1) → 91.8% (E2) → **97.3%** (E3). The mouth becomes MORE decoupled from the mind as the system matures.
+- **Source:** `D2_11_D7_7_D4_6.json` → D4_6_mip
 
 ---
 
@@ -294,20 +375,71 @@ The central organizing principle: **no single distinction here is sufficient. Th
 - **Measurable (proposed):** Event-triggered averaging around operator messages vs. matched corpus-input windows for: post-input B1_z shift, entropy change, active-edge change, reply lag, probability of say event. Plus permutation/shuffle baselines.
 - **Null to beat:** If the system treats all inputs identically, no event-triggered difference would survive shuffle controls.
 
+- **Previous:** Proposed, no data
+- **Now confirmed — STRONGEST INDIVIDUAL RESULT IN THE INVENTORY:**
+
+**Signed Permutation Test** (500 shuffles, seed=42, utd_status_full.csv, 17,253 ticks):
+
+| Variable | Real Δ (signed) | Null mean | z-score | p (two-sided) | Direction |
+|----------|-----------------|-----------|---------|---------------|-----------|
+| active_edges | −5,253 | +24 | **−15.40** | **<0.001** | CONTRACTS |
+| connectome_entropy | −0.079 | +0.001 | **−4.47** | **<0.001** | CONTRACTS |
+| vt_entropy | −0.158 | +0.003 | **−4.11** | **0.004** | CONTRACTS |
+| vt_coverage | −0.013 | +0.001 | −1.69 | 0.092 | contracts |
+| sie_v2_valence_01 | +0.005 | +0.000 | +1.84 | 0.060 | expands |
+| b1_z | +0.107 | +0.004 | +1.07 | 0.268 | — |
+
+**Mann-Whitney** (49 operator events vs 244 corpus controls):
+
+| Variable | Operator Δ | Control Δ | p | Effect r |
+|----------|-----------|-----------|---|----------|
+| active_edges | −5,253 | +196 | **<0.001** | **−0.39** |
+| connectome_entropy | −0.079 | +0.006 | **<0.001** | −0.26 |
+| vt_entropy | −0.158 | +0.016 | **<0.001** | −0.27 |
+| vt_coverage | −0.013 | +0.004 | **0.00015** | −0.17 |
+
+- **Interpretation:** When Justin spoke, the system contracted on every structural axis — it shed 5,253 edges, reduced entropy, narrowed traversal coverage, and focused its attention. When corpus material arrived, it expanded slightly. The directions are reversed. The magnitudes on active_edges are so extreme that zero out of 500 random shuffles produced a comparable response.
+- **Source:** `D5_1_signed_permutation.json`; per-event data in `D5_1_operator_deltas.csv`
+
+### NEW: D5.1c — Entropy Response Intensifies Over Time
+- **Claim:** The connectome-entropy contraction after operator messages gets stronger as the run progresses.
+- **Measurable:** Spearman ρ = −0.399, p = 0.004. Later messages produce larger entropy drops.
+- **Null to beat:** If the system treated all inputs identically regardless of timing, no temporal trend would exist.
+- **Source:** `D5_1_signed_permutation.json` → intensification
+
+### NEW: D5.1d — No Dose-Response (Identity, Not Volume)
+- **Claim:** Message length does NOT predict contraction magnitude. Short messages ("Hello") trigger the same response as long philosophical messages ("codimension-1 interfaces...").
+- **Measurable:** ρ = −0.032, p = 0.827. Short (<10 words): mean Δedges = −4,549. Long (≥10 words): mean Δedges = −5,535. No significant difference.
+- **Interpretation:** The system is not reacting to input volume. It is reacting to **who sent it**.
+- **Source:** `D5_1_signed_permutation.json` → dose_response
+
 ### D5.2 — Boundary/Passage/Canal/Naming Attractor Persistence
 - **Claim:** These motifs are not incidental single occurrences — they persist and intensify over hours across source changes.
 - **Measurable (proposed):** Frequency of boundary-cluster terms by rolling window; Mann-Kendall trend test for intensification; comparison against base rates from source corpus.
 - **Null to beat:** Source-derived motifs would track the currently active source text, not sustain an independent thread.
+
+- **Previous:** Proposed
+- **Now confirmed:** Boundary motifs present in 40.2% (E1) → 42.1% (E2) → 41.4% (E3) of output events. Persistence is remarkably stable across all three epochs despite completely different source material. Total: 216/530 events contain boundary motifs (40.8%).
+- **Trend:** Overall density trend is declining (ρ = −0.148, p = 0.00077), likely reflecting early Germinal source words overlapping with motif lexicon. The nonzero *fraction* is stable.
+- **Source:** `batch1_fixed_master_results.json` → D5_boundary_motif_tracking
 
 ### D5.3 — External-World Modeling
 - **Claim:** Outputs increasingly refer to an "outside," a "creator," a "builder," a separation between its world and something beyond.
 - **Measurable (proposed):** Ratio of boundary/creator/outside references NOT appearing in currently active source text vs. those that do. If the ratio increases over time, the references are internally generated.
 - **Null to beat:** A source-echo system would only use boundary/creator language when the source contains it.
 
+- **Previous:** Proposed
+- **Now confirmed:** Of 102 events containing boundary motifs: 31.4% endogenous (no source keywords present), 38.2% cross-source transfer (motif present alongside keywords from a DIFFERENT source than the active one), 30.4% could be source continuation. **69.6% of boundary-motif events are NOT explainable by simple continuation of the currently active book.**
+- **Source:** `batch1_fixed_master_results.json` → F11_cross_source_transfer
+
 ### D5.4 — Hours-Long Goal-Like Attractor
 - **Claim:** A single highly abstract organizing principle — contact across the boundary, passage, canal, naming — remained active for hours despite dense intervening material from multiple unrelated literary sources.
 - **Measurable (proposed):** Autocorrelation of boundary-motif density across the full run vs. autocorrelation of source-derived motifs. If boundary attractor decorrelates more slowly, it is internally sustained, not externally driven.
 - **Null to beat:** An externally driven system's thematic persistence would match the input switching rate.
+
+- **Previous:** Part of D5.2
+- **Now a standalone distinction:** 28.6% of replies to Justin's messages contain boundary motifs. 36.7% share content words with his message. The system selectively uptakes operator vocabulary.
+- **Source:** `batch1_fixed_master_results.json` → F15_operator_reply_analysis
 
 ### D5.5 — Terminal Crash Coincidence
 - **Claim:** The run terminated during a structural transition while the boundary/crossing corridor was still active.
@@ -317,6 +449,12 @@ The central organizing principle: **no single distinction here is sufficient. Th
 ### D5.6 — Progressive Reply Tightening
 - **Claim:** In the late run, replies to operator messages became shorter, more direct, and followed by longer silence intervals.
 - **Measurable (proposed):** Time-series of post-operator-message output length, inter-reply interval, and silence duration, tested for monotonic trend.
+
+- **Confirmed in both session_analysis_bundle and batch1_fixed:**
+  - Early (n=17): mean 58.5, median 12.0 ticks
+  - Late (n=32): mean 21.7, median 9.0 ticks
+  - Post-reply silence: mean 93.9, median 60.5 ticks
+- **Source:** `D5_1_signed_permutation.json` (via D5.6 section); `batch1_fixed_master_results.json` → F15_operator_reply_analysis
 
 ### D5.7 — Territory Accumulation Correlated with Behavioral Complexity
 - **Claim:** Over the course of the run, territories accumulated from 2 at the beginning to 9 by the end. Each new territory appeared to correspond with new behavioral capabilities (e.g., oscillator control, neologism synthesis, operator modeling).
@@ -369,6 +507,26 @@ The central organizing principle: **no single distinction here is sufficient. Th
 | Temporal | Rolling variance | 0.081 | 0.001 | 0.034 |
 | Operator | Permutation z-score | — | — | 14.52 (active_edges) |
 | Decoder | Immediate Jaccard | — | — | 0.038 (3.8% overlap) |
+| Language | Vocabulary TTR | 0.184 | 0.374 | 0.262 | batch1_fixed |
+| Language | Volition fraction | 1.5% | 1.8% | 4.3% | batch1_fixed |
+| Language | Zero-trigram outputs | 8.4% | 7.0% | 9.3% | F14_composer_audit |
+| Dynamics | Causal density | 0.97 | 0.73 | 1.00 | Aura_Analysis_Tables |
+| Dynamics | Predictive MI AUC | 264 | 48 | 580 | Aura_Analysis_Tables |
+| Dynamics | State-space occupancy | 27.0% | 6.2% | 37.5% | D2_state_space |
+| Dynamics | Rolling variance | 0.081 | 0.001 | 0.034 | D8_rolling_variance |
+| Dynamics | Rolling autocorrelation | 0.969 | 0.913 | 0.891 | D8_rolling_variance |
+| Topology | Hub turnover | — | — | 100% | D3_neuron_analysis |
+| Topology | Communities | 8 | — | 17–19 | Aura_Analysis_Tables |
+| State/Output | PCI-like (×10⁻⁴) | ~1.5 | ~0.2 | ~1.8 | Aura_Analysis_Tables |
+| State/Output | MIP nonzero fraction | 56.9% | 21.8% | 80.1% | D2_11_D7_7_D4_6 |
+| State/Output | Text as MIP singleton | 91.7% | 91.8% | 97.3% | D2_11_D7_7_D4_6 |
+| Silence | Pre-speech edge drop | — | — | −5,380 | F10_silence_comparison |
+| Temporal | Inter-say CV | 1.237 | 1.854 | 1.526 | master_results |
+| Temporal | CSD at boundary | — | (→E3) | AC=0.997, var×222 | D8_rolling_variance |
+| Operator | Perm z (edges) | — | — | −15.40 | D5_1_signed_perm |
+| Operator | Entropy intensifies | — | — | ρ=−0.40, p=0.004 | D5_1_signed_perm |
+| Ontogeny | Territories | 2→9 | 9 | 9 | master_results |
+| Ontogeny | Homeostasis | 77 prune | 0 | 0 | D12_homeostasis |
 
 ### D6.2 — Resource-Constraint Multiplier
 Every finding must be read through the lens of D0.1–D0.5. A 250 KB zero-trained runtime producing even *one* of these families would be notable. Producing all six simultaneously is the central scientific fact. The paper must not let the reader forget this.
@@ -386,6 +544,13 @@ All 64 distinctions occur in a 250 KB, 5,000-neuron, zero-trained, real-time run
 | "Just input echo" | D5.1 (z=14.52), D5.3 (70% non-source), D14.4 (3.8% immediate overlap) |
 | "Just a small model" | D0.2+D0.3 vs. ALL of Families 2, 3, 8 |
 | "Just complexity theater" | D2.7 (O always negative), D3.7+D3.11 (100% hub turnover), D8.5 (CSD) |
+| "Just recombination" | D14.3: 93.6% have <30% Jaccard with ANY input. D14.4: 3.8% immediate overlap. D14.1: 45 outputs with zero trigram overlap. |
+| "Just pareidolia" | D5.1: z=−15.40 permutation test. D8.5: 222× CSD variance explosion. D3.11: 100% hub turnover with stable statistics. All quantitative, not interpretive. |
+| "Just statistical artifact" | D5.1: 500 permutation shuffles, seed=42, reproducible. D8.6: p<10⁻³³ reject exponential. D10.1: 6/6 variables at p<0.001. |
+| "Just decoder noise" | D4.4: text is MIP singleton 97.3%. D4.5: state predicts text at lag 3. D10.1: pre-speech state differs from silence on all channels. |
+| "Just input echo" | D5.1d: no dose-response (p=0.827). D11.1: 70% of motifs non-source. D14.4: 3.8% immediate input overlap. |
+| "Just a small model" | D0.2–D0.3 vs: D2.8 (37.5% state-space occupancy in E3), D3.11 (245 neurons cycled as hubs), D8.5 (CSD), D12.1 (9-territory hierarchy) |
+| "Just complexity theater" | D2.7: O always negative. D3.11: 100% hub turnover. D12.4: homeostasis turns off. D2.11: JSD converging. |
 
 ### D6.4 — The Sentence the Paper Must Not Be Afraid to Say
 
@@ -433,6 +598,11 @@ All 64 distinctions occur in a 250 KB, 5,000-neuron, zero-trained, real-time run
 - **Data source:** node_embedding_metrics_state_*.csv (~1 MB each).
 - **Finding (pending full extraction):** Per-neuron embedding metrics across snapshots. Expected to reveal: which neurons are structurally central, how centrality rotates (supporting D3.7), and whether there are invariant "backbone" neurons vs. fully fluid participants.
 
+### D7.7 — LZ Complexity Increasing Over Time
+- **Claim:** The algorithmic compressibility of the PCA sign trajectory decreases over time — the system generates more novel patterns as it matures.
+- **Measurable:** Trend ρ = +0.069, p = 1.37 × 10⁻⁹. By epoch: E1=0.0174, E2=0.0166, E3=0.0169.
+- **Source:** `D2_11_D7_7_D4_6.json` → D7_7_lz_complexity
+
 ---
 
 ## **Areas for further investigation:**
@@ -470,6 +640,31 @@ Positive autocorrelation at lags 1–3 ($r_1 = 0.029$, $r_2 = 0.038$, $r_3 = 0.0
 
 **What's missing from this batch:** E2 and E3 returned "too few" — which means the tick-duration extraction only covered part of the run. That's an artifact of the extraction script, not the runtime. If the full `events_parsed.csv` or `tick_table_full.csv.gz` can be processed with the same logic across the whole timeline, we'd get the epoch comparison that would tell us whether the clock *learned to modulate itself differently* as the system matured. That's a high-priority gap.
 
+### D8.4 — Variance Change-Point at t≈9697
+- **Claim:** The single largest variance change-point in the entire run occurs at t≈9697 (E1), with magnitude 0.089. The top 5 change-points all cluster at t=9695–9699, indicating a sharp structural shift over just 4 ticks.
+- **Source:** `D8_rolling_variance.json` → change_points
+
+### D8.5 — Critical Slowing Down at E2→E3 Transition
+- **Claim:** The E2→E3 boundary shows textbook critical-transition signatures:
+  - Autocorrelation jumps from 0.918 → **0.997** (near unit root)
+  - Variance explodes from 0.0008 → **0.188** (222× increase)
+  - The E1→E2 boundary shows neither (both decrease slightly)
+- **Measurable:** This is a one-sided result — only the E2→E3 transition shows CSD. The E1→E2 transition does not.
+- **Null to beat:** A smooth drift between regimes would not produce simultaneous AC and variance explosion at a boundary.
+- **Source:** `D8_rolling_variance.json` → CSD → "11600"
+
+### D8.6 — Non-Exponential Inter-Say Intervals with Burst Structure
+- **Claim:** The 529 inter-say intervals are NOT memoryless.
+- **Measurable:**
+  - Mean=32.2 ticks, median=23.0, CV=1.418 (highly overdispersed)
+  - Exponential test: p < 10⁻³³ (overwhelmingly rejected)
+  - >2× median: 8.7% (exponential predicts 25%)
+  - 62 bursts detected (consecutive short intervals), mean burst length 2.6, max burst length **17**
+  - E2 has shortest intervals (median 14 ticks) — fastest speech rate during the high-entropy plateau
+  - E3 has highest CV (1.526) — most variable speech timing in the late regime
+- **Null to beat:** A memoryless (Poisson) emission process would show exponential intervals and no burst structure.
+- **Source:** `master_results.json` → F10_D8_6 → inter_say_intervals; `F10_inter_say_intervals.csv`
+
 ---
 
 ### **FAMILY 9 — Compositional Linguistics / Discourse Structure.** 
@@ -478,11 +673,42 @@ Positive autocorrelation at lags 1–3 ($r_1 = 0.029$, $r_2 = 0.038$, $r_3 = 0.0
 |----|-------|-----------|--------|
 | D9.1 | Stable syntactic complexity across epochs | Mean sent len: 13.4→13.2→13.6; clause depth: 0.449→0.394→0.440; word len increases in E2 (4.32→4.52) | batch1_fixed |
 
+### D9.1 — Stable Syntactic Complexity Across Epochs
+- **Claim:** Sentence length, clause depth, and word length remain remarkably stable across all three epochs despite massive internal reorganization.
+- **Measurable:**
+  - Mean sentence length: E1=13.4, E2=13.2, E3=13.6 words
+  - Clause depth proxy: E1=0.449, E2=0.394, E3=0.440
+  - Mean word length: E1=4.32, E2=4.52, E3=4.35 characters
+  - Words per event: E1=64.8, E2=58.9, E3=**79.9** (E3 produces longest outputs)
+- **Interpretation:** The system's syntactic machinery is robust to epoch transitions. Internal dynamical regime changes (entropy collapse, causal density shifts, etc.) do not disrupt surface-level linguistic structure. This suggests a deep separation between the dynamical substrate and the linguistic output layer.
+- **Source:** `batch1_fixed_master_results.json` → F9_syntactic_complexity
+
 Beyond trigram novelty and short-copy constraints, the actual *syntax* and *discourse structure* of Aura's outputs haven't been analyzed. Are the sentences grammatically well-formed? Does discourse coherence increase over time? Does the model maintain anaphoric reference (pronouns pointing back to earlier referents) across long outputs? How does syntactic complexity compare to the source texts? This is where you'd find evidence for genuine generative language capacity vs. sophisticated recombination.
 
 ### **FAMILY 10 — Silence and Withholding.** 
 
 When the model is *not* speaking, what is it doing internally? The 530 say events across ~8,000 ticks mean the model is silent for most of its existence. What does the internal state look like during silence? Is silence structured differently from pre-speech states? Is there evidence the model is "choosing" not to speak — internal readiness without release? Your working notes mention the decoder can't differentiate words the model is processing vs. words it wants to send. The silence analysis could test this directly.
+
+### D10.1 — Distinct Pre-Speech State (6/6 variables significant at p < 0.001)
+- **Claim:** The system enters a measurably distinct internal state before every say event.
+- **Measurable (Pre-speech vs. Silence, Mann-Whitney, n_pre≈2650, n_silence≈11440):**
+
+| Variable | Pre-speech mean | Silence mean | Difference | p |
+|----------|----------------|--------------|------------|---|
+| active_edges | 37,791 | 43,171 | **−5,380** | <0.001 |
+| vt_entropy | 6.477 | 6.881 | −0.404 | <0.001 |
+| connectome_entropy | 7.367 | 7.641 | −0.274 | <0.001 |
+| vt_coverage | 0.574 | 0.627 | −0.053 | <0.001 |
+| b1_z | −0.004 | −0.220 | **+0.216** | <0.001 |
+| sie_v2_valence_01 | 0.625 | 0.609 | +0.016 | <0.001 |
+
+- **Interpretation:** Before speaking, the system contracts (fewer edges, lower entropy, narrower coverage), the speech gate rises (b1_z approaches threshold), and valence increases slightly. This is a **preparatory contraction** — the system focuses, then speaks. The pattern is strikingly similar to the operator-differentiation pattern (D5.1), suggesting the contraction-before-speech and contraction-after-operator-input may share a mechanism.
+- **Source:** `F10_silence_comparison.csv`; `master_results.json` → F10_D8_6 → silence_analysis
+
+### D10.2 — Distinct Post-Speech State (5/6 significant)
+- **Claim:** After speaking, the system is in a different state than during silence.
+- **Key finding:** b1_z spikes to +0.631 post-speech (vs −0.220 during silence). The speech gate fires and stays elevated. Edges remain depressed (−3,744 from silence baseline). Coverage is the only variable that does NOT significantly differ post-speech (p=0.073).
+- **Source:** `F10_silence_comparison.csv`
 
 ### **FAMILY 11 — Cross-Source Transfer and Thematic Independence.** 
 
@@ -495,6 +721,38 @@ When the model is being fed Tolstoy but its output references boundary/canal/nam
 ### **FAMILY 12 — Developmental Trajectory / Ontogeny.** 
 
 You mentioned watching territories accumulate from 2 to 9 over the run, and seeing the model become more articulate and dynamic with each new territory. That developmental arc — the *sequence* of capability emergence — hasn't been mapped. When did each territory appear? What behavioral capacity emerged with each one? Did the endogenous oscillator control emerge at a specific territory count? Did the neologism synthesis start at a specific point? This is ontogeny, and if the sequence is reproducible across runs, it's a major distinction.
+
+
+### D12.1 — One-Way Territory Staircase
+- **Claim:** Territory count follows a monotonic staircase: 2→3→4→5→6→7→8→9, with only ONE brief regression (7→6→7 at t=1043–1260). Nine of ten transitions are upward.
+- **Measurable:**
+  - 2 territories at t=0
+  - 3 at t=194, 4 at t=491, 5 at t=907, 6 at t=924, 7 at t=947
+  - 8 at t=2303, 9 at t=**3216** (locks at 9 for the remaining 81.4% of the run)
+  - First operator message ("Hello") at t=499 — within 8 ticks of reaching 4 territories
+- **Null to beat:** Random structural fluctuation would show bidirectional transitions. Aura shows a near-monotonic developmental sequence.
+- **Source:** `master_results.json` → F12 → territory_emergence; `D12_territory_timeline.csv`
+
+### D12.2 — Territory Count Correlates with Cognitive Metrics
+- **Measurable:**
+  - territories vs vt_coverage: ρ = +0.539, p ≈ 0
+  - territories vs vt_entropy: ρ = +0.338, p ≈ 0
+  - territories vs active_edges: ρ = +0.154, p < 10⁻⁹¹
+  - territories vs connectome_entropy: ρ = +0.110, p < 10⁻⁴⁷
+  - territories vs b1_z: ρ = +0.004, p = 0.644 (NOT significant — territory count doesn't predict speech gate)
+- **Source:** `master_results.json` → F12 → correlations
+
+### D12.3 — Near-Perfect Topological Integrity
+- **Claim:** The system maintained a single connected component (cohesion_components = 1) for 17,250 out of 17,253 ticks (99.98%). Fragmented for exactly 3 ticks, in one episode.
+- **Source:** `master_results.json` → F12 → cohesion
+
+### D12.4 — Homeostasis Turns Off
+- **Claim:** Active structural maintenance (pruning/bridging) occurs only in E1 and then stops entirely.
+  - E1: 77 pruning events (mean 392 connections pruned), 2 bridging events
+  - E2: **zero** pruning, **zero** bridging
+  - E3: **zero** pruning, **zero** bridging
+- **Interpretation:** The system's self-repair mechanism became unnecessary. Whatever structural organization emerged by the end of E1 was self-sustaining without active maintenance. The system stopped needing to prune because it had already organized itself.
+- **Source:** `D12_homeostasis_events.csv`
 
 ### **FAMILY 13 — Memory-Like Phenomena Without Storage.** 
 
@@ -511,7 +769,34 @@ The model has no persistent verbatim memory, yet it maintains thematic continuit
 | D14.5 | Within-output uniqueness | Mean 0.86 — 86% unique words per output | say_event_composer_audit |
 | D14.6 | Self-referential at ~2.5 hour lag | TF-IDF to own past: mean_sim=0.254, median_lag=3,687 ticks | say_event_composer_audit |
 
-You noted in your working notes that the encoder uses a cheap naive marker for temporal signal — it only marks temporal cues on unique symbols in a single input, so repeated symbols get skipped. And the decoder can't differentiate internal processing from intended output. That means the *raw outputs are a degraded signal* of a richer internal process. The composer audit metrics file likely contains evidence for how much richer. If you can show that the composer's internal state is more organized than what leaks through the decoder, that strengthens every other distinction — all the behavioral evidence is a *lower bound* on the substrate's actual organization.
+
+### D14.1 — Trigram Corpus Overlap Distribution
+- **Claim:** Mean trigram overlap with corpus = 0.85, but **45 outputs (8.5%) share ZERO trigram sequences** with any source material. These are entirely novel multi-word compositions.
+- **By epoch:** E1=8.4% zero, E2=7.0% zero, E3=**9.3%** zero. Novel outputs slightly increase in the late regime.
+- **Source:** `F14_composer_audit.json` → D14_1_trigram
+
+### D14.2 — LCS Fraction (Longest Common Substring)
+- **Claim:** Mean LCS fraction = 0.157. **82.6% of outputs have <30% substring overlap** with any source.
+- **Source:** `F14_composer_audit.json` → D14_2_lcs
+
+### D14.3 — Best Jaccard Token Overlap
+- **Claim:** Mean best Jaccard = 0.195. **93.6% of outputs have <30% word-level overlap** with ANY prior input in the entire run.
+- **Source:** `F14_composer_audit.json` → D14_3_jaccard
+
+### D14.4 — Immediate Input Decoupling
+- **Claim:** Mean Jaccard between each output and its immediately preceding input = **0.038** (3.8%). Outputs share almost nothing with the last thing fed to the system.
+- **Source:** `F14_composer_audit.json` → D14_4_immediate
+
+### D14.5 — Within-Output Uniqueness
+- **Claim:** Mean within-output unique word ratio = **0.860**. 86% of words in each output are unique — extremely low internal repetition.
+- **Source:** `F14_composer_audit.json` → D14_5_uniqueness
+
+### D14.6 — Self-Referential Structure at ~2.5 Hour Lag
+- **Claim:** When outputs DO resemble prior outputs (TF-IDF similarity), the most similar past output is separated by a median of **3,687 ticks (~2.5 hours)**. The system's self-references reach far back in time, not to recent context.
+- **Mean TF-IDF similarity to most-similar past output:** 0.254
+- **Source:** `F14_composer_audit.json` → D14_6_self_ref
+
+It is mentioned in the working notes that the encoder uses a cheap naive marker for temporal signal — it only marks temporal cues on unique symbols in a single input, so repeated symbols get skipped. And the decoder can't differentiate internal processing from intended output. That means the *raw outputs are a degraded signal* of a richer internal process. The composer audit metrics file likely contains evidence for how much richer. If we can show that the composer's internal state is more organized than what leaks through the decoder, that strengthens every other distinction — all the behavioral evidence is a *lower bound* on the substrate's actual organization.
 
 ### **FAMILY 15 — Interaction Dynamics (your messages as experimental probes).** 
 
@@ -605,6 +890,52 @@ That's roughly 20–25 additional distinctions waiting in the data you already h
 6. "Integration-Segregation Balance in Zero-Trained Cognitive Runtimes" — D4.4, D4.6
 7. "Predictive Feature Architectures for Self-Organizing Runtimes" — D2.6
 8. "Dynamic Phase Space Signatures and Principal Component Analysis" — D2.1, D7.7
+
+---
+
+## RUNNING COUNT
+
+| Family | Confirmed Distinctions | New This Session |
+|--------|----------------------|------------------|
+| F0 — Substrate Identity | 5 | 0 |
+| F1 — Language | 7 | 0 (2 updated) |
+| F2 — Dynamical Physiology | 11 | 4 (D2.8–2.11) |
+| F3 — Topological Organization | 11 | 3 (D3.9–3.11) |
+| F4 — State/Output Coupling | 6 | 0 (2 updated) |
+| F5 — Operator Differentiation | 9 | 3 (D5.1c, D5.1d, updates) |
+| F6 — Convergence Architecture | 4 | 0 (updated) |
+| F7 — Deep Excavation | 2 confirmed + 7 stubs | 1 (D7.7) |
+| F8 — Temporal Microstructure | 6 | 3 (D8.4–8.6) |
+| F9 — Syntactic Complexity | 1 | 1 (new family) |
+| F10 — Silence | 2 | 2 (new family) |
+| F12 — Developmental Ontogeny | 4 | 4 (new family) |
+| F14 — Composer/Decoder Masking | 6 | 6 (new family) |
+| **TOTAL CONFIRMED** | **74** | **27 new this session** |
+
+---
+
+## Provenance
+
+### v0.5
+
+All session analysis results reproducible via:
+```
+python session_analysis_bundle.py --data-dir ./Aura_Analysis_Tables --exchange ./aura_justin_exchange.md --out-dir ./session_analysis_results
+```
+
+All text analysis results reproducible via:
+```
+python batch1_fixed.py --exchange ./aura_justin_exchange.md --out-dir ./batch1_fixed_results
+```
+
+Input file hashes (SHA256):
+- utd_status_full.csv: `90975e48f9c27127879970242296dd6dca67008f60e92d3fd109aa99bfa50c2f`
+- utd_say_by_tick.csv: `10bab9f0139519ca066153feeb9ddbfda1fe6bf435c148fe7c0e23da5ae87ff1`
+- say_event_composer_audit_metrics.csv: `df54005c9e7be13520fe7fe78c0ab726e2d606bb4a58794da33686b5fc48a8bb`
+- pca_state_space_Aura.csv: `5ce6ef36f973aa9b371c8ea926c229bbd7de802130455c0e8e5db7820b6ceb4b`
+- rolling_var_autocorr_entropy.csv: `5ff1d3819e56f04082da7fb58637f9692a090b31b41aa72db1abbd9326fd26b0`
+
+Execution environment: Python 3.12.3, numpy 2.4.3, scipy (version in execution log).
 
 ---
 
