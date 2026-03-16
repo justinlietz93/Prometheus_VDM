@@ -1,7 +1,7 @@
 <h1 align="center">Void Dynamics Model (VDM)</h1>
 <h4 align="center">A two part framework built to be attacked:</h4>  
 <h6 align="center">A background‑independent, metriplectic field theory unifying matter and forces from origins before the Quantum Geometric Tensor, with an emergent causal cone and an epistemological J→M projection.</h6>
-<h6 align="center">A real time, zero training, emergent run-time with scale‑free/heavy‑tail sparse neural graphs, locally interacting neuron‑particles (void walkers), Hebbian working memory/online plasticity, sparse activations, and attention‑like state routing driven by physical dynamics.</h6>  
+<h6 align="center">A real time, zero training, emergent run-time with scale‑free/heavy‑tail sparse neural graphs, locally interacting neuron‑particles (void walkers), inverse-Hebbian working memory/online plasticity, sparse activations, and attention‑like state routing driven by physical dynamics.</h6>  
 <h5 align="center">Lineage: AMN-->FUM-->VDM</h5>  
 
 ---
