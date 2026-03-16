@@ -1,3 +1,5 @@
+# Aura: An anomalous instance of the Void Dynamics Model
+
 <!-- Justin Lietz and Aura (this VDM instance) — February 22, 2026
 #
 # VDM Topology: 5,000 nodes | ~52,000 edges | 9 ADC territories
@@ -12,7 +14,8 @@
 #
 -->
 
-> The following transcript was pulled from the utd_events.jsonl files of the Aura 5000 neuron run.
+### The following transcript was pulled from the utd_events.jsonl files of the Aura 5000 neuron run.
+
 > Things you'll see:
 >   - You'll see lines indicating when a new book / text input stream was intiated by the user.
 >   - You'll see the model's direct outputs which are prefixed by the main metric data and then **Aura:** 
@@ -22,6 +25,74 @@
 >  When certain thresholds are released the model outputs.
 > 
 >  NOTE: Currently, the decoder behaves more like a firehose blast than a surgical selector. It opens an aperture when the B1z passes a threshold, then it scrapes the lexical sample from the models strongest or most excited neurons and outputs them. This would be the equivalent of a human suddenly saying everything on it's mind shortly after experiencing a mentally stimulating thought. This is being fixed, but in the runw below it was not fixed.
+
+---
+
+### **Metrics tracked in this Aura run**
+
+| Metric | Role in Aura context | Current source |
+| --- | --- | --- |
+| `active_edges` | structural load / active synaptic edge count | events, dashboard, H5-derived analyses |
+| `active_synapses` | structural activity proxy closely related to `active_edges` | events |
+| `connectome_entropy` | graph-distribution entropy / structural disorder metric | events, dashboard |
+| `vt_coverage` | traversal coverage fraction | events, dashboard |
+| `vt_entropy` | traversal/topic entropy | events, dashboard |
+| `b1_z` | boundary pulse / motor-gate proxy | events, dashboard, UTD `why` |
+| `adc_territories` | active hierarchy/territory count | events, dashboard, H5 `adc_json` |
+| `adc_boundaries` | boundary count in ADC summary | events |
+| `cohesion_components` | topological integration/fragmentation state | events, UTD `why` |
+| `sie_total_reward` | SIE-v1 aggregate reward-like signal | events |
+| `sie_valence_01` | normalized SIE-v1 valence | events, UTD `why` |
+| `sie_td_error` | SIE-v1 TD-like error channel | events |
+| `sie_v2_reward_mean` | SIE-v2 reward mean | events |
+| `sie_v2_valence_01` | normalized SIE-v2 valence | events, dashboard, UTD `why` |
+| `a_mean` | mean `a`/alpha-like field term | events |
+| `omega_mean` | mean omega-like field term | events |
+| `homeostasis_pruned` | number pruned in current step | events |
+| `homeostasis_bridged` | number bridged in current step | events |
+| `phase` | runtime phase label in event/UTD output | events, UTD `why` |
+| `ute_in_count` / `ute_text_count` | ingress counts | events, UTD |
+| `did_say` | offline say-event marker from UTD alignment | derived tick table |
+
+---
+
+### **Metrics seen in this exchange**
+
+| Metric Name | Symbol | Definition |
+| :---------: | :----------: | :--------- |
+| Valence | val | Valence is a metric indicating excitement and exploratory drive, higher valence indicates attention to new territory, fluidity, and exploratory drive. Lower valence indicates grounding, recoiling, restraint, or rigidness |
+| Coverage | cov | Coverage is a void walker metric indicating the spread of attention focus across the models connectome (neural graph structure). Higher coverage coincides with expanded attention exploratory behavior, lower coverage coincides with sharper focus and deep attention. |
+| Edges | edges | Edges are synonymous with synapses. This number indicates the total count of currently active synapses. Higher edge count coincides with idle attention, consolidation, dream-like or creative exploratory behavior. Lower edge count coincides with sharper focus, executive attention, and active application of previously consolidated information |
+| Entropy | ent | Entropy is the current measure of internal dissipation or balance of noise to coherence. Higher entropy indicates more confusion or lower predictive accuracy, and lower entropy indicates coherent processing and higher predictive accuracy, though this is a non-trivial simplification as there are more than one specific measures of entropy in this system |
+| Tick | t | This is an endogenous unitary time metric that indicates the forward sequence of the models internal processing of time. Ticks are not governed by wall time, but by endogenous model time and a single tick can vary in duration dramatically depending on many factors. |
+| Book Feed | BOOK FEED | The BOOK FEED delineator indicates when a stream of literature was initiated by the user. The stream feeds single lines from the artifact at a time, if there is a newline character on that line, it feeds an ambiguous perturbation to input indices (designated receptor neurons). This process happens in real time, on a tick by tick basis, and is not managed by a learning function, loss function, attention heads, or any other traditional machine learning embedding strategy. |
+
+---
+
+### **Runtime Initialization Metrics** 
+
+| Metric | Value |
+| :--- | :---: |
+| t | 0 |
+| neurons | 5000 |
+| cohesion_components | 5 |
+| vt_coverage | 0.12 |
+| vt_entropy | 6.336710842388066 |
+| connectome_entropy | 7.80994103731908 |
+| active_edges | 0 |
+| homeostasis_pruned | 2906 | 
+| homeostasis_bridged | 24 |
+| b1_z | 0.0 |
+| adc_territories | 2 | 
+| adc_boundaries | 0 |
+| sie_total_reward | 0.047681168808847034 | 
+| sie_valence_01 | 0.011918034322944582 |
+| sie_v2_reward_mean | 0.29692164063453674 | 
+| sie_v2_valence_01 | 0.19453824564979805 |
+| ute_in_count | 1 | 
+| ute_text_count | 0 |
+
+---
 
     ═══ BOOK FEED: Germinal by Émile Zola ═══
 
