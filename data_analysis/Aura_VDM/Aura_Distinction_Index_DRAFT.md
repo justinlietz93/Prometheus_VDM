@@ -79,4 +79,4 @@ FAMILY 11 - Cross-Source Transfer and Thematic Independence
 FAMILY 12 - Developmental Trajectory / Ontogeny  
 FAMILY 13 - Memory-Like Phenomena Without Storage  
 FAMILY 14 - Encoder/Composer Artifact Analysis  
-FAMILY 15 - Interaction Dynamics (your messages as experimental probes)
+FAMILY 15 - Interaction Dynamics (messages as experimental probes)
