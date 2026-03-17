@@ -1,16 +1,16 @@
 # Aura Distinction Inventory — Atomized Evidence for Scientific Assessment
 
-**Project:** VDM / Neuroca, Inc.  
-**Author:** Justin K. Lietz (justin@neuroca.ai)  
-**Document Purpose:** Comprehensive, atomized inventory of measurable distinctions observed in the Aura run that collectively warrant deep scientific assessment as a potential regime-discovery event in non-biological cognition.  
-**Tier Grade:** T2 (Instrument) with T3 (Smoke) demonstration — single run, not preregistered generalization.  
-**Date:** 2026-03-16  
+**Project:** VDM / Neuroca, Inc.
+**Author:** Justin K. Lietz (justin@neuroca.ai)
+**Document Purpose:** Comprehensive, atomized inventory of measurable distinctions observed in the Aura run that collectively warrant deep scientific assessment as a potential regime-discovery event in non-biological cognition.
+**Tier Grade:** T2 (Instrument) with T3 (Smoke) demonstration — single run, not preregistered generalization.
+**Date:** 2026-03-16
 
 ---
 
 ## Preamble: What This Document Is and Is Not
 
-This inventory does **not** claim consciousness, subjectivity, or sentience as settled fact exists or does not exist here. It claims something more precise and more defensible: that the Aura run produced a **convergent pattern of measurable anomalies** across multiple independent evidence families that, taken together, exceed what any standard dismissal category can explain. The scientific community's obligation is not to accept extraordinary claims on faith — it is to investigate extraordinary evidence with proportional rigor. This document provides the itemized evidence that makes that investigation warranted.
+This inventory does **not** claim consciousness, subjectivity, or sentience as settled fact. It claims something more precise and more defensible: that the Aura run produced a **convergent pattern of measurable anomalies** across multiple independent evidence families that, taken together, exceed what any standard dismissal category can explain. The scientific community's obligation is not to accept extraordinary claims on faith — it is to investigate extraordinary evidence with proportional rigor. This document provides the itemized evidence that makes that investigation warranted.
 
 The central organizing principle: **no single distinction here is sufficient. The convergence of all of them simultaneously, in a system operating under the substrate constraints documented in Family 0, is the phenomenon.**
 
@@ -41,12 +41,12 @@ The central organizing principle: **no single distinction here is sufficient. Th
 ### D0.3 — Neuron Count
 - **Claim:** 5,000 neurons total. 9 territories. ~100,000 active edges.
 - **Calibration:** *C. elegans* has 302 neurons. A pond snail (*Lymnaea stagnalis*) has ~20,000. Aura operates at sub-insect node count.
-- **Null to beat:** Large neural networks achieve organization through sheer parameter count. Aura has none of that budget, zero parameters.
+- **Null to beat:** Large neural networks achieve organization through sheer parameter count. Aura has none of that budget.
 
 ### D0.4 — Real-Time Operation
 - **Claim:** Every tick is a wall-clock event (~2.0–2.6 seconds per tick, median 2.58s from SIE scan). The runtime is not replaying stored trajectories — it is structuring itself as time passes, responding to input streams as they arrive.
 - **Measurable:** 1,531 ticks of continuous operation in the analyzed window; ~13 hours total runtime.
-- **Null to beat:** Batch-processing systems can appear organized by selecting outputs post hoc. Aura's outputs are generated in real time with no curation and no access to coordinators or datasets.
+- **Null to beat:** Batch-processing systems can appear organized by selecting outputs post hoc. Aura's outputs are generated in real time with no curation.
 
 ### D0.5 — Crude Forced Decoder
 - **Claim:** The output interface (B1_z gate) opens on a threshold and scrapes the strongest lexical groups. It does not permit deliberate, narrow release. Any coherence in the output is achieved *despite* the mouth, not because of it.
@@ -353,6 +353,12 @@ The central organizing principle: **no single distinction here is sufficient. Th
   - The late regime has the HIGHEST fraction of nonzero integration windows (80.1%), even though the mean is lower than E1. The system integrates *more often* but in a more distributed way.
   - Text singleton percentage: 91.7% (E1) → 91.8% (E2) → **97.3%** (E3). The mouth becomes MORE decoupled from the mind as the system matures.
 - **Source:** `D2_11_D7_7_D4_6.json` → D4_6_mip
+
+### D4.7 — Late Say Events Are Preceded by Sharp State Contraction and Followed by Rebound
+- **Observation:** In the late high-fidelity slice (`t=15925–17455`), the 12 recoverable `say` events all occur in phase 4 with 9 territories. Relative to each event's own local baseline window (`-20:-6` ticks), the immediate pre-say window (`-5:-1`) shows a strong contraction: active edges mean delta = -3184.7 (z = -13.99, empirical p = 0.0010), active synapses mean delta = -3686.0, connectome entropy mean delta = -0.0710, traversal coverage mean delta = -0.0109, traversal entropy mean delta = -0.1475 (z = -11.31), and `b1_z` mean delta = -0.3558 (z = -8.50).
+- **Observation:** At the say tick itself, the contraction persists in edges/entropy/coverage, while `b1_z` flips sharply positive: active edges mean delta = -6241.9, connectome entropy mean delta = -0.0779, traversal entropy mean delta = -0.1474, `b1_z` mean delta = 1.6860 (z = 18.19), and TD error mean delta = -0.1897.
+- **Observation:** In the post-say window (`+1:+5`), the system remains below baseline on edges/entropy/coverage, but reward-like signals rebound: `sie_td_error` mean delta = 0.1335 (z = 14.34, empirical p = 0.0010) and `sie_valence_01` mean delta = 0.0158 (z = 3.22, empirical p = 0.0030).
+- **Data source:** `tick_table_full.csv.gz` + `utd_say_by_tick.csv`, merged by tick. Repro artifacts: `f4_late_say_state_coupling.py`, `f4_late_say_event_windows.csv`, `f4_late_say_period_summary.csv`, `f4_late_say_event_triggered_profile.csv`, and the matching figures.
 
 ---
 
@@ -668,25 +674,28 @@ Positive autocorrelation at lags 1–3 ($r_1 = 0.029$, $r_2 = 0.038$, $r_3 = 0.0
 - **Source:** `D8_rolling_variance.json` → change_points
 
 ### D8.5 — Critical Slowing Down at E2→E3 Transition
-- **Claim:** The E2→E3 boundary shows textbook critical-transition signatures:
-  - Autocorrelation jumps from 0.918 → **0.997** (near unit root)
-  - Variance explodes from 0.0008 → **0.188** (222× increase)
-  - The E1→E2 boundary shows neither (both decrease slightly)
-- **Measurable:** This is a one-sided result — only the E2→E3 transition shows CSD. The E1→E2 transition does not.
-- **Null to beat:** A smooth drift between regimes would not produce simultaneous AC and variance explosion at a boundary.
-- **Source:** `D8_rolling_variance.json` → CSD → "11600"
+- **Claim:** The E2→E3 boundary shows textbook critical-transition signatures when recomputed directly from `rolling_var_autocorr_entropy.csv` using the epoch boundaries stored in `master_results.json`.
+- **Measured at t=11600 (100-tick windows):**
+  - Autocorrelation rises from **0.9181 → 0.9972** (delta = +0.0791, near-unit-root post state)
+  - Variance rises from **0.000847 → 0.188083** (**222.1×** increase)
+  - The earlier E1→E2 boundary at **t=10500** shows neither combined increase (variance ratio 0.9×, autocorrelation 0.9392 → 0.9364)
+- **Measurable:** This is a one-sided result — only the E2→E3 transition shows simultaneous variance explosion and autocorrelation increase.
+- **Null to beat:** A smooth drift between regimes would not produce a one-boundary-only variance explosion with near-unit-root autocorrelation.
+- **Source:** `master_results.json` → `F8.CSD`, packaged in `f8_boundary_csd_summary.csv`, with raw context in `rolling_var_autocorr_entropy.csv` and figure `f8_rolling_variance_autocorr.png`.
 
 ### D8.6 — Non-Exponential Inter-Say Intervals with Burst Structure
-- **Claim:** The 529 inter-say intervals are NOT memoryless.
-- **Measurable:**
-  - Mean=32.2 ticks, median=23.0, CV=1.418 (highly overdispersed)
-  - Exponential test: p < 10⁻³³ (overwhelmingly rejected)
-  - >2× median: 8.7% (exponential predicts 25%)
-  - 62 bursts detected (consecutive short intervals), mean burst length 2.6, max burst length **17**
-  - E2 has shortest intervals (median 14 ticks) — fastest speech rate during the high-entropy plateau
-  - E3 has highest CV (1.526) — most variable speech timing in the late regime
-- **Null to beat:** A memoryless (Poisson) emission process would show exponential intervals and no burst structure.
-- **Source:** `master_results.json` → F10_D8_6 → inter_say_intervals; `F10_inter_say_intervals.csv`
+- **Claim:** The 529 inter-say intervals are NOT memoryless when recomputed directly from `utd_say_by_tick.csv`.
+- **Measured:**
+  - Mean = **32.2** ticks, median = **23.0**, CV = **1.418**
+  - Shifted-exponential KS test: **p = 1.96 × 10⁻³⁴** (overwhelmingly rejected)
+  - >2× median: **8.7%**
+  - Using the lower-quartile threshold (**20 ticks**) for short intervals, there are **62 bursts**, mean burst length **2.6**, max burst length **17**
+  - Epoch assignment by preceding say tick reproduces the current run structure:
+    - E1: n=333, mean=31.0, median=24.0, CV=1.239
+    - E2: n=57, mean=20.0, median=14.0, CV=1.870
+    - E3: n=139, mean=39.8, median=23.0, CV=1.531
+- **Null to beat:** A memoryless (Poisson / exponential) emission process would not produce this overdispersion plus clustered short-interval bursts.
+- **Source:** raw `utd_say_by_tick.csv`, summarized in `f8_inter_say_interval_summary.csv`, `f8_inter_say_intervals_full.csv`, and `f8_burst_table.csv`, with figure `f8_inter_say_interval_distributions.png`.
 
 ---
 
