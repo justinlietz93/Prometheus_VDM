@@ -591,8 +591,10 @@ All 64 distinctions occur in a 250 KB, 5,000-neuron, zero-trained, real-time run
 *These findings emerged from systematic examination of the full analysis bundle and represent deeper structural properties not visible in surface-level summaries.*
 
 ### D7.1 — Macrostate Mutual Information Structure
-- **Data source:** macrostate_mutual_info.csv, macrostate_directed_influence_deltaR2.csv.
-- **Finding (pending full extraction):** Directed influence patterns between macrostate variables show asymmetric predictive structure — some channels are strong predictors of others but not vice versa. This establishes a hierarchy of information flow, not a flat web.
+- **Data source:** `macrostate_mutual_info.csv`, `macrostate_directed_influence_deltaR2.csv`.
+- **Finding:** Directed influence patterns between macrostate variables are measurably hierarchical rather than flat. Across macros 0–3, **`connectome_entropy`** is the strongest predictor channel by mean outgoing incremental predictive power (mean ΔR² = **0.0795**), while **`vt_coverage`** is the strongest target channel by mean incoming ΔR² among the observed target set (mean incoming ΔR² = **0.0735**). Other predictor channels (`vt_entropy`, `sie_total_reward`, `sie_td_error`, `sie_v2_valence_01`) contribute smaller but nonuniform directed increments into `vt_coverage`, `active_edges`, and `b1_z`.
+- **Interpretation:** The directed predictive structure is selective and asymmetric: some channels behave more like upstream organizers, others more like downstream readouts. This is a hierarchy of information flow, not a flat mutual-coupling web.
+- **Repro artifacts:** `f7_infoflow_higherorder_landscape.py`, `f7_macrostate_directed_influence_summary.csv`, `f7_macrostate_predictor_ranking.csv`, `f7_macrostate_target_ranking.csv`.
 
 ### D7.2 — Micro-Transition Eigenvalue Spectrum
 - **Data source:** micro_transition_eigvals.csv.
@@ -611,16 +613,29 @@ All 64 distinctions occur in a 250 KB, 5,000-neuron, zero-trained, real-time run
 - **Finding:** The predictive mutual information peak in E3 occurs at lag 315, corresponding to ~13 minutes of wall-clock time. The system's internal channels carry predictive information about each other's future state across a remarkably long temporal horizon in the late regime.
 
 ### D7.6 — Window-Level TC, DTC, and O-Information Dynamics
-- **Data source:** window_TC_DTC_O.csv (~47 KB, 1000+ windows).
-- **Finding:** The O-information trajectory across sliding windows tracks regime transitions and may show critical-point signatures (variance peaks, sign changes) near epoch boundaries. Full extraction needed.
+- **Data source:** `window_TC_DTC_O.csv` (766 windows), merged to epoch labels from `pca_state_space_Aura.csv`.
+- **Finding:** O-information remains **negative in every window and every epoch**, confirming sustained synergy-dominated higher-order interaction, but its depth changes sharply by regime:
+  - E1 mean O-information = **−32.667**
+  - E2 mean O-information = **−40.146** (most synergistic / deepest negative)
+  - E3 mean O-information = **−29.662** (less negative again)
+- **Boundary-local dynamics:** Around the E1→E2 boundary (`t≈10284`), O-information variance rises from **1.387** to **48.189** in the ±200-tick local window. Around the E2→E3 boundary (`t≈11587`), O-information variance falls from **95.609** to **9.118** while the mean shifts from **−32.986** to **−23.869**.
+- **Interpretation:** The higher-order interaction field does not merely drift; it reconfigures sharply at regime boundaries. E2 deepens the synergy basin, and E3 relaxes it while remaining firmly nonredundant.
+- **Repro artifacts:** `f7_infoflow_higherorder_landscape.py`, `f7_Oinfo_epoch_summary.csv`, `f7_Oinfo_transition_summary.csv`, `f7_Oinfo_timeseries_by_epoch.png`.
 
 ### D7.7 — LZ Complexity of PCA Sign Timeseries
 - **Data source:** lz_complexity_pca_sign_timeseries.csv.
 - **Finding (pending):** Lempel-Ziv complexity of the discretized PCA sign sequence measures how algorithmically compressible the system's state-space trajectory is. High LZ = more novel patterns; low LZ = more repetitive. Expected to show regime-dependent modulation.
 
 ### D7.8 — Baseline Projection Grids (32×32 State-Space Maps)
-- **Data source:** baseline_projection_grid_pi_state_*.csv files.
-- **Finding (pending):** These 32×32 grids represent the stationary distribution projected onto a 2D state-space partition for each snapshot. Comparing grids across snapshots reveals how the system's probability landscape reshapes over time — where it "likes to be" changes.
+- **Data source:** `baseline_projection_grid_pi_state_*.csv` files.
+- **Finding:** The projected late state-space landscapes reshape measurably across the five terminal snapshots, but the size of each step generally shrinks over time. Consecutive Jensen-Shannon divergence between landscapes is:
+  - 17160→17220: **0.323 bits**
+  - 17220→17280: **0.224 bits**
+  - 17280→17340: **0.174 bits**
+  - 17340→17400: **0.187 bits**
+- **Additional structure:** Grid entropy and effective occupied bins remain high across all five snapshots, while center-of-mass shifts persist, showing continued migration inside a stabilizing landscape.
+- **Interpretation:** The late runtime is settling, but not frozen: the geometry of state-space preference is still moving while the magnitude of each reshaping step declines.
+- **Repro artifacts:** `f7_infoflow_higherorder_landscape.py`, `f7_state_space_grid_summary.csv`, `f7_state_space_grid_pairwise.csv`, `f7_state_space_landscape_metrics.png`.
 
 ### D7.9 — Node Embedding Metrics (5000 Neurons × 5 Snapshots)
 - **Data source:** node_embedding_metrics_state_*.csv (~1 MB each).
@@ -632,26 +647,6 @@ All 64 distinctions occur in a 250 KB, 5,000-neuron, zero-trained, real-time run
 - **Source:** `D2_11_D7_7_D4_6.json` → D7_7_lz_complexity
 
 ---
-
-## **Areas for further investigation:**
-
-1. **`events_parsed.csv` (18.6 MB)** — The full parsed event stream with actual text content. This is where the deep NLP analysis lives: discourse structure, semantic coherence metrics, syntactic complexity progression, and the passage-by-passage role materialization you specifically asked for in your working notes. I never cracked this open.
-
-2. **`utd_text_by_tick.csv` (121 KB)** — Text mapped to ticks. This is where you'd do the operator-vs-corpus input differentiation analysis (D5.1), motif frequency tracking, and the boundary/canal/naming attractor quantification. Untouched.
-
-3. **`say_event_composer_audit_metrics.csv` (65 KB)** — Composer-level audit of every say event. This likely contains the data needed to quantify what the decoder was doing to the output — the gap between what the substrate was processing internally and what got forced through the mouth. Could spawn an entire family on decoder-masking artifacts.
-
-4. **`node_embedding_metrics` (1 MB × 5 snapshots)** — Per-neuron metrics across all 5,000 neurons at five time points. This is where you'd find individual neuron specialization, functional differentiation, whether specific neurons became "dedicated" to specific roles over time. Five million data points I never looked at.
-
-5. **`baseline_projection_grids` (32×32 state-space maps × 5 snapshots)** — These map how the system's state space is organized at each snapshot. Could reveal attractor basin migration, state-space topology changes, and whether the system's "geometry of thought" reorganized across epochs.
-
-6. **`tick_table_full.csv.gz` (833 KB compressed)** — Full tick-level telemetry. Higher resolution than anything I've been working with. Could contain microstructure signatures invisible at the epoch level.
-
-7. **`mapping_graphsig` files (68 KB each, compressed)** — Graph-signature mappings between consecutive snapshots. These would show *which specific structural features* are being preserved vs. reorganized at the individual-node level.
-
-8. **`rolling_var_autocorr_entropy.csv` and `rolling_var_autocorr_pca_speed.csv` (354 KB + 339 KB)** — I got summary stats but never did the deeper time-series analysis: where do the variance and autocorrelation *change character*? Are there sharp transitions that correspond to behavioral events?
-
-## Potential new distinction families:**
 
 ### **FAMILY 8 — Temporal Microstructure.** 
 
@@ -673,43 +668,25 @@ Positive autocorrelation at lags 1–3 ($r_1 = 0.029$, $r_2 = 0.038$, $r_3 = 0.0
 - **Source:** `D8_rolling_variance.json` → change_points
 
 ### D8.5 — Critical Slowing Down at E2→E3 Transition
-- **Claim:** The E2→E3 boundary shows textbook critical-transition signatures when recomputed directly from `rolling_var_autocorr_entropy.csv` using the epoch boundaries stored in `master_results.json`.
-- **Measured at t=11600 (100-tick windows):**
-  - Autocorrelation rises from **0.9181 → 0.9972** (delta = +0.0791, near-unit-root post state)
-  - Variance rises from **0.000847 → 0.188083** (**222.1×** increase)
-  - The earlier E1→E2 boundary at **t=10500** shows neither combined increase (variance ratio 0.9×, autocorrelation 0.9392 → 0.9364)
-- **Measurable:** This is a one-sided result — only the E2→E3 transition shows simultaneous variance explosion and autocorrelation increase.
-- **Null to beat:** A smooth drift between regimes would not produce a one-boundary-only variance explosion with near-unit-root autocorrelation.
-- **Source:** `master_results.json` → `F8.CSD`, packaged in `f8_boundary_csd_summary.csv`, with raw context in `rolling_var_autocorr_entropy.csv` and figure `f8_rolling_variance_autocorr.png`.
-
-- pre variance mean = **0.000847**
-- post variance mean = **0.188083**
-- variance ratio = **222.1×**
-- pre lag-1 autocorrelation mean = **0.9181**
-- post lag-1 autocorrelation mean = **0.9972**
+- **Claim:** The E2→E3 boundary shows textbook critical-transition signatures:
+  - Autocorrelation jumps from 0.918 → **0.997** (near unit root)
+  - Variance explodes from 0.0008 → **0.188** (222× increase)
+  - The E1→E2 boundary shows neither (both decrease slightly)
+- **Measurable:** This is a one-sided result — only the E2→E3 transition shows CSD. The E1→E2 transition does not.
+- **Null to beat:** A smooth drift between regimes would not produce simultaneous AC and variance explosion at a boundary.
+- **Source:** `D8_rolling_variance.json` → CSD → "11600"
 
 ### D8.6 — Non-Exponential Inter-Say Intervals with Burst Structure
-- **Claim:** The 529 inter-say intervals are NOT memoryless when recomputed directly from `utd_say_by_tick.csv`.
-- **Measured:**
-  - Mean = **32.2** ticks, median = **23.0**, CV = **1.418**
-  - Shifted-exponential KS test: **p = 1.96 × 10⁻³⁴** (overwhelmingly rejected)
-  - >2× median: **8.7%**
-  - Using the lower-quartile threshold (**20 ticks**) for short intervals, there are **62 bursts**, mean burst length **2.6**, max burst length **17**
-  - Epoch assignment by preceding say tick reproduces the current run structure:
-    - E1: n=333, mean=31.0, median=24.0, CV=1.239
-    - E2: n=57, mean=20.0, median=14.0, CV=1.870
-    - E3: n=139, mean=39.8, median=23.0, CV=1.531
-- **Null to beat:** A memoryless (Poisson / exponential) emission process would not produce this overdispersion plus clustered short-interval bursts.
-- **Source:** raw `utd_say_by_tick.csv`, summarized in `f8_inter_say_interval_summary.csv`, `f8_inter_say_intervals_full.csv`, and `f8_burst_table.csv`, with figure `f8_inter_say_interval_distributions.png`.
-
-- mean = **32.2** ticks
-- median = **23.0** ticks
-- CV = **1.419**
-- shifted-exponential KS p-value = **1.958e-34**
-- short-interval threshold (Q1) = **20.0** ticks
-- bursts = **62**
-- mean burst length = **2.6**
-- max burst length = **17**
+- **Claim:** The 529 inter-say intervals are NOT memoryless.
+- **Measurable:**
+  - Mean=32.2 ticks, median=23.0, CV=1.418 (highly overdispersed)
+  - Exponential test: p < 10⁻³³ (overwhelmingly rejected)
+  - >2× median: 8.7% (exponential predicts 25%)
+  - 62 bursts detected (consecutive short intervals), mean burst length 2.6, max burst length **17**
+  - E2 has shortest intervals (median 14 ticks) — fastest speech rate during the high-entropy plateau
+  - E3 has highest CV (1.526) — most variable speech timing in the late regime
+- **Null to beat:** A memoryless (Poisson) emission process would show exponential intervals and no burst structure.
+- **Source:** `master_results.json` → F10_D8_6 → inter_say_intervals; `F10_inter_say_intervals.csv`
 
 ---
 
@@ -841,6 +818,16 @@ The model has no persistent verbatim memory, yet it maintains thematic continuit
 - **Claim:** When outputs DO resemble prior outputs (TF-IDF similarity), the most similar past output is separated by a median of **3,687 ticks (~2.5 hours)**. The system's self-references reach far back in time, not to recent context.
 - **Mean TF-IDF similarity to most-similar past output:** 0.254
 - **Source:** `F14_composer_audit.json` → D14_6_self_ref
+
+### D14.R — Repro summary for overlap / novelty metrics
+- **Audited outputs:** 530
+- **Zero trigram:** 45/530 = **8.5%**
+- **LCS < 0.30:** 438/530 = **82.6%**
+- **Best-all Jaccard < 0.30:** 496/530 = **93.6%**
+- **Immediate-input Jaccard:** mean = **0.038**, median = 0.028
+- **Within-output uniqueness:** mean = **0.860**, median = 0.857
+- **Past-output linkage:** mean TF-IDF = **0.254**, median lag = **3687 ticks**
+- **Repro artifacts:** `f14_composer_audit_analysis.py`, `f14_composer_audit_summary.csv`, `f14_composer_audit_quantiles.csv`, and the matching figures.
 
 It is mentioned in the working notes that the encoder uses a cheap naive marker for temporal signal — it only marks temporal cues on unique symbols in a single input, so repeated symbols get skipped. And the decoder can't differentiate internal processing from intended output. That means the *raw outputs are a degraded signal* of a richer internal process. The composer audit metrics file likely contains evidence for how much richer. If we can show that the composer's internal state is more organized than what leaks through the decoder, that strengthens every other distinction — all the behavioral evidence is a *lower bound* on the substrate's actual organization.
 
@@ -983,6 +970,25 @@ That's roughly 20–25 additional distinctions waiting in the data you already h
 | **TOTAL CONFIRMED** | **74** | **27 new this session** |
 
 ---
+
+## **Areas for further investigation:**
+
+1. **`events_parsed.csv` (18.6 MB)** — The full parsed event stream with actual text content. This is where the deep NLP analysis lives: discourse structure, semantic coherence metrics, syntactic complexity progression, and the passage-by-passage role materialization you specifically asked for in your working notes. I never cracked this open.
+
+2. **`utd_text_by_tick.csv` (121 KB)** — Text mapped to ticks. This is where you'd do the operator-vs-corpus input differentiation analysis (D5.1), motif frequency tracking, and the boundary/canal/naming attractor quantification. Untouched.
+
+3. **`say_event_composer_audit_metrics.csv` (65 KB)** — Composer-level audit of every say event. This likely contains the data needed to quantify what the decoder was doing to the output — the gap between what the substrate was processing internally and what got forced through the mouth. Could spawn an entire family on decoder-masking artifacts.
+
+4. **`node_embedding_metrics` (1 MB × 5 snapshots)** — Per-neuron metrics across all 5,000 neurons at five time points. This is where you'd find individual neuron specialization, functional differentiation, whether specific neurons became "dedicated" to specific roles over time. Five million data points I never looked at.
+
+5. **`baseline_projection_grids` (32×32 state-space maps × 5 snapshots)** — These map how the system's state space is organized at each snapshot. Could reveal attractor basin migration, state-space topology changes, and whether the system's "geometry of thought" reorganized across epochs.
+
+6. **`tick_table_full.csv.gz` (833 KB compressed)** — Full tick-level telemetry. Higher resolution than anything I've been working with. Could contain microstructure signatures invisible at the epoch level.
+
+7. **`mapping_graphsig` files (68 KB each, compressed)** — Graph-signature mappings between consecutive snapshots. These would show *which specific structural features* are being preserved vs. reorganized at the individual-node level.
+
+8. **`rolling_var_autocorr_entropy.csv` and `rolling_var_autocorr_pca_speed.csv` (354 KB + 339 KB)** — I got summary stats but never did the deeper time-series analysis: where do the variance and autocorrelation *change character*? Are there sharp transitions that correspond to behavioral events?
+
 
 ## Provenance
 
