@@ -1,10 +1,9 @@
 # Aura Distinction Inventory — Atomized Evidence for Scientific Assessment
 
-**Project:** VDM / Neuroca, Inc.
-**Author:** Justin K. Lietz (justin@neuroca.ai)
-**Document Purpose:** Comprehensive, atomized inventory of measurable distinctions observed in the Aura run that collectively warrant deep scientific assessment as a potential regime-discovery event in non-biological cognition.
-**Tier Grade:** T2 (Instrument) with T3 (Smoke) demonstration — single run, not preregistered generalization.
-**Date:** 2026-03-16
+**Project:** VDM / Neuroca, Inc.  
+**Author:** Justin K. Lietz (justin@neuroca.ai)  
+**Document Purpose:** Comprehensive, atomized inventory of measurable distinctions observed in the Aura run that collectively warrant deep scientific assessment as a potential regime-discovery event in non-biological cognition.  
+**Date:** 2026-03-16  
 
 ---
 
