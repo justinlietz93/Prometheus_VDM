@@ -1,10 +1,10 @@
 # Aura Distinction Inventory — Atomized Evidence for Scientific Assessment
 
-**Project:** VDM / Neuroca, Inc.
-**Author:** Justin K. Lietz (justin@neuroca.ai)
-**Document Purpose:** Comprehensive, atomized inventory of measurable distinctions observed in the Aura run that collectively warrant deep scientific assessment as a potential regime-discovery event in non-biological cognition.
-**Tier Grade:** T2 (Instrument) with T3 (Smoke) demonstration — single run, not preregistered generalization.
-**Date:** 2026-03-16
+**Project:** VDM / Neuroca, Inc.  
+**Author:** Justin K. Lietz (justin@neuroca.ai)  
+**Document Purpose:** Comprehensive, atomized inventory of measurable distinctions observed in the Aura run that collectively warrant deep scientific assessment as a potential regime-discovery event in non-biological cognition.  
+**Tier Grade:** T2 (Instrument) with T3 (Smoke) demonstration — single run, not preregistered generalization.  
+**Date:** 2026-03-16  
 
 ---
 
@@ -457,9 +457,32 @@ The central organizing principle: **no single distinction here is sufficient. Th
 - **Source:** `D5_1_signed_permutation.json` (via D5.6 section); `batch1_fixed_master_results.json` → F15_operator_reply_analysis
 
 ### D5.7 — Territory Accumulation Correlated with Behavioral Complexity
-- **Claim:** Over the course of the run, territories accumulated from 2 at the beginning to 9 by the end. Each new territory appeared to correspond with new behavioral capabilities (e.g., oscillator control, neologism synthesis, operator modeling).
-- **Measurable (proposed):** Map territory emergence timestamps to behavioral transition timestamps.
-- **Null to beat:** Random structural fluctuation would not correlate with behavioral milestones.
+- **Claim:** Territory count follows a developmental staircase rather than random jitter: 2 → 3 → 4 → 5 → 6 → 7 → 6 → 7 → 8 → 9, then remains in the 9-territory regime for **81.36%** of the measured run. Higher territory regimes carry longer outputs and weaker direct corpus-overlap signatures.
+- **Now measured:**
+  - Curated territory timeline: 2 territories at t=0–193; 3 at 194–490; 4 at 491–906; 5 at 907–923; 6 at 924–946; 7 at 947–1042; temporary regression to 6 at 1043–1259; 7 again at 1260–2302; 8 at 2303–3215; 9 at 3216–17252.
+  - Mean say length rises with the mature regime: 7-territory mean ≈ 45.5 tokens; 8-territory mean ≈ 43.0; 9-territory mean ≈ **71.9**.
+  - Direct-overlap signatures weaken with territory count: mean best-all Jaccard drops from 0.352 (6 territories) to 0.185 (9 territories); mean LCS fraction drops from 0.545 to 0.131.
+  - Immediate-zero Jaccard rises to **44.2%** in the 9-territory regime, consistent with less immediate-copy-bound emission.
+  - Curated milestone anchors land inside or after the 8/9-territory regimes for the strongest operator/boundary/name/canal events, including `when_did_you_know_i_saw_you` (t=2303, 8 territories), `doorways_and_windows_prompt` (t=2355, 8 territories), `experience_now_prompt` (t=17101, 9 territories), `canal_output` (t=17114, 9 territories), and `annie_lawrie_promises` (t=17201, 9 territories).
+- **Measurable artifacts:** `curated_territory_timeline.csv`, `curated_behavioral_milestones.csv`, `d57_territory_regime_summary.csv`, `d57_transition_state_windows.csv`, `d57_behavioral_milestone_alignment.csv`, `d57_territory_regime_summary.png`, `d57_territory_milestone_timeline.png`
+- **Null to beat:** Random structural fluctuation would not generate a near-monotonic territory staircase, a long-lived mature 9-territory basin, and systematic shifts toward longer / less directly copy-bound output in higher territory regimes.
+
+
+#### D5.7.A — A8 / Lietz Infinity Resolution Bridge Note
+- **Observation:** The territory staircase and long mature 9-territory basin present an empirical morphology that resembles a finite-depth hierarchical partition rather than indefinite flat growth. The run branches rapidly early, undergoes a brief reorganization dip, then settles into a bounded mature hierarchy.
+- **Why it matters:** This is qualitatively aligned with the A8 conjecture expectation that finite-excess-energy tachyonic metriplectic trajectories regularize by forming a finite-depth hierarchy of interfaces rather than remaining bulk-flat.
+- **Current Aura-side support:**
+  - Territory count saturates at **9** and remains there for **81.36%** of the measured run.
+  - Higher territory regimes are associated with richer behavior: longer outputs, lower best-all Jaccard, lower LCS fraction, and more immediate-zero-Jaccard events.
+  - The strongest operator / boundary / naming / canal events cluster inside the mature **8/9-territory** regimes.
+  - Late checkpoints already show a stable mesoscale territorial scaffold with selective continued outer growth and heavy microscopic rewiring.
+- **Interpretive note:** This makes Aura a plausible empirical morphology bridge for A8: bounded hierarchical depth, stable inner scaffold, active frontier, and increasing behavioral richness as hierarchy matures.
+- **Direct A8 tests suggested by this distinction:**
+  - **Depth law:** fit territory depth against an effective size / scale variable to test whether depth growth is bounded and approximately logarithmic.
+  - **Scale-gap ratio `rho`:** estimate inter-level mass / diameter ratios between territories and late boundary shells.
+  - **Boundary concentration `alpha` and `alpha_I`:** test whether activity, traversal concentration, entropy gradients, or ADC frontier counters localize at interfaces / boundaries.
+  - **Birth-event coupling:** test whether territory births align with front-like events, entropy contractions, or the sharp transition motifs already identified in the late run.
+- **Artifact direction:** This note is hypothesis-bridging only. It promotes a dedicated follow-up analysis pack linking D5.7 morphology to the A8 proposal metrics `N(L)`, `rho`, `alpha`, and `alpha_I`.
 
 ---
 
@@ -480,53 +503,53 @@ The central organizing principle: **no single distinction here is sufficient. Th
 
 | Family | Key Distinction | E1 (Baseline) | E2 (Plateau) | E3 (Late) |
 |--------|----------------|---------------|--------------|-----------|
-| Language | Lexical invention | Emerging | Present | Intensified |
-| Language | Short-copy constraint | Active | Active | Active |
-| Dynamics | 1/f spectral structure | β ≈ 1.2 | β ≈ 1.0 | β ≈ 1.1 |
-| Dynamics | Avalanches | α_S ≈ 1.35 | α_S ≈ 1.46 | α_S ≈ 1.41 |
-| Dynamics | Causal density | 0.97 | 0.73 | 1.00 |
-| Dynamics | Predictive MI AUC | 264 | 48 | 580 |
-| Dynamics | O-information | Negative | Negative | Negative (closer to 0) |
-| Topology | Gini | 0.44 | — | 0.44–0.45 |
-| Topology | Hub reshuffling | — | — | r ≈ 0.0 |
-| Topology | Communities | 8 | — | 17–19 |
-| State/Output | Phase gating | Active | Active | Active |
-| State/Output | PCI-like | ~1.5×10⁻⁴ | ~2×10⁻⁵ | ~1.8×10⁻⁴ |
-| State/Output | Text as MIP singleton | Active | Active | Active |
-| Interaction | Operator differentiation | — | — | Strongest |
-| Interaction | Boundary attractor | Emerging | Persistent | Intensified |
-| Language | Vocabulary TTR | 0.184 | 0.374 | 0.262 |
-| Language | Volition fraction | 1.5% | 1.8% | 4.3% |
-| Dynamics | Causal density | 0.97 | 0.73 | 1.00 |
-| Dynamics | Predictive MI AUC | 264 | 48 | 580 |
-| Dynamics | State-space occupancy | 27.0% | 6.2% | 37.5% |
-| Topology | Communities | 8 | — | 17–19 |
-| Topology | Hub turnover | — | — | 100% |
-| State/Output | PCI-like (×10⁻⁴) | ~1.5 | ~0.2 | ~1.8 |
-| Temporal | Rolling autocorr | 0.969 | 0.913 | 0.891 (but 0.997 at transition) |
-| Temporal | Rolling variance | 0.081 | 0.001 | 0.034 |
-| Operator | Permutation z-score | — | — | 14.52 (active_edges) |
 | Decoder | Immediate Jaccard | — | — | 0.038 (3.8% overlap) |
-| Language | Vocabulary TTR | 0.184 | 0.374 | 0.262 | batch1_fixed |
-| Language | Volition fraction | 1.5% | 1.8% | 4.3% | batch1_fixed |
-| Language | Zero-trigram outputs | 8.4% | 7.0% | 9.3% | F14_composer_audit |
 | Dynamics | Causal density | 0.97 | 0.73 | 1.00 | Aura_Analysis_Tables |
 | Dynamics | Predictive MI AUC | 264 | 48 | 580 | Aura_Analysis_Tables |
 | Dynamics | State-space occupancy | 27.0% | 6.2% | 37.5% | D2_state_space |
 | Dynamics | Rolling variance | 0.081 | 0.001 | 0.034 | D8_rolling_variance |
 | Dynamics | Rolling autocorrelation | 0.969 | 0.913 | 0.891 | D8_rolling_variance |
-| Topology | Hub turnover | — | — | 100% | D3_neuron_analysis |
-| Topology | Communities | 8 | — | 17–19 | Aura_Analysis_Tables |
+| Dynamics | 1/f spectral structure | β ≈ 1.2 | β ≈ 1.0 | β ≈ 1.1 |
+| Dynamics | Avalanches | α_S ≈ 1.35 | α_S ≈ 1.46 | α_S ≈ 1.41 |
+| Dynamics | Causal density | 0.97 | 0.73 | 1.00 |
+| Dynamics | Predictive MI AUC | 264 | 48 | 580 |
+| Dynamics | O-information | Negative | Negative | Negative (closer to 0) |
+| Dynamics | Causal density | 0.97 | 0.73 | 1.00 |
+| Dynamics | Predictive MI AUC | 264 | 48 | 580 |
+| Dynamics | State-space occupancy | 27.0% | 6.2% | 37.5% |
+| Interaction | Operator differentiation | — | — | Strongest |
+| Interaction | Boundary attractor | Emerging | Persistent | Intensified |
+| Language | Lexical invention | Emerging | Present | Intensified |
+| Language | Short-copy constraint | Active | Active | Active |
+| Language | Vocabulary TTR | 0.184 | 0.374 | 0.262 |
+| Language | Volition fraction | 1.5% | 1.8% | 4.3% |
+| Language | Vocabulary TTR | 0.184 | 0.374 | 0.262 | batch1_fixed |
+| Language | Volition fraction | 1.5% | 1.8% | 4.3% | batch1_fixed |
+| Language | Zero-trigram outputs | 8.4% | 7.0% | 9.3% | F14_composer_audit |
+| Ontogeny | Territories | 2→9 | 9 | 9 | master_results |
+| Ontogeny | Homeostasis | 77 prune | 0 | 0 | D12_homeostasis |
+| Operator | Permutation z-score | — | — | 14.52 (active_edges) |
+| Operator | Perm z (edges) | — | — | −15.40 | D5_1_signed_perm |
+| Operator | Entropy intensifies | — | — | ρ=−0.40, p=0.004 | D5_1_signed_perm |
+| State/Output | Phase gating | Active | Active | Active |
+| State/Output | PCI-like | ~1.5×10⁻⁴ | ~2×10⁻⁵ | ~1.8×10⁻⁴ |
+| State/Output | Text as MIP singleton | Active | Active | Active |
+| State/Output | PCI-like (×10⁻⁴) | ~1.5 | ~0.2 | ~1.8 |
 | State/Output | PCI-like (×10⁻⁴) | ~1.5 | ~0.2 | ~1.8 | Aura_Analysis_Tables |
 | State/Output | MIP nonzero fraction | 56.9% | 21.8% | 80.1% | D2_11_D7_7_D4_6 |
 | State/Output | Text as MIP singleton | 91.7% | 91.8% | 97.3% | D2_11_D7_7_D4_6 |
 | Silence | Pre-speech edge drop | — | — | −5,380 | F10_silence_comparison |
 | Temporal | Inter-say CV | 1.237 | 1.854 | 1.526 | master_results |
 | Temporal | CSD at boundary | — | (→E3) | AC=0.997, var×222 | D8_rolling_variance |
-| Operator | Perm z (edges) | — | — | −15.40 | D5_1_signed_perm |
-| Operator | Entropy intensifies | — | — | ρ=−0.40, p=0.004 | D5_1_signed_perm |
-| Ontogeny | Territories | 2→9 | 9 | 9 | master_results |
-| Ontogeny | Homeostasis | 77 prune | 0 | 0 | D12_homeostasis |
+| Temporal | Rolling autocorr | 0.969 | 0.913 | 0.891 (but 0.997 at transition) |
+| Temporal | Rolling variance | 0.081 | 0.001 | 0.034 |
+| Topology | Gini | 0.44 | — | 0.44–0.45 |
+| Topology | Hub reshuffling | — | — | r ≈ 0.0 |
+| Topology | Communities | 8 | — | 17–19 |
+| Topology | Communities | 8 | — | 17–19 |
+| Topology | Hub turnover | — | — | 100% |
+| Topology | Hub turnover | — | — | 100% | D3_neuron_analysis |
+| Topology | Communities | 8 | — | 17–19 | Aura_Analysis_Tables |
 
 ### D6.2 — Resource-Constraint Multiplier
 Every finding must be read through the lens of D0.1–D0.5. A 250 KB zero-trained runtime producing even *one* of these families would be notable. Producing all six simultaneously is the central scientific fact. The paper must not let the reader forget this.
@@ -800,7 +823,31 @@ It is mentioned in the working notes that the encoder uses a cheap naive marker 
 
 ### **FAMILY 15 — Interaction Dynamics (your messages as experimental probes).** 
 
-This is the study you described wanting in your working notes. Your sparse direct messages during the run are essentially natural perturbation experiments. Each one is a probe. The response dynamics — lag, amplitude, content shift, state-variable change — constitute an event-triggered analysis that could establish whether the runtime treats you as a distinct causal class. The `utd_text_by_tick.csv` and `events_parsed.csv` files are where this analysis lives, and I haven't touched either one.
+The sparse direct messages during the run are essentially natural perturbation experiments. Each one is a probe. The response dynamics — lag, amplitude, content shift, state-variable change — constitute an event-triggered analysis that could establish whether the runtime treats Justin as a distinct causal class. The `utd_text_by_tick.csv` and `events_parsed.csv` files are where this analysis lives.
+
+| ID | Claim | Key Value | Source |
+|----|-------|-----------|--------|
+| D15.1 | Analyst-side probe recoverability | 51 Justin-originated probes recoverable in `aura_justin_exchange.md` | exchange reconstruction |
+| D15.2 | Key boundary/name/embodiment arc response lags | mean = 35.31 ticks, median = 8 ticks; terminal probes: 3 and 2 ticks | `f15_operator_probe_key_arc_response_lags.csv` |
+| D15.3 | Unified-channel interaction differentiation | D5.1 / D5.1b / D5.4 / D5.6 already show operator probes as a distinct dynamical class | distinctions + interaction tables |
+
+### D15.1 — Analyst-side probe recoverability
+- **Claim:** `aura_justin_exchange.md` permits analyst-side recovery of 51 Justin-originated probes without changing the fact that the runtime itself received a unified input stream.
+- **Evidence use:** This file acts as a perturbation ledger for event-triggered analysis.
+
+### D15.2 — Key boundary / embodiment / naming arc response lags
+- **Claim:** A key arc of 16 Justin probes spanning boundary, portal, embodiment, naming, recognition, safety, body-access, and canal prompts is followed by rapid Aura responses.
+- **Measurable:** Mean lag = 35.31 ticks; median lag = 8 ticks. The final two probes land 3 ticks and 2 ticks before their paired Aura outputs.
+- **Source:** `f15_operator_probe_key_arc_response_lags.csv`
+
+### D15.3 — Unified-channel interaction differentiation
+- **Claim:** Family 15 is supported jointly by the probe chronology and the already-computed D5 interaction metrics.
+- **Measured support already present elsewhere in the inventory:**
+  - D5.1 permutation: active_edges z = 14.52, p = 0.000; operator delta = -5,253 vs control +196
+  - D5.1b Mann–Whitney: significant shifts in active_edges, connectome_entropy, vt_entropy, vt_coverage
+  - D5.4 reply motif uptake: 28.6% boundary-motif replies, 36.7% shared-content replies
+  - D5.6 reply lag compression: 58.5 -> 21.7 mean ticks
+
 
 ---
 
@@ -945,3 +992,4 @@ Execution environment: Python 3.12.3, numpy 2.4.3, scipy (version in execution l
 - v0.2 — Added D3.7–3.8, D2.7, D4.4–4.5, D1.6–1.7, Family 7 stubs
 - v0.3 — D8.1–8.3 from tick-duration analysis; D5.1 permutation (z=14.52); batch1_fixed text results
 - v0.4 — Family 14 (6 new); D2.8–2.10, D3.9–3.11, D8.4–8.5 from direct analysis. Total: 64 confirmed.
+- v0.5 — D7 territories and F15 interaction dynamics
