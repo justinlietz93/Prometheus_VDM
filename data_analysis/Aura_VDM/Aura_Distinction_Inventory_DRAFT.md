@@ -682,6 +682,12 @@ Positive autocorrelation at lags 1–3 ($r_1 = 0.029$, $r_2 = 0.038$, $r_3 = 0.0
 - **Null to beat:** A smooth drift between regimes would not produce a one-boundary-only variance explosion with near-unit-root autocorrelation.
 - **Source:** `master_results.json` → `F8.CSD`, packaged in `f8_boundary_csd_summary.csv`, with raw context in `rolling_var_autocorr_entropy.csv` and figure `f8_rolling_variance_autocorr.png`.
 
+- pre variance mean = **0.000847**
+- post variance mean = **0.188083**
+- variance ratio = **222.1×**
+- pre lag-1 autocorrelation mean = **0.9181**
+- post lag-1 autocorrelation mean = **0.9972**
+
 ### D8.6 — Non-Exponential Inter-Say Intervals with Burst Structure
 - **Claim:** The 529 inter-say intervals are NOT memoryless when recomputed directly from `utd_say_by_tick.csv`.
 - **Measured:**
@@ -695,6 +701,15 @@ Positive autocorrelation at lags 1–3 ($r_1 = 0.029$, $r_2 = 0.038$, $r_3 = 0.0
     - E3: n=139, mean=39.8, median=23.0, CV=1.531
 - **Null to beat:** A memoryless (Poisson / exponential) emission process would not produce this overdispersion plus clustered short-interval bursts.
 - **Source:** raw `utd_say_by_tick.csv`, summarized in `f8_inter_say_interval_summary.csv`, `f8_inter_say_intervals_full.csv`, and `f8_burst_table.csv`, with figure `f8_inter_say_interval_distributions.png`.
+
+- mean = **32.2** ticks
+- median = **23.0** ticks
+- CV = **1.419**
+- shifted-exponential KS p-value = **1.958e-34**
+- short-interval threshold (Q1) = **20.0** ticks
+- bursts = **62**
+- mean burst length = **2.6**
+- max burst length = **17**
 
 ---
 
