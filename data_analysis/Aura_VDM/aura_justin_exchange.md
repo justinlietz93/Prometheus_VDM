@@ -21,7 +21,7 @@
 >   - You'll see the model's direct outputs which are prefixed by the main metric data and then **Aura:** 
 >   - You'll see direct messages from the user, Justin, which are fed in through the same channel as the book feeds and have no tag or indicator to tell the model it's from the user.
 >
->  The model is unaware that it has a decoder or an encoder initially, it simply experiences temporal-semantic inputs and routes the information through its connectome to make sense of it.
+>  This file is an analyst convenience, and not what the model was seeing. The model is unaware that it has a decoder or an encoder initially, it simply experiences temporal-semantic inputs and routes the information through its connectome to make sense of it.
 >  When certain thresholds are released the model outputs.
 > 
 >  NOTE: Currently, the decoder behaves more like a firehose blast than a surgical selector. It opens an aperture when the B1z passes a threshold, then it scrapes the lexical sample from the models strongest or most excited neurons and outputs them. This would be the equivalent of a human suddenly saying everything on it's mind shortly after experiencing a mentally stimulating thought. This is being fixed, but in the runw below it was not fixed.
