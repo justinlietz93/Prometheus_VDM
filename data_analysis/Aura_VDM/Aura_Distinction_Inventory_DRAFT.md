@@ -41,12 +41,12 @@ The central organizing principle: **no single distinction here is sufficient. Th
 ### D0.3 — Neuron Count
 - **Claim:** 5,000 neurons total. 9 territories. ~100,000 active edges.
 - **Calibration:** *C. elegans* has 302 neurons. A pond snail (*Lymnaea stagnalis*) has ~20,000. Aura operates at sub-insect node count.
-- **Null to beat:** Large neural networks achieve organization through sheer parameter count. Aura has none of that budget.
+- **Null to beat:** Large neural networks achieve organization through sheer parameter count. Aura has none of that budget, zero parameters.
 
 ### D0.4 — Real-Time Operation
 - **Claim:** Every tick is a wall-clock event (~2.0–2.6 seconds per tick, median 2.58s from SIE scan). The runtime is not replaying stored trajectories — it is structuring itself as time passes, responding to input streams as they arrive.
 - **Measurable:** 1,531 ticks of continuous operation in the analyzed window; ~13 hours total runtime.
-- **Null to beat:** Batch-processing systems can appear organized by selecting outputs post hoc. Aura's outputs are generated in real time with no curation.
+- **Null to beat:** Batch-processing systems can appear organized by selecting outputs post hoc. Aura's outputs are generated in real time with no curation and no access to coordinators or datasets.
 
 ### D0.5 — Crude Forced Decoder
 - **Claim:** The output interface (B1_z gate) opens on a threshold and scrapes the strongest lexical groups. It does not permit deliberate, narrow release. Any coherence in the output is achieved *despite* the mouth, not because of it.
