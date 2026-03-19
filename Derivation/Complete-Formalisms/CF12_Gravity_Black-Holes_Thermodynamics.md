@@ -111,8 +111,9 @@ The effective Lorentzian signature of the spacetime metric is the geometric enco
 ### Proof burden
 1. Start from cone structure, not from metric signature.
 2. Show any effective interval structure representing this cone must distinguish one propagation-limiting direction from the remaining carrier directions.
-3. Show the minimal quadratic encoding of the cone has Lorentzian sign pattern rather than Euclidean sign pattern.
-4. Prove this is a **derived encoding**, not a primitive metric assumption.
+3. Make explicit why there is exactly **one** propagation-limiting direction: the CF04 cone imposes a single global speed-limit parameter governing propagation in all spatial directions simultaneously, so one axis functions as the common ordering/limiting direction for all admissible propagation events, whereas the remaining axes are the propagation directions themselves.
+4. Show the minimal quadratic encoding of that one-versus-many split has Lorentzian sign pattern rather than Euclidean sign pattern.
+5. Prove this is a **derived encoding**, not a primitive metric assumption.
 
 ### Kill method
 If Euclidean metric structure can encode the same finite-speed cone without extra hidden structure, this theorem fails.
