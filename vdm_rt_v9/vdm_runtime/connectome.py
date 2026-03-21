@@ -55,6 +55,7 @@ import numpy as np
 from .void_equations import (
     D_DIFF, TAU, C_SIGNAL, EPS_BOND,
     LAMBDA, LAMBDA_BOND, BETA_DEBT,
+    LatticeEdge,
     bond_decoherence_floor,
     bond_gradient_source,
     bond_potential_derivative,
@@ -79,7 +80,8 @@ class Connectome:
     def __init__(
         self,
         N: int,
-        initial_edges: List[Tuple[int, int]],
+        initial_edges: List[Tuple[int, int] | LatticeEdge],
+        lattice_metadata: Dict | None = None,
     ):
         """
         Initialize connectome in superposition.
@@ -92,6 +94,13 @@ class Connectome:
                 pattern (which edges survive) emerges from dynamics.
         """
         self.N = N
+        self.lattice_metadata = dict(lattice_metadata or {})
+        self.transport_renormalization = float(
+            self.lattice_metadata.get("transport_renormalization", 1.0)
+        )
+        self.dynamic_bond_geom_weight = float(
+            self.lattice_metadata.get("dynamic_bond_geom_weight", 1.0)
+        )
 
         # ── Node field IC: superposition (A0 + action symmetry) ──
         # V(φ) has unstable vacuum at φ = 0.5.  V'(0.5) = 0.
@@ -113,10 +122,19 @@ class Connectome:
         self.psi_prev: List[np.ndarray] = [
             np.array([], dtype=np.float64) for _ in range(N)
         ]
+        self.geom_weight: List[np.ndarray] = [
+            np.array([], dtype=np.float64) for _ in range(N)
+        ]
 
-        for u, v in initial_edges:
+        for edge in initial_edges:
+            if isinstance(edge, LatticeEdge):
+                u, v = edge.u, edge.v
+                geom_weight = edge.geom_weight
+            else:
+                u, v = edge
+                geom_weight = 1.0
             if u != v and v not in self.adj[u]:
-                self._add_bond(u, v, psi_init=0.5)
+                self._add_bond(u, v, psi_init=0.5, geom_weight=geom_weight)
 
         # ── Auxiliary state ──
         self.debt = np.zeros(N, dtype=np.float64)
@@ -265,7 +283,12 @@ class Connectome:
 
         if compute_list:
             lap = bond_weighted_laplacian(
-                self.phi_curr, self.adj, self.psi_curr)
+                self.phi_curr,
+                self.adj,
+                self.psi_curr,
+                self.geom_weight,
+                self.transport_renormalization,
+            )
             dV = node_potential_derivative(self.phi_curr)
 
             for i in compute_list:
@@ -315,7 +338,12 @@ class Connectome:
                 # The measurement collapses the bond to a definite state.
                 # ψ = 0.0 is the vacuum from which spinodal condensation
                 # proceeds if the gradient source is sufficient.
-                self._add_bond(u, v, psi_init=0.0)
+                self._add_bond(
+                    u,
+                    v,
+                    psi_init=0.0,
+                    geom_weight=self.dynamic_bond_geom_weight,
+                )
                 instantiated += 1
 
         # ─── 7. Decoherence sweep (CF07) ───
@@ -373,15 +401,28 @@ class Connectome:
     # Bond lifecycle
     # ══════════════════════════════════════════════════════════════════════
 
-    def _add_bond(self, u: int, v: int, psi_init: float = 0.0) -> None:
+    def _add_bond(
+        self,
+        u: int,
+        v: int,
+        psi_init: float = 0.0,
+        geom_weight: float | None = None,
+    ) -> None:
         """Add bond DOF at specified ψ value."""
+        geom = (
+            float(geom_weight)
+            if geom_weight is not None
+            else self.dynamic_bond_geom_weight
+        )
         self.adj[u] = np.append(self.adj[u], np.int32(v))
         self.psi_curr[u] = np.append(self.psi_curr[u], psi_init)
         self.psi_prev[u] = np.append(self.psi_prev[u], psi_init)
+        self.geom_weight[u] = np.append(self.geom_weight[u], geom)
 
         self.adj[v] = np.append(self.adj[v], np.int32(u))
         self.psi_curr[v] = np.append(self.psi_curr[v], psi_init)
         self.psi_prev[v] = np.append(self.psi_prev[v], psi_init)
+        self.geom_weight[v] = np.append(self.geom_weight[v], geom)
 
     def _decohere_bonds(self, compute_nodes: list) -> int:
         """Remove bonds below thermal floor (CF07 §4.1)."""
@@ -406,6 +447,7 @@ class Connectome:
             self.adj[i] = self.adj[i][alive]
             self.psi_curr[i] = self.psi_curr[i][alive]
             self.psi_prev[i] = self.psi_prev[i][alive]
+            self.geom_weight[i] = self.geom_weight[i][alive]
 
             for j in dead_nbrs:
                 j = int(j)
@@ -413,6 +455,7 @@ class Connectome:
                 self.adj[j] = self.adj[j][mask]
                 self.psi_curr[j] = self.psi_curr[j][mask]
                 self.psi_prev[j] = self.psi_prev[j][mask]
+                self.geom_weight[j] = self.geom_weight[j][mask]
 
         return removed
 

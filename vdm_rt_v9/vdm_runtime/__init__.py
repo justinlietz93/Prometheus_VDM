@@ -8,6 +8,23 @@ Derived from the discrete action (VDM-AX-004) via CF01–CF11.
 Runtime only.  CFN validation notebooks are separate.
 """
 from .connectome import Connectome
-from .void_equations import get_constants, build_ring_lattice, build_grid_lattice
+from .void_equations import (
+    LatticeDefinition,
+    LatticeEdge,
+    build_grid_lattice,
+    build_grid_lattice_spec,
+    build_ring_lattice,
+    build_ring_lattice_spec,
+    get_constants,
+)
 
-__all__ = ["Connectome", "get_constants", "build_ring_lattice", "build_grid_lattice"]
+__all__ = [
+    "Connectome",
+    "LatticeDefinition",
+    "LatticeEdge",
+    "get_constants",
+    "build_ring_lattice",
+    "build_ring_lattice_spec",
+    "build_grid_lattice",
+    "build_grid_lattice_spec",
+]
