@@ -1,27 +1,62 @@
 # CF17 Plan — Non-Abelian Saturation, Flux Tubes, and Quantitative Confinement in VDM
 
 Date: 2026-03-20  
-Status: Planning document  
-Purpose: Close the confinement branch quantitatively and nonperturbatively, without smuggling in standard QCD results as assumptions.
+Status: Revised planning document  
+Purpose: Close the strong-force branch quantitatively and nonperturbatively, without smuggling in standard QCD results as assumptions.
 
 ---
 
-## 1. Scope
+## 1. Foundation status
+
+**Current foundation strength: moderate, with the core branch already present.**
+
+The strong force is **not absent** from the current stack. It already exists structurally as the **non-abelian color branch**:
+
+- CF09 supplies the non-abelian multi-mode fiber/gauge-hosting architecture,
+- CF15 closes the existence of SU(N) zero-cost directions and color currents.
+
+What is missing is **not “the strong force” in general** but its **quantitative nonperturbative closure**:
+
+- why isolated color is not asymptotically admissible,
+- why source separation concentrates into flux tubes,
+- what hard observable demonstrates confinement,
+- how string breaking and deconfinement fit the same architecture.
+
+So CF17 should be written as a **closure of strong-force dynamics**, not as the first appearance of the strong-force branch.
+
+---
+
+## 2. Immediate framing corrections
+
+1. **Do not write this as if color/SU(N) first appears here.** CF17 starts from an already-earned non-abelian color sector and closes its confinement consequences.
+2. **Do not lean on pre-CF numerics.** Old tube or flux scans done before the canon stack existed are historical hints only.
+3. **This paper is where the strong force becomes quantitative.** The goal is to turn SU(N) structural closure into confinement closure.
+4. **Asymptotic freedom should not carry proof burden here unless it is derived from the confinement analysis itself.** Running-coupling closure belongs more naturally to CF18.
+
+---
+
+## 3. Scope
 
 This paper must close the following:
 
 1. why non-abelian color-bearing sectors do not remain as freely propagating isolated charges,
 2. how saturation/re-articulation produces boundary-hosted color flux rather than bulk-free charge separation,
-3. why flux tube formation is forced,
+3. why flux-tube formation is forced,
 4. how a quantitative confinement observable emerges,
-5. what deconfinement means in VDM terms,
-6. what is and is not proven about mass gap, asymptotic freedom, and hadron spectra.
+5. what string breaking means in VDM terms,
+6. what deconfinement means in VDM terms,
+7. what is and is not proven about mass gap, asymptotic freedom, and hadron spectra.
 
-This paper should not attempt to close electroweak mixing or loop/running-coupling physics.
+This paper should not attempt to close:
+
+- electroweak mixing,
+- loop/running-coupling physics as a full RG branch,
+- all-orders Yang–Mills mathematics,
+- detailed hadron spectroscopy.
 
 ---
 
-## 2. Canon inheritance to use explicitly
+## 4. Canon inheritance to use explicitly
 
 - **A(-1), CF000** — non-discharge, saturation, orthogonal re-articulation.
 - **CF03** — tachyonic instability / tube/interface energetics / hierarchical boundary structure where relevant.
@@ -31,13 +66,13 @@ This paper should not attempt to close electroweak mixing or loop/running-coupli
 - **CF14** — stationary action / temporal effective invariant.
 - **CF15** — SU(N) Noether currents exist; symmetry-breaking and boundary-hosted burden concentration language is already available.
 
-This paper must convert those qualitative implications into a quantitative confinement closure.
+This paper must convert those already-earned qualitative implications into a quantitative confinement closure.
 
 ---
 
-## 3. What must be proven in CF17
+## 5. What must be proven in CF17
 
-## 3.1 Why free color is not an admissible asymptotic state
+### 5.1 Why free color is not an admissible asymptotic state
 
 Need a theorem that isolated non-abelian color charge cannot remain as an unconstrained bulk asymptotic sector.
 
@@ -49,7 +84,7 @@ Required work:
 
 **Closure target:** a theorem excluding freely isolated color-bearing asymptotic states in the closed non-abelian sector.
 
-## 3.2 Flux-tube formation theorem
+### 5.2 Flux-tube formation theorem
 
 Need to prove that color separation concentrates burden into a tube/filament rather than allowing diffuse free radiation to neutralize the system.
 
@@ -62,14 +97,14 @@ Required work:
 
 **Closure target:** a theorem that separated non-abelian color sources induce a boundary-hosted flux tube rather than a freely dispersed color field.
 
-## 3.3 Quantitative confinement observable
+### 5.3 Quantitative confinement observable
 
 Need one hard quantitative object.
 
 Possible options:
 
 - string tension,
-- area-law Wilson-type observable,
+- area-law Wilson-type observable redefined in VDM terms,
 - energy growing with source separation,
 - minimal tube-energy functional with stable radius and increasing length cost.
 
@@ -81,7 +116,7 @@ Required work:
 
 **Closure target:** at least one theorem-grade quantitative confinement criterion.
 
-## 3.4 Tube-radius and internal mode structure
+### 5.4 Tube radius and internal mode structure
 
 Need to close whether the tube has a preferred internal structure.
 
@@ -94,7 +129,7 @@ Required work:
 
 **Closure target:** either an analytic preferred-structure theorem or an explicitly delimited theorem + numeric witness package.
 
-## 3.5 Pair creation / string breaking threshold
+### 5.5 Pair creation / string breaking threshold
 
 Need to explain how confinement coexists with string breaking rather than claiming tubes grow forever.
 
@@ -106,7 +141,7 @@ Required work:
 
 **Closure target:** a theorem or corollary stating the condition under which flux-tube growth re-expresses into new paired structure.
 
-## 3.6 Deconfinement condition
+### 5.6 Deconfinement condition
 
 Need a clean statement of what deconfinement means.
 
@@ -120,7 +155,7 @@ Required work:
 
 ---
 
-## 4. Suggested theorem spine
+## 6. Suggested theorem spine
 
 1. **Theorem 1 — Non-abelian asymptotic exclusion theorem**  
    Isolated color-bearing asymptotic states are not admissible in the closed non-abelian sector.
@@ -137,7 +172,7 @@ Required work:
 5. **Theorem 4 — Tube structure theorem**  
    The confined tube has a preferred internal support profile / radius / mode family.
 
-6. **Corollary 1 — String breaking threshold**  
+6. **Corollary 1 — String-breaking threshold**  
    Above a threshold burden, re-articulation produces pair creation rather than infinite linear continuation.
 
 7. **Corollary 2 — Deconfinement regime criterion**  
@@ -145,7 +180,7 @@ Required work:
 
 ---
 
-## 5. What has to be defined explicitly in the paper
+## 7. What has to be defined explicitly in the paper
 
 - color burden,
 - confined versus deconfined sector,
@@ -160,9 +195,9 @@ No imported Wilson-loop language should carry proof burden unless it is redefine
 
 ---
 
-## 6. Numerical program likely needed for the paired CFN
+## 8. Numerical program likely needed for the paired CFN
 
-Unlike CF16, this paper probably needs fresh numerics as actual witnesses.
+Unlike CF16, this paper probably needs fresh numerics as real witnesses.
 
 Need targeted reruns for:
 
@@ -173,11 +208,11 @@ Need targeted reruns for:
 - stability / curvature checks at the preferred radius,
 - confined-to-deconfined transition witnesses if available.
 
-The old data should be treated as historical hints only unless rerun and provenance-cleaned.
+**Rule:** no pre-CF result counts for or against closure unless it is rerun under current derived objects, current gates, and clean provenance.
 
 ---
 
-## 7. Validation logic required in the CF itself
+## 9. Validation logic required in the CF itself
 
 Required analytical checks:
 
@@ -197,11 +232,11 @@ Required numeric witness criteria to define in the CF:
 
 ---
 
-## 8. What must be labeled honestly if not fully closed
+## 10. What must be labeled honestly if not fully closed
 
 - exact hadron spectrum,
 - rigorous Yang–Mills mass gap in the strongest mathematical sense,
-- asymptotic freedom as running-coupling closure,
+- asymptotic freedom as a fully closed running-coupling theorem,
 - high-precision lattice-equivalent numerical constants,
 - full baryon/meson phenomenology.
 
@@ -209,11 +244,12 @@ Those are downstream unless fully proven.
 
 ---
 
-## 9. Deliverables for CF17
+## 11. Deliverables for CF17
 
 The paper is done only when it contains:
 
 - canon manifest,
+- explicit statement that the non-abelian color branch is already inherited from CF09 + CF15,
 - VDM-first definition of confinement objects,
 - theorem excluding free asymptotic color states,
 - theorem forcing flux-tube formation,
@@ -226,7 +262,7 @@ The paper is done only when it contains:
 
 ---
 
-## 10. Runtime relevance
+## 12. Runtime relevance
 
 This paper matters for runtime completion because it closes how:
 
@@ -239,7 +275,7 @@ That is directly relevant to any runtime that needs binding, channel formation, 
 
 ---
 
-## 11. No-open-questions completion criterion
+## 13. No-open-questions completion criterion
 
 CF17 is complete only if the reader can answer, from the paper alone:
 
