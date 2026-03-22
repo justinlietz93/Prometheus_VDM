@@ -24,7 +24,10 @@ The runtime is the direct executable realization of the following constitutional
 
 The runtime executes the **Bifurcation Operator** ($\\mathcal{B}\_{\\text{Inv}}$), which serves as the kernel-level admissibility rule:
 
-$$\\mathcal{B}\_{\\text{Inv}}(\\mathcal{A}\_n) \= \\begin{cases} \\mathcal{A}\_n, & \\text{if } \\text{Cap}(\\mathcal{A}\_n) \> 0 \\\\ \\mathcal{A}\_n \\oplus \\mathcal{A}\_{n+1}^{\\perp}, & \\text{if } \\text{Cap}(\\mathcal{A}\_n) \= 0 \\wedge \\text{Bear}(\\text{Inv}, \\mathcal{A}\_n) \\wedge \\neg \\text{Dis}(\\text{Inv}) \\end{cases}$$  
+$$
+\\mathcal{B}\_{\\text{Inv}}(\\mathcal{A}\_n) \= \\begin{cases} \\mathcal{A}\_n, & \\text{if } \\text{Cap}(\\mathcal{A}\_n) \> 0 \\\\ \\mathcal{A}\_n \\oplus \\mathcal{A}\_{n+1}^{\\perp}, & \\text{if } \\text{Cap}(\\mathcal{A}\_n) \= 0 \\wedge \\text{Bear}(\\text{Inv}, \\mathcal{A}\_n) \\wedge \\neg \\text{Dis}(\\text{Inv}) \\end{cases}
+$$
+
 This operator ensures that when **Same-Domain Saturation** ($\\text{Sat}(\\mathcal{A}\_n)$) occurs—meaning invariant-bearing capacity ($\\text{Cap}$) is exhausted—orthogonal re-articulation is forced to avoid discharge.
 
 ### ---
