@@ -1,0 +1,878 @@
+{
+  "D5_1": {
+    "config": {
+      "N_PERMS": 500,
+      "POST": 20,
+      "PRE": 5,
+      "seed": 42
+    },
+    "dose_response": {
+      "interpretation": "no dose-response",
+      "long_msg_mean_delta": -5535.0,
+      "p": 0.827101,
+      "rho": -0.032,
+      "short_msg_mean_delta": -4549.0
+    },
+    "intensification": {
+      "interpretation": "INTENSIFIES",
+      "p": 0.004493,
+      "rho": -0.3992,
+      "variable": "connectome_entropy"
+    },
+    "mann_whitney": {
+      "active_edges": {
+        "U": 1259.0,
+        "control_mean": 196.363798,
+        "effect_r": -0.3947,
+        "n_ctrl": 244,
+        "n_op": 49,
+        "operator_mean": -5253.25,
+        "p": 0.0,
+        "sig_001": "True",
+        "sig_005": "True"
+      },
+      "b1_z": {
+        "U": 6557.0,
+        "control_mean": -0.086495,
+        "effect_r": 0.0484,
+        "n_ctrl": 244,
+        "n_op": 49,
+        "operator_mean": 0.107266,
+        "p": 0.285126,
+        "sig_001": "False",
+        "sig_005": "False"
+      },
+      "connectome_entropy": {
+        "U": 2840.0,
+        "control_mean": 0.005593,
+        "effect_r": -0.2625,
+        "n_ctrl": 244,
+        "n_op": 49,
+        "operator_mean": -0.078513,
+        "p": 0.0,
+        "sig_001": "True",
+        "sig_005": "True"
+      },
+      "sie_v2_valence_01": {
+        "U": 6752.0,
+        "control_mean": 9.7e-05,
+        "effect_r": 0.0647,
+        "n_ctrl": 244,
+        "n_op": 49,
+        "operator_mean": 0.004833,
+        "p": 0.152955,
+        "sig_001": "False",
+        "sig_005": "False"
+      },
+      "vt_coverage": {
+        "U": 3927.0,
+        "control_mean": 0.003837,
+        "effect_r": -0.1715,
+        "n_ctrl": 244,
+        "n_op": 49,
+        "operator_mean": -0.012868,
+        "p": 0.000151,
+        "sig_001": "True",
+        "sig_005": "True"
+      },
+      "vt_entropy": {
+        "U": 2772.0,
+        "control_mean": 0.015751,
+        "effect_r": -0.2681,
+        "n_ctrl": 244,
+        "n_op": 49,
+        "operator_mean": -0.157885,
+        "p": 0.0,
+        "sig_001": "True",
+        "sig_005": "True"
+      }
+    },
+    "signed_permutation": {
+      "active_edges": {
+        "direction": "CONTRACTS",
+        "n_perms": 500,
+        "null_mean": 24.13950681,
+        "null_std": 342.6128327,
+        "p_two": 0.0,
+        "real_signed_mean": -5253.25,
+        "sig_001": true,
+        "sig_005": true,
+        "z": -15.403
+      },
+      "b1_z": {
+        "direction": "EXPANDS",
+        "n_perms": 500,
+        "null_mean": 0.0039977,
+        "null_std": 0.09640305,
+        "p_two": 0.268,
+        "real_signed_mean": 0.10726563,
+        "sig_001": false,
+        "sig_005": false,
+        "z": 1.071
+      },
+      "connectome_entropy": {
+        "direction": "CONTRACTS",
+        "n_perms": 500,
+        "null_mean": 0.00132304,
+        "null_std": 0.01786097,
+        "p_two": 0.0,
+        "real_signed_mean": -0.07851307,
+        "sig_001": true,
+        "sig_005": true,
+        "z": -4.47
+      },
+      "sie_v2_valence_01": {
+        "direction": "EXPANDS",
+        "n_perms": 500,
+        "null_mean": 1.006e-05,
+        "null_std": 0.00261713,
+        "p_two": 0.06,
+        "real_signed_mean": 0.0048331,
+        "sig_001": false,
+        "sig_005": false,
+        "z": 1.843
+      },
+      "vt_coverage": {
+        "direction": "CONTRACTS",
+        "n_perms": 500,
+        "null_mean": 0.00092444,
+        "null_std": 0.00816783,
+        "p_two": 0.092,
+        "real_signed_mean": -0.01286776,
+        "sig_001": false,
+        "sig_005": false,
+        "z": -1.689
+      },
+      "vt_entropy": {
+        "direction": "CONTRACTS",
+        "n_perms": 500,
+        "null_mean": 0.0032603,
+        "null_std": 0.03920703,
+        "p_two": 0.004,
+        "real_signed_mean": -0.15788513,
+        "sig_001": false,
+        "sig_005": true,
+        "z": -4.11
+      }
+    }
+  },
+  "F10_D8_6": {
+    "inter_say_intervals": {
+      "CV": 1.418,
+      "by_epoch": {
+        "E1": {
+          "CV": 1.237,
+          "mean": 31.0,
+          "median": 24.0,
+          "n": 333
+        },
+        "E2": {
+          "CV": 1.854,
+          "mean": 20.0,
+          "median": 14.0,
+          "n": 57
+        },
+        "E3": {
+          "CV": 1.526,
+          "mean": 39.8,
+          "median": 23.0,
+          "n": 139
+        }
+      },
+      "exponential_test_p": 0.0,
+      "gt_2x_median_pct": 8.7,
+      "gt_5x_median_pct": 3.4,
+      "max": 466,
+      "max_burst_len": 17,
+      "mean": 32.2,
+      "mean_burst_len": 2.6,
+      "median": 23.0,
+      "min": 10,
+      "n_bursts": 62,
+      "n_intervals": 529,
+      "reject_exponential": "True",
+      "std": 45.6
+    },
+    "silence_analysis": {
+      "post_vs_silence": {
+        "active_edges": {
+          "U": 13344591.0,
+          "diff": -3743.970906,
+          "group_mean": 39427.126472,
+          "n_group": 2633,
+          "n_silence": 11440,
+          "p": 0.0,
+          "sig_001": "True",
+          "silence_mean": 43171.097378
+        },
+        "b1_z": {
+          "U": 24262238.0,
+          "diff": 0.851594,
+          "group_mean": 0.631208,
+          "n_group": 2633,
+          "n_silence": 11440,
+          "p": 0.0,
+          "sig_001": "True",
+          "silence_mean": -0.220386
+        },
+        "connectome_entropy": {
+          "U": 13828060.0,
+          "diff": -0.148001,
+          "group_mean": 7.492983,
+          "n_group": 2633,
+          "n_silence": 11440,
+          "p": 0.0,
+          "sig_001": "True",
+          "silence_mean": 7.640985
+        },
+        "sie_v2_valence_01": {
+          "U": 14599586.0,
+          "diff": -0.002985,
+          "group_mean": 0.606226,
+          "n_group": 2633,
+          "n_silence": 11440,
+          "p": 0.014143,
+          "sig_001": "False",
+          "silence_mean": 0.609211
+        },
+        "vt_coverage": {
+          "U": 14723270.0,
+          "diff": 0.018454,
+          "group_mean": 0.644945,
+          "n_group": 2633,
+          "n_silence": 11440,
+          "p": 0.072561,
+          "sig_001": "False",
+          "silence_mean": 0.626491
+        },
+        "vt_entropy": {
+          "U": 14423249.0,
+          "diff": -0.141018,
+          "group_mean": 6.739892,
+          "n_group": 2633,
+          "n_silence": 11440,
+          "p": 0.000694,
+          "sig_001": "True",
+          "silence_mean": 6.880911
+        }
+      },
+      "pre_vs_silence": {
+        "active_edges": {
+          "U": 9517698.0,
+          "diff": -5380.037755,
+          "group_mean": 37791.059623,
+          "n_group": 2650,
+          "n_silence": 11440,
+          "p": 0.0,
+          "sig_001": "True",
+          "silence_mean": 43171.097378
+        },
+        "b1_z": {
+          "U": 19294141.0,
+          "diff": 0.216152,
+          "group_mean": -0.004234,
+          "n_group": 2650,
+          "n_silence": 11440,
+          "p": 0.0,
+          "sig_001": "True",
+          "silence_mean": -0.220386
+        },
+        "connectome_entropy": {
+          "U": 10049732.0,
+          "diff": -0.274303,
+          "group_mean": 7.366682,
+          "n_group": 2650,
+          "n_silence": 11440,
+          "p": 0.0,
+          "sig_001": "True",
+          "silence_mean": 7.640985
+        },
+        "sie_v2_valence_01": {
+          "U": 23070777.0,
+          "diff": 0.015887,
+          "group_mean": 0.625099,
+          "n_group": 2650,
+          "n_silence": 11440,
+          "p": 0.0,
+          "sig_001": "True",
+          "silence_mean": 0.609211
+        },
+        "vt_coverage": {
+          "U": 11995998.0,
+          "diff": -0.053002,
+          "group_mean": 0.57349,
+          "n_group": 2650,
+          "n_silence": 11440,
+          "p": 0.0,
+          "sig_001": "True",
+          "silence_mean": 0.626491
+        },
+        "vt_entropy": {
+          "U": 10824107.0,
+          "diff": -0.403732,
+          "group_mean": 6.477179,
+          "n_group": 2650,
+          "n_silence": 11440,
+          "p": 0.0,
+          "sig_001": "True",
+          "silence_mean": 6.880911
+        }
+      }
+    }
+  },
+  "F12": {
+    "cohesion": {
+      "fragmented_ticks": 3,
+      "pct": 0.017,
+      "total": 17253
+    },
+    "correlations": {
+      "active_edges": {
+        "p": 1.006241035250297e-91,
+        "rho": 0.1537
+      },
+      "b1_z": {
+        "p": 0.6438577695996224,
+        "rho": 0.0035
+      },
+      "connectome_entropy": {
+        "p": 1.0640303120330747e-47,
+        "rho": 0.1101
+      },
+      "sie_v2_valence_01": {
+        "p": 0.0007391633718206582,
+        "rho": 0.0257
+      },
+      "vt_coverage": {
+        "p": 0.0,
+        "rho": 0.5392
+      },
+      "vt_entropy": {
+        "p": 0.0,
+        "rho": 0.3377
+      }
+    },
+    "homeostasis": [
+      {
+        "bridging_events": 2,
+        "bridging_mean_when_active": 24.0,
+        "epoch": "E1",
+        "n_ticks": 10500,
+        "pruning_events": 77,
+        "pruning_mean_when_active": 391.7
+      },
+      {
+        "bridging_events": 0,
+        "bridging_mean_when_active": 0,
+        "epoch": "E2",
+        "n_ticks": 1100,
+        "pruning_events": 0,
+        "pruning_mean_when_active": 0
+      },
+      {
+        "bridging_events": 0,
+        "bridging_mean_when_active": 0,
+        "epoch": "E3",
+        "n_ticks": 5653,
+        "pruning_events": 0,
+        "pruning_mean_when_active": 0
+      }
+    ],
+    "territory_emergence": {
+      "2": {
+        "epoch": "E1",
+        "first_tick": 0
+      },
+      "3": {
+        "epoch": "E1",
+        "first_tick": 194
+      },
+      "4": {
+        "epoch": "E1",
+        "first_tick": 491
+      },
+      "5": {
+        "epoch": "E1",
+        "first_tick": 907
+      },
+      "6": {
+        "epoch": "E1",
+        "first_tick": 924
+      },
+      "7": {
+        "epoch": "E1",
+        "first_tick": 947
+      },
+      "8": {
+        "epoch": "E1",
+        "first_tick": 2303
+      },
+      "9": {
+        "epoch": "E1",
+        "first_tick": 3216
+      }
+    },
+    "time_at_count": {
+      "2": {
+        "pct": 1.1,
+        "ticks": 194
+      },
+      "3": {
+        "pct": 1.7,
+        "ticks": 297
+      },
+      "4": {
+        "pct": 2.4,
+        "ticks": 416
+      },
+      "5": {
+        "pct": 0.1,
+        "ticks": 17
+      },
+      "6": {
+        "pct": 1.4,
+        "ticks": 240
+      },
+      "7": {
+        "pct": 6.6,
+        "ticks": 1139
+      },
+      "8": {
+        "pct": 5.3,
+        "ticks": 913
+      },
+      "9": {
+        "pct": 81.4,
+        "ticks": 14036
+      }
+    },
+    "transitions": [
+      {
+        "epoch": "E1",
+        "from": 2,
+        "t": 194,
+        "to": 3
+      },
+      {
+        "epoch": "E1",
+        "from": 3,
+        "t": 491,
+        "to": 4
+      },
+      {
+        "epoch": "E1",
+        "from": 4,
+        "t": 907,
+        "to": 5
+      },
+      {
+        "epoch": "E1",
+        "from": 5,
+        "t": 924,
+        "to": 6
+      },
+      {
+        "epoch": "E1",
+        "from": 6,
+        "t": 947,
+        "to": 7
+      },
+      {
+        "epoch": "E1",
+        "from": 7,
+        "t": 1043,
+        "to": 6
+      },
+      {
+        "epoch": "E1",
+        "from": 6,
+        "t": 1260,
+        "to": 7
+      },
+      {
+        "epoch": "E1",
+        "from": 7,
+        "t": 2303,
+        "to": 8
+      },
+      {
+        "epoch": "E1",
+        "from": 8,
+        "t": 3216,
+        "to": 9
+      }
+    ]
+  },
+  "F14": {
+    "D14_1_trigram": {
+      "mean": 0.8515,
+      "median": 0.9516,
+      "zero_count": 45,
+      "zero_pct": 8.5
+    },
+    "D14_2_lcs": {
+      "lt30_pct": 82.6,
+      "mean": 0.1568
+    },
+    "D14_3_jaccard": {
+      "lt30_pct": 93.6,
+      "mean": 0.1949
+    },
+    "D14_4_immediate": {
+      "mean": 0.0384
+    },
+    "D14_5_uniqueness": {
+      "mean": 0.8595
+    },
+    "D14_6_self_ref": {
+      "mean_sim": 0.2536,
+      "median_lag": 3687.0
+    },
+    "by_epoch": {
+      "E1": {
+        "mean_tri": 0.8495,
+        "n": 333,
+        "zero_overlap": 28,
+        "zero_pct": 8.4
+      },
+      "E2": {
+        "mean_tri": 0.8654,
+        "n": 57,
+        "zero_overlap": 4,
+        "zero_pct": 7.0
+      },
+      "E3": {
+        "mean_tri": 0.8507,
+        "n": 140,
+        "zero_overlap": 13,
+        "zero_pct": 9.3
+      }
+    },
+    "trend": {
+      "p": 0.004367,
+      "rho": 0.1236
+    }
+  },
+  "F8": {
+    "CSD": {
+      "10500": {
+        "ac_increase": false,
+        "post_ac": 0.9364,
+        "post_var": 0.001328,
+        "pre_ac": 0.9392,
+        "pre_var": 0.001473,
+        "var_increase": false,
+        "var_ratio": 0.9
+      },
+      "11600": {
+        "ac_increase": true,
+        "post_ac": 0.9972,
+        "post_var": 0.188083,
+        "pre_ac": 0.9181,
+        "pre_var": 0.000847,
+        "var_increase": true,
+        "var_ratio": 222.1
+      }
+    },
+    "by_epoch": {
+      "E1": {
+        "ac_mean": 0.9694,
+        "ac_std": 0.0268,
+        "n": 1058,
+        "var_mean": 0.081386,
+        "var_std": 0.093155
+      },
+      "E2": {
+        "ac_mean": 0.913,
+        "ac_std": 0.0194,
+        "n": 1100,
+        "var_mean": 0.000822,
+        "var_std": 0.000737
+      },
+      "E3": {
+        "ac_mean": 0.8908,
+        "ac_std": 0.0783,
+        "n": 5546,
+        "var_mean": 0.034417,
+        "var_std": 0.071189
+      }
+    },
+    "change_points": [
+      {
+        "epoch": "E1",
+        "magnitude": 0.088574,
+        "rank": 1,
+        "t": 9697
+      },
+      {
+        "epoch": "E1",
+        "magnitude": 0.088555,
+        "rank": 2,
+        "t": 9696
+      },
+      {
+        "epoch": "E1",
+        "magnitude": 0.088535,
+        "rank": 3,
+        "t": 9698
+      },
+      {
+        "epoch": "E1",
+        "magnitude": 0.08848,
+        "rank": 4,
+        "t": 9695
+      },
+      {
+        "epoch": "E1",
+        "magnitude": 0.088438,
+        "rank": 5,
+        "t": 9699
+      }
+    ]
+  },
+  "per_neuron": {
+    "D3_10_plasticity": {
+      "in_degree": {
+        "gini": 0.5935,
+        "top_pct_for_80": 33.9
+      },
+      "in_weight": {
+        "gini": 0.5935,
+        "top_pct_for_80": 33.9
+      },
+      "out_degree": {
+        "gini": 0.5935,
+        "top_pct_for_80": 33.9
+      },
+      "out_weight": {
+        "gini": 0.5937,
+        "top_pct_for_80": 33.9
+      },
+      "pi_stationary": {
+        "gini": 0.5942,
+        "top_pct_for_80": 34.0
+      }
+    },
+    "D3_11_hub_turnover": {
+      "K": 50,
+      "consecutive_jaccards": {
+        "17160_17220": {
+          "jaccard": 0.01,
+          "shared": 1
+        },
+        "17220_17280": {
+          "jaccard": 0.0,
+          "shared": 0
+        },
+        "17280_17340": {
+          "jaccard": 0.0,
+          "shared": 0
+        },
+        "17340_17400": {
+          "jaccard": 0.01,
+          "shared": 1
+        }
+      },
+      "persistent_hubs": 0,
+      "total_ever_hub": 245,
+      "turnover_ratio": 1.0
+    },
+    "D3_9_specialization": {
+      "emb1": {
+        "p": 0.6238,
+        "rho": -0.3,
+        "variances": [
+          0.0002,
+          0.0002,
+          0.0002,
+          0.0002,
+          0.0002
+        ]
+      },
+      "emb2": {
+        "p": 0.0374,
+        "rho": -0.9,
+        "variances": [
+          0.0002,
+          0.0002,
+          0.0002,
+          0.0002,
+          0.0002
+        ]
+      },
+      "emb3": {
+        "p": 0.2848,
+        "rho": 0.6,
+        "variances": [
+          0.0002,
+          0.0002,
+          0.0002,
+          0.0002,
+          0.0002
+        ]
+      },
+      "in_degree": {
+        "p": 0.1041,
+        "rho": 0.8,
+        "variances": [
+          538.3079,
+          510.2622,
+          582.4171,
+          593.638,
+          589.5815
+        ]
+      },
+      "in_weight": {
+        "p": 0.1041,
+        "rho": 0.8,
+        "variances": [
+          193.0535,
+          183.1271,
+          209.2887,
+          213.1474,
+          211.992
+        ]
+      },
+      "out_degree": {
+        "p": 0.1041,
+        "rho": 0.8,
+        "variances": [
+          538.3079,
+          510.2622,
+          582.4171,
+          593.638,
+          589.5815
+        ]
+      },
+      "out_weight": {
+        "p": 0.1041,
+        "rho": 0.8,
+        "variances": [
+          191.0783,
+          182.3746,
+          207.7756,
+          211.6894,
+          209.1872
+        ]
+      },
+      "pi_stationary": {
+        "p": 0.1041,
+        "rho": 0.8,
+        "variances": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    }
+  },
+  "remaining": {
+    "D2_11_landscape_JSD": {
+      "17160_17220": 0.2578,
+      "17220_17280": 0.2073,
+      "17280_17340": 0.156,
+      "17340_17400": 0.173
+    },
+    "D4_6_mip": {
+      "by_epoch": {
+        "E1": {
+          "max": 0.475738,
+          "mean": 0.07213,
+          "n": 109,
+          "nonzero_pct": 56.9
+        },
+        "E2": {
+          "max": 0.073263,
+          "mean": 0.006618,
+          "n": 110,
+          "nonzero_pct": 21.8
+        },
+        "E3": {
+          "max": 0.517091,
+          "mean": 0.032913,
+          "n": 547,
+          "nonzero_pct": 80.1
+        }
+      },
+      "singleton_dist": {
+        "E1": {
+          "firing_var_log": 9,
+          "log_text_words": 100
+        },
+        "E2": {
+          "log_text_words": 101,
+          "novelty": 9
+        },
+        "E3": {
+          "firing_var_log": 9,
+          "log_text_words": 532,
+          "novelty": 6
+        }
+      }
+    },
+    "D7_7_lz_complexity": {
+      "by_epoch": {
+        "E1": {
+          "mean": 0.017424,
+          "n": 1057,
+          "std": 0.005746
+        },
+        "E2": {
+          "mean": 0.016564,
+          "n": 1100,
+          "std": 0.002536
+        },
+        "E3": {
+          "mean": 0.016942,
+          "n": 5447,
+          "std": 0.004694
+        }
+      },
+      "trend_p": 1.370805770493202e-09,
+      "trend_rho": 0.0694
+    }
+  },
+  "state_space": {
+    "D2_10_centroid_drift": {
+      "mean_drift": 0.3326,
+      "total_displacement": 5.1216
+    },
+    "D2_8_occupancy": {
+      "E1": {
+        "entropy_bits": 3.1658,
+        "occupied_pct": 27.0
+      },
+      "E2": {
+        "entropy_bits": 1.8517,
+        "occupied_pct": 6.2
+      },
+      "E3": {
+        "entropy_bits": 3.406,
+        "occupied_pct": 37.5
+      }
+    },
+    "D2_9_recurrence": {
+      "mean_dist": 0.2023,
+      "median_dist": 0.119
+    },
+    "D3_speed_by_epoch": {
+      "E1": {
+        "mean": 0.7977,
+        "n": 1156,
+        "std": 0.8655
+      },
+      "E2": {
+        "mean": 0.7151,
+        "n": 1100,
+        "std": 0.7721
+      },
+      "E3": {
+        "mean": 0.8751,
+        "n": 5546,
+        "std": 1.4581
+      }
+    }
+  }
+}

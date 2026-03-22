@@ -1,0 +1,133 @@
+Aura Session Analysis Bundle
+Started: 2026-03-16T18:36:20.255314
+Data dir: ../../Aura_Analysis_Tables
+Exchange: ../aura_justin_exchange.md
+Output: ../tables/session_analysis_results
+
+============================================================
+LOADING DATA
+============================================================
+  utd_status_full: 17253 ticks, range 0..17252
+  Say events: 530
+  Operator ticks: 49
+
+============================================================
+D5.1: Operator Differentiation — Signed Permutation Test
+============================================================
+Real operator signed mean deltas:
+  connectome_entropy: -0.078513 (n=49)
+  b1_z: +0.107266 (n=49)
+  active_edges: -5253.250000 (n=49)
+  vt_coverage: -0.012868 (n=49)
+  vt_entropy: -0.157885 (n=49)
+  sie_v2_valence_01: +0.004833 (n=49)
+
+Running 500 signed permutation shuffles...
+  100/500...
+  200/500...
+  300/500...
+  400/500...
+  500/500...
+
+SIGNED PERMUTATION RESULTS:
+  connectome_entropy         z= -4.47  p=0.0000  ***  [CONTRACTS]
+  b1_z                       z= +1.07  p=0.2680    [EXPANDS]
+  active_edges               z=-15.40  p=0.0000  ***  [CONTRACTS]
+  vt_coverage                z= -1.69  p=0.0920    [CONTRACTS]
+  vt_entropy                 z= -4.11  p=0.0040  **  [CONTRACTS]
+  sie_v2_valence_01          z= +1.84  p=0.0600    [EXPANDS]
+
+============================================================
+FAMILY 10: Silence Analysis + D8.6 Inter-Say Intervals
+============================================================
+  pre_vs_silence connectome_entropy         diff=-0.2743  p=0.000000 ***
+  pre_vs_silence b1_z                       diff=+0.2162  p=0.000000 ***
+  pre_vs_silence active_edges               diff=-5380.0378  p=0.000000 ***
+  pre_vs_silence vt_coverage                diff=-0.0530  p=0.000000 ***
+  pre_vs_silence vt_entropy                 diff=-0.4037  p=0.000000 ***
+  pre_vs_silence sie_v2_valence_01          diff=+0.0159  p=0.000000 ***
+  post_vs_silence connectome_entropy         diff=-0.1480  p=0.000000 ***
+  post_vs_silence b1_z                       diff=+0.8516  p=0.000000 ***
+  post_vs_silence active_edges               diff=-3743.9709  p=0.000000 ***
+  post_vs_silence vt_coverage                diff=+0.0185  p=0.072561 
+  post_vs_silence vt_entropy                 diff=-0.1410  p=0.000694 ***
+  post_vs_silence sie_v2_valence_01          diff=-0.0030  p=0.014143 *
+
+  D8.6: 529 intervals, CV=1.418
+    Exponential test: p=7.75e-34 → REJECT
+    62 bursts, max length 17
+
+============================================================
+FAMILY 12: Developmental Ontogeny
+============================================================
+  Territory emergence:
+    2 territories: t=0 (E1)
+    3 territories: t=194 (E1)
+    4 territories: t=491 (E1)
+    5 territories: t=907 (E1)
+    6 territories: t=924 (E1)
+    7 territories: t=947 (E1)
+    8 territories: t=2303 (E1)
+    9 territories: t=3216 (E1)
+  E1: pruning=77, bridging=2
+  E2: pruning=0, bridging=0
+  E3: pruning=0, bridging=0
+
+============================================================
+FAMILY 14: Composer/Decoder Masking
+============================================================
+  530 say events
+  D14_1_trigram: {'mean': np.float64(0.8515), 'median': np.float64(0.9516), 'zero_count': 45, 'zero_pct': 8.5}
+  D14_2_lcs: {'mean': np.float64(0.1568), 'lt30_pct': 82.6}
+  D14_3_jaccard: {'mean': np.float64(0.1949), 'lt30_pct': 93.6}
+  D14_4_immediate: {'mean': np.float64(0.0384)}
+  D14_5_uniqueness: {'mean': np.float64(0.8595)}
+
+============================================================
+D2.8–2.11: State-Space Geometry
+============================================================
+  7803 rows, PCs: ['PC1', 'PC2', 'PC3']
+  D2_8_occupancy: {'E1': {'entropy_bits': 3.1658, 'occupied_pct': 27.0}, 'E2': {'entropy_bits': 1.8517, 'occupied_pct': 6.2}, 'E3': {'entropy_bits': 3.406, 'occupied_pct': 37.5}}
+  D2_9_recurrence: {'median_dist': 0.119, 'mean_dist': 0.2023}
+  D2_10_centroid_drift: {'total_displacement': 5.1216, 'mean_drift': 0.3326}
+  D3_speed_by_epoch: {'E1': {'mean': 0.7977, 'std': 0.8655, 'n': 1156}, 'E2': {'mean': 0.7151, 'std': 0.7721, 'n': 1100}, 'E3': {'mean': 0.8751, 'std': 1.4581, 'n': 5546}}
+
+============================================================
+FAMILY 8: Rolling Variance, CSD, Change-Points
+============================================================
+  by_epoch: {'E1': {'var_mean': 0.081386, 'var_std': 0.093155, 'ac_mean': 0.9694, 'ac_std': 0.0268, 'n': 1058}, 'E2': {'var_mean': 0.000822, 'var_std': 0.000737, 'ac_mean': 0.913, 'ac_std': 0.0194, 'n': 1100}, 'E3': {'var_mean': 0.034417, 'var_std': 0.071189, 'ac_mean': 0.8908, 'ac_std': 0.0783, 'n': 5546}}
+  change_points: [{'rank': 1, 't': 9697, 'epoch': 'E1', 'magnitude': 0.088574}, {'rank': 2, 't': 9696, 'epoch': 'E1', 'magnitude': 0.088555}, {'rank': 3, 't': 9698, 'epoch': 'E1', 'magnitude': 0.088535}, {'rank': 4, 't': 9695, 'epoch': 'E1', 'magnitude': 0.08848}, {'rank': 5, 't': 9699, 'epoch': 'E1', 'magnitude': 0.088438}]
+  CSD: {'10500': {'pre_ac': 0.9392, 'post_ac': 0.9364, 'pre_var': 0.001473, 'post_var': 0.001328, 'ac_increase': False, 'var_increase': False, 'var_ratio': 0.9}, '11600': {'pre_ac': 0.9181, 'post_ac': 0.9972, 'pre_var': 0.000847, 'post_var': 0.188083, 'ac_increase': True, 'var_increase': True, 'var_ratio': 222.1}}
+
+============================================================
+BATCH 2: Per-Neuron Specialization & Hub Analysis
+============================================================
+  Hub turnover: 0 persistent / 50 (turnover=1.00)
+
+============================================================
+D2.11 + D7.7 + D4.6: Landscape, LZ, MIP
+============================================================
+  D2_11_landscape_JSD: {'17160_17220': 0.2578, '17220_17280': 0.2073, '17280_17340': 0.156, '17340_17400': 0.173}
+  D7_7_lz_complexity: {'by_epoch': {'E1': {'n': 1057, 'mean': np.float64(0.017424), 'std': np.float64(0.005746)}, 'E2': {'n': 1100, 'mean': np.float64(0.016564), 'std': np.float64(0.002536)}, 'E3': {'n': 5447, 'mean': np.float64(0.016942), 'std': np.float64(0.004694)}}, 'trend_rho': np.float64(0.0694), 'trend_p': 1.370805770493202e-09}
+  D4_6_mip: {'by_epoch': {'E1': {'n': 109, 'mean': np.float64(0.07213), 'max': 0.475738, 'nonzero_pct': 56.9}, 'E2': {'n': 110, 'mean': np.float64(0.006618), 'max': 0.073263, 'nonzero_pct': 21.8}, 'E3': {'n': 547, 'mean': np.float64(0.032913), 'max': 0.517091, 'nonzero_pct': 80.1}}, 'singleton_dist': {'E1': {'log_text_words': 100, 'firing_var_log': 9}, 'E2': {'log_text_words': 101, 'novelty': 9}, 'E3': {'novelty': 6, 'log_text_words': 532, 'firing_var_log': 9}}}
+
+============================================================
+COMPLETE — 8.3 seconds
+============================================================
+
+Output files:
+  results/D12_homeostasis_events.csv (157 bytes)
+  results/D12_territory_timeline.csv (1,985 bytes)
+  results/D2_11_D7_7_D4_6.json (1,226 bytes)
+  results/D2_state_space_geometry.json (687 bytes)
+  results/D3_neuron_analysis.json (2,300 bytes)
+  results/D5_1_operator_deltas.csv (8,711 bytes)
+  results/D5_1_signed_permutation.json (3,547 bytes)
+  results/D8_rolling_variance.json (1,369 bytes)
+  results/F10_inter_say_intervals.csv (6,593 bytes)
+  results/F10_silence_comparison.csv (1,178 bytes)
+  results/F14_composer_audit.json (813 bytes)
+  results/master_results.json (18,514 bytes)
+  results/statistical_tests.csv (1,648 bytes)
+  logs/execution_log.txt (0 bytes)
+  logs/metadata.json (873 bytes)

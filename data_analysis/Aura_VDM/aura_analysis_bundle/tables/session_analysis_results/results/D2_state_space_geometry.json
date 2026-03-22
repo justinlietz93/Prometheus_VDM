@@ -1,0 +1,41 @@
+{
+  "D2_10_centroid_drift": {
+    "mean_drift": 0.3326,
+    "total_displacement": 5.1216
+  },
+  "D2_8_occupancy": {
+    "E1": {
+      "entropy_bits": 3.1658,
+      "occupied_pct": 27.0
+    },
+    "E2": {
+      "entropy_bits": 1.8517,
+      "occupied_pct": 6.2
+    },
+    "E3": {
+      "entropy_bits": 3.406,
+      "occupied_pct": 37.5
+    }
+  },
+  "D2_9_recurrence": {
+    "mean_dist": 0.2023,
+    "median_dist": 0.119
+  },
+  "D3_speed_by_epoch": {
+    "E1": {
+      "mean": 0.7977,
+      "n": 1156,
+      "std": 0.8655
+    },
+    "E2": {
+      "mean": 0.7151,
+      "n": 1100,
+      "std": 0.7721
+    },
+    "E3": {
+      "mean": 0.8751,
+      "n": 5546,
+      "std": 1.4581
+    }
+  }
+}

@@ -1,0 +1,157 @@
+{
+  "config": {
+    "N_PERMS": 500,
+    "POST": 20,
+    "PRE": 5,
+    "seed": 42
+  },
+  "dose_response": {
+    "interpretation": "no dose-response",
+    "long_msg_mean_delta": -5535.0,
+    "p": 0.827101,
+    "rho": -0.032,
+    "short_msg_mean_delta": -4549.0
+  },
+  "intensification": {
+    "interpretation": "INTENSIFIES",
+    "p": 0.004493,
+    "rho": -0.3992,
+    "variable": "connectome_entropy"
+  },
+  "mann_whitney": {
+    "active_edges": {
+      "U": 1259.0,
+      "control_mean": 196.363798,
+      "effect_r": -0.3947,
+      "n_ctrl": 244,
+      "n_op": 49,
+      "operator_mean": -5253.25,
+      "p": 0.0,
+      "sig_001": "True",
+      "sig_005": "True"
+    },
+    "b1_z": {
+      "U": 6557.0,
+      "control_mean": -0.086495,
+      "effect_r": 0.0484,
+      "n_ctrl": 244,
+      "n_op": 49,
+      "operator_mean": 0.107266,
+      "p": 0.285126,
+      "sig_001": "False",
+      "sig_005": "False"
+    },
+    "connectome_entropy": {
+      "U": 2840.0,
+      "control_mean": 0.005593,
+      "effect_r": -0.2625,
+      "n_ctrl": 244,
+      "n_op": 49,
+      "operator_mean": -0.078513,
+      "p": 0.0,
+      "sig_001": "True",
+      "sig_005": "True"
+    },
+    "sie_v2_valence_01": {
+      "U": 6752.0,
+      "control_mean": 9.7e-05,
+      "effect_r": 0.0647,
+      "n_ctrl": 244,
+      "n_op": 49,
+      "operator_mean": 0.004833,
+      "p": 0.152955,
+      "sig_001": "False",
+      "sig_005": "False"
+    },
+    "vt_coverage": {
+      "U": 3927.0,
+      "control_mean": 0.003837,
+      "effect_r": -0.1715,
+      "n_ctrl": 244,
+      "n_op": 49,
+      "operator_mean": -0.012868,
+      "p": 0.000151,
+      "sig_001": "True",
+      "sig_005": "True"
+    },
+    "vt_entropy": {
+      "U": 2772.0,
+      "control_mean": 0.015751,
+      "effect_r": -0.2681,
+      "n_ctrl": 244,
+      "n_op": 49,
+      "operator_mean": -0.157885,
+      "p": 0.0,
+      "sig_001": "True",
+      "sig_005": "True"
+    }
+  },
+  "signed_permutation": {
+    "active_edges": {
+      "direction": "CONTRACTS",
+      "n_perms": 500,
+      "null_mean": 24.13950681,
+      "null_std": 342.6128327,
+      "p_two": 0.0,
+      "real_signed_mean": -5253.25,
+      "sig_001": true,
+      "sig_005": true,
+      "z": -15.403
+    },
+    "b1_z": {
+      "direction": "EXPANDS",
+      "n_perms": 500,
+      "null_mean": 0.0039977,
+      "null_std": 0.09640305,
+      "p_two": 0.268,
+      "real_signed_mean": 0.10726563,
+      "sig_001": false,
+      "sig_005": false,
+      "z": 1.071
+    },
+    "connectome_entropy": {
+      "direction": "CONTRACTS",
+      "n_perms": 500,
+      "null_mean": 0.00132304,
+      "null_std": 0.01786097,
+      "p_two": 0.0,
+      "real_signed_mean": -0.07851307,
+      "sig_001": true,
+      "sig_005": true,
+      "z": -4.47
+    },
+    "sie_v2_valence_01": {
+      "direction": "EXPANDS",
+      "n_perms": 500,
+      "null_mean": 1.006e-05,
+      "null_std": 0.00261713,
+      "p_two": 0.06,
+      "real_signed_mean": 0.0048331,
+      "sig_001": false,
+      "sig_005": false,
+      "z": 1.843
+    },
+    "vt_coverage": {
+      "direction": "CONTRACTS",
+      "n_perms": 500,
+      "null_mean": 0.00092444,
+      "null_std": 0.00816783,
+      "p_two": 0.092,
+      "real_signed_mean": -0.01286776,
+      "sig_001": false,
+      "sig_005": false,
+      "z": -1.689
+    },
+    "vt_entropy": {
+      "direction": "CONTRACTS",
+      "n_perms": 500,
+      "null_mean": 0.0032603,
+      "null_std": 0.03920703,
+      "p_two": 0.004,
+      "real_signed_mean": -0.15788513,
+      "sig_001": false,
+      "sig_005": true,
+      "z": -4.11
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "data_dir": "../../Aura_Analysis_Tables",
+  "elapsed_seconds": 8.3,
+  "exchange_file": "../aura_justin_exchange.md",
+  "input_hashes": {
+    "pca_state_space_Aura.csv": "5ce6ef36f973aa9b371c8ea926c229bbd7de802130455c0e8e5db7820b6ceb4b",
+    "rolling_var_autocorr_entropy.csv": "5ff1d3819e56f04082da7fb58637f9692a090b31b41aa72db1abbd9326fd26b0",
+    "say_event_composer_audit_metrics.csv": "df54005c9e7be13520fe7fe78c0ab726e2d606bb4a58794da33686b5fc48a8bb",
+    "utd_say_by_tick.csv": "10bab9f0139519ca066153feeb9ddbfda1fe6bf435c148fe7c0e23da5ae87ff1",
+    "utd_status_full.csv": "90975e48f9c27127879970242296dd6dca67008f60e92d3fd109aa99bfa50c2f"
+  },
+  "n_operator_messages": 49,
+  "n_say_events": 530,
+  "n_ticks": 17253,
+  "numpy_version": "2.4.3",
+  "python_version": "3.12.3 (main, Mar  3 2026, 12:15:18) [GCC 13.3.0]",
+  "timestamp": "2026-03-16T18:36:28.544589"
+}

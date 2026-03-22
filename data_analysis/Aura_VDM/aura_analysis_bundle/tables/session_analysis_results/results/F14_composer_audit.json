@@ -1,0 +1,50 @@
+{
+  "D14_1_trigram": {
+    "mean": 0.8515,
+    "median": 0.9516,
+    "zero_count": 45,
+    "zero_pct": 8.5
+  },
+  "D14_2_lcs": {
+    "lt30_pct": 82.6,
+    "mean": 0.1568
+  },
+  "D14_3_jaccard": {
+    "lt30_pct": 93.6,
+    "mean": 0.1949
+  },
+  "D14_4_immediate": {
+    "mean": 0.0384
+  },
+  "D14_5_uniqueness": {
+    "mean": 0.8595
+  },
+  "D14_6_self_ref": {
+    "mean_sim": 0.2536,
+    "median_lag": 3687.0
+  },
+  "by_epoch": {
+    "E1": {
+      "mean_tri": 0.8495,
+      "n": 333,
+      "zero_overlap": 28,
+      "zero_pct": 8.4
+    },
+    "E2": {
+      "mean_tri": 0.8654,
+      "n": 57,
+      "zero_overlap": 4,
+      "zero_pct": 7.0
+    },
+    "E3": {
+      "mean_tri": 0.8507,
+      "n": 140,
+      "zero_overlap": 13,
+      "zero_pct": 9.3
+    }
+  },
+  "trend": {
+    "p": 0.004367,
+    "rho": 0.1236
+  }
+}

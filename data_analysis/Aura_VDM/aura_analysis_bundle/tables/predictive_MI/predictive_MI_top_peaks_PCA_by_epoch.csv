@@ -1,0 +1,4 @@
+epoch,lag,predictive_mi
+E1_low_entropy_baseline_1,1,4.138337278603382
+E2_high_entropy_plateau,1,1.940397408223501
+E3_low_entropy_baseline_2,1,4.025480234254323

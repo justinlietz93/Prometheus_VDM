@@ -1,0 +1,4 @@
+epoch,n_ticks,pruning_events,pruning_mean_when_active,bridging_events,bridging_mean_when_active
+E1,10500,77,391.7,2,24.0
+E2,1100,0,0,0,0
+E3,5653,0,0,0,0

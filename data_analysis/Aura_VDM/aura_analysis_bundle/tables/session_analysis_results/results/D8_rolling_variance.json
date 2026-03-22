@@ -1,0 +1,77 @@
+{
+  "CSD": {
+    "10500": {
+      "ac_increase": false,
+      "post_ac": 0.9364,
+      "post_var": 0.001328,
+      "pre_ac": 0.9392,
+      "pre_var": 0.001473,
+      "var_increase": false,
+      "var_ratio": 0.9
+    },
+    "11600": {
+      "ac_increase": true,
+      "post_ac": 0.9972,
+      "post_var": 0.188083,
+      "pre_ac": 0.9181,
+      "pre_var": 0.000847,
+      "var_increase": true,
+      "var_ratio": 222.1
+    }
+  },
+  "by_epoch": {
+    "E1": {
+      "ac_mean": 0.9694,
+      "ac_std": 0.0268,
+      "n": 1058,
+      "var_mean": 0.081386,
+      "var_std": 0.093155
+    },
+    "E2": {
+      "ac_mean": 0.913,
+      "ac_std": 0.0194,
+      "n": 1100,
+      "var_mean": 0.000822,
+      "var_std": 0.000737
+    },
+    "E3": {
+      "ac_mean": 0.8908,
+      "ac_std": 0.0783,
+      "n": 5546,
+      "var_mean": 0.034417,
+      "var_std": 0.071189
+    }
+  },
+  "change_points": [
+    {
+      "epoch": "E1",
+      "magnitude": 0.088574,
+      "rank": 1,
+      "t": 9697
+    },
+    {
+      "epoch": "E1",
+      "magnitude": 0.088555,
+      "rank": 2,
+      "t": 9696
+    },
+    {
+      "epoch": "E1",
+      "magnitude": 0.088535,
+      "rank": 3,
+      "t": 9698
+    },
+    {
+      "epoch": "E1",
+      "magnitude": 0.08848,
+      "rank": 4,
+      "t": 9695
+    },
+    {
+      "epoch": "E1",
+      "magnitude": 0.088438,
+      "rank": 5,
+      "t": 9699
+    }
+  ]
+}

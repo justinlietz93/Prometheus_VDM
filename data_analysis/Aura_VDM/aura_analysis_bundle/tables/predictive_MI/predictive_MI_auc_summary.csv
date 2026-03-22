@@ -1,0 +1,4 @@
+epoch,auc
+E1_low_entropy_baseline_1,264.175034286238
+E2_high_entropy_plateau,48.230123567676436
+E3_low_entropy_baseline_2,579.5898417831324
