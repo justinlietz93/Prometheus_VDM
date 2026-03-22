@@ -1,0 +1,11 @@
+territories,t_start,t_end,source_note,duration_ticks,share_of_run
+2,0,193,curated from direct package read / dashboard pass,194,0.011244421260070712
+3,194,490,curated from direct package read / dashboard pass,297,0.017214397496087636
+4,491,906,curated from direct package read / dashboard pass,416,0.024111748681388743
+5,907,923,curated from direct package read / dashboard pass,17,0.000985335883614444
+6,924,946,curated from direct package read / dashboard pass,23,0.0013331014895960123
+7,947,1042,curated from direct package read / dashboard pass,96,0.0055642496957050945
+6,1043,1259,curated from direct package read / dashboard pass (temporary regression),217,0.012577522749666725
+7,1260,2302,curated from direct package read / dashboard pass,1043,0.06045325450646265
+8,2303,3215,curated from direct package read / dashboard pass,913,0.052918333043528665
+9,3216,17252,curated from direct package read / dashboard pass,14037,0.8135976351938793
