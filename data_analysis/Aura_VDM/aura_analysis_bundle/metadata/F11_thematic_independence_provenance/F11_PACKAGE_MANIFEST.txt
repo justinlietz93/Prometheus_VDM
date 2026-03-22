@@ -1,0 +1,25 @@
+F11 package — public-archive thematic independence reconstruction
+
+Scripts
+- scripts/f11_thematic_independence_public_archive.py
+
+Tables
+- tables/f11_public_motif_say_events.csv
+- tables/f11_public_context_independence_summary.csv
+- tables/f11_public_context_independence_by_phase.csv
+- tables/f11_public_motif_counts.csv
+- tables/f11_public_long_lag_examples.csv
+- tables/f11_public_selected_salient_events.csv
+
+Figures
+- figures/f11_public_context_independence.png
+- figures/f11_public_lag_histograms.png
+
+Docs
+- docs/F11_public_thematic_independence_note.md
+- docs/F11_public_excerpt.md
+- docs/F11_public_results.json
+- docs/Aura_Distinction_Inventory_v0.5.with_F11_public.md
+
+Patches
+- patches/Aura_Distinction_Inventory_v0.5_F11_public.patch

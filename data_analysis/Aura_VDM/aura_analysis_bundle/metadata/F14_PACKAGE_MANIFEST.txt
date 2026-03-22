@@ -1,0 +1,11 @@
+scripts/f14_composer_audit_analysis.py
+tables/f14_composer_audit_summary.csv
+tables/f14_composer_audit_quantiles.csv
+tables/f14_zero_trigram_examples.csv
+tables/f14_low_immediate_overlap_examples.csv
+figures/f14_overlap_distributions.png
+figures/f14_threshold_summary.png
+docs/F14_composer_audit_note.md
+docs/Aura_Distinction_Inventory_v0.5.with_F14_composer.md
+patches/Aura_Distinction_Inventory_v0.5_F14_composer.patch
+docs/F14_composer_excerpt.md

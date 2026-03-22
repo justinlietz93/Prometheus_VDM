@@ -1,0 +1,10 @@
+docs/Aura_Distinction_Inventory_v0.5.with_D11_1_direct.md
+docs/D11_1_direct_note.md
+figures/d11_1_fullrun_origin_timeline.png
+figures/d11_1_origin_proportions.png
+patches/Aura_Distinction_Inventory_v0.5_D11_1_direct.patch
+scripts/d11_1_direct_batch1_analysis.py
+tables/d11_1_full_event_table.csv
+tables/d11_1_origin_summary_by_active_book.csv
+tables/d11_1_origin_summary_by_epoch.csv
+tables/d11_1_origin_summary_overall.csv

@@ -1,0 +1,14 @@
+F8 temporal microstructure package manifest
+tables/f8_inter_say_intervals_full.csv
+tables/f8_burst_table.csv
+tables/f8_inter_say_interval_summary.csv
+tables/f8_rolling_epoch_summary.csv
+tables/f8_top_variance_change_points.csv
+tables/f8_boundary_csd_summary.csv
+figures/f8_rolling_variance_autocorr.png
+figures/f8_inter_say_interval_distributions.png
+docs/F8_temporal_microstructure_note.md
+docs/Aura_Distinction_Inventory_v0.5.with_F8_temporal_microstructure.md
+patches/Aura_Distinction_Inventory_v0.5_F8_temporal_microstructure.patch
+scripts/f8_temporal_microstructure_analysis.py
+9

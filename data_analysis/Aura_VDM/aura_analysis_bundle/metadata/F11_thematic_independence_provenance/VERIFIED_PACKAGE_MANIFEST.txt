@@ -1,0 +1,11 @@
+docs/Aura_Distinction_Inventory_v0.5.with_F11_direct.md
+docs/F11_direct_note.md
+figures/f11_direct_origin_by_active_book.png
+figures/f11_direct_origin_by_epoch.png
+patches/Aura_Distinction_Inventory_v0.5_F11_direct.patch
+scripts/f11_cross_source_direct_analysis.py
+tables/f11_direct_motif_events_full.csv
+tables/f11_direct_motif_word_counts.csv
+tables/f11_direct_origin_by_active_book.csv
+tables/f11_direct_origin_by_epoch.csv
+tables/f11_direct_origin_summary.csv

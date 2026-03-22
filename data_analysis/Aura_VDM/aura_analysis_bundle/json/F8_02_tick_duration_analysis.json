@@ -1,0 +1,60 @@
+{
+  "by_epoch": {
+    "E1": {
+      "cv": 0.1795,
+      "max": 4.5728,
+      "mean": 2.293,
+      "median": 2.1903,
+      "min": 1.8892,
+      "n": 96,
+      "p25": 2.1137,
+      "p5": 1.9895,
+      "p75": 2.3217,
+      "p95": 2.6749,
+      "p99": 4.5728,
+      "std": 0.4115
+    },
+    "E2": {
+      "error": "too few",
+      "n": 0
+    },
+    "E3": {
+      "error": "too few",
+      "n": 0
+    }
+  },
+  "correlations_with_state": {
+    "dt_vs_active_edges": 0.0875,
+    "dt_vs_b1_z": 0.2631,
+    "dt_vs_entropy": 0.1876
+  },
+  "description": "Tick-duration (endogenous clock) analysis",
+  "dt_autocorrelation": {
+    "lag_1": 0.0287,
+    "lag_10": -0.0907,
+    "lag_2": 0.0383,
+    "lag_20": -0.0702,
+    "lag_3": 0.0615,
+    "lag_5": -0.0347,
+    "lag_50": 0.0344
+  },
+  "interpretation": {
+    "autocorr_meaning": "Positive autocorr at lag 1 = slow ticks cluster together (sustained deep processing).",
+    "correlation_meaning": "Nonzero r(dt, entropy) = the clock speed depends on internal disorder level.",
+    "cv_meaning": "CV >> 0 means tick durations are highly variable = processing depth varies."
+  },
+  "overall": {
+    "cv": 0.1795,
+    "max": 4.5728,
+    "mean": 2.293,
+    "median": 2.1903,
+    "min": 1.8892,
+    "n": 96,
+    "p25": 2.1137,
+    "p5": 1.9895,
+    "p75": 2.3217,
+    "p95": 2.6749,
+    "p99": 4.5728,
+    "std": 0.4115
+  }
+}

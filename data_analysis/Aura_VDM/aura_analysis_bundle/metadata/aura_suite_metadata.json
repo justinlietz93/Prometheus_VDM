@@ -1,0 +1,28 @@
+{
+  "epoch_start_tick": 10284,
+  "epoch_end_tick": 11586,
+  "epoch_counts": {
+    "E3_low_entropy_baseline_2": 5559,
+    "E2_high_entropy_plateau": 1303,
+    "E1_low_entropy_baseline_1": 941
+  },
+  "pca_explained_variance_ratio": [
+    0.482006759033948,
+    0.18847241829985018,
+    0.14423213286592437
+  ],
+  "features": [
+    "entropy",
+    "complexity",
+    "firing_var_log",
+    "reward_mean",
+    "valence_01",
+    "novelty",
+    "td_error",
+    "void_unique_log",
+    "log_text_words",
+    "active_edges",
+    "coverage",
+    "b1_z"
+  ]
+}

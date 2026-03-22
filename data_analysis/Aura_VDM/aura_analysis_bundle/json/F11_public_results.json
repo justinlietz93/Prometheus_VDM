@@ -1,0 +1,67 @@
+{
+  "all_say_events": 530,
+  "motif_say_events": 150,
+  "context_independence_summary": [
+    {
+      "context_window": "recent_20_inputs",
+      "n_motif_say_events": 150,
+      "no_boundary_motif_in_context_count": 43,
+      "no_boundary_motif_in_context_fraction": 0.2866666666666667,
+      "no_operator_motif_in_context_count": 123,
+      "no_operator_motif_in_context_fraction": 0.82
+    },
+    {
+      "context_window": "recent_40_inputs",
+      "n_motif_say_events": 150,
+      "no_boundary_motif_in_context_count": 28,
+      "no_boundary_motif_in_context_fraction": 0.18666666666666668,
+      "no_operator_motif_in_context_count": 123,
+      "no_operator_motif_in_context_fraction": 0.82
+    },
+    {
+      "context_window": "recent_100_inputs",
+      "n_motif_say_events": 150,
+      "no_boundary_motif_in_context_count": 13,
+      "no_boundary_motif_in_context_fraction": 0.08666666666666667,
+      "no_operator_motif_in_context_count": 123,
+      "no_operator_motif_in_context_fraction": 0.82
+    },
+    {
+      "context_window": "since_previous_say",
+      "n_motif_say_events": 150,
+      "no_boundary_motif_in_context_count": 61,
+      "no_boundary_motif_in_context_fraction": 0.4066666666666667,
+      "no_operator_motif_in_context_count": 145,
+      "no_operator_motif_in_context_fraction": 0.9666666666666667
+    }
+  ],
+  "phase_summary": [
+    {
+      "phase": 0,
+      "n_motif_say_events": 2,
+      "recent40_no_motif_fraction": 0.0,
+      "recent100_no_motif_fraction": 0.0,
+      "since_prev_say_no_motif_fraction": 0.5,
+      "recent100_no_operator_motif_fraction": 1.0,
+      "since_prev_say_no_operator_motif_fraction": 1.0
+    },
+    {
+      "phase": 3,
+      "n_motif_say_events": 17,
+      "recent40_no_motif_fraction": 0.0,
+      "recent100_no_motif_fraction": 0.0,
+      "since_prev_say_no_motif_fraction": 0.17647058823529413,
+      "recent100_no_operator_motif_fraction": 1.0,
+      "since_prev_say_no_operator_motif_fraction": 1.0
+    },
+    {
+      "phase": 4,
+      "n_motif_say_events": 131,
+      "recent40_no_motif_fraction": 0.21374045801526717,
+      "recent100_no_motif_fraction": 0.09923664122137404,
+      "since_prev_say_no_motif_fraction": 0.4351145038167939,
+      "recent100_no_operator_motif_fraction": 0.7938931297709924,
+      "since_prev_say_no_operator_motif_fraction": 0.9618320610687023
+    }
+  ]
+}

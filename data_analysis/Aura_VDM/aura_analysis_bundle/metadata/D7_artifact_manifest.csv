@@ -1,0 +1,12 @@
+path,bytes
+data/curated_behavioral_milestones.csv,5218
+data/curated_territory_timeline.csv,946
+docs/Aura_Distinction_Inventory_v0.5.D57.updated_excerpt.md,2033
+docs/Aura_Distinction_Inventory_v0.5.updated.md,79760
+figures/d57_territory_milestone_timeline.png,64460
+figures/d57_territory_regime_summary.png,111748
+patches/Aura_Distinction_Inventory_v0.5_D57.patch,2747
+scripts/d57_territory_behavior_analysis.py,1867
+tables/d57_behavioral_milestone_alignment.csv,5482
+tables/d57_territory_regime_summary.csv,927
+tables/d57_transition_state_windows.csv,733

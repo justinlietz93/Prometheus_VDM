@@ -1,0 +1,10 @@
+docs/D73_D91_note.md
+figures/d73_fast_granger_edge_counts.png
+figures/d73_fast_granger_status_matrix.png
+figures/d91_syntax_epoch_summary.png
+scripts/rebuild_d73_d91_package.py
+tables/d73_fast_granger_edge_counts.csv
+tables/d73_fast_granger_edge_status.csv
+tables/d73_fast_granger_lost_restored_edges.csv
+tables/d91_syntactic_epoch_summary.csv
+tables/d91_syntactic_epoch_variability.csv

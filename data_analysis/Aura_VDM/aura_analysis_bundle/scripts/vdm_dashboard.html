@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VDM Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+<style>
+:root {
+  --bg: #080810;
+  --bg2: #0c0c16;
+  --panel: #0f0f1a;
+  --border: #1a1a2e;
+  --border2: #252540;
+  --text: #b8b8cc;
+  --dim: #5a5a74;
+  --bright: #e8e8f4;
+  --accent: #6366f1;
+  --cyan: #22d3ee;
+  --pink: #f472b6;
+  --green: #34d399;
+  --amber: #fbbf24;
+  --red: #ef4444;
+  --orange: #f97316;
+  --purple: #a855f7;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', -apple-system, sans-serif;
+  font-size: 14px;
+  line-height: 1.55;
+  min-height: 100vh;
+}
+
+/* ── Drop Zone ── */
+#dropView {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: radial-gradient(ellipse at 50% 30%, rgba(99,102,241,0.06) 0%, transparent 60%);
+}
+.drop-box {
+  width: 600px;
+  max-width: 90vw;
+  padding: 56px 40px;
+  border: 1.5px dashed var(--border2);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  background: var(--panel);
+  transition: all 0.3s ease;
+}
+.drop-box:hover { border-color: var(--accent); transform: translateY(-2px); }
+.drop-box.dragover { border-color: var(--accent); background: #13132a; }
+.drop-icon { font-size: 52px; opacity: 0.5; }
+.drop-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--bright);
+}
+.drop-sub {
+  text-align: center;
+  font-size: 13px;
+  color: var(--dim);
+  line-height: 1.7;
+}
+.drop-sub code {
+  background: #13132a;
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--cyan);
+}
+#fileInput { display: none; }
+
+/* ── Loading ── */
+#loadingView {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  gap: 20px;
+}
+#loadingView.active { display: flex; }
+.spinner {
+  width: 48px; height: 48px;
+  border: 2.5px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.load-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--dim);
+}
+
+/* ── Error ── */
+#errorView {
+  display: none;
+  padding: 40px;
+  text-align: center;
+  color: var(--red);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+}
+
+/* ── Dashboard ── */
+#dashboardView { display: none; }
+
+.topbar {
+  padding: 16px 28px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg2);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.topbar-left { display: flex; align-items: center; gap: 16px; }
+.topbar-logo {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--accent);
+}
+.topbar-logo span { color: var(--dim); font-weight: 300; font-size: 14px; }
+.topbar-sep { width: 1px; height: 20px; background: var(--border); }
+.topbar-info {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--dim);
+}
+.topbar-info b { color: var(--cyan); font-weight: 500; }
+.topbar-btn {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--dim);
+  cursor: pointer;
+}
+.topbar-btn:hover { border-color: var(--accent); color: var(--bright); }
+.topbar-btns { display: flex; gap: 8px; }
+
+/* Card download button */
+.card-dl {
+  width: 24px; height: 24px;
+  border: none; background: none;
+  color: var(--dim);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s, color 0.2s;
+  font-size: 13px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+.card-head:hover .card-dl { opacity: 0.6; }
+.card-dl:hover { opacity: 1 !important; color: var(--cyan); background: rgba(34,211,238,0.08); }
+
+/* 3D toolbar */
+.plot-toolbar {
+  display: flex;
+  gap: 6px;
+  padding: 8px 12px 4px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.tb-group {
+  display: flex;
+  gap: 2px;
+  background: var(--bg);
+  border-radius: 6px;
+  padding: 2px;
+  border: 1px solid var(--border);
+}
+.tb-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  color: var(--dim);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 4px 6px;
+  display: flex;
+  align-items: center;
+}
+.tb-btn {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  padding: 4px 10px;
+  border: none;
+  background: none;
+  color: var(--dim);
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.tb-btn:hover { color: var(--bright); background: rgba(255,255,255,0.04); }
+.tb-btn.active { color: var(--bright); background: var(--border2); }
+
+@media print {
+  body { background: #fff !important; color: #222 !important; }
+  .topbar { position: static !important; background: #fff !important; border-color: #ddd !important; }
+  .topbar-btn, .card-dl { display: none !important; }
+  #dropView, #loadingView, #errorView { display: none !important; }
+  #dashboardView { display: block !important; }
+  .main { padding: 8px !important; }
+  .stat { border-color: #ddd !important; background: #f8f8fa !important; }
+  .stat::before { display: none; }
+  .stat-val, .stat-label, .stat-sub { color: #222 !important; }
+  .card { border-color: #ddd !important; background: #fff !important; break-inside: avoid; }
+  .card-head { border-color: #ddd !important; }
+  .card-title { color: #444 !important; }
+  .tag { border: 1px solid #ccc !important; background: #f0f0f0 !important; color: #555 !important; }
+  .ttbl th, .ttbl td { color: #222 !important; border-color: #ddd !important; }
+  .grid { gap: 10px !important; }
+  .gauges { page-break-inside: avoid; }
+}
+
+.main { padding: 20px 24px 40px; }
+
+/* ── Stats Row ── */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.stat {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  border-top: 2px solid var(--border);
+}
+.stat-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9.5px;
+  color: var(--dim);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 6px;
+}
+.stat-val {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--bright);
+  line-height: 1.2;
+}
+.stat-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--dim);
+  margin-top: 3px;
+}
+
+/* ── Grid ── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 14px;
+}
+.g4  { grid-column: span 4; }
+.g6  { grid-column: span 6; }
+.g8  { grid-column: span 8; }
+.g12 { grid-column: span 12; }
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  min-width: 0;
+}
+.card-head {
+  padding: 11px 16px 9px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+}
+.card-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--dim);
+}
+.tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+.tag-c { background: rgba(34,211,238,0.10); color: var(--cyan); }
+.tag-p { background: rgba(244,114,182,0.10); color: var(--pink); }
+.tag-g { background: rgba(52,211,153,0.10); color: var(--green); }
+.tag-a { background: rgba(251,191,36,0.10); color: var(--amber); }
+.tag-v { background: rgba(99,102,241,0.10); color: var(--accent); }
+
+.card-body { padding: 6px 8px; }
+
+/* ── Territory Table ── */
+.ttbl {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+}
+.ttbl th {
+  text-align: left;
+  padding: 9px 12px;
+  font-weight: 500;
+  color: var(--dim);
+  font-size: 9.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  border-bottom: 1px solid var(--border);
+  background: var(--panel);
+}
+.ttbl td {
+  padding: 7px 12px;
+  border-bottom: 1px solid rgba(26,26,46,0.4);
+}
+.ttbl tr:hover td { background: rgba(99,102,241,0.04); }
+.mpip {
+  display: inline-block;
+  width: 8px; height: 8px;
+  border-radius: 2px;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+.mbar {
+  background: var(--border);
+  border-radius: 3px;
+  height: 6px;
+  width: 100%;
+  overflow: hidden;
+}
+.mfill { height: 100%; border-radius: 3px; }
+
+/* ── Gauges ── */
+.gauges { display: flex; gap: 20px; padding: 16px; justify-content: center; }
+.gauge { text-align: center; flex: 1; }
+.gring { position: relative; width: 100px; height: 100px; margin: 0 auto 8px; }
+.gring svg { transform: rotate(-90deg); }
+.gval {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 16px; font-weight: 700; color: var(--bright);
+}
+.glabel {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; color: var(--dim);
+  text-transform: uppercase; letter-spacing: 0.6px;
+}
+.gsub { font-size: 10px; color: var(--dim); margin-top: 2px; }
+
+@media (max-width: 1100px) {
+  .g4, .g6, .g8 { grid-column: span 6; }
+  .g12 { grid-column: span 12; }
+}
+@media (max-width: 700px) {
+  .grid { grid-template-columns: 1fr; }
+  .g4, .g6, .g8, .g12 { grid-column: span 1; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<div id="dropView">
+  <div class="drop-box" id="dropBox">
+    <div class="drop-icon">&#9674;</div>
+    <div class="drop-title">VDM State Dashboard</div>
+    <div class="drop-sub">
+      Drop a <code>dashboard JSON</code> generated by <code>vdm_convert.py</code><br>
+      from your <code>.h5</code> state snapshots and <code>.jsonl</code> event logs
+    </div>
+  </div>
+  <input type="file" id="fileInput" accept=".json">
+</div>
+
+<div id="loadingView">
+  <div class="spinner"></div>
+  <div class="load-text">Rendering dashboard...</div>
+</div>
+
+<div id="errorView"></div>
+
+<div id="dashboardView">
+  <div class="topbar">
+    <div class="topbar-left">
+      <div class="topbar-logo">VDM<span> / Dashboard</span></div>
+      <div class="topbar-sep"></div>
+      <div class="topbar-info" id="topInfo"></div>
+    </div>
+    <div class="topbar-btns"><button class="topbar-btn" id="pdfBtn">&#8615; PDF</button><button class="topbar-btn" onclick="location.reload()">New File</button></div>
+  </div>
+  <div class="main">
+    <div class="stats-row" id="statsRow"></div>
+    <div class="grid" id="mainGrid"></div>
+  </div>
+</div>
+
+<script>
+// ═══ SETUP ═══
+var EL = function(id) { return document.getElementById(id); };
+var TC = ['#ef4444','#f97316','#fbbf24','#34d399','#22d3ee','#6366f1','#a855f7','#f472b6','#64748b','#e2e8f0'];
+var CS = [[0,'#6366f1'],[0.2,'#22d3ee'],[0.45,'#34d399'],[0.7,'#fbbf24'],[1,'#ef4444']];
+
+function baseLayout(extra) {
+  var base = {
+    paper_bgcolor: 'rgba(0,0,0,0)',
+    plot_bgcolor: 'rgba(0,0,0,0)',
+    font: { family: 'JetBrains Mono, monospace', size: 10.5, color: '#5a5a74' },
+    margin: { l: 50, r: 18, t: 10, b: 42 },
+    xaxis: { gridcolor: '#1a1a2e', zerolinecolor: '#1a1a2e', tickfont: { size: 9.5 } },
+    yaxis: { gridcolor: '#1a1a2e', zerolinecolor: '#1a1a2e', tickfont: { size: 9.5 } }
+  };
+  if (extra) {
+    for (var k in extra) {
+      if (typeof extra[k] === 'object' && base[k] && typeof base[k] === 'object') {
+        for (var j in extra[k]) { base[k][j] = extra[k][j]; }
+      } else {
+        base[k] = extra[k];
+      }
+    }
+  }
+  return base;
+}
+var PCFG = { displayModeBar: false, responsive: true };
+
+// ═══ DROP HANDLING ═══
+var dropBox = EL('dropBox');
+var fileInput = EL('fileInput');
+
+dropBox.addEventListener('click', function() { fileInput.click(); });
+dropBox.addEventListener('dragover', function(e) { e.preventDefault(); dropBox.classList.add('dragover'); });
+dropBox.addEventListener('dragleave', function() { dropBox.classList.remove('dragover'); });
+dropBox.addEventListener('drop', function(e) {
+  e.preventDefault();
+  dropBox.classList.remove('dragover');
+  if (e.dataTransfer.files.length) loadFile(e.dataTransfer.files[0]);
+});
+fileInput.addEventListener('change', function(e) {
+  if (e.target.files.length) loadFile(e.target.files[0]);
+});
+
+// PDF button
+document.addEventListener('DOMContentLoaded', function() {
+  var btn = EL('pdfBtn');
+  if (btn) btn.addEventListener('click', downloadPDF);
+});
+
+function loadFile(file) {
+  EL('dropView').style.display = 'none';
+  EL('loadingView').classList.add('active');
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      var data = JSON.parse(e.target.result);
+      setTimeout(function() {
+        try {
+          render(data);
+        } catch (err) {
+          showError('Render error: ' + err.message + '\n' + err.stack);
+        }
+      }, 100);
+    } catch (err) {
+      showError('JSON parse error: ' + err.message);
+    }
+  };
+  reader.readAsText(file);
+}
+
+function showError(msg) {
+  EL('loadingView').classList.remove('active');
+  EL('errorView').style.display = 'block';
+  EL('errorView').textContent = msg;
+  console.error(msg);
+}
+
+// ═══ SAVE / EXPORT ═══
+function savePlot(plotId, title) {
+  var plotEl = document.getElementById(plotId);
+  if (!plotEl || !plotEl.data) return;
+  var safeName = title.replace(/[^a-zA-Z0-9]/g, '_').toLowerCase();
+  Plotly.downloadImage(plotEl, {
+    format: 'png', width: 1600, height: 900,
+    filename: 'vdm_' + safeName,
+    scale: 2
+  });
+}
+
+function downloadPDF() {
+  // Use browser print with @media print styles
+  var btn = EL('pdfBtn');
+  btn.textContent = 'Preparing...';
+  btn.disabled = true;
+  // Small delay to let any reflows settle
+  setTimeout(function() {
+    window.print();
+    btn.innerHTML = '&#8615; PDF';
+    btn.disabled = false;
+  }, 300);
+}
+
+// ═══ CARD BUILDER ═══
+function makeCard(id, title, tag, tagClass, span, height, extra) {
+  var div = document.createElement('div');
+  div.className = 'card g' + span;
+  div.id = 'card_' + id;
+  if (extra) div.style.cssText = extra;
+  div.innerHTML =
+    '<div class="card-head">' +
+      '<span class="card-title">' + title + '</span>' +
+      '<div style="display:flex;align-items:center;gap:6px">' +
+        '<span class="tag ' + tagClass + '">' + tag + '</span>' +
+        '<button class="card-dl" onclick="savePlot(\'' + id + '\',\'' + title + '\')" title="Save as PNG">&#8615;</button>' +
+      '</div>' +
+    '</div>' +
+    '<div class="card-body"><div id="' + id + '" style="height:' + height + 'px"></div></div>';
+  return div;
+}
+
+function makeTableCard(id, title, tag, tagClass, span, extra) {
+  var div = document.createElement('div');
+  div.className = 'card g' + span;
+  div.id = 'card_' + id;
+  if (extra) div.style.cssText = extra;
+  div.innerHTML =
+    '<div class="card-head">' +
+      '<span class="card-title">' + title + '</span>' +
+      '<span class="tag ' + tagClass + '">' + tag + '</span>' +
+    '</div>' +
+    '<div class="card-body" style="padding:0;max-height:340px;overflow-y:auto"><div id="' + id + '"></div></div>';
+  return div;
+}
+
+// ═══ RENDER ═══
+function render(data) {
+  var s = data.state;
+  var m = s.meta;
+  var ev = data.events || {};
+  var grid = EL('mainGrid');
+  grid.innerHTML = '';
+
+  // Topbar
+  EL('topInfo').innerHTML =
+    '<b>' + m.source_file + '</b> &middot; tick <b>' + (m.tick || '?') +
+    '</b> &middot; N=<b>' + m.N.toLocaleString() +
+    '</b> &middot; E=<b>' + m.n_edges.toLocaleString() + '</b>';
+
+  // Stats
+  var activeTerr = 0;
+  var totalMass = 0;
+  for (var i = 0; i < s.territories.length; i++) {
+    if (s.territories[i].mass > 0) activeTerr++;
+    totalMass += s.territories[i].mass;
+  }
+  function gl(v) { return v > 0.5 ? 'high inequality' : v > 0.3 ? 'moderate' : 'low'; }
+
+  var stats = [
+    { l: 'Neurons', v: m.N.toLocaleString(), c: '--accent' },
+    { l: 'Active Edges', v: m.n_edges.toLocaleString(), c: '--cyan', sub: 'mean deg ' + m.mean_degree.toFixed(1) },
+    { l: 'Components', v: m.n_components, c: m.n_components === 1 ? '--green' : '--red', sub: m.n_components === 1 ? 'connected' : 'fragmented' },
+    { l: 'Gini (degree)', v: m.gini_degree.toFixed(4), c: '--pink', sub: gl(m.gini_degree) },
+    { l: 'Gini (W)', v: m.gini_w.toFixed(4), c: '--green', sub: gl(m.gini_w) },
+    { l: 'Conn. Entropy', v: m.connectome_entropy.toFixed(2) + ' bits', c: '--amber' },
+    { l: 'Modularity Q', v: (m.modularity || 0).toFixed(4), c: '--purple', sub: (m.n_communities || '?') + ' communities' },
+    { l: 'Territories', v: activeTerr, c: '--pink', sub: 'mass ' + totalMass.toLocaleString() },
+    { l: 'Spectral Gap', v: (m.spectral_gap_ratio || 0).toFixed(4), c: '--orange', sub: 'ratio ' + String.fromCharCode(955) + '2/' + String.fromCharCode(955) + '3' },
+    { l: 'Bridge Edges', v: (m.n_bridge_edges || 0), c: '--cyan', sub: 'cross-community' }
+  ];
+
+  var statsHTML = '';
+  for (var i = 0; i < stats.length; i++) {
+    var st = stats[i];
+    statsHTML += '<div class="stat" style="border-top-color:var(' + st.c + ')">' +
+      '<div class="stat-label">' + st.l + '</div>' +
+      '<div class="stat-val">' + st.v + '</div>' +
+      (st.sub ? '<div class="stat-sub">' + st.sub + '</div>' : '') +
+      '</div>';
+  }
+  EL('statsRow').innerHTML = statsHTML;
+
+  // ── 3D Spectral Embedding (Enhanced) ──
+  var card3d = document.createElement('div');
+  card3d.className = 'card g8';
+  card3d.innerHTML =
+    '<div class="card-head">' +
+      '<span class="card-title">Spectral Embedding - Fiedler 3D</span>' +
+      '<div style="display:flex;align-items:center;gap:6px">' +
+        '<span class="tag tag-c">rotate / zoom / pan</span>' +
+        '<button class="card-dl" onclick="savePlot(\'plot3d\',\'spectral_3d\')" title="Save as PNG">&#8615;</button>' +
+      '</div>' +
+    '</div>' +
+    '<div class="plot-toolbar" id="tb3d"></div>' +
+    '<div class="card-body"><div id="plot3d" style="height:480px"></div></div>';
+  grid.appendChild(card3d);
+
+  var emb = s.embedding;
+  var hasCommunity = emb.community && emb.community.length > 0;
+  var hasCentrality = emb.centrality && emb.centrality.length > 0;
+  var hasBridges = emb.bridges && emb.bridges.length > 0;
+
+  // Precompute color arrays
+  var COMM_PALETTE = ['#ef4444','#f97316','#fbbf24','#34d399','#22d3ee','#6366f1','#a855f7','#f472b6','#64748b','#e2e8f0'];
+  var commColors = [];
+  if (hasCommunity) {
+    for (var i = 0; i < emb.community.length; i++) {
+      commColors.push(COMM_PALETTE[emb.community[i] % COMM_PALETTE.length]);
+    }
+  }
+
+  // Compute normalized sizes from degree
+  var maxDeg = 1;
+  for (var i = 0; i < emb.deg.length; i++) { if (emb.deg[i] > maxDeg) maxDeg = emb.deg[i]; }
+  var degSizes = [];
+  for (var i = 0; i < emb.deg.length; i++) {
+    degSizes.push(1.2 + 5.0 * (emb.deg[i] / maxDeg));
+  }
+
+  // Build hover texts
+  var hoverTexts = [];
+  for (var i = 0; i < emb.deg.length; i++) {
+    var ht = 'deg=' + emb.deg[i] + ' W=' + emb.w[i].toFixed(4);
+    if (hasCommunity) ht += ' comm=' + emb.community[i];
+    if (hasCentrality) ht += ' cent=' + emb.centrality[i].toFixed(5);
+    hoverTexts.push(ht);
+  }
+
+  // State
+  var plotState = { colorMode: 'w', sizeMode: 'degree', showBridges: false };
+
+  // Build toolbar
+  var tbHTML =
+    '<span class="tb-label">Color:</span>' +
+    '<div class="tb-group">' +
+      '<button class="tb-btn active" data-color="w">W</button>' +
+      (hasCommunity ? '<button class="tb-btn" data-color="community">Community</button>' : '') +
+      '<button class="tb-btn" data-color="degree">Degree</button>' +
+      (hasCentrality ? '<button class="tb-btn" data-color="centrality">Centrality</button>' : '') +
+    '</div>' +
+    '<span class="tb-label" style="margin-left:12px">Size:</span>' +
+    '<div class="tb-group">' +
+      '<button class="tb-btn active" data-size="degree">Degree</button>' +
+      '<button class="tb-btn" data-size="uniform">Uniform</button>' +
+      (hasCentrality ? '<button class="tb-btn" data-size="centrality">Centrality</button>' : '') +
+    '</div>';
+  if (hasBridges) {
+    tbHTML +=
+      '<span class="tb-label" style="margin-left:12px">Edges:</span>' +
+      '<div class="tb-group">' +
+        '<button class="tb-btn" id="bridgeToggle" data-bridge="off">Bridges Off</button>' +
+      '</div>';
+  }
+  EL('tb3d').innerHTML = tbHTML;
+
+  // Build bridge edge trace (hidden initially)
+  var bridgeTrace = null;
+  if (hasBridges) {
+    var bx = [], by = [], bz = [];
+    for (var i = 0; i < emb.bridges.length; i++) {
+      var a = emb.bridges[i][0], b = emb.bridges[i][1];
+      bx.push(emb.x[a], emb.x[b], null);
+      by.push(emb.y[a], emb.y[b], null);
+      bz.push(emb.z[a], emb.z[b], null);
+    }
+    bridgeTrace = {
+      type: 'scatter3d', mode: 'lines',
+      x: bx, y: by, z: bz,
+      line: { color: 'rgba(255,255,255,0.08)', width: 1 },
+      hoverinfo: 'skip', showlegend: false,
+      visible: false
+    };
+  }
+
+  function getColorConfig(mode) {
+    if (mode === 'community' && hasCommunity) {
+      return { color: commColors, showscale: false };
+    } else if (mode === 'degree') {
+      return { color: emb.deg, colorscale: [[0,'#6366f1'],[0.5,'#22d3ee'],[1,'#ef4444']], showscale: true,
+        colorbar: { title: { text: 'deg', font: { size: 10 } }, thickness: 10, len: 0.55, tickfont: { size: 8, color: '#5a5a74' }, outlinewidth: 0 } };
+    } else if (mode === 'centrality' && hasCentrality) {
+      return { color: emb.centrality, colorscale: [[0,'#080810'],[0.3,'#6366f1'],[0.6,'#f472b6'],[1,'#fbbf24']], showscale: true,
+        colorbar: { title: { text: 'cent', font: { size: 10 } }, thickness: 10, len: 0.55, tickfont: { size: 8, color: '#5a5a74' }, outlinewidth: 0 } };
+    }
+    // default: W
+    return { color: emb.w, colorscale: CS, showscale: true,
+      colorbar: { title: { text: 'W', font: { size: 10 } }, thickness: 10, len: 0.55, tickfont: { size: 8, color: '#5a5a74' }, outlinewidth: 0 } };
+  }
+
+  function getSizeArray(mode) {
+    if (mode === 'uniform') {
+      var arr = []; for (var i = 0; i < emb.deg.length; i++) arr.push(2); return arr;
+    } else if (mode === 'centrality' && hasCentrality) {
+      var maxC = 0;
+      for (var i = 0; i < emb.centrality.length; i++) { if (emb.centrality[i] > maxC) maxC = emb.centrality[i]; }
+      var arr = [];
+      for (var i = 0; i < emb.centrality.length; i++) { arr.push(1.2 + 5.0 * (emb.centrality[i] / (maxC || 1))); }
+      return arr;
+    }
+    return degSizes;
+  }
+
+  function render3d() {
+    var cc = getColorConfig(plotState.colorMode);
+    var sizes = getSizeArray(plotState.sizeMode);
+    var traces = [{
+      type: 'scatter3d', mode: 'markers',
+      x: emb.x, y: emb.y, z: emb.z,
+      marker: {
+        size: sizes, opacity: 0.75,
+        color: cc.color, colorscale: cc.colorscale || undefined,
+        showscale: cc.showscale !== false,
+        colorbar: cc.colorbar || undefined,
+        line: { width: 0 }
+      },
+      text: hoverTexts, hoverinfo: 'text'
+    }];
+    if (bridgeTrace) {
+      var bt = JSON.parse(JSON.stringify(bridgeTrace));
+      bt.visible = plotState.showBridges;
+      traces.push(bt);
+    }
+    Plotly.react('plot3d', traces, {
+      paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)',
+      font: { family: 'JetBrains Mono, monospace', size: 9, color: '#5a5a74' },
+      margin: { l: 0, r: 0, t: 0, b: 0 },
+      scene: {
+        bgcolor: 'rgba(0,0,0,0)',
+        xaxis: { title: 'Fiedler', gridcolor: '#1a1a2e', zerolinecolor: '#1a1a2e', showbackground: false, tickfont: { size: 8 } },
+        yaxis: { title: 'EV3', gridcolor: '#1a1a2e', zerolinecolor: '#1a1a2e', showbackground: false, tickfont: { size: 8 } },
+        zaxis: { title: 'EV4', gridcolor: '#1a1a2e', zerolinecolor: '#1a1a2e', showbackground: false, tickfont: { size: 8 } },
+        camera: { eye: { x: 1.6, y: 1.4, z: 0.9 } }
+      }
+    }, { responsive: true, displayModeBar: true, modeBarButtonsToRemove: ['toImage', 'sendDataToCloud'] });
+  }
+
+  render3d();
+
+  // Wire toolbar buttons
+  EL('tb3d').addEventListener('click', function(e) {
+    var btn = e.target;
+    if (!btn.classList.contains('tb-btn')) return;
+
+    if (btn.dataset.color) {
+      plotState.colorMode = btn.dataset.color;
+      var siblings = btn.parentNode.querySelectorAll('.tb-btn');
+      for (var i = 0; i < siblings.length; i++) siblings[i].classList.remove('active');
+      btn.classList.add('active');
+      render3d();
+    }
+    if (btn.dataset.size) {
+      plotState.sizeMode = btn.dataset.size;
+      var siblings = btn.parentNode.querySelectorAll('.tb-btn');
+      for (var i = 0; i < siblings.length; i++) siblings[i].classList.remove('active');
+      btn.classList.add('active');
+      render3d();
+    }
+    if (btn.dataset.bridge !== undefined) {
+      plotState.showBridges = !plotState.showBridges;
+      btn.textContent = plotState.showBridges ? 'Bridges On' : 'Bridges Off';
+      btn.classList.toggle('active', plotState.showBridges);
+      render3d();
+    }
+  });
+
+  // ── Territory Bars ──
+  grid.appendChild(makeCard('plotTerr', 'ADC Territory Mass', 'hierarchy', 'tag-p', 4, 500));
+
+  var terrs = s.territories.filter(function(t) { return t.mass > 0; }).sort(function(a, b) { return b.mass - a.mass; });
+  if (terrs.length > 0) {
+    var tNames = [], tMasses = [], tColors = [], tTexts = [];
+    for (var i = 0; i < terrs.length; i++) {
+      tNames.push('T' + terrs[i].id + ' (k=' + terrs[i].key[1] + ')');
+      tMasses.push(terrs[i].mass);
+      tColors.push(TC[i % TC.length]);
+      tTexts.push(terrs[i].mass.toLocaleString());
+    }
+    Plotly.newPlot('plotTerr', [{
+      type: 'bar', orientation: 'h',
+      y: tNames, x: tMasses,
+      marker: { color: tColors, opacity: 0.85, line: { width: 0 } },
+      text: tTexts, textposition: 'outside',
+      textfont: { size: 9.5, family: 'JetBrains Mono, monospace', color: '#b8b8cc' }
+    }], baseLayout({
+      showlegend: false,
+      margin: { l: 85, r: 60, t: 10, b: 40 },
+      xaxis: { gridcolor: '#1a1a2e', zerolinecolor: '#1a1a2e', title: { text: 'Mass', font: { size: 10 } } },
+      yaxis: { gridcolor: '#1a1a2e', autorange: 'reversed', tickfont: { size: 10 } }
+    }), PCFG);
+  }
+
+  // ── Degree Distribution ──
+  grid.appendChild(makeCard('plotDeg', 'Degree Distribution', 'topology', 'tag-g', 4, 290));
+
+  var dh = s.degree_hist;
+  var maxBin = 0;
+  for (var i = dh.counts.length - 1; i >= 0; i--) { if (dh.counts[i] > 0) { maxBin = i; break; } }
+  var trimBins = dh.bins.slice(0, maxBin + 2);
+  var trimCounts = dh.counts.slice(0, maxBin + 2);
+  var maxCount = Math.max.apply(null, trimCounts);
+
+  Plotly.newPlot('plotDeg', [
+    { type: 'bar', x: trimBins, y: trimCounts, marker: { color: '#22d3ee', opacity: 0.65, line: { width: 0 } }, showlegend: false },
+    { type: 'scatter', mode: 'lines', x: [m.mean_degree, m.mean_degree], y: [0, maxCount], line: { color: '#ef4444', dash: 'dash', width: 1 }, name: 'mean ' + m.mean_degree.toFixed(1) },
+    { type: 'scatter', mode: 'lines', x: [m.median_degree, m.median_degree], y: [0, maxCount], line: { color: '#34d399', dash: 'dash', width: 1 }, name: 'median ' + m.median_degree }
+  ], baseLayout({
+    showlegend: true,
+    legend: { x: 0.55, y: 0.95, font: { size: 8.5 }, bgcolor: 'rgba(0,0,0,0)' },
+    xaxis: { gridcolor: '#1a1a2e', title: { text: 'Degree', font: { size: 10 } }, range: [0, Math.min(maxBin + 5, 200)] },
+    yaxis: { gridcolor: '#1a1a2e', title: { text: 'Count', font: { size: 10 } } },
+    bargap: 0.08
+  }), PCFG);
+
+  // ── W Distribution ──
+  grid.appendChild(makeCard('plotW', 'Node Weight Distribution', 'field', 'tag-a', 4, 290));
+
+  var wh = s.w_hist;
+  var maxWC = Math.max.apply(null, wh.counts);
+  Plotly.newPlot('plotW', [{
+    type: 'bar', x: wh.bin_centers, y: wh.counts,
+    marker: { color: '#f472b6', opacity: 0.55, line: { width: 0 } }
+  }], baseLayout({
+    showlegend: false, bargap: 0,
+    xaxis: { gridcolor: '#1a1a2e', title: { text: 'W (node weight)', font: { size: 10 } } },
+    yaxis: { gridcolor: '#1a1a2e', title: { text: 'Count', font: { size: 10 } } },
+    annotations: [{
+      x: m.w_mean, y: maxWC * 0.85,
+      text: 'mean = ' + m.w_mean.toFixed(4),
+      showarrow: true, arrowhead: 0, arrowcolor: '#34d399',
+      font: { size: 9, color: '#34d399', family: 'JetBrains Mono' },
+      ax: 40, ay: -20
+    }]
+  }), PCFG);
+
+  // ── Gini Gauges ──
+  var gaugeCard = document.createElement('div');
+  gaugeCard.className = 'card g4';
+  gaugeCard.innerHTML =
+    '<div class="card-head"><span class="card-title">Inequality Gauges</span><span class="tag tag-v">Gini</span></div>' +
+    '<div class="card-body" id="gaugeBody"></div>';
+  grid.appendChild(gaugeCard);
+
+  function gaugeHTML(val, label, color, sub) {
+    var pct = Math.min(val, 1);
+    var r = 40;
+    var circ = 2 * Math.PI * r;
+    var offset = circ * (1 - pct);
+    return '<div class="gauge">' +
+      '<div class="gring">' +
+        '<svg width="100" height="100" viewBox="0 0 100 100">' +
+          '<circle cx="50" cy="50" r="' + r + '" fill="none" stroke-width="6" stroke="#1a1a2e"/>' +
+          '<circle cx="50" cy="50" r="' + r + '" fill="none" stroke-width="6" stroke="' + color + '" stroke-dasharray="' + circ + '" stroke-dashoffset="' + offset + '" stroke-linecap="round" style="transition:stroke-dashoffset 0.8s ease"/>' +
+        '</svg>' +
+        '<div class="gval">' + val.toFixed(3) + '</div>' +
+      '</div>' +
+      '<div class="glabel">' + label + '</div>' +
+      '<div class="gsub">' + sub + '</div>' +
+    '</div>';
+  }
+
+  EL('gaugeBody').innerHTML = '<div class="gauges">' +
+    gaugeHTML(m.gini_degree, 'Degree Gini', '#f472b6', gl(m.gini_degree)) +
+    gaugeHTML(m.gini_w, 'W Gini', '#34d399', gl(m.gini_w)) +
+    gaugeHTML(Math.min(m.connectome_entropy / 16, 1), 'Entropy/16', '#fbbf24', m.connectome_entropy.toFixed(2) + ' bits') +
+  '</div>';
+
+  // ── Laplacian Spectrum ──
+  grid.appendChild(makeCard('plotLap', 'Laplacian Spectrum (first 20)', 'geometry', 'tag-c', 6, 280));
+
+  var lap = s.laplacian_spectrum;
+  var lapX = [], lapC = [];
+  for (var i = 0; i < lap.length; i++) {
+    lapX.push(i);
+    lapC.push(i < 2 ? '#fbbf24' : '#34d399');
+  }
+  Plotly.newPlot('plotLap', [
+    { type: 'bar', x: lapX, y: lap, marker: { color: lapC, opacity: 0.75, line: { width: 0 } } },
+    { type: 'scatter', mode: 'lines+markers', x: lapX, y: lap, line: { color: '#fbbf24', width: 1.2 }, marker: { size: 4, color: '#fbbf24' } }
+  ], baseLayout({
+    showlegend: false, bargap: 0.3,
+    xaxis: { gridcolor: '#1a1a2e', title: { text: 'Index', font: { size: 10 } } },
+    yaxis: { gridcolor: '#1a1a2e', title: { text: 'eigenvalue', font: { size: 10 } } }
+  }), PCFG);
+
+  // ── Territory Table ──
+  grid.appendChild(makeTableCard('tblTerr', 'Territory Detail', 'ADC', 'tag-p', 6));
+
+  if (terrs.length > 0) {
+    var maxMass = terrs[0].mass;
+    var rows = '';
+    for (var i = 0; i < terrs.length; i++) {
+      var t = terrs[i];
+      var col = TC[i % TC.length];
+      var pct = (t.mass / maxMass * 100).toFixed(1);
+      rows += '<tr>' +
+        '<td><span class="mpip" style="background:' + col + '"></span>T' + t.id + '</td>' +
+        '<td style="color:#5a5a74">[' + t.key.join(',') + ']</td>' +
+        '<td style="color:#e8e8f4;font-weight:600">' + t.mass.toLocaleString() + '</td>' +
+        '<td><div class="mbar"><div class="mfill" style="width:' + pct + '%;background:' + col + '"></div></div></td>' +
+        '<td>' + t.conf.toFixed(2) + '</td>' +
+        '<td style="color:' + (t.ttl < 0 ? '#34d399' : '#fbbf24') + '">' + t.ttl.toLocaleString() + '</td>' +
+        '<td>' + t.w_mean.toFixed(5) + '</td>' +
+        '<td>' + t.s_mean.toFixed(4) + '</td>' +
+      '</tr>';
+    }
+    EL('tblTerr').innerHTML = '<table class="ttbl"><thead><tr>' +
+      '<th>ID</th><th>Key</th><th>Mass</th><th style="width:100px">Share</th><th>Conf</th><th>TTL</th><th>W mean</th><th>S mean</th>' +
+      '</tr></thead><tbody>' + rows + '</tbody></table>';
+  }
+
+  // ═══ EVENT TIME SERIES ═══
+  var sts = (ev.statuses || []);
+  if (sts.length > 5) {
+    var ticks = [];
+    for (var i = 0; i < sts.length; i++) { ticks.push(sts[i].t); }
+
+    function hasField(key) {
+      for (var i = 0; i < sts.length; i++) { if (sts[i][key] !== undefined) return true; }
+      return false;
+    }
+    function getField(key) {
+      var arr = [];
+      for (var i = 0; i < sts.length; i++) { arr.push(sts[i][key]); }
+      return arr;
+    }
+
+    // Entropy time series
+    grid.appendChild(makeCard('plotTS', 'Telemetry - Entropy & Structure', 'time series', 'tag-g', 12, 340));
+    var tsTraces = [];
+    if (hasField('connectome_entropy')) {
+      tsTraces.push({ type: 'scatter', mode: 'lines', x: ticks, y: getField('connectome_entropy'), name: 'Conn. H', line: { color: '#22d3ee', width: 1.5 } });
+    }
+    if (hasField('vt_entropy')) {
+      tsTraces.push({ type: 'scatter', mode: 'lines', x: ticks, y: getField('vt_entropy'), name: 'VT H', line: { color: '#34d399', width: 1.5 } });
+    }
+    Plotly.newPlot('plotTS', tsTraces, baseLayout({
+      showlegend: true, legend: { x: 0.01, y: 0.98, font: { size: 9 }, bgcolor: 'rgba(0,0,0,0)' },
+      xaxis: { gridcolor: '#1a1a2e', title: { text: 'Tick', font: { size: 10 } } },
+      yaxis: { gridcolor: '#1a1a2e', title: { text: 'bits', font: { size: 10 } } }
+    }), PCFG);
+
+    // SIE v2 Valence
+    if (hasField('sie_v2_valence_01')) {
+      grid.appendChild(makeCard('plotVal', 'SIE v2 Valence', 'endogenous', 'tag-a', 4, 260));
+      Plotly.newPlot('plotVal', [{
+        type: 'scatter', mode: 'lines', x: ticks, y: getField('sie_v2_valence_01'),
+        line: { color: '#fbbf24', width: 1.4 }, fill: 'tozeroy', fillcolor: 'rgba(251,191,36,0.06)'
+      }], baseLayout({
+        xaxis: { gridcolor: '#1a1a2e', title: { text: 'Tick', font: { size: 10 } } },
+        yaxis: { gridcolor: '#1a1a2e', title: { text: 'Valence', font: { size: 10 } }, range: [0, 1] }
+      }), PCFG);
+    }
+
+    // VT Coverage
+    if (hasField('vt_coverage')) {
+      grid.appendChild(makeCard('plotCov', 'VT Coverage', 'traversal', 'tag-g', 4, 260));
+      Plotly.newPlot('plotCov', [{
+        type: 'scatter', mode: 'lines', x: ticks, y: getField('vt_coverage'),
+        line: { color: '#34d399', width: 1.4 }, fill: 'tozeroy', fillcolor: 'rgba(52,211,153,0.06)'
+      }], baseLayout({
+        xaxis: { gridcolor: '#1a1a2e', title: { text: 'Tick', font: { size: 10 } } },
+        yaxis: { gridcolor: '#1a1a2e', title: { text: 'Coverage', font: { size: 10 } }, range: [0, 1] }
+      }), PCFG);
+    }
+
+    // Active Edges
+    if (hasField('active_edges')) {
+      grid.appendChild(makeCard('plotEdg', 'Active Edges', 'topology', 'tag-c', 4, 260));
+      Plotly.newPlot('plotEdg', [{
+        type: 'scatter', mode: 'lines', x: ticks, y: getField('active_edges'),
+        line: { color: '#22d3ee', width: 1.4 }, fill: 'tozeroy', fillcolor: 'rgba(34,211,238,0.06)'
+      }], baseLayout({
+        xaxis: { gridcolor: '#1a1a2e', title: { text: 'Tick', font: { size: 10 } } },
+        yaxis: { gridcolor: '#1a1a2e', title: { text: 'Edges', font: { size: 10 } } }
+      }), PCFG);
+    }
+
+    // b1_z Boundary Pulse
+    if (hasField('b1_z')) {
+      grid.appendChild(makeCard('plotB1z', 'Boundary Pulse (b1_z)', 'motor gate', 'tag-v', 6, 260));
+      Plotly.newPlot('plotB1z', [{
+        type: 'scatter', mode: 'lines', x: ticks, y: getField('b1_z'),
+        line: { color: '#6366f1', width: 1.4 }, fill: 'tozeroy', fillcolor: 'rgba(99,102,241,0.06)'
+      }], baseLayout({
+        xaxis: { gridcolor: '#1a1a2e', title: { text: 'Tick', font: { size: 10 } } },
+        yaxis: { gridcolor: '#1a1a2e', title: { text: 'b1_z', font: { size: 10 } } }
+      }), PCFG);
+    }
+
+    // ADC Territory Count
+    if (hasField('adc_territories')) {
+      grid.appendChild(makeCard('plotADCt', 'ADC Territory Count', 'hierarchy', 'tag-p', 6, 260));
+      Plotly.newPlot('plotADCt', [{
+        type: 'scatter', mode: 'lines+markers', x: ticks, y: getField('adc_territories'),
+        line: { color: '#f472b6', width: 1.4 }, marker: { size: 3, color: '#f472b6' }
+      }], baseLayout({
+        xaxis: { gridcolor: '#1a1a2e', title: { text: 'Tick', font: { size: 10 } } },
+        yaxis: { gridcolor: '#1a1a2e', title: { text: 'Count', font: { size: 10 } }, dtick: 1 }
+      }), PCFG);
+    }
+  }
+
+  // Show dashboard
+  EL('loadingView').classList.remove('active');
+  EL('dashboardView').style.display = 'block';
+  console.log('Dashboard rendered successfully');
+}
+</script>
+</body>
+</html>

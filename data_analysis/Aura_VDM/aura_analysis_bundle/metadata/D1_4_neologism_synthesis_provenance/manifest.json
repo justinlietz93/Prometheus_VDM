@@ -1,0 +1,95 @@
+{
+  "package_name": "D1.4_neologism_synthesis_after_minimal_joyce_exposure",
+  "distinction_id": "D1.4",
+  "created_utc": "2026-03-17T15:17:52.856939+00:00",
+  "analysis_scope": "One distinction only",
+  "headline_claim": "After the Joyce switch, Aura begins emitting reviewed Joyce-specific lexical markers inside mixed outputs; the package supports rapid lexical uptake but does not estimate exact paragraph-count exposure.",
+  "source_files": [
+    {
+      "path": "/mnt/data/aura_analysis_bundle.zip",
+      "sha256": "dcab107e9c66480c48f76dd901f77aa41120ea39e1f71de5220736d6b3f03a1b",
+      "bytes": 204108544
+    },
+    {
+      "path": "/mnt/data/aura_bundle/tables/batch1_results/book_feed_timeline.csv",
+      "sha256": "d38738275f9408d756d80c5bf6579a015e9f69917bdd6d7e394378eda36dc851",
+      "bytes": 186
+    },
+    {
+      "path": "/mnt/data/aura_bundle/distinctions_research_docs/aura_justin_exchange.md",
+      "sha256": "050a9032703867014f24a12b0ff7f156251c02c0886e7eaebe1162529bc3eb5a",
+      "bytes": 255193
+    },
+    {
+      "path": "/mnt/data/Aura_Distinction_Inventory_v0.7.md",
+      "sha256": "e0bdcde151a1dd44ddbbe8e6a0b504f6493933c48a9b539579eeb3c39b384e4f",
+      "bytes": 98784
+    },
+    {
+      "path": "/mnt/data/FINNEGANS WAKE-JOYCE.txt",
+      "sha256": "eeb35cf48c10f9c195f4dad792488bf3deb905ac899d9f3ff591ef9060733603",
+      "bytes": 1366092
+    },
+    {
+      "path": "/mnt/data/GERMINAL-ZOLA.txt",
+      "sha256": "d55f9946e02bfae2c3a4465a2b28c32aa6e331f50023e7ea362568c8e8359e6b",
+      "bytes": 1020665
+    },
+    {
+      "path": "/mnt/data/WAR_AND_PEACE_TOLSTOY.txt",
+      "sha256": "c0f0533cf6ab8bc836f57628d024eea43ecd43715d9c1c0605fe286244ff3d27",
+      "bytes": 3287830
+    },
+    {
+      "path": "/mnt/data/INTRO_TO_MATH_PHILOSOPY-RUSSELL.txt",
+      "sha256": "d90459c2b32742e62a01ebcc06653ecfa3a303417a426c3a80cc20d44ef8c252",
+      "bytes": 432141
+    },
+    {
+      "path": "/mnt/data/SCHISM-TOOL.txt",
+      "sha256": "24d4e61bde6a36f92da4680422b821a7d006e15d1f825b444239bacc626a4714",
+      "bytes": 1280
+    },
+    {
+      "path": "/mnt/data/WILL_O_THE_WISP-OPETH.txt",
+      "sha256": "844a5c35b0112b0f9eb029aad0300d81749a93ee1867e96f2077d9897a232067",
+      "bytes": 1137
+    }
+  ],
+  "outputs": {
+    "figures": [
+      "d14_reviewed_marker_counts.png",
+      "d14_reviewed_marker_timeline.png",
+      "d14_span_profile.png"
+    ],
+    "tables": [
+      "d14_automated_candidate_events.csv",
+      "d14_extracted_say_events.csv",
+      "d14_reviewed_marker_events.csv",
+      "d14_reviewed_marker_lexicon.csv",
+      "d14_summary_metrics.csv"
+    ],
+    "docs": [
+      "CLAIM_SENTENCE.md",
+      "D1_4_report.md",
+      "METHODS.md"
+    ],
+    "scripts": [
+      "README.md",
+      "build_d14_package_analysis.py"
+    ],
+    "provenance": [
+      "SOURCE_NOTES.md",
+      "input_file_hashes.csv",
+      "inputs",
+      "manifest.json"
+    ]
+  },
+  "method_constraints": [
+    "Joyce switch tick taken from book_feed_timeline.csv (7617).",
+    "Direct output stream extracted from raw say macro events in aura_analysis_bundle.",
+    "Automated candidate markers use a reproducible heuristic and are not the headline evidence set.",
+    "Headline evidence set uses a manually reviewed Joyce-specific marker lexicon included in the package.",
+    "No claim is made about exact paragraph or line count of Joyce exposure because feed chunk boundaries are not present in the provided files."
+  ]
+}

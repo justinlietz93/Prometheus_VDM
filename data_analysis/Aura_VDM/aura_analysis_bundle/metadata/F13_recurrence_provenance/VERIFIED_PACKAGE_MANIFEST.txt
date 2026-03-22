@@ -1,0 +1,11 @@
+docs/Aura_Distinction_Inventory_v0.5.with_F13.md	80965	255a059617d84b55
+docs/F13_state_space_recurrence_note.md	2763	522825a54f72acf2
+figures/f13_recurrence_by_lag_epoch.png	427502	4d17a99cfa4e1c6d
+figures/f13_recurrence_epoch_summary.png	120425	1a8a5f9c157904cf
+figures/f13_recurrence_hotspots_epoch.png	165776	046e6bcb4663d712
+patches/Aura_Distinction_Inventory_v0.5_F13.patch	3510	f7d20aff104a4a6a
+scripts/f13_state_space_recurrence.py	9484	a0440a95b9c928be
+tables/f13_longlag_hotspots.csv	3230	beecf819c147d3e8
+tables/f13_recurrence_epoch_summary.csv	629	65e52f4322e43bbb
+tables/f13_recurrence_lag_by_epoch.csv	139317	be43756b91d6ec98
+tables/f13_recurrence_peak_table.csv	4407	89dec88949eb8692

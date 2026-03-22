@@ -1,0 +1,15 @@
+path,bytes
+docs/Aura_Distinction_Inventory_v0.5.with_F5_boundary_dynamics.md,78251
+docs/F5_boundary_attractor_dynamics_note.md,2934
+figures/f5_boundary_attractor_autocorr.png,90938
+figures/f5_boundary_attractor_by_book.png,58225
+figures/f5_boundary_attractor_rolling.png,128395
+patches/Aura_Distinction_Inventory_v0.5_F5_boundary_dynamics.patch,4517
+scripts/f5_boundary_attractor_analysis.py,6784
+tables/f5_boundary_motif_active_book_summary.csv,477
+tables/f5_boundary_motif_autocorr.csv,2324
+tables/f5_boundary_motif_epoch_summary.csv,271
+tables/f5_boundary_motif_rolling_summary.csv,312
+tables/f5_boundary_motif_run_summary.csv,153
+tables/f5_boundary_motif_runs.csv,25814
+tables/f5_boundary_motif_source_switch_carryover.csv,603

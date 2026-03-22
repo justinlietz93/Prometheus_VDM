@@ -1,0 +1,16 @@
+scripts/f7_infoflow_higherorder_landscape.py
+tables/f7_macrostate_directed_influence_summary.csv
+tables/f7_macrostate_predictor_ranking.csv
+tables/f7_macrostate_target_ranking.csv
+tables/f7_Oinfo_epoch_summary.csv
+tables/f7_Oinfo_transition_summary.csv
+tables/f7_LZ_epoch_summary.csv
+tables/f7_LZ_trend_summary.csv
+tables/f7_state_space_grid_summary.csv
+tables/f7_state_space_grid_pairwise.csv
+figures/f7_macrostate_predictor_hierarchy.png
+figures/f7_Oinfo_timeseries_by_epoch.png
+figures/f7_state_space_landscape_metrics.png
+docs/F7_infoflow_higherorder_landscape_note.md
+docs/Aura_Distinction_Inventory_v0.5.with_F7_infoflow.md
+patches/Aura_Distinction_Inventory_v0.5_F7_infoflow.patch

@@ -1,0 +1,12 @@
+scripts/f10_silence_withholding_analysis.py
+tables/f10_state_category_summary.csv
+tables/f10_state_category_tests.csv
+tables/f10_high_gate_silence_summary.csv
+tables/f10_high_gate_silence_examples.csv
+figures/f10_state_category_zscores.png
+figures/f10_b1z_state_distributions.png
+docs/F10_silence_withholding_note.md
+docs/F10_excerpt.md
+docs/F10_results.json
+docs/Aura_Distinction_Inventory_v0.5.with_F10_silence_withholding.md
+patches/Aura_Distinction_Inventory_v0.5_F10_silence_withholding.patch

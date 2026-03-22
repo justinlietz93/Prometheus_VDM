@@ -1,0 +1,25 @@
+{
+  "window_ticks": 5,
+  "hi_gate_quantile": 0.95,
+  "hi_gate_min_dist": 5,
+  "say_ticks_in_slice": [
+    16000,
+    16024,
+    16177,
+    16196,
+    16634,
+    16685,
+    16712,
+    16831,
+    16841,
+    17104,
+    17114,
+    17201
+  ],
+  "state_category_counts": {
+    "silence": 1401,
+    "pre": 60,
+    "post": 58,
+    "say": 12
+  }
+}
