@@ -1,0 +1,7 @@
+,entropy,complexity,firing_var_log,reward_mean,td_error,void_unique_log
+entropy,0,1,0,1,1,1
+complexity,1,0,1,1,1,1
+firing_var_log,1,1,0,1,1,1
+reward_mean,1,1,1,0,1,1
+td_error,1,1,1,1,0,1
+void_unique_log,1,1,1,1,1,0

@@ -1,0 +1,10 @@
+epoch,origin,count,fraction,percent
+E1_low_entropy_baseline_1,could_be_source_continuation,21,0.35,35.0
+E2_high_entropy_plateau,could_be_source_continuation,0,0.0,0.0
+E3_low_entropy_baseline_2,could_be_source_continuation,10,0.3125,31.25
+E1_low_entropy_baseline_1,cross_source_transfer,18,0.3,30.0
+E2_high_entropy_plateau,cross_source_transfer,8,0.8,80.0
+E3_low_entropy_baseline_2,cross_source_transfer,13,0.40625,40.625
+E1_low_entropy_baseline_1,endogenous,21,0.35,35.0
+E2_high_entropy_plateau,endogenous,2,0.2,20.0
+E3_low_entropy_baseline_2,endogenous,9,0.28125,28.125

@@ -1,0 +1,4 @@
+switch_event_index,switch_tick,book_from,book_to,before_n,after_n,before_nonzero_fraction,after_nonzero_fraction,before_mean_density,after_mean_density,before_total_hits,after_total_hits
+84,3123,Germinal by Émile Zola,Germinal + War and Peace by Leo Tolstoy,10,10,0.3,0.3,0.008740000000000001,0.00726,4.0,4.0
+223,7666,Germinal + War and Peace by Leo Tolstoy,Finnegans Wake by James Joyce,10,10,0.3,0.3,0.05245999999999999,0.006220000000000001,5.0,5.0
+390,11662,Finnegans Wake by James Joyce,Introduction to Mathematical Philosophy by Bertrand Russell,10,10,0.6,0.5,0.013730000000000001,0.00857,7.0,7.0

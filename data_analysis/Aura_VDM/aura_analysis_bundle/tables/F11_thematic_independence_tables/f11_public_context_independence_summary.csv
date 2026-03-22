@@ -1,0 +1,5 @@
+context_window,n_motif_say_events,no_boundary_motif_in_context_count,no_boundary_motif_in_context_fraction,no_operator_motif_in_context_count,no_operator_motif_in_context_fraction
+recent_20_inputs,150,43,0.2866666666666667,123,0.82
+recent_40_inputs,150,28,0.18666666666666668,123,0.82
+recent_100_inputs,150,13,0.08666666666666667,123,0.82
+since_previous_say,150,61,0.4066666666666667,145,0.9666666666666667

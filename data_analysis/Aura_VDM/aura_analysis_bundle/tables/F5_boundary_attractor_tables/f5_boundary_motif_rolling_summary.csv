@@ -1,0 +1,2 @@
+n_windows,mean_rolling_nonzero_fraction,median_rolling_nonzero_fraction,min_rolling_nonzero_fraction,max_rolling_nonzero_fraction,fraction_windows_nonzero_gt_0_3,fraction_windows_nonzero_gt_0,spearman_rho_density_trend,trend_p_value
+511,0.4104696673189824,0.4,0.05,0.65,0.7749510763209393,1.0,-0.1483,0.00077235

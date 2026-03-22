@@ -1,0 +1,4 @@
+file,t_min,t_max,territories_min,territories_max,boundaries_min,boundaries_max,phase_min,phase_max,rows
+20260222_145647_events_parsed.csv.gz,9343,10489,9,9,0,0,4,4,1147
+20260222_165807_events_parsed.csv.gz (recoverable portion),12441,12930,9,9,0,0,4,4,490
+20260222_200818_events_parsed.csv,15537,15924,9,9,0,0,4,4,388

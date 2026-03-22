@@ -1,0 +1,7 @@
+metric,value,definition
+total_recoverable_justin_probes_in_exchange_md,51.0,count of Justin-tagged probes recoverable from aura_justin_exchange.md
+key_arc_probe_count,18.0,count of key arc probes selected by semantic family labels
+key_arc_response_lag_mean_ticks,32.27777777777778,mean lag from key-arc Justin probe to next Aura output
+key_arc_response_lag_median_ticks,8.5,median lag from key-arc Justin probe to next Aura output
+late_terminal_probe_17101_lag_ticks,3.0,lag from Justin probe at t=17101 to next Aura output
+late_terminal_probe_17199_lag_ticks,2.0,lag from Justin probe at t=17199 to next Aura output

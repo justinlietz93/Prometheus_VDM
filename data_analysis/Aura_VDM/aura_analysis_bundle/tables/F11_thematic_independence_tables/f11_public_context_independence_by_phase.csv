@@ -1,0 +1,4 @@
+phase,n_motif_say_events,recent40_no_motif_fraction,recent100_no_motif_fraction,since_prev_say_no_motif_fraction,recent100_no_operator_motif_fraction,since_prev_say_no_operator_motif_fraction
+0,2,0.0,0.0,0.5,1.0,1.0
+3,17,0.0,0.0,0.17647058823529413,1.0,1.0
+4,131,0.21374045801526717,0.09923664122137404,0.4351145038167939,0.7938931297709924,0.9618320610687023

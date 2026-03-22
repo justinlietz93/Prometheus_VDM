@@ -1,0 +1,4 @@
+epoch,rank,lag,predictive_mi,minutes_at_2p58s_per_tick
+E1_low_entropy_baseline_1,1,151,0.3782877559123152,6.492999999999999
+E2_high_entropy_plateau,1,281,0.0951965934632837,12.083
+E3_low_entropy_baseline_2,1,111,1.041180120747841,4.773

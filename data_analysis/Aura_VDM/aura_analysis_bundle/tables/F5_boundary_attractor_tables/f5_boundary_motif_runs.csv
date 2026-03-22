@@ -1,0 +1,225 @@
+motif_nonzero,start_idx,end_idx,start_t,end_t,n_events,book_start,book_end,n_active_books,sum_motif_hits,mean_motif_density
+0,0,16,185,1177,17,Germinal by Émile Zola,Germinal by Émile Zola,1,0.0,0.0
+1,17,17,1187,1187,1,Germinal by Émile Zola,Germinal by Émile Zola,1,1.0,0.0154
+0,18,20,1205,1234,3,Germinal by Émile Zola,Germinal by Émile Zola,1,0.0,0.0
+1,21,21,1252,1252,1,Germinal by Émile Zola,Germinal by Émile Zola,1,1.0,0.125
+0,22,24,1340,1402,3,Germinal by Émile Zola,Germinal by Émile Zola,1,0.0,0.0
+1,25,25,1435,1435,1,Germinal by Émile Zola,Germinal by Émile Zola,1,1.0,0.0222
+0,26,28,1468,1531,3,Germinal by Émile Zola,Germinal by Émile Zola,1,0.0,0.0
+1,29,29,1564,1564,1,Germinal by Émile Zola,Germinal by Émile Zola,1,1.0,0.1
+0,30,30,1598,1598,1,Germinal by Émile Zola,Germinal by Émile Zola,1,0.0,0.0
+1,31,32,1632,1665,2,Germinal by Émile Zola,Germinal by Émile Zola,1,2.0,0.02145
+0,33,33,1693,1693,1,Germinal by Émile Zola,Germinal by Émile Zola,1,0.0,0.0
+1,34,35,1717,1742,2,Germinal by Émile Zola,Germinal by Émile Zola,1,2.0,0.01565
+0,36,40,1769,1885,5,Germinal by Émile Zola,Germinal by Émile Zola,1,0.0,0.0
+1,41,45,1916,2031,5,Germinal by Émile Zola,Germinal by Émile Zola,1,11.0,0.02162
+0,46,53,2061,2265,8,Germinal by Émile Zola,Germinal by Émile Zola,1,0.0,0.0
+1,54,57,2295,2367,4,Germinal by Émile Zola,Germinal by Émile Zola,1,5.0,0.049775
+0,58,58,2397,2397,1,Germinal by Émile Zola,Germinal by Émile Zola,1,0.0,0.0
+1,59,59,2424,2424,1,Germinal by Émile Zola,Germinal by Émile Zola,1,1.0,0.0179
+0,60,63,2454,2539,4,Germinal by Émile Zola,Germinal by Émile Zola,1,0.0,0.0
+1,64,64,2568,2568,1,Germinal by Émile Zola,Germinal by Émile Zola,1,1.0,0.0097
+0,65,65,2598,2598,1,Germinal by Émile Zola,Germinal by Émile Zola,1,0.0,0.0
+1,66,68,2626,2681,3,Germinal by Émile Zola,Germinal by Émile Zola,1,3.0,0.013033333333333334
+0,69,69,2707,2707,1,Germinal by Émile Zola,Germinal by Émile Zola,1,0.0,0.0
+1,70,71,2736,2764,2,Germinal by Émile Zola,Germinal by Émile Zola,1,4.0,0.011099999999999999
+0,72,74,2792,2848,3,Germinal by Émile Zola,Germinal by Émile Zola,1,0.0,0.0
+1,75,75,2876,2876,1,Germinal by Émile Zola,Germinal by Émile Zola,1,1.0,0.0196
+0,76,76,2903,2903,1,Germinal by Émile Zola,Germinal by Émile Zola,1,0.0,0.0
+1,77,77,2932,2932,1,Germinal by Émile Zola,Germinal by Émile Zola,1,1.0,0.0526
+0,78,80,2960,3016,3,Germinal by Émile Zola,Germinal by Émile Zola,1,0.0,0.0
+1,81,81,3041,3041,1,Germinal by Émile Zola,Germinal by Émile Zola,1,2.0,0.0152
+0,82,84,3069,3123,3,Germinal by Émile Zola,Germinal + War and Peace by Leo Tolstoy,2,0.0,0.0
+1,85,85,3150,3150,1,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,1.0,0.037
+0,86,91,3173,3355,6,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,0.0,0.0
+1,92,95,3401,3889,4,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,5.0,0.0175
+0,96,96,3911,3911,1,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,0.0,0.0
+1,97,97,3936,3936,1,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,2.0,0.0217
+0,98,99,4030,4190,2,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,0.0,0.0
+1,100,101,4303,4328,2,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,3.0,0.0242
+0,102,105,4348,4599,4,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,0.0,0.0
+1,106,106,4624,4624,1,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,1.0,0.0286
+0,107,108,4647,4670,2,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,0.0,0.0
+1,109,109,4696,4696,1,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,1.0,0.0435
+0,110,113,4722,4802,4,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,0.0,0.0
+1,114,114,4826,4826,1,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,1.0,0.0082
+0,115,119,4850,4954,5,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,0.0,0.0
+1,120,122,4981,5032,3,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,5.0,0.012433333333333333
+0,123,123,5058,5058,1,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,0.0,0.0
+1,124,125,5085,5109,2,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,4.0,0.01625
+0,126,131,5133,5251,6,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,0.0,0.0
+1,132,132,5273,5273,1,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,2.0,0.0106
+0,133,134,5298,5322,2,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,0.0,0.0
+1,135,139,5348,5441,5,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,7.0,0.02848
+0,140,140,5463,5463,1,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,0.0,0.0
+1,141,144,5489,5564,4,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,5.0,0.013225
+0,145,148,5587,5661,4,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,0.0,0.0
+1,149,150,5685,5709,2,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,2.0,0.0188
+0,151,153,5732,5778,3,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,0.0,0.0
+1,154,154,5800,5800,1,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,1.0,0.0108
+0,155,155,5823,5823,1,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,0.0,0.0
+1,156,156,5845,5845,1,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,1.0,0.0303
+0,157,157,5869,5869,1,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,0.0,0.0
+1,158,158,5893,5893,1,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,1.0,0.0079
+0,159,159,5918,5918,1,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,0.0,0.0
+1,160,161,5941,5965,2,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,3.0,0.025750000000000002
+0,162,162,5987,5987,1,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,0.0,0.0
+1,163,163,6011,6011,1,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,1.0,0.0096
+0,164,164,6035,6035,1,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,0.0,0.0
+1,165,167,6059,6105,3,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,3.0,0.0092
+0,168,169,6128,6152,2,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,0.0,0.0
+1,170,171,6173,6196,2,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,3.0,0.01635
+0,172,172,6219,6219,1,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,0.0,0.0
+1,173,175,6243,6289,3,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,3.0,0.004966666666666667
+0,176,176,6309,6309,1,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,0.0,0.0
+1,177,177,6333,6333,1,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,1.0,0.0125
+0,178,179,6359,6381,2,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,0.0,0.0
+1,180,183,6403,6581,4,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,6.0,0.015725
+0,184,185,6646,6656,2,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,0.0,0.0
+1,186,186,6667,6667,1,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,1.0,1.0
+0,187,188,6688,6703,2,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,0.0,0.0
+1,189,189,6713,6713,1,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,2.0,0.0175
+0,190,193,6725,6772,4,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,0.0,0.0
+1,194,194,6784,6784,1,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,1.0,0.0123
+0,195,196,6797,6813,2,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,0.0,0.0
+1,197,197,6826,6826,1,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,1.0,0.0097
+0,198,198,6845,6845,1,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,0.0,0.0
+1,199,201,6864,6995,3,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,5.0,0.0102
+0,202,204,7016,7075,3,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,0.0,0.0
+1,205,207,7123,7215,3,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,3.0,0.005
+0,208,209,7263,7306,2,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,0.0,0.0
+1,210,210,7330,7330,1,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,2.0,0.0072
+0,211,211,7354,7354,1,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,0.0,0.0
+1,212,214,7378,7427,3,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,4.0,0.17396666666666669
+0,215,221,7450,7592,7,Germinal + War and Peace by Leo Tolstoy,Germinal + War and Peace by Leo Tolstoy,1,0.0,0.0
+1,222,223,7617,7666,2,Germinal + War and Peace by Leo Tolstoy,Finnegans Wake by James Joyce,2,4.0,0.017
+0,224,226,7717,7784,3,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,0.0,0.0
+1,227,228,7805,7825,2,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,4.0,0.022350000000000002
+0,229,232,7850,7918,4,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,0.0,0.0
+1,233,235,7941,7984,3,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,3.0,0.007633333333333332
+0,236,241,7999,8100,6,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,0.0,0.0
+1,242,245,8120,8182,4,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,6.0,0.019325000000000002
+0,246,250,8201,8283,5,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,0.0,0.0
+1,251,254,8303,8370,4,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,5.0,0.018775000000000003
+0,255,256,8390,8412,2,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,0.0,0.0
+1,257,257,8434,8434,1,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,1.0,0.0149
+0,258,258,8457,8457,1,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,0.0,0.0
+1,259,261,8479,8522,3,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,4.0,0.016766666666666666
+0,262,263,8544,8564,2,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,0.0,0.0
+1,264,264,8584,8584,1,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,1.0,0.0082
+0,265,267,8605,8649,3,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,0.0,0.0
+1,268,270,8670,8712,3,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,5.0,0.021099999999999997
+0,271,271,8731,8731,1,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,0.0,0.0
+1,272,272,8756,8756,1,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,1.0,0.0132
+0,273,273,8779,8779,1,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,0.0,0.0
+1,274,275,8801,8823,2,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,3.0,0.01225
+0,276,277,8844,8866,2,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,0.0,0.0
+1,278,278,8885,8885,1,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,1.0,0.0161
+0,279,279,8907,8907,1,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,0.0,0.0
+1,280,281,8928,8950,2,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,2.0,0.00745
+0,282,282,8972,8972,1,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,0.0,0.0
+1,283,283,8994,8994,1,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,1.0,0.0133
+0,284,285,9013,9034,2,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,0.0,0.0
+1,286,288,9055,9098,3,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,7.0,0.011833333333333335
+0,289,292,9121,9181,4,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,0.0,0.0
+1,293,295,9201,9246,3,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,4.0,0.03376666666666667
+0,296,296,9266,9266,1,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,0.0,0.0
+1,297,297,9289,9289,1,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,2.0,0.0069
+0,298,305,9309,9459,8,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,0.0,0.0
+1,306,307,9479,9500,2,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,5.0,0.0162
+0,308,310,9520,9567,3,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,0.0,0.0
+1,311,311,9590,9590,1,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,1.0,0.0333
+0,312,314,9610,9649,3,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,0.0,0.0
+1,315,315,9667,9667,1,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,2.0,0.0308
+0,316,319,9687,9930,4,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,0.0,0.0
+1,320,321,9940,9965,2,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,3.0,0.0397
+0,322,323,9976,10014,2,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,0.0,0.0
+1,324,324,10027,10027,1,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,3.0,0.0082
+0,325,327,10043,10073,3,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,0.0,0.0
+1,328,328,10084,10084,1,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,2.0,0.0282
+0,329,330,10104,10118,2,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,0.0,0.0
+1,331,331,10212,10212,1,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,1.0,0.0161
+0,332,333,10285,10523,2,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,0.0,0.0
+1,334,336,10541,10578,3,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,3.0,0.015733333333333332
+0,337,339,10605,10640,3,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,0.0,0.0
+1,340,340,10651,10651,1,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,1.0,0.0189
+0,341,341,10666,10666,1,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,0.0,0.0
+1,342,346,10677,10732,5,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,6.0,0.02078
+0,347,348,10749,10771,2,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,0.0,0.0
+1,349,351,10785,10813,3,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,5.0,0.016866666666666665
+0,352,354,10825,10850,3,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,0.0,0.0
+1,355,355,10864,10864,1,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,3.0,0.0105
+0,356,357,10883,10897,2,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,0.0,0.0
+1,358,358,10908,10908,1,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,2.0,0.0096
+0,359,367,10919,11035,9,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,0.0,0.0
+1,368,368,11052,11052,1,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,3.0,0.0132
+0,369,371,11064,11090,3,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,0.0,0.0
+1,372,372,11106,11106,1,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,2.0,0.0081
+0,373,373,11117,11117,1,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,0.0,0.0
+1,374,374,11132,11132,1,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,2.0,0.0294
+0,375,377,11142,11174,3,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,0.0,0.0
+1,378,378,11194,11194,1,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,1.0,0.009
+0,379,379,11220,11220,1,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,0.0,0.0
+1,380,380,11246,11246,1,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,1.0,0.0145
+0,381,381,11259,11259,1,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,0.0,0.0
+1,382,384,11275,11302,3,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,3.0,0.025866666666666666
+0,385,385,11318,11318,1,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,0.0,0.0
+1,386,386,11329,11329,1,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,1.0,0.0189
+0,387,388,11343,11353,2,Finnegans Wake by James Joyce,Finnegans Wake by James Joyce,1,0.0,0.0
+1,389,392,11367,11704,4,Finnegans Wake by James Joyce,Introduction to Mathematical Philosophy by Bertrand Russell,2,7.0,0.024274999999999998
+0,393,393,11729,11729,1,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0,0.0
+1,394,395,11754,11778,2,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,2.0,0.00745
+0,396,400,11798,11880,5,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0,0.0
+1,401,401,11905,11905,1,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,1.0,0.0385
+0,402,402,11930,11930,1,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0,0.0
+1,403,404,11955,11975,2,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,5.0,0.019049999999999997
+0,405,406,11999,12021,2,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0,0.0
+1,407,407,12045,12045,1,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,1.0,0.005
+0,408,408,12070,12070,1,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0,0.0
+1,409,409,12092,12092,1,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,1.0,0.0333
+0,410,413,12114,12181,4,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0,0.0
+1,414,414,12201,12201,1,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,1.0,0.0078
+0,415,416,12223,12246,2,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0,0.0
+1,417,418,12269,12294,2,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,2.0,0.00855
+0,419,421,12318,12365,3,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0,0.0
+1,422,423,12390,12414,2,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,2.0,0.015050000000000001
+0,424,432,12438,12608,9,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0,0.0
+1,433,434,12630,12652,2,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,3.0,0.00635
+0,435,435,12672,12672,1,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0,0.0
+1,436,438,12695,12741,3,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,4.0,0.0342
+0,439,442,12762,12835,4,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0,0.0
+1,443,444,12859,12883,2,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,3.0,0.009000000000000001
+0,445,445,12908,12908,1,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0,0.0
+1,446,446,12932,12932,1,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,2.0,0.0185
+0,447,448,12953,12978,2,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0,0.0
+1,449,450,13001,13025,2,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,4.0,0.015050000000000001
+0,451,452,13048,13073,2,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0,0.0
+1,453,453,13097,13097,1,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,3.0,0.0158
+0,454,454,13118,13118,1,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0,0.0
+1,455,455,13136,13136,1,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,2.0,0.0168
+0,456,460,13153,13244,5,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0,0.0
+1,461,461,13268,13268,1,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,1.0,0.0244
+0,462,462,13291,13291,1,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0,0.0
+1,463,463,13313,13313,1,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,1.0,0.0189
+0,464,465,13335,13359,2,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0,0.0
+1,466,466,13381,13381,1,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,1.0,0.0051
+0,467,469,13402,13444,3,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0,0.0
+1,470,470,13466,13466,1,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,3.0,0.0242
+0,471,471,13489,13489,1,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0,0.0
+1,472,473,13511,13529,2,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,4.0,0.01525
+0,474,474,13551,13551,1,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0,0.0
+1,475,476,13571,13592,2,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,6.0,0.0315
+0,477,478,13612,13632,2,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0,0.0
+1,479,486,13728,14630,8,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,14.0,0.018549999999999997
+0,487,492,14646,14732,6,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0,0.0
+1,493,493,14745,14745,1,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,2.0,0.0155
+0,494,494,14763,14763,1,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0,0.0
+1,495,495,14783,14783,1,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,1.0,0.0333
+0,496,497,14794,14814,2,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0,0.0
+1,498,500,14828,14852,3,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,6.0,0.1186
+0,501,504,14864,14907,4,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0,0.0
+1,505,505,14922,14922,1,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,2.0,0.0215
+0,506,516,14936,15882,11,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0,0.0
+1,517,519,15893,16024,3,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,3.0,0.013233333333333333
+0,520,523,16177,16685,4,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0,0.0
+1,524,529,16712,17201,6,Introduction to Mathematical Philosophy by Bertrand Russell,Introduction to Mathematical Philosophy by Bertrand Russell,1,11.0,0.02148333333333333

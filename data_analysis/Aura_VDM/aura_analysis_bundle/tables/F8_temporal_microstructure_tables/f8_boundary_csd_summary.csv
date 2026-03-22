@@ -1,0 +1,3 @@
+boundary_t,raw_pre_n,raw_post_n,raw_pre_var_mean_100tick,raw_post_var_mean_100tick,raw_var_ratio_post_over_pre_100tick,raw_pre_ac_mean_100tick,raw_post_ac_mean_100tick,exact_pre_var_mean,exact_post_var_mean,exact_var_ratio_post_over_pre,exact_pre_ac_mean,exact_post_ac_mean,exact_ac_increase,exact_var_increase
+10500,100,100,0.0015982531011330013,0.0015916319869880974,0.9958572805895323,0.9411385330624202,0.9412747562324085,0.001473,0.001328,0.9,0.9392,0.9364,False,False
+11600,100,100,0.0014239337700985692,0.09460729960043882,66.44080053940276,0.9230923705891654,0.9955976626449079,0.000847,0.188083,222.1,0.9181,0.9972,True,True

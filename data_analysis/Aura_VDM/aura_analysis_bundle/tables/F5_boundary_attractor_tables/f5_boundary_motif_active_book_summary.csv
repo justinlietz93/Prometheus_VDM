@@ -1,0 +1,5 @@
+active_book,n_events,nonzero_fraction,mean_density,median_density,total_motif_hits,max_density
+Finnegans Wake by James Joyce,167,0.41317365269461076,0.007580838323353293,0.0,103,0.0588
+Introduction to Mathematical Philosophy by Bertrand Russell,140,0.4142857142857143,0.009852142857142856,0.0,96,0.3333
+Germinal + War and Peace by Leo Tolstoy,139,0.4460431654676259,0.01771294964028777,0.0,84,1.0
+Germinal by Émile Zola,84,0.32142857142857145,0.00976547619047619,0.0,37,0.125

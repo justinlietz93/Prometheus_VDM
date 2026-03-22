@@ -1,0 +1,13 @@
+active_book,origin,count,fraction,percent
+Finnegans Wake by James Joyce,could_be_source_continuation,0,0.0,0.0
+Germinal + War and Peace by Leo Tolstoy,could_be_source_continuation,13,0.48148148148148145,48.148148148148145
+Germinal by Émile Zola,could_be_source_continuation,8,0.6666666666666666,66.66666666666666
+Introduction to Mathematical Philosophy by Bertrand Russell,could_be_source_continuation,10,0.3125,31.25
+Finnegans Wake by James Joyce,cross_source_transfer,23,0.7419354838709677,74.19354838709677
+Germinal + War and Peace by Leo Tolstoy,cross_source_transfer,3,0.1111111111111111,11.11111111111111
+Germinal by Émile Zola,cross_source_transfer,0,0.0,0.0
+Introduction to Mathematical Philosophy by Bertrand Russell,cross_source_transfer,13,0.40625,40.625
+Finnegans Wake by James Joyce,endogenous,8,0.25806451612903225,25.806451612903224
+Germinal + War and Peace by Leo Tolstoy,endogenous,11,0.4074074074074074,40.74074074074074
+Germinal by Émile Zola,endogenous,4,0.3333333333333333,33.33333333333333
+Introduction to Mathematical Philosophy by Bertrand Russell,endogenous,9,0.28125,28.125
