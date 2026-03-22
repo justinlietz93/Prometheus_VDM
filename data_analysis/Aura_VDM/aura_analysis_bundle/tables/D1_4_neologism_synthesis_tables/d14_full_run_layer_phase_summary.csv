@@ -1,0 +1,10 @@
+layer,phase,n_outputs_in_phase,n_flagged_outputs,fraction_flagged_outputs,n_best_all_jaccard_lt_0_20_among_flagged,n_lcs_frac_lt_0.10_among_flagged,n_zero_trigram_among_flagged,earliest_tick_in_phase
+raw Joyce-only token layer,pre-Joyce,222,4,0.018018018018018018,4,1,0,4647.0
+raw Joyce-only token layer,Joyce-window,167,67,0.40119760479041916,46,43,3,7850.0
+raw Joyce-only token layer,post-Joyce,141,62,0.4397163120567376,53,47,0,11754.0
+filtered automated Joyce-like layer,pre-Joyce,222,3,0.013513513513513514,3,1,0,5918.0
+filtered automated Joyce-like layer,Joyce-window,167,58,0.3473053892215569,39,38,2,7850.0
+filtered automated Joyce-like layer,post-Joyce,141,58,0.41134751773049644,50,43,0,11754.0
+reviewed Joyce-specific marker layer,pre-Joyce,222,0,0.0,0,0,0,
+reviewed Joyce-specific marker layer,Joyce-window,167,25,0.1497005988023952,19,18,0,7941.0
+reviewed Joyce-specific marker layer,post-Joyce,141,3,0.02127659574468085,3,2,0,13335.0

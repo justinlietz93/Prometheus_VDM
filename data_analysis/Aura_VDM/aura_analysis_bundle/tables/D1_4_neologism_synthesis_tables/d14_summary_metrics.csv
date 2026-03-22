@@ -1,0 +1,12 @@
+metric,value,unit
+total_say_outputs_all_run,530,count
+joyce_switch_tick,7617,tick
+joyce_window_output_count,167,count
+pre_switch_reviewed_marker_outputs,0,count
+joyce_window_reviewed_marker_outputs,25,count
+joyce_window_auto_candidate_outputs,58,count
+earliest_reviewed_marker_output_tick,7941,tick
+earliest_reviewed_marker_ticks_after_switch,324,tick_delta
+reviewed_outputs_with_max_joyce_span_le_6,17,count
+reviewed_outputs_with_max_joyce_span_ge_8,6,count
+max_joyce_span_observed_among_reviewed_outputs,9,tokens

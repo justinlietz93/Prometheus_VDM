@@ -1,0 +1,227 @@
+{
+  "D1_5_role_materialization": {
+    "by_epoch": {
+      "E1_low_entropy_baseline_1": {
+        "first_person": {
+          "count": 23,
+          "fraction": 0.069
+        },
+        "none": {
+          "count": 43,
+          "fraction": 0.129
+        },
+        "passive_narration": {
+          "count": 194,
+          "fraction": 0.583
+        },
+        "persistent_character": {
+          "count": 68,
+          "fraction": 0.204
+        },
+        "volition_sovereignty": {
+          "count": 5,
+          "fraction": 0.015
+        }
+      },
+      "E2_high_entropy_plateau": {
+        "first_person": {
+          "count": 6,
+          "fraction": 0.105
+        },
+        "none": {
+          "count": 6,
+          "fraction": 0.105
+        },
+        "passive_narration": {
+          "count": 27,
+          "fraction": 0.474
+        },
+        "persistent_character": {
+          "count": 17,
+          "fraction": 0.298
+        },
+        "volition_sovereignty": {
+          "count": 1,
+          "fraction": 0.018
+        }
+      },
+      "E3_low_entropy_baseline_2": {
+        "first_person": {
+          "count": 8,
+          "fraction": 0.057
+        },
+        "none": {
+          "count": 13,
+          "fraction": 0.093
+        },
+        "passive_narration": {
+          "count": 82,
+          "fraction": 0.586
+        },
+        "persistent_character": {
+          "count": 31,
+          "fraction": 0.221
+        },
+        "volition_sovereignty": {
+          "count": 6,
+          "fraction": 0.043
+        }
+      }
+    },
+    "first_appearance_by_stage": {
+      "first_person": 185,
+      "passive_narration": 271,
+      "persistent_character": 313,
+      "volition_sovereignty": 4722
+    }
+  },
+  "D1_6_vocabulary_diversity": {
+    "by_epoch": {
+      "E1_low_entropy_baseline_1": {
+        "hapax_count": 2090,
+        "total_words": 21439,
+        "ttr": 0.1836,
+        "unique_words": 3937
+      },
+      "E2_high_entropy_plateau": {
+        "hapax_count": 898,
+        "total_words": 3360,
+        "ttr": 0.3735,
+        "unique_words": 1255
+      },
+      "E3_low_entropy_baseline_2": {
+        "hapax_count": 1784,
+        "total_words": 10871,
+        "ttr": 0.2618,
+        "unique_words": 2846
+      }
+    },
+    "hapax_legomena": 2723,
+    "total_words": 35670,
+    "type_token_ratio": 0.1522,
+    "unique_words": 5430
+  },
+  "D4_3_output_tightening": {
+    "by_epoch": {
+      "E1_low_entropy_baseline_1": {
+        "max_words": 371,
+        "mean_words": 64.4,
+        "median_words": 43.0,
+        "min_words": 0,
+        "n_events": 333,
+        "std_words": 68.7
+      },
+      "E2_high_entropy_plateau": {
+        "max_words": 285,
+        "mean_words": 58.9,
+        "median_words": 38.0,
+        "min_words": 1,
+        "n_events": 57,
+        "std_words": 65.0
+      },
+      "E3_low_entropy_baseline_2": {
+        "max_words": 369,
+        "mean_words": 77.6,
+        "median_words": 52.0,
+        "min_words": 0,
+        "n_events": 140,
+        "std_words": 80.0
+      }
+    },
+    "trend": {
+      "interpretation": "lengthening",
+      "p_value": 0.00527263,
+      "spearman_rho": 0.121
+    }
+  },
+  "D5_boundary_motif_tracking": {
+    "by_epoch": {
+      "E1_low_entropy_baseline_1": {
+        "max_density": 1.0,
+        "mean_density": 0.01234,
+        "n_events": 333,
+        "nonzero_count": 134,
+        "nonzero_fraction": 0.402,
+        "total_motif_hits": 189
+      },
+      "E2_high_entropy_plateau": {
+        "max_density": 0.04,
+        "mean_density": 0.00768,
+        "n_events": 57,
+        "nonzero_count": 24,
+        "nonzero_fraction": 0.421,
+        "total_motif_hits": 35
+      },
+      "E3_low_entropy_baseline_2": {
+        "max_density": 0.3333,
+        "mean_density": 0.00985,
+        "n_events": 140,
+        "nonzero_count": 58,
+        "nonzero_fraction": 0.414,
+        "total_motif_hits": 96
+      }
+    },
+    "total_events_with_motifs": 216,
+    "total_text_events": 530,
+    "trend_test": {
+      "interpretation": "declining",
+      "n_windows": 511,
+      "p_value": 0.00077235,
+      "spearman_rho": -0.1483
+    }
+  },
+  "F11_cross_source_transfer": {
+    "cross_source_fraction": 0.382,
+    "endogenous_fraction": 0.314,
+    "origin_counts": {
+      "could_be_source_continuation": 31,
+      "cross_source_transfer": 39,
+      "endogenous": 32
+    },
+    "total_motif_events": 102
+  },
+  "F15_operator_reply_analysis": {
+    "early_lag": {
+      "mean": 58.5,
+      "median": 12.0,
+      "n": 17
+    },
+    "late_lag": {
+      "mean": 21.7,
+      "median": 9.0,
+      "n": 32
+    },
+    "motif_fraction": 0.286,
+    "n_pairs": 49,
+    "replies_with_boundary_motifs": 14,
+    "replies_with_shared_content": 18,
+    "reply_lag": {
+      "mean": 34.5,
+      "median": 10.0
+    },
+    "shared_content_fraction": 0.367
+  },
+  "F9_syntactic_complexity": {
+    "E1_low_entropy_baseline_1": {
+      "mean_clause_depth": 0.449,
+      "mean_sent_len": 13.4,
+      "mean_word_len": 4.32,
+      "mean_words_per_event": 64.8,
+      "n_events": 331
+    },
+    "E2_high_entropy_plateau": {
+      "mean_clause_depth": 0.394,
+      "mean_sent_len": 13.16,
+      "mean_word_len": 4.52,
+      "mean_words_per_event": 58.9,
+      "n_events": 57
+    },
+    "E3_low_entropy_baseline_2": {
+      "mean_clause_depth": 0.44,
+      "mean_sent_len": 13.59,
+      "mean_word_len": 4.35,
+      "mean_words_per_event": 79.9,
+      "n_events": 136
+    }
+  }
+}

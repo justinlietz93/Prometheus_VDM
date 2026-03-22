@@ -1,0 +1,8 @@
+first_n_post_switch_outputs,raw_joyce_outputs,reviewed_joyce_outputs,strong_synthesis_outputs,reviewed_low_overlap_outputs,reviewed_short_joyce_span_outputs,zero_trigram_raw_joyce_outputs,zero_trigram_reviewed_outputs
+5,1,0,0,0,0,0,0
+10,2,0,0,0,0,1,0
+20,3,1,1,1,1,1,0
+40,8,4,4,4,4,1,0
+80,21,11,8,10,8,1,0
+120,42,19,10,14,13,2,0
+167,67,25,11,17,17,3,0

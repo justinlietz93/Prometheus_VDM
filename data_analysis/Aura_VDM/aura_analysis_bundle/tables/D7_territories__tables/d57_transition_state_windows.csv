@@ -1,0 +1,10 @@
+transition_tick,to_territories,source,pre_mean_active_edges,post_mean_active_edges,delta_active_edges,pre_mean_vt_coverage,post_mean_vt_coverage,delta_vt_coverage,pre_mean_vt_entropy,post_mean_vt_entropy,delta_vt_entropy,pre_mean_connectome_entropy,post_mean_connectome_entropy,delta_connectome_entropy,pre_mean_b1_z,post_mean_b1_z,delta_b1_z,pre_did_say_rate,post_did_say_rate
+194,3,timeseries_core,,,,,,,,,,,,,,,,,
+491,4,timeseries_core,,,,,,,,,,,,,,,,,
+907,5,timeseries_core,,,,,,,,,,,,,,,,,
+924,6,timeseries_core,,,,,,,,,,,,,,,,,
+947,7,timeseries_core,,,,,,,,,,,,,,,,,
+1043,6,timeseries_core,,,,,,,,,,,,,,,,,
+1260,7,timeseries_core,,,,,,,,,,,,,,,,,
+2303,8,timeseries_core,,,,,,,,,,,,,,,,,
+3216,9,timeseries_core,,,,,,,,,,,,,,,,,

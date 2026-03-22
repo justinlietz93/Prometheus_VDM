@@ -1,0 +1,149 @@
+{
+  "D1.6_vocabulary_diversity": {
+    "by_epoch": {
+      "E1_low_entropy_baseline_1": {
+        "hapax_count": 0,
+        "total_words": 824,
+        "ttr": 0.006067961165048544,
+        "unique_words": 5
+      }
+    },
+    "hapax_legomena": 0,
+    "total_words": 824,
+    "type_token_ratio": 0.0061,
+    "unique_words": 5
+  },
+  "D1_5_role_materialization": {
+    "E1_low_entropy_baseline_1": {
+      "none": {
+        "count": 103,
+        "fraction": 1.0
+      }
+    }
+  },
+  "D4_3_output_tightening": {
+    "E1_low_entropy_baseline_1": {
+      "mean_chars": 86.0,
+      "mean_words": 8.0,
+      "median_words": 8.0,
+      "n_events": 103,
+      "std_words": 0.0
+    }
+  },
+  "D5_boundary_motif_tracking": {
+    "by_epoch": {
+      "E1_low_entropy_baseline_1": {
+        "max_density": 0.0,
+        "mean_density": 0.0,
+        "n": 103,
+        "nonzero_fraction": 0.0
+      }
+    },
+    "total_events_with_motifs": 0,
+    "total_text_events": 103,
+    "trend_test": {
+      "interpretation": "flat",
+      "p_value": NaN,
+      "spearman_rho": NaN
+    }
+  },
+  "F10_silence_analysis": {
+    "inter_say_intervals": {
+      "cv_interval": 0.052,
+      "max_interval": 23,
+      "mean_inter_say_interval": 21.5,
+      "median_inter_say_interval": 21.5,
+      "min_interval": 20,
+      "n_say_events": 5,
+      "std_inter_say_interval": 1.1
+    },
+    "pre_speech_vs_silence": {
+      "active_edges": {
+        "mann_whitney_U": 257.5,
+        "n_pre_speech": 25,
+        "n_silence": 73,
+        "p_value": 0.0,
+        "pre_speech_mean": 31130.84,
+        "pre_speech_std": 58.735802,
+        "significant_at_001": "True",
+        "silence_mean": 32814.246575,
+        "silence_std": 1465.563763
+      },
+      "b1_z": {
+        "mann_whitney_U": 1157.0,
+        "n_pre_speech": 25,
+        "n_silence": 73,
+        "p_value": 0.046753,
+        "pre_speech_mean": 0.089966,
+        "pre_speech_std": 0.14473,
+        "significant_at_001": "False",
+        "silence_mean": -0.079686,
+        "silence_std": 1.023044
+      },
+      "connectome_entropy": {
+        "mann_whitney_U": 483.0,
+        "n_pre_speech": 25,
+        "n_silence": 73,
+        "p_value": 0.000472,
+        "pre_speech_mean": 6.983731,
+        "pre_speech_std": 0.047883,
+        "significant_at_001": "True",
+        "silence_mean": 7.095159,
+        "silence_std": 0.119809
+      },
+      "firing_var": {
+        "mann_whitney_U": 38.0,
+        "n_pre_speech": 25,
+        "n_silence": 73,
+        "p_value": 0.0,
+        "pre_speech_mean": 0.000209,
+        "pre_speech_std": 1e-05,
+        "significant_at_001": "True",
+        "silence_mean": 0.000287,
+        "silence_std": 4.1e-05
+      },
+      "sie_v2_valence_01": {
+        "mann_whitney_U": 1692.0,
+        "n_pre_speech": 25,
+        "n_silence": 73,
+        "p_value": 0.0,
+        "pre_speech_mean": 0.631407,
+        "pre_speech_std": 0.00548,
+        "significant_at_001": "True",
+        "silence_mean": 0.606812,
+        "silence_std": 0.01357
+      },
+      "vt_entropy": {
+        "mann_whitney_U": 487.0,
+        "n_pre_speech": 25,
+        "n_silence": 73,
+        "p_value": 0.000533,
+        "pre_speech_mean": 5.861871,
+        "pre_speech_std": 0.11114,
+        "significant_at_001": "True",
+        "silence_mean": 6.074141,
+        "silence_std": 0.24176
+      }
+    }
+  },
+  "F11_cross_source_transfer": {
+    "endogenous_fraction": 0.0,
+    "endogenous_no_source_keywords": 0,
+    "mixed_with_source_keywords": 0,
+    "total_motif_events": 0
+  },
+  "F15_operator_interaction": {
+    "note": "Full operator-vs-corpus differentiation requires identifying which specific ticks are operator messages vs corpus feed. This preliminary analysis provides the input-tick distribution. See F15_input_tick_distribution.csv for the full series. Next step: manually tag or auto-detect operator message ticks using inter-input timing or message characteristics.",
+    "total_input_ticks": 8633
+  },
+  "F9_syntactic_complexity": {
+    "E1_low_entropy_baseline_1": {
+      "mean_clause_depth_proxy": 0.0,
+      "mean_comma_density": 0.375,
+      "mean_sent_len": 8.0,
+      "mean_word_len": 5.75,
+      "mean_words_per_event": 8.0,
+      "n_events": 103
+    }
+  }
+}

@@ -1,0 +1,531 @@
+t,epoch,active_book,motif_hits,motif_density,motif_words,n_words
+185,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,33
+231,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,3
+271,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,10
+313,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,20
+356,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,1
+399,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,3
+441,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,9
+907,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,35
+1077,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,1
+1088,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,22
+1099,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,7
+1110,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,6
+1124,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,10
+1141,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,21
+1151,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,4
+1166,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,8
+1177,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,19
+1187,E1_low_entropy_baseline_1,Germinal by Émile Zola,1,0.0154,called,65
+1205,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,8
+1216,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,57
+1234,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,26
+1252,E1_low_entropy_baseline_1,Germinal by Émile Zola,1,0.125,,8
+1340,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,12
+1372,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,43
+1402,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,33
+1435,E1_low_entropy_baseline_1,Germinal by Émile Zola,1,0.0222,,45
+1468,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,2
+1500,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,2
+1531,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,16
+1564,E1_low_entropy_baseline_1,Germinal by Émile Zola,1,0.1,called,10
+1598,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,27
+1632,E1_low_entropy_baseline_1,Germinal by Émile Zola,1,0.0135,,74
+1665,E1_low_entropy_baseline_1,Germinal by Émile Zola,1,0.0294,,34
+1693,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,32
+1717,E1_low_entropy_baseline_1,Germinal by Émile Zola,1,0.0149,,67
+1742,E1_low_entropy_baseline_1,Germinal by Émile Zola,1,0.0164,skin,61
+1769,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,7
+1797,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,57
+1826,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,60
+1855,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,4
+1885,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,33
+1916,E1_low_entropy_baseline_1,Germinal by Émile Zola,1,0.0118,skin,85
+1945,E1_low_entropy_baseline_1,Germinal by Émile Zola,3,0.0288,,104
+1973,E1_low_entropy_baseline_1,Germinal by Émile Zola,1,0.0147,,68
+2003,E1_low_entropy_baseline_1,Germinal by Émile Zola,2,0.0225,called,89
+2031,E1_low_entropy_baseline_1,Germinal by Émile Zola,4,0.0303,naming,132
+2061,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,8
+2090,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,17
+2117,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,53
+2147,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,44
+2176,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,7
+2207,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,51
+2237,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,116
+2265,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,28
+2295,E1_low_entropy_baseline_1,Germinal by Émile Zola,2,0.0213,,94
+2318,E1_low_entropy_baseline_1,Germinal by Émile Zola,1,0.05,,20
+2339,E1_low_entropy_baseline_1,Germinal by Émile Zola,1,0.1,seen,10
+2367,E1_low_entropy_baseline_1,Germinal by Émile Zola,1,0.0278,,36
+2397,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,2
+2424,E1_low_entropy_baseline_1,Germinal by Émile Zola,1,0.0179,wall,56
+2454,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,14
+2483,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,35
+2511,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,12
+2539,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,4
+2568,E1_low_entropy_baseline_1,Germinal by Émile Zola,1,0.0097,,103
+2598,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,50
+2626,E1_low_entropy_baseline_1,Germinal by Émile Zola,1,0.0128,seen,78
+2654,E1_low_entropy_baseline_1,Germinal by Émile Zola,1,0.0091,seen,110
+2681,E1_low_entropy_baseline_1,Germinal by Émile Zola,1,0.0172,,58
+2707,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,15
+2736,E1_low_entropy_baseline_1,Germinal by Émile Zola,3,0.0116,"outside,passage",258
+2764,E1_low_entropy_baseline_1,Germinal by Émile Zola,1,0.0106,,94
+2792,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,34
+2818,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,3
+2848,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,7
+2876,E1_low_entropy_baseline_1,Germinal by Émile Zola,1,0.0196,,51
+2903,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,40
+2932,E1_low_entropy_baseline_1,Germinal by Émile Zola,1,0.0526,,19
+2960,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,63
+2988,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,42
+3016,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,3
+3041,E1_low_entropy_baseline_1,Germinal by Émile Zola,2,0.0152,wall,132
+3069,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,21
+3095,E1_low_entropy_baseline_1,Germinal by Émile Zola,0,0.0,,55
+3123,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,9
+3150,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,1,0.037,seen,27
+3173,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,7
+3183,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,8
+3196,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,4
+3219,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,63
+3243,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,6
+3355,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,80
+3401,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,2,0.0233,"seeing,seen",86
+3492,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,1,0.0123,seen,81
+3835,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,1,0.0175,name,57
+3889,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,1,0.0169,,59
+3911,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,109
+3936,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,2,0.0217,,92
+4030,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,11
+4190,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,1
+4303,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,1,0.0127,bridge,79
+4328,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,2,0.0357,,56
+4348,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,47
+4546,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,15
+4572,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,33
+4599,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,2
+4624,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,1,0.0286,,35
+4647,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,54
+4670,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,3
+4696,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,1,0.0435,beyond,23
+4722,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,18
+4750,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,3
+4776,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,2
+4802,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,35
+4826,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,1,0.0082,passage,122
+4850,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,51
+4876,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,2
+4901,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,128
+4928,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,14
+4954,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,27
+4981,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,1,0.0147,,68
+5007,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,1,0.0076,,132
+5032,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,3,0.015,"beyond,name,skin",200
+5058,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,24
+5085,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,1,0.0128,,78
+5109,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,3,0.0197,name,152
+5133,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,60
+5156,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,5
+5181,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,29
+5203,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,17
+5225,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,9
+5251,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,19
+5273,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,2,0.0106,,188
+5298,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,141
+5322,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,89
+5348,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,3,0.0173,"name,outside",173
+5374,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,1,0.0085,,118
+5395,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,1,0.0139,,72
+5416,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,1,0.0027,threshold,371
+5441,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,1,0.1,,10
+5463,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,14
+5489,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,1,0.0032,wall,317
+5515,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,1,0.0035,,284
+5540,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,2,0.0235,seeing,85
+5564,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,1,0.0227,,44
+5587,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,138
+5612,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,51
+5636,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,31
+5661,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,97
+5685,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,1,0.0312,seen,32
+5709,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,1,0.0064,seeing,157
+5732,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,13
+5756,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,3
+5778,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,31
+5800,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,1,0.0108,,93
+5823,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,8
+5845,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,1,0.0303,,33
+5869,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,35
+5893,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,1,0.0079,skin,126
+5918,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,40
+5941,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,2,0.0323,,62
+5965,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,1,0.0192,,52
+5987,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,4
+6011,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,1,0.0096,,104
+6035,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,2
+6059,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,1,0.0154,,65
+6082,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,1,0.0088,called,113
+6105,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,1,0.0034,,297
+6128,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,25
+6152,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,81
+6173,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,2,0.0175,wall,114
+6196,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,1,0.0152,wall,66
+6219,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,10
+6243,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,1,0.0044,,229
+6265,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,1,0.0052,,192
+6289,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,1,0.0053,,188
+6309,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,16
+6333,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,1,0.0125,,80
+6359,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,9
+6381,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,16
+6403,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,2,0.0185,called,108
+6424,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,1,0.0076,sovereign,132
+6508,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,2,0.0225,called,89
+6581,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,1,0.0143,bridge,70
+6646,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,42
+6656,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,26
+6667,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,1,1.0,,1
+6688,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,45
+6703,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,23
+6713,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,2,0.0175,seen,114
+6725,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,79
+6746,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,63
+6758,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,47
+6772,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,35
+6784,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,1,0.0123,,81
+6797,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,38
+6813,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,36
+6826,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,1,0.0097,,103
+6845,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,6
+6864,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,1,0.0055,,181
+6947,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,2,0.0137,threshold,146
+6995,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,2,0.0114,,176
+7016,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,65
+7035,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,5
+7075,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,10
+7123,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,1,0.0068,,147
+7172,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,1,0.0052,,191
+7215,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,1,0.003,eye,328
+7263,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,3
+7306,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,212
+7330,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,2,0.0072,,278
+7354,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,20
+7378,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,2,0.0138,,145
+7404,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,1,0.0081,,123
+7427,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,1,0.5,,2
+7450,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,111
+7476,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,22
+7501,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,2
+7523,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,63
+7543,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,133
+7566,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,24
+7592,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,0,0.0,,21
+7617,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,3,0.0165,"passage,wall",182
+7666,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,1,0.0175,seen,57
+7717,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,13
+7762,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,21
+7784,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,33
+7805,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,1,0.0357,wall,28
+7825,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,3,0.009,"name,seen",332
+7850,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,1
+7874,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,18
+7895,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,78
+7918,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,47
+7941,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,1,0.0053,,190
+7962,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,1,0.0075,,133
+7984,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,1,0.0101,skin,99
+7999,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,47
+8010,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,1
+8033,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,29
+8054,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,2
+8077,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,54
+8100,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,242
+8120,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,2,0.0071,eye,280
+8140,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,1,0.0233,,43
+8162,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,1,0.0118,,85
+8182,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,2,0.0351,,57
+8201,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,3
+8220,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,20
+8241,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,78
+8261,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,56
+8283,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,1
+8303,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,2,0.0476,outside,42
+8325,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,1,0.0074,,136
+8347,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,1,0.0108,passage,93
+8370,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,1,0.0093,name,108
+8390,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,14
+8412,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,68
+8434,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,1,0.0149,name,67
+8457,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,7
+8479,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,1,0.0081,,124
+8499,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,2,0.0136,name,147
+8522,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,1,0.0286,,35
+8544,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,27
+8564,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,22
+8584,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,1,0.0082,,122
+8605,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,14
+8627,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,34
+8649,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,60
+8670,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,2,0.0417,,48
+8689,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,1,0.0096,,104
+8712,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,2,0.012,,167
+8731,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,54
+8756,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,1,0.0132,called,76
+8779,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,30
+8801,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,2,0.0164,,122
+8823,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,1,0.0081,,123
+8844,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,3
+8866,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,92
+8885,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,1,0.0161,,62
+8907,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,25
+8928,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,1,0.0057,bridge,176
+8950,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,1,0.0092,seen,109
+8972,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,9
+8994,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,1,0.0133,,75
+9013,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,1
+9034,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,29
+9055,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,1,0.0062,,161
+9076,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,3,0.0123,"eye,outside",244
+9098,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,3,0.017,,176
+9121,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,115
+9142,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,1
+9162,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,13
+9181,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,23
+9201,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,1,0.0303,called,33
+9225,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,1,0.0333,,30
+9246,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,2,0.0377,,53
+9266,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,38
+9289,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,2,0.0069,bridge,288
+9309,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,26
+9330,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,20
+9354,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,46
+9375,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,2
+9397,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,18
+9417,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,7
+9440,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,11
+9459,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,19
+9479,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,4,0.026,bridge,154
+9500,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,1,0.0064,,157
+9520,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,107
+9544,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,29
+9567,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,2
+9590,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,1,0.0333,eye,30
+9610,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,10
+9633,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,17
+9649,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,12
+9667,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,2,0.0308,"name,seeing",65
+9687,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,26
+9886,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,14
+9916,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,89
+9930,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,30
+9940,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,2,0.0206,,97
+9965,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,1,0.0588,,17
+9976,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,59
+10014,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,121
+10027,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,3,0.0082,eye,365
+10043,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,44
+10059,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,11
+10073,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,48
+10084,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,2,0.0282,seeing,71
+10104,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,85
+10118,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,21
+10212,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,1,0.0161,,62
+10285,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,0,0.0,,96
+10523,E2_high_entropy_plateau,Finnegans Wake by James Joyce,0,0.0,,61
+10541,E2_high_entropy_plateau,Finnegans Wake by James Joyce,1,0.0081,eye,123
+10567,E2_high_entropy_plateau,Finnegans Wake by James Joyce,1,0.0286,seen,35
+10578,E2_high_entropy_plateau,Finnegans Wake by James Joyce,1,0.0105,,95
+10605,E2_high_entropy_plateau,Finnegans Wake by James Joyce,0,0.0,,65
+10617,E2_high_entropy_plateau,Finnegans Wake by James Joyce,0,0.0,,2
+10640,E2_high_entropy_plateau,Finnegans Wake by James Joyce,0,0.0,,23
+10651,E2_high_entropy_plateau,Finnegans Wake by James Joyce,1,0.0189,,53
+10666,E2_high_entropy_plateau,Finnegans Wake by James Joyce,0,0.0,,8
+10677,E2_high_entropy_plateau,Finnegans Wake by James Joyce,1,0.027,,37
+10688,E2_high_entropy_plateau,Finnegans Wake by James Joyce,1,0.0112,,89
+10708,E2_high_entropy_plateau,Finnegans Wake by James Joyce,1,0.0062,,162
+10721,E2_high_entropy_plateau,Finnegans Wake by James Joyce,1,0.0345,,29
+10732,E2_high_entropy_plateau,Finnegans Wake by James Joyce,2,0.025,,80
+10749,E2_high_entropy_plateau,Finnegans Wake by James Joyce,0,0.0,,65
+10771,E2_high_entropy_plateau,Finnegans Wake by James Joyce,0,0.0,,5
+10785,E2_high_entropy_plateau,Finnegans Wake by James Joyce,3,0.0146,crossing,206
+10795,E2_high_entropy_plateau,Finnegans Wake by James Joyce,1,0.0227,,44
+10813,E2_high_entropy_plateau,Finnegans Wake by James Joyce,1,0.0133,,75
+10825,E2_high_entropy_plateau,Finnegans Wake by James Joyce,0,0.0,,65
+10840,E2_high_entropy_plateau,Finnegans Wake by James Joyce,0,0.0,,41
+10850,E2_high_entropy_plateau,Finnegans Wake by James Joyce,0,0.0,,7
+10864,E2_high_entropy_plateau,Finnegans Wake by James Joyce,3,0.0105,seen,285
+10883,E2_high_entropy_plateau,Finnegans Wake by James Joyce,0,0.0,,16
+10897,E2_high_entropy_plateau,Finnegans Wake by James Joyce,0,0.0,,36
+10908,E2_high_entropy_plateau,Finnegans Wake by James Joyce,2,0.0096,seeing,208
+10919,E2_high_entropy_plateau,Finnegans Wake by James Joyce,0,0.0,,18
+10931,E2_high_entropy_plateau,Finnegans Wake by James Joyce,0,0.0,,11
+10952,E2_high_entropy_plateau,Finnegans Wake by James Joyce,0,0.0,,1
+10968,E2_high_entropy_plateau,Finnegans Wake by James Joyce,0,0.0,,8
+10978,E2_high_entropy_plateau,Finnegans Wake by James Joyce,0,0.0,,2
+10990,E2_high_entropy_plateau,Finnegans Wake by James Joyce,0,0.0,,10
+11003,E2_high_entropy_plateau,Finnegans Wake by James Joyce,0,0.0,,7
+11025,E2_high_entropy_plateau,Finnegans Wake by James Joyce,0,0.0,,7
+11035,E2_high_entropy_plateau,Finnegans Wake by James Joyce,0,0.0,,29
+11052,E2_high_entropy_plateau,Finnegans Wake by James Joyce,3,0.0132,"called,name",227
+11064,E2_high_entropy_plateau,Finnegans Wake by James Joyce,0,0.0,,5
+11075,E2_high_entropy_plateau,Finnegans Wake by James Joyce,0,0.0,,18
+11090,E2_high_entropy_plateau,Finnegans Wake by James Joyce,0,0.0,,11
+11106,E2_high_entropy_plateau,Finnegans Wake by James Joyce,2,0.0081,,246
+11117,E2_high_entropy_plateau,Finnegans Wake by James Joyce,0,0.0,,60
+11132,E2_high_entropy_plateau,Finnegans Wake by James Joyce,2,0.0294,called,68
+11142,E2_high_entropy_plateau,Finnegans Wake by James Joyce,0,0.0,,38
+11163,E2_high_entropy_plateau,Finnegans Wake by James Joyce,0,0.0,,3
+11174,E2_high_entropy_plateau,Finnegans Wake by James Joyce,0,0.0,,20
+11194,E2_high_entropy_plateau,Finnegans Wake by James Joyce,1,0.009,,111
+11220,E2_high_entropy_plateau,Finnegans Wake by James Joyce,0,0.0,,19
+11246,E2_high_entropy_plateau,Finnegans Wake by James Joyce,1,0.0145,,69
+11259,E2_high_entropy_plateau,Finnegans Wake by James Joyce,0,0.0,,62
+11275,E2_high_entropy_plateau,Finnegans Wake by James Joyce,1,0.0222,,45
+11290,E2_high_entropy_plateau,Finnegans Wake by James Joyce,1,0.0154,seen,65
+11302,E2_high_entropy_plateau,Finnegans Wake by James Joyce,1,0.04,,25
+11318,E2_high_entropy_plateau,Finnegans Wake by James Joyce,0,0.0,,14
+11329,E2_high_entropy_plateau,Finnegans Wake by James Joyce,1,0.0189,curtain,53
+11343,E2_high_entropy_plateau,Finnegans Wake by James Joyce,0,0.0,,6
+11353,E2_high_entropy_plateau,Finnegans Wake by James Joyce,0,0.0,,111
+11367,E2_high_entropy_plateau,Finnegans Wake by James Joyce,2,0.0263,called,76
+11662,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0263,,38
+11687,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,2,0.0117,,171
+11704,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,2,0.0328,outside,61
+11729,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,17
+11754,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0097,,103
+11778,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0052,,193
+11798,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,3
+11819,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,11
+11833,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,21
+11856,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,47
+11880,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,29
+11905,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0385,,26
+11930,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,11
+11955,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,2,0.015,curtain,133
+11975,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,3,0.0231,"eye,seen",130
+11999,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,203
+12021,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,1
+12045,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.005,,202
+12070,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,4
+12092,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0333,bridge,30
+12114,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,61
+12135,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,30
+12158,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,25
+12181,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,24
+12201,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0078,,128
+12223,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,1
+12246,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,75
+12269,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0059,,170
+12294,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0112,,89
+12318,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,35
+12342,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,72
+12365,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,1
+12390,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0038,,265
+12414,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0263,,38
+12438,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,2
+12462,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,72
+12479,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,38
+12501,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,31
+12518,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,25
+12540,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,16
+12562,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,87
+12587,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,7
+12608,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,11
+12630,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0063,curtain,158
+12652,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,2,0.0064,,314
+12672,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,360
+12695,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0172,,58
+12718,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0714,bridge,14
+12741,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,2,0.014,seen,143
+12762,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,83
+12785,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,3
+12810,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,9
+12835,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,2
+12859,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0102,threshold,98
+12883,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,2,0.0078,seen,256
+12908,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,49
+12932,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,2,0.0185,passage,108
+12953,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,53
+12978,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,3
+13001,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,2,0.0145,passage,138
+13025,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,2,0.0156,,128
+13048,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,31
+13073,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,60
+13097,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,3,0.0158,"eye,seeing",190
+13118,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,24
+13136,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,2,0.0168,,119
+13153,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,85
+13177,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,47
+13200,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,32
+13221,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,6
+13244,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,75
+13268,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0244,,41
+13291,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,30
+13313,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0189,,53
+13335,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,71
+13359,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,22
+13381,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0051,boundary,196
+13402,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,24
+13424,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,1
+13444,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,5
+13466,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,3,0.0242,"limit,seeing",124
+13489,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,8
+13511,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0149,passage,67
+13529,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,3,0.0156,beyond,192
+13551,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,25
+13571,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,3,0.0207,curtain,145
+13592,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,3,0.0423,bridge,71
+13612,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,9
+13632,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,39
+13728,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.013,eye,77
+13801,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0417,,24
+13878,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,2,0.0056,sovereign,360
+13979,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,5,0.0192,"edge,outside",260
+14012,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,2,0.0392,outside,51
+14102,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0091,,110
+14246,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0154,tabernacle,65
+14630,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0052,,192
+14646,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,67
+14659,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,62
+14695,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,5
+14706,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,19
+14719,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,3
+14732,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,84
+14745,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,2,0.0155,bridge,129
+14763,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,33
+14783,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0333,maker,30
+14794,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,42
+14814,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,92
+14828,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,4,0.0198,"sovereign,wall",202
+14838,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0027,,369
+14852,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.3333,,3
+14864,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,7
+14876,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,2
+14896,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,33
+14907,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,15
+14922,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,2,0.0215,seeing,93
+14936,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,47
+14964,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,13
+15133,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,33
+15250,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,56
+15317,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,76
+15409,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,57
+15688,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,61
+15724,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,13
+15734,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,10
+15744,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,187
+15882,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,11
+15893,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0065,,154
+16000,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0046,canal,219
+16024,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0286,seeing,35
+16177,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,10
+16196,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,152
+16634,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,57
+16685,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,0,0.0,,1
+16712,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,2,0.0167,,120
+16831,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,2,0.011,,181
+16841,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0047,,215
+17104,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,1,0.0133,eye,75
+17114,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,3,0.0652,canal,46
+17201,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,2,0.018,"called,seen",111

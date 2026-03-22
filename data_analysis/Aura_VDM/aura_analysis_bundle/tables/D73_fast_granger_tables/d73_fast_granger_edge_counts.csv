@@ -1,0 +1,4 @@
+epoch,n_sig_edges,n_possible_edges,fraction
+E1,29,30,0.9666666666666667
+E2,22,30,0.7333333333333333
+E3,30,30,1.0

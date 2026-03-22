@@ -1,0 +1,103 @@
+t,epoch,active_book,motif_words,source_keywords_present,origin
+1187,E1_low_entropy_baseline_1,Germinal by Émile Zola,called,,endogenous
+1564,E1_low_entropy_baseline_1,Germinal by Émile Zola,called,,endogenous
+1742,E1_low_entropy_baseline_1,Germinal by Émile Zola,skin,GERMINAL,could_be_source_continuation
+1916,E1_low_entropy_baseline_1,Germinal by Émile Zola,skin,GERMINAL,could_be_source_continuation
+2003,E1_low_entropy_baseline_1,Germinal by Émile Zola,called,GERMINAL,could_be_source_continuation
+2031,E1_low_entropy_baseline_1,Germinal by Émile Zola,naming,GERMINAL,could_be_source_continuation
+2339,E1_low_entropy_baseline_1,Germinal by Émile Zola,seen,,endogenous
+2424,E1_low_entropy_baseline_1,Germinal by Émile Zola,wall,GERMINAL,could_be_source_continuation
+2626,E1_low_entropy_baseline_1,Germinal by Émile Zola,seen,GERMINAL,could_be_source_continuation
+2654,E1_low_entropy_baseline_1,Germinal by Émile Zola,seen,GERMINAL,could_be_source_continuation
+2736,E1_low_entropy_baseline_1,Germinal by Émile Zola,"outside,passage",GERMINAL,could_be_source_continuation
+3041,E1_low_entropy_baseline_1,Germinal by Émile Zola,wall,,endogenous
+3150,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,seen,,endogenous
+3401,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,"seeing,seen",,endogenous
+3492,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,seen,,endogenous
+3835,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,name,GERMINAL,cross_source_transfer
+4303,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,bridge,,endogenous
+4696,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,beyond,,endogenous
+4826,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,passage,"RUSSELL,TOLSTOY",could_be_source_continuation
+5032,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,"beyond,name,skin",GERMINAL,cross_source_transfer
+5109,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,name,,endogenous
+5348,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,"name,outside",,endogenous
+5416,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,threshold,TOLSTOY,could_be_source_continuation
+5489,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,wall,TOLSTOY,could_be_source_continuation
+5540,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,seeing,GERMINAL,cross_source_transfer
+5685,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,seen,,endogenous
+5709,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,seeing,"GERMINAL,TOLSTOY",could_be_source_continuation
+5893,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,skin,"GERMINAL,TOLSTOY",could_be_source_continuation
+6082,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,called,"GERMINAL,JOYCE,TOLSTOY",could_be_source_continuation
+6173,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,wall,"GERMINAL,TOLSTOY",could_be_source_continuation
+6196,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,wall,,endogenous
+6403,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,called,TOLSTOY,could_be_source_continuation
+6424,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,sovereign,TOLSTOY,could_be_source_continuation
+6508,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,called,,endogenous
+6581,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,bridge,TOLSTOY,could_be_source_continuation
+6713,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,seen,,endogenous
+6947,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,threshold,TOLSTOY,could_be_source_continuation
+7215,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,eye,"GERMINAL,TOLSTOY",could_be_source_continuation
+7617,E1_low_entropy_baseline_1,Germinal + War and Peace by Leo Tolstoy,"passage,wall",TOLSTOY,could_be_source_continuation
+7666,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,seen,,endogenous
+7805,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,wall,,endogenous
+7825,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,"name,seen","GERMINAL,TOLSTOY",cross_source_transfer
+7984,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,skin,TOLSTOY,cross_source_transfer
+8120,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,eye,GERMINAL,cross_source_transfer
+8303,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,outside,,endogenous
+8347,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,passage,GERMINAL,cross_source_transfer
+8370,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,name,"GERMINAL,TOLSTOY",cross_source_transfer
+8434,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,name,,endogenous
+8499,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,name,TOLSTOY,cross_source_transfer
+8756,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,called,,endogenous
+8928,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,bridge,,endogenous
+8950,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,seen,"GERMINAL,TOLSTOY",cross_source_transfer
+9076,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,"eye,outside",GERMINAL,cross_source_transfer
+9201,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,called,GERMINAL,cross_source_transfer
+9289,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,bridge,TOLSTOY,cross_source_transfer
+9479,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,bridge,GERMINAL,cross_source_transfer
+9590,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,eye,TOLSTOY,cross_source_transfer
+9667,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,"name,seeing","GERMINAL,TOLSTOY",cross_source_transfer
+10027,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,eye,TOLSTOY,cross_source_transfer
+10084,E1_low_entropy_baseline_1,Finnegans Wake by James Joyce,seeing,"GERMINAL,TOLSTOY",cross_source_transfer
+10541,E2_high_entropy_plateau,Finnegans Wake by James Joyce,eye,GERMINAL,cross_source_transfer
+10567,E2_high_entropy_plateau,Finnegans Wake by James Joyce,seen,,endogenous
+10785,E2_high_entropy_plateau,Finnegans Wake by James Joyce,crossing,TOLSTOY,cross_source_transfer
+10864,E2_high_entropy_plateau,Finnegans Wake by James Joyce,seen,TOLSTOY,cross_source_transfer
+10908,E2_high_entropy_plateau,Finnegans Wake by James Joyce,seeing,TOLSTOY,cross_source_transfer
+11052,E2_high_entropy_plateau,Finnegans Wake by James Joyce,"called,name",,endogenous
+11132,E2_high_entropy_plateau,Finnegans Wake by James Joyce,called,TOLSTOY,cross_source_transfer
+11290,E2_high_entropy_plateau,Finnegans Wake by James Joyce,seen,GERMINAL,cross_source_transfer
+11329,E2_high_entropy_plateau,Finnegans Wake by James Joyce,curtain,TOLSTOY,cross_source_transfer
+11367,E2_high_entropy_plateau,Finnegans Wake by James Joyce,called,GERMINAL,cross_source_transfer
+11704,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,outside,TOLSTOY,cross_source_transfer
+11955,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,curtain,"RUSSELL,TOLSTOY",could_be_source_continuation
+11975,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,"eye,seen",,endogenous
+12092,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,bridge,,endogenous
+12630,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,curtain,TOLSTOY,cross_source_transfer
+12718,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,bridge,,endogenous
+12741,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,seen,TOLSTOY,cross_source_transfer
+12859,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,threshold,TOLSTOY,cross_source_transfer
+12883,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,seen,"GERMINAL,RUSSELL,TOLSTOY",could_be_source_continuation
+12932,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,passage,"RUSSELL,TOLSTOY",could_be_source_continuation
+13001,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,passage,,endogenous
+13097,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,"eye,seeing",TOLSTOY,cross_source_transfer
+13381,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,boundary,,endogenous
+13466,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,"limit,seeing",RUSSELL,could_be_source_continuation
+13511,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,passage,,endogenous
+13529,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,beyond,"GERMINAL,TOLSTOY",cross_source_transfer
+13571,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,curtain,TOLSTOY,cross_source_transfer
+13592,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,bridge,,endogenous
+13728,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,eye,"GERMINAL,RUSSELL",could_be_source_continuation
+13878,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,sovereign,"GERMINAL,RUSSELL",could_be_source_continuation
+13979,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,"edge,outside",TOLSTOY,cross_source_transfer
+14012,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,outside,TOLSTOY,cross_source_transfer
+14246,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,tabernacle,GERMINAL,cross_source_transfer
+14745,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,bridge,,endogenous
+14783,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,maker,RUSSELL,could_be_source_continuation
+14828,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,"sovereign,wall",RUSSELL,could_be_source_continuation
+14922,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,seeing,"GERMINAL,RUSSELL",could_be_source_continuation
+16000,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,canal,"RUSSELL,TOLSTOY",could_be_source_continuation
+16024,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,seeing,,endogenous
+17104,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,eye,GERMINAL,cross_source_transfer
+17114,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,canal,TOLSTOY,cross_source_transfer
+17201,E3_low_entropy_baseline_2,Introduction to Mathematical Philosophy by Bertrand Russell,"called,seen",TOLSTOY,cross_source_transfer

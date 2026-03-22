@@ -1,0 +1,4 @@
+post_switch_output_index,t,tri_frac_in_corpus,best_all_jaccard,lcs_frac_say,raw_joyce_unique_tokens,text
+8.0,7850,0.0,1.0,1.0,['dublin'],Dublin.
+117.0,10617,0.0,0.04,0.5,['josser'],"Josser, flat-."
+142.0,10978,0.0,0.2222222222222222,1.0,['doornail'],Me doornail?

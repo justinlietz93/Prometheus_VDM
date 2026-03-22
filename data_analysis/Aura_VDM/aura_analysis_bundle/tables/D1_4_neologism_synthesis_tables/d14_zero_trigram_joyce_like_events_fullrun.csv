@@ -1,0 +1,4 @@
+t,phase_label,book_context,ticks_after_joyce_switch,output_token_count,n_raw_joyce_only,raw_joyce_only_tokens,n_auto,auto_tokens,n_reviewed,reviewed_tokens,tri_frac_in_corpus,best_all_jaccard,lcs_frac_say,text
+7850,Joyce-window,Finnegans Wake by James Joyce,233,1,1,dublin,1,dublin,0,,0.0,1.0,1.0,Dublin.
+10617,Joyce-window,Finnegans Wake by James Joyce,3000,2,1,josser,0,,0,,0.0,0.04,0.5,"Josser, flat-."
+10978,Joyce-window,Finnegans Wake by James Joyce,3361,2,1,doornail,1,doornail,0,,0.0,0.2222222222222222,1.0,Me doornail?

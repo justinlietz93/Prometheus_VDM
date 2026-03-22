@@ -1,0 +1,238 @@
+{
+  "D5_1_classification": {
+    "classifier": {
+      "error": "sklearn not available \u2014 install with pip install scikit-learn",
+      "note": "Mann-Whitney tests still ran successfully"
+    },
+    "mann_whitney_per_variable": {
+      "active_edges": {
+        "control_mean_delta": 196.363798,
+        "control_std_delta": 2301.486488,
+        "effect_size_r": -0.3947,
+        "mann_whitney_U": 1259.0,
+        "n_control": 244,
+        "n_operator": 49,
+        "operator_mean_delta": -5253.25,
+        "operator_std_delta": 3254.80441,
+        "p_value": 0.0,
+        "significant_at_005": "True"
+      },
+      "b1_z": {
+        "control_mean_delta": -0.086495,
+        "control_std_delta": 0.666601,
+        "effect_size_r": 0.0484,
+        "mann_whitney_U": 6557.0,
+        "n_control": 244,
+        "n_operator": 49,
+        "operator_mean_delta": 0.107266,
+        "operator_std_delta": 0.518691,
+        "p_value": 0.285126,
+        "significant_at_005": "False"
+      },
+      "connectome_entropy": {
+        "control_mean_delta": 0.005593,
+        "control_std_delta": 0.141128,
+        "effect_size_r": -0.2625,
+        "mann_whitney_U": 2840.0,
+        "n_control": 244,
+        "n_operator": 49,
+        "operator_mean_delta": -0.078513,
+        "operator_std_delta": 0.091911,
+        "p_value": 0.0,
+        "significant_at_005": "True"
+      },
+      "sie_v2_valence_01": {
+        "control_mean_delta": 9.7e-05,
+        "control_std_delta": 0.01828,
+        "effect_size_r": 0.0647,
+        "mann_whitney_U": 6752.0,
+        "n_control": 244,
+        "n_operator": 49,
+        "operator_mean_delta": 0.004833,
+        "operator_std_delta": 0.015057,
+        "p_value": 0.152955,
+        "significant_at_005": "False"
+      },
+      "vt_coverage": {
+        "control_mean_delta": 0.003837,
+        "control_std_delta": 0.062033,
+        "effect_size_r": -0.1715,
+        "mann_whitney_U": 3927.0,
+        "n_control": 244,
+        "n_operator": 49,
+        "operator_mean_delta": -0.012868,
+        "operator_std_delta": 0.021226,
+        "p_value": 0.000151,
+        "significant_at_005": "True"
+      },
+      "vt_entropy": {
+        "control_mean_delta": 0.015751,
+        "control_std_delta": 0.260274,
+        "effect_size_r": -0.2681,
+        "mann_whitney_U": 2772.0,
+        "n_control": 244,
+        "n_operator": 49,
+        "operator_mean_delta": -0.157885,
+        "operator_std_delta": 0.160368,
+        "p_value": 0.0,
+        "significant_at_005": "True"
+      }
+    }
+  },
+  "D5_6_reply_dynamics": {
+    "early_run_lag": {
+      "mean": 58.5,
+      "median": 12.0,
+      "n": 17
+    },
+    "late_run_lag": {
+      "mean": 21.7,
+      "median": 9.0,
+      "n": 32
+    },
+    "n_operator_messages": 49,
+    "overall_lag": {
+      "max": 408,
+      "mean": 34.5,
+      "median": 10.0,
+      "min": 2,
+      "std": 77.1
+    },
+    "post_reply_silence": {
+      "mean": 93.9,
+      "median": 60.5
+    }
+  },
+  "corpus_control_event_triggered": {
+    "active_edges": {
+      "mean_delta": 196.363798,
+      "n_events": 244,
+      "std_delta": 2301.486488
+    },
+    "b1_z": {
+      "mean_delta": -0.086495,
+      "n_events": 244,
+      "std_delta": 0.666601
+    },
+    "connectome_entropy": {
+      "mean_delta": 0.005593,
+      "n_events": 244,
+      "std_delta": 0.141128
+    },
+    "sie_v2_valence_01": {
+      "mean_delta": 9.7e-05,
+      "n_events": 244,
+      "std_delta": 0.01828
+    },
+    "vt_coverage": {
+      "mean_delta": 0.003837,
+      "n_events": 244,
+      "std_delta": 0.062033
+    },
+    "vt_entropy": {
+      "mean_delta": 0.015751,
+      "n_events": 244,
+      "std_delta": 0.260274
+    }
+  },
+  "operator_event_triggered": {
+    "active_edges": {
+      "mean_delta": -5253.25,
+      "median_delta": -6390.45,
+      "n_events": 49,
+      "std_delta": 3254.80441
+    },
+    "b1_z": {
+      "mean_delta": 0.107266,
+      "median_delta": -0.009827,
+      "n_events": 49,
+      "std_delta": 0.518691
+    },
+    "connectome_entropy": {
+      "mean_delta": -0.078513,
+      "median_delta": -0.077979,
+      "n_events": 49,
+      "std_delta": 0.091911
+    },
+    "sie_v2_valence_01": {
+      "mean_delta": 0.004833,
+      "median_delta": 0.009913,
+      "n_events": 49,
+      "std_delta": 0.015057
+    },
+    "vt_coverage": {
+      "mean_delta": -0.012868,
+      "median_delta": -0.01322,
+      "n_events": 49,
+      "std_delta": 0.021226
+    },
+    "vt_entropy": {
+      "mean_delta": -0.157885,
+      "median_delta": -0.167142,
+      "n_events": 49,
+      "std_delta": 0.160368
+    }
+  },
+  "permutation_test": {
+    "active_edges": {
+      "n_permutations": 2000,
+      "null_mean": 1409.91695925,
+      "null_std": 279.2829603,
+      "p_value": 0.0,
+      "real_mean_abs_delta": 5465.34591837,
+      "significant_at_001": "True",
+      "significant_at_005": "True",
+      "z_score": 14.521
+    },
+    "b1_z": {
+      "n_permutations": 2000,
+      "null_mean": 0.44797949,
+      "null_std": 0.07490709,
+      "p_value": 0.9765,
+      "real_mean_abs_delta": 0.30782948,
+      "significant_at_001": "False",
+      "significant_at_005": "False",
+      "z_score": -1.871
+    },
+    "connectome_entropy": {
+      "n_permutations": 2000,
+      "null_mean": 0.08133044,
+      "null_std": 0.01385547,
+      "p_value": 0.1055,
+      "real_mean_abs_delta": 0.09899806,
+      "significant_at_001": "False",
+      "significant_at_005": "False",
+      "z_score": 1.275
+    },
+    "sie_v2_valence_01": {
+      "n_permutations": 2000,
+      "null_mean": 0.01576622,
+      "null_std": 0.00136353,
+      "p_value": 0.8965,
+      "real_mean_abs_delta": 0.01413612,
+      "significant_at_001": "False",
+      "significant_at_005": "False",
+      "z_score": -1.195
+    },
+    "vt_coverage": {
+      "n_permutations": 2000,
+      "null_mean": 0.03841442,
+      "null_std": 0.00613158,
+      "p_value": 0.9995,
+      "real_mean_abs_delta": 0.01876857,
+      "significant_at_001": "False",
+      "significant_at_005": "False",
+      "z_score": -3.204
+    },
+    "vt_entropy": {
+      "n_permutations": 2000,
+      "null_mean": 0.16216757,
+      "null_std": 0.03685386,
+      "p_value": 0.155,
+      "real_mean_abs_delta": 0.19044714,
+      "significant_at_001": "False",
+      "significant_at_005": "False",
+      "z_score": 0.767
+    }
+  }
+}

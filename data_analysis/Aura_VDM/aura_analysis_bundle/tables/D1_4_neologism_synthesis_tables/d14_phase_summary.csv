@@ -1,0 +1,5 @@
+phase_name,outputs,raw_joyce_outputs,reviewed_joyce_outputs,strong_synthesis_outputs,zero_trigram_outputs,zero_trigram_raw_joyce_outputs
+joyce,167,67,25,11,13,3
+russell,141,60,3,2,13,0
+zola,83,0,0,0,7,0
+zola_tolstoy,139,0,0,0,12,0

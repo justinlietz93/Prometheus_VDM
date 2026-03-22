@@ -1,0 +1,4 @@
+layer,n_outputs_total,n_flagged_total,fraction_flagged_total,n_flagged_in_joyce_window,n_flagged_pre_joyce,n_flagged_post_joyce,n_flagged_best_all_jaccard_lt_0_20,n_flagged_lcs_frac_lt_0_10,n_flagged_zero_trigram
+raw Joyce-only token layer,530,133,0.2509433962264151,67,4,62,103,91,3
+filtered automated Joyce-like layer,530,119,0.22452830188679246,58,3,58,92,82,2
+reviewed Joyce-specific marker layer,530,28,0.052830188679245285,25,0,3,22,20,0
