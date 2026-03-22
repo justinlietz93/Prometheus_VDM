@@ -16,7 +16,7 @@
 > <a href="https://orcid.org/0009-0008-9028-1366"><img src="https://img.shields.io/badge/ORCID-0009--0008--9028--1366-blue?" alt="ORCID: 0009-0008-9028-1366"></a>  
 >
 > **Created:** August 9, 2025  
-> **Last Updated:** March 13, 2026  
+> **Last Updated:** March 21, 2026  
 >
 > This research is protected under a dual-license to foster open academic  
 > research while ensuring commercial applications are aligned with the project's ethical principles.  
@@ -30,6 +30,9 @@
 ---
 
 ## 🔥News
+
+* **March 21, 2026 — Full Closure of the VDM theoretical physics framework**
+  * As of March 21, 2026, the Void Dynamics Model has achieved full closure of its theoretical physics track through the CF (Complete Formalism) track. This closure was unlocked once the true primitive origin law was understood. Originally the Quantum Geometric Tensor was thought to be the origin, because it starts as one object and decomposes into the two fundamental rules of reversible and irreversible dynamics we see in physics. The primitive mechanism that acted as the universal generator law was formalized in the [A8 Axiom Candidate](/Derivation/Complete-Formalisms/Published_CFs/T8_A8_Lietz_Infinity_Resolution_Conjecture.pdf) However the question remained: "Why are we able to start with a geometric object that imposes its properties onto a pre-existing spatio-temporal lattice structure? Where does that come from, and where do the properties that encode it come from? Therefore we started again from [CF01](/Derivation/Complete-Formalisms/Published_CFs/CF01_QGT_to_Metriplectic_Brackets.pdf) and turned around to write [CF00](/Derivation/Complete-Formalisms/Published_CFs/CF00_Induced_Geometry.pdf), deriving geometry and the carrier for which QGT can exist. The origin question remained open, therefore [CF000](/Derivation/Complete-Formalisms/Published_CFs/CF000_Primitive_Distinguishability.pdf) was required. In CF000 the true [Primitive Bifurcation Law](/Derivation/Complete-Formalisms/Published_CFs/Universal_Axiom_of_Primitive_Bifurcation_and_Orthogonal_Articulation.pdf) was realized, and it matched exactly the original intuition for the Void Dynamics Model cognitive runtime. The next steps are to finish the v9 and PBL runtimes, and continue performing validation experiments and applying observational data to VDM in an attempt to falsify the theory.
 
 * **March 13, 2026 — [Primitive Bifurcation Hypothesis](/Derivation/z.CANONICAL_Hypotheses/H000_Primitive_Bifurcation_Hypothesis.md)**
   * A foundational hypothesis was added to the framework which aims at the absolute foundation of this theory, replacing the Quantum Geometric Tensor as the previous foundation. In this new hypothesis the QGT emerges on a carrier manifold, which is also derived and emergent, and is no longer the most fundamental object.
