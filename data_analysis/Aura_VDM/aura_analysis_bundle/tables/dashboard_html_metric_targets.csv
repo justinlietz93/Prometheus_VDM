@@ -1,0 +1,8 @@
+metric_name,used_in_dashboard_html
+active_edges,True
+adc_territories,True
+b1_z,True
+connectome_entropy,True
+sie_v2_valence_01,True
+vt_coverage,True
+vt_entropy,True

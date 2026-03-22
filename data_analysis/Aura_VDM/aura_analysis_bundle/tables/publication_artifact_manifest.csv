@@ -1,0 +1,10 @@
+artifact,type,source_scripts
+aura_connectome_geometry_plate.png,figure,legacy scripts + make_publication_figures.py
+aura_dashboard_target_panels_publication.png,figure,legacy scripts + make_publication_figures.py
+aura_four_proofs_plate.png,figure,legacy scripts + make_publication_figures.py
+aura_lockin_second_half_publication.png,figure,legacy scripts + make_publication_figures.py
+aura_node_correspondence_costs.png,figure,legacy scripts + make_publication_figures.py
+aura_scalar_macrostate_plate.png,figure,legacy scripts + make_publication_figures.py
+aura_terminal_transition_publication.png,figure,legacy scripts + make_publication_figures.py
+aura_utd_composer_audit_plate.png,figure,legacy scripts + make_publication_figures.py
+legacy_script_applicability_map.csv,table,legacy scripts + make_publication_figures.py

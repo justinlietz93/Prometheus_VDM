@@ -1,0 +1,73 @@
+path,ext,size_bytes,notes
+chat_inbox.jsonl,.jsonl,7324,"{""type"": ""text"", ""msg"": ""Hello.""}"
+events.jsonl,.jsonl,279558149,"{""ts"": 1771807951.3668797, ""level"": ""INFO"", ""msg"": ""tick"", ""avg_weight"": 0.5995349884033203, ""active_synapses"": 52412, ""cohesion_components"": 1, ""complexity_cycles"": 47939.0, ""connectome_entropy"": 8.103360815159952, ""homeostasis_pruned"": 0, ""homeostasis_bridged"": 0, ""active_edges"": 51796, ""td_signal"
+events.jsonl.lock,.lock,0,
+lexicon.json,.json,73149,{
+macro_board.json,.json,124,{
+phase.json,.json,387,{
+state_17160.h5,.h5,262681,adc_json; sparse; sparse/W; sparse/col_idx; sparse/row_ptr
+state_17220.h5,.h5,247651,adc_json; sparse; sparse/W; sparse/col_idx; sparse/row_ptr
+state_17280.h5,.h5,261599,adc_json; sparse; sparse/W; sparse/col_idx; sparse/row_ptr
+state_17340.h5,.h5,261181,adc_json; sparse; sparse/W; sparse/col_idx; sparse/row_ptr
+state_17400.h5,.h5,260930,adc_json; sparse; sparse/W; sparse/col_idx; sparse/row_ptr
+utd_events.jsonl,.jsonl,206493,"{""type"": ""macro"", ""macro"": ""status"", ""args"": {""t"": 17252, ""neurons"": 5000, ""cohesion_components"": 1, ""vt_coverage"": 0.8, ""vt_entropy"": 7.744674566753246, ""connectome_entropy"": 8.082678129330642, ""active_edges"": 52866, ""homeostasis_pruned"": 0, ""homeostasis_bridged"": 0, ""ute_in_count"": 3, ""ute_text_co"
+corpus/FINNEGANS WAKE-JOYCE.txt,.txt,1366092,FINNEGANS WAKE
+corpus/GERMINAL-ZOLA.txt,.txt,1020665,GERMINAL
+corpus/INTRO_TO_MATH_PHILOSOPY-RUSSELL.txt,.txt,432141,INTRODUCTION TO
+corpus/SCHISM-TOOL.txt,.txt,1280,I know the pieces fit
+corpus/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md,.md,21184,# T8 - A8 (Axiom Candidate) — Lietz A8 Hierarchy / Infinity Resolution Conjecture (scaling law for hierarchical interfaces)
+corpus/WAR_AND_PEACE_BOOKS_1-7.txt,.txt,1427143,BOOK I
+corpus/WAR_AND_PEACE_BOOKS_8-15.txt,.txt,1837455,
+corpus/WILL_O_THE_WISP-OPETH.txt,.txt,1137,When you're tired of waiting and time is not on your side
+dashboard_screenshots/20260222_083552_t11400.png,.png,119613,image
+dashboard_screenshots/20260222_083552_t11500.png,.png,198292,image
+dashboard_screenshots/20260222_083552_t12100.png,.png,274647,image
+dashboard_screenshots/20260222_083552_t14000.png,.png,174434,image
+dashboard_screenshots/20260222_083552_t14200.png,.png,198193,image
+dashboard_screenshots/20260222_083552_t14400.png,.png,319344,image
+dashboard_screenshots/20260222_083552_t16000.png,.png,135614,image
+dashboard_screenshots/20260222_083552_t2300.png,.png,180265,image
+dashboard_screenshots/20260222_083552_t2400.png,.png,295974,image
+dashboard_screenshots/20260222_083552_t3000.png,.png,194590,image
+dashboard_screenshots/20260222_083552_t4400.png,.png,203124,image
+dashboard_screenshots/20260222_083552_t4500.png,.png,215373,image
+dashboard_screenshots/20260222_083552_t4550.png,.png,275487,image
+dashboard_screenshots/20260222_083552_t6000.png,.png,217857,image
+figures/sie_v2_amplitude_over_time.png,.png,92800,image
+figures/sie_v2_period_over_time.png,.png,85294,image
+figures/sie_v2_valence_events_jsonl.png,.png,317548,image
+figures/sie_v2_vs_omega_scatter.png,.png,112409,image
+figures/sie_v2_vs_tick.png,.png,297826,image
+figures/sie_v2_vs_tick_current.png,.png,321886,image
+figures/sie_v2_vs_time_zoom_0_15min.png,.png,218524,image
+figures/sie_v2_vs_wall_time_fit.png,.png,469960,image
+figures/tick_dt_vs_tick.png,.png,116373,image
+figures/tick_dt_vs_tick_current.png,.png,120666,image
+figures/v2_period_ticks_vs_tick_dt.png,.png,56773,image
+graph_analysis/topology_viz.png,.png,1786667,image
+graph_analysis/trajectory_viz.png,.png,1043192,image
+metadata/sie_v2_scan_summary.json,.json,1010,{
+tables/sie_v2_cycle_metrics.csv,.csv,4823,"t_peak,t_next_peak,period_ticks,peak_val,trough_t,trough_val,amplitude"
+tables/sie_v2_scan_summary.csv,.csv,561,"t_min,t_max,n,v2_mean,v2_std,v2_min,v2_max,fit_period_s,fit_r2_time,fit_amp,fit_mean,fit_r2_tick,fit_period_ticks,corr_v2_omega,corr_v2_a_mean,corr_absres_dt,dt_median_s,dt_p95_s,dt_p99_s,dt_max_s,dt_count_gt_10_s"
+tables/sie_v2_window_metrics.csv,.csv,1251,"t_center,dom_period,dom_power_frac,spec_entropy"
+utd_events/utd_events.txt.20260222_090113.txt,.txt,1049097,"{""type"": ""text"", ""payload"": {""type"": ""tick"", ""msg"": ""tick""}, ""score"": 1.0}"
+utd_events/utd_events.txt.20260222_091942.txt,.txt,1048605,"{""type"": ""text"", ""payload"": {""type"": ""tick"", ""msg"": ""tick""}, ""score"": 1.0}"
+utd_events/utd_events.txt.20260222_093530.txt,.txt,1049091,"{""type"": ""text"", ""payload"": {""type"": ""text"", ""msg"": ""\""They carry plenty of money on their skins; worth more than themselves,""}, ""score"": 1.0}"
+utd_events/utd_events.txt.20260222_095138.txt,.txt,1048863,"{""type"": ""text"", ""payload"": {""type"": ""text"", ""msg"": ""two men with his mild subtle eye, his lips drawn by a slight smile.""}, ""score"": 1.0}"
+utd_events/utd_events.txt.20260222_101634.txt,.txt,1048847,"{""type"": ""text"", ""payload"": {""type"": ""text"", ""msg"": ""Many had drawn back. Satiety seemed to have appeased them all. Maheu""}, ""score"": 1.0}"
+utd_events/utd_events.txt.20260222_105239.txt,.txt,1048959,"{""type"": ""macro"", ""macro"": ""status"", ""args"": {""t"": 3584, ""neurons"": 5000, ""cohesion_components"": 1, ""vt_coverage"": 0.7978, ""vt_entropy"": 7.7149679687062545, ""connectome_entropy"": 8.072356138866462, ""active_edges"": 45951, ""homeostasis_pruned"": 0, ""homeostasis_bridged"": 0, ""ute_in_count"": 2, ""ute_text"
+utd_events/utd_events.txt.20260222_111437.txt,.txt,1048753,"{""type"": ""text"", ""payload"": {""type"": ""status"", ""t"": 4574, ""neurons"": 5000, ""phase"": 4, ""cohesion_components"": 1, ""vt_coverage"": 0.5512, ""vt_entropy"": 6.241369900544082, ""connectome_entropy"": 7.205130974402758, ""active_edges"": 33404, ""homeostasis_pruned"": 0, ""homeostasis_bridged"": 0, ""b1_z"": 0.796762"
+utd_events/utd_events.txt.20260222_113523.txt,.txt,1048625,"{""type"": ""text"", ""payload"": {""type"": ""tick"", ""msg"": ""tick""}, ""score"": 1.0}"
+utd_events/utd_events.txt.20260222_115800.txt,.txt,1048604,"{""type"": ""text"", ""payload"": {""type"": ""tick"", ""msg"": ""tick""}, ""score"": 1.0}"
+utd_events/utd_events.txt.20260222_123639.txt,.txt,1048609,"{""type"": ""text"", ""payload"": {""type"": ""status"", ""t"": 6460, ""neurons"": 5000, ""phase"": 4, ""cohesion_components"": 1, ""vt_coverage"": 0.8064, ""vt_entropy"": 7.774655212216358, ""connectome_entropy"": 8.099489608301038, ""active_edges"": 52963, ""homeostasis_pruned"": 0, ""homeostasis_bridged"": 0, ""b1_z"": -1.49876"
+utd_events/utd_events.txt.20260222_130857.txt,.txt,1048749,"{""type"": ""macro"", ""macro"": ""status"", ""args"": {""t"": 7423, ""neurons"": 5000, ""cohesion_components"": 1, ""vt_coverage"": 0.5292, ""vt_entropy"": 5.8150111657388655, ""connectome_entropy"": 6.93165685354946, ""active_edges"": 31052, ""homeostasis_pruned"": 0, ""homeostasis_bridged"": 0, ""ute_in_count"": 4, ""ute_text_"
+utd_events/utd_events.txt.20260222_134056.txt,.txt,1049872,"{""type"": ""text"", ""payload"": {""type"": ""text"", ""msg"": ""the director, whom she had been meaning in her mind primarily""}, ""score"": 1.0}"
+utd_events/utd_events.txt.20260222_141807.txt,.txt,1048974,"{""type"": ""text"", ""payload"": {""type"": ""status"", ""t"": 9098, ""neurons"": 5000, ""phase"": 4, ""cohesion_components"": 1, ""vt_coverage"": 0.5766, ""vt_entropy"": 6.105111194011554, ""connectome_entropy"": 7.101583904046698, ""active_edges"": 31391, ""homeostasis_pruned"": 0, ""homeostasis_bridged"": 0, ""b1_z"": 2.131793"
+utd_events/utd_events.txt.20260222_150431.txt,.txt,1048765,"{""type"": ""macro"", ""macro"": ""status"", ""args"": {""t"": 9990, ""neurons"": 5000, ""cohesion_components"": 1, ""vt_coverage"": 0.8102, ""vt_entropy"": 7.801676112776803, ""connectome_entropy"": 8.116668809820382, ""active_edges"": 52723, ""homeostasis_pruned"": 0, ""homeostasis_bridged"": 0, ""ute_in_count"": 3, ""ute_text_"
+utd_events/utd_events.txt.20260222_154055.txt,.txt,1048667,"{""type"": ""text"", ""payload"": {""type"": ""tick"", ""msg"": ""tick""}, ""score"": 1.0}"
+utd_events/utd_events.txt.20260222_160728.txt,.txt,1048627,"{""type"": ""macro"", ""macro"": ""status"", ""args"": {""t"": 11879, ""neurons"": 5000, ""cohesion_components"": 1, ""vt_coverage"": 0.5496, ""vt_entropy"": 6.023581006580105, ""connectome_entropy"": 7.05828523349514, ""active_edges"": 31188, ""homeostasis_pruned"": 0, ""homeostasis_bridged"": 0, ""ute_in_count"": 5, ""ute_text_"
+utd_events/utd_events.txt.20260222_163328.txt,.txt,1048610,"{""type"": ""macro"", ""macro"": ""status"", ""args"": {""t"": 12604, ""neurons"": 5000, ""cohesion_components"": 1, ""vt_coverage"": 0.4464, ""vt_entropy"": 5.767573114085571, ""connectome_entropy"": 6.966866086864901, ""active_edges"": 31249, ""homeostasis_pruned"": 0, ""homeostasis_bridged"": 0, ""ute_in_count"": 6, ""ute_text"
+utd_events/utd_events.txt.20260222_171423.txt,.txt,1048861,"{""type"": ""macro"", ""macro"": ""status"", ""args"": {""t"": 13314, ""neurons"": 5000, ""cohesion_components"": 1, ""vt_coverage"": 0.571, ""vt_entropy"": 6.145528225801847, ""connectome_entropy"": 7.128148616830547, ""active_edges"": 32053, ""homeostasis_pruned"": 0, ""homeostasis_bridged"": 0, ""ute_in_count"": 3, ""ute_text_"
+utd_events/utd_events.txt.20260222_181442.txt,.txt,1048670,"{""type"": ""text"", ""payload"": {""type"": ""tick"", ""msg"": ""tick""}, ""score"": 1.0}"
+utd_events/utd_events.txt.20260222_191207.txt,.txt,1048603,"{""type"": ""text"", ""payload"": {""type"": ""tick"", ""msg"": ""tick""}, ""score"": 1.0}"
+utd_events/utd_events.txt.20260222_202505.txt,.txt,1048684,"{""type"": ""text"", ""payload"": {""type"": ""tick"", ""msg"": ""tick""}, ""score"": 1.0}"

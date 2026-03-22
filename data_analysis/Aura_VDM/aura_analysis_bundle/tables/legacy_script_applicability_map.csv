@@ -1,0 +1,10 @@
+script,applied,status,primary_outputs,notes
+00_build_tick_table.py,True,ran,tick_table_full.csv.gz,Aura-compatible directly
+01_compute_snapshot_metrics.py,True,ran,snapshot_metrics_legacy.csv,Aura-compatible directly
+02_four_proofs.py,True,ran,proof figures + tables,Ran on Aura tick table + Aura snapshots
+analyze_scalar_struct_from_logs.py,True,ran,macrostate tables + ETA figures,Aura-compatible directly
+utd_parse_and_composer_audit.py,True,ran,composer audit tables + histograms,Ran on Aura UTD zip
+run_connectome_geometry_projectionmap_analysis.py,True,ran,embedding/heatmap/degree plots,Ran on Aura H5 snapshots
+run_node_correspondence_matching.py,True,partial,mapping CSVs for adjacent snapshot pairs,Produced adjacent pair mappings only in current environment
+vdm_convert.py,True,ran-with-schema-mismatch,dashboard JSONs,H5 conversion succeeded; Aura events schema mismatch left event-rich fields empty
+run_all.py,True,failed-schema-mismatch,none,Aura UTD schema mismatch on missing text field in say table
