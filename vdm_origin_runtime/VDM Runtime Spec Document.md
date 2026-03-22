@@ -16,7 +16,10 @@ The runtime must strictly implement the kernel-level admissibility rule defined 
 
 **Law Formula (Equation 10):**
 
-$$B\_{Inv}(\\mathcal{A}\_n) \= \\begin{cases} \\mathcal{A}\_n, & \\text{if } Cap(\\mathcal{A}\_n) \> 0 \\\\ \\mathcal{A}\_n \\oplus \\mathcal{A}\_{n+1}^\\perp, & \\text{if } Cap(\\mathcal{A}\_n)=0 \\wedge Bear(Inv, \\mathcal{A}\_n) \\wedge \\neg Dis(Inv) \\end{cases}$$  
+$$
+B\_{Inv}(\\mathcal{A}\_n) \= \\begin{cases} \\mathcal{A}\_n, & \\text{if } Cap(\\mathcal{A}\_n) \> 0 \\\\ \\mathcal{A}\_n \\oplus \\mathcal{A}\_{n+1}^\\perp, & \\text{if } Cap(\\mathcal{A}\_n)=0 \\wedge Bear(Inv, \\mathcal{A}\_n) \\wedge \\neg Dis(Inv) \\end{cases}
+$$  
+
 **C Implementation Requirement:**
 
 The logic must be encapsulated in a non-discharging kernel. The use of \_\_builtin\_unreachable() is mandatory to programmatically forbid any exit condition that does not follow a lawful resolution mode (Type I, II, or III).
