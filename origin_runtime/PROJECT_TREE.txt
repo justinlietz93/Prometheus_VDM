@@ -1,0 +1,31 @@
+origin_runtime/
+├── README.md
+├── Makefile
+├── docs/
+│   ├── canon_notes.md
+│   ├── event_schema.md
+│   └── run_notes.md
+├── include/
+│   ├── origin_observer.h
+│   └── origin_runner.h
+├── runs/
+│   ├── logs/
+│   ├── plots/
+│   └── snapshots/
+├── scripts/
+│   ├── plot.py
+│   └── run.sh
+├── src/
+│   ├── core/
+│   │   ├── BInv.c
+│   │   ├── OriginStep.c
+│   │   └── origin_runner.c
+│   ├── observe/
+│   │   ├── origin_main.c
+│   │   └── origin_observer.c
+│   └── witnesses/
+│       └── your_witnesses.c
+└── tests/
+    ├── test_binv.c
+    ├── test_origin_step.c
+    └── test_runner.c
