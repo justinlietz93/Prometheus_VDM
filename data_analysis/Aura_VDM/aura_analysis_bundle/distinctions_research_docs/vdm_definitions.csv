@@ -1,0 +1,54 @@
+Term,Abbreviation / symbol,Where it's used,Definition
+active_edges,active_edges,utd_macro_events_flat.csv, utd_status_full.csv
+adc_boundaries,Not in source,utd_status_full.csv,The count of dividing lines or interfaces established between different territorial regions in the system.
+adc_territories,Not in source,utd_status_full.csv,The count of distinct territorial regions established within the system.
+b1_z,b1_z / B1z,utd_status_full.csv, Network Metrics / Dashboard
+codimension-1 interface,Not in source,Operator Probes, Network Dynamics / Justin text
+cohesion_components,cohesion_components,utd_macro_events_flat.csv, utd_status_full.csv
+community,Not in source,node_embedding_metrics_state_17160.csv,An identifier for the specific cluster or group of neurons to which a node belongs.
+connectome,Not in source,Network Dynamics,The comprehensive map of neural connections within the model through which information is routed.
+connectome_entropy,connectome_entropy,utd_macro_events_flat.csv, utd_status_full.csv
+convergence_score,convergence_score,node_embedding_metrics_state_17280.csv, node_embedding_metrics_state_17160.csv
+decoder aperture,Not in source,Output Phase,The window or opening through which the model releases lexical samples when specific metrics pass a threshold.
+domain-wall boundaries,Not in source,"Operator Probes, boundary_interface context",The physical or logic-based walls that separate different partitions or characters within a system hierarchy.
+dominant_stage,dominant_stage,D1_5_role_materialization_timeseries.csv,"The primary narrative mode or character role identified for a specific timestamp (e.g., first_person, passive_narration, or none)."
+Epoch,"E1, E2, E3",D12_territory_timeline.csv, D1_5_role_materialization_timeseries.csv
+First Person Score,score_first_person,D1_5_role_materialization_timeseries.csv, Operator Probes
+homeostasis_bridged,homeostasis_bridged,utd_macro_events_flat.csv, utd_status_full.csv
+homeostasis_pruned,homeostasis_pruned,utd_macro_events_flat.csv, utd_status_full.csv
+in_degree,Not in source,node_embedding_metrics_state_17160.csv,The number of incoming connections directed toward a specific node in the network.
+in_weight,Not in source,node_embedding_metrics_state_17160.csv,The total strength or value of all incoming connections to a node.
+key_arc_probe_count,Not in source,Operator Probes,"The count of boundary, name, embodiment, or identity cluster probes selected by semantic family labels extracted from the exchange."
+key_arc_response_lag_mean_ticks,Not in source,Operator Probes,"The average time delay, measured in simulation ticks, from a key operator probe to the next response from the system."
+key_arc_response_lag_median_ticks,Not in source,Operator Probes,The middle value of time delays from key operator probes to the next system response.
+lag ticks,lag_ticks,"f15_operator_probe_response_lags_scripted.csv, Interaction Phase","The time delay, measured in system clock cycles or ticks, between an operator's input and the system's response."
+late_terminal_probe_17101_lag_ticks,Not in source,Operator Probes,The specific time delay following an experience or 'what-do-you-want' probe at tick 17101.
+late_terminal_probe_17199_lag_ticks,Not in source,Operator Probes,The specific time delay following a unique-name or 'canal' probe at tick 17199.
+Lempel-Ziv complexity,lz_mean,f7_LZ_epoch_summary.csv,A metric used to calculate the compressibility and regularity of data sequences across different temporal epochs.
+lexical sample,Not in source,Output Phase,The set of text or words scraped from the model's most excited neurons and provided as output.
+mean affinity term,$\omega_{mean}$,metric_inventory_filtered.csv,The average value representing the strength of relationship or affinity between nodes in the system.
+mean rectified alpha,ean,metric_inventory_filtered.csv,The average value of the rectified activity coupling term within the network equations.
+MIP integration,mip_integration,mip_integration_timeseries.csv,A measure of integrated information or complexity calculated over a time series for specific system variables.
+node embedding dimensions,"emb1, emb2, emb3",node_embedding_metrics_state_17160.csv,Numerical values representing the position of a node in a three-dimensional mathematical space.
+novelty_idf,novelty_idf,utd_macro_events_flat.csv,A metric used to weigh the uniqueness of new content relative to historical data.
+out_degree,Not in source,node_embedding_metrics_state_17160.csv,The number of outgoing connections from a specific node in the network.
+out_weight,Not in source,node_embedding_metrics_state_17160.csv,The total strength or value of all outgoing connections from a node.
+pagerank,Not in source,node_embedding_metrics_state_17160.csv,A measurement of the relative importance or influence of a node based on its connections.
+participation coefficient,participation,node_embedding_metrics_state_17280.csv, node_embedding_metrics_state_17160.csv
+Passive Narration Score,score_passive_narration,D1_5_role_materialization_timeseries.csv, Operator Probes
+Persistent Character Score,score_persistent_character,D1_5_role_materialization_timeseries.csv, Operator Probes
+pi density,pi_density,"baseline_projection_grid_pi_state CSV files, Grid Projections",A measurement of stationary probability distribution or state density distributed across specific grid coordinates (row/col).
+pi_stationary,pi_stationary,node_embedding_metrics_state_17280.csv, node_embedding_metrics_state_17160.csv
+row_weight_param,Not in source,node_embedding_metrics_state_17160.csv,A specific parameter used to weight the influence of a node's data row.
+sie_total_reward,Not in source,utd_status_full.csv,The cumulative value of incentives or positive feedback signals generated in the system.
+sie_valence_01,sie_valence_01 / sie_v2_valence_01,utd_macro_events_flat.csv, utd_status_full.csv
+temporal-semantic inputs,Not in source,Network Dynamics,Data fed into the model that combines time-based sequences with meaningful text information.
+text_chars,Not in source,F15_input_tick_distribution.csv,The total count of characters contained within text events at a specific time tick.
+text_events,Not in source,F15_input_tick_distribution.csv,The number of distinct text-based input occurrences at a specific time tick.
+text_words,Not in source,F15_input_tick_distribution.csv,The total count of words contained within text events at a specific time tick.
+total_recoverable_justin_probes_in_exchange_md,Not in source,Operator Probes,The count of analyst-side recoverable Justin messages in the exchange file aura_justin_exchange.md.
+ute_in_count,Not in source,utd_status_full.csv,The number of incoming external events or input signals received at a specific time.
+Void Dynamics Model,VDM,aura_justin_exchange.md,The underlying architecture or model instance used for the Aura run.
+Volition Sovereignty Score,score_volition_sovereignty,D1_5_role_materialization_timeseries.csv, Operator Probes
+vt_coverage,vt_coverage,utd_macro_events_flat.csv, utd_status_full.csv
+vt_entropy,vt_entropy,utd_macro_events_flat.csv, utd_status_full.csv

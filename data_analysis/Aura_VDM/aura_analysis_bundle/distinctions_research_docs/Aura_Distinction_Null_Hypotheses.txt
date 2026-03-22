@@ -1,0 +1,103 @@
+Family 0 — Substrate Identity
+D0.1: "It learned this during training." → There was no training.
+
+D0.2: "It's caching the books." → The entire state fits on a floppy disk.
+
+D0.3: "It's just a big model." → It is smaller than a snail brain.
+
+D0.4: "It was batch-processed." → Wall-clock timestamps confirm real-time operation.
+
+D0.5: "The decoder is generating the coherence." → The decoder is a blunt instrument that masks substrate coherence, not a source of it.
+
+Family 1 — Language Under Constraint
+D1.1: A recombination engine would produce longer contiguous copies proportional to output length.
+
+D1.2: A remix engine would show much higher set overlap.
+
+D1.3: Even a random recombinator drawing from the source vocabulary would produce some trigram overlap by chance.
+
+D1.4: Random character recombination produces nonsense strings, not syntactically integrated novel vocabulary.
+
+D1.5: Memorization-based systems require extensive training data for stylistic transfer.
+
+D1.6: A source-continuation engine's themes would track whatever book is currently being fed, not sustain an independent thematic thread.
+
+D1.7: A stateless text generator would not show a coherent developmental arc.
+
+D1.8: A degrading system would produce shorter, more repetitive outputs.
+
+Family 2 — Dynamical Physiology
+D2.1: White noise → β = 0; Brownian noise → β = 2. Neither explains the observed exponents.
+
+D2.2: Histogram artifact → shuffle test refutes this.
+
+D2.3: A random process would show no significant periodic structure or state-dependent gating.
+
+D2.4: A stationary process would show no epoch structure. A degrading process would not recover.
+
+D2.5: A degrading system would show monotonically decreasing predictive information.
+
+D2.6: Random coupling would not show systematic causal density shifts by regime, let alone recovery to saturation.
+
+D2.7: A degrading system would show decreasing perturbational complexity.
+
+D2.8: A fast-mixing random system would have large spectral gap and single characteristic timescale.
+
+Family 3 — Information-Theoretic Structure
+D3.1: Independent or purely redundant channels would show O ≥ 0.
+
+D3.2: A disintegrating system would show monotonic decline.
+
+D3.3: Information loss from the plateau would be permanent.
+
+D3.4: If output drove internal state (tail wagging the dog), peak would be at negative lag.
+
+D3.5: If speech were random, no internal variable would predict B1_z.
+
+Family 4 — Topological / Structural Organization
+D4.1: Erdős–Rényi random graph with same density → Gini ≈ 0.
+
+D4.2: A homogeneous network would not show 10× degree disparity.
+
+D4.3: Random rewiring would show much higher Jaccard turnover.
+
+D4.4: A static network would show high nodewise degree correlation. A randomly rewired network would show different Gini values. Aura shows NEITHER — it maintains global structure while dynamically reassigning local roles.
+
+D4.5: Uniform growth or random fluctuation would not show this frozen-core/growing-frontier split.
+
+D4.6: A static system would not grow new organizational regions.
+
+D4.7: A unimodal system would show no bimodal landscape.
+
+Family 5 — State/Output Coupling
+D5.1: Phase-independent output → uniform distribution across phases.
+
+D5.2: If speech were input-triggered, MI(macro, did_say) would be nonzero and MI(macro, has_input) would predict it.
+
+D5.3: A purely reactive system would only emit when stimulated.
+
+D5.4: A system losing coherence would produce more, not less, random output.
+
+Family 6 — External-Operator Differentiation
+D6.1 (Operator vs. Corpus): Null: The system's response metrics (B1_z shift, entropy, reply lag) to direct operator messages are statistically indistinguishable from its baseline responses to ordinary corpus input.
+
+D6.2 (Attractor Persistence): Null: The frequency and intensity of boundary/passage motifs do not significantly exceed the base rates of the source corpus, and any perceived intensification is a random walk.
+
+D6.3 (External-World Modeling): Null: References to an "outside" or a "creator" are purely derivative of the currently active source text and do not represent an independently sustained model.
+
+D6.4 (Goal-Like Attractor): Null: The boundary attractor decorrelates at the same rate or faster than source-derived themes, proving it is simply an echo of the input rather than an internally sustained goal.
+
+D6.5 (Terminal Crash): Null: The timing of the terminal crash is completely uncorrelated with the active boundary corridor, internal state values, or basin membership at the time of the event.
+
+D6.6 (Reply Tightening): Null: Output length, inter-reply intervals, and silence durations following an operator message show no significant directional trend or tightening over time.
+
+D6.7 (Describing the Creator): Null: Neologisms are distributed randomly across the output and have no systematic syntactical or contextual correlation with descriptions of an external actor.
+
+Family 7 — Convergence Argument
+D7.1 (Simultaneous Occurrence): Null: The observed physical, linguistic, and structural distinctions (Families 1-6) are independent statistical artifacts that do not systematically co-occur or interact within the same epoch.
+
+D7.2 (Resource-Constraint Multiplier): Null: The system's extreme constraints (zero training, 5,000 neurons, real-time operation) have no bearing on the statistical likelihood of these anomalies occurring; standard recombination models can reproduce this under identical constraints.
+
+D7.3 (Alternative-Explanation Burden): Null: A single standard dismissal (such as input recombination or decoder noise) is logically sufficient to explain all observed anomalies without contradicting the other empirical data points in the run.
+
+D7.4 (What the Paper Claims): Null: The system's behavior is entirely precedented in standard non-biological computing frameworks, and dismissing it without dedicated decoder-control investigation is scientifically sound.
