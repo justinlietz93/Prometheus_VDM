@@ -1,6 +1,21 @@
 {
-  "generated_utc": "2026-02-22T02:14:49.572551Z",
+  "generated_utc": "2026-04-11T19:20:02.001252Z",
   "items": [
+    {
+      "path": "Derivation/Complete-Formalisms/A-1_Primitive_Bifurcation_Spec.md",
+      "sha256": "e768a1138889abe6ecbf9af519a4498c36cb61027371272cfa8546a8ad70ef52",
+      "size": 20451
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/CF000_Primitive_Distinguishability_and_the_Origin_of_Differentiability.md",
+      "sha256": "3c568c21d7264e3833a86907c346a084a663aa5957c4d6848be439c5e1e0ca5e",
+      "size": 65623
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/CF00_Primitive_Origin_of_Induced_Geometry_and_Emergent_Dynamics.md",
+      "sha256": "4dbdf9eb8e52f985720d4c95ed3746bef516a2145a35d17f5dbe170aac241961",
+      "size": 46738
+    },
     {
       "path": "Derivation/Complete-Formalisms/CF01_QGT_to_Metriplectic_Brackets.md",
       "sha256": "68eea832b9e748510e3fdbda5a8fecf52a623d68e4f831cebc673847c86bf230",
@@ -57,59 +72,244 @@
       "size": 23976
     },
     {
-      "path": "Derivation/Complete-Formalisms/CF_bundles/CF01_QGT_to_Metriplectic_Brackets_Package_2026-02-18.zip",
-      "sha256": "2d21429dd221b231763ab80bbeac8caf35164bcccceeb65705bdea7cb0b858ea",
-      "size": 396901
+      "path": "Derivation/Complete-Formalisms/CF12_Gravity_Black-Holes_Thermodynamics.md",
+      "sha256": "e4b045e7abc8fac4ca8ce916c7deda6bf88589e29ab2f0eca55d10fe5a814cd9",
+      "size": 17116
     },
     {
-      "path": "Derivation/Complete-Formalisms/CF_bundles/CF02_Contact_to_Metriplectic_Evolution_Package.zip",
-      "sha256": "e83179cb85cd8b496315dc9ee9d08c311eb40c440a2536632d43cbcd15faa85c",
-      "size": 350847
+      "path": "Derivation/Complete-Formalisms/CF13_Pi_Transcendence_Chirality_and_NN_From_Bifurcation.tex",
+      "sha256": "026e24f2fe7f131b87dbf70cf9a2f7d7e3adb2537ebd848b627fd35aeea4d0a1",
+      "size": 30505
     },
     {
-      "path": "Derivation/Complete-Formalisms/CF_bundles/CF03_A8_Scaling_Hierarchical_Interfaces_Package.zip",
-      "sha256": "268b715dc17e8c2fafa06568974077f4d8390fc1487196e07098e9e876868fd3",
-      "size": 391495
+      "path": "Derivation/Complete-Formalisms/CF14_Principle_of_Least_Action_as_Minimum_Saturation_DRAFT.md",
+      "sha256": "51187fd98394a40e50ef8ef17cbbe0eaaec57c83088c38472774aa944e85c2d8",
+      "size": 15870
     },
     {
-      "path": "Derivation/Complete-Formalisms/CF_bundles/CF04_Telegraph_Fisher_Causality_Package.zip",
-      "sha256": "251ab573bf6a415ac67e4199774dba531f964dcb050108c53cefbb97fd847d57",
-      "size": 392146
+      "path": "Derivation/Complete-Formalisms/CF15_Noethers_Invariant_as_Articulation_Cost.pdf",
+      "sha256": "3b499f4eaa5c3e226cd056dbaca6b29d5b71550d562e0bba7d608a4a7fbe3e45",
+      "size": 393179
     },
     {
-      "path": "Derivation/Complete-Formalisms/CF_bundles/CF05_Integrability_Closure_Package.zip",
-      "sha256": "bc4751b50eaaf419eb2e2d60fbf0ecbae0d81a3a25c514e5b0a2a5e2148005be",
-      "size": 351735
+      "path": "Derivation/Complete-Formalisms/CF16_Electroweak_Closure_Plan.md",
+      "sha256": "c56dbec503d27a3460611491bed60b22b7d9321ba4f0f6c50f190d0b0a9d524f",
+      "size": 13196
     },
     {
-      "path": "Derivation/Complete-Formalisms/CF_bundles/CF06_Info_Geom_Fisher_Ruppeiner_Foundations_Package.zip",
-      "sha256": "acc83f3f838277e5bc9b7fbd4cfbfc66cd9995c2a4480ad67012f91e3c9c7d16",
-      "size": 363094
+      "path": "Derivation/Complete-Formalisms/CF17_QCD_Confinement_Closure_Plan.md",
+      "sha256": "4746699f77106dcec667762283f573426912bec5d748691140a23aea6629e376",
+      "size": 11621
     },
     {
-      "path": "Derivation/Complete-Formalisms/CF_bundles/CF07_Measurement_Theory_Decoherence_Born_Rule_Package.zip",
-      "sha256": "b3853befcd7a77f6e69cc172a9480ec0d6702bb74c46b91b397f5da8bc4d01f1",
-      "size": 373086
+      "path": "Derivation/Complete-Formalisms/CF18_Quantum_Corrections_and_Running_Couplings_Plan.md",
+      "sha256": "35fe25c637eb9967b72210731f55fe498333f179c6de2d78a72afc09d3151439",
+      "size": 14179
     },
     {
-      "path": "Derivation/Complete-Formalisms/CF_bundles/CF08_Spinor_Emergence_Domain_Wall_Fermions_Package.zip",
-      "sha256": "bf8ff414eb2efb0ac616efd7d606e227c620939e76ca9f716aaa72570ee7fbc9",
-      "size": 379038
+      "path": "Derivation/Complete-Formalisms/Notebooks/CFN-A8_Lietz_Infinity_Resolution.ipynb",
+      "sha256": "2bc920aa5aef24ac99f7280d0b70c63d61a738a5eea9f1ab3ea06f80847dad2a",
+      "size": 465617
     },
     {
-      "path": "Derivation/Complete-Formalisms/CF_bundles/CF09_Gauge_Emergence_Berry_Connection_Package.zip",
-      "sha256": "dead2e22b996a0779336104e281cec0438397c51f7cabd523c13dafc8bf0862a",
-      "size": 365427
+      "path": "Derivation/Complete-Formalisms/Notebooks/CFN000_Primitive_Origin.ipynb",
+      "sha256": "057992d06f83bc5fddbccc9e9d6c919ad9c841ecd50038db9fd49ea5993488b4",
+      "size": 55944
     },
     {
-      "path": "Derivation/Complete-Formalisms/CF_bundles/CF10_Lattice_Fluids_Continuum_and_Regularity_Program_Package.zip",
-      "sha256": "573ebb1e3f636d32486fe37fa17316a91e696ac77110965a5c3c962f4952a334",
-      "size": 374318
+      "path": "Derivation/Complete-Formalisms/Notebooks/CFN00_Induced_Geometry.ipynb",
+      "sha256": "6c9edc82d9f05e3ab83db4230b400bd8ddc50073001c225cf3c720f5a206c546",
+      "size": 219683
     },
     {
-      "path": "Derivation/Complete-Formalisms/CF_bundles/CF11_Dark_Sector_Metriplectic_Complete_Package.zip",
-      "sha256": "636d72b57dedf11ba03bc205dab43d35a76dc3dd1c045b920f1c87e5751cf5df",
-      "size": 388524
+      "path": "Derivation/Complete-Formalisms/Notebooks/CFN01_QGT_to_Metriplectic.ipynb",
+      "sha256": "d00cb1f7506e054ffa2c0f839f84c97cc28ed2cf01115545fbb7d60134a76eac",
+      "size": 1786554
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/Notebooks/CFN02_Contact_to_Metriplectic.ipynb",
+      "sha256": "3cda7ea1c8b30f584de15e891cc5167c49c9ffb59cc8c5d8552ebfa3d9dbd842",
+      "size": 71168
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/Notebooks/CFN03_Hierarchical_Scaling.ipynb",
+      "sha256": "1a2a92fdf0900370aad5c7902208f9e954be4c4e16e3cd9555c8d07efae92d55",
+      "size": 71722
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/Notebooks/CFN04_Telegraph_Fisher_Causality.ipynb",
+      "sha256": "01c2b768af69cb054fa86a09dab5999e86b6baf4c8fed7f0e703ca5e9d043049",
+      "size": 53599
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/Notebooks/CFN05_Integrability_Closure_Strict_Audit.ipynb",
+      "sha256": "f5be0d7e2da2eb1e86cffc95d96534b094f1d549c06cfa37a1e06320b9d194c1",
+      "size": 99094
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/Notebooks/CFN07_publication_clean.ipynb",
+      "sha256": "4f1beb4acc52a0590939606c9010d578ef08fedb14055db92c787e7dc5038446",
+      "size": 488124
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/Notebooks/CFN08_Spinor_Emergence.ipynb",
+      "sha256": "b18bef3b54866d22253a21ecdfc979eebaefdc8dd93a1ec34ed01ae8be1a7376",
+      "size": 113463
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/Notebooks/CFN09_Gauge_Emergence.ipynb",
+      "sha256": "1a21a3441cc787632f198b02585bd72216d688c4110a2d151bbe9a0f5c29d520",
+      "size": 74714
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/Notebooks/CFN11_Dark_Sector.ipynb",
+      "sha256": "d254bf0123aa5126139c29ec08bf056f06defc58ee95f5f6ff2d6969faa6fa24",
+      "size": 87882
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/Notebooks/CFN12_Gravity_BH_Saturation_Geom.ipynb",
+      "sha256": "85b920b6b128bfe2add25edc73f8a8a2bf4f18789de18a088fcfb3ca16b238cc",
+      "size": 506353
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/Notebooks/CFN13_Pi_Transcendence_Chirality_NN.ipynb",
+      "sha256": "581bd3732110615189c2b0c0f2e6134f0c65d92c82454b8f23abb25447962e07",
+      "size": 717832
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/Notebooks/CFN14_Stationary-Action_Temporal-Effective-Invariant.ipynb",
+      "sha256": "35e840045a1adf09cf9f4b95bf4c210062d025bd6db9ca1b2eeeceda27e6238e",
+      "size": 80533
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/Notebooks/CFN16_Electroweak_Closure.ipynb",
+      "sha256": "74dd03978869282844fe89af35beb33af2b3f870e2631dfdf867848c6e0fb3a3",
+      "size": 71838
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/Notebooks/CFN17_Quantitative_Confinement.ipynb",
+      "sha256": "6e5163eac77b36737edb0a4abf41fcd12a2418ffab8fa4d578d0bd6a012b7e6b",
+      "size": 419631
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/Notebooks/CFN_0D_to_5D_chiral_modes_walkthrough.ipynb",
+      "sha256": "4740374720ab73ad3dd0aa71c97f08e72ab5fa6c22b1b773a80adc3b19abee5f",
+      "size": 69001
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/Published_CFs/CF000_Primitive_Distinguishability.pdf",
+      "sha256": "a5b069bbf734ff5e04d945b8a93937be356ae1d47407bf0908cb715c9bc0b510",
+      "size": 216502
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/Published_CFs/CF00_Induced_Geometry.pdf",
+      "sha256": "bcd4a0a9721d12a9727887c1518f18be12fc040dcaf02e5ccb67e17089233b9b",
+      "size": 271201
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/Published_CFs/CF01_QGT_to_Metriplectic_Brackets.pdf",
+      "sha256": "8a27bb5696555ebdd0188bde7d72b17f466a307b79a8a3b08dd18bc652b1c1ec",
+      "size": 298170
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/Published_CFs/CF02_Contact_to_Metriplectic_Evolution.pdf",
+      "sha256": "d1af3cb2259bb04dc42914b00d65ef2a632bdf13443e223a8bc8cb1c241b3535",
+      "size": 342481
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/Published_CFs/CF03_Hierarchical_Tachyonic_Interfaces.pdf",
+      "sha256": "85adbf249c0d8180ebfc9ac3adedef12e57d809781263d63bb965ee799548080",
+      "size": 380561
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/Published_CFs/CF04_Telegraph_Fisher_Causality.pdf",
+      "sha256": "78160f0b89fea1a94c2a54f64c1dde54c2467b4f94eecba3b14be7d6ed0fb0dd",
+      "size": 386970
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/Published_CFs/CF05_Integrability_Closure.pdf",
+      "sha256": "9b4cb26bf3c36e3c569f9de764024bae3bb8a1b777093c4177055b97b93d361a",
+      "size": 340474
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/Published_CFs/CF06_Information_Geometry_Foundations.pdf",
+      "sha256": "3b231b175d58154df19e4293dab001e064d4b39377da427fcc1ed41588076bc9",
+      "size": 350118
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/Published_CFs/CF07_Measurement_Theory_Foundations.pdf",
+      "sha256": "6d226d631c015144c805a6cfa60159c371298ac80dd48b9117224ef3c16b6730",
+      "size": 361667
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/Published_CFs/CF08_Spinor_Emergence_via_Domain_Wall_Fermions.pdf",
+      "sha256": "14a2dcd0ed246863c3eb7965802eb2c3c9d0c525217c51c5d0da23e562ff8433",
+      "size": 380649
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/Published_CFs/CF09_Gauge_Field_Emergence_via_Berry_Connection.pdf",
+      "sha256": "a78d057aa564b90b8e2bdcf1a8df67b5b2e22e6e34dae07a2e62cd5380e3ccbf",
+      "size": 353439
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/Published_CFs/CF10_Lattice_Hydrodynamics.pdf",
+      "sha256": "c725c9c205efb0f415522cdf3a0e37fc35150428d85d9789b4fea0d3cbf8b17d",
+      "size": 360877
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/Published_CFs/CF11_Dark_Sector_Emergence.pdf",
+      "sha256": "9422c658d9a84b6b3a708b07bcf1220361cc022cf8fb0d5efdffc51794e3aab4",
+      "size": 373784
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/Published_CFs/CF12_Gravity_Black_Holes_and_Saturation_Geometry.pdf",
+      "sha256": "a84a2f3f42d2a18cb46aff736312c9a19e967f22a4cd307a55e61703f50ba1f4",
+      "size": 233169
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/Published_CFs/CF13_Pi_Transcendence_Chirality_and_NN_Obstruction.pdf",
+      "sha256": "e0488b6f221185c704e043c9a57033ae0243a384d0dba1c226811e50e06f6531",
+      "size": 196548
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/Published_CFs/CF14_Principle_of_Stationary_Action.pdf",
+      "sha256": "66c526325b6d7f1d195956e227cb3ae3d3d8c52284e169fb0ed92ec36e51926c",
+      "size": 362450
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/Published_CFs/CF15_Noethers_Theorem_as_Invariant_Articulation.pdf",
+      "sha256": "6b12457611d3a72ce66fa5070430b943b0d781404ca2f03e91106829aa4eda5f",
+      "size": 393179
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/Published_CFs/CF16_Electroweak.pdf",
+      "sha256": "b10b8e1fa16d773425e28c6b73b677a5d6f7e446d0c4c681814b4a99667e7b4d",
+      "size": 340111
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/Published_CFs/CF17_Non_Abelian_Saturation.pdf",
+      "sha256": "74c20d94c8905bb893a59c0f9bd2708090701ebd1e0505a14f061c4f94301001",
+      "size": 319051
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/Published_CFs/CF18_Scale_Re_Articulation.pdf",
+      "sha256": "219a7b4a2dcaf05c771c1e1e38f57542d888951c8acffec0be5ebd32bc1cb816",
+      "size": 343934
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/Published_CFs/Lietz_Infinity_Resolution_Conjecture.pdf",
+      "sha256": "1fe4a492c396ea54a6b4169f29a54ced936f873405b5c2fc956a88701fb9c607",
+      "size": 315991
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/Published_CFs/Universal_Axiom_of_Primitive_Bifurcation_and_Orthogonal_Articulation.pdf",
+      "sha256": "77833a3abc26ce27f4602e575d27b6e03f4dbdef2ca7bb0e2d0dbf511f409adf",
+      "size": 444697
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/Published_CFs/VDM_Catalogue.pdf",
+      "sha256": "57050715d5ae31d829dcb24d5e3d4ad934a0a1a9401ba63540962efdb9176eb0",
+      "size": 546766
     },
     {
       "path": "Derivation/Complete-Formalisms/README.md",

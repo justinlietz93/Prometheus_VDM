@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-02-22T02:14:49.572551Z",
+  "generated_utc": "2026-04-11T19:20:02.001252Z",
   "items": [
     {
       "path": "Derivation/z.CANONICAL_Roadmap/00_ROADMAP.md",
@@ -92,14 +92,19 @@
       "size": 21787
     },
     {
+      "path": "Derivation/z.CANONICAL_Roadmap/CF000_Problem_Checklist_and_Status.md",
+      "sha256": "1dbf01a79491f1921aae96a091ea4b0e6667ec49dae6c047b4b2ddd944d09298",
+      "size": 19996
+    },
+    {
       "path": "Derivation/z.CANONICAL_Roadmap/Current_TODO.md",
       "sha256": "8a8b7c6a162fbed923e0b75495c24bd768fe25a03e29a09de6ade0e268fc7bda",
       "size": 20351
     },
     {
-      "path": "Derivation/z.CANONICAL_Roadmap/DIRECTIVE_Runtime_Physics_Migration_v7.md",
-      "sha256": "f9907474eb05c08b2cf91a3a79819e86623eeb6ff1ab7ad33b3754668b9c1e58",
-      "size": 43752
+      "path": "Derivation/z.CANONICAL_Roadmap/DIRECTIVE_Runtime_Physics_Migration_v8.md",
+      "sha256": "dd12fca21f45d517e956bb5a6e54f55f805b1af8107bf4e2128d37b2b40f522e",
+      "size": 68668
     },
     {
       "path": "Derivation/z.CANONICAL_Roadmap/README.md",

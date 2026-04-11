@@ -1,10 +1,15 @@
 {
-  "generated_utc": "2026-02-22T02:14:49.572551Z",
+  "generated_utc": "2026-04-11T19:20:02.001252Z",
   "items": [
     {
       "path": "Derivation/z.CANONICAL_Hypotheses/00_HYPOTHESES.md",
-      "sha256": "f1d1b9b3519f498dac2e58eedc0580f492bc77504ac0400782ce3681cc44c729",
-      "size": 19793
+      "sha256": "58531c4bbf5513aa5c1981b8fc81eeb91d9d89cea94f1f249c56967486ee9229",
+      "size": 22000
+    },
+    {
+      "path": "Derivation/z.CANONICAL_Hypotheses/H000_Primitive_Bifurcation_Hypothesis.md",
+      "sha256": "4eb9d341a19487f3bb8d5704ed2de729fb7f53c1000c553195a77b3d81398f42",
+      "size": 20617
     },
     {
       "path": "Derivation/z.CANONICAL_Hypotheses/README.md",

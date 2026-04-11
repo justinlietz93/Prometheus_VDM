@@ -1,6 +1,11 @@
 {
-  "generated_utc": "2026-02-22T02:14:49.572551Z",
+  "generated_utc": "2026-04-11T19:20:02.001252Z",
   "items": [
+    {
+      "path": "Derivation/Axioms/A-1_PENDING_Primitive_Bifurcation_Law.md",
+      "sha256": "1707cc03b1e3b8667c9e62b276468397e99d91419ca5e4a168b766e489355ab3",
+      "size": 13795
+    },
     {
       "path": "Derivation/Axioms/A8_Hierarchy_Gates/T3_PROPOSAL_A8_Hierarchy_Gates_v1.md",
       "sha256": "edb3eeb7098de8c02c271116d6e3a21ef1b3505f81d7977ca7466c2e4b4821b4",
@@ -22,6 +27,11 @@
       "size": 11657
     },
     {
+      "path": "Derivation/Axioms/H000_A8_Integration_Note.md",
+      "sha256": "047729260b895e5e1bf87f2fb5574fd537ca010bf28ee05df9c87a9df07805ac",
+      "size": 8809
+    },
+    {
       "path": "Derivation/Axioms/T8-A8_Gaps.md",
       "sha256": "9841feb823d3d1a2ec00efbe2be6bea7efc695d694f9afef83a5715a8144a648",
       "size": 15489
@@ -38,8 +48,8 @@
     },
     {
       "path": "Derivation/Axioms/T8_A8_PROPOSAL_Lietz_Infinity_Conjecture_v1.md",
-      "sha256": "325e6c0291645b8f456bb5d9dae160784a3399da7ff256d0140d959b1b5830e7",
-      "size": 21184
+      "sha256": "0bf27fcbb0229100a272c3400df767facec6060204fe749db6a0ad1ea9642a12",
+      "size": 21200
     }
   ],
   "root": "Derivation/Axioms",
