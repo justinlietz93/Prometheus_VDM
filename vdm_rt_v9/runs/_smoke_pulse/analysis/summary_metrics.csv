@@ -1,0 +1,2 @@
+tick,kT,phi_mean,phi_var,mean_degree,max_degree,n_active,n_warm,n_walkers_emitted,n_condensed_bonds,bonds_total,n_computed,active_fraction,warm_fraction,walker_fraction,condensed_fraction_directed
+0,0.00013803921568627487,0.5,4.693333333333345e-05,6.0,6,66,163,0,0,3000,0,0.066,0.163,0.0,0.0

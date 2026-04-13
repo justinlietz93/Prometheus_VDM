@@ -1,0 +1,17 @@
+{
+  "status": {
+    "desc": "Emit structured status payload"
+  },
+  "say": {
+    "desc": "Emit plain text line"
+  },
+  "ask": {
+    "desc": "Emit a question text line"
+  },
+  "reflect": {
+    "desc": "Emit a reflective text line"
+  },
+  "hypothesize": {
+    "desc": "Emit a hypothesis statement"
+  }
+}

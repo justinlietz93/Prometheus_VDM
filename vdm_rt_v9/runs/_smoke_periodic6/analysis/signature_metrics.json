@@ -1,0 +1,126 @@
+{
+  "run": {
+    "h5_path": "/home/justin/git/Prometheus_VDM/vdm_rt_v9/runs/_smoke_periodic6/run_log.h5",
+    "analysis_dir": "/home/justin/git/Prometheus_VDM/vdm_rt_v9/runs/_smoke_periodic6/analysis",
+    "canon_dir": null,
+    "N": 216,
+    "lattice": "cubic",
+    "Lx": 6,
+    "Ly": 6,
+    "Lz": 6,
+    "ticks": 5,
+    "snapshots": 2
+  },
+  "stimulus_geometry": {
+    "n_stim": 5,
+    "region_a_bounds": {
+      "min": [
+        0,
+        0,
+        0
+      ],
+      "max": [
+        4,
+        0,
+        0
+      ],
+      "unique_z": [
+        0
+      ]
+    },
+    "region_b_bounds": {
+      "min": [
+        0,
+        0,
+        2
+      ],
+      "max": [
+        4,
+        0,
+        2
+      ],
+      "unique_z": [
+        2
+      ]
+    }
+  },
+  "summary_peaks": {
+    "kT": {
+      "tick": 4,
+      "value": 0.00042042379881881265
+    },
+    "phi_var": {
+      "tick": 4,
+      "value": 0.004394095541170512
+    },
+    "n_active": {
+      "tick": 4,
+      "value": 26.0
+    },
+    "n_walkers_emitted": {
+      "tick": 4,
+      "value": 68.0
+    },
+    "n_condensed_bonds": {
+      "tick": 0,
+      "value": 0.0
+    }
+  },
+  "stabilization_ticks": {
+    "phi_mean": {
+      "tick": 0,
+      "tolerance": 1e-12
+    },
+    "phi_var": {
+      "tick": 4,
+      "tolerance": 4.348005006191088e-05
+    },
+    "kT": {
+      "tick": 4,
+      "tolerance": 3.527634248255944e-06
+    },
+    "bonds_total": {
+      "tick": 0,
+      "tolerance": 1e-12
+    },
+    "n_condensed_bonds": {
+      "tick": 0,
+      "tolerance": 1e-12
+    }
+  },
+  "activity_regime": {
+    "plateau_start_tick": 200
+  },
+  "walker_regime": {},
+  "kT_regime": {},
+  "cosmogenesis": {
+    "macrostate_lock_tick": 4,
+    "full_observation_tick": null,
+    "final_positive_fraction": 0.17592592592592593,
+    "final_positive_slab_thickness_z": 0,
+    "final_cross_phase_psi_mean": 0.5000089157534682,
+    "final_same_phase_psi_mean": 0.5002327779535767,
+    "final_interface_edges_undirected": 92,
+    "final_removed_edges_undirected": 0,
+    "persistent_new_edges_seen": false
+  },
+  "cognition_like": {
+    "interface_localization_tick": null,
+    "final_share_active_on_interface": 0.2857142857142857,
+    "final_active_proxy_fraction": 0.06481481481481481,
+    "final_largest_condensed_component_fraction": 0.004629629629629629,
+    "final_persistent_new_edges_undirected": 0
+  },
+  "limitations": [
+    "Single run at fixed system size; no cross-size scaling law test is possible.",
+    "Snapshots are every 50 ticks, so first-arrival causal-cone measurements are not directly recoverable.",
+    "Cognition claims here are only proxy-based because the log has no task semantics or behavioral readout."
+  ],
+  "suggested_improvements": [
+    "Replace the index-range pulse with coordinate-defined compact regions, such as spheres or small cubes, so the initial condition does not pre-impose z-oriented slabs on the cubic lattice.",
+    "Increase logging density during the transient, for example snapshots every 1 to 5 ticks through tick 200, or log first-arrival maps explicitly. The current 50-tick spacing is too coarse for a clean CF04 cone test.",
+    "If the goal is cosmogenesis rather than seeded domain growth, run a size sweep over multiple lattice lengths and compare slab thickness, interface box counts, and lock times against CF03 scaling predictions.",
+    "If the goal is cognition-like complexity, use structured recurrent stimulation such as the sensory mode or a task-like input schedule. The single pulse in this run collapses to a narrow deterministic limit cycle instead of maintaining rich, multi-scale dynamics.",
+    "Instrument bond instantiation and bond lifetime directly. In the current snapshots the graph only loses edges and never retains new ones, so claims about emergent long-range topology are not supported here."
+  ]
+}

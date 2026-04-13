@@ -1,0 +1,21 @@
+{
+  "phase": 4,
+  "speak": {
+    "speak_z": 3.0,
+    "speak_hysteresis": 0.5,
+    "speak_cooldown_ticks": 10,
+    "speak_valence_thresh": 0.55
+  },
+  "connectome": {
+    "walkers": 1000,
+    "hops": 5,
+    "bundle_size": 2,
+    "prune_factor": 0.1,
+    "threshold": 0.15,
+    "lambda_omega": 0.1,
+    "candidates": 64
+  },
+  "sie": {
+    "novelty_idf_gain": 1.0
+  }
+}
