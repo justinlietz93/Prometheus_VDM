@@ -31,7 +31,7 @@
       ".so"
     ]
   },
-  "file_count": 3460,
+  "file_count": 3449,
   "files": [
     {
       "path": ".codacy/cli.sh",
@@ -300,7 +300,7 @@
     },
     {
       "path": "Derivation/Axioms/PROVENANCE_index.json",
-      "sha256": "7e90c926f1e944f4365e12e444166792538f6e79d8e659016335089f55ab9575",
+      "sha256": "b6f8bc37bb6c060c48c2b1e15477356f1da66a979c1f8025cf751285f3f583bb",
       "size": 2081
     },
     {
@@ -350,7 +350,7 @@
     },
     {
       "path": "Derivation/Causality/PROVENANCE_index.json",
-      "sha256": "3d6afd59bb87c9dc3801256f23997f4f6f097931b7e9356525ed6a3ba746b6a1",
+      "sha256": "f801a4ff3f7b2fa8f6c61cb9a1ea288f8da6c4a6c699b8a3f6133a337cfcc2c4",
       "size": 965
     },
     {
@@ -365,7 +365,7 @@
     },
     {
       "path": "Derivation/Closure/PROVENANCE_index.json",
-      "sha256": "079a91aef01df32dcbb2632af4c952f18289c8665994b32265464eb5c0bede2e",
+      "sha256": "332890b1ee9e4bcd81e1843c33b4006d472729f5d8012844cb95a03883301785",
       "size": 344
     },
     {
@@ -380,7 +380,7 @@
     },
     {
       "path": "Derivation/Collapse/PROVENANCE_index.json",
-      "sha256": "f8567f5168aa8147c4865c618369f0b62d35f4d5eebd4aa9cabb37ec32891d3b",
+      "sha256": "ecf7ea2b8bfcc917496ae2e6414f973a7c775e37eafc2f29bc1fc61927a67d1b",
       "size": 1891
     },
     {
@@ -424,109 +424,114 @@
       "size": 7958
     },
     {
-      "path": "Derivation/Complete-Formalisms/A-1_Primitive_Bifurcation_Spec.md",
-      "sha256": "e768a1138889abe6ecbf9af519a4498c36cb61027371272cfa8546a8ad70ef52",
-      "size": 20451
+      "path": "Derivation/Complete-Formalisms/CF000_Primitive_Distinguishability.zip",
+      "sha256": "39b6ffd47bbaf049988320146b585debc9f271f2618bfaefe23b1c466d418c6d",
+      "size": 254415
     },
     {
-      "path": "Derivation/Complete-Formalisms/CF000_Primitive_Distinguishability_and_the_Origin_of_Differentiability.md",
-      "sha256": "3c568c21d7264e3833a86907c346a084a663aa5957c4d6848be439c5e1e0ca5e",
-      "size": 65623
+      "path": "Derivation/Complete-Formalisms/CF00_Induced_Geometry.zip",
+      "sha256": "047a05ffdee35b7dee14f95f9a56ea5b8578dbb8db435ec69c52a648cbf1512f",
+      "size": 354476
     },
     {
-      "path": "Derivation/Complete-Formalisms/CF00_Primitive_Origin_of_Induced_Geometry_and_Emergent_Dynamics.md",
-      "sha256": "4dbdf9eb8e52f985720d4c95ed3746bef516a2145a35d17f5dbe170aac241961",
-      "size": 46738
+      "path": "Derivation/Complete-Formalisms/CF01_QGT_to_Metriplectic_Brackets.zip",
+      "sha256": "bc26748538d0f02fb06948ea111cc650d88627158f536ddeaa8b7d3282735a83",
+      "size": 1560830
     },
     {
-      "path": "Derivation/Complete-Formalisms/CF01_QGT_to_Metriplectic_Brackets.md",
-      "sha256": "68eea832b9e748510e3fdbda5a8fecf52a623d68e4f831cebc673847c86bf230",
-      "size": 25987
+      "path": "Derivation/Complete-Formalisms/CF02_Contact_to_Metriplectic_Evolution.zip",
+      "sha256": "4fa099f7392ff8fc4e9ae8080d50415961b2b4a7c4ff30f76f01cc0b5959a508",
+      "size": 89062
     },
     {
-      "path": "Derivation/Complete-Formalisms/CF02_Contact_to_Metriplectic_Evolution.md",
-      "sha256": "a7f5071514fa3c949a50e214a25bde68a46ec5226470a909f22532097e7e7091",
-      "size": 21485
+      "path": "Derivation/Complete-Formalisms/CF03_Hierarchical_Tachyonic_Interfaces.zip",
+      "sha256": "32e4d04a93d869fe733a277b02049371b45a63fab8e1aba12291d685b943a0a7",
+      "size": 464730
     },
     {
-      "path": "Derivation/Complete-Formalisms/CF03_A8_Scaling_Hierarchical_Interfaces.md",
-      "sha256": "7221201ae024a7fef28429bf447effcf108beb984a3226d30ebd7ea7f4c6257b",
-      "size": 27777
+      "path": "Derivation/Complete-Formalisms/CF04_Telegraph_Fisher_Causality.zip",
+      "sha256": "78a077c97a634d92359ad7311dec4cddc56c6458cb49ef3136b3b990fef4fb75",
+      "size": 414013
     },
     {
-      "path": "Derivation/Complete-Formalisms/CF04_Telegraph_Fisher_Causality.md",
-      "sha256": "8a6173435140c2f92f4ac6870200fe57edea85ba96e98f32226be63a91d5de3e",
-      "size": 19852
+      "path": "Derivation/Complete-Formalisms/CF05_Integrability_Closure.zip",
+      "sha256": "423496fee60018ff326cdecfc6354913c09a8d4b545f2b15c3d7a3be54e43606",
+      "size": 385307
     },
     {
-      "path": "Derivation/Complete-Formalisms/CF05_Integrability_Closure.md",
-      "sha256": "f865720dc3d2d2bfb5d99c39dd018cdd8f771cf5345336918f1d493ed601da71",
-      "size": 19030
+      "path": "Derivation/Complete-Formalisms/CF06_Information_Geometry_Foundations.zip",
+      "sha256": "c923d4d73789c24a749f995ce1955f8045669c96f9b303146db44bf6b1fe0f2f",
+      "size": 829049
     },
     {
-      "path": "Derivation/Complete-Formalisms/CF06_Info_Geom_Fisher_Ruppeiner_Foundations.md",
-      "sha256": "4bcec68906c71a8034cdd9a4143ae3811c35dac1a8122580969e26910a50cd00",
-      "size": 19250
+      "path": "Derivation/Complete-Formalisms/CF07_Measurement_Theory_Foundations.zip",
+      "sha256": "c5b06527ab1302a327d9950349064a56f9d5ff1af20294d286de084be7f5ec26",
+      "size": 705657
     },
     {
-      "path": "Derivation/Complete-Formalisms/CF07_Measurement_Theory_Decoherence_Born_Rule.md",
-      "sha256": "ff79b4677ae5d614a41706ef2327aba02056e7c3ea0f28e7653212d51dd7c061",
-      "size": 19301
+      "path": "Derivation/Complete-Formalisms/CF08_Spinor_Emergence_via_Domain_Wall_Fermions.zip",
+      "sha256": "b2a3c8fac8c52e2452e98f70488827c00b1ed69e48254a3ea2bf6bb9f6483012",
+      "size": 424497
     },
     {
-      "path": "Derivation/Complete-Formalisms/CF08_Spinor_Emergence_Domain_Wall_Fermions.md",
-      "sha256": "588a96efb1b1ddd05060bea97520f80d1c5d4d0ad7eb390e4789db0dfbd7d74f",
-      "size": 30201
+      "path": "Derivation/Complete-Formalisms/CF09_Gauge_Field_Emergence_via_Berry_Connection.zip",
+      "sha256": "2abdd4cecababaccc71c43e35c04bf4bb9df377c5502d3ecb843b99138117fe7",
+      "size": 390306
     },
     {
-      "path": "Derivation/Complete-Formalisms/CF09_Gauge_Emergence_Berry_Connection.md",
-      "sha256": "0c41fbe681cfffea9ba8fc54ac660640a05642b76fddc4af9a868f3a0a256113",
-      "size": 23899
+      "path": "Derivation/Complete-Formalisms/CF10_Lattice_Hydrodynamics.zip",
+      "sha256": "b24880b65a67c12e68d521d0ff13ecc02aa7e9a43587fcde4b0773dffa6ee6f1",
+      "size": 398218
     },
     {
-      "path": "Derivation/Complete-Formalisms/CF10_Lattice_Fluids_Continuum_and_Regularity_Program.md",
-      "sha256": "25ee8971ca49a5a5c49eaa03b0a06c0e7c1a809a1aaa8069780a8caa6c60b322",
-      "size": 12125
+      "path": "Derivation/Complete-Formalisms/CF11_Dark_Sector_Emergence.zip",
+      "sha256": "dcd0d3c879f3b176da8ec8ef1a69484a262268e7b36e0cd49b4b251c3692e827",
+      "size": 415629
     },
     {
-      "path": "Derivation/Complete-Formalisms/CF11_Dark_Sector_Metriplectic_Complete.md",
-      "sha256": "a19d9e49c708dd2e36b71e53d170199ca113252759afa08452b055182e36c925",
-      "size": 23976
+      "path": "Derivation/Complete-Formalisms/CF12_Gravity_Black_Holes_and_Saturation_Geometry.zip",
+      "sha256": "19231edfc3f98c2c8cb86651aa2cfe9f56610dcd207012ff91c748a91df89b40",
+      "size": 582957
     },
     {
-      "path": "Derivation/Complete-Formalisms/CF12_Gravity_Black-Holes_Thermodynamics.md",
-      "sha256": "e4b045e7abc8fac4ca8ce916c7deda6bf88589e29ab2f0eca55d10fe5a814cd9",
-      "size": 17116
+      "path": "Derivation/Complete-Formalisms/CF13_Pi_Transcendence_Chirality_and_NN_Obstruction.zip",
+      "sha256": "d4d41b7cee892496de7cf74f8ac1f1ebbb1dd9c12e499f648657047abff0e416",
+      "size": 738297
     },
     {
-      "path": "Derivation/Complete-Formalisms/CF13_Pi_Transcendence_Chirality_and_NN_From_Bifurcation.tex",
-      "sha256": "026e24f2fe7f131b87dbf70cf9a2f7d7e3adb2537ebd848b627fd35aeea4d0a1",
-      "size": 30505
+      "path": "Derivation/Complete-Formalisms/CF14_Principle_of_Stationary_Action.zip",
+      "sha256": "92887c468c739f042f8ccb4aa0eafdc304e4ee8816e8bfd231e9b215436c238a",
+      "size": 403881
     },
     {
-      "path": "Derivation/Complete-Formalisms/CF14_Principle_of_Least_Action_as_Minimum_Saturation_DRAFT.md",
-      "sha256": "51187fd98394a40e50ef8ef17cbbe0eaaec57c83088c38472774aa944e85c2d8",
-      "size": 15870
+      "path": "Derivation/Complete-Formalisms/CF15_Noethers_Theorem_as_Invariant_Articulation.zip",
+      "sha256": "25d0a5cb337f796196ca38b42bf648d06132c49744518411d39d0488371d3a82",
+      "size": 428273
     },
     {
-      "path": "Derivation/Complete-Formalisms/CF15_Noethers_Invariant_as_Articulation_Cost.pdf",
-      "sha256": "3b499f4eaa5c3e226cd056dbaca6b29d5b71550d562e0bba7d608a4a7fbe3e45",
-      "size": 393179
+      "path": "Derivation/Complete-Formalisms/CF16_Electroweak.zip",
+      "sha256": "cc523258c06c0cc9ece2e8769d5f852d77adb518b489960d308c4677e225a3e9",
+      "size": 379317
     },
     {
-      "path": "Derivation/Complete-Formalisms/CF16_Electroweak_Closure_Plan.md",
-      "sha256": "c56dbec503d27a3460611491bed60b22b7d9321ba4f0f6c50f190d0b0a9d524f",
-      "size": 13196
+      "path": "Derivation/Complete-Formalisms/CF17_Non_Abelian_Saturation.zip",
+      "sha256": "ad7c994dd227728bf2b5848ea592b13d4b3c32517937d2d384984abc070cdff8",
+      "size": 608410
     },
     {
-      "path": "Derivation/Complete-Formalisms/CF17_QCD_Confinement_Closure_Plan.md",
-      "sha256": "4746699f77106dcec667762283f573426912bec5d748691140a23aea6629e376",
-      "size": 11621
+      "path": "Derivation/Complete-Formalisms/CF18_Scale_Re_Articulation.zip",
+      "sha256": "f721a8b3e34327f969db3c89b609f0499c0f7f07a8bab0fa149891452a8b8011",
+      "size": 44526
     },
     {
-      "path": "Derivation/Complete-Formalisms/CF18_Quantum_Corrections_and_Running_Couplings_Plan.md",
-      "sha256": "35fe25c637eb9967b72210731f55fe498333f179c6de2d78a72afc09d3151439",
-      "size": 14179
+      "path": "Derivation/Complete-Formalisms/CF19_The_Full_Lifted_Object.zip",
+      "sha256": "4771b947b38b38bef8ff2d8114898c3a00e1ff780e26372375105f1d86c97bc5",
+      "size": 568715
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/Legacy-Markdown-CFs.zip",
+      "sha256": "7a0b22c9006f76988f30b1a1f89f9ccf464666ca36b7dddc2e133e67d77cf303",
+      "size": 535093
     },
     {
       "path": "Derivation/Complete-Formalisms/Notebooks/CFN-A8_Lietz_Infinity_Resolution.ipynb",
@@ -569,6 +574,16 @@
       "size": 99094
     },
     {
+      "path": "Derivation/Complete-Formalisms/Notebooks/CFN06_Information_Geometry_Reviewer_Facing.executed.ipynb",
+      "sha256": "05be01ff14c5a0e08ad9b39d52efe34a98cc3facad5804d6339b243a1d395722",
+      "size": 655310
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/Notebooks/CFN07_Measurement_Theory_Foundations.ipynb",
+      "sha256": "4f1beb4acc52a0590939606c9010d578ef08fedb14055db92c787e7dc5038446",
+      "size": 488124
+    },
+    {
       "path": "Derivation/Complete-Formalisms/Notebooks/CFN07_publication_clean.ipynb",
       "sha256": "4f1beb4acc52a0590939606c9010d578ef08fedb14055db92c787e7dc5038446",
       "size": 488124
@@ -582,6 +597,11 @@
       "path": "Derivation/Complete-Formalisms/Notebooks/CFN09_Gauge_Emergence.ipynb",
       "sha256": "1a21a3441cc787632f198b02585bd72216d688c4110a2d151bbe9a0f5c29d520",
       "size": 74714
+    },
+    {
+      "path": "Derivation/Complete-Formalisms/Notebooks/CFN10_Lattice_Hydrodynamics.ipynb",
+      "sha256": "13f77da628165d94ad462220ebe3236c31260585d7080e7b206e27da010f4da9",
+      "size": 72809
     },
     {
       "path": "Derivation/Complete-Formalisms/Notebooks/CFN11_Dark_Sector.ipynb",
@@ -604,6 +624,11 @@
       "size": 80533
     },
     {
+      "path": "Derivation/Complete-Formalisms/Notebooks/CFN15_Noethers_Theorem_Invariant_Articulation.ipynb",
+      "sha256": "5dafa43779da44e3edb0c949129c995509df4b375436525592105d4fb19d3fa6",
+      "size": 71576
+    },
+    {
       "path": "Derivation/Complete-Formalisms/Notebooks/CFN16_Electroweak_Closure.ipynb",
       "sha256": "74dd03978869282844fe89af35beb33af2b3f870e2631dfdf867848c6e0fb3a3",
       "size": 71838
@@ -614,129 +639,19 @@
       "size": 419631
     },
     {
+      "path": "Derivation/Complete-Formalisms/Notebooks/CFN18_Scale_Re-Articulation_Corrected-Symmetry.ipynb",
+      "sha256": "5542a022df0c8d76c12a51717a2a60cdfa21af6a13cca9bedd94d66aa3e4c6cf",
+      "size": 63875
+    },
+    {
       "path": "Derivation/Complete-Formalisms/Notebooks/CFN_0D_to_5D_chiral_modes_walkthrough.ipynb",
       "sha256": "4740374720ab73ad3dd0aa71c97f08e72ab5fa6c22b1b773a80adc3b19abee5f",
       "size": 69001
     },
     {
       "path": "Derivation/Complete-Formalisms/PROVENANCE_index.json",
-      "sha256": "576e8f15e377aeaee688c4f2f88bb5b3fde111c6c5615a60642007bd04e493f4",
-      "size": 13643
-    },
-    {
-      "path": "Derivation/Complete-Formalisms/Published_CFs/CF000_Primitive_Distinguishability.pdf",
-      "sha256": "a5b069bbf734ff5e04d945b8a93937be356ae1d47407bf0908cb715c9bc0b510",
-      "size": 216502
-    },
-    {
-      "path": "Derivation/Complete-Formalisms/Published_CFs/CF00_Induced_Geometry.pdf",
-      "sha256": "bcd4a0a9721d12a9727887c1518f18be12fc040dcaf02e5ccb67e17089233b9b",
-      "size": 271201
-    },
-    {
-      "path": "Derivation/Complete-Formalisms/Published_CFs/CF01_QGT_to_Metriplectic_Brackets.pdf",
-      "sha256": "8a27bb5696555ebdd0188bde7d72b17f466a307b79a8a3b08dd18bc652b1c1ec",
-      "size": 298170
-    },
-    {
-      "path": "Derivation/Complete-Formalisms/Published_CFs/CF02_Contact_to_Metriplectic_Evolution.pdf",
-      "sha256": "d1af3cb2259bb04dc42914b00d65ef2a632bdf13443e223a8bc8cb1c241b3535",
-      "size": 342481
-    },
-    {
-      "path": "Derivation/Complete-Formalisms/Published_CFs/CF03_Hierarchical_Tachyonic_Interfaces.pdf",
-      "sha256": "85adbf249c0d8180ebfc9ac3adedef12e57d809781263d63bb965ee799548080",
-      "size": 380561
-    },
-    {
-      "path": "Derivation/Complete-Formalisms/Published_CFs/CF04_Telegraph_Fisher_Causality.pdf",
-      "sha256": "78160f0b89fea1a94c2a54f64c1dde54c2467b4f94eecba3b14be7d6ed0fb0dd",
-      "size": 386970
-    },
-    {
-      "path": "Derivation/Complete-Formalisms/Published_CFs/CF05_Integrability_Closure.pdf",
-      "sha256": "9b4cb26bf3c36e3c569f9de764024bae3bb8a1b777093c4177055b97b93d361a",
-      "size": 340474
-    },
-    {
-      "path": "Derivation/Complete-Formalisms/Published_CFs/CF06_Information_Geometry_Foundations.pdf",
-      "sha256": "3b231b175d58154df19e4293dab001e064d4b39377da427fcc1ed41588076bc9",
-      "size": 350118
-    },
-    {
-      "path": "Derivation/Complete-Formalisms/Published_CFs/CF07_Measurement_Theory_Foundations.pdf",
-      "sha256": "6d226d631c015144c805a6cfa60159c371298ac80dd48b9117224ef3c16b6730",
-      "size": 361667
-    },
-    {
-      "path": "Derivation/Complete-Formalisms/Published_CFs/CF08_Spinor_Emergence_via_Domain_Wall_Fermions.pdf",
-      "sha256": "14a2dcd0ed246863c3eb7965802eb2c3c9d0c525217c51c5d0da23e562ff8433",
-      "size": 380649
-    },
-    {
-      "path": "Derivation/Complete-Formalisms/Published_CFs/CF09_Gauge_Field_Emergence_via_Berry_Connection.pdf",
-      "sha256": "a78d057aa564b90b8e2bdcf1a8df67b5b2e22e6e34dae07a2e62cd5380e3ccbf",
-      "size": 353439
-    },
-    {
-      "path": "Derivation/Complete-Formalisms/Published_CFs/CF10_Lattice_Hydrodynamics.pdf",
-      "sha256": "c725c9c205efb0f415522cdf3a0e37fc35150428d85d9789b4fea0d3cbf8b17d",
-      "size": 360877
-    },
-    {
-      "path": "Derivation/Complete-Formalisms/Published_CFs/CF11_Dark_Sector_Emergence.pdf",
-      "sha256": "9422c658d9a84b6b3a708b07bcf1220361cc022cf8fb0d5efdffc51794e3aab4",
-      "size": 373784
-    },
-    {
-      "path": "Derivation/Complete-Formalisms/Published_CFs/CF12_Gravity_Black_Holes_and_Saturation_Geometry.pdf",
-      "sha256": "a84a2f3f42d2a18cb46aff736312c9a19e967f22a4cd307a55e61703f50ba1f4",
-      "size": 233169
-    },
-    {
-      "path": "Derivation/Complete-Formalisms/Published_CFs/CF13_Pi_Transcendence_Chirality_and_NN_Obstruction.pdf",
-      "sha256": "e0488b6f221185c704e043c9a57033ae0243a384d0dba1c226811e50e06f6531",
-      "size": 196548
-    },
-    {
-      "path": "Derivation/Complete-Formalisms/Published_CFs/CF14_Principle_of_Stationary_Action.pdf",
-      "sha256": "66c526325b6d7f1d195956e227cb3ae3d3d8c52284e169fb0ed92ec36e51926c",
-      "size": 362450
-    },
-    {
-      "path": "Derivation/Complete-Formalisms/Published_CFs/CF15_Noethers_Theorem_as_Invariant_Articulation.pdf",
-      "sha256": "6b12457611d3a72ce66fa5070430b943b0d781404ca2f03e91106829aa4eda5f",
-      "size": 393179
-    },
-    {
-      "path": "Derivation/Complete-Formalisms/Published_CFs/CF16_Electroweak.pdf",
-      "sha256": "b10b8e1fa16d773425e28c6b73b677a5d6f7e446d0c4c681814b4a99667e7b4d",
-      "size": 340111
-    },
-    {
-      "path": "Derivation/Complete-Formalisms/Published_CFs/CF17_Non_Abelian_Saturation.pdf",
-      "sha256": "74c20d94c8905bb893a59c0f9bd2708090701ebd1e0505a14f061c4f94301001",
-      "size": 319051
-    },
-    {
-      "path": "Derivation/Complete-Formalisms/Published_CFs/CF18_Scale_Re_Articulation.pdf",
-      "sha256": "219a7b4a2dcaf05c771c1e1e38f57542d888951c8acffec0be5ebd32bc1cb816",
-      "size": 343934
-    },
-    {
-      "path": "Derivation/Complete-Formalisms/Published_CFs/Lietz_Infinity_Resolution_Conjecture.pdf",
-      "sha256": "1fe4a492c396ea54a6b4169f29a54ced936f873405b5c2fc956a88701fb9c607",
-      "size": 315991
-    },
-    {
-      "path": "Derivation/Complete-Formalisms/Published_CFs/Universal_Axiom_of_Primitive_Bifurcation_and_Orthogonal_Articulation.pdf",
-      "sha256": "77833a3abc26ce27f4602e575d27b6e03f4dbdef2ca7bb0e2d0dbf511f409adf",
-      "size": 444697
-    },
-    {
-      "path": "Derivation/Complete-Formalisms/Published_CFs/VDM_Catalogue.pdf",
-      "sha256": "57050715d5ae31d829dcb24d5e3d4ad934a0a1a9401ba63540962efdb9176eb0",
-      "size": 546766
+      "sha256": "8bd9daab13ed1f2a0024afe186620b0410afbf786fb6e8bafc3036a09b959565",
+      "size": 9747
     },
     {
       "path": "Derivation/Complete-Formalisms/README.md",
@@ -750,7 +665,7 @@
     },
     {
       "path": "Derivation/Conservation_Law/PROVENANCE_index.json",
-      "sha256": "40e9716e3946bf502a3d0367c20761ba67320321c945ee1dac5ef507ec15b194",
+      "sha256": "449ae08afe9a26f86386c94339f1563e593d4342ef014959a94f46377beed244",
       "size": 931
     },
     {
@@ -800,7 +715,7 @@
     },
     {
       "path": "Derivation/Cosmology/PROVENANCE_index.json",
-      "sha256": "f1fd4c77c518fae6b9b6e7cd4c6fd06a44a52d9fad3e266b68e131960cfd6b74",
+      "sha256": "c22cd341a4e0d7210dc8d0849eb294fdf8a174b96cf77b35e33f6188ea8b3da3",
       "size": 11676
     },
     {
@@ -995,7 +910,7 @@
     },
     {
       "path": "Derivation/Dark_Matter/PROVENANCE_index.json",
-      "sha256": "515bbb2710592c809c61d3ffd1670e53cfc983b37a4696ff828d0a80fea4ed1b",
+      "sha256": "ec4a83ccd5de0068a694d4c2a665fd0157af31d84168ddb25cf66a82e006a7d0",
       "size": 351
     },
     {
@@ -1035,7 +950,7 @@
     },
     {
       "path": "Derivation/Dark_Photons/PROVENANCE_index.json",
-      "sha256": "37742ebfae262bfb55d0a9a2eac9ef669732f5b491ceecd1b9a244679364839f",
+      "sha256": "022492dbd95761aa14804233e7ca13d172ad2be38d011ca290d30ba9cc9f0cfd",
       "size": 1801
     },
     {
@@ -1255,7 +1170,7 @@
     },
     {
       "path": "Derivation/Effective_Field_Theory/PROVENANCE_index.json",
-      "sha256": "4e5b69765a692f5ce65e0598957b60e159d2432127cde7205cf2ff9704ab2eda",
+      "sha256": "d5123885a0b9c7cdb26f123bfef7ca063b18deb3f3ef1574bf12fe3438fb86f2",
       "size": 744
     },
     {
@@ -1280,7 +1195,7 @@
     },
     {
       "path": "Derivation/Entropy/PROVENANCE_index.json",
-      "sha256": "a1a3c199ff2d9a2e0c9b5f247186dde5e2335cfb4aa253ba49cc78caa8524570",
+      "sha256": "e337ce4057f2a6f4221c89742b379318242634ae5b222d3af2e0d4b0be237718",
       "size": 585
     },
     {
@@ -1300,7 +1215,7 @@
     },
     {
       "path": "Derivation/Fluid_Dynamics/PROVENANCE_index.json",
-      "sha256": "aaa7c53f771fcd1b9935eaa803afeb582c4ebe4d7db32703f6bf6d0493c00801",
+      "sha256": "de8e43a66e1a767536b6b68e7c22a62d46eab0c4abdfbf6ceeeac6b94d8a4788",
       "size": 1120
     },
     {
@@ -1320,7 +1235,7 @@
     },
     {
       "path": "Derivation/Foundations/PROVENANCE_index.json",
-      "sha256": "37d8b08b0f192602ecbb6d62682b12508f105756caeed5569cee3e3cb5fdf57d",
+      "sha256": "e0a1caec6d14c405713f7647679ba12d30d80298e5a49f171ec865334b43c71f",
       "size": 859
     },
     {
@@ -1370,7 +1285,7 @@
     },
     {
       "path": "Derivation/Gravity/PROVENANCE_index.json",
-      "sha256": "7269dd568e5c5ff645a52e225630545c248f0da28154a82a28a59e8d57920e08",
+      "sha256": "f7d0e445184af46e7db956d8457065c95d91be093912cdba27bae256f05ea387",
       "size": 1058
     },
     {
@@ -1390,7 +1305,7 @@
     },
     {
       "path": "Derivation/Hierarchy/PROVENANCE_index.json",
-      "sha256": "1afb6a278cf4c54c69877c764722f7f5dec407967cc1f73091cf6a071847db2a",
+      "sha256": "f330d92f3a7fde413cef0d9b0443d94878f2986558a87a753ecc459b0e78f68e",
       "size": 1236
     },
     {
@@ -1455,7 +1370,7 @@
     },
     {
       "path": "Derivation/Information/PROVENANCE_index.json",
-      "sha256": "ce63d3aef14adc0645b732d5d6025fde424d37359908c5dc77b94ba41c5eb746",
+      "sha256": "3bbb5cea1860fde6f9c7aef0b604c298395b748e7795651ff8d9284bc2f66a65",
       "size": 508
     },
     {
@@ -1470,7 +1385,7 @@
     },
     {
       "path": "Derivation/Intelligence_Model/PROVENANCE_index.json",
-      "sha256": "d67f0ecccc9e3f4c92866ebe63fe745c90832b553fad22708d86e8daa370f00f",
+      "sha256": "74cef301088350ad39584231ac56d8b29d515fb59b205553b175c40d76720c5f",
       "size": 951
     },
     {
@@ -1705,7 +1620,7 @@
     },
     {
       "path": "Derivation/Metriplectic/PROVENANCE_index.json",
-      "sha256": "6fd7d6d9e4eb0e971021be4fae62fe37c1fb1834f97bca32af60db1972725ae6",
+      "sha256": "08ad730c3ef8c6a68d26beef6a16eb3909845eb1e71eb43cee550da242d0ced0",
       "size": 12743
     },
     {
@@ -1780,7 +1695,7 @@
     },
     {
       "path": "Derivation/Nonequilibrium/PROVENANCE_index.json",
-      "sha256": "edd4de1db70f9406825bcc916386a858fd2a39607811e4155525365a2f822230",
+      "sha256": "282fe377530cd37c23bff4b162d460db11adc59dfd083da370b2e6f7c3157ca1",
       "size": 587
     },
     {
@@ -1795,7 +1710,7 @@
     },
     {
       "path": "Derivation/Qualia/PROVENANCE_index.json",
-      "sha256": "7b84ffb1b87f42d8c58cf1b92f99ab0f80372252c061c611786f85427c7e255e",
+      "sha256": "3e95886812d8fad8aab8ea907669fa773ca6e6be9b2a57169f04f6a60de178c4",
       "size": 543
     },
     {
@@ -1810,7 +1725,7 @@
     },
     {
       "path": "Derivation/Quantum/PROVENANCE_index.json",
-      "sha256": "e224c53ca3d94ff2aac55654f8b6d4543d51b8eef4d002015be796cd2a03e99e",
+      "sha256": "020e5f33f1b51293268420d1dfb397c73f27745c924b0878389145686516e25d",
       "size": 2480
     },
     {
@@ -1875,7 +1790,7 @@
     },
     {
       "path": "Derivation/Quantum_Gravity/PROVENANCE_index.json",
-      "sha256": "03e5359200f47c662b69756906669edea6a672a8befcf7ace1332aa370ced1a8",
+      "sha256": "971887d44c8e625460d024483127bec9d3d42cc6bd3d9b033b1daf3136ff4895",
       "size": 976
     },
     {
@@ -1900,7 +1815,7 @@
     },
     {
       "path": "Derivation/Reaction_Diffusion/PROVENANCE_index.json",
-      "sha256": "7f2131bd590911d7daf6084c67cf87f45538dde52e94746e0ee71d636950d1bc",
+      "sha256": "3f9b7987594b51d557a901172002457edd591df4bf804b35f589cd44ad67d2c3",
       "size": 1425
     },
     {
@@ -1945,7 +1860,7 @@
     },
     {
       "path": "Derivation/Spinor/PROVENANCE_index.json",
-      "sha256": "504966953b8d2cea9d9c5618b770a9c3f60243da9a56870d641261dd3c244628",
+      "sha256": "c80a0f8fe5ade8328c29ff3c5b836f29a15c648427ac483192bf17ec7cf79ec6",
       "size": 517
     },
     {
@@ -1970,7 +1885,7 @@
     },
     {
       "path": "Derivation/Tachyon_Condensation/PROVENANCE_index.json",
-      "sha256": "e95341a390de82f9271797a3bdcccc21d39158470f3394b3b8bc009612886854",
+      "sha256": "4952007c31bf8a8130d09e1bd6092b8318af30b495cd699bfd767c2d13fafb89",
       "size": 748
     },
     {
@@ -2165,7 +2080,7 @@
     },
     {
       "path": "Derivation/Thermodynamic_Routing/PROVENANCE_index.json",
-      "sha256": "65ad5ab394af1c135008ee918830526d82567a62903fbfdb0c5ca77b35709085",
+      "sha256": "b216d298fdfd26e20440fb7a97ba6b01a605ad463f27b85905fe60508ad5f32f",
       "size": 2454
     },
     {
@@ -2215,7 +2130,7 @@
     },
     {
       "path": "Derivation/Thermodynamics/Convection/PROVENANCE_index.json",
-      "sha256": "726cda2f7d6acca57c726ae280c57cf053ce0299b08f537ce123c5fa62693c3b",
+      "sha256": "dfc13037d082c72c69074f7ffe881204db82bb050d2b3c6c3b98f023e5ddcf4c",
       "size": 386
     },
     {
@@ -2235,7 +2150,7 @@
     },
     {
       "path": "Derivation/Topology/PROVENANCE_index.json",
-      "sha256": "1b9b6f56bd7dc6e8354a4487946b228e8a6cf9d883372e432d94cd8d13cdd682",
+      "sha256": "1c1c0c02c30ea164606c7b534be73b5e4a01f950dfd7a5629a8bd08bb199ad88",
       "size": 683
     },
     {
@@ -2245,7 +2160,7 @@
     },
     {
       "path": "Derivation/Transport/Telegraph_From_Relaxation/PROVENANCE_index.json",
-      "sha256": "0a039b29815fa9a458b8b2b5357ac4dee3649d72009eb6c74e949c15dd02a776",
+      "sha256": "65782bebe21cbcb429e922d700366bed940ab0fd1f1aa55537e8e0a45eddf53f",
       "size": 393
     },
     {
@@ -2260,7 +2175,7 @@
     },
     {
       "path": "Derivation/Unification/PROVENANCE_index.json",
-      "sha256": "9be89d68afb9360af7e3b4e4387aa33756cc1ddf1bdc4258e22c67bdeaec0ee2",
+      "sha256": "406b7bbf0e41926c8b5a0dad7b3b750ad0618cf39bd4d1b4535a8675023d85af",
       "size": 336
     },
     {
@@ -2285,7 +2200,7 @@
     },
     {
       "path": "Derivation/code/PROVENANCE_index.json",
-      "sha256": "5bca47a62b77bf61f9531ca4d354ab5083f6f001f1eed6446d728ca90be83273",
+      "sha256": "0fca2975eb46d67e7e4f0fca185ea653121cd9903a766e2c297d234cb18ef68a",
       "size": 64487
     },
     {
@@ -2650,7 +2565,7 @@
     },
     {
       "path": "Derivation/code/outputs/PROVENANCE_index.json",
-      "sha256": "4a9d0f92b6c2237446fc26205cc517a57112b67cb7ef330d625e3f1c194a529d",
+      "sha256": "cda2ef0d1515a9e8af2022ba5df1d70d1171c0e501b8db2865d7eb6e8291a44f",
       "size": 187275
     },
     {
@@ -7565,7 +7480,7 @@
     },
     {
       "path": "Derivation/z.CANONICAL_Algorithms/PROVENANCE_index.json",
-      "sha256": "6a17c5673d9566d1303d7d0c82d590476c0f9164af8c240635f9b7e1079adee8",
+      "sha256": "d48a171d51b01b0dfe3fb5b901bc4632cb50274bb9081050cbf1171ebaf971a7",
       "size": 341
     },
     {
@@ -7575,7 +7490,7 @@
     },
     {
       "path": "Derivation/z.CANONICAL_BC_IC_Geometries/PROVENANCE_index.json",
-      "sha256": "0daf08e47a85b2ca401afd0c86dd6de2f71e95070abf9f9a78aa439a6d396800",
+      "sha256": "1d774b72b479dca7e68e3e101a629033d9b67b6176ce9625c48bc8542dc8b7f7",
       "size": 539
     },
     {
@@ -7590,7 +7505,7 @@
     },
     {
       "path": "Derivation/z.CANONICAL_Chronicles/PROVENANCE_index.json",
-      "sha256": "c8c7ef4426971ee5d84fc0b19c8cf25b23d29b274b939993d89267c3fcf39ef1",
+      "sha256": "0fae88140cb7e0908b2ef64660a92af2deb4d98387006cb88aa5c99db1040eb7",
       "size": 517
     },
     {
@@ -7610,7 +7525,7 @@
     },
     {
       "path": "Derivation/z.CANONICAL_Complete_Formalisms/PROVENANCE_index.json",
-      "sha256": "f957da1dd3ffc2ffedd7dda069832a2a14f185a55cf5d4863751f26732969964",
+      "sha256": "7513ea72db018bbeb0f0dab0ce7f2ee5c30767b510dc3531c68d52d78d02e76d",
       "size": 551
     },
     {
@@ -7625,7 +7540,7 @@
     },
     {
       "path": "Derivation/z.CANONICAL_Constants/PROVENANCE_index.json",
-      "sha256": "fca7488f96b9023bc3d427e4ec42f904bb994a51ed27f03a3289d135b53852fe",
+      "sha256": "106f9be33934a8e06395b014ca76f204bff96ba082b68a845780a11d161f12b9",
       "size": 338
     },
     {
@@ -7635,7 +7550,7 @@
     },
     {
       "path": "Derivation/z.CANONICAL_Data_Products/PROVENANCE_index.json",
-      "sha256": "89b952404243398fa711f2fdec4387d6aadc99b35a7e9fbaa9d2bec04303ca33",
+      "sha256": "7b50486b3a6e6118ddecb098c43643a60c99c807805d22ae745de531bc7106a1",
       "size": 350
     },
     {
@@ -7645,7 +7560,7 @@
     },
     {
       "path": "Derivation/z.CANONICAL_Equations/PROVENANCE_index.json",
-      "sha256": "7715309846f5305d33b8e5c0a7c347cbc30bc007cdd0ece3fb27c7fce0f9bdb4",
+      "sha256": "dc755175773f11cc49a638959f79dbb399cd2a094265bd291b87c2bc209b57c3",
       "size": 338
     },
     {
@@ -7660,7 +7575,7 @@
     },
     {
       "path": "Derivation/z.CANONICAL_Hypotheses/PROVENANCE_index.json",
-      "sha256": "33e581abea9b60de195e7663c092d9c5e55ef55ed2b3eec1dbef750fcc36ed78",
+      "sha256": "8fb1adbe297ee492a351b85e4249402c14783c0aba75aa362120d0b0bd124326",
       "size": 726
     },
     {
@@ -7675,7 +7590,7 @@
     },
     {
       "path": "Derivation/z.CANONICAL_Naming_Conventions/PROVENANCE_index.json",
-      "sha256": "5a1e8a5a71eaa9c38818364db6ca24b1dcbb38e77d01cc06f2a841bed5633572",
+      "sha256": "605b181022330221aade10f9524e59d2bee0653821ac291f8d1f4fc090f85a72",
       "size": 549
     },
     {
@@ -7690,7 +7605,7 @@
     },
     {
       "path": "Derivation/z.CANONICAL_Open_Questions/PROVENANCE_index.json",
-      "sha256": "5e5b2dc32b7df38e6f837d2de867cd54ae197d49ef8a9740a6bec3081914eeb0",
+      "sha256": "eb7613170f5ae577ff0cdc0cb5c967506ff9d20b5e7b9f084786f06bb7015dee",
       "size": 533
     },
     {
@@ -7705,7 +7620,7 @@
     },
     {
       "path": "Derivation/z.CANONICAL_Proposals/PROVENANCE_index.json",
-      "sha256": "60d3115e2eed8dd4c2620900d081230d4da076e702a64f595213eb0084c4ea5d",
+      "sha256": "392810f209a6a443a5851a96eed2dff50b0e8be08911577799a8a64b002b4aca",
       "size": 513
     },
     {
@@ -7720,7 +7635,7 @@
     },
     {
       "path": "Derivation/z.CANONICAL_Results/PROVENANCE_index.json",
-      "sha256": "51b11c242bd4027f2a5c9394b38aa0caecc7cec98bf8c3384be0027c058e8f68",
+      "sha256": "5ddd0617d3d469b7c603ee5c239131b9cfadc2903605b9d2c952bf618ca4c0aa",
       "size": 504
     },
     {
@@ -7835,7 +7750,7 @@
     },
     {
       "path": "Derivation/z.CANONICAL_Roadmap/PROVENANCE_index.json",
-      "sha256": "0b242e81c47d08a7c5b9ff2eba03ac0d4094a274f01d37d7393c58c4f3c039d4",
+      "sha256": "0b67b1d1b1776ec0059eed044595b69af2ec849c1479746eb8f1bbbedd889d4b",
       "size": 5626
     },
     {
@@ -7855,7 +7770,7 @@
     },
     {
       "path": "Derivation/z.CANONICAL_Schemas/PROVENANCE_index.json",
-      "sha256": "abe20ffa1923845e5cd898066cea73e99014a1c4e967b7911c49719a13e988ce",
+      "sha256": "399d8f70d5071b6e4d40fc6038472f5647f71ba4f4201ef5d36f87913c0b5964",
       "size": 506
     },
     {
@@ -7870,7 +7785,7 @@
     },
     {
       "path": "Derivation/z.CANONICAL_Symbols/PROVENANCE_index.json",
-      "sha256": "a27c5f3ca6b8d5cdd8e0751929496d4866bf4095e2a13f6dd57f9f575424ce51",
+      "sha256": "684b0ed080c9a285be584d6f603b2c81c3ebcb1c140938db0452f80f53e1a0d9",
       "size": 505
     },
     {
@@ -7885,7 +7800,7 @@
     },
     {
       "path": "Derivation/z.CANONICAL_Units_Normalization/PROVENANCE_index.json",
-      "sha256": "5434fb67af9f801f28b4fbb4b223ac401251fb54e6302b626797151c281732ab",
+      "sha256": "a6e4ca447b9cba1ca31b4797a778bd8513bf7bdfbcb7adf434382ecf50c61270",
       "size": 553
     },
     {
@@ -7900,7 +7815,7 @@
     },
     {
       "path": "Derivation/z.CANONICAL_Validation_Metrics/PROVENANCE_index.json",
-      "sha256": "f1e1c8ca322f51f379f52fbaecb7623a126dc0e7b4a06a719244aa8df38112b0",
+      "sha256": "0edfc2bd0d421627ac7bc45af2675e01ecfc0d1b329b24d5343177124c5cc7ff",
       "size": 549
     },
     {
@@ -11405,7 +11320,7 @@
     },
     {
       "path": "data_analysis/PROVENANCE_index.json",
-      "sha256": "875cd5b006564937403ab25bc913d73d41d428a8896c59422b93590144b6e189",
+      "sha256": "90936897ca9dc16aaf8d3cba826b3ebbe1b31b02366bba89008e545bd879fc27",
       "size": 232707
     },
     {
@@ -17224,9 +17139,34 @@
       "size": 1932
     },
     {
+      "path": "vdm_rt_v9/.gitignore",
+      "sha256": "4993520cf6c119bf5880e1573435aeb9e555a6df2c46ab924abee74b5ce49737",
+      "size": 23
+    },
+    {
       "path": "vdm_rt_v9/README.md",
-      "sha256": "cf2058ef42952b7932f8944238c11bbc2cdda7e05233611ab8cfb9cdecef7f49",
-      "size": 1549
+      "sha256": "a7d42dab4b1af1099cd5c1d9f495aaa72349fcedf680f3565a09b7876de2aa63",
+      "size": 335
+    },
+    {
+      "path": "vdm_rt_v9/analysis/spacetime_discretization/latest/comparison.json",
+      "sha256": "f8f6bd873da696991ecb6113f6544e7e80e1c84e1c682620478b39fb2705e460",
+      "size": 38161
+    },
+    {
+      "path": "vdm_rt_v9/analysis/spacetime_discretization/latest/report.md",
+      "sha256": "ad90945cd74e1494d51488425b4c25b83ba230d7b8eac8f8d40e58dc10990002",
+      "size": 3462
+    },
+    {
+      "path": "vdm_rt_v9/analysis/spacetime_discretization/latest/summary.md",
+      "sha256": "20f581e62a868f3815b5fee3b31cc36967be092e0ceb118f979b80ac6c5867c6",
+      "size": 1163
+    },
+    {
+      "path": "vdm_rt_v9/data/vdm_dashboard_state_22260.json",
+      "sha256": "e019e9e7bdbe27b80b91b429217c2abe43e0b1cffc4d842cf7f2dd3c8d4577ef",
+      "size": 462427
     },
     {
       "path": "vdm_rt_v9/requirements.txt",
@@ -17290,8 +17230,8 @@
     },
     {
       "path": "vdm_rt_v9/scripts/engram.py",
-      "sha256": "4875c7f7eb16dd7d998ee332c65a02020ceee87ae14cfe930475f04bb905949c",
-      "size": 10865
+      "sha256": "d0e66ffcd4e8a5f65b5464ae226361b5a2a1ece1028579f1a88ead95f65dc0d2",
+      "size": 10896
     },
     {
       "path": "vdm_rt_v9/scripts/h5_extract.py",
@@ -17307,6 +17247,11 @@
       "path": "vdm_rt_v9/scripts/provenance/generate_salted_hash.py",
       "sha256": "e8031b36f59e64ca5361965c8a16f5ebf2e69dd588a77b29c05dbc053fe45f47",
       "size": 9756
+    },
+    {
+      "path": "vdm_rt_v9/scripts/validate_spacetime_discretization.py",
+      "sha256": "478bba322668a27279038c73f324d1ecfd412e874f5227a6fd7c56062972d5a7",
+      "size": 22527
     },
     {
       "path": "vdm_rt_v9/scripts/vdm_convert.py",
@@ -17334,11 +17279,11 @@
       "size": 12298
     }
   ],
-  "generated_utc": "2026-04-11T19:21:59.502096Z",
-  "git_commit": "87fbb5662d8a711d755f44b143a364c08b08f8ae",
+  "generated_utc": "2026-04-13T12:12:31.569974Z",
+  "git_commit": "61562ec6ea416272c237411cb761dea24f116689",
   "git_dirty": true,
   "repo_root": "/home/runner/work/Prometheus_VDM/Prometheus_VDM",
   "schema": "vdm.provenance.manifest.v1",
-  "total_bytes": 831618293,
-  "tree_hash": "d0fe3b5186bc86be41af6a0aff987edb5b152ed8f285118a5290816998b93bde"
+  "total_bytes": 835684179,
+  "tree_hash": "d5b2845c93f6816688cdb209069b4be3bd32a419e805319f1aef7430da4550db"
 }
