@@ -3,3 +3,7 @@ h5py
 dash
 plotly
 scipy
+pandas
+scikit-learn
+dash_bootstrap_components
+pyvis

@@ -1,0 +1,76 @@
+{
+  "N": 216,
+  "lattice": "cubic",
+  "Lx": 6,
+  "Ly": 6,
+  "Lz": 6,
+  "edges": 1940,
+  "stimulus": "pulse",
+  "amp": 0.08,
+  "ticks": 2,
+  "constants": {
+    "J_COUPLING": 0.0125,
+    "LAMBDA": 1.0,
+    "GAMMA_DAMP": 0.5,
+    "EPS_BOND": 200.0,
+    "LAMBDA_BOND": 1.0,
+    "BETA_DEBT": 0.1,
+    "A_LATTICE": 1.0,
+    "DT": 1.0,
+    "TAU": 2.0,
+    "D_DIFF": 0.05,
+    "C_SQ": 0.025,
+    "C_SIGNAL": 0.15811388300841897,
+    "TAU_BOND": 200.0
+  },
+  "timestamp": "20260306_213142",
+  "lattice_metadata": {
+    "lattice_kind": "grid",
+    "dimensions": [
+      6,
+      6,
+      6
+    ],
+    "boundary": "open",
+    "stencil": "26",
+    "weight_rule": "inverse_r2",
+    "weight_rule_expression": "w = 1 / r^2",
+    "class_weights": {
+      "corner": 0.3333333333333333,
+      "edge": 0.5,
+      "face": 1.0
+    },
+    "transport_calibration": "legacy_face_6_low_k",
+    "transport_renormalization": 0.23076923076923078,
+    "transport_reference": "legacy_face_6_low_k",
+    "raw_axis_second_moment": 8.666666666666666,
+    "reference_axis_second_moment": 2.0,
+    "neighbor_classes": {
+      "corner": {
+        "distance": 1.7320508075688772,
+        "geom_weight": 0.3333333333333333,
+        "edge_count": 500
+      },
+      "edge": {
+        "distance": 1.4142135623730951,
+        "geom_weight": 0.5,
+        "edge_count": 900
+      },
+      "face": {
+        "distance": 1.0,
+        "geom_weight": 1.0,
+        "edge_count": 540
+      }
+    },
+    "directed_offset_count": 26,
+    "edge_count": 1940,
+    "dynamic_bond_geom_weight": 1.0,
+    "dynamic_bond_geometry_mode": "unit_weight"
+  },
+  "boundary": "open",
+  "stencil": "26",
+  "transport_calibration": "legacy_face_6_low_k",
+  "transport_renormalization": 0.23076923076923078,
+  "weight_rule": "inverse_r2",
+  "pulse_geometry": "compact_blob"
+}

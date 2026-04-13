@@ -102,13 +102,6 @@ class Connectome:
             self.lattice_metadata.get("dynamic_bond_geom_weight", 1.0)
         )
 
-        # ── Node field IC: superposition (A0 + action symmetry) ──
-        # V(φ) has unstable vacuum at φ = 0.5.  V'(0.5) = 0.
-        # Maximum symmetry, zero information about well membership.
-        # φ̇(0) = 0: field at rest.  Waiting for first observation.
-        self.phi_curr = np.full(N, 0.5, dtype=np.float64)
-        self.phi_prev = np.full(N, 0.5, dtype=np.float64)
-
         # ── Bond field IC: superposition (A0 + action symmetry) ──
         # U(ψ) has unstable vacuum at ψ = 0.5.  U'(0.5) = 0.
         # Maximum symmetry, zero information about condensation.
@@ -136,20 +129,37 @@ class Connectome:
             if u != v and v not in self.adj[u]:
                 self._add_bond(u, v, psi_init=0.5, geom_weight=geom_weight)
 
-        # ── Auxiliary state ──
+        # ── 1. Allocate Memory First (Blank Page) ──
+        self.phi_curr = np.zeros(N, dtype=np.float64)
+        self.phi_prev = np.zeros(N, dtype=np.float64)
         self.debt = np.zeros(N, dtype=np.float64)
         self.last_visit = np.full(N, -1, dtype=np.int32)
-
-        # kT = 0: no thermal energy, no walkers, superposition.
-        self.kT: float = 0.0
-        self._tick: int = 0
-
+        
         # External source coupling J_ext(x,t).
         # Set each tick by the external observer via stimulate().
-        # Read by the integrator, then zeroed.  No internal decay —
+        # Read by the integrator, then zeroed. No internal decay —
         # the field response persists in {φ, φ̇} and decays through
         # M-limb damping (γ·φ̇) already in the telegraph equation.
         self._J_ext = np.zeros(N, dtype=np.float64)
+
+        # ── 2. Forced Emergence From Topology (The Paradox) ──
+        degrees = [len(a) for a in self.adj]
+        max_deg = max(degrees) if degrees and max(degrees) > 0 else 1
+        
+        for i in range(N):
+            # Val is 0.5 for a node with exactly half its ideal neighbors
+            val = float(degrees[i]) / max_deg
+            self.phi_curr[i] = val
+            self.phi_prev[i] = val
+
+            # The boundary witnesses its own debt (Overrides the -1 unobserved state)
+            if degrees[i] < max_deg:
+                self.last_visit[i] = 0
+
+        # ── 3. Final Engine State ──
+        # kT = 0: no thermal energy, no walkers, superposition.
+        self.kT: float = 0.0
+        self._tick: int = 0
 
     # ══════════════════════════════════════════════════════════════════════
     # Stimulus — the first observation

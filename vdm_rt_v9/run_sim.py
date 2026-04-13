@@ -452,6 +452,8 @@ def apply_stimulus(
 def main():
     parser = argparse.ArgumentParser(
         description="VDM v9 Runner — Stimulus-Driven Metriplectic Klein-Gordon")
+    parser.add_argument("--amp", type=float, default=0.0,
+                        help="Stimulus amplitude")
     parser.add_argument("--N", type=int, default=1000,
                         help="Target number of nodes (actual may differ for cubic)")
     parser.add_argument("--ticks", type=int, default=200,
@@ -459,8 +461,8 @@ def main():
     parser.add_argument("--stimulus", type=str, default="pulse",
                         choices=["pulse", "sensory", "sweep"],
                         help="Stimulus mode")
-    parser.add_argument("--amp", type=float, default=0.08,
-                        help="Stimulus amplitude")
+    # parser.add_argument("--amp", type=float, default=0.08, # Not allowed to inject stimulus. Symmetry breaking must occur emergently from an initial state of symmetry.
+    #                     help="Stimulus amplitude")
     parser.add_argument("--lattice", type=str, default="cubic",
                         choices=["cubic", "ring"],
                         help="Lattice topology")
@@ -518,7 +520,7 @@ def main():
     print(f"  Nodes:     {N}")
     print(f"  Lattice:   {lattice_desc}")
     print(f"  Edges:     {len(edges)}")
-    print(f"  Stimulus:  {args.stimulus} (amp={args.amp})")
+    # print(f"  Stimulus:  {args.stimulus} (amp={args.amp})") # Not allowed to inject stimulus. Symmetry breaking must occur emergently from an initial state of symmetry.
     print(f"  Ticks:     {args.ticks}")
     print(f"  Output:    {out_dir}")
     print(f"  Constants: {get_constants()}")
@@ -575,16 +577,16 @@ def main():
     for t in range(args.ticks):
         t0 = time.time()
 
-        # Apply stimulus
-        apply_stimulus(
-            conn,
-            args.stimulus,
-            t,
-            N,
-            args.amp,
-            lattice_shape=(Lx, Ly, Lz),
-            boundary=lattice_meta.get("boundary", "periodic"),
-        )
+        # # Apply stimulus # Keep your hands out of the machine. Symmetry breaking must occur emergently from an initial state of symmetry. No external stimulus allowed.
+        # apply_stimulus(
+        #     conn,
+        #     args.stimulus,
+        #     t,
+        #     N,
+        #     args.amp,
+        #     lattice_shape=(Lx, Ly, Lz),
+        #     boundary=lattice_meta.get("boundary", "periodic"),
+        # )
 
         # Physics step
         result = conn.step(t)

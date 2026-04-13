@@ -147,21 +147,29 @@ def build_coords(nx: int, ny: int, nz: int) -> np.ndarray:
     z = idx // (nx * ny)
     return np.column_stack([x, y, z])
 
+def spatial_fourier_spectrum(phi: np.ndarray, nz: int, ny: int, nx: int) -> dict:
+    phi3d = phi.reshape(nz, ny, nx)
+    fft = np.fft.fftn(phi3d)
+    power = np.abs(fft)**2
+    freqs = np.fft.fftfreq(nx)  # same for all axes since cubic-ish
+    return {
+        "dominant_kx_mode": float(np.unravel_index(np.argmax(power), power.shape)[2]),
+        "dominant_ky_mode": float(np.unravel_index(np.argmax(power), power.shape)[1]),
+        "dominant_kz_mode": float(np.unravel_index(np.argmax(power), power.shape)[0]),
+        "total_power": float(np.sum(power)),
+        "low_k_fraction": float(np.sum(power[0:3,0:3,0:3]) / np.sum(power)),  # long-wavelength dominance
+    }
 
 def choose_visual_ticks(snapshot_ticks: Sequence[int]) -> List[int]:
+    """Every single saved snapshot (no skipping). This makes the 3D tumbling smooth."""
     if not snapshot_ticks:
         return []
-    preferred = [0, 1, 2, 3, 4, len(snapshot_ticks) - 1]
-    chosen: List[int] = []
-    seen = set()
-    for idx in preferred:
-        if idx < 0 or idx >= len(snapshot_ticks):
-            continue
-        tick = int(snapshot_ticks[idx])
-        if tick not in seen:
-            chosen.append(tick)
-            seen.add(tick)
-    return chosen
+    ticks = np.asarray(snapshot_ticks, dtype=int)
+    indices = np.arange(0, len(ticks), 1)   # every tick
+    chosen = list(ticks[indices])
+    if ticks[-1] not in chosen:
+        chosen.append(int(ticks[-1]))
+    return sorted(set(chosen))
 
 
 def pulse_regions(config: dict) -> dict | None:
@@ -589,7 +597,7 @@ def build_final_activity_lattice_figure(
 
 
 def build_spectral_topology_figure(run_path: Path, tick_index: int, path: Path) -> None:
-    from scripts.dashboard import EngramReader, build_3d_figure
+    from dashboard import EngramReader, build_3d_figure
 
     reader = EngramReader(str(run_path))
     fig = build_3d_figure(reader, tick_index)
@@ -857,6 +865,20 @@ def main() -> None:
             row.update(same_components)
             row.update(condensed_components)
             row.update(e0_delta)
+            row.update(spatial_fourier_spectrum(phi, nz, ny, nx))
+
+            # === MATTER / GALAXY / BLACK-HOLE PROXIES — FINAL SAFE VERSION ===
+            condensed_fraction = float(np.mean(psi > 0.95)) if psi.size > 0 else 0.0
+            local_curvature_proxy = float(np.std(degrees)) / max(np.mean(degrees), 1e-12) if degrees.size > 0 else 0.0
+            trapped_walker_proxy = condensed_fraction   # safe edge-based proxy
+
+            row.update({
+                "condensed_fraction": condensed_fraction,
+                "trapped_walker_proxy": trapped_walker_proxy,
+                "local_curvature_proxy": local_curvature_proxy,
+                "galaxy_candidate_score": condensed_fraction * trapped_walker_proxy * local_curvature_proxy,
+            })
+            
             for scale, count in box_counts.items():
                 row[f"interface_box_count_scale_{scale}"] = count
             snapshot_rows_data.append(row)

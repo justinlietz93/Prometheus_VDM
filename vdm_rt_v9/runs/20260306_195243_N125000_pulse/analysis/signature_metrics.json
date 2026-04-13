@@ -1,0 +1,168 @@
+{
+  "run": {
+    "h5_path": "/home/justin/git/Prometheus_VDM/vdm_rt_v9/runs/20260306_195243_N125000_pulse/run_log.h5",
+    "analysis_dir": "/home/justin/git/Prometheus_VDM/vdm_rt_v9/runs/20260306_195243_N125000_pulse/analysis",
+    "canon_dir": null,
+    "N": 125000,
+    "lattice": "cubic",
+    "Lx": 50,
+    "Ly": 50,
+    "Lz": 50,
+    "ticks": 300,
+    "snapshots": 6
+  },
+  "stimulus_geometry": {
+    "n_stim": 2500,
+    "region_a_bounds": {
+      "min": [
+        0,
+        0,
+        0
+      ],
+      "max": [
+        49,
+        49,
+        0
+      ],
+      "unique_z": [
+        0
+      ]
+    },
+    "region_b_bounds": {
+      "min": [
+        0,
+        0,
+        16
+      ],
+      "max": [
+        49,
+        49,
+        17
+      ],
+      "unique_z": [
+        16,
+        17
+      ]
+    }
+  },
+  "summary_peaks": {
+    "kT": {
+      "tick": 6,
+      "value": 0.006670144068486342
+    },
+    "phi_var": {
+      "tick": 98,
+      "value": 0.24732077482671225
+    },
+    "n_active": {
+      "tick": 60,
+      "value": 9225.0
+    },
+    "n_walkers_emitted": {
+      "tick": 64,
+      "value": 22881.0
+    },
+    "n_condensed_bonds": {
+      "tick": 299,
+      "value": 136277.0
+    }
+  },
+  "stabilization_ticks": {
+    "phi_mean": {
+      "tick": 299,
+      "tolerance": 5.670149730546137e-06
+    },
+    "phi_var": {
+      "tick": 92,
+      "tolerance": 0.0024729677909337893
+    },
+    "kT": {
+      "tick": 98,
+      "tolerance": 6.646901161405902e-05
+    },
+    "bonds_total": {
+      "tick": 287,
+      "tolerance": 0.49
+    },
+    "n_condensed_bonds": {
+      "tick": 278,
+      "tolerance": 1362.77
+    }
+  },
+  "activity_regime": {
+    "tail_mean": 4188.18,
+    "tail_std": 84.16630917415827,
+    "tail_cv": 0.020096153740803466,
+    "dominant_frequency": 0.02,
+    "dominant_period_ticks": 50.0,
+    "dominant_power": 194977.00636743382,
+    "autocorr_lag_1": 0.8418797116367729,
+    "autocorr_lag_2": 0.6153908183395592,
+    "autocorr_lag_3": 0.39738942402212685,
+    "autocorr_lag_4": 0.23364621419620007,
+    "autocorr_lag_5": 0.12913734853339462,
+    "autocorr_lag_10": 0.058924752300560955,
+    "autocorr_lag_15": -0.01568521011360032,
+    "plateau_start_tick": 200
+  },
+  "walker_regime": {
+    "tail_mean": 18538.02,
+    "tail_std": 319.9774048272784,
+    "tail_cv": 0.017260603064797556,
+    "dominant_frequency": 0.04,
+    "dominant_period_ticks": 25.0,
+    "dominant_power": 997849.2459155931,
+    "autocorr_lag_1": 0.20136866355919486,
+    "autocorr_lag_2": -0.18934124663986435,
+    "autocorr_lag_3": 0.03981229090833509,
+    "autocorr_lag_4": 0.18729683483474988,
+    "autocorr_lag_5": -0.0066148049902618805,
+    "autocorr_lag_10": -0.1960723615956043,
+    "autocorr_lag_15": 0.0716555254074969
+  },
+  "kT_regime": {
+    "tail_mean": 4.57852993152519e-05,
+    "tail_std": 1.6252730932645814e-06,
+    "tail_cv": 0.03549770597924592,
+    "dominant_frequency": 0.02,
+    "dominant_period_ticks": 50.0,
+    "dominant_power": 6.829344243719942e-11,
+    "autocorr_lag_1": 0.7791973028335247,
+    "autocorr_lag_2": 0.421129984970308,
+    "autocorr_lag_3": 0.24030761616295354,
+    "autocorr_lag_4": 0.19268802341546062,
+    "autocorr_lag_5": 0.157680776855174,
+    "autocorr_lag_10": 0.13463526821479274,
+    "autocorr_lag_15": -0.008401093452140415
+  },
+  "cosmogenesis": {
+    "macrostate_lock_tick": 100,
+    "full_observation_tick": 100,
+    "final_positive_fraction": 0.499968,
+    "final_positive_slab_thickness_z": 11,
+    "final_cross_phase_psi_mean": 1.0,
+    "final_same_phase_psi_mean": 0.6602700369508775,
+    "final_interface_edges_undirected": 7596,
+    "final_removed_edges_undirected": 43,
+    "persistent_new_edges_seen": false
+  },
+  "cognition_like": {
+    "interface_localization_tick": 150,
+    "final_share_active_on_interface": 1.0,
+    "final_active_proxy_fraction": 0.02164,
+    "final_largest_condensed_component_fraction": 0.129136,
+    "final_persistent_new_edges_undirected": 0
+  },
+  "limitations": [
+    "Single run at fixed system size; no cross-size scaling law test is possible.",
+    "Snapshots are every 50 ticks, so first-arrival causal-cone measurements are not directly recoverable.",
+    "Cognition claims here are only proxy-based because the log has no task semantics or behavioral readout."
+  ],
+  "suggested_improvements": [
+    "Replace the index-range pulse with coordinate-defined compact regions, such as spheres or small cubes, so the initial condition does not pre-impose z-oriented slabs on the cubic lattice.",
+    "Increase logging density during the transient, for example snapshots every 1 to 5 ticks through tick 200, or log first-arrival maps explicitly. The current 50-tick spacing is too coarse for a clean CF04 cone test.",
+    "If the goal is cosmogenesis rather than seeded domain growth, run a size sweep over multiple lattice lengths and compare slab thickness, interface box counts, and lock times against CF03 scaling predictions.",
+    "If the goal is cognition-like complexity, use structured recurrent stimulation such as the sensory mode or a task-like input schedule. The single pulse in this run collapses to a narrow deterministic limit cycle instead of maintaining rich, multi-scale dynamics.",
+    "Instrument bond instantiation and bond lifetime directly. In the current snapshots the graph only loses edges and never retains new ones, so claims about emergent long-range topology are not supported here."
+  ]
+}
