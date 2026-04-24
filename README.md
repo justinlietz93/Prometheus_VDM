@@ -6,7 +6,8 @@
 
 ---
 
-***Current Status:*** Active development.
+***Current Status:*** Active development.  
+***Lean4 Repo:*** [justinlietz93/VDM_Lean4_Environment](https://github.com/justinlietz93/VDM_Lean4_Environment)
 
 > **Author:** Justin K. Lietz  
 > **Contact:** <justin@neuroca.ai>  
