@@ -6,7 +6,7 @@
 
 ---
 
-***Current Status:*** Active development.  
+***Current Status:*** This repository has been archived, with the working version migrated to the official Neuroca Inc. Github organizaton at this repository location: [https://github.com/Neuroca-Inc/VDM](https://github.com/Neuroca-Inc/VDM).  
 ***Lean4 Repo:*** [justinlietz93/VDM_Lean4_Environment](https://github.com/justinlietz93/VDM_Lean4_Environment)
 
 > **Author:** Justin K. Lietz  
