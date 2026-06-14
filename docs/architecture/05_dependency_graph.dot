@@ -1,0 +1,24 @@
+digraph VDM_Dependencies {
+  rankdir=LR;
+  node [shape=box, style=rounded];
+
+  "vdm_rt.core" [label="core"];
+  "vdm_rt.frontend" [label="frontend"];
+  "vdm_rt.io" [label="io"];
+  "vdm_rt.nexus" [label="nexus"];
+  "vdm_rt.physics" [label="physics"];
+  "vdm_rt.runtime" [label="runtime"];
+  "vdm_rt.tests" [label="tests"];
+  "vdm_rt.utils" [label="utils"];
+
+  "vdm_rt.io" -> "vdm_rt.core";
+  "vdm_rt.nexus" -> "vdm_rt.core";
+  "vdm_rt.physics" -> "vdm_rt.core";
+  "vdm_rt.runtime" -> "vdm_rt.core";
+  "vdm_rt.runtime" -> "vdm_rt.io";
+  "vdm_rt.tests" -> "vdm_rt.core";
+  "vdm_rt.tests" -> "vdm_rt.frontend";
+  "vdm_rt.tests" -> "vdm_rt.physics";
+  "vdm_rt.tests" -> "vdm_rt.runtime";
+  "vdm_rt.utils" -> "vdm_rt.io";
+}

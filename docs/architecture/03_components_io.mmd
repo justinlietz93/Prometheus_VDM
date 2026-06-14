@@ -1,0 +1,40 @@
+```mermaid
+C4Component
+    title Component Diagram - I/O Layer (vdm_rt.io)
+    
+    Container_Boundary(io_boundary, "I/O Layer - Adapters & Interfaces") {
+        Component(ute, "UTE", "io.ute", "User Text Entry<br/>stdin + inbox.jsonl<br/>Real-time user input")
+        
+        Component(utd, "UTD", "io.utd", "User Telemetry Display<br/>JSONL event logging<br/>Structured output")
+        
+        Component(cognition, "Cognition System", "io.cognition", "stimulus: symbols_to_indices<br/>composer: compose_say_text<br/>speaker: should_speak, novelty_score")
+        
+        Component(lexicon, "Lexicon Store", "io.lexicon", "load_phrase_templates()<br/>load_lexicon(), save_lexicon()<br/>IDF scoring")
+        
+        Component(actuators, "Actuators", "io.actuators", "MacroEmitter, ThoughtEmitter<br/>Vocalizer, symbols, visualize<br/>Motor control")
+        
+        Component(sensors, "Sensors", "io.sensors", "Vision, auditory<br/>Somatosensory<br/>Symbol sensors")
+        
+        Component(logging_infra, "Logging Infrastructure", "io.logging", "RollingJsonlWriter<br/>Structured event emission")
+        
+        Component(visualization, "Visualization Services", "io.visualization", "MapsRing (spatial buffers)<br/>WebSocket server<br/>Real-time streaming")
+        
+        Component(maps_ring, "MapsRing", "io.maps_ring", "Ring buffer for spatial maps<br/>Historical trail/heat/memory")
+    }
+    
+    Component_Ext(runtime, "Runtime Orchestrator", "vdm_rt.runtime")
+    Component_Ext(core, "Core Engine", "vdm_rt.core")
+    Component_Ext(filesystem, "Filesystem", "JSONL, JSON")
+    
+    Rel(runtime, ute, "Polls", "User messages")
+    Rel(runtime, utd, "Writes", "Telemetry events")
+    Rel(runtime, cognition, "Transforms", "Text → activation")
+    Rel(cognition, lexicon, "Reads", "Phrase templates")
+    Rel(runtime, actuators, "Emits", "Macros, thoughts")
+    Rel(sensors, core, "Stimulates", "Connectome activation")
+    Rel(logging_infra, filesystem, "Appends", "events.jsonl")
+    Rel(visualization, core, "Streams", "Spatial maps")
+    Rel(visualization, maps_ring, "Buffers", "Historical maps")
+    
+    UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
+```

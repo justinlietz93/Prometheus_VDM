@@ -1,0 +1,1157 @@
+{
+  "module_metrics": {
+    "vdm_rt.tests.physics.test_ci_gates": {
+      "fan_in": 0,
+      "fan_out": 1,
+      "instability": 1.0
+    },
+    "vdm_rt.core.substrate.substrate": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.core.void_b1": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.core.cortex.__init__": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.frontend.controllers.file_picker_status": {
+      "fan_in": 1,
+      "fan_out": 1,
+      "instability": 0.5
+    },
+    "vdm_rt.core.cortex.scouts": {
+      "fan_in": 2,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    "vdm_rt.io.visualization.websocket_server": {
+      "fan_in": 1,
+      "fan_out": 1,
+      "instability": 0.5
+    },
+    "vdm_rt.core.memory.engram_io": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.io.actuators.visualize": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.frontend.components.perf": {
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    "vdm_rt.core.fum_sie": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.frontend.components.workspace": {
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    "vdm_rt.core.cortex.void_walkers.void_heat_scout": {
+      "fan_in": 1,
+      "fan_out": 2,
+      "instability": 0.667
+    },
+    "vdm_rt.io.actuators.macros": {
+      "fan_in": 1,
+      "fan_out": 1,
+      "instability": 0.5
+    },
+    "vdm_rt.frontend.callbacks.file_picker.__init__": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.frontend.services.status_client": {
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    "vdm_rt.runtime.__init__": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.frontend.components.widgets.graph": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.runtime.helpers.viz": {
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    "vdm_rt.runtime.helpers.speak": {
+      "fan_in": 0,
+      "fan_out": 4,
+      "instability": 1.0
+    },
+    "vdm_rt.core.tests.test_conservation_flux": {
+      "fan_in": 0,
+      "fan_out": 1,
+      "instability": 1.0
+    },
+    "vdm_rt.frontend.callbacks.logs": {
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    "vdm_rt.frontend.styles.theme": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.runtime.loop.__init__": {
+      "fan_in": 0,
+      "fan_out": 2,
+      "instability": 1.0
+    },
+    "vdm_rt.core.engine.maps_frame": {
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    "vdm_rt.io.sensors.auditory": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.io.lexicon.store": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.tests.guards.test_no_scheduler": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.frontend.components.config.sections": {
+      "fan_in": 0,
+      "fan_out": 1,
+      "instability": 1.0
+    },
+    "vdm_rt.io.actuators.motor_control": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.core.substrate.structural_homeostasis": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.runtime.helpers.ingest": {
+      "fan_in": 1,
+      "fan_out": 2,
+      "instability": 0.667
+    },
+    "vdm_rt.frontend.callbacks.engram": {
+      "fan_in": 1,
+      "fan_out": 1,
+      "instability": 0.5
+    },
+    "vdm_rt.frontend.debug_ui": {
+      "fan_in": 0,
+      "fan_out": 3,
+      "instability": 1.0
+    },
+    "vdm_rt.physics.vacuum_demographics_harness": {
+      "fan_in": 2,
+      "fan_out": 2,
+      "instability": 0.5
+    },
+    "vdm_rt.io.sensors.__init__": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.nexus": {
+      "fan_in": 0,
+      "fan_out": 2,
+      "instability": 1.0
+    },
+    "vdm_rt.frontend.controllers.__init__": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.runtime.telemetry": {
+      "fan_in": 5,
+      "fan_out": 1,
+      "instability": 0.167
+    },
+    "vdm_rt.core.announce": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.io.visualization.__init__": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.physics.memory_steering.memory_steering": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.core.cortex.void_walkers.base": {
+      "fan_in": 9,
+      "fan_out": 1,
+      "instability": 0.1
+    },
+    "vdm_rt.core.cortex.maps.coldmap": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.frontend.controllers.file_picker_ctx": {
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    "vdm_rt.frontend.callbacks.interval": {
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    "vdm_rt.frontend.callbacks.runtime": {
+      "fan_in": 1,
+      "fan_out": 2,
+      "instability": 0.667
+    },
+    "vdm_rt.core.diagnostics": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.frontend.utilities.pdf_utils": {
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    "vdm_rt.tests.conftest": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.core.memory.field": {
+      "fan_in": 0,
+      "fan_out": 1,
+      "instability": 1.0
+    },
+    "vdm_rt.runtime.helpers.smoke": {
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    "vdm_rt.core.proprioception.events": {
+      "fan_in": 24,
+      "fan_out": 1,
+      "instability": 0.04
+    },
+    "vdm_rt.frontend.components.widgets.file_picker": {
+      "fan_in": 8,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    "vdm_rt.io.actuators.thoughts": {
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    "vdm_rt.core.cortex.void_walkers.void_cold_scout": {
+      "fan_in": 1,
+      "fan_out": 2,
+      "instability": 0.667
+    },
+    "vdm_rt.core.neuroplasticity.gdsp": {
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    "vdm_rt.core.cortex.void_walkers.void_memory_ray_scout": {
+      "fan_in": 1,
+      "fan_out": 2,
+      "instability": 0.667
+    },
+    "vdm_rt.tests.physics.test_steering_ab": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.tests.physics.test_router_regression_figures": {
+      "fan_in": 0,
+      "fan_out": 1,
+      "instability": 1.0
+    },
+    "vdm_rt.runtime.events_adapter": {
+      "fan_in": 2,
+      "fan_out": 1,
+      "instability": 0.333
+    },
+    "vdm_rt.physics.sidm_curve_harness": {
+      "fan_in": 1,
+      "fan_out": 2,
+      "instability": 0.667
+    },
+    "vdm_rt.utils.logging_setup": {
+      "fan_in": 0,
+      "fan_out": 1,
+      "instability": 1.0
+    },
+    "vdm_rt.core.cosmology.__init__": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.physics.memory_steering.memory_steering_experiments": {
+      "fan_in": 0,
+      "fan_out": 1,
+      "instability": 1.0
+    },
+    "vdm_rt.io.visualization.maps_ring": {
+      "fan_in": 4,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    "vdm_rt.frontend.controllers.file_picker_controller": {
+      "fan_in": 3,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    "vdm_rt.tests.physics.test_harness_logging": {
+      "fan_in": 0,
+      "fan_out": 1,
+      "instability": 1.0
+    },
+    "vdm_rt.physics.__init__": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.core.cortex.void_walkers.frontier_scout": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.frontend.components.config.run_config": {
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    "vdm_rt.frontend.utilities.fs_utils": {
+      "fan_in": 7,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    "vdm_rt.core.visualizer": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.__init__": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.tests.core.test_core_boundary_guards": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.frontend.callbacks.workspace": {
+      "fan_in": 1,
+      "fan_out": 1,
+      "instability": 0.5
+    },
+    "vdm_rt.frontend.styles.base": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.core.engine.__init__": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.runtime.helpers.redis_out": {
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    "vdm_rt.core.cortex.void_walkers.runner": {
+      "fan_in": 1,
+      "fan_out": 1,
+      "instability": 0.5
+    },
+    "vdm_rt.runtime.helpers.macro_board": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.core.cortex.maps.inhibitionmap": {
+      "fan_in": 2,
+      "fan_out": 1,
+      "instability": 0.333
+    },
+    "vdm_rt.core.cortex.void_walkers.void_sentinel_scout": {
+      "fan_in": 1,
+      "fan_out": 2,
+      "instability": 0.667
+    },
+    "vdm_rt.physics.ci_gates": {
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    "vdm_rt.io.actuators.symbols": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.frontend.callbacks.perf": {
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    "vdm_rt.core.substrate.neurogenesis": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.tests.frontend.test_frontend_architecture": {
+      "fan_in": 0,
+      "fan_out": 6,
+      "instability": 1.0
+    },
+    "vdm_rt.runtime.helpers.emission": {
+      "fan_in": 1,
+      "fan_out": 1,
+      "instability": 0.5
+    },
+    "vdm_rt.frontend.__main__": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.core.cortex.maps.excitationmap": {
+      "fan_in": 2,
+      "fan_out": 1,
+      "instability": 0.333
+    },
+    "vdm_rt.core.cortex.void_walkers.void_excitation_scout": {
+      "fan_in": 1,
+      "fan_out": 2,
+      "instability": 0.667
+    },
+    "vdm_rt.tests.core.test_void_faithful_guards": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.core.Void_Debt_Modulation": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.core.global_system": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.tests.core.test_maps_frame": {
+      "fan_in": 0,
+      "fan_out": 2,
+      "instability": 1.0
+    },
+    "vdm_rt.core.guards.invariants": {
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    "vdm_rt.tests.runtime.test_events_adapter_inhibition": {
+      "fan_in": 0,
+      "fan_out": 4,
+      "instability": 1.0
+    },
+    "vdm_rt.physics.pta_correlation_harness": {
+      "fan_in": 1,
+      "fan_out": 3,
+      "instability": 0.75
+    },
+    "vdm_rt.runtime.orchestrator": {
+      "fan_in": 0,
+      "fan_out": 1,
+      "instability": 1.0
+    },
+    "vdm_rt.tests.guards.test_no_dense_connectome": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.frontend.callbacks.charts": {
+      "fan_in": 1,
+      "fan_out": 2,
+      "instability": 0.667
+    },
+    "vdm_rt.tests.physics.test_invariants": {
+      "fan_in": 0,
+      "fan_out": 1,
+      "instability": 1.0
+    },
+    "vdm_rt.core.neuroplasticity.revgsp": {
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    "vdm_rt.io.logging.rolling_jsonl": {
+      "fan_in": 3,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    "vdm_rt.frontend.__init__": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.cli.args": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.frontend.controllers.chat_controller": {
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    "vdm_rt.core.text_utils": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.tests.core.test_active_graph_regression": {
+      "fan_in": 0,
+      "fan_out": 1,
+      "instability": 1.0
+    },
+    "vdm_rt.runtime.helpers.maps_ws": {
+      "fan_in": 0,
+      "fan_out": 2,
+      "instability": 1.0
+    },
+    "vdm_rt.physics.harness_logging": {
+      "fan_in": 5,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    "vdm_rt.runtime.helpers.status_http": {
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    "vdm_rt.core.engine.core_engine": {
+      "fan_in": 0,
+      "fan_out": 10,
+      "instability": 1.0
+    },
+    "vdm_rt.frontend.callbacks.profile": {
+      "fan_in": 1,
+      "fan_out": 2,
+      "instability": 0.667
+    },
+    "vdm_rt.frontend.callbacks.file_picker.registrars": {
+      "fan_in": 2,
+      "fan_out": 2,
+      "instability": 0.5
+    },
+    "vdm_rt.runtime.helpers.__init__": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.core.cortex.maps.__init__": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.tests.core.cosmology.test_router": {
+      "fan_in": 0,
+      "fan_out": 1,
+      "instability": 1.0
+    },
+    "vdm_rt.core.adc": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.frontend.utilities.profiles": {
+      "fan_in": 5,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    "vdm_rt.io.cognition.stimulus": {
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    "vdm_rt.tests.physics.test_pta_correlation_harness": {
+      "fan_in": 0,
+      "fan_out": 2,
+      "instability": 1.0
+    },
+    "vdm_rt.frontend.styles.__init__": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.runtime.retention": {
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    "vdm_rt.frontend.callbacks.feed": {
+      "fan_in": 1,
+      "fan_out": 1,
+      "instability": 0.5
+    },
+    "vdm_rt.tests.physics.test_memory_kernel_event_local": {
+      "fan_in": 0,
+      "fan_out": 2,
+      "instability": 1.0
+    },
+    "vdm_rt.tests.runtime.test_phase_legacy_key": {
+      "fan_in": 0,
+      "fan_out": 1,
+      "instability": 1.0
+    },
+    "vdm_rt.tests.core.test_scouts": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.io.maps_ring": {
+      "fan_in": 0,
+      "fan_out": 1,
+      "instability": 1.0
+    },
+    "vdm_rt.physics.memory_steering.plot_memory_steering": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.frontend.services.process_manager": {
+      "fan_in": 2,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    "vdm_rt.io.actuators.vocalizer": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.tests.frontend.test_process_manager_runs_root": {
+      "fan_in": 0,
+      "fan_out": 1,
+      "instability": 1.0
+    },
+    "vdm_rt.frontend.callbacks.process": {
+      "fan_in": 1,
+      "fan_out": 2,
+      "instability": 0.667
+    },
+    "vdm_rt.core.cortex.maps.base_decay_map": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.core.memory.__init__": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.data.data_manager": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.frontend.callbacks.graph_tabs.single_graph": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.core.substrate.growth_arbiter": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.io.__init__": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.physics.router_regression_figures": {
+      "fan_in": 1,
+      "fan_out": 1,
+      "instability": 0.5
+    },
+    "vdm_rt.core.sparse_connectome": {
+      "fan_in": 2,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    "vdm_rt.frontend.models.series": {
+      "fan_in": 3,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    "vdm_rt.frontend.components.widgets.file_breadcrumbs": {
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    "vdm_rt.physics.rd_front_speed_runner": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.core.void_dynamics_adapter": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.core.fum_growth_arbiter": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.tests.physics.test_sidm_curve_harness": {
+      "fan_in": 0,
+      "fan_out": 2,
+      "instability": 1.0
+    },
+    "vdm_rt.frontend.components.chat": {
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    "vdm_rt.runtime.helpers.checkpointing": {
+      "fan_in": 1,
+      "fan_out": 2,
+      "instability": 0.667
+    },
+    "vdm_rt.core.Void_Equations": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.core.primitives.dsu": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.frontend.styles.components": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.core.metrics": {
+      "fan_in": 4,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    "vdm_rt.tests.core.test_territory_uf": {
+      "fan_in": 0,
+      "fan_out": 1,
+      "instability": 1.0
+    },
+    "vdm_rt.core.cortex.maps.trailmap": {
+      "fan_in": 2,
+      "fan_out": 1,
+      "instability": 0.333
+    },
+    "vdm_rt.frontend.components.charts": {
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    "vdm_rt.frontend.app": {
+      "fan_in": 0,
+      "fan_out": 17,
+      "instability": 1.0
+    },
+    "vdm_rt.frontend.components.layout": {
+      "fan_in": 2,
+      "fan_out": 8,
+      "instability": 0.8
+    },
+    "vdm_rt.io.ute": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.frontend.utilities.tail": {
+      "fan_in": 3,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    "vdm_rt.core.engine.evt_snapshot": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.core.neuroplasticity.__init__": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.core.control_server": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.runtime.loop.main": {
+      "fan_in": 0,
+      "fan_out": 31,
+      "instability": 1.0
+    },
+    "vdm_rt.tests.core.cosmology.test_events": {
+      "fan_in": 0,
+      "fan_out": 1,
+      "instability": 1.0
+    },
+    "vdm_rt.frontend.components.widgets.blocks": {
+      "fan_in": 1,
+      "fan_out": 1,
+      "instability": 0.5
+    },
+    "vdm_rt.frontend.plugins.fum_visualizer_v1.fum_visualizer": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.runtime.stepper": {
+      "fan_in": 1,
+      "fan_out": 2,
+      "instability": 0.667
+    },
+    "vdm_rt.core.cortex.maps.heatmap": {
+      "fan_in": 1,
+      "fan_out": 1,
+      "instability": 0.5
+    },
+    "vdm_rt.frontend.components.config.__init__": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.runtime.state": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.frontend.callbacks.chat": {
+      "fan_in": 1,
+      "fan_out": 2,
+      "instability": 0.667
+    },
+    "vdm_rt.io.lexicon.idf": {
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    "vdm_rt.core.cortex.void_walkers.void_ray_scout": {
+      "fan_in": 1,
+      "fan_out": 2,
+      "instability": 0.667
+    },
+    "vdm_rt.core.cortex.void_walkers.void_frontier_scout": {
+      "fan_in": 1,
+      "fan_out": 2,
+      "instability": 0.667
+    },
+    "vdm_rt.io.utd": {
+      "fan_in": 0,
+      "fan_out": 1,
+      "instability": 1.0
+    },
+    "vdm_rt.core.cosmology.router": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.tests.core.test_runner_budget": {
+      "fan_in": 0,
+      "fan_out": 1,
+      "instability": 1.0
+    },
+    "vdm_rt.core.sie_v2": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.io.sensors.vision": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.runtime.emitters": {
+      "fan_in": 0,
+      "fan_out": 2,
+      "instability": 1.0
+    },
+    "vdm_rt.core.cosmology.events": {
+      "fan_in": 0,
+      "fan_out": 1,
+      "instability": 1.0
+    },
+    "vdm_rt.core.cortex.void_walkers.void_inhibition_scout": {
+      "fan_in": 1,
+      "fan_out": 2,
+      "instability": 0.667
+    },
+    "vdm_rt.io.cognition.composer": {
+      "fan_in": 1,
+      "fan_out": 1,
+      "instability": 0.5
+    },
+    "vdm_rt.frontend.components.runtime_controls": {
+      "fan_in": 1,
+      "fan_out": 1,
+      "instability": 0.5
+    },
+    "vdm_rt.frontend.styles.layout": {
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    "vdm_rt.core.cortex.maps.memorymap": {
+      "fan_in": 2,
+      "fan_out": 1,
+      "instability": 0.333
+    },
+    "vdm_rt.io.sensors.somatosensory": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.io.actuators.__init__": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.runtime.helpers.engram": {
+      "fan_in": 0,
+      "fan_out": 1,
+      "instability": 1.0
+    },
+    "vdm_rt.frontend.controllers.charts_controller": {
+      "fan_in": 2,
+      "fan_out": 3,
+      "instability": 0.6
+    },
+    "vdm_rt.core.fum_structural_homeostasis": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.frontend.controllers.runtime_controller": {
+      "fan_in": 1,
+      "fan_out": 2,
+      "instability": 0.667
+    },
+    "vdm_rt.tests.physics.test_vacuum_demographics_harness": {
+      "fan_in": 0,
+      "fan_out": 1,
+      "instability": 1.0
+    },
+    "vdm_rt.physics.rd_dispersion_runner": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.core.bus": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.io.cognition.speaker": {
+      "fan_in": 1,
+      "fan_out": 1,
+      "instability": 0.5
+    },
+    "vdm_rt.frontend.components.feed": {
+      "fan_in": 1,
+      "fan_out": 1,
+      "instability": 0.5
+    },
+    "vdm_rt.core.signals": {
+      "fan_in": 4,
+      "fan_out": 1,
+      "instability": 0.2
+    },
+    "vdm_rt.frontend.components.widgets.file_tree": {
+      "fan_in": 1,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    "vdm_rt.frontend.callbacks.file_picker.common": {
+      "fan_in": 0,
+      "fan_out": 6,
+      "instability": 1.0
+    },
+    "vdm_rt.run_nexus": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.core.__init__": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.io.sensors.symbols": {
+      "fan_in": 0,
+      "fan_out": 0,
+      "instability": 0
+    },
+    "vdm_rt.tests.runtime.test_telemetry_frame_v2": {
+      "fan_in": 0,
+      "fan_out": 2,
+      "instability": 1.0
+    },
+    "vdm_rt.core.proprioception.territory": {
+      "fan_in": 2,
+      "fan_out": 0,
+      "instability": 0.0
+    },
+    "vdm_rt.runtime.phase": {
+      "fan_in": 1,
+      "fan_out": 1,
+      "instability": 0.5
+    },
+    "vdm_rt.core.cortex.void_walkers.void_cycle_scout": {
+      "fan_in": 1,
+      "fan_out": 2,
+      "instability": 0.667
+    }
+  },
+  "cycles": [],
+  "package_dependencies": {
+    "vdm_rt.nexus": [
+      "vdm_rt.core"
+    ],
+    "vdm_rt.utils": [
+      "vdm_rt.io"
+    ],
+    "vdm_rt.physics": [
+      "vdm_rt.core"
+    ],
+    "vdm_rt.runtime": [
+      "vdm_rt.core",
+      "vdm_rt.io"
+    ],
+    "vdm_rt.io": [
+      "vdm_rt.core"
+    ],
+    "vdm_rt.tests": [
+      "vdm_rt.runtime",
+      "vdm_rt.core",
+      "vdm_rt.frontend",
+      "vdm_rt.physics"
+    ]
+  },
+  "external_dependencies": [
+    "Prometheus_VDM",
+    "PyPDF2",
+    "Void_Debt_Modulation",
+    "Void_Equations",
+    "adc",
+    "announce",
+    "app",
+    "base",
+    "base_decay_map",
+    "checkpointing",
+    "cli",
+    "coldmap",
+    "common",
+    "components",
+    "condense_tube",
+    "core",
+    "core_engine",
+    "cylinder_modes",
+    "dash",
+    "emission",
+    "engram",
+    "engram_io",
+    "events",
+    "evt_snapshot",
+    "excitationmap",
+    "field",
+    "fitz",
+    "fum_initialization",
+    "fum_validated_math",
+    "h5py",
+    "heatmap",
+    "imageio",
+    "ingest",
+    "inhibitionmap",
+    "layout",
+    "macro_board",
+    "main",
+    "maps",
+    "maps_frame",
+    "maps_ring",
+    "maps_ws",
+    "matplotlib",
+    "models",
+    "networkx",
+    "neuroplasticity",
+    "nexus",
+    "numpy",
+    "pdf2image",
+    "pdfminer",
+    "plotly",
+    "primitives",
+    "pytesseract",
+    "pytest",
+    "redis",
+    "registrars",
+    "router",
+    "runtime",
+    "runtime_controller",
+    "scipy",
+    "sections",
+    "services",
+    "sie_v2",
+    "smoke",
+    "speak",
+    "torch",
+    "tqdm",
+    "utilities",
+    "utils",
+    "viz",
+    "void_dynamics_adapter",
+    "void_frontier_scout",
+    "void_walkers",
+    "websocket_server",
+    "websockets"
+  ],
+  "module_count": 210,
+  "total_edges": 202
+}

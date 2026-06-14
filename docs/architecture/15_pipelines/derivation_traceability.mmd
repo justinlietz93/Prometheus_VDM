@@ -1,0 +1,80 @@
+```mermaid
+flowchart TD
+    Start([Start: Derivation-to-Implementation Traceability])
+    
+    A[TeX/LaTeX Derivations<br/>Derivation/]
+    B[Jupyter Notebooks<br/>Experimental Validation]
+    C[Python Runtime Modules<br/>vdm_rt/core/]
+    
+    A --> D{Extract Mathematical<br/>Constructs}
+    D --> E[Void Debt Equations]
+    D --> F[Metriplectic Structure]
+    D --> G[Agency-Field Coupling]
+    D --> H[Conservation Laws]
+    
+    E --> I[Void_Equations.py]
+    E --> J[Void_Debt_Modulation.py]
+    F --> K[core/engine/CoreEngine]
+    G --> L[core/cortex/void_walkers/]
+    H --> M[core/neuroplasticity/]
+    
+    B --> N[Numerical Experiments]
+    N --> O[physics/ harnesses]
+    O --> P{Compare Runtime<br/>to Derivations}
+    
+    I --> Q[Runtime Implementation]
+    J --> Q
+    K --> Q
+    L --> Q
+    M --> Q
+    
+    Q --> R{Validation Tests}
+    R -->|Pass| S[Traceability Confirmed]
+    R -->|Fail| T[Gap Identified]
+    
+    T --> U[**RISK**: No Automated<br/>Symbolic→Numeric<br/>Consistency Check]
+    
+    S --> V[PROVENANCE_manifest.json<br/>Links Files to Commits]
+    
+    V --> W([End: Provenance Tracked])
+    U --> X([End: Manual Validation Only])
+    
+    style U fill:#f99,stroke:#900,stroke-width:3px
+    style S fill:#9f9,stroke:#090,stroke-width:2px
+    
+    subgraph "Current State"
+        Y[✅ Manual Code Review]
+        Z[✅ Physics Harness Tests]
+        AA[❌ No SymPy Validation]
+        AB[❌ No Auto-Diff Checks]
+    end
+    
+    subgraph "Recommended Enhancement"
+        AC[Add symbolic math pipeline]
+        AD[SymPy: TeX → Python AST]
+        AE[Auto-diff: Compare gradients]
+        AF[CI Gate: Derivation parity]
+    end
+```
+
+---
+
+## Traceability Map (Detailed)
+
+| TeX Source | Mathematical Construct | Python Module | Function/Class | Status |
+|------------|------------------------|---------------|----------------|--------|
+| `Derivation/physics/void_dynamics.tex` | Void debt ψ(x,t) | `core/Void_Equations.py` | `void_debt_field()` | ✅ Implemented |
+| `Derivation/physics/metriplectic.tex` | Metriplectic bracket {·,·} | `core/engine/CoreEngine` | `_apply_metriplectic_step()` | ✅ Implemented |
+| `Derivation/physics/agency_field.tex` | Agency coupling A·F | `core/cortex/void_walkers/` | Scout deposition logic | ✅ Implemented |
+| `Derivation/physics/conservation.tex` | ∇·J = 0 | `core/neuroplasticity/` | GDSP gradient | ⚠️ Partial (no explicit div check) |
+| `Derivation/experiments/pta.ipynb` | PTA correlation ξ(τ) | `physics/pta_correlation_harness.py` | `compute_correlation()` | ✅ Validated |
+| `Derivation/experiments/sidm.ipynb` | SIDM σ/m | `physics/sidm_curve_harness.py` | `scattering_cross_section()` | ✅ Validated |
+
+**Gap Analysis**:
+- No automated SymPy pipeline to parse TeX → symbolic Python
+- No auto-differentiation checks (JAX/PyTorch) to verify gradient correctness
+- Conservation laws not explicitly tested in CI (relies on manual inspection)
+
+**Mitigation**:
+- **Short-term**: Add unit tests for conservation law invariants (e.g., `test_conservation_flux.py` exists but not comprehensive)
+- **Long-term**: Build TeX→SymPy→NumPy validation pipeline (strategic refactor item #10)

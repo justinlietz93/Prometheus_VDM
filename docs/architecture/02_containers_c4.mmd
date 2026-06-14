@@ -1,0 +1,48 @@
+```mermaid
+C4Container
+    title Container Diagram - Prometheus VDM Internal Architecture
+    
+    Person(user, "User/Researcher", "Runs and monitors VDM")
+    
+    Container_Boundary(vdm_boundary, "Prometheus VDM System") {
+        Container(nexus_runner, "Nexus Runner", "Python (run_nexus.py)", "Main simulation orchestrator<br/>Configures and executes VDM loop<br/>CLI entrypoint")
+        Container(vdm_live_ui, "VDM Live Dashboard", "Python/Dash (vdm_live.py)", "Real-time monitoring UI<br/>Runs on port 8060<br/>Visualizes telemetry")
+        
+        Container(vdm_core, "VDM Core Runtime", "Python (vdm_rt.core)", "Neural dynamics engine<br/>Sparse connectome<br/>Void walkers, scouts, events<br/>Metriplectic numerics")
+        
+        Container(runtime_orchestrator, "Runtime Orchestrator", "Python (vdm_rt.runtime)", "Loop control, phase profiles<br/>Telemetry, checkpointing<br/>Event emission")
+        
+        Container(io_layer, "I/O Layer", "Python (vdm_rt.io)", "UTE (user text entry)<br/>UTD (telemetry display)<br/>Cognition (stimulus, composer)<br/>Sensors, actuators")
+        
+        Container(frontend_service, "Frontend Service", "Python/Dash (vdm_rt.frontend)", "Dashboard components<br/>Callbacks, controllers<br/>Chart rendering, file browser")
+        
+        Container(physics_harness, "Physics Harnesses", "Python (vdm_rt.physics)", "Experimental simulations<br/>PTA correlations, SIDM curves<br/>Memory steering, RD front speed")
+        
+        Container(data_manager, "Data Manager", "Python (vdm_rt.data)", "Corpus storage<br/>File management<br/>Text data access")
+    }
+    
+    ContainerDb(filesystem, "Filesystem Storage", "HDF5, JSONL, npz", "Run artifacts<br/>Checkpoints<br/>Event logs<br/>Profiles")
+    
+    ContainerDb(redis_optional, "Redis (Optional)", "Key-value cache", "Telemetry pub/sub")
+    
+    System_Ext(gpu_runtime, "GPU Runtime", "PyTorch CUDA/ROCm")
+    
+    Rel(user, nexus_runner, "Executes", "CLI: python vdm_rt/run_nexus.py --profile X")
+    Rel(user, vdm_live_ui, "Monitors", "HTTP: http://127.0.0.1:8060")
+    
+    Rel(nexus_runner, runtime_orchestrator, "Initializes, starts loop", "Python API")
+    Rel(runtime_orchestrator, vdm_core, "Steps simulation", "CoreEngine.step()")
+    Rel(runtime_orchestrator, io_layer, "Reads user input, emits output", "UTE, UTD, cognition")
+    Rel(runtime_orchestrator, filesystem, "Persists checkpoints, logs", "h5py, json")
+    Rel(runtime_orchestrator, redis_optional, "Publishes metrics", "Redis pub/sub")
+    
+    Rel(vdm_core, gpu_runtime, "Offloads tensor ops", "torch.cuda")
+    
+    Rel(vdm_live_ui, frontend_service, "Delegates UI rendering", "Dash components")
+    Rel(frontend_service, filesystem, "Reads telemetry", "JSONL tail")
+    
+    Rel(physics_harness, vdm_core, "Uses core primitives", "Import core modules")
+    Rel(physics_harness, data_manager, "Accesses corpus", "Text data")
+    
+    UpdateLayoutConfig($c4ShapeInRow="2", $c4BoundaryInRow="1")
+```
