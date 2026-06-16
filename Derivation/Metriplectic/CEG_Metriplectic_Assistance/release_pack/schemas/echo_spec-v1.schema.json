@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EchoSpec v1",
+  "type": "object",
+  "required": ["ceg_summary", "gate_ledger_per_seed", "dt"],
+  "properties": {
+    "ceg_summary": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "mean": {"type": "number"},
+          "median": {"type": "number"},
+          "n": {"type": "integer"}
+        },
+        "required": ["mean", "median", "n"]
+      }
+    },
+    "gate_ledger_per_seed": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "seed": {"type": "integer"},
+          "gates": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["gate", "passed"],
+              "properties": {
+                "gate": {"type": "string"},
+                "passed": {"type": "boolean"}
+              }
+            }
+          }
+        }
+      }
+    },
+    "dt": {"type": "number"}
+  }
+}
