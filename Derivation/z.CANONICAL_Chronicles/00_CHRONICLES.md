@@ -4,6 +4,31 @@
 <!-- This section defines the mandatory template for documenting any change under Derivation/. -->
 <!-- The only bypass for Derivation edits without canon updates is explicit documentation here. -->
 
+## Change Attestation — 2026-02-18 — SGHFA ADR + Architecture Standard
+
+Dependency-Chain-Reviewed: true
+Change-Type: canon-impacting
+Summary: Added a current→target ADR and a canonical standards-governed hexagonal falsification architecture reference to formalize proposal/approval/prediction/provenance/gate/contradiction workflow requirements.
+
+Paths-Changed:
+- Derivation/CURRENT_TO_TARGET_SGHFA_ADR.md (NEW)
+- Derivation/STANDARDS_GOVERNED_HEXAGONAL_FALSIFICATION_ARCHITECTURE.md (NEW)
+- Derivation/z.CANONICAL_Chronicles/00_CHRONICLES.md (this entry)
+
+Canon-Docs-Updated:
+- Derivation/STANDARDS_GOVERNED_HEXAGONAL_FALSIFICATION_ARCHITECTURE.md
+- Derivation/CURRENT_TO_TARGET_SGHFA_ADR.md
+
+Dependency-Notes:
+- Reviewed dependencies: Derivation/AXIOMS.md (A0/A4/A5/A7), Derivation/z.CANONICAL_Algorithms/00_ALGORITHMS.md, Derivation/z.CANONICAL_Validation_Metrics/00_VALIDATION_METRICS.md, Derivation/z.CANONICAL_Schemas/00_SCHEMAS.md.
+- Upstream/downstream links: architecture standard aligns run policy to approval and provenance helpers under Derivation/code/common and domain runners under Derivation/code/physics.
+
+Approval/PR:
+- PR: copilot/research-existing-pipeline
+- Approval: documentation architecture standardization; no experiment execution performed.
+
+---
+
 ## Change Attestation — 2025-11-20 — CF9 Gauge Emergence and H006 Hypothesis
 
 Dependency-Chain-Reviewed: true
